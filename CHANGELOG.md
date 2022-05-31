@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Localization optimization
+- License
 
 [9.2.5.x.x]: https://www.curseforge.com/wow/addons/krowi-achievement-filter/files/3808967
 
