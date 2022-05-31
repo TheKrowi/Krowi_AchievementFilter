@@ -1,0 +1,125 @@
+<!-- 
+	Krowi's Progress Bar License
+		Copyright ©2020-2022 The contents of this library, excluding third-party resources, are
+		copyrighted to their authors with all rights reserved.
+
+		This library is free to use and the authors hereby grants you the following rights:
+
+		1. 	You may make modifications to this library for private use only, you
+			may not publicize any portion of this library. The only exception being you may
+			upload to the github website.
+
+		2. 	Do not modify the name of this library, including the library folders.
+
+		3. 	This copyright notice shall be included in all copies or substantial
+			portions of the Software.
+
+		All rights not explicitly addressed in this license are reserved by
+		the copyright holders.
+ -->
+
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+
+    <Frame name="Krowi_ProgressBar_Template" virtual="true">
+        <Size x="224" y="25"/>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture parentKey="BorderLeftTop" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
+		            <Size x="7" y="6"/>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.02734375" top="0" bottom="0.1875"/>
+					<Color r="0.75" g="0.75" b="0.75"/>
+				</Texture>
+				<Texture parentKey="BorderLeftBottom" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
+		            <Size x="7" y="6"/>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.02734375" top="0.59375" bottom="0.78125"/>
+					<Color r="0.75" g="0.75" b="0.75"/>
+				</Texture>
+				<Texture parentKey="BorderLeftMiddle" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
+		            <Size x="7" y="13"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.BorderLeftTop" relativePoint="BOTTOMLEFT" x="0" y="0"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.BorderLeftBottom" relativePoint="TOPRIGHT" x="0" y="0"/>
+					</Anchors>
+					<TexCoords left="0" right="0.02734375" top="0.1875" bottom="0.59375"/>
+					<Color r="0.75" g="0.75" b="0.75"/>
+				</Texture>
+                <Texture parentKey="BorderRightTop" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
+		            <Size x="7" y="6"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT"/>
+					</Anchors>
+					<TexCoords left="0.84765625" right="0.875" top="0" bottom="0.1875"/>
+					<Color r="0.75" g="0.75" b="0.75"/>
+				</Texture>
+                <Texture parentKey="BorderRightBottom" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
+		            <Size x="7" y="6"/>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT"/>
+					</Anchors>
+					<TexCoords left="0.84765625" right="0.875" top="0.59375" bottom="0.78125"/>
+					<Color r="0.75" g="0.75" b="0.75"/>
+				</Texture>
+                <Texture parentKey="BorderRightMiddle" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
+		            <Size x="7" y="13"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.BorderRightTop" relativePoint="BOTTOMLEFT" x="0" y="0"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.BorderRightBottom" relativePoint="TOPRIGHT" x="0" y="0"/>
+					</Anchors>
+					<TexCoords left="0.84765625" right="0.875" top="0.1875" bottom="0.59375"/>
+					<Color r="0.75" g="0.75" b="0.75"/>
+				</Texture>
+                <Texture parentKey="BorderMiddleTop" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
+		            <Size x="210" y="6"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.BorderLeftTop" relativePoint="TOPRIGHT" x="0" y="0"/>
+						<Anchor point="TOPRIGHT" relativeKey="$parent.BorderRightTop" relativePoint="TOPLEFT" x="0" y="0"/>
+					</Anchors>
+					<TexCoords left="0.02734375" right="0.84765625" top="0" bottom="0.1875"/>
+					<Color r="0.75" g="0.75" b="0.75"/>
+				</Texture>
+                <Texture parentKey="BorderMiddleBottom" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
+		            <Size x="210" y="6"/>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeKey="$parent.BorderLeftBottom" relativePoint="BOTTOMRIGHT" x="0" y="0"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.BorderRightBottom" relativePoint="BOTTOMLEFT" x="0" y="0"/>
+					</Anchors>
+					<TexCoords left="0.02734375" right="0.84765625" top="0.59375" bottom="0.78125"/>
+					<Color r="0.75" g="0.75" b="0.75"/>
+				</Texture>
+                <Texture parentKey="BorderMiddleMiddle" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
+		            <Size x="210" y="13"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.BorderMiddleTop" relativePoint="BOTTOMLEFT" x="0" y="0"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.BorderMiddleBottom" relativePoint="TOPRIGHT" x="0" y="0"/>
+					</Anchors>
+					<TexCoords left="0.02734375" right="0.84765625" top="0.1875" bottom="0.59375"/>
+					<Color r="0.75" g="0.75" b="0.75"/>
+				</Texture>
+				<FontString parentKey="Text" inherits="GameFontHighlightSmall">
+					<Anchors>
+						<Anchor point="LEFT" relativeKey="$parent.BorderMiddleMiddle" x="5" y="0"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="KrowiAF_Fill1" parentArray="Fill" file="Interface\TargetingFrame\UI-TargetingFrame-BarFill">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.BorderMiddleMiddle"/>
+						<Anchor point="BOTTOMLEFT" relativeKey="$parent.BorderMiddleMiddle"/>
+					</Anchors>
+				</Texture>
+				<Texture name="KrowiAF_Fill2" parentArray="Fill" file="Interface\TargetingFrame\UI-TargetingFrame-BarFill"/>
+				<Texture name="KrowiAF_Fill3" parentArray="Fill" file="Interface\TargetingFrame\UI-TargetingFrame-BarFill"/>
+				<Texture name="KrowiAF_Fill4" parentArray="Fill" file="Interface\TargetingFrame\UI-TargetingFrame-BarFill"/>
+			</Layer>
+		</Layers>
+	</Frame>
+    
+</Ui>

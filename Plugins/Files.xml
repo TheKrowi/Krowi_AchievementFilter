@@ -1,0 +1,9 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\..\FrameXML\UI.xsd">
+
+    <Script file="Plugins/Plugins.lua" />
+    <Script file="Plugins/BetterWardrobe.lua" />
+    <Script file="Plugins/ElvUI.lua" />
+    <Script file="Plugins/InstanceAchievementTracker.lua" />
+    <Script file="Plugins/Overachiever.lua" />
+    
+</Ui>

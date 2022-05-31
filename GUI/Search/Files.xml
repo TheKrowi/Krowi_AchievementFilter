@@ -1,0 +1,10 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\..\FrameXML\UI.xsd">
+
+    <Script file="GUI/Search/Search.lua" />
+    <Script file="GUI/Search/FullSearchResultsButton.lua" />
+    <Script file="GUI/Search/FullSearchResultsFrame.lua" />
+    <Script file="GUI/Search/SearchPreviewButton.lua" />
+    <Script file="GUI/Search/SearchPreviewFrame.lua" />
+    <Script file="GUI/Search/SearchBoxFrame.lua" />
+    
+</Ui>

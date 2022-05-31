@@ -1,0 +1,1163 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+
+    <!-- Originally from Blizzard_AchievementUI.xml line 660 at time of writing -->
+	<Button name="KrowiAF_AchievementCategoryButton_Template" virtual="true">
+	 	<Size x="158" y="24"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackgroundLeft" file="Interface\AchievementFrame\UI-Achievement-Category-Background" parentKey="BackgroundLeft">
+					<Size x="20" y="32"/>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.078125" top="0" bottom="1"/>
+				</Texture>
+				<Texture name="$parentBackgroundRight" file="Interface\AchievementFrame\UI-Achievement-Category-Background" parentKey="BackgroundRight">
+					<Size x="34" y="32"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT"/>
+					</Anchors>
+					<TexCoords left="0.53125" right="0.6640625" top="0" bottom="1"/>
+				</Texture>
+				<Texture name="$parentBackgroundMid" file="Interface\AchievementFrame\UI-Achievement-Category-Background" parentKey="BackgroundMid">
+					<Size y="32"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.BackgroundLeft" relativePoint="TOPRIGHT"/>
+						<Anchor point="TOPRIGHT" relativeKey="$parent.BackgroundRight" relativePoint="TOPLEFT"/>
+					</Anchors>
+					<TexCoords left="0.078125" right="0.53125" top="0" bottom="1"/>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parentLabel" text="This is a Category" inherits="GameFontNormalLeftBottom" wordwrap="false" parentKey="label">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" x="16" y="4"/>
+						<Anchor point="TOPRIGHT" x="-8" y="-4"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="HIGHLIGHT">
+				<Texture name="$parentHighlightLeft" file="Interface\AchievementFrame\UI-Achievement-Category-Highlight" alphaMode="ADD" parentKey="HighlightLeft">
+					<Size x="20" y="32"/>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.078125" top="0" bottom="1"/>
+				</Texture>
+				<Texture name="$parentHighlightRight" file="Interface\AchievementFrame\UI-Achievement-Category-Highlight" alphaMode="ADD" parentKey="HighlightRight">
+					<Size x="34" y="32"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT"/>
+					</Anchors>
+					<TexCoords left="0.53125" right="0.6640625" top="0" bottom="1"/>
+				</Texture>
+				<Texture name="$parentHighlightMid" file="Interface\AchievementFrame\UI-Achievement-Category-Highlight" alphaMode="ADD" parentKey="HighlightMid">
+					<Size y="32"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.HighlightLeft" relativePoint="TOPRIGHT"/>
+						<Anchor point="TOPRIGHT" relativeKey="$parent.HighlightRight" relativePoint="TOPLEFT"/>
+					</Anchors>
+					<TexCoords left="0.078125" right="0.53125" top="0" bottom="1"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+                self:EnableMouse(true);
+                self:EnableMouseWheel(true);
+			</OnLoad>
+			<!-- OnClick is set in code -->
+			<OnEnter>
+				if ( self.showTooltipFunc ) then
+					self.showTooltipFunc(self);
+				end
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:SetMinimumWidth(0, false);
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</Button>
+
+	<Button name="KrowiAF_Small_AchievementButton_Template" inherits="TooltipBorderBackdropTemplate" virtual="true">
+    	<Size x="434" y="42"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground" file="Interface\AchievementFrame\UI-Achievement-Parchment-Horizontal" parentKey="background">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="3" y="-3"/>
+						<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
+					</Anchors>
+					<TexCoords left="0" right="1" top="0" bottom="0.25"/>
+				</Texture>
+			</Layer>
+			<Layer level="BORDER">
+				<Texture name="$parentBottomLeftTsunami" file="Interface\AchievementFrame\UI-Achievement-Tsunami-Corners" hidden="true">
+					<Size x="32" y="32"/>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" x="-2" y="-2"/>
+					</Anchors>
+					<Color r="1" g="1" b="1" a=".2"/>
+					<TexCoords left="0" right=".5" top="0" bottom="1"/>
+				</Texture>
+				<Texture name="$parentBottomRightTsunami" file="Interface\AchievementFrame\UI-Achievement-Tsunami-Corners" hidden="true">
+					<Size x="32" y="32"/>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" x="2" y="-2"/>
+					</Anchors>
+					<Color r="1" g="1" b="1" a=".2"/>
+					<TexCoords left=".5" right="1" top="0" bottom="1"/>
+				</Texture>
+				<Texture name="$parentTopLeftTsunami" file="Interface\AchievementFrame\UI-Achievement-Tsunami-Corners" hidden="true">
+					<Size x="32" y="32"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="-2" y="-20"/>
+					</Anchors>
+					<Color r="1" g="1" b="1" a=".1"/>
+					<TexCoords left="1" right=".5" top="1" bottom="0"/>
+				</Texture>
+				<Texture name="$parentTopRightTsunami" file="Interface\AchievementFrame\UI-Achievement-Tsunami-Corners" hidden="true">
+					<Size x="32" y="32"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" x="2" y="-20"/>
+					</Anchors>
+					<Color r="1" g="1" b="1" a=".1"/>
+					<TexCoords left=".5" right="0" top="1" bottom="0"/>
+				</Texture>
+				<Texture name="$parentBottomTsunami1" file="Interface\AchievementFrame\UI-Achievement-Borders" hidden="true">
+					<Size x="370" y="16"/>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parentBottomLeftTsunami" relativePoint="BOTTOMRIGHT" x="0" y="3"/>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parentBottomRightTsunami" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+					<Color r="1" g="1" b="1" a=".35"/>
+					<TexCoords left="0" right="0.72265" top="0.51953125" bottom="0.58203125"/>
+				</Texture>
+				<Texture name="$parentTopTsunami1" file="Interface\AchievementFrame\UI-Achievement-Borders" hidden="true">
+					<Size x="370" y="16"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTopLeftTsunami" relativePoint="TOPRIGHT" x="0" y="-3"/>
+						<Anchor point="TOPRIGHT" relativeTo="$parentTopRightTsunami" relativePoint="TOPLEFT"/>
+					</Anchors>
+					<Color r="1" g="1" b="1" a="0.3"/>
+					<TexCoords left="0.72265" right="0" top="0.58203125" bottom="0.51953125"/>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="$parentTitleBackground" file="Interface\AchievementFrame\UI-Achievement-Borders" parentKey="titleBar">
+					<Size x="0" y="20"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="5" y="-4"/>
+						<Anchor point="TOPRIGHT" x="-5" y="-4"/>
+					</Anchors>
+					<TexCoords left="0" right="0.9765625" top="0.66015625" bottom="0.73828125"/>
+					<Color r="1" g="1" b="1" a=".8"/>
+				</Texture>
+				<Texture name="$parentGlow" file="Interface\AchievementFrame\UI-Achievement-Borders" parentKey="glow">
+					<Size x="10" y="64"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTitleBackground" relativePoint="BOTTOMLEFT" x="0" y="2"/>
+						<Anchor point="BOTTOMRIGHT" x="0" y="4"/>
+					</Anchors>
+					<TexCoords left="0" right="1" top="0.00390625" bottom="0.25390625"/>
+				</Texture>
+				<Texture name="$parentRewardBackground" file="Interface\AchievementFrame\UI-Achievement-Reward-Background" hidden="true" parentKey="rewardBackground">
+					<Size x="384" y="24"/>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" x="5" y="-2"/>
+						<Anchor point="BOTTOMRIGHT" x="-5" y="5"/>
+						<!--<Anchor point="BOTTOMRIGHT"/> -->
+					</Anchors>
+					<TexCoords left="0" right=".69" top="0" bottom=".75"/>
+				</Texture>
+				<Texture name="$parentGuildCornerL" file="Interface\AchievementFrame\UI-Achievement-Guild" parentKey="guildCornerL" hidden="true">
+					<Size x="54" y="53"/>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" x="-1" y="-1"/>
+					</Anchors>
+					<TexCoords left="0.89062500" right="0.99609375" top="0.08593750" bottom="0.18945313"/>
+				</Texture>
+				<Texture name="$parentGuildCornerR" file="Interface\AchievementFrame\UI-Achievement-Guild" parentKey="guildCornerR" hidden="true">
+					<Size x="54" y="53"/>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" x="1" y="-1"/>
+					</Anchors>
+					<TexCoords left="0.75195313" right="0.85742188" top="0.36328125" bottom="0.46679688"/>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="$parentLabel" inherits="GameFontHighlightMedium" text="For the Alliance!" parentKey="label">
+					<Size x="260" y="20"/>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentTitleBackground" relativePoint="TOP" x="0" y="0"/>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentReward" inherits="GameFontNormalSmall" hidden="true" parentKey="reward">
+					<Size x="400" y="20"/>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentRewardBackground" relativePoint="TOP" x="0" y="1"/>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentDescription" inherits="AchievementDescriptionFont" parentKey="description">
+					<Size x="380" y="13"/>
+					<Anchors>
+						<Anchor point="TOP" x="0" y="-27"/>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentHiddenDescription" inherits="AchievementDescriptionFont" hidden="true" parentKey="hiddenDescription">
+					<Size x="0" y="0"/>
+					<Anchors>
+						<Anchor point="TOP" x="0" y="-27"/>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentCheck" file="Interface\Buttons\UI-CheckBox-Check" hidden="true" parentKey="check">
+					<Size x="20" y="16"/>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentLabel" relativePoint="RIGHT" x="0" y="-1"/>
+					</Anchors>
+					<TexCoords left="0" right="1" top="0" bottom="1"/>
+				</Texture>
+				<Texture name="$parentPlusMinus" file="Interface\AchievementFrame\UI-Achievement-PlusMinus" hidden="true" parentKey="plusMinus">
+					<Size x="13" y="13"/>
+					<Anchors>
+            			<Anchor point="TOPLEFT" x="52" y="-7"/>
+					</Anchors>
+					<TexCoords left="0" right=".5" top="0" bottom=".25"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad inherit="prepend" function="KrowiAF_AchievementButton_OnLoad"/>
+			<OnClick>
+				-- this is also called from the shield's OnClick
+				AchievementButton_OnClick(self);
+			</OnClick>
+			<OnEnter>
+				-- this is also called from the shield's OnEnter
+				self.highlight:Show();
+			</OnEnter>
+			<OnLeave>
+				-- this is also called from the shield's OnLeave
+				if ( not self.selected ) then
+					self.highlight:Hide();
+				end
+			</OnLeave>
+		</Scripts>
+		<Frames>
+			<Frame name="$parentHighlight" setAllPoints="true" hidden="true" enableMouse="false" parentKey="highlight">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentTopLeft" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
+							<Size x="16" y="16"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" x="-1" y="2"/>
+							</Anchors>
+							<TexCoords left="0.06640625" right="0" top="0.4375" bottom="0.65625"/>
+						</Texture>
+						<Texture name="$parentBottomLeft" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
+							<Size x="16" y="16"/>
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" x="-1" y="-2"/>
+							</Anchors>
+							<TexCoords left="0.06640625" right="0" top="0.65625" bottom="0.4375"/>
+						</Texture>
+						<Texture name="$parentTopRight" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
+							<Size x="16" y="16"/>
+							<Anchors>
+								<Anchor point="TOPRIGHT" x="1" y="2"/>
+							</Anchors>
+							<TexCoords left="0" right="0.06640625" top="0.4375" bottom="0.65625"/>
+						</Texture>
+						<Texture name="$parentBottomRight" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
+							<Size x="16" y="16"/>
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT" x="1" y="-2"/>
+							</Anchors>
+							<TexCoords left="0" right="0.06640625" top="0.65625" bottom="0.4375"/>
+						</Texture>
+						<Texture name="$parentTop" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentTopLeft" relativePoint="TOPRIGHT"/>
+								<Anchor point="BOTTOMRIGHT" relativeTo="$parentTopRight" relativePoint="BOTTOMLEFT"/>
+							</Anchors>
+							<TexCoords left="0" right="0.015" top="0.4375" bottom="0.65625"/>
+						</Texture>
+						<Texture name="$parentBottom" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentBottomLeft" relativePoint="TOPRIGHT"/>
+								<Anchor point="BOTTOMRIGHT" relativeTo="$parentBottomRight" relativePoint="BOTTOMLEFT"/>
+							</Anchors>
+							<TexCoords left="0" right="0.015" top="0.65625" bottom="0.4375"/>
+						</Texture>
+						<Texture name="$parentLeft" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentTopLeft" relativePoint="BOTTOMLEFT"/>
+								<Anchor point="BOTTOMRIGHT" relativeTo="$parentBottomLeft" relativePoint="TOPRIGHT"/>
+							</Anchors>
+							<TexCoords left="0.06640625" right="0" top="0.65625" bottom="0.6"/>
+						</Texture>
+						<Texture name="$parentRight" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentTopRight" relativePoint="BOTTOMLEFT"/>
+								<Anchor point="BOTTOMRIGHT" relativeTo="$parentBottomRight" relativePoint="TOPRIGHT"/>
+							</Anchors>
+							<TexCoords left="0" right="0.06640625" top="0.65625" bottom="0.6"/>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Frame>
+			<Frame name="$parentIcon" parentKey="icon">
+				<Size x="48" y="48"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" x="3" y="-3"/>
+				</Anchors>
+				<Layers>
+					<Layer level="BORDER">
+						<Texture name="$parentBling" file="Interface\AchievementFrame\UI-Achievement-Bling" hidden="true" parentKey="bling">
+						<Anchors>
+							<Anchor point="CENTER" x="-1" y="1"/>
+						</Anchors>
+						<Size x="84" y="84"/>
+						</Texture>
+					</Layer>
+					<Layer level="ARTWORK">
+						<Texture name="$parentTexture" file="Interface\Icons\Spell_Misc_HellifrePVPHonorHoldFavor" parentKey="texture">
+						<Anchors>
+							<Anchor point="CENTER" x="0" y="3"/>
+						</Anchors>
+						<Size x="36" y="36"/>
+						</Texture>
+					</Layer>
+					<Layer level="OVERLAY">
+						<Texture name="$parentOverlay" file="Interface\AchievementFrame\UI-Achievement-IconFrame" parentKey="frame">
+						<Anchors>
+							<Anchor point="CENTER" x="-1" y="2"/>
+						</Anchors>
+						<Size x="46" y="46"/>
+						<TexCoords left="0" right="0.5625" top="0" bottom="0.5625"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						AchievementIcon_OnLoad(self);
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentTabard" inherits="AchievementGuildTabardTemplate" parentKey="tabard">
+				<Anchors>
+					<Anchor point="TOPRIGHT" x="-3" y="-4"/>
+				</Anchors>
+			</Frame>
+			<Button name="$parentShield" parentKey="shield">
+				<Size x="48" y="48"/>
+				<Anchors>
+					<Anchor point="TOPRIGHT" x="-10" y="-4"/>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentIcon" file="Interface\AchievementFrame\UI-Achievement-Shields" parentKey="icon">
+							<Size x="48" y="48"/>
+							<Anchors>
+								<Anchor point="TOPRIGHT" x="0" y="0"/>
+							</Anchors>
+							<TexCoords left="0" right=".5" top="0" bottom="0.5"/>
+						</Texture>
+					</Layer>
+					<Layer level="OVERLAY">
+						<FontString name="$parentPoints" inherits="GameFontNormal" justifyH="CENTER" parentKey="points">
+              				<Size x="40" y="26"/>
+							<Anchors>
+								<Anchor point="CENTER" x="0" y="3"/>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentDateCompleted" inherits="AchievementDateFont" text="5/16/08" hidden="true" parentKey="dateCompleted">
+							<Size x="100" y="14"/>
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeKey="$parent.$parent" x="-63" y="-8"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						AchievementShield_OnLoad(self);
+					</OnLoad>
+					<OnClick>
+						local parent = self:GetParent();
+						AchievementButton_OnClick(parent);
+					</OnClick>
+					<!-- This OnEnter might also be called from AchievementFrameAchievements_OnEvent -->
+					<OnEnter function="AchievementShield_OnEnter"/>
+					<OnLeave function="AchievementShield_OnLeave"/>
+				</Scripts>
+			</Button>
+			<Frame name="$parentObjectives" parentKey="objectives">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parentDescription" relativePoint="BOTTOM" x="0" y="-8"/>
+					<Anchor point="LEFT" relativeTo="$parentIcon" relativePoint="RIGHT" x="8" y="0"/>
+					<Anchor point="RIGHT" relativeTo="$parentShield" relativePoint="LEFT" x="-10" y="0"/>
+					<Anchor point="BOTTOM" relativeTo="$parentRewardBackground" relativePoint="TOP" x="0" y="0"/>
+				</Anchors>
+			</Frame>
+			<CheckButton name="$parentTracked" hidden="true" inherits="AchievementCheckButtonTemplate" parentKey="tracked">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="9" y="-46"/>
+				</Anchors>
+			</CheckButton>
+		</Frames>
+  	</Button>
+
+    <!-- Originally from Blizzard_AchievementUI.xml line 772 at time of writing -->
+	<Button name="KrowiAF_AchievementButton_Template" inherits="AchievementTemplate" virtual="true"> <!-- AchievementTemplate -->
+		<Scripts>
+			<OnLoad inherit="prepend" function="KrowiAF_AchievementButton_OnLoad"/>
+		</Scripts>
+	</Button>
+
+    <!-- Originally from Blizzard_AchievementUI.xml line 1779 at time of writing -->
+	<Frame name="KrowiAF_CategoriesFrame_Template" inherits="AchivementGoldBorderBackdrop" virtual="true">
+		<Anchors>
+        	<Anchor point="TOPLEFT" relativeTo="AchievementFrameCategories"/>
+        	<!-- <Anchor point="BOTTOM" relativeTo="AchievementFrameCategories"/> -->
+        	<Anchor point="BOTTOM" y="20"/> <!-- relativeTo="AchievementFrame" -->
+        </Anchors>
+		<Scripts>
+			<OnShow function="KrowiAF_CategoriesFrame_OnShow"/>
+			<OnHide function="KrowiAF_CategoriesFrame_OnHide"/>
+		</Scripts>
+		<Frames>
+			<ScrollFrame name="$parentContainer" parentKey="Container" inherits="HybridScrollFrameTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="0" y="-5"/>
+					<Anchor point="BOTTOMRIGHT" x="0" y="5"/>
+				</Anchors>
+				<Frames>
+					<Slider name="$parentScrollBar" parentKey="ScrollBar" inherits="HybridScrollBarTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="1" y="-14"/>
+							<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="1" y="12"/>
+						</Anchors>
+					</Slider>
+				</Frames>
+			</ScrollFrame>
+		</Frames>
+	</Frame>
+
+    <!-- Originally from Blizzard_AchievementUI.xml line 1806 at time of writing -->
+	<Frame name="KrowiAF_AchievementsFrame_Template" virtual="true">
+		<Anchors>
+        	<Anchor point="TOPLEFT" relativeTo="AchievementFrameCategories" relativePoint="TOPRIGHT" x="22" y="0"/>
+        	<!-- <Anchor point="BOTTOM" relativeTo="AchievementFrameCategories"/> -->
+        	<Anchor point="BOTTOM" y="20"/> <!-- relativeTo="AchievementFrame" -->
+        </Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground" file="Interface\AchievementFrame\UI-Achievement-AchievementBackground" parentKey="Background">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="3" y="-3"/>
+						<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
+					</Anchors>
+					<TexCoords left="0" right="1" top="0" bottom="0.5"/>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString parentKey="Text" inherits="GameFontHighlight">
+					<Size x="490" y="0"/>
+					<Anchors>
+						<Anchor point="TOP" x="0" y="-189"/>
+					</Anchors>
+				</FontString>
+				<Texture parentKey="Artwork">
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+						<Anchor point="BOTTOMRIGHT"/>
+					</Anchors>
+					<Color r="0" g="0" b="0" a="0.75"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnShow function="KrowiAF_AchievementsFrame_OnShow"/>
+			<OnHide function="KrowiAF_AchievementsFrame_OnHide"/>
+		</Scripts>
+		<Frames>
+			<ScrollFrame name="$parentContainer" parentKey="Container" inherits="HybridScrollFrameTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="4" y="-3"/>
+					<Anchor point="BOTTOMRIGHT" x="0" y="5"/>
+				</Anchors>
+				<Frames>
+					<Slider name="$parentScrollBar" parentKey="ScrollBar" inherits="HybridScrollBarTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="1" y="-16"/>
+							<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="1" y="12"/>
+						</Anchors>
+					</Slider>
+				</Frames>
+			</ScrollFrame>
+			<Frame setAllPoints="true" inherits="AchivementGoldBorderBackdrop"/>
+		</Frames>
+	</Frame>
+
+    <!-- Originally from Blizzard_AchievementUI.xml line 14 at time of writing -->
+	<Button name="KrowiAF_SearchPreviewButton_Template" virtual="true">
+		<Size x="206" y="27"/>
+		<Layers>
+			<Layer level="OVERLAY" textureSubLevel="3">
+				<Texture parentKey="SelectedTexture" atlas="search-highlight">
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+						<Anchor point="BOTTOMRIGHT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY" textureSubLevel="2">
+				<Texture parentKey="iconFrame" atlas="search-iconframe-large">
+					<Size x="21" y="21"/>
+					<Anchors>
+						<Anchor point="LEFT" x="5" y="1"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture file="Interface\Icons\Ability_ThunderClap" parentKey="Icon">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.iconFrame" x="1" y="-2"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.iconFrame" x="-1" y="1"/>
+					</Anchors>
+				</Texture>
+				<FontString inherits="GameFontNormalSmall" justifyH="LEFT" parentKey="Name" text="ACHIEVEMENT_NAME">
+					<Size x="400" y="0"/>
+					<Anchors>
+						<Anchor point="LEFT" relativeKey="$parent.Icon" relativePoint="RIGHT" x="5" y="0"/>
+						<Anchor point="RIGHT" x="-5" y="0"/>
+					</Anchors>
+					<Color r="0.96875" g="0.8984375" b="0.578125" a="1"/>
+				</FontString>
+			</Layer>
+		</Layers>
+		<NormalTexture atlas="_search-rowbg">
+		</NormalTexture>
+		<PushedTexture atlas="_search-rowbg">
+		</PushedTexture>
+		<Scripts>
+			<OnShow function="AchievementSearchPreviewButton_OnShow"/> <!-- Yes, use Blizzard one -->
+			<!-- OnEnter is set in code -->
+			<!-- OnClick is set in code -->
+		</Scripts>
+	</Button>
+
+    <!-- Originally from Blizzard_AchievementUI.xml line 2487 at time of writing -->
+	<Frame name="KrowiAF_SearchPreviewsFrame_Template" virtual="true">
+		<Size x="206" y="27"/>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeKey="$parent.searchBox" relativePoint="BOTTOMLEFT" x="-4" y="3"/> <!-- Achors to AchievementFrame.searchBox -->
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="Background" atlas="_search-rowbg">
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+						<Anchor point="BOTTOMRIGHT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture inherits="UI-Frame-BotCornerLeft" parentKey="BorderAnchor">
+					<Anchors>
+						<Anchor point="LEFT" x="-8" y="0"/>
+						<Anchor point="BOTTOM" x="0" y="-5"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="botRightCorner" inherits="UI-Frame-BotCornerRight">
+					<Anchors>
+						<Anchor point="BOTTOM" relativeKey="$parent.BorderAnchor" x="0" y="0"/>
+						<Anchor point="RIGHT" x="4" y="0"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="bottomBorder" inherits="_UI-Frame-Bot">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeKey="$parent.BorderAnchor" relativePoint="BOTTOMRIGHT" y="0"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.botRightCorner" relativePoint="BOTTOMLEFT" y="0"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="leftBorder" inherits="!UI-Frame-LeftTile">
+					<Anchors>
+						<Anchor point="TOP" x="0" y="1" />
+						<Anchor point="BOTTOMLEFT" relativeKey="$parent.BorderAnchor" relativePoint="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="rightBorder" inherits="!UI-Frame-RightTile">
+					<Anchors>
+						<Anchor point="TOP" x="0" y="1" />
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.botRightCorner" relativePoint="TOPRIGHT" x="1" y="0"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="topBorder" inherits="_UI-Frame-Bot">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="-2" y="3"/>
+						<Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT" x="2" y="-3"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button parentKey="ShowFullSearchResultsButton">
+				<Size x="275" y="24"/>
+				<Layers>
+					<Layer level="OVERLAY" textureSubLevel="2">
+						<Texture parentKey="SelectedTexture" atlas="search-highlight">
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+								<Anchor point="BOTTOMRIGHT"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="OVERLAY">
+						<FontString parentKey="Text" inherits="GameFontNormal" justifyH="LEFT" text="SHOW_ALL_RESULTS">
+							<Size x="0" y="0"/>
+							<Anchors>
+								<Anchor point="CENTER" x="0" y="0"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture atlas="_search-rowbg">
+				</NormalTexture>
+				<PushedTexture atlas="_search-rowbg">
+				</PushedTexture>
+				<Scripts>
+					<OnShow>
+						self:SetFrameLevel(self:GetParent():GetFrameLevel() + 10);
+					</OnShow>
+					<!-- OnEnter is set in code -->
+					<!-- OnClick is set in code -->
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow function="KrowiAF_SearchPreviewsFrame_OnShow"/>
+		</Scripts>
+	</Frame>
+
+    <!-- Originally from Blizzard_AchievementUI.xml line 2683 at time of writing -->
+	<Frame name="KrowiAF_FullSearchResults_Template" virtual="true">
+		<Size x="600"/>
+		<Anchors>
+			<Anchor point="TOP" x="0" y="-112"/>
+			<Anchor point="BOTTOM" x="0" y="7"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture file="Interface\FrameGeneral\UI-Background-Rock" horizTile="true" vertTile="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0" y="0"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.bottomRightCorner" x="0" y="8"/>
+					</Anchors>
+					<Color r="0.9" g="0.8" b="0.7" a="1"/>
+				</Texture>
+			</Layer>
+			<Layer level="BORDER">
+				<FontString inherits="GameFontNormal" text="" parentKey="titleText">
+					<Anchors>
+						<Anchor point="TOP" x="0" y="-7"/>
+						<Anchor point="LEFT" x="60"/>
+						<Anchor point="RIGHT" x="-60"/>
+					</Anchors>
+				</FontString>
+				<Texture parentKey="topLeftCorner" inherits="UI-Frame-TopCornerLeft">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="-7" y="4"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="topRightCorner" inherits="UI-Frame-TopCornerRightSimple">
+					<Anchors>
+						<Anchor point="TOPRIGHT" x="4" y="4"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="topBorder" inherits="_UI-Frame-Top">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.topLeftCorner" relativePoint="TOPRIGHT" y="0"/>
+						<Anchor point="TOPRIGHT" relativeKey="$parent.topRightCorner" relativePoint="TOPLEFT" y="0"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="bottomLeftCorner" inherits="UI-Frame-BotCornerLeft">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" x="-7" y="4"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="bottomRightCorner" inherits="UI-Frame-BotCornerRight">
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" x="4" y="4"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="bottomBorder" inherits="_UI-Frame-Bot">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeKey="$parent.bottomLeftCorner" relativePoint="BOTTOMRIGHT" y="0"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.bottomRightCorner" relativePoint="BOTTOMLEFT" y="0"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="leftBorder" inherits="!UI-Frame-LeftTile">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeKey="$parent.bottomLeftCorner" relativePoint="TOPLEFT"/>
+						<Anchor point="TOPLEFT" relativeKey="$parent.topLeftCorner" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="rightBorder" inherits="!UI-Frame-RightTile">
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.bottomRightCorner" relativePoint="TOPRIGHT"/>
+						<Anchor point="TOPRIGHT" relativeKey="$parent.topRightCorner" relativePoint="BOTTOMRIGHT" x="1" y="0"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="BORDER" textureSubLevel="-1">
+				<Texture parentKey="topTileStreaks" inherits="_UI-Frame-TopTileStreaks">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0" y="0"/>
+						<Anchor point="TOPRIGHT" x="0" y="0"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="BORDER" textureSubLevel="1">
+				<Texture parentKey="topLeftCorner2" inherits="UI-Frame-TopCornerLeft">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="-7" y="-20"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="topRightCorner2" inherits="UI-Frame-TopCornerRightSimple">
+					<Anchors>
+						<Anchor point="TOPRIGHT" x="4" y="-20"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="topBorder2" inherits="_UI-Frame-Top">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.topLeftCorner2" relativePoint="TOPRIGHT" y="0"/>
+						<Anchor point="TOPRIGHT" relativeKey="$parent.topRightCorner2" relativePoint="TOPLEFT" y="0"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button parentKey="closeButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeKey="$parent.topRightCorner" x="0" y="-2"/>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						self:GetParent():Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<ScrollFrame name="$parentContainer" parentKey="Container" inherits="HybridScrollFrameTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.topLeftCorner2" x="9" y="-8"/> <!-- Changed x value to align properly compared to Blizzard, originally 4 -->
+					<Anchor point="BOTTOMRIGHT" relativeKey="$parent.bottomRightCorner" x="-24" y="8"/>
+				</Anchors>
+				<Frames>
+					<Slider name="$parentScrollBar" parentKey="ScrollBar" inherits="HybridScrollBarTrimTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="0" y="-16"/>
+							<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="0" y="14"/>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								self.trackBG:Show();
+								self.trackBG:SetVertexColor(0, 0, 0, 1);
+							</OnLoad>
+						</Scripts>
+					</Slider>
+				</Frames>
+			</ScrollFrame>
+		</Frames>
+		<Scripts>
+			<OnShow>
+				--always on top
+				self:SetFrameLevel(self:GetParent():GetFrameLevel()+10);
+				PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN);
+			</OnShow>
+			<OnHide>
+				PlaySound(SOUNDKIT.IG_SPELLBOOK_CLOSE);
+			</OnHide>
+		</Scripts>
+	</Frame>
+
+    <!-- Originally from Blizzard_AchievementUI.xml line 66 at time of writing -->
+	<Button name="KrowiAF_FullSearchResultButton_Template" virtual="true">
+		<Size x="575" y="49"/>
+		<Layers>
+			<Layer level="OVERLAY" textureSubLevel="2">
+				<Texture parentKey="iconFrame" atlas="search-iconframe-large">
+					<Size x="38" y="38"/>
+					<Anchors>
+						<Anchor point="LEFT" x="10" y="0"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture file="Interface\Icons\Ability_ThunderClap" parentKey="icon">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.iconFrame" x="1" y="-2"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.iconFrame" x="-1" y="1"/>
+					</Anchors>
+				</Texture>
+				<FontString inherits="GameFontNormalLarge" justifyH="LEFT" parentKey="name" text="ACHIEVEMENT">
+					<Size x="400" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.icon" relativePoint="TOPRIGHT" x="10" y="0"/>
+					</Anchors>
+					<Color r="0.96875" g="0.8984375" b="0.578125" a="1"/>
+				</FontString>
+				<FontString inherits="GameFontNormal" justifyH="LEFT" parentKey="path" text="ACHIEVEMENT" wordwrap="false">
+					<Size x="500" y="0"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.name" relativePoint="BOTTOMLEFT" x="0" y="-7"/>
+					</Anchors>
+					<Color r="0.66796875" g="0.51171875" b="0.3359375" a="1"/>
+				</FontString>
+				<FontString inherits="GameFontNormal" justifyH="RIGHT" parentKey="resultType" text="ACHIEVEMENT">
+					<Size x="140" y="0"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" x="-10" y="-7"/>
+					</Anchors>
+					<Color r="0.66796875" g="0.51171875" b="0.3359375" a="1"/>
+				</FontString>
+			</Layer>
+		</Layers>
+		<NormalTexture inherits="_SearchBarLg">
+		</NormalTexture>
+		<PushedTexture inherits="_SearchBarLg">
+		</PushedTexture>
+		<HighlightTexture atlas="search-highlight-large">
+		</HighlightTexture>
+		<!-- OnClick is set in code -->
+	</Button>
+
+	<DropDownToggleButton name="KrowiAF_FilterButton_Template" inherits="UIMenuButtonStretchTemplate" text="FILTER" virtual="true">
+		<Size x="116" y="22"/>
+        <Anchors>
+        	<Anchor point="TOPLEFT" x="142" y="10"/>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture parentKey="Icon" file="Interface\ChatFrame\ChatFrameExpandArrow">
+					<Size x="10" y="12"/>
+					<Anchors>
+						<Anchor point="RIGHT" relativeKey="$parent.Right" relativePoint="RIGHT" x="-5"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+	</DropDownToggleButton>
+
+	<Button name="KrowiAF_WorldMapAchievementButtonTemplate" frameStrata="HIGH" mixin="WorldMapAchievementButtonMixin" motionScriptsWhileDisabled="true" virtual="true">
+		<Size x="32" y="32"/>
+		<Layers>
+			<Layer level="BACKGROUND" textureSubLevel="-1">
+				<Texture atlas="MapCornerShadow-Right" useAtlasSize="true" hidden="true">
+					<Anchors>
+						<Anchor point="TOPRIGHT" x="4" y="1"/>
+					</Anchors>
+					<TexCoords left="0" right="1" top="1" bottom="0"/>
+				</Texture>
+			</Layer>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="Background" file="Interface\Minimap\UI-Minimap-Background">
+					<Size x="25" y="25"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="2" y="-4"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture parentKey="Icon" file="Interface\AchievementFrame\UI-Achievement-Progressive-Shield-NoPoints">
+					<Size x="20" y="20"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="6" y="-6"/>
+					</Anchors>
+					<TexCoords left="0.0625" right="0.59375" top="0.09375" bottom="0.625"/>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture parentKey="IconOverlay" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.Icon"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.Icon"/>
+					</Anchors>
+					<Color r="0.0" g="0.0" b="0.0" a="0.5"/>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY" textureSubLevel="1">
+				<Texture parentKey="Border" file="Interface\Minimap\MiniMap-TrackingBorder">
+					<Size x="54" y="54"/>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY" textureSubLevel="2">
+				<Texture parentKey="ActiveTexture" file="Interface\Minimap\UI-Minimap-ZoomButton-Toggle" alphaMode="ADD" hidden="true" setAllPoints="true"/>
+			</Layer>			
+		</Layers>
+		<Frames>
+			<Frame parentKey="DropDown" inherits="UIDropDownMenuTemplate" clampedToScreen="true" hidden="true"/>
+		</Frames>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+		<Scripts>
+			<OnLoad method="OnLoad"/>
+			<OnMouseDown method="OnMouseDown"/>
+			<OnMouseUp method="OnMouseUp"/>
+			<OnClick method="OnClick"/>
+			<OnEnter method="OnEnter"/>
+			<OnLeave function="GameTooltip_Hide"/>
+			<OnHide method="OnHide"/>
+		</Scripts>
+	</Button>
+
+	<ContainedAlertFrame name="KrowiAF_AlertFrameTemplate" parent="UIParent" hidden="true" frameStrata="DIALOG" virtual="true" inherits="AlertFrameTemplate">
+		<Size x="256" y="84"/>
+		<Anchors>
+			<Anchor point="BOTTOM" x="0" y="0"/>
+		</Anchors>
+		<Animations>
+			<AnimationGroup parentKey="animIn">
+				<Alpha fromAlpha="1" toAlpha="0" duration="0" order="1"/>
+				<Alpha fromAlpha="0" toAlpha="1" duration="0.2" order="2"/>
+			</AnimationGroup>
+			<AnimationGroup parentKey="waitAndAnimOut">
+				<Alpha startDelay="4.05" fromAlpha="1" toAlpha="0" duration="1.5" parentKey="animOut">
+				<Scripts>
+					<OnFinished>
+						self:GetRegionParent():Hide();
+					</OnFinished>
+				</Scripts>
+				</Alpha>
+			</AnimationGroup>
+		</Animations>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<!-- <Texture parentKey="Background" atlas="ui-achievement-alert-background-mini" useAtlasSize="true">
+					<Anchors>
+						<Anchor point="LEFT" x="0" y="0"/>
+					</Anchors>
+				</Texture> -->
+				<Texture parentKey="Background" file="Interface\AddOns\Krowi_AchievementFilter\Media\AlertFrame">
+					<Size x="256" y="84"/>
+					<Anchors>
+						<Anchor point="LEFT" x="0" y="0"/>
+					</Anchors>
+					<TexCoords left="0" right="1" top="0" bottom="0.65625"/>
+				</Texture>
+				<FontString parentKey="Name" inherits="GameFontHighlight" maxLines="1" justifyV="TOP" justifyH="CENTER">
+					<Size x="160" y="0"/>
+					<Anchors>
+						<Anchor point="TOP" x="27" y="-18"/>
+					</Anchors>
+				</FontString>
+				<FontString parentKey="Unlocked" inherits="GameFontBlack" maxLines="2" justifyV="TOP" justifyH="CENTER">
+					<Size x="160" y="0"/>
+					<Anchors>
+						<Anchor point="CENTER" x="27" y="-7"/> <!-- -18 looks better with my ElvUI, depends on font? -->
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture atlas="ui-achievement-alert-background-mini-glow" useAtlasSize="true" alphaMode="ADD" hidden="true" parentKey="glow">
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="0"/>
+					</Anchors>
+					<Animations>
+						<AnimationGroup parentKey="animIn">
+							<Alpha fromAlpha="0" toAlpha="1" duration="0.2" order="1"/>
+							<Alpha fromAlpha="1" toAlpha="0" duration="0.5" order="2"/>
+							<Scripts>
+								<OnFinished>
+									self:GetParent():Hide();
+								</OnFinished>
+							</Scripts>
+						</AnimationGroup>
+					</Animations>
+				</Texture>
+				<Texture atlas="ui-achievement-alert-background-mini-glow-shine"  useAtlasSize="true" alphaMode="ADD" hidden="true" parentKey="shine">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0" y="0"/>
+					</Anchors>
+					<Animations>
+						<AnimationGroup parentKey="animIn">
+							<Alpha fromAlpha="0" toAlpha="1" duration="0.2" order="1"/>
+							<Translation offsetX="210" offsetY="0" duration="0.85" order="2"/>
+							<Alpha startDelay="0.35" fromAlpha="1" toAlpha="0" duration="0.5" order="2"/>
+							<Scripts>
+								<OnFinished>
+									self:GetParent():Hide();
+								</OnFinished>
+							</Scripts>
+						</AnimationGroup>
+					</Animations>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame parentKey="Icon">
+				<Size x="116" y="116"/>
+				<Anchors>
+					<Anchor point="LEFT" x="-18" y="-1"/>
+				</Anchors>
+				<Layers>
+					<Layer level="BORDER">
+						<Texture parentKey="Bling" atlas="ui-achievement-bling" useAtlasSize="true" hidden="true">
+							<Anchors>
+								<Anchor point="CENTER" x="-1" y="1"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="ARTWORK">
+						<Texture parentKey="Texture">
+							<Anchors>
+								<Anchor point="CENTER" x="0" y="3"/>
+							</Anchors>
+							<Size x="50" y="50"/>
+						</Texture>
+					</Layer>
+					<Layer level="OVERLAY">
+						<Texture parentKey="Overlay" atlas="ui-achievement-iconframe" useAtlasSize="true">
+							<Anchors>
+								<Anchor point="CENTER" x="-1" y="2"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnClick function="KrowiAF_AlertFrame_OnClick"/>
+		</Scripts>
+	</ContainedAlertFrame>
+	
+	<ContainedAlertFrame name="KrowiAF_Small_AlertFrameTemplate" parent="UIParent" hidden="true" frameStrata="DIALOG" virtual="true" inherits="AlertFrameTemplate">
+		<Size x="256" y="64"/>
+		<Anchors>
+			<Anchor point="BOTTOM" x="0" y="0"/>
+		</Anchors>
+		<Animations>
+			<AnimationGroup parentKey="animIn">
+				<Alpha fromAlpha="1" toAlpha="0" duration="0" order="1"/>
+				<Alpha fromAlpha="0" toAlpha="1" duration="0.2" order="2"/>
+			</AnimationGroup>
+			<AnimationGroup parentKey="waitAndAnimOut">
+				<Alpha startDelay="4.05" fromAlpha="1" toAlpha="0" duration="1.5" parentKey="animOut">
+				<Scripts>
+					<OnFinished>
+						self:GetRegionParent():Hide();
+					</OnFinished>
+				</Scripts>
+				</Alpha>
+			</AnimationGroup>
+		</Animations>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<!-- <Texture parentKey="Background" atlas="ui-achievement-alert-background-mini" useAtlasSize="true">
+					<Anchors>
+						<Anchor point="LEFT" x="0" y="0"/>
+					</Anchors>
+				</Texture> -->
+				<Texture parentKey="Background" file="Interface\AddOns\Krowi_AchievementFilter\Media\AlertFrameCompact">
+					<Size x="256" y="64"/>
+					<Anchors>
+						<Anchor point="LEFT" x="0" y="0"/>
+					</Anchors>
+					<TexCoords left="0" right="1" top="0" bottom="1"/>
+				</Texture>
+				<FontString parentKey="Name" inherits="GameFontHighlight" maxLines="1" justifyV="TOP" justifyH="CENTER">
+					<Size x="180" y="0"/>
+					<Anchors>
+						<Anchor point="TOP" x="17" y="-18"/>
+					</Anchors>
+				</FontString>
+				<FontString parentKey="Unlocked" inherits="GameFontBlack" maxLines="2" justifyV="TOP" justifyH="CENTER">
+					<Size x="180" y="0"/>
+					<Anchors>
+						<Anchor point="CENTER" x="17" y="-9"/> <!-- -18 looks better with my ElvUI, depends on font? -->
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture file="Interface\AchievementFrame\AchievementToast" alphaMode="ADD" hidden="true" parentKey="glow">
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="0"/>
+					</Anchors>
+					<Size x="314" y="116"/>
+					<TexCoords left="0.0009765625" right="0.3076171875" top="0.169921875" bottom="0.302734375"/>
+					<Animations>
+						<AnimationGroup parentKey="animIn">
+							<Alpha fromAlpha="0" toAlpha="1" duration="0.2" order="1"/>
+							<Alpha fromAlpha="1" toAlpha="0" duration="0.5" order="2"/>
+							<Scripts>
+								<OnFinished>
+									self:GetParent():Hide();
+								</OnFinished>
+							</Scripts>
+						</AnimationGroup>
+					</Animations>
+				</Texture>
+				<Texture file="Interface\AchievementFrame\AchievementToast" alphaMode="ADD" hidden="true" parentKey="shine">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0" y="0"/>
+					</Anchors>
+					<Size x="67" y="65"/>
+					<TexCoords left="0.9296875" right="0.9951171875" top="0.169921875" bottom="0.2529296875"/>
+					<Animations>
+						<AnimationGroup parentKey="animIn">
+							<Alpha fromAlpha="0" toAlpha="1" duration="0.2" order="1"/>
+							<Translation offsetX="210" offsetY="0" duration="0.85" order="2"/>
+							<Alpha startDelay="0.35" fromAlpha="1" toAlpha="0" duration="0.5" order="2"/>
+							<Scripts>
+								<OnFinished>
+									self:GetParent():Hide();
+								</OnFinished>
+							</Scripts>
+						</AnimationGroup>
+					</Animations>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame parentKey="Icon">
+				<Size x="50" y="50"/>
+				<Anchors>
+					<Anchor point="LEFT" x="5" y="-1"/>
+				</Anchors>
+				<Layers>
+					<Layer level="BORDER">
+						<Texture parentKey="Bling" atlas="ui-achievement-bling" useAtlasSize="true" hidden="true">
+							<Anchors>
+								<Anchor point="CENTER" x="-1" y="1"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="ARTWORK">
+						<Texture parentKey="Texture">
+							<Anchors>
+								<Anchor point="CENTER" x="0" y="3"/>
+							</Anchors>
+							<Size x="36" y="36"/>
+						</Texture>
+					</Layer>
+					<Layer level="OVERLAY">
+						<Texture parentKey="Overlay" file="Interface\AchievementFrame\UI-Achievement-IconFrame">
+							<Anchors>
+								<Anchor point="CENTER" x="-1" y="2"/>
+							</Anchors>
+							<Size x="50" y="50"/>
+							<TexCoords left="0" right="0.5625" top="0" bottom="0.5625"/>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnClick function="KrowiAF_AlertFrame_OnClick"/>
+		</Scripts>
+	</ContainedAlertFrame>
+</Ui>

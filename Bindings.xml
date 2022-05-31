@@ -1,0 +1,24 @@
+<!--
+    Exported at 2022-05-29 10-30-07
+    This code is automatically generated as an export from
+    an SQLite database and is not meant for manual edit.
+-->
+
+<Bindings>
+    <Binding name="KrowiAF_OPEN_TAB_Achievements" header="AF_NAME" category="ADDONS">
+        KrowiAF_ToggleAchievementFrame("Achievements");
+    </Binding>
+    <Binding name="KrowiAF_OPEN_TAB_Expansions" category="ADDONS">
+        KrowiAF_ToggleAchievementFrame("Expansions");
+    </Binding>
+    <Binding name="KrowiAF_OPEN_TAB_Events" category="ADDONS">
+        KrowiAF_ToggleAchievementFrame("Events");
+    </Binding>
+    <Binding name="KrowiAF_OPEN_TAB_PvP" category="ADDONS">
+        KrowiAF_ToggleAchievementFrame("PvP");
+    </Binding>
+    <Binding name="KrowiAF_OPEN_TAB_Specials" category="ADDONS">
+        KrowiAF_ToggleAchievementFrame("Specials");
+    </Binding>
+</Bindings>
+

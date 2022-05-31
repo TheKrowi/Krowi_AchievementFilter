@@ -1,0 +1,23 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\..\FrameXML\UI.xsd">
+
+    <Script file="GUI/GUI.lua" />
+
+    <Script file="GUI/AlertSystem.lua" />
+
+    <Script file="GUI/AchievementFrameTabButton.lua" />
+    <Script file="GUI/SideButton.lua" />
+    <Script file="GUI/CategoriesFrame.lua" />
+    <Script file="GUI/CategoryButton.lua" />
+    <Script file="GUI/AchievementsFrame.lua" />
+    
+    <Include file="GUI/AchievementButton/Files.xml" />
+
+    <Script file="GUI/FilterButton.lua" />
+
+    <Include file="GUI/Search/Files.xml" />
+
+    <Script file="GUI/WorldMapButton.lua" />
+
+    <Include file="GUI/Templates.xml" />
+    
+</Ui>

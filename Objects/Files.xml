@@ -1,0 +1,12 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+    <Script file="Objects/Objects.lua" />
+    <Script file="Objects/Faction.lua" />
+    <Script file="Objects/Covenant.lua" />
+    <Script file="Objects/TransmogSet.lua" />
+    <Script file="Objects/Achievement.lua" />
+    <Script file="Objects/Category.lua" />
+    <Script file="Objects/Event.lua" />
+    
+</Ui>
