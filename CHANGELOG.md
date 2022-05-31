@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [9.2.5.x.x] - 2022-
+## [9.2.5.35.x] - 2022-
 ### Added
 - German localization
 - Localizers to Credits
