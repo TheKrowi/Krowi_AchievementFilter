@@ -73,7 +73,7 @@ function OnClick(self, button, ignoreModifiers, anchor, offsetX, offsetY) -- ign
 
 	if button == "LeftButton" then
 		diagnostics.Debug("LeftButton");
-		AchievementButton_OnClick(self, button, down, ignoreModifiers);
+		AchievementButton_OnClick(self, button, nil, ignoreModifiers);
 	elseif button == "RightButton" then
 		diagnostics.Debug("RightButton");
 		-- OnClickRightButton(self, anchor, offsetX, offsetY, AchievementFrameAchievements);

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-05-29 10-30-07 ]] --
+-- [[ Exported at 2022-06-01 08-20-49 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -6930,6 +6930,7 @@ function exportedAchievements.Load(a, t)
     a[15542] = ach:New(15542, 10); -- Apocopocolypse Now
     a[15543] = ach:New(15543, 10); -- Successful Solos
     a[15544] = ach:New(15544, 20); -- Supreme Soloist
+    a[15579] = ach:New(15579, 10); -- Return to Lordaeron
     a[15594] = ach:New(15594, 0); -- Fearless Spectator
     a[15600] = ach:New(15600, 0); -- Challenger I: Shadowlands Season 4
     a[15601] = ach:New(15601, 0); -- Challenger II: Shadowlands Season 4

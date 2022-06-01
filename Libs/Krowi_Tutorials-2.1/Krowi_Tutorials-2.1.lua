@@ -80,7 +80,7 @@
 		buttonLeft, buttonBottom
 --]]
 
-local lib = LibStub:NewLibrary('Krowi_Tutorials-2.0', 1);
+local lib = LibStub:NewLibrary('Krowi_Tutorials-2.1', 1);
 
 if not lib then
 	return;
@@ -404,12 +404,14 @@ local function FixMarginTable(margin)
 end
 
 local function FindFirstNotViewed(self)
+	local found;
 	for i = 1, #self.Pages, 1 do
 		if not self.SavedVariables[self.Key].PageViewed[i] then
+			found = i;
 			return i;
 		end
 	end
-	return i;
+	return found;
 end
 
 local function GetNextBase2(number)
@@ -592,7 +594,12 @@ end
 
 function lib:Reset()
 	self.SavedVariables[self.Key].PageViewed = {};
-	self:Hide()
+	if self.Pages ~= nil then
+		for i, _ in next, self.Pages do
+			self.Pages[i].IsViewed = false;
+		end
+	end	
+	self:Hide();
 end
 
 local locked; -- Used to prevent multiple trigers if ShowTutorial is hooked in other places
@@ -603,7 +610,7 @@ function lib:ShowTutorial(index, minPage, maxPage)
 
 	locked = true;
 
-	local firstNotViewed = FindFirstNotViewed(self);
+	local firstNotViewed = FindFirstNotViewed(self) or 1;
 	index = index or firstNotViewed;
 
 	self.MinPage = minPage or 1;

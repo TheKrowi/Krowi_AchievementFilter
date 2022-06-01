@@ -1,14 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [9.2.5.35.x] - 2022-
+## [9.2.5.34.1] - 2022-06-01
 ### Added
 - German localization
 - Localizers to Credits
+- Return to Lordaeron achievement
 
 ### Changed
 - Localization optimization
 - License
+
+### Fixed
+- Small non-breaking bugs
 
 [9.2.5.x.x]: https://www.curseforge.com/wow/addons/krowi-achievement-filter/files/3808967
 

@@ -123,7 +123,7 @@ local AddCheckBox, AddRadioButton, AddAchievementFilters;
 function filterButton:OnMouseDown()
     diagnostics.Trace("filterButton:OnMouseDown");
 
-    UIMenuButtonStretchMixin.OnMouseDown(self, button);
+    UIMenuButtonStretchMixin.OnMouseDown(self);
 	PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
 
     -- Reset menu
@@ -175,12 +175,9 @@ function filterButton:OnMouseDown()
     menu:AddSeparator();
 
     -- Other
-    local help = addon.Objects.MenuItem:New({   Text = (addon.Tutorials.FeaturesTutorial:HasUnviewedPages() and "|T132049:0|t" or "") .. addon.L["Help"],
-                                                Func = function()
-                                                    menu:Close();
-                                                    addon.Tutorials.FeaturesTutorial:Reset();
-                                                    addon.Tutorials.FeaturesTutorial:ShowTutorial();
-                                                end});
+    local help = addon.Objects.MenuItem:New({
+        Text = (addon.Tutorials.FeaturesTutorial:HasUnviewedPages() and "|T132049:0|t" or "") .. addon.L["Help"]
+    });
 
     local pages = addon.Tutorials.FeaturesTutorial.Pages;
 
@@ -489,7 +486,7 @@ function filterButton:GetFilters(category)
 		return self.Filters.db.CurrentZone;
 	elseif category == addon.Data.SelectedZoneCategory then
 		return self.Filters.db.SelectedZone;
-	elseif category == addon.Data.ExcludedCategory or category.Excluded then
+	elseif category == addon.Data.ExcludedCategory or (category ~= nil and category.Excluded) then
 		return self.Filters.db.ExcludedCategory;
     elseif gui.SelectedTab.Filters ~= nil then
         return gui.SelectedTab.Filters;

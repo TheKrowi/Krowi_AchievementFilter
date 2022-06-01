@@ -99,7 +99,7 @@ end
 function OnClick(self)
     diagnostics.Trace("achFrameTabBtn:Base_OnClick");
 
-    if AlertFrame_OnClick(self, button, down) then
+    if AlertFrame_OnClick(self) then
 		return; -- Handle right-click and close the alert
 	end
 

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-05-29 10-30-19 ]] --
+-- [[ Exported at 2022-06-01 08-21-05 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -30,9 +30,9 @@ function exportedUiMaps.Load(m, a)
     m[15] = {Achievements = {a[1676], a[42], a[7520], a[4900], a[5444], a[765], a[6586], a[6613], a[6558], a[6559], a[6560], a[6611], a[6590], a[2556], a[4827], a[46]}}; -- Badlands
     m[16] = {Achievements = {a[1676], a[42], a[7520], a[4900], a[5444], a[765], a[6586], a[6613], a[6558], a[6559], a[6560], a[6611], a[6590], a[2556], a[4827], a[46]}}; -- Badlands - Uldaman
     m[17] = {Achievements = {a[1676], a[42], a[7520], a[9618], a[11297], a[4909], a[766], a[9924], a[948], a[762], a[6586], a[6613], a[6558], a[6559], a[6560], a[6611], a[6590], a[2556], a[46]}}; -- Blasted Lands
-    m[18] = {Achievements = {a[1206], a[42], a[768], a[762], a[6586], a[6613], a[6558], a[6559], a[6560], a[6611], a[6590], a[2556], a[46]}}; -- Tirisfal Glades
-    m[19] = {Achievements = {a[1206], a[42], a[768], a[762], a[6586], a[6613], a[6558], a[6559], a[6560], a[6611], a[6590], a[2556], a[46]}}; -- Tirisfal Glades - Scarlet Monastery Entrance
-    m[20] = {Achievements = {a[1206], a[42], a[768], a[762], a[6586], a[6613], a[6558], a[6559], a[6560], a[6611], a[6590], a[2556], a[46]}}; -- Tirisfal Glades - Keeper's Rest
+    m[18] = {Achievements = {a[1206], a[42], a[15579], a[768], a[762], a[6586], a[6613], a[6558], a[6559], a[6560], a[6611], a[6590], a[2556], a[46]}}; -- Tirisfal Glades
+    m[19] = {Achievements = {a[1206], a[42], a[15579], a[768], a[762], a[6586], a[6613], a[6558], a[6559], a[6560], a[6611], a[6590], a[2556], a[46]}}; -- Tirisfal Glades - Scarlet Monastery Entrance
+    m[20] = {Achievements = {a[1206], a[42], a[15579], a[768], a[762], a[6586], a[6613], a[6558], a[6559], a[6560], a[6611], a[6590], a[2556], a[46]}}; -- Tirisfal Glades - Keeper's Rest
     m[21] = {Achievements = {a[42], a[4894], a[769], a[762], a[6586], a[6613], a[6558], a[6559], a[6560], a[6611], a[6590], a[2556], a[4827], a[46]}}; -- Silverpine Forest
     m[22] = {Achievements = {a[1206], a[1676], a[42], a[7520], a[4893], a[770], a[9924], a[948], a[762], a[6586], a[6613], a[6558], a[6559], a[6560], a[6611], a[6590], a[2556], a[46]}}; -- Western Plaguelands
     m[23] = {Achievements = {a[1676], a[42], a[7520], a[11297], a[4892], a[5442], a[771], a[9924], a[946], a[945], a[6586], a[6613], a[6603], a[6558], a[6559], a[6560], a[6607], a[6601], a[7498], a[7499], a[6611], a[6590], a[8348], a[2556], a[46]}}; -- Eastern Plaguelands
@@ -488,8 +488,8 @@ function exportedUiMaps.Load(m, a)
     m[462] = {Achievements = {a[1206], a[43], a[736], a[762], a[6585], a[6612], a[6558], a[6559], a[6560], a[6611], a[6590], a[2556], a[46]}}; -- Mulgore - Camp Narache
     m[463] = {Achievements = {a[1206], a[43], a[4790], a[728], a[9924], a[762], a[6585], a[6612], a[6602], a[6558], a[6559], a[6560], a[6607], a[6601], a[7498], a[7499], a[6611], a[6590], a[8348], a[2556], a[4827], a[46]}}; -- Echo Isles
     m[464] = {Achievements = {a[1206], a[43], a[4790], a[728], a[9924], a[762], a[6585], a[6612], a[6602], a[6558], a[6559], a[6560], a[6607], a[6601], a[7498], a[7499], a[6611], a[6590], a[8348], a[2556], a[4827], a[46]}}; -- Spitescale Cavern
-    m[465] = {Achievements = {a[1206], a[42], a[768], a[762], a[6586], a[6613], a[6558], a[6559], a[6560], a[6611], a[6590], a[2556], a[46]}}; -- Tirisfal Glades - Deathknell
-    m[466] = {Achievements = {a[1206], a[42], a[768], a[762], a[6586], a[6613], a[6558], a[6559], a[6560], a[6611], a[6590], a[2556], a[46]}}; -- Night Web's Hollow
+    m[465] = {Achievements = {a[1206], a[42], a[15579], a[768], a[762], a[6586], a[6613], a[6558], a[6559], a[6560], a[6611], a[6590], a[2556], a[46]}}; -- Tirisfal Glades - Deathknell
+    m[466] = {Achievements = {a[1206], a[42], a[15579], a[768], a[762], a[6586], a[6613], a[6558], a[6559], a[6560], a[6611], a[6590], a[2556], a[46]}}; -- Night Web's Hollow
     m[467] = {Achievements = {a[42], a[6586], a[6613], a[6558], a[6559], a[6560], a[6611], a[6590], a[859], a[762], a[2556], a[46]}}; -- Sunstrider Isle
     m[468] = {Achievements = {a[43], a[6585], a[6612], a[6558], a[6559], a[6560], a[6611], a[6590], a[860], a[948], a[2556], a[46]}}; -- Ammen Vale
     m[469] = {Achievements = {a[42], a[11200], a[11201], a[4786], a[627], a[948], a[6558], a[6559], a[6560], a[46]}}; -- Dun Morogh - New Tinkertown
