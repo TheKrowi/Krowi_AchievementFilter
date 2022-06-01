@@ -14,7 +14,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Small non-breaking bugs
 
-[9.2.5.x.x]: https://www.curseforge.com/wow/addons/krowi-achievement-filter/files/3808967
+[9.2.5.34.1]: https://www.curseforge.com/wow/addons/krowi-achievement-filter/files/3813157
 
 ## [9.2.5.34.0] - 2022-05-29
 ### Added
