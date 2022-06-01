@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 -- [[ Namespaces ]] --
 local _, addon = ...;
 addon.GlobalStrings = {};

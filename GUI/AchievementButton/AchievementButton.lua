@@ -357,7 +357,7 @@ local function AddGoToAchievementWithCategoryLine(goTo, achievement, category, a
 						achievementsFrame:SelectAchievementWithCategory(achievement, category, nil, true);
 						rightClickMenu:Close();
 					end,
-					Disabled = disabled
+					-- Disabled = disabled
 				});
 end
 

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-05-31 00-00-52 ]] --
+-- [[ Exported at 2022-06-01 08-20-58 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -96,6 +96,9 @@ function exportedCategories.Load(a)
     AddA(tmp[1006], a[948]); -- Ambassador of the Alliance
     tmp[725] = cat:New(addon.GetMapName(18)); -- Tirisfal Glades
     AddC(tmp[687], tmp[725]);
+    tmp[1201] = cat:New((GetCategoryInfo(15447)), true); -- Quests
+    AddC(tmp[725], tmp[1201]);
+    AddA(tmp[1201], a[15579]); -- Return to Lordaeron
     tmp[726] = cat:New((GetCategoryInfo(97)), true); -- Exploration
     AddC(tmp[725], tmp[726]);
     AddA(tmp[726], a[768]); -- Explore Tirisfal Glades
@@ -7431,6 +7434,7 @@ function exportedCategories.Load(a)
     AddC(tmp[971], tmp[1043]);
     tmp[1045] = cat:New((GetCategoryInfo(14864))); -- Classic
     AddC(tmp[1043], tmp[1045]);
+    AddA(tmp[1045], a[15579]); -- Return to Lordaeron
     tmp[1065] = cat:New((GetCategoryInfo(15273)), true); -- Reputation
     AddC(tmp[1045], tmp[1065]);
     AddA(tmp[1065], a[948]); -- Ambassador of the Alliance

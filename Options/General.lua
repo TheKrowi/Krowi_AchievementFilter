@@ -11,21 +11,13 @@ local function OpenTutorialsMenu()
     menu:Clear(); -- Reset menu
 
     menu:AddFull({Text = addon.L["View Tutorial"], IsTitle = true});
-    menu:AddFull({
-        Text = addon.L["From the start"],
-        Func = function()
-            InterfaceOptionsFrame:Hide();
-            addon.Tutorials.FeaturesTutorial:Reset();
-            addon.Tutorials.FeaturesTutorial:ShowTutorial();
-        end
-    });
     for i, _ in next, pages do
         menu:AddFull({
             Text = (pages[i].IsViewed and "" or "|T132049:0|t") .. string.format(addon.Colors.White, addon.Colors.RemoveColor(pages[i].SubTitle)),
             Func = function()
                 InterfaceOptionsFrame:Hide();
                 addon.Diagnostics.Debug("Showing tutorial for " .. tostring(i));
-                addon.Tutorials.FeaturesTutorial:ShowTutorial(i, i, i, true);
+                addon.Tutorials.FeaturesTutorial:ShowTutorial(i);
             end
         });
     end
@@ -48,19 +40,22 @@ local function HandleScreenshotMode()
     InterfaceOptionsFrame:Hide();
     if screenshotModeFrame == nil then
         screenshotModeFrame = CreateFrame("Frame", nil, UIParent);
+        if screenshotModeFrame == nil then
+            error("Screenshot frame failed to be created.");
+            return;
+        end
         screenshotModeFrame:SetAllPoints();
         screenshotModeFrame:SetPoint("CENTER");
         screenshotModeFrame:SetSize(64, 64);
 
         screenshotModeFrame.tex = screenshotModeFrame:CreateTexture();
-        screenshotModeFrame.tex:SetAllPoints(f);
+        screenshotModeFrame.tex:SetAllPoints();
         screenshotModeFrame.tex:SetTexture("Interface\\AddOns\\Krowi_AchievementFilter\\Media\\Black");
     elseif screenshotModeFrame:IsShown() then
         screenshotModeFrame:Hide();
     else
         screenshotModeFrame:Show();
     end
-
 end
 
 options.OptionsTable.args["General"] = {

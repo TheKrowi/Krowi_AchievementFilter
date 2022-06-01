@@ -355,7 +355,7 @@ function GetMeta(index, renderOffScreen, achievementsFrame)
 		AchievementButton_LocalizeMetaAchievement(frame);
 		mcTable[index] = frame;
 	end
-	if mcTable[index].guildView ~= IN_GUILD_VIEW then
+	if mcTable[index].guildView ~= addon.InGuildView() then
 		AchievementButton_ToggleMetaView(mcTable[index]);
 	end
 	return mcTable[index];
