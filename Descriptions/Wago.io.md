@@ -2,14 +2,16 @@
 
 Achievement Filter adds a tab to the Achievement Window that orders the achievements by expansion and further subdivisions. Over 5300 achievements are added so far spread over 1025+ categories, linked to 1625+ zones and 39 events.
 
-**Tabs**
+### Now available in German!
+
+### Tabs
 - **Achievements**: A copy of the default Achievements tab but with all the additional features. (This tab is still a work in progress.)
 - **Expansions**: A collection of all the achievements in game sorted per expansion. See Categories for more details on this tab.
 - **Events**: All ingame event related achievements can be found here.
 - **Player vs. Player**: A PvP'ers dream with all achievements earnable trough PvP.
 - **Specials**: A combination of curated lists that might appeal to certain achievement hunters.
 
-**Categories (Expansions)**
+### Categories (Expansions)
 - The ***Current Zone*** category shows which achievements are related to the current zone you're in. (This is still being approved on.)
 - The ***Selected Zone*** category shows which achievements are related to the zone you're viewing in the World Map. (This is still being approved on.)
 - The ***Focused*** category shows achievements you want to focus on.
@@ -26,7 +28,7 @@ Achievement Filter adds a tab to the Achievement Window that orders the achievem
 - ***Shadowlands*** expansion feature: Torghast and Covenant Sanctums.
 - Unobtainable ***Legacy*** categories can be found when the 'Not Obtainable' filter is checked.
 
-**Features**
+### Features
 - Enhanced ***searching***, ***filtering***, ***sorting*** and ***tracking*** of achievements per tab.
 - Enhanced ***tooltip*** to show more about the achievement and related achievements.
 - Achievements are sorted in a way so they make more sense and are easier to find.

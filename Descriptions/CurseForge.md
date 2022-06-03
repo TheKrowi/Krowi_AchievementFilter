@@ -1,6 +1,7 @@
 <p><strong>See the images for a quick look at the ingame UI! This might give you a better idea of what is added to the default Blizzard UI.</strong></p>
 <p>Achievement Filter adds a tab to the Achievement Window that orders the achievements by expansion and further subdivisions. Over 5300 achievements are added so far spread over 1025+ categories, linked to 1625+ zones and 39 events.</p>
-<p><strong>Tabs</strong></p>
+<p><h3>Now available in German!</h3></p>
+<p><h3>Tabs</h3></p>
 <ul>
 <li><strong>Achievements</strong>: A copy of the default Achievements tab but with all the additional features. (This tab is still a work in progress.)</li>
 <li><strong>Expansions</strong>: A collection of all the achievements in game sorted per expansion. See Categories for more details on this tab.</li>
@@ -8,7 +9,7 @@
 <li><strong>Player vs. Player</strong>: A PvP'ers dream with all achievements earnable trough PvP.</li>
 <li><strong>Specials</strong>: A combination of curated lists that might appeal to certain achievement hunters.</li>
 </ul>
-<p><strong>Categories (Expansions)</strong></p>
+<p><h3>Categories (Expansions)</h3></p>
 <ul>
 <li>The <strong><em>Current Zone</em></strong> category shows which achievements are related to the current zone you're in. (This is still being approved on.)</li>
 <li>The <strong><em>Selected Zone</em></strong> category shows which achievements are related to the zone you're viewing in the World Map. (This is still being approved on.)</li>
@@ -26,7 +27,7 @@
 <li><strong><em>Shadowlands</em></strong> expansion feature: Torghast and Covenant Sanctums.</li>
 <li>Unobtainable <strong><em>Legacy</em></strong> categories can be found when the 'Not Obtainable' filter is checked.</li>
 </ul>
-<p><strong>Features</strong></p>
+<p><h3>Features</h3></p>
 <ul>
 <li>Enhanced <strong><em>searching</em></strong>, <strong><em>filtering</em></strong>, <strong><em>sorting</em></strong> and <strong><em>tracking</em></strong> of achievements per tab.</li>
 <li>Enhanced <strong><em>tooltip</em></strong> to show more about the achievement and related achievements.</li>

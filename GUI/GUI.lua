@@ -16,6 +16,8 @@ local CreateAchievementPointsTooltip;
 function gui:LoadWithBlizzard_AchievementUI()
     self.SetAchievementFrameHeight(addon.Options.db.Window.AchievementFrameHeightOffset); -- Do this in order to create the correct amount of buttons based on our settings
 
+    gui.Calendar.Load();
+
     gui.AchievementsFrame:Load();
     gui.CategoriesFrame:Load();
     gui.FilterButton:Load();

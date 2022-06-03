@@ -249,7 +249,13 @@
         "Filters",
         "EJ_GetInstanceInfo",
         "GetLFGDungeonInfo",
-        "GetTitleName"
+        "GetTitleName",
+        "Calendar_Show",
+        "CalendarFilterFrame",
+        "CalendarFrame",
+        "CalendarFrame_Update",
+        "CALENDAR_MAX_DAYS_PER_MONTH",
+        "CALENDAR_DAYBUTTON_MAX_VISIBLE_EVENTS"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

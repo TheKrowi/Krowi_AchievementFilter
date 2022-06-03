@@ -205,8 +205,12 @@ local function SetCharPoints(playerGUID, points)
     SavedData.Characters[playerGUID].Points = points;
 end
 
-local function AddCharCompletedAchievement(playerGUID, achievementID)
-    SavedData.Characters[playerGUID].CompletedAchievements[achievementID] = true;
+local function AddCharCompletedAchievement(playerGUID, achievementID, month, day, year)
+    SavedData.Characters[playerGUID].CompletedAchievements[achievementID] = time{
+        year = 2000 + year,
+        month = month,
+        day = day
+    };
 end
 
 local function CheckHexFlags(flags, flag)
@@ -221,10 +225,10 @@ local function IsTraching(flags)
     return CheckHexFlags(flags, "100000"); -- See https://wowpedia.fandom.com/wiki/API_GetAchievementInfo for all flags
 end
 
-local function IncrementCharacterPoints(playerGUID, id, points, flags, isGuild, wasEarnedByMe, isStatistic, exists)
+local function IncrementCharacterPoints(playerGUID, id, points, month, day, year, flags, isGuild, wasEarnedByMe, isStatistic, exists)
     if wasEarnedByMe and points >= 0 and not isStatistic and not isGuild and not IsTraching(flags) and exists then
         characterPoints = characterPoints + points;
-        AddCharCompletedAchievement(playerGUID, id);
+        AddCharCompletedAchievement(playerGUID, id, month, day, year);
     end
 end
 
@@ -263,10 +267,10 @@ function addon.BuildCache()
     local gapSize, i = 0, 1;
     AddCharToSavedData(playerGUID);
     while gapSize < 500 do -- Biggest gap is 209 in 9.0.5 as of 2021-05-03
-        local id, _, points, _, _, _, _, _, flags, _, _, isGuild, wasEarnedByMe, _, isStatistic, exists = addon.GetAchievementInfo(i);
+        local id, _, points, _, month, day, year, _, flags, _, _, isGuild, wasEarnedByMe, _, isStatistic, exists = addon.GetAchievementInfo(i);
 
         if id then
-            IncrementCharacterPoints(playerGUID, id, points, flags, isGuild, wasEarnedByMe, isStatistic, exists);
+            IncrementCharacterPoints(playerGUID, id, points, month, day, year, flags, isGuild, wasEarnedByMe, isStatistic, exists);
             AddToCache(id, points, flags, isGuild, isStatistic, exists);
         end
         if id and exists then
