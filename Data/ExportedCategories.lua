@@ -1,4 +1,4 @@
--- [[ Exported at 2022-06-01 08-20-58 ]] --
+-- [[ Exported at 2022-06-03 09-38-50 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -5872,6 +5872,8 @@ function exportedCategories.Load(a)
     AddA(tmp[1163], a[12291]); -- Heritage of the Void
     AddA(tmp[1163], a[12515]); -- Allied Races: Dark Iron Dwarf
     AddA(tmp[1163], a[13076]); -- Heritage of the Dark Iron
+    AddA(tmp[1163], a[13163]); -- Allied Races: Kul Tiran
+    AddA(tmp[1163], a[13504]); -- Heritage of the Kul Tirans
     AddA(tmp[1163], a[12245]); -- Allied Races: Highmountain Tauren
     AddA(tmp[1163], a[12415]); -- Heritage of Highmountain
     AddA(tmp[1163], a[12244]); -- Allied Races: Nightborne
@@ -5880,8 +5882,6 @@ function exportedCategories.Load(a)
     AddA(tmp[1163], a[13077]); -- Heritage of the Mag'har
     AddA(tmp[1163], a[13161]); -- Allied Races: Zandalari Troll
     AddA(tmp[1163], a[13503]); -- Heritage of the Zandalari
-    AddA(tmp[1163], a[13163]); -- Allied Races: Kul Tiran
-    AddA(tmp[1163], a[13504]); -- Heritage of the Kul Tirans
     AddA(tmp[1163], a[13206]); -- Allied Races: Vulpera
     AddA(tmp[1163], a[14002]); -- Heritage of the Vulpera
     tmp[1170] = cat:New((GetCategoryInfo(15117))); -- Pet Battles

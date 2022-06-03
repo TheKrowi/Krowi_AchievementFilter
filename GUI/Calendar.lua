@@ -98,7 +98,9 @@ local function PrepareViewForAchievements()
     while dayButton do
         dayButtonName = dayButton:GetName();
 
-        dayButton.day2 = dayButton.day2 or dayButton.day;
+        if dayButton.day then -- Can happen multiple times resulting in setting day2 to nil, this prevents it
+            dayButton.day2 = dayButton.day;
+        end
         dayButton.day = nil;
 
         _G[dayButtonName .. "EventTexture"]:Hide();
@@ -173,10 +175,8 @@ local function HideAllAchievementButtons()
     local i = 1;
     local dayButton = GetDayButton(i);
     while dayButton do
-
-        dayButton.day = dayButton.day or dayButton.day2;
+        dayButton.day = dayButton.day2;
         dayButton.day2 = nil;
-        print("hideall", i, dayButton.day, dayButton.day2)
 
         for _, achievementButton in next, dayButton.AchievementButtons do
             achievementButton.Achievement = nil;
@@ -190,6 +190,7 @@ end
 local function PrepareViewForNormal()
     HideAllAchievementButtons();
     CalendarFilterFrame:Show();
+    CalendarFrame_Update();
 end
 
 local isAchievementCalendar;
