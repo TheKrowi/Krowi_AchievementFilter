@@ -146,7 +146,7 @@ function filterButton:OnMouseDown()
     AddAchievementFilters(self, menu, nil, self.Filters.db);
     local earnedBy = addon.Objects.MenuItem:New({Text = addon.L["Earned By"]});
     AddRadioButton(self, menu, earnedBy, addon.L["Account"], self.Filters.db, {"EarnedBy"}, true);
-    AddRadioButton(self, menu, earnedBy, addon.L["Character"], self.Filters.db, {"EarnedBy"}, true);
+    AddRadioButton(self, menu, earnedBy, (GetCategoryInfo(92)), self.Filters.db, {"EarnedBy"}, true);
     menu:Add(earnedBy);
 
     menu:AddSeparator();

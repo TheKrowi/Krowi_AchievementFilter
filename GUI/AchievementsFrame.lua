@@ -438,7 +438,7 @@ function achievementsFrame:DisplayAchievement(button, achievement, index, select
 		button.hiddenDescription:SetText(description);
 		button.numLines = ceil(button.hiddenDescription:GetHeight() / self.UIFontHeight);
 		button.icon.texture:SetTexture(icon);
-		if (gui.FilterButton.Filters.db.EarnedBy == addon.L["Account"] and completed or wasEarnedByMe) or (gui.FilterButton.Filters.db.EarnedBy == addon.L["Character"] and completed and wasEarnedByMe) then
+		if (gui.FilterButton.Filters.db.EarnedBy == addon.L["Account"] and completed or wasEarnedByMe) or (gui.FilterButton.Filters.db.EarnedBy == (GetCategoryInfo(92)) and completed and wasEarnedByMe) then
 		-- if completed or wasEarnedByMe then
 			button.completed = true;
 			button.dateCompleted:SetText(FormatShortDate(day, month, year));
@@ -446,7 +446,7 @@ function achievementsFrame:DisplayAchievement(button, achievement, index, select
 			if button.saturatedStyle ~= saturatedStyle then
 				button:Saturate();
 			end
-		elseif (gui.FilterButton.Filters.db.EarnedBy == addon.L["Character"] and completed and not wasEarnedByMe) then
+		elseif (gui.FilterButton.Filters.db.EarnedBy == (GetCategoryInfo(92)) and completed and not wasEarnedByMe) then
 			button.completed = true;
 			button.dateCompleted:SetText(FormatShortDate(day, month, year));
 			button.dateCompleted:Show();

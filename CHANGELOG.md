@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 9.2.5.35.0 - 2022-xx-xx
+### Added
+- Calendar view for earned achievements (only 1st 4 per day for now)
+
+### Changed
+- Allied race achievements now have a faction tied to them
+- Torghast widget events are now by default not active for new users since all wings are always open
+
+### Removed
+- Torcanata because it's a tracking achievement
+
 ## 9.2.5.34.1 - 2022-06-01
 ### Added
 - German localization

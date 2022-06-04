@@ -1,4 +1,4 @@
--- [[ Exported at 2022-06-03 09-38-41 ]] --
+-- [[ Exported at 2022-06-03 22-53-45 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -3567,7 +3567,6 @@ function exportedAchievements.Load(a, t)
     a[11137] = ach:New(11137, 0); -- A Legendary Campaign
     a[11138] = ach:New(11138, 0, nil, nil, nil, false); -- Is There a Medic in the Zone?
     a[11139] = ach:New(11139, 0, nil, nil, nil, false); -- Field Medic
-    a[11143] = ach:New(11143, 0, nil, nil, nil, false); -- Honoring the Past
     a[11144] = ach:New(11144, 0, nil, nil, nil, false); -- Power Realized
     a[11157] = ach:New(11157, 10); -- Loremaster of Legion
     a[11159] = ach:New(11159, 5); -- Friends in a Broken Land
@@ -5691,7 +5690,6 @@ function exportedAchievements.Load(a, t)
     a[13030] = ach:New(13030, 5, fac.Horde); -- How to Ptrain Your Pterrordax
     a[13035] = ach:New(13035, 5); -- By de Power of de Loa!
     a[13036] = ach:New(13036, 5); -- A Loa of a Tale
-    a[13037] = ach:New(13037, 5, fac.Horde); -- Torcanata
     a[13038] = ach:New(13038, 5, fac.Horde); -- Raptari Rider
     a[13039] = ach:New(13039, 5, fac.Horde); -- Paku'ai
     a[13041] = ach:New(13041, 5, fac.Horde); -- "Hungry, Hungry Ranishu"

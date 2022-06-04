@@ -10,7 +10,6 @@ addon.GlobalStrings.Load(L);
 addon.Plugins:LoadLocalization(L);
 
 -- Filters, Categories, Menus, Tooltips
-L["* SPOILER WARNING *"] = "* SPOILER WARNING *";
 L["Account"] = "Account";
 L["Achievement points earned by"] = "Achievement points earned by";
 L["Achievements"] = "Achievements";
@@ -475,7 +474,7 @@ L["from"] = "from";
 L["in"] = "in";
 
 L["Full Search"] = "Full Search";
-L["Full Search Desc"] = "By selecting \"{showAllResults}\" you're able to view all search results. See the {quickSearchTutorial} tutorial for more details.";
+L["Full Search Desc"] = "By selecting '{showAllResults}' you're able to view all search results. See the {quickSearchTutorial} tutorial for more details.";
 
 L["New Achievement Colors"] = "New Achievement Colors";
 L["New Achievement Colors Desc"] = "- The default gold of an obtained achievement. The border is changed from red to gold.\n" ..
@@ -498,7 +497,6 @@ L["Earned By Desc"] = "Header\n" ..
                         "(1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {header}\n" ..
                         "(2) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}";
 
-L["Compact Achievements T"] = "Compact Achievements";
 L["Compact Achievements T Desc"] = "- Achievements are 2/3rd the size, similar to the summary achievements.\n" ..
                                     "- Shows either the first line of the description or the reward.\n\n" ..
                                     "Compact achievements can be enabled from the options {compactEnabled} (1).\n\n" ..
@@ -519,7 +517,7 @@ L["Enhanced tooltip Categories Desc"] = "Each tooltip has additional information
                                         "(1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {categories}";
 L["Enhanced tooltip Achievements Desc"] = "Each tooltip has additional information on how achievements relate to each other (if they do). Several new sections are added to it.\n\n" ..
                                             "Features:\n" ..
-                                            tab .. "- {notObtainable}: Shows the text \"{noLongerObtainable}\" if the achievement is no longer obtainable.\n" ..
+                                            tab .. "- {notObtainable}: Shows the text '{noLongerObtainable}' if the achievement is no longer obtainable.\n" ..
                                             tab .. "- {earnedBy}: See {earnedBy} for more information.\n" ..
                                             tab .. "- {partOfAChain}: Shows the list of achievements the hovered achievement is part of (1) ({partOfAChainEnabled}) (2).\n" ..
                                             tab .. "- {requiredFor}: Shows a list of achievements that require the hovered achievement to be completed in order to earn it (1) ({requiredForEnabled}) (2).\n" ..

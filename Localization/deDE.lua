@@ -17,7 +17,6 @@ addon.GlobalStrings.Load(L);
 addon.Plugins:LoadLocalization(L);
 
 -- Filters, Categories, Menus, Tooltips
-L["* SPOILER WARNING *"] = "* SPOILER WARNUNG *";
 L["Account"] = "Account";
 L["Achievement points earned by"] = "Erfolgspunkte erzielt durch";
 L["Achievements"] = "Erfolge";

@@ -14,7 +14,7 @@ addon.Tabs.Load();
 BINDING_HEADER_AF_NAME = addon.MetaData.Title;
 for t, tab in next, addon.Tabs do
     if type(tab) ~= "function" then
-        _G["BINDING_NAME_KrowiAF_OPEN_TAB_" .. tostring(tab.Name)] = addon.L["Toggle "] .. tab.Text .. addon.L[" tab"];
+        _G["BINDING_NAME_KrowiAF_OPEN_TAB_" .. tostring(tab.Name)] = addon.L["Toggle"] .. " " .. tab.Text .. " "  .. addon.L["tab"];
     end
 end
 
