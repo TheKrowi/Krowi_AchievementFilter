@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [9.2.5.34.2] - 2022-06-05
+
+### Changed
+- Torghast widget events are off by default
+
+### Fixed
+- First time users get lua error because certain variables are not yet created
+
 ## [9.2.5.34.1] - 2022-06-01
 ### Added
 - German localization

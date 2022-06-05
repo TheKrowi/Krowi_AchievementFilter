@@ -39,12 +39,12 @@ end
 
 function exportedWidgetEvents.InjectOptions()
     local defaults = {};
-    defaults[2924] = true;
-    defaults[2925] = true;
-    defaults[2926] = true;
-    defaults[2927] = true;
-    defaults[2928] = true;
-    defaults[2929] = true;
+    defaults[2924] = false;
+    defaults[2925] = false;
+    defaults[2926] = false;
+    defaults[2927] = false;
+    defaults[2928] = false;
+    defaults[2929] = false;
 
     addon.Options.InjectDefaults(defaults, "WidgetEvents", "EventReminders");
 
