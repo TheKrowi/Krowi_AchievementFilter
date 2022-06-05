@@ -7,10 +7,17 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Allied race achievements now have a faction tied to them
-- Torghast widget events are now by default not active for new users since all wings are always open
 
 ### Removed
 - Torcanata because it's a tracking achievement
+
+## 9.2.5.34.2 - 2022-06-05
+
+### Changed
+- Torghast widget events are now by default not active for new users since all wings are always open
+
+### Fixed
+- First time users get lua error because certain variables are not yet created
 
 ## 9.2.5.34.1 - 2022-06-01
 ### Added

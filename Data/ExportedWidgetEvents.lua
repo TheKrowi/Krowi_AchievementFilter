@@ -1,4 +1,4 @@
--- [[ Exported at 2022-06-01 08-21-10 ]] --
+-- [[ Exported at 2022-06-05 20-29-17 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -55,7 +55,7 @@ function exportedWidgetEvents.InjectOptions()
         args = {
             Torghast = {
                 order = 1, type = "header",
-                name = (GetCategoryInfo(15440)),
+                name = addon.L["Torghast"],
             },
             E2924 = {
                 order = 2, type = "toggle",
