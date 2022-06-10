@@ -264,16 +264,13 @@ function FixTabs(prevBuild, currBuild, prevVersion, currVersion)
         return;
     end
 
-    for _addonName, _ in next, addon.Options.db.Tabs do
-        for _tabName, _ in next, addon.Options.db.Tabs[_addonName] do
-            print(_addonName, _tabName, type(addon.Options.db.Tabs[_addonName][_tabName]));
-            if type(addon.Options.db.Tabs[_addonName][_tabName]) ~= "table" then
-                addon.Options.db.Tabs[_addonName][_tabName] = {
-                    Show = addon.Options.db.Tabs[_addonName][_tabName];
-                };
-            end
-        end
-    end
+    addon.Diagnostics.DebugTable(addon.Options.db.Tabs);
+    -- for _addonName, _ in next, addon.Options.db.Tabs do
+    --     for _tabName, _ in next, addon.Options.db.Tabs[_addonName] do
+    --         print(_addonName, _tabName, type(addon.Options.db.Tabs[_addonName][_tabName]));
+    --         addon.Options.db.Tabs[_addonName][_tabName] = nil;
+    --     end
+    -- end
 
     StaticPopupDialogs["KROWIAF_FIXTABS"] = {
         text = addon.MetaData.Title .. "\n\n" .. addon.L["FixTabs"] .. "\n\n - " .. addon.MetaData.Author,
