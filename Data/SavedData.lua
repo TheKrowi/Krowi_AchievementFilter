@@ -279,18 +279,18 @@ function FixTabs(prevBuild, currBuild, prevVersion, currVersion)
     end
     addon.Diagnostics.DebugTable(addon.Options.db.Tabs);
 
-    StaticPopupDialogs["KROWIAF_FIXTABS"] = {
-        text = addon.MetaData.Title .. "\n\n" .. addon.L["FixTabs"] .. "\n\n - " .. addon.MetaData.Author,
-        button1 = addon.L["Options"],
-        button2 = addon.L["Close"],
-        OnButton1 = function()
-            addon.Options.Open();
-        end,
-        timeout = 0,
-        whileDead = true,
-        hideOnEscape = true
-    };
-    StaticPopup_Show("KROWIAF_FIXTABS");
+    -- StaticPopupDialogs["KROWIAF_FIXTABS"] = {
+    --     text = addon.MetaData.Title .. "\n\n" .. addon.L["FixTabs"] .. "\n\n - " .. addon.MetaData.Author,
+    --     button1 = addon.L["Options"],
+    --     button2 = addon.L["Close"],
+    --     OnButton1 = function()
+    --         addon.Options.Open();
+    --     end,
+    --     timeout = 0,
+    --     whileDead = true,
+    --     hideOnEscape = true
+    -- };
+    -- StaticPopup_Show("KROWIAF_FIXTABS");
 
     SavedData.Fixes.FixTabs = true;
 
