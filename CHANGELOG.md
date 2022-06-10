@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Calendar view for earned achievements (only 1st 4 per day for now)
 - Select All and Deselect All buttons for Event Reminders
+- Hide and order tabs
 
 ### Changed
 - Allied race achievements now have a faction tied to them
