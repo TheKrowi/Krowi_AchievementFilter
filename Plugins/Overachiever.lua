@@ -125,9 +125,7 @@ local function HookOverachiever_LeftFrameOnHide()
 end
 
 local function FixTabs()
-    local currVersion = SavedData["Version"];
-    print(currVersion < "35.0", addon.Options.db.Tabs == nil, SavedData.Fixes.FixTabs == true)
-    if currVersion < "35.0" or addon.Options.db.Tabs == nil or SavedData.Fixes.FixTabs == true then
+    if addon.MetaData.Version < "35.0" or addon.Options.db.Tabs == nil or SavedData.Fixes.FixTabs == true then
         addon.Diagnostics.Debug("Overachiever Tabs already ported from previous version");
         return;
     end
