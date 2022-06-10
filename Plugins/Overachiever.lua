@@ -132,6 +132,7 @@ local function FixTabs()
         return;
     end
 
+    addon.Diagnostics.DebugTable(addon.Options.db.Tabs);
     for _addonName, tab in next, addon.Options.db.Tabs do
         if not tab.AddonName then
             for _tabName, _ in next, addon.Options.db.Tabs[_addonName] do
