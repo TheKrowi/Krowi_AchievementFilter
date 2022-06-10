@@ -132,10 +132,7 @@ local function FixTabs()
         return;
     end
 
-    addon.Diagnostics.DebugTable(addon.Options.db.Tabs);
-    for tabName, _ in next, addon.Options.db.Tabs[addonName] do
-        tmpTabs[tabName] = addon.Options.db.Tabs[addonName][tabName];
-    end
+    tmpTabs = addon.Options.db.Tabs[addonName];
 
     addon.Diagnostics.Debug("Ported Overachiever Tabs from previous version");
 end
