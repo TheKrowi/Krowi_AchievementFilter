@@ -171,17 +171,16 @@ options.OptionsTable.args["EventReminders"] = {
                 }
             }
         },
-        Events = {
-            order = 2, type = "group",
-            name = addon.L["Events"],
-            args = {
-                -- Automatically generated
-            }
-        },
+        -- Events = {
+        --     order = 2, type = "group",
+        --     name = addon.L["Events"],
+        --     args = {
+        --         -- Automatically generated
+        --     }
+        -- },
         DateTimeFormat = {
+            order = 5, type = "group",
             name = addon.L["Date and Time format"],
-            type = "group",
-            order = 3,
             args = {
                 StartTimeAndEndTime = {
                     order = 1, type = "group",

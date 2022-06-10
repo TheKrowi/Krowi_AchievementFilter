@@ -1,4 +1,4 @@
--- [[ Exported at 2022-06-04 19-09-36 ]] --
+-- [[ Exported at 2022-06-06 22-59-11 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -196,6 +196,9 @@ L["Categories width offset Desc"] = "The width that will be added to or subtract
 L["Achievement window height offset"] = "Achievement window height offset";
 L["Achievement window height offset Desc"] = "The height that will be added to or subtracted from the default achievement window height.\n\nThis value can be changed while the achievement window is open and having one of the tabs selected added by {addonName}. This might have an impac (1) on the game.\n\n(1) FPS drops and stuttering while adjusting the value, NOT during normal addon use\n\n{reloadRequired}";
 L["Blizzard"] = "Blizzard";
+L["Order"] = "Order";
+L["Tab"] = "Tab";
+L["FixTabs"] = "All tabs are shown again. This was necessary to introduce the new tabs ordering feature.\nSorry for any inconvenience.";
 L["Header"] = "Header";
 L["Format"] = "Format";
 L["Account wide (default)"] = "Account wide (default)";
@@ -260,6 +263,8 @@ L["Time Left"] = "Time Left";
 L["Calendar Events"] = "Calendar Events";
 L["Widget Events"] = "Widget Events";
 L["World Events"] = "World Events";
+L["Select All"] = "Select All";
+L["Deselect All"] = "Deselect All";
 L["Date and Time format"] = "Date and Time format";
 L["Presets"] = "Presets";
 L["Custom"] = "Custom";

@@ -5,8 +5,8 @@ plugins.Overachiever = {};
 local overachiever = plugins.Overachiever;
 tinsert(plugins.Plugins, overachiever);
 
+local addonName = "Overachiever_Tabs";
 local function InjectOptions()
-    local addonName = "Overachiever_Tabs";
     local searchTabName, suggestionsTabName, watchTabName = "Search", "Suggestions", "Watch";
 
     if Overachiever_SearchFrame and Overachiever_SearchFrame.tab then
@@ -22,39 +22,74 @@ local function InjectOptions()
         Overachiever_WatchFrame.tab.Name = watchTabName;
     end
 
-    if not addon.Options.db.Tabs[addonName] then
-        addon.Options.db.Tabs[addonName] = {};
-        addon.Options.db.Tabs[addonName][searchTabName] = true;
-        addon.Options.db.Tabs[addonName][suggestionsTabName] = true;
-        addon.Options.db.Tabs[addonName][watchTabName] = true;
-    end
-
-    local optionsTable = {
+    addon.Options.InjectOptionsTableAdd({
         type = "group",
         name = addon.L["Overachiever"],
         inline = true,
-        args = {
-            Search = {
-                order = 1, type = "toggle",
-                name = function() return OVERACHIEVER_STRINGS.SEARCH_TAB; end,
-                get = function() return addon.Options.db.Tabs[addonName][searchTabName]; end,
-                set = function() addon.GUI.ShowHideTabs(addonName, searchTabName); end
-            },
-            Suggestions = {
-                order = 2, type = "toggle",
-                name = function() return OVERACHIEVER_STRINGS.SUGGESTIONS_TAB; end,
-                get = function() return addon.Options.db.Tabs[addonName][suggestionsTabName]; end,
-                set = function() addon.GUI.ShowHideTabs(addonName, suggestionsTabName); end
-            },
-            Watch = {
-                order = 3, type = "toggle",
-                name = function() return OVERACHIEVER_STRINGS.WATCH_TAB; end,
-                get = function() return addon.Options.db.Tabs[addonName][watchTabName]; end,
-                set = function() addon.GUI.ShowHideTabs(addonName, watchTabName); end
-            }
-        }
-    };
-    addon.Options.InjectOptionsTable(optionsTable, addonName, "Layout", "args", "Tabs", "args");
+        args = {}
+    }, addonName, "args", "Layout", "args", "Tabs");
+
+    local searchTab, suggestionsTab, watchTab;
+    for i, tab in next, addon.Options.db.Tabs do
+        if tab.AddonName == addonName then
+            if tab.TabName == searchTabName then
+                searchTab = i;
+            elseif tab.TabName == suggestionsTabName then
+                suggestionsTab = i;
+            elseif tab.TabName == watchTabName then
+                watchTab = i;
+            end
+        end
+    end
+    print(searchTab,suggestionsTab,watchTab)
+
+    if not searchTab then
+        tinsert(addon.Options.db.Tabs, {
+            AddonName = addonName,
+            TabName = searchTabName,
+            Show = true
+        });
+        searchTab = #addon.Options.db.Tabs;
+    end
+    addon.Options.InjectOptionsTableAdd({
+        order = searchTab, type = "toggle",
+        name = function() return OVERACHIEVER_STRINGS.SEARCH_TAB; end,
+        get = function() return addon.Options.db.Tabs[searchTab].Show; end,
+        set = function() addon.GUI.ShowHideTabs(searchTab); end
+    }, "Search", "args", "Layout", "args", "Tabs", "args", addonName);
+    addon.Data.SavedData.TabsOrderAddIfNotContains(searchTab, addon.L["Overachiever"], searchTabName);
+
+    if not suggestionsTab then
+        tinsert(addon.Options.db.Tabs, {
+            AddonName = addonName,
+            TabName = suggestionsTabName,
+            Show = true
+        });
+        suggestionsTab = #addon.Options.db.Tabs;
+    end
+    addon.Options.InjectOptionsTableAdd({
+        order = suggestionsTab, type = "toggle",
+        name = function() return OVERACHIEVER_STRINGS.SUGGESTIONS_TAB; end,
+        get = function() return addon.Options.db.Tabs[suggestionsTab].Show; end,
+        set = function() addon.GUI.ShowHideTabs(suggestionsTab); end
+    }, "Suggestions", "args", "Layout", "args", "Tabs", "args", addonName);
+    addon.Data.SavedData.TabsOrderAddIfNotContains(suggestionsTab, addon.L["Overachiever"], suggestionsTabName);
+
+    if not watchTab then
+        tinsert(addon.Options.db.Tabs, {
+            AddonName = addonName,
+            TabName = watchTabName,
+            Show = true
+        });
+        watchTab = #addon.Options.db.Tabs;
+    end
+    addon.Options.InjectOptionsTableAdd({
+        order = watchTab, type = "toggle",
+        name = function() return OVERACHIEVER_STRINGS.WATCH_TAB; end,
+        get = function() return addon.Options.db.Tabs[watchTab].Show; end,
+        set = function() addon.GUI.ShowHideTabs(watchTab); end
+    }, "Watch", "args", "Layout", "args", "Tabs", "args", addonName);
+    addon.Data.SavedData.TabsOrderAddIfNotContains(watchTab, addon.L["Overachiever"], watchTabName);
 end
 
 local function HookAchievementFrame_UpdateTabs() -- Issue #1: Fix
@@ -133,6 +168,17 @@ function overachiever.Load()
         addon.L["New achievement window tabs Desc"],
         plugin_overachiever = string.format(addon.Colors.Yellow, addon.L["Overachiever"])
     };
+
+    -- SavedData.Temp.Plugins.Overachiever = nil;
+    -- for i = #addon.Options.db.Tabs, 1, -1 do
+    --     if addon.Options.db.Tabs[i].AddonName == addonName then
+    --         SavedData.Temp = SavedData.Temp or {};
+    --         SavedData.Temp.Plugins = SavedData.Temp.Plugins or {};
+    --         SavedData.Temp.Plugins.Overachiever = SavedData.Temp.Plugins.Overachiever or {};
+    --         SavedData.Temp.Plugins.Overachiever[addon.Options.db.Tabs[i].TabName] = addon.Options.db.Tabs[i];
+    --         tremove(addon.Options.db.Tabs, i);
+    --     end
+    -- end
 
     local preHookFunction = addon.Tutorials.Load;
     function addon.Tutorials.Load()

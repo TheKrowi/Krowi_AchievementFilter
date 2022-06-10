@@ -53,4 +53,6 @@ function globalStrings.Load(L)
     L["Interface"] = UIOPTIONS_MENU;
     L["AddOns"] = ADDONS;
     L["Miscellaneous"] = AUCTION_CATEGORY_MISCELLANEOUS;
+    L["Options"] = MAIN_MENU;
+    L["Close"] = CLOSE;
 end

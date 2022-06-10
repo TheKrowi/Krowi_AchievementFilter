@@ -255,43 +255,43 @@ function CreateAchievementPointsTooltip()
     end);
 end
 
-function gui.ShowHideTabs(_addonName, _tabName)
-    if _addonName and _tabName then
-        addon.Options.db.Tabs[_addonName][_tabName] = not addon.Options.db.Tabs[_addonName][_tabName];
-        if not IsAddOnLoaded(_addonName) then
+function gui.ShowHideTabs(index)
+    if index then
+        if not addon.Options.db.Tabs[index] then
+            return;
+        end
+        addon.Options.db.Tabs[index].Show = not addon.Options.db.Tabs[index].Show;
+
+        if not IsAddOnLoaded(addon.Options.db.Tabs[index].AddonName) then
             return;
         end
     end
 
-    for _addonName, _ in next, addon.Options.db.Tabs do
-        for _tabName, _ in next, addon.Options.db.Tabs[_addonName] do
-            local id = 1;
-            while _G["AchievementFrameTab" .. id] do
-                if _G["AchievementFrameTab" .. id].AddonName == _addonName and _G["AchievementFrameTab" .. id].Name == _tabName then
-                    if addon.Options.db.Tabs[_addonName][_tabName] then
-                        _G["AchievementFrameTab" .. id]:Show();
-                    else
-                        _G["AchievementFrameTab" .. id]:Hide();
-                    end
-                end
-                id = id + 1;
-            end
-        end
-    end
+    addon.Data.SavedData.TabsOrderGetActiveKeys(); -- Cleanup unused tabs
 
-    local id = 1;
-    local prevTab;
-    while _G["AchievementFrameTab" .. tostring(id)] do
-        if _G["AchievementFrameTab" .. tostring(id)]:IsShown() then
-            _G["AchievementFrameTab" .. tostring(id)]:ClearAllPoints();
-            if prevTab == nil then
-                _G["AchievementFrameTab" .. tostring(id)]:SetPoint("BOTTOMLEFT", AchievementFrame, 11, -30);
+    local tabsOrder = {};
+    for i, tab in next, addon.Options.db.Tabs do
+        tabsOrder[tab.Order] = i;
+        if _G["AchievementFrameTab" .. i] then
+            if tab.Show then
+                _G["AchievementFrameTab" .. i]:Show();
             else
-                _G["AchievementFrameTab" .. tostring(id)]:SetPoint("LEFT", prevTab, "RIGHT", -5, 0);                
+                _G["AchievementFrameTab" .. i]:Hide();
             end
-            prevTab = _G["AchievementFrameTab" .. tostring(id)];
         end
-        id = id + 1;
+     end
+
+    local prevTab;
+    for _, i in next, tabsOrder do
+        if _G["AchievementFrameTab" .. i] and _G["AchievementFrameTab" .. i]:IsShown() then
+            _G["AchievementFrameTab" .. i]:ClearAllPoints();
+            if prevTab == nil then
+                _G["AchievementFrameTab" .. i]:SetPoint("BOTTOMLEFT", AchievementFrame, 11, -30);
+            else
+                _G["AchievementFrameTab" .. i]:SetPoint("LEFT", prevTab, "RIGHT", -5, 0);
+            end
+            prevTab = _G["AchievementFrameTab" .. i];
+        end
     end
 end
 
@@ -302,4 +302,10 @@ function gui.AddDataToBlizzardTabs()
     AchievementFrameTab2.Name = "Guild";
     AchievementFrameTab3.AddonName = "Blizzard_AchievementUI";
     AchievementFrameTab3.Name = "Statistics";
+end
+
+function gui.PrepareTabsOrder()
+    addon.Data.SavedData.TabsOrderAddIfNotContains(1, addon.L["Blizzard"], addon.L["Achievements"]);
+    addon.Data.SavedData.TabsOrderAddIfNotContains(2, addon.L["Blizzard"], addon.L["Guild"]);
+    addon.Data.SavedData.TabsOrderAddIfNotContains(3, addon.L["Blizzard"], addon.L["Statistics"]);
 end

@@ -22,10 +22,20 @@ options.Defaults = {
             }
         },
         Tabs = {
-            Blizzard_AchievementUI = {
-                Achievements = true,
-                Guild = true,
-                Statistics = true
+            {
+                AddonName = "Blizzard_AchievementUI",
+                TabName = "Achievements",
+                Show = true
+            },
+            {
+                AddonName = "Blizzard_AchievementUI",
+                TabName = "Guild",
+                Show = true
+            },
+            {
+                AddonName = "Blizzard_AchievementUI",
+                TabName = "Statistics",
+                Show = true
             }
         },
         Categories = {

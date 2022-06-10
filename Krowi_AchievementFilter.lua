@@ -38,6 +38,8 @@ function loadHelper:OnEvent(event, arg1, arg2)
             addon.Data.ExportedCalendarEvents.InjectOptions();
             addon.Data.ExportedWorldEvents.InjectOptions();
             addon.Data.ExportedWidgetEvents.InjectOptions();
+
+            addon.GUI.PrepareTabsOrder();
             addon.Tabs.InjectOptions();
             addon.Plugins:InjectOptions();
             addon.Options.Load();
