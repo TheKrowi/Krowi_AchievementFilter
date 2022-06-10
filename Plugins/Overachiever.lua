@@ -45,6 +45,8 @@ local function InjectOptions()
     end
     print(searchTab,suggestionsTab,watchTab)
 
+    addon.Diagnostics.DebugTable(tmpTabs);
+
     local searchTabShow = true;
     if tmpTabs[searchTabName] ~= nil then
         searchTabShow = tmpTabs[searchTabName];
@@ -139,7 +141,6 @@ local function FixTabs()
                     end
                 end
             end
-            addon.Options.db.Tabs[_addonName] = nil;
         end
     end
 
