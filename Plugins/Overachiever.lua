@@ -126,6 +126,7 @@ end
 
 local function FixTabs()
     local currVersion = SavedData["Version"];
+    print(currVersion < "35.0", addon.Options.db.Tabs == nil, SavedData.Fixes.FixTabs == true)
     if currVersion < "35.0" or addon.Options.db.Tabs == nil or SavedData.Fixes.FixTabs == true then
         addon.Diagnostics.Debug("Overachiever Tabs already ported from previous version");
         return;
@@ -209,16 +210,6 @@ function overachiever.Load()
     };
 
     FixTabs();
-    -- SavedData.Temp.Plugins.Overachiever = nil;
-    -- for i = #addon.Options.db.Tabs, 1, -1 do
-    --     if addon.Options.db.Tabs[i].AddonName == addonName then
-    --         SavedData.Temp = SavedData.Temp or {};
-    --         SavedData.Temp.Plugins = SavedData.Temp.Plugins or {};
-    --         SavedData.Temp.Plugins.Overachiever = SavedData.Temp.Plugins.Overachiever or {};
-    --         SavedData.Temp.Plugins.Overachiever[addon.Options.db.Tabs[i].TabName] = addon.Options.db.Tabs[i];
-    --         tremove(addon.Options.db.Tabs, i);
-    --     end
-    -- end
 
     local preHookFunction = addon.Tutorials.Load;
     function addon.Tutorials.Load()
