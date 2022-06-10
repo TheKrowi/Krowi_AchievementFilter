@@ -1,4 +1,4 @@
--- [[ Exported at 2022-06-08 22-19-11 ]] --
+-- [[ Exported at 2022-06-10 13-47-32 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -31,6 +31,7 @@ function tabs.InjectOptions()
         args = {}
     }, addonName, "args", "Layout", "args", "Tabs");
 
+    -- Redefine local index every time to make the functions work
     local index = #addon.Options.InjectDefaultsAdd({
         AddonName = addonName,
         TabName = "Achievements",
@@ -73,8 +74,7 @@ function tabs.InjectOptions()
     local index = #addon.Options.InjectDefaultsAdd({
         AddonName = addonName,
         TabName = "PvP",
-        Show = true,
-        Order = index
+        Show = true
     }, "Tabs");
     addon.Options.InjectOptionsTableAdd({
         order = index, type = "toggle",
