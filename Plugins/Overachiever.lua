@@ -138,7 +138,8 @@ local function FixTabs()
             for _tabName, _ in next, addon.Options.db.Tabs[_addonName] do
                 for i, tab2 in next, addon.Options.db.Tabs do
                     if tab2.AddonName and tab2.AddonName == addonName then
-                        tmpTabs[tab2.TabName] = addon.Options.db.Tabs[_addonName][_tabName]
+                        tmpTabs[_tabName] = addon.Options.db.Tabs[_addonName][_tabName];
+
                     end
                 end
             end
