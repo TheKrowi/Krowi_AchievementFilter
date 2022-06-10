@@ -43,7 +43,6 @@ local function InjectOptions()
             end
         end
     end
-    print(searchTab,suggestionsTab,watchTab)
 
     addon.Diagnostics.DebugTable(tmpTabs);
 

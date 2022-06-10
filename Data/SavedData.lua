@@ -45,8 +45,7 @@ function savedData.TabsOrderGetActiveKeys()
     if not needsCleanup then
         return SavedData.TabKeys;
     end
-    -- local tabsOrderActiveKeys = {};
-    -- local tabsToRemove = {};
+
     for i = #addon.Options.db.Tabs, 1, -1 do
         local tab = addon.Options.db.Tabs[i];
         if tab.AddonName == "Blizzard_AchievementUI" or IsAddOnLoaded(tab.AddonName) then
@@ -56,17 +55,6 @@ function savedData.TabsOrderGetActiveKeys()
             tremove(SavedData.TabKeys, i);
         end
     end
-    -- for id, tab in next, addon.Options.db.Tabs do
-    --     if tab.AddonName == "Blizzard_AchievementUI" or IsAddOnLoaded(tab.AddonName) then
-    --         tinsert(tabsOrderActiveKeys, SavedData.TabKeys[id]);
-    --     else
-    --         tinsert(tabsToRemove, id);
-    --     end
-    -- end
-    -- for _, id in next, tabsToRemove do
-    --     tremove(addon.Options.db.Tabs, id);
-    -- end
-    -- SavedData.TabKeys = tabsOrderActiveKeys;
     needsCleanup = nil;
     return SavedData.TabKeys;
 end
@@ -264,7 +252,6 @@ function FixTabs(prevBuild, currBuild, prevVersion, currVersion)
         return;
     end
 
-    addon.Diagnostics.DebugTable(addon.Options.db.Tabs);
     for _addonName, tab in next, addon.Options.db.Tabs do
         if not tab.AddonName then
             for _tabName, _ in next, addon.Options.db.Tabs[_addonName] do
@@ -277,7 +264,6 @@ function FixTabs(prevBuild, currBuild, prevVersion, currVersion)
             addon.Options.db.Tabs[_addonName] = nil;
         end
     end
-    addon.Diagnostics.DebugTable(addon.Options.db.Tabs);
 
     -- StaticPopupDialogs["KROWIAF_FIXTABS"] = {
     --     text = addon.MetaData.Title .. "\n\n" .. addon.L["FixTabs"] .. "\n\n - " .. addon.MetaData.Author,
