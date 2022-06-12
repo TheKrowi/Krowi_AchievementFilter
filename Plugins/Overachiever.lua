@@ -8,6 +8,32 @@ tinsert(plugins.Plugins, overachiever);
 local tmpTabs = {};
 
 local addonName = "Overachiever_Tabs";
+
+local function AddTabOptions(tabIndex, tabName, nameFunc)
+    local show = true;
+    if tmpTabs[tabName] ~= nil then -- Fix and copy tab
+        show = tmpTabs[tabName].Show or tmpTabs[tabName];
+    end
+    if not tabIndex then
+        tinsert(addon.Options.db.Tabs, {
+            AddonName = addonName,
+            TabName = tabName,
+            Show = show
+        });
+        tabIndex = #addon.Options.db.Tabs;
+    end
+    addon.Options.InjectOptionsTableAdd({
+        order = tabIndex, type = "toggle",
+        name = nameFunc,
+        get = function() return addon.Options.db.Tabs[tabIndex].Show; end,
+        set = function() addon.GUI.ShowHideTabs(tabIndex); end
+    }, tabName, "args", "Layout", "args", "Tabs", "args", addonName);
+    addon.Data.SavedData.TabsOrderAddIfNotContains(tabIndex, addon.L["Overachiever"], tabName);
+    if tmpTabs[tabName] ~= nil and tmpTabs[tabName].Order ~= nil then -- Copy tab
+        addon.Options.db.Tabs[tabIndex].Order = tmpTabs[tabName].Order;
+    end
+end
+
 local function InjectOptions()
     local searchTabName, suggestionsTabName, watchTabName = "Search", "Suggestions", "Watch";
 
@@ -46,65 +72,78 @@ local function InjectOptions()
 
     addon.Diagnostics.DebugTable(tmpTabs);
 
-    local searchTabShow = true;
-    if tmpTabs[searchTabName] ~= nil then
-        searchTabShow = tmpTabs[searchTabName];
-    end
-    if not searchTab then
-        tinsert(addon.Options.db.Tabs, {
-            AddonName = addonName,
-            TabName = searchTabName,
-            Show = searchTabShow
-        });
-        searchTab = #addon.Options.db.Tabs;
-    end
-    addon.Options.InjectOptionsTableAdd({
-        order = searchTab, type = "toggle",
-        name = function() return OVERACHIEVER_STRINGS.SEARCH_TAB; end,
-        get = function() return addon.Options.db.Tabs[searchTab].Show; end,
-        set = function() addon.GUI.ShowHideTabs(searchTab); end
-    }, "Search", "args", "Layout", "args", "Tabs", "args", addonName);
-    addon.Data.SavedData.TabsOrderAddIfNotContains(searchTab, addon.L["Overachiever"], searchTabName);
+    AddTabOptions(searchTab, searchTabName, function() return OVERACHIEVER_STRINGS.SEARCH_TAB; end);
+    AddTabOptions(suggestionsTab, suggestionsTabName, function() return OVERACHIEVER_STRINGS.SUGGESTIONS_TAB; end);
+    AddTabOptions(watchTab, watchTabName, function() return OVERACHIEVER_STRINGS.WATCH_TAB; end);
 
-    local suggestionsTabShow = true;
-    if tmpTabs[suggestionsTabName] ~= nil then
-        suggestionsTabShow = tmpTabs[suggestionsTabName];
-    end
-    if not suggestionsTab then
-        tinsert(addon.Options.db.Tabs, {
-            AddonName = addonName,
-            TabName = suggestionsTabName,
-            Show = suggestionsTabShow
-        });
-        suggestionsTab = #addon.Options.db.Tabs;
-    end
-    addon.Options.InjectOptionsTableAdd({
-        order = suggestionsTab, type = "toggle",
-        name = function() return OVERACHIEVER_STRINGS.SUGGESTIONS_TAB; end,
-        get = function() return addon.Options.db.Tabs[suggestionsTab].Show; end,
-        set = function() addon.GUI.ShowHideTabs(suggestionsTab); end
-    }, "Suggestions", "args", "Layout", "args", "Tabs", "args", addonName);
-    addon.Data.SavedData.TabsOrderAddIfNotContains(suggestionsTab, addon.L["Overachiever"], suggestionsTabName);
+    -- local searchTabShow = true;
+    -- if tmpTabs[searchTabName] ~= nil then
+    --     searchTabShow = tmpTabs[searchTabName].Show or tmpTabs[searchTabName];
+    -- end
+    -- if not searchTab then
+    --     tinsert(addon.Options.db.Tabs, {
+    --         AddonName = addonName,
+    --         TabName = searchTabName,
+    --         Show = searchTabShow
+    --     });
+    --     searchTab = #addon.Options.db.Tabs;
+    -- end
+    -- addon.Options.InjectOptionsTableAdd({
+    --     order = searchTab, type = "toggle",
+    --     name = function() return OVERACHIEVER_STRINGS.SEARCH_TAB; end,
+    --     get = function() return addon.Options.db.Tabs[searchTab].Show; end,
+    --     set = function() addon.GUI.ShowHideTabs(searchTab); end
+    -- }, "Search", "args", "Layout", "args", "Tabs", "args", addonName);
+    -- addon.Data.SavedData.TabsOrderAddIfNotContains(searchTab, addon.L["Overachiever"], searchTabName);
+    -- if tmpTabs[searchTabName].Order ~= nil then
+    --     addon.Options.db.Tabs[searchTab].Order = tmpTabs[searchTabName].Order;
+    -- end
 
-    local watchTabShow = true;
-    if tmpTabs[watchTabName] ~= nil then
-        watchTabShow = tmpTabs[watchTabName];
-    end
-    if not watchTab then
-        tinsert(addon.Options.db.Tabs, {
-            AddonName = addonName,
-            TabName = watchTabName,
-            Show = watchTabShow
-        });
-        watchTab = #addon.Options.db.Tabs;
-    end
-    addon.Options.InjectOptionsTableAdd({
-        order = watchTab, type = "toggle",
-        name = function() return OVERACHIEVER_STRINGS.WATCH_TAB; end,
-        get = function() return addon.Options.db.Tabs[watchTab].Show; end,
-        set = function() addon.GUI.ShowHideTabs(watchTab); end
-    }, "Watch", "args", "Layout", "args", "Tabs", "args", addonName);
-    addon.Data.SavedData.TabsOrderAddIfNotContains(watchTab, addon.L["Overachiever"], watchTabName);
+    -- local suggestionsTabShow = true;
+    -- if tmpTabs[suggestionsTabName] ~= nil then
+    --     suggestionsTabShow = tmpTabs[suggestionsTabName].Show or tmpTabs[suggestionsTabName];
+    -- end
+    -- if not suggestionsTab then
+    --     tinsert(addon.Options.db.Tabs, {
+    --         AddonName = addonName,
+    --         TabName = suggestionsTabName,
+    --         Show = suggestionsTabShow
+    --     });
+    --     suggestionsTab = #addon.Options.db.Tabs;
+    -- end
+    -- addon.Options.InjectOptionsTableAdd({
+    --     order = suggestionsTab, type = "toggle",
+    --     name = function() return OVERACHIEVER_STRINGS.SUGGESTIONS_TAB; end,
+    --     get = function() return addon.Options.db.Tabs[suggestionsTab].Show; end,
+    --     set = function() addon.GUI.ShowHideTabs(suggestionsTab); end
+    -- }, "Suggestions", "args", "Layout", "args", "Tabs", "args", addonName);
+    -- addon.Data.SavedData.TabsOrderAddIfNotContains(suggestionsTab, addon.L["Overachiever"], suggestionsTabName);
+    -- if tmpTabs[suggestionsTabName].Order ~= nil then
+    --     addon.Options.db.Tabs[suggestionsTab].Order = tmpTabs[suggestionsTabName].Order;
+    -- end
+
+    -- local watchTabShow = true;
+    -- if tmpTabs[watchTabName] ~= nil then
+    --     watchTabShow = tmpTabs[watchTabName].Show or tmpTabs[watchTabName];
+    -- end
+    -- if not watchTab then
+    --     tinsert(addon.Options.db.Tabs, {
+    --         AddonName = addonName,
+    --         TabName = watchTabName,
+    --         Show = watchTabShow
+    --     });
+    --     watchTab = #addon.Options.db.Tabs;
+    -- end
+    -- addon.Options.InjectOptionsTableAdd({
+    --     order = watchTab, type = "toggle",
+    --     name = function() return OVERACHIEVER_STRINGS.WATCH_TAB; end,
+    --     get = function() return addon.Options.db.Tabs[watchTab].Show; end,
+    --     set = function() addon.GUI.ShowHideTabs(watchTab); end
+    -- }, "Watch", "args", "Layout", "args", "Tabs", "args", addonName);
+    -- addon.Data.SavedData.TabsOrderAddIfNotContains(watchTab, addon.L["Overachiever"], watchTabName);
+    -- if tmpTabs[watchTabName].Order ~= nil then
+    --     addon.Options.db.Tabs[watchTab].Order = tmpTabs[watchTabName].Order;
+    -- end
 
     tmpTabs = nil;
 end
@@ -125,9 +164,21 @@ local function HookOverachiever_LeftFrameOnHide()
     end);
 end
 
+local function CopyTabs()
+    for _, tab in next, addon.Options.db.Tabs do
+        if tab.AddonName == addonName then
+            tmpTabs[tab.TabName] = {
+                Show = tab.Show,
+                Order = tab.Order
+            };
+        end
+    end
+end
+
 local function FixTabs()
     if addon.MetaData.Version < "35.0" or addon.Options.db.Tabs == nil or SavedData.Fixes.FixTabs == true or addon.Options.db.Tabs[addonName] == nil then
         addon.Diagnostics.Debug("Overachiever Tabs already ported from previous version");
+        CopyTabs();
         return;
     end
 

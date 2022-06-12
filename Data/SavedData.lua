@@ -46,15 +46,39 @@ function savedData.TabsOrderGetActiveKeys()
         return SavedData.TabKeys;
     end
 
+    -- local numTabs = #addon.Options.db.Tabs;
+    local tabsOrder = {};
     for i = #addon.Options.db.Tabs, 1, -1 do
         local tab = addon.Options.db.Tabs[i];
         if tab.AddonName == "Blizzard_AchievementUI" or IsAddOnLoaded(tab.AddonName) then
-            -- tinsert(tabsOrderActiveKeys, SavedData.TabKeys[id]);
+            tinsert(tabsOrder, {
+                tab.Order,
+                i
+            });
+            -- tabsOrder[tab.Order] = i;
+            -- print(tab.Order, i, tab.AddonName, tab.TabName);
         else
+            -- print(tab.Order, i, tab.AddonName, tab.TabName, "nil");
+            -- tabsOrder[tab.Order] = nil;
             tremove(addon.Options.db.Tabs, i);
             tremove(SavedData.TabKeys, i);
         end
     end
+
+    -- addon.Diagnostics.DebugTable(tabsOrder);
+    sort(tabsOrder, function(a, b)
+        return a[1] < b[1];
+    end);
+    -- addon.Diagnostics.DebugTable(tabsOrder);
+
+
+    local properIndex = 1;
+    for _, order in next, tabsOrder do
+        -- print(properIndex, order[1], order[2], addon.Options.db.Tabs[order[2]].Order)
+        addon.Options.db.Tabs[order[2]].Order = properIndex;
+        properIndex = properIndex + 1;
+    end
+
     needsCleanup = nil;
     return SavedData.TabKeys;
 end
