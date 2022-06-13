@@ -99,6 +99,7 @@ local function PrepareViewForAchievements()
         dayButtonName = dayButton:GetName();
 
         if dayButton.day then -- Can happen multiple times resulting in setting day2 to nil, this prevents it
+            dayButton:RegisterForClicks();
             dayButton.day2 = dayButton.day;
         end
         dayButton.day = nil;
@@ -175,6 +176,7 @@ local function HideAllAchievementButtons()
     local i = 1;
     local dayButton = GetDayButton(i);
     while dayButton do
+        dayButton:RegisterForClicks("LeftButtonUp", "RightButtonUp");
         dayButton.day = dayButton.day2;
         dayButton.day2 = nil;
 
