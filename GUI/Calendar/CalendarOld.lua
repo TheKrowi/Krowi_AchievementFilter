@@ -195,26 +195,26 @@ local function PrepareViewForNormal()
     CalendarFrame_Update();
 end
 
-local isAchievementCalendar;
+-- local isAchievementCalendar;
 function calendar.Show()
-    if not IsAddOnLoaded("Blizzard_Calendar") then
-        LoadAddOn("Blizzard_Calendar");
-    end
-    isAchievementCalendar = true;
-    hooksecurefunc("CalendarFrame_Update", function()
-        if not isAchievementCalendar then
-            return;
-        end
-        local lastDayButtonIndex = PrepareViewForAchievements();
-        AddAchievementsToDays(GetEarnedAchievementsInRange(lastDayButtonIndex));
-    end);
-    CalendarFrame_Update(); -- Do it once in order to set everything correct if CalendarFrame_Update isn't triggered when showing the calendar (month didn't change)
-    hooksecurefunc(CalendarFrame, "Hide", function()
-        if not isAchievementCalendar then
-            return;
-        end
-        isAchievementCalendar = nil;
-        PrepareViewForNormal();
-    end);
+    -- if not IsAddOnLoaded("Blizzard_Calendar") then
+    --     LoadAddOn("Blizzard_Calendar");
+    -- end
+    -- isAchievementCalendar = true;
+    -- hooksecurefunc("CalendarFrame_Update", function()
+    --     if not isAchievementCalendar then
+    --         return;
+    --     end
+    --     local lastDayButtonIndex = PrepareViewForAchievements();
+    --     AddAchievementsToDays(GetEarnedAchievementsInRange(lastDayButtonIndex));
+    -- end);
+    -- CalendarFrame_Update(); -- Do it once in order to set everything correct if CalendarFrame_Update isn't triggered when showing the calendar (month didn't change)
+    -- hooksecurefunc(CalendarFrame, "Hide", function()
+    --     if not isAchievementCalendar then
+    --         return;
+    --     end
+    --     isAchievementCalendar = nil;
+    --     PrepareViewForNormal();
+    -- end);
     Calendar_Show();
 end

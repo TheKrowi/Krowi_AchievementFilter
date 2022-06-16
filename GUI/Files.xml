@@ -17,9 +17,9 @@
     <Include file="GUI/Search/Files.xml" />
 
     <Script file="GUI/WorldMapButton.lua" />
-    
-    <Script file="GUI/Calendar.lua" />
 
-    <Include file="GUI/Templates.xml" />
+    <Include file="GUI/Calendar/Files.xml" />
+
+    <Include file="GUI/Templates.xml" />    
     
 </Ui>
