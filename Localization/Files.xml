@@ -3,6 +3,7 @@
     <Script file="Localization/GlobalStrings.lua" />
     <Script file="Localization/enUS.lua" />
     <Script file="Localization/deDE.lua" />
+    <Script file="Localization/zhCN.lua" />
     <Script file="Localization/Localization.lua" />
     
 </Ui>

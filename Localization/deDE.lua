@@ -1,8 +1,8 @@
--- [[ Exported at 2022-06-06 22-59-11 ]] --
+-- [[ Exported at 2022-06-23 09-36-12 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-05-31 ]] --
+-- [[ German translation by Ta, 2022-06-07 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -65,9 +65,9 @@ L["Shipyard"] = "Werft";
 L["Southshore vs. Tarren Mill"] = "Süderstade vs. Tarrens Mühle";
 L["Stables"] = "Ställe";
 L["Strand of the Ancients"] = "Strand der Uralten";
-L["The Entitled"] = "Der/die Titulierte";
+L["The Entitled"] = "von Rang und Namen";
 L["Vendor"] = "Verkäufer";
-L["Zones"] = "Zones";
+L["Zones"] = "Zonen";
 L["Realm First!"] = "Realm First!";
 L["Leveling"] = "Level";
 L["Level 80"] = "Level 80";
@@ -129,8 +129,9 @@ L["This achievement is no longer obtainable"] = "Dieser Erfolg kann nicht länge
 L["Not earned by:"] = "Nicht erzielt durch:";
 L["Part of a chain"] = "Teil einer Folgequest";
 L["Required for"] = "Wird benötigt für...";
+L["Other faction"] = "Andere Fraktion";
 L["Objectives progress"] = "Erfolgs-Fortschritt";
-L["Collecting data"] = "Collecting data";
+L["Collecting data"] = "Sammle Daten...";
 L["Not part of set"] = "Nicht Teil des Transmog-Sets";
 L["This achievement can't be earned by this character."] = "Der Erfolg kann nicht von diesem Charakter erzielt werden.";
 L["This character's class has no transmog set that meet the requirements."] = "Die Klasse deines Charakters erfüllt nicht die Anforderungen für dieses Transmog-Set.";
@@ -145,4 +146,67 @@ L["Clear focus"] = "Fokus Filter löschen.";
 L["Exclude"] = "Ausblenden";
 L["Include"] = "Hinzufügen";
 L["No achievements are available with the current set of filters"] = "Es können keine Erfolge mit den von dir gesetzten Filtern angezeigt werden.";
+L["Requires a reload"] = "Funktioniert erst nach einem /reload.";
+L["Build"] = "Version";
+L["Author"] = "Autor";
+L["Tutorial"] = "Tutorial";
+L["Tutorial Desc"] = "Öffne das Tutorial beim Start.";
+L["Discord"] = "Discord";
+L["CurseForge"] = "CurseForge";
+L["Wago"] = "Wago";
+L["WoWInterface"] = "WoWInterface";
+L["Search"] = "Suche";
+L["Filters"] = "Filter";
+L["Layout"] = "Layout";
+L["Window"] = "Fenster";
+L["Blizzard"] = "Blizzard";
+L["Tab"] = "Tab";
+L["Format"] = "Format";
+L["Tooltip"] = "Tooltip";
+L["Not Earned By"] = "Nicht erzielt durch";
+L["Number of Earned By characters"] = "Anzahl der {earnedBy} Charactere";
+L["Right Click Menu"] = "Rechts-Klick Menü";
+L["Time display"] = "Zeit Anzeige";
+L["Start Time"] = "Beginn (Zeit)";
+L["End Time"] = "Ende (Zeit)";
+L["Time Left"] = "Zeit übrig";
+L["Calendar Events"] = "Kalender Events";
+L["Widget Events"] = "Widget Events";
+L["World Events"] = "Welt Events";
+L["Date and Time format"] = "Datum und Zeit (Format)";
+L["Presets"] = "Voreinstellungen";
+L["Plugins"] = "Plugins";
+L["Loaded"] = "Geladen";
+L["Not loaded"] = "Nicht Geladen";
+L["Credits"] = "Credits";
+L["Special thanks"] = "Besonderer Dank";
+L["Donations"] = "Spenden";
+L["Localizations"] = "Sprach-Lokalisierungen";
+L["tab"] = "Tab";
+L["Left click"] = "Links Klick";
+L["Right click"] = "Rechts Klick";
+L["Quick Search"] = "Schnell-Suche";
+L["Full Search"] = "Vollständige Suche";
+L["Enhanced tooltip"] = "Erweiteter Tooltip";
+L["Event Reminder"] = "Event Erinnerung";
+L["Green"] = "Grün";
+L["Grey"] = "Grau";
+L["Red"] = "Rot";
+L["Andurs"] = "Andurs";
+L["Rydyr"] = "Rydyr";
+L["Aki the Chosen"] = "Aki die Auserwählte";
+L["Burning Pandaren Spirit"] = "Brennender Pandarengeist";
+L["Flowing Pandaren Spirit"] = "Fließender Pandarengeist";
+L["Thundering Pandaren Spirit"] = "Bebender Pandarengeist";
+L["Whispering Pandaren Spirit"] = "Flüsternder Pandarengeist";
+L["Dos-Ryga"] = "Dos-Ryga";
+L["Kafi"] = "Kafi";
+L["Ti'un the Wanderer"] = "Ti'un der Wanderer";
+L["No-No"] = "No-No";
+L["Gorespine"] = "Blutstachel";
+L["Skitterer Xi'a"] = "Huscher Xi'a";
+L["Greyhoof"] = "Grauhuf";
+L["Lucky Yi"] = "Glückspilz Yi";
+L["Ka'wi the Gorger"] = "Ka'wi der Schlinger";
+L["Nitun"] = "Nitun";
 
