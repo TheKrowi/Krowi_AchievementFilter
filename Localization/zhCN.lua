@@ -1,4 +1,4 @@
--- [[ Exported at 2022-06-23 09-36-12 ]] --
+-- [[ Exported at 2022-06-23 17-58-06 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -41,7 +41,7 @@ L["Selected Zone"] = "选中地区";
 L["View Tutorial"] = "查看教程";
 L["Brawler's Guild"] = "搏击俱乐部";
 L["Buildings"] = "建筑";
-L["Bur's Mount Collection"] = "Bur's 坐骑收藏";
+L["Bur's Mount Collection"] = "Bur的坐骑收藏";
 L["Class Hall"] = "职业大厅";
 L["Covenant Assaults"] = "盟约突袭";
 L["Drops"] = "掉落";
@@ -70,12 +70,12 @@ L["Vendor"] = "商人";
 L["Zones"] = "地区";
 L["Realm First!"] = "服务器第一!";
 L["Leveling"] = "升级";
-L["Level 80"] = "Level 80";
-L["Level 85"] = "Level 85";
-L["Level 90"] = "Level 90";
-L["450 skill"] = "450 skill";
-L["525 skill"] = "525 skill";
-L["600 skill"] = "600 skill";
+L["Level 80"] = "等级 80";
+L["Level 85"] = "等级 85";
+L["Level 90"] = "等级 90";
+L["450 skill"] = "450 技能";
+L["525 skill"] = "525 技能";
+L["600 skill"] = "600 技能";
 L["BlizzCon"] = "暴雪嘉年华";
 L["Collector's Edition"] = "典藏版";
 L["Diablo III"] = "暗黑破坏神III";
@@ -83,7 +83,7 @@ L["Overwatch"] = "守望先锋";
 L["StarCraft II"] = "星际争霸II";
 L["Hearthstone"] = "炉石传说";
 L["Heroes of the Storm"] = "风暴英雄";
-L["Warcraft III: Reforged"] = "魔兽争霸III：重制版";
+L["Warcraft III: Reforged"] = "魔兽争霸III:重制版";
 L["WoW's Anniversary"] = "魔兽周年";
 L["WoW's 18th Anniversary"] = "魔兽18周年";
 L["Season"] = "赛季";
