@@ -1,4 +1,4 @@
--- [[ Exported at 2022-06-01 08-20-49 ]] --
+-- [[ Exported at 2022-06-03 22-53-45 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -3567,7 +3567,6 @@ function exportedAchievements.Load(a, t)
     a[11137] = ach:New(11137, 0); -- A Legendary Campaign
     a[11138] = ach:New(11138, 0, nil, nil, nil, false); -- Is There a Medic in the Zone?
     a[11139] = ach:New(11139, 0, nil, nil, nil, false); -- Field Medic
-    a[11143] = ach:New(11143, 0, nil, nil, nil, false); -- Honoring the Past
     a[11144] = ach:New(11144, 0, nil, nil, nil, false); -- Power Realized
     a[11157] = ach:New(11157, 10); -- Loremaster of Legion
     a[11159] = ach:New(11159, 5); -- Friends in a Broken Land
@@ -5262,10 +5261,10 @@ function exportedAchievements.Load(a, t)
     a[12229] = ach:New(12229, 0, fac.Alliance, 12230); -- Collector's Edition: Seabraid Stallion
     a[12230] = ach:New(12230, 0, fac.Horde, 12229); -- Collector's Edition: Gilded Ravasaur
     a[12232] = ach:New(12232, 0); -- Collector's Edition: Tottle
-    a[12242] = ach:New(12242, 10); -- Allied Races: Void Elf
-    a[12243] = ach:New(12243, 10); -- Allied Races: Lightforged Draenei
-    a[12244] = ach:New(12244, 10); -- Allied Races: Nightborne
-    a[12245] = ach:New(12245, 10); -- Allied Races: Highmountain Tauren
+    a[12242] = ach:New(12242, 10, fac.Alliance); -- Allied Races: Void Elf
+    a[12243] = ach:New(12243, 10, fac.Alliance); -- Allied Races: Lightforged Draenei
+    a[12244] = ach:New(12244, 10, fac.Horde); -- Allied Races: Nightborne
+    a[12245] = ach:New(12245, 10, fac.Horde); -- Allied Races: Highmountain Tauren
     a[12257] = ach:New(12257, 10); -- Stardust Crusaders
     a[12270] = ach:New(12270, 10); -- Bringing Hexy Back
     a[12272] = ach:New(12272, 10); -- Gold Fever
@@ -5281,7 +5280,7 @@ function exportedAchievements.Load(a, t)
     a[12287] = ach:New(12287, 5); -- Dragonkin Brawler
     a[12289] = ach:New(12289, 5); -- Humanoid Brawler
     a[12290] = ach:New(12290, 10); -- Family Brawler
-    a[12291] = ach:New(12291, 10); -- Heritage of the Void
+    a[12291] = ach:New(12291, 10, fac.Alliance); -- Heritage of the Void
     a[12292] = ach:New(12292, 5); -- Highmountain Tribe
     a[12297] = ach:New(12297, 10); -- The Siege of Ulduar
     a[12302] = ach:New(12302, 10); -- The Antechamber of Ulduar
@@ -5361,9 +5360,9 @@ function exportedAchievements.Load(a, t)
     a[12410] = ach:New(12410, 15); -- Seething Shore Veteran
     a[12411] = ach:New(12411, 10); -- Blood and Sand
     a[12412] = ach:New(12412, 25); -- Master of Seething Shore
-    a[12413] = ach:New(12413, 10); -- Heritage of the Nightborne
-    a[12414] = ach:New(12414, 10); -- Heritage of the Lightforged
-    a[12415] = ach:New(12415, 10); -- Heritage of Highmountain
+    a[12413] = ach:New(12413, 10, fac.Horde); -- Heritage of the Nightborne
+    a[12414] = ach:New(12414, 10, fac.Alliance); -- Heritage of the Lightforged
+    a[12415] = ach:New(12415, 10, fac.Horde); -- Heritage of Highmountain
     a[12416] = ach:New(12416, 5); -- The Total Package
     a[12429] = ach:New(12429, 10, fac.Alliance); -- Wetlands Quests
     a[12430] = ach:New(12430, 10, fac.Alliance); -- Duskwood Quests
@@ -5401,8 +5400,8 @@ function exportedAchievements.Load(a, t)
     a[12508] = ach:New(12508, 10); -- "Good Night, Sweet Prince"
     a[12509] = ach:New(12509, 10, fac.Horde, 12510); -- Ready for War
     a[12510] = ach:New(12510, 10, fac.Alliance, 12509); -- Ready for War
-    a[12515] = ach:New(12515, 10); -- Allied Races: Dark Iron Dwarf
-    a[12518] = ach:New(12518, 10); -- Allied Races: Mag'har Orc
+    a[12515] = ach:New(12515, 10, fac.Alliance); -- Allied Races: Dark Iron Dwarf
+    a[12518] = ach:New(12518, 10, fac.Horde); -- Allied Races: Mag'har Orc
     a[12521] = ach:New(12521, 10); -- Halls of Containment
     a[12522] = ach:New(12522, 10); -- Crimson Descent
     a[12523] = ach:New(12523, 10); -- Heart of Corruption
@@ -5691,7 +5690,6 @@ function exportedAchievements.Load(a, t)
     a[13030] = ach:New(13030, 5, fac.Horde); -- How to Ptrain Your Pterrordax
     a[13035] = ach:New(13035, 5); -- By de Power of de Loa!
     a[13036] = ach:New(13036, 5); -- A Loa of a Tale
-    a[13037] = ach:New(13037, 5, fac.Horde); -- Torcanata
     a[13038] = ach:New(13038, 5, fac.Horde); -- Raptari Rider
     a[13039] = ach:New(13039, 5, fac.Horde); -- Paku'ai
     a[13041] = ach:New(13041, 5, fac.Horde); -- "Hungry, Hungry Ranishu"
@@ -5714,8 +5712,8 @@ function exportedAchievements.Load(a, t)
     a[13062] = ach:New(13062, 5, fac.Alliance); -- Let's Bee Friends
     a[13064] = ach:New(13064, 5); -- "Drust the Facts, Ma'am"
     a[13075] = ach:New(13075, 10); -- Battle for Azeroth Keymaster
-    a[13076] = ach:New(13076, 10); -- Heritage of the Dark Iron
-    a[13077] = ach:New(13077, 10); -- Heritage of the Mag'har
+    a[13076] = ach:New(13076, 10, fac.Alliance); -- Heritage of the Dark Iron
+    a[13077] = ach:New(13077, 10, fac.Horde); -- Heritage of the Mag'har
     a[13078] = ach:New(13078, 0); -- Realm First! Battle for Azeroth Keystone Master
     a[13079] = ach:New(13079, 0, nil, nil, nil, false); -- Battle for Azeroth Keystone Conqueror: Season One
     a[13080] = ach:New(13080, 0, nil, nil, nil, false); -- Battle for Azeroth Keystone Master: Season One
@@ -5766,8 +5764,8 @@ function exportedAchievements.Load(a, t)
     a[13141] = ach:New(13141, 10); -- Island Slayer
     a[13142] = ach:New(13142, 10); -- Archipelago Explorer
     a[13144] = ach:New(13144, 10); -- Wide World of Quests
-    a[13161] = ach:New(13161, 10); -- Allied Races: Zandalari Troll
-    a[13163] = ach:New(13163, 10); -- Allied Races: Kul Tiran
+    a[13161] = ach:New(13161, 10, fac.Horde); -- Allied Races: Zandalari Troll
+    a[13163] = ach:New(13163, 10, fac.Alliance); -- Allied Races: Kul Tiran
     a[13186] = ach:New(13186, 5, fac.Alliance, 13188, nil, false); -- You Are Not Your $#*@! Legplates
     a[13188] = ach:New(13188, 5, fac.Horde, 13186, nil, false); -- You Are Not Your $#*@! Legplates
     a[13189] = ach:New(13189, 5, fac.Alliance, 13190, nil, false); -- The Second Rule of Brawler's Guild
@@ -5782,7 +5780,7 @@ function exportedAchievements.Load(a, t)
     a[13203] = ach:New(13203, 0, nil, nil, nil, false); -- Challenger: Battle for Azeroth Season 2
     a[13204] = ach:New(13204, 0, nil, nil, nil, false); -- Combatant: Battle for Azeroth Season 2
     a[13205] = ach:New(13205, 0, nil, nil, nil, false); -- Rival: Battle for Azeroth Season 2
-    a[13206] = ach:New(13206, 10); -- Allied Races: Vulpera
+    a[13206] = ach:New(13206, 10, fac.Horde); -- Allied Races: Vulpera
     a[13209] = ach:New(13209, 0, nil, nil, nil, false); -- Duelist: Battle for Azeroth Season 2
     a[13210] = ach:New(13210, 0, fac.Alliance, 13211, nil, false); -- Hero of the Alliance: Sinister
     a[13211] = ach:New(13211, 0, fac.Horde, 13210, nil, false); -- Hero of the Horde: Sinister
@@ -5946,8 +5944,8 @@ function exportedAchievements.Load(a, t)
     a[13489] = ach:New(13489, 5); -- Secret Fish of Mechagon
     a[13501] = ach:New(13501, 10); -- Gotta Bounce
     a[13502] = ach:New(13502, 10); -- Secret Fish and Where to Find Them
-    a[13503] = ach:New(13503, 10); -- Heritage of the Zandalari
-    a[13504] = ach:New(13504, 10); -- Heritage of the Kul Tirans
+    a[13503] = ach:New(13503, 10, fac.Horde); -- Heritage of the Zandalari
+    a[13504] = ach:New(13504, 10, fac.Alliance); -- Heritage of the Kul Tirans
     a[13506] = ach:New(13506, 10); -- A Good Eye-dea
     a[13512] = ach:New(13512, 10); -- Master Calligrapher
     a[13513] = ach:New(13513, 5); -- Available in Eight Colors
@@ -6150,10 +6148,10 @@ function exportedAchievements.Load(a, t)
     a[13994] = ach:New(13994, 20); -- Through the Depths of Visions
     a[13998] = ach:New(13998, 10); -- Pure of Heart
     a[13999] = ach:New(13999, 10); -- How? Isn't it Obelisk?
-    a[14002] = ach:New(14002, 10); -- Heritage of the Vulpera
+    a[14002] = ach:New(14002, 10, fac.Horde); -- Heritage of the Vulpera
     a[14008] = ach:New(14008, 10); -- Mana Sponge
-    a[14013] = ach:New(14013, 10); -- Allied Races: Mechagnome
-    a[14014] = ach:New(14014, 10); -- Heritage of the Mechagnome
+    a[14013] = ach:New(14013, 10, fac.Alliance); -- Allied Races: Mechagnome
+    a[14014] = ach:New(14014, 10, fac.Alliance); -- Heritage of the Mechagnome
     a[14019] = ach:New(14019, 10); -- Smoke Test
     a[14020] = ach:New(14020, 5); -- Pet Battle Challenge: Blackrock Depths
     a[14021] = ach:New(14021, 10); -- The Shadows Revealed

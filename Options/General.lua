@@ -51,6 +51,7 @@ local function HandleScreenshotMode()
         screenshotModeFrame.tex = screenshotModeFrame:CreateTexture();
         screenshotModeFrame.tex:SetAllPoints();
         screenshotModeFrame.tex:SetTexture("Interface\\AddOns\\Krowi_AchievementFilter\\Media\\Black");
+        screenshotModeFrame.tex:SetTexCoord(0, 0.390625, 0, 0.78125);
     elseif screenshotModeFrame:IsShown() then
         screenshotModeFrame:Hide();
     else

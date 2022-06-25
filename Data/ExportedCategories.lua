@@ -1,4 +1,4 @@
--- [[ Exported at 2022-06-01 08-20-58 ]] --
+-- [[ Exported at 2022-06-04 11-13-09 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -4142,7 +4142,6 @@ function exportedCategories.Load(a)
     AddA(tmp[293], a[13039]); -- Paku'ai
     AddA(tmp[293], a[13048]); -- Life Finds a Way... To Die!
     AddA(tmp[293], a[13038]); -- Raptari Rider
-    AddA(tmp[293], a[13037]); -- Torcanata
     AddA(tmp[293], a[12719]); -- Spirits Be With You
     AddA(tmp[293], a[13020]); -- Bow to Your Masters
     AddA(tmp[293], a[12614]); -- Loa Expectations
@@ -5872,6 +5871,8 @@ function exportedCategories.Load(a)
     AddA(tmp[1163], a[12291]); -- Heritage of the Void
     AddA(tmp[1163], a[12515]); -- Allied Races: Dark Iron Dwarf
     AddA(tmp[1163], a[13076]); -- Heritage of the Dark Iron
+    AddA(tmp[1163], a[13163]); -- Allied Races: Kul Tiran
+    AddA(tmp[1163], a[13504]); -- Heritage of the Kul Tirans
     AddA(tmp[1163], a[12245]); -- Allied Races: Highmountain Tauren
     AddA(tmp[1163], a[12415]); -- Heritage of Highmountain
     AddA(tmp[1163], a[12244]); -- Allied Races: Nightborne
@@ -5880,8 +5881,6 @@ function exportedCategories.Load(a)
     AddA(tmp[1163], a[13077]); -- Heritage of the Mag'har
     AddA(tmp[1163], a[13161]); -- Allied Races: Zandalari Troll
     AddA(tmp[1163], a[13503]); -- Heritage of the Zandalari
-    AddA(tmp[1163], a[13163]); -- Allied Races: Kul Tiran
-    AddA(tmp[1163], a[13504]); -- Heritage of the Kul Tirans
     AddA(tmp[1163], a[13206]); -- Allied Races: Vulpera
     AddA(tmp[1163], a[14002]); -- Heritage of the Vulpera
     tmp[1170] = cat:New((GetCategoryInfo(15117))); -- Pet Battles
@@ -7274,7 +7273,7 @@ function exportedCategories.Load(a)
     AddA(tmp[985], a[8092]); -- I've Got 9999 Problems but a Bone-White Primal Raptor Ain't One
     AddA(tmp[985], a[9909]); -- Heirloom Hoarder
     AddA(tmp[985], a[14183]); -- Conspicuous Consumption
-    tmp[986] = cat:New(addon.L["Profession"]); -- Profession
+    tmp[986] = cat:New((GetCategoryInfo(169))); -- Profession
     AddC(tmp[972], tmp[986]);
     AddA(tmp[986], a[2097]); -- Get to the Choppa!
     AddA(tmp[986], a[5749]); -- Vial of the Sands

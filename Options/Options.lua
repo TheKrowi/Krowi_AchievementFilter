@@ -39,6 +39,16 @@ local function InjectDefaults(table, tableName, ...)
 end
 options.InjectDefaults = InjectDefaults;
 
+local function InjectDefaultsAdd(table, tableName, ...)
+    local destTable = options.Defaults.profile;
+    for i = 1, select("#", ...), 1 do
+        destTable = destTable[select(i, ...)];
+    end
+    tinsert(destTable[tableName], table);
+    return destTable[tableName];
+end
+options.InjectDefaultsAdd = InjectDefaultsAdd;
+
 local function InjectOptionsTable(table, tableName, ...)
     local destTable = options.OptionsTable.args;
     for i = 1, select("#", ...), 1 do
@@ -48,13 +58,24 @@ local function InjectOptionsTable(table, tableName, ...)
 end
 options.InjectOptionsTable = InjectOptionsTable;
 
+local function InjectOptionsTableAdd(table, key, tableName, ...)
+    local destTable = options.OptionsTable.args;
+    for i = 1, select("#", ...), 1 do
+        destTable = destTable[select(i, ...)];
+    end
+    destTable[tableName][key] = table;
+end
+options.InjectOptionsTableAdd = InjectOptionsTableAdd;
+
 -- Load the options
 function options.Load()
     addon.Options = LibStub("AceDB-3.0"):New("Options", options.Defaults, true);
     addon.Options.Open = Open;
     addon.Options.Debug = options.Debug;
     addon.Options.InjectDefaults = InjectDefaults;
+    addon.Options.InjectDefaultsAdd = InjectDefaultsAdd;
     addon.Options.InjectOptionsTable = InjectOptionsTable;
+    addon.Options.InjectOptionsTableAdd = InjectOptionsTableAdd;
     addon.Options.db = addon.Options.profile;
 
     LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.MetaData.Title, options.OptionsTable.args.General);

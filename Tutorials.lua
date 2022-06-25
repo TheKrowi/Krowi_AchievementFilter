@@ -36,7 +36,7 @@ function tutorials.Load()
             expansions = L["Expansions"]:SetColorYellow(),
             expansionsTabTutorial = L["Expansions tab"]:SetColorYellow(),
             events = L["Events"]:SetColorYellow(),
-            pvp = L["Player vs. Player"]:SetColorYellow(),
+            pvp = L["PvP"]:SetColorYellow(),
             specials = L["Specials"]:SetColorYellow(),
             addonName_y = addon.MetaData.Title:SetColorYellow(),
             layout = L["Layout"],
@@ -109,7 +109,7 @@ function tutorials.Load()
             earnedBy = addon.L["Earned By"],
             earnedByTutorial = L["Earned By"]:SetColorYellow(),
             account = L["Account"]:SetColorYellow(),
-            character = L["Character"]:SetColorYellow(),
+            character = (GetCategoryInfo(92)):SetColorYellow(),
             help = L["Help"]:SetColorYellow(),
             options = L["Options"]:SetColorYellow(),
             discord = addon.L["Discord"],
@@ -178,7 +178,7 @@ function tutorials.Load()
             achievementPointsEarnedByFormat = string.format(addon.Colors.Yellow, LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.L["Layout"], "cmd", "KROWIAF-0.0").args.Header.args.AchievementPoints.args.Format.values[addon.Options.db.AchievementPoints.Format]),
             tooltip = L["Tooltip"]:SetColorYellow(),
             account = L["Account"]:SetColorYellow(),
-            character = L["Character"]:SetColorYellow(),
+            character = (GetCategoryInfo(92)):SetColorYellow(),
             earnedBy = L["Earned By"]:SetColorYellow(),
             notEarnedBy = L["Not Earned By"]:SetColorYellow(),
             layout = L["Layout"],
@@ -196,7 +196,7 @@ function tutorials.Load()
     tinsert(pages, { -- CompactAchievements
         Image = media .. "CompactAchievements",
         ImageSize = {722, 385},
-        SubTitle = L["Compact Achievements T"]:SetColorYellow(),
+        SubTitle = L["Compact Achievements"]:SetColorYellow(),
         Text = L["Compact Achievements T Desc"]:ReplaceVarsWithMenu
         {
             layout = L["Layout"],

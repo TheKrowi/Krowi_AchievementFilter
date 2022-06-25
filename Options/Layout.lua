@@ -140,7 +140,7 @@ end
 
 local function SetObjectivesProgressShow()
     addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show = not addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show;
-    local objectivesProgressShowWhenAchievementCompleted = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.MetaData.Title, "cmd", "KROWIAF-0.0").args.Layout.args.Tooltip.args.ObjectivesProgressShowWhenAchievementCompleted; -- cmd and KROWIAF-0.0 are just to make the function work
+    local objectivesProgressShowWhenAchievementCompleted = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.L["Layout"], "cmd", "KROWIAF-0.0").args.Achievements.args.Tooltip.args.ObjectivesProgressShowWhenAchievementCompleted; -- cmd and KROWIAF-0.0 are just to make the function work
     objectivesProgressShowWhenAchievementCompleted.disabled = not addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show;                        
     options.Debug(addon.L["Show Objectives progress"], addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show);
 end
@@ -196,31 +196,40 @@ options.OptionsTable.args["Layout"] = {
             order = 2, type = "group",
             name = addon.L["Tabs"],
             args = {
-                Blizzard_AchievementUI = {
+                Order = {
                     order = 1, type = "group",
+                    name = addon.L["Order"],
+                    inline = true,
+                    args = {
+                        -- Dynamically added
+                    }
+                },
+                Blizzard_AchievementUI = {
+                    order = 2, type = "group",
                     name = addon.L["Blizzard"],
                     inline = true,
                     args = {
                         Achievements = {
                             type = "toggle",
                             name = addon.L["Achievements"],
-                            get = function() return addon.Options.db.Tabs.Blizzard_AchievementUI.Achievements; end,
-                            set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Achievements"); end
+                            get = function() return addon.Options.db.Tabs[1].Show; end,
+                            set = function() addon.GUI.ShowHideTabs(1); end
                         },
                         Guild = {
                             type = "toggle",
                             name = addon.L["Guild"],
-                            get = function() return addon.Options.db.Tabs.Blizzard_AchievementUI.Guild; end,
-                            set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Guild"); end
+                            get = function() return addon.Options.db.Tabs[2].Show; end,
+                            set = function() addon.GUI.ShowHideTabs(2); end
                         },
                         Statistics = {
                             type = "toggle",
                             name = addon.L["Statistics"],
-                            get = function() return addon.Options.db.Tabs.Blizzard_AchievementUI.Statistics; end,
-                            set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Statistics"); end
+                            get = function() return addon.Options.db.Tabs[3].Show; end,
+                            set = function() addon.GUI.ShowHideTabs(3); end
                         }
                     }
                 },
+                -- More dynamically added
             }
         },
         Header = {

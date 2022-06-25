@@ -1,4 +1,4 @@
--- [[ Exported at 2022-06-01 08-21-10 ]] --
+-- [[ Exported at 2022-06-06 12-49-37 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -70,9 +70,8 @@ function exportedCalendarEvents.InjectOptions()
     addon.Options.InjectDefaults(defaults, "CalendarEvents", "EventReminders");
 
     local optionsTable = {
-        type = "group",
+        order = 2, type = "group",
         name = addon.L["Calendar Events"],
-        inline = true,
         args = {
             E141 = {
                 order = 1, type = "toggle",
@@ -82,7 +81,7 @@ function exportedCalendarEvents.InjectOptions()
                 set = function()
                     addon.Options.db.EventReminders.CalendarEvents[141] = not addon.Options.db.EventReminders.CalendarEvents[141];
                     diagnostics.Debug(addon.L["Feast of Winter Veil"], addon.Options.db.EventReminders.CalendarEvents[141]);
-                end,
+                end
             },
             E181 = {
                 order = 2, type = "toggle",
@@ -92,7 +91,7 @@ function exportedCalendarEvents.InjectOptions()
                 set = function()
                     addon.Options.db.EventReminders.CalendarEvents[181] = not addon.Options.db.EventReminders.CalendarEvents[181];
                     diagnostics.Debug(addon.L["Noblegarden"], addon.Options.db.EventReminders.CalendarEvents[181]);
-                end,
+                end
             },
             E201 = {
                 order = 3, type = "toggle",
@@ -102,7 +101,7 @@ function exportedCalendarEvents.InjectOptions()
                 set = function()
                     addon.Options.db.EventReminders.CalendarEvents[201] = not addon.Options.db.EventReminders.CalendarEvents[201];
                     diagnostics.Debug(addon.L["Children's Week"], addon.Options.db.EventReminders.CalendarEvents[201]);
-                end,
+                end
             },
             E324 = {
                 order = 4, type = "toggle",
@@ -112,7 +111,7 @@ function exportedCalendarEvents.InjectOptions()
                 set = function()
                     addon.Options.db.EventReminders.CalendarEvents[324] = not addon.Options.db.EventReminders.CalendarEvents[324];
                     diagnostics.Debug(addon.L["Hallow's End"], addon.Options.db.EventReminders.CalendarEvents[324]);
-                end,
+                end
             },
             E327 = {
                 order = 5, type = "toggle",
@@ -122,7 +121,7 @@ function exportedCalendarEvents.InjectOptions()
                 set = function()
                     addon.Options.db.EventReminders.CalendarEvents[327] = not addon.Options.db.EventReminders.CalendarEvents[327];
                     diagnostics.Debug(addon.L["Lunar Festival"], addon.Options.db.EventReminders.CalendarEvents[327]);
-                end,
+                end
             },
             E341 = {
                 order = 6, type = "toggle",
@@ -132,7 +131,7 @@ function exportedCalendarEvents.InjectOptions()
                 set = function()
                     addon.Options.db.EventReminders.CalendarEvents[341] = not addon.Options.db.EventReminders.CalendarEvents[341];
                     diagnostics.Debug(addon.L["Midsummer Fire Festival"], addon.Options.db.EventReminders.CalendarEvents[341]);
-                end,
+                end
             },
             E372 = {
                 order = 7, type = "toggle",
@@ -142,7 +141,7 @@ function exportedCalendarEvents.InjectOptions()
                 set = function()
                     addon.Options.db.EventReminders.CalendarEvents[372] = not addon.Options.db.EventReminders.CalendarEvents[372];
                     diagnostics.Debug(addon.L["Brewfest"], addon.Options.db.EventReminders.CalendarEvents[372]);
-                end,
+                end
             },
             E398 = {
                 order = 8, type = "toggle",
@@ -152,7 +151,7 @@ function exportedCalendarEvents.InjectOptions()
                 set = function()
                     addon.Options.db.EventReminders.CalendarEvents[398] = not addon.Options.db.EventReminders.CalendarEvents[398];
                     diagnostics.Debug(addon.L["Pirates' Day"], addon.Options.db.EventReminders.CalendarEvents[398]);
-                end,
+                end
             },
             E404 = {
                 order = 9, type = "toggle",
@@ -162,7 +161,7 @@ function exportedCalendarEvents.InjectOptions()
                 set = function()
                     addon.Options.db.EventReminders.CalendarEvents[404] = not addon.Options.db.EventReminders.CalendarEvents[404];
                     diagnostics.Debug(addon.L["Pilgrim's Bounty"], addon.Options.db.EventReminders.CalendarEvents[404]);
-                end,
+                end
             },
             E409 = {
                 order = 10, type = "toggle",
@@ -172,7 +171,7 @@ function exportedCalendarEvents.InjectOptions()
                 set = function()
                     addon.Options.db.EventReminders.CalendarEvents[409] = not addon.Options.db.EventReminders.CalendarEvents[409];
                     diagnostics.Debug(addon.L["Day of the Dead"], addon.Options.db.EventReminders.CalendarEvents[409]);
-                end,
+                end
             },
             E423 = {
                 order = 11, type = "toggle",
@@ -182,7 +181,7 @@ function exportedCalendarEvents.InjectOptions()
                 set = function()
                     addon.Options.db.EventReminders.CalendarEvents[423] = not addon.Options.db.EventReminders.CalendarEvents[423];
                     diagnostics.Debug(addon.L["Love is in the Air"], addon.Options.db.EventReminders.CalendarEvents[423]);
-                end,
+                end
             },
             E479 = {
                 order = 12, type = "toggle",
@@ -192,7 +191,7 @@ function exportedCalendarEvents.InjectOptions()
                 set = function()
                     addon.Options.db.EventReminders.CalendarEvents[479] = not addon.Options.db.EventReminders.CalendarEvents[479];
                     diagnostics.Debug(addon.L["Darkmoon Faire"], addon.Options.db.EventReminders.CalendarEvents[479]);
-                end,
+                end
             },
             E1262 = {
                 order = 13, type = "toggle",
@@ -202,11 +201,51 @@ function exportedCalendarEvents.InjectOptions()
                 set = function()
                     addon.Options.db.EventReminders.CalendarEvents[1262] = not addon.Options.db.EventReminders.CalendarEvents[1262];
                     diagnostics.Debug(addon.L["WoW's 18th Anniversary"], addon.Options.db.EventReminders.CalendarEvents[1262]);
-                end,
+                end
+            },
+            Blank14 = {order = 14, type = "description", width = "full", name = ""},
+            Blank15 = {order = 15, type = "description", width = "normal", name = ""},
+            SelectAll16 = {
+                order = 16, type = "execute",
+                name = addon.L["Select All"],
+                func = function()
+                    addon.Options.db.EventReminders.CalendarEvents[141] = true;
+                    addon.Options.db.EventReminders.CalendarEvents[181] = true;
+                    addon.Options.db.EventReminders.CalendarEvents[201] = true;
+                    addon.Options.db.EventReminders.CalendarEvents[324] = true;
+                    addon.Options.db.EventReminders.CalendarEvents[327] = true;
+                    addon.Options.db.EventReminders.CalendarEvents[341] = true;
+                    addon.Options.db.EventReminders.CalendarEvents[372] = true;
+                    addon.Options.db.EventReminders.CalendarEvents[398] = true;
+                    addon.Options.db.EventReminders.CalendarEvents[404] = true;
+                    addon.Options.db.EventReminders.CalendarEvents[409] = true;
+                    addon.Options.db.EventReminders.CalendarEvents[423] = true;
+                    addon.Options.db.EventReminders.CalendarEvents[479] = true;
+                    addon.Options.db.EventReminders.CalendarEvents[1262] = true;
+                end
+            },
+            DeselectAll17 = {
+                order = 17, type = "execute",
+                name = addon.L["Deselect All"],
+                func = function()
+                    addon.Options.db.EventReminders.CalendarEvents[141] = false;
+                    addon.Options.db.EventReminders.CalendarEvents[181] = false;
+                    addon.Options.db.EventReminders.CalendarEvents[201] = false;
+                    addon.Options.db.EventReminders.CalendarEvents[324] = false;
+                    addon.Options.db.EventReminders.CalendarEvents[327] = false;
+                    addon.Options.db.EventReminders.CalendarEvents[341] = false;
+                    addon.Options.db.EventReminders.CalendarEvents[372] = false;
+                    addon.Options.db.EventReminders.CalendarEvents[398] = false;
+                    addon.Options.db.EventReminders.CalendarEvents[404] = false;
+                    addon.Options.db.EventReminders.CalendarEvents[409] = false;
+                    addon.Options.db.EventReminders.CalendarEvents[423] = false;
+                    addon.Options.db.EventReminders.CalendarEvents[479] = false;
+                    addon.Options.db.EventReminders.CalendarEvents[1262] = false;
+                end
             },
         }
     };
 
-    addon.Options.InjectOptionsTable(optionsTable, "CalendarEvents", "EventReminders", "args", "Events", "args");
+    addon.Options.InjectOptionsTable(optionsTable, "CalendarEvents", "EventReminders", "args");
 end
 

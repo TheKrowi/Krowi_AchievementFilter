@@ -1,4 +1,4 @@
--- [[ Exported at 2022-06-01 08-21-10 ]] --
+-- [[ Exported at 2022-06-06 12-49-37 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -39,23 +39,22 @@ end
 
 function exportedWidgetEvents.InjectOptions()
     local defaults = {};
-    defaults[2924] = true;
-    defaults[2925] = true;
-    defaults[2926] = true;
-    defaults[2927] = true;
-    defaults[2928] = true;
-    defaults[2929] = true;
+    defaults[2924] = false;
+    defaults[2925] = false;
+    defaults[2926] = false;
+    defaults[2927] = false;
+    defaults[2928] = false;
+    defaults[2929] = false;
 
     addon.Options.InjectDefaults(defaults, "WidgetEvents", "EventReminders");
 
     local optionsTable = {
-        type = "group",
+        order = 3, type = "group",
         name = addon.L["Widget Events"],
-        inline = true,
         args = {
             Torghast = {
                 order = 1, type = "header",
-                name = addon.L["Torghast"],
+                name = addon.L["Torghast"]
             },
             E2924 = {
                 order = 2, type = "toggle",
@@ -65,7 +64,7 @@ function exportedWidgetEvents.InjectOptions()
                 set = function()
                     addon.Options.db.EventReminders.WidgetEvents[2924] = not addon.Options.db.EventReminders.WidgetEvents[2924];
                     diagnostics.Debug(addon.L["Soulforges"], addon.Options.db.EventReminders.WidgetEvents[2924]);
-                end,
+                end
             },
             E2925 = {
                 order = 3, type = "toggle",
@@ -75,7 +74,7 @@ function exportedWidgetEvents.InjectOptions()
                 set = function()
                     addon.Options.db.EventReminders.WidgetEvents[2925] = not addon.Options.db.EventReminders.WidgetEvents[2925];
                     diagnostics.Debug(addon.L["Fracture Chambers"], addon.Options.db.EventReminders.WidgetEvents[2925]);
-                end,
+                end
             },
             E2926 = {
                 order = 4, type = "toggle",
@@ -85,7 +84,7 @@ function exportedWidgetEvents.InjectOptions()
                 set = function()
                     addon.Options.db.EventReminders.WidgetEvents[2926] = not addon.Options.db.EventReminders.WidgetEvents[2926];
                     diagnostics.Debug(addon.L["Skoldus Hall"], addon.Options.db.EventReminders.WidgetEvents[2926]);
-                end,
+                end
             },
             E2927 = {
                 order = 5, type = "toggle",
@@ -95,7 +94,7 @@ function exportedWidgetEvents.InjectOptions()
                 set = function()
                     addon.Options.db.EventReminders.WidgetEvents[2927] = not addon.Options.db.EventReminders.WidgetEvents[2927];
                     diagnostics.Debug(addon.L["Coldheart Interstitia"], addon.Options.db.EventReminders.WidgetEvents[2927]);
-                end,
+                end
             },
             E2928 = {
                 order = 6, type = "toggle",
@@ -105,7 +104,7 @@ function exportedWidgetEvents.InjectOptions()
                 set = function()
                     addon.Options.db.EventReminders.WidgetEvents[2928] = not addon.Options.db.EventReminders.WidgetEvents[2928];
                     diagnostics.Debug(addon.L["Mort'regar"], addon.Options.db.EventReminders.WidgetEvents[2928]);
-                end,
+                end
             },
             E2929 = {
                 order = 7, type = "toggle",
@@ -115,11 +114,37 @@ function exportedWidgetEvents.InjectOptions()
                 set = function()
                     addon.Options.db.EventReminders.WidgetEvents[2929] = not addon.Options.db.EventReminders.WidgetEvents[2929];
                     diagnostics.Debug(addon.L["Upper Reaches"], addon.Options.db.EventReminders.WidgetEvents[2929]);
-                end,
+                end
+            },
+            Blank8 = {order = 8, type = "description", width = "full", name = ""},
+            Blank9 = {order = 9, type = "description", width = "normal", name = ""},
+            SelectAll10 = {
+                order = 10, type = "execute",
+                name = addon.L["Select All"],
+                func = function()
+                    addon.Options.db.EventReminders.WidgetEvents[2924] = true;
+                    addon.Options.db.EventReminders.WidgetEvents[2925] = true;
+                    addon.Options.db.EventReminders.WidgetEvents[2926] = true;
+                    addon.Options.db.EventReminders.WidgetEvents[2927] = true;
+                    addon.Options.db.EventReminders.WidgetEvents[2928] = true;
+                    addon.Options.db.EventReminders.WidgetEvents[2929] = true;
+                end
+            },
+            DeselectAll11 = {
+                order = 11, type = "execute",
+                name = addon.L["Deselect All"],
+                func = function()
+                    addon.Options.db.EventReminders.WidgetEvents[2924] = false;
+                    addon.Options.db.EventReminders.WidgetEvents[2925] = false;
+                    addon.Options.db.EventReminders.WidgetEvents[2926] = false;
+                    addon.Options.db.EventReminders.WidgetEvents[2927] = false;
+                    addon.Options.db.EventReminders.WidgetEvents[2928] = false;
+                    addon.Options.db.EventReminders.WidgetEvents[2929] = false;
+                end
             },
         }
     };
 
-    addon.Options.InjectOptionsTable(optionsTable, "WidgetEvents", "EventReminders", "args", "Events", "args");
+    addon.Options.InjectOptionsTable(optionsTable, "WidgetEvents", "EventReminders", "args");
 end
 
