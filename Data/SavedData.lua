@@ -115,7 +115,7 @@ function savedData.Load()
 end
 
 local FixFeaturesTutorialProgress, FixElvUISkin, FixFilters, FixEventDetails, FixShowExcludedCategory, FixEventDetails2, FixCharacters, FixEventAlert;
-local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs;
+local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters;
 function LoadSolutions()
     local solutions = {
         FixFeaturesTutorialProgress, -- 1
@@ -129,6 +129,7 @@ function LoadSolutions()
         FixMergeSmallCategoriesThresholdChanged, -- 9
         FixShowCurrentCharacterIcons, -- 10
         FixTabs, -- 11
+        FixCovenantFilters, -- 12
     };
 
     return solutions;
@@ -305,4 +306,29 @@ function FixTabs(prevBuild, currBuild, prevVersion, currVersion)
     SavedData.Fixes.FixTabs = true;
 
     diagnostics.Debug("Ported Tabs from previous version");
+end
+
+local function ClearCovenant(table)
+    for i, _ in next, table do
+        if i == "Covenant" then
+            table[i] = nil;
+        elseif type(table[i]) == "table" then
+            ClearCovenant(table[i]);
+        end
+    end
+end
+
+function FixCovenantFilters(prevBuild, currBuild, prevVersion, currVersion)
+    if currVersion < "36.0" or SavedData.Fixes.FixCovenantFilters == true then
+        diagnostics.Debug("Covenant filters already cleared from previous version");
+        return;
+    end
+
+    if Filters.profiles then
+        ClearCovenant(Filters.profiles);
+    end
+
+    SavedData.Fixes.FixCovenantFilters = true;
+
+    diagnostics.Debug("Cleared covenant filters from previous version");
 end

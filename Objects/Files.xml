@@ -3,7 +3,6 @@
 
     <Script file="Objects/Objects.lua" />
     <Script file="Objects/Faction.lua" />
-    <Script file="Objects/Covenant.lua" />
     <Script file="Objects/TransmogSet.lua" />
     <Script file="Objects/Achievement.lua" />
     <Script file="Objects/Category.lua" />
