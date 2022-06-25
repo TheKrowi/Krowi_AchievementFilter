@@ -11,6 +11,10 @@ All notable changes to this project will be documented in this file.
 - Allied race achievements now have a faction tied to them
 - Split the Event Reminders Events tab into separate tabs per event type
 
+### Fixed
+- Error when selecting a differnt preset for the start time and end time for the event reminders
+- Error when deselecting objectives progress
+
 ### Removed
 - Torcanata because it's a tracking achievement
 

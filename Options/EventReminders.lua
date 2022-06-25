@@ -64,7 +64,7 @@ local function GetStartTimeAndEndTimePresets()
 end
 
 local function SetStartTimeAndEndTimePresets(_, value)
-    local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.MetaData.Title, "cmd", "KROWIAF-0.0").args.EventReminders.args.DateTimeFormat.args.StartTimeAndEndTimeCustom; -- cmd and KROWIAF-0.0 are just to make the function work
+    local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.L["Event Reminders"], "cmd", "KROWIAF-0.0").args.DateTimeFormat.args.StartTimeAndEndTime.args.StartTimeAndEndTimeCustom; -- cmd and KROWIAF-0.0 are just to make the function work
     custom.set(nil, startTimeAndEndTimeDateTimeFormats[value]);
     options.Debug(addon.L["Presets"], addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime);
 end
