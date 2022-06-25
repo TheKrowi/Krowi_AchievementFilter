@@ -43,6 +43,7 @@ end
 
 local localizations = {
     {Name = "Ta", Realm = "Der Rat von Dalaran EU", Class = "SHAMAN", Language = "German"},
+    {Name = "牛奶斩", Realm = "格瑞姆巴托 CN", Class = "DRUID", Language = "Chinese (Simplified)"},
 }
 
 function credits.GetLocalizationsAsString()
