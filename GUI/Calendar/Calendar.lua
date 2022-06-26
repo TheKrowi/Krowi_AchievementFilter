@@ -1213,7 +1213,6 @@ local function CalendarFrame_UpdateTitle()
 	KrowiAF_CalendarYearName:SetText(KrowiAF_CalendarFrame.viewedYear);
 end
 
-
 local function CalendarFrame_UpdateMonthOffsetButtons()
 	-- if ( CalendarFrame_GetModal() ) then
 	-- 	CalendarPrevMonthButton:Disable();
@@ -1361,15 +1360,22 @@ local function AddAchievementToButton(dayButton, achievementId, icon)
     end
 end
 
+local function SetAchievementsAndPoints(numAchievements, points)
+	KrowiAF_CalendarAchievementsAndPoints:SetText(tostring(numAchievements) .. " (" .. tostring(points) .. " points)");
+end
+
 local function AddAchievementsToDays()
     local achievementIds = GetEarnedAchievementsInRange();
     local firstDate = GetSecondsSince(CalendarDayButtons[1]);
+	local totalPoints = 0;
     for _, achievementId in next, achievementIds do
-        local icon = select(10, addon.GetAchievementInfo(achievementId));
+        local _, _, points, _, _, _, _, _, _, icon = addon.GetAchievementInfo(achievementId);
+		totalPoints = totalPoints + points;
         local date = SavedData.Characters[UnitGUID("player")].CompletedAchievements[achievementId];
         local dayButtonIndex = floor((date - firstDate) / 86400 + 1); -- 86400 seconds in a day, floor to take changes in DST which would result in x.xx
         AddAchievementToButton(CalendarDayButtons[dayButtonIndex], achievementId, icon);
     end
+	SetAchievementsAndPoints(#achievementIds, totalPoints);
 end
 
 local function UpdateDayAchievements(buttonIndex)

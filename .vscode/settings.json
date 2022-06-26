@@ -283,7 +283,8 @@
         "KrowiAF_CalendarTodayFrame",
         "KrowiAF_CalendarWeekdaySelectedTexture",
         "KrowiAF_CalendarLastDayDarkTexture",
-        "KrowiAF_CalendarTodayTextureGlow"
+        "KrowiAF_CalendarTodayTextureGlow",
+        "KrowiAF_CalendarAchievementsAndPoints"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

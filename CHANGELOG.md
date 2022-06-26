@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## 9.2.5.36.0 - 2022-
+### Added
+- Monthly achievements earned and the number of points to the calendar view
 
 ## 9.2.5.35.1 - 2022-06-26
 ### Fixed

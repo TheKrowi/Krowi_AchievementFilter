@@ -205,6 +205,13 @@
 				</FontString>
 			</Layer>
 			<Layer level="ARTWORK">
+				<FontString name="KrowiAF_CalendarAchievementsAndPoints" inherits="GameFontHighlight" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parent" x="-30" y="-23"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
 				<Texture name="KrowiAF_CalendarYearBackground" file="Interface\Calendar\CalendarBackground">
 					<Size x="47" y="24"/>
 					<Anchors>
