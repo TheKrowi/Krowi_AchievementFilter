@@ -6,6 +6,7 @@ data.SavedData = {};
 local savedData = data.SavedData;
 
 function savedData.TabsOrderAddIfNotContains(id, addonDisplayName, tabDisplayName)
+    SavedData = SavedData or {}; -- Does not exist yet for new users
     SavedData.TabKeys = SavedData.TabKeys or {};
 
     SavedData.TabKeys[id] = addonDisplayName .. " - " .. tabDisplayName;
@@ -85,13 +86,8 @@ end
 
 local LoadSolutions, Resolve;
 function savedData.Load()
-    if SavedData == nil then
-        SavedData = {};
-    end
-
-    if SavedData.Fixes == nil then
-        SavedData.Fixes = {};
-    end
+    SavedData = SavedData or {}; -- Does not exist yet for new users
+    SavedData.Fixes = SavedData.Fixes or {}; -- Does not exist yet for new users
 
     local prevBuild = SavedData["Build"];
     diagnostics.Debug("Previous Build: " .. tostring(prevBuild)); -- Can be nil
@@ -319,7 +315,7 @@ local function ClearCovenant(table)
 end
 
 function FixCovenantFilters(prevBuild, currBuild, prevVersion, currVersion)
-    if currVersion < "36.0" or SavedData.Fixes.FixCovenantFilters == true then
+    if currVersion < "35.1" or SavedData.Fixes.FixCovenantFilters == true then
         diagnostics.Debug("Covenant filters already cleared from previous version");
         return;
     end
