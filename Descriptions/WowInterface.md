@@ -2,9 +2,9 @@
 
 Achievement Filter adds a tab to the Achievement Window that orders the achievements by expansion and further subdivisions. Over 5300 achievements are added so far spread over 1025+ categories, linked to 1625+ zones and 39 events.
 
-### Now available in German!
+[B]Now also mostly available in German and Chinese (Simplified)![/B]
 
-### Tabs
+[B]Tabs[/B]
 [LIST]
 [*][B]Achievements[/B]: A copy of the default Achievements tab but with all the additional features. (This tab is still a work in progress.)
 [*][B]Expansions[/B]: A collection of all the achievements in game sorted per expansion. See Categories for more details on this tab.
@@ -13,7 +13,7 @@ Achievement Filter adds a tab to the Achievement Window that orders the achievem
 [*][B]Specials[/B]: A combination of curated lists that might appeal to certain achievement hunters.
 [/LIST]
 
-### Categories (Expansions)
+[B]Categories (Expansions)[/B]
 [LIST]
 [*]The [B][I]Current Zone[/I][/B] category shows which achievements are related to the current zone you're in. (This is still being approved on.)
 [*]The [B][I]Selected Zone[/I][/B] category shows which achievements are related to the zone you're viewing in the World Map. (This is still being approved on.)
@@ -32,7 +32,7 @@ Achievement Filter adds a tab to the Achievement Window that orders the achievem
 [*]Unobtainable [B][I]Legacy[/I][/B] categories can be found when the 'Not Obtainable' filter is checked.
 [/LIST]
 
-### Features
+[B]Features[/B]
 [LIST]
 [*]Enhanced [B][I]searching[/I][/B], [B][I]filtering[/I][/B], [B][I]sorting[/I][/B] and [B][I]tracking[/I][/B] of achievements per tab.
 [*]Enhanced [B][I]tooltip[/I][/B] to show more about the achievement and related achievements.
