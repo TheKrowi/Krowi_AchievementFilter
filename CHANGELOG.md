@@ -1,6 +1,8 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 9.2.5.36.0 - 2022-
+
 ## 9.2.5.35.1 - 2022-06-26
 ### Fixed
 - Couplde of errors for new users or users that deleteid their saved variables
