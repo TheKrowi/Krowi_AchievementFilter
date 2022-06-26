@@ -1,4 +1,4 @@
--- [[ Exported at 2022-06-04 11-13-09 ]] --
+-- [[ Exported at 2022-06-25 22-17-27 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -7273,7 +7273,7 @@ function exportedCategories.Load(a)
     AddA(tmp[985], a[8092]); -- I've Got 9999 Problems but a Bone-White Primal Raptor Ain't One
     AddA(tmp[985], a[9909]); -- Heirloom Hoarder
     AddA(tmp[985], a[14183]); -- Conspicuous Consumption
-    tmp[986] = cat:New((GetCategoryInfo(169))); -- Profession
+    tmp[986] = cat:New((GetCategoryInfo(169))); -- Professions
     AddC(tmp[972], tmp[986]);
     AddA(tmp[986], a[2097]); -- Get to the Choppa!
     AddA(tmp[986], a[5749]); -- Vial of the Sands

@@ -5,7 +5,7 @@ objects.Achievement = {};
 local achievement = objects.Achievement;
 
 achievement.__index = achievement;
-function achievement:New(id, points, faction, otherFactionAchievementID, covenant, obtainable, hasWowheadLink, customObjectives)
+function achievement:New(id, points, faction, otherFactionAchievementID, obtainable, hasWowheadLink, customObjectives)
     local self = {};
     setmetatable(self, achievement);
 
@@ -13,7 +13,6 @@ function achievement:New(id, points, faction, otherFactionAchievementID, covenan
     self.Points = points or 0;
     self.Faction = faction;
     self.OtherFactionAchievementID = otherFactionAchievementID;
-    self.Covenant = covenant;
     self.NotObtainable = obtainable == false and true or nil; -- We only want to set it if it's not obtainable, otherwise nil, by inverting this we reduce memory usage because most are obtainable
     self.HasNoWowheadLink = hasWowheadLink == false and true or nil; -- We only want to set it if it has no Wowhead link, otherwise nil, by inverting this we reduce memory usage because most have a Wowhead link
     self.CustomObjectives = customObjectives;

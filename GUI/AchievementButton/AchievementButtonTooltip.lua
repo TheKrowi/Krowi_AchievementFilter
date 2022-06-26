@@ -152,18 +152,11 @@ local function AddPartOfAChainAchievement(currentAchievement, achID, nameSuffix)
 	end
 	for id, _ in next, addon.Data.Achievements[achID].NextAchievements do
 		if addon.Data.Achievements[achID].NumNextAchievements > 1 then
-			if addon.Data.Achievements[id].Faction or addon.Data.Achievements[id].Covenant then
+			if addon.Data.Achievements[id].Faction then
 				nameSuffix = " (";
 				if addon.Data.Achievements[id].Faction then
 					nameSuffix = nameSuffix .. addon.L[addon.Objects.Faction[addon.Data.Achievements[id].Faction]];
-					if addon.Data.Achievements[id].Covenant then
-						nameSuffix = nameSuffix .. ", ";
-					else
-						nameSuffix = nameSuffix .. ")";
-					end
-				end
-				if addon.Data.Achievements[id].Covenant then
-					nameSuffix = nameSuffix .. addon.L[addon.Objects.Covenant[addon.Data.Achievements[id].Covenant]] .. ")";
+					nameSuffix = nameSuffix .. ")";
 				end
 			end
 		end

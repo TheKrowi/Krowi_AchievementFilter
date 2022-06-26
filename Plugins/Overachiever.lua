@@ -176,6 +176,7 @@ local function CopyTabs()
 end
 
 local function FixTabs()
+    SavedData.Fixes = SavedData.Fixes or {}; -- Does not exist yet for new users
     if addon.MetaData.Version < "35.0" or addon.Options.db.Tabs == nil or SavedData.Fixes.FixTabs == true or addon.Options.db.Tabs[addonName] == nil then
         addon.Diagnostics.Debug("Overachiever Tabs already ported from previous version");
         CopyTabs();

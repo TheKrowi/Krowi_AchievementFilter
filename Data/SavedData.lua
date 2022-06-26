@@ -6,6 +6,7 @@ data.SavedData = {};
 local savedData = data.SavedData;
 
 function savedData.TabsOrderAddIfNotContains(id, addonDisplayName, tabDisplayName)
+    SavedData = SavedData or {}; -- Does not exist yet for new users
     SavedData.TabKeys = SavedData.TabKeys or {};
 
     SavedData.TabKeys[id] = addonDisplayName .. " - " .. tabDisplayName;
@@ -85,13 +86,8 @@ end
 
 local LoadSolutions, Resolve;
 function savedData.Load()
-    if SavedData == nil then
-        SavedData = {};
-    end
-
-    if SavedData.Fixes == nil then
-        SavedData.Fixes = {};
-    end
+    SavedData = SavedData or {}; -- Does not exist yet for new users
+    SavedData.Fixes = SavedData.Fixes or {}; -- Does not exist yet for new users
 
     local prevBuild = SavedData["Build"];
     diagnostics.Debug("Previous Build: " .. tostring(prevBuild)); -- Can be nil
@@ -115,7 +111,7 @@ function savedData.Load()
 end
 
 local FixFeaturesTutorialProgress, FixElvUISkin, FixFilters, FixEventDetails, FixShowExcludedCategory, FixEventDetails2, FixCharacters, FixEventAlert;
-local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs;
+local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters;
 function LoadSolutions()
     local solutions = {
         FixFeaturesTutorialProgress, -- 1
@@ -129,6 +125,7 @@ function LoadSolutions()
         FixMergeSmallCategoriesThresholdChanged, -- 9
         FixShowCurrentCharacterIcons, -- 10
         FixTabs, -- 11
+        FixCovenantFilters, -- 12
     };
 
     return solutions;
@@ -305,4 +302,29 @@ function FixTabs(prevBuild, currBuild, prevVersion, currVersion)
     SavedData.Fixes.FixTabs = true;
 
     diagnostics.Debug("Ported Tabs from previous version");
+end
+
+local function ClearCovenant(table)
+    for i, _ in next, table do
+        if i == "Covenant" then
+            table[i] = nil;
+        elseif type(table[i]) == "table" then
+            ClearCovenant(table[i]);
+        end
+    end
+end
+
+function FixCovenantFilters(prevBuild, currBuild, prevVersion, currVersion)
+    if currVersion < "35.1" or SavedData.Fixes.FixCovenantFilters == true then
+        diagnostics.Debug("Covenant filters already cleared from previous version");
+        return;
+    end
+
+    if Filters.profiles then
+        ClearCovenant(Filters.profiles);
+    end
+
+    SavedData.Fixes.FixCovenantFilters = true;
+
+    diagnostics.Debug("Cleared covenant filters from previous version");
 end

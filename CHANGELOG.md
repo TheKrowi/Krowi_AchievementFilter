@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 9.2.5.35.1 - 2022-06-26
+### Fixed
+- Couplde of errors for new users or users that deleteid their saved variables
+
+### Removed
+- Achievement covenant information
+- Covenant filters
+
 ## 9.2.5.35.0 - 2022-06-25
 ### Added
 - Calendar view for earned achievements (only 1st 4 per day for now)

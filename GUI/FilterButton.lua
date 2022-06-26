@@ -19,13 +19,6 @@ local defaultAchievements = {
         Alliance = false,
         Horde = false
     },
-    Covenant = {
-        Neutral = true,
-        Kyrian = true,
-        Venthyr = true,
-        NightFae = true,
-        Necrolord = true
-    },
     CollapseSeries = true,
     Excluded = false,
     SortBy = {
@@ -313,23 +306,6 @@ function AddAchievementFilters(self, menu, childMenu, filters)
                     });
     tmpMenu:Add(faction);
 
-    local covenant = addon.Objects.MenuItem:New({Text = addon.L["Covenant"]});
-    AddCheckBox(self, covenant, addon.L["Neutral"], filters, {"Covenant", "Neutral"}, true);
-    AddCheckBox(self, covenant, addon.L["Kyrian"], filters, {"Covenant", "Kyrian"}, true);
-    AddCheckBox(self, covenant, addon.L["Venthyr"], filters, {"Covenant", "Venthyr"}, true);
-    AddCheckBox(self, covenant, addon.L["Night Fae"], filters, {"Covenant", "NightFae"}, true);
-    AddCheckBox(self, covenant, addon.L["Necrolord"], filters, {"Covenant", "Necrolord"}, true);
-    covenant:AddSeparator();
-    covenant:AddFull({ Text = addon.L["Select all"],
-                        Func = function()
-                            for covenant, _ in next, filters.Covenant do
-                                filters.Covenant[covenant] = true;
-                            end
-                            UpdateAchievementFrame();
-                        end
-                    });
-    tmpMenu:Add(covenant);
-
     AddCheckBox(self, tmpMenu, addon.L["Collapse Chain"], filters, {"CollapseSeries"}, true);
     AddCheckBox(self, tmpMenu, addon.L["Excluded"], filters, {"Excluded"}, true);
 
@@ -385,27 +361,6 @@ local validations = {
         SetFilter = function(filters) filters.Faction.Horde = not filters.Faction.Horde end
     },
     {   -- 8
-        Validate = function(filters, achievement) return not filters.Covenant.Neutral and achievement.Covenant == nil; end,
-        SetFilter = function(filters) filters.Covenant.Neutral = not filters.Covenant.Neutral; end
-    },
-    {   -- 9
-        Validate = function(filters, achievement) return not filters.Covenant.Kyrian and achievement.Covenant == addon.Objects.Covenant.Kyrian; end,
-        SetFilter = function(filters) filters.Covenant.Kyrian = not filters.Covenant.Kyrian; end
-    },
-    {   -- 10
-        Validate = function(filters, achievement) return not filters.Covenant.Venthyr and achievement.Covenant == addon.Objects.Covenant.Venthyr; end,
-        SetFilter = function(filters) filters.Covenant.Venthyr = not filters.Covenant.Venthyr; end
-    },
-    {   -- 11
-        Validate = function(filters, achievement) return not filters.Covenant.NightFae and achievement.Covenant == addon.Objects.Covenant.NightFae; end,
-        SetFilter = function(filters) filters.Covenant.NightFae = not filters.Covenant.NightFae; end
-    },
-    {   -- 12
-        Validate = function(filters, achievement) return not filters.Covenant.Necrolord and achievement.Covenant == addon.Objects.Covenant.Necrolord; end,
-        SetFilter = function(filters) filters.Covenant.Necrolord = not filters.Covenant.Necrolord; end
-    },
-
-    {   -- 13
         Validate = function(filters, achievement)
             if filters.CollapseSeries and ignoreCollapseSeriesCache ~= true then
                 local _, nextCompleted = addon.GetNextAchievement(achievement);
@@ -424,11 +379,11 @@ local validations = {
         end,
         SetFilter = function(filters) filters.CollapseSeries = not filters.CollapseSeries end
     },
-    {   -- 14
+    {   -- 9
         Validate = function(filters, achievement) return not filters.Excluded and achievement.Excluded end,
         SetFilter = function(filters) filters.Excluded = not filters.Excluded; end
     },
-    {   -- 15
+    {   -- 10
         Validate = function(filters, achievement)
             if not addon.Options.db.ShowPlaceholdersFilter and achievement.DoesNotExist then
                 return true;
