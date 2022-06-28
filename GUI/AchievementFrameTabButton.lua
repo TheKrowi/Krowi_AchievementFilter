@@ -53,9 +53,10 @@ function achFrameTabBtn:New(addonName, name, text, framesToShow, achievementsFra
         frame.OnClick = frame.Comparison_OnClick;
     end);
 
-    hooksecurefunc("AchievementFrame_SetTabs", function()
-        frame:SetPoint("LEFT", "AchievementFrameTab" .. frame.ID - 1, "RIGHT", -5, 0); -- Can break if other addon adds tab with "bad" name
-    end);
+    -- Causes errors since the introduction of the tab ordering feature
+    -- hooksecurefunc("AchievementFrame_SetTabs", function()
+    --     frame:SetPoint("LEFT", "AchievementFrameTab" .. frame.ID - 1, "RIGHT", -5, 0); -- Can break if other addon adds tab with "bad" name
+    -- end);
 
     hooksecurefunc("AchievementFrame_UpdateTabs", function(clickedTab) -- Issue #1: Broken
         frame:AchievementFrame_UpdateTabs(frame, frame.ID, clickedTab);

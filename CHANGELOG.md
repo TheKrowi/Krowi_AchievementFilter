@@ -1,13 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 9.2.5.36.0 - 2022-
+## 9.2.5.35.2 - 2022-06-28
 ### Added
 - Monthly achievements earned and the number of points to the calendar view
 
+### Fixed
+- Calendar button overlapping achievement points when ElvUI is enabled and the achievement window is skinned
+- Issue that could cause errors when re-ordering tabs
+
 ## 9.2.5.35.1 - 2022-06-26
 ### Fixed
-- Couplde of errors for new users or users that deleteid their saved variables
+- Couple of errors for new users or users that deleted their saved variables
 
 ### Removed
 - Achievement covenant information

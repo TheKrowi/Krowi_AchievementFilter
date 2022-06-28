@@ -157,7 +157,7 @@ local function SkinFilterButton(button, achievementsFrame, skins)
     end
 
 	button:ClearAllPoints();
-	button:Point("BOTTOMLEFT", achievementsFrame, "TOPLEFT", 3, -1);
+	button:Point("BOTTOMLEFT", achievementsFrame, "TOPLEFT", 3, 1);
 end
 
 local function SkinSearchBoxFrame(frame, achievementsFrame, skins)
@@ -165,8 +165,8 @@ local function SkinSearchBoxFrame(frame, achievementsFrame, skins)
 	frame.backdrop:Point('TOPLEFT', frame, 'TOPLEFT', -3, -3);
 	frame.backdrop:Point('BOTTOMRIGHT', frame, 'BOTTOMRIGHT', 0, 3);
 	frame:ClearAllPoints();
-	frame:Point('BOTTOMRIGHT', achievementsFrame, 'TOPRIGHT', -30, 2);
-	frame:Size(107, 25);
+	frame:Point('BOTTOMRIGHT', achievementsFrame, 'TOPRIGHT', -20, -2);
+	frame:Size(114, 27);
 end
 
 local function SkinSearchButton(self, engine, skins)
@@ -277,11 +277,30 @@ local function SkinSideButtons(sideButtons, engine)
     end
 end
 
-local function SkinHeaderPoints()
+local function SkinHeader()
     hooksecurefunc(AchievementFrameHeaderPoints, "SetText", function()
-        _G.AchievementFrameHeaderPoints:ClearAllPoints()
-	    _G.AchievementFrameHeaderPoints:Point('CENTER', _G.AchievementFrameHeaderTitle, 'CENTER', 100, 0)
+        AchievementFrameHeaderPoints:ClearAllPoints();
+	    AchievementFrameHeaderPoints:Point('CENTER', AchievementFrameHeaderTitle, 'CENTER', 100, 0);
     end);
+end
+
+local function ReskinBlizzard(skins)
+    SkinSearchBoxFrame(AchievementFrame.searchBox, AchievementFrameAchievements, skins);
+    AchievementFrameFilterDropDown:ClearAllPoints();
+	AchievementFrameFilterDropDown:Point('TOPLEFT', AchievementFrameAchievements, 'TOPLEFT', -18, 26);
+    AchievementFrameFilterDropDown:Size(AchievementFrameFilterDropDown:GetWidth(), AchievementFrameFilterDropDown:GetHeight() - 1);
+end
+
+local function SkinCalendar(calendarButton, skins)
+    skins:HandleButton(calendarButton);
+    calendarButton:ClearAllPoints();
+    calendarButton:Point("LEFT", AchievementFrameHeaderPoints, "RIGHT", 30, -1);
+    calendarButton:Size(22, 22);
+    local fs = calendarButton:CreateFontString(nil, nil, "GameFontHighlightSmall");
+    fs:SetPoint("CENTER", 0, -2);
+    calendarButton:SetFontString(fs);
+    local currentCalendarTime = C_DateAndTime.GetCurrentCalendarTime();
+	calendarButton:SetText(currentCalendarTime.monthDay);
 end
 
 local engine, skins;
@@ -299,7 +318,9 @@ local function SkinAll()
         SkinSearchPreviewFrame(addon.GUI.Search.SearchPreviewFrame, addon.GUI.AchievementsFrame, engine, skins);
         SkinFullSearchResultsFrame(addon.GUI.Search.FullSearchResultsFrame, skins);
         SkinSideButtons(addon.GUI.SideButtons, engine);
-        SkinHeaderPoints();
+        SkinHeader();
+        ReskinBlizzard(skins);
+        SkinCalendar(addon.GUI.Calendar.Button, skins);
     end
 end
 
