@@ -2,7 +2,7 @@
 
 Achievement Filter adds a tab to the Achievement Window that orders the achievements by expansion and further subdivisions. Over 5300 achievements are added so far spread over 1025+ categories, linked to 1625+ zones and 39 events.
 
-### Now available in German!
+### Now also mostly available in German and Chinese (Simplified)!
 
 ### Tabs
 - **Achievements**: A copy of the default Achievements tab but with all the additional features. (This tab is still a work in progress.)
