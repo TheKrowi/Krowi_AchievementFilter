@@ -1,4 +1,4 @@
--- [[ Exported at 2022-06-25 22-17-27 ]] --
+-- [[ Exported at 2022-06-29 14-18-06 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -23,9 +23,17 @@ function exportedCategories.Load(a)
     tmp[1100] = cat:New(addon.L["Achievements"]); -- TAB - Achievements
     tmp[1100].TabName = "Achievements";
     local achievements = tmp[1100];
+    tmp[1202] = cat:New(addon.L["Summary"]); -- Summary
+    AddC(tmp[1100], tmp[1202]);
+    tmp[1202].AlwaysVisible = true;
+    tmp[1202].IsSummary = true;
     tmp[883] = cat:New(addon.L["Expansions"]); -- TAB - Expansions
     tmp[883].TabName = "Expansions";
     local expansions = tmp[883];
+    tmp[1203] = cat:New(addon.L["Summary"]); -- Summary
+    AddC(tmp[883], tmp[1203]);
+    tmp[1203].AlwaysVisible = true;
+    tmp[1203].IsSummary = true;
     tmp[949] = cat:New(addon.L["Focused"]); -- Focused
     AddC(tmp[883], tmp[949]);
     tmp[949].HasFlexibleData = true;

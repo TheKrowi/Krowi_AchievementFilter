@@ -22,7 +22,7 @@ function achievementsFrame:Load()
 	frame.Container.ScrollBar.ParentContainer = frame.Container;
 
 	-- Rest
-	frame:RegisterEvent("ADDON_LOADED");
+	-- frame:RegisterEvent("ADDON_LOADED");
 
 	tinsert(ACHIEVEMENTFRAME_SUBFRAMES, frame:GetName());
 	frame:Hide();

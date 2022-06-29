@@ -23,7 +23,6 @@ function categoriesFrame:Load()
 
 	-- We need to insert the categories frame infront of the achievements frame so the show/hide function fire in the correct order
 	for i, frameName in next, ACHIEVEMENTFRAME_SUBFRAMES do
-
 		if frameName == gui.AchievementsFrame:GetName() then
 			tinsert(ACHIEVEMENTFRAME_SUBFRAMES, i, frame:GetName());
 			break;
@@ -281,7 +280,11 @@ function categoriesFrame:DisplayButton(button, category, baseWidth)
 		numOfNotObtAchText = " (+" .. numOfNotObtAch .. ")";
 	end
 	button.numCompletedText = numOfCompAch .. numOfNotObtAchText .. " / " .. numOfAch;
-	button.showTooltipFunc = addon.StatusBarTooltip;
+	if category.IsSummary then
+		button.showTooltipFunc = nil;
+	else
+		button.showTooltipFunc = addon.StatusBarTooltip;
+	end
 end
 
 local function HideCategory(button, category)

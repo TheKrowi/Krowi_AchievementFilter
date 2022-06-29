@@ -55,4 +55,6 @@ function globalStrings.Load(L)
     L["Miscellaneous"] = AUCTION_CATEGORY_MISCELLANEOUS;
     L["Options"] = MAIN_MENU;
     L["Close"] = CLOSE;
+    L["Summary"] = ACHIEVEMENT_SUMMARY_CATEGORY;
+    L["Achievements Earned"] = ACHIEVEMENTS_COMPLETED;
 end

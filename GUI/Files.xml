@@ -9,6 +9,7 @@
     <Script file="GUI/CategoriesFrame.lua" />
     <Script file="GUI/CategoryButton.lua" />
     <Script file="GUI/AchievementsFrame.lua" />
+    <Script file="GUI/AchievementsSummary.lua" />
     
     <Include file="GUI/AchievementButton/Files.xml" />
 

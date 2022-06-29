@@ -52,6 +52,8 @@ function gui:LoadWithBlizzard_AchievementUI()
 
     CreateAchievementPointsTooltip();
 
+    gui.AchievementsSummary.Load();
+
     diagnostics.Debug("GUI loaded");
 end
 

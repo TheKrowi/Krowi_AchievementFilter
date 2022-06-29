@@ -284,7 +284,14 @@
         "KrowiAF_CalendarWeekdaySelectedTexture",
         "KrowiAF_CalendarLastDayDarkTexture",
         "KrowiAF_CalendarTodayTextureGlow",
-        "KrowiAF_CalendarAchievementsAndPoints"
+        "KrowiAF_CalendarAchievementsAndPoints",
+        "KrowiAF_AchievementsSummaryFrame",
+        "KrowiAF_AchievementFrameAchievements",
+        "KrowiAF_AchievementsSummaryFrameCategoriesStatusBar",
+        "KrowiAF_AchievementsSummaryFrameCategoriesHeader",
+        "KrowiAF_AchievementsSummaryFrameAchievementsHeader",
+        "KrowiAF_AchievementsSummaryFrameAchievementsEmptyText",
+        "GameFontNormalSmall"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

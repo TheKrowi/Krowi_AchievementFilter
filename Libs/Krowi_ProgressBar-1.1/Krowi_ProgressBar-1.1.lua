@@ -24,30 +24,13 @@ if not lib then
 	return;
 end
 
-local borderLeftRightWidth, borderTopBottomHeight, borderLeftRightMiddleHeight;
 local function Resize(self)
-	local multiplier = self:GetWidth() / 224;
-	self.BorderLeftTop:SetWidth(borderLeftRightWidth * multiplier);
-	self.BorderLeftBottom:SetWidth(borderLeftRightWidth * multiplier);
-	self.BorderLeftMiddle:SetWidth(borderLeftRightWidth * multiplier);
-	self.BorderRightTop:SetWidth(borderLeftRightWidth * multiplier);
-	self.BorderRightBottom:SetWidth(borderLeftRightWidth * multiplier);
-	self.BorderRightMiddle:SetWidth(borderLeftRightWidth * multiplier);
+	self.Background:ClearAllPoints();
+	self.Background:SetPoint("TOPLEFT", self.BorderLeftTop, "BOTTOMRIGHT", -self.OffsetX, self.OffsetY);
+	self.Background:SetPoint("BOTTOMRIGHT", self.BorderRightBottom, "TOPLEFT", self.OffsetX, -self.OffsetY);
 
-	if self.CustomHeight then
-		multiplier = self:GetHeight() / 25;
-	end
-	self:SetHeight(25 * multiplier, true);
-	self.BorderLeftTop:SetHeight(borderTopBottomHeight * multiplier);
-	self.BorderLeftBottom:SetHeight(borderTopBottomHeight * multiplier);
-	self.BorderRightTop:SetHeight(borderTopBottomHeight * multiplier);
-	self.BorderRightBottom:SetHeight(borderTopBottomHeight * multiplier);
-	self.BorderMiddleTop:SetHeight(borderTopBottomHeight * multiplier);
-	self.BorderMiddleBottom:SetHeight(borderTopBottomHeight * multiplier);
-	self.BorderLeftMiddle:SetHeight(borderLeftRightMiddleHeight * multiplier);
-	self.BorderRightMiddle:SetHeight(borderLeftRightMiddleHeight * multiplier);
-
-	local barWidth = self.BorderMiddleMiddle:GetWidth();
+	local offset = self:GetWidth() / 224;
+	local barWidth = self.Background:GetWidth() + offset;
 	for i, _ in next, self.Fill do
 		local width = 0;
 		if self.Max - self.Min > 0 then
@@ -56,10 +39,10 @@ local function Resize(self)
 		self.Fill[i]:SetWidth(width);
 		self.Fill[i]:ClearAllPoints();
 		if i == 1 then
-			self.Fill[i]:SetPoint("TOPLEFT", self.BorderMiddleMiddle);
-			self.Fill[i]:SetPoint("BOTTOMLEFT", self.BorderMiddleMiddle);
+			self.Fill[i]:SetPoint("TOPLEFT", self.BorderLeftTop, "BOTTOMRIGHT", -self.OffsetX, self.OffsetY);
+			self.Fill[i]:SetPoint("BOTTOMLEFT", self.BorderLeftBottom, "TOPRIGHT", -self.OffsetX, -self.OffsetY);
 			if width == 0 then
-				self.Fill[i]:SetPoint("RIGHT", self.BorderMiddleMiddle, "LEFT");
+				self.Fill[i]:SetPoint("RIGHT", self.BorderLeftMiddle, "RIGHT", -self.OffsetX, 0);
 			end
 		else
 			self.Fill[i]:SetPoint("TOPLEFT", self.Fill[i - 1], "TOPRIGHT");
@@ -93,11 +76,15 @@ function lib:New(parent)
 		end
 	end);
 
-	borderLeftRightWidth = frame.BorderLeftMiddle:GetWidth();
-	borderTopBottomHeight = frame.BorderMiddleTop:GetHeight();
-	borderLeftRightMiddleHeight = frame.BorderMiddleMiddle:GetHeight();
+	self.OffsetX = 4;
+	self.OffsetY = 5;
 
     return frame;
+end
+
+function lib:AdjustOffsets(x, y)
+	self.OffsetX = x;
+	self.OffsetY = y;
 end
 
 function lib:SetMinMaxValues(min, max)
@@ -134,13 +121,13 @@ local progressBar;
 local function AddProgressBar(gameTooltip, min, max, value1, value2, value3, value4, color1, color2, color3, color4, text)
 	GameTooltip_AddBlankLinesToTooltip(gameTooltip, 1);
 	local numLines = gameTooltip:NumLines();
-	if ( not text ) then
+	if not text then
 		text = "";
 	end
 	progressBar:SetPoint("LEFT", gameTooltip:GetName().."TextLeft"..numLines, "LEFT", 0, -2);
 	progressBar:SetPoint("RIGHT", gameTooltip, "RIGHT", -9, 0);
 	progressBar:SetHeight(25);
-	progressBar.Text:SetText(text);
+	progressBar.TextLeft:SetText(text);
 	progressBar:SetMinMaxValues(min, max);
 	progressBar:SetValues(value1, value2, value3, value4);
 	progressBar:SetColors(color1, color2, color3, color4);

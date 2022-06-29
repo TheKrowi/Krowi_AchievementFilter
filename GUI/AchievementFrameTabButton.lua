@@ -27,7 +27,7 @@ function achFrameTabBtn:New(addonName, name, text, framesToShow, achievementsFra
     frame.ID = AchievementFrame.numTabs;
     tinsert(ourTabIDs, frame.ID);
     frame.AchievementsFrame = achievementsFrame;
-    tinsert(framesToShow, 1, achievementsFrame);
+    -- tinsert(framesToShow, 1, achievementsFrame);
     frame.CategoriesFrame = categoriesFrame;
     tinsert(framesToShow, 1, categoriesFrame);
     frame.FramesToShow = framesToShow;
@@ -85,11 +85,18 @@ function achFrameTabBtn:Base_OnClick(id)
         self.AchievementsFrame:Hide();
     end
 
-    if self.SelectedCategory == self.Categories[1] and self.SelectedCategory.Achievements == nil then
+    if self.SelectedCategory == self.Categories[1] and self.SelectedCategory.Achievements == nil and not self.SelectedCategory.IsSummary then
         self.SelectedCategory = self.Categories[2]; -- Make sure the focused category has achievements if selected, otherwise we select current zone
     end
 
     AchievementFrame_ShowSubFrame(unpack(self.FramesToShow));
+    if self.SelectedCategory.IsSummary then
+		KrowiAF_AchievementsSummaryFrame:Show();
+		KrowiAF_AchievementFrameAchievements:Hide();
+	else
+		KrowiAF_AchievementFrameAchievements:Show();
+		KrowiAF_AchievementsSummaryFrame:Hide();
+	end
     AchievementFrameWaterMark:SetTexture("Interface\\AchievementFrame\\UI-Achievement-AchievementWatermark");
 
     if self.AchievementsFrame then

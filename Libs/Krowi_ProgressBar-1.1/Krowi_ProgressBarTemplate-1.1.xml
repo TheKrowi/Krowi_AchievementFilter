@@ -26,83 +26,88 @@
 		<Layers>
 			<Layer level="OVERLAY">
 				<Texture parentKey="BorderLeftTop" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
-		            <Size x="7" y="6"/>
+		            <Size x="11" y="11"/>
 					<Anchors>
 						<Anchor point="TOPLEFT"/>
 					</Anchors>
-					<TexCoords left="0" right="0.02734375" top="0" bottom="0.1875"/>
+					<TexCoords left="0" right="0.042969" top="0" bottom="0.34375"/>
 					<Color r="0.75" g="0.75" b="0.75"/>
 				</Texture>
 				<Texture parentKey="BorderLeftBottom" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
-		            <Size x="7" y="6"/>
+		            <Size x="11" y="11"/>
 					<Anchors>
 						<Anchor point="BOTTOMLEFT"/>
 					</Anchors>
-					<TexCoords left="0" right="0.02734375" top="0.59375" bottom="0.78125"/>
+					<TexCoords left="0" right="0.042969" top="0.4375" bottom="0.78125"/>
 					<Color r="0.75" g="0.75" b="0.75"/>
 				</Texture>
 				<Texture parentKey="BorderLeftMiddle" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
-		            <Size x="7" y="13"/>
+		            <Size x="11" y="3"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeKey="$parent.BorderLeftTop" relativePoint="BOTTOMLEFT" x="0" y="0"/>
 						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.BorderLeftBottom" relativePoint="TOPRIGHT" x="0" y="0"/>
 					</Anchors>
-					<TexCoords left="0" right="0.02734375" top="0.1875" bottom="0.59375"/>
+					<TexCoords left="0" right="0.042969" top="0.34375" bottom="0.4375"/>
 					<Color r="0.75" g="0.75" b="0.75"/>
 				</Texture>
                 <Texture parentKey="BorderRightTop" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
-		            <Size x="7" y="6"/>
+		            <Size x="11" y="11"/>
 					<Anchors>
 						<Anchor point="TOPRIGHT"/>
 					</Anchors>
-					<TexCoords left="0.84765625" right="0.875" top="0" bottom="0.1875"/>
+					<TexCoords left="0.832031" right="0.875" top="0" bottom="0.34375"/>
 					<Color r="0.75" g="0.75" b="0.75"/>
 				</Texture>
                 <Texture parentKey="BorderRightBottom" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
-		            <Size x="7" y="6"/>
+		            <Size x="11" y="11"/>
 					<Anchors>
 						<Anchor point="BOTTOMRIGHT"/>
 					</Anchors>
-					<TexCoords left="0.84765625" right="0.875" top="0.59375" bottom="0.78125"/>
+					<TexCoords left="0.832031" right="0.875" top="0.4375" bottom="0.78125"/>
 					<Color r="0.75" g="0.75" b="0.75"/>
 				</Texture>
                 <Texture parentKey="BorderRightMiddle" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
-		            <Size x="7" y="13"/>
+		            <Size x="11" y="3"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeKey="$parent.BorderRightTop" relativePoint="BOTTOMLEFT" x="0" y="0"/>
 						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.BorderRightBottom" relativePoint="TOPRIGHT" x="0" y="0"/>
 					</Anchors>
-					<TexCoords left="0.84765625" right="0.875" top="0.1875" bottom="0.59375"/>
+					<TexCoords left="0.832031" right="0.875" top="0.34375" bottom="0.4375"/>
 					<Color r="0.75" g="0.75" b="0.75"/>
 				</Texture>
                 <Texture parentKey="BorderMiddleTop" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
-		            <Size x="210" y="6"/>
+		            <Size x="202" y="11"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeKey="$parent.BorderLeftTop" relativePoint="TOPRIGHT" x="0" y="0"/>
 						<Anchor point="TOPRIGHT" relativeKey="$parent.BorderRightTop" relativePoint="TOPLEFT" x="0" y="0"/>
 					</Anchors>
-					<TexCoords left="0.02734375" right="0.84765625" top="0" bottom="0.1875"/>
+					<TexCoords left="0.042969" right="0.832031" top="0" bottom="0.34375"/>
 					<Color r="0.75" g="0.75" b="0.75"/>
 				</Texture>
                 <Texture parentKey="BorderMiddleBottom" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
-		            <Size x="210" y="6"/>
+		            <Size x="202" y="11"/>
 					<Anchors>
 						<Anchor point="BOTTOMLEFT" relativeKey="$parent.BorderLeftBottom" relativePoint="BOTTOMRIGHT" x="0" y="0"/>
 						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.BorderRightBottom" relativePoint="BOTTOMLEFT" x="0" y="0"/>
 					</Anchors>
-					<TexCoords left="0.02734375" right="0.84765625" top="0.59375" bottom="0.78125"/>
+					<TexCoords left="0.042969" right="0.832031" top="0.4375" bottom="0.78125"/>
 					<Color r="0.75" g="0.75" b="0.75"/>
 				</Texture>
                 <Texture parentKey="BorderMiddleMiddle" file="Interface\AchievementFrame\UI-Achievement-ProgressBar-Border">
-		            <Size x="210" y="13"/>
+		            <Size x="202" y="3"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeKey="$parent.BorderMiddleTop" relativePoint="BOTTOMLEFT" x="0" y="0"/>
 						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.BorderMiddleBottom" relativePoint="TOPRIGHT" x="0" y="0"/>
 					</Anchors>
-					<TexCoords left="0.02734375" right="0.84765625" top="0.1875" bottom="0.59375"/>
+					<TexCoords left="0.042969" right="0.832031" top="0.34375" bottom="0.4375"/>
 					<Color r="0.75" g="0.75" b="0.75"/>
 				</Texture>
-				<FontString parentKey="Text" inherits="GameFontHighlightSmall">
+				<FontString parentKey="TextRight" inherits="GameFontHighlightSmall" justifyH="RIGHT">
+					<Anchors>
+						<Anchor point="Right" relativeKey="$parent.BorderMiddleMiddle" x="-5" y="0"/>
+					</Anchors>
+				</FontString>
+				<FontString parentKey="TextLeft" inherits="GameFontHighlightSmall" justifyH="LEFT">
 					<Anchors>
 						<Anchor point="LEFT" relativeKey="$parent.BorderMiddleMiddle" x="5" y="0"/>
 					</Anchors>
@@ -111,13 +116,22 @@
 			<Layer level="ARTWORK">
 				<Texture name="KrowiAF_Fill1" parentArray="Fill" file="Interface\TargetingFrame\UI-TargetingFrame-BarFill">
 					<Anchors>
-						<Anchor point="TOPLEFT" relativeKey="$parent.BorderMiddleMiddle"/>
-						<Anchor point="BOTTOMLEFT" relativeKey="$parent.BorderMiddleMiddle"/>
+						<Anchor point="TOPLEFT" relativeKey="$parent.BorderLeftTop" relativePoint="BOTTOMRIGHT" x="-4" y="5"/>
+						<Anchor point="BOTTOMLEFT" relativeKey="$parent.BorderLeftBottom" relativePoint="TOPRIGHT" x="-4" y="-5"/>
 					</Anchors>
 				</Texture>
 				<Texture name="KrowiAF_Fill2" parentArray="Fill" file="Interface\TargetingFrame\UI-TargetingFrame-BarFill"/>
 				<Texture name="KrowiAF_Fill3" parentArray="Fill" file="Interface\TargetingFrame\UI-TargetingFrame-BarFill"/>
 				<Texture name="KrowiAF_Fill4" parentArray="Fill" file="Interface\TargetingFrame\UI-TargetingFrame-BarFill"/>
+			</Layer>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="Background">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.BorderLeftTop" relativePoint="BOTTOMRIGHT" x="-4" y="5"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.BorderRightBottom" relativePoint="TOPLEFT" x="4" y="-5"/>
+					</Anchors>
+					<Color r="0" g="0" b="0" a="0.5"/>
+				</Texture>
 			</Layer>
 		</Layers>
 	</Frame>

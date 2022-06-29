@@ -20,6 +20,13 @@ end
 function OnClick(self, quick)
     diagnostics.Trace("categoryButton.OnClick");
 
+	if self.Category.IsSummary then
+		KrowiAF_AchievementsSummaryFrame:Show();
+		KrowiAF_AchievementFrameAchievements:Hide();
+	else
+		KrowiAF_AchievementFrameAchievements:Show();
+		KrowiAF_AchievementsSummaryFrame:Hide();
+	end
     gui.CategoriesFrame:SelectButton(self, quick);
     gui.CategoriesFrame:Update();
 end
