@@ -29,7 +29,7 @@ function data.Load()
     data.AchievementIDs = data.ExportedAchievements.Load(data.Achievements, data.TransmogSets);
 
     local tabsCategories;
-    tabsCategories, _, data.FocusedCategory, data.CurrentZoneCategory, data.SelectedZoneCategory, data.ExcludedCategory = data.ExportedCategories.Load(data.Achievements);
+    tabsCategories, data.FocusedCategory, data.CurrentZoneCategory, data.SelectedZoneCategory, data.ExcludedCategory = data.ExportedCategories.Load(data.Achievements);
     for t, _ in next, addon.Tabs do
         if tabsCategories[t] ~= nil then
             addon.Tabs[t].Categories = tabsCategories[t];
