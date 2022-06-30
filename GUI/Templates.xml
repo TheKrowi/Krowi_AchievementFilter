@@ -1182,7 +1182,7 @@
 		</Layers>
 		<Frames>
 			<Frame setAllPoints="true" inherits="AchivementGoldBorderBackdrop"/>
-			<Frame name="$parentAchievements">
+			<Frame name="$parentAchievements" parentKey="Achievements">
 				<Size x="0" y="210"/>
 				<Anchors>
 					<Anchor point="TOPLEFT" x="5" y="-10"/>
@@ -1257,6 +1257,26 @@
 					</Frame>
 				</Frames>
 			</Frame>
+			<ScrollFrame name="$parentContainer" parentKey="Container" inherits="HybridScrollFrameTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentAchievementsHeader" relativePoint="BOTTOMLEFT" x="9" y="-5"/>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parentCategoriesHeader" relativePoint="TOPRIGHT" x="-24" y="5"/>
+				</Anchors>
+				<Frames>
+					<Slider name="$parentScrollBar" parentKey="ScrollBar" inherits="HybridScrollBarTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="0" y="0"/>
+							<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="0" y="0"/>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								self.trackBG:Show();
+								self.trackBG:SetVertexColor(0, 0, 0, 1);
+							</OnLoad>
+						</Scripts>
+					</Slider>
+				</Frames>
+			</ScrollFrame>
 		</Frames>
 		<Scripts>
 			<!-- <OnLoad>
