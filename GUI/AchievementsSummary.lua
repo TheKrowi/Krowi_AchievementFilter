@@ -391,7 +391,7 @@ local function BuildAchievementsScrollFrame()
         frame.ScrollFrame:SetPoint("BOTTOMRIGHT", frame.Categories.Header, "TOPRIGHT", -14, 5);
         hide(self);
     end
-    frame.ScrollFrame.Container.update = UpdateAchievements;
+    frame.ScrollFrame.Container.update = summary.UpdateAchievements;
     HybridScrollFrame_CreateButtons(frame.ScrollFrame.Container, "KrowiAF_SummaryAchievementTemplate", 4, 0);
     for _, button in next, frame.ScrollFrame.Container.buttons do
         button:SetPoint("RIGHT", frame.ScrollFrame.Container, -5, 0);
@@ -486,6 +486,7 @@ end
 
 local numLastCompleted = 25;
 local function BuildLastCompleted()
+    numLastCompleted = addon.Options.db.Categories.Summary.NumAchievements;
     if type(SavedData.Characters[UnitGUID("player")].LastCompleted) == "table" and #SavedData.Characters[UnitGUID("player")].LastCompleted == numLastCompleted then
         return;
     end

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-06-25 22-18-26 ]] --
+-- [[ Exported at 2022-07-01 14-46-03 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -219,6 +219,8 @@ L["Show Not Obtainable"] = "Show {notObtainable}";
 L["Show Not Obtainable Desc"] = "Show / hide {notObtainable} achievements in red on the progress bar.";
 L["Merge small categories threshold"] = "Merge small categories threshold";
 L["Merge small categories threshold Desc"] = "Categories with a number of achievements lower than this number will merge into the parent category.\n\nOnly preset categories can merge (mostly child categories from zones). This might have an impac (1) on the game.\n\n(1) FPS drops and stuttering while adjusting the value, NOT during normal addon use";
+L["Number of summary achievements"] = "Number of summary achievements";
+L["Number of summary achievements Desc"] = "The number of achievements that will be shown in the summary view of each tab.";
 L["Style"] = "Style";
 L["Compact Achievements"] = "Compact Achievements";
 L["Compact Achievements Desc"] = "Achievements are 2/3rd the size, similar to the summary achievements.\n\n{reloadRequired}";

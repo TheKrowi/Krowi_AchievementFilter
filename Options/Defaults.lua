@@ -45,6 +45,9 @@ options.Defaults = {
             Excluded = {
                 Show = true,
                 ShowSubCategories = false
+            },
+            Summary = {
+                NumAchievements = 25
             }
         },
         Achievements = {

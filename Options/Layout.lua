@@ -377,6 +377,25 @@ options.OptionsTable.args["Layout"] = {
                         }
                     }
                 },
+                Summary = {
+                    order = 5, type = "group",
+                    name = addon.L["Summary"],
+                    inline = true,
+                    args = {
+                        NumAchievements = {
+                            order = 1.1, type = "range", width = 1.5,
+                            name = addon.L["Number of summary achievements"],
+                            desc = addon.L["Number of summary achievements Desc"],
+                            min = 1, max = 25, step = 1,
+                            get = function() return addon.Options.db.Categories.Summary.NumAchievements; end,
+                            set = function(_, value)
+                                if addon.Options.db.Categories.Summary.NumAchievements == value then return; end
+                                addon.Options.db.Categories.Summary.NumAchievements = value;
+                                options.Debug(addon.L["Number of summary achievements"], addon.Options.db.Categories.Summary.NumAchievements);
+                            end
+                        }
+                    }
+                }
             }
         },
         Achievements = {

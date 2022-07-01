@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## 9.2.5.36.0 - 2022-0
 ### Added
-- Summary view for each new tab that shows the last 25 earned achievements and the category's progress
+- Summary view for each new tab that shows the last 25 (default) earned achievements and the category's progress with optional ElvUI skin
 
 ### Changed
 - Power Unbound and Power Unleashed are obtainable again
