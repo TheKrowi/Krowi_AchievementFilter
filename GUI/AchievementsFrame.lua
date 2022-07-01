@@ -392,14 +392,14 @@ function achievementsFrame:DisplayAchievement(button, achievement, index, select
 
 	if button.id ~= id then
 		local saturatedStyle;
-		if bit.band(flags, ACHIEVEMENT_FLAGS_ACCOUNT) == ACHIEVEMENT_FLAGS_ACCOUNT then
-			button.accountWide = true;
-			saturatedStyle = "account";
+		if achievement.NotObtainable then
+			saturatedStyle = "NotObtainable";
 		else
-			button.accountWide = nil;
-			if achievement.NotObtainable then
-				saturatedStyle = "NotObtainable";
+			if bit.band(flags, ACHIEVEMENT_FLAGS_ACCOUNT) == ACHIEVEMENT_FLAGS_ACCOUNT then
+				button.accountWide = true;
+				saturatedStyle = "account";
 			else
+				button.accountWide = nil;
 				saturatedStyle = "normal";
 			end
 		end

@@ -1224,14 +1224,14 @@
 					</Frame>
 				</Frames>
 			</Frame>
-			<Frame name="$parentCategories">
+			<Frame name="$parentCategories" parentKey="Categories">
 				<Size x="0" y="164"/>
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT" x="0" y="0"/>
 					<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT" x="0" y="0"/>
 				</Anchors>
 				<Frames>
-					<Frame name="$parentHeader">
+					<Frame name="$parentHeader" parentKey="Header">
 						<Size x="0" y="20"/>
 						<Anchors>
 							<Anchor point="TOPLEFT" x="0" y="0"/>
@@ -1257,26 +1257,34 @@
 					</Frame>
 				</Frames>
 			</Frame>
-			<ScrollFrame name="$parentContainer" parentKey="Container" inherits="HybridScrollFrameTemplate">
+			<Frame name="$parentScrollFrame" parentKey="ScrollFrame" inherits="AchivementGoldBorderBackdrop">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentAchievementsHeader" relativePoint="BOTTOMLEFT" x="9" y="-5"/>
-					<Anchor point="BOTTOMRIGHT" relativeTo="$parentCategoriesHeader" relativePoint="TOPRIGHT" x="-24" y="5"/>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parentCategoriesHeader" relativePoint="TOPRIGHT" x="-14" y="5"/>
 				</Anchors>
 				<Frames>
-					<Slider name="$parentScrollBar" parentKey="ScrollBar" inherits="HybridScrollBarTemplate">
+					<ScrollFrame name="$parentContainer" parentKey="Container" inherits="HybridScrollFrameTemplate">
 						<Anchors>
-							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="0" y="0"/>
-							<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="0" y="0"/>
+							<Anchor point="TOPLEFT" x="0" y="-5"/>
+							<Anchor point="BOTTOMRIGHT" x="0" y="5"/>
 						</Anchors>
-						<Scripts>
-							<OnLoad>
-								self.trackBG:Show();
-								self.trackBG:SetVertexColor(0, 0, 0, 1);
-							</OnLoad>
-						</Scripts>
-					</Slider>
+						<Frames>
+							<Slider name="$parentScrollBar" parentKey="ScrollBar" inherits="HybridScrollBarTemplate">
+								<Anchors>
+									<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="1" y="-13"/>
+									<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="1" y="11"/>
+								</Anchors>
+								<Scripts>
+									<OnLoad>
+										self.trackBG:Show();
+										self.trackBG:SetVertexColor(0, 0, 0, 1);
+									</OnLoad>
+								</Scripts>
+							</Slider>
+						</Frames>
+					</ScrollFrame>					
 				</Frames>
-			</ScrollFrame>
+			</Frame>
 		</Frames>
 		<Scripts>
 			<!-- <OnLoad>
@@ -1358,8 +1366,8 @@
 			</Frame>
 		</Frames>
 		<Scripts>
-			<!-- <OnLoad inherit="prepend" function="AchievementFrameSummaryAchievement_OnLoad"/>
-			<OnClick>
+			<OnLoad inherit="prepend" function="KrowiAF_AchievementFrameSummaryAchievement_OnLoad"/>
+			<!-- <OnClick>
 				AchievementFrameSummaryAchievement_OnClick(self, button, down);
 			</OnClick>
 			<OnEnter>

@@ -3,7 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## 9.2.5.36.0 - 2022-0
 ### Added
-- 
+- Summary view for each new tab that shows the last 25 earned achievements and the category's progress
+
+### Fixed
+- A visual bug that would paint accountwide unobtainable achievements blue instead of red
 
 ## 9.2.5.35.2 - 2022-06-28
 ### Added

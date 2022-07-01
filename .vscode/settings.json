@@ -292,7 +292,8 @@
         "KrowiAF_AchievementsSummaryFrameAchievementsHeader",
         "KrowiAF_AchievementsSummaryFrameAchievementsEmptyText",
         "GameFontNormalSmall",
-        "KrowiAF_AchievementsSummaryFrameContainer"
+        "KrowiAF_AchievementsSummaryFrameContainer",
+        "AchievementComparisonPlayerButton_OnLoad"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

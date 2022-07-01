@@ -195,7 +195,7 @@ local function BuildCategories()
     totalStatusBar:UpdateTextures();
     totalStatusBar:Show();
 
-    totalStatusBar:SetPoint("TOP", KrowiAF_AchievementsSummaryFrameCategoriesHeader, "BOTTOM", 0, 5);
+    totalStatusBar:SetPoint("TOP", KrowiAF_AchievementsSummaryFrame.Categories.Header, "BOTTOM", 0, 5);
 
     local yOffset = 10;
 
@@ -256,6 +256,118 @@ local function BuildCategories()
     tinsert(statusBars, statusBar14);
 end
 
+local function UpdateAchievements()
+    local lastCompleted = #SavedData.Characters[UnitGUID("player")].LastCompleted;
+    KrowiAF_AchievementsSummaryFrameAchievementsEmptyText:Show();
+    if lastCompleted > 0 then
+        KrowiAF_AchievementsSummaryFrameAchievementsEmptyText:Hide();
+    end
+
+    local scrollFrame = KrowiAF_AchievementsSummaryFrame.ScrollFrame.Container;
+    local offset = HybridScrollFrame_GetOffset(scrollFrame);
+    local achievementButtons = scrollFrame.buttons;
+
+    local totalHeight = lastCompleted * achievementButtons[1]:GetHeight();
+	local displayedHeight = 0;
+
+    local id;
+    for i = 1, #achievementButtons do
+        local button = achievementButtons[i];
+        id = SavedData.Characters[UnitGUID("player")].LastCompleted[i + offset];
+        displayedHeight = displayedHeight + button:GetHeight();
+        if id ~= nil then
+            local _, name, points, completed, month, day, year, description, flags, icon, _, _, wasEarnedByMe, earnedBy, _ = addon.GetAchievementInfo(id);
+
+            button.Achievement = addon.Data.Achievements[id];
+
+            local saturatedStyle;
+            if button.Achievement.NotObtainable then
+                saturatedStyle = "NotObtainable";
+            else
+                if bit.band(flags, ACHIEVEMENT_FLAGS_ACCOUNT) == ACHIEVEMENT_FLAGS_ACCOUNT then
+                    button.accountWide = true;
+                    saturatedStyle = "account";
+                else
+                    button.accountWide = nil;
+                    saturatedStyle = "normal";
+                end
+            end
+
+            button.label:SetText(name);
+            button.description:SetText(description);
+            AchievementShield_SetPoints(points, button.shield.points, GameFontNormal, GameFontNormalSmall);
+            if points > 0 then
+                button.shield.icon:SetTexture([[Interface\AchievementFrame\UI-Achievement-Shields]]);
+            else
+                button.shield.icon:SetTexture([[Interface\AchievementFrame\UI-Achievement-Shields-NoPoints]]);
+            end
+
+            button.shield.wasEarnedByMe = not (completed and not wasEarnedByMe);
+            button.shield.earnedBy = earnedBy;
+
+            button.icon.texture:SetTexture(icon);
+            button.id = id;
+
+            if completed then
+                button.dateCompleted:SetText(FormatShortDate(day, month, year));
+            else
+                button.dateCompleted:SetText("");
+            end
+
+            if button.saturatedStyle ~= saturatedStyle then
+                button:Saturate();
+            end
+            button.tooltipTitle = nil;
+
+            button:Show();
+        else
+            button.Achievement = nil;
+
+            button:Hide();
+        end
+    end
+    HybridScrollFrame_Update(scrollFrame, totalHeight, displayedHeight);
+end
+
+local media = "Interface\\AddOns\\Krowi_AchievementFilter\\Media\\";
+local function Saturate(self)
+    if self.Achievement.NotObtainable then
+		self.titleBar:SetTexture(media .. "NotObtainableAchievementBorders");
+		self.titleBar:SetTexCoord(0, 1, 0.66015625, 0.73828125);
+		self:SetBackdropBorderColor(ACHIEVEMENT_RED_BORDER_COLOR:GetRGB());
+		self.saturatedStyle = "NotObtainable";
+	else
+		if not addon.InGuildView() and not self.accountWide then
+			self:SetBackdropBorderColor(ACHIEVEMENT_GOLD_BORDER_COLOR:GetRGB());
+		end
+	end
+end
+
+function KrowiAF_AchievementFrameSummaryAchievement_OnLoad(self)
+	hooksecurefunc(self, "Saturate", Saturate);
+
+	self.dateCompleted:Show();
+end
+
+local function BuildAchievementsScrollFrame()
+    local frame = KrowiAF_AchievementsSummaryFrame;
+    local show = getmetatable(frame.ScrollFrame.Container.ScrollBar).__index.Show;
+    frame.ScrollFrame.Container.ScrollBar.Show = function(self)
+        frame.ScrollFrame:SetPoint("BOTTOMRIGHT", frame.Categories.Header, "TOPRIGHT", -40, 5);
+        show(self);
+    end
+    local hide = getmetatable(frame.ScrollFrame.Container.ScrollBar).__index.Hide;
+    frame.ScrollFrame.Container.ScrollBar.Hide = function(self)
+        frame.ScrollFrame:SetPoint("BOTTOMRIGHT", frame.Categories.Header, "TOPRIGHT", -14, 5);
+        hide(self);
+    end
+    frame.ScrollFrame.Container.update = UpdateAchievements;
+    HybridScrollFrame_CreateButtons(frame.ScrollFrame.Container, "KrowiAF_SummaryAchievementTemplate", 4, 0);
+    for _, button in next, frame.ScrollFrame.Container.buttons do
+        button:SetPoint("RIGHT", frame.ScrollFrame.Container, -5, 0)
+    end
+end
+
 function summary.Load()
     local frame = CreateFrame("Frame", "KrowiAF_AchievementsSummaryFrame", AchievementFrame, "KrowiAF_SummaryFrame_Template");
     frame:SetWidth(504);
@@ -268,8 +380,7 @@ function summary.Load()
 	end
 
     BuildCategories();
-
-    summary.Test();
+    BuildAchievementsScrollFrame();
 end
 
 function KrowiAF_AchievementFrameSummary_OnShow()
@@ -358,183 +469,7 @@ local function BuildLastCompleted()
     end
 end
 
-local achievementButtons = {};
-local function BuildAchievementButtons()
-    local height = KrowiAF_AchievementsSummaryFrameAchievementsHeader:GetBottom() - KrowiAF_AchievementsSummaryFrameCategoriesHeader:GetTop();
-    local numButtons = ceil(height / 50);
-    if numButtons > #achievementButtons then
-        for i = 1, numButtons do
-            if achievementButtons[i] == nil then
-                local button = CreateFrame("Button", "KrowiAF_AchievementFrameSummaryAchievement" .. i, KrowiAF_AchievementsSummaryFrame, "KrowiAF_SummaryAchievementTemplate");
-                if i == 1 then
-                    button:SetPoint("TOPLEFT", KrowiAF_AchievementsSummaryFrameAchievementsHeader, "BOTTOMLEFT", 18, -5 );
-                    button:SetPoint("TOPRIGHT", KrowiAF_AchievementsSummaryFrameAchievementsHeader, "BOTTOMRIGHT", -18, -5 );
-                else
-                    button:SetPoint("TOPLEFT", achievementButtons[i - 1], "BOTTOMLEFT", 0, 3 );
-                    button:SetPoint("TOPRIGHT", achievementButtons[i - 1], "BOTTOMRIGHT", 0, 3 );
-                end
-                achievementButtons[i] = button;
-            end
-        end
-    end
-end
-
-local function UpdateAchievementButtons()
-    KrowiAF_AchievementsSummaryFrameAchievementsEmptyText:Show();
-    if #SavedData.Characters[UnitGUID("player")].LastCompleted > 0 then
-        KrowiAF_AchievementsSummaryFrameAchievementsEmptyText:Hide();
-    end
-
-    local categoriesHeaderTop = KrowiAF_AchievementsSummaryFrameCategoriesHeader:GetTop();
-    for i = 1, #achievementButtons do
-        local button = achievementButtons[i];
-        local achievementButtonBottem = button:GetBottom();
-        if achievementButtonBottem > categoriesHeaderTop then
-            if SavedData.Characters[UnitGUID("player")].LastCompleted[i] ~= nil then
-                local id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy, isStatistic = addon.GetAchievementInfo(SavedData.Characters[UnitGUID("player")].LastCompleted[i]);
-
-                local saturatedStyle;
-                if bit.band(flags, ACHIEVEMENT_FLAGS_ACCOUNT) == ACHIEVEMENT_FLAGS_ACCOUNT then
-                    button.accountWide = true;
-                    saturatedStyle = "account";
-                else
-                    button.accountWide = nil;
-                    saturatedStyle = "normal";
-                end
-
-                button.label:SetText(name);
-                button.description:SetText(description);
-                AchievementShield_SetPoints(points, button.shield.points, GameFontNormal, GameFontNormalSmall);
-                if points > 0 then
-                    button.shield.icon:SetTexture([[Interface\AchievementFrame\UI-Achievement-Shields]]);
-                else
-                    button.shield.icon:SetTexture([[Interface\AchievementFrame\UI-Achievement-Shields-NoPoints]]);
-                end
-
-                button.shield.wasEarnedByMe = not (completed and not wasEarnedByMe);
-                button.shield.earnedBy = earnedBy;
-
-                button.icon.texture:SetTexture(icon);
-                button.id = id;
-
-                if completed then
-                    button.dateCompleted:SetText(FormatShortDate(day, month, year));
-                else
-                    button.dateCompleted:SetText("");
-                end
-
-                if button.saturatedStyle ~= saturatedStyle then
-                    button:Saturate();
-                end
-                button.tooltipTitle = nil;
-
-                button:Show();
-            end
-        else
-            button:Hide();
-        end
-    end
-end
-
 function summary.UpdateAchievements()
     BuildLastCompleted();
-    -- BuildAchievementButtons();
-    -- UpdateAchievementButtons();
-    summary.UpdateTest();
-end
-
-function summary.UpdateTest()
-    KrowiAF_AchievementsSummaryFrameAchievementsEmptyText:Show();
-    if #SavedData.Characters[UnitGUID("player")].LastCompleted > 0 then
-        KrowiAF_AchievementsSummaryFrameAchievementsEmptyText:Hide();
-    end
-
-    local scrollFrame = KrowiAF_AchievementsSummaryFrame.Container;
-    local offset = HybridScrollFrame_GetOffset(scrollFrame);
-    local achievementButtons = scrollFrame.buttons
-    local categoriesHeaderTop = KrowiAF_AchievementsSummaryFrameCategoriesHeader:GetTop();
-
-    local totalHeight = #SavedData.Characters[UnitGUID("player")].LastCompleted * achievementButtons[1]:GetHeight();
-	local displayedHeight = 0;
-
-    local ach;
-    for i = 1, #achievementButtons do
-        local button = achievementButtons[i];
-        -- local achievementButtonBottem = button:GetBottom();
-        -- if achievementButtonBottem > categoriesHeaderTop then
-        ach = SavedData.Characters[UnitGUID("player")].LastCompleted[i + offset];
-        displayedHeight = displayedHeight + button:GetHeight();
-        if ach ~= nil then
-            local id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy, isStatistic = addon.GetAchievementInfo(ach);
-
-            local saturatedStyle;
-            if bit.band(flags, ACHIEVEMENT_FLAGS_ACCOUNT) == ACHIEVEMENT_FLAGS_ACCOUNT then
-                button.accountWide = true;
-                saturatedStyle = "account";
-            else
-                button.accountWide = nil;
-                saturatedStyle = "normal";
-            end
-
-            button.label:SetText(name);
-            button.description:SetText(description);
-            AchievementShield_SetPoints(points, button.shield.points, GameFontNormal, GameFontNormalSmall);
-            if points > 0 then
-                button.shield.icon:SetTexture([[Interface\AchievementFrame\UI-Achievement-Shields]]);
-            else
-                button.shield.icon:SetTexture([[Interface\AchievementFrame\UI-Achievement-Shields-NoPoints]]);
-            end
-
-            button.shield.wasEarnedByMe = not (completed and not wasEarnedByMe);
-            button.shield.earnedBy = earnedBy;
-
-            button.icon.texture:SetTexture(icon);
-            button.id = id;
-
-            if completed then
-                button.dateCompleted:SetText(FormatShortDate(day, month, year));
-            else
-                button.dateCompleted:SetText("");
-            end
-
-            if button.saturatedStyle ~= saturatedStyle then
-                button:Saturate();
-            end
-            button.tooltipTitle = nil;
-
-            button:Show();
-        else
-            button:Hide();
-        end
-        -- else
-        --     button:Hide();
-        -- end
-    end
-    HybridScrollFrame_Update(scrollFrame, totalHeight, displayedHeight);
-end
-
-function summary.Test()
-    -- KrowiAF_AchievementsSummaryFrame.ScrollChild = CreateFrame("Frame");
-    local show = getmetatable(KrowiAF_AchievementsSummaryFrame.Container.ScrollBar).__index.Show;
-    KrowiAF_AchievementsSummaryFrame.Container.ScrollBar.Show = function(self)
-        local achievementsWidth = KrowiAF_AchievementsSummaryFrameCategoriesHeader:GetWidth() - 30;
-        KrowiAF_AchievementsSummaryFrame.Container:SetWidth(achievementsWidth);
-        KrowiAF_AchievementsSummaryFrame.Container:GetScrollChild():SetWidth(achievementsWidth);
-        for _, button in next, KrowiAF_AchievementsSummaryFrame.Container.buttons do
-            button:SetWidth(achievementsWidth - 8);
-        end
-        show(self);
-    end
-    local hide = getmetatable(KrowiAF_AchievementsSummaryFrame.Container.ScrollBar).__index.Hide;
-    KrowiAF_AchievementsSummaryFrame.Container.ScrollBar.Hide = function(self)
-        local achievementsWidth = KrowiAF_AchievementsSummaryFrameCategoriesHeader:GetWidth() - 4;
-        KrowiAF_AchievementsSummaryFrame.Container:SetWidth(achievementsWidth);
-        KrowiAF_AchievementsSummaryFrame.Container:GetScrollChild():SetWidth(achievementsWidth);
-        for _, button in next, KrowiAF_AchievementsSummaryFrame.Container.buttons do
-            button:SetWidth(achievementsWidth - 8);
-        end
-        hide(self);
-    end
-    KrowiAF_AchievementsSummaryFrame.Container.update = summary.UpdateTest;
-    HybridScrollFrame_CreateButtons(KrowiAF_AchievementsSummaryFrame.Container, "KrowiAF_SummaryAchievementTemplate", 0, -2);
+    UpdateAchievements();
 end

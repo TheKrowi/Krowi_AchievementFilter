@@ -1,4 +1,4 @@
--- [[ Exported at 2022-06-25 22-18-22 ]] --
+-- [[ Exported at 2022-07-01 10-05-01 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -29,12 +29,12 @@ function exportedWidgetEvents.LoadCategories(e, a)
         exportedWidgetEvents.Load(e);
     end
 
-    e[2924].Category = addon.Tabs["Expansions"].Categories[12].Children[6]; -- Torghast
-    e[2925].Category = addon.Tabs["Expansions"].Categories[12].Children[6]; -- Torghast
-    e[2926].Category = addon.Tabs["Expansions"].Categories[12].Children[6]; -- Torghast
-    e[2927].Category = addon.Tabs["Expansions"].Categories[12].Children[6]; -- Torghast
-    e[2928].Category = addon.Tabs["Expansions"].Categories[12].Children[6]; -- Torghast
-    e[2929].Category = addon.Tabs["Expansions"].Categories[12].Children[6]; -- Torghast
+    e[2924].Category = addon.Tabs["Expansions"].Categories[13].Children[6]; -- Torghast
+    e[2925].Category = addon.Tabs["Expansions"].Categories[13].Children[6]; -- Torghast
+    e[2926].Category = addon.Tabs["Expansions"].Categories[13].Children[6]; -- Torghast
+    e[2927].Category = addon.Tabs["Expansions"].Categories[13].Children[6]; -- Torghast
+    e[2928].Category = addon.Tabs["Expansions"].Categories[13].Children[6]; -- Torghast
+    e[2929].Category = addon.Tabs["Expansions"].Categories[13].Children[6]; -- Torghast
 end
 
 function exportedWidgetEvents.InjectOptions()

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-06-29 14-18-06 ]] --
+-- [[ Exported at 2022-07-01 10-04-04 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -5993,6 +5993,10 @@ function exportedCategories.Load(a)
     tmp[884] = cat:New(addon.L["Events"]); -- TAB - Events
     tmp[884].TabName = "Events";
     local events = tmp[884];
+    tmp[1206] = cat:New(addon.L["Summary"]); -- Summary
+    AddC(tmp[884], tmp[1206]);
+    tmp[1206].AlwaysVisible = true;
+    tmp[1206].IsSummary = true;
     tmp[918] = cat:New(addon.L["Holidays"]); -- Holidays
     AddC(tmp[884], tmp[918]);
     AddA(tmp[918], a[2144]); -- "What a Long, Strange Trip It's Been"
@@ -6452,6 +6456,10 @@ function exportedCategories.Load(a)
     tmp[955] = cat:New((GetCategoryInfo(15270))); -- TAB - PvP
     tmp[955].TabName = "PvP";
     local pvp = tmp[955];
+    tmp[1205] = cat:New(addon.L["Summary"]); -- Summary
+    AddC(tmp[955], tmp[1205]);
+    tmp[1205].AlwaysVisible = true;
+    tmp[1205].IsSummary = true;
     tmp[1162] = cat:New((GetCategoryInfo(15270))); -- Player vs. Player
     AddC(tmp[955], tmp[1162]);
     AddA(tmp[1162], a[10561]); -- Honorable Medallion
@@ -7246,6 +7254,10 @@ function exportedCategories.Load(a)
     tmp[971] = cat:New(addon.L["Specials"]); -- TAB - Specials
     tmp[971].TabName = "Specials";
     local specials = tmp[971];
+    tmp[1204] = cat:New(addon.L["Summary"]); -- Summary
+    AddC(tmp[971], tmp[1204]);
+    tmp[1204].AlwaysVisible = true;
+    tmp[1204].IsSummary = true;
     tmp[972] = cat:New(addon.L["Bur's Mount Collection"]); -- Bur's Mount Collection
     AddC(tmp[971], tmp[972]);
     AddA(tmp[972], a[3356]); -- Winterspring Frostsaber
