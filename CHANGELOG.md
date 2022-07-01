@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Summary view for each new tab that shows the last 25 earned achievements and the category's progress
 
+### Changed
+- Power Unbound and Power Unleashed are obtainable again
+
 ### Fixed
 - A visual bug that would paint accountwide unobtainable achievements blue instead of red
 

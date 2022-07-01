@@ -254,6 +254,9 @@ local function BuildCategories()
     local statusBar14 = NewStatusBar()
     statusBar14:SetPoint("TOPRIGHT", statusBar12, "BOTTOMRIGHT", 0, yOffset);
     tinsert(statusBars, statusBar14);
+
+    KrowiAF_AchievementsSummaryFrame.TotalStatusBar = totalStatusBar;
+    KrowiAF_AchievementsSummaryFrame.StatusBars = statusBars;
 end
 
 local function UpdateAchievements()
@@ -325,6 +328,9 @@ local function UpdateAchievements()
 
             button:Hide();
         end
+        if button:IsMouseOver() then
+            KrowiAF_AchievementFrameSummaryAchievement_OnEnter(button);
+        end
     end
     HybridScrollFrame_Update(scrollFrame, totalHeight, displayedHeight);
 end
@@ -349,6 +355,30 @@ function KrowiAF_AchievementFrameSummaryAchievement_OnLoad(self)
 	self.dateCompleted:Show();
 end
 
+function KrowiAF_AchievementFrameSummaryAchievement_OnClick(self, button, down)
+    if self.Achievement == nil then
+        return;
+    end
+    gui.AchievementsFrame:SelectAchievementFromID(self.Achievement.ID, nil, true);
+end
+
+function KrowiAF_AchievementFrameSummaryAchievement_OnEnter(self, button, down)
+    self.highlight:Show();
+    if self.Achievement == nil then
+        return;
+    end
+    GameTooltip:SetOwner(self, "ANCHOR_NONE");
+    GameTooltip:SetPoint("TOPLEFT", self, "TOPRIGHT");
+    local link = GetAchievementLink(self.Achievement.ID);
+    GameTooltip:SetHyperlink(link);
+    AchievementFrameAchievements_CheckGuildMembersTooltip(self);
+    GameTooltip:Show();
+    if GameTooltip:GetTop() > self:GetTop() then
+        GameTooltip:ClearAllPoints();
+        GameTooltip:SetPoint("BOTTOMLEFT", self, "BOTTOMRIGHT");
+    end
+end
+
 local function BuildAchievementsScrollFrame()
     local frame = KrowiAF_AchievementsSummaryFrame;
     local show = getmetatable(frame.ScrollFrame.Container.ScrollBar).__index.Show;
@@ -364,7 +394,7 @@ local function BuildAchievementsScrollFrame()
     frame.ScrollFrame.Container.update = UpdateAchievements;
     HybridScrollFrame_CreateButtons(frame.ScrollFrame.Container, "KrowiAF_SummaryAchievementTemplate", 4, 0);
     for _, button in next, frame.ScrollFrame.Container.buttons do
-        button:SetPoint("RIGHT", frame.ScrollFrame.Container, -5, 0)
+        button:SetPoint("RIGHT", frame.ScrollFrame.Container, -5, 0);
     end
 end
 
@@ -454,8 +484,9 @@ function summary.CategoriesStatusBar_Update()
     KrowiAF_AchievementsSummaryFrameCategoriesHeader:SetPoint("TOPRIGHT", KrowiAF_AchievementsSummaryFrame, "BOTTOMRIGHT", 0, offset);
 end
 
+local numLastCompleted = 25;
 local function BuildLastCompleted()
-    if type(SavedData.Characters[UnitGUID("player")].LastCompleted) == "table" then
+    if type(SavedData.Characters[UnitGUID("player")].LastCompleted) == "table" and #SavedData.Characters[UnitGUID("player")].LastCompleted == numLastCompleted then
         return;
     end
     local res = {};
@@ -464,7 +495,10 @@ local function BuildLastCompleted()
     end
     sort(res, function(a, b) return a.Date > b.Date; end);
     SavedData.Characters[UnitGUID("player")].LastCompleted = {};
-    for i = 1, 25, 1 do
+    for i = 1, numLastCompleted, 1 do
+        if res[i] == nil then
+            return;
+        end
         tinsert(SavedData.Characters[UnitGUID("player")].LastCompleted, res[i].Id)
     end
 end

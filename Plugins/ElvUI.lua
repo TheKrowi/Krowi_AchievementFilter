@@ -303,6 +303,135 @@ local function SkinCalendar(calendarButton, skins)
 	calendarButton:SetText(currentCalendarTime.monthDay);
 end
 
+local function SkinStatusBar(statusBar, engine)
+    statusBar.BorderLeftTop:StripTextures();
+    statusBar.BorderLeftMiddle:StripTextures();
+    statusBar.BorderLeftBottom:StripTextures();
+    statusBar.BorderRightTop:StripTextures();
+    statusBar.BorderRightMiddle:StripTextures();
+    statusBar.BorderRightBottom:StripTextures();
+    statusBar.BorderMiddleTop:StripTextures();
+    statusBar.BorderMiddleMiddle:StripTextures();
+    statusBar.BorderMiddleBottom:StripTextures();
+    statusBar.Background:Hide();
+    for i, _ in next, statusBar.Fill do
+        statusBar.Fill[i]:SetTexture(engine.media.normTex);
+    end
+    statusBar:AdjustOffsets(10, 10);
+    statusBar:CreateBackdrop();
+    statusBar.backdrop:Point("TOPLEFT", 12, -11);
+    statusBar.backdrop:Point("BOTTOMRIGHT", -12, 11);
+    statusBar:SetColors({R = 0.2, G = 0.7, B = 0.12}, {R = 0.7, G = 0.2, B = 0.12});
+    if statusBar.Button then
+        local button = statusBar.Button;
+        button:StripTextures();
+
+        local htex = button:CreateTexture();
+        htex:SetColorTexture(1, 1, 1, 0.3);
+        htex:SetAllPoints(statusBar.backdrop);
+        button:SetHighlightTexture(htex);
+
+        button:SetScript("OnLeave", function(self)
+        end);
+        button:SetScript("OnEnter", function(self)            
+        end);
+    end
+end
+
+local function SkinSummaryAchievementButton(button, engine, skins)
+    button:SetFrameLevel(button:GetFrameLevel() + 2)
+	button:StripTextures(true)
+	button:CreateBackdrop(nil, true)
+	button.backdrop:SetInside()
+
+	button.icon:CreateBackdrop(nil, nil, nil, nil, nil, nil, true)
+	button.icon:Size(36, 36)
+	button.icon:ClearAllPoints()
+	button.icon:Point("TOPLEFT", 6, -6)
+	button.icon.bling:Kill()
+	button.icon.frame:Kill()
+	button.icon.texture:SetTexCoord(unpack(engine.TexCoords))
+	button.icon.texture:SetInside()
+
+    if button.highlight then
+		button.highlight:StripTextures()
+		button:HookScript('OnEnter', function(self) self.backdrop:SetBackdropBorderColor(1, 1, 0) end)
+		button:HookScript('OnLeave', function(self) self.backdrop:SetBackdropBorderColor(unpack(engine.media.bordercolor)) end)
+	end
+
+	if button.label then
+		button.label:SetTextColor(1, 1, 1)
+	end
+
+	if button.description then
+		button.description:SetTextColor(.6, .6, .6)
+		hooksecurefunc(button.description, 'SetTextColor', function(_, r, g, b)
+			if r == 0 and g == 0 and b == 0 then
+				button.description:SetTextColor(.6, .6, .6)
+			end
+		end)
+	end
+end
+
+local function SkinAchievementSummary(frame, engine, skins)
+    frame:StripTextures();
+	frame.Background:Hide();
+	frame:GetChildren():Hide();
+
+    frame.Achievements.Header.Header:Hide();
+	frame.Categories.Header.Texture:Hide();
+
+    if frame and frame.GetNumChildren then
+        for i = 1, frame:GetNumChildren() do
+            local child = select(i, frame:GetChildren());
+            if child and not child:GetName() then
+                child:SetBackdrop();
+            end
+        end
+    end
+
+    frame.ScrollFrame.NineSlice:SetAlpha(0);
+    frame.ScrollFrame.Container.ScrollBar.trackBG:SetAlpha(0);
+    frame.ScrollFrame.Container:CreateBackdrop("Transparent");
+	frame.ScrollFrame.Container.backdrop:Point("TOPLEFT", 1, 2);
+	frame.ScrollFrame.Container.backdrop:Point("BOTTOMRIGHT", -2, -3);
+
+    -- Buttons
+    for _, button in next, frame.ScrollFrame.Container.buttons do
+        SkinSummaryAchievementButton(button, engine, skins);
+    end
+
+    hooksecurefunc(frame.ScrollFrame.Container, "update", function(frame)
+        for _, button in next, frame.buttons do
+            if button:IsShown() then
+                SetAchievementButtonColor(button, engine);
+            else
+                return;
+            end
+        end
+    end);
+
+    hooksecurefunc(KrowiAF_AchievementsSummaryFrame, "Show", function(frame)
+        for _, button in next, frame.ScrollFrame.Container.buttons do
+            if button:IsShown() then
+                SetAchievementButtonColor(button, engine);
+            else
+                return;
+            end
+        end
+    end);
+
+    SkinStatusBar(frame.TotalStatusBar, engine);
+    for _, statusBar in next, frame.StatusBars do
+        SkinStatusBar(statusBar, engine);
+    end
+
+    -- Scrollbar
+    if frame.ScrollFrame.Container.ScrollBar then
+        skins:HandleScrollBar(frame.ScrollFrame.Container.ScrollBar, 5);
+    end
+end
+
 local engine, skins;
 local function SkinAll()
 	addon.Diagnostics.Trace("elvUISkin.Apply");
@@ -313,6 +442,7 @@ local function SkinAll()
         SkinTabs(addon.Tabs, skins);
         SkinCategoriesFrame(addon.GUI.CategoriesFrame, skins);
         SkinAchievementsFrame(addon.GUI.AchievementsFrame, engine, skins);
+        SkinAchievementSummary(KrowiAF_AchievementsSummaryFrame, engine, skins);
         SkinFilterButton(addon.GUI.FilterButton, addon.GUI.AchievementsFrame, skins);
         SkinSearchBoxFrame(addon.GUI.Search.SearchBoxFrame, addon.GUI.AchievementsFrame, skins);
         SkinSearchPreviewFrame(addon.GUI.Search.SearchPreviewFrame, addon.GUI.AchievementsFrame, engine, skins);

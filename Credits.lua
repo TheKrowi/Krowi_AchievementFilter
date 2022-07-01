@@ -26,6 +26,7 @@ end
 local donations = {
     {Name = "Bur", Realm = "Frostmane EU", Class = "DRUID"},
     {Name = "Ta", Realm = "Der Rat von Dalaran EU", Class = "SHAMAN"},
+    {Name = "Estellar", Realm = "Bronze Dragonflight EU", Class = "PALADIN"},
 }
 
 function credits.GetDonationsAsString()

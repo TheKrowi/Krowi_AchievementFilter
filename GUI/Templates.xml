@@ -1171,7 +1171,7 @@
         </Anchors>
 		<Layers>
 			<Layer level="BACKGROUND">
-				<Texture name="$parentBackground" file="Interface\AchievementFrame\UI-Achievement-AchievementBackground">
+				<Texture name="$parentBackground" parentKey="Background" file="Interface\AchievementFrame\UI-Achievement-AchievementBackground">
 					<Anchors>
 						<Anchor point="TOPLEFT" x="3" y="-3"/>
 						<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
@@ -1198,7 +1198,7 @@
 					</Layer>
 				</Layers>
 				<Frames>
-					<Frame name="$parentHeader">
+					<Frame name="$parentHeader" parentKey="Header">
 						<Size x="0" y="20"/>
 						<Anchors>
 							<Anchor point="TOPLEFT" x="0" y="0"/>
@@ -1206,7 +1206,7 @@
 						</Anchors>
 						<Layers>
 							<Layer level="BACKGROUND">
-								<Texture name="$parentHeader" file="Interface\AchievementFrame\UI-Achievement-RecentHeader">
+								<Texture name="$parentHeader" parentKey="Header" file="Interface\AchievementFrame\UI-Achievement-RecentHeader">
 									<Anchors>
 										<Anchor point="TOPLEFT" x="-20" y="0"/>
 										<Anchor point="BOTTOMRIGHT" x="20" y="0"/>
@@ -1239,7 +1239,7 @@
 						</Anchors>
 						<Layers>
 							<Layer level="BACKGROUND">
-								<Texture name="$parentTexture" file="Interface\AchievementFrame\UI-Achievement-RecentHeader">
+								<Texture name="$parentTexture" parentKey="Texture" file="Interface\AchievementFrame\UI-Achievement-RecentHeader">
 									<Anchors>
 										<Anchor point="TOPLEFT" x="-20" y="0"/>
 										<Anchor point="BOTTOMRIGHT" x="20" y="0"/>
@@ -1367,16 +1367,16 @@
 		</Frames>
 		<Scripts>
 			<OnLoad inherit="prepend" function="KrowiAF_AchievementFrameSummaryAchievement_OnLoad"/>
-			<!-- <OnClick>
-				AchievementFrameSummaryAchievement_OnClick(self, button, down);
+			<OnClick>
+				KrowiAF_AchievementFrameSummaryAchievement_OnClick(self, button, down);
 			</OnClick>
 			<OnEnter>
-				AchievementFrameSummaryAchievement_OnEnter(self, motion);
+				KrowiAF_AchievementFrameSummaryAchievement_OnEnter(self, motion);
 			</OnEnter>
 			<OnLeave>
 				self.highlight:Hide();
 				GameTooltip:Hide();
-			</OnLeave> -->
+			</OnLeave>
 		</Scripts>
 	</Frame>
 </Ui>
