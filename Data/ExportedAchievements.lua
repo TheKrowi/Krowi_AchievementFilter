@@ -1,4 +1,4 @@
--- [[ Exported at 2022-07-01 10-31-04 ]] --
+-- [[ Exported at 2022-07-01 11-09-41 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -6776,7 +6776,7 @@ function exportedAchievements.Load(a, t)
     a[15324] = ach:New(15324, 20); -- Tower Ranger
     a[15327] = ach:New(15327, 0, nil, nil, false); -- Tormented Hero: Shadowlands Season 2
     a[15331] = ach:New(15331, 10); -- Treasures of Zereth Mortis
-    a[15336] = ach:New(15336, 25, nil, nil, false); -- From A to Zereth
+    a[15336] = ach:New(15336, 25); -- From A to Zereth
     a[15348] = ach:New(15348, 0); -- Combatant I: Shadowlands Season 3
     a[15349] = ach:New(15349, 0); -- Challenger I: Shadowlands Season 3
     a[15350] = ach:New(15350, 0); -- Rival I: Shadowlands Season 3
