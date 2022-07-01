@@ -25,7 +25,7 @@ options.Defaults = {
             {
                 AddonName = "Blizzard_AchievementUI",
                 TabName = "Achievements",
-                Show = true
+                Show = false
             },
             {
                 AddonName = "Blizzard_AchievementUI",

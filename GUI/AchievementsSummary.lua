@@ -419,16 +419,20 @@ function KrowiAF_AchievementFrameSummary_OnShow()
     summary.UpdateAchievements();
 end
 
-function KrowiAF_AchievementFrameSummary_Update()
-    summary.CategoriesStatusBar_Update();
-    summary.UpdateAchievements();
+function KrowiAF_AchievementFrameSummary_Update(self, event)
+    print(event)
+    summary.CategoriesStatusBar_Update(event);
+    summary.UpdateAchievements(event);
 end
 
-function summary.CategoriesStatusBar_Update()
+function summary.CategoriesStatusBar_Update(event)
     if not gui.SelectedTab then
         return;
     end
 
+    if event == "ACHIEVEMENT_EARNED" then
+        addon.GUI.CategoriesFrame:Update(true);
+    end
     local lastShown;
     local offset = 0;
     local totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch = 0, 0, 0;
@@ -485,9 +489,11 @@ function summary.CategoriesStatusBar_Update()
 end
 
 local numLastCompleted = 25;
-local function BuildLastCompleted()
+local function BuildLastCompleted(event)
     numLastCompleted = addon.Options.db.Categories.Summary.NumAchievements;
-    if type(SavedData.Characters[UnitGUID("player")].LastCompleted) == "table" and #SavedData.Characters[UnitGUID("player")].LastCompleted == numLastCompleted then
+    if type(SavedData.Characters[UnitGUID("player")].LastCompleted) == "table"
+    and #SavedData.Characters[UnitGUID("player")].LastCompleted == numLastCompleted
+    and not event == "ACHIEVEMENT_EARNED" then
         return;
     end
     local res = {};
@@ -504,7 +510,7 @@ local function BuildLastCompleted()
     end
 end
 
-function summary.UpdateAchievements()
-    BuildLastCompleted();
+function summary.UpdateAchievements(event)
+    BuildLastCompleted(event);
     UpdateAchievements();
 end

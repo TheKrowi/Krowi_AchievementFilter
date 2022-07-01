@@ -52,6 +52,8 @@ function loadHelper:OnEvent(event, arg1, arg2)
 
             addon.Icon.Load();
             addon.Tutorials.Load();
+
+            -- addon.ChangeAchievementMicroButtonOnClick();
         elseif arg1 == "Blizzard_AchievementUI" then -- This needs the Blizzard_AchievementUI addon available to load
             addon.Data.Load();
 

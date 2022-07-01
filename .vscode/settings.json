@@ -293,7 +293,9 @@
         "KrowiAF_AchievementsSummaryFrameAchievementsEmptyText",
         "GameFontNormalSmall",
         "KrowiAF_AchievementsSummaryFrameContainer",
-        "AchievementComparisonPlayerButton_OnLoad"
+        "AchievementComparisonPlayerButton_OnLoad",
+        "AchievementMicroButton",
+        "GetFramesRegisteredForEvent"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

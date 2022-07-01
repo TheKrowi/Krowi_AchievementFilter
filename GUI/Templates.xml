@@ -1287,9 +1287,9 @@
 			</Frame>
 		</Frames>
 		<Scripts>
-			<!-- <OnLoad>
+			<OnLoad>
 				self:RegisterEvent("ACHIEVEMENT_EARNED");
-			</OnLoad> -->
+			</OnLoad>
 			<OnEvent function="KrowiAF_AchievementFrameSummary_Update"/>
 			<OnShow function="KrowiAF_AchievementFrameSummary_OnShow"/>
 		</Scripts>

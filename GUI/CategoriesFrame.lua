@@ -19,7 +19,7 @@ function categoriesFrame:Load()
 	frame.Container.ScrollBar.ParentContainer = frame.Container;
 
 	-- Rest
-	frame:RegisterEvent("ADDON_LOADED");
+	-- frame:RegisterEvent("ADDON_LOADED");
 
 	-- We need to insert the categories frame infront of the achievements frame so the show/hide function fire in the correct order
 	for i, frameName in next, ACHIEVEMENTFRAME_SUBFRAMES do

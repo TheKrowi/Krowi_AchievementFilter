@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - A visual bug that would paint accountwide unobtainable achievements blue instead of red
+- When earning an achievement, the GUI should now properly reflect that
 
 ## 9.2.5.35.2 - 2022-06-28
 ### Added
