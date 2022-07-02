@@ -18,21 +18,23 @@ function achievementsFrame:Load()
 
 	tinsert(ACHIEVEMENTFRAME_SUBFRAMES, frame:GetName());
 
-	local scrollBarShow = getmetatable(frame.Container.ScrollBar).__index.Show;
-	frame.Container.ScrollBar.Show = function()
+	local scrollFrame = frame.Container;
+	local scrollBar = scrollFrame.ScrollBar;
+	local scrollBarShow = getmetatable(scrollBar).__index.Show;
+	scrollBar.Show = function()
 		self.Show_Hide(frame, scrollBarShow, achievementsWidth, achievementsButtonOffset);
 	end;
-	local scrollBarHide = getmetatable(frame.Container.ScrollBar).__index.Hide;
-	frame.Container.ScrollBar.Hide = function()
+	local scrollBarHide = getmetatable(scrollBar).__index.Hide;
+	scrollBar.Hide = function()
 		self.Show_Hide(frame, scrollBarHide, achievementsWidth + achievementsWidthScrollBarOffset, achievementsButtonOffset);
 	end;
 
-	frame.Container.update = function()
+	scrollFrame.update = function()
 		frame:Update();
 	end
 
 	local template = addon.Options.db.Achievements.Compact and "KrowiAF_Small_AchievementButton_Template" or "KrowiAF_AchievementButton_Template";
-	HybridScrollFrame_CreateButtons(frame.Container, template, 0, -2);
+	HybridScrollFrame_CreateButtons(scrollFrame, template, 0, -2);
 	addon.GUI.AchievementButton:PostLoadButtons(frame);
 
 	hooksecurefunc("AchievementFrameAchievements_ForceUpdate", function()
@@ -61,11 +63,16 @@ function KrowiAF_AchievementFrameAchievementsFrame_OnHide(self)
 end
 
 function achievementsFrame.Show_Hide(frame, func, _achievementsWidth, _achievementsButtonOffset)
+	local scrollFrame = frame.Container;
+
 	frame:SetWidth(_achievementsWidth);
-	for _, button in next, frame.Container.buttons do
+
+	local buttons = scrollFrame.buttons;
+	for _, button in next, buttons do
 		button:SetWidth(_achievementsWidth - _achievementsButtonOffset);
 	end
-	func(frame.Container.ScrollBar);
+	
+	func(scrollFrame.ScrollBar);
 end
 
 local function Validate(achievements, displayAchievements, defaultOrder)
@@ -187,10 +194,8 @@ function achievementsFrame:ForceUpdate(toTop) -- Issue #3: Fix
 end
 
 function achievementsFrame:ClearSelection()
-	local buttons = self.Container.buttons;
-	local compact = addon.Options.db.Achievements.Compact;
-
 	AchievementFrameAchievementsObjectives:Hide();
+	local buttons = self.Container.buttons;
 	for _, button in next, buttons do
 		button:Collapse();
 		if not button:IsMouseOver() then
@@ -200,7 +205,7 @@ function achievementsFrame:ClearSelection()
 		if not button.tracked:GetChecked() then
 			button.tracked:Hide();
 		end
-		if button.reward:GetText() == nil or not compact then
+		if button.reward:GetText() == nil or not addon.Options.db.Achievements.Compact then
 			button.description:Show();
 		else
 			button.description:Hide();

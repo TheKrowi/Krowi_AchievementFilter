@@ -416,35 +416,6 @@
 		</Scripts>
 	</Button>
 
-    <!-- Originally from Blizzard_AchievementUI.xml line 1779 at time of writing -->
-	<Frame name="KrowiAF_CategoriesFrame_Template" inherits="AchivementGoldBorderBackdrop" virtual="true">
-		<Anchors>
-        	<Anchor point="TOPLEFT" relativeTo="AchievementFrameCategories"/>
-        	<!-- <Anchor point="BOTTOM" relativeTo="AchievementFrameCategories"/> -->
-        	<Anchor point="BOTTOM" y="20"/> <!-- relativeTo="AchievementFrame" -->
-        </Anchors>
-		<Scripts>
-			<OnShow function="KrowiAF_CategoriesFrame_OnShow"/>
-			<OnHide function="KrowiAF_CategoriesFrame_OnHide"/>
-		</Scripts>
-		<Frames>
-			<ScrollFrame name="$parentContainer" parentKey="Container" inherits="HybridScrollFrameTemplate">
-				<Anchors>
-					<Anchor point="TOPLEFT" x="0" y="-5"/>
-					<Anchor point="BOTTOMRIGHT" x="0" y="5"/>
-				</Anchors>
-				<Frames>
-					<Slider name="$parentScrollBar" parentKey="ScrollBar" inherits="HybridScrollBarTemplate">
-						<Anchors>
-							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="1" y="-14"/>
-							<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="1" y="12"/>
-						</Anchors>
-					</Slider>
-				</Frames>
-			</ScrollFrame>
-		</Frames>
-	</Frame>
-
     <!-- Originally from Blizzard_AchievementUI.xml line 14 at time of writing -->
 	<Button name="KrowiAF_SearchPreviewButton_Template" virtual="true">
 		<Size x="206" y="27"/>

@@ -156,7 +156,7 @@ local function AddButton(statusBar)
     end);
 
     button:SetScript("OnClick", function(self)
-        addon.GUI.CategoriesFrame:SelectCategory(self.Category);
+        KrowiAF_SelectCategory(self.Category);
     end);
 end
 

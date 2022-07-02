@@ -107,5 +107,5 @@ function OnClick(self)
         LoadAddOn("Blizzard_AchievementUI");
     end
 
-    addon.GUI.CategoriesFrame:SelectCategory(self.Event.Category);
+    KrowiAF_SelectCategory(self.Event.Category);
 end

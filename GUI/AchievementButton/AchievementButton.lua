@@ -49,9 +49,10 @@ end
 local OnEnter, OnLeave, OnClick;
 function achievementButton:PostLoadButtons(achievementsFrame)
 	-- Here we hook a lot of our own functionality to extend the default Blizzard Buttons
-	diagnostics.Trace("achievementButton.PostLoadButtons");
+	local scrollFrame = achievementsFrame.Container;
+	local buttons = scrollFrame.buttons;
 
-	for _, button in next, achievementsFrame.Container.buttons do
+	for _, button in next, buttons do
 		button:RegisterForClicks("LeftButtonUp", "RightButtonUp");
 		button.Click = function(self, button, down, ignoreModifiers, anchor, offsetX, offsetY)
 			OnClick(self, button, achievementsFrame, ignoreModifiers, anchor, offsetX, offsetY);

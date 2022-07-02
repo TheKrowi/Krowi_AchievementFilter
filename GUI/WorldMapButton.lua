@@ -38,13 +38,13 @@ function WorldMapAchievementButtonMixin:OnClick()
         addon.Data.SelectedZoneCategory.Achievements = worldMapButton.Achievements;
         addon.GUI.ToggleAchievementFrame(addonName, addon.L["Expansions"], true);
         addon.Tabs["Expansions"].Categories[3].Name = addon.L["Selected Zone"] .. " (" .. worldMapButton.name .. ")";
-        gui.CategoriesFrame:SelectCategory(addon.Tabs["Expansions"].Categories[3]);
+        KrowiAF_SelectCategory(addon.Tabs["Expansions"].Categories[3]);
     end
 end
 
 function WorldMapAchievementButtonMixin:OnEnter()
     if worldMapButton.numAchievements > 0 then
-        addon.StatusBarTooltip(worldMapButton, "ANCHOR_RIGHT");
+        addon.ShowStatusBarTooltip(worldMapButton, "ANCHOR_RIGHT");
     else
         GameTooltip:SetOwner(worldMapButton, "ANCHOR_RIGHT");
 	    GameTooltip_SetTitle(GameTooltip, worldMapButton.name);

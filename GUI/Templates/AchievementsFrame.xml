@@ -31,9 +31,6 @@
 		<Scripts>
 			<OnShow function="KrowiAF_AchievementFrameAchievementsFrame_OnShow"/>
 			<OnHide function="KrowiAF_AchievementFrameAchievementsFrame_OnHide"/>
-            <OnLoad>
-
-            </OnLoad>
 		</Scripts>
 		<Frames>
 			<ScrollFrame name="$parentContainer" parentKey="Container" inherits="HybridScrollFrameTemplate">

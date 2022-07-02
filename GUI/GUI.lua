@@ -144,7 +144,7 @@ function gui.ResetView()
             if category.Achievements == nil then
                 category = gui.SelectedTab.Categories[2];
             end
-            gui.CategoriesFrame:SelectCategory(category, true);
+            KrowiAF_SelectCategory(category, true);
         end
     end
 

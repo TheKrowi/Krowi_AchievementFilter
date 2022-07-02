@@ -342,7 +342,7 @@ function addon.MakeWindowMovable()
 end
 
 local progressBar = LibStub("Krowi_ProgressBar-1.1");
-function addon.StatusBarTooltip(self, anchor)
+function addon.ShowStatusBarTooltip(self, anchor)
 	-- GameTooltip_SetDefaultAnchor(GameTooltip, self);
 	GameTooltip:SetOwner(self, anchor or "ANCHOR_NONE");
     if anchor == nil then

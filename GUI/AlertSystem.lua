@@ -107,5 +107,5 @@ function KrowiAF_AlertFrame_OnClick(self, button, down)
     end
 
     -- diagnostics.Debug(self.Event.Category);
-    addon.GUI.CategoriesFrame:SelectCategory(self.Event.Category);
+    KrowiAF_SelectCategory(self.Event.Category);
 end
