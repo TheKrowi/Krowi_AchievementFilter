@@ -9,7 +9,7 @@ local tmpTabs = {};
 
 local addonName = "Overachiever_Tabs";
 
-local function AddTabOptions(tabIndex, tabName, nameFunc)
+local function AddTabOptions(tabIndex, tabName, bindingName, nameFunc)
     local show = true;
     if tmpTabs[tabName] ~= nil then -- Fix and copy tab
         show = tmpTabs[tabName].Show or tmpTabs[tabName];
@@ -18,6 +18,7 @@ local function AddTabOptions(tabIndex, tabName, nameFunc)
         tinsert(addon.Options.db.Tabs, {
             AddonName = addonName,
             TabName = tabName,
+            BindingName = bindingName,
             Show = show
         });
         tabIndex = #addon.Options.db.Tabs;
@@ -36,6 +37,7 @@ end
 
 local function InjectOptions()
     local searchTabName, suggestionsTabName, watchTabName = "Search", "Suggestions", "Watch";
+    local searchBindingName, suggestionsBindingName, watchBindingName = "OVERACHIEVER_TAB_SEARCH", "OVERACHIEVER_TAB_SUGGESTIONS", "OVERACHIEVER_TAB_WATCH";
 
     if Overachiever_SearchFrame and Overachiever_SearchFrame.tab then
         Overachiever_SearchFrame.tab.AddonName = addonName;
@@ -72,9 +74,9 @@ local function InjectOptions()
 
     addon.Diagnostics.DebugTable(tmpTabs);
 
-    AddTabOptions(searchTab, searchTabName, function() return OVERACHIEVER_STRINGS.SEARCH_TAB; end);
-    AddTabOptions(suggestionsTab, suggestionsTabName, function() return OVERACHIEVER_STRINGS.SUGGESTIONS_TAB; end);
-    AddTabOptions(watchTab, watchTabName, function() return OVERACHIEVER_STRINGS.WATCH_TAB; end);
+    AddTabOptions(searchTab, searchTabName, searchBindingName, function() return OVERACHIEVER_STRINGS.SEARCH_TAB; end);
+    AddTabOptions(suggestionsTab, suggestionsTabName, suggestionsBindingName, function() return OVERACHIEVER_STRINGS.SUGGESTIONS_TAB; end);
+    AddTabOptions(watchTab, watchTabName, watchBindingName, function() return OVERACHIEVER_STRINGS.WATCH_TAB; end);
 
     -- local searchTabShow = true;
     -- if tmpTabs[searchTabName] ~= nil then

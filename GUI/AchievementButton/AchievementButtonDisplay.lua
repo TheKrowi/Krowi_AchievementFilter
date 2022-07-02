@@ -349,7 +349,7 @@ function GetMeta(index, renderOffScreen, achievementsFrame)
 	if not mcTable[index] then
 		local frame = CreateFrame("BUTTON", "KrowiAF_AchievementFrameMeta" .. offscreenName .. index, AchievementFrameAchievements, "MetaCriteriaTemplate");
 		frame:SetScript("OnClick", function()
-            achievementsFrame:SelectAchievementFromID(frame.id, nil, true);
+            KrowiAF_SelectAchievementFromID(frame.id, nil, true);
         end);
 		frame:SetScript("OnEnter", OnEnter);
 		AchievementButton_LocalizeMetaAchievement(frame);

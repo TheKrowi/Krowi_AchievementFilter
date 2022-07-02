@@ -9,7 +9,7 @@ local ourTabIDs = {};
 
 -- [[ Constructors ]] --
 achFrameTabBtn.__index = achFrameTabBtn; -- Used to support OOP like code
-function achFrameTabBtn:New(addonName, name, text, framesToShow, achievementsFrame, categoriesFrame, categories, filters)
+function achFrameTabBtn:New(addonName, name, bindingName, text, framesToShow, achievementsFrame, categoriesFrame, categories, filters)
     diagnostics.Trace("achievementFrameTabButton:New");
 
 	-- Increment ID
@@ -20,6 +20,7 @@ function achFrameTabBtn:New(addonName, name, text, framesToShow, achievementsFra
     frame:SetID(AchievementFrame.numTabs);
     frame.AddonName = addonName;
     frame.Name = name;
+    frame.BindingName = bindingName;
     frame:SetText(text);
     addon.Util.InjectMetatable(frame, achFrameTabBtn);
 
@@ -92,9 +93,9 @@ function achFrameTabBtn:Base_OnClick(id)
     AchievementFrame_ShowSubFrame(unpack(self.FramesToShow));
     if self.SelectedCategory.IsSummary then
 		KrowiAF_AchievementsSummaryFrame:Show();
-		KrowiAF_AchievementFrameAchievements:Hide();
+		KrowiAF_AchievementFrameAchievementsFrame:Hide();
 	else
-		KrowiAF_AchievementFrameAchievements:Show();
+		KrowiAF_AchievementFrameAchievementsFrame:Show();
 		KrowiAF_AchievementsSummaryFrame:Hide();
 	end
     AchievementFrameWaterMark:SetTexture("Interface\\AchievementFrame\\UI-Achievement-AchievementWatermark");

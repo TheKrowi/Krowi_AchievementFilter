@@ -21,6 +21,6 @@
 
     <Include file="GUI/Calendar/Files.xml" />
 
-    <Include file="GUI/Templates.xml" />    
+    <Include file="GUI/Templates/Files.xml" />
     
 </Ui>

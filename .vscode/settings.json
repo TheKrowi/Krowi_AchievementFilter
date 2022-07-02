@@ -295,7 +295,14 @@
         "KrowiAF_AchievementsSummaryFrameContainer",
         "AchievementComparisonPlayerButton_OnLoad",
         "AchievementMicroButton",
-        "GetFramesRegisteredForEvent"
+        "GetFramesRegisteredForEvent",
+        "SetBinding",
+        "SaveBindings",
+        "GetCurrentBindingSet",
+        "MicroButtonTooltipText",
+        "ACHIEVEMENT_BUTTON",
+        "AchievementMicroButtonMixin",
+        "KrowiAF_AchievementFrameAchievementsFrame"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

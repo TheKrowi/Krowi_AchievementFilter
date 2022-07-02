@@ -1,5 +1,5 @@
 -- [[ Namespaces ]] --
-local _, addon = ...;
+local addonName, addon = ...;
 local diagnostics = addon.Diagnostics;
 local gui = addon.GUI;
 gui.WorldMapButton = {};
@@ -36,7 +36,7 @@ function WorldMapAchievementButtonMixin:OnClick()
     if worldMapButton.Achievements and #worldMapButton.Achievements > 0 then
         HideUIPanel(WorldMapFrame);
         addon.Data.SelectedZoneCategory.Achievements = worldMapButton.Achievements;
-        addon.GUI.ToggleAchievementFrame(addon.L["Expansions"], true);
+        addon.GUI.ToggleAchievementFrame(addonName, addon.L["Expansions"], true);
         addon.Tabs["Expansions"].Categories[3].Name = addon.L["Selected Zone"] .. " (" .. worldMapButton.name .. ")";
         gui.CategoriesFrame:SelectCategory(addon.Tabs["Expansions"].Categories[3]);
     end

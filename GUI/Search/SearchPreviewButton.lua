@@ -47,7 +47,7 @@ function OnClick(self)
     diagnostics.Trace("searchPreviewButton.OnClick");
 
     if self.Achievement then
-        gui.AchievementsFrame:SelectAchievement(self.Achievement, nil, true);
+        KrowiAF_SelectAchievement(self.Achievement, nil, true);
         search.SearchPreviewFrame:Hide();
         search.SearchBoxFrame:ClearFocus();
 	end

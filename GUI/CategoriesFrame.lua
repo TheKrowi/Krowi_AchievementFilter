@@ -1,5 +1,5 @@
 -- [[ Namespaces ]] --
-local _, addon = ...;
+local addonName, addon = ...;
 local diagnostics = addon.Diagnostics;
 local gui = addon.GUI;
 gui.CategoriesFrame = {};
@@ -13,13 +13,6 @@ function categoriesFrame:Load()
 	-- Create frame
 	local frame = CreateFrame("Frame", "KrowiAF_AchievementFrameCategories", AchievementFrame, "KrowiAF_CategoriesFrame_Template");
 	addon.Util.InjectMetatable(frame, categoriesFrame); -- Inject all the namespace functions to the frame
-
-	-- Set parents
-	frame.Container.ParentFrame = frame;
-	frame.Container.ScrollBar.ParentContainer = frame.Container;
-
-	-- Rest
-	-- frame:RegisterEvent("ADDON_LOADED");
 
 	-- We need to insert the categories frame infront of the achievements frame so the show/hide function fire in the correct order
 	for i, frameName in next, ACHIEVEMENTFRAME_SUBFRAMES do
@@ -38,9 +31,9 @@ function categoriesFrame:Load()
 	end;
 
 	frame.Container.ScrollBar.trackBG:Show();
-	frame.Container.update = function(container)
+	frame.Container.update = function()
 		diagnostics.Trace("container.update");
-		container.ParentFrame:Update(); -- Issue #12: Broken
+		frame:Update(); -- Issue #12: Broken
 	end
 
 	HybridScrollFrame_CreateButtons(frame.Container, "KrowiAF_AchievementCategoryButton_Template", -4, 0, "TOPRIGHT", "TOPRIGHT", 0, 0, "TOPRIGHT", "BOTTOMRIGHT");
@@ -407,7 +400,7 @@ function categoriesFrame:SelectCategory(category, collapsed)
 	local categoriesTree = category:GetTree();
 
 	-- Select tab
-	gui.ToggleAchievementFrame(categoriesTree[1].TabName, nil, true);
+	gui.ToggleAchievementFrame(addonName, categoriesTree[1].TabName, nil, true);
 
 	-- Select category
 	for i, cat in next, categoriesTree do

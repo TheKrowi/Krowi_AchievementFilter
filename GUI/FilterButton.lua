@@ -474,3 +474,90 @@ function filterButton:GetHighestAchievementWhenCollapseSeries(fliters, achieveme
 
     return achievement;
 end
+
+local function CompareName(a, b, reverse, default)
+    local nameA, nameB = "", "";
+    if a then
+        nameA = select(2, GetAchievementInfo(a.ID));
+    end
+    if b then
+        nameB = select(2, GetAchievementInfo(b.ID));
+    end
+
+    if nameA == nil then
+        return false;
+    end
+    if nameB == nil then
+        return true;
+    end
+
+    if nameA == nameB then
+        if reverse then
+            return default[a] > default[b];
+        end
+        return default[a] < default[b];
+    end
+
+    if reverse then
+        return nameA:lower() > nameB:lower();
+    end
+    return nameA:lower() < nameB:lower();
+end
+
+local function CompareCompletion(a, b, reverse, default)
+    local completedA, completedB = false, false;
+    if a then
+        completedA = select(4, GetAchievementInfo(a.ID));
+    end
+    if b then
+        completedB = select(4, GetAchievementInfo(b.ID));
+    end
+
+    if completedA == completedB then
+        if reverse then
+            return default[a] > default[b];
+        end
+        return default[a] < default[b];
+    end
+
+    if reverse then
+        return completedB;
+    end
+    return completedA;
+end
+
+local function CompareId(a, b, reverse, default)
+    if reverse then
+        return a.ID > b.ID
+    end
+    return a.ID < b.ID;
+end
+
+function filterButton:Sort(achievements, defaultOrder)
+	local filters = self:GetFilters();
+	local criteria = filters.SortBy.Criteria;
+	local reverse = filters.SortBy.ReverseSort;
+
+    local sortFun;
+    if criteria == addon.L["Name"] then
+        sortFun = CompareName;
+	elseif criteria == addon.L["Completion"] then
+        sortFun = CompareCompletion;
+	elseif criteria == addon.L["ID"] then
+        sortFun = CompareId;
+	else -- criteria == addon.L["Default"]
+        if reverse then
+			local tmpTbl = {};
+			for i = #achievements, 1, -1 do
+				tinsert(tmpTbl, achievements[i]);
+			end
+			return tmpTbl;
+		end
+        return achievements;
+	end
+
+    table.sort(achievements, function(a, b)
+        return sortFun(a, b, reverse, defaultOrder);
+    end);
+    return achievements;
+end

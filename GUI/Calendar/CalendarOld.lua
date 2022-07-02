@@ -56,7 +56,7 @@ end
 -- end
 
 -- local function OnAchievementButtonClick(self)
---     gui.AchievementsFrame:SelectAchievementFromID(self.Achievement.ID, nil, true);
+--     KrowiAF_SelectAchievementFromID(self.Achievement.ID, nil, true);
 -- end
 
 -- local function CreateAchievementButton(dayButton, i, anchor, offsX, offsY)

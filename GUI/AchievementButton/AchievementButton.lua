@@ -344,7 +344,7 @@ local function AddGoToAchievementLine(goTo, id, achievementsFrame, nameSuffix)
 	end
 	goTo:AddFull({ Text = name .. nameSuffix,
 					Func = function()
-						achievementsFrame:SelectAchievementFromID(id, nil, true);
+						KrowiAF_SelectAchievementFromID(id, nil, true);
 						rightClickMenu:Close();
 					end,
 					Disabled = disabled
@@ -354,7 +354,7 @@ end
 local function AddGoToAchievementWithCategoryLine(goTo, achievement, category, achievementsFrame)
 	goTo:AddFull({ Text = category:GetPath(),
 					Func = function()
-						achievementsFrame:SelectAchievementWithCategory(achievement, category, nil, true);
+						KrowiAF_SelectAchievementWithCategory(achievement, category, nil, true);
 						rightClickMenu:Close();
 					end,
 					-- Disabled = disabled

@@ -1,5 +1,5 @@
 -- [[ Namespaces ]] --
-local _, addon = ...;
+local addonName, addon = ...;
 local diagnostics = addon.Diagnostics;
 local data = addon.Data;
 data.SavedData = {};
@@ -34,7 +34,7 @@ function savedData.TabsOrderAddIfNotContains(id, addonDisplayName, tabDisplayNam
                 if tab.Order == id then
                     addon.Options.db.Tabs[i].Order = addon.Options.db.Tabs[value].Order;
                 end
-             end
+            end
             addon.Options.db.Tabs[value].Order = id;
             addon.GUI.ShowHideTabs();
         end
@@ -78,6 +78,25 @@ function savedData.TabsOrderGetActiveKeys()
         -- print(properIndex, order[1], order[2], addon.Options.db.Tabs[order[2]].Order)
         addon.Options.db.Tabs[order[2]].Order = properIndex;
         properIndex = properIndex + 1;
+    end
+
+    SavedData.FirstTimeSetUp = SavedData.FirstTimeSetUp or {};
+
+    if not SavedData.FirstTimeSetUp.SwitchAchievementTabs then
+        local blizzAchId, addonAchId = 1, 1;
+        for i, _ in next, addon.Options.db.Tabs do
+            if addon.Options.db.Tabs[i].AddonName == "Blizzard_AchievementUI" and addon.Options.db.Tabs[i].TabName == "Achievements" then
+                blizzAchId = i;
+            end
+            if addon.Options.db.Tabs[i].AddonName == addonName and addon.Options.db.Tabs[i].TabName == "Achievements" then
+                addonAchId = i;
+            end
+        end
+        local tmpOrder = addon.Options.db.Tabs[blizzAchId].Order;
+        addon.Options.db.Tabs[blizzAchId].Order = addon.Options.db.Tabs[addonAchId].Order;
+        addon.Options.db.Tabs[addonAchId].Order = tmpOrder;
+        addon.Options.db.MicroButtonTab = addonAchId;
+        SavedData.FirstTimeSetUp.SwitchAchievementTabs = true;
     end
 
     needsCleanup = nil;

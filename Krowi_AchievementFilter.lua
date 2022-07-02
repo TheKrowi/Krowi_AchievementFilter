@@ -52,8 +52,6 @@ function loadHelper:OnEvent(event, arg1, arg2)
 
             addon.Icon.Load();
             addon.Tutorials.Load();
-
-            -- addon.ChangeAchievementMicroButtonOnClick();
         elseif arg1 == "Blizzard_AchievementUI" then -- This needs the Blizzard_AchievementUI addon available to load
             addon.Data.Load();
 
@@ -80,6 +78,10 @@ function loadHelper:OnEvent(event, arg1, arg2)
                 print(mapID);
             end);
         end
+
+        -- addon.Diagnostics.DebugTable(AchievementMicroButtonMixin);
+        -- addon.HookAchievementMicroButtonOnEvent();
+        addon.ChangeAchievementMicroButtonOnClick();
         -- addon.Diagnostics.DebugTable(addon.Objects.TimeDisplay);
     elseif event == "PLAYER_ENTERING_WORLD" then
         -- addon.Diagnostics.Debug("PLAYER_ENTERING_WORLD");

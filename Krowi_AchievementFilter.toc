@@ -13,6 +13,8 @@
 ## X-WoWInterface: https://www.wowinterface.com/downloads/info26229-KrowisAchievementFilter
 ## X-WoWInterface-Project-ID: 26229
 
+API.lua
+
 Libs/Files.xml
 
 Plugins/Files.xml

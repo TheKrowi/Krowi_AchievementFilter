@@ -1,0 +1,63 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\..\FrameXML\UI.xsd">
+
+    <!-- Originally from Blizzard_AchievementUI.xml line 1806 at time of writing -->
+	<Frame name="KrowiAF_AchievementFrameAchievementsFrame_Template" virtual="true" hidden="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground" parentKey="Background" file="Interface\AchievementFrame\UI-Achievement-AchievementBackground">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="3" y="-3"/>
+						<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
+					</Anchors>
+					<TexCoords left="0" right="1" top="0" bottom="0.5"/>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parentText" parentKey="Text" inherits="GameFontHighlight">
+					<Size x="490" y="0"/>
+					<Anchors>
+						<Anchor point="TOP" x="0" y="-189"/>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentArtwork" parentKey="Artwork">
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+						<Anchor point="BOTTOMRIGHT"/>
+					</Anchors>
+					<Color r="0" g="0" b="0" a="0.75"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnShow function="KrowiAF_AchievementFrameAchievementsFrame_OnShow"/>
+			<OnHide function="KrowiAF_AchievementFrameAchievementsFrame_OnHide"/>
+            <OnLoad>
+
+            </OnLoad>
+		</Scripts>
+		<Frames>
+			<ScrollFrame name="$parentContainer" parentKey="Container" inherits="HybridScrollFrameTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="4" y="-3"/>
+					<Anchor point="BOTTOMRIGHT" x="0" y="5"/>
+				</Anchors>
+				<Frames>
+					<Slider name="$parentScrollBar" parentKey="ScrollBar" inherits="HybridScrollBarTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="1" y="-16"/>
+							<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="1" y="12"/>
+						</Anchors>
+                        <Scripts>
+                            <OnLoad>
+                                self.trackBG:Show();
+                                self.trackBG:SetVertexColor(0, 0, 0, 1);
+                            </OnLoad>
+                        </Scripts>
+					</Slider>
+				</Frames>
+			</ScrollFrame>
+			<Frame name="$parentBorder" parentKey="Border" setAllPoints="true" inherits="AchivementGoldBorderBackdrop"/>
+		</Frames>
+	</Frame>
+
+</Ui>

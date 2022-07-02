@@ -27,7 +27,7 @@ function gui:LoadWithBlizzard_AchievementUI()
     gui.AddDataToBlizzardTabs();
 
     for _, t in next, addon.TabsOrder do
-        addon.Tabs[t].Button = gui.AchievementFrameTabButton:New(addonName, addon.Tabs[t].Name, addon.Tabs[t].Text, {gui.FilterButton, gui.Search.SearchBoxFrame}, gui.AchievementsFrame, gui.CategoriesFrame, addon.Tabs[t].Categories, addon.Tabs[t].Filters);
+        addon.Tabs[t].Button = gui.AchievementFrameTabButton:New(addonName, addon.Tabs[t].Name, addon.Tabs[t].BindingName, addon.Tabs[t].Text, {gui.FilterButton, gui.Search.SearchBoxFrame}, gui.AchievementsFrame, gui.CategoriesFrame, addon.Tabs[t].Categories, addon.Tabs[t].Filters);
     end
 
     local activeCalendarEvents = addon.EventData.GetActiveCalendarEvents();
@@ -157,13 +157,24 @@ function gui.ResetView()
     end
 end
 
-function gui.SelectTab(tabName)
-    if addon.Tabs[tabName] ~= nil and addon.Tabs[tabName].Button ~= nil then
-        addon.Tabs[tabName].Button:Select();
+function gui.SelectTab(_addonName, tabName)
+    -- if addon.Tabs[tabName] ~= nil and addon.Tabs[tabName].Button ~= nil then
+    --     addon.Tabs[tabName].Button:Select();
+    -- end
+    for i, tab in next, addon.Options.db.Tabs do
+        if tab.AddonName == _addonName and tab.TabName == tabName then
+            if _G["AchievementFrameTab" .. i] then
+                if _G["AchievementFrameTab" .. i].Select then
+                    _G["AchievementFrameTab" .. i]:Select(); -- Addon tabs
+                else
+                    _G["AchievementFrameTab" .. i]:Click(); -- Other tabs
+                end
+            end
+        end
     end
 end
 
-function gui.ToggleAchievementFrame(tabName, resetView, forceOpen) -- Issue #26 Broken, Fix
+function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -- Issue #26 Broken, Fix
     diagnostics.Trace("gui.ToggleAchievementFrame");
 
     if not IsAddOnLoaded("Blizzard_AchievementUI") then
@@ -175,9 +186,9 @@ function gui.ToggleAchievementFrame(tabName, resetView, forceOpen) -- Issue #26 
 
     local tabIsSelected;
     if gui.SelectedTab then
-       if gui.SelectedTab.Name == tabName then
-        tabIsSelected = true;
-       end
+        if gui.SelectedTab.AddonName == _addonName and  gui.SelectedTab.Name == tabName then
+            tabIsSelected = true;
+        end
     end
 
 	if AchievementFrame:IsShown() and tabIsSelected and not resetView and not forceOpen then
@@ -186,15 +197,15 @@ function gui.ToggleAchievementFrame(tabName, resetView, forceOpen) -- Issue #26 
         AchievementFrame_SetTabs();
 		ShowUIPanel(AchievementFrame);
         AchievementFrame_HideSearchPreview();
-        gui.SelectTab(tabName);
+        gui.SelectTab(_addonName, tabName);
         if addon.Options.db.ResetViewOnOpen or resetView then
             gui.ResetView();
         end
 	end
 end
 
-function KrowiAF_ToggleAchievementFrame(tabName)
-    gui.ToggleAchievementFrame(tabName);
+function KrowiAF_ToggleAchievementFrame(_addonName, tabName)
+    gui.ToggleAchievementFrame(_addonName, tabName);
 end
 
 function gui.UpdateEventRuntime(self)

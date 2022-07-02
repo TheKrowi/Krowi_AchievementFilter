@@ -22,6 +22,6 @@ function OnClick(self)
 
     if self.Achievement then
         search.FullSearchResultsFrame:Hide();
-        gui.AchievementsFrame:SelectAchievement(self.Achievement, nil, true);
+        KrowiAF_SelectAchievement(self.Achievement, nil, true);
 	end
 end

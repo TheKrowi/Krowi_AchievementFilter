@@ -465,21 +465,35 @@ function addon.GetText1Or2(test, text1, lower1, color1, text2, lower2, color2)
     return GetTextColorLower(text2, lower2 or lower1, color2 or color1);
 end
 
-function addon.ChangeAchievementMicroButtonOnClick()
-    AchievementMicroButton:SetScript("OnClick", function(self)
-        print(self:GetName());
-    end);
-end
+-- function addon.HookAchievementMicroButtonOnEvent()
+--     hooksecurefunc(AchievementMicroButton, "OnEvent", function()
+--         AchievementMicroButton.tooltipText = MicroButtonTooltipText(ACHIEVEMENT_BUTTON, SavedData.BindingName);
+--         print("HookAchievementMicroButtonOnEvent");
+--     end);
+-- end
 
-function KrowiAF_FireEvent(event, ...)
-    event=event:upper();--  Events are always uppercase
-    local list={GetFramesRegisteredForEvent(event)};--  Get list of frames
-    for _,frame in ipairs(list) do
-        local func=frame:GetScript("OnEvent");--    Get OnEvent handler
-        if func then 
-            print(frame:GetName());
-        end--   Run it if there is one
+function addon.ChangeAchievementMicroButtonOnClick()
+    addon.Data.SavedData.TabsOrderGetActiveKeys(); -- Cleanup unused tabs
+    local tab = addon.Options.db.Tabs[addon.Options.db.MicroButtonTab];
+    AchievementMicroButton:SetScript("OnClick", function(self)
+        addon.GUI.ToggleAchievementFrame(tab.AddonName, tab.TabName);
+    end);
+    if tab.BindingName then
+        SavedData.BindingName = tab.BindingName;
+        SetBinding("Y", tab.BindingName);
+        SaveBindings(GetCurrentBindingSet());
     end
 end
+
+-- function KrowiAF_FireEvent(event, ...)
+--     event=event:upper();--  Events are always uppercase
+--     local list={GetFramesRegisteredForEvent(event)};--  Get list of frames
+--     for _,frame in ipairs(list) do
+--         local func=frame:GetScript("OnEvent");--    Get OnEvent handler
+--         if func then 
+--             print(frame:GetName());
+--         end--   Run it if there is one
+--     end
+-- end
 
 -- /run KrowiAF_FireEvent("ACHIEVEMENT_EARNED");

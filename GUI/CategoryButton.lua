@@ -22,9 +22,9 @@ function OnClick(self, quick)
 
 	if self.Category.IsSummary then
 		KrowiAF_AchievementsSummaryFrame:Show();
-		KrowiAF_AchievementFrameAchievements:Hide();
+		KrowiAF_AchievementFrameAchievementsFrame:Hide();
 	else
-		KrowiAF_AchievementFrameAchievements:Show();
+		KrowiAF_AchievementFrameAchievementsFrame:Show();
 		KrowiAF_AchievementsSummaryFrame:Hide();
 	end
     gui.CategoriesFrame:SelectButton(self, quick);

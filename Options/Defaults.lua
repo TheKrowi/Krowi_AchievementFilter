@@ -6,6 +6,7 @@ options.Defaults = {
     profile = {
         ShowMinimapIcon = false,
         ResetViewOnOpen = false,
+        MicroButtonTab = 1,
         EnableDebugInfo = false,
         EnableTraceInfo = false,
         ShowPlaceholdersFilter = false,
@@ -25,6 +26,7 @@ options.Defaults = {
             {
                 AddonName = "Blizzard_AchievementUI",
                 TabName = "Achievements",
+                BindingName = "TOGGLEACHIEVEMENT",
                 Show = false
             },
             {
@@ -35,6 +37,7 @@ options.Defaults = {
             {
                 AddonName = "Blizzard_AchievementUI",
                 TabName = "Statistics",
+                BindingName = "TOGGLESTATISTICS",
                 Show = true
             }
         },

@@ -359,7 +359,7 @@ function KrowiAF_AchievementFrameSummaryAchievement_OnClick(self, button, down)
     if self.Achievement == nil then
         return;
     end
-    gui.AchievementsFrame:SelectAchievementFromID(self.Achievement.ID, nil, true);
+    KrowiAF_SelectAchievementFromID(self.Achievement.ID, nil, true);
 end
 
 function KrowiAF_AchievementFrameSummaryAchievement_OnEnter(self, button, down)
@@ -488,7 +488,7 @@ function summary.CategoriesStatusBar_Update(event)
     KrowiAF_AchievementsSummaryFrameCategoriesHeader:SetPoint("TOPRIGHT", KrowiAF_AchievementsSummaryFrame, "BOTTOMRIGHT", 0, offset);
 end
 
-local numLastCompleted = 25;
+local numLastCompleted = 25; -- Default value in case of errors
 local function BuildLastCompleted(event)
     numLastCompleted = addon.Options.db.Categories.Summary.NumAchievements;
     if type(SavedData.Characters[UnitGUID("player")].LastCompleted) == "table"
