@@ -478,11 +478,6 @@ function addon.ChangeAchievementMicroButtonOnClick()
     AchievementMicroButton:SetScript("OnClick", function(self)
         addon.GUI.ToggleAchievementFrame(tab.AddonName, tab.TabName);
     end);
-    if tab.BindingName then
-        SavedData.BindingName = tab.BindingName;
-        SetBinding("Y", tab.BindingName);
-        SaveBindings(GetCurrentBindingSet());
-    end
 end
 
 -- function KrowiAF_FireEvent(event, ...)

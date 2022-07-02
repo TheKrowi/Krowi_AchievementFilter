@@ -145,6 +145,15 @@ local function SetObjectivesProgressShow()
     options.Debug(addon.L["Show Objectives progress"], addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show);
 end
 
+local wowheadRelatedTabs = {
+    addon.L["None"],
+    addon.L["Criteria of"],
+    addon.L["Guides"],
+    addon.L["News"],
+    addon.L["Comments"],
+    addon.L["Screenshots"]
+};
+
 options.OptionsTable.args["Layout"] = {
     type = "group",
     childGroups = "tab",
@@ -635,7 +644,43 @@ options.OptionsTable.args["Layout"] = {
                         addon.Options.db.RightClickMenu.ShowButtonOnAchievement = not addon.Options.db.RightClickMenu.ShowButtonOnAchievement;
                         options.Debug(addon.L["Show Right Click Menu"], addon.Options.db.RightClickMenu.ShowButtonOnAchievement);
                     end
-                }
+                },
+                Wowhead = {
+                    order = 2, type = "group",
+                    name = addon.L["Wowhead Link"],
+                    desc = addon.L["Wowhead Link"],
+                    inline = true,
+                    args = {
+                        AddLocale = {
+                            order = 1, type = "toggle", width = "full",
+                            name = addon.L["Add Locale"],
+                            desc = addon.Util.ReplaceVars {
+                                addon.L["Add Locale Desc"],
+                                wowheadLink = addon.L["Wowhead Link"]
+                            },
+                            get = function() return addon.Options.db.RightClickMenu.WowheadLink.AddLocale; end,
+                            set = function()
+                                addon.Options.db.RightClickMenu.WowheadLink.AddLocale = not addon.Options.db.RightClickMenu.WowheadLink.AddLocale;
+                                options.Debug(addon.L["Add Locale"], addon.Options.db.RightClickMenu.WowheadLink.AddLocale);
+                            end
+                        },
+                        AddRelatedTab = {
+                            order = 2, type = "select", width = 1.5,
+                            name = addon.L["Related Tab"],
+                            desc = addon.Util.ReplaceVars {
+                                addon.L["Related Tab Desc"],
+                                wowheadLink = addon.L["Wowhead Link"]
+                            },
+                            values = wowheadRelatedTabs,
+                            get = function() return addon.Options.db.RightClickMenu.WowheadLink.AddRelatedTab; end,
+                            set = function (_, value)
+                                if addon.Options.db.RightClickMenu.WowheadLink.AddRelatedTab == value then return; end;
+                                addon.Options.db.RightClickMenu.WowheadLink.AddRelatedTab = value;
+                                options.Debug(addon.L["Related Tab"], addon.Options.db.RightClickMenu.WowheadLink.AddRelatedTab);
+                            end
+                        }
+                    }
+                },
             }
         }
     }

@@ -58,7 +58,11 @@ options.Defaults = {
             ButtonCollapsedHeight = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT or 84 -- can return nil
         },
         RightClickMenu = {
-            ShowButtonOnAchievement = false
+            ShowButtonOnAchievement = false,
+            WowheadLink = {
+                AddLocale = true,
+                AddRelatedTab = 1
+            }
         },
         Tooltip = {
             Categories = {

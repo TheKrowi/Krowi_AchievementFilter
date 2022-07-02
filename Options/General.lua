@@ -169,7 +169,7 @@ options.OptionsTable.args["General"] = {
                 },
                 Blank12 = {order = 1.2, type = "description", width = 1.5, name = ""},
                 RebindMicroButton = {
-                    order = 2, type = "select", width = 2,
+                    order = 2.1, type = "select", width = 2,
                     name = addon.L["Rebind Micro Button"],
                     desc = addon.L["Rebind Micro Button Desc"],
                     values = function() return addon.Data.SavedData.TabsOrderGetActiveKeys(); end,
@@ -181,7 +181,23 @@ options.OptionsTable.args["General"] = {
                         addon.ChangeAchievementMicroButtonOnClick();
                         options.Debug(addon.L["Rebind Micro Button"], addon.Options.db.MicroButtonTab);
                     end
-                }
+                },
+                Discord = {
+                    order = 2.2, type = "execute",
+                    name = addon.L["Set Keybind"],
+                    desc = addon.Util.ReplaceVars {
+                        addon.L["Set Keybind Desc"],
+                        keyBindings = addon.L["Key Bindings"]
+                    },
+                    func = function()
+                        local tab = addon.Options.db.Tabs[addon.Options.db.MicroButtonTab];
+                        if tab.BindingName then
+                            SavedData.BindingName = tab.BindingName;
+                            SetBinding("Y", tab.BindingName);
+                            SaveBindings(GetCurrentBindingSet());
+                        end
+                    end
+                },
             }
         },
         Search = {

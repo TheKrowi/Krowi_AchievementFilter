@@ -39,7 +39,7 @@ function categoriesFrame:Load()
 		frame:Update(); -- Issue #12: Broken
 	end
 
-	HybridScrollFrame_CreateButtons(scrollFrame, "KrowiAF_AchievementCategoryButton_Template", -4, 0, "TOPRIGHT", "TOPRIGHT", 0, 0, "TOPRIGHT", "BOTTOMRIGHT");
+	HybridScrollFrame_CreateButtons(scrollFrame, "KrowiAF_AchievementFrameCategoriesFrameCategoryButton_Template", -4, 0, "TOPRIGHT", "TOPRIGHT", 0, 0, "TOPRIGHT", "BOTTOMRIGHT");
 	addon.GUI.CategoryButton.PostLoadButtons(frame);
 
 	addon.GUI.CategoriesFrame = frame; -- Overwrite with the actual frame since all functions are injected to it

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-07-01 14-46-03 ]] --
+-- [[ Exported at 2022-07-03 00-08-21 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -6,7 +6,7 @@
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
-local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true, true);
+local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true, false);
 
 local tab = "|T:1:8|t";
 L["TAB"] = tab;
@@ -219,8 +219,6 @@ L["Show Not Obtainable"] = "Show {notObtainable}";
 L["Show Not Obtainable Desc"] = "Show / hide {notObtainable} achievements in red on the progress bar.";
 L["Merge small categories threshold"] = "Merge small categories threshold";
 L["Merge small categories threshold Desc"] = "Categories with a number of achievements lower than this number will merge into the parent category.\n\nOnly preset categories can merge (mostly child categories from zones). This might have an impac (1) on the game.\n\n(1) FPS drops and stuttering while adjusting the value, NOT during normal addon use";
-L["Number of summary achievements"] = "Number of summary achievements";
-L["Number of summary achievements Desc"] = "The number of achievements that will be shown in the summary view of each tab.";
 L["Style"] = "Style";
 L["Compact Achievements"] = "Compact Achievements";
 L["Compact Achievements Desc"] = "Achievements are 2/3rd the size, similar to the summary achievements.\n\n{reloadRequired}";
@@ -334,4 +332,21 @@ L["Greyhoof"] = "Greyhoof";
 L["Lucky Yi"] = "Lucky Yi";
 L["Ka'wi the Gorger"] = "Ka'wi the Gorger";
 L["Nitun"] = "Nitun";
+L["Number of summary achievements"] = "Number of summary achievements";
+L["Number of summary achievements Desc"] = "The number of achievements that will be shown in the summary view of each tab.";
+L["Rebind Micro Button"] = "Rebind Micro Button";
+L["Rebind Micro Button Desc"] = "Rebind the Achievements micro button to open a different tab than the default one.";
+L["Set Keybind"] = "Set Keybind";
+L["Set Keybind Desc"] = "Set the keybind for the selected tab to 'Y'. This will unbind all other actions bound to 'Y'. Different key binding can be set in the regular {keyBindings}.";
+L["Criteria of"] = "Criteria of";
+L["Guides"] = "Guides";
+L["News"] = "News";
+L["Comments"] = "Comments";
+L["Wowhead Link"] = "Wowhead Link";
+L["Screenshots"] = "Screenshots";
+L["Add Locale"] = "Add Locale";
+L["Add Locale Desc"] = "Add the current game's locale to the {wowheadLink}.";
+L["Related Tab"] = "Related Tab";
+L["Related Tab Desc"] = "Adds an extra bit to the {wowheadLink} so another tab different than the default one will be selected.";
+L["Torghast"] = "Torghast";
 

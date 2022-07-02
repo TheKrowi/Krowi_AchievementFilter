@@ -33,7 +33,7 @@ function achievementsFrame:Load()
 		frame:Update();
 	end
 
-	local template = addon.Options.db.Achievements.Compact and "KrowiAF_Small_AchievementButton_Template" or "KrowiAF_AchievementButton_Template";
+	local template = "KrowiAF_AchievementFrameAchievementsFrameAchievementButton" .. (addon.Options.db.Achievements.Compact and "_Small" or "") .. "_Template";
 	HybridScrollFrame_CreateButtons(scrollFrame, template, 0, -2);
 	addon.GUI.AchievementButton:PostLoadButtons(frame);
 
@@ -71,7 +71,7 @@ function achievementsFrame.Show_Hide(frame, func, _achievementsWidth, _achieveme
 	for _, button in next, buttons do
 		button:SetWidth(_achievementsWidth - _achievementsButtonOffset);
 	end
-	
+
 	func(scrollFrame.ScrollBar);
 end
 

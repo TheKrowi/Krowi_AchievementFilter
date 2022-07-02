@@ -57,4 +57,5 @@ function globalStrings.Load(L)
     L["Close"] = CLOSE;
     L["Summary"] = ACHIEVEMENT_SUMMARY_CATEGORY;
     L["Achievements Earned"] = ACHIEVEMENTS_COMPLETED;
+    L["Key Bindings"] = KEY_BINDINGS;
 end

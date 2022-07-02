@@ -129,7 +129,7 @@ function AddBlizzardDefault(self, earnedBy, notEarnedBy)
 			GameTooltip:AddLine(format(ACHIEVEMENT_EARNED_BY, earnedBy), nil, nil, nil, true);
 		end
 		if notEarnedBy ~= "" then
-			GameTooltip:AddLine(format(addon.L["Not earned by: "], notEarnedBy), nil, nil, nil, true);
+			GameTooltip:AddLine(format(addon.L["Not earned by:"], notEarnedBy), nil, nil, nil, true);
 		end
 	-- end
 end

@@ -1,6 +1,8 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\..\FrameXML\UI.xsd">
 
+    <Include file="GUI/Templates/AchievementButton.xml" />
     <Include file="GUI/Templates/AchievementsFrame.xml" />
+    <Include file="GUI/Templates/CategoryButton.xml" />
     <Include file="GUI/Templates/CategoriesFrame.xml" />
     <Include file="GUI/Templates/Templates.xml" />
     

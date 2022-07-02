@@ -1,4 +1,4 @@
--- [[ Exported at 2022-07-01 14-46-03 ]] --
+-- [[ Exported at 2022-07-03 00-08-21 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -209,4 +209,5 @@ L["Greyhoof"] = "Grauhuf";
 L["Lucky Yi"] = "Glückspilz Yi";
 L["Ka'wi the Gorger"] = "Ka'wi der Schlinger";
 L["Nitun"] = "Nitun";
+L["Torghast"] = "Torghast";
 
