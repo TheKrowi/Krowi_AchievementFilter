@@ -1,0 +1,130 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\..\FrameXML\UI.xsd">
+
+	<Frame name="KrowiAF_AchievementFrameSummaryFrame_Template" virtual="true" hidden="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground" parentKey="Background" file="Interface\AchievementFrame\UI-Achievement-AchievementBackground">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="3" y="-3"/>
+						<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
+					</Anchors>
+					<TexCoords left="0" right="1" top="0" bottom="0.5"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame setAllPoints="true" inherits="AchivementGoldBorderBackdrop"/>
+			<Frame name="$parentAchievements" parentKey="Achievements">
+				<Size x="0" y="210"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" x="5" y="-10"/>
+					<Anchor point="TOPRIGHT" x="-5" y="-10"/>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<FontString name="$parentEmptyText" parentKey="EmptyText" inherits="GameFontHighlight" text="NO_COMPLETED_ACHIEVEMENTS">
+							<Anchors>
+								<Anchor point="TOP" x="0" y="-30"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Frame name="$parentHeader" parentKey="Header">
+						<Size x="0" y="20"/>
+						<Anchors>
+							<Anchor point="TOPLEFT" x="0" y="0"/>
+							<Anchor point="TOPRIGHT" x="0" y="0"/>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture name="$parentHeader" parentKey="Texture" file="Interface\AchievementFrame\UI-Achievement-RecentHeader">
+									<Anchors>
+										<Anchor point="TOPLEFT" x="-20" y="0"/>
+										<Anchor point="BOTTOMRIGHT" x="20" y="0"/>
+									</Anchors>
+									<TexCoords left="0" right="1" top="0" bottom="0.71875"/>
+								</Texture>
+								<FontString name="$parentTitle" parentKey="Title" inherits="GameFontNormal" text="LATEST_UNLOCKED_ACHIEVEMENTS">
+									<Size x="0" y="20"/>
+									<Anchors>
+										<Anchor point="CENTER" x="0" y="0"/>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Frame>
+				</Frames>
+			</Frame>
+			<Frame name="$parentCategories" parentKey="Categories">
+				<Size x="0" y="164"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT" x="0" y="0"/>
+					<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT" x="0" y="0"/>
+				</Anchors>
+				<Frames>
+					<Frame name="$parentHeader" parentKey="Header">
+						<Size x="0" y="20"/>
+						<Anchors>
+							<Anchor point="TOPLEFT" x="0" y="0"/>
+							<Anchor point="TOPRIGHT" x="0" y="0"/>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture name="$parentTexture" parentKey="Texture" file="Interface\AchievementFrame\UI-Achievement-RecentHeader">
+									<Anchors>
+										<Anchor point="TOPLEFT" x="-20" y="0"/>
+										<Anchor point="BOTTOMRIGHT" x="20" y="0"/>
+									</Anchors>
+									<TexCoords left="0" right="1" top="0" bottom="0.71875"/>
+								</Texture>
+								<FontString name="$parentTitle" parentKey="Title" inherits="GameFontNormal" text="ACHIEVEMENT_CATEGORY_PROGRESS">
+									<Size x="0" y="20"/>
+									<Anchors>
+										<Anchor point="CENTER" x="0" y="0"/>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Frame>
+				</Frames>
+			</Frame>
+			<Frame name="$parentScrollFrameBorder" parentKey="ScrollFrameBorder" inherits="AchivementGoldBorderBackdrop">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentAchievementsHeader" relativePoint="BOTTOMLEFT" x="9" y="-5"/>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parentCategoriesHeader" relativePoint="TOPRIGHT" x="-14" y="5"/>
+				</Anchors>
+				<Frames>
+					<ScrollFrame name="$parentContainer" parentKey="Container" inherits="HybridScrollFrameTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" x="0" y="-5"/>
+							<Anchor point="BOTTOMRIGHT" x="0" y="5"/>
+						</Anchors>
+						<Frames>
+							<Slider name="$parentScrollBar" parentKey="ScrollBar" inherits="HybridScrollBarTemplate">
+								<Anchors>
+									<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="1" y="-13"/>
+									<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="1" y="11"/>
+								</Anchors>
+								<Scripts>
+									<OnLoad>
+										self.trackBG:Show();
+										self.trackBG:SetVertexColor(0, 0, 0, 1);
+									</OnLoad>
+								</Scripts>
+							</Slider>
+						</Frames>
+					</ScrollFrame>					
+				</Frames>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				self:RegisterEvent("ACHIEVEMENT_EARNED");
+			</OnLoad>
+			<OnEvent function="KrowiAF_AchievementFrameSummaryFrame_Update"/>
+			<OnShow function="KrowiAF_AchievementFrameSummaryFrame_OnShow"/>
+		</Scripts>
+	</Frame>
+
+</Ui>

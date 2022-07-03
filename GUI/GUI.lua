@@ -19,6 +19,7 @@ function gui:LoadWithBlizzard_AchievementUI()
     gui.Calendar.Load();
 
     gui.AchievementsFrame:Load();
+    addon.GUI.SummaryFrame:Load();
     gui.CategoriesFrame:Load();
     gui.FilterButton:Load();
 
@@ -51,8 +52,6 @@ function gui:LoadWithBlizzard_AchievementUI()
     self.ResetAchievementFrameHeight();
 
     CreateAchievementPointsTooltip();
-
-    gui.AchievementsSummary.Load();
 
     diagnostics.Debug("GUI loaded");
 end

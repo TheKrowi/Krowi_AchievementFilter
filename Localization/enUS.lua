@@ -1,4 +1,4 @@
--- [[ Exported at 2022-07-03 00-08-21 ]] --
+-- [[ Exported at 2022-07-03 10-18-57 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -6,7 +6,7 @@
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
-local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true, false);
+local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true, true);
 
 local tab = "|T:1:8|t";
 L["TAB"] = tab;
@@ -39,6 +39,7 @@ L["Special Categories"] = "Special Categories";
 L["Current Zone"] = "Current Zone";
 L["Selected Zone"] = "Selected Zone";
 L["View Tutorial"] = "View Tutorial";
+L["Show placeholders"] = "Show placeholders";
 L["Brawler's Guild"] = "Brawler's Guild";
 L["Buildings"] = "Buildings";
 L["Bur's Mount Collection"] = "Bur's Mount Collection";

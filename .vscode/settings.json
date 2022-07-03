@@ -302,7 +302,8 @@
         "MicroButtonTooltipText",
         "ACHIEVEMENT_BUTTON",
         "AchievementMicroButtonMixin",
-        "KrowiAF_AchievementFrameAchievementsFrame"
+        "KrowiAF_AchievementFrameAchievementsFrame",
+        "KrowiAF_AchievementFrameSummaryFrame"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

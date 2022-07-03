@@ -74,7 +74,7 @@ function categoriesFrame.Show_Hide(frame, func, _categoriesWidth, achievementsOf
 	frame:SetWidth(_categoriesWidth);
 	scrollFrame:GetScrollChild():SetWidth(_categoriesWidth);
 	addon.GUI.AchievementsFrame:SetPoint("TOPLEFT", frame, "TOPRIGHT", achievementsOffsetX, 0);
-	KrowiAF_AchievementsSummaryFrame:SetPoint("TOPLEFT", frame, "TOPRIGHT", achievementsOffsetX, 0);
+	addon.GUI.SummaryFrame:SetPoint("TOPLEFT", frame, "TOPRIGHT", achievementsOffsetX, 0);
 	AchievementFrameWaterMark:SetWidth(_categoriesWidth - _watermarkWidthOffset);
 	AchievementFrameWaterMark:SetTexCoord(0, (_categoriesWidth - _watermarkWidthOffset)/256, 0, 1);
 	AchievementFrameCategoriesBG:SetWidth(_categoriesWidth - 2); -- Offset of 2 needed to compensate with Blizzard tabs

@@ -201,7 +201,7 @@ end
 local function UpdateAchievementFrame()
     gui.CategoriesFrame:Update(true);
     gui.AchievementsFrame:ForceUpdate(true); -- Issue #27: Fix
-    KrowiAF_AchievementFrameSummary_Update();
+    gui.SummaryFrame:Update();
 end
 
 local function StateIsUndecided(keys)

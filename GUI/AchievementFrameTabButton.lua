@@ -92,11 +92,11 @@ function achFrameTabBtn:Base_OnClick(id)
 
     AchievementFrame_ShowSubFrame(unpack(self.FramesToShow));
     if self.SelectedCategory.IsSummary then
-		KrowiAF_AchievementsSummaryFrame:Show();
+		KrowiAF_AchievementFrameSummaryFrame:Show();
 		KrowiAF_AchievementFrameAchievementsFrame:Hide();
 	else
 		KrowiAF_AchievementFrameAchievementsFrame:Show();
-		KrowiAF_AchievementsSummaryFrame:Hide();
+		KrowiAF_AchievementFrameSummaryFrame:Hide();
 	end
     AchievementFrameWaterMark:SetTexture("Interface\\AchievementFrame\\UI-Achievement-AchievementWatermark");
 

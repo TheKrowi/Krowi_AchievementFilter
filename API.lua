@@ -1,27 +1,36 @@
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
 
+local loops, maxLoops = 0, 1000;
 function KrowiAF_SelectAchievementWithCategory(achievement, category, mouseButton, ignoreModifiers, anchor, offsetX, offsetY)
 	if mouseButton == nil then
 		mouseButton = "LeftButton";
 	end
 
-	local selectedTab = addon.GUI.SelectedTab;
-	local selectedAchievement = selectedTab.SelectedAchievement;
 	local scrollFrame = addon.GUI.AchievementsFrame.Container;
 	local scrollBar = scrollFrame.ScrollBar;
-	local buttons = scrollFrame.buttons;
 
 	KrowiAF_SelectCategory(category);
 	scrollBar:SetValue(0); -- Makes sure the scrollbar is at the top since this can be in a diff location if the category is already selected
 
+	local selectedTab = addon.GUI.SelectedTab; -- This changes when calling KrowiAF_SelectCategory
+
 	-- Select achievement
 	local shown = false;
 	local previousScrollValue;
+	local buttons;
+	local selectedAchievement;
 
 	while not shown do
+		loops = loops + 1;
+		if loops > maxLoops then
+			loops = 0;
+			error("Too many loops", 1)
+		end
+		buttons = scrollFrame.buttons;
 		for _, button in next, buttons do
 			if button.id == achievement.ID and math.ceil(button:GetTop()) >= math.ceil(addon.GUI.GetSafeScrollChildBottom(scrollFrame)) then
+				selectedAchievement = selectedTab.SelectedAchievement;
 				if not (selectedAchievement and selectedAchievement.ID == achievement.ID) then
 					button:Click(mouseButton, nil, ignoreModifiers, anchor, offsetX, offsetY);
 				end
@@ -122,10 +131,13 @@ end
 function KrowiAF_SelectCategory(category, collapsed)
 	local filterButton = addon.GUI.FilterButton;
 	if filterButton and filterButton.Filters.db.MergeSmallCategories then
+		print("get merged parent", category.Name, category.Merged);
 		while category.Merged do
+			print("get merged parent", category.Name, category.Merged);
 			category = category.Parent;
 		end
 	end
+	print("found merged parent", category.Name, category.Merged);
 
 	local categoriesTree = category:GetTree();
 
@@ -136,6 +148,7 @@ function KrowiAF_SelectCategory(category, collapsed)
 	for i, cat in next, categoriesTree do
 		if cat.TabName == nil then
 			if not cat.IsSelected or (cat.NotCollapsed == collapsed) then -- Issue #23: Fix -- Issue #25 Broken, Fix
+				print(cat.Name, cat.Merged, i ~= #categoriesTree)
 				Select(cat, collapsed, i ~= #categoriesTree); -- Issue #23: Broken
 			end
 		end

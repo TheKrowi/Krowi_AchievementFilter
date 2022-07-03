@@ -2,6 +2,8 @@
 
     <Include file="GUI/Templates/AchievementButton.xml" />
     <Include file="GUI/Templates/AchievementsFrame.xml" />
+    <Include file="GUI/Templates/SummaryAchievementButton.xml" />
+    <Include file="GUI/Templates/SummaryFrame.xml" />
     <Include file="GUI/Templates/CategoryButton.xml" />
     <Include file="GUI/Templates/CategoriesFrame.xml" />
     <Include file="GUI/Templates/Templates.xml" />

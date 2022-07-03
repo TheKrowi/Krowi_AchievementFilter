@@ -17,8 +17,6 @@ local FORCE_COLUMNS_RIGHT_COLUMN_SPACE = 150;
 
 local DisplayCriteria, GetMeta, GetCriteria, OnEnter;
 function display:DisplayObjectives(renderOffScreen, achievementsFrame)
-    diagnostics.Trace("display:DisplayObjectives");
-
 	local objectives = AchievementFrameAchievementsObjectives;
 	if renderOffScreen then
 		objectives = AchievementFrameAchievementsObjectivesOffScreen;
@@ -30,7 +28,6 @@ function display:DisplayObjectives(renderOffScreen, achievementsFrame)
 	objectives.completed = self.completed;
 	local height = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT;
 	if objectives.id == self.id and not renderOffScreen then
-		diagnostics.Trace("display:DisplayObjectives - 1");
 		local ACHIEVEMENTMODE_CRITERIA = 1;
 		if objectives.mode == ACHIEVEMENTMODE_CRITERIA then
 			if objectives:GetHeight() > 0 then
@@ -42,7 +39,6 @@ function display:DisplayObjectives(renderOffScreen, achievementsFrame)
 			objectives:SetPoint("TOP", topAnchor, "BOTTOM", 0, -8);
 		end
 	elseif self.completed and GetPreviousAchievement(self.id) then
-		diagnostics.Trace("display:DisplayObjectives - 2");
 		objectives:SetHeight(0);
 		self.ResetCriteria(renderOffScreen);
 		AchievementButton_ResetProgressBars(renderOffScreen);
@@ -54,7 +50,6 @@ function display:DisplayObjectives(renderOffScreen, achievementsFrame)
 		end
 		objectives:SetPoint("TOP", topAnchor, "BOTTOM", 0, -8);
 	else
-		diagnostics.Trace("display:DisplayObjectives - 3");
 		objectives:SetHeight(0);
 		self.ResetCriteria(renderOffScreen);
 		AchievementButton_ResetProgressBars(renderOffScreen);

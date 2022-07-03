@@ -7,13 +7,14 @@ local categoryButton = gui.CategoryButton;
 local function OnClick(self, quick)
 	local categoriesFrame = addon.GUI.CategoriesFrame;
 	local achievementsFrame = addon.GUI.AchievementsFrame;
+	local summaryFrame = addon.GUI.SummaryFrame;
 
 	if self.Category.IsSummary then
-		KrowiAF_AchievementsSummaryFrame:Show();
+		summaryFrame:Show();
 		achievementsFrame:Hide();
 	else
 		achievementsFrame:Show();
-		KrowiAF_AchievementsSummaryFrame:Hide();
+		summaryFrame:Hide();
 	end
     categoriesFrame:SelectButton(self, quick);
     categoriesFrame:Update();
