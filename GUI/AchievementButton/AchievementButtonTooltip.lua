@@ -1,7 +1,6 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
-local gui = addon.GUI;
-local achievementButton = gui.AchievementButton;
+local achievementButton = addon.GUI.AchievementButton;
 achievementButton.Tooltip = {};
 local tooltip = achievementButton.Tooltip;
 

@@ -1,5 +1,5 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\..\FrameXML\UI.xsd">
-
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..
+\..\FrameXML\UI.xsd">
     <!-- Originally from Blizzard_AchievementUI.xml line 1779 at time of writing -->
 	<Frame name="KrowiAF_AchievementFrameCategoriesFrame_Template" inherits="AchivementGoldBorderBackdrop" virtual="true" hidden="true">
 		<Scripts>
@@ -29,5 +29,4 @@
 			</ScrollFrame>
 		</Frames>
 	</Frame>
-
 </Ui>

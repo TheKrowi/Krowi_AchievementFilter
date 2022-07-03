@@ -1,6 +1,5 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
-local diagnostics = addon.Diagnostics;
 local achievementButton = addon.GUI.AchievementButton;
 achievementButton.Display = {};
 local display = achievementButton.Display;
@@ -85,8 +84,6 @@ local criteriaTable = {}
 local criteriaTableOffScreen = {};
 
 function DisplayCriteria(objectivesFrame, id, renderOffScreen, achievementsFrame)
-    diagnostics.Trace("DisplayCriteria");
-
 	if not id then
 		return;
 	end
@@ -323,8 +320,6 @@ function DisplayCriteria(objectivesFrame, id, renderOffScreen, achievementsFrame
 end
 
 function display.ResetMetas(renderOffScreen)
-    diagnostics.Trace("display.ResetMetas");
-
 	if renderOffScreen then
 		AchievementButton_ResetTable(metaCriteriaTableOffScreen);
 	else
@@ -333,8 +328,6 @@ function display.ResetMetas(renderOffScreen)
 end
 
 function GetMeta(index, renderOffScreen, achievementsFrame)
-    diagnostics.Trace("GetMeta");
-
 	local mcTable = metaCriteriaTable;
 	local offscreenName = "";
 	if renderOffScreen then
@@ -357,8 +350,6 @@ function GetMeta(index, renderOffScreen, achievementsFrame)
 end
 
 function display.ResetCriteria(renderOffScreen)
-    diagnostics.Trace("display.ResetCriteria");
-
 	if renderOffScreen then
 		AchievementFrameAchievementsObjectivesOffScreen.repCriteria:Hide();
 		AchievementButton_ResetTable(criteriaTableOffScreen);
@@ -369,8 +360,6 @@ function display.ResetCriteria(renderOffScreen)
 end
 
 function GetCriteria(index, renderOffScreen)
-    diagnostics.Trace("GetCriteria");
-
 	local criTable = criteriaTable;
 	local offscreenName = "";
 	if renderOffScreen then

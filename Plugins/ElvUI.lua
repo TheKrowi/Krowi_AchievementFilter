@@ -196,7 +196,7 @@ local function SkinSearchPreviewFrame(frame, achievementsFrame, engine, skins)
 	SkinSearchButton(frame.ShowFullSearchResultsButton, engine, skins);
 end
 
-local function SkinFullSearchResultsFrame(frame, skins)
+local function SkinSearchResultsFrame(frame, skins)
     frame:StripTextures();
     frame:CreateBackdrop('Transparent');
 
@@ -444,9 +444,9 @@ local function SkinAll()
         SkinAchievementsFrame(addon.GUI.AchievementsFrame, engine, skins);
         SkinAchievementSummary(KrowiAF_AchievementFrameSummaryFrame, engine, skins);
         SkinFilterButton(addon.GUI.FilterButton, addon.GUI.AchievementsFrame, skins);
-        SkinSearchBoxFrame(addon.GUI.Search.SearchBoxFrame, addon.GUI.AchievementsFrame, skins);
-        SkinSearchPreviewFrame(addon.GUI.Search.SearchPreviewFrame, addon.GUI.AchievementsFrame, engine, skins);
-        SkinFullSearchResultsFrame(addon.GUI.Search.FullSearchResultsFrame, skins);
+        SkinSearchBoxFrame(addon.GUI.Search.BoxFrame, addon.GUI.AchievementsFrame, skins);
+        SkinSearchPreviewFrame(addon.GUI.Search.PreviewFrame, addon.GUI.AchievementsFrame, engine, skins);
+        SkinSearchResultsFrame(addon.GUI.Search.ResultsFrame, skins);
         SkinSideButtons(addon.GUI.SideButtons, engine);
         SkinHeader();
         ReskinBlizzard(skins);

@@ -4,8 +4,8 @@ local gui = addon.GUI;
 gui.Search = {};
 local search = gui.Search;
 
-function search.Load()
-    gui.Search.FullSearchResultsFrame:Load();
-    gui.Search.SearchPreviewFrame:Load();
-    gui.Search.SearchBoxFrame:Load();
+function search:Load()
+    self.ResultsFrame:Load();
+    self.PreviewFrame:Load();
+    self.BoxFrame:Load();
 end

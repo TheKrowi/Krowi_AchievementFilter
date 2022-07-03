@@ -1,12 +1,13 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\..\FrameXML\UI.xsd">
-
-    <Include file="GUI/Templates/AchievementButton.xml" />
-    <Include file="GUI/Templates/AchievementsFrame.xml" />
-    <Include file="GUI/Templates/SummaryAchievementButton.xml" />
-    <Include file="GUI/Templates/SummaryFrame.xml" />
-    <Include file="GUI/Templates/CategoryButton.xml" />
-    <Include file="GUI/Templates/CategoriesFrame.xml" />
-    <Include file="GUI/Templates/AlertFrame.xml" />
-    <Include file="GUI/Templates/Templates.xml" />
-    
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..
+\..\FrameXML\UI.xsd">
+    <Include file="AchievementButton.xml" />
+    <Include file="AchievementsFrame.xml" />
+    <Include file="SummaryAchievementButton.xml" />
+    <Include file="SummaryFrame.xml" />
+    <Include file="CategoryButton.xml" />
+    <Include file="CategoriesFrame.xml" />
+    <Include file="FilterButton.xml" />
+    <Include file="Search\Files.xml" />
+    <Include file="AlertFrame.xml" />
+    <Include file="WorldMapButton.xml" />
 </Ui>

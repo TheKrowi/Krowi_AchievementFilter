@@ -1,17 +1,16 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\..\FrameXML\UI.xsd">
-
-    <Script file="Data\Data.lua" />
-    <Script file="Data\CustomObjectives.lua" />
-    <Script file="Data\ExportedTransmogSets.lua" />
-    <!-- <Script file="Data\ExportedCustomObjectives.lua" /> -->
-    <Script file="Data\ExportedAchievements.lua" />
-    <Script file="Data\ExportedCategories.lua" />
-    <Script file="Data\ExportedPetBattles.lua" />
-    <Script file="Data\ExportedUiMaps.lua" />
-    <Script file="Data\ExportedCalendarEvents.lua" />
-    <Script file="Data\ExportedWidgetEvents.lua" />
-    <Script file="Data\ExportedWorldEvents.lua" />
-    <Script file="Data\EventData.lua" />
-    <Script file="Data\SavedData.lua" />
-    
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..
+\..\FrameXML\UI.xsd">
+    <Script file="Data.lua" />
+    <Script file="CustomObjectives.lua" />
+    <Script file="ExportedTransmogSets.lua" />
+    <!-- <Script file="ExportedCustomObjectives.lua" /> -->
+    <Script file="ExportedAchievements.lua" />
+    <Script file="ExportedCategories.lua" />
+    <Script file="ExportedPetBattles.lua" />
+    <Script file="ExportedUiMaps.lua" />
+    <Script file="ExportedCalendarEvents.lua" />
+    <Script file="ExportedWidgetEvents.lua" />
+    <Script file="ExportedWorldEvents.lua" />
+    <Script file="EventData.lua" />
+    <Script file="SavedData.lua" />    
 </Ui>

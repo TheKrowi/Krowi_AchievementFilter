@@ -1,7 +1,6 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\..\FrameXML\UI.xsd">
-
-    <Script file="GUI/AchievementButton/AchievementButton.lua" />
-    <Script file="GUI/AchievementButton/AchievementButtonDisplay.lua" />
-    <Script file="GUI/AchievementButton/AchievementButtonTooltip.lua" />
-    
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..
+\..\FrameXML\UI.xsd">
+    <Script file="AchievementButton.lua" />
+    <Script file="AchievementButtonDisplay.lua" />
+    <Script file="AchievementButtonTooltip.lua" />
 </Ui>

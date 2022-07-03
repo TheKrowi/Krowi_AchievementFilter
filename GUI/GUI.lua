@@ -23,12 +23,12 @@ function gui:LoadWithBlizzard_AchievementUI()
     gui.CategoriesFrame:Load();
     gui.FilterButton:Load();
 
-    gui.Search.Load();
+    gui.Search:Load();
 
     gui.AddDataToBlizzardTabs();
 
     for _, t in next, addon.TabsOrder do
-        addon.Tabs[t].Button = gui.AchievementFrameTabButton:New(addonName, addon.Tabs[t].Name, addon.Tabs[t].BindingName, addon.Tabs[t].Text, {gui.FilterButton, gui.Search.SearchBoxFrame}, gui.AchievementsFrame, gui.CategoriesFrame, addon.Tabs[t].Categories, addon.Tabs[t].Filters);
+        addon.Tabs[t].Button = gui.AchievementFrameTabButton:New(addonName, addon.Tabs[t].Name, addon.Tabs[t].BindingName, addon.Tabs[t].Text, {gui.FilterButton, gui.Search.BoxFrame}, gui.AchievementsFrame, gui.CategoriesFrame, addon.Tabs[t].Categories, addon.Tabs[t].Filters);
     end
 
     local activeCalendarEvents = addon.EventData.GetActiveCalendarEvents();
@@ -147,12 +147,13 @@ function gui.ResetView()
         end
     end
 
-    if gui.Search.SearchBoxFrame and gui.Search.SearchBoxFrame.SearchPreviewFrame then
-        gui.Search.SearchBoxFrame:SetText("");
+    local search = addon.GUI.Search;
+    if search.BoxFrame and search.BoxFrame.SearchPreviewFrame then
+        search.BoxFrame:SetText("");
     end
 
-    if gui.Search.FullSearchResultsFrame and gui.Search.FullSearchResultsFrame.Update and gui.Search.FullSearchResultsFrame.Hide then
-        gui.Search.FullSearchResultsFrame:Hide();
+    if search.ResultsFrame and search.ResultsFrame.Update and search.ResultsFrame.Hide then
+        search.ResultsFrame:Hide();
     end
 end
 

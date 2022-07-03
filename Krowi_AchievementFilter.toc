@@ -15,30 +15,28 @@
 
 API.lua
 
-Libs/Files.xml
+Libs\Files.xml
 
-Plugins/Files.xml
+Plugins\Files.xml
 
 Colors.lua
 MetaData.lua
 Credits.lua
 Globals.lua
 
-Localization/Files.xml
+Localization\Files.xml
 
 ExportedTabs.lua
 
 Krowi_AchievementFilter.lua
 
 Diagnostics.lua
-Options/Files.xml
+Options\Files.xml
 Icon.lua
 Tutorials.lua
 
-Objects/Files.xml
+Objects\Files.xml
 
-Data/Files.xml
+Data\Files.xml
 
-GUI/Files.xml
-
-Extensions/Files.xml
+GUI\Files.xml

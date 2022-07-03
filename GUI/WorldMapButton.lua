@@ -1,6 +1,5 @@
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
-local diagnostics = addon.Diagnostics;
 local gui = addon.GUI;
 gui.WorldMapButton = {};
 local worldMapButton = gui.WorldMapButton;
@@ -8,7 +7,7 @@ local worldMapButton = gui.WorldMapButton;
 addon.WorldMapButtons = LibStub("Krowi_WorldMapButtons-1.3"); -- Global world map buttons object
 
 function worldMapButton.Load()
-    worldMapButton = addon.WorldMapButtons:Add("KrowiAF_WorldMapAchievementButtonTemplate", "BUTTON");
+    worldMapButton = addon.WorldMapButtons:Add("KrowiAF_WorldMapButton_Template", "BUTTON");
     addon.GUI.WorldMapButton = worldMapButton;
 end
 
@@ -31,11 +30,10 @@ function WorldMapAchievementButtonMixin:OnMouseUp()
 end
 
 function WorldMapAchievementButtonMixin:OnClick()
-    -- diagnostics.Debug(worldMapButton.Achievements);
-    -- diagnostics.Debug(#worldMapButton.Achievements);
-    if worldMapButton.Achievements and #worldMapButton.Achievements > 0 then
+    local achievements = worldMapButton.Achievements;
+    if achievements and #achievements > 0 then
         HideUIPanel(WorldMapFrame);
-        addon.Data.SelectedZoneCategory.Achievements = worldMapButton.Achievements;
+        addon.Data.SelectedZoneCategory.Achievements = achievements;
         addon.GUI.ToggleAchievementFrame(addonName, addon.L["Expansions"], true);
         addon.Tabs["Expansions"].Categories[3].Name = addon.L["Selected Zone"] .. " (" .. worldMapButton.name .. ")";
         KrowiAF_SelectCategory(addon.Tabs["Expansions"].Categories[3]);
@@ -65,8 +63,9 @@ function WorldMapAchievementButtonMixin:Refresh()
     local mapID = WorldMapFrame:GetMapID();
     worldMapButton.Achievements = addon.GetAchievementsInZone(mapID, true);
     local numOfAch, numOfCompAch, numOfNotObtAch = 0, 0, 0;
+    local filterButton = addon.GUI.FilterButton;
     for _, achievement in next, worldMapButton.Achievements do
-        numOfAch, numOfCompAch, numOfNotObtAch = addon.GetAchievementNumbers(gui.FilterButton, gui.FilterButton.Filters.db.SelectedZone, achievement, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
+        numOfAch, numOfCompAch, numOfNotObtAch = addon.GetAchievementNumbers(filterButton, filterButton.Filters.db.SelectedZone, achievement, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
     end
 
     worldMapButton.name = C_Map.GetMapInfo(mapID).name;
