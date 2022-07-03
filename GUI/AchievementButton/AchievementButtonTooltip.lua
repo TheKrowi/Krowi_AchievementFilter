@@ -1,43 +1,9 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
-local diagnostics = addon.Diagnostics;
 local gui = addon.GUI;
 local achievementButton = gui.AchievementButton;
 achievementButton.Tooltip = {};
 local tooltip = achievementButton.Tooltip;
-
-local AddBlizzardDefault, AddNotObtainable, AddPartOfAChain, AddRequiredFor, AddObjectives, AddOtherFaction;
-function tooltip.ShowTooltip(button, validate, filters, addBlizzardDefault, addNotObtainable, addPartOfAChain, addRequiredFor, addObjectives, addOtherFaction)
-	diagnostics.Trace("ShowTooltip");
-
-	GameTooltip:SetOwner(button, "ANCHOR_NONE");
-	GameTooltip:SetPoint("TOPLEFT", button, "TOPRIGHT");
-
-	local earnedBy, notEarnedBy, otherFactionAchievementCompleted = EvaluateCharacters(button);
-
-	if button.Achievement.NotObtainable and addNotObtainable ~= false then
-		AddNotObtainable();
-	end
-	if addBlizzardDefault ~= false then
-		AddBlizzardDefault(button, earnedBy, notEarnedBy);
-	end
-	if addPartOfAChain ~= false then
-		AddPartOfAChain(button, validate, filters);
-	end
-	if addRequiredFor ~= false then
-		AddRequiredFor(button, validate, filters);
-	end
-	if addOtherFaction ~= false then
-		AddOtherFaction(button, otherFactionAchievementCompleted);
-	end
-	if addObjectives ~= false then
-		AddObjectives(button);
-	end
-
-	-- AchievementFrameAchievements_CheckGuildMembersTooltip(self.shield); -- Guild can be ignored for now
-
-	GameTooltip:Show();
-end
 
 local function AddAchievementLine(currentAchievement, otherAchievementID, showCurrentCharacterIcons, nameSuffix, otherFactionAchievementCompleted)
 	nameSuffix = nameSuffix or "";
@@ -45,15 +11,16 @@ local function AddAchievementLine(currentAchievement, otherAchievementID, showCu
 	completed = otherFactionAchievementCompleted or completed;
 	local icon, currentCharacterIcon, color = nil, "", nil;
 
+	local sameAchievement = otherAchievementID == currentAchievement.ID;
 	if completed then
 		icon = "|T136814:0|t";
-		color = otherAchievementID == currentAchievement.ID and addon.Colors.LightGreenRGB or addon.Colors.GreenRGB;
+		color = sameAchievement and addon.Colors.LightGreenRGB or addon.Colors.GreenRGB;
 	elseif currentAchievement.NotObtainable then
 		icon = "|T136813:0|t";
-		color = otherAchievementID == currentAchievement.ID and addon.Colors.LightRedRGB or addon.Colors.RedRGB;
+		color = sameAchievement and addon.Colors.LightRedRGB or addon.Colors.RedRGB;
 	else
 		icon = "|T136815:0|t";
-		color = otherAchievementID == currentAchievement.ID and addon.Colors.LightGreyRGB or addon.Colors.GreyRGB;
+		color = sameAchievement and addon.Colors.LightGreyRGB or addon.Colors.GreyRGB;
 	end
 
 	if showCurrentCharacterIcons then
@@ -70,7 +37,7 @@ local function AddAchievementLine(currentAchievement, otherAchievementID, showCu
 	GameTooltip:AddLine(icon .. addon.L["TAB"] .. currentCharacterIcon .. name .. nameSuffix, color.R, color.G, color.B); -- Achievement name
 end
 
-function EvaluateCharacters(self)
+local function EvaluateCharacters(self)
 	local numEarnedBy, numNotEarnedBy = 0, 0;
 	local earnedBy, notEarnedBy = "", "";
 	local otherFactionAchievementCompleted = false;
@@ -110,9 +77,7 @@ function EvaluateCharacters(self)
 	return earnedBy, notEarnedBy, otherFactionAchievementCompleted;
 end
 
-function AddBlizzardDefault(self, earnedBy, notEarnedBy)
-	diagnostics.Trace("AddBlizzardDefault");
-
+local function AddBlizzardDefault(self, earnedBy, notEarnedBy)
 	if GameTooltip:NumLines() > 0 then
 		GameTooltip_AddBlankLineToTooltip(GameTooltip);
 	end
@@ -124,21 +89,16 @@ function AddBlizzardDefault(self, earnedBy, notEarnedBy)
 		end
 		return;
 	end
-	-- if self.shield.earnedBy then
-		if earnedBy ~= "" then
-			GameTooltip:AddLine(format(ACHIEVEMENT_EARNED_BY, earnedBy), nil, nil, nil, true);
-		end
-		if notEarnedBy ~= "" then
-			GameTooltip:AddLine(format(addon.L["Not earned by:"], notEarnedBy), nil, nil, nil, true);
-		end
-	-- end
+	if earnedBy ~= "" then
+		GameTooltip:AddLine(format(ACHIEVEMENT_EARNED_BY, earnedBy), nil, nil, nil, true);
+	end
+	if notEarnedBy ~= "" then
+		GameTooltip:AddLine(format(addon.L["Not earned by:"], notEarnedBy), nil, nil, nil, true);
+	end
 end
 
-function AddNotObtainable()
-	diagnostics.Trace("AddNotObtainable");
-	
-	if (GameTooltip:NumLines() > 0) then
-		-- GameTooltip:AddLine(" "); -- Empty line to seperate it from the previous block
+local function AddNotObtainable()
+	if GameTooltip:NumLines() > 0 then
 		GameTooltip_AddBlankLineToTooltip(GameTooltip);
 	end
 	local color = addon.Colors.RedRGB;
@@ -164,9 +124,7 @@ local function AddPartOfAChainAchievement(currentAchievement, achID, nameSuffix)
 	end
 end
 
-function AddPartOfAChain(self, validate, filters)
-	diagnostics.Trace("AddPartOfAChain");
-
+local function AddPartOfAChain(self, validate, filters)
 	if not addon.Options.db.Tooltip.Achievements.ShowPartOfAChain then
 		return;
 	end
@@ -176,8 +134,7 @@ function AddPartOfAChain(self, validate, filters)
 		return;
 	end
 
-	if (GameTooltip:NumLines() > 0) then
-		-- GameTooltip:AddLine(" "); -- Empty line to seperate it from the previous block
+	if GameTooltip:NumLines() > 0 then
 		GameTooltip_AddBlankLineToTooltip(GameTooltip);
 	end
 	GameTooltip:AddLine(addon.L["Part of a chain"]); -- Header
@@ -185,9 +142,7 @@ function AddPartOfAChain(self, validate, filters)
 	AddPartOfAChainAchievement(self.Achievement, achID);
 end
 
-function AddRequiredFor(self, validate, filters)
-	diagnostics.Trace("AddRequiredFor");
-
+local function AddRequiredFor(self, validate, filters)
 	if not addon.Options.db.Tooltip.Achievements.ShowRequiredFor then
 		return;
 	end
@@ -197,8 +152,7 @@ function AddRequiredFor(self, validate, filters)
 		return;
 	end
 
-	if (GameTooltip:NumLines() > 0) then
-		-- GameTooltip:AddLine(" "); -- Empty line to seperate it from the previous block
+	if GameTooltip:NumLines() > 0 then
 		GameTooltip_AddBlankLineToTooltip(GameTooltip);
 	end
 	GameTooltip:AddLine(addon.L["Required for"]); -- Header
@@ -250,9 +204,7 @@ local function AddDoubleCriteriaLine(achievementID, criteriaIndex1, criteriaInde
 	GameTooltip:AddDoubleLine(texts[1], texts[2], colors[1].R, colors[1].G, colors[1].B, colors[2].R, colors[2].G, colors[2].B);
 end
 
-function AddObjectives(self)
-	diagnostics.Trace("AddObjectives");
-
+local function AddObjectives(self)
 	if not addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show or self.Achievement.NotObtainable then
 		return;
 	end
@@ -285,6 +237,29 @@ function AddObjectives(self)
 	end
 end
 
+local function AddOtherFaction(self, otherFactionAchievementCompleted)
+	if not addon.Options.db.Tooltip.Achievements.ShowOtherFaction then
+		return;
+	end
+
+	if self.Achievement.OtherFactionAchievementID == nil then
+		return;
+	end
+
+	if GameTooltip:NumLines() > 0 then
+		GameTooltip_AddBlankLineToTooltip(GameTooltip);
+	end
+	local faction = addon.L["Neutral"];
+	if addon.Faction.IsAlliance then
+		faction = addon.L["Horde"];
+	elseif addon.Faction.IsHorde then
+		faction = addon.L["Alliance"];
+	end
+	GameTooltip:AddLine(addon.L["Other faction"] .. " (" .. faction .. ")"); -- Header
+
+	AddAchievementLine(self.Achievement, self.Achievement.OtherFactionAchievementID, addon.Options.db.Tooltip.Achievements.ShowCurrentCharacterIconsRequiredFor, nil, otherFactionAchievementCompleted);
+end
+
 function tooltip.AddCriteria(customObjectives)
 	if #customObjectives < addon.Options.db.Tooltip.Achievements.ObjectivesProgress.SecondColumnThreshold then
 		for i = 1, #customObjectives do
@@ -297,25 +272,32 @@ function tooltip.AddCriteria(customObjectives)
 	end
 end
 
-function AddOtherFaction(self, otherFactionAchievementCompleted)
-	if not addon.Options.db.Tooltip.Achievements.ShowOtherFaction then
-		return;
+function tooltip.ShowTooltip(button, validate, filters, addBlizzardDefault, addNotObtainable, addPartOfAChain, addRequiredFor, addObjectives, addOtherFaction)
+	GameTooltip:SetOwner(button, "ANCHOR_NONE");
+	GameTooltip:SetPoint("TOPLEFT", button, "TOPRIGHT");
+
+	local earnedBy, notEarnedBy, otherFactionAchievementCompleted = EvaluateCharacters(button);
+
+	if button.Achievement.NotObtainable and addNotObtainable ~= false then
+		AddNotObtainable();
+	end
+	if addBlizzardDefault ~= false then
+		AddBlizzardDefault(button, earnedBy, notEarnedBy);
+	end
+	if addPartOfAChain ~= false then
+		AddPartOfAChain(button, validate, filters);
+	end
+	if addRequiredFor ~= false then
+		AddRequiredFor(button, validate, filters);
+	end
+	if addOtherFaction ~= false then
+		AddOtherFaction(button, otherFactionAchievementCompleted);
+	end
+	if addObjectives ~= false then
+		AddObjectives(button);
 	end
 
-	if self.Achievement.OtherFactionAchievementID == nil then
-		return;
-	end
+	-- AchievementFrameAchievements_CheckGuildMembersTooltip(self.shield); -- Guild can be ignored for now
 
-	if (GameTooltip:NumLines() > 0) then
-		GameTooltip_AddBlankLineToTooltip(GameTooltip);
-	end
-	local faction = addon.L["Neutral"];
-	if addon.Faction.IsAlliance then
-		faction = addon.L["Horde"];
-	elseif addon.Faction.IsHorde then
-		faction = addon.L["Alliance"];
-	end
-	GameTooltip:AddLine(addon.L["Other faction"] .. " (" .. faction .. ")"); -- Header
-
-	AddAchievementLine(self.Achievement, self.Achievement.OtherFactionAchievementID, addon.Options.db.Tooltip.Achievements.ShowCurrentCharacterIconsRequiredFor, nil, otherFactionAchievementCompleted);
+	GameTooltip:Show();
 end

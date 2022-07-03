@@ -40,7 +40,7 @@ local function SetLine1(_, value)
     if addon.Options.db.EventReminders.TimeDisplay.Line1 == value then return; end;
     addon.Options.db.EventReminders.TimeDisplay.Line1 = value;
     for _, sideButton in next, addon.GUI.SideButtons do
-        sideButton:UpdateRuntime();
+        sideButton:UpdateEventRuntime();
     end
     options.Debug(addon.L["Line"] .. " 1", addon.Options.db.EventReminders.TimeDisplay.Line1);
 end
@@ -49,7 +49,7 @@ local function SetLine2(_, value)
     if addon.Options.db.EventReminders.TimeDisplay.Line2 == value then return; end;
     addon.Options.db.EventReminders.TimeDisplay.Line2 = value;
     for _, sideButton in next, addon.GUI.SideButtons do
-        sideButton:UpdateRuntime();
+        sideButton:UpdateEventRuntime();
     end
     options.Debug(addon.L["Line"] .. " 2", addon.Options.db.EventReminders.TimeDisplay.Line2);
 end
@@ -73,7 +73,7 @@ local function SetStartTimeAndEndTimeCustom(_, value)
     if addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime == value then return; end;
     addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime = value;
     for _, sideButton in next, addon.GUI.SideButtons do
-        sideButton:UpdateRuntime();
+        sideButton:UpdateEventRuntime();
     end
     options.Debug(addon.L["Custom"], addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime);
 end
