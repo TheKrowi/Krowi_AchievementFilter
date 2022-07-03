@@ -135,9 +135,9 @@ local function GetAchievementNumbers(self, category)
 		mergeSmallCategories = filterButton.Filters.db.MergeSmallCategories;
 	end
 	if mergeSmallCategories then
+		local mergeSmallCategoriesThreshold = addon.Options.db.Window.MergeSmallCategoriesThreshold;
 		if category.Parent and category.CanMerge then
 			if category.Achievements then
-				local mergeSmallCategoriesThreshold = addon.Options.db.Window.MergeSmallCategoriesThreshold;
 				if numOfAch < mergeSmallCategoriesThreshold then
 					if not category.Merged then
 						for _, achievement in next, category.Achievements do

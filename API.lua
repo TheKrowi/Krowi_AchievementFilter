@@ -1,7 +1,6 @@
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
 
-local loops, maxLoops = 0, 1000;
 function KrowiAF_SelectAchievementWithCategory(achievement, category, mouseButton, ignoreModifiers, anchor, offsetX, offsetY)
 	if mouseButton == nil then
 		mouseButton = "LeftButton";
@@ -22,11 +21,6 @@ function KrowiAF_SelectAchievementWithCategory(achievement, category, mouseButto
 	local selectedAchievement;
 
 	while not shown do
-		loops = loops + 1;
-		if loops > maxLoops then
-			loops = 0;
-			error("Too many loops", 1)
-		end
 		buttons = scrollFrame.buttons;
 		for _, button in next, buttons do
 			if button.id == achievement.ID and math.ceil(button:GetTop()) >= math.ceil(addon.GUI.GetSafeScrollChildBottom(scrollFrame)) then
@@ -128,27 +122,31 @@ local function Select(category, collapsed, quick)
 	end
 end
 
-function KrowiAF_SelectCategory(category, collapsed)
+local function GetMergedCategory(category)
 	local filterButton = addon.GUI.FilterButton;
 	if filterButton and filterButton.Filters.db.MergeSmallCategories then
-		print("get merged parent", category.Name, category.Merged);
 		while category.Merged do
-			print("get merged parent", category.Name, category.Merged);
 			category = category.Parent;
 		end
 	end
-	print("found merged parent", category.Name, category.Merged);
+	return category;
+end
 
+function KrowiAF_SelectCategory(category, collapsed)
+	category = GetMergedCategory(category);
 	local categoriesTree = category:GetTree();
 
 	-- Select tab
 	addon.GUI.ToggleAchievementFrame(addonName, categoriesTree[1].TabName, nil, true);
 
+	-- Here we need to get the tree again since when the destination tab is not loaded before, merged categories are not yet processed
+	category = GetMergedCategory(category);
+	categoriesTree = category:GetTree();
+
 	-- Select category
 	for i, cat in next, categoriesTree do
 		if cat.TabName == nil then
 			if not cat.IsSelected or (cat.NotCollapsed == collapsed) then -- Issue #23: Fix -- Issue #25 Broken, Fix
-				print(cat.Name, cat.Merged, i ~= #categoriesTree)
 				Select(cat, collapsed, i ~= #categoriesTree); -- Issue #23: Broken
 			end
 		end
