@@ -288,7 +288,7 @@ function summaryFrame:CategoriesStatusBar_Update(event)
     if event == "ACHIEVEMENT_EARNED" then
         addon.GUI.CategoriesFrame:Update(true);
     end
-    local lastShown;
+    local lastShown = totalStatusBar;
     local offset = 0;
     local totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch = 0, 0, 0;
     local categories = selectedTab.Categories;
