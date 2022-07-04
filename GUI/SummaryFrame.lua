@@ -295,7 +295,7 @@ function summaryFrame:CategoriesStatusBar_Update(event)
     local showNotObtainable = addon.Options.db.Tooltip.Categories.ShowNotObtainable;
     for i = 1, #statusBars do
         local category = categories[i + offset];
-        while category and (category.IsSummary or category.HasFlexibleData) do
+        while category and (category.IsSummary or category.HasFlexibleData or category.NumOfAch == 0) do
             offset = offset + 1;
             category = categories[i + offset];
         end
