@@ -39,4 +39,5 @@ Objects\Files.xml
 
 Data\Files.xml
 
+Filters.lua
 GUI\Files.xml

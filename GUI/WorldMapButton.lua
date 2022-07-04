@@ -63,9 +63,8 @@ function WorldMapAchievementButtonMixin:Refresh()
     local mapID = WorldMapFrame:GetMapID();
     worldMapButton.Achievements = addon.GetAchievementsInZone(mapID, true);
     local numOfAch, numOfCompAch, numOfNotObtAch = 0, 0, 0;
-    local filterButton = addon.GUI.FilterButton;
     for _, achievement in next, worldMapButton.Achievements do
-        numOfAch, numOfCompAch, numOfNotObtAch = addon.GetAchievementNumbers(filterButton, filterButton.Filters.db.SelectedZone, achievement, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
+        numOfAch, numOfCompAch, numOfNotObtAch = addon.GetAchievementNumbers(addon.Filters.db.SelectedZone, achievement, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
     end
 
     worldMapButton.name = C_Map.GetMapInfo(mapID).name;

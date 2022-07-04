@@ -309,7 +309,7 @@ end
 
 local function AddGoTo(achievementsFrame, achievement)
 	local achID = addon.GetFirstAchievementID(achievement.ID);
-	local requiredForIDs = achievement:GetRequiredForIDs(gui.FilterButton.Validate, gui.FilterButton:GetFilters());
+	local requiredForIDs = achievement:GetRequiredForIDs(addon.Filters.Validate, addon.Filters:GetFilters());
 
 	local _achievement = addon.Data.Achievements[achID];
 	if _achievement.NextAchievements == nil
@@ -563,7 +563,7 @@ function achievementButton:PostLoadButtons(achievementsFrame)
 		button:HookScript("OnLeave", button.Leave);
 		button.shield:EnableMouse(false);
 		button.ShowTooltip = function()
-			self.Tooltip.ShowTooltip(button, gui.FilterButton.Validate, gui.FilterButton:GetFilters());
+			self.Tooltip.ShowTooltip(button, addon.Filters.Validate, addon.Filters:GetFilters());
 		end;
 
 		local name = button:GetName();

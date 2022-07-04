@@ -64,7 +64,7 @@ local function GetSearchResults(text)
 
 	local numAchievementIds = #addon.Data.AchievementIDs;
 	local excludeExcluded = addon.Options.db.SearchBox.ExcludeExcluded;
-	local showPlaceholders = addon.Options.db.ShowPlaceholdersFilter and addon.GUI.FilterButton.Filters.db.ShowPlaceholders;
+	local showPlaceholders = addon.Options.db.ShowPlaceholdersFilter and addon.Filters.db.ShowPlaceholders;
 
 	local achievement;
 	if string.match(text, "^#") then
@@ -87,13 +87,13 @@ local function GetSearchResults(text)
 					local value = 1;
 					if addon.Options.db.SearchBox.OnlySearchFiltered then
 						local category;
-						if addon.GUI.FilterButton.Filters.db.MergeSmallCategories then
+						if addon.Filters.db.MergeSmallCategories then
 							category = achievement:GetMergedCategory(); -- This way we get the parent category
 						else
 							category = achievement.Category;
 						end
 						local filters = addon.Tabs[category:GetTree()[1].TabName].Filters;
-						value = addon.GUI.FilterButton.Validate(filters, achievement);
+						value = addon.Filters.Validate(filters, achievement);
 					end
 					if value > 0 then
 						achievement.Name = name;

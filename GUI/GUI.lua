@@ -9,7 +9,7 @@ local sideButtons = gui.SideButtons;
 function gui:LoadWithAddon()
     gui.WorldMapButton.Load();
     gui.AlertSystem:Load();
-    gui.FilterButton:InjectDefaults();
+    addon.Filters:InjectDefaults();
 end
 
 local CreateAchievementPointsTooltip;

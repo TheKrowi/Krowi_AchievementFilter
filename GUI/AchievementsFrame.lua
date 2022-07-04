@@ -79,9 +79,9 @@ local function Validate(achievements, displayAchievements, defaultOrder)
 	if not achievements then
 		return;
 	end
-	local filterButton = addon.GUI.FilterButton;
+	local filters = addon.Filters;
 	for _, achievement in next, achievements do
-		if filterButton and filterButton:AutoValidate(achievement) > 0 then -- Greater than 0 means it can be shown
+		if filters and filters:AutoValidate(achievement) > 0 then -- Greater than 0 means it can be shown
 			tinsert(displayAchievements, achievement);
 		end
 		defaultOrder[achievement] = #displayAchievements;
@@ -99,9 +99,9 @@ local function GetFilteredAchievements(category)
 		return displayAchievements;
 	end
 
-	local filterButton = addon.GUI.FilterButton;
-	if filterButton then
-		return filterButton:Sort(displayAchievements, defaultOrder);
+	local filters = addon.Filters;
+	if filters then
+		return filters:Sort(displayAchievements, defaultOrder);
 	end
 	return displayAchievements;
 end
@@ -171,10 +171,10 @@ function achievementsFrame:ForceUpdate(toTop) -- Issue #3: Fix
 		self.Container.ScrollBar:SetValue(0);
 	end
 
-	local filterButton = addon.GUI.FilterButton;
-	if filterButton then
+	local filters = addon.Filters;
+	if filters then
 		local selectedTab = addon.GUI.SelectedTab;
-		selectedTab.SelectedAchievement = filterButton:GetHighestAchievementWhenCollapseSeries(selectedTab.Filters, selectedTab.SelectedAchievement);
+		selectedTab.SelectedAchievement = filters:GetHighestAchievementWhenCollapseSeries(selectedTab.Filters, selectedTab.SelectedAchievement);
 	end
 
 	-- Issue #8: Broken
@@ -289,7 +289,7 @@ end
 
 function achievementsFrame:DisplayAchievement(button, achievement, index, selection, renderOffScreen)
 	local compact = addon.Options.db.Achievements.Compact;
-	local earnedByFilter = addon.GUI.FilterButton.Filters.db.EarnedBy;
+	local earnedByFilter = addon.Filters.db.EarnedBy;
 
 	local id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy = addon.GetAchievementInfo(achievement.ID);
 

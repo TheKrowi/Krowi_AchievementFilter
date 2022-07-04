@@ -87,12 +87,12 @@ function categoriesFrame.Show_Hide(frame, func, _categoriesWidth, achievementsOf
 	func(scrollFrame.ScrollBar);
 end
 
-local function GetFilteredAchievementNumbers(achievements, filterButton, filters, numOfAch, numOfCompAch, numOfNotObtAch) -- , numOfIncompAch
+local function GetFilteredAchievementNumbers(achievements, filters, numOfAch, numOfCompAch, numOfNotObtAch) -- , numOfIncompAch
 	if not achievements then
 		return numOfAch, numOfCompAch, numOfNotObtAch;
 	end
 	for _, achievement in next, achievements do
-		numOfAch, numOfCompAch, numOfNotObtAch = addon.GetAchievementNumbers(filterButton, filters, achievement, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
+		numOfAch, numOfCompAch, numOfNotObtAch = addon.GetAchievementNumbers(filters, achievement, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
 	end
 	return numOfAch, numOfCompAch, numOfNotObtAch;
 end
@@ -121,18 +121,18 @@ local function GetAchievementNumbers(self, category)
 		end
 	end
 
-	local filterButton = addon.GUI.FilterButton;
-	local filters;
-	if filterButton then
-		filters = filterButton:GetFilters(category);
+	local filters = addon.Filters;
+	local _filters;
+	if filters then
+		_filters = filters:GetFilters(category);
 	end
 
-	numOfAch, numOfCompAch, numOfNotObtAch = GetFilteredAchievementNumbers(category.Achievements, filterButton, filters, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
-	numOfAch, numOfCompAch, numOfNotObtAch = GetFilteredAchievementNumbers(category.MergedAchievements, filterButton, filters, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
+	numOfAch, numOfCompAch, numOfNotObtAch = GetFilteredAchievementNumbers(category.Achievements, _filters, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
+	numOfAch, numOfCompAch, numOfNotObtAch = GetFilteredAchievementNumbers(category.MergedAchievements, _filters, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
 
 	local mergeSmallCategories = false;
-	if filterButton then
-		mergeSmallCategories = filterButton.Filters.db.MergeSmallCategories;
+	if filters then
+		mergeSmallCategories = filters.db.MergeSmallCategories;
 	end
 	if mergeSmallCategories then
 		local mergeSmallCategoriesThreshold = addon.Options.db.Window.MergeSmallCategoriesThreshold;

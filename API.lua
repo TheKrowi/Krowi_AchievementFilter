@@ -57,21 +57,21 @@ function KrowiAF_SelectAchievement(achievement, mouseButton, ignoreModifiers, an
 		return;
 	end
 
-    local filterButton = addon.GUI.FilterButton;
+	local filters = addon.Filters;
 
 	-- Get category
 	local category;
-	if filterButton and filterButton.Filters.db.MergeSmallCategories then
+	if filters and filters.db.MergeSmallCategories then
 		category = achievement:GetMergedCategory(); -- This way we get the parent category
 	else
 		category = achievement.Category;
 	end
 
 	-- Set filters so achievement is visible
-	if filterButton then
-		local filters = addon.Tabs[category:GetTree()[1].TabName].Filters;
-		achievement = filterButton:GetHighestAchievementWhenCollapseSeries(filters, achievement);
-		filterButton:SetFilters(filters, achievement);
+	if filters then
+		local _filters = addon.Tabs[category:GetTree()[1].TabName].Filters;
+		achievement = filters:GetHighestAchievementWhenCollapseSeries(_filters, achievement);
+		filters:SetFilters(filters, achievement);
 	end
 
 	KrowiAF_SelectAchievementWithCategory(achievement, category, mouseButton, ignoreModifiers, anchor, offsetX, offsetY);
@@ -123,8 +123,8 @@ local function Select(category, collapsed, quick)
 end
 
 local function GetMergedCategory(category)
-	local filterButton = addon.GUI.FilterButton;
-	if filterButton and filterButton.Filters.db.MergeSmallCategories then
+	local filters = addon.Filters;
+	if filters and filters.db.MergeSmallCategories then
 		while category.Merged do
 			category = category.Parent;
 		end
