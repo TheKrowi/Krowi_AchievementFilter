@@ -70,8 +70,8 @@ function KrowiAF_SelectAchievement(achievement, mouseButton, ignoreModifiers, an
 	-- Set filters so achievement is visible
 	if filters then
 		local _filters = addon.Tabs[category:GetTree()[1].TabName].Filters;
-		achievement = filters:GetHighestAchievementWhenCollapseSeries(_filters, achievement);
-		filters:SetFilters(filters, achievement);
+		achievement = filters.GetHighestAchievementWhenCollapseSeries(_filters, achievement);
+		filters:SetFilters(_filters, achievement);
 	end
 
 	KrowiAF_SelectAchievementWithCategory(achievement, category, mouseButton, ignoreModifiers, anchor, offsetX, offsetY);

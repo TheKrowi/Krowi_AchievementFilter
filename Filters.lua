@@ -171,7 +171,6 @@ function filters:AutoValidate(achievement, ignoreCollapseSeries)
 end
 
 function filters:SetFilters(_filters, achievement)
-
     local iterations = 0;
     while true do
         local id = self.Validate(_filters, achievement);
