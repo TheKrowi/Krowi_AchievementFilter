@@ -336,9 +336,15 @@ local function MakeMovable(frame, target)
 end
 
 function addon.MakeWindowMovable()
-    if addon.Options.db.Window.Movable and AchievementFrame and AchievementFrameHeader then
+    if not addon.Options.db.Window.Movable then
+        return;
+    end
+    if AchievementFrame and AchievementFrameHeader then
         MakeMovable(AchievementFrame);
         MakeMovable(AchievementFrameHeader, AchievementFrame);
+    end
+    if KrowiAF_AchievementCalendarFrame then
+        MakeMovable(KrowiAF_AchievementCalendarFrame);
     end
 end
 
@@ -401,23 +407,23 @@ function addon.GetNextAchievement(achievement)
     return nil, false;
 end
 
-function addon.GetOpposingFaction(faction)
-    if faction == addon.Objects.Faction.Alliance then
-        return addon.Objects.Faction.Horde;
-    elseif faction == addon.Objects.Faction.Horde then
-        return addon.Objects.Faction.Alliance;
-    end
-end
+-- function addon.GetOpposingFaction(faction)
+--     if faction == addon.Objects.Faction.Alliance then
+--         return addon.Objects.Faction.Horde;
+--     elseif faction == addon.Objects.Faction.Horde then
+--         return addon.Objects.Faction.Alliance;
+--     end
+-- end
 
-function addon.GetFactionName(faction)
-    if faction == addon.Objects.Faction.Alliance then
-        return addon.L["Alliance"];
-    elseif faction == addon.Objects.Faction.Horde then
-        return addon.L["Horde"];
-    else
-        return addon.L["Neutral"];
-    end
-end
+-- function addon.GetFactionName(faction)
+--     if faction == addon.Objects.Faction.Alliance then
+--         return addon.L["Alliance"];
+--     elseif faction == addon.Objects.Faction.Horde then
+--         return addon.L["Horde"];
+--     else
+--         return addon.L["Neutral"];
+--     end
+-- end
 
 function addon.GetUsableSets(transmogSets)
     local usableTransmogSets = {};
@@ -447,23 +453,6 @@ function addon.GetVariantSetIDs(baseSetIds)
         end
     end
     return setIDs;
-end
-
-local function GetTextColorLower(text, lower, color)
-    if lower then
-        text = text:lower();
-    end
-    if color then
-        text = addon.Colors.SetTextColor(text, color);
-    end
-    return text;
-end
-
-function addon.GetText1Or2(test, text1, lower1, color1, text2, lower2, color2)
-    if test then
-        return GetTextColorLower(text1, lower1, color1);
-    end
-    return GetTextColorLower(text2, lower2 or lower1, color2 or color1);
 end
 
 -- function addon.HookAchievementMicroButtonOnEvent()

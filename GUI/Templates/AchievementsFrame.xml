@@ -28,10 +28,6 @@
 				</Texture>
 			</Layer>
 		</Layers>
-		<Scripts>
-			<OnShow function="KrowiAF_AchievementFrameAchievementsFrame_OnShow"/>
-			<OnHide function="KrowiAF_AchievementFrameAchievementsFrame_OnHide"/>
-		</Scripts>
 		<Frames>
 			<ScrollFrame name="$parentContainer" parentKey="Container" inherits="HybridScrollFrameTemplate">
 				<Anchors>
@@ -55,5 +51,9 @@
 			</ScrollFrame>
 			<Frame name="$parentBorder" parentKey="Border" setAllPoints="true" inherits="AchivementGoldBorderBackdrop"/>
 		</Frames>
+		<Scripts>
+			<OnShow function="KrowiAF_AchievementFrameAchievementsFrame_OnShow"/>
+			<OnHide function="KrowiAF_AchievementFrameAchievementsFrame_OnHide"/>
+		</Scripts>
 	</Frame>
 </Ui>

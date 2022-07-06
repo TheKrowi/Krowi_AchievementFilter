@@ -1,8 +1,7 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
-local achievementButton = addon.GUI.AchievementButton;
-achievementButton.Tooltip = {};
-local tooltip = achievementButton.Tooltip;
+addon.GUI.AchievementButton.Tooltip = {};
+local tooltip = addon.GUI.AchievementButton.Tooltip;
 
 local function AddAchievementLine(currentAchievement, otherAchievementID, showCurrentCharacterIcons, nameSuffix, otherFactionAchievementCompleted)
 	nameSuffix = nameSuffix or "";

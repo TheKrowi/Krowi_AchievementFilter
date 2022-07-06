@@ -1,13 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..
 \..\FrameXML\UI.xsd">
-    <Script file="Calendar.lua" />
-	<Include file="Blizzard_CalendarTemplates.xml" />
-	<!-- <Script file="Blizzard_Calendar.lua"/> -->
-	<!-- <Include file="Blizzard_CalendarTemplates.xml"/> -->
-
-	<!-- CalendarFrame -->
-	<!-- This is the main Calendar frame, parent of all related Calendar frames. -->
-	<Frame name="KrowiAF_CalendarFrame" toplevel="true" parent="UIParent" enableMouse="true" enableKeyboard="true" frameStrata="HIGH" hidden="true">
+	<Frame name="KrowiAF_AchievementCalendarFrame_Template" toplevel="true" enableMouse="true" enableKeyboard="true" frameStrata="HIGH" virtual="true" hidden="true">
 		<Size x="659" y="624"/>
 		<Anchors>
 			<Anchor point="TOPLEFT" x="15" y="-80"/>
@@ -441,75 +434,13 @@
 			</Frame> -->
 		</Frames>
 		<Scripts>
-			<OnLoad function="KrowiAF_CalendarFrame_OnLoad"/>
-			<OnEvent function="KrowiAF_CalendarFrame_OnEvent"/>
-			<OnShow function="KrowiAF_CalendarFrame_OnShow"/>
-			<OnHide function="KrowiAF_CalendarFrame_OnHide"/>
-			<OnMouseWheel function="KrowiAF_CalendarFrame_OnMouseWheel"/>
+			<OnLoad function="KrowiAF_AchievementCalendarFrame_OnLoad"/>
+			<OnEvent function="KrowiAF_AchievementCalendarFrame_OnEvent"/>
+			<OnShow function="KrowiAF_AchievementCalendarFrame_OnShow"/>
+			<OnHide function="KrowiAF_AchievementCalendarFrame_OnHide"/>
+			<OnMouseWheel function="KrowiAF_AchievementCalendarFrame_OnMouseWheel"/>
 		</Scripts>
 	</Frame>
-
-	<!-- View Holiday -->
-	<!-- You see this frame when viewing a Holiday event. -->
-	<!-- <Frame name="CalendarViewHolidayFrame" toplevel="true" parent="CalendarFrame" enableMouse="true" frameStrata="HIGH" hidden="true">
-		<Size x="320" y="320"/>
-		<Anchors>
-			<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="0" y="-24"/>
-		</Anchors>
-		<Layers>
-			<Layer level="BORDER">
-				<Texture name="CalendarViewHolidayInfoTexture" hidden="true">
-					<Anchors>
-						<Anchor point="TOPLEFT" x="12" y="-13"/>
-						<Anchor point="BOTTOMRIGHT" x="-11" y="11"/>
-					</Anchors>
-				</Texture>
-			</Layer>
-		</Layers>
-		<Frames>
-			<Frame parentKey="Border" inherits="DialogBorderDarkTemplate"/>
-			<Frame parentKey="Header" inherits="DialogHeaderTemplate"/>
-			<ScrollFrame name="CalendarViewHolidayScrollFrame" inherits="UIPanelScrollFrameTemplate">
-				<Size x="270" y="278"/>
-				<Anchors>
-					<Anchor point="TOPLEFT" x="15" y="-30"/>
-				</Anchors>
-				<Scripts>
-					<OnLoad>
-						self.scrollBarHideable = 1;
-						ScrollFrame_OnLoad(self);
-						ScrollFrame_OnScrollRangeChanged(self);
-					</OnLoad>
-				</Scripts>
-				<ScrollChild>
-					<Frame name="CalendarViewHolidayScrollChild">
-						<Size x="270" y="10"/>
-						<Anchors>
-							<Anchor point="TOPLEFT"/>
-						</Anchors>
-						<Layers>
-							<Layer level="BORDER">
-								<FontString name="CalendarViewHolidayDescription" inherits="GameFontHighlightLeft" nonspacewrap="true" justifyV="TOP">
-									<Size x="265" y="0"/>
-									<Anchors>
-										<Anchor point="TOPLEFT"/>
-									</Anchors>
-								</FontString>
-							</Layer>
-						</Layers>
-					</Frame>
-				</ScrollChild>
-			</ScrollFrame>
-			<Button name="CalendarViewHolidayCloseButton" inherits="CalendarEventCloseButtonTemplate"/>
-
-			<Frame name="$parentModalOverlay" inherits="CalendarModalEventOverlayTemplate" hidden="true"/>
-		</Frames>
-		<Scripts>
-			<OnLoad function="CalendarViewHolidayFrame_OnLoad"/>
-			<OnShow function="CalendarViewHolidayFrame_OnShow"/>
-			<OnHide function="CalendarViewHolidayFrame_OnHide"/>
-		</Scripts>
-	</Frame> -->
 
 	<!-- View Raid -->
 	<!-- You see this frame when viewing either a Raid Reset event or a Raid Lockout event. -->

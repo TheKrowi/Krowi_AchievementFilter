@@ -261,7 +261,7 @@
         "random",
         "KrowiAF_CalendarWeekday1Background",
         "GetCVarBool",
-        "KrowiAF_CalendarFrame",
+        "KrowiAF_AchievementCalendarFrame",
         "KrowiAF_CalendarMonthName",
         "KrowiAF_CalendarYearName",
         "MONTH_JANUARY",
@@ -303,7 +303,10 @@
         "ACHIEVEMENT_BUTTON",
         "AchievementMicroButtonMixin",
         "KrowiAF_AchievementFrameAchievementsFrame",
-        "KrowiAF_AchievementFrameSummaryFrame"
+        "KrowiAF_AchievementFrameSummaryFrame",
+        "UISpecialFrames",
+        "CalendarViewHolidayFrame",
+        "KrowiAF_CalendarViewHolidayFrame"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

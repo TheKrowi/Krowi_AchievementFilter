@@ -1,7 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..
 \..\FrameXML\UI.xsd">
-	<!-- Calendar Day Templates -->
-	<Button name="KrowiAF_CalendarDayButtonTemplate" virtual="true">
+	<Button name="KrowiAF_AchievementCalendarDayButton_Template" virtual="true">
 		<Size x="91" y="91"/>
 		<Anchors>
 			<Anchor point="TOPLEFT"/>
@@ -123,16 +122,16 @@
 		</Frames>
 		<Scripts>
 			<OnLoad>
-				KrowiAF_CalendarDayButton_OnLoad(self);
+				KrowiAF_AchievementCalendarDayButton_OnLoad(self); 
 			</OnLoad>
 			<OnEnter>
-				KrowiAF_CalendarDayButton_OnEnter(self, motion);
+				KrowiAF_AchievementCalendarDayButton_OnEnter(self, motion);
 			</OnEnter>
 			<OnLeave>
-				KrowiAF_CalendarDayButton_OnLeave(self, motion);
+				KrowiAF_AchievementCalendarDayButton_OnLeave(self, motion);
 			</OnLeave>
 			<OnClick>
-				KrowiAF_CalendarDayButton_OnClick(self, button, down);
+				KrowiAF_AchievementCalendarDayButton_OnClick(self, button, down);
 			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\Calendar\CalendarBackground"/>
@@ -230,15 +229,9 @@
 	<!-- Calendar Event Templates -->
 	<!-- <Button name="CalendarEventButtonTemplate" inherits="UIPanelButtonTemplate" virtual="true">
 		<Size x="95" y="22"/>
-	</Button>
-	<Button name="CalendarEventCloseButtonTemplate" inherits="CalendarCloseButtonTemplate" virtual="true">
-		<Scripts>
-			<OnClick>
-				CalendarEventCloseButton_OnClick(self, button, down);
-			</OnClick>
-		</Scripts>
-	</Button>
-	<ScrollFrame name="CalendarEventDescriptionScrollFrame" inherits="UIPanelScrollFrameTemplate" virtual="true">
+	</Button> -->
+
+	<!-- <ScrollFrame name="CalendarEventDescriptionScrollFrame" inherits="UIPanelScrollFrameTemplate" virtual="true">
 		<Anchors>
 			<Anchor point="TOPLEFT">
 				<Offset x="4" y="-4"/>

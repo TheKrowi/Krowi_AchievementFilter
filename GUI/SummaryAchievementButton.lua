@@ -18,6 +18,8 @@ local function Saturate(self)
 end
 
 function KrowiAF_AchievementFrameSummaryFrameAchievementButton_OnLoad(self)
+    AchievementComparisonPlayerButton_OnLoad(self);
+
 	hooksecurefunc(self, "Saturate", Saturate);
 	self.dateCompleted:Show();
 end

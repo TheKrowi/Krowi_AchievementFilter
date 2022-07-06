@@ -75,11 +75,11 @@ function achFrameTabBtn:Base_OnClick(id)
 
     AchievementFrame_ShowSubFrame(unpack(self.FramesToShow));
     if self.SelectedCategory.IsSummary then
-		gui.SummaryFrame:Show();
-		gui.AchievementsFrame:Hide();
+		addon.GUI.SummaryFrame:Show();
+		addon.GUI.AchievementsFrame:Hide();
 	else
-		gui.AchievementsFrame:Show();
-		gui.SummaryFrame:Hide();
+		addon.GUI.AchievementsFrame:Show();
+		addon.GUI.SummaryFrame:Hide();
 	end
     AchievementFrameWaterMark:SetTexture("Interface\\AchievementFrame\\UI-Achievement-AchievementWatermark");
 

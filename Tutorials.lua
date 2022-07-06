@@ -20,6 +20,25 @@ local function ReplaceVarsWithMenu(str, vars)
 end
 string.ReplaceVarsWithMenu = ReplaceVarsWithMenu;
 
+
+local function GetTextColorLower(text, lower, color)
+    if lower then
+        text = text:lower();
+    end
+    if color then
+        text = addon.Colors.SetTextColor(text, color);
+    end
+    return text;
+end
+
+local function GetText1Or2(test, text1, lower1, color1, text2, lower2, color2)
+    if test then
+        return GetTextColorLower(text1, lower1, color1);
+    end
+    return GetTextColorLower(text2, lower2 or lower1, color2 or color1);
+end
+
+
 local pages = {};
 function tutorials.Load()
     local options = addon.Options.db;
@@ -112,7 +131,7 @@ function tutorials.Load()
             self.Text = self.Text:ReplaceVars
             {
                 mergeSmallCategoriesNumber = tostring(addon.Options.db.Window.MergeSmallCategoriesThreshold):SetColorYellow(),
-                resetFactionFiltersEnabled = addon.GetText1Or2(addon.Options.db.Filters.ResetFactionFilters, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red)
+                resetFactionFiltersEnabled = GetText1Or2(addon.Options.db.Filters.ResetFactionFilters, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red)
             };
         end
     });
@@ -133,10 +152,10 @@ function tutorials.Load()
         OnShow = function(self)
             self.Text = self.Text:ReplaceVars
             {
-                clearOnRightClickEnabled = addon.GetText1Or2(options.SearchBox.ClearOnRightClick, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
-                excludeExcludedAchievementsEnabled = addon.GetText1Or2(options.SearchBox.ExcludeExcluded, L["Exclude"], true, colors.Yellow, L["Include"]),
-                excludeExcludedAchievementsFrom = addon.GetText1Or2(options.SearchBox.ExcludeExcluded, L["from"], true, nil, L["in"]),
-                searchFilteredAchievementsEnabled = addon.GetText1Or2(options.SearchBox.OnlySearchFiltered, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
+                clearOnRightClickEnabled = GetText1Or2(options.SearchBox.ClearOnRightClick, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
+                excludeExcludedAchievementsEnabled = GetText1Or2(options.SearchBox.ExcludeExcluded, L["Exclude"], true, colors.Yellow, L["Include"]),
+                excludeExcludedAchievementsFrom = GetText1Or2(options.SearchBox.ExcludeExcluded, L["from"], true, nil, L["in"]),
+                searchFilteredAchievementsEnabled = GetText1Or2(options.SearchBox.OnlySearchFiltered, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
                 minCharToSearchNumber = tostring(addon.Options.db.SearchBox.MinimumCharactersToSearch):SetColorYellow(),
                 numSearchPreviewsNumber = tostring(addon.Options.db.SearchBox.NumberOfSearchPreviews):SetColorYellow()
             };
@@ -196,7 +215,7 @@ function tutorials.Load()
         OnShow = function(self)
             self.Text = self.Text:ReplaceVars
             {
-                compactEnabled = addon.GetText1Or2(options.Achievements.Compact, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red)
+                compactEnabled = GetText1Or2(options.Achievements.Compact, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red)
             };
         end
     });
@@ -217,7 +236,7 @@ function tutorials.Load()
         OnShow = function(self)
             self.Text = self.Text:ReplaceVars
             {
-                showNotObtainable = addon.GetText1Or2(options.Tooltip.Categories.ShowNotObtainable, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red)
+                showNotObtainable = GetText1Or2(options.Tooltip.Categories.ShowNotObtainable, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red)
             };
         end
     });
@@ -251,11 +270,11 @@ function tutorials.Load()
         OnShow = function(self)
             self.Text = self.Text:ReplaceVars
             {
-                partOfAChainEnabled = addon.GetText1Or2(options.Tooltip.Achievements.ShowPartOfAChain, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
-                requiredForEnabled = addon.GetText1Or2(options.Tooltip.Achievements.ShowRequiredFor, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
-                otherFactionEnabled = addon.GetText1Or2(options.Tooltip.Achievements.ShowOtherFaction, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
-                objectivesProgressEnabled = addon.GetText1Or2(options.Tooltip.Achievements.ObjectivesProgress.Show, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
-                currentCharacterIconEnabled = addon.GetText1Or2(options.Tooltip.Achievements.ShowCurrentCharacterIcons, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red)
+                partOfAChainEnabled = GetText1Or2(options.Tooltip.Achievements.ShowPartOfAChain, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
+                requiredForEnabled = GetText1Or2(options.Tooltip.Achievements.ShowRequiredFor, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
+                otherFactionEnabled = GetText1Or2(options.Tooltip.Achievements.ShowOtherFaction, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
+                objectivesProgressEnabled = GetText1Or2(options.Tooltip.Achievements.ObjectivesProgress.Show, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
+                currentCharacterIconEnabled = GetText1Or2(options.Tooltip.Achievements.ShowCurrentCharacterIcons, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red)
             };
         end
     });
@@ -296,7 +315,7 @@ function tutorials.Load()
         OnShow = function(self)
             self.Text = self.Text:ReplaceVars
             {
-                enabled = addon.GetText1Or2(options.RightClickMenu.ShowButtonOnAchievement, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red)
+                enabled = GetText1Or2(options.RightClickMenu.ShowButtonOnAchievement, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red)
             };
         end
     });
@@ -317,9 +336,9 @@ function tutorials.Load()
         OnShow = function(self)
             self.Text = self.Text:ReplaceVars
             {
-                popUpEnabled = addon.GetText1Or2(options.EventReminders.ShowPopUps, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
+                popUpEnabled = GetText1Or2(options.EventReminders.ShowPopUps, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
                 numPopUps = tostring(addon.Options.db.EventReminders.MaxAlerts):SetColorYellow(),
-                compactEnabled = addon.GetText1Or2(options.EventReminders.Compact, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
+                compactEnabled = GetText1Or2(options.EventReminders.Compact, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
                 eventAlertFadeDelay = tostring(addon.Options.db.EventReminders.FadeDelay):SetColorYellow()
             };
         end

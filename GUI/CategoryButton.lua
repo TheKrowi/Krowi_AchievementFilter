@@ -1,8 +1,7 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
-local gui = addon.GUI;
-gui.CategoryButton = {};
-local categoryButton = gui.CategoryButton;
+addon.GUI.CategoryButton = {};
+local categoryButton = addon.GUI.CategoryButton;
 
 local function OnClick(self, quick)
 	local categoriesFrame = addon.GUI.CategoriesFrame;

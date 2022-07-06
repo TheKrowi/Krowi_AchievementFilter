@@ -10,4 +10,5 @@
     <Include file="Search\Files.xml" />
     <Include file="AlertFrame.xml" />
     <Include file="WorldMapButton.xml" />
+    <Include file="Calendar\Files.xml" />
 </Ui>

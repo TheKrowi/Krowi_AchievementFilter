@@ -1,8 +1,7 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
-local gui = addon.GUI;
-gui.CategoriesFrame = {};
-local categoriesFrame = gui.CategoriesFrame;
+addon.GUI.CategoriesFrame = {};
+local categoriesFrame = addon.GUI.CategoriesFrame;
 
 local categoriesWidth = 175;
 local categoriesWidthScrollBarOffset = 22;
@@ -18,7 +17,7 @@ function categoriesFrame:Load()
 
 	-- We need to insert the categories frame infront of the achievements frame so the show/hide function fire in the correct order
 	for i, frameName in next, ACHIEVEMENTFRAME_SUBFRAMES do
-		if frameName == gui.AchievementsFrame:GetName() then
+		if frameName == addon.GUI.AchievementsFrame:GetName() then
 			tinsert(ACHIEVEMENTFRAME_SUBFRAMES, i, frame:GetName());
 			break;
 		end

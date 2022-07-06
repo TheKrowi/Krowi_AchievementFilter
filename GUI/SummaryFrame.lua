@@ -245,11 +245,22 @@ function summaryFrame:BuildCategories()
     self.StatusBars = statusBars;
 end
 
+local function ReskinHybridScrollFrame(scrollFrame)
+    local scrollBar = scrollFrame.ScrollBar;
+    scrollBar.ScrollBarTop:Hide();
+    scrollBar.ScrollBarMiddle:Hide();
+    scrollBar.ScrollBarBottom:Hide();
+    scrollBar.trackBG:SetPoint("TOPLEFT", scrollBar.ScrollUpButton, "BOTTOMLEFT", 0, 10);
+    scrollBar.trackBG:SetPoint("BOTTOMRIGHT", scrollBar.ScrollDownButton, "TOPRIGHT", -1, -10);
+end
+
 function summaryFrame:BuildAchievementsScrollFrame()
     local frame = self.ScrollFrameBorder;
     local scrollFrame = frame.Container;
     local scrollBar = scrollFrame.ScrollBar;
     local header = self.Categories.Header;
+
+    ReskinHybridScrollFrame(scrollFrame);
 
     local show = getmetatable(scrollBar).__index.Show;
     scrollBar.Show = function(selfFunc)

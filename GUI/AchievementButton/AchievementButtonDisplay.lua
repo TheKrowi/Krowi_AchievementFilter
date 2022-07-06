@@ -1,8 +1,7 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
-local achievementButton = addon.GUI.AchievementButton;
-achievementButton.Display = {};
-local display = achievementButton.Display;
+addon.GUI.AchievementButton.Display = {};
+local display = addon.GUI.AchievementButton.Display;
 
 -- This file will contain a lot of copied code from Blizzard_AchievementUI.lua that needs little changes here and there
 -- in order to properly work with this addon

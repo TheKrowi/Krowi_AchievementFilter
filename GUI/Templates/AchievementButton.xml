@@ -234,27 +234,27 @@
 				<Layers>
 					<Layer level="BORDER">
 						<Texture name="$parentBling" file="Interface\AchievementFrame\UI-Achievement-Bling" hidden="true" parentKey="bling">
-						<Anchors>
-							<Anchor point="CENTER" x="-1" y="1"/>
-						</Anchors>
-						<Size x="84" y="84"/>
+							<Anchors>
+								<Anchor point="CENTER" x="-1" y="1"/>
+							</Anchors>
+							<Size x="84" y="84"/>
 						</Texture>
 					</Layer>
 					<Layer level="ARTWORK">
 						<Texture name="$parentTexture" file="Interface\Icons\Spell_Misc_HellifrePVPHonorHoldFavor" parentKey="texture">
-						<Anchors>
-							<Anchor point="CENTER" x="0" y="3"/>
-						</Anchors>
-						<Size x="36" y="36"/>
+							<Anchors>
+								<Anchor point="CENTER" x="0" y="3"/>
+							</Anchors>
+							<Size x="36" y="36"/>
 						</Texture>
 					</Layer>
 					<Layer level="OVERLAY">
 						<Texture name="$parentOverlay" file="Interface\AchievementFrame\UI-Achievement-IconFrame" parentKey="frame">
-						<Anchors>
-							<Anchor point="CENTER" x="-1" y="2"/>
-						</Anchors>
-						<Size x="46" y="46"/>
-						<TexCoords left="0" right="0.5625" top="0" bottom="0.5625"/>
+							<Anchors>
+								<Anchor point="CENTER" x="-1" y="2"/>
+							</Anchors>
+							<Size x="46" y="46"/>
+							<TexCoords left="0" right="0.5625" top="0" bottom="0.5625"/>
 						</Texture>
 					</Layer>
 				</Layers>

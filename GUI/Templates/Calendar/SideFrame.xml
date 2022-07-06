@@ -1,0 +1,104 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..
+\..\FrameXML\UI.xsd">
+	<Frame name="KrowiAF_AchievementCalendarSideFrame_Template" toplevel="true" enableMouse="true" frameStrata="HIGH" virtual="true" hidden="true">
+		<Size x="504" y="320"/>
+		<Layers>
+			<Layer level="BORDER">
+				<Texture name="CalendarViewHolidayInfoTexture" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="12" y="-13"/>
+						<Anchor point="BOTTOMRIGHT" x="-11" y="11"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame parentKey="Border" inherits="DialogBorderDarkTemplate"/>
+			<Frame parentKey="Header" inherits="DialogHeaderTemplate"/>
+			<Frame name="$parentScrollFrameBorder" parentKey="ScrollFrameBorder"> <!-- inherits="AchivementGoldBorderBackdrop" -->
+				<Anchors>
+					<Anchor point="TOPLEFT" x="15" y="-28"/>
+					<Anchor point="BOTTOMRIGHT" x="-15" y="30"/>
+				</Anchors>
+				<Frames>
+					<ScrollFrame name="$parentContainer" parentKey="Container" inherits="HybridScrollFrameTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" x="0" y="-5"/>
+							<Anchor point="BOTTOMRIGHT" x="0" y="5"/>
+						</Anchors>
+						<Frames>
+							<Slider name="$parentScrollBar" parentKey="ScrollBar" inherits="HybridScrollBarTemplate">
+								<Anchors>
+									<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="1" y="-13"/>
+									<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="1" y="11"/>
+								</Anchors>
+								<Scripts>
+									<OnLoad>
+										self.trackBG:Show();
+										self.trackBG:SetVertexColor(0, 0, 0, 1);
+									</OnLoad>
+								</Scripts>
+							</Slider>
+						</Frames>
+					</ScrollFrame>					
+				</Frames>
+			</Frame>	
+			<!-- <ScrollFrame name="CalendarViewHolidayScrollFrame" inherits="UIPanelScrollFrameTemplate">
+				<Size x="270" y="278"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" x="15" y="-30"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						self.scrollBarHideable = 1;
+						ScrollFrame_OnLoad(self);
+						ScrollFrame_OnScrollRangeChanged(self);
+					</OnLoad>
+				</Scripts>
+				<ScrollChild>
+					<Frame name="CalendarViewHolidayScrollChild">
+						<Size x="270" y="10"/>
+						<Anchors>
+							<Anchor point="TOPLEFT"/>
+						</Anchors>
+						<Layers>
+							<Layer level="BORDER">
+								<FontString name="CalendarViewHolidayDescription" inherits="GameFontHighlightLeft" nonspacewrap="true" justifyV="TOP">
+									<Size x="265" y="0"/>
+									<Anchors>
+										<Anchor point="TOPLEFT"/>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Frame>
+				</ScrollChild>
+			</ScrollFrame> -->
+			<Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT" x="-3" y="-3"/>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture file="Interface\DialogFrame\UI-DialogBox-Corner">
+							<Anchors>
+								<Anchor point="TOPRIGHT" x="-4" y="-4"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						self:SetFrameLevel(self:GetParent():GetFrameLevel() + 6);
+					</OnLoad>
+					<OnClick function="KrowiAF_AchievementCalendarSideFrameCloseButton_OnClick"/>
+				</Scripts>
+			</Button>
+			<!-- <Frame name="$parentModalOverlay" inherits="CalendarModalEventOverlayTemplate" hidden="true"/> -->
+		</Frames>
+		<Scripts>
+			<OnLoad function="KrowiAF_AchievementCalendarSideFrame_OnLoad"/>
+			<OnShow function="KrowiAF_AchievementCalendarSideFrame_OnShow"/>
+		</Scripts>
+	</Frame>
+</Ui>

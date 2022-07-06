@@ -1,9 +1,8 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
 local diagnostics = addon.Diagnostics;
-local gui = addon.GUI;
-gui.AchievementButton = {};
-local achievementButton = gui.AchievementButton;
+addon.GUI.AchievementButton = {};
+local achievementButton = addon.GUI.AchievementButton;
 
 local media = "Interface\\AddOns\\Krowi_AchievementFilter\\Media\\";
 
@@ -214,7 +213,7 @@ local function OnClickLeftButton(self, ignoreModifiers, achievementsFrame)
 
 	achievementsFrame:ClearSelection();
 	achievementsFrame:SelectButton(self);
-	achievementsFrame:DisplayAchievement(self, gui.SelectedTab.SelectedAchievement, self.index, self.Achievement);
+	achievementsFrame:DisplayAchievement(self, addon.GUI.SelectedTab.SelectedAchievement, self.index, self.Achievement);
 	HybridScrollFrame_ExpandButton(scrollFrame, ((self.index - 1) * addon.Options.db.Achievements.ButtonCollapsedHeight), self:GetHeight());
 	achievementsFrame:Update();
 	if not ignoreModifiers then
@@ -312,11 +311,12 @@ local function AddGoTo(achievementsFrame, achievement)
 	local requiredForIDs = achievement:GetRequiredForIDs(addon.Filters.Validate, addon.Filters:GetFilters());
 
 	local _achievement = addon.Data.Achievements[achID];
+	local selectedCategory = addon.GUI.SelectedTab.SelectedCategory;
 	if _achievement.NextAchievements == nil
 	and #requiredForIDs == 0
 	and achievement.MoreCategories == nil
-	and gui.SelectedTab.SelectedCategory ~= addon.Data.CurrentZoneCategory
-	and gui.SelectedTab.SelectedCategory ~= addon.Data.SelectedZoneCategory then -- Others can be added here later
+	and selectedCategory ~= addon.Data.CurrentZoneCategory
+	and selectedCategory ~= addon.Data.SelectedZoneCategory then -- Others can be added here later
 		return;
 	end
 

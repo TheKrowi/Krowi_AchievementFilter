@@ -450,7 +450,7 @@ local function SkinAll()
         SkinSideButtons(addon.GUI.SideButtons, engine);
         SkinHeader();
         ReskinBlizzard(skins);
-        SkinCalendar(addon.GUI.Calendar.Button, skins);
+        SkinCalendar(addon.GUI.CalendarFrame.Button, skins);
     end
 end
 

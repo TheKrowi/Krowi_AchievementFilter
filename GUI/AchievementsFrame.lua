@@ -1,8 +1,7 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
-local gui = addon.GUI;
-gui.AchievementsFrame = {};
-local achievementsFrame = gui.AchievementsFrame;
+addon.GUI.AchievementsFrame = {};
+local achievementsFrame = addon.GUI.AchievementsFrame;
 
 local achievementsWidth = 504;
 local achievementsWidthScrollBarOffset = 26;

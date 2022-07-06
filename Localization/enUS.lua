@@ -1,4 +1,4 @@
--- [[ Exported at 2022-07-03 10-18-57 ]] --
+-- [[ Exported at 2022-07-06 18-56-24 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -147,6 +147,7 @@ L["Clear focus"] = "Clear focus";
 L["Exclude"] = "Exclude";
 L["Include"] = "Include";
 L["No achievements are available with the current set of filters"] = "No achievements are available with the current set of filters";
+L["Points"] = "Points";
 L["Requires a reload"] = "Requires a reload to take full effect.";
 L["Build"] = "Build";
 L["Author"] = "Author";
