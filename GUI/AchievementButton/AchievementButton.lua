@@ -108,7 +108,7 @@ local function Collapse(self)
 	local buttonCollapsedHeight = addon.Options.db.Achievements.ButtonCollapsedHeight;
 	self:SetHeight(buttonCollapsedHeight);
 	self.background:SetTexCoord(0, 1, 1 - (buttonCollapsedHeight / 256), 1);
-	if not self.tracked:GetChecked() then
+	if not self.tracked:GetChecked() or addon.Options.db.Achievements.Compact then
 		self.tracked:Hide();
 	end
 	self.tabard:Hide();

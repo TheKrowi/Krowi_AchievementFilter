@@ -16,6 +16,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - A visual bug that would paint accountwide unobtainable achievements blue instead of red
 - When earning an achievement, the GUI should now properly reflect that
+- Tracked compact achievements should now properly hide their Track button when collapsed
 
 ### Removed
 - Achievements on the calendar view do not show their tooltip anymore and can't be clicked
