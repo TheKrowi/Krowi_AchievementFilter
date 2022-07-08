@@ -33,8 +33,6 @@ local function CreateAchievementButton(dayButton, i, anchor, offsX, offsY)
 end
 
 function dayButton:PostLoadButton(buttons, buttonIndex)
-	-- local buttonName = self:GetName();
-
     local button = buttons[buttonIndex];
 	button:SetID(buttonIndex);
 
@@ -70,20 +68,18 @@ function dayButton:PostLoadButton(buttons, buttonIndex)
     tinsert(button.AchievementButtons, CreateAchievementButton(button, 3, "TOPRIGHT", -CALENDAR_ACHIEVEMENTBUTTON_OFFSET, -CALENDAR_ACHIEVEMENTBUTTON_OFFSET));
     tinsert(button.AchievementButtons, CreateAchievementButton(button, 4, "TOPLEFT", CALENDAR_ACHIEVEMENTBUTTON_OFFSET, -CALENDAR_ACHIEVEMENTBUTTON_OFFSET));
 
-	-- local moreTex = button:CreateTexture();
-	-- moreTex:SetTexture(134400);
 	local moreFrame = CreateFrame("Frame", button:GetName() .. "More", button);
-	moreFrame:SetSize(17, 45); -- 17, 45 -- 16, 16
-	moreFrame:SetPoint("RIGHT"); -- "RIGHT" -- "BOTTOMRIGHT", -2, 2
-	local tex = moreFrame:CreateTexture(nil, "OVERLAY");
-	tex:SetAtlas("cyphersetupgrade-arrow-full"); -- cyphersetupgrade-arrow-full -- bags-icon-addslots
-	tex:SetAllPoints();
-	-- tex:Show();
-	button.More = tex;
+	moreFrame:SetAllPoints();
+	local texH = moreFrame:CreateTexture(nil, "OVERLAY");
+	texH:SetTexture("Interface\\AddOns\\Krowi_AchievementFilter\\Media\\MoreArrow");
+	texH:SetTexCoord(0, 0.6875, 0, 0.6875);
+	texH:SetSize(44, 44);
+	texH:SetPoint("RIGHT");
+	button.More = moreFrame;
 end
 
 function KrowiAF_AchievementCalendarDayButton_OnLoad(self)
-	self:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+	self:RegisterForClicks("LeftButtonUp");
 
 	self.Clear = dayButton.Clear;
 end
@@ -93,6 +89,8 @@ function KrowiAF_AchievementCalendarDayButton_OnEnter(self)
 		-- not yet updated
 		return;
 	end
+
+	-- Keep this for now, can show the earned achievements on hover and when clicking locking the window
 
 	-- local monthOffset = self.monthOffset;
 	-- local day = self.day;
@@ -213,20 +211,13 @@ function KrowiAF_AchievementCalendarDayButton_OnLeave(self)
 	end
 end
 
--- CalendarDayButton_Click allows the OnClick for a day and its event buttons to do some of the same processing
 local function CalendarDayButton_Click(button)
-	-- close the event picker if it doesn't belong to this day
-	-- if ( CalendarEventPickerFrame.dayButton and CalendarEventPickerFrame.dayButton ~= button ) then
-	-- 	CalendarEventPickerFrame_Hide();
-	-- end
-
     local calendarFrame = addon.GUI.Calendar.Frame;
 	local day, monthOffset = button.day, button.monthOffset;
 	local monthInfo = C_Calendar.GetMonthInfo(monthOffset);
 	local month = monthInfo.month;
 	local year = monthInfo.year;
 	if day ~= calendarFrame.selectedDay or month ~= calendarFrame.selectedMonth or year ~= calendarFrame.selectedYear then
-		-- a new day has been selected
 		calendarFrame.selectedDay = day;
 		calendarFrame.selectedMonth = month;
 		calendarFrame.selectedYear = year;
@@ -235,47 +226,16 @@ local function CalendarDayButton_Click(button)
 end
 
 function KrowiAF_AchievementCalendarDayButton_OnClick(self, button)
---[[
-	local month, year = CalendarGetMonth(self.monthOffset);
-	local dayChanged = month ~= CalendarFrame.selectedMonth or self.day ~= CalendarFrame.selectedDay or year ~= CalendarFrame.selectedYear;
-	CalendarDayButton_Click(self);
+	if button == "LeftButton" then
+		local dayChanged = self ~= addon.GUI.Calendar.Frame.selectedDayButton;
 
-	if ( button == "LeftButton" ) then
-		CalendarContextMenu_Hide();
-	elseif ( button == "RightButton" ) then
-		local flags = CALENDAR_CONTEXTMENU_FLAG_SHOWDAY;
-		if ( dayChanged ) then
-			CalendarContextMenu_Show(self, CalendarDayContextMenu_Initialize, "cursor", 3, -3, flags, self);
-		else
-			CalendarContextMenu_Toggle(self, CalendarDayContextMenu_Initialize, "cursor", 3, -3, flags, self);
+		CalendarDayButton_Click(self);
+		if dayChanged then
+			if addon.GUI.Calendar.SideFrame:IsShown() then
+				addon.GUI.Calendar.SideFrame:Hide();
+			end
 		end
 	end
---]]
-	if addon.GUI.Calendar.SideFrame:IsShown() then
-		addon.GUI.Calendar.SideFrame:Hide();
-	end
-	-- if ( self.firstEventButton ) then
-	-- 	CalendarDayEventButton_OnClick(self.firstEventButton, button);
-	-- else
-		if ( button == "LeftButton" ) then
-			-- local dayChanged = self ~= CalendarFrame.selectedDayButton;
-
-			CalendarDayButton_Click(self);
-			-- if ( dayChanged ) then
-			-- 	CalendarFrame_CloseEvent();
-			-- end
-			-- CalendarContextMenu_Hide();
-		-- elseif ( button == "RightButton" ) then
-		-- 	local dayChanged = self ~= CalendarContextMenu.dayButton;
-
-		-- 	local flags = CALENDAR_CONTEXTMENU_FLAG_SHOWDAY;
-		-- 	if ( dayChanged ) then
-		-- 		CalendarContextMenu_Show(self, CalendarDayContextMenu_Initialize, "cursor", 3, -3, flags, self);
-		-- 	else
-		-- 		CalendarContextMenu_Toggle(self, CalendarDayContextMenu_Initialize, "cursor", 3, -3, flags, self);
-		-- 	end
-		end
-	-- end
     if self.Achievements then
         addon.GUI.Calendar.SideFrame:Show();
     end
@@ -294,7 +254,3 @@ function dayButton:Clear()
     end
 	self.More:Hide();
 end
-
--- function dayButton:Refresh()
--- 	-- self:Clear(); -- might call this here later
--- end

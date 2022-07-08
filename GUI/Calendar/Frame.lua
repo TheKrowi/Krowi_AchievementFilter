@@ -1149,6 +1149,11 @@ function KrowiAF_AchievementCalendarFrame_OnShow(self)
 
 	self.militaryTime = GetCVarBool("timeMgrUseMilitaryTime");
 
+	-- if addon.GUI.Calendar.SideFrame:IsShown() then
+	-- 	addon.GUI.Calendar.SideFrame:Hide();
+	-- end
+	-- self.selectedDayButton = nil;
+
 	local currentCalendarTime = C_DateAndTime.GetCurrentCalendarTime();
 	C_Calendar.SetAbsMonth(currentCalendarTime.month, currentCalendarTime.year);
 	CalendarFrame_Update();

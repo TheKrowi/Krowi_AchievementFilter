@@ -43,37 +43,6 @@
 					</ScrollFrame>					
 				</Frames>
 			</Frame>	
-			<!-- <ScrollFrame name="CalendarViewHolidayScrollFrame" inherits="UIPanelScrollFrameTemplate">
-				<Size x="270" y="278"/>
-				<Anchors>
-					<Anchor point="TOPLEFT" x="15" y="-30"/>
-				</Anchors>
-				<Scripts>
-					<OnLoad>
-						self.scrollBarHideable = 1;
-						ScrollFrame_OnLoad(self);
-						ScrollFrame_OnScrollRangeChanged(self);
-					</OnLoad>
-				</Scripts>
-				<ScrollChild>
-					<Frame name="CalendarViewHolidayScrollChild">
-						<Size x="270" y="10"/>
-						<Anchors>
-							<Anchor point="TOPLEFT"/>
-						</Anchors>
-						<Layers>
-							<Layer level="BORDER">
-								<FontString name="CalendarViewHolidayDescription" inherits="GameFontHighlightLeft" nonspacewrap="true" justifyV="TOP">
-									<Size x="265" y="0"/>
-									<Anchors>
-										<Anchor point="TOPLEFT"/>
-									</Anchors>
-								</FontString>
-							</Layer>
-						</Layers>
-					</Frame>
-				</ScrollChild>
-			</ScrollFrame> -->
 			<Button name="$parentCloseButton" inherits="UIPanelCloseButton">
 				<Anchors>
 					<Anchor point="TOPRIGHT" x="-3" y="-3"/>
@@ -97,7 +66,6 @@
 			<!-- <Frame name="$parentModalOverlay" inherits="CalendarModalEventOverlayTemplate" hidden="true"/> -->
 		</Frames>
 		<Scripts>
-			<OnLoad function="KrowiAF_AchievementCalendarSideFrame_OnLoad"/>
 			<OnShow function="KrowiAF_AchievementCalendarSideFrame_OnShow"/>
 		</Scripts>
 	</Frame>

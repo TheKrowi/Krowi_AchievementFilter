@@ -16,11 +16,6 @@ function sideFrame:Load()
 	addon.GUI.Calendar.SideFrame = frame; -- Overwrite with the actual frame since all functions are injected to it
 end
 
-function KrowiAF_AchievementCalendarSideFrame_OnLoad(self)
-	-- self.update = CalendarViewHolidayFrame_Update;
-	-- CalendarViewHolidayInfoTexture:SetAlpha(0.4);
-end
-
 function KrowiAF_AchievementCalendarSideFrame_OnShow(self)
     local frame = addon.GUI.Calendar.Frame;
     local selectedDay = frame.selectedDayButton;
@@ -77,6 +72,10 @@ end
 function sideFrame:UpdateAchievements()
     local selectedDay = addon.GUI.Calendar.Frame.selectedDayButton;
     local achievements = selectedDay.Achievements;
+
+    if not achievements then
+        self:Hide();
+    end
 
     local scrollFrame = self.ScrollFrameBorder.Container;
     local offset = HybridScrollFrame_GetOffset(scrollFrame);
