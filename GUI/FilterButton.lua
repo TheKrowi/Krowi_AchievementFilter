@@ -21,6 +21,7 @@ end
 
 local menu = LibStub("Krowi_Menu-1.0");
 function KrowiAF_AchievementFrameFilterButton_OnMouseDown(self)
+    
     UIMenuButtonStretchMixin.OnMouseDown(self);
 	PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
 
@@ -43,8 +44,9 @@ function KrowiAF_AchievementFrameFilterButton_OnMouseDown(self)
 
     self:AddAchievementFilters(menu, nil, addon.Filters.db);
     local earnedBy = addon.Objects.MenuItem:New({Text = addon.L["Earned By"]});
-    self:AddRadioButton(menu, earnedBy, addon.L["Account"], addon.Filters.db, {"EarnedBy"}, true);
-    self:AddRadioButton(menu, earnedBy, (GetCategoryInfo(92)), addon.Filters.db, {"EarnedBy"}, true);
+    self:AddRadioButton(menu, earnedBy, addon.Filters.Account, addon.Filters.db, {"EarnedBy"}, true);
+    self:AddRadioButton(menu, earnedBy, addon.Filters.CharacterAccount, addon.Filters.db, {"EarnedBy"}, true);
+    self:AddRadioButton(menu, earnedBy, addon.Filters.Character, addon.Filters.db, {"EarnedBy"}, true);
     menu:Add(earnedBy);
 
     menu:AddSeparator();

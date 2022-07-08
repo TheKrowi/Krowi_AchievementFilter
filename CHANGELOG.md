@@ -8,15 +8,18 @@ All notable changes to this project will be documented in this file.
 - Option to add a related tab to the Wowhead link
 - Days on the calendar with more than 4 achievements earned now show an arrow to have a visual indication for the user
 - Side window in the calendar with a list of all the earned achievements on the selected day
+- New Earned by Character filter to fully desaturate achievements not earned on the active character
 
 ### Changed
 - Power Unbound and Power Unleashed are obtainable again
 - Calendar is now movable
+- Earned by Character filter is now Earned by Character / Account
 
 ### Fixed
 - A visual bug that would paint accountwide unobtainable achievements blue instead of red
 - When earning an achievement, the GUI should now properly reflect that
 - Tracked compact achievements should now properly hide their Track button when collapsed
+- Current character should always show first in (not) earned by tooltip list
 
 ### Removed
 - Achievements on the calendar view do not show their tooltip anymore and can't be clicked

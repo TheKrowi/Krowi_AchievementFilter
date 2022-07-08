@@ -342,14 +342,14 @@ function achievementsFrame:DisplayAchievement(button, achievement, index, select
 		button.hiddenDescription:SetText(description);
 		button.numLines = ceil(button.hiddenDescription:GetHeight() / self.UIFontHeight);
 		button.icon.texture:SetTexture(icon);
-		if (earnedByFilter == addon.L["Account"] and completed or wasEarnedByMe) or (earnedByFilter == (GetCategoryInfo(92)) and completed and wasEarnedByMe) then
+		if (earnedByFilter == addon.Filters.Account and completed or wasEarnedByMe) or (earnedByFilter == addon.Filters.CharacterAccount and completed and wasEarnedByMe) then
 			button.completed = true;
 			button.dateCompleted:SetText(FormatShortDate(day, month, year));
 			button.dateCompleted:Show();
 			if button.saturatedStyle ~= saturatedStyle then
 				button:Saturate();
 			end
-		elseif (earnedByFilter == (GetCategoryInfo(92)) and completed and not wasEarnedByMe) then
+		elseif (earnedByFilter == addon.Filters.CharacterAccount and completed and not wasEarnedByMe) then
 			button.completed = true;
 			button.dateCompleted:SetText(FormatShortDate(day, month, year));
 			button.dateCompleted:Show();

@@ -83,10 +83,14 @@ end
 
 function filters:Load()
     local _filters = LibStub("AceDB-3.0"):New("Filters", defaults, true);
-    filters.db = _filters.profile;
+    self.db = _filters.profile;
     for t, _ in next, addon.Tabs do
         addon.Tabs[t].Filters = _filters.profile.Tabs[t];
     end
+
+    self.Account = addon.L["Account"];
+    self.Character = (GetCategoryInfo(92));
+    self.CharacterAccount = self.Character .. " / " .. self.Account;
 end
 
 -- [[ Validation ]] --
