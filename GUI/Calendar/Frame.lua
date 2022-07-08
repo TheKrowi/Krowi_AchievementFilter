@@ -660,6 +660,580 @@ local function _CalendarFrame_GetWeekdayIndex(index)
 	return mod(index - 2 + CALENDAR_FIRST_WEEKDAY, 7) + 1;
 end
 
+local function CalendarFrame_InitWeekday(index)
+	local backgroundName = "KrowiAF_CalendarWeekday" .. index .. "Background";
+	local background = _G[backgroundName];
+
+	local left = (bit.band(index, 1) * CALENDAR_WEEKDAY_NORMALIZED_TEX_WIDTH) + CALENDAR_WEEKDAY_NORMALIZED_TEX_LEFT;		-- mod(index, 2) * width
+	local right = left + CALENDAR_WEEKDAY_NORMALIZED_TEX_WIDTH;
+	local top = CALENDAR_WEEKDAY_NORMALIZED_TEX_TOP;
+	local bottom = top + CALENDAR_WEEKDAY_NORMALIZED_TEX_HEIGHT;
+	background:SetTexCoord(left, right, top, bottom);
+end
+
+function KrowiAF_AchievementCalendarFrame_OnLoad(self)
+-- 	self:RegisterEvent("CALENDAR_UPDATE_EVENT_LIST");
+-- --	self:RegisterEvent("CALENDAR_UPDATE_PENDING_INVITES");		-- event list updates are fired for invite status changes now
+-- 	self:RegisterEvent("CALENDAR_OPEN_EVENT");
+-- 	self:RegisterEvent("CALENDAR_UPDATE_ERROR");
+-- 	self:RegisterEvent("CALENDAR_UPDATE_ERROR_WITH_COUNT");
+-- 	self:RegisterEvent("CALENDAR_UPDATE_ERROR_WITH_PLAYER_NAME");
+
+	-- initialize weekdays
+	for i = 1, 7 do
+		CalendarFrame_InitWeekday(i);
+	end
+
+	-- initialize day buttons
+	for i = 1, CALENDAR_MAX_DAYS_PER_MONTH do
+		CalendarDayButtons[i] = CreateFrame("Button", "KrowiAF_CalendarDayButton" .. i, self, "KrowiAF_AchievementCalendarDayButton_Template");
+		-- CalendarFrame_InitDay(i);
+		addon.GUI.CalendarButton:PostLoadButton(CalendarDayButtons, i);
+	end
+
+	-- initialize the selected date
+	self.selectedMonth = nil;
+	self.selectedDay = nil;
+	self.selectedYear = nil;
+
+	-- initialize the viewed date
+	self.viewedMonth = nil;
+	self.viewedYear = nil;
+
+	-- initialize modal dialog handling
+	self.modalFrame = nil;
+
+	tinsert(UISpecialFrames, self:GetName());
+end
+
+function KrowiAF_AchievementCalendarFrame_OnEvent(self, event, ...)
+	-- if ( event == "CALENDAR_UPDATE_EVENT_LIST" ) then
+	-- 	CalendarFrame_Update();
+	-- elseif ( event == "CALENDAR_OPEN_EVENT" ) then
+	-- 	-- hide the invite context menu right off the bat, since it's probably going to be invalid
+	-- 	CalendarContextMenu_Hide(CalendarCreateEventInviteContextMenu_Initialize);
+	-- 	-- now open the event based on its calendar type
+	-- 	local calendarType = ...;
+	-- 	if ( calendarType == "HOLIDAY" ) then
+	-- 		CalendarFrame_ShowEventFrame(CalendarViewHolidayFrame);
+	-- 	elseif ( calendarType == "RAID_LOCKOUT" ) then
+	-- 		CalendarFrame_ShowEventFrame(CalendarViewRaidFrame);
+	-- 	else
+	-- 		-- for now, it could only be a player-created type
+	-- 		if ( C_Calendar.EventCanEdit() ) then
+	-- 			CalendarCreateEventFrame.mode = "edit";
+	-- 			CalendarFrame_ShowEventFrame(CalendarCreateEventFrame);
+	-- 		else
+	-- 			CalendarFrame_ShowEventFrame(CalendarViewEventFrame);
+	-- 		end
+	-- 	end
+	-- elseif ( event == "CALENDAR_UPDATE_ERROR" ) then
+	-- 	local message = ...;
+	-- 	StaticPopup_Show("CALENDAR_ERROR", _G[message]);
+	-- elseif ( event == "CALENDAR_UPDATE_ERROR_WITH_COUNT" ) then
+	-- 	local message, count = ...;
+	-- 	StaticPopup_Show("CALENDAR_ERROR", _G[message]:format(count));
+	-- elseif ( event == "CALENDAR_UPDATE_ERROR_WITH_PLAYER_NAME" ) then
+	-- 	local message, playerName = ...;
+	-- 	StaticPopup_Show("CALENDAR_ERROR", _G[message]:format(playerName));
+	-- end
+end
+
+local function CalendarFrame_CloseEvent()
+	-- C_Calendar.CloseEvent();
+	-- CalendarFrame_HideEventFrame();
+	-- CalendarDayEventButton_Click();
+end
+
+local function CalendarFrame_UpdateTitle()
+	KrowiAF_CalendarMonthName:SetText(CALENDAR_MONTH_NAMES[KrowiAF_AchievementCalendarFrame.viewedMonth]);
+	KrowiAF_CalendarYearName:SetText(KrowiAF_AchievementCalendarFrame.viewedYear);
+end
+
+local function CalendarFrame_UpdateMonthOffsetButtons()
+	-- if ( CalendarFrame_GetModal() ) then
+	-- 	CalendarPrevMonthButton:Disable();
+	-- 	CalendarNextMonthButton:Disable();
+	-- 	return;
+	-- end
+
+	local date = C_Calendar.GetMinDate();
+	-- local testWeekday = date.weekday;
+	local testMonth = date.month;
+	-- local testDate = date.monthDay;
+	local testYear = date.year;
+	KrowiAF_CalendarPrevMonthButton:Enable();
+	if KrowiAF_AchievementCalendarFrame.viewedYear <= testYear then
+		if KrowiAF_AchievementCalendarFrame.viewedMonth <= testMonth then
+			KrowiAF_CalendarPrevMonthButton:Disable();
+		end
+	end
+	-- the max create date is the max date we're going to allow people to view
+	date = C_Calendar.GetMaxCreateDate();
+	-- testWeekday = date.weekday;
+	testMonth = date.month;
+	-- testDay = date.monthDay;
+	testYear = date.year;
+	KrowiAF_CalendarNextMonthButton:Enable();
+	if KrowiAF_AchievementCalendarFrame.viewedYear >= testYear then
+		if KrowiAF_AchievementCalendarFrame.viewedMonth >= testMonth then
+			KrowiAF_CalendarNextMonthButton:Disable();
+		end
+	end
+end
+
+function frame:SetSelectedDay(dayButton)
+	local prevSelectedDayButton = self.selectedDayButton;
+	if prevSelectedDayButton then
+		prevSelectedDayButton:UnlockHighlight();
+		prevSelectedDayButton:GetHighlightTexture():SetAlpha(addon.GUI.CalendarButton.HighlightAlpha);
+	end
+	dayButton:LockHighlight();
+	dayButton:GetHighlightTexture():SetAlpha(addon.GUI.CalendarButton.SelectionAlpha);
+	self.selectedDayButton = dayButton;
+
+	-- highlight the weekday label at this point too
+	local weekdayBackground = _G["KrowiAF_CalendarWeekday" .. _CalendarFrame_GetDayOfWeek(dayButton:GetID()) .. "Background"];
+	KrowiAF_CalendarWeekdaySelectedTexture:ClearAllPoints();
+	KrowiAF_CalendarWeekdaySelectedTexture:SetPoint("CENTER", weekdayBackground, "CENTER");
+	KrowiAF_CalendarWeekdaySelectedTexture:Show();
+end
+
+local function CalendarFrame_SetToday(dayButton)
+	--CalendarTodayTexture:SetParent(dayButton);
+	--CalendarTodayTexture:ClearAllPoints();
+	--CalendarTodayTexture:SetPoint("CENTER", anchor, "CENTER");
+	--CalendarTodayTexture:Show();
+	KrowiAF_CalendarTodayFrame:SetParent(dayButton);
+	KrowiAF_CalendarTodayFrame:ClearAllPoints();
+	KrowiAF_CalendarTodayFrame:SetPoint("CENTER", dayButton, "CENTER");
+	KrowiAF_CalendarTodayFrame:Show();
+	local darkFrame = _G[dayButton:GetName().."DarkFrame"];
+	KrowiAF_CalendarTodayFrame:SetFrameLevel(darkFrame:GetFrameLevel() + 1);
+end
+
+local function CalendarFrame_UpdateDay(index, day, monthOffset, isSelected, isContext, isToday, darkTopFlags, darkBottomFlags)
+	local button = CalendarDayButtons[index];
+	local buttonName = button:GetName();
+	local dateLabel = _G[buttonName.."DateFrameDate"];
+	local darkTop = _G[buttonName.."DarkFrameTop"];
+	local darkBottom = _G[buttonName.."DarkFrameBottom"];
+	local darkFrame = darkTop:GetParent();	-- darkBottom:GetParent() also works
+
+	-- set date
+	dateLabel:SetText(day);
+	button.day = day;
+	button.monthOffset = monthOffset;
+
+	-- set darkened textures, these are for days not in the viewed month
+	button.dark = darkTopFlags and darkBottomFlags;
+	if button.dark then
+		local tcoords;
+		tcoords = DARKDAY_TOP_TCOORDS[darkTopFlags];
+		darkTop:SetTexCoord(tcoords.left, tcoords.right, tcoords.top, tcoords.bottom);
+		tcoords = DARKDAY_BOTTOM_TCOORDS[darkBottomFlags];
+		darkBottom:SetTexCoord(tcoords.left, tcoords.right, tcoords.top, tcoords.bottom);
+		darkFrame:Show();
+	else
+		darkFrame:Hide();
+	end
+
+	-- highlight the button if it is the selected day
+	if isSelected then
+		frame:SetSelectedDay(button);
+	else
+		if not isContext then
+			button:UnlockHighlight();
+		end
+	end
+
+	-- highlight the button if it is today
+	if isToday then
+		--CalendarFrame_SetToday(button, dateLabel);
+		CalendarFrame_SetToday(button);
+	end
+end
+
+local function CalendarFrame_SetLastDay(dayButton, day)
+	KrowiAF_CalendarLastDayDarkTexture:SetParent(dayButton);
+	KrowiAF_CalendarLastDayDarkTexture:ClearAllPoints();
+	KrowiAF_CalendarLastDayDarkTexture:SetPoint("BOTTOMRIGHT", dayButton, "BOTTOMRIGHT");
+	KrowiAF_CalendarLastDayDarkTexture:Show();
+end
+
+
+local function GetSecondsSince(dayButton)
+    local currentMonth = C_Calendar.GetMonthInfo();
+    local secondsSince = {year = currentMonth.year, month = currentMonth.month + dayButton.monthOffset, day = dayButton.day};
+    if secondsSince.month == 0 then
+        secondsSince.year = secondsSince.year - 1;
+        secondsSince.month = 12;
+    end
+    return time{year = secondsSince.year, month = secondsSince.month, day = secondsSince.day};
+end
+
+local function GetEarnedAchievementsInRange()
+    local firstDate = GetSecondsSince(CalendarDayButtons[1]);
+    local lastDate = GetSecondsSince(CalendarDayButtons[CALENDAR_MAX_DAYS_PER_MONTH]);
+
+    local achievementIds = {};
+    for achievementId, date in next, SavedData.Characters[UnitGUID("player")].CompletedAchievements do
+        if date >= firstDate and date <= lastDate then
+            tinsert(achievementIds, achievementId);
+        end
+    end
+    return achievementIds;
+end
+
+local function AddAchievementToButton(dayButton, achievementId, icon, points)
+	dayButton.Achievements = dayButton.Achievements or {};
+	dayButton.Points = dayButton.Points + points;
+	tinsert(dayButton.Achievements, achievementId);
+	if #dayButton.Achievements > 4 then
+		dayButton.More:Show();
+	end
+    for _, achievementButton in next, dayButton.AchievementButtons do
+        if achievementButton.Achievement == nil then
+            achievementButton.Achievement = addon.Data.Achievements[achievementId];
+			achievementButton.Texture:SetTexture(icon);
+            achievementButton:Show();
+            return;
+        end
+    end
+end
+
+local function SetAchievementsAndPoints(numAchievements, points)
+	KrowiAF_CalendarAchievementsAndPoints:SetText(tostring(numAchievements) .. " " .. addon.L["Achievements"] .. " (" .. tostring(points) .. " " .. addon.L["Points"] .. ")");
+end
+
+local function AddAchievementsToDays()
+    local achievementIds = GetEarnedAchievementsInRange();
+    local firstDate = GetSecondsSince(CalendarDayButtons[1]);
+	local numAchievements = 0;
+	local totalPoints = 0;
+    for _, achievementId in next, achievementIds do
+        local _, _, points, _, _, _, _, _, _, icon = addon.GetAchievementInfo(achievementId);
+        local date = SavedData.Characters[UnitGUID("player")].CompletedAchievements[achievementId];
+        local dayButtonIndex = floor((date - firstDate) / 86400 + 1); -- 86400 seconds in a day, floor to take changes in DST which would result in x.xx
+        AddAchievementToButton(CalendarDayButtons[dayButtonIndex], achievementId, icon, points);
+		if not CalendarDayButtons[dayButtonIndex].dark then
+			numAchievements = numAchievements + 1;
+			totalPoints = totalPoints + points;
+		end
+    end
+	SetAchievementsAndPoints(numAchievements, totalPoints);
+end
+
+local function UpdateDayAchievements(buttonIndex)
+    local dayButton = CalendarDayButtons[buttonIndex];
+	dayButton:Clear();
+end
+
+local function CalendarFrame_Update()
+	local currentCalendarTime = C_DateAndTime.GetCurrentCalendarTime();
+	local presentWeekday = currentCalendarTime.weekday;
+	local presentMonth = currentCalendarTime.month;
+	local presentDay = currentCalendarTime.monthDay;
+	local presentYear = currentCalendarTime.year;
+	local monthInfo = C_Calendar.GetMonthInfo(-1);
+	local prevMonth = monthInfo.month;
+	local prevYear = monthInfo.year;
+	local prevNumDays = monthInfo.numDays;
+	monthInfo = C_Calendar.GetMonthInfo(1);
+	local nextMonth = monthInfo.month;
+	local nextYear = monthInfo.year;
+	local nextNumDays = monthInfo.numDays;
+	monthInfo = C_Calendar.GetMonthInfo();
+	local month = monthInfo.month;
+	local year = monthInfo.year;
+	local numDays = monthInfo.numDays;
+	local firstWeekday = monthInfo.firstWeekday;
+
+	-- update the viewed month
+	KrowiAF_AchievementCalendarFrame.viewedMonth = month;
+	KrowiAF_AchievementCalendarFrame.viewedYear = year;
+
+	-- get selected elements
+	local selectedMonth = KrowiAF_AchievementCalendarFrame.selectedMonth;
+	local selectedDay = KrowiAF_AchievementCalendarFrame.selectedDay;
+	local selectedYear = KrowiAF_AchievementCalendarFrame.selectedYear;
+	local indexInfo = C_Calendar.GetEventIndex();
+	local selectedEventMonthOffset = indexInfo ~= nil and indexInfo.offsetMonths or 0;
+	local selectedEventDay = indexInfo ~= nil and indexInfo.monthDay or 0;
+	local selectedEventIndex = indexInfo ~= nil and indexInfo.eventIndex or 0;
+	indexInfo = C_Calendar.ContextMenuGetEventIndex();
+	local contextEventMonthOffset = indexInfo ~= nil and indexInfo.offsetMonths or 0;
+	local contextEventDay = indexInfo ~= nil and indexInfo.monthDay or 0;
+	local contextEventIndex = indexInfo ~= nil and indexInfo.eventIndex or 0;
+
+	-- set title
+	CalendarFrame_UpdateTitle();
+	-- update the prev/next month buttons in case we hit a min or max month
+	CalendarFrame_UpdateMonthOffsetButtons();
+
+	-- initialize weekdays
+	for i = 1, 7 do
+		local weekday = _CalendarFrame_GetWeekdayIndex(i);
+		_G["KrowiAF_CalendarWeekday" .. i .. "Name"]:SetText(CALENDAR_WEEKDAY_NAMES[weekday]);
+	end
+
+	-- initialize hidden attributes
+	KrowiAF_CalendarTodayFrame:Hide();
+	KrowiAF_CalendarWeekdaySelectedTexture:Hide();
+	KrowiAF_CalendarLastDayDarkTexture:Hide();
+	-- CalendarFrame_SetSelectedEvent();
+
+	local buttonIndex = 1;
+	local darkTexIndex = 1;
+	local darkTopFlags = 0;
+	local darkBottomFlags = 0;
+	local isSelectedDay, isSelectedMonth;
+	local isToday, isThisMonth;
+	local isContextEventDay;
+	local isSelectedEventMonthOffset;
+	local isContextEventMonthOffset;
+	local day;
+
+	-- adjust the first week day
+	--firstWeekday = _CalendarFrame_GetWeekdayIndex(firstWeekday);
+
+	-- set the previous month's days before the first day of the week
+	local viewablePrevMonthDays = mod(firstWeekday - CALENDAR_FIRST_WEEKDAY - 1 + 7, 7);
+	day = prevNumDays - viewablePrevMonthDays;
+	isSelectedMonth = selectedMonth == prevMonth and selectedYear == prevYear;
+	isThisMonth = presentMonth == prevMonth and presentYear == prevYear;
+	isSelectedEventMonthOffset = selectedEventMonthOffset == -1;
+	isContextEventMonthOffset = contextEventMonthOffset == -1;
+	while _CalendarFrame_GetWeekdayIndex(buttonIndex) ~= firstWeekday do
+		darkTopFlags = DARKFLAG_PREVMONTH + DARKFLAG_SIDE_TOP;
+		darkBottomFlags = DARKFLAG_PREVMONTH + DARKFLAG_SIDE_BOTTOM;
+		if buttonIndex == 1 then
+			darkTopFlags = darkTopFlags + DARKFLAG_SIDE_LEFT;
+			darkBottomFlags = darkBottomFlags + DARKFLAG_SIDE_LEFT;
+		end
+		if buttonIndex == (firstWeekday - 1) then
+			darkTopFlags = darkTopFlags + DARKFLAG_SIDE_RIGHT;
+			darkBottomFlags = darkBottomFlags + DARKFLAG_SIDE_RIGHT;
+		end
+
+		isSelectedDay = isSelectedMonth and selectedDay == day;
+		isToday = isThisMonth and presentDay == day;
+		isContextEventDay = isContextEventMonthOffset and contextEventDay == day;
+
+		print(1, buttonIndex)
+		CalendarFrame_UpdateDay(buttonIndex, day, -1, isSelectedDay, isContextEventDay, isToday, darkTopFlags, darkBottomFlags);
+		-- CalendarFrame_UpdateDayEvents(buttonIndex, day, -1, isSelectedEventMonthOffset and selectedEventDay == day and selectedEventIndex, isContextEventDay and contextEventIndex);
+        UpdateDayAchievements(buttonIndex);
+
+		day = day + 1;
+		darkTexIndex = darkTexIndex + 1;
+		buttonIndex = buttonIndex + 1;
+	end
+	-- set the days of this month
+	day = 1;
+	isSelectedMonth = selectedMonth == month and selectedYear == year;
+	isThisMonth = presentMonth == month and presentYear == year;
+	isSelectedEventMonthOffset = selectedEventMonthOffset == 0;
+	isContextEventMonthOffset = contextEventMonthOffset == 0;
+	while ( day <= numDays ) do
+		isSelectedDay = isSelectedMonth and selectedDay == day;
+		isToday = isThisMonth and presentDay == day;
+		isContextEventDay = isContextEventMonthOffset and contextEventDay == day;
+
+		print(2, buttonIndex)
+		CalendarFrame_UpdateDay(buttonIndex, day, 0, isSelectedDay, isContextEventDay, isToday);
+		-- CalendarFrame_UpdateDayEvents(buttonIndex, day, 0, isSelectedEventMonthOffset and selectedEventDay == day and selectedEventIndex, isContextEventDay and contextEventIndex);
+        UpdateDayAchievements(buttonIndex);
+
+		day = day + 1;
+		buttonIndex = buttonIndex + 1;
+	end
+	-- set the special last-day-of-month texture
+	if buttonIndex < 36 and mod(buttonIndex - 1, 7) ~= 0 then
+		-- if we are not the last day of the week then we set a special corner texture
+		-- to match up with the dark textures of the following month
+		CalendarFrame_SetLastDay(CalendarDayButtons[buttonIndex - 1], numDays);
+	end
+	-- set the first days of the next month
+	day = 1;
+	isSelectedMonth = selectedMonth == nextMonth and selectedYear == nextYear;
+	isThisMonth = presentMonth == nextMonth and presentYear == nextYear;
+	isSelectedEventMonthOffset = selectedEventMonthOffset == 1;
+	local dayOfWeek;
+	local checkCorners = mod(buttonIndex, 7) ~= 1;	-- last day of the viewed month is not the last day of the week
+	while buttonIndex <= CALENDAR_MAX_DAYS_PER_MONTH do
+		darkTopFlags = DARKFLAG_NEXTMONTH;
+		darkBottomFlags = DARKFLAG_NEXTMONTH;
+		-- left darkness
+		dayOfWeek = _CalendarFrame_GetDayOfWeek(buttonIndex);
+		if dayOfWeek == 1 or day == 1 then
+			darkTopFlags = darkTopFlags + DARKFLAG_SIDE_LEFT;
+			darkBottomFlags = darkBottomFlags + DARKFLAG_SIDE_LEFT;
+		end
+		-- right darkness
+		if dayOfWeek == 7 then
+			darkTopFlags = darkTopFlags + DARKFLAG_SIDE_RIGHT;
+			darkBottomFlags = darkBottomFlags + DARKFLAG_SIDE_RIGHT;
+		end
+		-- top darkness
+		if not CalendarDayButtons[buttonIndex - 7].dark then
+			-- this day last week was not dark
+			darkTopFlags = darkTopFlags + DARKFLAG_SIDE_TOP;
+		end
+		-- bottom darkness
+		if not CalendarDayButtons[buttonIndex + 7] then
+			-- this day next week does not exist
+			darkBottomFlags = darkBottomFlags + DARKFLAG_SIDE_BOTTOM;
+		end
+		-- corner stuff
+		if checkCorners and (day == 1 or day == 7 or day == 8) then
+			darkTopFlags = darkTopFlags + DARKFLAG_CORNER;
+		end
+
+		isSelectedDay = isSelectedMonth and selectedDay == day;
+		isToday = isThisMonth and presentDay == day;
+		isContextEventDay = isContextEventMonthOffset and contextEventDay == day;
+
+		print(3, buttonIndex)
+		CalendarFrame_UpdateDay(buttonIndex, day, 1, isSelectedDay, isContextEventDay, isToday, darkTopFlags, darkBottomFlags);
+		-- CalendarFrame_UpdateDayEvents(buttonIndex, day, 1, isSelectedEventMonthOffset and selectedEventDay == day and selectedEventIndex, isContextEventDay and contextEventIndex);
+        UpdateDayAchievements(buttonIndex);
+
+		day = day + 1;
+		darkTexIndex = darkTexIndex + 1;
+		buttonIndex = buttonIndex + 1;
+	end
+
+	-- -- if this month didn't have a selected event...
+	-- if ( not CalendarFrame.selectedEventButton ) then
+	-- 	local eventFrame = CalendarFrame_GetEventFrame();
+	-- 	if ( eventFrame and (eventFrame ~= CalendarCreateEventFrame or eventFrame.mode ~= "create") ) then
+	-- 		--...and the event frame was open and not in create mode, hide the event frame
+	-- 		CalendarFrame_CloseEvent();
+	-- 	end
+	-- end
+
+	-- -- if the context menu was set to an event...
+	-- if ( CalendarContextMenu.eventButton and
+	-- 	 CalendarContextMenu.func == CalendarDayContextMenu_Initialize ) then
+	-- 	if ( contextEventDay == 0 ) then
+	-- 		--...and the context event no longer exists
+	-- 		-- hide the context menu
+	-- 		CalendarContextMenu_Hide();
+	-- 		-- hide the event deletion popup
+	-- 		-- this might seem kludgy, but it takes just as long, if not longer, to check visibility of the popup
+	-- 		-- as it does to just hide it, that's why we don't check visibility first
+	-- 		StaticPopup_Hide("CALENDAR_DELETE_EVENT");
+	-- 	elseif ( CalendarContextMenu:IsShown() ) then
+	-- 		local dayButton = CalendarContextMenu.dayButton;
+	-- 		local eventButton = CalendarContextMenu.eventButton;
+	-- 		if ( dayButton.monthOffset ~= contextEventMonthOffset or
+	-- 			 dayButton.day ~= contextEventDay or
+	-- 			 eventButton.eventIndex ~= contextEventIndex ) then
+	-- 			--...and the event index changed, hide the context menu
+	-- 			-- you might be thinking "why don't we just reanchor the context menu to the proper day?"
+	-- 			-- great question! we don't do this because we don't want the UI to jump around on the user
+	-- 			-- like that, especially since calendar updates are not always caused by the user
+	-- 			CalendarContextMenu_Hide();
+	-- 		end
+	-- 	end
+	-- end
+
+    AddAchievementsToDays();
+end
+
+function KrowiAF_AchievementCalendarFrame_OnShow(self)
+	-- an event could have stayed selected if the calendar closed without the player doing so explicitly
+	-- (e.g. reloadui) so make sure that we're not selecting an event when the calendar comes back
+	-- CalendarFrame_CloseEvent();
+
+	self.militaryTime = GetCVarBool("timeMgrUseMilitaryTime");
+
+	local currentCalendarTime = C_DateAndTime.GetCurrentCalendarTime();
+	C_Calendar.SetAbsMonth(currentCalendarTime.month, currentCalendarTime.year);
+	CalendarFrame_Update();
+
+	C_Calendar.OpenCalendar();
+
+	PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN);
+end
+
+function KrowiAF_AchievementCalendarFrame_OnHide(self)
+	-- close the event now...the reason is that the calendar may clear the current event data next time
+	-- the frame opens up
+	CalendarFrame_CloseEvent();
+	-- CalendarEventPickerFrame_Hide();
+	-- CalendarTexturePickerFrame_Hide();
+	-- CalendarContextMenu_Reset();
+	-- HideDropDownMenu(1);
+	-- StaticPopup_Hide("CALENDAR_DELETE_EVENT");
+	-- StaticPopup_Hide("CALENDAR_ERROR");
+	-- pop all modal frames as a fail safe, just in case we somehow end up in a state where modal frames
+	-- are left shown, which shouldn't happen
+	-- CalendarFrame_PopModal(true);
+
+	-- clean up texture references
+	local dayButton, dayButtonName;
+	for i = 1, CALENDAR_MAX_DAYS_PER_MONTH do
+		dayButton = CalendarDayButtons[i];
+		dayButtonName = dayButton:GetName();
+		_G[dayButtonName .. "EventTexture"]:SetTexture();
+		_G[dayButtonName .. "OverlayFrameTexture"]:SetTexture();
+	end
+
+	C_Calendar.SetNextClubId(nil);
+	PlaySound(SOUNDKIT.IG_SPELLBOOK_CLOSE);
+end
+
+function KrowiAF_AchievementCalendarFrame_OnMouseWheel(self, value)
+	if value > 0 then
+		if KrowiAF_CalendarPrevMonthButton:IsEnabled() then
+			KrowiAF_CalendarPrevMonthButton_OnClick();
+		end
+	else
+		if KrowiAF_CalendarNextMonthButton:IsEnabled() then
+			KrowiAF_CalendarNextMonthButton_OnClick();
+		end
+	end
+end
+
+function KrowiAF_CalendarTodayFrame_OnUpdate(self, elapsed)
+	self.timer = self.timer - elapsed;
+	if self.timer < 0 then
+		self.timer = self.fadeTime;
+		if self.fadein then
+			self.fadein = false;
+		else
+			self.fadein = true;
+		end
+	else
+		if self.fadein then
+			KrowiAF_CalendarTodayTextureGlow:SetAlpha(1-(self.timer/self.fadeTime));
+		else
+			KrowiAF_CalendarTodayTextureGlow:SetAlpha(self.timer/self.fadeTime);
+		end
+	end
+end
+
+local function CalendarFrame_OffsetMonth(offset)
+	C_Calendar.SetMonth(offset);
+	-- CalendarContextMenu_Hide();
+	-- StaticPopup_Hide("CALENDAR_DELETE_EVENT");
+	-- CalendarEventPickerFrame_Hide();
+	-- CalendarTexturePickerFrame_Hide();
+	CalendarFrame_Update();
+end
+
+function KrowiAF_CalendarPrevMonthButton_OnClick()
+	PlaySound(SOUNDKIT.IG_ABILITY_PAGE_TURN);
+	CalendarFrame_OffsetMonth(-1);
+end
+
+function KrowiAF_CalendarNextMonthButton_OnClick()
+	PlaySound(SOUNDKIT.IG_ABILITY_PAGE_TURN);
+	CalendarFrame_OffsetMonth(1);
+end
+
 -- local function _CalendarFrame_GetFullDate(weekday, month, day, year)
 -- 	local weekdayName = CALENDAR_WEEKDAY_NAMES[weekday];
 -- 	local monthName = CALENDAR_FULLDATE_MONTH_NAMES[month];
@@ -1026,536 +1600,6 @@ end
 -- 	end
 -- end
 
-local function CalendarFrame_InitWeekday(index)
-	local backgroundName = "KrowiAF_CalendarWeekday" .. index .. "Background";
-	local background = _G[backgroundName];
-
-	local left = (bit.band(index, 1) * CALENDAR_WEEKDAY_NORMALIZED_TEX_WIDTH) + CALENDAR_WEEKDAY_NORMALIZED_TEX_LEFT;		-- mod(index, 2) * width
-	local right = left + CALENDAR_WEEKDAY_NORMALIZED_TEX_WIDTH;
-	local top = CALENDAR_WEEKDAY_NORMALIZED_TEX_TOP;
-	local bottom = top + CALENDAR_WEEKDAY_NORMALIZED_TEX_HEIGHT;
-	background:SetTexCoord(left, right, top, bottom);
-end
-
-function KrowiAF_AchievementCalendarFrame_OnLoad(self)
--- 	self:RegisterEvent("CALENDAR_UPDATE_EVENT_LIST");
--- --	self:RegisterEvent("CALENDAR_UPDATE_PENDING_INVITES");		-- event list updates are fired for invite status changes now
--- 	self:RegisterEvent("CALENDAR_OPEN_EVENT");
--- 	self:RegisterEvent("CALENDAR_UPDATE_ERROR");
--- 	self:RegisterEvent("CALENDAR_UPDATE_ERROR_WITH_COUNT");
--- 	self:RegisterEvent("CALENDAR_UPDATE_ERROR_WITH_PLAYER_NAME");
-
-	-- initialize weekdays
-	for i = 1, 7 do
-		CalendarFrame_InitWeekday(i);
-	end
-
-	-- initialize day buttons
-	for i = 1, CALENDAR_MAX_DAYS_PER_MONTH do
-		CalendarDayButtons[i] = CreateFrame("Button", "KrowiAF_CalendarDayButton" .. i, self, "KrowiAF_AchievementCalendarDayButton_Template");
-		-- CalendarFrame_InitDay(i);
-		addon.GUI.CalendarButton:PostLoadButton(CalendarDayButtons, i);
-	end
-
-	-- initialize the selected date
-	self.selectedMonth = nil;
-	self.selectedDay = nil;
-	self.selectedYear = nil;
-
-	-- initialize the viewed date
-	self.viewedMonth = nil;
-	self.viewedYear = nil;
-
-	-- initialize modal dialog handling
-	self.modalFrame = nil;
-
-	tinsert(UISpecialFrames, self:GetName());
-end
-
-function KrowiAF_AchievementCalendarFrame_OnEvent(self, event, ...)
-	-- if ( event == "CALENDAR_UPDATE_EVENT_LIST" ) then
-	-- 	CalendarFrame_Update();
-	-- elseif ( event == "CALENDAR_OPEN_EVENT" ) then
-	-- 	-- hide the invite context menu right off the bat, since it's probably going to be invalid
-	-- 	CalendarContextMenu_Hide(CalendarCreateEventInviteContextMenu_Initialize);
-	-- 	-- now open the event based on its calendar type
-	-- 	local calendarType = ...;
-	-- 	if ( calendarType == "HOLIDAY" ) then
-	-- 		CalendarFrame_ShowEventFrame(CalendarViewHolidayFrame);
-	-- 	elseif ( calendarType == "RAID_LOCKOUT" ) then
-	-- 		CalendarFrame_ShowEventFrame(CalendarViewRaidFrame);
-	-- 	else
-	-- 		-- for now, it could only be a player-created type
-	-- 		if ( C_Calendar.EventCanEdit() ) then
-	-- 			CalendarCreateEventFrame.mode = "edit";
-	-- 			CalendarFrame_ShowEventFrame(CalendarCreateEventFrame);
-	-- 		else
-	-- 			CalendarFrame_ShowEventFrame(CalendarViewEventFrame);
-	-- 		end
-	-- 	end
-	-- elseif ( event == "CALENDAR_UPDATE_ERROR" ) then
-	-- 	local message = ...;
-	-- 	StaticPopup_Show("CALENDAR_ERROR", _G[message]);
-	-- elseif ( event == "CALENDAR_UPDATE_ERROR_WITH_COUNT" ) then
-	-- 	local message, count = ...;
-	-- 	StaticPopup_Show("CALENDAR_ERROR", _G[message]:format(count));
-	-- elseif ( event == "CALENDAR_UPDATE_ERROR_WITH_PLAYER_NAME" ) then
-	-- 	local message, playerName = ...;
-	-- 	StaticPopup_Show("CALENDAR_ERROR", _G[message]:format(playerName));
-	-- end
-end
-
-local function CalendarFrame_CloseEvent()
-	-- C_Calendar.CloseEvent();
-	-- CalendarFrame_HideEventFrame();
-	-- CalendarDayEventButton_Click();
-end
-
-local function CalendarFrame_UpdateTitle()
-	KrowiAF_CalendarMonthName:SetText(CALENDAR_MONTH_NAMES[KrowiAF_AchievementCalendarFrame.viewedMonth]);
-	KrowiAF_CalendarYearName:SetText(KrowiAF_AchievementCalendarFrame.viewedYear);
-end
-
-local function CalendarFrame_UpdateMonthOffsetButtons()
-	-- if ( CalendarFrame_GetModal() ) then
-	-- 	CalendarPrevMonthButton:Disable();
-	-- 	CalendarNextMonthButton:Disable();
-	-- 	return;
-	-- end
-
-	local date = C_Calendar.GetMinDate();
-	-- local testWeekday = date.weekday;
-	local testMonth = date.month;
-	-- local testDate = date.monthDay;
-	local testYear = date.year;
-	KrowiAF_CalendarPrevMonthButton:Enable();
-	if KrowiAF_AchievementCalendarFrame.viewedYear <= testYear then
-		if KrowiAF_AchievementCalendarFrame.viewedMonth <= testMonth then
-			KrowiAF_CalendarPrevMonthButton:Disable();
-		end
-	end
-	-- the max create date is the max date we're going to allow people to view
-	date = C_Calendar.GetMaxCreateDate();
-	-- testWeekday = date.weekday;
-	testMonth = date.month;
-	-- testDay = date.monthDay;
-	testYear = date.year;
-	KrowiAF_CalendarNextMonthButton:Enable();
-	if KrowiAF_AchievementCalendarFrame.viewedYear >= testYear then
-		if KrowiAF_AchievementCalendarFrame.viewedMonth >= testMonth then
-			KrowiAF_CalendarNextMonthButton:Disable();
-		end
-	end
-end
-
-function frame:SetSelectedDay(dayButton)
-	local prevSelectedDayButton = self.selectedDayButton;
-	if prevSelectedDayButton then
-		prevSelectedDayButton:UnlockHighlight();
-		prevSelectedDayButton:GetHighlightTexture():SetAlpha(addon.GUI.CalendarButton.HighlightAlpha);
-	end
-	dayButton:LockHighlight();
-	dayButton:GetHighlightTexture():SetAlpha(addon.GUI.CalendarButton.SelectionAlpha);
-	self.selectedDayButton = dayButton;
-
-	-- highlight the weekday label at this point too
-	local weekdayBackground = _G["KrowiAF_CalendarWeekday" .. _CalendarFrame_GetDayOfWeek(dayButton:GetID()) .. "Background"];
-	KrowiAF_CalendarWeekdaySelectedTexture:ClearAllPoints();
-	KrowiAF_CalendarWeekdaySelectedTexture:SetPoint("CENTER", weekdayBackground, "CENTER");
-	KrowiAF_CalendarWeekdaySelectedTexture:Show();
-end
-
-local function CalendarFrame_SetToday(dayButton)
-	--CalendarTodayTexture:SetParent(dayButton);
-	--CalendarTodayTexture:ClearAllPoints();
-	--CalendarTodayTexture:SetPoint("CENTER", anchor, "CENTER");
-	--CalendarTodayTexture:Show();
-	KrowiAF_CalendarTodayFrame:SetParent(dayButton);
-	KrowiAF_CalendarTodayFrame:ClearAllPoints();
-	KrowiAF_CalendarTodayFrame:SetPoint("CENTER", dayButton, "CENTER");
-	KrowiAF_CalendarTodayFrame:Show();
-	local darkFrame = _G[dayButton:GetName().."DarkFrame"];
-	KrowiAF_CalendarTodayFrame:SetFrameLevel(darkFrame:GetFrameLevel() + 1);
-end
-
-local function CalendarFrame_UpdateDay(index, day, monthOffset, isSelected, isContext, isToday, darkTopFlags, darkBottomFlags)
-	local button = CalendarDayButtons[index];
-	local buttonName = button:GetName();
-	local dateLabel = _G[buttonName.."DateFrameDate"];
-	local darkTop = _G[buttonName.."DarkFrameTop"];
-	local darkBottom = _G[buttonName.."DarkFrameBottom"];
-	local darkFrame = darkTop:GetParent();	-- darkBottom:GetParent() also works
-
-	-- set date
-	dateLabel:SetText(day);
-	button.day = day;
-	button.monthOffset = monthOffset;
-
-	-- set darkened textures, these are for days not in the viewed month
-	button.dark = darkTopFlags and darkBottomFlags;
-	if button.dark then
-		local tcoords;
-		tcoords = DARKDAY_TOP_TCOORDS[darkTopFlags];
-		darkTop:SetTexCoord(tcoords.left, tcoords.right, tcoords.top, tcoords.bottom);
-		tcoords = DARKDAY_BOTTOM_TCOORDS[darkBottomFlags];
-		darkBottom:SetTexCoord(tcoords.left, tcoords.right, tcoords.top, tcoords.bottom);
-		darkFrame:Show();
-	else
-		darkFrame:Hide();
-	end
-
-	-- highlight the button if it is the selected day
-	if isSelected then
-		frame:SetSelectedDay(button);
-	else
-		if not isContext then
-			button:UnlockHighlight();
-		end
-	end
-
-	-- highlight the button if it is today
-	if isToday then
-		--CalendarFrame_SetToday(button, dateLabel);
-		CalendarFrame_SetToday(button);
-	end
-end
-
-local function CalendarFrame_SetLastDay(dayButton, day)
-	KrowiAF_CalendarLastDayDarkTexture:SetParent(dayButton);
-	KrowiAF_CalendarLastDayDarkTexture:ClearAllPoints();
-	KrowiAF_CalendarLastDayDarkTexture:SetPoint("BOTTOMRIGHT", dayButton, "BOTTOMRIGHT");
-	KrowiAF_CalendarLastDayDarkTexture:Show();
-end
-
-
-local function GetSecondsSince(dayButton)
-    local currentMonth = C_Calendar.GetMonthInfo();
-    local secondsSince = {year = currentMonth.year, month = currentMonth.month + dayButton.monthOffset, day = dayButton.day};
-    if secondsSince.month == 0 then
-        secondsSince.year = secondsSince.year - 1;
-        secondsSince.month = 12;
-    end
-    return time{year = secondsSince.year, month = secondsSince.month, day = secondsSince.day};
-end
-
-local function GetEarnedAchievementsInRange()
-    local firstDate = GetSecondsSince(CalendarDayButtons[1]);
-    local lastDate = GetSecondsSince(CalendarDayButtons[CALENDAR_MAX_DAYS_PER_MONTH]);
-
-    local achievementIds = {};
-    for achievementId, date in next, SavedData.Characters[UnitGUID("player")].CompletedAchievements do
-        if date >= firstDate and date <= lastDate then
-            tinsert(achievementIds, achievementId);
-        end
-    end
-    return achievementIds;
-end
-
-local function AddAchievementToButton(dayButton, achievementId, icon, points)
-	dayButton.Achievements = dayButton.Achievements or {};
-	dayButton.Points = dayButton.Points + points;
-	tinsert(dayButton.Achievements, achievementId);
-	if #dayButton.Achievements > 4 then
-		dayButton.More:Show();
-	end
-    for _, achievementButton in next, dayButton.AchievementButtons do
-        if achievementButton.Achievement == nil then
-            achievementButton.Achievement = addon.Data.Achievements[achievementId];
-			achievementButton.Texture:SetTexture(icon);
-            achievementButton:Show();
-            return;
-        end
-    end
-end
-
-local function SetAchievementsAndPoints(numAchievements, points)
-	KrowiAF_CalendarAchievementsAndPoints:SetText(tostring(numAchievements) .. " " .. addon.L["Achievements"] .. " (" .. tostring(points) .. " " .. addon.L["Points"] .. ")");
-end
-
-local function AddAchievementsToDays()
-    local achievementIds = GetEarnedAchievementsInRange();
-    local firstDate = GetSecondsSince(CalendarDayButtons[1]);
-	local totalPoints = 0;
-    for _, achievementId in next, achievementIds do
-        local _, _, points, _, _, _, _, _, _, icon = addon.GetAchievementInfo(achievementId);
-		totalPoints = totalPoints + points;
-        local date = SavedData.Characters[UnitGUID("player")].CompletedAchievements[achievementId];
-        local dayButtonIndex = floor((date - firstDate) / 86400 + 1); -- 86400 seconds in a day, floor to take changes in DST which would result in x.xx
-        AddAchievementToButton(CalendarDayButtons[dayButtonIndex], achievementId, icon, points);
-    end
-	SetAchievementsAndPoints(#achievementIds, totalPoints);
-end
-
-local function UpdateDayAchievements(buttonIndex)
-    local dayButton = CalendarDayButtons[buttonIndex];
-	dayButton:Clear();
-end
-
-local function CalendarFrame_Update()
-	local currentCalendarTime = C_DateAndTime.GetCurrentCalendarTime();
-	local presentWeekday = currentCalendarTime.weekday;
-	local presentMonth = currentCalendarTime.month;
-	local presentDay = currentCalendarTime.monthDay;
-	local presentYear = currentCalendarTime.year;
-	local monthInfo = C_Calendar.GetMonthInfo(-1);
-	local prevMonth = monthInfo.month;
-	local prevYear = monthInfo.year;
-	local prevNumDays = monthInfo.numDays;
-	monthInfo = C_Calendar.GetMonthInfo(1);
-	local nextMonth = monthInfo.month;
-	local nextYear = monthInfo.year;
-	local nextNumDays = monthInfo.numDays;
-	monthInfo = C_Calendar.GetMonthInfo();
-	local month = monthInfo.month;
-	local year = monthInfo.year;
-	local numDays = monthInfo.numDays;
-	local firstWeekday = monthInfo.firstWeekday;
-
-	-- update the viewed month
-	KrowiAF_AchievementCalendarFrame.viewedMonth = month;
-	KrowiAF_AchievementCalendarFrame.viewedYear = year;
-
-	-- get selected elements
-	local selectedMonth = KrowiAF_AchievementCalendarFrame.selectedMonth;
-	local selectedDay = KrowiAF_AchievementCalendarFrame.selectedDay;
-	local selectedYear = KrowiAF_AchievementCalendarFrame.selectedYear;
-	local indexInfo = C_Calendar.GetEventIndex();
-	local selectedEventMonthOffset = indexInfo ~= nil and indexInfo.offsetMonths or 0;
-	local selectedEventDay = indexInfo ~= nil and indexInfo.monthDay or 0;
-	local selectedEventIndex = indexInfo ~= nil and indexInfo.eventIndex or 0;
-	indexInfo = C_Calendar.ContextMenuGetEventIndex();
-	local contextEventMonthOffset = indexInfo ~= nil and indexInfo.offsetMonths or 0;
-	local contextEventDay = indexInfo ~= nil and indexInfo.monthDay or 0;
-	local contextEventIndex = indexInfo ~= nil and indexInfo.eventIndex or 0;
-
-	-- set title
-	CalendarFrame_UpdateTitle();
-	-- update the prev/next month buttons in case we hit a min or max month
-	CalendarFrame_UpdateMonthOffsetButtons();
-
-	-- initialize weekdays
-	for i = 1, 7 do
-		local weekday = _CalendarFrame_GetWeekdayIndex(i);
-		_G["KrowiAF_CalendarWeekday" .. i .. "Name"]:SetText(CALENDAR_WEEKDAY_NAMES[weekday]);
-	end
-
-	-- initialize hidden attributes
-	KrowiAF_CalendarTodayFrame:Hide();
-	KrowiAF_CalendarWeekdaySelectedTexture:Hide();
-	KrowiAF_CalendarLastDayDarkTexture:Hide();
-	-- CalendarFrame_SetSelectedEvent();
-
-	local buttonIndex = 1;
-	local darkTexIndex = 1;
-	local darkTopFlags = 0;
-	local darkBottomFlags = 0;
-	local isSelectedDay, isSelectedMonth;
-	local isToday, isThisMonth;
-	local isContextEventDay;
-	local isSelectedEventMonthOffset;
-	local isContextEventMonthOffset;
-	local day;
-
-	-- adjust the first week day
-	--firstWeekday = _CalendarFrame_GetWeekdayIndex(firstWeekday);
-
-	-- set the previous month's days before the first day of the week
-	local viewablePrevMonthDays = mod(firstWeekday - CALENDAR_FIRST_WEEKDAY - 1 + 7, 7);
-	day = prevNumDays - viewablePrevMonthDays;
-	isSelectedMonth = selectedMonth == prevMonth and selectedYear == prevYear;
-	isThisMonth = presentMonth == prevMonth and presentYear == prevYear;
-	isSelectedEventMonthOffset = selectedEventMonthOffset == -1;
-	isContextEventMonthOffset = contextEventMonthOffset == -1;
-	while _CalendarFrame_GetWeekdayIndex(buttonIndex) ~= firstWeekday do
-		darkTopFlags = DARKFLAG_PREVMONTH + DARKFLAG_SIDE_TOP;
-		darkBottomFlags = DARKFLAG_PREVMONTH + DARKFLAG_SIDE_BOTTOM;
-		if buttonIndex == 1 then
-			darkTopFlags = darkTopFlags + DARKFLAG_SIDE_LEFT;
-			darkBottomFlags = darkBottomFlags + DARKFLAG_SIDE_LEFT;
-		end
-		if buttonIndex == (firstWeekday - 1) then
-			darkTopFlags = darkTopFlags + DARKFLAG_SIDE_RIGHT;
-			darkBottomFlags = darkBottomFlags + DARKFLAG_SIDE_RIGHT;
-		end
-
-		isSelectedDay = isSelectedMonth and selectedDay == day;
-		isToday = isThisMonth and presentDay == day;
-		isContextEventDay = isContextEventMonthOffset and contextEventDay == day;
-
-		CalendarFrame_UpdateDay(buttonIndex, day, -1, isSelectedDay, isContextEventDay, isToday, darkTopFlags, darkBottomFlags);
-		-- CalendarFrame_UpdateDayEvents(buttonIndex, day, -1, isSelectedEventMonthOffset and selectedEventDay == day and selectedEventIndex, isContextEventDay and contextEventIndex);
-        UpdateDayAchievements(buttonIndex);
-
-		day = day + 1;
-		darkTexIndex = darkTexIndex + 1;
-		buttonIndex = buttonIndex + 1;
-	end
-	-- set the days of this month
-	day = 1;
-	isSelectedMonth = selectedMonth == month and selectedYear == year;
-	isThisMonth = presentMonth == month and presentYear == year;
-	isSelectedEventMonthOffset = selectedEventMonthOffset == 0;
-	isContextEventMonthOffset = contextEventMonthOffset == 0;
-	while ( day <= numDays ) do
-		isSelectedDay = isSelectedMonth and selectedDay == day;
-		isToday = isThisMonth and presentDay == day;
-		isContextEventDay = isContextEventMonthOffset and contextEventDay == day;
-
-		CalendarFrame_UpdateDay(buttonIndex, day, 0, isSelectedDay, isContextEventDay, isToday);
-		-- CalendarFrame_UpdateDayEvents(buttonIndex, day, 0, isSelectedEventMonthOffset and selectedEventDay == day and selectedEventIndex, isContextEventDay and contextEventIndex);
-        UpdateDayAchievements(buttonIndex);
-
-		day = day + 1;
-		buttonIndex = buttonIndex + 1;
-	end
-	-- set the special last-day-of-month texture
-	if buttonIndex < 36 and mod(buttonIndex - 1, 7) ~= 0 then
-		-- if we are not the last day of the week then we set a special corner texture
-		-- to match up with the dark textures of the following month
-		CalendarFrame_SetLastDay(CalendarDayButtons[buttonIndex - 1], numDays);
-	end
-	-- set the first days of the next month
-	day = 1;
-	isSelectedMonth = selectedMonth == nextMonth and selectedYear == nextYear;
-	isThisMonth = presentMonth == nextMonth and presentYear == nextYear;
-	isSelectedEventMonthOffset = selectedEventMonthOffset == 1;
-	local dayOfWeek;
-	local checkCorners = mod(buttonIndex, 7) ~= 1;	-- last day of the viewed month is not the last day of the week
-	while buttonIndex <= CALENDAR_MAX_DAYS_PER_MONTH do
-		darkTopFlags = DARKFLAG_NEXTMONTH;
-		darkBottomFlags = DARKFLAG_NEXTMONTH;
-		-- left darkness
-		dayOfWeek = _CalendarFrame_GetDayOfWeek(buttonIndex);
-		if dayOfWeek == 1 or day == 1 then
-			darkTopFlags = darkTopFlags + DARKFLAG_SIDE_LEFT;
-			darkBottomFlags = darkBottomFlags + DARKFLAG_SIDE_LEFT;
-		end
-		-- right darkness
-		if dayOfWeek == 7 then
-			darkTopFlags = darkTopFlags + DARKFLAG_SIDE_RIGHT;
-			darkBottomFlags = darkBottomFlags + DARKFLAG_SIDE_RIGHT;
-		end
-		-- top darkness
-		if not CalendarDayButtons[buttonIndex - 7].dark then
-			-- this day last week was not dark
-			darkTopFlags = darkTopFlags + DARKFLAG_SIDE_TOP;
-		end
-		-- bottom darkness
-		if not CalendarDayButtons[buttonIndex + 7] then
-			-- this day next week does not exist
-			darkBottomFlags = darkBottomFlags + DARKFLAG_SIDE_BOTTOM;
-		end
-		-- corner stuff
-		if checkCorners and (day == 1 or day == 7 or day == 8) then
-			darkTopFlags = darkTopFlags + DARKFLAG_CORNER;
-		end
-
-		isSelectedDay = isSelectedMonth and selectedDay == day;
-		isToday = isThisMonth and presentDay == day;
-		isContextEventDay = isContextEventMonthOffset and contextEventDay == day;
-
-		CalendarFrame_UpdateDay(buttonIndex, day, 1, isSelectedDay, isContextEventDay, isToday, darkTopFlags, darkBottomFlags);
-		-- CalendarFrame_UpdateDayEvents(buttonIndex, day, 1, isSelectedEventMonthOffset and selectedEventDay == day and selectedEventIndex, isContextEventDay and contextEventIndex);
-        UpdateDayAchievements(buttonIndex);
-
-		day = day + 1;
-		darkTexIndex = darkTexIndex + 1;
-		buttonIndex = buttonIndex + 1;
-	end
-
-	-- -- if this month didn't have a selected event...
-	-- if ( not CalendarFrame.selectedEventButton ) then
-	-- 	local eventFrame = CalendarFrame_GetEventFrame();
-	-- 	if ( eventFrame and (eventFrame ~= CalendarCreateEventFrame or eventFrame.mode ~= "create") ) then
-	-- 		--...and the event frame was open and not in create mode, hide the event frame
-	-- 		CalendarFrame_CloseEvent();
-	-- 	end
-	-- end
-
-	-- -- if the context menu was set to an event...
-	-- if ( CalendarContextMenu.eventButton and
-	-- 	 CalendarContextMenu.func == CalendarDayContextMenu_Initialize ) then
-	-- 	if ( contextEventDay == 0 ) then
-	-- 		--...and the context event no longer exists
-	-- 		-- hide the context menu
-	-- 		CalendarContextMenu_Hide();
-	-- 		-- hide the event deletion popup
-	-- 		-- this might seem kludgy, but it takes just as long, if not longer, to check visibility of the popup
-	-- 		-- as it does to just hide it, that's why we don't check visibility first
-	-- 		StaticPopup_Hide("CALENDAR_DELETE_EVENT");
-	-- 	elseif ( CalendarContextMenu:IsShown() ) then
-	-- 		local dayButton = CalendarContextMenu.dayButton;
-	-- 		local eventButton = CalendarContextMenu.eventButton;
-	-- 		if ( dayButton.monthOffset ~= contextEventMonthOffset or
-	-- 			 dayButton.day ~= contextEventDay or
-	-- 			 eventButton.eventIndex ~= contextEventIndex ) then
-	-- 			--...and the event index changed, hide the context menu
-	-- 			-- you might be thinking "why don't we just reanchor the context menu to the proper day?"
-	-- 			-- great question! we don't do this because we don't want the UI to jump around on the user
-	-- 			-- like that, especially since calendar updates are not always caused by the user
-	-- 			CalendarContextMenu_Hide();
-	-- 		end
-	-- 	end
-	-- end
-
-    AddAchievementsToDays();
-end
-
-function KrowiAF_AchievementCalendarFrame_OnShow(self)
-	-- an event could have stayed selected if the calendar closed without the player doing so explicitly
-	-- (e.g. reloadui) so make sure that we're not selecting an event when the calendar comes back
-	-- CalendarFrame_CloseEvent();
-
-	self.militaryTime = GetCVarBool("timeMgrUseMilitaryTime");
-
-	local currentCalendarTime = C_DateAndTime.GetCurrentCalendarTime();
-	C_Calendar.SetAbsMonth(currentCalendarTime.month, currentCalendarTime.year);
-	CalendarFrame_Update();
-
-	C_Calendar.OpenCalendar();
-
-	PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN);
-end
-
-function KrowiAF_AchievementCalendarFrame_OnHide(self)
-	-- close the event now...the reason is that the calendar may clear the current event data next time
-	-- the frame opens up
-	CalendarFrame_CloseEvent();
-	-- CalendarEventPickerFrame_Hide();
-	-- CalendarTexturePickerFrame_Hide();
-	-- CalendarContextMenu_Reset();
-	-- HideDropDownMenu(1);
-	-- StaticPopup_Hide("CALENDAR_DELETE_EVENT");
-	-- StaticPopup_Hide("CALENDAR_ERROR");
-	-- pop all modal frames as a fail safe, just in case we somehow end up in a state where modal frames
-	-- are left shown, which shouldn't happen
-	-- CalendarFrame_PopModal(true);
-
-	-- clean up texture references
-	local dayButton, dayButtonName;
-	for i = 1, CALENDAR_MAX_DAYS_PER_MONTH do
-		dayButton = CalendarDayButtons[i];
-		dayButtonName = dayButton:GetName();
-		_G[dayButtonName .. "EventTexture"]:SetTexture();
-		_G[dayButtonName .. "OverlayFrameTexture"]:SetTexture();
-	end
-
-	C_Calendar.SetNextClubId(nil);
-	PlaySound(SOUNDKIT.IG_SPELLBOOK_CLOSE);
-end
-
-function KrowiAF_AchievementCalendarFrame_OnMouseWheel(self, value)
-	if value > 0 then
-		if KrowiAF_CalendarPrevMonthButton:IsEnabled() then
-			KrowiAF_CalendarPrevMonthButton_OnClick();
-		end
-	else
-		if KrowiAF_CalendarNextMonthButton:IsEnabled() then
-			KrowiAF_CalendarNextMonthButton_OnClick();
-		end
-	end
-end
-
 -- local function ShouldDisplayEventOnCalendar(event)
 -- 	local shouldDisplayBeginEnd = event and event.sequenceType ~= "ONGOING";
 -- 	if ( event.sequenceType == "END" and event.dontDisplayEnd ) then
@@ -1789,24 +1833,6 @@ end
 -- 	overlayTex:GetParent():Hide();
 -- end
 
-function KrowiAF_CalendarTodayFrame_OnUpdate(self, elapsed)
-	self.timer = self.timer - elapsed;
-	if self.timer < 0 then
-		self.timer = self.fadeTime;
-		if self.fadein then
-			self.fadein = false;
-		else
-			self.fadein = true;
-		end
-	else
-		if self.fadein then
-			KrowiAF_CalendarTodayTextureGlow:SetAlpha(1-(self.timer/self.fadeTime));
-		else
-			KrowiAF_CalendarTodayTextureGlow:SetAlpha(self.timer/self.fadeTime);
-		end
-	end
-end
-
 -- function CalendarFrame_SetSelectedEvent(eventButton)
 -- 	if ( CalendarFrame.selectedEventButton ) then
 -- 		CalendarFrame.selectedEventButton:UnlockHighlight();
@@ -1824,15 +1850,6 @@ end
 -- 	local monthOffset = dayButton.monthOffset;
 -- 	C_Calendar.OpenEvent(monthOffset, day, eventIndex);
 -- end
-
-local function CalendarFrame_OffsetMonth(offset)
-	C_Calendar.SetMonth(offset);
-	-- CalendarContextMenu_Hide();
-	-- StaticPopup_Hide("CALENDAR_DELETE_EVENT");
-	-- CalendarEventPickerFrame_Hide();
-	-- CalendarTexturePickerFrame_Hide();
-	CalendarFrame_Update();
-end
 
 -- function CalendarFrame_OpenToGuildEventIndex(guildEventIndex)
 -- 	if ( CalendarFrame and CalendarFrame:IsShown() ) then
@@ -1866,16 +1883,6 @@ end
 -- 		C_Calendar.OpenEvent(0, day, eventIndex);
 -- 	end
 -- end
-
-function KrowiAF_CalendarPrevMonthButton_OnClick()
-	PlaySound(SOUNDKIT.IG_ABILITY_PAGE_TURN);
-	CalendarFrame_OffsetMonth(-1);
-end
-
-function KrowiAF_CalendarNextMonthButton_OnClick()
-	PlaySound(SOUNDKIT.IG_ABILITY_PAGE_TURN);
-	CalendarFrame_OffsetMonth(1);
-end
 
 -- function CalendarFilterButton_OnMouseDown(self)
 -- 	ToggleDropDownMenu(1, nil, CalendarFilterDropDown, self, 0, 0);
