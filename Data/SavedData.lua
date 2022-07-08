@@ -130,7 +130,7 @@ function savedData.Load()
 end
 
 local FixFeaturesTutorialProgress, FixElvUISkin, FixFilters, FixEventDetails, FixShowExcludedCategory, FixEventDetails2, FixCharacters, FixEventAlert;
-local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters;
+local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters, FixNewEarnedByFilter;
 function LoadSolutions()
     local solutions = {
         FixFeaturesTutorialProgress, -- 1
@@ -145,6 +145,7 @@ function LoadSolutions()
         FixShowCurrentCharacterIcons, -- 10
         FixTabs, -- 11
         FixCovenantFilters, -- 12
+        FixNewEarnedByFilter, -- 13
     };
 
     return solutions;
@@ -305,19 +306,6 @@ function FixTabs(prevBuild, currBuild, prevVersion, currVersion)
         end
     end
 
-    -- StaticPopupDialogs["KROWIAF_FIXTABS"] = {
-    --     text = addon.MetaData.Title .. "\n\n" .. addon.L["FixTabs"] .. "\n\n - " .. addon.MetaData.Author,
-    --     button1 = addon.L["Options"],
-    --     button2 = addon.L["Close"],
-    --     OnButton1 = function()
-    --         addon.Options.Open();
-    --     end,
-    --     timeout = 0,
-    --     whileDead = true,
-    --     hideOnEscape = true
-    -- };
-    -- StaticPopup_Show("KROWIAF_FIXTABS");
-
     SavedData.Fixes.FixTabs = true;
 
     diagnostics.Debug("Ported Tabs from previous version");
@@ -346,4 +334,19 @@ function FixCovenantFilters(prevBuild, currBuild, prevVersion, currVersion)
     SavedData.Fixes.FixCovenantFilters = true;
 
     diagnostics.Debug("Cleared covenant filters from previous version");
+end
+
+function FixNewEarnedByFilter(prevBuild, currBuild, prevVersion, currVersion)
+    if currVersion < "36" or SavedData.Fixes.FixNewEarnedByFilter == true then
+        diagnostics.Debug("New earned by filter already transfered from previous version");
+        return;
+    end
+
+    if Filters.profiles and Filters.profiles.Default and Filters.profiles.Default.EarnedBy == (GetCategoryInfo(92)) then
+        Filters.profiles.Default.EarnedBy = (GetCategoryInfo(92)) .. " / " .. addon.L["Account"];
+    end
+
+    SavedData.Fixes.FixNewEarnedByFilter = true;
+
+    diagnostics.Debug("Transfered new earned by filter from previous version");
 end
