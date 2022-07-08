@@ -58,4 +58,16 @@ function globalStrings.Load(L)
     L["Summary"] = ACHIEVEMENT_SUMMARY_CATEGORY;
     L["Achievements Earned"] = ACHIEVEMENTS_COMPLETED;
     L["Key Bindings"] = KEY_BINDINGS;
+    L["January"] = MONTH_JANUARY;
+    L["February"] = MONTH_FEBRUARY;
+    L["March"] = MONTH_MARCH;
+    L["April"] = MONTH_APRIL;
+    L["May"] = MONTH_MAY;
+    L["June"] = MONTH_JUNE;
+    L["July"] = MONTH_JULY;
+    L["August"] = MONTH_AUGUST;
+    L["September"] = MONTH_SEPTEMBER;
+    L["October"] = MONTH_OCTOBER;
+    L["November"] = MONTH_NOVEMBER;
+    L["December"] = MONTH_DECEMBER;
 end
