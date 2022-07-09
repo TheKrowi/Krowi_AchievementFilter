@@ -87,13 +87,13 @@ function sideFrame:UpdateAchievements()
     local totalHeight = #achievements * buttons[1]:GetHeight();
 	local displayedHeight = 0;
 
-    local id;
+    local id, name, points, completed, description, flags, icon, wasEarnedByMe, earnedBy;
     for i = 1, #buttons do
         local button = buttons[i];
         id = achievements[i + offset];
         displayedHeight = displayedHeight + button:GetHeight();
         if id ~= nil then
-            local _, name, points, completed, month, day, year, description, flags, icon, _, _, wasEarnedByMe, earnedBy, _ = addon.GetAchievementInfo(id);
+            _, name, points, completed, _, _, _, description, flags, icon, _, _, wasEarnedByMe, earnedBy, _ = addon.GetAchievementInfo(id);
 
             local achievement = addon.Data.Achievements[id];
             button.Achievement = achievement;
