@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - New Earned by Character filter to fully desaturate achievements not earned on the active character
 - Option to set the first day of the week independent from the build in calendar (defaults to it)
 - ElvUI skin for the calendar
+- Selecting achievements should redirect to the new tabs (excluding guild achievements)
 
 ### Changed
 - Power Unbound and Power Unleashed are obtainable again

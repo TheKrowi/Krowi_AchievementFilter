@@ -310,6 +310,12 @@ function addon.HookSetAchievementFrameHeaderPointsText()
     end);
 end
 
+function addon.HookSelectAchievement()
+    hooksecurefunc("AchievementFrame_SelectAchievement", function(id, forceSelect, isComparison)
+        KrowiAF_SelectAchievementFromID(id);
+    end);
+end
+
 function addon.HookAchievementFrameOnShow()
     hooksecurefunc("AchievementFrame_SetTabs", function()
         addon.GUI.ShowHideTabs();

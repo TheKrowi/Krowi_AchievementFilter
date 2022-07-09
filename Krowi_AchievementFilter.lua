@@ -63,8 +63,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
             addon.MakeWindowMovable();
             addon.HookSetAchievementFrameHeaderPointsText();
             addon.HookAchievementFrameOnShow();
-
-            -- addon.Extension.AchFrameAchies:Load();
+            addon.HookSelectAchievement();
         end
     elseif event == "PLAYER_LOGIN" then
         addon.Data.ExportedCalendarEvents.Load(addon.Data.CalendarEvents);
