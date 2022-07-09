@@ -70,4 +70,5 @@ function globalStrings.Load(L)
     L["October"] = MONTH_OCTOBER;
     L["November"] = MONTH_NOVEMBER;
     L["December"] = MONTH_DECEMBER;
+    L["Weekdays"] = GUILD_AVAILABILITY_WEEKDAYS;
 end

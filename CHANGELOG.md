@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Days on the calendar with more than 4 achievements earned now show an arrow to have a visual indication for the user
 - Side window in the calendar with a list of all the earned achievements on the selected day
 - New Earned by Character filter to fully desaturate achievements not earned on the active character
+- Option to set the first day of the week independent from the build in calendar (defaults to it)
 
 ### Changed
 - Power Unbound and Power Unleashed are obtainable again

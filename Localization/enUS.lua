@@ -1,4 +1,4 @@
--- [[ Exported at 2022-07-06 18-56-24 ]] --
+-- [[ Exported at 2022-07-09 11-51-55 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -244,8 +244,12 @@ L["When achievement completed Desc"] = "Show / hide {objectivesProgress} when ac
 L["Second column threshold"] = "Second column threshold";
 L["Second column threshold Desc"] = "Achievements with more objectives than this number will be visible in two columns instead of one.";
 L["Right Click Menu"] = "Right Click Menu";
+L["Button"] = "Button";
 L["Show Right Click Menu"] = "Show {rightClickMenu} button";
 L["Show Right Click Menu Desc"] = "Show / hide {rightClickMenu} button on each achievement.\n\nThis serves as an alternative for right clicking the achievement.\n\n{reloadRequired}";
+L["Calendar"] = "Calendar";
+L["First day of the week"] = "First day of the week";
+L["First day of the week Desc"] = "The first day of the week the calendar should use.";
 L["Event Reminders"] = "Event Reminders";
 L["Pop ups"] = "Pop ups";
 L["Show pop ups"] = "Show pop ups";

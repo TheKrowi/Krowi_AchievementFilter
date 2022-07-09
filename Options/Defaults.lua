@@ -112,6 +112,9 @@ options.Defaults = {
         Filters = {
             ResetFactionFilters = true
         },
+        Calendar = {
+            FirstWeekDay = -1
+        },
         Plugins = {}
     }
 };

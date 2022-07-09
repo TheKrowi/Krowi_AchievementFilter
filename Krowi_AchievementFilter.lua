@@ -45,7 +45,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
             addon.Options.Load();
 
             addon.Plugins:Load();
-            
+
             addon.Data.SavedData.Load();
 
             addon.GUI:LoadWithAddon();

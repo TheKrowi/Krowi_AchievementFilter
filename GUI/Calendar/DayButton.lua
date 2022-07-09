@@ -80,6 +80,8 @@ function dayButton:Deselect()
 end
 
 function dayButton:Clear()
+	self:Deselect();
+
 	self.Achievements = nil;
 	self.Points = 0;
 

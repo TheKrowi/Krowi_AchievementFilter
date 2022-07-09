@@ -306,7 +306,8 @@
         "KrowiAF_AchievementFrameSummaryFrame",
         "UISpecialFrames",
         "CalendarViewHolidayFrame",
-        "KrowiAF_CalendarViewHolidayFrame"
+        "KrowiAF_CalendarViewHolidayFrame",
+        "Calendar_LoadUI"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

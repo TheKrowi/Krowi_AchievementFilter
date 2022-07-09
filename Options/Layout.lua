@@ -627,28 +627,34 @@ options.OptionsTable.args["Layout"] = {
             order = 6, type = "group",
             name = addon.L["Right Click Menu"],
             args = {
-                ShowButtonOnAchievement = {
-                    order = 1, type = "toggle", width = "full",
-                    name = addon.Util.ReplaceVars
-                    {
-                        addon.L["Show Right Click Menu"],
-                        rightClickMenu = addon.L["Right Click Menu"]
-                    },
-                    desc = addon.ReplaceVarsWithReloadReq
-                    {
-                        addon.L["Show Right Click Menu Desc"],
-                        rightClickMenu = addon.L["Right Click Menu"]
-                    },
-                    get = function() return addon.Options.db.RightClickMenu.ShowButtonOnAchievement; end,
-                    set = function()
-                        addon.Options.db.RightClickMenu.ShowButtonOnAchievement = not addon.Options.db.RightClickMenu.ShowButtonOnAchievement;
-                        options.Debug(addon.L["Show Right Click Menu"], addon.Options.db.RightClickMenu.ShowButtonOnAchievement);
-                    end
+                Button = {
+                    order = 1, type = "group",
+                    name = addon.L["Button"],
+                    inline = true,
+                    args = {
+                        ShowButtonOnAchievement = {
+                            order = 1, type = "toggle", width = "full",
+                            name = addon.Util.ReplaceVars
+                            {
+                                addon.L["Show Right Click Menu"],
+                                rightClickMenu = addon.L["Right Click Menu"]
+                            },
+                            desc = addon.ReplaceVarsWithReloadReq
+                            {
+                                addon.L["Show Right Click Menu Desc"],
+                                rightClickMenu = addon.L["Right Click Menu"]
+                            },
+                            get = function() return addon.Options.db.RightClickMenu.ShowButtonOnAchievement; end,
+                            set = function()
+                                addon.Options.db.RightClickMenu.ShowButtonOnAchievement = not addon.Options.db.RightClickMenu.ShowButtonOnAchievement;
+                                options.Debug(addon.L["Show Right Click Menu"], addon.Options.db.RightClickMenu.ShowButtonOnAchievement);
+                            end
+                        }
+                    }
                 },
                 Wowhead = {
                     order = 2, type = "group",
                     name = addon.L["Wowhead Link"],
-                    desc = addon.L["Wowhead Link"],
                     inline = true,
                     args = {
                         AddLocale = {
@@ -681,6 +687,32 @@ options.OptionsTable.args["Layout"] = {
                         }
                     }
                 },
+            }
+        },
+        Calendar = {
+            order = 7, type = "group",
+            name = addon.L["Calendar"],
+            args = {
+                Weekdays = {
+                    order = 1, type = "group",
+                    name = addon.L["Weekdays"],
+                    inline = true,
+                    args = {
+                        FirstDayOfTheWeek = {
+                            order = 1, type = "select", width = 1.5,
+                            name = addon.L["First day of the week"],
+                            desc = addon.L["First day of the week Desc"],
+                            values = CALENDAR_WEEKDAY_NAMES,
+                            get = function() return addon.Options.db.Calendar.FirstWeekDay; end,
+                            set = function (_, value)
+                                if addon.Options.db.Calendar.FirstWeekDay == value then return; end;
+                                addon.Options.db.Calendar.FirstWeekDay = value;
+                                addon.GUI.Calendar.Frame:Update();
+                                options.Debug(addon.L["First day of the week"], addon.Options.db.Calendar.FirstWeekDay);
+                            end
+                        }
+                    }
+                }
             }
         }
     }

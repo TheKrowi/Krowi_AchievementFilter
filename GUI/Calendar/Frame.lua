@@ -81,6 +81,7 @@ local monthNames = {
 };
 
 local maxDaysPerMonth = 42; -- 6 weeks
+local C_CalendarMonth, C_CalendarYear;
 
 frame.__index = frame; -- Used to inject all the namespace functions to the frame
 function frame:Load()
@@ -88,6 +89,50 @@ function frame:Load()
 	addon.Util.InjectMetatable(_frame, frame); -- Inject all the namespace functions to the frame
 
 	addon.GUI.Calendar.Frame = _frame; -- Overwrite with the actual frame since all functions are injected to it
+end
+
+local function C_CalendarSetMonth(offset)
+	C_CalendarMonth = C_CalendarMonth + offset;
+	while C_CalendarMonth < 1 do
+		C_CalendarMonth = 12 - C_CalendarMonth;
+		C_CalendarYear = C_CalendarYear - 1;
+	end
+	while C_CalendarMonth > 12 do
+		C_CalendarMonth = C_CalendarMonth - 12;
+		C_CalendarYear = C_CalendarYear + 1;
+	end
+end
+
+local function C_CalendarSetAbsMonth(month, year)
+	C_CalendarMonth = month;
+	C_CalendarYear = year;
+end
+
+local function C_CalendarResetAbsMonth()
+	local currentCalendarTime = C_DateAndTime.GetCurrentCalendarTime();
+	C_CalendarSetAbsMonth(currentCalendarTime.month, currentCalendarTime.year);
+end
+
+local function C_CalendarGetMonthInfo(offset)
+	local selectedMonthInfo = C_Calendar.GetMonthInfo();
+	local selectedMonth, selectedYear = selectedMonthInfo.month, selectedMonthInfo.year;
+	offset = offset or 0;
+	offset = (C_CalendarYear - selectedYear) * 12 + C_CalendarMonth - selectedMonth + offset;
+	local monthInfo = C_Calendar.GetMonthInfo(offset);
+	return monthInfo;
+end
+
+local function GetWeekdayIndex(index)
+	return mod(index - 2 + addon.Options.db.Calendar.FirstWeekDay, 7) + 1;
+end
+
+local function GetDayOfWeek(index)
+	return mod(index - 1, 7) + 1;
+end
+
+local function GetMonthInfo(offset)
+	local monthInfo = C_CalendarGetMonthInfo(offset);
+	return monthInfo.month, monthInfo.year, monthInfo.numDays, monthInfo.firstWeekday;
 end
 
 function KrowiAF_AchievementCalendarFrameTodayFrame_OnUpdate(self, elapsed)
@@ -110,22 +155,20 @@ end
 
 function KrowiAF_AchievementCalendarFramePrevMonthButton_OnClick()
 	PlaySound(SOUNDKIT.IG_ABILITY_PAGE_TURN);
-	C_Calendar.SetMonth(-1);
+	C_CalendarSetMonth(-1);
 	addon.GUI.Calendar.Frame:Update();
 end
 
 function KrowiAF_AchievementCalendarFrameNextMonthButton_OnClick()
 	PlaySound(SOUNDKIT.IG_ABILITY_PAGE_TURN);
-	C_Calendar.SetMonth(1);
+	C_CalendarSetMonth(1);
 	addon.GUI.Calendar.Frame:Update();
 end
 
 function KrowiAF_AchievementCalendarFrame_OnLoad(self)
 	self:RegisterEvent("ACHIEVEMENT_EARNED");
 
-	if not IsAddOnLoaded("Blizzard_Calendar") then -- This is to make sure we get the 1st day of the week correct
-        LoadAddOn("Blizzard_Calendar");
-    end
+	C_CalendarResetAbsMonth();
 
 	self.DayButtons = {};
 
@@ -151,13 +194,8 @@ function KrowiAF_AchievementCalendarFrame_OnEvent(self, event, ...)
 end
 
 function KrowiAF_AchievementCalendarFrame_OnShow(self)
-	-- if addon.GUI.Calendar.SideFrame:IsShown() then
-	-- 	addon.GUI.Calendar.SideFrame:Hide();
-	-- end
-	-- self.selectedDayButton = nil;
-
 	local currentCalendarTime = C_DateAndTime.GetCurrentCalendarTime();
-	C_Calendar.SetAbsMonth(currentCalendarTime.month, currentCalendarTime.year);
+	C_CalendarSetAbsMonth(currentCalendarTime.month, currentCalendarTime.year);
 	self:Update();
 	PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN);
 end
@@ -176,19 +214,6 @@ function KrowiAF_AchievementCalendarFrame_OnMouseWheel(self, value)
 			KrowiAF_AchievementCalendarFrameNextMonthButton_OnClick();
 		end
 	end
-end
-
-local function GetWeekdayIndex(index)
-	return mod(index - 2 + CALENDAR_FIRST_WEEKDAY, 7) + 1;
-end
-
-local function GetDayOfWeek(index)
-	return mod(index - 1, 7) + 1;
-end
-
-local function GetMonthInfo(offset)
-	local monthInfo = C_Calendar.GetMonthInfo(offset);
-	return monthInfo.month, monthInfo.year, monthInfo.numDays, monthInfo.firstWeekday;
 end
 
 function frame:UpdateTitle()
@@ -227,22 +252,28 @@ function frame:HideAttributes()
 	self.LastDayDarkTexture:Hide();
 end
 
-function frame:SetSelectedDay(dayButton)
+function frame:SetSelectedDay(dayButton, keepSelected)
 	local prevSelectedDayButton = self.SelectedDayButton;
 	if prevSelectedDayButton and prevSelectedDayButton ~= dayButton then
 		prevSelectedDayButton:Deselect();
 	end
 
 	local weekdaySelectedTexture = self.WeekdaySelectedTexture;
-	if prevSelectedDayButton ~= dayButton then
+	if prevSelectedDayButton ~= dayButton or keepSelected then
 		self.SelectedDayButton = dayButton;
+		self.SelectedDay = dayButton.Day;
+		self.SelectedMonth = dayButton.Month;
+		self.SelectedYear = dayButton.Year;
 		local weekdayBackground = self.WeekDayBackgrounds[GetDayOfWeek(dayButton:GetID())];
 		weekdaySelectedTexture:ClearAllPoints();
 		weekdaySelectedTexture:SetPoint("CENTER", weekdayBackground, "CENTER");
 		weekdaySelectedTexture:Show();
-		self:SetHighlightedDay(dayButton, true);
+		self:SetHighlightedDay(dayButton, not keepSelected);
 	else
 		self.SelectedDayButton = nil;
+		self.SelectedDay = nil;
+		self.SelectedMonth = nil;
+		self.SelectedYear = nil;
 		weekdaySelectedTexture:Hide();
 	end
 end
@@ -279,6 +310,8 @@ function frame:UpdateDay(index, day, month, year, isSelected, isToday, darkTopFl
 	local darkTop = darkFrame.Top;
 	local darkBottom = darkFrame.Bottom;
 
+	button:Clear();
+
 	dateLabel:SetText(day);
 	button.Day = day;
 	button.Month = month;
@@ -296,14 +329,13 @@ function frame:UpdateDay(index, day, month, year, isSelected, isToday, darkTopFl
 	end
 
 	if isSelected then
-		frame:SetSelectedDay(button);
+		button:Select();
+		self:SetSelectedDay(button, true);
 	end
 
 	if isToday then
 		self:SetToday(button);
 	end
-
-	button:Clear();
 end
 
 function frame:SetLastDay(dayButton)
@@ -314,7 +346,7 @@ function frame:SetLastDay(dayButton)
 end
 
 function frame:SetPrevMonthDays(prevMonth, prevYear, prevNumDays, firstWeekday, selectedDay, selectedMonth, selectedYear, presentDay, presentMonth, presentYear, buttonIndex)
-	local viewablePrevMonthDays = mod(firstWeekday - CALENDAR_FIRST_WEEKDAY - 1 + 7, 7);
+	local viewablePrevMonthDays = mod(firstWeekday - addon.Options.db.Calendar.FirstWeekDay - 1 + 7, 7);
 	local day = prevNumDays - viewablePrevMonthDays;
 	local isSelectedMonth = selectedMonth == prevMonth and selectedYear == prevYear;
 	local isThisMonth = presentMonth == prevMonth and presentYear == prevYear;
@@ -428,6 +460,7 @@ function frame:Update()
 	local selectedDay = self.SelectedDay;
 	local selectedMonth = self.SelectedMonth;
 	local selectedYear = self.SelectedYear;
+	print(selectedDay, selectedMonth, selectedYear)
 
 	self:UpdateTitle();
 	self:UpdatePrevNextMonthButtons();
