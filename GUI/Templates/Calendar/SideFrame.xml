@@ -43,7 +43,7 @@
 					</ScrollFrame>					
 				</Frames>
 			</Frame>	
-			<Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+			<Button name="$parentCloseButton" parentKey="CloseButton" inherits="UIPanelCloseButton">
 				<Anchors>
 					<Anchor point="TOPRIGHT" x="-3" y="-3"/>
 				</Anchors>

@@ -18,10 +18,9 @@ end
 
 function KrowiAF_AchievementCalendarSideFrame_OnShow(self)
     local frame = addon.GUI.Calendar.Frame;
-    local selectedDay = frame.HighlightedDayButton;
-    local day, month, year = selectedDay.Day, selectedDay.Month, selectedDay.Year;
+    local day, month, year = frame.HighlightedDay, frame.HighlightedMonth, frame.HighlightedYear;
     self:UpdateAchievements();
-    self.Header:Setup(FormatShortDate(day, month, year) .. " (" .. #selectedDay.Achievements .. " " .. addon.L["Achievements"] .. " - " .. selectedDay.Points .. " " .. addon.L["Points"] .. ")");
+    self.Header:Setup(FormatShortDate(day, month, year) .. " (" .. #frame.HighlightedAchievements .. " " .. addon.L["Achievements"] .. " - " .. frame.HighlightedPoints .. " " .. addon.L["Points"] .. ")");
 end
 
 function KrowiAF_AchievementCalendarSideFrameCloseButton_OnClick(self)
@@ -74,11 +73,11 @@ function sideFrame:BuildAchievementsScrollFrame()
 end
 
 function sideFrame:UpdateAchievements()
-    local selectedDay = addon.GUI.Calendar.Frame.HighlightedDayButton;
-    local achievements = selectedDay.Achievements;
+    local achievements = addon.GUI.Calendar.Frame.HighlightedAchievements;
 
     if not achievements then
         self:Hide();
+        return;
     end
 
     local scrollFrame = self.ScrollFrameBorder.Container;

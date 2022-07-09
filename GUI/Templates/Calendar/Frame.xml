@@ -190,7 +190,7 @@
 				</FontString>
 			</Layer>
 			<Layer level="OVERLAY">
-				<Texture name="$parentMonthBackground" file="Interface\Calendar\CalendarBackground">
+				<Texture name="$parentMonthBackground" parentKey="MonthBackground" file="Interface\Calendar\CalendarBackground">
 					<Size x="142" y="36"/>
 					<Anchors>
 						<Anchor point="TOP" x="-3" y="-1"/>
@@ -204,7 +204,7 @@
 				</FontString>
 			</Layer>
 			<Layer level="ARTWORK">
-				<Texture name="$parentYearBackground" file="Interface\Calendar\CalendarBackground">
+				<Texture name="$parentYearBackground" parentKey="YearBackground" file="Interface\Calendar\CalendarBackground">
 					<Size x="47" y="24"/>
 					<Anchors>
 						<Anchor point="TOP" relativeTo="$parentMonthBackground" relativePoint="BOTTOM" x="-2" y="13"/>
@@ -218,7 +218,7 @@
 				</FontString>
 				<FontString name="$parentMonthAchievementsAndPoints" parentKey="MonthAchievementsAndPoints" inherits="GameFontHighlight" justifyH="CENTER">
 					<Anchors>
-						<Anchor point="TOPRIGHT" relativeTo="$parent" x="-30" y="-23"/>
+						<Anchor point="TOPRIGHT" x="-30" y="-23"/>
 					</Anchors>
 				</FontString>
 				<Texture name="$parentLastDayDarkTexture" parentKey="LastDayDarkTexture" file="Interface\Calendar\CalendarShadows" hidden="true">
@@ -367,7 +367,7 @@
 					<OnLoad function="CalendarFilterDropDown_OnLoad"/>
 				</Scripts>
 			</Frame> -->
-			<Button name="KrowiAF_CalendarCloseButton" inherits="UIPanelCloseButton">
+			<Button name="$parentCloseButton" parentKey="CloseButton" inherits="UIPanelCloseButton">
 				<Size x="32" y="34"/>
 				<Anchors>
 					<Anchor point="TOPRIGHT" x="5" y="-13"/>

@@ -254,12 +254,12 @@ end
 
 function frame:SetSelectedDay(dayButton, keepSelected)
 	local prevSelectedDayButton = self.SelectedDayButton;
-	if prevSelectedDayButton and prevSelectedDayButton ~= dayButton then
+	if prevSelectedDayButton then -- and prevSelectedDayButton ~= dayButton
 		prevSelectedDayButton:Deselect();
 	end
 
 	local weekdaySelectedTexture = self.WeekdaySelectedTexture;
-	if prevSelectedDayButton ~= dayButton or keepSelected then
+	if (dayButton.Achievements and prevSelectedDayButton ~= dayButton) or keepSelected then
 		self.SelectedDayButton = dayButton;
 		self.SelectedDay = dayButton.Day;
 		self.SelectedMonth = dayButton.Month;
@@ -274,6 +274,7 @@ function frame:SetSelectedDay(dayButton, keepSelected)
 		self.SelectedDay = nil;
 		self.SelectedMonth = nil;
 		self.SelectedYear = nil;
+		dayButton:Deselect();
 		weekdaySelectedTexture:Hide();
 	end
 end
@@ -283,7 +284,12 @@ function frame:SetHighlightedDay(dayButton, overRuleLock)
 		return;
 	end
 	self.HighlightedDayButton = dayButton;
-	if dayButton and dayButton.Achievements then
+	self.HighlightedDay = dayButton and dayButton.Day;
+	self.HighlightedMonth = dayButton and dayButton.Month;
+	self.HighlightedYear = dayButton and dayButton.Year;
+	self.HighlightedAchievements = dayButton and dayButton.Achievements;
+	self.HighlightedPoints = dayButton and dayButton.Points;
+	if self.HighlightedAchievements then
 		if addon.GUI.Calendar.SideFrame:IsShown() then
 			addon.GUI.Calendar.SideFrame:Hide();
 		end
@@ -460,7 +466,6 @@ function frame:Update()
 	local selectedDay = self.SelectedDay;
 	local selectedMonth = self.SelectedMonth;
 	local selectedYear = self.SelectedYear;
-	print(selectedDay, selectedMonth, selectedYear)
 
 	self:UpdateTitle();
 	self:UpdatePrevNextMonthButtons();
