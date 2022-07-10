@@ -61,9 +61,9 @@
 						self:SetFrameLevel(self:GetParent():GetFrameLevel() + 6);
 					</OnLoad>
 					<OnClick function="KrowiAF_AchievementCalendarSideFrameCloseButton_OnClick"/>
+					<OnKeyDown function="KrowiAF_AchievementCalendarSideFrameCloseButton_OnKeyDown"/>
 				</Scripts>
 			</Button>
-			<!-- <Frame name="$parentModalOverlay" inherits="CalendarModalEventOverlayTemplate" hidden="true"/> -->
 		</Frames>
 		<Scripts>
 			<OnShow function="KrowiAF_AchievementCalendarSideFrame_OnShow"/>

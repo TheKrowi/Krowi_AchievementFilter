@@ -693,8 +693,35 @@ options.OptionsTable.args["Layout"] = {
             order = 7, type = "group",
             name = addon.L["Calendar"],
             args = {
-                Weekdays = {
+                General = {
                     order = 1, type = "group",
+                    name = addon.L["General"],
+                    inline = true,
+                    args = {
+                        LockAchievementMonth = {
+                            order = 1, type = "toggle", width = "full",
+                            name = addon.L["Lock month when closed by achievement "],
+                            desc = addon.L["Lock month when closed by achievement Desc"],
+                            get = function() return addon.Options.db.Calendar.LockAchievementMonth; end,
+                            set = function()
+                                addon.Options.db.Calendar.LockAchievementMonth = not addon.Options.db.Calendar.LockAchievementMonth;
+                                options.Debug(addon.L["Lock month when closed by achievement"], addon.Options.db.Calendar.LockAchievementMonth);
+                            end
+                        },
+                        LockMonth = {
+                            order = 2, type = "toggle", width = "full",
+                            name = addon.L["Lock month"],
+                            desc = addon.L["Lock month Desc"],
+                            get = function() return addon.Options.db.Calendar.LockMonth; end,
+                            set = function()
+                                addon.Options.db.Calendar.LockMonth = not addon.Options.db.Calendar.LockMonth;
+                                options.Debug(addon.L["Lock month"], addon.Options.db.Calendar.LockMonth);
+                            end
+                        }
+                    }
+                },
+                Weekdays = {
+                    order = 2, type = "group",
                     name = addon.L["Weekdays"],
                     inline = true,
                     args = {

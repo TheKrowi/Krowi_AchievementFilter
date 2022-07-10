@@ -165,6 +165,17 @@ function KrowiAF_AchievementCalendarFrameNextMonthButton_OnClick()
 	addon.GUI.Calendar.Frame:Update();
 end
 
+function KrowiAF_AchievementCalendarFrameCloseButton_OnKeyDown(self, key)
+    if key == GetBindingKey("TOGGLEGAMEMENU") then
+		if self:GetParent():IsShown() and not addon.GUI.Calendar.SideFrame:IsShown() then
+			self:Click(self);
+			self:SetPropagateKeyboardInput(false);
+			return;
+		end
+	end
+	self:SetPropagateKeyboardInput(true);
+end
+
 function KrowiAF_AchievementCalendarFrame_OnLoad(self)
 	self:RegisterEvent("ACHIEVEMENT_EARNED");
 
@@ -183,8 +194,6 @@ function KrowiAF_AchievementCalendarFrame_OnLoad(self)
 	self.selectedYear = nil;
 	self.ViewedMonth = nil;
 	self.ViewedYear = nil;
-
-	tinsert(UISpecialFrames, self:GetName());
 end
 
 function KrowiAF_AchievementCalendarFrame_OnEvent(self, event, ...)
@@ -194,9 +203,12 @@ function KrowiAF_AchievementCalendarFrame_OnEvent(self, event, ...)
 end
 
 function KrowiAF_AchievementCalendarFrame_OnShow(self)
-	local currentCalendarTime = C_DateAndTime.GetCurrentCalendarTime();
-	C_CalendarSetAbsMonth(currentCalendarTime.month, currentCalendarTime.year);
-	self:Update();
+	if not self.LockMonth and not addon.Options.db.Calendar.LockMonth then
+		local currentCalendarTime = C_DateAndTime.GetCurrentCalendarTime();
+		C_CalendarSetAbsMonth(currentCalendarTime.month, currentCalendarTime.year);
+		self:Update();
+	end
+	self.LockMonth = nil;
 	PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN);
 end
 
@@ -254,7 +266,7 @@ end
 
 function frame:SetSelectedDay(dayButton, keepSelected)
 	local prevSelectedDayButton = self.SelectedDayButton;
-	if prevSelectedDayButton then -- and prevSelectedDayButton ~= dayButton
+	if prevSelectedDayButton and not keepSelected then -- and prevSelectedDayButton ~= dayButton
 		prevSelectedDayButton:Deselect();
 	end
 

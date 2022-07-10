@@ -1,4 +1,4 @@
--- [[ Exported at 2022-07-09 11-51-55 ]] --
+-- [[ Exported at 2022-07-10 09-48-44 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -248,6 +248,10 @@ L["Button"] = "Button";
 L["Show Right Click Menu"] = "Show {rightClickMenu} button";
 L["Show Right Click Menu Desc"] = "Show / hide {rightClickMenu} button on each achievement.\n\nThis serves as an alternative for right clicking the achievement.\n\n{reloadRequired}";
 L["Calendar"] = "Calendar";
+L["Lock month when closed by achievement"] = "Lock month when closed by achievement";
+L["Lock month when closed by achievement Desc"] = "Keep the last shown month as the month to show when opening the calendar again after it was closed by clicking an achievement on the side.";
+L["Lock month"] = "Lock month";
+L["Lock month Desc"] = "Keep the last shown month as the month to show when opening the calendar again after it was closed.";
 L["First day of the week"] = "First day of the week";
 L["First day of the week Desc"] = "The first day of the week the calendar should use.";
 L["Event Reminders"] = "Event Reminders";

@@ -24,9 +24,22 @@ function KrowiAF_AchievementCalendarSideFrame_OnShow(self)
 end
 
 function KrowiAF_AchievementCalendarSideFrameCloseButton_OnClick(self)
-    KrowiAF_AchievementCalendarDayButton_OnClick(addon.GUI.Calendar.Frame.SelectedDayButton);
+    if addon.GUI.Calendar.Frame.SelectedDayButton then
+        KrowiAF_AchievementCalendarDayButton_OnClick(addon.GUI.Calendar.Frame.SelectedDayButton);
+    end
     self:GetParent():Hide();
 	PlaySound(SOUNDKIT.IG_MAINMENU_QUIT);
+end
+
+function KrowiAF_AchievementCalendarSideFrameCloseButton_OnKeyDown(self, key)
+    if key == GetBindingKey("TOGGLEGAMEMENU") then
+		if self:GetParent():IsShown() then
+			KrowiAF_AchievementCalendarSideFrameCloseButton_OnClick(self);
+			self:SetPropagateKeyboardInput(false);
+			return;
+		end
+	end
+	self:SetPropagateKeyboardInput(true);
 end
 
 local function ReskinHybridScrollFrame(scrollFrame)
@@ -67,7 +80,9 @@ function sideFrame:BuildAchievementsScrollFrame()
         button:SetPoint("RIGHT", scrollFrame, -5, 0);
         button.label:SetWidth(360);
         button:HookScript("OnClick", function()
-            addon.GUI.Calendar.Frame:Hide();
+            local calendarFrame = addon.GUI.Calendar.Frame;
+            calendarFrame.LockMonth = addon.Options.db.Calendar.LockAchievementMonth;
+            calendarFrame:Hide();
         end);
     end
 end

@@ -372,6 +372,9 @@
 				<Anchors>
 					<Anchor point="TOPRIGHT" x="5" y="-13"/>
 				</Anchors>
+				<Scripts>
+					<OnKeyDown function="KrowiAF_AchievementCalendarFrameCloseButton_OnKeyDown"/>
+				</Scripts>
 			</Button>
 		</Frames>
 		<Scripts>

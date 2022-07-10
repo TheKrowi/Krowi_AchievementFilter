@@ -113,7 +113,9 @@ options.Defaults = {
             ResetFactionFilters = true
         },
         Calendar = {
-            FirstWeekDay = -1
+            FirstWeekDay = -1,
+            LockAchievementMonth = true,
+            LockMonth = false
         },
         Plugins = {}
     }
