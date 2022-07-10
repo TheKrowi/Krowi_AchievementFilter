@@ -278,7 +278,7 @@ function categoriesFrame:DisplayButton(button, category, baseWidth)
 	if category.IsSummary then
 		button.showTooltipFunc = nil;
 	else
-		button.showTooltipFunc = addon.ShowStatusBarTooltip;
+		button.showTooltipFunc = addon.GUI.ShowStatusBarTooltip;
 	end
 end
 

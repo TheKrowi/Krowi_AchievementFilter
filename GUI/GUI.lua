@@ -7,6 +7,7 @@ gui.SideButtons = {};
 local sideButtons = gui.SideButtons;
 
 function gui:LoadWithAddon()
+    gui.GameTooltipProgressBar:Load();
     gui.WorldMapButton.Load();
     gui.AlertSystem:Load();
     addon.Filters:InjectDefaults();
@@ -284,4 +285,22 @@ function gui.PrepareTabsOrder()
     addon.Data.SavedData.TabsOrderAddIfNotContains(1, addon.L["Blizzard"], addon.L["Achievements"]);
     addon.Data.SavedData.TabsOrderAddIfNotContains(2, addon.L["Blizzard"], addon.L["Guild"]);
     addon.Data.SavedData.TabsOrderAddIfNotContains(3, addon.L["Blizzard"], addon.L["Statistics"]);
+end
+
+function gui.ShowStatusBarTooltip(self, anchor)
+	GameTooltip:SetOwner(self, anchor or "ANCHOR_NONE");
+    if anchor == nil then
+	    GameTooltip:SetPoint("TOPLEFT", self, "TOPRIGHT", -3, -3);
+    end
+	GameTooltip:SetMinimumWidth(128, true);
+	GameTooltip:SetText(self.name, 1, 1, 1, nil, true);
+	local numOfNotObtAch = 0;
+	if addon.Options.db.Tooltip.Categories.ShowNotObtainable then
+		numOfNotObtAch = self.numOfNotObtAch;
+	end
+
+	gui.GameTooltipProgressBar:Show(GameTooltip, 0, self.numAchievements, self.numCompleted, numOfNotObtAch, 0, 0, addon.Colors.GreenRGB, addon.Colors.RedRGB, nil, nil, self.numCompletedText);
+
+	GameTooltip:SetMinimumWidth(140);
+    GameTooltip:Show();
 end

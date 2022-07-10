@@ -442,6 +442,27 @@ local function SkinCalendarSideFrame(frame, engine, skins)
     end
 end
 
+local function SkinGameTooltipProgressBar(progressBar, engine)
+    progressBar.BorderLeftTop:StripTextures();
+    progressBar.BorderLeftMiddle:StripTextures();
+    progressBar.BorderLeftBottom:StripTextures();
+    progressBar.BorderRightTop:StripTextures();
+    progressBar.BorderRightMiddle:StripTextures();
+    progressBar.BorderRightBottom:StripTextures();
+    progressBar.BorderMiddleTop:StripTextures();
+    progressBar.BorderMiddleMiddle:StripTextures();
+    progressBar.BorderMiddleBottom:StripTextures();
+    progressBar.Background:Hide();
+    for i, _ in next, progressBar.Fill do
+        progressBar.Fill[i]:SetTexture(engine.media.normTex);
+    end
+    progressBar:CreateBackdrop();
+    progressBar.backdrop:Point("TOPLEFT", 7, -5);
+    progressBar.backdrop:Point("BOTTOMRIGHT", -5, 5);
+    progressBar:SetColors({R = 4/255, G = 179/255, B = 30/255}, {R = 179/255, G = 4/255, B = 30/255});
+
+end
+
 local function SkinStatusBar(statusBar, engine)
     statusBar.BorderLeftTop:StripTextures();
     statusBar.BorderLeftMiddle:StripTextures();
@@ -460,7 +481,7 @@ local function SkinStatusBar(statusBar, engine)
     statusBar:CreateBackdrop();
     statusBar.backdrop:Point("TOPLEFT", 12, -11);
     statusBar.backdrop:Point("BOTTOMRIGHT", -12, 11);
-    statusBar:SetColors({R = 0.2, G = 0.7, B = 0.12}, {R = 0.7, G = 0.2, B = 0.12});
+    statusBar:SetColors({R = 4/255, G = 179/255, B = 30/255}, {R = 179/255, G = 4/255, B = 30/255});
     if statusBar.Button then
         local button = statusBar.Button;
         button:StripTextures();
@@ -472,7 +493,7 @@ local function SkinStatusBar(statusBar, engine)
 
         button:SetScript("OnLeave", function(self)
         end);
-        button:SetScript("OnEnter", function(self)            
+        button:SetScript("OnEnter", function(self)
         end);
     end
 end
@@ -545,6 +566,7 @@ local function SkinAll()
     if SavedData.ElvUISkin.Achievements then
         SkinTabs(addon.Tabs, skins);
         SkinCategoriesFrame(addon.GUI.CategoriesFrame, skins);
+        SkinGameTooltipProgressBar(addon.GUI.GameTooltipProgressBar, engine);
         SkinAchievementsFrame(addon.GUI.AchievementsFrame, engine, skins);
         SkinAchievementSummary(addon.GUI.SummaryFrame, engine, skins);
         SkinFilterButton(addon.GUI.FilterButton, addon.GUI.AchievementsFrame, skins);

@@ -42,7 +42,7 @@ end
 
 function WorldMapAchievementButtonMixin:OnEnter()
     if worldMapButton.numAchievements > 0 then
-        addon.ShowStatusBarTooltip(worldMapButton, "ANCHOR_RIGHT");
+        addon.GUI.ShowStatusBarTooltip(worldMapButton, "ANCHOR_RIGHT");
     else
         GameTooltip:SetOwner(worldMapButton, "ANCHOR_RIGHT");
 	    GameTooltip_SetTitle(GameTooltip, worldMapButton.name);

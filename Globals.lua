@@ -354,23 +354,6 @@ function addon.MakeWindowMovable()
     end
 end
 
-local progressBar = LibStub("Krowi_ProgressBar-1.1");
-function addon.ShowStatusBarTooltip(self, anchor)
-	-- GameTooltip_SetDefaultAnchor(GameTooltip, self);
-	GameTooltip:SetOwner(self, anchor or "ANCHOR_NONE");
-    if anchor == nil then
-	    GameTooltip:SetPoint("TOPLEFT", self, "TOPRIGHT", -3, -3);
-    end
-	GameTooltip:SetMinimumWidth(128, true);
-	GameTooltip:SetText(self.name, 1, 1, 1, nil, true);
-	local numOfNotObtAch = 0;
-	if addon.Options.db.Tooltip.Categories.ShowNotObtainable then
-		numOfNotObtAch = self.numOfNotObtAch;
-	end
-	progressBar:ShowProgressBar(GameTooltip, 0, self.numAchievements, self.numCompleted, numOfNotObtAch, 0, 0, addon.Colors.GreenRGB, addon.Colors.RedRGB, nil, nil, self.numCompletedText);
-	GameTooltip:Show();
-end
-
 function addon.GetSecondsSince(date)
     date.day = date.monthDay;
     date.monthDay = nil;
