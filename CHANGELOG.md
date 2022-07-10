@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - Option to keep the last selected month visible on reopening the calendar or go to the current month
 - ElvUI skin for the calendar
 - Selecting achievements should redirect to the new tabs (excluding guild achievements)
+- ElvUI skin for the progress bar in the tooltips
 
 ### Changed
 - Power Unbound and Power Unleashed are obtainable again
