@@ -185,7 +185,6 @@ function tutorials.Load()
         {
             achievementPointsEarnedBy = L["Achievement points earned by"]:SetColorYellow(),
             achievementPointsEarnedBy_wc = L["Achievement points earned by"],
-            achievementPointsEarnedByFormat = string.format(addon.Colors.Yellow, LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.L["Layout"], "cmd", "KROWIAF-0.0").args.Header.args.AchievementPoints.args.Format.values[addon.Options.db.AchievementPoints.Format]),
             tooltip = L["Tooltip"]:SetColorYellow(),
             account = L["Account"]:SetColorYellow(),
             character = (GetCategoryInfo(92)):SetColorYellow(),
@@ -200,6 +199,7 @@ function tutorials.Load()
             {
                 earnedByNumber = tostring(addon.Options.db.Tooltip.Achievements.EarnedBy.Characters):SetColorYellow(),
                 notEarnedByNumber = tostring(addon.Options.db.Tooltip.Achievements.EarnedBy.NotCharacters):SetColorYellow(),
+                achievementPointsEarnedByFormat = string.format(addon.Colors.Yellow, LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.L["Layout"], "cmd", "KROWIAF-0.0").args.Header.args.AchievementPoints.args.Format.values[addon.Options.db.AchievementPoints.Format])
             };
         end
     });
@@ -295,12 +295,12 @@ function tutorials.Load()
         SubTitle = L["Right Click Menu"]:SetColorYellow(),
         Text = L["Right Click Menu Desc"]:ReplaceVarsWithMenu
         {
-            rightClickMenu = addon.L["Right Click Menu"],
+            rightClickMenu = L["Right Click Menu"],
             wowhead = L["Wowhead"]:SetColorYellow(),
             goTo = L["Go to"]:SetColorYellow(),
             partOfAChain = L["Part of a chain"]:SetColorYellow(),
             require = L["Required for"]:SetColorYellow(),
-            currentZone = addon.L["Current Zone"],
+            currentZone = L["Current Zone"],
             xuFuPetGuides = L["Xu-Fu's Pet Guides"]:SetColorYellow(),
             petBattles = (GetCategoryInfo(15117)),
             more = L["More"]:SetColorYellow(),
@@ -309,7 +309,7 @@ function tutorials.Load()
             focused = L["Focused"]:SetColorYellow(),
             include = L["Include"]:SetColorYellow(),
             exclude = L["Exclude"]:SetColorYellow(),
-            layout = addon.L["Layout"],
+            layout = L["Layout"],
             pluginText = ""
         },
         OnShow = function(self)
@@ -340,6 +340,24 @@ function tutorials.Load()
                 numPopUps = tostring(addon.Options.db.EventReminders.MaxAlerts):SetColorYellow(),
                 compactEnabled = GetText1Or2(options.EventReminders.Compact, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
                 eventAlertFadeDelay = tostring(addon.Options.db.EventReminders.FadeDelay):SetColorYellow()
+            };
+        end
+    });
+    tinsert(pages, { -- Calendar
+        Image = media .. "Calendar",
+        ImageSize = {1041, 518},
+        SubTitle = L["Calendar"]:SetColorYellow(),
+        Text = L["Calendar Desc"]:ReplaceVarsWithMenu
+        {
+            calendar = L["Calendar"],
+            layout = L["Layout"]
+        },
+        OnShow = function(self)
+            self.Text = self.Text:ReplaceVars
+            {
+                lockMonth = GetText1Or2(addon.Options.db.Calendar.LockMonth, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
+                lockAchievementMonth = GetText1Or2(addon.Options.db.Calendar.LockAchievementMonth, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
+                firstWeekDay = string.format(addon.Colors.Yellow, LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.L["Layout"], "cmd", "KROWIAF-0.0").args.Calendar.args.Weekdays.args.FirstDayOfTheWeek.values[addon.Options.db.Calendar.FirstWeekDay]),
             };
         end
     });
