@@ -343,6 +343,26 @@ function tutorials.Load()
             };
         end
     });
+    tinsert(pages, { -- Summary
+    Layout = "HORIZONTAL",
+    Image = media .. "Summary",
+    ImageSize = {732, 649},
+    SubTitle = L["Summary"]:SetColorYellow(),
+    Text = L["Summary Desc"]:ReplaceVarsWithMenu
+    {
+        achievementsHeader = LATEST_UNLOCKED_ACHIEVEMENTS,
+        categoriesHeader = ACHIEVEMENT_CATEGORY_PROGRESS,
+        categories = L["Categories"],
+        summary = L["Summary"]
+    },
+    TextSize = {366, 0},
+    OnShow = function(self)
+        self.Text = self.Text:ReplaceVars
+        {
+            numAchievements = tostring(addon.Options.db.Categories.Summary.NumAchievements):SetColorYellow()
+        };
+    end
+});
     tinsert(pages, { -- Calendar
         Image = media .. "Calendar",
         ImageSize = {1041, 518},

@@ -14,7 +14,8 @@ All notable changes to this project will be documented in this file.
 - ElvUI skin for the calendar
 - Selecting achievements should redirect to the new tabs (excluding guild achievements)
 - ElvUI skin for the progress bar in the tooltips
-- Tutorial for the calendar
+- Tutorial for the summary and calendar
+- Tutorial is now movable and can be closed by pressing the escape key
 
 ### Changed
 - Power Unbound and Power Unleashed are obtainable again

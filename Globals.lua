@@ -349,8 +349,8 @@ function addon.MakeWindowMovable()
         MakeMovable(AchievementFrame);
         MakeMovable(AchievementFrameHeader, AchievementFrame);
     end
-    if KrowiAF_AchievementCalendarFrame then
-        MakeMovable(KrowiAF_AchievementCalendarFrame);
+    if addon.GUI.Calendar.Frame then
+        MakeMovable(addon.GUI.Calendar.Frame);
     end
 end
 

@@ -34,7 +34,7 @@ end
 function KrowiAF_AchievementCalendarSideFrameCloseButton_OnKeyDown(self, key)
     if key == GetBindingKey("TOGGLEGAMEMENU") then
 		if self:GetParent():IsShown() then
-			KrowiAF_AchievementCalendarSideFrameCloseButton_OnClick(self);
+			self:Click();
 			self:SetPropagateKeyboardInput(false);
 			return;
 		end

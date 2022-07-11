@@ -477,10 +477,10 @@ local function SkinStatusBar(statusBar, engine)
     for i, _ in next, statusBar.Fill do
         statusBar.Fill[i]:SetTexture(engine.media.normTex);
     end
-    statusBar:AdjustOffsets(10, 10);
+    statusBar:AdjustOffsets(8, 8);
     statusBar:CreateBackdrop();
-    statusBar.backdrop:Point("TOPLEFT", 12, -11);
-    statusBar.backdrop:Point("BOTTOMRIGHT", -12, 11);
+    statusBar.backdrop:Point("TOPLEFT", 14, -14);
+    statusBar.backdrop:Point("BOTTOMRIGHT", -12, 14);
     statusBar:SetColors({R = 4/255, G = 179/255, B = 30/255}, {R = 179/255, G = 4/255, B = 30/255});
     if statusBar.Button then
         local button = statusBar.Button;

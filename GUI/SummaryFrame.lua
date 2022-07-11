@@ -189,7 +189,7 @@ local statusBars = {};
 function summaryFrame:NewStatusBar()
     local statusBar = LibStub("Krowi_ProgressBar-1.1"):New(self);
     OverRideTextures(statusBar);
-    statusBar:SetWidth(265);
+    statusBar:SetWidth(270);
     statusBar:SetHeight(49);
 	statusBar:Reset();
     statusBar:SetColors({R = 0, G = 1, B = 0}, {R = 1, G = 0, B = 0});
@@ -224,7 +224,7 @@ function summaryFrame:BuildCategories()
 
     totalStatusBar:SetPoint("TOP", self.Categories.Header, "BOTTOM", 0, 5);
 
-    local yOffset = 10;
+    local yOffset = 15;
 
     self:NewStatusBar():SetPoint("TOPLEFT", totalStatusBar, "BOTTOMLEFT", 0, yOffset);
     self:NewStatusBar():SetPoint("TOPRIGHT", totalStatusBar, "BOTTOMRIGHT", 0, yOffset);

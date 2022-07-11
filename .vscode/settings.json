@@ -309,7 +309,9 @@
         "KrowiAF_CalendarViewHolidayFrame",
         "Calendar_LoadUI",
         "UIChildWindows",
-        "GetBindingKey"
+        "GetBindingKey",
+        "LATEST_UNLOCKED_ACHIEVEMENTS",
+        "ACHIEVEMENT_CATEGORY_PROGRESS"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

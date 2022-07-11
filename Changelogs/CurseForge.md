@@ -14,7 +14,8 @@ All notable changes to this project will be documented in this file.
 <li>ElvUI skin for the calendar</li>
 <li>Selecting achievements should redirect to the new tabs (excluding guild achievements)</li>
 <li>ElvUI skin for the progress bar in the tooltips</li>
-<li>Tutorial for the calendar</li>
+<li>Tutorial for the summary and calendar</li>
+<li>Tutorial is now movable and can be closed by pressing the escape key</li>
 </ul>
 <p><h3>Changed</h3></p>
 <ul>
