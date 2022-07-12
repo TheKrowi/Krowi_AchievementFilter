@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 9.2.5.36.0 - 2022-07-1x
+## 9.2.5.36.0 - 2022-07-12
 ### Added
 - Summary view for each new tab that shows the last 25 (default) earned achievements and the category's progress with optional ElvUI skin
 - Option to add your current locale to the Wowhead link (active by default)

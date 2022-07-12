@@ -1,6 +1,6 @@
 <p><h1>Changelog</h1></p>
 All notable changes to this project will be documented in this file.
-<p><h2>9.2.5.36.0 - 2022-07-1x</h2></p>
+<p><h2>9.2.5.36.0 - 2022-07-12</h2></p>
 <h3>Added</h3>
 <ul>
 <li>Summary view for each new tab that shows the last 25 (default) earned achievements and the category's progress with optional ElvUI skin</li>
@@ -15,7 +15,7 @@ All notable changes to this project will be documented in this file.
 <li>Selecting achievements should redirect to the new tabs (excluding guild achievements)</li>
 <li>ElvUI skin for the progress bar in the tooltips</li>
 <li>Tutorial for the summary and calendar</li>
-<li>Tutorial is now movable and can be closed by pressing the escape key</li>
+<li>Tutorial is now movable, can be scrolled through with the mouse wheel and can be closed by pressing the escape key</li>
 </ul>
 <p><h3>Changed</h3></p>
 <ul>
