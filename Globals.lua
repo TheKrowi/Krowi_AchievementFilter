@@ -1,4 +1,4 @@
-local _, addon = ...;
+local addonName, addon = ...;
 
 function addon.GetFirstAchievementID(achievementID)
     local id;
@@ -453,6 +453,13 @@ end
 
 function addon.ChangeAchievementMicroButtonOnClick()
     addon.Data.SavedData.TabsOrderGetActiveKeys(); -- Cleanup unused tabs
+    if addon.Options.db.MicroButtonTab > #addon.Options.db.Tabs then
+        for i, _ in next, addon.Options.db.Tabs do
+            if addon.Options.db.Tabs[i].AddonName == addonName and addon.Options.db.Tabs[i].TabName == "Achievements" then
+                addon.Options.db.MicroButtonTab = i;
+            end
+        end
+    end
     local tab = addon.Options.db.Tabs[addon.Options.db.MicroButtonTab];
     AchievementMicroButton:SetScript("OnClick", function(self)
         addon.GUI.ToggleAchievementFrame(tab.AddonName, tab.TabName);

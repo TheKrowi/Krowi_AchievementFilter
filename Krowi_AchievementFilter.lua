@@ -78,18 +78,11 @@ function loadHelper:OnEvent(event, arg1, arg2)
             end);
         end
 
-        -- addon.Diagnostics.DebugTable(AchievementMicroButtonMixin);
-        -- addon.HookAchievementMicroButtonOnEvent();
         addon.ChangeAchievementMicroButtonOnClick();
-        -- addon.Diagnostics.DebugTable(addon.Objects.TimeDisplay);
     elseif event == "PLAYER_ENTERING_WORLD" then
-        -- addon.Diagnostics.Debug("PLAYER_ENTERING_WORLD");
-        -- addon.Diagnostics.Debug("isLogin: " .. tostring(arg1));
-        -- addon.Diagnostics.Debug("isReload: " .. tostring(arg2));
          -- arg1 = isLogin, arg2 = isReload
         if arg1 then -- On a fresh login we need AREA_POIS_UPDATED to get world events
             loadHelper:RegisterEvent("AREA_POIS_UPDATED");
-            -- addon.Diagnostics.Debug("RegisterEvent AREA_POIS_UPDATED");
         end
         if arg2 then -- On reload we can get world events here since AREA_POIS_UPDATED does not always trigger and data is already available
             C_Timer.After(0, function()
@@ -101,7 +94,6 @@ function loadHelper:OnEvent(event, arg1, arg2)
             end);
         end
     elseif event == "AREA_POIS_UPDATED" then
-        -- addon.Diagnostics.Debug("AREA_POIS_UPDATED");
         if addon.EventData.GetActiveWorldEvents() ~= nil then
             -- It takes a couple of times in order to properly load all POI info
             C_Timer.After(0, function()
@@ -112,7 +104,6 @@ function loadHelper:OnEvent(event, arg1, arg2)
                 end);
             end);
             loadHelper:UnregisterEvent("AREA_POIS_UPDATED");
-            -- addon.Diagnostics.Debug("UnregisterEvent AREA_POIS_UPDATED");
         end
     elseif event == "ACHIEVEMENT_EARNED" then
         addon.ResetCache(); -- Will force to fetch achievement data again, updating the character achievement points
