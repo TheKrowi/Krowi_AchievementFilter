@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 9.2.5.37.0 - 2022-xx-xx
+
+
 ## 9.2.5.36.0 - 2022-07-12
 ### Added
 - Summary view for each new tab that shows the last 25 (default) earned achievements and the category's progress with optional ElvUI skin
