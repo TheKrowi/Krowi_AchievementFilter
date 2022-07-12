@@ -1,13 +1,11 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
-..\FrameXML\UI.xsd">
-
-    <Script file="Options/Options.lua" />
-    <Script file="Options/Defaults.lua" />
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..
+\..\FrameXML\UI.xsd">
+    <Script file="Options.lua" />
+    <Script file="Defaults.lua" />
     
-    <Script file="Options/General.lua" />
-    <Script file="Options/Layout.lua" />
-    <Script file="Options/EventReminders.lua" />
-    <Script file="Options/Plugins.lua" />
-    <Script file="Options/Credits.lua" />
-    
+    <Script file="General.lua" />
+    <Script file="Layout.lua" />
+    <Script file="EventReminders.lua" />
+    <Script file="Plugins.lua" />
+    <Script file="Credits.lua" />
 </Ui>

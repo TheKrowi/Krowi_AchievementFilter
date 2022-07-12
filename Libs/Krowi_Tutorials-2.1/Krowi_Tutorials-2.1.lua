@@ -438,6 +438,48 @@ local function FixTextSize(self)
 	self.TextSize = {width, 0};
 end
 
+local function MakeMovable(frame, target)
+    if frame:IsMovable() then -- Do not hook it multiple times if another addon already made it movable
+        return;
+    end
+
+    target = target or frame;
+
+    frame:SetMovable(true);
+    frame:EnableMouse(true);
+    frame:SetScript("OnMouseDown", function(frame, button)
+        if button == "LeftButton" then
+            target:StartMoving();
+        end
+    end);
+    frame:SetScript("OnMouseUp", function(frame, button)
+        target:StopMovingOrSizing();
+    end);
+end
+
+local function SetCloseButtonOnKeyDown(closeButton)
+	closeButton:SetScript("OnKeyDown", function(self, key)
+		if key == GetBindingKey("TOGGLEGAMEMENU") then
+			if self:GetParent():IsShown() then
+				self:Click();
+				self:SetPropagateKeyboardInput(false);
+				return;
+			end
+		end
+		self:SetPropagateKeyboardInput(true);
+	end);
+end
+
+local function SetOnMouseWheel(frame)
+	frame:SetScript("OnMouseWheel", function(self, value)
+		if value > 0 then
+			self.Prev:Click();
+		else
+			self.Next:Click();
+		end
+	end);
+end
+
 -- [[ EXTERNAL API ]] --
 
 local numFrames = 0; -- Local ID for naming, starts at 0 and will increment if a new frame is added
@@ -524,8 +566,12 @@ function lib:New(key, savedVariables, icon, font)
 	end
 
 	ApplyElvUISkin(frame);
+	MakeMovable(frame);
+	SetOnMouseWheel(frame);
+	SetCloseButtonOnKeyDown(frame.CloseButton);
 
 	frame:Hide();
+
 
 	return frame;
 end

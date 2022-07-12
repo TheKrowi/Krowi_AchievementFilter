@@ -1,25 +1,27 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\..\FrameXML\UI.xsd">
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..
+\..\FrameXML\UI.xsd">
+    <Script file="GUI.lua" />
 
-    <Script file="GUI/GUI.lua" />
+    <Include file="Templates\Files.xml" />
 
-    <Script file="GUI/AlertSystem.lua" />
+    <Script file="GameTooltipProgressBar.lua" />
 
-    <Script file="GUI/AchievementFrameTabButton.lua" />
-    <Script file="GUI/SideButton.lua" />
-    <Script file="GUI/CategoriesFrame.lua" />
-    <Script file="GUI/CategoryButton.lua" />
-    <Script file="GUI/AchievementsFrame.lua" />
-    
-    <Include file="GUI/AchievementButton/Files.xml" />
+    <Script file="AlertSystem.lua" />
 
-    <Script file="GUI/FilterButton.lua" />
+    <Script file="AchievementFrameTabButton.lua" />
+    <Script file="SideButton.lua" />
+    <Script file="CategoryButton.lua" />
+    <Script file="CategoriesFrame.lua" />
+    <Include file="AchievementButton\Files.xml" />
+    <Script file="AchievementsFrame.lua" />
+    <Script file="SummaryAchievementButton.lua" />
+    <Script file="SummaryFrame.lua" />
 
-    <Include file="GUI/Search/Files.xml" />
+    <Script file="FilterButton.lua" />
 
-    <Script file="GUI/WorldMapButton.lua" />
+    <Include file="Search\Files.xml" />
 
-    <Include file="GUI/Calendar/Files.xml" />
+    <Script file="WorldMapButton.lua" />
 
-    <Include file="GUI/Templates.xml" />    
-    
+    <Include file="Calendar\Files.xml" />
 </Ui>

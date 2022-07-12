@@ -1,5 +1,5 @@
 <p><strong>See the images for a quick look at the ingame UI! This might give you a better idea of what is added to the default Blizzard UI.</strong></p>
-<p>Achievement Filter adds a tab to the Achievement Window that orders the achievements by expansion and further subdivisions. Over 5300 achievements are added so far spread over 1025+ categories, linked to 1625+ zones and 39 events.</p>
+<p>Achievement Filter completely replaces the default Achievements tab and adds several tabs to the Achievement Window that order the achievements by expansion, pvp, events or other curated lists. Over 5300 achievements are added so far spread over 1025+ categories, linked to 1625+ zones and 35+ events.</p>
 <p><h3>Now also mostly available in German and Chinese (Simplified)!</h3></p>
 <p><h3>Tabs</h3></p>
 <ul>
@@ -43,8 +43,10 @@
 <li><strong><em>Event reminder</em></strong> for active events with achievements with a compact version option.</li>
 <li><strong><em>Compact achievements</em></strong> similar to the summary achievements.</li>
 <li>Overview of which character earned how many achievement points.</li>
-<li>Saturate achievements based on earned by your account or by your current character.</li>
+<li>Saturate achievements based on earned by your account, current character or a mix.</li>
 <li>Custom objectives for certain achievements. (If you find missing ones, let me know.)</li>
+<li>A <strong>summary view</strong> for each new tab.</li>
+<li>A new <strong>calendar view</strong> that puts achievements earned on their respective day.</li>
 </ul>
 <p>More features are planned in the future and can be requested via the issues system or discord.</p>
 <p>Feel free to join discord and say hi: <a href="https://discord.gg/DCxq5rRNW5">https://discord.gg/DCxq5rRNW5</a>.</p>

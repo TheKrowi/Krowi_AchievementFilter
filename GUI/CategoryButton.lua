@@ -1,25 +1,31 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
-local diagnostics = addon.Diagnostics;
-local gui = addon.GUI;
-gui.CategoryButton = {};
-local categoryButton = gui.CategoryButton;
+addon.GUI.CategoryButton = {};
+local categoryButton = addon.GUI.CategoryButton;
 
-local OnClick;
-function categoryButton.PostLoadButtons(buttons)
-	diagnostics.Trace("categoryButton.PostLoadButtons");
+local function OnClick(self, quick)
+	local categoriesFrame = addon.GUI.CategoriesFrame;
+	local achievementsFrame = addon.GUI.AchievementsFrame;
+	local summaryFrame = addon.GUI.SummaryFrame;
 
+	if self.Category.IsSummary then
+		summaryFrame:Show();
+		achievementsFrame:Hide();
+	else
+		achievementsFrame:Show();
+		summaryFrame:Hide();
+	end
+    categoriesFrame:SelectButton(self, quick);
+    categoriesFrame:Update();
+end
+
+function categoryButton.PostLoadButtons(categoriesFrame)
+	local scrollFrame = categoriesFrame.Container;
+	local buttons = scrollFrame.buttons;
 	for _, button in next, buttons do
-		button.Click = function(self, button, down, quick)
+		button.Click = function(self, btn, down, quick)
 			OnClick(self, quick);
 		end;
 		button:SetScript("OnClick", button.Click);
 	end
-end
-
-function OnClick(self, quick)
-    diagnostics.Trace("categoryButton.OnClick");
-
-    gui.CategoriesFrame:SelectButton(self, quick);
-    gui.CategoriesFrame:Update();
 end

@@ -1,103 +1,62 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
-local diagnostics = addon.Diagnostics;
 local gui = addon.GUI;
 gui.AlertSystem = {};
 local alertSystem = gui.AlertSystem;
 
-local ShowActiveCalendarEvents, ShowActiveWorldEvents;
+alertSystem.__index = alertSystem; -- Used to inject all the namespace functions to the frame
 function alertSystem:Load()
-    addon.GUI.AlertSystem = AlertFrame:AddQueuedAlertFrameSubSystem(
-        addon.Options.db.EventReminders.Compact and "KrowiAF_Small_AlertFrameTemplate" or "KrowiAF_AlertFrameTemplate",
+    local system = AlertFrame:AddQueuedAlertFrameSubSystem(
+        addon.Options.db.EventReminders.Compact and "KrowiAF_EventAlertFrame_Small_Template" or "KrowiAF_EventAlertFrame_Template",
         self.SetUp,
         addon.Options.db.EventReminders.MaxAlerts,
         100);
-    addon.GUI.AlertSystem.ShowActiveCalendarEvents = ShowActiveCalendarEvents;
-    addon.GUI.AlertSystem.ShowActiveWorldEvents = ShowActiveWorldEvents;
-    addon.GUI.AlertSystem.ShowActiveWidgetEvents = ShowActiveWidgetEvents;
+    addon.Util.InjectMetatable(system, alertSystem); -- Inject all the namespace functions to the frame
+
+	addon.GUI.AlertSystem = system; -- Overwrite with the actual frame since all functions are injected to it
 end
 
-function ShowActiveCalendarEvents()
-    diagnostics.Trace("ShowActiveCalendarEvents");
+local function UpdateEventRuntime(self)
+    local line1, line2, timeLeft;
 
-    if not addon.Options.db.EventReminders.ShowPopUps then
-        return;
+    if addon.Options.db.EventReminders.TimeDisplay.Line1 == 3 or addon.Options.db.EventReminders.TimeDisplay.Line2 == 4 then -- Time Left
+        local secondsLeft = self.Event.EventDetails.EndTime - time();
+        local days = floor(secondsLeft / 86400);
+        local hours = floor(mod(secondsLeft, 86400) / 3600);
+        local minutes = floor(mod(secondsLeft, 3600) / 60);
+        local seconds = floor(mod(secondsLeft, 60));
+        timeLeft = days > 0 and days .. " Days" or "";
+        timeLeft = timeLeft .. (days > 0 and " " or "") .. (hours > 0 and hours .. " Hr" or "");
+        timeLeft = timeLeft .. (hours > 0 and " " or "") .. (minutes > 0 and minutes .. " Min" or "");
+        timeLeft = timeLeft .. (minutes > 0 and " " or "") .. (seconds > 0 and seconds .. " Sec" or "");
     end
 
-    local activeEvents = addon.EventData.GetActiveCalendarEvents();
-
-    for _, activeEvent in next, activeEvents do
-        addon.GUI.AlertSystem:AddAlert(activeEvent, addon.Options.db.EventReminders.FadeDelay);
+    if addon.Options.db.EventReminders.TimeDisplay.Line1 == 1 then -- Start Time
+        line1 = tostring(date(addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime, self.Event.EventDetails.StartTime));
+    elseif addon.Options.db.EventReminders.TimeDisplay.Line1 == 2 then -- End Time
+        line1 = tostring(date(addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime, self.Event.EventDetails.EndTime));
+    elseif addon.Options.db.EventReminders.TimeDisplay.Line1 == 3 then -- Time Left
+        line1 = timeLeft;
     end
+
+    if addon.Options.db.EventReminders.TimeDisplay.Line2 == 1 or addon.Options.db.EventReminders.Compact then -- None
+        line2 = "";
+    elseif addon.Options.db.EventReminders.TimeDisplay.Line2 == 2 then -- Start Time
+        line2 = "\n" .. tostring(date(addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime, self.Event.EventDetails.StartTime));
+    elseif addon.Options.db.EventReminders.TimeDisplay.Line2 == 3 then -- End Time
+        line2 = "\n" .. tostring(date(addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime, self.Event.EventDetails.EndTime));
+    elseif addon.Options.db.EventReminders.TimeDisplay.Line2 == 4 then -- Time Left
+        line2 = "\n" .. timeLeft;
+    end
+
+    self.Unlocked:SetText(line1 .. line2);
 end
 
-function ShowActiveWorldEvents()
-    diagnostics.Trace("ShowActiveWorldEvents");
-
-    if not addon.Options.db.EventReminders.ShowPopUps then
-        return;
-    end
-
-    local activeEvents = addon.EventData.GetActiveWorldEvents();
-
-    for _, activeEvent in next, activeEvents do
-        addon.GUI.AlertSystem:AddAlert(activeEvent, addon.Options.db.EventReminders.FadeDelay);
-    end
+function KrowiAF_EventAlertFrame_OnLoad(self)
+    self.UpdateEventRuntime = UpdateEventRuntime;
 end
 
-function ShowActiveWidgetEvents()
-    diagnostics.Trace("ShowActiveWidgetEvents");
-
-    if not addon.Options.db.EventReminders.ShowPopUps then
-        return;
-    end
-
-    local activeEvents = addon.EventData.GetActiveWidgetEvents();
-
-    for _, activeEvent in next, activeEvents do
-        addon.GUI.AlertSystem:AddAlert(activeEvent, addon.Options.db.EventReminders.FadeDelay);
-    end
-end
-
--- function KrowiAFShowAlert(id)
---     if Kiosk.IsEnabled() then
---         return;
---     end
-
---     -- if not AchievementFrame then
---     --     AchievementFrame_LoadUI();
---     -- end
-
---     if id == nil then
---         id = 141;
---     end
-
---     addon.GUI.AlertSystem:AddAlert(addon.Data.Events[id], addon.Options.db.EventReminders.FadeDelay);
--- end
-
-function alertSystem.SetUp(frame, event, duration)
-	frame.Event = event;
-
-	frame.Name:SetText(event.EventDetails.Name);
-
-    gui.UpdateEventRuntime(frame);
-
-	frame.Icon.Texture:SetTexture(event.Icon);
-
-    frame.duration = duration;
-
-    frame.TimeSinceLastUpdate = 0;
-    frame:SetScript("OnUpdate", function(self, elapsed)
-        self.TimeSinceLastUpdate = self.TimeSinceLastUpdate + elapsed;
-
-        if self.TimeSinceLastUpdate > 1 then
-            gui.UpdateEventRuntime(frame);
-            self.TimeSinceLastUpdate = 0;
-        end
-    end);
-end
-
-function KrowiAF_AlertFrame_OnClick(self, button, down)
+function KrowiAF_EventAlertFrame_OnClick(self, button, down)
     if AlertFrame_OnClick(self, button, down) then
 		return; -- Handle right-click and close the alert
 	end
@@ -106,6 +65,46 @@ function KrowiAF_AlertFrame_OnClick(self, button, down)
         LoadAddOn("Blizzard_AchievementUI");
     end
 
-    -- diagnostics.Debug(self.Event.Category);
-    addon.GUI.CategoriesFrame:SelectCategory(self.Event.Category);
+    KrowiAF_SelectCategory(self.Event.Category);
+end
+
+function KrowiAF_EventAlertFrame_OnUpdate(self, elapsed)
+    self.TimeSinceLastUpdate = self.TimeSinceLastUpdate + elapsed;
+    if self.TimeSinceLastUpdate > 1 then
+        self:UpdateEventRuntime();
+        self.TimeSinceLastUpdate = 0;
+    end
+end
+
+function alertSystem.SetUp(frame, event, duration)
+	frame.Event = event;
+	frame.Name:SetText(event.EventDetails.Name);
+    frame:UpdateEventRuntime();
+	frame.Icon.Texture:SetTexture(event.Icon);
+    frame.duration = duration;
+    frame.TimeSinceLastUpdate = 0;
+end
+
+local function ShowActiveEvents(getActiveEvents)
+    if not addon.Options.db.EventReminders.ShowPopUps then
+        return;
+    end
+
+    local activeEvents = getActiveEvents();
+
+    for _, activeEvent in next, activeEvents do
+        addon.GUI.AlertSystem:AddAlert(activeEvent, addon.Options.db.EventReminders.FadeDelay);
+    end
+end
+
+function alertSystem.ShowActiveCalendarEvents()
+    ShowActiveEvents(addon.EventData.GetActiveCalendarEvents);
+end
+
+function alertSystem.ShowActiveWidgetEvents()
+    ShowActiveEvents(addon.EventData.GetActiveWidgetEvents);
+end
+
+function alertSystem.ShowActiveWorldEvents()
+    ShowActiveEvents(addon.EventData.GetActiveWorldEvents);
 end

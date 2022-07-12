@@ -27,6 +27,8 @@ function data.Load()
     data.ExportedTransmogSets.Load(data.TransmogSets);
 
     data.AchievementIDs = data.ExportedAchievements.Load(data.Achievements, data.TransmogSets);
+    local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.L["Layout"], "cmd", "KROWIAF-0.0").args.Categories.args.Summary.args.NumAchievements; -- cmd and KROWIAF-0.0 are just to make the function work
+    custom.max = #data.AchievementIDs;
 
     local tabsCategories;
     tabsCategories, data.FocusedCategory, data.CurrentZoneCategory, data.SelectedZoneCategory, data.ExcludedCategory = data.ExportedCategories.Load(data.Achievements);
@@ -45,7 +47,7 @@ function data.Load()
     data.ExportedWorldEvents.LoadCategories(data.WorldEvents, data.Achievements);
 
     if addon.Tabs["Achievements"] then
-        addon.Tabs["Achievements"].Categories = data.LoadBlizzardTabAchievements();
+        addon.Tabs["Achievements"].Categories = data.LoadBlizzardTabAchievements(addon.Tabs["Achievements"].Categories);
     end
 
     isLoaded = true;
@@ -122,11 +124,12 @@ local function AddAchievementsToCategory(categoryID, achID)
     end
 end
 
-function data.LoadBlizzardTabAchievements()
+function data.LoadBlizzardTabAchievements(categories)
     addon.BuildCache();
 
-    local categories = addon.Objects.Category:New(addon.L["Achievements"]); -- TAB - Achievements;
-    categories.TabName = "Achievements";
+    -- local categories = addon.Objects.Category:New(addon.L["Achievements"]); -- TAB - Achievements;
+    -- categories.TabName = "Achievements";
+    local tab = categories[1].Parent;
 
     local cats = GetCategoryList();
 
@@ -134,7 +137,8 @@ function data.LoadBlizzardTabAchievements()
 		local name, parentID = GetCategoryInfo(id);
         tmpC[id] = addon.Objects.Category:New(name);
 		if parentID == -1 then
-			categories:AddCategory(tmpC[id]);
+			-- categories:AddCategory(tmpC[id]);
+			tab:AddCategory(tmpC[id]);
 		end
 	end
 
@@ -170,7 +174,7 @@ function data.LoadBlizzardTabAchievements()
     tmpC = nil;
     addedOutOfOrder = nil;
 
-    return categories.Children;
+    return tab.Children;
 end
 
 -- function data.PrintCriteria(achievementID, parentCriteriaID, criteriaNumber)

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-06-25 22-17-08 ]] --
+-- [[ Exported at 2022-07-02 11-59-50 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -35,6 +35,7 @@ function tabs.InjectOptions()
     local index = #addon.Options.InjectDefaultsAdd({
         AddonName = addonName,
         TabName = "Achievements",
+        BindingName = "KrowiAF_OPEN_TAB_Achievements",
         Show = true
     }, "Tabs");
     addon.Options.InjectOptionsTableAdd({
@@ -48,6 +49,7 @@ function tabs.InjectOptions()
     local index = #addon.Options.InjectDefaultsAdd({
         AddonName = addonName,
         TabName = "Expansions",
+        BindingName = "KrowiAF_OPEN_TAB_Expansions",
         Show = true
     }, "Tabs");
     addon.Options.InjectOptionsTableAdd({
@@ -61,6 +63,7 @@ function tabs.InjectOptions()
     local index = #addon.Options.InjectDefaultsAdd({
         AddonName = addonName,
         TabName = "Events",
+        BindingName = "KrowiAF_OPEN_TAB_Events",
         Show = true
     }, "Tabs");
     addon.Options.InjectOptionsTableAdd({
@@ -74,6 +77,7 @@ function tabs.InjectOptions()
     local index = #addon.Options.InjectDefaultsAdd({
         AddonName = addonName,
         TabName = "PvP",
+        BindingName = "KrowiAF_OPEN_TAB_PvP",
         Show = true
     }, "Tabs");
     addon.Options.InjectOptionsTableAdd({
@@ -87,6 +91,7 @@ function tabs.InjectOptions()
     local index = #addon.Options.InjectDefaultsAdd({
         AddonName = addonName,
         TabName = "Specials",
+        BindingName = "KrowiAF_OPEN_TAB_Specials",
         Show = true
     }, "Tabs");
     addon.Options.InjectOptionsTableAdd({

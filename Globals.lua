@@ -53,8 +53,9 @@ function addon.GetAchievementsInZone(mapID, getAll)
     return achievements;
 end
 
-function addon.GetAchievementNumbers(filterButton, filters, achievement, numOfAch, numOfCompAch, numOfNotObtAch) -- , numOfIncompAch
-	if filterButton and filterButton.Validate(filters, achievement, true) > 0 then -- If set to false we lag the game
+function addon.GetAchievementNumbers(_filters, achievement, numOfAch, numOfCompAch, numOfNotObtAch) -- , numOfIncompAch
+    local filters = addon.Filters;
+	if filters and filters.Validate(_filters, achievement, true) > 0 then -- If set to false we lag the game
 		numOfAch = numOfAch + 1;
 		local _, _, _, completed = addon.GetAchievementInfo(achievement.ID);
 		if completed then
@@ -309,6 +310,12 @@ function addon.HookSetAchievementFrameHeaderPointsText()
     end);
 end
 
+function addon.HookSelectAchievement()
+    hooksecurefunc("AchievementFrame_SelectAchievement", function(id, forceSelect, isComparison)
+        KrowiAF_SelectAchievementFromID(id);
+    end);
+end
+
 function addon.HookAchievementFrameOnShow()
     hooksecurefunc("AchievementFrame_SetTabs", function()
         addon.GUI.ShowHideTabs();
@@ -335,27 +342,16 @@ local function MakeMovable(frame, target)
 end
 
 function addon.MakeWindowMovable()
-    if addon.Options.db.Window.Movable and AchievementFrame and AchievementFrameHeader then
+    if not addon.Options.db.Window.Movable then
+        return;
+    end
+    if AchievementFrame and AchievementFrameHeader then
         MakeMovable(AchievementFrame);
         MakeMovable(AchievementFrameHeader, AchievementFrame);
     end
-end
-
-local progressBar = LibStub("Krowi_ProgressBar-1.1");
-function addon.StatusBarTooltip(self, anchor)
-	-- GameTooltip_SetDefaultAnchor(GameTooltip, self);
-	GameTooltip:SetOwner(self, anchor or "ANCHOR_NONE");
-    if anchor == nil then
-	    GameTooltip:SetPoint("TOPLEFT", self, "TOPRIGHT", -3, -3);
+    if addon.GUI.Calendar.Frame then
+        MakeMovable(addon.GUI.Calendar.Frame);
     end
-	GameTooltip:SetMinimumWidth(128, true);
-	GameTooltip:SetText(self.name, 1, 1, 1, nil, true);
-	local numOfNotObtAch = 0;
-	if addon.Options.db.Tooltip.Categories.ShowNotObtainable then
-		numOfNotObtAch = self.numOfNotObtAch;
-	end
-	progressBar:ShowProgressBar(GameTooltip, 0, self.numAchievements, self.numCompleted, numOfNotObtAch, 0, 0, addon.Colors.GreenRGB, addon.Colors.RedRGB, nil, nil, self.numCompletedText);
-	GameTooltip:Show();
 end
 
 function addon.GetSecondsSince(date)
@@ -400,23 +396,23 @@ function addon.GetNextAchievement(achievement)
     return nil, false;
 end
 
-function addon.GetOpposingFaction(faction)
-    if faction == addon.Objects.Faction.Alliance then
-        return addon.Objects.Faction.Horde;
-    elseif faction == addon.Objects.Faction.Horde then
-        return addon.Objects.Faction.Alliance;
-    end
-end
+-- function addon.GetOpposingFaction(faction)
+--     if faction == addon.Objects.Faction.Alliance then
+--         return addon.Objects.Faction.Horde;
+--     elseif faction == addon.Objects.Faction.Horde then
+--         return addon.Objects.Faction.Alliance;
+--     end
+-- end
 
-function addon.GetFactionName(faction)
-    if faction == addon.Objects.Faction.Alliance then
-        return addon.L["Alliance"];
-    elseif faction == addon.Objects.Faction.Horde then
-        return addon.L["Horde"];
-    else
-        return addon.L["Neutral"];
-    end
-end
+-- function addon.GetFactionName(faction)
+--     if faction == addon.Objects.Faction.Alliance then
+--         return addon.L["Alliance"];
+--     elseif faction == addon.Objects.Faction.Horde then
+--         return addon.L["Horde"];
+--     else
+--         return addon.L["Neutral"];
+--     end
+-- end
 
 function addon.GetUsableSets(transmogSets)
     local usableTransmogSets = {};
@@ -448,19 +444,30 @@ function addon.GetVariantSetIDs(baseSetIds)
     return setIDs;
 end
 
-local function GetTextColorLower(text, lower, color)
-    if lower then
-        text = text:lower();
-    end
-    if color then
-        text = addon.Colors.SetTextColor(text, color);
-    end
-    return text;
+-- function addon.HookAchievementMicroButtonOnEvent()
+--     hooksecurefunc(AchievementMicroButton, "OnEvent", function()
+--         AchievementMicroButton.tooltipText = MicroButtonTooltipText(ACHIEVEMENT_BUTTON, SavedData.BindingName);
+--         print("HookAchievementMicroButtonOnEvent");
+--     end);
+-- end
+
+function addon.ChangeAchievementMicroButtonOnClick()
+    addon.Data.SavedData.TabsOrderGetActiveKeys(); -- Cleanup unused tabs
+    local tab = addon.Options.db.Tabs[addon.Options.db.MicroButtonTab];
+    AchievementMicroButton:SetScript("OnClick", function(self)
+        addon.GUI.ToggleAchievementFrame(tab.AddonName, tab.TabName);
+    end);
 end
 
-function addon.GetText1Or2(test, text1, lower1, color1, text2, lower2, color2)
-    if test then
-        return GetTextColorLower(text1, lower1, color1);
-    end
-    return GetTextColorLower(text2, lower2 or lower1, color2 or color1);
-end
+-- function KrowiAF_FireEvent(event, ...)
+--     event=event:upper();--  Events are always uppercase
+--     local list={GetFramesRegisteredForEvent(event)};--  Get list of frames
+--     for _,frame in ipairs(list) do
+--         local func=frame:GetScript("OnEvent");--    Get OnEvent handler
+--         if func then 
+--             print(frame:GetName());
+--         end--   Run it if there is one
+--     end
+-- end
+
+-- /run KrowiAF_FireEvent("ACHIEVEMENT_EARNED");

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-06-25 22-18-26 ]] --
+-- [[ Exported at 2022-07-11 23-16-41 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -27,7 +27,7 @@ L["Obtainable"] = "Verfügbar";
 L["Not Obtainable"] = "Nicht Verfügbar";
 L["Select all"] = "Alle auswählen";
 L["Covenant"] = "Pakt";
-L["Collapse Chain"] = "Folgequest Einklappen";
+L["Collapse Chain"] = "Serien-Erfolge Ausblenden";
 L["Excluded"] = "Zu Filter Ausgeblendet hinzugefügt";
 L["Completion"] = "Komplettierung";
 L["ID"] = "ID";
@@ -39,6 +39,7 @@ L["Special Categories"] = "Spezial Kategorie";
 L["Current Zone"] = "Aktuelle Zone";
 L["Selected Zone"] = "Ausgewählte Zone";
 L["View Tutorial"] = "Tutorial anzeigen";
+L["Show placeholders"] = "Zeige Platzhalter";
 L["Brawler's Guild"] = "Kampfgilde";
 L["Buildings"] = "Gebäude";
 L["Bur's Mount Collection"] = "Bur's Reittier Collection";
@@ -209,4 +210,7 @@ L["Greyhoof"] = "Grauhuf";
 L["Lucky Yi"] = "Glückspilz Yi";
 L["Ka'wi the Gorger"] = "Ka'wi der Schlinger";
 L["Nitun"] = "Nitun";
+L["News"] = "Neuigkeiten";
+L["Comments"] = "Kommentare";
+L["Torghast"] = "Torghast";
 

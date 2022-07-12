@@ -158,7 +158,7 @@ options.OptionsTable.args["General"] = {
             inline = true,
             args = {
                 ResetViewOnOpen = {
-                    order = 1, type = "toggle",
+                    order = 1.1, type = "toggle",
                     name = addon.L["Reset view on open"],
                     desc = addon.L["Reset view on open Desc"],
                     get = function() return addon.Options.db.ResetViewOnOpen; end,
@@ -166,7 +166,38 @@ options.OptionsTable.args["General"] = {
                         addon.Options.db.ResetViewOnOpen = not addon.Options.db.ResetViewOnOpen;
                         options.Debug(addon.L["Reset view on open"], addon.Options.db.ResetViewOnOpen);
                     end
-                }
+                },
+                Blank12 = {order = 1.2, type = "description", width = 1.5, name = ""},
+                RebindMicroButton = {
+                    order = 2.1, type = "select", width = 2,
+                    name = addon.L["Rebind Micro Button"],
+                    desc = addon.L["Rebind Micro Button Desc"],
+                    values = function() return addon.Data.SavedData.TabsOrderGetActiveKeys(); end,
+                    get = function()
+                        return addon.Options.db.MicroButtonTab;
+                    end,
+                    set = function (_, value)
+                        addon.Options.db.MicroButtonTab = value;
+                        addon.ChangeAchievementMicroButtonOnClick();
+                        options.Debug(addon.L["Rebind Micro Button"], addon.Options.db.MicroButtonTab);
+                    end
+                },
+                Discord = {
+                    order = 2.2, type = "execute",
+                    name = addon.L["Set Keybind"],
+                    desc = addon.Util.ReplaceVars {
+                        addon.L["Set Keybind Desc"],
+                        keyBindings = addon.L["Key Bindings"]
+                    },
+                    func = function()
+                        local tab = addon.Options.db.Tabs[addon.Options.db.MicroButtonTab];
+                        if tab.BindingName then
+                            SavedData.BindingName = tab.BindingName;
+                            SetBinding("Y", tab.BindingName);
+                            SaveBindings(GetCurrentBindingSet());
+                        end
+                    end
+                },
             }
         },
         Search = {

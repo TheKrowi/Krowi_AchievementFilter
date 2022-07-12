@@ -7,27 +7,28 @@ gui.SideButtons = {};
 local sideButtons = gui.SideButtons;
 
 function gui:LoadWithAddon()
+    gui.GameTooltipProgressBar:Load();
     gui.WorldMapButton.Load();
     gui.AlertSystem:Load();
-    gui.FilterButton:InjectDefaults();
+    addon.Filters:InjectDefaults();
 end
 
 local CreateAchievementPointsTooltip;
 function gui:LoadWithBlizzard_AchievementUI()
     self.SetAchievementFrameHeight(addon.Options.db.Window.AchievementFrameHeightOffset); -- Do this in order to create the correct amount of buttons based on our settings
 
-    gui.Calendar.Load();
-
     gui.AchievementsFrame:Load();
+    addon.GUI.SummaryFrame:Load();
     gui.CategoriesFrame:Load();
     gui.FilterButton:Load();
 
-    gui.Search.Load();
+    gui.Search:Load();
+    addon.GUI.Calendar:Load();
 
     gui.AddDataToBlizzardTabs();
 
     for _, t in next, addon.TabsOrder do
-        addon.Tabs[t].Button = gui.AchievementFrameTabButton:New(addonName, addon.Tabs[t].Name, addon.Tabs[t].Text, {gui.FilterButton, gui.Search.SearchBoxFrame}, gui.AchievementsFrame, gui.CategoriesFrame, addon.Tabs[t].Categories, addon.Tabs[t].Filters);
+        addon.Tabs[t].Button = gui.AchievementFrameTabButton:New(addonName, addon.Tabs[t].Name, addon.Tabs[t].BindingName, addon.Tabs[t].Text, {gui.FilterButton, gui.Search.BoxFrame}, gui.AchievementsFrame, gui.CategoriesFrame, addon.Tabs[t].Categories, addon.Tabs[t].Filters);
     end
 
     local activeCalendarEvents = addon.EventData.GetActiveCalendarEvents();
@@ -142,26 +143,38 @@ function gui.ResetView()
             if category.Achievements == nil then
                 category = gui.SelectedTab.Categories[2];
             end
-            gui.CategoriesFrame:SelectCategory(category, true);
+            KrowiAF_SelectCategory(category, true);
         end
     end
 
-    if gui.Search.SearchBoxFrame and gui.Search.SearchBoxFrame.SearchPreviewFrame then
-        gui.Search.SearchBoxFrame:SetText("");
+    local search = addon.GUI.Search;
+    if search.BoxFrame and search.BoxFrame.SearchPreviewFrame then
+        search.BoxFrame:SetText("");
     end
 
-    if gui.Search.FullSearchResultsFrame and gui.Search.FullSearchResultsFrame.Update and gui.Search.FullSearchResultsFrame.Hide then
-        gui.Search.FullSearchResultsFrame:Hide();
-    end
-end
-
-function gui.SelectTab(tabName)
-    if addon.Tabs[tabName] ~= nil and addon.Tabs[tabName].Button ~= nil then
-        addon.Tabs[tabName].Button:Select();
+    if search.ResultsFrame and search.ResultsFrame.Update and search.ResultsFrame.Hide then
+        search.ResultsFrame:Hide();
     end
 end
 
-function gui.ToggleAchievementFrame(tabName, resetView, forceOpen) -- Issue #26 Broken, Fix
+function gui.SelectTab(_addonName, tabName)
+    -- if addon.Tabs[tabName] ~= nil and addon.Tabs[tabName].Button ~= nil then
+    --     addon.Tabs[tabName].Button:Select();
+    -- end
+    for i, tab in next, addon.Options.db.Tabs do
+        if tab.AddonName == _addonName and tab.TabName == tabName then
+            if _G["AchievementFrameTab" .. i] then
+                if _G["AchievementFrameTab" .. i].Select then
+                    _G["AchievementFrameTab" .. i]:Select(); -- Addon tabs
+                else
+                    _G["AchievementFrameTab" .. i]:Click(); -- Other tabs
+                end
+            end
+        end
+    end
+end
+
+function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -- Issue #26 Broken, Fix
     diagnostics.Trace("gui.ToggleAchievementFrame");
 
     if not IsAddOnLoaded("Blizzard_AchievementUI") then
@@ -173,9 +186,9 @@ function gui.ToggleAchievementFrame(tabName, resetView, forceOpen) -- Issue #26 
 
     local tabIsSelected;
     if gui.SelectedTab then
-       if gui.SelectedTab.Name == tabName then
-        tabIsSelected = true;
-       end
+        if gui.SelectedTab.AddonName == _addonName and  gui.SelectedTab.Name == tabName then
+            tabIsSelected = true;
+        end
     end
 
 	if AchievementFrame:IsShown() and tabIsSelected and not resetView and not forceOpen then
@@ -184,51 +197,15 @@ function gui.ToggleAchievementFrame(tabName, resetView, forceOpen) -- Issue #26 
         AchievementFrame_SetTabs();
 		ShowUIPanel(AchievementFrame);
         AchievementFrame_HideSearchPreview();
-        gui.SelectTab(tabName);
+        gui.SelectTab(_addonName, tabName);
         if addon.Options.db.ResetViewOnOpen or resetView then
             gui.ResetView();
         end
 	end
 end
 
-function KrowiAF_ToggleAchievementFrame(tabName)
-    gui.ToggleAchievementFrame(tabName);
-end
-
-function gui.UpdateEventRuntime(self)
-    local line1, line2, timeLeft;
-
-    if addon.Options.db.EventReminders.TimeDisplay.Line1 == 3 or addon.Options.db.EventReminders.TimeDisplay.Line2 == 4 then -- Time Left
-        local secondsLeft = self.Event.EventDetails.EndTime - time();
-        local days = floor(secondsLeft / 86400);
-        local hours = floor(mod(secondsLeft, 86400) / 3600);
-        local minutes = floor(mod(secondsLeft, 3600) / 60);
-        local seconds = floor(mod(secondsLeft, 60));
-        timeLeft = days > 0 and days .. " Days" or "";
-        timeLeft = timeLeft .. (days > 0 and " " or "") .. (hours > 0 and hours .. " Hr" or "");
-        timeLeft = timeLeft .. (hours > 0 and " " or "") .. (minutes > 0 and minutes .. " Min" or "");
-        timeLeft = timeLeft .. (minutes > 0 and " " or "") .. (seconds > 0 and seconds .. " Sec" or "");
-    end
-
-    if addon.Options.db.EventReminders.TimeDisplay.Line1 == 1 then -- Start Time
-        line1 = tostring(date(addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime, self.Event.EventDetails.StartTime));
-    elseif addon.Options.db.EventReminders.TimeDisplay.Line1 == 2 then -- End Time
-        line1 = tostring(date(addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime, self.Event.EventDetails.EndTime));
-    elseif addon.Options.db.EventReminders.TimeDisplay.Line1 == 3 then -- Time Left
-        line1 = timeLeft;
-    end
-
-    if addon.Options.db.EventReminders.TimeDisplay.Line2 == 1 or addon.Options.db.EventReminders.Compact then -- None
-        line2 = "";
-    elseif addon.Options.db.EventReminders.TimeDisplay.Line2 == 2 then -- Start Time
-        line2 = "\n" .. tostring(date(addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime, self.Event.EventDetails.StartTime));
-    elseif addon.Options.db.EventReminders.TimeDisplay.Line2 == 3 then -- End Time
-        line2 = "\n" .. tostring(date(addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime, self.Event.EventDetails.EndTime));
-    elseif addon.Options.db.EventReminders.TimeDisplay.Line2 == 4 then -- Time Left
-        line2 = "\n" .. timeLeft;
-    end
-
-    self.Unlocked:SetText(line1 .. line2);
+function KrowiAF_ToggleAchievementFrame(_addonName, tabName)
+    gui.ToggleAchievementFrame(_addonName, tabName);
 end
 
 function CreateAchievementPointsTooltip()
@@ -308,4 +285,22 @@ function gui.PrepareTabsOrder()
     addon.Data.SavedData.TabsOrderAddIfNotContains(1, addon.L["Blizzard"], addon.L["Achievements"]);
     addon.Data.SavedData.TabsOrderAddIfNotContains(2, addon.L["Blizzard"], addon.L["Guild"]);
     addon.Data.SavedData.TabsOrderAddIfNotContains(3, addon.L["Blizzard"], addon.L["Statistics"]);
+end
+
+function gui.ShowStatusBarTooltip(self, anchor)
+	GameTooltip:SetOwner(self, anchor or "ANCHOR_NONE");
+    if anchor == nil then
+	    GameTooltip:SetPoint("TOPLEFT", self, "TOPRIGHT", -3, -3);
+    end
+	GameTooltip:SetMinimumWidth(128, true);
+	GameTooltip:SetText(self.name, 1, 1, 1, nil, true);
+	local numOfNotObtAch = 0;
+	if addon.Options.db.Tooltip.Categories.ShowNotObtainable then
+		numOfNotObtAch = self.numOfNotObtAch;
+	end
+
+	gui.GameTooltipProgressBar:Show(GameTooltip, 0, self.numAchievements, self.numCompleted, numOfNotObtAch, 0, 0, addon.Colors.GreenRGB, addon.Colors.RedRGB, nil, nil, self.numCompletedText);
+
+	GameTooltip:SetMinimumWidth(140);
+    GameTooltip:Show();
 end

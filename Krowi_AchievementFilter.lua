@@ -45,7 +45,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
             addon.Options.Load();
 
             addon.Plugins:Load();
-            
+
             addon.Data.SavedData.Load();
 
             addon.GUI:LoadWithAddon();
@@ -63,8 +63,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
             addon.MakeWindowMovable();
             addon.HookSetAchievementFrameHeaderPointsText();
             addon.HookAchievementFrameOnShow();
-
-            -- addon.Extension.AchFrameAchies:Load();
+            addon.HookSelectAchievement();
         end
     elseif event == "PLAYER_LOGIN" then
         addon.Data.ExportedCalendarEvents.Load(addon.Data.CalendarEvents);
@@ -78,6 +77,10 @@ function loadHelper:OnEvent(event, arg1, arg2)
                 print(mapID);
             end);
         end
+
+        -- addon.Diagnostics.DebugTable(AchievementMicroButtonMixin);
+        -- addon.HookAchievementMicroButtonOnEvent();
+        addon.ChangeAchievementMicroButtonOnClick();
         -- addon.Diagnostics.DebugTable(addon.Objects.TimeDisplay);
     elseif event == "PLAYER_ENTERING_WORLD" then
         -- addon.Diagnostics.Debug("PLAYER_ENTERING_WORLD");

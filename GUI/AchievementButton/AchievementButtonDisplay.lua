@@ -1,9 +1,7 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
-local diagnostics = addon.Diagnostics;
-local achievementButton = addon.GUI.AchievementButton;
-achievementButton.Display = {};
-local display = achievementButton.Display;
+addon.GUI.AchievementButton.Display = {};
+local display = addon.GUI.AchievementButton.Display;
 
 -- This file will contain a lot of copied code from Blizzard_AchievementUI.lua that needs little changes here and there
 -- in order to properly work with this addon
@@ -17,8 +15,6 @@ local FORCE_COLUMNS_RIGHT_COLUMN_SPACE = 150;
 
 local DisplayCriteria, GetMeta, GetCriteria, OnEnter;
 function display:DisplayObjectives(renderOffScreen, achievementsFrame)
-    diagnostics.Trace("display:DisplayObjectives");
-
 	local objectives = AchievementFrameAchievementsObjectives;
 	if renderOffScreen then
 		objectives = AchievementFrameAchievementsObjectivesOffScreen;
@@ -30,7 +26,6 @@ function display:DisplayObjectives(renderOffScreen, achievementsFrame)
 	objectives.completed = self.completed;
 	local height = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT;
 	if objectives.id == self.id and not renderOffScreen then
-		diagnostics.Trace("display:DisplayObjectives - 1");
 		local ACHIEVEMENTMODE_CRITERIA = 1;
 		if objectives.mode == ACHIEVEMENTMODE_CRITERIA then
 			if objectives:GetHeight() > 0 then
@@ -42,7 +37,6 @@ function display:DisplayObjectives(renderOffScreen, achievementsFrame)
 			objectives:SetPoint("TOP", topAnchor, "BOTTOM", 0, -8);
 		end
 	elseif self.completed and GetPreviousAchievement(self.id) then
-		diagnostics.Trace("display:DisplayObjectives - 2");
 		objectives:SetHeight(0);
 		self.ResetCriteria(renderOffScreen);
 		AchievementButton_ResetProgressBars(renderOffScreen);
@@ -54,7 +48,6 @@ function display:DisplayObjectives(renderOffScreen, achievementsFrame)
 		end
 		objectives:SetPoint("TOP", topAnchor, "BOTTOM", 0, -8);
 	else
-		diagnostics.Trace("display:DisplayObjectives - 3");
 		objectives:SetHeight(0);
 		self.ResetCriteria(renderOffScreen);
 		AchievementButton_ResetProgressBars(renderOffScreen);
@@ -90,8 +83,6 @@ local criteriaTable = {}
 local criteriaTableOffScreen = {};
 
 function DisplayCriteria(objectivesFrame, id, renderOffScreen, achievementsFrame)
-    diagnostics.Trace("DisplayCriteria");
-
 	if not id then
 		return;
 	end
@@ -328,8 +319,6 @@ function DisplayCriteria(objectivesFrame, id, renderOffScreen, achievementsFrame
 end
 
 function display.ResetMetas(renderOffScreen)
-    diagnostics.Trace("display.ResetMetas");
-
 	if renderOffScreen then
 		AchievementButton_ResetTable(metaCriteriaTableOffScreen);
 	else
@@ -338,8 +327,6 @@ function display.ResetMetas(renderOffScreen)
 end
 
 function GetMeta(index, renderOffScreen, achievementsFrame)
-    diagnostics.Trace("GetMeta");
-
 	local mcTable = metaCriteriaTable;
 	local offscreenName = "";
 	if renderOffScreen then
@@ -349,7 +336,7 @@ function GetMeta(index, renderOffScreen, achievementsFrame)
 	if not mcTable[index] then
 		local frame = CreateFrame("BUTTON", "KrowiAF_AchievementFrameMeta" .. offscreenName .. index, AchievementFrameAchievements, "MetaCriteriaTemplate");
 		frame:SetScript("OnClick", function()
-            achievementsFrame:SelectAchievementFromID(frame.id, nil, true);
+            KrowiAF_SelectAchievementFromID(frame.id, nil, true);
         end);
 		frame:SetScript("OnEnter", OnEnter);
 		AchievementButton_LocalizeMetaAchievement(frame);
@@ -362,8 +349,6 @@ function GetMeta(index, renderOffScreen, achievementsFrame)
 end
 
 function display.ResetCriteria(renderOffScreen)
-    diagnostics.Trace("display.ResetCriteria");
-
 	if renderOffScreen then
 		AchievementFrameAchievementsObjectivesOffScreen.repCriteria:Hide();
 		AchievementButton_ResetTable(criteriaTableOffScreen);
@@ -374,8 +359,6 @@ function display.ResetCriteria(renderOffScreen)
 end
 
 function GetCriteria(index, renderOffScreen)
-    diagnostics.Trace("GetCriteria");
-
 	local criTable = criteriaTable;
 	local offscreenName = "";
 	if renderOffScreen then

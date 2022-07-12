@@ -196,7 +196,7 @@ local function SkinSearchPreviewFrame(frame, achievementsFrame, engine, skins)
 	SkinSearchButton(frame.ShowFullSearchResultsButton, engine, skins);
 end
 
-local function SkinFullSearchResultsFrame(frame, skins)
+local function SkinSearchResultsFrame(frame, skins)
     frame:StripTextures();
     frame:CreateBackdrop('Transparent');
 
@@ -291,16 +291,270 @@ local function ReskinBlizzard(skins)
     AchievementFrameFilterDropDown:Size(AchievementFrameFilterDropDown:GetWidth(), AchievementFrameFilterDropDown:GetHeight() - 1);
 end
 
-local function SkinCalendar(calendarButton, skins)
-    skins:HandleButton(calendarButton);
-    calendarButton:ClearAllPoints();
-    calendarButton:Point("LEFT", AchievementFrameHeaderPoints, "RIGHT", 30, -1);
-    calendarButton:Size(22, 22);
-    local fs = calendarButton:CreateFontString(nil, nil, "GameFontHighlightSmall");
+local function SkinCalendarButton(button, skins)
+    skins:HandleButton(button);
+    button:ClearAllPoints();
+    button:Point("LEFT", AchievementFrameHeaderPoints, "RIGHT", 30, -1);
+    button:Size(22, 22);
+    local fs = button:CreateFontString(nil, nil, "GameFontHighlightSmall");
     fs:SetPoint("CENTER", 0, -2);
-    calendarButton:SetFontString(fs);
+    button:SetFontString(fs);
     local currentCalendarTime = C_DateAndTime.GetCurrentCalendarTime();
-	calendarButton:SetText(currentCalendarTime.monthDay);
+	button:SetText(currentCalendarTime.monthDay);
+end
+
+local function SkinCalendarDayButton(button, engine, skins)
+    button.DarkFrame:SetAlpha(.5);
+
+    if SavedData.ElvUISkin.NoParchment then
+        button:DisableDrawLayer('BACKGROUND');
+    end
+
+    button:SetTemplate(nil, nil, nil, true);
+    button:SetBackdropColor(0,0,0,0);
+    button:SetHighlightTexture(engine.media.glossTex);
+    button:SetFrameLevel(button:GetFrameLevel() + 1);
+
+    local hl = button:GetHighlightTexture();
+    hl:SetVertexColor(1, 1, 1, 0.3);
+    hl:Point('TOPLEFT', -1, 1);
+    hl:Point('BOTTOMRIGHT');
+    hl.SetAlpha = engine.noop;
+end
+
+local function SkinCalendarFrame(frame, engine, skins)
+    frame:DisableDrawLayer("BORDER");
+	frame:CreateBackdrop("Transparent");
+
+    local closeButton = frame.CloseButton;
+	skins:HandleCloseButton(closeButton);
+	closeButton:Point("TOPRIGHT", -4, -4);
+
+	for i = 1, 7 do
+		frame.WeekDayBackgrounds[i]:SetAlpha(0);
+	end
+
+    frame.MonthBackground:SetAlpha(0);
+	frame.YearBackground:SetAlpha(0);
+
+    skins:HandleNextPrevButton(frame.PrevMonthButton, nil, nil, true)
+	skins:HandleNextPrevButton(frame.NextMonthButton, nil, nil, true)
+
+	for i = 1, 42 do
+        SkinCalendarDayButton(frame.DayButtons[i], engine, skins);
+	end
+
+    local weekdaySelectedTexture = frame.WeekdaySelectedTexture;
+    weekdaySelectedTexture:SetDesaturated(true);
+	weekdaySelectedTexture:SetVertexColor(1, 1, 1, 0.6);
+
+    local todayFrame = frame.TodayFrame;
+	todayFrame.Texture:Hide()
+	todayFrame.Glow:Hide()
+
+	todayFrame:SetTemplate();
+	todayFrame:SetBackdropBorderColor(_G.NORMAL_FONT_COLOR:GetRGB());
+	todayFrame:SetBackdropColor(0, 0, 0, 0);
+	todayFrame:SetScript("OnUpdate", nil);
+
+	hooksecurefunc(frame, "SetToday", function()
+		todayFrame:SetAllPoints();
+	end);
+
+    frame.MonthAchievementsAndPoints:SetPoint("TOPRIGHT", -40, -13);
+end
+
+local function SkinSummaryAchievementButton(button, engine)
+    button:SetFrameLevel(button:GetFrameLevel() + 2)
+	button:StripTextures(true)
+	button:CreateBackdrop(nil, true)
+	button.backdrop:SetInside()
+
+	button.icon:CreateBackdrop(nil, nil, nil, nil, nil, nil, true)
+	button.icon:Size(36, 36)
+	button.icon:ClearAllPoints()
+	button.icon:Point("TOPLEFT", 6, -6)
+	button.icon.bling:Kill()
+	button.icon.frame:Kill()
+	button.icon.texture:SetTexCoord(unpack(engine.TexCoords))
+	button.icon.texture:SetInside()
+
+    if button.highlight then
+		button.highlight:StripTextures()
+		button:HookScript('OnEnter', function(self) self.backdrop:SetBackdropBorderColor(1, 1, 0) end)
+		button:HookScript('OnLeave', function(self) self.backdrop:SetBackdropBorderColor(unpack(engine.media.bordercolor)) end)
+	end
+
+	if button.label then
+		button.label:SetTextColor(1, 1, 1)
+	end
+
+	if button.description then
+		button.description:SetTextColor(.6, .6, .6)
+		hooksecurefunc(button.description, 'SetTextColor', function(_, r, g, b)
+			if r == 0 and g == 0 and b == 0 then
+				button.description:SetTextColor(.6, .6, .6)
+			end
+		end)
+	end
+end
+
+local function SkinCalendarSideFrame(frame, engine, skins)
+    frame:StripTextures(true);
+	frame:SetTemplate('Transparent');
+	frame:Point('TOPLEFT', frame:GetParent(), 'TOPRIGHT', 3, -24);
+	frame.Header:StripTextures();
+	skins:HandleCloseButton(frame.CloseButton);
+
+    frame.ScrollFrameBorder.Container.ScrollBar.trackBG:SetAlpha(0);
+    frame.ScrollFrameBorder.Container:CreateBackdrop("Transparent");
+	frame.ScrollFrameBorder.Container.backdrop:Point("TOPLEFT", 1, 2);
+	frame.ScrollFrameBorder.Container.backdrop:Point("BOTTOMRIGHT", -2, -3);
+
+    -- Buttons
+    for _, button in next, frame.ScrollFrameBorder.Container.buttons do
+        SkinSummaryAchievementButton(button, engine);
+    end
+
+    hooksecurefunc(frame.ScrollFrameBorder.Container, "update", function(frame)
+        for _, button in next, frame.buttons do
+            if button:IsShown() then
+                SetAchievementButtonColor(button, engine);
+            else
+                return;
+            end
+        end
+    end);
+
+    hooksecurefunc(frame, "Show", function(frame)
+        for _, button in next, frame.ScrollFrameBorder.Container.buttons do
+            if button:IsShown() then
+                SetAchievementButtonColor(button, engine);
+            else
+                return;
+            end
+        end
+    end);
+
+    -- Scrollbar
+    if frame.ScrollFrameBorder.Container.ScrollBar then
+        skins:HandleScrollBar(frame.ScrollFrameBorder.Container.ScrollBar, 5);
+    end
+end
+
+local function SkinGameTooltipProgressBar(progressBar, engine)
+    progressBar.BorderLeftTop:StripTextures();
+    progressBar.BorderLeftMiddle:StripTextures();
+    progressBar.BorderLeftBottom:StripTextures();
+    progressBar.BorderRightTop:StripTextures();
+    progressBar.BorderRightMiddle:StripTextures();
+    progressBar.BorderRightBottom:StripTextures();
+    progressBar.BorderMiddleTop:StripTextures();
+    progressBar.BorderMiddleMiddle:StripTextures();
+    progressBar.BorderMiddleBottom:StripTextures();
+    progressBar.Background:Hide();
+    for i, _ in next, progressBar.Fill do
+        progressBar.Fill[i]:SetTexture(engine.media.normTex);
+    end
+    progressBar:CreateBackdrop();
+    progressBar.backdrop:Point("TOPLEFT", 7, -5);
+    progressBar.backdrop:Point("BOTTOMRIGHT", -5, 5);
+    progressBar:SetColors({R = 4/255, G = 179/255, B = 30/255}, {R = 179/255, G = 4/255, B = 30/255});
+
+end
+
+local function SkinStatusBar(statusBar, engine)
+    statusBar.BorderLeftTop:StripTextures();
+    statusBar.BorderLeftMiddle:StripTextures();
+    statusBar.BorderLeftBottom:StripTextures();
+    statusBar.BorderRightTop:StripTextures();
+    statusBar.BorderRightMiddle:StripTextures();
+    statusBar.BorderRightBottom:StripTextures();
+    statusBar.BorderMiddleTop:StripTextures();
+    statusBar.BorderMiddleMiddle:StripTextures();
+    statusBar.BorderMiddleBottom:StripTextures();
+    statusBar.Background:Hide();
+    for i, _ in next, statusBar.Fill do
+        statusBar.Fill[i]:SetTexture(engine.media.normTex);
+    end
+    statusBar:AdjustOffsets(8, 8);
+    statusBar:CreateBackdrop();
+    statusBar.backdrop:Point("TOPLEFT", 14, -14);
+    statusBar.backdrop:Point("BOTTOMRIGHT", -12, 14);
+    statusBar:SetColors({R = 4/255, G = 179/255, B = 30/255}, {R = 179/255, G = 4/255, B = 30/255});
+    if statusBar.Button then
+        local button = statusBar.Button;
+        button:StripTextures();
+
+        local htex = button:CreateTexture();
+        htex:SetColorTexture(1, 1, 1, 0.3);
+        htex:SetAllPoints(statusBar.backdrop);
+        button:SetHighlightTexture(htex);
+
+        button:SetScript("OnLeave", function(self)
+        end);
+        button:SetScript("OnEnter", function(self)
+        end);
+    end
+end
+
+local function SkinAchievementSummary(frame, engine, skins)
+    frame:StripTextures();
+	frame.Background:Hide();
+	frame:GetChildren():Hide();
+
+    frame.Achievements.Header.Texture:Hide();
+	frame.Categories.Header.Texture:Hide();
+
+    if frame and frame.GetNumChildren then
+        for i = 1, frame:GetNumChildren() do
+            local child = select(i, frame:GetChildren());
+            if child and not child:GetName() then
+                child:SetBackdrop();
+            end
+        end
+    end
+
+    frame.ScrollFrameBorder.NineSlice:SetAlpha(0);
+    frame.ScrollFrameBorder.Container.ScrollBar.trackBG:SetAlpha(0);
+    frame.ScrollFrameBorder.Container:CreateBackdrop("Transparent");
+	frame.ScrollFrameBorder.Container.backdrop:Point("TOPLEFT", 1, 2);
+	frame.ScrollFrameBorder.Container.backdrop:Point("BOTTOMRIGHT", -2, -3);
+
+    -- Buttons
+    for _, button in next, frame.ScrollFrameBorder.Container.buttons do
+        SkinSummaryAchievementButton(button, engine);
+    end
+
+    hooksecurefunc(frame.ScrollFrameBorder.Container, "update", function(frame)
+        for _, button in next, frame.buttons do
+            if button:IsShown() then
+                SetAchievementButtonColor(button, engine);
+            else
+                return;
+            end
+        end
+    end);
+
+    hooksecurefunc(frame, "Show", function(frame)
+        for _, button in next, frame.ScrollFrameBorder.Container.buttons do
+            if button:IsShown() then
+                SetAchievementButtonColor(button, engine);
+            else
+                return;
+            end
+        end
+    end);
+
+    SkinStatusBar(frame.TotalStatusBar, engine);
+    for _, statusBar in next, frame.StatusBars do
+        SkinStatusBar(statusBar, engine);
+    end
+
+    -- Scrollbar
+    if frame.ScrollFrameBorder.Container.ScrollBar then
+        skins:HandleScrollBar(frame.ScrollFrameBorder.Container.ScrollBar, 5);
+    end
 end
 
 local engine, skins;
@@ -312,15 +566,21 @@ local function SkinAll()
     if SavedData.ElvUISkin.Achievements then
         SkinTabs(addon.Tabs, skins);
         SkinCategoriesFrame(addon.GUI.CategoriesFrame, skins);
+        SkinGameTooltipProgressBar(addon.GUI.GameTooltipProgressBar, engine);
         SkinAchievementsFrame(addon.GUI.AchievementsFrame, engine, skins);
+        SkinAchievementSummary(addon.GUI.SummaryFrame, engine, skins);
         SkinFilterButton(addon.GUI.FilterButton, addon.GUI.AchievementsFrame, skins);
-        SkinSearchBoxFrame(addon.GUI.Search.SearchBoxFrame, addon.GUI.AchievementsFrame, skins);
-        SkinSearchPreviewFrame(addon.GUI.Search.SearchPreviewFrame, addon.GUI.AchievementsFrame, engine, skins);
-        SkinFullSearchResultsFrame(addon.GUI.Search.FullSearchResultsFrame, skins);
+        SkinSearchBoxFrame(addon.GUI.Search.BoxFrame, addon.GUI.AchievementsFrame, skins);
+        SkinSearchPreviewFrame(addon.GUI.Search.PreviewFrame, addon.GUI.AchievementsFrame, engine, skins);
+        SkinSearchResultsFrame(addon.GUI.Search.ResultsFrame, skins);
         SkinSideButtons(addon.GUI.SideButtons, engine);
         SkinHeader();
         ReskinBlizzard(skins);
-        SkinCalendar(addon.GUI.Calendar.Button, skins);
+        SkinCalendarButton(addon.GUI.Calendar.Button, skins);
+    end
+    if SavedData.ElvUISkin.Calendar then
+        SkinCalendarFrame(addon.GUI.Calendar.Frame, engine, skins);
+        SkinCalendarSideFrame(addon.GUI.Calendar.SideFrame, engine, skins);
     end
 end
 
@@ -356,6 +616,10 @@ function elvUI.LoadLocalization(L)
     L["Skin Tutorials Desc"] = "Applies the ElvUI skin to the Tutorials.\n-> Blizzard + Tutorials";
     L["Skin Alert Frames"] = "Skin Alert Frames";
     L["Skin Alert Frames Desc"] = "Applies the ElvUI skin to the Alert Frames.\n-> Blizzard + Alert Frames";
+    L["Skin Calendar"] = "Skin Calendar";
+    L["Skin Calendar Desc"] = "Applies the ElvUI skin to the Calendar.\n-> Blizzard + Calendar Frame";
+    L["Remove Parchment"] = "Remove Parchment";
+    L["Remove Parchment Desc"] = "Remove the parchment background from the Calendar Days.\n-> Parchment Remover";
     L["Skin Ace3"] = "Skin Ace3";
     L["Skin Ace3 Desc"] = "Applies the ElvUI skin to the Options.\n-> Ace3";
 end
@@ -398,7 +662,9 @@ function elvUI.InjectOptions()
             SkinTooltip = AddInfo(6, "Skin Tooltip", function() return SavedData.ElvUISkin.Tooltip; end),
             SkinTutorials = AddInfo(7, "Skin Tutorials", function() return SavedData.ElvUISkin.Tutorials; end),
             SkinAlertFrames = AddInfo(8, "Skin Alert Frames", function() return SavedData.ElvUISkin.AlertFrames; end),
-            SkinAce3 = AddInfo(9, "Skin Ace3", function() return SavedData.ElvUISkin.Options; end)
+            SkinCalendar = AddInfo(9, "Skin Calendar", function() return SavedData.ElvUISkin.Calendar; end),
+            RemoveParchment = AddInfo(10, "Remove Parchment", function() return SavedData.ElvUISkin.NoParchment; end),
+            SkinAce3 = AddInfo(11, "Skin Ace3", function() return SavedData.ElvUISkin.Options; end)
         }
     };
 
@@ -414,13 +680,16 @@ function elvUI.Load()
     if ElvUI ~= nil then
         engine = unpack(ElvUI);
         skins = engine:GetModule("Skins");
-        local blizzardSkins = engine.private.skins.blizzard;
+        local privateSkins = engine.private.skins;
+        local blizzardSkins = privateSkins.blizzard;
 
         SavedData.ElvUISkin.Achievements = blizzardSkins.enable and blizzardSkins.achievement;
         SavedData.ElvUISkin.MiscFrames = blizzardSkins.enable and blizzardSkins.misc;
         SavedData.ElvUISkin.Tooltip = blizzardSkins.enable and blizzardSkins.tooltip;
         SavedData.ElvUISkin.Tutorials = blizzardSkins.enable and blizzardSkins.tutorials;
         SavedData.ElvUISkin.AlertFrames = blizzardSkins.enable and blizzardSkins.alertframes;
+        SavedData.ElvUISkin.Calendar = blizzardSkins.enable and blizzardSkins.calendar;
+        SavedData.ElvUISkin.NoParchment = blizzardSkins.enable and blizzardSkins.calendar and privateSkins.parchmentRemoverEnable;
         SavedData.ElvUISkin.Options = engine.private.skins.ace3Enable;
     else
         SavedData.ElvUISkin = {};

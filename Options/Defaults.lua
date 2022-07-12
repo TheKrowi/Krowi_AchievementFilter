@@ -6,6 +6,7 @@ options.Defaults = {
     profile = {
         ShowMinimapIcon = false,
         ResetViewOnOpen = false,
+        MicroButtonTab = 1,
         EnableDebugInfo = false,
         EnableTraceInfo = false,
         ShowPlaceholdersFilter = false,
@@ -25,7 +26,8 @@ options.Defaults = {
             {
                 AddonName = "Blizzard_AchievementUI",
                 TabName = "Achievements",
-                Show = true
+                BindingName = "TOGGLEACHIEVEMENT",
+                Show = false
             },
             {
                 AddonName = "Blizzard_AchievementUI",
@@ -35,6 +37,7 @@ options.Defaults = {
             {
                 AddonName = "Blizzard_AchievementUI",
                 TabName = "Statistics",
+                BindingName = "TOGGLESTATISTICS",
                 Show = true
             }
         },
@@ -45,6 +48,9 @@ options.Defaults = {
             Excluded = {
                 Show = true,
                 ShowSubCategories = false
+            },
+            Summary = {
+                NumAchievements = 25
             }
         },
         Achievements = {
@@ -52,7 +58,11 @@ options.Defaults = {
             ButtonCollapsedHeight = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT or 84 -- can return nil
         },
         RightClickMenu = {
-            ShowButtonOnAchievement = false
+            ShowButtonOnAchievement = false,
+            WowheadLink = {
+                AddLocale = true,
+                AddRelatedTab = 1
+            }
         },
         Tooltip = {
             Categories = {
@@ -101,6 +111,11 @@ options.Defaults = {
         },
         Filters = {
             ResetFactionFilters = true
+        },
+        Calendar = {
+            FirstWeekDay = -1,
+            LockAchievementMonth = true,
+            LockMonth = false
         },
         Plugins = {}
     }

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-06-25 22-18-26 ]] --
+-- [[ Exported at 2022-07-11 23-16-41 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -39,6 +39,7 @@ L["Special Categories"] = "特殊分类";
 L["Current Zone"] = "当前地区";
 L["Selected Zone"] = "选中地区";
 L["View Tutorial"] = "查看教程";
+L["Show placeholders"] = "展示占位符";
 L["Brawler's Guild"] = "搏击俱乐部";
 L["Buildings"] = "建筑";
 L["Bur's Mount Collection"] = "Bur的坐骑收藏";
@@ -169,6 +170,8 @@ L["Window"] = "窗口";
 L["Make window movable"] = "窗口可移动";
 L["Categories width offset"] = "成就类别框宽度";
 L["Achievement window height offset"] = "成就窗口高度";
+L["Order"] = "顺序";
+L["Tab"] = "标签页";
 L["Header"] = "标题";
 L["Format"] = "格式";
 L["Account wide (default)"] = "账号 (默认)";
@@ -211,10 +214,15 @@ L["Time Left"] = "剩余时间";
 L["Calendar Events"] = "日历事件";
 L["Widget Events"] = "外置事件";
 L["World Events"] = "世界事件";
+L["Select All"] = "全选";
+L["Deselect All"] = "取消全选";
 L["Date and Time format"] = "日期和时间格式";
 L["Presets"] = "预设格式";
 L["Custom"] = "自定义";
 L["Date and Time formatting guide"] = "日期和时间格式指导";
+L["Loaded"] = "已加载";
+L["Enable"] = "启用";
+L["Not loaded"] = "未加载";
 L["Credits"] = "致谢";
 L["Special thanks"] = "特别鸣谢";
 L["Donations"] = "支持";
@@ -242,4 +250,16 @@ L["Greyhoof"] = "灰蹄";
 L["Lucky Yi"] = "幸运的小艺";
 L["Ka'wi the Gorger"] = "贪吃的卡瓦";
 L["Nitun"] = "尼顿";
+L["Number of summary achievements"] = "成就汇总数量";
+L["Rebind Micro Button"] = "重新绑定按键";
+L["Set Keybind"] = "设置按键";
+L["Criteria of"] = "标准";
+L["Guides"] = "指南";
+L["News"] = "新闻";
+L["Comments"] = "注释";
+L["Wowhead Link"] = "Wowhead链接";
+L["Screenshots"] = "截屏";
+L["Add Locale"] = "添加语言";
+L["Related Tab"] = "相关标签";
+L["Torghast"] = "托加斯特";
 

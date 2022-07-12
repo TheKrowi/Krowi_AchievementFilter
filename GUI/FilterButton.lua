@@ -1,121 +1,25 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
-local diagnostics = addon.Diagnostics;
 local gui = addon.GUI;
 gui.FilterButton = {};
 local filterButton = gui.FilterButton;
 
-local defaultAchievements = {
-    Completion = {
-        Completed = true,
-        NotCompleted = true
-    },
-    Obtainability = {
-        Obtainable = true,
-        NotObtainable = false
-    },
-    Faction = {
-        Neutral = true,
-        Alliance = false,
-        Horde = false
-    },
-    CollapseSeries = true,
-    Excluded = false,
-    SortBy = {
-        Criteria = addon.L["Default"],
-        ReverseSort = false
-    }
-};
-
-local defaults = {
-    profile = {
-        MergeSmallCategories = true,
-        EarnedBy = "Account",
-        ShowPlaceholders = false
-    }
-};
-
--- [[ Inject Defaults ]] --
-local InjectAchievementDefaults, InjectCategoryDefaults, InjectTabDefaults;
-function filterButton:InjectDefaults()
-    InjectAchievementDefaults();
-    InjectCategoryDefaults();
-    InjectTabDefaults();
-end
-
-function InjectAchievementDefaults()
-    addon.Util.DeepCopyTable(defaultAchievements, defaults.profile);
-end
-
-function InjectCategoryDefaults()
-    local dflts = {};
-    addon.Util.DeepCopyTable(defaultAchievements, dflts);
-    addon.Util.WriteNestedKeys(defaults.profile, {"CurrentZone"}, dflts);
-    addon.Util.DeepCopyTable(defaultAchievements, dflts);
-    addon.Util.WriteNestedKeys(defaults.profile, {"SelectedZone"}, dflts);
-    addon.Util.DeepCopyTable(defaultAchievements, dflts);
-    addon.Util.WriteNestedKeys(defaults.profile, {"ExcludedCategory"}, dflts);
-end
-
-function InjectTabDefaults()
-    local tabsFilters = {};
-    for t, _ in next, addon.Tabs do
-        tabsFilters[t] = {};
-        addon.Util.DeepCopyTable(defaultAchievements, tabsFilters[t]);
-    end
-    addon.Util.WriteNestedKeys(defaults.profile, {"Tabs"}, tabsFilters);
-end
-
--- [[ Constructors ]] --
-local ResetFilters;
 filterButton.__index = filterButton; -- Used to inject all the namespace functions to the frame
 function filterButton:Load()
-    diagnostics.Trace("filterButton:Load");
-
-    -- Create button
-    local button = CreateFrame("DropDownToggleButton", "KrowiAF_FilterButton", AchievementFrame, "KrowiAF_FilterButton_Template");
+    local button = CreateFrame("DropDownToggleButton", "KrowiAF_AchievementFrameFilterButton", AchievementFrame, "KrowiAF_AchievementFrameFilterButton_Template");
     addon.Util.InjectMetatable(button, filterButton); -- Inject all the namespace functions to the frame
-    button:SetScript("OnMouseDown", filterButton.OnMouseDown);
 	button:SetFrameLevel(button:GetParent():GetFrameLevel() + 7);
 
-    -- Load filters
-    button.Filters = LibStub("AceDB-3.0"):New("Filters", defaults, true);
-    button.Filters.db = button.Filters.profile;
-    for t, _ in next, addon.Tabs do
-        addon.Tabs[t].Filters = button.Filters.profile.Tabs[t];
-    end
-    ResetFilters(button);
+    addon.Filters:Load();
+    addon.Filters:ResetFilters();
 
 	tinsert(ACHIEVEMENTFRAME_SUBFRAMES, button:GetName());
-    button:Hide();
 
 	addon.GUI.FilterButton = button; -- Overwrite with the actual frame since all functions are injected to it
 end
 
-local function ResetFactionFilters(tbl)
-    addon.Util.WriteNestedKeys(tbl, {"Neutral"}, true);
-    addon.Util.WriteNestedKeys(tbl, {"Alliance"}, addon.Faction.IsAlliance);
-    addon.Util.WriteNestedKeys(tbl, {"Horde"}, addon.Faction.IsHorde);
-end
-
-function ResetFilters(self)
-    if addon.Options.db.Filters.ResetFactionFilters then
-        ResetFactionFilters(self.Filters.db.Faction);
-        ResetFactionFilters(self.Filters.db.CurrentZone.Faction);
-        ResetFactionFilters(self.Filters.db.SelectedZone.Faction);
-        ResetFactionFilters(self.Filters.db.ExcludedCategory.Faction);
-        for t, _ in next, addon.Tabs do
-            ResetFactionFilters(self.Filters.db.Tabs[t].Faction);
-        end
-    end
-end
-
--- [[ Build Drop Down Menu ]] --
 local menu = LibStub("Krowi_Menu-1.0");
-local AddCheckBox, AddRadioButton, AddAchievementFilters;
-function filterButton:OnMouseDown()
-    diagnostics.Trace("filterButton:OnMouseDown");
-
+function KrowiAF_AchievementFrameFilterButton_OnMouseDown(self)
     UIMenuButtonStretchMixin.OnMouseDown(self);
 	PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
 
@@ -127,7 +31,7 @@ function filterButton:OnMouseDown()
                     IsTitle = true
                 });
 
-    AddCheckBox(self, menu, addon.L["Merge Small Categories"], self.Filters.db, {"MergeSmallCategories"});
+    self:AddCheckBox(menu, addon.L["Merge Small Categories"], addon.Filters.db, {"MergeSmallCategories"});
 
     menu:AddSeparator();
 
@@ -136,10 +40,11 @@ function filterButton:OnMouseDown()
                     IsTitle = true
                 });
 
-    AddAchievementFilters(self, menu, nil, self.Filters.db);
+    self:AddAchievementFilters(menu, nil, addon.Filters.db);
     local earnedBy = addon.Objects.MenuItem:New({Text = addon.L["Earned By"]});
-    AddRadioButton(self, menu, earnedBy, addon.L["Account"], self.Filters.db, {"EarnedBy"}, true);
-    AddRadioButton(self, menu, earnedBy, (GetCategoryInfo(92)), self.Filters.db, {"EarnedBy"}, true);
+    self:AddRadioButton(menu, earnedBy, addon.Filters.Account, addon.Filters.db, {"EarnedBy"}, false);
+    self:AddRadioButton(menu, earnedBy, addon.Filters.CharacterAccount, addon.Filters.db, {"EarnedBy"}, false);
+    self:AddRadioButton(menu, earnedBy, addon.Filters.Character, addon.Filters.db, {"EarnedBy"}, false);
     menu:Add(earnedBy);
 
     menu:AddSeparator();
@@ -150,7 +55,7 @@ function filterButton:OnMouseDown()
                 });
 
     for _, t in next, addon.TabsOrder do
-        AddAchievementFilters(self, menu, addon.Objects.MenuItem:New({Text = addon.Tabs[t].Text}), addon.Tabs[t].Filters);
+        self:AddAchievementFilters(menu, addon.Objects.MenuItem:New({Text = addon.Tabs[t].Text}), addon.Tabs[t].Filters);
     end
     menu:AddSeparator();
 
@@ -159,10 +64,10 @@ function filterButton:OnMouseDown()
                     IsTitle = true
                 });
 
-    AddAchievementFilters(self, menu, addon.Objects.MenuItem:New({Text = addon.L["Current Zone"]}), self.Filters.db.CurrentZone);
-    AddAchievementFilters(self, menu, addon.Objects.MenuItem:New({Text = addon.L["Selected Zone"]}), self.Filters.db.SelectedZone);
+    self:AddAchievementFilters(menu, addon.Objects.MenuItem:New({Text = addon.L["Current Zone"]}), addon.Filters.db.CurrentZone);
+    self:AddAchievementFilters(menu, addon.Objects.MenuItem:New({Text = addon.L["Selected Zone"]}), addon.Filters.db.SelectedZone);
     if addon.Options.db.Categories.Excluded.Show then
-        AddAchievementFilters(self, menu, addon.Objects.MenuItem:New({Text = addon.L["Excluded"]}), self.Filters.db.ExcludedCategory);
+        self:AddAchievementFilters(menu, addon.Objects.MenuItem:New({Text = addon.L["Excluded"]}), addon.Filters.db.ExcludedCategory);
     end
 
     menu:AddSeparator();
@@ -193,14 +98,15 @@ function filterButton:OnMouseDown()
 
     if addon.Options.db.ShowPlaceholdersFilter then
         menu:AddSeparator();
-        AddCheckBox(self, menu, addon.L["Show placeholders"], self.Filters.db, {"ShowPlaceholders"});
+        self:AddCheckBox(menu, addon.L["Show placeholders"], addon.Filters.db, {"ShowPlaceholders"});
     end
 	menu:Toggle(self, 96, 15);
 end
 
-local function UpdateAchievementFrame()
-    gui.CategoriesFrame:Update(true);
-    gui.AchievementsFrame:ForceUpdate(true); -- Issue #27: Fix
+function filterButton.UpdateAchievementFrame()
+    addon.GUI.CategoriesFrame:Update(true);
+    addon.GUI.AchievementsFrame:ForceUpdate(true); -- Issue #27: Fix
+    addon.GUI.SummaryFrame:Update();
 end
 
 local function StateIsUndecided(keys)
@@ -228,28 +134,32 @@ local function ValueIsUndecided(keys)
     return counter > 1;
 end
 
-function AddCheckBox(self, menu, text, filters, keys, checkTabs, ignoreAsMenuSelection)
-    if filters == self.Filters.db and StateIsUndecided(keys) then
+local function SetCheckBoxValue(filters, keys, value, checkTabs, refresh)
+    addon.Util.WriteNestedKeys(filters, keys, value);
+    if checkTabs then
+        if filters ~= gui.SelectedTab.Filters then
+            filters.Refresh = true;
+        end
+        if filters == addon.Filters.db then
+            for t, _ in next, addon.Tabs do
+                addon.Util.WriteNestedKeys(addon.Tabs[t].Filters, keys, addon.Util.ReadNestedKeys(filters, keys));
+                addon.Tabs[t].Filters.Refresh = refresh;
+            end
+        end
+    end
+end
+
+function filterButton:AddCheckBox(_menu, text, filters, keys, checkTabs, ignoreAsMenuSelection)
+    if filters == addon.Filters.db and StateIsUndecided(keys) then
         text = text .. " (*)";
     end
-    menu:AddFull({	Text = text,
+    _menu:AddFull({	Text = text,
                     Checked = function() -- Using function here, we force the GUI to get the value again instead of only once (caused visual bugs)
                         return addon.Util.ReadNestedKeys(filters, keys); -- e.g.: return filters.Completion.Completed;
                     end,
                     Func = function()
-                        addon.Util.WriteNestedKeys(filters, keys, not addon.Util.ReadNestedKeys(filters, keys)); -- e.g.: filters.Completion.Completed = not filters.Completion.Completed;
-                        if checkTabs then
-                            if filters ~= gui.SelectedTab.Filters then
-                                filters.Refresh = true;
-                            end
-                            if filters == self.Filters.db then
-                                for t, _ in next, addon.Tabs do
-                                    addon.Util.WriteNestedKeys(addon.Tabs[t].Filters, keys, addon.Util.ReadNestedKeys(filters, keys)); -- e.g.: addon.Tabs[t].Filters.Completion.Completed = filters.Completion.Completed;
-                                    addon.Tabs[t].Filters.Refresh = true;
-                                end
-                            end
-                        end
-                        UpdateAchievementFrame();
+                        SetCheckBoxValue(filters, keys, not addon.Util.ReadNestedKeys(filters, keys), checkTabs, true);
+                        self.UpdateAchievementFrame();
                     end,
                     IsNotRadio = true,
                     NotCheckable = false,
@@ -258,8 +168,8 @@ function AddCheckBox(self, menu, text, filters, keys, checkTabs, ignoreAsMenuSel
                 });
 end
 
-function AddRadioButton(self, parentMenu, menu, text, filters, keys, checkTabs)
-    menu:AddFull({  Text = text,
+function filterButton:AddRadioButton(parentMenu, _menu, text, filters, keys, checkTabs)
+    _menu:AddFull({  Text = text,
                     Checked = function() -- Same
                         return addon.Util.ReadNestedKeys(filters, keys) == text; -- e.g.: return filters.SortBy.Criteria == addon.L["Default"]
                     end,
@@ -269,7 +179,7 @@ function AddRadioButton(self, parentMenu, menu, text, filters, keys, checkTabs)
                             if filters ~= gui.SelectedTab.Filters then
                                 filters.Refresh = true;
                             end
-                            if filters == self.Filters.db then
+                            if filters == addon.Filters.db then
                                 for t, _ in next, addon.Tabs do
                                     addon.Util.WriteNestedKeys(addon.Tabs[t].Filters, keys, addon.Util.ReadNestedKeys(filters, keys)); -- e.g.: addon.Tabs[t].Filters.SortBy.Criteria = filters.SortBy.Criteria
                                 end
@@ -283,193 +193,48 @@ function AddRadioButton(self, parentMenu, menu, text, filters, keys, checkTabs)
                 });
 end
 
-function AddAchievementFilters(self, menu, childMenu, filters)
-    local tmpMenu = childMenu or menu;
+function filterButton:AddAchievementFilters(_menu, childMenu, filters)
+    local tmpMenu = childMenu or _menu;
 
-    AddCheckBox(self, tmpMenu, addon.L["Completed"], filters, {"Completion", "Completed"}, true);
-    AddCheckBox(self, tmpMenu, addon.L["Not Completed"], filters, {"Completion", "NotCompleted"}, true);
-    AddCheckBox(self, tmpMenu, addon.L["Obtainable"], filters, {"Obtainability", "Obtainable"}, true);
-    AddCheckBox(self, tmpMenu, addon.L["Not Obtainable"], filters, {"Obtainability", "NotObtainable"}, true);
+    self:AddCheckBox(tmpMenu, addon.L["Completed"], filters, {"Completion", "Completed"}, true);
+    self:AddCheckBox(tmpMenu, addon.L["Not Completed"], filters, {"Completion", "NotCompleted"}, true);
+    self:AddCheckBox(tmpMenu, addon.L["Obtainable"], filters, {"Obtainability", "Obtainable"}, true);
+    self:AddCheckBox(tmpMenu, addon.L["Not Obtainable"], filters, {"Obtainability", "NotObtainable"}, true);
 
     local faction = addon.Objects.MenuItem:New({Text = addon.L["Faction"]});
-    AddCheckBox(self, faction, addon.L["Neutral"], filters, {"Faction", "Neutral"}, true);
-    AddCheckBox(self, faction, addon.L["Alliance"], filters, {"Faction", "Alliance"}, true);
-    AddCheckBox(self, faction, addon.L["Horde"], filters, {"Faction", "Horde"}, true);
+    self:AddCheckBox(faction, addon.L["Neutral"], filters, {"Faction", "Neutral"}, true);
+    self:AddCheckBox(faction, addon.L["Alliance"], filters, {"Faction", "Alliance"}, true);
+    self:AddCheckBox(faction, addon.L["Horde"], filters, {"Faction", "Horde"}, true);
     faction:AddSeparator();
     faction:AddFull({  Text = addon.L["Select all"],
                         Func = function()
-                            for faction, _ in next, filters.Faction do
-                                filters.Faction[faction] = true;
+                            for _faction, _ in next, filters.Faction do
+                                SetCheckBoxValue(filters, {"Faction", _faction}, true, true, true);
                             end
-                            UpdateAchievementFrame();
+                            self.UpdateAchievementFrame();
                         end
                     });
     tmpMenu:Add(faction);
 
-    AddCheckBox(self, tmpMenu, addon.L["Collapse Chain"], filters, {"CollapseSeries"}, true);
-    AddCheckBox(self, tmpMenu, addon.L["Excluded"], filters, {"Excluded"}, true);
+    self:AddCheckBox(tmpMenu, addon.L["Collapse Chain"], filters, {"CollapseSeries"}, true);
+    self:AddCheckBox(tmpMenu, addon.L["Excluded"], filters, {"Excluded"}, true);
 
     tmpMenu:AddSeparator();
 
     local text = addon.L["Sort By"];
-    if filters == self.Filters.db and ValueIsUndecided({"SortBy", "Criteria"}) then
+    if filters == addon.Filters.db and ValueIsUndecided({"SortBy", "Criteria"}) then
         text = text .. " (*)";
     end
     local sortBy = addon.Objects.MenuItem:New({Text = text});
-    AddRadioButton(self, menu, sortBy, addon.L["Default"], filters, {"SortBy", "Criteria"}, true);
-    AddRadioButton(self, menu, sortBy, addon.L["Name"], filters, {"SortBy", "Criteria"}, true);
-    AddRadioButton(self, menu, sortBy, addon.L["Completion"], filters, {"SortBy", "Criteria"}, true);
-    AddRadioButton(self, menu, sortBy, addon.L["ID"], filters, {"SortBy", "Criteria"}, true);
+    self:AddRadioButton(_menu, sortBy, addon.L["Default"], filters, {"SortBy", "Criteria"}, true);
+    self:AddRadioButton(_menu, sortBy, addon.L["Name"], filters, {"SortBy", "Criteria"}, true);
+    self:AddRadioButton(_menu, sortBy, addon.L["Completion"], filters, {"SortBy", "Criteria"}, true);
+    self:AddRadioButton(_menu, sortBy, addon.L["ID"], filters, {"SortBy", "Criteria"}, true);
     sortBy:AddSeparator();
-    AddCheckBox(self, sortBy, addon.L["Reverse Sort"], filters, {"SortBy", "ReverseSort"}, true, true);
+    self:AddCheckBox(sortBy, addon.L["Reverse Sort"], filters, {"SortBy", "ReverseSort"}, true, true);
     tmpMenu:Add(sortBy);
 
     if childMenu then
-        menu:Add(tmpMenu);
+        _menu:Add(tmpMenu);
     end
-end
-
--- [[ Validation ]] --
-local completedCache, ignoreCollapseSeriesCache;
-local validations = {
-    {   -- 1
-        Validate = function(filters, achievement) return not filters.Completion.Completed and completedCache; end,
-        SetFilter = function(filters) filters.Completion.Completed = not filters.Completion.Completed; end
-    },
-    {   -- 2
-        Validate = function(filters, achievement) return not filters.Completion.NotCompleted and not completedCache; end,
-        SetFilter = function(filters) filters.Completion.NotCompleted = not filters.Completion.NotCompleted; end
-    },
-    {   -- 3
-        Validate = function(filters, achievement) return not filters.Obtainability.Obtainable and achievement.NotObtainable == nil; end,
-        SetFilter = function(filters) filters.Obtainability.Obtainable = not filters.Obtainability.Obtainable; end
-    },
-    {   -- 4
-        Validate = function(filters, achievement) return not filters.Obtainability.NotObtainable and achievement.NotObtainable; end,
-        SetFilter = function(filters) filters.Obtainability.NotObtainable = not filters.Obtainability.NotObtainable; end
-    },
-    {   -- 5
-        Validate = function(filters, achievement) return not filters.Faction.Neutral and achievement.Faction == nil; end,
-        SetFilter = function(filters) filters.Faction.Neutral = not filters.Faction.Neutral; end
-    },
-    {   -- 6
-        Validate = function(filters, achievement) return not filters.Faction.Alliance and achievement.Faction == addon.Objects.Faction.Alliance; end,
-        SetFilter = function(filters) filters.Faction.Alliance = not filters.Faction.Alliance; end
-    },
-    {   -- 7
-        Validate = function(filters, achievement) return not filters.Faction.Horde and achievement.Faction == addon.Objects.Faction.Horde; end,
-        SetFilter = function(filters) filters.Faction.Horde = not filters.Faction.Horde end
-    },
-    {   -- 8
-        Validate = function(filters, achievement)
-            if filters.CollapseSeries and ignoreCollapseSeriesCache ~= true then
-                local _, nextCompleted = addon.GetNextAchievement(achievement);
-                if nextCompleted then
-                    return true;
-                end
-                local prevID = GetPreviousAchievement(achievement.ID);
-                if prevID ~= nil then
-                    local _, _, _, prevCompleted = addon.GetAchievementInfo(prevID);
-                    if not prevCompleted then
-                        return true;
-                    end
-                end
-            end
-            return false;
-        end,
-        SetFilter = function(filters) filters.CollapseSeries = not filters.CollapseSeries end
-    },
-    {   -- 9
-        Validate = function(filters, achievement) return not filters.Excluded and achievement.Excluded end,
-        SetFilter = function(filters) filters.Excluded = not filters.Excluded; end
-    },
-    {   -- 10
-        Validate = function(filters, achievement)
-            if not addon.Options.db.ShowPlaceholdersFilter and achievement.DoesNotExist then
-                return true;
-            end
-            return not gui.FilterButton.Filters.db.ShowPlaceholders and achievement.DoesNotExist;
-        end,
-        SetFilter = function(filters) end
-    }
-};
-
-function filterButton.Validate(filters, achievement, ignoreCollapseSeries)
-    -- diagnostics.Trace("filterButton.Validate " .. tostring(achievement.ID)); -- Generates a lot of messages
-
-    _, _, _, completedCache = addon.GetAchievementInfo(achievement.ID);
-    ignoreCollapseSeriesCache = ignoreCollapseSeries;
-    for i, validation in next, validations do
-        if validation.Validate(filters, achievement) then -- If true, DO NOT show achievement
-            return -i;
-        end
-    end
-    return 1;
-end
-
-function filterButton:AutoValidate(achievement, ignoreCollapseSeries)
-    return self.Validate(self:GetFilters(), achievement, ignoreCollapseSeries);
-end
-
-function filterButton:SetFilters(filters, achievement)
-    diagnostics.Trace("filterButton:SetFilters");
-
-    local iterations = 0;
-    while true do
-        local id = self.Validate(filters, achievement);
-        if id == 1 then
-            if iterations > 0 then -- If 0, nothing changed so no need to update
-                filters.Refresh = true;
-                UpdateAchievementFrame();
-            end
-            return; -- Jump out of loop
-        else
-            validations[-id].SetFilter(filters);
-        end
-
-        iterations = iterations + 1;
-    end
-end
-
--- [[ Other ]] --
-function filterButton:GetFilters(category)
-    if category == nil then
-        category = gui.SelectedTab.SelectedCategory;
-    end
-
-	if category == addon.Data.CurrentZoneCategory then
-		return self.Filters.db.CurrentZone;
-	elseif category == addon.Data.SelectedZoneCategory then
-		return self.Filters.db.SelectedZone;
-	elseif category == addon.Data.ExcludedCategory or (category ~= nil and category.Excluded) then
-		return self.Filters.db.ExcludedCategory;
-    elseif gui.SelectedTab.Filters ~= nil then
-        return gui.SelectedTab.Filters;
-	end
-
-    return self.Filters.db;
-end
-
-function filterButton:GetHighestAchievementWhenCollapseSeries(fliters, achievement)
-    diagnostics.Trace("filterButton:GetHighestCollapsedSeriesAchievement");
-
-    if not achievement then
-        return;
-    end
-
-    if fliters.CollapseSeries then
-		local nextAchievement, completed = addon.GetNextAchievement(achievement);
-		if nextAchievement and completed then
-			local newAchievement;
-			while nextAchievement and completed do
-				newAchievement, completed = addon.GetNextAchievement(nextAchievement);
-				if newAchievement and completed then
-					nextAchievement = newAchievement;
-				end
-			end
-			achievement = nextAchievement;
-		end
-	end
-
-    return achievement;
 end

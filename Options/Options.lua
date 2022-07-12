@@ -97,6 +97,13 @@ function options.Load()
     local numberOfSearchPreviews = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.MetaData.Title, "cmd", "KROWIAF-0.0").args.Search.args.NumberOfSearchPreviews; -- cmd and KROWIAF-0.0 are just to make the function work
     numberOfSearchPreviews.max = options.MaxNumberOfSearchPreviews();
 
+    if addon.Options.db.Calendar.FirstWeekDay < 1 or addon.Options.db.Calendar.FirstWeekDay > 7 then
+        if not IsAddOnLoaded("Blizzard_Calendar") then -- This is to make sure we get the 1st day of the week correct
+            LoadAddOn("Blizzard_Calendar"); -- breaks Blizzard_Calendar
+        end
+        addon.Options.db.Calendar.FirstWeekDay = CALENDAR_FIRST_WEEKDAY;
+    end
+
     diagnostics.Debug("Options loaded");
     -- diagnostics.DebugTable(addon.Options.db, 1);
 end

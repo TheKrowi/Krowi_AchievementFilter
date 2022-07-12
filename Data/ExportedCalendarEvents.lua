@@ -1,4 +1,4 @@
--- [[ Exported at 2022-06-25 22-18-22 ]] --
+-- [[ Exported at 2022-07-01 10-05-01 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -36,19 +36,19 @@ function exportedCalendarEvents.LoadCategories(e, a)
         exportedCalendarEvents.Load(e);
     end
 
-    e[141].Category = addon.Tabs["Events"].Categories[1].Children[11]; -- Winter Veil
-    e[181].Category = addon.Tabs["Events"].Categories[1].Children[3]; -- Noblegarden
-    e[201].Category = addon.Tabs["Events"].Categories[1].Children[4]; -- Children's Week
-    e[324].Category = addon.Tabs["Events"].Categories[1].Children[8]; -- Hallow's End
-    e[327].Category = addon.Tabs["Events"].Categories[1].Children[1]; -- Lunar Festival
-    e[341].Category = addon.Tabs["Events"].Categories[1].Children[5]; -- Midsummer
-    e[372].Category = addon.Tabs["Events"].Categories[1].Children[7]; -- Brewfest
-    e[398].Category = addon.Tabs["Events"].Categories[1].Children[6]; -- Pirates' Day
-    e[404].Category = addon.Tabs["Events"].Categories[1].Children[10]; -- Pilgrim's Bounty
-    e[409].Category = addon.Tabs["Events"].Categories[1].Children[9]; -- Day of the Dead
-    e[423].Category = addon.Tabs["Events"].Categories[1].Children[2]; -- Love is in the Air
-    e[479].Category = addon.Tabs["Events"].Categories[3]; -- Darkmoon Faire
-    e[1262].Category = addon.Tabs["Events"].Categories[2]; -- WoW's Anniversary
+    e[141].Category = addon.Tabs["Events"].Categories[2].Children[11]; -- Winter Veil
+    e[181].Category = addon.Tabs["Events"].Categories[2].Children[3]; -- Noblegarden
+    e[201].Category = addon.Tabs["Events"].Categories[2].Children[4]; -- Children's Week
+    e[324].Category = addon.Tabs["Events"].Categories[2].Children[8]; -- Hallow's End
+    e[327].Category = addon.Tabs["Events"].Categories[2].Children[1]; -- Lunar Festival
+    e[341].Category = addon.Tabs["Events"].Categories[2].Children[5]; -- Midsummer
+    e[372].Category = addon.Tabs["Events"].Categories[2].Children[7]; -- Brewfest
+    e[398].Category = addon.Tabs["Events"].Categories[2].Children[6]; -- Pirates' Day
+    e[404].Category = addon.Tabs["Events"].Categories[2].Children[10]; -- Pilgrim's Bounty
+    e[409].Category = addon.Tabs["Events"].Categories[2].Children[9]; -- Day of the Dead
+    e[423].Category = addon.Tabs["Events"].Categories[2].Children[2]; -- Love is in the Air
+    e[479].Category = addon.Tabs["Events"].Categories[4]; -- Darkmoon Faire
+    e[1262].Category = addon.Tabs["Events"].Categories[3]; -- WoW's Anniversary
 end
 
 function exportedCalendarEvents.InjectOptions()

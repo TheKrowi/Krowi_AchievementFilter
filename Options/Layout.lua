@@ -145,6 +145,15 @@ local function SetObjectivesProgressShow()
     options.Debug(addon.L["Show Objectives progress"], addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show);
 end
 
+local wowheadRelatedTabs = {
+    addon.L["None"],
+    addon.L["Criteria of"],
+    addon.L["Guides"],
+    addon.L["News"],
+    addon.L["Comments"],
+    addon.L["Screenshots"]
+};
+
 options.OptionsTable.args["Layout"] = {
     type = "group",
     childGroups = "tab",
@@ -377,6 +386,25 @@ options.OptionsTable.args["Layout"] = {
                         }
                     }
                 },
+                Summary = {
+                    order = 5, type = "group",
+                    name = addon.L["Summary"],
+                    inline = true,
+                    args = {
+                        NumAchievements = {
+                            order = 1.1, type = "range", width = 1.5,
+                            name = addon.L["Number of summary achievements"],
+                            desc = addon.L["Number of summary achievements Desc"],
+                            min = 1, max = 25, step = 1,
+                            get = function() return addon.Options.db.Categories.Summary.NumAchievements; end,
+                            set = function(_, value)
+                                if addon.Options.db.Categories.Summary.NumAchievements == value then return; end
+                                addon.Options.db.Categories.Summary.NumAchievements = value;
+                                options.Debug(addon.L["Number of summary achievements"], addon.Options.db.Categories.Summary.NumAchievements);
+                            end
+                        }
+                    }
+                }
             }
         },
         Achievements = {
@@ -599,23 +627,118 @@ options.OptionsTable.args["Layout"] = {
             order = 6, type = "group",
             name = addon.L["Right Click Menu"],
             args = {
-                ShowButtonOnAchievement = {
-                    order = 1, type = "toggle", width = "full",
-                    name = addon.Util.ReplaceVars
-                    {
-                        addon.L["Show Right Click Menu"],
-                        rightClickMenu = addon.L["Right Click Menu"]
-                    },
-                    desc = addon.ReplaceVarsWithReloadReq
-                    {
-                        addon.L["Show Right Click Menu Desc"],
-                        rightClickMenu = addon.L["Right Click Menu"]
-                    },
-                    get = function() return addon.Options.db.RightClickMenu.ShowButtonOnAchievement; end,
-                    set = function()
-                        addon.Options.db.RightClickMenu.ShowButtonOnAchievement = not addon.Options.db.RightClickMenu.ShowButtonOnAchievement;
-                        options.Debug(addon.L["Show Right Click Menu"], addon.Options.db.RightClickMenu.ShowButtonOnAchievement);
-                    end
+                Button = {
+                    order = 1, type = "group",
+                    name = addon.L["Button"],
+                    inline = true,
+                    args = {
+                        ShowButtonOnAchievement = {
+                            order = 1, type = "toggle", width = "full",
+                            name = addon.Util.ReplaceVars
+                            {
+                                addon.L["Show Right Click Menu"],
+                                rightClickMenu = addon.L["Right Click Menu"]
+                            },
+                            desc = addon.ReplaceVarsWithReloadReq
+                            {
+                                addon.L["Show Right Click Menu Desc"],
+                                rightClickMenu = addon.L["Right Click Menu"]
+                            },
+                            get = function() return addon.Options.db.RightClickMenu.ShowButtonOnAchievement; end,
+                            set = function()
+                                addon.Options.db.RightClickMenu.ShowButtonOnAchievement = not addon.Options.db.RightClickMenu.ShowButtonOnAchievement;
+                                options.Debug(addon.L["Show Right Click Menu"], addon.Options.db.RightClickMenu.ShowButtonOnAchievement);
+                            end
+                        }
+                    }
+                },
+                Wowhead = {
+                    order = 2, type = "group",
+                    name = addon.L["Wowhead Link"],
+                    inline = true,
+                    args = {
+                        AddLocale = {
+                            order = 1, type = "toggle", width = "full",
+                            name = addon.L["Add Locale"],
+                            desc = addon.Util.ReplaceVars {
+                                addon.L["Add Locale Desc"],
+                                wowheadLink = addon.L["Wowhead Link"]
+                            },
+                            get = function() return addon.Options.db.RightClickMenu.WowheadLink.AddLocale; end,
+                            set = function()
+                                addon.Options.db.RightClickMenu.WowheadLink.AddLocale = not addon.Options.db.RightClickMenu.WowheadLink.AddLocale;
+                                options.Debug(addon.L["Add Locale"], addon.Options.db.RightClickMenu.WowheadLink.AddLocale);
+                            end
+                        },
+                        AddRelatedTab = {
+                            order = 2, type = "select", width = 1.5,
+                            name = addon.L["Related Tab"],
+                            desc = addon.Util.ReplaceVars {
+                                addon.L["Related Tab Desc"],
+                                wowheadLink = addon.L["Wowhead Link"]
+                            },
+                            values = wowheadRelatedTabs,
+                            get = function() return addon.Options.db.RightClickMenu.WowheadLink.AddRelatedTab; end,
+                            set = function (_, value)
+                                if addon.Options.db.RightClickMenu.WowheadLink.AddRelatedTab == value then return; end;
+                                addon.Options.db.RightClickMenu.WowheadLink.AddRelatedTab = value;
+                                options.Debug(addon.L["Related Tab"], addon.Options.db.RightClickMenu.WowheadLink.AddRelatedTab);
+                            end
+                        }
+                    }
+                },
+            }
+        },
+        Calendar = {
+            order = 7, type = "group",
+            name = addon.L["Calendar"],
+            args = {
+                General = {
+                    order = 1, type = "group",
+                    name = addon.L["General"],
+                    inline = true,
+                    args = {
+                        LockAchievementMonth = {
+                            order = 1, type = "toggle", width = "full",
+                            name = addon.L["Lock month when closed by achievement "],
+                            desc = addon.L["Lock month when closed by achievement Desc"],
+                            get = function() return addon.Options.db.Calendar.LockAchievementMonth; end,
+                            set = function()
+                                addon.Options.db.Calendar.LockAchievementMonth = not addon.Options.db.Calendar.LockAchievementMonth;
+                                options.Debug(addon.L["Lock month when closed by achievement"], addon.Options.db.Calendar.LockAchievementMonth);
+                            end
+                        },
+                        LockMonth = {
+                            order = 2, type = "toggle", width = "full",
+                            name = addon.L["Lock month"],
+                            desc = addon.L["Lock month Desc"],
+                            get = function() return addon.Options.db.Calendar.LockMonth; end,
+                            set = function()
+                                addon.Options.db.Calendar.LockMonth = not addon.Options.db.Calendar.LockMonth;
+                                options.Debug(addon.L["Lock month"], addon.Options.db.Calendar.LockMonth);
+                            end
+                        }
+                    }
+                },
+                Weekdays = {
+                    order = 2, type = "group",
+                    name = addon.L["Weekdays"],
+                    inline = true,
+                    args = {
+                        FirstDayOfTheWeek = {
+                            order = 1, type = "select", width = 1.5,
+                            name = addon.L["First day of the week"],
+                            desc = addon.L["First day of the week Desc"],
+                            values = CALENDAR_WEEKDAY_NAMES,
+                            get = function() return addon.Options.db.Calendar.FirstWeekDay; end,
+                            set = function (_, value)
+                                if addon.Options.db.Calendar.FirstWeekDay == value then return; end;
+                                addon.Options.db.Calendar.FirstWeekDay = value;
+                                addon.GUI.Calendar.Frame:Update();
+                                options.Debug(addon.L["First day of the week"], addon.Options.db.Calendar.FirstWeekDay);
+                            end
+                        }
+                    }
                 }
             }
         }
