@@ -311,7 +311,8 @@
         "UIChildWindows",
         "GetBindingKey",
         "LATEST_UNLOCKED_ACHIEVEMENTS",
-        "ACHIEVEMENT_CATEGORY_PROGRESS"
+        "ACHIEVEMENT_CATEGORY_PROGRESS",
+        "GetAddOnInfo"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

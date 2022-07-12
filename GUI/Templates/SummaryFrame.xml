@@ -59,8 +59,8 @@
 			<Frame name="$parentCategories" parentKey="Categories">
 				<Size x="0" y="164"/>
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT" x="0" y="0"/>
-					<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT" x="0" y="0"/>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT" x="0" y="100"/>
+					<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT" x="0" y="100"/>
 				</Anchors>
 				<Frames>
 					<Frame name="$parentHeader" parentKey="Header">

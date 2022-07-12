@@ -128,8 +128,6 @@ addon.Event:RegisterMessage("UpdateAchievementFrameHeight", UpdateAchievementFra
 
 -- [[ Other ]] --
 function gui.GetSafeScrollChildBottom(scrollChild)
-	diagnostics.Trace("gui.GetSafeScrollChildBottom");
-
 	return scrollChild:GetBottom() or 0;
 end
 
@@ -186,7 +184,7 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
 
     local tabIsSelected;
     if gui.SelectedTab then
-        if gui.SelectedTab.AddonName == _addonName and  gui.SelectedTab.Name == tabName then
+        if gui.SelectedTab.AddonName == _addonName and gui.SelectedTab.Name == tabName then
             tabIsSelected = true;
         end
     end

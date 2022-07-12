@@ -1,5 +1,10 @@
 <p><h1>Changelog</h1></p>
 All notable changes to this project will be documented in this file.
+<p><h2>9.2.5.36.1 - 2022-07-12</h2></p>
+<h3>Fixed</h3>
+<ul>
+<li>Large event reminders should once again work without errors</li>
+</ul>
 <p><h2>9.2.5.36.0 - 2022-07-12</h2></p>
 <h3>Added</h3>
 <ul>

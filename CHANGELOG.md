@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 9.2.5.36.2 - 2022-07-12
+### Fixed
+- Visual bug that can show an achievements tooltip when clicking the tabs
+- Several issues with Overachiever tabs
+
+## 9.2.5.36.1 - 2022-07-12
+### Fixed
+- Large event reminders should once again work without errors
+
 ## 9.2.5.36.0 - 2022-07-12
 ### Added
 - Summary view for each new tab that shows the last 25 (default) earned achievements and the category's progress with optional ElvUI skin
