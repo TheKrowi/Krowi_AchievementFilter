@@ -1,8 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 9.2.5.37.0 - 2022-xx-xx
-
+## 9.2.5.36.1 - 2022-07-12
+### Fixed
+- Large event reminders should once again work without errors
 
 ## 9.2.5.36.0 - 2022-07-12
 ### Added

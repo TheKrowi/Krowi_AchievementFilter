@@ -1,6 +1,12 @@
 [B]Changelog[/B]
 All notable changes to this project will be documented in this file.
 
+[B]9.2.5.36.1 - 2022-07-12[/B]
+[B]Fixed[/B]
+[LIST]
+[*]Large event reminders should once again work without errors
+[/LIST]
+
 [B]9.2.5.36.0 - 2022-07-12[/B]
 [B]Added[/B]
 [LIST]

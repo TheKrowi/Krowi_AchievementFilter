@@ -111,6 +111,7 @@
 			</Frame>
 		</Frames>
 		<Scripts>
+			<OnLoad function="KrowiAF_EventAlertFrame_OnLoad"/>
 			<OnClick function="KrowiAF_EventAlertFrame_OnClick"/>
 			<OnUpdate function="KrowiAF_EventAlertFrame_OnUpdate"/>
 		</Scripts>
