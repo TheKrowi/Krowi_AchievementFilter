@@ -23,23 +23,34 @@ options.Defaults = {
             }
         },
         Tabs = {
-            {
-                AddonName = "Blizzard_AchievementUI",
-                TabName = "Achievements",
-                BindingName = "TOGGLEACHIEVEMENT",
-                Show = false
-            },
-            {
-                AddonName = "Blizzard_AchievementUI",
-                TabName = "Guild",
-                Show = true
-            },
-            {
-                AddonName = "Blizzard_AchievementUI",
-                TabName = "Statistics",
-                BindingName = "TOGGLESTATISTICS",
-                Show = true
+            Blizzard_AchievementUI = {
+                Achievements = {
+                    Show = false
+                },
+                Guild = {
+                    Show = true
+                },
+                Statistics = {
+                    Show = true
+                }
             }
+            -- {
+            --     AddonName = "Blizzard_AchievementUI",
+            --     TabName = "Achievements",
+            --     BindingName = "TOGGLEACHIEVEMENT",
+            --     Show = false
+            -- },
+            -- {
+            --     AddonName = "Blizzard_AchievementUI",
+            --     TabName = "Guild",
+            --     Show = true
+            -- },
+            -- {
+            --     AddonName = "Blizzard_AchievementUI",
+            --     TabName = "Statistics",
+            --     BindingName = "TOGGLESTATISTICS",
+            --     Show = true
+            -- }
         },
         Categories = {
             Focused = {

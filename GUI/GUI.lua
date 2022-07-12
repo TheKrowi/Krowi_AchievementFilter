@@ -6,6 +6,8 @@ local gui = addon.GUI;
 gui.SideButtons = {};
 local sideButtons = gui.SideButtons;
 
+gui.Tabs = {};
+
 function gui:LoadWithAddon()
     gui.GameTooltipProgressBar:Load();
     gui.WorldMapButton.Load();
@@ -29,6 +31,7 @@ function gui:LoadWithBlizzard_AchievementUI()
 
     for _, t in next, addon.TabsOrder do
         addon.Tabs[t].Button = gui.AchievementFrameTabButton:New(addonName, addon.Tabs[t].Name, addon.Tabs[t].BindingName, addon.Tabs[t].Text, {gui.FilterButton, gui.Search.BoxFrame}, gui.AchievementsFrame, gui.CategoriesFrame, addon.Tabs[t].Categories, addon.Tabs[t].Filters);
+        KrowiAF_RegisterTabButton(addonName, addon.Tabs[t].Name, addon.Tabs[t].Button);
     end
 
     local activeCalendarEvents = addon.EventData.GetActiveCalendarEvents();
@@ -156,25 +159,17 @@ function gui.ResetView()
 end
 
 function gui.SelectTab(_addonName, tabName)
-    -- if addon.Tabs[tabName] ~= nil and addon.Tabs[tabName].Button ~= nil then
-    --     addon.Tabs[tabName].Button:Select();
-    -- end
-    for i, tab in next, addon.Options.db.Tabs do
-        if tab.AddonName == _addonName and tab.TabName == tabName then
-            if _G["AchievementFrameTab" .. i] then
-                if _G["AchievementFrameTab" .. i].Select then
-                    _G["AchievementFrameTab" .. i]:Select(); -- Addon tabs
-                else
-                    _G["AchievementFrameTab" .. i]:Click(); -- Other tabs
-                end
-            end
+    local button = addon.GUI.Tabs[_addonName][tabName];
+    if button then
+        if button.Select then
+            button:Select(); -- Addon tabs
+        else
+            button:Click(); -- Other tabs
         end
     end
 end
 
 function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -- Issue #26 Broken, Fix
-    diagnostics.Trace("gui.ToggleAchievementFrame");
-
     if not IsAddOnLoaded("Blizzard_AchievementUI") then
         LoadAddOn("Blizzard_AchievementUI");
     end
@@ -184,7 +179,7 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
 
     local tabIsSelected;
     if gui.SelectedTab then
-        if gui.SelectedTab.AddonName == _addonName and gui.SelectedTab.Name == tabName then
+        if gui.SelectedTab == addon.GUI.Tabs[_addonName][tabName] then
             tabIsSelected = true;
         end
     end
@@ -192,7 +187,7 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
 	if AchievementFrame:IsShown() and tabIsSelected and not resetView and not forceOpen then
 		HideUIPanel(AchievementFrame);
 	else
-        AchievementFrame_SetTabs();
+        addon.GUI.ShowHideTabs(); -- AchievementFrame_SetTabs();
 		ShowUIPanel(AchievementFrame);
         AchievementFrame_HideSearchPreview();
         gui.SelectTab(_addonName, tabName);
@@ -200,10 +195,6 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
             gui.ResetView();
         end
 	end
-end
-
-function KrowiAF_ToggleAchievementFrame(_addonName, tabName)
-    gui.ToggleAchievementFrame(_addonName, tabName);
 end
 
 function CreateAchievementPointsTooltip()
@@ -230,14 +221,13 @@ function CreateAchievementPointsTooltip()
     end);
 end
 
-function gui.ShowHideTabs(index)
-    if index then
-        if not addon.Options.db.Tabs[index] then
+function gui.ShowHideTabs(_addonName, tabName)
+    if _addonName and tabName then
+        if not addon.Options.db.Tabs[_addonName] or not addon.Options.db.Tabs[_addonName][tabName] then
             return;
         end
-        addon.Options.db.Tabs[index].Show = not addon.Options.db.Tabs[index].Show;
-
-        if not IsAddOnLoaded(addon.Options.db.Tabs[index].AddonName) then
+        addon.Options.db.Tabs[_addonName][tabName].Show = not addon.Options.db.Tabs[_addonName][tabName].Show;
+        if not IsAddOnLoaded(_addonName) or not addon.GUI.Tabs[_addonName] or not addon.GUI.Tabs[_addonName][tabName] then
             return;
         end
     end
@@ -245,44 +235,53 @@ function gui.ShowHideTabs(index)
     addon.Data.SavedData.TabsOrderGetActiveKeys(); -- Cleanup unused tabs
 
     local tabsOrder = {};
-    for i, tab in next, addon.Options.db.Tabs do
-        tabsOrder[tab.Order] = i;
-        if _G["AchievementFrameTab" .. i] then
-            if tab.Show then
-                _G["AchievementFrameTab" .. i]:Show();
-            else
-                _G["AchievementFrameTab" .. i]:Hide();
+    local button;
+    for tabAddonName, tabs in next, addon.Options.db.Tabs do
+        for _tabName, tab in next, tabs do
+            if addon.GUI.Tabs[tabAddonName] then
+                button = addon.GUI.Tabs[tabAddonName][_tabName];
+                if button then
+                    tabsOrder[tab.Order] = button;
+                    if tab.Show then
+                        button:Show();
+                    else
+                        button:Hide();
+                    end
+                end
             end
         end
-     end
+    end
 
     local prevTab;
-    for _, i in next, tabsOrder do
-        if _G["AchievementFrameTab" .. i] and _G["AchievementFrameTab" .. i]:IsShown() then
-            _G["AchievementFrameTab" .. i]:ClearAllPoints();
+    for _, btn in next, tabsOrder do
+        if btn and btn:IsShown() then
+            btn:ClearAllPoints();
             if prevTab == nil then
-                _G["AchievementFrameTab" .. i]:SetPoint("BOTTOMLEFT", AchievementFrame, 11, -30);
+                btn:SetPoint("BOTTOMLEFT", AchievementFrame, 11, -30);
             else
-                _G["AchievementFrameTab" .. i]:SetPoint("LEFT", prevTab, "RIGHT", -5, 0);
+                btn:SetPoint("LEFT", prevTab, "RIGHT", -5, 0);
             end
-            prevTab = _G["AchievementFrameTab" .. i];
+            prevTab = btn;
         end
     end
 end
 
 function gui.AddDataToBlizzardTabs()
-    AchievementFrameTab1.AddonName = "Blizzard_AchievementUI";
-    AchievementFrameTab1.Name = "Achievements";
-    AchievementFrameTab2.AddonName = "Blizzard_AchievementUI";
-    AchievementFrameTab2.Name = "Guild";
-    AchievementFrameTab3.AddonName = "Blizzard_AchievementUI";
-    AchievementFrameTab3.Name = "Statistics";
+    KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Achievements", AchievementFrameTab1, function()
+        AchievementFrameTab_OnClick(1);
+    end);
+    KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Guild", AchievementFrameTab2, function()
+        AchievementFrameTab_OnClick(2);
+    end);
+    KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Statistics", AchievementFrameTab3, function()
+        AchievementFrameTab_OnClick(3);
+    end);
 end
 
 function gui.PrepareTabsOrder()
-    addon.Data.SavedData.TabsOrderAddIfNotContains(1, addon.L["Blizzard"], addon.L["Achievements"]);
-    addon.Data.SavedData.TabsOrderAddIfNotContains(2, addon.L["Blizzard"], addon.L["Guild"]);
-    addon.Data.SavedData.TabsOrderAddIfNotContains(3, addon.L["Blizzard"], addon.L["Statistics"]);
+    KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Achievements", addon.L["Blizzard"], addon.L["Achievements"], "TOGGLEACHIEVEMENT");
+    KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Guild", addon.L["Blizzard"], addon.L["Guild"]);
+    KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Statistics", addon.L["Blizzard"], addon.L["Statistics"], "TOGGLESTATISTICS");
 end
 
 function gui.ShowStatusBarTooltip(self, anchor)

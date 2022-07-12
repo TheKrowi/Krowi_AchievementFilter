@@ -1,4 +1,4 @@
--- [[ Exported at 2022-07-01 10-04-04 ]] --
+-- [[ Exported at 2022-07-12 17-18-35 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -34,19 +34,6 @@ function exportedCategories.Load(a)
     AddC(tmp[883], tmp[1203]);
     tmp[1203].AlwaysVisible = true;
     tmp[1203].IsSummary = true;
-    tmp[949] = cat:New(addon.L["Focused"]); -- Focused
-    AddC(tmp[883], tmp[949]);
-    tmp[949].HasFlexibleData = true;
-    local focusedCategory = tmp[949];
-    tmp[433] = cat:New(addon.L["Current Zone"]); -- Current Zone
-    AddC(tmp[883], tmp[433]);
-    tmp[433].AlwaysVisible = true;
-    tmp[433].HasFlexibleData = true;
-    local currentZoneCategory = tmp[433];
-    tmp[850] = cat:New(addon.L["Selected Zone"]); -- Selected Zone
-    AddC(tmp[883], tmp[850]);
-    tmp[850].HasFlexibleData = true;
-    local selectedZoneCategory = tmp[850];
     tmp[1] = cat:New((GetCategoryInfo(14864))); -- Classic
     AddC(tmp[883], tmp[1]);
     tmp[648] = cat:New(addon.L["Zones"]); -- Zones
@@ -5986,10 +5973,6 @@ function exportedCategories.Load(a)
     AddA(tmp[1172], a[4496]); -- It's Over Nine Thousand!
     AddA(tmp[1172], a[3636]); -- Jade Tiger
     AddA(tmp[1172], a[3896]); -- Onyx Panther
-    tmp[857] = cat:New(addon.L["Excluded"]); -- Excluded
-    AddC(tmp[883], tmp[857]);
-    tmp[857].HasFlexibleData = true;
-    local excludedCategory = tmp[857];
     tmp[884] = cat:New(addon.L["Events"]); -- TAB - Events
     tmp[884].TabName = "Events";
     local events = tmp[884];
@@ -7258,6 +7241,19 @@ function exportedCategories.Load(a)
     AddC(tmp[971], tmp[1204]);
     tmp[1204].AlwaysVisible = true;
     tmp[1204].IsSummary = true;
+    tmp[949] = cat:New(addon.L["Focused"]); -- Focused
+    AddC(tmp[971], tmp[949]);
+    tmp[949].HasFlexibleData = true;
+    local focusedCategory = tmp[949];
+    tmp[433] = cat:New(addon.L["Current Zone"]); -- Current Zone
+    AddC(tmp[971], tmp[433]);
+    tmp[433].AlwaysVisible = true;
+    tmp[433].HasFlexibleData = true;
+    local currentZoneCategory = tmp[433];
+    tmp[850] = cat:New(addon.L["Selected Zone"]); -- Selected Zone
+    AddC(tmp[971], tmp[850]);
+    tmp[850].HasFlexibleData = true;
+    local selectedZoneCategory = tmp[850];
     tmp[972] = cat:New(addon.L["Bur's Mount Collection"]); -- Bur's Mount Collection
     AddC(tmp[971], tmp[972]);
     AddA(tmp[972], a[3356]); -- Winterspring Frostsaber
@@ -8044,6 +8040,10 @@ function exportedCategories.Load(a)
     tmp[1125] = cat:New(addon.L["Warcraft III: Reforged"], true); -- Warcraft III: Reforged
     AddC(tmp[1117], tmp[1125]);
     AddA(tmp[1125], a[13196]); -- Meat Marauder
+    tmp[857] = cat:New(addon.L["Excluded"]); -- Excluded
+    AddC(tmp[971], tmp[857]);
+    tmp[857].HasFlexibleData = true;
+    local excludedCategory = tmp[857];
 
     local tabs = {};
     tabs["Achievements"] = achievements.Children;

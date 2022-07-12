@@ -15,9 +15,9 @@ function achFrameTabBtn:New(addonName, name, bindingName, text, framesToShow, ac
 	-- Create frame
     local frame = CreateFrame("Button", "AchievementFrameTab" .. AchievementFrame.numTabs, AchievementFrame, "AchievementFrameTabButtonTemplate"); -- Blizzard naming
     frame:SetID(AchievementFrame.numTabs);
-    frame.AddonName = addonName;
-    frame.Name = name;
-    frame.BindingName = bindingName;
+    -- frame.AddonName = addonName;
+    -- frame.Name = name;
+    -- frame.BindingName = bindingName;
     frame:SetText(text);
     addon.Util.InjectMetatable(frame, achFrameTabBtn);
 
@@ -99,6 +99,7 @@ end
 
 local achievementFrameSizeSet; -- If multiple tabs are added, this variable makes sure the resizing only fires once
 function achFrameTabBtn:AchievementFrame_UpdateTabs(thisTab, thisTabID, clickedTab)
+    -- print(thisTab, thisTabID, clickedTab)
     local ourTabClicked; -- Extra logic to handle multiple tabs of ours
     for _, id in next, ourTabIDs do
         if clickedTab == id then

@@ -8,8 +8,9 @@ tinsert(plugins.Plugins, overachiever);
 local tmpTabs = {};
 
 local addonName = "Overachiever_Tabs";
+local count = 1;
 
-local function AddTabOptions(tabIndex, tabName, bindingName, nameFunc)
+local function AddTabOptions(tabName, bindingName, nameFunc)
     local show = true;
     if tmpTabs[tabName] ~= nil then -- Fix and copy tab
         show = tmpTabs[tabName];
@@ -17,45 +18,28 @@ local function AddTabOptions(tabIndex, tabName, bindingName, nameFunc)
             show = tmpTabs[tabName].Show;
         end
     end
-    if not tabIndex then
-        tinsert(addon.Options.db.Tabs, {
-            AddonName = addonName,
-            TabName = tabName,
-            BindingName = bindingName,
-            Show = show
-        });
-        tabIndex = #addon.Options.db.Tabs;
-    end
+    addon.Options.db.Tabs[addonName] = addon.Options.db.Tabs[addonName] or {};
+    addon.Options.db.Tabs[addonName][tabName] = addon.Options.db.Tabs[addonName][tabName] or {
+        Show = show
+    };
+
     addon.Options.InjectOptionsTableAdd({
-        order = tabIndex, type = "toggle",
+        order = count, type = "toggle",
         name = nameFunc,
-        get = function() return addon.Options.db.Tabs[tabIndex].Show; end,
-        set = function() addon.GUI.ShowHideTabs(tabIndex); end
+        get = function() return addon.Options.db.Tabs[addonName][tabName].Show; end,
+        set = function() addon.GUI.ShowHideTabs(addonName, tabName); end
     }, tabName, "args", "Layout", "args", "Tabs", "args", addonName);
-    addon.Data.SavedData.TabsOrderAddIfNotContains(tabIndex, addon.L["Overachiever"], tabName);
+    KrowiAF_RegisterTabOptions(addonName, tabName, addon.L["Overachiever"], tabName, bindingName);
     if tmpTabs[tabName] ~= nil and tmpTabs[tabName].Order ~= nil then -- Copy tab
-        addon.Options.db.Tabs[tabIndex].Order = tmpTabs[tabName].Order;
+        addon.Options.db.Tabs[addonName][tabName].Order = tmpTabs[tabName].Order;
     end
+    count = count + 1;
 end
 
 local function InjectOptions()
     local searchTabName, suggestionsTabName, watchTabName = "Search", "Suggestions", "Watch";
     local searchBindingName, suggestionsBindingName, watchBindingName = "OVERACHIEVER_TAB_SEARCH", "OVERACHIEVER_TAB_SUGGESTIONS", "OVERACHIEVER_TAB_WATCH";
 
-    if Overachiever_SearchFrame and Overachiever_SearchFrame.tab then
-        Overachiever_SearchFrame.tab.AddonName = addonName;
-        Overachiever_SearchFrame.tab.Name = searchTabName;
-    end
-    if Overachiever_SuggestionsFrame and Overachiever_SuggestionsFrame.tab then
-        Overachiever_SuggestionsFrame.tab.AddonName = addonName;
-        Overachiever_SuggestionsFrame.tab.Name = suggestionsTabName;
-    end
-    if Overachiever_WatchFrame and Overachiever_WatchFrame.tab then
-        Overachiever_WatchFrame.tab.AddonName = addonName;
-        Overachiever_WatchFrame.tab.Name = watchTabName;
-    end
-
-    print(Overachiever_SearchFrame:GetName(), Overachiever_SuggestionsFrame:GetName(), Overachiever_WatchFrame:GetName())
 
     addon.Options.InjectOptionsTableAdd({
         type = "group",
@@ -64,24 +48,19 @@ local function InjectOptions()
         args = {}
     }, addonName, "args", "Layout", "args", "Tabs");
 
-    local searchTab, suggestionsTab, watchTab;
-    for i, tab in next, addon.Options.db.Tabs do
-        if tab.AddonName == addonName then
-            if tab.TabName == searchTabName then
-                searchTab = i;
-            elseif tab.TabName == suggestionsTabName then
-                suggestionsTab = i;
-            elseif tab.TabName == watchTabName then
-                watchTab = i;
-            end
-        end
-    end
+    AddTabOptions(searchTabName, searchBindingName, function() return OVERACHIEVER_STRINGS.SEARCH_TAB; end);
+    AddTabOptions(suggestionsTabName, suggestionsBindingName, function() return OVERACHIEVER_STRINGS.SUGGESTIONS_TAB; end);
+    AddTabOptions(watchTabName, watchBindingName, function() return OVERACHIEVER_STRINGS.WATCH_TAB; end);
 
-    -- addon.Diagnostics.DebugTable(tmpTabs);
-
-    AddTabOptions(searchTab, searchTabName, searchBindingName, function() return OVERACHIEVER_STRINGS.SEARCH_TAB; end);
-    AddTabOptions(suggestionsTab, suggestionsTabName, suggestionsBindingName, function() return OVERACHIEVER_STRINGS.SUGGESTIONS_TAB; end);
-    AddTabOptions(watchTab, watchTabName, watchBindingName, function() return OVERACHIEVER_STRINGS.WATCH_TAB; end);
+    KrowiAF_RegisterTabButton(addonName, searchTabName, Overachiever_SearchFrame.tab, function()
+        Overachiever.OpenTab_frame(Overachiever_SearchFrame, true);
+    end);
+    KrowiAF_RegisterTabButton(addonName, suggestionsTabName, Overachiever_SuggestionsFrame.tab, function()
+        Overachiever.OpenTab_frame(Overachiever_SuggestionsFrame, true);
+    end);
+    KrowiAF_RegisterTabButton(addonName, watchTabName, Overachiever_WatchFrame.tab, function()
+        Overachiever.OpenTab_frame(Overachiever_WatchFrame, true);
+    end);
 
     tmpTabs = nil;
 end
@@ -103,12 +82,14 @@ local function HookOverachiever_LeftFrameOnHide()
 end
 
 local function CopyTabs()
-    for _, tab in next, addon.Options.db.Tabs do
-        if tab.AddonName == addonName then
-            tmpTabs[tab.TabName] = {
-                Show = tab.Show,
-                Order = tab.Order
-            };
+    for tabAddonName, tabs in next, addon.Options.db.Tabs do
+        if tabAddonName == addonName then
+            for tabName, tab in next, tabs do
+                tmpTabs[tabName] = {
+                    Show = tab.Show,
+                    Order = tab.Order
+                };
+            end
         end
     end
 end
@@ -147,7 +128,7 @@ function overachiever.LoadLocalization(L)
 end
 
 function overachiever.InjectOptions()
-    local optionsTable = {
+    addon.Options.InjectOptionsTable({
         type = "group",
         name = addon.L["Overachiever"],
         args = {
@@ -173,9 +154,7 @@ function overachiever.InjectOptions()
                 fontSize = "medium"
             }
         }
-    };
-
-    addon.Options.InjectOptionsTable(optionsTable, "Overachiever", "Plugins", "args");
+    }, "Overachiever", "Plugins", "args");
 end
 
 function overachiever.Load()

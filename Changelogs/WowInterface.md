@@ -1,6 +1,13 @@
 [B]Changelog[/B]
 All notable changes to this project will be documented in this file.
 
+[B]9.2.5.36.2 - 2022-07-12[/B]
+[B]Fixed[/B]
+[LIST]
+[*]Visual bug that can show an achievements tooltip when clicking the tabs
+[*]Several issues with Overachiever tabs
+[/LIST]
+
 [B]9.2.5.36.1 - 2022-07-12[/B]
 [B]Fixed[/B]
 [LIST]

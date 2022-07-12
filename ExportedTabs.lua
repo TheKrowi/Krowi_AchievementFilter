@@ -1,4 +1,4 @@
--- [[ Exported at 2022-07-02 11-59-50 ]] --
+-- [[ Exported at 2022-07-13 00-01-07 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -31,76 +31,62 @@ function tabs.InjectOptions()
         args = {}
     }, addonName, "args", "Layout", "args", "Tabs");
 
-    -- Redefine local index every time to make the functions work
-    local index = #addon.Options.InjectDefaultsAdd({
-        AddonName = addonName,
-        TabName = "Achievements",
-        BindingName = "KrowiAF_OPEN_TAB_Achievements",
+    addon.Options.InjectDefaults({}, addonName, "Tabs");
+
+    addon.Options.InjectDefaults({
         Show = true
-    }, "Tabs");
+    }, "Achievements", "Tabs", addonName);
     addon.Options.InjectOptionsTableAdd({
-        order = index, type = "toggle",
+        order = 1, type = "toggle",
         name = addon.L["Achievements"],
-        get = function() return addon.Options.db.Tabs[index].Show; end,
-        set = function() addon.GUI.ShowHideTabs(index); end
+        get = function() return addon.Options.db.Tabs[addonName]["Achievements"].Show; end,
+        set = function() addon.GUI.ShowHideTabs(addonName, "Achievements"); end
     }, "Achievements", "args", "Layout", "args", "Tabs", "args", addonName);
-    addon.Data.SavedData.TabsOrderAddIfNotContains(index, addon.MetaData.Title, addon.L["Achievements"]);
+    KrowiAF_RegisterTabOptions(addonName, "Achievements", addon.MetaData.Title, addon.L["Achievements"], "KrowiAF_OPEN_TAB_Achievements");
 
-    local index = #addon.Options.InjectDefaultsAdd({
-        AddonName = addonName,
-        TabName = "Expansions",
-        BindingName = "KrowiAF_OPEN_TAB_Expansions",
+    addon.Options.InjectDefaults({
         Show = true
-    }, "Tabs");
+    }, "Expansions", "Tabs", addonName);
     addon.Options.InjectOptionsTableAdd({
-        order = index, type = "toggle",
+        order = 2, type = "toggle",
         name = addon.L["Expansions"],
-        get = function() return addon.Options.db.Tabs[index].Show; end,
-        set = function() addon.GUI.ShowHideTabs(index); end
+        get = function() return addon.Options.db.Tabs[addonName]["Expansions"].Show; end,
+        set = function() addon.GUI.ShowHideTabs(addonName, "Expansions"); end
     }, "Expansions", "args", "Layout", "args", "Tabs", "args", addonName);
-    addon.Data.SavedData.TabsOrderAddIfNotContains(index, addon.MetaData.Title, addon.L["Expansions"]);
+    KrowiAF_RegisterTabOptions(addonName, "Expansions", addon.MetaData.Title, addon.L["Expansions"], "KrowiAF_OPEN_TAB_Expansions");
 
-    local index = #addon.Options.InjectDefaultsAdd({
-        AddonName = addonName,
-        TabName = "Events",
-        BindingName = "KrowiAF_OPEN_TAB_Events",
+    addon.Options.InjectDefaults({
         Show = true
-    }, "Tabs");
+    }, "Events", "Tabs", addonName);
     addon.Options.InjectOptionsTableAdd({
-        order = index, type = "toggle",
+        order = 3, type = "toggle",
         name = addon.L["Events"],
-        get = function() return addon.Options.db.Tabs[index].Show; end,
-        set = function() addon.GUI.ShowHideTabs(index); end
+        get = function() return addon.Options.db.Tabs[addonName]["Events"].Show; end,
+        set = function() addon.GUI.ShowHideTabs(addonName, "Events"); end
     }, "Events", "args", "Layout", "args", "Tabs", "args", addonName);
-    addon.Data.SavedData.TabsOrderAddIfNotContains(index, addon.MetaData.Title, addon.L["Events"]);
+    KrowiAF_RegisterTabOptions(addonName, "Events", addon.MetaData.Title, addon.L["Events"], "KrowiAF_OPEN_TAB_Events");
 
-    local index = #addon.Options.InjectDefaultsAdd({
-        AddonName = addonName,
-        TabName = "PvP",
-        BindingName = "KrowiAF_OPEN_TAB_PvP",
+    addon.Options.InjectDefaults({
         Show = true
-    }, "Tabs");
+    }, "PvP", "Tabs", addonName);
     addon.Options.InjectOptionsTableAdd({
-        order = index, type = "toggle",
+        order = 4, type = "toggle",
         name = addon.L["PvP"],
-        get = function() return addon.Options.db.Tabs[index].Show; end,
-        set = function() addon.GUI.ShowHideTabs(index); end
+        get = function() return addon.Options.db.Tabs[addonName]["PvP"].Show; end,
+        set = function() addon.GUI.ShowHideTabs(addonName, "PvP"); end
     }, "PvP", "args", "Layout", "args", "Tabs", "args", addonName);
-    addon.Data.SavedData.TabsOrderAddIfNotContains(index, addon.MetaData.Title, addon.L["PvP"]);
+    KrowiAF_RegisterTabOptions(addonName, "PvP", addon.MetaData.Title, addon.L["PvP"], "KrowiAF_OPEN_TAB_PvP");
 
-    local index = #addon.Options.InjectDefaultsAdd({
-        AddonName = addonName,
-        TabName = "Specials",
-        BindingName = "KrowiAF_OPEN_TAB_Specials",
+    addon.Options.InjectDefaults({
         Show = true
-    }, "Tabs");
+    }, "Specials", "Tabs", addonName);
     addon.Options.InjectOptionsTableAdd({
-        order = index, type = "toggle",
+        order = 5, type = "toggle",
         name = addon.L["Specials"],
-        get = function() return addon.Options.db.Tabs[index].Show; end,
-        set = function() addon.GUI.ShowHideTabs(index); end
+        get = function() return addon.Options.db.Tabs[addonName]["Specials"].Show; end,
+        set = function() addon.GUI.ShowHideTabs(addonName, "Specials"); end
     }, "Specials", "args", "Layout", "args", "Tabs", "args", addonName);
-    addon.Data.SavedData.TabsOrderAddIfNotContains(index, addon.MetaData.Title, addon.L["Specials"]);
+    KrowiAF_RegisterTabOptions(addonName, "Specials", addon.MetaData.Title, addon.L["Specials"], "KrowiAF_OPEN_TAB_Specials");
 
     tabs.InjectOptions = nil;
 end
