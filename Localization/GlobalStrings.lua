@@ -71,4 +71,5 @@ function globalStrings.Load(L)
     L["November"] = MONTH_NOVEMBER;
     L["December"] = MONTH_DECEMBER;
     L["Weekdays"] = GUILD_AVAILABILITY_WEEKDAYS;
+    L["Minimap"] = MINIMAP_LABEL;
 end

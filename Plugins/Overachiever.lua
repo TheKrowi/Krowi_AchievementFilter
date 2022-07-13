@@ -149,7 +149,7 @@ function overachiever.InjectOptions()
                 name = addon.Util.ReplaceVars
                 {
                     addon.L["Overachiever Desc"],
-                    overachiever = addon.L["Overachiever"]
+                    plugin_overachiever = addon.L["Overachiever"]
                 },
                 fontSize = "medium"
             }

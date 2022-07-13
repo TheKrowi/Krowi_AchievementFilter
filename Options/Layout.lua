@@ -164,40 +164,53 @@ options.OptionsTable.args["Layout"] = {
             name = addon.L["Window"],
             args = {
                 Movable = {
-                    order = 1.1, type = "toggle", width = 1.5,
-                    name = addon.L["Make window movable"],
-                    desc = addon.ReplaceVarsWithReloadReq(addon.L["Make window movable Desc"]),
-                    get = function() return addon.Options.db.Window.Movable; end,
-                    set = function()
-                        addon.Options.db.Window.Movable = not addon.Options.db.Window.Movable;
-                        addon.MakeWindowMovable();
-                        options.Debug(addon.L["Make window movable"], addon.Options.db.Window.Movable);
-                    end
+                    order = 1, type = "group",
+                    name = addon.L["Movable"],
+                    inline = true,
+                    args = {
+                        Movable = {
+                            order = 1.1, type = "toggle", width = 1.5,
+                            name = addon.L["Make windows movable"],
+                            desc = addon.ReplaceVarsWithReloadReq(addon.L["Make windows movable Desc"]),
+                            get = function() return addon.Options.db.Window.Movable; end,
+                            set = function()
+                                addon.Options.db.Window.Movable = not addon.Options.db.Window.Movable;
+                                addon.MakeWindowMovable();
+                                options.Debug(addon.L["Make window movable"], addon.Options.db.Window.Movable);
+                            end
+                        }
+                    }
                 },
-                Blank12 = {order = 1.2, type = "description", width = 1.5, name = ""},
-                CategoriesFrameWidthOffset = {
-                    order = 2.1, type = "range", width = 1.5,
-                    name = addon.L["Categories width offset"],
-                    desc = addon.Util.ReplaceVars {
-                        addon.L["Categories width offset Desc"],
-                        addonName = addon.MetaData.Title,
-                        tabName = string.format(addon.Colors.Yellow, addon.L["Expansions"])
-                    },
-                    min = -125, max = 250, step = 1,
-                    get = function() return addon.Options.db.Window.CategoriesFrameWidthOffset; end,
-                    set = SetCategoriesFrameWidthOffset
-                },
-                AchievementFrameHeightOffset = {
-                    order = 2.2, type = "range", width = 1.5,
-                    name = addon.L["Achievement window height offset"],
-                    desc = addon.ReplaceVarsWithReloadReq {
-                        addon.L["Achievement window height offset Desc"],
-                        addonName = addon.MetaData.Title,
-                        tabName = string.format(addon.Colors.Yellow, addon.L["Expansions"])
-                    },
-                    min = -250, max = 500, step = 1,
-                    get = function() return addon.Options.db.Window.AchievementFrameHeightOffset; end,
-                    set = SetAchievementFrameHeightOffset
+                Offsets = {
+                    order = 2, type = "group",
+                    name = addon.L["Offsets"],
+                    inline = true,
+                    args = {
+                        CategoriesFrameWidthOffset = {
+                            order = 2.1, type = "range", width = 1.5,
+                            name = addon.L["Categories width offset"],
+                            desc = addon.Util.ReplaceVars {
+                                addon.L["Categories width offset Desc"],
+                                addonName = addon.MetaData.Title,
+                                tabName = string.format(addon.Colors.Yellow, addon.L["Expansions"])
+                            },
+                            min = -125, max = 250, step = 1,
+                            get = function() return addon.Options.db.Window.CategoriesFrameWidthOffset; end,
+                            set = SetCategoriesFrameWidthOffset
+                        },
+                        AchievementFrameHeightOffset = {
+                            order = 2.2, type = "range", width = 1.5,
+                            name = addon.L["Achievement window height offset"],
+                            desc = addon.ReplaceVarsWithReloadReq {
+                                addon.L["Achievement window height offset Desc"],
+                                addonName = addon.MetaData.Title,
+                                tabName = string.format(addon.Colors.Yellow, addon.L["Expansions"])
+                            },
+                            min = -50, max = 750, step = 1,
+                            get = function() return addon.Options.db.Window.AchievementFrameHeightOffset; end,
+                            set = SetAchievementFrameHeightOffset
+                        }
+                    }
                 }
             }
         },
