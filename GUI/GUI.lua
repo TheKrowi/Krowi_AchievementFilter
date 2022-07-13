@@ -236,10 +236,10 @@ function gui.ShowHideTabs(_addonName, tabName)
 
     local tabsOrder = {};
     local button;
-    for tabAddonName, tabs in next, addon.Options.db.Tabs do
-        for _tabName, tab in next, tabs do
-            if addon.GUI.Tabs[tabAddonName] then
-                button = addon.GUI.Tabs[tabAddonName][_tabName];
+    for addonName2, tabs in next, addon.Options.db.Tabs do
+        for tabName2, tab in next, tabs do
+            if addon.GUI.Tabs[addonName2] then
+                button = addon.GUI.Tabs[addonName2][tabName2];
                 if button then
                     tabsOrder[tab.Order] = button;
                     if tab.Show then

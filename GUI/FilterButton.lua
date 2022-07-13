@@ -208,8 +208,8 @@ function filterButton:AddAchievementFilters(_menu, childMenu, filters)
     faction:AddSeparator();
     faction:AddFull({  Text = addon.L["Select all"],
                         Func = function()
-                            for _faction, _ in next, filters.Faction do
-                                SetCheckBoxValue(filters, {"Faction", _faction}, true, true, true);
+                            for faction2, _ in next, filters.Faction do
+                                SetCheckBoxValue(filters, {"Faction", faction2}, true, true, true);
                             end
                             self.UpdateAchievementFrame();
                         end

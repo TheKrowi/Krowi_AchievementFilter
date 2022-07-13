@@ -82,10 +82,10 @@ function filters:ResetFilters()
 end
 
 function filters:Load()
-    local _filters = LibStub("AceDB-3.0"):New("Filters", defaults, true);
-    self.db = _filters.profile;
+    local filters2 = LibStub("AceDB-3.0"):New("Filters", defaults, true);
+    self.db = filters2.profile;
     for t, _ in next, addon.Tabs do
-        addon.Tabs[t].Filters = _filters.profile.Tabs[t];
+        addon.Tabs[t].Filters = filters2.profile.Tabs[t];
     end
 
     self.Account = addon.L["Account"];
@@ -291,9 +291,9 @@ local function CompareId(a, b, reverse, default)
 end
 
 function filters:Sort(achievements, defaultOrder)
-	local _filters = self:GetFilters();
-	local criteria = _filters.SortBy.Criteria;
-	local reverse = _filters.SortBy.ReverseSort;
+	local filters2 = self:GetFilters();
+	local criteria = filters2.SortBy.Criteria;
+	local reverse = filters2.SortBy.ReverseSort;
 
     local sortFun;
     if criteria == addon.L["Name"] then

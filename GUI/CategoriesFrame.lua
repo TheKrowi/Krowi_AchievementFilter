@@ -121,13 +121,13 @@ local function GetAchievementNumbers(self, category)
 	end
 
 	local filters = addon.Filters;
-	local _filters;
+	local filters2;
 	if filters then
-		_filters = filters:GetFilters(category);
+		filters2 = filters:GetFilters(category);
 	end
 
-	numOfAch, numOfCompAch, numOfNotObtAch = GetFilteredAchievementNumbers(category.Achievements, _filters, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
-	numOfAch, numOfCompAch, numOfNotObtAch = GetFilteredAchievementNumbers(category.MergedAchievements, _filters, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
+	numOfAch, numOfCompAch, numOfNotObtAch = GetFilteredAchievementNumbers(category.Achievements, filters2, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
+	numOfAch, numOfCompAch, numOfNotObtAch = GetFilteredAchievementNumbers(category.MergedAchievements, filters2, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
 
 	local mergeSmallCategories = false;
 	if filters then

@@ -85,10 +85,10 @@ local C_CalendarMonth, C_CalendarYear;
 
 frame.__index = frame; -- Used to inject all the namespace functions to the frame
 function frame:Load()
-	local _frame = CreateFrame("Frame", "KrowiAF_AchievementCalendarFrame", UIParent, "KrowiAF_AchievementCalendarFrame_Template");
-	addon.Util.InjectMetatable(_frame, frame); -- Inject all the namespace functions to the frame
+	local frame2 = CreateFrame("Frame", "KrowiAF_AchievementCalendarFrame", UIParent, "KrowiAF_AchievementCalendarFrame_Template");
+	addon.Util.InjectMetatable(frame2, frame); -- Inject all the namespace functions to the frame
 
-	addon.GUI.Calendar.Frame = _frame; -- Overwrite with the actual frame since all functions are injected to it
+	addon.GUI.Calendar.Frame = frame2; -- Overwrite with the actual frame since all functions are injected to it
 end
 
 local function C_CalendarSetMonth(offset)

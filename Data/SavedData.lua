@@ -32,7 +32,7 @@ function savedData.Load()
 end
 
 local FixFeaturesTutorialProgress, FixElvUISkin, FixFilters, FixEventDetails, FixShowExcludedCategory, FixEventDetails2, FixCharacters, FixEventAlert;
-local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters, FixNewEarnedByFilter;
+local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters, FixNewEarnedByFilter, FixTabs2;
 function LoadSolutions()
     local solutions = {
         FixFeaturesTutorialProgress, -- 1
@@ -48,6 +48,7 @@ function LoadSolutions()
         FixTabs, -- 11
         FixCovenantFilters, -- 12
         FixNewEarnedByFilter, -- 13
+        FixTabs2, -- 14
     };
 
     return solutions;
@@ -190,21 +191,21 @@ function FixShowCurrentCharacterIcons(prevBuild, currBuild, prevVersion, currVer
 end
 
 function FixTabs(prevBuild, currBuild, prevVersion, currVersion)
-    if currVersion < "35.0" or addon.Options.db.Tabs == nil or SavedData.Fixes.FixTabs == true then
+    if currVersion < "35.0" or currVersion >= "37.0" or addon.Options.db.Tabs == nil or SavedData.Fixes.FixTabs == true then
         diagnostics.Debug("Tabs already ported from previous version");
         return;
     end
 
-    for _addonName, tab in next, addon.Options.db.Tabs do
+    for addonName2, tab in next, addon.Options.db.Tabs do
         if not tab.AddonName then
-            for _tabName, _ in next, addon.Options.db.Tabs[_addonName] do
+            for tabName, _ in next, addon.Options.db.Tabs[addonName2] do
                 for i, tab2 in next, addon.Options.db.Tabs do
-                    if tab2.AddonName and tab2.AddonName == _addonName and tab2.TabName == _tabName then
-                        addon.Options.db.Tabs[i].Show = addon.Options.db.Tabs[_addonName][_tabName];
+                    if tab2.AddonName and tab2.AddonName == addonName2 and tab2.TabName == tabName then
+                        addon.Options.db.Tabs[i].Show = addon.Options.db.Tabs[addonName2][tabName];
                     end
                 end
             end
-            addon.Options.db.Tabs[_addonName] = nil;
+            addon.Options.db.Tabs[addonName2] = nil;
         end
     end
 
@@ -251,4 +252,78 @@ function FixNewEarnedByFilter(prevBuild, currBuild, prevVersion, currVersion)
     SavedData.Fixes.FixNewEarnedByFilter = true;
 
     diagnostics.Debug("Transfered new earned by filter from previous version");
+end
+
+function FixTabs2(prevBuild, currBuild, prevVersion, currVersion)
+    if currVersion < "37.0" or addon.Options.db.Tabs == nil or SavedData.Fixes.FixTabs2 == true then
+        diagnostics.Debug("Tabs2 already ported from previous version");
+        return;
+    end
+
+    if pcall(function()
+        local addonName2, tabName, show, order;
+        for addonName3, tab in next, addon.Options.db.Tabs do
+            if tab.AddonName ~= nil then -- 35.x - 36.x
+                addonName2 = tab.AddonName;
+                tabName = tab.TabName;
+                show = tab.Show;
+                order = tab.Order;
+
+                addon.Options.db.Tabs[addonName2] = addon.Options.db.Tabs[addonName2] or {};
+                addon.Options.db.Tabs[addonName2][tabName] = {};
+                addon.Options.db.Tabs[addonName2][tabName].Show = show;
+                addon.Options.db.Tabs[addonName2][tabName].Order = order;
+
+                addon.Options.db.Tabs[addonName3] = nil;
+            else -- <= 34.x or >= 37.x
+                for tabName2, tab2 in next, tab do
+                    if type(tab2) == "boolean" then -- <= 34.x
+                        addonName2 = addonName3;
+                        tabName = tabName2;
+                        show = tab2;
+
+                        addon.Options.db.Tabs[addonName2] = addon.Options.db.Tabs[addonName2] or {};
+                        addon.Options.db.Tabs[addonName2][tabName] = {};
+                        addon.Options.db.Tabs[addonName2][tabName].Show = show;
+                    end
+                end
+            end
+        end
+
+        local tabOrder = {};
+        local noOrder = {};
+        local tabs = 0;
+        -- Now we have correct data, we can verify the order now
+        for _, tab in next, addon.Options.db.Tabs do
+            for _, tab2 in next, tab do
+                tabs = tabs + 1;
+                order = tab2.Order;
+                if order == nil then
+                    tinsert(noOrder, tab2);
+                elseif tabOrder[order] == nil then
+                    tabOrder[order] = tab2;
+                else
+                    tab2.Order = nil;
+                    tinsert(noOrder, tab2);
+                end
+            end
+        end
+
+        local noOrderFixed = 1;
+        for i = 1, tabs do
+            if tabOrder[i] == nil then
+                noOrder[noOrderFixed].Order = i;
+                noOrderFixed = noOrderFixed + 1;
+            end
+        end
+    end) then
+        -- No errors, assume tabs are ported
+    else
+        -- Porting failed, just reset tabs
+        addon.Options.db.Tabs = nil;
+    end
+
+    SavedData.Fixes.FixTabs2 = true;
+
+    diagnostics.Debug("Ported Tabs2 from previous version");
 end

@@ -69,9 +69,9 @@ function KrowiAF_SelectAchievement(achievement, mouseButton, ignoreModifiers, an
 
 	-- Set filters so achievement is visible
 	if filters then
-		local _filters = addon.Tabs[category:GetTree()[1].TabName].Filters;
-		achievement = filters.GetHighestAchievementWhenCollapseSeries(_filters, achievement);
-		filters:SetFilters(_filters, achievement);
+		local tabFilters = addon.Tabs[category:GetTree()[1].TabName].Filters;
+		achievement = filters.GetHighestAchievementWhenCollapseSeries(tabFilters, achievement);
+		filters:SetFilters(tabFilters, achievement);
 	end
 
 	KrowiAF_SelectAchievementWithCategory(achievement, category, mouseButton, ignoreModifiers, anchor, offsetX, offsetY);
@@ -82,7 +82,7 @@ function KrowiAF_SelectAchievementFromID(id, mouseButton, ignoreModifiers, ancho
 	KrowiAF_SelectAchievement(achievement, mouseButton, ignoreModifiers, anchor, offsetX, offsetY);
 end
 
-local function Select(category, collapsed, quick)
+local function SelectCategory(category, collapsed, quick)
 	local shown = false;
 	local previousScrollValue;
 
@@ -147,7 +147,7 @@ function KrowiAF_SelectCategory(category, collapsed)
 	for i, cat in next, categoriesTree do
 		if cat.TabName == nil then
 			if not cat.IsSelected or (cat.NotCollapsed == collapsed) then -- Issue #23: Fix -- Issue #25 Broken, Fix
-				Select(cat, collapsed, i ~= #categoriesTree); -- Issue #23: Broken
+				SelectCategory(cat, collapsed, i ~= #categoriesTree); -- Issue #23: Broken
 			end
 		end
 	end
@@ -165,26 +165,22 @@ function KrowiAF_RegisterTabButton(_addonName, tabName, button, selectFunc)
 	end
 end
 
-function KrowiAF_RegisterTabOptions(_addonName, tabName, addonDisplayName, tabDisplayName, bindingName)
-	addonDisplayName = addonDisplayName or _addonName;
-	tabDisplayName = tabDisplayName or tabName;
-
-	SavedData = SavedData or {}; -- Does not exist yet for new users
-    SavedData.TabKeys = SavedData.TabKeys or {};
-	SavedData.Tabs = SavedData.Tabs or {};
-
-	local indexFound;
+local function GetIndexOrInsert(_addonName, tabName, addonDisplayName, tabDisplayName, bindingName)
+	local index;
 	for i, tab in next, SavedData.Tabs do
 		if tab.AddonName == _addonName and tab.Name == tabName then
-			indexFound = i;
+			index = i;
 		end
 	end
-	if indexFound == nil then
+	if index == nil then
 		tinsert(SavedData.Tabs, addon.Objects.Tab:New(_addonName, tabName, bindingName));
 		tinsert(SavedData.TabKeys, addonDisplayName .. " - " .. tabDisplayName);
-		indexFound = #SavedData.TabKeys;
+		index = #SavedData.TabKeys;
 	end
+	return index;
+end
 
+local function SetOptionsOrder(_addonName, tabName, index)
 	local options;
     if addon.Options.Defaults then -- Pre options loaded
 		options = addon.Options.Defaults.profile.Tabs;
@@ -193,58 +189,80 @@ function KrowiAF_RegisterTabOptions(_addonName, tabName, addonDisplayName, tabDi
     end
 	options[_addonName] = options[_addonName] or {};
 	options[_addonName][tabName] = options[_addonName][tabName] or {};
-	options[_addonName][tabName].Order = indexFound;
+	options[_addonName][tabName].Order = index;
+end
+
+local function GetOrder(index)
+	addon.GUI.TabsOrderGetActiveKeys(); -- Just to make sure the list is cleaned up
+	for addonName2, tabs in next, addon.Options.db.Tabs do
+		for tabName, tab in next, tabs do
+			if tab.Order == index then
+				for i, tab2 in next, SavedData.Tabs do
+					if tab2.AddonName == addonName2 and tab2.Name == tabName then
+						return i;
+					end
+				end
+			end
+		end
+	end
+end
+
+local function SetOrder(index, value)
+	addon.GUI.TabsOrderGetActiveKeys(); -- Just to make sure the list is cleaned up
+			
+	-- We get the addon name and tab name for the selected tab
+	local tab = SavedData.Tabs[value];
+	-- print(value, tab.AddonName, tab.Name, addon.Options.db.Tabs[tab.AddonName][tab.Name].Order);
+
+	-- Get the current order
+	local order = addon.Options.db.Tabs[tab.AddonName][tab.Name].Order;
+
+	-- This order is new order for old selection
+	local aName, tName;
+	for addonName2, tabs in next, addon.Options.db.Tabs do
+		for tabName, tab2 in next, tabs do
+			if tab2.Order == index then
+				aName = addonName2;
+				tName = tabName;
+			end
+		end
+	end
+
+	-- local oldTab = SavedData.Tabs[indexFound];
+	-- print(indexFound, aName, tName, addon.Options.db.Tabs[aName][tName].Order);
+	addon.Options.db.Tabs[aName][tName].Order = order;
+	-- print(aName, tName, addon.Options.db.Tabs[aName][tName].Order);
+
+	-- Set current selection to index
+	-- local tab = SavedData.Tabs[value];
+	addon.Options.db.Tabs[tab.AddonName][tab.Name].Order = index;
+	-- print(tab.AddonName, tab.Name, addon.Options.db.Tabs[tab.AddonName][tab.Name].Order);
+	-- print(aName, tName, addon.Options.db.Tabs[aName][tName].Order);
+	addon.GUI.ShowHideTabs();
+end
+
+function KrowiAF_RegisterTabOptions(_addonName, tabName, addonDisplayName, tabDisplayName, bindingName)
+	addonDisplayName = addonDisplayName or _addonName;
+	tabDisplayName = tabDisplayName or tabName;
+
+	-- Make sure all tables exist
+	SavedData = SavedData or {};
+    SavedData.TabKeys = SavedData.TabKeys or {};
+	SavedData.Tabs = SavedData.Tabs or {};
+
+	local index = GetIndexOrInsert(_addonName, tabName, addonDisplayName, tabDisplayName, bindingName);
+
+	SetOptionsOrder(_addonName, tabName, index)
 
 	addon.Options.InjectOptionsTableAdd({
-        order = indexFound, type = "select", width = 2,
+        order = index, type = "select", width = 2,
         name = "",
         values = function() return addon.GUI.TabsOrderGetActiveKeys(); end,
         get = function()
-            addon.GUI.TabsOrderGetActiveKeys(); -- Just to make sure the list is cleaned up
-            for tabAddonName, tabs in next, addon.Options.db.Tabs do
-				for _tabName, tab in next, tabs do
-					if tab.Order == indexFound then
-						for i, _tab in next, SavedData.Tabs do
-							if _tab.AddonName == tabAddonName and _tab.Name == _tabName then
-								return i;
-							end
-						end
-					end
-				end
-			end
+            return GetOrder(index);
         end,
         set = function (_, value)
-            addon.GUI.TabsOrderGetActiveKeys(); -- Just to make sure the list is cleaned up
-			
-			-- We get the addon name and tab name for the selected tab
-			local tab = SavedData.Tabs[value];
-			-- print(value, tab.AddonName, tab.Name, addon.Options.db.Tabs[tab.AddonName][tab.Name].Order);
-
-			-- Get the current order
-			local order = addon.Options.db.Tabs[tab.AddonName][tab.Name].Order;
-
-			-- This order is new order for old selection
-			local aName, tName;
-			for tabAddonName, tabs in next, addon.Options.db.Tabs do
-				for _tabName, tab in next, tabs do
-					if tab.Order == indexFound then
-						aName = tabAddonName;
-						tName = _tabName;
-					end
-				end
-			end
-
-			-- local oldTab = SavedData.Tabs[indexFound];
-			-- print(indexFound, aName, tName, addon.Options.db.Tabs[aName][tName].Order);
-			addon.Options.db.Tabs[aName][tName].Order = order;
-			-- print(aName, tName, addon.Options.db.Tabs[aName][tName].Order);
-
-			-- Set current selection to index
-			-- local tab = SavedData.Tabs[value];
-            addon.Options.db.Tabs[tab.AddonName][tab.Name].Order = indexFound;
-			-- print(tab.AddonName, tab.Name, addon.Options.db.Tabs[tab.AddonName][tab.Name].Order);
-			-- print(aName, tName, addon.Options.db.Tabs[aName][tName].Order);
-            addon.GUI.ShowHideTabs();
+            SetOrder(index, value);
         end
-    }, tostring(indexFound), "args", "Layout", "args", "Tabs", "args", "Order");
+    }, tostring(index), "args", "Layout", "args", "Tabs", "args", "Order");
 end

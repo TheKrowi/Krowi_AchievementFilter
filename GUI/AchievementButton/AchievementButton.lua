@@ -310,9 +310,9 @@ local function AddGoTo(achievementsFrame, achievement)
 	local achID = addon.GetFirstAchievementID(achievement.ID);
 	local requiredForIDs = achievement:GetRequiredForIDs(addon.Filters.Validate, addon.Filters:GetFilters());
 
-	local _achievement = addon.Data.Achievements[achID];
+	local achievement2 = addon.Data.Achievements[achID];
 	local selectedCategory = addon.GUI.SelectedTab.SelectedCategory;
-	if _achievement.NextAchievements == nil
+	if achievement2.NextAchievements == nil
 	and #requiredForIDs == 0
 	and achievement.MoreCategories == nil
 	and selectedCategory ~= addon.Data.CurrentZoneCategory
@@ -324,7 +324,7 @@ local function AddGoTo(achievementsFrame, achievement)
 	local addSeparator = nil;
 
 	-- Part of a chain
-	if _achievement.NextAchievements ~= nil then
+	if achievement2.NextAchievements ~= nil then
 		goTo:AddFull({Text = addon.L["Part of a chain"], IsTitle = true});
 		AddPartOfAChainAchievement(goTo, achID, achievementsFrame);
 		addSeparator = true;
