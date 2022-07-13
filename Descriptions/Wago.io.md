@@ -45,8 +45,8 @@ Achievement Filter completely replaces the default Achievements tab and adds sev
 - Overview of which character earned how many achievement points.
 - Saturate achievements based on earned by your account, current character or a mix.
 - Custom objectives for certain achievements. (If you find missing ones, let me know.)
-- A **summary view** for each new tab.
-- A new **calendar view** that puts achievements earned on their respective day.
+- A ***summary view*** for each new tab.
+- A new ***calendar view*** that puts achievements earned on their respective day.
 
 More features are planned in the future and can be requested via the issues system or discord.
 

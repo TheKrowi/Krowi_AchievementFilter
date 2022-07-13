@@ -5,42 +5,6 @@ local data = addon.Data;
 data.SavedData = {};
 local savedData = data.SavedData;
 
-function savedData.TabsOrderAddIfNotContains(id, addonDisplayName, tabDisplayName)
-    SavedData = SavedData or {}; -- Does not exist yet for new users
-    SavedData.TabKeys = SavedData.TabKeys or {};
-
-    SavedData.TabKeys[id] = addonDisplayName .. " - " .. tabDisplayName;
-    if addon.Options.Defaults then -- Pre options loaded
-        addon.Options.Defaults.profile.Tabs[id].Order = id;
-    else -- Post options loaded
-        addon.Options.db.Tabs[id].Order = id;
-    end
-
-    addon.Options.InjectOptionsTableAdd({
-        order = id, type = "select", width = 2,
-        name = "",
-        values = function() return savedData.TabsOrderGetActiveKeys(); end,
-        get = function()
-            savedData.TabsOrderGetActiveKeys(); -- Just to make sure the list is cleaned up
-            for i, tab in next, addon.Options.db.Tabs do
-               if tab.Order == id then
-                   return i;
-               end
-            end
-        end,
-        set = function (_, value)
-            savedData.TabsOrderGetActiveKeys(); -- Just to make sure the list is cleaned up
-            for i, tab in next, addon.Options.db.Tabs do
-                if tab.Order == id then
-                    addon.Options.db.Tabs[i].Order = addon.Options.db.Tabs[value].Order;
-                end
-            end
-            addon.Options.db.Tabs[value].Order = id;
-            addon.GUI.ShowHideTabs();
-        end
-    }, tostring(id), "args", "Layout", "args", "Tabs", "args", "Order");
-end
-
 local needsCleanup = true;
 function savedData.TabsOrderGetActiveKeys()
     if not needsCleanup then
@@ -49,26 +13,29 @@ function savedData.TabsOrderGetActiveKeys()
 
     -- local numTabs = #addon.Options.db.Tabs;
     local tabsOrder = {};
-    for i = #addon.Options.db.Tabs, 1, -1 do
-        local tab = addon.Options.db.Tabs[i];
-        if tab.AddonName == "Blizzard_AchievementUI" or IsAddOnLoaded(tab.AddonName) then
-            tinsert(tabsOrder, {
-                tab.Order,
-                i
-            });
-            -- tabsOrder[tab.Order] = i;
-            -- print(tab.Order, i, tab.AddonName, tab.TabName);
+    for tabsAddonName, tabs in next, addon.Options.db.Tabs do
+        if tabsAddonName == "Blizzard_AchievementUI" or IsAddOnLoaded(tabsAddonName) then
+            for tabName, tab in next, tabs do
+                tinsert(tabsOrder, {
+                    tabsAddonName,
+                    tabName,
+                    tab.Order
+                });
+            end
         else
-            -- print(tab.Order, i, tab.AddonName, tab.TabName, "nil");
-            -- tabsOrder[tab.Order] = nil;
-            tremove(addon.Options.db.Tabs, i);
-            tremove(SavedData.TabKeys, i);
+            addon.Options.db.Tabs[tabsAddonName] = nil;
+            for i = #SavedData.Tabs, 1, -1 do
+                if SavedData.Tabs[i].AddonName == tabsAddonName then
+                    tremove(SavedData.Tabs, i);
+                    tremove(SavedData.TabKeys, i);
+                end
+            end
         end
     end
 
     -- addon.Diagnostics.DebugTable(tabsOrder);
     sort(tabsOrder, function(a, b)
-        return a[1] < b[1];
+        return a[3] < b[3];
     end);
     -- addon.Diagnostics.DebugTable(tabsOrder);
 
@@ -76,7 +43,7 @@ function savedData.TabsOrderGetActiveKeys()
     local properIndex = 1;
     for _, order in next, tabsOrder do
         -- print(properIndex, order[1], order[2], addon.Options.db.Tabs[order[2]].Order)
-        addon.Options.db.Tabs[order[2]].Order = properIndex;
+        addon.Options.db.Tabs[order[1]][order[2]].Order = properIndex;
         properIndex = properIndex + 1;
     end
 
@@ -84,18 +51,22 @@ function savedData.TabsOrderGetActiveKeys()
 
     if not SavedData.FirstTimeSetUp.SwitchAchievementTabs then
         local blizzAchId, addonAchId = 1, 1;
-        for i, _ in next, addon.Options.db.Tabs do
-            if addon.Options.db.Tabs[i].AddonName == "Blizzard_AchievementUI" and addon.Options.db.Tabs[i].TabName == "Achievements" then
+        for i, _ in next, SavedData.Tabs do
+            if SavedData.Tabs[i].AddonName == "Blizzard_AchievementUI" and SavedData.Tabs[i].Name == "Achievements" then
                 blizzAchId = i;
             end
-            if addon.Options.db.Tabs[i].AddonName == addonName and addon.Options.db.Tabs[i].TabName == "Achievements" then
+            if SavedData.Tabs[i].AddonName == addonName and SavedData.Tabs[i].Name == "Achievements" then
                 addonAchId = i;
             end
         end
-        local tmpOrder = addon.Options.db.Tabs[blizzAchId].Order;
-        addon.Options.db.Tabs[blizzAchId].Order = addon.Options.db.Tabs[addonAchId].Order;
-        addon.Options.db.Tabs[addonAchId].Order = tmpOrder;
+        addon.Options.db.Tabs["Blizzard_AchievementUI"]["Achievements"].Order = addonAchId;
+        addon.Options.db.Tabs[addonName]["Achievements"].Order = blizzAchId;
         addon.Options.db.MicroButtonTab = addonAchId;
+        local binding = GetBindingByKey("Y");
+        if binding == SavedData.Tabs[blizzAchId].BindingName then
+            SetBinding("Y", SavedData.Tabs[addonAchId].BindingName);
+            SaveBindings(GetCurrentBindingSet());
+        end
         SavedData.FirstTimeSetUp.SwitchAchievementTabs = true;
     end
 

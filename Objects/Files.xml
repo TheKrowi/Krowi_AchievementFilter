@@ -6,4 +6,5 @@
     <Script file="Achievement.lua" />
     <Script file="Category.lua" />
     <Script file="Event.lua" />
+    <Script file="Tab.lua" />
 </Ui>

@@ -182,7 +182,7 @@ options.OptionsTable.args["General"] = {
                         options.Debug(addon.L["Rebind Micro Button"], addon.Options.db.MicroButtonTab);
                     end
                 },
-                Discord = {
+                SetKeybind = {
                     order = 2.2, type = "execute",
                     name = addon.L["Set Keybind"],
                     desc = addon.Util.ReplaceVars {
@@ -190,9 +190,8 @@ options.OptionsTable.args["General"] = {
                         keyBindings = addon.L["Key Bindings"]
                     },
                     func = function()
-                        local tab = addon.Options.db.Tabs[addon.Options.db.MicroButtonTab];
+                        local tab = SavedData.Tabs[addon.Options.db.MicroButtonTab];
                         if tab.BindingName then
-                            SavedData.BindingName = tab.BindingName;
                             SetBinding("Y", tab.BindingName);
                             SaveBindings(GetCurrentBindingSet());
                         end

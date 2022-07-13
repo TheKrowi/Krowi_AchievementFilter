@@ -221,20 +221,20 @@ options.OptionsTable.args["Layout"] = {
                         Achievements = {
                             type = "toggle",
                             name = addon.L["Achievements"],
-                            get = function() return addon.Options.db.Tabs[1].Show; end,
-                            set = function() addon.GUI.ShowHideTabs(1); end
+                            get = function() return addon.Options.db.Tabs["Blizzard_AchievementUI"]["Achievements"].Show; end,
+                            set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Achievements"); end
                         },
                         Guild = {
                             type = "toggle",
                             name = addon.L["Guild"],
-                            get = function() return addon.Options.db.Tabs[2].Show; end,
-                            set = function() addon.GUI.ShowHideTabs(2); end
+                            get = function() return addon.Options.db.Tabs["Blizzard_AchievementUI"]["Guild"].Show; end,
+                            set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Guild"); end
                         },
                         Statistics = {
                             type = "toggle",
                             name = addon.L["Statistics"],
-                            get = function() return addon.Options.db.Tabs[3].Show; end,
-                            set = function() addon.GUI.ShowHideTabs(3); end
+                            get = function() return addon.Options.db.Tabs["Blizzard_AchievementUI"]["Statistics"].Show; end,
+                            set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Statistics"); end
                         }
                     }
                 },

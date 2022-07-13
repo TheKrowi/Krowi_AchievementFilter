@@ -8,10 +8,12 @@ plugins.ElvUI = {};
 local elvUI = plugins.ElvUI;
 tinsert(plugins.Plugins, elvUI);
 
-local function SkinTabs(tabs, skins)
-    for t, _ in next, tabs do
-        skins:HandleTab(_G['AchievementFrameTab'..tabs[t].Button.ID])
-		_G['AchievementFrameTab'..tabs[t].Button.ID]:SetFrameLevel(_G['AchievementFrameTab'..tabs[t].Button.ID]:GetFrameLevel() + 2)
+local function SkinTabs(skins)
+    for _, addonTabs in next, addon.GUI.Tabs do
+        for _, tab in next, addonTabs do
+            skins:HandleTab(tab)
+            tab:SetFrameLevel(tab:GetFrameLevel() + 2);
+        end
     end
 end
 
@@ -564,7 +566,7 @@ local function SkinAll()
     -- local enabled, engine, skins = elvUISkin.Load();
 
     if SavedData.ElvUISkin.Achievements then
-        SkinTabs(addon.Tabs, skins);
+        SkinTabs(skins);
         SkinCategoriesFrame(addon.GUI.CategoriesFrame, skins);
         SkinGameTooltipProgressBar(addon.GUI.GameTooltipProgressBar, engine);
         SkinAchievementsFrame(addon.GUI.AchievementsFrame, engine, skins);

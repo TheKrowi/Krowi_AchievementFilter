@@ -1,6 +1,8 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 9.2.5.37.0 - 2022-xx-xx
+
 ## 9.2.5.36.3 - 2022-07-13
 ### Fixed
 - Earning an achievement should no longer cause an error with the calendar

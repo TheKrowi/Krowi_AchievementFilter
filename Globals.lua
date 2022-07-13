@@ -317,9 +317,12 @@ function addon.HookSelectAchievement()
 end
 
 function addon.HookAchievementFrameOnShow()
-    hooksecurefunc("AchievementFrame_SetTabs", function()
+    -- hooksecurefunc("AchievementFrame_SetTabs", function()
+    --     addon.GUI.ShowHideTabs();
+    -- end);
+    AchievementFrame_SetTabs = function() -- Tainting by overwriting but showing and anchoring tabs is handled somewhere else now
         addon.GUI.ShowHideTabs();
-    end);
+    end
 end
 
 local function MakeMovable(frame, target)
@@ -444,25 +447,18 @@ function addon.GetVariantSetIDs(baseSetIds)
     return setIDs;
 end
 
--- function addon.HookAchievementMicroButtonOnEvent()
---     hooksecurefunc(AchievementMicroButton, "OnEvent", function()
---         AchievementMicroButton.tooltipText = MicroButtonTooltipText(ACHIEVEMENT_BUTTON, SavedData.BindingName);
---         print("HookAchievementMicroButtonOnEvent");
---     end);
--- end
-
 function addon.ChangeAchievementMicroButtonOnClick()
     addon.Data.SavedData.TabsOrderGetActiveKeys(); -- Cleanup unused tabs
-    if addon.Options.db.MicroButtonTab > #addon.Options.db.Tabs then
-        for i, _ in next, addon.Options.db.Tabs do
-            if addon.Options.db.Tabs[i].AddonName == addonName and addon.Options.db.Tabs[i].TabName == "Achievements" then
+    if addon.Options.db.MicroButtonTab > #SavedData.Tabs then
+        for i, _ in next, SavedData.Tabs do
+            if SavedData.Tabs[i].AddonName == addonName and SavedData.Tabs[i].Name == "Achievements" then
                 addon.Options.db.MicroButtonTab = i;
             end
         end
     end
-    local tab = addon.Options.db.Tabs[addon.Options.db.MicroButtonTab];
+    local tab = SavedData.Tabs[addon.Options.db.MicroButtonTab];
     AchievementMicroButton:SetScript("OnClick", function(self)
-        addon.GUI.ToggleAchievementFrame(tab.AddonName, tab.TabName);
+        addon.GUI.ToggleAchievementFrame(tab.AddonName, tab.Name);
     end);
 end
 
