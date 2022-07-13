@@ -1,4 +1,4 @@
--- [[ Exported at 2022-07-11 23-16-41 ]] --
+-- [[ Exported at 2022-07-13 20-42-14 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -157,6 +157,8 @@ L["Wago"] = "Wago";
 L["WoWInterface"] = "WoWInterface";
 L["Show minimap icon"] = "显示小地图图标";
 L["Reset view on open"] = "每次打开时重置过滤和界面";
+L["Rebind Micro Button"] = "重新绑定按键";
+L["Set Keybind"] = "设置按键";
 L["Search"] = "搜索";
 L["Clear search field on Right Click"] = "右键清除搜索栏";
 L["Exclude Excluded achievements"] = "不搜索已排除的成就";
@@ -167,7 +169,7 @@ L["Filters"] = "过滤器";
 L["Reset Faction Filters"] = "重置阵营过滤器";
 L["Layout"] = "布局";
 L["Window"] = "窗口";
-L["Make window movable"] = "窗口可移动";
+L["Make windows movable"] = "窗口可移动";
 L["Categories width offset"] = "成就类别框宽度";
 L["Achievement window height offset"] = "成就窗口高度";
 L["Order"] = "顺序";
@@ -251,8 +253,6 @@ L["Lucky Yi"] = "幸运的小艺";
 L["Ka'wi the Gorger"] = "贪吃的卡瓦";
 L["Nitun"] = "尼顿";
 L["Number of summary achievements"] = "成就汇总数量";
-L["Rebind Micro Button"] = "重新绑定按键";
-L["Set Keybind"] = "设置按键";
 L["Criteria of"] = "标准";
 L["Guides"] = "指南";
 L["News"] = "新闻";

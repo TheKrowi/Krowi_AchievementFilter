@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 - Tabs are now handled by addon and tab name and API is accessible by other addons (see Plugins/Overachiever.lua for example or ask for assistance on discord)
 - Focused, Current Zone, Selected Zone and Excluded categories are moved to Specials tab
 - Rearanged general options to be more in line with the rest
+- Renamed Earned by filter 'Character' to 'Character only'
+- Character only filter now handles completed achievements by checking if it was earned by the current character compared to checking if it is completed on any character
 
 ## 9.2.5.36.3 - 2022-07-13
 ### Fixed

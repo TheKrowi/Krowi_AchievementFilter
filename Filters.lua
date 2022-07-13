@@ -89,8 +89,8 @@ function filters:Load()
     end
 
     self.Account = addon.L["Account"];
-    self.Character = (GetCategoryInfo(92));
-    self.CharacterAccount = self.Character .. " / " .. self.Account;
+    self.CharacterAccount = (GetCategoryInfo(92)) .. " / " .. self.Account;
+    self.CharacterOnly = addon.L["Character only"];
 end
 
 -- [[ Validation ]] --
@@ -160,7 +160,12 @@ local validations = {
 
 function filters.Validate(_filters, achievement, ignoreCollapseSeries)
 
-    _, _, _, completedCache = addon.GetAchievementInfo(achievement.ID);
+    local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = addon.GetAchievementInfo(achievement.ID);
+    if addon.Filters.db.EarnedBy == addon.Filters.CharacterOnly then
+        completedCache = wasEarnedByMe;
+    else
+        completedCache = completed;
+    end
     ignoreCollapseSeriesCache = ignoreCollapseSeries;
     for i, validation in next, validations do
         if validation.Validate(_filters, achievement) then -- If true, DO NOT show achievement

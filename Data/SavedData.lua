@@ -32,7 +32,7 @@ function savedData.Load()
 end
 
 local FixFeaturesTutorialProgress, FixElvUISkin, FixFilters, FixEventDetails, FixShowExcludedCategory, FixEventDetails2, FixCharacters, FixEventAlert;
-local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters, FixNewEarnedByFilter, FixTabs2;
+local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters, FixNewEarnedByFilter, FixTabs2, FixNewEarnedByFilter2;
 function LoadSolutions()
     local solutions = {
         FixFeaturesTutorialProgress, -- 1
@@ -49,6 +49,7 @@ function LoadSolutions()
         FixCovenantFilters, -- 12
         FixNewEarnedByFilter, -- 13
         FixTabs2, -- 14
+        FixNewEarnedByFilter2, -- 15
     };
 
     return solutions;
@@ -240,7 +241,7 @@ function FixCovenantFilters(prevBuild, currBuild, prevVersion, currVersion)
 end
 
 function FixNewEarnedByFilter(prevBuild, currBuild, prevVersion, currVersion)
-    if currVersion < "36" or SavedData.Fixes.FixNewEarnedByFilter == true then
+    if currVersion < "36.0" or SavedData.Fixes.FixNewEarnedByFilter == true then
         diagnostics.Debug("New earned by filter already transfered from previous version");
         return;
     end
@@ -326,4 +327,19 @@ function FixTabs2(prevBuild, currBuild, prevVersion, currVersion)
     SavedData.Fixes.FixTabs2 = true;
 
     diagnostics.Debug("Ported Tabs2 from previous version");
+end
+
+function FixNewEarnedByFilter2(prevBuild, currBuild, prevVersion, currVersion)
+    if currVersion < "37.0" or SavedData.Fixes.FixNewEarnedByFilter2 == true then
+        diagnostics.Debug("New earned by filter2 already transfered from previous version");
+        return;
+    end
+
+    if Filters.profiles and Filters.profiles.Default and Filters.profiles.Default.EarnedBy == (GetCategoryInfo(92)) then
+        Filters.profiles.Default.EarnedBy = addon.L["Character only"];
+    end
+
+    SavedData.Fixes.FixNewEarnedByFilter2 = true;
+
+    diagnostics.Debug("Transfered new earned by filter2 from previous version");
 end
