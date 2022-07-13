@@ -198,9 +198,9 @@ function KrowiAF_RegisterTabOptions(_addonName, tabName, addonDisplayName, tabDi
 	addon.Options.InjectOptionsTableAdd({
         order = indexFound, type = "select", width = 2,
         name = "",
-        values = function() return addon.Data.SavedData.TabsOrderGetActiveKeys(); end,
+        values = function() return addon.GUI.TabsOrderGetActiveKeys(); end,
         get = function()
-            addon.Data.SavedData.TabsOrderGetActiveKeys(); -- Just to make sure the list is cleaned up
+            addon.GUI.TabsOrderGetActiveKeys(); -- Just to make sure the list is cleaned up
             for tabAddonName, tabs in next, addon.Options.db.Tabs do
 				for _tabName, tab in next, tabs do
 					if tab.Order == indexFound then
@@ -214,7 +214,7 @@ function KrowiAF_RegisterTabOptions(_addonName, tabName, addonDisplayName, tabDi
 			end
         end,
         set = function (_, value)
-            addon.Data.SavedData.TabsOrderGetActiveKeys(); -- Just to make sure the list is cleaned up
+            addon.GUI.TabsOrderGetActiveKeys(); -- Just to make sure the list is cleaned up
 			
 			-- We get the addon name and tab name for the selected tab
 			local tab = SavedData.Tabs[value];

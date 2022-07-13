@@ -172,7 +172,7 @@ options.OptionsTable.args["General"] = {
                     order = 2.1, type = "select", width = 2,
                     name = addon.L["Rebind Micro Button"],
                     desc = addon.L["Rebind Micro Button Desc"],
-                    values = function() return addon.Data.SavedData.TabsOrderGetActiveKeys(); end,
+                    values = function() return addon.GUI.TabsOrderGetActiveKeys(); end,
                     get = function()
                         return addon.Options.db.MicroButtonTab;
                     end,

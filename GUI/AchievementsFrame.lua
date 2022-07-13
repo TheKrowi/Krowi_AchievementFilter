@@ -234,7 +234,10 @@ function achievementsFrame:FindSelection()
 	while true do
 		for _, button in next, buttons do
 			if button.selected then
-				newHeight = scrollBar:GetValue() + scrollFrame:GetTop() - button:GetTop();
+				local scrollBarValue = scrollBar:GetValue();
+				local scrollFrameTop = scrollFrame:GetTop();
+				local buttonTop = button:GetTop();
+				newHeight = scrollBarValue + scrollFrameTop - buttonTop;
 				newHeight = min(newHeight, maxVal);
 				scrollBar:SetValue(newHeight);
 				return;

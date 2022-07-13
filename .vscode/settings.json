@@ -313,7 +313,9 @@
         "LATEST_UNLOCKED_ACHIEVEMENTS",
         "ACHIEVEMENT_CATEGORY_PROGRESS",
         "GetAddOnInfo",
-        "Overachiever"
+        "Overachiever",
+        "GetBindingByKey",
+        "GetServerTime"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

@@ -317,9 +317,6 @@ function addon.HookSelectAchievement()
 end
 
 function addon.HookAchievementFrameOnShow()
-    -- hooksecurefunc("AchievementFrame_SetTabs", function()
-    --     addon.GUI.ShowHideTabs();
-    -- end);
     AchievementFrame_SetTabs = function() -- Tainting by overwriting but showing and anchoring tabs is handled somewhere else now
         addon.GUI.ShowHideTabs();
     end
@@ -448,7 +445,7 @@ function addon.GetVariantSetIDs(baseSetIds)
 end
 
 function addon.ChangeAchievementMicroButtonOnClick()
-    addon.Data.SavedData.TabsOrderGetActiveKeys(); -- Cleanup unused tabs
+    addon.GUI.TabsOrderGetActiveKeys(); -- Cleanup unused tabs
     if addon.Options.db.MicroButtonTab > #SavedData.Tabs then
         for i, _ in next, SavedData.Tabs do
             if SavedData.Tabs[i].AddonName == addonName and SavedData.Tabs[i].Name == "Achievements" then
