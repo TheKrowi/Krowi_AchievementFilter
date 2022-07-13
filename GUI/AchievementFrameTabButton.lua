@@ -8,16 +8,13 @@ local ourTabIDs = {};
 
 -- [[ Constructors ]] --
 achFrameTabBtn.__index = achFrameTabBtn; -- Used to support OOP like code
-function achFrameTabBtn:New(addonName, name, bindingName, text, framesToShow, achievementsFrame, categoriesFrame, categories, filters)
+function achFrameTabBtn:New(text, framesToShow, achievementsFrame, categoriesFrame, categories, filters)
 	-- Increment ID
     PanelTemplates_SetNumTabs(AchievementFrame, AchievementFrame.numTabs + 1);
 
 	-- Create frame
     local frame = CreateFrame("Button", "AchievementFrameTab" .. AchievementFrame.numTabs, AchievementFrame, "AchievementFrameTabButtonTemplate"); -- Blizzard naming
     frame:SetID(AchievementFrame.numTabs);
-    -- frame.AddonName = addonName;
-    -- frame.Name = name;
-    -- frame.BindingName = bindingName;
     frame:SetText(text);
     addon.Util.InjectMetatable(frame, achFrameTabBtn);
 

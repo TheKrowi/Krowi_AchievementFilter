@@ -49,22 +49,26 @@ function savedData.TabsOrderGetActiveKeys()
 
     SavedData.FirstTimeSetUp = SavedData.FirstTimeSetUp or {};
 
-    -- if not SavedData.FirstTimeSetUp.SwitchAchievementTabs then
-    --     local blizzAchId, addonAchId = 1, 1;
-    --     for i, _ in next, addon.Options.db.Tabs do
-    --         if addon.Options.db.Tabs[i].AddonName == "Blizzard_AchievementUI" and addon.Options.db.Tabs[i].TabName == "Achievements" then
-    --             blizzAchId = i;
-    --         end
-    --         if addon.Options.db.Tabs[i].AddonName == addonName and addon.Options.db.Tabs[i].TabName == "Achievements" then
-    --             addonAchId = i;
-    --         end
-    --     end
-    --     local tmpOrder = addon.Options.db.Tabs[blizzAchId].Order;
-    --     addon.Options.db.Tabs[blizzAchId].Order = addon.Options.db.Tabs[addonAchId].Order;
-    --     addon.Options.db.Tabs[addonAchId].Order = tmpOrder;
-    --     addon.Options.db.MicroButtonTab = addonAchId;
-    --     SavedData.FirstTimeSetUp.SwitchAchievementTabs = true;
-    -- end
+    if not SavedData.FirstTimeSetUp.SwitchAchievementTabs then
+        local blizzAchId, addonAchId = 1, 1;
+        for i, _ in next, SavedData.Tabs do
+            if SavedData.Tabs[i].AddonName == "Blizzard_AchievementUI" and SavedData.Tabs[i].Name == "Achievements" then
+                blizzAchId = i;
+            end
+            if SavedData.Tabs[i].AddonName == addonName and SavedData.Tabs[i].Name == "Achievements" then
+                addonAchId = i;
+            end
+        end
+        addon.Options.db.Tabs["Blizzard_AchievementUI"]["Achievements"].Order = addonAchId;
+        addon.Options.db.Tabs[addonName]["Achievements"].Order = blizzAchId;
+        addon.Options.db.MicroButtonTab = addonAchId;
+        local binding = GetBindingByKey("Y");
+        if binding == SavedData.Tabs[blizzAchId].BindingName then
+            SetBinding("Y", SavedData.Tabs[addonAchId].BindingName);
+            SaveBindings(GetCurrentBindingSet());
+        end
+        SavedData.FirstTimeSetUp.SwitchAchievementTabs = true;
+    end
 
     needsCleanup = nil;
     return SavedData.TabKeys;
