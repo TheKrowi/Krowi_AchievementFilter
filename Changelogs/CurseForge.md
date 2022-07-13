@@ -1,5 +1,10 @@
 <p><h1>Changelog</h1></p>
 All notable changes to this project will be documented in this file.
+<p><h2>9.2.5.36.3 - 2022-07-13</h2></p>
+<h3>Fixed</h3>
+<ul>
+<li>Earning an achievement should no longer cause an error with the calendar</li>
+</ul>
 <p><h2>9.2.5.36.2 - 2022-07-12</h2></p>
 <h3>Fixed</h3>
 <ul>

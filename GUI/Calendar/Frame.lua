@@ -198,7 +198,7 @@ end
 
 function KrowiAF_AchievementCalendarFrame_OnEvent(self, event, ...)
 	if event == "ACHIEVEMENT_EARNED" then
-		frame:Update();
+		self:Update();
 	end
 end
 
