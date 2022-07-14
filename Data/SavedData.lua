@@ -186,7 +186,6 @@ function FixEventDetails2(prevBuild, currBuild, prevVersion, currVersion, firstT
     diagnostics.Debug("EventDetails2 reset");
 end
 
-
 function FixCharacters(prevBuild, currBuild, prevVersion, currVersion, firstTime)
     -- In version 34.0 the character cache structure changed
     -- Here we clean up the old SavedData.CharacterAchievementPoints for users pre 34.0
@@ -265,25 +264,35 @@ function FixShowCurrentCharacterIcons(prevBuild, currBuild, prevVersion, currVer
 end
 
 function FixTabs(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    if currVersion < "35.0" or currVersion >= "37.0" or addon.Options.db.Tabs == nil or SavedData.Fixes.FixTabs == true then
+    -- In version 35.0 the data structure for the tabs got changes from 
+    -- addonName = {
+    --     tab1 = true,
+    --     tab2 = true,
+    --     tab3 = false
+    -- }
+    -- with the boolean meaning show or hide the tab to
+    -- {
+    --     {
+    --         AddonName = addonName,
+    --         TabName = tab1,
+    --         Show = true
+    --     },
+    --     ...
+    -- }
+    -- Here we transfer the data from the old structure to the new
+    -- This has however changed again in 37.0
+
+    -- Now we just make sure to remove the fix flag for users pre 37.0
+    if firstTime and currVersion > "35.0" then
+        diagnostics.Debug("First time Tabs port OK");
+        return;
+    end
+    if SavedData.Fixes.FixTabs == nil then
         diagnostics.Debug("Tabs already ported from previous version");
         return;
     end
 
-    for addonName2, tab in next, addon.Options.db.Tabs do
-        if not tab.AddonName then
-            for tabName, _ in next, addon.Options.db.Tabs[addonName2] do
-                for i, tab2 in next, addon.Options.db.Tabs do
-                    if tab2.AddonName and tab2.AddonName == addonName2 and tab2.TabName == tabName then
-                        addon.Options.db.Tabs[i].Show = addon.Options.db.Tabs[addonName2][tabName];
-                    end
-                end
-            end
-            addon.Options.db.Tabs[addonName2] = nil;
-        end
-    end
-
-    SavedData.Fixes.FixTabs = true;
+    SavedData.Fixes.FixTabs = nil;
 
     diagnostics.Debug("Ported Tabs from previous version");
 end
@@ -299,7 +308,15 @@ local function ClearCovenant(table)
 end
 
 function FixCovenantFilters(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    if currVersion < "35.1" or SavedData.Fixes.FixCovenantFilters == true then
+    -- In version 35.1 the covenant filters got removed
+    -- Here we clean up the old data
+
+    if firstTime and currVersion > "35.1" then
+        SavedData.Fixes.FixCovenantFilters = true;
+        diagnostics.Debug("First time Covenant filters OK");
+        return;
+    end
+    if SavedData.Fixes.FixCovenantFilters == true then
         diagnostics.Debug("Covenant filters already cleared from previous version");
         return;
     end
@@ -314,7 +331,15 @@ function FixCovenantFilters(prevBuild, currBuild, prevVersion, currVersion, firs
 end
 
 function FixNewEarnedByFilter(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    if currVersion < "36.0" or SavedData.Fixes.FixNewEarnedByFilter == true then
+    -- In version 36.0 the Character earned by filter changed to Character / Account
+    -- Here we transfer that data
+
+    if firstTime and currVersion > "35.1" then
+        SavedData.Fixes.FixNewEarnedByFilter = true;
+        diagnostics.Debug("First time New earned by filter OK");
+        return;
+    end
+    if SavedData.Fixes.FixNewEarnedByFilter == true then
         diagnostics.Debug("New earned by filter already transfered from previous version");
         return;
     end
@@ -329,7 +354,25 @@ function FixNewEarnedByFilter(prevBuild, currBuild, prevVersion, currVersion, fi
 end
 
 function FixTabs2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    if currVersion < "37.0" or addon.Options.db.Tabs == nil or SavedData.Fixes.FixTabs2 == true then
+    -- In version 37.0 the tabs data structure changed once again from (see FixTabs) tostring
+    -- {
+    --     addonName = {
+    --         tab1 = {
+    --             Show = true,
+    --             Order = 1
+    --         },
+    --         ...
+    --     },
+    --     ...
+    -- }
+    -- Here we try to transfer this data from pre 34.0 structure and 35.0 - 36.3 structure (not easy)
+
+    if firstTime and currVersion > "37.0" then
+        SavedData.Fixes.FixTabs2 = true;
+        diagnostics.Debug("First time Tabs2 OK");
+        return;
+    end
+    if SavedData.Fixes.FixTabs2 == true then
         diagnostics.Debug("Tabs2 already ported from previous version");
         return;
     end
@@ -411,7 +454,15 @@ function FixTabs2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
 end
 
 function FixNewEarnedByFilter2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    if currVersion < "37.0" or SavedData.Fixes.FixNewEarnedByFilter2 == true then
+    -- In version 37.0 the Character earned by filter changed again to Character only
+    -- Here we transfer that data
+    
+    if firstTime and currVersion > "37.0" then
+        SavedData.Fixes.FixNewEarnedByFilter2 = true;
+        diagnostics.Debug("First time New earned by filter2 OK");
+        return;
+    end
+    if SavedData.Fixes.FixNewEarnedByFilter2 == true then
         diagnostics.Debug("New earned by filter2 already transfered from previous version");
         return;
     end
