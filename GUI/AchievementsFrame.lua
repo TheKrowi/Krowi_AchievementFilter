@@ -173,7 +173,7 @@ function achievementsFrame:ForceUpdate(toTop) -- Issue #3: Fix
 	local filters = addon.Filters;
 	if filters then
 		local selectedTab = addon.GUI.SelectedTab;
-		selectedTab.SelectedAchievement = filters:GetHighestAchievementWhenCollapseSeries(selectedTab.Filters, selectedTab.SelectedAchievement);
+		selectedTab.SelectedAchievement = filters.GetHighestAchievementWhenCollapseSeries(selectedTab.Filters, selectedTab.SelectedAchievement);
 	end
 
 	-- Issue #8: Broken

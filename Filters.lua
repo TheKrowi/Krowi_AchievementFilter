@@ -253,7 +253,8 @@ local function CompareName(a, b, reverse, default)
         return true;
     end
 
-    if nameA == nameB then
+    local nameAlower, nameBlower = nameA:lower(), nameB:lower();
+    if nameAlower == nameBlower then
         if reverse then
             return default[a] > default[b];
         end
@@ -261,9 +262,9 @@ local function CompareName(a, b, reverse, default)
     end
 
     if reverse then
-        return nameA:lower() > nameB:lower();
+        return nameAlower > nameBlower;
     end
-    return nameA:lower() < nameB:lower();
+    return nameAlower < nameBlower;
 end
 
 local function CompareCompletion(a, b, reverse, default)
@@ -290,7 +291,7 @@ end
 
 local function CompareId(a, b, reverse, default)
     if reverse then
-        return a.ID > b.ID
+        return a.ID > b.ID;
     end
     return a.ID < b.ID;
 end
@@ -300,13 +301,13 @@ function filters:Sort(achievements, defaultOrder)
 	local criteria = filters2.SortBy.Criteria;
 	local reverse = filters2.SortBy.ReverseSort;
 
-    local sortFun;
+    local sortFunc;
     if criteria == addon.L["Name"] then
-        sortFun = CompareName;
+        sortFunc = CompareName;
 	elseif criteria == addon.L["Completion"] then
-        sortFun = CompareCompletion;
+        sortFunc = CompareCompletion;
 	elseif criteria == addon.L["ID"] then
-        sortFun = CompareId;
+        sortFunc = CompareId;
 	else -- criteria == addon.L["Default"]
         if reverse then
 			local tmpTbl = {};
@@ -319,7 +320,7 @@ function filters:Sort(achievements, defaultOrder)
 	end
 
     table.sort(achievements, function(a, b)
-        return sortFun(a, b, reverse, defaultOrder);
+        return sortFunc(a, b, reverse, defaultOrder);
     end);
     return achievements;
 end

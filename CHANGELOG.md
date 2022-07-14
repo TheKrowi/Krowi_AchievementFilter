@@ -12,6 +12,10 @@ All notable changes to this project will be documented in this file.
 - Renamed Earned by filter 'Character' to 'Character only'
 - Character only filter now handles completed achievements by checking if it was earned by the current character compared to checking if it is completed on any character
 
+### Fixed
+- Sometimes an achievement did not display anything and was not interactable after switching tabs
+- Achievement is not selected again when leaving tab and going back if it was selected before
+
 ## 9.2.5.36.3 - 2022-07-13
 ### Fixed
 - Earning an achievement should no longer cause an error with the calendar
