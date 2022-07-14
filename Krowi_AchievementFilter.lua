@@ -61,7 +61,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
             addon.Data.LoadExcludedAchievements(addon.Data.Achievements);
 
             addon.MakeWindowMovable();
-            addon.HookSetAchievementFrameHeaderPointsText();
+            addon.GUI.AchievementFrameHeader.HookSetPointsText();
             addon.HookAchievementFrameOnShow();
             addon.HookSelectAchievement();
         end

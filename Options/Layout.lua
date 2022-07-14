@@ -282,7 +282,7 @@ options.OptionsTable.args["Layout"] = {
                     inline = true,
                     args = {
                         AlwaysShowRealm = {
-                            type = "toggle", width = 1.5,
+                            order = 1.1, type = "toggle", width = "normal",
                             name = addon.L["Always show realm"],
                             desc = addon.L["Always show realm Desc"],
                             get = function() return addon.Options.db.AchievementPoints.Tooltip.AlwaysShowRealm; end,
@@ -290,7 +290,18 @@ options.OptionsTable.args["Layout"] = {
                                 addon.Options.db.AchievementPoints.Tooltip.AlwaysShowRealm = not addon.Options.db.AchievementPoints.Tooltip.AlwaysShowRealm;
                                 options.Debug(addon.L["Always show realm"], addon.Options.db.AchievementPoints.Tooltip.AlwaysShowRealm);
                             end
-                        }
+                        },
+                        Blank12 = {order = 1.2, type = "description", width = "double", name = ""},
+                        ShowFaction = {
+                            order = 2.1, type = "toggle", width = "normal",
+                            name = addon.L["Show faction icon"],
+                            desc = addon.L["Show faction icon Desc"],
+                            get = function() return addon.Options.db.AchievementPoints.Tooltip.ShowFaction; end,
+                            set = function()
+                                addon.Options.db.AchievementPoints.Tooltip.ShowFaction = not addon.Options.db.AchievementPoints.Tooltip.ShowFaction;
+                                options.Debug(addon.L["Show faction icon"], addon.Options.db.AchievementPoints.Tooltip.ShowFaction);
+                            end
+                        },
                     }
                 }
             }

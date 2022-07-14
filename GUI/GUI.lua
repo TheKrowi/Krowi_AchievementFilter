@@ -15,7 +15,6 @@ function gui:LoadWithAddon()
     addon.Filters:InjectDefaults();
 end
 
-local CreateAchievementPointsTooltip;
 function gui:LoadWithBlizzard_AchievementUI()
     self.SetAchievementFrameHeight(addon.Options.db.Window.AchievementFrameHeightOffset); -- Do this in order to create the correct amount of buttons based on our settings
 
@@ -54,7 +53,7 @@ function gui:LoadWithBlizzard_AchievementUI()
 
     self.ResetAchievementFrameHeight();
 
-    CreateAchievementPointsTooltip();
+    gui.AchievementFrameHeader.CreateTooltip();
 
     diagnostics.Debug("GUI loaded");
 end
@@ -195,30 +194,6 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
             gui.ResetView();
         end
 	end
-end
-
-function CreateAchievementPointsTooltip()
-    local frame = CreateFrame("Frame", nil, AchievementFrameHeader);
-    frame:SetSize(175, 20);
-    frame:SetPoint("CENTER", "AchievementFrameHeader", "CENTER", 20, -16);
-
-    frame:SetScript("OnEnter", function(self)
-        GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT");
-        GameTooltip:SetText(addon.L["Achievement points earned by"]);
-        for _, character in next, SavedData.Characters do
-            local r, g, b = GetClassColor(character.Class);
-            local name = character.Name;
-            if addon.Options.db.AchievementPoints.Tooltip.AlwaysShowRealm or character.Realm ~= (select(2, UnitFullName("player"))) then
-                name = name .. " - " .. character.Realm;
-            end
-            GameTooltip:AddDoubleLine(name, tostring(BreakUpLargeNumbers(character.Points)), r, g, b, 1, 1, 1);
-        end
-        GameTooltip:Show();
-    end);
-
-    frame:SetScript("OnLeave", function()
-        GameTooltip:Hide();
-    end);
 end
 
 function gui.ShowHideTabs(_addonName, tabName)

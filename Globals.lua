@@ -290,26 +290,6 @@ function addon.ResetCache()
     criteriaCache = nil;
 end
 
-local processHook = true;
-function addon.HookSetAchievementFrameHeaderPointsText()
-    AchievementFrameHeaderPoints:SetPoint("TOP", "AchievementFrameHeaderPointBorder", "TOP", -10, -13);
-    AchievementFrameHeaderPointBorder:SetWidth(175);
-
-    hooksecurefunc(AchievementFrameHeaderPoints, "SetText", function()
-        if not addon.InGuildView() and processHook then
-            local _, points = addon.BuildCache();
-            processHook = false;
-            if addon.Options.db.AchievementPoints.Format == 1 then
-            elseif addon.Options.db.AchievementPoints.Format == 2 then
-                AchievementFrameHeaderPoints:SetText(BreakUpLargeNumbers(points) .. " / " .. BreakUpLargeNumbers(GetTotalAchievementPoints()));
-            elseif addon.Options.db.AchievementPoints.Format == 3 then
-                AchievementFrameHeaderPoints:SetText(BreakUpLargeNumbers(points));
-            end
-        end
-        processHook = true;
-    end);
-end
-
 function addon.HookSelectAchievement()
     hooksecurefunc("AchievementFrame_SelectAchievement", function(id, forceSelect, isComparison)
         KrowiAF_SelectAchievementFromID(id);

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-07-13 20-42-14 ]] --
+-- [[ Exported at 2022-07-14 09-04-58 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -222,6 +222,8 @@ L["Character only"] = "Character only";
 L["Tooltip"] = "Tooltip";
 L["Always show realm"] = "Always show realm";
 L["Always show realm Desc"] = "Always show the character's realm regardless if the character is on the same realm as this character.";
+L["Show faction icon"] = "Show faction icon";
+L["Show faction icon Desc"] = "Show a faction icon in front of the character's name.";
 L["Show Sub Categories"] = "Show Sub Categories";
 L["Show Sub Categories Desc"] = "Show / hide sub categories.\n\nWhen checked, the achievements will be placed under their original sub categories instead of all together under the single {category} category.";
 L["Clear all"] = "Clear all";

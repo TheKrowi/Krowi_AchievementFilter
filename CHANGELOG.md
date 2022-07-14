@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## 9.2.5.37.0 - 2022-xx-xx
+### Added
+- Faction icon in front of characters in the achievement window header tooltip (enabled by default)
+
 ### Changed
 - Tabs are now handled by addon and tab name and API is accessible by other addons (see Plugins/Overachiever.lua for example or ask for assistance on discord)
 - Focused, Current Zone, Selected Zone and Excluded categories are moved to Specials tab

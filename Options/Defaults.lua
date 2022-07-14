@@ -19,7 +19,8 @@ options.Defaults = {
         AchievementPoints = {
             Format = 2,
             Tooltip = {
-                AlwaysShowRealm = false
+                AlwaysShowRealm = false,
+                ShowFaction = true
             }
         },
         Tabs = {
