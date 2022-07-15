@@ -3,6 +3,56 @@ local _, addon = ...;
 addon.GUI.AchievementFrameHeader = {};
 local header = addon.GUI.AchievementFrameHeader;
 
+local headerSortPriorities = {
+    addon.L["Points"],
+    addon.L["Name"],
+    addon.L["Realm"],
+    addon.L["Faction"],
+    addon.L["Class"]
+}
+
+local function SetPriority(index, value)
+    local priorities = addon.Options.db.AchievementPoints.Tooltip.Sort.Priority;
+    local otherIndex;
+    for i, prio in next, priorities do
+        if prio == value then
+            otherIndex = i;
+        end
+    end
+    local currentValue = addon.Options.db.AchievementPoints.Tooltip.Sort.Priority[index];
+    addon.Options.db.AchievementPoints.Tooltip.Sort.Priority[index] = value;
+    addon.Options.db.AchievementPoints.Tooltip.Sort.Priority[otherIndex] = currentValue;
+    local currentReverse = addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[index]
+    addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[index] = addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[otherIndex];
+    addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[otherIndex] = currentReverse;
+end
+
+function header.InjectOptions()
+    for i = 1, #headerSortPriorities do
+        addon.Options.InjectOptionsTableAdd({
+            order = i + 0.1, type = "select",
+            name = "",
+            values = headerSortPriorities,
+            get = function() return addon.Options.db.AchievementPoints.Tooltip.Sort.Priority[i]; end,
+            set = function (_, value)
+                SetPriority(i, value);
+            end
+        }, "Priority" .. i, "args", "Layout", "args", "Header", "args", "Tooltip", "args", "SortPriority");
+        addon.Options.InjectOptionsTableAdd({
+            order = i + 0.2, type = "toggle", width = "normal",
+            name = addon.L["Reverse"],
+            get = function() return addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[i]; end,
+            set = function()
+                addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[i] = not addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[i];
+            end
+        }, "Reverse" .. i, "args", "Layout", "args", "Header", "args", "Tooltip", "args", "SortPriority");
+        addon.Options.InjectOptionsTableAdd({
+            order = i + 0.3, type = "description", width = "normal",
+            name = ""
+        }, "Blank" .. i .. "3", "args", "Layout", "args", "Header", "args", "Tooltip", "args", "SortPriority");
+    end
+end
+
 local processHook = true;
 function header.HookSetPointsText()
     AchievementFrameHeaderPoints:SetPoint("TOP", "AchievementFrameHeaderPointBorder", "TOP", -10, -13);
@@ -23,76 +73,40 @@ function header.HookSetPointsText()
     end);
 end
 
-local function CompareRealms(a, b, reverse)
-    local realmA, realmB = a.Realm, b.Realm;
-    if realmA == nil then
-        return false;
-    end
-    if realmB == nil then
-        return true;
-    end
-
-    local realmAlower, realmBlower = realmA:lower(), realmB:lower();
-    if realmAlower == realmBlower then
-        return CompareRealms(a, b, reverse);
-    end
-
-    if reverse then
-        return realmAlower < realmBlower;
-    end
-    return realmAlower > realmBlower;
-end
-
-local function CompareNames(a, b, reverse)
-    local nameA, nameB = a.Name, b.Name;
-    if nameA == nil then
-        return false;
-    end
-    if nameB == nil then
-        return true;
-    end
-
-    local nameAlower, nameBlower = nameA:lower(), nameB:lower();
-    if nameAlower == nameBlower then
-        return CompareRealms(a, b, reverse);
-    end
-
-    if reverse then
-        return nameAlower < nameBlower;
-    end
-    return nameAlower > nameBlower;
-end
-
-local function ComparePoints(a, b, reverse)
-    local pointsA, pointsB = a.Points, b.Points;
-    if pointsA == nil then
-        return false;
-    end
-    if pointsB == nil then
-        return true;
-    end
-
-    if pointsA == pointsB then
-        return CompareNames(a, b, reverse);
-    end
-
-    if reverse then
-        return pointsA < pointsB;
-    end
-    return pointsA > pointsB;
-end
+local sortFuncs = {
+    addon.Objects.CompareFunc:New("number", "Points");
+    addon.Objects.CompareFunc:New("string", "Name");
+    addon.Objects.CompareFunc:New("string", "Realm");
+    addon.Objects.CompareFunc:New("string", "Faction");
+    addon.Objects.CompareFunc:New("string", "Class");
+};
 
 local function GetSortedCharacters()
     local characters = {};
     for _, character in next, SavedData.Characters do
-        tinsert(characters, character);
+        tinsert(characters, {
+            Name = character.Name,
+            Realm = character.Realm,
+            Class = character.Class,
+            Faction = character.Faction,
+            Points = character.Points
+        });
     end
 
-    -- local sortFunc = ComparePoints;
+    local sortOptions = addon.Options.db.AchievementPoints.Tooltip.Sort;
+    for index, sortFunc in next, sortOptions.Priority do
+        sortFuncs[sortFunc].Reverse = sortOptions.Reverse[index];
+    end
 
-    -- table.sort(characters, function(a, b)
-    --     sortFunc(a, b, false);
-    -- end);
+    local sortFunc = sortFuncs[sortOptions.Priority[1]];
+    for i = 1, #sortOptions.Priority - 1 do
+        sortFuncs[sortOptions.Priority[i]].Fallback = sortFuncs[sortOptions.Priority[i + 1]];
+    end
+    sortFuncs[sortOptions.Priority[#sortOptions.Priority]]:SetDefaultFallback();
+
+    table.sort(characters, function(a, b)
+        return sortFunc:Compare(a, b);
+    end);
     return characters;
 end
 
@@ -136,3 +150,8 @@ function header.CreateTooltip()
         GameTooltip:Hide();
     end);
 end
+
+-- if not addon.UnitTests.Active then return; end
+-- header.ComparePointsFunc = ComparePoints;
+-- header.CompareNamesFunc = CompareNames;
+-- header.CompareRealmsFunc = CompareRealms;

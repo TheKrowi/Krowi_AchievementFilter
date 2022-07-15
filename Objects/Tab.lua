@@ -7,7 +7,7 @@ local tab = objects.Tab;
 tab.__index = tab;
 function tab:New(addonName, name, bindingName)
     if type(addonName) ~= "string" or type(name) ~= "string" then
-        error("Usage: New(addonName, name)", 2);
+        error("Usage: New(addonName, name[, bindingName])", 2);
     end
 
     local self = {};

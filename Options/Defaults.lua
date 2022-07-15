@@ -20,7 +20,11 @@ options.Defaults = {
             Format = 2,
             Tooltip = {
                 AlwaysShowRealm = false,
-                ShowFaction = true
+                ShowFaction = true,
+                Sort = {
+                    Priority = { 1, 2, 3, 4, 5 },
+                    Reverse = { true, false, false, false, false }
+                }
             }
         },
         Tabs = {

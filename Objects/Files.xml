@@ -7,4 +7,5 @@
     <Script file="Category.lua" />
     <Script file="Event.lua" />
     <Script file="Tab.lua" />
+    <Script file="CompareFunc.lua" />
 </Ui>

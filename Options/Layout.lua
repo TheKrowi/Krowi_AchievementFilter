@@ -16,7 +16,7 @@ local function SetCategoriesFrameWidthOffset(_, value)
 end
 
 local function SetMaxNumberOfSearchPreviews()
-    local numberOfSearchPreviews = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.MetaData.Title, "cmd", "KROWIAF-0.0").args.Search.args.NumberOfSearchPreviews; -- cmd and KROWIAF-0.0 are just to make the function work
+    local numberOfSearchPreviews = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.MetaData.Title, "cmd", "KROWIAF-0.0").args.Search.args.SearchPreview.args.NumberOfSearchPreviews; -- cmd and KROWIAF-0.0 are just to make the function work
     numberOfSearchPreviews.max = options.MaxNumberOfSearchPreviews();
     if numberOfSearchPreviews.get() > numberOfSearchPreviews.max then
         numberOfSearchPreviews.set(nil, numberOfSearchPreviews.max);
@@ -282,7 +282,7 @@ options.OptionsTable.args["Layout"] = {
                     inline = true,
                     args = {
                         AlwaysShowRealm = {
-                            order = 1.1, type = "toggle", width = "normal",
+                            order = 1.1, type = "toggle", width = 1.5,
                             name = addon.L["Always show realm"],
                             desc = addon.L["Always show realm Desc"],
                             get = function() return addon.Options.db.AchievementPoints.Tooltip.AlwaysShowRealm; end,
@@ -291,9 +291,8 @@ options.OptionsTable.args["Layout"] = {
                                 options.Debug(addon.L["Always show realm"], addon.Options.db.AchievementPoints.Tooltip.AlwaysShowRealm);
                             end
                         },
-                        Blank12 = {order = 1.2, type = "description", width = "double", name = ""},
                         ShowFaction = {
-                            order = 2.1, type = "toggle", width = "normal",
+                            order = 1.2, type = "toggle", width = 1.5,
                             name = addon.L["Show faction icon"],
                             desc = addon.L["Show faction icon Desc"],
                             get = function() return addon.Options.db.AchievementPoints.Tooltip.ShowFaction; end,
@@ -302,6 +301,15 @@ options.OptionsTable.args["Layout"] = {
                                 options.Debug(addon.L["Show faction icon"], addon.Options.db.AchievementPoints.Tooltip.ShowFaction);
                             end
                         },
+                        Blank22 = {order = 2.2, type = "description", width = "double", name = ""},
+                        SortPriority = {
+                            order = 3, type = "group",
+                            name = addon.L["Sort priority"],
+                            inline = true,
+                            args = {
+                                -- Dynamically added
+                            }
+                        }
                     }
                 }
             }

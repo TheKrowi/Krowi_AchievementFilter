@@ -240,10 +240,10 @@ end
 local function CompareName(a, b, reverse, default)
     local nameA, nameB = "", "";
     if a then
-        nameA = select(2, GetAchievementInfo(a.ID));
+        nameA = select(2, addon.GetAchievementInfo(a.ID));
     end
     if b then
-        nameB = select(2, GetAchievementInfo(b.ID));
+        nameB = select(2, addon.GetAchievementInfo(b.ID));
     end
 
     if nameA == nil then
@@ -270,10 +270,10 @@ end
 local function CompareCompletion(a, b, reverse, default)
     local completedA, completedB = false, false;
     if a then
-        completedA = select(4, GetAchievementInfo(a.ID));
+        completedA = select(4, addon.GetAchievementInfo(a.ID));
     end
     if b then
-        completedB = select(4, GetAchievementInfo(b.ID));
+        completedB = select(4, addon.GetAchievementInfo(b.ID));
     end
 
     if completedA == completedB then
@@ -324,3 +324,7 @@ function filters:Sort(achievements, defaultOrder)
     end);
     return achievements;
 end
+
+-- if not addon.UnitTests.Active then return; end
+-- filters.CompareIdFunc = CompareId;
+-- filters.CompareCompletionFunc = CompareCompletion;

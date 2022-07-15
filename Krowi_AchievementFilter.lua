@@ -64,6 +64,8 @@ function loadHelper:OnEvent(event, arg1, arg2)
             addon.GUI.AchievementFrameHeader.HookSetPointsText();
             addon.HookAchievementFrameOnShow();
             addon.HookSelectAchievement();
+        elseif arg1 == "WoWUnit" then
+            addon.UnitTests:Load();
         end
     elseif event == "PLAYER_LOGIN" then
         addon.Data.ExportedCalendarEvents.Load(addon.Data.CalendarEvents);
@@ -110,3 +112,27 @@ function loadHelper:OnEvent(event, arg1, arg2)
     end
 end
 loadHelper:SetScript("OnEvent", loadHelper.OnEvent);
+
+Numbers = function() return 1, 2, 3 end
+
+
+function KrowiAF_RunUnitTests()
+    local AreEqual, Exists, Replace = WoWUnit.AreEqual, WoWUnit.Exists, WoWUnit.Replace
+    local Tests = WoWUnit(addonName)
+        -- tests will be called at startup, PLAYER_UPDATE and MONEY_UPDATE events
+
+    function Tests:PassingTest()
+        AreEqual({1,2,3}, {Numbers()})
+        Exists(true)
+    end
+
+    function Tests:FaillingTest()
+        AreEqual('Apple', 'Pie')
+        Exists(false)
+    end
+
+    function Tests:MockingTest()
+        -- Replace('GetRealmName', function() return 'Horseshoe' end)
+        -- AreEqual('Horseshoe!', Realm())
+    end
+end

@@ -13,6 +13,7 @@ function gui:LoadWithAddon()
     gui.WorldMapButton.Load();
     gui.AlertSystem:Load();
     addon.Filters:InjectDefaults();
+    addon.GUI.AchievementFrameHeader.InjectOptions();
 end
 
 function gui:LoadWithBlizzard_AchievementUI()

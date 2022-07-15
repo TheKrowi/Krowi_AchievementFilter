@@ -209,7 +209,7 @@ end
 
 local function SetOrder(index, value)
 	addon.GUI.TabsOrderGetActiveKeys(); -- Just to make sure the list is cleaned up
-			
+
 	-- We get the addon name and tab name for the selected tab
 	local tab = SavedData.Tabs[value];
 	-- print(value, tab.AddonName, tab.Name, addon.Options.db.Tabs[tab.AddonName][tab.Name].Order);

@@ -316,7 +316,8 @@
         "Overachiever",
         "GetBindingByKey",
         "GetServerTime",
-        "C_UI"
+        "C_UI",
+        "WoWUnit"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
