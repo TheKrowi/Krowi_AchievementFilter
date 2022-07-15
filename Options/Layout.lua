@@ -189,7 +189,8 @@ options.OptionsTable.args["Layout"] = {
                         CategoriesFrameWidthOffset = {
                             order = 2.1, type = "range", width = 1.5,
                             name = addon.L["Categories width offset"],
-                            desc = addon.Util.ReplaceVars {
+                            desc = addon.Util.ReplaceVars
+                            {
                                 addon.L["Categories width offset Desc"],
                                 addonName = addon.MetaData.Title,
                                 tabName = string.format(addon.Colors.Yellow, addon.L["Expansions"])
@@ -301,7 +302,32 @@ options.OptionsTable.args["Layout"] = {
                                 options.Debug(addon.L["Show faction icon"], addon.Options.db.AchievementPoints.Tooltip.ShowFaction);
                             end
                         },
-                        Blank22 = {order = 2.2, type = "description", width = "double", name = ""},
+                        MaxNumCharacters = {
+                            order = 2.1, type = "range", width = 1.5,
+                            name = addon.L["Maximum number of characters"],
+                            desc = addon.L["Maximum number of characters Desc"],
+                            min = 0, max = 100, step = 1,
+                            get = function() return addon.Options.db.AchievementPoints.Tooltip.MaxNumCharacters; end,
+                            set = function(_, value)
+                                if addon.Options.db.AchievementPoints.Tooltip.MaxNumCharacters == value then return; end
+                                addon.Options.db.AchievementPoints.Tooltip.MaxNumCharacters = value;
+                                options.Debug(addon.L["Maximum number of characters"], addon.Options.db.AchievementPoints.Tooltip.MaxNumCharacters);
+                            end
+                        },
+                        KeepCurrentCharacter = {
+                            order = 2.2, type = "toggle", width = 1.5,
+                            name = addon.L["Keep current character"],
+                            desc = addon.Util.ReplaceVars
+                            {
+                                addon.L["Keep current character Desc"],
+                                maxNumChar = addon.L["Maximum number of characters"]
+                            },
+                            get = function() return addon.Options.db.AchievementPoints.Tooltip.KeepCurrentCharacter; end,
+                            set = function()
+                                addon.Options.db.AchievementPoints.Tooltip.KeepCurrentCharacter = not addon.Options.db.AchievementPoints.Tooltip.KeepCurrentCharacter;
+                                options.Debug(addon.L["Keep current character"], addon.Options.db.AchievementPoints.Tooltip.KeepCurrentCharacter);
+                            end
+                        },
                         SortPriority = {
                             order = 3, type = "group",
                             name = addon.L["Sort priority"],
@@ -326,7 +352,8 @@ options.OptionsTable.args["Layout"] = {
                          ShowFocusedSubCategories = {
                             order = 1.1, type = "toggle", width = "normal",
                             name = addon.L["Show Sub Categories"],
-                            desc = addon.Util.ReplaceVars {
+                            desc = addon.Util.ReplaceVars
+                            {
                                 addon.L["Show Sub Categories Desc"],
                                 category = addon.L["Focused"]
                             },
@@ -368,7 +395,8 @@ options.OptionsTable.args["Layout"] = {
                         ShowExcludedSubCategories = {
                             order = 2, type = "toggle", width = "normal",
                             name = addon.L["Show Sub Categories"],
-                            desc = addon.Util.ReplaceVars {
+                            desc = addon.Util.ReplaceVars
+                            {
                                 addon.L["Show Sub Categories Desc"],
                                 category = addon.L["Excluded"]
                             },
@@ -692,7 +720,8 @@ options.OptionsTable.args["Layout"] = {
                         AddLocale = {
                             order = 1, type = "toggle", width = "full",
                             name = addon.L["Add Locale"],
-                            desc = addon.Util.ReplaceVars {
+                            desc = addon.Util.ReplaceVars
+                            {
                                 addon.L["Add Locale Desc"],
                                 wowheadLink = addon.L["Wowhead Link"]
                             },
@@ -705,7 +734,8 @@ options.OptionsTable.args["Layout"] = {
                         AddRelatedTab = {
                             order = 2, type = "select", width = 1.5,
                             name = addon.L["Related Tab"],
-                            desc = addon.Util.ReplaceVars {
+                            desc = addon.Util.ReplaceVars
+                            {
                                 addon.L["Related Tab Desc"],
                                 wowheadLink = addon.L["Wowhead Link"]
                             },
@@ -732,7 +762,7 @@ options.OptionsTable.args["Layout"] = {
                     args = {
                         LockAchievementMonth = {
                             order = 1, type = "toggle", width = "full",
-                            name = addon.L["Lock month when closed by achievement "],
+                            name = addon.L["Lock month when closed by achievement"],
                             desc = addon.L["Lock month when closed by achievement Desc"],
                             get = function() return addon.Options.db.Calendar.LockAchievementMonth; end,
                             set = function()

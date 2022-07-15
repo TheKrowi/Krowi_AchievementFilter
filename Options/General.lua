@@ -97,7 +97,8 @@ options.OptionsTable.args["General"] = {
                         Discord = {
                             order = 2.3, type = "execute",
                             name = addon.L["Discord"],
-                            desc = addon.Util.ReplaceVars {
+                            desc = addon.Util.ReplaceVars
+                            {
                                 addon.L["Discord Desc"],
                                 serverName = addon.MetaData.DiscordServerName
                             },
@@ -115,7 +116,8 @@ options.OptionsTable.args["General"] = {
                         CurseForge = {
                             order = 1.1, type = "execute",
                             name = addon.L["CurseForge"],
-                            desc = addon.Util.ReplaceVars {
+                            desc = addon.Util.ReplaceVars
+                            {
                                 addon.L["CurseForge Desc"],
                                 addonName = addon.MetaData.Title,
                                 curseForge = addon.L["CurseForge"]
@@ -127,7 +129,8 @@ options.OptionsTable.args["General"] = {
                         Wago = {
                             order = 1.2, type = "execute",
                             name = addon.L["Wago"],
-                            desc = addon.Util.ReplaceVars {
+                            desc = addon.Util.ReplaceVars
+                            {
                                 addon.L["Wago Desc"],
                                 addonName = addon.MetaData.Title,
                                 wago = addon.L["Wago"]
@@ -139,7 +142,8 @@ options.OptionsTable.args["General"] = {
                         WoWInterface = {
                             order = 1.3, type = "execute",
                             name = addon.L["WoWInterface"],
-                            desc = addon.Util.ReplaceVars {
+                            desc = addon.Util.ReplaceVars
+                            {
                                 addon.L["WoWInterface Desc"],
                                 addonName = addon.MetaData.Title,
                                 woWInterface = addon.L["WoWInterface"]
@@ -215,7 +219,8 @@ options.OptionsTable.args["General"] = {
                         SetKeybind = {
                             order = 1.2, type = "execute",
                             name = addon.L["Set Keybind"],
-                            desc = addon.Util.ReplaceVars {
+                            desc = addon.Util.ReplaceVars
+                            {
                                 addon.L["Set Keybind Desc"],
                                 keyBindings = addon.L["Key Bindings"]
                             },

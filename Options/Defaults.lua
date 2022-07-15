@@ -24,7 +24,9 @@ options.Defaults = {
                 Sort = {
                     Priority = { 1, 2, 3, 4, 5 },
                     Reverse = { true, false, false, false, false }
-                }
+                },
+                MaxNumCharacters = 50,
+                KeepCurrentCharacter = true
             }
         },
         Tabs = {

@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Faction icon in front of characters in the achievement window header tooltip (enabled by default)
 - Configurable sorting for characters in the achievement window header tooltip
+- Option to limit the maximum number of characters in the tooltip with the option to keep the current character in the list regardless if it normally would or not
 
 ### Changed
 - Tabs are now handled by addon and tab name and API is accessible by other addons (see Plugins/Overachiever.lua for example or ask for assistance on discord)

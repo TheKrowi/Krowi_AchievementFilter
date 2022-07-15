@@ -39,17 +39,21 @@ function header.InjectOptions()
             end
         }, "Priority" .. i, "args", "Layout", "args", "Header", "args", "Tooltip", "args", "SortPriority");
         addon.Options.InjectOptionsTableAdd({
-            order = i + 0.2, type = "toggle", width = "normal",
-            name = addon.L["Reverse"],
+            order = i + 0.2, type = "description", width = 0.1,
+            name = ""
+        }, "Blank" .. i .. "2", "args", "Layout", "args", "Header", "args", "Tooltip", "args", "SortPriority");
+        addon.Options.InjectOptionsTableAdd({
+            order = i + 0.3, type = "toggle", width = "normal",
+            name = addon.L["Reverse Sort"],
             get = function() return addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[i]; end,
             set = function()
                 addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[i] = not addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[i];
             end
         }, "Reverse" .. i, "args", "Layout", "args", "Header", "args", "Tooltip", "args", "SortPriority");
         addon.Options.InjectOptionsTableAdd({
-            order = i + 0.3, type = "description", width = "normal",
+            order = i + 0.4, type = "description", width = "normal",
             name = ""
-        }, "Blank" .. i .. "3", "args", "Layout", "args", "Header", "args", "Tooltip", "args", "SortPriority");
+        }, "Blank" .. i .. "4", "args", "Layout", "args", "Header", "args", "Tooltip", "args", "SortPriority");
     end
 end
 
@@ -83,15 +87,28 @@ local sortFuncs = {
 
 local function GetSortedCharacters()
     local characters = {};
-    for _, character in next, SavedData.Characters do
+    for guid, character in next, SavedData.Characters do
         tinsert(characters, {
             Name = character.Name,
             Realm = character.Realm,
             Class = character.Class,
             Faction = character.Faction,
-            Points = character.Points
+            Points = character.Points,
+            Guid = guid
         });
     end
+
+-- little test
+for i = 1, 100 do
+    tinsert(characters, {
+        Name = "Name" .. i,
+        Realm = "Realm" .. i,
+        Class = "Class" .. i,
+        Faction = "Faction" .. i,
+        Points = i,
+        Guid = "Guid" .. i
+    });
+end
 
     local sortOptions = addon.Options.db.AchievementPoints.Tooltip.Sort;
     for index, sortFunc in next, sortOptions.Priority do
@@ -108,6 +125,34 @@ local function GetSortedCharacters()
         return sortFunc:Compare(a, b);
     end);
     return characters;
+end
+
+local function LimitNumCharacters(characters)
+    local maxNumCharacters = addon.Options.db.AchievementPoints.Tooltip.MaxNumCharacters;
+    local trimmedCharacters = {};
+
+    if not addon.Options.db.AchievementPoints.Tooltip.KeepCurrentCharacter then -- We can just take the 1st x characters and return
+        for i = 1, maxNumCharacters do
+            tinsert(trimmedCharacters, characters[i]);
+        end
+        return trimmedCharacters;
+    end
+
+    -- Here we need to check if we added the current character or not
+    local currentCharacterAdded = false;
+    local playerGUID = UnitGUID("player");
+    for i = 1, #characters do
+        if characters[i].Guid == playerGUID then
+            tinsert(trimmedCharacters, characters[i]);
+            currentCharacterAdded = true;
+        elseif currentCharacterAdded or #trimmedCharacters < maxNumCharacters - 1 then
+            tinsert(trimmedCharacters, characters[i]);
+        end
+        if #trimmedCharacters >= maxNumCharacters then
+            return trimmedCharacters;
+        end
+    end
+    return trimmedCharacters;
 end
 
 local function AddFactionIcon(name, faction)
@@ -129,6 +174,7 @@ local function OnEnter(self)
     GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT");
     GameTooltip:SetText(addon.L["Achievement points earned by"]);
     local characters = GetSortedCharacters();
+    characters = LimitNumCharacters(characters);
     for _, character in next, characters do
         local r, g, b = GetClassColor(character.Class);
         local name = character.Name;

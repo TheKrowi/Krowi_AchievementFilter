@@ -1,4 +1,4 @@
--- [[ Exported at 2022-07-14 09-04-58 ]] --
+-- [[ Exported at 2022-07-15 22-48-22 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -224,6 +224,12 @@ L["Always show realm"] = "Always show realm";
 L["Always show realm Desc"] = "Always show the character's realm regardless if the character is on the same realm as this character.";
 L["Show faction icon"] = "Show faction icon";
 L["Show faction icon Desc"] = "Show a faction icon in front of the character's name.";
+L["Maximum number of characters"] = "Maximum number of characters";
+L["Maximum number of characters Desc"] = "The maximum number of characters to show in the tooltip.";
+L["Keep current character"] = "Keep current character";
+L["Keep current character Desc"] = "Keep the current character in the list of characters in the tooltip regardless if the character would be truncated from the list by the {maxNumChar} or not.";
+L["Sort priority"] = "Sort priority";
+L["Realm"] = "Realm";
 L["Show Sub Categories"] = "Show Sub Categories";
 L["Show Sub Categories Desc"] = "Show / hide sub categories.\n\nWhen checked, the achievements will be placed under their original sub categories instead of all together under the single {category} category.";
 L["Clear all"] = "Clear all";
