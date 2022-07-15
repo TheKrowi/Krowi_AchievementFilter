@@ -254,6 +254,11 @@ function KrowiAF_RegisterTabOptions(_addonName, tabName, addonDisplayName, tabDi
 
 	SetOptionsOrder(_addonName, tabName, index)
 
+	if _addonName ~= "Blizzard_AchievementUI" and _addonName ~= addonName then
+		if LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.L["Layout"], "cmd", "KROWIAF-0.0").args.Tabs.args.Order.args.Locked then
+			return; -- Do not add more when we are in the fix state
+		end
+	end
 	addon.Options.InjectOptionsTableAdd({
         order = index, type = "select", width = 2,
         name = "",

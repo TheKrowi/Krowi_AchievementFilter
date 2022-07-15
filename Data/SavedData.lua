@@ -405,7 +405,7 @@ function FixTabs2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
     SavedData.TabKeys = newTabKeys;
 
     addon.Options.InjectOptionsTable({
-        Text = {
+        Locked = {
             order = 1, type = "description", width = "full",
             name = "Tabs have been changed from your previous version and have been reset. The addon should work properly without these settings changable. Please reload at any time to fix this section."
         },

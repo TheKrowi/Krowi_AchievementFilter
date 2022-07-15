@@ -11,7 +11,6 @@ local addonName = "Overachiever_Tabs";
 local count = 1;
 
 local function AddTabOptions(tabName, bindingName, nameFunc)
-    addon.Diagnostics.DebugTable(tmpTabs)
     addon.Options.db.Tabs[addonName] = addon.Options.db.Tabs[addonName] or {};
     addon.Options.db.Tabs[addonName][tabName] = addon.Options.db.Tabs[addonName][tabName] or {
         Show = true
