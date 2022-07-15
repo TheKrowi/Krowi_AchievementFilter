@@ -315,7 +315,8 @@
         "GetAddOnInfo",
         "Overachiever",
         "GetBindingByKey",
-        "GetServerTime"
+        "GetServerTime",
+        "C_UI"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

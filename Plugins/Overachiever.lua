@@ -11,16 +11,10 @@ local addonName = "Overachiever_Tabs";
 local count = 1;
 
 local function AddTabOptions(tabName, bindingName, nameFunc)
-    local show = true;
-    if tmpTabs[tabName] ~= nil then -- Fix and copy tab
-        show = tmpTabs[tabName];
-        if tmpTabs[tabName].Show ~= nil then
-            show = tmpTabs[tabName].Show;
-        end
-    end
+    addon.Diagnostics.DebugTable(tmpTabs)
     addon.Options.db.Tabs[addonName] = addon.Options.db.Tabs[addonName] or {};
     addon.Options.db.Tabs[addonName][tabName] = addon.Options.db.Tabs[addonName][tabName] or {
-        Show = show
+        Show = true
     };
 
     addon.Options.InjectOptionsTableAdd({
@@ -31,6 +25,7 @@ local function AddTabOptions(tabName, bindingName, nameFunc)
     }, tabName, "args", "Layout", "args", "Tabs", "args", addonName);
     KrowiAF_RegisterTabOptions(addonName, tabName, addon.L["Overachiever"], tabName, bindingName);
     if tmpTabs[tabName] ~= nil and tmpTabs[tabName].Order ~= nil then -- Copy tab
+        addon.Options.db.Tabs[addonName][tabName].Show = tmpTabs[tabName].Show;
         addon.Options.db.Tabs[addonName][tabName].Order = tmpTabs[tabName].Order;
     end
     count = count + 1;
@@ -92,19 +87,6 @@ local function CopyTabs()
             end
         end
     end
-end
-
-local function FixTabs()
-    SavedData.Fixes = SavedData.Fixes or {}; -- Does not exist yet for new users
-    if addon.MetaData.Version < "35.0" or addon.Options.db.Tabs == nil or SavedData.Fixes.FixTabs == true or addon.Options.db.Tabs[addonName] == nil then
-        addon.Diagnostics.Debug("Overachiever Tabs already ported from previous version");
-        CopyTabs();
-        return;
-    end
-
-    tmpTabs = addon.Options.db.Tabs[addonName];
-
-    addon.Diagnostics.Debug("Ported Overachiever Tabs from previous version");
 end
 
 local ChangeAchievementMicroButtonOnClick;
@@ -169,7 +151,7 @@ function overachiever.Load()
         plugin_overachiever = string.format(addon.Colors.Yellow, addon.L["Overachiever"])
     };
 
-    FixTabs();
+    CopyTabs();
 
     local reason = select(5, GetAddOnInfo("Overachiever_Tabs"));
     if reason == nil or reason == "DEMAND_LOADED" then

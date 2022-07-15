@@ -365,7 +365,11 @@ function FixTabs2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
     --     },
     --     ...
     -- }
-    -- Here we try to transfer this data from pre 34.0 structure and 35.0 - 36.3 structure (not easy)
+    -- Porting from pre 34.0 versions is impossible since 37.0 simply overwrites it with default values
+    -- Porting from 35.0 - pre 37.0 is difficult because mixed data needs to be handled
+    -- Lastly, data is handled based on SavedData.Tabs and is new in 37.0 so cleanup is needed in SavedData.TabKeys
+    -- Choosing to reset data, cleanup and inform user
+    -- Remove bad tabs from addon.Options.db.Tabs, remove duplicate SavedData.TabKeys value
 
     if firstTime and currVersion > "37.0" then
         SavedData.Fixes.FixTabs2 = true;
@@ -377,76 +381,40 @@ function FixTabs2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
         return;
     end
 
-    addon.Diagnostics.DebugTable(addon.Options.db.Tabs)
+    for i, _ in next, addon.Options.db.Tabs do
+        if type(i) == "number" then
+            addon.Options.db.Tabs[i] = nil;
+        end
+    end
 
-    -- -- if pcall(function()
-    --     local addonName2, tabName, show, order;
-    --     for addonName3, tab in next, addon.Options.db.Tabs do
-    --         print(addonName3, tab.AddonName)
-    --         if tab.AddonName ~= nil then -- 35.x - 36.x
-    --             addonName2 = tab.AddonName;
-    --             tabName = tab.TabName;
-    --             show = tab.Show;
-    --             order = tab.Order;
+    local newTabKeys = {};
+    local addonName2, tabName;
+    for i, tab in next, SavedData.Tabs do
+        addonName2 = tab.AddonName;
+        tabName = tab.Name;
+        local order = i;
+        if addonName2 == "Blizzard_AchievementUI" and tabName == "Achievements" then
+            order = 4;
+        end
+        if addonName2 == addonName and tabName == "Achievements" then
+            order = 1;
+        end
+        addon.Options.db.Tabs[addonName2][tabName].Order = order;
+        tinsert(newTabKeys, SavedData.TabKeys[i]);
+    end
+    SavedData.TabKeys = newTabKeys;
 
-    --             print(addonName2, tabName, show, order, "35.x - 36.x");
-    --             addon.Options.db.Tabs[addonName2] = addon.Options.db.Tabs[addonName2] or {};
-    --             addon.Options.db.Tabs[addonName2][tabName] = {};
-    --             addon.Options.db.Tabs[addonName2][tabName].Show = show;
-    --             addon.Options.db.Tabs[addonName2][tabName].Order = order;
-    --             addon.Diagnostics.DebugTable(addon.Options.db.Tabs)
-
-    --             addon.Options.db.Tabs[addonName3] = nil;
-    --         else -- <= 34.x or >= 37.x
-    --             for tabName2, tab2 in next, tab do
-    --                 print(tabName2, tab2, tab, "<= 34.x");
-    --                 if type(tab2) == "boolean" then -- <= 34.x
-    --                     addonName2 = addonName3;
-    --                     tabName = tabName2;
-    --                     show = tab2;
-    --                     print(addonName2, tabName, show);
-
-    --                     addon.Options.db.Tabs[addonName2] = addon.Options.db.Tabs[addonName2] or {};
-    --                     addon.Options.db.Tabs[addonName2][tabName] = {};
-    --                     addon.Options.db.Tabs[addonName2][tabName].Show = show;
-    --                     addon.Diagnostics.DebugTable(addon.Options.db.Tabs)
-    --                 end
-    --             end
-    --         end
-    --     end
-
-    --     local tabOrder = {};
-    --     local noOrder = {};
-    --     local tabs = 0;
-    --     -- Now we have correct data, we can verify the order now
-    --     for _, tab in next, addon.Options.db.Tabs do
-    --         for _, tab2 in next, tab do
-    --             tabs = tabs + 1;
-    --             order = tab2.Order;
-    --             if order == nil then
-    --                 tinsert(noOrder, tab2);
-    --             elseif tabOrder[order] == nil then
-    --                 tabOrder[order] = tab2;
-    --             else
-    --                 tab2.Order = nil;
-    --                 tinsert(noOrder, tab2);
-    --             end
-    --         end
-    --     end
-
-    --     local noOrderFixed = 1;
-    --     for i = 1, tabs do
-    --         if tabOrder[i] == nil then
-    --             noOrder[noOrderFixed].Order = i;
-    --             noOrderFixed = noOrderFixed + 1;
-    --         end
-    --     end
-    -- -- end) then
-    -- --     -- No errors, assume tabs are ported
-    -- -- else
-    -- --     -- Porting failed, just reset tabs
-    -- --     addon.Options.db.Tabs = nil;
-    -- -- end
+    addon.Options.InjectOptionsTable({
+        Text = {
+            order = 1, type = "description", width = "full",
+            name = "Tabs have been changed from your previous version and have been reset. The addon should work properly without these settings changable. Please reload at any time to fix this section."
+        },
+        Reload = {
+            order = 2, type = "execute",
+            name = "Reload",
+            func = C_UI.Reload
+        }
+    }, "args", "Layout", "args", "Tabs", "args", "Order");
 
     SavedData.Fixes.FixTabs2 = true;
 
