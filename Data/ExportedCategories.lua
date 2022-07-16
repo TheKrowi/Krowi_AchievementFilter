@@ -1,4 +1,4 @@
--- [[ Exported at 2022-07-12 17-18-35 ]] --
+-- [[ Exported at 2022-07-16 10-35-47 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -7956,17 +7956,17 @@ function exportedCategories.Load(a)
     AddA(tmp[1113], a[6871]); -- Realm First! Zen Master Skinner
     AddA(tmp[1113], a[6872]); -- Realm First! Zen Master Tailor
     tmp[1116] = cat:New((GetCategoryInfo(15273)), true); -- Reputation
-    AddC(tmp[1110], tmp[1116]);
+    AddC(tmp[1105], tmp[1116]);
     AddA(tmp[1116], a[1463]); -- Realm First! Northrend Vanguard
     AddA(tmp[1116], a[6829]); -- Realm First! Pandaren Ambassador
     tmp[1114] = cat:New((GetCategoryInfo(15272)), true); -- Dungeons
-    AddC(tmp[1110], tmp[1114]);
+    AddC(tmp[1105], tmp[1114]);
     AddA(tmp[1114], a[6433]); -- Realm First! Challenge Conqueror: Gold
     AddA(tmp[1114], a[11224]); -- Realm First! Legion Keystone Master
     AddA(tmp[1114], a[13078]); -- Realm First! Battle for Azeroth Keystone Master
     AddA(tmp[1114], a[14662]); -- Realm First! Shadowlands Keystone Master
     tmp[1115] = cat:New((GetCategoryInfo(15271)), true); -- Raids
-    AddC(tmp[1110], tmp[1115]);
+    AddC(tmp[1105], tmp[1115]);
     AddA(tmp[1115], a[1402]); -- Realm First! Conqueror of Naxxramas
     AddA(tmp[1115], a[456]); -- Realm First! Obsidian Slayer
     AddA(tmp[1115], a[1400]); -- Realm First! Magic Seeker

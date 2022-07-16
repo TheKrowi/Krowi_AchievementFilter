@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - Rearanged general options to be more in line with the rest
 - Renamed Earned by filter 'Character' to 'Character only'
 - Character only filter now handles completed achievements by checking if it was earned by the current character compared to checking if it is completed on any character
+- All Realm First! achievements are set to unobtainable
 
 ### Fixed
 - Sometimes an achievement did not display anything and was not interactable after switching tabs
