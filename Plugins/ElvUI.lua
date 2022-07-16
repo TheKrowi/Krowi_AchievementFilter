@@ -142,6 +142,40 @@ local function SkinAchievementsFrame(frame, engine, skins)
         end
     end);
 
+    local preHookFunction = addon.GUI.AchievementButton.Display.DisplayCriteria;
+	function addon.GUI.AchievementButton.Display.DisplayCriteria(objectivesFrame, id, renderOffScreen, achievementsFrame)
+        preHookFunction(objectivesFrame, id, renderOffScreen, achievementsFrame);
+		local numCriteria = GetAchievementNumCriteria(id);
+		local textStrings, metas = 0, 0;
+        local criteria, object;
+		for i = 1, numCriteria do
+			local _, criteriaType, completed, _, _, _, _, assetID = GetAchievementCriteriaInfo(id, i);
+			if assetID and criteriaType == _G.CRITERIA_TYPE_ACHIEVEMENT then
+				metas = metas + 1;
+				criteria, object = addon.GUI.AchievementButton.Display.GetMeta(metas), 'label';
+			elseif criteriaType ~= 1 then
+				textStrings = textStrings + 1;
+				criteria, object = addon.GUI.AchievementButton.Display.GetCriteria(textStrings), 'name';
+			end
+
+			local text = criteria and criteria[object];
+			if text then
+				local r, g, b, x, y;
+				if completed then
+					if objectivesFrame.completed then
+						r, g, b, x, y = 1, 1, 1, 0, 0;
+					else
+						r, g, b, x, y = 0, 1, 0, 1, -1;
+					end
+				else
+					r, g, b, x, y = .6, .6, .6, 1, -1;
+				end
+				text:SetTextColor(r, g, b);
+				text:SetShadowOffset(x, y);
+			end
+		end
+    end
+
     -- Scrollbar
     if frame.Container.ScrollBar then
         skins:HandleScrollBar(frame.Container.ScrollBar, 5);

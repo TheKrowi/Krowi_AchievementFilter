@@ -13,7 +13,7 @@ local FORCE_COLUMNS_LEFT_OFFSET = -10;
 local FORCE_COLUMNS_RIGHT_OFFSET = 24;
 local FORCE_COLUMNS_RIGHT_COLUMN_SPACE = 150;
 
-local DisplayCriteria, GetMeta, GetCriteria, OnEnter;
+local OnEnter;
 function display:DisplayObjectives(renderOffScreen, achievementsFrame)
 	local objectives = AchievementFrameAchievementsObjectives;
 	if renderOffScreen then
@@ -53,7 +53,7 @@ function display:DisplayObjectives(renderOffScreen, achievementsFrame)
 		AchievementButton_ResetProgressBars(renderOffScreen);
 		AchievementButton_ResetMiniAchievements(renderOffScreen);
 		self.ResetMetas(renderOffScreen);
-		DisplayCriteria(objectives, self.id, renderOffScreen, achievementsFrame);
+		display.DisplayCriteria(objectives, self.id, renderOffScreen, achievementsFrame);
 		if ( objectives:GetHeight() > 0 ) then
 			objectives:SetPoint("TOP", topAnchor, "BOTTOM", 0, -8);
 			objectives:SetPoint("LEFT", "$parentIcon", "RIGHT", -5, -25);
@@ -82,7 +82,7 @@ local metaCriteriaTableOffScreen = {};
 local criteriaTable = {}
 local criteriaTableOffScreen = {};
 
-function DisplayCriteria(objectivesFrame, id, renderOffScreen, achievementsFrame)
+function display.DisplayCriteria(objectivesFrame, id, renderOffScreen, achievementsFrame)
 	if not id then
 		return;
 	end
@@ -119,7 +119,7 @@ function DisplayCriteria(objectivesFrame, id, renderOffScreen, achievementsFrame
 	end
 	-- text check width
 	if not objectivesFrame.textCheckWidth then
-		local criteria = GetCriteria(1, renderOffScreen);
+		local criteria = display.GetCriteria(1, renderOffScreen);
 		criteria.name:SetText("- ");
 		objectivesFrame.textCheckWidth = criteria.name:GetStringWidth();
 	end
@@ -133,17 +133,17 @@ function DisplayCriteria(objectivesFrame, id, renderOffScreen, achievementsFrame
 		local criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString = GetAchievementCriteriaInfo(id, i);
 		if ( criteriaType == CRITERIA_TYPE_ACHIEVEMENT and assetID ) then
 			metas = metas + 1;
-			local metaCriteria = GetMeta(metas, renderOffScreen, achievementsFrame);
+			local metaCriteria = display.GetMeta(metas, renderOffScreen, achievementsFrame);
 			metaCriteria:ClearAllPoints();
 			if ( metas == 1 ) then
 				-- this will be anchored below, we need to know how many text criteria there are
 				firstMetaCriteria = metaCriteria;
 				numMetaRows = numMetaRows + 1;
 			elseif ( math.fmod(metas, 2) == 0 ) then
-				local anchorMeta = GetMeta(metas - 1, renderOffScreen, achievementsFrame);
+				local anchorMeta = display.GetMeta(metas - 1, renderOffScreen, achievementsFrame);
 				metaCriteria:SetPoint("LEFT", anchorMeta, "RIGHT", 35, 0);
 			else
-				local anchorMeta = GetMeta(metas - 2, renderOffScreen, achievementsFrame);
+				local anchorMeta = display.GetMeta(metas - 2, renderOffScreen, achievementsFrame);
 				metaCriteria:SetPoint("TOPLEFT", anchorMeta, "BOTTOMLEFT", -0, 2);
 				numMetaRows = numMetaRows + 1;
 			end
@@ -196,7 +196,7 @@ function DisplayCriteria(objectivesFrame, id, renderOffScreen, achievementsFrame
 			numCriteriaRows = numCriteriaRows + 1;
 		else
 			textStrings = textStrings + 1;
-			local criteria = GetCriteria(textStrings, renderOffScreen);
+			local criteria = display.GetCriteria(textStrings, renderOffScreen);
 			criteria:ClearAllPoints();
 			if ( textStrings == 1 ) then
 				if ( numCriteria == 1 ) then
@@ -205,7 +205,7 @@ function DisplayCriteria(objectivesFrame, id, renderOffScreen, achievementsFrame
 					criteria:SetPoint("TOPLEFT", objectivesFrame, "TOPLEFT", 0, yOffset);
 				end
 			else
-				criteria:SetPoint("TOPLEFT", GetCriteria(textStrings-1, renderOffScreen), "BOTTOMLEFT", 0, 0);
+				criteria:SetPoint("TOPLEFT", display.GetCriteria(textStrings-1, renderOffScreen), "BOTTOMLEFT", 0, 0);
 			end
 			if objectivesFrame.completed and completed then
 				criteria.name:SetTextColor(0, 0, 0, 1);
@@ -246,7 +246,7 @@ function DisplayCriteria(objectivesFrame, id, renderOffScreen, achievementsFrame
 	end
 	if textStrings > 0 and progressBars > 0 then
 		-- If we have text criteria and progressBar criteria, display the progressBar criteria first and position the textStrings under them.
-		local criTable = GetCriteria(1, renderOffScreen);
+		local criTable = display.GetCriteria(1, renderOffScreen);
 		criTable:ClearAllPoints();
 		if ( textStrings == 1 ) then
 			criTable:SetPoint("TOP", AchievementButton_GetProgressBar(progressBars, renderOffScreen), "BOTTOM", -14, -4);
@@ -264,7 +264,7 @@ function DisplayCriteria(objectivesFrame, id, renderOffScreen, achievementsFrame
 			forceColumns = true;
 			-- if top right criteria would run into the achievement shield, move them all down 1 row
 			-- this assumes description is 1 or 2 lines, otherwise this wouldn't be a problem
-			if ( GetCriteria(2, renderOffScreen).name:GetStringWidth() > FORCE_COLUMNS_RIGHT_COLUMN_SPACE and progressBars == 0 ) then
+			if ( display.GetCriteria(2, renderOffScreen).name:GetStringWidth() > FORCE_COLUMNS_RIGHT_COLUMN_SPACE and progressBars == 0 ) then
 				AddExtraCriteriaRow();
 			end
 		end
@@ -326,7 +326,7 @@ function display.ResetMetas(renderOffScreen)
 	end
 end
 
-function GetMeta(index, renderOffScreen, achievementsFrame)
+function display.GetMeta(index, renderOffScreen, achievementsFrame)
 	local mcTable = metaCriteriaTable;
 	local offscreenName = "";
 	if renderOffScreen then
@@ -358,7 +358,7 @@ function display.ResetCriteria(renderOffScreen)
 	end
 end
 
-function GetCriteria(index, renderOffScreen)
+function display.GetCriteria(index, renderOffScreen)
 	local criTable = criteriaTable;
 	local offscreenName = "";
 	if renderOffScreen then

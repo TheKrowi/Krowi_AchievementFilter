@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Sometimes an achievement did not display anything and was not interactable after switching tabs
 - Achievement is not selected again when leaving tab and going back if it was selected before
+- Achievement objective and meta texts should now be white instead of the hard to read black
 
 ## 9.2.5.36.3 - 2022-07-13
 ### Fixed
