@@ -14,7 +14,7 @@ local FORCE_COLUMNS_RIGHT_OFFSET = 24;
 local FORCE_COLUMNS_RIGHT_COLUMN_SPACE = 150;
 
 local OnEnter;
-function display:DisplayObjectives(renderOffScreen, achievementsFrame)
+function display:DisplayObjectives(renderOffScreen)
 	local objectives = AchievementFrameAchievementsObjectives;
 	if renderOffScreen then
 		objectives = AchievementFrameAchievementsObjectivesOffScreen;
@@ -53,7 +53,7 @@ function display:DisplayObjectives(renderOffScreen, achievementsFrame)
 		AchievementButton_ResetProgressBars(renderOffScreen);
 		AchievementButton_ResetMiniAchievements(renderOffScreen);
 		self.ResetMetas(renderOffScreen);
-		display.DisplayCriteria(objectives, self.id, renderOffScreen, achievementsFrame);
+		display.DisplayCriteria(objectives, self.id, renderOffScreen);
 		if ( objectives:GetHeight() > 0 ) then
 			objectives:SetPoint("TOP", topAnchor, "BOTTOM", 0, -8);
 			objectives:SetPoint("LEFT", "$parentIcon", "RIGHT", -5, -25);
@@ -82,7 +82,7 @@ local metaCriteriaTableOffScreen = {};
 local criteriaTable = {}
 local criteriaTableOffScreen = {};
 
-function display.DisplayCriteria(objectivesFrame, id, renderOffScreen, achievementsFrame)
+function display.DisplayCriteria(objectivesFrame, id, renderOffScreen)
 	if not id then
 		return;
 	end
@@ -133,17 +133,17 @@ function display.DisplayCriteria(objectivesFrame, id, renderOffScreen, achieveme
 		local criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString = GetAchievementCriteriaInfo(id, i);
 		if ( criteriaType == CRITERIA_TYPE_ACHIEVEMENT and assetID ) then
 			metas = metas + 1;
-			local metaCriteria = display.GetMeta(metas, renderOffScreen, achievementsFrame);
+			local metaCriteria = display.GetMeta(metas, renderOffScreen);
 			metaCriteria:ClearAllPoints();
 			if ( metas == 1 ) then
 				-- this will be anchored below, we need to know how many text criteria there are
 				firstMetaCriteria = metaCriteria;
 				numMetaRows = numMetaRows + 1;
 			elseif ( math.fmod(metas, 2) == 0 ) then
-				local anchorMeta = display.GetMeta(metas - 1, renderOffScreen, achievementsFrame);
+				local anchorMeta = display.GetMeta(metas - 1, renderOffScreen);
 				metaCriteria:SetPoint("LEFT", anchorMeta, "RIGHT", 35, 0);
 			else
-				local anchorMeta = display.GetMeta(metas - 2, renderOffScreen, achievementsFrame);
+				local anchorMeta = display.GetMeta(metas - 2, renderOffScreen);
 				metaCriteria:SetPoint("TOPLEFT", anchorMeta, "BOTTOMLEFT", -0, 2);
 				numMetaRows = numMetaRows + 1;
 			end
@@ -326,7 +326,7 @@ function display.ResetMetas(renderOffScreen)
 	end
 end
 
-function display.GetMeta(index, renderOffScreen, achievementsFrame)
+function display.GetMeta(index, renderOffScreen)
 	local mcTable = metaCriteriaTable;
 	local offscreenName = "";
 	if renderOffScreen then

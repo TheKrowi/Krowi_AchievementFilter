@@ -289,7 +289,7 @@ function achievementsFrame:AdjustSelection()
 	end
 end
 
-function achievementsFrame:DisplayAchievement(button, achievement, index, selection, renderOffScreen)
+function achievementsFrame:DisplayAchievement(button, achievement, index, selection)
 	local compact = addon.Options.db.Achievements.Compact;
 	local earnedByFilter = addon.Filters.db.EarnedBy;
 
@@ -403,7 +403,7 @@ function achievementsFrame:DisplayAchievement(button, achievement, index, select
 	if selection and id == selection.ID then
 		button.selected = true;
 		button.highlight:Show();
-		local height = button:DisplayObjectives(renderOffScreen);
+		local height = button:DisplayObjectives();
 
 		if height == ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT then
 			button:Collapse();

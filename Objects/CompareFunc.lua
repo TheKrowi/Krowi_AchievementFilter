@@ -39,7 +39,6 @@ function compareFunc:Compare(a, b)
 
     propA, propB = self.ToLower(propA, propB);
     if propA == propB then
-        print("equal", propA, propB, a, b, self.Fallback.Property)
         return self.Fallback:Compare(a, b);
     end
 

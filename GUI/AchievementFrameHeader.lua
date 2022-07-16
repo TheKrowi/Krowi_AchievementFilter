@@ -98,18 +98,6 @@ local function GetSortedCharacters()
         });
     end
 
--- little test
-for i = 1, 100 do
-    tinsert(characters, {
-        Name = "Name" .. i,
-        Realm = "Realm" .. i,
-        Class = "Class" .. i,
-        Faction = "Faction" .. i,
-        Points = i,
-        Guid = "Guid" .. i
-    });
-end
-
     local sortOptions = addon.Options.db.AchievementPoints.Tooltip.Sort;
     for index, sortFunc in next, sortOptions.Priority do
         sortFuncs[sortFunc].Reverse = sortOptions.Reverse[index];
