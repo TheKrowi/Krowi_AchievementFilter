@@ -34,9 +34,8 @@ function WorldMapAchievementButtonMixin:OnClick()
     if achievements and #achievements > 0 then
         HideUIPanel(WorldMapFrame);
         addon.Data.SelectedZoneCategory.Achievements = achievements;
-        addon.GUI.ToggleAchievementFrame(addonName, addon.L["Expansions"], true);
-        addon.Tabs["Expansions"].Categories[3].Name = addon.L["Selected Zone"] .. " (" .. worldMapButton.name .. ")";
-        KrowiAF_SelectCategory(addon.Tabs["Expansions"].Categories[3]);
+        addon.Data.SelectedZoneCategory.Name = addon.L["Selected Zone"] .. " (" .. worldMapButton.name .. ")";
+        KrowiAF_SelectCategory(addon.Data.SelectedZoneCategory);
     end
 end
 
