@@ -94,7 +94,7 @@ local function RedBackdrop(self)
 end
 
 local function SetAchievementButtonColor(frame, engine)
-	if frame and frame.backdrop then
+	if frame and frame.backdrop and frame.Achievement then
 		if frame.Achievement.NotObtainable then
 			frame.backdrop.callbackBackdropColor = RedBackdrop;
 			frame.backdrop:SetBackdropColor(redAchievement.r, redAchievement.g, redAchievement.b);
