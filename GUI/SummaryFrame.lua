@@ -314,6 +314,9 @@ function summaryFrame:CategoriesStatusBar_Update(event)
 		if category then
 			statusBar.TextLeft:SetText(category.Name);
 			statusBar.Button.Category = category;
+            if category.NumOfAch == nil or category.NumOfCompAch == nil or category.NumOfNotObtAch == nil then
+                category:GetAchievementNumbers();
+            end
             local numOfAch, numOfCompAch, numOfNotObtAch = category.NumOfAch, category.NumOfCompAch, category.NumOfNotObtAch;
             totalNumOfAch = totalNumOfAch + numOfAch;
             totalNumOfCompAch = totalNumOfCompAch + numOfCompAch;
