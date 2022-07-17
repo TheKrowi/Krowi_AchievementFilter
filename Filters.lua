@@ -198,6 +198,22 @@ function filters:SetFilters(_filters, achievement)
 end
 
 function filters:GetFilters(category)
+    if addon.GUI.SelectedTab == nil then
+        local categoriesTree = category:GetTree();
+
+        local tab = addon.Tabs[categoriesTree[1].Name];
+        if tab == nil then
+            return self.db;
+        end
+
+        local filters2 = addon.Tabs[categoriesTree[1].Name].Filters;
+        if filters2 then
+            return filters2;
+        end
+
+        return self.db;
+    end
+
     if category == nil then
         category = addon.GUI.SelectedTab.SelectedCategory;
     end

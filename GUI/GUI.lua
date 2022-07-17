@@ -183,7 +183,7 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
             tabIsSelected = true;
         end
     end
-    
+
 	if AchievementFrame:IsShown() and tabIsSelected and not resetView and not forceOpen then
 		HideUIPanel(AchievementFrame);
 	else

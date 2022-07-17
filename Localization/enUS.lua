@@ -1,4 +1,4 @@
--- [[ Exported at 2022-07-15 22-48-22 ]] --
+-- [[ Exported at 2022-07-17 15-30-14 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -17,6 +17,7 @@ addon.Plugins:LoadLocalization(L);
 
 
 L["Achievement points earned by"] = "Achievement points earned by";
+L["Shown temporarily"] = "This category was selected by clicking on the {eventName} event reminder and is shown temprarily because it has no achievements that match the set filters.";
 L["Achievements"] = "Achievements";
 L["Expansions"] = "Expansions";
 L["Events"] = "Events";

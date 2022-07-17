@@ -86,86 +86,12 @@ function categoriesFrame.Show_Hide(frame, func, _categoriesWidth, achievementsOf
 	func(scrollFrame.ScrollBar);
 end
 
-local function GetFilteredAchievementNumbers(achievements, filters, numOfAch, numOfCompAch, numOfNotObtAch) -- , numOfIncompAch
-	if not achievements then
-		return numOfAch, numOfCompAch, numOfNotObtAch;
-	end
-	for _, achievement in next, achievements do
-		numOfAch, numOfCompAch, numOfNotObtAch = addon.GetAchievementNumbers(filters, achievement, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
-	end
-	return numOfAch, numOfCompAch, numOfNotObtAch;
-end
-
-local function GetAchievementNumbers(self, category)
-	-- numOfIncompAch is not used right now so we can leave this one out untill needed
-	local numOfAch, numOfCompAch, numOfNotObtAch = 0, 0, 0; -- , numOfIncompAch = 0
-
-	if not category then
-		return numOfAch, numOfCompAch, numOfNotObtAch;
-	end
-
-	category:UnMergeAchievements();
-	category.Merged = nil;
-
-	local showCollapseIcon = false;
-	local children = category.Children;
-	if children then
-		for _, child in next, children do
-			local childNumOfAch, childNumOfCompAch, childNumOfNotObtAch = GetAchievementNumbers(self, child); -- , childNumOfIncompAch
-			numOfAch = numOfAch + childNumOfAch;
-			numOfCompAch = numOfCompAch + childNumOfCompAch;
-			numOfNotObtAch = numOfNotObtAch + childNumOfNotObtAch;
-			-- numOfIncompAch = numOfIncompAch + childNumOfIncompAch;
-			showCollapseIcon = showCollapseIcon or childNumOfAch > 0;
-		end
-	end
-
-	local filters = addon.Filters;
-	local filters2;
-	if filters then
-		filters2 = filters:GetFilters(category);
-	end
-
-	numOfAch, numOfCompAch, numOfNotObtAch = GetFilteredAchievementNumbers(category.Achievements, filters2, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
-	numOfAch, numOfCompAch, numOfNotObtAch = GetFilteredAchievementNumbers(category.MergedAchievements, filters2, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
-
-	local mergeSmallCategories = false;
-	if filters then
-		mergeSmallCategories = filters.db.MergeSmallCategories;
-	end
-	if mergeSmallCategories then
-		local mergeSmallCategoriesThreshold = addon.Options.db.Window.MergeSmallCategoriesThreshold;
-		if category.Parent and category.CanMerge then
-			if category.Achievements then
-				if numOfAch < mergeSmallCategoriesThreshold then
-					if not category.Merged then
-						for _, achievement in next, category.Achievements do
-							category.Parent:MergeAchievement(achievement);
-						end
-						category.Merged = true;
-					end
-					numOfAch, numOfCompAch, numOfNotObtAch = 0, 0, 0;
-				end
-			end
-		end
-	end
-
-	-- Caching the data in the category increases memory usage but improves performance which is more important here
-	category.NumOfAch = numOfAch;
-	category.NumOfCompAch = numOfCompAch;
-	category.NumOfNotObtAch = numOfNotObtAch;
-	-- category.NumOfIncompAch = numOfIncompAch;
-	category.ShowCollapseIcon = showCollapseIcon;
-
-	return numOfAch, numOfCompAch, numOfNotObtAch; -- , numOfIncompAch
-end
-
-local function GetDisplayCategories(self, displayCategories, category, getAchNums)
+local function GetDisplayCategories(displayCategories, category, getAchNums)
 	if category.NotHidden or category.AlwaysVisible then -- If already visible, keep visible
 		if (category.NumOfAch == nil or getAchNums or category.HasFlexibleData) and category.Parent.TabName ~= nil then
 			-- Huge increase over performance if we cache the achievement numbers and only update them when needed,
 			-- only for the top level categories since it works recursive
-			if GetAchievementNumbers(self, category) > 0 or category.AlwaysVisible then
+			if category:GetAchievementNumbers() > 0 or category.AlwaysVisible then
 				tinsert(displayCategories, category);
 			end
 		elseif category.NumOfAch > 0 or category.AlwaysVisible then
@@ -176,7 +102,7 @@ local function GetDisplayCategories(self, displayCategories, category, getAchNum
 	local children = category.Children;
 	if children then
 		for _, child in next, children do
-			GetDisplayCategories(self, displayCategories, child, getAchNums);
+			GetDisplayCategories(displayCategories, child, getAchNums);
 		end
 	end
 end
@@ -200,7 +126,7 @@ function categoriesFrame:Update(getAchNums)
 	local displayCategories = {};
 	local categories = selectedTab.Categories;
 	for _, category in next, categories do
-		GetDisplayCategories(self, displayCategories, category, getAchNums);
+		GetDisplayCategories(displayCategories, category, getAchNums);
 	end
 
 	local totalHeight = #displayCategories * buttons[1]:GetHeight();
