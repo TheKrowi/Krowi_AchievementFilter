@@ -10,7 +10,9 @@ function KrowiAF_SelectAchievementWithCategory(achievement, category, mouseButto
 	local scrollBar = scrollFrame.ScrollBar;
 
 	KrowiAF_SelectCategory(category);
-	scrollBar:SetValue(0); -- Makes sure the scrollbar is at the top since this can be in a diff location if the category is already selected
+
+	-- next line might be redundant causing the bug
+	-- scrollBar:SetValue(0); -- Makes sure the scrollbar is at the top since this can be in a diff location if the category is already selected
 
 	local selectedTab = addon.GUI.SelectedTab; -- This changes when calling KrowiAF_SelectCategory
 
