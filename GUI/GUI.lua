@@ -158,18 +158,18 @@ function gui.ResetView()
     end
 end
 
-function gui.SelectTab(_addonName, tabName)
+function gui.SelectTab(_addonName, tabName, quick)
     local button = addon.GUI.Tabs[_addonName][tabName];
     if button then
         if button.Select then
-            button:Select(); -- Addon tabs
+            button:Select(quick); -- Addon tabs
         else
             button:Click(); -- Other tabs
         end
     end
 end
 
-function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -- Issue #26 Broken, Fix
+function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen, quick) -- Issue #26 Broken, Fix
     if not IsAddOnLoaded("Blizzard_AchievementUI") then
         LoadAddOn("Blizzard_AchievementUI");
     end
@@ -187,10 +187,10 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
 	if AchievementFrame:IsShown() and tabIsSelected and not resetView and not forceOpen then
 		HideUIPanel(AchievementFrame);
 	else
-        AchievementFrame_SetTabs();
 		ShowUIPanel(AchievementFrame);
+        AchievementFrame_SetTabs();
         AchievementFrame_HideSearchPreview();
-        gui.SelectTab(_addonName, tabName);
+        gui.SelectTab(_addonName, tabName, quick);
         if addon.Options.db.ResetViewOnOpen or resetView then
             gui.ResetView();
         end
@@ -345,4 +345,15 @@ function gui.TabsOrderGetActiveKeys()
 
     needsCleanup = nil;
     return SavedData.TabKeys;
+end
+
+gui.ForceShowAchievement = nil;
+function gui.ClearForcedShowAchievements()
+    local achievement = addon.GUI.ForceShowAchievement;
+    -- print("gui.ClearForcedShowAchievements()", achievement)
+    if achievement and achievement.ForceShown then
+        -- print("gui.ClearForcedShowAchievements()", achievement.ForceShown)
+        achievement.ForceShow = nil;
+        achievement.ForceShown = nil;
+    end
 end

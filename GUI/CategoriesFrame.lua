@@ -108,6 +108,8 @@ local function GetDisplayCategories(displayCategories, category, getAchNums)
 end
 
 function categoriesFrame:Update(getAchNums)
+	print("categoriesFrame:Update", getAchNums)
+	addon.GUI.ClearForcedShowAchievements();
 	local selectedTab = addon.GUI.SelectedTab;
 	if selectedTab == nil then
 		return;

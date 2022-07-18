@@ -52,7 +52,7 @@ function achFrameTabBtn:New(text, framesToShow, achievementsFrame, categoriesFra
     return frame;
 end
 
-function achFrameTabBtn:Base_OnClick(id)
+function achFrameTabBtn:Base_OnClick(id, quick)
 	AchievementFrame_UpdateTabs(id);
 
     if addon.InGuildView() then
@@ -70,12 +70,17 @@ function achFrameTabBtn:Base_OnClick(id)
         self.AchievementsFrame:Hide();
     end
 
+    -- addon.GUI.ClearForcedShowAchievements();
+
     AchievementFrame_ShowSubFrame(unpack(self.FramesToShow));
     if self.SelectedCategory.IsSummary then
 		addon.GUI.SummaryFrame:Show();
 		addon.GUI.AchievementsFrame:Hide();
 	else
 		addon.GUI.AchievementsFrame:Show();
+        if not quick then
+            addon.GUI.AchievementsFrame:ForceUpdate();
+        end
 		addon.GUI.SummaryFrame:Hide();
 	end
     AchievementFrameWaterMark:SetTexture("Interface\\AchievementFrame\\UI-Achievement-AchievementWatermark");
@@ -123,8 +128,8 @@ function achFrameTabBtn:AchievementFrame_UpdateTabs(thisTab, thisTabID, clickedT
     end
 end
 
-function achFrameTabBtn:Select()
+function achFrameTabBtn:Select(quick)
     if gui.SelectedTab ~= self then
-        self:OnClick(self.ID);
+        self:OnClick(self.ID, quick);
     end
 end

@@ -10,10 +10,7 @@ function KrowiAF_SelectAchievementWithCategory(achievement, category, mouseButto
 	local scrollBar = scrollFrame.ScrollBar;
 
 	KrowiAF_SelectCategory(category);
-
-	-- next line might be redundant causing the bug
-	-- scrollBar:SetValue(0); -- Makes sure the scrollbar is at the top since this can be in a diff location if the category is already selected
-
+	print("KrowiAF_SelectAchievementWithCategory", achievement.ForceShow)
 	local selectedTab = addon.GUI.SelectedTab; -- This changes when calling KrowiAF_SelectCategory
 
 	-- Select achievement
@@ -22,7 +19,13 @@ function KrowiAF_SelectAchievementWithCategory(achievement, category, mouseButto
 	local buttons;
 	local selectedAchievement;
 
+	local loops, maxLoops = 0, 1000;
+
 	while not shown do
+		loops = loops + 1;
+		if loops >= maxLoops then
+			error("Max loops passed", 2);
+		end
 		buttons = scrollFrame.buttons;
 		for _, button in next, buttons do
 			if button.id == achievement.ID and math.ceil(button:GetTop()) >= math.ceil(addon.GUI.GetSafeScrollChildBottom(scrollFrame)) then
@@ -59,21 +62,18 @@ function KrowiAF_SelectAchievement(achievement, mouseButton, ignoreModifiers, an
 		return;
 	end
 
-	local filters = addon.Filters;
-
-	-- Get category
-	local category;
-	if filters and filters.db.MergeSmallCategories then
-		category = achievement:GetMergedCategory(); -- This way we get the parent category
-	else
-		category = achievement.Category;
-	end
+	local category = achievement.Category;
 
 	-- Set filters so achievement is visible
+	local filters = addon.Filters;
 	if filters then
 		local tabFilters = addon.Tabs[category:GetTree()[1].TabName].Filters;
 		achievement = filters.GetHighestAchievementWhenCollapseSeries(tabFilters, achievement);
-		filters:SetFilters(tabFilters, achievement);
+		if filters.Validate(tabFilters, achievement) < 0 then
+			achievement.ForceShow = true;
+			print("achievement.ForceShow", achievement.ID)
+			addon.GUI.ForceShowAchievement = achievement;
+		end
 	end
 
 	KrowiAF_SelectAchievementWithCategory(achievement, category, mouseButton, ignoreModifiers, anchor, offsetX, offsetY);
@@ -135,24 +135,49 @@ local function GetMergedCategory(category)
 end
 
 function KrowiAF_SelectCategory(category, collapsed)
-	category = GetMergedCategory(category);
-	local categoriesTree = category:GetTree();
-
 	-- Select tab
-	addon.GUI.ToggleAchievementFrame(addonName, categoriesTree[1].TabName, nil, true);
-
-	-- Here we need to get the tree again since when the destination tab is not loaded before, merged categories are not yet processed
+	local categoriesTree = category:GetTree();
+	addon.GUI.ToggleAchievementFrame(addonName, categoriesTree[1].TabName, nil, true, true);
 	category = GetMergedCategory(category);
+
+	-- Make sure we have processed the achievement numbers at least once
+	if category.NumOfAch == nil then
+        category:GetAchievementNumbers();
+    end
+
+	-- Make sure the category we want to select is show by setting it to AlwaysVisible
 	categoriesTree = category:GetTree();
+    local alwaysVisibleCache;
+    if category.NumOfAch == 0 then
+        alwaysVisibleCache = {};
+        for i = 1, #categoriesTree do
+            alwaysVisibleCache[i] = categoriesTree[i].AlwaysVisible;
+            categoriesTree[i].AlwaysVisible = true; -- We set this here to show an empty category
+        end
+        addon.GUI.CategoriesFrame:Update(true); -- Force an update to handle the new AlwaysVisible states
+    end
 
 	-- Select category
-	for i, cat in next, categoriesTree do
+	for _, cat in next, categoriesTree do
 		if cat.TabName == nil then
 			if not cat.IsSelected or (cat.NotCollapsed == collapsed) then -- Issue #23: Fix -- Issue #25 Broken, Fix
-				SelectCategory(cat, collapsed, i ~= #categoriesTree); -- Issue #23: Broken
+				SelectCategory(cat, collapsed, true); -- Issue #23: Broken
 			end
 		end
 	end
+
+	-- Update the achievement frame to show all the visible and forced achievements
+	local achievementsFrame = addon.GUI.AchievementsFrame;
+	achievementsFrame:ClearSelection();
+	achievementsFrame.Container.ScrollBar:SetValue(0);
+	achievementsFrame:ForceUpdate();
+
+	-- Reset the initial AlwaysVisible states so when the categories frame updates, the categories are hidden again
+	if category.NumOfAch == 0 then
+        for i = 1, #categoriesTree do
+            categoriesTree[i].AlwaysVisible = alwaysVisibleCache[i];
+        end
+    end
 end
 
 function KrowiAF_ToggleAchievementFrame(_addonName, tabName)

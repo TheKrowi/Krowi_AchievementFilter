@@ -8,6 +8,8 @@ local function OnClick(self, quick)
 	local achievementsFrame = addon.GUI.AchievementsFrame;
 	local summaryFrame = addon.GUI.SummaryFrame;
 
+	-- addon.GUI.ClearForcedShowAchievements();
+
 	if self.Category.IsSummary then
 		summaryFrame:Show();
 		achievementsFrame:Hide();

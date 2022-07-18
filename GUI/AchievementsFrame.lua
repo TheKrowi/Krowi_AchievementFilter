@@ -48,7 +48,7 @@ function KrowiAF_AchievementFrameAchievementsFrame_OnShow(self)
 	AchievementButton_ResetMetas(false);
 	AchievementButton_ResetCriteria(true);
 	AchievementButton_ResetCriteria(false);
-	self:ForceUpdate(); -- Issue #42: Fix
+	-- self:ForceUpdate(); -- Issue #42: Fix
 end
 
 function KrowiAF_AchievementFrameAchievementsFrame_OnHide(self)
@@ -80,7 +80,8 @@ local function Validate(achievements, displayAchievements, defaultOrder)
 	end
 	local filters = addon.Filters;
 	for _, achievement in next, achievements do
-		if filters and filters:AutoValidate(achievement) > 0 then -- Greater than 0 means it can be shown
+		if (filters and filters:AutoValidate(achievement) > 0) or achievement.ForceShow then -- Greater than 0 means it can be shown
+			-- print("showing", achievement.ID, achievement.ForceShow)
 			tinsert(displayAchievements, achievement);
 		end
 		defaultOrder[achievement] = #displayAchievements;
@@ -122,8 +123,13 @@ function achievementsFrame:Update()
 		updateAchievements = addon.Data.GetCurrentZoneAchievements() or updateAchievements;
 	end
 
+	print("achievementsFrame:Update()", updateAchievements)
 	if updateAchievements then
 		cachedAchievements = GetFilteredAchievements(cachedCategory);
+	-- else
+	-- 	for _, achievement in next, cachedAchievements do
+	-- 		achievement.ForceShow = nil;
+	-- 	end
 	end
 
 	self.Text:Hide();
@@ -139,6 +145,7 @@ function achievementsFrame:Update()
 		if index > #cachedAchievements then
 			buttons[i]:Hide();
 		else
+			print(cachedAchievements[index].ID)
 			self:DisplayAchievement(buttons[i], cachedAchievements[index], index, selectedAchievement);
 			displayedHeight = displayedHeight + buttons[i]:GetHeight();
 		end
@@ -183,6 +190,12 @@ function achievementsFrame:ForceUpdate(toTop) -- Issue #3: Fix
 	local buttons = self.Container.buttons;
 	for _, button in next, buttons do
 		button.id = nil;
+		-- if button.Achievement then
+		-- 	local achievement = button.Achievement;
+		-- 	if achievement.ForceShow then
+		-- 		achievement.ForceShow = nil;
+		-- 	end
+		-- end
 	end
 
 	-- Clear the cache
@@ -425,6 +438,15 @@ function achievementsFrame:DisplayAchievement(button, achievement, index, select
 			button.description:Show();
 		end
 		button.hiddenDescription:Hide();
+	end
+
+	if achievement.ForceShow then
+		button.SpecialIcon.Texture:SetAtlas("flightpath");
+		button.SpecialIcon:Show();
+		achievement.ForceShown = true;
+		print("forced shown")
+	else
+		button.SpecialIcon:Hide();
 	end
 
 	return id;

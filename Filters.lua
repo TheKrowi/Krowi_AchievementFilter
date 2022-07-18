@@ -159,7 +159,6 @@ local validations = {
 };
 
 function filters.Validate(_filters, achievement, ignoreCollapseSeries)
-
     local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = addon.GetAchievementInfo(achievement.ID);
     if addon.Filters.db.EarnedBy == addon.Filters.CharacterOnly then
         completedCache = wasEarnedByMe;
@@ -172,6 +171,7 @@ function filters.Validate(_filters, achievement, ignoreCollapseSeries)
             return -i;
         end
     end
+    achievement.ForceShow = nil;
     return 1;
 end
 
@@ -179,23 +179,23 @@ function filters:AutoValidate(achievement, ignoreCollapseSeries)
     return self.Validate(self:GetFilters(), achievement, ignoreCollapseSeries);
 end
 
-function filters:SetFilters(_filters, achievement)
-    local iterations = 0;
-    while true do
-        local id = self.Validate(_filters, achievement);
-        if id == 1 then
-            if iterations > 0 then -- If 0, nothing changed so no need to update
-                _filters.Refresh = true;
-                addon.GUI.FilterButton.UpdateAchievementFrame();
-            end
-            return; -- Jump out of loop
-        else
-            validations[-id].SetFilter(_filters);
-        end
+-- function filters:SetFilters(_filters, achievement)
+--     local iterations = 0;
+--     while true do
+--         local id = self.Validate(_filters, achievement);
+--         if id == 1 then
+--             if iterations > 0 then -- If 0, nothing changed so no need to update
+--                 _filters.Refresh = true;
+--                 addon.GUI.FilterButton.UpdateAchievementFrame();
+--             end
+--             return; -- Jump out of loop
+--         else
+--             validations[-id].SetFilter(_filters);
+--         end
 
-        iterations = iterations + 1;
-    end
-end
+--         iterations = iterations + 1;
+--     end
+-- end
 
 function filters:GetFilters(category)
     if addon.GUI.SelectedTab == nil then

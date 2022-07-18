@@ -325,6 +325,22 @@
 					<Anchor point="TOPLEFT" x="9" y="-46"/>
 				</Anchors>
 			</CheckButton>
+			<Frame name="parentSpecialIcon" parentKey="SpecialIcon" hidden="true">
+				<Size x="15" y="15"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" x="70" y="-7"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentTexture" parentKey="Texture" file="Interface\AchievementFrame\UI-Achievement-PlusMinus">
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+								<Anchor point="BOTTOMRIGHT"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Frame>
 		</Frames>
   	</Button>
 

@@ -107,6 +107,14 @@ local function AddBlizzardDefault(self, earnedBy, notEarnedBy)
 	end
 end
 
+
+local function AddTemporarilyShown()
+	if GameTooltip:NumLines() > 0 then
+		GameTooltip_AddBlankLineToTooltip(GameTooltip);
+	end
+	GameTooltip:AddLine("|A:flightpath:15:15|a" .. addon.L["TAB"] .. addon.L["This achievement is no longer obtainable"]);
+end
+
 local function AddNotObtainable()
 	if GameTooltip:NumLines() > 0 then
 		GameTooltip_AddBlankLineToTooltip(GameTooltip);
@@ -290,6 +298,9 @@ function tooltip.ShowTooltip(button, validate, filters, addBlizzardDefault, addN
 
 	if button.Achievement.NotObtainable and addNotObtainable ~= false then
 		AddNotObtainable();
+	end
+	if button.Achievement.ForceShow then
+		AddTemporarilyShown();
 	end
 	if addBlizzardDefault ~= false then
 		AddBlizzardDefault(button, earnedBy, notEarnedBy);
