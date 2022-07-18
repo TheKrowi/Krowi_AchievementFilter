@@ -22,7 +22,13 @@ function KrowiAF_SelectAchievementWithCategory(achievement, category, mouseButto
 	local buttons;
 	local selectedAchievement;
 
+	local loops, maxLoops = 0, 1000;
+
 	while not shown do
+		loops = loops + 1;
+		if loops >= maxLoops then
+			error("Oops, something went wrong. This is a known error of Krowi's Achievement Filter and I'm doing my best to fix this as quick as possible. For now, uncheck the 'Merge small categories' to reduce the change for this error to occur. Please do not report this error. Sorry for any inconvenience. - Krowi", 2);
+		end
 		buttons = scrollFrame.buttons;
 		for _, button in next, buttons do
 			if button.id == achievement.ID and math.ceil(button:GetTop()) >= math.ceil(addon.GUI.GetSafeScrollChildBottom(scrollFrame)) then

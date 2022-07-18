@@ -188,6 +188,7 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
 		HideUIPanel(AchievementFrame);
 	else
         AchievementFrame_SetTabs();
+        -- addon.GUI.ShowHideTabs();
 		ShowUIPanel(AchievementFrame);
         AchievementFrame_HideSearchPreview();
         gui.SelectTab(_addonName, tabName);

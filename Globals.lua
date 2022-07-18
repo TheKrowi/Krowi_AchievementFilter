@@ -297,9 +297,11 @@ function addon.HookSelectAchievement()
 end
 
 function addon.HookAchievementFrameOnShow()
-    AchievementFrame_SetTabs = function() -- Tainting by overwriting but showing and anchoring tabs is handled somewhere else now
-        addon.GUI.ShowHideTabs();
-    end
+    -- AchievementFrame_SetTabs = function() -- Tainting by overwriting but showing and anchoring tabs is handled somewhere else now
+    --     addon.GUI.ShowHideTabs();
+    -- end
+
+    hooksecurefunc("AchievementFrame_SetTabs", addon.GUI.ShowHideTabs);
 end
 
 local function MakeMovable(frame, target)
@@ -434,6 +436,9 @@ function addon.ChangeAchievementMicroButtonOnClick()
         end
     end
     local tab = SavedData.Tabs[addon.Options.db.MicroButtonTab];
+    if tab.AddonName == "Blizzard_AchievementUI" then
+        return;
+    end
     AchievementMicroButton:SetScript("OnClick", function(self)
         addon.GUI.ToggleAchievementFrame(tab.AddonName, tab.Name);
     end);
