@@ -8,7 +8,7 @@ local ourTabIDs = {};
 
 -- [[ Constructors ]] --
 achFrameTabBtn.__index = achFrameTabBtn; -- Used to support OOP like code
-function achFrameTabBtn:New(text, framesToShow, achievementsFrame, categoriesFrame, categories, filters)
+function achFrameTabBtn:New(text, framesToShow, achievementsFrame, categories, filters)
 	-- Increment ID
     PanelTemplates_SetNumTabs(AchievementFrame, AchievementFrame.numTabs + 1);
 
@@ -22,8 +22,6 @@ function achFrameTabBtn:New(text, framesToShow, achievementsFrame, categoriesFra
     frame.ID = AchievementFrame.numTabs;
     tinsert(ourTabIDs, frame.ID);
     frame.AchievementsFrame = achievementsFrame;
-    frame.CategoriesFrame = categoriesFrame;
-    tinsert(framesToShow, 1, categoriesFrame);
     frame.FramesToShow = framesToShow;
 
     frame.SelectedAchievement = nil; -- Issue #6: Fix
@@ -61,14 +59,8 @@ function achFrameTabBtn:Base_OnClick(id)
         AchievementFrameGuildEmblemRight:Hide();
     end
 
-    if self.CategoriesFrame and self.CategoriesFrame:IsShown() then
-        self.CategoriesFrame:Hide();
-    end
-
-    if self.AchievementsFrame and self.AchievementsFrame:IsShown() then
-        self.AchievementsFrame.Container.ScrollBar:SetValue(0);
-        self.AchievementsFrame:Hide();
-    end
+    AchievementFrame_ShowSubFrame(); -- Hide all frames
+    self.AchievementsFrame.Container.ScrollBar:SetValue(0);
 
     AchievementFrame_ShowSubFrame(unpack(self.FramesToShow));
     if self.SelectedCategory.IsSummary then
@@ -104,8 +96,8 @@ function achFrameTabBtn:AchievementFrame_UpdateTabs(thisTab, thisTabID, clickedT
     end
     if ourTabClicked then -- One of our tabs was clicked
         if not achievementFrameSizeSet then -- And custom size was not yet set
-            gui.SetAchievementFrameWidth(addon.Options.db.Window.CategoriesFrameWidthOffset);
-            gui.SetAchievementFrameHeight(addon.Options.db.Window.AchievementFrameHeightOffset);
+            gui.SetAchievementFrameWidth();
+            gui.SetAchievementFrameHeight();
             achievementFrameSizeSet = true;
         end
     elseif achievementFrameSizeSet then -- Not one of our tabs was clicked and size is not yet reset

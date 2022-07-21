@@ -16,8 +16,14 @@ function gui:LoadWithAddon()
     addon.GUI.AchievementFrameHeader.InjectOptions();
 end
 
+local defaultAchievementFrameWidth;
+local defaultAchievementFrameHeight;
+local defaultAchievementFrameMetalBorderHeight;
 function gui:LoadWithBlizzard_AchievementUI()
-    self.SetAchievementFrameHeight(addon.Options.db.Window.AchievementFrameHeightOffset); -- Do this in order to create the correct amount of buttons based on our settings
+    defaultAchievementFrameWidth = AchievementFrame:GetWidth();
+    defaultAchievementFrameHeight = AchievementFrame:GetHeight();
+    defaultAchievementFrameMetalBorderHeight = AchievementFrameMetalBorderLeft:GetHeight();
+    self.SetAchievementFrameHeight(); -- Do this in order to create the correct amount of buttons based on our settings
 
     gui.AchievementsFrame:Load();
     addon.GUI.SummaryFrame:Load();
@@ -30,7 +36,7 @@ function gui:LoadWithBlizzard_AchievementUI()
     gui.AddDataToBlizzardTabs();
 
     for _, t in next, addon.TabsOrder do
-        addon.Tabs[t].Button = gui.AchievementFrameTabButton:New(addon.Tabs[t].Text, {gui.FilterButton, gui.Search.BoxFrame}, gui.AchievementsFrame, gui.CategoriesFrame, addon.Tabs[t].Categories, addon.Tabs[t].Filters);
+        addon.Tabs[t].Button = gui.AchievementFrameTabButton:New(addon.Tabs[t].Text, {gui.FilterButton, gui.Search.BoxFrame, gui.CategoriesFrame}, gui.AchievementsFrame, addon.Tabs[t].Categories, addon.Tabs[t].Filters);
         KrowiAF_RegisterTabButton(addonName, addon.Tabs[t].Name, addon.Tabs[t].Button);
     end
 
@@ -60,74 +66,29 @@ function gui:LoadWithBlizzard_AchievementUI()
 end
 
 -- [[ AchievementFrame Width ]] --
-local defaultAchievementFrameWidth;
 
-function gui.SetAchievementFrameWidth(offset)
-    diagnostics.Trace("gui.SetAchievementFrameWidth");
-
-    if not defaultAchievementFrameWidth then
-        defaultAchievementFrameWidth = AchievementFrame:GetWidth();
-    end
-    AchievementFrame:SetWidth(defaultAchievementFrameWidth + offset);
+function gui.SetAchievementFrameWidth()
+    AchievementFrame:SetWidth(defaultAchievementFrameWidth + addon.Options.db.Window.CategoriesFrameWidthOffset);
 end
 
 function gui.ResetAchievementFrameWidth()
-    diagnostics.Trace("gui.ResetAchievementFrameWidth");
-
-    if defaultAchievementFrameWidth then
-        AchievementFrame:SetWidth(defaultAchievementFrameWidth);
-    end
+    AchievementFrame:SetWidth(defaultAchievementFrameWidth);
 end
-
-local function UpdateAchievementFrameWidth(message , offset)
-    if gui.SelectedTab then -- Need to check if it exists since this can be triggered before it's created
-        gui.AchievementsFrame:Hide();
-        gui.CategoriesFrame:Hide();
-        gui.SetAchievementFrameWidth(offset);
-        gui.AchievementsFrame:Show();
-        gui.CategoriesFrame:Show();
-    end
-end
-
-addon.Event:RegisterMessage("UpdateAchievementFrameWidth", UpdateAchievementFrameWidth);
 
 -- [[ AchievementFrame Height ]] --
-local defaultAchievementFrameHeight;
-local defaultAchievementFrameMetalBorderHeight;
 
-function gui.SetAchievementFrameHeight(offset)
-    diagnostics.Trace("gui.SetAchievementFrameHeight");
-
-    if not defaultAchievementFrameHeight then
-        defaultAchievementFrameHeight = AchievementFrame:GetHeight();
-        defaultAchievementFrameMetalBorderHeight = AchievementFrameMetalBorderLeft:GetHeight();
-    end
+function gui.SetAchievementFrameHeight()
+    local offset = addon.Options.db.Window.AchievementFrameHeightOffset;
     AchievementFrame:SetHeight(defaultAchievementFrameHeight + offset);
     AchievementFrameMetalBorderLeft:SetHeight(defaultAchievementFrameMetalBorderHeight + offset);
     AchievementFrameMetalBorderRight:SetHeight(defaultAchievementFrameMetalBorderHeight + offset);
 end
 
 function gui.ResetAchievementFrameHeight()
-    diagnostics.Trace("gui.ResetAchievementFrameHeight");
-
-    if defaultAchievementFrameHeight and defaultAchievementFrameMetalBorderHeight then
-        AchievementFrame:SetHeight(defaultAchievementFrameHeight);
-        AchievementFrameMetalBorderLeft:SetHeight(defaultAchievementFrameMetalBorderHeight);
-        AchievementFrameMetalBorderRight:SetHeight(defaultAchievementFrameMetalBorderHeight);
-    end
+    AchievementFrame:SetHeight(defaultAchievementFrameHeight);
+    AchievementFrameMetalBorderLeft:SetHeight(defaultAchievementFrameMetalBorderHeight);
+    AchievementFrameMetalBorderRight:SetHeight(defaultAchievementFrameMetalBorderHeight);
 end
-
-local function UpdateAchievementFrameHeight(message, offset)
-    if gui.SelectedTab then -- Need to check if it exists since this can be triggered before it's created
-        gui.AchievementsFrame:Hide();
-        gui.CategoriesFrame:Hide();
-        gui.SetAchievementFrameHeight(offset);
-        gui.AchievementsFrame:Show();
-        gui.CategoriesFrame:Show();
-    end
-end
-
-addon.Event:RegisterMessage("UpdateAchievementFrameHeight", UpdateAchievementFrameHeight);
 
 -- [[ Other ]] --
 function gui.GetSafeScrollChildBottom(scrollChild)
@@ -267,13 +228,19 @@ function gui.ShowStatusBarTooltip(self, anchor)
 	    GameTooltip:SetPoint("TOPLEFT", self, "TOPRIGHT", -3, -3);
     end
 	GameTooltip:SetMinimumWidth(128, true);
-	GameTooltip:SetText(self.name, 1, 1, 1, nil, true);
-	local numOfNotObtAch = 0;
-	if addon.Options.db.Tooltip.Categories.ShowNotObtainable then
-		numOfNotObtAch = self.numOfNotObtAch;
-	end
+	GameTooltip:SetText(self.Text, 1, 1, 1, nil, true);
 
-	gui.GameTooltipProgressBar:Show(GameTooltip, 0, self.numAchievements, self.numCompleted, numOfNotObtAch, 0, 0, addon.Colors.GreenRGB, addon.Colors.RedRGB, nil, nil, self.numCompletedText);
+
+    local text = "";
+    local numOfNotObtAch = self.NumOfNotObtAch;
+	if numOfNotObtAch > 0 and addon.Options.db.Tooltip.Categories.ShowNotObtainable then
+		text = " (+" .. numOfNotObtAch .. ")";
+    else
+        numOfNotObtAch = 0;
+	end
+	text = self.NumOfCompAch .. text .. " / " .. self.NumOfAch;
+
+	gui.GameTooltipProgressBar:Show(GameTooltip, 0, self.NumOfAch, self.NumOfCompAch, numOfNotObtAch, 0, 0, addon.Colors.GreenRGB, addon.Colors.RedRGB, nil, nil, text);
 
 	GameTooltip:SetMinimumWidth(140);
     GameTooltip:Show();

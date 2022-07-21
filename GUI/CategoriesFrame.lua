@@ -3,17 +3,12 @@ local _, addon = ...;
 addon.GUI.CategoriesFrame = {};
 local categoriesFrame = addon.GUI.CategoriesFrame;
 
-local categoriesWidth = 175;
-local categoriesWidthScrollBarOffset = 22;
-local watermarkWidthOffset = 30;
-
 -- [[ Constructors ]] --
-categoriesFrame.__index = categoriesFrame; -- Used to inject all the namespace functions to the frame
 function categoriesFrame:Load()
-	local frame = CreateFrame("Frame", "KrowiAF_AchievementFrameCategoriesFrame", AchievementFrame, "KrowiAF_AchievementFrameCategoriesFrame_Template");
+	local frame = CreateFrame("Frame", "KrowiAF_CategoriesFrame", AchievementFrame, "KrowiAF_CategoriesFrame_Template");
 	frame:SetPoint("TOPLEFT", AchievementFrameCategories);
 	frame:SetPoint("BOTTOM", 0, 20);
-	addon.Util.InjectMetatable(frame, categoriesFrame); -- Inject all the namespace functions to the frame
+	frame:SetPoint("RIGHT", AchievementFrameCategories, addon.Options.db.Window.CategoriesFrameWidthOffset, 0);
 
 	-- We need to insert the categories frame infront of the achievements frame so the show/hide function fire in the correct order
 	for i, frameName in next, ACHIEVEMENTFRAME_SUBFRAMES do
@@ -23,28 +18,27 @@ function categoriesFrame:Load()
 		end
 	end
 
-	local scrollFrame = frame.Container;
+	local scrollFrame = frame.ScrollFrame;
 	local scrollBar = scrollFrame.ScrollBar;
 	local scrollBarShow = getmetatable(scrollBar).__index.Show;
 	scrollBar.Show = function()
-		self.Show_Hide(frame, scrollBarShow, categoriesWidth, categoriesWidthScrollBarOffset, watermarkWidthOffset);
+		frame:Show_Hide(scrollBarShow, 22, 30);
 	end;
 	local scrollBarHide = getmetatable(scrollBar).__index.Hide;
 	scrollBar.Hide = function()
-		self.Show_Hide(frame, scrollBarHide, categoriesWidth + categoriesWidthScrollBarOffset, 0, watermarkWidthOffset);
+		frame:Show_Hide(scrollBarHide, 0, 30);
 	end;
 
 	scrollFrame.update = function()
 		frame:Update(); -- Issue #12: Broken
 	end
 
-	HybridScrollFrame_CreateButtons(scrollFrame, "KrowiAF_AchievementFrameCategoriesFrameCategoryButton_Template", -4, 0, "TOPRIGHT", "TOPRIGHT", 0, 0, "TOPRIGHT", "BOTTOMRIGHT");
-	addon.GUI.CategoryButton.PostLoadButtons(frame);
+	HybridScrollFrame_CreateButtons(scrollFrame, "KrowiAF_CategoryButton_Template", -2, 0, "TOPRIGHT", "TOPRIGHT", 0, 0, "TOPRIGHT", "BOTTOMRIGHT");
 
 	addon.GUI.CategoriesFrame = frame; -- Overwrite with the actual frame since all functions are injected to it
 end
 
-function KrowiAF_AchievementFrameCategoriesFrame_OnShow(self) -- Used in Templates - KrowiAF_CategoriesFrame_Template
+function KrowiAF_CategoriesFrame_OnShow(self) -- Used in Templates - KrowiAF_CategoriesFrame_Template
 	AchievementFrameCategories:Hide(); -- Issue #11: Fix
 	AchievementFrameFilterDropDown:Hide();
 	AchievementFrame.searchBox:Hide();
@@ -53,7 +47,7 @@ function KrowiAF_AchievementFrameCategoriesFrame_OnShow(self) -- Used in Templat
 	self:Update();
 end
 
-function KrowiAF_AchievementFrameCategoriesFrame_OnHide() -- Used in Templates - KrowiAF_CategoriesFrame_Template
+function KrowiAF_CategoriesFrame_OnHide() -- Used in Templates - KrowiAF_CategoriesFrame_Template
 	AchievementFrameCategories:Show(); -- Issue #11: Fix
 	AchievementFrameCategoriesBG:SetWidth(195); -- Set back to default value
 	if not AchievementFrameAchievements:IsShown() then
@@ -63,25 +57,22 @@ function KrowiAF_AchievementFrameCategoriesFrame_OnHide() -- Used in Templates -
 	AchievementFrame.searchBox:Show();
 end
 
-function categoriesFrame.Show_Hide(frame, func, _categoriesWidth, achievementsOffsetX, _watermarkWidthOffset)
-	local scrollFrame = frame.Container;
+KrowiAF_CategoriesFrameMixin = {};
+
+function KrowiAF_CategoriesFrameMixin:Show_Hide(func, achievementsOffsetX, _watermarkWidthOffset)
+	local scrollFrame = self.ScrollFrame;
 
 	local categoriesFrameWidthOffset = addon.Options.db.Window.CategoriesFrameWidthOffset;
-	_categoriesWidth = _categoriesWidth + categoriesFrameWidthOffset;
 	_watermarkWidthOffset = _watermarkWidthOffset + categoriesFrameWidthOffset;
 
-	frame:SetWidth(_categoriesWidth);
-	scrollFrame:GetScrollChild():SetWidth(_categoriesWidth);
-	addon.GUI.AchievementsFrame:SetPoint("TOPLEFT", frame, "TOPRIGHT", achievementsOffsetX, 0);
-	addon.GUI.SummaryFrame:SetPoint("TOPLEFT", frame, "TOPRIGHT", achievementsOffsetX, 0);
-	AchievementFrameWaterMark:SetWidth(_categoriesWidth - _watermarkWidthOffset);
-	AchievementFrameWaterMark:SetTexCoord(0, (_categoriesWidth - _watermarkWidthOffset)/256, 0, 1);
-	AchievementFrameCategoriesBG:SetWidth(_categoriesWidth - 2); -- Offset of 2 needed to compensate with Blizzard tabs
-
-	local buttons = scrollFrame.buttons;
-	for _, button in next, buttons do
-		frame:DisplayButton(button, button.Category, frame:GetWidth());
-	end
+	self:SetPoint("RIGHT", AchievementFrameAchievements, "LEFT", categoriesFrameWidthOffset - achievementsOffsetX, 0);
+	local width = self:GetWidth();
+	scrollFrame:GetScrollChild():SetWidth(width);
+	addon.GUI.AchievementsFrame:SetPoint("TOPLEFT", self, "TOPRIGHT", achievementsOffsetX, 0);
+	addon.GUI.SummaryFrame:SetPoint("TOPLEFT", self, "TOPRIGHT", achievementsOffsetX, 0);
+	AchievementFrameWaterMark:SetWidth(width - _watermarkWidthOffset);
+	AchievementFrameWaterMark:SetTexCoord(0, (width - _watermarkWidthOffset) / 256, 0, 1);
+	AchievementFrameCategoriesBG:SetWidth(width - 2); -- Offset of 2 needed to compensate with Blizzard tabs
 
 	func(scrollFrame.ScrollBar);
 end
@@ -107,7 +98,8 @@ local function GetDisplayCategories(displayCategories, category, getAchNums)
 	end
 end
 
-function categoriesFrame:Update(getAchNums)
+function KrowiAF_CategoriesFrameMixin:Update(getAchNums)
+	print("categoriesFrame:Update")
 	local selectedTab = addon.GUI.SelectedTab;
 	if selectedTab == nil then
 		return;
@@ -119,7 +111,7 @@ function categoriesFrame:Update(getAchNums)
 		getAchNums = true;
 	end
 
-	local scrollFrame = self.Container;
+	local scrollFrame = self.ScrollFrame;
 	local offset = HybridScrollFrame_GetOffset(scrollFrame);
 	local buttons = scrollFrame.buttons;
 
@@ -132,80 +124,25 @@ function categoriesFrame:Update(getAchNums)
 	local totalHeight = #displayCategories * buttons[1]:GetHeight();
 	local displayedHeight = 0;
 
-	local category;
+	local button, category;
 	for i = 1, #buttons do
+		button = buttons[i];
 		category = displayCategories[i + offset];
-		displayedHeight = displayedHeight + buttons[i]:GetHeight();
+		displayedHeight = displayedHeight + button:GetHeight();
+		button:SetCategory(category);
 		if category then
-			self:DisplayButton(buttons[i], category, self:GetWidth());
+			button:Show();
 			if category == selectedTab.SelectedCategory then
-				buttons[i]:LockHighlight();
+				button:LockHighlight();
 			else
-				buttons[i]:UnlockHighlight();
+				button:UnlockHighlight();
 			end
-			buttons[i]:Show();
 		else
-			buttons[i].Category = nil;
-			buttons[i]:Hide();
+			button:Hide();
 		end
 	end
 
 	HybridScrollFrame_Update(scrollFrame, totalHeight, displayedHeight);
-end
-
-function categoriesFrame:DisplayButton(button, category, baseWidth)
-	if not category then
-		button.Category = nil;
-		button:Hide();
-		return;
-	end
-
-	baseWidth = baseWidth or 197;
-
-	button:Show();
-	local parent = category.Parent;
-	if parent.TabName == nil then -- Not top level category has parent
-		button:SetWidth(baseWidth - 15 - (category.Level - 1) * 5);
-		button.label:SetFontObject("GameFontHighlight");
-		button.BackgroundLeft:SetVertexColor(0.6, 0.6, 0.6);
-		button.BackgroundMid:SetVertexColor(0.6, 0.6, 0.6);
-		button.BackgroundRight:SetVertexColor(0.6, 0.6, 0.6);
-	else -- Top level category has no parent
-		button:SetWidth(baseWidth - 10);
-		button.label:SetFontObject("GameFontNormal");
-		button.BackgroundLeft:SetVertexColor(1, 1, 1);
-		button.BackgroundMid:SetVertexColor(1, 1, 1);
-		button.BackgroundRight:SetVertexColor(1, 1, 1);
-	end
-
-	local children = category.Children;
-	button.label:SetText(category.Name);
-	if children and #children ~= 0 and category.ShowCollapseIcon then
-		if category.NotCollapsed then
-			button.label:SetText("- " .. category.Name);
-		else
-			button.label:SetText("+ " .. category.Name);
-		end
-	end
-	button.Category = category;
-
-	-- For the tooltip
-	local numOfAch, numOfCompAch, numOfNotObtAch = category.NumOfAch, category.NumOfCompAch, category.NumOfNotObtAch;
-	button.name = category.Name;
-	button.text = nil;
-	button.numAchievements = numOfAch;
-	button.numCompleted = numOfCompAch;
-	button.numOfNotObtAch = numOfNotObtAch
-	local numOfNotObtAchText = "";
-	if numOfNotObtAch > 0 and addon.Options.db.Tooltip.Categories.ShowNotObtainable then
-		numOfNotObtAchText = " (+" .. numOfNotObtAch .. ")";
-	end
-	button.numCompletedText = numOfCompAch .. numOfNotObtAchText .. " / " .. numOfAch;
-	if category.IsSummary then
-		button.showTooltipFunc = nil;
-	else
-		button.showTooltipFunc = addon.GUI.ShowStatusBarTooltip;
-	end
 end
 
 local function HideCategory(button, category)
@@ -244,7 +181,7 @@ local function OpenCloseCategory(button, category)
 	end
 end
 
-function categoriesFrame:SelectButton(button, quick)
+function KrowiAF_CategoriesFrameMixin:SelectButton(button, quick)
 	local selectedTab = addon.GUI.SelectedTab;
 	local categories = selectedTab.Categories;
 	local achievementsFrame = addon.GUI.AchievementsFrame;

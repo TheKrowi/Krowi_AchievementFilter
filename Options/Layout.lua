@@ -11,7 +11,11 @@ local achievementPointsDisplays = {
 local function SetCategoriesFrameWidthOffset(_, value)
     if addon.Options.db.Window.CategoriesFrameWidthOffset == value then return; end
     addon.Options.db.Window.CategoriesFrameWidthOffset = value;
-    addon.Event:SendMessage("UpdateAchievementFrameWidth", addon.Options.db.Window.CategoriesFrameWidthOffset);
+    if addon.GUI.SelectedTab then -- Need to check if it exists since this can be triggered before it's created
+        addon.GUI.CategoriesFrame:Hide();
+        addon.GUI.SetAchievementFrameWidth();
+        addon.GUI.CategoriesFrame:Show();
+    end
     options.Debug(addon.L["Categories width offset"], addon.Options.db.Window.CategoriesFrameWidthOffset);
 end
 
@@ -27,7 +31,9 @@ local function SetAchievementFrameHeightOffset(_, value)
     if addon.Options.db.Window.AchievementFrameHeightOffset == value then return; end
     addon.Options.db.Window.AchievementFrameHeightOffset = value;
     SetMaxNumberOfSearchPreviews();
-    addon.Event:SendMessage("UpdateAchievementFrameHeight", addon.Options.db.Window.AchievementFrameHeightOffset);
+    if addon.GUI.SelectedTab then -- Need to check if it exists since this can be triggered before it's created
+        addon.GUI.SetAchievementFrameHeight();
+    end
     options.Debug(addon.L["Achievement window height offset"], addon.Options.db.Window.AchievementFrameHeightOffset);
 end
 
@@ -143,6 +149,16 @@ local function SetObjectivesProgressShow()
     local objectivesProgressShowWhenAchievementCompleted = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.L["Layout"], "cmd", "KROWIAF-0.0").args.Achievements.args.Tooltip.args.ObjectivesProgressShowWhenAchievementCompleted; -- cmd and KROWIAF-0.0 are just to make the function work
     objectivesProgressShowWhenAchievementCompleted.disabled = not addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show;                        
     options.Debug(addon.L["Show Objectives progress"], addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show);
+end
+
+local function SetCategoryIndentation(_, value)
+    if addon.Options.db.Categories.Indentation == value then return; end
+    addon.Options.db.Categories.Indentation = value;
+    local buttons = addon.GUI.CategoriesFrame.Container.buttons;
+    for _, button in next, buttons do
+        button:SetIndentation(addon.Options.db.Categories.Indentation);
+    end
+    options.Debug(addon.L["Indentation"], addon.Options.db.Categories.Indentation);
 end
 
 local wowheadRelatedTabs = {
@@ -340,12 +356,52 @@ options.OptionsTable.args["Layout"] = {
                 }
             }
         },
-        Categories = {
+        Summary = {
             order = 4, type = "group",
+            name = addon.L["Summary"],
+            args = {
+                Summary = {
+                    order = 5, type = "group",
+                    name = addon.L["Summary"],
+                    inline = true,
+                    args = {
+                        NumAchievements = {
+                            order = 1.1, type = "range", width = 1.5,
+                            name = addon.L["Number of summary achievements"],
+                            desc = addon.L["Number of summary achievements Desc"],
+                            min = 1, max = 25, step = 1,
+                            get = function() return addon.Options.db.Categories.Summary.NumAchievements; end,
+                            set = function(_, value)
+                                if addon.Options.db.Categories.Summary.NumAchievements == value then return; end
+                                addon.Options.db.Categories.Summary.NumAchievements = value;
+                                options.Debug(addon.L["Number of summary achievements"], addon.Options.db.Categories.Summary.NumAchievements);
+                            end
+                        }
+                    }
+                }
+            }
+        },
+        Categories = {
+            order = 5, type = "group",
             name = addon.L["Categories"],
             args = {
-                Focused = {
+                Indentation = {
                     order = 1, type = "group",
+                    name = addon.L["Indentation"],
+                    inline = true,
+                    args = {
+                        Indentation = {
+                            order = 1.1, type = "range", width = 1.5,
+                            name = addon.L["Indentation"],
+                            desc = addon.ReplaceVarsWithReloadReq(addon.L["Indentation Desc"]),
+                            min = 1, max = 50, step = 1,
+                            get = function() return addon.Options.db.Categories.Indentation; end,
+                            set = SetCategoryIndentation
+                        }
+                    }
+                },
+                Focused = {
+                    order = 2, type = "group",
                     name = addon.L["Focused"],
                     inline = true,
                     args = {
@@ -370,7 +426,7 @@ options.OptionsTable.args["Layout"] = {
                     }
                 },
                 Excluded = {
-                    order = 2, type = "group",
+                    order = 3, type = "group",
                     name = addon.L["Excluded"],
                     inline = true,
                     args = {
@@ -407,7 +463,7 @@ options.OptionsTable.args["Layout"] = {
                     }
                 },
                 Tooltip = {
-                    order = 3, type = "group",
+                    order = 4, type = "group",
                     name = addon.L["Tooltip"],
                     inline = true,
                     args = {
@@ -432,7 +488,7 @@ options.OptionsTable.args["Layout"] = {
                     }
                 },
                 Merge = {
-                    order = 4, type = "group",
+                    order = 5, type = "group",
                     name = addon.L["Merge Small Categories"],
                     inline = true,
                     args = {
@@ -445,30 +501,11 @@ options.OptionsTable.args["Layout"] = {
                             set = SetMergeSmallCategoriesThreshold
                         }
                     }
-                },
-                Summary = {
-                    order = 5, type = "group",
-                    name = addon.L["Summary"],
-                    inline = true,
-                    args = {
-                        NumAchievements = {
-                            order = 1.1, type = "range", width = 1.5,
-                            name = addon.L["Number of summary achievements"],
-                            desc = addon.L["Number of summary achievements Desc"],
-                            min = 1, max = 25, step = 1,
-                            get = function() return addon.Options.db.Categories.Summary.NumAchievements; end,
-                            set = function(_, value)
-                                if addon.Options.db.Categories.Summary.NumAchievements == value then return; end
-                                addon.Options.db.Categories.Summary.NumAchievements = value;
-                                options.Debug(addon.L["Number of summary achievements"], addon.Options.db.Categories.Summary.NumAchievements);
-                            end
-                        }
-                    }
                 }
             }
         },
         Achievements = {
-            order = 5, type = "group",
+            order = 6, type = "group",
             name = addon.L["Achievements"],
             args = {
                 Style = {
@@ -684,7 +721,7 @@ options.OptionsTable.args["Layout"] = {
             }
         },
         RightClickMenu = {
-            order = 6, type = "group",
+            order = 7, type = "group",
             name = addon.L["Right Click Menu"],
             args = {
                 Button = {
@@ -752,7 +789,7 @@ options.OptionsTable.args["Layout"] = {
             }
         },
         Calendar = {
-            order = 7, type = "group",
+            order = 8, type = "group",
             name = addon.L["Calendar"],
             args = {
                 General = {

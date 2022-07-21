@@ -55,7 +55,8 @@ options.Defaults = {
             },
             Summary = {
                 NumAchievements = 25
-            }
+            },
+            Indentation = 10
         },
         Achievements = {
             Compact = false,

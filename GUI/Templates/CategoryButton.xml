@@ -1,7 +1,7 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..
 \..\FrameXML\UI.xsd">
     <!-- Originally from Blizzard_AchievementUI.xml line 660 at time of writing -->
-	<Button name="KrowiAF_AchievementFrameCategoriesFrameCategoryButton_Template" virtual="true">
+	<Button name="KrowiAF_CategoryButton_Template" mixin="KrowiAF_CategoryButtonMixin" virtual="true">
 	 	<Size x="158" y="24"/>
 		<Layers>
 			<Layer level="BACKGROUND">
@@ -29,7 +29,7 @@
 				</Texture>
 			</Layer>
 			<Layer level="ARTWORK">
-				<FontString name="$parentLabel" text="This is a Category" inherits="GameFontNormalLeftBottom" wordwrap="false" parentKey="label">
+				<FontString name="$parentLabel" text="This is a Category" inherits="GameFontNormalLeftBottom" wordwrap="false" parentKey="Label">
 					<Anchors>
 						<Anchor point="BOTTOMLEFT" x="16" y="4"/>
 						<Anchor point="TOPRIGHT" x="-8" y="-4"/>
@@ -66,7 +66,9 @@
                 self:EnableMouse(true);
                 self:EnableMouseWheel(true);
 			</OnLoad>
-			<!-- OnClick is set in code -->
+			<OnClick>
+				self:Select();
+			</OnClick>
 			<OnEnter>
 				if self.showTooltipFunc then
 					self.showTooltipFunc(self);

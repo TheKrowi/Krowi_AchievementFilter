@@ -102,7 +102,7 @@ local function SelectCategory(category, collapsed, quick)
 	while not shown do
 		for _, button in next, buttons do
 			if button.Category == category and math.ceil(button:GetBottom()) >= math.ceil(addon.GUI.GetSafeScrollChildBottom(scrollFrame)) then
-				button:Click(nil, nil, quick);
+				button:Select(quick);
 				shown = button;
 				break;
 			end
@@ -116,7 +116,7 @@ local function SelectCategory(category, collapsed, quick)
 			scrollBar:SetValue(newHeight);
 
 			if collapsed then
-				shown:Click(nil, nil, quick);
+				shown:Select(quick);
 			end
 		else
 			local scrollValue = scrollBar:GetValue();

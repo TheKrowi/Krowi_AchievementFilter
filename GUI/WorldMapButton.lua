@@ -40,7 +40,7 @@ function WorldMapAchievementButtonMixin:OnClick()
 end
 
 function WorldMapAchievementButtonMixin:OnEnter()
-    if worldMapButton.numAchievements > 0 then
+    if worldMapButton.NumOfAch > 0 then
         addon.GUI.ShowStatusBarTooltip(worldMapButton, "ANCHOR_RIGHT");
     else
         GameTooltip:SetOwner(worldMapButton, "ANCHOR_RIGHT");
@@ -66,16 +66,9 @@ function WorldMapAchievementButtonMixin:Refresh()
         numOfAch, numOfCompAch, numOfNotObtAch = addon.GetAchievementNumbers(addon.Filters.db.SelectedZone, achievement, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
     end
 
-    worldMapButton.name = C_Map.GetMapInfo(mapID).name;
-    worldMapButton.numAchievements = numOfAch;
-    if numOfAch > 0 then
-        worldMapButton.numCompleted = numOfCompAch;
-        worldMapButton.numOfNotObtAch = numOfNotObtAch;
-        local numOfNotObtAchText = "";
-        if numOfNotObtAch > 0 and addon.Options.db.Tooltip.Categories.ShowNotObtainable then
-            numOfNotObtAchText = " (+" .. numOfNotObtAch .. ")";
-        end
-        worldMapButton.numCompletedText = numOfCompAch .. numOfNotObtAchText .. " / " .. numOfAch;
+    worldMapButton.Text = C_Map.GetMapInfo(mapID).name;
+    self.NumOfAch, self.NumOfCompAch, self.NumOfNotObtAch = numOfAch, numOfCompAch, numOfNotObtAch;
+    if self.NumOfAch > 0 then
         self:Enable();
 		self:DesaturateHierarchy(0);
 	else
