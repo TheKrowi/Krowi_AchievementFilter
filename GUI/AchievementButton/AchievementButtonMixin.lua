@@ -14,7 +14,7 @@ function AchievementButtonMixin:DisplayObjectives()
 	objectives.completed = self.completed;
 	local height = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT; -- Compact or not, we need this height
 	if objectives.id == self.id then
-		if ( objectives.mode == objectives.Modes.Criteria) then
+		if ( objectives.Mode == objectives.Modes.Criteria) then
 			if ( objectives:GetHeight() > 0 ) then
 				objectives:SetPoint("TOP", topAnchor, "BOTTOM", 0, -8);
 				objectives:SetPoint("LEFT", "$parentIcon", "RIGHT", -5, 0);

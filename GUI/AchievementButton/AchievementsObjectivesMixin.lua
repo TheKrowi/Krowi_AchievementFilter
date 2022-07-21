@@ -101,28 +101,26 @@ do -- Get objective types
 	end
 end
 
-local achievementList = {};
+local achievements, rowOffset, columnOffset = {}, 8, 0;
 function AchievementsObjectivesMixin:DisplayProgressiveAchievement(id)
-	for i in next, achievementList do
-		achievementList[i] = nil;
+	for i in next, achievements do
+		achievements[i] = nil;
 	end
 
-	tinsert(achievementList, 1, id);
+	tinsert(achievements, 1, id);
     local prevId = GetPreviousAchievement(id);
 	while prevId do
-		tinsert(achievementList, 1, prevId);
+		tinsert(achievements, 1, prevId);
 		prevId = GetPreviousAchievement(prevId);
 	end
 
 	local i = 0;
-	for index, achievementID in ipairs(achievementList) do
-		local _, achievementName, points, _, month, day, year, description, flags, iconpath = GetAchievementInfo(achievementID);
-		flags = flags or 0;		-- bug 360115
+	for index, achId in ipairs(achievements) do
+		local _, _, points, _, _, _, _, _, _, icon = addon.GetAchievementInfo(achId);
 		local miniAchievement = self:GetMiniAchievement(index);
-		miniAchievement.Id = achievementID;
+		miniAchievement.Id = achId;
 		miniAchievement:Show();
-		miniAchievement:SetParent(self);
-		miniAchievement.Icon:SetTexture(iconpath);
+		miniAchievement.Icon:SetTexture(icon);
 		if index == 1 then
 			miniAchievement:SetPoint("TOPLEFT", self, "TOPLEFT", -4, -4);
 		elseif mod(index, 6) == 1 then
@@ -138,30 +136,11 @@ function AchievementsObjectivesMixin:DisplayProgressiveAchievement(id)
 			miniAchievement.Points:Hide();
 			miniAchievement.Shield:SetTexture("Interface/AchievementFrame/UI-Achievement-Progressive-Shield-NoPoints");
 		end
-		miniAchievement.numCriteria = 0;
-		if not ( bit.band(flags, ACHIEVEMENT_FLAGS_HAS_PROGRESS_BAR) == ACHIEVEMENT_FLAGS_HAS_PROGRESS_BAR ) then
-            local numCriteria = GetAchievementNumCriteria(achievementID);
-			for j = 1, numCriteria do
-				local criteriaString, _, completed = GetAchievementCriteriaInfo(achievementID, j);
-				if completed == false then
-					criteriaString = "|CFF808080 - " .. criteriaString .. "|r";
-				else
-					criteriaString = "|CFF00FF00 - " .. criteriaString .. "|r";
-				end
-				miniAchievement["criteria" .. j] = criteriaString;
-				miniAchievement.numCriteria = j;
-			end
-		end
-		miniAchievement.name = achievementName;
-		miniAchievement.desc = description;
-		if month then
-			miniAchievement.date = FormatShortDate(day, month, year);
-		end
 		i = index;
 	end
-	self:SetHeight(math.ceil(i / 6) * ACHIEVEMENTUI_PROGRESSIVEHEIGHT);
-	self:SetWidth(min(i, 6) * ACHIEVEMENTUI_PROGRESSIVEWIDTH);
-	self.mode = self.Modes.Progressive;
+	self:SetHeight(math.ceil(i / 6) * (miniTable[i]:GetHeight() + rowOffset));
+	self:SetWidth(min(i, 6) * (miniTable[i]:GetWidth() + columnOffset));
+	self.Mode = self.Modes.Progressive;
 end
 
 local FORCE_COLUMNS_MAX_WIDTH = 220;
@@ -200,7 +179,7 @@ function AchievementsObjectivesMixin:DisplayCriteria(id)
 	end
 	local numCriteria = GetAchievementNumCriteria(id);
 	if ( numCriteria == 0 and not requiresRep ) then
-		self.mode = self.Modes.Criteria;
+		self.Mode = self.Modes.Criteria;
 		self:SetHeight(0);
 		return;
 	end
@@ -398,5 +377,5 @@ function AchievementsObjectivesMixin:DisplayCriteria(id)
 		height = height + 10;
 	end
 	self:SetHeight(height);
-	self.mode = self.Modes.Criteria;
+	self.Mode = self.Modes.Criteria;
 end
