@@ -10,6 +10,29 @@ AchievementsObjectivesMixin.Modes = {
 
 local criteriaTable, progressBarTable, miniTable, metaCriteriaTable = {}, {}, {}, {}
 
+do -- Objective scripts
+	function KrowiAF_AchievementsObjectives_OnEnter(self)
+		GameTooltip:SetOwner(self, "ANCHOR_NONE");
+		GameTooltip:SetPoint("TOPLEFT", self, "BOTTOMLEFT");
+		local link = GetAchievementLink(self.Id);
+		GameTooltip:SetHyperlink(link);
+		AchievementFrameAchievements_CheckGuildMembersTooltip(self);
+		GameTooltip:Show();
+		if GameTooltip:GetTop() > self:GetBottom() then
+			GameTooltip:ClearAllPoints();
+			GameTooltip:SetPoint("BOTTOMLEFT", self, "TOPLEFT");
+		end
+	end
+
+	function KrowiAF_AchievementsObjectives_OnLeave(self)
+		GameTooltip:Hide();
+	end
+
+	function KrowiAF_AchievementsObjectives_OnClick(self)
+		KrowiAF_SelectAchievementFromID(self.Id, nil, true);
+	end
+end
+
 do -- Reset objective types
 	function AchievementsObjectivesMixin:ResetCriteria()
 		self.repCriteria:Hide();
@@ -41,7 +64,7 @@ do -- Get objective types
 		if criteriaTable[index] then
 			return criteriaTable[index];
 		end
-		local frame = CreateFrame("FRAME", "KrowiAF_AchievementsObjectivesCriteria" .. index, self, "KrowiAF_AchievementCriteriaTemplate");
+		local frame = CreateFrame("FRAME", "KrowiAF_AchievementsObjectivesCriteria" .. index, self, "KrowiAF_AchievementCriteria_Template");
 		AchievementFrame_LocalizeCriteria(frame);
 		criteriaTable[index] = frame;
 		return frame;
@@ -61,7 +84,7 @@ do -- Get objective types
 		if miniTable[index] then
 			return miniTable[index];
 		end
-		local frame = CreateFrame("FRAME", "KrowiAF_AchievementsObjectivesMiniAchievement" .. index, self, "MiniAchievementTemplate"); -- addon.GUI.AchievementsFrame
+		local frame = CreateFrame("BUTTON", "KrowiAF_AchievementsObjectivesMiniAchievement" .. index, self, "KrowiAF_MiniAchievement_Template");
 		AchievementButton_LocalizeMiniAchievement(frame);
 		miniTable[index] = frame;
 		return frame;
@@ -71,24 +94,7 @@ do -- Get objective types
 		if metaCriteriaTable[index] then
 			return metaCriteriaTable[index];
 		end
-		local frame = CreateFrame("BUTTON", "KrowiAF_AchievementsObjectivesMeta" .. index, self, "MetaCriteriaTemplate"); -- addon.GUI.AchievementsFrame
-		-- TODO
-		-- frame:SetScript("OnClick", function()
-		--     KrowiAF_SelectAchievementFromID(frame.id, nil, true);
-		-- end);
-		-- frame:SetScript("OnEnter", OnEnter);
-		-- function OnEnter(self)
-		--     GameTooltip:SetOwner(self, "ANCHOR_NONE");
-		--     GameTooltip:SetPoint("TOPLEFT", self, "BOTTOMLEFT");
-		--     local link = GetAchievementLink(self.id);
-		--     GameTooltip:SetHyperlink(link);
-		--     AchievementFrameAchievements_CheckGuildMembersTooltip(self);
-		--     GameTooltip:Show();
-		--     if GameTooltip:GetTop() > self:GetBottom() then
-		--         GameTooltip:ClearAllPoints();
-		--         GameTooltip:SetPoint("BOTTOMLEFT", self, "TOPLEFT");
-		--     end
-		-- end
+		local frame = CreateFrame("BUTTON", "KrowiAF_AchievementsObjectivesMeta" .. index, self, "KrowiAF_MetaCriteria_Template");
 		AchievementButton_LocalizeMetaAchievement(frame);
 		metaCriteriaTable[index] = frame;
 		return frame;
@@ -113,9 +119,10 @@ function AchievementsObjectivesMixin:DisplayProgressiveAchievement(id)
 		local _, achievementName, points, _, month, day, year, description, flags, iconpath = GetAchievementInfo(achievementID);
 		flags = flags or 0;		-- bug 360115
 		local miniAchievement = self:GetMiniAchievement(index);
+		miniAchievement.Id = achievementID;
 		miniAchievement:Show();
 		miniAchievement:SetParent(self);
-		miniAchievement.icon:SetTexture(iconpath);
+		miniAchievement.Icon:SetTexture(iconpath);
 		if index == 1 then
 			miniAchievement:SetPoint("TOPLEFT", self, "TOPLEFT", -4, -4);
 		elseif mod(index, 6) == 1 then
@@ -124,12 +131,12 @@ function AchievementsObjectivesMixin:DisplayProgressiveAchievement(id)
 			miniAchievement:SetPoint("TOPLEFT", miniTable[index - 1], "TOPRIGHT", 4, 0);
 		end
 		if points > 0 then
-			miniAchievement.points:SetText(points);
-			miniAchievement.points:Show();
-			miniAchievement.shield:SetTexture("Interface/AchievementFrame/UI-Achievement-Progressive-Shield");
+			miniAchievement.Points:SetText(points);
+			miniAchievement.Points:Show();
+			miniAchievement.Shield:SetTexture("Interface/AchievementFrame/UI-Achievement-Progressive-Shield");
 		else
-			miniAchievement.points:Hide();
-			miniAchievement.shield:SetTexture("Interface/AchievementFrame/UI-Achievement-Progressive-Shield-NoPoints");
+			miniAchievement.Points:Hide();
+			miniAchievement.Shield:SetTexture("Interface/AchievementFrame/UI-Achievement-Progressive-Shield-NoPoints");
 		end
 		miniAchievement.numCriteria = 0;
 		if not ( bit.band(flags, ACHIEVEMENT_FLAGS_HAS_PROGRESS_BAR) == ACHIEVEMENT_FLAGS_HAS_PROGRESS_BAR ) then
@@ -200,8 +207,8 @@ function AchievementsObjectivesMixin:DisplayCriteria(id)
 	-- text check width
 	if ( not self.textCheckWidth ) then
 		local criteria = self:GetCriteria(1);
-		criteria.Name:SetText("- ");
-		self.textCheckWidth = criteria.Name:GetStringWidth();
+		criteria.Label:SetText("- ");
+		self.textCheckWidth = criteria.Label:GetStringWidth();
 	end
 	local frameLevel = self:GetFrameLevel() + 1;
 	-- Why textStrings? You try naming anything just "string" and see how happy you are.
@@ -233,29 +240,29 @@ function AchievementsObjectivesMixin:DisplayCriteria(id)
 			else
 				metaCriteria.date = nil;
 			end
-			metaCriteria.id = id;
-			metaCriteria.label:SetText(achievementName);
-			metaCriteria.icon:SetTexture(iconpath);
+			metaCriteria.Id = id;
+			metaCriteria.Label:SetText(achievementName);
+			metaCriteria.Icon:SetTexture(iconpath);
 			-- have to check if criteria is completed here, can't just check if achievement is completed.
 			-- This is because the criteria could have modifiers on it that prevent completion even though the achievement is earned.
 			if ( self.completed and completed ) then
-				metaCriteria.check:Show();
-				metaCriteria.border:SetVertexColor(1, 1, 1, 1);
-				metaCriteria.icon:SetVertexColor(1, 1, 1, 1);
-				metaCriteria.label:SetShadowOffset(0, 0)
-				metaCriteria.label:SetTextColor(0, 0, 0, 1);
+				metaCriteria.Check:Show();
+				metaCriteria.Border:SetVertexColor(1, 1, 1, 1);
+				metaCriteria.Icon:SetVertexColor(1, 1, 1, 1);
+				metaCriteria.Label:SetShadowOffset(0, 0)
+				metaCriteria.Label:SetTextColor(0, 0, 0, 1);
 			elseif ( completed ) then
-				metaCriteria.check:Show();
-				metaCriteria.border:SetVertexColor(1, 1, 1, 1);
-				metaCriteria.icon:SetVertexColor(1, 1, 1, 1);
-				metaCriteria.label:SetShadowOffset(1, -1)
-				metaCriteria.label:SetTextColor(0, 1, 0, 1);
+				metaCriteria.Check:Show();
+				metaCriteria.Border:SetVertexColor(1, 1, 1, 1);
+				metaCriteria.Icon:SetVertexColor(1, 1, 1, 1);
+				metaCriteria.Label:SetShadowOffset(1, -1)
+				metaCriteria.Label:SetTextColor(0, 1, 0, 1);
 			else
-				metaCriteria.check:Hide();
-				metaCriteria.border:SetVertexColor(.75, .75, .75, 1);
-				metaCriteria.icon:SetVertexColor(.55, .55, .55, 1);
-				metaCriteria.label:SetShadowOffset(1, -1)
-				metaCriteria.label:SetTextColor(.6, .6, .6, 1);
+				metaCriteria.Check:Hide();
+				metaCriteria.Border:SetVertexColor(.75, .75, .75, 1);
+				metaCriteria.Icon:SetVertexColor(.55, .55, .55, 1);
+				metaCriteria.Label:SetShadowOffset(1, -1)
+				metaCriteria.Label:SetTextColor(.6, .6, .6, 1);
 			end
 			metaCriteria:SetParent(self);
 			metaCriteria:Show();
@@ -288,34 +295,34 @@ function AchievementsObjectivesMixin:DisplayCriteria(id)
 				criteria:SetPoint("TOPLEFT", self:GetCriteria(textStrings - 1), "BOTTOMLEFT", 0, 0);
 			end
 			if ( self.completed and completed ) then
-				criteria.Name:SetTextColor(0, 0, 0, 1);
-				criteria.Name:SetShadowOffset(0, 0);
+				criteria.Label:SetTextColor(0, 0, 0, 1);
+				criteria.Label:SetShadowOffset(0, 0);
 			elseif ( completed ) then
-				criteria.Name:SetTextColor(0, 1, 0, 1);
-				criteria.Name:SetShadowOffset(1, -1);
+				criteria.Label:SetTextColor(0, 1, 0, 1);
+				criteria.Label:SetShadowOffset(1, -1);
 			else
-				criteria.Name:SetTextColor(.6, .6, .6, 1);
-				criteria.Name:SetShadowOffset(1, -1);
+				criteria.Label:SetTextColor(.6, .6, .6, 1);
+				criteria.Label:SetShadowOffset(1, -1);
 			end
 			local stringWidth = 0;
 			local maxCriteriaContentWidth;
 			if ( completed ) then
 				maxCriteriaContentWidth = ACHIEVEMENTUI_MAXCONTENTWIDTH - ACHIEVEMENTUI_CRITERIACHECKWIDTH;
 				criteria.Check:SetPoint("LEFT", 18, -3);
-				criteria.Name:SetPoint("LEFT", criteria.Check, "RIGHT", 0, 2);
+				criteria.Label:SetPoint("LEFT", criteria.Check, "RIGHT", 0, 2);
 				criteria.Check:Show();
-				criteria.Name:SetText(criteriaString);
-				stringWidth = min(criteria.Name:GetStringWidth(),maxCriteriaContentWidth);
+				criteria.Label:SetText(criteriaString);
+				stringWidth = min(criteria.Label:GetStringWidth(),maxCriteriaContentWidth);
 			else
 				maxCriteriaContentWidth = ACHIEVEMENTUI_MAXCONTENTWIDTH - self.textCheckWidth;
 				criteria.Check:SetPoint("LEFT", 0, -3);
-				criteria.Name:SetPoint("LEFT", criteria.Check, "RIGHT", 5, 2);
+				criteria.Label:SetPoint("LEFT", criteria.Check, "RIGHT", 5, 2);
 				criteria.Check:Hide();
-				criteria.Name:SetText("- "..criteriaString);
-				stringWidth = min(criteria.Name:GetStringWidth() - self.textCheckWidth,maxCriteriaContentWidth);	-- don't want the "- " to be included in the width
+				criteria.Label:SetText("- "..criteriaString);
+				stringWidth = min(criteria.Label:GetStringWidth() - self.textCheckWidth,maxCriteriaContentWidth);	-- don't want the "- " to be included in the width
 			end
-			if ( criteria.Name:GetWidth() > maxCriteriaContentWidth ) then
-				criteria.Name:SetWidth(maxCriteriaContentWidth);
+			if ( criteria.Label:GetWidth() > maxCriteriaContentWidth ) then
+				criteria.Label:SetWidth(maxCriteriaContentWidth);
 			end
 			criteria:SetParent(self);
 			criteria:Show();
@@ -344,7 +351,7 @@ function AchievementsObjectivesMixin:DisplayCriteria(id)
 			forceColumns = true;
 			-- if top right criteria would run into the achievement shield, move them all down 1 row
 			-- this assumes description is 1 or 2 lines, otherwise this wouldn't be a problem
-			if ( self:GetCriteria(2).Name:GetStringWidth() > FORCE_COLUMNS_RIGHT_COLUMN_SPACE and progressBars == 0 ) then
+			if ( self:GetCriteria(2).Label:GetStringWidth() > FORCE_COLUMNS_RIGHT_COLUMN_SPACE and progressBars == 0 ) then
 				AddExtraCriteriaRow();
 			end
 		end
