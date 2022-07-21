@@ -44,20 +44,10 @@ function achievementsFrame:Load()
 end
 
 function KrowiAF_AchievementFrameAchievementsFrame_OnShow(self)
-	AchievementButton_ResetMetas(true);
-	AchievementButton_ResetMetas(false);
-	AchievementButton_ResetCriteria(true);
-	AchievementButton_ResetCriteria(false);
 	self:ForceUpdate(); -- Issue #42: Fix
 end
 
 function KrowiAF_AchievementFrameAchievementsFrame_OnHide(self)
-	if self.Container.buttons[1] then -- Calling this on a single button hides them all
-		self.Container.buttons[1].ResetMetas(true);
-		self.Container.buttons[1].ResetMetas(false);
-		self.Container.buttons[1].ResetCriteria(true);
-		self.Container.buttons[1].ResetCriteria(false);
-	end
 	AchievementFrameAchievements_ForceUpdate(); -- Issue #42: Fix
 end
 
@@ -129,7 +119,7 @@ function achievementsFrame:Update()
 	self.Text:Hide();
 
 	if selectedAchievement then
-		AchievementFrameAchievementsObjectives:Hide();
+		self.AchievementsObjectives:Hide();
 	end
 
 	local index;
@@ -177,8 +167,8 @@ function achievementsFrame:ForceUpdate(toTop) -- Issue #3: Fix
 	end
 
 	-- Issue #8: Broken
-	AchievementFrameAchievementsObjectives:Hide();
-	AchievementFrameAchievementsObjectives.id = nil;
+	self.AchievementsObjectives:Hide();
+	self.AchievementsObjectives.id = nil;
 
 	local buttons = self.Container.buttons;
 	for _, button in next, buttons do
@@ -193,7 +183,7 @@ function achievementsFrame:ForceUpdate(toTop) -- Issue #3: Fix
 end
 
 function achievementsFrame:ClearSelection()
-	AchievementFrameAchievementsObjectives:Hide();
+	self.AchievementsObjectives:Hide();
 	local buttons = self.Container.buttons;
 	for _, button in next, buttons do
 		button:Collapse();
@@ -405,7 +395,7 @@ function achievementsFrame:DisplayAchievement(button, achievement, index, select
 		button.highlight:Show();
 		local height = button:DisplayObjectives();
 
-		if height == ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT then
+		if height == addon.Options.db.Achievements.ButtonCollapsedHeight then
 			button:Collapse();
 		else
 			button:Expand(height);

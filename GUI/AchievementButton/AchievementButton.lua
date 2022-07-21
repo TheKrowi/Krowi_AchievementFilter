@@ -546,13 +546,6 @@ function achievementButton:PostLoadButtons(achievementsFrame)
 			AddRightClickMenuButton(achievementsFrame, button);
 		end
 
-		-- Change display behaviour
-		button.DisplayObjectives = function(button, renderOffScreen)
-			return self.Display.DisplayObjectives(button, renderOffScreen, achievementsFrame);
-		end;
-		button.ResetMetas = self.Display.ResetMetas;
-		button.ResetCriteria = self.Display.ResetCriteria;
-
 		button.Enter = function(self)
 			OnEnter(self, achievementsFrame);
 		end;

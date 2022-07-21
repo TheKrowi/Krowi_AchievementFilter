@@ -49,7 +49,6 @@
         "AchievementButton_ToggleTracking",
         "HybridScrollFrame_CollapseButton",
         "HybridScrollFrame_ExpandButton",
-        "ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT",
         "AchievementButton_Saturate",
         "AchievementButton_Desaturate",
         "GetAchievementGuildRep",
@@ -74,7 +73,6 @@
         "CRITERIA_TYPE_ACHIEVEMENT",
         "FormatShortDate",
         "EVALUATION_TREE_FLAG_PROGRESS_BAR",
-        "AchievementButton_GetProgressBar",
         "bit",
         "ACHIEVEMENTUI_MAXCONTENTWIDTH",
         "ACHIEVEMENTUI_CRITERIACHECKWIDTH",
@@ -317,7 +315,14 @@
         "GetBindingByKey",
         "GetServerTime",
         "C_UI",
-        "WoWUnit"
+        "WoWUnit",
+        "AchievementButton_LocalizeProgressBar",
+        "AchievementButton_LocalizeMiniAchievement",
+        "ACHIEVEMENT_FLAGS_HAS_PROGRESS_BAR",
+        "ACHIEVEMENTUI_PROGRESSIVEHEIGHT",
+        "ACHIEVEMENTUI_PROGRESSIVEWIDTH",
+        "ACHIEVEMENTUI_MAX_LINES_COLLAPSED",
+        "ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
