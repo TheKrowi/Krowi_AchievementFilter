@@ -11,7 +11,7 @@ function AchievementButtonMixin:DisplayObjectives()
 	objectives:ClearAllPoints();
 	objectives:SetParent(self);
 	objectives:Show();
-	objectives.completed = self.completed;
+	objectives.Completed = self.Completed;
 	local height = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT; -- Compact or not, we need this height
 	if objectives.id == self.id then
 		if ( objectives.Mode == objectives.Modes.Criteria) then
@@ -23,7 +23,7 @@ function AchievementButtonMixin:DisplayObjectives()
 		else
 			objectives:SetPoint("TOP", topAnchor, "BOTTOM", 0, -8);
 		end
-	elseif ( self.completed and GetPreviousAchievement(self.id) ) then
+	elseif ( self.Completed and GetPreviousAchievement(self.id) ) then
 		objectives:SetHeight(0);
 		objectives:ResetAll();
 		objectives:DisplayProgressiveAchievement(self.id);

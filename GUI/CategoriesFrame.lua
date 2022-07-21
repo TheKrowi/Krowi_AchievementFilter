@@ -99,7 +99,7 @@ local function GetDisplayCategories(displayCategories, category, getAchNums)
 end
 
 function KrowiAF_CategoriesFrameMixin:Update(getAchNums)
-	print("categoriesFrame:Update")
+	-- print("categoriesFrame:Update")
 	local selectedTab = addon.GUI.SelectedTab;
 	if selectedTab == nil then
 		return;

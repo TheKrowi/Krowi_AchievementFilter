@@ -336,19 +336,19 @@ function achievementsFrame:DisplayAchievement(button, achievement, index, select
 		button.numLines = ceil(button.hiddenDescription:GetHeight() / self.UIFontHeight);
 		button.icon.texture:SetTexture(icon);
 		if (earnedByFilter == addon.Filters.Account and completed or wasEarnedByMe) or (earnedByFilter == addon.Filters.CharacterAccount and completed and wasEarnedByMe) then
-			button.completed = true;
+			button.Completed = true;
 			button.dateCompleted:SetText(FormatShortDate(day, month, year));
 			button.dateCompleted:Show();
 			if button.saturatedStyle ~= saturatedStyle then
 				button:Saturate();
 			end
 		elseif (earnedByFilter == addon.Filters.CharacterAccount and completed and not wasEarnedByMe) then
-			button.completed = true;
+			button.Completed = true;
 			button.dateCompleted:SetText(FormatShortDate(day, month, year));
 			button.dateCompleted:Show();
 			button:SaturatePartial();
 		else
-			button.completed = nil;
+			button.Completed = nil;
 			button.dateCompleted:Hide();
 			button:Desaturate();
 		end
@@ -364,7 +364,7 @@ function achievementsFrame:DisplayAchievement(button, achievement, index, select
 			button.reward:SetText(rewardText);
 			button.reward:Show();
 			button.rewardBackground:Show();
-			if button.completed then
+			if button.Completed then
 				button.rewardBackground:SetVertexColor(1, 1, 1);
 			else
 				button.rewardBackground:SetVertexColor(0.35, 0.35, 0.35);

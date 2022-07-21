@@ -77,7 +77,7 @@
         </HighlightTexture>
     </Button>
 
-    <Button name="KrowiAF_MetaCriteria_Template" virtual="true">
+    <Button name="KrowiAF_MetaCriteria_Template" hidden="true" virtual="true">
         <Size x="155" y="30"/>
         <Anchors>
             <Anchor point="CENTER"/>

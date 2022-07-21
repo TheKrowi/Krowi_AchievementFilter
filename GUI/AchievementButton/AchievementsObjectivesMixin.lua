@@ -10,7 +10,7 @@ AchievementsObjectivesMixin.Modes = {
 
 local criteriaTable, progressBarTable, miniTable, metaCriteriaTable = {}, {}, {}, {}
 
-do -- Objective scripts
+do -- Scripts
 	function KrowiAF_AchievementsObjectives_OnEnter(self)
 		GameTooltip:SetOwner(self, "ANCHOR_NONE");
 		GameTooltip:SetPoint("TOPLEFT", self, "BOTTOMLEFT");
@@ -31,11 +31,16 @@ do -- Objective scripts
 	function KrowiAF_AchievementsObjectives_OnClick(self)
 		KrowiAF_SelectAchievementFromID(self.Id, nil, true);
 	end
+
+	function KrowiAF_AchievementsObjectives_OnLoad(self)
+		local criteria = self:GetCriteria(1);
+		criteria.Label:SetText("- ");
+		self.TextCheckWidth = criteria.Label:GetStringWidth();
+	end
 end
 
 do -- Reset objective types
 	function AchievementsObjectivesMixin:ResetCriteria()
-		self.repCriteria:Hide();
 		AchievementButton_ResetTable(criteriaTable);
 	end
 
@@ -48,7 +53,10 @@ do -- Reset objective types
 	end
 
 	function AchievementsObjectivesMixin:ResetMetas()
-		AchievementButton_ResetTable(metaCriteriaTable);
+		for _, metaCriteria in next, metaCriteriaTable do
+			metaCriteria.Id = nil;
+			metaCriteria:Hide();
+		end
 	end
 
 	function AchievementsObjectivesMixin:ResetAll()
@@ -101,6 +109,111 @@ do -- Get objective types
 	end
 end
 
+do -- Add objective types
+	function AchievementsObjectivesMixin:AddMeta(index, completed, assetId)
+		local metaCriteria = self:GetMeta(index);
+		metaCriteria:ClearAllPoints();
+		if index == 1 then
+			-- Anchor once all criteria are processed
+		elseif math.fmod(index, 2) == 0 then
+			local anchorMeta = self:GetMeta(index - 1);
+			metaCriteria:SetPoint("LEFT", anchorMeta, "RIGHT", 35, 0);
+		else
+			local anchorMeta = self:GetMeta(index - 2);
+			metaCriteria:SetPoint("TOPLEFT", anchorMeta, "BOTTOMLEFT", -0, 2);
+		end
+		local id, name, _, _, _, _, _, _, _, icon = GetAchievementInfo(assetId);
+		metaCriteria:Show();
+		metaCriteria.Id = id;
+		metaCriteria.Label:SetText(name);
+		metaCriteria.Icon:SetTexture(icon);
+		-- Have to check if criteria is completed here, can't just check if achievement is completed.
+		-- This is because the criteria could have modifiers on it that prevent completion even though the achievement is earned.
+		if self.Completed and completed then
+			metaCriteria.Check:Show();
+			metaCriteria.Border:SetVertexColor(1, 1, 1, 1);
+			metaCriteria.Icon:SetVertexColor(1, 1, 1, 1);
+			metaCriteria.Label:SetShadowOffset(0, 0)
+			metaCriteria.Label:SetTextColor(0, 0, 0, 1);
+		elseif completed then
+			metaCriteria.Check:Show();
+			metaCriteria.Border:SetVertexColor(1, 1, 1, 1);
+			metaCriteria.Icon:SetVertexColor(1, 1, 1, 1);
+			metaCriteria.Label:SetShadowOffset(1, -1)
+			metaCriteria.Label:SetTextColor(0, 1, 0, 1);
+		else
+			metaCriteria.Check:Hide();
+			metaCriteria.Border:SetVertexColor(0.75, 0.75, 0.75, 1);
+			metaCriteria.Icon:SetVertexColor(0.55, 0.55, 0.55, 1);
+			metaCriteria.Label:SetShadowOffset(1, -1)
+			metaCriteria.Label:SetTextColor(0.6, 0.6, 0.6, 1);
+		end
+	end
+
+	function AchievementsObjectivesMixin:AddProgressBar(index, quantity, reqQuantity, quantityString)
+		local progressBar = self:GetProgressBar(index);
+		if index == 1 then
+			progressBar:SetPoint("TOP", self, "TOP", 4, -4);
+		else
+			progressBar:SetPoint("TOP", self:GetProgressBar(index - 1), "BOTTOM", 0, 0);
+		end
+		progressBar.text:SetText(string.format("%s", quantityString));
+		progressBar:SetMinMaxValues(0, reqQuantity);
+		progressBar:SetValue(quantity);
+		progressBar:SetParent(self);
+		progressBar:Show();
+	end
+
+	function AchievementsObjectivesMixin:AddCriteria(index, numCriteria, criteriaString, completed)
+		local criteria = self:GetCriteria(index);
+		criteria:ClearAllPoints();
+		if index == 1 then
+			if numCriteria == 1 then
+				criteria:SetPoint("TOP", self, "TOP", -14);
+			else
+				criteria:SetPoint("TOPLEFT", self, "TOPLEFT", 0);
+			end
+		else
+			criteria:SetPoint("TOPLEFT", self:GetCriteria(index - 1), "BOTTOMLEFT", 0, 0);
+		end
+		if self.Completed and completed then
+			criteria.Label:SetTextColor(0, 0, 0, 1);
+			criteria.Label:SetShadowOffset(0, 0);
+		elseif completed then
+			criteria.Label:SetTextColor(0, 1, 0, 1);
+			criteria.Label:SetShadowOffset(1, -1);
+		else
+			criteria.Label:SetTextColor(.6, .6, .6, 1);
+			criteria.Label:SetShadowOffset(1, -1);
+		end
+		local stringWidth = 0;
+		local maxCriteriaContentWidth;
+		if completed then
+			maxCriteriaContentWidth = ACHIEVEMENTUI_MAXCONTENTWIDTH - ACHIEVEMENTUI_CRITERIACHECKWIDTH;
+			criteria.Check:SetPoint("LEFT", 18, -3);
+			criteria.Label:SetPoint("LEFT", criteria.Check, "RIGHT", 0, 2);
+			criteria.Check:Show();
+			criteria.Label:SetText(criteriaString);
+			stringWidth = min(criteria.Label:GetStringWidth(),maxCriteriaContentWidth);
+		else
+			maxCriteriaContentWidth = ACHIEVEMENTUI_MAXCONTENTWIDTH - self.TextCheckWidth;
+			criteria.Check:SetPoint("LEFT", 0, -3);
+			criteria.Label:SetPoint("LEFT", criteria.Check, "RIGHT", 5, 2);
+			criteria.Check:Hide();
+			criteria.Label:SetText("- "..criteriaString);
+			stringWidth = min(criteria.Label:GetStringWidth() - self.TextCheckWidth, maxCriteriaContentWidth);	-- Don't want the "- " to be included in the width
+		end
+		if ( criteria.Label:GetWidth() > maxCriteriaContentWidth ) then
+			criteria.Label:SetWidth(maxCriteriaContentWidth);
+		end
+		criteria:SetParent(self);
+		criteria:Show();
+		criteria:SetWidth(stringWidth + ACHIEVEMENTUI_CRITERIACHECKWIDTH);
+
+		return stringWidth;
+	end
+end
+
 local achievements, rowOffset, columnOffset = {}, 8, 0;
 function AchievementsObjectivesMixin:DisplayProgressiveAchievement(id)
 	for i in next, achievements do
@@ -118,8 +231,8 @@ function AchievementsObjectivesMixin:DisplayProgressiveAchievement(id)
 	for index, achId in ipairs(achievements) do
 		local _, _, points, _, _, _, _, _, _, icon = addon.GetAchievementInfo(achId);
 		local miniAchievement = self:GetMiniAchievement(index);
-		miniAchievement.Id = achId;
 		miniAchievement:Show();
+		miniAchievement.Id = achId;
 		miniAchievement.Icon:SetTexture(icon);
 		if index == 1 then
 			miniAchievement:SetPoint("TOPLEFT", self, "TOPLEFT", -4, -4);
@@ -149,230 +262,125 @@ local FORCE_COLUMNS_LEFT_OFFSET = -10;
 local FORCE_COLUMNS_RIGHT_OFFSET = 24;
 local FORCE_COLUMNS_RIGHT_COLUMN_SPACE = 150;
 
+function AchievementsObjectivesMixin:SetProgressBarAndTextPoints(progressBars, textStrings)
+	-- If we have text criteria and progressBar criteria, display the progressBar criteria first and position the textStrings under them.
+	local criteria = self:GetCriteria(1);
+	criteria:ClearAllPoints();
+	if textStrings == 1 then
+		criteria:SetPoint("TOP", self:GetProgressBar(progressBars), "BOTTOM", -14, -4);
+	else
+		criteria:SetPoint("TOP", self:GetProgressBar(progressBars), "BOTTOM", 0, -4);
+		criteria:SetPoint("LEFT", self, "LEFT", 0, 0);
+	end
+end
+
+function AchievementsObjectivesMixin:SetTextPoints(progressBars, textStrings, maxCriteriaWidth, numCriteriaRows, yOffset, addExtraCriteriaRow)
+	-- testing
+	-- FIND A WAY TO FORCE 2 COLUMNS AND SHOW THE TOO LONG ITEMS ON A SINGLE LINE
+	maxCriteriaWidth = min(maxCriteriaWidth, FORCE_COLUMNS_MAX_WIDTH)
+	-- testing
+
+	-- Figure out if we can make multiple columns worth of criteria instead of one long one
+	local numColumns = floor(ACHIEVEMENTUI_MAXCONTENTWIDTH / maxCriteriaWidth);
+	-- But if we have a lot of criteria, force 2 columns
+
+	print(ACHIEVEMENTUI_MAXCONTENTWIDTH, maxCriteriaWidth, numColumns, textStrings, FORCE_COLUMNS_MIN_CRITERIA, maxCriteriaWidth, FORCE_COLUMNS_MAX_WIDTH)
+
+	local forceColumns = false;
+	if ( numColumns == 1 and textStrings >= FORCE_COLUMNS_MIN_CRITERIA and maxCriteriaWidth <= FORCE_COLUMNS_MAX_WIDTH ) then
+		numColumns = 2;
+		forceColumns = true;
+		-- if top right criteria would run into the achievement shield, move them all down 1 row
+		-- this assumes description is 1 or 2 lines, otherwise this wouldn't be a problem
+		if ( self:GetCriteria(2).Label:GetStringWidth() > FORCE_COLUMNS_RIGHT_COLUMN_SPACE and progressBars == 0 ) then
+			addExtraCriteriaRow();
+		end
+	end
+	if ( numColumns > 1 ) then
+		local rows = 1;
+		local position = 0;
+		for i=1, #criteriaTable do
+			position = position + 1;
+			if ( position > numColumns ) then
+				position = position - numColumns;
+				rows = rows + 1;
+			end
+			if ( rows == 1 ) then
+				criteriaTable[i]:ClearAllPoints();
+				local xOffset = 0;
+				if ( forceColumns ) then
+					if ( position == 1 ) then
+						xOffset = FORCE_COLUMNS_LEFT_OFFSET;
+					elseif ( position == 2 ) then
+						xOffset = FORCE_COLUMNS_RIGHT_OFFSET;
+					end
+				end
+				criteriaTable[i]:SetPoint("TOPLEFT", self, "TOPLEFT", (position - 1)*(ACHIEVEMENTUI_MAXCONTENTWIDTH/numColumns) + xOffset, yOffset);
+			else
+				criteriaTable[i]:ClearAllPoints();
+				criteriaTable[i]:SetPoint("TOPLEFT", criteriaTable[position + ((rows - 2) * numColumns)], "BOTTOMLEFT", 0, 0);
+			end
+		end
+		numCriteriaRows = ceil(numCriteriaRows / numColumns);
+	end
+	return numCriteriaRows;
+end
+
 function AchievementsObjectivesMixin:DisplayCriteria(id)
 	if not id then
 		return;
 	end
+
+	local numCriteria = GetAchievementNumCriteria(id);
+	if numCriteria == 0 then
+		self.Mode = self.Modes.Criteria;
+		self:SetHeight(0);
+		return;
+	end
+
+	local stringWidth;
 	local yOffset = 0;
-	local numMetaRows = 0;
 	local numCriteriaRows = 0;
 	local numExtraCriteriaRows = 0;
 	local function AddExtraCriteriaRow()
 		numExtraCriteriaRows = numExtraCriteriaRows + 1;
 		yOffset = -numExtraCriteriaRows * ACHIEVEMENTBUTTON_CRITERIAROWHEIGHT;
 	end
-	local requiresRep, hasRep, repLevel;
-	if ( not self.completed ) then
-		requiresRep, hasRep, repLevel = GetAchievementGuildRep(id);
-		if ( requiresRep ) then
-			local gender = UnitSex("player");
-			local factionStandingtext = GetText("FACTION_STANDING_LABEL"..repLevel, gender);
-			self.repCriteria:SetFormattedText(ACHIEVEMENT_REQUIRES_GUILD_REPUTATION, factionStandingtext);
-			if ( hasRep ) then
-				self.repCriteria:SetTextColor(0, 1, 0);
-			else
-				self.repCriteria:SetTextColor(1, 0, 0);
-			end
-			self.repCriteria:Show();
-			AddExtraCriteriaRow();
-		end
-	end
-	local numCriteria = GetAchievementNumCriteria(id);
-	if ( numCriteria == 0 and not requiresRep ) then
-		self.Mode = self.Modes.Criteria;
-		self:SetHeight(0);
-		return;
-	end
-	-- text check width
-	if ( not self.textCheckWidth ) then
-		local criteria = self:GetCriteria(1);
-		criteria.Label:SetText("- ");
-		self.textCheckWidth = criteria.Label:GetStringWidth();
-	end
-	local frameLevel = self:GetFrameLevel() + 1;
-	-- Why textStrings? You try naming anything just "string" and see how happy you are.
+
 	local textStrings, progressBars, metas = 0, 0, 0;
-	local firstMetaCriteria;
 	local maxCriteriaWidth = 0;
-	local yPos;
 	for i = 1, numCriteria do
-		local criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString = GetAchievementCriteriaInfo(id, i);
-		if ( criteriaType == CRITERIA_TYPE_ACHIEVEMENT and assetID ) then
+		local criteriaString, criteriaType, completed, quantity, reqQuantity, _, flags, assetID, quantityString = GetAchievementCriteriaInfo(id, i);
+		if criteriaType == CRITERIA_TYPE_ACHIEVEMENT and assetID then
 			metas = metas + 1;
-			local metaCriteria = self:GetMeta(metas);
-			metaCriteria:ClearAllPoints();
-			if ( metas == 1 ) then
-				-- this will be anchored below, we need to know how many text criteria there are
-				firstMetaCriteria = metaCriteria;
-				numMetaRows = numMetaRows + 1;
-			elseif ( math.fmod(metas, 2) == 0 ) then
-				local anchorMeta = self:GetMeta(metas - 1);
-				metaCriteria:SetPoint("LEFT", anchorMeta, "RIGHT", 35, 0);
-			else
-				local anchorMeta = self:GetMeta(metas - 2);
-				metaCriteria:SetPoint("TOPLEFT", anchorMeta, "BOTTOMLEFT", -0, 2);
-				numMetaRows = numMetaRows + 1;
-			end
-			local id, achievementName, points, achievementCompleted, month, day, year, description, flags, iconpath = GetAchievementInfo(assetID);
-			if ( month ) then
-				metaCriteria.date = FormatShortDate(day, month, year)
-			else
-				metaCriteria.date = nil;
-			end
-			metaCriteria.Id = id;
-			metaCriteria.Label:SetText(achievementName);
-			metaCriteria.Icon:SetTexture(iconpath);
-			-- have to check if criteria is completed here, can't just check if achievement is completed.
-			-- This is because the criteria could have modifiers on it that prevent completion even though the achievement is earned.
-			if ( self.completed and completed ) then
-				metaCriteria.Check:Show();
-				metaCriteria.Border:SetVertexColor(1, 1, 1, 1);
-				metaCriteria.Icon:SetVertexColor(1, 1, 1, 1);
-				metaCriteria.Label:SetShadowOffset(0, 0)
-				metaCriteria.Label:SetTextColor(0, 0, 0, 1);
-			elseif ( completed ) then
-				metaCriteria.Check:Show();
-				metaCriteria.Border:SetVertexColor(1, 1, 1, 1);
-				metaCriteria.Icon:SetVertexColor(1, 1, 1, 1);
-				metaCriteria.Label:SetShadowOffset(1, -1)
-				metaCriteria.Label:SetTextColor(0, 1, 0, 1);
-			else
-				metaCriteria.Check:Hide();
-				metaCriteria.Border:SetVertexColor(.75, .75, .75, 1);
-				metaCriteria.Icon:SetVertexColor(.55, .55, .55, 1);
-				metaCriteria.Label:SetShadowOffset(1, -1)
-				metaCriteria.Label:SetTextColor(.6, .6, .6, 1);
-			end
-			metaCriteria:SetParent(self);
-			metaCriteria:Show();
+			self:AddMeta(metas, completed, assetID)
 		elseif ( bit.band(flags, EVALUATION_TREE_FLAG_PROGRESS_BAR) == EVALUATION_TREE_FLAG_PROGRESS_BAR ) then
-			-- Display this criteria as a progress bar!
 			progressBars = progressBars + 1;
-			local progressBar = self:GetProgressBar(progressBars);
-			if ( progressBars == 1 ) then
-				progressBar:SetPoint("TOP", self, "TOP", 4, -4 + yOffset);
-			else
-				progressBar:SetPoint("TOP", self:GetProgressBar(progressBars - 1), "BOTTOM", 0, 0);
-			end
-			progressBar.text:SetText(string.format("%s", quantityString));
-			progressBar:SetMinMaxValues(0, reqQuantity);
-			progressBar:SetValue(quantity);
-			progressBar:SetParent(self);
-			progressBar:Show();
+			self:AddProgressBar(progressBars, quantity, reqQuantity, quantityString)
 			numCriteriaRows = numCriteriaRows + 1;
 		else
 			textStrings = textStrings + 1;
-			local criteria = self:GetCriteria(textStrings);
-			criteria:ClearAllPoints();
-			if ( textStrings == 1 ) then
-				if ( numCriteria == 1 ) then
-					criteria:SetPoint("TOP", self, "TOP", -14, yOffset);
-				else
-					criteria:SetPoint("TOPLEFT", self, "TOPLEFT", 0, yOffset);
-				end
-			else
-				criteria:SetPoint("TOPLEFT", self:GetCriteria(textStrings - 1), "BOTTOMLEFT", 0, 0);
-			end
-			if ( self.completed and completed ) then
-				criteria.Label:SetTextColor(0, 0, 0, 1);
-				criteria.Label:SetShadowOffset(0, 0);
-			elseif ( completed ) then
-				criteria.Label:SetTextColor(0, 1, 0, 1);
-				criteria.Label:SetShadowOffset(1, -1);
-			else
-				criteria.Label:SetTextColor(.6, .6, .6, 1);
-				criteria.Label:SetShadowOffset(1, -1);
-			end
-			local stringWidth = 0;
-			local maxCriteriaContentWidth;
-			if ( completed ) then
-				maxCriteriaContentWidth = ACHIEVEMENTUI_MAXCONTENTWIDTH - ACHIEVEMENTUI_CRITERIACHECKWIDTH;
-				criteria.Check:SetPoint("LEFT", 18, -3);
-				criteria.Label:SetPoint("LEFT", criteria.Check, "RIGHT", 0, 2);
-				criteria.Check:Show();
-				criteria.Label:SetText(criteriaString);
-				stringWidth = min(criteria.Label:GetStringWidth(),maxCriteriaContentWidth);
-			else
-				maxCriteriaContentWidth = ACHIEVEMENTUI_MAXCONTENTWIDTH - self.textCheckWidth;
-				criteria.Check:SetPoint("LEFT", 0, -3);
-				criteria.Label:SetPoint("LEFT", criteria.Check, "RIGHT", 5, 2);
-				criteria.Check:Hide();
-				criteria.Label:SetText("- "..criteriaString);
-				stringWidth = min(criteria.Label:GetStringWidth() - self.textCheckWidth,maxCriteriaContentWidth);	-- don't want the "- " to be included in the width
-			end
-			if ( criteria.Label:GetWidth() > maxCriteriaContentWidth ) then
-				criteria.Label:SetWidth(maxCriteriaContentWidth);
-			end
-			criteria:SetParent(self);
-			criteria:Show();
-			criteria:SetWidth(stringWidth + ACHIEVEMENTUI_CRITERIACHECKWIDTH);
+			stringWidth = self:AddCriteria(textStrings, numCriteria, criteriaString, completed);
 			maxCriteriaWidth = max(maxCriteriaWidth, stringWidth + ACHIEVEMENTUI_CRITERIACHECKWIDTH);
 			numCriteriaRows = numCriteriaRows + 1;
 		end
 	end
-	if ( textStrings > 0 and progressBars > 0 ) then
-		-- If we have text criteria and progressBar criteria, display the progressBar criteria first and position the textStrings under them.
-		local criTable = self:GetCriteria(1);
-		criTable:ClearAllPoints();
-		if ( textStrings == 1 ) then
-			criTable:SetPoint("TOP", self:GetProgressBar(progressBars), "BOTTOM", -14, -4);
-		else
-			criTable:SetPoint("TOP", self:GetProgressBar(progressBars), "BOTTOM", 0, -4);
-			criTable:SetPoint("LEFT", self, "LEFT", 0, 0);
-		end
+	if textStrings > 0 and progressBars > 0 then
+		self:SetProgressBarAndTextPoints(progressBars, textStrings);
 	elseif ( textStrings > 1 ) then
-		-- Figure out if we can make multiple columns worth of criteria instead of one long one
-		local numColumns = floor(ACHIEVEMENTUI_MAXCONTENTWIDTH/maxCriteriaWidth);
-		-- But if we have a lot of criteria, force 2 columns
-		local forceColumns = false;
-		if ( numColumns == 1 and textStrings >= FORCE_COLUMNS_MIN_CRITERIA and maxCriteriaWidth <= FORCE_COLUMNS_MAX_WIDTH ) then
-			numColumns = 2;
-			forceColumns = true;
-			-- if top right criteria would run into the achievement shield, move them all down 1 row
-			-- this assumes description is 1 or 2 lines, otherwise this wouldn't be a problem
-			if ( self:GetCriteria(2).Label:GetStringWidth() > FORCE_COLUMNS_RIGHT_COLUMN_SPACE and progressBars == 0 ) then
-				AddExtraCriteriaRow();
-			end
-		end
-		if ( numColumns > 1 ) then
-			local step;
-			local rows = 1;
-			local position = 0;
-			for i=1, #criteriaTable do
-				position = position + 1;
-				if ( position > numColumns ) then
-					position = position - numColumns;
-					rows = rows + 1;
-				end
-				if ( rows == 1 ) then
-					criteriaTable[i]:ClearAllPoints();
-					local xOffset = 0;
-					if ( forceColumns ) then
-						if ( position == 1 ) then
-							xOffset = FORCE_COLUMNS_LEFT_OFFSET;
-						elseif ( position == 2 ) then
-							xOffset = FORCE_COLUMNS_RIGHT_OFFSET;
-						end
-					end
-					criteriaTable[i]:SetPoint("TOPLEFT", self, "TOPLEFT", (position - 1)*(ACHIEVEMENTUI_MAXCONTENTWIDTH/numColumns) + xOffset, yOffset);
-				else
-					criteriaTable[i]:ClearAllPoints();
-					criteriaTable[i]:SetPoint("TOPLEFT", criteriaTable[position + ((rows - 2) * numColumns)], "BOTTOMLEFT", 0, 0);
-				end
-			end
-			numCriteriaRows = ceil(numCriteriaRows/numColumns);
-		end
+		numCriteriaRows = self:SetTextPoints(progressBars, textStrings, maxCriteriaWidth, numCriteriaRows, yOffset, AddExtraCriteriaRow)
 	end
 	numCriteriaRows = numCriteriaRows + numExtraCriteriaRows;
-	if ( firstMetaCriteria ) then
+	local firstMetaCriteria = self:GetMeta(1);
+	if firstMetaCriteria.Id then
 		local yOffsetMeta = -8 - numCriteriaRows * ACHIEVEMENTBUTTON_CRITERIAROWHEIGHT;
-		if ( metas == 1 ) then
+		if metas == 1 then
 			firstMetaCriteria:SetPoint("TOP", self, "TOP", 0, yOffsetMeta);
 		else
 			firstMetaCriteria:SetPoint("TOPLEFT", self, "TOPLEFT", 20, yOffsetMeta);
 		end
 	end
-	local height = numMetaRows * ACHIEVEMENTBUTTON_METAROWHEIGHT + numCriteriaRows * ACHIEVEMENTBUTTON_CRITERIAROWHEIGHT;
+	local height = ceil(metas / 2) * ACHIEVEMENTBUTTON_METAROWHEIGHT + numCriteriaRows * ACHIEVEMENTBUTTON_CRITERIAROWHEIGHT;
 	if ( metas > 0 or progressBars > 0 ) then
 		height = height + 10;
 	end

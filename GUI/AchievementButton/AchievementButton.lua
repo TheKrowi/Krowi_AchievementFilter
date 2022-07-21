@@ -22,9 +22,9 @@ local function UpdatePlusMinusTexture(self)
 		display = true;
 	elseif GetAchievementNumCriteria(id) ~= 0 then
 		display = true;
-	elseif self.completed and GetPreviousAchievement(id) then
+	elseif self.Completed and GetPreviousAchievement(id) then
 		display = true;
-	elseif not self.completed and GetAchievementGuildRep(id) then
+	elseif not self.Completed and GetAchievementGuildRep(id) then
 		display = true;
 	end
 
@@ -127,7 +127,7 @@ local function Expand(self, height)
 		if height < GUILDACHIEVEMENTBUTTON_MINHEIGHT then
 			height = GUILDACHIEVEMENTBUTTON_MINHEIGHT;
 		end
-		if self.completed then
+		if self.Completed then
 			self.tabard:Show();
 			self.shield:SetFrameLevel(self.tabard:GetFrameLevel() + 1);
 			SetLargeGuildTabardTextures("player", self.tabard.emblem, self.tabard.background, self.tabard.border);

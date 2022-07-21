@@ -51,16 +51,9 @@
 			</ScrollFrame>
 			<Frame name="$parentBorder" parentKey="Border" setAllPoints="true" inherits="AchivementGoldBorderBackdrop"/>
 			<Frame name="$parentAchievementsObjectives" parentKey="AchievementsObjectives" mixin="AchievementsObjectivesMixin">
-				<Layers>
-				<Layer level="ARTWORK">
-					<FontString name="$parentReputationCriteria" inherits="GameFontNormalSmall" parentKey="repCriteria">
-					<Anchors>
-						<Anchor point="TOP" x="8" y="-2"/>
-					</Anchors>
-					<Color r="1" g="1" b="1" a="1"/>
-					</FontString>
-				</Layer>
-				</Layers>
+				<Scripts>
+					<OnLoad function="KrowiAF_AchievementsObjectives_OnLoad"/>
+				</Scripts>
 			</Frame>
 		</Frames>
 		<Scripts>
