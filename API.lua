@@ -95,7 +95,7 @@ local function SelectCategory(category, collapsed, quick)
 	local previousScrollValue;
 
 	local categoriesFrame = addon.GUI.CategoriesFrame;
-	local scrollFrame = categoriesFrame.Container;
+	local scrollFrame = categoriesFrame.ScrollFrame;
 	local scrollBar = scrollFrame.ScrollBar;
 	local buttons = scrollFrame.buttons;
 
