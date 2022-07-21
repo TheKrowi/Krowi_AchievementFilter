@@ -39,9 +39,9 @@ function AchievementButtonMixin:DisplayObjectives()
 		end
 	end
 	height = height + objectives:GetHeight();
+	self.hiddenDescription:Show();
+	self.description:Hide();
 	if ( height ~= addon.Options.db.Achievements.ButtonCollapsedHeight or self.numLines > ACHIEVEMENTUI_MAX_LINES_COLLAPSED ) then
-		self.hiddenDescription:Show();
-		self.description:Hide();
 		local descriptionHeight = self.hiddenDescription:GetHeight();
 		height = height + descriptionHeight - ACHIEVEMENTBUTTON_DESCRIPTIONHEIGHT;
 		if ( self.reward:IsShown() ) then

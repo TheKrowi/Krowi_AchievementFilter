@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Configurable sorting for characters in the achievement window header tooltip
 - Option to limit the maximum number of characters in the tooltip with the option to keep the current character in the list regardless if it normally would or not
 - Option to change the category indentation
+- Clicking an event reminder that has no achievements visible due to the filters will show the empty category with a text informing the user
 
 ### Changed
 - Tabs are now handled by addon and tab name and API is accessible by other addons (see Plugins/Overachiever.lua for example or ask for assistance on discord)

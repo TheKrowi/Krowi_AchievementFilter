@@ -64,28 +64,8 @@ function KrowiAF_EventAlertFrame_OnClick(self, button, down)
     if not IsAddOnLoaded("Blizzard_AchievementUI") then
         LoadAddOn("Blizzard_AchievementUI");
     end
-    
-    local category = self.Event.Category;
-    if category.NumOfAch == nil then
-        category:GetAchievementNumbers();
-    end
-    local categoriesTree, alwaysVisibleCache;
-    if category.NumOfAch == 0 then
-        local filters = addon.Filters;
-        local filters2;
-        if filters then
-            filters2 = filters:GetFilters(category);
-        end
-        filters2.Refresh = true;
-        categoriesTree = category:GetTree();
-        alwaysVisibleCache = {};
-        for i = 1, #categoriesTree do
-            alwaysVisibleCache[i] = categoriesTree[i].AlwaysVisible;
-            categoriesTree[i].AlwaysVisible = true; -- We set this here to show an empty category
-        end
-        addon.GUI.CategoriesFrame:Update(true); -- Force an update to handle the new AlwaysVisible states
-    end
-    KrowiAF_SelectCategory(self.Event.Category);
+
+    local category = KrowiAF_SelectCategory(self.Event.Category);
     if category.NumOfAch == 0 then
         addon.GUI.AchievementsFrame.Text:Show();
         addon.GUI.AchievementsFrame.Text:SetText(addon.Util.ReplaceVars
@@ -93,9 +73,6 @@ function KrowiAF_EventAlertFrame_OnClick(self, button, down)
             addon.L["Shown temporarily"],
             eventName = self.Event.EventDetails.Name;
         });
-        for i = 1, #categoriesTree do
-            categoriesTree[i].AlwaysVisible = alwaysVisibleCache[i]; -- Reset to the initial state
-        end
     end
 end
 

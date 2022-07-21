@@ -141,15 +141,26 @@ local function GetMergedCategory(category)
 end
 
 function KrowiAF_SelectCategory(category, collapsed)
-	category = GetMergedCategory(category);
-	local categoriesTree = category:GetTree();
-
 	-- Select tab
-	addon.GUI.ToggleAchievementFrame(addonName, categoriesTree[1].TabName, nil, true);
+	local categoriesTree = category:GetTree();
+	addon.GUI.ToggleAchievementFrame(addonName, categoriesTree[1].TabName, nil, true); -- This will call both category and achievement update
 
-	-- Here we need to get the tree again since when the destination tab is not loaded before, merged categories are not yet processed
+	-- Get the merged category now we're sure it's loaded
 	category = GetMergedCategory(category);
 	categoriesTree = category:GetTree();
+
+    if category.NumOfAch == nil then
+        category:GetAchievementNumbers();
+    end
+    local alwaysVisibleCache;
+    if category.NumOfAch == 0 then
+        alwaysVisibleCache = {};
+        for i = 1, #categoriesTree do
+            alwaysVisibleCache[i] = categoriesTree[i].AlwaysVisible;
+            categoriesTree[i].AlwaysVisible = true; -- We set this here to show an empty category
+        end
+        addon.GUI.CategoriesFrame:Update(true); -- Force an update to handle the new AlwaysVisible states
+    end
 
 	-- Select category
 	for i, cat in next, categoriesTree do
@@ -159,6 +170,12 @@ function KrowiAF_SelectCategory(category, collapsed)
 			end
 		end
 	end
+	if category.NumOfAch == 0 then
+        for i = 1, #categoriesTree do
+            categoriesTree[i].AlwaysVisible = alwaysVisibleCache[i]; -- Reset to the initial state
+        end
+    end
+	return category;
 end
 
 function KrowiAF_ToggleAchievementFrame(_addonName, tabName)
