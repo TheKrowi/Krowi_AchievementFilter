@@ -181,3 +181,13 @@ function category:GetAchievementNumbers()
 
 	return numOfAch, numOfCompAch, numOfNotObtAch; -- , numOfIncompAch
 end
+
+function category:GetMergedCategory()
+	local cat = self;
+	if addon.Filters.db.MergeSmallCategories then
+		while cat.Merged do
+			cat = cat.Parent;
+		end
+	end
+	return cat;
+end

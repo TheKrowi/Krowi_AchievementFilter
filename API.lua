@@ -27,10 +27,9 @@ function KrowiAF_SelectAchievementWithCategory(achievement, category)
 		end
 		buttons = scrollFrame.buttons;
 		for _, button in next, buttons do
-			if button.Id == achievement.ID and math.ceil(button:GetTop()) >= math.ceil(addon.GUI.GetSafeScrollChildBottom(scrollFrame)) then
+			if button.Achievement == achievement and math.ceil(button:GetTop()) >= math.ceil(addon.GUI.GetSafeScrollChildBottom(scrollFrame)) then
 				selectedAchievement = selectedTab.SelectedAchievement;
-				if not (selectedAchievement and selectedAchievement.ID == achievement.ID) then
-					print("button click", achievement.ID)
+				if not (selectedAchievement == achievement) then
 					button:Select(true);
 				end
 				shown = button;
@@ -127,25 +126,16 @@ local function SelectCategory(category, collapsed, quick)
 	end
 end
 
-local function GetMergedCategory(category)
-	local filters = addon.Filters;
-	if filters and filters.db.MergeSmallCategories then
-		while category.Merged do
-			category = category.Parent;
-		end
-	end
-	return category;
-end
-
 function KrowiAF_SelectCategory(category, collapsed)
 	-- Select tab
 	local categoriesTree = category:GetTree();
 	addon.GUI.ToggleAchievementFrame(addonName, categoriesTree[1].TabName, nil, true); -- This will call both category and achievement update
 
 	-- Get the merged category now we're sure it's loaded
-	category = GetMergedCategory(category);
+	category = category:GetMergedCategory();
 	categoriesTree = category:GetTree();
 
+	-- Force showing the catgory if it would not be visible normally due to filters
     if category.NumOfAch == nil then
         category:GetAchievementNumbers();
     end
@@ -167,11 +157,14 @@ function KrowiAF_SelectCategory(category, collapsed)
 			end
 		end
 	end
+
+	-- Reset the forced show so when clicking away, the category will be hidden again
 	if category.NumOfAch == 0 then
         for i = 1, #categoriesTree do
             categoriesTree[i].AlwaysVisible = alwaysVisibleCache[i]; -- Reset to the initial state
         end
     end
+
 	return category;
 end
 

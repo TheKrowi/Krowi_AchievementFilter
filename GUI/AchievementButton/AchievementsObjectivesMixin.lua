@@ -279,7 +279,7 @@ function AchievementsObjectivesMixin:SetProgressBarAndTextPoints(progressBars, t
 end
 
 function AchievementsObjectivesMixin:ForceTwoRowsAdvanced(yOffset)
-	print(yOffset)
+	-- print(yOffset)
 	local numColumns = 2;
 	local xOffset = 0;
 	local maxColumnWidth = ACHIEVEMENTUI_MAXCONTENTWIDTH / numColumns;
@@ -306,7 +306,7 @@ function AchievementsObjectivesMixin:ForceTwoRowsAdvanced(yOffset)
 			end
 		end
 	end
-	print(yOffset, ACHIEVEMENTBUTTON_CRITERIAROWHEIGHT, abs(yOffset / ACHIEVEMENTBUTTON_CRITERIAROWHEIGHT))
+	-- print(yOffset, ACHIEVEMENTBUTTON_CRITERIAROWHEIGHT, abs(yOffset / ACHIEVEMENTBUTTON_CRITERIAROWHEIGHT))
 	return abs(yOffset / ACHIEVEMENTBUTTON_CRITERIAROWHEIGHT) + 1;
 end
 

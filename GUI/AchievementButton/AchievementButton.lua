@@ -47,9 +47,5 @@ function achievementButton:PostLoadButtons(achievementsFrame)
 		if addon.Options.db.RightClickMenu.ShowButtonOnAchievement then
 			AddRightClickMenuButton(button);
 		end
-
-		button.ShowTooltip = function()
-			self.Tooltip.ShowTooltip(button, addon.Filters.Validate, addon.Filters:GetFilters());
-		end;
 	end
 end

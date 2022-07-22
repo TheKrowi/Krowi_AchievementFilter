@@ -81,7 +81,7 @@ end
 local cachedCategory, cachedAchievements; -- Caching this speeds up the scrolling of achievements when the selected category isn't changed
 local highlightedButton;
 function KrowiAF_AchievementsFrameMixin:Update()
-	print("AchievementsFrame:Update")
+	-- print("AchievementsFrame:Update")
 	local selectedTab = addon.GUI.SelectedTab;
 	local selectedCategory = selectedTab.SelectedCategory;
 	local selectedAchievement = selectedTab.SelectedAchievement;
@@ -134,7 +134,7 @@ function KrowiAF_AchievementsFrameMixin:Update()
 
 	-- Make sure the correct tooltip is shown when scrolling
 	if highlightedButton then
-		highlightedButton.ShowTooltip();
+		highlightedButton:ShowTooltip();
 	end
 end
 

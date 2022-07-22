@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Option to limit the maximum number of characters in the tooltip with the option to keep the current character in the list regardless if it normally would or not
 - Option to change the category indentation
 - Clicking an event reminder that has no achievements visible due to the filters will show the empty category with a text informing the user
+- Mini achievements (shown when opening an achievement part of a chain) can now be clicked and have a highlight when moving the mouse over
 - Mini achievements (shown when opening an achievement part of a chain) and meta achievements (shown when opening an achievement that requires achievements) now also have a right click menu
 
 ### Changed

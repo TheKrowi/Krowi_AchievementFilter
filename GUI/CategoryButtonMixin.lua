@@ -53,6 +53,7 @@ function KrowiAF_CategoryButtonMixin:SetCategory(category)
 end
 
 function KrowiAF_CategoryButtonMixin:Select(quick)
+	-- print("KrowiAF_CategoryButtonMixin:Select")
 	if self.Category.IsSummary then
 		addon.GUI.SummaryFrame:Show();
 		addon.GUI.AchievementsFrame:Hide();

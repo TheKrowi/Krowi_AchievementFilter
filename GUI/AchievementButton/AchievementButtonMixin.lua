@@ -10,7 +10,7 @@ local descriptionSmallWidthOffset = 104;
 do -- Scripts
 	function KrowiAF_AchievementButton_OnEnter(self)
 		addon.GUI.AchievementsFrame.SetHighlightedButton(self);
-		self.ShowTooltip();
+		self:ShowTooltip();
 		self.highlight:Show();
 	end
 
@@ -110,9 +110,11 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement)
 		else
 			if flags.IsAccountWide then
 				self.accountWide = true;
+				achievement.IsAccountWide = true;
 				saturatedStyle = "account";
 			else
 				self.accountWide = nil;
+				achievement.IsAccountWide = nil;
 				saturatedStyle = "normal";
 			end
 		end
@@ -141,6 +143,7 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement)
 		local earnedByFilter = addon.Filters.db.EarnedBy;
 		if (earnedByFilter == addon.Filters.Account and completed or wasEarnedByMe) or (earnedByFilter == addon.Filters.CharacterAccount and completed and wasEarnedByMe) then
 			self.Completed = true;
+			achievement.IsCompleted = true;
 			self.dateCompleted:SetText(FormatShortDate(day, month, year));
 			self.dateCompleted:Show();
 			if self.saturatedStyle ~= saturatedStyle then
@@ -148,11 +151,13 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement)
 			end
 		elseif (earnedByFilter == addon.Filters.CharacterAccount and completed and not wasEarnedByMe) then
 			self.Completed = true;
+			achievement.IsCompleted = true;
 			self.dateCompleted:SetText(FormatShortDate(day, month, year));
 			self.dateCompleted:Show();
 			self:SaturatePartial();
 		else
 			self.Completed = nil;
+			achievement.IsCompleted = nil;
 			self.dateCompleted:Hide();
 			self:Desaturate();
 		end
@@ -423,4 +428,8 @@ function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
 	if not ignoreModifiers then
 		achievementsFrame:AdjustSelection();
 	end
+end
+
+function KrowiAF_AchievementButtonMixin:ShowTooltip()
+	addon.GUI.AchievementTooltip.ShowTooltip(self, self.Achievement);
 end

@@ -3,5 +3,4 @@
     <Script file="AchievementButton.lua" />
     <Script file="AchievementButtonMixin.lua" />
     <Script file="AchievementsObjectivesMixin.lua" />
-    <Script file="AchievementButtonTooltip.lua" />
 </Ui>
