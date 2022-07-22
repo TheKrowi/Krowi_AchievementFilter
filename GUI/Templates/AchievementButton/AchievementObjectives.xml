@@ -22,7 +22,7 @@
         </Layers>
     </Frame>
 
-    <Button name="KrowiAF_MiniAchievement_Template" virtual="true">
+    <Button name="KrowiAF_MiniAchievement_Template" registerForClicks="LeftButtonUp, RightButtonUp" virtual="true">
         <Size x="42" y="42"/>
             <Anchors>
                 <Anchor point="CENTER"/>
@@ -77,7 +77,7 @@
         </HighlightTexture>
     </Button>
 
-    <Button name="KrowiAF_MetaCriteria_Template" hidden="true" virtual="true">
+    <Button name="KrowiAF_MetaCriteria_Template" registerForClicks="LeftButtonUp, RightButtonUp" hidden="true" virtual="true">
         <Size x="155" y="30"/>
         <Anchors>
             <Anchor point="CENTER"/>

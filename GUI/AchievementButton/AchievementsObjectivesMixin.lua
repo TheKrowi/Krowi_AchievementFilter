@@ -28,8 +28,12 @@ do -- Scripts
 		GameTooltip:Hide();
 	end
 
-	function KrowiAF_AchievementsObjectives_OnClick(self)
-		KrowiAF_SelectAchievementFromID(self.Id, nil, true);
+	function KrowiAF_AchievementsObjectives_OnClick(self, button, down)
+		if button == "LeftButton" then
+			KrowiAF_SelectAchievementFromID(self.Id, nil, true);
+		elseif button == "RightButton" then
+			addon.GUI.RightClickMenu.AchievementMenu:Open(addon.Data.Achievements[self.Id]);
+		end
 	end
 
 	function KrowiAF_AchievementsObjectives_OnLoad(self)
@@ -203,7 +207,7 @@ do -- Add objective types
 			criteria.Label:SetText("- "..criteriaString);
 			stringWidth = min(criteria.Label:GetStringWidth() - self.TextCheckWidth, maxCriteriaContentWidth);	-- Don't want the "- " to be included in the width
 		end
-		if ( criteria.Label:GetWidth() > maxCriteriaContentWidth ) then
+		if criteria.Label:GetWidth() > maxCriteriaContentWidth then
 			criteria.Label:SetWidth(maxCriteriaContentWidth);
 		end
 		criteria:SetParent(self);
@@ -274,56 +278,109 @@ function AchievementsObjectivesMixin:SetProgressBarAndTextPoints(progressBars, t
 	end
 end
 
-function AchievementsObjectivesMixin:SetTextPoints(progressBars, textStrings, maxCriteriaWidth, numCriteriaRows, yOffset, addExtraCriteriaRow)
+function AchievementsObjectivesMixin:ForceTwoRowsAdvanced(yOffset)
+	print(yOffset)
+	local numColumns = 2;
+	local xOffset = 0;
+	local maxColumnWidth = ACHIEVEMENTUI_MAXCONTENTWIDTH / numColumns;
+	local position = 0;
+	for i = 1, #criteriaTable do
+		position = position + 1;
+		if criteriaTable[i]:IsShown() then
+			if position == 2 and criteriaTable[i].Label:GetStringWidth() > maxColumnWidth then
+				position = position + 1;
+			end
+			if position > numColumns then
+				position = position - numColumns;
+				yOffset = yOffset - ACHIEVEMENTBUTTON_CRITERIAROWHEIGHT;
+			end
+			criteriaTable[i]:ClearAllPoints();
+			if position == 1 then
+				xOffset = FORCE_COLUMNS_LEFT_OFFSET;
+			elseif position == 2 then
+				xOffset = FORCE_COLUMNS_RIGHT_OFFSET;
+			end
+			criteriaTable[i]:SetPoint("TOPLEFT", self, "TOPLEFT", (position - 1) * maxColumnWidth + xOffset, yOffset);
+			if criteriaTable[i].Label:GetStringWidth() > maxColumnWidth then
+				position = position + 1;
+			end
+		end
+	end
+	print(yOffset, ACHIEVEMENTBUTTON_CRITERIAROWHEIGHT, abs(yOffset / ACHIEVEMENTBUTTON_CRITERIAROWHEIGHT))
+	return abs(yOffset / ACHIEVEMENTBUTTON_CRITERIAROWHEIGHT) + 1;
+end
+
+function AchievementsObjectivesMixin:SetTextPoints(progressBars, textStrings, maxCriteriaWidth, numCriteriaRows, addExtraCriteriaRow)
 	-- testing
 	-- FIND A WAY TO FORCE 2 COLUMNS AND SHOW THE TOO LONG ITEMS ON A SINGLE LINE
-	maxCriteriaWidth = min(maxCriteriaWidth, FORCE_COLUMNS_MAX_WIDTH)
+	-- maxCriteriaWidth = min(maxCriteriaWidth, FORCE_COLUMNS_MAX_WIDTH)
 	-- testing
-
+	local yOffset = 0;
+	local numExtraCriteriaRows = 0;
+	local function AddExtraCriteriaRow()
+		numExtraCriteriaRows = numExtraCriteriaRows + 1;
+		yOffset = -numExtraCriteriaRows * ACHIEVEMENTBUTTON_CRITERIAROWHEIGHT;
+	end
 	-- Figure out if we can make multiple columns worth of criteria instead of one long one
 	local numColumns = floor(ACHIEVEMENTUI_MAXCONTENTWIDTH / maxCriteriaWidth);
 	-- But if we have a lot of criteria, force 2 columns
 
-	print(ACHIEVEMENTUI_MAXCONTENTWIDTH, maxCriteriaWidth, numColumns, textStrings, FORCE_COLUMNS_MIN_CRITERIA, maxCriteriaWidth, FORCE_COLUMNS_MAX_WIDTH)
+	-- print(ACHIEVEMENTUI_MAXCONTENTWIDTH, maxCriteriaWidth, numColumns, textStrings, FORCE_COLUMNS_MIN_CRITERIA, maxCriteriaWidth, FORCE_COLUMNS_MAX_WIDTH)
 
 	local forceColumns = false;
-	if ( numColumns == 1 and textStrings >= FORCE_COLUMNS_MIN_CRITERIA and maxCriteriaWidth <= FORCE_COLUMNS_MAX_WIDTH ) then
-		numColumns = 2;
-		forceColumns = true;
-		-- if top right criteria would run into the achievement shield, move them all down 1 row
-		-- this assumes description is 1 or 2 lines, otherwise this wouldn't be a problem
-		if ( self:GetCriteria(2).Label:GetStringWidth() > FORCE_COLUMNS_RIGHT_COLUMN_SPACE and progressBars == 0 ) then
-			addExtraCriteriaRow();
-		end
-	end
-	if ( numColumns > 1 ) then
-		local rows = 1;
-		local position = 0;
-		for i=1, #criteriaTable do
-			position = position + 1;
-			if ( position > numColumns ) then
-				position = position - numColumns;
-				rows = rows + 1;
-			end
-			if ( rows == 1 ) then
-				criteriaTable[i]:ClearAllPoints();
-				local xOffset = 0;
-				if ( forceColumns ) then
-					if ( position == 1 ) then
-						xOffset = FORCE_COLUMNS_LEFT_OFFSET;
-					elseif ( position == 2 ) then
-						xOffset = FORCE_COLUMNS_RIGHT_OFFSET;
+	if numColumns == 1 and textStrings >= FORCE_COLUMNS_MIN_CRITERIA then
+		if maxCriteriaWidth <= FORCE_COLUMNS_MAX_WIDTH then
+			numColumns = 2;
+			forceColumns = true;
+			-- if top right criteria would run into the achievement shield, move them all down 1 row
+			-- this assumes description is 1 or 2 lines, otherwise this wouldn't be a problem
+			local numLines = self:GetParent().numLines;
+			if progressBars == 0 then
+				local ACHIEVEMENTUI_MAX_LINES_COLLAPSED = 3;
+				if self:GetCriteria(2).Label:GetStringWidth() > FORCE_COLUMNS_RIGHT_COLUMN_SPACE then
+					for i = 1, ACHIEVEMENTUI_MAX_LINES_COLLAPSED - numLines do
+						AddExtraCriteriaRow();
+					end
+				elseif self:GetCriteria(4).Label:GetStringWidth() > FORCE_COLUMNS_RIGHT_COLUMN_SPACE then
+					for i = 2, ACHIEVEMENTUI_MAX_LINES_COLLAPSED - numLines do
+						AddExtraCriteriaRow();
 					end
 				end
-				criteriaTable[i]:SetPoint("TOPLEFT", self, "TOPLEFT", (position - 1)*(ACHIEVEMENTUI_MAXCONTENTWIDTH/numColumns) + xOffset, yOffset);
-			else
-				criteriaTable[i]:ClearAllPoints();
-				criteriaTable[i]:SetPoint("TOPLEFT", criteriaTable[position + ((rows - 2) * numColumns)], "BOTTOMLEFT", 0, 0);
 			end
+		-- else
+		-- 	print("we just need 2 rows...")
+		-- 	return self:ForceTwoRowsAdvanced(yOffset);
 		end
-		numCriteriaRows = ceil(numCriteriaRows / numColumns);
 	end
-	return numCriteriaRows;
+	if numColumns <= 1 then
+		return numCriteriaRows, numExtraCriteriaRows;
+	end
+	local rows = 1;
+	local position = 0;
+	for i=1, #criteriaTable do
+		position = position + 1;
+		if ( position > numColumns ) then
+			position = position - numColumns;
+			rows = rows + 1;
+		end
+		if ( rows == 1 ) then
+			criteriaTable[i]:ClearAllPoints();
+			local xOffset = 0;
+			if ( forceColumns ) then
+				if ( position == 1 ) then
+					xOffset = FORCE_COLUMNS_LEFT_OFFSET;
+				elseif ( position == 2 ) then
+					xOffset = FORCE_COLUMNS_RIGHT_OFFSET;
+				end
+			end
+			criteriaTable[i]:SetPoint("TOPLEFT", self, "TOPLEFT", (position - 1)*(ACHIEVEMENTUI_MAXCONTENTWIDTH/numColumns) + xOffset, yOffset);
+		else
+			criteriaTable[i]:ClearAllPoints();
+			criteriaTable[i]:SetPoint("TOPLEFT", criteriaTable[position + ((rows - 2) * numColumns)], "BOTTOMLEFT", 0, 0);
+		end
+	end
+	numCriteriaRows = ceil(numCriteriaRows / numColumns);
+	return numCriteriaRows, numExtraCriteriaRows;
 end
 
 function AchievementsObjectivesMixin:DisplayCriteria(id)
@@ -339,13 +396,8 @@ function AchievementsObjectivesMixin:DisplayCriteria(id)
 	end
 
 	local stringWidth;
-	local yOffset = 0;
 	local numCriteriaRows = 0;
 	local numExtraCriteriaRows = 0;
-	local function AddExtraCriteriaRow()
-		numExtraCriteriaRows = numExtraCriteriaRows + 1;
-		yOffset = -numExtraCriteriaRows * ACHIEVEMENTBUTTON_CRITERIAROWHEIGHT;
-	end
 
 	local textStrings, progressBars, metas = 0, 0, 0;
 	local maxCriteriaWidth = 0;
@@ -368,7 +420,7 @@ function AchievementsObjectivesMixin:DisplayCriteria(id)
 	if textStrings > 0 and progressBars > 0 then
 		self:SetProgressBarAndTextPoints(progressBars, textStrings);
 	elseif ( textStrings > 1 ) then
-		numCriteriaRows = self:SetTextPoints(progressBars, textStrings, maxCriteriaWidth, numCriteriaRows, yOffset, AddExtraCriteriaRow)
+		numCriteriaRows, numExtraCriteriaRows = self:SetTextPoints(progressBars, textStrings, maxCriteriaWidth, numCriteriaRows)
 	end
 	numCriteriaRows = numCriteriaRows + numExtraCriteriaRows;
 	local firstMetaCriteria = self:GetMeta(1);

@@ -164,7 +164,7 @@ function data.LoadBlizzardTabAchievements(categories)
         if addedOutOfOrder[achID] == nil then -- Not yet added
             local categoryID = GetAchievementCategory(achID);
             if tmpC[categoryID] ~= nil then
-                achID = addon.GetFirstAchievementID(achID);
+                achID = addon.GetFirstAchievementId(achID);
                 AddAchievementsToCategory(categoryID, achID);
             end
         end

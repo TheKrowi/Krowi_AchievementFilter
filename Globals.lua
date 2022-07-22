@@ -1,12 +1,12 @@
 local addonName, addon = ...;
 
-function addon.GetFirstAchievementID(achievementID)
-    local id;
-	while achievementID do
-		id = achievementID;
-		achievementID = GetPreviousAchievement(achievementID);
+function addon.GetFirstAchievementId(id)
+    local firstId;
+	while id do
+		firstId = id;
+		id = GetPreviousAchievement(id);
 	end
-    return id;
+    return firstId;
 end
 
 function addon.InGuildView()
@@ -252,7 +252,7 @@ local function AddToCache(id, points, flags, isGuild, isStatistic, exists)
     for j = 1, numCriteria do
         local _, criteriaType, _, _, _, _, _, assetID = GetAchievementCriteriaInfo(id, j);
         if criteriaType == 8 then -- See https://wowpedia.fandom.com/wiki/API_GetAchievementCriteriaInfo for all criteria types
-            tinsert(criteriaCache, {AchievementID = assetID, RequiredForID = id});
+            tinsert(criteriaCache, {AchievementId = assetID, RequiredForId = id});
         end
     end
 end

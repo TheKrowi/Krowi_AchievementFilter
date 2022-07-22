@@ -318,7 +318,8 @@
         "ACHIEVEMENTUI_PROGRESSIVEHEIGHT",
         "ACHIEVEMENTUI_PROGRESSIVEWIDTH",
         "ACHIEVEMENTUI_MAX_LINES_COLLAPSED",
-        "ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT"
+        "ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT",
+        "abs"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

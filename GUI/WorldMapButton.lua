@@ -34,7 +34,7 @@ function WorldMapAchievementButtonMixin:OnClick()
     if achievements and #achievements > 0 then
         HideUIPanel(WorldMapFrame);
         addon.Data.SelectedZoneCategory.Achievements = achievements;
-        addon.Data.SelectedZoneCategory.Name = addon.L["Selected Zone"] .. " (" .. worldMapButton.name .. ")";
+        addon.Data.SelectedZoneCategory.Name = addon.L["Selected Zone"] .. " (" .. worldMapButton.Text .. ")";
         KrowiAF_SelectCategory(addon.Data.SelectedZoneCategory);
     end
 end
@@ -44,7 +44,7 @@ function WorldMapAchievementButtonMixin:OnEnter()
         addon.GUI.ShowStatusBarTooltip(worldMapButton, "ANCHOR_RIGHT");
     else
         GameTooltip:SetOwner(worldMapButton, "ANCHOR_RIGHT");
-	    GameTooltip_SetTitle(GameTooltip, worldMapButton.name);
+	    GameTooltip_SetTitle(GameTooltip, worldMapButton.Text);
         GameTooltip_AddNormalLine(GameTooltip, addon.L["No achievements are available with the current set of filters"]);
         GameTooltip:Show();
     end

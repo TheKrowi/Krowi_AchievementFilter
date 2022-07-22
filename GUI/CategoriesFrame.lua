@@ -22,11 +22,11 @@ function categoriesFrame:Load()
 	local scrollBar = scrollFrame.ScrollBar;
 	local scrollBarShow = getmetatable(scrollBar).__index.Show;
 	scrollBar.Show = function()
-		frame:Show_Hide(scrollBarShow, 22, 30);
+		frame:Show_Hide(scrollBarShow, 22);
 	end;
 	local scrollBarHide = getmetatable(scrollBar).__index.Hide;
 	scrollBar.Hide = function()
-		frame:Show_Hide(scrollBarHide, 0, 30);
+		frame:Show_Hide(scrollBarHide, 0);
 	end;
 
 	scrollFrame.update = function()
@@ -35,7 +35,7 @@ function categoriesFrame:Load()
 
 	HybridScrollFrame_CreateButtons(scrollFrame, "KrowiAF_CategoryButton_Template", -2, 0, "TOPRIGHT", "TOPRIGHT", 0, 0, "TOPRIGHT", "BOTTOMRIGHT");
 
-	addon.GUI.CategoriesFrame = frame; -- Overwrite with the actual frame since all functions are injected to it
+	addon.GUI.CategoriesFrame = frame;
 end
 
 function KrowiAF_CategoriesFrame_OnShow(self) -- Used in Templates - KrowiAF_CategoriesFrame_Template
@@ -59,19 +59,19 @@ end
 
 KrowiAF_CategoriesFrameMixin = {};
 
-function KrowiAF_CategoriesFrameMixin:Show_Hide(func, achievementsOffsetX, _watermarkWidthOffset)
+function KrowiAF_CategoriesFrameMixin:Show_Hide(func, achievementsOffsetX)
 	local scrollFrame = self.ScrollFrame;
 
 	local categoriesFrameWidthOffset = addon.Options.db.Window.CategoriesFrameWidthOffset;
-	_watermarkWidthOffset = _watermarkWidthOffset + categoriesFrameWidthOffset;
+	local watermarkWidthOffset = 30 + categoriesFrameWidthOffset;
 
 	self:SetPoint("RIGHT", AchievementFrameAchievements, "LEFT", categoriesFrameWidthOffset - achievementsOffsetX, 0);
 	local width = self:GetWidth();
 	scrollFrame:GetScrollChild():SetWidth(width);
 	addon.GUI.AchievementsFrame:SetPoint("TOPLEFT", self, "TOPRIGHT", achievementsOffsetX, 0);
 	addon.GUI.SummaryFrame:SetPoint("TOPLEFT", self, "TOPRIGHT", achievementsOffsetX, 0);
-	AchievementFrameWaterMark:SetWidth(width - _watermarkWidthOffset);
-	AchievementFrameWaterMark:SetTexCoord(0, (width - _watermarkWidthOffset) / 256, 0, 1);
+	AchievementFrameWaterMark:SetWidth(width - watermarkWidthOffset);
+	AchievementFrameWaterMark:SetTexCoord(0, (width - watermarkWidthOffset) / 256, 0, 1);
 	AchievementFrameCategoriesBG:SetWidth(width - 2); -- Offset of 2 needed to compensate with Blizzard tabs
 
 	func(scrollFrame.ScrollBar);

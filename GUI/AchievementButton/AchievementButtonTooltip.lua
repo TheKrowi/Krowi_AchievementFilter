@@ -38,7 +38,7 @@ end
 local function AddName(self, thisRealm, numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy, character)
 	local _, _, _, argbHex = GetClassColor(character.Class);
 	local name = "|c" .. argbHex .. character.Name;
-	if self.Achievement.OtherFactionAchievementID and character.Faction and character.Faction ~= addon.Objects.Faction[self.Achievement.Faction] then
+	if self.Achievement.OtherFactionAchievementId and character.Faction and character.Faction ~= addon.Objects.Faction[self.Achievement.Faction] then
 		name = name .. " (" .. addon.L[character.Faction] .. ")";
 	end
 	if addon.Options.db.Tooltip.Achievements.EarnedBy.AlwaysShowRealm or character.Realm ~= thisRealm then
@@ -46,13 +46,13 @@ local function AddName(self, thisRealm, numEarnedBy, earnedBy, numNotEarnedBy, n
 	end
 	name = name .. "|r";
 	if character.CompletedAchievements then
-		if character.CompletedAchievements[self.Achievement.ID] or (self.Achievement.OtherFactionAchievementID and character.CompletedAchievements[self.Achievement.OtherFactionAchievementID]) then
+		if character.CompletedAchievements[self.Achievement.ID] or (self.Achievement.OtherFactionAchievementId and character.CompletedAchievements[self.Achievement.OtherFactionAchievementId]) then
 			if numEarnedBy < addon.Options.db.Tooltip.Achievements.EarnedBy.Characters then
 				earnedBy = earnedBy == "" and name or earnedBy .. ", " .. name;
 				numEarnedBy = numEarnedBy + 1;
 			end
 		else
-			if addon.Objects.Faction[self.Achievement.Faction] == character.Faction or self.Achievement.Faction == nil or self.Achievement.OtherFactionAchievementID ~= nil then
+			if addon.Objects.Faction[self.Achievement.Faction] == character.Faction or self.Achievement.Faction == nil or self.Achievement.OtherFactionAchievementId ~= nil then
 				if numNotEarnedBy < addon.Options.db.Tooltip.Achievements.EarnedBy.NotCharacters then
 					notEarnedBy = notEarnedBy == "" and name or notEarnedBy .. ", " .. name;
 					numNotEarnedBy = numNotEarnedBy + 1;
@@ -73,14 +73,14 @@ local function EvaluateCharacters(self)
 	local numEarnedByChar = addon.Options.db.Tooltip.Achievements.EarnedBy.Characters;
 	local numNotEarnedByChar = addon.Options.db.Tooltip.Achievements.EarnedBy.NotCharacters;
 	numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy = AddName(self, thisRealm, numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy, thisCharacter);
-	if self.Achievement.OtherFactionAchievementID and thisCharacter.CompletedAchievements[self.Achievement.OtherFactionAchievementID] then
+	if self.Achievement.OtherFactionAchievementId and thisCharacter.CompletedAchievements[self.Achievement.OtherFactionAchievementId] then
 		otherFactionAchievementCompleted = true;
 	end
 	for guid, character in next, SavedData.Characters do
 		if guid ~= thisGuid and (numEarnedBy < numEarnedByChar or numNotEarnedBy < numNotEarnedByChar) then
 			numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy = AddName(self, thisRealm, numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy, character);
 		end
-		if self.Achievement.OtherFactionAchievementID and character.CompletedAchievements[self.Achievement.OtherFactionAchievementID] then
+		if self.Achievement.OtherFactionAchievementId and character.CompletedAchievements[self.Achievement.OtherFactionAchievementId] then
 			otherFactionAchievementCompleted = true;
 		end
 	end
@@ -139,7 +139,7 @@ local function AddPartOfAChain(self, validate, filters)
 		return;
 	end
 
-	local achID = addon.GetFirstAchievementID(self.Achievement.ID);
+	local achID = addon.GetFirstAchievementId(self.Achievement.ID);
 	if addon.Data.Achievements[achID].NextAchievements == nil then
 		return;
 	end
@@ -157,7 +157,7 @@ local function AddRequiredFor(self, validate, filters)
 		return;
 	end
 
-	local requiredForIDs = self.Achievement:GetRequiredForIDs(validate, filters);
+	local requiredForIDs = self.Achievement:GetRequiredForIds();
 	if #requiredForIDs == 0 then
 		return;
 	end
@@ -252,7 +252,7 @@ local function AddOtherFaction(self, otherFactionAchievementCompleted)
 		return;
 	end
 
-	if self.Achievement.OtherFactionAchievementID == nil then
+	if self.Achievement.OtherFactionAchievementId == nil then
 		return;
 	end
 
@@ -267,7 +267,7 @@ local function AddOtherFaction(self, otherFactionAchievementCompleted)
 	end
 	GameTooltip:AddLine(addon.L["Other faction"] .. " (" .. faction .. ")"); -- Header
 
-	AddAchievementLine(self.Achievement, self.Achievement.OtherFactionAchievementID, addon.Options.db.Tooltip.Achievements.ShowCurrentCharacterIconsRequiredFor, nil, otherFactionAchievementCompleted);
+	AddAchievementLine(self.Achievement, self.Achievement.OtherFactionAchievementId, addon.Options.db.Tooltip.Achievements.ShowCurrentCharacterIconsRequiredFor, nil, otherFactionAchievementCompleted);
 end
 
 function tooltip.AddCriteria(customObjectives)

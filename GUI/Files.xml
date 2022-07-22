@@ -14,6 +14,7 @@
     <Script file="CategoryButtonMixin.lua" />
     <Script file="CategoriesFrame.lua" />
     <Include file="AchievementButton\Files.xml" />
+    <Include file="RightClickMenu\Files.xml" />
     <Script file="AchievementsFrame.lua" />
     <Script file="SummaryAchievementButton.lua" />
     <Script file="SummaryFrame.lua" />
