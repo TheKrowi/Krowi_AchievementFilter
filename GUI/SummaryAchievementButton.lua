@@ -28,7 +28,7 @@ function KrowiAF_AchievementFrameSummaryFrameAchievementButton_OnClick(self, but
     if self.Achievement == nil then
         return;
     end
-    KrowiAF_SelectAchievementFromID(self.Achievement.ID, nil, true);
+    KrowiAF_SelectAchievementFromID(self.Achievement.Id);
 end
 
 function KrowiAF_AchievementFrameSummaryFrameAchievementButton_OnEnter(self, button, down)

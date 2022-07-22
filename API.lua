@@ -1,12 +1,8 @@
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
 
-function KrowiAF_SelectAchievementWithCategory(achievement, category, mouseButton, ignoreModifiers, anchor, offsetX, offsetY)
-	if mouseButton == nil then
-		mouseButton = "LeftButton";
-	end
-
-	local scrollFrame = addon.GUI.AchievementsFrame.Container;
+function KrowiAF_SelectAchievementWithCategory(achievement, category)
+	local scrollFrame = addon.GUI.AchievementsFrame.ScrollFrame;
 	local scrollBar = scrollFrame.ScrollBar;
 
 	KrowiAF_SelectCategory(category);
@@ -31,10 +27,11 @@ function KrowiAF_SelectAchievementWithCategory(achievement, category, mouseButto
 		end
 		buttons = scrollFrame.buttons;
 		for _, button in next, buttons do
-			if button.id == achievement.ID and math.ceil(button:GetTop()) >= math.ceil(addon.GUI.GetSafeScrollChildBottom(scrollFrame)) then
+			if button.Id == achievement.ID and math.ceil(button:GetTop()) >= math.ceil(addon.GUI.GetSafeScrollChildBottom(scrollFrame)) then
 				selectedAchievement = selectedTab.SelectedAchievement;
 				if not (selectedAchievement and selectedAchievement.ID == achievement.ID) then
-					button:Click(mouseButton, nil, ignoreModifiers, anchor, offsetX, offsetY);
+					print("button click", achievement.ID)
+					button:Select(true);
 				end
 				shown = button;
 				break;
@@ -59,7 +56,7 @@ function KrowiAF_SelectAchievementWithCategory(achievement, category, mouseButto
 	end
 end
 
-function KrowiAF_SelectAchievement(achievement, mouseButton, ignoreModifiers, anchor, offsetX, offsetY)
+function KrowiAF_SelectAchievement(achievement)
 	if not achievement then
 		addon.Diagnostics.Debug("No achievement provided");
 		return;
@@ -82,12 +79,12 @@ function KrowiAF_SelectAchievement(achievement, mouseButton, ignoreModifiers, an
 		filters:SetFilters(tabFilters, achievement);
 	end
 
-	KrowiAF_SelectAchievementWithCategory(achievement, category, mouseButton, ignoreModifiers, anchor, offsetX, offsetY);
+	KrowiAF_SelectAchievementWithCategory(achievement, category);
 end
 
-function KrowiAF_SelectAchievementFromID(id, mouseButton, ignoreModifiers, anchor, offsetX, offsetY)
+function KrowiAF_SelectAchievementFromID(id)
 	local achievement = addon.Data.Achievements[id];
-	KrowiAF_SelectAchievement(achievement, mouseButton, ignoreModifiers, anchor, offsetX, offsetY);
+	KrowiAF_SelectAchievement(achievement);
 end
 
 local function SelectCategory(category, collapsed, quick)

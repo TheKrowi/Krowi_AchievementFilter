@@ -59,17 +59,17 @@ end
 
 KrowiAF_CategoriesFrameMixin = {};
 
-function KrowiAF_CategoriesFrameMixin:Show_Hide(func, achievementsOffsetX)
+function KrowiAF_CategoriesFrameMixin:Show_Hide(func, offsetX)
 	local scrollFrame = self.ScrollFrame;
 
 	local categoriesFrameWidthOffset = addon.Options.db.Window.CategoriesFrameWidthOffset;
 	local watermarkWidthOffset = 30 + categoriesFrameWidthOffset;
 
-	self:SetPoint("RIGHT", AchievementFrameAchievements, "LEFT", categoriesFrameWidthOffset - achievementsOffsetX, 0);
+	self:SetPoint("RIGHT", AchievementFrameAchievements, "LEFT", categoriesFrameWidthOffset - offsetX, 0);
 	local width = self:GetWidth();
 	scrollFrame:GetScrollChild():SetWidth(width);
-	addon.GUI.AchievementsFrame:SetPoint("TOPLEFT", self, "TOPRIGHT", achievementsOffsetX, 0);
-	addon.GUI.SummaryFrame:SetPoint("TOPLEFT", self, "TOPRIGHT", achievementsOffsetX, 0);
+	addon.GUI.AchievementsFrame:SetPoint("TOPLEFT", self, "TOPRIGHT", offsetX, 0);
+	addon.GUI.SummaryFrame:SetPoint("TOPLEFT", self, "TOPRIGHT", offsetX, 0);
 	AchievementFrameWaterMark:SetWidth(width - watermarkWidthOffset);
 	AchievementFrameWaterMark:SetTexCoord(0, (width - watermarkWidthOffset) / 256, 0, 1);
 	AchievementFrameCategoriesBG:SetWidth(width - 2); -- Offset of 2 needed to compensate with Blizzard tabs
@@ -99,7 +99,7 @@ local function GetDisplayCategories(displayCategories, category, getAchNums)
 end
 
 function KrowiAF_CategoriesFrameMixin:Update(getAchNums)
-	-- print("categoriesFrame:Update")
+	print("CategoriesFrame:Update")
 	local selectedTab = addon.GUI.SelectedTab;
 	if selectedTab == nil then
 		return;
@@ -121,9 +121,7 @@ function KrowiAF_CategoriesFrameMixin:Update(getAchNums)
 		GetDisplayCategories(displayCategories, category, getAchNums);
 	end
 
-	local totalHeight = #displayCategories * buttons[1]:GetHeight();
 	local displayedHeight = 0;
-
 	local button, category;
 	for i = 1, #buttons do
 		button = buttons[i];
@@ -142,6 +140,7 @@ function KrowiAF_CategoriesFrameMixin:Update(getAchNums)
 		end
 	end
 
+	local totalHeight = #displayCategories * buttons[1]:GetHeight();
 	HybridScrollFrame_Update(scrollFrame, totalHeight, displayedHeight);
 end
 
@@ -208,7 +207,7 @@ function KrowiAF_CategoriesFrameMixin:SelectButton(button, quick)
 	selectedTab.SelectedCategory = buttonCategory; -- Issue #21: Broken, Fix
 	if not quick then -- Skip refreshing achievements if we're still busy selecting the correct category
 		achievementsFrame:ClearSelection();
-		achievementsFrame.Container.ScrollBar:SetValue(0);
+		achievementsFrame.ScrollFrame.ScrollBar:SetValue(0);
 		achievementsFrame:Update();
 	end
 end

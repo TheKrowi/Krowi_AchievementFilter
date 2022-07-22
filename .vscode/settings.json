@@ -317,9 +317,10 @@
         "ACHIEVEMENT_FLAGS_HAS_PROGRESS_BAR",
         "ACHIEVEMENTUI_PROGRESSIVEHEIGHT",
         "ACHIEVEMENTUI_PROGRESSIVEWIDTH",
-        "ACHIEVEMENTUI_MAX_LINES_COLLAPSED",
         "ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT",
-        "abs"
+        "abs",
+        "AchievementFrameAchievements_Update",
+        "ACHIEVEMENT_BLUE_BORDER_COLOR"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

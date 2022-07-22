@@ -60,7 +60,7 @@ function achFrameTabBtn:Base_OnClick(id)
     end
 
     AchievementFrame_ShowSubFrame(); -- Hide all frames
-    self.AchievementsFrame.Container.ScrollBar:SetValue(0);
+    self.AchievementsFrame.ScrollFrame.ScrollBar:SetValue(0);
 
     AchievementFrame_ShowSubFrame(unpack(self.FramesToShow));
     if self.SelectedCategory.IsSummary then

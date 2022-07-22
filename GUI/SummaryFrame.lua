@@ -9,7 +9,7 @@ function summaryFrame:Load()
     local frame = CreateFrame("Frame", "KrowiAF_AchievementFrameSummaryFrame", AchievementFrame, "KrowiAF_AchievementFrameSummaryFrame_Template");
 	frame:SetPoint("TOPLEFT", AchievementFrameCategories, "TOPRIGHT", 22, 0);
 	frame:SetPoint("BOTTOM", 0, 20);
-    frame:SetWidth(504);
+	frame:SetPoint("RIGHT", -20, 0);
 	addon.Util.InjectMetatable(frame, summaryFrame); -- Inject all the namespace functions to the frame
 
     for i, frameName in next, ACHIEVEMENTFRAME_SUBFRAMES do
@@ -26,7 +26,6 @@ function summaryFrame:Load()
 end
 
 function KrowiAF_AchievementFrameSummaryFrame_OnShow(self)
-    self:SetWidth(530);
     self:CategoriesStatusBar_Update();
     self:Achievements_Update();
 end

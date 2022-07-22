@@ -3,36 +3,32 @@ local _, addon = ...;
 addon.GUI.AchievementsFrame = {};
 local achievementsFrame = addon.GUI.AchievementsFrame;
 
-local achievementsWidth = 504;
-local achievementsWidthScrollBarOffset = 26;
-local achievementsButtonOffset = 8;
-
 achievementsFrame.__index = achievementsFrame; -- Used to inject all the namespace functions to the frame
 function achievementsFrame:Load()
-	local frame = CreateFrame("Frame", "KrowiAF_AchievementFrameAchievementsFrame", AchievementFrame, "KrowiAF_AchievementFrameAchievementsFrame_Template");
+	local frame = CreateFrame("Frame", "KrowiAF_AchievementsFrame", AchievementFrame, "KrowiAF_AchievementsFrame_Template");
 	frame:SetPoint("TOPLEFT", AchievementFrameCategories, "TOPRIGHT", 22, 0);
 	frame:SetPoint("BOTTOM", 0, 20);
-	frame:SetWidth(achievementsWidth);
+	frame:SetPoint("RIGHT", -20, 0);
 	addon.Util.InjectMetatable(frame, achievementsFrame); -- Inject all the namespace functions to the frame
 
 	tinsert(ACHIEVEMENTFRAME_SUBFRAMES, frame:GetName());
 
-	local scrollFrame = frame.Container;
+	local scrollFrame = frame.ScrollFrame;
 	local scrollBar = scrollFrame.ScrollBar;
 	local scrollBarShow = getmetatable(scrollBar).__index.Show;
 	scrollBar.Show = function()
-		self.Show_Hide(frame, scrollBarShow, achievementsWidth, achievementsButtonOffset);
+		frame.Show_Hide(frame, scrollBarShow, -46);
 	end;
 	local scrollBarHide = getmetatable(scrollBar).__index.Hide;
 	scrollBar.Hide = function()
-		self.Show_Hide(frame, scrollBarHide, achievementsWidth + achievementsWidthScrollBarOffset, achievementsButtonOffset);
+		frame.Show_Hide(frame, scrollBarHide, -20);
 	end;
 
 	scrollFrame.update = function()
 		frame:Update();
 	end
 
-	local template = "KrowiAF_AchievementFrameAchievementsFrameAchievementButton" .. (addon.Options.db.Achievements.Compact and "_Small" or "") .. "_Template";
+	local template = "KrowiAF_AchievementButton_" .. (addon.Options.db.Achievements.Compact and "Small" or "Normal") .. "_Template";
 	HybridScrollFrame_CreateButtons(scrollFrame, template, 0, -2);
 	addon.GUI.AchievementButton:PostLoadButtons(frame);
 
@@ -44,23 +40,14 @@ function achievementsFrame:Load()
 end
 
 function KrowiAF_AchievementFrameAchievementsFrame_OnShow(self)
-	self:ForceUpdate(); -- Issue #42: Fix
+	self:Update(); -- Issue #42: Fix
 end
 
-function KrowiAF_AchievementFrameAchievementsFrame_OnHide(self)
-	AchievementFrameAchievements_ForceUpdate(); -- Issue #42: Fix
-end
+KrowiAF_AchievementsFrameMixin = {};
 
-function achievementsFrame.Show_Hide(frame, func, _achievementsWidth, _achievementsButtonOffset)
-	local scrollFrame = frame.Container;
-
-	frame:SetWidth(_achievementsWidth);
-
-	local buttons = scrollFrame.buttons;
-	for _, button in next, buttons do
-		button:SetWidth(_achievementsWidth - _achievementsButtonOffset);
-	end
-
+function KrowiAF_AchievementsFrameMixin.Show_Hide(frame, func, offsetX)
+	local scrollFrame = frame.ScrollFrame;
+	frame:SetPoint("RIGHT", offsetX, 0);
 	func(scrollFrame.ScrollBar);
 end
 
@@ -70,7 +57,7 @@ local function Validate(achievements, displayAchievements, defaultOrder)
 	end
 	local filters = addon.Filters;
 	for _, achievement in next, achievements do
-		if filters and filters:AutoValidate(achievement) > 0 then -- Greater than 0 means it can be shown
+		if filters:AutoValidate(achievement) > 0 then -- Greater than 0 means it can be shown
 			tinsert(displayAchievements, achievement);
 		end
 		defaultOrder[achievement] = #displayAchievements;
@@ -88,23 +75,20 @@ local function GetFilteredAchievements(category)
 		return displayAchievements;
 	end
 
-	local filters = addon.Filters;
-	if filters then
-		return filters:Sort(displayAchievements, defaultOrder);
-	end
-	return displayAchievements;
+	return addon.Filters:Sort(displayAchievements, defaultOrder);
 end
 
 local cachedCategory, cachedAchievements; -- Caching this speeds up the scrolling of achievements when the selected category isn't changed
 local highlightedButton;
-function achievementsFrame:Update()
+function KrowiAF_AchievementsFrameMixin:Update()
+	print("AchievementsFrame:Update")
 	local selectedTab = addon.GUI.SelectedTab;
 	local selectedCategory = selectedTab.SelectedCategory;
 	local selectedAchievement = selectedTab.SelectedAchievement;
-	local scrollFrame = self.Container;
+
+	local scrollFrame = self.ScrollFrame;
 	local offset = HybridScrollFrame_GetOffset(scrollFrame);
 	local buttons = scrollFrame.buttons;
-	local numButtons = #buttons;
 
 	local updateAchievements = cachedCategory ~= selectedCategory;
 	cachedCategory = selectedCategory;
@@ -122,15 +106,18 @@ function achievementsFrame:Update()
 		self.AchievementsObjectives:Hide();
 	end
 
-	local index;
 	local displayedHeight = 0;
-	for i = 1, numButtons do
+	local button, index, achievement;
+	for i = 1, #buttons do
+		button = buttons[i];
 		index = i + offset;
-		if index > #cachedAchievements then
-			buttons[i]:Hide();
+		achievement = cachedAchievements[index];
+		if achievement then
+			button:Update(cachedAchievements[index], index);
+			displayedHeight = displayedHeight + button:GetHeight();
+			button:Show();
 		else
-			self:DisplayAchievement(buttons[i], cachedAchievements[index], index, selectedAchievement);
-			displayedHeight = displayedHeight + buttons[i]:GetHeight();
+			button:Hide();
 		end
 	end
 
@@ -145,11 +132,24 @@ function achievementsFrame:Update()
 		HybridScrollFrame_CollapseButton(scrollFrame);
 	end
 
-	-- Make sure the correct tooltip is shown
+	-- Make sure the correct tooltip is shown when scrolling
 	if highlightedButton then
 		highlightedButton.ShowTooltip();
 	end
 end
+
+function KrowiAF_AchievementsFrameMixin.SetHighlightedButton(button)
+	highlightedButton = button;
+end
+
+function KrowiAF_AchievementsFrameMixin.ClearHighlightedButton()
+	highlightedButton = nil;
+end
+
+
+
+
+
 
 function achievementsFrame:ForceUpdate(toTop) -- Issue #3: Fix
 	if not self:IsShown() then -- Issue #8: Fix, Issue #10 : Broken
@@ -157,7 +157,7 @@ function achievementsFrame:ForceUpdate(toTop) -- Issue #3: Fix
 	end
 
 	if toTop then -- Issue #27: Fix
-		self.Container.ScrollBar:SetValue(0);
+		self.ScrollFrame.ScrollBar:SetValue(0);
 	end
 
 	local filters = addon.Filters;
@@ -170,9 +170,9 @@ function achievementsFrame:ForceUpdate(toTop) -- Issue #3: Fix
 	self.AchievementsObjectives:Hide();
 	self.AchievementsObjectives.id = nil;
 
-	local buttons = self.Container.buttons;
+	local buttons = self.ScrollFrame.buttons;
 	for _, button in next, buttons do
-		button.id = nil;
+		button.Id = nil;
 	end
 
 	-- Clear the cache
@@ -184,7 +184,7 @@ end
 
 function achievementsFrame:ClearSelection()
 	self.AchievementsObjectives:Hide();
-	local buttons = self.Container.buttons;
+	local buttons = self.ScrollFrame.buttons;
 	for _, button in next, buttons do
 		button:Collapse();
 		if not button:IsMouseOver() then
@@ -213,7 +213,7 @@ function achievementsFrame:SelectButton(button)
 end
 
 function achievementsFrame:FindSelection()
-	local scrollFrame = self.Container;
+	local scrollFrame = self.ScrollFrame;
 	local scrollBar = scrollFrame.ScrollBar;
 	local buttons = scrollFrame.buttons;
 	local _, maxVal = scrollBar:GetMinMaxValues();
@@ -244,7 +244,7 @@ function achievementsFrame:FindSelection()
 end
 
 function achievementsFrame:AdjustSelection()
-	local scrollFrame = self.Container;
+	local scrollFrame = self.ScrollFrame;
 	local scrollBar = scrollFrame.ScrollBar;
 	local buttons = scrollFrame.buttons;
 	local selectedButton;
@@ -277,153 +277,4 @@ function achievementsFrame:AdjustSelection()
 		newHeight = min(newHeight, maxVal);
 		scrollBar:SetValue(newHeight);
 	end
-end
-
-function achievementsFrame:DisplayAchievement(button, achievement, index, selection)
-	local compact = addon.Options.db.Achievements.Compact;
-	local earnedByFilter = addon.Filters.db.EarnedBy;
-
-	local id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy = addon.GetAchievementInfo(achievement.ID);
-
-	button:Show();
-
-	button.index = index;
-	button.Achievement = achievement;
-
-	if button.id ~= id then
-		local saturatedStyle;
-		if achievement.NotObtainable then
-			saturatedStyle = "NotObtainable";
-		else
-			if bit.band(flags, ACHIEVEMENT_FLAGS_ACCOUNT) == ACHIEVEMENT_FLAGS_ACCOUNT then
-				button.accountWide = true;
-				saturatedStyle = "account";
-			else
-				button.accountWide = nil;
-				saturatedStyle = "normal";
-			end
-		end
-		button.id = id;
-		local labelWidth = ACHIEVEMENTBUTTON_LABELWIDTH;
-		if compact then
-			labelWidth = labelWidth - 10;
-		end
-		button.label:SetWidth(labelWidth);
-		button.label:SetText(name);
-
-		if GetPreviousAchievement(id) then
-			-- If this is a progressive achievement, show the total score.
-			AchievementShield_SetPoints(AchievementButton_GetProgressivePoints(id), button.shield.points, AchievementPointsFont, AchievementPointsFontSmall);
-		else
-			AchievementShield_SetPoints(points, button.shield.points, AchievementPointsFont, AchievementPointsFontSmall);
-		end
-
-		local texture = points > 0 and "Interface/AchievementFrame/UI-Achievement-Shields" or "Interface/AchievementFrame/UI-Achievement-Shields-NoPoints";
-		button.shield.icon:SetTexture(texture);
-
-		if isGuild then
-			button.shield.points:Show();
-			button.shield.wasEarnedByMe = nil;
-			button.shield.earnedBy = nil;
-		else
-			button.shield.wasEarnedByMe = completed and wasEarnedByMe;
-			button.shield.earnedBy = earnedBy;
-		end
-
-		button.shield.id = id;
-		button.description:SetText(description);
-		button.hiddenDescription:SetText(description);
-		button.numLines = ceil(button.hiddenDescription:GetHeight() / self.UIFontHeight);
-		button.icon.texture:SetTexture(icon);
-		if (earnedByFilter == addon.Filters.Account and completed or wasEarnedByMe) or (earnedByFilter == addon.Filters.CharacterAccount and completed and wasEarnedByMe) then
-			button.Completed = true;
-			button.dateCompleted:SetText(FormatShortDate(day, month, year));
-			button.dateCompleted:Show();
-			if button.saturatedStyle ~= saturatedStyle then
-				button:Saturate();
-			end
-		elseif (earnedByFilter == addon.Filters.CharacterAccount and completed and not wasEarnedByMe) then
-			button.Completed = true;
-			button.dateCompleted:SetText(FormatShortDate(day, month, year));
-			button.dateCompleted:Show();
-			button:SaturatePartial();
-		else
-			button.Completed = nil;
-			button.dateCompleted:Hide();
-			button:Desaturate();
-		end
-
-		if rewardText == "" then
-			if compact then
-				button.reward:SetText(nil);
-				button.description:Show();
-			end
-			button.reward:Hide();
-			button.rewardBackground:Hide();
-		else
-			button.reward:SetText(rewardText);
-			button.reward:Show();
-			button.rewardBackground:Show();
-			if button.Completed then
-				button.rewardBackground:SetVertexColor(1, 1, 1);
-			else
-				button.rewardBackground:SetVertexColor(0.35, 0.35, 0.35);
-			end
-			if compact then
-				button.description:Hide();
-			end
-		end
-	end
-
-	if IsTrackedAchievement(id) then -- Issue #10 : Fix
-		button.check:Show();
-		button.label:SetWidth(button.label:GetStringWidth() + 4); -- This +4 here is to fudge around any string width issues that arize from resizing a string set to its string width. See bug 144418 for an example.
-		button.tracked:SetChecked(true);
-		if not compact then
-			button.tracked:Show();
-		end
-	else
-		button.check:Hide();
-		button.tracked:SetChecked(false);
-		button.tracked:Hide();
-	end
-
-	button:UpdatePlusMinusTexture();
-
-	if selection and id == selection.ID then
-		button.selected = true;
-		button.highlight:Show();
-		local height = button:DisplayObjectives();
-
-		if height == addon.Options.db.Achievements.ButtonCollapsedHeight then
-			button:Collapse();
-		else
-			button:Expand(height);
-		end
-		if not completed or (not wasEarnedByMe and not isGuild) then
-			button.tracked:Show();
-		end
-	elseif button.selected then
-		button.selected = nil;
-		if not button:IsMouseOver() then -- This causes the first 2 - 3 achievement to be highlighted when changing the filter if the mouse is over one of the achievements
-			button.highlight:Hide();
-		end
-		button:Collapse();
-		if compact and button.reward:GetText() ~= nil then
-			button.description:Hide();
-		else
-			button.description:Show();
-		end
-		button.hiddenDescription:Hide();
-	end
-
-	return id;
-end
-
-function achievementsFrame.SetHighlightedButton(button)
-	highlightedButton = button;
-end
-
-function achievementsFrame.ClearHighlightedButton()
-	highlightedButton = nil;
 end

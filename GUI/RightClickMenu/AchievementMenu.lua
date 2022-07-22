@@ -18,7 +18,7 @@ function achievementMenu.AddGoToAchievementLine(menu, id, nameSuffix)
 	menu:AddFull({
 		Text = name .. nameSuffix,
 		Func = function()
-			KrowiAF_SelectAchievementFromID(id, nil, true);
+			KrowiAF_SelectAchievementFromID(id);
 			rightClickMenu:Close();
 		end,
 		Disabled = disabled
@@ -29,7 +29,7 @@ function achievementMenu.AddGoToAchievementWithCategoryLine(menu, achievement, c
 	menu:AddFull({
 		Text = category:GetPath(),
 		Func = function()
-			KrowiAF_SelectAchievementWithCategory(achievement, category, nil, true);
+			KrowiAF_SelectAchievementWithCategory(achievement, category);
 			rightClickMenu:Close();
 		end,
 		-- Disabled = disabled

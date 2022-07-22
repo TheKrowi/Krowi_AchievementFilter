@@ -30,7 +30,7 @@ do -- Scripts
 
 	function KrowiAF_AchievementsObjectives_OnClick(self, button, down)
 		if button == "LeftButton" then
-			KrowiAF_SelectAchievementFromID(self.Id, nil, true);
+			KrowiAF_SelectAchievementFromID(self.Id);
 		elseif button == "RightButton" then
 			addon.GUI.RightClickMenu.AchievementMenu:Open(addon.Data.Achievements[self.Id]);
 		end
