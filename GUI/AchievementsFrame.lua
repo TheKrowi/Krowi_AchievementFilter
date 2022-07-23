@@ -30,7 +30,11 @@ function achievementsFrame:Load()
 
 	local template = "KrowiAF_AchievementButton_" .. (addon.Options.db.Achievements.Compact and "Small" or "Normal") .. "_Template";
 	HybridScrollFrame_CreateButtons(scrollFrame, template, 0, -2);
-	addon.GUI.AchievementButton:PostLoadButtons(frame);
+
+	local buttons = scrollFrame.buttons;
+    for _, button in next, buttons do
+        button:SetPoint("RIGHT", scrollFrame, -5, 0);
+    end
 
 	hooksecurefunc("AchievementFrameAchievements_ForceUpdate", function()
 		frame:ForceUpdate();
@@ -188,18 +192,18 @@ function achievementsFrame:ClearSelection()
 	for _, button in next, buttons do
 		button:Collapse();
 		if not button:IsMouseOver() then
-			button.highlight:Hide();
+			button.Highlight:Hide();
 		end
 		button.selected = nil;
-		if not button.tracked:GetChecked() then
-			button.tracked:Hide();
+		if not button.Tracked:GetChecked() then
+			button.Tracked:Hide();
 		end
-		if button.reward:GetText() == nil or not addon.Options.db.Achievements.Compact then
-			button.description:Show();
+		if button.Reward:GetText() == nil or not addon.Options.db.Achievements.Compact then
+			button.Description:Show();
 		else
-			button.description:Hide();
+			button.Description:Hide();
 		end
-		button.hiddenDescription:Hide();
+		button.HiddenDescription:Hide();
 	end
 
 	addon.GUI.SelectedTab.SelectedAchievement = nil;

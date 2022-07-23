@@ -4,49 +4,43 @@ local _, addon = ...;
 KrowiAF_AchievementButtonMixin = {};
 
 local ACHIEVEMENTUI_MAX_LINES_COLLAPSED = 3;
-local descriptionWidthOffset = 166;
-local descriptionSmallWidthOffset = 104;
 
 do -- Scripts
+	function KrowiAF_AchievementButton_OnLoad(self)
+		_, self.FontHeight = self.Description:GetFont();
+
+		local descriptionHeight = self.FontHeight * self.MaxDescriptionLinesCollapsed;
+		self.Description:SetHeight(descriptionHeight);
+
+		self:Collapse();
+	end
+
 	function KrowiAF_AchievementButton_OnEnter(self)
 		addon.GUI.AchievementsFrame.SetHighlightedButton(self);
 		self:ShowTooltip();
-		self.highlight:Show();
+		self.Highlight:Show();
 	end
 
 	function KrowiAF_AchievementButton_OnLeave(self)
 		addon.GUI.AchievementsFrame.ClearHighlightedButton();
 		AchievementMeta_OnLeave(self);
 		if not self.selected then
-			self.highlight:Hide();
+			self.Highlight:Hide();
 		end
 	end
 
-	function KrowiAF_AchievementButton_OnLoad(self)
-		self.dateCompleted = self.shield.dateCompleted;
-
-		_, self.FontHeight = self.description:GetFont();
-
-		local descriptionHeight = self.FontHeight;
-		if not addon.Options.db.Achievements.Compact then
-			descriptionHeight = descriptionHeight * ACHIEVEMENTUI_MAX_LINES_COLLAPSED;
+	function KrowiAF_AchievementButton_OnClick(self, button, down, ignoreModifiers)
+		if button == "LeftButton" then
+			self:Select(ignoreModifiers);
+		elseif button == "RightButton" then
+			addon.GUI.RightClickMenu.AchievementMenu:Open(self.Achievement);
 		end
-
-		self.description:SetHeight(descriptionHeight);
-
-		self:SetScript("OnSizeChanged", function(self, width, height)
-			local descriptionWidth = width - (addon.Options.db.Achievements.Compact and descriptionSmallWidthOffset or descriptionWidthOffset);
-			self.description:SetWidth(descriptionWidth);
-			self.hiddenDescription:SetWidth(descriptionWidth);
-		end);
-
-		self:Collapse();
 	end
 end
 
 function KrowiAF_AchievementButtonMixin:DisplayObjectives()
 	local objectives = addon.GUI.AchievementsFrame.AchievementsObjectives;
-	local topAnchor = self.hiddenDescription;
+	local topAnchor = self.HiddenDescription;
 	objectives:ClearAllPoints();
 	objectives:SetParent(self);
 	objectives:Show();
@@ -79,12 +73,12 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives()
 		end
 	end
 	height = height + objectives:GetHeight();
-	self.hiddenDescription:Show();
-	self.description:Hide();
+	self.HiddenDescription:Show();
+	self.Description:Hide();
 	if height ~= addon.Options.db.Achievements.ButtonCollapsedHeight or self.numLines > ACHIEVEMENTUI_MAX_LINES_COLLAPSED then
-		local descriptionHeight = self.hiddenDescription:GetHeight();
+		local descriptionHeight = self.HiddenDescription:GetHeight();
 		height = height + descriptionHeight - ACHIEVEMENTBUTTON_DESCRIPTIONHEIGHT;
-		if self.reward:IsShown() then
+		if self.Reward:IsShown() then
 			height = height + 4;
 		end
 	end
@@ -119,82 +113,84 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement)
 			end
 		end
 
-		self.label:SetText(name)
+		self.Header:SetText(name)
 
+		local normalFont = compact and GameFontNormal or AchievementPointsFont;
+		local smallFont = compact and GameFontNormalSmall or AchievementPointsFontSmall;
 		if GetPreviousAchievement(id) then
-			AchievementShield_SetPoints(AchievementButton_GetProgressivePoints(id), self.shield.points, AchievementPointsFont, AchievementPointsFontSmall);
+			AchievementShield_SetPoints(AchievementButton_GetProgressivePoints(id), self.Shield.Points, normalFont, smallFont);
 		else
-			AchievementShield_SetPoints(points, self.shield.points, AchievementPointsFont, AchievementPointsFontSmall);
+			AchievementShield_SetPoints(points, self.Shield.Points, normalFont, smallFont);
 		end
 
 		local texture = points > 0 and "Interface/AchievementFrame/UI-Achievement-Shields" or "Interface/AchievementFrame/UI-Achievement-Shields-NoPoints";
-		self.shield.icon:SetTexture(texture);
+		self.Shield.Icon:SetTexture(texture);
 
-		self.shield.wasEarnedByMe = not (completed and not wasEarnedByMe);
-		self.shield.earnedBy = earnedBy;
-		self.shield.id = id;
+		-- self.Shield.wasEarnedByMe = not (completed and not wasEarnedByMe);
+		-- self.Shield.earnedBy = earnedBy;
+		-- self.Shield.id = id;
 
-		self.description:SetText(description);
-		self.hiddenDescription:SetText(description);
-		self.numLines = ceil(self.hiddenDescription:GetHeight() / self.FontHeight);
+		self.Description:SetText(description);
+		self.HiddenDescription:SetText(description);
+		self.numLines = ceil(self.HiddenDescription:GetHeight() / self.FontHeight);
 
-		self.icon.texture:SetTexture(icon);
+		self.Icon.Texture:SetTexture(icon);
 
 		local earnedByFilter = addon.Filters.db.EarnedBy;
 		if (earnedByFilter == addon.Filters.Account and completed or wasEarnedByMe) or (earnedByFilter == addon.Filters.CharacterAccount and completed and wasEarnedByMe) then
 			self.Completed = true;
 			achievement.IsCompleted = true;
-			self.dateCompleted:SetText(FormatShortDate(day, month, year));
-			self.dateCompleted:Show();
+			self.DateCompleted:SetText(FormatShortDate(day, month, year));
+			self.DateCompleted:Show();
 			if self.saturatedStyle ~= saturatedStyle then
 				self:Saturate();
 			end
 		elseif (earnedByFilter == addon.Filters.CharacterAccount and completed and not wasEarnedByMe) then
 			self.Completed = true;
 			achievement.IsCompleted = true;
-			self.dateCompleted:SetText(FormatShortDate(day, month, year));
-			self.dateCompleted:Show();
+			self.DateCompleted:SetText(FormatShortDate(day, month, year));
+			self.DateCompleted:Show();
 			self:SaturatePartial();
 		else
 			self.Completed = nil;
 			achievement.IsCompleted = nil;
-			self.dateCompleted:Hide();
+			self.DateCompleted:Hide();
 			self:Desaturate();
 		end
 
 		if rewardText == "" then
 			if compact then
-				self.reward:SetText(nil);
-				self.description:Show();
+				self.Reward:SetText(nil);
+				self.Description:Show();
 			end
-			self.reward:Hide();
-			self.rewardBackground:Hide();
+			self.Reward:Hide();
+			self.RewardBackground:Hide();
 		else
-			self.reward:SetText(rewardText);
-			self.reward:Show();
-			self.rewardBackground:Show();
+			self.Reward:SetText(rewardText);
+			self.Reward:Show();
+			self.RewardBackground:Show();
 			if self.Completed then
-				self.rewardBackground:SetVertexColor(1, 1, 1);
+				self.RewardBackground:SetVertexColor(1, 1, 1);
 			else
-				self.rewardBackground:SetVertexColor(0.35, 0.35, 0.35);
+				self.RewardBackground:SetVertexColor(0.35, 0.35, 0.35);
 			end
 			if compact then
-				self.description:Hide();
+				self.Description:Hide();
 			end
 		end
 	end
 
 	if IsTrackedAchievement(id) then -- Issue #10 : Fix
-		self.check:Show();
-		self.label:SetWidth(self.label:GetStringWidth() + 4); -- This +4 here is to fudge around any string width issues that arize from resizing a string set to its string width. See bug 144418 for an example.
-		self.tracked:SetChecked(true);
+		self.Check:Show();
+		self.Header:SetWidth(self.Header:GetStringWidth() + 4); -- This +4 here is to fudge around any string width issues that arize from resizing a string set to its string width. See bug 144418 for an example.
+		self.Tracked:SetChecked(true);
 		if not compact then
-			self.tracked:Show();
+			self.Tracked:Show();
 		end
 	else
-		self.check:Hide();
-		self.tracked:SetChecked(false);
-		self.tracked:Hide();
+		self.Check:Hide();
+		self.Tracked:SetChecked(false);
+		self.Tracked:Hide();
 	end
 
 	self:UpdatePlusMinusTexture();
@@ -211,7 +207,7 @@ function KrowiAF_AchievementButtonMixin:Update(achievement, index)
 
 	if achievement == addon.GUI.SelectedTab.SelectedAchievement then
 		self.selected = true;
-		self.highlight:Show();
+		self.Highlight:Show();
 		local height = self:DisplayObjectives();
 
 		if height == addon.Options.db.Achievements.ButtonCollapsedHeight then
@@ -220,20 +216,36 @@ function KrowiAF_AchievementButtonMixin:Update(achievement, index)
 			self:Expand(height);
 		end
 		if not completed or not wasEarnedByMe then
-			self.tracked:Show();
+			self.Tracked:Show();
 		end
 	elseif self.selected then
 		self.selected = nil;
 		if not self:IsMouseOver() then -- This causes the first 2 - 3 achievement to be highlighted when changing the filter if the mouse is over one of the achievements
-			self.highlight:Hide();
+			self.Highlight:Hide();
 		end
 		self:Collapse();
-		if compact and self.reward:GetText() ~= nil then
-			self.description:Hide();
+		if compact and self.Reward:GetText() ~= nil then
+			self.Description:Hide();
 		else
-			self.description:Show();
+			self.Description:Show();
 		end
-		self.hiddenDescription:Hide();
+		self.HiddenDescription:Hide();
+	end
+
+	if addon.Options.db.Achievements.Compact then
+		if not self.collapsed then
+			self.Glow:Show();
+			self.Glow:SetHeight(64);
+			self.Glow:SetTexCoord(0, 1, 1 / 256, (self.Glow:GetHeight() + 1) / 256); -- Add 1 to height since top starts at 1
+		else
+			if self.Reward:GetText() ~= nil then
+				self.Glow:Hide();
+			else
+				self.Glow:Show();
+				self.Glow:SetHeight(24);
+				self.Glow:SetTexCoord(0, 1, 1 / 256, (self.Glow:GetHeight() + 1) / 256); -- Add 1 to height since top starts at 1
+			end
+		end
 	end
 end
 
@@ -250,24 +262,25 @@ function KrowiAF_AchievementButtonMixin:UpdatePlusMinusTexture()
 		display = true;
 	elseif self.Completed and GetPreviousAchievement(id) then
 		display = true;
-	elseif not self.Completed and GetAchievementGuildRep(id) then
+---@diagnostic disable-next-line: redundant-parameter
+	elseif not self.Completed and GetAchievementGuildRep(id) then -- Not sure what this one does
 		display = true;
 	end
 
 	if not display then
-		self.plusMinus:Hide();
+		self.PlusMinus:Hide();
 		return;
 	end
 
-	self.plusMinus:Show();
+	self.PlusMinus:Show();
 	if self.collapsed and self.saturatedStyle then
-		self.plusMinus:SetTexCoord(0, 0.5, 0, 0.25);
+		self.PlusMinus:SetTexCoord(0, 0.5, 0, 0.25);
 	elseif self.collapsed then
-		self.plusMinus:SetTexCoord(0.5, 1, 0, 0.25);
+		self.PlusMinus:SetTexCoord(0.5, 1, 0, 0.25);
 	elseif self.saturatedStyle then
-		self.plusMinus:SetTexCoord(0, 0.5, 0.25, 0.50);
+		self.PlusMinus:SetTexCoord(0, 0.5, 0.25, 0.50);
 	else
-		self.plusMinus:SetTexCoord(0.5, 1, 0.25, 0.50);
+		self.PlusMinus:SetTexCoord(0.5, 1, 0.25, 0.50);
 	end
 end
 
@@ -280,9 +293,9 @@ function KrowiAF_AchievementButtonMixin:Collapse()
 	self:UpdatePlusMinusTexture();
 	local buttonCollapsedHeight = addon.Options.db.Achievements.ButtonCollapsedHeight;
 	self:SetHeight(buttonCollapsedHeight);
-	self.background:SetTexCoord(0, 1, 1 - (buttonCollapsedHeight / 256), 1);
-	if not self.tracked:GetChecked() or addon.Options.db.Achievements.Compact then
-		self.tracked:Hide();
+	self.Background:SetTexCoord(0, 1, 1 - (buttonCollapsedHeight / 256), 1);
+	if not self.Tracked:GetChecked() or addon.Options.db.Achievements.Compact then
+		self.Tracked:Hide();
 	end
 end
 
@@ -294,7 +307,7 @@ function KrowiAF_AchievementButtonMixin:Expand(height)
 	self.collapsed = nil;
 	self:UpdatePlusMinusTexture();
 	self:SetHeight(height);
-	self.background:SetTexCoord(0, 1, max(0, 1-(height / 256)), 1);
+	self.Background:SetTexCoord(0, 1, max(0, 1 - (height / 256)), 1);
 end
 
 local media = "Interface/AddOns/Krowi_AchievementFilter/Media/";
@@ -305,47 +318,48 @@ local function SetTsunamis(self)
 	local notObtainable = self.Achievement.NotObtainable;
 	local texture = notObtainable and (media .. "NotObtainableAchievementBorders") or "Interface/AchievementFrame/UI-Achievement-Borders";
 
-	self.BottomTsunami1:SetTexture(texture);
-	self.BottomTsunami1:SetAlpha(0.35);
-	self.TopTsunami1:SetTexture(texture);
-	self.TopTsunami1:SetAlpha(0.3);
+	self.BottomTsunami:SetTexture(texture);
+	self.BottomTsunami:SetAlpha(0.35);
+	self.TopTsunami:SetTexture(texture);
+	self.TopTsunami:SetAlpha(0.3);
 	if notObtainable then
-		self.BottomTsunami1:SetTexCoord(0, 0.72265, 0.51953125, 0.58203125);
-		self.TopTsunami1:SetTexCoord(0.72265, 0, 0.58203125, 0.51953125);
+		self.BottomTsunami:SetTexCoord(0, 0.72265, 0.51953125, 0.58203125);
+		self.TopTsunami:SetTexCoord(0.72265, 0, 0.58203125, 0.51953125);
 	else
-		self.BottomTsunami1:SetTexCoord(0, 0.72265, 0.51953125, 0.58203125);
-		self.TopTsunami1:SetTexCoord(0.72265, 0, 0.58203125, 0.51953125);
+		self.BottomTsunami:SetTexCoord(0, 0.72265, 0.51953125, 0.58203125);
+		self.TopTsunami:SetTexCoord(0.72265, 0, 0.58203125, 0.51953125);
 	end
 end
 
 function KrowiAF_AchievementButtonMixin:Saturate()
 	if self.Achievement.NotObtainable then
-		self.titleBar:SetTexture(media .. "NotObtainableAchievementBorders");
-		self.titleBar:SetTexCoord(0, 1, 0.66015625, 0.73828125);
+		self.HeaderBackground:SetTexture(media .. "NotObtainableAchievementBorders");
+		self.HeaderBackground:SetTexCoord(0, 1, 0.66015625, 0.73828125);
 		self:SetBackdropBorderColor(ACHIEVEMENT_RED_BORDER_COLOR:GetRGB());
 		self.saturatedStyle = "NotObtainable";
 	else
-		self.background:SetTexture("Interface/AchievementFrame/UI-Achievement-Parchment-Horizontal");
+		self.Background:SetTexture("Interface/AchievementFrame/UI-Achievement-Parchment-Horizontal");
 		if self.accountWide then
-			self.titleBar:SetTexture("Interface/AchievementFrame/AccountLevel-AchievementHeader");
-			self.titleBar:SetTexCoord(0, 1, 0, 0.375);
+			self.HeaderBackground:SetTexture("Interface/AchievementFrame/AccountLevel-AchievementHeader");
+			self.HeaderBackground:SetTexCoord(0, 1, 0, 0.375);
 			self:SetBackdropBorderColor(ACHIEVEMENT_BLUE_BORDER_COLOR:GetRGB());
 			self.saturatedStyle = "account";
 		else
-			self.titleBar:SetTexture("Interface/AchievementFrame/UI-Achievement-Borders");
-			self.titleBar:SetTexCoord(0, 1, 0.66015625, 0.73828125);
+			self.HeaderBackground:SetTexture("Interface/AchievementFrame/UI-Achievement-Borders");
+			self.HeaderBackground:SetTexCoord(0, 1, 0.66015625, 0.73828125);
 			self:SetBackdropBorderColor(ACHIEVEMENT_GOLD_BORDER_COLOR:GetRGB());
 			self.saturatedStyle = "normal";
 		end
-		self.shield.points:SetVertexColor(1, 1, 1);
+		self.Shield.Points:SetVertexColor(1, 1, 1);
 	end
-	self.glow:SetVertexColor(1.0, 1.0, 1.0);
-	self.icon:Saturate();
-	self.shield:Saturate();
-	self.reward:SetVertexColor(1, .82, 0);
-	self.label:SetVertexColor(1, 1, 1);
-	self.description:SetTextColor(0, 0, 0, 1);
-	self.description:SetShadowOffset(0, 0);
+	self.Glow:SetVertexColor(1.0, 1.0, 1.0);
+	self.Icon.Texture:SetVertexColor(1, 1, 1, 1);
+	self.Icon.Border:SetVertexColor(1, 1, 1, 1);
+	self.Shield.Icon:SetTexCoord(0, 0.5, 0, 0.5);
+	self.Reward:SetVertexColor(1, 0.82, 0);
+	self.Header:SetVertexColor(1, 1, 1);
+	self.Description:SetTextColor(0, 0, 0, 1);
+	self.Description:SetShadowOffset(0, 0);
 	self:UpdatePlusMinusTexture();
 	SetTsunamis(self);
 end
@@ -353,44 +367,46 @@ end
 function KrowiAF_AchievementButtonMixin:Desaturate()
 	self.saturatedStyle = nil;
 	if self.Achievement.NotObtainable then
-		self.titleBar:SetTexture(media .. "NotObtainableAchievementBorders");
-		self.titleBar:SetTexCoord(0, 1, 0.91796875, 0.99609375);
+		self.HeaderBackground:SetTexture(media .. "NotObtainableAchievementBorders");
+		self.HeaderBackground:SetTexCoord(0, 1, 0.91796875, 0.99609375);
 	else
-		self.background:SetTexture("Interface/AchievementFrame/UI-Achievement-Parchment-Horizontal-Desaturated");
+		self.Background:SetTexture("Interface/AchievementFrame/UI-Achievement-Parchment-Horizontal-Desaturated");
 		if self.accountWide then
-			self.titleBar:SetTexture("Interface/AchievementFrame/AccountLevel-AchievementHeader");
-			self.titleBar:SetTexCoord(0, 1, 0.40625, 0.78125);
+			self.HeaderBackground:SetTexture("Interface/AchievementFrame/AccountLevel-AchievementHeader");
+			self.HeaderBackground:SetTexCoord(0, 1, 0.40625, 0.78125);
 		else
-			self.titleBar:SetTexture("Interface/AchievementFrame/UI-Achievement-Borders");
-			self.titleBar:SetTexCoord(0, 1, 0.91796875, 0.99609375);
+			self.HeaderBackground:SetTexture("Interface/AchievementFrame/UI-Achievement-Borders");
+			self.HeaderBackground:SetTexCoord(0, 1, 0.91796875, 0.99609375);
 		end
 	end
-	self.glow:SetVertexColor(.22, .17, .13);
-	self.icon:Desaturate();
-	self.shield:Desaturate();
-	self.shield.points:SetVertexColor(.65, .65, .65);
-	self.reward:SetVertexColor(.8, .8, .8);
-	self.label:SetVertexColor(.65, .65, .65);
-	self.description:SetTextColor(1, 1, 1, 1);
-	self.description:SetShadowOffset(1, -1);
+	self.Glow:SetVertexColor(0.22, 0.17, 0.13);
+	self.Icon.Texture:SetVertexColor(0.55, 0.55, 0.55, 1);
+	self.Icon.Border:SetVertexColor(0.75, 0.75, 0.75, 1);
+	self.Shield.Icon:SetTexCoord(0.5, 1, 0, 0.5);
+	self.Shield.Points:SetVertexColor(0.65, 0.65, 0.65);
+	self.Reward:SetVertexColor(0.8, 0.8, 0.8);
+	self.Header:SetVertexColor(0.65, 0.65, 0.65);
+	self.Description:SetTextColor(1, 1, 1, 1);
+	self.Description:SetShadowOffset(1, -1);
 	self:UpdatePlusMinusTexture();
-	self:SetBackdropBorderColor(.5, .5, .5);
+	self:SetBackdropBorderColor(0.5, 0.5, 0.5);
 	SetTsunamis(self);
 end
 
 function KrowiAF_AchievementButtonMixin:SaturatePartial()
 	self:Desaturate();
-	self.titleBar:SetTexture("Interface/AchievementFrame/UI-Achievement-Borders");
-	self.titleBar:SetTexCoord(0, 1, 0.66015625, 0.73828125);
-	self.icon:Saturate();
-	self.shield:Saturate();
-	self.shield.points:SetVertexColor(1, 1, 1);
-	self.glow:SetVertexColor(0.1, 0.1, 0.1);
+	self.HeaderBackground:SetTexture("Interface/AchievementFrame/UI-Achievement-Borders");
+	self.HeaderBackground:SetTexCoord(0, 1, 0.66015625, 0.73828125);
+	self.Icon.Texture:SetVertexColor(1, 1, 1, 1);
+	self.Icon.Border:SetVertexColor(1, 1, 1, 1);
+	self.Shield.Icon:SetTexCoord(0, 0.5, 0, 0.5);
+	self.Shield.Points:SetVertexColor(1, 1, 1);
+	self.Glow:SetVertexColor(0.1, 0.1, 0.1);
 	SetTsunamis(self);
 end
 
 function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
-	if IsModifiedClick() and not ignoreModifiers then
+	if IsModifierKeyDown() and not ignoreModifiers then
 		local handled = nil;
 		if IsModifiedClick("CHATLINK") then
 			local achievementLink = GetAchievementLink(self.Achievement.Id);
@@ -412,7 +428,7 @@ function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
 	local scrollFrame = achievementsFrame.ScrollFrame;
 	if self.selected then
 		if not self:IsMouseOver() then
-			self.highlight:Hide();
+			self.Highlight:Hide();
 		end
 		achievementsFrame:ClearSelection();
 		HybridScrollFrame_CollapseButton(scrollFrame);

@@ -305,7 +305,9 @@ function gui.TabsOrderGetActiveKeys()
         addon.Options.db.MicroButtonTab = addonAchId;
         local binding = GetBindingByKey("Y");
         if binding == SavedData.Tabs[blizzAchId].BindingName then
+---@diagnostic disable-next-line: missing-parameter
             SetBinding("Y", SavedData.Tabs[addonAchId].BindingName);
+---@diagnostic disable-next-line: param-type-mismatch
             SaveBindings(GetCurrentBindingSet());
         end
         SavedData.FirstTimeSetUp.SwitchAchievementTabs = true;
