@@ -1,4 +1,4 @@
--- [[ Exported at 2022-07-17 15-30-14 ]] --
+-- [[ Exported at 2022-07-24 18-29-33 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -17,7 +17,7 @@ addon.Plugins:LoadLocalization(L);
 
 
 L["Achievement points earned by"] = "Achievement points earned by";
-L["Shown temporarily"] = "This category was selected by clicking on the {eventName} event reminder and is shown temprarily because it has no achievements that match the set filters.";
+L["Category shown temporarily"] = "This category was selected by clicking on the {eventName} event reminder and is shown temprarily because it has no achievements that match the set filters.";
 L["Achievements"] = "Achievements";
 L["Expansions"] = "Expansions";
 L["Events"] = "Events";
@@ -138,6 +138,7 @@ L["Collecting data"] = "Collecting data";
 L["Not part of set"] = "Not part of set";
 L["This achievement can't be earned by this character."] = "This achievement can't be earned by this character.";
 L["This character's class has no transmog set that meet the requirements."] = "This character's class has no transmog set that meet the requirements.";
+L["Achievement shown temporarily"] = "This achievement is shown temprarily because it does not match any set filters.";
 L["Wowhead"] = "Wowhead";
 L["Go to"] = "Go to";
 L["Other locations"] = "Other locations";
@@ -261,6 +262,8 @@ L["Show Other faction"] = "Show Other faction";
 L["Show Other faction Desc"] = "Show / hide {otherFaction}.\n\nWhen checked and if available, the other faction's achievement will be visible in the tooltip. This might make it more clear why your fresh Horde character has certain achievements if you only played Alliance before.";
 L["Show Objectives progress"] = "Show {objectivesProgress}";
 L["Show Objectives progress Desc"] = "Show / hide {objectivesProgress}.\n\nWhen checked, the {objectivesProgress} of the achievements will be visible in the tooltip.";
+L["Show Rewards"] = "Show Rewards";
+L["Show Rewards Desc"] = "Show / hide {rewards},\n\nWhen checked and if available, the {rewards} this achievement gives will be visible in the tooltip.";
 L["When achievement completed"] = "When achievement completed";
 L["When achievement completed Desc"] = "Show / hide {objectivesProgress} when achievement is completed.\n\nWhen checked, the {objectivesProgress} of the achievements will be visible in the tooltip regardless if the achievement is completed or not.";
 L["Second column threshold"] = "Second column threshold";

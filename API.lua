@@ -53,7 +53,7 @@ function KrowiAF_SelectAchievementWithCategory(achievement, category)
 			end
 		end
 	end
-	achievement.AlwaysVisible = nil;
+	achievement.AlwaysVisible = nil; -- Can be reached though vscode thinks not
 end
 
 function KrowiAF_SelectAchievement(achievement)

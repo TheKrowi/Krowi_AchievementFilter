@@ -227,12 +227,6 @@
 							</Anchors>
 							<TexCoords left="0" right="0.5625" top="0" bottom="0.5625"/>
 						</Texture>
-						<Texture name="$parentExtraIcon" parentKey="ExtraIcon" atlas="flightpath" hidden="true">
-							<Size x="15" y="15"/>
-							<Anchors>
-								<Anchor point="CENTER" x="15" y="-15"/>
-							</Anchors>
-						</Texture>
 					</Layer>
 				</Layers>
 			</Frame>
@@ -295,7 +289,7 @@
 					</OnClick>
 					<OnEnter>
 						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-						if ( self:GetChecked() ) then
+						if self:GetChecked() then
 							GameTooltip:SetText(UNTRACK_ACHIEVEMENT_TOOLTIP, nil, nil, nil, nil, true);
 						else
 							GameTooltip:SetText(TRACK_ACHIEVEMENT_TOOLTIP, nil, nil, nil, nil, true);
@@ -314,6 +308,23 @@
 				<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
 				<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
 			</CheckButton>
+			<Frame hidden="true" name="$parentExtraIcon" parentKey="ExtraIcon">
+				<Size x="15" y="15"/>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parentPlusMinus" relativePoint="BOTTOM" x="-1" y="-5"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentTexture" parentKey="Texture" atlas="flightpath" setAllPoints="true"/>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter function="KrowiAF_AchievementButtonExtraIcon_OnEnter"/>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Frame>
 		</Frames>
   	</Button>
 

@@ -70,7 +70,7 @@ function KrowiAF_EventAlertFrame_OnClick(self, button, down)
         addon.GUI.AchievementsFrame.Text:Show();
         addon.GUI.AchievementsFrame.Text:SetText(addon.Util.ReplaceVars
         {
-            addon.L["Shown temporarily"],
+            addon.L["Category shown temporarily"],
             eventName = self.Event.EventDetails.Name;
         });
     end

@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
 - Clicking an event reminder that has no achievements visible due to the filters will show the empty category with a text informing the user
 - Mini achievements (shown when opening an achievement part of a chain) can now be clicked and have a highlight when moving the mouse over
 - Mini achievements (shown when opening an achievement part of a chain) and meta achievements (shown when opening an achievement that requires achievements) now also have a right click menu
-- When getting redirected to a normally invisble achievement (due to the filters), the achievement will be shwon and a green exclamation mark will be shown (not final)
+- When getting redirected to a normally invisble achievement (due to the filters), the achievement will be shown and a green exclamation mark will be shown
 
 ### Changed
 - Tabs are now handled by addon and tab name and API is accessible by other addons (see Plugins/Overachiever.lua for example or ask for assistance on discord)
@@ -21,6 +21,8 @@ All notable changes to this project will be documented in this file.
 - All Realm First! achievements are set to unobtainable
 - Backend stuff
 - Filters do not automatically change anymore when you would be redirected to an achievement that would not be visible with set filters
+- Moved the Right Click Menu button to the top right of the achievement
+- German translation for almost everything
 
 ### Fixed
 - Sometimes an achievement did not display anything and was not interactable after switching tabs

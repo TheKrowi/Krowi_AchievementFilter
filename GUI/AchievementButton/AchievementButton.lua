@@ -1,17 +1,14 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
 
-local function AddRightClickMenuButton(button, xOffset, yOffset, xPlusMinusOffset, yPlusMinusOffset)
+local function AddRightClickMenuButton(button)
 	local rightClickMenuButton = CreateFrame("Button", "$parentRightClickMenuButton", button, "KrowiAF_RightClickMenuButton_Template");
-	rightClickMenuButton:SetPoint("TOPLEFT", xOffset, yOffset);
+	rightClickMenuButton:SetPoint("TOPRIGHT", -1, -1);
 
 	rightClickMenuButton:SetScript("OnClick", function()
 		addon.GUI.RightClickMenu.AchievementMenu:Open(button.Achievement, rightClickMenuButton);
 	end);
 	button.RightClickMenuButton = rightClickMenuButton;
-
-	button.PlusMinus:ClearAllPoints();
-	button.PlusMinus:SetPoint("TOPLEFT", rightClickMenuButton, "BOTTOMLEFT", xPlusMinusOffset, yPlusMinusOffset);
 end
 
 function KrowiAF_AchievementButton_Small_OnLoad(self)
@@ -33,7 +30,6 @@ function KrowiAF_AchievementButton_Small_OnLoad(self)
 	self.Icon:SetPoint("TOPLEFT", 3, -3);
 	self.Icon.Texture:SetSize(36, 36);
 	self.Icon.Border:SetSize(46, 46);
-	self.Icon.ExtraIcon:SetPoint("CENTER", 5, -5);
 	self.Shield:SetSize(48, 48);
 	self.Shield:SetPoint("TOPRIGHT", -3, -4);
 	self.Shield.Icon:SetSize(48, 48);
@@ -45,7 +41,7 @@ function KrowiAF_AchievementButton_Small_OnLoad(self)
 	self.MaxDescriptionLinesCollapsed = 1;
 
 	if addon.Options.db.RightClickMenu.ShowButtonOnAchievement then
-		AddRightClickMenuButton(self, 51, -6, 1, -3);
+		AddRightClickMenuButton(self);
 	end
 
 	KrowiAF_AchievementButton_OnLoad(self);
@@ -57,7 +53,7 @@ function KrowiAF_AchievementButton_Normal_OnLoad(self)
 	self.MaxDescriptionLinesCollapsed = 3;
 
 	if addon.Options.db.RightClickMenu.ShowButtonOnAchievement then
-		AddRightClickMenuButton(self, 72, -9, 0, -3);
+		AddRightClickMenuButton(self);
 	end
 
 	KrowiAF_AchievementButton_OnLoad(self);

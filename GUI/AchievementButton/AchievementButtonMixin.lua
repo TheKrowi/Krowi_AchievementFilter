@@ -36,6 +36,11 @@ do -- Scripts
 			addon.GUI.RightClickMenu.AchievementMenu:Open(self.Achievement);
 		end
 	end
+
+	function KrowiAF_AchievementButtonExtraIcon_OnEnter(self)
+		GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+		GameTooltip:SetText(self.Text, nil, nil, nil, nil, true);
+	end
 end
 
 function KrowiAF_AchievementButtonMixin:DisplayObjectives()
@@ -178,9 +183,11 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement)
 		end
 
 		if achievement.AlwaysVisible then
-			self.Icon.ExtraIcon:Show();
+			self.ExtraIcon.Texture:SetAtlas("flightpath");
+			self.ExtraIcon.Text = addon.L["Achievement shown temporarily"];
+			self.ExtraIcon:Show();
 		else
-			self.Icon.ExtraIcon:Hide();
+			self.ExtraIcon:Hide();
 		end
 	end
 
