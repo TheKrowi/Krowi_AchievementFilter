@@ -31,6 +31,7 @@ All notable changes to this project will be documented in this file.
 - Opening the achievement window for the first time while in combat should not trigger an error anymore
 - Achievement objectives should no longer stay visible in some cases
 - Getting redirected to an invisble achievement (due to the filters), no errors should be triggered anymore
+- Categories watermark should now show again after hiding and showing the achievement window
 
 ## 9.2.5.36.3 - 2022-07-13
 ### Fixed

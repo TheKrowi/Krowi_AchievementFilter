@@ -8,7 +8,7 @@ local ourTabIDs = {};
 
 -- [[ Constructors ]] --
 achFrameTabBtn.__index = achFrameTabBtn; -- Used to support OOP like code
-function achFrameTabBtn:New(text, framesToShow, categories, filters)
+function achFrameTabBtn:New(text, framesToShow, categories, filters, waterMark)
 	-- Increment ID
     PanelTemplates_SetNumTabs(AchievementFrame, AchievementFrame.numTabs + 1);
 
@@ -30,6 +30,7 @@ function achFrameTabBtn:New(text, framesToShow, categories, filters)
     end
 
     frame.Filters = filters;
+    frame.WaterMark = waterMark or "Interface/AchievementFrame/UI-Achievement-AchievementWatermark";
 
     frame:SetScript("OnClick", function(selfFunc)
         frame:OnClick(selfFunc:GetID());
@@ -74,7 +75,7 @@ function achFrameTabBtn:Base_OnClick(id)
 	        addon.GUI.AchievementsFrame:ExpandSelection(button);
         end
 	end
-    AchievementFrameWaterMark:SetTexture("Interface/AchievementFrame/UI-Achievement-AchievementWatermark");
+    AchievementFrameWaterMark:SetTexture(self.WaterMark);
 end
 
 function achFrameTabBtn:Comparison_OnClick(id)

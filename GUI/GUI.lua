@@ -35,8 +35,12 @@ function gui:LoadWithBlizzard_AchievementUI()
 
     gui.AddDataToBlizzardTabs();
 
-    for _, t in next, addon.TabsOrder do
-        addon.Tabs[t].Button = gui.AchievementFrameTabButton:New(addon.Tabs[t].Text, {gui.FilterButton, gui.Search.BoxFrame, gui.CategoriesFrame}, addon.Tabs[t].Categories, addon.Tabs[t].Filters);
+    local waterMarks = {
+        "Interface/AchievementFrame/UI-Achievement-AchievementWatermark",
+        "Interface/AchievementFrame/UI-Achievement-StatWatermark"
+    };
+    for i, t in next, addon.TabsOrder do
+        addon.Tabs[t].Button = gui.AchievementFrameTabButton:New(addon.Tabs[t].Text, {gui.FilterButton, gui.Search.BoxFrame, gui.CategoriesFrame}, addon.Tabs[t].Categories, addon.Tabs[t].Filters, waterMarks[i]);
         KrowiAF_RegisterTabButton(addonName, addon.Tabs[t].Name, addon.Tabs[t].Button);
     end
 

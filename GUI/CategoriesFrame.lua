@@ -43,6 +43,7 @@ function KrowiAF_CategoriesFrame_OnShow(self) -- Used in Templates - KrowiAF_Cat
 	AchievementFrameFilterDropDown:Hide();
 	AchievementFrame.searchBox:Hide();
 	AchievementFrameHeaderLeftDDLInset:Show();
+	AchievementFrameWaterMark:SetTexture(addon.GUI.SelectedTab.WaterMark);
 	AchievementFrameCategoriesBG:SetTexCoord(0, 0.5, 0, 1); -- Set this global texture for player achievements
 	self:Update();
 end
@@ -62,16 +63,14 @@ KrowiAF_CategoriesFrameMixin = {};
 function KrowiAF_CategoriesFrameMixin:Show_Hide(func, offsetX)
 	local scrollFrame = self.ScrollFrame;
 
-	local categoriesFrameWidthOffset = addon.Options.db.Window.CategoriesFrameWidthOffset;
-	local watermarkWidthOffset = 30 + categoriesFrameWidthOffset;
-
-	self:SetPoint("RIGHT", AchievementFrameAchievements, "LEFT", categoriesFrameWidthOffset - offsetX, 0);
+	self:SetPoint("RIGHT", AchievementFrameAchievements, "LEFT", addon.Options.db.Window.CategoriesFrameWidthOffset - offsetX, 0);
 	local width = self:GetWidth();
 	scrollFrame:GetScrollChild():SetWidth(width);
 	addon.GUI.AchievementsFrame:SetPoint("TOPLEFT", self, "TOPRIGHT", offsetX, 0);
 	addon.GUI.SummaryFrame:SetPoint("TOPLEFT", self, "TOPRIGHT", offsetX, 0);
-	AchievementFrameWaterMark:SetWidth(width - watermarkWidthOffset);
-	AchievementFrameWaterMark:SetTexCoord(0, (width - watermarkWidthOffset) / 256, 0, 1);
+	local watermarkWidthOffset = width - 7;
+	AchievementFrameWaterMark:SetWidth(watermarkWidthOffset);
+	AchievementFrameWaterMark:SetTexCoord(0, (watermarkWidthOffset) / 256, 0, 1);
 	AchievementFrameCategoriesBG:SetWidth(width - 2); -- Offset of 2 needed to compensate with Blizzard tabs
 
 	func(scrollFrame.ScrollBar);
