@@ -3,13 +3,11 @@ local _, addon = ...;
 addon.GUI.AchievementsFrame = {};
 local achievementsFrame = addon.GUI.AchievementsFrame;
 
-achievementsFrame.__index = achievementsFrame; -- Used to inject all the namespace functions to the frame
 function achievementsFrame:Load()
 	local frame = CreateFrame("Frame", "KrowiAF_AchievementsFrame", AchievementFrame, "KrowiAF_AchievementsFrame_Template");
 	frame:SetPoint("TOPLEFT", AchievementFrameCategories, "TOPRIGHT", 22, 0);
 	frame:SetPoint("BOTTOM", 0, 20);
 	frame:SetPoint("RIGHT", -20, 0);
-	addon.Util.InjectMetatable(frame, achievementsFrame); -- Inject all the namespace functions to the frame
 
 	tinsert(ACHIEVEMENTFRAME_SUBFRAMES, frame:GetName());
 
@@ -131,11 +129,10 @@ function KrowiAF_AchievementsFrameMixin:Update()
 	local extraHeight = scrollFrame.largeButtonHeight or buttonCollapsedHeight;
 	totalHeight = totalHeight + extraHeight - buttonCollapsedHeight;
 
-	print("HybridScrollFrame_Update", totalHeight, displayedHeight)
+	-- print("HybridScrollFrame_Update", totalHeight, displayedHeight)
 	HybridScrollFrame_Update(scrollFrame, totalHeight, displayedHeight);
-	local _, maxVal = scrollFrame.ScrollBar:GetMinMaxValues();
-	print(maxVal, scrollFrame.ScrollBar:GetValue())
-
+	-- local _, maxVal = scrollFrame.ScrollBar:GetMinMaxValues();
+	-- print(maxVal, scrollFrame.ScrollBar:GetValue())
 
 	if not selectedAchievement then
 		HybridScrollFrame_CollapseButton(scrollFrame);
@@ -179,46 +176,8 @@ function KrowiAF_AchievementsFrameMixin:SelectButton(button)
 	SetFocusedAchievement(button.Achievement.ID);
 end
 
-
-
-
-
-
-
-
-
-function achievementsFrame:ForceUpdate(toTop) -- Issue #3: Fix
-	if not self:IsShown() then -- Issue #8: Fix, Issue #10 : Broken
-		return;
-	end
-
-	if toTop then -- Issue #27: Fix
-		self.ScrollFrame.ScrollBar:SetValue(0);
-	end
-
-	local filters = addon.Filters;
-	if filters then
-		local selectedTab = addon.GUI.SelectedTab;
-		selectedTab.SelectedAchievement = filters.GetHighestAchievementWhenCollapseSeries(selectedTab.Filters, selectedTab.SelectedAchievement);
-	end
-
-	-- Issue #8: Broken
-	self.AchievementsObjectives:Hide();
-	self.AchievementsObjectives.id = nil;
-
-	local buttons = self.ScrollFrame.buttons;
-	for _, button in next, buttons do
-		button.Id = nil;
-	end
-
-	-- Clear the cache
-	cachedCategory = nil;
-	cachedAchievements = nil;
-
-	self:Update();
-end
-
-function achievementsFrame:FindSelection()
+ -- Looks for the selection if it's not already visible
+ function KrowiAF_AchievementsFrameMixin:FindSelection()
 	local scrollFrame = self.ScrollFrame;
 	local scrollBar = scrollFrame.ScrollBar;
 	local buttons = scrollFrame.buttons;
@@ -249,13 +208,14 @@ function achievementsFrame:FindSelection()
 	end
 end
 
-function achievementsFrame:AdjustSelection()
+ -- When the selection is already visible, adjust it so it fits
+function KrowiAF_AchievementsFrameMixin:AdjustSelection()
 	local scrollFrame = self.ScrollFrame;
 	local scrollBar = scrollFrame.ScrollBar;
 	local buttons = scrollFrame.buttons;
 	local selectedButton;
 
-	-- check if selection is visible
+	-- Check if selection is visible
 	for _, button in next, buttons do
 		if button.selected then
 			selectedButton = button;
@@ -282,5 +242,50 @@ function achievementsFrame:AdjustSelection()
 		local _, maxVal = scrollBar:GetMinMaxValues();
 		newHeight = min(newHeight, maxVal);
 		scrollBar:SetValue(newHeight);
+	end
+end
+
+function KrowiAF_AchievementsFrameMixin:ForceUpdate(toTop) -- Issue #3: Fix
+	print("ForceUpdate")
+	-- Clear the cache
+	cachedCategory = nil;
+	cachedAchievements = nil;
+
+	-- Clear all selected achievements if they can not be shown anymore
+	local tabButton;
+	for _, tab in next, addon.Tabs do
+		tabButton = tab.Button;
+		if tabButton.SelectedAchievement then
+			if addon.Filters.Validate(tabButton.Filters, tabButton.SelectedAchievement) < 0 then
+				tabButton.SelectedAchievement = nil;
+			end
+		end
+	end
+
+	if not self:IsShown() then -- Issue #8: Fix, Issue #10 : Broken
+		return;
+	end
+
+	if toTop then -- Issue #27: Fix
+		self.ScrollFrame.ScrollBar:SetValue(0);
+	end
+
+	local selectedTab = addon.GUI.SelectedTab;
+	selectedTab.SelectedAchievement = addon.Filters.GetHighestAchievementWhenCollapseSeries(selectedTab.Filters, selectedTab.SelectedAchievement);
+
+	-- Issue #8: Broken
+	self.AchievementsObjectives:Hide();
+	self.AchievementsObjectives.id = nil;
+
+	local buttons = self.ScrollFrame.buttons;
+	for _, button in next, buttons do
+		button.Id = nil;
+	end
+
+	self:Update();
+
+	if selectedTab.SelectedAchievement then
+		local button = self:FindSelection();
+		self:ExpandSelection(button);
 	end
 end
