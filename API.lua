@@ -10,13 +10,13 @@ function KrowiAF_SelectAchievementWithCategory(achievement, category)
 	-- next line might be redundant causing the bug
 	-- scrollBar:SetValue(0); -- Makes sure the scrollbar is at the top since this can be in a diff location if the category is already selected
 
-	local selectedTab = addon.GUI.SelectedTab; -- This changes when calling KrowiAF_SelectCategory
+	-- local selectedTab = addon.GUI.SelectedTab; -- This changes when calling KrowiAF_SelectCategory
 
 	-- Select achievement
 	local shown = false;
 	local previousScrollValue;
 	local buttons;
-	local selectedAchievement;
+	-- local selectedAchievement;
 
 	local loops, maxLoops = 0, 1000;
 
@@ -28,10 +28,10 @@ function KrowiAF_SelectAchievementWithCategory(achievement, category)
 		buttons = scrollFrame.buttons;
 		for _, button in next, buttons do
 			if button.Achievement == achievement and math.ceil(button:GetTop()) >= math.ceil(addon.GUI.GetSafeScrollChildBottom(scrollFrame)) then
-				selectedAchievement = selectedTab.SelectedAchievement;
-				if not (selectedAchievement == achievement) then
+				-- selectedAchievement = selectedTab.SelectedAchievement;
+				-- if not (selectedAchievement == achievement) then
 					button:Select(true);
-				end
+				-- end
 				shown = button;
 				break;
 			end
@@ -53,6 +53,7 @@ function KrowiAF_SelectAchievementWithCategory(achievement, category)
 			end
 		end
 	end
+	achievement.AlwaysVisible = nil;
 end
 
 function KrowiAF_SelectAchievement(achievement)
@@ -72,12 +73,15 @@ function KrowiAF_SelectAchievement(achievement)
 	end
 
 	-- Set filters so achievement is visible
-	if filters then
-		local tabFilters = addon.Tabs[category:GetTree()[1].TabName].Filters;
-		achievement = filters.GetHighestAchievementWhenCollapseSeries(tabFilters, achievement);
-		print(filters.Validate(tabFilters, achievement));
-		filters:SetFilters(tabFilters, achievement);
+	-- if filters then
+	local tabFilters = addon.Tabs[category:GetTree()[1].TabName].Filters;
+	achievement = filters.GetHighestAchievementWhenCollapseSeries(tabFilters, achievement);
+	-- filters:SetFilters(tabFilters, achievement);
+	if filters.Validate(tabFilters, achievement) < 0 then
+		achievement.AlwaysVisible = true;
 	end
+	addon.GUI.AchievementsFrame:ForceUpdate(true);
+	-- end
 
 	KrowiAF_SelectAchievementWithCategory(achievement, category);
 end

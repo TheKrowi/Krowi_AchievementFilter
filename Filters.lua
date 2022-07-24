@@ -159,6 +159,9 @@ local validations = {
 };
 
 function filters.Validate(_filters, achievement, ignoreCollapseSeries)
+    if achievement.AlwaysVisible then
+        return 2;
+    end
     local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = addon.GetAchievementInfo(achievement.ID);
     if addon.Filters.db.EarnedBy == addon.Filters.CharacterOnly then
         completedCache = wasEarnedByMe;

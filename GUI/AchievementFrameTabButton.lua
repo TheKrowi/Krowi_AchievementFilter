@@ -74,13 +74,7 @@ function achFrameTabBtn:Base_OnClick(id)
 	        addon.GUI.AchievementsFrame:ExpandSelection(button);
         end
 	end
-    AchievementFrameWaterMark:SetTexture("Interface\\AchievementFrame\\UI-Achievement-AchievementWatermark");
-
-    -- if addon.GUI.AchievementsFrame then
-    --     if self.SelectedAchievement then
-    --         addon.GUI.AchievementsFrame:FindSelection();
-    --     end
-    -- end
+    AchievementFrameWaterMark:SetTexture("Interface/AchievementFrame/UI-Achievement-AchievementWatermark");
 end
 
 function achFrameTabBtn:Comparison_OnClick(id)

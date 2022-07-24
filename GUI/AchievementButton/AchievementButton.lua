@@ -33,6 +33,7 @@ function KrowiAF_AchievementButton_Small_OnLoad(self)
 	self.Icon:SetPoint("TOPLEFT", 3, -3);
 	self.Icon.Texture:SetSize(36, 36);
 	self.Icon.Border:SetSize(46, 46);
+	self.Icon.ExtraIcon:SetPoint("CENTER", 5, -5);
 	self.Shield:SetSize(48, 48);
 	self.Shield:SetPoint("TOPRIGHT", -3, -4);
 	self.Shield.Icon:SetSize(48, 48);

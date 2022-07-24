@@ -176,6 +176,12 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement)
 				self.Description:Hide();
 			end
 		end
+
+		if achievement.AlwaysVisible then
+			self.Icon.ExtraIcon:Show();
+		else
+			self.Icon.ExtraIcon:Hide();
+		end
 	end
 
 	if IsTrackedAchievement(id) then -- Issue #10 : Fix
