@@ -73,8 +73,6 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives()
 		end
 	end
 	height = height + objectives:GetHeight();
-	self.HiddenDescription:Show();
-	self.Description:Hide();
 	if height ~= addon.Options.db.Achievements.ButtonCollapsedHeight or self.numLines > ACHIEVEMENTUI_MAX_LINES_COLLAPSED then
 		local descriptionHeight = self.HiddenDescription:GetHeight();
 		height = height + descriptionHeight - ACHIEVEMENTBUTTON_DESCRIPTIONHEIGHT;
@@ -197,8 +195,6 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement)
 end
 
 function KrowiAF_AchievementButtonMixin:Update(achievement, index)
-	local compact = addon.Options.db.Achievements.Compact;
-
 	local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe, _ = addon.GetAchievementInfo(achievement.Id);
 	self:SetAchievement(achievement);
 
@@ -209,27 +205,13 @@ function KrowiAF_AchievementButtonMixin:Update(achievement, index)
 		self.selected = true;
 		self.Highlight:Show();
 		local height = self:DisplayObjectives();
-
-		if height == addon.Options.db.Achievements.ButtonCollapsedHeight then
-			self:Collapse();
-		else
-			self:Expand(height);
-		end
+		self:Expand(height);
 		if not completed or not wasEarnedByMe then
 			self.Tracked:Show();
 		end
 	elseif self.selected then
 		self.selected = nil;
-		if not self:IsMouseOver() then -- This causes the first 2 - 3 achievement to be highlighted when changing the filter if the mouse is over one of the achievements
-			self.Highlight:Hide();
-		end
 		self:Collapse();
-		if compact and self.Reward:GetText() ~= nil then
-			self.Description:Hide();
-		else
-			self.Description:Show();
-		end
-		self.HiddenDescription:Hide();
 	end
 
 	if addon.Options.db.Achievements.Compact then
@@ -289,14 +271,24 @@ function KrowiAF_AchievementButtonMixin:Collapse()
 		return;
 	end
 
+	local compact = addon.Options.db.Achievements.Compact;
 	self.collapsed = true;
 	self:UpdatePlusMinusTexture();
 	local buttonCollapsedHeight = addon.Options.db.Achievements.ButtonCollapsedHeight;
 	self:SetHeight(buttonCollapsedHeight);
 	self.Background:SetTexCoord(0, 1, 1 - (buttonCollapsedHeight / 256), 1);
+	if not self:IsMouseOver() then
+		self.Highlight:Hide();
+	end
 	if not self.Tracked:GetChecked() or addon.Options.db.Achievements.Compact then
 		self.Tracked:Hide();
 	end
+	if compact and self.Reward:GetText() ~= nil then
+		self.Description:Hide();
+	else
+		self.Description:Show();
+	end
+	self.HiddenDescription:Hide();
 end
 
 function KrowiAF_AchievementButtonMixin:Expand(height)
@@ -308,6 +300,8 @@ function KrowiAF_AchievementButtonMixin:Expand(height)
 	self:UpdatePlusMinusTexture();
 	self:SetHeight(height);
 	self.Background:SetTexCoord(0, 1, max(0, 1 - (height / 256)), 1);
+	self.HiddenDescription:Show();
+	self.Description:Hide();
 end
 
 local media = "Interface/AddOns/Krowi_AchievementFilter/Media/";
@@ -332,13 +326,13 @@ local function SetTsunamis(self)
 end
 
 function KrowiAF_AchievementButtonMixin:Saturate()
+	self.Background:SetTexture("Interface/AchievementFrame/UI-Achievement-Parchment-Horizontal");
 	if self.Achievement.NotObtainable then
 		self.HeaderBackground:SetTexture(media .. "NotObtainableAchievementBorders");
 		self.HeaderBackground:SetTexCoord(0, 1, 0.66015625, 0.73828125);
 		self:SetBackdropBorderColor(ACHIEVEMENT_RED_BORDER_COLOR:GetRGB());
 		self.saturatedStyle = "NotObtainable";
 	else
-		self.Background:SetTexture("Interface/AchievementFrame/UI-Achievement-Parchment-Horizontal");
 		if self.accountWide then
 			self.HeaderBackground:SetTexture("Interface/AchievementFrame/AccountLevel-AchievementHeader");
 			self.HeaderBackground:SetTexCoord(0, 1, 0, 0.375);
@@ -366,11 +360,11 @@ end
 
 function KrowiAF_AchievementButtonMixin:Desaturate()
 	self.saturatedStyle = nil;
+	self.Background:SetTexture("Interface/AchievementFrame/UI-Achievement-Parchment-Horizontal-Desaturated");
 	if self.Achievement.NotObtainable then
 		self.HeaderBackground:SetTexture(media .. "NotObtainableAchievementBorders");
 		self.HeaderBackground:SetTexCoord(0, 1, 0.91796875, 0.99609375);
 	else
-		self.Background:SetTexture("Interface/AchievementFrame/UI-Achievement-Parchment-Horizontal-Desaturated");
 		if self.accountWide then
 			self.HeaderBackground:SetTexture("Interface/AchievementFrame/AccountLevel-AchievementHeader");
 			self.HeaderBackground:SetTexCoord(0, 1, 0.40625, 0.78125);
@@ -439,11 +433,7 @@ function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
 	achievementsFrame:ClearSelection();
 	achievementsFrame:SelectButton(self);
 	self:Update(addon.GUI.SelectedTab.SelectedAchievement, self.index);
-	HybridScrollFrame_ExpandButton(scrollFrame, ((self.index - 1) * addon.Options.db.Achievements.ButtonCollapsedHeight), self:GetHeight());
-	achievementsFrame:Update();
-	if not ignoreModifiers then
-		achievementsFrame:AdjustSelection();
-	end
+	achievementsFrame:ExpandSelection(self);
 end
 
 function KrowiAF_AchievementButtonMixin:ShowTooltip()

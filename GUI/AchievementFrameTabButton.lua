@@ -8,7 +8,7 @@ local ourTabIDs = {};
 
 -- [[ Constructors ]] --
 achFrameTabBtn.__index = achFrameTabBtn; -- Used to support OOP like code
-function achFrameTabBtn:New(text, framesToShow, achievementsFrame, categories, filters)
+function achFrameTabBtn:New(text, framesToShow, categories, filters)
 	-- Increment ID
     PanelTemplates_SetNumTabs(AchievementFrame, AchievementFrame.numTabs + 1);
 
@@ -21,7 +21,6 @@ function achFrameTabBtn:New(text, framesToShow, achievementsFrame, categories, f
 	-- Set properties
     frame.ID = AchievementFrame.numTabs;
     tinsert(ourTabIDs, frame.ID);
-    frame.AchievementsFrame = achievementsFrame;
     frame.FramesToShow = framesToShow;
 
     frame.SelectedAchievement = nil; -- Issue #6: Fix
@@ -60,7 +59,7 @@ function achFrameTabBtn:Base_OnClick(id)
     end
 
     AchievementFrame_ShowSubFrame(); -- Hide all frames
-    self.AchievementsFrame.ScrollFrame.ScrollBar:SetValue(0);
+    addon.GUI.AchievementsFrame.ScrollFrame.ScrollBar:SetValue(0);
 
     AchievementFrame_ShowSubFrame(unpack(self.FramesToShow));
     if self.SelectedCategory.IsSummary then
@@ -69,14 +68,19 @@ function achFrameTabBtn:Base_OnClick(id)
 	else
 		addon.GUI.AchievementsFrame:Show();
 		addon.GUI.SummaryFrame:Hide();
+        addon.GUI.AchievementsFrame:Update();
+        if self.SelectedAchievement then
+            local button = addon.GUI.AchievementsFrame:FindSelection();
+	        addon.GUI.AchievementsFrame:ExpandSelection(button);
+        end
 	end
     AchievementFrameWaterMark:SetTexture("Interface\\AchievementFrame\\UI-Achievement-AchievementWatermark");
 
-    if self.AchievementsFrame then
-        if self.SelectedAchievement then
-            self.AchievementsFrame:FindSelection();
-        end
-    end
+    -- if addon.GUI.AchievementsFrame then
+    --     if self.SelectedAchievement then
+    --         addon.GUI.AchievementsFrame:FindSelection();
+    --     end
+    -- end
 end
 
 function achFrameTabBtn:Comparison_OnClick(id)

@@ -44,7 +44,7 @@ function achievementsFrame:Load()
 end
 
 function KrowiAF_AchievementFrameAchievementsFrame_OnShow(self)
-	self:Update(); -- Issue #42: Fix
+	-- self:Update(); -- Issue #42: Fix
 end
 
 KrowiAF_AchievementsFrameMixin = {};
@@ -85,7 +85,7 @@ end
 local cachedCategory, cachedAchievements; -- Caching this speeds up the scrolling of achievements when the selected category isn't changed
 local highlightedButton;
 function KrowiAF_AchievementsFrameMixin:Update()
-	-- print("AchievementsFrame:Update")
+	print("AchievementsFrame:Update")
 	local selectedTab = addon.GUI.SelectedTab;
 	local selectedCategory = selectedTab.SelectedCategory;
 	local selectedAchievement = selectedTab.SelectedAchievement;
@@ -106,9 +106,10 @@ function KrowiAF_AchievementsFrameMixin:Update()
 
 	self.Text:Hide();
 
-	if selectedAchievement then
+	-- Let's try just always hide it. When switching tabs and the new tab has no achievement selected, this line or ClearSelection is not called
+	-- if selectedAchievement then
 		self.AchievementsObjectives:Hide();
-	end
+	-- end
 
 	local displayedHeight = 0;
 	local button, index, achievement;
@@ -130,7 +131,11 @@ function KrowiAF_AchievementsFrameMixin:Update()
 	local extraHeight = scrollFrame.largeButtonHeight or buttonCollapsedHeight;
 	totalHeight = totalHeight + extraHeight - buttonCollapsedHeight;
 
+	print("HybridScrollFrame_Update", totalHeight, displayedHeight)
 	HybridScrollFrame_Update(scrollFrame, totalHeight, displayedHeight);
+	local _, maxVal = scrollFrame.ScrollBar:GetMinMaxValues();
+	print(maxVal, scrollFrame.ScrollBar:GetValue())
+
 
 	if not selectedAchievement then
 		HybridScrollFrame_CollapseButton(scrollFrame);
@@ -149,6 +154,33 @@ end
 function KrowiAF_AchievementsFrameMixin.ClearHighlightedButton()
 	highlightedButton = nil;
 end
+
+function KrowiAF_AchievementsFrameMixin:ExpandSelection(button)
+	HybridScrollFrame_ExpandButton(self.ScrollFrame, ((button.index - 1) * addon.Options.db.Achievements.ButtonCollapsedHeight), button:GetHeight());
+	self:Update();
+	self:AdjustSelection();
+end
+
+function KrowiAF_AchievementsFrameMixin:ClearSelection()
+	self.AchievementsObjectives:Hide();
+	local buttons = self.ScrollFrame.buttons;
+	for _, button in next, buttons do
+		button.selected = nil;
+		button:Collapse();
+	end
+
+	addon.GUI.SelectedTab.SelectedAchievement = nil;
+end
+
+function KrowiAF_AchievementsFrameMixin:SelectButton(button)
+	addon.GUI.SelectedTab.SelectedAchievement = button.Achievement;
+	button.selected = true;
+
+	SetFocusedAchievement(button.Achievement.ID);
+end
+
+
+
 
 
 
@@ -186,36 +218,6 @@ function achievementsFrame:ForceUpdate(toTop) -- Issue #3: Fix
 	self:Update();
 end
 
-function achievementsFrame:ClearSelection()
-	self.AchievementsObjectives:Hide();
-	local buttons = self.ScrollFrame.buttons;
-	for _, button in next, buttons do
-		button:Collapse();
-		if not button:IsMouseOver() then
-			button.Highlight:Hide();
-		end
-		button.selected = nil;
-		if not button.Tracked:GetChecked() then
-			button.Tracked:Hide();
-		end
-		if button.Reward:GetText() == nil or not addon.Options.db.Achievements.Compact then
-			button.Description:Show();
-		else
-			button.Description:Hide();
-		end
-		button.HiddenDescription:Hide();
-	end
-
-	addon.GUI.SelectedTab.SelectedAchievement = nil;
-end
-
-function achievementsFrame:SelectButton(button)
-	addon.GUI.SelectedTab.SelectedAchievement = button.Achievement;
-	button.selected = true;
-
-	SetFocusedAchievement(button.Achievement.ID);
-end
-
 function achievementsFrame:FindSelection()
 	local scrollFrame = self.ScrollFrame;
 	local scrollBar = scrollFrame.ScrollBar;
@@ -234,7 +236,7 @@ function achievementsFrame:FindSelection()
 				newHeight = scrollBarValue + scrollFrameTop - buttonTop;
 				newHeight = min(newHeight, maxVal);
 				scrollBar:SetValue(newHeight);
-				return;
+				return button;
 			end
 		end
 		if not scrollBar:IsVisible() or scrollBar:GetValue() == maxVal then
