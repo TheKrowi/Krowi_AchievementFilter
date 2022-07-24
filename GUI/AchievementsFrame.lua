@@ -83,7 +83,7 @@ end
 local cachedCategory, cachedAchievements; -- Caching this speeds up the scrolling of achievements when the selected category isn't changed
 local highlightedButton;
 function KrowiAF_AchievementsFrameMixin:Update()
-	print("AchievementsFrame:Update")
+	-- print("AchievementsFrame:Update")
 	local selectedTab = addon.GUI.SelectedTab;
 	local selectedCategory = selectedTab.SelectedCategory;
 	local selectedAchievement = selectedTab.SelectedAchievement;
@@ -246,7 +246,7 @@ function KrowiAF_AchievementsFrameMixin:AdjustSelection()
 end
 
 function KrowiAF_AchievementsFrameMixin:ForceUpdate(toTop) -- Issue #3: Fix
-	print("ForceUpdate")
+	-- print("ForceUpdate")
 	-- Clear the cache
 	cachedCategory = nil;
 	cachedAchievements = nil;
