@@ -28,11 +28,7 @@ function achievementsFrame:Load()
 
 	local template = "KrowiAF_AchievementButton_" .. (addon.Options.db.Achievements.Compact and "Small" or "Normal") .. "_Template";
 	HybridScrollFrame_CreateButtons(scrollFrame, template, 0, -2);
-
-	local buttons = scrollFrame.buttons;
-    for _, button in next, buttons do
-        button:SetPoint("RIGHT", scrollFrame, -5, 0);
-    end
+	KrowiAF_PostLoadAchievementButtons(scrollFrame);
 
 	hooksecurefunc("AchievementFrameAchievements_ForceUpdate", function()
 		frame:ForceUpdate();

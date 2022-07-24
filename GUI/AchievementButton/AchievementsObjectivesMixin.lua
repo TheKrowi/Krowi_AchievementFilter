@@ -207,9 +207,12 @@ do -- Add objective types
 			criteria.Label:SetText("- "..criteriaString);
 			stringWidth = min(criteria.Label:GetStringWidth() - self.TextCheckWidth, maxCriteriaContentWidth);	-- Don't want the "- " to be included in the width
 		end
+		local offset = 0;
 		if criteria.Label:GetWidth() > maxCriteriaContentWidth then
 			criteria.Label:SetWidth(maxCriteriaContentWidth);
+			offset = criteria.Label:GetHeight() / self.FontHeight + criteria.Label:GetHeight() / self.FontHeight * 5 - 5;
 		end
+		criteria:SetHeight(15 + offset);
 		criteria:SetParent(self);
 		criteria:Show();
 		criteria:SetWidth(stringWidth + ACHIEVEMENTUI_CRITERIACHECKWIDTH);

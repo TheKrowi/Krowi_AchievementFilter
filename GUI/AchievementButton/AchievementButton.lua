@@ -1,6 +1,21 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
 
+function KrowiAF_PostLoadAchievementButtons(scrollFrame)
+	local buttons = scrollFrame.buttons;
+    for _, button in next, buttons do
+        button:SetPoint("RIGHT", scrollFrame, -5, 0);
+
+		local xHeaderOffset = max(button.PlusMinus:GetRight() - button:GetLeft(), button:GetRight() - button.DateCompleted:GetLeft()) + 2;
+		button.Header:SetPoint("LEFT", xHeaderOffset, 0);
+		button.Header:SetPoint("RIGHT", -xHeaderOffset, 0);
+
+		local xDescriptionOffset = max(button.PlusMinus:GetRight() - button:GetLeft(), button:GetRight() - button.Shield:GetLeft());
+		button.Description:SetPoint("LEFT", xDescriptionOffset, 0);
+		button.Description:SetPoint("RIGHT", -xDescriptionOffset, 0);
+    end
+end
+
 local function AddRightClickMenuButton(button)
 	local rightClickMenuButton = CreateFrame("Button", "$parentRightClickMenuButton", button, "KrowiAF_RightClickMenuButton_Template");
 	rightClickMenuButton:SetPoint("TOPRIGHT", -1, -1);
@@ -23,7 +38,8 @@ function KrowiAF_AchievementButton_Small_OnLoad(self)
 	self.HeaderBackground:SetHeight(20);
 	self.Description:SetWidth(370);
 	self.Description:SetPoint("TOP", 0, -27);
-	self.DateCompleted:SetPoint("TOPRIGHT", -28, -8);
+	self.DateCompleted:SetPoint("TOPLEFT", self, "TOPRIGHT", -101, -8);
+	self.DateCompleted:SetJustifyH("LEFT");
 	self.PlusMinus:SetSize(13, 13);
 	self.PlusMinus:SetPoint("TOPLEFT", 52, -7);
 	self.Icon:SetSize(48, 48);

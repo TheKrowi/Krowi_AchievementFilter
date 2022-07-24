@@ -50,6 +50,7 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives()
 	objectives:SetParent(self);
 	objectives:Show();
 	objectives.Completed = self.Completed;
+	objectives.FontHeight = self.FontHeight;
 	local height = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT; -- Compact or not, we need this height
 	local id = self.Achievement.Id;
 	if objectives.Id == id then

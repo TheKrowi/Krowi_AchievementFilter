@@ -1,4 +1,4 @@
--- [[ Exported at 2022-07-24 18-29-33 ]] --
+-- [[ Exported at 2022-07-24 18-32-54 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -17,7 +17,7 @@ addon.Plugins:LoadLocalization(L);
 
 
 L["Achievement points earned by"] = "Achievement points earned by";
-L["Category shown temporarily"] = "This category was selected by clicking on the {eventName} event reminder and is shown temprarily because it has no achievements that match the set filters.";
+L["Category shown temporarily"] = "This category was selected by clicking on the {eventName} event reminder and is shown temporarily because it has no achievements that match the set filters.";
 L["Achievements"] = "Achievements";
 L["Expansions"] = "Expansions";
 L["Events"] = "Events";
@@ -138,7 +138,7 @@ L["Collecting data"] = "Collecting data";
 L["Not part of set"] = "Not part of set";
 L["This achievement can't be earned by this character."] = "This achievement can't be earned by this character.";
 L["This character's class has no transmog set that meet the requirements."] = "This character's class has no transmog set that meet the requirements.";
-L["Achievement shown temporarily"] = "This achievement is shown temprarily because it does not match any set filters.";
+L["Achievement shown temporarily"] = "This achievement is shown temporarily because it does not match any set filters.";
 L["Wowhead"] = "Wowhead";
 L["Go to"] = "Go to";
 L["Other locations"] = "Other locations";
