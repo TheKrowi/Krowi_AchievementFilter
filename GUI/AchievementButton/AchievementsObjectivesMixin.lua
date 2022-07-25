@@ -181,32 +181,46 @@ do -- Add objective types
 			criteria:SetPoint("TOPLEFT", self:GetCriteria(index - 1), "BOTTOMLEFT", 0, 0);
 		end
 		if self.Completed and completed then
+			-- criteria.Dash:SetTextColor(0, 0, 0, 1);
+			-- criteria.Dash:SetShadowOffset(0, 0);
 			criteria.Label:SetTextColor(0, 0, 0, 1);
 			criteria.Label:SetShadowOffset(0, 0);
 		elseif completed then
+			-- criteria.Dash:SetTextColor(0, 1, 0, 1);
+			-- criteria.Dash:SetShadowOffset(1, -1);
 			criteria.Label:SetTextColor(0, 1, 0, 1);
 			criteria.Label:SetShadowOffset(1, -1);
 		else
-			criteria.Label:SetTextColor(.6, .6, .6, 1);
+			-- criteria.Dash:SetTextColor(0.6, 0.6, 0.6, 1);
+			-- criteria.Dash:SetShadowOffset(1, -1);
+			criteria.Label:SetTextColor(0.6, 0.6, 0.6, 1);
 			criteria.Label:SetShadowOffset(1, -1);
 		end
 		local stringWidth = 0;
 		local maxCriteriaContentWidth;
+		-- maxCriteriaContentWidth = ACHIEVEMENTUI_MAXCONTENTWIDTH - ACHIEVEMENTUI_CRITERIACHECKWIDTH;
 		if completed then
 			maxCriteriaContentWidth = ACHIEVEMENTUI_MAXCONTENTWIDTH - ACHIEVEMENTUI_CRITERIACHECKWIDTH;
 			criteria.Check:SetPoint("LEFT", 18, -3);
 			criteria.Label:SetPoint("LEFT", criteria.Check, "RIGHT", 0, 2);
+			-- criteria.Label:SetPoint("TOPLEFT", criteria.Check, "TOPRIGHT", 0, 0);
 			criteria.Check:Show();
+			-- criteria.Dash:Hide();
 			criteria.Label:SetText(criteriaString);
-			stringWidth = min(criteria.Label:GetStringWidth(),maxCriteriaContentWidth);
+			stringWidth = min(criteria.Label:GetStringWidth(), maxCriteriaContentWidth);
 		else
 			maxCriteriaContentWidth = ACHIEVEMENTUI_MAXCONTENTWIDTH - self.TextCheckWidth;
 			criteria.Check:SetPoint("LEFT", 0, -3);
 			criteria.Label:SetPoint("LEFT", criteria.Check, "RIGHT", 5, 2);
+			-- criteria.Label:SetPoint("TOPLEFT", criteria.Check, "TOPRIGHT", -7, 0);
 			criteria.Check:Hide();
+			-- criteria.Dash:Show();
 			criteria.Label:SetText("- "..criteriaString);
+			-- criteria.Label:SetText(criteriaString);
 			stringWidth = min(criteria.Label:GetStringWidth() - self.TextCheckWidth, maxCriteriaContentWidth);	-- Don't want the "- " to be included in the width
 		end
+		-- criteria.Label:SetText(criteriaString);
+		-- stringWidth = min(criteria.Label:GetStringWidth(), maxCriteriaContentWidth);
 		local offset = 0;
 		if criteria.Label:GetWidth() > maxCriteriaContentWidth then
 			criteria.Label:SetWidth(maxCriteriaContentWidth);
