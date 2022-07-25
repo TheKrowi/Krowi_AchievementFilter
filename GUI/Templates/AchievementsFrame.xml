@@ -50,11 +50,6 @@
 				</Frames>
 			</ScrollFrame>
 			<Frame name="$parentBorder" parentKey="Border" setAllPoints="true" inherits="AchivementGoldBorderBackdrop"/>
-			<Frame name="$parentAchievementsObjectives" parentKey="AchievementsObjectives" mixin="AchievementsObjectivesMixin">
-				<Scripts>
-					<OnLoad function="KrowiAF_AchievementsObjectives_OnLoad"/>
-				</Scripts>
-			</Frame>
 		</Frames>
 		<Scripts>
 			<OnShow function="KrowiAF_AchievementFrameAchievementsFrame_OnShow"/>

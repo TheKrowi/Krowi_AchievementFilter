@@ -1,5 +1,12 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
+addon.GUI.AchievementsObjectives = {};
+local achievementsObjectives = addon.GUI.AchievementsObjectives;
+
+function achievementsObjectives.Load()
+	local frame = CreateFrame("Frame", "KrowiAF_AchievementsObjectives", nil, "KrowiAF_AchievementsObjectives_Template");
+	addon.GUI.AchievementsObjectives = frame;
+end
 
 AchievementsObjectivesMixin = {};
 
@@ -181,57 +188,46 @@ do -- Add objective types
 			criteria:SetPoint("TOPLEFT", self:GetCriteria(index - 1), "BOTTOMLEFT", 0, 0);
 		end
 		if self.Completed and completed then
-			-- criteria.Dash:SetTextColor(0, 0, 0, 1);
-			-- criteria.Dash:SetShadowOffset(0, 0);
+			criteria.Dash:SetTextColor(0, 0, 0, 1);
+			criteria.Dash:SetShadowOffset(0, 0);
 			criteria.Label:SetTextColor(0, 0, 0, 1);
 			criteria.Label:SetShadowOffset(0, 0);
 		elseif completed then
-			-- criteria.Dash:SetTextColor(0, 1, 0, 1);
-			-- criteria.Dash:SetShadowOffset(1, -1);
+			criteria.Dash:SetTextColor(0, 1, 0, 1);
+			criteria.Dash:SetShadowOffset(1, -1);
 			criteria.Label:SetTextColor(0, 1, 0, 1);
 			criteria.Label:SetShadowOffset(1, -1);
 		else
-			-- criteria.Dash:SetTextColor(0.6, 0.6, 0.6, 1);
-			-- criteria.Dash:SetShadowOffset(1, -1);
+			criteria.Dash:SetTextColor(0.6, 0.6, 0.6, 1);
+			criteria.Dash:SetShadowOffset(1, -1);
 			criteria.Label:SetTextColor(0.6, 0.6, 0.6, 1);
 			criteria.Label:SetShadowOffset(1, -1);
 		end
-		local stringWidth = 0;
-		local maxCriteriaContentWidth;
-		-- maxCriteriaContentWidth = ACHIEVEMENTUI_MAXCONTENTWIDTH - ACHIEVEMENTUI_CRITERIACHECKWIDTH;
+		local labelWidth = 0;
+		local maxLabelWidth;
+		maxLabelWidth = self:GetWidth() - criteria.Check:GetWidth();
 		if completed then
-			maxCriteriaContentWidth = ACHIEVEMENTUI_MAXCONTENTWIDTH - ACHIEVEMENTUI_CRITERIACHECKWIDTH;
-			criteria.Check:SetPoint("LEFT", 18, -3);
-			criteria.Label:SetPoint("LEFT", criteria.Check, "RIGHT", 0, 2);
-			-- criteria.Label:SetPoint("TOPLEFT", criteria.Check, "TOPRIGHT", 0, 0);
 			criteria.Check:Show();
-			-- criteria.Dash:Hide();
-			criteria.Label:SetText(criteriaString);
-			stringWidth = min(criteria.Label:GetStringWidth(), maxCriteriaContentWidth);
+			criteria.Dash:Hide();
 		else
-			maxCriteriaContentWidth = ACHIEVEMENTUI_MAXCONTENTWIDTH - self.TextCheckWidth;
-			criteria.Check:SetPoint("LEFT", 0, -3);
-			criteria.Label:SetPoint("LEFT", criteria.Check, "RIGHT", 5, 2);
-			-- criteria.Label:SetPoint("TOPLEFT", criteria.Check, "TOPRIGHT", -7, 0);
 			criteria.Check:Hide();
-			-- criteria.Dash:Show();
-			criteria.Label:SetText("- "..criteriaString);
-			-- criteria.Label:SetText(criteriaString);
-			stringWidth = min(criteria.Label:GetStringWidth() - self.TextCheckWidth, maxCriteriaContentWidth);	-- Don't want the "- " to be included in the width
+			criteria.Dash:Show();
 		end
-		-- criteria.Label:SetText(criteriaString);
-		-- stringWidth = min(criteria.Label:GetStringWidth(), maxCriteriaContentWidth);
-		local offset = 0;
-		if criteria.Label:GetWidth() > maxCriteriaContentWidth then
-			criteria.Label:SetWidth(maxCriteriaContentWidth);
-			offset = criteria.Label:GetHeight() / self.FontHeight + criteria.Label:GetHeight() / self.FontHeight * 5 - 5;
+		criteria.Label:SetText(criteriaString);
+		labelWidth = min(criteria.Label:GetStringWidth(), maxLabelWidth);
+		-- local extraStringHeight = 0;
+		local height = 15;
+		if criteria.Label:GetWidth() > maxLabelWidth then
+			criteria.Label:SetWidth(maxLabelWidth);
+			height = criteria.Label:GetHeight() + 5;
+			-- extraStringHeight = criteria.Label:GetHeight() / self.FontHeight + criteria.Label:GetHeight() / self.FontHeight * 5 - 5;
 		end
-		criteria:SetHeight(15 + offset);
+		criteria:SetHeight(height);
 		criteria:SetParent(self);
 		criteria:Show();
-		criteria:SetWidth(stringWidth + ACHIEVEMENTUI_CRITERIACHECKWIDTH);
+		criteria:SetWidth(labelWidth + criteria.Check:GetWidth());
 
-		return stringWidth;
+		return criteria:GetWidth(); --, extraStringHeight;
 	end
 end
 
@@ -383,13 +379,13 @@ function AchievementsObjectivesMixin:SetTextPoints(progressBars, textStrings, ma
 		if ( rows == 1 ) then
 			criteriaTable[i]:ClearAllPoints();
 			local xOffset = 0;
-			if ( forceColumns ) then
-				if ( position == 1 ) then
-					xOffset = FORCE_COLUMNS_LEFT_OFFSET;
-				elseif ( position == 2 ) then
-					xOffset = FORCE_COLUMNS_RIGHT_OFFSET;
-				end
-			end
+			-- if ( forceColumns ) then
+			-- 	if ( position == 1 ) then
+			-- 		xOffset = FORCE_COLUMNS_LEFT_OFFSET;
+			-- 	elseif ( position == 2 ) then
+			-- 		xOffset = FORCE_COLUMNS_RIGHT_OFFSET;
+			-- 	end
+			-- end
 			criteriaTable[i]:SetPoint("TOPLEFT", self, "TOPLEFT", (position - 1)*(ACHIEVEMENTUI_MAXCONTENTWIDTH/numColumns) + xOffset, yOffset);
 		else
 			criteriaTable[i]:ClearAllPoints();
@@ -412,7 +408,7 @@ function AchievementsObjectivesMixin:DisplayCriteria(id)
 		return;
 	end
 
-	local stringWidth;
+	local criteriaWidth, extraStringHeight;
 	local numCriteriaRows = 0;
 	local numExtraCriteriaRows = 0;
 
@@ -420,24 +416,25 @@ function AchievementsObjectivesMixin:DisplayCriteria(id)
 	local maxCriteriaWidth = 0;
 	for i = 1, numCriteria do
 		local criteriaString, criteriaType, completed, quantity, reqQuantity, _, flags, assetID, quantityString = GetAchievementCriteriaInfo(id, i);
+		flags = addon.Objects.Flags:New(flags);
 		if criteriaType == CRITERIA_TYPE_ACHIEVEMENT and assetID then
 			metas = metas + 1;
 			self:AddMeta(metas, completed, assetID)
-		elseif ( bit.band(flags, EVALUATION_TREE_FLAG_PROGRESS_BAR) == EVALUATION_TREE_FLAG_PROGRESS_BAR ) then
+		elseif flags.IsCriteriaProgressBar then
 			progressBars = progressBars + 1;
 			self:AddProgressBar(progressBars, quantity, reqQuantity, quantityString)
 			numCriteriaRows = numCriteriaRows + 1;
 		else
 			textStrings = textStrings + 1;
-			stringWidth = self:AddCriteria(textStrings, numCriteria, criteriaString, completed);
-			maxCriteriaWidth = max(maxCriteriaWidth, stringWidth + ACHIEVEMENTUI_CRITERIACHECKWIDTH);
+			criteriaWidth, extraStringHeight = self:AddCriteria(textStrings, numCriteria, criteriaString, completed);
+			maxCriteriaWidth = max(maxCriteriaWidth, criteriaWidth);
 			numCriteriaRows = numCriteriaRows + 1;
 		end
 	end
 	if textStrings > 0 and progressBars > 0 then
 		self:SetProgressBarAndTextPoints(progressBars, textStrings);
 	elseif ( textStrings > 1 ) then
-		numCriteriaRows, numExtraCriteriaRows = self:SetTextPoints(progressBars, textStrings, maxCriteriaWidth, numCriteriaRows)
+		-- numCriteriaRows, numExtraCriteriaRows = self:SetTextPoints(progressBars, textStrings, maxCriteriaWidth, numCriteriaRows)
 	end
 	numCriteriaRows = numCriteriaRows + numExtraCriteriaRows;
 	local firstMetaCriteria = self:GetMeta(1);

@@ -13,6 +13,13 @@ function KrowiAF_PostLoadAchievementButtons(scrollFrame)
 		local xDescriptionOffset = max(button.PlusMinus:GetRight() - button:GetLeft(), button:GetRight() - button.Shield:GetLeft());
 		button.Description:SetPoint("LEFT", xDescriptionOffset, 0);
 		button.Description:SetPoint("RIGHT", -xDescriptionOffset, 0);
+
+		local xObjectivesOffset = max(button.ObjectivesLeftAnchor:GetRight() - button:GetLeft(), button:GetRight() - button.Shield:GetLeft());
+		addon.GUI.AchievementsObjectives:SetParent(button);
+		addon.GUI.AchievementsObjectives:SetPoint("LEFT", button, "LEFT", xObjectivesOffset, 0);
+		addon.GUI.AchievementsObjectives:SetPoint("RIGHT", button, "RIGHT", -xObjectivesOffset, 0);
+		-- addon.GUI.AchievementsObjectives:SetWidth(addon.GUI.AchievementsObjectives:GetWidth());
+		addon.GUI.AchievementsObjectives:SetWidth(300);
     end
 end
 
@@ -55,6 +62,7 @@ function KrowiAF_AchievementButton_Small_OnLoad(self)
 	self.Tracked:SetPoint("TOPLEFT", 9, -46);
 
 	self.MaxDescriptionLinesCollapsed = 1;
+	self.ObjectivesLeftAnchor = self.PlusMinus;
 
 	if addon.Options.db.RightClickMenu.ShowButtonOnAchievement then
 		AddRightClickMenuButton(self);
@@ -67,6 +75,7 @@ function KrowiAF_AchievementButton_Normal_OnLoad(self)
 	self:TooltipBackdropOnLoad();
 
 	self.MaxDescriptionLinesCollapsed = 3;
+	self.ObjectivesLeftAnchor = self.Icon.Border;
 
 	if addon.Options.db.RightClickMenu.ShowButtonOnAchievement then
 		AddRightClickMenuButton(self);
