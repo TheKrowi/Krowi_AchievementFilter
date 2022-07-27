@@ -45,9 +45,25 @@ do -- Scripts
 	end
 
 	function KrowiAF_AchievementsObjectives_OnLoad(self)
-		-- local criteria = self:GetTextCriteria(1);
-		-- criteria.Label:SetText("- ");
-		-- self.TextCheckWidth = criteria.Label:GetStringWidth();
+		self:RegisterEvent("CRITERIA_UPDATE");
+	end
+
+	function KrowiAF_AchievementsObjectives_OnEvent(self, event)
+		if event ~= "CRITERIA_UPDATE" then
+			return;
+		end
+
+		if addon.GUI.SelectedTab.SelectedAchievement then
+			local id = self.Id;
+			local button = self:GetParent();
+			self.Id = nil;
+			if self:IsVisible() then
+				button:DisplayObjectives();
+				-- AchievementFrameAchievements_Update();
+			end
+		else
+			self.Id = nil;
+		end
 	end
 end
 

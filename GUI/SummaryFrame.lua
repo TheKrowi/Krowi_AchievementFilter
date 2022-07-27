@@ -295,7 +295,7 @@ function summaryFrame:CategoriesStatusBar_Update(event)
         return;
     end
 
-    if event == "ACHIEVEMENT_EARNED" then
+    if event == "ACHIEVEMENT_EARNED" then -- Update it here instead of in the categories frame itself to make sure the summary is updated with the correct numbers
         addon.GUI.CategoriesFrame:Update(true);
     end
     local lastShown = totalStatusBar;

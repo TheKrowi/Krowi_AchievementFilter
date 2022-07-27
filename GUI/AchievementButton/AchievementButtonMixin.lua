@@ -13,6 +13,8 @@ do -- Scripts
 		self.Description:SetHeight(descriptionHeight);
 
 		self:Collapse();
+
+		self:RegisterEvent("ACHIEVEMENT_EARNED");
 	end
 
 	function KrowiAF_AchievementButton_OnEnter(self)
@@ -35,6 +37,17 @@ do -- Scripts
 		elseif button == "RightButton" then
 			addon.GUI.RightClickMenu.AchievementMenu:Open(self.Achievement);
 		end
+	end
+
+	function KrowiAF_AchievementButton_OnEvent(self, event)
+		print(event)
+		if event ~= "ACHIEVEMENT_EARNED" then
+			return;
+		end
+
+		local achievement = self.Achievement;
+		self.Achievement = nil;
+		self:Update(achievement, self.index);
 	end
 
 	function KrowiAF_AchievementButtonExtraIcon_OnEnter(self)
@@ -107,6 +120,7 @@ end
 function KrowiAF_AchievementButtonMixin:SetAchievement(achievement)
 	if not achievement then
 		self.Achievement = nil;
+		return;
 	end
 
 	local compact = addon.Options.db.Achievements.Compact;

@@ -141,6 +141,7 @@
 			<OnEnter function="KrowiAF_AchievementButton_OnEnter"/>
 			<OnLeave function="KrowiAF_AchievementButton_OnLeave"/>
 			<OnClick function="KrowiAF_AchievementButton_OnClick"/>
+			<OnEvent function="KrowiAF_AchievementButton_OnEvent"/>
 		</Scripts>
 		<Frames>
 			<Frame name="$parentHighlight" setAllPoints="true" hidden="true" enableMouse="false" parentKey="Highlight">

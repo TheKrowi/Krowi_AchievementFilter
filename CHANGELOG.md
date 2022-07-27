@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - When getting redirected to a normally invisble achievement (due to the filters), the achievement will be shown and a green exclamation mark will be shown
 - Options to display achievement objectives
 - Protection so Blizzard Statistics can not be in front of Guild, would result in errors
+- When a criteria updates for an achievement or you earn an achievement, this will also visually update without having to manually refresh the window
 
 ### Changed
 - Tabs are now handled by addon and tab name and API is accessible by other addons (see Plugins/Overachiever.lua for example or ask for assistance on discord)
