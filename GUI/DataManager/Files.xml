@@ -1,8 +1,8 @@
 <Ui>
-    <Script file="Search.lua" />
+    <!-- <Script file="Search.lua" />
     <Script file="ResultsButton.lua" />
     <Script file="ResultsFrame.lua" />
     <Script file="PreviewButton.lua" />
     <Script file="PreviewFrame.lua" />
-    <Script file="BoxFrame.lua" />
+    <Script file="BoxFrame.lua" /> -->
 </Ui>

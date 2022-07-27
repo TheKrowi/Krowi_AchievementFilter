@@ -1,5 +1,4 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..
-\..\FrameXML\UI.xsd">
+<Ui>
     <!-- Originally from Blizzard_AchievementUI.xml line 1806 at time of writing -->
 	<Frame name="KrowiAF_AchievementsFrame_Template" mixin="KrowiAF_AchievementsFrameMixin" virtual="true" hidden="true">
 		<Layers>

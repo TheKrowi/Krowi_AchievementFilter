@@ -1,0 +1,10 @@
+<Ui>
+    <Script file="AchievementFrameHeader.lua" />
+    <Script file="AchievementFrameTabButton.lua" />
+    <Script file="AchievementsFrame.lua" />
+    <Script file="CategoryButtonMixin.lua" />
+    <Script file="CategoriesFrame.lua" />
+    <Script file="SummaryAchievementButton.lua" />
+    <Script file="SummaryFrame.lua" />
+    <Script file="FilterButton.lua" />
+</Ui>

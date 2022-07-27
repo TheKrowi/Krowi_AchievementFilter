@@ -1,7 +1,9 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
+addon.GUI.AchievementButton = {};
+local achievementButton = addon.GUI.AchievementButton;
 
-function KrowiAF_PostLoadAchievementButtons(scrollFrame)
+function achievementButton:PostLoad(scrollFrame)
 	local buttons = scrollFrame.buttons;
     for _, button in next, buttons do
         button:SetPoint("RIGHT", scrollFrame, -5, 0);
@@ -17,10 +19,6 @@ function KrowiAF_PostLoadAchievementButtons(scrollFrame)
 		local xObjectivesOffset = max(button.ObjectivesLeftAnchor:GetRight() - button:GetLeft(), button:GetRight() - button.Shield:GetLeft());
 		addon.GUI.AchievementsObjectives.XOffset = xObjectivesOffset;
 		addon.GUI.AchievementsObjectives:SetParent(button);
-		-- addon.GUI.AchievementsObjectives:SetPoint("LEFT", button, "LEFT", xObjectivesOffset, 0);
-		-- addon.GUI.AchievementsObjectives:SetPoint("RIGHT", button, "RIGHT", -xObjectivesOffset, 0);
-		-- addon.GUI.AchievementsObjectives:SetWidth(addon.GUI.AchievementsObjectives:GetWidth());
-		-- addon.GUI.AchievementsObjectives:SetWidth(300);
     end
 end
 

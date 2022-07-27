@@ -3,7 +3,7 @@ local _, addon = ...;
 addon.GUI.AchievementsObjectives = {};
 local achievementsObjectives = addon.GUI.AchievementsObjectives;
 
-function achievementsObjectives.Load()
+function achievementsObjectives:Load()
 	local frame = CreateFrame("Frame", "KrowiAF_AchievementsObjectives", nil, "KrowiAF_AchievementsObjectives_Template");
 	addon.GUI.AchievementsObjectives = frame;
 end
