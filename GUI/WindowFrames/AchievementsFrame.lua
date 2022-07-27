@@ -28,7 +28,10 @@ function achievementsFrame:Load()
 
 	local template = "KrowiAF_AchievementButton_" .. (addon.Options.db.Achievements.Compact and "Small" or "Normal") .. "_Template";
 	HybridScrollFrame_CreateButtons(scrollFrame, template, 0, -2);
-	addon.GUI.AchievementButton:PostLoad(scrollFrame);
+	local buttons = scrollFrame.buttons;
+    for _, button in next, buttons do
+		button:PostLoad(scrollFrame);
+	end
 
 	hooksecurefunc("AchievementFrameAchievements_ForceUpdate", function()
 		frame:ForceUpdate();
@@ -37,10 +40,6 @@ function achievementsFrame:Load()
 	frame.ScrollBarStep = scrollBar:GetValueStep();
 
 	addon.GUI.AchievementsFrame = frame; -- Overwrite with the actual frame since all functions are injected to it
-end
-
-function KrowiAF_AchievementFrameAchievementsFrame_OnShow(self)
-	-- self:Update(); -- Issue #42: Fix
 end
 
 KrowiAF_AchievementsFrameMixin = {};

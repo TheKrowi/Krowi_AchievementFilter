@@ -1,4 +1,6 @@
 <Ui>
+    <Script file="SummaryAchievementButton.lua" />
+
 	<Frame name="KrowiAF_AchievementFrameSummaryFrameAchievementButton_Template" inherits="TooltipBorderBackdropTemplate" virtual="true">
 		<Size x="100" y="48"/>
 		<Layers>
@@ -51,10 +53,6 @@
 				</FontString>
 			</Layer>
 		</Layers>
-		<!-- <KeyValues>
-			<KeyValue key="backdropBorderColor" value="ACHIEVEMENT_RED_BORDER_COLOR" type="global"/>
-			<KeyValue key="backdropBorderColorAlpha" value="0.5" type="number"/>
-		</KeyValues> -->
 		<Frames>
 			<Frame name="$parentHighlight" setAllPoints="true" hidden="true" enableMouse="false" parentKey="highlight">
 				<Layers>

@@ -1,58 +1,70 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
 
+function KrowiAF_AchievementButton_OnLoad(self)
+	_, self.FontHeight = self.Description:GetFont();
+
+	local descriptionHeight = self.FontHeight * self.MaxDescriptionLinesCollapsed;
+	self.Description:SetHeight(descriptionHeight);
+
+	self:Collapse();
+
+	self:RegisterEvent("ACHIEVEMENT_EARNED");
+end
+
+function KrowiAF_AchievementButton_OnEnter(self)
+	addon.GUI.AchievementsFrame.SetHighlightedButton(self);
+	self:ShowTooltip();
+	self.Highlight:Show();
+end
+
+function KrowiAF_AchievementButton_OnLeave(self)
+	addon.GUI.AchievementsFrame.ClearHighlightedButton();
+	AchievementMeta_OnLeave(self);
+	if not self.selected then
+		self.Highlight:Hide();
+	end
+end
+
+function KrowiAF_AchievementButton_OnClick(self, button, down, ignoreModifiers)
+	if button == "LeftButton" then
+		self:Select(ignoreModifiers);
+	elseif button == "RightButton" then
+		addon.GUI.RightClickMenu.AchievementMenu:Open(self.Achievement);
+	end
+end
+
+function KrowiAF_AchievementButton_OnEvent(self, event)
+	if event ~= "ACHIEVEMENT_EARNED" then
+		return;
+	end
+
+	local achievement = self.Achievement;
+	self.Achievement = nil;
+	self:Update(achievement, self.index);
+end
+
+function KrowiAF_AchievementButtonExtraIcon_OnEnter(self)
+	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+	GameTooltip:SetText(self.Text, nil, nil, nil, nil, true);
+end
+
 KrowiAF_AchievementButtonMixin = {};
 
-local ACHIEVEMENTUI_MAX_LINES_COLLAPSED = 3;
+function KrowiAF_AchievementButtonMixin:PostLoad(scrollFrame)
+	self:SetPoint("RIGHT", scrollFrame, -5, 0);
 
-do -- Scripts
-	function KrowiAF_AchievementButton_OnLoad(self)
-		_, self.FontHeight = self.Description:GetFont();
+	local xHeaderOffset = max(self.PlusMinus:GetRight() - self:GetLeft(), self:GetRight() - self.DateCompleted:GetLeft()) + 2;
+	self.Header:SetPoint("LEFT", xHeaderOffset, 0);
+	self.Header:SetPoint("RIGHT", -xHeaderOffset, 0);
 
-		local descriptionHeight = self.FontHeight * self.MaxDescriptionLinesCollapsed;
-		self.Description:SetHeight(descriptionHeight);
+	local xDescriptionOffset = max(self.PlusMinus:GetRight() - self:GetLeft(), self:GetRight() - self.Shield:GetLeft());
+	self.Description:SetPoint("LEFT", xDescriptionOffset, 0);
+	self.Description:SetPoint("RIGHT", -xDescriptionOffset, 0);
 
-		self:Collapse();
-
-		self:RegisterEvent("ACHIEVEMENT_EARNED");
-	end
-
-	function KrowiAF_AchievementButton_OnEnter(self)
-		addon.GUI.AchievementsFrame.SetHighlightedButton(self);
-		self:ShowTooltip();
-		self.Highlight:Show();
-	end
-
-	function KrowiAF_AchievementButton_OnLeave(self)
-		addon.GUI.AchievementsFrame.ClearHighlightedButton();
-		AchievementMeta_OnLeave(self);
-		if not self.selected then
-			self.Highlight:Hide();
-		end
-	end
-
-	function KrowiAF_AchievementButton_OnClick(self, button, down, ignoreModifiers)
-		if button == "LeftButton" then
-			self:Select(ignoreModifiers);
-		elseif button == "RightButton" then
-			addon.GUI.RightClickMenu.AchievementMenu:Open(self.Achievement);
-		end
-	end
-
-	function KrowiAF_AchievementButton_OnEvent(self, event)
-		if event ~= "ACHIEVEMENT_EARNED" then
-			return;
-		end
-
-		local achievement = self.Achievement;
-		self.Achievement = nil;
-		self:Update(achievement, self.index);
-	end
-
-	function KrowiAF_AchievementButtonExtraIcon_OnEnter(self)
-		GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-		GameTooltip:SetText(self.Text, nil, nil, nil, nil, true);
-	end
+	local xObjectivesOffset = max(self.ObjectivesLeftAnchor:GetRight() - self:GetLeft(), self:GetRight() - self.Shield:GetLeft());
+	addon.GUI.AchievementsObjectives.XOffset = xObjectivesOffset;
+	addon.GUI.AchievementsObjectives:SetParent(self);
 end
 
 local cachedWidth;
@@ -82,7 +94,7 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives()
 	end
 	objectives:Show();
 	height = height + objectives:GetHeight();
-	if height ~= addon.Options.db.Achievements.ButtonCollapsedHeight or self.numLines > ACHIEVEMENTUI_MAX_LINES_COLLAPSED then
+	if height ~= addon.Options.db.Achievements.ButtonCollapsedHeight or self.numLines > self.MaxDescriptionLinesCollapsed then
 		local descriptionHeight = self.HiddenDescription:GetHeight();
 		height = height + descriptionHeight - ACHIEVEMENTBUTTON_DESCRIPTIONHEIGHT;
 		if self.Reward:IsShown() then
@@ -364,7 +376,7 @@ function KrowiAF_AchievementButtonMixin:Saturate()
 		end
 		self.Shield.Points:SetVertexColor(1, 1, 1);
 	end
-	self.Glow:SetVertexColor(1.0, 1.0, 1.0);
+	self.Glow:SetVertexColor(1, 1, 1);
 	self.Icon.Texture:SetVertexColor(1, 1, 1, 1);
 	self.Icon.Border:SetVertexColor(1, 1, 1, 1);
 	self.Shield.Icon:SetTexCoord(0, 0.5, 0, 0.5);

@@ -1,4 +1,6 @@
 <Ui>
+    <Script file="SummaryFrame.lua" />
+	
 	<Frame name="KrowiAF_AchievementFrameSummaryFrame_Template" virtual="true" hidden="true">
 		<Layers>
 			<Layer level="BACKGROUND">

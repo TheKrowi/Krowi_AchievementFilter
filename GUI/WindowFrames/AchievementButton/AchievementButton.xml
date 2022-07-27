@@ -1,4 +1,7 @@
 <Ui>
+    <Script file="AchievementButtonMixin.lua" />
+    <Script file="AchievementButton.lua" />
+	
 	<Button name="KrowiAF_AchievementButton_Template" mixin="KrowiAF_AchievementButtonMixin" inherits="TooltipBorderBackdropTemplate" registerForClicks="LeftButtonUp, RightButtonUp" virtual="true">
 		<Layers>
 			<Layer level="BACKGROUND">
@@ -136,7 +139,6 @@
 			</Layer>
 		</Layers>
 		<Scripts>
-			<!-- <OnLoad inherit="prepend" function="KrowiAF_AchievementButton_OnLoad"/> -->
 			<OnEnter function="KrowiAF_AchievementButton_OnEnter"/>
 			<OnLeave function="KrowiAF_AchievementButton_OnLeave"/>
 			<OnClick function="KrowiAF_AchievementButton_OnClick"/>
@@ -335,11 +337,20 @@
 		</Scripts>
   	</Button>
 
-    <!-- Originally from Blizzard_AchievementUI.xml line 772 at time of writing -->
 	<Button name="KrowiAF_AchievementButton_Normal_Template" inherits="KrowiAF_AchievementButton_Template" virtual="true">
 		<Size x="434" y="142"/>
 		<Scripts>
 			<OnLoad function="KrowiAF_AchievementButton_Normal_OnLoad"/>
+		</Scripts>
+	</Button>
+
+	<Button name="KrowiAF_AchievementButton_Summary_Template" inherits="KrowiAF_AchievementButton_Small_Template" virtual="true">
+		<Scripts>
+			<!-- <OnLoadn inherit="prepend" function="KrowiAF_AchievementButton_Summary_OnLoad"/> -->
+			<OnEnter function="KrowiAF_AchievementButton_Summary_OnEnter"/>
+			<OnLeave function="KrowiAF_AchievementButton_Summary_OnLeave"/>
+			<OnClick function="KrowiAF_AchievementButton_Summary_OnClick"/>
+			<!-- <OnEvent function="KrowiAF_AchievementButton_OnEvent"/> -->
 		</Scripts>
 	</Button>
 

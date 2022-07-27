@@ -1,5 +1,6 @@
 <Ui>
-    <!-- Originally from Blizzard_AchievementUI.xml line 1806 at time of writing -->
+    <Script file="AchievementsFrame.lua" />
+	
 	<Frame name="KrowiAF_AchievementsFrame_Template" mixin="KrowiAF_AchievementsFrameMixin" virtual="true" hidden="true">
 		<Layers>
 			<Layer level="BACKGROUND">
@@ -50,8 +51,5 @@
 			</ScrollFrame>
 			<Frame name="$parentBorder" parentKey="Border" setAllPoints="true" inherits="AchivementGoldBorderBackdrop"/>
 		</Frames>
-		<Scripts>
-			<OnShow function="KrowiAF_AchievementFrameAchievementsFrame_OnShow"/>
-		</Scripts>
 	</Frame>
 </Ui>

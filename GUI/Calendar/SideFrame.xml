@@ -1,5 +1,7 @@
 <Ui>
-	<Frame name="KrowiAF_AchievementCalendarSideFrame_Template" toplevel="true" enableMouse="true" frameStrata="HIGH" virtual="true" hidden="true">
+    <Script file="SideFrame.lua" />
+
+	<Frame name="KrowiAF_CalendarSideFrame_Template" mixin="KrowiAF_CalendarSideFrameMixin" toplevel="true" enableMouse="true" frameStrata="HIGH" virtual="true" hidden="true">
 		<Size x="504" y="320"/>
 		<Layers>
 			<Layer level="BORDER">
@@ -59,13 +61,13 @@
 					<OnLoad>
 						self:SetFrameLevel(self:GetParent():GetFrameLevel() + 6);
 					</OnLoad>
-					<OnClick function="KrowiAF_AchievementCalendarSideFrameCloseButton_OnClick"/>
-					<OnKeyDown function="KrowiAF_AchievementCalendarSideFrameCloseButton_OnKeyDown"/>
+					<OnClick function="KrowiAF_CalendarSideFrameCloseButton_OnClick"/>
+					<OnKeyDown function="KrowiAF_CalendarSideFrameCloseButton_OnKeyDown"/>
 				</Scripts>
 			</Button>
 		</Frames>
 		<Scripts>
-			<OnShow function="KrowiAF_AchievementCalendarSideFrame_OnShow"/>
+			<OnShow function="KrowiAF_CalendarSideFrame_OnShow"/>
 		</Scripts>
 	</Frame>
 </Ui>

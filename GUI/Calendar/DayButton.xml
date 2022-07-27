@@ -1,5 +1,7 @@
 <Ui>
-	<Button name="KrowiAF_AchievementCalendarDayButton_Template" registerForClicks="LeftButtonUp" virtual="true">
+    <Script file="DayButtonMixin.lua" />
+	
+	<Button name="KrowiAF_CalendarDayButton_Template" mixin="KrowiAF_CalendarDayButtonMixin" registerForClicks="LeftButtonUp" virtual="true">
 		<Size x="91" y="91"/>
 		<Anchors>
 			<Anchor point="TOPLEFT"/>
@@ -57,22 +59,22 @@
 					</OnLoad>
 				</Scripts>
 			</Frame>
-			<Frame name="$parentAchievementButton1" parentArray="AchievementButtons" inherits="KrowiAF_AchievementCalendarDayButtonAchievement_Template" hidden="true">
+			<Frame name="$parentAchievement1" parentArray="AchievementButtons" inherits="KrowiAF_CalendarDayButtonAchievement_Template" hidden="true">
 				<Anchors>
 					<Anchor point="BOTTOMRIGHT" x="-2" y="2"/>
 				</Anchors>
 			</Frame>
-			<Frame name="$parentAchievementButton2" parentArray="AchievementButtons" inherits="KrowiAF_AchievementCalendarDayButtonAchievement_Template" hidden="true">
+			<Frame name="$parentAchievement2" parentArray="AchievementButtons" inherits="KrowiAF_CalendarDayButtonAchievement_Template" hidden="true">
 				<Anchors>
 					<Anchor point="BOTTOMLEFT" x="2" y="2"/>
 				</Anchors>
 			</Frame>
-			<Frame name="$parentAchievementButton3" parentArray="AchievementButtons" inherits="KrowiAF_AchievementCalendarDayButtonAchievement_Template" hidden="true">
+			<Frame name="$parentAchievement3" parentArray="AchievementButtons" inherits="KrowiAF_CalendarDayButtonAchievement_Template" hidden="true">
 				<Anchors>
 					<Anchor point="TOPRIGHT" x="-2" y="-2"/>
 				</Anchors>
 			</Frame>
-			<Frame name="$parentAchievementButton4" parentArray="AchievementButtons" inherits="KrowiAF_AchievementCalendarDayButtonAchievement_Template" hidden="true">
+			<Frame name="$parentAchievement4" parentArray="AchievementButtons" inherits="KrowiAF_CalendarDayButtonAchievement_Template" hidden="true">
 				<Anchors>
 					<Anchor point="TOPLEFT" x="2" y="-2"/>
 				</Anchors>
@@ -92,18 +94,9 @@
 			</Frame>
 		</Frames>
 		<Scripts>
-			<OnLoad>
-				KrowiAF_AchievementCalendarDayButton_OnLoad(self); 
-			</OnLoad>
-			<OnEnter>
-				KrowiAF_AchievementCalendarDayButton_OnEnter(self, motion);
-			</OnEnter>
-			<OnLeave>
-				KrowiAF_AchievementCalendarDayButton_OnLeave(self, motion);
-			</OnLeave>
-			<OnClick>
-				KrowiAF_AchievementCalendarDayButton_OnClick(self, button, down);
-			</OnClick>
+			<OnEnter function="KrowiAF_CalendarDayButton_OnEnter"/>
+			<OnLeave function="KrowiAF_CalendarDayButton_OnLeave"/>
+			<OnClick function="KrowiAF_CalendarDayButton_OnClick"/>
 		</Scripts>
 		<NormalTexture file="Interface\Calendar\CalendarBackground"/>
 		<HighlightTexture file="Interface\Calendar\Highlights" alphaMode="ADD">
@@ -115,7 +108,7 @@
 		</HighlightTexture>
 	</Button>
 
-	<Frame name="KrowiAF_AchievementCalendarDayButtonAchievement_Template" virtual="true">
+	<Frame name="KrowiAF_CalendarDayButtonAchievement_Template" virtual="true">
 		<Size x="41" y="41"/>
 		<Layers>
 			<Layer level="ARTWORK">

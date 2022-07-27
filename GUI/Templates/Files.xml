@@ -1,9 +1,4 @@
 <Ui>
-    <Include file="AchievementsFrame.xml" />
-    <Include file="SummaryAchievementButton.xml" />
-    <Include file="SummaryFrame.xml" />
-    <Include file="CategoryButton.xml" />
-    <Include file="CategoriesFrame.xml" />
     <Include file="FilterButton.xml" />
     <Include file="Search\Files.xml" />
     <Include file="AlertFrame.xml" />

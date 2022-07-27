@@ -1,8 +1,0 @@
-<Ui>
-    <Include file="AchievementObjectives.xml" />
-    <Script file="AchievementsObjectivesMixin.lua" />
-    
-    <Include file="AchievementButton.xml" />
-    <Script file="AchievementButtonMixin.lua" />
-    <Script file="AchievementButton.lua" />
-</Ui>

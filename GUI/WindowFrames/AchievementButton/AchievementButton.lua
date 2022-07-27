@@ -1,26 +1,5 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
-addon.GUI.AchievementButton = {};
-local achievementButton = addon.GUI.AchievementButton;
-
-function achievementButton:PostLoad(scrollFrame)
-	local buttons = scrollFrame.buttons;
-    for _, button in next, buttons do
-        button:SetPoint("RIGHT", scrollFrame, -5, 0);
-
-		local xHeaderOffset = max(button.PlusMinus:GetRight() - button:GetLeft(), button:GetRight() - button.DateCompleted:GetLeft()) + 2;
-		button.Header:SetPoint("LEFT", xHeaderOffset, 0);
-		button.Header:SetPoint("RIGHT", -xHeaderOffset, 0);
-
-		local xDescriptionOffset = max(button.PlusMinus:GetRight() - button:GetLeft(), button:GetRight() - button.Shield:GetLeft());
-		button.Description:SetPoint("LEFT", xDescriptionOffset, 0);
-		button.Description:SetPoint("RIGHT", -xDescriptionOffset, 0);
-
-		local xObjectivesOffset = max(button.ObjectivesLeftAnchor:GetRight() - button:GetLeft(), button:GetRight() - button.Shield:GetLeft());
-		addon.GUI.AchievementsObjectives.XOffset = xObjectivesOffset;
-		addon.GUI.AchievementsObjectives:SetParent(button);
-    end
-end
 
 local function AddRightClickMenuButton(button)
 	local rightClickMenuButton = CreateFrame("Button", "$parentRightClickMenuButton", button, "KrowiAF_RightClickMenuButton_Template");
@@ -61,6 +40,8 @@ function KrowiAF_AchievementButton_Small_OnLoad(self)
 	self.Tracked:SetPoint("TOPLEFT", 9, -46);
 
 	self.MaxDescriptionLinesCollapsed = 1;
+	self.Compact = true;
+	self.CollapsedHeight = 48;
 	self.ObjectivesLeftAnchor = self.PlusMinus;
 
 	if addon.Options.db.RightClickMenu.ShowButtonOnAchievement then
@@ -74,6 +55,7 @@ function KrowiAF_AchievementButton_Normal_OnLoad(self)
 	self:TooltipBackdropOnLoad();
 
 	self.MaxDescriptionLinesCollapsed = 3;
+	self.CollapsedHeight = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT;
 	self.ObjectivesLeftAnchor = self.Icon.Border;
 
 	if addon.Options.db.RightClickMenu.ShowButtonOnAchievement then
@@ -81,4 +63,33 @@ function KrowiAF_AchievementButton_Normal_OnLoad(self)
 	end
 
 	KrowiAF_AchievementButton_OnLoad(self);
+end
+
+function KrowiAF_AchievementButton_Summary_OnEnter(self)
+	self.Highlight:Show();
+    if self.Achievement == nil then
+        return;
+    end
+    GameTooltip:SetOwner(self, "ANCHOR_NONE");
+    GameTooltip:SetPoint("TOPLEFT", self, "TOPRIGHT");
+    local link = GetAchievementLink(self.Achievement.Id);
+    GameTooltip:SetHyperlink(link);
+    AchievementFrameAchievements_CheckGuildMembersTooltip(self);
+    GameTooltip:Show();
+    if GameTooltip:GetTop() > self:GetTop() then
+        GameTooltip:ClearAllPoints();
+        GameTooltip:SetPoint("BOTTOMLEFT", self, "BOTTOMRIGHT");
+    end
+end
+
+function KrowiAF_AchievementButton_Summary_OnLeave(self)
+	self.Highlight:Hide();
+	GameTooltip:Hide();
+end
+
+function KrowiAF_AchievementButton_Summary_OnClick(self)
+	if self.Achievement == nil then
+        return;
+    end
+    KrowiAF_SelectAchievementFromID(self.Achievement.Id);
 end

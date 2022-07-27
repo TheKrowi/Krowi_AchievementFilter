@@ -1,10 +1,8 @@
 <Ui>
+    <Script file="C_Calendar.lua" />
     <Script file="Calendar.lua" />
-    
+
     <Include file="DayButton.xml" />
     <Include file="Frame.xml" />
     <Include file="SideFrame.xml" />
-    <Script file="DayButton.lua" />
-    <Script file="Frame.lua" />
-    <Script file="SideFrame.lua" />
 </Ui>

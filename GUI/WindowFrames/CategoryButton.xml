@@ -1,5 +1,6 @@
 <Ui>
-    <!-- Originally from Blizzard_AchievementUI.xml line 660 at time of writing -->
+    <Script file="CategoryButtonMixin.lua" />
+	
 	<Button name="KrowiAF_CategoryButton_Template" mixin="KrowiAF_CategoryButtonMixin" virtual="true">
 	 	<Size x="158" y="24"/>
 		<Layers>

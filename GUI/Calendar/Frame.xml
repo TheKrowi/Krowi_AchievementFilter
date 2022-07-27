@@ -1,5 +1,7 @@
 <Ui>
-	<Frame name="KrowiAF_AchievementCalendarFrame_Template" toplevel="true" enableMouse="true" enableKeyboard="true" frameStrata="HIGH" virtual="true" hidden="true">
+    <Script file="Frame.lua" />
+
+	<Frame name="KrowiAF_CalendarFrame_Template" mixin="KrowiAF_CalendarFrameMixin" toplevel="true" enableMouse="true" enableKeyboard="true" frameStrata="HIGH" virtual="true" hidden="true">
 		<Size x="659" y="624"/>
 		<Anchors>
 			<Anchor point="TOPLEFT" x="15" y="-80"/>
@@ -260,7 +262,7 @@
 						self.fadeTime = 1.5;
 						self.fadein = true;
 					</OnLoad>
-					<OnUpdate function="KrowiAF_AchievementCalendarFrameTodayFrame_OnUpdate"/>
+					<OnUpdate function="KrowiAF_CalendarFrameTodayFrame_OnUpdate"/>
 				</Scripts>
 			</Frame>
 			<Button name="$parentPrevMonthButton" parentKey="PrevMonthButton">
@@ -269,7 +271,7 @@
 					<Anchor point="RIGHT" relativeTo="$parentMonthBackground" relativePoint="LEFT" x="0" y="-1"/>
 				</Anchors>
 				<Scripts>
-					<OnClick function="KrowiAF_AchievementCalendarFramePrevMonthButton_OnClick"/>
+					<OnClick function="KrowiAF_CalendarFramePrevMonthButton_OnClick"/>
 				</Scripts>
 				<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up"/>
 				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down"/>
@@ -282,7 +284,7 @@
 					<Anchor point="LEFT" relativeTo="$parentMonthBackground" relativePoint="RIGHT" x="0" y="-1"/>
 				</Anchors>
 				<Scripts>
-					<OnClick function="KrowiAF_AchievementCalendarFrameNextMonthButton_OnClick"/>
+					<OnClick function="KrowiAF_CalendarFrameNextMonthButton_OnClick"/>
 				</Scripts>
 				<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up"/>
 				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down"/>
@@ -372,16 +374,16 @@
 					<Anchor point="TOPRIGHT" x="5" y="-13"/>
 				</Anchors>
 				<Scripts>
-					<OnKeyDown function="KrowiAF_AchievementCalendarFrameCloseButton_OnKeyDown"/>
+					<OnKeyDown function="KrowiAF_CalendarFrameCloseButton_OnKeyDown"/>
 				</Scripts>
 			</Button>
 		</Frames>
 		<Scripts>
-			<OnLoad function="KrowiAF_AchievementCalendarFrame_OnLoad"/>
-			<OnEvent function="KrowiAF_AchievementCalendarFrame_OnEvent"/>
-			<OnShow function="KrowiAF_AchievementCalendarFrame_OnShow"/>
-			<OnHide function="KrowiAF_AchievementCalendarFrame_OnHide"/>
-			<OnMouseWheel function="KrowiAF_AchievementCalendarFrame_OnMouseWheel"/>
+			<OnLoad function="KrowiAF_CalendarFrame_OnLoad"/>
+			<OnEvent function="KrowiAF_CalendarFrame_OnEvent"/>
+			<OnShow function="KrowiAF_CalendarFrame_OnShow"/>
+			<OnHide function="KrowiAF_CalendarFrame_OnHide"/>
+			<OnMouseWheel function="KrowiAF_CalendarFrame_OnMouseWheel"/>
 		</Scripts>
 	</Frame>
 </Ui>

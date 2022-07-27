@@ -1,5 +1,6 @@
 <Ui>
-    <!-- Originally from Blizzard_AchievementUI.xml line 1779 at time of writing -->
+    <Script file="CategoriesFrame.lua" />
+	
 	<Frame name="KrowiAF_CategoriesFrame_Template" mixin="KrowiAF_CategoriesFrameMixin" inherits="AchivementGoldBorderBackdrop" virtual="true" hidden="true">
 		<Scripts>
 			<OnShow function="KrowiAF_CategoriesFrame_OnShow"/>
