@@ -43,41 +43,54 @@ do -- Scripts
 	end
 end
 
+local cachedWidth;
 function KrowiAF_AchievementButtonMixin:DisplayObjectives()
-	local objectives = addon.GUI.AchievementsFrame.AchievementsObjectives;
+	local objectives = addon.GUI.AchievementsObjectives;
 	local topAnchor = self.HiddenDescription;
-	objectives:ClearAllPoints();
+	-- objectives:ClearAllPoints();
+	-- print(self:GetWidth(), self:GetHeight())
+
 	objectives:SetParent(self);
-	objectives:Show();
+	objectives:SetPoint("TOP", self.HiddenDescription, "BOTTOM", 0, -8);
+	objectives:SetPoint("LEFT", self, "LEFT", objectives.XOffset, 0); -- Set it each time to take the scrollbar into account
+	objectives:SetPoint("RIGHT", self, "RIGHT", -objectives.XOffset, 0); -- Set it each time to take the scrollbar into account
+	-- objectives:SetPoint("TOPLEFT", topAnchor, "BOTTOMLEFT", 0, -8);
+	-- objectives:SetPoint("TOPRIGHT", topAnchor, "BOTTOMRIGHT", 0, -8);
+	-- for i = 1, objectives:GetNumPoints() do
+	-- 	print(objectives:GetPoint(i))
+	-- end
+	-- print(objectives:GetWidth())
 	objectives.Completed = self.Completed;
 	objectives.FontHeight = self.FontHeight;
 	local height = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT; -- Compact or not, we need this height
 	local id = self.Achievement.Id;
-	if objectives.Id == id then
-		if objectives.Mode == objectives.Modes.Criteria then
-			if objectives:GetHeight() > 0 then
-				objectives:SetPoint("TOP", topAnchor, "BOTTOM", 0, -8);
-				objectives:SetPoint("LEFT", "$parentIcon", "RIGHT", -5, 0);
-				objectives:SetPoint("RIGHT", "$parentShield", "LEFT", -10, 0);
-			end
-		else
-			objectives:SetPoint("TOP", topAnchor, "BOTTOM", 0, -8);
-		end
+	if objectives.Id == id and cachedWidth == objectives:GetWidth() then
+		-- print("cached!!!")
+		-- if objectives.Mode == objectives.Modes.Criteria then
+		-- 	if objectives:GetHeight() > 0 then
+		-- 		objectives:SetPoint("TOPLEFT", topAnchor, "BOTTOMLEFT", 0, -8);
+		-- 		objectives:SetPoint("TOPRIGHT", topAnchor, "BOTTOMRIGHT", 0, -8);
+		-- 	end
+		-- else
+		-- 	objectives:SetPoint("TOP", topAnchor, "BOTTOM", 0, -8);
+		-- end
 	elseif self.Completed and GetPreviousAchievement(id) then
-		objectives:SetHeight(0);
+		objectives:SetHeight(1);
 		objectives:ResetAll();
 		objectives:DisplayProgressiveAchievement(id);
-		objectives:SetPoint("TOP", topAnchor, "BOTTOM", 0, -8);
+		-- objectives:SetPoint("TOP", topAnchor, "BOTTOM", 0, -8);
 	else
-		objectives:SetHeight(0);
+		objectives:SetHeight(1);
 		objectives:ResetAll();
 		objectives:DisplayCriteria(id);
-		if objectives:GetHeight() > 0 then
-			objectives:SetPoint("TOP", topAnchor, "BOTTOM", 0, -8);
-			objectives:SetPoint("LEFT", "$parentIcon", "RIGHT", -5, -25);
-			objectives:SetPoint("RIGHT", "$parentShield", "LEFT", -10, 0);
-		end
+		-- if objectives:GetHeight() > 0 then
+		-- 	objectives:SetPoint("TOPLEFT", topAnchor, "BOTTOMLEFT", 0, -8);
+		-- 	objectives:SetPoint("TOPRIGHT", topAnchor, "BOTTOMRIGHT", 0, -8);
+		-- end
+		cachedWidth = objectives:GetWidth();
 	end
+	objectives:Show();
+	-- print(objectives:GetHeight())
 	height = height + objectives:GetHeight();
 	if height ~= addon.Options.db.Achievements.ButtonCollapsedHeight or self.numLines > ACHIEVEMENTUI_MAX_LINES_COLLAPSED then
 		local descriptionHeight = self.HiddenDescription:GetHeight();
@@ -87,6 +100,7 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives()
 		end
 	end
 	objectives.Id = id;
+	height = max(ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT, height);
 	return height;
 end
 
@@ -258,7 +272,6 @@ function KrowiAF_AchievementButtonMixin:UpdatePlusMinusTexture()
 		display = true;
 	elseif self.Completed and GetPreviousAchievement(id) then
 		display = true;
----@diagnostic disable-next-line: redundant-parameter
 	elseif not self.Completed and GetAchievementGuildRep(id) then -- Not sure what this one does
 		display = true;
 	end

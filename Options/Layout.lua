@@ -170,6 +170,13 @@ local wowheadRelatedTabs = {
     addon.L["Screenshots"]
 };
 
+local criteriaBehaviour = {
+    addon.L["Overflow"],
+    addon.L["Truncate"],
+    addon.L["Flexible"],
+    -- addon.L["Wrap"]
+};
+
 options.OptionsTable.args["Layout"] = {
     type = "group",
     childGroups = "tab",
@@ -514,11 +521,50 @@ options.OptionsTable.args["Layout"] = {
                     inline = true,
                     args = {
                         CompactAchievements = {
-                            type = "toggle", width = 1.5,
+                            order = 1, type = "toggle", width = 1.5,
                             name = addon.L["Compact Achievements"],
                             desc = addon.ReplaceVarsWithReloadReq(addon.L["Compact Achievements Desc"]),
                             get = function() return addon.Options.db.Achievements.Compact; end,
                             set = SetCompactAchievements,
+                        },
+                        Objectives = {
+                            order = 2, type = "header",
+                            name = addon.L["Objectives"]
+                        },
+                        Force2Columns = {
+                            order = 2.1, type = "toggle", width = 1.5,
+                            name = addon.L["Force 2 columns"],
+                            desc = addon.L["Force 2 columns Desc"],
+                            get = function() return addon.Options.db.Achievements.Objectives.Force2Columns; end,
+                            set = function()
+                                addon.Options.db.Achievements.Objectives.Force2Columns = not addon.Options.db.Achievements.Objectives.Force2Columns;
+                                options.Debug(addon.L["Force 2 columns"], addon.Options.db.Achievements.Objectives.Force2Columns);
+                            end
+                        },
+                        Force2ColumnsThreshold = {
+                            order = 2.2, type = "range", width = 1.5,
+                            name = addon.L["Force 2 columns threshold"],
+                            desc = addon.L["Force 2 columns threshold Desc"],
+                            min = 0, max = 50, step = 1,
+                            get = function() return addon.Options.db.Achievements.Objectives.Force2ColumnsThreshold; end,
+                            set = function(_, value)
+                                if addon.Options.db.Achievements.Objectives.Force2ColumnsThreshold == value then return; end
+                                addon.Options.db.Achievements.Objectives.Force2ColumnsThreshold = value;
+                                options.Debug(addon.L["Force 2 columns threshold"], addon.Options.db.Achievements.Objectives.Force2ColumnsThreshold);
+                            end,
+                            disabled = function() return not addon.Options.db.Achievements.Objectives.Force2Columns; end
+                        },
+                        CriteriaBehaviour = {
+                            order = 3.1, type = "select", style = "radio",
+                            name = addon.L["Criteria Behaviour"],
+                            desc = addon.L["Criteria Behaviour Desc"],
+                            values = criteriaBehaviour,
+                            get = function() return addon.Options.db.Achievements.Objectives.CriteriaBehaviour; end,
+                            set = function (_, value)
+                                if addon.Options.db.Achievements.Objectives.CriteriaBehaviour == value then return; end;
+                                addon.Options.db.Achievements.Objectives.CriteriaBehaviour = value;
+                                options.Debug(addon.L["Criteria Behaviour"], addon.Options.db.Achievements.Objectives.CriteriaBehaviour);
+                            end
                         }
                     }
                 },

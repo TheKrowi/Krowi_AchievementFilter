@@ -39,6 +39,13 @@ function KrowiAF_SelectAchievementWithCategory(achievement, category)
 		if scrollBar:IsShown() then
 			local _, maxVal = scrollBar:GetMinMaxValues();
 			if shown then
+				-- Make sure we move the correct achievement to the top, this extra bid is needed since button:Select() already moves the achievement
+				for _, button in next, buttons do
+					if button.Achievement == achievement then
+						shown = button;
+						break;
+					end
+				end
 				local newHeight = scrollBar:GetValue() + scrollFrame:GetTop() - shown:GetTop();
 				newHeight = min(newHeight, maxVal);
 				scrollBar:SetValue(newHeight);

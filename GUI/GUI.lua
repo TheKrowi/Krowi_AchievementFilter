@@ -25,6 +25,7 @@ function gui:LoadWithBlizzard_AchievementUI()
     defaultAchievementFrameMetalBorderHeight = AchievementFrameMetalBorderLeft:GetHeight();
     self.SetAchievementFrameHeight(); -- Do this in order to create the correct amount of buttons based on our settings
 
+    addon.GUI.AchievementsObjectives.Load();
     gui.AchievementsFrame:Load();
     addon.GUI.SummaryFrame:Load();
     gui.CategoriesFrame:Load();
@@ -313,9 +314,7 @@ function gui.TabsOrderGetActiveKeys()
         addon.Options.db.MicroButtonTab = addonAchId;
         local binding = GetBindingByKey("Y");
         if binding == SavedData.Tabs[blizzAchId].BindingName then
----@diagnostic disable-next-line: missing-parameter
             SetBinding("Y", SavedData.Tabs[addonAchId].BindingName);
----@diagnostic disable-next-line: param-type-mismatch
             SaveBindings(GetCurrentBindingSet());
         end
         SavedData.FirstTimeSetUp.SwitchAchievementTabs = true;

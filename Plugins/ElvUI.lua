@@ -141,8 +141,8 @@ local function SkinAchievementsFrame(frame, engine, skins)
         end
     end);
 
-    local preHookFunction = addon.GUI.AchievementsFrame.AchievementsObjectives.DisplayCriteria;
-	function addon.GUI.AchievementsFrame.AchievementsObjectives:DisplayCriteria(id)
+    local preHookFunction = addon.GUI.AchievementsObjectives.DisplayCriteria;
+	function addon.GUI.AchievementsObjectives:DisplayCriteria(id)
         preHookFunction(self, id);
 		local numCriteria = GetAchievementNumCriteria(id);
 		local textStrings, metas = 0, 0;

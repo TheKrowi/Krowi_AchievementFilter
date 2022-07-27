@@ -136,3 +136,37 @@ function KrowiAF_RunUnitTests()
         -- AreEqual('Horseshoe!', Realm())
     end
 end
+
+-- function KrowiAF_LagGame()
+--     local gapSize, i = 0, 1;
+--     while gapSize < 500 do -- Biggest gap is 209 in 9.0.5 as of 2021-05-03
+--         local id, _, points, _, month, day, year, _, flags, _, _, isGuild, wasEarnedByMe, _, isStatistic, exists = addon.GetAchievementInfo(i);
+
+--         local hasProgressBar;
+--         local hasMeta;
+--         local hasTextCriteria;
+--         if id and exists then
+--             local numCriteria = GetAchievementNumCriteria(id);
+--             for j = 1, numCriteria do
+--                 local criteriaString, criteriaType, completed, quantity, reqQuantity, _, flags, assetID, quantityString = GetAchievementCriteriaInfo(id, j);
+--                 flags = addon.Objects.Flags:New(flags);
+--                 if criteriaType == CRITERIA_TYPE_ACHIEVEMENT and assetID then
+--                     hasMeta = true;
+--                 elseif flags.IsCriteriaProgressBar then
+--                     hasProgressBar = true;
+--                 else
+--                     hasTextCriteria = true;
+--                 end
+--             end
+--         end
+--         if hasProgressBar and hasMeta then
+--             print(id);
+--         end
+--         if id and exists then
+--             gapSize = 0;
+--         else
+--             gapSize = gapSize + 1;
+--         end
+--         i = i + 1;
+--     end
+-- end
