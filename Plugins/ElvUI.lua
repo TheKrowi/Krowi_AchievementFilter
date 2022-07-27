@@ -154,7 +154,7 @@ local function SkinAchievementsFrame(frame, engine, skins)
 				criteria, object = self:GetMeta(metas), 'Label';
 			elseif criteriaType ~= 1 then
 				textStrings = textStrings + 1;
-				criteria, object = self:GetCriteria(textStrings), 'Label';
+				criteria, object = self:GetTextCriteria(textStrings), 'Label';
 			end
 
 			local text = criteria and criteria[object];
