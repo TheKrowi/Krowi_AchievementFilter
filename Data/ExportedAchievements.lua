@@ -1,4 +1,4 @@
--- [[ Exported at 2022-07-16 10-35-38 ]] --
+-- [[ Exported at 2022-07-27 09-57-38 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -6628,14 +6628,14 @@ function exportedAchievements.Load(a, t)
     a[15042] = ach:New(15042, 5); -- Tea for the Troubled
     a[15043] = ach:New(15043, 0); -- Hoarder of Torghast
     a[15044] = ach:New(15044, 5); -- Krrprripripkraak's Heroes
-    a[15045] = ach:New(15045, 0); -- Keystone Hero: The Necrotic Wake
-    a[15046] = ach:New(15046, 0); -- Keystone Hero: Plaguefall
-    a[15047] = ach:New(15047, 0); -- Keystone Hero: Mists of Tirna Scithe
-    a[15048] = ach:New(15048, 0); -- Keystone Hero: Halls of Atonement
-    a[15049] = ach:New(15049, 0); -- Keystone Hero: Spires of Ascension
-    a[15050] = ach:New(15050, 0); -- Keystone Hero: Theater of Pain
-    a[15051] = ach:New(15051, 0); -- Keystone Hero: De Other Side
-    a[15052] = ach:New(15052, 0); -- Keystone Hero: Sanguine Depths
+    a[15045] = ach:New(15045, 0, nil, nil, false); -- Keystone Hero: The Necrotic Wake
+    a[15046] = ach:New(15046, 0, nil, nil, false); -- Keystone Hero: Plaguefall
+    a[15047] = ach:New(15047, 0, nil, nil, false); -- Keystone Hero: Mists of Tirna Scithe
+    a[15048] = ach:New(15048, 0, nil, nil, false); -- Keystone Hero: Halls of Atonement
+    a[15049] = ach:New(15049, 0, nil, nil, false); -- Keystone Hero: Spires of Ascension
+    a[15050] = ach:New(15050, 0, nil, nil, false); -- Keystone Hero: Theater of Pain
+    a[15051] = ach:New(15051, 0, nil, nil, false); -- Keystone Hero: De Other Side
+    a[15052] = ach:New(15052, 0, nil, nil, false); -- Keystone Hero: Sanguine Depths
     a[15053] = ach:New(15053, 10); -- Explore Korthia
     a[15054] = ach:New(15054, 15); -- Minions of the Cold Dark
     a[15055] = ach:New(15055, 10); -- Friend of Ooz
@@ -6777,18 +6777,18 @@ function exportedAchievements.Load(a, t)
     a[15327] = ach:New(15327, 0, nil, nil, false); -- Tormented Hero: Shadowlands Season 2
     a[15331] = ach:New(15331, 10); -- Treasures of Zereth Mortis
     a[15336] = ach:New(15336, 25); -- From A to Zereth
-    a[15348] = ach:New(15348, 0); -- Combatant I: Shadowlands Season 3
-    a[15349] = ach:New(15349, 0); -- Challenger I: Shadowlands Season 3
-    a[15350] = ach:New(15350, 0); -- Rival I: Shadowlands Season 3
-    a[15351] = ach:New(15351, 0); -- Duelist: Shadowlands Season 3
+    a[15348] = ach:New(15348, 0, nil, nil, false); -- Combatant I: Shadowlands Season 3
+    a[15349] = ach:New(15349, 0, nil, nil, false); -- Challenger I: Shadowlands Season 3
+    a[15350] = ach:New(15350, 0, nil, nil, false); -- Rival I: Shadowlands Season 3
+    a[15351] = ach:New(15351, 0, nil, nil, false); -- Duelist: Shadowlands Season 3
     a[15352] = ach:New(15352, 0); -- Gladiator: Shadowlands Season 3
-    a[15353] = ach:New(15353, 0); -- Cosmic Gladiator: Shadowlands Season 3
-    a[15354] = ach:New(15354, 0); -- Elite: Shadowlands Season 3
-    a[15355] = ach:New(15355, 0, fac.Alliance, 15356); -- Hero of the Alliance: Cosmic
-    a[15356] = ach:New(15356, 0, fac.Horde, 15355); -- Hero of the Horde: Cosmic
-    a[15378] = ach:New(15378, 0); -- Rival II: Shadowlands Season 3
-    a[15379] = ach:New(15379, 0); -- Challenger II: Shadowlands Season 3
-    a[15380] = ach:New(15380, 0); -- Combatant II: Shadowlands Season 3
+    a[15353] = ach:New(15353, 0, nil, nil, false); -- Cosmic Gladiator: Shadowlands Season 3
+    a[15354] = ach:New(15354, 0, nil, nil, false); -- Elite: Shadowlands Season 3
+    a[15355] = ach:New(15355, 0, fac.Alliance, 15356, false); -- Hero of the Alliance: Cosmic
+    a[15356] = ach:New(15356, 0, fac.Horde, 15355, false); -- Hero of the Horde: Cosmic
+    a[15378] = ach:New(15378, 0, nil, nil, false); -- Rival II: Shadowlands Season 3
+    a[15379] = ach:New(15379, 0, nil, nil, false); -- Challenger II: Shadowlands Season 3
+    a[15380] = ach:New(15380, 0, nil, nil, false); -- Combatant II: Shadowlands Season 3
     a[15381] = ach:New(15381, 10); -- Power ON
     a[15384] = ach:New(15384, 0); -- Cosmic Gladiator's Soul Eater
     a[15386] = ach:New(15386, 10); -- Shimmering Secrets
@@ -6889,8 +6889,8 @@ function exportedAchievements.Load(a, t)
     a[15417] = ach:New(15417, 10); -- Sepulcher of the First Ones
     a[15418] = ach:New(15418, 10); -- The Grand Design
     a[15419] = ach:New(15419, 10); -- The Protoform Matrix
-    a[15470] = ach:New(15470, 0); -- Ahead of the Curve: The Jailer
-    a[15471] = ach:New(15471, 0); -- Cutting Edge: The Jailer
+    a[15470] = ach:New(15470, 0, nil, nil, false); -- Ahead of the Curve: The Jailer
+    a[15471] = ach:New(15471, 0, nil, nil, false); -- Cutting Edge: The Jailer
     a[15478] = ach:New(15478, 10); -- Heroic: Sepulcher of the First Ones
     a[15479] = ach:New(15479, 10); -- Mythic: Vigilant Guardian
     a[15480] = ach:New(15480, 10); -- Mythic: Skolex
@@ -6908,12 +6908,12 @@ function exportedAchievements.Load(a, t)
     a[15492] = ach:New(15492, 10); -- Cornerstone of Creation
     a[15493] = ach:New(15493, 10); -- Ephemeral Plains
     a[15494] = ach:New(15494, 0); -- Damnation Aviation
-    a[15496] = ach:New(15496, 0); -- Shadowlands Keystone Explorer: Season Three
-    a[15498] = ach:New(15498, 0); -- Shadowlands Keystone Conqueror: Season Three
-    a[15499] = ach:New(15499, 0); -- Shadowlands Keystone Master: Season Three
+    a[15496] = ach:New(15496, 0, nil, nil, false); -- Shadowlands Keystone Explorer: Season Three
+    a[15498] = ach:New(15498, 0, nil, nil, false); -- Shadowlands Keystone Conqueror: Season Three
+    a[15499] = ach:New(15499, 0, nil, nil, false); -- Shadowlands Keystone Master: Season Three
     a[15500] = ach:New(15500, 0); -- "Keystone Hero: Tazavesh, the Veiled Market"
     a[15502] = ach:New(15502, 10); -- "Sand, Sand Everywhere!"
-    a[15506] = ach:New(15506, 0); -- Shadowlands Keystone Hero: Season Three
+    a[15506] = ach:New(15506, 0, nil, nil, false); -- Shadowlands Keystone Hero: Season Three
     a[15508] = ach:New(15508, 10); -- Fashion of the First Ones
     a[15509] = ach:New(15509, 5); -- Tales of the Exile
     a[15511] = ach:New(15511, 10); -- Solely Motivated
@@ -6968,7 +6968,7 @@ function exportedAchievements.Load(a, t)
     a[15688] = ach:New(15688, 0); -- Shadowlands Keystone Explorer: Season Four
     a[15689] = ach:New(15689, 0); -- Shadowlands Keystone Conqueror: Season Four
     a[15690] = ach:New(15690, 0); -- Shadowlands Keystone Master: Season Four
-    a[15691] = ach:New(15691, 0); -- Cryptic Hero: Shadowlands Season 3
+    a[15691] = ach:New(15691, 0, nil, nil, false); -- Cryptic Hero: Shadowlands Season 3
     a[15692] = ach:New(15692, 0); -- Keystone Hero: Return to Karazhan
     a[15693] = ach:New(15693, 0); -- Keystone Hero: Operation: Mechagon
     a[15694] = ach:New(15694, 0); -- Keystone Hero: Iron Docks

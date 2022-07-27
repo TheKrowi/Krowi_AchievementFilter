@@ -26,6 +26,7 @@ All notable changes to this project will be documented in this file.
 - Filters do not automatically change anymore when you would be redirected to an achievement that would not be visible with set filters
 - Moved the Right Click Menu button to the top right of the achievement
 - German translation for almost everything
+- The following achievements are unobtainable: Ahead of the Curve: The Jailer, Cutting Edge: The Jailer, Shadowlands Keystone Explorer: Season Three, Shadowlands Keystone Conqueror: Season Three, Shadowlands Keystone Master: Season Three, Shadowlands Keystone Hero: Season Three, Cryptic Hero: Shadowlands Season 3, Keystone Hero: De Other Side, Keystone Hero: Mists of Tirna Scithe, Keystone Hero: The Necrotic Wake, Keystone Hero: Spires of Ascension, Keystone Hero: Halls of Atonement, Keystone Hero: Sanguine Depths, Keystone Hero: Theater of Pain, Keystone Hero: Plaguefall, Combatant I: Shadowlands Season 3, Combatant II: Shadowlands Season 3, Challenger I: Shadowlands Season 3, Challenger II: Shadowlands Season 3, Rival I: Shadowlands Season 3, Rival II: Shadowlands Season 3, Duelist: Shadowlands Season 3, Elite: Shadowlands Season 3, Gladiator: Shadowlands Season 3, Cosmic Gladiator: Shadowlands Season 3
 
 ### Fixed
 - Sometimes an achievement did not display anything and was not interactable after switching tabs
