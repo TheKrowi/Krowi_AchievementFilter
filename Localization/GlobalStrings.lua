@@ -72,4 +72,5 @@ function globalStrings.Load(L)
     L["Weekdays"] = GUILD_AVAILABILITY_WEEKDAYS;
     L["Minimap"] = MINIMAP_LABEL;
     L["Class"] = CLASS;
+    L["Category"] = CATEGORY;
 end
