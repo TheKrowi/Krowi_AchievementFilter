@@ -341,7 +341,9 @@ function AchievementsObjectivesMixin:SetTextPoints(numTextCriteria, maxCriteriaW
 			position = position + 1;
 		end
 	end
-	return self:GetTextCriteria(1):GetTop() - self:GetTextCriteria(numTextCriteria):GetBottom();
+	local top = self:GetTextCriteria(1):GetTop();
+	local bottom = self:GetTextCriteria(numTextCriteria):GetBottom();
+	return top - bottom;
 end
 
 function AchievementsObjectivesMixin:DisplayCriteria(id)
