@@ -62,8 +62,8 @@ options.Defaults = {
             Compact = false,
             ButtonCollapsedHeight = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT or 84, -- can return nil
             Objectives = {
-                Force2Columns = true,
-                Force2ColumnsThreshold = 20,
+                ForceTwoColumns = true,
+                ForceTwoColumnsThreshold = 20,
                 CriteriaBehaviour = 2
             }
         },

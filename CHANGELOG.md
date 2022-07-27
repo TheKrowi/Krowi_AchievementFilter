@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - Mini achievements (shown when opening an achievement part of a chain) and meta achievements (shown when opening an achievement that requires achievements) now also have a right click menu
 - When getting redirected to a normally invisble achievement (due to the filters), the achievement will be shown and a green exclamation mark will be shown
 - Options to display achievement objectives
+- Protection so Blizzard Statistics can not be in front of Guild, would result in errors
 
 ### Changed
 - Tabs are now handled by addon and tab name and API is accessible by other addons (see Plugins/Overachiever.lua for example or ask for assistance on discord)

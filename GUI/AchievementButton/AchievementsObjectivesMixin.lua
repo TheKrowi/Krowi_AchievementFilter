@@ -305,8 +305,8 @@ function AchievementsObjectivesMixin:SetTextPoints(numTextCriteria, maxCriteriaW
 	local columns = floor(self:GetWidth() / maxCriteriaWidth);
 
 	local truncate, flex;
-	if addon.Options.db.Achievements.Objectives.Force2Columns then
-		if columns < 2 and numTextCriteria >= addon.Options.db.Achievements.Objectives.Force2ColumnsThreshold then
+	if addon.Options.db.Achievements.Objectives.ForceTwoColumns then
+		if columns < 2 and numTextCriteria >= addon.Options.db.Achievements.Objectives.ForceTwoColumnsThreshold then
 			columns = 2;
 			-- addon.Options.db.Achievements.Objectives.CriteriaBehaviour == 1 needs no additional code to overflow
 			if addon.Options.db.Achievements.Objectives.CriteriaBehaviour == 2 then -- Truncate

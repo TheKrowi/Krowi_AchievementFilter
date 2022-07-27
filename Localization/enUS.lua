@@ -1,8 +1,8 @@
--- [[ Exported at 2022-07-24 18-32-54 ]] --
+-- [[ Exported at 2022-07-27 07-11-54 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ English texts by Krowi, 2022-06-04 ]] --
+-- [[ English texts by Krowi, 2022-07-27 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -216,6 +216,7 @@ L["Blizzard"] = "Blizzard";
 L["Order"] = "Order";
 L["Tab"] = "Tab";
 L["FixTabs"] = "All tabs are shown again. This was necessary to introduce the new tabs ordering feature.\nSorry for any inconvenience.";
+L["Error Tabs Order"] = "{blizzard} tab {statistics} can not be in front of {guild}.";
 L["Header"] = "Header";
 L["Format"] = "Format";
 L["Account wide (default)"] = "Account wide (default)";
@@ -232,6 +233,8 @@ L["Keep current character"] = "Keep current character";
 L["Keep current character Desc"] = "Keep the current character in the list of characters in the tooltip regardless if the character would be truncated from the list by the {maxNumChar} or not.";
 L["Sort priority"] = "Sort priority";
 L["Realm"] = "Realm";
+L["Indentation"] = "Indentation";
+L["Indentation Desc"] = "The size of the indentation of child categories.";
 L["Show Sub Categories"] = "Show Sub Categories";
 L["Show Sub Categories Desc"] = "Show / hide sub categories.\n\nWhen checked, the achievements will be placed under their original sub categories instead of all together under the single {category} category.";
 L["Clear all"] = "Clear all";
@@ -247,6 +250,16 @@ L["Merge small categories threshold Desc"] = "Categories with a number of achiev
 L["Style"] = "Style";
 L["Compact Achievements"] = "Compact Achievements";
 L["Compact Achievements Desc"] = "Achievements are 2/3rd the size, similar to the summary achievements.\n\n{reloadRequired}";
+L["Force two columns"] = "Force two columns";
+L["Force two columns Desc"] = "Enable / disable the algorithm to force two achievement objectives columns. When enabled, if only one column of objectives would be shown due to the text of one or more objectives being too long, a second column will be forced based on the other settings.";
+L["Force two columns threshold"] = "Force two columns threshold";
+L["Force two columns threshold Desc"] = "The number of criteria the achievement must have before we force a second column if normally only one would be shown.";
+L["Objectives"] = "Objectives";
+L["Criteria Behaviour"] = "Criteria Behaviour";
+L["Criteria Behaviour Desc"] = "The way a criteria with too long text will behave.\n\n|T:1:8|t- {overflow}: Text will display as normal and just overflow. This can result in texts overlapping.\n|T:1:8|t- {truncate}: Will cut off the text and show '…' at the end.\n|T:1:8|t- {flexible}: Criteria with too long texts will be placed on a new line. Other criteria will be displayed in two columns.";
+L["Overflow"] = "Overflow";
+L["Truncate"] = "Truncate";
+L["Flexible"] = "Flexible";
 L["Not Earned By"] = "Not Earned By";
 L["Number of Earned By characters"] = "Number of {earnedBy} characters";
 L["Number of Earned By characters Desc"] = "The number of characters that will be displayed that have earned the achievement.\n\nSetting it to 0 will disable this feature.";

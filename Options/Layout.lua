@@ -531,33 +531,38 @@ options.OptionsTable.args["Layout"] = {
                             order = 2, type = "header",
                             name = addon.L["Objectives"]
                         },
-                        Force2Columns = {
+                        ForceTwoColumns = {
                             order = 2.1, type = "toggle", width = 1.5,
-                            name = addon.L["Force 2 columns"],
-                            desc = addon.L["Force 2 columns Desc"],
-                            get = function() return addon.Options.db.Achievements.Objectives.Force2Columns; end,
+                            name = addon.L["Force two columns"],
+                            desc = addon.L["Force two columns Desc"],
+                            get = function() return addon.Options.db.Achievements.Objectives.ForceTwoColumns; end,
                             set = function()
-                                addon.Options.db.Achievements.Objectives.Force2Columns = not addon.Options.db.Achievements.Objectives.Force2Columns;
-                                options.Debug(addon.L["Force 2 columns"], addon.Options.db.Achievements.Objectives.Force2Columns);
+                                addon.Options.db.Achievements.Objectives.ForceTwoColumns = not addon.Options.db.Achievements.Objectives.ForceTwoColumns;
+                                options.Debug(addon.L["Force two columns"], addon.Options.db.Achievements.Objectives.ForceTwoColumns);
                             end
                         },
-                        Force2ColumnsThreshold = {
+                        ForceTwoColumnsThreshold = {
                             order = 2.2, type = "range", width = 1.5,
-                            name = addon.L["Force 2 columns threshold"],
-                            desc = addon.L["Force 2 columns threshold Desc"],
+                            name = addon.L["Force two columns threshold"],
+                            desc = addon.L["Force two columns threshold Desc"],
                             min = 0, max = 50, step = 1,
-                            get = function() return addon.Options.db.Achievements.Objectives.Force2ColumnsThreshold; end,
+                            get = function() return addon.Options.db.Achievements.Objectives.ForceTwoColumnsThreshold; end,
                             set = function(_, value)
-                                if addon.Options.db.Achievements.Objectives.Force2ColumnsThreshold == value then return; end
-                                addon.Options.db.Achievements.Objectives.Force2ColumnsThreshold = value;
-                                options.Debug(addon.L["Force 2 columns threshold"], addon.Options.db.Achievements.Objectives.Force2ColumnsThreshold);
+                                if addon.Options.db.Achievements.Objectives.ForceTwoColumnsThreshold == value then return; end
+                                addon.Options.db.Achievements.Objectives.ForceTwoColumnsThreshold = value;
+                                options.Debug(addon.L["Force two columns threshold"], addon.Options.db.Achievements.Objectives.ForceTwoColumnsThreshold);
                             end,
-                            disabled = function() return not addon.Options.db.Achievements.Objectives.Force2Columns; end
+                            disabled = function() return not addon.Options.db.Achievements.Objectives.ForceTwoColumns; end
                         },
                         CriteriaBehaviour = {
                             order = 3.1, type = "select", style = "radio",
                             name = addon.L["Criteria Behaviour"],
-                            desc = addon.L["Criteria Behaviour Desc"],
+                            desc = addon.L["Criteria Behaviour Desc"]:ReplaceVars
+                            {
+                                overflow = addon.L["Overflow"],
+                                truncate = addon.L["Truncate"],
+                                flexible = addon.L["Flexible"]
+                            },
                             values = criteriaBehaviour,
                             get = function() return addon.Options.db.Achievements.Objectives.CriteriaBehaviour; end,
                             set = function (_, value)
