@@ -34,6 +34,8 @@ function achievementsFrame:Load()
 		frame:ForceUpdate();
 	end); -- Issue #3: Fix
 
+	frame.ScrollBarStep = scrollBar:GetValueStep();
+
 	addon.GUI.AchievementsFrame = frame; -- Overwrite with the actual frame since all functions are injected to it
 end
 
@@ -103,6 +105,7 @@ function KrowiAF_AchievementsFrameMixin:Update()
 	-- Let's try just always hide it. When switching tabs and the new tab has no achievement selected, this line or ClearSelection is not called
 	-- if selectedAchievement then
 	addon.GUI.AchievementsObjectives:Hide();
+	scrollFrame.ScrollBar:SetValueStep(self.ScrollBarStep);
 	-- end
 
 	local displayedHeight = 0;
@@ -204,7 +207,8 @@ end
 	end
 end
 
- -- When the selection is already visible, adjust it so it fits
+-- When the selection is already visible, adjust it so it fits
+
 function KrowiAF_AchievementsFrameMixin:AdjustSelection()
 	local scrollFrame = self.ScrollFrame;
 	local scrollBar = scrollFrame.ScrollBar;
@@ -237,6 +241,7 @@ function KrowiAF_AchievementsFrameMixin:AdjustSelection()
 	if newHeight then
 		local _, maxVal = scrollBar:GetMinMaxValues();
 		newHeight = min(newHeight, maxVal);
+		scrollBar:SetValueStep(1);
 		scrollBar:SetValue(newHeight);
 	end
 end
