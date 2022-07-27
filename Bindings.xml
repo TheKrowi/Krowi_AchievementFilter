@@ -20,5 +20,8 @@
     <Binding name="KrowiAF_OPEN_TAB_Specials" category="ADDONS">
         KrowiAF_ToggleAchievementFrame("Krowi_AchievementFilter", "Specials");
     </Binding>
+    <Binding name="KrowiAF_OPEN_CAT_Current_Zone" category="ADDONS">
+        KrowiAF_OpenCurrentZone(true);
+    </Binding>
 </Bindings>
 

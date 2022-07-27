@@ -184,6 +184,14 @@ function KrowiAF_ToggleAchievementFrame(_addonName, tabName)
     addon.GUI.ToggleAchievementFrame(_addonName, tabName);
 end
 
+function KrowiAF_OpenCurrentZone(collapsed)
+    if not IsAddOnLoaded("Blizzard_AchievementUI") then
+        LoadAddOn("Blizzard_AchievementUI");
+    end
+
+	KrowiAF_SelectCategory(addon.Data.CurrentZoneCategory, collapsed);
+end
+
 function KrowiAF_RegisterTabButton(_addonName, tabName, button, selectFunc)
 	addon.GUI.Tabs[_addonName] = addon.GUI.Tabs[_addonName] or {};
     addon.GUI.Tabs[_addonName][tabName] = button;
@@ -319,3 +327,4 @@ function KrowiAF_RegisterTabOptions(_addonName, tabName, addonDisplayName, tabDi
         end
     }, tostring(index), "args", "Layout", "args", "Tabs", "args", "Order");
 end
+

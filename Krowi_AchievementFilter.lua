@@ -17,6 +17,7 @@ for t, tab in next, addon.Tabs do
         _G["BINDING_NAME_KrowiAF_OPEN_TAB_" .. tostring(tab.Name)] = addon.L["Toggle"] .. " " .. tab.Text .. " "  .. addon.L["tab"];
     end
 end
+_G["BINDING_NAME_KrowiAF_OPEN_CAT_Current_Zone"] = addon.L["Open"] .. " " .. addon.L["Current Zone"] .. " " .. addon.L["Category"];
 
 -- [[ Faction data ]] --
 addon.Faction = {};
