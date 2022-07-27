@@ -40,7 +40,6 @@ do -- Scripts
 	end
 
 	function KrowiAF_AchievementButton_OnEvent(self, event)
-		print(event)
 		if event ~= "ACHIEVEMENT_EARNED" then
 			return;
 		end

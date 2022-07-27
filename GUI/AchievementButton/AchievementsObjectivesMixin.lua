@@ -53,7 +53,8 @@ do -- Scripts
 			return;
 		end
 
-		if addon.GUI.SelectedTab.SelectedAchievement then
+		local selectedTab = addon.GUI.SelectedTab;
+		if selectedTab and selectedTab.SelectedAchievement then
 			local id = self.Id;
 			local button = self:GetParent();
 			self.Id = nil;
