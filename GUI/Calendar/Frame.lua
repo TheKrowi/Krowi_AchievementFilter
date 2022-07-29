@@ -155,11 +155,13 @@ function KrowiAF_CalendarFrame_OnEvent(self, event, ...)
 	end
 end
 
+local firstTimeOpen = true;
 function KrowiAF_CalendarFrame_OnShow(self)
-	if not self.LockMonth and not addon.Options.db.Calendar.LockMonth then
+	if (not self.LockMonth and not addon.Options.db.Calendar.LockMonth) or firstTimeOpen then
 		local currentCalendarTime = C_DateAndTime.GetCurrentCalendarTime();
 		C_CalendarSetAbsMonth(currentCalendarTime.month, currentCalendarTime.year);
 		self:Update();
+		firstTimeOpen = nil;
 	end
 	self.LockMonth = nil;
 	PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN);

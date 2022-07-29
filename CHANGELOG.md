@@ -40,6 +40,7 @@ All notable changes to this project will be documented in this file.
 - Achievement objectives should no longer stay visible in some cases
 - Getting redirected to an invisble achievement (due to the filters), no errors should be triggered anymore
 - Categories watermark should now show again after hiding and showing the achievement window
+- Opening the calendar for the first time when locking the month does not show achievements
 
 ## 9.2.5.36.3 - 2022-07-13
 ### Fixed
