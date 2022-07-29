@@ -40,7 +40,7 @@ do -- Scripts
 	end
 
 	function KrowiAF_AchievementButton_OnEvent(self, event)
-		if event ~= "ACHIEVEMENT_EARNED" then
+		if event ~= "ACHIEVEMENT_EARNED" or not self.Achievement or not self.index then
 			return;
 		end
 
