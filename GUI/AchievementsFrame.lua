@@ -152,7 +152,9 @@ function KrowiAF_AchievementsFrameMixin.ClearHighlightedButton()
 end
 
 function KrowiAF_AchievementsFrameMixin:ExpandSelection(button)
-	HybridScrollFrame_ExpandButton(self.ScrollFrame, ((button.index - 1) * addon.Options.db.Achievements.ButtonCollapsedHeight), button:GetHeight());
+	if button then
+		HybridScrollFrame_ExpandButton(self.ScrollFrame, ((button.index - 1) * addon.Options.db.Achievements.ButtonCollapsedHeight), button:GetHeight());
+	end
 	self:Update();
 	self:AdjustSelection();
 end
@@ -198,7 +200,7 @@ end
 			end
 		end
 		if not scrollBar:IsVisible() or scrollBar:GetValue() == maxVal then
-			return;
+			return; -- Failed to find the selected button :(
 		else
 			newHeight = newHeight + scrollHeight;
 			newHeight = min(newHeight, maxVal);
