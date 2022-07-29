@@ -1,7 +1,8 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\..\FrameXML\UI.xsd">
+<Ui>
+    <Script file="ResultsFrame.lua" />
+    <Script file="ResultsFrameMixin.lua" />
 
-    <!-- Originally from Blizzard_AchievementUI.xml line 2683 at time of writing -->
-	<Frame name="KrowiAF_AchievementFrameSearchResultsFrame_Template" virtual="true" hidden="true">
+	<Frame name="KrowiAF_SearchResultsFrame_Template" mixin="KrowiAF_SearchResultsFrameMixin" virtual="true" hidden="true">
 		<Size x="600"/>
 		<Layers>
 			<Layer level="BACKGROUND">
@@ -136,5 +137,4 @@
 			</OnHide>
 		</Scripts>
 	</Frame>
-
 </Ui>

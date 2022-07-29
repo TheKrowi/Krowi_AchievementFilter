@@ -1,38 +1,9 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
-local search = addon.GUI.Search;
-search.ResultsFrame = {};
-local resultsFrame = search.ResultsFrame;
 
--- [[ Constructors ]] --
-resultsFrame.__index = resultsFrame; -- Used to inject all the namespace functions to the frame
-function resultsFrame:Load()
-	local frame = CreateFrame("Frame", "KrowiAF_AchievementFrameSearchResultsFrame", AchievementFrame, "KrowiAF_AchievementFrameSearchResultsFrame_Template");
-	frame:SetPoint("TOP", 0, -112);
-	frame:SetPoint("BOTTOM", 0, 7);
-	addon.Util.InjectMetatable(frame, resultsFrame); -- Inject all the namespace functions to the frame
+KrowiAF_SearchResultsFrameMixin = {};
 
-	local scrollFrame = frame.Container;
-	local scrollBar = scrollFrame.ScrollBar;
-	local scrollBarShow = getmetatable(scrollBar).__index.Show;
-	scrollBar.Show = function()
-		self.Show_Hide(frame, scrollBarShow, 575, -24);
-	end;
-	local scrollBarHide = getmetatable(scrollBar).__index.Hide;
-	scrollBar.Hide = function()
-		self.Show_Hide(frame, scrollBarHide, 597, 0);
-	end;
-
-    scrollFrame.update = function()
-		frame:Update();
-    end
-
-    HybridScrollFrame_CreateButtons(scrollFrame, "KrowiAF_AchievementFrameSearchResultsFrameSearchResultsButton_Template", 0, 0);
-
-	addon.GUI.Search.ResultsFrame = frame;
-end
-
-function resultsFrame.Show_Hide(frame, func, categoriesWidth, achievementsOffsetX)
+function KrowiAF_SearchResultsFrameMixin.Show_Hide(frame, func, categoriesWidth, achievementsOffsetX)
 	local scrollFrame = frame.Container;
 	scrollFrame:SetPoint("BOTTOMRIGHT", frame.bottomRightCorner, achievementsOffsetX, 8);
 	scrollFrame:GetScrollChild():SetWidth(categoriesWidth);
@@ -56,7 +27,7 @@ function resultsFrame.Show_Hide(frame, func, categoriesWidth, achievementsOffset
 end
 
 local savedQuery, savedResults;
-function resultsFrame:Update(query, results)
+function KrowiAF_SearchResultsFrameMixin:Update(query, results)
 	self:SetPoint("TOP", 0, -112); -- Need to reset the frame before we can adjust again
 
 	savedQuery = query or savedQuery;

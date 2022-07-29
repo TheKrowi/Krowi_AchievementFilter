@@ -1,7 +1,7 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\..\FrameXML\UI.xsd">
+<Ui>
+    <Script file="ResultsButton.lua"/>
 
-    <!-- Originally from Blizzard_AchievementUI.xml line 66 at time of writing -->
-	<Button name="KrowiAF_AchievementFrameSearchResultsFrameSearchResultsButton_Template" virtual="true">
+	<Button name="KrowiAF_SearchResultsButton_Template" virtual="true">
 		<Size x="575" y="49"/>
 		<Layers>
 			<Layer level="OVERLAY" textureSubLevel="2">
@@ -49,8 +49,7 @@
 		<HighlightTexture atlas="search-highlight-large">
 		</HighlightTexture>
 		<Scripts>
-			<OnClick function="KrowiAF_AchievementFrameSearchResultsFrameSearchResultsButton_OnClick"/>
+			<OnClick function="KrowiAF_SearchResultsButton_OnClick"/>
 		</Scripts>
 	</Button>
-
 </Ui>

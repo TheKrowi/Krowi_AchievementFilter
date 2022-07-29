@@ -4,22 +4,19 @@ local search = addon.GUI.Search;
 search.BoxFrame = {};
 local boxFrame = search.BoxFrame;
 
--- [[ Constructors ]] --
-boxFrame.__index = boxFrame; -- Used to inject all the namespace functions to the frame
 function boxFrame:Load()
 	-- Create frame
-    local frame = CreateFrame("EditBox", "KrowiAF_AchievementFrameSearchBoxFrame", AchievementFrame, "KrowiAF_AchievementFrameSearchBoxFrame_Template");
+    local frame = CreateFrame("EditBox", "KrowiAF_SearchBoxFrame", AchievementFrame, "KrowiAF_SearchBoxFrame_Template");
 	frame:SetPoint("TOPLEFT", AchievementFrame.searchBox);
     frame:SetPoint("BOTTOMRIGHT", AchievementFrame.searchBox);
     frame:SetMaxLetters(40);
-	addon.Util.InjectMetatable(frame, boxFrame); -- Inject all the namespace functions to the frame
 
 	tinsert(ACHIEVEMENTFRAME_SUBFRAMES, frame:GetName());
 
 	addon.GUI.Search.BoxFrame = frame;
 end
 
-function KrowiAF_AchievementFrameSearchBoxFrame_OnLoad(self)
+function KrowiAF_SearchBoxFrame_OnLoad(self)
 	SearchBoxTemplate_OnLoad(self);
 	self.HasStickyFocus = function()
 		local ancestry = search.PreviewFrame;
@@ -27,12 +24,12 @@ function KrowiAF_AchievementFrameSearchBoxFrame_OnLoad(self)
     end
 end
 
-function KrowiAF_AchievementFrameSearchBoxFrame_OnShow(self)
+function KrowiAF_SearchBoxFrame_OnShow(self)
 	self:SetFrameLevel(self:GetParent():GetFrameLevel() + 7);
-	KrowiAF_AchievementFrameSearchPreviewFrameSearchPreviewButton_OnEnter(search.PreviewFrame.Buttons[1]);
+	KrowiAF_SearchPreviewButton_OnEnter(search.PreviewFrame.Buttons[1]);
 end
 
-function KrowiAF_AchievementFrameSearchBoxFrame_OnHide(self)
+function KrowiAF_SearchBoxFrame_OnHide(self)
 	if not AchievementFrame:IsShown() then
 		self:SetText("");
 	end
@@ -40,7 +37,7 @@ function KrowiAF_AchievementFrameSearchBoxFrame_OnHide(self)
 	search.ResultsFrame:Hide();
 end
 
-function KrowiAF_AchievementFrameSearchBoxFrame_OnEnterPressed(self)
+function KrowiAF_SearchBoxFrame_OnEnterPressed(self)
 	if strlen(self:GetText()) < addon.Options.db.SearchBox.MinimumCharactersToSearch and not string.match(self:GetText():lower(), "^#") then
 		return;
 	end
@@ -110,7 +107,7 @@ local function GetSearchResults(text)
     return results;
 end
 
-function KrowiAF_AchievementFrameSearchBoxFrame_OnTextChanged(self)
+function KrowiAF_SearchBoxFrame_OnTextChanged(self)
 	SearchBoxTemplate_OnTextChanged(self);
 
 	if strlen(self:GetText()) >= addon.Options.db.SearchBox.MinimumCharactersToSearch or string.match(self:GetText():lower(), "^#") then
@@ -121,12 +118,12 @@ function KrowiAF_AchievementFrameSearchBoxFrame_OnTextChanged(self)
 	end
 end
 
-function KrowiAF_AchievementFrameSearchBoxFrame_OnFocusLost(self)
+function KrowiAF_SearchBoxFrame_OnFocusLost(self)
 	SearchBoxTemplate_OnEditFocusLost(self);
 	addon.GUI.Search.PreviewFrame:Hide();
 end
 
-function KrowiAF_AchievementFrameSearchBoxFrame_OnFocusGained(self)
+function KrowiAF_SearchBoxFrame_OnFocusGained(self)
 	SearchBoxTemplate_OnEditFocusGained(self);
 	addon.GUI.Search.ResultsFrame:Hide();
 
@@ -137,7 +134,7 @@ function KrowiAF_AchievementFrameSearchBoxFrame_OnFocusGained(self)
 	end
 end
 
-function KrowiAF_AchievementFrameSearchBoxFrame_OnKeyDown(self, key)
+function KrowiAF_SearchBoxFrame_OnKeyDown(self, key)
 	local previewFrame = addon.GUI.Search.PreviewFrame;
 	if key == "UP" then
 		previewFrame:SelectPrevious(#self.Results);
@@ -146,52 +143,11 @@ function KrowiAF_AchievementFrameSearchBoxFrame_OnKeyDown(self, key)
 	end
 end
 
-function KrowiAF_AchievementFrameSearchBoxFrame_OnMouseDown(self, button)
+function KrowiAF_SearchBoxFrame_OnMouseDown(self, button)
 	if addon.Options.db.SearchBox.ClearOnRightClick then
 		if button == "RightButton" then
 			self:SetText("");
-			KrowiAF_AchievementFrameSearchBoxFrame_OnTextChanged(self);
+			KrowiAF_SearchBoxFrame_OnTextChanged(self);
 		end
-	end
-end
-
-function boxFrame:ShowSearchPreviewResults()
-	local results = self.Results;
-	local numResults = #results;
-	if numResults > 0 then
-		KrowiAF_AchievementFrameSearchPreviewFrameSearchPreviewButton_OnEnter(search.PreviewFrame.Buttons[1]);
-	end
-	local previewFrame = search.PreviewFrame;
-	local buttons = previewFrame.Buttons;
-	local numButtons = previewFrame:GetNumButtons();
-	local lastButton;
-	for i = 1, #buttons do
-		if i <= numResults and i <= numButtons then
-			local achievementID = results[i].ID;
-			local _, name, _, _, _, _, _, _, _, icon, _, _, _, _ = addon.GetAchievementInfo(achievementID);
-			buttons[i].Name:SetText(name);
-			buttons[i].Icon:SetTexture(icon);
-			buttons[i].Achievement = results[i];
-			buttons[i]:Show();
-			lastButton = buttons[i];
-		else
-			buttons[i].AchievementID = nil;
-			buttons[i]:Hide();
-		end
-	end
-	local showFullSearchResultsButton = previewFrame.ShowFullSearchResultsButton;
-	if numResults > numButtons then
-		showFullSearchResultsButton:Show();
-		lastButton = showFullSearchResultsButton;
-		showFullSearchResultsButton.Text:SetText(string.format(ENCOUNTER_JOURNAL_SHOW_SEARCH_RESULTS, numResults));
-	else
-		showFullSearchResultsButton:Hide();
-	end
-	if lastButton then
-		previewFrame.BorderAnchor:SetPoint("BOTTOM", lastButton, "BOTTOM", 0, -8);
-		previewFrame.Background:Hide();
-		previewFrame:Show();
-	else
-		previewFrame:Hide();
 	end
 end

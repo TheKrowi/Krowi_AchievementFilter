@@ -1,7 +1,0 @@
-<Ui>
-    <Include file="PreviewButton.xml" />
-    <Include file="PreviewFrame.xml" />
-    <Include file="ResultsButton.xml" />
-    <Include file="ResultsFrame.xml" />
-    <Include file="BoxFrame.xml" />
-</Ui>

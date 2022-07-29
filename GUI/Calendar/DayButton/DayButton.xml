@@ -1,4 +1,5 @@
 <Ui>
+    <Script file="DayButton.lua" />
     <Script file="DayButtonMixin.lua" />
 	
 	<Button name="KrowiAF_CalendarDayButton_Template" mixin="KrowiAF_CalendarDayButtonMixin" registerForClicks="LeftButtonUp" virtual="true">

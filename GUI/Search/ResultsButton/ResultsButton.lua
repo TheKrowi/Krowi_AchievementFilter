@@ -1,7 +1,7 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
 
-function KrowiAF_AchievementFrameSearchResultsFrameSearchResultsButton_OnClick(self)
+function KrowiAF_SearchResultsButton_OnClick(self)
     if self.Achievement then
         addon.GUI.Search.ResultsFrame:Hide();
         KrowiAF_SelectAchievement(self.Achievement);

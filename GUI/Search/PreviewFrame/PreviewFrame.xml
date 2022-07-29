@@ -1,7 +1,8 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\..\FrameXML\UI.xsd">
+<Ui>
+    <Script file="PreviewFrame.lua"/>
+    <Script file="PreviewFrameMixin.lua"/>
 
-    <!-- Originally from Blizzard_AchievementUI.xml line 2487 at time of writing -->
-	<Frame name="KrowiAF_AchievementFrameSearchPreviewFrame_Template" virtual="true" hidden="true">
+	<Frame name="KrowiAF_SearchPreviewFrame_Template" mixin="KrowiAF_SearchPreviewFrameMixin" virtual="true" hidden="true">
 		<Size x="206" y="27"/>
 		<Layers>
 			<Layer level="BACKGROUND">
@@ -80,8 +81,8 @@
 					<OnShow>
 						self:SetFrameLevel(self:GetParent():GetFrameLevel() + 10);
 					</OnShow>
-					<OnEnter function="KrowiAF_AchievementFrameSearchPreviewFrameSearchPreviewButton_OnEnter"/>
-					<OnClick function="KrowiAF_AchievementFrameSearchPreviewFrameShowFullSearchResultsButton_OnClick"/>
+					<OnEnter function="KrowiAF_SearchPreviewButton_OnEnter"/>
+					<OnClick function="KrowiAF_ShowFullSearchResultsButton_OnClick"/>
 				</Scripts>
 			</Button>
 		</Frames>
@@ -89,5 +90,4 @@
 			<OnShow function="KrowiAF_AchievementFrameSearchPreviewFrame_OnShow"/>
 		</Scripts>
 	</Frame>
-
 </Ui>

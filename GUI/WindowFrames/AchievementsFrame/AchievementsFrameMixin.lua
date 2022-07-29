@@ -111,7 +111,7 @@ end
 
 function KrowiAF_AchievementsFrameMixin:ExpandSelection(button)
 	if button then
-		HybridScrollFrame_ExpandButton(self.ScrollFrame, ((button.index - 1) * addon.Options.db.Achievements.ButtonCollapsedHeight), button:GetHeight());
+		HybridScrollFrame_ExpandButton(self.ScrollFrame, ((button.index - 1) * button.CollapsedHeight), button:GetHeight());
 	end
 	self:Update();
 	self:AdjustSelection();

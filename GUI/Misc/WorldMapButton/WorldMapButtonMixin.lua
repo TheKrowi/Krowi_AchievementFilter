@@ -1,35 +1,25 @@
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
-local gui = addon.GUI;
-gui.WorldMapButton = {};
-local worldMapButton = gui.WorldMapButton;
 
-addon.WorldMapButtons = LibStub("Krowi_WorldMapButtons-1.3"); -- Global world map buttons object
+KrowiAF_WorldMapButtonMixin = {};
 
-function worldMapButton.Load()
-    worldMapButton = addon.WorldMapButtons:Add("KrowiAF_WorldMapButton_Template", "BUTTON");
-    addon.GUI.WorldMapButton = worldMapButton;
-end
-
-WorldMapAchievementButtonMixin = {};
-
-function WorldMapAchievementButtonMixin:OnLoad()
+function KrowiAF_WorldMapButtonMixin:OnLoad()
 
 end
 
-function WorldMapAchievementButtonMixin:OnMouseDown(button)
+function KrowiAF_WorldMapButtonMixin:OnMouseDown(button)
     if self:IsEnabled() then
 		self.Icon:SetPoint("TOPLEFT", 8, -8);
 		self.IconOverlay:Show();
 	end
 end
 
-function WorldMapAchievementButtonMixin:OnMouseUp()
+function KrowiAF_WorldMapButtonMixin:OnMouseUp()
     self.Icon:SetPoint("TOPLEFT", self, "TOPLEFT", 6, -6);
 	self.IconOverlay:Hide();
 end
 
-function WorldMapAchievementButtonMixin:OnClick()
+function KrowiAF_WorldMapButtonMixin:OnClick()
     local achievements = worldMapButton.Achievements;
     if achievements and #achievements > 0 then
         HideUIPanel(WorldMapFrame);
@@ -39,7 +29,7 @@ function WorldMapAchievementButtonMixin:OnClick()
     end
 end
 
-function WorldMapAchievementButtonMixin:OnEnter()
+function KrowiAF_WorldMapButtonMixin:OnEnter()
     if worldMapButton.NumOfAch > 0 then
         addon.GUI.ShowStatusBarTooltip(worldMapButton, "ANCHOR_RIGHT");
     else
@@ -50,11 +40,11 @@ function WorldMapAchievementButtonMixin:OnEnter()
     end
 end
 
-function WorldMapAchievementButtonMixin:OnHide()
+function KrowiAF_WorldMapButtonMixin:OnHide()
 
 end
 
-function WorldMapAchievementButtonMixin:Refresh()
+function KrowiAF_WorldMapButtonMixin:Refresh()
     if not IsAddOnLoaded("Blizzard_AchievementUI") then
         LoadAddOn("Blizzard_AchievementUI");
     end

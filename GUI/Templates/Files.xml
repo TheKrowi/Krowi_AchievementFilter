@@ -1,6 +1,0 @@
-<Ui>
-    <Include file="FilterButton.xml" />
-    <Include file="Search\Files.xml" />
-    <Include file="AlertFrame.xml" />
-    <Include file="WorldMapButton.xml" />
-</Ui>

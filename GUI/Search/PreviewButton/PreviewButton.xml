@@ -1,7 +1,7 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\..\FrameXML\UI.xsd">
+<Ui>
+    <Script file="PreviewButton.lua"/>
 
-    <!-- Originally from Blizzard_AchievementUI.xml line 14 at time of writing -->
-	<Button name="KrowiAF_AchievementFrameSearchPreviewFrameSearchPreviewButton_Template" virtual="true">
+	<Button name="KrowiAF_SearchPreviewButton_Template" virtual="true">
 		<Size x="206" y="27"/>
 		<Layers>
 			<Layer level="OVERLAY" textureSubLevel="3">
@@ -43,9 +43,8 @@
 		</PushedTexture>
 		<Scripts>
 			<OnShow function="AchievementSearchPreviewButton_OnShow"/> <!-- Yes, use Blizzard one -->
-			<OnEnter function="KrowiAF_AchievementFrameSearchPreviewFrameSearchPreviewButton_OnEnter"/>
-			<OnClick function="KrowiAF_AchievementFrameSearchPreviewFrameSearchPreviewButton_OnClick"/>
+			<OnEnter function="KrowiAF_SearchPreviewButton_OnEnter"/>
+			<OnClick function="KrowiAF_SearchPreviewButton_OnClick"/>
 		</Scripts>
 	</Button>
-
 </Ui>
