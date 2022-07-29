@@ -20,21 +20,21 @@ function KrowiAF_WorldMapButtonMixin:OnMouseUp()
 end
 
 function KrowiAF_WorldMapButtonMixin:OnClick()
-    local achievements = worldMapButton.Achievements;
+    local achievements = self.Achievements;
     if achievements and #achievements > 0 then
         HideUIPanel(WorldMapFrame);
         addon.Data.SelectedZoneCategory.Achievements = achievements;
-        addon.Data.SelectedZoneCategory.Name = addon.L["Selected Zone"] .. " (" .. worldMapButton.Text .. ")";
+        addon.Data.SelectedZoneCategory.Name = addon.L["Selected Zone"] .. " (" .. self.Text .. ")";
         KrowiAF_SelectCategory(addon.Data.SelectedZoneCategory);
     end
 end
 
 function KrowiAF_WorldMapButtonMixin:OnEnter()
-    if worldMapButton.NumOfAch > 0 then
-        addon.GUI.ShowStatusBarTooltip(worldMapButton, "ANCHOR_RIGHT");
+    if self.NumOfAch > 0 then
+        addon.GUI.ShowStatusBarTooltip(self, "ANCHOR_RIGHT");
     else
-        GameTooltip:SetOwner(worldMapButton, "ANCHOR_RIGHT");
-	    GameTooltip_SetTitle(GameTooltip, worldMapButton.Text);
+        GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+	    GameTooltip_SetTitle(GameTooltip, self.Text);
         GameTooltip_AddNormalLine(GameTooltip, addon.L["No achievements are available with the current set of filters"]);
         GameTooltip:Show();
     end
@@ -50,13 +50,13 @@ function KrowiAF_WorldMapButtonMixin:Refresh()
     end
 
     local mapID = WorldMapFrame:GetMapID();
-    worldMapButton.Achievements = addon.GetAchievementsInZone(mapID, true);
+    self.Achievements = addon.GetAchievementsInZone(mapID, true);
     local numOfAch, numOfCompAch, numOfNotObtAch = 0, 0, 0;
-    for _, achievement in next, worldMapButton.Achievements do
+    for _, achievement in next, self.Achievements do
         numOfAch, numOfCompAch, numOfNotObtAch = addon.GetAchievementNumbers(addon.Filters.db.SelectedZone, achievement, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
     end
 
-    worldMapButton.Text = C_Map.GetMapInfo(mapID).name;
+    self.Text = C_Map.GetMapInfo(mapID).name;
     self.NumOfAch, self.NumOfCompAch, self.NumOfNotObtAch = numOfAch, numOfCompAch, numOfNotObtAch;
     if self.NumOfAch > 0 then
         self:Enable();

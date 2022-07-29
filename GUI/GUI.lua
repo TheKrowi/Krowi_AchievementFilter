@@ -14,6 +14,7 @@ function gui:LoadWithAddon()
     gui.AlertSystem:Load();
     addon.Filters:InjectDefaults();
     addon.GUI.AchievementFrameHeader.InjectOptions();
+    addon.GUI.DataManagerFrame:Load();
 end
 
 local defaultAchievementFrameWidth;

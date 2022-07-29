@@ -1,0 +1,692 @@
+<Ui>
+    <Script file="DataManagerFrame.lua"/>
+    <Script file="DataManagerFrameMixin.lua"/>
+
+    <Button name="KrowiAF_CommunitiesMemberListEntry_Template" registerForClicks="LeftButtonUp, RightButtonUp" virtual="true" mixin="KrowiAF_CommunitiesMemberListEntryMixin">
+        <Size x="540" y="20"/>
+        <Frames>
+        <Frame parentKey="NameFrame">
+            <Size x="136" y="20"/>
+            <Anchors>
+            <Anchor point="LEFT" x="4" y="0"/>
+            </Anchors>
+            <Layers>
+            <Layer level="OVERLAY">
+                <Texture parentKey="PresenceIcon">
+                <Size x="16" y="16"/>
+                <Anchors>
+                    <Anchor point="LEFT"/>
+                </Anchors>
+                </Texture>
+                <FontString parentKey="Name" inherits="GameFontHighlightSmall" justifyH="LEFT" wordwrap="false">
+                <Size x="136" y="20"/>
+                <Anchors>
+                    <Anchor point="LEFT"/>
+                </Anchors>
+                </FontString>
+                <Texture parentKey="RankIcon">
+                <Size x="12" y="12"/>
+                <Anchors>
+                    <Anchor point="LEFT" x="0" y="0"/>
+                </Anchors>
+                </Texture>
+            </Layer>
+            </Layers>
+        </Frame>
+        <!-- <Button parentKey="SelfDeafenButton" inherits="RosterSelfDeafenButtonTemplate">
+            <Anchors>
+            <Anchor point="RIGHT" x="-17"/>
+            </Anchors>
+        </Button> -->
+        <!-- <Button parentKey="SelfMuteButton" inherits="RosterSelfMuteButtonTemplate">
+            <Anchors>
+            <Anchor point="RIGHT" relativeKey="$parent.SelfDeafenButton" relativePoint="LEFT" x="-2" y="0"/>
+            </Anchors>
+        </Button> -->
+        <!-- <Button parentKey="MemberMuteButton" inherits="RosterMemberMuteButtonTemplate">
+            <Anchors>
+            <Anchor point="RIGHT" x="-17"/>
+            </Anchors>
+        </Button> -->
+        <!-- <Button parentKey="CancelInvitationButton" inherits="UIMenuButtonStretchTemplate">
+            <Size x="24" y="22"/>
+            <Anchors>
+            <Anchor point="RIGHT" x="-17"/>
+            </Anchors>
+            <Layers>
+            <Layer level="ARTWORK">
+                <Texture parentKey="Icon" atlas="groupfinder-icon-redx" useAtlasSize="true">
+                <Anchors>
+                    <Anchor point="CENTER" x="0" y="0"/>
+                </Anchors>
+                </Texture>
+            </Layer>
+            </Layers>
+            <Scripts>
+            <OnEnter>
+                GameTooltip:SetOwner(self);
+                GameTooltip:SetText(COMMUNITY_MEMBER_CANCEL_INVITATION_TOOLTIP);
+                GameTooltip:Show();
+            </OnEnter>
+            <OnLeave>
+                GameTooltip:Hide();
+            </OnLeave>
+            <OnClick>
+                PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+                self:GetParent():CancelInvitation();
+            </OnClick>
+            </Scripts>
+            <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+        </Button> -->
+        <!-- <Button parentKey="ProfessionHeader" setAllPoints="true" hidden="true">
+            <Layers>
+            <Layer level="BORDER">
+                <Texture parentKey="Left" file="Interface\Buttons\CollapsibleHeader">
+                <Size x="76" y="16"/>
+                <Anchors>
+                    <Anchor point="LEFT" x="3" y="0"/>
+                </Anchors>
+                <TexCoords left="0.17578125" right="0.47265625" top="0.29687500" bottom="0.54687500"/>  
+                </Texture>
+                <Texture parentKey="Right" file="Interface\Buttons\CollapsibleHeader">
+                <Size x="76" y="16"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.Left" relativePoint="RIGHT" x="430" y="0"/>
+                </Anchors>
+                <TexCoords left="0.17578125" right="0.47265625" top="0.01562500" bottom="0.26562500"/>  
+                </Texture>
+            </Layer>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="Middle" file="Interface\Buttons\CollapsibleHeader">
+                <Size x="0" y="16"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.Left" relativePoint="RIGHT" x="-20" y="0"/>
+                    <Anchor point="RIGHT" relativeKey="$parent.Right" relativePoint="LEFT" x="20" y="0"/>
+                </Anchors>
+                <TexCoords left="0.48046875" right="0.98046875" top="0.01562500" bottom="0.26562500"/>  
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+                <Texture parentKey="ExpandedIcon" inherits="Char-Stat-Minus">
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.Left" x="10" y="0"/>
+                </Anchors>
+                </Texture>
+                <Texture parentKey="CollapsedIcon" inherits="Char-Stat-Plus">
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.Left" x="10" y="0"/>
+                </Anchors>
+                </Texture>
+                <Texture parentKey="Icon">
+                <Size x="14" y="14"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.Left" x="26" y="0"/>
+                </Anchors>
+                <TexCoords left="0.08" right="0.92" top="0.08" bottom="0.92"/>              
+                </Texture>
+                <FontString parentKey="Name" inherits="GameFontNormalSmall">
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.Left" x="46" y="1"/>
+                </Anchors>
+                </FontString>
+            </Layer>
+            </Layers>
+            <Frames>
+            <Button parentKey="AllRecipes" text="GUILD_VIEW_ALL_RECIPES_LINK">
+                <Anchors>
+                <Anchor point="RIGHT" relativeKey="$parent.Right" x="-10" y="1"/>
+                </Anchors>
+                <Scripts>
+                <OnLoad>
+                    local fontString = self:GetFontString();
+                    self:SetHeight(fontString:GetHeight() + 4);
+                    self:SetWidth(fontString:GetWidth() + 4);
+                </OnLoad>
+                <OnClick>
+                    ViewGuildRecipes(self:GetParent():GetParent():GetProfessionId());
+                </OnClick>
+                </Scripts>
+                <ButtonText>
+                <Anchors>
+                    <Anchor point="RIGHT" x="-2" y="0"/>
+                </Anchors>
+                <Color r="0.973" g="0.937" b="0.580"/>
+                </ButtonText>
+                <NormalFont style="GameFontNormalSmall"/>
+            </Button>
+            </Frames>
+            <Scripts>
+            <OnClick>
+                self:GetParent():OnProfessionHeaderClicked();
+            </OnClick>
+            <OnMouseDown>
+                if self:IsEnabled() then
+                self.Left:SetPoint("LEFT", 4, -1);
+                end
+            </OnMouseDown>
+            <OnMouseUp>
+                self.Left:SetPoint("LEFT", 3, 0);
+            </OnMouseUp>
+            </Scripts>
+        </Button> -->
+        <!-- <Button parentKey="FactionButton" mixin="CommunitiesMemberListFactionButtonMixin" hidden="true">
+            <Size x="14" y="16"/>
+            <Anchors>
+            <Anchor point="RIGHT" x="-9" y="-1"/>
+            </Anchors>
+            <Scripts>
+            <OnShow method="OnShow"/>
+            <OnEnter method="OnEnter"/>
+            <OnLeave function="GameTooltip_Hide"/>
+            </Scripts>
+        </Button> -->
+        </Frames>
+        <Layers>
+            <Layer level="OVERLAY">
+                <FontString parentKey="Points" inherits="GameFontHighlightSmall" justifyH="LEFT" wordwrap="false">
+                    <Size x="50" y="0"/>
+                    <Anchors>
+                        <Anchor point="LEFT" x="4" y="0"/>
+                    </Anchors>
+                </FontString>
+                <Texture parentKey="Class" file="Interface\Glues\CharacterCreate\UI-CharacterCreate-Classes">
+                    <Size x="16" y="16"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Points" relativePoint="RIGHT" x="8" y="0"/>
+                    </Anchors>
+                </Texture>
+                <FontString parentKey="Name" inherits="GameFontHighlightSmall" justifyH="LEFT" wordwrap="false">
+                    <Size x="100" y="0"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Class" relativePoint="RIGHT" x="21" y="0"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="Realm" inherits="GameFontHighlightSmall" justifyH="LEFT" wordwrap="false">
+                    <Size x="100" y="0"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Name" relativePoint="RIGHT" x="8" y="0"/>
+                    </Anchors>
+                </FontString>
+                <!-- <FontString parentKey="Rank" inherits="GameFontHighlightSmall" justifyH="LEFT" wordwrap="false">
+                    <Size x="85" y="0"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Realm" relativePoint="RIGHT" x="8" y="0"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="Note" inherits="GameFontHighlightSmall" justifyH="LEFT" wordwrap="false">
+                    <Size x="93" y="0"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Rank" relativePoint="RIGHT" x="8" y="0"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="GuildInfo" inherits="GameFontHighlightSmall" justifyH="LEFT" wordwrap="false">
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Note" relativePoint="RIGHT" x="20" y="0"/>
+                        <Anchor point="RIGHT" relativeKey="$parent" relativePoint="RIGHT" x="-4" y="0"/>
+                    </Anchors>
+                </FontString>
+                <Texture parentKey="VoiceChatStatusIcon">
+                    <Size x="16" y="16"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="RIGHT" relativeKey="$parent.Name"/>
+                    </Anchors>
+                </Texture> -->
+            </Layer>
+        </Layers>
+        <Scripts>
+        <!-- <OnShow method="OnShow"/>
+        <OnHide method="OnHide"/>
+        <OnEvent method="OnEvent"/>
+        <OnClick method="OnClick"/>
+        <OnEnter method="OnEnter"/>
+        <OnLeave method="OnLeave"/> -->
+        </Scripts>
+        <NormalTexture setAllPoints="true" file="Interface\GuildFrame\GuildFrame">
+        <TexCoords left="0.36230469" right="0.38183594" top="0.95898438" bottom="0.99804688"/>
+        </NormalTexture>
+        <HighlightTexture file="Interface\FriendsFrame\UI-FriendsFrame-HighlightBar" alphaMode="ADD" setAllPoints="true"/>
+    </Button>
+
+    <Frame name="KrowiAF_CommunitiesMemberListFrameTemplate" mixin="KrowiAF_CommunitiesMemberListMixin" virtual="true">
+        <!-- <Layers>
+        <Layer level="BORDER">
+            <FontString parentKey="MemberCount" inherits="GameFontNormalSmall">
+            <Anchors>
+                <Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="TOPLEFT" x="0" y="17"/>
+            </Anchors>
+            </FontString>
+        </Layer>
+        </Layers> -->
+        <Frames>
+        <!-- <Frame parentKey="WatermarkFrame" setAllPoints="true" clipChildren="true">
+            <Layers>
+            <Layer level="BORDER">
+                <Texture parentKey="Watermark" alphaMode="ADD" alpha="0.10">
+                <Size x="128" y="128"/>
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="BOTTOMRIGHT" x="-84" y="3"/>
+                </Anchors>
+                </Texture>
+                <MaskTexture parentKey="WatermarkCircleMask" file="Interface\CharacterFrame\TempPortraitAlphaMask" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.Watermark" x="6" y="-6"/>
+                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Watermark" x="-6" y="6"/>
+                </Anchors>
+                <MaskedTextures>
+                    <MaskedTexture childKey="Watermark"/>
+                </MaskedTextures>
+                </MaskTexture>
+            </Layer>
+            </Layers>
+        </Frame> -->
+        <!-- <CheckButton parentKey="ShowOfflineButton" inherits="UICheckButtonTemplate" hidden="true">
+            <Anchors>
+            <Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="TOPLEFT" x="0" y="26"/>
+            </Anchors>
+            <Scripts>
+            <OnLoad>
+                self.text:SetText(COMMUNITIES_MEMBER_LIST_SHOW_OFFLINE);
+            </OnLoad>
+            <OnClick>
+                PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+                self:GetParent():SetShowOfflinePlayers(self:GetChecked());
+            </OnClick>
+            </Scripts>
+        </CheckButton> -->
+        <Frame parentKey="ColumnDisplay" useParentLevel="true" inherits="ColumnDisplayTemplate" hidden="true">
+            <Anchors>
+            <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="-3" y="60"/>
+            <Anchor point="TOPRIGHT" relativePoint="TOPRIGHT" x="22" y="60"/>
+            </Anchors>
+            <KeyValues>
+            <KeyValue key="sortingFunction" value="CommunitiesMemberListColumnDisplay_OnClick" type="global"/>
+            </KeyValues>
+            <Layers>
+            <Layer level="BORDER">
+                <Texture parentKey="InsetBorderTopLeft" inherits="UI-Frame-InnerTopLeft">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.Background" relativePoint="BOTTOMLEFT" x="0" y="3"/>
+                </Anchors>
+                </Texture>
+                <Texture parentKey="InsetBorderTopRight" inherits="UI-Frame-InnerTopRight">
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativeKey="$parent.Background" relativePoint="BOTTOMRIGHT" x="0" y="3"/>
+                </Anchors>
+                </Texture>
+                <Texture parentKey="InsetBorderBottomLeft" inherits="UI-Frame-InnerBotLeftCorner">
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.$parent" x="-3" y="-3"/>
+                </Anchors>
+                </Texture>
+                <Texture parentKey="InsetBorderTop" inherits="_UI-Frame-InnerTopTile">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.InsetBorderTopLeft" relativePoint="TOPRIGHT"/>
+                    <Anchor point="TOPRIGHT" relativeKey="$parent.InsetBorderTopRight" relativePoint="TOPLEFT"/>
+                </Anchors>
+                </Texture>
+                <Texture parentKey="InsetBorderLeft" inherits="!UI-Frame-InnerLeftTile">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.InsetBorderTopLeft" relativePoint="BOTTOMLEFT" x="0" y="0"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.InsetBorderBottomLeft" relativePoint="TOPLEFT"/>
+                </Anchors>
+                </Texture>
+            </Layer>
+            </Layers>
+        </Frame>
+        <ScrollFrame parentKey="ListScrollFrame" inherits="HybridScrollFrameTemplate">
+            <Anchors>
+            <Anchor point="TOPLEFT"/>
+            <Anchor point="BOTTOMRIGHT"/>
+            </Anchors>
+            <Frames>
+            <Slider parentKey="scrollBar" inherits="HybridScrollBarTemplate">
+                <Anchors>
+                <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="0" y="-15"/>
+                <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="0" y="11"/>
+                </Anchors>
+                <Layers>
+                <Layer level="BACKGROUND">
+                    <Texture parentKey="Background" file="Interface\FrameGeneral\UI-Background-Marble" horizTile="true" vertTile="true" setAllPoints="true"/>
+                </Layer>
+                </Layers>
+            </Slider>
+            </Frames>
+        </ScrollFrame>
+        <!-- <Frame parentKey="DropDown" hidden="true" inherits="UIDropDownMenuTemplate">
+            <Scripts>
+            <OnLoad function="CommunitiesMemberListDropDown_OnLoad"/>
+            <OnHide function="CommunitiesMemberListDropDown_OnHide"/>
+            </Scripts>
+        </Frame> -->
+        <Frame parentKey="InsetFrame" useParentLevel="false" inherits="InsetFrameTemplate">
+            <Anchors>
+            <Anchor point="TOPLEFT" x="-3" y="3"/>
+            <Anchor point="BOTTOMRIGHT" x="-2" y="-2"/>
+            </Anchors>
+            <Scripts>
+            <OnLoad>
+                self.Bg:Hide();
+                self:SetFrameLevel(100);
+            </OnLoad>
+            </Scripts>
+        </Frame>
+        </Frames>
+        <Scripts>
+        <OnLoad method="OnLoad"/>
+        <!-- <OnShow method="OnShow"/> -->
+        <!-- <OnEvent method="OnEvent"/> -->
+        <!-- <OnHide method="OnHide"/> -->
+        <!-- <OnUpdate method="OnUpdate"/> -->
+        </Scripts>
+    </Frame>
+
+    <Frame name="KrowiAF_DataManagerFrame_Template" toplevel="true" parent="UIParent" movable="true" enableMouse="true" inherits="ButtonFrameTemplate" mixin="KrowiAF_DataManagerFrameMixin" virtual="true">
+        <Size x="814" y="426"/>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+        <Frames>
+            <!-- <Frame parentKey="PortraitOverlay" frameLevel="300" setAllPoints="true">
+                <Layers>
+                <Layer level="BACKGROUND" textureSubLevel="1">
+                    <Texture parentKey="Portrait">
+                    <Size x="61" y="61"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="-6" y="8" />
+                    </Anchors>
+                    </Texture>
+                    <MaskTexture parentKey="CircleMask" file="Interface\CharacterFrame\TempPortraitAlphaMask" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.Portrait"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Portrait"/>
+                    </Anchors>
+                    <MaskedTextures>
+                        <MaskedTexture childKey="Portrait"/>
+                    </MaskedTextures>
+                    </MaskTexture>
+                    <Texture parentKey="TabardBackground" file="Interface\GuildFrame\GuildFrame" hidden="true">
+                    <Size x="62" y="62"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="-7" y="8"/>
+                    </Anchors>
+                    <TexCoords left="0.63183594" right="0.69238281" top="0.61914063" bottom="0.74023438"/>
+                    </Texture>
+                </Layer>
+                <Layer level="BACKGROUND" textureSubLevel="2">
+                    <Texture parentKey="TabardEmblem" file="Interface\GuildFrame\GuildEmblemsLG_01" hidden="true">
+                    <Size x="56" y="64"/>
+                    <Anchors>
+                        <Anchor point="CENTER" relativeKey="$parent" relativePoint="TOPLEFT" x="24" y="-24"/>
+                    </Anchors>
+                    </Texture>
+                </Layer>
+                <Layer level="BACKGROUND" textureSubLevel="3">
+                    <Texture parentKey="TabardBorder" file="Interface\GuildFrame\GuildFrame" hidden="true">
+                    <Size x="61" y="60"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="-6" y="7"/>
+                    </Anchors>
+                    <TexCoords left="0.63183594" right="0.69238281" top="0.74414063" bottom="0.86523438"/>
+                    </Texture>
+                </Layer>
+                </Layers>
+            </Frame> -->
+            <!-- <Frame parentKey="MaximizeMinimizeFrame" inherits="MaximizeMinimizeButtonFrameTemplate">
+                <Anchors>
+                <Anchor point="RIGHT" relativeKey="$parent.CloseButton" relativePoint="LEFT" x="8.5" y="0"/>
+                </Anchors>
+                <Scripts>
+                <OnLoad function="CommunitiesFrameMaximizeMinimizeButton_OnLoad" inherit="append"/>
+                </Scripts>
+            </Frame> -->
+            <!-- <Frame name="$parentCommunitiesList" parentKey="CommunitiesList" useParentLevel="true" inherits="CommunitiesListFrameTemplate">
+                <Anchors>
+                <Anchor point="TOPLEFT" x="-1" y="-23"/>
+                <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMLEFT" x="170" y="29"/>
+                </Anchors>
+            </Frame> -->
+            <!-- <CheckButton parentKey="ChatTab" hidden="true" inherits="CommunitiesFrameTabTemplate" mixin="CommunitiesChatTabMixin" motionScriptsWhileDisabled="true">
+                <KeyValues>
+                <KeyValue key="tooltip" value="COMMUNITIES_CHAT_TAB_TOOLTIP" type="global"/>
+                <KeyValue key="iconTexture" value="Interface/Icons/UI_Chat" type="string"/>
+                <KeyValue key="displayMode" value="COMMUNITIES_FRAME_DISPLAY_MODES.CHAT" type="global"/>
+                </KeyValues>
+                <Anchors>
+                <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="0" y="-36"/>
+                </Anchors>
+                <Scripts>
+                <OnClick method="OnClick"/>
+                </Scripts>
+            </CheckButton> -->
+            <!-- <CheckButton parentKey="RosterTab" hidden="true" inherits="CommunitiesFrameTabTemplate">
+                <KeyValues>
+                <KeyValue key="tooltip" value="COMMUNITIES_ROSTER_TAB_TOOLTIP" type="global"/>
+                <KeyValue key="iconTexture" value="Interface/Icons/achievement_guildperk_everybodysfriend" type="string"/>
+                <KeyValue key="displayMode" value="COMMUNITIES_FRAME_DISPLAY_MODES.ROSTER" type="global"/>
+                </KeyValues>
+                <Anchors>
+                <Anchor point="TOPLEFT" relativeKey="$parent.ChatTab" relativePoint="BOTTOMLEFT" x="0" y="-20"/>
+                </Anchors>
+                <Frames>
+                <Frame parentKey="NotificationOverlay" setAllPoints="true" hidden="true">
+                    <Size x="14" y="14"/>
+                    <Layers>
+                    <Layer level="OVERLAY">
+                        <Texture parentKey="UnreadNotificationIcon" atlas="communities-icon-notification">
+                        <Size x="14" y="14"/>
+                        <Anchors>
+                            <Anchor point="CENTER" relativeKey="$parent" relativePoint="TOPRIGHT" x="0" y="0"/>
+                        </Anchors>
+                        </Texture>
+                    </Layer>
+                    </Layers>
+                </Frame>
+                </Frames>
+            </CheckButton> -->
+            <!-- <CheckButton parentKey="GuildBenefitsTab" hidden="true" inherits="CommunitiesFrameTabTemplate">
+                <KeyValues>
+                <KeyValue key="tooltip" value="COMMUNITIES_GUILD_BENEFITS_TAB_TOOLTIP" type="global"/>
+                <KeyValue key="iconTexture" value="Interface/Icons/achievement_guildperk_honorablemention" type="string"/>
+                <KeyValue key="displayMode" value="COMMUNITIES_FRAME_DISPLAY_MODES.GUILD_BENEFITS" type="global"/>
+                </KeyValues>
+                <Anchors>
+                <Anchor point="TOPLEFT" relativeKey="$parent.RosterTab" relativePoint="BOTTOMLEFT" x="0" y="-20"/>
+                </Anchors>
+            </CheckButton> -->
+            <!-- <CheckButton parentKey="GuildInfoTab" hidden="true" inherits="CommunitiesFrameTabTemplate">
+                <KeyValues>
+                <KeyValue key="tooltip" value="COMMUNITIES_GUILD_INFO_TAB_TOOLTIP" type="global"/>
+                <KeyValue key="iconTexture" value="Interface/Icons/inv_misc_scrollunrolled01" type="string"/>
+                <KeyValue key="displayMode" value="COMMUNITIES_FRAME_DISPLAY_MODES.GUILD_INFO" type="global"/>
+                </KeyValues>
+                <Anchors>
+                <Anchor point="TOPLEFT" relativeKey="$parent.GuildBenefitsTab" relativePoint="BOTTOMLEFT" x="0" y="-20"/>
+                </Anchors>
+            </CheckButton> -->
+            <!-- <Frame parentKey="StreamDropDownMenu" inherits="StreamDropDownMenuTemplate">
+                <Size x="40" y="28"/>
+                <Anchors>
+                <Anchor point="TOPLEFT" x="188" y="-32"/>
+                </Anchors>
+            </Frame> -->
+            <!-- <Frame parentKey="GuildMemberListDropDownMenu" inherits="GuildMemberListDropDownMenuTemplate">
+                <Size x="40" y="28"/>
+                <Anchors>
+                <Anchor point="TOPRIGHT" x="-10" y="-27"/>
+                </Anchors>
+            </Frame> -->
+            <!-- <Frame parentKey="CommunityMemberListDropDownMenu" inherits="CommunityMemberListDropDownMenuTemplate">
+                <Size x="40" y="28"/>
+                <Anchors>
+                <Anchor point="TOPRIGHT" x="-10" y="-27"/>
+                </Anchors>
+            </Frame>  -->
+            <!-- <Frame parentKey="CommunitiesListDropDownMenu" inherits="CommunitiesListDropDownMenuTemplate">
+                <Size x="40" y="28"/>
+                <Anchors>
+                <Anchor point="TOPLEFT" x="-10" y="-28"/>
+                </Anchors>
+            </Frame> -->
+            <!-- <Frame parentKey="VoiceChatHeadset" inherits="VoiceChatHeadsetTemplate">
+                <Size x="54" y="27"/>
+            </Frame> -->
+            <!-- <Button parentKey="CommunitiesCalendarButton" hidden="true" inherits="CommunitiesCalendarButtonTemplate">
+                <Anchors>
+                <Anchor point="TOPRIGHT" relativeKey="$parent" relativePoint="TOPRIGHT" x="-8" y="-26"/>
+                </Anchors>
+            </Button> -->
+            <Frame parentKey="MemberList" inherits="KrowiAF_CommunitiesMemberListFrameTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" x="4" y="-60"/>
+                    <Anchor point="BOTTOMRIGHT" x="-26" y="7"/>
+                </Anchors>
+            </Frame>
+            <!-- <Frame parentKey="ApplicantList" hidden="true" inherits="ClubFinderApplicantListFrameTemplate">
+                <Anchors>
+                <Anchor point="TOPLEFT" relativeKey="$parent.CommunitiesList" relativePoint="TOPRIGHT" x="24" y="-60"/>
+                <Anchor point="BOTTOMRIGHT" x="-9" y="29"/>
+                </Anchors>
+            </Frame> -->
+            <!-- <Frame parentKey="PostingExpirationText" hidden="true" inherits="ClubFinderPostingExpirationTemplate">
+                <Anchors>
+                <Anchor point="BOTTOM" x="-18"/>
+                </Anchors>
+            </Frame> -->
+            <!-- <Frame parentKey="GuildFinderFrame" name="ClubFinderGuildFinderFrame" inherits="ClubFinderGuildAndCommunityFrameTemplate">
+                <Anchors>
+                <Anchor point="TOPLEFT" relativeKey="$parent.CommunitiesList" relativePoint="TOPRIGHT" x="24" y="-60"/>
+                <Anchor point="BOTTOMRIGHT" x="-9" y="29"/>
+                </Anchors>
+                <Scripts>
+                <OnLoad> 
+                    ClubFinderGuildAndCommunityMixin.OnLoad(self); 
+                </OnLoad>
+                </Scripts>
+            </Frame> -->
+            <!-- <Frame parentKey="CommunityFinderFrame" name="ClubFinderCommunityAndGuildFinderFrame" inherits="ClubFinderGuildAndCommunityFrameTemplate">
+                <Anchors>
+                <Anchor point="TOPLEFT" relativeKey="$parent.CommunitiesList" relativePoint="TOPRIGHT" x="24" y="-60"/>
+                <Anchor point="BOTTOMRIGHT" x="-9" y="29"/>
+                </Anchors>
+            </Frame> -->
+            <!-- <Frame parentKey="Chat" inherits="CommunitiesChatTemplate">
+                <Anchors>
+                <Anchor point="TOPLEFT" relativeKey="$parent.CommunitiesList" relativePoint="TOPRIGHT" x="31" y="-46"/>
+                <Anchor point="BOTTOMRIGHT" relativeKey="$parent.MemberList" relativePoint="BOTTOMLEFT" x="-22" y="28"/>
+                </Anchors>
+            </Frame> -->
+            <!-- <EditBox parentKey="ChatEditBox" frameLevel="1200" inherits="CommunitiesChatEditBoxTemplate">
+                <Size x="0" y="32"/>
+            </EditBox> -->
+            <!-- <Frame parentKey="InvitationFrame" inherits="CommunitiesInvitationFrameTemplate" hidden="true">
+                <Anchors>
+                <Anchor point="TOPLEFT" relativeKey="$parent.CommunitiesList" relativePoint="TOPRIGHT" x="24" y="-40"/>
+                <Anchor point="BOTTOMRIGHT" x="-9" y="29"/>
+                </Anchors>
+            </Frame> -->
+            <!-- <Frame parentKey="ClubFinderInvitationFrame" inherits="ClubFinderInvitationsFrameTemplate" hidden="true">
+                <Anchors>
+                <Anchor point="TOPLEFT" relativeKey="$parent.CommunitiesList" relativePoint="TOPRIGHT" x="24" y="-40"/>
+                <Anchor point="BOTTOMRIGHT" x="-9" y="29"/>
+                </Anchors>
+                <Frames>
+                <Frame parentKey="RequestToJoinFrame" inherits="ClubFinderRequestToJoinTemplate" hidden="true">
+                    <Anchors>
+                    <Anchor point="RIGHT" x="100"/>
+                    </Anchors>
+                </Frame>
+                </Frames>
+            </Frame> -->
+            <!-- <Frame parentKey="TicketFrame" inherits="CommunitiesTicketFrameTemplate" hidden="true">
+                <Anchors>
+                <Anchor point="TOPLEFT" relativeKey="$parent.CommunitiesList" relativePoint="TOPRIGHT" x="24" y="-40"/>
+                <Anchor point="BOTTOMRIGHT" x="-12" y="30"/>
+                </Anchors>
+            </Frame> -->
+            <!-- <Frame parentKey="GuildBenefitsFrame" inherits="GuildBenefitsFrameTemplate">
+                <Anchors>
+                <Anchor point="TOPLEFT" relativeKey="$parent.CommunitiesList" relativePoint="TOPRIGHT" x="24" y="-40"/>
+                <Anchor point="BOTTOMRIGHT" x="-12" y="30"/>
+                </Anchors>
+            </Frame> -->
+            <!-- <Frame parentKey="GuildDetailsFrame" name="$parentGuildDetailsFrame" inherits="GuildDetailsFrameTemplate">
+                <Anchors>
+                <Anchor point="TOPLEFT" relativeKey="$parent.CommunitiesList" relativePoint="TOPRIGHT" x="24" y="-40"/>
+                <Anchor point="BOTTOMRIGHT" x="-12" y="30"/>
+                </Anchors>
+            </Frame> -->
+            <!-- <Button parentKey="GuildNameAlertFrame" inherits="CommunitiesGuildNameChangeAlertFrameTemplate" frameLevel="2"/> -->
+            <!-- <Frame parentKey="GuildNameChangeFrame" inherits="GuildNameChangeFrameTemplate" frameLevel="1"/> -->
+            <!-- <Frame parentKey="CommunityNameChangeFrame" inherits="CommunityNameChangeFrameTemplate" frameLevel="1"/> -->
+            <!-- <Frame parentKey="GuildPostingChangeFrame" inherits="GuildPostingChangeFrameTemplate" frameLevel="1"/> -->
+            <!-- <Frame parentKey="CommunityPostingChangeFrame" inherits="CommunityPostingChangeFrameTemplate" frameLevel="1"/> -->
+            
+            <!-- <Frame parentKey="EditStreamDialog" frameStrata="DIALOG" inherits="CommunitiesEditStreamDialogTemplate" hidden="true">
+                <Size x="320" y="260"/>
+                <Anchors>
+                <Anchor point="TOP" relativeTo="UIParent" x="0" y="-142"/>
+                </Anchors>
+            </Frame> -->
+            <!-- <Frame parentKey="NotificationSettingsDialog" frameStrata="DIALOG" inherits="CommunitiesNotificationSettingsDialogTemplate" hidden="true">
+                <Size x="638" y="508"/>
+                <Anchors>
+                <Anchor point="TOP" relativeTo="UIParent" x="0" y="-142"/>
+                </Anchors>
+            </Frame> -->
+            <!-- <Frame parentKey="RecruitmentDialog" hidden="true" frameLevel="3" inherits="ClubsRecruitmentDialogTemplate">
+                <Anchors>
+                <Anchor point="TOP" relativeTo="UIParent" x="0" y="-80"/>
+                </Anchors>
+            </Frame> -->
+            <!-- <DropDownToggleButton parentKey="AddToChatButton" inherits="AddToChatButtonTemplate">
+                <Size x="22" y="22"/>
+                <Anchors>
+                <Anchor point="RIGHT" relativeKey="$parent.StreamDropDownMenu" relativePoint="RIGHT" x="170" y="3"/>
+                </Anchors>
+                <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+            </DropDownToggleButton> -->
+            <!-- <Button parentKey="InviteButton" inherits="CommunitiesInviteButtonTemplate" motionScriptsWhileDisabled="true">
+                <Size x="130" y="20"/>
+                <Anchors>
+                <Anchor point="BOTTOMRIGHT" x="-5" y="5"/>
+                </Anchors>
+                <Scripts>
+                <OnEnter>
+                    if self.disabledTooltip then
+                    GameTooltip_ShowDisabledTooltip(GameTooltip, self, self.disabledTooltip);
+                    end
+                </OnEnter>
+                <OnLeave>
+                    GameTooltip:Hide();
+                </OnLeave>
+                </Scripts>
+            </Button> -->
+            <!-- <Frame parentKey="CommunitiesControlFrame" inherits="CommunitiesControlFrameTemplate">
+                <Size x="500" y="20"/>
+                <Anchors>
+                <Anchor point="BOTTOMRIGHT" x="-5" y="5"/>
+                </Anchors>
+            </Frame> -->
+            <!-- <Button parentKey="GuildLogButton" inherits="UIPanelButtonTemplate, CommunitiesSubPanelButtonScriptTemplate" text="GUILD_VIEW_LOG" >
+                <Size x="130" y="20"/>
+                <Anchors>
+                <Anchor point="BOTTOMLEFT" x="190" y="5"/>
+                </Anchors>
+                <KeyValues>
+                <KeyValue key="frame" value="CommunitiesGuildLogFrame" type="Global"/>
+                </KeyValues>
+            </Button> -->
+            <!-- <Frame parentKey="GuildMemberDetailFrame" frameLevel="1000" inherits="CommunitiesGuildMemberDetailFrameTemplate" hidden="true">
+                <Anchors>
+                <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPRIGHT" x="-8" y="-76"/>
+                </Anchors>
+            </Frame> -->
+        </Frames>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+            <!-- <OnShow method="OnShow"/> -->
+            <!-- <OnEvent method="OnEvent"/> -->
+            <!-- <OnHide method="OnHide"/> -->
+        </Scripts>
+    </Frame>
+</Ui>
