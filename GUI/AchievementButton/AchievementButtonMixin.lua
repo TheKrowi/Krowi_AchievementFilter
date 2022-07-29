@@ -183,7 +183,8 @@ function KrowiAF_AchievementButtonMixin:Update(achievement, index)
 	self.index = index; -- This is used to keep the correct achievement expanded
 	self.Id = achievement.Id;
 
-	if achievement == addon.GUI.SelectedTab.SelectedAchievement then
+	local selectedTab = addon.GUI.SelectedTab;
+	if selectedTab and achievement == selectedTab.SelectedAchievement then
 		self.selected = true;
 		self.Highlight:Show();
 		local height = self:DisplayObjectives();
