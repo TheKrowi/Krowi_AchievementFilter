@@ -1,5 +1,6 @@
 <Ui>
-    <Script file="CategoriesFrame.lua" />
+    <Script file="CategoriesFrame.lua"/>
+    <Script file="CategoriesFrameMixin.lua"/>
 	
 	<Frame name="KrowiAF_CategoriesFrame_Template" mixin="KrowiAF_CategoriesFrameMixin" inherits="AchivementGoldBorderBackdrop" virtual="true" hidden="true">
 		<Scripts>

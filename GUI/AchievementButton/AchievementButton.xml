@@ -1,6 +1,6 @@
 <Ui>
-    <Script file="AchievementButtonMixin.lua" />
-    <Script file="AchievementButton.lua" />
+    <Script file="AchievementButton.lua"/>
+    <Script file="AchievementButtonMixin.lua"/>
 	
 	<Button name="KrowiAF_AchievementButton_Template" mixin="KrowiAF_AchievementButtonMixin" inherits="TooltipBorderBackdropTemplate" registerForClicks="LeftButtonUp, RightButtonUp" virtual="true">
 		<Layers>
@@ -344,13 +344,12 @@
 		</Scripts>
 	</Button>
 
-	<Button name="KrowiAF_AchievementButton_Summary_Template" inherits="KrowiAF_AchievementButton_Small_Template" virtual="true">
+	<Button name="KrowiAF_AchievementButton_Light_Template" inherits="KrowiAF_AchievementButton_Small_Template" virtual="true">
 		<Scripts>
-			<!-- <OnLoadn inherit="prepend" function="KrowiAF_AchievementButton_Summary_OnLoad"/> -->
-			<OnEnter function="KrowiAF_AchievementButton_Summary_OnEnter"/>
-			<OnLeave function="KrowiAF_AchievementButton_Summary_OnLeave"/>
-			<OnClick function="KrowiAF_AchievementButton_Summary_OnClick"/>
-			<!-- <OnEvent function="KrowiAF_AchievementButton_OnEvent"/> -->
+			<OnLoad inherit="prepend" function="KrowiAF_AchievementButton_Light_OnLoad"/>
+			<OnEnter function="KrowiAF_AchievementButton_Light_OnEnter"/>
+			<OnLeave function="KrowiAF_AchievementButton_Light_OnLeave"/>
+			<OnClick function="KrowiAF_AchievementButton_Light_OnClick"/>
 		</Scripts>
 	</Button>
 

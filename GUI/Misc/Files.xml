@@ -6,4 +6,5 @@
     <Script file="FilterButton.lua" />
     <Script file="AchievementFrameHeader.lua" />
     <Script file="AchievementFrameTabButton.lua" />
+    <Include file="AchievementsFrameLight.xml"/>
 </Ui>

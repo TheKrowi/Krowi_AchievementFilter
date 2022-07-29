@@ -1,7 +1,7 @@
 <Ui>
     <Script file="SideFrame.lua" />
 
-	<Frame name="KrowiAF_CalendarSideFrame_Template" mixin="KrowiAF_CalendarSideFrameMixin" toplevel="true" enableMouse="true" frameStrata="HIGH" virtual="true" hidden="true">
+	<Frame name="KrowiAF_CalendarSideFrame_Template" toplevel="true" enableMouse="true" frameStrata="HIGH" virtual="true" hidden="true">
 		<Size x="504" y="320"/>
 		<Layers>
 			<Layer level="BORDER">
@@ -16,33 +16,11 @@
 		<Frames>
 			<Frame parentKey="Border" inherits="DialogBorderDarkTemplate"/>
 			<Frame parentKey="Header" inherits="DialogHeaderTemplate"/>
-			<Frame name="$parentScrollFrameBorder" parentKey="ScrollFrameBorder"> <!-- inherits="AchivementGoldBorderBackdrop" -->
+			<Frame name="$parentScrollFrameBorder" parentKey="ScrollFrameBorder" inherits="KrowiAF_AchievementsFrameLight_Template">
 				<Anchors>
 					<Anchor point="TOPLEFT" x="15" y="-28"/>
 					<Anchor point="BOTTOMRIGHT" x="-15" y="30"/>
 				</Anchors>
-				<Frames>
-					<ScrollFrame name="$parentContainer" parentKey="Container" inherits="HybridScrollFrameTemplate">
-						<Anchors>
-							<Anchor point="TOPLEFT" x="0" y="-5"/>
-							<Anchor point="BOTTOMRIGHT" x="0" y="5"/>
-						</Anchors>
-						<Frames>
-							<Slider name="$parentScrollBar" parentKey="ScrollBar" inherits="HybridScrollBarTemplate">
-								<Anchors>
-									<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="1" y="-13"/>
-									<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="1" y="11"/>
-								</Anchors>
-								<Scripts>
-									<OnLoad>
-										self.trackBG:Show();
-										self.trackBG:SetVertexColor(0, 0, 0, 1);
-									</OnLoad>
-								</Scripts>
-							</Slider>
-						</Frames>
-					</ScrollFrame>					
-				</Frames>
 			</Frame>	
 			<Button name="$parentCloseButton" parentKey="CloseButton" inherits="UIPanelCloseButton">
 				<Anchors>

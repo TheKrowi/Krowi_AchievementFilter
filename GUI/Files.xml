@@ -1,11 +1,12 @@
 <Ui>
-    <Script file="GUI.lua" />
-    <Include file="Templates\Files.xml" />
-    <Include file="Misc\Files.xml" />
-    <Include file="AchievementTooltip\Files.xml" />
-    <Include file="WindowFrames\Files.xml" />
-    <Include file="RightClickMenu\Files.xml" />
-    <Include file="Search\Files.xml" />
-    <Include file="Calendar\Files.xml" />
-    <Include file="DataManager\Files.xml" />
+    <Script file="GUI.lua"/>
+    <Include file="Templates\Files.xml"/>
+    <Include file="Misc\Files.xml"/>
+    <Include file="AchievementButton\Files.xml"/>
+    <Include file="AchievementTooltip\Files.xml"/>
+    <Include file="WindowFrames\Files.xml"/>
+    <Include file="RightClickMenu\Files.xml"/>
+    <Include file="Search\Files.xml"/>
+    <Include file="Calendar\Files.xml"/>
+    <Include file="DataManager\Files.xml"/>
 </Ui>

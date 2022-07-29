@@ -1,6 +1,54 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
 
+function KrowiAF_AchievementButton_OnLoad(self)
+	_, self.FontHeight = self.Description:GetFont();
+
+	local descriptionHeight = self.FontHeight * self.MaxDescriptionLinesCollapsed;
+	self.Description:SetHeight(descriptionHeight);
+
+	self:Collapse();
+
+	self:RegisterEvent("ACHIEVEMENT_EARNED");
+end
+
+function KrowiAF_AchievementButton_OnEnter(self)
+	addon.GUI.AchievementsFrame.SetHighlightedButton(self);
+	self:ShowTooltip();
+	self.Highlight:Show();
+end
+
+function KrowiAF_AchievementButton_OnLeave(self)
+	addon.GUI.AchievementsFrame.ClearHighlightedButton();
+	AchievementMeta_OnLeave(self);
+	if not self.selected then
+		self.Highlight:Hide();
+	end
+end
+
+function KrowiAF_AchievementButton_OnClick(self, button, down, ignoreModifiers)
+	if button == "LeftButton" then
+		self:Select(ignoreModifiers);
+	elseif button == "RightButton" then
+		addon.GUI.RightClickMenu.AchievementMenu:Open(self.Achievement);
+	end
+end
+
+function KrowiAF_AchievementButton_OnEvent(self, event)
+	if event ~= "ACHIEVEMENT_EARNED" then
+		return;
+	end
+
+	local achievement = self.Achievement;
+	self.Achievement = nil;
+	self:Update(achievement, self.index);
+end
+
+function KrowiAF_AchievementButtonExtraIcon_OnEnter(self)
+	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+	GameTooltip:SetText(self.Text, nil, nil, nil, nil, true);
+end
+
 local function AddRightClickMenuButton(button)
 	local rightClickMenuButton = CreateFrame("Button", "$parentRightClickMenuButton", button, "KrowiAF_RightClickMenuButton_Template");
 	rightClickMenuButton:SetPoint("TOPRIGHT", -1, -1);
@@ -65,7 +113,19 @@ function KrowiAF_AchievementButton_Normal_OnLoad(self)
 	KrowiAF_AchievementButton_OnLoad(self);
 end
 
-function KrowiAF_AchievementButton_Summary_OnEnter(self)
+function KrowiAF_AchievementButton_Light_OnLoad(self)
+	self.Background:SetTexCoord(0, 1, 0, 0.25);
+	self.HeaderBackground:SetVertexColor(1, 1, 1, 0.75); -- maybe
+	self.Glow:SetPoint("BOTTOM", 0, 2);
+	hooksecurefunc(self, "SetAchievement", function(selfFunc)
+		self.Description:Show();
+		self.Reward:Hide();
+		self.RewardBackground:Hide();
+		self.PlusMinus:Hide();
+	end);
+end
+
+function KrowiAF_AchievementButton_Light_OnEnter(self)
 	self.Highlight:Show();
     if self.Achievement == nil then
         return;
@@ -82,14 +142,15 @@ function KrowiAF_AchievementButton_Summary_OnEnter(self)
     end
 end
 
-function KrowiAF_AchievementButton_Summary_OnLeave(self)
+function KrowiAF_AchievementButton_Light_OnLeave(self)
 	self.Highlight:Hide();
 	GameTooltip:Hide();
 end
 
-function KrowiAF_AchievementButton_Summary_OnClick(self)
-	if self.Achievement == nil then
-        return;
-    end
-    KrowiAF_SelectAchievementFromID(self.Achievement.Id);
+function KrowiAF_AchievementButton_Light_OnClick(self, button, down, ignoreModifiers)
+	if button == "LeftButton" then
+    	KrowiAF_SelectAchievementFromID(self.Achievement.Id);
+	else
+		KrowiAF_AchievementButton_OnClick(self, button, down, ignoreModifiers);
+	end
 end

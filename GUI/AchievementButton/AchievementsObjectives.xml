@@ -1,5 +1,6 @@
 <Ui>
-    <Script file="AchievementsObjectivesMixin.lua" />
+    <Script file="AchievementsObjectives.lua"/>
+    <Script file="AchievementsObjectivesMixin.lua"/>
     
     <Frame name="KrowiAF_TextCriteria_Template" enableMouse="false" virtual="true">
         <Size x="350" y="15"/>

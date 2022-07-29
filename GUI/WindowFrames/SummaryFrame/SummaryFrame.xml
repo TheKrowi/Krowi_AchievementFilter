@@ -1,7 +1,8 @@
 <Ui>
     <Script file="SummaryFrame.lua" />
+    <Script file="SummaryFrameMixin.lua" />
 	
-	<Frame name="KrowiAF_AchievementFrameSummaryFrame_Template" virtual="true" hidden="true">
+	<Frame name="KrowiAF_SummaryFrame_Template" mixin="KrowiAF_SummaryFrameMixin" virtual="true" hidden="true">
 		<Layers>
 			<Layer level="BACKGROUND">
 				<Texture name="$parentBackground" parentKey="Background" file="Interface\AchievementFrame\UI-Achievement-AchievementBackground">
@@ -21,15 +22,6 @@
 					<Anchor point="TOPLEFT" x="5" y="-10"/>
 					<Anchor point="TOPRIGHT" x="-5" y="-10"/>
 				</Anchors>
-				<Layers>
-					<Layer level="BACKGROUND">
-						<FontString name="$parentEmptyText" parentKey="EmptyText" inherits="GameFontHighlight" text="NO_COMPLETED_ACHIEVEMENTS">
-							<Anchors>
-								<Anchor point="TOP" x="0" y="-30"/>
-							</Anchors>
-						</FontString>
-					</Layer>
-				</Layers>
 				<Frames>
 					<Frame name="$parentHeader" parentKey="Header">
 						<Size x="0" y="20"/>
@@ -90,40 +82,18 @@
 					</Frame>
 				</Frames>
 			</Frame>
-			<Frame name="$parentScrollFrameBorder" parentKey="ScrollFrameBorder" inherits="AchivementGoldBorderBackdrop">
+			<Frame name="$parentScrollFrameBorder" parentKey="ScrollFrameBorder" inherits="KrowiAF_AchievementsFrameLight_Template">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentAchievementsHeader" relativePoint="BOTTOMLEFT" x="9" y="-5"/>
 					<Anchor point="BOTTOMRIGHT" relativeTo="$parentCategoriesHeader" relativePoint="TOPRIGHT" x="-14" y="5"/>
 				</Anchors>
-				<Frames>
-					<ScrollFrame name="$parentContainer" parentKey="Container" inherits="HybridScrollFrameTemplate">
-						<Anchors>
-							<Anchor point="TOPLEFT" x="0" y="-5"/>
-							<Anchor point="BOTTOMRIGHT" x="0" y="5"/>
-						</Anchors>
-						<Frames>
-							<Slider name="$parentScrollBar" parentKey="ScrollBar" inherits="HybridScrollBarTemplate">
-								<Anchors>
-									<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="1" y="-11"/> <!-- -13 -->
-									<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="1" y="10"/> <!-- -11 -->
-								</Anchors>
-								<Scripts>
-									<OnLoad>
-										self.trackBG:Show();
-										self.trackBG:SetVertexColor(0, 0, 0, 1);
-									</OnLoad>
-								</Scripts>
-							</Slider>
-						</Frames>
-					</ScrollFrame>					
-				</Frames>
 			</Frame>
 		</Frames>
 		<Scripts>
 			<OnLoad>
 				self:RegisterEvent("ACHIEVEMENT_EARNED");
 			</OnLoad>
-			<OnEvent function="KrowiAF_AchievementFrameSummaryFrame_Update"/>
+			<OnEvent function="KrowiAF_AchievementFrameSummaryFrame_OnEvent"/>
 			<OnShow function="KrowiAF_AchievementFrameSummaryFrame_OnShow"/>
 		</Scripts>
 	</Frame>

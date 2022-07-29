@@ -136,11 +136,6 @@ end
 
 local function SetCompactAchievements()
     addon.Options.db.Achievements.Compact = not addon.Options.db.Achievements.Compact;
-    if addon.Options.db.Achievements.Compact then
-        addon.Options.db.Achievements.ButtonCollapsedHeight = 48; -- reward height = 20
-    else
-        addon.Options.db.Achievements.ButtonCollapsedHeight = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT;
-    end
     options.Debug(addon.L["Compact Achievements"], addon.Options.db.Achievements.Compact);
 end
 

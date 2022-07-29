@@ -1,8 +1,6 @@
 <Ui>
-    <Include file="AchievementButton\Files.xml" />
-    <Include file="AchievementsFrame.xml" />
-    <Include file="CategoryButton.xml" />
-    <Include file="CategoriesFrame.xml" />
-    <Include file="SummaryAchievementButton.xml" />
-    <Include file="SummaryFrame.xml" />
+    <Include file="AchievementsFrame\Files.xml"/>
+    <Include file="CategoryButton\Files.xml"/>
+    <Include file="CategoriesFrame\Files.xml"/>
+    <Include file="SummaryFrame\Files.xml"/>
 </Ui>
