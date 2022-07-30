@@ -201,7 +201,8 @@ local function AddCharToSavedData(playerGUID)
         Realm = (select(2, UnitFullName("player"))),
         Class = (select(2, UnitClass("player"))),
         Faction = (UnitFactionGroup("player")),
-        CompletedAchievements = {}
+        CompletedAchievements = {},
+        ExcludeFromHeaderTooltip = SavedData.Characters[playerGUID].ExcludeFromHeaderTooltip
     };
 end
 
@@ -336,6 +337,9 @@ function addon.MakeWindowMovable()
     end
     if addon.GUI.Calendar.Frame then
         MakeMovable(addon.GUI.Calendar.Frame);
+    end
+    if addon.GUI.DataManagerFrame then
+        MakeMovable(addon.GUI.DataManagerFrame);
     end
 end
 

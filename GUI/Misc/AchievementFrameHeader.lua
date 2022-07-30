@@ -94,6 +94,7 @@ local function GetSortedCharacters()
             Class = character.Class,
             Faction = character.Faction,
             Points = character.Points,
+            ExcludeFromHeaderTooltip = character.ExcludeFromHeaderTooltip,
             Guid = guid
         });
     end
@@ -130,14 +131,16 @@ local function LimitNumCharacters(characters)
     local currentCharacterAdded = false;
     local playerGUID = UnitGUID("player");
     for i = 1, #characters do
-        if characters[i].Guid == playerGUID then
-            tinsert(trimmedCharacters, characters[i]);
-            currentCharacterAdded = true;
-        elseif currentCharacterAdded or #trimmedCharacters < maxNumCharacters - 1 then
-            tinsert(trimmedCharacters, characters[i]);
-        end
-        if #trimmedCharacters >= maxNumCharacters then
-            return trimmedCharacters;
+        if not characters[i].ExcludeFromHeaderTooltip then
+            if characters[i].Guid == playerGUID then
+                tinsert(trimmedCharacters, characters[i]);
+                currentCharacterAdded = true;
+            elseif currentCharacterAdded or #trimmedCharacters < maxNumCharacters - 1 then
+                tinsert(trimmedCharacters, characters[i]);
+            end
+            if #trimmedCharacters >= maxNumCharacters then
+                return trimmedCharacters;
+            end
         end
     end
     return trimmedCharacters;
@@ -153,7 +156,7 @@ local function AddFactionIcon(name, faction)
         else -- Neutral
             icon = "|A:worldquest-questmarker-questionmark:15:16|a";
         end
-            name = icon .. addon.L["TAB"] .. name;
+        name = icon .. addon.L["TAB"] .. name;
     end
     return name;
 end
@@ -176,12 +179,15 @@ local function OnEnter(self)
 end
 
 function header.CreateTooltip()
-    local frame = CreateFrame("Frame", nil, AchievementFrameHeader);
+    local frame = CreateFrame("Button", nil, AchievementFrameHeader);
     frame:SetSize(175, 20);
     frame:SetPoint("CENTER", "AchievementFrameHeader", "CENTER", 20, -16);
     frame:SetScript("OnEnter", OnEnter);
     frame:SetScript("OnLeave", function()
         GameTooltip:Hide();
+    end);
+    frame:SetScript("OnClick", function()
+        addon.GUI.DataManagerFrame:Show();
     end);
 end
 

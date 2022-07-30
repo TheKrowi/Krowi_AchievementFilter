@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 9.2.5.38.0 - 2022-xx-xx
+### Added
+- Data manager that can be opened by clicking on the achievement points in the header to show/hide characters in/from the header tooltip
+
 ## 9.2.5.37.0 - 2022-xx-xx
 ### Added
 - Faction icon in front of characters in the achievement window header tooltip (enabled by default)
