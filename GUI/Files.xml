@@ -1,30 +1,11 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..
-\..\FrameXML\UI.xsd">
-    <Script file="GUI.lua" />
-
-    <Include file="Templates\Files.xml" />
-
-    <Script file="GameTooltipProgressBar.lua" />
-
-    <Script file="AlertSystem.lua" />
-
-    <Script file="AchievementFrameHeader.lua" />
-    <Script file="AchievementFrameTabButton.lua" />
-    <Script file="SideButton.lua" />
-    <Script file="CategoryButtonMixin.lua" />
-    <Script file="CategoriesFrame.lua" />
-    <Include file="AchievementButton\Files.xml" />
-    <Include file="AchievementTooltip\Files.xml" />
-    <Include file="RightClickMenu\Files.xml" />
-    <Script file="AchievementsFrame.lua" />
-    <Script file="SummaryAchievementButton.lua" />
-    <Script file="SummaryFrame.lua" />
-
-    <Script file="FilterButton.lua" />
-
-    <Include file="Search\Files.xml" />
-
-    <Script file="WorldMapButton.lua" />
-
-    <Include file="Calendar\Files.xml" />
+<Ui>
+    <Script file="GUI.lua"/>
+    <Include file="Misc\Files.xml"/>
+    <Include file="AchievementButton\Files.xml"/>
+    <Include file="AchievementTooltip\Files.xml"/>
+    <Include file="WindowFrames\Files.xml"/>
+    <Include file="RightClickMenu\Files.xml"/>
+    <Include file="Search\Files.xml"/>
+    <Include file="Calendar\Files.xml"/>
+    <Include file="DataManager\Files.xml"/>
 </Ui>

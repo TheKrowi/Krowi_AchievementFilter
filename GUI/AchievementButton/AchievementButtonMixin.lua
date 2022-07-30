@@ -3,108 +3,50 @@ local _, addon = ...;
 
 KrowiAF_AchievementButtonMixin = {};
 
-local ACHIEVEMENTUI_MAX_LINES_COLLAPSED = 3;
+function KrowiAF_AchievementButtonMixin:PostLoad(scrollFrame)
+	self:SetPoint("RIGHT", scrollFrame, -5, 0);
 
-do -- Scripts
-	function KrowiAF_AchievementButton_OnLoad(self)
-		_, self.FontHeight = self.Description:GetFont();
+	local xHeaderOffset = max(self.PlusMinus:GetRight() - self:GetLeft(), self:GetRight() - self.DateCompleted:GetLeft()) + 2;
+	self.Header:SetPoint("LEFT", xHeaderOffset, 0);
+	self.Header:SetPoint("RIGHT", -xHeaderOffset, 0);
 
-		local descriptionHeight = self.FontHeight * self.MaxDescriptionLinesCollapsed;
-		self.Description:SetHeight(descriptionHeight);
+	local xDescriptionOffset = max(self.PlusMinus:GetRight() - self:GetLeft(), self:GetRight() - self.Shield:GetLeft());
+	self.Description:SetPoint("LEFT", xDescriptionOffset, 0);
+	self.Description:SetPoint("RIGHT", -xDescriptionOffset, 0);
 
-		self:Collapse();
-
-		self:RegisterEvent("ACHIEVEMENT_EARNED");
-	end
-
-	function KrowiAF_AchievementButton_OnEnter(self)
-		addon.GUI.AchievementsFrame.SetHighlightedButton(self);
-		self:ShowTooltip();
-		self.Highlight:Show();
-	end
-
-	function KrowiAF_AchievementButton_OnLeave(self)
-		addon.GUI.AchievementsFrame.ClearHighlightedButton();
-		AchievementMeta_OnLeave(self);
-		if not self.selected then
-			self.Highlight:Hide();
-		end
-	end
-
-	function KrowiAF_AchievementButton_OnClick(self, button, down, ignoreModifiers)
-		if button == "LeftButton" then
-			self:Select(ignoreModifiers);
-		elseif button == "RightButton" then
-			addon.GUI.RightClickMenu.AchievementMenu:Open(self.Achievement);
-		end
-	end
-
-	function KrowiAF_AchievementButton_OnEvent(self, event)
-		if event ~= "ACHIEVEMENT_EARNED" or not self.Achievement or not self.index then
-			return;
-		end
-
-		local achievement = self.Achievement;
-		self.Achievement = nil;
-		self:Update(achievement, self.index);
-	end
-
-	function KrowiAF_AchievementButtonExtraIcon_OnEnter(self)
-		GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-		GameTooltip:SetText(self.Text, nil, nil, nil, nil, true);
-	end
+	local xObjectivesOffset = max(self.ObjectivesLeftAnchor:GetRight() - self:GetLeft(), self:GetRight() - self.Shield:GetLeft());
+	self.XObjectivesOffset = xObjectivesOffset;
+	addon.GUI.AchievementsObjectives:SetParent(self);
 end
 
 local cachedWidth;
 function KrowiAF_AchievementButtonMixin:DisplayObjectives()
 	local objectives = addon.GUI.AchievementsObjectives;
 	local topAnchor = self.HiddenDescription;
-	-- objectives:ClearAllPoints();
-	-- print(self:GetWidth(), self:GetHeight())
 
 	objectives:SetParent(self);
 	objectives:SetPoint("TOP", self.HiddenDescription, "BOTTOM", 0, -8);
-	objectives:SetPoint("LEFT", self, "LEFT", objectives.XOffset, 0); -- Set it each time to take the scrollbar into account
-	objectives:SetPoint("RIGHT", self, "RIGHT", -objectives.XOffset, 0); -- Set it each time to take the scrollbar into account
-	-- objectives:SetPoint("TOPLEFT", topAnchor, "BOTTOMLEFT", 0, -8);
-	-- objectives:SetPoint("TOPRIGHT", topAnchor, "BOTTOMRIGHT", 0, -8);
-	-- for i = 1, objectives:GetNumPoints() do
-	-- 	print(objectives:GetPoint(i))
-	-- end
-	-- print(objectives:GetWidth())
+	objectives:SetPoint("LEFT", self, "LEFT", self.XObjectivesOffset, 0); -- Set it each time to take the scrollbar into account
+	objectives:SetPoint("RIGHT", self, "RIGHT", -self.XObjectivesOffset, 0); -- Set it each time to take the scrollbar into account
 	objectives.Completed = self.Completed;
 	objectives.FontHeight = self.FontHeight;
 	local height = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT; -- Compact or not, we need this height
 	local id = self.Achievement.Id;
 	if objectives.Id == id and cachedWidth == objectives:GetWidth() then
-		-- print("cached!!!")
-		-- if objectives.Mode == objectives.Modes.Criteria then
-		-- 	if objectives:GetHeight() > 0 then
-		-- 		objectives:SetPoint("TOPLEFT", topAnchor, "BOTTOMLEFT", 0, -8);
-		-- 		objectives:SetPoint("TOPRIGHT", topAnchor, "BOTTOMRIGHT", 0, -8);
-		-- 	end
-		-- else
-		-- 	objectives:SetPoint("TOP", topAnchor, "BOTTOM", 0, -8);
-		-- end
+		-- Cached, nothing to do
 	elseif self.Completed and GetPreviousAchievement(id) then
 		objectives:SetHeight(1);
 		objectives:ResetAll();
 		objectives:DisplayProgressiveAchievement(id);
-		-- objectives:SetPoint("TOP", topAnchor, "BOTTOM", 0, -8);
 	else
 		objectives:SetHeight(1);
 		objectives:ResetAll();
 		objectives:DisplayCriteria(id);
-		-- if objectives:GetHeight() > 0 then
-		-- 	objectives:SetPoint("TOPLEFT", topAnchor, "BOTTOMLEFT", 0, -8);
-		-- 	objectives:SetPoint("TOPRIGHT", topAnchor, "BOTTOMRIGHT", 0, -8);
-		-- end
 		cachedWidth = objectives:GetWidth();
 	end
 	objectives:Show();
-	-- print(objectives:GetHeight())
-	height = height + objectives:GetHeight();
-	if height ~= addon.Options.db.Achievements.ButtonCollapsedHeight or self.numLines > ACHIEVEMENTUI_MAX_LINES_COLLAPSED then
+	height = height + objectives:GetHeight() - 1;
+	if height ~= self.CollapsedHeight or self.numLines > self.MaxDescriptionLinesCollapsed then
 		local descriptionHeight = self.HiddenDescription:GetHeight();
 		height = height + descriptionHeight - ACHIEVEMENTBUTTON_DESCRIPTIONHEIGHT;
 		if self.Reward:IsShown() then
@@ -122,7 +64,6 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement)
 		return;
 	end
 
-	local compact = addon.Options.db.Achievements.Compact;
 	local id, name, points, completed, month, day, year, description, flags, icon, rewardText, _, wasEarnedByMe, earnedBy = addon.GetAchievementInfo(achievement.Id);
 	flags = addon.Objects.Flags:New(flags);
 
@@ -146,8 +87,8 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement)
 
 		self.Header:SetText(name)
 
-		local normalFont = compact and GameFontNormal or AchievementPointsFont;
-		local smallFont = compact and GameFontNormalSmall or AchievementPointsFontSmall;
+		local normalFont = self.Compact and GameFontNormal or AchievementPointsFont;
+		local smallFont = self.Compact and GameFontNormalSmall or AchievementPointsFontSmall;
 		if GetPreviousAchievement(id) then
 			AchievementShield_SetPoints(AchievementButton_GetProgressivePoints(id), self.Shield.Points, normalFont, smallFont);
 		else
@@ -190,7 +131,7 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement)
 		end
 
 		if rewardText == "" then
-			if compact then
+			if self.Compact then
 				self.Reward:SetText(nil);
 				self.Description:Show();
 			end
@@ -205,7 +146,7 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement)
 			else
 				self.RewardBackground:SetVertexColor(0.35, 0.35, 0.35);
 			end
-			if compact then
+			if self.Compact then
 				self.Description:Hide();
 			end
 		end
@@ -223,7 +164,7 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement)
 		self.Check:Show();
 		self.Header:SetWidth(self.Header:GetStringWidth() + 4); -- This +4 here is to fudge around any string width issues that arize from resizing a string set to its string width. See bug 144418 for an example.
 		self.Tracked:SetChecked(true);
-		if not compact then
+		if not self.Compact then
 			self.Tracked:Show();
 		end
 	else
@@ -256,7 +197,7 @@ function KrowiAF_AchievementButtonMixin:Update(achievement, index)
 		self:Collapse();
 	end
 
-	if addon.Options.db.Achievements.Compact then
+	if self.Compact then
 		if not self.collapsed then
 			self.Glow:Show();
 			self.Glow:SetHeight(64);
@@ -280,7 +221,7 @@ function KrowiAF_AchievementButtonMixin:UpdatePlusMinusTexture()
 
 	local id = self.Achievement.Id;
 	local display = false;
-	if addon.Options.db.Achievements.Compact then
+	if self.Compact then
 		display = true;
 	elseif GetAchievementNumCriteria(id) ~= 0 then
 		display = true;
@@ -312,19 +253,17 @@ function KrowiAF_AchievementButtonMixin:Collapse()
 		return;
 	end
 
-	local compact = addon.Options.db.Achievements.Compact;
 	self.collapsed = true;
 	self:UpdatePlusMinusTexture();
-	local buttonCollapsedHeight = addon.Options.db.Achievements.ButtonCollapsedHeight;
-	self:SetHeight(buttonCollapsedHeight);
-	self.Background:SetTexCoord(0, 1, 1 - (buttonCollapsedHeight / 256), 1);
+	self:SetHeight(self.CollapsedHeight);
+	self.Background:SetTexCoord(0, 1, 1 - (self.CollapsedHeight / 256), 1);
 	if not self:IsMouseOver() then
 		self.Highlight:Hide();
 	end
-	if not self.Tracked:GetChecked() or addon.Options.db.Achievements.Compact then
+	if not self.Tracked:GetChecked() or self.Compact then
 		self.Tracked:Hide();
 	end
-	if compact and self.Reward:GetText() ~= nil then
+	if self.Compact and self.Reward:GetText() ~= nil then
 		self.Description:Hide();
 	else
 		self.Description:Show();
@@ -347,7 +286,7 @@ end
 
 local media = "Interface/AddOns/Krowi_AchievementFilter/Media/";
 local function SetTsunamis(self)
-	if addon.Options.db.Achievements.Compact then
+	if self.Compact then
 		return;
 	end
 	local notObtainable = self.Achievement.NotObtainable;
@@ -387,7 +326,7 @@ function KrowiAF_AchievementButtonMixin:Saturate()
 		end
 		self.Shield.Points:SetVertexColor(1, 1, 1);
 	end
-	self.Glow:SetVertexColor(1.0, 1.0, 1.0);
+	self.Glow:SetVertexColor(1, 1, 1);
 	self.Icon.Texture:SetVertexColor(1, 1, 1, 1);
 	self.Icon.Border:SetVertexColor(1, 1, 1, 1);
 	self.Shield.Icon:SetTexCoord(0, 0.5, 0, 0.5);

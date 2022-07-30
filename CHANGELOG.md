@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 9.2.5.38.0 - 2022-xx-xx
+### Added
+- Data manager that can be opened by clicking on the achievement points in the header to show/hide characters in/from the header tooltip
+
 ## 9.2.5.37.0 - 2022-xx-xx
 ### Added
 - Faction icon in front of characters in the achievement window header tooltip (enabled by default)
@@ -15,6 +19,7 @@ All notable changes to this project will be documented in this file.
 - Protection so Blizzard Statistics can not be in front of Guild, would result in errors
 - When a criteria updates for an achievement or you earn an achievement, this will also visually update without having to manually refresh the window
 - Keybind to open the current zone
+- Right click menu to the summary achievements and calendar side window achievements
 
 ### Changed
 - Tabs are now handled by addon and tab name and API is accessible by other addons (see Plugins/Overachiever.lua for example or ask for assistance on discord)

@@ -128,7 +128,7 @@ local function SkinAchievementsFrame(frame, engine, skins)
 
     -- Buttons
     for _, button in next, frame.ScrollFrame.buttons do
-        SkinAchievementButton(button, not addon.Options.db.Achievements.Compact, engine, skins);
+        SkinAchievementButton(button, button.Compact, engine, skins);
     end
 
     hooksecurefunc(frame, "Update", function(frame)

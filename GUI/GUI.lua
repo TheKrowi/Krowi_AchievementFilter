@@ -14,6 +14,7 @@ function gui:LoadWithAddon()
     gui.AlertSystem:Load();
     addon.Filters:InjectDefaults();
     addon.GUI.AchievementFrameHeader.InjectOptions();
+    addon.GUI.DataManagerFrame:Load();
 end
 
 local defaultAchievementFrameWidth;
@@ -25,7 +26,7 @@ function gui:LoadWithBlizzard_AchievementUI()
     defaultAchievementFrameMetalBorderHeight = AchievementFrameMetalBorderLeft:GetHeight();
     self.SetAchievementFrameHeight(); -- Do this in order to create the correct amount of buttons based on our settings
 
-    addon.GUI.AchievementsObjectives.Load();
+    addon.GUI.AchievementsObjectives:Load();
     gui.AchievementsFrame:Load();
     addon.GUI.SummaryFrame:Load();
     gui.CategoriesFrame:Load();

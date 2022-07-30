@@ -1,9 +1,8 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..
-\..\FrameXML\UI.xsd">
+<Ui>
     <Script file="Search.lua" />
-    <Script file="ResultsButton.lua" />
-    <Script file="ResultsFrame.lua" />
-    <Script file="PreviewButton.lua" />
-    <Script file="PreviewFrame.lua" />
-    <Script file="BoxFrame.lua" />
+    <Include file="ResultsButton\ResultsButton.xml"/>
+    <Include file="ResultsFrame\ResultsFrame.xml"/>
+    <Include file="PreviewButton\PreviewButton.xml"/>
+    <Include file="PreviewFrame\PreviewFrame.xml"/>
+    <Include file="BoxFrame\BoxFrame.xml"/>
 </Ui>
