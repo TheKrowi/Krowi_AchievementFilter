@@ -196,13 +196,18 @@ local function AddCharToSavedData(playerGUID)
     if not SavedData.Characters then
         SavedData.Characters = {};
     end
+    local character = SavedData.Characters[playerGUID];
+    local excludeFromHeaderTooltip;
+    if character then
+        excludeFromHeaderTooltip = character.ExcludeFromHeaderTooltip;
+    end
     SavedData.Characters[playerGUID] = {
         Name = (UnitFullName("player")),
         Realm = (select(2, UnitFullName("player"))),
         Class = (select(2, UnitClass("player"))),
         Faction = (UnitFactionGroup("player")),
         CompletedAchievements = {},
-        ExcludeFromHeaderTooltip = SavedData.Characters[playerGUID].ExcludeFromHeaderTooltip
+        ExcludeFromHeaderTooltip = excludeFromHeaderTooltip
     };
 end
 
