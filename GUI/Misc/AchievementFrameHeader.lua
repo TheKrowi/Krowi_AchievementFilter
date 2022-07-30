@@ -180,8 +180,8 @@ end
 
 function header.CreateTooltip()
     local frame = CreateFrame("Button", nil, AchievementFrameHeader);
-    frame:SetSize(175, 20);
-    frame:SetPoint("CENTER", "AchievementFrameHeader", "CENTER", 20, -16);
+    frame:SetPoint("TOPLEFT", "AchievementFrameHeaderPointBorder");
+    frame:SetPoint("BOTTOMRIGHT", "AchievementFrameHeaderPointBorder");
     frame:SetScript("OnEnter", OnEnter);
     frame:SetScript("OnLeave", function()
         GameTooltip:Hide();

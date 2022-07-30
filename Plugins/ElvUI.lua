@@ -26,26 +26,46 @@ local function SkinCategoriesFrame(frame, skins)
 	frame.ScrollFrame.backdrop:Point("BOTTOMRIGHT", -2, -3);
 
     -- Buttons
-    for _, button in next, frame.ScrollFrame.buttons do
+    local buttons = frame.ScrollFrame.buttons;
+    for _, button in next, buttons do
         button:StripTextures(true);
 		button:StyleButton();
     end
 
     -- Scrollbar
-    if frame.ScrollFrame.ScrollBar then
-        skins:HandleScrollBar(frame.ScrollFrame.ScrollBar, 5);
-    end
+    skins:HandleScrollBar(frame.ScrollFrame.ScrollBar, 5);
 end
 
-local function SkinAchievementButton(button, biggerIcon, engine, skins)
+local function SkinGameTooltipProgressBar(progressBar, engine)
+    progressBar.BorderLeftTop:StripTextures();
+    progressBar.BorderLeftMiddle:StripTextures();
+    progressBar.BorderLeftBottom:StripTextures();
+    progressBar.BorderRightTop:StripTextures();
+    progressBar.BorderRightMiddle:StripTextures();
+    progressBar.BorderRightBottom:StripTextures();
+    progressBar.BorderMiddleTop:StripTextures();
+    progressBar.BorderMiddleMiddle:StripTextures();
+    progressBar.BorderMiddleBottom:StripTextures();
+    progressBar.Background:Hide();
+    local fills = progressBar.Fill;
+    for _, fill in next, fills do
+        fill:SetTexture(engine.media.normTex);
+    end
+    progressBar:CreateBackdrop();
+    progressBar.backdrop:Point("TOPLEFT", 7, -5);
+    progressBar.backdrop:Point("BOTTOMRIGHT", -5, 5);
+    progressBar:SetColors({R = 4/255, G = 179/255, B = 30/255}, {R = 179/255, G = 4/255, B = 30/255});
+end
+
+local function SkinAchievementButton(button, engine, skins)
 	button:SetFrameLevel(button:GetFrameLevel() + 2)
 	button:StripTextures(true)
 	button:CreateBackdrop(nil, true)
 	button.backdrop:SetInside()
 	button.Icon:CreateBackdrop(nil, nil, nil, nil, nil, nil, true)
-	button.Icon:Size(biggerIcon and 54 or 36, biggerIcon and 54 or 36)
+	button.Icon:Size(button.Compact and 36 or 54, button.Compact and 36 or 54)
 	button.Icon:ClearAllPoints()
-	button.Icon:Point("TOPLEFT", biggerIcon and 8 or 6, biggerIcon and -8 or -6)
+	button.Icon:Point("TOPLEFT", button.Compact and 6 or 8, button.Compact and -6 or -8)
 	button.Icon.Border:Kill()
 	button.Icon.Texture:SetTexCoord(unpack(engine.TexCoords))
 	button.Icon.Texture:SetInside()
@@ -78,7 +98,7 @@ local function SkinAchievementButton(button, biggerIcon, engine, skins)
 		skins:HandleCheckBox(button.Tracked)
 		button.Tracked:Size(18)
 		button.Tracked:ClearAllPoints()
-		button.Tracked:Point("TOPLEFT", button.icon, "BOTTOMLEFT", 0, -2)
+		button.Tracked:Point("TOPLEFT", button.Icon, "BOTTOMLEFT", 0, -2)
 	end
 end
 
@@ -93,18 +113,20 @@ local function RedBackdrop(self)
 end
 
 local function SetAchievementButtonColor(frame, engine)
-	if frame and frame.backdrop and frame.Achievement then
-		if frame.Achievement.NotObtainable then
-			frame.backdrop.callbackBackdropColor = RedBackdrop;
-			frame.backdrop:SetBackdropColor(redAchievement.r, redAchievement.g, redAchievement.b);
-        elseif frame.accountWide then
-			frame.backdrop.callbackBackdropColor = BlueBackdrop;
-			frame.backdrop:SetBackdropColor(blueAchievement.r, blueAchievement.g, blueAchievement.b);
-		else
-			frame.backdrop.callbackBackdropColor = nil;
-			frame.backdrop:SetBackdropColor(unpack(engine.media.backdropcolor));
-		end
-	end
+	if not frame or not frame.backdrop or not frame.Achievement then
+        return;
+    end
+
+    if frame.Achievement.NotObtainable then
+        frame.backdrop.callbackBackdropColor = RedBackdrop;
+        frame.backdrop:SetBackdropColor(redAchievement.r, redAchievement.g, redAchievement.b);
+    elseif frame.accountWide then
+        frame.backdrop.callbackBackdropColor = BlueBackdrop;
+        frame.backdrop:SetBackdropColor(blueAchievement.r, blueAchievement.g, blueAchievement.b);
+    else
+        frame.backdrop.callbackBackdropColor = nil;
+        frame.backdrop:SetBackdropColor(unpack(engine.media.backdropcolor));
+    end
 end
 
 local function SkinAchievementsFrame(frame, engine, skins)
@@ -113,12 +135,11 @@ local function SkinAchievementsFrame(frame, engine, skins)
     frame.Background:Hide();
     frame.Artwork:Hide();
 
-    if frame and frame.GetNumChildren then
-        for i = 1, frame:GetNumChildren() do
-            local child = select(i, frame:GetChildren());
-            if child and not child:GetName() then
-                child:SetBackdrop();
-            end
+    local numChildren = frame:GetNumChildren();
+    for i = 1, numChildren do
+        local child = select(i, frame:GetChildren());
+        if child and not child:GetName() then
+            child:SetBackdrop();
         end
     end
 
@@ -127,12 +148,13 @@ local function SkinAchievementsFrame(frame, engine, skins)
 	frame.ScrollFrame.backdrop:Point("BOTTOMRIGHT", -2, -3);
 
     -- Buttons
-    for _, button in next, frame.ScrollFrame.buttons do
-        SkinAchievementButton(button, button.Compact, engine, skins);
+    local buttons = frame.ScrollFrame.buttons;
+    for _, button in next, buttons do
+        SkinAchievementButton(button, engine, skins);
     end
 
     hooksecurefunc(frame, "Update", function(frame)
-        for _, button in next, frame.ScrollFrame.buttons do
+        for _, button in next, buttons do
             if button:IsShown() then
                 SetAchievementButtonColor(button, engine);
             else
@@ -176,9 +198,101 @@ local function SkinAchievementsFrame(frame, engine, skins)
     end
 
     -- Scrollbar
-    if frame.ScrollFrame.ScrollBar then
-        skins:HandleScrollBar(frame.ScrollFrame.ScrollBar, 5);
+    skins:HandleScrollBar(frame.ScrollFrame.ScrollBar, 5);
+end
+
+local function SkinStatusBar(statusBar, engine)
+    statusBar.BorderLeftTop:StripTextures();
+    statusBar.BorderLeftMiddle:StripTextures();
+    statusBar.BorderLeftBottom:StripTextures();
+    statusBar.BorderRightTop:StripTextures();
+    statusBar.BorderRightMiddle:StripTextures();
+    statusBar.BorderRightBottom:StripTextures();
+    statusBar.BorderMiddleTop:StripTextures();
+    statusBar.BorderMiddleMiddle:StripTextures();
+    statusBar.BorderMiddleBottom:StripTextures();
+    statusBar.Background:Hide();
+    local fills = statusBar.Fill;
+    for _, fill in next, fills do
+        fill:SetTexture(engine.media.normTex);
     end
+    statusBar:AdjustOffsets(8, 8);
+    statusBar:CreateBackdrop();
+    statusBar.backdrop:Point("TOPLEFT", 14, -14);
+    statusBar.backdrop:Point("BOTTOMRIGHT", -12, 14);
+    statusBar:SetColors({R = 4/255, G = 179/255, B = 30/255}, {R = 179/255, G = 4/255, B = 30/255});
+    if statusBar.Button then
+        local button = statusBar.Button;
+        button:StripTextures();
+
+        local htex = button:CreateTexture();
+        htex:SetColorTexture(1, 1, 1, 0.3);
+        htex:SetAllPoints(statusBar.backdrop);
+        button:SetHighlightTexture(htex);
+
+        button:SetScript("OnLeave", function(self)
+        end);
+        button:SetScript("OnEnter", function(self)
+        end);
+    end
+end
+
+local function SkinAchievementSummary(frame, engine, skins)
+    frame:StripTextures();
+	frame.Background:Hide();
+	frame:GetChildren():Hide();
+
+    frame.Achievements.Header.Texture:Hide();
+	frame.Categories.Header.Texture:Hide();
+
+    local numChildren = frame:GetNumChildren();
+    for i = 1, numChildren do
+        local child = select(i, frame:GetChildren());
+        if child and not child:GetName() then
+            child:SetBackdrop();
+        end
+    end
+
+    frame.ScrollFrameBorder.NineSlice:SetAlpha(0);
+    frame.ScrollFrameBorder.ScrollFrame.ScrollBar.trackBG:SetAlpha(0);
+    frame.ScrollFrameBorder.ScrollFrame:CreateBackdrop("Transparent");
+	frame.ScrollFrameBorder.ScrollFrame.backdrop:Point("TOPLEFT", 1, 2);
+	frame.ScrollFrameBorder.ScrollFrame.backdrop:Point("BOTTOMRIGHT", -2, -3);
+
+    -- Buttons
+    local buttons = frame.ScrollFrameBorder.ScrollFrame.buttons;
+    for _, button in next, buttons do
+        SkinAchievementButton(button, engine, skins);
+    end
+
+    hooksecurefunc(frame.ScrollFrameBorder.ScrollFrame, "update", function(frame)
+        for _, button in next, buttons do
+            if button:IsShown() then
+                SetAchievementButtonColor(button, engine);
+            else
+                return;
+            end
+        end
+    end);
+
+    hooksecurefunc(frame, "Show", function(frame)
+        for _, button in next, buttons do
+            if button:IsShown() then
+                SetAchievementButtonColor(button, engine);
+            else
+                return;
+            end
+        end
+    end);
+
+    SkinStatusBar(frame.TotalStatusBar, engine);
+    local statusBars = frame.StatusBars;
+    for _, statusBar in next, statusBars do
+        SkinStatusBar(statusBar, engine);
+    end
+
+    -- Scrollbar
+    skins:HandleScrollBar(frame.ScrollFrameBorder.ScrollFrame.ScrollBar, 5);
 end
 
 local function SkinFilterButton(button, achievementsFrame, skins)
@@ -207,8 +321,8 @@ end
 local function SkinSearchButton(self, engine, skins)
 	self:StripTextures()
 
-	if self.icon then
-		skins:HandleIcon(self.icon);
+	if self.Icon then
+		skins:HandleIcon(self.Icon);
 	end
 
 	self:CreateBackdrop('Transparent');
@@ -255,67 +369,64 @@ local function ForceAlpha(self, alpha, forced)
 end
 
 local function SkinAlertFrameTemplate(frame, engine)
-    frame:SetAlpha(1)
+    frame:SetAlpha(1);
 
     if not frame.hooked then
-        hooksecurefunc(frame, 'SetAlpha', ForceAlpha)
-        frame.hooked = true
+        hooksecurefunc(frame, 'SetAlpha', ForceAlpha);
+        frame.hooked = true;
     end
 
     if not frame.backdrop then
-        frame:CreateBackdrop('Transparent')
-        frame.backdrop:Point('TOPLEFT', frame.Background, 'TOPLEFT', -2, -6)
-        frame.backdrop:Point('BOTTOMRIGHT', frame.Background, 'BOTTOMRIGHT', -2, 6)
+        frame:CreateBackdrop('Transparent');
+        frame.backdrop:Point('TOPLEFT', frame.Background, 'TOPLEFT', -2, -6);
+        frame.backdrop:Point('BOTTOMRIGHT', frame.Background, 'BOTTOMRIGHT', -2, 6);
     end
 
     -- Background
-    frame.Background:SetTexture()
-    frame.glow:Kill()
-    frame.shine:Kill()
-    -- frame.addon.GUIldBanner:Kill()
-    -- frame.addon.GUIldBorder:Kill()
+    frame.Background:SetTexture();
+    frame.glow:Kill();
+    frame.shine:Kill();
 
     -- Text
-    frame.Unlocked:FontTemplate(nil, 12)
-    frame.Unlocked:SetTextColor(1, 1, 1)
-    frame.Name:FontTemplate(nil, 12)
+    frame.Unlocked:FontTemplate(nil, 12);
+    frame.Unlocked:SetTextColor(1, 1, 1);
+    frame.Name:FontTemplate(nil, 12);
 
     -- Icon
-    frame.Icon.Texture:SetTexCoord(unpack(engine.TexCoords))
-    frame.Icon.Overlay:Kill()
+    frame.Icon.Texture:SetTexCoord(unpack(engine.TexCoords));
+    frame.Icon.Overlay:Kill();
 
-    frame.Icon.Texture:ClearAllPoints()
-    frame.Icon.Texture:Point('LEFT', frame, 7, 0)
+    frame.Icon.Texture:ClearAllPoints();
+    frame.Icon.Texture:Point('LEFT', frame, 7, 0);
 
     if not frame.Icon.Texture.b then
-        frame.Icon.Texture.b = CreateFrame('Frame', nil, frame)
-        frame.Icon.Texture.b:SetTemplate()
-        frame.Icon.Texture.b:SetOutside(frame.Icon.Texture)
-        frame.Icon.Texture:SetParent(frame.Icon.Texture.b)
+        frame.Icon.Texture.b = CreateFrame('Frame', nil, frame);
+        frame.Icon.Texture.b:SetTemplate();
+        frame.Icon.Texture.b:SetOutside(frame.Icon.Texture);
+        frame.Icon.Texture:SetParent(frame.Icon.Texture.b);
     end
 end
 
 local function SkinSideButtons(sideButtons, engine)
-    addon.GUI.SideButton.OfsX1 = 5;
-    addon.GUI.SideButton.OfsY1 = 13;
-    addon.GUI.SideButton.OfsXn = 0;
-    addon.GUI.SideButton.OfsYn = 9;
     for i, button in next, sideButtons do
         SkinAlertFrameTemplate(button, engine);
         if i == 1 then
             button:ClearAllPoints();
-            button:SetPoint("TOPLEFT", AchievementFrame, "TOPRIGHT", addon.GUI.SideButton.OfsX1, addon.GUI.SideButton.OfsY1); -- Make the 2nd button anchor like the 1st one
+            button:SetPoint("TOPLEFT", AchievementFrame, "TOPRIGHT", 5, 13); -- Make the 2nd button anchor like the 1st one
         else
             button:ClearAllPoints();
-            button:SetPoint("TOPLEFT", sideButtons[i - 1], "BOTTOMLEFT", addon.GUI.SideButton.OfsXn, addon.GUI.SideButton.OfsYn); -- Make the 2nd button anchor like the 1st one
+            button:SetPoint("TOPLEFT", sideButtons[i - 1], "BOTTOMLEFT", 0, 9); -- Make the 2nd button anchor like the 1st one
         end
     end
 end
 
 local function SkinHeader()
     hooksecurefunc(AchievementFrameHeaderPoints, "SetText", function()
+        AchievementFrameHeaderPointBorder:ClearAllPoints();
+	    AchievementFrameHeaderPointBorder:Point('CENTER', AchievementFrameHeaderTitle, 'CENTER', 100, 0);
+        AchievementFrameHeaderPointBorder:SetSize(150, 20);
         AchievementFrameHeaderPoints:ClearAllPoints();
-	    AchievementFrameHeaderPoints:Point('CENTER', AchievementFrameHeaderTitle, 'CENTER', 100, 0);
+	    AchievementFrameHeaderPoints:Point('CENTER', AchievementFrameHeaderPointBorder);
     end);
 end
 
@@ -399,41 +510,6 @@ local function SkinCalendarFrame(frame, engine, skins)
     frame.MonthAchievementsAndPoints:SetPoint("TOPRIGHT", -40, -13);
 end
 
-local function SkinSummaryAchievementButton(button, engine)
-    button:SetFrameLevel(button:GetFrameLevel() + 2)
-	button:StripTextures(true)
-	button:CreateBackdrop(nil, true)
-	button.backdrop:SetInside()
-
-	button.icon:CreateBackdrop(nil, nil, nil, nil, nil, nil, true)
-	button.icon:Size(36, 36)
-	button.icon:ClearAllPoints()
-	button.icon:Point("TOPLEFT", 6, -6)
-	button.icon.bling:Kill()
-	button.icon.frame:Kill()
-	button.icon.texture:SetTexCoord(unpack(engine.TexCoords))
-	button.icon.texture:SetInside()
-
-    if button.highlight then
-		button.highlight:StripTextures()
-		button:HookScript('OnEnter', function(self) self.backdrop:SetBackdropBorderColor(1, 1, 0) end)
-		button:HookScript('OnLeave', function(self) self.backdrop:SetBackdropBorderColor(unpack(engine.media.bordercolor)) end)
-	end
-
-	if button.label then
-		button.label:SetTextColor(1, 1, 1)
-	end
-
-	if button.description then
-		button.description:SetTextColor(.6, .6, .6)
-		hooksecurefunc(button.description, 'SetTextColor', function(_, r, g, b)
-			if r == 0 and g == 0 and b == 0 then
-				button.description:SetTextColor(.6, .6, .6)
-			end
-		end)
-	end
-end
-
 local function SkinCalendarSideFrame(frame, engine, skins)
     frame:StripTextures(true);
 	frame:SetTemplate('Transparent');
@@ -441,17 +517,17 @@ local function SkinCalendarSideFrame(frame, engine, skins)
 	frame.Header:StripTextures();
 	skins:HandleCloseButton(frame.CloseButton);
 
-    frame.ScrollFrameBorder.Container.ScrollBar.trackBG:SetAlpha(0);
-    frame.ScrollFrameBorder.Container:CreateBackdrop("Transparent");
-	frame.ScrollFrameBorder.Container.backdrop:Point("TOPLEFT", 1, 2);
-	frame.ScrollFrameBorder.Container.backdrop:Point("BOTTOMRIGHT", -2, -3);
+    frame.ScrollFrameBorder.ScrollFrame.ScrollBar.trackBG:SetAlpha(0);
+    frame.ScrollFrameBorder.ScrollFrame:CreateBackdrop("Transparent");
+	frame.ScrollFrameBorder.ScrollFrame.backdrop:Point("TOPLEFT", 1, 2);
+	frame.ScrollFrameBorder.ScrollFrame.backdrop:Point("BOTTOMRIGHT", -2, -3);
 
     -- Buttons
-    for _, button in next, frame.ScrollFrameBorder.Container.buttons do
-        SkinSummaryAchievementButton(button, engine);
+    for _, button in next, frame.ScrollFrameBorder.ScrollFrame.buttons do
+        SkinAchievementButton(button, engine, skins);
     end
 
-    hooksecurefunc(frame.ScrollFrameBorder.Container, "update", function(frame)
+    hooksecurefunc(frame.ScrollFrameBorder.ScrollFrame, "update", function(frame)
         for _, button in next, frame.buttons do
             if button:IsShown() then
                 SetAchievementButtonColor(button, engine);
@@ -462,7 +538,7 @@ local function SkinCalendarSideFrame(frame, engine, skins)
     end);
 
     hooksecurefunc(frame, "Show", function(frame)
-        for _, button in next, frame.ScrollFrameBorder.Container.buttons do
+        for _, button in next, frame.ScrollFrameBorder.ScrollFrame.buttons do
             if button:IsShown() then
                 SetAchievementButtonColor(button, engine);
             else
@@ -472,123 +548,8 @@ local function SkinCalendarSideFrame(frame, engine, skins)
     end);
 
     -- Scrollbar
-    if frame.ScrollFrameBorder.Container.ScrollBar then
-        skins:HandleScrollBar(frame.ScrollFrameBorder.Container.ScrollBar, 5);
-    end
-end
-
-local function SkinGameTooltipProgressBar(progressBar, engine)
-    progressBar.BorderLeftTop:StripTextures();
-    progressBar.BorderLeftMiddle:StripTextures();
-    progressBar.BorderLeftBottom:StripTextures();
-    progressBar.BorderRightTop:StripTextures();
-    progressBar.BorderRightMiddle:StripTextures();
-    progressBar.BorderRightBottom:StripTextures();
-    progressBar.BorderMiddleTop:StripTextures();
-    progressBar.BorderMiddleMiddle:StripTextures();
-    progressBar.BorderMiddleBottom:StripTextures();
-    progressBar.Background:Hide();
-    for i, _ in next, progressBar.Fill do
-        progressBar.Fill[i]:SetTexture(engine.media.normTex);
-    end
-    progressBar:CreateBackdrop();
-    progressBar.backdrop:Point("TOPLEFT", 7, -5);
-    progressBar.backdrop:Point("BOTTOMRIGHT", -5, 5);
-    progressBar:SetColors({R = 4/255, G = 179/255, B = 30/255}, {R = 179/255, G = 4/255, B = 30/255});
-
-end
-
-local function SkinStatusBar(statusBar, engine)
-    statusBar.BorderLeftTop:StripTextures();
-    statusBar.BorderLeftMiddle:StripTextures();
-    statusBar.BorderLeftBottom:StripTextures();
-    statusBar.BorderRightTop:StripTextures();
-    statusBar.BorderRightMiddle:StripTextures();
-    statusBar.BorderRightBottom:StripTextures();
-    statusBar.BorderMiddleTop:StripTextures();
-    statusBar.BorderMiddleMiddle:StripTextures();
-    statusBar.BorderMiddleBottom:StripTextures();
-    statusBar.Background:Hide();
-    for i, _ in next, statusBar.Fill do
-        statusBar.Fill[i]:SetTexture(engine.media.normTex);
-    end
-    statusBar:AdjustOffsets(8, 8);
-    statusBar:CreateBackdrop();
-    statusBar.backdrop:Point("TOPLEFT", 14, -14);
-    statusBar.backdrop:Point("BOTTOMRIGHT", -12, 14);
-    statusBar:SetColors({R = 4/255, G = 179/255, B = 30/255}, {R = 179/255, G = 4/255, B = 30/255});
-    if statusBar.Button then
-        local button = statusBar.Button;
-        button:StripTextures();
-
-        local htex = button:CreateTexture();
-        htex:SetColorTexture(1, 1, 1, 0.3);
-        htex:SetAllPoints(statusBar.backdrop);
-        button:SetHighlightTexture(htex);
-
-        button:SetScript("OnLeave", function(self)
-        end);
-        button:SetScript("OnEnter", function(self)
-        end);
-    end
-end
-
-local function SkinAchievementSummary(frame, engine, skins)
-    frame:StripTextures();
-	frame.Background:Hide();
-	frame:GetChildren():Hide();
-
-    frame.Achievements.Header.Texture:Hide();
-	frame.Categories.Header.Texture:Hide();
-
-    if frame and frame.GetNumChildren then
-        for i = 1, frame:GetNumChildren() do
-            local child = select(i, frame:GetChildren());
-            if child and not child:GetName() then
-                child:SetBackdrop();
-            end
-        end
-    end
-
-    frame.ScrollFrameBorder.NineSlice:SetAlpha(0);
-    frame.ScrollFrameBorder.Container.ScrollBar.trackBG:SetAlpha(0);
-    frame.ScrollFrameBorder.Container:CreateBackdrop("Transparent");
-	frame.ScrollFrameBorder.Container.backdrop:Point("TOPLEFT", 1, 2);
-	frame.ScrollFrameBorder.Container.backdrop:Point("BOTTOMRIGHT", -2, -3);
-
-    -- Buttons
-    for _, button in next, frame.ScrollFrameBorder.Container.buttons do
-        SkinSummaryAchievementButton(button, engine);
-    end
-
-    hooksecurefunc(frame.ScrollFrameBorder.Container, "update", function(frame)
-        for _, button in next, frame.buttons do
-            if button:IsShown() then
-                SetAchievementButtonColor(button, engine);
-            else
-                return;
-            end
-        end
-    end);
-
-    hooksecurefunc(frame, "Show", function(frame)
-        for _, button in next, frame.ScrollFrameBorder.Container.buttons do
-            if button:IsShown() then
-                SetAchievementButtonColor(button, engine);
-            else
-                return;
-            end
-        end
-    end);
-
-    SkinStatusBar(frame.TotalStatusBar, engine);
-    for _, statusBar in next, frame.StatusBars do
-        SkinStatusBar(statusBar, engine);
-    end
-
-    -- Scrollbar
-    if frame.ScrollFrameBorder.Container.ScrollBar then
-        skins:HandleScrollBar(frame.ScrollFrameBorder.Container.ScrollBar, 5);
+    if frame.ScrollFrameBorder.ScrollFrame.ScrollBar then
+        skins:HandleScrollBar(frame.ScrollFrameBorder.ScrollFrame.ScrollBar, 5);
     end
 end
 
