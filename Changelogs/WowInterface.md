@@ -1,6 +1,53 @@
 [B]Changelog[/B]
 All notable changes to this project will be documented in this file.
 
+[B]9.2.5.37.0 - 2022-08-01[/B]
+[B]Added[/B]
+[LIST]
+[*]Faction icon in front of characters in the achievement window header tooltip (enabled by default)
+[*]Configurable sorting for characters in the achievement window header tooltip
+[*]Option to limit the maximum number of characters in the tooltip with the option to keep the current character in the list regardless if it normally would or not
+[*]Option to change the category indentation
+[*]Clicking an event reminder that has no achievements visible due to the filters will show the empty category with a text informing the user
+[*]Mini achievements (shown when opening an achievement part of a chain) can now be clicked and have a highlight when moving the mouse over
+[*]Mini achievements (shown when opening an achievement part of a chain) and meta achievements (shown when opening an achievement that requires achievements) now also have a right click menu
+[*]When getting redirected to a normally invisble achievement (due to the filters), the achievement will be shown and a green exclamation mark will be shown
+[*]Options to display achievement objectives
+[*]Protection so Blizzard Statistics can not be in front of Guild, would result in errors
+[*]When a criteria updates for an achievement or you earn an achievement, this will also visually update without having to manually refresh the window
+[*]Keybind to open the current zone
+[/LIST]
+
+[B]Changed[/B]
+[LIST]
+[*]Tabs are now handled by addon and tab name and API is accessible by other addons (see Plugins/Overachiever.lua for example or ask for assistance on discord)
+[*]Focused, Current Zone, Selected Zone and Excluded categories are moved to Specials tab
+[*]Rearanged general options to be more in line with the rest
+[*]Renamed Earned by filter 'Character' to 'Character only'
+[*]Character only filter now handles completed achievements by checking if it was earned by the current character compared to checking if it is completed on any character
+[*]All Realm First! achievements are set to unobtainable
+[*]Backend stuff
+[*]Filters do not automatically change anymore when you would be redirected to an achievement that would not be visible with set filters
+[*]Moved the Right Click Menu button to the top right of the achievement
+[*]German translation for almost everything
+[*]The following achievements are unobtainable: Ahead of the Curve: The Jailer, Cutting Edge: The Jailer, Shadowlands Keystone Explorer: Season Three, Shadowlands Keystone Conqueror: Season Three, Shadowlands Keystone Master: Season Three, Shadowlands Keystone Hero: Season Three, Cryptic Hero: Shadowlands Season 3, Keystone Hero: De Other Side, Keystone Hero: Mists of Tirna Scithe, Keystone Hero: The Necrotic Wake, Keystone Hero: Spires of Ascension, Keystone Hero: Halls of Atonement, Keystone Hero: Sanguine Depths, Keystone Hero: Theater of Pain, Keystone Hero: Plaguefall, Combatant I: Shadowlands Season 3, Combatant II: Shadowlands Season 3, Challenger I: Shadowlands Season 3, Challenger II: Shadowlands Season 3, Rival I: Shadowlands Season 3, Rival II: Shadowlands Season 3, Duelist: Shadowlands Season 3, Elite: Shadowlands Season 3, Gladiator: Shadowlands Season 3, Cosmic Gladiator: Shadowlands Season 3
+[/LIST]
+
+[B]Fixed[/B]
+[LIST]
+[*]Sometimes an achievement did not display anything and was not interactable after switching tabs
+[*]Achievement is not selected again when leaving tab and going back if it was selected before
+[*]Achievement objective and meta texts should now be white instead of the hard to read black
+[*]When in combat and using ElvUI (skinned), no more errors should appear (but skinning might not happen)
+[*]Clicking an event reminder that has no achievements visible due to the filters will show the empty category instead of doing nothing
+[*]Opening the achievement window for the first time while in combat should not trigger an error anymore
+[*]Achievement objectives should no longer stay visible in some cases
+[*]Getting redirected to an invisble achievement (due to the filters), no errors should be triggered anymore
+[*]Categories watermark should now show again after hiding and showing the achievement window
+[*]Opening the calendar for the first time when locking the month does not show achievements
+[*]On rare occasions, the selected button can't be found and triggers and error
+[/LIST]
+
 [B]9.2.5.36.3 - 2022-07-13[/B]
 [B]Fixed[/B]
 [LIST]
