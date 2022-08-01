@@ -27,7 +27,7 @@ function data.Load()
     data.ExportedTransmogSets.Load(data.TransmogSets);
 
     data.AchievementIDs = data.ExportedAchievements.Load(data.Achievements, data.TransmogSets);
-    local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.L["Layout"], "cmd", "KROWIAF-0.0").args.Categories.args.Summary.args.NumAchievements; -- cmd and KROWIAF-0.0 are just to make the function work
+    local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.L["Layout"], "cmd", "KROWIAF-0.0").args.Summary.args.Summary.args.NumAchievements; -- cmd and KROWIAF-0.0 are just to make the function work
     custom.max = #data.AchievementIDs;
 
     local tabsCategories;
@@ -164,7 +164,7 @@ function data.LoadBlizzardTabAchievements(categories)
         if addedOutOfOrder[achID] == nil then -- Not yet added
             local categoryID = GetAchievementCategory(achID);
             if tmpC[categoryID] ~= nil then
-                achID = addon.GetFirstAchievementID(achID);
+                achID = addon.GetFirstAchievementId(achID);
                 AddAchievementsToCategory(categoryID, achID);
             end
         end

@@ -1,0 +1,12 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..
+\..\FrameXML\UI.xsd">
+    <!-- The order of these items is important !!! -->
+    <Script file="AchievementTooltip.lua" />
+
+    <Script file="NotObtainable.lua" />
+    <Script file="BlizzardDefault.lua" />
+    <Script file="PartOfAChain.lua" />
+    <Script file="RequiredFor.lua" />
+    <Script file="OtherFaction.lua" />
+    <Script file="Objectives.lua" />
+</Ui>

@@ -235,7 +235,7 @@ function GetNewWidgetEvents(activeWidgetEvents)
 end
 
 function GetStartAndEndTime(secondsLeft, totalDuration) -- both in seconds
-    local endTime = floor((time() + secondsLeft) / 3600 + 0.5) * 3600; -- Round to the hour
+    local endTime = floor((GetServerTime() + secondsLeft) / 3600 + 0.5) * 3600; -- Round to the hour
     local startTime = endTime - totalDuration;
 
     return startTime, endTime;

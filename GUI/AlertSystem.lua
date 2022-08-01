@@ -65,7 +65,15 @@ function KrowiAF_EventAlertFrame_OnClick(self, button, down)
         LoadAddOn("Blizzard_AchievementUI");
     end
 
-    KrowiAF_SelectCategory(self.Event.Category);
+    local category = KrowiAF_SelectCategory(self.Event.Category);
+    if category.NumOfAch == 0 then
+        addon.GUI.AchievementsFrame.Text:Show();
+        addon.GUI.AchievementsFrame.Text:SetText(addon.Util.ReplaceVars
+        {
+            addon.L["Category shown temporarily"],
+            eventName = self.Event.EventDetails.Name;
+        });
+    end
 end
 
 function KrowiAF_EventAlertFrame_OnUpdate(self, elapsed)

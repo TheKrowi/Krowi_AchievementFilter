@@ -42,6 +42,7 @@ colors.LightOrangeRGB = { R = QuestDifficultyHighlightColors["verydifficult"].r,
 colors.YellowRGB = { R = GetFontInfo(GameFontNormal).color.r, G = GetFontInfo(GameFontNormal).color.g, B = GetFontInfo(GameFontNormal).color.b }
 colors.WhiteRGB = { R = GetFontInfo(GameFontHighlight).color.r, G = GetFontInfo(GameFontHighlight).color.g, B = GetFontInfo(GameFontHighlight).color.b }
 
+-- Adding functions dynamically to string
 local tmpColors = {};
 for colorName, color in next, colors do
     if string.find(colorName, "RGB") and type(color) == "table" then

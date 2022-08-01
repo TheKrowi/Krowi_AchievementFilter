@@ -17,6 +17,7 @@ for t, tab in next, addon.Tabs do
         _G["BINDING_NAME_KrowiAF_OPEN_TAB_" .. tostring(tab.Name)] = addon.L["Toggle"] .. " " .. tab.Text .. " "  .. addon.L["tab"];
     end
 end
+_G["BINDING_NAME_KrowiAF_OPEN_CAT_Current_Zone"] = addon.L["Open"] .. " " .. addon.L["Current Zone"] .. " " .. addon.L["Category"];
 
 -- [[ Faction data ]] --
 addon.Faction = {};
@@ -61,9 +62,11 @@ function loadHelper:OnEvent(event, arg1, arg2)
             addon.Data.LoadExcludedAchievements(addon.Data.Achievements);
 
             addon.MakeWindowMovable();
-            addon.HookSetAchievementFrameHeaderPointsText();
+            addon.GUI.AchievementFrameHeader.HookSetPointsText();
             addon.HookAchievementFrameOnShow();
             addon.HookSelectAchievement();
+        elseif arg1 == "WoWUnit" then
+            addon.UnitTests:Load();
         end
     elseif event == "PLAYER_LOGIN" then
         addon.Data.ExportedCalendarEvents.Load(addon.Data.CalendarEvents);
@@ -110,3 +113,61 @@ function loadHelper:OnEvent(event, arg1, arg2)
     end
 end
 loadHelper:SetScript("OnEvent", loadHelper.OnEvent);
+
+Numbers = function() return 1, 2, 3 end
+
+
+function KrowiAF_RunUnitTests()
+    local AreEqual, Exists, Replace = WoWUnit.AreEqual, WoWUnit.Exists, WoWUnit.Replace
+    local Tests = WoWUnit(addonName)
+        -- tests will be called at startup, PLAYER_UPDATE and MONEY_UPDATE events
+
+    function Tests:PassingTest()
+        AreEqual({1,2,3}, {Numbers()})
+        Exists(true)
+    end
+
+    function Tests:FaillingTest()
+        AreEqual('Apple', 'Pie')
+        Exists(false)
+    end
+
+    function Tests:MockingTest()
+        -- Replace('GetRealmName', function() return 'Horseshoe' end)
+        -- AreEqual('Horseshoe!', Realm())
+    end
+end
+
+-- function KrowiAF_LagGame()
+--     local gapSize, i = 0, 1;
+--     while gapSize < 500 do -- Biggest gap is 209 in 9.0.5 as of 2021-05-03
+--         local id, _, points, _, month, day, year, _, flags, _, _, isGuild, wasEarnedByMe, _, isStatistic, exists = addon.GetAchievementInfo(i);
+
+--         local hasProgressBar;
+--         local hasMeta;
+--         local hasTextCriteria;
+--         if id and exists then
+--             local numCriteria = GetAchievementNumCriteria(id);
+--             for j = 1, numCriteria do
+--                 local criteriaString, criteriaType, completed, quantity, reqQuantity, _, flags, assetID, quantityString = GetAchievementCriteriaInfo(id, j);
+--                 flags = addon.Objects.Flags:New(flags);
+--                 if criteriaType == CRITERIA_TYPE_ACHIEVEMENT and assetID then
+--                     hasMeta = true;
+--                 elseif flags.IsCriteriaProgressBar then
+--                     hasProgressBar = true;
+--                 else
+--                     hasTextCriteria = true;
+--                 end
+--             end
+--         end
+--         if hasProgressBar and hasMeta then
+--             print(id);
+--         end
+--         if id and exists then
+--             gapSize = 0;
+--         else
+--             gapSize = gapSize + 1;
+--         end
+--         i = i + 1;
+--     end
+-- end

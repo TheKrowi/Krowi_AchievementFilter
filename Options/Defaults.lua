@@ -19,26 +19,30 @@ options.Defaults = {
         AchievementPoints = {
             Format = 2,
             Tooltip = {
-                AlwaysShowRealm = false
+                AlwaysShowRealm = false,
+                ShowFaction = true,
+                Sort = {
+                    Priority = { 1, 2, 3, 4, 5 },
+                    Reverse = { true, false, false, false, false }
+                },
+                MaxNumCharacters = 50,
+                KeepCurrentCharacter = true
             }
         },
         Tabs = {
-            {
-                AddonName = "Blizzard_AchievementUI",
-                TabName = "Achievements",
-                BindingName = "TOGGLEACHIEVEMENT",
-                Show = false
-            },
-            {
-                AddonName = "Blizzard_AchievementUI",
-                TabName = "Guild",
-                Show = true
-            },
-            {
-                AddonName = "Blizzard_AchievementUI",
-                TabName = "Statistics",
-                BindingName = "TOGGLESTATISTICS",
-                Show = true
+            Blizzard_AchievementUI = {
+                Achievements = {
+                    Show = false
+                    -- Order added dynamically
+                },
+                Guild = {
+                    Show = true
+                    -- Order added dynamically
+                },
+                Statistics = {
+                    Show = true
+                    -- Order added dynamically
+                }
             }
         },
         Categories = {
@@ -51,11 +55,17 @@ options.Defaults = {
             },
             Summary = {
                 NumAchievements = 25
-            }
+            },
+            Indentation = 10
         },
         Achievements = {
             Compact = false,
-            ButtonCollapsedHeight = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT or 84 -- can return nil
+            ButtonCollapsedHeight = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT or 84, -- can return nil
+            Objectives = {
+                ForceTwoColumns = true,
+                ForceTwoColumnsThreshold = 20,
+                CriteriaBehaviour = 2
+            }
         },
         RightClickMenu = {
             ShowButtonOnAchievement = false,

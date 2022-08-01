@@ -11,12 +11,16 @@ local achievementPointsDisplays = {
 local function SetCategoriesFrameWidthOffset(_, value)
     if addon.Options.db.Window.CategoriesFrameWidthOffset == value then return; end
     addon.Options.db.Window.CategoriesFrameWidthOffset = value;
-    addon.Event:SendMessage("UpdateAchievementFrameWidth", addon.Options.db.Window.CategoriesFrameWidthOffset);
+    if addon.GUI.SelectedTab then -- Need to check if it exists since this can be triggered before it's created
+        addon.GUI.CategoriesFrame:Hide();
+        addon.GUI.SetAchievementFrameWidth();
+        addon.GUI.CategoriesFrame:Show();
+    end
     options.Debug(addon.L["Categories width offset"], addon.Options.db.Window.CategoriesFrameWidthOffset);
 end
 
 local function SetMaxNumberOfSearchPreviews()
-    local numberOfSearchPreviews = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.MetaData.Title, "cmd", "KROWIAF-0.0").args.Search.args.NumberOfSearchPreviews; -- cmd and KROWIAF-0.0 are just to make the function work
+    local numberOfSearchPreviews = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.MetaData.Title, "cmd", "KROWIAF-0.0").args.Search.args.SearchPreview.args.NumberOfSearchPreviews; -- cmd and KROWIAF-0.0 are just to make the function work
     numberOfSearchPreviews.max = options.MaxNumberOfSearchPreviews();
     if numberOfSearchPreviews.get() > numberOfSearchPreviews.max then
         numberOfSearchPreviews.set(nil, numberOfSearchPreviews.max);
@@ -27,7 +31,9 @@ local function SetAchievementFrameHeightOffset(_, value)
     if addon.Options.db.Window.AchievementFrameHeightOffset == value then return; end
     addon.Options.db.Window.AchievementFrameHeightOffset = value;
     SetMaxNumberOfSearchPreviews();
-    addon.Event:SendMessage("UpdateAchievementFrameHeight", addon.Options.db.Window.AchievementFrameHeightOffset);
+    if addon.GUI.SelectedTab then -- Need to check if it exists since this can be triggered before it's created
+        addon.GUI.SetAchievementFrameHeight();
+    end
     options.Debug(addon.L["Achievement window height offset"], addon.Options.db.Window.AchievementFrameHeightOffset);
 end
 
@@ -145,6 +151,16 @@ local function SetObjectivesProgressShow()
     options.Debug(addon.L["Show Objectives progress"], addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show);
 end
 
+local function SetCategoryIndentation(_, value)
+    if addon.Options.db.Categories.Indentation == value then return; end
+    addon.Options.db.Categories.Indentation = value;
+    local buttons = addon.GUI.CategoriesFrame.ScrollFrame.buttons;
+    for _, button in next, buttons do
+        button:SetIndentation(addon.Options.db.Categories.Indentation);
+    end
+    options.Debug(addon.L["Indentation"], addon.Options.db.Categories.Indentation);
+end
+
 local wowheadRelatedTabs = {
     addon.L["None"],
     addon.L["Criteria of"],
@@ -152,6 +168,13 @@ local wowheadRelatedTabs = {
     addon.L["News"],
     addon.L["Comments"],
     addon.L["Screenshots"]
+};
+
+local criteriaBehaviour = {
+    addon.L["Overflow"],
+    addon.L["Truncate"],
+    addon.L["Flexible"],
+    -- addon.L["Wrap"]
 };
 
 options.OptionsTable.args["Layout"] = {
@@ -164,40 +187,54 @@ options.OptionsTable.args["Layout"] = {
             name = addon.L["Window"],
             args = {
                 Movable = {
-                    order = 1.1, type = "toggle", width = 1.5,
-                    name = addon.L["Make window movable"],
-                    desc = addon.ReplaceVarsWithReloadReq(addon.L["Make window movable Desc"]),
-                    get = function() return addon.Options.db.Window.Movable; end,
-                    set = function()
-                        addon.Options.db.Window.Movable = not addon.Options.db.Window.Movable;
-                        addon.MakeWindowMovable();
-                        options.Debug(addon.L["Make window movable"], addon.Options.db.Window.Movable);
-                    end
+                    order = 1, type = "group",
+                    name = addon.L["Movable"],
+                    inline = true,
+                    args = {
+                        Movable = {
+                            order = 1.1, type = "toggle", width = 1.5,
+                            name = addon.L["Make windows movable"],
+                            desc = addon.ReplaceVarsWithReloadReq(addon.L["Make windows movable Desc"]),
+                            get = function() return addon.Options.db.Window.Movable; end,
+                            set = function()
+                                addon.Options.db.Window.Movable = not addon.Options.db.Window.Movable;
+                                addon.MakeWindowMovable();
+                                options.Debug(addon.L["Make window movable"], addon.Options.db.Window.Movable);
+                            end
+                        }
+                    }
                 },
-                Blank12 = {order = 1.2, type = "description", width = 1.5, name = ""},
-                CategoriesFrameWidthOffset = {
-                    order = 2.1, type = "range", width = 1.5,
-                    name = addon.L["Categories width offset"],
-                    desc = addon.Util.ReplaceVars {
-                        addon.L["Categories width offset Desc"],
-                        addonName = addon.MetaData.Title,
-                        tabName = string.format(addon.Colors.Yellow, addon.L["Expansions"])
-                    },
-                    min = -125, max = 250, step = 1,
-                    get = function() return addon.Options.db.Window.CategoriesFrameWidthOffset; end,
-                    set = SetCategoriesFrameWidthOffset
-                },
-                AchievementFrameHeightOffset = {
-                    order = 2.2, type = "range", width = 1.5,
-                    name = addon.L["Achievement window height offset"],
-                    desc = addon.ReplaceVarsWithReloadReq {
-                        addon.L["Achievement window height offset Desc"],
-                        addonName = addon.MetaData.Title,
-                        tabName = string.format(addon.Colors.Yellow, addon.L["Expansions"])
-                    },
-                    min = -250, max = 500, step = 1,
-                    get = function() return addon.Options.db.Window.AchievementFrameHeightOffset; end,
-                    set = SetAchievementFrameHeightOffset
+                Offsets = {
+                    order = 2, type = "group",
+                    name = addon.L["Offsets"],
+                    inline = true,
+                    args = {
+                        CategoriesFrameWidthOffset = {
+                            order = 2.1, type = "range", width = 1.5,
+                            name = addon.L["Categories width offset"],
+                            desc = addon.Util.ReplaceVars
+                            {
+                                addon.L["Categories width offset Desc"],
+                                addonName = addon.MetaData.Title,
+                                tabName = string.format(addon.Colors.Yellow, addon.L["Expansions"])
+                            },
+                            min = -125, max = 250, step = 1,
+                            get = function() return addon.Options.db.Window.CategoriesFrameWidthOffset; end,
+                            set = SetCategoriesFrameWidthOffset
+                        },
+                        AchievementFrameHeightOffset = {
+                            order = 2.2, type = "range", width = 1.5,
+                            name = addon.L["Achievement window height offset"],
+                            desc = addon.ReplaceVarsWithReloadReq {
+                                addon.L["Achievement window height offset Desc"],
+                                addonName = addon.MetaData.Title,
+                                tabName = string.format(addon.Colors.Yellow, addon.L["Expansions"])
+                            },
+                            min = -50, max = 750, step = 1,
+                            get = function() return addon.Options.db.Window.AchievementFrameHeightOffset; end,
+                            set = SetAchievementFrameHeightOffset
+                        }
+                    }
                 }
             }
         },
@@ -221,20 +258,20 @@ options.OptionsTable.args["Layout"] = {
                         Achievements = {
                             type = "toggle",
                             name = addon.L["Achievements"],
-                            get = function() return addon.Options.db.Tabs[1].Show; end,
-                            set = function() addon.GUI.ShowHideTabs(1); end
+                            get = function() return addon.Options.db.Tabs["Blizzard_AchievementUI"]["Achievements"].Show; end,
+                            set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Achievements"); end
                         },
                         Guild = {
                             type = "toggle",
                             name = addon.L["Guild"],
-                            get = function() return addon.Options.db.Tabs[2].Show; end,
-                            set = function() addon.GUI.ShowHideTabs(2); end
+                            get = function() return addon.Options.db.Tabs["Blizzard_AchievementUI"]["Guild"].Show; end,
+                            set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Guild"); end
                         },
                         Statistics = {
                             type = "toggle",
                             name = addon.L["Statistics"],
-                            get = function() return addon.Options.db.Tabs[3].Show; end,
-                            set = function() addon.GUI.ShowHideTabs(3); end
+                            get = function() return addon.Options.db.Tabs["Blizzard_AchievementUI"]["Statistics"].Show; end,
+                            set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Statistics"); end
                         }
                     }
                 },
@@ -269,7 +306,7 @@ options.OptionsTable.args["Layout"] = {
                     inline = true,
                     args = {
                         AlwaysShowRealm = {
-                            type = "toggle", width = 1.5,
+                            order = 1.1, type = "toggle", width = 1.5,
                             name = addon.L["Always show realm"],
                             desc = addon.L["Always show realm Desc"],
                             get = function() return addon.Options.db.AchievementPoints.Tooltip.AlwaysShowRealm; end,
@@ -277,24 +314,109 @@ options.OptionsTable.args["Layout"] = {
                                 addon.Options.db.AchievementPoints.Tooltip.AlwaysShowRealm = not addon.Options.db.AchievementPoints.Tooltip.AlwaysShowRealm;
                                 options.Debug(addon.L["Always show realm"], addon.Options.db.AchievementPoints.Tooltip.AlwaysShowRealm);
                             end
+                        },
+                        ShowFaction = {
+                            order = 1.2, type = "toggle", width = 1.5,
+                            name = addon.L["Show faction icon"],
+                            desc = addon.L["Show faction icon Desc"],
+                            get = function() return addon.Options.db.AchievementPoints.Tooltip.ShowFaction; end,
+                            set = function()
+                                addon.Options.db.AchievementPoints.Tooltip.ShowFaction = not addon.Options.db.AchievementPoints.Tooltip.ShowFaction;
+                                options.Debug(addon.L["Show faction icon"], addon.Options.db.AchievementPoints.Tooltip.ShowFaction);
+                            end
+                        },
+                        MaxNumCharacters = {
+                            order = 2.1, type = "range", width = 1.5,
+                            name = addon.L["Maximum number of characters"],
+                            desc = addon.L["Maximum number of characters Desc"],
+                            min = 0, max = 100, step = 1,
+                            get = function() return addon.Options.db.AchievementPoints.Tooltip.MaxNumCharacters; end,
+                            set = function(_, value)
+                                if addon.Options.db.AchievementPoints.Tooltip.MaxNumCharacters == value then return; end
+                                addon.Options.db.AchievementPoints.Tooltip.MaxNumCharacters = value;
+                                options.Debug(addon.L["Maximum number of characters"], addon.Options.db.AchievementPoints.Tooltip.MaxNumCharacters);
+                            end
+                        },
+                        KeepCurrentCharacter = {
+                            order = 2.2, type = "toggle", width = 1.5,
+                            name = addon.L["Keep current character"],
+                            desc = addon.Util.ReplaceVars
+                            {
+                                addon.L["Keep current character Desc"],
+                                maxNumChar = addon.L["Maximum number of characters"]
+                            },
+                            get = function() return addon.Options.db.AchievementPoints.Tooltip.KeepCurrentCharacter; end,
+                            set = function()
+                                addon.Options.db.AchievementPoints.Tooltip.KeepCurrentCharacter = not addon.Options.db.AchievementPoints.Tooltip.KeepCurrentCharacter;
+                                options.Debug(addon.L["Keep current character"], addon.Options.db.AchievementPoints.Tooltip.KeepCurrentCharacter);
+                            end
+                        },
+                        SortPriority = {
+                            order = 3, type = "group",
+                            name = addon.L["Sort priority"],
+                            inline = true,
+                            args = {
+                                -- Dynamically added
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        Summary = {
+            order = 4, type = "group",
+            name = addon.L["Summary"],
+            args = {
+                Summary = {
+                    order = 5, type = "group",
+                    name = addon.L["Summary"],
+                    inline = true,
+                    args = {
+                        NumAchievements = {
+                            order = 1.1, type = "range", width = 1.5,
+                            name = addon.L["Number of summary achievements"],
+                            desc = addon.L["Number of summary achievements Desc"],
+                            min = 1, max = 25, step = 1,
+                            get = function() return addon.Options.db.Categories.Summary.NumAchievements; end,
+                            set = function(_, value)
+                                if addon.Options.db.Categories.Summary.NumAchievements == value then return; end
+                                addon.Options.db.Categories.Summary.NumAchievements = value;
+                                options.Debug(addon.L["Number of summary achievements"], addon.Options.db.Categories.Summary.NumAchievements);
+                            end
                         }
                     }
                 }
             }
         },
         Categories = {
-            order = 4, type = "group",
+            order = 5, type = "group",
             name = addon.L["Categories"],
             args = {
-                Focused = {
+                Indentation = {
                     order = 1, type = "group",
+                    name = addon.L["Indentation"],
+                    inline = true,
+                    args = {
+                        Indentation = {
+                            order = 1.1, type = "range", width = 1.5,
+                            name = addon.L["Indentation"],
+                            desc = addon.ReplaceVarsWithReloadReq(addon.L["Indentation Desc"]),
+                            min = 1, max = 50, step = 1,
+                            get = function() return addon.Options.db.Categories.Indentation; end,
+                            set = SetCategoryIndentation
+                        }
+                    }
+                },
+                Focused = {
+                    order = 2, type = "group",
                     name = addon.L["Focused"],
                     inline = true,
                     args = {
                          ShowFocusedSubCategories = {
                             order = 1.1, type = "toggle", width = "normal",
                             name = addon.L["Show Sub Categories"],
-                            desc = addon.Util.ReplaceVars {
+                            desc = addon.Util.ReplaceVars
+                            {
                                 addon.L["Show Sub Categories Desc"],
                                 category = addon.L["Focused"]
                             },
@@ -311,7 +433,7 @@ options.OptionsTable.args["Layout"] = {
                     }
                 },
                 Excluded = {
-                    order = 2, type = "group",
+                    order = 3, type = "group",
                     name = addon.L["Excluded"],
                     inline = true,
                     args = {
@@ -336,7 +458,8 @@ options.OptionsTable.args["Layout"] = {
                         ShowExcludedSubCategories = {
                             order = 2, type = "toggle", width = "normal",
                             name = addon.L["Show Sub Categories"],
-                            desc = addon.Util.ReplaceVars {
+                            desc = addon.Util.ReplaceVars
+                            {
                                 addon.L["Show Sub Categories Desc"],
                                 category = addon.L["Excluded"]
                             },
@@ -347,7 +470,7 @@ options.OptionsTable.args["Layout"] = {
                     }
                 },
                 Tooltip = {
-                    order = 3, type = "group",
+                    order = 4, type = "group",
                     name = addon.L["Tooltip"],
                     inline = true,
                     args = {
@@ -372,7 +495,7 @@ options.OptionsTable.args["Layout"] = {
                     }
                 },
                 Merge = {
-                    order = 4, type = "group",
+                    order = 5, type = "group",
                     name = addon.L["Merge Small Categories"],
                     inline = true,
                     args = {
@@ -385,30 +508,11 @@ options.OptionsTable.args["Layout"] = {
                             set = SetMergeSmallCategoriesThreshold
                         }
                     }
-                },
-                Summary = {
-                    order = 5, type = "group",
-                    name = addon.L["Summary"],
-                    inline = true,
-                    args = {
-                        NumAchievements = {
-                            order = 1.1, type = "range", width = 1.5,
-                            name = addon.L["Number of summary achievements"],
-                            desc = addon.L["Number of summary achievements Desc"],
-                            min = 1, max = 25, step = 1,
-                            get = function() return addon.Options.db.Categories.Summary.NumAchievements; end,
-                            set = function(_, value)
-                                if addon.Options.db.Categories.Summary.NumAchievements == value then return; end
-                                addon.Options.db.Categories.Summary.NumAchievements = value;
-                                options.Debug(addon.L["Number of summary achievements"], addon.Options.db.Categories.Summary.NumAchievements);
-                            end
-                        }
-                    }
                 }
             }
         },
         Achievements = {
-            order = 5, type = "group",
+            order = 6, type = "group",
             name = addon.L["Achievements"],
             args = {
                 Style = {
@@ -417,11 +521,55 @@ options.OptionsTable.args["Layout"] = {
                     inline = true,
                     args = {
                         CompactAchievements = {
-                            type = "toggle", width = 1.5,
+                            order = 1, type = "toggle", width = 1.5,
                             name = addon.L["Compact Achievements"],
                             desc = addon.ReplaceVarsWithReloadReq(addon.L["Compact Achievements Desc"]),
                             get = function() return addon.Options.db.Achievements.Compact; end,
                             set = SetCompactAchievements,
+                        },
+                        Objectives = {
+                            order = 2, type = "header",
+                            name = addon.L["Objectives"]
+                        },
+                        ForceTwoColumns = {
+                            order = 2.1, type = "toggle", width = 1.5,
+                            name = addon.L["Force two columns"],
+                            desc = addon.L["Force two columns Desc"],
+                            get = function() return addon.Options.db.Achievements.Objectives.ForceTwoColumns; end,
+                            set = function()
+                                addon.Options.db.Achievements.Objectives.ForceTwoColumns = not addon.Options.db.Achievements.Objectives.ForceTwoColumns;
+                                options.Debug(addon.L["Force two columns"], addon.Options.db.Achievements.Objectives.ForceTwoColumns);
+                            end
+                        },
+                        ForceTwoColumnsThreshold = {
+                            order = 2.2, type = "range", width = 1.5,
+                            name = addon.L["Force two columns threshold"],
+                            desc = addon.L["Force two columns threshold Desc"],
+                            min = 0, max = 50, step = 1,
+                            get = function() return addon.Options.db.Achievements.Objectives.ForceTwoColumnsThreshold; end,
+                            set = function(_, value)
+                                if addon.Options.db.Achievements.Objectives.ForceTwoColumnsThreshold == value then return; end
+                                addon.Options.db.Achievements.Objectives.ForceTwoColumnsThreshold = value;
+                                options.Debug(addon.L["Force two columns threshold"], addon.Options.db.Achievements.Objectives.ForceTwoColumnsThreshold);
+                            end,
+                            disabled = function() return not addon.Options.db.Achievements.Objectives.ForceTwoColumns; end
+                        },
+                        CriteriaBehaviour = {
+                            order = 3.1, type = "select", style = "radio",
+                            name = addon.L["Criteria Behaviour"],
+                            desc = addon.L["Criteria Behaviour Desc"]:ReplaceVars
+                            {
+                                overflow = addon.L["Overflow"],
+                                truncate = addon.L["Truncate"],
+                                flexible = addon.L["Flexible"]
+                            },
+                            values = criteriaBehaviour,
+                            get = function() return addon.Options.db.Achievements.Objectives.CriteriaBehaviour; end,
+                            set = function (_, value)
+                                if addon.Options.db.Achievements.Objectives.CriteriaBehaviour == value then return; end;
+                                addon.Options.db.Achievements.Objectives.CriteriaBehaviour = value;
+                                options.Debug(addon.L["Criteria Behaviour"], addon.Options.db.Achievements.Objectives.CriteriaBehaviour);
+                            end
                         }
                     }
                 },
@@ -624,7 +772,7 @@ options.OptionsTable.args["Layout"] = {
             }
         },
         RightClickMenu = {
-            order = 6, type = "group",
+            order = 7, type = "group",
             name = addon.L["Right Click Menu"],
             args = {
                 Button = {
@@ -660,7 +808,8 @@ options.OptionsTable.args["Layout"] = {
                         AddLocale = {
                             order = 1, type = "toggle", width = "full",
                             name = addon.L["Add Locale"],
-                            desc = addon.Util.ReplaceVars {
+                            desc = addon.Util.ReplaceVars
+                            {
                                 addon.L["Add Locale Desc"],
                                 wowheadLink = addon.L["Wowhead Link"]
                             },
@@ -673,7 +822,8 @@ options.OptionsTable.args["Layout"] = {
                         AddRelatedTab = {
                             order = 2, type = "select", width = 1.5,
                             name = addon.L["Related Tab"],
-                            desc = addon.Util.ReplaceVars {
+                            desc = addon.Util.ReplaceVars
+                            {
                                 addon.L["Related Tab Desc"],
                                 wowheadLink = addon.L["Wowhead Link"]
                             },
@@ -690,7 +840,7 @@ options.OptionsTable.args["Layout"] = {
             }
         },
         Calendar = {
-            order = 7, type = "group",
+            order = 8, type = "group",
             name = addon.L["Calendar"],
             args = {
                 General = {
@@ -700,7 +850,7 @@ options.OptionsTable.args["Layout"] = {
                     args = {
                         LockAchievementMonth = {
                             order = 1, type = "toggle", width = "full",
-                            name = addon.L["Lock month when closed by achievement "],
+                            name = addon.L["Lock month when closed by achievement"],
                             desc = addon.L["Lock month when closed by achievement Desc"],
                             get = function() return addon.Options.db.Calendar.LockAchievementMonth; end,
                             set = function()

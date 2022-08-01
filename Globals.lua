@@ -1,12 +1,12 @@
 local addonName, addon = ...;
 
-function addon.GetFirstAchievementID(achievementID)
-    local id;
-	while achievementID do
-		id = achievementID;
-		achievementID = GetPreviousAchievement(achievementID);
+function addon.GetFirstAchievementId(id)
+    local firstId;
+	while id do
+		firstId = id;
+		id = GetPreviousAchievement(id);
 	end
-    return id;
+    return firstId;
 end
 
 function addon.InGuildView()
@@ -54,10 +54,13 @@ function addon.GetAchievementsInZone(mapID, getAll)
 end
 
 function addon.GetAchievementNumbers(_filters, achievement, numOfAch, numOfCompAch, numOfNotObtAch) -- , numOfIncompAch
+    if achievement.AlwaysVisible then
+        return numOfAch, numOfCompAch, numOfNotObtAch; -- , numOfIncompAch
+    end
     local filters = addon.Filters;
 	if filters and filters.Validate(_filters, achievement, true) > 0 then -- If set to false we lag the game
 		numOfAch = numOfAch + 1;
-		local _, _, _, completed = addon.GetAchievementInfo(achievement.ID);
+		local _, _, _, completed = addon.GetAchievementInfo(achievement.Id);
 		if completed then
 			numOfCompAch = numOfCompAch + 1;
 		-- else
@@ -252,7 +255,7 @@ local function AddToCache(id, points, flags, isGuild, isStatistic, exists)
     for j = 1, numCriteria do
         local _, criteriaType, _, _, _, _, _, assetID = GetAchievementCriteriaInfo(id, j);
         if criteriaType == 8 then -- See https://wowpedia.fandom.com/wiki/API_GetAchievementCriteriaInfo for all criteria types
-            tinsert(criteriaCache, {AchievementID = assetID, RequiredForID = id});
+            tinsert(criteriaCache, {AchievementId = assetID, RequiredForId = id});
         end
     end
 end
@@ -290,26 +293,6 @@ function addon.ResetCache()
     criteriaCache = nil;
 end
 
-local processHook = true;
-function addon.HookSetAchievementFrameHeaderPointsText()
-    AchievementFrameHeaderPoints:SetPoint("TOP", "AchievementFrameHeaderPointBorder", "TOP", -10, -13);
-    AchievementFrameHeaderPointBorder:SetWidth(175);
-
-    hooksecurefunc(AchievementFrameHeaderPoints, "SetText", function()
-        if not addon.InGuildView() and processHook then
-            local _, points = addon.BuildCache();
-            processHook = false;
-            if addon.Options.db.AchievementPoints.Format == 1 then
-            elseif addon.Options.db.AchievementPoints.Format == 2 then
-                AchievementFrameHeaderPoints:SetText(BreakUpLargeNumbers(points) .. " / " .. BreakUpLargeNumbers(GetTotalAchievementPoints()));
-            elseif addon.Options.db.AchievementPoints.Format == 3 then
-                AchievementFrameHeaderPoints:SetText(BreakUpLargeNumbers(points));
-            end
-        end
-        processHook = true;
-    end);
-end
-
 function addon.HookSelectAchievement()
     hooksecurefunc("AchievementFrame_SelectAchievement", function(id, forceSelect, isComparison)
         KrowiAF_SelectAchievementFromID(id);
@@ -317,9 +300,11 @@ function addon.HookSelectAchievement()
 end
 
 function addon.HookAchievementFrameOnShow()
-    hooksecurefunc("AchievementFrame_SetTabs", function()
-        addon.GUI.ShowHideTabs();
-    end);
+    -- AchievementFrame_SetTabs = function() -- Tainting by overwriting but showing and anchoring tabs is handled somewhere else now
+    --     addon.GUI.ShowHideTabs();
+    -- end
+
+    hooksecurefunc("AchievementFrame_SetTabs", addon.GUI.ShowHideTabs);
 end
 
 local function MakeMovable(frame, target)
@@ -444,25 +429,21 @@ function addon.GetVariantSetIDs(baseSetIds)
     return setIDs;
 end
 
--- function addon.HookAchievementMicroButtonOnEvent()
---     hooksecurefunc(AchievementMicroButton, "OnEvent", function()
---         AchievementMicroButton.tooltipText = MicroButtonTooltipText(ACHIEVEMENT_BUTTON, SavedData.BindingName);
---         print("HookAchievementMicroButtonOnEvent");
---     end);
--- end
-
 function addon.ChangeAchievementMicroButtonOnClick()
-    addon.Data.SavedData.TabsOrderGetActiveKeys(); -- Cleanup unused tabs
-    if addon.Options.db.MicroButtonTab > #addon.Options.db.Tabs then
-        for i, _ in next, addon.Options.db.Tabs do
-            if addon.Options.db.Tabs[i].AddonName == addonName and addon.Options.db.Tabs[i].TabName == "Achievements" then
+    addon.GUI.TabsOrderGetActiveKeys(); -- Cleanup unused tabs
+    if addon.Options.db.MicroButtonTab > #SavedData.Tabs then
+        for i, _ in next, SavedData.Tabs do
+            if SavedData.Tabs[i].AddonName == addonName and SavedData.Tabs[i].Name == "Achievements" then
                 addon.Options.db.MicroButtonTab = i;
             end
         end
     end
-    local tab = addon.Options.db.Tabs[addon.Options.db.MicroButtonTab];
+    local tab = SavedData.Tabs[addon.Options.db.MicroButtonTab];
+    if tab.AddonName == "Blizzard_AchievementUI" then
+        return;
+    end
     AchievementMicroButton:SetScript("OnClick", function(self)
-        addon.GUI.ToggleAchievementFrame(tab.AddonName, tab.TabName);
+        addon.GUI.ToggleAchievementFrame(tab.AddonName, tab.Name);
     end);
 end
 

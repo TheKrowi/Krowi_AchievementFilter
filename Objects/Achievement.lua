@@ -5,18 +5,18 @@ objects.Achievement = {};
 local achievement = objects.Achievement;
 
 achievement.__index = achievement;
-function achievement:New(id, points, faction, otherFactionAchievementID, obtainable, hasWowheadLink, customObjectives)
-    local self = {};
-    setmetatable(self, achievement);
+function achievement:New(id, points, faction, otherFactionAchievementId, obtainable, hasWowheadLink, customObjectives)
+    local instance = setmetatable({}, achievement);
 
-    self.ID = id or 0;
-    self.Points = points or 0;
-    self.Faction = faction;
-    self.OtherFactionAchievementID = otherFactionAchievementID;
-    self.NotObtainable = obtainable == false and true or nil; -- We only want to set it if it's not obtainable, otherwise nil, by inverting this we reduce memory usage because most are obtainable
-    self.HasNoWowheadLink = hasWowheadLink == false and true or nil; -- We only want to set it if it has no Wowhead link, otherwise nil, by inverting this we reduce memory usage because most have a Wowhead link
-    self.CustomObjectives = customObjectives;
-    return self;
+    instance.Id = id or 0;
+    instance.ID = instance.Id;
+    instance.Points = points or 0;
+    instance.Faction = faction;
+    instance.OtherFactionAchievementId = otherFactionAchievementId;
+    instance.NotObtainable = obtainable == false and true or nil; -- We only want to set it if it's not obtainable, otherwise nil, by inverting this we reduce memory usage because most are obtainable
+    instance.HasNoWowheadLink = hasWowheadLink == false and true or nil; -- We only want to set it if it has no Wowhead link, otherwise nil, by inverting this we reduce memory usage because most have a Wowhead link
+    instance.CustomObjectives = customObjectives;
+    return instance;
 end
 
 function achievement:GetMergedCategory()
@@ -40,24 +40,18 @@ function achievement:GetMergedCategory()
     error("The achievement with ID " .. self.ID .. " has no category."); -- Should in theory never happen, means there is a problem with the database
 end
 
-function achievement:GetRequiredForIDs(validate, filters)
+function achievement:GetRequiredForIds()
     local criteriaCache = addon.BuildCache();
-    if self.RequiredForIDs then -- Return cached list
-        return self.RequiredForIDs;
+    if self.RequiredForIds then -- Return cached list
+        return self.RequiredForIds;
     end
-    self.RequiredForIDs = {};
+    self.RequiredForIds = {};
 	for _, criteria in next, criteriaCache do
-		if criteria.AchievementID == self.ID then
-            if validate and filters and addon.Data.Achievements[criteria.RequiredForID] then
-                if validate(filters, addon.Data.Achievements[criteria.RequiredForID], true) > 0 then
-			        tinsert(self.RequiredForIDs, criteria.RequiredForID);
-                end
-            else
-			    tinsert(self.RequiredForIDs, criteria.RequiredForID);
-            end
+		if criteria.AchievementId == self.Id then
+			tinsert(self.RequiredForIds, criteria.RequiredForId);
 		end
 	end
-    return self.RequiredForIDs;
+    return self.RequiredForIds;
 end
 
 function achievement:GetPartOfAChainIDs(validate, filters)
@@ -71,7 +65,7 @@ function achievement:GetPartOfAChainIDs(validate, filters)
 	if not addon.GetNextAchievement(self) and not GetPreviousAchievement(self.ID) then
 		return self.PartOfAChainIDs;
 	end
-    local id = addon.GetFirstAchievementID(self.ID);
+    local id = addon.GetFirstAchievementId(self.ID);
     local ach = addon.Data.Achievements[id];
 	while ach do
         if validate and filters then

@@ -1,4 +1,3 @@
----@diagnostic disable: undefined-global
 -- [[ Namespaces ]] --
 local _, addon = ...;
 addon.GlobalStrings = {};
@@ -71,4 +70,7 @@ function globalStrings.Load(L)
     L["November"] = MONTH_NOVEMBER;
     L["December"] = MONTH_DECEMBER;
     L["Weekdays"] = GUILD_AVAILABILITY_WEEKDAYS;
+    L["Minimap"] = MINIMAP_LABEL;
+    L["Class"] = CLASS;
+    L["Category"] = CATEGORY;
 end

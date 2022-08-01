@@ -8,11 +8,14 @@
 
     <Script file="AlertSystem.lua" />
 
+    <Script file="AchievementFrameHeader.lua" />
     <Script file="AchievementFrameTabButton.lua" />
     <Script file="SideButton.lua" />
-    <Script file="CategoryButton.lua" />
+    <Script file="CategoryButtonMixin.lua" />
     <Script file="CategoriesFrame.lua" />
     <Include file="AchievementButton\Files.xml" />
+    <Include file="AchievementTooltip\Files.xml" />
+    <Include file="RightClickMenu\Files.xml" />
     <Script file="AchievementsFrame.lua" />
     <Script file="SummaryAchievementButton.lua" />
     <Script file="SummaryFrame.lua" />

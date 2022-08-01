@@ -9,7 +9,7 @@ function summaryFrame:Load()
     local frame = CreateFrame("Frame", "KrowiAF_AchievementFrameSummaryFrame", AchievementFrame, "KrowiAF_AchievementFrameSummaryFrame_Template");
 	frame:SetPoint("TOPLEFT", AchievementFrameCategories, "TOPRIGHT", 22, 0);
 	frame:SetPoint("BOTTOM", 0, 20);
-    frame:SetWidth(504);
+	frame:SetPoint("RIGHT", -20, 0);
 	addon.Util.InjectMetatable(frame, summaryFrame); -- Inject all the namespace functions to the frame
 
     for i, frameName in next, ACHIEVEMENTFRAME_SUBFRAMES do
@@ -26,7 +26,6 @@ function summaryFrame:Load()
 end
 
 function KrowiAF_AchievementFrameSummaryFrame_OnShow(self)
-    self:SetWidth(530);
     self:CategoriesStatusBar_Update();
     self:Achievements_Update();
 end
@@ -296,7 +295,7 @@ function summaryFrame:CategoriesStatusBar_Update(event)
         return;
     end
 
-    if event == "ACHIEVEMENT_EARNED" then
+    if event == "ACHIEVEMENT_EARNED" then -- Update it here instead of in the categories frame itself to make sure the summary is updated with the correct numbers
         addon.GUI.CategoriesFrame:Update(true);
     end
     local lastShown = totalStatusBar;
@@ -314,6 +313,9 @@ function summaryFrame:CategoriesStatusBar_Update(event)
 		if category then
 			statusBar.TextLeft:SetText(category.Name);
 			statusBar.Button.Category = category;
+            if category.NumOfAch == nil or category.NumOfCompAch == nil or category.NumOfNotObtAch == nil then
+                category:GetAchievementNumbers();
+            end
             local numOfAch, numOfCompAch, numOfNotObtAch = category.NumOfAch, category.NumOfCompAch, category.NumOfNotObtAch;
             totalNumOfAch = totalNumOfAch + numOfAch;
             totalNumOfCompAch = totalNumOfCompAch + numOfCompAch;

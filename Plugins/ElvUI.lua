@@ -8,30 +8,32 @@ plugins.ElvUI = {};
 local elvUI = plugins.ElvUI;
 tinsert(plugins.Plugins, elvUI);
 
-local function SkinTabs(tabs, skins)
-    for t, _ in next, tabs do
-        skins:HandleTab(_G['AchievementFrameTab'..tabs[t].Button.ID])
-		_G['AchievementFrameTab'..tabs[t].Button.ID]:SetFrameLevel(_G['AchievementFrameTab'..tabs[t].Button.ID]:GetFrameLevel() + 2)
+local function SkinTabs(skins)
+    for _, addonTabs in next, addon.GUI.Tabs do
+        for _, tab in next, addonTabs do
+            skins:HandleTab(tab)
+            tab:SetFrameLevel(tab:GetFrameLevel() + 2);
+        end
     end
 end
 
 local function SkinCategoriesFrame(frame, skins)
     -- Frame
     frame:StripTextures();
-    frame.Container.ScrollBar.trackBG:SetAlpha(0);
-    frame.Container:CreateBackdrop("Transparent");
-	frame.Container.backdrop:Point("TOPLEFT", 0, 4);
-	frame.Container.backdrop:Point("BOTTOMRIGHT", -2, -3);
+    frame.ScrollFrame.ScrollBar.trackBG:SetAlpha(0);
+    frame.ScrollFrame:CreateBackdrop("Transparent");
+	frame.ScrollFrame.backdrop:Point("TOPLEFT", 0, 4);
+	frame.ScrollFrame.backdrop:Point("BOTTOMRIGHT", -2, -3);
 
     -- Buttons
-    for _, button in next, frame.Container.buttons do
+    for _, button in next, frame.ScrollFrame.buttons do
         button:StripTextures(true);
 		button:StyleButton();
     end
 
     -- Scrollbar
-    if frame.Container.ScrollBar then
-        skins:HandleScrollBar(frame.Container.ScrollBar, 5);
+    if frame.ScrollFrame.ScrollBar then
+        skins:HandleScrollBar(frame.ScrollFrame.ScrollBar, 5);
     end
 end
 
@@ -40,44 +42,43 @@ local function SkinAchievementButton(button, biggerIcon, engine, skins)
 	button:StripTextures(true)
 	button:CreateBackdrop(nil, true)
 	button.backdrop:SetInside()
-	button.icon:CreateBackdrop(nil, nil, nil, nil, nil, nil, true)
-	button.icon:Size(biggerIcon and 54 or 36, biggerIcon and 54 or 36)
-	button.icon:ClearAllPoints()
-	button.icon:Point("TOPLEFT", biggerIcon and 8 or 6, biggerIcon and -8 or -6)
-	button.icon.bling:Kill()
-	button.icon.frame:Kill()
-	button.icon.texture:SetTexCoord(unpack(engine.TexCoords))
-	button.icon.texture:SetInside()
+	button.Icon:CreateBackdrop(nil, nil, nil, nil, nil, nil, true)
+	button.Icon:Size(biggerIcon and 54 or 36, biggerIcon and 54 or 36)
+	button.Icon:ClearAllPoints()
+	button.Icon:Point("TOPLEFT", biggerIcon and 8 or 6, biggerIcon and -8 or -6)
+	button.Icon.Border:Kill()
+	button.Icon.Texture:SetTexCoord(unpack(engine.TexCoords))
+	button.Icon.Texture:SetInside()
 
-	if button.highlight then
-		button.highlight:StripTextures()
+	if button.Highlight then
+		button.Highlight:StripTextures()
 		button:HookScript("OnEnter", function(self) self.backdrop:SetBackdropBorderColor(1, 1, 0) end)
 		button:HookScript("OnLeave", function(self) self.backdrop:SetBackdropBorderColor(unpack(engine.media.bordercolor)) end)
 	end
 
-	if button.label then
-		button.label:SetTextColor(1, 1, 1)
+	if button.Header then
+		button.Header:SetTextColor(1, 1, 1)
 	end
 
-	if button.description then
-		button.description:SetTextColor(.6, .6, .6)
-		hooksecurefunc(button.description, "SetTextColor", function(_, r, g, b)
+	if button.Description then
+		button.Description:SetTextColor(.6, .6, .6)
+		hooksecurefunc(button.Description, "SetTextColor", function(_, r, g, b)
 			if r == 0 and g == 0 and b == 0 then
-				button.description:SetTextColor(.6, .6, .6)
+				button.Description:SetTextColor(.6, .6, .6)
 			end
 		end)
 	end
 
-	if button.hiddenDescription then
-		button.hiddenDescription:SetTextColor(1, 1, 1)
+	if button.HiddenDescription then
+		button.HiddenDescription:SetTextColor(1, 1, 1)
 	end
 
-	if button.tracked then
-		button.tracked:GetRegions():SetTextColor(1, 1, 1)
-		skins:HandleCheckBox(button.tracked)
-		button.tracked:Size(18)
-		button.tracked:ClearAllPoints()
-		button.tracked:Point("TOPLEFT", button.icon, "BOTTOMLEFT", 0, -2)
+	if button.Tracked then
+		button.Tracked:GetRegions():SetTextColor(1, 1, 1)
+		skins:HandleCheckBox(button.Tracked)
+		button.Tracked:Size(18)
+		button.Tracked:ClearAllPoints()
+		button.Tracked:Point("TOPLEFT", button.icon, "BOTTOMLEFT", 0, -2)
 	end
 end
 
@@ -92,7 +93,7 @@ local function RedBackdrop(self)
 end
 
 local function SetAchievementButtonColor(frame, engine)
-	if frame and frame.backdrop then
+	if frame and frame.backdrop and frame.Achievement then
 		if frame.Achievement.NotObtainable then
 			frame.backdrop.callbackBackdropColor = RedBackdrop;
 			frame.backdrop:SetBackdropColor(redAchievement.r, redAchievement.g, redAchievement.b);
@@ -121,17 +122,17 @@ local function SkinAchievementsFrame(frame, engine, skins)
         end
     end
 
-	frame.Container:CreateBackdrop("Transparent");
-	frame.Container.backdrop:Point("TOPLEFT", -2, 2);
-	frame.Container.backdrop:Point("BOTTOMRIGHT", -2, -3);
+	frame.ScrollFrame:CreateBackdrop("Transparent");
+	frame.ScrollFrame.backdrop:Point("TOPLEFT", -2, 2);
+	frame.ScrollFrame.backdrop:Point("BOTTOMRIGHT", -2, -3);
 
     -- Buttons
-    for _, button in next, frame.Container.buttons do
+    for _, button in next, frame.ScrollFrame.buttons do
         SkinAchievementButton(button, not addon.Options.db.Achievements.Compact, engine, skins);
     end
 
     hooksecurefunc(frame, "Update", function(frame)
-        for _, button in next, frame.Container.buttons do
+        for _, button in next, frame.ScrollFrame.buttons do
             if button:IsShown() then
                 SetAchievementButtonColor(button, engine);
             else
@@ -140,9 +141,43 @@ local function SkinAchievementsFrame(frame, engine, skins)
         end
     end);
 
+    local preHookFunction = addon.GUI.AchievementsObjectives.DisplayCriteria;
+	function addon.GUI.AchievementsObjectives:DisplayCriteria(id)
+        preHookFunction(self, id);
+		local numCriteria = GetAchievementNumCriteria(id);
+		local textStrings, metas = 0, 0;
+        local criteria, object;
+		for i = 1, numCriteria do
+			local _, criteriaType, completed, _, _, _, _, assetID = GetAchievementCriteriaInfo(id, i);
+			if assetID and criteriaType == _G.CRITERIA_TYPE_ACHIEVEMENT then
+				metas = metas + 1;
+				criteria, object = self:GetMeta(metas), 'Label';
+			elseif criteriaType ~= 1 then
+				textStrings = textStrings + 1;
+				criteria, object = self:GetTextCriteria(textStrings), 'Label';
+			end
+
+			local text = criteria and criteria[object];
+			if text then
+				local r, g, b, x, y;
+				if completed then
+					if self.Completed then
+						r, g, b, x, y = 1, 1, 1, 0, 0;
+					else
+						r, g, b, x, y = 0, 1, 0, 1, -1;
+					end
+				else
+					r, g, b, x, y = .6, .6, .6, 1, -1;
+				end
+				text:SetTextColor(r, g, b);
+				text:SetShadowOffset(x, y);
+			end
+		end
+    end
+
     -- Scrollbar
-    if frame.Container.ScrollBar then
-        skins:HandleScrollBar(frame.Container.ScrollBar, 5);
+    if frame.ScrollFrame.ScrollBar then
+        skins:HandleScrollBar(frame.ScrollFrame.ScrollBar, 5);
     end
 end
 
@@ -564,7 +599,7 @@ local function SkinAll()
     -- local enabled, engine, skins = elvUISkin.Load();
 
     if SavedData.ElvUISkin.Achievements then
-        SkinTabs(addon.Tabs, skins);
+        SkinTabs(skins);
         SkinCategoriesFrame(addon.GUI.CategoriesFrame, skins);
         SkinGameTooltipProgressBar(addon.GUI.GameTooltipProgressBar, engine);
         SkinAchievementsFrame(addon.GUI.AchievementsFrame, engine, skins);

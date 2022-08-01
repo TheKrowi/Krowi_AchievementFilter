@@ -6,4 +6,7 @@
     <Script file="Achievement.lua" />
     <Script file="Category.lua" />
     <Script file="Event.lua" />
+    <Script file="Tab.lua" />
+    <Script file="CompareFunc.lua" />
+    <Script file="Flags.lua" />
 </Ui>

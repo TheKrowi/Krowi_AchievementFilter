@@ -34,18 +34,17 @@ function WorldMapAchievementButtonMixin:OnClick()
     if achievements and #achievements > 0 then
         HideUIPanel(WorldMapFrame);
         addon.Data.SelectedZoneCategory.Achievements = achievements;
-        addon.GUI.ToggleAchievementFrame(addonName, addon.L["Expansions"], true);
-        addon.Tabs["Expansions"].Categories[3].Name = addon.L["Selected Zone"] .. " (" .. worldMapButton.name .. ")";
-        KrowiAF_SelectCategory(addon.Tabs["Expansions"].Categories[3]);
+        addon.Data.SelectedZoneCategory.Name = addon.L["Selected Zone"] .. " (" .. worldMapButton.Text .. ")";
+        KrowiAF_SelectCategory(addon.Data.SelectedZoneCategory);
     end
 end
 
 function WorldMapAchievementButtonMixin:OnEnter()
-    if worldMapButton.numAchievements > 0 then
+    if worldMapButton.NumOfAch > 0 then
         addon.GUI.ShowStatusBarTooltip(worldMapButton, "ANCHOR_RIGHT");
     else
         GameTooltip:SetOwner(worldMapButton, "ANCHOR_RIGHT");
-	    GameTooltip_SetTitle(GameTooltip, worldMapButton.name);
+	    GameTooltip_SetTitle(GameTooltip, worldMapButton.Text);
         GameTooltip_AddNormalLine(GameTooltip, addon.L["No achievements are available with the current set of filters"]);
         GameTooltip:Show();
     end
@@ -67,16 +66,9 @@ function WorldMapAchievementButtonMixin:Refresh()
         numOfAch, numOfCompAch, numOfNotObtAch = addon.GetAchievementNumbers(addon.Filters.db.SelectedZone, achievement, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
     end
 
-    worldMapButton.name = C_Map.GetMapInfo(mapID).name;
-    worldMapButton.numAchievements = numOfAch;
-    if numOfAch > 0 then
-        worldMapButton.numCompleted = numOfCompAch;
-        worldMapButton.numOfNotObtAch = numOfNotObtAch;
-        local numOfNotObtAchText = "";
-        if numOfNotObtAch > 0 and addon.Options.db.Tooltip.Categories.ShowNotObtainable then
-            numOfNotObtAchText = " (+" .. numOfNotObtAch .. ")";
-        end
-        worldMapButton.numCompletedText = numOfCompAch .. numOfNotObtAchText .. " / " .. numOfAch;
+    worldMapButton.Text = C_Map.GetMapInfo(mapID).name;
+    self.NumOfAch, self.NumOfCompAch, self.NumOfNotObtAch = numOfAch, numOfCompAch, numOfNotObtAch;
+    if self.NumOfAch > 0 then
         self:Enable();
 		self:DesaturateHierarchy(0);
 	else

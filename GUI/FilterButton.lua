@@ -44,7 +44,7 @@ function KrowiAF_AchievementFrameFilterButton_OnMouseDown(self)
     local earnedBy = addon.Objects.MenuItem:New({Text = addon.L["Earned By"]});
     self:AddRadioButton(menu, earnedBy, addon.Filters.Account, addon.Filters.db, {"EarnedBy"}, false);
     self:AddRadioButton(menu, earnedBy, addon.Filters.CharacterAccount, addon.Filters.db, {"EarnedBy"}, false);
-    self:AddRadioButton(menu, earnedBy, addon.Filters.Character, addon.Filters.db, {"EarnedBy"}, false);
+    self:AddRadioButton(menu, earnedBy, addon.Filters.CharacterOnly, addon.Filters.db, {"EarnedBy"}, false);
     menu:Add(earnedBy);
 
     menu:AddSeparator();
@@ -208,8 +208,8 @@ function filterButton:AddAchievementFilters(_menu, childMenu, filters)
     faction:AddSeparator();
     faction:AddFull({  Text = addon.L["Select all"],
                         Func = function()
-                            for _faction, _ in next, filters.Faction do
-                                SetCheckBoxValue(filters, {"Faction", _faction}, true, true, true);
+                            for faction2, _ in next, filters.Faction do
+                                SetCheckBoxValue(filters, {"Faction", faction2}, true, true, true);
                             end
                             self.UpdateAchievementFrame();
                         end

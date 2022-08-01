@@ -1,4 +1,4 @@
--- [[ Exported at 2022-07-01 10-04-04 ]] --
+-- [[ Exported at 2022-07-27 09-57-47 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -34,19 +34,6 @@ function exportedCategories.Load(a)
     AddC(tmp[883], tmp[1203]);
     tmp[1203].AlwaysVisible = true;
     tmp[1203].IsSummary = true;
-    tmp[949] = cat:New(addon.L["Focused"]); -- Focused
-    AddC(tmp[883], tmp[949]);
-    tmp[949].HasFlexibleData = true;
-    local focusedCategory = tmp[949];
-    tmp[433] = cat:New(addon.L["Current Zone"]); -- Current Zone
-    AddC(tmp[883], tmp[433]);
-    tmp[433].AlwaysVisible = true;
-    tmp[433].HasFlexibleData = true;
-    local currentZoneCategory = tmp[433];
-    tmp[850] = cat:New(addon.L["Selected Zone"]); -- Selected Zone
-    AddC(tmp[883], tmp[850]);
-    tmp[850].HasFlexibleData = true;
-    local selectedZoneCategory = tmp[850];
     tmp[1] = cat:New((GetCategoryInfo(14864))); -- Classic
     AddC(tmp[883], tmp[1]);
     tmp[648] = cat:New(addon.L["Zones"]); -- Zones
@@ -5986,10 +5973,6 @@ function exportedCategories.Load(a)
     AddA(tmp[1172], a[4496]); -- It's Over Nine Thousand!
     AddA(tmp[1172], a[3636]); -- Jade Tiger
     AddA(tmp[1172], a[3896]); -- Onyx Panther
-    tmp[857] = cat:New(addon.L["Excluded"]); -- Excluded
-    AddC(tmp[883], tmp[857]);
-    tmp[857].HasFlexibleData = true;
-    local excludedCategory = tmp[857];
     tmp[884] = cat:New(addon.L["Events"]); -- TAB - Events
     tmp[884].TabName = "Events";
     local events = tmp[884];
@@ -7258,6 +7241,19 @@ function exportedCategories.Load(a)
     AddC(tmp[971], tmp[1204]);
     tmp[1204].AlwaysVisible = true;
     tmp[1204].IsSummary = true;
+    tmp[949] = cat:New(addon.L["Focused"]); -- Focused
+    AddC(tmp[971], tmp[949]);
+    tmp[949].HasFlexibleData = true;
+    local focusedCategory = tmp[949];
+    tmp[433] = cat:New(addon.L["Current Zone"]); -- Current Zone
+    AddC(tmp[971], tmp[433]);
+    tmp[433].AlwaysVisible = true;
+    tmp[433].HasFlexibleData = true;
+    local currentZoneCategory = tmp[433];
+    tmp[850] = cat:New(addon.L["Selected Zone"]); -- Selected Zone
+    AddC(tmp[971], tmp[850]);
+    tmp[850].HasFlexibleData = true;
+    local selectedZoneCategory = tmp[850];
     tmp[972] = cat:New(addon.L["Bur's Mount Collection"]); -- Bur's Mount Collection
     AddC(tmp[971], tmp[972]);
     AddA(tmp[972], a[3356]); -- Winterspring Frostsaber
@@ -7960,17 +7956,17 @@ function exportedCategories.Load(a)
     AddA(tmp[1113], a[6871]); -- Realm First! Zen Master Skinner
     AddA(tmp[1113], a[6872]); -- Realm First! Zen Master Tailor
     tmp[1116] = cat:New((GetCategoryInfo(15273)), true); -- Reputation
-    AddC(tmp[1110], tmp[1116]);
+    AddC(tmp[1105], tmp[1116]);
     AddA(tmp[1116], a[1463]); -- Realm First! Northrend Vanguard
     AddA(tmp[1116], a[6829]); -- Realm First! Pandaren Ambassador
     tmp[1114] = cat:New((GetCategoryInfo(15272)), true); -- Dungeons
-    AddC(tmp[1110], tmp[1114]);
+    AddC(tmp[1105], tmp[1114]);
     AddA(tmp[1114], a[6433]); -- Realm First! Challenge Conqueror: Gold
     AddA(tmp[1114], a[11224]); -- Realm First! Legion Keystone Master
     AddA(tmp[1114], a[13078]); -- Realm First! Battle for Azeroth Keystone Master
     AddA(tmp[1114], a[14662]); -- Realm First! Shadowlands Keystone Master
     tmp[1115] = cat:New((GetCategoryInfo(15271)), true); -- Raids
-    AddC(tmp[1110], tmp[1115]);
+    AddC(tmp[1105], tmp[1115]);
     AddA(tmp[1115], a[1402]); -- Realm First! Conqueror of Naxxramas
     AddA(tmp[1115], a[456]); -- Realm First! Obsidian Slayer
     AddA(tmp[1115], a[1400]); -- Realm First! Magic Seeker
@@ -8044,6 +8040,10 @@ function exportedCategories.Load(a)
     tmp[1125] = cat:New(addon.L["Warcraft III: Reforged"], true); -- Warcraft III: Reforged
     AddC(tmp[1117], tmp[1125]);
     AddA(tmp[1125], a[13196]); -- Meat Marauder
+    tmp[857] = cat:New(addon.L["Excluded"]); -- Excluded
+    AddC(tmp[971], tmp[857]);
+    tmp[857].HasFlexibleData = true;
+    local excludedCategory = tmp[857];
 
     local tabs = {};
     tabs["Achievements"] = achievements.Children;

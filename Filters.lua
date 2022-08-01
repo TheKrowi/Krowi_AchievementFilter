@@ -82,15 +82,15 @@ function filters:ResetFilters()
 end
 
 function filters:Load()
-    local _filters = LibStub("AceDB-3.0"):New("Filters", defaults, true);
-    self.db = _filters.profile;
+    local filters2 = LibStub("AceDB-3.0"):New("Filters", defaults, true);
+    self.db = filters2.profile;
     for t, _ in next, addon.Tabs do
-        addon.Tabs[t].Filters = _filters.profile.Tabs[t];
+        addon.Tabs[t].Filters = filters2.profile.Tabs[t];
     end
 
     self.Account = addon.L["Account"];
-    self.Character = (GetCategoryInfo(92));
-    self.CharacterAccount = self.Character .. " / " .. self.Account;
+    self.CharacterAccount = (GetCategoryInfo(92)) .. " / " .. self.Account;
+    self.CharacterOnly = addon.L["Character only"];
 end
 
 -- [[ Validation ]] --
@@ -159,8 +159,15 @@ local validations = {
 };
 
 function filters.Validate(_filters, achievement, ignoreCollapseSeries)
-
-    _, _, _, completedCache = addon.GetAchievementInfo(achievement.ID);
+    if achievement.AlwaysVisible then
+        return 2;
+    end
+    local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = addon.GetAchievementInfo(achievement.ID);
+    if addon.Filters.db.EarnedBy == addon.Filters.CharacterOnly then
+        completedCache = wasEarnedByMe;
+    else
+        completedCache = completed;
+    end
     ignoreCollapseSeriesCache = ignoreCollapseSeries;
     for i, validation in next, validations do
         if validation.Validate(_filters, achievement) then -- If true, DO NOT show achievement
@@ -193,6 +200,22 @@ function filters:SetFilters(_filters, achievement)
 end
 
 function filters:GetFilters(category)
+    if addon.GUI.SelectedTab == nil then
+        local categoriesTree = category:GetTree();
+
+        local tab = addon.Tabs[categoriesTree[1].Name];
+        if tab == nil then
+            return self.db;
+        end
+
+        local filters2 = addon.Tabs[categoriesTree[1].Name].Filters;
+        if filters2 then
+            return filters2;
+        end
+
+        return self.db;
+    end
+
     if category == nil then
         category = addon.GUI.SelectedTab.SelectedCategory;
     end
@@ -235,10 +258,10 @@ end
 local function CompareName(a, b, reverse, default)
     local nameA, nameB = "", "";
     if a then
-        nameA = select(2, GetAchievementInfo(a.ID));
+        nameA = select(2, addon.GetAchievementInfo(a.ID));
     end
     if b then
-        nameB = select(2, GetAchievementInfo(b.ID));
+        nameB = select(2, addon.GetAchievementInfo(b.ID));
     end
 
     if nameA == nil then
@@ -248,7 +271,8 @@ local function CompareName(a, b, reverse, default)
         return true;
     end
 
-    if nameA == nameB then
+    local nameAlower, nameBlower = nameA:lower(), nameB:lower();
+    if nameAlower == nameBlower then
         if reverse then
             return default[a] > default[b];
         end
@@ -256,18 +280,18 @@ local function CompareName(a, b, reverse, default)
     end
 
     if reverse then
-        return nameA:lower() > nameB:lower();
+        return nameAlower > nameBlower;
     end
-    return nameA:lower() < nameB:lower();
+    return nameAlower < nameBlower;
 end
 
 local function CompareCompletion(a, b, reverse, default)
     local completedA, completedB = false, false;
     if a then
-        completedA = select(4, GetAchievementInfo(a.ID));
+        completedA = select(4, addon.GetAchievementInfo(a.ID));
     end
     if b then
-        completedB = select(4, GetAchievementInfo(b.ID));
+        completedB = select(4, addon.GetAchievementInfo(b.ID));
     end
 
     if completedA == completedB then
@@ -285,23 +309,23 @@ end
 
 local function CompareId(a, b, reverse, default)
     if reverse then
-        return a.ID > b.ID
+        return a.ID > b.ID;
     end
     return a.ID < b.ID;
 end
 
 function filters:Sort(achievements, defaultOrder)
-	local _filters = self:GetFilters();
-	local criteria = _filters.SortBy.Criteria;
-	local reverse = _filters.SortBy.ReverseSort;
+	local filters2 = self:GetFilters();
+	local criteria = filters2.SortBy.Criteria;
+	local reverse = filters2.SortBy.ReverseSort;
 
-    local sortFun;
+    local sortFunc;
     if criteria == addon.L["Name"] then
-        sortFun = CompareName;
+        sortFunc = CompareName;
 	elseif criteria == addon.L["Completion"] then
-        sortFun = CompareCompletion;
+        sortFunc = CompareCompletion;
 	elseif criteria == addon.L["ID"] then
-        sortFun = CompareId;
+        sortFunc = CompareId;
 	else -- criteria == addon.L["Default"]
         if reverse then
 			local tmpTbl = {};
@@ -314,7 +338,11 @@ function filters:Sort(achievements, defaultOrder)
 	end
 
     table.sort(achievements, function(a, b)
-        return sortFun(a, b, reverse, defaultOrder);
+        return sortFunc(a, b, reverse, defaultOrder);
     end);
     return achievements;
 end
+
+-- if not addon.UnitTests.Active then return; end
+-- filters.CompareIdFunc = CompareId;
+-- filters.CompareCompletionFunc = CompareCompletion;

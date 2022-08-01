@@ -18,7 +18,7 @@ end
 
 function KrowiAF_AchievementFrameSearchPreviewFrameSearchPreviewButton_OnClick(self)
     if self.Achievement then
-        KrowiAF_SelectAchievement(self.Achievement, nil, true);
+        KrowiAF_SelectAchievement(self.Achievement);
         local search = addon.GUI.Search;
         search.PreviewFrame:Hide();
         search.BoxFrame:ClearFocus();

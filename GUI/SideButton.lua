@@ -46,7 +46,7 @@ function sideButton:New(event, otherButtons)
     frame:ClearAllPoints();
     frame:SetPoint("TOPLEFT", relativeFrame, relativePoint, 0, 0);
 
-    hooksecurefunc("AchievementFrame_SetTabs", function() -- Cheaty way to easily show the frame by hooking into the tabs
+    hooksecurefunc(AchievementFrame, "Show", function()
         frame:Show();
     end);
 

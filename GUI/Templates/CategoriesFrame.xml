@@ -1,13 +1,13 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..
 \..\FrameXML\UI.xsd">
     <!-- Originally from Blizzard_AchievementUI.xml line 1779 at time of writing -->
-	<Frame name="KrowiAF_AchievementFrameCategoriesFrame_Template" inherits="AchivementGoldBorderBackdrop" virtual="true" hidden="true">
+	<Frame name="KrowiAF_CategoriesFrame_Template" mixin="KrowiAF_CategoriesFrameMixin" inherits="AchivementGoldBorderBackdrop" virtual="true" hidden="true">
 		<Scripts>
-			<OnShow function="KrowiAF_AchievementFrameCategoriesFrame_OnShow"/>
-			<OnHide function="KrowiAF_AchievementFrameCategoriesFrame_OnHide"/>
+			<OnShow function="KrowiAF_CategoriesFrame_OnShow"/>
+			<OnHide function="KrowiAF_CategoriesFrame_OnHide"/>
 		</Scripts>
 		<Frames>
-			<ScrollFrame name="$parentContainer" parentKey="Container" inherits="HybridScrollFrameTemplate">
+			<ScrollFrame name="$parentScrollFrame" parentKey="ScrollFrame" inherits="HybridScrollFrameTemplate">
 				<Anchors>
 					<Anchor point="TOPLEFT" x="0" y="-5"/>
 					<Anchor point="BOTTOMRIGHT" x="0" y="5"/>

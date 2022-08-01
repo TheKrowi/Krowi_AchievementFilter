@@ -107,3 +107,87 @@ function category:GetPath()
     end
     return path;
 end
+
+local function GetFilteredAchievementNumbers(achievements, filters, numOfAch, numOfCompAch, numOfNotObtAch) -- , numOfIncompAch
+	if not achievements then
+		return numOfAch, numOfCompAch, numOfNotObtAch;
+	end
+	for _, achievement in next, achievements do
+		numOfAch, numOfCompAch, numOfNotObtAch = addon.GetAchievementNumbers(filters, achievement, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
+	end
+	return numOfAch, numOfCompAch, numOfNotObtAch;
+end
+
+function category:GetAchievementNumbers()
+    -- numOfIncompAch is not used right now so we can leave this one out untill needed
+	local numOfAch, numOfCompAch, numOfNotObtAch = 0, 0, 0; -- , numOfIncompAch = 0
+
+	if not self then
+		return numOfAch, numOfCompAch, numOfNotObtAch;
+	end
+
+	self:UnMergeAchievements();
+	self.Merged = nil;
+
+	local showCollapseIcon = false;
+	local children = self.Children;
+	if children then
+		for _, child in next, children do
+			local childNumOfAch, childNumOfCompAch, childNumOfNotObtAch = child:GetAchievementNumbers(); -- , childNumOfIncompAch
+			numOfAch = numOfAch + childNumOfAch;
+			numOfCompAch = numOfCompAch + childNumOfCompAch;
+			numOfNotObtAch = numOfNotObtAch + childNumOfNotObtAch;
+			-- numOfIncompAch = numOfIncompAch + childNumOfIncompAch;
+			showCollapseIcon = showCollapseIcon or childNumOfAch > 0;
+		end
+	end
+
+	local filters = addon.Filters;
+	local filters2;
+	if filters then
+		filters2 = filters:GetFilters(self);
+	end
+
+	numOfAch, numOfCompAch, numOfNotObtAch = GetFilteredAchievementNumbers(self.Achievements, filters2, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
+	numOfAch, numOfCompAch, numOfNotObtAch = GetFilteredAchievementNumbers(self.MergedAchievements, filters2, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
+
+	local mergeSmallCategories = false;
+	if filters then
+		mergeSmallCategories = filters.db.MergeSmallCategories;
+	end
+	if mergeSmallCategories then
+		local mergeSmallCategoriesThreshold = addon.Options.db.Window.MergeSmallCategoriesThreshold;
+		if self.Parent and self.CanMerge then
+			if self.Achievements then
+				if numOfAch < mergeSmallCategoriesThreshold then
+					if not self.Merged then
+						for _, achievement in next, self.Achievements do
+							self.Parent:MergeAchievement(achievement);
+						end
+						self.Merged = true;
+					end
+					numOfAch, numOfCompAch, numOfNotObtAch = 0, 0, 0;
+				end
+			end
+		end
+	end
+
+	-- Caching the data in the category increases memory usage but improves performance which is more important here
+	self.NumOfAch = numOfAch;
+	self.NumOfCompAch = numOfCompAch;
+	self.NumOfNotObtAch = numOfNotObtAch;
+	-- category.NumOfIncompAch = numOfIncompAch;
+	self.ShowCollapseIcon = showCollapseIcon;
+
+	return numOfAch, numOfCompAch, numOfNotObtAch; -- , numOfIncompAch
+end
+
+function category:GetMergedCategory()
+	local cat = self;
+	if addon.Filters.db.MergeSmallCategories then
+		while cat.Merged do
+			cat = cat.Parent;
+		end
+	end
+	return cat;
+end

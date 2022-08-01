@@ -8,25 +8,19 @@ local ourTabIDs = {};
 
 -- [[ Constructors ]] --
 achFrameTabBtn.__index = achFrameTabBtn; -- Used to support OOP like code
-function achFrameTabBtn:New(addonName, name, bindingName, text, framesToShow, achievementsFrame, categoriesFrame, categories, filters)
+function achFrameTabBtn:New(text, framesToShow, categories, filters, waterMark)
 	-- Increment ID
     PanelTemplates_SetNumTabs(AchievementFrame, AchievementFrame.numTabs + 1);
 
 	-- Create frame
     local frame = CreateFrame("Button", "AchievementFrameTab" .. AchievementFrame.numTabs, AchievementFrame, "AchievementFrameTabButtonTemplate"); -- Blizzard naming
     frame:SetID(AchievementFrame.numTabs);
-    frame.AddonName = addonName;
-    frame.Name = name;
-    frame.BindingName = bindingName;
     frame:SetText(text);
     addon.Util.InjectMetatable(frame, achFrameTabBtn);
 
 	-- Set properties
     frame.ID = AchievementFrame.numTabs;
     tinsert(ourTabIDs, frame.ID);
-    frame.AchievementsFrame = achievementsFrame;
-    frame.CategoriesFrame = categoriesFrame;
-    tinsert(framesToShow, 1, categoriesFrame);
     frame.FramesToShow = framesToShow;
 
     frame.SelectedAchievement = nil; -- Issue #6: Fix
@@ -36,6 +30,7 @@ function achFrameTabBtn:New(addonName, name, bindingName, text, framesToShow, ac
     end
 
     frame.Filters = filters;
+    frame.WaterMark = waterMark or "Interface/AchievementFrame/UI-Achievement-AchievementWatermark";
 
     frame:SetScript("OnClick", function(selfFunc)
         frame:OnClick(selfFunc:GetID());
@@ -64,14 +59,8 @@ function achFrameTabBtn:Base_OnClick(id)
         AchievementFrameGuildEmblemRight:Hide();
     end
 
-    if self.CategoriesFrame and self.CategoriesFrame:IsShown() then
-        self.CategoriesFrame:Hide();
-    end
-
-    if self.AchievementsFrame and self.AchievementsFrame:IsShown() then
-        self.AchievementsFrame.Container.ScrollBar:SetValue(0);
-        self.AchievementsFrame:Hide();
-    end
+    AchievementFrame_ShowSubFrame(); -- Hide all frames
+    addon.GUI.AchievementsFrame.ScrollFrame.ScrollBar:SetValue(0);
 
     AchievementFrame_ShowSubFrame(unpack(self.FramesToShow));
     if self.SelectedCategory.IsSummary then
@@ -80,14 +69,13 @@ function achFrameTabBtn:Base_OnClick(id)
 	else
 		addon.GUI.AchievementsFrame:Show();
 		addon.GUI.SummaryFrame:Hide();
-	end
-    AchievementFrameWaterMark:SetTexture("Interface\\AchievementFrame\\UI-Achievement-AchievementWatermark");
-
-    if self.AchievementsFrame then
+        addon.GUI.AchievementsFrame:Update();
         if self.SelectedAchievement then
-            self.AchievementsFrame:FindSelection();
+            local button = addon.GUI.AchievementsFrame:FindSelection();
+	        addon.GUI.AchievementsFrame:ExpandSelection(button);
         end
-    end
+	end
+    AchievementFrameWaterMark:SetTexture(self.WaterMark);
 end
 
 function achFrameTabBtn:Comparison_OnClick(id)
@@ -107,8 +95,8 @@ function achFrameTabBtn:AchievementFrame_UpdateTabs(thisTab, thisTabID, clickedT
     end
     if ourTabClicked then -- One of our tabs was clicked
         if not achievementFrameSizeSet then -- And custom size was not yet set
-            gui.SetAchievementFrameWidth(addon.Options.db.Window.CategoriesFrameWidthOffset);
-            gui.SetAchievementFrameHeight(addon.Options.db.Window.AchievementFrameHeightOffset);
+            gui.SetAchievementFrameWidth();
+            gui.SetAchievementFrameHeight();
             achievementFrameSizeSet = true;
         end
     elseif achievementFrameSizeSet then -- Not one of our tabs was clicked and size is not yet reset
