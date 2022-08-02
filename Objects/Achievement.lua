@@ -5,7 +5,7 @@ objects.Achievement = {};
 local achievement = objects.Achievement;
 
 achievement.__index = achievement;
-function achievement:New(id, points, faction, otherFactionAchievementId, obtainable, hasWowheadLink, customObjectives)
+function achievement:New(id, points, faction, otherFactionAchievementId, hasWowheadLink, customObjectives)
     local instance = setmetatable({}, achievement);
 
     instance.Id = id or 0;
@@ -13,7 +13,6 @@ function achievement:New(id, points, faction, otherFactionAchievementId, obtaina
     instance.Points = points or 0;
     instance.Faction = faction;
     instance.OtherFactionAchievementId = otherFactionAchievementId;
-    instance.Obtainable = obtainable;
     instance.HasNoWowheadLink = hasWowheadLink == false and true or nil; -- We only want to set it if it has no Wowhead link, otherwise nil, by inverting this we reduce memory usage because most have a Wowhead link
     instance.CustomObjectives = customObjectives;
     return instance;
@@ -139,4 +138,23 @@ function achievement:AddTransmogSet(transmogSet)
     self.TransmogSets = self.TransmogSets or {};
     tinsert(self.TransmogSets, transmogSet);
     return transmogSet;
+end
+
+function achievement:SetTemporaryObtainable(obtainable, startInclusion, startFunction, startValue, endInclusion, endFunction, endValue)
+    self.TemporaryObtainable = {};
+    self.TemporaryObtainable.Obtainable = obtainable;
+    if startInclusion ~= nil and startFunction ~= nil and startValue ~= nil then
+        self.TemporaryObtainable.Start = {
+            Inclusion = startInclusion,
+            Function = startFunction,
+            Value = startValue
+        };
+    end
+    if endInclusion ~= nil and endFunction ~= nil and endValue ~= nil then
+        self.TemporaryObtainable.End = {
+            Inclusion = endInclusion,
+            Function = endFunction,
+            Value = endValue
+        };
+    end
 end

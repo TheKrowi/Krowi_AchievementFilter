@@ -107,8 +107,8 @@ local validations = {
             if _filters.Obtainability.Obtainable then
                 return;
             end
-            if achievement.Obtainable then
-                return achievement.Obtainable();
+            if achievement.TemporaryObtainable then
+                return achievement.TemporaryObtainable.Obtainable();
             end
             return true;
         end
@@ -118,8 +118,8 @@ local validations = {
             if _filters.Obtainability.NotObtainable then
                 return;
             end
-            if achievement.Obtainable then
-                return not achievement.Obtainable();
+            if achievement.TemporaryObtainable then
+                return not achievement.TemporaryObtainable.Obtainable();
             end
             return;
         end

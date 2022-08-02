@@ -24,6 +24,8 @@ function data.Load()
         return;
     end
 
+    data.TemporaryObtainable:Load();
+
     data.ExportedTransmogSets.Load(data.TransmogSets);
 
     data.AchievementIDs = data.ExportedAchievements.Load(data.Achievements, data.TransmogSets);

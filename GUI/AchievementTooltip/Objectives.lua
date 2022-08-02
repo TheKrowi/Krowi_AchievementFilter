@@ -4,7 +4,7 @@ local section = {};
 
 local numCriteria;
 function section.CheckAdd(achievement)
-	if not addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show or (achievement.Obtainable and not achievement.Obtainable()) then
+	if not addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show or (achievement.TemporaryObtainable and not achievement.TemporaryObtainable.Obtainable()) then
 		return;
 	end
 	if achievement.Completed and not addon.Options.db.Tooltip.Achievements.ObjectivesProgress.ShowWhenAchievementCompleted then
