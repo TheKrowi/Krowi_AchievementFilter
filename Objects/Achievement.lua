@@ -13,7 +13,7 @@ function achievement:New(id, points, faction, otherFactionAchievementId, obtaina
     instance.Points = points or 0;
     instance.Faction = faction;
     instance.OtherFactionAchievementId = otherFactionAchievementId;
-    instance.NotObtainable = obtainable == false and true or nil; -- We only want to set it if it's not obtainable, otherwise nil, by inverting this we reduce memory usage because most are obtainable
+    instance.Obtainable = obtainable;
     instance.HasNoWowheadLink = hasWowheadLink == false and true or nil; -- We only want to set it if it has no Wowhead link, otherwise nil, by inverting this we reduce memory usage because most have a Wowhead link
     instance.CustomObjectives = customObjectives;
     return instance;

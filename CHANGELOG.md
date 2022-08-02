@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## 9.2.5.38.0 - 2022-xx-xx
 ### Added
 - Data manager that can be opened by clicking on the achievement points in the header to show/hide characters in/from the header tooltip
+- Dynamic obtainability (replaces the previous yes/no obtainable flag which opens new possibilities) - NOT ALL DATA UPDATED YET
 
 ## 9.2.5.37.0 - 2022-08-01
 ### Added

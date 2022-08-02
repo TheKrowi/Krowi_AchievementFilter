@@ -3,7 +3,7 @@ local _, addon = ...;
 local section = {};
 
 function section.CheckAdd(achievement)
-    return achievement.NotObtainable;
+    return achievement.Obtainable and not achievement.Obtainable();
 end
 
 function section.Add(achievement)

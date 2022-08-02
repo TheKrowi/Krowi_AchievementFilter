@@ -7,16 +7,10 @@ function KrowiAF_SelectAchievementWithCategory(achievement, category)
 
 	KrowiAF_SelectCategory(category);
 
-	-- next line might be redundant causing the bug
-	-- scrollBar:SetValue(0); -- Makes sure the scrollbar is at the top since this can be in a diff location if the category is already selected
-
-	-- local selectedTab = addon.GUI.SelectedTab; -- This changes when calling KrowiAF_SelectCategory
-
 	-- Select achievement
 	local shown = false;
 	local previousScrollValue;
 	local buttons;
-	-- local selectedAchievement;
 
 	local loops, maxLoops = 0, 1000;
 
@@ -79,16 +73,12 @@ function KrowiAF_SelectAchievement(achievement)
 		category = achievement.Category;
 	end
 
-	-- Set filters so achievement is visible
-	-- if filters then
 	local tabFilters = addon.Tabs[category:GetTree()[1].TabName].Filters;
 	achievement = filters.GetHighestAchievementWhenCollapseSeries(tabFilters, achievement);
-	-- filters:SetFilters(tabFilters, achievement);
 	if filters.Validate(tabFilters, achievement) < 0 then
 		achievement.AlwaysVisible = true;
 	end
 	addon.GUI.AchievementsFrame:ForceUpdate(true);
-	-- end
 
 	KrowiAF_SelectAchievementWithCategory(achievement, category);
 end
