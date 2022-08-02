@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-02 23-44-59 ]] --
+-- [[ Exported at 2022-08-02 23-55-47 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -7679,21 +7679,21 @@ function exportedAchievements.Load(a, t)
     a[15043] = ach:New(15043, 0); -- Hoarder of Torghast
     a[15044] = ach:New(15044, 5); -- Krrprripripkraak's Heroes
     a[15045] = ach:New(15045, 0); -- Keystone Hero: The Necrotic Wake
-    SetTO(a[15045], function() return tmpObt:Season(31); end, "From", "Season", 31, "Until", "Season", 32);
+    SetTO(a[15045], function() return tmpObt:DuringSeasons(31, 32); end, "From", "Season", 31, "Until", "Season", 32);
     a[15046] = ach:New(15046, 0); -- Keystone Hero: Plaguefall
-    SetTO(a[15046], function() return tmpObt:Season(31); end, "From", "Season", 31, "Until", "Season", 32);
+    SetTO(a[15046], function() return tmpObt:DuringSeasons(31, 32); end, "From", "Season", 31, "Until", "Season", 32);
     a[15047] = ach:New(15047, 0); -- Keystone Hero: Mists of Tirna Scithe
-    SetTO(a[15047], function() return tmpObt:Season(31); end, "From", "Season", 31, "Until", "Season", 32);
+    SetTO(a[15047], function() return tmpObt:DuringSeasons(31, 32); end, "From", "Season", 31, "Until", "Season", 32);
     a[15048] = ach:New(15048, 0); -- Keystone Hero: Halls of Atonement
-    SetTO(a[15048], function() return tmpObt:Season(31); end, "From", "Season", 31, "Until", "Season", 32);
+    SetTO(a[15048], function() return tmpObt:DuringSeasons(31, 32); end, "From", "Season", 31, "Until", "Season", 32);
     a[15049] = ach:New(15049, 0); -- Keystone Hero: Spires of Ascension
-    SetTO(a[15049], function() return tmpObt:Season(31); end, "From", "Season", 31, "Until", "Season", 32);
+    SetTO(a[15049], function() return tmpObt:DuringSeasons(31, 32); end, "From", "Season", 31, "Until", "Season", 32);
     a[15050] = ach:New(15050, 0); -- Keystone Hero: Theater of Pain
-    SetTO(a[15050], function() return tmpObt:Season(31); end, "From", "Season", 31, "Until", "Season", 32);
+    SetTO(a[15050], function() return tmpObt:DuringSeasons(31, 32); end, "From", "Season", 31, "Until", "Season", 32);
     a[15051] = ach:New(15051, 0); -- Keystone Hero: De Other Side
-    SetTO(a[15051], function() return tmpObt:Season(31); end, "From", "Season", 31, "Until", "Season", 32);
+    SetTO(a[15051], function() return tmpObt:DuringSeasons(31, 32); end, "From", "Season", 31, "Until", "Season", 32);
     a[15052] = ach:New(15052, 0); -- Keystone Hero: Sanguine Depths
-    SetTO(a[15052], function() return tmpObt:Season(31); end, "From", "Season", 31, "Until", "Season", 32);
+    SetTO(a[15052], function() return tmpObt:DuringSeasons(31, 32); end, "From", "Season", 31, "Until", "Season", 32);
     a[15053] = ach:New(15053, 10); -- Explore Korthia
     a[15054] = ach:New(15054, 15); -- Minions of the Cold Dark
     a[15055] = ach:New(15055, 10); -- Friend of Ooz

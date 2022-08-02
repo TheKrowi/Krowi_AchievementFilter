@@ -26,6 +26,10 @@ function temporaryObtainable:DuringSeason(season)
     return season == self:GetCurrentSeason();
 end
 
+function temporaryObtainable:DuringSeasons(season1, season2)
+    return self:GetCurrentSeason() >= season1 and self:GetCurrentSeason() <= season2;
+end
+
 function temporaryObtainable:AddWasIsWillBe(text, achievement)
     local start, _end; -- Past, Future
     if achievement.TemporaryObtainable.Start.Function == "Season" then
