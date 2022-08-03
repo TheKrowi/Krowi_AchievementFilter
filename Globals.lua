@@ -65,7 +65,7 @@ function addon.GetAchievementNumbers(_filters, achievement, numOfAch, numOfCompA
 			numOfCompAch = numOfCompAch + 1;
 		-- else
 		-- 	numOfIncompAch = numOfIncompAch + 1;
-        elseif achievement.TemporaryObtainable and not achievement.TemporaryObtainable.Obtainable() then
+        elseif achievement.TemporaryObtainable and (achievement.TemporaryObtainable.Obtainable() == false or achievement.TemporaryObtainable.Obtainable() == "Past" or achievement.TemporaryObtainable.Obtainable() == "Future") then
 			numOfNotObtAch = numOfNotObtAch + 1;
 		end
 	end
