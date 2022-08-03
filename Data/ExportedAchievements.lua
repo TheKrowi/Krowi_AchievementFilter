@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-03 12-24-28 ]] --
+-- [[ Exported at 2022-08-03 17-01-27 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -7264,7 +7264,7 @@ function exportedAchievements.Load(a, t)
     a[14173] = ach:New(14173, 20); -- A Mountain of Mementos
     a[14175] = ach:New(14175, 10); -- Master of Deepwind Gorge
     a[14183] = ach:New(14183, 0); -- Conspicuous Consumption
-    SetTO(a[14183], function() return false; end);
+    SetTO(a[14183], function() return tmpObt:FromToBeforeVersion("080300", "090001"); end, "From", "Version", "080300", "Before", "Version", "090001");
     a[14186] = ach:New(14186, 20); -- Market Dominance
     a[14187] = ach:New(14187, 20); -- Cruisin' for a Brewsin'
     a[14188] = ach:New(14188, 20); -- Well Gorged

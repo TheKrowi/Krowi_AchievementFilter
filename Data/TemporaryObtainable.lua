@@ -85,6 +85,17 @@ function temporaryObtainable:DuringPvpSeasons(season1, season2)
     end
 end
 
+function temporaryObtainable:FromToBeforeVersion(versionFrom, versionBefore)
+    local currentVersion = self:GetCurrentVersionString();
+    if currentVersion >= versionFrom and currentVersion < versionBefore then
+        return "Current";
+    elseif currentVersion < versionFrom then
+        return "Future";
+    elseif currentVersion >= versionBefore then
+        return "Past";
+    end
+end
+
 function temporaryObtainable:AddWasIsWillBe(text, achievement)
     local start, _end; -- Past, Future
 
@@ -98,7 +109,12 @@ function temporaryObtainable:AddWasIsWillBe(text, achievement)
         if achievement.TemporaryObtainable.Start.Inclusion == "After" and achievement.TemporaryObtainable.Start.Value == self:GetCurrentPvpSeason() then
             start = "Future";
         end
-    elseif achievement.TemporaryObtainable.Start.Function == "Patch" then
+    elseif achievement.TemporaryObtainable.Start.Function == "Version" then
+        if achievement.TemporaryObtainable.Start.Inclusion == "From" then
+            start = achievement.TemporaryObtainable.Start.Value <= self:GetCurrentVersionString() and "Past" or "Future";
+        elseif achievement.TemporaryObtainable.Start.Inclusion == "After" then
+            start = achievement.TemporaryObtainable.Start.Value < self:GetCurrentVersionString() and "Past" or "Future";
+        end
     end
 
     if achievement.TemporaryObtainable.End.Function == "Mythic+ Season" then
@@ -111,7 +127,12 @@ function temporaryObtainable:AddWasIsWillBe(text, achievement)
         if achievement.TemporaryObtainable.End.Inclusion == "Until" and achievement.TemporaryObtainable.End.Value == self:GetCurrentPvpSeason() then
             _end = "Future";
         end
-    elseif achievement.TemporaryObtainable.End.Function == "Patch" then
+    elseif achievement.TemporaryObtainable.End.Function == "Version" then
+        if achievement.TemporaryObtainable.End.Inclusion == "Until" then
+            _end = self:GetCurrentVersionString() <= achievement.TemporaryObtainable.End.Value and "Future" or "Past";
+        elseif achievement.TemporaryObtainable.End.Inclusion == "Before" then
+            _end = self:GetCurrentVersionString() < achievement.TemporaryObtainable.End.Value and "Future" or "Past";
+        end
     end
 
     -- print(start, _end)
