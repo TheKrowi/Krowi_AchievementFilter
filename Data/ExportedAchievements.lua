@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-02 23-55-47 ]] --
+-- [[ Exported at 2022-08-03 12-24-28 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -7371,9 +7371,9 @@ function exportedAchievements.Load(a, t)
     a[14417] = ach:New(14417, 10); -- Mythic: Theater of Pain
     a[14418] = ach:New(14418, 20); -- Shadowlands Dungeon Hero
     a[14460] = ach:New(14460, 0); -- Ahead of the Curve: Sire Denathrius
-    SetTO(a[14460], function() return tmpObt:DuringSeason(30); end, "From", "Season", 30, "Until", "Season", 30);
+    SetTO(a[14460], function() return tmpObt:DuringMplusSeason(5); end, "From", "Mythic+ Season", 5, "Until", "Mythic+ Season", 5);
     a[14461] = ach:New(14461, 0); -- Cutting Edge: Sire Denathrius
-    SetTO(a[14461], function() return tmpObt:DuringSeason(30); end, "From", "Season", 30, "Until", "Season", 30);
+    SetTO(a[14461], function() return tmpObt:DuringMplusSeason(5); end, "From", "Mythic+ Season", 5, "Until", "Mythic+ Season", 5);
     a[14463] = ach:New(14463, 10); -- Skoldus Hall
     a[14468] = ach:New(14468, 10); -- Twisting Corridors: Layer 1
     a[14469] = ach:New(14469, 10); -- Twisting Corridors: Layer 2
@@ -7409,9 +7409,9 @@ function exportedAchievements.Load(a, t)
     a[14524] = ach:New(14524, 10); -- I Don't Know What I Expected
     a[14525] = ach:New(14525, 10); -- "Feed Me, Seymour!"
     a[14531] = ach:New(14531, 0); -- Shadowlands Keystone Conqueror: Season One
-    SetTO(a[14531], function() return tmpObt:DuringSeason(30); end, "From", "Season", 30, "Until", "Season", 30);
+    SetTO(a[14531], function() return tmpObt:DuringMplusSeason(5); end, "From", "Mythic+ Season", 5, "Until", "Mythic+ Season", 5);
     a[14532] = ach:New(14532, 0); -- Shadowlands Keystone Master: Season One
-    SetTO(a[14532], function() return tmpObt:DuringSeason(30); end, "From", "Season", 30, "Until", "Season", 30);
+    SetTO(a[14532], function() return tmpObt:DuringMplusSeason(5); end, "From", "Mythic+ Season", 5, "Until", "Mythic+ Season", 5);
     a[14533] = ach:New(14533, 10); -- Royal Rumble
     a[14567] = ach:New(14567, 10); -- Picking Up the Pieces
     a[14568] = ach:New(14568, 10); -- Twisting Corridors: Layer 6
@@ -7633,7 +7633,7 @@ function exportedAchievements.Load(a, t)
     SetTO(a[14904], function() return false; end);
     a[14931] = ach:New(14931, 0); -- Flying Festivities
     a[14938] = ach:New(14938, 0); -- Shadowlands Keystone Explorer: Season One
-    SetTO(a[14938], function() return tmpObt:DuringSeason(30); end, "From", "Season", 30, "Until", "Season", 30);
+    SetTO(a[14938], function() return tmpObt:DuringMplusSeason(5); end, "From", "Mythic+ Season", 5, "Until", "Mythic+ Season", 5);
     a[14942] = ach:New(14942, 0); -- WoW's 17th Anniversary
     SetTO(a[14942], function() return false; end);
     a[14943] = ach:New(14943, 10); -- Guarmageddon
@@ -7679,21 +7679,21 @@ function exportedAchievements.Load(a, t)
     a[15043] = ach:New(15043, 0); -- Hoarder of Torghast
     a[15044] = ach:New(15044, 5); -- Krrprripripkraak's Heroes
     a[15045] = ach:New(15045, 0); -- Keystone Hero: The Necrotic Wake
-    SetTO(a[15045], function() return tmpObt:DuringSeasons(31, 32); end, "From", "Season", 31, "Until", "Season", 32);
+    SetTO(a[15045], function() return tmpObt:DuringMplusSeasons(6, 7); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
     a[15046] = ach:New(15046, 0); -- Keystone Hero: Plaguefall
-    SetTO(a[15046], function() return tmpObt:DuringSeasons(31, 32); end, "From", "Season", 31, "Until", "Season", 32);
+    SetTO(a[15046], function() return tmpObt:DuringMplusSeasons(6, 7); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
     a[15047] = ach:New(15047, 0); -- Keystone Hero: Mists of Tirna Scithe
-    SetTO(a[15047], function() return tmpObt:DuringSeasons(31, 32); end, "From", "Season", 31, "Until", "Season", 32);
+    SetTO(a[15047], function() return tmpObt:DuringMplusSeasons(6, 7); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
     a[15048] = ach:New(15048, 0); -- Keystone Hero: Halls of Atonement
-    SetTO(a[15048], function() return tmpObt:DuringSeasons(31, 32); end, "From", "Season", 31, "Until", "Season", 32);
+    SetTO(a[15048], function() return tmpObt:DuringMplusSeasons(6, 7); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
     a[15049] = ach:New(15049, 0); -- Keystone Hero: Spires of Ascension
-    SetTO(a[15049], function() return tmpObt:DuringSeasons(31, 32); end, "From", "Season", 31, "Until", "Season", 32);
+    SetTO(a[15049], function() return tmpObt:DuringMplusSeasons(6, 7); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
     a[15050] = ach:New(15050, 0); -- Keystone Hero: Theater of Pain
-    SetTO(a[15050], function() return tmpObt:DuringSeasons(31, 32); end, "From", "Season", 31, "Until", "Season", 32);
+    SetTO(a[15050], function() return tmpObt:DuringMplusSeasons(6, 7); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
     a[15051] = ach:New(15051, 0); -- Keystone Hero: De Other Side
-    SetTO(a[15051], function() return tmpObt:DuringSeasons(31, 32); end, "From", "Season", 31, "Until", "Season", 32);
+    SetTO(a[15051], function() return tmpObt:DuringMplusSeasons(6, 7); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
     a[15052] = ach:New(15052, 0); -- Keystone Hero: Sanguine Depths
-    SetTO(a[15052], function() return tmpObt:DuringSeasons(31, 32); end, "From", "Season", 31, "Until", "Season", 32);
+    SetTO(a[15052], function() return tmpObt:DuringMplusSeasons(6, 7); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
     a[15053] = ach:New(15053, 10); -- Explore Korthia
     a[15054] = ach:New(15054, 15); -- Minions of the Cold Dark
     a[15055] = ach:New(15055, 10); -- Friend of Ooz
@@ -7707,13 +7707,13 @@ function exportedAchievements.Load(a, t)
     a[15067] = ach:New(15067, 10); -- Adamant Vaults
     a[15069] = ach:New(15069, 5); -- The Archivists' Codex
     a[15073] = ach:New(15073, 0); -- Shadowlands Keystone Explorer: Season Two
-    SetTO(a[15073], function() return tmpObt:DuringSeason(31); end, "From", "Season", 31, "Until", "Season", 31);
+    SetTO(a[15073], function() return tmpObt:DuringMplusSeason(6); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 6);
     a[15075] = ach:New(15075, 10); -- Infiltrators
     a[15076] = ach:New(15076, 5); -- The Box of Many Things
     a[15077] = ach:New(15077, 0); -- Shadowlands Keystone Conqueror: Season Two
-    SetTO(a[15077], function() return tmpObt:DuringSeason(31); end, "From", "Season", 31, "Until", "Season", 31);
+    SetTO(a[15077], function() return tmpObt:DuringMplusSeason(6); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 6);
     a[15078] = ach:New(15078, 0); -- Shadowlands Keystone Master: Season Two
-    SetTO(a[15078], function() return tmpObt:DuringSeason(31); end, "From", "Season", 31, "Until", "Season", 31);
+    SetTO(a[15078], function() return tmpObt:DuringMplusSeason(6); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 6);
     a[15079] = ach:New(15079, 10); -- "Many, Many Things"
     a[15080] = ach:New(15080, 10); -- So Blessed
     a[15081] = ach:New(15081, 10); -- Flawless: Skoldus Hall (Layer 12)
@@ -7787,9 +7787,9 @@ function exportedAchievements.Load(a, t)
     a[15132] = ach:New(15132, 10); -- Knowledge is Power
     a[15133] = ach:New(15133, 10); -- This World is a Prism
     a[15134] = ach:New(15134, 0); -- Ahead of the Curve: Sylvanas Windrunner
-    SetTO(a[15134], function() return tmpObt:DuringSeason(31); end, "From", "Season", 31, "Until", "Season", 31);
+    SetTO(a[15134], function() return tmpObt:DuringMplusSeason(6); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 6);
     a[15135] = ach:New(15135, 0); -- Cutting Edge: Sylvanas Windrunner
-    SetTO(a[15135], function() return tmpObt:DuringSeason(31); end, "From", "Season", 31, "Until", "Season", 31);
+    SetTO(a[15135], function() return tmpObt:DuringMplusSeason(6); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 6);
     a[15177] = ach:New(15177, 10); -- "Tazavesh, the Veiled Market"
     a[15178] = ach:New(15178, 10); -- Fake It 'Til You Make It
     a[15179] = ach:New(15179, 10); -- This is Fine
@@ -7841,7 +7841,7 @@ function exportedAchievements.Load(a, t)
     a[15323] = ach:New(15323, 0); -- Sarge's Tale
     a[15324] = ach:New(15324, 20); -- Tower Ranger
     a[15327] = ach:New(15327, 0); -- Tormented Hero: Shadowlands Season 2
-    SetTO(a[15327], function() return tmpObt:DuringSeason(31); end, "From", "Season", 31, "Until", "Season", 31);
+    SetTO(a[15327], function() return tmpObt:DuringMplusSeason(6); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 6);
     a[15331] = ach:New(15331, 10); -- Treasures of Zereth Mortis
     a[15336] = ach:New(15336, 25); -- From A to Zereth
     a[15348] = ach:New(15348, 0); -- Combatant I: Shadowlands Season 3
@@ -7969,9 +7969,9 @@ function exportedAchievements.Load(a, t)
     a[15418] = ach:New(15418, 10); -- The Grand Design
     a[15419] = ach:New(15419, 10); -- The Protoform Matrix
     a[15470] = ach:New(15470, 0); -- Ahead of the Curve: The Jailer
-    SetTO(a[15470], function() return tmpObt:DuringSeason(32); end, "From", "Season", 32, "Until", "Season", 32);
+    SetTO(a[15470], function() return tmpObt:DuringMplusSeason(7); end, "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15471] = ach:New(15471, 0); -- Cutting Edge: The Jailer
-    SetTO(a[15471], function() return tmpObt:DuringSeason(32); end, "From", "Season", 32, "Until", "Season", 32);
+    SetTO(a[15471], function() return tmpObt:DuringMplusSeason(7); end, "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15478] = ach:New(15478, 10); -- Heroic: Sepulcher of the First Ones
     a[15479] = ach:New(15479, 10); -- Mythic: Vigilant Guardian
     a[15480] = ach:New(15480, 10); -- Mythic: Skolex
@@ -7990,15 +7990,15 @@ function exportedAchievements.Load(a, t)
     a[15493] = ach:New(15493, 10); -- Ephemeral Plains
     a[15494] = ach:New(15494, 0); -- Damnation Aviation
     a[15496] = ach:New(15496, 0); -- Shadowlands Keystone Explorer: Season Three
-    SetTO(a[15496], function() return tmpObt:DuringSeason(32); end, "From", "Season", 32, "Until", "Season", 32);
+    SetTO(a[15496], function() return tmpObt:DuringMplusSeason(7); end, "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15498] = ach:New(15498, 0); -- Shadowlands Keystone Conqueror: Season Three
-    SetTO(a[15498], function() return tmpObt:DuringSeason(32); end, "From", "Season", 32, "Until", "Season", 32);
+    SetTO(a[15498], function() return tmpObt:DuringMplusSeason(7); end, "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15499] = ach:New(15499, 0); -- Shadowlands Keystone Master: Season Three
-    SetTO(a[15499], function() return tmpObt:DuringSeason(32); end, "From", "Season", 32, "Until", "Season", 32);
+    SetTO(a[15499], function() return tmpObt:DuringMplusSeason(7); end, "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15500] = ach:New(15500, 0); -- "Keystone Hero: Tazavesh, the Veiled Market"
     a[15502] = ach:New(15502, 10); -- "Sand, Sand Everywhere!"
     a[15506] = ach:New(15506, 0); -- Shadowlands Keystone Hero: Season Three
-    SetTO(a[15506], function() return tmpObt:DuringSeason(32); end, "From", "Season", 32, "Until", "Season", 32);
+    SetTO(a[15506], function() return tmpObt:DuringMplusSeason(7); end, "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15508] = ach:New(15508, 10); -- Fashion of the First Ones
     a[15509] = ach:New(15509, 5); -- Tales of the Exile
     a[15511] = ach:New(15511, 10); -- Solely Motivated
@@ -8048,25 +8048,25 @@ function exportedAchievements.Load(a, t)
     a[15682] = ach:New(15682, 10); -- Heroic: Fate of the Sepulcher
     a[15683] = ach:New(15683, 10); -- Mythic: Fate of the Sepulcher
     a[15684] = ach:New(15684, 10); -- Fates of the Shadowlands Raids
-    SetTO(a[15684], function() return tmpObt:DuringSeason(33); end, "From", "Season", 33, "Until", "Season", 33);
+    SetTO(a[15684], function() return tmpObt:DuringMplusSeason(8); end, "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15685] = ach:New(15685, 10); -- Heroic: Fates of the Shadowlands Raids
-    SetTO(a[15685], function() return tmpObt:DuringSeason(33); end, "From", "Season", 33, "Until", "Season", 33);
+    SetTO(a[15685], function() return tmpObt:DuringMplusSeason(8); end, "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15687] = ach:New(15687, 10); -- Mythic: Fates of the Shadowlands Raids
-    SetTO(a[15687], function() return tmpObt:DuringSeason(33); end, "From", "Season", 33, "Until", "Season", 33);
+    SetTO(a[15687], function() return tmpObt:DuringMplusSeason(8); end, "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15688] = ach:New(15688, 0); -- Shadowlands Keystone Explorer: Season Four
-    SetTO(a[15688], function() return tmpObt:DuringSeason(33); end, "From", "Season", 33, "Until", "Season", 33);
+    SetTO(a[15688], function() return tmpObt:DuringMplusSeason(8); end, "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15689] = ach:New(15689, 0); -- Shadowlands Keystone Conqueror: Season Four
-    SetTO(a[15689], function() return tmpObt:DuringSeason(33); end, "From", "Season", 33, "Until", "Season", 33);
+    SetTO(a[15689], function() return tmpObt:DuringMplusSeason(8); end, "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15690] = ach:New(15690, 0); -- Shadowlands Keystone Master: Season Four
-    SetTO(a[15690], function() return tmpObt:DuringSeason(33); end, "From", "Season", 33, "Until", "Season", 33);
+    SetTO(a[15690], function() return tmpObt:DuringMplusSeason(8); end, "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15691] = ach:New(15691, 0); -- Cryptic Hero: Shadowlands Season 3
-    SetTO(a[15691], function() return tmpObt:DuringSeason(32); end, "From", "Season", 32, "Until", "Season", 32);
+    SetTO(a[15691], function() return tmpObt:DuringMplusSeason(7); end, "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15692] = ach:New(15692, 0); -- Keystone Hero: Return to Karazhan
     a[15693] = ach:New(15693, 0); -- Keystone Hero: Operation: Mechagon
     a[15694] = ach:New(15694, 0); -- Keystone Hero: Iron Docks
     a[15695] = ach:New(15695, 0); -- Keystone Hero: Grimrail Depot
     a[15756] = ach:New(15756, 0); -- Shrouded Hero: Shadowlands Season 4
-    SetTO(a[15756], function() return tmpObt:DuringSeason(33); end, "From", "Season", 33, "Until", "Season", 33);
+    SetTO(a[15756], function() return tmpObt:DuringMplusSeason(8); end, "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
 
     local aIDs = {};
     for i = 1, 15756 do
