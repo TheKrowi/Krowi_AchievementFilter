@@ -8,7 +8,18 @@ function temporaryObtainable:Load()
 
 end
 
+local DEBUG --= true;
+function temporaryObtainable:GetPreviousSeason()
+    if DEBUG then
+        return 33;
+    end
+    return GetPreviousArenaSeason();
+end
+
 function temporaryObtainable:GetCurrentSeason()
+    if DEBUG then
+        return 0;
+    end
     return GetCurrentArenaSeason();
 end
 
@@ -23,49 +34,39 @@ function temporaryObtainable:GetCurrentVersionString()
 end
 
 function temporaryObtainable:DuringSeason(season)
-    return season == self:GetCurrentSeason();
+    local state;
+    state = season <= max(self:GetCurrentSeason(), self:GetPreviousSeason()) and "Past" or "Future";
+    if season == self:GetCurrentSeason() then
+        state = "Current";
+    end
+    return state;
 end
 
 function temporaryObtainable:DuringSeasons(season1, season2)
-    return self:GetCurrentSeason() >= season1 and self:GetCurrentSeason() <= season2;
+    local state1 = self:DuringSeason(season1);
+    local state2 = self:DuringSeason(season2);
+    if state1 == state2 then
+        return state1;
+    elseif state1 == "Current" or state2 == "Current" or (state1 == "Past" and state2 == "Future") then
+        return "Current";
+    end
 end
 
 function temporaryObtainable:AddWasIsWillBe(text, achievement)
     local start, _end; -- Past, Future
+
     if achievement.TemporaryObtainable.Start.Function == "Season" then
-        if achievement.TemporaryObtainable.Start.Inclusion == "From" then
-            local season = GetCurrentArenaSeason();
-            if season == 0 then
-                season = GetPreviousArenaSeason();
-            end
-            start = achievement.TemporaryObtainable.Start.Value <= season and "Past" or "Future";
-        elseif achievement.TemporaryObtainable.Start.Inclusion == "After" then
-            local season = GetCurrentArenaSeason();
-            if season == 0 then
-                season = GetPreviousArenaSeason();
-                start = achievement.TemporaryObtainable.Start.Value <= season and "Past" or "Future";
-            else
-                start = achievement.TemporaryObtainable.Start.Value < season and "Past" or "Future";
-            end
+        start = achievement.TemporaryObtainable.Start.Value <= max(self:GetCurrentSeason(), self:GetPreviousSeason()) and "Past" or "Future";
+        if achievement.TemporaryObtainable.Start.Inclusion == "After" and achievement.TemporaryObtainable.Start.Value == self:GetCurrentSeason() then
+            start = "Future";
         end
     elseif achievement.TemporaryObtainable.Start.Function == "Patch" then
     end
 
     if achievement.TemporaryObtainable.End.Function == "Season" then
-        if achievement.TemporaryObtainable.End.Inclusion == "Before" then
-            local season = GetCurrentArenaSeason();
-            if season == 0 then
-                season = GetPreviousArenaSeason();
-            end
-            _end = achievement.TemporaryObtainable.End.Value <= season and "Past" or "Future";
-        elseif achievement.TemporaryObtainable.End.Inclusion == "Until" then
-            local season = GetCurrentArenaSeason();
-            if season == 0 then
-                season = GetPreviousArenaSeason();
-                _end = achievement.TemporaryObtainable.End.Value <= season and "Past" or "Future";
-            else
-                _end = achievement.TemporaryObtainable.End.Value < season and "Past" or "Future";
-            end
+        _end = achievement.TemporaryObtainable.End.Value <= max(self:GetCurrentSeason(), self:GetPreviousSeason()) and "Past" or "Future";
+        if achievement.TemporaryObtainable.End.Inclusion == "Until" and achievement.TemporaryObtainable.End.Value == self:GetCurrentSeason() then
+            _end = "Future";
         end
     elseif achievement.TemporaryObtainable.End.Function == "Patch" then
     end
