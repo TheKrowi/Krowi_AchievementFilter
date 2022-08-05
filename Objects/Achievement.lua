@@ -140,9 +140,8 @@ function achievement:AddTransmogSet(transmogSet)
     return transmogSet;
 end
 
-function achievement:SetTemporaryObtainable(obtainable, startInclusion, startFunction, startValue, endInclusion, endFunction, endValue)
+function achievement:SetTemporaryObtainable(startInclusion, startFunction, startValue, endInclusion, endFunction, endValue)
     self.TemporaryObtainable = {};
-    self.TemporaryObtainable.Obtainable = obtainable;
     if startInclusion ~= nil and startFunction ~= nil and startValue ~= nil then
         self.TemporaryObtainable.Start = {
             Inclusion = startInclusion,
@@ -157,4 +156,6 @@ function achievement:SetTemporaryObtainable(obtainable, startInclusion, startFun
             Value = endValue
         };
     end
+    local ach = self;
+    self.TemporaryObtainable.Obtainable = function() return addon.Data.TemporaryObtainable:GetObtainableState(ach); end;
 end

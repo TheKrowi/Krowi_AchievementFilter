@@ -4,7 +4,11 @@ local section = {};
 
 local numCriteria;
 function section.CheckAdd(achievement)
-	local pastObtainable = achievement.TemporaryObtainable and (not achievement.TemporaryObtainable.Obtainable() or achievement.TemporaryObtainable.Obtainable() == "Past");
+	local state;
+	if achievement.TemporaryObtainable then
+		state = achievement.TemporaryObtainable.Obtainable();
+	end
+	local pastObtainable = state and (not state or state == "Past");
 	if not addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show or pastObtainable then
 		return;
 	end

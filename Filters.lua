@@ -108,7 +108,8 @@ local validations = {
                 return;
             end
             if achievement.TemporaryObtainable then
-                return achievement.TemporaryObtainable.Obtainable() == true or achievement.TemporaryObtainable.Obtainable() == "Current";
+                local state = achievement.TemporaryObtainable.Obtainable();
+                return state == true or state == "Current";
             end
             return true;
         end
@@ -119,7 +120,8 @@ local validations = {
                 return;
             end
             if achievement.TemporaryObtainable then
-                return achievement.TemporaryObtainable.Obtainable() == false or achievement.TemporaryObtainable.Obtainable() == "Past" or achievement.TemporaryObtainable.Obtainable() == "Future";
+                local state = achievement.TemporaryObtainable.Obtainable();
+                return state == false or state == "Past" or state == "Future";
             end
             return;
         end

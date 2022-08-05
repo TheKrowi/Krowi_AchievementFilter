@@ -117,7 +117,11 @@ local function SetAchievementButtonColor(frame, engine)
         return;
     end
     local achievement = frame.Achievement;
-    if achievement.TemporaryObtainable and (achievement.TemporaryObtainable.Obtainable() == false or achievement.TemporaryObtainable.Obtainable() == "Past" or achievement.TemporaryObtainable.Obtainable() == "Future") then
+	local state;
+	if achievement.TemporaryObtainable then
+		state = achievement.TemporaryObtainable.Obtainable();
+	end
+    if state and (state == false or state == "Past" or state == "Future") then
 	    frame.backdrop.callbackBackdropColor = RedBackdrop;
         frame.backdrop:SetBackdropColor(redAchievement.r, redAchievement.g, redAchievement.b);
     elseif frame.accountWide then

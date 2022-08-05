@@ -13,14 +13,14 @@ end
 do -- GetData
     function temporaryObtainable:GetPreviousMplusSeason()
         if DEBUG then
-            return 7;
+            return 6;
         end
         return tonumber(GetCVar("newMythicPlusSeason"));
     end
 
     function temporaryObtainable:GetCurrentMplusSeason()
         if DEBUG then
-            return 0;
+            return 7;
         end
         return C_MythicPlus.GetCurrentSeason();
     end
@@ -51,6 +51,45 @@ do -- GetData
 end
 
 do -- IsObtainable Past, Future or Current
+    function temporaryObtainable:GetObtainableState(achievement)
+        if achievement.TemporaryObtainable.Start == nil and achievement.TemporaryObtainable.End == nil then
+            return "Past";
+        end
+
+        local startFunction = achievement.TemporaryObtainable.Start.Function;
+        if startFunction == "Mythic+ Season" then
+            start = self:GetMplusSeasonStartState(achievement);
+        elseif startFunction == "PvP Season" then
+            start = self:GetPvpSeasonStartState(achievement);
+        elseif startFunction == "Version" then
+            start = self:GetVersionStartState(achievement);
+        end
+
+        local startState = start;
+        if start == "Future" then
+            -- print(achievement.Id, "Future")
+            return "Future";
+        end
+
+        local endFunction = achievement.TemporaryObtainable.End.Function;
+        if endFunction == "Mythic+ Season" then
+            _end = self:GetMplusSeasonEndState(achievement);
+        elseif endFunction == "PvP Season" then
+            _end = self:GetPvpSeasonEndState(achievement);
+        elseif endFunction == "Version" then
+            _end = self:GetVersionEndState(achievement);
+        end
+
+        local endState = _end;
+        if _end == "Past" then
+            -- print(achievement.Id, "Past")
+            return "Past";
+        end
+
+        -- print(achievement.Id, startState, endState)
+        return "Current";
+    end
+
     function temporaryObtainable:DuringMplusSeason(season)
         local state;
         state = season <= max(self:GetCurrentMplusSeason(), self:GetPreviousMplusSeason()) and "Past" or "Future";
@@ -107,20 +146,20 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
 
         local startFunction = achievement.TemporaryObtainable.Start.Function;
         if startFunction == "Mythic+ Season" then
-            start = self:MplusSeasonStartState(achievement);
+            start = self:GetMplusSeasonStartState(achievement);
         elseif startFunction == "PvP Season" then
-            start = self:PvpSeasonStartState(achievement);
+            start = self:GetPvpSeasonStartState(achievement);
         elseif startFunction == "Version" then
-            start = self:VersionStartState(achievement);
+            start = self:GetVersionStartState(achievement);
         end
 
         local endFunction = achievement.TemporaryObtainable.End.Function;
         if endFunction == "Mythic+ Season" then
-            _end = self:MplusSeasonEndState(achievement);
+            _end = self:GetMplusSeasonEndState(achievement);
         elseif endFunction == "PvP Season" then
-            _end = self:PvpSeasonEndState(achievement);
+            _end = self:GetPvpSeasonEndState(achievement);
         elseif endFunction == "Version" then
-            _end = self:VersionEndState(achievement);
+            _end = self:GetVersionEndState(achievement);
         end
 
         -- print(startFunction, start, endFunction, _end)
@@ -206,7 +245,7 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
 end
 
 do -- Get start and end state
-    function temporaryObtainable:MplusSeasonStartState(achievement)
+    function temporaryObtainable:GetMplusSeasonStartState(achievement)
         if achievement.TemporaryObtainable.Start.Inclusion == "From" then
             if self:GetCurrentMplusSeason() == 0 then
                 return self:GetPreviousMplusSeason() >= achievement.TemporaryObtainable.Start.Value and "Past" or "Future";
@@ -220,7 +259,7 @@ do -- Get start and end state
         end
     end
 
-    function temporaryObtainable:PvpSeasonStartState(achievement)
+    function temporaryObtainable:GetPvpSeasonStartState(achievement)
         if achievement.TemporaryObtainable.Start.Inclusion == "From" then
             if self:GetCurrentPvpSeason() == 0 then
                 return self:GetPreviousPvpSeason() >= achievement.TemporaryObtainable.Start.Value and "Past" or "Future";
@@ -234,7 +273,7 @@ do -- Get start and end state
         end
     end
 
-    function temporaryObtainable:VersionStartState(achievement)
+    function temporaryObtainable:GetVersionStartState(achievement)
         if achievement.TemporaryObtainable.Start.Inclusion == "From" then
             return self:GetCurrentVersionString() >= achievement.TemporaryObtainable.Start.Value and "Past" or "Future";
         elseif achievement.TemporaryObtainable.Start.Inclusion == "After" then
@@ -242,7 +281,7 @@ do -- Get start and end state
         end
     end
 
-    function temporaryObtainable:MplusSeasonEndState(achievement)
+    function temporaryObtainable:GetMplusSeasonEndState(achievement)
         if achievement.TemporaryObtainable.End.Inclusion == "Until" then
             if self:GetCurrentMplusSeason() == 0 then
                 return self:GetPreviousMplusSeason() >= achievement.TemporaryObtainable.End.Value and "Past" or "Future";
@@ -256,7 +295,7 @@ do -- Get start and end state
         end
     end
 
-    function temporaryObtainable:PvpSeasonEndState(achievement)
+    function temporaryObtainable:GetPvpSeasonEndState(achievement)
         if achievement.TemporaryObtainable.End.Inclusion == "Until" then
             if self:GetCurrentPvpSeason() == 0 then
                 return self:GetPreviousPvpSeason() >= achievement.TemporaryObtainable.End.Value and "Past" or "Future";
@@ -270,7 +309,7 @@ do -- Get start and end state
         end
     end
 
-    function temporaryObtainable:VersionEndState(achievement) -- ok
+    function temporaryObtainable:GetVersionEndState(achievement) -- ok
         if achievement.TemporaryObtainable.End.Inclusion == "Until" then
             return self:GetCurrentVersionString() > achievement.TemporaryObtainable.End.Value and "Past" or "Future";
         elseif achievement.TemporaryObtainable.End.Inclusion == "Before" then

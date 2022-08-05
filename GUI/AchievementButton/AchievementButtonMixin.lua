@@ -71,8 +71,12 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement)
 		self.Achievement = achievement;
 
 		local saturatedStyle;
-		
-		if achievement.TemporaryObtainable and (achievement.TemporaryObtainable.Obtainable() == false or achievement.TemporaryObtainable.Obtainable() == "Past" or achievement.TemporaryObtainable.Obtainable() == "Future") then
+		local state;
+        if achievement.TemporaryObtainable then
+            state = achievement.TemporaryObtainable.Obtainable();
+        end
+
+		if state and (state == false or state == "Past" or state == "Future") then
 			saturatedStyle = "NotObtainable";
 		else
 			if flags.IsAccountWide then
@@ -291,7 +295,11 @@ local function SetTsunamis(self)
 		return;
 	end
 	local achievement = self.Achievement;
-	local notObtainable = achievement.TemporaryObtainable and (achievement.TemporaryObtainable.Obtainable() == false or achievement.TemporaryObtainable.Obtainable() == "Past" or achievement.TemporaryObtainable.Obtainable() == "Future");
+	local state;
+	if achievement.TemporaryObtainable then
+		state = achievement.TemporaryObtainable.Obtainable();
+	end
+	local notObtainable = state and (state == false or state == "Past" or state == "Future");
 	local texture = notObtainable and (media .. "NotObtainableAchievementBorders") or "Interface/AchievementFrame/UI-Achievement-Borders";
 
 	self.BottomTsunami:SetTexture(texture);
@@ -310,7 +318,11 @@ end
 function KrowiAF_AchievementButtonMixin:Saturate()
 	self.Background:SetTexture("Interface/AchievementFrame/UI-Achievement-Parchment-Horizontal");
 	local achievement = self.Achievement;
-	if achievement.TemporaryObtainable and (achievement.TemporaryObtainable.Obtainable() == false or achievement.TemporaryObtainable.Obtainable() == "Past" or achievement.TemporaryObtainable.Obtainable() == "Future") then
+	local state;
+	if achievement.TemporaryObtainable then
+		state = achievement.TemporaryObtainable.Obtainable();
+	end
+	if state and (state == false or state == "Past" or state == "Future") then
 		self.HeaderBackground:SetTexture(media .. "NotObtainableAchievementBorders");
 		self.HeaderBackground:SetTexCoord(0, 1, 0.66015625, 0.73828125);
 		self:SetBackdropBorderColor(ACHIEVEMENT_RED_BORDER_COLOR:GetRGB());
@@ -345,7 +357,11 @@ function KrowiAF_AchievementButtonMixin:Desaturate()
 	self.saturatedStyle = nil;
 	self.Background:SetTexture("Interface/AchievementFrame/UI-Achievement-Parchment-Horizontal-Desaturated");
 	local achievement = self.Achievement;
-	if achievement.TemporaryObtainable and (achievement.TemporaryObtainable.Obtainable() == false or achievement.TemporaryObtainable.Obtainable() == "Past" or achievement.TemporaryObtainable.Obtainable() == "Future") then
+	local state;
+	if achievement.TemporaryObtainable then
+		state = achievement.TemporaryObtainable.Obtainable();
+	end
+	if state and (state == false or state == "Past" or state == "Future") then
 		self.HeaderBackground:SetTexture(media .. "NotObtainableAchievementBorders");
 		self.HeaderBackground:SetTexCoord(0, 1, 0.91796875, 0.99609375);
 	else

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-03 17-01-27 ]] --
+-- [[ Exported at 2022-08-05 08-00-32 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -32,16 +32,16 @@ function exportedAchievements.Load(a, t)
     a[8] = ach:New(8, 10); -- Level 30
     a[9] = ach:New(9, 10); -- Level 40
     a[10] = ach:New(10, 0); -- Level 50 (Legacy)
-    SetTO(a[10], function() return false; end);
+    SetTO(a[10]);
     a[11] = ach:New(11, 0); -- Level 60 (Legacy)
-    SetTO(a[11], function() return false; end);
+    SetTO(a[11]);
     a[12] = ach:New(12, 0); -- Level 70 (Legacy)
-    SetTO(a[12], function() return false; end);
+    SetTO(a[12]);
     a[13] = ach:New(13, 0); -- Level 80 (Legacy)
-    SetTO(a[13], function() return false; end);
+    SetTO(a[13]);
     a[15] = ach:New(15, 10); -- Plenty of Pets
     a[16] = ach:New(16, 0); -- Did Somebody Order a Knuckle Sandwich?
-    SetTO(a[16], function() return false; end);
+    SetTO(a[16]);
     a[31] = ach:New(31, 10); -- A Simple Re-Quest
     a[32] = ach:New(32, 10); -- 2000 Quests Completed
     a[33] = ach:New(33, 10, fac.Alliance, 1358); -- Nothing Boring About Borean
@@ -71,19 +71,19 @@ function exportedAchievements.Load(a, t)
     a[129] = ach:New(129, 10); -- Outland Fisherman
     a[130] = ach:New(130, 10); -- Northrend Fisherman
     a[131] = ach:New(131, 0); -- Journeyman Medic
-    SetTO(a[131], function() return false; end);
+    SetTO(a[131]);
     a[132] = ach:New(132, 0); -- Expert Medic
-    SetTO(a[132], function() return false; end);
+    SetTO(a[132]);
     a[133] = ach:New(133, 0); -- Artisan Medic
-    SetTO(a[133], function() return false; end);
+    SetTO(a[133]);
     a[134] = ach:New(134, 0); -- Master Medic
-    SetTO(a[134], function() return false; end);
+    SetTO(a[134]);
     a[135] = ach:New(135, 0); -- Grand Master Medic
-    SetTO(a[135], function() return false; end);
+    SetTO(a[135]);
     a[137] = ach:New(137, 0); -- Stocking Up
-    SetTO(a[137], function() return false; end);
+    SetTO(a[137]);
     a[141] = ach:New(141, 0); -- Ultimate Triage
-    SetTO(a[141], function() return false; end);
+    SetTO(a[141]);
     a[144] = ach:New(144, 10); -- The Lurker Above
     a[150] = ach:New(150, 10); -- The Fishing Diplomat
     a[153] = ach:New(153, 10); -- The Old Gnome and the Sea
@@ -167,119 +167,119 @@ function exportedAchievements.Load(a, t)
     a[402] = ach:New(402, 10); -- Three's Company: 1550
     a[403] = ach:New(403, 10); -- Three's Company: 1750
     a[404] = ach:New(404, 0); -- High Five: 2000
-    SetTO(a[404], function() return false; end);
+    SetTO(a[404]);
     a[405] = ach:New(405, 10); -- Three's Company: 2000
     a[406] = ach:New(406, 0); -- High Five: 1550
-    SetTO(a[406], function() return false; end);
+    SetTO(a[406]);
     a[407] = ach:New(407, 0); -- High Five: 1750
-    SetTO(a[407], function() return false; end);
+    SetTO(a[407]);
     a[408] = ach:New(408, 10); -- Hot Streak
     a[409] = ach:New(409, 0); -- Last Man Standing
-    SetTO(a[409], function() return false; end);
+    SetTO(a[409]);
     a[411] = ach:New(411, 0); -- Murky
-    SetTO(a[411], function() return false; end);
+    SetTO(a[411]);
     a[412] = ach:New(412, 0); -- Murloc Costume
-    SetTO(a[412], function() return false; end);
+    SetTO(a[412]);
     a[414] = ach:New(414, 0); -- Tyrael's Hilt
     a[415] = ach:New(415, 0); -- Big Blizzard Bear
-    SetTO(a[415], function() return false; end);
+    SetTO(a[415]);
     a[416] = ach:New(416, 0); -- Scarab Lord
-    SetTO(a[416], function() return false; end);
+    SetTO(a[416]);
     a[418] = ach:New(418, 0); -- Merciless Gladiator
     a[419] = ach:New(419, 0); -- Vengeful Gladiator
     a[420] = ach:New(420, 0); -- Brutal Gladiator
     a[424] = ach:New(424, 0); -- Why? Because It's Red
     a[425] = ach:New(425, 0); -- "Atiesh, Greatstaff of the Guardian"
-    SetTO(a[425], function() return false; end);
+    SetTO(a[425]);
     a[426] = ach:New(426, 0); -- Warglaives of Azzinoth
     a[428] = ach:New(428, 0); -- "Thunderfury, Blessed Blade of the Windseeker"
     a[429] = ach:New(429, 0); -- "Sulfuras, Hand of Ragnaros"
     a[430] = ach:New(430, 0); -- Amani War Bear
-    SetTO(a[430], function() return false; end);
+    SetTO(a[430]);
     a[431] = ach:New(431, 0); -- Hand of A'dal
-    SetTO(a[431], function() return false; end);
+    SetTO(a[431]);
     a[432] = ach:New(432, 0); -- Champion of the Naaru
-    SetTO(a[432], function() return false; end);
+    SetTO(a[432]);
     a[433] = ach:New(433, 0, fac.Alliance, 443); -- Grand Marshal
-    SetTO(a[433], function() return false; end);
+    SetTO(a[433]);
     a[434] = ach:New(434, 0, fac.Alliance, 445); -- Field Marshal
-    SetTO(a[434], function() return false; end);
+    SetTO(a[434]);
     a[435] = ach:New(435, 0, fac.Alliance, 444); -- Commander
-    SetTO(a[435], function() return false; end);
+    SetTO(a[435]);
     a[436] = ach:New(436, 0, fac.Alliance, 447); -- Lieutenant Commander
-    SetTO(a[436], function() return false; end);
+    SetTO(a[436]);
     a[437] = ach:New(437, 0, fac.Alliance, 448); -- Knight-Champion
-    SetTO(a[437], function() return false; end);
+    SetTO(a[437]);
     a[438] = ach:New(438, 0, fac.Alliance, 469); -- Knight-Captain
-    SetTO(a[438], function() return false; end);
+    SetTO(a[438]);
     a[439] = ach:New(439, 0, fac.Alliance, 451); -- Knight
-    SetTO(a[439], function() return false; end);
+    SetTO(a[439]);
     a[440] = ach:New(440, 0, fac.Alliance, 452); -- Sergeant Major
-    SetTO(a[440], function() return false; end);
+    SetTO(a[440]);
     a[441] = ach:New(441, 0, fac.Alliance, 450); -- Master Sergeant
-    SetTO(a[441], function() return false; end);
+    SetTO(a[441]);
     a[442] = ach:New(442, 0, fac.Alliance, 454); -- Private
-    SetTO(a[442], function() return false; end);
+    SetTO(a[442]);
     a[443] = ach:New(443, 0, fac.Horde, 433); -- High Warlord
-    SetTO(a[443], function() return false; end);
+    SetTO(a[443]);
     a[444] = ach:New(444, 0, fac.Horde, 435); -- Lieutenant General
-    SetTO(a[444], function() return false; end);
+    SetTO(a[444]);
     a[445] = ach:New(445, 0, fac.Horde, 434); -- Warlord
-    SetTO(a[445], function() return false; end);
+    SetTO(a[445]);
     a[446] = ach:New(446, 0, fac.Horde, 473); -- General
-    SetTO(a[446], function() return false; end);
+    SetTO(a[446]);
     a[447] = ach:New(447, 0, fac.Horde, 436); -- Champion
-    SetTO(a[447], function() return false; end);
+    SetTO(a[447]);
     a[448] = ach:New(448, 0, fac.Horde, 437); -- Centurion
-    SetTO(a[448], function() return false; end);
+    SetTO(a[448]);
     a[449] = ach:New(449, 0, fac.Horde, 472); -- Blood Guard
-    SetTO(a[449], function() return false; end);
+    SetTO(a[449]);
     a[450] = ach:New(450, 0, fac.Horde, 441); -- Senior Sergeant
-    SetTO(a[450], function() return false; end);
+    SetTO(a[450]);
     a[451] = ach:New(451, 0, fac.Horde, 439); -- Stone Guard
-    SetTO(a[451], function() return false; end);
+    SetTO(a[451]);
     a[452] = ach:New(452, 0, fac.Horde, 440); -- First Sergeant
-    SetTO(a[452], function() return false; end);
+    SetTO(a[452]);
     a[453] = ach:New(453, 0, fac.Horde, 471); -- Sergeant
-    SetTO(a[453], function() return false; end);
+    SetTO(a[453]);
     a[454] = ach:New(454, 0, fac.Horde, 442); -- Scout
-    SetTO(a[454], function() return false; end);
+    SetTO(a[454]);
     a[456] = ach:New(456, 0); -- Realm First! Obsidian Slayer
-    SetTO(a[456], function() return false; end);
+    SetTO(a[456]);
     a[457] = ach:New(457, 0); -- Realm First! Level 80
-    SetTO(a[457], function() return false; end);
+    SetTO(a[457]);
     a[458] = ach:New(458, 0); -- Realm First! Level 80 Rogue
-    SetTO(a[458], function() return false; end);
+    SetTO(a[458]);
     a[459] = ach:New(459, 0); -- Realm First! Level 80 Warrior
-    SetTO(a[459], function() return false; end);
+    SetTO(a[459]);
     a[460] = ach:New(460, 0); -- Realm First! Level 80 Mage
-    SetTO(a[460], function() return false; end);
+    SetTO(a[460]);
     a[461] = ach:New(461, 0); -- Realm First! Level 80 Death Knight
-    SetTO(a[461], function() return false; end);
+    SetTO(a[461]);
     a[462] = ach:New(462, 0); -- Realm First! Level 80 Hunter
-    SetTO(a[462], function() return false; end);
+    SetTO(a[462]);
     a[463] = ach:New(463, 0); -- Realm First! Level 80 Warlock
-    SetTO(a[463], function() return false; end);
+    SetTO(a[463]);
     a[464] = ach:New(464, 0); -- Realm First! Level 80 Priest
-    SetTO(a[464], function() return false; end);
+    SetTO(a[464]);
     a[465] = ach:New(465, 0); -- Realm First! Level 80 Paladin
-    SetTO(a[465], function() return false; end);
+    SetTO(a[465]);
     a[466] = ach:New(466, 0); -- Realm First! Level 80 Druid
-    SetTO(a[466], function() return false; end);
+    SetTO(a[466]);
     a[467] = ach:New(467, 0); -- Realm First! Level 80 Shaman
-    SetTO(a[467], function() return false; end);
+    SetTO(a[467]);
     a[468] = ach:New(468, 0, fac.Horde, 470); -- Grunt
-    SetTO(a[468], function() return false; end);
+    SetTO(a[468]);
     a[469] = ach:New(469, 0, fac.Horde, 438); -- Legionnaire
-    SetTO(a[469], function() return false; end);
+    SetTO(a[469]);
     a[470] = ach:New(470, 0, fac.Alliance, 468); -- Corporal
-    SetTO(a[470], function() return false; end);
+    SetTO(a[470]);
     a[471] = ach:New(471, 0, fac.Alliance, 453); -- Sergeant
-    SetTO(a[471], function() return false; end);
+    SetTO(a[471]);
     a[472] = ach:New(472, 0, fac.Alliance, 449); -- Knight-Lieutenant
-    SetTO(a[472], function() return false; end);
+    SetTO(a[472]);
     a[473] = ach:New(473, 0, fac.Alliance, 446); -- Marshal
-    SetTO(a[473], function() return false; end);
+    SetTO(a[473]);
     a[477] = ach:New(477, 10); -- Utgarde Keep
     a[478] = ach:New(478, 10); -- The Nexus
     a[479] = ach:New(479, 10); -- The Culling of Stratholme
@@ -326,15 +326,15 @@ function exportedAchievements.Load(a, t)
     a[546] = ach:New(546, 10); -- Safe Deposit
     a[547] = ach:New(547, 10); -- Veteran of the Wrathgate
     a[556] = ach:New(556, 0); -- Epic
-    SetTO(a[556], function() return false; end);
+    SetTO(a[556]);
     a[557] = ach:New(557, 0); -- Superior
-    SetTO(a[557], function() return false; end);
+    SetTO(a[557]);
     a[558] = ach:New(558, 0); -- Greedy
-    SetTO(a[558], function() return false; end);
+    SetTO(a[558]);
     a[559] = ach:New(559, 0); -- Needy
-    SetTO(a[559], function() return false; end);
+    SetTO(a[559]);
     a[560] = ach:New(560, 0); -- Deadliest Catch
-    SetTO(a[560], function() return false; end);
+    SetTO(a[560]);
     a[561] = ach:New(561, 10); -- D.E.H.T.A's Little P.I.T.A.
     a[562] = ach:New(562, 10); -- The Arachnid Quarter (10 player)
     a[563] = ach:New(563, 10); -- The Arachnid Quarter (25 player)
@@ -364,18 +364,18 @@ function exportedAchievements.Load(a, t)
     a[608] = ach:New(608, 10); -- 25 Coins of Ancestry
     a[609] = ach:New(609, 10); -- 50 Coins of Ancestry
     a[610] = ach:New(610, 0, fac.Alliance, 615); -- Orgrimmar Offensive
-    SetTO(a[610], function() return false; end);
+    SetTO(a[610]);
     a[611] = ach:New(611, 10, fac.Alliance, 616); -- Bleeding Bloodhoof
-    SetTO(a[611], function() return false; end);
+    SetTO(a[611]);
     a[612] = ach:New(612, 0, fac.Alliance, 617); -- Downing the Dark Lady
-    SetTO(a[612], function() return false; end);
+    SetTO(a[612]);
     a[613] = ach:New(613, 10, fac.Alliance, 618); -- Killed in Quel'Thalas
     a[614] = ach:New(614, 20, fac.Alliance, 619); -- For the Alliance!
     a[615] = ach:New(615, 0, fac.Horde, 610); -- Storming Stormwind
-    SetTO(a[615], function() return false; end);
+    SetTO(a[615]);
     a[616] = ach:New(616, 10, fac.Horde, 611); -- Overthrow the Council
     a[617] = ach:New(617, 0, fac.Horde, 612); -- Immortal No More
-    SetTO(a[617], function() return false; end);
+    SetTO(a[617]);
     a[618] = ach:New(618, 10, fac.Horde, 613); -- Putting Out the Light
     a[619] = ach:New(619, 20, fac.Horde, 614); -- For the Horde!
     a[621] = ach:New(621, 10); -- Represent
@@ -442,16 +442,16 @@ function exportedAchievements.Load(a, t)
     a[682] = ach:New(682, 10); -- Heroic: Magister's Terrace
     a[683] = ach:New(683, 0); -- Collector's Edition: Frost Wyrm Whelp
     a[684] = ach:New(684, 0); -- Onyxia's Lair (Level 60)
-    SetTO(a[684], function() return false; end);
+    SetTO(a[684]);
     a[685] = ach:New(685, 10); -- Blackwing Lair
     a[686] = ach:New(686, 10); -- Molten Core
     a[687] = ach:New(687, 10); -- Temple of Ahn'Qiraj
     a[688] = ach:New(688, 0); -- Zul'Gurub
-    SetTO(a[688], function() return false; end);
+    SetTO(a[688]);
     a[689] = ach:New(689, 10); -- Ruins of Ahn'Qiraj
     a[690] = ach:New(690, 10); -- Karazhan
     a[691] = ach:New(691, 0); -- Zul'Aman
-    SetTO(a[691], function() return false; end);
+    SetTO(a[691]);
     a[692] = ach:New(692, 10); -- Gruul's Lair
     a[693] = ach:New(693, 10); -- Magtheridon's Lair
     a[694] = ach:New(694, 10); -- Serpentshrine Cavern
@@ -461,11 +461,11 @@ function exportedAchievements.Load(a, t)
     a[698] = ach:New(698, 10); -- Sunwell Plateau
     a[699] = ach:New(699, 10); -- World Wide Winner
     a[700] = ach:New(700, 0, fac.Horde, 701); -- Freedom of the Horde
-    SetTO(a[700], function() return false; end);
+    SetTO(a[700]);
     a[701] = ach:New(701, 0, fac.Alliance, 700); -- Freedom of the Alliance
-    SetTO(a[701], function() return false; end);
+    SetTO(a[701]);
     a[705] = ach:New(705, 0); -- Master of Arms
-    SetTO(a[705], function() return false; end);
+    SetTO(a[705]);
     a[706] = ach:New(706, 10, fac.Horde, 707); -- Frostwolf Howler
     a[707] = ach:New(707, 10, fac.Alliance, 706); -- Stormpike Battle Charger
     a[708] = ach:New(708, 10, fac.Horde, 709); -- Hero of the Frostwolf Clan
@@ -481,7 +481,7 @@ function exportedAchievements.Load(a, t)
     a[728] = ach:New(728, 10); -- Explore Durotar
     a[729] = ach:New(729, 0); -- Deathcharger's Reins
     a[730] = ach:New(730, 0); -- Skills to Pay the Bills
-    SetTO(a[730], function() return false; end);
+    SetTO(a[730]);
     a[731] = ach:New(731, 10); -- Professional Expert
     a[732] = ach:New(732, 10); -- Professional Classic Master
     a[733] = ach:New(733, 10); -- Professional Outland Master
@@ -551,26 +551,26 @@ function exportedAchievements.Load(a, t)
     a[877] = ach:New(877, 10); -- The Cake Is Not A Lie
     a[878] = ach:New(878, 10); -- One That Didn't Get Away
     a[879] = ach:New(879, 0); -- Old School Ride
-    SetTO(a[879], function() return false; end);
+    SetTO(a[879]);
     a[880] = ach:New(880, 0); -- Swift Zulian Tiger
-    SetTO(a[880], function() return false; end);
+    SetTO(a[880]);
     a[881] = ach:New(881, 0); -- Swift Razzashi Raptor
-    SetTO(a[881], function() return false; end);
+    SetTO(a[881]);
     a[882] = ach:New(882, 0); -- Fiery Warhorse's Reins
     a[883] = ach:New(883, 0); -- Reins of the Raven Lord
     a[884] = ach:New(884, 0); -- Swift White Hawkstrider
     a[885] = ach:New(885, 0); -- Ashes of Al'ar
     a[886] = ach:New(886, 0); -- Swift Nether Drake
-    SetTO(a[886], function() return false; end);
+    SetTO(a[886]);
     a[887] = ach:New(887, 0); -- Merciless Nether Drake
-    SetTO(a[887], function() return false; end);
+    SetTO(a[887]);
     a[888] = ach:New(888, 0); -- Vengeful Nether Drake
-    SetTO(a[888], function() return false; end);
+    SetTO(a[888]);
     a[889] = ach:New(889, 10); -- Fast and Furious
     a[890] = ach:New(890, 10); -- Into the Wild Blue Yonder
     a[891] = ach:New(891, 10); -- Giddy Up!
     a[892] = ach:New(892, 0); -- The Right Stuff
-    SetTO(a[892], function() return false; end);
+    SetTO(a[892]);
     a[893] = ach:New(893, 10); -- Cenarion War Hippogryph
     a[894] = ach:New(894, 10); -- Flying High Over Skettis
     a[896] = ach:New(896, 10); -- A Quest a Day Keeps the Ogres at Bay
@@ -612,7 +612,7 @@ function exportedAchievements.Load(a, t)
     a[955] = ach:New(955, 10); -- Hydraxian Waterlords
     a[956] = ach:New(956, 10); -- Brood of Nozdormu
     a[957] = ach:New(957, 0); -- Hero of the Zandalar Tribe
-    SetTO(a[957], function() return false; end);
+    SetTO(a[957]);
     a[958] = ach:New(958, 10); -- Sworn to the Deathsworn
     a[959] = ach:New(959, 10); -- The Scale of the Sands
     a[960] = ach:New(960, 10); -- The Violet Eye
@@ -676,7 +676,7 @@ function exportedAchievements.Load(a, t)
     a[1159] = ach:New(1159, 10); -- Just the Two of Us: 2200
     a[1160] = ach:New(1160, 10); -- Three's Company: 2200
     a[1161] = ach:New(1161, 0); -- High Five: 2200
-    SetTO(a[1161], function() return false; end);
+    SetTO(a[1161]);
     a[1162] = ach:New(1162, 10); -- Hotter Streak
     a[1164] = ach:New(1164, 10, fac.Horde, 225); -- Everything Counts
     a[1165] = ach:New(1165, 10); -- "My Storage is ""Gigantique"""
@@ -686,7 +686,7 @@ function exportedAchievements.Load(a, t)
     a[1171] = ach:New(1171, 25); -- Master of Eye of the Storm
     a[1172] = ach:New(1172, 25); -- Master of Warsong Gulch
     a[1174] = ach:New(1174, 0); -- The Arena Master
-    SetTO(a[1174], function() return false; end);
+    SetTO(a[1174]);
     a[1175] = ach:New(1175, 50, fac.Horde, 230); -- Battlemaster
     a[1176] = ach:New(1176, 10); -- Got My Mind On My Money
     a[1177] = ach:New(1177, 10); -- Got My Mind On My Money
@@ -698,7 +698,7 @@ function exportedAchievements.Load(a, t)
     a[1184] = ach:New(1184, 10, fac.Alliance, 1203); -- Strange Brew
     a[1185] = ach:New(1185, 10); -- The Brewfest Diet
     a[1186] = ach:New(1186, 0); -- Down With The Dark Iron
-    SetTO(a[1186], function() return false; end);
+    SetTO(a[1186]);
     a[1188] = ach:New(1188, 10); -- Shafted!
     a[1189] = ach:New(1189, 10, fac.Alliance, 1271); -- To Hellfire and Back
     a[1190] = ach:New(1190, 10); -- Mysteries of the Marsh
@@ -752,20 +752,20 @@ function exportedAchievements.Load(a, t)
     a[1289] = ach:New(1289, 20); -- Northrend Dungeon Hero
     a[1291] = ach:New(1291, 10); -- Lonely?
     a[1292] = ach:New(1292, 0); -- Yellow Brewfest Stein
-    SetTO(a[1292], function() return false; end);
+    SetTO(a[1292]);
     a[1293] = ach:New(1293, 0); -- Blue Brewfest Stein
-    SetTO(a[1293], function() return false; end);
+    SetTO(a[1293]);
     a[1295] = ach:New(1295, 10); -- Crashin' & Thrashin'
     a[1296] = ach:New(1296, 10); -- Watch Him Die
     a[1297] = ach:New(1297, 10); -- Hadronox Denied
     a[1307] = ach:New(1307, 0); -- Upper Blackrock Spire (Classic)
-    SetTO(a[1307], function() return false; end);
+    SetTO(a[1307]);
     a[1308] = ach:New(1308, 0); -- Strand of the Ancients Victory
-    SetTO(a[1308], function() return false; end);
+    SetTO(a[1308]);
     a[1309] = ach:New(1309, 0); -- Strand of the Ancients Veteran
-    SetTO(a[1309], function() return false; end);
+    SetTO(a[1309]);
     a[1310] = ach:New(1310, 0); -- Storm the Beach
-    SetTO(a[1310], function() return false; end);
+    SetTO(a[1310]);
     a[1311] = ach:New(1311, 10); -- Medium Rare
     a[1312] = ach:New(1312, 25); -- Bloody Rare
     a[1356] = ach:New(1356, 10, fac.Horde, 34); -- I've Toured the Fjord
@@ -774,63 +774,63 @@ function exportedAchievements.Load(a, t)
     a[1359] = ach:New(1359, 10, fac.Horde, 35); -- Might of Dragonblight
     a[1396] = ach:New(1396, 10); -- Elders of Northrend
     a[1400] = ach:New(1400, 0); -- Realm First! Magic Seeker
-    SetTO(a[1400], function() return false; end);
+    SetTO(a[1400]);
     a[1402] = ach:New(1402, 0); -- Realm First! Conqueror of Naxxramas
-    SetTO(a[1402], function() return false; end);
+    SetTO(a[1402]);
     a[1404] = ach:New(1404, 0); -- Realm First! Level 80 Gnome
-    SetTO(a[1404], function() return false; end);
+    SetTO(a[1404]);
     a[1405] = ach:New(1405, 0); -- Realm First! Level 80 Blood Elf
-    SetTO(a[1405], function() return false; end);
+    SetTO(a[1405]);
     a[1406] = ach:New(1406, 0); -- Realm First! Level 80 Draenei
-    SetTO(a[1406], function() return false; end);
+    SetTO(a[1406]);
     a[1407] = ach:New(1407, 0); -- Realm First! Level 80 Dwarf
-    SetTO(a[1407], function() return false; end);
+    SetTO(a[1407]);
     a[1408] = ach:New(1408, 0); -- Realm First! Level 80 Human
-    SetTO(a[1408], function() return false; end);
+    SetTO(a[1408]);
     a[1409] = ach:New(1409, 0); -- Realm First! Level 80 Night Elf
-    SetTO(a[1409], function() return false; end);
+    SetTO(a[1409]);
     a[1410] = ach:New(1410, 0); -- Realm First! Level 80 Orc
-    SetTO(a[1410], function() return false; end);
+    SetTO(a[1410]);
     a[1411] = ach:New(1411, 0); -- Realm First! Level 80 Tauren
-    SetTO(a[1411], function() return false; end);
+    SetTO(a[1411]);
     a[1412] = ach:New(1412, 0); -- Realm First! Level 80 Troll
-    SetTO(a[1412], function() return false; end);
+    SetTO(a[1412]);
     a[1413] = ach:New(1413, 0); -- Realm First! Level 80 Forsaken
-    SetTO(a[1413], function() return false; end);
+    SetTO(a[1413]);
     a[1414] = ach:New(1414, 0); -- Realm First! Grand Master Blacksmith
-    SetTO(a[1414], function() return false; end);
+    SetTO(a[1414]);
     a[1415] = ach:New(1415, 0); -- Realm First! Grand Master Alchemist
-    SetTO(a[1415], function() return false; end);
+    SetTO(a[1415]);
     a[1416] = ach:New(1416, 0); -- Realm First! Grand Master Cook
-    SetTO(a[1416], function() return false; end);
+    SetTO(a[1416]);
     a[1417] = ach:New(1417, 0); -- Realm First! Grand Master Enchanter
-    SetTO(a[1417], function() return false; end);
+    SetTO(a[1417]);
     a[1418] = ach:New(1418, 0); -- Realm First! Grand Master Engineer
-    SetTO(a[1418], function() return false; end);
+    SetTO(a[1418]);
     a[1419] = ach:New(1419, 0); -- Realm First! Grand Master Medic
-    SetTO(a[1419], function() return false; end);
+    SetTO(a[1419]);
     a[1420] = ach:New(1420, 0); -- Realm First! Grand Master Angler
-    SetTO(a[1420], function() return false; end);
+    SetTO(a[1420]);
     a[1421] = ach:New(1421, 0); -- Realm First! Grand Master Herbalist
-    SetTO(a[1421], function() return false; end);
+    SetTO(a[1421]);
     a[1422] = ach:New(1422, 0); -- Realm First! Grand Master Scribe
-    SetTO(a[1422], function() return false; end);
+    SetTO(a[1422]);
     a[1423] = ach:New(1423, 0); -- Realm First! Grand Master Jewelcrafter
-    SetTO(a[1423], function() return false; end);
+    SetTO(a[1423]);
     a[1424] = ach:New(1424, 0); -- Realm First! Grand Master Leatherworker
-    SetTO(a[1424], function() return false; end);
+    SetTO(a[1424]);
     a[1425] = ach:New(1425, 0); -- Realm First! Grand Master Miner
-    SetTO(a[1425], function() return false; end);
+    SetTO(a[1425]);
     a[1426] = ach:New(1426, 0); -- Realm First! Grand Master Skinner
-    SetTO(a[1426], function() return false; end);
+    SetTO(a[1426]);
     a[1427] = ach:New(1427, 0); -- Realm First! Grand Master Tailor
-    SetTO(a[1427], function() return false; end);
+    SetTO(a[1427]);
     a[1428] = ach:New(1428, 10); -- Mine Sweeper
     a[1436] = ach:New(1436, 0); -- Friends In High Places
-    SetTO(a[1436], function() return false; end);
+    SetTO(a[1436]);
     a[1457] = ach:New(1457, 10); -- Explore Crystalsong Forest
     a[1463] = ach:New(1463, 0); -- Realm First! Northrend Vanguard
-    SetTO(a[1463], function() return false; end);
+    SetTO(a[1463]);
     a[1502] = ach:New(1502, 10, fac.Horde, 202); -- Quick Cap
     a[1516] = ach:New(1516, 10); -- Accomplished Angler
     a[1517] = ach:New(1517, 10); -- Northrend Angler
@@ -845,9 +845,9 @@ function exportedAchievements.Load(a, t)
     a[1576] = ach:New(1576, 10); -- Of Blood and Anguish
     a[1596] = ach:New(1596, 10); -- Guru of Drakuru
     a[1636] = ach:New(1636, 0); -- Competitor's Tabard
-    SetTO(a[1636], function() return false; end);
+    SetTO(a[1636]);
     a[1637] = ach:New(1637, 0); -- Spirit of Competition
-    SetTO(a[1637], function() return false; end);
+    SetTO(a[1637]);
     a[1638] = ach:New(1638, 10); -- Skyshattered
     a[1656] = ach:New(1656, 10); -- Hallowed Be Thy Name
     a[1658] = ach:New(1658, 10); -- Champion of the Frozen Wastes
@@ -886,19 +886,19 @@ function exportedAchievements.Load(a, t)
     a[1752] = ach:New(1752, 10); -- Master of Wintergrasp
     a[1755] = ach:New(1755, 10); -- Within Our Grasp
     a[1757] = ach:New(1757, 0, fac.Alliance, 2200); -- Defense of the Ancients
-    SetTO(a[1757], function() return false; end);
+    SetTO(a[1757]);
     a[1761] = ach:New(1761, 0); -- The Dapper Sapper
-    SetTO(a[1761], function() return false; end);
+    SetTO(a[1761]);
     a[1762] = ach:New(1762, 0, fac.Alliance, 2192); -- Not Even a Scratch
-    SetTO(a[1762], function() return false; end);
+    SetTO(a[1762]);
     a[1763] = ach:New(1763, 0); -- Artillery Veteran
-    SetTO(a[1763], function() return false; end);
+    SetTO(a[1763]);
     a[1764] = ach:New(1764, 0); -- Drop It!
-    SetTO(a[1764], function() return false; end);
+    SetTO(a[1764]);
     a[1765] = ach:New(1765, 0); -- Steady Hands
-    SetTO(a[1765], function() return false; end);
+    SetTO(a[1765]);
     a[1766] = ach:New(1766, 0); -- Ancient Protector
-    SetTO(a[1766], function() return false; end);
+    SetTO(a[1766]);
     a[1777] = ach:New(1777, 10); -- The Northrend Gourmet
     a[1778] = ach:New(1778, 10); -- The Northrend Gourmet
     a[1779] = ach:New(1779, 10); -- The Northrend Gourmet
@@ -963,9 +963,9 @@ function exportedAchievements.Load(a, t)
     a[2016] = ach:New(2016, 10, fac.Alliance, 2017); -- Grizzled Veteran
     a[2017] = ach:New(2017, 10, fac.Horde, 2016); -- Grizzled Veteran
     a[2018] = ach:New(2018, 0); -- Timear Foresees
-    SetTO(a[2018], function() return false; end);
+    SetTO(a[2018]);
     a[2019] = ach:New(2019, 0); -- Proof of Demise
-    SetTO(a[2019], function() return false; end);
+    SetTO(a[2019]);
     a[2036] = ach:New(2036, 10); -- Intense Cold
     a[2037] = ach:New(2037, 10); -- Chaos Theory
     a[2038] = ach:New(2038, 10); -- Respect Your Elders
@@ -992,22 +992,22 @@ function exportedAchievements.Load(a, t)
     a[2077] = ach:New(2077, 10); -- Wooly Mammoth
     a[2078] = ach:New(2078, 10); -- Traveler's Tundra Mammoth
     a[2079] = ach:New(2079, 0); -- Tabard of the Protector
-    SetTO(a[2079], function() return false; end);
+    SetTO(a[2079]);
     a[2080] = ach:New(2080, 10); -- Black War Mammoth
     a[2081] = ach:New(2081, 0); -- Grand Black War Mammoth
     a[2082] = ach:New(2082, 10); -- Ice Mammoth
     a[2083] = ach:New(2083, 10); -- Grand Ice Mammoth
     a[2084] = ach:New(2084, 10); -- Ring of the Kirin Tor
     a[2085] = ach:New(2085, 0); -- 50 Stone Keeper's Shards
-    SetTO(a[2085], function() return false; end);
+    SetTO(a[2085]);
     a[2086] = ach:New(2086, 0); -- 100 Stone Keeper's Shards
-    SetTO(a[2086], function() return false; end);
+    SetTO(a[2086]);
     a[2087] = ach:New(2087, 0); -- 250 Stone Keeper's Shards
-    SetTO(a[2087], function() return false; end);
+    SetTO(a[2087]);
     a[2088] = ach:New(2088, 0); -- 500 Stone Keeper's Shards
-    SetTO(a[2088], function() return false; end);
+    SetTO(a[2088]);
     a[2089] = ach:New(2089, 0); -- 1000 Stone Keeper's Shards
-    SetTO(a[2089], function() return false; end);
+    SetTO(a[2089]);
     a[2090] = ach:New(2090, 10); -- Challenger
     a[2091] = ach:New(2091, 10); -- Gladiator
     a[2092] = ach:New(2092, 10); -- Duelist
@@ -1017,7 +1017,7 @@ function exportedAchievements.Load(a, t)
     a[2096] = ach:New(2096, 10); -- The Coin Master
     a[2097] = ach:New(2097, 10); -- Get to the Choppa!
     a[2116] = ach:New(2116, 0); -- Tabard of the Argent Dawn
-    SetTO(a[2116], function() return false; end);
+    SetTO(a[2116]);
     a[2136] = ach:New(2136, 25); -- Glory of the Hero
     a[2137] = ach:New(2137, 25); -- Glory of the Raider (10 player)
     a[2138] = ach:New(2138, 25); -- Glory of the Raider (25 player)
@@ -1050,39 +1050,39 @@ function exportedAchievements.Load(a, t)
     a[2184] = ach:New(2184, 10); -- Just Can't Get Enough (10 player)
     a[2185] = ach:New(2185, 10); -- Just Can't Get Enough (25 player)
     a[2186] = ach:New(2186, 0); -- The Immortal
-    SetTO(a[2186], function() return false; end);
+    SetTO(a[2186]);
     a[2187] = ach:New(2187, 0); -- The Undying
-    SetTO(a[2187], function() return false; end);
+    SetTO(a[2187]);
     a[2188] = ach:New(2188, 0); -- Leeeeeeeeeeeeeroy!
-    SetTO(a[2188], function() return false; end);
+    SetTO(a[2188]);
     a[2189] = ach:New(2189, 0); -- Artillery Expert
-    SetTO(a[2189], function() return false; end);
+    SetTO(a[2189]);
     a[2190] = ach:New(2190, 0); -- Drop It Now!
-    SetTO(a[2190], function() return false; end);
+    SetTO(a[2190]);
     a[2191] = ach:New(2191, 0); -- Ancient Courtyard Protector
-    SetTO(a[2191], function() return false; end);
+    SetTO(a[2191]);
     a[2192] = ach:New(2192, 0, fac.Horde, 1762); -- Not Even a Scratch
-    SetTO(a[2192], function() return false; end);
+    SetTO(a[2192]);
     a[2193] = ach:New(2193, 0); -- Explosives Expert
-    SetTO(a[2193], function() return false; end);
+    SetTO(a[2193]);
     a[2194] = ach:New(2194, 0); -- Master of Strand of the Ancients
-    SetTO(a[2194], function() return false; end);
+    SetTO(a[2194]);
     a[2199] = ach:New(2199, 10); -- Wintergrasp Ranger
     a[2200] = ach:New(2200, 0, fac.Horde, 1757); -- Defense of the Ancients
-    SetTO(a[2200], function() return false; end);
+    SetTO(a[2200]);
     a[2256] = ach:New(2256, 10); -- Northern Exposure
     a[2257] = ach:New(2257, 25); -- Frostbitten
     a[2316] = ach:New(2316, 0); -- Brutal Nether Drake
-    SetTO(a[2316], function() return false; end);
+    SetTO(a[2316]);
     a[2336] = ach:New(2336, 0); -- Insane in the Membrane
     a[2357] = ach:New(2357, 0); -- Dreadsteed of Xoroth
-    SetTO(a[2357], function() return false; end);
+    SetTO(a[2357]);
     a[2358] = ach:New(2358, 0); -- Charger
-    SetTO(a[2358], function() return false; end);
+    SetTO(a[2358]);
     a[2359] = ach:New(2359, 0); -- Swift Flight Form
-    SetTO(a[2359], function() return false; end);
+    SetTO(a[2359]);
     a[2398] = ach:New(2398, 0); -- WoW's 4th Anniversary
-    SetTO(a[2398], function() return false; end);
+    SetTO(a[2398]);
     a[2416] = ach:New(2416, 10); -- Hard Boiled
     a[2417] = ach:New(2417, 10); -- Chocolate Lover
     a[2418] = ach:New(2418, 10); -- Chocoholic
@@ -1092,10 +1092,10 @@ function exportedAchievements.Load(a, t)
     a[2422] = ach:New(2422, 10); -- Shake Your Bunny-Maker
     a[2436] = ach:New(2436, 10); -- Desert Rose
     a[2456] = ach:New(2456, 0); -- Vampire Hunter
-    SetTO(a[2456], function() return false; end);
+    SetTO(a[2456]);
     a[2476] = ach:New(2476, 10, fac.Horde, 1737); -- Destruction Derby
     a[2496] = ach:New(2496, 0); -- The Fifth Element
-    SetTO(a[2496], function() return false; end);
+    SetTO(a[2496]);
     a[2497] = ach:New(2497, 10, fac.Horde, 2419); -- Spring Fling
     a[2516] = ach:New(2516, 10); -- Lil' Game Hunter
     a[2536] = ach:New(2536, 10, fac.Alliance, 2537); -- Mountain o' Mounts
@@ -1105,7 +1105,7 @@ function exportedAchievements.Load(a, t)
     a[2576] = ach:New(2576, 10); -- Blushing Bride
     a[2676] = ach:New(2676, 10); -- I Found One!
     a[2716] = ach:New(2716, 0); -- Dual Talent Specialization
-    SetTO(a[2716], function() return false; end);
+    SetTO(a[2716]);
     a[2756] = ach:New(2756, 10); -- Argent Aspiration
     a[2758] = ach:New(2758, 10); -- Argent Valor
     a[2760] = ach:New(2760, 10, fac.Alliance, 2769); -- Exalted Champion of Darnassus
@@ -1140,300 +1140,300 @@ function exportedAchievements.Load(a, t)
     a[2817] = ach:New(2817, 10, fac.Alliance, 2816); -- Exalted Argent Champion of the Alliance
     a[2836] = ach:New(2836, 10); -- Lance a Lot
     a[2886] = ach:New(2886, 0); -- The Siege of Ulduar (10 player)
-    SetTO(a[2886], function() return false; end);
+    SetTO(a[2886]);
     a[2887] = ach:New(2887, 0); -- The Siege of Ulduar (25 player)
-    SetTO(a[2887], function() return false; end);
+    SetTO(a[2887]);
     a[2888] = ach:New(2888, 0); -- The Antechamber of Ulduar (10 player)
-    SetTO(a[2888], function() return false; end);
+    SetTO(a[2888]);
     a[2889] = ach:New(2889, 0); -- The Antechamber of Ulduar (25 player)
-    SetTO(a[2889], function() return false; end);
+    SetTO(a[2889]);
     a[2890] = ach:New(2890, 0); -- The Keepers of Ulduar (10 player)
-    SetTO(a[2890], function() return false; end);
+    SetTO(a[2890]);
     a[2891] = ach:New(2891, 0); -- The Keepers of Ulduar (25 player)
-    SetTO(a[2891], function() return false; end);
+    SetTO(a[2891]);
     a[2892] = ach:New(2892, 0); -- The Descent into Madness (10 player)
-    SetTO(a[2892], function() return false; end);
+    SetTO(a[2892]);
     a[2893] = ach:New(2893, 0); -- The Descent into Madness (25 player)
-    SetTO(a[2893], function() return false; end);
+    SetTO(a[2893]);
     a[2894] = ach:New(2894, 0); -- The Secrets of Ulduar (10 player)
-    SetTO(a[2894], function() return false; end);
+    SetTO(a[2894]);
     a[2895] = ach:New(2895, 0); -- The Secrets of Ulduar (25 player)
-    SetTO(a[2895], function() return false; end);
+    SetTO(a[2895]);
     a[2903] = ach:New(2903, 0); -- Champion of Ulduar
-    SetTO(a[2903], function() return false; end);
+    SetTO(a[2903]);
     a[2904] = ach:New(2904, 0); -- Conqueror of Ulduar
-    SetTO(a[2904], function() return false; end);
+    SetTO(a[2904]);
     a[2905] = ach:New(2905, 0); -- Unbroken (10 player)
-    SetTO(a[2905], function() return false; end);
+    SetTO(a[2905]);
     a[2906] = ach:New(2906, 0); -- Unbroken (25 player)
-    SetTO(a[2906], function() return false; end);
+    SetTO(a[2906]);
     a[2907] = ach:New(2907, 0); -- Three Car Garage (10 player)
-    SetTO(a[2907], function() return false; end);
+    SetTO(a[2907]);
     a[2908] = ach:New(2908, 0); -- Three Car Garage (25 player)
-    SetTO(a[2908], function() return false; end);
+    SetTO(a[2908]);
     a[2909] = ach:New(2909, 0); -- Take Out Those Turrets (10 player)
-    SetTO(a[2909], function() return false; end);
+    SetTO(a[2909]);
     a[2910] = ach:New(2910, 0); -- Take Out Those Turrets (25 player)
-    SetTO(a[2910], function() return false; end);
+    SetTO(a[2910]);
     a[2911] = ach:New(2911, 0); -- Shutout (10 player)
-    SetTO(a[2911], function() return false; end);
+    SetTO(a[2911]);
     a[2912] = ach:New(2912, 0); -- Shutout (25 player)
-    SetTO(a[2912], function() return false; end);
+    SetTO(a[2912]);
     a[2913] = ach:New(2913, 0); -- Orbital Bombardment (10 player)
-    SetTO(a[2913], function() return false; end);
+    SetTO(a[2913]);
     a[2914] = ach:New(2914, 0); -- Orbital Devastation (10 player)
-    SetTO(a[2914], function() return false; end);
+    SetTO(a[2914]);
     a[2915] = ach:New(2915, 0); -- Nuked from Orbit (10 player)
-    SetTO(a[2915], function() return false; end);
+    SetTO(a[2915]);
     a[2916] = ach:New(2916, 0); -- Orbital Devastation (25 player)
-    SetTO(a[2916], function() return false; end);
+    SetTO(a[2916]);
     a[2917] = ach:New(2917, 0); -- Nuked from Orbit (25 player)
-    SetTO(a[2917], function() return false; end);
+    SetTO(a[2917]);
     a[2918] = ach:New(2918, 0); -- Orbital Bombardment (25 player)
-    SetTO(a[2918], function() return false; end);
+    SetTO(a[2918]);
     a[2919] = ach:New(2919, 0); -- A Quick Shave (10 player)
-    SetTO(a[2919], function() return false; end);
+    SetTO(a[2919]);
     a[2921] = ach:New(2921, 0); -- A Quick Shave (25 player)
-    SetTO(a[2921], function() return false; end);
+    SetTO(a[2921]);
     a[2923] = ach:New(2923, 0); -- "Iron Dwarf, Medium Rare (10 player)"
-    SetTO(a[2923], function() return false; end);
+    SetTO(a[2923]);
     a[2924] = ach:New(2924, 0); -- "Iron Dwarf, Medium Rare (25 player)"
-    SetTO(a[2924], function() return false; end);
+    SetTO(a[2924]);
     a[2925] = ach:New(2925, 0); -- Shattered (10 player)
-    SetTO(a[2925], function() return false; end);
+    SetTO(a[2925]);
     a[2926] = ach:New(2926, 0); -- Shattered (25 player)
-    SetTO(a[2926], function() return false; end);
+    SetTO(a[2926]);
     a[2927] = ach:New(2927, 0); -- Hot Pocket (10 player)
-    SetTO(a[2927], function() return false; end);
+    SetTO(a[2927]);
     a[2928] = ach:New(2928, 0); -- Hot Pocket (25 player)
-    SetTO(a[2928], function() return false; end);
+    SetTO(a[2928]);
     a[2929] = ach:New(2929, 0); -- Stokin' the Furnace (25 player)
-    SetTO(a[2929], function() return false; end);
+    SetTO(a[2929]);
     a[2930] = ach:New(2930, 0); -- Stokin' the Furnace (10 player)
-    SetTO(a[2930], function() return false; end);
+    SetTO(a[2930]);
     a[2931] = ach:New(2931, 0); -- Nerf Engineering (10 player)
-    SetTO(a[2931], function() return false; end);
+    SetTO(a[2931]);
     a[2932] = ach:New(2932, 0); -- Nerf Engineering (25 player)
-    SetTO(a[2932], function() return false; end);
+    SetTO(a[2932]);
     a[2933] = ach:New(2933, 0); -- Nerf Scrapbots (10 player)
-    SetTO(a[2933], function() return false; end);
+    SetTO(a[2933]);
     a[2934] = ach:New(2934, 0); -- Nerf Gravity Bombs (10 player)
-    SetTO(a[2934], function() return false; end);
+    SetTO(a[2934]);
     a[2935] = ach:New(2935, 0); -- Nerf Scrapbots (25 player)
-    SetTO(a[2935], function() return false; end);
+    SetTO(a[2935]);
     a[2936] = ach:New(2936, 0); -- Nerf Gravity Bombs (25 player)
-    SetTO(a[2936], function() return false; end);
+    SetTO(a[2936]);
     a[2937] = ach:New(2937, 0); -- Must Deconstruct Faster (10 player)
-    SetTO(a[2937], function() return false; end);
+    SetTO(a[2937]);
     a[2938] = ach:New(2938, 0); -- Must Deconstruct Faster (25 player)
-    SetTO(a[2938], function() return false; end);
+    SetTO(a[2938]);
     a[2939] = ach:New(2939, 0); -- "I Choose You, Runemaster Molgeim (10 player)"
-    SetTO(a[2939], function() return false; end);
+    SetTO(a[2939]);
     a[2940] = ach:New(2940, 0); -- "I Choose You, Stormcaller Brundir (10 player)"
-    SetTO(a[2940], function() return false; end);
+    SetTO(a[2940]);
     a[2941] = ach:New(2941, 0); -- "I Choose You, Steelbreaker (10 player)"
-    SetTO(a[2941], function() return false; end);
+    SetTO(a[2941]);
     a[2942] = ach:New(2942, 0); -- "I Choose You, Runemaster Molgeim (25 player)"
-    SetTO(a[2942], function() return false; end);
+    SetTO(a[2942]);
     a[2943] = ach:New(2943, 0); -- "I Choose You, Stormcaller Brundir (25 player)"
-    SetTO(a[2943], function() return false; end);
+    SetTO(a[2943]);
     a[2944] = ach:New(2944, 0); -- "I Choose You, Steelbreaker (25 player)"
-    SetTO(a[2944], function() return false; end);
+    SetTO(a[2944]);
     a[2945] = ach:New(2945, 0); -- But I'm On Your Side (10 player)
-    SetTO(a[2945], function() return false; end);
+    SetTO(a[2945]);
     a[2946] = ach:New(2946, 0); -- But I'm On Your Side (25 player)
-    SetTO(a[2946], function() return false; end);
+    SetTO(a[2946]);
     a[2947] = ach:New(2947, 0); -- Can't Do That While Stunned (10 player)
-    SetTO(a[2947], function() return false; end);
+    SetTO(a[2947]);
     a[2948] = ach:New(2948, 0); -- Can't Do That While Stunned (25 player)
-    SetTO(a[2948], function() return false; end);
+    SetTO(a[2948]);
     a[2951] = ach:New(2951, 0); -- With Open Arms (10 player)
-    SetTO(a[2951], function() return false; end);
+    SetTO(a[2951]);
     a[2952] = ach:New(2952, 0); -- With Open Arms (25 player)
-    SetTO(a[2952], function() return false; end);
+    SetTO(a[2952]);
     a[2953] = ach:New(2953, 0); -- Disarmed (10 player)
-    SetTO(a[2953], function() return false; end);
+    SetTO(a[2953]);
     a[2954] = ach:New(2954, 0); -- Disarmed (25 player)
-    SetTO(a[2954], function() return false; end);
+    SetTO(a[2954]);
     a[2955] = ach:New(2955, 0); -- If Looks Could Kill (10 player)
-    SetTO(a[2955], function() return false; end);
+    SetTO(a[2955]);
     a[2956] = ach:New(2956, 0); -- If Looks Could Kill (25 player)
-    SetTO(a[2956], function() return false; end);
+    SetTO(a[2956]);
     a[2957] = ach:New(2957, 0); -- Glory of the Ulduar Raider (10 player)
-    SetTO(a[2957], function() return false; end);
+    SetTO(a[2957]);
     a[2958] = ach:New(2958, 0); -- Glory of the Ulduar Raider (25 player)
-    SetTO(a[2958], function() return false; end);
+    SetTO(a[2958]);
     a[2959] = ach:New(2959, 0); -- Rubble and Roll (10 player)
-    SetTO(a[2959], function() return false; end);
+    SetTO(a[2959]);
     a[2960] = ach:New(2960, 0); -- Rubble and Roll (25 player)
-    SetTO(a[2960], function() return false; end);
+    SetTO(a[2960]);
     a[2961] = ach:New(2961, 0); -- Cheese the Freeze (10 player)
-    SetTO(a[2961], function() return false; end);
+    SetTO(a[2961]);
     a[2962] = ach:New(2962, 0); -- Cheese the Freeze (25 player)
-    SetTO(a[2962], function() return false; end);
+    SetTO(a[2962]);
     a[2963] = ach:New(2963, 0); -- I Have the Coolest Friends (10 player)
-    SetTO(a[2963], function() return false; end);
+    SetTO(a[2963]);
     a[2965] = ach:New(2965, 0); -- I Have the Coolest Friends (25 player)
-    SetTO(a[2965], function() return false; end);
+    SetTO(a[2965]);
     a[2967] = ach:New(2967, 0); -- Getting Cold in Here (10 player)
-    SetTO(a[2967], function() return false; end);
+    SetTO(a[2967]);
     a[2968] = ach:New(2968, 0); -- Getting Cold in Here (25 player)
-    SetTO(a[2968], function() return false; end);
+    SetTO(a[2968]);
     a[2969] = ach:New(2969, 0); -- Staying Buffed All Winter (10 player)
-    SetTO(a[2969], function() return false; end);
+    SetTO(a[2969]);
     a[2970] = ach:New(2970, 0); -- Staying Buffed All Winter (25 player)
-    SetTO(a[2970], function() return false; end);
+    SetTO(a[2970]);
     a[2971] = ach:New(2971, 0); -- Don't Stand in the Lightning (10 player)
-    SetTO(a[2971], function() return false; end);
+    SetTO(a[2971]);
     a[2972] = ach:New(2972, 0); -- Don't Stand in the Lightning (25 player)
-    SetTO(a[2972], function() return false; end);
+    SetTO(a[2972]);
     a[2973] = ach:New(2973, 0); -- I'll Take You All On (10 player)
-    SetTO(a[2973], function() return false; end);
+    SetTO(a[2973]);
     a[2974] = ach:New(2974, 0); -- I'll Take You All On (25 player)
-    SetTO(a[2974], function() return false; end);
+    SetTO(a[2974]);
     a[2975] = ach:New(2975, 0); -- Who Needs Bloodlust? (10 player)
-    SetTO(a[2975], function() return false; end);
+    SetTO(a[2975]);
     a[2976] = ach:New(2976, 0); -- Who Needs Bloodlust? (25 player)
-    SetTO(a[2976], function() return false; end);
+    SetTO(a[2976]);
     a[2977] = ach:New(2977, 0); -- Siffed (10 player)
-    SetTO(a[2977], function() return false; end);
+    SetTO(a[2977]);
     a[2978] = ach:New(2978, 0); -- Siffed (25 player)
-    SetTO(a[2978], function() return false; end);
+    SetTO(a[2978]);
     a[2979] = ach:New(2979, 0); -- Lumberjacked (10 player)
-    SetTO(a[2979], function() return false; end);
+    SetTO(a[2979]);
     a[2980] = ach:New(2980, 0); -- Con-speed-atory (10 player)
-    SetTO(a[2980], function() return false; end);
+    SetTO(a[2980]);
     a[2981] = ach:New(2981, 0); -- Con-speed-atory (25 player)
-    SetTO(a[2981], function() return false; end);
+    SetTO(a[2981]);
     a[2982] = ach:New(2982, 0); -- Getting Back to Nature (10 player)
-    SetTO(a[2982], function() return false; end);
+    SetTO(a[2982]);
     a[2983] = ach:New(2983, 0); -- Getting Back to Nature (25 player)
-    SetTO(a[2983], function() return false; end);
+    SetTO(a[2983]);
     a[2984] = ach:New(2984, 0); -- Deforestation (25 player)
-    SetTO(a[2984], function() return false; end);
+    SetTO(a[2984]);
     a[2985] = ach:New(2985, 0); -- Deforestation (10 player)
-    SetTO(a[2985], function() return false; end);
+    SetTO(a[2985]);
     a[2989] = ach:New(2989, 0); -- Set Up Us the Bomb (10 player)
-    SetTO(a[2989], function() return false; end);
+    SetTO(a[2989]);
     a[2995] = ach:New(2995, 0); -- Not-So-Friendly Fire (25 player)
-    SetTO(a[2995], function() return false; end);
+    SetTO(a[2995]);
     a[2996] = ach:New(2996, 0); -- Shadowdodger (10 player)
-    SetTO(a[2996], function() return false; end);
+    SetTO(a[2996]);
     a[2997] = ach:New(2997, 0); -- Shadowdodger (25 player)
-    SetTO(a[2997], function() return false; end);
+    SetTO(a[2997]);
     a[3002] = ach:New(3002, 0); -- Supermassive (25 player)
-    SetTO(a[3002], function() return false; end);
+    SetTO(a[3002]);
     a[3003] = ach:New(3003, 0); -- Supermassive (10 player)
-    SetTO(a[3003], function() return false; end);
+    SetTO(a[3003]);
     a[3004] = ach:New(3004, 0); -- He Feeds On Your Tears (10 player)
-    SetTO(a[3004], function() return false; end);
+    SetTO(a[3004]);
     a[3005] = ach:New(3005, 0); -- He Feeds On Your Tears (25 player)
-    SetTO(a[3005], function() return false; end);
+    SetTO(a[3005]);
     a[3006] = ach:New(3006, 0); -- Crazy Cat Lady (10 player)
-    SetTO(a[3006], function() return false; end);
+    SetTO(a[3006]);
     a[3007] = ach:New(3007, 0); -- Crazy Cat Lady (25 player)
-    SetTO(a[3007], function() return false; end);
+    SetTO(a[3007]);
     a[3008] = ach:New(3008, 0); -- Drive Me Crazy (10 player)
-    SetTO(a[3008], function() return false; end);
+    SetTO(a[3008]);
     a[3009] = ach:New(3009, 0); -- Kiss and Make Up (10 player)
-    SetTO(a[3009], function() return false; end);
+    SetTO(a[3009]);
     a[3010] = ach:New(3010, 0); -- Drive Me Crazy (25 player)
-    SetTO(a[3010], function() return false; end);
+    SetTO(a[3010]);
     a[3011] = ach:New(3011, 0); -- Kiss and Make Up (25 player)
-    SetTO(a[3011], function() return false; end);
+    SetTO(a[3011]);
     a[3012] = ach:New(3012, 0); -- He's Not Getting Any Older (10 player)
-    SetTO(a[3012], function() return false; end);
+    SetTO(a[3012]);
     a[3013] = ach:New(3013, 0); -- He's Not Getting Any Older (25 player)
-    SetTO(a[3013], function() return false; end);
+    SetTO(a[3013]);
     a[3014] = ach:New(3014, 0); -- They're Coming Out of the Walls (10 player)
-    SetTO(a[3014], function() return false; end);
+    SetTO(a[3014]);
     a[3015] = ach:New(3015, 0); -- In His House He Waits Dreaming (10 player)
-    SetTO(a[3015], function() return false; end);
+    SetTO(a[3015]);
     a[3016] = ach:New(3016, 0); -- In His House He Waits Dreaming (25 player)
-    SetTO(a[3016], function() return false; end);
+    SetTO(a[3016]);
     a[3017] = ach:New(3017, 0); -- They're Coming Out of the Walls (25 player)
-    SetTO(a[3017], function() return false; end);
+    SetTO(a[3017]);
     a[3036] = ach:New(3036, 0); -- Observed (10 player)
-    SetTO(a[3036], function() return false; end);
+    SetTO(a[3036]);
     a[3037] = ach:New(3037, 0); -- Observed (25 player)
-    SetTO(a[3037], function() return false; end);
+    SetTO(a[3037]);
     a[3056] = ach:New(3056, 0); -- Orbit-uary (10 player)
-    SetTO(a[3056], function() return false; end);
+    SetTO(a[3056]);
     a[3057] = ach:New(3057, 0); -- Orbit-uary (25 player)
-    SetTO(a[3057], function() return false; end);
+    SetTO(a[3057]);
     a[3058] = ach:New(3058, 0); -- Heartbreaker (10 player)
-    SetTO(a[3058], function() return false; end);
+    SetTO(a[3058]);
     a[3059] = ach:New(3059, 0); -- Heartbreaker (25 player)
-    SetTO(a[3059], function() return false; end);
+    SetTO(a[3059]);
     a[3076] = ach:New(3076, 0); -- Nine Lives (10 player)
-    SetTO(a[3076], function() return false; end);
+    SetTO(a[3076]);
     a[3077] = ach:New(3077, 0); -- Nine Lives (25 player)
-    SetTO(a[3077], function() return false; end);
+    SetTO(a[3077]);
     a[3096] = ach:New(3096, 0); -- Deadly Gladiator's Frost Wyrm
-    SetTO(a[3096], function() return false; end);
+    SetTO(a[3096]);
     a[3097] = ach:New(3097, 0); -- Dwarfageddon (10 player)
-    SetTO(a[3097], function() return false; end);
+    SetTO(a[3097]);
     a[3098] = ach:New(3098, 0); -- Dwarfageddon (25 player)
-    SetTO(a[3098], function() return false; end);
+    SetTO(a[3098]);
     a[3117] = ach:New(3117, 0); -- Realm First! Death's Demise
-    SetTO(a[3117], function() return false; end);
+    SetTO(a[3117]);
     a[3118] = ach:New(3118, 0); -- Lumberjacked (25 player)
-    SetTO(a[3118], function() return false; end);
+    SetTO(a[3118]);
     a[3136] = ach:New(3136, 10); -- Emalon the Storm Watcher (10 player)
     a[3137] = ach:New(3137, 10); -- Emalon the Storm Watcher (25 player)
     a[3138] = ach:New(3138, 0); -- Not-So-Friendly Fire (10 player)
-    SetTO(a[3138], function() return false; end);
+    SetTO(a[3138]);
     a[3141] = ach:New(3141, 0); -- Two Lights in the Darkness (10 player)
-    SetTO(a[3141], function() return false; end);
+    SetTO(a[3141]);
     a[3142] = ach:New(3142, 0); -- "Val'anyr, Hammer of Ancient Kings"
     a[3157] = ach:New(3157, 0); -- Three Lights in the Darkness (10 player)
-    SetTO(a[3157], function() return false; end);
+    SetTO(a[3157]);
     a[3158] = ach:New(3158, 0); -- One Light in the Darkness (10 player)
-    SetTO(a[3158], function() return false; end);
+    SetTO(a[3158]);
     a[3159] = ach:New(3159, 0); -- Alone in the Darkness (10 player)
-    SetTO(a[3159], function() return false; end);
+    SetTO(a[3159]);
     a[3161] = ach:New(3161, 0); -- Three Lights in the Darkness (25 player)
-    SetTO(a[3161], function() return false; end);
+    SetTO(a[3161]);
     a[3162] = ach:New(3162, 0); -- Two Lights in the Darkness (25 player)
-    SetTO(a[3162], function() return false; end);
+    SetTO(a[3162]);
     a[3163] = ach:New(3163, 0); -- One Light in the Darkness (25 player)
-    SetTO(a[3163], function() return false; end);
+    SetTO(a[3163]);
     a[3164] = ach:New(3164, 0); -- Alone in the Darkness (25 player)
-    SetTO(a[3164], function() return false; end);
+    SetTO(a[3164]);
     a[3176] = ach:New(3176, 0); -- Lose Your Illusion (10 player)
-    SetTO(a[3176], function() return false; end);
+    SetTO(a[3176]);
     a[3177] = ach:New(3177, 0); -- Knock on Wood (10 player)
-    SetTO(a[3177], function() return false; end);
+    SetTO(a[3177]);
     a[3178] = ach:New(3178, 0); -- "Knock, Knock on Wood (10 player)"
-    SetTO(a[3178], function() return false; end);
+    SetTO(a[3178]);
     a[3179] = ach:New(3179, 0); -- "Knock, Knock, Knock on Wood (10 player)"
-    SetTO(a[3179], function() return false; end);
+    SetTO(a[3179]);
     a[3180] = ach:New(3180, 0); -- Firefighter (10 player)
-    SetTO(a[3180], function() return false; end);
+    SetTO(a[3180]);
     a[3181] = ach:New(3181, 0); -- I Love the Smell of Saronite in the Morning (10 player)
-    SetTO(a[3181], function() return false; end);
+    SetTO(a[3181]);
     a[3182] = ach:New(3182, 0); -- I Could Say That This Cache Was Rare (10 player)
-    SetTO(a[3182], function() return false; end);
+    SetTO(a[3182]);
     a[3183] = ach:New(3183, 0); -- Lose Your Illusion (25 player)
-    SetTO(a[3183], function() return false; end);
+    SetTO(a[3183]);
     a[3184] = ach:New(3184, 0); -- I Could Say That This Cache Was Rare (25 player)
-    SetTO(a[3184], function() return false; end);
+    SetTO(a[3184]);
     a[3185] = ach:New(3185, 0); -- Knock on Wood (25 player)
-    SetTO(a[3185], function() return false; end);
+    SetTO(a[3185]);
     a[3186] = ach:New(3186, 0); -- "Knock, Knock on Wood (25 player)"
-    SetTO(a[3186], function() return false; end);
+    SetTO(a[3186]);
     a[3187] = ach:New(3187, 0); -- "Knock, Knock, Knock on Wood (25 player)"
-    SetTO(a[3187], function() return false; end);
+    SetTO(a[3187]);
     a[3188] = ach:New(3188, 0); -- I Love the Smell of Saronite in the Morning (25 player)
-    SetTO(a[3188], function() return false; end);
+    SetTO(a[3188]);
     a[3189] = ach:New(3189, 0); -- Firefighter (25 player)
-    SetTO(a[3189], function() return false; end);
+    SetTO(a[3189]);
     a[3217] = ach:New(3217, 10); -- Chasing Marcia
     a[3218] = ach:New(3218, 10); -- Turtles All the Way Down
     a[3237] = ach:New(3237, 0); -- Set Up Us the Bomb (25 player)
-    SetTO(a[3237], function() return false; end);
+    SetTO(a[3237]);
     a[3259] = ach:New(3259, 0); -- Realm First! Celestial Defender
-    SetTO(a[3259], function() return false; end);
+    SetTO(a[3259]);
     a[3296] = ach:New(3296, 10); -- Cooking with Style
     a[3316] = ach:New(3316, 0); -- Herald of the Titans
     a[3336] = ach:New(3336, 0); -- Deadly Gladiator
@@ -1445,7 +1445,7 @@ function exportedAchievements.Load(a, t)
     a[3478] = ach:New(3478, 10); -- Pilgrim
     a[3496] = ach:New(3496, 0); -- A Brew-FAST Mount
     a[3536] = ach:New(3536, 0); -- The Marine Marine
-    SetTO(a[3536], function() return false; end);
+    SetTO(a[3536]);
     a[3556] = ach:New(3556, 10, fac.Alliance, 3557); -- Pilgrim's Paunch
     a[3557] = ach:New(3557, 10, fac.Horde, 3556); -- Pilgrim's Paunch
     a[3558] = ach:New(3558, 10); -- Sharing is Caring
@@ -1460,15 +1460,15 @@ function exportedAchievements.Load(a, t)
     a[3596] = ach:New(3596, 10, fac.Alliance, 3597); -- Pilgrim's Progress
     a[3597] = ach:New(3597, 10, fac.Horde, 3596); -- Pilgrim's Progress
     a[3618] = ach:New(3618, 0); -- Murkimus the Gladiator
-    SetTO(a[3618], function() return false; end);
+    SetTO(a[3618]);
     a[3636] = ach:New(3636, 0); -- Jade Tiger
     a[3676] = ach:New(3676, 10, fac.Alliance, 3677); -- A Silver Confidant
     a[3677] = ach:New(3677, 10, fac.Horde, 3676); -- The Sunreavers
     a[3736] = ach:New(3736, 10); -- Pony Up!
     a[3756] = ach:New(3756, 0); -- Furious Gladiator's Frost Wyrm
-    SetTO(a[3756], function() return false; end);
+    SetTO(a[3756]);
     a[3757] = ach:New(3757, 0); -- Relentless Gladiator's Frost Wyrm
-    SetTO(a[3757], function() return false; end);
+    SetTO(a[3757]);
     a[3758] = ach:New(3758, 0); -- Relentless Gladiator
     a[3776] = ach:New(3776, 10); -- Isle of Conquest Victory
     a[3777] = ach:New(3777, 10); -- Isle of Conquest Veteran
@@ -1481,25 +1481,25 @@ function exportedAchievements.Load(a, t)
     a[3803] = ach:New(3803, 10); -- The Faceroller
     a[3804] = ach:New(3804, 10); -- I've Had Worse
     a[3808] = ach:New(3808, 0); -- A Tribute to Skill (10 player)
-    SetTO(a[3808], function() return false; end);
+    SetTO(a[3808]);
     a[3809] = ach:New(3809, 0); -- A Tribute to Mad Skill (10 player)
-    SetTO(a[3809], function() return false; end);
+    SetTO(a[3809]);
     a[3810] = ach:New(3810, 0); -- A Tribute to Insanity (10 player)
-    SetTO(a[3810], function() return false; end);
+    SetTO(a[3810]);
     a[3812] = ach:New(3812, 10); -- Call of the Grand Crusade (25 player)
     a[3813] = ach:New(3813, 10); -- Upper Back Pain (25 player)
     a[3815] = ach:New(3815, 10); -- Salt and Pepper (25 player)
     a[3816] = ach:New(3816, 10); -- The Traitor King (25 player)
     a[3817] = ach:New(3817, 0); -- A Tribute to Skill (25 player)
-    SetTO(a[3817], function() return false; end);
+    SetTO(a[3817]);
     a[3818] = ach:New(3818, 0); -- A Tribute to Mad Skill (25 player)
-    SetTO(a[3818], function() return false; end);
+    SetTO(a[3818]);
     a[3819] = ach:New(3819, 0); -- A Tribute to Insanity (25 player)
-    SetTO(a[3819], function() return false; end);
+    SetTO(a[3819]);
     a[3836] = ach:New(3836, 10); -- Koralon the Flame Watcher (10 player)
     a[3837] = ach:New(3837, 10); -- Koralon the Flame Watcher (25 player)
     a[3844] = ach:New(3844, 0); -- 1000 Dungeon & Raid Emblems
-    SetTO(a[3844], function() return false; end);
+    SetTO(a[3844]);
     a[3845] = ach:New(3845, 20); -- Isle of Conquest All-Star
     a[3846] = ach:New(3846, 10, fac.Alliance, 4176); -- Resource Glut
     a[3847] = ach:New(3847, 10); -- Four Car Garage
@@ -1525,13 +1525,13 @@ function exportedAchievements.Load(a, t)
     a[4016] = ach:New(4016, 10); -- "Earth, Wind & Fire (10 player)"
     a[4017] = ach:New(4017, 10); -- "Earth, Wind & Fire (25 player)"
     a[4078] = ach:New(4078, 0); -- Realm First! Grand Crusader
-    SetTO(a[4078], function() return false; end);
+    SetTO(a[4078]);
     a[4079] = ach:New(4079, 0, fac.Horde, 4156); -- A Tribute to Immortality
-    SetTO(a[4079], function() return false; end);
+    SetTO(a[4079]);
     a[4080] = ach:New(4080, 0); -- A Tribute to Dedicated Insanity
-    SetTO(a[4080], function() return false; end);
+    SetTO(a[4080]);
     a[4156] = ach:New(4156, 0, fac.Alliance, 4079); -- A Tribute to Immortality
-    SetTO(a[4156], function() return false; end);
+    SetTO(a[4156]);
     a[4176] = ach:New(4176, 10, fac.Horde, 3846); -- Resource Glut
     a[4177] = ach:New(4177, 10, fac.Horde, 3851); -- Mine
     a[4256] = ach:New(4256, 10, fac.Horde, 3856); -- Demolition Derby
@@ -1539,11 +1539,11 @@ function exportedAchievements.Load(a, t)
     a[4297] = ach:New(4297, 10, fac.Horde, 4298); -- Heroic: Trial of the Champion
     a[4298] = ach:New(4298, 10, fac.Alliance, 4297); -- Heroic: Trial of the Champion
     a[4316] = ach:New(4316, 0); -- 2500 Dungeon & Raid Emblems
-    SetTO(a[4316], function() return false; end);
+    SetTO(a[4316]);
     a[4396] = ach:New(4396, 10); -- Onyxia's Lair (10 player)
     a[4397] = ach:New(4397, 10); -- Onyxia's Lair (25 player)
     a[4400] = ach:New(4400, 0); -- WoW's 5th Anniversary
-    SetTO(a[4400], function() return false; end);
+    SetTO(a[4400]);
     a[4402] = ach:New(4402, 10); -- More Dots! (10 player)
     a[4403] = ach:New(4403, 10); -- Many Whelps! Handle It! (10 player)
     a[4404] = ach:New(4404, 10); -- She Deep Breaths More (10 player)
@@ -1580,7 +1580,7 @@ function exportedAchievements.Load(a, t)
     a[4538] = ach:New(4538, 10); -- Dances with Oozes (10 player)
     a[4539] = ach:New(4539, 10); -- "Once Bitten, Twice Shy (10 player)"
     a[4576] = ach:New(4576, 0); -- Realm First! Fall of the Lich King
-    SetTO(a[4576], function() return false; end);
+    SetTO(a[4576]);
     a[4577] = ach:New(4577, 10); -- Flu Shot Shortage (10 player)
     a[4578] = ach:New(4578, 10); -- "Nausea, Heartburn, Indigestion... (10 player)"
     a[4579] = ach:New(4579, 10); -- Portal Jockey (10 player)
@@ -1596,7 +1596,7 @@ function exportedAchievements.Load(a, t)
     a[4598] = ach:New(4598, 15); -- The Ashen Verdict
     a[4599] = ach:New(4599, 0); -- Wrathful Gladiator
     a[4600] = ach:New(4600, 0); -- Wrathful Gladiator's Frost Wyrm
-    SetTO(a[4600], function() return false; end);
+    SetTO(a[4600]);
     a[4601] = ach:New(4601, 10); -- Been Waiting a Long Time for This (10 player)
     a[4602] = ach:New(4602, 25); -- Glory of the Icecrown Raider (10 player)
     a[4603] = ach:New(4603, 25); -- Glory of the Icecrown Raider (25 player)
@@ -1634,11 +1634,11 @@ function exportedAchievements.Load(a, t)
     a[4636] = ach:New(4636, 25); -- Heroic: Fall of the Lich King (10 player)
     a[4637] = ach:New(4637, 25); -- Heroic: Fall of the Lich King (25 player)
     a[4782] = ach:New(4782, 0); -- Green Brewfest Stein
-    SetTO(a[4782], function() return false; end);
+    SetTO(a[4782]);
     a[4786] = ach:New(4786, 0, fac.Alliance); -- Operation: Gnomeregan
-    SetTO(a[4786], function() return false; end);
+    SetTO(a[4786]);
     a[4790] = ach:New(4790, 0, fac.Horde); -- Zalazane's Fall
-    SetTO(a[4790], function() return false; end);
+    SetTO(a[4790]);
     a[4815] = ach:New(4815, 10); -- The Twilight Destroyer (25 player)
     a[4816] = ach:New(4816, 10); -- Heroic: The Twilight Destroyer (25 player)
     a[4817] = ach:New(4817, 10); -- The Twilight Destroyer (10 player)
@@ -1646,10 +1646,10 @@ function exportedAchievements.Load(a, t)
     a[4824] = ach:New(4824, 0); -- Collector's Edition: Mini Thor
     a[4825] = ach:New(4825, 10); -- Explore Vashj'ir
     a[4826] = ach:New(4826, 0); -- Level 85 (Legacy)
-    SetTO(a[4826], function() return false; end);
+    SetTO(a[4826]);
     a[4827] = ach:New(4827, 10); -- Surveying the Damage
     a[4832] = ach:New(4832, 0); -- Friends In Even Higher Places
-    SetTO(a[4832], function() return false; end);
+    SetTO(a[4832]);
     a[4833] = ach:New(4833, 10); -- Blackrock Caverns
     a[4839] = ach:New(4839, 10); -- Throne of the Tides
     a[4840] = ach:New(4840, 10); -- Grim Batol
@@ -1690,7 +1690,7 @@ function exportedAchievements.Load(a, t)
     a[4885] = ach:New(4885, 10, fac.Alliance, 4886); -- Wildhammer Clan
     a[4886] = ach:New(4886, 10, fac.Horde, 4885); -- Dragonmaw Clan
     a[4887] = ach:New(4887, 0); -- Tripping the Rifts
-    SetTO(a[4887], function() return false; end);
+    SetTO(a[4887]);
     a[4888] = ach:New(4888, 10); -- One Hump or Two?
     a[4892] = ach:New(4892, 10); -- Eastern Plaguelands Quests
     a[4893] = ach:New(4893, 10); -- Western Plaguelands Quests
@@ -1711,11 +1711,11 @@ function exportedAchievements.Load(a, t)
     a[4910] = ach:New(4910, 10); -- Searing Gorge Quests
     a[4914] = ach:New(4914, 10); -- Working In the Heat
     a[4915] = ach:New(4915, 0); -- More Skills to Pay the Bills
-    SetTO(a[4915], function() return false; end);
+    SetTO(a[4915]);
     a[4916] = ach:New(4916, 10); -- Cataclysmic Cook
     a[4917] = ach:New(4917, 10); -- Cataclysmic Fisherman
     a[4918] = ach:New(4918, 0); -- Illustrious Grand Master Medic
-    SetTO(a[4918], function() return false; end);
+    SetTO(a[4918]);
     a[4919] = ach:New(4919, 10); -- Expert Archaeologist
     a[4920] = ach:New(4920, 10); -- Artisan Archaeologist
     a[4921] = ach:New(4921, 10); -- Master Archaeologist
@@ -1754,27 +1754,27 @@ function exportedAchievements.Load(a, t)
     a[4995] = ach:New(4995, 10); -- Explore the Cape of Stranglethorn
     a[4996] = ach:New(4996, 10); -- Explore Southern Barrens
     a[4998] = ach:New(4998, 0); -- Realm First! Level 85 Shaman
-    SetTO(a[4998], function() return false; end);
+    SetTO(a[4998]);
     a[4999] = ach:New(4999, 0); -- Realm First! Level 85
-    SetTO(a[4999], function() return false; end);
+    SetTO(a[4999]);
     a[5000] = ach:New(5000, 0); -- Realm First! Level 85 Druid
-    SetTO(a[5000], function() return false; end);
+    SetTO(a[5000]);
     a[5001] = ach:New(5001, 0); -- Realm First! Level 85 Paladin
-    SetTO(a[5001], function() return false; end);
+    SetTO(a[5001]);
     a[5002] = ach:New(5002, 0); -- Realm First! Level 85 Priest
-    SetTO(a[5002], function() return false; end);
+    SetTO(a[5002]);
     a[5003] = ach:New(5003, 0); -- Realm First! Level 85 Warlock
-    SetTO(a[5003], function() return false; end);
+    SetTO(a[5003]);
     a[5004] = ach:New(5004, 0); -- Realm First! Level 85 Hunter
-    SetTO(a[5004], function() return false; end);
+    SetTO(a[5004]);
     a[5005] = ach:New(5005, 0); -- Realm First! Level 85 Death Knight
-    SetTO(a[5005], function() return false; end);
+    SetTO(a[5005]);
     a[5006] = ach:New(5006, 0); -- Realm First! Level 85 Mage
-    SetTO(a[5006], function() return false; end);
+    SetTO(a[5006]);
     a[5007] = ach:New(5007, 0); -- Realm First! Level 85 Warrior
-    SetTO(a[5007], function() return false; end);
+    SetTO(a[5007]);
     a[5008] = ach:New(5008, 0); -- Realm First! Level 85 Rogue
-    SetTO(a[5008], function() return false; end);
+    SetTO(a[5008]);
     a[5060] = ach:New(5060, 10); -- Heroic: Blackrock Caverns
     a[5061] = ach:New(5061, 10); -- Heroic: Throne of the Tides
     a[5062] = ach:New(5062, 10); -- Heroic: Grim Batol
@@ -1869,7 +1869,7 @@ function exportedAchievements.Load(a, t)
     a[5311] = ach:New(5311, 10); -- Elementary
     a[5312] = ach:New(5312, 10); -- The Abyss Will Gaze Back Into You
     a[5313] = ach:New(5313, 0); -- I Can't Hear You Over the Sound of How Awesome I Am
-    SetTO(a[5313], function() return false; end);
+    SetTO(a[5313]);
     a[5315] = ach:New(5315, 10); -- Digger
     a[5317] = ach:New(5317, 10); -- Help the Bombardier! I'm the Bombardier!
     a[5318] = ach:New(5318, 10, fac.Alliance, 5319); -- "20,000 Leagues Under the Sea"
@@ -1899,7 +1899,7 @@ function exportedAchievements.Load(a, t)
     a[5342] = ach:New(5342, 10, fac.Horde, 5357); -- Warlord
     a[5343] = ach:New(5343, 10, fac.Alliance, 5356); -- Grand Marshal
     a[5344] = ach:New(5344, 0, fac.Alliance, 5358); -- Hero of the Alliance: Vicious
-    SetTO(a[5344], function() return false; end);
+    SetTO(a[5344]);
     a[5345] = ach:New(5345, 10, fac.Horde, 5330); -- Scout
     a[5346] = ach:New(5346, 10, fac.Horde, 5331); -- Grunt
     a[5347] = ach:New(5347, 10, fac.Horde, 5332); -- Sergeant
@@ -1914,7 +1914,7 @@ function exportedAchievements.Load(a, t)
     a[5356] = ach:New(5356, 10, fac.Horde, 5343); -- High Warlord
     a[5357] = ach:New(5357, 10, fac.Alliance, 5342); -- Field Marshal
     a[5358] = ach:New(5358, 0, fac.Horde, 5344); -- Hero of the Horde: Vicious
-    SetTO(a[5358], function() return false; end);
+    SetTO(a[5358]);
     a[5359] = ach:New(5359, 10, fac.Alliance, 5338); -- Knight-Champion
     a[5363] = ach:New(5363, 10); -- 250000 Honorable Kills
     a[5366] = ach:New(5366, 10); -- Ready for Raiding
@@ -1924,47 +1924,47 @@ function exportedAchievements.Load(a, t)
     a[5370] = ach:New(5370, 10); -- I'm on a Diet
     a[5371] = ach:New(5371, 10); -- Vigorous VanCleef Vindicator
     a[5372] = ach:New(5372, 0); -- Cataclysmically Epic
-    SetTO(a[5372], function() return false; end);
+    SetTO(a[5372]);
     a[5373] = ach:New(5373, 0); -- Cataclysmically Superior
-    SetTO(a[5373], function() return false; end);
+    SetTO(a[5373]);
     a[5374] = ach:New(5374, 10); -- 45 Exalted Reputations
     a[5375] = ach:New(5375, 10, fac.Alliance, 5376); -- Baradin's Wardens
     a[5376] = ach:New(5376, 10, fac.Horde, 5375); -- Hellscream's Reach
     a[5377] = ach:New(5377, 0); -- Collector's Edition: Lil' Deathwing
     a[5378] = ach:New(5378, 0); -- Deathy
-    SetTO(a[5378], function() return false; end);
+    SetTO(a[5378]);
     a[5381] = ach:New(5381, 0); -- Realm First! Illustrious Alchemist
-    SetTO(a[5381], function() return false; end);
+    SetTO(a[5381]);
     a[5382] = ach:New(5382, 0); -- Realm First! Illustrious Blacksmith
-    SetTO(a[5382], function() return false; end);
+    SetTO(a[5382]);
     a[5383] = ach:New(5383, 0); -- Realm First! Illustrious Cook
-    SetTO(a[5383], function() return false; end);
+    SetTO(a[5383]);
     a[5384] = ach:New(5384, 0); -- Realm First! Illustrious Enchanter
-    SetTO(a[5384], function() return false; end);
+    SetTO(a[5384]);
     a[5385] = ach:New(5385, 0); -- Realm First! Illustrious Engineer
-    SetTO(a[5385], function() return false; end);
+    SetTO(a[5385]);
     a[5386] = ach:New(5386, 0); -- Realm First! Illustrious Medic
-    SetTO(a[5386], function() return false; end);
+    SetTO(a[5386]);
     a[5387] = ach:New(5387, 0); -- Realm First! Illustrious Angler
-    SetTO(a[5387], function() return false; end);
+    SetTO(a[5387]);
     a[5388] = ach:New(5388, 0); -- Realm First! Illustrious Herbalist
-    SetTO(a[5388], function() return false; end);
+    SetTO(a[5388]);
     a[5389] = ach:New(5389, 0); -- Realm First! Illustrious Scribe
-    SetTO(a[5389], function() return false; end);
+    SetTO(a[5389]);
     a[5390] = ach:New(5390, 0); -- Realm First! Illustrious Jewelcrafter
-    SetTO(a[5390], function() return false; end);
+    SetTO(a[5390]);
     a[5391] = ach:New(5391, 0); -- Realm First! Illustrious Leatherworker
-    SetTO(a[5391], function() return false; end);
+    SetTO(a[5391]);
     a[5392] = ach:New(5392, 0); -- Realm First! Illustrious Miner
-    SetTO(a[5392], function() return false; end);
+    SetTO(a[5392]);
     a[5393] = ach:New(5393, 0); -- Realm First! Illustrious Skinner
-    SetTO(a[5393], function() return false; end);
+    SetTO(a[5393]);
     a[5394] = ach:New(5394, 0); -- Realm First! Illustrious Tailor
-    SetTO(a[5394], function() return false; end);
+    SetTO(a[5394]);
     a[5395] = ach:New(5395, 0); -- Realm First! Grand Master Archaeologist
-    SetTO(a[5395], function() return false; end);
+    SetTO(a[5395]);
     a[5396] = ach:New(5396, 0); -- Realm First! Illustrious Archaeologist
-    SetTO(a[5396], function() return false; end);
+    SetTO(a[5396]);
     a[5412] = ach:New(5412, 10); -- Tol Barad Victory
     a[5415] = ach:New(5415, 10); -- Tower Plower
     a[5416] = ach:New(5416, 10); -- Pit Lord Argaloth
@@ -1997,7 +1997,7 @@ function exportedAchievements.Load(a, t)
     a[5478] = ach:New(5478, 10); -- The Limnologist
     a[5479] = ach:New(5479, 10); -- The Oceanographer
     a[5480] = ach:New(5480, 0); -- Preparing for Disaster
-    SetTO(a[5480], function() return false; end);
+    SetTO(a[5480]);
     a[5481] = ach:New(5481, 10, fac.Alliance, 5482); -- Wildhammer Tour of Duty
     a[5482] = ach:New(5482, 10, fac.Horde, 5481); -- Dragonmaw Tour of Duty
     a[5483] = ach:New(5483, 10); -- Bounce
@@ -2013,26 +2013,26 @@ function exportedAchievements.Load(a, t)
     a[5506] = ach:New(5506, 10); -- Defender of a Shattered World
     a[5511] = ach:New(5511, 10); -- It's Always in the Last Place You Look
     a[5512] = ach:New(5512, 0); -- WoW's 6th Anniversary
-    SetTO(a[5512], function() return false; end);
+    SetTO(a[5512]);
     a[5518] = ach:New(5518, 10); -- Stood in the Fire
     a[5533] = ach:New(5533, 0); -- Veteran of the Shifting Sands
-    SetTO(a[5533], function() return false; end);
+    SetTO(a[5533]);
     a[5535] = ach:New(5535, 0); -- 1000 Valor Points
-    SetTO(a[5535], function() return false; end);
+    SetTO(a[5535]);
     a[5536] = ach:New(5536, 0); -- 5000 Valor Points
-    SetTO(a[5536], function() return false; end);
+    SetTO(a[5536]);
     a[5537] = ach:New(5537, 0); -- "25,000 Valor Points"
-    SetTO(a[5537], function() return false; end);
+    SetTO(a[5537]);
     a[5538] = ach:New(5538, 0); -- "50,000 Valor Points"
-    SetTO(a[5538], function() return false; end);
+    SetTO(a[5538]);
     a[5539] = ach:New(5539, 0); -- "50,000 Conquest Points"
-    SetTO(a[5539], function() return false; end);
+    SetTO(a[5539]);
     a[5540] = ach:New(5540, 0); -- "25,000 Conquest Points"
-    SetTO(a[5540], function() return false; end);
+    SetTO(a[5540]);
     a[5541] = ach:New(5541, 0); -- 5000 Conquest Points
-    SetTO(a[5541], function() return false; end);
+    SetTO(a[5541]);
     a[5542] = ach:New(5542, 0); -- 1000 Conquest Points
-    SetTO(a[5542], function() return false; end);
+    SetTO(a[5542]);
     a[5546] = ach:New(5546, 10); -- Glutton for Icy Punishment
     a[5547] = ach:New(5547, 10); -- Glutton for Shadowy Punishment
     a[5548] = ach:New(5548, 10); -- To All the Squirrels Who Cared for Me
@@ -2059,7 +2059,7 @@ function exportedAchievements.Load(a, t)
     a[5769] = ach:New(5769, 10); -- Heroic: Zul'Aman
     a[5779] = ach:New(5779, 10); -- You'll Feel Right as Rain
     a[5788] = ach:New(5788, 0); -- Agent of the Shen'dralar
-    SetTO(a[5788], function() return false; end);
+    SetTO(a[5788]);
     a[5794] = ach:New(5794, 10); -- Time Flies When You're Having Fun
     a[5799] = ach:New(5799, 10); -- Only the Penitent...
     a[5802] = ach:New(5802, 10); -- Firelands
@@ -2103,7 +2103,7 @@ function exportedAchievements.Load(a, t)
     a[5861] = ach:New(5861, 10); -- The Fiery Lords of Sethria's Roost
     a[5862] = ach:New(5862, 10); -- Ludicrous Speed
     a[5863] = ach:New(5863, 0); -- WoW's 7th Anniversary
-    SetTO(a[5863], function() return false; end);
+    SetTO(a[5863]);
     a[5864] = ach:New(5864, 10); -- Gang War
     a[5865] = ach:New(5865, 10); -- Have... Have We Met?
     a[5866] = ach:New(5866, 10); -- The Molten Front Offensive
@@ -2122,7 +2122,7 @@ function exportedAchievements.Load(a, t)
     a[5995] = ach:New(5995, 10); -- Moon Guard
     a[6002] = ach:New(6002, 0); -- Vicious Gladiator
     a[6003] = ach:New(6003, 0); -- Vicious Gladiator's Twilight Drake
-    SetTO(a[6003], function() return false; end);
+    SetTO(a[6003]);
     a[6006] = ach:New(6006, 10); -- Elders of Cataclysm
     a[6007] = ach:New(6007, 10, fac.Alliance, 6010); -- Extinguishing Northrend
     a[6008] = ach:New(6008, 10, fac.Alliance, 6009); -- Flame Warden of Northrend
@@ -2174,7 +2174,7 @@ function exportedAchievements.Load(a, t)
     a[6129] = ach:New(6129, 10); -- Taste the Rainbow!
     a[6130] = ach:New(6130, 10); -- Severed Ties
     a[6131] = ach:New(6131, 0); -- WoW's 8th Anniversary
-    SetTO(a[6131], function() return false; end);
+    SetTO(a[6131]);
     a[6132] = ach:New(6132, 10); -- Eclipse
     a[6133] = ach:New(6133, 10); -- Maybe He'll Get Dizzy...
     a[6169] = ach:New(6169, 25); -- Glory of the Dragon Soul Raider
@@ -2184,32 +2184,32 @@ function exportedAchievements.Load(a, t)
     a[6180] = ach:New(6180, 10); -- Chromatic Champion
     a[6181] = ach:New(6181, 0); -- Fangs of the Father
     a[6185] = ach:New(6185, 0); -- Murkablo
-    SetTO(a[6185], function() return false; end);
+    SetTO(a[6185]);
     a[6193] = ach:New(6193, 0); -- Level 90 (Legacy)
-    SetTO(a[6193], function() return false; end);
+    SetTO(a[6193]);
     a[6300] = ach:New(6300, 10, fac.Alliance, 6534); -- Upjade Complete
     a[6301] = ach:New(6301, 10); -- Rally the Valley
     a[6316] = ach:New(6316, 0, fac.Alliance, 6317); -- Hero of the Alliance: Ruthless
-    SetTO(a[6316], function() return false; end);
+    SetTO(a[6316]);
     a[6317] = ach:New(6317, 0, fac.Horde, 6316); -- Hero of the Horde: Ruthless
-    SetTO(a[6317], function() return false; end);
+    SetTO(a[6317]);
     a[6322] = ach:New(6322, 0); -- Ruthless Gladiator's Twilight Drake
-    SetTO(a[6322], function() return false; end);
+    SetTO(a[6322]);
     a[6332] = ach:New(6332, 10); -- That Rabbit's Dynamite!
     a[6348] = ach:New(6348, 0); -- Mystically Superior
-    SetTO(a[6348], function() return false; end);
+    SetTO(a[6348]);
     a[6349] = ach:New(6349, 0); -- Mystically Epic
-    SetTO(a[6349], function() return false; end);
+    SetTO(a[6349]);
     a[6350] = ach:New(6350, 10); -- To All the Squirrels I Once Caressed?
     a[6351] = ach:New(6351, 10); -- Explore Jade Forest
     a[6365] = ach:New(6365, 10); -- Zen Master Cook
     a[6366] = ach:New(6366, 10); -- Shado-Pan
     a[6374] = ach:New(6374, 0); -- Challenge Conqueror: Bronze
-    SetTO(a[6374], function() return false; end);
+    SetTO(a[6374]);
     a[6375] = ach:New(6375, 0); -- Challenge Conqueror: Silver
-    SetTO(a[6375], function() return false; end);
+    SetTO(a[6375]);
     a[6378] = ach:New(6378, 0); -- Challenge Conqueror: Gold
-    SetTO(a[6378], function() return false; end);
+    SetTO(a[6378]);
     a[6394] = ach:New(6394, 10); -- Rattle No More
     a[6396] = ach:New(6396, 10); -- Sanguinarian
     a[6400] = ach:New(6400, 10); -- How Did He Get Up There?
@@ -2217,7 +2217,7 @@ function exportedAchievements.Load(a, t)
     a[6420] = ach:New(6420, 10); -- Hopocalypse Now!
     a[6427] = ach:New(6427, 10); -- Mosh Pit
     a[6433] = ach:New(6433, 0); -- Realm First! Challenge Conqueror: Gold
-    SetTO(a[6433], function() return false; end);
+    SetTO(a[6433]);
     a[6455] = ach:New(6455, 10); -- Show Me Your Moves!
     a[6456] = ach:New(6456, 10); -- Heroic: Stormstout Brewery
     a[6457] = ach:New(6457, 10); -- Stormstout Brewery
@@ -2238,9 +2238,9 @@ function exportedAchievements.Load(a, t)
     a[6517] = ach:New(6517, 10); -- Extinction Event
     a[6518] = ach:New(6518, 10); -- I Heard You Like Amber...
     a[6523] = ach:New(6523, 0); -- Realm First! Level 90 Shaman
-    SetTO(a[6523], function() return false; end);
+    SetTO(a[6523]);
     a[6524] = ach:New(6524, 0); -- Realm First! Level 90
-    SetTO(a[6524], function() return false; end);
+    SetTO(a[6524]);
     a[6531] = ach:New(6531, 10); -- Attention to Detail
     a[6534] = ach:New(6534, 10, fac.Horde, 6300); -- Upjade Complete
     a[6535] = ach:New(6535, 10, fac.Alliance, 6536); -- Mighty Roamin' Krasaranger
@@ -2350,28 +2350,28 @@ function exportedAchievements.Load(a, t)
     a[6739] = ach:New(6739, 10); -- Silvershard Mines Victory
     a[6740] = ach:New(6740, 10); -- Temple of Kotmogu Victory
     a[6741] = ach:New(6741, 0); -- Cataclysmic Gladiator's Twilight Drake
-    SetTO(a[6741], function() return false; end);
+    SetTO(a[6741]);
     a[6742] = ach:New(6742, 10); -- 60 Exalted Reputations
     a[6743] = ach:New(6743, 0); -- Realm First! Level 90 Druid
-    SetTO(a[6743], function() return false; end);
+    SetTO(a[6743]);
     a[6744] = ach:New(6744, 0); -- Realm First! Level 90 Paladin
-    SetTO(a[6744], function() return false; end);
+    SetTO(a[6744]);
     a[6745] = ach:New(6745, 0); -- Realm First! Level 90 Priest
-    SetTO(a[6745], function() return false; end);
+    SetTO(a[6745]);
     a[6746] = ach:New(6746, 0); -- Realm First! Level 90 Warlock
-    SetTO(a[6746], function() return false; end);
+    SetTO(a[6746]);
     a[6747] = ach:New(6747, 0); -- Realm First! Level 90 Hunter
-    SetTO(a[6747], function() return false; end);
+    SetTO(a[6747]);
     a[6748] = ach:New(6748, 0); -- Realm First! Level 90 Death Knight
-    SetTO(a[6748], function() return false; end);
+    SetTO(a[6748]);
     a[6749] = ach:New(6749, 0); -- Realm First! Level 90 Mage
-    SetTO(a[6749], function() return false; end);
+    SetTO(a[6749]);
     a[6750] = ach:New(6750, 0); -- Realm First! Level 90 Warrior
-    SetTO(a[6750], function() return false; end);
+    SetTO(a[6750]);
     a[6751] = ach:New(6751, 0); -- Realm First! Level 90 Rogue
-    SetTO(a[6751], function() return false; end);
+    SetTO(a[6751]);
     a[6752] = ach:New(6752, 0); -- Realm First! Level 90 Monk
-    SetTO(a[6752], function() return false; end);
+    SetTO(a[6752]);
     a[6753] = ach:New(6753, 10); -- Got My Mind On My Money
     a[6754] = ach:New(6754, 10); -- The Dark Heart of the Mogu
     a[6755] = ach:New(6755, 10); -- Mogu'shan Palace
@@ -2392,14 +2392,14 @@ function exportedAchievements.Load(a, t)
     a[6827] = ach:New(6827, 20, fac.Horde, 6828); -- Pandaren Ambassador
     a[6828] = ach:New(6828, 20, fac.Alliance, 6827); -- Pandaren Ambassador
     a[6829] = ach:New(6829, 0); -- Realm First! Pandaren Ambassador
-    SetTO(a[6829], function() return false; end);
+    SetTO(a[6829]);
     a[6830] = ach:New(6830, 10); -- Professional Zen Master
     a[6835] = ach:New(6835, 10); -- Working For a Living
     a[6836] = ach:New(6836, 0); -- Serious Skills to Pay the Bills
-    SetTO(a[6836], function() return false; end);
+    SetTO(a[6836]);
     a[6837] = ach:New(6837, 10); -- Zen Master Archaeologist
     a[6838] = ach:New(6838, 0); -- Zen Master Medic
-    SetTO(a[6838], function() return false; end);
+    SetTO(a[6838]);
     a[6839] = ach:New(6839, 10); -- Zen Master Fisherman
     a[6844] = ach:New(6844, 10); -- The Vault of Mysteries
     a[6845] = ach:New(6845, 10); -- Nightmare of Shek'zeer
@@ -2414,116 +2414,116 @@ function exportedAchievements.Load(a, t)
     a[6857] = ach:New(6857, 10); -- Heart of the Mantid Swarm
     a[6858] = ach:New(6858, 10); -- What Is Worth Fighting For
     a[6859] = ach:New(6859, 0); -- Realm First! Zen Master Alchemist
-    SetTO(a[6859], function() return false; end);
+    SetTO(a[6859]);
     a[6860] = ach:New(6860, 0); -- Realm First! Zen Master Blacksmith
-    SetTO(a[6860], function() return false; end);
+    SetTO(a[6860]);
     a[6861] = ach:New(6861, 0); -- Realm First! Zen Master Cook
-    SetTO(a[6861], function() return false; end);
+    SetTO(a[6861]);
     a[6862] = ach:New(6862, 0); -- Realm First! Zen Master Enchanter
-    SetTO(a[6862], function() return false; end);
+    SetTO(a[6862]);
     a[6863] = ach:New(6863, 0); -- Realm First! Zen Master Engineer
-    SetTO(a[6863], function() return false; end);
+    SetTO(a[6863]);
     a[6864] = ach:New(6864, 0); -- Realm First! Zen Master Medic
-    SetTO(a[6864], function() return false; end);
+    SetTO(a[6864]);
     a[6865] = ach:New(6865, 0); -- Realm First! Zen Master Angler
-    SetTO(a[6865], function() return false; end);
+    SetTO(a[6865]);
     a[6866] = ach:New(6866, 0); -- Realm First! Zen Master Herbalist
-    SetTO(a[6866], function() return false; end);
+    SetTO(a[6866]);
     a[6867] = ach:New(6867, 0); -- Realm First! Zen Master Scribe
-    SetTO(a[6867], function() return false; end);
+    SetTO(a[6867]);
     a[6868] = ach:New(6868, 0); -- Realm First! Zen Master Jewelcrafter
-    SetTO(a[6868], function() return false; end);
+    SetTO(a[6868]);
     a[6869] = ach:New(6869, 0); -- Realm First! Zen Master Leatherworker
-    SetTO(a[6869], function() return false; end);
+    SetTO(a[6869]);
     a[6870] = ach:New(6870, 0); -- Realm First! Zen Master Miner
-    SetTO(a[6870], function() return false; end);
+    SetTO(a[6870]);
     a[6871] = ach:New(6871, 0); -- Realm First! Zen Master Skinner
-    SetTO(a[6871], function() return false; end);
+    SetTO(a[6871]);
     a[6872] = ach:New(6872, 0); -- Realm First! Zen Master Tailor
-    SetTO(a[6872], function() return false; end);
+    SetTO(a[6872]);
     a[6873] = ach:New(6873, 0); -- Realm First! Zen Master Archaeologist
-    SetTO(a[6873], function() return false; end);
+    SetTO(a[6873]);
     a[6874] = ach:New(6874, 5, fac.Alliance, 7509); -- Scenaturday
     a[6882] = ach:New(6882, 10); -- Temple of Kotmogu Veteran
     a[6883] = ach:New(6883, 10); -- Silvershard Mines Veteran
     a[6884] = ach:New(6884, 0); -- Temple of the Jade Serpent Challenger
-    SetTO(a[6884], function() return false; end);
+    SetTO(a[6884]);
     a[6885] = ach:New(6885, 0); -- Temple of the Jade Serpent: Bronze
-    SetTO(a[6885], function() return false; end);
+    SetTO(a[6885]);
     a[6886] = ach:New(6886, 0); -- Temple of the Jade Serpent: Silver
-    SetTO(a[6886], function() return false; end);
+    SetTO(a[6886]);
     a[6887] = ach:New(6887, 0); -- Temple of the Jade Serpent: Gold
-    SetTO(a[6887], function() return false; end);
+    SetTO(a[6887]);
     a[6888] = ach:New(6888, 0); -- Stormstout Brewery Challenger
-    SetTO(a[6888], function() return false; end);
+    SetTO(a[6888]);
     a[6889] = ach:New(6889, 0); -- Stormstout Brewery: Bronze
-    SetTO(a[6889], function() return false; end);
+    SetTO(a[6889]);
     a[6890] = ach:New(6890, 0); -- Stormstout Brewery: Silver
-    SetTO(a[6890], function() return false; end);
+    SetTO(a[6890]);
     a[6891] = ach:New(6891, 0); -- Stormstout Brewery: Gold
-    SetTO(a[6891], function() return false; end);
+    SetTO(a[6891]);
     a[6892] = ach:New(6892, 0); -- Mogu'shan Palace Challenger
-    SetTO(a[6892], function() return false; end);
+    SetTO(a[6892]);
     a[6893] = ach:New(6893, 0); -- Shado-Pan Monastery Challenger
-    SetTO(a[6893], function() return false; end);
+    SetTO(a[6893]);
     a[6894] = ach:New(6894, 0); -- Gate of the Setting Sun Challenger
-    SetTO(a[6894], function() return false; end);
+    SetTO(a[6894]);
     a[6895] = ach:New(6895, 0); -- Scarlet Halls Challenger
-    SetTO(a[6895], function() return false; end);
+    SetTO(a[6895]);
     a[6896] = ach:New(6896, 0); -- Scarlet Monastery Challenger
-    SetTO(a[6896], function() return false; end);
+    SetTO(a[6896]);
     a[6897] = ach:New(6897, 0); -- Scholomance Challenger
-    SetTO(a[6897], function() return false; end);
+    SetTO(a[6897]);
     a[6898] = ach:New(6898, 0); -- Siege of Niuzao Temple Challenger
-    SetTO(a[6898], function() return false; end);
+    SetTO(a[6898]);
     a[6899] = ach:New(6899, 0); -- Mogu'shan Palace: Bronze
-    SetTO(a[6899], function() return false; end);
+    SetTO(a[6899]);
     a[6900] = ach:New(6900, 0); -- Mogu'shan Palace: Silver
-    SetTO(a[6900], function() return false; end);
+    SetTO(a[6900]);
     a[6901] = ach:New(6901, 0); -- Mogu'shan Palace: Gold
-    SetTO(a[6901], function() return false; end);
+    SetTO(a[6901]);
     a[6902] = ach:New(6902, 0); -- Shado-Pan Monastery: Bronze
-    SetTO(a[6902], function() return false; end);
+    SetTO(a[6902]);
     a[6903] = ach:New(6903, 0); -- Shado-Pan Monastery: Silver
-    SetTO(a[6903], function() return false; end);
+    SetTO(a[6903]);
     a[6904] = ach:New(6904, 0); -- Shado-Pan Monastery: Gold
-    SetTO(a[6904], function() return false; end);
+    SetTO(a[6904]);
     a[6905] = ach:New(6905, 0); -- Gate of the Setting Sun: Bronze
-    SetTO(a[6905], function() return false; end);
+    SetTO(a[6905]);
     a[6906] = ach:New(6906, 0); -- Gate of the Setting Sun: Silver
-    SetTO(a[6906], function() return false; end);
+    SetTO(a[6906]);
     a[6907] = ach:New(6907, 0); -- Gate of the Setting Sun: Gold
-    SetTO(a[6907], function() return false; end);
+    SetTO(a[6907]);
     a[6908] = ach:New(6908, 0); -- Scarlet Halls: Bronze
-    SetTO(a[6908], function() return false; end);
+    SetTO(a[6908]);
     a[6909] = ach:New(6909, 0); -- Scarlet Halls: Silver
-    SetTO(a[6909], function() return false; end);
+    SetTO(a[6909]);
     a[6910] = ach:New(6910, 0); -- Scarlet Halls: Gold
-    SetTO(a[6910], function() return false; end);
+    SetTO(a[6910]);
     a[6911] = ach:New(6911, 0); -- Scarlet Monastery: Bronze
-    SetTO(a[6911], function() return false; end);
+    SetTO(a[6911]);
     a[6912] = ach:New(6912, 0); -- Scarlet Monastery: Silver
-    SetTO(a[6912], function() return false; end);
+    SetTO(a[6912]);
     a[6913] = ach:New(6913, 0); -- Scarlet Monastery: Gold
-    SetTO(a[6913], function() return false; end);
+    SetTO(a[6913]);
     a[6914] = ach:New(6914, 0); -- Scholomance: Bronze
-    SetTO(a[6914], function() return false; end);
+    SetTO(a[6914]);
     a[6915] = ach:New(6915, 0); -- Scholomance: Silver
-    SetTO(a[6915], function() return false; end);
+    SetTO(a[6915]);
     a[6916] = ach:New(6916, 0); -- Scholomance: Gold
-    SetTO(a[6916], function() return false; end);
+    SetTO(a[6916]);
     a[6917] = ach:New(6917, 0); -- Siege of Niuzao Temple: Bronze
-    SetTO(a[6917], function() return false; end);
+    SetTO(a[6917]);
     a[6918] = ach:New(6918, 0); -- Siege of Niuzao Temple: Silver
-    SetTO(a[6918], function() return false; end);
+    SetTO(a[6918]);
     a[6919] = ach:New(6919, 0); -- Siege of Niuzao Temple: Gold
-    SetTO(a[6919], function() return false; end);
+    SetTO(a[6919]);
     a[6920] = ach:New(6920, 0); -- Challenge Conqueror
-    SetTO(a[6920], function() return false; end);
+    SetTO(a[6920]);
     a[6922] = ach:New(6922, 10); -- Timing is Everything
     a[6923] = ach:New(6923, 10); -- Brewmoon Festival
     a[6924] = ach:New(6924, 0); -- "100,000 Valor Points"
-    SetTO(a[6924], function() return false; end);
+    SetTO(a[6924]);
     a[6925] = ach:New(6925, 20); -- Pandaria Dungeon Hero
     a[6926] = ach:New(6926, 10); -- Tranquil Master
     a[6927] = ach:New(6927, 25); -- Glory of the Pandaria Hero
@@ -2537,9 +2537,9 @@ function exportedAchievements.Load(a, t)
     a[6937] = ach:New(6937, 10); -- Overzealous
     a[6938] = ach:New(6938, 0); -- Cataclysmic Gladiator
     a[6939] = ach:New(6939, 0, fac.Alliance, 6940); -- Hero of the Alliance: Cataclysmic
-    SetTO(a[6939], function() return false; end);
+    SetTO(a[6939]);
     a[6940] = ach:New(6940, 0, fac.Horde, 6939); -- Hero of the Horde: Cataclysmic
-    SetTO(a[6940], function() return false; end);
+    SetTO(a[6940]);
     a[6941] = ach:New(6941, 10, fac.Horde, 6942); -- Hero of the Horde
     a[6942] = ach:New(6942, 10, fac.Alliance, 6941); -- Hero of the Alliance
     a[6943] = ach:New(6943, 10); -- Queuing Spree
@@ -2548,7 +2548,7 @@ function exportedAchievements.Load(a, t)
     a[6947] = ach:New(6947, 10); -- Four Square
     a[6950] = ach:New(6950, 10); -- Powerball
     a[6954] = ach:New(6954, 0); -- Ahead of the Curve: Will of the Emperor
-    SetTO(a[6954], function() return false; end);
+    SetTO(a[6954]);
     a[6969] = ach:New(6969, 10); -- Explore Valley of the Four Winds
     a[6970] = ach:New(6970, 10); -- Blackout
     a[6971] = ach:New(6971, 10); -- I've Got the Power
@@ -2586,11 +2586,11 @@ function exportedAchievements.Load(a, t)
     a[7266] = ach:New(7266, 10); -- Save it for Later
     a[7267] = ach:New(7267, 10); -- Perfect Delivery
     a[7268] = ach:New(7268, 10, nil, nil, false); -- The Temple of Kotmogu
-    SetTO(a[7268], function() return false; end);
+    SetTO(a[7268]);
     a[7269] = ach:New(7269, 10, nil, nil, false); -- Stay Off the Grass
-    SetTO(a[7269], function() return false; end);
+    SetTO(a[7269]);
     a[7270] = ach:New(7270, 10, nil, nil, false); -- For Display Only
-    SetTO(a[7270], function() return false; end);
+    SetTO(a[7270]);
     a[7271] = ach:New(7271, 10); -- Arena of Annihilation
     a[7272] = ach:New(7272, 10); -- In the Eye of the Tiger
     a[7273] = ach:New(7273, 10); -- Beat the Heat
@@ -2631,7 +2631,7 @@ function exportedAchievements.Load(a, t)
     a[7313] = ach:New(7313, 10); -- Stay Klaxxi
     a[7314] = ach:New(7314, 10); -- Test Drive
     a[7315] = ach:New(7315, 0); -- Eternally in the Vale
-    SetTO(a[7315], function() return false; end);
+    SetTO(a[7315]);
     a[7316] = ach:New(7316, 10); -- Over Their Heads
     a[7317] = ach:New(7317, 10); -- One Many Army
     a[7318] = ach:New(7318, 10); -- A Taste of History
@@ -2717,18 +2717,18 @@ function exportedAchievements.Load(a, t)
     a[7464] = ach:New(7464, 10); -- Quality & Quantity
     a[7465] = ach:New(7465, 5); -- An Uncommon Find
     a[7467] = ach:New(7467, 0, fac.Alliance, 7468); -- Theramore's Fall
-    SetTO(a[7467], function() return false; end);
+    SetTO(a[7467]);
     a[7468] = ach:New(7468, 0, fac.Horde, 7467); -- Theramore's Fall
-    SetTO(a[7468], function() return false; end);
+    SetTO(a[7468]);
     a[7479] = ach:New(7479, 10); -- The Shado-Master
     a[7482] = ach:New(7482, 5); -- Trainer Extraordinaire
     a[7483] = ach:New(7483, 5); -- Battle Master
     a[7485] = ach:New(7485, 0); -- Cutting Edge: Will of the Emperor
-    SetTO(a[7485], function() return false; end);
+    SetTO(a[7485]);
     a[7486] = ach:New(7486, 0); -- Cutting Edge: Grand Empress Shek'zeer
-    SetTO(a[7486], function() return false; end);
+    SetTO(a[7486]);
     a[7487] = ach:New(7487, 0); -- Cutting Edge: Sha of Fear
-    SetTO(a[7487], function() return false; end);
+    SetTO(a[7487]);
     a[7498] = ach:New(7498, 5); -- Taming the Great Outdoors
     a[7499] = ach:New(7499, 10); -- Taming the World
     a[7500] = ach:New(7500, 10); -- Going to Need More Leashes
@@ -2747,13 +2747,13 @@ function exportedAchievements.Load(a, t)
     a[7529] = ach:New(7529, 10, fac.Horde, 7526); -- Kite Fight
     a[7530] = ach:New(7530, 10, fac.Horde, 7527); -- No Tank You
     a[7533] = ach:New(7533, 0); -- Chapter I: Trial of the Black Prince
-    SetTO(a[7533], function() return false; end);
+    SetTO(a[7533]);
     a[7534] = ach:New(7534, 0, fac.Alliance, 8008); -- Chapter II: Wrathion's War
-    SetTO(a[7534], function() return false; end);
+    SetTO(a[7534]);
     a[7535] = ach:New(7535, 0); -- Chapter III: Two Princes
-    SetTO(a[7535], function() return false; end);
+    SetTO(a[7535]);
     a[7536] = ach:New(7536, 0); -- Chapter IV: Celestial Blessings
-    SetTO(a[7536], function() return false; end);
+    SetTO(a[7536]);
     a[7601] = ach:New(7601, 10, fac.Alliance, 7602); -- Tricks and Treats of Pandaria
     a[7602] = ach:New(7602, 10, fac.Horde, 7601); -- Tricks and Treats of Pandaria
     a[7611] = ach:New(7611, 10); -- Pandarian Angler
@@ -2762,7 +2762,7 @@ function exportedAchievements.Load(a, t)
     a[7842] = ach:New(7842, 0); -- Collector's Edition: Baneling
     a[7852] = ach:New(7852, 0); -- They're Both Footballs?
     a[7853] = ach:New(7853, 0); -- WoW's 9th Anniversary
-    SetTO(a[7853], function() return false; end);
+    SetTO(a[7853]);
     a[7860] = ach:New(7860, 10, fac.Alliance, 7862); -- We're Going to Need More Saddles
     a[7862] = ach:New(7862, 10, fac.Horde, 7860); -- We're Going to Need More Saddles
     a[7908] = ach:New(7908, 5); -- I Choose You
@@ -2773,31 +2773,31 @@ function exportedAchievements.Load(a, t)
     a[7934] = ach:New(7934, 10); -- Raiding with Leashes
     a[7936] = ach:New(7936, 5); -- Pandaren Spirit Tamer
     a[7937] = ach:New(7937, 0, fac.Alliance, 8020); -- You Are Not Your $#*@! Legplates (Season 1)
-    SetTO(a[7937], function() return false; end);
+    SetTO(a[7937]);
     a[7939] = ach:New(7939, 0, fac.Horde, 7940); -- The Second Rule of Brawler's Guild (Season 1)
-    SetTO(a[7939], function() return false; end);
+    SetTO(a[7939]);
     a[7940] = ach:New(7940, 0, fac.Alliance, 7939); -- The Second Rule of Brawler's Guild (Season 1)
-    SetTO(a[7940], function() return false; end);
+    SetTO(a[7940]);
     a[7941] = ach:New(7941, 0, fac.Alliance, 7942); -- Brawlin' and Shot Callin' (Season 1)
-    SetTO(a[7941], function() return false; end);
+    SetTO(a[7941]);
     a[7942] = ach:New(7942, 0, fac.Horde, 7941); -- Brawlin' and Shot Callin' (Season 1)
-    SetTO(a[7942], function() return false; end);
+    SetTO(a[7942]);
     a[7943] = ach:New(7943, 0); -- I'm Your Number One Fan (Season 2)
-    SetTO(a[7943], function() return false; end);
+    SetTO(a[7943]);
     a[7944] = ach:New(7944, 0); -- Bottle Service (Season 2)
-    SetTO(a[7944], function() return false; end);
+    SetTO(a[7944]);
     a[7945] = ach:New(7945, 0); -- Haters Gonna Hate (Season 2)
-    SetTO(a[7945], function() return false; end);
+    SetTO(a[7945]);
     a[7946] = ach:New(7946, 0, fac.Alliance, 8022); -- Now You're Just Showing Off (Season 1)
-    SetTO(a[7946], function() return false; end);
+    SetTO(a[7946]);
     a[7947] = ach:New(7947, 0, fac.Alliance, 7948); -- The First Rule of Brawler's Guild (Season 1 or 2)
-    SetTO(a[7947], function() return false; end);
+    SetTO(a[7947]);
     a[7948] = ach:New(7948, 0, fac.Horde, 7947); -- The First Rule of Brawler's Guild (Season 1 or 2)
-    SetTO(a[7948], function() return false; end);
+    SetTO(a[7948]);
     a[7949] = ach:New(7949, 0, fac.Alliance, 7950); -- Rabble Rabble Rabble (Season 2)
-    SetTO(a[7949], function() return false; end);
+    SetTO(a[7949]);
     a[7950] = ach:New(7950, 0, fac.Horde, 7949); -- Rabble Rabble Rabble (Season 2)
-    SetTO(a[7950], function() return false; end);
+    SetTO(a[7950]);
     a[7984] = ach:New(7984, 10); -- Watery Grave
     a[7986] = ach:New(7986, 10); -- You Mean That Wasn't a Void Zone?
     a[7987] = ach:New(7987, 10); -- No Egg Left Behind
@@ -2812,7 +2812,7 @@ function exportedAchievements.Load(a, t)
     a[7996] = ach:New(7996, 10); -- Bounty of Pandaria
     a[7997] = ach:New(7997, 10); -- Riches of Pandaria
     a[8008] = ach:New(8008, 0, fac.Horde, 7534); -- Chapter II: Wrathion's War
-    SetTO(a[8008], function() return false; end);
+    SetTO(a[8008]);
     a[8009] = ach:New(8009, 10); -- Dagger in the Dark
     a[8010] = ach:New(8010, 10, fac.Alliance, 8013); -- Lion's Landing
     a[8011] = ach:New(8011, 10, fac.Alliance, 8014); -- Number Five Is Alive
@@ -2823,15 +2823,15 @@ function exportedAchievements.Load(a, t)
     a[8016] = ach:New(8016, 10); -- Assault on Zan'vess
     a[8017] = ach:New(8017, 10); -- For the Swarm
     a[8020] = ach:New(8020, 0, fac.Horde, 7937); -- You Are Not Your $#*@! Legplates (Season 1)
-    SetTO(a[8020], function() return false; end);
+    SetTO(a[8020]);
     a[8022] = ach:New(8022, 0, fac.Horde, 7946); -- Now You're Just Showing Off (Season 1)
-    SetTO(a[8022], function() return false; end);
+    SetTO(a[8022]);
     a[8023] = ach:New(8023, 10); -- Wakener
     a[8028] = ach:New(8028, 10); -- Praise the Sun!
     a[8030] = ach:New(8030, 0, fac.Alliance, 8031); -- A Test of Valor
-    SetTO(a[8030], function() return false; end);
+    SetTO(a[8030]);
     a[8031] = ach:New(8031, 0, fac.Horde, 8030); -- A Test of Valor
-    SetTO(a[8031], function() return false; end);
+    SetTO(a[8031]);
     a[8037] = ach:New(8037, 10); -- Genetically Unmodified Organism
     a[8038] = ach:New(8038, 10); -- Cretaceous Collector
     a[8042] = ach:New(8042, 10, fac.Alliance, 8043); -- Extinguishing Pandaria
@@ -2869,11 +2869,11 @@ function exportedAchievements.Load(a, t)
     a[8086] = ach:New(8086, 10); -- From Dusk 'til Dawn
     a[8087] = ach:New(8087, 10); -- Can't Touch This
     a[8089] = ach:New(8089, 0); -- I Thought He Was Supposed to Be Hard?
-    SetTO(a[8089], function() return false; end);
+    SetTO(a[8089]);
     a[8090] = ach:New(8090, 10); -- A Complete Circuit
     a[8092] = ach:New(8092, 0); -- I've Got 9999 Problems but a Bone-White Primal Raptor Ain't One
     a[8093] = ach:New(8093, 0, fac.Horde, 8218); -- Tyrannical Conquest
-    SetTO(a[8093], function() return false; end);
+    SetTO(a[8093]);
     a[8094] = ach:New(8094, 10); -- Lightning Overload
     a[8097] = ach:New(8097, 10); -- Soft Hands
     a[8098] = ach:New(8098, 10); -- You Said Crossing the Streams Was Bad
@@ -2884,7 +2884,7 @@ function exportedAchievements.Load(a, t)
     a[8104] = ach:New(8104, 10); -- Thunder Plunder
     a[8105] = ach:New(8105, 10); -- The Crumble Bundle
     a[8106] = ach:New(8106, 0); -- In the Hall of the Thunder King
-    SetTO(a[8106], function() return false; end);
+    SetTO(a[8106]);
     a[8107] = ach:New(8107, 10); -- Ready for RAAAAIIIIDDD?!?ing
     a[8108] = ach:New(8108, 10); -- "When in Ihgaluk, Do as the Skumblade Do"
     a[8109] = ach:New(8109, 10); -- The Mogu Below-gu
@@ -2908,12 +2908,12 @@ function exportedAchievements.Load(a, t)
     a[8210] = ach:New(8210, 10); -- Shado-Pan Assault
     a[8212] = ach:New(8212, 10); -- Zandalari Library Card
     a[8213] = ach:New(8213, 0); -- Friends In Places Higher Yet
-    SetTO(a[8213], function() return false; end);
+    SetTO(a[8213]);
     a[8214] = ach:New(8214, 0); -- Malevolent Gladiator
     a[8216] = ach:New(8216, 0); -- Malevolent Gladiator's Cloud Serpent
-    SetTO(a[8216], function() return false; end);
+    SetTO(a[8216]);
     a[8218] = ach:New(8218, 0, fac.Alliance, 8093); -- Tyrannical Conquest
-    SetTO(a[8218], function() return false; end);
+    SetTO(a[8218]);
     a[8219] = ach:New(8219, 10); -- History of the Mantid
     a[8220] = ach:New(8220, 10); -- Collector: Banners of the Mantid Empire
     a[8221] = ach:New(8221, 10); -- Collector: Banners of the Mantid Empire
@@ -2932,19 +2932,19 @@ function exportedAchievements.Load(a, t)
     a[8234] = ach:New(8234, 10); -- Collector: Kypari Sap Containers
     a[8235] = ach:New(8235, 10); -- Collector: Kypari Sap Containers
     a[8238] = ach:New(8238, 0); -- Cutting Edge: Lei Shen
-    SetTO(a[8238], function() return false; end);
+    SetTO(a[8238]);
     a[8243] = ach:New(8243, 0, fac.Alliance, 8244); -- Hero of the Alliance: Malevolent
-    SetTO(a[8243], function() return false; end);
+    SetTO(a[8243]);
     a[8244] = ach:New(8244, 0, fac.Horde, 8243); -- Hero of the Horde: Malevolent
-    SetTO(a[8244], function() return false; end);
+    SetTO(a[8244]);
     a[8246] = ach:New(8246, 0); -- Ahead of the Curve: Grand Empress Shek'zeer
-    SetTO(a[8246], function() return false; end);
+    SetTO(a[8246]);
     a[8248] = ach:New(8248, 0); -- Ahead of the Curve: Sha of Fear
-    SetTO(a[8248], function() return false; end);
+    SetTO(a[8248]);
     a[8249] = ach:New(8249, 0); -- Ahead of the Curve: Lei Shen
-    SetTO(a[8249], function() return false; end);
+    SetTO(a[8249]);
     a[8260] = ach:New(8260, 0); -- Cutting Edge: Ra-den
-    SetTO(a[8260], function() return false; end);
+    SetTO(a[8260]);
     a[8293] = ach:New(8293, 10); -- Raiding with Leashes II: Attunement Edition
     a[8294] = ach:New(8294, 10); -- The Secrets of Ragefire
     a[8295] = ach:New(8295, 10); -- "The Few, the Proud, the Gob Squad"
@@ -2955,9 +2955,9 @@ function exportedAchievements.Load(a, t)
     a[8302] = ach:New(8302, 10, fac.Horde, 8304); -- Mount Parade
     a[8304] = ach:New(8304, 10, fac.Alliance, 8302); -- Mount Parade
     a[8306] = ach:New(8306, 0, fac.Alliance, 8307); -- Hordebreaker
-    SetTO(a[8306], function() return false; end);
+    SetTO(a[8306]);
     a[8307] = ach:New(8307, 0, fac.Horde, 8306); -- Darkspear Revolutionary
-    SetTO(a[8307], function() return false; end);
+    SetTO(a[8307]);
     a[8310] = ach:New(8310, 10); -- Heroic: A Brewing Storm
     a[8311] = ach:New(8311, 10); -- Heroic: Crypt of Forgotten Kings
     a[8312] = ach:New(8312, 10); -- Heroic: Blood in the Snow
@@ -2968,7 +2968,7 @@ function exportedAchievements.Load(a, t)
     a[8318] = ach:New(8318, 10); -- Heroic: Dark Heart of Pandaria
     a[8319] = ach:New(8319, 10); -- Accelerated Archaeology
     a[8325] = ach:New(8325, 0); -- Chapter V: Judgment of the Black Prince
-    SetTO(a[8325], function() return false; end);
+    SetTO(a[8325]);
     a[8327] = ach:New(8327, 10); -- Heroic: The Secrets of Ragefire
     a[8329] = ach:New(8329, 10); -- Heed the Weed
     a[8330] = ach:New(8330, 10); -- Hekima's Heal-Halter
@@ -2976,82 +2976,82 @@ function exportedAchievements.Load(a, t)
     a[8332] = ach:New(8332, 10); -- Deepwind Gorge Veteran
     a[8333] = ach:New(8333, 20); -- Deepwind Gorge Perfection
     a[8335] = ach:New(8335, 0, fac.Alliance, 8337); -- Having a Brawl (Season 1)
-    SetTO(a[8335], function() return false; end);
+    SetTO(a[8335]);
     a[8336] = ach:New(8336, 0, fac.Alliance, 8338); -- I've Got the Biggest Brawls of Them All (Season 1)
-    SetTO(a[8336], function() return false; end);
+    SetTO(a[8336]);
     a[8337] = ach:New(8337, 0, fac.Horde, 8335); -- Having a Brawl (Season 1)
-    SetTO(a[8337], function() return false; end);
+    SetTO(a[8337]);
     a[8338] = ach:New(8338, 0, fac.Horde, 8336); -- I've Got the Biggest Brawls of Them All (Season 1)
-    SetTO(a[8338], function() return false; end);
+    SetTO(a[8338]);
     a[8339] = ach:New(8339, 0, fac.Alliance, 8342); -- Collect Your Deck (Season 2)
-    SetTO(a[8339], function() return false; end);
+    SetTO(a[8339]);
     a[8340] = ach:New(8340, 0, fac.Alliance, 8343); -- Deck Your Collection (Season 1)
-    SetTO(a[8340], function() return false; end);
+    SetTO(a[8340]);
     a[8342] = ach:New(8342, 0, fac.Horde, 8339); -- Collect Your Deck (Season 2)
-    SetTO(a[8342], function() return false; end);
+    SetTO(a[8342]);
     a[8343] = ach:New(8343, 0, fac.Horde, 8340); -- Deck Your Collection (Season 1)
-    SetTO(a[8343], function() return false; end);
+    SetTO(a[8343]);
     a[8345] = ach:New(8345, 0); -- Hearthstoned
     a[8347] = ach:New(8347, 10); -- Keep those Bombs Away! (From Me)
     a[8348] = ach:New(8348, 10); -- The Longest Day
     a[8350] = ach:New(8350, 0); -- Mine! Mine! Mine!
-    SetTO(a[8350], function() return false; end);
+    SetTO(a[8350]);
     a[8351] = ach:New(8351, 0); -- Other People's Property
-    SetTO(a[8351], function() return false; end);
+    SetTO(a[8351]);
     a[8354] = ach:New(8354, 0); -- Puddle Jumper
-    SetTO(a[8354], function() return false; end);
+    SetTO(a[8354]);
     a[8355] = ach:New(8355, 0); -- Weighed Down
-    SetTO(a[8355], function() return false; end);
+    SetTO(a[8355]);
     a[8358] = ach:New(8358, 0); -- Deepwind Gorge All-Star
-    SetTO(a[8358], function() return false; end);
+    SetTO(a[8358]);
     a[8359] = ach:New(8359, 0); -- Capping Spree
-    SetTO(a[8359], function() return false; end);
+    SetTO(a[8359]);
     a[8360] = ach:New(8360, 0); -- Master of Deepwind Gorge
-    SetTO(a[8360], function() return false; end);
+    SetTO(a[8360]);
     a[8364] = ach:New(8364, 10, fac.Alliance, 8366); -- Heroic: Battle on the High Seas
     a[8366] = ach:New(8366, 10, fac.Horde, 8364); -- Heroic: Battle on the High Seas
     a[8368] = ach:New(8368, 10); -- Fight Anger with Anger
     a[8381] = ach:New(8381, 0, fac.Horde, 8382); -- Grievous Conquest
-    SetTO(a[8381], function() return false; end);
+    SetTO(a[8381]);
     a[8382] = ach:New(8382, 0, fac.Alliance, 8381); -- Grievous Conquest
-    SetTO(a[8382], function() return false; end);
+    SetTO(a[8382]);
     a[8391] = ach:New(8391, 0); -- Tournament Participation 2013
-    SetTO(a[8391], function() return false; end);
+    SetTO(a[8391]);
     a[8392] = ach:New(8392, 0); -- Tournament Glory 2013
-    SetTO(a[8392], function() return false; end);
+    SetTO(a[8392]);
     a[8397] = ach:New(8397, 10); -- Crazy for Cats
     a[8398] = ach:New(8398, 0); -- Ahead of the Curve: Garrosh Hellscream (10 player)
-    SetTO(a[8398], function() return false; end);
+    SetTO(a[8398]);
     a[8399] = ach:New(8399, 0); -- Ahead of the Curve: Garrosh Hellscream (25 player)
-    SetTO(a[8399], function() return false; end);
+    SetTO(a[8399]);
     a[8400] = ach:New(8400, 0); -- Cutting Edge: Garrosh Hellscream (10 player)
-    SetTO(a[8400], function() return false; end);
+    SetTO(a[8400]);
     a[8401] = ach:New(8401, 0); -- Cutting Edge: Garrosh Hellscream (25 player)
-    SetTO(a[8401], function() return false; end);
+    SetTO(a[8401]);
     a[8410] = ach:New(8410, 10); -- The Celestial Tournament
     a[8430] = ach:New(8430, 0); -- Challenge Master: Temple of the Jade Serpent
-    SetTO(a[8430], function() return false; end);
+    SetTO(a[8430]);
     a[8431] = ach:New(8431, 0); -- Challenge Master: Stormstout Brewery
-    SetTO(a[8431], function() return false; end);
+    SetTO(a[8431]);
     a[8432] = ach:New(8432, 0); -- Challenge Master: Shado-Pan Monastery
-    SetTO(a[8432], function() return false; end);
+    SetTO(a[8432]);
     a[8433] = ach:New(8433, 0); -- Challenge Master: Mogu'shan Palace
-    SetTO(a[8433], function() return false; end);
+    SetTO(a[8433]);
     a[8434] = ach:New(8434, 0); -- Challenge Master: Gate of the Setting Sun
-    SetTO(a[8434], function() return false; end);
+    SetTO(a[8434]);
     a[8436] = ach:New(8436, 0); -- Challenge Master: Scarlet Halls
-    SetTO(a[8436], function() return false; end);
+    SetTO(a[8436]);
     a[8437] = ach:New(8437, 0); -- Challenge Master: Scarlet Monastery
-    SetTO(a[8437], function() return false; end);
+    SetTO(a[8437]);
     a[8438] = ach:New(8438, 0); -- Challenge Master: Scholomance
-    SetTO(a[8438], function() return false; end);
+    SetTO(a[8438]);
     a[8439] = ach:New(8439, 0); -- Challenge Master: Siege of Niuzao Temple
-    SetTO(a[8439], function() return false; end);
+    SetTO(a[8439]);
     a[8448] = ach:New(8448, 10); -- Gamon Will Save Us!
     a[8450] = ach:New(8450, 0, fac.Horde, 8451); -- Prideful Conquest
-    SetTO(a[8450], function() return false; end);
+    SetTO(a[8450]);
     a[8451] = ach:New(8451, 0, fac.Alliance, 8450); -- Prideful Conquest
-    SetTO(a[8451], function() return false; end);
+    SetTO(a[8451]);
     a[8453] = ach:New(8453, 10); -- Rescue Raiders
     a[8454] = ach:New(8454, 25); -- Glory of the Orgrimmar Raider
     a[8458] = ach:New(8458, 10); -- Vale of Eternal Sorrows
@@ -3073,45 +3073,45 @@ function exportedAchievements.Load(a, t)
     a[8481] = ach:New(8481, 10); -- Mythic: Paragons of the Klaxxi
     a[8482] = ach:New(8482, 10); -- Mythic: Garrosh Hellscream
     a[8484] = ach:New(8484, 0, fac.Horde, 8485); -- Grievous Combatant
-    SetTO(a[8484], function() return false; end);
+    SetTO(a[8484]);
     a[8485] = ach:New(8485, 0, fac.Alliance, 8484); -- Grievous Combatant
-    SetTO(a[8485], function() return false; end);
+    SetTO(a[8485]);
     a[8486] = ach:New(8486, 0); -- Proving Yourself: Bronze Damage (Level 90)
-    SetTO(a[8486], function() return false; end);
+    SetTO(a[8486]);
     a[8487] = ach:New(8487, 0); -- Proving Yourself: Bronze Tank (Level 90)
-    SetTO(a[8487], function() return false; end);
+    SetTO(a[8487]);
     a[8488] = ach:New(8488, 0); -- Proving Yourself: Bronze Healer (Level 90)
-    SetTO(a[8488], function() return false; end);
+    SetTO(a[8488]);
     a[8491] = ach:New(8491, 0); -- Proving Yourself: Silver Damage (Level 90)
-    SetTO(a[8491], function() return false; end);
+    SetTO(a[8491]);
     a[8492] = ach:New(8492, 0); -- Proving Yourself: Silver Tank (Level 90)
-    SetTO(a[8492], function() return false; end);
+    SetTO(a[8492]);
     a[8493] = ach:New(8493, 0); -- Proving Yourself: Silver Healer (Level 90)
-    SetTO(a[8493], function() return false; end);
+    SetTO(a[8493]);
     a[8496] = ach:New(8496, 0); -- Proving Yourself: Gold Damage (Level 90)
-    SetTO(a[8496], function() return false; end);
+    SetTO(a[8496]);
     a[8497] = ach:New(8497, 0); -- Proving Yourself: Gold Tank (Level 90)
-    SetTO(a[8497], function() return false; end);
+    SetTO(a[8497]);
     a[8498] = ach:New(8498, 0); -- Proving Yourself: Gold Healer (Level 90)
-    SetTO(a[8498], function() return false; end);
+    SetTO(a[8498]);
     a[8501] = ach:New(8501, 0); -- Proving Yourself: Endless Damage (Wave 10) (Level 90)
-    SetTO(a[8501], function() return false; end);
+    SetTO(a[8501]);
     a[8502] = ach:New(8502, 0); -- Proving Yourself: Endless Tank (Wave 10) (Level 90)
-    SetTO(a[8502], function() return false; end);
+    SetTO(a[8502]);
     a[8503] = ach:New(8503, 0); -- Proving Yourself: Endless Healer (Wave 10) (Level 90)
-    SetTO(a[8503], function() return false; end);
+    SetTO(a[8503]);
     a[8504] = ach:New(8504, 0); -- Proving Yourself: Endless Damage (Wave 20) (Level 90)
-    SetTO(a[8504], function() return false; end);
+    SetTO(a[8504]);
     a[8505] = ach:New(8505, 0); -- Proving Yourself: Endless Tank (Wave 20) (Level 90)
-    SetTO(a[8505], function() return false; end);
+    SetTO(a[8505]);
     a[8506] = ach:New(8506, 0); -- Proving Yourself: Endless Healer (Wave 20) (Level 90)
-    SetTO(a[8506], function() return false; end);
+    SetTO(a[8506]);
     a[8507] = ach:New(8507, 0); -- Proving Yourself: Endless Damage (Wave 30) (Level 90)
-    SetTO(a[8507], function() return false; end);
+    SetTO(a[8507]);
     a[8508] = ach:New(8508, 0); -- Proving Yourself: Endless Tank (Wave 30) (Level 90)
-    SetTO(a[8508], function() return false; end);
+    SetTO(a[8508]);
     a[8509] = ach:New(8509, 0); -- Proving Yourself: Endless Healer (Wave 30) (Level 90)
-    SetTO(a[8509], function() return false; end);
+    SetTO(a[8509]);
     a[8518] = ach:New(8518, 5); -- Master of the Masters
     a[8519] = ach:New(8519, 5); -- Celestial Family
     a[8520] = ach:New(8520, 10); -- Fire in the Hole!
@@ -3123,61 +3123,61 @@ function exportedAchievements.Load(a, t)
     a[8531] = ach:New(8531, 10); -- Now We are the Paragon
     a[8532] = ach:New(8532, 10); -- None Shall Pass
     a[8533] = ach:New(8533, 0); -- Ordos
-    SetTO(a[8533], function() return false; end);
+    SetTO(a[8533]);
     a[8535] = ach:New(8535, 10); -- Celestial Challenge
     a[8536] = ach:New(8536, 10); -- No More Tears
     a[8537] = ach:New(8537, 10); -- Strike!
     a[8538] = ach:New(8538, 10); -- Unlimited Potential
     a[8543] = ach:New(8543, 10); -- Lasers and Magnets and Drills! Oh My!
     a[8641] = ach:New(8641, 0, fac.Horde, 8642); -- Prideful Combatant
-    SetTO(a[8641], function() return false; end);
+    SetTO(a[8641]);
     a[8642] = ach:New(8642, 0, fac.Alliance, 8641); -- Prideful Combatant
-    SetTO(a[8642], function() return false; end);
+    SetTO(a[8642]);
     a[8643] = ach:New(8643, 0); -- Grievous Gladiator: Season 14
-    SetTO(a[8643], function() return false; end);
+    SetTO(a[8643]);
     a[8644] = ach:New(8644, 0); -- Gladiator: Season 14
-    SetTO(a[8644], function() return false; end);
+    SetTO(a[8644]);
     a[8645] = ach:New(8645, 0); -- Duelist: Season 14
-    SetTO(a[8645], function() return false; end);
+    SetTO(a[8645]);
     a[8646] = ach:New(8646, 0); -- Rival: Season 14
-    SetTO(a[8646], function() return false; end);
+    SetTO(a[8646]);
     a[8649] = ach:New(8649, 0); -- Challenger: Season 14
-    SetTO(a[8649], function() return false; end);
+    SetTO(a[8649]);
     a[8652] = ach:New(8652, 0, fac.Alliance, 8653); -- Hero of the Alliance: Tyrannical
-    SetTO(a[8652], function() return false; end);
+    SetTO(a[8652]);
     a[8653] = ach:New(8653, 0, fac.Horde, 8652); -- Hero of the Horde: Tyrannical
-    SetTO(a[8653], function() return false; end);
+    SetTO(a[8653]);
     a[8654] = ach:New(8654, 0, fac.Alliance, 8657); -- Hero of the Alliance: Grievous
-    SetTO(a[8654], function() return false; end);
+    SetTO(a[8654]);
     a[8657] = ach:New(8657, 0, fac.Horde, 8654); -- Hero of the Horde: Grievous
-    SetTO(a[8657], function() return false; end);
+    SetTO(a[8657]);
     a[8658] = ach:New(8658, 0, fac.Alliance, 8659); -- Hero of the Alliance: Prideful
-    SetTO(a[8658], function() return false; end);
+    SetTO(a[8658]);
     a[8659] = ach:New(8659, 0, fac.Horde, 8658); -- Hero of the Horde: Prideful
-    SetTO(a[8659], function() return false; end);
+    SetTO(a[8659]);
     a[8666] = ach:New(8666, 0); -- Prideful Gladiator: Season 15
-    SetTO(a[8666], function() return false; end);
+    SetTO(a[8666]);
     a[8667] = ach:New(8667, 0); -- Gladiator: Season 15
-    SetTO(a[8667], function() return false; end);
+    SetTO(a[8667]);
     a[8668] = ach:New(8668, 0); -- Duelist: Season 15
-    SetTO(a[8668], function() return false; end);
+    SetTO(a[8668]);
     a[8669] = ach:New(8669, 0); -- Rival: Season 15
-    SetTO(a[8669], function() return false; end);
+    SetTO(a[8669]);
     a[8670] = ach:New(8670, 0); -- Challenger: Season 15
-    SetTO(a[8670], function() return false; end);
+    SetTO(a[8670]);
     a[8671] = ach:New(8671, 10, fac.Horde, 8845); -- You'll Get Caught Up In The... Frostfire!
     a[8678] = ach:New(8678, 0); -- Tyrannical Gladiator's Cloud Serpent
-    SetTO(a[8678], function() return false; end);
+    SetTO(a[8678]);
     a[8679] = ach:New(8679, 10, fac.Alliance, 8680); -- Conqueror of Orgrimmar
     a[8680] = ach:New(8680, 10, fac.Horde, 8679); -- Liberator of Orgrimmar
     a[8697] = ach:New(8697, 0); -- You're Doing it Wrong (Level 90)
-    SetTO(a[8697], function() return false; end);
+    SetTO(a[8697]);
     a[8698] = ach:New(8698, 0); -- Crashin' Thrashin' Flyer
     a[8699] = ach:New(8699, 10); -- The Danger Zone
     a[8705] = ach:New(8705, 0); -- Grievous Gladiator's Cloud Serpent
-    SetTO(a[8705], function() return false; end);
+    SetTO(a[8705]);
     a[8707] = ach:New(8707, 0); -- Prideful Gladiator's Cloud Serpent
-    SetTO(a[8707], function() return false; end);
+    SetTO(a[8707]);
     a[8712] = ach:New(8712, 10); -- Killing Time
     a[8714] = ach:New(8714, 10); -- Timeless Champion
     a[8715] = ach:New(8715, 10); -- Emperor Shaohao
@@ -3200,75 +3200,75 @@ function exportedAchievements.Load(a, t)
     a[8784] = ach:New(8784, 10); -- Timeless Legends
     a[8791] = ach:New(8791, 0); -- Tyrannical Gladiator
     a[8793] = ach:New(8793, 0); -- Murkalot
-    SetTO(a[8793], function() return false; end);
+    SetTO(a[8793]);
     a[8794] = ach:New(8794, 0); -- Friends In Places Even Higher Than That
-    SetTO(a[8794], function() return false; end);
+    SetTO(a[8794]);
     a[8795] = ach:New(8795, 0); -- Collector's Edition: Treasure Goblin
     a[8812] = ach:New(8812, 0); -- You're Really Doing It Wrong (Level 90)
-    SetTO(a[8812], function() return false; end);
+    SetTO(a[8812]);
     a[8820] = ach:New(8820, 0); -- WoW's 10th Anniversary
-    SetTO(a[8820], function() return false; end);
+    SetTO(a[8820]);
     a[8843] = ach:New(8843, 10); -- Skyreach
     a[8844] = ach:New(8844, 10); -- Heroic: Skyreach
     a[8845] = ach:New(8845, 10, fac.Alliance, 8671); -- As I Walk Through the Valley of the Shadow of Moon
     a[8871] = ach:New(8871, 0); -- Skyreach Challenger
-    SetTO(a[8871], function() return false; end);
+    SetTO(a[8871]);
     a[8872] = ach:New(8872, 0); -- Skyreach: Bronze
-    SetTO(a[8872], function() return false; end);
+    SetTO(a[8872]);
     a[8873] = ach:New(8873, 0); -- Skyreach: Silver
-    SetTO(a[8873], function() return false; end);
+    SetTO(a[8873]);
     a[8874] = ach:New(8874, 0); -- Skyreach: Gold
-    SetTO(a[8874], function() return false; end);
+    SetTO(a[8874]);
     a[8875] = ach:New(8875, 0); -- Bloodmaul Slag Mines Challenger
-    SetTO(a[8875], function() return false; end);
+    SetTO(a[8875]);
     a[8876] = ach:New(8876, 0); -- Bloodmaul Slag Mines: Bronze
-    SetTO(a[8876], function() return false; end);
+    SetTO(a[8876]);
     a[8877] = ach:New(8877, 0); -- Bloodmaul Slag Mines: Silver
-    SetTO(a[8877], function() return false; end);
+    SetTO(a[8877]);
     a[8878] = ach:New(8878, 0); -- Bloodmaul Slag Mines: Gold
-    SetTO(a[8878], function() return false; end);
+    SetTO(a[8878]);
     a[8879] = ach:New(8879, 0); -- Auchindoun Challenger
-    SetTO(a[8879], function() return false; end);
+    SetTO(a[8879]);
     a[8880] = ach:New(8880, 0); -- Auchindoun: Bronze
-    SetTO(a[8880], function() return false; end);
+    SetTO(a[8880]);
     a[8881] = ach:New(8881, 0); -- Auchindoun: Silver
-    SetTO(a[8881], function() return false; end);
+    SetTO(a[8881]);
     a[8882] = ach:New(8882, 0); -- Auchindoun: Gold
-    SetTO(a[8882], function() return false; end);
+    SetTO(a[8882]);
     a[8883] = ach:New(8883, 0); -- Shadowmoon Burial Grounds Challenger
-    SetTO(a[8883], function() return false; end);
+    SetTO(a[8883]);
     a[8884] = ach:New(8884, 0); -- Shadowmoon Burial Grounds: Bronze
-    SetTO(a[8884], function() return false; end);
+    SetTO(a[8884]);
     a[8885] = ach:New(8885, 0); -- Shadowmoon Burial Grounds: Silver
-    SetTO(a[8885], function() return false; end);
+    SetTO(a[8885]);
     a[8886] = ach:New(8886, 0); -- Shadowmoon Burial Grounds: Gold
-    SetTO(a[8886], function() return false; end);
+    SetTO(a[8886]);
     a[8887] = ach:New(8887, 0); -- Grimrail Depot Challenger
-    SetTO(a[8887], function() return false; end);
+    SetTO(a[8887]);
     a[8888] = ach:New(8888, 0); -- Grimrail Depot: Bronze
-    SetTO(a[8888], function() return false; end);
+    SetTO(a[8888]);
     a[8889] = ach:New(8889, 0); -- Grimrail Depot: Silver
-    SetTO(a[8889], function() return false; end);
+    SetTO(a[8889]);
     a[8890] = ach:New(8890, 0); -- Grimrail Depot: Gold
-    SetTO(a[8890], function() return false; end);
+    SetTO(a[8890]);
     a[8891] = ach:New(8891, 0); -- Upper Blackrock Spire Challenger
-    SetTO(a[8891], function() return false; end);
+    SetTO(a[8891]);
     a[8892] = ach:New(8892, 0); -- Upper Blackrock Spire: Bronze
-    SetTO(a[8892], function() return false; end);
+    SetTO(a[8892]);
     a[8893] = ach:New(8893, 0); -- Upper Blackrock Spire: Silver
-    SetTO(a[8893], function() return false; end);
+    SetTO(a[8893]);
     a[8894] = ach:New(8894, 0); -- Upper Blackrock Spire: Gold
-    SetTO(a[8894], function() return false; end);
+    SetTO(a[8894]);
     a[8895] = ach:New(8895, 0); -- Challenge Warlord
-    SetTO(a[8895], function() return false; end);
+    SetTO(a[8895]);
     a[8897] = ach:New(8897, 0); -- Challenge Warlord: Bronze
-    SetTO(a[8897], function() return false; end);
+    SetTO(a[8897]);
     a[8898] = ach:New(8898, 0); -- Challenge Warlord: Silver
-    SetTO(a[8898], function() return false; end);
+    SetTO(a[8898]);
     a[8899] = ach:New(8899, 0); -- Challenge Warlord: Gold
-    SetTO(a[8899], function() return false; end);
+    SetTO(a[8899]);
     a[8903] = ach:New(8903, 0); -- Mistwalker
-    SetTO(a[8903], function() return false; end);
+    SetTO(a[8903]);
     a[8916] = ach:New(8916, 0); -- Collector's Edition: Dread Raven
     a[8917] = ach:New(8917, 0); -- Collector's Edition: Dread Hatchling
     a[8919] = ach:New(8919, 10, fac.Horde, 8920); -- Don't Let the Tala-door Hit You on the Way Out
@@ -3333,26 +3333,26 @@ function exportedAchievements.Load(a, t)
     a[8992] = ach:New(8992, 10); -- Blackhand's Crucible
     a[8993] = ach:New(8993, 10); -- A Gift of Earth and Fire
     a[8997] = ach:New(8997, 0); -- Iron Docks Challenger
-    SetTO(a[8997], function() return false; end);
+    SetTO(a[8997]);
     a[8998] = ach:New(8998, 0); -- Iron Docks: Bronze
-    SetTO(a[8998], function() return false; end);
+    SetTO(a[8998]);
     a[8999] = ach:New(8999, 0); -- Iron Docks: Silver
-    SetTO(a[8999], function() return false; end);
+    SetTO(a[8999]);
     a[9000] = ach:New(9000, 0); -- Iron Docks: Gold
-    SetTO(a[9000], function() return false; end);
+    SetTO(a[9000]);
     a[9001] = ach:New(9001, 0); -- The Everbloom Challenger
-    SetTO(a[9001], function() return false; end);
+    SetTO(a[9001]);
     a[9002] = ach:New(9002, 0); -- The Everbloom: Bronze
-    SetTO(a[9002], function() return false; end);
+    SetTO(a[9002]);
     a[9003] = ach:New(9003, 0); -- The Everbloom: Silver
-    SetTO(a[9003], function() return false; end);
+    SetTO(a[9003]);
     a[9004] = ach:New(9004, 0); -- The Everbloom: Gold
-    SetTO(a[9004], function() return false; end);
+    SetTO(a[9004]);
     a[9005] = ach:New(9005, 10); -- Come With Me If You Want to Live
     a[9007] = ach:New(9007, 10); -- No Ticket
     a[9008] = ach:New(9008, 10); -- Is Draenor on Fire?
     a[9016] = ach:New(9016, 0); -- Breaker of the Black Harvest
-    SetTO(a[9016], function() return false; end);
+    SetTO(a[9016]);
     a[9017] = ach:New(9017, 10); -- Water Management
     a[9018] = ach:New(9018, 10); -- What's Your Sign?
     a[9023] = ach:New(9023, 10); -- ...They All Fall Down
@@ -3382,7 +3382,7 @@ function exportedAchievements.Load(a, t)
     a[9057] = ach:New(9057, 10); -- Dragonmaw? More Like Dragonfall!
     a[9058] = ach:New(9058, 10); -- Leeeeeeeeeeeeeroy...?
     a[9060] = ach:New(9060, 0); -- Level 100 (Legacy)
-    SetTO(a[9060], function() return false; end);
+    SetTO(a[9060]);
     a[9069] = ach:New(9069, 10); -- An Awfully Big Adventure
     a[9070] = ach:New(9070, 5); -- Overstuffed
     a[9071] = ach:New(9071, 5); -- Inspector Gadgetzan
@@ -3438,25 +3438,25 @@ function exportedAchievements.Load(a, t)
     a[9165] = ach:New(9165, 5); -- Golden Defender
     a[9167] = ach:New(9167, 5); -- Invasion Specialist
     a[9168] = ach:New(9168, 0, fac.Alliance, 9172); -- You Are Not Your $#*@! Legplates (Season 2)
-    SetTO(a[9168], function() return false; end);
+    SetTO(a[9168]);
     a[9169] = ach:New(9169, 0, fac.Alliance, 9173); -- The Second Rule of Brawler's Guild (Season 2)
-    SetTO(a[9169], function() return false; end);
+    SetTO(a[9169]);
     a[9170] = ach:New(9170, 0, fac.Alliance, 9174); -- Brawlin' and Shot Callin' (Season 2)
-    SetTO(a[9170], function() return false; end);
+    SetTO(a[9170]);
     a[9171] = ach:New(9171, 0, fac.Alliance, 9175); -- Now You're Just Showing Off (Season 2)
-    SetTO(a[9171], function() return false; end);
+    SetTO(a[9171]);
     a[9172] = ach:New(9172, 0, fac.Horde, 9168); -- You Are Not Your $#*@! Legplates (Season 2)
-    SetTO(a[9172], function() return false; end);
+    SetTO(a[9172]);
     a[9173] = ach:New(9173, 0, fac.Horde, 9169); -- The Second Rule of Brawler's Guild (Season 2)
-    SetTO(a[9173], function() return false; end);
+    SetTO(a[9173]);
     a[9174] = ach:New(9174, 0, fac.Horde, 9170); -- Brawlin' and Shot Callin' (Season 2)
-    SetTO(a[9174], function() return false; end);
+    SetTO(a[9174]);
     a[9175] = ach:New(9175, 0, fac.Horde, 9171); -- Now You're Just Showing Off (Season 2)
-    SetTO(a[9175], function() return false; end);
+    SetTO(a[9175]);
     a[9176] = ach:New(9176, 0, fac.Alliance, 9177); -- Deck Your Collection (Season 2)
-    SetTO(a[9176], function() return false; end);
+    SetTO(a[9176]);
     a[9177] = ach:New(9177, 0, fac.Horde, 9176); -- Deck Your Collection (Season 2)
-    SetTO(a[9177], function() return false; end);
+    SetTO(a[9177]);
     a[9181] = ach:New(9181, 5); -- Save Those Buildings!
     a[9203] = ach:New(9203, 5); -- Shadow Council Invasion
     a[9204] = ach:New(9204, 5); -- Ogre Invasion
@@ -3470,9 +3470,9 @@ function exportedAchievements.Load(a, t)
     a[9212] = ach:New(9212, 5); -- My Item Level Is Way Higher than Yours
     a[9213] = ach:New(9213, 5); -- Item Level Army
     a[9214] = ach:New(9214, 0, fac.Alliance, 9215); -- Hero of Stormshield
-    SetTO(a[9214], function() return false; end);
+    SetTO(a[9214]);
     a[9215] = ach:New(9215, 0, fac.Horde, 9214); -- Hero of Warspear
-    SetTO(a[9215], function() return false; end);
+    SetTO(a[9215]);
     a[9216] = ach:New(9216, 10); -- High-value Targets
     a[9217] = ach:New(9217, 10, fac.Horde, 9408); -- Operation Counterattack
     a[9218] = ach:New(9218, 10); -- "Grand Theft, 1st Degree"
@@ -3484,29 +3484,29 @@ function exportedAchievements.Load(a, t)
     a[9225] = ach:New(9225, 10, fac.Alliance, 9224); -- Take Them Out
     a[9228] = ach:New(9228, 10, fac.Alliance); -- Down Goes Van Rook
     a[9229] = ach:New(9229, 0); -- Primal Gladiator's Felblood Gronnling
-    SetTO(a[9229], function() return false; end);
+    SetTO(a[9229]);
     a[9230] = ach:New(9230, 0, fac.Alliance, 9231); -- Hero of the Alliance: Primal
-    SetTO(a[9230], function() return false; end);
+    SetTO(a[9230]);
     a[9231] = ach:New(9231, 0, fac.Horde, 9230); -- Hero of the Horde: Primal
-    SetTO(a[9231], function() return false; end);
+    SetTO(a[9231]);
     a[9232] = ach:New(9232, 0); -- Primal Gladiator: Warlords Season 1
-    SetTO(a[9232], function() return false; end);
+    SetTO(a[9232]);
     a[9233] = ach:New(9233, 0, fac.Horde, 9234); -- Primal Conquest
-    SetTO(a[9233], function() return false; end);
+    SetTO(a[9233]);
     a[9234] = ach:New(9234, 0, fac.Alliance, 9233); -- Primal Conquest
-    SetTO(a[9234], function() return false; end);
+    SetTO(a[9234]);
     a[9236] = ach:New(9236, 0, fac.Horde, 9238); -- Primal Combatant
-    SetTO(a[9236], function() return false; end);
+    SetTO(a[9236]);
     a[9238] = ach:New(9238, 0, fac.Alliance, 9236); -- Primal Combatant
-    SetTO(a[9238], function() return false; end);
+    SetTO(a[9238]);
     a[9239] = ach:New(9239, 0); -- Gladiator: Warlords Season 1
-    SetTO(a[9239], function() return false; end);
+    SetTO(a[9239]);
     a[9240] = ach:New(9240, 0); -- Duelist: Warlords Season 1
-    SetTO(a[9240], function() return false; end);
+    SetTO(a[9240]);
     a[9241] = ach:New(9241, 0); -- Rival: Warlords Season 1
-    SetTO(a[9241], function() return false; end);
+    SetTO(a[9241]);
     a[9242] = ach:New(9242, 0); -- Challenger: Warlords Season 1
-    SetTO(a[9242], function() return false; end);
+    SetTO(a[9242]);
     a[9243] = ach:New(9243, 5); -- Item Level Force
     a[9244] = ach:New(9244, 5); -- Invasions Are Better with Friends
     a[9246] = ach:New(9246, 10); -- Master Draenor Crafter
@@ -3554,13 +3554,13 @@ function exportedAchievements.Load(a, t)
     a[9436] = ach:New(9436, 10); -- It's the Stones!
     a[9437] = ach:New(9437, 10); -- A Demidos of Reality
     a[9441] = ach:New(9441, 0); -- Ahead of the Curve: Imperator's Fall
-    SetTO(a[9441], function() return false; end);
+    SetTO(a[9441]);
     a[9442] = ach:New(9442, 0); -- Cutting Edge: Imperator's Fall
-    SetTO(a[9442], function() return false; end);
+    SetTO(a[9442]);
     a[9443] = ach:New(9443, 0); -- Cutting Edge: Blackhand's Crucible
-    SetTO(a[9443], function() return false; end);
+    SetTO(a[9443]);
     a[9444] = ach:New(9444, 0); -- Ahead of the Curve: Blackhand's Crucible
-    SetTO(a[9444], function() return false; end);
+    SetTO(a[9444]);
     a[9450] = ach:New(9450, 5); -- The Trap Game
     a[9451] = ach:New(9451, 5); -- Trapper's Delight
     a[9452] = ach:New(9452, 5); -- Trap Superstar
@@ -3598,7 +3598,7 @@ function exportedAchievements.Load(a, t)
     a[9494] = ach:New(9494, 5); -- Commander
     a[9495] = ach:New(9495, 5); -- The Bone Collector
     a[9496] = ach:New(9496, 0); -- Warlord's Deathwheel
-    SetTO(a[9496], function() return false; end);
+    SetTO(a[9496]);
     a[9497] = ach:New(9497, 5); -- Finding Your Waystones
     a[9498] = ach:New(9498, 5); -- Wingman
     a[9499] = ach:New(9499, 5); -- Wingmen
@@ -3607,9 +3607,9 @@ function exportedAchievements.Load(a, t)
     a[9502] = ach:New(9502, 10); -- Draenor Cuisine
     a[9503] = ach:New(9503, 10); -- Draenor Fisherman
     a[9505] = ach:New(9505, 0); -- Draenor Medic
-    SetTO(a[9505], function() return false; end);
+    SetTO(a[9505]);
     a[9506] = ach:New(9506, 0); -- Savage Skills to Pay the Bills
-    SetTO(a[9506], function() return false; end);
+    SetTO(a[9506]);
     a[9507] = ach:New(9507, 10); -- Working in Draenor
     a[9508] = ach:New(9508, 10, fac.Horde, 9738); -- Warlord of Draenor
     a[9509] = ach:New(9509, 5, fac.Horde, 9516); -- Nemesis: Draenei Destroyer
@@ -3649,14 +3649,14 @@ function exportedAchievements.Load(a, t)
     a[9547] = ach:New(9547, 10); -- Everything Is Awesome!
     a[9548] = ach:New(9548, 10); -- Buried Treasures
     a[9550] = ach:New(9550, 0); -- "Boldly, You Sought the Power of Ragnaros"
-    SetTO(a[9550], function() return false; end);
+    SetTO(a[9550]);
     a[9551] = ach:New(9551, 10); -- Demon's Souls
     a[9552] = ach:New(9552, 10); -- No Tag-backs!
     a[9562] = ach:New(9562, 10, fac.Horde, 9564); -- Securing Draenor
     a[9564] = ach:New(9564, 10, fac.Alliance, 9562); -- Securing Draenor
     a[9565] = ach:New(9565, 5); -- Master Trapper
     a[9566] = ach:New(9566, 0, fac.Horde, 9729); -- Victory in Hillsbrad
-    SetTO(a[9566], function() return false; end);
+    SetTO(a[9566]);
     a[9571] = ach:New(9571, 10); -- Broke Back Precipice
     a[9572] = ach:New(9572, 10); -- Proving Yourself: Bronze Damage
     a[9573] = ach:New(9573, 10); -- Proving Yourself: Silver Damage
@@ -3692,24 +3692,24 @@ function exportedAchievements.Load(a, t)
     a[9615] = ach:New(9615, 10); -- With a Nagrand Cherry On Top
     a[9617] = ach:New(9617, 10); -- Making the Cut
     a[9618] = ach:New(9618, 0); -- The Iron Invasion
-    SetTO(a[9618], function() return false; end);
+    SetTO(a[9618]);
     a[9619] = ach:New(9619, 10); -- Savage Hero
     a[9620] = ach:New(9620, 0); -- Challenge Master: Bloodmaul Slag Mines
-    SetTO(a[9620], function() return false; end);
+    SetTO(a[9620]);
     a[9621] = ach:New(9621, 0); -- Challenge Master: Iron Docks
-    SetTO(a[9621], function() return false; end);
+    SetTO(a[9621]);
     a[9622] = ach:New(9622, 0); -- Challenge Master: Auchindoun
-    SetTO(a[9622], function() return false; end);
+    SetTO(a[9622]);
     a[9623] = ach:New(9623, 0); -- Challenge Master: Skyreach
-    SetTO(a[9623], function() return false; end);
+    SetTO(a[9623]);
     a[9624] = ach:New(9624, 0); -- Challenge Master: The Everbloom
-    SetTO(a[9624], function() return false; end);
+    SetTO(a[9624]);
     a[9625] = ach:New(9625, 0); -- Challenge Master: Grimrail Depot
-    SetTO(a[9625], function() return false; end);
+    SetTO(a[9625]);
     a[9626] = ach:New(9626, 0); -- Challenge Master: Shadowmoon Burial Grounds
-    SetTO(a[9626], function() return false; end);
+    SetTO(a[9626]);
     a[9627] = ach:New(9627, 0); -- Challenge Master: Upper Blackrock Spire
-    SetTO(a[9627], function() return false; end);
+    SetTO(a[9627]);
     a[9630] = ach:New(9630, 10, fac.Alliance, 9248); -- Defender of Draenor
     a[9631] = ach:New(9631, 10, fac.Alliance, 9255); -- Mythic Draenor Raider
     a[9632] = ach:New(9632, 10); -- The Power Is Yours
@@ -3721,11 +3721,11 @@ function exportedAchievements.Load(a, t)
     a[9638] = ach:New(9638, 10); -- Heralds of the Legion
     a[9639] = ach:New(9639, 10); -- "Fight, Kill, Salute!"
     a[9640] = ach:New(9640, 0); -- Chapter I: Call of the Archmage
-    SetTO(a[9640], function() return false; end);
+    SetTO(a[9640]);
     a[9641] = ach:New(9641, 0); -- Chapter II: Gul'dan Strikes Back
-    SetTO(a[9641], function() return false; end);
+    SetTO(a[9641]);
     a[9642] = ach:New(9642, 0); -- Chapter III: The Foundry Falls
-    SetTO(a[9642], function() return false; end);
+    SetTO(a[9642]);
     a[9643] = ach:New(9643, 10); -- So. Many. Pets.
     a[9654] = ach:New(9654, 10); -- Mean and Green
     a[9655] = ach:New(9655, 10); -- Fight the Power
@@ -3741,7 +3741,7 @@ function exportedAchievements.Load(a, t)
     a[9674] = ach:New(9674, 10); -- I Want More Talador
     a[9678] = ach:New(9678, 10); -- Ancient No More
     a[9680] = ach:New(9680, 0); -- Time is a Flat Circle
-    SetTO(a[9680], function() return false; end);
+    SetTO(a[9680]);
     a[9685] = ach:New(9685, 5); -- Draenor Safari
     a[9686] = ach:New(9686, 5); -- Aquatic Acquiescence
     a[9687] = ach:New(9687, 5); -- Best of the Beasts
@@ -3758,9 +3758,9 @@ function exportedAchievements.Load(a, t)
     a[9705] = ach:New(9705, 10, fac.Horde, 9539); -- Advanced Husbandry
     a[9706] = ach:New(9706, 10, fac.Horde, 9540); -- The Stable Master
     a[9707] = ach:New(9707, 0); -- Savagely Superior
-    SetTO(a[9707], function() return false; end);
+    SetTO(a[9707]);
     a[9708] = ach:New(9708, 0); -- Savagely Epic
-    SetTO(a[9708], function() return false; end);
+    SetTO(a[9708]);
     a[9710] = ach:New(9710, 10); -- Poisoning the Well
     a[9711] = ach:New(9711, 10); -- Planned to Fail
     a[9712] = ach:New(9712, 5); -- Shiny Pet Charmer
@@ -3773,7 +3773,7 @@ function exportedAchievements.Load(a, t)
     a[9727] = ach:New(9727, 10); -- Expert Treasure Hunter
     a[9728] = ach:New(9728, 10); -- Grand Treasure Hunter
     a[9729] = ach:New(9729, 0, fac.Alliance, 9566); -- Victory in Hillsbrad
-    SetTO(a[9729], function() return false; end);
+    SetTO(a[9729]);
     a[9738] = ach:New(9738, 10, fac.Alliance, 9508); -- Warlord of Draenor
     a[9755] = ach:New(9755, 5); -- Darkmoon Race Enthusiast
     a[9756] = ach:New(9756, 5); -- Darkmoon Racer Novice
@@ -3781,7 +3781,7 @@ function exportedAchievements.Load(a, t)
     a[9760] = ach:New(9760, 5); -- Darkmoon Racer Leadfoot
     a[9761] = ach:New(9761, 5); -- Darkmoon Racer Roadhog
     a[9763] = ach:New(9763, 0); -- Grommloc
-    SetTO(a[9763], function() return false; end);
+    SetTO(a[9763]);
     a[9764] = ach:New(9764, 5); -- Rocketeer: Gold
     a[9766] = ach:New(9766, 5); -- Rocketeer: Silver
     a[9769] = ach:New(9769, 5); -- Rocketeer: Bronze
@@ -3836,7 +3836,7 @@ function exportedAchievements.Load(a, t)
     a[9923] = ach:New(9923, 10, fac.Horde, 9833); -- Loremaster of Draenor
     a[9924] = ach:New(9924, 5); -- Field Photographer
     a[9925] = ach:New(9925, 0); -- Friends In Places Yet Even Higher Than That
-    SetTO(a[9925], function() return false; end);
+    SetTO(a[9925]);
     a[9926] = ach:New(9926, 0); -- Hero of the Storm
     a[9928] = ach:New(9928, 10, fac.Alliance, 9901); -- Don't Call Me Junior
     a[9972] = ach:New(9972, 10); -- A Race Against Slime
@@ -3845,17 +3845,17 @@ function exportedAchievements.Load(a, t)
     a[9988] = ach:New(9988, 10); -- Pro Toss
     a[9989] = ach:New(9989, 10); -- Non-Lethal Enforcer
     a[9995] = ach:New(9995, 0, fac.Alliance, 9998); -- Soldier of the Alliance: Warlords Season 1
-    SetTO(a[9995], function() return false; end);
+    SetTO(a[9995]);
     a[9996] = ach:New(9996, 0, fac.Alliance, 10001); -- Defender of the Alliance: Warlords Season 1
-    SetTO(a[9996], function() return false; end);
+    SetTO(a[9996]);
     a[9997] = ach:New(9997, 0, fac.Alliance, 10000); -- Guardian of the Alliance: Warlords Season 1
-    SetTO(a[9997], function() return false; end);
+    SetTO(a[9997]);
     a[9998] = ach:New(9998, 0, fac.Horde, 9995); -- Soldier of the Horde: Warlords Season 1
-    SetTO(a[9998], function() return false; end);
+    SetTO(a[9998]);
     a[10000] = ach:New(10000, 0, fac.Horde, 9997); -- Guardian of the Horde: Warlords Season 1
-    SetTO(a[10000], function() return false; end);
+    SetTO(a[10000]);
     a[10001] = ach:New(10001, 0, fac.Horde, 9996); -- Defender of the Horde: Warlords Season 1
-    SetTO(a[10001], function() return false; end);
+    SetTO(a[10001]);
     a[10010] = ach:New(10010, 10); -- Gate of the Setting Sun
     a[10011] = ach:New(10011, 10); -- Siege of Niuzao Temple
     a[10012] = ach:New(10012, 10); -- This Land Was Green and Good Until...
@@ -3867,7 +3867,7 @@ function exportedAchievements.Load(a, t)
     a[10019] = ach:New(10019, 10); -- The Black Gate
     a[10020] = ach:New(10020, 10); -- Destructor's Rise
     a[10021] = ach:New(10021, 0, fac.Alliance, 10148); -- Chapter IV: Darkness Incarnate
-    SetTO(a[10021], function() return false; end);
+    SetTO(a[10021]);
     a[10023] = ach:New(10023, 10); -- Hellbreach
     a[10024] = ach:New(10024, 10); -- Halls of Blood
     a[10025] = ach:New(10025, 10); -- Bastion of Shadows
@@ -3887,15 +3887,15 @@ function exportedAchievements.Load(a, t)
     a[10042] = ach:New(10042, 10); -- Mythic: Mannoroth
     a[10043] = ach:New(10043, 10); -- Mythic: Archimonde
     a[10044] = ach:New(10044, 0); -- Ahead of the Curve: The Black Gate
-    SetTO(a[10044], function() return false; end);
+    SetTO(a[10044]);
     a[10045] = ach:New(10045, 0); -- Cutting Edge: The Black Gate
-    SetTO(a[10045], function() return false; end);
+    SetTO(a[10045]);
     a[10052] = ach:New(10052, 10); -- Tiny Terrors in Tanaan
     a[10053] = ach:New(10053, 10); -- I Found Pepe!
     a[10054] = ach:New(10054, 10); -- Don't Fear the Reaper
     a[10057] = ach:New(10057, 10); -- Turning the Tide
     a[10058] = ach:New(10058, 0); -- WoW's 11th Anniversary
-    SetTO(a[10058], function() return false; end);
+    SetTO(a[10058]);
     a[10059] = ach:New(10059, 10); -- Ain't No Mountain High Enough
     a[10061] = ach:New(10061, 10); -- Hellbane
     a[10067] = ach:New(10067, 10, fac.Alliance, 10074); -- In Pursuit of Gul'dan
@@ -3918,79 +3918,79 @@ function exportedAchievements.Load(a, t)
     a[10086] = ach:New(10086, 10); -- I'm a Soul Man
     a[10087] = ach:New(10087, 10); -- You Gotta Keep 'em Separated
     a[10088] = ach:New(10088, 0, fac.Horde, 10089); -- Wild Conquest
-    SetTO(a[10088], function() return false; end);
+    SetTO(a[10088]);
     a[10089] = ach:New(10089, 0, fac.Alliance, 10088); -- Wild Conquest
-    SetTO(a[10089], function() return false; end);
+    SetTO(a[10089]);
     a[10090] = ach:New(10090, 0, fac.Horde, 10091); -- Warmongering Conquest
-    SetTO(a[10090], function() return false; end);
+    SetTO(a[10090]);
     a[10091] = ach:New(10091, 0, fac.Alliance, 10090); -- Warmongering Conquest
-    SetTO(a[10091], function() return false; end);
+    SetTO(a[10091]);
     a[10092] = ach:New(10092, 0, fac.Horde, 10093); -- Wild Combatant
-    SetTO(a[10092], function() return false; end);
+    SetTO(a[10092]);
     a[10093] = ach:New(10093, 0, fac.Alliance, 10092); -- Wild Combatant
-    SetTO(a[10093], function() return false; end);
+    SetTO(a[10093]);
     a[10094] = ach:New(10094, 0, fac.Horde, 10095); -- Warmongering Combatant
-    SetTO(a[10094], function() return false; end);
+    SetTO(a[10094]);
     a[10095] = ach:New(10095, 0, fac.Alliance, 10094); -- Warmongering Combatant
-    SetTO(a[10095], function() return false; end);
+    SetTO(a[10095]);
     a[10096] = ach:New(10096, 0); -- Wild Gladiator: Warlords Season 2
-    SetTO(a[10096], function() return false; end);
+    SetTO(a[10096]);
     a[10097] = ach:New(10097, 0); -- Warmongering Gladiator: Warlords Season 3
-    SetTO(a[10097], function() return false; end);
+    SetTO(a[10097]);
     a[10098] = ach:New(10098, 0); -- Gladiator: Warlords Season 2
-    SetTO(a[10098], function() return false; end);
+    SetTO(a[10098]);
     a[10099] = ach:New(10099, 0); -- Duelist: Warlords Season 2
-    SetTO(a[10099], function() return false; end);
+    SetTO(a[10099]);
     a[10100] = ach:New(10100, 0); -- Rival: Warlords Season 2
-    SetTO(a[10100], function() return false; end);
+    SetTO(a[10100]);
     a[10101] = ach:New(10101, 0); -- Challenger: Warlords Season 2
-    SetTO(a[10101], function() return false; end);
+    SetTO(a[10101]);
     a[10102] = ach:New(10102, 0, fac.Alliance, 10103); -- Hero of the Alliance: Wild
-    SetTO(a[10102], function() return false; end);
+    SetTO(a[10102]);
     a[10103] = ach:New(10103, 0, fac.Horde, 10102); -- Hero of the Horde: Wild
-    SetTO(a[10103], function() return false; end);
+    SetTO(a[10103]);
     a[10104] = ach:New(10104, 0, fac.Alliance, 10105); -- Soldier of the Alliance: Warlords Season 2
-    SetTO(a[10104], function() return false; end);
+    SetTO(a[10104]);
     a[10105] = ach:New(10105, 0, fac.Horde, 10104); -- Soldier of the Horde: Warlords Season 2
-    SetTO(a[10105], function() return false; end);
+    SetTO(a[10105]);
     a[10106] = ach:New(10106, 0, fac.Alliance, 10107); -- Defender of the Alliance: Warlords Season 2
-    SetTO(a[10106], function() return false; end);
+    SetTO(a[10106]);
     a[10107] = ach:New(10107, 0, fac.Horde, 10106); -- Defender of the Horde: Warlords Season 2
-    SetTO(a[10107], function() return false; end);
+    SetTO(a[10107]);
     a[10108] = ach:New(10108, 0, fac.Alliance, 10109); -- Guardian of the Alliance: Warlords Season 2
-    SetTO(a[10108], function() return false; end);
+    SetTO(a[10108]);
     a[10109] = ach:New(10109, 0, fac.Horde, 10108); -- Guardian of the Horde: Warlords Season 2
-    SetTO(a[10109], function() return false; end);
+    SetTO(a[10109]);
     a[10110] = ach:New(10110, 0); -- Gladiator: Warlords Season 3
-    SetTO(a[10110], function() return false; end);
+    SetTO(a[10110]);
     a[10111] = ach:New(10111, 0); -- Duelist: Warlords Season 3
-    SetTO(a[10111], function() return false; end);
+    SetTO(a[10111]);
     a[10112] = ach:New(10112, 0); -- Rival: Warlords Season 3
-    SetTO(a[10112], function() return false; end);
+    SetTO(a[10112]);
     a[10113] = ach:New(10113, 0); -- Challenger: Warlords Season 3
-    SetTO(a[10113], function() return false; end);
+    SetTO(a[10113]);
     a[10114] = ach:New(10114, 0, fac.Alliance, 10115); -- Hero of the Alliance: Warmongering
-    SetTO(a[10114], function() return false; end);
+    SetTO(a[10114]);
     a[10115] = ach:New(10115, 0, fac.Horde, 10114); -- Hero of the Horde: Warmongering
-    SetTO(a[10115], function() return false; end);
+    SetTO(a[10115]);
     a[10116] = ach:New(10116, 0, fac.Alliance, 10117); -- Guardian of the Alliance: Warlords Season 3
-    SetTO(a[10116], function() return false; end);
+    SetTO(a[10116]);
     a[10117] = ach:New(10117, 0, fac.Horde, 10116); -- Guardian of the Horde: Warlords Season 3
-    SetTO(a[10117], function() return false; end);
+    SetTO(a[10117]);
     a[10118] = ach:New(10118, 0, fac.Alliance, 10119); -- Defender of the Alliance: Warlords Season 3
-    SetTO(a[10118], function() return false; end);
+    SetTO(a[10118]);
     a[10119] = ach:New(10119, 0, fac.Horde, 10118); -- Defender of the Horde: Warlords Season 3
-    SetTO(a[10119], function() return false; end);
+    SetTO(a[10119]);
     a[10120] = ach:New(10120, 0, fac.Alliance, 10121); -- Soldier of the Alliance: Warlords Season 3
-    SetTO(a[10120], function() return false; end);
+    SetTO(a[10120]);
     a[10121] = ach:New(10121, 0, fac.Horde, 10120); -- Soldier of the Horde: Warlords Season 3
-    SetTO(a[10121], function() return false; end);
+    SetTO(a[10121]);
     a[10137] = ach:New(10137, 0); -- Wild Gladiator's Felblood Gronnling
-    SetTO(a[10137], function() return false; end);
+    SetTO(a[10137]);
     a[10146] = ach:New(10146, 0); -- Warmongering Gladiator's Felblood Gronnling
-    SetTO(a[10146], function() return false; end);
+    SetTO(a[10146]);
     a[10148] = ach:New(10148, 0, fac.Horde, 10021); -- Chapter IV: Darkness Incarnate
-    SetTO(a[10148], function() return false; end);
+    SetTO(a[10148]);
     a[10149] = ach:New(10149, 25); -- Glory of the Hellfire Raider
     a[10154] = ach:New(10154, 5); -- Naval Combat Expert
     a[10155] = ach:New(10155, 5); -- Naval Siege Expert
@@ -4027,7 +4027,7 @@ function exportedAchievements.Load(a, t)
     a[10320] = ach:New(10320, 0); -- Collector's Edition: Illidari Felstalker
     a[10321] = ach:New(10321, 0); -- Collector's Edition: Nibbles
     a[10322] = ach:New(10322, 0); -- Murkidan
-    SetTO(a[10322], function() return false; end);
+    SetTO(a[10322]);
     a[10334] = ach:New(10334, 0); -- Predator
     a[10335] = ach:New(10335, 0); -- Did Someone Say...?
     a[10337] = ach:New(10337, 0); -- Crashin' Thrashin' Flamer
@@ -4059,14 +4059,14 @@ function exportedAchievements.Load(a, t)
     a[10561] = ach:New(10561, 10); -- Honorable Medallion
     a[10575] = ach:New(10575, 10); -- Burning Bridges
     a[10580] = ach:New(10580, 0); -- Heroic Skills to Pay the Bills
-    SetTO(a[10580], function() return false; end);
+    SetTO(a[10580]);
     a[10581] = ach:New(10581, 10); -- Working the Isles
     a[10582] = ach:New(10582, 10); -- Professional Legion Master
     a[10583] = ach:New(10583, 50); -- Legion Master of All
     a[10585] = ach:New(10585, 0); -- Fel-Smelter
-    SetTO(a[10585], function() return false; end);
+    SetTO(a[10585]);
     a[10586] = ach:New(10586, 0); -- Mass Obliteration
-    SetTO(a[10586], function() return false; end);
+    SetTO(a[10586]);
     a[10587] = ach:New(10587, 10); -- Hot Swapper
     a[10588] = ach:New(10588, 10); -- The Shortest Distance
     a[10589] = ach:New(10589, 10); -- Legion Cook
@@ -4079,7 +4079,7 @@ function exportedAchievements.Load(a, t)
     a[10597] = ach:New(10597, 10); -- Legion Aquaculture
     a[10598] = ach:New(10598, 10); -- Fishing 'Round the Isles
     a[10599] = ach:New(10599, 0); -- Legion Medic
-    SetTO(a[10599], function() return false; end);
+    SetTO(a[10599]);
     a[10600] = ach:New(10600, 10); -- Legion Archaeologist
     a[10601] = ach:New(10601, 10); -- Surveying the Land
     a[10602] = ach:New(10602, 10); -- This Side Up
@@ -4103,7 +4103,7 @@ function exportedAchievements.Load(a, t)
     a[10668] = ach:New(10668, 10); -- Explore Stormheim
     a[10669] = ach:New(10669, 10); -- Explore Suramar
     a[10671] = ach:New(10671, 0); -- Level 110 (Legacy)
-    SetTO(a[10671], function() return false; end);
+    SetTO(a[10671]);
     a[10672] = ach:New(10672, 10); -- Broken Isles Diplomat
     a[10678] = ach:New(10678, 10); -- Cage Rematch
     a[10679] = ach:New(10679, 10); -- I Ain't Even Cold
@@ -4133,15 +4133,15 @@ function exportedAchievements.Load(a, t)
     a[10711] = ach:New(10711, 10); -- Adds? More Like Bads
     a[10722] = ach:New(10722, 10); -- The Wish Remover
     a[10741] = ach:New(10741, 0); -- WoW's 12th Anniversary
-    SetTO(a[10741], function() return false; end);
+    SetTO(a[10741]);
     a[10742] = ach:New(10742, 10); -- Gluten Free
     a[10743] = ach:New(10743, 0, fac.Alliance, 10745); -- The Prestige
-    SetTO(a[10743], function() return false; end);
+    SetTO(a[10743]);
     a[10745] = ach:New(10745, 0, fac.Horde, 10743); -- The Prestige
-    SetTO(a[10745], function() return false; end);
+    SetTO(a[10745]);
     a[10746] = ach:New(10746, 10); -- Forged for Battle
     a[10747] = ach:New(10747, 10); -- Fighting with Style: Upgraded
-    SetTO(a[10747], function() return false; end);
+    SetTO(a[10747]);
     a[10748] = ach:New(10748, 10); -- Fighting with Style: Valorous
     a[10749] = ach:New(10749, 10, fac.Alliance, 11173); -- Fighting with Style: War-torn
     a[10750] = ach:New(10750, 10); -- Fighting with Style: Hidden
@@ -4154,9 +4154,9 @@ function exportedAchievements.Load(a, t)
     a[10762] = ach:New(10762, 10); -- The Legion Menu
     a[10763] = ach:New(10763, 10); -- Azsuna Matata
     a[10764] = ach:New(10764, 0); -- Brokenly Superior
-    SetTO(a[10764], function() return false; end);
+    SetTO(a[10764]);
     a[10765] = ach:New(10765, 0); -- Brokenly Epic
-    SetTO(a[10765], function() return false; end);
+    SetTO(a[10765]);
     a[10766] = ach:New(10766, 10); -- Egg-cellent!
     a[10769] = ach:New(10769, 10); -- Burning Down the House
     a[10770] = ach:New(10770, 5); -- The Tangerine Traveler
@@ -4223,153 +4223,153 @@ function exportedAchievements.Load(a, t)
     a[10850] = ach:New(10850, 10); -- Mythic: Gul'dan
     a[10851] = ach:New(10851, 10); -- Elementalry!
     a[10852] = ach:New(10852, 0); -- Artifact or Artifiction
-    SetTO(a[10852], function() return false; end);
+    SetTO(a[10852]);
     a[10853] = ach:New(10853, 0); -- Part of History
-    SetTO(a[10853], function() return false; end);
+    SetTO(a[10853]);
     a[10875] = ach:New(10875, 10); -- Can't Eat Just One
     a[10876] = ach:New(10876, 10); -- Battle on the Broken Isles
     a[10877] = ach:New(10877, 25); -- Pillars of Creation
     a[10991] = ach:New(10991, 0); -- First Step into a Larger World
-    SetTO(a[10991], function() return false; end);
+    SetTO(a[10991]);
     a[10992] = ach:New(10992, 0); -- Here We Go Again
-    SetTO(a[10992], function() return false; end);
+    SetTO(a[10992]);
     a[10993] = ach:New(10993, 0); -- Third Time's the Charm
-    SetTO(a[10993], function() return false; end);
+    SetTO(a[10993]);
     a[10994] = ach:New(10994, 10); -- A Glorious Campaign
     a[10995] = ach:New(10995, 0); -- For Prestige
-    SetTO(a[10995], function() return false; end);
+    SetTO(a[10995]);
     a[10996] = ach:New(10996, 10); -- Got to Ketchum All
     a[10997] = ach:New(10997, 0, fac.Horde, 10998); -- Vindictive Combatant
-    SetTO(a[10997], function() return false; end);
+    SetTO(a[10997]);
     a[10998] = ach:New(10998, 0, fac.Alliance, 10997); -- Vindictive Combatant
-    SetTO(a[10998], function() return false; end);
+    SetTO(a[10998]);
     a[10999] = ach:New(10999, 0); -- Vindictive Gladiator's Storm Dragon
-    SetTO(a[10999], function() return false; end);
+    SetTO(a[10999]);
     a[11000] = ach:New(11000, 0); -- Fearless Gladiator's Storm Dragon
-    SetTO(a[11000], function() return false; end);
+    SetTO(a[11000]);
     a[11001] = ach:New(11001, 0); -- Cruel Gladiator's Storm Dragon
-    SetTO(a[11001], function() return false; end);
+    SetTO(a[11001]);
     a[11002] = ach:New(11002, 0); -- Ferocious Gladiator's Storm Dragon
-    SetTO(a[11002], function() return false; end);
+    SetTO(a[11002]);
     a[11003] = ach:New(11003, 0, fac.Horde, 11004); -- Fearless Combatant
-    SetTO(a[11003], function() return false; end);
+    SetTO(a[11003]);
     a[11004] = ach:New(11004, 0, fac.Alliance, 11003); -- Fearless Combatant
-    SetTO(a[11004], function() return false; end);
+    SetTO(a[11004]);
     a[11005] = ach:New(11005, 0, fac.Horde, 11008); -- Cruel Combatant
-    SetTO(a[11005], function() return false; end);
+    SetTO(a[11005]);
     a[11008] = ach:New(11008, 0, fac.Alliance, 11005); -- Cruel Combatant
-    SetTO(a[11008], function() return false; end);
+    SetTO(a[11008]);
     a[11009] = ach:New(11009, 0, fac.Horde, 11010); -- Ferocious Combatant
-    SetTO(a[11009], function() return false; end);
+    SetTO(a[11009]);
     a[11010] = ach:New(11010, 0, fac.Alliance, 11009); -- Ferocious Combatant
-    SetTO(a[11010], function() return false; end);
+    SetTO(a[11010]);
     a[11011] = ach:New(11011, 0); -- Gladiator: Legion Season 1
-    SetTO(a[11011], function() return false; end);
+    SetTO(a[11011]);
     a[11012] = ach:New(11012, 0); -- Vindictive Gladiator: Legion Season 1
-    SetTO(a[11012], function() return false; end);
+    SetTO(a[11012]);
     a[11013] = ach:New(11013, 0); -- Gladiator: Legion Season 2
-    SetTO(a[11013], function() return false; end);
+    SetTO(a[11013]);
     a[11014] = ach:New(11014, 0); -- Fearless Gladiator: Legion Season 2
-    SetTO(a[11014], function() return false; end);
+    SetTO(a[11014]);
     a[11015] = ach:New(11015, 0); -- Duelist: Legion Season 1
-    SetTO(a[11015], function() return false; end);
+    SetTO(a[11015]);
     a[11016] = ach:New(11016, 0); -- Rival: Legion Season 1
-    SetTO(a[11016], function() return false; end);
+    SetTO(a[11016]);
     a[11017] = ach:New(11017, 0); -- Challenger: Legion Season 1
-    SetTO(a[11017], function() return false; end);
+    SetTO(a[11017]);
     a[11018] = ach:New(11018, 0, fac.Alliance, 11019); -- Hero of the Alliance: Vindictive
-    SetTO(a[11018], function() return false; end);
+    SetTO(a[11018]);
     a[11019] = ach:New(11019, 0, fac.Horde, 11018); -- Hero of the Horde: Vindictive
-    SetTO(a[11019], function() return false; end);
+    SetTO(a[11019]);
     a[11020] = ach:New(11020, 0, fac.Alliance, 11021); -- Guardian of the Alliance: Legion Season 1
-    SetTO(a[11020], function() return false; end);
+    SetTO(a[11020]);
     a[11021] = ach:New(11021, 0, fac.Horde, 11020); -- Guardian of the Horde: Legion Season 1
-    SetTO(a[11021], function() return false; end);
+    SetTO(a[11021]);
     a[11022] = ach:New(11022, 0, fac.Alliance, 11023); -- Defender of the Alliance: Legion Season 1
-    SetTO(a[11022], function() return false; end);
+    SetTO(a[11022]);
     a[11023] = ach:New(11023, 0, fac.Horde, 11022); -- Defender of the Horde: Legion Season 1
-    SetTO(a[11023], function() return false; end);
+    SetTO(a[11023]);
     a[11024] = ach:New(11024, 0, fac.Alliance, 11025); -- Soldier of the Alliance: Legion Season 1
-    SetTO(a[11024], function() return false; end);
+    SetTO(a[11024]);
     a[11025] = ach:New(11025, 0, fac.Horde, 11024); -- Soldier of the Horde: Legion Season 1
-    SetTO(a[11025], function() return false; end);
+    SetTO(a[11025]);
     a[11026] = ach:New(11026, 0); -- Duelist: Legion Season 2
-    SetTO(a[11026], function() return false; end);
+    SetTO(a[11026]);
     a[11027] = ach:New(11027, 0); -- Rival: Legion Season 2
-    SetTO(a[11027], function() return false; end);
+    SetTO(a[11027]);
     a[11028] = ach:New(11028, 0); -- Challenger: Legion Season 2
-    SetTO(a[11028], function() return false; end);
+    SetTO(a[11028]);
     a[11029] = ach:New(11029, 0, fac.Horde, 11030); -- Hero of the Horde: Fearless
-    SetTO(a[11029], function() return false; end);
+    SetTO(a[11029]);
     a[11030] = ach:New(11030, 0, fac.Alliance, 11029); -- Hero of the Alliance: Fearless
-    SetTO(a[11030], function() return false; end);
+    SetTO(a[11030]);
     a[11031] = ach:New(11031, 0, fac.Horde, 11032); -- Guardian of the Horde: Legion Season 2
-    SetTO(a[11031], function() return false; end);
+    SetTO(a[11031]);
     a[11032] = ach:New(11032, 0, fac.Alliance, 11031); -- Guardian of the Alliance: Legion Season 2
-    SetTO(a[11032], function() return false; end);
+    SetTO(a[11032]);
     a[11033] = ach:New(11033, 0, fac.Horde, 11034); -- Defender of the Horde: Legion Season 2
-    SetTO(a[11033], function() return false; end);
+    SetTO(a[11033]);
     a[11034] = ach:New(11034, 0, fac.Alliance, 11033); -- Defender of the Alliance: Legion Season 2
-    SetTO(a[11034], function() return false; end);
+    SetTO(a[11034]);
     a[11035] = ach:New(11035, 0, fac.Horde, 11036); -- Soldier of the Horde: Legion Season 2
-    SetTO(a[11035], function() return false; end);
+    SetTO(a[11035]);
     a[11036] = ach:New(11036, 0, fac.Alliance, 11035); -- Soldier of the Alliance: Legion Season 2
-    SetTO(a[11036], function() return false; end);
+    SetTO(a[11036]);
     a[11037] = ach:New(11037, 0); -- Cruel Gladiator: Legion Season 3
-    SetTO(a[11037], function() return false; end);
+    SetTO(a[11037]);
     a[11038] = ach:New(11038, 0); -- Gladiator: Legion Season 3
-    SetTO(a[11038], function() return false; end);
+    SetTO(a[11038]);
     a[11039] = ach:New(11039, 0); -- Challenger: Legion Season 3
-    SetTO(a[11039], function() return false; end);
+    SetTO(a[11039]);
     a[11040] = ach:New(11040, 0); -- Rival: Legion Season 3
-    SetTO(a[11040], function() return false; end);
+    SetTO(a[11040]);
     a[11041] = ach:New(11041, 0); -- Duelist: Legion Season 3
-    SetTO(a[11041], function() return false; end);
+    SetTO(a[11041]);
     a[11042] = ach:New(11042, 0, fac.Horde, 11043); -- Hero of the Horde: Cruel
-    SetTO(a[11042], function() return false; end);
+    SetTO(a[11042]);
     a[11043] = ach:New(11043, 0, fac.Alliance, 11042); -- Hero of the Alliance: Cruel
-    SetTO(a[11043], function() return false; end);
+    SetTO(a[11043]);
     a[11044] = ach:New(11044, 0, fac.Horde, 11045); -- Defender of the Horde: Legion Season 3
-    SetTO(a[11044], function() return false; end);
+    SetTO(a[11044]);
     a[11045] = ach:New(11045, 0, fac.Alliance, 11044); -- Defender of the Alliance: Legion Season 3
-    SetTO(a[11045], function() return false; end);
+    SetTO(a[11045]);
     a[11046] = ach:New(11046, 0, fac.Horde, 11047); -- Guardian of the Horde: Legion Season 3
-    SetTO(a[11046], function() return false; end);
+    SetTO(a[11046]);
     a[11047] = ach:New(11047, 0, fac.Alliance, 11046); -- Guardian of the Alliance: Legion Season 3
-    SetTO(a[11047], function() return false; end);
+    SetTO(a[11047]);
     a[11048] = ach:New(11048, 0, fac.Horde, 11049); -- Soldier of the Horde: Legion Season 3
-    SetTO(a[11048], function() return false; end);
+    SetTO(a[11048]);
     a[11049] = ach:New(11049, 0, fac.Alliance, 11048); -- Soldier of the Alliance: Legion Season 3
-    SetTO(a[11049], function() return false; end);
+    SetTO(a[11049]);
     a[11050] = ach:New(11050, 0, fac.Alliance, 11051); -- Soldier of the Alliance: Legion Season 4
-    SetTO(a[11050], function() return false; end);
+    SetTO(a[11050]);
     a[11051] = ach:New(11051, 0, fac.Horde, 11050); -- Soldier of the Horde: Legion Season 4
-    SetTO(a[11051], function() return false; end);
+    SetTO(a[11051]);
     a[11052] = ach:New(11052, 0, fac.Alliance, 11053); -- Guardian of the Alliance: Legion Season 4
-    SetTO(a[11052], function() return false; end);
+    SetTO(a[11052]);
     a[11053] = ach:New(11053, 0, fac.Horde, 11052); -- Guardian of the Horde: Legion Season 4
-    SetTO(a[11053], function() return false; end);
+    SetTO(a[11053]);
     a[11054] = ach:New(11054, 0, fac.Alliance, 11055); -- Defender of the Alliance: Legion Season 4
-    SetTO(a[11054], function() return false; end);
+    SetTO(a[11054]);
     a[11055] = ach:New(11055, 0, fac.Horde, 11054); -- Defender of the Horde: Legion Season 4
-    SetTO(a[11055], function() return false; end);
+    SetTO(a[11055]);
     a[11056] = ach:New(11056, 0, fac.Alliance, 11057); -- Hero of the Alliance: Ferocious
-    SetTO(a[11056], function() return false; end);
+    SetTO(a[11056]);
     a[11057] = ach:New(11057, 0, fac.Horde, 11056); -- Hero of the Horde: Ferocious
-    SetTO(a[11057], function() return false; end);
+    SetTO(a[11057]);
     a[11058] = ach:New(11058, 0); -- Duelist: Legion Season 4
-    SetTO(a[11058], function() return false; end);
+    SetTO(a[11058]);
     a[11059] = ach:New(11059, 0); -- Rival: Legion Season 4
-    SetTO(a[11059], function() return false; end);
+    SetTO(a[11059]);
     a[11060] = ach:New(11060, 0); -- Challenger: Legion Season 4
-    SetTO(a[11060], function() return false; end);
+    SetTO(a[11060]);
     a[11061] = ach:New(11061, 0); -- Gladiator: Legion Season 4
-    SetTO(a[11061], function() return false; end);
+    SetTO(a[11061]);
     a[11062] = ach:New(11062, 0); -- Ferocious Gladiator: Legion Season 4
-    SetTO(a[11062], function() return false; end);
+    SetTO(a[11062]);
     a[11064] = ach:New(11064, 0); -- Collector's Edition: Baby Winston
     a[11065] = ach:New(11065, 0); -- It All Makes Sense Now
-    SetTO(a[11065], function() return false; end);
+    SetTO(a[11065]);
     a[11066] = ach:New(11066, 10); -- Underbelly Tycoon
     a[11124] = ach:New(11124, 10); -- Good Suramaritan
     a[11125] = ach:New(11125, 10); -- Now You're Thinking With Portals
@@ -4385,11 +4385,11 @@ function exportedAchievements.Load(a, t)
     a[11136] = ach:New(11136, 30); -- An Epic Campaign
     a[11137] = ach:New(11137, 0); -- A Legendary Campaign
     a[11138] = ach:New(11138, 0); -- Is There a Medic in the Zone?
-    SetTO(a[11138], function() return false; end);
+    SetTO(a[11138]);
     a[11139] = ach:New(11139, 0); -- Field Medic
-    SetTO(a[11139], function() return false; end);
+    SetTO(a[11139]);
     a[11144] = ach:New(11144, 0); -- Power Realized
-    SetTO(a[11144], function() return false; end);
+    SetTO(a[11144]);
     a[11157] = ach:New(11157, 10); -- Loremaster of Legion
     a[11159] = ach:New(11159, 5); -- Friends in a Broken Land
     a[11160] = ach:New(11160, 10); -- Unleashed Monstrosities
@@ -4397,17 +4397,17 @@ function exportedAchievements.Load(a, t)
     a[11163] = ach:New(11163, 25); -- Glory of the Legion Hero
     a[11164] = ach:New(11164, 20); -- Legion Dungeon Hero
     a[11165] = ach:New(11165, 0, fac.Alliance, 11166); -- Crest of Heroism
-    SetTO(a[11165], function() return false; end);
+    SetTO(a[11165]);
     a[11166] = ach:New(11166, 0, fac.Horde, 11165); -- Crest of Heroism
-    SetTO(a[11166], function() return false; end);
+    SetTO(a[11166]);
     a[11167] = ach:New(11167, 0, fac.Alliance, 11168); -- Crest of Carnage
-    SetTO(a[11167], function() return false; end);
+    SetTO(a[11167]);
     a[11168] = ach:New(11168, 0, fac.Horde, 11167); -- Crest of Carnage
-    SetTO(a[11168], function() return false; end);
+    SetTO(a[11168]);
     a[11169] = ach:New(11169, 0, fac.Alliance, 11170); -- Crest of Devastation
-    SetTO(a[11169], function() return false; end);
+    SetTO(a[11169]);
     a[11170] = ach:New(11170, 0, fac.Horde, 11169); -- Crest of Devastation
-    SetTO(a[11170], function() return false; end);
+    SetTO(a[11170]);
     a[11171] = ach:New(11171, 10); -- Arsenal of Power
     a[11173] = ach:New(11173, 10, fac.Horde, 10749); -- Fighting with Style: War-torn
     a[11175] = ach:New(11175, 10); -- Higher Dimensional Learning
@@ -4416,7 +4416,7 @@ function exportedAchievements.Load(a, t)
     a[11178] = ach:New(11178, 10); -- Wake the Dragon
     a[11180] = ach:New(11180, 25); -- Glory of the Legion Raider
     a[11181] = ach:New(11181, 10); -- Legion Keymaster
-    SetTO(a[11181], function() return false; end);
+    SetTO(a[11181]);
     a[11183] = ach:New(11183, 10); -- Keystone Initiate
     a[11184] = ach:New(11184, 10); -- Keystone Challenger
     a[11185] = ach:New(11185, 10); -- Keystone Conqueror
@@ -4425,17 +4425,17 @@ function exportedAchievements.Load(a, t)
     a[11189] = ach:New(11189, 10); -- Variety is the Spice of Life
     a[11190] = ach:New(11190, 25); -- "Broken Isles Pathfinder, Part One"
     a[11191] = ach:New(11191, 0); -- Cutting Edge: Xavius
-    SetTO(a[11191], function() return false; end);
+    SetTO(a[11191]);
     a[11192] = ach:New(11192, 0); -- Cutting Edge: Gul'dan
-    SetTO(a[11192], function() return false; end);
+    SetTO(a[11192]);
     a[11194] = ach:New(11194, 0); -- Ahead of the Curve: Xavius
-    SetTO(a[11194], function() return false; end);
+    SetTO(a[11194]);
     a[11195] = ach:New(11195, 0); -- Ahead of the Curve: Gul'dan
-    SetTO(a[11195], function() return false; end);
+    SetTO(a[11195]);
     a[11200] = ach:New(11200, 0); -- Stand Against the Legion
-    SetTO(a[11200], function() return false; end);
+    SetTO(a[11200]);
     a[11201] = ach:New(11201, 0); -- Defender of Azeroth: Legion Invasions
-    SetTO(a[11201], function() return false; end);
+    SetTO(a[11201]);
     a[11210] = ach:New(11210, 0); -- Fight for the Alliance
     a[11211] = ach:New(11211, 0); -- Fight for the Horde
     a[11212] = ach:New(11212, 5); -- Raise an Army
@@ -4445,14 +4445,14 @@ function exportedAchievements.Load(a, t)
     a[11216] = ach:New(11216, 5); -- So Many Missions
     a[11217] = ach:New(11217, 5); -- "Many Many Missions, Handle It!"
     a[11218] = ach:New(11218, 0); -- There's a Boss In There
-    SetTO(a[11218], function() return false; end);
+    SetTO(a[11218]);
     a[11219] = ach:New(11219, 5); -- Need Backup
     a[11220] = ach:New(11220, 5); -- Roster of Champions
     a[11221] = ach:New(11221, 5); -- Champions Rise
     a[11222] = ach:New(11222, 5); -- Champions of Power
     a[11223] = ach:New(11223, 5); -- Legendary Research
     a[11224] = ach:New(11224, 0); -- Realm First! Legion Keystone Master
-    SetTO(a[11224], function() return false; end);
+    SetTO(a[11224]);
     a[11232] = ach:New(11232, 5); -- "Lock, Stock and Two Smoking Goblins"
     a[11233] = ach:New(11233, 5); -- Broken Isles Safari
     a[11240] = ach:New(11240, 5); -- Harbinger
@@ -4475,11 +4475,11 @@ function exportedAchievements.Load(a, t)
     a[11283] = ach:New(11283, 10, fac.Alliance, 11284); -- Flame Warden of Draenor
     a[11284] = ach:New(11284, 10, fac.Horde, 11283); -- Flame Keeper of Draenor
     a[11294] = ach:New(11294, 0); -- Murloc Battlemasters
-    SetTO(a[11294], function() return false; end);
+    SetTO(a[11294]);
     a[11296] = ach:New(11296, 0); -- The Ancient Keeper
-    SetTO(a[11296], function() return false; end);
+    SetTO(a[11296]);
     a[11297] = ach:New(11297, 0); -- The Balance of Light and Shadow
-    SetTO(a[11297], function() return false; end);
+    SetTO(a[11297]);
     a[11298] = ach:New(11298, 10); -- A Classy Outfit
     a[11320] = ach:New(11320, 10); -- Raiding with Leashes IV: Wrath of the Lick King
     a[11335] = ach:New(11335, 10); -- Season Tickets
@@ -4489,10 +4489,10 @@ function exportedAchievements.Load(a, t)
     a[11377] = ach:New(11377, 10); -- Patient Zero
     a[11386] = ach:New(11386, 10); -- Boneafide Tri Tip
     a[11387] = ach:New(11387, 0); -- The Chosen
-    SetTO(a[11387], function() return false; end);
+    SetTO(a[11387]);
     a[11394] = ach:New(11394, 10); -- Trial of Valor
     a[11395] = ach:New(11395, 0); -- Diablo's 20th Anniversary
-    SetTO(a[11395], function() return false; end);
+    SetTO(a[11395]);
     a[11396] = ach:New(11396, 10); -- Mythic: Odyn
     a[11397] = ach:New(11397, 10); -- Mythic: Guarm
     a[11398] = ach:New(11398, 10); -- Mythic: Helya
@@ -4506,15 +4506,15 @@ function exportedAchievements.Load(a, t)
     a[11433] = ach:New(11433, 10); -- Burn After Reading
     a[11446] = ach:New(11446, 25); -- "Broken Isles Pathfinder, Part Two"
     a[11468] = ach:New(11468, 0); -- Alive for Five
-    SetTO(a[11468], function() return false; end);
+    SetTO(a[11468]);
     a[11469] = ach:New(11469, 0); -- The River Six
-    SetTO(a[11469], function() return false; end);
+    SetTO(a[11469]);
     a[11470] = ach:New(11470, 0); -- Slayin' to Seven
-    SetTO(a[11470], function() return false; end);
+    SetTO(a[11470]);
     a[11471] = ach:New(11471, 0); -- "Don't Hate, Grind to Eight"
-    SetTO(a[11471], function() return false; end);
+    SetTO(a[11471]);
     a[11472] = ach:New(11472, 0); -- "Hell, It's About Nine"
-    SetTO(a[11472], function() return false; end);
+    SetTO(a[11472]);
     a[11474] = ach:New(11474, 20, nil, nil, nil, custObj[11474]); -- "Free For All, More For Me"
     a[11475] = ach:New(11475, 10); -- Mission Accomplished
     a[11476] = ach:New(11476, 10); -- Saddle Sore
@@ -4525,44 +4525,44 @@ function exportedAchievements.Load(a, t)
     a[11545] = ach:New(11545, 5); -- Legionfall Commander
     a[11546] = ach:New(11546, 10); -- Breaching the Tomb
     a[11558] = ach:New(11558, 5, fac.Alliance, 11559); -- The First Rule of Brawler's Guild
-    SetTO(a[11558], function() return false; end);
+    SetTO(a[11558]);
     a[11559] = ach:New(11559, 5, fac.Horde, 11558); -- The First Rule of Brawler's Guild
-    SetTO(a[11559], function() return false; end);
+    SetTO(a[11559]);
     a[11560] = ach:New(11560, 0, fac.Alliance, 11561); -- You Are Not Your $#*@! Legplates (Season 3)
-    SetTO(a[11560], function() return false; end);
+    SetTO(a[11560]);
     a[11561] = ach:New(11561, 0, fac.Horde, 11560); -- You Are Not Your $#*@! Legplates (Season 3)
-    SetTO(a[11561], function() return false; end);
+    SetTO(a[11561]);
     a[11563] = ach:New(11563, 0, fac.Alliance, 11564); -- The Second Rule of Brawler's Guild (Season 3)
-    SetTO(a[11563], function() return false; end);
+    SetTO(a[11563]);
     a[11564] = ach:New(11564, 0, fac.Horde, 11563); -- The Second Rule of Brawler's Guild (Season 3)
-    SetTO(a[11564], function() return false; end);
+    SetTO(a[11564]);
     a[11565] = ach:New(11565, 0, fac.Alliance, 11566); -- King of the Guild (Season 3)
-    SetTO(a[11565], function() return false; end);
+    SetTO(a[11565]);
     a[11566] = ach:New(11566, 0, fac.Horde, 11565); -- King of the Guild (Season 3)
-    SetTO(a[11566], function() return false; end);
+    SetTO(a[11566]);
     a[11567] = ach:New(11567, 5); -- You Are Not The Contents Of Your Wallet
-    SetTO(a[11567], function() return false; end);
+    SetTO(a[11567]);
     a[11570] = ach:New(11570, 5); -- Educated Guesser
-    SetTO(a[11570], function() return false; end);
+    SetTO(a[11570]);
     a[11572] = ach:New(11572, 0); -- I Am Thrall's Complete Lack Of Surprise (Season 3)
-    SetTO(a[11572], function() return false; end);
+    SetTO(a[11572]);
     a[11573] = ach:New(11573, 5); -- Rumble Club
-    SetTO(a[11573], function() return false; end);
+    SetTO(a[11573]);
     a[11578] = ach:New(11578, 0); -- Vindictive Elite
-    SetTO(a[11578], function() return false; end);
+    SetTO(a[11578]);
     a[11579] = ach:New(11579, 0); -- Fearless Elite
-    SetTO(a[11579], function() return false; end);
+    SetTO(a[11579]);
     a[11580] = ach:New(11580, 0); -- Cutting Edge: Helya
-    SetTO(a[11580], function() return false; end);
+    SetTO(a[11580]);
     a[11581] = ach:New(11581, 0); -- Ahead of the Curve: Helya
-    SetTO(a[11581], function() return false; end);
+    SetTO(a[11581]);
     a[11607] = ach:New(11607, 10); -- They See Me Rolling
     a[11609] = ach:New(11609, 0); -- Power Unbound
     a[11610] = ach:New(11610, 0); -- Power Unleashed
     a[11611] = ach:New(11611, 0); -- A Challenging Look
-    SetTO(a[11611], function() return false; end);
+    SetTO(a[11611]);
     a[11612] = ach:New(11612, 0); -- Fighting with Style: Challenging
-    SetTO(a[11612], function() return false; end);
+    SetTO(a[11612]);
     a[11628] = ach:New(11628, 10); -- That's So Last Millennium
     AddT(a[11628], t[940]); -- Warplate of the Obsidian Aspect (Raid Finder)
     AddT(a[11628], t[937]); -- Warplate of the Obsidian Aspect (Normal)
@@ -4798,30 +4798,30 @@ function exportedAchievements.Load(a, t)
     a[11681] = ach:New(11681, 10); -- Crate Expectations
     a[11683] = ach:New(11683, 10); -- Bingo!
     a[11685] = ach:New(11685, 0); -- Decade of Dominance
-    SetTO(a[11685], function() return false; end);
+    SetTO(a[11685]);
     a[11686] = ach:New(11686, 0); -- These Go To Eleven
-    SetTO(a[11686], function() return false; end);
+    SetTO(a[11686]);
     a[11687] = ach:New(11687, 0); -- Demonic Dozen
-    SetTO(a[11687], function() return false; end);
+    SetTO(a[11687]);
     a[11688] = ach:New(11688, 0); -- Floor Thirteen
-    SetTO(a[11688], function() return false; end);
+    SetTO(a[11688]);
     a[11689] = ach:New(11689, 0); -- Fourteen for the Team
-    SetTO(a[11689], function() return false; end);
+    SetTO(a[11689]);
     a[11690] = ach:New(11690, 0); -- When You're Fifteen
-    SetTO(a[11690], function() return false; end);
+    SetTO(a[11690]);
     a[11691] = ach:New(11691, 0); -- You Are Sixteen
-    SetTO(a[11691], function() return false; end);
+    SetTO(a[11691]);
     a[11692] = ach:New(11692, 0); -- Going On Seventeen
-    SetTO(a[11692], function() return false; end);
+    SetTO(a[11692]);
     a[11693] = ach:New(11693, 0); -- Eighteen and Over
-    SetTO(a[11693], function() return false; end);
+    SetTO(a[11693]);
     a[11694] = ach:New(11694, 0); -- "Hell, It's About Nineteen"
-    SetTO(a[11694], function() return false; end);
+    SetTO(a[11694]);
     a[11696] = ach:New(11696, 10); -- Grin and Bear It
     a[11697] = ach:New(11697, 0); -- Cruel Elite
-    SetTO(a[11697], function() return false; end);
+    SetTO(a[11697]);
     a[11698] = ach:New(11698, 0); -- Ferocious Elite
-    SetTO(a[11698], function() return false; end);
+    SetTO(a[11698]);
     a[11699] = ach:New(11699, 10); -- Grand Fin-ale
     a[11700] = ach:New(11700, 10); -- Cathedral of Eternal Night
     a[11701] = ach:New(11701, 10); -- Heroic: Cathedral of Eternal Night
@@ -5859,7 +5859,7 @@ function exportedAchievements.Load(a, t)
     a[11769] = ach:New(11769, 10); -- A Steamy Romance Saga
     a[11770] = ach:New(11770, 10); -- Dark Souls
     a[11772] = ach:New(11772, 0); -- Power Ascended
-    SetTO(a[11772], function() return false; end);
+    SetTO(a[11772]);
     a[11773] = ach:New(11773, 10); -- "Wax On, Wax Off"
     a[11774] = ach:New(11774, 10); -- Mythic: Demonic Inquisition
     a[11775] = ach:New(11775, 10); -- Mythic: Harjatan
@@ -5879,15 +5879,15 @@ function exportedAchievements.Load(a, t)
     a[11841] = ach:New(11841, 10); -- Naxt Victim
     a[11846] = ach:New(11846, 10); -- Champions of Legionfall
     a[11848] = ach:New(11848, 0); -- WoW's 13th Anniversary
-    SetTO(a[11848], function() return false; end);
+    SetTO(a[11848]);
     a[11856] = ach:New(11856, 5); -- Pet Battle Challenge: Deadmines
     a[11861] = ach:New(11861, 10, fac.Horde, 12473); -- The Throne of Zuldazar
     a[11868] = ach:New(11868, 10, fac.Horde, 12497); -- The Dark Heart of Nazmir
     a[11869] = ach:New(11869, 0); -- I'll Hold These For You Until You Get Out
     a[11874] = ach:New(11874, 0); -- Ahead of the Curve: Kil'jaeden
-    SetTO(a[11874], function() return false; end);
+    SetTO(a[11874]);
     a[11875] = ach:New(11875, 0); -- Cutting Edge: Kil'jaeden
-    SetTO(a[11875], function() return false; end);
+    SetTO(a[11875]);
     a[11913] = ach:New(11913, 0); -- Don't Play With That In The House
     a[11915] = ach:New(11915, 10); -- Don't Sweat the Technique
     a[11918] = ach:New(11918, 5); -- "Hey, You're a Rockstar!"
@@ -5898,7 +5898,7 @@ function exportedAchievements.Load(a, t)
     a[11929] = ach:New(11929, 10); -- Heroic: Return to Karazhan
     a[11930] = ach:New(11930, 10); -- Worm-monger
     a[11931] = ach:New(11931, 0); -- Rides of War
-    SetTO(a[11931], function() return false; end);
+    SetTO(a[11931]);
     a[11941] = ach:New(11941, 10); -- Chromie Homie
     a[11948] = ach:New(11948, 10); -- Together We Stand
     a[11949] = ach:New(11949, 10); -- Hard to Kill
@@ -5924,7 +5924,7 @@ function exportedAchievements.Load(a, t)
     a[12008] = ach:New(12008, 10); -- Mythic: Seat of the Triumvirate
     a[12009] = ach:New(12009, 10); -- Darker Side
     a[12010] = ach:New(12010, 0); -- Fierce Gladiator: Legion Season 5
-    SetTO(a[12010], function() return false; end);
+    SetTO(a[12010]);
     a[12020] = ach:New(12020, 10); -- Argussy Up
     AddT(a[12020], t[1519]); -- Juggernaut Battlegear (Raid Finder)
     AddT(a[12020], t[1516]); -- Juggernaut Battlegear (Normal)
@@ -6051,42 +6051,42 @@ function exportedAchievements.Load(a, t)
     a[12028] = ach:New(12028, 10); -- Envision Invasion Eradication
     a[12030] = ach:New(12030, 10); -- The World Revolves Around Me
     a[12031] = ach:New(12031, 0, fac.Horde, 12032); -- Fierce Combatant
-    SetTO(a[12031], function() return false; end);
+    SetTO(a[12031]);
     a[12032] = ach:New(12032, 0, fac.Alliance, 12031); -- Fierce Combatant
-    SetTO(a[12032], function() return false; end);
+    SetTO(a[12032]);
     a[12034] = ach:New(12034, 0); -- Duelist: Legion Season 5
-    SetTO(a[12034], function() return false; end);
+    SetTO(a[12034]);
     a[12035] = ach:New(12035, 0); -- Rival: Legion Season 5
-    SetTO(a[12035], function() return false; end);
+    SetTO(a[12035]);
     a[12036] = ach:New(12036, 0); -- Challenger: Legion Season 5
-    SetTO(a[12036], function() return false; end);
+    SetTO(a[12036]);
     a[12037] = ach:New(12037, 0, fac.Alliance, 12041); -- Hero of the Alliance: Fierce
-    SetTO(a[12037], function() return false; end);
+    SetTO(a[12037]);
     a[12038] = ach:New(12038, 0, fac.Alliance, 12042); -- Guardian of the Alliance: Legion Season 5
-    SetTO(a[12038], function() return false; end);
+    SetTO(a[12038]);
     a[12039] = ach:New(12039, 0, fac.Alliance, 12043); -- Defender of the Alliance: Legion Season 5
-    SetTO(a[12039], function() return false; end);
+    SetTO(a[12039]);
     a[12040] = ach:New(12040, 0, fac.Alliance, 12044); -- Soldier of the Alliance: Legion Season 5
-    SetTO(a[12040], function() return false; end);
+    SetTO(a[12040]);
     a[12041] = ach:New(12041, 0, fac.Horde, 12037); -- Hero of the Horde: Fierce
-    SetTO(a[12041], function() return false; end);
+    SetTO(a[12041]);
     a[12042] = ach:New(12042, 0, fac.Horde, 12038); -- Guardian of the Horde: Legion Season 5
-    SetTO(a[12042], function() return false; end);
+    SetTO(a[12042]);
     a[12043] = ach:New(12043, 0, fac.Horde, 12039); -- Defender of the Horde: Legion Season 5
-    SetTO(a[12043], function() return false; end);
+    SetTO(a[12043]);
     a[12044] = ach:New(12044, 0, fac.Horde, 12040); -- Soldier of the Horde: Legion Season 5
-    SetTO(a[12044], function() return false; end);
+    SetTO(a[12044]);
     a[12045] = ach:New(12045, 0); -- Gladiator: Legion Season 5
-    SetTO(a[12045], function() return false; end);
+    SetTO(a[12045]);
     a[12046] = ach:New(12046, 10); -- Remember the Titans
     a[12065] = ach:New(12065, 10); -- Hounds Good To Me
     a[12066] = ach:New(12066, 10); -- You Are Now Prepared!
     a[12067] = ach:New(12067, 10); -- Spheres of Influence
     a[12069] = ach:New(12069, 10); -- Explore Argus
     a[12071] = ach:New(12071, 0); -- Crucible's Promise
-    SetTO(a[12071], function() return false; end);
+    SetTO(a[12071]);
     a[12072] = ach:New(12072, 0); -- Now You're Cooking with Netherlight
-    SetTO(a[12072], function() return false; end);
+    SetTO(a[12072]);
     a[12073] = ach:New(12073, 5); -- Locked and Loaded
     a[12074] = ach:New(12074, 10); -- "Shoot First, Loot Later"
     a[12076] = ach:New(12076, 10); -- Protector of the Argussian Reach
@@ -6100,7 +6100,7 @@ function exportedAchievements.Load(a, t)
     a[12088] = ach:New(12088, 10); -- Anomalous Animals of Argus
     a[12089] = ach:New(12089, 5); -- Aquatic Assault
     a[12090] = ach:New(12090, 0); -- Fierce Elite
-    SetTO(a[12090], function() return false; end);
+    SetTO(a[12090]);
     a[12091] = ach:New(12091, 5); -- Beast Blitz
     a[12092] = ach:New(12092, 5); -- Critical Critters
     a[12093] = ach:New(12093, 5); -- Draconic Destruction
@@ -6116,90 +6116,90 @@ function exportedAchievements.Load(a, t)
     a[12103] = ach:New(12103, 10); -- ...And Chew Mana Buns
     a[12104] = ach:New(12104, 10); -- And We're All Out of Mana Buns
     a[12108] = ach:New(12108, 0); -- Double Decade of Dominance
-    SetTO(a[12108], function() return false; end);
+    SetTO(a[12108]);
     a[12109] = ach:New(12109, 0); -- Twenty-One Arms Salute
-    SetTO(a[12109], function() return false; end);
+    SetTO(a[12109]);
     a[12110] = ach:New(12110, 0); -- Ahead of the Curve: Argus the Unmaker
-    SetTO(a[12110], function() return false; end);
+    SetTO(a[12110]);
     a[12111] = ach:New(12111, 0); -- Cutting Edge: Argus the Unmaker
-    SetTO(a[12111], function() return false; end);
+    SetTO(a[12111]);
     a[12129] = ach:New(12129, 10); -- This is the War Room!
     a[12134] = ach:New(12134, 0); -- Dominant Gladiator: Legion Season 6
-    SetTO(a[12134], function() return false; end);
+    SetTO(a[12134]);
     a[12135] = ach:New(12135, 0); -- Dominant Elite
-    SetTO(a[12135], function() return false; end);
+    SetTO(a[12135]);
     a[12136] = ach:New(12136, 0, fac.Horde, 12137); -- Dominant Combatant
-    SetTO(a[12136], function() return false; end);
+    SetTO(a[12136]);
     a[12137] = ach:New(12137, 0, fac.Alliance, 12136); -- Dominant Combatant
-    SetTO(a[12137], function() return false; end);
+    SetTO(a[12137]);
     a[12139] = ach:New(12139, 0); -- Dominant Gladiator's Storm Dragon
-    SetTO(a[12139], function() return false; end);
+    SetTO(a[12139]);
     a[12140] = ach:New(12140, 0); -- Demonic Gladiator's Storm Dragon
-    SetTO(a[12140], function() return false; end);
+    SetTO(a[12140]);
     a[12167] = ach:New(12167, 0); -- Gladiator: Legion Season 6
-    SetTO(a[12167], function() return false; end);
+    SetTO(a[12167]);
     a[12168] = ach:New(12168, 0); -- Gladiator: Legion Season 7
-    SetTO(a[12168], function() return false; end);
+    SetTO(a[12168]);
     a[12169] = ach:New(12169, 0); -- Challenger: Legion Season 6
-    SetTO(a[12169], function() return false; end);
+    SetTO(a[12169]);
     a[12170] = ach:New(12170, 0); -- Rival: Legion Season 6
-    SetTO(a[12170], function() return false; end);
+    SetTO(a[12170]);
     a[12171] = ach:New(12171, 0); -- Duelist: Legion Season 6
-    SetTO(a[12171], function() return false; end);
+    SetTO(a[12171]);
     a[12172] = ach:New(12172, 0, fac.Horde, 12173); -- Hero of the Horde: Dominant
-    SetTO(a[12172], function() return false; end);
+    SetTO(a[12172]);
     a[12173] = ach:New(12173, 0, fac.Alliance, 12172); -- Hero of the Alliance: Dominant
-    SetTO(a[12173], function() return false; end);
+    SetTO(a[12173]);
     a[12174] = ach:New(12174, 0, fac.Horde, 12175); -- Defender of the Horde: Legion Season 6
-    SetTO(a[12174], function() return false; end);
+    SetTO(a[12174]);
     a[12175] = ach:New(12175, 0, fac.Alliance, 12174); -- Defender of the Alliance: Legion Season 6
-    SetTO(a[12175], function() return false; end);
+    SetTO(a[12175]);
     a[12176] = ach:New(12176, 0, fac.Horde, 12177); -- Guardian of the Horde: Legion Season 6
-    SetTO(a[12176], function() return false; end);
+    SetTO(a[12176]);
     a[12177] = ach:New(12177, 0, fac.Alliance, 12176); -- Guardian of the Alliance: Legion Season 6
-    SetTO(a[12177], function() return false; end);
+    SetTO(a[12177]);
     a[12178] = ach:New(12178, 0, fac.Horde, 12179); -- Soldier of the Horde: Legion Season 6
-    SetTO(a[12178], function() return false; end);
+    SetTO(a[12178]);
     a[12179] = ach:New(12179, 0, fac.Alliance, 12178); -- Soldier of the Alliance: Legion Season 6
-    SetTO(a[12179], function() return false; end);
+    SetTO(a[12179]);
     a[12180] = ach:New(12180, 0); -- Catching Twenty-Two
-    SetTO(a[12180], function() return false; end);
+    SetTO(a[12180]);
     a[12181] = ach:New(12181, 0); -- Protocol 2.3
-    SetTO(a[12181], function() return false; end);
+    SetTO(a[12181]);
     a[12182] = ach:New(12182, 0); -- Demonic Double Dozen
-    SetTO(a[12182], function() return false; end);
+    SetTO(a[12182]);
     a[12183] = ach:New(12183, 0); -- Prestige Quartermaster
-    SetTO(a[12183], function() return false; end);
+    SetTO(a[12183]);
     a[12185] = ach:New(12185, 0); -- Demonic Gladiator: Legion Season 7
-    SetTO(a[12185], function() return false; end);
+    SetTO(a[12185]);
     a[12186] = ach:New(12186, 0); -- Duelist: Legion Season 7
-    SetTO(a[12186], function() return false; end);
+    SetTO(a[12186]);
     a[12187] = ach:New(12187, 0); -- Challenger: Legion Season 7
-    SetTO(a[12187], function() return false; end);
+    SetTO(a[12187]);
     a[12188] = ach:New(12188, 0); -- Rival: Legion Season 7
-    SetTO(a[12188], function() return false; end);
+    SetTO(a[12188]);
     a[12189] = ach:New(12189, 0, fac.Alliance, 12190); -- Soldier of the Alliance: Legion Season 7
-    SetTO(a[12189], function() return false; end);
+    SetTO(a[12189]);
     a[12190] = ach:New(12190, 0, fac.Horde, 12189); -- Soldier of the Horde: Legion Season 7
-    SetTO(a[12190], function() return false; end);
+    SetTO(a[12190]);
     a[12191] = ach:New(12191, 0, fac.Alliance, 12192); -- Guardian of the Alliance: Legion Season 7
-    SetTO(a[12191], function() return false; end);
+    SetTO(a[12191]);
     a[12192] = ach:New(12192, 0, fac.Horde, 12191); -- Guardian of the Horde: Legion Season 7
-    SetTO(a[12192], function() return false; end);
+    SetTO(a[12192]);
     a[12194] = ach:New(12194, 0, fac.Horde, 12195); -- Defender of the Horde: Legion Season 7
-    SetTO(a[12194], function() return false; end);
+    SetTO(a[12194]);
     a[12195] = ach:New(12195, 0, fac.Alliance, 12194); -- Defender of the Alliance: Legion Season 7
-    SetTO(a[12195], function() return false; end);
+    SetTO(a[12195]);
     a[12196] = ach:New(12196, 0, fac.Horde, 12197); -- Hero of the Horde: Demonic
-    SetTO(a[12196], function() return false; end);
+    SetTO(a[12196]);
     a[12197] = ach:New(12197, 0, fac.Alliance, 12196); -- Hero of the Alliance: Demonic
-    SetTO(a[12197], function() return false; end);
+    SetTO(a[12197]);
     a[12198] = ach:New(12198, 0); -- Demonic Elite
-    SetTO(a[12198], function() return false; end);
+    SetTO(a[12198]);
     a[12199] = ach:New(12199, 0, fac.Horde, 12200); -- Demonic Combatant
-    SetTO(a[12199], function() return false; end);
+    SetTO(a[12199]);
     a[12200] = ach:New(12200, 0, fac.Alliance, 12199); -- Demonic Combatant
-    SetTO(a[12200], function() return false; end);
+    SetTO(a[12200]);
     a[12229] = ach:New(12229, 0, fac.Alliance, 12230); -- Collector's Edition: Seabraid Stallion
     a[12230] = ach:New(12230, 0, fac.Horde, 12229); -- Collector's Edition: Gilded Ravasaur
     a[12232] = ach:New(12232, 0); -- Collector's Edition: Tottle
@@ -6356,15 +6356,15 @@ function exportedAchievements.Load(a, t)
     a[12532] = ach:New(12532, 10); -- Mythic: Mythrax the Unraveler
     a[12533] = ach:New(12533, 10); -- Mythic: G'huun
     a[12535] = ach:New(12535, 0); -- Cutting Edge: G'huun
-    SetTO(a[12535], function() return false; end);
+    SetTO(a[12535]);
     a[12536] = ach:New(12536, 0); -- Ahead of the Curve: G'huun
-    SetTO(a[12536], function() return false; end);
+    SetTO(a[12536]);
     a[12544] = ach:New(12544, 0); -- Level 120 (Legacy)
-    SetTO(a[12544], function() return false; end);
+    SetTO(a[12544]);
     a[12546] = ach:New(12546, 0); -- Superior (Battle)
-    SetTO(a[12546], function() return false; end);
+    SetTO(a[12546]);
     a[12547] = ach:New(12547, 0); -- Epic (Battle)
-    SetTO(a[12547], function() return false; end);
+    SetTO(a[12547]);
     a[12548] = ach:New(12548, 10); -- I'm in Charge Now!
     a[12549] = ach:New(12549, 10); -- Not a Fun Guy
     a[12550] = ach:New(12550, 10); -- Pecking Order
@@ -6450,7 +6450,7 @@ function exportedAchievements.Load(a, t)
     a[12825] = ach:New(12825, 10); -- Heroic: Atal'Dazar
     a[12826] = ach:New(12826, 10); -- Mythic: Atal'Dazar
     a[12827] = ach:New(12827, 0); -- WoW's 14th Anniversary
-    SetTO(a[12827], function() return false; end);
+    SetTO(a[12827]);
     a[12828] = ach:New(12828, 10); -- What's in the Box?
     a[12830] = ach:New(12830, 10); -- Edgelords
     a[12831] = ach:New(12831, 10); -- Freehold
@@ -6543,7 +6543,7 @@ function exportedAchievements.Load(a, t)
     a[12943] = ach:New(12943, 10); -- Adventurer of Vol'dun
     a[12944] = ach:New(12944, 10); -- Adventurer of Zuldazar
     a[12945] = ach:New(12945, 0); -- Dread Gladiator: Battle for Azeroth Season 1
-    SetTO(a[12945], function() return false; end);
+    SetTO(a[12945]);
     a[12947] = ach:New(12947, 10); -- Azerothian Diplomat
     a[12948] = ach:New(12948, 5, fac.Horde, 12952); -- Talanji's Expedition
     a[12949] = ach:New(12949, 5, fac.Horde, 12953); -- The Voldunai
@@ -6557,17 +6557,17 @@ function exportedAchievements.Load(a, t)
     a[12957] = ach:New(12957, 5, fac.Horde, 12954); -- Champion of the Honorbound
     a[12958] = ach:New(12958, 10); -- Master of Minions
     a[12959] = ach:New(12959, 0); -- Challenger: Battle for Azeroth Season 1
-    SetTO(a[12959], function() return false; end);
+    SetTO(a[12959]);
     a[12960] = ach:New(12960, 0); -- Rival: Battle for Azeroth Season 1
-    SetTO(a[12960], function() return false; end);
+    SetTO(a[12960]);
     a[12961] = ach:New(12961, 0); -- Gladiator: Battle for Azeroth Season 1
-    SetTO(a[12961], function() return false; end);
+    SetTO(a[12961]);
     a[12962] = ach:New(12962, 0); -- Duelist: Battle for Azeroth Season 1
-    SetTO(a[12962], function() return false; end);
+    SetTO(a[12962]);
     a[12963] = ach:New(12963, 0, fac.Alliance, 12964); -- Hero of the Alliance: Dread
-    SetTO(a[12963], function() return false; end);
+    SetTO(a[12963]);
     a[12964] = ach:New(12964, 0, fac.Horde, 12963); -- Hero of the Horde: Dread
-    SetTO(a[12964], function() return false; end);
+    SetTO(a[12964]);
     a[12988] = ach:New(12988, 25); -- Battle for Azeroth Explorer
     a[12989] = ach:New(12989, 25); -- "Battle for Azeroth Pathfinder, Part One"
     a[12990] = ach:New(12990, 10); -- Catchin' Some Rays
@@ -6670,16 +6670,16 @@ function exportedAchievements.Load(a, t)
     a[13076] = ach:New(13076, 10, fac.Alliance); -- Heritage of the Dark Iron
     a[13077] = ach:New(13077, 10, fac.Horde); -- Heritage of the Mag'har
     a[13078] = ach:New(13078, 0); -- Realm First! Battle for Azeroth Keystone Master
-    SetTO(a[13078], function() return false; end);
+    SetTO(a[13078]);
     a[13079] = ach:New(13079, 0); -- Battle for Azeroth Keystone Conqueror: Season One
-    SetTO(a[13079], function() return false; end);
+    SetTO(a[13079]);
     a[13080] = ach:New(13080, 0); -- Battle for Azeroth Keystone Master: Season One
-    SetTO(a[13080], function() return false; end);
+    SetTO(a[13080]);
     a[13082] = ach:New(13082, 5, fac.Alliance); -- Everything Old Is New Again
     a[13083] = ach:New(13083, 5); -- "Better, Faster, Stronger"
     a[13087] = ach:New(13087, 5); -- Sausage Sampler
     a[13093] = ach:New(13093, 0); -- Dread Gladiator's Proto-Drake
-    SetTO(a[13093], function() return false; end);
+    SetTO(a[13093]);
     a[13094] = ach:New(13094, 5); -- Cursed Game Hunter
     a[13095] = ach:New(13095, 10); -- Dread Chain
     a[13096] = ach:New(13096, 10); -- Heroic: Dread Chain
@@ -6720,48 +6720,48 @@ function exportedAchievements.Load(a, t)
     a[13134] = ach:New(13134, 20); -- Expedition Leader
     a[13135] = ach:New(13135, 10, fac.Horde, 13133); -- Team Deathmatch
     a[13138] = ach:New(13138, 0); -- Flying Colors
-    SetTO(a[13138], function() return false; end);
+    SetTO(a[13138]);
     a[13141] = ach:New(13141, 10); -- Island Slayer
     a[13142] = ach:New(13142, 10); -- Archipelago Explorer
     a[13144] = ach:New(13144, 10); -- Wide World of Quests
     a[13161] = ach:New(13161, 10, fac.Horde); -- Allied Races: Zandalari Troll
     a[13163] = ach:New(13163, 10, fac.Alliance); -- Allied Races: Kul Tiran
     a[13186] = ach:New(13186, 5, fac.Alliance, 13188); -- You Are Not Your $#*@! Legplates
-    SetTO(a[13186], function() return false; end);
+    SetTO(a[13186]);
     a[13188] = ach:New(13188, 5, fac.Horde, 13186); -- You Are Not Your $#*@! Legplates
-    SetTO(a[13188], function() return false; end);
+    SetTO(a[13188]);
     a[13189] = ach:New(13189, 5, fac.Alliance, 13190); -- The Second Rule of Brawler's Guild
-    SetTO(a[13189], function() return false; end);
+    SetTO(a[13189]);
     a[13190] = ach:New(13190, 5, fac.Horde, 13189); -- The Second Rule of Brawler's Guild
-    SetTO(a[13190], function() return false; end);
+    SetTO(a[13190]);
     a[13191] = ach:New(13191, 5, fac.Alliance, 13192); -- Brawler for Azeroth
-    SetTO(a[13191], function() return false; end);
+    SetTO(a[13191]);
     a[13192] = ach:New(13192, 5, fac.Horde, 13191); -- Brawler for Azeroth
-    SetTO(a[13192], function() return false; end);
+    SetTO(a[13192]);
     a[13194] = ach:New(13194, 5); -- I Am Thrall's Complete Lack Of Surprise
-    SetTO(a[13194], function() return false; end);
+    SetTO(a[13194]);
     a[13196] = ach:New(13196, 0); -- Meat Marauder
     a[13199] = ach:New(13199, 0); -- Combatant: Battle for Azeroth Season 1
-    SetTO(a[13199], function() return false; end);
+    SetTO(a[13199]);
     a[13200] = ach:New(13200, 0); -- Sinister Gladiator: Battle for Azeroth Season 2
-    SetTO(a[13200], function() return false; end);
+    SetTO(a[13200]);
     a[13202] = ach:New(13202, 0); -- Sinister Gladiator's Proto-Drake
-    SetTO(a[13202], function() return false; end);
+    SetTO(a[13202]);
     a[13203] = ach:New(13203, 0); -- Challenger: Battle for Azeroth Season 2
-    SetTO(a[13203], function() return false; end);
+    SetTO(a[13203]);
     a[13204] = ach:New(13204, 0); -- Combatant: Battle for Azeroth Season 2
-    SetTO(a[13204], function() return false; end);
+    SetTO(a[13204]);
     a[13205] = ach:New(13205, 0); -- Rival: Battle for Azeroth Season 2
-    SetTO(a[13205], function() return false; end);
+    SetTO(a[13205]);
     a[13206] = ach:New(13206, 10, fac.Horde); -- Allied Races: Vulpera
     a[13209] = ach:New(13209, 0); -- Duelist: Battle for Azeroth Season 2
-    SetTO(a[13209], function() return false; end);
+    SetTO(a[13209]);
     a[13210] = ach:New(13210, 0, fac.Alliance, 13211); -- Hero of the Alliance: Sinister
-    SetTO(a[13210], function() return false; end);
+    SetTO(a[13210]);
     a[13211] = ach:New(13211, 0, fac.Horde, 13210); -- Hero of the Horde: Sinister
-    SetTO(a[13211], function() return false; end);
+    SetTO(a[13211]);
     a[13212] = ach:New(13212, 0); -- Gladiator: Battle for Azeroth Season 2
-    SetTO(a[13212], function() return false; end);
+    SetTO(a[13212]);
     a[13250] = ach:New(13250, 25); -- "Battle for Azeroth Pathfinder, Part Two"
     a[13251] = ach:New(13251, 0, fac.Alliance, 13263); -- In Teldrassil's Shadow
     a[13263] = ach:New(13263, 10, fac.Horde, 13251); -- The Shadow Hunter
@@ -6811,9 +6811,9 @@ function exportedAchievements.Load(a, t)
     a[13316] = ach:New(13316, 10); -- Can I Get a Hek Hek Hek Yeah?
     a[13317] = ach:New(13317, 5); -- Supplied and Ready
     a[13322] = ach:New(13322, 0); -- Ahead of the Curve: Lady Jaina Proudmoore
-    SetTO(a[13322], function() return false; end);
+    SetTO(a[13322]);
     a[13323] = ach:New(13323, 0); -- Cutting Edge: Lady Jaina Proudmoore
-    SetTO(a[13323], function() return false; end);
+    SetTO(a[13323]);
     a[13325] = ach:New(13325, 10); -- Walk the Dinosaur
     a[13340] = ach:New(13340, 10, fac.Horde, 13341); -- Flame Keeper of Zandalar
     a[13341] = ach:New(13341, 10, fac.Alliance, 13340); -- Flame Warden of Kul Tiras
@@ -6857,9 +6857,9 @@ function exportedAchievements.Load(a, t)
     a[13416] = ach:New(13416, 10); -- Mythic: The Restless Cabal
     a[13417] = ach:New(13417, 10); -- "Mythic: Uu'nat, Harbinger of the Void"
     a[13418] = ach:New(13418, 0); -- "Ahead of the Curve: Uu'nat, Harbinger of the Void"
-    SetTO(a[13418], function() return false; end);
+    SetTO(a[13418]);
     a[13419] = ach:New(13419, 0); -- "Cutting Edge: Uu'nat, Harbinger of the Void"
-    SetTO(a[13419], function() return false; end);
+    SetTO(a[13419]);
     a[13425] = ach:New(13425, 10); -- "We Got Spirit, How About You?"
     a[13426] = ach:New(13426, 5, fac.Alliance); -- Come On and Slam
     a[13429] = ach:New(13429, 5); -- Azerfighter
@@ -6905,15 +6905,15 @@ function exportedAchievements.Load(a, t)
     a[13440] = ach:New(13440, 5, fac.Alliance, 13441); -- Pushing the Payload
     a[13441] = ach:New(13441, 5, fac.Horde, 13440); -- Pushing the Payload
     a[13448] = ach:New(13448, 0); -- Battle for Azeroth Keystone Conqueror: Season Two
-    SetTO(a[13448], function() return false; end);
+    SetTO(a[13448]);
     a[13449] = ach:New(13449, 0); -- Battle for Azeroth Keystone Master: Season Two
-    SetTO(a[13449], function() return false; end);
+    SetTO(a[13449]);
     a[13450] = ach:New(13450, 0); -- Fierce Gladiator's Storm Dragon
-    SetTO(a[13450], function() return false; end);
+    SetTO(a[13450]);
     a[13451] = ach:New(13451, 0); -- Elite: Battle for Azeroth Season 2
-    SetTO(a[13451], function() return false; end);
+    SetTO(a[13451]);
     a[13465] = ach:New(13465, 0); -- Elite: Battle for Azeroth Season 1
-    SetTO(a[13465], function() return false; end);
+    SetTO(a[13465]);
     a[13466] = ach:New(13466, 10, fac.Horde, 13467); -- Tides of Vengeance
     a[13467] = ach:New(13467, 10, fac.Alliance, 13466); -- Tides of Vengeance
     a[13469] = ach:New(13469, 10); -- Raiding with Leashes VI: Pets of Pandaria
@@ -7010,29 +7010,29 @@ function exportedAchievements.Load(a, t)
     a[13628] = ach:New(13628, 10); -- Intro to Marine Biology
     a[13629] = ach:New(13629, 10); -- Simple Geometry
     a[13630] = ach:New(13630, 0); -- Notorious Gladiator: Battle for Azeroth Season 3
-    SetTO(a[13630], function() return false; end);
+    SetTO(a[13630]);
     a[13632] = ach:New(13632, 0); -- Notorious Gladiator's Proto-Drake
-    SetTO(a[13632], function() return false; end);
+    SetTO(a[13632]);
     a[13633] = ach:New(13633, 10); -- If It Pleases the Court
     a[13634] = ach:New(13634, 0); -- Challenger: Battle for Azeroth Season 3
-    SetTO(a[13634], function() return false; end);
+    SetTO(a[13634]);
     a[13635] = ach:New(13635, 10); -- Tour of the Depths
     a[13638] = ach:New(13638, 20); -- Undersea Usurper
     a[13639] = ach:New(13639, 0); -- Combatant: Battle for Azeroth Season 3
-    SetTO(a[13639], function() return false; end);
+    SetTO(a[13639]);
     a[13641] = ach:New(13641, 0); -- Rival: Battle for Azeroth Season 3
-    SetTO(a[13641], function() return false; end);
+    SetTO(a[13641]);
     a[13642] = ach:New(13642, 0); -- Duelist: Battle for Azeroth Season 3
-    SetTO(a[13642], function() return false; end);
+    SetTO(a[13642]);
     a[13643] = ach:New(13643, 0, fac.Alliance, 13644); -- Hero of the Alliance: Notorious
-    SetTO(a[13643], function() return false; end);
+    SetTO(a[13643]);
     a[13644] = ach:New(13644, 0, fac.Horde, 13643); -- Hero of the Horde: Notorious
-    SetTO(a[13644], function() return false; end);
+    SetTO(a[13644]);
     a[13645] = ach:New(13645, 10, fac.Horde, 13704); -- Nautical Battlefield Training
     a[13647] = ach:New(13647, 0); -- Gladiator: Battle for Azeroth Season 3
-    SetTO(a[13647], function() return false; end);
+    SetTO(a[13647]);
     a[13676] = ach:New(13676, 0); -- Elite: Battle for Azeroth Season 3
-    SetTO(a[13676], function() return false; end);
+    SetTO(a[13676]);
     a[13684] = ach:New(13684, 10); -- You and What Army?
     a[13686] = ach:New(13686, 10); -- Junkyard Melomaniac
     a[13687] = ach:New(13687, 25); -- Glory of the Eternal Raider
@@ -7114,49 +7114,49 @@ function exportedAchievements.Load(a, t)
     a[13776] = ach:New(13776, 10); -- Explore Mechagon
     a[13777] = ach:New(13777, 10); -- My Heart Container is Full
     a[13779] = ach:New(13779, 0); -- Phenomenal Cosmic Power
-    SetTO(a[13779], function() return false; end);
+    SetTO(a[13779]);
     a[13780] = ach:New(13780, 0); -- Battle for Azeroth Keystone Conqueror: Season Three
-    SetTO(a[13780], function() return false; end);
+    SetTO(a[13780]);
     a[13781] = ach:New(13781, 0); -- Battle for Azeroth Keystone Master: Season Three
-    SetTO(a[13781], function() return false; end);
+    SetTO(a[13781]);
     a[13784] = ach:New(13784, 0); -- Ahead of the Curve: Queen Azshara
-    SetTO(a[13784], function() return false; end);
+    SetTO(a[13784]);
     a[13785] = ach:New(13785, 0); -- Cutting Edge: Queen Azshara
-    SetTO(a[13785], function() return false; end);
+    SetTO(a[13785]);
     a[13789] = ach:New(13789, 0); -- Hertz Locker
     a[13790] = ach:New(13790, 5); -- Armed for Action
     a[13791] = ach:New(13791, 10); -- Making the Mount
     a[13836] = ach:New(13836, 5); -- Feline Figurines Found
     a[13878] = ach:New(13878, 10); -- The Master of Revendreth
     a[13917] = ach:New(13917, 0); -- WoW's 15th Anniversary
-    SetTO(a[13917], function() return false; end);
+    SetTO(a[13917]);
     a[13924] = ach:New(13924, 10, fac.Horde, 13925); -- The Fourth War
     a[13925] = ach:New(13925, 10, fac.Alliance, 13924); -- The Fourth War
     a[13927] = ach:New(13927, 0); -- Crashin' Splashin'
     a[13928] = ach:New(13928, 10, fac.Alliance, 13930); -- Alterac Valley of Olde
     a[13930] = ach:New(13930, 10, fac.Horde, 13928); -- Alterac Valley of Olde
     a[13931] = ach:New(13931, 0); -- "Memories of Fel, Frost and Fire"
-    SetTO(a[13931], function() return false; end);
+    SetTO(a[13931]);
     a[13957] = ach:New(13957, 0); -- Corrupted Gladiator: Battle for Azeroth Season 4
-    SetTO(a[13957], function() return false; end);
+    SetTO(a[13957]);
     a[13958] = ach:New(13958, 0); -- Corrupted Gladiator's Proto-Drake
-    SetTO(a[13958], function() return false; end);
+    SetTO(a[13958]);
     a[13959] = ach:New(13959, 0); -- Challenger: Battle for Azeroth Season 4
-    SetTO(a[13959], function() return false; end);
+    SetTO(a[13959]);
     a[13962] = ach:New(13962, 0); -- Combatant: Battle for Azeroth Season 4
-    SetTO(a[13962], function() return false; end);
+    SetTO(a[13962]);
     a[13963] = ach:New(13963, 0); -- Rival: Battle for Azeroth Season 4
-    SetTO(a[13963], function() return false; end);
+    SetTO(a[13963]);
     a[13964] = ach:New(13964, 0); -- Duelist: Battle for Azeroth Season 4
-    SetTO(a[13964], function() return false; end);
+    SetTO(a[13964]);
     a[13965] = ach:New(13965, 0, fac.Horde, 13966); -- Hero of the Horde: Corrupted
-    SetTO(a[13965], function() return false; end);
+    SetTO(a[13965]);
     a[13966] = ach:New(13966, 0, fac.Alliance, 13965); -- Hero of the Alliance: Corrupted
-    SetTO(a[13966], function() return false; end);
+    SetTO(a[13966]);
     a[13967] = ach:New(13967, 0); -- Gladiator: Battle for Azeroth Season 4
-    SetTO(a[13967], function() return false; end);
+    SetTO(a[13967]);
     a[13989] = ach:New(13989, 0); -- Elite: Battle for Azeroth Season 4
-    SetTO(a[13989], function() return false; end);
+    SetTO(a[13989]);
     a[13990] = ach:New(13990, 10); -- "You Can Pet the Dog, But..."
     a[13994] = ach:New(13994, 20); -- Through the Depths of Visions
     a[13998] = ach:New(13998, 10); -- Pure of Heart
@@ -7172,7 +7172,7 @@ function exportedAchievements.Load(a, t)
     a[14024] = ach:New(14024, 10); -- Buzzer Beater
     a[14026] = ach:New(14026, 10); -- Temper Tantrum
     a[14027] = ach:New(14027, 0); -- Battle for Mrrglroth
-    SetTO(a[14027], function() return false; end);
+    SetTO(a[14027]);
     a[14037] = ach:New(14037, 10); -- Phase 3: Prophet
     a[14038] = ach:New(14038, 10); -- Bloody Mess
     a[14041] = ach:New(14041, 10); -- "Mythic: Wrathion, the Black Emperor"
@@ -7226,17 +7226,17 @@ function exportedAchievements.Load(a, t)
     a[14066] = ach:New(14066, 15); -- The Most Horrific Vision of Stormwind
     a[14067] = ach:New(14067, 15); -- The Most Horrific Vision of Orgrimmar
     a[14068] = ach:New(14068, 0); -- Ahead of the Curve: N'Zoth the Corruptor
-    SetTO(a[14068], function() return false; end);
+    SetTO(a[14068]);
     a[14069] = ach:New(14069, 0); -- Cutting Edge: N'Zoth the Corruptor
-    SetTO(a[14069], function() return false; end);
+    SetTO(a[14069]);
     a[14139] = ach:New(14139, 10); -- Total Annihilation
     a[14140] = ach:New(14140, 0); -- Mad World
-    SetTO(a[14140], function() return false; end);
+    SetTO(a[14140]);
     a[14143] = ach:New(14143, 10); -- Reeking of Visions
     a[14144] = ach:New(14144, 0); -- Battle for Azeroth Keystone Conqueror: Season Four
-    SetTO(a[14144], function() return false; end);
+    SetTO(a[14144]);
     a[14145] = ach:New(14145, 0); -- Battle for Azeroth Keystone Master: Season Four
-    SetTO(a[14145], function() return false; end);
+    SetTO(a[14145]);
     a[14146] = ach:New(14146, 25); -- Glory of the Ny'alotha Raider
     a[14147] = ach:New(14147, 10); -- Cleansing Treatment
     a[14148] = ach:New(14148, 10); -- It's Not A Cult
@@ -7264,7 +7264,7 @@ function exportedAchievements.Load(a, t)
     a[14173] = ach:New(14173, 20); -- A Mountain of Mementos
     a[14175] = ach:New(14175, 10); -- Master of Deepwind Gorge
     a[14183] = ach:New(14183, 0); -- Conspicuous Consumption
-    SetTO(a[14183], function() return tmpObt:FromToBeforeVersion("080300", "090001"); end, "From", "Version", "080300", "Before", "Version", "090001");
+    SetTO(a[14183], "From", "Version", "080300", "Before", "Version", "090001");
     a[14186] = ach:New(14186, 20); -- Market Dominance
     a[14187] = ach:New(14187, 20); -- Cruisin' for a Brewsin'
     a[14188] = ach:New(14188, 20); -- Well Gorged
@@ -7280,7 +7280,7 @@ function exportedAchievements.Load(a, t)
     a[14222] = ach:New(14222, 10); -- Exile's Reach
     a[14233] = ach:New(14233, 10); -- Tea Tales
     a[14271] = ach:New(14271, 0); -- WoW's 16th Anniversary
-    SetTO(a[14271], function() return false; end);
+    SetTO(a[14271]);
     a[14272] = ach:New(14272, 5); -- Best Bud With Benefits
     a[14273] = ach:New(14273, 5); -- Crypt Kicker
     a[14274] = ach:New(14274, 5); -- Absolution for All
@@ -7371,9 +7371,9 @@ function exportedAchievements.Load(a, t)
     a[14417] = ach:New(14417, 10); -- Mythic: Theater of Pain
     a[14418] = ach:New(14418, 20); -- Shadowlands Dungeon Hero
     a[14460] = ach:New(14460, 0); -- Ahead of the Curve: Sire Denathrius
-    SetTO(a[14460], function() return tmpObt:DuringMplusSeason(5); end, "From", "Mythic+ Season", 5, "Until", "Mythic+ Season", 5);
+    SetTO(a[14460], "From", "Mythic+ Season", 5, "Until", "Mythic+ Season", 5);
     a[14461] = ach:New(14461, 0); -- Cutting Edge: Sire Denathrius
-    SetTO(a[14461], function() return tmpObt:DuringMplusSeason(5); end, "From", "Mythic+ Season", 5, "Until", "Mythic+ Season", 5);
+    SetTO(a[14461], "From", "Mythic+ Season", 5, "Until", "Mythic+ Season", 5);
     a[14463] = ach:New(14463, 10); -- Skoldus Hall
     a[14468] = ach:New(14468, 10); -- Twisting Corridors: Layer 1
     a[14469] = ach:New(14469, 10); -- Twisting Corridors: Layer 2
@@ -7409,9 +7409,9 @@ function exportedAchievements.Load(a, t)
     a[14524] = ach:New(14524, 10); -- I Don't Know What I Expected
     a[14525] = ach:New(14525, 10); -- "Feed Me, Seymour!"
     a[14531] = ach:New(14531, 0); -- Shadowlands Keystone Conqueror: Season One
-    SetTO(a[14531], function() return tmpObt:DuringMplusSeason(5); end, "From", "Mythic+ Season", 5, "Until", "Mythic+ Season", 5);
+    SetTO(a[14531], "From", "Mythic+ Season", 5, "Until", "Mythic+ Season", 5);
     a[14532] = ach:New(14532, 0); -- Shadowlands Keystone Master: Season One
-    SetTO(a[14532], function() return tmpObt:DuringMplusSeason(5); end, "From", "Mythic+ Season", 5, "Until", "Mythic+ Season", 5);
+    SetTO(a[14532], "From", "Mythic+ Season", 5, "Until", "Mythic+ Season", 5);
     a[14533] = ach:New(14533, 10); -- Royal Rumble
     a[14567] = ach:New(14567, 10); -- Picking Up the Pieces
     a[14568] = ach:New(14568, 10); -- Twisting Corridors: Layer 6
@@ -7459,7 +7459,7 @@ function exportedAchievements.Load(a, t)
     a[14659] = ach:New(14659, 5); -- Handling His Henchmen
     a[14660] = ach:New(14660, 10); -- It's About Sending a Message
     a[14662] = ach:New(14662, 0); -- Realm First! Shadowlands Keystone Master
-    SetTO(a[14662], function() return false; end);
+    SetTO(a[14662]);
     a[14663] = ach:New(14663, 10); -- Explore The Maw
     a[14670] = ach:New(14670, 10); -- That's the Spirit
     a[14671] = ach:New(14671, 10); -- Something's Not Quite Right....
@@ -7475,23 +7475,23 @@ function exportedAchievements.Load(a, t)
     a[14683] = ach:New(14683, 5); -- Dredger Style
     a[14684] = ach:New(14684, 10); -- Abominable Lives
     a[14685] = ach:New(14685, 0); -- Combatant: Shadowlands Season 1
-    SetTO(a[14685], function() return false; end);
+    SetTO(a[14685]);
     a[14686] = ach:New(14686, 0); -- Challenger: Shadowlands Season 1
-    SetTO(a[14686], function() return false; end);
+    SetTO(a[14686]);
     a[14687] = ach:New(14687, 0); -- Rival: Shadowlands Season 1
-    SetTO(a[14687], function() return false; end);
+    SetTO(a[14687]);
     a[14688] = ach:New(14688, 0); -- Duelist: Shadowlands Season 1
-    SetTO(a[14688], function() return false; end);
+    SetTO(a[14688]);
     a[14689] = ach:New(14689, 0); -- Gladiator: Shadowlands Season 1
-    SetTO(a[14689], function() return false; end);
+    SetTO(a[14689]);
     a[14690] = ach:New(14690, 0); -- Sinful Gladiator: Shadowlands Season 1
-    SetTO(a[14690], function() return false; end);
+    SetTO(a[14690]);
     a[14691] = ach:New(14691, 0); -- Elite: Shadowlands Season 1
-    SetTO(a[14691], function() return false; end);
+    SetTO(a[14691]);
     a[14692] = ach:New(14692, 0, fac.Alliance, 14693); -- Hero of the Alliance: Sinful
-    SetTO(a[14692], function() return false; end);
+    SetTO(a[14692]);
     a[14693] = ach:New(14693, 0, fac.Horde, 14692); -- Hero of the Horde: Sinful
-    SetTO(a[14693], function() return false; end);
+    SetTO(a[14693]);
     a[14715] = ach:New(14715, 10); -- Castle Nathria
     a[14717] = ach:New(14717, 10); -- Heroic: Castle Nathria
     a[14718] = ach:New(14718, 10); -- Mythic: Castle Nathria
@@ -7520,7 +7520,7 @@ function exportedAchievements.Load(a, t)
     a[14748] = ach:New(14748, 10); -- Wardrobe Makeover
     a[14749] = ach:New(14749, 5); -- Rendle's Big Day
     a[14750] = ach:New(14750, 0); -- Death Rising
-    SetTO(a[14750], function() return false; end);
+    SetTO(a[14750]);
     a[14751] = ach:New(14751, 15); -- The Gang's All Here
     a[14752] = ach:New(14752, 15); -- Things To Do When You're Dead
     a[14753] = ach:New(14753, 5); -- It's a Wrap
@@ -7568,7 +7568,7 @@ function exportedAchievements.Load(a, t)
     a[14810] = ach:New(14810, 10); -- Terror of Torghast
     a[14815] = ach:New(14815, 10, fac.Horde, 14817); -- Executing the Exarch
     a[14816] = ach:New(14816, 0); -- Sinful Gladiator's Soul Eater
-    SetTO(a[14816], function() return false; end);
+    SetTO(a[14816]);
     a[14817] = ach:New(14817, 10, fac.Alliance, 14815); -- Opposing Orgrimmar
     a[14825] = ach:New(14825, 25); -- Shadowlands Voyager
     a[14831] = ach:New(14831, 10); -- "I Live, I Die, I Queue Again"
@@ -7630,35 +7630,35 @@ function exportedAchievements.Load(a, t)
     a[14894] = ach:New(14894, 10); -- "To 'Ghast, Two Curios"
     a[14895] = ach:New(14895, 10); -- 'Ghast Five
     a[14904] = ach:New(14904, 0); -- Netherwhelp Online
-    SetTO(a[14904], function() return false; end);
+    SetTO(a[14904]);
     a[14931] = ach:New(14931, 0); -- Flying Festivities
     a[14938] = ach:New(14938, 0); -- Shadowlands Keystone Explorer: Season One
-    SetTO(a[14938], function() return tmpObt:DuringMplusSeason(5); end, "From", "Mythic+ Season", 5, "Until", "Mythic+ Season", 5);
+    SetTO(a[14938], "From", "Mythic+ Season", 5, "Until", "Mythic+ Season", 5);
     a[14942] = ach:New(14942, 0); -- WoW's 17th Anniversary
-    SetTO(a[14942], function() return false; end);
+    SetTO(a[14942]);
     a[14943] = ach:New(14943, 10); -- Guarmageddon
     a[14961] = ach:New(14961, 10); -- Chains of Domination
     a[14968] = ach:New(14968, 0); -- Combatant I: Shadowlands Season 2
-    SetTO(a[14968], function() return false; end);
+    SetTO(a[14968]);
     a[14969] = ach:New(14969, 0); -- Challenger I: Shadowlands Season 2
-    SetTO(a[14969], function() return false; end);
+    SetTO(a[14969]);
     a[14970] = ach:New(14970, 0); -- Rival I: Shadowlands Season 2
-    SetTO(a[14970], function() return false; end);
+    SetTO(a[14970]);
     a[14971] = ach:New(14971, 0); -- Duelist: Shadowlands Season 2
-    SetTO(a[14971], function() return false; end);
+    SetTO(a[14971]);
     a[14972] = ach:New(14972, 0); -- Gladiator: Shadowlands Season 2
-    SetTO(a[14972], function() return false; end);
+    SetTO(a[14972]);
     a[14973] = ach:New(14973, 0); -- Unchained Gladiator: Shadowlands Season 2
-    SetTO(a[14973], function() return false; end);
+    SetTO(a[14973]);
     a[14974] = ach:New(14974, 0); -- Elite: Shadowlands Season 2
-    SetTO(a[14974], function() return false; end);
+    SetTO(a[14974]);
     a[14975] = ach:New(14975, 0, fac.Alliance, 14976); -- Hero of the Alliance: Unchained
-    SetTO(a[14975], function() return false; end);
+    SetTO(a[14975]);
     a[14976] = ach:New(14976, 0, fac.Horde, 14975); -- Hero of the Horde: Unchained
-    SetTO(a[14976], function() return false; end);
+    SetTO(a[14976]);
     a[14998] = ach:New(14998, 10); -- "Name A Better Duo, I'll Wait"
     a[14999] = ach:New(14999, 0); -- Unchained Gladiator's Soul Eater
-    SetTO(a[14999], function() return false; end);
+    SetTO(a[14999]);
     a[15000] = ach:New(15000, 10); -- United Front
     a[15001] = ach:New(15001, 5); -- Jailer's Personal Stash
     a[15003] = ach:New(15003, 10); -- To the Nines
@@ -7679,21 +7679,21 @@ function exportedAchievements.Load(a, t)
     a[15043] = ach:New(15043, 0); -- Hoarder of Torghast
     a[15044] = ach:New(15044, 5); -- Krrprripripkraak's Heroes
     a[15045] = ach:New(15045, 0); -- Keystone Hero: The Necrotic Wake
-    SetTO(a[15045], function() return tmpObt:DuringMplusSeasons(6, 7); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
+    SetTO(a[15045], "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
     a[15046] = ach:New(15046, 0); -- Keystone Hero: Plaguefall
-    SetTO(a[15046], function() return tmpObt:DuringMplusSeasons(6, 7); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
+    SetTO(a[15046], "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
     a[15047] = ach:New(15047, 0); -- Keystone Hero: Mists of Tirna Scithe
-    SetTO(a[15047], function() return tmpObt:DuringMplusSeasons(6, 7); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
+    SetTO(a[15047], "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
     a[15048] = ach:New(15048, 0); -- Keystone Hero: Halls of Atonement
-    SetTO(a[15048], function() return tmpObt:DuringMplusSeasons(6, 7); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
+    SetTO(a[15048], "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
     a[15049] = ach:New(15049, 0); -- Keystone Hero: Spires of Ascension
-    SetTO(a[15049], function() return tmpObt:DuringMplusSeasons(6, 7); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
+    SetTO(a[15049], "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
     a[15050] = ach:New(15050, 0); -- Keystone Hero: Theater of Pain
-    SetTO(a[15050], function() return tmpObt:DuringMplusSeasons(6, 7); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
+    SetTO(a[15050], "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
     a[15051] = ach:New(15051, 0); -- Keystone Hero: De Other Side
-    SetTO(a[15051], function() return tmpObt:DuringMplusSeasons(6, 7); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
+    SetTO(a[15051], "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
     a[15052] = ach:New(15052, 0); -- Keystone Hero: Sanguine Depths
-    SetTO(a[15052], function() return tmpObt:DuringMplusSeasons(6, 7); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
+    SetTO(a[15052], "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7);
     a[15053] = ach:New(15053, 10); -- Explore Korthia
     a[15054] = ach:New(15054, 15); -- Minions of the Cold Dark
     a[15055] = ach:New(15055, 10); -- Friend of Ooz
@@ -7707,13 +7707,13 @@ function exportedAchievements.Load(a, t)
     a[15067] = ach:New(15067, 10); -- Adamant Vaults
     a[15069] = ach:New(15069, 5); -- The Archivists' Codex
     a[15073] = ach:New(15073, 0); -- Shadowlands Keystone Explorer: Season Two
-    SetTO(a[15073], function() return tmpObt:DuringMplusSeason(6); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 6);
+    SetTO(a[15073], "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 6);
     a[15075] = ach:New(15075, 10); -- Infiltrators
     a[15076] = ach:New(15076, 5); -- The Box of Many Things
     a[15077] = ach:New(15077, 0); -- Shadowlands Keystone Conqueror: Season Two
-    SetTO(a[15077], function() return tmpObt:DuringMplusSeason(6); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 6);
+    SetTO(a[15077], "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 6);
     a[15078] = ach:New(15078, 0); -- Shadowlands Keystone Master: Season Two
-    SetTO(a[15078], function() return tmpObt:DuringMplusSeason(6); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 6);
+    SetTO(a[15078], "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 6);
     a[15079] = ach:New(15079, 10); -- "Many, Many Things"
     a[15080] = ach:New(15080, 10); -- So Blessed
     a[15081] = ach:New(15081, 10); -- Flawless: Skoldus Hall (Layer 12)
@@ -7787,9 +7787,9 @@ function exportedAchievements.Load(a, t)
     a[15132] = ach:New(15132, 10); -- Knowledge is Power
     a[15133] = ach:New(15133, 10); -- This World is a Prism
     a[15134] = ach:New(15134, 0); -- Ahead of the Curve: Sylvanas Windrunner
-    SetTO(a[15134], function() return tmpObt:DuringMplusSeason(6); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 6);
+    SetTO(a[15134], "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 6);
     a[15135] = ach:New(15135, 0); -- Cutting Edge: Sylvanas Windrunner
-    SetTO(a[15135], function() return tmpObt:DuringMplusSeason(6); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 6);
+    SetTO(a[15135], "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 6);
     a[15177] = ach:New(15177, 10); -- "Tazavesh, the Veiled Market"
     a[15178] = ach:New(15178, 10); -- Fake It 'Til You Make It
     a[15179] = ach:New(15179, 10); -- This is Fine
@@ -7811,11 +7811,11 @@ function exportedAchievements.Load(a, t)
     a[15224] = ach:New(15224, 10); -- Explore Zereth Mortis
     a[15229] = ach:New(15229, 5); -- Traversing the Spheres
     a[15232] = ach:New(15232, 0); -- Combatant II: Shadowlands Season 2
-    SetTO(a[15232], function() return false; end);
+    SetTO(a[15232]);
     a[15233] = ach:New(15233, 0); -- Challenger II: Shadowlands Season 2
-    SetTO(a[15233], function() return false; end);
+    SetTO(a[15233]);
     a[15234] = ach:New(15234, 0); -- Rival II: Shadowlands Season 2
-    SetTO(a[15234], function() return false; end);
+    SetTO(a[15234]);
     a[15241] = ach:New(15241, 10); -- Renowned
     a[15251] = ach:New(15251, 10); -- The Jailer's Gauntlet: Layer 1
     a[15252] = ach:New(15252, 10); -- The Jailer's Gauntlet: Layer 2
@@ -7841,32 +7841,32 @@ function exportedAchievements.Load(a, t)
     a[15323] = ach:New(15323, 0); -- Sarge's Tale
     a[15324] = ach:New(15324, 20); -- Tower Ranger
     a[15327] = ach:New(15327, 0); -- Tormented Hero: Shadowlands Season 2
-    SetTO(a[15327], function() return tmpObt:DuringMplusSeason(6); end, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 6);
+    SetTO(a[15327], "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 6);
     a[15331] = ach:New(15331, 10); -- Treasures of Zereth Mortis
     a[15336] = ach:New(15336, 25); -- From A to Zereth
     a[15348] = ach:New(15348, 0); -- Combatant I: Shadowlands Season 3
-    SetTO(a[15348], function() return false; end);
+    SetTO(a[15348]);
     a[15349] = ach:New(15349, 0); -- Challenger I: Shadowlands Season 3
-    SetTO(a[15349], function() return false; end);
+    SetTO(a[15349]);
     a[15350] = ach:New(15350, 0); -- Rival I: Shadowlands Season 3
-    SetTO(a[15350], function() return false; end);
+    SetTO(a[15350]);
     a[15351] = ach:New(15351, 0); -- Duelist: Shadowlands Season 3
-    SetTO(a[15351], function() return false; end);
+    SetTO(a[15351]);
     a[15352] = ach:New(15352, 0); -- Gladiator: Shadowlands Season 3
     a[15353] = ach:New(15353, 0); -- Cosmic Gladiator: Shadowlands Season 3
-    SetTO(a[15353], function() return false; end);
+    SetTO(a[15353]);
     a[15354] = ach:New(15354, 0); -- Elite: Shadowlands Season 3
-    SetTO(a[15354], function() return false; end);
+    SetTO(a[15354]);
     a[15355] = ach:New(15355, 0, fac.Alliance, 15356); -- Hero of the Alliance: Cosmic
-    SetTO(a[15355], function() return false; end);
+    SetTO(a[15355]);
     a[15356] = ach:New(15356, 0, fac.Horde, 15355); -- Hero of the Horde: Cosmic
-    SetTO(a[15356], function() return false; end);
+    SetTO(a[15356]);
     a[15378] = ach:New(15378, 0); -- Rival II: Shadowlands Season 3
-    SetTO(a[15378], function() return false; end);
+    SetTO(a[15378]);
     a[15379] = ach:New(15379, 0); -- Challenger II: Shadowlands Season 3
-    SetTO(a[15379], function() return false; end);
+    SetTO(a[15379]);
     a[15380] = ach:New(15380, 0); -- Combatant II: Shadowlands Season 3
-    SetTO(a[15380], function() return false; end);
+    SetTO(a[15380]);
     a[15381] = ach:New(15381, 10); -- Power ON
     a[15384] = ach:New(15384, 0); -- Cosmic Gladiator's Soul Eater
     a[15386] = ach:New(15386, 10); -- Shimmering Secrets
@@ -7969,9 +7969,9 @@ function exportedAchievements.Load(a, t)
     a[15418] = ach:New(15418, 10); -- The Grand Design
     a[15419] = ach:New(15419, 10); -- The Protoform Matrix
     a[15470] = ach:New(15470, 0); -- Ahead of the Curve: The Jailer
-    SetTO(a[15470], function() return tmpObt:DuringMplusSeason(7); end, "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
+    SetTO(a[15470], "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15471] = ach:New(15471, 0); -- Cutting Edge: The Jailer
-    SetTO(a[15471], function() return tmpObt:DuringMplusSeason(7); end, "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
+    SetTO(a[15471], "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15478] = ach:New(15478, 10); -- Heroic: Sepulcher of the First Ones
     a[15479] = ach:New(15479, 10); -- Mythic: Vigilant Guardian
     a[15480] = ach:New(15480, 10); -- Mythic: Skolex
@@ -7990,15 +7990,15 @@ function exportedAchievements.Load(a, t)
     a[15493] = ach:New(15493, 10); -- Ephemeral Plains
     a[15494] = ach:New(15494, 0); -- Damnation Aviation
     a[15496] = ach:New(15496, 0); -- Shadowlands Keystone Explorer: Season Three
-    SetTO(a[15496], function() return tmpObt:DuringMplusSeason(7); end, "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
+    SetTO(a[15496], "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15498] = ach:New(15498, 0); -- Shadowlands Keystone Conqueror: Season Three
-    SetTO(a[15498], function() return tmpObt:DuringMplusSeason(7); end, "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
+    SetTO(a[15498], "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15499] = ach:New(15499, 0); -- Shadowlands Keystone Master: Season Three
-    SetTO(a[15499], function() return tmpObt:DuringMplusSeason(7); end, "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
+    SetTO(a[15499], "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15500] = ach:New(15500, 0); -- "Keystone Hero: Tazavesh, the Veiled Market"
     a[15502] = ach:New(15502, 10); -- "Sand, Sand Everywhere!"
     a[15506] = ach:New(15506, 0); -- Shadowlands Keystone Hero: Season Three
-    SetTO(a[15506], function() return tmpObt:DuringMplusSeason(7); end, "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
+    SetTO(a[15506], "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15508] = ach:New(15508, 10); -- Fashion of the First Ones
     a[15509] = ach:New(15509, 5); -- Tales of the Exile
     a[15511] = ach:New(15511, 10); -- Solely Motivated
@@ -8039,34 +8039,43 @@ function exportedAchievements.Load(a, t)
     a[15653] = ach:New(15653, 0); -- The More You Know*
     a[15654] = ach:New(15654, 0); -- Back from the Beyond
     a[15663] = ach:New(15663, 10); -- Fate of Nathria
+    SetTO(a[15663], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15664] = ach:New(15664, 10); -- Heroic: Fate of Nathria
+    SetTO(a[15664], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15665] = ach:New(15665, 10); -- Mythic: Fate of Nathria
+    SetTO(a[15665], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15667] = ach:New(15667, 10); -- Fate of Domination
+    SetTO(a[15667], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15668] = ach:New(15668, 10); -- Heroic: Fate of Domination
+    SetTO(a[15668], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15669] = ach:New(15669, 10); -- Mythic: Fate of Domination
+    SetTO(a[15669], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15681] = ach:New(15681, 10); -- Fate of the Sepulcher
+    SetTO(a[15681], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15682] = ach:New(15682, 10); -- Heroic: Fate of the Sepulcher
+    SetTO(a[15682], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15683] = ach:New(15683, 10); -- Mythic: Fate of the Sepulcher
+    SetTO(a[15683], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15684] = ach:New(15684, 10); -- Fates of the Shadowlands Raids
-    SetTO(a[15684], function() return tmpObt:DuringMplusSeason(8); end, "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15684], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15685] = ach:New(15685, 10); -- Heroic: Fates of the Shadowlands Raids
-    SetTO(a[15685], function() return tmpObt:DuringMplusSeason(8); end, "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15685], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15687] = ach:New(15687, 10); -- Mythic: Fates of the Shadowlands Raids
-    SetTO(a[15687], function() return tmpObt:DuringMplusSeason(8); end, "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15687], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15688] = ach:New(15688, 0); -- Shadowlands Keystone Explorer: Season Four
-    SetTO(a[15688], function() return tmpObt:DuringMplusSeason(8); end, "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15688], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15689] = ach:New(15689, 0); -- Shadowlands Keystone Conqueror: Season Four
-    SetTO(a[15689], function() return tmpObt:DuringMplusSeason(8); end, "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15689], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15690] = ach:New(15690, 0); -- Shadowlands Keystone Master: Season Four
-    SetTO(a[15690], function() return tmpObt:DuringMplusSeason(8); end, "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15690], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15691] = ach:New(15691, 0); -- Cryptic Hero: Shadowlands Season 3
-    SetTO(a[15691], function() return tmpObt:DuringMplusSeason(7); end, "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
+    SetTO(a[15691], "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15692] = ach:New(15692, 0); -- Keystone Hero: Return to Karazhan
     a[15693] = ach:New(15693, 0); -- Keystone Hero: Operation: Mechagon
     a[15694] = ach:New(15694, 0); -- Keystone Hero: Iron Docks
     a[15695] = ach:New(15695, 0); -- Keystone Hero: Grimrail Depot
     a[15756] = ach:New(15756, 0); -- Shrouded Hero: Shadowlands Season 4
-    SetTO(a[15756], function() return tmpObt:DuringMplusSeason(8); end, "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15756], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
 
     local aIDs = {};
     for i = 1, 15756 do

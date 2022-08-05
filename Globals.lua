@@ -61,11 +61,15 @@ function addon.GetAchievementNumbers(_filters, achievement, numOfAch, numOfCompA
 	if filters and filters.Validate(_filters, achievement, true) > 0 then -- If set to false we lag the game
 		numOfAch = numOfAch + 1;
 		local _, _, _, completed = addon.GetAchievementInfo(achievement.Id);
+        local state;
+        if achievement.TemporaryObtainable then
+            state = achievement.TemporaryObtainable.Obtainable();
+        end
 		if completed then
 			numOfCompAch = numOfCompAch + 1;
 		-- else
 		-- 	numOfIncompAch = numOfIncompAch + 1;
-        elseif achievement.TemporaryObtainable and (achievement.TemporaryObtainable.Obtainable() == false or achievement.TemporaryObtainable.Obtainable() == "Past" or achievement.TemporaryObtainable.Obtainable() == "Future") then
+        elseif state and (state == false or state == "Past" or state == "Future") then
 			numOfNotObtAch = numOfNotObtAch + 1;
 		end
 	end
