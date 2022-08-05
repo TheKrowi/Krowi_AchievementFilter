@@ -6,7 +6,7 @@ local previewFrame = search.PreviewFrame;
 
 function previewFrame:Load()
 	local frame = CreateFrame("Frame", "KrowiAF_SearchPreviewContainer", AchievementFrame, "KrowiAF_SearchPreviewFrame_Template");
-	frame:SetPoint("TOPLEFT", AchievementFrame.searchBox, "BOTTOMLEFT", -4, 3);
+	frame:SetPoint("TOPLEFT", search.BoxFrame, "BOTTOMLEFT", -4, 3);
 
     -- Populate the frame with buttons - doing this in code allows us to change the number of buttons later
     frame.Buttons = {};

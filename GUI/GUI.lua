@@ -31,6 +31,7 @@ function gui:LoadWithBlizzard_AchievementUI()
     addon.GUI.SummaryFrame:Load();
     gui.CategoriesFrame:Load();
     gui.FilterButton:Load();
+    addon.GUI.AchievementFrameHeader:Load();
 
     gui.Search:Load();
     addon.GUI.Calendar:Load();
@@ -71,6 +72,8 @@ function gui:LoadWithBlizzard_AchievementUI()
     self.ResetAchievementFrameHeight();
 
     gui.AchievementFrameHeader.CreateTooltip();
+
+    self.LoadWotLKClassicFixes();
 
     diagnostics.Debug("GUI loaded");
 end
@@ -158,10 +161,15 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
 	if AchievementFrame:IsShown() and tabIsSelected and not resetView and not forceOpen then
 		HideUIPanel(AchievementFrame);
 	else
-        AchievementFrame_SetTabs();
-        -- addon.GUI.ShowHideTabs();
+        if addon.IsNotWotLKClassic() then
+            AchievementFrame_SetTabs();
+        else
+            addon.GUI.ShowHideTabs();
+        end
 		ShowUIPanel(AchievementFrame);
-        AchievementFrame_HideSearchPreview();
+        if addon.IsNotWotLKClassic() then
+            AchievementFrame_HideSearchPreview();
+        end
         gui.SelectTab(_addonName, tabName);
         if addon.Options.db.ResetViewOnOpen or resetView then
             gui.ResetView();
@@ -218,17 +226,21 @@ function gui.AddDataToBlizzardTabs()
     KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Achievements", AchievementFrameTab1, function()
         AchievementFrameTab_OnClick(1);
     end);
-    KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Guild", AchievementFrameTab2, function()
-        AchievementFrameTab_OnClick(2);
-    end);
-    KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Statistics", AchievementFrameTab3, function()
-        AchievementFrameTab_OnClick(3);
+    if addon.IsNotWotLKClassic() then
+        KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Guild", AchievementFrameTab2, function()
+            AchievementFrameTab_OnClick(2);
+        end);
+    end
+    KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Statistics", addon.IsNotWotLKClassic() and AchievementFrameTab3 or AchievementFrameTab2, function()
+        AchievementFrameTab_OnClick(addon.IsNotWotLKClassic() and 3 or 2);
     end);
 end
 
 function gui.PrepareTabsOrder()
     KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Achievements", addon.L["Blizzard"], addon.L["Achievements"], "TOGGLEACHIEVEMENT");
-    KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Guild", addon.L["Blizzard"], addon.L["Guild"]);
+    if addon.IsNotWotLKClassic() then
+        KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Guild", addon.L["Blizzard"], addon.L["Guild"]);
+    end
     KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Statistics", addon.L["Blizzard"], addon.L["Statistics"], "TOGGLESTATISTICS");
 end
 
@@ -323,4 +335,16 @@ function gui.TabsOrderGetActiveKeys()
 
     needsCleanup = nil;
     return SavedData.TabKeys;
+end
+
+function gui.LoadWotLKClassicFixes()
+    if AchievementFrame_SetTabs == nil then
+        AchievementFrame_SetTabs = function() end;
+    end
+    if AchievementMeta_OnLeave == nil then
+        AchievementMeta_OnLeave = function(self)
+            GameTooltip:Hide();
+            guildMemberRequestFrame = nil;
+        end
+    end
 end

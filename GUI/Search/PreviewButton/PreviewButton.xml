@@ -42,7 +42,9 @@
 		<PushedTexture atlas="_search-rowbg">
 		</PushedTexture>
 		<Scripts>
-			<OnShow function="AchievementSearchPreviewButton_OnShow"/> <!-- Yes, use Blizzard one -->
+			<OnShow>
+				self:SetFrameLevel(self:GetParent():GetFrameLevel() + 10);
+			</OnShow>
 			<OnEnter function="KrowiAF_SearchPreviewButton_OnEnter"/>
 			<OnClick function="KrowiAF_SearchPreviewButton_OnClick"/>
 		</Scripts>

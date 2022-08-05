@@ -8,6 +8,9 @@ objects.MenuItem = LibStub("Krowi_MenuItem-1.0");
 local menuItem = objects.MenuItem;
 
 function menuItem:AddCritExtLinkFull(achievementID, criteriaNum, externalLink)
-    local criteriaString = GetAchievementCriteriaInfo(achievementID, criteriaNum);
-    return self:AddExtLinkFull(criteriaString, externalLink);
+    local exists = select(16, addon.GetAchievementInfo(achievementID));
+    if exists then
+        local criteriaString = GetAchievementCriteriaInfo(achievementID, criteriaNum);
+        return self:AddExtLinkFull(criteriaString, externalLink);
+    end
 end

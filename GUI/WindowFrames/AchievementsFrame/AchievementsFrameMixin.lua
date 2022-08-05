@@ -132,7 +132,13 @@ function KrowiAF_AchievementsFrameMixin:SelectButton(button)
 	addon.GUI.SelectedTab.SelectedAchievement = button.Achievement;
 	button.selected = true;
 
-	SetFocusedAchievement(button.Achievement.ID);
+	if addon.IsNotWotLKClassic() then
+		SetFocusedAchievement(button.Achievement.ID);
+	else
+		local achievements = AchievementFrameAchievements;
+		achievements.selection = button.id;
+		achievements.selectionIndex = button.index;
+	end
 end
 
  -- Looks for the selection if it's not already visible

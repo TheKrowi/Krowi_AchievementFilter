@@ -7,8 +7,14 @@ local boxFrame = search.BoxFrame;
 function boxFrame:Load()
 	-- Create frame
     local frame = CreateFrame("EditBox", "KrowiAF_SearchBoxFrame", AchievementFrame, "KrowiAF_SearchBoxFrame_Template");
-	frame:SetPoint("TOPLEFT", AchievementFrame.searchBox);
-    frame:SetPoint("BOTTOMRIGHT", AchievementFrame.searchBox);
+	if addon.IsNotWotLKClassic() then
+		frame:SetPoint("TOPLEFT", AchievementFrame.searchBox);
+		frame:SetPoint("BOTTOMRIGHT", AchievementFrame.searchBox);
+	else
+		frame:SetSize(107, 30);
+		frame:SetPoint("TOPLEFT", AchievementFrameHeaderRightDDLInset, "TOPLEFT", 12, 2);
+	end
+
     frame:SetMaxLetters(40);
 
 	tinsert(ACHIEVEMENTFRAME_SUBFRAMES, frame:GetName());
@@ -27,6 +33,9 @@ end
 function KrowiAF_SearchBoxFrame_OnShow(self)
 	self:SetFrameLevel(self:GetParent():GetFrameLevel() + 7);
 	KrowiAF_SearchPreviewButton_OnEnter(search.PreviewFrame.Buttons[1]);
+	if addon.IsWotLKClassic() then
+		AchievementFrameHeaderRightDDLInset:Show();
+	end
 end
 
 function KrowiAF_SearchBoxFrame_OnHide(self)
@@ -35,6 +44,9 @@ function KrowiAF_SearchBoxFrame_OnHide(self)
 	end
 	search.PreviewFrame:Hide();
 	search.ResultsFrame:Hide();
+	if addon.IsWotLKClassic() and not AchievementFrameFilterDropDown:IsShown() then
+		AchievementFrameHeaderRightDDLInset:Hide();
+	end
 end
 
 function KrowiAF_SearchBoxFrame_OnEnterPressed(self)

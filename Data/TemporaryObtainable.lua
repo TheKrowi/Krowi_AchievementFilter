@@ -7,7 +7,12 @@ local temporaryObtainable = data.TemporaryObtainable;
 local DEBUG --= true;
 
 function temporaryObtainable:Load()
-    C_MythicPlus.RequestMapInfo();
+    if C_MythicPlus then
+        C_MythicPlus.RequestMapInfo();
+    else -- Classic
+        self.GetPreviousMplusSeason = function() return 99; end;
+        self.GetCurrentMplusSeason = function() return 99; end;
+    end
 end
 
 do -- GetData

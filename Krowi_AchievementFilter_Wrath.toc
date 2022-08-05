@@ -1,0 +1,47 @@
+## Interface: 30400
+## Title: Krowi's |cFF1D92C2Achievement Filter|r
+## Version: 38.0-alpha10
+## Author: Krowi-Frostmane EU
+## SavedVariables: Options, SavedData, Filters, EventDetails, Test
+## Notes: Filters your achievements.
+## X-Discord-Invite-Link: https://discord.gg/DCxq5rRNW5
+## X-Discord-Server-Name: Krowi's Addons
+## X-CurseForge: https://www.curseforge.com/wow/addons/krowi-achievement-filter
+## X-Curse-Project-ID: 413582
+## X-Wago: https://addons.wago.io/addons/krowi-achievement-filter
+## X-Wago-Project-ID: XrNkx46a
+## X-WoWInterface: https://www.wowinterface.com/downloads/info26229-KrowisAchievementFilter
+## X-WoWInterface-Project-ID: 26229
+
+UnitTests\UnitTests.lua
+
+API.lua
+
+Libs\Files.xml
+
+Plugins\Files.xml
+
+Colors.lua
+MetaData.lua
+Credits.lua
+Globals.lua
+
+Localization\Files.xml
+
+ExportedTabs.lua
+
+Krowi_AchievementFilter.lua
+
+Diagnostics.lua
+Options\Files.xml
+Icon.lua
+Tutorials.lua
+
+Objects\Files.xml
+
+Data\Files.xml
+
+Filters.lua
+GUI\Files.xml
+
+UnitTests\Files.xml
