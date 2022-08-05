@@ -338,7 +338,7 @@ function gui.LoadWotLKClassicFixes()
         AchievementFrame_SetTabs = function() end;
     end
     if AchievementMeta_OnLeave == nil then
-        AchievementMeta_OnLeave = function AchievementMeta_OnLeave(self)
+        AchievementMeta_OnLeave = function(self)
             GameTooltip:Hide();
             guildMemberRequestFrame = nil;
         end
