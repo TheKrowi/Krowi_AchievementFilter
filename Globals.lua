@@ -472,3 +472,43 @@ end
 -- end
 
 -- /run KrowiAF_FireEvent("ACHIEVEMENT_EARNED");
+
+local cachedIsNotWotLKClassic, cachedIsWotLKClassic;
+function addon.IsNotWotLKClassic()
+    if cachedIsNotWotLKClassic ~= nil then
+        return cachedIsNotWotLKClassic;
+    end
+    local version = (GetBuildInfo());
+    local major = string.match(version, "(%d+)%.(%d+)%.(%d+)(%w?)");
+    cachedIsNotWotLKClassic = major ~= "3";
+    cachedIsWotLKClassic = not cachedIsNotWotLKClassic;
+    return cachedIsNotWotLKClassic;
+end
+
+function addon.IsWotLKClassic()
+    if cachedIsWotLKClassic ~= nil then
+        return cachedIsWotLKClassic;
+    end
+    local version = (GetBuildInfo());
+    local major = string.match(version, "(%d+)%.(%d+)%.(%d+)(%w?)");
+    cachedIsWotLKClassic = major == "3";
+    cachedIsNotWotLKClassic = not cachedIsWotLKClassic;
+    return cachedIsWotLKClassic;
+end
+
+function addon.EJ_GetInstanceInfo(journalInstanceID)
+   return EJ_GetInstanceInfo and EJ_GetInstanceInfo(journalInstanceID) or journalInstanceID;
+end
+
+function addon.GetCategoryInfo(categoryID)
+    local categoryInfo = GetCategoryInfo(categoryID);
+    return categoryInfo and categoryInfo or categoryID;
+end
+
+function addon.GetLFGDungeonInfo(dungeonID)
+    return GetLFGDungeonInfo and GetLFGDungeonInfo(dungeonID) or dungeonID;
+end
+
+function addon.GetCovenantName(covenantID)
+    return C_Covenants and C_Covenants.GetCovenantData(covenantID).name or covenantID;
+end

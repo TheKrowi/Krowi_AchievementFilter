@@ -16,7 +16,7 @@ function tabs.Load()
     tinsert(tabsOrder, "Expansions");
     tabs["Events"] = { Name = "Events", Text = addon.L["Events"] };
     tinsert(tabsOrder, "Events");
-    tabs["PvP"] = { Name = "PvP", Text = (GetCategoryInfo(15270)) };
+    tabs["PvP"] = { Name = "PvP", Text = (GetCategoryInfo(95)) };
     tinsert(tabsOrder, "PvP");
     tabs["Specials"] = { Name = "Specials", Text = addon.L["Specials"] };
     tinsert(tabsOrder, "Specials");
