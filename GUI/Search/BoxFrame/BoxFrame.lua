@@ -7,8 +7,13 @@ local boxFrame = search.BoxFrame;
 function boxFrame:Load()
 	-- Create frame
     local frame = CreateFrame("EditBox", "KrowiAF_SearchBoxFrame", AchievementFrame, "KrowiAF_SearchBoxFrame_Template");
-	frame:SetPoint("TOPLEFT", AchievementFrame.searchBox);
-    frame:SetPoint("BOTTOMRIGHT", AchievementFrame.searchBox);
+	if addon.IsNotWotLKClassic() then
+		frame:SetPoint("TOPLEFT", AchievementFrame.searchBox);
+		frame:SetPoint("BOTTOMRIGHT", AchievementFrame.searchBox);
+	else
+		frame:SetPoint("TOPLEFT", AchievementFrameHeaderRightDDLInset, "TOPLEFT", 12, 2);
+	end
+
     frame:SetMaxLetters(40);
 
 	tinsert(ACHIEVEMENTFRAME_SUBFRAMES, frame:GetName());

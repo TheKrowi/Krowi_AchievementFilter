@@ -43,15 +43,25 @@ function achFrameTabBtn:New(text, framesToShow, categories, filters, waterMark)
         frame.OnClick = frame.Comparison_OnClick;
     end);
 
-    hooksecurefunc("AchievementFrame_UpdateTabs", function(clickedTab) -- Issue #1: Broken
-        frame:AchievementFrame_UpdateTabs(frame, frame.ID, clickedTab);
-    end);
+    if addon.IsNotWotLKClassic() then
+        hooksecurefunc("AchievementFrame_UpdateTabs", function(clickedTab) -- Issue #1: Broken
+            frame:AchievementFrame_UpdateTabs(frame, frame.ID, clickedTab);
+        end);
+    else
+        hooksecurefunc("PanelTemplates_SetTab", function(_, clickedTab) -- Issue #1: Broken
+            frame:AchievementFrame_UpdateTabs(frame, frame.ID, clickedTab);
+        end);
+    end
 
     return frame;
 end
 
 function achFrameTabBtn:Base_OnClick(id)
-	AchievementFrame_UpdateTabs(id);
+    if addon.IsNotWotLKClassic() then
+	    AchievementFrame_UpdateTabs(id);
+    else
+        PanelTemplates_Tab_OnClick(_G["AchievementFrameTab" .. id], AchievementFrame);
+    end
 
     if addon.InGuildView() then
         AchievementFrame_ToggleView();

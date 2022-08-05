@@ -134,7 +134,7 @@ function KrowiAF_AchievementButton_Light_OnEnter(self)
     GameTooltip:SetPoint("TOPLEFT", self, "TOPRIGHT");
     local link = GetAchievementLink(self.Achievement.Id);
     GameTooltip:SetHyperlink(link);
-    AchievementFrameAchievements_CheckGuildMembersTooltip(self);
+    -- AchievementFrameAchievements_CheckGuildMembersTooltip(self);
     GameTooltip:Show();
     if GameTooltip:GetTop() > self:GetTop() then
         GameTooltip:ClearAllPoints();

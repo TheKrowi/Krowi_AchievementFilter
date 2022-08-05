@@ -41,8 +41,10 @@ end
 function KrowiAF_CategoriesFrame_OnShow(self) -- Used in Templates - KrowiAF_CategoriesFrame_Template
 	AchievementFrameCategories:Hide(); -- Issue #11: Fix
 	AchievementFrameFilterDropDown:Hide();
-	AchievementFrame.searchBox:Hide();
-	AchievementFrameHeaderLeftDDLInset:Show();
+	if addon.IsNotWotLKClassic() then
+		AchievementFrame.searchBox:Hide();
+		AchievementFrameHeaderLeftDDLInset:Show();
+	end
 	AchievementFrameWaterMark:SetTexture(addon.GUI.SelectedTab.WaterMark);
 	AchievementFrameCategoriesBG:SetTexCoord(0, 0.5, 0, 1); -- Set this global texture for player achievements
 	self:Update();

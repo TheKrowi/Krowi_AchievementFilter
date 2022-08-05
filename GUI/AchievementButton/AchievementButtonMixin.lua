@@ -232,8 +232,8 @@ function KrowiAF_AchievementButtonMixin:UpdatePlusMinusTexture()
 		display = true;
 	elseif self.Completed and GetPreviousAchievement(id) then
 		display = true;
-	elseif not self.Completed and GetAchievementGuildRep(id) then -- Not sure what this one does
-		display = true;
+	-- elseif not self.Completed and GetAchievementGuildRep(id) then -- Not sure what this one does
+	-- 	display = true;
 	end
 
 	if not display then

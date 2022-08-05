@@ -314,7 +314,8 @@ function addon.HookAchievementFrameOnShow()
     --     addon.GUI.ShowHideTabs();
     -- end
 
-    hooksecurefunc("AchievementFrame_SetTabs", addon.GUI.ShowHideTabs);
+    local funcName = addon.IsNotWotLKClassic() and "AchievementFrame_SetTabs" or "PanelTemplates_SetTab";
+    hooksecurefunc(funcName, addon.GUI.ShowHideTabs);
 end
 
 local function MakeMovable(frame, target)
