@@ -253,7 +253,6 @@ local function AddToCache(id, points, flags, isGuild, isStatistic, exists)
     if exists then
         addon.Data.AddAchievementIfNil(id, points);
     elseif addon.Data.Achievements[id] then
-        print(id)
         addon.Data.Achievements[id].DoesNotExist = true;
         return;
     else
