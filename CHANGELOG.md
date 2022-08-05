@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 - Data manager that can be opened by clicking on the achievement points in the header to show/hide characters in/from the header tooltip
 - Dynamic obtainability (replaces the previous yes/no obtainable flag which opens new possibilities) - NOT ALL DATA UPDATED YET
 
+### WotLK Classic
+- First port from retail
+- All features except event reminders, world map button and data manager are ported
+
 ## 9.2.5.37.0 - 2022-08-01
 ### Added
 - Faction icon in front of characters in the achievement window header tooltip (enabled by default)
