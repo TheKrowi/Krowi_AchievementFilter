@@ -166,10 +166,10 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         local color;
         if start == "Past" and _end == "Future" then
             text = text .. " " .. addon.L["is"];
-            color = addon.Colors.OrangeRGB;
+            color = addon.Colors.GreenRGB;
         elseif start == "Future" then
             text = text .. " " .. addon.L["will be"];
-            color = addon.Colors.GreenRGB;
+            color = addon.Colors.OrangeRGB;
         elseif _end == "Past" then
             text = text .. " " .. addon.L["was"];
             color = addon.Colors.RedRGB;
