@@ -5,6 +5,11 @@ local achievementsObjectives = addon.GUI.AchievementsObjectives;
 
 function achievementsObjectives:Load()
 	local frame = CreateFrame("Frame", "KrowiAF_AchievementsObjectives", nil, "KrowiAF_AchievementsObjectives_Template");
+
+	if addon.IsWotLKClassic() then
+		ACHIEVEMENTBUTTON_METAROWHEIGHT = 28;
+	end
+
 	addon.GUI.AchievementsObjectives = frame;
 end
 
@@ -13,7 +18,7 @@ function KrowiAF_AchievementsObjectives_OnEnter(self)
 	GameTooltip:SetPoint("TOPLEFT", self, "BOTTOMLEFT");
 	local link = GetAchievementLink(self.Id);
 	GameTooltip:SetHyperlink(link);
-	AchievementFrameAchievements_CheckGuildMembersTooltip(self);
+	-- AchievementFrameAchievements_CheckGuildMembersTooltip(self);
 	GameTooltip:Show();
 	if GameTooltip:GetTop() > self:GetBottom() then
 		GameTooltip:ClearAllPoints();

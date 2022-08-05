@@ -55,7 +55,11 @@ function KrowiAF_CategoriesFrame_OnHide() -- Used in Templates - KrowiAF_Categor
 	AchievementFrameCategoriesBG:SetWidth(195); -- Set back to default value
 	if not AchievementFrameAchievements:IsShown() then
 		AchievementFrameFilterDropDown:Hide();
-		AchievementFrameHeaderLeftDDLInset:Hide();
+		if addon.IsNotWotLKClassic() then
+			AchievementFrameHeaderLeftDDLInset:Hide();
+		end
 	end
-	AchievementFrame.searchBox:Show();
+	if addon.IsNotWotLKClassic() then
+		AchievementFrame.searchBox:Show();
+	end
 end

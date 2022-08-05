@@ -160,8 +160,11 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
 	if AchievementFrame:IsShown() and tabIsSelected and not resetView and not forceOpen then
 		HideUIPanel(AchievementFrame);
 	else
-        AchievementFrame_SetTabs();
-        -- addon.GUI.ShowHideTabs();
+        if addon.IsNotWotLKClassic() then
+            AchievementFrame_SetTabs();
+        else
+            addon.GUI.ShowHideTabs();
+        end
 		ShowUIPanel(AchievementFrame);
         if addon.IsNotWotLKClassic() then
             AchievementFrame_HideSearchPreview();

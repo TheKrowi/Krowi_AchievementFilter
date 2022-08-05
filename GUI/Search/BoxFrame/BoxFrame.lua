@@ -11,6 +11,7 @@ function boxFrame:Load()
 		frame:SetPoint("TOPLEFT", AchievementFrame.searchBox);
 		frame:SetPoint("BOTTOMRIGHT", AchievementFrame.searchBox);
 	else
+		frame:SetSize(107, 30);
 		frame:SetPoint("TOPLEFT", AchievementFrameHeaderRightDDLInset, "TOPLEFT", 12, 2);
 	end
 
@@ -32,6 +33,9 @@ end
 function KrowiAF_SearchBoxFrame_OnShow(self)
 	self:SetFrameLevel(self:GetParent():GetFrameLevel() + 7);
 	KrowiAF_SearchPreviewButton_OnEnter(search.PreviewFrame.Buttons[1]);
+	if addon.IsWotLKClassic() then
+		AchievementFrameHeaderRightDDLInset:Show();
+	end
 end
 
 function KrowiAF_SearchBoxFrame_OnHide(self)

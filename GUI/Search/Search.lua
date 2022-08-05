@@ -5,7 +5,7 @@ gui.Search = {};
 local search = gui.Search;
 
 function search:Load()
-    self.ResultsFrame:Load();
-    self.PreviewFrame:Load();
     self.BoxFrame:Load();
+    self.PreviewFrame:Load();
+    self.ResultsFrame:Load();
 end
