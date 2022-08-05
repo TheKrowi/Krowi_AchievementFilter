@@ -122,6 +122,11 @@ function achFrameTabBtn:AchievementFrame_UpdateTabs(thisTab, thisTabID, clickedT
     else
         thisTab.text:SetPoint("CENTER", 0, -3);
     end
+
+    if addon.IsWotLKClassic() then -- We have to set this manually because this is normally done in the OnClick of each tab
+        AchievementFrameTab1.text:SetPoint("CENTER", AchievementFrameTab1, "CENTER", 0, -3);
+        AchievementFrameTab2.text:SetPoint("CENTER", AchievementFrameTab2, "CENTER", 0, -3);
+    end
 end
 
 function achFrameTabBtn:Select()

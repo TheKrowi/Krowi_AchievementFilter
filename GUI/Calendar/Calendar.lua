@@ -16,19 +16,19 @@ function calendar:CreateCalendarButton()
     button:SetSize(40, 40);
 
     local ntex = button:CreateTexture();
-	ntex:SetTexture("Interface\\Calendar\\UI-Calendar-Button");
+	ntex:SetTexture("Interface/Calendar/UI-Calendar-Button");
 	ntex:SetTexCoord(0, 0.390625, 0, 0.78125);
 	ntex:SetAllPoints();
 	button:SetNormalTexture(ntex);
 
     local ptex = button:CreateTexture();
-	ptex:SetTexture("Interface\\Calendar\\UI-Calendar-Button");
+	ptex:SetTexture("Interface/Calendar/UI-Calendar-Button");
 	ptex:SetTexCoord(0.5, 0.890625, 0, 0.78125);
 	ptex:SetAllPoints();
 	button:SetPushedTexture(ptex);
 
     local htex = button:CreateTexture();
-	htex:SetTexture("Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight");
+	htex:SetTexture("Interface/Minimap/UI-Minimap-ZoomButton-Highlight");
     htex:SetBlendMode("ADD");
 	htex:SetAllPoints();
 	button:SetHighlightTexture(htex);

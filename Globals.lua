@@ -253,6 +253,7 @@ local function AddToCache(id, points, flags, isGuild, isStatistic, exists)
     if exists then
         addon.Data.AddAchievementIfNil(id, points);
     elseif addon.Data.Achievements[id] then
+        print(id)
         addon.Data.Achievements[id].DoesNotExist = true;
         return;
     else
@@ -280,7 +281,8 @@ function addon.BuildCache()
     characterPoints = 0;
     local gapSize, i = 0, 1;
     AddCharToSavedData(playerGUID);
-    while gapSize < 500 do -- Biggest gap is 209 in 9.0.5 as of 2021-05-03
+    local highestId = addon.Data.AchievementIDs[#addon.Data.AchievementIDs];
+    while gapSize < 500 or i < highestId do -- Biggest gap is 209 in 9.0.5 as of 2021-05-03
         local id, _, points, _, month, day, year, _, flags, _, _, isGuild, wasEarnedByMe, _, isStatistic, exists = addon.GetAchievementInfo(i);
 
         if id then
@@ -501,9 +503,22 @@ function addon.EJ_GetInstanceInfo(journalInstanceID)
    return EJ_GetInstanceInfo and EJ_GetInstanceInfo(journalInstanceID) or journalInstanceID;
 end
 
+local function GetWotLKCategoryInfoTranslation(categoryID)
+    if categoryID == 15272 then
+        return GetCategoryInfo(125);
+    end
+end
+
 function addon.GetCategoryInfo(categoryID)
     local categoryInfo = GetCategoryInfo(categoryID);
-    return categoryInfo and categoryInfo or categoryID;
+    if categoryInfo then
+        return categoryInfo;
+    end
+    categoryInfo = GetWotLKCategoryInfoTranslation(categoryID);
+    if categoryInfo then
+        return categoryInfo;
+    end
+    return categoryID;
 end
 
 function addon.GetLFGDungeonInfo(dungeonID)

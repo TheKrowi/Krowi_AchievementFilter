@@ -31,6 +31,7 @@ function gui:LoadWithBlizzard_AchievementUI()
     addon.GUI.SummaryFrame:Load();
     gui.CategoriesFrame:Load();
     gui.FilterButton:Load();
+    addon.GUI.AchievementFrameHeader:Load();
 
     gui.Search:Load();
     addon.GUI.Calendar:Load();

@@ -3,6 +3,17 @@ local _, addon = ...;
 addon.GUI.AchievementFrameHeader = {};
 local header = addon.GUI.AchievementFrameHeader;
 
+function header:Load()
+    if AchievementFrameHeaderLeftDDLInset == nil then -- WotLK Classic
+        local tex = AchievementFrameHeader:CreateTexture();
+        tex:SetTexture("Interface/AchievementFrame/UI-Achievement-RightDDLInset");
+        tex:SetSize(128, 32);
+        tex:SetPoint("TOPLEFT", 112, -56);
+        tex:Show();
+        KrowiAF_AchievementFrameHeaderLeftDDLInset = tex;
+    end
+end
+
 local headerSortPriorities = {
     addon.L["Points"],
     addon.L["Name"],

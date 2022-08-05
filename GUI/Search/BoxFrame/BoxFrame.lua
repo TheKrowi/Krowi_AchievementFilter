@@ -44,6 +44,9 @@ function KrowiAF_SearchBoxFrame_OnHide(self)
 	end
 	search.PreviewFrame:Hide();
 	search.ResultsFrame:Hide();
+	if addon.IsWotLKClassic() and not AchievementFrameFilterDropDown:IsShown() then
+		AchievementFrameHeaderRightDDLInset:Hide();
+	end
 end
 
 function KrowiAF_SearchBoxFrame_OnEnterPressed(self)
