@@ -178,6 +178,9 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         elseif _end == "Past" then
             text = text .. " " .. addon.L["was"];
             color = addon.Colors.RedRGB;
+        else
+            text = text .. " " .. addon.L["was"];
+            color = addon.Colors.RedRGB;
         end
 
         return text, color;

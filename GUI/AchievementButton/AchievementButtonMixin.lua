@@ -76,8 +76,12 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement)
             state = achievement.TemporaryObtainable.Obtainable();
         end
 
-		if state and (state == false or state == "Past" or state == "Future") then
+		if state and (state == false or state == "Past") then
 			saturatedStyle = "NotObtainable";
+		elseif state and state == "Current" then
+			self.saturatedStyle = "TempObtainable";
+		elseif state and state == "Future" then
+			self.saturatedStyle = "TempObtainableFuture";
 		else
 			if flags.IsAccountWide then
 				self.accountWide = true;

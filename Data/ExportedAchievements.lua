@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-05 08-00-32 ]] --
+-- [[ Exported at 2022-08-06 11-48-23 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -334,7 +334,7 @@ function exportedAchievements.Load(a, t)
     a[559] = ach:New(559, 0); -- Needy
     SetTO(a[559]);
     a[560] = ach:New(560, 0); -- Deadliest Catch
-    SetTO(a[560]);
+    SetTO(a[560], "From", "Version", "030002", "Before", "Version", "040001");
     a[561] = ach:New(561, 10); -- D.E.H.T.A's Little P.I.T.A.
     a[562] = ach:New(562, 10); -- The Arachnid Quarter (10 player)
     a[563] = ach:New(563, 10); -- The Arachnid Quarter (25 player)
@@ -364,18 +364,18 @@ function exportedAchievements.Load(a, t)
     a[608] = ach:New(608, 10); -- 25 Coins of Ancestry
     a[609] = ach:New(609, 10); -- 50 Coins of Ancestry
     a[610] = ach:New(610, 0, fac.Alliance, 615); -- Orgrimmar Offensive
-    SetTO(a[610]);
+    SetTO(a[610], "From", "Version", "030002", "Before", "Version", "080001");
     a[611] = ach:New(611, 10, fac.Alliance, 616); -- Bleeding Bloodhoof
-    SetTO(a[611]);
+    SetTO(a[611], "From", "Version", "030002", "Before", "Version", "090001");
     a[612] = ach:New(612, 0, fac.Alliance, 617); -- Downing the Dark Lady
-    SetTO(a[612]);
+    SetTO(a[612], "From", "Version", "030002", "Before", "Version", "090001");
     a[613] = ach:New(613, 10, fac.Alliance, 618); -- Killed in Quel'Thalas
     a[614] = ach:New(614, 20, fac.Alliance, 619); -- For the Alliance!
     a[615] = ach:New(615, 0, fac.Horde, 610); -- Storming Stormwind
-    SetTO(a[615]);
+    SetTO(a[615], "From", "Version", "030002", "Before", "Version", "090001");
     a[616] = ach:New(616, 10, fac.Horde, 611); -- Overthrow the Council
     a[617] = ach:New(617, 0, fac.Horde, 612); -- Immortal No More
-    SetTO(a[617]);
+    SetTO(a[617], "From", "Version", "030002", "Before", "Version", "080001");
     a[618] = ach:New(618, 10, fac.Horde, 613); -- Putting Out the Light
     a[619] = ach:New(619, 20, fac.Horde, 614); -- For the Horde!
     a[621] = ach:New(621, 10); -- Represent
@@ -447,11 +447,11 @@ function exportedAchievements.Load(a, t)
     a[686] = ach:New(686, 10); -- Molten Core
     a[687] = ach:New(687, 10); -- Temple of Ahn'Qiraj
     a[688] = ach:New(688, 0); -- Zul'Gurub
-    SetTO(a[688]);
+    SetTO(a[688], "From", "Version", "030002", "Before", "Version", "040001");
     a[689] = ach:New(689, 10); -- Ruins of Ahn'Qiraj
     a[690] = ach:New(690, 10); -- Karazhan
     a[691] = ach:New(691, 0); -- Zul'Aman
-    SetTO(a[691]);
+    SetTO(a[691], "From", "Version", "030002", "Before", "Version", "040001");
     a[692] = ach:New(692, 10); -- Gruul's Lair
     a[693] = ach:New(693, 10); -- Magtheridon's Lair
     a[694] = ach:New(694, 10); -- Serpentshrine Cavern
@@ -553,9 +553,9 @@ function exportedAchievements.Load(a, t)
     a[879] = ach:New(879, 0); -- Old School Ride
     SetTO(a[879]);
     a[880] = ach:New(880, 0); -- Swift Zulian Tiger
-    SetTO(a[880]);
+    SetTO(a[880], "From", "Version", "030002", "Before", "Version", "040001");
     a[881] = ach:New(881, 0); -- Swift Razzashi Raptor
-    SetTO(a[881]);
+    SetTO(a[881], "From", "Version", "030002", "Before", "Version", "040001");
     a[882] = ach:New(882, 0); -- Fiery Warhorse's Reins
     a[883] = ach:New(883, 0); -- Reins of the Raven Lord
     a[884] = ach:New(884, 0); -- Swift White Hawkstrider
@@ -612,7 +612,7 @@ function exportedAchievements.Load(a, t)
     a[955] = ach:New(955, 10); -- Hydraxian Waterlords
     a[956] = ach:New(956, 10); -- Brood of Nozdormu
     a[957] = ach:New(957, 0); -- Hero of the Zandalar Tribe
-    SetTO(a[957]);
+    SetTO(a[957], "From", "Version", "030002", "Before", "Version", "040001");
     a[958] = ach:New(958, 10); -- Sworn to the Deathsworn
     a[959] = ach:New(959, 10); -- The Scale of the Sands
     a[960] = ach:New(960, 10); -- The Violet Eye
@@ -759,7 +759,7 @@ function exportedAchievements.Load(a, t)
     a[1296] = ach:New(1296, 10); -- Watch Him Die
     a[1297] = ach:New(1297, 10); -- Hadronox Denied
     a[1307] = ach:New(1307, 0); -- Upper Blackrock Spire (Classic)
-    SetTO(a[1307]);
+    SetTO(a[1307], "From", "Version", "030002", "Before", "Version", "060002");
     a[1308] = ach:New(1308, 0); -- Strand of the Ancients Victory
     SetTO(a[1308]);
     a[1309] = ach:New(1309, 0); -- Strand of the Ancients Veteran
@@ -1054,7 +1054,7 @@ function exportedAchievements.Load(a, t)
     a[2187] = ach:New(2187, 0); -- The Undying
     SetTO(a[2187]);
     a[2188] = ach:New(2188, 0); -- Leeeeeeeeeeeeeroy!
-    SetTO(a[2188]);
+    SetTO(a[2188], "From", "Version", "030002", "Before", "Version", "060002");
     a[2189] = ach:New(2189, 0); -- Artillery Expert
     SetTO(a[2189]);
     a[2190] = ach:New(2190, 0); -- Drop It Now!
@@ -1092,10 +1092,10 @@ function exportedAchievements.Load(a, t)
     a[2422] = ach:New(2422, 10); -- Shake Your Bunny-Maker
     a[2436] = ach:New(2436, 10); -- Desert Rose
     a[2456] = ach:New(2456, 0); -- Vampire Hunter
-    SetTO(a[2456]);
+    SetTO(a[2456], "From", "Version", "030002", "Until", "Version", "030002");
     a[2476] = ach:New(2476, 10, fac.Horde, 1737); -- Destruction Derby
     a[2496] = ach:New(2496, 0); -- The Fifth Element
-    SetTO(a[2496]);
+    SetTO(a[2496], "From", "Version", "030002", "Before", "Version", "030008");
     a[2497] = ach:New(2497, 10, fac.Horde, 2419); -- Spring Fling
     a[2516] = ach:New(2516, 10); -- Lil' Game Hunter
     a[2536] = ach:New(2536, 10, fac.Alliance, 2537); -- Mountain o' Mounts
@@ -1636,9 +1636,9 @@ function exportedAchievements.Load(a, t)
     a[4782] = ach:New(4782, 0); -- Green Brewfest Stein
     SetTO(a[4782]);
     a[4786] = ach:New(4786, 0, fac.Alliance); -- Operation: Gnomeregan
-    SetTO(a[4786]);
+    SetTO(a[4786], "From", "Version", "030305a", "Before", "Version", "040001");
     a[4790] = ach:New(4790, 0, fac.Horde); -- Zalazane's Fall
-    SetTO(a[4790]);
+    SetTO(a[4790], "From", "Version", "030305a", "Before", "Version", "040001");
     a[4815] = ach:New(4815, 10); -- The Twilight Destroyer (25 player)
     a[4816] = ach:New(4816, 10); -- Heroic: The Twilight Destroyer (25 player)
     a[4817] = ach:New(4817, 10); -- The Twilight Destroyer (10 player)
@@ -2469,11 +2469,11 @@ function exportedAchievements.Load(a, t)
     a[6894] = ach:New(6894, 0); -- Gate of the Setting Sun Challenger
     SetTO(a[6894]);
     a[6895] = ach:New(6895, 0); -- Scarlet Halls Challenger
-    SetTO(a[6895]);
+    SetTO(a[6895], "From", "Version", "050005b", "Before", "Version", "060002");
     a[6896] = ach:New(6896, 0); -- Scarlet Monastery Challenger
-    SetTO(a[6896]);
+    SetTO(a[6896], "From", "Version", "050005b", "Before", "Version", "060002");
     a[6897] = ach:New(6897, 0); -- Scholomance Challenger
-    SetTO(a[6897]);
+    SetTO(a[6897], "From", "Version", "050005b", "Before", "Version", "060002");
     a[6898] = ach:New(6898, 0); -- Siege of Niuzao Temple Challenger
     SetTO(a[6898]);
     a[6899] = ach:New(6899, 0); -- Mogu'shan Palace: Bronze
@@ -2495,23 +2495,23 @@ function exportedAchievements.Load(a, t)
     a[6907] = ach:New(6907, 0); -- Gate of the Setting Sun: Gold
     SetTO(a[6907]);
     a[6908] = ach:New(6908, 0); -- Scarlet Halls: Bronze
-    SetTO(a[6908]);
+    SetTO(a[6908], "From", "Version", "050005b", "Before", "Version", "060002");
     a[6909] = ach:New(6909, 0); -- Scarlet Halls: Silver
-    SetTO(a[6909]);
+    SetTO(a[6909], "From", "Version", "050005b", "Before", "Version", "060002");
     a[6910] = ach:New(6910, 0); -- Scarlet Halls: Gold
-    SetTO(a[6910]);
+    SetTO(a[6910], "From", "Version", "050005b", "Before", "Version", "060002");
     a[6911] = ach:New(6911, 0); -- Scarlet Monastery: Bronze
-    SetTO(a[6911]);
+    SetTO(a[6911], "From", "Version", "050005b", "Before", "Version", "060002");
     a[6912] = ach:New(6912, 0); -- Scarlet Monastery: Silver
-    SetTO(a[6912]);
+    SetTO(a[6912], "From", "Version", "050005b", "Before", "Version", "060002");
     a[6913] = ach:New(6913, 0); -- Scarlet Monastery: Gold
-    SetTO(a[6913]);
+    SetTO(a[6913], "From", "Version", "050005b", "Before", "Version", "060002");
     a[6914] = ach:New(6914, 0); -- Scholomance: Bronze
-    SetTO(a[6914]);
+    SetTO(a[6914], "From", "Version", "050005b", "Before", "Version", "060002");
     a[6915] = ach:New(6915, 0); -- Scholomance: Silver
-    SetTO(a[6915]);
+    SetTO(a[6915], "From", "Version", "050005b", "Before", "Version", "060002");
     a[6916] = ach:New(6916, 0); -- Scholomance: Gold
-    SetTO(a[6916]);
+    SetTO(a[6916], "From", "Version", "050005b", "Before", "Version", "060002");
     a[6917] = ach:New(6917, 0); -- Siege of Niuzao Temple: Bronze
     SetTO(a[6917]);
     a[6918] = ach:New(6918, 0); -- Siege of Niuzao Temple: Silver
@@ -3040,11 +3040,11 @@ function exportedAchievements.Load(a, t)
     a[8434] = ach:New(8434, 0); -- Challenge Master: Gate of the Setting Sun
     SetTO(a[8434]);
     a[8436] = ach:New(8436, 0); -- Challenge Master: Scarlet Halls
-    SetTO(a[8436]);
+    SetTO(a[8436], "From", "Version", "050005b", "Before", "Version", "060002");
     a[8437] = ach:New(8437, 0); -- Challenge Master: Scarlet Monastery
-    SetTO(a[8437]);
+    SetTO(a[8437], "From", "Version", "050005b", "Before", "Version", "060002");
     a[8438] = ach:New(8438, 0); -- Challenge Master: Scholomance
-    SetTO(a[8438]);
+    SetTO(a[8438], "From", "Version", "050005b", "Before", "Version", "060002");
     a[8439] = ach:New(8439, 0); -- Challenge Master: Siege of Niuzao Temple
     SetTO(a[8439]);
     a[8448] = ach:New(8448, 10); -- Gamon Will Save Us!
@@ -3352,7 +3352,7 @@ function exportedAchievements.Load(a, t)
     a[9007] = ach:New(9007, 10); -- No Ticket
     a[9008] = ach:New(9008, 10); -- Is Draenor on Fire?
     a[9016] = ach:New(9016, 0); -- Breaker of the Black Harvest
-    SetTO(a[9016]);
+    SetTO(a[9016], "From", "Version", "050200", "Before", "Version", "060002");
     a[9017] = ach:New(9017, 10); -- Water Management
     a[9018] = ach:New(9018, 10); -- What's Your Sign?
     a[9023] = ach:New(9023, 10); -- ...They All Fall Down
@@ -3649,7 +3649,7 @@ function exportedAchievements.Load(a, t)
     a[9547] = ach:New(9547, 10); -- Everything Is Awesome!
     a[9548] = ach:New(9548, 10); -- Buried Treasures
     a[9550] = ach:New(9550, 0); -- "Boldly, You Sought the Power of Ragnaros"
-    SetTO(a[9550]);
+    SetTO(a[9550], "From", "Event", "514", "Until", "Event", "514");
     a[9551] = ach:New(9551, 10); -- Demon's Souls
     a[9552] = ach:New(9552, 10); -- No Tag-backs!
     a[9562] = ach:New(9562, 10, fac.Horde, 9564); -- Securing Draenor
@@ -3692,7 +3692,7 @@ function exportedAchievements.Load(a, t)
     a[9615] = ach:New(9615, 10); -- With a Nagrand Cherry On Top
     a[9617] = ach:New(9617, 10); -- Making the Cut
     a[9618] = ach:New(9618, 0); -- The Iron Invasion
-    SetTO(a[9618]);
+    SetTO(a[9618], "From", "Version", "060002", "Until", "Version", "060002");
     a[9619] = ach:New(9619, 10); -- Savage Hero
     a[9620] = ach:New(9620, 0); -- Challenge Master: Bloodmaul Slag Mines
     SetTO(a[9620]);
@@ -4369,7 +4369,7 @@ function exportedAchievements.Load(a, t)
     SetTO(a[11062]);
     a[11064] = ach:New(11064, 0); -- Collector's Edition: Baby Winston
     a[11065] = ach:New(11065, 0); -- It All Makes Sense Now
-    SetTO(a[11065]);
+    SetTO(a[11065], "From", "Version", "070003", "Until", "Version", "070003");
     a[11066] = ach:New(11066, 10); -- Underbelly Tycoon
     a[11124] = ach:New(11124, 10); -- Good Suramaritan
     a[11125] = ach:New(11125, 10); -- Now You're Thinking With Portals
@@ -4433,9 +4433,9 @@ function exportedAchievements.Load(a, t)
     a[11195] = ach:New(11195, 0); -- Ahead of the Curve: Gul'dan
     SetTO(a[11195]);
     a[11200] = ach:New(11200, 0); -- Stand Against the Legion
-    SetTO(a[11200]);
+    SetTO(a[11200], "From", "Version", "070003", "Until", "Version", "070003");
     a[11201] = ach:New(11201, 0); -- Defender of Azeroth: Legion Invasions
-    SetTO(a[11201]);
+    SetTO(a[11201], "From", "Version", "070003", "Until", "Version", "070003");
     a[11210] = ach:New(11210, 0); -- Fight for the Alliance
     a[11211] = ach:New(11211, 0); -- Fight for the Horde
     a[11212] = ach:New(11212, 5); -- Raise an Army
@@ -4477,9 +4477,9 @@ function exportedAchievements.Load(a, t)
     a[11294] = ach:New(11294, 0); -- Murloc Battlemasters
     SetTO(a[11294]);
     a[11296] = ach:New(11296, 0); -- The Ancient Keeper
-    SetTO(a[11296]);
+    SetTO(a[11296], "From", "Version", "030002", "Before", "Version", "040003a");
     a[11297] = ach:New(11297, 0); -- The Balance of Light and Shadow
-    SetTO(a[11297]);
+    SetTO(a[11297], "From", "Version", "030002", "Before", "Version", "040003a");
     a[11298] = ach:New(11298, 10); -- A Classy Outfit
     a[11320] = ach:New(11320, 10); -- Raiding with Leashes IV: Wrath of the Lick King
     a[11335] = ach:New(11335, 10); -- Season Tickets
@@ -7520,7 +7520,7 @@ function exportedAchievements.Load(a, t)
     a[14748] = ach:New(14748, 10); -- Wardrobe Makeover
     a[14749] = ach:New(14749, 5); -- Rendle's Big Day
     a[14750] = ach:New(14750, 0); -- Death Rising
-    SetTO(a[14750]);
+    SetTO(a[14750], "From", "Version", "090001", "Until", "Version", "090001");
     a[14751] = ach:New(14751, 15); -- The Gang's All Here
     a[14752] = ach:New(14752, 15); -- Things To Do When You're Dead
     a[14753] = ach:New(14753, 5); -- It's a Wrap

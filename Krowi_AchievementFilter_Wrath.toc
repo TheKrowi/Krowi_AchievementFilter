@@ -39,7 +39,7 @@ Tutorials.lua
 
 Objects\Files.xml
 
-Data\Files.xml
+Data\FilesWotLK.xml
 
 Filters.lua
 GUI\Files.xml

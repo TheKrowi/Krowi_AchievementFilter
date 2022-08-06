@@ -5,7 +5,7 @@
     <Script file="ExportedTransmogSets.lua" />
     <!-- <Script file="ExportedCustomObjectives.lua" /> -->
     <Script file="ExportedAchievements.lua" />
-    <Script file="ExportedCategoriesRetail.lua" />
+    <Script file="ExportedCategoriesWotLKClassic.lua" />
     <Script file="ExportedPetBattles.lua" />
     <Script file="ExportedUiMaps.lua" />
     <Script file="ExportedCalendarEvents.lua" />
