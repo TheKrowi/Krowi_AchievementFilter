@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-07 09-35-19 ]] --
+-- [[ Exported at 2022-08-07 11-59-18 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -90,6 +90,7 @@ L["Warcraft III: Reforged"] = "Warcraft III: Reforged";
 L["WoW's Anniversary"] = "WoW's Anniversary";
 L["WoW's 18th Anniversary"] = "WoW's 18th Anniversary";
 L["Season"] = "Season";
+L["Fated Raids"] = "Fated Raids";
 L["Feast of Winter Veil"] = "Feast of Winter Veil";
 L["Noblegarden"] = "Noblegarden";
 L["Children's Week"] = "Children's Week";

@@ -1,8 +1,8 @@
--- [[ Exported at 2022-08-07 09-35-19 ]] --
+-- [[ Exported at 2022-08-07 11-59-18 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-08-06 ]] --
+-- [[ German translation by Ta, 2022-08-07 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -90,6 +90,7 @@ L["Warcraft III: Reforged"] = "Warcraft III: Reforged";
 L["WoW's Anniversary"] = "WoW's Geburtstag";
 L["WoW's 18th Anniversary"] = "WoW's 18. Geburtstag";
 L["Season"] = "Saison";
+L["Fated Raids"] = "Schicksalhafte Raids";
 L["Feast of Winter Veil"] = "Winterhauch";
 L["Noblegarden"] = "Nobelgarten";
 L["Children's Week"] = "Kinderwoche";
@@ -102,6 +103,10 @@ L["Pilgrim's Bounty"] = "Die Pilgerfreuden";
 L["Day of the Dead"] = "Tag der Toten";
 L["Love is in the Air"] = "Liebe liegt in der Luft";
 L["Darkmoon Faire"] = "Dunkelmond-Jahrmarkt";
+L["WoW's 10th Anniversary"] = "10-jähriges Jubiläum von WoW";
+L["Fated Raids: Castle Nathria"] = "Schicksalhafte Raids: Schloss Nathria";
+L["Fated Raids: Sanctum of Domination"] = "Schicksalhafte Raids: Sanktum der Herrschaft";
+L["Fated Raids: Sepulcher of the First Ones"] = "Schicksalhafte Raids: Mausoleum der Ersten";
 L["Torghast"] = "Torghast";
 L["Soulforges"] = "Die Seelenschmieden";
 L["Fracture Chambers"] = "Frakturkammern";
@@ -140,6 +145,8 @@ L["Not part of set"] = "Nicht Teil des Transmog-Sets";
 L["This achievement can't be earned by this character."] = "Der Erfolg kann nicht von diesem Charakter erzielt werden.";
 L["This character's class has no transmog set that meet the requirements."] = "Die Klasse deines Charakters erfüllt nicht die Anforderungen für dieses Transmog-Set.";
 L["Achievement shown temporarily"] = "Dieser Erfolg wird nur vorübergehend angezeigt, da er keinem der gesetzten Filter entspricht.";
+L["Data Manager"] = "Daten-Manager";
+L["Header tooltip"] = "Überschrift-Tooltip";
 L["Wowhead"] = "Wowhead";
 L["Go to"] = "Gehe zu";
 L["Other locations"] = "Weitere...";
@@ -312,6 +319,7 @@ L["Time Left"] = "Zeit übrig";
 L["Calendar Events"] = "Kalender Events";
 L["Widget Events"] = "Widget Events";
 L["World Events"] = "Welt Events";
+L["Refresh Events"] = "Events aktualisieren";
 L["Select All"] = "Alle auswählen";
 L["Deselect All"] = "Alle abwählen";
 L["Date and Time format"] = "Datum und Zeit (Format)";
@@ -331,6 +339,7 @@ L["Donations"] = "Spenden";
 L["Localizations"] = "Sprach-Lokalisierungen";
 L["Toggle"] = "Auswählen";
 L["tab"] = "Tab";
+L["Open"] = "Öffnen";
 L["Left click"] = "Links-Klick";
 L["Right click"] = "Rechts-Klick";
 L["Icon Left click"] = "um das \"Erfolge\" Fenster zu öffnen.";
