@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-07 15-23-02 ]] --
+-- [[ Exported at 2022-08-07 16-38-28 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -4369,33 +4369,6 @@ function exportedCategories.Load(a)
     AddA(tmp[1107], a[1412]); -- Realm First! Level 80 Troll
     AddA(tmp[1107], a[1405]); -- Realm First! Level 80 Blood Elf
     AddA(tmp[1107], a[1406]); -- Realm First! Level 80 Draenei
-    tmp[1108] = cat:New(addon.L["Level 85"], true); -- Level 85
-    AddC(tmp[1106], tmp[1108]);
-    AddA(tmp[1108], a[4999]); -- Realm First! Level 85
-    AddA(tmp[1108], a[5007]); -- Realm First! Level 85 Warrior
-    AddA(tmp[1108], a[5001]); -- Realm First! Level 85 Paladin
-    AddA(tmp[1108], a[5004]); -- Realm First! Level 85 Hunter
-    AddA(tmp[1108], a[5008]); -- Realm First! Level 85 Rogue
-    AddA(tmp[1108], a[5002]); -- Realm First! Level 85 Priest
-    AddA(tmp[1108], a[5005]); -- Realm First! Level 85 Death Knight
-    AddA(tmp[1108], a[4998]); -- Realm First! Level 85 Shaman
-    AddA(tmp[1108], a[5006]); -- Realm First! Level 85 Mage
-    AddA(tmp[1108], a[5003]); -- Realm First! Level 85 Warlock
-    AddA(tmp[1108], a[5000]); -- Realm First! Level 85 Druid
-    tmp[1109] = cat:New(addon.L["Level 90"], true); -- Level 90
-    AddC(tmp[1106], tmp[1109]);
-    AddA(tmp[1109], a[6524]); -- Realm First! Level 90
-    AddA(tmp[1109], a[6750]); -- Realm First! Level 90 Warrior
-    AddA(tmp[1109], a[6744]); -- Realm First! Level 90 Paladin
-    AddA(tmp[1109], a[6747]); -- Realm First! Level 90 Hunter
-    AddA(tmp[1109], a[6751]); -- Realm First! Level 90 Rogue
-    AddA(tmp[1109], a[6745]); -- Realm First! Level 90 Priest
-    AddA(tmp[1109], a[6748]); -- Realm First! Level 90 Death Knight
-    AddA(tmp[1109], a[6523]); -- Realm First! Level 90 Shaman
-    AddA(tmp[1109], a[6749]); -- Realm First! Level 90 Mage
-    AddA(tmp[1109], a[6746]); -- Realm First! Level 90 Warlock
-    AddA(tmp[1109], a[6752]); -- Realm First! Level 90 Monk
-    AddA(tmp[1109], a[6743]); -- Realm First! Level 90 Druid
     tmp[1110] = cat:New((addon.GetCategoryInfo(169))); -- Professions
     AddC(tmp[1105], tmp[1110]);
     tmp[1111] = cat:New(addon.L["450 skill"], true); -- 450 skill
@@ -4415,40 +4388,6 @@ function exportedCategories.Load(a)
     AddA(tmp[1111], a[1422]); -- Realm First! Grand Master Scribe
     AddA(tmp[1111], a[1426]); -- Realm First! Grand Master Skinner
     AddA(tmp[1111], a[1427]); -- Realm First! Grand Master Tailor
-    tmp[1112] = cat:New(addon.L["525 skill"], true); -- 525 skill
-    AddC(tmp[1110], tmp[1112]);
-    AddA(tmp[1112], a[5381]); -- Realm First! Illustrious Alchemist
-    AddA(tmp[1112], a[5387]); -- Realm First! Illustrious Angler
-    AddA(tmp[1112], a[5396]); -- Realm First! Illustrious Archaeologist
-    AddA(tmp[1112], a[5382]); -- Realm First! Illustrious Blacksmith
-    AddA(tmp[1112], a[5383]); -- Realm First! Illustrious Cook
-    AddA(tmp[1112], a[5384]); -- Realm First! Illustrious Enchanter
-    AddA(tmp[1112], a[5385]); -- Realm First! Illustrious Engineer
-    AddA(tmp[1112], a[5388]); -- Realm First! Illustrious Herbalist
-    AddA(tmp[1112], a[5390]); -- Realm First! Illustrious Jewelcrafter
-    AddA(tmp[1112], a[5391]); -- Realm First! Illustrious Leatherworker
-    AddA(tmp[1112], a[5386]); -- Realm First! Illustrious Medic
-    AddA(tmp[1112], a[5392]); -- Realm First! Illustrious Miner
-    AddA(tmp[1112], a[5389]); -- Realm First! Illustrious Scribe
-    AddA(tmp[1112], a[5393]); -- Realm First! Illustrious Skinner
-    AddA(tmp[1112], a[5394]); -- Realm First! Illustrious Tailor
-    tmp[1113] = cat:New(addon.L["600 skill"], true); -- 600 skill
-    AddC(tmp[1110], tmp[1113]);
-    AddA(tmp[1113], a[6859]); -- Realm First! Zen Master Alchemist
-    AddA(tmp[1113], a[6865]); -- Realm First! Zen Master Angler
-    AddA(tmp[1113], a[6873]); -- Realm First! Zen Master Archaeologist
-    AddA(tmp[1113], a[6860]); -- Realm First! Zen Master Blacksmith
-    AddA(tmp[1113], a[6861]); -- Realm First! Zen Master Cook
-    AddA(tmp[1113], a[6862]); -- Realm First! Zen Master Enchanter
-    AddA(tmp[1113], a[6863]); -- Realm First! Zen Master Engineer
-    AddA(tmp[1113], a[6866]); -- Realm First! Zen Master Herbalist
-    AddA(tmp[1113], a[6868]); -- Realm First! Zen Master Jewelcrafter
-    AddA(tmp[1113], a[6869]); -- Realm First! Zen Master Leatherworker
-    AddA(tmp[1113], a[6864]); -- Realm First! Zen Master Medic
-    AddA(tmp[1113], a[6870]); -- Realm First! Zen Master Miner
-    AddA(tmp[1113], a[6867]); -- Realm First! Zen Master Scribe
-    AddA(tmp[1113], a[6871]); -- Realm First! Zen Master Skinner
-    AddA(tmp[1113], a[6872]); -- Realm First! Zen Master Tailor
     tmp[1116] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
     AddC(tmp[1105], tmp[1116]);
     AddA(tmp[1116], a[1463]); -- Realm First! Northrend Vanguard

@@ -7,11 +7,16 @@ All notable changes to this project will be documented in this file.
 - Dynamic obtainability (replaces the previous yes/no obtainable flag which opens new possibilities) - NOT ALL DATA UPDATED YET
 - Fated Raids Calendar events and reminders
 
+### Changed
+- Most BlizzCon achievements are marked obtainable again although expensive!
+- Salute to StarCraft and Herald of Flames are marked as unobtainable
+
 ### WotLK Classic
 - First port from retail
 - All features except event reminders, world map button and data manager are ported
 - Classic, TBC and WotLK achievements and categories adjusted and dynamic obtainability added
 - Cata, MoP, WoD, Legion, BfA and SL categories removed
+- Realm First! achievements and categories adjusted and dynamic obtainability added
 
 ## 9.2.5.37.0 - 2022-08-01
 ### Added

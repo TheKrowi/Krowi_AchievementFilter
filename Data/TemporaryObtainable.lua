@@ -55,94 +55,49 @@ do -- GetData
     end
 end
 
-do -- IsObtainable Past, Future or Current
-    function temporaryObtainable:GetObtainableState(achievement)
-        if achievement.TemporaryObtainable.Start == nil and achievement.TemporaryObtainable.End == nil then
-            return "Past";
-        end
-
-        local startFunction = achievement.TemporaryObtainable.Start.Function;
-        if startFunction == "Mythic+ Season" then
-            start = self:GetMplusSeasonStartState(achievement);
-        elseif startFunction == "PvP Season" then
-            start = self:GetPvpSeasonStartState(achievement);
-        elseif startFunction == "Version" then
-            start = self:GetVersionStartState(achievement);
-        end
-
-        local startState = start;
-        if start == "Future" then
-            -- print(achievement.Id, "Future")
-            return "Future";
-        end
-
-        local endFunction = achievement.TemporaryObtainable.End.Function;
-        if endFunction == "Mythic+ Season" then
-            _end = self:GetMplusSeasonEndState(achievement);
-        elseif endFunction == "PvP Season" then
-            _end = self:GetPvpSeasonEndState(achievement);
-        elseif endFunction == "Version" then
-            _end = self:GetVersionEndState(achievement);
-        end
-
-        local endState = _end;
-        if _end == "Past" then
-            -- print(achievement.Id, "Past")
-            return "Past";
-        end
-
-        -- print(achievement.Id, startState, endState)
-        return "Current";
+function temporaryObtainable:GetObtainableState(achievement)
+    if achievement.TemporaryObtainable.Start == nil and achievement.TemporaryObtainable.End == nil then
+        return "Past";
     end
 
-    function temporaryObtainable:DuringMplusSeason(season)
-        local state;
-        state = season <= max(self:GetCurrentMplusSeason(), self:GetPreviousMplusSeason()) and "Past" or "Future";
-        if season == self:GetCurrentMplusSeason() then
-            state = "Current";
-        end
-        return state;
+    local startFunction = achievement.TemporaryObtainable.Start.Function;
+    if startFunction == "Mythic+ Season" then
+        start = self:GetMplusSeasonStartState(achievement);
+    elseif startFunction == "PvP Season" then
+        start = self:GetPvpSeasonStartState(achievement);
+    elseif startFunction == "Version" then
+        start = self:GetVersionStartState(achievement);
+    elseif startFunction == "Never" then
+        return "Past";
+    elseif startFunction == "Once" then
+        return "Past";
     end
 
-    function temporaryObtainable:DuringMplusSeasons(season1, season2)
-        local state1 = self:DuringMplusSeason(season1);
-        local state2 = self:DuringMplusSeason(season2);
-        if state1 == state2 then
-            return state1;
-        elseif state1 == "Current" or state2 == "Current" or (state1 == "Past" and state2 == "Future") then
-            return "Current";
-        end
+    print(achievement.Id, startFunction, start)
+
+    local startState = start;
+    if start == "Future" then
+        -- print(achievement.Id, "Future")
+        return "Future";
     end
 
-    function temporaryObtainable:DuringPvpSeason(season)
-        local state;
-        state = season <= max(self:GetCurrentPvpSeason(), self:GetPreviousPvpSeason()) and "Past" or "Future";
-        if season == self:GetCurrentPvpSeason() then
-            state = "Current";
-        end
-        return state;
+    local endFunction = achievement.TemporaryObtainable.End.Function;
+    if endFunction == "Mythic+ Season" then
+        _end = self:GetMplusSeasonEndState(achievement);
+    elseif endFunction == "PvP Season" then
+        _end = self:GetPvpSeasonEndState(achievement);
+    elseif endFunction == "Version" then
+        _end = self:GetVersionEndState(achievement);
     end
 
-    function temporaryObtainable:DuringPvpSeasons(season1, season2)
-        local state1 = self:DuringPvpSeason(season1);
-        local state2 = self:DuringPvpSeason(season2);
-        if state1 == state2 then
-            return state1;
-        elseif state1 == "Current" or state2 == "Current" or (state1 == "Past" and state2 == "Future") then
-            return "Current";
-        end
+    local endState = _end;
+    if _end == "Past" then
+        -- print(achievement.Id, "Past")
+        return "Past";
     end
 
-    function temporaryObtainable:FromToBeforeVersion(versionFrom, versionBefore)
-        local currentVersion = self:GetCurrentVersionString();
-        if currentVersion >= versionFrom and currentVersion < versionBefore then
-            return "Current";
-        elseif currentVersion < versionFrom then
-            return "Future";
-        elseif currentVersion >= versionBefore then
-            return "Past";
-        end
-    end
+    -- print(achievement.Id, startState, endState)
+    return "Current";
 end
 
 do -- Tooltip, maybe move to not obtainable tooltip lua
@@ -214,6 +169,14 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         local color;
         text, color = self:AddWasIsWillBe(text, achievement);
 
+        if achievement.TemporaryObtainable.Start.Function == "Never" then
+            text = text .. " " .. addon.L["never obtainable"] .. ".";
+            return text, color;
+        elseif achievement.TemporaryObtainable.Start.Function == "Once" then
+            text = text .. " " .. addon.L["only obtainable by one player"] .. ".";
+            return text, color;
+        end
+
         text = text .. " " .. addon.L["temporary obtainable"]
 
         local start = GetStart(achievement);
@@ -222,7 +185,7 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         if achievement.TemporaryObtainable.Start.Function == "Mythic+ Season" then
             text = text .. " " .. addon.L["M+ Season"];
         elseif achievement.TemporaryObtainable.Start.Function == "PvP Season" then
-                text = text .. " " .. addon.L["PvP Season"];
+            text = text .. " " .. addon.L["PvP Season"];
         elseif achievement.TemporaryObtainable.Start.Function == "Patch" then
             text = text .. " " .. addon.L["Patch"];
         end
@@ -239,7 +202,7 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         if achievement.TemporaryObtainable.End.Function == "Mythic+ Season" then
             text = text .. " " .. addon.L["M+ Season"];
         elseif achievement.TemporaryObtainable.End.Function == "PvP Season" then
-                text = text .. " " .. addon.L["PvP Season"];
+            text = text .. " " .. addon.L["PvP Season"];
         elseif achievement.TemporaryObtainable.End.Function == "Patch" then
             text = text .. " " .. addon.L["Patch"];
         end

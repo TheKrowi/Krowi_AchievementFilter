@@ -142,6 +142,22 @@ end
 
 function achievement:SetTemporaryObtainable(startInclusion, startFunction, startValue, endInclusion, endFunction, endValue)
     self.TemporaryObtainable = {};
+    if startInclusion == "Never" then
+        self.TemporaryObtainable.Start = {
+            Function = startInclusion
+        };
+        self.TemporaryObtainable.End = {
+            Function = startInclusion
+        };
+    end
+    if startInclusion == "Once" then
+        self.TemporaryObtainable.Start = {
+            Function = startInclusion
+        };
+        self.TemporaryObtainable.End = {
+            Function = startInclusion
+        };
+    end
     if startInclusion ~= nil and startFunction ~= nil and startValue ~= nil then
         self.TemporaryObtainable.Start = {
             Inclusion = startInclusion,
