@@ -1,8 +1,8 @@
--- [[ Exported at 2022-07-31 16-42-35 ]] --
+-- [[ Exported at 2022-08-07 09-35-19 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-07-24 ]] --
+-- [[ German translation by Ta, 2022-08-06 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -102,6 +102,7 @@ L["Pilgrim's Bounty"] = "Die Pilgerfreuden";
 L["Day of the Dead"] = "Tag der Toten";
 L["Love is in the Air"] = "Liebe liegt in der Luft";
 L["Darkmoon Faire"] = "Dunkelmond-Jahrmarkt";
+L["Torghast"] = "Torghast";
 L["Soulforges"] = "Die Seelenschmieden";
 L["Fracture Chambers"] = "Frakturkammern";
 L["Skoldus Hall"] = "Skoldushalle";
@@ -138,6 +139,7 @@ L["Collecting data"] = "Sammle Daten...";
 L["Not part of set"] = "Nicht Teil des Transmog-Sets";
 L["This achievement can't be earned by this character."] = "Der Erfolg kann nicht von diesem Charakter erzielt werden.";
 L["This character's class has no transmog set that meet the requirements."] = "Die Klasse deines Charakters erfüllt nicht die Anforderungen für dieses Transmog-Set.";
+L["Achievement shown temporarily"] = "Dieser Erfolg wird nur vorübergehend angezeigt, da er keinem der gesetzten Filter entspricht.";
 L["Wowhead"] = "Wowhead";
 L["Go to"] = "Gehe zu";
 L["Other locations"] = "Weitere...";
@@ -215,6 +217,7 @@ L["Blizzard"] = "Blizzard";
 L["Order"] = "Tab Reihenfolge";
 L["Tab"] = "Tab";
 L["FixTabs"] = "Es werden einmalig wieder alle Tabs angezeigt. Dies war notwendig, um die neue Funktion zur Sortierung der Registerkarten einzuführen.\nEntschuldige bitte die Unannehmlichkeiten.";
+L["Error Tabs Order"] = "{blizzard} Tab {statistics} kann nicht vor {guild} stehen.";
 L["Header"] = "Header";
 L["Format"] = "Format";
 L["Account wide (default)"] = "Account (Standard)";
@@ -231,6 +234,8 @@ L["Keep current character"] = "Aktuellen Charakter beibehalten";
 L["Keep current character Desc"] = "Behalte den aktuellen Charakter im Tooltip der Charaktere, unabhängig davon, ob der Charakter von der Liste durch die {maxNumChar} abgeschnitten werden würde oder nicht.";
 L["Sort priority"] = "Priorität sortieren";
 L["Realm"] = "Realm";
+L["Indentation"] = "Unterkategorien einrücken";
+L["Indentation Desc"] = "Die Größe der Einrückung von Unterkategorien.";
 L["Show Sub Categories"] = "Unterkategorien anzeigen";
 L["Show Sub Categories Desc"] = "Unterkategorien anzeigen/ausblenden.\n\nWenn diese Option aktiviert ist, werden die Erfolge unter ihren ursprünglichen Unterkategorien platziert, anstatt alle zusammen unter der einzigen Kategorie {Kategorie}.";
 L["Clear all"] = "Alle löschen";
@@ -246,6 +251,16 @@ L["Merge small categories threshold Desc"] = "Kategorien mit einer Anzahl von Er
 L["Style"] = "Style Erfolgs-Fenster";
 L["Compact Achievements"] = "Kompakte Erfolgs-Fenster anzeigen";
 L["Compact Achievements Desc"] = "Die Anzeige der Erfolge ist auf 2/3 der ursprünglichen Größe verkleinert, ähnlich wie bei der Zusammenfassung der Erfolge.";
+L["Force two columns"] = "Zwei Spalten erzwingen";
+L["Force two columns Desc"] = "Aktiviere/deaktiviere den Algorithmus zur Erzwingung von zwei Spalten für die Erfolgs-Ziele. Wenn diese Option aktiviert ist und nur eine Spalte mit Zielen angezeigt wird, weil der Text eines oder mehrerer Ziele zu lang ist, wird auf der Grundlage der anderen Einstellungen eine zweite Spalte erzwungen.";
+L["Force two columns threshold"] = "Schwelle für zwei Spalten erzwingen";
+L["Force two columns threshold Desc"] = "Die Anzahl der Kriterien, die der Erfolg haben muss, damit eine zweite Spalte angezeigt wird, wenn normalerweise nur eine angezeigt würde.";
+L["Objectives"] = "Ziele";
+L["Criteria Behaviour"] = "Erfolgs-Kriterien Darstellung";
+L["Criteria Behaviour Desc"] = "So verhält sich ein Kriterium mit zu langem Text.\n\n|T:1:8|t- {overflow}: Der Text wird wie üblich angezeigt und läuft einfach über. Dies kann dazu führen, dass sich Texte überschneiden.\n|T:1:8|t- {truncate}: Schneidet den Text ab und zeigt '...' am Ende an.\n|T:1:8|t- {flexible}: Kriterien mit zu langen Texten werden in eine neue Zeile gesetzt. Andere Kriterien werden in zwei Spalten angezeigt.";
+L["Overflow"] = "Überlauf";
+L["Truncate"] = "Abschneiden";
+L["Flexible"] = "Flexibel";
 L["Not Earned By"] = "Nicht erzielt durch";
 L["Number of Earned By characters"] = "Anzahl der {earnedBy} Charaktere";
 L["Number of Earned By characters Desc"] = "Die Anzahl der Charaktere, die angezeigt werden, die den Erfolg erlangt haben.\n\n Wenn Du hier 0 einstellst, wird diese Funktion deaktiviert.";
@@ -380,5 +395,4 @@ L["Add Locale"] = "Installationspfad hinzufügen";
 L["Add Locale Desc"] = "Fügt den Installationspfad des aktuellen Spiels zum {wowheadLink} hinzu.";
 L["Related Tab"] = "Zugehöriger Tab";
 L["Related Tab Desc"] = "Öffnet eine neue, andere Registerkarte im Browser als die Standardregisterkarte wenn dies ausgewählt wird.";
-L["Torghast"] = "Torghast";
 

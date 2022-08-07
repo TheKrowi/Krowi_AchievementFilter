@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-06 11-48-23 ]] --
+-- [[ Exported at 2022-08-06 12-12-04 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -963,9 +963,9 @@ function exportedAchievements.Load(a, t)
     a[2016] = ach:New(2016, 10, fac.Alliance, 2017); -- Grizzled Veteran
     a[2017] = ach:New(2017, 10, fac.Horde, 2016); -- Grizzled Veteran
     a[2018] = ach:New(2018, 0); -- Timear Foresees
-    SetTO(a[2018]);
+    SetTO(a[2018], "From", "Version", "030003", "Before", "Version", "030300");
     a[2019] = ach:New(2019, 0); -- Proof of Demise
-    SetTO(a[2019]);
+    SetTO(a[2019], "From", "Version", "030003", "Before", "Version", "030300");
     a[2036] = ach:New(2036, 10); -- Intense Cold
     a[2037] = ach:New(2037, 10); -- Chaos Theory
     a[2038] = ach:New(2038, 10); -- Respect Your Elders
@@ -999,15 +999,15 @@ function exportedAchievements.Load(a, t)
     a[2083] = ach:New(2083, 10); -- Grand Ice Mammoth
     a[2084] = ach:New(2084, 10); -- Ring of the Kirin Tor
     a[2085] = ach:New(2085, 0); -- 50 Stone Keeper's Shards
-    SetTO(a[2085]);
+    SetTO(a[2085], "From", "Version", "030003", "Before", "Version", "040001");
     a[2086] = ach:New(2086, 0); -- 100 Stone Keeper's Shards
-    SetTO(a[2086]);
+    SetTO(a[2086], "From", "Version", "030003", "Before", "Version", "040001");
     a[2087] = ach:New(2087, 0); -- 250 Stone Keeper's Shards
-    SetTO(a[2087]);
+    SetTO(a[2087], "From", "Version", "030003", "Before", "Version", "040001");
     a[2088] = ach:New(2088, 0); -- 500 Stone Keeper's Shards
-    SetTO(a[2088]);
+    SetTO(a[2088], "From", "Version", "030003", "Before", "Version", "040001");
     a[2089] = ach:New(2089, 0); -- 1000 Stone Keeper's Shards
-    SetTO(a[2089]);
+    SetTO(a[2089], "From", "Version", "030003", "Before", "Version", "040001");
     a[2090] = ach:New(2090, 10); -- Challenger
     a[2091] = ach:New(2091, 10); -- Gladiator
     a[2092] = ach:New(2092, 10); -- Duelist
@@ -1050,9 +1050,9 @@ function exportedAchievements.Load(a, t)
     a[2184] = ach:New(2184, 10); -- Just Can't Get Enough (10 player)
     a[2185] = ach:New(2185, 10); -- Just Can't Get Enough (25 player)
     a[2186] = ach:New(2186, 0); -- The Immortal
-    SetTO(a[2186]);
+    SetTO(a[2186], "From", "Version", "030003", "Before", "Version", "040003a");
     a[2187] = ach:New(2187, 0); -- The Undying
-    SetTO(a[2187]);
+    SetTO(a[2187], "From", "Version", "030003", "Before", "Version", "040003a");
     a[2188] = ach:New(2188, 0); -- Leeeeeeeeeeeeeroy!
     SetTO(a[2188], "From", "Version", "030002", "Before", "Version", "060002");
     a[2189] = ach:New(2189, 0); -- Artillery Expert
@@ -1260,9 +1260,9 @@ function exportedAchievements.Load(a, t)
     a[2956] = ach:New(2956, 0); -- If Looks Could Kill (25 player)
     SetTO(a[2956]);
     a[2957] = ach:New(2957, 0); -- Glory of the Ulduar Raider (10 player)
-    SetTO(a[2957]);
+    SetTO(a[2957], "From", "Version", "030100", "Before", "Version", "070305");
     a[2958] = ach:New(2958, 0); -- Glory of the Ulduar Raider (25 player)
-    SetTO(a[2958]);
+    SetTO(a[2958], "From", "Version", "030100", "Before", "Version", "070305");
     a[2959] = ach:New(2959, 0); -- Rubble and Roll (10 player)
     SetTO(a[2959]);
     a[2960] = ach:New(2960, 0); -- Rubble and Roll (25 player)
@@ -1481,25 +1481,25 @@ function exportedAchievements.Load(a, t)
     a[3803] = ach:New(3803, 10); -- The Faceroller
     a[3804] = ach:New(3804, 10); -- I've Had Worse
     a[3808] = ach:New(3808, 0); -- A Tribute to Skill (10 player)
-    SetTO(a[3808]);
+    SetTO(a[3808], "From", "Version", "030200", "Before", "Version", "040003a");
     a[3809] = ach:New(3809, 0); -- A Tribute to Mad Skill (10 player)
-    SetTO(a[3809]);
+    SetTO(a[3809], "From", "Version", "030200", "Before", "Version", "040003a");
     a[3810] = ach:New(3810, 0); -- A Tribute to Insanity (10 player)
-    SetTO(a[3810]);
+    SetTO(a[3810], "From", "Version", "030200", "Before", "Version", "040003a");
     a[3812] = ach:New(3812, 10); -- Call of the Grand Crusade (25 player)
     a[3813] = ach:New(3813, 10); -- Upper Back Pain (25 player)
     a[3815] = ach:New(3815, 10); -- Salt and Pepper (25 player)
     a[3816] = ach:New(3816, 10); -- The Traitor King (25 player)
     a[3817] = ach:New(3817, 0); -- A Tribute to Skill (25 player)
-    SetTO(a[3817]);
+    SetTO(a[3817], "From", "Version", "030200", "Before", "Version", "040003a");
     a[3818] = ach:New(3818, 0); -- A Tribute to Mad Skill (25 player)
-    SetTO(a[3818]);
+    SetTO(a[3818], "From", "Version", "030200", "Before", "Version", "040003a");
     a[3819] = ach:New(3819, 0); -- A Tribute to Insanity (25 player)
-    SetTO(a[3819]);
+    SetTO(a[3819], "From", "Version", "030200", "Before", "Version", "040003a");
     a[3836] = ach:New(3836, 10); -- Koralon the Flame Watcher (10 player)
     a[3837] = ach:New(3837, 10); -- Koralon the Flame Watcher (25 player)
     a[3844] = ach:New(3844, 0); -- 1000 Dungeon & Raid Emblems
-    SetTO(a[3844]);
+    SetTO(a[3844], "From", "Version", "030200", "Before", "Version", "040003a");
     a[3845] = ach:New(3845, 20); -- Isle of Conquest All-Star
     a[3846] = ach:New(3846, 10, fac.Alliance, 4176); -- Resource Glut
     a[3847] = ach:New(3847, 10); -- Four Car Garage
@@ -1527,11 +1527,11 @@ function exportedAchievements.Load(a, t)
     a[4078] = ach:New(4078, 0); -- Realm First! Grand Crusader
     SetTO(a[4078]);
     a[4079] = ach:New(4079, 0, fac.Horde, 4156); -- A Tribute to Immortality
-    SetTO(a[4079]);
+    SetTO(a[4079], "From", "Version", "030200", "Before", "Version", "040003a");
     a[4080] = ach:New(4080, 0); -- A Tribute to Dedicated Insanity
-    SetTO(a[4080]);
+    SetTO(a[4080], "From", "Version", "030200", "Before", "Version", "040003a");
     a[4156] = ach:New(4156, 0, fac.Alliance, 4079); -- A Tribute to Immortality
-    SetTO(a[4156]);
+    SetTO(a[4156], "From", "Version", "030200", "Before", "Version", "040003a");
     a[4176] = ach:New(4176, 10, fac.Horde, 3846); -- Resource Glut
     a[4177] = ach:New(4177, 10, fac.Horde, 3851); -- Mine
     a[4256] = ach:New(4256, 10, fac.Horde, 3856); -- Demolition Derby
@@ -1539,7 +1539,7 @@ function exportedAchievements.Load(a, t)
     a[4297] = ach:New(4297, 10, fac.Horde, 4298); -- Heroic: Trial of the Champion
     a[4298] = ach:New(4298, 10, fac.Alliance, 4297); -- Heroic: Trial of the Champion
     a[4316] = ach:New(4316, 0); -- 2500 Dungeon & Raid Emblems
-    SetTO(a[4316]);
+    SetTO(a[4316], "From", "Version", "030200", "Before", "Version", "040003a");
     a[4396] = ach:New(4396, 10); -- Onyxia's Lair (10 player)
     a[4397] = ach:New(4397, 10); -- Onyxia's Lair (25 player)
     a[4400] = ach:New(4400, 0); -- WoW's 5th Anniversary

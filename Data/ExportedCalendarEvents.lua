@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-06 11-48-18 ]] --
+-- [[ Exported at 2022-08-07 09-39-55 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -259,6 +259,7 @@ function exportedCalendarEvents.InjectOptions()
             RefreshEvents19 = {
                 order = 19, type = "execute",
                 name = addon.L["Refresh Events"],
+                desc = addon.L["Requires a reload"],
                 func = function()
                     EventDetails.CalendarEvents = nil;
                     addon.EventData.Load();

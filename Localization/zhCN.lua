@@ -1,4 +1,4 @@
--- [[ Exported at 2022-07-31 16-42-35 ]] --
+-- [[ Exported at 2022-08-07 09-35-19 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -100,6 +100,7 @@ L["Pilgrim's Bounty"] = "感恩节";
 L["Day of the Dead"] = "悼念日";
 L["Love is in the Air"] = "情人节";
 L["Darkmoon Faire"] = "暗月马戏团";
+L["Torghast"] = "托加斯特";
 L["Soulforges"] = "灵魂熔炉";
 L["Fracture Chambers"] = "断骨密室";
 L["Skoldus Hall"] = "斯科杜斯之厅";
@@ -261,5 +262,4 @@ L["Wowhead Link"] = "Wowhead链接";
 L["Screenshots"] = "截屏";
 L["Add Locale"] = "添加语言";
 L["Related Tab"] = "相关标签";
-L["Torghast"] = "托加斯特";
 
