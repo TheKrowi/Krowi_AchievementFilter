@@ -73,7 +73,7 @@ function temporaryObtainable:GetObtainableState(achievement)
         return "Past";
     end
 
-    print(achievement.Id, startFunction, start)
+    -- print(achievement.Id, startFunction, start)
 
     local startState = start;
     if start == "Future" then

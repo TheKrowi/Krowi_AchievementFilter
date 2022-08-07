@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 - Classic, TBC and WotLK achievements and categories adjusted and dynamic obtainability added
 - Cata, MoP, WoD, Legion, BfA and SL categories removed
 - Realm First! achievements and categories adjusted and dynamic obtainability added
+- PvP achievements and categories adjusted and dynamic obtainability added
 
 ## 9.2.5.37.0 - 2022-08-01
 ### Added

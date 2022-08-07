@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-07 16-37-56 ]] --
+-- [[ Exported at 2022-08-07 17-53-18 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -167,15 +167,15 @@ function exportedAchievements.Load(a, t)
     a[402] = ach:New(402, 10); -- Three's Company: 1550
     a[403] = ach:New(403, 10); -- Three's Company: 1750
     a[404] = ach:New(404, 0); -- High Five: 2000
-    SetTO(a[404]);
+    SetTO(a[404], "From", "Version", "030003", "Before", "Version", "070003");
     a[405] = ach:New(405, 10); -- Three's Company: 2000
     a[406] = ach:New(406, 0); -- High Five: 1550
-    SetTO(a[406]);
+    SetTO(a[406], "From", "Version", "030003", "Before", "Version", "070003");
     a[407] = ach:New(407, 0); -- High Five: 1750
-    SetTO(a[407]);
+    SetTO(a[407], "From", "Version", "030003", "Before", "Version", "070003");
     a[408] = ach:New(408, 10); -- Hot Streak
     a[409] = ach:New(409, 0); -- Last Man Standing
-    SetTO(a[409]);
+    SetTO(a[409], "From", "Version", "030003", "Before", "Version", "070003");
     a[411] = ach:New(411, 0); -- Murky
     a[412] = ach:New(412, 0); -- Murloc Costume
     a[414] = ach:New(414, 0); -- Tyrael's Hilt
@@ -673,7 +673,7 @@ function exportedAchievements.Load(a, t)
     a[1159] = ach:New(1159, 10); -- Just the Two of Us: 2200
     a[1160] = ach:New(1160, 10); -- Three's Company: 2200
     a[1161] = ach:New(1161, 0); -- High Five: 2200
-    SetTO(a[1161]);
+    SetTO(a[1161], "From", "Version", "030003", "Before", "Version", "070003");
     a[1162] = ach:New(1162, 10); -- Hotter Streak
     a[1164] = ach:New(1164, 10, fac.Horde, 225); -- Everything Counts
     a[1165] = ach:New(1165, 10); -- "My Storage is ""Gigantique"""
@@ -683,7 +683,7 @@ function exportedAchievements.Load(a, t)
     a[1171] = ach:New(1171, 25); -- Master of Eye of the Storm
     a[1172] = ach:New(1172, 25); -- Master of Warsong Gulch
     a[1174] = ach:New(1174, 0); -- The Arena Master
-    SetTO(a[1174]);
+    SetTO(a[1174], "From", "Version", "030003", "Before", "Version", "070003");
     a[1175] = ach:New(1175, 50, fac.Horde, 230); -- Battlemaster
     a[1176] = ach:New(1176, 10); -- Got My Mind On My Money
     a[1177] = ach:New(1177, 10); -- Got My Mind On My Money
@@ -758,11 +758,11 @@ function exportedAchievements.Load(a, t)
     a[1307] = ach:New(1307, 0); -- Upper Blackrock Spire (Classic)
     SetTO(a[1307], "From", "Version", "030002", "Before", "Version", "060002");
     a[1308] = ach:New(1308, 0); -- Strand of the Ancients Victory
-    SetTO(a[1308]);
+    SetTO(a[1308], "From", "Version", "030003", "Before", "Version", "080001");
     a[1309] = ach:New(1309, 0); -- Strand of the Ancients Veteran
-    SetTO(a[1309]);
+    SetTO(a[1309], "From", "Version", "030003", "Before", "Version", "080001");
     a[1310] = ach:New(1310, 0); -- Storm the Beach
-    SetTO(a[1310]);
+    SetTO(a[1310], "From", "Version", "030003", "Before", "Version", "080001");
     a[1311] = ach:New(1311, 10); -- Medium Rare
     a[1312] = ach:New(1312, 25); -- Bloody Rare
     a[1356] = ach:New(1356, 10, fac.Horde, 34); -- I've Toured the Fjord
@@ -883,19 +883,19 @@ function exportedAchievements.Load(a, t)
     a[1752] = ach:New(1752, 10); -- Master of Wintergrasp
     a[1755] = ach:New(1755, 10); -- Within Our Grasp
     a[1757] = ach:New(1757, 0, fac.Alliance, 2200); -- Defense of the Ancients
-    SetTO(a[1757]);
+    SetTO(a[1757], "From", "Version", "030003", "Before", "Version", "080001");
     a[1761] = ach:New(1761, 0); -- The Dapper Sapper
-    SetTO(a[1761]);
+    SetTO(a[1761], "From", "Version", "030003", "Before", "Version", "080001");
     a[1762] = ach:New(1762, 0, fac.Alliance, 2192); -- Not Even a Scratch
-    SetTO(a[1762]);
+    SetTO(a[1762], "From", "Version", "030003", "Before", "Version", "080001");
     a[1763] = ach:New(1763, 0); -- Artillery Veteran
-    SetTO(a[1763]);
+    SetTO(a[1763], "From", "Version", "030003", "Before", "Version", "080001");
     a[1764] = ach:New(1764, 0); -- Drop It!
-    SetTO(a[1764]);
+    SetTO(a[1764], "From", "Version", "030003", "Before", "Version", "080001");
     a[1765] = ach:New(1765, 0); -- Steady Hands
-    SetTO(a[1765]);
+    SetTO(a[1765], "From", "Version", "030003", "Before", "Version", "080001");
     a[1766] = ach:New(1766, 0); -- Ancient Protector
-    SetTO(a[1766]);
+    SetTO(a[1766], "From", "Version", "030003", "Before", "Version", "080001");
     a[1777] = ach:New(1777, 10); -- The Northrend Gourmet
     a[1778] = ach:New(1778, 10); -- The Northrend Gourmet
     a[1779] = ach:New(1779, 10); -- The Northrend Gourmet
@@ -1053,20 +1053,20 @@ function exportedAchievements.Load(a, t)
     a[2188] = ach:New(2188, 0); -- Leeeeeeeeeeeeeroy!
     SetTO(a[2188], "From", "Version", "030002", "Before", "Version", "060002");
     a[2189] = ach:New(2189, 0); -- Artillery Expert
-    SetTO(a[2189]);
+    SetTO(a[2189], "From", "Version", "030003", "Before", "Version", "080001");
     a[2190] = ach:New(2190, 0); -- Drop It Now!
-    SetTO(a[2190]);
+    SetTO(a[2190], "From", "Version", "030003", "Before", "Version", "080001");
     a[2191] = ach:New(2191, 0); -- Ancient Courtyard Protector
-    SetTO(a[2191]);
+    SetTO(a[2191], "From", "Version", "030003", "Before", "Version", "080001");
     a[2192] = ach:New(2192, 0, fac.Horde, 1762); -- Not Even a Scratch
-    SetTO(a[2192]);
+    SetTO(a[2192], "From", "Version", "030003", "Before", "Version", "080001");
     a[2193] = ach:New(2193, 0); -- Explosives Expert
-    SetTO(a[2193]);
+    SetTO(a[2193], "From", "Version", "030003", "Before", "Version", "080001");
     a[2194] = ach:New(2194, 0); -- Master of Strand of the Ancients
-    SetTO(a[2194]);
+    SetTO(a[2194], "From", "Version", "030003", "Before", "Version", "080001");
     a[2199] = ach:New(2199, 10); -- Wintergrasp Ranger
     a[2200] = ach:New(2200, 0, fac.Horde, 1757); -- Defense of the Ancients
-    SetTO(a[2200]);
+    SetTO(a[2200], "From", "Version", "030003", "Before", "Version", "080001");
     a[2256] = ach:New(2256, 10); -- Northern Exposure
     a[2257] = ach:New(2257, 25); -- Frostbitten
     a[2316] = ach:New(2316, 0); -- Brutal Nether Drake
@@ -2989,19 +2989,19 @@ function exportedAchievements.Load(a, t)
     a[8347] = ach:New(8347, 10); -- Keep those Bombs Away! (From Me)
     a[8348] = ach:New(8348, 10); -- The Longest Day
     a[8350] = ach:New(8350, 0); -- Mine! Mine! Mine!
-    SetTO(a[8350]);
+    SetTO(a[8350], "From", "Version", "050300", "Before", "Version", "080300");
     a[8351] = ach:New(8351, 0); -- Other People's Property
-    SetTO(a[8351]);
+    SetTO(a[8351], "From", "Version", "050300", "Before", "Version", "080300");
     a[8354] = ach:New(8354, 0); -- Puddle Jumper
-    SetTO(a[8354]);
+    SetTO(a[8354], "From", "Version", "050300", "Before", "Version", "080300");
     a[8355] = ach:New(8355, 0); -- Weighed Down
-    SetTO(a[8355]);
+    SetTO(a[8355], "From", "Version", "050300", "Before", "Version", "080300");
     a[8358] = ach:New(8358, 0); -- Deepwind Gorge All-Star
-    SetTO(a[8358]);
+    SetTO(a[8358], "From", "Version", "050300", "Before", "Version", "080300");
     a[8359] = ach:New(8359, 0); -- Capping Spree
-    SetTO(a[8359]);
+    SetTO(a[8359], "From", "Version", "050300", "Before", "Version", "080300");
     a[8360] = ach:New(8360, 0); -- Master of Deepwind Gorge
-    SetTO(a[8360]);
+    SetTO(a[8360], "From", "Version", "050300", "Before", "Version", "080300");
     a[8364] = ach:New(8364, 10, fac.Alliance, 8366); -- Heroic: Battle on the High Seas
     a[8366] = ach:New(8366, 10, fac.Horde, 8364); -- Heroic: Battle on the High Seas
     a[8368] = ach:New(8368, 10); -- Fight Anger with Anger
@@ -3463,9 +3463,7 @@ function exportedAchievements.Load(a, t)
     a[9212] = ach:New(9212, 5); -- My Item Level Is Way Higher than Yours
     a[9213] = ach:New(9213, 5); -- Item Level Army
     a[9214] = ach:New(9214, 0, fac.Alliance, 9215); -- Hero of Stormshield
-    SetTO(a[9214]);
     a[9215] = ach:New(9215, 0, fac.Horde, 9214); -- Hero of Warspear
-    SetTO(a[9215]);
     a[9216] = ach:New(9216, 10); -- High-value Targets
     a[9217] = ach:New(9217, 10, fac.Horde, 9408); -- Operation Counterattack
     a[9218] = ach:New(9218, 10); -- "Grand Theft, 1st Degree"
@@ -7467,23 +7465,23 @@ function exportedAchievements.Load(a, t)
     a[14683] = ach:New(14683, 5); -- Dredger Style
     a[14684] = ach:New(14684, 10); -- Abominable Lives
     a[14685] = ach:New(14685, 0); -- Combatant: Shadowlands Season 1
-    SetTO(a[14685]);
+    SetTO(a[14685], "From", "PvP Season", 30, "Until", "PvP Season", 30);
     a[14686] = ach:New(14686, 0); -- Challenger: Shadowlands Season 1
-    SetTO(a[14686]);
+    SetTO(a[14686], "From", "PvP Season", 30, "Until", "PvP Season", 30);
     a[14687] = ach:New(14687, 0); -- Rival: Shadowlands Season 1
-    SetTO(a[14687]);
+    SetTO(a[14687], "From", "PvP Season", 30, "Until", "PvP Season", 30);
     a[14688] = ach:New(14688, 0); -- Duelist: Shadowlands Season 1
-    SetTO(a[14688]);
+    SetTO(a[14688], "From", "PvP Season", 30, "Until", "PvP Season", 30);
     a[14689] = ach:New(14689, 0); -- Gladiator: Shadowlands Season 1
     SetTO(a[14689]);
     a[14690] = ach:New(14690, 0); -- Sinful Gladiator: Shadowlands Season 1
-    SetTO(a[14690]);
+    SetTO(a[14690], "From", "PvP Season", 30, "Until", "PvP Season", 30);
     a[14691] = ach:New(14691, 0); -- Elite: Shadowlands Season 1
-    SetTO(a[14691]);
+    SetTO(a[14691], "From", "PvP Season", 30, "Until", "PvP Season", 30);
     a[14692] = ach:New(14692, 0, fac.Alliance, 14693); -- Hero of the Alliance: Sinful
-    SetTO(a[14692]);
+    SetTO(a[14692], "From", "PvP Season", 30, "Until", "PvP Season", 30);
     a[14693] = ach:New(14693, 0, fac.Horde, 14692); -- Hero of the Horde: Sinful
-    SetTO(a[14693]);
+    SetTO(a[14693], "From", "PvP Season", 30, "Until", "PvP Season", 30);
     a[14715] = ach:New(14715, 10); -- Castle Nathria
     a[14717] = ach:New(14717, 10); -- Heroic: Castle Nathria
     a[14718] = ach:New(14718, 10); -- Mythic: Castle Nathria
@@ -7631,23 +7629,23 @@ function exportedAchievements.Load(a, t)
     a[14943] = ach:New(14943, 10); -- Guarmageddon
     a[14961] = ach:New(14961, 10); -- Chains of Domination
     a[14968] = ach:New(14968, 0); -- Combatant I: Shadowlands Season 2
-    SetTO(a[14968]);
+    SetTO(a[14968], "From", "PvP Season", 31, "Until", "PvP Season", 31);
     a[14969] = ach:New(14969, 0); -- Challenger I: Shadowlands Season 2
-    SetTO(a[14969]);
+    SetTO(a[14969], "From", "PvP Season", 31, "Until", "PvP Season", 31);
     a[14970] = ach:New(14970, 0); -- Rival I: Shadowlands Season 2
-    SetTO(a[14970]);
+    SetTO(a[14970], "From", "PvP Season", 31, "Until", "PvP Season", 31);
     a[14971] = ach:New(14971, 0); -- Duelist: Shadowlands Season 2
-    SetTO(a[14971]);
+    SetTO(a[14971], "From", "PvP Season", 31, "Until", "PvP Season", 31);
     a[14972] = ach:New(14972, 0); -- Gladiator: Shadowlands Season 2
     SetTO(a[14972]);
     a[14973] = ach:New(14973, 0); -- Unchained Gladiator: Shadowlands Season 2
-    SetTO(a[14973]);
+    SetTO(a[14973], "From", "PvP Season", 31, "Until", "PvP Season", 31);
     a[14974] = ach:New(14974, 0); -- Elite: Shadowlands Season 2
-    SetTO(a[14974]);
+    SetTO(a[14974], "From", "PvP Season", 31, "Until", "PvP Season", 31);
     a[14975] = ach:New(14975, 0, fac.Alliance, 14976); -- Hero of the Alliance: Unchained
-    SetTO(a[14975]);
+    SetTO(a[14975], "From", "PvP Season", 31, "Until", "PvP Season", 31);
     a[14976] = ach:New(14976, 0, fac.Horde, 14975); -- Hero of the Horde: Unchained
-    SetTO(a[14976]);
+    SetTO(a[14976], "From", "PvP Season", 31, "Until", "PvP Season", 31);
     a[14998] = ach:New(14998, 10); -- "Name A Better Duo, I'll Wait"
     a[14999] = ach:New(14999, 0); -- Unchained Gladiator's Soul Eater
     SetTO(a[14999]);
@@ -7803,11 +7801,11 @@ function exportedAchievements.Load(a, t)
     a[15224] = ach:New(15224, 10); -- Explore Zereth Mortis
     a[15229] = ach:New(15229, 5); -- Traversing the Spheres
     a[15232] = ach:New(15232, 0); -- Combatant II: Shadowlands Season 2
-    SetTO(a[15232]);
+    SetTO(a[15232], "From", "PvP Season", 31, "Until", "PvP Season", 31);
     a[15233] = ach:New(15233, 0); -- Challenger II: Shadowlands Season 2
-    SetTO(a[15233]);
+    SetTO(a[15233], "From", "PvP Season", 31, "Until", "PvP Season", 31);
     a[15234] = ach:New(15234, 0); -- Rival II: Shadowlands Season 2
-    SetTO(a[15234]);
+    SetTO(a[15234], "From", "PvP Season", 31, "Until", "PvP Season", 31);
     a[15241] = ach:New(15241, 10); -- Renowned
     a[15251] = ach:New(15251, 10); -- The Jailer's Gauntlet: Layer 1
     a[15252] = ach:New(15252, 10); -- The Jailer's Gauntlet: Layer 2
@@ -7837,28 +7835,28 @@ function exportedAchievements.Load(a, t)
     a[15331] = ach:New(15331, 10); -- Treasures of Zereth Mortis
     a[15336] = ach:New(15336, 25); -- From A to Zereth
     a[15348] = ach:New(15348, 0); -- Combatant I: Shadowlands Season 3
-    SetTO(a[15348]);
+    SetTO(a[15348], "From", "PvP Season", 32, "Until", "PvP Season", 32);
     a[15349] = ach:New(15349, 0); -- Challenger I: Shadowlands Season 3
-    SetTO(a[15349]);
+    SetTO(a[15349], "From", "PvP Season", 32, "Until", "PvP Season", 32);
     a[15350] = ach:New(15350, 0); -- Rival I: Shadowlands Season 3
-    SetTO(a[15350]);
+    SetTO(a[15350], "From", "PvP Season", 32, "Until", "PvP Season", 32);
     a[15351] = ach:New(15351, 0); -- Duelist: Shadowlands Season 3
-    SetTO(a[15351]);
+    SetTO(a[15351], "From", "PvP Season", 32, "Until", "PvP Season", 32);
     a[15352] = ach:New(15352, 0); -- Gladiator: Shadowlands Season 3
     a[15353] = ach:New(15353, 0); -- Cosmic Gladiator: Shadowlands Season 3
-    SetTO(a[15353]);
+    SetTO(a[15353], "From", "PvP Season", 32, "Until", "PvP Season", 32);
     a[15354] = ach:New(15354, 0); -- Elite: Shadowlands Season 3
-    SetTO(a[15354]);
+    SetTO(a[15354], "From", "PvP Season", 32, "Until", "PvP Season", 32);
     a[15355] = ach:New(15355, 0, fac.Alliance, 15356); -- Hero of the Alliance: Cosmic
-    SetTO(a[15355]);
+    SetTO(a[15355], "From", "PvP Season", 32, "Until", "PvP Season", 32);
     a[15356] = ach:New(15356, 0, fac.Horde, 15355); -- Hero of the Horde: Cosmic
-    SetTO(a[15356]);
+    SetTO(a[15356], "From", "PvP Season", 32, "Until", "PvP Season", 32);
     a[15378] = ach:New(15378, 0); -- Rival II: Shadowlands Season 3
-    SetTO(a[15378]);
+    SetTO(a[15378], "From", "PvP Season", 32, "Until", "PvP Season", 32);
     a[15379] = ach:New(15379, 0); -- Challenger II: Shadowlands Season 3
-    SetTO(a[15379]);
+    SetTO(a[15379], "From", "PvP Season", 32, "Until", "PvP Season", 32);
     a[15380] = ach:New(15380, 0); -- Combatant II: Shadowlands Season 3
-    SetTO(a[15380]);
+    SetTO(a[15380], "From", "PvP Season", 32, "Until", "PvP Season", 32);
     a[15381] = ach:New(15381, 10); -- Power ON
     a[15384] = ach:New(15384, 0); -- Cosmic Gladiator's Soul Eater
     a[15386] = ach:New(15386, 10); -- Shimmering Secrets
@@ -8009,18 +8007,29 @@ function exportedAchievements.Load(a, t)
     a[15594] = ach:New(15594, 0); -- Fearless Spectator
     SetTO(a[15594]);
     a[15600] = ach:New(15600, 0); -- Challenger I: Shadowlands Season 4
+    SetTO(a[15600], "From", "PvP Season", 33, "Until", "PvP Season", 33);
     a[15601] = ach:New(15601, 0); -- Challenger II: Shadowlands Season 4
+    SetTO(a[15601], "From", "PvP Season", 33, "Until", "PvP Season", 33);
     a[15602] = ach:New(15602, 0); -- Rival I: Shadowlands Season 4
+    SetTO(a[15602], "From", "PvP Season", 33, "Until", "PvP Season", 33);
     a[15603] = ach:New(15603, 0); -- Rival II: Shadowlands Season 4
+    SetTO(a[15603], "From", "PvP Season", 33, "Until", "PvP Season", 33);
     a[15604] = ach:New(15604, 0); -- Duelist: Shadowlands Season 4
+    SetTO(a[15604], "From", "PvP Season", 33, "Until", "PvP Season", 33);
     a[15605] = ach:New(15605, 0); -- Gladiator: Shadowlands Season 4
     a[15606] = ach:New(15606, 0); -- Eternal Gladiator: Shadowlands Season 4
+    SetTO(a[15606], "From", "PvP Season", 33, "Until", "PvP Season", 33);
     a[15607] = ach:New(15607, 0, fac.Horde, 15608); -- Hero of the Horde: Eternal
+    SetTO(a[15607], "From", "PvP Season", 33, "Until", "PvP Season", 33);
     a[15608] = ach:New(15608, 0, fac.Alliance, 15607); -- Hero of the Alliance: Eternal
+    SetTO(a[15608], "From", "PvP Season", 33, "Until", "PvP Season", 33);
     a[15609] = ach:New(15609, 0); -- Combatant I: Shadowlands Season 4
+    SetTO(a[15609], "From", "PvP Season", 33, "Until", "PvP Season", 33);
     a[15610] = ach:New(15610, 0); -- Combatant II: Shadowlands Season 4
+    SetTO(a[15610], "From", "PvP Season", 33, "Until", "PvP Season", 33);
     a[15612] = ach:New(15612, 0); -- Eternal Gladiator's Soul Eater
     a[15639] = ach:New(15639, 0); -- Elite: Shadowlands Season 4
+    SetTO(a[15639], "From", "PvP Season", 33, "Until", "PvP Season", 33);
     a[15645] = ach:New(15645, 0); -- To Catch Falling Stars
     a[15646] = ach:New(15646, 10); -- Re-Re-Re-Renowned
     a[15647] = ach:New(15647, 10); -- Dead Men Tell Some Tales
