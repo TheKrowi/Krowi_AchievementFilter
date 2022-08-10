@@ -1,11 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 9.2.5.38.0 - 2022-xx-xx
+## 9.2.5.38.0 - 2022-08-10
 ### Added
-- Data manager that can be opened by clicking on the achievement points in the header to show/hide characters in/from the header tooltip
-- Dynamic obtainability (replaces the previous yes/no obtainable flag which opens new possibilities) - NOT ALL DATA UPDATED YET
-- Fated Raids Calendar events and reminders
+- Data manager that can be opened by clicking on the achievement points in the header to show/hide characters in/from the header tooltip, no ElvUI skin yet
+- Dynamic obtainability (replaces the previous yes/no obtainable flag which opens new possibilities) - NOT ALL DATA UPDATED YET, 7% special ones to do
+- Fated Raids Calendar events and reminders for EU and US (no CN data available at this point)
 
 ### Changed
 - Most BlizzCon achievements are marked obtainable again although expensive!
