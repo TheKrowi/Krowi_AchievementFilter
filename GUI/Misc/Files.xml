@@ -1,0 +1,11 @@
+<Ui>
+    <Script file="GameTooltipProgressBar.lua" />
+    <Include file="AlertFrame\AlertFrame.xml"/>
+    <Script file="AlertSystem.lua"/>
+    <Script file="SideButton.lua" />
+    <Include file="WorldMapButton\WorldMapButton.xml" />
+    <Include file="FilterButton\FilterButton.xml" />
+    <Script file="AchievementFrameHeader.lua" />
+    <Script file="AchievementFrameTabButton.lua" />
+    <Include file="AchievementsFrameLight\AchievementsFrameLight.xml"/>
+</Ui>

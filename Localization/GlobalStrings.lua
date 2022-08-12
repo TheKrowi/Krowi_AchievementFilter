@@ -25,10 +25,10 @@ function globalStrings.Load(L)
     L["Neutral"] = FACTION_NEUTRAL;
     L["Alliance"] = FACTION_ALLIANCE;
     L["Horde"] = FACTION_HORDE;
-    L["Kyrian"] = C_Covenants.GetCovenantData(1).name;
-    L["Venthyr"] = C_Covenants.GetCovenantData(2).name;
-    L["Night Fae"] = C_Covenants.GetCovenantData(3).name;
-    L["Necrolord"] = C_Covenants.GetCovenantData(4).name;
+    L["Kyrian"] = addon.GetCovenantName(1);
+    L["Venthyr"] = addon.GetCovenantName(2);
+    L["Night Fae"] = addon.GetCovenantName(3);
+    L["Necrolord"] = addon.GetCovenantName(4);
     L["Sort By"] = RAID_FRAME_SORT_LABEL;
     L["Default"] = CHAT_DEFAULT;
     L["Name"] = NAME;

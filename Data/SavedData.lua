@@ -34,6 +34,7 @@ end
 
 local FixFeaturesTutorialProgress, FixElvUISkin, FixFilters, FixEventDetails, FixShowExcludedCategory, FixEventDetails2, FixCharacters, FixEventAlert;
 local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters, FixNewEarnedByFilter, FixTabs2, FixNewEarnedByFilter2;
+local FixEventDetails3;
 function LoadSolutions()
     local solutions = {
         FixFeaturesTutorialProgress, -- 1
@@ -51,6 +52,7 @@ function LoadSolutions()
         FixNewEarnedByFilter, -- 13
         FixTabs2, -- 14
         FixNewEarnedByFilter2, -- 15
+        FixEventDetails3, -- 16
     };
 
     return solutions;
@@ -442,4 +444,25 @@ function FixNewEarnedByFilter2(prevBuild, currBuild, prevVersion, currVersion, f
     SavedData.Fixes.FixNewEarnedByFilter2 = true;
 
     diagnostics.Debug("Transfered new earned by filter2 from previous version");
+end
+
+function FixEventDetails3(prevBuild, currBuild, prevVersion, currVersion, firstTime)
+    -- In version 38.0 the new Event Reminders were added
+    -- Here we reset the EventDetails for users pre 38.0
+    -- EventDetails is created by the Event Data so we don't need to do this here
+
+    if firstTime and currVersion > "38.0" then
+        SavedData.Fixes.FixEventDetails3 = true;
+        diagnostics.Debug("First time EventDetails3 OK");
+        return;
+    end
+    if SavedData.Fixes.FixEventDetails3 == true then
+        diagnostics.Debug("EventDetails3 already reset");
+        return;
+    end
+
+    EventDetails = nil;
+    SavedData.Fixes.FixEventDetails3 = true;
+
+    diagnostics.Debug("EventDetails3 reset");
 end

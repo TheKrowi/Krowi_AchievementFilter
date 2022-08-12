@@ -12,10 +12,14 @@ function tooltip.AddAchievementLine(currentAchievement, otherAchievementId, show
 	local icon, currentCharacterIcon, color = nil, "", nil;
 
 	local sameAchievement = otherAchievementId == currentAchievement.Id;
+	local state;
+	if currentAchievement.TemporaryObtainable then
+		state = currentAchievement.TemporaryObtainable.Obtainable();
+	end
 	if completed then
 		icon = "|T136814:0|t";
 		color = sameAchievement and addon.Colors.LightGreenRGB or addon.Colors.GreenRGB;
-	elseif currentAchievement.NotObtainable then
+	elseif state and (not state or state == "Past") then
 		icon = "|T136813:0|t";
 		color = sameAchievement and addon.Colors.LightRedRGB or addon.Colors.RedRGB;
 	else
@@ -26,7 +30,7 @@ function tooltip.AddAchievementLine(currentAchievement, otherAchievementId, show
 	if showCurrentCharacterIcons then
 		if wasEarnedByMe then
 			currentCharacterIcon = "|T136814:0|t";
-		elseif currentAchievement.NotObtainable then
+		elseif state and (not state or state == "Past") then
 			currentCharacterIcon = "|T136813:0|t";
 		else
 			currentCharacterIcon = "|T136815:0|t";

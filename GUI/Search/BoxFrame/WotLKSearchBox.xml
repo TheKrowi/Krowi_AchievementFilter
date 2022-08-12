@@ -1,0 +1,77 @@
+<Ui>
+    <Script file="WotLKSearchBox.lua"/>
+
+    <EditBox name="SearchBoxTemplate" inherits="InputBoxInstructionsTemplate" autoFocus="false" virtual="true">
+        <Size x="107" y="30"/>
+        <Layers>
+            <Layer level="OVERLAY">
+                <Texture name="$parentSearchIcon" atlas="common-search-magnifyingglass" useAtlasSize="false" parentKey="searchIcon">
+                    <Size x="10" y="10"/>
+                    <Anchors>
+                        <Anchor point="LEFT" x="1" y="-1"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Button name="$parentClearButton" parentKey="clearButton" hidden="true">
+                <Size x="17" y="17"/>
+                <Anchors>
+                    <Anchor point="RIGHT" x="-3" y="0"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <Texture atlas="common-search-clearbutton" useAtlasSize="false" alpha="0.5" parentKey="texture">
+                        <Size x="10" y="10"/>
+                        <Anchors>
+                            <Anchor point="TOPLEFT" x="3" y="-3"/>
+                        </Anchors>
+                        </Texture>
+                    </Layer>
+                </Layers>
+                <Scripts>
+                    <OnEnter>
+                        self.texture:SetAlpha(1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        self.texture:SetAlpha(0.5);
+                    </OnLeave>
+                    <OnMouseDown>
+                        if self:IsEnabled() then
+                        self.texture:SetPoint("TOPLEFT", self, "TOPLEFT", 4, -4);
+                        end
+                    </OnMouseDown>
+                    <OnMouseUp>
+                        self.texture:SetPoint("TOPLEFT", self, "TOPLEFT", 3, -3);
+                    </OnMouseUp>
+                    <OnClick function="KrowiAF_SearchBoxTemplateClearButton_OnClick"/>
+                </Scripts>
+            </Button>
+        </Frames>
+        <Scripts>
+            <!-- <OnLoad function="SearchBoxTemplate_OnLoad"/> -->
+            <OnEscapePressed function="KrowiAF_EditBox_ClearFocus"/>
+            <!-- <OnEnterPressed function="EditBox_ClearFocus"/> -->
+            <!-- <OnEditFocusLost function="SearchBoxTemplate_OnEditFocusLost"/> -->
+            <!-- <OnEditFocusGained function="SearchBoxTemplate_OnEditFocusGained"/> -->
+            <!-- <OnTextChanged function="SearchBoxTemplate_OnTextChanged"/> -->
+        </Scripts>
+    </EditBox>
+
+    <EditBox name="InputBoxInstructionsTemplate" inherits="InputBoxTemplate" virtual="true">
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString parentKey="Instructions" justifyH="LEFT" justifyV="MIDDLE" inherits="GameFontDisableSmall" setAllPoints="true">
+                    <Color r="0.35" g="0.35" b="0.35"/>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <!-- <OnTextChanged function="InputBoxInstructions_OnTextChanged"/> -->
+            <OnDisable function="KrowiAF_InputBoxInstructions_OnDisable"/>
+            <OnEnable function="KrowiAF_InputBoxInstructions_OnEnable"/>
+        </Scripts>
+        <FontString inherits="GameFontHighlightSmall"/>
+    </EditBox>
+
+</Ui>

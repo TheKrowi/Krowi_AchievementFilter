@@ -9,7 +9,8 @@ function event:New(id, icon, name, mapID, totalDuration)
     local self = {};
     setmetatable(self, event);
 
-    self.ID = id or 0;
+    self.Id = id or 0;
+    self.ID = self.Id;
     self.Icon = icon or 0;
     self.Name = name;
     self.MapID = mapID;

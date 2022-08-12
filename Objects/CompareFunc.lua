@@ -4,12 +4,37 @@ local objects = addon.Objects;
 objects.CompareFunc = {};
 local compareFunc = objects.CompareFunc;
 
-local function stringToLower(a, b)
+local function StringToLower(a, b)
     return a:lower(), b:lower();
 end
 
-local function doNothing(a, b)
+local function DoNothing(a, b)
     return a, b;
+end
+
+local function NilToFalse(x)
+    if x == nil then
+        return false;
+    end
+    return x;
+end
+
+local function NilToNil(x)
+    return x
+end
+
+local function CompareNormal(a, b, reverse)
+    if reverse then
+        return a > b;
+    end
+    return a < b;
+end
+
+local function CompareBool(a, b, reverse)
+    if reverse then
+        return a and not b;
+    end
+    return b and not a;
 end
 
 compareFunc.__index = compareFunc;
@@ -21,7 +46,9 @@ function compareFunc:New(type, property)
     local self = {};
     setmetatable(self, compareFunc);
 
-    self.ToLower = type == "string" and stringToLower or doNothing;
+    self.ToLower = type == "string" and StringToLower or DoNothing;
+    self.NilTo = type == "bool" and NilToFalse or NilToNil;
+    self.DoCompare = type =="bool" and CompareBool or CompareNormal;
     self.Property = property;
     self:SetDefaultFallback();
 
@@ -29,7 +56,7 @@ function compareFunc:New(type, property)
 end
 
 function compareFunc:Compare(a, b)
-    local propA, propB = a[self.Property], b[self.Property];
+    local propA, propB = self.NilTo(a[self.Property]), self.NilTo(b[self.Property]);
     if propA == nil then
         return false;
     end
@@ -42,10 +69,7 @@ function compareFunc:Compare(a, b)
         return self.Fallback:Compare(a, b);
     end
 
-    if self.Reverse then
-        return propA > propB;
-    end
-    return propA < propB;
+    return self.DoCompare(propA, propB, self.Reverse);
 end
 
 function compareFunc:SetDefaultFallback()

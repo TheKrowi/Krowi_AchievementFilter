@@ -1,4 +1,4 @@
--- [[ Exported at 2022-07-27 07-11-54 ]] --
+-- [[ Exported at 2022-08-11 18-16-17 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -90,6 +90,7 @@ L["Warcraft III: Reforged"] = "Warcraft III: Reforged";
 L["WoW's Anniversary"] = "WoW's Anniversary";
 L["WoW's 18th Anniversary"] = "WoW's 18th Anniversary";
 L["Season"] = "Season";
+L["Fated Raids"] = "Fated Raids";
 L["Feast of Winter Veil"] = "Feast of Winter Veil";
 L["Noblegarden"] = "Noblegarden";
 L["Children's Week"] = "Children's Week";
@@ -102,6 +103,11 @@ L["Pilgrim's Bounty"] = "Pilgrim's Bounty";
 L["Day of the Dead"] = "Day of the Dead";
 L["Love is in the Air"] = "Love is in the Air";
 L["Darkmoon Faire"] = "Darkmoon Faire";
+L["WoW's 10th Anniversary"] = "WoW's 10th Anniversary";
+L["Fated Raids: Castle Nathria"] = "Fated Raids: Castle Nathria";
+L["Fated Raids: Sanctum of Domination"] = "Fated Raids: Sanctum of Domination";
+L["Fated Raids: Sepulcher of the First Ones"] = "Fated Raids: Sepulcher of the First Ones";
+L["Torghast"] = "Torghast";
 L["Soulforges"] = "Soulforges";
 L["Fracture Chambers"] = "Fracture Chambers";
 L["Skoldus Hall"] = "Skoldus Hall";
@@ -139,6 +145,8 @@ L["Not part of set"] = "Not part of set";
 L["This achievement can't be earned by this character."] = "This achievement can't be earned by this character.";
 L["This character's class has no transmog set that meet the requirements."] = "This character's class has no transmog set that meet the requirements.";
 L["Achievement shown temporarily"] = "This achievement is shown temporarily because it does not match any set filters.";
+L["Data Manager"] = "Data Manager";
+L["Header tooltip"] = "Header tooltip";
 L["Wowhead"] = "Wowhead";
 L["Go to"] = "Go to";
 L["Other locations"] = "Other locations";
@@ -311,6 +319,7 @@ L["Time Left"] = "Time Left";
 L["Calendar Events"] = "Calendar Events";
 L["Widget Events"] = "Widget Events";
 L["World Events"] = "World Events";
+L["Refresh Events"] = "Refresh Events";
 L["Select All"] = "Select All";
 L["Deselect All"] = "Deselect All";
 L["Date and Time format"] = "Date and Time format";
@@ -330,6 +339,7 @@ L["Donations"] = "Donations";
 L["Localizations"] = "Localizations";
 L["Toggle"] = "Toggle";
 L["tab"] = "tab";
+L["Open"] = "Open";
 L["Left click"] = "Left click";
 L["Right click"] = "Right click";
 L["Icon Left click"] = "to open the Achievement window.";
@@ -394,5 +404,4 @@ L["Add Locale"] = "Add Locale";
 L["Add Locale Desc"] = "Add the current game's locale to the {wowheadLink}.";
 L["Related Tab"] = "Related Tab";
 L["Related Tab Desc"] = "Adds an extra bit to the {wowheadLink} so another tab different than the default one will be selected.";
-L["Torghast"] = "Torghast";
 

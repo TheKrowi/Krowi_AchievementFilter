@@ -1,4 +1,4 @@
--- [[ Exported at 2022-07-13 00-01-07 ]] --
+-- [[ Exported at 2022-08-07 15-22-57 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -16,7 +16,7 @@ function tabs.Load()
     tinsert(tabsOrder, "Expansions");
     tabs["Events"] = { Name = "Events", Text = addon.L["Events"] };
     tinsert(tabsOrder, "Events");
-    tabs["PvP"] = { Name = "PvP", Text = (GetCategoryInfo(15270)) };
+    tabs["PvP"] = { Name = "PvP", Text = (addon.GetCategoryInfo(95)) };
     tinsert(tabsOrder, "PvP");
     tabs["Specials"] = { Name = "Specials", Text = addon.L["Specials"] };
     tinsert(tabsOrder, "Specials");

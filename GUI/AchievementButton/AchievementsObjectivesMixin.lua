@@ -1,12 +1,5 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
-addon.GUI.AchievementsObjectives = {};
-local achievementsObjectives = addon.GUI.AchievementsObjectives;
-
-function achievementsObjectives.Load()
-	local frame = CreateFrame("Frame", "KrowiAF_AchievementsObjectives", nil, "KrowiAF_AchievementsObjectives_Template");
-	addon.GUI.AchievementsObjectives = frame;
-end
 
 AchievementsObjectivesMixin = {};
 
@@ -18,243 +11,187 @@ AchievementsObjectivesMixin.Modes = {
 
 local criteriaTable, progressBarTable, miniTable, metaCriteriaTable = {}, {}, {}, {}
 
-do -- Scripts
-	function KrowiAF_AchievementsObjectives_OnEnter(self)
-		GameTooltip:SetOwner(self, "ANCHOR_NONE");
-		GameTooltip:SetPoint("TOPLEFT", self, "BOTTOMLEFT");
-		local link = GetAchievementLink(self.Id);
-		GameTooltip:SetHyperlink(link);
-		AchievementFrameAchievements_CheckGuildMembersTooltip(self);
-		GameTooltip:Show();
-		if GameTooltip:GetTop() > self:GetBottom() then
-			GameTooltip:ClearAllPoints();
-			GameTooltip:SetPoint("BOTTOMLEFT", self, "TOPLEFT");
-		end
-	end
+function AchievementsObjectivesMixin:ResetTextCriteria()
+	AchievementButton_ResetTable(criteriaTable);
+end
 
-	function KrowiAF_AchievementsObjectives_OnLeave(self)
-		GameTooltip:Hide();
-	end
+function AchievementsObjectivesMixin:ResetProgressBars()
+	AchievementButton_ResetTable(progressBarTable);
+end
 
-	function KrowiAF_AchievementsObjectives_OnClick(self, button, down)
-		if button == "LeftButton" then
-			KrowiAF_SelectAchievementFromID(self.Id);
-		elseif button == "RightButton" then
-			addon.GUI.RightClickMenu.AchievementMenu:Open(addon.Data.Achievements[self.Id]);
-		end
-	end
+function AchievementsObjectivesMixin:ResetMiniAchievements()
+	AchievementButton_ResetTable(miniTable);
+end
 
-	function KrowiAF_AchievementsObjectives_OnLoad(self)
-		self:RegisterEvent("CRITERIA_UPDATE");
-	end
-
-	function KrowiAF_AchievementsObjectives_OnEvent(self, event)
-		if event ~= "CRITERIA_UPDATE" then
-			return;
-		end
-
-		local selectedTab = addon.GUI.SelectedTab;
-		if selectedTab and selectedTab.SelectedAchievement then
-			local id = self.Id;
-			local button = self:GetParent();
-			self.Id = nil;
-			if self:IsVisible() then
-				button:DisplayObjectives();
-				-- AchievementFrameAchievements_Update();
-			end
-		else
-			self.Id = nil;
-		end
+function AchievementsObjectivesMixin:ResetMetas()
+	for _, metaCriteria in next, metaCriteriaTable do
+		metaCriteria.Id = nil;
+		metaCriteria:Hide();
 	end
 end
 
-do -- Reset objective types
-	function AchievementsObjectivesMixin:ResetTextCriteria()
-		AchievementButton_ResetTable(criteriaTable);
-	end
+function AchievementsObjectivesMixin:ResetAll()
+	self:ResetTextCriteria();
+	self:ResetProgressBars();
+	self:ResetMiniAchievements();
+	self:ResetMetas();
+end
 
-	function AchievementsObjectivesMixin:ResetProgressBars()
-		AchievementButton_ResetTable(progressBarTable);
+function AchievementsObjectivesMixin:GetTextCriteria(index)
+	if criteriaTable[index] then
+		return criteriaTable[index];
 	end
+	local frame = CreateFrame("FRAME", self:GetName() .. "TextCriteria" .. index, self, "KrowiAF_TextCriteria_Template");
+	AchievementFrame_LocalizeCriteria(frame);
+	criteriaTable[index] = frame;
+	return frame;
+end
 
-	function AchievementsObjectivesMixin:ResetMiniAchievements()
-		AchievementButton_ResetTable(miniTable);
+function AchievementsObjectivesMixin:GetProgressBar(index)
+	if progressBarTable[index] then
+		return progressBarTable[index];
 	end
+	local frame = CreateFrame("STATUSBAR", self:GetName() .. "ProgressBar" .. index, self, "AchievementProgressBarTemplate");
+	AchievementButton_LocalizeProgressBar(frame);
+	progressBarTable[index] = frame;
+	return frame;
+end
 
-	function AchievementsObjectivesMixin:ResetMetas()
-		for _, metaCriteria in next, metaCriteriaTable do
-			metaCriteria.Id = nil;
-			metaCriteria:Hide();
-		end
+function AchievementsObjectivesMixin:GetMiniAchievement(index)
+	if miniTable[index] then
+		return miniTable[index];
 	end
+	local frame = CreateFrame("BUTTON", self:GetName() .. "MiniAchievement" .. index, self, "KrowiAF_MiniAchievement_Template");
+	AchievementButton_LocalizeMiniAchievement(frame);
+	miniTable[index] = frame;
+	return frame;
+end
 
-	function AchievementsObjectivesMixin:ResetAll()
-		self:ResetTextCriteria();
-		self:ResetProgressBars();
-		self:ResetMiniAchievements();
-		self:ResetMetas();
+function AchievementsObjectivesMixin:GetMeta(index)
+	if metaCriteriaTable[index] then
+		return metaCriteriaTable[index];
+	end
+	local frame = CreateFrame("BUTTON", self:GetName() .. "Meta" .. index, self, "KrowiAF_MetaCriteria_Template");
+	AchievementButton_LocalizeMetaAchievement(frame);
+	metaCriteriaTable[index] = frame;
+	return frame;
+end
+
+function AchievementsObjectivesMixin:AddMeta(index, completed, assetId)
+	local metaCriteria = self:GetMeta(index);
+	metaCriteria:ClearAllPoints();
+	if index == 1 then
+		-- Anchor once all criteria are processed
+		metaCriteria:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 0);
+		metaCriteria:SetPoint("RIGHT", self, "LEFT", self:GetWidth() / 2, 0);
+	elseif math.fmod(index, 2) == 0 then
+		local anchorMeta = self:GetMeta(index - 1);
+		metaCriteria:SetPoint("LEFT", anchorMeta, "RIGHT", 0, 0);
+		metaCriteria:SetPoint("RIGHT", self, "RIGHT", 0, 0);
+	else
+		local anchorMeta = self:GetMeta(index - 2);
+		metaCriteria:SetPoint("TOPLEFT", anchorMeta, "BOTTOMLEFT", 0, 2);
+		metaCriteria:SetPoint("RIGHT", self, "LEFT", self:GetWidth() / 2, 0);
+	end
+	local id, name, _, _, _, _, _, _, _, icon = GetAchievementInfo(assetId);
+	metaCriteria:Show();
+	metaCriteria.Id = id;
+	metaCriteria.Label:SetText(name);
+	metaCriteria.Icon:SetTexture(icon);
+	-- Have to check if criteria is completed here, can't just check if achievement is completed.
+	-- This is because the criteria could have modifiers on it that prevent completion even though the achievement is earned.
+	if self.Completed and completed then
+		metaCriteria.Check:Show();
+		metaCriteria.Border:SetVertexColor(1, 1, 1, 1);
+		metaCriteria.Icon:SetVertexColor(1, 1, 1, 1);
+		metaCriteria.Label:SetShadowOffset(0, 0)
+		metaCriteria.Label:SetTextColor(0, 0, 0, 1);
+	elseif completed then
+		metaCriteria.Check:Show();
+		metaCriteria.Border:SetVertexColor(1, 1, 1, 1);
+		metaCriteria.Icon:SetVertexColor(1, 1, 1, 1);
+		metaCriteria.Label:SetShadowOffset(1, -1)
+		metaCriteria.Label:SetTextColor(0, 1, 0, 1);
+	else
+		metaCriteria.Check:Hide();
+		metaCriteria.Border:SetVertexColor(0.75, 0.75, 0.75, 1);
+		metaCriteria.Icon:SetVertexColor(0.55, 0.55, 0.55, 1);
+		metaCriteria.Label:SetShadowOffset(1, -1)
+		metaCriteria.Label:SetTextColor(0.6, 0.6, 0.6, 1);
 	end
 end
 
-do -- Get objective types
-	function AchievementsObjectivesMixin:GetTextCriteria(index)
-		if criteriaTable[index] then
-			return criteriaTable[index];
-		end
-		local frame = CreateFrame("FRAME", self:GetName() .. "TextCriteria" .. index, self, "KrowiAF_TextCriteria_Template");
-		AchievementFrame_LocalizeCriteria(frame);
-		criteriaTable[index] = frame;
-		return frame;
+local progressBarOffset = 10;
+function AchievementsObjectivesMixin:AddProgressBar(index, quantity, reqQuantity, quantityString)
+	local progressBar = self:GetProgressBar(index);
+	local extraHeight;
+	if index == 1 then
+		progressBar:SetPoint("TOP", self, "TOP", 0, 0);
+		extraHeight = 5;
+	else
+		progressBar:SetPoint("TOP", self:GetProgressBar(index - 1), "BOTTOM", 0, -progressBarOffset);
+		extraHeight = progressBarOffset;
 	end
+	progressBar.text:SetText(string.format("%s", quantityString));
+	progressBar:SetMinMaxValues(0, reqQuantity);
+	progressBar:SetValue(quantity);
+	progressBar:SetParent(self);
+	progressBar:SetHeight(16); -- Template is 14 but borders 16
+	progressBar:Show();
 
-	function AchievementsObjectivesMixin:GetProgressBar(index)
-		if progressBarTable[index] then
-			return progressBarTable[index];
-		end
-		local frame = CreateFrame("STATUSBAR", self:GetName() .. "ProgressBar" .. index, self, "AchievementProgressBarTemplate");
-		AchievementButton_LocalizeProgressBar(frame);
-		progressBarTable[index] = frame;
-		return frame;
-	end
-
-	function AchievementsObjectivesMixin:GetMiniAchievement(index)
-		if miniTable[index] then
-			return miniTable[index];
-		end
-		local frame = CreateFrame("BUTTON", self:GetName() .. "MiniAchievement" .. index, self, "KrowiAF_MiniAchievement_Template");
-		AchievementButton_LocalizeMiniAchievement(frame);
-		miniTable[index] = frame;
-		return frame;
-	end
-
-	function AchievementsObjectivesMixin:GetMeta(index)
-		if metaCriteriaTable[index] then
-			return metaCriteriaTable[index];
-		end
-		local frame = CreateFrame("BUTTON", self:GetName() .. "Meta" .. index, self, "KrowiAF_MetaCriteria_Template");
-		AchievementButton_LocalizeMetaAchievement(frame);
-		metaCriteriaTable[index] = frame;
-		return frame;
-	end
+	return progressBar:GetWidth(), progressBar:GetHeight() + extraHeight;
 end
 
-do -- Add objective types
-	function AchievementsObjectivesMixin:AddMeta(index, completed, assetId)
-		local metaCriteria = self:GetMeta(index);
-		metaCriteria:ClearAllPoints();
-		if index == 1 then
-			-- Anchor once all criteria are processed
-			metaCriteria:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 0);
-			metaCriteria:SetPoint("RIGHT", self, "LEFT", self:GetWidth() / 2, 0);
-		elseif math.fmod(index, 2) == 0 then
-			local anchorMeta = self:GetMeta(index - 1);
-			metaCriteria:SetPoint("LEFT", anchorMeta, "RIGHT", 0, 0);
-			metaCriteria:SetPoint("RIGHT", self, "RIGHT", 0, 0);
+function AchievementsObjectivesMixin:AddTextCriteria(index, numCriteria, criteriaString, completed)
+	local criteria = self:GetTextCriteria(index);
+	criteria:ClearAllPoints();
+	if index == 1 then
+		if numCriteria == 1 then
+			criteria:SetPoint("TOP", self, "TOP", 0, 0);
 		else
-			local anchorMeta = self:GetMeta(index - 2);
-			metaCriteria:SetPoint("TOPLEFT", anchorMeta, "BOTTOMLEFT", 0, 2);
-			metaCriteria:SetPoint("RIGHT", self, "LEFT", self:GetWidth() / 2, 0);
+			criteria:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 0);
 		end
-		local id, name, _, _, _, _, _, _, _, icon = GetAchievementInfo(assetId);
-		metaCriteria:Show();
-		metaCriteria.Id = id;
-		metaCriteria.Label:SetText(name);
-		metaCriteria.Icon:SetTexture(icon);
-		-- Have to check if criteria is completed here, can't just check if achievement is completed.
-		-- This is because the criteria could have modifiers on it that prevent completion even though the achievement is earned.
-		if self.Completed and completed then
-			metaCriteria.Check:Show();
-			metaCriteria.Border:SetVertexColor(1, 1, 1, 1);
-			metaCriteria.Icon:SetVertexColor(1, 1, 1, 1);
-			metaCriteria.Label:SetShadowOffset(0, 0)
-			metaCriteria.Label:SetTextColor(0, 0, 0, 1);
-		elseif completed then
-			metaCriteria.Check:Show();
-			metaCriteria.Border:SetVertexColor(1, 1, 1, 1);
-			metaCriteria.Icon:SetVertexColor(1, 1, 1, 1);
-			metaCriteria.Label:SetShadowOffset(1, -1)
-			metaCriteria.Label:SetTextColor(0, 1, 0, 1);
-		else
-			metaCriteria.Check:Hide();
-			metaCriteria.Border:SetVertexColor(0.75, 0.75, 0.75, 1);
-			metaCriteria.Icon:SetVertexColor(0.55, 0.55, 0.55, 1);
-			metaCriteria.Label:SetShadowOffset(1, -1)
-			metaCriteria.Label:SetTextColor(0.6, 0.6, 0.6, 1);
-		end
+	else
+		criteria:SetPoint("TOPLEFT", self:GetTextCriteria(index - 1), "BOTTOMLEFT", 0, 0);
 	end
-
-	local progressBarOffset = 10;
-	function AchievementsObjectivesMixin:AddProgressBar(index, quantity, reqQuantity, quantityString)
-		local progressBar = self:GetProgressBar(index);
-		local extraHeight;
-		if index == 1 then
-			progressBar:SetPoint("TOP", self, "TOP", 0, 0);
-			extraHeight = 5;
-		else
-			progressBar:SetPoint("TOP", self:GetProgressBar(index - 1), "BOTTOM", 0, -progressBarOffset);
-			extraHeight = progressBarOffset;
-		end
-		progressBar.text:SetText(string.format("%s", quantityString));
-		progressBar:SetMinMaxValues(0, reqQuantity);
-		progressBar:SetValue(quantity);
-		progressBar:SetParent(self);
-		progressBar:SetHeight(16); -- Template is 14 but borders 16
-		progressBar:Show();
-
-		return progressBar:GetWidth(), progressBar:GetHeight() + extraHeight;
+	if self.Completed and completed then
+		criteria.Dash:SetTextColor(0, 0, 0, 1);
+		criteria.Dash:SetShadowOffset(0, 0);
+		criteria.Label:SetTextColor(0, 0, 0, 1);
+		criteria.Label:SetShadowOffset(0, 0);
+	elseif completed then
+		criteria.Dash:SetTextColor(0, 1, 0, 1);
+		criteria.Dash:SetShadowOffset(1, -1);
+		criteria.Label:SetTextColor(0, 1, 0, 1);
+		criteria.Label:SetShadowOffset(1, -1);
+	else
+		criteria.Dash:SetTextColor(0.6, 0.6, 0.6, 1);
+		criteria.Dash:SetShadowOffset(1, -1);
+		criteria.Label:SetTextColor(0.6, 0.6, 0.6, 1);
+		criteria.Label:SetShadowOffset(1, -1);
 	end
-
-	function AchievementsObjectivesMixin:AddTextCriteria(index, numCriteria, criteriaString, completed)
-		local criteria = self:GetTextCriteria(index);
-		criteria:ClearAllPoints();
-		if index == 1 then
-			if numCriteria == 1 then
-				criteria:SetPoint("TOP", self, "TOP", 0, 0);
-			else
-				criteria:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 0);
-			end
-		else
-			criteria:SetPoint("TOPLEFT", self:GetTextCriteria(index - 1), "BOTTOMLEFT", 0, 0);
-		end
-		if self.Completed and completed then
-			criteria.Dash:SetTextColor(0, 0, 0, 1);
-			criteria.Dash:SetShadowOffset(0, 0);
-			criteria.Label:SetTextColor(0, 0, 0, 1);
-			criteria.Label:SetShadowOffset(0, 0);
-		elseif completed then
-			criteria.Dash:SetTextColor(0, 1, 0, 1);
-			criteria.Dash:SetShadowOffset(1, -1);
-			criteria.Label:SetTextColor(0, 1, 0, 1);
-			criteria.Label:SetShadowOffset(1, -1);
-		else
-			criteria.Dash:SetTextColor(0.6, 0.6, 0.6, 1);
-			criteria.Dash:SetShadowOffset(1, -1);
-			criteria.Label:SetTextColor(0.6, 0.6, 0.6, 1);
-			criteria.Label:SetShadowOffset(1, -1);
-		end
-		local labelWidth = 0;
-		local maxLabelWidth = self:GetWidth() - criteria.Check:GetWidth();
-		if completed then
-			criteria.Check:Show();
-			criteria.Dash:Hide();
-		else
-			criteria.Check:Hide();
-			criteria.Dash:Show();
-		end
-		criteria.Label:SetText(criteriaString);
-		labelWidth = min(criteria.Label:GetStringWidth(), maxLabelWidth);
-		criteria.Label:SetWidth(labelWidth);
-		local height = 15;
-		if criteria.Label:GetStringWidth() > maxLabelWidth then
-			height = criteria.Label:GetHeight() + 5;
-		end
-		criteria:SetParent(self);
-		criteria:SetWidth(labelWidth + criteria.Check:GetWidth());
-		criteria:SetHeight(height);
-		criteria:Show();
-
-		return criteria:GetWidth(), criteria:GetHeight();
+	local labelWidth = 0;
+	local maxLabelWidth = self:GetWidth() - criteria.Check:GetWidth();
+	if completed then
+		criteria.Check:Show();
+		criteria.Dash:Hide();
+	else
+		criteria.Check:Hide();
+		criteria.Dash:Show();
 	end
+	criteria.Label:SetText(criteriaString);
+	labelWidth = min(criteria.Label:GetStringWidth(), maxLabelWidth);
+	criteria.Label:SetWidth(labelWidth);
+	local height = 15;
+	if criteria.Label:GetStringWidth() > maxLabelWidth then
+		height = criteria.Label:GetHeight() + 5;
+	end
+	criteria:SetParent(self);
+	criteria:SetWidth(labelWidth + criteria.Check:GetWidth());
+	criteria:SetHeight(height);
+	criteria:Show();
+
+	return criteria:GetWidth(), criteria:GetHeight();
 end
 
 local achievements, rowOffset, columnOffset = {}, 8, 4;
@@ -334,6 +271,12 @@ function AchievementsObjectivesMixin:SetTextPoints(numTextCriteria, maxCriteriaW
 		end
 	end
 
+	if columns == 1 then -- They're already in the correct positions
+		local top = self:GetTextCriteria(1):GetTop();
+		local bottom = self:GetTextCriteria(numTextCriteria):GetBottom();
+		return top - bottom;
+	end
+
 	local columnWidth = self:GetWidth() / columns;
 
 	local rows = 1;
@@ -402,7 +345,7 @@ function AchievementsObjectivesMixin:DisplayCriteria(id)
 			numCriteriaRows = numCriteriaRows + 1;
 		end
 	end
-	local height = 1;
+	local height = 0;
 	if numProgressBars > 0 then
 		self:SetProgressBarAndTextPoints(numProgressBars, numTextCriteria);
 		height = totalProgressBarHeight + totalTextCriteriaHeight;
@@ -419,6 +362,6 @@ function AchievementsObjectivesMixin:DisplayCriteria(id)
 	else
 		height = ceil(numMetas / 2) * ACHIEVEMENTBUTTON_METAROWHEIGHT;
 	end
-	self:SetHeight(height);
+	self:SetHeight(height + 1);
 	self.Mode = self.Modes.Criteria;
 end

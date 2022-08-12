@@ -97,32 +97,43 @@ end
 local completedCache, ignoreCollapseSeriesCache;
 local validations = {
     {   -- 1
-        Validate = function(_filters, achievement) return not _filters.Completion.Completed and completedCache; end,
-        SetFilter = function(_filters) _filters.Completion.Completed = not _filters.Completion.Completed; end
+        Validate = function(_filters, achievement) return not _filters.Completion.Completed and completedCache; end
     },
     {   -- 2
-        Validate = function(_filters, achievement) return not _filters.Completion.NotCompleted and not completedCache; end,
-        SetFilter = function(_filters) _filters.Completion.NotCompleted = not _filters.Completion.NotCompleted; end
+        Validate = function(_filters, achievement) return not _filters.Completion.NotCompleted and not completedCache; end
     },
     {   -- 3
-        Validate = function(_filters, achievement) return not _filters.Obtainability.Obtainable and achievement.NotObtainable == nil; end,
-        SetFilter = function(_filters) _filters.Obtainability.Obtainable = not _filters.Obtainability.Obtainable; end
+        Validate = function(_filters, achievement)
+            if _filters.Obtainability.Obtainable then
+                return;
+            end
+            if achievement.TemporaryObtainable then
+                local state = achievement.TemporaryObtainable.Obtainable();
+                return state == true or state == "Current";
+            end
+            return true;
+        end
     },
     {   -- 4
-        Validate = function(_filters, achievement) return not _filters.Obtainability.NotObtainable and achievement.NotObtainable; end,
-        SetFilter = function(_filters) _filters.Obtainability.NotObtainable = not _filters.Obtainability.NotObtainable; end
+        Validate = function(_filters, achievement)
+            if _filters.Obtainability.NotObtainable then
+                return;
+            end
+            if achievement.TemporaryObtainable then
+                local state = achievement.TemporaryObtainable.Obtainable();
+                return state == false or state == "Past" or state == "Future";
+            end
+            return;
+        end
     },
     {   -- 5
-        Validate = function(_filters, achievement) return not _filters.Faction.Neutral and achievement.Faction == nil; end,
-        SetFilter = function(_filters) _filters.Faction.Neutral = not _filters.Faction.Neutral; end
+        Validate = function(_filters, achievement) return not _filters.Faction.Neutral and achievement.Faction == nil; end
     },
     {   -- 6
-        Validate = function(_filters, achievement) return not _filters.Faction.Alliance and achievement.Faction == addon.Objects.Faction.Alliance; end,
-        SetFilter = function(_filters) _filters.Faction.Alliance = not _filters.Faction.Alliance; end
+        Validate = function(_filters, achievement) return not _filters.Faction.Alliance and achievement.Faction == addon.Objects.Faction.Alliance; end
     },
     {   -- 7
-        Validate = function(_filters, achievement) return not _filters.Faction.Horde and achievement.Faction == addon.Objects.Faction.Horde; end,
-        SetFilter = function(_filters) _filters.Faction.Horde = not _filters.Faction.Horde end
+        Validate = function(_filters, achievement) return not _filters.Faction.Horde and achievement.Faction == addon.Objects.Faction.Horde; end
     },
     {   -- 8
         Validate = function(_filters, achievement)
@@ -140,12 +151,10 @@ local validations = {
                 end
             end
             return false;
-        end,
-        SetFilter = function(_filters) _filters.CollapseSeries = not _filters.CollapseSeries end
+        end
     },
     {   -- 9
-        Validate = function(_filters, achievement) return not _filters.Excluded and achievement.Excluded end,
-        SetFilter = function(_filters) _filters.Excluded = not _filters.Excluded; end
+        Validate = function(_filters, achievement) return not _filters.Excluded and achievement.Excluded end
     },
     {   -- 10
         Validate = function(_filters, achievement)
@@ -153,8 +162,7 @@ local validations = {
                 return true;
             end
             return not filters.db.ShowPlaceholders and achievement.DoesNotExist;
-        end,
-        SetFilter = function(_filters) end
+        end
     }
 };
 
@@ -179,24 +187,6 @@ end
 
 function filters:AutoValidate(achievement, ignoreCollapseSeries)
     return self.Validate(self:GetFilters(), achievement, ignoreCollapseSeries);
-end
-
-function filters:SetFilters(_filters, achievement)
-    local iterations = 0;
-    while true do
-        local id = self.Validate(_filters, achievement);
-        if id == 1 then
-            if iterations > 0 then -- If 0, nothing changed so no need to update
-                _filters.Refresh = true;
-                addon.GUI.FilterButton.UpdateAchievementFrame();
-            end
-            return; -- Jump out of loop
-        else
-            validations[-id].SetFilter(_filters);
-        end
-
-        iterations = iterations + 1;
-    end
 end
 
 function filters:GetFilters(category)

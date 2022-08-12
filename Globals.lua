@@ -61,11 +61,15 @@ function addon.GetAchievementNumbers(_filters, achievement, numOfAch, numOfCompA
 	if filters and filters.Validate(_filters, achievement, true) > 0 then -- If set to false we lag the game
 		numOfAch = numOfAch + 1;
 		local _, _, _, completed = addon.GetAchievementInfo(achievement.Id);
+        local state;
+        if achievement.TemporaryObtainable then
+            state = achievement.TemporaryObtainable.Obtainable();
+        end
 		if completed then
 			numOfCompAch = numOfCompAch + 1;
 		-- else
 		-- 	numOfIncompAch = numOfIncompAch + 1;
-		elseif achievement.NotObtainable then
+        elseif state and (state == false or state == "Past" or state == "Future") then
 			numOfNotObtAch = numOfNotObtAch + 1;
 		end
 	end
@@ -196,12 +200,18 @@ local function AddCharToSavedData(playerGUID)
     if not SavedData.Characters then
         SavedData.Characters = {};
     end
+    local character = SavedData.Characters[playerGUID];
+    local excludeFromHeaderTooltip;
+    if character then
+        excludeFromHeaderTooltip = character.ExcludeFromHeaderTooltip;
+    end
     SavedData.Characters[playerGUID] = {
         Name = (UnitFullName("player")),
         Realm = (select(2, UnitFullName("player"))),
         Class = (select(2, UnitClass("player"))),
         Faction = (UnitFactionGroup("player")),
-        CompletedAchievements = {}
+        CompletedAchievements = {},
+        ExcludeFromHeaderTooltip = excludeFromHeaderTooltip
     };
 end
 
@@ -270,7 +280,8 @@ function addon.BuildCache()
     characterPoints = 0;
     local gapSize, i = 0, 1;
     AddCharToSavedData(playerGUID);
-    while gapSize < 500 do -- Biggest gap is 209 in 9.0.5 as of 2021-05-03
+    local highestId = addon.Data.AchievementIDs[#addon.Data.AchievementIDs];
+    while gapSize < 500 or i < highestId do -- Biggest gap is 209 in 9.0.5 as of 2021-05-03
         local id, _, points, _, month, day, year, _, flags, _, _, isGuild, wasEarnedByMe, _, isStatistic, exists = addon.GetAchievementInfo(i);
 
         if id then
@@ -304,7 +315,8 @@ function addon.HookAchievementFrameOnShow()
     --     addon.GUI.ShowHideTabs();
     -- end
 
-    hooksecurefunc("AchievementFrame_SetTabs", addon.GUI.ShowHideTabs);
+    local funcName = addon.IsNotWotLKClassic() and "AchievementFrame_SetTabs" or "PanelTemplates_SetTab";
+    hooksecurefunc(funcName, addon.GUI.ShowHideTabs);
 end
 
 local function MakeMovable(frame, target)
@@ -336,6 +348,9 @@ function addon.MakeWindowMovable()
     end
     if addon.GUI.Calendar.Frame then
         MakeMovable(addon.GUI.Calendar.Frame);
+    end
+    if addon.GUI.DataManagerFrame then
+        MakeMovable(addon.GUI.DataManagerFrame);
     end
 end
 
@@ -459,3 +474,56 @@ end
 -- end
 
 -- /run KrowiAF_FireEvent("ACHIEVEMENT_EARNED");
+
+local cachedIsNotWotLKClassic, cachedIsWotLKClassic;
+function addon.IsNotWotLKClassic()
+    if cachedIsNotWotLKClassic ~= nil then
+        return cachedIsNotWotLKClassic;
+    end
+    local version = (GetBuildInfo());
+    local major = string.match(version, "(%d+)%.(%d+)%.(%d+)(%w?)");
+    cachedIsNotWotLKClassic = major ~= "3";
+    cachedIsWotLKClassic = not cachedIsNotWotLKClassic;
+    return cachedIsNotWotLKClassic;
+end
+
+function addon.IsWotLKClassic()
+    if cachedIsWotLKClassic ~= nil then
+        return cachedIsWotLKClassic;
+    end
+    local version = (GetBuildInfo());
+    local major = string.match(version, "(%d+)%.(%d+)%.(%d+)(%w?)");
+    cachedIsWotLKClassic = major == "3";
+    cachedIsNotWotLKClassic = not cachedIsWotLKClassic;
+    return cachedIsWotLKClassic;
+end
+
+function addon.EJ_GetInstanceInfo(journalInstanceID)
+   return EJ_GetInstanceInfo and EJ_GetInstanceInfo(journalInstanceID) or journalInstanceID;
+end
+
+local function GetWotLKCategoryInfoTranslation(categoryID)
+    if categoryID == 15272 then
+        return GetCategoryInfo(125);
+    end
+end
+
+function addon.GetCategoryInfo(categoryID)
+    local categoryInfo = GetCategoryInfo(categoryID);
+    if categoryInfo then
+        return categoryInfo;
+    end
+    categoryInfo = GetWotLKCategoryInfoTranslation(categoryID);
+    if categoryInfo then
+        return categoryInfo;
+    end
+    return categoryID;
+end
+
+function addon.GetLFGDungeonInfo(dungeonID)
+    return GetLFGDungeonInfo and GetLFGDungeonInfo(dungeonID) or dungeonID;
+end
+
+function addon.GetCovenantName(covenantID)
+    return C_Covenants and C_Covenants.GetCovenantData(covenantID).name or covenantID;
+end

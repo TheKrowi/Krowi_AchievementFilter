@@ -1,0 +1,140 @@
+<Ui>
+    <Script file="ResultsFrame.lua" />
+    <Script file="ResultsFrameMixin.lua" />
+
+	<Frame name="KrowiAF_SearchResultsFrame_Template" mixin="KrowiAF_SearchResultsFrameMixin" virtual="true" hidden="true">
+		<Size x="600"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture file="Interface\FrameGeneral\UI-Background-Rock" horizTile="true" vertTile="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0" y="0"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.bottomRightCorner" x="0" y="8"/>
+					</Anchors>
+					<Color r="0.9" g="0.8" b="0.7" a="1"/>
+				</Texture>
+			</Layer>
+			<Layer level="BORDER">
+				<FontString inherits="GameFontNormal" text="" parentKey="titleText">
+					<Anchors>
+						<Anchor point="TOP" x="0" y="-7"/>
+						<Anchor point="LEFT" x="60"/>
+						<Anchor point="RIGHT" x="-60"/>
+					</Anchors>
+				</FontString>
+				<Texture parentKey="topLeftCorner" inherits="UI-Frame-TopCornerLeft">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="-7" y="4"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="topRightCorner" inherits="UI-Frame-TopCornerRightSimple">
+					<Anchors>
+						<Anchor point="TOPRIGHT" x="4" y="4"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="topBorder" inherits="_UI-Frame-Top">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.topLeftCorner" relativePoint="TOPRIGHT" y="0"/>
+						<Anchor point="TOPRIGHT" relativeKey="$parent.topRightCorner" relativePoint="TOPLEFT" y="0"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="bottomLeftCorner" inherits="UI-Frame-BotCornerLeft">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" x="-7" y="4"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="bottomRightCorner" inherits="UI-Frame-BotCornerRight">
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" x="4" y="4"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="bottomBorder" inherits="_UI-Frame-Bot">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeKey="$parent.bottomLeftCorner" relativePoint="BOTTOMRIGHT" y="0"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.bottomRightCorner" relativePoint="BOTTOMLEFT" y="0"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="leftBorder" inherits="!UI-Frame-LeftTile">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeKey="$parent.bottomLeftCorner" relativePoint="TOPLEFT"/>
+						<Anchor point="TOPLEFT" relativeKey="$parent.topLeftCorner" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="rightBorder" inherits="!UI-Frame-RightTile">
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.bottomRightCorner" relativePoint="TOPRIGHT"/>
+						<Anchor point="TOPRIGHT" relativeKey="$parent.topRightCorner" relativePoint="BOTTOMRIGHT" x="1" y="0"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="BORDER" textureSubLevel="-1">
+				<Texture parentKey="topTileStreaks" inherits="_UI-Frame-TopTileStreaks">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0" y="0"/>
+						<Anchor point="TOPRIGHT" x="0" y="0"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="BORDER" textureSubLevel="1">
+				<Texture parentKey="topLeftCorner2" inherits="UI-Frame-TopCornerLeft">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="-7" y="-20"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="topRightCorner2" inherits="UI-Frame-TopCornerRightSimple">
+					<Anchors>
+						<Anchor point="TOPRIGHT" x="4" y="-20"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="topBorder2" inherits="_UI-Frame-Top">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.topLeftCorner2" relativePoint="TOPRIGHT" y="0"/>
+						<Anchor point="TOPRIGHT" relativeKey="$parent.topRightCorner2" relativePoint="TOPLEFT" y="0"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button parentKey="closeButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeKey="$parent.topRightCorner" x="0" y="-2"/>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						self:GetParent():Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<ScrollFrame name="$parentContainer" parentKey="Container" inherits="HybridScrollFrameTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.topLeftCorner2" x="9" y="-8"/> <!-- Changed x value to align properly compared to Blizzard, originally 4 -->
+					<Anchor point="BOTTOMRIGHT" relativeKey="$parent.bottomRightCorner" x="-24" y="8"/>
+				</Anchors>
+				<Frames>
+					<Slider name="$parentScrollBar" parentKey="ScrollBar" inherits="HybridScrollBarTrimTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="0" y="-16"/>
+							<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="0" y="14"/>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								self.trackBG:Show();
+								self.trackBG:SetVertexColor(0, 0, 0, 1);
+							</OnLoad>
+						</Scripts>
+					</Slider>
+				</Frames>
+			</ScrollFrame>
+		</Frames>
+		<Scripts>
+			<OnShow>
+				--always on top
+				self:SetFrameLevel(self:GetParent():GetFrameLevel()+10);
+				PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN);
+			</OnShow>
+			<OnHide>
+				PlaySound(SOUNDKIT.IG_SPELLBOOK_CLOSE);
+			</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

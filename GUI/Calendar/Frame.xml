@@ -1,0 +1,389 @@
+<Ui>
+    <Script file="Frame.lua" />
+
+	<Frame name="KrowiAF_CalendarFrame_Template" mixin="KrowiAF_CalendarFrameMixin" toplevel="true" enableMouse="true" enableKeyboard="true" frameStrata="HIGH" virtual="true" hidden="true">
+		<Size x="659" y="624"/>
+		<Anchors>
+			<Anchor point="TOPLEFT" x="15" y="-80"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BORDER">
+				<!-- top textures -->
+				<Texture name="$parentTopLeftTexture" file="Interface\Calendar\CalendarFrame_TopAndBottom">
+					<Size x="256" y="46"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0" y="0"/>
+					</Anchors>
+					<TexCoords left="0.0" right="1.0" top="0.00390625" bottom="0.16015625"/>
+				</Texture>
+				<Texture name="$parentTopMiddleTexture" file="Interface\Calendar\CalendarFrame_TopAndBottom">
+					<Size x="256" y="46"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTopLeftTexture" relativePoint="TOPRIGHT"/>
+					</Anchors>
+					<TexCoords left="0.0" right="1.0" top="0.16796875" bottom="0.32421875"/>
+				</Texture>
+				<Texture name="$parentTopRightTexture" file="Interface\Calendar\CalendarFrame_TopAndBottom">
+					<Size x="147" y="30"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTopMiddleTexture" relativePoint="TOPRIGHT" x="0" y="-16"/>
+					</Anchors>
+					<TexCoords left="0.0" right="0.57421875" top="0.328125" bottom="0.4296875"/>
+				</Texture>
+				<!-- left side textures -->
+				<Texture name="$parentLeftTopTexture" file="Interface\Calendar\CalendarFrame_Sides">
+					<Size x="12" y="256"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTopLeftTexture" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0.0" right="0.09375" top="0.0" bottom="1.0"/>
+				</Texture>
+				<Texture name="$parentLeftMiddleTexture" file="Interface\Calendar\CalendarFrame_Sides">
+					<Size x="12" y="256"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentLeftTopTexture" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0.09375" right="0.1875" top="0.0" bottom="1.0"/>
+				</Texture>
+				<Texture name="$parentLeftBottomTexture" file="Interface\Calendar\CalendarFrame_Sides">
+					<Size x="11" y="62"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentLeftMiddleTexture" relativePoint="BOTTOMLEFT" x="2" y="0"/>
+					</Anchors>
+					<TexCoords left="0.1953125" right="0.28125" top="0.0" bottom="0.2421875"/>
+				</Texture>
+				<!-- right side textures -->
+				<Texture name="$parentRightTopTexture" file="Interface\Calendar\CalendarFrame_Sides">
+					<Size x="13" y="256"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parentTopRightTexture" relativePoint="BOTTOMRIGHT" x="0" y="0"/>
+					</Anchors>
+					<TexCoords left="0.296875" right="0.3984375" top="0.0" bottom="1.0"/>
+				</Texture>
+				<Texture name="$parentRightMiddleTexture" file="Interface\Calendar\CalendarFrame_Sides">
+					<Size x="11" y="256"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parentRightTopTexture" relativePoint="BOTTOMRIGHT" x="0" y="0"/>
+					</Anchors>
+					<TexCoords left="0.3984375" right="0.484375" top="0.0" bottom="1.0"/>
+				</Texture>
+				<Texture name="$parentRightBottomTexture" file="Interface\Calendar\CalendarFrame_Sides">
+					<Size x="11" y="62"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parentRightMiddleTexture" relativePoint="BOTTOMRIGHT"/>
+					</Anchors>
+					<TexCoords left="0.484375" right="0.5703125" top="0.0" bottom="0.2421875"/>
+				</Texture>
+				<!-- bottom textures -->
+				<Texture name="$parentBottomLeftTexture" file="Interface\Calendar\CalendarFrame_TopAndBottom">
+					<Size x="256" y="9"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentLeftBottomTexture" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0.0" right="1.0" top="0.43359375" bottom="0.46875"/>
+				</Texture>
+				<Texture name="$parentBottomMiddleTexture" file="Interface\Calendar\CalendarFrame_TopAndBottom">
+					<Size x="256" y="9"/>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentBottomLeftTexture" relativePoint="RIGHT"/>
+					</Anchors>
+					<TexCoords left="0.0" right="1.0" top="0.46875" bottom="0.50390625"/>
+				</Texture>
+				<Texture name="$parentBottomRightTexture" file="Interface\Calendar\CalendarFrame_TopAndBottom">
+					<Size x="145" y="9"/>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentBottomMiddleTexture" relativePoint="RIGHT"/>
+					</Anchors>
+					<TexCoords left="0.0" right="0.56640625" top="0.50390625" bottom="0.5390625"/>
+				</Texture>
+			</Layer>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentWeekday1Background" parentArray="WeekDayBackgrounds" file="Interface\Calendar\CalendarBackground">
+					<Size x="91" y="28"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentLeftTopTexture" relativePoint="TOPRIGHT"/>
+					</Anchors>
+					<TexCoords left="0.3505625" right="0.701125" top="0.703125" bottom="0.8115"/>
+				</Texture>
+				<Texture name="$parentWeekday2Background" parentArray="WeekDayBackgrounds" file="Interface\Calendar\CalendarBackground">
+					<Size x="91" y="28"/>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentWeekday1Background" relativePoint="RIGHT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.3505625" top="0.703125" bottom="0.8115"/>
+				</Texture>
+				<Texture name="$parentWeekday3Background" parentArray="WeekDayBackgrounds" file="Interface\Calendar\CalendarBackground">
+					<Size x="91" y="28"/>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentWeekday2Background" relativePoint="RIGHT"/>
+					</Anchors>
+					<TexCoords left="0.3505625" right="0.701125" top="0.703125" bottom="0.8115"/>
+				</Texture>
+				<Texture name="$parentWeekday4Background" parentArray="WeekDayBackgrounds" file="Interface\Calendar\CalendarBackground">
+					<Size x="91" y="28"/>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentWeekday3Background" relativePoint="RIGHT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.3505625" top="0.703125" bottom="0.8115"/>
+				</Texture>
+				<Texture name="$parentWeekday5Background" parentArray="WeekDayBackgrounds" file="Interface\Calendar\CalendarBackground">
+					<Size x="91" y="28"/>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentWeekday4Background" relativePoint="RIGHT"/>
+					</Anchors>
+					<TexCoords left="0.3505625" right="0.701125" top="0.703125" bottom="0.8115"/>
+				</Texture>
+				<Texture name="$parentWeekday6Background" parentArray="WeekDayBackgrounds" file="Interface\Calendar\CalendarBackground">
+					<Size x="91" y="28"/>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentWeekday5Background" relativePoint="RIGHT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.3505625" top="0.703125" bottom="0.8115"/>
+				</Texture>
+				<Texture name="$parentWeekday7Background" parentArray="WeekDayBackgrounds" file="Interface\Calendar\CalendarBackground">
+					<Size x="91" y="28"/>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentWeekday6Background" relativePoint="RIGHT"/>
+					</Anchors>
+					<TexCoords left="0.3505625" right="0.701125" top="0.703125" bottom="0.8115"/>
+				</Texture>
+				<FontString name="$parentWeekday1Name" parentArray="WeekDayNames" inherits="GameFontNormal" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parentWeekday1Background"/>
+					</Anchors>
+					<Color r="1.0" g="1.0" b="0.6039215686274509803921568627451"/>
+				</FontString>
+				<FontString name="$parentWeekday2Name" parentArray="WeekDayNames" inherits="GameFontNormal" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parentWeekday2Background"/>
+					</Anchors>
+					<Color r="1.0" g="1.0" b="0.6039215686274509803921568627451"/>
+				</FontString>
+				<FontString name="$parentWeekday3Name" parentArray="WeekDayNames" inherits="GameFontNormal" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parentWeekday3Background"/>
+					</Anchors>
+					<Color r="1.0" g="1.0" b="0.6039215686274509803921568627451"/>
+				</FontString>
+				<FontString name="$parentWeekday4Name" parentArray="WeekDayNames" inherits="GameFontNormal" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parentWeekday4Background"/>
+					</Anchors>
+					<Color r="1.0" g="1.0" b="0.6039215686274509803921568627451"/>
+				</FontString>
+				<FontString name="$parentWeekday5Name" parentArray="WeekDayNames" inherits="GameFontNormal" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parentWeekday5Background"/>
+					</Anchors>
+					<Color r="1.0" g="1.0" b="0.6039215686274509803921568627451"/>
+				</FontString>
+				<FontString name="$parentWeekday6Name" parentArray="WeekDayNames" inherits="GameFontNormal" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parentWeekday6Background"/>
+					</Anchors>
+					<Color r="1.0" g="1.0" b="0.6039215686274509803921568627451"/>
+				</FontString>
+				<FontString name="$parentWeekday7Name" parentArray="WeekDayNames" inherits="GameFontNormal" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parentWeekday7Background"/>
+					</Anchors>
+					<Color r="1.0" g="1.0" b="0.6039215686274509803921568627451"/>
+				</FontString>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture name="$parentMonthBackground" parentKey="MonthBackground" file="Interface\Calendar\CalendarBackground">
+					<Size x="142" y="36"/>
+					<Anchors>
+						<Anchor point="TOP" x="-3" y="-1"/>
+					</Anchors>
+					<TexCoords left="0.0" right="0.5546875" top="0.828125" bottom="0.96875"/>
+				</Texture>
+				<FontString name="$parentMonthName" parentKey="MonthName" inherits="GameFontHighlightLarge" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parentMonthBackground"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="$parentYearBackground" parentKey="YearBackground" file="Interface\Calendar\CalendarBackground">
+					<Size x="47" y="24"/>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentMonthBackground" relativePoint="BOTTOM" x="-2" y="13"/>
+					</Anchors>
+					<TexCoords left="0.0" right="0.5546875" top="0.828125" bottom="0.96875"/>
+				</Texture>
+				<FontString name="$parentYearName" parentKey="YearName" inherits="GameFontNormalSmall" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parentYearBackground" x="0" y="-1"/>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentMonthAchievementsAndPoints" parentKey="MonthAchievementsAndPoints" inherits="GameFontHighlight" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="TOPRIGHT" x="-30" y="-23"/>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentLastDayDarkTexture" parentKey="LastDayDarkTexture" file="Interface\Calendar\CalendarShadows" hidden="true">
+					<Size x="3" y="3"/>
+					<!-- HACK: 0.01 was subtracted from the right to prevent texture seams	-->
+					<TexCoords left="0" right="0.005859" top="0.882813" bottom="0.894531"/>
+				</Texture>
+				<Texture name="$parentWeekdaySelectedTexture" parentKey="WeekdaySelectedTexture" file="Interface\Calendar\Highlights" alphaMode="ADD" hidden="true">
+					<Size x="85" y="21"/>
+					<TexCoords left="0.0" right="0.33203125" top="0.6953125" bottom="0.859375"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="$parentTodayFrame" parentKey="TodayFrame" hidden="true">
+				<Size x="145" y="140"/>
+				<Anchors>
+					<Anchor point="CENTER"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentGlow" parentKey="Glow" file="Interface\Calendar\CurrentDay" alphaMode="ADD">
+							<Size x="112" y="130"/>
+							<Anchors>
+								<Anchor point="CENTER" x="2" y="15"/>
+							</Anchors>
+							<TexCoords left="0.5625" right="1" top="0" bottom="0.5078125"/>
+						</Texture>
+					</Layer>
+					<Layer level="BORDER">
+						<Texture name="$partentTexture" parentKey="Texture" file="Interface\Calendar\CurrentDay">
+							<Size x="145" y="140"/>
+							<TexCoords left="0.0078125" right="0.57421875" top="0.0390625" bottom="0.5859375"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						self.timer = 0;
+						self.fadeTime = 1.5;
+						self.fadein = true;
+					</OnLoad>
+					<OnUpdate function="KrowiAF_CalendarFrameTodayFrame_OnUpdate"/>
+				</Scripts>
+			</Frame>
+			<Button name="$parentPrevMonthButton" parentKey="PrevMonthButton">
+				<Size x="32" y="32"/>
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="$parentMonthBackground" relativePoint="LEFT" x="0" y="-1"/>
+				</Anchors>
+				<Scripts>
+					<OnClick function="KrowiAF_CalendarFramePrevMonthButton_OnClick"/>
+				</Scripts>
+				<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down"/>
+				<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Disabled"/>
+				<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+			</Button>
+			<Button name="$parentNextMonthButton" parentKey="NextMonthButton">
+				<Size x="32" y="32"/>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentMonthBackground" relativePoint="RIGHT" x="0" y="-1"/>
+				</Anchors>
+				<Scripts>
+					<OnClick function="KrowiAF_CalendarFrameNextMonthButton_OnClick"/>
+				</Scripts>
+				<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down"/>
+				<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Disabled"/>
+				<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+			</Button>
+			<!-- <Frame name="CalendarFilterFrame">
+				<Size x="106" y="20"/>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="CalendarFrame" relativePoint="TOPRIGHT" x="-44" y="-21"/>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+							<Size x="8" y="16"/>
+							<Anchors>
+								<Anchor point="LEFT" x="-5" y="0"/>
+							</Anchors>
+							<TexCoords left="0" right="0.0625" top="0" bottom="0.625"/>
+						</Texture>
+						<Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+							<Size x="8" y="16"/>
+							<Anchors>
+								<Anchor point="RIGHT" x="0" y="0"/>
+							</Anchors>
+							<TexCoords left="0.9375" right="1.0" top="0" bottom="0.625"/>
+						</Texture>
+						<Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+							<Size x="10" y="16"/>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+								<Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT"/>
+							</Anchors>
+							<TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625"/>
+						</Texture>
+						<FontString name="$parentText" inherits="GameFontHighlightSmall" text="CALENDAR_FILTERS" justifyH="RIGHT">
+							<Anchors>
+								<Anchor point="RIGHT" x="-24" y="0"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<DropDownToggleButton name="CalendarFilterButton">
+						<Size x="20" y="20"/>
+						<Anchors>
+							<Anchor point="RIGHT"/>
+						</Anchors>
+						<Scripts>
+							<OnMouseDown function="CalendarFilterButton_OnMouseDown"/>
+						</Scripts>
+						<NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+							<Size x="20" y="20"/>
+							<Anchors>
+								<Anchor point="RIGHT" x="3" y="0"/>
+							</Anchors>
+						</NormalTexture>
+						<PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+							<Size x="20" y="20"/>
+							<Anchors>
+								<Anchor point="RIGHT" x="3" y="0"/>
+							</Anchors>
+						</PushedTexture>
+						<DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+							<Size x="20" y="20"/>
+							<Anchors>
+								<Anchor point="RIGHT" x="3" y="0"/>
+							</Anchors>
+						</DisabledTexture>
+						<HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+							<Size x="20" y="20"/>
+							<Anchors>
+								<Anchor point="RIGHT" x="3" y="0"/>
+							</Anchors>
+						</HighlightTexture>
+					</DropDownToggleButton>
+				</Frames>
+			</Frame> -->
+			<!-- <Frame name="CalendarFilterDropDown" inherits="UIDropDownMenuTemplate" hidden="true">
+				<Scripts>
+					<OnLoad function="CalendarFilterDropDown_OnLoad"/>
+				</Scripts>
+			</Frame> -->
+			<Button name="$parentCloseButton" parentKey="CloseButton" inherits="UIPanelCloseButton">
+				<Size x="32" y="34"/>
+				<Anchors>
+					<Anchor point="TOPRIGHT" x="5" y="-13"/>
+				</Anchors>
+				<Scripts>
+					<OnKeyDown function="KrowiAF_CalendarFrameCloseButton_OnKeyDown"/>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad function="KrowiAF_CalendarFrame_OnLoad"/>
+			<OnEvent function="KrowiAF_CalendarFrame_OnEvent"/>
+			<OnShow function="KrowiAF_CalendarFrame_OnShow"/>
+			<OnHide function="KrowiAF_CalendarFrame_OnHide"/>
+			<OnMouseWheel function="KrowiAF_CalendarFrame_OnMouseWheel"/>
+		</Scripts>
+	</Frame>
+</Ui>
