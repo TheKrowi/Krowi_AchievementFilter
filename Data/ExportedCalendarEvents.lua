@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-07 15-23-10 ]] --
+-- [[ Exported at 2022-08-11 18-16-21 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -34,12 +34,15 @@ function exportedCalendarEvents.Load(e)
     e[1316] = event:New(1316, 4062765); -- Fated Raids: Sepulcher of the First Ones (US)
     e[1317] = event:New(1317, 4254074); -- Fated Raids: Sanctum of Domination (US)
     e[1325] = event:New(1325, 3614361); -- Fated Raids: Castle Nathria (EU)
+    e[1326] = event:New(1326, 3614361); -- Fated Raids: Castle Nathria (CN)
     e[1328] = event:New(1328, 4254074); -- Fated Raids: Sanctum of Domination (EU)
+    e[1329] = event:New(1329, 4254074); -- Fated Raids: Sanctum of Domination (CN)
     e[1331] = event:New(1331, 4062765); -- Fated Raids: Sepulcher of the First Ones (EU)
+    e[1332] = event:New(1332, 4062765); -- Fated Raids: Sepulcher of the First Ones (CN)
 end
 
 function exportedCalendarEvents.LoadCategories(e, a)
-    if e[141] == nil or e[181] == nil or e[201] == nil or e[324] == nil or e[327] == nil or e[341] == nil or e[372] == nil or e[398] == nil or e[404] == nil or e[409] == nil or e[423] == nil or e[479] == nil or e[514] == nil or e[1262] == nil or e[1315] == nil or e[1316] == nil or e[1317] == nil or e[1325] == nil or e[1328] == nil or e[1331] == nil then
+    if e[141] == nil or e[181] == nil or e[201] == nil or e[324] == nil or e[327] == nil or e[341] == nil or e[372] == nil or e[398] == nil or e[404] == nil or e[409] == nil or e[423] == nil or e[479] == nil or e[514] == nil or e[1262] == nil or e[1315] == nil or e[1316] == nil or e[1317] == nil or e[1325] == nil or e[1326] == nil or e[1328] == nil or e[1329] == nil or e[1331] == nil or e[1332] == nil then
         exportedCalendarEvents.Load(e);
     end
 
@@ -61,8 +64,11 @@ function exportedCalendarEvents.LoadCategories(e, a)
     e[1316].Category = addon.Tabs["Events"].Categories[8].Children[2].Children[3]; -- Sepulcher of the First Ones
     e[1317].Category = addon.Tabs["Events"].Categories[8].Children[2].Children[2]; -- Sanctum of Domination
     e[1325].Category = addon.Tabs["Events"].Categories[8].Children[2].Children[1]; -- Castle Nathria
+    e[1326].Category = addon.Tabs["Events"].Categories[8].Children[2].Children[1]; -- Castle Nathria
     e[1328].Category = addon.Tabs["Events"].Categories[8].Children[2].Children[2]; -- Sanctum of Domination
+    e[1329].Category = addon.Tabs["Events"].Categories[8].Children[2].Children[2]; -- Sanctum of Domination
     e[1331].Category = addon.Tabs["Events"].Categories[8].Children[2].Children[3]; -- Sepulcher of the First Ones
+    e[1332].Category = addon.Tabs["Events"].Categories[8].Children[2].Children[3]; -- Sepulcher of the First Ones
 end
 
 function exportedCalendarEvents.InjectOptions()
@@ -85,8 +91,11 @@ function exportedCalendarEvents.InjectOptions()
     defaults[1316] = true;
     defaults[1317] = true;
     defaults[1325] = true;
+    defaults[1326] = true;
     defaults[1328] = true;
+    defaults[1329] = true;
     defaults[1331] = true;
+    defaults[1332] = true;
 
     addon.Options.InjectDefaults(defaults, "CalendarEvents", "EventReminders");
 
@@ -360,8 +369,18 @@ function exportedCalendarEvents.InjectOptions()
                     diagnostics.Debug(addon.L["Fated Raids: Castle Nathria (EU)"], addon.Options.db.EventReminders.CalendarEvents[1325]);
                 end
             },
-            E1328 = {
+            E1326 = {
                 order = 35, type = "toggle",
+                name = addon.L["Fated Raids: Castle Nathria (CN)"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.EventReminders.CalendarEvents[1326]; end,
+                set = function()
+                    addon.Options.db.EventReminders.CalendarEvents[1326] = not addon.Options.db.EventReminders.CalendarEvents[1326];
+                    diagnostics.Debug(addon.L["Fated Raids: Castle Nathria (CN)"], addon.Options.db.EventReminders.CalendarEvents[1326]);
+                end
+            },
+            E1328 = {
+                order = 36, type = "toggle",
                 name = addon.L["Fated Raids: Sanctum of Domination (EU)"],
                 desc = addon.L["Requires a reload"],
                 get = function() return addon.Options.db.EventReminders.CalendarEvents[1328]; end,
@@ -370,8 +389,18 @@ function exportedCalendarEvents.InjectOptions()
                     diagnostics.Debug(addon.L["Fated Raids: Sanctum of Domination (EU)"], addon.Options.db.EventReminders.CalendarEvents[1328]);
                 end
             },
+            E1329 = {
+                order = 37, type = "toggle",
+                name = addon.L["Fated Raids: Sanctum of Domination (CN)"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.EventReminders.CalendarEvents[1329]; end,
+                set = function()
+                    addon.Options.db.EventReminders.CalendarEvents[1329] = not addon.Options.db.EventReminders.CalendarEvents[1329];
+                    diagnostics.Debug(addon.L["Fated Raids: Sanctum of Domination (CN)"], addon.Options.db.EventReminders.CalendarEvents[1329]);
+                end
+            },
             E1331 = {
-                order = 36, type = "toggle",
+                order = 38, type = "toggle",
                 name = addon.L["Fated Raids: Sepulcher of the First Ones (EU)"],
                 desc = addon.L["Requires a reload"],
                 get = function() return addon.Options.db.EventReminders.CalendarEvents[1331]; end,
@@ -380,36 +409,52 @@ function exportedCalendarEvents.InjectOptions()
                     diagnostics.Debug(addon.L["Fated Raids: Sepulcher of the First Ones (EU)"], addon.Options.db.EventReminders.CalendarEvents[1331]);
                 end
             },
-            Blank37 = {order = 37, type = "description", width = "full", name = ""},
-            Blank38 = {order = 38, type = "description", width = "normal", name = ""},
-            SelectAll39 = {
-                order = 39, type = "execute",
+            E1332 = {
+                order = 39, type = "toggle",
+                name = addon.L["Fated Raids: Sepulcher of the First Ones (CN)"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.EventReminders.CalendarEvents[1332]; end,
+                set = function()
+                    addon.Options.db.EventReminders.CalendarEvents[1332] = not addon.Options.db.EventReminders.CalendarEvents[1332];
+                    diagnostics.Debug(addon.L["Fated Raids: Sepulcher of the First Ones (CN)"], addon.Options.db.EventReminders.CalendarEvents[1332]);
+                end
+            },
+            Blank40 = {order = 40, type = "description", width = "full", name = ""},
+            Blank41 = {order = 41, type = "description", width = "normal", name = ""},
+            SelectAll42 = {
+                order = 42, type = "execute",
                 name = addon.L["Select All"],
                 func = function()
                     addon.Options.db.EventReminders.CalendarEvents[1315] = true;
                     addon.Options.db.EventReminders.CalendarEvents[1316] = true;
                     addon.Options.db.EventReminders.CalendarEvents[1317] = true;
                     addon.Options.db.EventReminders.CalendarEvents[1325] = true;
+                    addon.Options.db.EventReminders.CalendarEvents[1326] = true;
                     addon.Options.db.EventReminders.CalendarEvents[1328] = true;
+                    addon.Options.db.EventReminders.CalendarEvents[1329] = true;
                     addon.Options.db.EventReminders.CalendarEvents[1331] = true;
+                    addon.Options.db.EventReminders.CalendarEvents[1332] = true;
                 end
             },
-            DeselectAll40 = {
-                order = 40, type = "execute",
+            DeselectAll43 = {
+                order = 43, type = "execute",
                 name = addon.L["Deselect All"],
                 func = function()
                     addon.Options.db.EventReminders.CalendarEvents[1315] = false;
                     addon.Options.db.EventReminders.CalendarEvents[1316] = false;
                     addon.Options.db.EventReminders.CalendarEvents[1317] = false;
                     addon.Options.db.EventReminders.CalendarEvents[1325] = false;
+                    addon.Options.db.EventReminders.CalendarEvents[1326] = false;
                     addon.Options.db.EventReminders.CalendarEvents[1328] = false;
+                    addon.Options.db.EventReminders.CalendarEvents[1329] = false;
                     addon.Options.db.EventReminders.CalendarEvents[1331] = false;
+                    addon.Options.db.EventReminders.CalendarEvents[1332] = false;
                 end
             },
-            Blank41 = {order = 41, type = "description", width = "full", name = ""},
-            Blank42 = {order = 42, type = "description", width = "double", name = ""},
-            RefreshEvents43 = {
-                order = 43, type = "execute",
+            Blank44 = {order = 44, type = "description", width = "full", name = ""},
+            Blank45 = {order = 45, type = "description", width = "double", name = ""},
+            RefreshEvents46 = {
+                order = 46, type = "execute",
                 name = addon.L["Refresh Events"],
                 desc = addon.L["Requires a reload"],
                 func = function()

@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 9.2.5.38.1 - 2022-08-12
+### Added
+- Chinese Id's for Fated Raids Calendar events
+- Chinese localization updated
+
 ## 9.2.5.38.0 - 2022-08-10
 ### Added
 - Data manager that can be opened by clicking on the achievement points in the header to show/hide characters in/from the header tooltip, no ElvUI skin yet
