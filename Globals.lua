@@ -498,26 +498,28 @@ function addon.IsWotLKClassic()
     return cachedIsWotLKClassic;
 end
 
-function addon.EJ_GetInstanceInfo(journalInstanceID)
-   return EJ_GetInstanceInfo and EJ_GetInstanceInfo(journalInstanceID) or journalInstanceID;
+function addon.GetInstanceInfoName(journalInstanceId)
+    local name = EJ_GetInstanceInfo and (EJ_GetInstanceInfo(journalInstanceId)) or nil;
+    if name then
+        return name;
+    end
+    name = addon.L["EJ_GetInstanceInfo" .. journalInstanceId];
+    if name then
+        return name;
+    end
+    return journalInstanceId;
 end
 
-local function GetWotLKCategoryInfoTranslation(categoryID)
-    if categoryID == 15272 then
-        return GetCategoryInfo(125);
+function addon.GetCategoryInfoTitle(categoryId)
+    local title = (GetCategoryInfo(categoryId));
+    if title then
+        return title;
     end
-end
-
-function addon.GetCategoryInfo(categoryID)
-    local categoryInfo = GetCategoryInfo(categoryID);
-    if categoryInfo then
-        return categoryInfo;
+    title = addon.L["GetCategoryInfo" .. categoryId];
+    if title then
+        return title;
     end
-    categoryInfo = GetWotLKCategoryInfoTranslation(categoryID);
-    if categoryInfo then
-        return categoryInfo;
-    end
-    return categoryID;
+    return categoryId;
 end
 
 function addon.GetLFGDungeonInfo(dungeonID)

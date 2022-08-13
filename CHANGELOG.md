@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 9.2.5.39.0 - 2022-xx-xx
+### Added
+
+
+### WotLK Classic
+- Added translations for all missing texts in Englis, German and Chinese (Simplified)
+
 ## 9.2.5.38.1 - 2022-08-12
 ### Added
 - Chinese Id's for Fated Raids Calendar events

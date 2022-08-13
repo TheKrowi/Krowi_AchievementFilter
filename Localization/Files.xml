@@ -1,5 +1,8 @@
 <Ui>
     <Script file="GlobalStrings.lua" />
+    <Script file="enUS.ExtraWrathStrings.lua" />
+    <Script file="deDE.ExtraWrathStrings.lua" />
+    <Script file="zhCN.ExtraWrathStrings.lua" />
     <Script file="enUS.lua" />
     <Script file="deDE.lua" />
     <Script file="zhCN.lua" />
