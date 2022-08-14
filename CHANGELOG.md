@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 - Glory of the Tomb Raider from Mount special
 
 ### WotLK Classic
-- Missing translations
+- Added translations for all missing texts in Englis, German and Chinese (Simplified)
 
 ## 9.2.5.38.1 - 2022-08-12
 ### Added
