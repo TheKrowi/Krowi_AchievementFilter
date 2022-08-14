@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 9.2.5.38.2 - 2022-08-15
+### Added
+- 3000 quests completed
+
+### Fixed
+- x quests completed not finding 3000 quests completed when chains collapsed
+
+### Removed
+- Glory of the Tomb Raider from Mount special
+
+### WotLK Classic
+- Missing translations
+
 ## 9.2.5.38.1 - 2022-08-12
 ### Added
 - Chinese Id's for Fated Raids Calendar events

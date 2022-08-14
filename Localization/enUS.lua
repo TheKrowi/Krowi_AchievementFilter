@@ -1,8 +1,8 @@
--- [[ Exported at 2022-08-11 18-16-17 ]] --
+-- [[ Exported at 2022-08-13 15-25-36 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ English texts by Krowi, 2022-07-27 ]] --
+-- [[ English texts by Krowi, 2022-08-09 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -12,6 +12,7 @@ local tab = "|T:1:8|t";
 L["TAB"] = tab;
 
 -- Load strings into the localization that are already localized by Blizzard
+addon.ExtraWrathStrings.enUS.Load(L);
 addon.GlobalStrings.Load(L);
 addon.Plugins:LoadLocalization(L);
 

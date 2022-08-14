@@ -18,3 +18,15 @@
 ### Added (38.1)
 - Chinese Id's for Fated Raids Calendar events
 - Chinese localization updated
+
+### Added (38.2)
+- 3000 quests completed
+
+### Fixed (38.2)
+- x quests completed not finding 3000 quests completed when chains collapsed
+
+### Removed (38.2)
+- Glory of the Tomb Raider from Mount special
+
+### WotLK Classic (38.2)
+- Missing translations
