@@ -29,4 +29,4 @@
 - Glory of the Tomb Raider from Mount special
 
 ### WotLK Classic (38.2)
-- Missing translations
+- Added translations for all missing texts in Englis, German and Chinese (Simplified)
