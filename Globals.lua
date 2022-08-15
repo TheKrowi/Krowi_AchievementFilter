@@ -246,13 +246,7 @@ local function IncrementCharacterPoints(playerGUID, id, points, month, day, year
     end
 end
 
-local function SetRealmFirst(id, name)
-    if string.find(name:lower(), "realm first", 1, true) then
-        addon.Data.Achievements[id].IsRealmFirst = true;
-    end
-end
-
-local function AddToCache(id, name, points, flags, isGuild, isStatistic, exists)
+local function AddToCache(id, points, flags, isGuild, isStatistic, exists)
     if isStatistic or isGuild or IsTraching(flags) then
         return;
     end
@@ -264,7 +258,6 @@ local function AddToCache(id, name, points, flags, isGuild, isStatistic, exists)
     else
         return;
     end
-    SetRealmFirst(id, name);
     local numCriteria = GetAchievementNumCriteria(id);
     if numCriteria <= 0 then
         return;
@@ -289,11 +282,11 @@ function addon.BuildCache()
     AddCharToSavedData(playerGUID);
     local highestId = addon.Data.AchievementIDs[#addon.Data.AchievementIDs];
     while gapSize < 500 or i < highestId do -- Biggest gap is 209 in 9.0.5 as of 2021-05-03
-        local id, name, points, _, month, day, year, _, flags, _, _, isGuild, wasEarnedByMe, _, isStatistic, exists = addon.GetAchievementInfo(i);
+        local id, _, points, _, month, day, year, _, flags, _, _, isGuild, wasEarnedByMe, _, isStatistic, exists = addon.GetAchievementInfo(i);
 
         if id then
             IncrementCharacterPoints(playerGUID, id, points, month, day, year, flags, isGuild, wasEarnedByMe, isStatistic, exists);
-            AddToCache(id, name, points, flags, isGuild, isStatistic, exists);
+            AddToCache(id, points, flags, isGuild, isStatistic, exists);
         end
         if id and exists then
             gapSize = 0;
