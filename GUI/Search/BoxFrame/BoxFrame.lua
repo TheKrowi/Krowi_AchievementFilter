@@ -90,7 +90,7 @@ local function GetSearchResults(text)
 	else
 		for i = 1, numAchievementIds do
 			achievement = addon.Data.Achievements[addon.Data.AchievementIDs[i]];
-			local _, name, _, _, _, _, _, description, _, _, _, _, _, _, _ = GetAchievementInfo(achievement.ID);
+			local _, name, _, _, _, _, _, description, _, _, _, _, _, _, _ = GetAchievementInfo(achievement.Id);
 			if name and (string.find(name:lower(), text, 1, true) or string.find(description:lower(), text, 1, true)) then
 				if not (excludeExcluded and achievement.Excluded) then
 					local value = 1;

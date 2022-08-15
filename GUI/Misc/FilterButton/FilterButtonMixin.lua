@@ -116,6 +116,7 @@ function KrowiAF_AchievementFrameFilterButtonMixin:AddAchievementFilters(_menu, 
                     });
     tmpMenu:Add(faction);
 
+    self:AddCheckBox(tmpMenu, addon.L["Realm First!"], filters, {"Special", "RealmFirst"}, true);
     self:AddCheckBox(tmpMenu, addon.L["Collapse Chain"], filters, {"CollapseSeries"}, true);
     self:AddCheckBox(tmpMenu, addon.L["Excluded"], filters, {"Excluded"}, true);
 
