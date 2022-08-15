@@ -168,16 +168,7 @@ local validations = {
         end
     },
     {   -- 11
-        Validate = function(_filters, achievement)
-            if _filters.Special.RealmFirst  then
-                return;
-            end
-			local name, = select(2, GetAchievementInfo(achievement.Id));
-            if string.find(name:lower(), "realm first", 1, true) then
-                return true;
-            end
-            return;
-        end
+        Validate = function(_filters, achievement) return not _filters.Special.RealmFirst and achievement.IsRealmFirst; end
     }
 };
 

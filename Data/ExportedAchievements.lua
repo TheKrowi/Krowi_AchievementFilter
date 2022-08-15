@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-10 14-04-56 ]] --
+-- [[ Exported at 2022-08-14 19-04-54 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -2484,11 +2484,8 @@ function exportedAchievements.Load(a, t)
     a[7266] = ach:New(7266, 10); -- Save it for Later
     a[7267] = ach:New(7267, 10); -- Perfect Delivery
     a[7268] = ach:New(7268, 10, nil, nil, false); -- The Temple of Kotmogu
-    SetTO(a[7268], "Never");
     a[7269] = ach:New(7269, 10, nil, nil, false); -- Stay Off the Grass
-    SetTO(a[7269], "Never");
     a[7270] = ach:New(7270, 10, nil, nil, false); -- For Display Only
-    SetTO(a[7270], "Never");
     a[7271] = ach:New(7271, 10); -- Arena of Annihilation
     a[7272] = ach:New(7272, 10); -- In the Eye of the Tiger
     a[7273] = ach:New(7273, 10); -- Beat the Heat

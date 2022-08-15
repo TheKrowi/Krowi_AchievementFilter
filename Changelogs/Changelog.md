@@ -21,6 +21,7 @@
 
 ### Added (38.2)
 - 3000 quests completed
+- Realm First! filter
 
 ### Fixed (38.2)
 - x quests completed not finding 3000 quests completed when chains collapsed

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-13 15-39-39 ]] --
+-- [[ Exported at 2022-08-14 19-06-05 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1947,6 +1947,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1159], a[507]); -- 1000 Quests Completed
     AddA(tmp[1159], a[508]); -- 1500 Quests Completed
     AddA(tmp[1159], a[32]); -- 2000 Quests Completed
+    AddA(tmp[1159], a[978]); -- 3000 Quests Completed
     AddA(tmp[1159], a[973]); -- 5 Daily Quests Completed
     AddA(tmp[1159], a[974]); -- 50 Daily Quests Completed
     AddA(tmp[1159], a[975]); -- 200 Daily Quests Completed
@@ -3512,7 +3513,6 @@ function exportedCategories.Load(a)
     AddA(tmp[981], a[8985]); -- Glory of the Draenor Raider
     AddA(tmp[981], a[10149]); -- Glory of the Hellfire Raider
     AddA(tmp[981], a[11180]); -- Glory of the Legion Raider
-    AddA(tmp[981], a[11763]); -- Glory of the Tomb Raider
     AddA(tmp[981], a[11987]); -- Glory of the Argus Raider
     AddA(tmp[981], a[12806]); -- Glory of the Uldir Raider
     AddA(tmp[981], a[13315]); -- Glory of the Dazar'alor Raider

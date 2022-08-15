@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## 9.2.5.38.2 - 2022-08-15
 ### Added
 - 3000 quests completed
+- Realm First! filter
 
 ### Fixed
 - x quests completed not finding 3000 quests completed when chains collapsed
