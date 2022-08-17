@@ -17,6 +17,9 @@ local defaultAchievements = {
         Alliance = false,
         Horde = false
     },
+    Special = {
+        RealmFirst = false
+    },
     CollapseSeries = true,
     Excluded = false,
     SortBy = {
@@ -163,6 +166,9 @@ local validations = {
             end
             return not filters.db.ShowPlaceholders and achievement.DoesNotExist;
         end
+    },
+    {   -- 11
+        Validate = function(_filters, achievement) return not _filters.Special.RealmFirst and achievement.IsRealmFirst; end
     }
 };
 

@@ -5,7 +5,7 @@ objects.Achievement = {};
 local achievement = objects.Achievement;
 
 achievement.__index = achievement;
-function achievement:New(id, points, faction, otherFactionAchievementId, hasWowheadLink, customObjectives)
+function achievement:New(id, points, faction, otherFactionAchievementId, isRealmFirst, hasWowheadLink, customObjectives)
     local instance = setmetatable({}, achievement);
 
     instance.Id = id or 0;
@@ -13,6 +13,7 @@ function achievement:New(id, points, faction, otherFactionAchievementId, hasWowh
     instance.Points = points or 0;
     instance.Faction = faction;
     instance.OtherFactionAchievementId = otherFactionAchievementId;
+    instance.IsRealmFirst = isRealmFirst;
     instance.HasNoWowheadLink = hasWowheadLink == false and true or nil; -- We only want to set it if it has no Wowhead link, otherwise nil, by inverting this we reduce memory usage because most have a Wowhead link
     instance.CustomObjectives = customObjectives;
     return instance;

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-11 18-16-21 ]] --
+-- [[ Exported at 2022-08-13 13-32-35 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -12,6 +12,10 @@ data.ExportedWidgetEvents = {};
 local exportedWidgetEvents = data.ExportedWidgetEvents;
 
 function exportedWidgetEvents.Load(e)
+    if addon.IsWotLKClassic() then
+        return;
+    end
+
     for i, _ in next, e do
         e[i] = nil;
     end
@@ -25,6 +29,10 @@ function exportedWidgetEvents.Load(e)
 end
 
 function exportedWidgetEvents.LoadCategories(e, a)
+    if addon.IsWotLKClassic() then
+        return;
+    end
+
     if e[2924] == nil or e[2925] == nil or e[2926] == nil or e[2927] == nil or e[2928] == nil or e[2929] == nil then
         exportedWidgetEvents.Load(e);
     end
@@ -38,6 +46,10 @@ function exportedWidgetEvents.LoadCategories(e, a)
 end
 
 function exportedWidgetEvents.InjectOptions()
+    if addon.IsWotLKClassic() then
+        return;
+    end
+
     local defaults = {};
     defaults[2924] = false;
     defaults[2925] = false;

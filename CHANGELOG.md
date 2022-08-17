@@ -1,6 +1,24 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 39.1 - 2022-08-17
+### Fixed
+- Achievements that were never obtainable or only once (Realm First!) should be flagged correct again
+
+## 39.0 - 2022-08-16
+### Added
+- 3000 quests completed
+- Realm First! filter
+
+### Fixed
+- x quests completed not finding 3000 quests completed when chains collapsed
+
+### Removed
+- Glory of the Tomb Raider from Mount special
+
+### WotLK Classic
+- Added translations for all missing texts in English, German and Chinese (Simplified)
+
 ## 9.2.5.38.1 - 2022-08-12
 ### Added
 - Chinese Id's for Fated Raids Calendar events
@@ -946,5 +964,3 @@ All notable changes to this project will be documented in this file.
 
 ### Removed
 - The need for almost all localization
-
-90002.Beta 0.1: https://www.curseforge.com/wow/addons/krowi-achievement-filter/files/3116568

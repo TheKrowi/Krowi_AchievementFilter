@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-10 14-05-11 ]] --
+-- [[ Exported at 2022-08-14 19-06-05 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -34,7 +34,7 @@ function exportedCategories.Load(a)
     AddC(tmp[883], tmp[1203]);
     tmp[1203].AlwaysVisible = true;
     tmp[1203].IsSummary = true;
-    tmp[1] = cat:New((addon.GetCategoryInfo(14864))); -- Classic
+    tmp[1] = cat:New(addon.GetCategoryInfoTitle(14864)); -- Classic
     AddC(tmp[883], tmp[1]);
     tmp[648] = cat:New(addon.L["Zones"]); -- Zones
     AddC(tmp[1], tmp[648]);
@@ -54,10 +54,10 @@ function exportedCategories.Load(a)
     AddA(tmp[922], a[388]); -- City Defender
     AddA(tmp[922], a[11065]); -- It All Makes Sense Now
     AddA(tmp[922], a[603]); -- Wrath of the Horde
-    tmp[1033] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[1033] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[922], tmp[1033]);
     AddA(tmp[1033], a[9924]); -- Field Photographer
-    tmp[1022] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1022] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[922], tmp[1022]);
     AddA(tmp[1022], a[948]); -- Ambassador of the Alliance
     tmp[970] = cat:New(addon.GetMapName(87)); -- Ironforge
@@ -74,241 +74,241 @@ function exportedCategories.Load(a)
     AddA(tmp[721], a[11200]); -- Stand Against the Legion
     AddA(tmp[721], a[11201]); -- Defender of Azeroth: Legion Invasions
     AddA(tmp[721], a[4786]); -- Operation: Gnomeregan
-    tmp[723] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[723] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[721], tmp[723]);
     AddA(tmp[723], a[627]); -- Explore Dun Morogh
-    tmp[1005] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1005] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[721], tmp[1005]);
     AddA(tmp[1005], a[948]); -- Ambassador of the Alliance
     tmp[722] = cat:New(addon.GetMapName(37)); -- Elwynn Forest
     AddC(tmp[687], tmp[722]);
-    tmp[724] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[724] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[722], tmp[724]);
     AddA(tmp[724], a[776]); -- Explore Elwynn Forest
     AddA(tmp[724], a[9924]); -- Field Photographer
-    tmp[1006] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1006] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[722], tmp[1006]);
     AddA(tmp[1006], a[948]); -- Ambassador of the Alliance
     tmp[725] = cat:New(addon.GetMapName(18)); -- Tirisfal Glades
     AddC(tmp[687], tmp[725]);
-    tmp[1201] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[1201] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[725], tmp[1201]);
     AddA(tmp[1201], a[15579]); -- Return to Lordaeron
-    tmp[726] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[726] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[725], tmp[726]);
     AddA(tmp[726], a[768]); -- Explore Tirisfal Glades
-    tmp[1026] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1026] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[725], tmp[1026]);
     AddA(tmp[1026], a[762]); -- Ambassador of the Horde
     tmp[651] = cat:New(addon.GetMapName(52)); -- Westfall
     AddC(tmp[687], tmp[651]);
     AddA(tmp[651], a[11200]); -- Stand Against the Legion
     AddA(tmp[651], a[11201]); -- Defender of Azeroth: Legion Invasions
-    tmp[653] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[653] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[651], tmp[653]);
     AddA(tmp[653], a[4903]); -- Westfall Quests
     AddA(tmp[653], a[12455]); -- Westfall & Duskwood Quests
-    tmp[730] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[730] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[651], tmp[730]);
     AddA(tmp[730], a[802]); -- Explore Westfall
     AddA(tmp[730], a[9924]); -- Field Photographer
-    tmp[1028] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1028] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[651], tmp[1028]);
     AddA(tmp[1028], a[948]); -- Ambassador of the Alliance
     tmp[655] = cat:New(addon.GetMapName(48)); -- Loch Modan
     AddC(tmp[687], tmp[655]);
-    tmp[657] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[657] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[655], tmp[657]);
     AddA(tmp[657], a[4899]); -- Loch Modan Quests
     AddA(tmp[657], a[12456]); -- Loch Modan & Wetlands Quests
-    tmp[729] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[729] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[655], tmp[729]);
     AddA(tmp[729], a[779]); -- Explore Loch Modan
     AddA(tmp[729], a[9924]); -- Field Photographer
-    tmp[1013] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1013] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[655], tmp[1013]);
     AddA(tmp[1013], a[948]); -- Ambassador of the Alliance
     tmp[681] = cat:New(addon.GetMapName(21)); -- Silverpine Forest
     AddC(tmp[687], tmp[681]);
-    tmp[682] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[682] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[681], tmp[682]);
     AddA(tmp[682], a[4894]); -- Silverpine Forest Quests
-    tmp[732] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[732] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[681], tmp[732]);
     AddA(tmp[732], a[769]); -- Explore Silverpine Forest
-    tmp[1020] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1020] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[681], tmp[1020]);
     AddA(tmp[1020], a[762]); -- Ambassador of the Horde
     tmp[678] = cat:New(addon.GetMapName(49)); -- Redridge Mountains
     AddC(tmp[687], tmp[678]);
-    tmp[677] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[677] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[678], tmp[677]);
     AddA(tmp[677], a[4902]); -- Redridge Mountains Quests
-    tmp[734] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[734] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[678], tmp[734]);
     AddA(tmp[734], a[780]); -- Explore Redridge Mountains
-    tmp[1017] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1017] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[678], tmp[1017]);
     AddA(tmp[1017], a[948]); -- Ambassador of the Alliance
     tmp[652] = cat:New(addon.GetMapName(47)); -- Duskwood
     AddC(tmp[687], tmp[652]);
-    tmp[654] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[654] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[652], tmp[654]);
     AddA(tmp[654], a[12430]); -- Duskwood Quests
     AddA(tmp[654], a[12455]); -- Westfall & Duskwood Quests
-    tmp[735] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[735] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[652], tmp[735]);
     AddA(tmp[735], a[778]); -- Explore Duskwood
     AddA(tmp[735], a[9924]); -- Field Photographer
-    tmp[1007] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1007] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[652], tmp[1007]);
     AddA(tmp[1007], a[948]); -- Ambassador of the Alliance
     tmp[656] = cat:New(addon.GetMapName(56)); -- Wetlands
     AddC(tmp[687], tmp[656]);
-    tmp[658] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[658] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[656], tmp[658]);
     AddA(tmp[658], a[12429]); -- Wetlands Quests
     AddA(tmp[658], a[12456]); -- Loch Modan & Wetlands Quests
-    tmp[731] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[731] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[656], tmp[731]);
     AddA(tmp[731], a[841]); -- Explore Wetlands
     AddA(tmp[731], a[9924]); -- Field Photographer
-    tmp[1029] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1029] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[656], tmp[1029]);
     AddA(tmp[1029], a[948]); -- Ambassador of the Alliance
     tmp[671] = cat:New(addon.GetMapName(25)); -- Hillsbrad Foothills
     AddC(tmp[687], tmp[671]);
     AddA(tmp[671], a[11200]); -- Stand Against the Legion
     AddA(tmp[671], a[11201]); -- Defender of Azeroth: Legion Invasions
-    tmp[672] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[672] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[671], tmp[672]);
     AddA(tmp[672], a[4895]); -- Hillsbrad Foothills Quests
-    tmp[736] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[736] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[671], tmp[736]);
     AddA(tmp[736], a[772]); -- Explore Hillsbrad Foothills
     AddA(tmp[736], a[9924]); -- Field Photographer
-    tmp[1012] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1012] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[671], tmp[1012]);
     AddA(tmp[1012], a[762]); -- Ambassador of the Horde
     AddA(tmp[1012], a[2336]); -- Insane in the Membrane
     tmp[649] = cat:New(addon.GetMapName(14)); -- Arathi Highlands
     AddC(tmp[687], tmp[649]);
-    tmp[650] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[650] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[649], tmp[650]);
     AddA(tmp[650], a[4896]); -- Arathi Highlands Quests
-    tmp[741] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[741] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[649], tmp[741]);
     AddA(tmp[741], a[761]); -- Explore Arathi Highlands
-    tmp[996] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[996] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[649], tmp[996]);
     AddA(tmp[996], a[948]); -- Ambassador of the Alliance
     AddA(tmp[996], a[762]); -- Ambassador of the Horde
     tmp[675] = cat:New(addon.GetMapName(50)); -- Northern Stranglethorn
     AddC(tmp[687], tmp[675]);
-    tmp[676] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[676] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[675], tmp[676]);
     AddA(tmp[676], a[4906]); -- Northern Stranglethorn Quests
     AddA(tmp[676], a[940]); -- The Green Hills of Stranglethorn
     AddA(tmp[676], a[941]); -- Hemet Nesingwary: The Collected Quests
-    tmp[739] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[739] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[675], tmp[739]);
     AddA(tmp[739], a[781]); -- Explore Northern Stranglethorn
-    tmp[1016] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1016] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[675], tmp[1016]);
     AddA(tmp[1016], a[948]); -- Ambassador of the Alliance
     AddA(tmp[1016], a[762]); -- Ambassador of the Horde
     tmp[665] = cat:New(addon.GetMapName(210)); -- The Cape of Stranglethorn
     AddC(tmp[687], tmp[665]);
-    tmp[666] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[666] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[665], tmp[666]);
     AddA(tmp[666], a[4905]); -- Cape of Stranglethorn Quests
-    tmp[740] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[740] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[665], tmp[740]);
     AddA(tmp[740], a[4995]); -- Explore the Cape of Stranglethorn
     AddA(tmp[740], a[9924]); -- Field Photographer
-    tmp[1164] = cat:New((addon.GetCategoryInfo(95))); -- Player vs. Player
+    tmp[1164] = cat:New(addon.GetCategoryInfoTitle(95)); -- Player vs. Player
     AddC(tmp[665], tmp[1164]);
     AddA(tmp[1164], a[389]); -- Gurubashi Arena Master
     AddA(tmp[1164], a[396]); -- Gurubashi Arena Grand Master
-    tmp[993] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[993] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[665], tmp[993]);
     AddA(tmp[993], a[762]); -- Ambassador of the Horde
     AddA(tmp[993], a[871]); -- "Avast Ye, Admiral!"
     AddA(tmp[993], a[2336]); -- Insane in the Membrane
     tmp[685] = cat:New(addon.GetMapName(22)); -- Western Plaguelands
     AddC(tmp[687], tmp[685]);
-    tmp[686] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[686] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[685], tmp[686]);
     AddA(tmp[686], a[4893]); -- Western Plaguelands Quests
-    tmp[746] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[746] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[685], tmp[746]);
     AddA(tmp[746], a[770]); -- Explore Western Plaguelands
     AddA(tmp[746], a[9924]); -- Field Photographer
-    tmp[1027] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1027] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[685], tmp[1027]);
     AddA(tmp[1027], a[948]); -- Ambassador of the Alliance
     AddA(tmp[1027], a[762]); -- Ambassador of the Horde
     tmp[673] = cat:New(addon.GetMapName(26)); -- The Hinterlands
     AddC(tmp[687], tmp[673]);
-    tmp[674] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[674] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[673], tmp[674]);
     AddA(tmp[674], a[4897]); -- Hinterlands Quests
-    tmp[742] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[742] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[673], tmp[742]);
     AddA(tmp[742], a[773]); -- Explore The Hinterlands
-    tmp[1024] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1024] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[673], tmp[1024]);
     AddA(tmp[1024], a[762]); -- Ambassador of the Horde
     tmp[667] = cat:New(addon.GetMapName(23)); -- Eastern Plaguelands
     AddC(tmp[687], tmp[667]);
     AddA(tmp[667], a[11297]); -- The Balance of Light and Shadow
-    tmp[668] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[668] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[667], tmp[668]);
     AddA(tmp[668], a[4892]); -- Eastern Plaguelands Quests
     AddA(tmp[668], a[5442]); -- Full Caravan
-    tmp[747] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[747] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[667], tmp[747]);
     AddA(tmp[747], a[771]); -- Explore Eastern Plaguelands
     AddA(tmp[747], a[9924]); -- Field Photographer
-    tmp[778] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[778] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[667], tmp[778]);
     AddA(tmp[778], a[946]); -- The Argent Dawn
     AddA(tmp[778], a[945]); -- The Argent Champion
     tmp[659] = cat:New(addon.GetMapName(15)); -- Badlands
     AddC(tmp[687], tmp[659]);
-    tmp[661] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[661] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[659], tmp[661]);
     AddA(tmp[661], a[4900]); -- Badlands Quests
     AddA(tmp[661], a[5444]); -- "Ready, Set, Goat!"
-    tmp[738] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[738] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[659], tmp[738]);
     AddA(tmp[738], a[765]); -- Explore Badlands
     tmp[679] = cat:New(addon.GetMapName(32)); -- Searing Gorge
     AddC(tmp[687], tmp[679]);
-    tmp[680] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[680] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[679], tmp[680]);
     AddA(tmp[680], a[4910]); -- Searing Gorge Quests
-    tmp[743] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[743] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[679], tmp[743]);
     AddA(tmp[743], a[774]); -- Explore Searing Gorge
     tmp[683] = cat:New(addon.GetMapName(51)); -- Swamp of Sorrows
     AddC(tmp[687], tmp[683]);
-    tmp[684] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[684] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[683], tmp[684]);
     AddA(tmp[684], a[4904]); -- Swamp of Sorrows Quests
-    tmp[737] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[737] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[683], tmp[737]);
     AddA(tmp[737], a[782]); -- Explore Swamp of Sorrows
-    tmp[1023] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1023] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[683], tmp[1023]);
     AddA(tmp[1023], a[948]); -- Ambassador of the Alliance
     tmp[663] = cat:New(addon.GetMapName(36)); -- Burning Steppes
     AddC(tmp[687], tmp[663]);
     AddA(tmp[663], a[11296]); -- The Ancient Keeper
-    tmp[664] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[664] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[663], tmp[664]);
     AddA(tmp[664], a[4901]); -- Burning Steppes Quests
-    tmp[745] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[745] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[663], tmp[745]);
     AddA(tmp[745], a[775]); -- Explore Burning Steppes
     AddA(tmp[745], a[9924]); -- Field Photographer
@@ -316,20 +316,20 @@ function exportedCategories.Load(a)
     AddC(tmp[687], tmp[660]);
     AddA(tmp[660], a[9618]); -- The Iron Invasion
     AddA(tmp[660], a[11297]); -- The Balance of Light and Shadow
-    tmp[662] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[662] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[660], tmp[662]);
     AddA(tmp[662], a[4909]); -- Blasted Lands Quests
-    tmp[744] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[744] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[660], tmp[744]);
     AddA(tmp[744], a[766]); -- Explore Blasted Lands
     AddA(tmp[744], a[9924]); -- Field Photographer
-    tmp[999] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[999] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[660], tmp[999]);
     AddA(tmp[999], a[948]); -- Ambassador of the Alliance
     AddA(tmp[999], a[762]); -- Ambassador of the Horde
     tmp[748] = cat:New(addon.GetMapName(42)); -- Deadwind Pass
     AddC(tmp[687], tmp[748]);
-    tmp[749] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[749] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[748], tmp[749]);
     AddA(tmp[749], a[777]); -- Explore Deadwind Pass
     tmp[688] = cat:New(addon.GetMapName(12)); -- Kalimdor
@@ -349,7 +349,7 @@ function exportedCategories.Load(a)
     AddA(tmp[921], a[1006]); -- City Defender
     AddA(tmp[921], a[11065]); -- It All Makes Sense Now
     AddA(tmp[921], a[604]); -- Wrath of the Alliance
-    tmp[1018] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1018] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[921], tmp[1018]);
     AddA(tmp[1018], a[762]); -- Ambassador of the Horde
     tmp[923] = cat:New(addon.GetMapName(88)); -- Thunder Bluff
@@ -358,33 +358,33 @@ function exportedCategories.Load(a)
     AddA(tmp[923], a[604]); -- Wrath of the Alliance
     tmp[756] = cat:New(addon.GetMapName(57)); -- Teldrassil
     AddC(tmp[688], tmp[756]);
-    tmp[757] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[757] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[756], tmp[757]);
     AddA(tmp[757], a[842]); -- Explore Teldrassil
-    tmp[1025] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1025] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[756], tmp[1025]);
     AddA(tmp[1025], a[948]); -- Ambassador of the Alliance
     tmp[752] = cat:New(addon.GetMapName(1)); -- Durotar
     AddC(tmp[688], tmp[752]);
     AddA(tmp[752], a[4790]); -- Zalazane's Fall
-    tmp[753] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[753] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[752], tmp[753]);
     AddA(tmp[753], a[728]); -- Explore Durotar
     AddA(tmp[753], a[9924]); -- Field Photographer
-    tmp[1003] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1003] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[752], tmp[1003]);
     AddA(tmp[1003], a[762]); -- Ambassador of the Horde
     tmp[754] = cat:New(addon.GetMapName(7)); -- Mulgore
     AddC(tmp[688], tmp[754]);
-    tmp[755] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[755] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[754], tmp[755]);
     AddA(tmp[755], a[736]); -- Explore Mulgore
-    tmp[1014] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1014] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[754], tmp[1014]);
     AddA(tmp[1014], a[762]); -- Ambassador of the Horde
     tmp[774] = cat:New(addon.GetMapName(80)); -- Moonglade
     AddC(tmp[688], tmp[774]);
-    tmp[775] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[775] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[774], tmp[775]);
     AddA(tmp[775], a[855]); -- Explore Moonglade
     AddA(tmp[775], a[9924]); -- Field Photographer
@@ -392,129 +392,129 @@ function exportedCategories.Load(a)
     AddC(tmp[688], tmp[705]);
     AddA(tmp[705], a[11200]); -- Stand Against the Legion
     AddA(tmp[705], a[11201]); -- Defender of Azeroth: Legion Invasions
-    tmp[706] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[706] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[705], tmp[706]);
     AddA(tmp[706], a[4933]); -- Northern Barrens Quests
-    tmp[760] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[760] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[705], tmp[760]);
     AddA(tmp[760], a[750]); -- Explore Northern Barrens
-    tmp[1015] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1015] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[705], tmp[1015]);
     AddA(tmp[1015], a[762]); -- Ambassador of the Horde
     AddA(tmp[1015], a[2336]); -- Insane in the Membrane
     tmp[695] = cat:New(addon.GetMapName(62)); -- Darkshore
     AddC(tmp[688], tmp[695]);
-    tmp[696] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[696] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[695], tmp[696]);
     AddA(tmp[696], a[4928]); -- Darkshore Quests
     AddA(tmp[696], a[5453]); -- Ghosts in the Dark
-    tmp[762] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[762] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[695], tmp[762]);
     AddA(tmp[762], a[844]); -- Explore Darkshore
-    tmp[1001] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1001] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[695], tmp[1001]);
     AddA(tmp[1001], a[948]); -- Ambassador of the Alliance
     tmp[691] = cat:New(addon.GetMapName(76)); -- Azshara
     AddC(tmp[688], tmp[691]);
     AddA(tmp[691], a[11200]); -- Stand Against the Legion
     AddA(tmp[691], a[11201]); -- Defender of Azeroth: Legion Invasions
-    tmp[692] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[692] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[691], tmp[692]);
     AddA(tmp[692], a[4927]); -- Azshara Quests
     AddA(tmp[692], a[5454]); -- Joy Ride
     AddA(tmp[692], a[5448]); -- Glutton for Fiery Punishment
     AddA(tmp[692], a[5546]); -- Glutton for Icy Punishment
     AddA(tmp[692], a[5547]); -- Glutton for Shadowy Punishment
-    tmp[771] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[771] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[691], tmp[771]);
     AddA(tmp[771], a[852]); -- Explore Azshara
-    tmp[990] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[990] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[691], tmp[990]);
     AddA(tmp[990], a[762]); -- Ambassador of the Horde
     tmp[689] = cat:New(addon.GetMapName(63)); -- Ashenvale
     AddC(tmp[688], tmp[689]);
-    tmp[690] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[690] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[689], tmp[690]);
     AddA(tmp[690], a[4925]); -- Ashenvale Quests
     AddA(tmp[690], a[4976]); -- Ashenvale Quests
-    tmp[764] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[764] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[689], tmp[764]);
     AddA(tmp[764], a[845]); -- Explore Ashenvale
-    tmp[997] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[997] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[689], tmp[997]);
     AddA(tmp[997], a[948]); -- Ambassador of the Alliance
     tmp[709] = cat:New(addon.GetMapName(65)); -- Stonetalon Mountains
     AddC(tmp[688], tmp[709]);
-    tmp[710] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[710] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[709], tmp[710]);
     AddA(tmp[710], a[4936]); -- Stonetalon Mountains Quests
     AddA(tmp[710], a[4980]); -- Stonetalon Mountains Quests
-    tmp[766] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[766] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[709], tmp[766]);
     AddA(tmp[766], a[847]); -- Explore Stonetalon Mountains
-    tmp[1021] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1021] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[709], tmp[1021]);
     AddA(tmp[1021], a[948]); -- Ambassador of the Alliance
     AddA(tmp[1021], a[762]); -- Ambassador of the Horde
     tmp[697] = cat:New(addon.GetMapName(66)); -- Desolace
     AddC(tmp[688], tmp[697]);
-    tmp[698] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[698] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[697], tmp[698]);
     AddA(tmp[698], a[4930]); -- Desolace Quests
-    tmp[767] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[767] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[697], tmp[767]);
     AddA(tmp[767], a[848]); -- Explore Desolace
-    tmp[1002] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1002] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[697], tmp[1002]);
     AddA(tmp[1002], a[762]); -- Ambassador of the Horde
     tmp[711] = cat:New(addon.GetMapName(199)); -- Southern Barrens
     AddC(tmp[688], tmp[711]);
-    tmp[712] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[712] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[711], tmp[712]);
     AddA(tmp[712], a[4937]); -- Southern Barrens Quests
     AddA(tmp[712], a[4981]); -- Southern Barrens Quests
-    tmp[761] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[761] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[711], tmp[761]);
     AddA(tmp[761], a[4996]); -- Explore Southern Barrens
-    tmp[1019] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1019] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[711], tmp[1019]);
     AddA(tmp[1019], a[948]); -- Ambassador of the Alliance
     AddA(tmp[1019], a[762]); -- Ambassador of the Horde
     tmp[703] = cat:New(addon.GetMapName(69)); -- Feralas
     AddC(tmp[688], tmp[703]);
-    tmp[704] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[704] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[703], tmp[704]);
     AddA(tmp[704], a[4932]); -- Feralas Quests
     AddA(tmp[704], a[4979]); -- Feralas Quests
-    tmp[769] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[769] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[703], tmp[769]);
     AddA(tmp[769], a[849]); -- Explore Feralas
     AddA(tmp[769], a[9924]); -- Field Photographer
-    tmp[1009] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1009] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[703], tmp[1009]);
     AddA(tmp[1009], a[948]); -- Ambassador of the Alliance
     AddA(tmp[1009], a[762]); -- Ambassador of the Horde
     tmp[699] = cat:New(addon.GetMapName(70)); -- Dustwallow Marsh
     AddC(tmp[688], tmp[699]);
-    tmp[700] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[700] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[699], tmp[700]);
     AddA(tmp[700], a[4929]); -- Dustwallow Marsh Quests
     AddA(tmp[700], a[4978]); -- Dustwallow Marsh Quests
-    tmp[768] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[768] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[699], tmp[768]);
     AddA(tmp[768], a[850]); -- Explore Dustwallow Marsh
-    tmp[1004] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1004] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[699], tmp[1004]);
     AddA(tmp[1004], a[948]); -- Ambassador of the Alliance
     tmp[715] = cat:New(addon.GetMapName(64)); -- Thousand Needles
     AddC(tmp[688], tmp[715]);
-    tmp[716] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[716] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[715], tmp[716]);
     AddA(tmp[716], a[4938]); -- Thousand Needles Quests
-    tmp[765] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[765] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[715], tmp[765]);
     AddA(tmp[765], a[846]); -- Explore Thousand Needles
-    tmp[994] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[994] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[715], tmp[994]);
     AddA(tmp[994], a[948]); -- Ambassador of the Alliance
     AddA(tmp[994], a[762]); -- Ambassador of the Horde
@@ -522,14 +522,14 @@ function exportedCategories.Load(a)
     AddC(tmp[688], tmp[713]);
     AddA(tmp[713], a[11200]); -- Stand Against the Legion
     AddA(tmp[713], a[11201]); -- Defender of Azeroth: Legion Invasions
-    tmp[714] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[714] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[713], tmp[714]);
     AddA(tmp[714], a[4935]); -- Tanaris Quests
-    tmp[770] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[770] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[713], tmp[770]);
     AddA(tmp[770], a[851]); -- Explore Tanaris
     AddA(tmp[770], a[9924]); -- Field Photographer
-    tmp[992] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[992] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[713], tmp[992]);
     AddA(tmp[992], a[948]); -- Ambassador of the Alliance
     AddA(tmp[992], a[762]); -- Ambassador of the Horde
@@ -537,13 +537,13 @@ function exportedCategories.Load(a)
     tmp[701] = cat:New(addon.GetMapName(77)); -- Felwood
     AddC(tmp[688], tmp[701]);
     AddA(tmp[701], a[11296]); -- The Ancient Keeper
-    tmp[702] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[702] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[701], tmp[702]);
     AddA(tmp[702], a[4931]); -- Felwood Quests
-    tmp[772] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[772] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[701], tmp[772]);
     AddA(tmp[772], a[853]); -- Explore Felwood
-    tmp[991] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[991] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[701], tmp[991]);
     AddA(tmp[991], a[948]); -- Ambassador of the Alliance
     AddA(tmp[991], a[762]); -- Ambassador of the Horde
@@ -551,10 +551,10 @@ function exportedCategories.Load(a)
     AddC(tmp[688], tmp[717]);
     AddA(tmp[717], a[3357]); -- Venomhide Ravasaur
     AddA(tmp[717], a[11296]); -- The Ancient Keeper
-    tmp[718] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[718] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[717], tmp[718]);
     AddA(tmp[718], a[4939]); -- Un'Goro Crater Quests
-    tmp[773] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[773] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[717], tmp[773]);
     AddA(tmp[773], a[854]); -- Explore Un'Goro Crater
     AddA(tmp[773], a[9924]); -- Field Photographer
@@ -563,34 +563,34 @@ function exportedCategories.Load(a)
     AddA(tmp[707], a[416]); -- Scarab Lord
     AddA(tmp[707], a[5533]); -- Veteran of the Shifting Sands
     AddA(tmp[707], a[11296]); -- The Ancient Keeper
-    tmp[708] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[708] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[707], tmp[708]);
     AddA(tmp[708], a[4934]); -- Silithus Quests
-    tmp[776] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[776] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[707], tmp[776]);
     AddA(tmp[776], a[856]); -- Explore Silithus
     AddA(tmp[776], a[9924]); -- Field Photographer
-    tmp[783] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[783] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[707], tmp[783]);
     AddA(tmp[783], a[953]); -- Guardian of Cenarius
     tmp[719] = cat:New(addon.GetMapName(83)); -- Winterspring
     AddC(tmp[688], tmp[719]);
     AddA(tmp[719], a[3356]); -- Winterspring Frostsaber
     AddA(tmp[719], a[11296]); -- The Ancient Keeper
-    tmp[720] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[720] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[719], tmp[720]);
     AddA(tmp[720], a[4940]); -- Winterspring Quests
     AddA(tmp[720], a[5443]); -- E'ko Madness
-    tmp[777] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[777] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[719], tmp[777]);
     AddA(tmp[777], a[857]); -- Explore Winterspring
-    tmp[1031] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1031] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[719], tmp[1031]);
     AddA(tmp[1031], a[2336]); -- Insane in the Membrane
-    tmp[2] = cat:New((addon.GetCategoryInfo(15272))); -- Dungeons
+    tmp[2] = cat:New(addon.GetCategoryInfoTitle(15272)); -- Dungeons
     AddC(tmp[1], tmp[2]);
     AddA(tmp[2], a[1283]); -- Classic Dungeonmaster
-    tmp[4] = cat:New((addon.EJ_GetInstanceInfo(63))); -- Deadmines
+    tmp[4] = cat:New(addon.GetInstanceInfoName(63)); -- Deadmines
     AddC(tmp[2], tmp[4]);
     AddA(tmp[4], a[5366]); -- Ready for Raiding
     AddA(tmp[4], a[5367]); -- Rat Pack
@@ -602,14 +602,14 @@ function exportedCategories.Load(a)
     AddA(tmp[4], a[5083]); -- Heroic: Deadmines
     AddA(tmp[4], a[11856]); -- Pet Battle Challenge: Deadmines
     AddA(tmp[4], a[9924]); -- Field Photographer
-    tmp[5] = cat:New((addon.EJ_GetInstanceInfo(226))); -- Ragefire Chasm
+    tmp[5] = cat:New(addon.GetInstanceInfoName(226)); -- Ragefire Chasm
     AddC(tmp[2], tmp[5]);
     AddA(tmp[5], a[629]); -- Ragefire Chasm
-    tmp[8] = cat:New((addon.EJ_GetInstanceInfo(240))); -- Wailing Caverns
+    tmp[8] = cat:New(addon.GetInstanceInfoName(240)); -- Wailing Caverns
     AddC(tmp[2], tmp[8]);
     AddA(tmp[8], a[630]); -- Wailing Caverns
     AddA(tmp[8], a[11765]); -- Pet Battle Challenge: Wailing Caverns
-    tmp[9] = cat:New((addon.EJ_GetInstanceInfo(64))); -- Shadowfang Keep
+    tmp[9] = cat:New(addon.GetInstanceInfoName(64)); -- Shadowfang Keep
     AddC(tmp[2], tmp[9]);
     AddA(tmp[9], a[5503]); -- Pardon Denied
     AddA(tmp[9], a[5504]); -- To the Ground!
@@ -617,23 +617,23 @@ function exportedCategories.Load(a)
     AddA(tmp[9], a[631]); -- Shadowfang Keep
     AddA(tmp[9], a[5093]); -- Heroic: Shadowfang Keep
     AddA(tmp[9], a[4627]); -- X-45 Heartbreaker
-    tmp[10] = cat:New((addon.EJ_GetInstanceInfo(227))); -- Blackfathom Deeps
+    tmp[10] = cat:New(addon.GetInstanceInfoName(227)); -- Blackfathom Deeps
     AddC(tmp[2], tmp[10]);
     AddA(tmp[10], a[632]); -- Blackfathom Deeps
-    tmp[11] = cat:New((addon.EJ_GetInstanceInfo(238))); -- The Stockade
+    tmp[11] = cat:New(addon.GetInstanceInfoName(238)); -- The Stockade
     AddC(tmp[2], tmp[11]);
     AddA(tmp[11], a[633]); -- Stormwind Stockade
-    tmp[12] = cat:New((addon.EJ_GetInstanceInfo(231))); -- Gnomeregan
+    tmp[12] = cat:New(addon.GetInstanceInfoName(231)); -- Gnomeregan
     AddC(tmp[2], tmp[12]);
     AddA(tmp[12], a[634]); -- Gnomeregan
     AddA(tmp[12], a[13269]); -- Pet Battle Challenge: Gnomeregan
-    tmp[13] = cat:New((addon.EJ_GetInstanceInfo(233))); -- Razorfen Kraul
+    tmp[13] = cat:New(addon.GetInstanceInfoName(233)); -- Razorfen Kraul
     AddC(tmp[2], tmp[13]);
     AddA(tmp[13], a[635]); -- Razorfen Kraul
-    tmp[14] = cat:New((addon.EJ_GetInstanceInfo(234))); -- Razorfen Downs
+    tmp[14] = cat:New(addon.GetInstanceInfoName(234)); -- Razorfen Downs
     AddC(tmp[2], tmp[14]);
     AddA(tmp[14], a[636]); -- Razorfen Downs
-    tmp[15] = cat:New((addon.EJ_GetInstanceInfo(311))); -- Scarlet Halls
+    tmp[15] = cat:New(addon.GetInstanceInfoName(311)); -- Scarlet Halls
     AddC(tmp[2], tmp[15]);
     AddA(tmp[15], a[6684]); -- Humane Society
     AddA(tmp[15], a[6427]); -- Mosh Pit
@@ -644,7 +644,7 @@ function exportedCategories.Load(a)
     AddA(tmp[15], a[6909]); -- Scarlet Halls: Silver
     AddA(tmp[15], a[6910]); -- Scarlet Halls: Gold
     AddA(tmp[15], a[8436]); -- Challenge Master: Scarlet Halls
-    tmp[16] = cat:New((addon.EJ_GetInstanceInfo(316))); -- Scarlet Monastery
+    tmp[16] = cat:New(addon.GetInstanceInfoName(316)); -- Scarlet Monastery
     AddC(tmp[2], tmp[16]);
     AddA(tmp[16], a[6946]); -- Empowered Spiritualist
     AddA(tmp[16], a[6928]); -- Burning Man
@@ -657,35 +657,35 @@ function exportedCategories.Load(a)
     AddA(tmp[16], a[6913]); -- Scarlet Monastery: Gold
     AddA(tmp[16], a[8437]); -- Challenge Master: Scarlet Monastery
     AddA(tmp[16], a[980]); -- The Horseman's Reins
-    tmp[17] = cat:New((addon.EJ_GetInstanceInfo(239))); -- Uldaman
+    tmp[17] = cat:New(addon.GetInstanceInfoName(239)); -- Uldaman
     AddC(tmp[2], tmp[17]);
     AddA(tmp[17], a[638]); -- Uldaman
-    tmp[18] = cat:New((addon.EJ_GetInstanceInfo(241))); -- Zul'Farrak
+    tmp[18] = cat:New(addon.GetInstanceInfoName(241)); -- Zul'Farrak
     AddC(tmp[2], tmp[18]);
     AddA(tmp[18], a[639]); -- Zul'Farrak
-    tmp[19] = cat:New((addon.EJ_GetInstanceInfo(232))); -- Maraudon
+    tmp[19] = cat:New(addon.GetInstanceInfoName(232)); -- Maraudon
     AddC(tmp[2], tmp[19]);
     AddA(tmp[19], a[640]); -- Maraudon
-    tmp[20] = cat:New((addon.EJ_GetInstanceInfo(237))); -- The Temple Of Atal'hakkar
+    tmp[20] = cat:New(addon.GetInstanceInfoName(237)); -- The Temple Of Atal'hakkar
     AddC(tmp[2], tmp[20]);
     AddA(tmp[20], a[641]); -- Sunken Temple
-    tmp[21] = cat:New((addon.EJ_GetInstanceInfo(228))); -- Blackrock Depths
+    tmp[21] = cat:New(addon.GetInstanceInfoName(228)); -- Blackrock Depths
     AddC(tmp[2], tmp[21]);
     AddA(tmp[21], a[642]); -- Blackrock Depths
     AddA(tmp[21], a[3496]); -- A Brew-FAST Mount
     AddA(tmp[21], a[14020]); -- Pet Battle Challenge: Blackrock Depths
-    tmp[22] = cat:New((addon.EJ_GetInstanceInfo(229))); -- Lower Blackrock Spire
+    tmp[22] = cat:New(addon.GetInstanceInfoName(229)); -- Lower Blackrock Spire
     AddC(tmp[2], tmp[22]);
     AddA(tmp[22], a[643]); -- Lower Blackrock Spire
-    tmp[797] = cat:New((addon.EJ_GetInstanceInfo(559))); -- Upper Blackrock Spire
+    tmp[797] = cat:New(addon.GetInstanceInfoName(559)); -- Upper Blackrock Spire
     AddC(tmp[2], tmp[797]);
     AddA(tmp[797], a[1307]); -- Upper Blackrock Spire (Classic)
     AddA(tmp[797], a[2188]); -- Leeeeeeeeeeeeeroy!
-    tmp[23] = cat:New((addon.EJ_GetInstanceInfo(230))); -- Dire Maul
+    tmp[23] = cat:New(addon.GetInstanceInfoName(230)); -- Dire Maul
     AddC(tmp[2], tmp[23]);
     AddA(tmp[23], a[644]); -- King of Dire Maul
     AddA(tmp[23], a[5788]); -- Agent of the Shen'dralar
-    tmp[24] = cat:New((addon.EJ_GetInstanceInfo(246))); -- Scholomance
+    tmp[24] = cat:New(addon.GetInstanceInfoName(246)); -- Scholomance
     AddC(tmp[2], tmp[24]);
     AddA(tmp[24], a[6531]); -- Attention to Detail
     AddA(tmp[24], a[6394]); -- Rattle No More
@@ -699,16 +699,16 @@ function exportedCategories.Load(a)
     AddA(tmp[24], a[6915]); -- Scholomance: Silver
     AddA(tmp[24], a[6916]); -- Scholomance: Gold
     AddA(tmp[24], a[8438]); -- Challenge Master: Scholomance
-    tmp[25] = cat:New((addon.EJ_GetInstanceInfo(236))); -- Stratholme
+    tmp[25] = cat:New(addon.GetInstanceInfoName(236)); -- Stratholme
     AddC(tmp[2], tmp[25]);
     AddA(tmp[25], a[646]); -- Stratholme
     AddA(tmp[25], a[729]); -- Deathcharger's Reins
     AddA(tmp[25], a[13627]); -- Pet Battle Challenge: Stratholme
     AddA(tmp[25], a[13766]); -- Malowned
-    tmp[3] = cat:New((addon.GetCategoryInfo(15271))); -- Raids
+    tmp[3] = cat:New(addon.GetCategoryInfoTitle(15271)); -- Raids
     AddC(tmp[1], tmp[3]);
     AddA(tmp[3], a[1285]); -- Classic Raider
-    tmp[7] = cat:New((addon.EJ_GetInstanceInfo(741))); -- Molten Core
+    tmp[7] = cat:New(addon.GetInstanceInfoName(741)); -- Molten Core
     AddC(tmp[3], tmp[7]);
     AddA(tmp[7], a[686]); -- Molten Core
     AddA(tmp[7], a[11741]); -- So Hot Right Now
@@ -718,48 +718,48 @@ function exportedCategories.Load(a)
     AddA(tmp[7], a[7934]); -- Raiding with Leashes
     AddA(tmp[7], a[11296]); -- The Ancient Keeper
     AddA(tmp[7], a[11297]); -- The Balance of Light and Shadow
-    tmp[779] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[779] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[7], tmp[779]);
     AddA(tmp[779], a[955]); -- Hydraxian Waterlords
     AddA(tmp[779], a[2496]); -- The Fifth Element
-    tmp[26] = cat:New((addon.EJ_GetInstanceInfo(760)) .. " (" .. (addon.GetCategoryInfo(15234)) .. ")"); -- Onyxia's Lair
+    tmp[26] = cat:New(addon.GetInstanceInfoName(760) .. " (" .. addon.GetCategoryInfoTitle(15234) .. ")"); -- Onyxia's Lair
     AddC(tmp[3], tmp[26]);
     AddA(tmp[26], a[684]); -- Onyxia's Lair (Level 60)
     AddA(tmp[26], a[11296]); -- The Ancient Keeper
-    tmp[27] = cat:New((addon.EJ_GetInstanceInfo(742))); -- Blackwing Lair
+    tmp[27] = cat:New(addon.GetInstanceInfoName(742)); -- Blackwing Lair
     AddC(tmp[3], tmp[27]);
     AddA(tmp[27], a[685]); -- Blackwing Lair
     AddA(tmp[27], a[11742]); -- Dress in Lairs
     AddA(tmp[27], a[7934]); -- Raiding with Leashes
-    tmp[28] = cat:New((addon.EJ_GetInstanceInfo(76))); -- Zul'Gurub
+    tmp[28] = cat:New(addon.GetInstanceInfoName(76)); -- Zul'Gurub
     AddC(tmp[3], tmp[28]);
     AddA(tmp[28], a[560]); -- Deadliest Catch
     AddA(tmp[28], a[688]); -- Zul'Gurub
     AddA(tmp[28], a[880]); -- Swift Zulian Tiger
     AddA(tmp[28], a[881]); -- Swift Razzashi Raptor
-    tmp[789] = cat:New((addon.GetCategoryInfo(201))); -- Reputation
+    tmp[789] = cat:New(addon.GetCategoryInfoTitle(201)); -- Reputation
     AddC(tmp[28], tmp[789]);
     AddA(tmp[789], a[957]); -- Hero of the Zandalar Tribe
-    tmp[29] = cat:New((addon.EJ_GetInstanceInfo(743))); -- Ruins of Ahn'Qiraj
+    tmp[29] = cat:New(addon.GetInstanceInfoName(743)); -- Ruins of Ahn'Qiraj
     AddC(tmp[3], tmp[29]);
     AddA(tmp[29], a[689]); -- Ruins of Ahn'Qiraj
-    tmp[784] = cat:New((addon.GetCategoryInfo(201))); -- Reputation
+    tmp[784] = cat:New(addon.GetCategoryInfoTitle(201)); -- Reputation
     AddC(tmp[29], tmp[784]);
     AddA(tmp[784], a[953]); -- Guardian of Cenarius
-    tmp[30] = cat:New((addon.EJ_GetInstanceInfo(744))); -- Temple of Ahn'Qiraj
+    tmp[30] = cat:New(addon.GetInstanceInfoName(744)); -- Temple of Ahn'Qiraj
     AddC(tmp[3], tmp[30]);
     AddA(tmp[30], a[687]); -- Temple of Ahn'Qiraj
     AddA(tmp[30], a[424]); -- Why? Because It's Red
     AddA(tmp[30], a[11743]); -- Accessor-Eyes
     AddA(tmp[30], a[7934]); -- Raiding with Leashes
-    tmp[780] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[780] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[30], tmp[780]);
     AddA(tmp[780], a[956]); -- Brood of Nozdormu
-    tmp[796] = cat:New((addon.EJ_GetInstanceInfo(754)) .. " (" .. (addon.GetCategoryInfo(15234)) .. ")"); -- Naxxramas
+    tmp[796] = cat:New(addon.GetInstanceInfoName(754) .. " (" .. addon.GetCategoryInfoTitle(15234) .. ")"); -- Naxxramas
     AddC(tmp[3], tmp[796]);
     AddA(tmp[796], a[11744]); -- "Drop Dead, Gorgeous"
     AddA(tmp[796], a[425]); -- "Atiesh, Greatstaff of the Guardian"
-    tmp[785] = cat:New((addon.GetCategoryInfo(15117))); -- Pet Battles
+    tmp[785] = cat:New(addon.GetCategoryInfoTitle(15117)); -- Pet Battles
     AddC(tmp[1], tmp[785]);
     AddA(tmp[785], a[6586]); -- Eastern Kingdoms Safari
     AddA(tmp[785], a[6585]); -- Kalimdor Safari
@@ -781,7 +781,7 @@ function exportedCategories.Load(a)
     AddA(tmp[785], a[6611]); -- Continental Tamer
     AddA(tmp[785], a[6590]); -- World Safari
     AddA(tmp[785], a[8348]); -- The Longest Day
-    tmp[55] = cat:New((addon.GetCategoryInfo(14865))); -- The Burning Crusade
+    tmp[55] = cat:New(addon.GetCategoryInfoTitle(14865)); -- The Burning Crusade
     AddC(tmp[883], tmp[55]);
     tmp[616] = cat:New(addon.L["Zones"]); -- Zones
     AddC(tmp[55], tmp[616]);
@@ -811,65 +811,65 @@ function exportedCategories.Load(a)
     AddA(tmp[969], a[603]); -- Wrath of the Horde
     tmp[758] = cat:New(addon.GetMapName(97)); -- Azuremyst Isle
     AddC(tmp[616], tmp[758]);
-    tmp[759] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[759] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[758], tmp[759]);
     AddA(tmp[759], a[860]); -- Explore Azuremyst Isle
-    tmp[998] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[998] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[758], tmp[998]);
     AddA(tmp[998], a[948]); -- Ambassador of the Alliance
     tmp[693] = cat:New(addon.GetMapName(106)); -- Bloodmyst Isle
     AddC(tmp[616], tmp[693]);
-    tmp[694] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[694] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[693], tmp[694]);
     AddA(tmp[694], a[4926]); -- Bloodmyst Isle Quests
-    tmp[763] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[763] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[693], tmp[763]);
     AddA(tmp[763], a[861]); -- Explore Bloodmyst Isle
-    tmp[1000] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1000] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[693], tmp[1000]);
     AddA(tmp[1000], a[948]); -- Ambassador of the Alliance
     tmp[727] = cat:New(addon.GetMapName(94)); -- Eversong Woods
     AddC(tmp[616], tmp[727]);
-    tmp[728] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[728] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[727], tmp[728]);
     AddA(tmp[728], a[859]); -- Explore Eversong Woods
-    tmp[1008] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1008] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[727], tmp[1008]);
     AddA(tmp[1008], a[762]); -- Ambassador of the Horde
     tmp[669] = cat:New(addon.GetMapName(95)); -- Ghostlands
     AddC(tmp[616], tmp[669]);
-    tmp[670] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[670] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[669], tmp[670]);
     AddA(tmp[670], a[4908]); -- Ghostlands Quests
-    tmp[733] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[733] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[669], tmp[733]);
     AddA(tmp[733], a[858]); -- Explore Ghostlands
-    tmp[1010] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1010] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[669], tmp[1010]);
     AddA(tmp[1010], a[762]); -- Ambassador of the Horde
     tmp[617] = cat:New(addon.GetMapName(100)); -- Hellfire Peninsula
     AddC(tmp[616], tmp[617]);
-    tmp[624] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[624] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[617], tmp[624]);
     AddA(tmp[624], a[1189]); -- To Hellfire and Back
     AddA(tmp[624], a[1271]); -- To Hellfire and Back
-    tmp[631] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[631] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[617], tmp[631]);
     AddA(tmp[631], a[862]); -- Explore Hellfire Peninsula
     AddA(tmp[631], a[9924]); -- Field Photographer
-    tmp[1011] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1011] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[617], tmp[1011]);
     AddA(tmp[1011], a[948]); -- Ambassador of the Alliance
     AddA(tmp[1011], a[762]); -- Ambassador of the Horde
     tmp[618] = cat:New(addon.GetMapName(102)); -- Zangarmarsh
     AddC(tmp[616], tmp[618]);
-    tmp[625] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[625] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[618], tmp[625]);
     AddA(tmp[625], a[1190]); -- Mysteries of the Marsh
-    tmp[632] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[632] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[618], tmp[632]);
     AddA(tmp[632], a[863]); -- Explore Zangarmarsh
-    tmp[643] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[643] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[618], tmp[643]);
     AddA(tmp[643], a[948]); -- Ambassador of the Alliance
     AddA(tmp[643], a[762]); -- Ambassador of the Horde
@@ -880,21 +880,21 @@ function exportedCategories.Load(a)
     AddA(tmp[643], a[943]); -- The Diplomat
     tmp[619] = cat:New(addon.GetMapName(108)); -- Terokkar Forest
     AddC(tmp[616], tmp[619]);
-    tmp[626] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[626] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[619], tmp[626]);
     AddA(tmp[626], a[1191]); -- Terror of Terokkar
     AddA(tmp[626], a[1272]); -- Terror of Terokkar
     AddA(tmp[626], a[1275]); -- Bombs Away
-    tmp[633] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[633] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[619], tmp[633]);
     AddA(tmp[633], a[867]); -- Explore Terokkar Forest
-    tmp[642] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[642] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[619], tmp[642]);
     AddA(tmp[642], a[903]); -- Shattrath Divided
     AddA(tmp[642], a[1205]); -- Hero of Shattrath
     tmp[620] = cat:New(addon.GetMapName(107)); -- Nagrand
     AddC(tmp[616], tmp[620]);
-    tmp[627] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[627] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[620], tmp[627]);
     AddA(tmp[627], a[1192]); -- Nagrand Slam
     AddA(tmp[627], a[1273]); -- Nagrand Slam
@@ -902,10 +902,10 @@ function exportedCategories.Load(a)
     AddA(tmp[627], a[941]); -- Hemet Nesingwary: The Collected Quests
     AddA(tmp[627], a[1576]); -- Of Blood and Anguish
     AddA(tmp[627], a[4958]); -- The First Rule of Ring of Blood is You Don't Talk About Ring of Blood
-    tmp[634] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[634] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[620], tmp[634]);
     AddA(tmp[634], a[866]); -- Explore Nagrand
-    tmp[641] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[641] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[620], tmp[641]);
     AddA(tmp[641], a[899]); -- "Oh My, Kurenai"
     AddA(tmp[641], a[901]); -- Mag'har of Draenor
@@ -913,118 +913,118 @@ function exportedCategories.Load(a)
     AddA(tmp[641], a[943]); -- The Diplomat
     tmp[621] = cat:New(addon.GetMapName(105)); -- Blade's Edge Mountains
     AddC(tmp[616], tmp[621]);
-    tmp[628] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[628] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[621], tmp[628]);
     AddA(tmp[628], a[1193]); -- On the Blade's Edge
     AddA(tmp[628], a[1276]); -- Blade's Edge Bomberman
-    tmp[635] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[635] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[621], tmp[635]);
     AddA(tmp[635], a[865]); -- Explore Blade's Edge Mountains
-    tmp[640] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[640] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[621], tmp[640]);
     AddA(tmp[640], a[896]); -- A Quest a Day Keeps the Ogres at Bay
     tmp[622] = cat:New(addon.GetMapName(109)); -- Netherstorm
     AddC(tmp[616], tmp[622]);
-    tmp[629] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[629] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[622], tmp[629]);
     AddA(tmp[629], a[1194]); -- Into the Nether
-    tmp[636] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[636] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[622], tmp[636]);
     AddA(tmp[636], a[843]); -- Explore Netherstorm
     AddA(tmp[636], a[9924]); -- Field Photographer
     tmp[623] = cat:New(addon.GetMapName(104)); -- Shadowmoon Valley
     AddC(tmp[616], tmp[623]);
-    tmp[630] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[630] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[623], tmp[630]);
     AddA(tmp[630], a[1195]); -- Shadow of the Betrayer
-    tmp[637] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[637] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[623], tmp[637]);
     AddA(tmp[637], a[864]); -- Explore Shadowmoon Valley
-    tmp[638] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[638] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[623], tmp[638]);
     AddA(tmp[638], a[898]); -- On Wings of Nether
     AddA(tmp[638], a[1638]); -- Skyshattered
     tmp[750] = cat:New(addon.GetMapName(122)); -- Isle of Quel'Danas
     AddC(tmp[616], tmp[750]);
-    tmp[751] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[751] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[750], tmp[751]);
     AddA(tmp[751], a[868]); -- Explore Isle of Quel'Danas
-    tmp[56] = cat:New((addon.GetCategoryInfo(15272))); -- Dungeons
+    tmp[56] = cat:New(addon.GetCategoryInfoTitle(15272)); -- Dungeons
     AddC(tmp[55], tmp[56]);
     AddA(tmp[56], a[1284]); -- Outland Dungeonmaster
     AddA(tmp[56], a[1287]); -- Outland Dungeon Hero
-    tmp[57] = cat:New((addon.EJ_GetInstanceInfo(248))); -- Hellfire Ramparts
+    tmp[57] = cat:New(addon.GetInstanceInfoName(248)); -- Hellfire Ramparts
     AddC(tmp[56], tmp[57]);
     AddA(tmp[57], a[647]); -- Hellfire Ramparts
     AddA(tmp[57], a[667]); -- Heroic: Hellfire Ramparts
-    tmp[58] = cat:New((addon.EJ_GetInstanceInfo(256))); -- The Blood Furnace
+    tmp[58] = cat:New(addon.GetInstanceInfoName(256)); -- The Blood Furnace
     AddC(tmp[56], tmp[58]);
     AddA(tmp[58], a[648]); -- The Blood Furnace
     AddA(tmp[58], a[668]); -- Heroic: The Blood Furnace
-    tmp[59] = cat:New((addon.EJ_GetInstanceInfo(259))); -- The Shattered Halls
+    tmp[59] = cat:New(addon.GetInstanceInfoName(259)); -- The Shattered Halls
     AddC(tmp[56], tmp[59]);
     AddA(tmp[59], a[657]); -- The Shattered Halls
     AddA(tmp[59], a[678]); -- Heroic: The Shattered Halls
-    tmp[60] = cat:New((addon.EJ_GetInstanceInfo(260))); -- The Slave Pens
+    tmp[60] = cat:New(addon.GetInstanceInfoName(260)); -- The Slave Pens
     AddC(tmp[56], tmp[60]);
     AddA(tmp[60], a[649]); -- The Slave Pens
     AddA(tmp[60], a[669]); -- Heroic: The Slave Pens
-    tmp[61] = cat:New((addon.EJ_GetInstanceInfo(262))); -- The Underbog
+    tmp[61] = cat:New(addon.GetInstanceInfoName(262)); -- The Underbog
     AddC(tmp[56], tmp[61]);
     AddA(tmp[61], a[650]); -- Underbog
     AddA(tmp[61], a[670]); -- Heroic: Underbog
-    tmp[62] = cat:New((addon.EJ_GetInstanceInfo(261))); -- The Steamvault
+    tmp[62] = cat:New(addon.GetInstanceInfoName(261)); -- The Steamvault
     AddC(tmp[56], tmp[62]);
     AddA(tmp[62], a[656]); -- The Steamvault
     AddA(tmp[62], a[677]); -- Heroic: The Steamvault
-    tmp[63] = cat:New((addon.EJ_GetInstanceInfo(250))); -- Mana-Tombs
+    tmp[63] = cat:New(addon.GetInstanceInfoName(250)); -- Mana-Tombs
     AddC(tmp[56], tmp[63]);
     AddA(tmp[63], a[651]); -- Mana-Tombs
     AddA(tmp[63], a[671]); -- Heroic: Mana-Tombs
-    tmp[64] = cat:New((addon.EJ_GetInstanceInfo(247))); -- Auchenai Crypts
+    tmp[64] = cat:New(addon.GetInstanceInfoName(247)); -- Auchenai Crypts
     AddC(tmp[56], tmp[64]);
     AddA(tmp[64], a[666]); -- Auchenai Crypts
     AddA(tmp[64], a[672]); -- Heroic: Auchenai Crypts
-    tmp[65] = cat:New((addon.EJ_GetInstanceInfo(252))); -- Sethekk Halls
+    tmp[65] = cat:New(addon.GetInstanceInfoName(252)); -- Sethekk Halls
     AddC(tmp[56], tmp[65]);
     AddA(tmp[65], a[653]); -- Sethekk Halls
     AddA(tmp[65], a[674]); -- Heroic: Sethekk Halls
     AddA(tmp[65], a[883]); -- Reins of the Raven Lord
-    tmp[66] = cat:New((addon.EJ_GetInstanceInfo(253))); -- Shadow Labyrinth
+    tmp[66] = cat:New(addon.GetInstanceInfoName(253)); -- Shadow Labyrinth
     AddC(tmp[56], tmp[66]);
     AddA(tmp[66], a[654]); -- Shadow Labyrinth
     AddA(tmp[66], a[675]); -- Heroic: Shadow Labyrinth
-    tmp[67] = cat:New((addon.EJ_GetInstanceInfo(251))); -- Old Hillsbrad Foothills
+    tmp[67] = cat:New(addon.GetInstanceInfoName(251)); -- Old Hillsbrad Foothills
     AddC(tmp[56], tmp[67]);
     AddA(tmp[67], a[652]); -- The Escape From Durnholde
     AddA(tmp[67], a[673]); -- Heroic: The Escape From Durnholde
-    tmp[68] = cat:New((addon.EJ_GetInstanceInfo(255))); -- The Black Morass
+    tmp[68] = cat:New(addon.GetInstanceInfoName(255)); -- The Black Morass
     AddC(tmp[56], tmp[68]);
     AddA(tmp[68], a[655]); -- Opening of the Dark Portal
     AddA(tmp[68], a[676]); -- Heroic: Opening of the Dark Portal
-    tmp[69] = cat:New((addon.EJ_GetInstanceInfo(258))); -- The Mechanar
+    tmp[69] = cat:New(addon.GetInstanceInfoName(258)); -- The Mechanar
     AddC(tmp[56], tmp[69]);
     AddA(tmp[69], a[658]); -- The Mechanar
     AddA(tmp[69], a[679]); -- Heroic: The Mechanar
-    tmp[70] = cat:New((addon.EJ_GetInstanceInfo(257))); -- The Botanica
+    tmp[70] = cat:New(addon.GetInstanceInfoName(257)); -- The Botanica
     AddC(tmp[56], tmp[70]);
     AddA(tmp[70], a[659]); -- The Botanica
     AddA(tmp[70], a[680]); -- Heroic: The Botanica
-    tmp[71] = cat:New((addon.EJ_GetInstanceInfo(254))); -- The Arcatraz
+    tmp[71] = cat:New(addon.GetInstanceInfoName(254)); -- The Arcatraz
     AddC(tmp[56], tmp[71]);
     AddA(tmp[71], a[660]); -- The Arcatraz
     AddA(tmp[71], a[681]); -- Heroic: The Arcatraz
-    tmp[72] = cat:New((addon.EJ_GetInstanceInfo(249))); -- Magisters Terrace
+    tmp[72] = cat:New(addon.GetInstanceInfoName(249)); -- Magisters Terrace
     AddC(tmp[56], tmp[72]);
     AddA(tmp[72], a[661]); -- Magister's Terrace
     AddA(tmp[72], a[682]); -- Heroic: Magister's Terrace
     AddA(tmp[72], a[884]); -- Swift White Hawkstrider
-    tmp[73] = cat:New((addon.GetCategoryInfo(15271))); -- Raids
+    tmp[73] = cat:New(addon.GetCategoryInfoTitle(15271)); -- Raids
     AddC(tmp[55], tmp[73]);
     AddA(tmp[73], a[1286]); -- Outland Raider
     AddA(tmp[73], a[432]); -- Champion of the Naaru
     AddA(tmp[73], a[431]); -- Hand of A'dal
-    tmp[74] = cat:New((addon.EJ_GetInstanceInfo(745))); -- Karazhan
+    tmp[74] = cat:New(addon.GetInstanceInfoName(745)); -- Karazhan
     AddC(tmp[73], tmp[74]);
     AddA(tmp[74], a[690]); -- Karazhan
     AddA(tmp[74], a[882]); -- Fiery Warhorse's Reins
@@ -1032,35 +1032,35 @@ function exportedCategories.Load(a)
     AddA(tmp[74], a[2456]); -- Vampire Hunter
     AddA(tmp[74], a[8293]); -- Raiding with Leashes II: Attunement Edition
     AddA(tmp[74], a[9924]); -- Field Photographer
-    tmp[647] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[647] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[74], tmp[647]);
     AddA(tmp[647], a[960]); -- The Violet Eye
-    tmp[75] = cat:New((addon.EJ_GetInstanceInfo(746))); -- Gruul's Lair
+    tmp[75] = cat:New(addon.GetInstanceInfoName(746)); -- Gruul's Lair
     AddC(tmp[73], tmp[75]);
     AddA(tmp[75], a[692]); -- Gruul's Lair
     AddA(tmp[75], a[11746]); -- Outlandish Style
-    tmp[76] = cat:New((addon.EJ_GetInstanceInfo(747))); -- Magtheridon's Lair
+    tmp[76] = cat:New(addon.GetInstanceInfoName(747)); -- Magtheridon's Lair
     AddC(tmp[73], tmp[76]);
     AddA(tmp[76], a[693]); -- Magtheridon's Lair
     AddA(tmp[76], a[11746]); -- Outlandish Style
-    tmp[77] = cat:New((addon.EJ_GetInstanceInfo(748))); -- Serpentshrine Cavern
+    tmp[77] = cat:New(addon.GetInstanceInfoName(748)); -- Serpentshrine Cavern
     AddC(tmp[73], tmp[77]);
     AddA(tmp[77], a[694]); -- Serpentshrine Cavern
     AddA(tmp[77], a[11747]); -- Merely a Set
     AddA(tmp[77], a[8293]); -- Raiding with Leashes II: Attunement Edition
-    tmp[78] = cat:New((addon.EJ_GetInstanceInfo(749))); -- The Eye
+    tmp[78] = cat:New(addon.GetInstanceInfoName(749)); -- The Eye
     AddC(tmp[73], tmp[78]);
     AddA(tmp[78], a[696]); -- Tempest Keep
     AddA(tmp[78], a[885]); -- Ashes of Al'ar
     AddA(tmp[78], a[8293]); -- Raiding with Leashes II: Attunement Edition
-    tmp[79] = cat:New((addon.EJ_GetInstanceInfo(750))); -- The Battle for Mount Hyjal
+    tmp[79] = cat:New(addon.GetInstanceInfoName(750)); -- The Battle for Mount Hyjal
     AddC(tmp[73], tmp[79]);
     AddA(tmp[79], a[695]); -- The Battle for Mount Hyjal
     AddA(tmp[79], a[9824]); -- Raiding with Leashes III: Drinkin' From the Sunwell
-    tmp[646] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[646] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[79], tmp[646]);
     AddA(tmp[646], a[959]); -- The Scale of the Sands
-    tmp[80] = cat:New((addon.EJ_GetInstanceInfo(751))); -- Black Temple
+    tmp[80] = cat:New(addon.GetInstanceInfoName(751)); -- Black Temple
     AddC(tmp[73], tmp[80]);
     AddA(tmp[80], a[697]); -- The Black Temple
     AddA(tmp[80], a[11748]); -- Black is the New Black
@@ -1068,20 +1068,20 @@ function exportedCategories.Load(a)
     AddA(tmp[80], a[426]); -- Warglaives of Azzinoth
     AddA(tmp[80], a[11869]); -- I'll Hold These For You Until You Get Out
     AddA(tmp[80], a[9824]); -- Raiding with Leashes III: Drinkin' From the Sunwell
-    tmp[645] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[645] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[80], tmp[645]);
     AddA(tmp[645], a[958]); -- Sworn to the Deathsworn
-    tmp[81] = cat:New((addon.EJ_GetInstanceInfo(77))); -- Zul'Aman
+    tmp[81] = cat:New(addon.GetInstanceInfoName(77)); -- Zul'Aman
     AddC(tmp[73], tmp[81]);
     AddA(tmp[81], a[691]); -- Zul'Aman
     AddA(tmp[81], a[430]); -- Amani War Bear
-    tmp[82] = cat:New((addon.EJ_GetInstanceInfo(752))); -- Sunwell Plateau
+    tmp[82] = cat:New(addon.GetInstanceInfoName(752)); -- Sunwell Plateau
     AddC(tmp[73], tmp[82]);
     AddA(tmp[82], a[698]); -- Sunwell Plateau
     AddA(tmp[82], a[11749]); -- "Suns Out, Thori'dals Out"
     AddA(tmp[82], a[725]); -- "Thori'dal, the Stars' Fury"
     AddA(tmp[82], a[9824]); -- Raiding with Leashes III: Drinkin' From the Sunwell
-    tmp[786] = cat:New((addon.GetCategoryInfo(15117))); -- Pet Battles
+    tmp[786] = cat:New(addon.GetCategoryInfoTitle(15117)); -- Pet Battles
     AddC(tmp[55], tmp[786]);
     AddA(tmp[786], a[6587]); -- Outland Safari
     AddA(tmp[786], a[6614]); -- Outland Tamer
@@ -1099,7 +1099,7 @@ function exportedCategories.Load(a)
     AddA(tmp[786], a[6611]); -- Continental Tamer
     AddA(tmp[786], a[6590]); -- World Safari
     AddA(tmp[786], a[8348]); -- The Longest Day
-    tmp[83] = cat:New((addon.GetCategoryInfo(14866))); -- Wrath of the Lich King
+    tmp[83] = cat:New(addon.GetCategoryInfoTitle(14866)); -- Wrath of the Lich King
     AddC(tmp[883], tmp[83]);
     tmp[577] = cat:New(addon.L["Zones"]); -- Zones
     AddC(tmp[83], tmp[577]);
@@ -1124,80 +1124,80 @@ function exportedCategories.Load(a)
     AddA(tmp[614], a[2078]); -- Traveler's Tundra Mammoth
     tmp[578] = cat:New(addon.GetMapName(114)); -- Borean Tundra
     AddC(tmp[577], tmp[578]);
-    tmp[586] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[586] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[578], tmp[586]);
     AddA(tmp[586], a[33]); -- Nothing Boring About Borean
     AddA(tmp[586], a[1358]); -- Nothing Boring About Borean
     AddA(tmp[586], a[561]); -- D.E.H.T.A's Little P.I.T.A.
-    tmp[587] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[587] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[578], tmp[587]);
     AddA(tmp[587], a[1264]); -- Explore Borean Tundra
-    tmp[588] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[588] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[578], tmp[588]);
     AddA(tmp[588], a[949]); -- Tuskarrmageddon
     tmp[579] = cat:New(addon.GetMapName(117)); -- Howling Fjord
     AddC(tmp[577], tmp[579]);
-    tmp[589] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[589] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[579], tmp[589]);
     AddA(tmp[589], a[34]); -- I've Toured the Fjord
     AddA(tmp[589], a[1356]); -- I've Toured the Fjord
-    tmp[590] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[590] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[579], tmp[590]);
     AddA(tmp[590], a[1263]); -- Explore Howling Fjord
     AddA(tmp[590], a[1254]); -- Friend or Fowl?
     AddA(tmp[590], a[9924]); -- Field Photographer
     tmp[580] = cat:New(addon.GetMapName(115)); -- Dragonblight
     AddC(tmp[577], tmp[580]);
-    tmp[592] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[592] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[580], tmp[592]);
     AddA(tmp[592], a[35]); -- Might of Dragonblight
     AddA(tmp[592], a[1359]); -- Might of Dragonblight
     AddA(tmp[592], a[547]); -- Veteran of the Wrathgate
     AddA(tmp[592], a[1277]); -- Rapid Defense
-    tmp[593] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[593] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[580], tmp[593]);
     AddA(tmp[593], a[1265]); -- Explore Dragonblight
     AddA(tmp[593], a[9924]); -- Field Photographer
-    tmp[594] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[594] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[580], tmp[594]);
     AddA(tmp[594], a[1007]); -- The Wyrmrest Accord
     tmp[581] = cat:New(addon.GetMapName(116)); -- Grizzly Hills
     AddC(tmp[577], tmp[581]);
-    tmp[595] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[595] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[581], tmp[595]);
     AddA(tmp[595], a[37]); -- Fo' Grizzle My Shizzle
     AddA(tmp[595], a[1357]); -- Fo' Grizzle My Shizzle
-    tmp[596] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[596] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[581], tmp[596]);
     AddA(tmp[596], a[1266]); -- Explore Grizzly Hills
-    tmp[782] = cat:New((addon.GetCategoryInfo(95)), true); -- PvP
+    tmp[782] = cat:New(addon.GetCategoryInfoTitle(95), true); -- PvP
     AddC(tmp[581], tmp[782]);
     AddA(tmp[782], a[2016]); -- Grizzled Veteran
     AddA(tmp[782], a[2017]); -- Grizzled Veteran
     tmp[582] = cat:New(addon.GetMapName(121)); -- Zul'Drak
     AddC(tmp[577], tmp[582]);
-    tmp[598] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[598] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[582], tmp[598]);
     AddA(tmp[598], a[36]); -- The Empire of Zul'Drak
     AddA(tmp[598], a[1596]); -- Guru of Drakuru
     AddA(tmp[598], a[1576]); -- Of Blood and Anguish
     AddA(tmp[598], a[4958]); -- The First Rule of Ring of Blood is You Don't Talk About Ring of Blood
-    tmp[599] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[599] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[582], tmp[599]);
     AddA(tmp[599], a[1267]); -- Explore Zul'Drak
     tmp[583] = cat:New(addon.GetMapName(119)); -- Sholazar Basin
     AddC(tmp[577], tmp[583]);
-    tmp[601] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[601] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[583], tmp[601]);
     AddA(tmp[601], a[39]); -- Into the Basin
     AddA(tmp[601], a[961]); -- Honorary Frenzyheart
     AddA(tmp[601], a[962]); -- Savior of the Oracles
     AddA(tmp[601], a[938]); -- The Snows of Northrend
     AddA(tmp[601], a[941]); -- Hemet Nesingwary: The Collected Quests
-    tmp[602] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[602] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[583], tmp[602]);
     AddA(tmp[602], a[1268]); -- Explore Sholazar Basin
-    tmp[603] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[603] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[583], tmp[603]);
     AddA(tmp[603], a[950]); -- Frenzyheart Tribe
     AddA(tmp[603], a[951]); -- The Oracles
@@ -1208,34 +1208,34 @@ function exportedCategories.Load(a)
     AddA(tmp[610], a[9924]); -- Field Photographer
     tmp[584] = cat:New(addon.GetMapName(120)); -- Storm Peaks
     AddC(tmp[577], tmp[584]);
-    tmp[604] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[604] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[584], tmp[604]);
     AddA(tmp[604], a[38]); -- The Summit of Storm Peaks
     AddA(tmp[604], a[1428]); -- Mine Sweeper
-    tmp[612] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[612] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[584], tmp[612]);
     AddA(tmp[612], a[1269]); -- Explore Storm Peaks
-    tmp[606] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[606] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[584], tmp[606]);
     AddA(tmp[606], a[2082]); -- Ice Mammoth
     AddA(tmp[606], a[2083]); -- Grand Ice Mammoth
     tmp[585] = cat:New(addon.GetMapName(118)); -- Icecrown
     AddC(tmp[577], tmp[585]);
     AddA(tmp[585], a[14750]); -- Death Rising
-    tmp[607] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[607] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[585], tmp[607]);
     AddA(tmp[607], a[40]); -- Icecrown: The Final Goal
-    tmp[608] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[608] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[585], tmp[608]);
     AddA(tmp[608], a[1270]); -- Explore Icecrown
-    tmp[609] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[609] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[585], tmp[609]);
     AddA(tmp[609], a[947]); -- The Argent Crusade
     AddA(tmp[609], a[945]); -- The Argent Champion
     tmp[1034] = cat:New(addon.GetMapName(123)); -- Wintergrasp
     AddC(tmp[577], tmp[1034]);
     AddA(tmp[1034], a[9924]); -- Field Photographer
-    tmp[84] = cat:New((addon.GetCategoryInfo(15272))); -- Dungeons
+    tmp[84] = cat:New(addon.GetCategoryInfoTitle(15272)); -- Dungeons
     AddC(tmp[83], tmp[84]);
     AddA(tmp[84], a[1288]); -- Northrend Dungeonmaster
     AddA(tmp[84], a[1289]); -- Northrend Dungeon Hero
@@ -1250,40 +1250,40 @@ function exportedCategories.Load(a)
     AddA(tmp[84], a[2089]); -- 1000 Stone Keeper's Shards
     AddA(tmp[84], a[3844]); -- 1000 Dungeon & Raid Emblems
     AddA(tmp[84], a[4316]); -- 2500 Dungeon & Raid Emblems
-    tmp[86] = cat:New((addon.EJ_GetInstanceInfo(285))); -- Utgarde Keep
+    tmp[86] = cat:New(addon.GetInstanceInfoName(285)); -- Utgarde Keep
     AddC(tmp[84], tmp[86]);
     AddA(tmp[86], a[1919]); -- On The Rocks
     AddA(tmp[86], a[477]); -- Utgarde Keep
     AddA(tmp[86], a[489]); -- Heroic: Utgarde Keep
-    tmp[87] = cat:New((addon.EJ_GetInstanceInfo(281))); -- The Nexus
+    tmp[87] = cat:New(addon.GetInstanceInfoName(281)); -- The Nexus
     AddC(tmp[84], tmp[87]);
     AddA(tmp[87], a[2150]); -- Split Personality
     AddA(tmp[87], a[2037]); -- Chaos Theory
     AddA(tmp[87], a[2036]); -- Intense Cold
     AddA(tmp[87], a[478]); -- The Nexus
     AddA(tmp[87], a[490]); -- Heroic: The Nexus
-    tmp[88] = cat:New((addon.EJ_GetInstanceInfo(272))); -- Azjol-Nerub
+    tmp[88] = cat:New(addon.GetInstanceInfoName(272)); -- Azjol-Nerub
     AddC(tmp[84], tmp[88]);
     AddA(tmp[88], a[1296]); -- Watch Him Die
     AddA(tmp[88], a[1297]); -- Hadronox Denied
     AddA(tmp[88], a[1860]); -- Gotta Go!
     AddA(tmp[88], a[480]); -- Azjol-Nerub
     AddA(tmp[88], a[491]); -- Heroic: Azjol-Nerub
-    tmp[89] = cat:New((addon.EJ_GetInstanceInfo(271))); -- Ahn'kahet: The Old Kingdom
+    tmp[89] = cat:New(addon.GetInstanceInfoName(271)); -- Ahn'kahet: The Old Kingdom
     AddC(tmp[84], tmp[89]);
     AddA(tmp[89], a[2038]); -- Respect Your Elders
     AddA(tmp[89], a[2056]); -- Volunteer Work
     AddA(tmp[89], a[1862]); -- Volazj's Quick Demise
     AddA(tmp[89], a[481]); -- Ahn'kahet: The Old Kingdom
     AddA(tmp[89], a[492]); -- Heroic: Ahn'kahet: The Old Kingdom
-    tmp[90] = cat:New((addon.EJ_GetInstanceInfo(273))); -- Drak'Tharon Keep
+    tmp[90] = cat:New(addon.GetInstanceInfoName(273)); -- Drak'Tharon Keep
     AddC(tmp[84], tmp[90]);
     AddA(tmp[90], a[2151]); -- Consumption Junction
     AddA(tmp[90], a[2057]); -- Oh Novos!
     AddA(tmp[90], a[2039]); -- Better Off Dred
     AddA(tmp[90], a[482]); -- Drak'Tharon Keep
     AddA(tmp[90], a[493]); -- Heroic: Drak'Tharon Keep
-    tmp[91] = cat:New((addon.EJ_GetInstanceInfo(283))); -- The Violet Hold
+    tmp[91] = cat:New(addon.GetInstanceInfoName(283)); -- The Violet Hold
     AddC(tmp[84], tmp[91]);
     AddA(tmp[91], a[1865]); -- Lockdown!
     AddA(tmp[91], a[2041]); -- Dehydration
@@ -1291,7 +1291,7 @@ function exportedCategories.Load(a)
     AddA(tmp[91], a[1816]); -- Defenseless
     AddA(tmp[91], a[483]); -- The Violet Hold
     AddA(tmp[91], a[494]); -- Heroic: The Violet Hold
-    tmp[92] = cat:New((addon.EJ_GetInstanceInfo(274))); -- Gundrak
+    tmp[92] = cat:New(addon.GetInstanceInfoName(274)); -- Gundrak
     AddC(tmp[84], tmp[92]);
     AddA(tmp[92], a[2058]); -- Snakes. Why'd It Have To Be Snakes?
     AddA(tmp[92], a[2040]); -- Less-rabi
@@ -1299,21 +1299,21 @@ function exportedCategories.Load(a)
     AddA(tmp[92], a[2152]); -- Share The Love
     AddA(tmp[92], a[484]); -- Gundrak
     AddA(tmp[92], a[495]); -- Heroic: Gundrak
-    tmp[93] = cat:New((addon.EJ_GetInstanceInfo(277))); -- Halls of Stone
+    tmp[93] = cat:New(addon.GetInstanceInfoName(277)); -- Halls of Stone
     AddC(tmp[84], tmp[93]);
     AddA(tmp[93], a[1866]); -- Good Grief
     AddA(tmp[93], a[2154]); -- Brann Spankin' New
     AddA(tmp[93], a[2155]); -- Abuse the Ooze
     AddA(tmp[93], a[485]); -- Halls of Stone
     AddA(tmp[93], a[496]); -- Heroic: Halls of Stone
-    tmp[94] = cat:New((addon.EJ_GetInstanceInfo(275))); -- Halls of Lightning
+    tmp[94] = cat:New(addon.GetInstanceInfoName(275)); -- Halls of Lightning
     AddC(tmp[84], tmp[94]);
     AddA(tmp[94], a[1834]); -- Lightning Struck
     AddA(tmp[94], a[2042]); -- Shatter Resistant
     AddA(tmp[94], a[1867]); -- Timely Death
     AddA(tmp[94], a[486]); -- Halls of Lightning
     AddA(tmp[94], a[497]); -- Heroic: Halls of Lightning
-    tmp[95] = cat:New((addon.EJ_GetInstanceInfo(282))); -- The Oculus
+    tmp[95] = cat:New(addon.GetInstanceInfoName(282)); -- The Oculus
     AddC(tmp[84], tmp[95]);
     AddA(tmp[95], a[1868]); -- Make It Count
     AddA(tmp[95], a[2046]); -- Amber Void
@@ -1322,7 +1322,7 @@ function exportedCategories.Load(a)
     AddA(tmp[95], a[1871]); -- Experienced Drake Rider
     AddA(tmp[95], a[487]); -- The Oculus
     AddA(tmp[95], a[498]); -- Heroic: The Oculus
-    tmp[97] = cat:New((addon.EJ_GetInstanceInfo(286))); -- Utgarde Pinnacle
+    tmp[97] = cat:New(addon.GetInstanceInfoName(286)); -- Utgarde Pinnacle
     AddC(tmp[84], tmp[97]);
     AddA(tmp[97], a[2043]); -- The Incredible Hulk
     AddA(tmp[97], a[1873]); -- Lodi Dodi We Loves the Skadi
@@ -1330,13 +1330,13 @@ function exportedCategories.Load(a)
     AddA(tmp[97], a[2157]); -- King's Bane
     AddA(tmp[97], a[488]); -- Utgarde Pinnacle
     AddA(tmp[97], a[499]); -- Heroic: Utgarde Pinnacle
-    tmp[96] = cat:New((addon.EJ_GetInstanceInfo(279))); -- The Culling of Stratholme
+    tmp[96] = cat:New(addon.GetInstanceInfoName(279)); -- The Culling of Stratholme
     AddC(tmp[84], tmp[96]);
     AddA(tmp[96], a[1872]); -- Zombiefest!
     AddA(tmp[96], a[1817]); -- The Culling of Time
     AddA(tmp[96], a[479]); -- The Culling of Stratholme
     AddA(tmp[96], a[500]); -- Heroic: The Culling of Stratholme
-    tmp[98] = cat:New((addon.EJ_GetInstanceInfo(284))); -- Trial of the Champion
+    tmp[98] = cat:New(addon.GetInstanceInfoName(284)); -- Trial of the Champion
     AddC(tmp[84], tmp[98]);
     AddA(tmp[98], a[3803]); -- The Faceroller
     AddA(tmp[98], a[3802]); -- Argent Confessor
@@ -1345,24 +1345,24 @@ function exportedCategories.Load(a)
     AddA(tmp[98], a[3778]); -- Trial of the Champion
     AddA(tmp[98], a[4298]); -- Heroic: Trial of the Champion
     AddA(tmp[98], a[4297]); -- Heroic: Trial of the Champion
-    tmp[99] = cat:New((addon.EJ_GetInstanceInfo(280))); -- The Forge of Souls
+    tmp[99] = cat:New(addon.GetInstanceInfoName(280)); -- The Forge of Souls
     AddC(tmp[84], tmp[99]);
     AddA(tmp[99], a[4522]); -- Soul Power
     AddA(tmp[99], a[4523]); -- Three Faced
     AddA(tmp[99], a[4516]); -- The Forge of Souls
     AddA(tmp[99], a[4519]); -- Heroic: The Forge of Souls
-    tmp[100] = cat:New((addon.EJ_GetInstanceInfo(278))); -- Pit of Saron
+    tmp[100] = cat:New(addon.GetInstanceInfoName(278)); -- Pit of Saron
     AddC(tmp[84], tmp[100]);
     AddA(tmp[100], a[4524]); -- Doesn't Go to Eleven
     AddA(tmp[100], a[4525]); -- Don't Look Up
     AddA(tmp[100], a[4517]); -- The Pit of Saron
     AddA(tmp[100], a[4520]); -- Heroic: The Pit of Saron
-    tmp[101] = cat:New((addon.EJ_GetInstanceInfo(276))); -- Halls of Reflection
+    tmp[101] = cat:New(addon.GetInstanceInfoName(276)); -- Halls of Reflection
     AddC(tmp[84], tmp[101]);
     AddA(tmp[101], a[4526]); -- We're Not Retreating; We're Advancing in a Different Direction.
     AddA(tmp[101], a[4518]); -- The Halls of Reflection
     AddA(tmp[101], a[4521]); -- Heroic: The Halls of Reflection
-    tmp[85] = cat:New((addon.GetCategoryInfo(15271))); -- Raids
+    tmp[85] = cat:New(addon.GetCategoryInfoTitle(15271)); -- Raids
     AddC(tmp[83], tmp[85]);
     AddA(tmp[85], a[1658]); -- Champion of the Frozen Wastes
     AddA(tmp[85], a[2137]); -- Glory of the Raider (10 player)
@@ -1372,7 +1372,7 @@ function exportedCategories.Load(a)
     AddA(tmp[85], a[4603]); -- Glory of the Icecrown Raider (25 player)
     AddA(tmp[85], a[2957]); -- Glory of the Ulduar Raider (10 player)
     AddA(tmp[85], a[2958]); -- Glory of the Ulduar Raider (25 player)
-    tmp[102] = cat:New((addon.EJ_GetInstanceInfo(753))); -- Vault of Archavon
+    tmp[102] = cat:New(addon.GetInstanceInfoName(753)); -- Vault of Archavon
     AddC(tmp[85], tmp[102]);
     AddA(tmp[102], a[2081]); -- Grand Black War Mammoth
     tmp[103] = cat:New((GetDifficultyInfo(3))); -- Vault of Archavon 10
@@ -1389,7 +1389,7 @@ function exportedCategories.Load(a)
     AddA(tmp[104], a[3137]); -- Emalon the Storm Watcher (25 player)
     AddA(tmp[104], a[3837]); -- Koralon the Flame Watcher (25 player)
     AddA(tmp[104], a[4586]); -- Toravon the Ice Watcher (25 player)
-    tmp[105] = cat:New((addon.EJ_GetInstanceInfo(754))); -- Naxxramas
+    tmp[105] = cat:New(addon.GetInstanceInfoName(754)); -- Naxxramas
     AddC(tmp[85], tmp[105]);
     AddA(tmp[105], a[11750]); -- Undying Aesthetic
     AddA(tmp[105], a[7934]); -- Raiding with Leashes
@@ -1436,7 +1436,7 @@ function exportedCategories.Load(a)
     AddA(tmp[107], a[575]); -- Kel'Thuzad's Defeat (25 player)
     AddA(tmp[107], a[577]); -- The Fall of Naxxramas (25 player)
     AddA(tmp[107], a[2186]); -- The Immortal
-    tmp[108] = cat:New((addon.EJ_GetInstanceInfo(755))); -- The Obsidian Sanctum
+    tmp[108] = cat:New(addon.GetInstanceInfoName(755)); -- The Obsidian Sanctum
     AddC(tmp[85], tmp[108]);
     tmp[109] = cat:New((GetDifficultyInfo(3))); -- The Obsidian Sanctum 10
     AddC(tmp[108], tmp[109]);
@@ -1454,7 +1454,7 @@ function exportedCategories.Load(a)
     AddA(tmp[110], a[2054]); -- The Twilight Zone (25 player)
     AddA(tmp[110], a[1877]); -- Less Is More (25 player)
     AddA(tmp[110], a[625]); -- Besting the Black Dragonflight (25 player)
-    tmp[111] = cat:New((addon.EJ_GetInstanceInfo(756))); -- The Eye of Eternity
+    tmp[111] = cat:New(addon.GetInstanceInfoName(756)); -- The Eye of Eternity
     AddC(tmp[85], tmp[111]);
     tmp[112] = cat:New((GetDifficultyInfo(3))); -- The Eye of Eternity 10
     AddC(tmp[111], tmp[112]);
@@ -1468,7 +1468,7 @@ function exportedCategories.Load(a)
     AddA(tmp[113], a[1875]); -- You Don't Have an Eternity (25 player)
     AddA(tmp[113], a[1870]); -- A Poke in the Eye (25 player)
     AddA(tmp[113], a[623]); -- The Spellweaver's Downfall (25 player)
-    tmp[114] = cat:New((addon.EJ_GetInstanceInfo(759))); -- Ulduar
+    tmp[114] = cat:New(addon.GetInstanceInfoName(759)); -- Ulduar
     AddC(tmp[85], tmp[114]);
     AddA(tmp[114], a[12312]); -- Dwarfageddon
     AddA(tmp[114], a[12314]); -- Three Car Garage
@@ -1687,7 +1687,7 @@ function exportedCategories.Load(a)
     AddA(tmp[116], a[3037]); -- Observed (25 player)
     AddA(tmp[116], a[3005]); -- He Feeds On Your Tears (25 player)
     AddA(tmp[116], a[2904]); -- Conqueror of Ulduar
-    tmp[117] = cat:New((addon.EJ_GetInstanceInfo(757))); -- Trial of the Crusader
+    tmp[117] = cat:New(addon.GetInstanceInfoName(757)); -- Trial of the Crusader
     AddC(tmp[85], tmp[117]);
     AddA(tmp[117], a[11752]); -- Style of the Crusader
     AddA(tmp[117], a[11320]); -- Raiding with Leashes IV: Wrath of the Lick King
@@ -1719,7 +1719,7 @@ function exportedCategories.Load(a)
     AddA(tmp[119], a[3819]); -- A Tribute to Insanity (25 player)
     AddA(tmp[119], a[4156]); -- A Tribute to Immortality
     AddA(tmp[119], a[4079]); -- A Tribute to Immortality
-    tmp[120] = cat:New((addon.EJ_GetInstanceInfo(760))); -- Onyxia's Lair
+    tmp[120] = cat:New(addon.GetInstanceInfoName(760)); -- Onyxia's Lair
     AddC(tmp[85], tmp[120]);
     AddA(tmp[120], a[9924]); -- Field Photographer
     tmp[121] = cat:New((GetDifficultyInfo(3))); -- Onyxia's Lair 10
@@ -1734,7 +1734,7 @@ function exportedCategories.Load(a)
     AddA(tmp[122], a[4406]); -- Many Whelps! Handle It! (25 player)
     AddA(tmp[122], a[4407]); -- She Deep Breaths More (25 player)
     AddA(tmp[122], a[4397]); -- Onyxia's Lair (25 player)
-    tmp[123] = cat:New((addon.EJ_GetInstanceInfo(758))); -- Icecrown Citadel
+    tmp[123] = cat:New(addon.GetInstanceInfoName(758)); -- Icecrown Citadel
     AddC(tmp[85], tmp[123]);
     AddA(tmp[123], a[11753]); -- Winter Catalog
     AddA(tmp[123], a[4625]); -- Invincible's Reins
@@ -1795,10 +1795,10 @@ function exportedCategories.Load(a)
     AddA(tmp[125], a[4635]); -- Heroic: The Frostwing Halls (25 player)
     AddA(tmp[125], a[4584]); -- The Light of Dawn
     AddA(tmp[125], a[4637]); -- Heroic: Fall of the Lich King (25 player)
-    tmp[615] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[615] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[123], tmp[615]);
     AddA(tmp[615], a[4598]); -- The Ashen Verdict
-    tmp[126] = cat:New((addon.EJ_GetInstanceInfo(761))); -- The Ruby Sanctum
+    tmp[126] = cat:New(addon.GetInstanceInfoName(761)); -- The Ruby Sanctum
     AddC(tmp[85], tmp[126]);
     tmp[127] = cat:New((GetDifficultyInfo(3))); -- The Ruby Sanctum 10
     AddC(tmp[126], tmp[127]);
@@ -1808,7 +1808,7 @@ function exportedCategories.Load(a)
     AddC(tmp[126], tmp[128]);
     AddA(tmp[128], a[4815]); -- The Twilight Destroyer (25 player)
     AddA(tmp[128], a[4816]); -- Heroic: The Twilight Destroyer (25 player)
-    tmp[787] = cat:New((addon.GetCategoryInfo(15117))); -- Pet Battles
+    tmp[787] = cat:New(addon.GetCategoryInfoTitle(15117)); -- Pet Battles
     AddC(tmp[83], tmp[787]);
     AddA(tmp[787], a[6588]); -- Northrend Safari
     AddA(tmp[787], a[6615]); -- Northrend Tamer
@@ -1823,7 +1823,7 @@ function exportedCategories.Load(a)
     AddA(tmp[787], a[6611]); -- Continental Tamer
     AddA(tmp[787], a[6590]); -- World Safari
     AddA(tmp[787], a[8348]); -- The Longest Day
-    tmp[1138] = cat:New((addon.GetCategoryInfo(14901))); -- Wintergrasp
+    tmp[1138] = cat:New(addon.GetCategoryInfoTitle(14901)); -- Wintergrasp
     AddC(tmp[83], tmp[1138]);
     AddA(tmp[1138], a[1717]); -- Wintergrasp Victory
     AddA(tmp[1138], a[1718]); -- Wintergrasp Veteran
@@ -1836,7 +1836,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1138], a[1727]); -- Leaning Tower
     AddA(tmp[1138], a[1751]); -- Didn't Stand a Chance
     AddA(tmp[1138], a[1752]); -- Master of Wintergrasp
-    tmp[781] = cat:New((addon.GetCategoryInfo(14941))); -- Argent Tournament
+    tmp[781] = cat:New(addon.GetCategoryInfoTitle(14941)); -- Argent Tournament
     AddC(tmp[83], tmp[781]);
     AddA(tmp[781], a[2756]); -- Argent Aspiration
     AddA(tmp[781], a[2758]); -- Argent Valor
@@ -1880,7 +1880,7 @@ function exportedCategories.Load(a)
     tmp[953] = cat:New((select(2, addon.GetAchievementInfo(14222)))); -- Exile's Reach
     AddC(tmp[1160], tmp[953]);
     AddA(tmp[953], a[14222]); -- Exile's Reach
-    tmp[1168] = cat:New((addon.GetCategoryInfo(92))); -- Character
+    tmp[1168] = cat:New(addon.GetCategoryInfoTitle(92)); -- Character
     AddC(tmp[952], tmp[1168]);
     AddA(tmp[1168], a[6]); -- Level 10
     AddA(tmp[1168], a[7]); -- Level 20
@@ -1938,7 +1938,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1168], a[2357]); -- Dreadsteed of Xoroth
     AddA(tmp[1168], a[2358]); -- Charger
     AddA(tmp[1168], a[2359]); -- Swift Flight Form
-    tmp[1159] = cat:New((addon.GetCategoryInfo(96))); -- Quests
+    tmp[1159] = cat:New(addon.GetCategoryInfoTitle(96)); -- Quests
     AddC(tmp[952], tmp[1159]);
     AddA(tmp[1159], a[503]); -- 50 Quests Completed
     AddA(tmp[1159], a[504]); -- 100 Quests Completed
@@ -1947,6 +1947,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1159], a[507]); -- 1000 Quests Completed
     AddA(tmp[1159], a[508]); -- 1500 Quests Completed
     AddA(tmp[1159], a[32]); -- 2000 Quests Completed
+    AddA(tmp[1159], a[978]); -- 3000 Quests Completed
     AddA(tmp[1159], a[973]); -- 5 Daily Quests Completed
     AddA(tmp[1159], a[974]); -- 50 Daily Quests Completed
     AddA(tmp[1159], a[975]); -- 200 Daily Quests Completed
@@ -1967,17 +1968,17 @@ function exportedCategories.Load(a)
     AddA(tmp[1159], a[4957]); -- 20 Dungeon Quests Completed
     AddA(tmp[1159], a[1182]); -- The Bread Winner
     AddA(tmp[1159], a[5752]); -- Justly Rewarded
-    tmp[1161] = cat:New((addon.GetCategoryInfo(97))); -- Exploration
+    tmp[1161] = cat:New(addon.GetCategoryInfoTitle(97)); -- Exploration
     AddC(tmp[952], tmp[1161]);
     AddA(tmp[1161], a[964]); -- Going Down?
     AddA(tmp[1161], a[1244]); -- Well Read
     AddA(tmp[1161], a[1832]); -- Tastes Like Chicken
     AddA(tmp[1161], a[1833]); -- It's Happy Hour Somewhere
-    tmp[1169] = cat:New((addon.GetCategoryInfo(168))); -- Dungeons & Raids
+    tmp[1169] = cat:New(addon.GetCategoryInfoTitle(168)); -- Dungeons & Raids
     AddC(tmp[952], tmp[1169]);
     AddA(tmp[1169], a[4476]); -- Looking For More
     AddA(tmp[1169], a[4478]); -- Looking For Multitudes
-    tmp[1149] = cat:New((addon.GetCategoryInfo(169))); -- Professions
+    tmp[1149] = cat:New(addon.GetCategoryInfoTitle(169)); -- Professions
     AddC(tmp[952], tmp[1149]);
     AddA(tmp[1149], a[1998]); -- Cooking Award
     AddA(tmp[1149], a[1999]); -- 10 Cooking Awards
@@ -2012,7 +2013,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1149], a[4856]); -- It Belongs in a Museum!
     AddA(tmp[1149], a[9422]); -- "The Search For Fact, Not Truth"
     AddA(tmp[1149], a[141]); -- Ultimate Triage
-    tmp[1150] = cat:New((addon.GetCategoryInfo(14864))); -- Classic
+    tmp[1150] = cat:New(addon.GetCategoryInfoTitle(14864)); -- Classic
     AddC(tmp[1149], tmp[1150]);
     AddA(tmp[1150], a[116]); -- Professional Journeyman
     AddA(tmp[1150], a[731]); -- Professional Expert
@@ -2050,7 +2051,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1150], a[131]); -- Journeyman Medic
     AddA(tmp[1150], a[132]); -- Expert Medic
     AddA(tmp[1150], a[133]); -- Artisan Medic
-    tmp[1151] = cat:New((addon.GetCategoryInfo(14865))); -- The Burning Crusade
+    tmp[1151] = cat:New(addon.GetCategoryInfoTitle(14865)); -- The Burning Crusade
     AddC(tmp[1149], tmp[1151]);
     AddA(tmp[1151], a[733]); -- Professional Outland Master
     AddA(tmp[1151], a[124]); -- Outland Cook
@@ -2066,7 +2067,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1151], a[1225]); -- Outland Angler
     AddA(tmp[1151], a[4921]); -- Master Archaeologist
     AddA(tmp[1151], a[134]); -- Master Medic
-    tmp[1152] = cat:New((addon.GetCategoryInfo(14866))); -- Wrath of the Lich King
+    tmp[1152] = cat:New(addon.GetCategoryInfoTitle(14866)); -- Wrath of the Lich King
     AddC(tmp[1149], tmp[1152]);
     AddA(tmp[1152], a[734]); -- Professional Northrend Master
     AddA(tmp[1152], a[735]); -- Working In the Cold
@@ -2092,7 +2093,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1152], a[135]); -- Grand Master Medic
     AddA(tmp[1152], a[137]); -- Stocking Up
     AddA(tmp[1152], a[730]); -- Skills to Pay the Bills
-    tmp[1153] = cat:New((addon.GetCategoryInfo(15072))); -- Cataclysm
+    tmp[1153] = cat:New(addon.GetCategoryInfoTitle(15072)); -- Cataclysm
     AddC(tmp[1149], tmp[1153]);
     AddA(tmp[1153], a[4924]); -- Professional Cataclysmic Master
     AddA(tmp[1153], a[4914]); -- Working In the Heat
@@ -2111,7 +2112,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1153], a[4918]); -- Illustrious Grand Master Medic
     AddA(tmp[1153], a[5480]); -- Preparing for Disaster
     AddA(tmp[1153], a[4915]); -- More Skills to Pay the Bills
-    tmp[1154] = cat:New((addon.GetCategoryInfo(15164))); -- Mists of Pandaria
+    tmp[1154] = cat:New(addon.GetCategoryInfoTitle(15164)); -- Mists of Pandaria
     AddC(tmp[1149], tmp[1154]);
     AddA(tmp[1154], a[6830]); -- Professional Zen Master
     AddA(tmp[1154], a[6835]); -- Working For a Living
@@ -2200,7 +2201,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1154], a[8219]); -- History of the Mantid
     AddA(tmp[1154], a[6838]); -- Zen Master Medic
     AddA(tmp[1154], a[6836]); -- Serious Skills to Pay the Bills
-    tmp[1155] = cat:New((addon.GetCategoryInfo(15233))); -- Warlords of Dreanor
+    tmp[1155] = cat:New(addon.GetCategoryInfoTitle(15233)); -- Warlords of Dreanor
     AddC(tmp[1149], tmp[1155]);
     AddA(tmp[1155], a[9464]); -- Professional Draenor Master
     AddA(tmp[1155], a[9507]); -- Working in Draenor
@@ -2230,7 +2231,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1155], a[9419]); -- Draenor Curator
     AddA(tmp[1155], a[9505]); -- Draenor Medic
     AddA(tmp[1155], a[9506]); -- Savage Skills to Pay the Bills
-    tmp[1156] = cat:New((addon.GetCategoryInfo(15258))); -- Legion
+    tmp[1156] = cat:New(addon.GetCategoryInfoTitle(15258)); -- Legion
     AddC(tmp[1149], tmp[1156]);
     AddA(tmp[1156], a[10582]); -- Professional Legion Master
     AddA(tmp[1156], a[10581]); -- Working the Isles
@@ -2266,7 +2267,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1156], a[11139]); -- Field Medic
     AddA(tmp[1156], a[10585]); -- Fel-Smelter
     AddA(tmp[1156], a[10586]); -- Mass Obliteration
-    tmp[1157] = cat:New((addon.GetCategoryInfo(15305))); -- Battle for Azeroth
+    tmp[1157] = cat:New(addon.GetCategoryInfoTitle(15305)); -- Battle for Azeroth
     AddC(tmp[1149], tmp[1157]);
     AddA(tmp[1157], a[12731]); -- Professional Kul Tiran Master
     AddA(tmp[1157], a[12733]); -- Professional Zandalari Master
@@ -2302,14 +2303,14 @@ function exportedCategories.Load(a)
     AddA(tmp[1157], a[12765]); -- Exotic Discoveries
     AddA(tmp[1157], a[12769]); -- Light Travel
     AddA(tmp[1157], a[12770]); -- Lengthy Legwork
-    tmp[1158] = cat:New((addon.GetCategoryInfo(15439))); -- Shadowlands
+    tmp[1158] = cat:New(addon.GetCategoryInfoTitle(15439)); -- Shadowlands
     AddC(tmp[1149], tmp[1158]);
     AddA(tmp[1158], a[14328]); -- Professional Shadowlands Master
     AddA(tmp[1158], a[14329]); -- Working the Afterlife
     AddA(tmp[1158], a[14330]); -- Shadowlands Master of All
     AddA(tmp[1158], a[14332]); -- Shadowlands Cook
     AddA(tmp[1158], a[14333]); -- Shadowlands Fisherman
-    tmp[1163] = cat:New((addon.GetCategoryInfo(201))); -- Reputation
+    tmp[1163] = cat:New(addon.GetCategoryInfoTitle(201)); -- Reputation
     AddC(tmp[952], tmp[1163]);
     AddA(tmp[1163], a[522]); -- Somebody Likes Me
     AddA(tmp[1163], a[523]); -- 5 Exalted Reputations
@@ -2345,7 +2346,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1163], a[13503]); -- Heritage of the Zandalari
     AddA(tmp[1163], a[13206]); -- Allied Races: Vulpera
     AddA(tmp[1163], a[14002]); -- Heritage of the Vulpera
-    tmp[1170] = cat:New((addon.GetCategoryInfo(15117))); -- Pet Battles
+    tmp[1170] = cat:New(addon.GetCategoryInfoTitle(15117)); -- Pet Battles
     AddC(tmp[952], tmp[1170]);
     AddA(tmp[1170], a[7482]); -- Trainer Extraordinaire
     AddA(tmp[1170], a[7483]); -- Battle Master
@@ -2420,7 +2421,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1170], a[6609]); -- No Favorites
     AddA(tmp[1170], a[6610]); -- All Pets Allowed
     AddA(tmp[1170], a[9070]); -- Overstuffed
-    tmp[1171] = cat:New((addon.GetCategoryInfo(15246))); -- Collections
+    tmp[1171] = cat:New(addon.GetCategoryInfoTitle(15246)); -- Collections
     AddC(tmp[952], tmp[1171]);
     AddA(tmp[1171], a[621]); -- Represent
     AddA(tmp[1171], a[1020]); -- Ten Tabards
@@ -2435,7 +2436,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1171], a[9673]); -- The Toymaster
     AddA(tmp[1171], a[11176]); -- Remember to Share
     AddA(tmp[1171], a[12996]); -- Toybox Tycoon
-    tmp[1172] = cat:New((addon.GetCategoryInfo(81))); -- Feats of Strength
+    tmp[1172] = cat:New(addon.GetCategoryInfoTitle(81)); -- Feats of Strength
     AddC(tmp[952], tmp[1172]);
     AddA(tmp[1172], a[4496]); -- It's Over Nine Thousand!
     AddA(tmp[1172], a[3636]); -- Jade Tiger
@@ -2450,7 +2451,7 @@ function exportedCategories.Load(a)
     tmp[918] = cat:New(addon.L["Holidays"]); -- Holidays
     AddC(tmp[884], tmp[918]);
     AddA(tmp[918], a[2144]); -- "What a Long, Strange Trip It's Been"
-    tmp[885] = cat:New((addon.GetCategoryInfo(160))); -- Lunar Festival
+    tmp[885] = cat:New(addon.GetCategoryInfoTitle(160)); -- Lunar Festival
     AddC(tmp[918], tmp[885]);
     AddA(tmp[885], a[605]); -- A Coin of Ancestry
     AddA(tmp[885], a[606]); -- 5 Coins of Ancestry
@@ -2469,7 +2470,7 @@ function exportedCategories.Load(a)
     AddA(tmp[885], a[915]); -- Elders of the Alliance
     AddA(tmp[885], a[914]); -- Elders of the Horde
     AddA(tmp[885], a[913]); -- To Honor One's Elders
-    tmp[910] = cat:New((addon.GetCategoryInfo(187))); -- Love is in the Air
+    tmp[910] = cat:New(addon.GetCategoryInfoTitle(187)); -- Love is in the Air
     AddC(tmp[918], tmp[910]);
     AddA(tmp[910], a[1701]); -- Be Mine!
     AddA(tmp[910], a[260]); -- Charming
@@ -2493,7 +2494,7 @@ function exportedCategories.Load(a)
     AddA(tmp[910], a[9393]); -- Beacon of Love
     AddA(tmp[910], a[9394]); -- They Really Love Me!
     AddA(tmp[910], a[1693]); -- Fool For Love
-    tmp[911] = cat:New((addon.GetCategoryInfo(159))); -- Noblegarden
+    tmp[911] = cat:New(addon.GetCategoryInfoTitle(159)); -- Noblegarden
     AddC(tmp[918], tmp[911]);
     AddA(tmp[911], a[2676]); -- I Found One!
     AddA(tmp[911], a[2417]); -- Chocolate Lover
@@ -2509,7 +2510,7 @@ function exportedCategories.Load(a)
     AddA(tmp[911], a[2436]); -- Desert Rose
     AddA(tmp[911], a[2576]); -- Blushing Bride
     AddA(tmp[911], a[2798]); -- Noble Gardener
-    tmp[912] = cat:New((addon.GetCategoryInfo(163))); -- Children's Week
+    tmp[912] = cat:New(addon.GetCategoryInfoTitle(163)); -- Children's Week
     AddC(tmp[918], tmp[912]);
     AddA(tmp[912], a[1791]); -- Home Alone
     AddA(tmp[912], a[1788]); -- Bad Example
@@ -2519,7 +2520,7 @@ function exportedCategories.Load(a)
     AddA(tmp[912], a[1790]); -- "Hail To The King, Baby"
     AddA(tmp[912], a[275]); -- Veteran Nanny
     AddA(tmp[912], a[1793]); -- For the Children
-    tmp[913] = cat:New((addon.GetCategoryInfo( 161))); -- Midsummer
+    tmp[913] = cat:New(addon.GetCategoryInfoTitle( 161)); -- Midsummer
     AddC(tmp[918], tmp[913]);
     AddA(tmp[913], a[263]); -- Ice the Frost Lord
     AddA(tmp[913], a[271]); -- Burning Hot Pole Dance
@@ -2570,7 +2571,7 @@ function exportedCategories.Load(a)
     tmp[919] = cat:New(addon.L["Pirates' Day"]); -- Pirates' Day
     AddC(tmp[918], tmp[919]);
     AddA(tmp[919], a[3457]); -- The Captain's Booty
-    tmp[914] = cat:New((addon.GetCategoryInfo(162))); -- Brewfest
+    tmp[914] = cat:New(addon.GetCategoryInfoTitle(162)); -- Brewfest
     AddC(tmp[918], tmp[914]);
     AddA(tmp[914], a[1184]); -- Strange Brew
     AddA(tmp[914], a[1203]); -- Strange Brew
@@ -2587,7 +2588,7 @@ function exportedCategories.Load(a)
     AddA(tmp[914], a[1293]); -- Blue Brewfest Stein
     AddA(tmp[914], a[4782]); -- Green Brewfest Stein
     AddA(tmp[914], a[1186]); -- Down With The Dark Iron
-    tmp[915] = cat:New((addon.GetCategoryInfo(158))); -- Hallow's End
+    tmp[915] = cat:New(addon.GetCategoryInfoTitle(158)); -- Hallow's End
     AddC(tmp[918], tmp[915]);
     AddA(tmp[915], a[972]); -- Trick or Treat!
     AddA(tmp[915], a[288]); -- Out With It
@@ -2623,7 +2624,7 @@ function exportedCategories.Load(a)
     AddA(tmp[920], a[9426]); -- To The Afterlife
     AddA(tmp[920], a[9427]); -- Vientos!
     AddA(tmp[920], a[9428]); -- Calavera
-    tmp[916] = cat:New((addon.GetCategoryInfo(14981))); -- Pilgrim's Bounty
+    tmp[916] = cat:New(addon.GetCategoryInfoTitle(14981)); -- Pilgrim's Bounty
     AddC(tmp[918], tmp[916]);
     AddA(tmp[916], a[3579]); -- """FOOD FIGHT!"""
     AddA(tmp[916], a[3576]); -- Now We're Cookin'
@@ -2639,7 +2640,7 @@ function exportedCategories.Load(a)
     AddA(tmp[916], a[3578]); -- The Turkinator
     AddA(tmp[916], a[3559]); -- Turkey Lurkey
     AddA(tmp[916], a[3478]); -- Pilgrim
-    tmp[917] = cat:New((addon.GetCategoryInfo(156))); -- Winter Veil
+    tmp[917] = cat:New(addon.GetCategoryInfoTitle(156)); -- Winter Veil
     AddC(tmp[918], tmp[917]);
     AddA(tmp[917], a[273]); -- On Metzen!
     AddA(tmp[917], a[252]); -- With a Little Helper from My Friends
@@ -2700,7 +2701,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1173], a[14942]); -- WoW's 17th Anniversary
     AddA(tmp[1173], a[15218]); -- WoW's 18th Anniversary
     AddA(tmp[1173], a[10335]); -- Did Someone Say...?
-    tmp[925] = cat:New((addon.GetCategoryInfo(15101))); -- Darkmoon Faire
+    tmp[925] = cat:New(addon.GetCategoryInfoTitle(15101)); -- Darkmoon Faire
     AddC(tmp[884], tmp[925]);
     AddA(tmp[925], a[6019]); -- "Come One, Come All!"
     AddA(tmp[925], a[6021]); -- Blastenheimer Bullseye
@@ -2771,25 +2772,25 @@ function exportedCategories.Load(a)
     AddA(tmp[925], a[15216]); -- Make You Sweat
     AddA(tmp[925], a[15217]); -- Maniac on the Dance Floor
     AddA(tmp[925], a[15221]); -- Dancing Machine
-    tmp[1030] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1030] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[925], tmp[1030]);
     AddA(tmp[1030], a[2336]); -- Insane in the Membrane
-    tmp[951] = cat:New((addon.GetCategoryInfo(15454))); -- Timewalking
+    tmp[951] = cat:New(addon.GetCategoryInfoTitle(15454)); -- Timewalking
     AddC(tmp[884], tmp[951]);
     AddA(tmp[951], a[13931]); -- "Memories of Fel, Frost and Fire"
     AddA(tmp[951], a[13928]); -- Alterac Valley of Olde
     AddA(tmp[951], a[13930]); -- Alterac Valley of Olde
-    tmp[954] = cat:New((addon.GetCategoryInfo(15258))); -- Legion
+    tmp[954] = cat:New(addon.GetCategoryInfoTitle(15258)); -- Legion
     AddC(tmp[951], tmp[954]);
     AddA(tmp[954], a[15309]); -- A Towering Success
     AddA(tmp[954], a[15310]); -- A Tour of Towers
     AddA(tmp[954], a[15308]); -- Tower Overwhelming
-    tmp[947] = cat:New((addon.GetCategoryInfo(15258))); -- Legion
+    tmp[947] = cat:New(addon.GetCategoryInfoTitle(15258)); -- Legion
     AddC(tmp[884], tmp[947]);
     tmp[948] = cat:New(addon.L["Legion Assaults"]); -- Legion Assaults
     AddC(tmp[947], tmp[948]);
     AddA(tmp[948], a[11544]); -- Defender of the Broken Isles
-    tmp[932] = cat:New((addon.GetCategoryInfo(15305))); -- Battle for Azeroth
+    tmp[932] = cat:New(addon.GetCategoryInfoTitle(15305)); -- Battle for Azeroth
     AddC(tmp[884], tmp[932]);
     tmp[933] = cat:New(addon.L["Faction Assaults"]); -- Faction Assaults
     AddC(tmp[932], tmp[933]);
@@ -2872,7 +2873,7 @@ function exportedCategories.Load(a)
     AddA(tmp[942], a[14159]); -- Combating the Corruption
     AddA(tmp[942], a[14158]); -- It's Not A Tumor!
     AddA(tmp[942], a[14155]); -- Uldum Accord
-    tmp[926] = cat:New((addon.GetCategoryInfo(15439))); -- Shadowlands
+    tmp[926] = cat:New(addon.GetCategoryInfoTitle(15439)); -- Shadowlands
     AddC(tmp[884], tmp[926]);
     tmp[927] = cat:New(addon.L["Covenant Assaults"]); -- Covenant Assaults
     AddC(tmp[926], tmp[927]);
@@ -2898,7 +2899,7 @@ function exportedCategories.Load(a)
     AddA(tmp[931], a[15033]); -- Taking the Tremaculum
     tmp[1208] = cat:New(addon.L["Fated Raids"]); -- Fated Raids
     AddC(tmp[926], tmp[1208]);
-    tmp[1209] = cat:New((addon.EJ_GetInstanceInfo(1190))); -- Castle Nathria
+    tmp[1209] = cat:New(addon.GetInstanceInfoName(1190)); -- Castle Nathria
     AddC(tmp[1208], tmp[1209]);
     AddA(tmp[1209], a[15663]); -- Fate of Nathria
     AddA(tmp[1209], a[15664]); -- Heroic: Fate of Nathria
@@ -2906,7 +2907,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1209], a[15684]); -- Fates of the Shadowlands Raids
     AddA(tmp[1209], a[15685]); -- Heroic: Fates of the Shadowlands Raids
     AddA(tmp[1209], a[15687]); -- Mythic: Fates of the Shadowlands Raids
-    tmp[1210] = cat:New((addon.EJ_GetInstanceInfo(1193))); -- Sanctum of Domination
+    tmp[1210] = cat:New(addon.GetInstanceInfoName(1193)); -- Sanctum of Domination
     AddC(tmp[1208], tmp[1210]);
     AddA(tmp[1210], a[15667]); -- Fate of Domination
     AddA(tmp[1210], a[15668]); -- Heroic: Fate of Domination
@@ -2914,7 +2915,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1210], a[15684]); -- Fates of the Shadowlands Raids
     AddA(tmp[1210], a[15685]); -- Heroic: Fates of the Shadowlands Raids
     AddA(tmp[1210], a[15687]); -- Mythic: Fates of the Shadowlands Raids
-    tmp[1211] = cat:New((addon.EJ_GetInstanceInfo(1195))); -- Sepulcher of the First Ones
+    tmp[1211] = cat:New(addon.GetInstanceInfoName(1195)); -- Sepulcher of the First Ones
     AddC(tmp[1208], tmp[1211]);
     AddA(tmp[1211], a[15681]); -- Fate of the Sepulcher
     AddA(tmp[1211], a[15682]); -- Heroic: Fate of the Sepulcher
@@ -2929,14 +2930,14 @@ function exportedCategories.Load(a)
     AddA(tmp[1174], a[2079]); -- Tabard of the Protector
     AddA(tmp[1174], a[2116]); -- Tabard of the Argent Dawn
     AddA(tmp[1174], a[11395]); -- Diablo's 20th Anniversary
-    tmp[955] = cat:New((addon.GetCategoryInfo(95))); -- TAB - PvP
+    tmp[955] = cat:New(addon.GetCategoryInfoTitle(95)); -- TAB - PvP
     tmp[955].TabName = "PvP";
     local pvp = tmp[955];
     tmp[1205] = cat:New(addon.L["Summary"]); -- Summary
     AddC(tmp[955], tmp[1205]);
     tmp[1205].AlwaysVisible = true;
     tmp[1205].IsSummary = true;
-    tmp[1162] = cat:New((addon.GetCategoryInfo(95))); -- Player vs. Player
+    tmp[1162] = cat:New(addon.GetCategoryInfoTitle(95)); -- Player vs. Player
     AddC(tmp[955], tmp[1162]);
     AddA(tmp[1162], a[10561]); -- Honorable Medallion
     AddA(tmp[1162], a[238]); -- An Honorable Kill
@@ -2966,7 +2967,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1162], a[5539]); -- "50,000 Conquest Points"
     AddA(tmp[1162], a[701]); -- Freedom of the Alliance
     AddA(tmp[1162], a[700]); -- Freedom of the Horde
-    tmp[1167] = cat:New((addon.GetCategoryInfo(15266))); -- Honor
+    tmp[1167] = cat:New(addon.GetCategoryInfoTitle(15266)); -- Honor
     AddC(tmp[955], tmp[1167]);
     AddA(tmp[1167], a[12893]); -- Honor Level 5
     AddA(tmp[1167], a[12894]); -- Honor Level 10
@@ -2992,7 +2993,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1167], a[13701]); -- Battlefield Brawler
     AddA(tmp[1167], a[13702]); -- Battlefield Tactician
     AddA(tmp[1167], a[13703]); -- Battlefield Master
-    tmp[1165] = cat:New((addon.GetCategoryInfo(153))); -- Battlegrounds
+    tmp[1165] = cat:New(addon.GetCategoryInfoTitle(153)); -- Battlegrounds
     AddC(tmp[955], tmp[1165]);
     AddA(tmp[1165], a[229]); -- The Grim Reaper
     AddA(tmp[1165], a[907]); -- The Justicar
@@ -3047,7 +3048,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1165], a[5356]); -- High Warlord
     AddA(tmp[1165], a[6942]); -- Hero of the Alliance
     AddA(tmp[1165], a[6941]); -- Hero of the Horde
-    tmp[960] = cat:New((addon.GetCategoryInfo(14801))); -- Alterac Valley
+    tmp[960] = cat:New(addon.GetCategoryInfoTitle(14801)); -- Alterac Valley
     AddC(tmp[1165], tmp[960]);
     AddA(tmp[960], a[218]); -- Alterac Valley Victory
     AddA(tmp[960], a[219]); -- Alterac Valley Veteran
@@ -3068,7 +3069,7 @@ function exportedCategories.Load(a)
     AddA(tmp[960], a[226]); -- The Alterac Blitz
     AddA(tmp[960], a[709]); -- Hero of the Stormpike Guard
     AddA(tmp[960], a[708]); -- Hero of the Frostwolf Clan
-    tmp[956] = cat:New((addon.GetCategoryInfo(14802))); -- Arathi Basin
+    tmp[956] = cat:New(addon.GetCategoryInfoTitle(14802)); -- Arathi Basin
     AddC(tmp[1165], tmp[956]);
     AddA(tmp[956], a[154]); -- Arathi Basin Victory
     AddA(tmp[956], a[155]); -- Arathi Basin Veteran
@@ -3086,7 +3087,7 @@ function exportedCategories.Load(a)
     AddA(tmp[956], a[1169]); -- Master of Arathi Basin
     AddA(tmp[956], a[711]); -- Knight of Arathor
     AddA(tmp[956], a[710]); -- The Defiler
-    tmp[961] = cat:New((addon.GetCategoryInfo(15414))); -- Ashran
+    tmp[961] = cat:New(addon.GetCategoryInfoTitle(15414)); -- Ashran
     AddC(tmp[1165], tmp[961]);
     AddA(tmp[961], a[9102]); -- Ashran Victory
     AddA(tmp[961], a[9218]); -- "Grand Theft, 1st Degree"
@@ -3111,7 +3112,7 @@ function exportedCategories.Load(a)
     AddA(tmp[961], a[9473]); -- Vol'jin's Spear
     AddA(tmp[961], a[9214]); -- Hero of Stormshield
     AddA(tmp[961], a[9215]); -- Hero of Warspear
-    tmp[964] = cat:New((addon.GetCategoryInfo(15073))); -- Battle for Gilneas
+    tmp[964] = cat:New(addon.GetCategoryInfoTitle(15073)); -- Battle for Gilneas
     AddC(tmp[1165], tmp[964]);
     AddA(tmp[964], a[5245]); -- Battle for Gilneas Victory
     AddA(tmp[964], a[5246]); -- Battle for Gilneas Veteran
@@ -3128,7 +3129,7 @@ function exportedCategories.Load(a)
     AddA(tmp[964], a[5257]); -- Battle for Gilneas Assassin
     AddA(tmp[964], a[5262]); -- Double Rainbow
     AddA(tmp[964], a[5258]); -- Master of the Battle for Gilneas
-    tmp[957] = cat:New((addon.GetCategoryInfo(15218))); -- Deepwind Gorge
+    tmp[957] = cat:New(addon.GetCategoryInfoTitle(15218)); -- Deepwind Gorge
     AddC(tmp[1165], tmp[957]);
     AddA(tmp[957], a[8331]); -- Deepwind Gorge Victory
     AddA(tmp[957], a[8332]); -- Deepwind Gorge Veteran
@@ -3144,7 +3145,7 @@ function exportedCategories.Load(a)
     AddA(tmp[957], a[8359]); -- Capping Spree
     AddA(tmp[957], a[8358]); -- Deepwind Gorge All-Star
     AddA(tmp[957], a[8360]); -- Master of Deepwind Gorge
-    tmp[959] = cat:New((addon.GetCategoryInfo(14803))); -- Eye of the Storm
+    tmp[959] = cat:New(addon.GetCategoryInfoTitle(14803)); -- Eye of the Storm
     AddC(tmp[1165], tmp[959]);
     AddA(tmp[959], a[208]); -- Eye of the Storm Victory
     AddA(tmp[959], a[209]); -- Eye of the Storm Veteran
@@ -3159,7 +3160,7 @@ function exportedCategories.Load(a)
     AddA(tmp[959], a[587]); -- Stormy Assassin
     AddA(tmp[959], a[1258]); -- Take a Chill Pill
     AddA(tmp[959], a[211]); -- Storm Glory
-    tmp[962] = cat:New((addon.GetCategoryInfo(15003))); -- Isle of Conquest
+    tmp[962] = cat:New(addon.GetCategoryInfoTitle(15003)); -- Isle of Conquest
     AddC(tmp[1165], tmp[962]);
     AddA(tmp[962], a[3776]); -- Isle of Conquest Victory
     AddA(tmp[962], a[3777]); -- Isle of Conquest Veteran
@@ -3180,7 +3181,7 @@ function exportedCategories.Load(a)
     AddA(tmp[962], a[3845]); -- Isle of Conquest All-Star
     AddA(tmp[962], a[3846]); -- Resource Glut
     AddA(tmp[962], a[4176]); -- Resource Glut
-    tmp[968] = cat:New((addon.GetCategoryInfo(15292))); -- Seething Shore
+    tmp[968] = cat:New(addon.GetCategoryInfoTitle(15292)); -- Seething Shore
     AddC(tmp[1165], tmp[968]);
     AddA(tmp[968], a[12409]); -- Seething Shore Victory
     AddA(tmp[968], a[12410]); -- Seething Shore Veteran
@@ -3191,7 +3192,7 @@ function exportedCategories.Load(a)
     AddA(tmp[968], a[12408]); -- Seething Shore Domination
     AddA(tmp[968], a[12411]); -- Blood and Sand
     AddA(tmp[968], a[12412]); -- Master of Seething Shore
-    tmp[966] = cat:New((addon.GetCategoryInfo(15162))); -- Silvershard Mines
+    tmp[966] = cat:New(addon.GetCategoryInfoTitle(15162)); -- Silvershard Mines
     AddC(tmp[1165], tmp[966]);
     AddA(tmp[966], a[6739]); -- Silvershard Mines Victory
     AddA(tmp[966], a[6883]); -- Silvershard Mines Veteran
@@ -3223,7 +3224,7 @@ function exportedCategories.Load(a)
     AddA(tmp[973], a[1757]); -- Defense of the Ancients
     AddA(tmp[973], a[2200]); -- Defense of the Ancients
     AddA(tmp[973], a[2194]); -- Master of Strand of the Ancients
-    tmp[967] = cat:New((addon.GetCategoryInfo(15163))); -- Temple of Kotmogu
+    tmp[967] = cat:New(addon.GetCategoryInfoTitle(15163)); -- Temple of Kotmogu
     AddC(tmp[1165], tmp[967]);
     AddA(tmp[967], a[6740]); -- Temple of Kotmogu Victory
     AddA(tmp[967], a[6882]); -- Temple of Kotmogu Veteran
@@ -3235,7 +3236,7 @@ function exportedCategories.Load(a)
     AddA(tmp[967], a[6972]); -- What is Best in Life?
     AddA(tmp[967], a[6980]); -- Temple of Kotmogu All-Star
     AddA(tmp[967], a[6981]); -- Master of Temple of Kotmogu
-    tmp[965] = cat:New((addon.GetCategoryInfo(15074))); -- Twin Peaks
+    tmp[965] = cat:New(addon.GetCategoryInfoTitle(15074)); -- Twin Peaks
     AddC(tmp[1165], tmp[965]);
     AddA(tmp[965], a[5208]); -- Twin Peaking
     AddA(tmp[965], a[5209]); -- Twin Peaks Veteran
@@ -3257,7 +3258,7 @@ function exportedCategories.Load(a)
     AddA(tmp[965], a[5231]); -- Double Jeopardy
     AddA(tmp[965], a[5552]); -- Double Jeopardy
     AddA(tmp[965], a[5223]); -- Master of Twin Peaks
-    tmp[958] = cat:New((addon.GetCategoryInfo(14804))); -- Warsong Gulch
+    tmp[958] = cat:New(addon.GetCategoryInfoTitle(14804)); -- Warsong Gulch
     AddC(tmp[1165], tmp[958]);
     AddA(tmp[958], a[166]); -- Warsong Gulch Victory
     AddA(tmp[958], a[167]); -- Warsong Gulch Veteran
@@ -3278,7 +3279,7 @@ function exportedCategories.Load(a)
     AddA(tmp[958], a[1259]); -- Not So Fast
     AddA(tmp[958], a[713]); -- Silverwing Sentinel
     AddA(tmp[958], a[712]); -- Warsong Outrider
-    tmp[963] = cat:New((addon.GetCategoryInfo(14901))); -- Wintergrasp
+    tmp[963] = cat:New(addon.GetCategoryInfoTitle(14901)); -- Wintergrasp
     AddC(tmp[1165], tmp[963]);
     AddA(tmp[963], a[1717]); -- Wintergrasp Victory
     AddA(tmp[963], a[1718]); -- Wintergrasp Veteran
@@ -3291,11 +3292,11 @@ function exportedCategories.Load(a)
     AddA(tmp[963], a[1727]); -- Leaning Tower
     AddA(tmp[963], a[1751]); -- Didn't Stand a Chance
     AddA(tmp[963], a[1752]); -- Master of Wintergrasp
-    tmp[1032] = cat:New(addon.L["Southshore vs. Tarren Mill"] .. " (" .. (addon.GetCategoryInfo(15234)) .. ")"); -- Southshore vs. Tarren Mill
+    tmp[1032] = cat:New(addon.L["Southshore vs. Tarren Mill"] .. " (" .. addon.GetCategoryInfoTitle(15234) .. ")"); -- Southshore vs. Tarren Mill
     AddC(tmp[1165], tmp[1032]);
     AddA(tmp[1032], a[9729]); -- Victory in Hillsbrad
     AddA(tmp[1032], a[9566]); -- Victory in Hillsbrad
-    tmp[1166] = cat:New((addon.GetCategoryInfo(165))); -- Arena
+    tmp[1166] = cat:New(addon.GetCategoryInfoTitle(165)); -- Arena
     AddC(tmp[955], tmp[1166]);
     AddA(tmp[1166], a[397]); -- Step Into The Arena
     AddA(tmp[1166], a[398]); -- Mercilessly Dedicated
@@ -3330,7 +3331,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1166], a[15544]); -- Supreme Soloist
     AddA(tmp[1166], a[409]); -- Last Man Standing
     AddA(tmp[1166], a[1174]); -- The Arena Master
-    tmp[1131] = cat:New((addon.GetCategoryInfo(14864))); -- Classic
+    tmp[1131] = cat:New(addon.GetCategoryInfoTitle(14864)); -- Classic
     AddC(tmp[955], tmp[1131]);
     AddA(tmp[1131], a[442]); -- Private
     AddA(tmp[1131], a[454]); -- Scout
@@ -3360,12 +3361,12 @@ function exportedCategories.Load(a)
     AddA(tmp[1131], a[445]); -- Warlord
     AddA(tmp[1131], a[433]); -- Grand Marshal
     AddA(tmp[1131], a[443]); -- High Warlord
-    tmp[1199] = cat:New((addon.GetCategoryInfo(14865))); -- The Burning Crusade
+    tmp[1199] = cat:New(addon.GetCategoryInfoTitle(14865)); -- The Burning Crusade
     AddC(tmp[955], tmp[1199]);
     AddA(tmp[1199], a[418]); -- Merciless Gladiator
     AddA(tmp[1199], a[419]); -- Vengeful Gladiator
     AddA(tmp[1199], a[420]); -- Brutal Gladiator
-    tmp[1200] = cat:New((addon.GetCategoryInfo(14866))); -- Wrath of the Lich King
+    tmp[1200] = cat:New(addon.GetCategoryInfoTitle(14866)); -- Wrath of the Lich King
     AddC(tmp[955], tmp[1200]);
     AddA(tmp[1200], a[3336]); -- Deadly Gladiator
     AddA(tmp[1200], a[3436]); -- Furious Gladiator
@@ -3396,7 +3397,7 @@ function exportedCategories.Load(a)
     AddA(tmp[972], a[3356]); -- Winterspring Frostsaber
     AddA(tmp[972], a[3357]); -- Venomhide Ravasaur
     AddA(tmp[972], a[12866]); -- 100 Exalted Reputations
-    tmp[976] = cat:New((addon.GetCategoryInfo(15246))); -- Collections
+    tmp[976] = cat:New(addon.GetCategoryInfoTitle(15246)); -- Collections
     AddC(tmp[972], tmp[976]);
     AddA(tmp[976], a[2141]); -- Stable Keeper
     AddA(tmp[976], a[2142]); -- Filling Up The Barn
@@ -3426,7 +3427,7 @@ function exportedCategories.Load(a)
     AddA(tmp[985], a[8092]); -- I've Got 9999 Problems but a Bone-White Primal Raptor Ain't One
     AddA(tmp[985], a[9909]); -- Heirloom Hoarder
     AddA(tmp[985], a[14183]); -- Conspicuous Consumption
-    tmp[986] = cat:New((addon.GetCategoryInfo(169))); -- Professions
+    tmp[986] = cat:New(addon.GetCategoryInfoTitle(169)); -- Professions
     AddC(tmp[972], tmp[986]);
     AddA(tmp[986], a[2097]); -- Get to the Choppa!
     AddA(tmp[986], a[5749]); -- Vial of the Sands
@@ -3457,7 +3458,7 @@ function exportedCategories.Load(a)
     AddA(tmp[989], a[15064]); -- Breaking the Chains
     AddA(tmp[989], a[15402]); -- Cyphers of the First Ones
     AddA(tmp[989], a[15336]); -- From A to Zereth
-    tmp[979] = cat:New((addon.GetCategoryInfo(15272))); -- Dungeons
+    tmp[979] = cat:New(addon.GetCategoryInfoTitle(15272)); -- Dungeons
     AddC(tmp[972], tmp[979]);
     AddA(tmp[979], a[6375]); -- Challenge Conqueror: Silver
     AddA(tmp[979], a[8898]); -- Challenge Warlord: Silver
@@ -3480,7 +3481,7 @@ function exportedCategories.Load(a)
     AddA(tmp[980], a[11163]); -- Glory of the Legion Hero
     AddA(tmp[980], a[12812]); -- Glory of the Wartorn Hero
     AddA(tmp[980], a[14322]); -- Glory of the Shadowlands Hero
-    tmp[982] = cat:New((addon.GetCategoryInfo(15271))); -- Raids
+    tmp[982] = cat:New(addon.GetCategoryInfoTitle(15271)); -- Raids
     AddC(tmp[972], tmp[982]);
     AddA(tmp[982], a[8398]); -- Ahead of the Curve: Garrosh Hellscream (10 player)
     AddA(tmp[982], a[8399]); -- Ahead of the Curve: Garrosh Hellscream (25 player)
@@ -3512,7 +3513,6 @@ function exportedCategories.Load(a)
     AddA(tmp[981], a[8985]); -- Glory of the Draenor Raider
     AddA(tmp[981], a[10149]); -- Glory of the Hellfire Raider
     AddA(tmp[981], a[11180]); -- Glory of the Legion Raider
-    AddA(tmp[981], a[11763]); -- Glory of the Tomb Raider
     AddA(tmp[981], a[11987]); -- Glory of the Argus Raider
     AddA(tmp[981], a[12806]); -- Glory of the Uldir Raider
     AddA(tmp[981], a[13315]); -- Glory of the Dazar'alor Raider
@@ -3521,7 +3521,7 @@ function exportedCategories.Load(a)
     AddA(tmp[981], a[14355]); -- Glory of the Nathria Raider
     AddA(tmp[981], a[15130]); -- Glory of the Dominant Raider
     AddA(tmp[981], a[15491]); -- Glory of the Sepulcher Raider
-    tmp[977] = cat:New((addon.GetCategoryInfo(95))); -- PvP
+    tmp[977] = cat:New(addon.GetCategoryInfoTitle(95)); -- PvP
     AddC(tmp[972], tmp[977]);
     AddA(tmp[977], a[12895]); -- Honor Level 15
     AddA(tmp[977], a[12903]); -- Honor Level 40
@@ -3576,7 +3576,7 @@ function exportedCategories.Load(a)
     AddA(tmp[978], a[15384]); -- Cosmic Gladiator's Soul Eater
     AddA(tmp[978], a[15605]); -- Gladiator: Shadowlands Season 4
     AddA(tmp[978], a[15612]); -- Eternal Gladiator's Soul Eater
-    tmp[988] = cat:New(addon.L["Recruit-a-Friend"] .. " (" .. (addon.GetCategoryInfo(15234)) .. ")"); -- Recruit-a-Friend
+    tmp[988] = cat:New(addon.L["Recruit-a-Friend"] .. " (" .. addon.GetCategoryInfoTitle(15234) .. ")"); -- Recruit-a-Friend
     AddC(tmp[972], tmp[988]);
     AddA(tmp[988], a[1436]); -- Friends In High Places
     AddA(tmp[988], a[4832]); -- Friends In Even Higher Places
@@ -3585,18 +3585,18 @@ function exportedCategories.Load(a)
     AddA(tmp[988], a[9925]); -- Friends In Places Yet Even Higher Than That
     tmp[1043] = cat:New(addon.L["The Entitled"] .. " " .. (UnitName("player"))); -- The Entitled Player
     AddC(tmp[971], tmp[1043]);
-    tmp[1045] = cat:New((addon.GetCategoryInfo(14864))); -- Classic
+    tmp[1045] = cat:New(addon.GetCategoryInfoTitle(14864)); -- Classic
     AddC(tmp[1043], tmp[1045]);
     AddA(tmp[1045], a[15579]); -- Return to Lordaeron
-    tmp[1065] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1065] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[1045], tmp[1065]);
     AddA(tmp[1065], a[948]); -- Ambassador of the Alliance
     AddA(tmp[1065], a[762]); -- Ambassador of the Horde
     AddA(tmp[1065], a[871]); -- "Avast Ye, Admiral!"
     AddA(tmp[1065], a[2336]); -- Insane in the Membrane
-    tmp[1047] = cat:New((addon.GetCategoryInfo(14866))); -- Wrath of the Lich King
+    tmp[1047] = cat:New(addon.GetCategoryInfoTitle(14866)); -- Wrath of the Lich King
     AddC(tmp[1043], tmp[1047]);
-    tmp[1054] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1054] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[1047], tmp[1054]);
     AddA(tmp[1054], a[942]); -- The Diplomat
     AddA(tmp[1054], a[943]); -- The Diplomat
@@ -3615,10 +3615,10 @@ function exportedCategories.Load(a)
     AddA(tmp[1054], a[2766]); -- Exalted Champion of Sen'jin
     AddA(tmp[1054], a[2817]); -- Exalted Argent Champion of the Alliance
     AddA(tmp[1054], a[2816]); -- Exalted Argent Champion of the Horde
-    tmp[1057] = cat:New((addon.GetCategoryInfo(15272)), true); -- Dungeons
+    tmp[1057] = cat:New(addon.GetCategoryInfoTitle(15272), true); -- Dungeons
     AddC(tmp[1047], tmp[1057]);
     AddA(tmp[1057], a[9058]); -- Leeeeeeeeeeeeeroy...?
-    tmp[1056] = cat:New((addon.GetCategoryInfo(15271)), true); -- Raids
+    tmp[1056] = cat:New(addon.GetCategoryInfoTitle(15271), true); -- Raids
     AddC(tmp[1047], tmp[1056]);
     AddA(tmp[1056], a[2051]); -- The Twilight Zone (10 player)
     AddA(tmp[1056], a[2054]); -- The Twilight Zone (25 player)
@@ -3629,16 +3629,16 @@ function exportedCategories.Load(a)
     AddA(tmp[1056], a[4583]); -- Bane of the Fallen King
     AddA(tmp[1056], a[4597]); -- The Frozen Throne (25 player)
     AddA(tmp[1056], a[4584]); -- The Light of Dawn
-    tmp[1048] = cat:New((addon.GetCategoryInfo(15072))); -- Cataclysm
+    tmp[1048] = cat:New(addon.GetCategoryInfoTitle(15072)); -- Cataclysm
     AddC(tmp[1043], tmp[1048]);
     AddA(tmp[1048], a[5767]); -- Scourer of the Eternal Sands
-    tmp[1058] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[1058] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[1048], tmp[1058]);
     AddA(tmp[1058], a[5879]); -- Veteran of the Molten Front
-    tmp[1059] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1059] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[1048], tmp[1059]);
     AddA(tmp[1059], a[5827]); -- Avengers of Hyjal
-    tmp[1060] = cat:New((addon.GetCategoryInfo(15271)), true); -- Raids
+    tmp[1060] = cat:New(addon.GetCategoryInfoTitle(15271), true); -- Raids
     AddC(tmp[1048], tmp[1060]);
     AddA(tmp[1060], a[5116]); -- Heroic: Nefarian
     AddA(tmp[1060], a[5121]); -- Heroic: Sinestra
@@ -3647,18 +3647,18 @@ function exportedCategories.Load(a)
     AddA(tmp[1060], a[5803]); -- Heroic: Ragnaros
     AddA(tmp[1060], a[6177]); -- Destroyer's End
     AddA(tmp[1060], a[6116]); -- Heroic: Madness of Deathwing
-    tmp[1049] = cat:New((addon.GetCategoryInfo(15164))); -- Mists of Pandaria
+    tmp[1049] = cat:New(addon.GetCategoryInfoTitle(15164)); -- Mists of Pandaria
     AddC(tmp[1043], tmp[1049]);
-    tmp[1061] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[1061] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[1049], tmp[1061]);
     AddA(tmp[1061], a[7284]); -- Is Another Man's Treasure
     AddA(tmp[1061], a[7479]); -- The Shado-Master
     AddA(tmp[1061], a[8121]); -- Stormbreaker
-    tmp[1062] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1062] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[1049], tmp[1062]);
     AddA(tmp[1062], a[6544]); -- The Tillers
     AddA(tmp[1062], a[8023]); -- Wakener
-    tmp[1063] = cat:New((addon.GetCategoryInfo(15271)), true); -- Raids
+    tmp[1063] = cat:New(addon.GetCategoryInfoTitle(15271), true); -- Raids
     AddC(tmp[1049], tmp[1063]);
     AddA(tmp[1063], a[6926]); -- Tranquil Master
     AddA(tmp[1063], a[6724]); -- Heroic: Will of the Emperor
@@ -3674,14 +3674,14 @@ function exportedCategories.Load(a)
     AddA(tmp[1064], a[9577]); -- Proving Yourself: Endless Damage (Wave 30)
     AddA(tmp[1064], a[9583]); -- Proving Yourself: Endless Tank (Wave 30)
     AddA(tmp[1064], a[9589]); -- Proving Yourself: Endless Healer (Wave 30)
-    tmp[1050] = cat:New((addon.GetCategoryInfo(15233))); -- Warlords of Dreanor
+    tmp[1050] = cat:New(addon.GetCategoryInfoTitle(15233)); -- Warlords of Dreanor
     AddC(tmp[1043], tmp[1050]);
-    tmp[1066] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[1066] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[1050], tmp[1066]);
     AddA(tmp[1066], a[10072]); -- Rumble in the Jungle
     AddA(tmp[1066], a[10265]); -- Rumble in the Jungle
     AddA(tmp[1066], a[10334]); -- Predator
-    tmp[1067] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1067] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[1050], tmp[1067]);
     AddA(tmp[1067], a[9470]); -- Council of Exarchs
     AddA(tmp[1067], a[9471]); -- Frostwolf Orcs
@@ -3691,7 +3691,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1067], a[9474]); -- Wrynn's Vanguard
     AddA(tmp[1067], a[9473]); -- Vol'jin's Spear
     AddA(tmp[1067], a[9472]); -- Steamwheedle Preservation Society
-    tmp[1068] = cat:New((addon.GetCategoryInfo(15271)), true); -- Raids
+    tmp[1068] = cat:New(addon.GetCategoryInfoTitle(15271), true); -- Raids
     AddC(tmp[1050], tmp[1068]);
     AddA(tmp[1068], a[9619]); -- Savage Hero
     AddA(tmp[1068], a[8965]); -- Mythic: Imperator's Fall
@@ -3723,19 +3723,19 @@ function exportedCategories.Load(a)
     AddA(tmp[1069], a[9514]); -- Nemesis: Terror of the Tushui
     AddA(tmp[1069], a[9738]); -- Warlord of Draenor
     AddA(tmp[1069], a[9508]); -- Warlord of Draenor
-    tmp[1051] = cat:New((addon.GetCategoryInfo(15258))); -- Legion
+    tmp[1051] = cat:New(addon.GetCategoryInfoTitle(15258)); -- Legion
     AddC(tmp[1043], tmp[1051]);
-    tmp[1074] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[1074] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[1051], tmp[1074]);
     AddA(tmp[1074], a[11232]); -- "Lock, Stock and Two Smoking Goblins"
-    tmp[1070] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[1070] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[1051], tmp[1070]);
     AddA(tmp[1070], a[12104]); -- And We're All Out of Mana Buns
     AddA(tmp[1070], a[12083]); -- Paragon of Argus
-    tmp[1071] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1071] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[1051], tmp[1071]);
     AddA(tmp[1071], a[11941]); -- Chromie Homie
-    tmp[1072] = cat:New((addon.GetCategoryInfo(15271)), true); -- Raids
+    tmp[1072] = cat:New(addon.GetCategoryInfoTitle(15271), true); -- Raids
     AddC(tmp[1051], tmp[1072]);
     AddA(tmp[1072], a[10827]); -- Mythic: Xavius
     AddA(tmp[1072], a[10850]); -- Mythic: Gul'dan
@@ -3743,76 +3743,76 @@ function exportedCategories.Load(a)
     AddA(tmp[1072], a[12002]); -- Mythic: Argus the Unmaker
     AddA(tmp[1072], a[11763]); -- Glory of the Tomb Raider
     AddA(tmp[1072], a[11387]); -- The Chosen
-    tmp[1052] = cat:New((addon.GetCategoryInfo(15305))); -- Battle for Azeroth
+    tmp[1052] = cat:New(addon.GetCategoryInfoTitle(15305)); -- Battle for Azeroth
     AddC(tmp[1043], tmp[1052]);
-    tmp[1075] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[1075] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[1052], tmp[1075]);
     AddA(tmp[1075], a[13925]); -- The Fourth War
     AddA(tmp[1075], a[13924]); -- The Fourth War
     AddA(tmp[1075], a[12497]); -- Drust Do It.
-    tmp[1076] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[1076] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[1052], tmp[1076]);
     AddA(tmp[1076], a[13134]); -- Expedition Leader
     AddA(tmp[1076], a[13638]); -- Undersea Usurper
     AddA(tmp[1076], a[13555]); -- Junkyard Tinkmaster
-    tmp[1077] = cat:New((addon.GetCategoryInfo(15271)), true); -- Raids
+    tmp[1077] = cat:New(addon.GetCategoryInfoTitle(15271), true); -- Raids
     AddC(tmp[1052], tmp[1077]);
     AddA(tmp[1077], a[12533]); -- Mythic: G'huun
     AddA(tmp[1077], a[13314]); -- Mythic: Lady Jaina Proudmoore
     AddA(tmp[1077], a[13733]); -- Mythic: Queen Azshara
     AddA(tmp[1077], a[14055]); -- Mythic: N'Zoth the Corruptor
-    tmp[1078] = cat:New((addon.GetCategoryInfo(15417)), true); -- Heart of Azeroth
+    tmp[1078] = cat:New(addon.GetCategoryInfoTitle(15417), true); -- Heart of Azeroth
     AddC(tmp[1052], tmp[1078]);
     AddA(tmp[1078], a[13779]); -- Phenomenal Cosmic Power
-    tmp[1079] = cat:New((addon.GetCategoryInfo(15426)), true); -- Visions of N'Zoth
+    tmp[1079] = cat:New(addon.GetCategoryInfoTitle(15426), true); -- Visions of N'Zoth
     AddC(tmp[1052], tmp[1079]);
     AddA(tmp[1079], a[14140]); -- Mad World
-    tmp[1053] = cat:New((addon.GetCategoryInfo(15439))); -- Shadowlands
+    tmp[1053] = cat:New(addon.GetCategoryInfoTitle(15439)); -- Shadowlands
     AddC(tmp[1043], tmp[1053]);
-    tmp[1080] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[1080] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[1053], tmp[1080]);
     AddA(tmp[1080], a[14277]); -- The Accuser's Avowed
-    tmp[1081] = cat:New((addon.GetCategoryInfo(15271)), true); -- Raids
+    tmp[1081] = cat:New(addon.GetCategoryInfoTitle(15271), true); -- Raids
     AddC(tmp[1053], tmp[1081]);
     AddA(tmp[1081], a[14365]); -- Mythic: Sire Denathrius
     AddA(tmp[1081], a[15121]); -- Mythic: Sylvanas Windrunner
     AddA(tmp[1081], a[15489]); -- Mythic: The Jailer
-    tmp[1082] = cat:New((addon.GetCategoryInfo(15440)), true); -- Torghast
+    tmp[1082] = cat:New(addon.GetCategoryInfoTitle(15440), true); -- Torghast
     AddC(tmp[1053], tmp[1082]);
     AddA(tmp[1082], a[14568]); -- Twisting Corridors: Layer 6
-    tmp[1083] = cat:New((addon.GetCategoryInfo(15441)), true); -- Covenant Sanctums
+    tmp[1083] = cat:New(addon.GetCategoryInfoTitle(15441), true); -- Covenant Sanctums
     AddC(tmp[1053], tmp[1083]);
     AddA(tmp[1083], a[14752]); -- Things To Do When You're Dead
     AddA(tmp[1083], a[14682]); -- The Party Herald
     tmp[1084] = cat:New(addon.L["Other"]); -- Other
     AddC(tmp[1043], tmp[1084]);
-    tmp[1085] = cat:New((addon.GetCategoryInfo(96)), true); -- Quests
+    tmp[1085] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[1084], tmp[1085]);
     AddA(tmp[1085], a[978]); -- 3000 Quests Completed
     AddA(tmp[1085], a[7520]); -- The Loremaster
-    tmp[1086] = cat:New((addon.GetCategoryInfo(97)), true); -- Exploration
+    tmp[1086] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[1084], tmp[1086]);
     AddA(tmp[1086], a[46]); -- Universal Explorer
     AddA(tmp[1086], a[9924]); -- Field Photographer
     AddA(tmp[1086], a[12439]); -- Priority Mail
-    tmp[1088] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1088] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[1084], tmp[1088]);
     AddA(tmp[1088], a[1015]); -- 40 Exalted Reputations
     AddA(tmp[1088], a[6742]); -- 60 Exalted Reputations
     AddA(tmp[1088], a[12864]); -- 80 Exalted Reputations
     AddA(tmp[1088], a[12866]); -- 100 Exalted Reputations
-    tmp[1087] = cat:New((addon.GetCategoryInfo(15272)), true); -- Dungeons
+    tmp[1087] = cat:New(addon.GetCategoryInfoTitle(15272), true); -- Dungeons
     AddC(tmp[1084], tmp[1087]);
     AddA(tmp[1087], a[4477]); -- Looking For Many
-    tmp[1089] = cat:New((addon.GetCategoryInfo(15117)), true); -- Pet Battles
+    tmp[1089] = cat:New(addon.GetCategoryInfoTitle(15117), true); -- Pet Battles
     AddC(tmp[1084], tmp[1089]);
     AddA(tmp[1089], a[6607]); -- Taming Azeroth
     AddA(tmp[1089], a[14020]); -- Pet Battle Challenge: Blackrock Depths
     AddA(tmp[1089], a[8301]); -- Deadly Pet Brawler
-    tmp[1090] = cat:New(addon.L["Brawler's Guild"] .. " (" .. (addon.GetCategoryInfo(15234)) .. ")", true); -- Brawler's Guild
+    tmp[1090] = cat:New(addon.L["Brawler's Guild"] .. " (" .. addon.GetCategoryInfoTitle(15234) .. ")", true); -- Brawler's Guild
     AddC(tmp[1084], tmp[1090]);
     AddA(tmp[1090], a[13191]); -- Brawler for Azeroth
-    tmp[1091] = cat:New((addon.GetCategoryInfo(15246)), true); -- Collections
+    tmp[1091] = cat:New(addon.GetCategoryInfoTitle(15246), true); -- Collections
     AddC(tmp[1084], tmp[1091]);
     AddA(tmp[1091], a[6590]); -- World Safari
     AddA(tmp[1091], a[8397]); -- Crazy for Cats
@@ -3821,7 +3821,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1091], a[10354]); -- Crashin' Thrashin' Commander
     AddA(tmp[1091], a[10694]); -- Fabulous
     AddA(tmp[1091], a[11761]); -- Azeroth's Next Top Model
-    tmp[1092] = cat:New((addon.GetCategoryInfo(169)), true); -- Professions
+    tmp[1092] = cat:New(addon.GetCategoryInfoTitle(169), true); -- Professions
     AddC(tmp[1084], tmp[1092]);
     AddA(tmp[1092], a[1516]); -- Accomplished Angler
     AddA(tmp[1092], a[7306]); -- Master of Pandaren Cooking
@@ -3840,9 +3840,9 @@ function exportedCategories.Load(a)
     AddA(tmp[1094], a[1656]); -- Hallowed Be Thy Name
     AddA(tmp[1094], a[3478]); -- Pilgrim
     AddA(tmp[1094], a[1691]); -- Merrymaker
-    tmp[1093] = cat:New((addon.GetCategoryInfo(95)), true); -- PvP
+    tmp[1093] = cat:New(addon.GetCategoryInfoTitle(95), true); -- PvP
     AddC(tmp[1084], tmp[1093]);
-    tmp[1096] = cat:New((addon.GetCategoryInfo(15266)), true); -- Honor
+    tmp[1096] = cat:New(addon.GetCategoryInfoTitle(15266), true); -- Honor
     AddC(tmp[1093], tmp[1096]);
     AddA(tmp[1096], a[12901]); -- Honor Level 25
     AddA(tmp[1096], a[12904]); -- Honor Level 50
@@ -3852,7 +3852,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1096], a[12915]); -- Honor Level 300
     AddA(tmp[1096], a[870]); -- 100000 Honorable Kills
     AddA(tmp[1096], a[5363]); -- 250000 Honorable Kills
-    tmp[1095] = cat:New((addon.GetCategoryInfo(15283)), true); -- World
+    tmp[1095] = cat:New(addon.GetCategoryInfoTitle(15283), true); -- World
     AddC(tmp[1093], tmp[1095]);
     AddA(tmp[1095], a[8721]); -- Fire-Watcher
     AddA(tmp[1095], a[14191]); -- Servant of N'Zoth
@@ -3861,7 +3861,7 @@ function exportedCategories.Load(a)
     tmp[1097] = cat:New(addon.L["Dueler's Guild"], true); -- Dueler's Guild
     AddC(tmp[1093], tmp[1097]);
     AddA(tmp[1097], a[12861]); -- Master of Duels
-    tmp[1098] = cat:New((addon.GetCategoryInfo(153)), true); -- Battlegrounds
+    tmp[1098] = cat:New(addon.GetCategoryInfoTitle(153), true); -- Battlegrounds
     AddC(tmp[1093], tmp[1098]);
     AddA(tmp[1098], a[907]); -- The Justicar
     AddA(tmp[1098], a[714]); -- The Conqueror
@@ -3908,7 +3908,7 @@ function exportedCategories.Load(a)
     tmp[1101] = cat:New((UnitName("player")) .. " " .. (GetTitleName(334))); -- Player the Fabulous
     AddC(tmp[971], tmp[1101]);
     AddA(tmp[1101], a[11761]); -- Azeroth's Next Top Model
-    tmp[1102] = cat:New((addon.GetCategoryInfo(15246))); -- Collections
+    tmp[1102] = cat:New(addon.GetCategoryInfoTitle(15246)); -- Collections
     AddC(tmp[1101], tmp[1102]);
     AddA(tmp[1102], a[10681]); -- Fashionista: Head
     AddA(tmp[1102], a[10682]); -- Fashionista: Chest
@@ -3923,7 +3923,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1102], a[10693]); -- Fashionista: Hand
     AddA(tmp[1102], a[10689]); -- Fashionista: Weapon & Off-Hand
     AddA(tmp[1102], a[10694]); -- Fabulous
-    tmp[1103] = cat:New((addon.GetCategoryInfo(15271))); -- Raids
+    tmp[1103] = cat:New(addon.GetCategoryInfoTitle(15271)); -- Raids
     AddC(tmp[1101], tmp[1103]);
     AddA(tmp[1103], a[11741]); -- So Hot Right Now
     AddA(tmp[1103], a[11742]); -- Dress in Lairs
@@ -3956,7 +3956,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1103], a[14614]); -- Castle Vain
     AddA(tmp[1103], a[15110]); -- Dominating the Catwalk
     AddA(tmp[1103], a[15409]); -- First Wonders
-    tmp[1104] = cat:New((addon.GetCategoryInfo(95))); -- Player vs. Player
+    tmp[1104] = cat:New(addon.GetCategoryInfoTitle(95)); -- Player vs. Player
     AddC(tmp[1101], tmp[1104]);
     AddA(tmp[1104], a[11706]); -- The Original
     AddA(tmp[1104], a[11707]); -- No Mercy
@@ -4013,7 +4013,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1107], a[1412]); -- Realm First! Level 80 Troll
     AddA(tmp[1107], a[1405]); -- Realm First! Level 80 Blood Elf
     AddA(tmp[1107], a[1406]); -- Realm First! Level 80 Draenei
-    tmp[1110] = cat:New((addon.GetCategoryInfo(169))); -- Professions
+    tmp[1110] = cat:New(addon.GetCategoryInfoTitle(169)); -- Professions
     AddC(tmp[1105], tmp[1110]);
     tmp[1111] = cat:New(addon.L["450 skill"], true); -- 450 skill
     AddC(tmp[1110], tmp[1111]);
@@ -4032,17 +4032,17 @@ function exportedCategories.Load(a)
     AddA(tmp[1111], a[1422]); -- Realm First! Grand Master Scribe
     AddA(tmp[1111], a[1426]); -- Realm First! Grand Master Skinner
     AddA(tmp[1111], a[1427]); -- Realm First! Grand Master Tailor
-    tmp[1116] = cat:New((addon.GetCategoryInfo(201)), true); -- Reputation
+    tmp[1116] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
     AddC(tmp[1105], tmp[1116]);
     AddA(tmp[1116], a[1463]); -- Realm First! Northrend Vanguard
     AddA(tmp[1116], a[6829]); -- Realm First! Pandaren Ambassador
-    tmp[1114] = cat:New((addon.GetCategoryInfo(15272)), true); -- Dungeons
+    tmp[1114] = cat:New(addon.GetCategoryInfoTitle(15272), true); -- Dungeons
     AddC(tmp[1105], tmp[1114]);
     AddA(tmp[1114], a[6433]); -- Realm First! Challenge Conqueror: Gold
     AddA(tmp[1114], a[11224]); -- Realm First! Legion Keystone Master
     AddA(tmp[1114], a[13078]); -- Realm First! Battle for Azeroth Keystone Master
     AddA(tmp[1114], a[14662]); -- Realm First! Shadowlands Keystone Master
-    tmp[1115] = cat:New((addon.GetCategoryInfo(15271)), true); -- Raids
+    tmp[1115] = cat:New(addon.GetCategoryInfoTitle(15271), true); -- Raids
     AddC(tmp[1105], tmp[1115]);
     AddA(tmp[1115], a[1402]); -- Realm First! Conqueror of Naxxramas
     AddA(tmp[1115], a[456]); -- Realm First! Obsidian Slayer
@@ -4051,7 +4051,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1115], a[3259]); -- Realm First! Celestial Defender
     AddA(tmp[1115], a[4078]); -- Realm First! Grand Crusader
     AddA(tmp[1115], a[4576]); -- Realm First! Fall of the Lich King
-    tmp[1117] = cat:New((addon.GetCategoryInfo(15268))); -- Promotions
+    tmp[1117] = cat:New(addon.GetCategoryInfoTitle(15268)); -- Promotions
     AddC(tmp[971], tmp[1117]);
     AddA(tmp[1117], a[414]); -- Tyrael's Hilt
     AddA(tmp[1117], a[10537]); -- Patron of War
