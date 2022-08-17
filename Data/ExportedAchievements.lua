@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-15 08-52-19 ]] --
+-- [[ Exported at 2022-08-17 07-36-20 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -181,6 +181,7 @@ function exportedAchievements.Load(a, t)
     a[414] = ach:New(414, 0); -- Tyrael's Hilt
     a[415] = ach:New(415, 0); -- Big Blizzard Bear
     a[416] = ach:New(416, 0); -- Scarab Lord
+    SetTO(a[416], "Never");
     a[418] = ach:New(418, 0); -- Merciless Gladiator
     SetTO(a[418], "From", "PvP Season", 2, "Until", "PvP Season", 2);
     a[419] = ach:New(419, 0); -- Vengeful Gladiator
@@ -189,10 +190,12 @@ function exportedAchievements.Load(a, t)
     SetTO(a[420], "From", "PvP Season", 4, "Until", "PvP Season", 4);
     a[424] = ach:New(424, 0); -- Why? Because It's Red
     a[425] = ach:New(425, 0); -- "Atiesh, Greatstaff of the Guardian"
+    SetTO(a[425], "Never");
     a[426] = ach:New(426, 0); -- Warglaives of Azzinoth
     a[428] = ach:New(428, 0); -- "Thunderfury, Blessed Blade of the Windseeker"
     a[429] = ach:New(429, 0); -- "Sulfuras, Hand of Ragnaros"
     a[430] = ach:New(430, 0); -- Amani War Bear
+    SetTO(a[430], "Never");
     a[431] = ach:New(431, 0); -- Hand of A'dal
     SetTO(a[431]);
     a[432] = ach:New(432, 0); -- Champion of the Naaru
@@ -242,17 +245,29 @@ function exportedAchievements.Load(a, t)
     a[454] = ach:New(454, 0, fac.Horde, 442); -- Scout
     SetTO(a[454], "From", "Version", "010400", "Before", "Version", "020001");
     a[456] = ach:New(456, 0, nil, nil, true); -- Realm First! Obsidian Slayer
+    SetTO(a[456], "Once");
     a[457] = ach:New(457, 0, nil, nil, true); -- Realm First! Level 80
+    SetTO(a[457], "Once");
     a[458] = ach:New(458, 0, nil, nil, true); -- Realm First! Level 80 Rogue
+    SetTO(a[458], "Once");
     a[459] = ach:New(459, 0, nil, nil, true); -- Realm First! Level 80 Warrior
+    SetTO(a[459], "Once");
     a[460] = ach:New(460, 0, nil, nil, true); -- Realm First! Level 80 Mage
+    SetTO(a[460], "Once");
     a[461] = ach:New(461, 0, nil, nil, true); -- Realm First! Level 80 Death Knight
+    SetTO(a[461], "Once");
     a[462] = ach:New(462, 0, nil, nil, true); -- Realm First! Level 80 Hunter
+    SetTO(a[462], "Once");
     a[463] = ach:New(463, 0, nil, nil, true); -- Realm First! Level 80 Warlock
+    SetTO(a[463], "Once");
     a[464] = ach:New(464, 0, nil, nil, true); -- Realm First! Level 80 Priest
+    SetTO(a[464], "Once");
     a[465] = ach:New(465, 0, nil, nil, true); -- Realm First! Level 80 Paladin
+    SetTO(a[465], "Once");
     a[466] = ach:New(466, 0, nil, nil, true); -- Realm First! Level 80 Druid
+    SetTO(a[466], "Once");
     a[467] = ach:New(467, 0, nil, nil, true); -- Realm First! Level 80 Shaman
+    SetTO(a[467], "Once");
     a[468] = ach:New(468, 0, fac.Horde, 470); -- Grunt
     SetTO(a[468], "From", "Version", "010400", "Before", "Version", "020001");
     a[469] = ach:New(469, 0, fac.Horde, 438); -- Legionnaire
@@ -427,6 +442,7 @@ function exportedAchievements.Load(a, t)
     a[682] = ach:New(682, 10); -- Heroic: Magister's Terrace
     a[683] = ach:New(683, 0); -- Collector's Edition: Frost Wyrm Whelp
     a[684] = ach:New(684, 0); -- Onyxia's Lair (Level 60)
+    SetTO(a[684], "Never");
     a[685] = ach:New(685, 10); -- Blackwing Lair
     a[686] = ach:New(686, 10); -- Molten Core
     a[687] = ach:New(687, 10); -- Temple of Ahn'Qiraj
@@ -758,36 +774,63 @@ function exportedAchievements.Load(a, t)
     a[1359] = ach:New(1359, 10, fac.Horde, 35); -- Might of Dragonblight
     a[1396] = ach:New(1396, 10); -- Elders of Northrend
     a[1400] = ach:New(1400, 0, nil, nil, true); -- Realm First! Magic Seeker
+    SetTO(a[1400], "Once");
     a[1402] = ach:New(1402, 0, nil, nil, true); -- Realm First! Conqueror of Naxxramas
+    SetTO(a[1402], "Once");
     a[1404] = ach:New(1404, 0, nil, nil, true); -- Realm First! Level 80 Gnome
+    SetTO(a[1404], "Once");
     a[1405] = ach:New(1405, 0, nil, nil, true); -- Realm First! Level 80 Blood Elf
+    SetTO(a[1405], "Once");
     a[1406] = ach:New(1406, 0, nil, nil, true); -- Realm First! Level 80 Draenei
+    SetTO(a[1406], "Once");
     a[1407] = ach:New(1407, 0, nil, nil, true); -- Realm First! Level 80 Dwarf
+    SetTO(a[1407], "Once");
     a[1408] = ach:New(1408, 0, nil, nil, true); -- Realm First! Level 80 Human
+    SetTO(a[1408], "Once");
     a[1409] = ach:New(1409, 0, nil, nil, true); -- Realm First! Level 80 Night Elf
+    SetTO(a[1409], "Once");
     a[1410] = ach:New(1410, 0, nil, nil, true); -- Realm First! Level 80 Orc
+    SetTO(a[1410], "Once");
     a[1411] = ach:New(1411, 0, nil, nil, true); -- Realm First! Level 80 Tauren
+    SetTO(a[1411], "Once");
     a[1412] = ach:New(1412, 0, nil, nil, true); -- Realm First! Level 80 Troll
+    SetTO(a[1412], "Once");
     a[1413] = ach:New(1413, 0, nil, nil, true); -- Realm First! Level 80 Forsaken
+    SetTO(a[1413], "Once");
     a[1414] = ach:New(1414, 0, nil, nil, true); -- Realm First! Grand Master Blacksmith
+    SetTO(a[1414], "Once");
     a[1415] = ach:New(1415, 0, nil, nil, true); -- Realm First! Grand Master Alchemist
+    SetTO(a[1415], "Once");
     a[1416] = ach:New(1416, 0, nil, nil, true); -- Realm First! Grand Master Cook
+    SetTO(a[1416], "Once");
     a[1417] = ach:New(1417, 0, nil, nil, true); -- Realm First! Grand Master Enchanter
+    SetTO(a[1417], "Once");
     a[1418] = ach:New(1418, 0, nil, nil, true); -- Realm First! Grand Master Engineer
+    SetTO(a[1418], "Once");
     a[1419] = ach:New(1419, 0, nil, nil, true); -- Realm First! Grand Master Medic
+    SetTO(a[1419], "Once");
     a[1420] = ach:New(1420, 0, nil, nil, true); -- Realm First! Grand Master Angler
+    SetTO(a[1420], "Once");
     a[1421] = ach:New(1421, 0, nil, nil, true); -- Realm First! Grand Master Herbalist
+    SetTO(a[1421], "Once");
     a[1422] = ach:New(1422, 0, nil, nil, true); -- Realm First! Grand Master Scribe
+    SetTO(a[1422], "Once");
     a[1423] = ach:New(1423, 0, nil, nil, true); -- Realm First! Grand Master Jewelcrafter
+    SetTO(a[1423], "Once");
     a[1424] = ach:New(1424, 0, nil, nil, true); -- Realm First! Grand Master Leatherworker
+    SetTO(a[1424], "Once");
     a[1425] = ach:New(1425, 0, nil, nil, true); -- Realm First! Grand Master Miner
+    SetTO(a[1425], "Once");
     a[1426] = ach:New(1426, 0, nil, nil, true); -- Realm First! Grand Master Skinner
+    SetTO(a[1426], "Once");
     a[1427] = ach:New(1427, 0, nil, nil, true); -- Realm First! Grand Master Tailor
+    SetTO(a[1427], "Once");
     a[1428] = ach:New(1428, 10); -- Mine Sweeper
     a[1436] = ach:New(1436, 0); -- Friends In High Places
     SetTO(a[1436]);
     a[1457] = ach:New(1457, 10); -- Explore Crystalsong Forest
     a[1463] = ach:New(1463, 0, nil, nil, true); -- Realm First! Northrend Vanguard
+    SetTO(a[1463], "Once");
     a[1502] = ach:New(1502, 10, fac.Horde, 202); -- Quick Cap
     a[1516] = ach:New(1516, 10); -- Accomplished Angler
     a[1517] = ach:New(1517, 10); -- Northrend Angler
@@ -1333,6 +1376,7 @@ function exportedAchievements.Load(a, t)
     a[3098] = ach:New(3098, 0); -- Dwarfageddon (25 player)
     SetTO(a[3098], "From", "Version", "030100", "Before", "Version", "070305");
     a[3117] = ach:New(3117, 0, nil, nil, true); -- Realm First! Death's Demise
+    SetTO(a[3117], "Once");
     a[3118] = ach:New(3118, 0); -- Lumberjacked (25 player)
     SetTO(a[3118], "From", "Version", "030100", "Before", "Version", "070305");
     a[3136] = ach:New(3136, 10); -- Emalon the Storm Watcher (10 player)
@@ -1389,6 +1433,7 @@ function exportedAchievements.Load(a, t)
     a[3237] = ach:New(3237, 0); -- Set Up Us the Bomb (25 player)
     SetTO(a[3237], "From", "Version", "030100", "Before", "Version", "070305");
     a[3259] = ach:New(3259, 0, nil, nil, true); -- Realm First! Celestial Defender
+    SetTO(a[3259], "Once");
     a[3296] = ach:New(3296, 10); -- Cooking with Style
     a[3316] = ach:New(3316, 0); -- Herald of the Titans
     a[3336] = ach:New(3336, 0); -- Deadly Gladiator
@@ -1416,6 +1461,7 @@ function exportedAchievements.Load(a, t)
     a[3596] = ach:New(3596, 10, fac.Alliance, 3597); -- Pilgrim's Progress
     a[3597] = ach:New(3597, 10, fac.Horde, 3596); -- Pilgrim's Progress
     a[3618] = ach:New(3618, 0); -- Murkimus the Gladiator
+    SetTO(a[3618], "Never");
     a[3636] = ach:New(3636, 0); -- Jade Tiger
     a[3676] = ach:New(3676, 10, fac.Alliance, 3677); -- A Silver Confidant
     a[3677] = ach:New(3677, 10, fac.Horde, 3676); -- The Sunreavers
@@ -1481,6 +1527,7 @@ function exportedAchievements.Load(a, t)
     a[4016] = ach:New(4016, 10); -- "Earth, Wind & Fire (10 player)"
     a[4017] = ach:New(4017, 10); -- "Earth, Wind & Fire (25 player)"
     a[4078] = ach:New(4078, 0, nil, nil, true); -- Realm First! Grand Crusader
+    SetTO(a[4078], "Once");
     a[4079] = ach:New(4079, 0, fac.Horde, 4156); -- A Tribute to Immortality
     SetTO(a[4079], "From", "Version", "030200", "Before", "Version", "040003a");
     a[4080] = ach:New(4080, 0); -- A Tribute to Dedicated Insanity
@@ -1535,6 +1582,7 @@ function exportedAchievements.Load(a, t)
     a[4538] = ach:New(4538, 10); -- Dances with Oozes (10 player)
     a[4539] = ach:New(4539, 10); -- "Once Bitten, Twice Shy (10 player)"
     a[4576] = ach:New(4576, 0, nil, nil, true); -- Realm First! Fall of the Lich King
+    SetTO(a[4576], "Once");
     a[4577] = ach:New(4577, 10); -- Flu Shot Shortage (10 player)
     a[4578] = ach:New(4578, 10); -- "Nausea, Heartburn, Indigestion... (10 player)"
     a[4579] = ach:New(4579, 10); -- Portal Jockey (10 player)
@@ -1709,16 +1757,27 @@ function exportedAchievements.Load(a, t)
     a[4995] = ach:New(4995, 10); -- Explore the Cape of Stranglethorn
     a[4996] = ach:New(4996, 10); -- Explore Southern Barrens
     a[4998] = ach:New(4998, 0, nil, nil, true); -- Realm First! Level 85 Shaman
+    SetTO(a[4998], "Once");
     a[4999] = ach:New(4999, 0, nil, nil, true); -- Realm First! Level 85
+    SetTO(a[4999], "Once");
     a[5000] = ach:New(5000, 0, nil, nil, true); -- Realm First! Level 85 Druid
+    SetTO(a[5000], "Once");
     a[5001] = ach:New(5001, 0, nil, nil, true); -- Realm First! Level 85 Paladin
+    SetTO(a[5001], "Once");
     a[5002] = ach:New(5002, 0, nil, nil, true); -- Realm First! Level 85 Priest
+    SetTO(a[5002], "Once");
     a[5003] = ach:New(5003, 0, nil, nil, true); -- Realm First! Level 85 Warlock
+    SetTO(a[5003], "Once");
     a[5004] = ach:New(5004, 0, nil, nil, true); -- Realm First! Level 85 Hunter
+    SetTO(a[5004], "Once");
     a[5005] = ach:New(5005, 0, nil, nil, true); -- Realm First! Level 85 Death Knight
+    SetTO(a[5005], "Once");
     a[5006] = ach:New(5006, 0, nil, nil, true); -- Realm First! Level 85 Mage
+    SetTO(a[5006], "Once");
     a[5007] = ach:New(5007, 0, nil, nil, true); -- Realm First! Level 85 Warrior
+    SetTO(a[5007], "Once");
     a[5008] = ach:New(5008, 0, nil, nil, true); -- Realm First! Level 85 Rogue
+    SetTO(a[5008], "Once");
     a[5060] = ach:New(5060, 10); -- Heroic: Blackrock Caverns
     a[5061] = ach:New(5061, 10); -- Heroic: Throne of the Tides
     a[5062] = ach:New(5062, 10); -- Heroic: Grim Batol
@@ -1877,21 +1936,37 @@ function exportedAchievements.Load(a, t)
     a[5377] = ach:New(5377, 0); -- Collector's Edition: Lil' Deathwing
     a[5378] = ach:New(5378, 0); -- Deathy
     a[5381] = ach:New(5381, 0, nil, nil, true); -- Realm First! Illustrious Alchemist
+    SetTO(a[5381], "Once");
     a[5382] = ach:New(5382, 0, nil, nil, true); -- Realm First! Illustrious Blacksmith
+    SetTO(a[5382], "Once");
     a[5383] = ach:New(5383, 0, nil, nil, true); -- Realm First! Illustrious Cook
+    SetTO(a[5383], "Once");
     a[5384] = ach:New(5384, 0, nil, nil, true); -- Realm First! Illustrious Enchanter
+    SetTO(a[5384], "Once");
     a[5385] = ach:New(5385, 0, nil, nil, true); -- Realm First! Illustrious Engineer
+    SetTO(a[5385], "Once");
     a[5386] = ach:New(5386, 0, nil, nil, true); -- Realm First! Illustrious Medic
+    SetTO(a[5386], "Once");
     a[5387] = ach:New(5387, 0, nil, nil, true); -- Realm First! Illustrious Angler
+    SetTO(a[5387], "Once");
     a[5388] = ach:New(5388, 0, nil, nil, true); -- Realm First! Illustrious Herbalist
+    SetTO(a[5388], "Once");
     a[5389] = ach:New(5389, 0, nil, nil, true); -- Realm First! Illustrious Scribe
+    SetTO(a[5389], "Once");
     a[5390] = ach:New(5390, 0, nil, nil, true); -- Realm First! Illustrious Jewelcrafter
+    SetTO(a[5390], "Once");
     a[5391] = ach:New(5391, 0, nil, nil, true); -- Realm First! Illustrious Leatherworker
+    SetTO(a[5391], "Once");
     a[5392] = ach:New(5392, 0, nil, nil, true); -- Realm First! Illustrious Miner
+    SetTO(a[5392], "Once");
     a[5393] = ach:New(5393, 0, nil, nil, true); -- Realm First! Illustrious Skinner
+    SetTO(a[5393], "Once");
     a[5394] = ach:New(5394, 0, nil, nil, true); -- Realm First! Illustrious Tailor
+    SetTO(a[5394], "Once");
     a[5395] = ach:New(5395, 0, nil, nil, true); -- Realm First! Grand Master Archaeologist
+    SetTO(a[5395], "Once");
     a[5396] = ach:New(5396, 0, nil, nil, true); -- Realm First! Illustrious Archaeologist
+    SetTO(a[5396], "Once");
     a[5412] = ach:New(5412, 10); -- Tol Barad Victory
     a[5415] = ach:New(5415, 10); -- Tower Plower
     a[5416] = ach:New(5416, 10); -- Pit Lord Argaloth
@@ -1943,6 +2018,7 @@ function exportedAchievements.Load(a, t)
     SetTO(a[5512]);
     a[5518] = ach:New(5518, 10); -- Stood in the Fire
     a[5533] = ach:New(5533, 0); -- Veteran of the Shifting Sands
+    SetTO(a[5533], "Never");
     a[5535] = ach:New(5535, 0); -- 1000 Valor Points
     SetTO(a[5535]);
     a[5536] = ach:New(5536, 0); -- 5000 Valor Points
@@ -1985,6 +2061,7 @@ function exportedAchievements.Load(a, t)
     a[5769] = ach:New(5769, 10); -- Heroic: Zul'Aman
     a[5779] = ach:New(5779, 10); -- You'll Feel Right as Rain
     a[5788] = ach:New(5788, 0); -- Agent of the Shen'dralar
+    SetTO(a[5788], "Never");
     a[5794] = ach:New(5794, 10); -- Time Flies When You're Having Fun
     a[5799] = ach:New(5799, 10); -- Only the Penitent...
     a[5802] = ach:New(5802, 10); -- Firelands
@@ -2143,6 +2220,7 @@ function exportedAchievements.Load(a, t)
     a[6420] = ach:New(6420, 10); -- Hopocalypse Now!
     a[6427] = ach:New(6427, 10); -- Mosh Pit
     a[6433] = ach:New(6433, 0, nil, nil, true); -- Realm First! Challenge Conqueror: Gold
+    SetTO(a[6433], "Once");
     a[6455] = ach:New(6455, 10); -- Show Me Your Moves!
     a[6456] = ach:New(6456, 10); -- Heroic: Stormstout Brewery
     a[6457] = ach:New(6457, 10); -- Stormstout Brewery
@@ -2163,7 +2241,9 @@ function exportedAchievements.Load(a, t)
     a[6517] = ach:New(6517, 10); -- Extinction Event
     a[6518] = ach:New(6518, 10); -- I Heard You Like Amber...
     a[6523] = ach:New(6523, 0, nil, nil, true); -- Realm First! Level 90 Shaman
+    SetTO(a[6523], "Once");
     a[6524] = ach:New(6524, 0, nil, nil, true); -- Realm First! Level 90
+    SetTO(a[6524], "Once");
     a[6531] = ach:New(6531, 10); -- Attention to Detail
     a[6534] = ach:New(6534, 10, fac.Horde, 6300); -- Upjade Complete
     a[6535] = ach:New(6535, 10, fac.Alliance, 6536); -- Mighty Roamin' Krasaranger
@@ -2276,15 +2356,25 @@ function exportedAchievements.Load(a, t)
     SetTO(a[6741], "From", "PvP Season", 11, "Until", "PvP Season", 11);
     a[6742] = ach:New(6742, 10); -- 60 Exalted Reputations
     a[6743] = ach:New(6743, 0, nil, nil, true); -- Realm First! Level 90 Druid
+    SetTO(a[6743], "Once");
     a[6744] = ach:New(6744, 0, nil, nil, true); -- Realm First! Level 90 Paladin
+    SetTO(a[6744], "Once");
     a[6745] = ach:New(6745, 0, nil, nil, true); -- Realm First! Level 90 Priest
+    SetTO(a[6745], "Once");
     a[6746] = ach:New(6746, 0, nil, nil, true); -- Realm First! Level 90 Warlock
+    SetTO(a[6746], "Once");
     a[6747] = ach:New(6747, 0, nil, nil, true); -- Realm First! Level 90 Hunter
+    SetTO(a[6747], "Once");
     a[6748] = ach:New(6748, 0, nil, nil, true); -- Realm First! Level 90 Death Knight
+    SetTO(a[6748], "Once");
     a[6749] = ach:New(6749, 0, nil, nil, true); -- Realm First! Level 90 Mage
+    SetTO(a[6749], "Once");
     a[6750] = ach:New(6750, 0, nil, nil, true); -- Realm First! Level 90 Warrior
+    SetTO(a[6750], "Once");
     a[6751] = ach:New(6751, 0, nil, nil, true); -- Realm First! Level 90 Rogue
+    SetTO(a[6751], "Once");
     a[6752] = ach:New(6752, 0, nil, nil, true); -- Realm First! Level 90 Monk
+    SetTO(a[6752], "Once");
     a[6753] = ach:New(6753, 10); -- Got My Mind On My Money
     a[6754] = ach:New(6754, 10); -- The Dark Heart of the Mogu
     a[6755] = ach:New(6755, 10); -- Mogu'shan Palace
@@ -2305,6 +2395,7 @@ function exportedAchievements.Load(a, t)
     a[6827] = ach:New(6827, 20, fac.Horde, 6828); -- Pandaren Ambassador
     a[6828] = ach:New(6828, 20, fac.Alliance, 6827); -- Pandaren Ambassador
     a[6829] = ach:New(6829, 0, nil, nil, true); -- Realm First! Pandaren Ambassador
+    SetTO(a[6829], "Once");
     a[6830] = ach:New(6830, 10); -- Professional Zen Master
     a[6835] = ach:New(6835, 10); -- Working For a Living
     a[6836] = ach:New(6836, 0); -- Serious Skills to Pay the Bills
@@ -2326,20 +2417,35 @@ function exportedAchievements.Load(a, t)
     a[6857] = ach:New(6857, 10); -- Heart of the Mantid Swarm
     a[6858] = ach:New(6858, 10); -- What Is Worth Fighting For
     a[6859] = ach:New(6859, 0, nil, nil, true); -- Realm First! Zen Master Alchemist
+    SetTO(a[6859], "Once");
     a[6860] = ach:New(6860, 0, nil, nil, true); -- Realm First! Zen Master Blacksmith
+    SetTO(a[6860], "Once");
     a[6861] = ach:New(6861, 0, nil, nil, true); -- Realm First! Zen Master Cook
+    SetTO(a[6861], "Once");
     a[6862] = ach:New(6862, 0, nil, nil, true); -- Realm First! Zen Master Enchanter
+    SetTO(a[6862], "Once");
     a[6863] = ach:New(6863, 0, nil, nil, true); -- Realm First! Zen Master Engineer
+    SetTO(a[6863], "Once");
     a[6864] = ach:New(6864, 0, nil, nil, true); -- Realm First! Zen Master Medic
+    SetTO(a[6864], "Once");
     a[6865] = ach:New(6865, 0, nil, nil, true); -- Realm First! Zen Master Angler
+    SetTO(a[6865], "Once");
     a[6866] = ach:New(6866, 0, nil, nil, true); -- Realm First! Zen Master Herbalist
+    SetTO(a[6866], "Once");
     a[6867] = ach:New(6867, 0, nil, nil, true); -- Realm First! Zen Master Scribe
+    SetTO(a[6867], "Once");
     a[6868] = ach:New(6868, 0, nil, nil, true); -- Realm First! Zen Master Jewelcrafter
+    SetTO(a[6868], "Once");
     a[6869] = ach:New(6869, 0, nil, nil, true); -- Realm First! Zen Master Leatherworker
+    SetTO(a[6869], "Once");
     a[6870] = ach:New(6870, 0, nil, nil, true); -- Realm First! Zen Master Miner
+    SetTO(a[6870], "Once");
     a[6871] = ach:New(6871, 0, nil, nil, true); -- Realm First! Zen Master Skinner
+    SetTO(a[6871], "Once");
     a[6872] = ach:New(6872, 0, nil, nil, true); -- Realm First! Zen Master Tailor
+    SetTO(a[6872], "Once");
     a[6873] = ach:New(6873, 0, nil, nil, true); -- Realm First! Zen Master Archaeologist
+    SetTO(a[6873], "Once");
     a[6874] = ach:New(6874, 5, fac.Alliance, 7509); -- Scenaturday
     a[6882] = ach:New(6882, 10); -- Temple of Kotmogu Veteran
     a[6883] = ach:New(6883, 10); -- Silvershard Mines Veteran
@@ -2484,8 +2590,11 @@ function exportedAchievements.Load(a, t)
     a[7266] = ach:New(7266, 10); -- Save it for Later
     a[7267] = ach:New(7267, 10); -- Perfect Delivery
     a[7268] = ach:New(7268, 10, nil, nil, nil, false); -- The Temple of Kotmogu
+    SetTO(a[7268], "Never");
     a[7269] = ach:New(7269, 10, nil, nil, nil, false); -- Stay Off the Grass
+    SetTO(a[7269], "Never");
     a[7270] = ach:New(7270, 10, nil, nil, nil, false); -- For Display Only
+    SetTO(a[7270], "Never");
     a[7271] = ach:New(7271, 10); -- Arena of Annihilation
     a[7272] = ach:New(7272, 10); -- In the Eye of the Tiger
     a[7273] = ach:New(7273, 10); -- Beat the Heat
@@ -2912,7 +3021,9 @@ function exportedAchievements.Load(a, t)
     a[8382] = ach:New(8382, 0, fac.Alliance, 8381); -- Grievous Conquest
     SetTO(a[8382], "From", "PvP Season", 14, "Until", "PvP Season", 14);
     a[8391] = ach:New(8391, 0); -- Tournament Participation 2013
+    SetTO(a[8391], "Never");
     a[8392] = ach:New(8392, 0); -- Tournament Glory 2013
+    SetTO(a[8392], "Never");
     a[8397] = ach:New(8397, 10); -- Crazy for Cats
     a[8398] = ach:New(8398, 0); -- Ahead of the Curve: Garrosh Hellscream (10 player)
     SetTO(a[8398], "From", "Version", "050400", "Before", "Version", "060002");
@@ -4345,6 +4456,7 @@ function exportedAchievements.Load(a, t)
     a[11222] = ach:New(11222, 5); -- Champions of Power
     a[11223] = ach:New(11223, 5); -- Legendary Research
     a[11224] = ach:New(11224, 0, nil, nil, true); -- Realm First! Legion Keystone Master
+    SetTO(a[11224], "Once");
     a[11232] = ach:New(11232, 5); -- "Lock, Stock and Two Smoking Goblins"
     a[11233] = ach:New(11233, 5); -- Broken Isles Safari
     a[11240] = ach:New(11240, 5); -- Harbinger
@@ -6562,6 +6674,7 @@ function exportedAchievements.Load(a, t)
     a[13076] = ach:New(13076, 10, fac.Alliance); -- Heritage of the Dark Iron
     a[13077] = ach:New(13077, 10, fac.Horde); -- Heritage of the Mag'har
     a[13078] = ach:New(13078, 0, nil, nil, true); -- Realm First! Battle for Azeroth Keystone Master
+    SetTO(a[13078], "Once");
     a[13079] = ach:New(13079, 0); -- Battle for Azeroth Keystone Conqueror: Season One
     SetTO(a[13079], "From", "Mythic+ Season", 1, "Until", "Mythic+ Season", 1);
     a[13080] = ach:New(13080, 0); -- Battle for Azeroth Keystone Master: Season One
@@ -7348,6 +7461,7 @@ function exportedAchievements.Load(a, t)
     a[14659] = ach:New(14659, 5); -- Handling His Henchmen
     a[14660] = ach:New(14660, 10); -- It's About Sending a Message
     a[14662] = ach:New(14662, 0, nil, nil, true); -- Realm First! Shadowlands Keystone Master
+    SetTO(a[14662], "Once");
     a[14663] = ach:New(14663, 10); -- Explore The Maw
     a[14670] = ach:New(14670, 10); -- That's the Spirit
     a[14671] = ach:New(14671, 10); -- Something's Not Quite Right....

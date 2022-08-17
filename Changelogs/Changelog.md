@@ -9,4 +9,7 @@
 - Glory of the Tomb Raider from Mount special
 
 ### WotLK Classic
-- Added translations for all missing texts in Englis, German and Chinese (Simplified)
+- Added translations for all missing texts in English, German and Chinese (Simplified)
+
+### Fixed (39.1)
+- Achievements that were never obtainable or only once (Realm First!) should be flagged correct again
