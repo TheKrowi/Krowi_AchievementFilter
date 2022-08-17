@@ -964,5 +964,3 @@ All notable changes to this project will be documented in this file.
 
 ### Removed
 - The need for almost all localization
-
-90002.Beta 0.1: https://www.curseforge.com/wow/addons/krowi-achievement-filter/files/3116568
