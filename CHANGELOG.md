@@ -1,11 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 9.2.7.39.1 - 2022-08-15
+## 39.1 - 2022-08-17
 ### Fixed
 - Achievements that were never obtainable or only once (Realm First!) should be flagged correct again
 
-## 9.2.7.39.0 - 2022-08-15
+## 39.0 - 2022-08-16
 ### Added
 - 3000 quests completed
 - Realm First! filter
@@ -17,7 +17,7 @@ All notable changes to this project will be documented in this file.
 - Glory of the Tomb Raider from Mount special
 
 ### WotLK Classic
-- Added translations for all missing texts in Englis, German and Chinese (Simplified)
+- Added translations for all missing texts in English, German and Chinese (Simplified)
 
 ## 9.2.5.38.1 - 2022-08-12
 ### Added
