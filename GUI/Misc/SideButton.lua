@@ -13,7 +13,14 @@ end
 
 local function OnShow(self, otherButtons)
     self:UpdateEventRuntime();
-    if self.Event.EventDetails.EndTime - time() < 0 then -- Event finished so remove button and reorder rest
+    local eventElapsed;
+    if self.Event.MapID then -- Handle the world events different, elapsed if not visible on the map
+        local poiInfo = C_AreaPoiInfo.GetAreaPOIInfo(self.Event.MapID, self.Event.Id);
+        eventElapsed = poiInfo == nil;
+    else
+        eventElapsed = self.Event.EventDetails.EndTime - time() < 0;
+    end
+    if eventElapsed then -- Event finished so remove button and reorder rest
         for i = 1, #otherButtons, 1 do
             if otherButtons[i].Event.ID == self.Event.ID then -- Found this button
                 if i == 1 and i + 1 <= #otherButtons then -- Button is the 1st and there are more

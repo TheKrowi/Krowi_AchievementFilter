@@ -126,10 +126,10 @@ function eventData.GetActiveWorldEvents()
 end
 
 function GetSavedWorldEvents(activeWorldEvents, currentDate)
-    for id, event in next, EventDetails.WorldEvents do
-        local deltaT = math.floor((event.EndTime - currentDate) / (3600 * 24));
-        -- diagnostics.Debug(id .. " - " .. event.Name .. " - " .. tostring(deltaT));
-        if deltaT < 0 or not addon.Options.db.EventReminders.WorldEvents[id] then
+    for id, _ in next, EventDetails.WorldEvents do
+        local event = data.WorldEvents[id];
+        local poiInfo = C_AreaPoiInfo.GetAreaPOIInfo(event.MapID, event.ID);
+        if poiInfo == nil or not addon.Options.db.EventReminders.WorldEvents[id] then
             EventDetails.WorldEvents[id] = nil;
         end
     end
@@ -137,36 +137,23 @@ function GetSavedWorldEvents(activeWorldEvents, currentDate)
     for id, event in next, data.WorldEvents do
         if EventDetails.WorldEvents[id] then
             event.EventDetails = EventDetails.WorldEvents[id];
-            -- diagnostics.Debug("Existing event active:" .. event.ID .. " - " .. event.EventDetails.Name .. " - " .. tostring(deltaT));
             tinsert(activeWorldEvents, event);
         end
     end
 end
 
 function GetNewWorldEvents(activeWorldEvents)
-    -- print("GetNewWorldEvents(activeWorldEvents)")
     for _, event in next, data.WorldEvents do
-        -- print(event.Id, event.ID, event.Icon, event.Name, event.MapID, event.TotalDuration);
-        if event.EventDetails == nil and addon.Options.db.EventReminders.WorldEvents[event.ID] then
+        if event.EventDetails == nil and addon.Options.db.EventReminders.WorldEvents[event.Id] then
             local poiInfo = C_AreaPoiInfo.GetAreaPOIInfo(event.MapID, event.ID);
-            -- print(poiInfo);
             if poiInfo then -- The event is active
                 local secondsLeft = C_AreaPoiInfo.GetAreaPOISecondsLeft(event.ID);
-                -- diagnostics.Debug(secondsLeft);
-                if secondsLeft == nil or secondsLeft == 0 then
-                    -- print("problem", event.Id)
-                    return; -- C_AreaPoiInfo is not yet properly loaded
+                local startTime, endTime;
+                if secondsLeft ~= nil and secondsLeft ~= 0 then
+                    startTime, endTime = GetStartAndEndTime(secondsLeft, event.TotalDuration or 0);
                 end
 
-                local startTime, endTime = GetStartAndEndTime(secondsLeft, event.TotalDuration or 0);
-                -- diagnostics.Debug(startTime);
-                -- diagnostics.Debug(endTime);
-
                 event.EventDetails = {StartTime = startTime, EndTime = endTime, Name = event.Name};
-                -- diagnostics.Debug(event.ID .. " - " .. event.EventDetails.Name .. " - " ..
-                --                     date("%Y/%m/%d %H:%M", event.EventDetails.StartTime) .. " - " .. date("%Y/%m/%d %H:%M", event.EventDetails.EndTime));
-
-                -- diagnostics.Debug("New event active:" .. event.ID .. " - " .. event.EventDetails.Name .. " - " .. tostring(deltaT));
                 EventDetails.WorldEvents[event.ID] = event.EventDetails;
                 tinsert(activeWorldEvents, event);
             else
@@ -211,8 +198,8 @@ end
 
 function GetNewWidgetEvents(activeWidgetEvents)
     for _, event in next, data.WidgetEvents do
-        if event.EventDetails == nil and addon.Options.db.EventReminders.WidgetEvents[event.ID] then
-            local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(event.ID);
+        if event.EventDetails == nil and addon.Options.db.EventReminders.WidgetEvents[event.Id] then
+            local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(event.Id);
             if widgetInfo and widgetInfo.shownState == 1 then -- The event is active
                 local secondsLeft = event.TotalDuration;
                 if secondsLeft == 604800 then
@@ -220,20 +207,12 @@ function GetNewWidgetEvents(activeWidgetEvents)
                 else
                     secondsLeft = nil;
                 end
-                -- diagnostics.Debug(secondsLeft);
                 if secondsLeft == nil or secondsLeft == 0 then
                     return; -- Widget time not yet supported
                 end
 
                 local startTime, endTime = GetStartAndEndTime(secondsLeft, event.TotalDuration or 0);
-                -- diagnostics.Debug(startTime);
-                -- diagnostics.Debug(endTime);
-
                 event.EventDetails = {StartTime = startTime, EndTime = endTime, Name = event.Name};
-                -- diagnostics.Debug(event.ID .. " - " .. event.EventDetails.Name .. " - " ..
-                --                     date("%Y/%m/%d %H:%M", event.EventDetails.StartTime) .. " - " .. date("%Y/%m/%d %H:%M", event.EventDetails.EndTime));
-
-                -- diagnostics.Debug("New event active:" .. event.ID .. " - " .. event.EventDetails.Name .. " - " .. tostring(deltaT));
                 EventDetails.WidgetEvents[event.ID] = event.EventDetails;
                 tinsert(activeWidgetEvents, event);
             else
