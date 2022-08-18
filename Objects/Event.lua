@@ -6,17 +6,15 @@ local event = objects.Event;
 
 event.__index = event;
 function event:New(id, icon, name, mapID, totalDuration)
-    local self = {};
-    setmetatable(self, event);
+    local instance = setmetatable({}, event);
 
-    self.Id = id or 0;
-    self.ID = self.Id;
-    self.Icon = icon or 0;
-    self.Name = name;
-    self.MapID = mapID;
-    self.TotalDuration = totalDuration;
-
-    return self;
+    instance.Id = id or 0;
+    instance.ID = instance.Id;
+    instance.Icon = icon or 0;
+    instance.Name = name;
+    instance.MapID = mapID;
+    instance.TotalDuration = totalDuration;
+    return instance;
 end
 
 function event:AddAchievement(achievement)

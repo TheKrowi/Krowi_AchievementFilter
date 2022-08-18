@@ -144,13 +144,17 @@ function GetSavedWorldEvents(activeWorldEvents, currentDate)
 end
 
 function GetNewWorldEvents(activeWorldEvents)
+    -- print("GetNewWorldEvents(activeWorldEvents)")
     for _, event in next, data.WorldEvents do
+        -- print(event.Id, event.ID, event.Icon, event.Name, event.MapID, event.TotalDuration);
         if event.EventDetails == nil and addon.Options.db.EventReminders.WorldEvents[event.ID] then
             local poiInfo = C_AreaPoiInfo.GetAreaPOIInfo(event.MapID, event.ID);
+            -- print(poiInfo);
             if poiInfo then -- The event is active
                 local secondsLeft = C_AreaPoiInfo.GetAreaPOISecondsLeft(event.ID);
                 -- diagnostics.Debug(secondsLeft);
                 if secondsLeft == nil or secondsLeft == 0 then
+                    -- print("problem", event.Id)
                     return; -- C_AreaPoiInfo is not yet properly loaded
                 end
 
