@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## 39.2 - 2022-08-xx
 ### Fixed
-- Workaround untill Blizzard fixes C_AreaPoiInfo.GetAreaPOISecondsLeft not returning seconds left anymore; handled by adding active events and showing no time data
+- Workaround until Blizzard fixes C_AreaPoiInfo.GetAreaPOISecondsLeft not returning seconds left anymore; handled by adding active events and showing no time data
 
 ## 39.1 - 2022-08-17
 ### Fixed
