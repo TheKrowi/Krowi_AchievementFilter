@@ -1,8 +1,8 @@
--- [[ Exported at 2022-08-13 15-25-36 ]] --
+-- [[ Exported at 2022-08-19 07-49-05 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-08-11 ]] --
+-- [[ German translation by Ta, 2022-08-18 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -92,6 +92,7 @@ L["WoW's Anniversary"] = "WoW's Geburtstag";
 L["WoW's 18th Anniversary"] = "WoW's 18. Geburtstag";
 L["Season"] = "Saison";
 L["Fated Raids"] = "Schicksalhafte Raids";
+L["No time data available"] = "Keine Zeitdaten verfügbar";
 L["Feast of Winter Veil"] = "Winterhauch";
 L["Noblegarden"] = "Nobelgarten";
 L["Children's Week"] = "Kinderwoche";
