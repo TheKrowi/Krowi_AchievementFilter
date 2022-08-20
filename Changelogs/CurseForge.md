@@ -19,3 +19,7 @@
 <ul>
 <li>Achievements that were never obtainable or only once (Realm First!) should be flagged correct again</li>
 </ul>
+<p><h3>Fixed (39.2)</h3></p>
+<ul>
+<li>Workaround until Blizzard fixes C_AreaPoiInfo.GetAreaPOISecondsLeft not returning seconds left anymore; handled by adding active events and showing no time data</li>
+</ul>

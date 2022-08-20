@@ -6,6 +6,11 @@ KrowiAF_AlertFrameMixin = {};
 function KrowiAF_AlertFrameMixin:UpdateEventRuntime()
     local line1, line2, timeLeft;
 
+    if self.Event.EventDetails.StartTime == nil or self.Event.EventDetails.EndTime == nil then
+        self.Unlocked:SetText(addon.L["No time data available"]);
+        return;
+    end
+
     if addon.Options.db.EventReminders.TimeDisplay.Line1 == 3 or addon.Options.db.EventReminders.TimeDisplay.Line2 == 4 then -- Time Left
         local secondsLeft = self.Event.EventDetails.EndTime - time();
         local days = floor(secondsLeft / 86400);

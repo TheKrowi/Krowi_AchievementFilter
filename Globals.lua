@@ -462,19 +462,6 @@ function addon.ChangeAchievementMicroButtonOnClick()
     end);
 end
 
--- function KrowiAF_FireEvent(event, ...)
---     event=event:upper();--  Events are always uppercase
---     local list={GetFramesRegisteredForEvent(event)};--  Get list of frames
---     for _,frame in ipairs(list) do
---         local func=frame:GetScript("OnEvent");--    Get OnEvent handler
---         if func then 
---             print(frame:GetName());
---         end--   Run it if there is one
---     end
--- end
-
--- /run KrowiAF_FireEvent("ACHIEVEMENT_EARNED");
-
 local cachedIsNotWotLKClassic, cachedIsWotLKClassic;
 function addon.IsNotWotLKClassic()
     if cachedIsNotWotLKClassic ~= nil then
@@ -529,3 +516,28 @@ end
 function addon.GetCovenantName(covenantID)
     return C_Covenants and C_Covenants.GetCovenantData(covenantID).name or covenantID;
 end
+
+-- function KrowiAF_FireEvent(event, ...)
+--     event=event:upper();--  Events are always uppercase
+--     local list={GetFramesRegisteredForEvent(event)};--  Get list of frames
+--     for _,frame in ipairs(list) do
+--         local func=frame:GetScript("OnEvent");--    Get OnEvent handler
+--         if func then 
+--             print(frame:GetName());
+--         end--   Run it if there is one
+--     end
+-- end
+
+-- /run KrowiAF_FireEvent("ACHIEVEMENT_EARNED");
+
+-- function KrowiAF_GetAreaPOILeft()
+--     for i = 1, 7216 do
+--         local left = C_AreaPoiInfo.GetAreaPOISecondsLeft(i);
+--         if left then
+--             print(i, left);
+--         end
+--     end
+--     print(i)
+-- end
+
+-- /run KrowiAF_GetAreaPOILeft();
