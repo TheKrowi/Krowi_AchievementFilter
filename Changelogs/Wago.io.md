@@ -16,3 +16,10 @@
 
 ### Fixed (39.2)
 - Workaround until Blizzard fixes C_AreaPoiInfo.GetAreaPOISecondsLeft not returning seconds left anymore; handled by adding active events and showing no time data
+
+### Fixed (39.3)
+- Event reminders could sometimes print debug text
+
+### WotLK Classic (39.3)
+- Error when loading into the game should be fixed
+- Event reminders should no longer cause errors
