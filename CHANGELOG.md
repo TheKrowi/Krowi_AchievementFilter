@@ -1,7 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 39.2 - 2022-08-xx
+## 39.3 - 2022-08-21
+### Fixed
+- Event reminders could sometimes print debug text
+
+### WotLK Classic
+- Error when loading into the game should be fixed
+- Event reminders should no longer cause errors
+
+## 39.2 - 2022-08-20
 ### Fixed
 - Workaround until Blizzard fixes C_AreaPoiInfo.GetAreaPOISecondsLeft not returning seconds left anymore; handled by adding active events and showing no time data
 
