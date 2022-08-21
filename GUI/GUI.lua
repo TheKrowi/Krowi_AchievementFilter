@@ -240,6 +240,8 @@ function gui.PrepareTabsOrder()
     KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Achievements", addon.L["Blizzard"], addon.L["Achievements"], "TOGGLEACHIEVEMENT");
     if addon.IsNotWotLKClassic() then
         KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Guild", addon.L["Blizzard"], addon.L["Guild"]);
+    else
+        addon.Options.Defaults.profile.Tabs.Blizzard_AchievementUI.Guild = nil;
     end
     KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Statistics", addon.L["Blizzard"], addon.L["Statistics"], "TOGGLESTATISTICS");
 end
