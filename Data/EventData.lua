@@ -7,9 +7,9 @@ local eventData = addon.EventData;
 
 local GetEvents;
 function eventData.Load()
-    if addon.IsWotLKClassic() then
-        return; -- Breaks for some reason when date is 2022-9-1
-    end
+    -- if addon.IsWotLKClassic() then
+    --     return; -- Breaks for some reason when date is 2022-9-1
+    -- end
     local refreshEvents = false;
 
     if EventDetails == nil then
@@ -71,14 +71,20 @@ function GetEvents()
         for j = date.monthDay, numDays, 1 do
             date.numDayEvents = C_Calendar.GetNumDayEvents(0, date.monthDay);
             for k = 1, date.numDayEvents, 1 do
-                print(date, k)
+                -- print(date, k)
                 local event = C_Calendar.GetDayEvent(0, date.monthDay, k);
                 if events[event.eventID] == nil then
                     events[event.eventID] = event;
                 end
             end
-            print(date.year, date.month, date.monthDay)
-            date = C_DateAndTime.AdjustTimeByDays(date, 2);
+            -- print(date.year, date.month, date.monthDay)
+            if pcall(function() date = C_DateAndTime.AdjustTimeByDays(date, 1) end) then
+                -- print("no error")
+            else
+                -- print(date.year, date.month, date.monthDay)
+                -- print("error")
+            end
+            -- date = C_DateAndTime.AdjustTimeByDays(date, 1);
         end
         C_Calendar.SetMonth(1);
     end
