@@ -4,4 +4,5 @@
     <Script file="ElvUI.lua" />
     <Script file="InstanceAchievementTracker.lua" />
     <Script file="Overachiever.lua" />
+    <Script file="ZygorGuidesViewer.lua" />
 </Ui>

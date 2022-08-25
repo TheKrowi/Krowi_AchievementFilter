@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 39.4 - 2022-08-xx
+### Added
+- Compatibility with Zygor Guides Viewer for the Blizzard Achievements tab
+
 ## 39.3 - 2022-08-21
 ### Fixed
 - Event reminders could sometimes print debug text

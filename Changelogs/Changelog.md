@@ -23,3 +23,6 @@
 ### WotLK Classic (39.3)
 - Error when loading into the game should be fixed
 - Event reminders should no longer cause errors
+
+### Added (39.4)
+- Compatibility with Zygor Guides Viewer for the Blizzard Achievements tab
