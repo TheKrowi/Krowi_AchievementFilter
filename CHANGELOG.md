@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 39.4 - 2022-08-xx
+## 40.0 - 2022-08-xx
 ### Added
 - Compatibility with Zygor Guides Viewer for the Blizzard Achievements tab
 - Focused, Current Zone, Selected Zone and Excluded category to every tab (option to hide them in unwanted tabs to be added)
