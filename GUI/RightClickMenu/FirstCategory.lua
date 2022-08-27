@@ -4,7 +4,7 @@ local section = {};
 
 function section.CheckAdd(achievement)
     local selectedCategory = addon.GUI.SelectedTab.SelectedCategory;
-    return selectedCategory == addon.Data.CurrentZoneCategory or selectedCategory == addon.Data.SelectedZoneCategory;
+    return selectedCategory.IsCurrentZone or selectedCategory.IsSelectedZone;
 end
 
 function section.Add(menu, achievement)

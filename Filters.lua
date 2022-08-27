@@ -216,7 +216,7 @@ function filters:GetFilters(category)
         category = addon.GUI.SelectedTab.SelectedCategory;
     end
 
-	if category == addon.Data.CurrentZoneCategory then
+	if category.IsCurrentZone then
 		return self.db.CurrentZone;
 	elseif category == addon.Data.SelectedZoneCategory then
 		return self.db.SelectedZone;

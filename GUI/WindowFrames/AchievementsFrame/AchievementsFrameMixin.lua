@@ -50,7 +50,7 @@ function KrowiAF_AchievementsFrameMixin:Update()
 
 	local updateAchievements = cachedCategory ~= selectedCategory;
 	cachedCategory = selectedCategory;
-	if cachedCategory == addon.Data.CurrentZoneCategory then
+	if cachedCategory.IsCurrentZone then
 		updateAchievements = addon.Data.GetCurrentZoneAchievements() or updateAchievements;
 	end
 

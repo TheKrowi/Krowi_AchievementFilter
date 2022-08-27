@@ -148,6 +148,8 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
         LoadAddOn("Blizzard_AchievementUI");
     end
 
+    addon.Data.GetCurrentZoneAchievements();
+
     AchievementFrameComparison:Hide();
     AchievementFrameTab_OnClick = AchievementFrameBaseTab_OnClick;
 

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-14 19-06-05 ]] --
+-- [[ Exported at 2022-08-28 00-37-37 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -27,6 +27,26 @@ function exportedCategories.Load(a)
     AddC(tmp[1100], tmp[1202]);
     tmp[1202].AlwaysVisible = true;
     tmp[1202].IsSummary = true;
+    tmp[1216] = cat:New(addon.L["Focused"]); -- Focused
+    AddC(tmp[1100], tmp[1216]);
+    tmp[1216].HasFlexibleData = true;
+    tinsert(focusedCategories, tmp[1216]);
+    tmp[1216].IsFocused = true;
+    tmp[1212] = cat:New(addon.L["Current Zone"]); -- Current Zone
+    AddC(tmp[1100], tmp[1212]);
+    tmp[1212].HasFlexibleData = true;
+    tinsert(currentZoneCategories, tmp[1212]);
+    tmp[1212].IsCurrentZone = true;
+    tmp[1220] = cat:New(addon.L["Selected Zone"]); -- Selected Zone
+    AddC(tmp[1100], tmp[1220]);
+    tmp[1220].HasFlexibleData = true;
+    tinsert(selectedZoneCategories, tmp[1220]);
+    tmp[1220].IsSelectedZone = true;
+    tmp[1224] = cat:New(addon.L["Excluded"]); -- Excluded
+    AddC(tmp[1100], tmp[1224]);
+    tmp[1224].HasFlexibleData = true;
+    tinsert(excludedCategories, tmp[1224]);
+    tmp[1224].IsExcluded = true;
     tmp[883] = cat:New(addon.L["Expansions"]); -- TAB - Expansions
     tmp[883].TabName = "Expansions";
     local expansions = tmp[883];
@@ -34,6 +54,21 @@ function exportedCategories.Load(a)
     AddC(tmp[883], tmp[1203]);
     tmp[1203].AlwaysVisible = true;
     tmp[1203].IsSummary = true;
+    tmp[1217] = cat:New(addon.L["Focused"]); -- Focused
+    AddC(tmp[883], tmp[1217]);
+    tmp[1217].HasFlexibleData = true;
+    tinsert(focusedCategories, tmp[1217]);
+    tmp[1217].IsFocused = true;
+    tmp[1213] = cat:New(addon.L["Current Zone"]); -- Current Zone
+    AddC(tmp[883], tmp[1213]);
+    tmp[1213].HasFlexibleData = true;
+    tinsert(currentZoneCategories, tmp[1213]);
+    tmp[1213].IsCurrentZone = true;
+    tmp[1223] = cat:New(addon.L["Selected Zone"]); -- Selected Zone
+    AddC(tmp[883], tmp[1223]);
+    tmp[1223].HasFlexibleData = true;
+    tinsert(selectedZoneCategories, tmp[1223]);
+    tmp[1223].IsSelectedZone = true;
     tmp[1] = cat:New(addon.GetCategoryInfoTitle(14864)); -- Classic
     AddC(tmp[883], tmp[1]);
     tmp[648] = cat:New(addon.L["Zones"]); -- Zones
@@ -2441,6 +2476,11 @@ function exportedCategories.Load(a)
     AddA(tmp[1172], a[4496]); -- It's Over Nine Thousand!
     AddA(tmp[1172], a[3636]); -- Jade Tiger
     AddA(tmp[1172], a[3896]); -- Onyx Panther
+    tmp[1225] = cat:New(addon.L["Excluded"]); -- Excluded
+    AddC(tmp[883], tmp[1225]);
+    tmp[1225].HasFlexibleData = true;
+    tinsert(excludedCategories, tmp[1225]);
+    tmp[1225].IsExcluded = true;
     tmp[884] = cat:New(addon.L["Events"]); -- TAB - Events
     tmp[884].TabName = "Events";
     local events = tmp[884];
@@ -2448,6 +2488,21 @@ function exportedCategories.Load(a)
     AddC(tmp[884], tmp[1206]);
     tmp[1206].AlwaysVisible = true;
     tmp[1206].IsSummary = true;
+    tmp[1218] = cat:New(addon.L["Focused"]); -- Focused
+    AddC(tmp[884], tmp[1218]);
+    tmp[1218].HasFlexibleData = true;
+    tinsert(focusedCategories, tmp[1218]);
+    tmp[1218].IsFocused = true;
+    tmp[1214] = cat:New(addon.L["Current Zone"]); -- Current Zone
+    AddC(tmp[884], tmp[1214]);
+    tmp[1214].HasFlexibleData = true;
+    tinsert(currentZoneCategories, tmp[1214]);
+    tmp[1214].IsCurrentZone = true;
+    tmp[1221] = cat:New(addon.L["Selected Zone"]); -- Selected Zone
+    AddC(tmp[884], tmp[1221]);
+    tmp[1221].HasFlexibleData = true;
+    tinsert(selectedZoneCategories, tmp[1221]);
+    tmp[1221].IsSelectedZone = true;
     tmp[918] = cat:New(addon.L["Holidays"]); -- Holidays
     AddC(tmp[884], tmp[918]);
     AddA(tmp[918], a[2144]); -- "What a Long, Strange Trip It's Been"
@@ -2930,6 +2985,11 @@ function exportedCategories.Load(a)
     AddA(tmp[1174], a[2079]); -- Tabard of the Protector
     AddA(tmp[1174], a[2116]); -- Tabard of the Argent Dawn
     AddA(tmp[1174], a[11395]); -- Diablo's 20th Anniversary
+    tmp[1226] = cat:New(addon.L["Excluded"]); -- Excluded
+    AddC(tmp[884], tmp[1226]);
+    tmp[1226].HasFlexibleData = true;
+    tinsert(excludedCategories, tmp[1226]);
+    tmp[1226].IsExcluded = true;
     tmp[955] = cat:New(addon.GetCategoryInfoTitle(95)); -- TAB - PvP
     tmp[955].TabName = "PvP";
     local pvp = tmp[955];
@@ -2937,6 +2997,21 @@ function exportedCategories.Load(a)
     AddC(tmp[955], tmp[1205]);
     tmp[1205].AlwaysVisible = true;
     tmp[1205].IsSummary = true;
+    tmp[1219] = cat:New(addon.L["Focused"]); -- Focused
+    AddC(tmp[955], tmp[1219]);
+    tmp[1219].HasFlexibleData = true;
+    tinsert(focusedCategories, tmp[1219]);
+    tmp[1219].IsFocused = true;
+    tmp[1215] = cat:New(addon.L["Current Zone"]); -- Current Zone
+    AddC(tmp[955], tmp[1215]);
+    tmp[1215].HasFlexibleData = true;
+    tinsert(currentZoneCategories, tmp[1215]);
+    tmp[1215].IsCurrentZone = true;
+    tmp[1222] = cat:New(addon.L["Selected Zone"]); -- Selected Zone
+    AddC(tmp[955], tmp[1222]);
+    tmp[1222].HasFlexibleData = true;
+    tinsert(selectedZoneCategories, tmp[1222]);
+    tmp[1222].IsSelectedZone = true;
     tmp[1162] = cat:New(addon.GetCategoryInfoTitle(95)); -- Player vs. Player
     AddC(tmp[955], tmp[1162]);
     AddA(tmp[1162], a[10561]); -- Honorable Medallion
@@ -3372,6 +3447,11 @@ function exportedCategories.Load(a)
     AddA(tmp[1200], a[3436]); -- Furious Gladiator
     AddA(tmp[1200], a[3758]); -- Relentless Gladiator
     AddA(tmp[1200], a[4599]); -- Wrathful Gladiator
+    tmp[1227] = cat:New(addon.L["Excluded"]); -- Excluded
+    AddC(tmp[955], tmp[1227]);
+    tmp[1227].HasFlexibleData = true;
+    tinsert(excludedCategories, tmp[1227]);
+    tmp[1227].IsExcluded = true;
     tmp[971] = cat:New(addon.L["Specials"]); -- TAB - Specials
     tmp[971].TabName = "Specials";
     local specials = tmp[971];
@@ -3382,16 +3462,18 @@ function exportedCategories.Load(a)
     tmp[949] = cat:New(addon.L["Focused"]); -- Focused
     AddC(tmp[971], tmp[949]);
     tmp[949].HasFlexibleData = true;
-    local focusedCategory = tmp[949];
+    tinsert(focusedCategories, tmp[949]);
+    tmp[949].IsFocused = true;
     tmp[433] = cat:New(addon.L["Current Zone"]); -- Current Zone
     AddC(tmp[971], tmp[433]);
-    tmp[433].AlwaysVisible = true;
     tmp[433].HasFlexibleData = true;
-    local currentZoneCategory = tmp[433];
+    tinsert(currentZoneCategories, tmp[433]);
+    tmp[433].IsCurrentZone = true;
     tmp[850] = cat:New(addon.L["Selected Zone"]); -- Selected Zone
     AddC(tmp[971], tmp[850]);
     tmp[850].HasFlexibleData = true;
-    local selectedZoneCategory = tmp[850];
+    tinsert(selectedZoneCategories, tmp[850]);
+    tmp[850].IsSelectedZone = true;
     tmp[972] = cat:New(addon.L["Bur's Mount Collection"]); -- Bur's Mount Collection
     AddC(tmp[971], tmp[972]);
     AddA(tmp[972], a[3356]); -- Winterspring Frostsaber
@@ -4120,7 +4202,8 @@ function exportedCategories.Load(a)
     tmp[857] = cat:New(addon.L["Excluded"]); -- Excluded
     AddC(tmp[971], tmp[857]);
     tmp[857].HasFlexibleData = true;
-    local excludedCategory = tmp[857];
+    tinsert(excludedCategories, tmp[857]);
+    tmp[857].IsExcluded = true;
 
     local tabs = {};
     tabs["Achievements"] = achievements.Children;
@@ -4128,6 +4211,6 @@ function exportedCategories.Load(a)
     tabs["Events"] = events.Children;
     tabs["PvP"] = pvp.Children;
     tabs["Specials"] = specials.Children;
-    return tabs, focusedCategory, currentZoneCategory, selectedZoneCategory, excludedCategory;
+    return tabs, focusedCategories, currentZoneCategories, selectedZoneCategories, excludedCategories;
 end
 
