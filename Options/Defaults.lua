@@ -58,6 +58,9 @@ options.Defaults = {
             },
             Indentation = 10
         },
+        AdjustableCategories = {
+
+        },
         Achievements = {
             Compact = false,
             Objectives = {

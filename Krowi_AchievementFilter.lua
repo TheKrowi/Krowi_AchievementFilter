@@ -36,6 +36,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
     if event == "ADDON_LOADED" then
         if arg1 == "Krowi_AchievementFilter" then -- This always needs to load
             addon.Diagnostics.Load();
+            addon.Data.ExportedCategories.InjectOptions();
             addon.Data.ExportedCalendarEvents.InjectOptions();
             addon.Data.ExportedWorldEvents.InjectOptions();
             addon.Data.ExportedWidgetEvents.InjectOptions();
