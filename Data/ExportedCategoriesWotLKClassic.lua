@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-28 09-12-06 ]] --
+-- [[ Exported at 2022-08-28 10-17-55 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -4299,7 +4299,7 @@ function exportedCategories.InjectOptions()
 
     local optionsTableCurrentZone = {
         order = 3, type = "group",
-        name = addon.L["CurrentZone"],
+        name = addon.L["Current Zone"],
         inline = true,
         args = {
             Achievements = {
@@ -4368,7 +4368,7 @@ function exportedCategories.InjectOptions()
 
     local optionsTableSelectedZone = {
         order = 4, type = "group",
-        name = addon.L["SelectedZone"],
+        name = addon.L["Selected Zone"],
         inline = true,
         args = {
             Achievements = {

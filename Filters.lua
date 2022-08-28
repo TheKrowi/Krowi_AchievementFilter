@@ -218,7 +218,7 @@ function filters:GetFilters(category)
 
 	if category.IsCurrentZone then
 		return self.db.CurrentZone;
-	elseif category == addon.Data.SelectedZoneCategory then
+	elseif category.IsSelectedZone then
 		return self.db.SelectedZone;
 	elseif category == addon.Data.ExcludedCategory or (category ~= nil and category.Excluded) then
 		return self.db.ExcludedCategory;

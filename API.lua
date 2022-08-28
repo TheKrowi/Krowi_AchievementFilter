@@ -179,7 +179,12 @@ function KrowiAF_OpenCurrentZone(collapsed)
         LoadAddOn("Blizzard_AchievementUI");
     end
 
-	KrowiAF_SelectCategory(addon.Data.CurrentZoneCategory, collapsed);
+	for i = 1, #addon.Data.CurrentZoneCategories do
+		if addon.Options.db.AdjustableCategories.CurrentZone[i] then
+			KrowiAF_SelectCategory(addon.Data.CurrentZoneCategories[i], collapsed);
+			return;
+		end
+	end
 end
 
 function KrowiAF_RegisterTabButton(_addonName, tabName, button, selectFunc)

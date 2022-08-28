@@ -10,8 +10,7 @@ data.Achievements = {};
 data.AchievementIDs = {};
 
 data.CategoriesExpansions, data.CategoriesEvents, data.CategoriesPvP, data.CategoriesSpecials, data.CategoriesAchievements = {}, {}, {}, {}, {};
--- data.FocusedCategories, data.CurrentZoneCategories, data.SelectedZoneCategories, data.ExcludedCategories;
-data.CurrentZoneCategory, data.SelectedZoneCategory, data.FocusedCategory, data.ExcludedCategory = {}, {}, {}, {};
+data.FocusedCategory, data.ExcludedCategory = {}, {};
 
 data.RCMenuExtras = {};
 
@@ -35,7 +34,7 @@ function data.Load()
 
     local tabsCategories;
     tabsCategories, data.FocusedCategories, data.CurrentZoneCategories, data.SelectedZoneCategories, data.ExcludedCategories = data.ExportedCategories.Load(data.Achievements);
-    data.FocusedCategory, data.CurrentZoneCategory, data.SelectedZoneCategory, data.ExcludedCategory = data.FocusedCategories[5], data.CurrentZoneCategories[5], data.SelectedZoneCategories[5], data.ExcludedCategories[5];
+    data.FocusedCategory, data.ExcludedCategory = data.FocusedCategories[5], data.ExcludedCategories[5];
     for t, _ in next, addon.Tabs do
         if tabsCategories[t] ~= nil then
             addon.Tabs[t].Categories = tabsCategories[t];
@@ -99,8 +98,8 @@ function data.GetCurrentZoneAchievements()
         cachedZone = C_Map.GetBestMapForUnit("player");
         local achievements = addon.GetAchievementsInZone(cachedZone);
         for i = 1, #addon.Data.CurrentZoneCategories do
-            addon.Data.CurrentZoneCategories[i].Achievements = achievements;
-        end 
+            addon.Data.CurrentZoneCategories[i].Achievements = addon.Options.db.AdjustableCategories.CurrentZone[i] and achievements or nil;
+        end
         return true; -- Output that the zone has changed
     end
 end
