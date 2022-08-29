@@ -311,9 +311,9 @@ function addon.HookSelectAchievement()
 end
 
 function addon.HookAchievementFrameOnShow()
-    -- AchievementFrame_SetTabs = function() -- Tainting by overwriting but showing and anchoring tabs is handled somewhere else now
-    --     addon.GUI.ShowHideTabs();
-    -- end
+    hooksecurefunc(AchievementFrame, "Show", function()
+        addon.Data.GetCurrentZoneAchievements();
+    end);
 
     local funcName = addon.IsNotWotLKClassic() and "AchievementFrame_SetTabs" or "PanelTemplates_SetTab";
     hooksecurefunc(funcName, addon.GUI.ShowHideTabs);
