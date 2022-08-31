@@ -88,6 +88,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
         if arg1 then -- On a fresh login we need to prime the area poi to get world events
             addon.EventData.PrimeAreaPoi();
         end
+        if arg1 or arg2 then
             C_Timer.After(0, function()
                 C_Timer.After(5, function()
                     addon.GUI.AlertSystem.ShowActiveCalendarEvents();
@@ -95,6 +96,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
                     addon.GUI.AlertSystem.ShowActiveWidgetEvents();
                 end);
             end);
+        end
     elseif event == "ACHIEVEMENT_EARNED" then
         addon.ResetCache(); -- Will force to fetch achievement data again, updating the character achievement points
     end
