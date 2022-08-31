@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - When an achievement is selected and a criteria is completed, the criteria should show as completed without having to toggle the achievement
+- World events should always show time data again (untill Blizzard breaks the API again)
 
 ## 39.3 - 2022-08-21
 ### Fixed

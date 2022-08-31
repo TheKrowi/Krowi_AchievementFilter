@@ -125,17 +125,27 @@ function eventData.GetActiveWorldEvents()
         EventDetails.WorldEvents = {};
     end
 
-    GetSavedWorldEvents(activeWorldEvents, time());
+    GetSavedWorldEvents(activeWorldEvents);
     GetNewWorldEvents(activeWorldEvents);
 
     return activeWorldEvents;
 end
 
-function GetSavedWorldEvents(activeWorldEvents, currentDate)
+function eventData.PrimeAreaPoi()
+    for _, event in next, data.WorldEvents do
+        C_AreaPoiInfo.GetAreaPOIInfo(event.MapID, event.ID);
+        C_AreaPoiInfo.GetAreaPOISecondsLeft(event.ID);
+    end
+end
+
+function GetSavedWorldEvents(activeWorldEvents)
     for id, _ in next, EventDetails.WorldEvents do
         local event = data.WorldEvents[id];
         local poiInfo = C_AreaPoiInfo.GetAreaPOIInfo(event.MapID, event.ID);
         if poiInfo == nil or not addon.Options.db.EventReminders.WorldEvents[id] then
+            EventDetails.WorldEvents[id] = nil;
+        end
+        if EventDetails.WorldEvents[id] and (not EventDetails.WorldEvents[id].StartTime or not EventDetails.WorldEvents[id].EndTime) then
             EventDetails.WorldEvents[id] = nil;
         end
     end
