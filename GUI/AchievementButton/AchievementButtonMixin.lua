@@ -20,7 +20,7 @@ function KrowiAF_AchievementButtonMixin:PostLoad(scrollFrame)
 end
 
 local cachedWidth;
-function KrowiAF_AchievementButtonMixin:DisplayObjectives()
+function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
 	local objectives = addon.GUI.AchievementsObjectives;
 	local topAnchor = self.HiddenDescription;
 
@@ -32,7 +32,7 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives()
 	objectives.FontHeight = self.FontHeight;
 	local height = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT; -- Compact or not, we need this height
 	local id = self.Achievement.Id;
-	if objectives.Id == id and cachedWidth == objectives:GetWidth() then
+	if objectives.Id == id and cachedWidth == objectives:GetWidth() and not forced then
 		-- Cached, nothing to do
 	elseif self.Completed and GetPreviousAchievement(id) then
 		objectives:SetHeight(1);

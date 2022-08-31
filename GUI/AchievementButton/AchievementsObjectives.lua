@@ -53,7 +53,7 @@ function KrowiAF_AchievementsObjectives_OnEvent(self, event)
 		local button = self:GetParent();
 		self.Id = nil;
 		if self:IsVisible() then
-			button:DisplayObjectives();
+			button:DisplayObjectives(true);
 			-- AchievementFrameAchievements_Update();
 		end
 	else

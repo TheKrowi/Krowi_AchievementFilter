@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 - Compatibility with Zygor Guides Viewer for the Blizzard Achievements tab
 - Focused, Current Zone, Selected Zone and Excluded category to every tab (option to hide them in unwanted tabs to be added)
 
+### Fixed
+- When an achievement is selected and a criteria is completed, the criteria should show as completed without having to toggle the achievement
+
 ## 39.3 - 2022-08-21
 ### Fixed
 - Event reminders could sometimes print debug text
