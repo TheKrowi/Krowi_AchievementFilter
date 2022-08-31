@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-28 00-17-33 ]] --
+-- [[ Exported at 2022-08-31 18-43-06 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -386,6 +386,17 @@ function exportedWorldEvents.InjectOptions()
                     addon.Options.db.EventReminders.WorldEvents[6990] = false;
                     addon.Options.db.EventReminders.WorldEvents[6991] = false;
                     addon.Options.db.EventReminders.WorldEvents[6992] = false;
+                end
+            },
+            Blank36 = {order = 36, type = "description", width = "full", name = ""},
+            Blank37 = {order = 37, type = "description", width = "double", name = ""},
+            RefreshEvents38 = {
+                order = 38, type = "execute",
+                name = addon.L["Refresh Events"],
+                desc = addon.L["Requires a reload"],
+                func = function()
+                    EventDetails.WorldEvents = nil;
+                    addon.EventData.Load();
                 end
             },
         }
