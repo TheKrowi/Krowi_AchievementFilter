@@ -13,7 +13,7 @@ options.Defaults = {
         Window = {
             Movable = true,
             RememberLastPosition = {
-                AchievementWindow = true,
+                AchievementWindow = false,
                 Calendar = false,
                 DataManager = false
             },
