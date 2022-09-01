@@ -1,4 +1,4 @@
--- [[ Exported at 2022-09-01 19-21-14 ]] --
+-- [[ Exported at 2022-09-01 22-14-19 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -221,6 +221,8 @@ L["Remember frame position over sessions"] = "Remember {frame} position over ses
 L["Remember frame position over sessions Desc"] = "Remember the {frame} position over sessions. This will keep the {frame} in it's last known position the next time you log in.";
 L["Achievement Window"] = "Achievement Window";
 L["Achievement Calendar"] = "Achievement Calendar";
+L["Reset position"] = "Reset position";
+L["Reset position Desc"] = "Reset the {frame} to it's default position.";
 L["Offsets"] = "Offsets";
 L["Categories width offset"] = "Categories width offset";
 L["Categories width offset Desc"] = "The width that will be added to or subtracted from the default categories width.\n\nThis value can be changed while the achievement window is open and having one of the tabs selected added by {addonName}. This might have an impact (1) on the game.\n\n(1) FPS drops and stuttering while adjusting the value, NOT during normal addon use";
