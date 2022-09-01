@@ -12,6 +12,11 @@ options.Defaults = {
         ShowPlaceholdersFilter = false,
         Window = {
             Movable = true,
+            RememberLastPosition = {
+                AchievementWindow = true,
+                Calendar = false,
+                DataManager = false
+            },
             CategoriesFrameWidthOffset = 25,
             AchievementFrameHeightOffset = 250,
             MergeSmallCategoriesThreshold = 10

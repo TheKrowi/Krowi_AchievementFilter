@@ -1,8 +1,8 @@
--- [[ Exported at 2022-08-19 07-49-05 ]] --
+-- [[ Exported at 2022-09-01 19-21-14 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ Chinese (Simplified) translation by Shykai, 2022-08-11 ]] --
+-- [[ Chinese (Simplified) translation by Shykai, 2022-08-22 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -92,6 +92,7 @@ L["WoW's Anniversary"] = "魔兽周年";
 L["WoW's 18th Anniversary"] = "魔兽18周年";
 L["Season"] = "赛季";
 L["Fated Raids"] = "宿命团队副本";
+L["No time data available"] = "没有可用的时间数据";
 L["Feast of Winter Veil"] = "冬幕节";
 L["Noblegarden"] = "复活节";
 L["Children's Week"] = "儿童周";

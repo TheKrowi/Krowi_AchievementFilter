@@ -73,9 +73,25 @@ function gui:LoadWithBlizzard_AchievementUI()
 
     gui.AchievementFrameHeader.CreateTooltip();
 
+    self.SetCloseButtonOnKeyDown();
+
     self.LoadWotLKClassicFixes();
 
     diagnostics.Debug("GUI loaded");
+end
+
+function gui.SetCloseButtonOnKeyDown()
+    AchievementFrameCloseButton:SetScript("OnKeyDown", function(selfFunc, key)
+        if key == GetBindingKey("TOGGLEGAMEMENU") then
+            if selfFunc:GetParent():IsShown() then
+                -- selfFunc:Click(selfFunc);
+                selfFunc:GetParent():Hide();
+                selfFunc:SetPropagateKeyboardInput(false);
+                return;
+            end
+        end
+        selfFunc:SetPropagateKeyboardInput(true);
+    end);
 end
 
 -- [[ AchievementFrame Width ]] --
@@ -159,14 +175,16 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
     end
 
 	if AchievementFrame:IsShown() and tabIsSelected and not resetView and not forceOpen then
-		HideUIPanel(AchievementFrame);
+		-- HideUIPanel(AchievementFrame);
+        AchievementFrame:Hide();
 	else
         if addon.IsNotWotLKClassic() then
             AchievementFrame_SetTabs();
         else
             addon.GUI.ShowHideTabs();
         end
-		ShowUIPanel(AchievementFrame);
+		-- ShowUIPanel(AchievementFrame);
+        AchievementFrame:Show();
         if addon.IsNotWotLKClassic() then
             AchievementFrame_HideSearchPreview();
         end

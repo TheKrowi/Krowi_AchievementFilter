@@ -41,7 +41,7 @@ function calendar:CreateCalendarButton()
 	button:SetText(currentCalendarTime.monthDay);
 
     button:SetScript("OnClick", function()
-		ShowUIPanel(self.Frame);
+		self.Frame:Show();
 	end);
     self.Button = button;
 end

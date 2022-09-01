@@ -187,16 +187,74 @@ options.OptionsTable.args["Layout"] = {
                     inline = true,
                     args = {
                         Movable = {
-                            order = 1.1, type = "toggle", width = 1.5,
+                            order = 1.1, type = "toggle", width = "normal",
                             name = addon.L["Make windows movable"],
-                            desc = addon.ReplaceVarsWithReloadReq(addon.L["Make windows movable Desc"]),
+                            desc = addon.L["Make windows movable Desc"],
                             get = function() return addon.Options.db.Window.Movable; end,
                             set = function()
                                 addon.Options.db.Window.Movable = not addon.Options.db.Window.Movable;
                                 addon.MakeWindowMovable();
                                 options.Debug(addon.L["Make window movable"], addon.Options.db.Window.Movable);
                             end
-                        }
+                        },
+                        Blank12 = {order = 1.2, type = "description", width = "double", name = ""},
+                        AchievementWindow = {
+                            order = 2, type = "toggle", width = "full",
+                            name = addon.L["Remember frame position over sessions"]:ReplaceVars
+                            {
+                                frame = addon.L["Achievement Window"]
+                            },
+                            desc = addon.L["Remember frame position over sessions Desc"]:ReplaceVars
+                            {
+                                frame = addon.L["Achievement Window"]
+                            },
+                            get = function() return addon.Options.db.Window.RememberLastPosition.AchievementWindow; end,
+                            set = function()
+                                addon.Options.db.Window.RememberLastPosition.AchievementWindow = not addon.Options.db.Window.RememberLastPosition.AchievementWindow;
+                                options.Debug(addon.L["Remember frame position over sessions"]:ReplaceVars
+                                {
+                                    frame = addon.L["Achievement Window"]
+                                }, addon.Options.db.Window.RememberLastPosition.AchievementWindow);
+                            end
+                        },
+                        Calendar = {
+                            order = 3, type = "toggle", width = "full",
+                            name = addon.L["Remember frame position over sessions"]:ReplaceVars
+                            {
+                                frame = addon.L["Achievement Calendar"]
+                            },
+                            desc = addon.L["Remember frame position over sessions Desc"]:ReplaceVars
+                            {
+                                frame = addon.L["Achievement Calendar"]
+                            },
+                            get = function() return addon.Options.db.Window.RememberLastPosition.Calendar; end,
+                            set = function()
+                                addon.Options.db.Window.RememberLastPosition.Calendar = not addon.Options.db.Window.RememberLastPosition.Calendar;
+                                options.Debug(addon.L["Remember frame position over sessions"]:ReplaceVars
+                                {
+                                    frame = addon.L["Achievement Calendar"]
+                                }, addon.Options.db.Window.RememberLastPosition.Calendar);
+                            end
+                        },
+                        DataManager = {
+                            order = 4, type = "toggle", width = "full",
+                            name = addon.L["Remember frame position over sessions"]:ReplaceVars
+                            {
+                                frame = addon.L["Data Manager"]
+                            },
+                            desc = addon.L["Remember frame position over sessions Desc"]:ReplaceVars
+                            {
+                                frame = addon.L["Data Manager"]
+                            },
+                            get = function() return addon.Options.db.Window.RememberLastPosition.DataManager; end,
+                            set = function()
+                                addon.Options.db.Window.RememberLastPosition.DataManager = not addon.Options.db.Window.RememberLastPosition.DataManager;
+                                options.Debug(addon.L["Remember frame position over sessions"]:ReplaceVars
+                                {
+                                    frame = addon.L["Data Manager"]
+                                }, addon.Options.db.Window.RememberLastPosition.DataManager);
+                            end
+                        },
                     }
                 },
                 Offsets = {
