@@ -345,39 +345,15 @@ local function MakeMovable(frame, rememberLastPositionOption, target)
     end);
 end
 
-function addon.ResetAchievementWindowPosition()
-    SavedData.RememberLastPosition = SavedData.RememberLastPosition or {};
-    SavedData.RememberLastPosition["AchievementWindow"] = {
-        X = 96,
-        Y = -116
-    };
-end
-
-function addon.ResetAchievementCalendarPosition()
-    SavedData.RememberLastPosition = SavedData.RememberLastPosition or {};
-    SavedData.RememberLastPosition["Calendar"] = {
-        X = 150,
-        Y = -80
-    };
-end
-
-function addon.ResetDataManagerPosition()
-    SavedData.RememberLastPosition = SavedData.RememberLastPosition or {};
-    SavedData.RememberLastPosition["DataManager"] = {
-        X = 150,
-        Y = -80
-    };
-end
-
 function addon.MakeWindowMovable()
     if not SavedData.RememberLastPosition["AchievementWindow"] then
-        addon.ResetAchievementWindowPosition();
+        addon.GUI.ResetAchievementWindowPosition();
     end
     if not SavedData.RememberLastPosition["Calendar"] then
-        addon.ResetAchievementCalendarPosition();
+        addon.GUI.Calendar:ResetFramePosition();
     end
     if not SavedData.RememberLastPosition["DataManager"] then
-        addon.ResetDataManagerPosition();
+        addon.GUI.DataManagerFrame:ResetPosition();
     end
 
     if not addon.Options.db.Window.Movable then

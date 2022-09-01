@@ -80,6 +80,20 @@ function gui:LoadWithBlizzard_AchievementUI()
     diagnostics.Debug("GUI loaded");
 end
 
+function gui.ResetAchievementWindowPosition()
+    SavedData.RememberLastPosition = SavedData.RememberLastPosition or {};
+    SavedData.RememberLastPosition["AchievementWindow"] = {
+        X = 96,
+        Y = -116
+    };
+    if not AchievementFrame or not AchievementFrameHeader then
+        return;
+    end
+    local pos = SavedData.RememberLastPosition["AchievementWindow"];
+    AchievementFrame:ClearAllPoints();
+    AchievementFrame:SetPoint("TOPLEFT", pos.X, pos.Y);
+end
+
 function gui.SetCloseButtonOnKeyDown()
     AchievementFrameCloseButton:SetScript("OnKeyDown", function(selfFunc, key)
         if key == GetBindingKey("TOGGLEGAMEMENU") then

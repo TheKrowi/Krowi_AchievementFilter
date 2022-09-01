@@ -212,7 +212,7 @@ options.OptionsTable.args["Layout"] = {
                             set = function()
                                 addon.Options.db.Window.RememberLastPosition.AchievementWindow = not addon.Options.db.Window.RememberLastPosition.AchievementWindow;
                                 if not addon.Options.db.Window.RememberLastPosition.AchievementWindow then
-                                    addon.ResetAchievementWindowPosition();
+                                    addon.GUI.ResetAchievementWindowPosition();
                                 end
                                 options.Debug(addon.L["Remember frame position over sessions"]:ReplaceVars
                                 {
@@ -227,7 +227,9 @@ options.OptionsTable.args["Layout"] = {
                             {
                                 frame = addon.L["Achievement Window"]
                             },
-                            func = addon.ResetAchievementWindowPosition
+                            func = function()
+                                addon.GUI.ResetAchievementWindowPosition();
+                            end
                         },
                         Calendar = {
                             order = 3.1, type = "toggle", width = "double",
@@ -243,7 +245,7 @@ options.OptionsTable.args["Layout"] = {
                             set = function()
                                 addon.Options.db.Window.RememberLastPosition.Calendar = not addon.Options.db.Window.RememberLastPosition.Calendar;
                                 if not addon.Options.db.Window.RememberLastPosition.Calendar then
-                                    addon.ResetAchievementCalendarPosition();
+                                    addon.GUI.Calendar:ResetFramePosition();
                                 end
                                 options.Debug(addon.L["Remember frame position over sessions"]:ReplaceVars
                                 {
@@ -258,7 +260,9 @@ options.OptionsTable.args["Layout"] = {
                             {
                                 frame = addon.L["Achievement Calendar"]
                             },
-                            func = addon.ResetAchievementCalendarPosition
+                            func = function()
+                                addon.GUI.Calendar:ResetFramePosition();
+                            end
                         },
                         DataManager = {
                             order = 4.1, type = "toggle", width = "double",
@@ -274,7 +278,7 @@ options.OptionsTable.args["Layout"] = {
                             set = function()
                                 addon.Options.db.Window.RememberLastPosition.DataManager = not addon.Options.db.Window.RememberLastPosition.DataManager;
                                 if not addon.Options.db.Window.RememberLastPosition.DataManager then
-                                    addon.ResetDataManagerPosition();
+                                    addon.GUI.DataManagerFrame:ResetPosition();
                                 end
                                 options.Debug(addon.L["Remember frame position over sessions"]:ReplaceVars
                                 {
@@ -289,7 +293,9 @@ options.OptionsTable.args["Layout"] = {
                             {
                                 frame = addon.L["Data Manager"]
                             },
-                            func = addon.ResetDataManagerPosition
+                            func = function()
+                                addon.GUI.DataManagerFrame:ResetPosition();
+                            end
                         },
                     }
                 },
