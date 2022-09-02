@@ -20,7 +20,7 @@ function KrowiAF_CategoriesFrameMixin:Show_Hide(func, offsetX)
 end
 
 local function GetDisplayCategories(displayCategories, category, getAchNums)
-	if category.NotHidden or category.AlwaysVisible then -- If already visible, keep visible
+	if category.NotHidden or category.AlwaysVisible or category.HasFlexibleData then -- If already visible, keep visible
 		if (category.NumOfAch == nil or getAchNums or category.HasFlexibleData) and category.Parent.TabName ~= nil then
 			-- Huge increase over performance if we cache the achievement numbers and only update them when needed,
 			-- only for the top level categories since it works recursive

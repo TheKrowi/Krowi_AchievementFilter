@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-19 07-49-05 ]] --
+-- [[ Exported at 2022-09-02 16-31-45 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -9,7 +9,7 @@ addon.ExtraWrathStrings.enUS = {};
 local extraWrathStrings = addon.ExtraWrathStrings.enUS;
 
 function extraWrathStrings.Load(L)
-    if addon.IsNotWotLKClassic() then
+    if addon.IsNotWrathClassic() then
         return;
     end
 

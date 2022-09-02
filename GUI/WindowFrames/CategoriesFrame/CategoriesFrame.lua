@@ -41,7 +41,7 @@ end
 function KrowiAF_CategoriesFrame_OnShow(self) -- Used in Templates - KrowiAF_CategoriesFrame_Template
 	AchievementFrameCategories:Hide(); -- Issue #11: Fix
 	AchievementFrameFilterDropDown:Hide();
-	if addon.IsNotWotLKClassic() then
+	if addon.IsNotWrathClassic() then
 		AchievementFrame.searchBox:Hide();
 		AchievementFrameHeaderLeftDDLInset:Show();
 	end
@@ -55,11 +55,11 @@ function KrowiAF_CategoriesFrame_OnHide() -- Used in Templates - KrowiAF_Categor
 	AchievementFrameCategoriesBG:SetWidth(195); -- Set back to default value
 	if not AchievementFrameAchievements:IsShown() then
 		AchievementFrameFilterDropDown:Hide();
-		if addon.IsNotWotLKClassic() then
+		if addon.IsNotWrathClassic() then
 			AchievementFrameHeaderLeftDDLInset:Hide();
 		end
 	end
-	if addon.IsNotWotLKClassic() then
+	if addon.IsNotWrathClassic() then
 		AchievementFrame.searchBox:Show();
 	end
 end

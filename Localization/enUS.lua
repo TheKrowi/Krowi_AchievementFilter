@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-19 07-49-05 ]] --
+-- [[ Exported at 2022-09-02 16-31-45 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -216,12 +216,18 @@ L["Layout"] = "Layout";
 L["Window"] = "Window";
 L["Movable"] = "Movable";
 L["Make windows movable"] = "Make windows movable";
-L["Make windows movable Desc"] = "Makes the Achievement window and Calendar view movable/not movable.\n\nWhen checked, keeping the left mouse button pressed moves the Achievement window. This works on the header and borders.\n\n{reloadRequired}";
+L["Make windows movable Desc"] = "Makes the Achievement window and Calendar view movable/not movable.\n\nWhen checked, keeping the left mouse button pressed moves the Achievement window. This works on the header and borders.";
+L["Remember frame position"] = "Remember {frame} position";
+L["Remember frame position Desc"] = "Remember the {frame} position. This will keep the {frame} in it's last known position the next time you log in.";
+L["Achievement Window"] = "Achievement Window";
+L["Achievement Calendar"] = "Achievement Calendar";
+L["Reset position"] = "Reset position";
+L["Reset position Desc"] = "Reset the {frame} to it's default position.";
 L["Offsets"] = "Offsets";
 L["Categories width offset"] = "Categories width offset";
-L["Categories width offset Desc"] = "The width that will be added to or subtracted from the default categories width.\n\nThis value can be changed while the achievement window is open and having one of the tabs selected added by {addonName}. This might have an impac (1) on the game.\n\n(1) FPS drops and stuttering while adjusting the value, NOT during normal addon use";
+L["Categories width offset Desc"] = "The width that will be added to or subtracted from the default categories width.\n\nThis value can be changed while the achievement window is open and having one of the tabs selected added by {addonName}. This might have an impact (1) on the game.\n\n(1) FPS drops and stuttering while adjusting the value, NOT during normal addon use";
 L["Achievement window height offset"] = "Achievement window height offset";
-L["Achievement window height offset Desc"] = "The height that will be added to or subtracted from the default achievement window height.\n\nThis value can be changed while the achievement window is open and having one of the tabs selected added by {addonName}. This might have an impac (1) on the game.\n\n(1) FPS drops and stuttering while adjusting the value, NOT during normal addon use\n\n{reloadRequired}";
+L["Achievement window height offset Desc"] = "The height that will be added to or subtracted from the default achievement window height.\n\nThis value can be changed while the achievement window is open and having one of the tabs selected added by {addonName}. This might have an impact (1) on the game.\n\n(1) FPS drops and stuttering while adjusting the value, NOT during normal addon use\n\n{reloadRequired}";
 L["Blizzard"] = "Blizzard";
 L["Order"] = "Order";
 L["Tab"] = "Tab";
@@ -256,7 +262,7 @@ L["Include all Desc"] = "Include all excluded achievements.";
 L["Show Not Obtainable"] = "Show {notObtainable}";
 L["Show Not Obtainable Desc"] = "Show / hide {notObtainable} achievements in red on the progress bar.";
 L["Merge small categories threshold"] = "Merge small categories threshold";
-L["Merge small categories threshold Desc"] = "Categories with a number of achievements lower than this number will merge into the parent category.\n\nOnly preset categories can merge (mostly child categories from zones). This might have an impac (1) on the game.\n\n(1) FPS drops and stuttering while adjusting the value, NOT during normal addon use";
+L["Merge small categories threshold Desc"] = "Categories with a number of achievements lower than this number will merge into the parent category.\n\nOnly preset categories can merge (mostly child categories from zones). This might have an impact (1) on the game.\n\n(1) FPS drops and stuttering while adjusting the value, NOT during normal addon use";
 L["Style"] = "Style";
 L["Compact Achievements"] = "Compact Achievements";
 L["Compact Achievements Desc"] = "Achievements are 2/3rd the size, similar to the summary achievements.\n\n{reloadRequired}";

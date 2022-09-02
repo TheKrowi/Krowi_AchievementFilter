@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-13 13-32-35 ]] --
+-- [[ Exported at 2022-08-31 18-43-06 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -43,26 +43,26 @@ function exportedWorldEvents.LoadCategories(e, a)
         exportedWorldEvents.Load(e);
     end
 
-    e[5175].Category = addon.Tabs["Events"].Categories[6].Children[1]; -- Legion Assaults
-    e[5177].Category = addon.Tabs["Events"].Categories[6].Children[1]; -- Legion Assaults
-    e[5178].Category = addon.Tabs["Events"].Categories[6].Children[1]; -- Legion Assaults
-    e[5210].Category = addon.Tabs["Events"].Categories[6].Children[1]; -- Legion Assaults
-    e[5896].Category = addon.Tabs["Events"].Categories[7].Children[1].Children[1]; -- Assault on Tiragarde Sound
-    e[5964].Category = addon.Tabs["Events"].Categories[7].Children[1].Children[2]; -- Assault on Drustvar
-    e[5966].Category = addon.Tabs["Events"].Categories[7].Children[1].Children[3]; -- Assault on Stormsong Valley
-    e[5969].Category = addon.Tabs["Events"].Categories[7].Children[1].Children[5]; -- Assault on Nazmir
-    e[5970].Category = addon.Tabs["Events"].Categories[7].Children[1].Children[6]; -- Assault on Vol'dun
-    e[5973].Category = addon.Tabs["Events"].Categories[7].Children[1].Children[4]; -- Assault on Zuldazar
-    e[6486].Category = addon.Tabs["Events"].Categories[7].Children[2].Children[2]; -- Uldum
-    e[6487].Category = addon.Tabs["Events"].Categories[7].Children[2].Children[2]; -- Uldum
-    e[6488].Category = addon.Tabs["Events"].Categories[7].Children[2].Children[2]; -- Uldum
-    e[6489].Category = addon.Tabs["Events"].Categories[7].Children[2].Children[1]; -- Vale of Eternal Blossoms
-    e[6490].Category = addon.Tabs["Events"].Categories[7].Children[2].Children[1]; -- Vale of Eternal Blossoms
-    e[6491].Category = addon.Tabs["Events"].Categories[7].Children[2].Children[1]; -- Vale of Eternal Blossoms
-    e[6989].Category = addon.Tabs["Events"].Categories[8].Children[1].Children[2]; -- Necrolords Assault
-    e[6990].Category = addon.Tabs["Events"].Categories[8].Children[1].Children[4]; -- Venthyr Assault
-    e[6991].Category = addon.Tabs["Events"].Categories[8].Children[1].Children[1]; -- Kyrian Assault
-    e[6992].Category = addon.Tabs["Events"].Categories[8].Children[1].Children[3]; -- Night Fae Assault
+    e[5175].Category = addon.Tabs["Events"].Categories[9].Children[1]; -- Legion Assaults
+    e[5177].Category = addon.Tabs["Events"].Categories[9].Children[1]; -- Legion Assaults
+    e[5178].Category = addon.Tabs["Events"].Categories[9].Children[1]; -- Legion Assaults
+    e[5210].Category = addon.Tabs["Events"].Categories[9].Children[1]; -- Legion Assaults
+    e[5896].Category = addon.Tabs["Events"].Categories[10].Children[1].Children[1]; -- Assault on Tiragarde Sound
+    e[5964].Category = addon.Tabs["Events"].Categories[10].Children[1].Children[2]; -- Assault on Drustvar
+    e[5966].Category = addon.Tabs["Events"].Categories[10].Children[1].Children[3]; -- Assault on Stormsong Valley
+    e[5969].Category = addon.Tabs["Events"].Categories[10].Children[1].Children[5]; -- Assault on Nazmir
+    e[5970].Category = addon.Tabs["Events"].Categories[10].Children[1].Children[6]; -- Assault on Vol'dun
+    e[5973].Category = addon.Tabs["Events"].Categories[10].Children[1].Children[4]; -- Assault on Zuldazar
+    e[6486].Category = addon.Tabs["Events"].Categories[10].Children[2].Children[2]; -- Uldum
+    e[6487].Category = addon.Tabs["Events"].Categories[10].Children[2].Children[2]; -- Uldum
+    e[6488].Category = addon.Tabs["Events"].Categories[10].Children[2].Children[2]; -- Uldum
+    e[6489].Category = addon.Tabs["Events"].Categories[10].Children[2].Children[1]; -- Vale of Eternal Blossoms
+    e[6490].Category = addon.Tabs["Events"].Categories[10].Children[2].Children[1]; -- Vale of Eternal Blossoms
+    e[6491].Category = addon.Tabs["Events"].Categories[10].Children[2].Children[1]; -- Vale of Eternal Blossoms
+    e[6989].Category = addon.Tabs["Events"].Categories[11].Children[1].Children[2]; -- Necrolords Assault
+    e[6990].Category = addon.Tabs["Events"].Categories[11].Children[1].Children[4]; -- Venthyr Assault
+    e[6991].Category = addon.Tabs["Events"].Categories[11].Children[1].Children[1]; -- Kyrian Assault
+    e[6992].Category = addon.Tabs["Events"].Categories[11].Children[1].Children[3]; -- Night Fae Assault
 end
 
 function exportedWorldEvents.InjectOptions()
@@ -386,6 +386,17 @@ function exportedWorldEvents.InjectOptions()
                     addon.Options.db.EventReminders.WorldEvents[6990] = false;
                     addon.Options.db.EventReminders.WorldEvents[6991] = false;
                     addon.Options.db.EventReminders.WorldEvents[6992] = false;
+                end
+            },
+            Blank36 = {order = 36, type = "description", width = "full", name = ""},
+            Blank37 = {order = 37, type = "description", width = "double", name = ""},
+            RefreshEvents38 = {
+                order = 38, type = "execute",
+                name = addon.L["Refresh Events"],
+                desc = addon.L["Requires a reload"],
+                func = function()
+                    EventDetails.WorldEvents = nil;
+                    addon.EventData.Load();
                 end
             },
         }

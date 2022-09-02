@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-13 13-32-35 ]] --
+-- [[ Exported at 2022-08-31 18-43-06 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -12,7 +12,7 @@ data.ExportedWidgetEvents = {};
 local exportedWidgetEvents = data.ExportedWidgetEvents;
 
 function exportedWidgetEvents.Load(e)
-    if addon.IsWotLKClassic() then
+    if addon.IsWrathClassic() then
         return;
     end
 
@@ -29,7 +29,7 @@ function exportedWidgetEvents.Load(e)
 end
 
 function exportedWidgetEvents.LoadCategories(e, a)
-    if addon.IsWotLKClassic() then
+    if addon.IsWrathClassic() then
         return;
     end
 
@@ -37,16 +37,16 @@ function exportedWidgetEvents.LoadCategories(e, a)
         exportedWidgetEvents.Load(e);
     end
 
-    e[2924].Category = addon.Tabs["Expansions"].Categories[10].Children[6]; -- Torghast
-    e[2925].Category = addon.Tabs["Expansions"].Categories[10].Children[6]; -- Torghast
-    e[2926].Category = addon.Tabs["Expansions"].Categories[10].Children[6]; -- Torghast
-    e[2927].Category = addon.Tabs["Expansions"].Categories[10].Children[6]; -- Torghast
-    e[2928].Category = addon.Tabs["Expansions"].Categories[10].Children[6]; -- Torghast
-    e[2929].Category = addon.Tabs["Expansions"].Categories[10].Children[6]; -- Torghast
+    e[2924].Category = addon.Tabs["Expansions"].Categories[13].Children[6]; -- Torghast
+    e[2925].Category = addon.Tabs["Expansions"].Categories[13].Children[6]; -- Torghast
+    e[2926].Category = addon.Tabs["Expansions"].Categories[13].Children[6]; -- Torghast
+    e[2927].Category = addon.Tabs["Expansions"].Categories[13].Children[6]; -- Torghast
+    e[2928].Category = addon.Tabs["Expansions"].Categories[13].Children[6]; -- Torghast
+    e[2929].Category = addon.Tabs["Expansions"].Categories[13].Children[6]; -- Torghast
 end
 
 function exportedWidgetEvents.InjectOptions()
-    if addon.IsWotLKClassic() then
+    if addon.IsWrathClassic() then
         return;
     end
 
@@ -152,6 +152,17 @@ function exportedWidgetEvents.InjectOptions()
                     addon.Options.db.EventReminders.WidgetEvents[2927] = false;
                     addon.Options.db.EventReminders.WidgetEvents[2928] = false;
                     addon.Options.db.EventReminders.WidgetEvents[2929] = false;
+                end
+            },
+            Blank12 = {order = 12, type = "description", width = "full", name = ""},
+            Blank13 = {order = 13, type = "description", width = "double", name = ""},
+            RefreshEvents14 = {
+                order = 14, type = "execute",
+                name = addon.L["Refresh Events"],
+                desc = addon.L["Requires a reload"],
+                func = function()
+                    EventDetails.WidgetEvents = nil;
+                    addon.EventData.Load();
                 end
             },
         }

@@ -43,7 +43,7 @@ function achFrameTabBtn:New(text, framesToShow, categories, filters, waterMark)
         frame.OnClick = frame.Comparison_OnClick;
     end);
 
-    if addon.IsNotWotLKClassic() then
+    if addon.IsNotWrathClassic() then
         hooksecurefunc("AchievementFrame_UpdateTabs", function(clickedTab) -- Issue #1: Broken
             frame:AchievementFrame_UpdateTabs(frame, frame.ID, clickedTab);
         end);
@@ -57,7 +57,7 @@ function achFrameTabBtn:New(text, framesToShow, categories, filters, waterMark)
 end
 
 function achFrameTabBtn:Base_OnClick(id)
-    if addon.IsNotWotLKClassic() then
+    if addon.IsNotWrathClassic() then
 	    AchievementFrame_UpdateTabs(id);
     else
         PanelTemplates_Tab_OnClick(_G["AchievementFrameTab" .. id], AchievementFrame);
@@ -123,7 +123,7 @@ function achFrameTabBtn:AchievementFrame_UpdateTabs(thisTab, thisTabID, clickedT
         thisTab.text:SetPoint("CENTER", 0, -3);
     end
 
-    if addon.IsWotLKClassic() then -- We have to set this manually because this is normally done in the OnClick of each tab
+    if addon.IsWrathClassic() then -- We have to set this manually because this is normally done in the OnClick of each tab
         AchievementFrameTab1.text:SetPoint("CENTER", AchievementFrameTab1, "CENTER", 0, -3);
         AchievementFrameTab2.text:SetPoint("CENTER", AchievementFrameTab2, "CENTER", 0, -3);
     end

@@ -20,7 +20,7 @@ function KrowiAF_AchievementButtonMixin:PostLoad(scrollFrame)
 end
 
 local cachedWidth;
-function KrowiAF_AchievementButtonMixin:DisplayObjectives()
+function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
 	local objectives = addon.GUI.AchievementsObjectives;
 	local topAnchor = self.HiddenDescription;
 
@@ -32,7 +32,7 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives()
 	objectives.FontHeight = self.FontHeight;
 	local height = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT; -- Compact or not, we need this height
 	local id = self.Achievement.Id;
-	if objectives.Id == id and cachedWidth == objectives:GetWidth() then
+	if objectives.Id == id and cachedWidth == objectives:GetWidth() and not forced then
 		-- Cached, nothing to do
 	elseif self.Completed and GetPreviousAchievement(id) then
 		objectives:SetHeight(1);
@@ -247,13 +247,13 @@ function KrowiAF_AchievementButtonMixin:UpdatePlusMinusTexture()
 
 	self.PlusMinus:Show();
 	if self.collapsed and self.saturatedStyle then
-		self.PlusMinus:SetTexCoord(0, 0.5, 0, addon.IsNotWotLKClassic() and 0.25 or 0.5);
+		self.PlusMinus:SetTexCoord(0, 0.5, 0, addon.IsNotWrathClassic() and 0.25 or 0.5);
 	elseif self.collapsed then
-		self.PlusMinus:SetTexCoord(0.5, 1, 0, addon.IsNotWotLKClassic() and 0.25 or 0.5);
+		self.PlusMinus:SetTexCoord(0.5, 1, 0, addon.IsNotWrathClassic() and 0.25 or 0.5);
 	elseif self.saturatedStyle then
-		self.PlusMinus:SetTexCoord(0, 0.5, addon.IsNotWotLKClassic() and 0.25 or 0.5, addon.IsNotWotLKClassic() and 0.5 or 1);
+		self.PlusMinus:SetTexCoord(0, 0.5, addon.IsNotWrathClassic() and 0.25 or 0.5, addon.IsNotWrathClassic() and 0.5 or 1);
 	else
-		self.PlusMinus:SetTexCoord(0.5, 1, addon.IsNotWotLKClassic() and 0.25 or 0.5, addon.IsNotWotLKClassic() and 0.5 or 1);
+		self.PlusMinus:SetTexCoord(0.5, 1, addon.IsNotWrathClassic() and 0.25 or 0.5, addon.IsNotWrathClassic() and 0.5 or 1);
 	end
 end
 
@@ -365,7 +365,7 @@ function KrowiAF_AchievementButtonMixin:Saturate()
 	self.Glow:SetVertexColor(1, 1, 1);
 	self.Icon.Texture:SetVertexColor(1, 1, 1, 1);
 	self.Icon.Border:SetVertexColor(1, 1, 1, 1);
-	self.Shield.Icon:SetTexCoord(0, 0.5, 0, addon.IsNotWotLKClassic() and 0.5 or 1);
+	self.Shield.Icon:SetTexCoord(0, 0.5, 0, addon.IsNotWrathClassic() and 0.5 or 1);
 	self.Reward:SetVertexColor(1, 0.82, 0);
 	self.Header:SetVertexColor(1, 1, 1);
 	self.Description:SetTextColor(0, 0, 0, 1);
@@ -403,7 +403,7 @@ function KrowiAF_AchievementButtonMixin:Desaturate()
 	self.Glow:SetVertexColor(0.22, 0.17, 0.13);
 	self.Icon.Texture:SetVertexColor(0.55, 0.55, 0.55, 1);
 	self.Icon.Border:SetVertexColor(0.75, 0.75, 0.75, 1);
-	self.Shield.Icon:SetTexCoord(0.5, 1, 0, addon.IsNotWotLKClassic() and 0.5 or 1);
+	self.Shield.Icon:SetTexCoord(0.5, 1, 0, addon.IsNotWrathClassic() and 0.5 or 1);
 	self.Shield.Points:SetVertexColor(0.65, 0.65, 0.65);
 	self.Reward:SetVertexColor(0.8, 0.8, 0.8);
 	self.Header:SetVertexColor(0.65, 0.65, 0.65);

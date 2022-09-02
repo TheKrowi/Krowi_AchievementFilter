@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-14 19-06-04 ]] --
+-- [[ Exported at 2022-08-28 10-17-54 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -20,6 +20,10 @@ end
 
 function exportedCategories.Load(a)
     local tmp = {};
+    local focusedCategories = {};
+    local currentZoneCategories = {};
+    local selectedZoneCategories = {};
+    local excludedCategories = {};
     tmp[1100] = cat:New(addon.L["Achievements"]); -- TAB - Achievements
     tmp[1100].TabName = "Achievements";
     local achievements = tmp[1100];
@@ -27,6 +31,26 @@ function exportedCategories.Load(a)
     AddC(tmp[1100], tmp[1202]);
     tmp[1202].AlwaysVisible = true;
     tmp[1202].IsSummary = true;
+    tmp[1216] = cat:New(addon.L["Focused"]); -- Focused
+    AddC(tmp[1100], tmp[1216]);
+    tmp[1216].HasFlexibleData = true;
+    tinsert(focusedCategories, tmp[1216]);
+    tmp[1216].IsFocused = true;
+    tmp[1212] = cat:New(addon.L["Current Zone"]); -- Current Zone
+    AddC(tmp[1100], tmp[1212]);
+    tmp[1212].HasFlexibleData = true;
+    tinsert(currentZoneCategories, tmp[1212]);
+    tmp[1212].IsCurrentZone = true;
+    tmp[1220] = cat:New(addon.L["Selected Zone"]); -- Selected Zone
+    AddC(tmp[1100], tmp[1220]);
+    tmp[1220].HasFlexibleData = true;
+    tinsert(selectedZoneCategories, tmp[1220]);
+    tmp[1220].IsSelectedZone = true;
+    tmp[1224] = cat:New(addon.L["Excluded"]); -- Excluded
+    AddC(tmp[1100], tmp[1224]);
+    tmp[1224].HasFlexibleData = true;
+    tinsert(excludedCategories, tmp[1224]);
+    tmp[1224].IsExcluded = true;
     tmp[883] = cat:New(addon.L["Expansions"]); -- TAB - Expansions
     tmp[883].TabName = "Expansions";
     local expansions = tmp[883];
@@ -34,6 +58,21 @@ function exportedCategories.Load(a)
     AddC(tmp[883], tmp[1203]);
     tmp[1203].AlwaysVisible = true;
     tmp[1203].IsSummary = true;
+    tmp[1217] = cat:New(addon.L["Focused"]); -- Focused
+    AddC(tmp[883], tmp[1217]);
+    tmp[1217].HasFlexibleData = true;
+    tinsert(focusedCategories, tmp[1217]);
+    tmp[1217].IsFocused = true;
+    tmp[1213] = cat:New(addon.L["Current Zone"]); -- Current Zone
+    AddC(tmp[883], tmp[1213]);
+    tmp[1213].HasFlexibleData = true;
+    tinsert(currentZoneCategories, tmp[1213]);
+    tmp[1213].IsCurrentZone = true;
+    tmp[1223] = cat:New(addon.L["Selected Zone"]); -- Selected Zone
+    AddC(tmp[883], tmp[1223]);
+    tmp[1223].HasFlexibleData = true;
+    tinsert(selectedZoneCategories, tmp[1223]);
+    tmp[1223].IsSelectedZone = true;
     tmp[1] = cat:New(addon.GetCategoryInfoTitle(14864)); -- Classic
     AddC(tmp[883], tmp[1]);
     tmp[648] = cat:New(addon.L["Zones"]); -- Zones
@@ -5975,6 +6014,11 @@ function exportedCategories.Load(a)
     AddA(tmp[1172], a[4496]); -- It's Over Nine Thousand!
     AddA(tmp[1172], a[3636]); -- Jade Tiger
     AddA(tmp[1172], a[3896]); -- Onyx Panther
+    tmp[1225] = cat:New(addon.L["Excluded"]); -- Excluded
+    AddC(tmp[883], tmp[1225]);
+    tmp[1225].HasFlexibleData = true;
+    tinsert(excludedCategories, tmp[1225]);
+    tmp[1225].IsExcluded = true;
     tmp[884] = cat:New(addon.L["Events"]); -- TAB - Events
     tmp[884].TabName = "Events";
     local events = tmp[884];
@@ -5982,6 +6026,21 @@ function exportedCategories.Load(a)
     AddC(tmp[884], tmp[1206]);
     tmp[1206].AlwaysVisible = true;
     tmp[1206].IsSummary = true;
+    tmp[1218] = cat:New(addon.L["Focused"]); -- Focused
+    AddC(tmp[884], tmp[1218]);
+    tmp[1218].HasFlexibleData = true;
+    tinsert(focusedCategories, tmp[1218]);
+    tmp[1218].IsFocused = true;
+    tmp[1214] = cat:New(addon.L["Current Zone"]); -- Current Zone
+    AddC(tmp[884], tmp[1214]);
+    tmp[1214].HasFlexibleData = true;
+    tinsert(currentZoneCategories, tmp[1214]);
+    tmp[1214].IsCurrentZone = true;
+    tmp[1221] = cat:New(addon.L["Selected Zone"]); -- Selected Zone
+    AddC(tmp[884], tmp[1221]);
+    tmp[1221].HasFlexibleData = true;
+    tinsert(selectedZoneCategories, tmp[1221]);
+    tmp[1221].IsSelectedZone = true;
     tmp[918] = cat:New(addon.L["Holidays"]); -- Holidays
     AddC(tmp[884], tmp[918]);
     AddA(tmp[918], a[2144]); -- "What a Long, Strange Trip It's Been"
@@ -6464,6 +6523,11 @@ function exportedCategories.Load(a)
     AddA(tmp[1174], a[2079]); -- Tabard of the Protector
     AddA(tmp[1174], a[2116]); -- Tabard of the Argent Dawn
     AddA(tmp[1174], a[11395]); -- Diablo's 20th Anniversary
+    tmp[1226] = cat:New(addon.L["Excluded"]); -- Excluded
+    AddC(tmp[884], tmp[1226]);
+    tmp[1226].HasFlexibleData = true;
+    tinsert(excludedCategories, tmp[1226]);
+    tmp[1226].IsExcluded = true;
     tmp[955] = cat:New(addon.GetCategoryInfoTitle(95)); -- TAB - PvP
     tmp[955].TabName = "PvP";
     local pvp = tmp[955];
@@ -6471,6 +6535,21 @@ function exportedCategories.Load(a)
     AddC(tmp[955], tmp[1205]);
     tmp[1205].AlwaysVisible = true;
     tmp[1205].IsSummary = true;
+    tmp[1219] = cat:New(addon.L["Focused"]); -- Focused
+    AddC(tmp[955], tmp[1219]);
+    tmp[1219].HasFlexibleData = true;
+    tinsert(focusedCategories, tmp[1219]);
+    tmp[1219].IsFocused = true;
+    tmp[1215] = cat:New(addon.L["Current Zone"]); -- Current Zone
+    AddC(tmp[955], tmp[1215]);
+    tmp[1215].HasFlexibleData = true;
+    tinsert(currentZoneCategories, tmp[1215]);
+    tmp[1215].IsCurrentZone = true;
+    tmp[1222] = cat:New(addon.L["Selected Zone"]); -- Selected Zone
+    AddC(tmp[955], tmp[1222]);
+    tmp[1222].HasFlexibleData = true;
+    tinsert(selectedZoneCategories, tmp[1222]);
+    tmp[1222].IsSelectedZone = true;
     tmp[1162] = cat:New(addon.GetCategoryInfoTitle(95)); -- Player vs. Player
     AddC(tmp[955], tmp[1162]);
     AddA(tmp[1162], a[10561]); -- Honorable Medallion
@@ -7262,6 +7341,11 @@ function exportedCategories.Load(a)
     AddA(tmp[1191], a[15606]); -- Eternal Gladiator: Shadowlands Season 4
     AddA(tmp[1191], a[15608]); -- Hero of the Alliance: Eternal
     AddA(tmp[1191], a[15607]); -- Hero of the Horde: Eternal
+    tmp[1227] = cat:New(addon.L["Excluded"]); -- Excluded
+    AddC(tmp[955], tmp[1227]);
+    tmp[1227].HasFlexibleData = true;
+    tinsert(excludedCategories, tmp[1227]);
+    tmp[1227].IsExcluded = true;
     tmp[971] = cat:New(addon.L["Specials"]); -- TAB - Specials
     tmp[971].TabName = "Specials";
     local specials = tmp[971];
@@ -7272,16 +7356,18 @@ function exportedCategories.Load(a)
     tmp[949] = cat:New(addon.L["Focused"]); -- Focused
     AddC(tmp[971], tmp[949]);
     tmp[949].HasFlexibleData = true;
-    local focusedCategory = tmp[949];
+    tinsert(focusedCategories, tmp[949]);
+    tmp[949].IsFocused = true;
     tmp[433] = cat:New(addon.L["Current Zone"]); -- Current Zone
     AddC(tmp[971], tmp[433]);
-    tmp[433].AlwaysVisible = true;
     tmp[433].HasFlexibleData = true;
-    local currentZoneCategory = tmp[433];
+    tinsert(currentZoneCategories, tmp[433]);
+    tmp[433].IsCurrentZone = true;
     tmp[850] = cat:New(addon.L["Selected Zone"]); -- Selected Zone
     AddC(tmp[971], tmp[850]);
     tmp[850].HasFlexibleData = true;
-    local selectedZoneCategory = tmp[850];
+    tinsert(selectedZoneCategories, tmp[850]);
+    tmp[850].IsSelectedZone = true;
     tmp[972] = cat:New(addon.L["Bur's Mount Collection"]); -- Bur's Mount Collection
     AddC(tmp[971], tmp[972]);
     AddA(tmp[972], a[3356]); -- Winterspring Frostsaber
@@ -8071,7 +8157,8 @@ function exportedCategories.Load(a)
     tmp[857] = cat:New(addon.L["Excluded"]); -- Excluded
     AddC(tmp[971], tmp[857]);
     tmp[857].HasFlexibleData = true;
-    local excludedCategory = tmp[857];
+    tinsert(excludedCategories, tmp[857]);
+    tmp[857].IsExcluded = true;
 
     local tabs = {};
     tabs["Achievements"] = achievements.Children;
@@ -8079,6 +8166,284 @@ function exportedCategories.Load(a)
     tabs["Events"] = events.Children;
     tabs["PvP"] = pvp.Children;
     tabs["Specials"] = specials.Children;
-    return tabs, focusedCategory, currentZoneCategory, selectedZoneCategory, excludedCategory;
+    return tabs, focusedCategories, currentZoneCategories, selectedZoneCategories, excludedCategories;
+end
+
+function exportedCategories.InjectOptions()
+    local defaultsFocused = {};
+    defaultsFocused[1] = false;
+    defaultsFocused[2] = false;
+    defaultsFocused[3] = false;
+    defaultsFocused[4] = false;
+    defaultsFocused[5] = true;
+
+    addon.Options.InjectDefaults(defaultsFocused, "Focused", "AdjustableCategories");
+
+    local optionsTableFocused = {
+        order = 2, type = "group",
+        name = addon.L["Focused"],
+        inline = true,
+        args = {
+            Achievements = {
+                order = 1, type = "toggle",
+                name = addon.L["Achievements"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.Focused[1]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.Focused[1] = not addon.Options.db.AdjustableCategories.Focused[1];
+                    addon.Diagnostics.Debug(addon.L["Achievements"], addon.Options.db.AdjustableCategories.Focused[1]);
+                end
+            },
+            Expansions = {
+                order = 2, type = "toggle",
+                name = addon.L["Expansions"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.Focused[2]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.Focused[2] = not addon.Options.db.AdjustableCategories.Focused[2];
+                    addon.Diagnostics.Debug(addon.L["Expansions"], addon.Options.db.AdjustableCategories.Focused[2]);
+                end
+            },
+            Events = {
+                order = 3, type = "toggle",
+                name = addon.L["Events"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.Focused[3]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.Focused[3] = not addon.Options.db.AdjustableCategories.Focused[3];
+                    addon.Diagnostics.Debug(addon.L["Events"], addon.Options.db.AdjustableCategories.Focused[3]);
+                end
+            },
+            PvP = {
+                order = 4, type = "toggle",
+                name = addon.GetCategoryInfoTitle(95),
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.Focused[4]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.Focused[4] = not addon.Options.db.AdjustableCategories.Focused[4];
+                    addon.Diagnostics.Debug(addon.GetCategoryInfoTitle(95), addon.Options.db.AdjustableCategories.Focused[4]);
+                end
+            },
+            Specials = {
+                order = 5, type = "toggle",
+                name = addon.L["Specials"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.Focused[5]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.Focused[5] = not addon.Options.db.AdjustableCategories.Focused[5];
+                    addon.Diagnostics.Debug(addon.L["Specials"], addon.Options.db.AdjustableCategories.Focused[5]);
+                end
+            },
+        }
+    };
+
+    addon.Options.InjectOptionsTable(optionsTableFocused, "Focused", "Layout", "args", "AdjustableCategories", "args");
+
+    local defaultsCurrentZone = {};
+    defaultsCurrentZone[1] = false;
+    defaultsCurrentZone[2] = false;
+    defaultsCurrentZone[3] = false;
+    defaultsCurrentZone[4] = false;
+    defaultsCurrentZone[5] = true;
+
+    addon.Options.InjectDefaults(defaultsCurrentZone, "CurrentZone", "AdjustableCategories");
+
+    local optionsTableCurrentZone = {
+        order = 3, type = "group",
+        name = addon.L["Current Zone"],
+        inline = true,
+        args = {
+            Achievements = {
+                order = 1, type = "toggle",
+                name = addon.L["Achievements"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.CurrentZone[1]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.CurrentZone[1] = not addon.Options.db.AdjustableCategories.CurrentZone[1];
+                    addon.Diagnostics.Debug(addon.L["Achievements"], addon.Options.db.AdjustableCategories.CurrentZone[1]);
+                end
+            },
+            Expansions = {
+                order = 2, type = "toggle",
+                name = addon.L["Expansions"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.CurrentZone[2]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.CurrentZone[2] = not addon.Options.db.AdjustableCategories.CurrentZone[2];
+                    addon.Diagnostics.Debug(addon.L["Expansions"], addon.Options.db.AdjustableCategories.CurrentZone[2]);
+                end
+            },
+            Events = {
+                order = 3, type = "toggle",
+                name = addon.L["Events"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.CurrentZone[3]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.CurrentZone[3] = not addon.Options.db.AdjustableCategories.CurrentZone[3];
+                    addon.Diagnostics.Debug(addon.L["Events"], addon.Options.db.AdjustableCategories.CurrentZone[3]);
+                end
+            },
+            PvP = {
+                order = 4, type = "toggle",
+                name = addon.GetCategoryInfoTitle(95),
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.CurrentZone[4]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.CurrentZone[4] = not addon.Options.db.AdjustableCategories.CurrentZone[4];
+                    addon.Diagnostics.Debug(addon.GetCategoryInfoTitle(95), addon.Options.db.AdjustableCategories.CurrentZone[4]);
+                end
+            },
+            Specials = {
+                order = 5, type = "toggle",
+                name = addon.L["Specials"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.CurrentZone[5]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.CurrentZone[5] = not addon.Options.db.AdjustableCategories.CurrentZone[5];
+                    addon.Diagnostics.Debug(addon.L["Specials"], addon.Options.db.AdjustableCategories.CurrentZone[5]);
+                end
+            },
+        }
+    };
+
+    addon.Options.InjectOptionsTable(optionsTableCurrentZone, "CurrentZone", "Layout", "args", "AdjustableCategories", "args");
+
+    local defaultsSelectedZone = {};
+    defaultsSelectedZone[1] = false;
+    defaultsSelectedZone[2] = false;
+    defaultsSelectedZone[3] = false;
+    defaultsSelectedZone[4] = false;
+    defaultsSelectedZone[5] = true;
+
+    addon.Options.InjectDefaults(defaultsSelectedZone, "SelectedZone", "AdjustableCategories");
+
+    local optionsTableSelectedZone = {
+        order = 4, type = "group",
+        name = addon.L["Selected Zone"],
+        inline = true,
+        args = {
+            Achievements = {
+                order = 1, type = "toggle",
+                name = addon.L["Achievements"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.SelectedZone[1]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.SelectedZone[1] = not addon.Options.db.AdjustableCategories.SelectedZone[1];
+                    addon.Diagnostics.Debug(addon.L["Achievements"], addon.Options.db.AdjustableCategories.SelectedZone[1]);
+                end
+            },
+            Expansions = {
+                order = 2, type = "toggle",
+                name = addon.L["Expansions"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.SelectedZone[2]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.SelectedZone[2] = not addon.Options.db.AdjustableCategories.SelectedZone[2];
+                    addon.Diagnostics.Debug(addon.L["Expansions"], addon.Options.db.AdjustableCategories.SelectedZone[2]);
+                end
+            },
+            Events = {
+                order = 3, type = "toggle",
+                name = addon.L["Events"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.SelectedZone[3]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.SelectedZone[3] = not addon.Options.db.AdjustableCategories.SelectedZone[3];
+                    addon.Diagnostics.Debug(addon.L["Events"], addon.Options.db.AdjustableCategories.SelectedZone[3]);
+                end
+            },
+            PvP = {
+                order = 4, type = "toggle",
+                name = addon.GetCategoryInfoTitle(95),
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.SelectedZone[4]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.SelectedZone[4] = not addon.Options.db.AdjustableCategories.SelectedZone[4];
+                    addon.Diagnostics.Debug(addon.GetCategoryInfoTitle(95), addon.Options.db.AdjustableCategories.SelectedZone[4]);
+                end
+            },
+            Specials = {
+                order = 5, type = "toggle",
+                name = addon.L["Specials"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.SelectedZone[5]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.SelectedZone[5] = not addon.Options.db.AdjustableCategories.SelectedZone[5];
+                    addon.Diagnostics.Debug(addon.L["Specials"], addon.Options.db.AdjustableCategories.SelectedZone[5]);
+                end
+            },
+        }
+    };
+
+    addon.Options.InjectOptionsTable(optionsTableSelectedZone, "SelectedZone", "Layout", "args", "AdjustableCategories", "args");
+
+    local defaultsExcluded = {};
+    defaultsExcluded[1] = false;
+    defaultsExcluded[2] = false;
+    defaultsExcluded[3] = false;
+    defaultsExcluded[4] = false;
+    defaultsExcluded[5] = true;
+
+    addon.Options.InjectDefaults(defaultsExcluded, "Excluded", "AdjustableCategories");
+
+    local optionsTableExcluded = {
+        order = 5, type = "group",
+        name = addon.L["Excluded"],
+        inline = true,
+        args = {
+            Achievements = {
+                order = 1, type = "toggle",
+                name = addon.L["Achievements"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.Excluded[1]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.Excluded[1] = not addon.Options.db.AdjustableCategories.Excluded[1];
+                    addon.Diagnostics.Debug(addon.L["Achievements"], addon.Options.db.AdjustableCategories.Excluded[1]);
+                end
+            },
+            Expansions = {
+                order = 2, type = "toggle",
+                name = addon.L["Expansions"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.Excluded[2]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.Excluded[2] = not addon.Options.db.AdjustableCategories.Excluded[2];
+                    addon.Diagnostics.Debug(addon.L["Expansions"], addon.Options.db.AdjustableCategories.Excluded[2]);
+                end
+            },
+            Events = {
+                order = 3, type = "toggle",
+                name = addon.L["Events"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.Excluded[3]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.Excluded[3] = not addon.Options.db.AdjustableCategories.Excluded[3];
+                    addon.Diagnostics.Debug(addon.L["Events"], addon.Options.db.AdjustableCategories.Excluded[3]);
+                end
+            },
+            PvP = {
+                order = 4, type = "toggle",
+                name = addon.GetCategoryInfoTitle(95),
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.Excluded[4]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.Excluded[4] = not addon.Options.db.AdjustableCategories.Excluded[4];
+                    addon.Diagnostics.Debug(addon.GetCategoryInfoTitle(95), addon.Options.db.AdjustableCategories.Excluded[4]);
+                end
+            },
+            Specials = {
+                order = 5, type = "toggle",
+                name = addon.L["Specials"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.Excluded[5]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.Excluded[5] = not addon.Options.db.AdjustableCategories.Excluded[5];
+                    addon.Diagnostics.Debug(addon.L["Specials"], addon.Options.db.AdjustableCategories.Excluded[5]);
+                end
+            },
+        }
+    };
+
+    addon.Options.InjectOptionsTable(optionsTableExcluded, "Excluded", "Layout", "args", "AdjustableCategories", "args");
 end
 

@@ -50,6 +50,7 @@ local sortFuncs = {
 
 local function GetSortedCharacters(column)
     local characters = {};
+    SavedData.Characters = SavedData.Characters or {};
     for guid, character in next, SavedData.Characters do
         tinsert(characters, {
             Name = character.Name,

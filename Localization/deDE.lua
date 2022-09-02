@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-19 07-49-05 ]] --
+-- [[ Exported at 2022-09-02 16-31-45 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -216,7 +216,7 @@ L["Layout"] = "Layout";
 L["Window"] = "Fenster";
 L["Movable"] = "Bewegliche Fenster";
 L["Make windows movable"] = "Fenster verschiebbar machen";
-L["Make windows movable Desc"] = "Macht das Erfolgsfenster und die Kalenderansicht beweglich/nicht beweglich.\n\nWenn diese Option aktiviert ist, wird das Erfolgsfenster bei gedrückter linker Maustaste verschoben. Dies gilt für die Kopfzeile und die Ränder.\n\n{reloadRequired}";
+L["Make windows movable Desc"] = "Macht das Erfolgsfenster und die Kalenderansicht beweglich/nicht beweglich.\n\nWenn diese Option aktiviert ist, wird das Erfolgsfenster bei gedrückter linker Maustaste verschoben. Dies gilt für die Kopfzeile und die Ränder.";
 L["Offsets"] = "Fenster Abstände";
 L["Categories width offset"] = "Kategorien Fenster Abstands-Breite";
 L["Categories width offset Desc"] = "Die Breite, die zur Standardkategorienbreite addiert oder von ihr subtrahiert wird.\n\nDieser Wert kann geändert werden, während das Erfolgsfenster geöffnet ist und eine der von {AddonName} hinzugefügten Tabs ausgewählt wurde. Dies kann Auswirkungen (1) auf das Spiel haben.\n\n(1) FPS-Einbrüche und Stottern während der Anpassung des Wertes, NICHT während der normalen Addon-Nutzung\n\n{reloadRequired}";

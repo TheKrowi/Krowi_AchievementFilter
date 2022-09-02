@@ -187,16 +187,116 @@ options.OptionsTable.args["Layout"] = {
                     inline = true,
                     args = {
                         Movable = {
-                            order = 1.1, type = "toggle", width = 1.5,
+                            order = 1.1, type = "toggle", width = "normal",
                             name = addon.L["Make windows movable"],
-                            desc = addon.ReplaceVarsWithReloadReq(addon.L["Make windows movable Desc"]),
+                            desc = addon.L["Make windows movable Desc"],
                             get = function() return addon.Options.db.Window.Movable; end,
                             set = function()
                                 addon.Options.db.Window.Movable = not addon.Options.db.Window.Movable;
                                 addon.MakeWindowMovable();
                                 options.Debug(addon.L["Make window movable"], addon.Options.db.Window.Movable);
                             end
-                        }
+                        },
+                        Blank12 = {order = 1.2, type = "description", width = "double", name = ""},
+                        AchievementWindow = {
+                            order = 2.1, type = "toggle", width = "double",
+                            name = addon.L["Remember frame position"]:ReplaceVars
+                            {
+                                frame = addon.L["Achievement Window"]
+                            },
+                            desc = addon.L["Remember frame position Desc"]:ReplaceVars
+                            {
+                                frame = addon.L["Achievement Window"]
+                            },
+                            get = function() return addon.Options.db.Window.RememberLastPosition.AchievementWindow; end,
+                            set = function()
+                                addon.Options.db.Window.RememberLastPosition.AchievementWindow = not addon.Options.db.Window.RememberLastPosition.AchievementWindow;
+                                if not addon.Options.db.Window.RememberLastPosition.AchievementWindow then
+                                    addon.GUI.ResetAchievementWindowPosition();
+                                end
+                                options.Debug(addon.L["Remember frame position"]:ReplaceVars
+                                {
+                                    frame = addon.L["Achievement Window"]
+                                }, addon.Options.db.Window.RememberLastPosition.AchievementWindow);
+                            end
+                        },
+                        AchievementWindowReset = {
+                            order = 2.2, type = "execute",
+                            name = addon.L["Reset position"],
+                            desc = addon.L["Reset position Desc"]:ReplaceVars
+                            {
+                                frame = addon.L["Achievement Window"]
+                            },
+                            func = function()
+                                addon.GUI.ResetAchievementWindowPosition();
+                            end
+                        },
+                        Calendar = {
+                            order = 3.1, type = "toggle", width = "double",
+                            name = addon.L["Remember frame position"]:ReplaceVars
+                            {
+                                frame = addon.L["Achievement Calendar"]
+                            },
+                            desc = addon.L["Remember frame position Desc"]:ReplaceVars
+                            {
+                                frame = addon.L["Achievement Calendar"]
+                            },
+                            get = function() return addon.Options.db.Window.RememberLastPosition.Calendar; end,
+                            set = function()
+                                addon.Options.db.Window.RememberLastPosition.Calendar = not addon.Options.db.Window.RememberLastPosition.Calendar;
+                                if not addon.Options.db.Window.RememberLastPosition.Calendar then
+                                    addon.GUI.Calendar:ResetFramePosition();
+                                end
+                                options.Debug(addon.L["Remember frame position"]:ReplaceVars
+                                {
+                                    frame = addon.L["Achievement Calendar"]
+                                }, addon.Options.db.Window.RememberLastPosition.Calendar);
+                            end
+                        },
+                        CalendarReset = {
+                            order = 3.2, type = "execute",
+                            name = addon.L["Reset position"],
+                            desc = addon.L["Reset position Desc"]:ReplaceVars
+                            {
+                                frame = addon.L["Achievement Calendar"]
+                            },
+                            func = function()
+                                addon.GUI.Calendar:ResetFramePosition();
+                            end
+                        },
+                        DataManager = {
+                            order = 4.1, type = "toggle", width = "double",
+                            name = addon.L["Remember frame position"]:ReplaceVars
+                            {
+                                frame = addon.L["Data Manager"]
+                            },
+                            desc = addon.L["Remember frame position Desc"]:ReplaceVars
+                            {
+                                frame = addon.L["Data Manager"]
+                            },
+                            get = function() return addon.Options.db.Window.RememberLastPosition.DataManager; end,
+                            set = function()
+                                addon.Options.db.Window.RememberLastPosition.DataManager = not addon.Options.db.Window.RememberLastPosition.DataManager;
+                                if not addon.Options.db.Window.RememberLastPosition.DataManager then
+                                    addon.GUI.DataManagerFrame:ResetPosition();
+                                end
+                                options.Debug(addon.L["Remember frame position"]:ReplaceVars
+                                {
+                                    frame = addon.L["Data Manager"]
+                                }, addon.Options.db.Window.RememberLastPosition.DataManager);
+                            end
+                        },
+                        DataManagerReset = {
+                            order = 4.2, type = "execute",
+                            name = addon.L["Reset position"],
+                            desc = addon.L["Reset position Desc"]:ReplaceVars
+                            {
+                                frame = addon.L["Data Manager"]
+                            },
+                            func = function()
+                                addon.GUI.DataManagerFrame:ResetPosition();
+                            end
+                        },
                     }
                 },
                 Offsets = {
@@ -506,8 +606,31 @@ options.OptionsTable.args["Layout"] = {
                 }
             }
         },
-        Achievements = {
+        AdjustableCategories = {
             order = 6, type = "group",
+            name = addon.L["Adjustable Categories"],
+            args = {
+                Indentation = {
+                    order = 1, type = "group",
+                    name = addon.L["Focused"],
+                    inline = true,
+                    args = {
+                        E5177 = {
+                            order = 3, type = "toggle",
+                            name = addon.L["Assault on Highmountain"],
+                            desc = addon.L["Requires a reload"],
+                            get = function() return addon.Options.db.EventReminders.WorldEvents[5177]; end,
+                            set = function()
+                                addon.Options.db.EventReminders.WorldEvents[5177] = not addon.Options.db.EventReminders.WorldEvents[5177];
+                                diagnostics.Debug(addon.L["Assault on Highmountain"], addon.Options.db.EventReminders.WorldEvents[5177]);
+                            end
+                        }
+                    }
+                }
+            }
+        },
+        Achievements = {
+            order = 7, type = "group",
             name = addon.L["Achievements"],
             args = {
                 Style = {
@@ -767,7 +890,7 @@ options.OptionsTable.args["Layout"] = {
             }
         },
         RightClickMenu = {
-            order = 7, type = "group",
+            order = 8, type = "group",
             name = addon.L["Right Click Menu"],
             args = {
                 Button = {
@@ -835,7 +958,7 @@ options.OptionsTable.args["Layout"] = {
             }
         },
         Calendar = {
-            order = 8, type = "group",
+            order = 9, type = "group",
             name = addon.L["Calendar"],
             args = {
                 General = {

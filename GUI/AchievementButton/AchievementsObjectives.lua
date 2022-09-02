@@ -6,7 +6,7 @@ local achievementsObjectives = addon.GUI.AchievementsObjectives;
 function achievementsObjectives:Load()
 	local frame = CreateFrame("Frame", "KrowiAF_AchievementsObjectives", nil, "KrowiAF_AchievementsObjectives_Template");
 
-	if addon.IsWotLKClassic() then -- 14 by default
+	if addon.IsWrathClassic() then -- 14 by default
 		ACHIEVEMENTBUTTON_METAROWHEIGHT = 28;
 	end
 
@@ -53,7 +53,7 @@ function KrowiAF_AchievementsObjectives_OnEvent(self, event)
 		local button = self:GetParent();
 		self.Id = nil;
 		if self:IsVisible() then
-			button:DisplayObjectives();
+			button:DisplayObjectives(true);
 			-- AchievementFrameAchievements_Update();
 		end
 	else

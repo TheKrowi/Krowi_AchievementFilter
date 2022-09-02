@@ -36,6 +36,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
     if event == "ADDON_LOADED" then
         if arg1 == "Krowi_AchievementFilter" then -- This always needs to load
             addon.Diagnostics.Load();
+            addon.Data.ExportedCategories.InjectOptions();
             addon.Data.ExportedCalendarEvents.InjectOptions();
             addon.Data.ExportedWorldEvents.InjectOptions();
             addon.Data.ExportedWidgetEvents.InjectOptions();
@@ -84,10 +85,10 @@ function loadHelper:OnEvent(event, arg1, arg2)
         addon.ChangeAchievementMicroButtonOnClick();
     elseif event == "PLAYER_ENTERING_WORLD" then
          -- arg1 = isLogin, arg2 = isReload
-        if arg1 then -- On a fresh login we need AREA_POIS_UPDATED to get world events
-            loadHelper:RegisterEvent("AREA_POIS_UPDATED");
+        if arg1 then -- On a fresh login we need to prime the area poi to get world events
+            addon.EventData.PrimeAreaPoi();
         end
-        if arg2 then -- On reload we can get world events here since AREA_POIS_UPDATED does not always trigger and data is already available
+        if arg1 or arg2 then
             C_Timer.After(0, function()
                 C_Timer.After(5, function()
                     addon.GUI.AlertSystem.ShowActiveCalendarEvents();
@@ -95,18 +96,6 @@ function loadHelper:OnEvent(event, arg1, arg2)
                     addon.GUI.AlertSystem.ShowActiveWidgetEvents();
                 end);
             end);
-        end
-    elseif event == "AREA_POIS_UPDATED" then
-        if addon.EventData.GetActiveWorldEvents() ~= nil then
-            -- It takes a couple of times in order to properly load all POI info
-            C_Timer.After(0, function()
-                C_Timer.After(5, function()
-                    addon.GUI.AlertSystem.ShowActiveCalendarEvents();
-                    addon.GUI.AlertSystem.ShowActiveWorldEvents();
-                    addon.GUI.AlertSystem.ShowActiveWidgetEvents();
-                end);
-            end);
-            loadHelper:UnregisterEvent("AREA_POIS_UPDATED");
         end
     elseif event == "ACHIEVEMENT_EARNED" then
         addon.ResetCache(); -- Will force to fetch achievement data again, updating the character achievement points

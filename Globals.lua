@@ -311,15 +311,15 @@ function addon.HookSelectAchievement()
 end
 
 function addon.HookAchievementFrameOnShow()
-    -- AchievementFrame_SetTabs = function() -- Tainting by overwriting but showing and anchoring tabs is handled somewhere else now
-    --     addon.GUI.ShowHideTabs();
-    -- end
+    hooksecurefunc(AchievementFrame, "Show", function()
+        addon.Data.GetCurrentZoneAchievements();
+    end);
 
-    local funcName = addon.IsNotWotLKClassic() and "AchievementFrame_SetTabs" or "PanelTemplates_SetTab";
+    local funcName = addon.IsNotWrathClassic() and "AchievementFrame_SetTabs" or "PanelTemplates_SetTab";
     hooksecurefunc(funcName, addon.GUI.ShowHideTabs);
 end
 
-local function MakeMovable(frame, target)
+local function MakeMovable(frame, rememberLastPositionOption, target)
     if frame:IsMovable() then -- Do not hook it multiple times if another addon already made it movable
         return;
     end
@@ -335,22 +335,46 @@ local function MakeMovable(frame, target)
     end);
     frame:SetScript("OnMouseUp", function(frame, button)
         target:StopMovingOrSizing();
+        if addon.Options.db.Window.RememberLastPosition[rememberLastPositionOption] then
+            SavedData.RememberLastPosition = SavedData.RememberLastPosition or {};
+            SavedData.RememberLastPosition[rememberLastPositionOption] = {
+                X = target:GetLeft(),
+                Y = target:GetTop() - UIParent:GetTop()
+            };
+        end
     end);
 end
 
 function addon.MakeWindowMovable()
+    SavedData.RememberLastPosition = SavedData.RememberLastPosition or {};
+    if not SavedData.RememberLastPosition["AchievementWindow"] then
+        addon.GUI.ResetAchievementWindowPosition();
+    end
+    if not SavedData.RememberLastPosition["Calendar"] then
+        addon.GUI.Calendar:ResetFramePosition();
+    end
+    if not SavedData.RememberLastPosition["DataManager"] then
+        addon.GUI.DataManagerFrame:ResetPosition();
+    end
+
     if not addon.Options.db.Window.Movable then
         return;
     end
     if AchievementFrame and AchievementFrameHeader then
-        MakeMovable(AchievementFrame);
-        MakeMovable(AchievementFrameHeader, AchievementFrame);
+        local pos = SavedData.RememberLastPosition["AchievementWindow"];
+        AchievementFrame:SetPoint("TOPLEFT", pos.X, pos.Y);
+        MakeMovable(AchievementFrame, "AchievementWindow");
+        MakeMovable(AchievementFrameHeader, "AchievementWindow", AchievementFrame);
     end
     if addon.GUI.Calendar.Frame then
-        MakeMovable(addon.GUI.Calendar.Frame);
+        local pos = SavedData.RememberLastPosition["Calendar"];
+        addon.GUI.Calendar.Frame:SetPoint("TOPLEFT", pos.X, pos.Y);
+        MakeMovable(addon.GUI.Calendar.Frame, "Calendar");
     end
     if addon.GUI.DataManagerFrame then
-        MakeMovable(addon.GUI.DataManagerFrame);
+        local pos = SavedData.RememberLastPosition["DataManager"];
+        addon.GUI.DataManagerFrame:SetPoint("TOPLEFT", pos.X, pos.Y);
+        MakeMovable(addon.GUI.DataManagerFrame, "DataManager");
     end
 end
 
@@ -463,7 +487,7 @@ function addon.ChangeAchievementMicroButtonOnClick()
 end
 
 local cachedIsNotWotLKClassic, cachedIsWotLKClassic;
-function addon.IsNotWotLKClassic()
+function addon.IsNotWrathClassic()
     if cachedIsNotWotLKClassic ~= nil then
         return cachedIsNotWotLKClassic;
     end
@@ -474,7 +498,7 @@ function addon.IsNotWotLKClassic()
     return cachedIsNotWotLKClassic;
 end
 
-function addon.IsWotLKClassic()
+function addon.IsWrathClassic()
     if cachedIsWotLKClassic ~= nil then
         return cachedIsWotLKClassic;
     end

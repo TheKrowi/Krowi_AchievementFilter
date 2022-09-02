@@ -3,8 +3,10 @@
     <Script file="enUS.ExtraWrathStrings.lua" />
     <Script file="deDE.ExtraWrathStrings.lua" />
     <Script file="zhCN.ExtraWrathStrings.lua" />
+    <Script file="frFR.ExtraWrathStrings.lua" />
     <Script file="enUS.lua" />
     <Script file="deDE.lua" />
     <Script file="zhCN.lua" />
+    <Script file="frFR.lua" />
     <Script file="Localization.lua" />
 </Ui>
