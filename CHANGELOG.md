@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - When an achievement is selected and a criteria is completed, the criteria should show as completed without having to toggle the achievement
 - World events should always show time data again (untill Blizzard breaks the API again)
 - Opening the Achievement Window during combar is now always possible, even with rebound micro button
+- Some bugs new users can experience because some tables do not yet exist
 
 ## 39.3 - 2022-08-21
 ### Fixed

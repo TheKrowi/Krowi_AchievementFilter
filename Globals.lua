@@ -346,6 +346,7 @@ local function MakeMovable(frame, rememberLastPositionOption, target)
 end
 
 function addon.MakeWindowMovable()
+    SavedData.RememberLastPosition = SavedData.RememberLastPosition or {};
     if not SavedData.RememberLastPosition["AchievementWindow"] then
         addon.GUI.ResetAchievementWindowPosition();
     end
