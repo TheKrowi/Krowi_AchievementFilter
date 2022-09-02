@@ -1,4 +1,4 @@
--- [[ Exported at 2022-09-01 22-14-19 ]] --
+-- [[ Exported at 2022-09-02 16-31-45 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -217,8 +217,8 @@ L["Window"] = "Window";
 L["Movable"] = "Movable";
 L["Make windows movable"] = "Make windows movable";
 L["Make windows movable Desc"] = "Makes the Achievement window and Calendar view movable/not movable.\n\nWhen checked, keeping the left mouse button pressed moves the Achievement window. This works on the header and borders.";
-L["Remember frame position over sessions"] = "Remember {frame} position over sessions";
-L["Remember frame position over sessions Desc"] = "Remember the {frame} position over sessions. This will keep the {frame} in it's last known position the next time you log in.";
+L["Remember frame position"] = "Remember {frame} position";
+L["Remember frame position Desc"] = "Remember the {frame} position. This will keep the {frame} in it's last known position the next time you log in.";
 L["Achievement Window"] = "Achievement Window";
 L["Achievement Calendar"] = "Achievement Calendar";
 L["Reset position"] = "Reset position";

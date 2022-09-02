@@ -1,41 +1,20 @@
 [B]Added[/B]
 [LIST]
-[*]3000 quests completed
-[*]Realm First! filter
+[*]Compatibility with Zygor Guides Viewer for the Blizzard Achievements tab
+[*]Focused, Current Zone, Selected Zone and Excluded category to every tab (option to hide them in unwanted tabs to be added)
+[*]Refresh to World and Widget Event Reminder options
+[*]Options to keep the Achievement Window, Achievement Calendar and/or Data Manager at the last position between sessions
 [/LIST]
 
 [B]Fixed[/B]
 [LIST]
-[*]x quests completed not finding 3000 quests completed when chains collapsed
-[/LIST]
-
-[B]Removed[/B]
-[LIST]
-[*]Glory of the Tomb Raider from Mount special
+[*]When an achievement is selected and a criteria is completed, the criteria should show as completed without having to toggle the achievement
+[*]World events should always show time data again (untill Blizzard breaks the API again)
+[*]Opening the Achievement Window during combar is now always possible, even with rebound micro button
+[*]Some bugs new users can experience because some tables do not yet exist
 [/LIST]
 
 [B]WotLK Classic[/B]
 [LIST]
-[*]Added translations for all missing texts in English, German and Chinese (Simplified)
-[/LIST]
-
-[B]Fixed (39.1)[/B]
-[LIST]
-[*]Achievements that were never obtainable or only once (Realm First!) should be flagged correct again
-[/LIST]
-
-[B]Fixed (39.2)[/B]
-[LIST]
-[*]Workaround until Blizzard fixes C_AreaPoiInfo.GetAreaPOISecondsLeft not returning seconds left anymore; handled by adding active events and showing no time data
-[/LIST]
-
-[B]Fixed (39.3)[/B]
-[LIST]
-[*]Event reminders could sometimes print debug text
-[/LIST]
-
-[B]WotLK Classic (39.3)[/B]
-[LIST]
-[*]Error when loading into the game should be fixed
-[*]Event reminders should no longer cause errors
+[*]Enabled the data manager frame
 [/LIST]

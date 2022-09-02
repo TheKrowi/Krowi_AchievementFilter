@@ -200,11 +200,11 @@ options.OptionsTable.args["Layout"] = {
                         Blank12 = {order = 1.2, type = "description", width = "double", name = ""},
                         AchievementWindow = {
                             order = 2.1, type = "toggle", width = "double",
-                            name = addon.L["Remember frame position over sessions"]:ReplaceVars
+                            name = addon.L["Remember frame position"]:ReplaceVars
                             {
                                 frame = addon.L["Achievement Window"]
                             },
-                            desc = addon.L["Remember frame position over sessions Desc"]:ReplaceVars
+                            desc = addon.L["Remember frame position Desc"]:ReplaceVars
                             {
                                 frame = addon.L["Achievement Window"]
                             },
@@ -214,7 +214,7 @@ options.OptionsTable.args["Layout"] = {
                                 if not addon.Options.db.Window.RememberLastPosition.AchievementWindow then
                                     addon.GUI.ResetAchievementWindowPosition();
                                 end
-                                options.Debug(addon.L["Remember frame position over sessions"]:ReplaceVars
+                                options.Debug(addon.L["Remember frame position"]:ReplaceVars
                                 {
                                     frame = addon.L["Achievement Window"]
                                 }, addon.Options.db.Window.RememberLastPosition.AchievementWindow);
@@ -233,11 +233,11 @@ options.OptionsTable.args["Layout"] = {
                         },
                         Calendar = {
                             order = 3.1, type = "toggle", width = "double",
-                            name = addon.L["Remember frame position over sessions"]:ReplaceVars
+                            name = addon.L["Remember frame position"]:ReplaceVars
                             {
                                 frame = addon.L["Achievement Calendar"]
                             },
-                            desc = addon.L["Remember frame position over sessions Desc"]:ReplaceVars
+                            desc = addon.L["Remember frame position Desc"]:ReplaceVars
                             {
                                 frame = addon.L["Achievement Calendar"]
                             },
@@ -247,7 +247,7 @@ options.OptionsTable.args["Layout"] = {
                                 if not addon.Options.db.Window.RememberLastPosition.Calendar then
                                     addon.GUI.Calendar:ResetFramePosition();
                                 end
-                                options.Debug(addon.L["Remember frame position over sessions"]:ReplaceVars
+                                options.Debug(addon.L["Remember frame position"]:ReplaceVars
                                 {
                                     frame = addon.L["Achievement Calendar"]
                                 }, addon.Options.db.Window.RememberLastPosition.Calendar);
@@ -266,11 +266,11 @@ options.OptionsTable.args["Layout"] = {
                         },
                         DataManager = {
                             order = 4.1, type = "toggle", width = "double",
-                            name = addon.L["Remember frame position over sessions"]:ReplaceVars
+                            name = addon.L["Remember frame position"]:ReplaceVars
                             {
                                 frame = addon.L["Data Manager"]
                             },
-                            desc = addon.L["Remember frame position over sessions Desc"]:ReplaceVars
+                            desc = addon.L["Remember frame position Desc"]:ReplaceVars
                             {
                                 frame = addon.L["Data Manager"]
                             },
@@ -280,7 +280,7 @@ options.OptionsTable.args["Layout"] = {
                                 if not addon.Options.db.Window.RememberLastPosition.DataManager then
                                     addon.GUI.DataManagerFrame:ResetPosition();
                                 end
-                                options.Debug(addon.L["Remember frame position over sessions"]:ReplaceVars
+                                options.Debug(addon.L["Remember frame position"]:ReplaceVars
                                 {
                                     frame = addon.L["Data Manager"]
                                 }, addon.Options.db.Window.RememberLastPosition.DataManager);
