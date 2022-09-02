@@ -14,6 +14,9 @@ All notable changes to this project will be documented in this file.
 - Opening the Achievement Window during combar is now always possible, even with rebound micro button
 - Some bugs new users can experience because some tables do not yet exist
 
+### WotLK Classic
+- Enabled the data manager frame
+
 ## 39.3 - 2022-08-21
 ### Fixed
 - Event reminders could sometimes print debug text

@@ -4,7 +4,11 @@ local _, addon = ...;
 KrowiAF_DataManagerFrameMixin = {};
 
 function KrowiAF_DataManagerFrameMixin:OnLoad()
-    self:SetTitle(addon.L["Data Manager"]);
+	if addon.IsWrathClassic() then
+		self.TitleText:SetText(addon.L["Data Manager"]);
+	else
+    	self:SetTitle(addon.L["Data Manager"]);
+	end
 	ButtonFrameTemplate_HidePortrait(self);
     ButtonFrameTemplate_HideButtonBar(self);
 end

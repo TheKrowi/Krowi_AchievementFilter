@@ -12,7 +12,7 @@ data.ExportedWidgetEvents = {};
 local exportedWidgetEvents = data.ExportedWidgetEvents;
 
 function exportedWidgetEvents.Load(e)
-    if addon.IsWotLKClassic() then
+    if addon.IsWrathClassic() then
         return;
     end
 
@@ -29,7 +29,7 @@ function exportedWidgetEvents.Load(e)
 end
 
 function exportedWidgetEvents.LoadCategories(e, a)
-    if addon.IsWotLKClassic() then
+    if addon.IsWrathClassic() then
         return;
     end
 
@@ -46,7 +46,7 @@ function exportedWidgetEvents.LoadCategories(e, a)
 end
 
 function exportedWidgetEvents.InjectOptions()
-    if addon.IsWotLKClassic() then
+    if addon.IsWrathClassic() then
         return;
     end
 

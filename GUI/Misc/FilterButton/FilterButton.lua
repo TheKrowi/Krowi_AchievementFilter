@@ -13,7 +13,7 @@ function filterButton:Load()
 
 	tinsert(ACHIEVEMENTFRAME_SUBFRAMES, button:GetName());
 
-    if addon.IsWotLKClassic() then
+    if addon.IsWrathClassic() then
         button:SetScript("OnShow", filterButton.OnShow);
         button:SetScript("OnHide", filterButton.OnHide);
     else -- We don't need this in retail

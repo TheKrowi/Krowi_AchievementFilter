@@ -8,7 +8,7 @@ addon.ExtraWrathStrings.frFR = {};
 local extraWrathStrings = addon.ExtraWrathStrings.frFR;
 
 function extraWrathStrings.Load(L)
-    if addon.IsNotWotLKClassic() then
+    if addon.IsNotWrathClassic() then
         return;
     end
 

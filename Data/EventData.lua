@@ -7,9 +7,6 @@ local eventData = addon.EventData;
 
 local GetEvents;
 function eventData.Load()
-    -- if addon.IsWotLKClassic() then
-    --     return; -- Breaks for some reason when date is 2022-9-1
-    -- end
     local refreshEvents = false;
 
     if EventDetails == nil then

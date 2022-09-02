@@ -315,7 +315,7 @@ function addon.HookAchievementFrameOnShow()
         addon.Data.GetCurrentZoneAchievements();
     end);
 
-    local funcName = addon.IsNotWotLKClassic() and "AchievementFrame_SetTabs" or "PanelTemplates_SetTab";
+    local funcName = addon.IsNotWrathClassic() and "AchievementFrame_SetTabs" or "PanelTemplates_SetTab";
     hooksecurefunc(funcName, addon.GUI.ShowHideTabs);
 end
 
@@ -487,7 +487,7 @@ function addon.ChangeAchievementMicroButtonOnClick()
 end
 
 local cachedIsNotWotLKClassic, cachedIsWotLKClassic;
-function addon.IsNotWotLKClassic()
+function addon.IsNotWrathClassic()
     if cachedIsNotWotLKClassic ~= nil then
         return cachedIsNotWotLKClassic;
     end
@@ -498,7 +498,7 @@ function addon.IsNotWotLKClassic()
     return cachedIsNotWotLKClassic;
 end
 
-function addon.IsWotLKClassic()
+function addon.IsWrathClassic()
     if cachedIsWotLKClassic ~= nil then
         return cachedIsWotLKClassic;
     end
