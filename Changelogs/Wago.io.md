@@ -6,9 +6,12 @@
 
 ### Fixed
 - When an achievement is selected and a criteria is completed, the criteria should show as completed without having to toggle the achievement
-- World events should always show time data again (untill Blizzard breaks the API again)
-- Opening the Achievement Window during combar is now always possible, even with rebound micro button
+- World events should always show time data again (until Blizzard breaks the API again)
+- Opening the Achievement Window during combat is now always possible, even with rebound micro button
 - Some bugs new users can experience because some tables do not yet exist
 
 ### WotLK Classic
 - Enabled the data manager frame
+
+### Fixed (40.1)
+- Cleaned up the Adjustable Categories section in the options
