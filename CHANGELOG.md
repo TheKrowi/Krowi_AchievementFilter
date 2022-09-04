@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 40.2 - 2022-09-xx
+## 40.2 - 2022-09-04
 ### Changed
 - Only events relevant to the version will be toggleable
 

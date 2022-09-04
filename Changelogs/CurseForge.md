@@ -20,3 +20,12 @@
 <ul>
 <li>Cleaned up the Adjustable Categories section in the options</li>
 </ul>
+<p><h3>Changed (40.2)</h3></p>
+<ul>
+<li>Only events relevant to the version will be toggleable</li>
+</ul>
+<p><h3>WotLK Classic (40.2)</h3></p>
+<ul>
+<li>Fixed the Darkmoon Faire event Id</li>
+<li>Removed world events</li>
+</ul>
