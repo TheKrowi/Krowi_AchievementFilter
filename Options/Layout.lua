@@ -610,23 +610,23 @@ options.OptionsTable.args["Layout"] = {
             order = 6, type = "group",
             name = addon.L["Adjustable Categories"],
             args = {
-                Indentation = {
-                    order = 1, type = "group",
-                    name = addon.L["Focused"],
-                    inline = true,
-                    args = {
-                        E5177 = {
-                            order = 3, type = "toggle",
-                            name = addon.L["Assault on Highmountain"],
-                            desc = addon.L["Requires a reload"],
-                            get = function() return addon.Options.db.EventReminders.WorldEvents[5177]; end,
-                            set = function()
-                                addon.Options.db.EventReminders.WorldEvents[5177] = not addon.Options.db.EventReminders.WorldEvents[5177];
-                                diagnostics.Debug(addon.L["Assault on Highmountain"], addon.Options.db.EventReminders.WorldEvents[5177]);
-                            end
-                        }
-                    }
-                }
+                -- Indentation = {
+                --     order = 1, type = "group",
+                --     name = addon.L["Focused"],
+                --     inline = true,
+                --     args = {
+                --         E5177 = {
+                --             order = 3, type = "toggle",
+                --             name = addon.L["Assault on Highmountain"],
+                --             desc = addon.L["Requires a reload"],
+                --             get = function() return addon.Options.db.EventReminders.WorldEvents[5177]; end,
+                --             set = function()
+                --                 addon.Options.db.EventReminders.WorldEvents[5177] = not addon.Options.db.EventReminders.WorldEvents[5177];
+                --                 diagnostics.Debug(addon.L["Assault on Highmountain"], addon.Options.db.EventReminders.WorldEvents[5177]);
+                --             end
+                --         }
+                --     }
+                -- }
             }
         },
         Achievements = {
