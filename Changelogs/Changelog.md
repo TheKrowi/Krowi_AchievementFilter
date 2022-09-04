@@ -12,3 +12,6 @@
 
 ### WotLK Classic
 - Enabled the data manager frame
+
+### Fixed (40.1)
+- Cleaned up the Adjustable Categories section in the options

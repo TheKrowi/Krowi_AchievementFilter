@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 40.1 - 2022-09-04
+### Fixed
+- Cleaned up the Adjustable Categories section in the options
+
 ## 40.0 - 2022-09-02
 ### Added
 - Compatibility with Zygor Guides Viewer for the Blizzard Achievements tab
