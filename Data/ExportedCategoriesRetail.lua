@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-28 10-17-54 ]] --
+-- [[ Exported at 2022-09-04 16-00-31 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -5446,6 +5446,787 @@ function exportedCategories.Load(a)
     AddA(tmp[420], a[14764]); -- The Great Luckydo
     AddA(tmp[420], a[14833]); -- Fashion Abomination
     AddA(tmp[420], a[14763]); -- Crypt Couture
+    tmp[1207] = cat:New(addon.GetCategoryInfoTitle(15466)); -- Dragonflight
+    AddC(tmp[883], tmp[1207]);
+    tmp[1228] = cat:New(addon.L["Zones"]); -- Zones
+    AddC(tmp[1207], tmp[1228]);
+    tmp[1341] = cat:New(addon.GetCategoryInfoTitle(15465)); -- Dragon Isles
+    AddC(tmp[1228], tmp[1341]);
+    tmp[1342] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
+    AddC(tmp[1341], tmp[1342]);
+    AddA(tmp[1342], a[16291]); -- An Ancient Awakening
+    AddA(tmp[1342], a[16292]); -- Mastering the Waygates
+    tmp[1343] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
+    AddC(tmp[1341], tmp[1343]);
+    AddA(tmp[1343], a[16400]); -- Explore the Waking Shores
+    AddA(tmp[1343], a[16446]); -- That's Pretty Neat!
+    AddA(tmp[1343], a[16298]); -- Treasure Hunter of the Dragon Isles
+    AddA(tmp[1343], a[15890]); -- Dragonscale Expedition: The Highest Peaks
+    AddA(tmp[1343], a[16323]); -- Fragments of History
+    tmp[1232] = cat:New(addon.GetMapName(2022)); -- The Waking Shores
+    AddC(tmp[1228], tmp[1232]);
+    tmp[1237] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
+    AddC(tmp[1232], tmp[1237]);
+    AddA(tmp[1237], a[16334]); -- Waking Hope
+    AddA(tmp[1237], a[16401]); -- Sojourner of the Waking Shores
+    tmp[1242] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
+    AddC(tmp[1232], tmp[1242]);
+    AddA(tmp[1242], a[16411]); -- Siege on Dragonbane Keep: Home Sweet Home
+    AddA(tmp[1242], a[16412]); -- Siege on Dragonbane Keep: Chiseled Record
+    AddA(tmp[1242], a[16410]); -- Siege on Dragonbane Keep: Snack Attack
+    AddA(tmp[1242], a[16297]); -- Treasures of The Waking Shores
+    AddA(tmp[1242], a[16406]); -- All Sides of the Story
+    AddA(tmp[1242], a[16409]); -- Let's Get Quacking
+    tmp[1247] = cat:New(addon.GetCategoryInfoTitle(95), true); -- PvP
+    AddC(tmp[1232], tmp[1247]);
+    tmp[1248] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
+    AddC(tmp[1232], tmp[1248]);
+    tmp[1306] = cat:New(addon.L["Dragon Glyphs"], true); -- Dragon Glyphs
+    AddC(tmp[1232], tmp[1306]);
+    AddA(tmp[1306], a[15991]); -- Dragon Glyphs: Crumbling Life Archway
+    AddA(tmp[1306], a[16051]); -- Dragon Glyphs: Dragonheart Outpost
+    AddA(tmp[1306], a[15990]); -- Dragon Glyphs: Life-Binder Observatory
+    AddA(tmp[1306], a[15987]); -- Dragon Glyphs: Obsidian Bulwark
+    AddA(tmp[1306], a[16053]); -- Dragon Glyphs: Obsidian Throne
+    AddA(tmp[1306], a[15988]); -- Dragon Glyphs: Ruby Life Pools
+    AddA(tmp[1306], a[16052]); -- Dragon Glyphs: Scalecracker Peak
+    AddA(tmp[1306], a[15985]); -- Dragon Glyphs: Skytop Observatory
+    AddA(tmp[1306], a[15989]); -- Dragon Glyphs: The Overflowing Spring
+    AddA(tmp[1306], a[15986]); -- Dragon Glyphs: Wingrest Embassy
+    tmp[1310] = cat:New(addon.L["Dragon Racing"], true); -- Dragon Racing
+    AddC(tmp[1232], tmp[1310]);
+    AddA(tmp[1310], a[15915]); -- Waking Shores - Bronze
+    AddA(tmp[1310], a[15916]); -- Waking Shores - Silver
+    AddA(tmp[1310], a[15917]); -- Waking Shores - Gold
+    AddA(tmp[1310], a[15927]); -- Waking Shores - Advanced - Bronze
+    AddA(tmp[1310], a[15928]); -- Waking Shores - Advanced - Silver
+    AddA(tmp[1310], a[15929]); -- Waking Shores - Advanced - Gold
+    tmp[1317] = cat:New(addon.L["Apex Canopy River Run"]); -- Apex Canopy River Run
+    AddC(tmp[1310], tmp[1317]);
+    AddA(tmp[1317], a[15730]); -- Apex Canopy River Run: Bronze
+    AddA(tmp[1317], a[15731]); -- Apex Canopy River Run: Silver
+    AddA(tmp[1317], a[15732]); -- Apex Canopy River Run: Gold
+    AddA(tmp[1317], a[15733]); -- Apex Canopy River Run - Advanced: Bronze
+    AddA(tmp[1317], a[15734]); -- Apex Canopy River Run - Advanced: Silver
+    AddA(tmp[1317], a[15735]); -- Apex Canopy River Run - Advanced: Gold
+    tmp[1316] = cat:New(addon.L["Emberflow Flight"]); -- Emberflow Flight
+    AddC(tmp[1310], tmp[1316]);
+    AddA(tmp[1316], a[15724]); -- Emberflow Flight: Bronze
+    AddA(tmp[1316], a[15725]); -- Emberflow Flight: Silver
+    AddA(tmp[1316], a[15726]); -- Emberflow Flight: Gold
+    AddA(tmp[1316], a[15727]); -- Emberflow Flight - Advanced: Bronze
+    AddA(tmp[1316], a[15728]); -- Emberflow Flight - Advanced: Silver
+    AddA(tmp[1316], a[15729]); -- Emberflow Flight - Advanced: Gold
+    tmp[1320] = cat:New(addon.L["Flashfrost Flyover"]); -- Flashfrost Flyover
+    AddC(tmp[1310], tmp[1320]);
+    AddA(tmp[1320], a[15705]); -- Flashfrost Flyover: Bronze
+    AddA(tmp[1320], a[15706]); -- Flashfrost Flyover: Silver
+    AddA(tmp[1320], a[15707]); -- Flashfrost Flyover: Gold
+    AddA(tmp[1320], a[15709]); -- Flashfrost Flyover - Advanced: Bronze
+    AddA(tmp[1320], a[15710]); -- Flashfrost Flyover - Advanced: Silver
+    AddA(tmp[1320], a[15711]); -- Flashfrost Flyover - Advanced: Gold
+    tmp[1314] = cat:New(addon.L["Ruby Lifeshrine Loop"]); -- Ruby Lifeshrine Loop
+    AddC(tmp[1310], tmp[1314]);
+    AddA(tmp[1314], a[15696]); -- Ruby Lifeshrine Loop: Bronze
+    AddA(tmp[1314], a[15697]); -- Ruby Lifeshrine Loop: Silver
+    AddA(tmp[1314], a[15698]); -- Ruby Lifeshrine Loop: Gold
+    AddA(tmp[1314], a[15702]); -- Ruby Lifeshrine Loop - Advanced: Bronze
+    AddA(tmp[1314], a[15703]); -- Ruby Lifeshrine Loop - Advanced: Silver
+    AddA(tmp[1314], a[15704]); -- Ruby Lifeshrine Loop - Advanced: Gold
+    tmp[1318] = cat:New(addon.L["Uktulut Coaster"]); -- Uktulut Coaster
+    AddC(tmp[1310], tmp[1318]);
+    AddA(tmp[1318], a[15736]); -- Uktulut Coaster: Bronze
+    AddA(tmp[1318], a[15737]); -- Uktulut Coaster: Silver
+    AddA(tmp[1318], a[15738]); -- Uktulut Coaster: Gold
+    AddA(tmp[1318], a[15739]); -- Uktulut Coaster - Advanced: Bronze
+    AddA(tmp[1318], a[15740]); -- Uktulut Coaster - Advanced: Silver
+    AddA(tmp[1318], a[15741]); -- Uktulut Coaster - Advanced: Gold
+    tmp[1321] = cat:New(addon.L["Wild Preserve Circuit"]); -- Wild Preserve Circuit
+    AddC(tmp[1310], tmp[1321]);
+    AddA(tmp[1321], a[15718]); -- Wild Preserve Circuit: Bronze
+    AddA(tmp[1321], a[15719]); -- Wild Preserve Circuit: Silver
+    AddA(tmp[1321], a[15720]); -- Wild Preserve Circuit: Gold
+    AddA(tmp[1321], a[15721]); -- Wild Preserve Circuit - Advanced: Bronze
+    AddA(tmp[1321], a[15722]); -- Wild Preserve Circuit - Advanced: Silver
+    AddA(tmp[1321], a[15723]); -- Wild Preserve Circuit - Advanced: Gold
+    tmp[1315] = cat:New(addon.L["Wild Preserve Slalom"]); -- Wild Preserve Slalom
+    AddC(tmp[1310], tmp[1315]);
+    AddA(tmp[1315], a[15712]); -- Wild Preserve Slalom - Bronze
+    AddA(tmp[1315], a[15713]); -- Wild Preserve Slalom - Silver
+    AddA(tmp[1315], a[15714]); -- Wild Preserve Slalom - Gold
+    AddA(tmp[1315], a[15715]); -- Wild Preserve Slalom - Advanced: Bronze
+    AddA(tmp[1315], a[15716]); -- Wild Preserve Slalom - Advanced: Silver
+    AddA(tmp[1315], a[15717]); -- Wild Preserve Slalom - Advanced: Gold
+    tmp[1319] = cat:New(addon.L["Wingrest Roundabout"]); -- Wingrest Roundabout
+    AddC(tmp[1310], tmp[1319]);
+    AddA(tmp[1319], a[15742]); -- Wingrest Roundabout: Bronze
+    AddA(tmp[1319], a[15743]); -- Wingrest Roundabout: Silver
+    AddA(tmp[1319], a[15744]); -- Wingrest Roundabout: Gold
+    AddA(tmp[1319], a[15745]); -- Wingrest Roundabout - Advanced: Bronze
+    AddA(tmp[1319], a[15746]); -- Wingrest Roundabout - Advanced: Silver
+    AddA(tmp[1319], a[15747]); -- Wingrest Roundabout - Advanced: Gold
+    tmp[1233] = cat:New(addon.GetMapName(2023)); -- Ohn'ahran Plains
+    AddC(tmp[1228], tmp[1233]);
+    tmp[1238] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
+    AddC(tmp[1233], tmp[1238]);
+    AddA(tmp[1238], a[15394]); -- Ohn'a'Roll
+    AddA(tmp[1238], a[16405]); -- Sojourner of Ohn'ahran Plains
+    tmp[1243] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
+    AddC(tmp[1233], tmp[1243]);
+    AddA(tmp[1243], a[16299]); -- Treasures of the Ohn'ahran Plains
+    AddA(tmp[1243], a[16423]); -- Honor Our Ancestors
+    AddA(tmp[1243], a[16424]); -- Who's a Good Bakar?
+    tmp[1249] = cat:New(addon.GetCategoryInfoTitle(95), true); -- PvP
+    AddC(tmp[1233], tmp[1249]);
+    tmp[1253] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
+    AddC(tmp[1233], tmp[1253]);
+    AddA(tmp[1253], a[16443]); -- Soupervisor
+    AddA(tmp[1253], a[16444]); -- Leftovers' Revenge
+    tmp[1307] = cat:New(addon.L["Dragon Glyphs"], true); -- Dragon Glyphs
+    AddC(tmp[1233], tmp[1307]);
+    AddA(tmp[1307], a[16061]); -- Dragon Glyphs: Dragonsprings Summit
+    AddA(tmp[1307], a[16056]); -- Dragon Glyphs: Emerald Gardens
+    AddA(tmp[1307], a[16059]); -- Dragon Glyphs: Mirror of the Sky
+    AddA(tmp[1307], a[16055]); -- Dragon Glyphs: Nokhudon Hold
+    AddA(tmp[1307], a[16054]); -- Dragon Glyphs: Ohn'ahra's Roost
+    AddA(tmp[1307], a[16060]); -- Dragon Glyphs: Ohn'iri Springs
+    AddA(tmp[1307], a[16062]); -- Dragon Glyphs: Rusza'thar Reach
+    AddA(tmp[1307], a[16058]); -- Dragon Glyphs: Szar Skeleth
+    AddA(tmp[1307], a[16057]); -- Dragon Glyphs: The Eternal Kurgans
+    AddA(tmp[1307], a[16063]); -- Dragon Glyphs: Windsong Rise
+    tmp[1311] = cat:New(addon.L["Dragon Racing"], true); -- Dragon Racing
+    AddC(tmp[1233], tmp[1311]);
+    AddA(tmp[1311], a[15918]); -- Ohn'ahran Plains - Bronze
+    AddA(tmp[1311], a[15919]); -- Ohn'ahran Plains - Silver
+    AddA(tmp[1311], a[15920]); -- Ohn'ahran Plains - Gold
+    AddA(tmp[1311], a[15930]); -- Ohn'ahran Plains - Advanced - Bronze
+    AddA(tmp[1311], a[15931]); -- Ohn'ahran Plains - Advanced - Silver
+    AddA(tmp[1311], a[15932]); -- Ohn'ahran Plains - Advanced - Gold
+    tmp[1325] = cat:New(addon.L["Emerald Garden Ascent"]); -- Emerald Garden Ascent
+    AddC(tmp[1311], tmp[1325]);
+    AddA(tmp[1325], a[15775]); -- Emerald Garden Ascent: Bronze
+    AddA(tmp[1325], a[15776]); -- Emerald Garden Ascent: Silver
+    AddA(tmp[1325], a[15777]); -- Emerald Garden Ascent: Gold
+    AddA(tmp[1325], a[15778]); -- Emerald Garden Ascent - Advanced: Bronze
+    AddA(tmp[1325], a[15779]); -- Emerald Garden Ascent - Advanced: Silver
+    AddA(tmp[1325], a[15780]); -- Emerald Garden Ascent - Advanced: Gold
+    tmp[1323] = cat:New(addon.L["Fen Flythrough"]); -- Fen Flythrough
+    AddC(tmp[1311], tmp[1323]);
+    AddA(tmp[1323], a[15763]); -- Fen Flythrough: Bronze
+    AddA(tmp[1323], a[15764]); -- Fen Flythrough: Silver
+    AddA(tmp[1323], a[15765]); -- Fen Flythrough: Gold
+    AddA(tmp[1323], a[15766]); -- Fen Flythrough - Advanced: Bronze
+    AddA(tmp[1323], a[15767]); -- Fen Flythrough - Advanced: Silver
+    AddA(tmp[1323], a[15768]); -- Fen Flythrough - Advanced: Gold
+    tmp[1328] = cat:New(addon.L["Maruukai Dash"]); -- Maruukai Dash
+    AddC(tmp[1311], tmp[1328]);
+    AddA(tmp[1328], a[15782]); -- Maruukai Dash: Bronze
+    AddA(tmp[1328], a[15783]); -- Maruukai Dash: Silver
+    AddA(tmp[1328], a[15784]); -- Maruukai Dash: Gold
+    tmp[1327] = cat:New(addon.L["Mirror of the Sky Dash"]); -- Mirror of the Sky Dash
+    AddC(tmp[1311], tmp[1327]);
+    AddA(tmp[1327], a[15785]); -- Mirror of the Sky Dash: Bronze
+    AddA(tmp[1327], a[15786]); -- Mirror of the Sky Dash: Silver
+    AddA(tmp[1327], a[15787]); -- Mirror of the Sky Dash: Gold
+    tmp[1324] = cat:New(addon.L["Ravine River Run"]); -- Ravine River Run
+    AddC(tmp[1311], tmp[1324]);
+    AddA(tmp[1324], a[15769]); -- Ravine River Run: Bronze
+    AddA(tmp[1324], a[15770]); -- Ravine River Run: Silver
+    AddA(tmp[1324], a[15771]); -- Ravine River Run: Gold
+    AddA(tmp[1324], a[15772]); -- Ravine River Run - Advanced: Bronze
+    AddA(tmp[1324], a[15773]); -- Ravine River Run - Advanced: Silver
+    AddA(tmp[1324], a[15774]); -- Ravine River Run - Advanced: Gold
+    tmp[1326] = cat:New(addon.L["River Rapids Route"]); -- River Rapids Route
+    AddC(tmp[1311], tmp[1326]);
+    AddA(tmp[1326], a[16302]); -- River Rapids Route: Bronze
+    AddA(tmp[1326], a[16303]); -- River Rapids Route: Silver
+    AddA(tmp[1326], a[16304]); -- River Rapids Route: Gold
+    AddA(tmp[1326], a[16305]); -- River Rapids Route - Advanced: Bronze
+    AddA(tmp[1326], a[16306]); -- River Rapids Route - Advanced: Silver
+    AddA(tmp[1326], a[16307]); -- River Rapids Route - Advanced: Gold
+    tmp[1322] = cat:New(addon.L["Sundapple Copse Circuit"]); -- Sundapple Copse Circuit
+    AddC(tmp[1311], tmp[1322]);
+    AddA(tmp[1322], a[15757]); -- Sundapple Copse Circuit: Bronze
+    AddA(tmp[1322], a[15758]); -- Sundapple Copse Circuit: Silver
+    AddA(tmp[1322], a[15759]); -- Sundapple Copse Circuit: Gold
+    AddA(tmp[1322], a[15760]); -- Sundapple Copse Circuit - Advanced: Bronze
+    AddA(tmp[1322], a[15761]); -- Sundapple Copse Circuit - Advanced: Silver
+    AddA(tmp[1322], a[15762]); -- Sundapple Copse Circuit - Advanced: Gold
+    tmp[1234] = cat:New(addon.GetMapName(2024)); -- The Azure Span
+    AddC(tmp[1228], tmp[1234]);
+    tmp[1239] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
+    AddC(tmp[1234], tmp[1239]);
+    AddA(tmp[1239], a[16336]); -- Azure Spanner
+    AddA(tmp[1239], a[16428]); -- Sojourner of Azure Span
+    AddA(tmp[1239], a[15889]); -- River Rapids Wrangler
+    tmp[1245] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
+    AddC(tmp[1234], tmp[1245]);
+    AddA(tmp[1245], a[16300]); -- Treasures of The Azure Span
+    tmp[1250] = cat:New(addon.GetCategoryInfoTitle(95), true); -- PvP
+    AddC(tmp[1234], tmp[1250]);
+    tmp[1256] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
+    AddC(tmp[1234], tmp[1256]);
+    tmp[1308] = cat:New(addon.L["Dragon Glyphs"], true); -- Dragon Glyphs
+    AddC(tmp[1234], tmp[1308]);
+    AddA(tmp[1308], a[16065]); -- Dragon Glyphs: Azure Archive
+    AddA(tmp[1308], a[16068]); -- Dragon Glyphs: Brackenhide Hollow
+    AddA(tmp[1308], a[16064]); -- Dragon Glyphs: Cobalt Assembly
+    AddA(tmp[1308], a[16069]); -- Dragon Glyphs: Drake Eye's Pond
+    AddA(tmp[1308], a[16070]); -- Dragon Glyphs: Imbu
+    AddA(tmp[1308], a[16072]); -- Dragon Glyphs: Kalthraz Fortress
+    AddA(tmp[1308], a[16067]); -- Dragon Glyphs: Lost Ruins
+    AddA(tmp[1308], a[16066]); -- Dragon Glyphs: Ruins of Karnthar
+    AddA(tmp[1308], a[16073]); -- Dragon Glyphs: Vakthros Summit
+    AddA(tmp[1308], a[16071]); -- Dragon Glyphs: Zelthrak Outpost
+    tmp[1312] = cat:New(addon.L["Dragon Racing"], true); -- Dragon Racing
+    AddC(tmp[1234], tmp[1312]);
+    AddA(tmp[1312], a[15921]); -- Azure Span - Bronze
+    AddA(tmp[1312], a[15922]); -- Azure Span - Silver
+    AddA(tmp[1312], a[15923]); -- Azure Span - Gold
+    AddA(tmp[1312], a[15933]); -- Azure Span - Advanced - Bronze
+    AddA(tmp[1312], a[15934]); -- Azure Span - Advanced - Silver
+    AddA(tmp[1312], a[15935]); -- Azure Span - Advanced - Gold
+    tmp[1334] = cat:New(addon.L["Archive Ambit"]); -- Archive Ambit
+    AddC(tmp[1312], tmp[1334]);
+    AddA(tmp[1334], a[15847]); -- Archive Ambit: Bronze
+    AddA(tmp[1334], a[15848]); -- Archive Ambit: Silver
+    AddA(tmp[1334], a[15849]); -- Archive Ambit: Gold
+    AddA(tmp[1334], a[15850]); -- Archive Ambit - Advanced: Bronze
+    AddA(tmp[1334], a[15851]); -- Archive Ambit - Advanced: Silver
+    AddA(tmp[1334], a[15852]); -- Archive Ambit - Advanced: Gold
+    tmp[1333] = cat:New(addon.L["Central Circuit"]); -- Central Circuit
+    AddC(tmp[1312], tmp[1333]);
+    AddA(tmp[1333], a[15841]); -- Central Circuit: Bronze
+    AddA(tmp[1333], a[15842]); -- Central Circuit: Silver
+    AddA(tmp[1333], a[15843]); -- Central Circuit: Gold
+    AddA(tmp[1333], a[15844]); -- Central Circuit - Advanced: Bronze
+    AddA(tmp[1333], a[15845]); -- Central Circuit - Advanced: Silver
+    AddA(tmp[1333], a[15846]); -- Central Circuit - Advanced: Gold
+    tmp[1332] = cat:New(addon.L["Iskaara Flyover"]); -- Iskaara Flyover
+    AddC(tmp[1312], tmp[1332]);
+    AddA(tmp[1332], a[15835]); -- Iskaara Flyover: Bronze
+    AddA(tmp[1332], a[15836]); -- Iskaara Flyover: Silver
+    AddA(tmp[1332], a[15837]); -- Iskaara Flyover: Gold
+    AddA(tmp[1332], a[15838]); -- Iskaara Flyover - Advanced: Bronze
+    AddA(tmp[1332], a[15839]); -- Iskaara Flyover - Advanced: Silver
+    AddA(tmp[1332], a[15840]); -- Iskaara Flyover - Advanced: Gold
+    tmp[1330] = cat:New(addon.L["The Azure Span Slalom"]); -- The Azure Span Slalom
+    AddC(tmp[1312], tmp[1330]);
+    AddA(tmp[1330], a[15799]); -- The Azure Span Slalom: Bronze
+    AddA(tmp[1330], a[15800]); -- The Azure Span Slalom: Silver
+    AddA(tmp[1330], a[15801]); -- The Azure Span Slalom: Gold
+    AddA(tmp[1330], a[15802]); -- The Azure Span Slalom - Advanced: Bronze
+    AddA(tmp[1330], a[15803]); -- The Azure Span Slalom - Advanced: Silver
+    AddA(tmp[1330], a[15804]); -- The Azure Span Slalom - Advanced: Gold
+    tmp[1329] = cat:New(addon.L["The Azure Span Sprint"]); -- The Azure Span Sprint
+    AddC(tmp[1312], tmp[1329]);
+    AddA(tmp[1329], a[15788]); -- The Azure Span Sprint: Bronze
+    AddA(tmp[1329], a[15789]); -- The Azure Span Sprint: Silver
+    AddA(tmp[1329], a[15790]); -- The Azure Span Sprint: Gold
+    AddA(tmp[1329], a[15791]); -- The Azure Span Sprint - Advanced: Bronze
+    AddA(tmp[1329], a[15792]); -- The Azure Span Sprint - Advanced: Silver
+    AddA(tmp[1329], a[15793]); -- The Azure Span Sprint - Advanced: Gold
+    tmp[1331] = cat:New(addon.L["The Vakthros Ascent"]); -- The Vakthros Ascent
+    AddC(tmp[1312], tmp[1331]);
+    AddA(tmp[1331], a[15818]); -- The Vakthros Ascent: Bronze
+    AddA(tmp[1331], a[15819]); -- The Vakthros Ascent: Silver
+    AddA(tmp[1331], a[15820]); -- The Vakthros Ascent: Gold
+    AddA(tmp[1331], a[15821]); -- The Vakthros Ascent - Advanced: Bronze
+    AddA(tmp[1331], a[15822]); -- The Vakthros Ascent - Advanced: Silver
+    AddA(tmp[1331], a[15823]); -- The Vakthros Ascent - Advanced: Gold
+    tmp[1235] = cat:New(addon.GetMapName(2025)); -- Thaldraszus
+    AddC(tmp[1228], tmp[1235]);
+    tmp[1240] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
+    AddC(tmp[1235], tmp[1240]);
+    AddA(tmp[1240], a[16363]); -- Just Don't Ask Me to Spell It
+    AddA(tmp[1240], a[16398]); -- Sojourner of Thaldraszus
+    tmp[1246] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
+    AddC(tmp[1235], tmp[1246]);
+    AddA(tmp[1246], a[16301]); -- Treasures of Thaldraszus
+    tmp[1251] = cat:New(addon.GetCategoryInfoTitle(95), true); -- PvP
+    AddC(tmp[1235], tmp[1251]);
+    tmp[1255] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
+    AddC(tmp[1235], tmp[1255]);
+    tmp[1309] = cat:New(addon.L["Dragon Glyphs"], true); -- Dragon Glyphs
+    AddC(tmp[1235], tmp[1309]);
+    AddA(tmp[1309], a[16104]); -- Dragon Glyphs: Algeth'ar Academy
+    AddA(tmp[1309], a[16102]); -- Dragon Glyphs: Algeth'era
+    AddA(tmp[1309], a[16100]); -- Dragon Glyphs: South Hold Gate
+    AddA(tmp[1309], a[16099]); -- Dragon Glyphs: Stormshroud Peak
+    AddA(tmp[1309], a[16098]); -- Dragon Glyphs: Temporal Conflux
+    AddA(tmp[1309], a[16107]); -- Dragon Glyphs: Thaldrazsus Apex
+    AddA(tmp[1309], a[16103]); -- Dragon Glyphs: Tyrhold
+    AddA(tmp[1309], a[16101]); -- Dragon Glyphs: Valdrakken
+    AddA(tmp[1309], a[16106]); -- Dragon Glyphs: Vault of the Incarnates
+    AddA(tmp[1309], a[16105]); -- Dragon Glyphs: Veiled Ossuary
+    tmp[1313] = cat:New(addon.L["Dragon Racing"], true); -- Dragon Racing
+    AddC(tmp[1235], tmp[1313]);
+    AddA(tmp[1313], a[15924]); -- Thaldraszus - Bronze
+    AddA(tmp[1313], a[15925]); -- Thaldraszus - Silver
+    AddA(tmp[1313], a[15926]); -- Thaldraszus - Gold
+    AddA(tmp[1313], a[15936]); -- Thaldraszus - Advanced - Bronze
+    AddA(tmp[1313], a[15937]); -- Thaldraszus - Advanced - Silver
+    AddA(tmp[1313], a[15938]); -- Thaldraszus - Advanced - Gold
+    tmp[1338] = cat:New(addon.L["Academy Ascent"]); -- Academy Ascent
+    AddC(tmp[1313], tmp[1338]);
+    AddA(tmp[1338], a[15897]); -- Academy Ascent: Bronze
+    AddA(tmp[1338], a[15898]); -- Academy Ascent: Silver
+    AddA(tmp[1338], a[15899]); -- Academy Ascent: Gold
+    AddA(tmp[1338], a[15900]); -- Academy Ascent - Advanced: Bronze
+    AddA(tmp[1338], a[15901]); -- Academy Ascent - Advanced: Silver
+    AddA(tmp[1338], a[15902]); -- Academy Ascent - Advanced: Gold
+    tmp[1340] = cat:New(addon.L["Caverns Criss-Cross"]); -- Caverns Criss-Cross
+    AddC(tmp[1313], tmp[1340]);
+    AddA(tmp[1340], a[15909]); -- Caverns Criss-Cross: Bronze
+    AddA(tmp[1340], a[15910]); -- Caverns Criss-Cross: Silver
+    AddA(tmp[1340], a[15911]); -- Caverns Criss-Cross: Gold
+    AddA(tmp[1340], a[15912]); -- Caverns Criss-Cross - Advanced: Bronze
+    AddA(tmp[1340], a[15913]); -- Caverns Criss-Cross - Advanced: Silver
+    AddA(tmp[1340], a[15914]); -- Caverns Criss-Cross - Advanced: Gold
+    tmp[1337] = cat:New(addon.L["Cliffside Circuit"]); -- Cliffside Circuit
+    AddC(tmp[1313], tmp[1337]);
+    AddA(tmp[1337], a[15891]); -- Cliffside Circuit: Bronze
+    AddA(tmp[1337], a[15892]); -- Cliffside Circuit: Silver
+    AddA(tmp[1337], a[15893]); -- Cliffside Circuit: Gold
+    AddA(tmp[1337], a[15894]); -- Cliffside Circuit - Advanced: Bronze
+    AddA(tmp[1337], a[15895]); -- Cliffside Circuit - Advanced: Silver
+    AddA(tmp[1337], a[15896]); -- Cliffside Circuit - Advanced: Gold
+    tmp[1339] = cat:New(addon.L["Garden Gallivant"]); -- Garden Gallivant
+    AddC(tmp[1313], tmp[1339]);
+    AddA(tmp[1339], a[15903]); -- Garden Gallivant: Bronze
+    AddA(tmp[1339], a[15904]); -- Garden Gallivant: Silver
+    AddA(tmp[1339], a[15905]); -- Garden Gallivant: Gold
+    AddA(tmp[1339], a[15906]); -- Garden Gallivant - Advanced: Bronze
+    AddA(tmp[1339], a[15907]); -- Garden Gallivant - Advanced: Silver
+    AddA(tmp[1339], a[15908]); -- Garden Gallivant - Advanced: Gold
+    tmp[1336] = cat:New(addon.L["Passage Pathway"]); -- Passage Pathway
+    AddC(tmp[1313], tmp[1336]);
+    AddA(tmp[1336], a[15855]); -- Passage Pathway: Bronze
+    AddA(tmp[1336], a[15856]); -- Passage Pathway: Silver
+    AddA(tmp[1336], a[15857]); -- Passage Pathway: Gold
+    AddA(tmp[1336], a[15858]); -- Passage Pathway - Advanced: Bronze
+    AddA(tmp[1336], a[15859]); -- Passage Pathway - Advanced: Silver
+    AddA(tmp[1336], a[15860]); -- Passage Pathway - Advanced: Gold
+    tmp[1335] = cat:New(addon.L["The Flowing Forest Flight"]); -- The Flowing Forest Flight
+    AddC(tmp[1313], tmp[1335]);
+    AddA(tmp[1335], a[15827]); -- The Flowing Forest Flight: Bronze
+    AddA(tmp[1335], a[15828]); -- The Flowing Forest Flight: Silver
+    AddA(tmp[1335], a[15829]); -- The Flowing Forest Flight: Gold
+    AddA(tmp[1335], a[15830]); -- The Flowing Forest Flight - Advanced: Bronze
+    AddA(tmp[1335], a[15831]); -- The Flowing Forest Flight - Advanced: Silver
+    AddA(tmp[1335], a[15832]); -- The Flowing Forest Flight - Advanced: Gold
+    tmp[1236] = cat:New(addon.GetMapName(2107)); -- The Forbidden Reach
+    AddC(tmp[1228], tmp[1236]);
+    tmp[1241] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
+    AddC(tmp[1236], tmp[1241]);
+    AddA(tmp[1241], a[15325]); -- "Dracthyr, Awaken"
+    AddA(tmp[1241], a[15638]); -- "Dracthyr, Awaken"
+    tmp[1244] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
+    AddC(tmp[1236], tmp[1244]);
+    tmp[1252] = cat:New(addon.GetCategoryInfoTitle(95), true); -- PvP
+    AddC(tmp[1236], tmp[1252]);
+    tmp[1254] = cat:New(addon.GetCategoryInfoTitle(201), true); -- Reputation
+    AddC(tmp[1236], tmp[1254]);
+    tmp[1229] = cat:New(addon.GetCategoryInfoTitle(15272)); -- Dungeons
+    AddC(tmp[1207], tmp[1229]);
+    AddA(tmp[1229], a[16294]); -- Dragonflight Dungeon Hero
+    AddA(tmp[1229], a[16339]); -- Myths of the Dragonflight Dungeons
+    AddA(tmp[1229], a[16295]); -- Glory of the Dragonflight Hero
+    tmp[1257] = cat:New(addon.GetInstanceInfoName(1201)); -- Algeth'ar Academy
+    AddC(tmp[1229], tmp[1257]);
+    AddA(tmp[1257], a[16434]); -- See Me After Class
+    AddA(tmp[1257], a[16329]); -- "Duck, Duck, Spruce!"
+    AddA(tmp[1257], a[16441]); -- Squad Goals
+    AddA(tmp[1257], a[16269]); -- Algeth'ar Academy
+    AddA(tmp[1257], a[16270]); -- Heroic: Algeth'ar Academy
+    AddA(tmp[1257], a[16271]); -- Mythic: Algeth'ar Academy
+    tmp[1258] = cat:New(addon.GetInstanceInfoName(1196)); -- Brackenhide Hollow
+    AddC(tmp[1229], tmp[1258]);
+    AddA(tmp[1258], a[16110]); -- Subscribed to Hyena Facts
+    AddA(tmp[1258], a[16296]); -- Growlbossify
+    AddA(tmp[1258], a[16430]); -- "All Bark, All Bite"
+    AddA(tmp[1258], a[16404]); -- So You Can Kill This in a Way That Matters...
+    AddA(tmp[1258], a[16255]); -- Brackenhide Hollow
+    AddA(tmp[1258], a[16256]); -- Heroic: Brackenhide Hollow
+    AddA(tmp[1258], a[16257]); -- Mythic: Brackenhide Hollow
+    tmp[1259] = cat:New(addon.GetInstanceInfoName(1204)); -- Halls of Infusion
+    AddC(tmp[1229], tmp[1259]);
+    AddA(tmp[1259], a[16426]); -- Hungry Hungry Hornswog
+    AddA(tmp[1259], a[16427]); -- Go With The Flow
+    AddA(tmp[1259], a[16260]); -- Halls of Infusion
+    AddA(tmp[1259], a[16261]); -- Heroic: Halls of Infusion
+    AddA(tmp[1259], a[16262]); -- Mythic: Halls of Infusion
+    tmp[1260] = cat:New(addon.GetInstanceInfoName(1199)); -- Neltharus
+    AddC(tmp[1229], tmp[1260]);
+    AddA(tmp[1260], a[16438]); -- Knowledge is... Preserved?
+    AddA(tmp[1260], a[16432]); -- Ready for Raiding VIII
+    AddA(tmp[1260], a[16440]); -- Are You My Broodmother?
+    AddA(tmp[1260], a[16263]); -- Neltharus
+    AddA(tmp[1260], a[16264]); -- Heroic: Neltharus
+    AddA(tmp[1260], a[16265]); -- Mythic: Neltharus
+    tmp[1261] = cat:New(addon.GetInstanceInfoName(1202)); -- Ruby Life Pools
+    AddC(tmp[1229], tmp[1261]);
+    AddA(tmp[1261], a[16402]); -- Dragon Kill Points
+    AddA(tmp[1261], a[16320]); -- Does Steam Do Fire Damage?
+    AddA(tmp[1261], a[16266]); -- Ruby Life Pools
+    AddA(tmp[1261], a[16267]); -- Heroic: Ruby Life Pools
+    AddA(tmp[1261], a[16268]); -- Mythic: Ruby Life Pools
+    tmp[1262] = cat:New(addon.GetInstanceInfoName(1203)); -- The Azure Vault
+    AddC(tmp[1229], tmp[1262]);
+    AddA(tmp[1262], a[16330]); -- You Must Be Made of Hide
+    AddA(tmp[1262], a[16445]); -- Icy What You Did There
+    AddA(tmp[1262], a[16331]); -- The Cracked Crystal
+    AddA(tmp[1262], a[16272]); -- The Azure Vault
+    AddA(tmp[1262], a[16273]); -- Heroic: The Azure Vault
+    AddA(tmp[1262], a[16274]); -- Mythic: The Azure Vault
+    tmp[1263] = cat:New(addon.GetInstanceInfoName(1198)); -- The Nokhud Offensive
+    AddC(tmp[1229], tmp[1263]);
+    AddA(tmp[1263], a[16447]); -- What Are The Chances..
+    AddA(tmp[1263], a[16275]); -- The Nokhud Offensive
+    AddA(tmp[1263], a[16276]); -- Heroic: The Nokhud Offensive
+    AddA(tmp[1263], a[16277]); -- Mythic: The Nokhud Offensive
+    tmp[1264] = cat:New(addon.GetInstanceInfoName(1197)); -- Uldaman: Legacy of Tyr
+    AddC(tmp[1229], tmp[1264]);
+    AddA(tmp[1264], a[16337]); -- It's a Trogg Eat Trogg World
+    AddA(tmp[1264], a[16282]); -- "No, You're Stunning!"
+    AddA(tmp[1264], a[16281]); -- Like Sands Through the Hourglass
+    AddA(tmp[1264], a[16278]); -- Uldaman: Legacy of Tyr
+    AddA(tmp[1264], a[16279]); -- Heroic: Uldaman: Legacy of Tyr
+    AddA(tmp[1264], a[16280]); -- Mythic: Uldaman: Legacy of Tyr
+    tmp[1230] = cat:New(addon.GetCategoryInfoTitle(15271)); -- Raids
+    AddC(tmp[1207], tmp[1230]);
+    AddA(tmp[1230], a[16355]); -- Glory of the Vault Raider
+    tmp[1265] = cat:New(addon.GetInstanceInfoName(1200)); -- Vault of the Incarnates
+    AddC(tmp[1230], tmp[1265]);
+    AddA(tmp[1265], a[16343]); -- Vault of the Incarnates
+    AddA(tmp[1265], a[16345]); -- Heroic: Vault of the Incarnates
+    AddA(tmp[1265], a[16354]); -- Mythic: Vault of the Incarnates
+    AddA(tmp[1265], a[16395]); -- Vaulternative Fashion
+    tmp[1266] = cat:New(addon.L["Glory"]); -- Glory
+    AddC(tmp[1265], tmp[1266]);
+    AddA(tmp[1266], a[16335]); -- What Frozen Things Do
+    AddA(tmp[1266], a[16365]); -- Little Friends
+    AddA(tmp[1266], a[16364]); -- The Lunker Below
+    AddA(tmp[1266], a[16419]); -- I Was Saving That For Later
+    AddA(tmp[1266], a[16442]); -- Incubation Extermination
+    tmp[1267] = cat:New(addon.L["Mythic"]); -- Mythic
+    AddC(tmp[1265], tmp[1267]);
+    AddA(tmp[1267], a[16346]); -- Mythic: Eranog
+    AddA(tmp[1267], a[16347]); -- Mythic: Terros
+    AddA(tmp[1267], a[16348]); -- Mythic: The Primal Council
+    AddA(tmp[1267], a[16349]); -- "Mythic: Sennarth, The Cold Breath"
+    AddA(tmp[1267], a[16350]); -- "Mythic: Dathea, Ascended"
+    AddA(tmp[1267], a[16351]); -- Mythic: Kurog Grimtotem
+    AddA(tmp[1267], a[16352]); -- Mythic: Broodkeeper Diurna
+    AddA(tmp[1267], a[16353]); -- Mythic: Raszageth the Storm-Eater
+    tmp[1231] = cat:New(addon.GetCategoryInfoTitle(15117)); -- Pet Battles
+    AddC(tmp[1207], tmp[1231]);
+    tmp[1268] = cat:New(addon.L["Dragonriding"]); -- Dragonriding
+    AddC(tmp[1207], tmp[1268]);
+    AddA(tmp[1268], a[15794]); -- A New Friend
+    AddA(tmp[1268], a[15795]); -- Together in the Skies
+    AddA(tmp[1268], a[15797]); -- An Azure Ally
+    AddA(tmp[1268], a[15796]); -- Cliffside Companion
+    tmp[1302] = cat:New(addon.GetMapName(2022), true); -- The Waking Shores
+    AddC(tmp[1268], tmp[1302]);
+    AddA(tmp[1302], a[15991]); -- Dragon Glyphs: Crumbling Life Archway
+    AddA(tmp[1302], a[16051]); -- Dragon Glyphs: Dragonheart Outpost
+    AddA(tmp[1302], a[15990]); -- Dragon Glyphs: Life-Binder Observatory
+    AddA(tmp[1302], a[15987]); -- Dragon Glyphs: Obsidian Bulwark
+    AddA(tmp[1302], a[16053]); -- Dragon Glyphs: Obsidian Throne
+    AddA(tmp[1302], a[15988]); -- Dragon Glyphs: Ruby Life Pools
+    AddA(tmp[1302], a[16052]); -- Dragon Glyphs: Scalecracker Peak
+    AddA(tmp[1302], a[15985]); -- Dragon Glyphs: Skytop Observatory
+    AddA(tmp[1302], a[15989]); -- Dragon Glyphs: The Overflowing Spring
+    AddA(tmp[1302], a[15986]); -- Dragon Glyphs: Wingrest Embassy
+    tmp[1303] = cat:New(addon.GetMapName(2023), true); -- Ohn'ahran Plains
+    AddC(tmp[1268], tmp[1303]);
+    AddA(tmp[1303], a[16061]); -- Dragon Glyphs: Dragonsprings Summit
+    AddA(tmp[1303], a[16056]); -- Dragon Glyphs: Emerald Gardens
+    AddA(tmp[1303], a[16059]); -- Dragon Glyphs: Mirror of the Sky
+    AddA(tmp[1303], a[16055]); -- Dragon Glyphs: Nokhudon Hold
+    AddA(tmp[1303], a[16054]); -- Dragon Glyphs: Ohn'ahra's Roost
+    AddA(tmp[1303], a[16060]); -- Dragon Glyphs: Ohn'iri Springs
+    AddA(tmp[1303], a[16062]); -- Dragon Glyphs: Rusza'thar Reach
+    AddA(tmp[1303], a[16058]); -- Dragon Glyphs: Szar Skeleth
+    AddA(tmp[1303], a[16057]); -- Dragon Glyphs: The Eternal Kurgans
+    AddA(tmp[1303], a[16063]); -- Dragon Glyphs: Windsong Rise
+    tmp[1304] = cat:New(addon.GetMapName(2024), true); -- The Azure Span
+    AddC(tmp[1268], tmp[1304]);
+    AddA(tmp[1304], a[16065]); -- Dragon Glyphs: Azure Archive
+    AddA(tmp[1304], a[16068]); -- Dragon Glyphs: Brackenhide Hollow
+    AddA(tmp[1304], a[16064]); -- Dragon Glyphs: Cobalt Assembly
+    AddA(tmp[1304], a[16069]); -- Dragon Glyphs: Drake Eye's Pond
+    AddA(tmp[1304], a[16070]); -- Dragon Glyphs: Imbu
+    AddA(tmp[1304], a[16072]); -- Dragon Glyphs: Kalthraz Fortress
+    AddA(tmp[1304], a[16067]); -- Dragon Glyphs: Lost Ruins
+    AddA(tmp[1304], a[16066]); -- Dragon Glyphs: Ruins of Karnthar
+    AddA(tmp[1304], a[16073]); -- Dragon Glyphs: Vakthros Summit
+    AddA(tmp[1304], a[16071]); -- Dragon Glyphs: Zelthrak Outpost
+    tmp[1305] = cat:New(addon.GetMapName(2025), true); -- Thaldraszus
+    AddC(tmp[1268], tmp[1305]);
+    AddA(tmp[1305], a[16104]); -- Dragon Glyphs: Algeth'ar Academy
+    AddA(tmp[1305], a[16102]); -- Dragon Glyphs: Algeth'era
+    AddA(tmp[1305], a[16100]); -- Dragon Glyphs: South Hold Gate
+    AddA(tmp[1305], a[16099]); -- Dragon Glyphs: Stormshroud Peak
+    AddA(tmp[1305], a[16098]); -- Dragon Glyphs: Temporal Conflux
+    AddA(tmp[1305], a[16107]); -- Dragon Glyphs: Thaldrazsus Apex
+    AddA(tmp[1305], a[16103]); -- Dragon Glyphs: Tyrhold
+    AddA(tmp[1305], a[16101]); -- Dragon Glyphs: Valdrakken
+    AddA(tmp[1305], a[16106]); -- Dragon Glyphs: Vault of the Incarnates
+    AddA(tmp[1305], a[16105]); -- Dragon Glyphs: Veiled Ossuary
+    tmp[1269] = cat:New(addon.L["Dragon Racing"]); -- Dragon Racing
+    AddC(tmp[1207], tmp[1269]);
+    AddA(tmp[1269], a[15939]); -- Dragon Racing Completionist
+    AddA(tmp[1269], a[15940]); -- Dragon Racing Completionist - Silver
+    AddA(tmp[1269], a[15941]); -- Dragon Racing Completionist - Gold
+    tmp[1293] = cat:New(addon.GetMapName(2022)); -- The Waking Shores
+    AddC(tmp[1269], tmp[1293]);
+    AddA(tmp[1293], a[15915]); -- Waking Shores - Bronze
+    AddA(tmp[1293], a[15916]); -- Waking Shores - Silver
+    AddA(tmp[1293], a[15917]); -- Waking Shores - Gold
+    AddA(tmp[1293], a[15927]); -- Waking Shores - Advanced - Bronze
+    AddA(tmp[1293], a[15928]); -- Waking Shores - Advanced - Silver
+    AddA(tmp[1293], a[15929]); -- Waking Shores - Advanced - Gold
+    tmp[1298] = cat:New(addon.L["Apex Canopy River Run"]); -- Apex Canopy River Run
+    AddC(tmp[1293], tmp[1298]);
+    AddA(tmp[1298], a[15730]); -- Apex Canopy River Run: Bronze
+    AddA(tmp[1298], a[15731]); -- Apex Canopy River Run: Silver
+    AddA(tmp[1298], a[15732]); -- Apex Canopy River Run: Gold
+    AddA(tmp[1298], a[15733]); -- Apex Canopy River Run - Advanced: Bronze
+    AddA(tmp[1298], a[15734]); -- Apex Canopy River Run - Advanced: Silver
+    AddA(tmp[1298], a[15735]); -- Apex Canopy River Run - Advanced: Gold
+    tmp[1299] = cat:New(addon.L["Emberflow Flight"]); -- Emberflow Flight
+    AddC(tmp[1293], tmp[1299]);
+    AddA(tmp[1299], a[15724]); -- Emberflow Flight: Bronze
+    AddA(tmp[1299], a[15725]); -- Emberflow Flight: Silver
+    AddA(tmp[1299], a[15726]); -- Emberflow Flight: Gold
+    AddA(tmp[1299], a[15727]); -- Emberflow Flight - Advanced: Bronze
+    AddA(tmp[1299], a[15728]); -- Emberflow Flight - Advanced: Silver
+    AddA(tmp[1299], a[15729]); -- Emberflow Flight - Advanced: Gold
+    tmp[1295] = cat:New(addon.L["Flashfrost Flyover"]); -- Flashfrost Flyover
+    AddC(tmp[1293], tmp[1295]);
+    AddA(tmp[1295], a[15705]); -- Flashfrost Flyover: Bronze
+    AddA(tmp[1295], a[15706]); -- Flashfrost Flyover: Silver
+    AddA(tmp[1295], a[15707]); -- Flashfrost Flyover: Gold
+    AddA(tmp[1295], a[15709]); -- Flashfrost Flyover - Advanced: Bronze
+    AddA(tmp[1295], a[15710]); -- Flashfrost Flyover - Advanced: Silver
+    AddA(tmp[1295], a[15711]); -- Flashfrost Flyover - Advanced: Gold
+    tmp[1301] = cat:New(addon.L["Ruby Lifeshrine Loop"]); -- Ruby Lifeshrine Loop
+    AddC(tmp[1293], tmp[1301]);
+    AddA(tmp[1301], a[15696]); -- Ruby Lifeshrine Loop: Bronze
+    AddA(tmp[1301], a[15697]); -- Ruby Lifeshrine Loop: Silver
+    AddA(tmp[1301], a[15698]); -- Ruby Lifeshrine Loop: Gold
+    AddA(tmp[1301], a[15702]); -- Ruby Lifeshrine Loop - Advanced: Bronze
+    AddA(tmp[1301], a[15703]); -- Ruby Lifeshrine Loop - Advanced: Silver
+    AddA(tmp[1301], a[15704]); -- Ruby Lifeshrine Loop - Advanced: Gold
+    tmp[1297] = cat:New(addon.L["Uktulut Coaster"]); -- Uktulut Coaster
+    AddC(tmp[1293], tmp[1297]);
+    AddA(tmp[1297], a[15736]); -- Uktulut Coaster: Bronze
+    AddA(tmp[1297], a[15737]); -- Uktulut Coaster: Silver
+    AddA(tmp[1297], a[15738]); -- Uktulut Coaster: Gold
+    AddA(tmp[1297], a[15739]); -- Uktulut Coaster - Advanced: Bronze
+    AddA(tmp[1297], a[15740]); -- Uktulut Coaster - Advanced: Silver
+    AddA(tmp[1297], a[15741]); -- Uktulut Coaster - Advanced: Gold
+    tmp[1294] = cat:New(addon.L["Wild Preserve Circuit"]); -- Wild Preserve Circuit
+    AddC(tmp[1293], tmp[1294]);
+    AddA(tmp[1294], a[15718]); -- Wild Preserve Circuit: Bronze
+    AddA(tmp[1294], a[15719]); -- Wild Preserve Circuit: Silver
+    AddA(tmp[1294], a[15720]); -- Wild Preserve Circuit: Gold
+    AddA(tmp[1294], a[15721]); -- Wild Preserve Circuit - Advanced: Bronze
+    AddA(tmp[1294], a[15722]); -- Wild Preserve Circuit - Advanced: Silver
+    AddA(tmp[1294], a[15723]); -- Wild Preserve Circuit - Advanced: Gold
+    tmp[1300] = cat:New(addon.L["Wild Preserve Slalom"]); -- Wild Preserve Slalom
+    AddC(tmp[1293], tmp[1300]);
+    AddA(tmp[1300], a[15712]); -- Wild Preserve Slalom - Bronze
+    AddA(tmp[1300], a[15713]); -- Wild Preserve Slalom - Silver
+    AddA(tmp[1300], a[15714]); -- Wild Preserve Slalom - Gold
+    AddA(tmp[1300], a[15715]); -- Wild Preserve Slalom - Advanced: Bronze
+    AddA(tmp[1300], a[15716]); -- Wild Preserve Slalom - Advanced: Silver
+    AddA(tmp[1300], a[15717]); -- Wild Preserve Slalom - Advanced: Gold
+    tmp[1296] = cat:New(addon.L["Wingrest Roundabout"]); -- Wingrest Roundabout
+    AddC(tmp[1293], tmp[1296]);
+    AddA(tmp[1296], a[15742]); -- Wingrest Roundabout: Bronze
+    AddA(tmp[1296], a[15743]); -- Wingrest Roundabout: Silver
+    AddA(tmp[1296], a[15744]); -- Wingrest Roundabout: Gold
+    AddA(tmp[1296], a[15745]); -- Wingrest Roundabout - Advanced: Bronze
+    AddA(tmp[1296], a[15746]); -- Wingrest Roundabout - Advanced: Silver
+    AddA(tmp[1296], a[15747]); -- Wingrest Roundabout - Advanced: Gold
+    tmp[1285] = cat:New(addon.GetMapName(2023)); -- Ohn'ahran Plains
+    AddC(tmp[1269], tmp[1285]);
+    AddA(tmp[1285], a[15918]); -- Ohn'ahran Plains - Bronze
+    AddA(tmp[1285], a[15919]); -- Ohn'ahran Plains - Silver
+    AddA(tmp[1285], a[15920]); -- Ohn'ahran Plains - Gold
+    AddA(tmp[1285], a[15930]); -- Ohn'ahran Plains - Advanced - Bronze
+    AddA(tmp[1285], a[15931]); -- Ohn'ahran Plains - Advanced - Silver
+    AddA(tmp[1285], a[15932]); -- Ohn'ahran Plains - Advanced - Gold
+    tmp[1289] = cat:New(addon.L["Emerald Garden Ascent"]); -- Emerald Garden Ascent
+    AddC(tmp[1285], tmp[1289]);
+    AddA(tmp[1289], a[15775]); -- Emerald Garden Ascent: Bronze
+    AddA(tmp[1289], a[15776]); -- Emerald Garden Ascent: Silver
+    AddA(tmp[1289], a[15777]); -- Emerald Garden Ascent: Gold
+    AddA(tmp[1289], a[15778]); -- Emerald Garden Ascent - Advanced: Bronze
+    AddA(tmp[1289], a[15779]); -- Emerald Garden Ascent - Advanced: Silver
+    AddA(tmp[1289], a[15780]); -- Emerald Garden Ascent - Advanced: Gold
+    tmp[1291] = cat:New(addon.L["Fen Flythrough"]); -- Fen Flythrough
+    AddC(tmp[1285], tmp[1291]);
+    AddA(tmp[1291], a[15763]); -- Fen Flythrough: Bronze
+    AddA(tmp[1291], a[15764]); -- Fen Flythrough: Silver
+    AddA(tmp[1291], a[15765]); -- Fen Flythrough: Gold
+    AddA(tmp[1291], a[15766]); -- Fen Flythrough - Advanced: Bronze
+    AddA(tmp[1291], a[15767]); -- Fen Flythrough - Advanced: Silver
+    AddA(tmp[1291], a[15768]); -- Fen Flythrough - Advanced: Gold
+    tmp[1286] = cat:New(addon.L["Maruukai Dash"]); -- Maruukai Dash
+    AddC(tmp[1285], tmp[1286]);
+    AddA(tmp[1286], a[15782]); -- Maruukai Dash: Bronze
+    AddA(tmp[1286], a[15783]); -- Maruukai Dash: Silver
+    AddA(tmp[1286], a[15784]); -- Maruukai Dash: Gold
+    tmp[1287] = cat:New(addon.L["Mirror of the Sky Dash"]); -- Mirror of the Sky Dash
+    AddC(tmp[1285], tmp[1287]);
+    AddA(tmp[1287], a[15785]); -- Mirror of the Sky Dash: Bronze
+    AddA(tmp[1287], a[15786]); -- Mirror of the Sky Dash: Silver
+    AddA(tmp[1287], a[15787]); -- Mirror of the Sky Dash: Gold
+    tmp[1290] = cat:New(addon.L["Ravine River Run"]); -- Ravine River Run
+    AddC(tmp[1285], tmp[1290]);
+    AddA(tmp[1290], a[15769]); -- Ravine River Run: Bronze
+    AddA(tmp[1290], a[15770]); -- Ravine River Run: Silver
+    AddA(tmp[1290], a[15771]); -- Ravine River Run: Gold
+    AddA(tmp[1290], a[15772]); -- Ravine River Run - Advanced: Bronze
+    AddA(tmp[1290], a[15773]); -- Ravine River Run - Advanced: Silver
+    AddA(tmp[1290], a[15774]); -- Ravine River Run - Advanced: Gold
+    tmp[1288] = cat:New(addon.L["River Rapids Route"]); -- River Rapids Route
+    AddC(tmp[1285], tmp[1288]);
+    AddA(tmp[1288], a[16302]); -- River Rapids Route: Bronze
+    AddA(tmp[1288], a[16303]); -- River Rapids Route: Silver
+    AddA(tmp[1288], a[16304]); -- River Rapids Route: Gold
+    AddA(tmp[1288], a[16305]); -- River Rapids Route - Advanced: Bronze
+    AddA(tmp[1288], a[16306]); -- River Rapids Route - Advanced: Silver
+    AddA(tmp[1288], a[16307]); -- River Rapids Route - Advanced: Gold
+    tmp[1292] = cat:New(addon.L["Sundapple Copse Circuit"]); -- Sundapple Copse Circuit
+    AddC(tmp[1285], tmp[1292]);
+    AddA(tmp[1292], a[15757]); -- Sundapple Copse Circuit: Bronze
+    AddA(tmp[1292], a[15758]); -- Sundapple Copse Circuit: Silver
+    AddA(tmp[1292], a[15759]); -- Sundapple Copse Circuit: Gold
+    AddA(tmp[1292], a[15760]); -- Sundapple Copse Circuit - Advanced: Bronze
+    AddA(tmp[1292], a[15761]); -- Sundapple Copse Circuit - Advanced: Silver
+    AddA(tmp[1292], a[15762]); -- Sundapple Copse Circuit - Advanced: Gold
+    tmp[1278] = cat:New(addon.GetMapName(2024)); -- The Azure Span
+    AddC(tmp[1269], tmp[1278]);
+    AddA(tmp[1278], a[15921]); -- Azure Span - Bronze
+    AddA(tmp[1278], a[15922]); -- Azure Span - Silver
+    AddA(tmp[1278], a[15923]); -- Azure Span - Gold
+    AddA(tmp[1278], a[15933]); -- Azure Span - Advanced - Bronze
+    AddA(tmp[1278], a[15934]); -- Azure Span - Advanced - Silver
+    AddA(tmp[1278], a[15935]); -- Azure Span - Advanced - Gold
+    tmp[1279] = cat:New(addon.L["Archive Ambit"]); -- Archive Ambit
+    AddC(tmp[1278], tmp[1279]);
+    AddA(tmp[1279], a[15847]); -- Archive Ambit: Bronze
+    AddA(tmp[1279], a[15848]); -- Archive Ambit: Silver
+    AddA(tmp[1279], a[15849]); -- Archive Ambit: Gold
+    AddA(tmp[1279], a[15850]); -- Archive Ambit - Advanced: Bronze
+    AddA(tmp[1279], a[15851]); -- Archive Ambit - Advanced: Silver
+    AddA(tmp[1279], a[15852]); -- Archive Ambit - Advanced: Gold
+    tmp[1280] = cat:New(addon.L["Central Circuit"]); -- Central Circuit
+    AddC(tmp[1278], tmp[1280]);
+    AddA(tmp[1280], a[15841]); -- Central Circuit: Bronze
+    AddA(tmp[1280], a[15842]); -- Central Circuit: Silver
+    AddA(tmp[1280], a[15843]); -- Central Circuit: Gold
+    AddA(tmp[1280], a[15844]); -- Central Circuit - Advanced: Bronze
+    AddA(tmp[1280], a[15845]); -- Central Circuit - Advanced: Silver
+    AddA(tmp[1280], a[15846]); -- Central Circuit - Advanced: Gold
+    tmp[1281] = cat:New(addon.L["Iskaara Flyover"]); -- Iskaara Flyover
+    AddC(tmp[1278], tmp[1281]);
+    AddA(tmp[1281], a[15835]); -- Iskaara Flyover: Bronze
+    AddA(tmp[1281], a[15836]); -- Iskaara Flyover: Silver
+    AddA(tmp[1281], a[15837]); -- Iskaara Flyover: Gold
+    AddA(tmp[1281], a[15838]); -- Iskaara Flyover - Advanced: Bronze
+    AddA(tmp[1281], a[15839]); -- Iskaara Flyover - Advanced: Silver
+    AddA(tmp[1281], a[15840]); -- Iskaara Flyover - Advanced: Gold
+    tmp[1283] = cat:New(addon.L["The Azure Span Slalom"]); -- The Azure Span Slalom
+    AddC(tmp[1278], tmp[1283]);
+    AddA(tmp[1283], a[15799]); -- The Azure Span Slalom: Bronze
+    AddA(tmp[1283], a[15800]); -- The Azure Span Slalom: Silver
+    AddA(tmp[1283], a[15801]); -- The Azure Span Slalom: Gold
+    AddA(tmp[1283], a[15802]); -- The Azure Span Slalom - Advanced: Bronze
+    AddA(tmp[1283], a[15803]); -- The Azure Span Slalom - Advanced: Silver
+    AddA(tmp[1283], a[15804]); -- The Azure Span Slalom - Advanced: Gold
+    tmp[1284] = cat:New(addon.L["The Azure Span Sprint"]); -- The Azure Span Sprint
+    AddC(tmp[1278], tmp[1284]);
+    AddA(tmp[1284], a[15788]); -- The Azure Span Sprint: Bronze
+    AddA(tmp[1284], a[15789]); -- The Azure Span Sprint: Silver
+    AddA(tmp[1284], a[15790]); -- The Azure Span Sprint: Gold
+    AddA(tmp[1284], a[15791]); -- The Azure Span Sprint - Advanced: Bronze
+    AddA(tmp[1284], a[15792]); -- The Azure Span Sprint - Advanced: Silver
+    AddA(tmp[1284], a[15793]); -- The Azure Span Sprint - Advanced: Gold
+    tmp[1282] = cat:New(addon.L["The Vakthros Ascent"]); -- The Vakthros Ascent
+    AddC(tmp[1278], tmp[1282]);
+    AddA(tmp[1282], a[15818]); -- The Vakthros Ascent: Bronze
+    AddA(tmp[1282], a[15819]); -- The Vakthros Ascent: Silver
+    AddA(tmp[1282], a[15820]); -- The Vakthros Ascent: Gold
+    AddA(tmp[1282], a[15821]); -- The Vakthros Ascent - Advanced: Bronze
+    AddA(tmp[1282], a[15822]); -- The Vakthros Ascent - Advanced: Silver
+    AddA(tmp[1282], a[15823]); -- The Vakthros Ascent - Advanced: Gold
+    tmp[1276] = cat:New(addon.GetMapName(2025)); -- Thaldraszus
+    AddC(tmp[1269], tmp[1276]);
+    AddA(tmp[1276], a[15924]); -- Thaldraszus - Bronze
+    AddA(tmp[1276], a[15925]); -- Thaldraszus - Silver
+    AddA(tmp[1276], a[15926]); -- Thaldraszus - Gold
+    AddA(tmp[1276], a[15936]); -- Thaldraszus - Advanced - Bronze
+    AddA(tmp[1276], a[15937]); -- Thaldraszus - Advanced - Silver
+    AddA(tmp[1276], a[15938]); -- Thaldraszus - Advanced - Gold
+    tmp[1273] = cat:New(addon.L["Academy Ascent"]); -- Academy Ascent
+    AddC(tmp[1276], tmp[1273]);
+    AddA(tmp[1273], a[15897]); -- Academy Ascent: Bronze
+    AddA(tmp[1273], a[15898]); -- Academy Ascent: Silver
+    AddA(tmp[1273], a[15899]); -- Academy Ascent: Gold
+    AddA(tmp[1273], a[15900]); -- Academy Ascent - Advanced: Bronze
+    AddA(tmp[1273], a[15901]); -- Academy Ascent - Advanced: Silver
+    AddA(tmp[1273], a[15902]); -- Academy Ascent - Advanced: Gold
+    tmp[1271] = cat:New(addon.L["Caverns Criss-Cross"]); -- Caverns Criss-Cross
+    AddC(tmp[1276], tmp[1271]);
+    AddA(tmp[1271], a[15909]); -- Caverns Criss-Cross: Bronze
+    AddA(tmp[1271], a[15910]); -- Caverns Criss-Cross: Silver
+    AddA(tmp[1271], a[15911]); -- Caverns Criss-Cross: Gold
+    AddA(tmp[1271], a[15912]); -- Caverns Criss-Cross - Advanced: Bronze
+    AddA(tmp[1271], a[15913]); -- Caverns Criss-Cross - Advanced: Silver
+    AddA(tmp[1271], a[15914]); -- Caverns Criss-Cross - Advanced: Gold
+    tmp[1274] = cat:New(addon.L["Cliffside Circuit"]); -- Cliffside Circuit
+    AddC(tmp[1276], tmp[1274]);
+    AddA(tmp[1274], a[15891]); -- Cliffside Circuit: Bronze
+    AddA(tmp[1274], a[15892]); -- Cliffside Circuit: Silver
+    AddA(tmp[1274], a[15893]); -- Cliffside Circuit: Gold
+    AddA(tmp[1274], a[15894]); -- Cliffside Circuit - Advanced: Bronze
+    AddA(tmp[1274], a[15895]); -- Cliffside Circuit - Advanced: Silver
+    AddA(tmp[1274], a[15896]); -- Cliffside Circuit - Advanced: Gold
+    tmp[1272] = cat:New(addon.L["Garden Gallivant"]); -- Garden Gallivant
+    AddC(tmp[1276], tmp[1272]);
+    AddA(tmp[1272], a[15903]); -- Garden Gallivant: Bronze
+    AddA(tmp[1272], a[15904]); -- Garden Gallivant: Silver
+    AddA(tmp[1272], a[15905]); -- Garden Gallivant: Gold
+    AddA(tmp[1272], a[15906]); -- Garden Gallivant - Advanced: Bronze
+    AddA(tmp[1272], a[15907]); -- Garden Gallivant - Advanced: Silver
+    AddA(tmp[1272], a[15908]); -- Garden Gallivant - Advanced: Gold
+    tmp[1275] = cat:New(addon.L["Passage Pathway"]); -- Passage Pathway
+    AddC(tmp[1276], tmp[1275]);
+    AddA(tmp[1275], a[15855]); -- Passage Pathway: Bronze
+    AddA(tmp[1275], a[15856]); -- Passage Pathway: Silver
+    AddA(tmp[1275], a[15857]); -- Passage Pathway: Gold
+    AddA(tmp[1275], a[15858]); -- Passage Pathway - Advanced: Bronze
+    AddA(tmp[1275], a[15859]); -- Passage Pathway - Advanced: Silver
+    AddA(tmp[1275], a[15860]); -- Passage Pathway - Advanced: Gold
+    tmp[1277] = cat:New(addon.L["The Flowing Forest Flight"]); -- The Flowing Forest Flight
+    AddC(tmp[1276], tmp[1277]);
+    AddA(tmp[1277], a[15827]); -- The Flowing Forest Flight: Bronze
+    AddA(tmp[1277], a[15828]); -- The Flowing Forest Flight: Silver
+    AddA(tmp[1277], a[15829]); -- The Flowing Forest Flight: Gold
+    AddA(tmp[1277], a[15830]); -- The Flowing Forest Flight - Advanced: Bronze
+    AddA(tmp[1277], a[15831]); -- The Flowing Forest Flight - Advanced: Silver
+    AddA(tmp[1277], a[15832]); -- The Flowing Forest Flight - Advanced: Gold
+    tmp[1270] = cat:New(addon.GetCategoryInfoTitle(15473)); -- Tuskarr Fishing
+    AddC(tmp[1207], tmp[1270]);
+    AddA(tmp[1270], a[16317]); -- Secret Fishing Spots
+    AddA(tmp[1270], a[16321]); -- Cutting Tusk Equipment
+    AddA(tmp[1270], a[16322]); -- Best in Slot
     tmp[952] = cat:New(addon.L["Other"]); -- Other
     AddC(tmp[883], tmp[952]);
     tmp[1160] = cat:New(addon.L["Zones"]); -- Zones
@@ -5461,6 +6242,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1168], a[9]); -- Level 40
     AddA(tmp[1168], a[14782]); -- Level 50
     AddA(tmp[1168], a[14783]); -- Level 60
+    AddA(tmp[1168], a[15805]); -- Level 70
     AddA(tmp[1168], a[10]); -- Level 50 (Legacy)
     AddA(tmp[1168], a[11]); -- Level 60 (Legacy)
     AddA(tmp[1168], a[12]); -- Level 70 (Legacy)
@@ -5940,6 +6722,10 @@ function exportedCategories.Load(a)
     AddA(tmp[1170], a[9643]); -- So. Many. Pets.
     AddA(tmp[1170], a[12992]); -- Pet Emporium
     AddA(tmp[1170], a[12958]); -- Master of Minions
+    AddA(tmp[1170], a[15641]); -- Many More Mini Minions
+    AddA(tmp[1170], a[15642]); -- Proven Pet Parent
+    AddA(tmp[1170], a[15643]); -- What Can I Say? They Love Me.
+    AddA(tmp[1170], a[15644]); -- Good Things Come in Small Packages
     AddA(tmp[1170], a[6554]); -- He's Mine!
     AddA(tmp[1170], a[6555]); -- Building a Team
     AddA(tmp[1170], a[6556]); -- Going to Need More Traps
@@ -6009,6 +6795,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1171], a[9673]); -- The Toymaster
     AddA(tmp[1171], a[11176]); -- Remember to Share
     AddA(tmp[1171], a[12996]); -- Toybox Tycoon
+    AddA(tmp[1171], a[15781]); -- The Joy of Toy
     tmp[1172] = cat:New(addon.GetCategoryInfoTitle(81)); -- Feats of Strength
     AddC(tmp[952], tmp[1172]);
     AddA(tmp[1172], a[4496]); -- It's Over Nine Thousand!
@@ -7341,6 +8128,21 @@ function exportedCategories.Load(a)
     AddA(tmp[1191], a[15606]); -- Eternal Gladiator: Shadowlands Season 4
     AddA(tmp[1191], a[15608]); -- Hero of the Alliance: Eternal
     AddA(tmp[1191], a[15607]); -- Hero of the Horde: Eternal
+    tmp[1344] = cat:New(addon.GetCategoryInfoTitle(15466)); -- Dragonflight
+    AddC(tmp[955], tmp[1344]);
+    tmp[1345] = cat:New(addon.L["Season"] .. " " .. 1); -- Season 1
+    AddC(tmp[1344], tmp[1345]);
+    AddA(tmp[1345], a[15960]); -- Combatant I: Shadowlands Dragonflight Season 1
+    AddA(tmp[1345], a[15961]); -- Combatant II: Dragonflight Season 1
+    AddA(tmp[1345], a[15955]); -- Challenger I: Dragonflight Season 1
+    AddA(tmp[1345], a[15956]); -- Challenger II: Dragonflight Season 1
+    AddA(tmp[1345], a[15952]); -- Rival I: Dragonflight Season 1
+    AddA(tmp[1345], a[15953]); -- Rival II: Dragonflight Season 1
+    AddA(tmp[1345], a[15954]); -- Duelist: Dragonflight Season 1
+    AddA(tmp[1345], a[15984]); -- Elite: Dragonflight Season 1
+    AddA(tmp[1345], a[15951]); -- Crimson Gladiator: Dragonflight Season 1
+    AddA(tmp[1345], a[15959]); -- Hero of the Alliance: Crimson
+    AddA(tmp[1345], a[15958]); -- Hero of the Horde: Crimson
     tmp[1227] = cat:New(addon.L["Excluded"]); -- Excluded
     AddC(tmp[955], tmp[1227]);
     tmp[1227].HasFlexibleData = true;
@@ -7392,6 +8194,8 @@ function exportedCategories.Load(a)
     AddA(tmp[976], a[12931]); -- No Stable Big Enough
     AddA(tmp[976], a[12933]); -- A Horde of Hoofbeats
     AddA(tmp[976], a[12934]); -- A Horde of Hoofbeats
+    AddA(tmp[976], a[15834]); -- Thanks for the Carry!
+    AddA(tmp[976], a[15833]); -- Thanks for the Carry!
     AddA(tmp[976], a[9713]); -- Awake the Drakes
     tmp[985] = cat:New(addon.L["Vendor"]); -- Vendor
     AddC(tmp[972], tmp[985]);
@@ -7552,6 +8356,7 @@ function exportedCategories.Load(a)
     AddA(tmp[978], a[15384]); -- Cosmic Gladiator's Soul Eater
     AddA(tmp[978], a[15605]); -- Gladiator: Shadowlands Season 4
     AddA(tmp[978], a[15612]); -- Eternal Gladiator's Soul Eater
+    AddA(tmp[978], a[15957]); -- Gladiator: Dragonflight Season 1
     tmp[988] = cat:New(addon.L["Recruit-a-Friend"] .. " (" .. addon.GetCategoryInfoTitle(15234) .. ")"); -- Recruit-a-Friend
     AddC(tmp[972], tmp[988]);
     AddA(tmp[988], a[1436]); -- Friends In High Places
@@ -8170,74 +8975,74 @@ function exportedCategories.Load(a)
 end
 
 function exportedCategories.InjectOptions()
-    -- local defaultsFocused = {};
-    -- defaultsFocused[1] = false;
-    -- defaultsFocused[2] = false;
-    -- defaultsFocused[3] = false;
-    -- defaultsFocused[4] = false;
-    -- defaultsFocused[5] = true;
+    local defaultsFocused = {};
+    defaultsFocused[1] = false;
+    defaultsFocused[2] = false;
+    defaultsFocused[3] = false;
+    defaultsFocused[4] = false;
+    defaultsFocused[5] = true;
 
-    -- addon.Options.InjectDefaults(defaultsFocused, "Focused", "AdjustableCategories");
+    addon.Options.InjectDefaults(defaultsFocused, "Focused", "AdjustableCategories");
 
-    -- local optionsTableFocused = {
-    --     order = 2, type = "group",
-    --     name = addon.L["Focused"],
-    --     inline = true,
-    --     args = {
-    --         Achievements = {
-    --             order = 1, type = "toggle",
-    --             name = addon.L["Achievements"],
-    --             desc = addon.L["Requires a reload"],
-    --             get = function() return addon.Options.db.AdjustableCategories.Focused[1]; end,
-    --             set = function()
-    --                 addon.Options.db.AdjustableCategories.Focused[1] = not addon.Options.db.AdjustableCategories.Focused[1];
-    --                 addon.Diagnostics.Debug(addon.L["Achievements"], addon.Options.db.AdjustableCategories.Focused[1]);
-    --             end
-    --         },
-    --         Expansions = {
-    --             order = 2, type = "toggle",
-    --             name = addon.L["Expansions"],
-    --             desc = addon.L["Requires a reload"],
-    --             get = function() return addon.Options.db.AdjustableCategories.Focused[2]; end,
-    --             set = function()
-    --                 addon.Options.db.AdjustableCategories.Focused[2] = not addon.Options.db.AdjustableCategories.Focused[2];
-    --                 addon.Diagnostics.Debug(addon.L["Expansions"], addon.Options.db.AdjustableCategories.Focused[2]);
-    --             end
-    --         },
-    --         Events = {
-    --             order = 3, type = "toggle",
-    --             name = addon.L["Events"],
-    --             desc = addon.L["Requires a reload"],
-    --             get = function() return addon.Options.db.AdjustableCategories.Focused[3]; end,
-    --             set = function()
-    --                 addon.Options.db.AdjustableCategories.Focused[3] = not addon.Options.db.AdjustableCategories.Focused[3];
-    --                 addon.Diagnostics.Debug(addon.L["Events"], addon.Options.db.AdjustableCategories.Focused[3]);
-    --             end
-    --         },
-    --         PvP = {
-    --             order = 4, type = "toggle",
-    --             name = addon.GetCategoryInfoTitle(95),
-    --             desc = addon.L["Requires a reload"],
-    --             get = function() return addon.Options.db.AdjustableCategories.Focused[4]; end,
-    --             set = function()
-    --                 addon.Options.db.AdjustableCategories.Focused[4] = not addon.Options.db.AdjustableCategories.Focused[4];
-    --                 addon.Diagnostics.Debug(addon.GetCategoryInfoTitle(95), addon.Options.db.AdjustableCategories.Focused[4]);
-    --             end
-    --         },
-    --         Specials = {
-    --             order = 5, type = "toggle",
-    --             name = addon.L["Specials"],
-    --             desc = addon.L["Requires a reload"],
-    --             get = function() return addon.Options.db.AdjustableCategories.Focused[5]; end,
-    --             set = function()
-    --                 addon.Options.db.AdjustableCategories.Focused[5] = not addon.Options.db.AdjustableCategories.Focused[5];
-    --                 addon.Diagnostics.Debug(addon.L["Specials"], addon.Options.db.AdjustableCategories.Focused[5]);
-    --             end
-    --         },
-    --     }
-    -- };
+    local optionsTableFocused = {
+        order = 2, type = "group",
+        name = addon.L["Focused"],
+        inline = true,
+        args = {
+            Achievements = {
+                order = 1, type = "toggle",
+                name = addon.L["Achievements"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.Focused[1]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.Focused[1] = not addon.Options.db.AdjustableCategories.Focused[1];
+                    addon.Diagnostics.Debug(addon.L["Achievements"], addon.Options.db.AdjustableCategories.Focused[1]);
+                end
+            },
+            Expansions = {
+                order = 2, type = "toggle",
+                name = addon.L["Expansions"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.Focused[2]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.Focused[2] = not addon.Options.db.AdjustableCategories.Focused[2];
+                    addon.Diagnostics.Debug(addon.L["Expansions"], addon.Options.db.AdjustableCategories.Focused[2]);
+                end
+            },
+            Events = {
+                order = 3, type = "toggle",
+                name = addon.L["Events"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.Focused[3]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.Focused[3] = not addon.Options.db.AdjustableCategories.Focused[3];
+                    addon.Diagnostics.Debug(addon.L["Events"], addon.Options.db.AdjustableCategories.Focused[3]);
+                end
+            },
+            PvP = {
+                order = 4, type = "toggle",
+                name = addon.GetCategoryInfoTitle(95),
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.Focused[4]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.Focused[4] = not addon.Options.db.AdjustableCategories.Focused[4];
+                    addon.Diagnostics.Debug(addon.GetCategoryInfoTitle(95), addon.Options.db.AdjustableCategories.Focused[4]);
+                end
+            },
+            Specials = {
+                order = 5, type = "toggle",
+                name = addon.L["Specials"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.Focused[5]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.Focused[5] = not addon.Options.db.AdjustableCategories.Focused[5];
+                    addon.Diagnostics.Debug(addon.L["Specials"], addon.Options.db.AdjustableCategories.Focused[5]);
+                end
+            },
+        }
+    };
 
-    -- addon.Options.InjectOptionsTable(optionsTableFocused, "Focused", "Layout", "args", "AdjustableCategories", "args");
+    addon.Options.InjectOptionsTable(optionsTableFocused, "Focused", "Layout", "args", "AdjustableCategories", "args");
 
     local defaultsCurrentZone = {};
     defaultsCurrentZone[1] = false;
@@ -8377,73 +9182,73 @@ function exportedCategories.InjectOptions()
 
     addon.Options.InjectOptionsTable(optionsTableSelectedZone, "SelectedZone", "Layout", "args", "AdjustableCategories", "args");
 
-    -- local defaultsExcluded = {};
-    -- defaultsExcluded[1] = false;
-    -- defaultsExcluded[2] = false;
-    -- defaultsExcluded[3] = false;
-    -- defaultsExcluded[4] = false;
-    -- defaultsExcluded[5] = true;
+    local defaultsExcluded = {};
+    defaultsExcluded[1] = false;
+    defaultsExcluded[2] = false;
+    defaultsExcluded[3] = false;
+    defaultsExcluded[4] = false;
+    defaultsExcluded[5] = true;
 
-    -- addon.Options.InjectDefaults(defaultsExcluded, "Excluded", "AdjustableCategories");
+    addon.Options.InjectDefaults(defaultsExcluded, "Excluded", "AdjustableCategories");
 
-    -- local optionsTableExcluded = {
-    --     order = 5, type = "group",
-    --     name = addon.L["Excluded"],
-    --     inline = true,
-    --     args = {
-    --         Achievements = {
-    --             order = 1, type = "toggle",
-    --             name = addon.L["Achievements"],
-    --             desc = addon.L["Requires a reload"],
-    --             get = function() return addon.Options.db.AdjustableCategories.Excluded[1]; end,
-    --             set = function()
-    --                 addon.Options.db.AdjustableCategories.Excluded[1] = not addon.Options.db.AdjustableCategories.Excluded[1];
-    --                 addon.Diagnostics.Debug(addon.L["Achievements"], addon.Options.db.AdjustableCategories.Excluded[1]);
-    --             end
-    --         },
-    --         Expansions = {
-    --             order = 2, type = "toggle",
-    --             name = addon.L["Expansions"],
-    --             desc = addon.L["Requires a reload"],
-    --             get = function() return addon.Options.db.AdjustableCategories.Excluded[2]; end,
-    --             set = function()
-    --                 addon.Options.db.AdjustableCategories.Excluded[2] = not addon.Options.db.AdjustableCategories.Excluded[2];
-    --                 addon.Diagnostics.Debug(addon.L["Expansions"], addon.Options.db.AdjustableCategories.Excluded[2]);
-    --             end
-    --         },
-    --         Events = {
-    --             order = 3, type = "toggle",
-    --             name = addon.L["Events"],
-    --             desc = addon.L["Requires a reload"],
-    --             get = function() return addon.Options.db.AdjustableCategories.Excluded[3]; end,
-    --             set = function()
-    --                 addon.Options.db.AdjustableCategories.Excluded[3] = not addon.Options.db.AdjustableCategories.Excluded[3];
-    --                 addon.Diagnostics.Debug(addon.L["Events"], addon.Options.db.AdjustableCategories.Excluded[3]);
-    --             end
-    --         },
-    --         PvP = {
-    --             order = 4, type = "toggle",
-    --             name = addon.GetCategoryInfoTitle(95),
-    --             desc = addon.L["Requires a reload"],
-    --             get = function() return addon.Options.db.AdjustableCategories.Excluded[4]; end,
-    --             set = function()
-    --                 addon.Options.db.AdjustableCategories.Excluded[4] = not addon.Options.db.AdjustableCategories.Excluded[4];
-    --                 addon.Diagnostics.Debug(addon.GetCategoryInfoTitle(95), addon.Options.db.AdjustableCategories.Excluded[4]);
-    --             end
-    --         },
-    --         Specials = {
-    --             order = 5, type = "toggle",
-    --             name = addon.L["Specials"],
-    --             desc = addon.L["Requires a reload"],
-    --             get = function() return addon.Options.db.AdjustableCategories.Excluded[5]; end,
-    --             set = function()
-    --                 addon.Options.db.AdjustableCategories.Excluded[5] = not addon.Options.db.AdjustableCategories.Excluded[5];
-    --                 addon.Diagnostics.Debug(addon.L["Specials"], addon.Options.db.AdjustableCategories.Excluded[5]);
-    --             end
-    --         },
-    --     }
-    -- };
+    local optionsTableExcluded = {
+        order = 5, type = "group",
+        name = addon.L["Excluded"],
+        inline = true,
+        args = {
+            Achievements = {
+                order = 1, type = "toggle",
+                name = addon.L["Achievements"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.Excluded[1]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.Excluded[1] = not addon.Options.db.AdjustableCategories.Excluded[1];
+                    addon.Diagnostics.Debug(addon.L["Achievements"], addon.Options.db.AdjustableCategories.Excluded[1]);
+                end
+            },
+            Expansions = {
+                order = 2, type = "toggle",
+                name = addon.L["Expansions"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.Excluded[2]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.Excluded[2] = not addon.Options.db.AdjustableCategories.Excluded[2];
+                    addon.Diagnostics.Debug(addon.L["Expansions"], addon.Options.db.AdjustableCategories.Excluded[2]);
+                end
+            },
+            Events = {
+                order = 3, type = "toggle",
+                name = addon.L["Events"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.Excluded[3]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.Excluded[3] = not addon.Options.db.AdjustableCategories.Excluded[3];
+                    addon.Diagnostics.Debug(addon.L["Events"], addon.Options.db.AdjustableCategories.Excluded[3]);
+                end
+            },
+            PvP = {
+                order = 4, type = "toggle",
+                name = addon.GetCategoryInfoTitle(95),
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.Excluded[4]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.Excluded[4] = not addon.Options.db.AdjustableCategories.Excluded[4];
+                    addon.Diagnostics.Debug(addon.GetCategoryInfoTitle(95), addon.Options.db.AdjustableCategories.Excluded[4]);
+                end
+            },
+            Specials = {
+                order = 5, type = "toggle",
+                name = addon.L["Specials"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.AdjustableCategories.Excluded[5]; end,
+                set = function()
+                    addon.Options.db.AdjustableCategories.Excluded[5] = not addon.Options.db.AdjustableCategories.Excluded[5];
+                    addon.Diagnostics.Debug(addon.L["Specials"], addon.Options.db.AdjustableCategories.Excluded[5]);
+                end
+            },
+        }
+    };
 
-    -- addon.Options.InjectOptionsTable(optionsTableExcluded, "Excluded", "Layout", "args", "AdjustableCategories", "args");
+    addon.Options.InjectOptionsTable(optionsTableExcluded, "Excluded", "Layout", "args", "AdjustableCategories", "args");
 end
 

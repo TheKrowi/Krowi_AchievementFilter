@@ -57,10 +57,10 @@
 			</Layer>
 			<Layer level="OVERLAY">
 				<Texture file="Interface\AchievementFrame\AchievementToast" alphaMode="ADD" hidden="true" parentKey="glow">
+					<Size x="314" y="136"/>
 					<Anchors>
 						<Anchor point="CENTER" x="0" y="0"/>
 					</Anchors>
-					<Size x="314" y="136"/>
 					<TexCoords left="0.0009765625" right="0.3076171875" top="0.169921875" bottom="0.302734375"/>
 					<Animations>
 						<AnimationGroup parentKey="animIn">
@@ -75,10 +75,10 @@
 					</Animations>
 				</Texture>
 				<Texture file="Interface\AchievementFrame\AchievementToast" alphaMode="ADD" hidden="true" parentKey="shine">
+					<Size x="67" y="85"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" x="0" y="0"/>
 					</Anchors>
-					<Size x="67" y="85"/>
 					<TexCoords left="0.9296875" right="0.9951171875" top="0.169921875" bottom="0.2529296875"/>
 					<Animations>
 						<AnimationGroup parentKey="animIn">
@@ -102,13 +102,13 @@
 					<Anchor point="LEFT" x="-18" y="-1"/>
 				</Anchors>
 				<Layers>
-					<Layer level="BORDER">
-						<Texture parentKey="Bling" atlas="ui-achievement-bling" useAtlasSize="true" hidden="true">
+					<!-- <Layer level="BORDER">
+						<Texture parentKey="BlingRetail" atlas="ui-achievement-bling" useAtlasSize="true" hidden="true">
 							<Anchors>
 								<Anchor point="CENTER" x="-1" y="1"/>
 							</Anchors>
 						</Texture>
-					</Layer>
+					</Layer> -->
 					<Layer level="ARTWORK">
 						<Texture parentKey="Texture">
 							<Anchors>

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-28 10-17-55 ]] --
+-- [[ Exported at 2022-09-04 16-00-32 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1927,6 +1927,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1168], a[9]); -- Level 40
     AddA(tmp[1168], a[14782]); -- Level 50
     AddA(tmp[1168], a[14783]); -- Level 60
+    AddA(tmp[1168], a[15805]); -- Level 70
     AddA(tmp[1168], a[10]); -- Level 50 (Legacy)
     AddA(tmp[1168], a[11]); -- Level 60 (Legacy)
     AddA(tmp[1168], a[12]); -- Level 70 (Legacy)
@@ -2406,6 +2407,10 @@ function exportedCategories.Load(a)
     AddA(tmp[1170], a[9643]); -- So. Many. Pets.
     AddA(tmp[1170], a[12992]); -- Pet Emporium
     AddA(tmp[1170], a[12958]); -- Master of Minions
+    AddA(tmp[1170], a[15641]); -- Many More Mini Minions
+    AddA(tmp[1170], a[15642]); -- Proven Pet Parent
+    AddA(tmp[1170], a[15643]); -- What Can I Say? They Love Me.
+    AddA(tmp[1170], a[15644]); -- Good Things Come in Small Packages
     AddA(tmp[1170], a[6554]); -- He's Mine!
     AddA(tmp[1170], a[6555]); -- Building a Team
     AddA(tmp[1170], a[6556]); -- Going to Need More Traps
@@ -2475,6 +2480,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1171], a[9673]); -- The Toymaster
     AddA(tmp[1171], a[11176]); -- Remember to Share
     AddA(tmp[1171], a[12996]); -- Toybox Tycoon
+    AddA(tmp[1171], a[15781]); -- The Joy of Toy
     tmp[1172] = cat:New(addon.GetCategoryInfoTitle(81)); -- Feats of Strength
     AddC(tmp[952], tmp[1172]);
     AddA(tmp[1172], a[4496]); -- It's Over Nine Thousand!
@@ -3502,6 +3508,8 @@ function exportedCategories.Load(a)
     AddA(tmp[976], a[12931]); -- No Stable Big Enough
     AddA(tmp[976], a[12933]); -- A Horde of Hoofbeats
     AddA(tmp[976], a[12934]); -- A Horde of Hoofbeats
+    AddA(tmp[976], a[15834]); -- Thanks for the Carry!
+    AddA(tmp[976], a[15833]); -- Thanks for the Carry!
     AddA(tmp[976], a[9713]); -- Awake the Drakes
     tmp[985] = cat:New(addon.L["Vendor"]); -- Vendor
     AddC(tmp[972], tmp[985]);
@@ -3662,6 +3670,7 @@ function exportedCategories.Load(a)
     AddA(tmp[978], a[15384]); -- Cosmic Gladiator's Soul Eater
     AddA(tmp[978], a[15605]); -- Gladiator: Shadowlands Season 4
     AddA(tmp[978], a[15612]); -- Eternal Gladiator's Soul Eater
+    AddA(tmp[978], a[15957]); -- Gladiator: Dragonflight Season 1
     tmp[988] = cat:New(addon.L["Recruit-a-Friend"] .. " (" .. addon.GetCategoryInfoTitle(15234) .. ")"); -- Recruit-a-Friend
     AddC(tmp[972], tmp[988]);
     AddA(tmp[988], a[1436]); -- Friends In High Places

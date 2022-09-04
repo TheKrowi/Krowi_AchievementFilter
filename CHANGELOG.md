@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 40.2 - 2022-09-xx
+### Changed
+- Only events relevant to the version will be toggleable
+
+### WotLK Classic
+- Fixed the Darkmoon Faire event Id
+- Removed world events
+
 ## 40.1 - 2022-09-04
 ### Fixed
 - Cleaned up the Adjustable Categories section in the options

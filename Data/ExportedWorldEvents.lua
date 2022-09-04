@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-31 18-43-06 ]] --
+-- [[ Exported at 2022-09-04 17-25-17 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -12,6 +12,10 @@ data.ExportedWorldEvents = {};
 local exportedWorldEvents = data.ExportedWorldEvents;
 
 function exportedWorldEvents.Load(e)
+    if addon.IsWrathClassic() then
+        return;
+    end
+
     for i, _ in next, e do
         e[i] = nil;
     end
@@ -39,6 +43,10 @@ function exportedWorldEvents.Load(e)
 end
 
 function exportedWorldEvents.LoadCategories(e, a)
+    if addon.IsWrathClassic() then
+        return;
+    end
+
     if e[5175] == nil or e[5177] == nil or e[5178] == nil or e[5210] == nil or e[5896] == nil or e[5964] == nil or e[5966] == nil or e[5969] == nil or e[5970] == nil or e[5973] == nil or e[6486] == nil or e[6487] == nil or e[6488] == nil or e[6489] == nil or e[6490] == nil or e[6491] == nil or e[6989] == nil or e[6990] == nil or e[6991] == nil or e[6992] == nil then
         exportedWorldEvents.Load(e);
     end
@@ -66,6 +74,10 @@ function exportedWorldEvents.LoadCategories(e, a)
 end
 
 function exportedWorldEvents.InjectOptions()
+    if addon.IsWrathClassic() then
+        return;
+    end
+
     local defaults = {};
     defaults[5175] = true;
     defaults[5177] = true;
@@ -94,78 +106,12 @@ function exportedWorldEvents.InjectOptions()
         order = 4, type = "group",
         name = addon.L["World Events"],
         args = {
-            Legion = {
-                order = 1, type = "header",
-                name = addon.L["Legion"]
-            },
-            E5175 = {
-                order = 2, type = "toggle",
-                name = addon.L["Assault on Azsuna"],
-                desc = addon.L["Requires a reload"],
-                get = function() return addon.Options.db.EventReminders.WorldEvents[5175]; end,
-                set = function()
-                    addon.Options.db.EventReminders.WorldEvents[5175] = not addon.Options.db.EventReminders.WorldEvents[5175];
-                    diagnostics.Debug(addon.L["Assault on Azsuna"], addon.Options.db.EventReminders.WorldEvents[5175]);
-                end
-            },
-            E5177 = {
-                order = 3, type = "toggle",
-                name = addon.L["Assault on Highmountain"],
-                desc = addon.L["Requires a reload"],
-                get = function() return addon.Options.db.EventReminders.WorldEvents[5177]; end,
-                set = function()
-                    addon.Options.db.EventReminders.WorldEvents[5177] = not addon.Options.db.EventReminders.WorldEvents[5177];
-                    diagnostics.Debug(addon.L["Assault on Highmountain"], addon.Options.db.EventReminders.WorldEvents[5177]);
-                end
-            },
-            E5178 = {
-                order = 4, type = "toggle",
-                name = addon.L["Assault on Stormheim"],
-                desc = addon.L["Requires a reload"],
-                get = function() return addon.Options.db.EventReminders.WorldEvents[5178]; end,
-                set = function()
-                    addon.Options.db.EventReminders.WorldEvents[5178] = not addon.Options.db.EventReminders.WorldEvents[5178];
-                    diagnostics.Debug(addon.L["Assault on Stormheim"], addon.Options.db.EventReminders.WorldEvents[5178]);
-                end
-            },
-            E5210 = {
-                order = 5, type = "toggle",
-                name = addon.L["Assault on Val'sharah"],
-                desc = addon.L["Requires a reload"],
-                get = function() return addon.Options.db.EventReminders.WorldEvents[5210]; end,
-                set = function()
-                    addon.Options.db.EventReminders.WorldEvents[5210] = not addon.Options.db.EventReminders.WorldEvents[5210];
-                    diagnostics.Debug(addon.L["Assault on Val'sharah"], addon.Options.db.EventReminders.WorldEvents[5210]);
-                end
-            },
-            Blank6 = {order = 6, type = "description", width = "full", name = ""},
-            Blank7 = {order = 7, type = "description", width = "normal", name = ""},
-            SelectAll8 = {
-                order = 8, type = "execute",
-                name = addon.L["Select All"],
-                func = function()
-                    addon.Options.db.EventReminders.WorldEvents[5175] = true;
-                    addon.Options.db.EventReminders.WorldEvents[5177] = true;
-                    addon.Options.db.EventReminders.WorldEvents[5178] = true;
-                    addon.Options.db.EventReminders.WorldEvents[5210] = true;
-                end
-            },
-            DeselectAll9 = {
-                order = 9, type = "execute",
-                name = addon.L["Deselect All"],
-                func = function()
-                    addon.Options.db.EventReminders.WorldEvents[5175] = false;
-                    addon.Options.db.EventReminders.WorldEvents[5177] = false;
-                    addon.Options.db.EventReminders.WorldEvents[5178] = false;
-                    addon.Options.db.EventReminders.WorldEvents[5210] = false;
-                end
-            },
             Battle_for_Azeroth = {
-                order = 10, type = "header",
+                order = 1, type = "header",
                 name = addon.L["Battle for Azeroth"]
             },
             E5896 = {
-                order = 11, type = "toggle",
+                order = 2, type = "toggle",
                 name = addon.L["Assault on Tiragarde Sound"],
                 desc = addon.L["Requires a reload"],
                 get = function() return addon.Options.db.EventReminders.WorldEvents[5896]; end,
@@ -175,7 +121,7 @@ function exportedWorldEvents.InjectOptions()
                 end
             },
             E5964 = {
-                order = 12, type = "toggle",
+                order = 3, type = "toggle",
                 name = addon.L["Assault on Drustvar"],
                 desc = addon.L["Requires a reload"],
                 get = function() return addon.Options.db.EventReminders.WorldEvents[5964]; end,
@@ -185,7 +131,7 @@ function exportedWorldEvents.InjectOptions()
                 end
             },
             E5966 = {
-                order = 13, type = "toggle",
+                order = 4, type = "toggle",
                 name = addon.L["Assault on Stormsong Valley"],
                 desc = addon.L["Requires a reload"],
                 get = function() return addon.Options.db.EventReminders.WorldEvents[5966]; end,
@@ -195,7 +141,7 @@ function exportedWorldEvents.InjectOptions()
                 end
             },
             E5969 = {
-                order = 14, type = "toggle",
+                order = 5, type = "toggle",
                 name = addon.L["Assault on Nazmir"],
                 desc = addon.L["Requires a reload"],
                 get = function() return addon.Options.db.EventReminders.WorldEvents[5969]; end,
@@ -205,7 +151,7 @@ function exportedWorldEvents.InjectOptions()
                 end
             },
             E5970 = {
-                order = 15, type = "toggle",
+                order = 6, type = "toggle",
                 name = addon.L["Assault on Vol'dun"],
                 desc = addon.L["Requires a reload"],
                 get = function() return addon.Options.db.EventReminders.WorldEvents[5970]; end,
@@ -215,7 +161,7 @@ function exportedWorldEvents.InjectOptions()
                 end
             },
             E5973 = {
-                order = 16, type = "toggle",
+                order = 7, type = "toggle",
                 name = addon.L["Assault on Zuldazar"],
                 desc = addon.L["Requires a reload"],
                 get = function() return addon.Options.db.EventReminders.WorldEvents[5973]; end,
@@ -225,7 +171,7 @@ function exportedWorldEvents.InjectOptions()
                 end
             },
             E6486 = {
-                order = 17, type = "toggle",
+                order = 8, type = "toggle",
                 name = addon.L["Assault: N'Zoth (Uldum)"],
                 desc = addon.L["Requires a reload"],
                 get = function() return addon.Options.db.EventReminders.WorldEvents[6486]; end,
@@ -235,7 +181,7 @@ function exportedWorldEvents.InjectOptions()
                 end
             },
             E6487 = {
-                order = 18, type = "toggle",
+                order = 9, type = "toggle",
                 name = addon.L["Assault: Amathet"],
                 desc = addon.L["Requires a reload"],
                 get = function() return addon.Options.db.EventReminders.WorldEvents[6487]; end,
@@ -245,7 +191,7 @@ function exportedWorldEvents.InjectOptions()
                 end
             },
             E6488 = {
-                order = 19, type = "toggle",
+                order = 10, type = "toggle",
                 name = addon.L["Assault: Aqir"],
                 desc = addon.L["Requires a reload"],
                 get = function() return addon.Options.db.EventReminders.WorldEvents[6488]; end,
@@ -255,7 +201,7 @@ function exportedWorldEvents.InjectOptions()
                 end
             },
             E6489 = {
-                order = 20, type = "toggle",
+                order = 11, type = "toggle",
                 name = addon.L["Assault: N'Zoth (Vale of Eternal Blossoms)"],
                 desc = addon.L["Requires a reload"],
                 get = function() return addon.Options.db.EventReminders.WorldEvents[6489]; end,
@@ -265,7 +211,7 @@ function exportedWorldEvents.InjectOptions()
                 end
             },
             E6490 = {
-                order = 21, type = "toggle",
+                order = 12, type = "toggle",
                 name = addon.L["Assault: Mogu"],
                 desc = addon.L["Requires a reload"],
                 get = function() return addon.Options.db.EventReminders.WorldEvents[6490]; end,
@@ -275,7 +221,7 @@ function exportedWorldEvents.InjectOptions()
                 end
             },
             E6491 = {
-                order = 22, type = "toggle",
+                order = 13, type = "toggle",
                 name = addon.L["Assault: Mantid"],
                 desc = addon.L["Requires a reload"],
                 get = function() return addon.Options.db.EventReminders.WorldEvents[6491]; end,
@@ -284,10 +230,10 @@ function exportedWorldEvents.InjectOptions()
                     diagnostics.Debug(addon.L["Assault: Mantid"], addon.Options.db.EventReminders.WorldEvents[6491]);
                 end
             },
-            Blank23 = {order = 23, type = "description", width = "full", name = ""},
-            Blank24 = {order = 24, type = "description", width = "normal", name = ""},
-            SelectAll25 = {
-                order = 25, type = "execute",
+            Blank14 = {order = 14, type = "description", width = "full", name = ""},
+            Blank15 = {order = 15, type = "description", width = "normal", name = ""},
+            SelectAll16 = {
+                order = 16, type = "execute",
                 name = addon.L["Select All"],
                 func = function()
                     addon.Options.db.EventReminders.WorldEvents[5896] = true;
@@ -304,8 +250,8 @@ function exportedWorldEvents.InjectOptions()
                     addon.Options.db.EventReminders.WorldEvents[6491] = true;
                 end
             },
-            DeselectAll26 = {
-                order = 26, type = "execute",
+            DeselectAll17 = {
+                order = 17, type = "execute",
                 name = addon.L["Deselect All"],
                 func = function()
                     addon.Options.db.EventReminders.WorldEvents[5896] = false;
@@ -320,6 +266,72 @@ function exportedWorldEvents.InjectOptions()
                     addon.Options.db.EventReminders.WorldEvents[6489] = false;
                     addon.Options.db.EventReminders.WorldEvents[6490] = false;
                     addon.Options.db.EventReminders.WorldEvents[6491] = false;
+                end
+            },
+            Legion = {
+                order = 18, type = "header",
+                name = addon.L["Legion"]
+            },
+            E5175 = {
+                order = 19, type = "toggle",
+                name = addon.L["Assault on Azsuna"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.EventReminders.WorldEvents[5175]; end,
+                set = function()
+                    addon.Options.db.EventReminders.WorldEvents[5175] = not addon.Options.db.EventReminders.WorldEvents[5175];
+                    diagnostics.Debug(addon.L["Assault on Azsuna"], addon.Options.db.EventReminders.WorldEvents[5175]);
+                end
+            },
+            E5177 = {
+                order = 20, type = "toggle",
+                name = addon.L["Assault on Highmountain"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.EventReminders.WorldEvents[5177]; end,
+                set = function()
+                    addon.Options.db.EventReminders.WorldEvents[5177] = not addon.Options.db.EventReminders.WorldEvents[5177];
+                    diagnostics.Debug(addon.L["Assault on Highmountain"], addon.Options.db.EventReminders.WorldEvents[5177]);
+                end
+            },
+            E5178 = {
+                order = 21, type = "toggle",
+                name = addon.L["Assault on Stormheim"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.EventReminders.WorldEvents[5178]; end,
+                set = function()
+                    addon.Options.db.EventReminders.WorldEvents[5178] = not addon.Options.db.EventReminders.WorldEvents[5178];
+                    diagnostics.Debug(addon.L["Assault on Stormheim"], addon.Options.db.EventReminders.WorldEvents[5178]);
+                end
+            },
+            E5210 = {
+                order = 22, type = "toggle",
+                name = addon.L["Assault on Val'sharah"],
+                desc = addon.L["Requires a reload"],
+                get = function() return addon.Options.db.EventReminders.WorldEvents[5210]; end,
+                set = function()
+                    addon.Options.db.EventReminders.WorldEvents[5210] = not addon.Options.db.EventReminders.WorldEvents[5210];
+                    diagnostics.Debug(addon.L["Assault on Val'sharah"], addon.Options.db.EventReminders.WorldEvents[5210]);
+                end
+            },
+            Blank23 = {order = 23, type = "description", width = "full", name = ""},
+            Blank24 = {order = 24, type = "description", width = "normal", name = ""},
+            SelectAll25 = {
+                order = 25, type = "execute",
+                name = addon.L["Select All"],
+                func = function()
+                    addon.Options.db.EventReminders.WorldEvents[5175] = true;
+                    addon.Options.db.EventReminders.WorldEvents[5177] = true;
+                    addon.Options.db.EventReminders.WorldEvents[5178] = true;
+                    addon.Options.db.EventReminders.WorldEvents[5210] = true;
+                end
+            },
+            DeselectAll26 = {
+                order = 26, type = "execute",
+                name = addon.L["Deselect All"],
+                func = function()
+                    addon.Options.db.EventReminders.WorldEvents[5175] = false;
+                    addon.Options.db.EventReminders.WorldEvents[5177] = false;
+                    addon.Options.db.EventReminders.WorldEvents[5178] = false;
+                    addon.Options.db.EventReminders.WorldEvents[5210] = false;
                 end
             },
             Shadowlands = {

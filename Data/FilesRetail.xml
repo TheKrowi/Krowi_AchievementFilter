@@ -5,10 +5,10 @@
     <Script file="ExportedTransmogSets.lua" />
     <!-- <Script file="ExportedCustomObjectives.lua" /> -->
     <Script file="ExportedAchievements.lua" />
-    <Script file="ExportedCategoriesWotLKClassic.lua" />
+    <Script file="ExportedCategoriesRetail.lua" />
     <Script file="ExportedPetBattles.lua" />
     <Script file="ExportedUiMaps.lua" />
-    <Script file="ExportedCalendarEvents.lua" />
+    <Script file="ExportedCalendarEventsRetail.lua" />
     <Script file="ExportedWidgetEvents.lua" />
     <Script file="ExportedWorldEvents.lua" />
     <Script file="EventData.lua" />
