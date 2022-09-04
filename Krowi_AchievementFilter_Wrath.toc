@@ -1,6 +1,6 @@
 ## Interface: 30400
 ## Title: Krowi's |cFF1D92C2Achievement Filter|r
-## Version: 40.1
+## Version: 40.2
 ## Author: Krowi-Frostmane EU
 ## SavedVariables: Options, SavedData, Filters, EventDetails, Test
 ## Notes: Filters your achievements.
@@ -39,7 +39,7 @@ Tutorials.lua
 
 Objects\Files.xml
 
-Data\FilesWotLK.xml
+Data\FilesWrathClassic.xml
 
 Filters.lua
 GUI\Files.xml

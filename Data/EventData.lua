@@ -129,6 +129,9 @@ function eventData.GetActiveWorldEvents()
 end
 
 function eventData.PrimeAreaPoi()
+    if addon.IsWrathClassic() then
+        return;
+    end
     for _, event in next, data.WorldEvents do
         C_AreaPoiInfo.GetAreaPOIInfo(event.MapID, event.ID);
         C_AreaPoiInfo.GetAreaPOISecondsLeft(event.ID);
@@ -240,4 +243,8 @@ function GetStartAndEndTime(secondsLeft, totalDuration) -- both in seconds
     local startTime = endTime - totalDuration;
 
     return startTime, endTime;
+end
+
+function KrowiAF_GetEvents()
+    Test = GetEvents();
 end
