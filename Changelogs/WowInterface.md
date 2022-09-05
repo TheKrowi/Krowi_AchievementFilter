@@ -34,3 +34,8 @@
 [*]Fixed the Darkmoon Faire event Id
 [*]Removed world events
 [/LIST]
+
+[B]Fixed (40.3)[/B]
+[LIST]
+[*]Cleaned up the Adjustable Categories section in the options again
+[/LIST]

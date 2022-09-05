@@ -22,3 +22,6 @@
 ### WotLK Classic (40.2)
 - Fixed the Darkmoon Faire event Id
 - Removed world events
+
+### Fixed (40.3)
+- Cleaned up the Adjustable Categories section in the options again
