@@ -14,7 +14,7 @@
 [*]Some bugs new users can experience because some tables do not yet exist
 [/LIST]
 
-[B]WotLK Classic[/B]
+[B]Wrath Classic[/B]
 [LIST]
 [*]Enabled the data manager frame
 [/LIST]
@@ -29,7 +29,7 @@
 [*]Only events relevant to the version will be toggleable
 [/LIST]
 
-[B]WotLK Classic (40.2)[/B]
+[B]Wrath Classic (40.2)[/B]
 [LIST]
 [*]Fixed the Darkmoon Faire event Id
 [*]Removed world events
