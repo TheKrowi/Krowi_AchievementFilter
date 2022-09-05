@@ -1,11 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 40.3 - 2022-09-04
+### Fixed
+- Cleaned up the Adjustable Categories section in the options again
+
 ## 40.2 - 2022-09-04
 ### Changed
 - Only events relevant to the version will be toggleable
 
-### WotLK Classic
+### Wrath Classic
 - Fixed the Darkmoon Faire event Id
 - Removed world events
 
@@ -26,14 +30,14 @@ All notable changes to this project will be documented in this file.
 - Opening the Achievement Window during combat is now always possible, even with rebound micro button
 - Some bugs new users can experience because some tables do not yet exist
 
-### WotLK Classic
+### Wrath Classic
 - Enabled the data manager frame
 
 ## 39.3 - 2022-08-21
 ### Fixed
 - Event reminders could sometimes print debug text
 
-### WotLK Classic
+### Wrath Classic
 - Error when loading into the game should be fixed
 - Event reminders should no longer cause errors
 
@@ -56,7 +60,7 @@ All notable changes to this project will be documented in this file.
 ### Removed
 - Glory of the Tomb Raider from Mount special
 
-### WotLK Classic
+### Wrath Classic
 - Added translations for all missing texts in English, German and Chinese (Simplified)
 
 ## 9.2.5.38.1 - 2022-08-12
@@ -74,7 +78,7 @@ All notable changes to this project will be documented in this file.
 - Most BlizzCon achievements are marked obtainable again although expensive!
 - Salute to StarCraft and Herald of Flames are marked as unobtainable
 
-### WotLK Classic
+### Wrath Classic
 - First port from retail
 - All features except event reminders, world map button and data manager are ported
 - Classic, TBC and WotLK achievements and categories adjusted and dynamic obtainability added

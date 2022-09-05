@@ -10,7 +10,7 @@
 - Opening the Achievement Window during combat is now always possible, even with rebound micro button
 - Some bugs new users can experience because some tables do not yet exist
 
-### WotLK Classic
+### Wrath Classic
 - Enabled the data manager frame
 
 ### Fixed (40.1)
@@ -19,6 +19,9 @@
 ### Changed (40.2)
 - Only events relevant to the version will be toggleable
 
-### WotLK Classic (40.2)
+### Wrath Classic (40.2)
 - Fixed the Darkmoon Faire event Id
 - Removed world events
+
+### Fixed (40.3)
+- Cleaned up the Adjustable Categories section in the options again
