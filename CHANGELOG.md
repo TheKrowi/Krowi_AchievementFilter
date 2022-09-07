@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 40.4 - 2022-09-07
+### Added
+- A bunch of new German translations
+
+### Fixed
+- Switched the tooltip for Fated SoD and Fated SotFO weekly events
+
 ## 40.3 - 2022-09-04
 ### Fixed
 - Cleaned up the Adjustable Categories section in the options again

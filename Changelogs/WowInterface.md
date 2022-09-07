@@ -39,3 +39,13 @@
 [LIST]
 [*]Cleaned up the Adjustable Categories section in the options again
 [/LIST]
+
+[B]Added (40.4)[/B]
+[LIST]
+[*]A bunch of new German translations
+[/LIST]
+
+[B]Fixed (40.4)[/B]
+[LIST]
+[*]Switched the tooltip for Fated SoD and Fated SotFO weekly events
+[/LIST]
