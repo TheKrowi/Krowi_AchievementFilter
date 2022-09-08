@@ -49,3 +49,9 @@
 [LIST]
 [*]Switched the tooltip for Fated SoD and Fated SotFO weekly events
 [/LIST]
+
+[B]Added (40.5)[/B]
+[LIST]
+[*]We Are All Made of Stars, We Are All Made of Stars (Heroic) and We Are All Made of Stars (Mythic) to SotFO raid
+[*]A new pets category in Specials
+[/LIST]

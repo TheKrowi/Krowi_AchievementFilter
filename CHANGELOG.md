@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 40.5 - 2022-09-07
+### Added
+- We Are All Made of Stars, We Are All Made of Stars (Heroic) and We Are All Made of Stars (Mythic) to SotFO raid
+- A new pets category in Specials
+
 ## 40.4 - 2022-09-07
 ### Added
 - A bunch of new German translations
