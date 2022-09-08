@@ -1,4 +1,4 @@
--- [[ Exported at 2022-09-04 16-00-32 ]] --
+-- [[ Exported at 2022-09-09 00-30-47 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -2988,6 +2988,8 @@ function exportedCategories.Load(a)
     AddA(tmp[1211], a[15684]); -- Fates of the Shadowlands Raids
     AddA(tmp[1211], a[15685]); -- Heroic: Fates of the Shadowlands Raids
     AddA(tmp[1211], a[15687]); -- Mythic: Fates of the Shadowlands Raids
+    tmp[1358] = cat:New(addon.GetCategoryInfoTitle(15466)); -- Dragonflight
+    AddC(tmp[884], tmp[1358]);
     tmp[1174] = cat:New(addon.L["Miscellaneous"]); -- Miscellaneous
     AddC(tmp[884], tmp[1174]);
     AddA(tmp[1174], a[1636]); -- Competitor's Tabard
@@ -4212,6 +4214,86 @@ function exportedCategories.Load(a)
     tmp[1125] = cat:New(addon.L["Warcraft III: Reforged"], true); -- Warcraft III: Reforged
     AddC(tmp[1117], tmp[1125]);
     AddA(tmp[1125], a[13196]); -- Meat Marauder
+    tmp[1346] = cat:New(addon.L["Ta's Pet Collection"]); -- Ta's Pet Collection
+    AddC(tmp[971], tmp[1346]);
+    AddA(tmp[1346], a[8820]); -- WoW's 10th Anniversary
+    AddA(tmp[1346], a[3478]); -- Pilgrim
+    tmp[1353] = cat:New(addon.GetCategoryInfoTitle(15117)); -- Pet Battles
+    AddC(tmp[1346], tmp[1353]);
+    AddA(tmp[1353], a[1250]); -- "Shop Smart, Shop Pet...Smart"
+    AddA(tmp[1353], a[2516]); -- Lil' Game Hunter
+    AddA(tmp[1353], a[5876]); -- Petting Zoo
+    AddA(tmp[1353], a[5877]); -- Menagerie
+    AddA(tmp[1353], a[5875]); -- Littlest Pet Shop
+    AddA(tmp[1353], a[7521]); -- Time to Open a Pet Store
+    AddA(tmp[1353], a[6582]); -- Pro Pet Mob
+    AddA(tmp[1353], a[9069]); -- An Awfully Big Adventure
+    AddA(tmp[1353], a[8297]); -- Merciless Pet Brawler
+    AddA(tmp[1353], a[8298]); -- Vengeful Pet Brawler
+    AddA(tmp[1353], a[8300]); -- Brutal Pet Brawler
+    tmp[1354] = cat:New(addon.GetCategoryInfoTitle(15246)); -- Collections
+    AddC(tmp[1346], tmp[1354]);
+    AddA(tmp[1354], a[7500]); -- Going to Need More Leashes
+    AddA(tmp[1354], a[7501]); -- That's a Lot of Pet Food
+    AddA(tmp[1354], a[9643]); -- So. Many. Pets.
+    AddA(tmp[1354], a[12992]); -- Pet Emporium
+    AddA(tmp[1354], a[12958]); -- Master of Minions
+    AddA(tmp[1354], a[12996]); -- Toybox Tycoon
+    tmp[1355] = cat:New(addon.GetCategoryInfoTitle(168)); -- Dungeons & Raids
+    AddC(tmp[1346], tmp[1355]);
+    AddA(tmp[1355], a[7934]); -- Raiding with Leashes
+    AddA(tmp[1355], a[8293]); -- Raiding with Leashes II: Attunement Edition
+    AddA(tmp[1355], a[9824]); -- Raiding with Leashes III: Drinkin' From the Sunwell
+    AddA(tmp[1355], a[11320]); -- Raiding with Leashes IV: Wrath of the Lick King
+    AddA(tmp[1355], a[12079]); -- Raiding with Leashes V: Cuteaclysm
+    AddA(tmp[1355], a[13469]); -- Raiding with Leashes VI: Pets of Pandaria
+    tmp[1357] = cat:New(addon.GetCategoryInfoTitle(15117) .. " " .. addon.GetCategoryInfoTitle(15272)); -- Pet Battles Dungeons
+    AddC(tmp[1355], tmp[1357]);
+    AddA(tmp[1357], a[11765]); -- Pet Battle Challenge: Wailing Caverns
+    AddA(tmp[1357], a[11856]); -- Pet Battle Challenge: Deadmines
+    AddA(tmp[1357], a[13269]); -- Pet Battle Challenge: Gnomeregan
+    AddA(tmp[1357], a[13627]); -- Pet Battle Challenge: Stratholme
+    tmp[1356] = cat:New(addon.GetCategoryInfoTitle(15101)); -- Darkmoon Faire
+    AddC(tmp[1346], tmp[1356]);
+    AddA(tmp[1356], a[9805]); -- Big Rocketeer: Gold
+    AddA(tmp[1356], a[9983]); -- That's Whack!
+    tmp[1352] = cat:New(addon.GetCategoryInfoTitle(15072)); -- Cataclysm
+    AddC(tmp[1346], tmp[1352]);
+    AddA(tmp[1352], a[5449]); -- Rock Lover
+    tmp[1351] = cat:New(addon.GetCategoryInfoTitle(15164)); -- Mists of Pandaria
+    AddC(tmp[1346], tmp[1351]);
+    AddA(tmp[1351], a[6402]); -- Ling-Ting's Herbal Journey
+    tmp[1350] = cat:New(addon.GetCategoryInfoTitle(15233)); -- Warlords of Dreanor
+    AddC(tmp[1346], tmp[1350]);
+    AddA(tmp[1350], a[9685]); -- Draenor Safari
+    tmp[1349] = cat:New(addon.GetCategoryInfoTitle(15258)); -- Legion
+    AddC(tmp[1346], tmp[1349]);
+    AddA(tmp[1349], a[1956]); -- Higher Learning
+    AddA(tmp[1349], a[10412]); -- Poor Unfortunate Souls
+    AddA(tmp[1349], a[9696]); -- Family Familiar
+    AddA(tmp[1349], a[12100]); -- Family Fighter
+    AddA(tmp[1349], a[11233]); -- Broken Isles Safari
+    AddA(tmp[1349], a[10626]); -- Zoom!
+    AddA(tmp[1349], a[11763]); -- Glory of the Tomb Raider
+    AddA(tmp[1349], a[12439]); -- Priority Mail
+    tmp[1348] = cat:New(addon.GetCategoryInfoTitle(15305)); -- Battle for Azeroth
+    AddC(tmp[1346], tmp[1348]);
+    AddA(tmp[1348], a[12930]); -- Battle Safari
+    AddA(tmp[1348], a[12482]); -- Get Hek'd
+    AddA(tmp[1348], a[13062]); -- Let's Bee Friends
+    AddA(tmp[1348], a[12723]); -- How to Keep a Mummy
+    AddA(tmp[1348], a[13279]); -- Family Battler
+    AddA(tmp[1348], a[13766]); -- Malowned
+    AddA(tmp[1348], a[13695]); -- Team Aquashock
+    AddA(tmp[1348], a[14143]); -- Reeking of Visions
+    tmp[1347] = cat:New(addon.GetCategoryInfoTitle(15439)); -- Shadowlands
+    AddC(tmp[1346], tmp[1347]);
+    AddA(tmp[1347], a[14469]); -- Twisting Corridors: Layer 2
+    AddA(tmp[1347], a[14879]); -- Family Exorcist
+    AddA(tmp[1347], a[14881]); -- Abhorrent Adversaries of the Afterlife
+    AddA(tmp[1347], a[15004]); -- A Sly Fox
+    AddA(tmp[1347], a[15079]); -- "Many, Many Things"
+    AddA(tmp[1347], a[15251]); -- The Jailer's Gauntlet: Layer 1
     tmp[857] = cat:New(addon.L["Excluded"]); -- Excluded
     AddC(tmp[971], tmp[857]);
     tmp[857].HasFlexibleData = true;

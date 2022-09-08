@@ -1,4 +1,4 @@
--- [[ Exported at 2022-09-04 16-07-38 ]] --
+-- [[ Exported at 2022-09-09 00-30-33 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -2320,6 +2320,7 @@ function exportedAchievements.Load(a, t)
     a[6620] = ach:New(6620, 10); -- No Time To Heal
     a[6621] = ach:New(6621, 5); -- Big City Pet Brawlin' - Horde
     a[6622] = ach:New(6622, 10); -- Big City Pet Brawler
+    a[6634] = ach:New(6634, 0); -- Challenge Conquerors: Gold - Guild Edition
     a[6671] = ach:New(6671, 10); -- Seeds of Doubt
     a[6674] = ach:New(6674, 10); -- "Anything You Can Do, I Can Do Better..."
     a[6683] = ach:New(6683, 10); -- Less Than Three
@@ -7880,6 +7881,7 @@ function exportedAchievements.Load(a, t)
     a[15392] = ach:New(15392, 10); -- Dune Dominance
     a[15394] = ach:New(15394, 0); -- Ohn'a'Roll
     a[15396] = ach:New(15396, 10); -- We Are All Made of Stars
+    SetTO(a[15396], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15397] = ach:New(15397, 0); -- Four Ring Circus
     a[15398] = ach:New(15398, 10); -- "Xy Never, Ever Marks the Spot."
     a[15399] = ach:New(15399, 10); -- Coming to Terms
@@ -7973,6 +7975,10 @@ function exportedAchievements.Load(a, t)
     a[15417] = ach:New(15417, 10); -- Sepulcher of the First Ones
     a[15418] = ach:New(15418, 10); -- The Grand Design
     a[15419] = ach:New(15419, 10); -- The Protoform Matrix
+    a[15468] = ach:New(15468, 0); -- We Are All Made of Stars (Heroic)
+    SetTO(a[15468], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    a[15469] = ach:New(15469, 0); -- We Are All Made of Stars (Mythic)
+    SetTO(a[15469], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15470] = ach:New(15470, 0); -- Ahead of the Curve: The Jailer
     SetTO(a[15470], "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15471] = ach:New(15471, 0); -- Cutting Edge: The Jailer
@@ -8455,10 +8461,36 @@ function exportedAchievements.Load(a, t)
     a[16444] = ach:New(16444, 10); -- Leftovers' Revenge
     a[16445] = ach:New(16445, 10); -- Icy What You Did There
     a[16446] = ach:New(16446, 10); -- That's Pretty Neat!
-    a[16447] = ach:New(16447, 10); -- What Are The Chances..
+    a[16447] = ach:New(16447, 10); -- What Are The Chances...
+    a[16461] = ach:New(16461, 10); -- Stormed Off
+    a[16463] = ach:New(16463, 5); -- Thunderstorms in The Waking Shores
+    a[16465] = ach:New(16465, 5); -- Sandstorms in The Waking Shores
+    a[16466] = ach:New(16466, 5); -- Firestorms in The Waking Shores
+    a[16467] = ach:New(16467, 5); -- Snowstorms in The Waking Shores
+    a[16468] = ach:New(16468, 10); -- Chasing Storms in The Waking Shores
+    a[16475] = ach:New(16475, 5); -- Thunderstorms in the Ohn'ahran Plains
+    a[16476] = ach:New(16476, 10); -- Chasing Storms in the Ohn'ahran Plains
+    a[16477] = ach:New(16477, 5); -- Sandstorms in the Ohn'ahran Plains
+    a[16478] = ach:New(16478, 5); -- Firestorms in the Ohn'ahran Plains
+    a[16479] = ach:New(16479, 5); -- Snowstorms in the Ohn'ahran Plains
+    a[16480] = ach:New(16480, 5); -- Thunderstorms in The Azure Span
+    a[16481] = ach:New(16481, 5); -- Sandstorms in The Azure Span
+    a[16482] = ach:New(16482, 5); -- Firestorms in The Azure Span
+    a[16483] = ach:New(16483, 5); -- Snowstorms in The Azure Span
+    a[16484] = ach:New(16484, 10); -- Chasing Storms in The Azure Span
+    a[16485] = ach:New(16485, 5); -- Thunderstorms in Thaldraszus
+    a[16486] = ach:New(16486, 5); -- Sandstorms in Thaldraszus
+    a[16487] = ach:New(16487, 5); -- Firestorms in Thaldraszus
+    a[16488] = ach:New(16488, 5); -- Snowstorms in Thaldraszus
+    a[16489] = ach:New(16489, 10); -- Chasing Storms in Thaldraszus
+    a[16490] = ach:New(16490, 10); -- Storm Chaser
+    a[16492] = ach:New(16492, 20); -- Into the Storm
+    a[16498] = ach:New(16498, 5); -- Elemental Overflow
+    a[16499] = ach:New(16499, 5); -- Elemental Overflowing
+    a[16500] = ach:New(16500, 10); -- Elemental Overload
 
     local aIDs = {};
-    for i = 1, 16447 do
+    for i = 1, 16500 do
         if a[i] ~= nil then
             tinsert(aIDs, i);
         end

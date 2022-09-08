@@ -1,4 +1,4 @@
--- [[ Exported at 2022-09-04 17-25-17 ]] --
+-- [[ Exported at 2022-09-06 23-45-15 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -30,14 +30,14 @@ function exportedCalendarEvents.Load(e)
     e[479] = event:New(479, 134481); -- Darkmoon Faire
     e[1262] = event:New(1262, 133783); -- WoW's 18th Anniversary
     e[1315] = event:New(1315, 3614361); -- Fated Raids: Castle Nathria (US)
-    e[1316] = event:New(1316, 4062765); -- Fated Raids: Sepulcher of the First Ones (US)
-    e[1317] = event:New(1317, 4254074); -- Fated Raids: Sanctum of Domination (US)
+    e[1316] = event:New(1316, 4254074); -- Fated Raids: Sepulcher of the First Ones (US)
+    e[1317] = event:New(1317, 4062765); -- Fated Raids: Sanctum of Domination (US)
     e[1325] = event:New(1325, 3614361); -- Fated Raids: Castle Nathria (EU)
     e[1326] = event:New(1326, 3614361); -- Fated Raids: Castle Nathria (CN)
-    e[1328] = event:New(1328, 4254074); -- Fated Raids: Sanctum of Domination (EU)
-    e[1329] = event:New(1329, 4254074); -- Fated Raids: Sanctum of Domination (CN)
-    e[1331] = event:New(1331, 4062765); -- Fated Raids: Sepulcher of the First Ones (EU)
-    e[1332] = event:New(1332, 4062765); -- Fated Raids: Sepulcher of the First Ones (CN)
+    e[1328] = event:New(1328, 4062765); -- Fated Raids: Sanctum of Domination (EU)
+    e[1329] = event:New(1329, 4062765); -- Fated Raids: Sanctum of Domination (CN)
+    e[1331] = event:New(1331, 4254074); -- Fated Raids: Sepulcher of the First Ones (EU)
+    e[1332] = event:New(1332, 4254074); -- Fated Raids: Sepulcher of the First Ones (CN)
 end
 
 function exportedCalendarEvents.LoadCategories(e, a)

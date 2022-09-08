@@ -25,3 +25,13 @@
 
 ### Fixed (40.3)
 - Cleaned up the Adjustable Categories section in the options again
+
+### Added (40.4)
+- A bunch of new German translations
+
+### Fixed (40.4)
+- Switched the tooltip for Fated SoD and Fated SotFO weekly events
+
+### Added (40.5)
+- We Are All Made of Stars, We Are All Made of Stars (Heroic) and We Are All Made of Stars (Mythic) to SotFO raid
+- A new pets category in Specials

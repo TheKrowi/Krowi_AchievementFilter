@@ -1,8 +1,8 @@
--- [[ Exported at 2022-09-02 16-31-45 ]] --
+-- [[ Exported at 2022-09-07 07-25-47 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-08-18 ]] --
+-- [[ German translation by Ta, 2022-09-07 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -36,7 +36,7 @@ L["ID"] = "ID";
 L["Reverse Sort"] = "Umgekehrte Sortierung";
 L["Earned By"] = "Erzielt durch";
 L["Account"] = "Account";
-L["Character only"] = "Nur Charakter (Account Erfolge ausgegraut)";
+L["Character only"] = "Nur Charakter-Erfolge";
 L["Tabs"] = "Tabs";
 L["Special Categories"] = "Spezial Kategorie";
 L["Current Zone"] = "Aktuelle Zone";
@@ -92,6 +92,8 @@ L["WoW's Anniversary"] = "WoW's Geburtstag";
 L["WoW's 18th Anniversary"] = "WoW's 18. Geburtstag";
 L["Season"] = "Saison";
 L["Fated Raids"] = "Schicksalhafte Raids";
+L["Dragon Glyphs"] = "Drachenglyphen";
+L["Dragonriding"] = "Drachenreiten";
 L["No time data available"] = "Keine Zeitdaten verfügbar";
 L["Feast of Winter Veil"] = "Winterhauch";
 L["Noblegarden"] = "Nobelgarten";
@@ -136,6 +138,15 @@ L["Necrolord Assault"] = "Necrolord Paktangriff";
 L["Venthyr Assault"] = "Venthyr Paktangriff";
 L["Kyrian Assault"] = "Kyrian Paktangriff";
 L["Night Fae Assault"] = "Night Fae Paktangriff";
+L["Fated Raids: Castle Nathria (US)"] = "Schicksalhafte Raids: Schloss Nathria (US)";
+L["Fated Raids: Sepulcher of the First Ones (US)"] = "Schicksalhafte Raids: Mausoleum der Ersten (US)";
+L["Fated Raids: Sanctum of Domination (US)"] = "Schicksalhafte Raids: Sanktum der Herrschaft (US)";
+L["Fated Raids: Castle Nathria (EU)"] = "Schicksalhafte Raids: Schloss Nathria (EU)";
+L["Fated Raids: Sepulcher of the First Ones (EU)"] = "Schicksalhafte Raids: Mausoleum der Ersten (EU)";
+L["Fated Raids: Sanctum of Domination (EU)"] = "Schicksalhafte Raids: Sanktum der Herrschaft (EU)";
+L["Fated Raids: Castle Nathria (CN)"] = "Schicksalhafte Raids: Schloss Nathria (CN)";
+L["Fated Raids: Sepulcher of the First Ones (CN)"] = "Schicksalhafte Raids: Mausoleum der Ersten (CN)";
+L["Fated Raids: Sanctum of Domination (CN)"] = "Schicksalhafte Raids: Sanktum der Herrschaft (CN)";
 L["This achievement is no longer obtainable"] = "Dieser Erfolg kann nicht länger erzielt werden.";
 L["Not earned by:"] = "Nicht erzielt durch:";
 L["Part of a chain"] = "Teil einer Folgequest";
@@ -147,6 +158,19 @@ L["Not part of set"] = "Nicht Teil des Transmog-Sets";
 L["This achievement can't be earned by this character."] = "Der Erfolg kann nicht von diesem Charakter erzielt werden.";
 L["This character's class has no transmog set that meet the requirements."] = "Die Klasse deines Charakters erfüllt nicht die Anforderungen für dieses Transmog-Set.";
 L["Achievement shown temporarily"] = "Dieser Erfolg wird nur vorübergehend angezeigt, da er keinem der gesetzten Filter entspricht.";
+L["This achievement"] = "Dieser Erfolg";
+L["temporary obtainable"] = "zeitlich begrenzt erzielbar";
+L["M+ Season"] = "Mythic+ Saison";
+L["PvP Season"] = "PvP Saison";
+L["during"] = "während";
+L["from the start of"] = "ab dem Beginn der";
+L["up until the start of"] = "bis zum Ende von";
+L["never obtainable"] = "nicht erzielbar";
+L["is"] = "ist";
+L["will be"] = "wird";
+L["was"] = "war";
+L["only obtainable by one player"] = "nur von einem Spieler zu erzielen";
+L["Patch"] = "Patch";
 L["Data Manager"] = "Daten-Manager";
 L["Header tooltip"] = "Überschrift-Tooltip";
 L["Wowhead"] = "Wowhead";
@@ -217,6 +241,12 @@ L["Window"] = "Fenster";
 L["Movable"] = "Bewegliche Fenster";
 L["Make windows movable"] = "Fenster verschiebbar machen";
 L["Make windows movable Desc"] = "Macht das Erfolgsfenster und die Kalenderansicht beweglich/nicht beweglich.\n\nWenn diese Option aktiviert ist, wird das Erfolgsfenster bei gedrückter linker Maustaste verschoben. Dies gilt für die Kopfzeile und die Ränder.";
+L["Remember frame position"] = "{frame} Position merken";
+L["Remember frame position Desc"] = "Die Position des {frame} wird gespeichert. Dadurch bleibt der {frame} bei der nächsten Anmeldung an seiner letzten bekannten Position.";
+L["Achievement Window"] = "Erfolg-Fenster";
+L["Achievement Calendar"] = "Erfolg-Kalender";
+L["Reset position"] = "Position zurücksetzen";
+L["Reset position Desc"] = "Setzt das {frame} auf seine Standardposition zurück.";
 L["Offsets"] = "Fenster Abstände";
 L["Categories width offset"] = "Kategorien Fenster Abstands-Breite";
 L["Categories width offset Desc"] = "Die Breite, die zur Standardkategorienbreite addiert oder von ihr subtrahiert wird.\n\nDieser Wert kann geändert werden, während das Erfolgsfenster geöffnet ist und eine der von {AddonName} hinzugefügten Tabs ausgewählt wurde. Dies kann Auswirkungen (1) auf das Spiel haben.\n\n(1) FPS-Einbrüche und Stottern während der Anpassung des Wertes, NICHT während der normalen Addon-Nutzung\n\n{reloadRequired}";
@@ -231,7 +261,7 @@ L["Header"] = "Header";
 L["Format"] = "Format";
 L["Account wide (default)"] = "Account (Standard)";
 L["Character / Account wide"] = "Charakter & Account";
-L["Character only"] = "Nur Charakter";
+L["Character only"] = "Nur Charakter-Erfolge";
 L["Tooltip"] = "Tooltip";
 L["Always show realm"] = "Immer Realm anzeigen";
 L["Always show realm Desc"] = "Zeigt immer den Realm deines Charakters an, unabhängig davon, ob sich der Charakter auf demselben Realm wie dieser Charakter befindet.";
@@ -257,6 +287,7 @@ L["Show Not Obtainable"] = "Zeige {notObtainable}";
 L["Show Not Obtainable Desc"] = "Zeigt / versteckt {notObtainable} Erfolge in Rot auf dem Fortschrittsbalken.";
 L["Merge small categories threshold"] = "Schwelle für kleine Kategorien zusammenführen";
 L["Merge small categories threshold Desc"] = "Kategorien mit einer Anzahl von Erfolgen, die unter dieser Zahl liegt, werden mit der übergeordneten Kategorie verschmolzen.\n\nNur voreingestellte Kategorien können verschmolzen werden (meist untergeordnete Kategorien aus Zonen). Dies kann Auswirkungen (1) auf das Spiel haben.\n\n(1) FPS-Einbrüche und Stottern beim Anpassen des Wertes, NICHT bei normaler Addon-Nutzung";
+L["Adjustable Categories"] = "Anpassbare Kategorien";
 L["Style"] = "Style Erfolgs-Fenster";
 L["Compact Achievements"] = "Kompakte Erfolgs-Fenster anzeigen";
 L["Compact Achievements Desc"] = "Die Anzeige der Erfolge ist auf 2/3 der ursprünglichen Größe verkleinert, ähnlich wie bei der Zusammenfassung der Erfolge.";
