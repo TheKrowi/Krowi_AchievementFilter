@@ -1,4 +1,4 @@
--- [[ Exported at 2022-09-07 07-25-47 ]] --
+-- [[ Exported at 2022-09-09 22-49-42 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -62,7 +62,7 @@ L["N'Zoth Assaults"] = "恩佐斯突袭";
 L["Necrolords Assault"] = "通灵领主突袭";
 L["Other"] = "其他";
 L["Other wings"] = "托加斯特";
-L["Pirates' Day"] = "海盗节";
+L["Pirates' Day"] = "海盗日";
 L["Rated"] = "评级";
 L["Recruit-a-Friend"] = "战友招募";
 L["Shipyard"] = "船坞";
@@ -100,7 +100,6 @@ L["Hallow's End"] = "万圣节";
 L["Lunar Festival"] = "春节";
 L["Midsummer Fire Festival"] = "仲夏火焰节";
 L["Brewfest"] = "美酒节";
-L["Pirates' Day"] = "海盗日";
 L["Pilgrim's Bounty"] = "感恩节";
 L["Day of the Dead"] = "悼念日";
 L["Love is in the Air"] = "情人节";
@@ -199,7 +198,6 @@ L["Header"] = "标题";
 L["Format"] = "格式";
 L["Account wide (default)"] = "账号 (默认)";
 L["Character / Account wide"] = "角色 / 账号";
-L["Character only"] = "仅显示角色";
 L["Tooltip"] = "提示";
 L["Always show realm"] = "显示服务器";
 L["Show faction icon"] = "显示阵营";
@@ -270,7 +268,7 @@ L["Special thanks"] = "特别鸣谢";
 L["Donations"] = "支持";
 L["Localizations"] = "本地化";
 L["Toggle"] = "切换";
-L["tab"] = "页";
+L["tab"] = "标签页";
 L["Open"] = "打开";
 L["Left click"] = "左键";
 L["Right click"] = "右键";

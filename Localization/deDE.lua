@@ -1,8 +1,8 @@
--- [[ Exported at 2022-09-07 07-25-47 ]] --
+-- [[ Exported at 2022-09-09 22-49-42 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-09-07 ]] --
+-- [[ German translation by Ta, 2022-09-09 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -102,7 +102,6 @@ L["Hallow's End"] = "Schlotternächte";
 L["Lunar Festival"] = "Mondfest";
 L["Midsummer Fire Festival"] = "Sonnenwende";
 L["Brewfest"] = "Braufest";
-L["Pirates' Day"] = "Piratentag";
 L["Pilgrim's Bounty"] = "Die Pilgerfreuden";
 L["Day of the Dead"] = "Tag der Toten";
 L["Love is in the Air"] = "Liebe liegt in der Luft";
@@ -171,6 +170,7 @@ L["will be"] = "wird";
 L["was"] = "war";
 L["only obtainable by one player"] = "nur von einem Spieler zu erzielen";
 L["Patch"] = "Patch";
+L["Temporary Obtainable Text"] = "{this achievement} {is will be was} {never once temp obt} {start} {detail1} {end} {end detail}.";
 L["Data Manager"] = "Daten-Manager";
 L["Header tooltip"] = "Überschrift-Tooltip";
 L["Wowhead"] = "Wowhead";
@@ -261,7 +261,6 @@ L["Header"] = "Header";
 L["Format"] = "Format";
 L["Account wide (default)"] = "Account (Standard)";
 L["Character / Account wide"] = "Charakter & Account";
-L["Character only"] = "Nur Charakter-Erfolge";
 L["Tooltip"] = "Tooltip";
 L["Always show realm"] = "Immer Realm anzeigen";
 L["Always show realm Desc"] = "Zeigt immer den Realm deines Charakters an, unabhängig davon, ob sich der Charakter auf demselben Realm wie dieser Charakter befindet.";

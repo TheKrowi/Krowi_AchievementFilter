@@ -1,4 +1,4 @@
--- [[ Exported at 2022-09-07 07-25-47 ]] --
+-- [[ Exported at 2022-09-09 22-49-42 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -122,6 +122,7 @@ L["Garden Gallivant"] = "Garden Gallivant";
 L["Passage Pathway"] = "Passage Pathway";
 L["The Flowing Forest Flight"] = "The Flowing Forest Flight";
 L["Dragonriding"] = "Dragonriding";
+L["Ta's Pet Collection"] = "Ta's Pet Collection";
 L["No time data available"] = "No time data available";
 L["Feast of Winter Veil"] = "Feast of Winter Veil";
 L["Noblegarden"] = "Noblegarden";
@@ -130,7 +131,6 @@ L["Hallow's End"] = "Hallow's End";
 L["Lunar Festival"] = "Lunar Festival";
 L["Midsummer Fire Festival"] = "Midsummer Fire Festival";
 L["Brewfest"] = "Brewfest";
-L["Pirates' Day"] = "Pirates' Day";
 L["Pilgrim's Bounty"] = "Pilgrim's Bounty";
 L["Day of the Dead"] = "Day of the Dead";
 L["Love is in the Air"] = "Love is in the Air";
@@ -199,6 +199,7 @@ L["will be"] = "will be";
 L["was"] = "was";
 L["only obtainable by one player"] = "only obtainable by one player";
 L["Patch"] = "Patch";
+L["Temporary Obtainable Text"] = "{this achievement} {is will be was} {never once temp obt} {start} {detail1} {end} {end detail}.";
 L["Data Manager"] = "Data Manager";
 L["Header tooltip"] = "Header tooltip";
 L["Wowhead"] = "Wowhead";
@@ -289,7 +290,6 @@ L["Header"] = "Header";
 L["Format"] = "Format";
 L["Account wide (default)"] = "Account wide (default)";
 L["Character / Account wide"] = "Character / Account wide";
-L["Character only"] = "Character only";
 L["Tooltip"] = "Tooltip";
 L["Always show realm"] = "Always show realm";
 L["Always show realm Desc"] = "Always show the character's realm regardless if the character is on the same realm as this character.";
