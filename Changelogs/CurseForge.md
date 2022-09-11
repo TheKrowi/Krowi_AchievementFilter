@@ -46,3 +46,11 @@
 <li>We Are All Made of Stars, We Are All Made of Stars (Heroic) and We Are All Made of Stars (Mythic) to SotFO raid</li>
 <li>A new pets category in Specials</li>
 </ul>
+<p><h3>Added (40.6)</h3></p>
+<ul>
+<li>More translations</li>
+</ul>
+<p><h3>Fixed (40.6)</h3></p>
+<ul>
+<li>On rare occasions, the math to show achievement criteria could return 0 and throw an error when clicking an achievement (discovered with We Are All Made of Stars)</li>
+</ul>
