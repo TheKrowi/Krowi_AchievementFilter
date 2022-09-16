@@ -4270,6 +4270,9 @@ function exportedCategories.Load(a)
     AddC(tmp[1346], tmp[1356]);
     AddA(tmp[1356], a[9805]); -- Big Rocketeer: Gold
     AddA(tmp[1356], a[9983]); -- That's Whack!
+    tmp[1378] = cat:New(addon.GetCategoryInfoTitle(14866)); -- Wrath of the Lich King
+    AddC(tmp[1346], tmp[1378]);
+    AddA(tmp[1378], a[1956]); -- Higher Learning
     tmp[1352] = cat:New(addon.GetCategoryInfoTitle(15072)); -- Cataclysm
     AddC(tmp[1346], tmp[1352]);
     AddA(tmp[1352], a[5449]); -- Rock Lover
@@ -4281,7 +4284,6 @@ function exportedCategories.Load(a)
     AddA(tmp[1350], a[9685]); -- Draenor Safari
     tmp[1349] = cat:New(addon.GetCategoryInfoTitle(15258)); -- Legion
     AddC(tmp[1346], tmp[1349]);
-    AddA(tmp[1349], a[1956]); -- Higher Learning
     AddA(tmp[1349], a[10412]); -- Poor Unfortunate Souls
     AddA(tmp[1349], a[9696]); -- Family Familiar
     AddA(tmp[1349], a[12100]); -- Family Fighter

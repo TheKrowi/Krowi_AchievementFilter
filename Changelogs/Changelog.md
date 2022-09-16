@@ -49,3 +49,4 @@
 ### Fixed (40.7)
 - Sometimes, achievement points in the shield could be yellow instead of white
 - Progressive achievements could show points and a FoS shield at the same time if a previous achievement gave points but the achievement in question does not
+- Moved Higher Learning from Ta's Pet Collection Legion to Wrath of the Lich King
