@@ -1,4 +1,4 @@
--- [[ Exported at 2022-09-09 00-30-33 ]] --
+-- [[ Exported at 2022-09-16 08-43-22 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -7881,7 +7881,6 @@ function exportedAchievements.Load(a, t)
     a[15392] = ach:New(15392, 10); -- Dune Dominance
     a[15394] = ach:New(15394, 0); -- Ohn'a'Roll
     a[15396] = ach:New(15396, 10); -- We Are All Made of Stars
-    SetTO(a[15396], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15397] = ach:New(15397, 0); -- Four Ring Circus
     a[15398] = ach:New(15398, 10); -- "Xy Never, Ever Marks the Spot."
     a[15399] = ach:New(15399, 10); -- Coming to Terms
@@ -8068,6 +8067,7 @@ function exportedAchievements.Load(a, t)
     a[15652] = ach:New(15652, 10); -- Mythic: So'leah's Gambit
     a[15653] = ach:New(15653, 0); -- The More You Know*
     a[15654] = ach:New(15654, 0); -- Back from the Beyond
+    SetTO(a[15654], "From", "Version", "090205", "Before", "Version", "100002");
     a[15663] = ach:New(15663, 10); -- Fate of Nathria
     SetTO(a[15663], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
     a[15664] = ach:New(15664, 10); -- Heroic: Fate of Nathria
@@ -8416,6 +8416,7 @@ function exportedAchievements.Load(a, t)
     a[16335] = ach:New(16335, 10); -- What Frozen Things Do
     a[16336] = ach:New(16336, 0); -- Azure Spanner
     a[16337] = ach:New(16337, 10); -- It's a Trogg Eat Trogg World
+    a[16338] = ach:New(16338, 5); -- Fang Flap Fire Fighter
     a[16339] = ach:New(16339, 10); -- Myths of the Dragonflight Dungeons
     a[16343] = ach:New(16343, 10); -- Vault of the Incarnates
     a[16345] = ach:New(16345, 10); -- Heroic: Vault of the Incarnates
@@ -8462,12 +8463,23 @@ function exportedAchievements.Load(a, t)
     a[16445] = ach:New(16445, 10); -- Icy What You Did There
     a[16446] = ach:New(16446, 10); -- That's Pretty Neat!
     a[16447] = ach:New(16447, 10); -- What Are The Chances...
+    a[16450] = ach:New(16450, 10); -- The Power is MINE!
+    a[16451] = ach:New(16451, 0); -- The Ol Raszle Daszle
+    a[16452] = ach:New(16452, 5); -- Explore the Forbidden Reach
+    a[16453] = ach:New(16453, 10); -- Liquid Hot Magma
+    a[16456] = ach:New(16456, 10); -- Weapons of the Maruukai
+    a[16457] = ach:New(16457, 10); -- Explore the Ohn'ahran Plains
+    a[16458] = ach:New(16458, 10); -- Nothing But Air
+    a[16460] = ach:New(16460, 10); -- Explore the Azure Span
     a[16461] = ach:New(16461, 10); -- Stormed Off
+    a[16462] = ach:New(16462, 10); -- The Ohn'ahran Trail
     a[16463] = ach:New(16463, 5); -- Thunderstorms in The Waking Shores
+    a[16464] = ach:New(16464, 10); -- Battle on the Dragon Isles
     a[16465] = ach:New(16465, 5); -- Sandstorms in The Waking Shores
     a[16466] = ach:New(16466, 5); -- Firestorms in The Waking Shores
     a[16467] = ach:New(16467, 5); -- Snowstorms in The Waking Shores
     a[16468] = ach:New(16468, 10); -- Chasing Storms in The Waking Shores
+    a[16474] = ach:New(16474, 5); -- Do You Wanna Build a Snowman?
     a[16475] = ach:New(16475, 5); -- Thunderstorms in the Ohn'ahran Plains
     a[16476] = ach:New(16476, 10); -- Chasing Storms in the Ohn'ahran Plains
     a[16477] = ach:New(16477, 5); -- Sandstorms in the Ohn'ahran Plains
@@ -8485,12 +8497,76 @@ function exportedAchievements.Load(a, t)
     a[16489] = ach:New(16489, 10); -- Chasing Storms in Thaldraszus
     a[16490] = ach:New(16490, 10); -- Storm Chaser
     a[16492] = ach:New(16492, 20); -- Into the Storm
+    a[16493] = ach:New(16493, 5); -- Grand Theft Mammoth
+    a[16494] = ach:New(16494, 5); -- Backing the Throne
+    a[16495] = ach:New(16495, 5); -- Obsidian Keymaster
+    a[16496] = ach:New(16496, 5); -- Obsidian Champion
+    a[16497] = ach:New(16497, 5); -- I'm Playing Both Sides
     a[16498] = ach:New(16498, 5); -- Elemental Overflow
     a[16499] = ach:New(16499, 5); -- Elemental Overflowing
     a[16500] = ach:New(16500, 10); -- Elemental Overload
+    a[16501] = ach:New(16501, 5); -- Aquatic Battler of the Dragon Isles
+    a[16502] = ach:New(16502, 0); -- WIP Storming the Runway
+    a[16503] = ach:New(16503, 5); -- Beast Battler of the Dragon Isles
+    a[16504] = ach:New(16504, 5); -- Critter Battler of the Dragon Isles
+    a[16505] = ach:New(16505, 5); -- Dragonkin Battler of the Dragon Isles
+    a[16506] = ach:New(16506, 5); -- Elemental Battler of the Dragon Isles
+    a[16507] = ach:New(16507, 5); -- Flying Battler of the Dragon Isles
+    a[16508] = ach:New(16508, 5); -- Humanoid Battler of the Dragon Isles
+    a[16509] = ach:New(16509, 5); -- Magic Battler of the Dragon Isles
+    a[16510] = ach:New(16510, 5); -- Mechanical Battler of the Dragon Isles
+    a[16511] = ach:New(16511, 5); -- Undead Battler of the Dragon Isles
+    a[16512] = ach:New(16512, 10); -- Family Battler of the Dragon Isles
+    a[16517] = ach:New(16517, 10); -- Toxicity Strike Team
+    a[16518] = ach:New(16518, 10); -- Explore Thaldrazsus
+    a[16519] = ach:New(16519, 5); -- Dragon Isles Safari
+    a[16522] = ach:New(16522, 5); -- A True Explorer
+    a[16528] = ach:New(16528, 5); -- Joining the Khansguard
+    a[16529] = ach:New(16529, 5); -- Joining the Community
+    a[16530] = ach:New(16530, 5); -- Ally of the Flights
+    a[16531] = ach:New(16531, 10); -- A Whole Heap of Lunkers
+    a[16532] = ach:New(16532, 5); -- Friends with Sabellian
+    a[16533] = ach:New(16533, 10); -- Lots of Lunkers
+    a[16536] = ach:New(16536, 5); -- True Friends with Wrathion
+    a[16537] = ach:New(16537, 5); -- Maximum Power!
+    a[16539] = ach:New(16539, 5); -- In High Esteem
+    a[16540] = ach:New(16540, 15); -- Hunt Master
+    a[16541] = ach:New(16541, 10); -- Longhunter
+    a[16542] = ach:New(16542, 15); -- The Disgruntled Hunter
+    a[16543] = ach:New(16543, 10); -- Tetrachromancer
+    a[16544] = ach:New(16544, 5); -- Grand Hunter
+    a[16545] = ach:New(16545, 15); -- The Best at What I Do
+    a[16546] = ach:New(16546, 10); -- What's Down There?
+    a[16547] = ach:New(16547, 10); -- Pulled!
+    a[16548] = ach:New(16548, 10); -- It Takes a Tuskarr Buddy
+    a[16549] = ach:New(16549, 40); -- Popular Around the Isles
+    a[16550] = ach:New(16550, 10); -- Giving Back to Nature
+    a[16551] = ach:New(16551, 10); -- Giving More Back to Nature
+    a[16552] = ach:New(16552, 10); -- Giving Even More Back to Nature
+    a[16553] = ach:New(16553, 10); -- Taking From Nature
+    a[16556] = ach:New(16556, 10); -- Great Gourmand of The Ruby Feast
+    a[16560] = ach:New(16560, 10); -- Wildlife Photographer
+    a[16561] = ach:New(16561, 10); -- "Lunkers, Lunkers Everywhere"
+    a[16562] = ach:New(16562, 10); -- That's not a Fish...
+    a[16563] = ach:New(16563, 10); -- We're Going to Need a Bigger Harpoon
+    a[16564] = ach:New(16564, 10); -- It Takes a Tuskarr Family
+    a[16565] = ach:New(16565, 10); -- It Takes a Tuskarr Village
+    a[16566] = ach:New(16566, 5); -- Great Shot!
+    a[16567] = ach:New(16567, 5); -- A Lot of Great Shots!
+    a[16568] = ach:New(16568, 10); -- Great Shots Galore!
+    a[16569] = ach:New(16569, 5); -- Cobalt Enthusiast
+    a[16570] = ach:New(16570, 10); -- A Legendary Album
+    a[16571] = ach:New(16571, 10); -- Well Supplied
+    a[16572] = ach:New(16572, 5); -- Legendary Photograph
+    a[16573] = ach:New(16573, 5); -- Legendary Photographs
+    a[16574] = ach:New(16574, 5); -- Sleeping on the Job
+    a[16575] = ach:New(16575, 20); -- Waking Shores Glyph Hunter
+    a[16576] = ach:New(16576, 20); -- Ohn'ahran Plains Glyph Hunter
+    a[16577] = ach:New(16577, 20); -- Azure Span Glyph Hunter
+    a[16578] = ach:New(16578, 20); -- Thaldraszus Glyph Hunter
 
     local aIDs = {};
-    for i = 1, 16500 do
+    for i = 1, 16578 do
         if a[i] ~= nil then
             tinsert(aIDs, i);
         end

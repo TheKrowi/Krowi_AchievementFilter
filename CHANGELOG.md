@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 40.7 - 2022-09-xx
+### Added
+- Temporary obtainability to We Are All Made of Stars (Heroic) and We Are All Made of Stars (Mythic)
+- A category under the Specials tab with all the achievements stopping being obtainable with Dragonflight and the pre-patch
+
+### Fixed
+- Sometimes, achievement points in the shield could be yellow instead of white
+- Progressive achievements could show points and a FoS shield at the same time if a previous achievement gave points but the achievement in question does not
+
 ## 40.6 - 2022-09-11
 ### Added
 - More translations

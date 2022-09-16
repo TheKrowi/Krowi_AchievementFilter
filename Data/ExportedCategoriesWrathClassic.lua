@@ -1,4 +1,4 @@
--- [[ Exported at 2022-09-09 00-30-47 ]] --
+-- [[ Exported at 2022-09-16 08-43-59 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -23,6 +23,7 @@ function exportedCategories.Load(a)
     local focusedCategories = {};
     local currentZoneCategories = {};
     local selectedZoneCategories = {};
+    local trackingAchievementsCategories = {};
     local excludedCategories = {};
     tmp[1100] = cat:New(addon.L["Achievements"]); -- TAB - Achievements
     tmp[1100].TabName = "Achievements";
@@ -35,7 +36,6 @@ function exportedCategories.Load(a)
     AddC(tmp[1100], tmp[1216]);
     tmp[1216].HasFlexibleData = true;
     tinsert(focusedCategories, tmp[1216]);
-    tmp[1216].IsFocused = true;
     tmp[1212] = cat:New(addon.L["Current Zone"]); -- Current Zone
     AddC(tmp[1100], tmp[1212]);
     tmp[1212].HasFlexibleData = true;
@@ -46,11 +46,15 @@ function exportedCategories.Load(a)
     tmp[1220].HasFlexibleData = true;
     tinsert(selectedZoneCategories, tmp[1220]);
     tmp[1220].IsSelectedZone = true;
+    tmp[1371] = cat:New(addon.L["Tracking Achievements"]); -- Tracking Achievements
+    AddC(tmp[1100], tmp[1371]);
+    tmp[1371].HasFlexibleData = true;
+    tinsert(trackingAchievementsCategories, tmp[1371]);
+    tmp[1371].IsTracking = true;
     tmp[1224] = cat:New(addon.L["Excluded"]); -- Excluded
     AddC(tmp[1100], tmp[1224]);
     tmp[1224].HasFlexibleData = true;
     tinsert(excludedCategories, tmp[1224]);
-    tmp[1224].IsExcluded = true;
     tmp[883] = cat:New(addon.L["Expansions"]); -- TAB - Expansions
     tmp[883].TabName = "Expansions";
     local expansions = tmp[883];
@@ -62,7 +66,6 @@ function exportedCategories.Load(a)
     AddC(tmp[883], tmp[1217]);
     tmp[1217].HasFlexibleData = true;
     tinsert(focusedCategories, tmp[1217]);
-    tmp[1217].IsFocused = true;
     tmp[1213] = cat:New(addon.L["Current Zone"]); -- Current Zone
     AddC(tmp[883], tmp[1213]);
     tmp[1213].HasFlexibleData = true;
@@ -2486,11 +2489,15 @@ function exportedCategories.Load(a)
     AddA(tmp[1172], a[4496]); -- It's Over Nine Thousand!
     AddA(tmp[1172], a[3636]); -- Jade Tiger
     AddA(tmp[1172], a[3896]); -- Onyx Panther
+    tmp[1370] = cat:New(addon.L["Tracking Achievements"]); -- Tracking Achievements
+    AddC(tmp[883], tmp[1370]);
+    tmp[1370].HasFlexibleData = true;
+    tinsert(trackingAchievementsCategories, tmp[1370]);
+    tmp[1370].IsTracking = true;
     tmp[1225] = cat:New(addon.L["Excluded"]); -- Excluded
     AddC(tmp[883], tmp[1225]);
     tmp[1225].HasFlexibleData = true;
     tinsert(excludedCategories, tmp[1225]);
-    tmp[1225].IsExcluded = true;
     tmp[884] = cat:New(addon.L["Events"]); -- TAB - Events
     tmp[884].TabName = "Events";
     local events = tmp[884];
@@ -2502,7 +2509,6 @@ function exportedCategories.Load(a)
     AddC(tmp[884], tmp[1218]);
     tmp[1218].HasFlexibleData = true;
     tinsert(focusedCategories, tmp[1218]);
-    tmp[1218].IsFocused = true;
     tmp[1214] = cat:New(addon.L["Current Zone"]); -- Current Zone
     AddC(tmp[884], tmp[1214]);
     tmp[1214].HasFlexibleData = true;
@@ -2997,11 +3003,15 @@ function exportedCategories.Load(a)
     AddA(tmp[1174], a[2079]); -- Tabard of the Protector
     AddA(tmp[1174], a[2116]); -- Tabard of the Argent Dawn
     AddA(tmp[1174], a[11395]); -- Diablo's 20th Anniversary
+    tmp[1369] = cat:New(addon.L["Tracking Achievements"]); -- Tracking Achievements
+    AddC(tmp[884], tmp[1369]);
+    tmp[1369].HasFlexibleData = true;
+    tinsert(trackingAchievementsCategories, tmp[1369]);
+    tmp[1369].IsTracking = true;
     tmp[1226] = cat:New(addon.L["Excluded"]); -- Excluded
     AddC(tmp[884], tmp[1226]);
     tmp[1226].HasFlexibleData = true;
     tinsert(excludedCategories, tmp[1226]);
-    tmp[1226].IsExcluded = true;
     tmp[955] = cat:New(addon.GetCategoryInfoTitle(95)); -- TAB - PvP
     tmp[955].TabName = "PvP";
     local pvp = tmp[955];
@@ -3013,7 +3023,6 @@ function exportedCategories.Load(a)
     AddC(tmp[955], tmp[1219]);
     tmp[1219].HasFlexibleData = true;
     tinsert(focusedCategories, tmp[1219]);
-    tmp[1219].IsFocused = true;
     tmp[1215] = cat:New(addon.L["Current Zone"]); -- Current Zone
     AddC(tmp[955], tmp[1215]);
     tmp[1215].HasFlexibleData = true;
@@ -3459,11 +3468,15 @@ function exportedCategories.Load(a)
     AddA(tmp[1200], a[3436]); -- Furious Gladiator
     AddA(tmp[1200], a[3758]); -- Relentless Gladiator
     AddA(tmp[1200], a[4599]); -- Wrathful Gladiator
+    tmp[1368] = cat:New(addon.L["Tracking Achievements"]); -- Tracking Achievements
+    AddC(tmp[955], tmp[1368]);
+    tmp[1368].HasFlexibleData = true;
+    tinsert(trackingAchievementsCategories, tmp[1368]);
+    tmp[1368].IsTracking = true;
     tmp[1227] = cat:New(addon.L["Excluded"]); -- Excluded
     AddC(tmp[955], tmp[1227]);
     tmp[1227].HasFlexibleData = true;
     tinsert(excludedCategories, tmp[1227]);
-    tmp[1227].IsExcluded = true;
     tmp[971] = cat:New(addon.L["Specials"]); -- TAB - Specials
     tmp[971].TabName = "Specials";
     local specials = tmp[971];
@@ -3475,7 +3488,6 @@ function exportedCategories.Load(a)
     AddC(tmp[971], tmp[949]);
     tmp[949].HasFlexibleData = true;
     tinsert(focusedCategories, tmp[949]);
-    tmp[949].IsFocused = true;
     tmp[433] = cat:New(addon.L["Current Zone"]); -- Current Zone
     AddC(tmp[971], tmp[433]);
     tmp[433].HasFlexibleData = true;
@@ -4020,6 +4032,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1102], a[10693]); -- Fashionista: Hand
     AddA(tmp[1102], a[10689]); -- Fashionista: Weapon & Off-Hand
     AddA(tmp[1102], a[10694]); -- Fabulous
+    AddA(tmp[1102], a[16502]); -- WIP Storming the Runway
     tmp[1103] = cat:New(addon.GetCategoryInfoTitle(15271)); -- Raids
     AddC(tmp[1101], tmp[1103]);
     AddA(tmp[1103], a[11741]); -- So Hot Right Now
@@ -4294,11 +4307,17 @@ function exportedCategories.Load(a)
     AddA(tmp[1347], a[15004]); -- A Sly Fox
     AddA(tmp[1347], a[15079]); -- "Many, Many Things"
     AddA(tmp[1347], a[15251]); -- The Jailer's Gauntlet: Layer 1
+    tmp[1372] = cat:New(addon.L["Going away with"]); -- Going away with
+    AddC(tmp[971], tmp[1372]);
+    tmp[1367] = cat:New(addon.L["Tracking Achievements"]); -- Tracking Achievements
+    AddC(tmp[971], tmp[1367]);
+    tmp[1367].HasFlexibleData = true;
+    tinsert(trackingAchievementsCategories, tmp[1367]);
+    tmp[1367].IsTracking = true;
     tmp[857] = cat:New(addon.L["Excluded"]); -- Excluded
     AddC(tmp[971], tmp[857]);
     tmp[857].HasFlexibleData = true;
     tinsert(excludedCategories, tmp[857]);
-    tmp[857].IsExcluded = true;
 
     local tabs = {};
     tabs["Achievements"] = achievements.Children;
@@ -4306,7 +4325,7 @@ function exportedCategories.Load(a)
     tabs["Events"] = events.Children;
     tabs["PvP"] = pvp.Children;
     tabs["Specials"] = specials.Children;
-    return tabs, focusedCategories, currentZoneCategories, selectedZoneCategories, excludedCategories;
+    return tabs, focusedCategories, currentZoneCategories, selectedZoneCategories, trackingAchievementsCategories, excludedCategories;
 end
 
 function exportedCategories.InjectOptions()

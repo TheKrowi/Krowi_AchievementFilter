@@ -96,9 +96,9 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement)
 
 		self.Header:SetText(name)
 
-		local normalFont = self.Compact and GameFontNormal or AchievementPointsFont;
-		local smallFont = self.Compact and GameFontNormalSmall or AchievementPointsFontSmall;
-		if GetPreviousAchievement(id) then
+		local normalFont = self.Compact and GameFontHighlight or AchievementPointsFontHighlight;
+		local smallFont = self.Compact and GameFontHighlightSmall or AchievementPointsFontHighlightSmall;
+		if GetPreviousAchievement(id) and points > 0 then
 			AchievementShield_SetPoints(AchievementButton_GetProgressivePoints(id), self.Shield.Points, normalFont, smallFont);
 		else
 			AchievementShield_SetPoints(points, self.Shield.Points, normalFont, smallFont);
