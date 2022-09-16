@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 40.7 - 2022-09-xx
+## 40.7 - 2022-09-16
 ### Added
 - Temporary obtainability to We Are All Made of Stars (Heroic) and We Are All Made of Stars (Mythic)
 - A category under the Specials tab with all the achievements stopping being obtainable with Dragonflight and the pre-patch
