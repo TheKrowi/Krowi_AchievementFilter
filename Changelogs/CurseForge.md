@@ -54,3 +54,14 @@
 <ul>
 <li>On rare occasions, the math to show achievement criteria could return 0 and throw an error when clicking an achievement (discovered with We Are All Made of Stars)</li>
 </ul>
+<p><h3>Added (40.7)</h3></p>
+<ul>
+<li>Temporary obtainability to We Are All Made of Stars (Heroic) and We Are All Made of Stars (Mythic)</li>
+<li>A category under the Specials tab with all the achievements stopping being obtainable with Dragonflight and the pre-patch</li>
+</ul>
+<p><h3>Fixed (40.7)</h3></p>
+<ul>
+<li>Sometimes, achievement points in the shield could be yellow instead of white</li>
+<li>Progressive achievements could show points and a FoS shield at the same time if a previous achievement gave points but the achievement in question does not</li>
+<li>Moved Higher Learning from Ta's Pet Collection Legion to Wrath of the Lich King</li>
+</ul>
