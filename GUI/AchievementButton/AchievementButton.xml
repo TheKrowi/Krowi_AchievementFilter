@@ -2,6 +2,13 @@
     <Script file="AchievementButton.lua"/>
     <Script file="AchievementButtonMixin.lua"/>
 	
+	<Font name="AchievementPointsFontHighlight" inherits="AchievementPointsFont" justifyH="CENTER" virtual="true">
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>
+	<Font name="AchievementPointsFontHighlightSmall" inherits="AchievementPointsFontSmall" justifyH="CENTER" virtual="true">
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>
+
 	<Button name="KrowiAF_AchievementButton_Template" mixin="KrowiAF_AchievementButtonMixin" inherits="TooltipBorderBackdropTemplate" registerForClicks="LeftButtonUp, RightButtonUp" virtual="true">
 		<Layers>
 			<Layer level="BACKGROUND">
@@ -248,7 +255,7 @@
 						</Texture>
 					</Layer>
 					<Layer level="OVERLAY">
-						<FontString name="$parentPoints" parentKey="Points" inherits="GameFontNormal" justifyH="CENTER">
+						<FontString name="$parentPoints" parentKey="Points" inherits="GameFontHighlight" justifyH="CENTER">
               				<Size x="42" y="16"/>
 							<Anchors>
 								<Anchor point="TOPRIGHT" x="-13" y="-26"/>

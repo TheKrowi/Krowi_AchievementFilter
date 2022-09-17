@@ -258,7 +258,7 @@ local function SetOrder(index, value)
 		end
 	end
 
-	print(aName, tName, tab.AddonName, tab.Name);
+	-- print(aName, tName, tab.AddonName, tab.Name);
 	if aName == "Blizzard_AchievementUI"
 	and tab.AddonName == "Blizzard_AchievementUI"
 	and tName == "Guild"

@@ -75,7 +75,7 @@ function gui:LoadWithBlizzard_AchievementUI()
 
     self.SetCloseButtonOnKeyDown();
 
-    self.LoadWotLKClassicFixes();
+    self.LoadWrathClassicFixes();
 
     diagnostics.Debug("GUI loaded");
 end
@@ -369,7 +369,10 @@ function gui.TabsOrderGetActiveKeys()
     return SavedData.TabKeys;
 end
 
-function gui.LoadWotLKClassicFixes()
+function gui.LoadWrathClassicFixes()
+    if addon.IsNotWrathClassic() then
+        return;
+    end
     if AchievementFrame_SetTabs == nil then
         AchievementFrame_SetTabs = function() end;
     end

@@ -28,12 +28,13 @@ local donations = {
     {Name = "Ta", Realm = "Der Rat von Dalaran EU", Class = "SHAMAN"},
     {Name = "Estellar", Realm = "Bronze Dragonflight EU", Class = "PALADIN"},
     {Name = "Seby", Realm = "TwistingNether EU", Class = "HUNTER"},
+    {Name = "Swiftstrider (mains everything)", Realm = "Frostmourne NA", Class = ""},
 }
 
 function credits.GetDonationsAsString()
     local text = "";
     for _, donation in next, donations do
-        local _, _, _, argbHex = GetClassColor(donation.Class);
+        local argbHex = donation.Class ~= "" and select(4, GetClassColor(donation.Class)) or "FFC0C0C0";
         text = text .. "|c" .. argbHex .. donation.Name .. "|r";
         if donation.Realm then
             text = text .. " - " .. donation.Realm;

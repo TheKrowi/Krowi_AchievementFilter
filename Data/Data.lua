@@ -53,6 +53,8 @@ function data.Load()
         addon.Tabs["Achievements"].Categories = data.LoadBlizzardTabAchievements(addon.Tabs["Achievements"].Categories);
     end
 
+    data.LoadWrathClassicFixes();
+
     isLoaded = true;
     addon.Diagnostics.Debug("Expansion data loaded");
 
@@ -181,6 +183,65 @@ function data.LoadBlizzardTabAchievements(categories)
     addedOutOfOrder = nil;
 
     return tab.Children;
+end
+
+function data.LoadWrathClassicFixes()
+    if addon.IsNotWrathClassic() then
+        -- Maybe remove all the new achievements here for retail
+        return;
+    end
+
+    -- data.Achievements[41].Faction = addon.Objects.Faction.Alliance; -- Loremaster of Northrend
+    -- data.Achievements[41].OtherFactionAchievementId = 1360;
+    -- data.Achievements[1360].OtherFactionAchievementId = 41;
+
+    -- data.Achievements[971].Faction = addon.Objects.Faction.Horde; -- Tricks and Treats of Azeroth
+    -- data.Achievements[971].OtherFactionAchievementId = 970;
+    -- data.Achievements[970].OtherFactionAchievementId = 971;
+
+    -- data.Achievements[1167].Faction = addon.Objects.Faction.Alliance; -- Master of Alterac Valley
+    -- data.Achievements[1167].OtherFactionAchievementId = 1168;
+    -- data.Achievements[1168].OtherFactionAchievementId = 1167;
+
+    -- data.Achievements[1169].Faction = addon.Objects.Faction.Alliance; -- Master of Arathi Basin
+    -- data.Achievements[1169].OtherFactionAchievementId = 1170;
+    -- data.Achievements[1170].OtherFactionAchievementId = 1169;
+
+    -- data.Achievements[1172].Faction = addon.Objects.Faction.Alliance; -- Master of Warsong Gulch
+    -- data.Achievements[1172].OtherFactionAchievementId = 1173;
+    -- data.Achievements[1173].OtherFactionAchievementId = 1172;
+
+    -- data.Achievements[1262].Faction = addon.Objects.Faction.Alliance; -- Loremaster of Outland
+    -- data.Achievements[1262].OtherFactionAchievementId = 1274;
+    -- data.Achievements[1274].OtherFactionAchievementId = 1262;
+
+    -- data.Achievements[1563].Faction = addon.Objects.Faction.Alliance; -- Hail to the Chef
+    -- data.Achievements[1563].OtherFactionAchievementId = 1784;
+    -- data.Achievements[1784].OtherFactionAchievementId = 1563;
+
+    -- data.Achievements[1656].Faction = addon.Objects.Faction.Alliance; -- Hallowed Be Thy Name
+    -- data.Achievements[1656].OtherFactionAchievementId = 1657;
+    -- data.Achievements[1657].OtherFactionAchievementId = 1656;
+    
+    -- data.Achievements[1676].Faction = addon.Objects.Faction.Alliance; -- Loremaster of Eastern Kingdoms
+    -- data.Achievements[1676].OtherFactionAchievementId = 1677;
+    -- data.Achievements[1677].OtherFactionAchievementId = 1676;
+    
+    -- data.Achievements[1678].Faction = addon.Objects.Faction.Alliance; -- Loremaster of Kalimdor
+    -- data.Achievements[1678].OtherFactionAchievementId = 1680;
+    -- data.Achievements[1680].OtherFactionAchievementId = 1678;
+    
+    -- data.Achievements[1683].Faction = addon.Objects.Faction.Horde; -- Brewmaster
+    -- data.Achievements[1683].OtherFactionAchievementId = 1684;
+    -- data.Achievements[1684].OtherFactionAchievementId = 1683;
+
+    -- data.Achievements[1691].Faction = addon.Objects.Faction.Horde; -- Merrymaker
+    -- data.Achievements[1691].OtherFactionAchievementId = 1692;
+    -- data.Achievements[1692].OtherFactionAchievementId = 1691;
+    
+    -- data.Achievements[1693].Faction = addon.Objects.Faction.Horde; -- Fool For Love
+    -- data.Achievements[1693].OtherFactionAchievementId = 1707;
+    -- data.Achievements[1707].OtherFactionAchievementId = 1693;
 end
 
 -- function data.PrintCriteria(achievementID, parentCriteriaID, criteriaNumber)

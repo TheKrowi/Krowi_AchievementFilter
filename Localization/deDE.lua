@@ -1,8 +1,8 @@
--- [[ Exported at 2022-09-07 07-25-47 ]] --
+-- [[ Exported at 2022-09-17 22-03-46 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-09-07 ]] --
+-- [[ German translation by Ta, 2022-09-17 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -94,6 +94,11 @@ L["Season"] = "Saison";
 L["Fated Raids"] = "Schicksalhafte Raids";
 L["Dragon Glyphs"] = "Drachenglyphen";
 L["Dragonriding"] = "Drachenreiten";
+L["Ta's Pet Collection"] = "Ta's Haustier Collection";
+L["Tracking Achievements"] = "Erfassung von Erfolgen";
+L["Going away with"] = "Nicht mehr erzielbar ab";
+L["Dragonflight Pre-patch"] = "Dragonflight Pre-patch";
+L["Dragonflight"] = "Dragonflight";
 L["No time data available"] = "Keine Zeitdaten verfügbar";
 L["Feast of Winter Veil"] = "Winterhauch";
 L["Noblegarden"] = "Nobelgarten";
@@ -102,7 +107,6 @@ L["Hallow's End"] = "Schlotternächte";
 L["Lunar Festival"] = "Mondfest";
 L["Midsummer Fire Festival"] = "Sonnenwende";
 L["Brewfest"] = "Braufest";
-L["Pirates' Day"] = "Piratentag";
 L["Pilgrim's Bounty"] = "Die Pilgerfreuden";
 L["Day of the Dead"] = "Tag der Toten";
 L["Love is in the Air"] = "Liebe liegt in der Luft";
@@ -111,6 +115,15 @@ L["WoW's 10th Anniversary"] = "10-jähriges Jubiläum von WoW";
 L["Fated Raids: Castle Nathria"] = "Schicksalhafte Raids: Schloss Nathria";
 L["Fated Raids: Sanctum of Domination"] = "Schicksalhafte Raids: Sanktum der Herrschaft";
 L["Fated Raids: Sepulcher of the First Ones"] = "Schicksalhafte Raids: Mausoleum der Ersten";
+L["Fated Raids: Castle Nathria (US)"] = "Schicksalhafte Raids: Schloss Nathria (US)";
+L["Fated Raids: Sepulcher of the First Ones (US)"] = "Schicksalhafte Raids: Mausoleum der Ersten (US)";
+L["Fated Raids: Sanctum of Domination (US)"] = "Schicksalhafte Raids: Sanktum der Herrschaft (US)";
+L["Fated Raids: Castle Nathria (EU)"] = "Schicksalhafte Raids: Schloss Nathria (EU)";
+L["Fated Raids: Sepulcher of the First Ones (EU)"] = "Schicksalhafte Raids: Mausoleum der Ersten (EU)";
+L["Fated Raids: Sanctum of Domination (EU)"] = "Schicksalhafte Raids: Sanktum der Herrschaft (EU)";
+L["Fated Raids: Castle Nathria (CN)"] = "Schicksalhafte Raids: Schloss Nathria (CN)";
+L["Fated Raids: Sepulcher of the First Ones (CN)"] = "Schicksalhafte Raids: Mausoleum der Ersten (CN)";
+L["Fated Raids: Sanctum of Domination (CN)"] = "Schicksalhafte Raids: Sanktum der Herrschaft (CN)";
 L["Torghast"] = "Torghast";
 L["Soulforges"] = "Die Seelenschmieden";
 L["Fracture Chambers"] = "Frakturkammern";
@@ -138,15 +151,6 @@ L["Necrolord Assault"] = "Necrolord Paktangriff";
 L["Venthyr Assault"] = "Venthyr Paktangriff";
 L["Kyrian Assault"] = "Kyrian Paktangriff";
 L["Night Fae Assault"] = "Night Fae Paktangriff";
-L["Fated Raids: Castle Nathria (US)"] = "Schicksalhafte Raids: Schloss Nathria (US)";
-L["Fated Raids: Sepulcher of the First Ones (US)"] = "Schicksalhafte Raids: Mausoleum der Ersten (US)";
-L["Fated Raids: Sanctum of Domination (US)"] = "Schicksalhafte Raids: Sanktum der Herrschaft (US)";
-L["Fated Raids: Castle Nathria (EU)"] = "Schicksalhafte Raids: Schloss Nathria (EU)";
-L["Fated Raids: Sepulcher of the First Ones (EU)"] = "Schicksalhafte Raids: Mausoleum der Ersten (EU)";
-L["Fated Raids: Sanctum of Domination (EU)"] = "Schicksalhafte Raids: Sanktum der Herrschaft (EU)";
-L["Fated Raids: Castle Nathria (CN)"] = "Schicksalhafte Raids: Schloss Nathria (CN)";
-L["Fated Raids: Sepulcher of the First Ones (CN)"] = "Schicksalhafte Raids: Mausoleum der Ersten (CN)";
-L["Fated Raids: Sanctum of Domination (CN)"] = "Schicksalhafte Raids: Sanktum der Herrschaft (CN)";
 L["This achievement is no longer obtainable"] = "Dieser Erfolg kann nicht länger erzielt werden.";
 L["Not earned by:"] = "Nicht erzielt durch:";
 L["Part of a chain"] = "Teil einer Folgequest";
@@ -171,6 +175,7 @@ L["will be"] = "wird";
 L["was"] = "war";
 L["only obtainable by one player"] = "nur von einem Spieler zu erzielen";
 L["Patch"] = "Patch";
+L["Temporary Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}.";
 L["Data Manager"] = "Daten-Manager";
 L["Header tooltip"] = "Überschrift-Tooltip";
 L["Wowhead"] = "Wowhead";
@@ -261,7 +266,6 @@ L["Header"] = "Header";
 L["Format"] = "Format";
 L["Account wide (default)"] = "Account (Standard)";
 L["Character / Account wide"] = "Charakter & Account";
-L["Character only"] = "Nur Charakter-Erfolge";
 L["Tooltip"] = "Tooltip";
 L["Always show realm"] = "Immer Realm anzeigen";
 L["Always show realm Desc"] = "Zeigt immer den Realm deines Charakters an, unabhängig davon, ob sich der Charakter auf demselben Realm wie dieser Charakter befindet.";
@@ -279,6 +283,8 @@ L["Show Sub Categories"] = "Unterkategorien anzeigen";
 L["Show Sub Categories Desc"] = "Unterkategorien anzeigen/ausblenden.\n\nWenn diese Option aktiviert ist, werden die Erfolge unter ihren ursprünglichen Unterkategorien platziert, anstatt alle zusammen unter der einzigen Kategorie {Kategorie}.";
 L["Clear all"] = "Alle löschen";
 L["Clear all Desc"] = "Löschen Sie alle fokussierten Erfolge.";
+L["Load Tracking Achievements"] = "Aktivere die Erfassung von Erfolgen";
+L["Load Tracking Achievements Desc"] = "Aktivere die Erfassung von Erfolgen Beschreibung";
 L["Show Excluded Category"] = "Kategorie \"Erfolge ausgeblendet\" anzeigen";
 L["Show Excluded Category Desc"] = "Zeige / verstecke {excluded} Kategorie.\n\nWenn das Häkchen gesetzt ist, wird diese Kategorie nur angezeigt, wenn es tatsächlich ausgeschlossene Erfolge gibt und die eingestellten Filter es erlauben, diese anzuzeigen.\n\nWenn das Häkchen nicht gesetzt ist, ist die Kategorie immer versteckt und die Filter sind ebenfalls versteckt.";
 L["Include all"] = "\"Filter: Erfolge ausgeblendet\" einbeziehen";

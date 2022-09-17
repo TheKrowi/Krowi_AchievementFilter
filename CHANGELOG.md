@@ -1,6 +1,33 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 41.0 - 2022-09-17
+### Added
+- Some missing German translations
+- New credits
+
+### Wrath Classic
+- Added a bunch of missing achievements
+- Right click menu Wowhead link should link to the correct pages now
+- Fixed category names
+
+## 40.7 - 2022-09-16
+### Added
+- Temporary obtainability to We Are All Made of Stars (Heroic) and We Are All Made of Stars (Mythic)
+- A category under the Specials tab with all the achievements stopping being obtainable with Dragonflight and the pre-patch
+
+### Fixed
+- Sometimes, achievement points in the shield could be yellow instead of white
+- Progressive achievements could show points and a FoS shield at the same time if a previous achievement gave points but the achievement in question does not
+- Moved Higher Learning from Ta's Pet Collection Legion to Wrath of the Lich King
+
+## 40.6 - 2022-09-11
+### Added
+- More translations
+
+### Fixed
+- On rare occasions, the math to show achievement criteria could return 0 and throw an error when clicking an achievement (discovered with We Are All Made of Stars)
+
 ## 40.5 - 2022-09-07
 ### Added
 - We Are All Made of Stars, We Are All Made of Stars (Heroic) and We Are All Made of Stars (Mythic) to SotFO raid

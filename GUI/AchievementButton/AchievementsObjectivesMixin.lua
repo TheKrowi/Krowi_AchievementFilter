@@ -256,7 +256,7 @@ function AchievementsObjectivesMixin:SetProgressBarAndTextPoints(numProgressBars
 end
 
 function AchievementsObjectivesMixin:SetTextPoints(numTextCriteria, maxCriteriaWidth)
-	local columns = floor(self:GetWidth() / maxCriteriaWidth);
+	local columns = max(1, floor(self:GetWidth() / maxCriteriaWidth));
 
 	local truncate, flex;
 	if addon.Options.db.Achievements.Objectives.ForceTwoColumns then
