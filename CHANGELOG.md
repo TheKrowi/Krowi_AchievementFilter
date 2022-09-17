@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 40.8 - 2022-09-xx
+## 41.0 - 2022-09-17
 ### Added
 - Some missing German translations
 - New credits
