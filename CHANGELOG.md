@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## 40.8 - 2022-09-xx
 ### Added
 - Some missing German translations
+- New credits
 
 ### Wrath Classic
 - Added a bunch of missing achievements

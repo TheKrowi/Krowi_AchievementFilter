@@ -9265,77 +9265,77 @@ function exportedCategories.Load(a)
 end
 
 function exportedCategories.InjectOptions()
-    local defaultsFocused = {};
-    defaultsFocused[1] = false;
-    defaultsFocused[2] = false;
-    defaultsFocused[3] = false;
-    defaultsFocused[4] = false;
-    defaultsFocused[5] = true;
+    -- local defaultsFocused = {};
+    -- defaultsFocused[1] = false;
+    -- defaultsFocused[2] = false;
+    -- defaultsFocused[3] = false;
+    -- defaultsFocused[4] = false;
+    -- defaultsFocused[5] = true;
 
-    addon.Options.InjectDefaults(defaultsFocused, "Focused", "AdjustableCategories");
+    -- addon.Options.InjectDefaults(defaultsFocused, "Focused", "AdjustableCategories");
 
-    local optionsTableFocused = {
-        order = 2, type = "group",
-        name = addon.L["Focused"],
-        args = {
-            Tabs = {
-                order = 9, type = "header",
-                name = addon.L["Tabs"]
-            },
-            Achievements = {
-                order = 10, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
-                name = addon.L["Achievements"],
-                desc = addon.L["Requires a reload"],
-                get = function() return addon.Options.db.AdjustableCategories.Focused[1]; end,
-                set = function()
-                    addon.Options.db.AdjustableCategories.Focused[1] = not addon.Options.db.AdjustableCategories.Focused[1];
-                    addon.Diagnostics.Debug(addon.L["Achievements"], addon.Options.db.AdjustableCategories.Focused[1]);
-                end
-            },
-            Expansions = {
-                order = 11, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
-                name = addon.L["Expansions"],
-                desc = addon.L["Requires a reload"],
-                get = function() return addon.Options.db.AdjustableCategories.Focused[2]; end,
-                set = function()
-                    addon.Options.db.AdjustableCategories.Focused[2] = not addon.Options.db.AdjustableCategories.Focused[2];
-                    addon.Diagnostics.Debug(addon.L["Expansions"], addon.Options.db.AdjustableCategories.Focused[2]);
-                end
-            },
-            Events = {
-                order = 12, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
-                name = addon.L["Events"],
-                desc = addon.L["Requires a reload"],
-                get = function() return addon.Options.db.AdjustableCategories.Focused[3]; end,
-                set = function()
-                    addon.Options.db.AdjustableCategories.Focused[3] = not addon.Options.db.AdjustableCategories.Focused[3];
-                    addon.Diagnostics.Debug(addon.L["Events"], addon.Options.db.AdjustableCategories.Focused[3]);
-                end
-            },
-            PvP = {
-                order = 13, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
-                name = addon.GetCategoryInfoTitle(95),
-                desc = addon.L["Requires a reload"],
-                get = function() return addon.Options.db.AdjustableCategories.Focused[4]; end,
-                set = function()
-                    addon.Options.db.AdjustableCategories.Focused[4] = not addon.Options.db.AdjustableCategories.Focused[4];
-                    addon.Diagnostics.Debug(addon.GetCategoryInfoTitle(95), addon.Options.db.AdjustableCategories.Focused[4]);
-                end
-            },
-            Specials = {
-                order = 14, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
-                name = addon.L["Specials"],
-                desc = addon.L["Requires a reload"],
-                get = function() return addon.Options.db.AdjustableCategories.Focused[5]; end,
-                set = function()
-                    addon.Options.db.AdjustableCategories.Focused[5] = not addon.Options.db.AdjustableCategories.Focused[5];
-                    addon.Diagnostics.Debug(addon.L["Specials"], addon.Options.db.AdjustableCategories.Focused[5]);
-                end
-            },
-        }
-    };
+    -- local optionsTableFocused = {
+    --     order = 2, type = "group",
+    --     name = addon.L["Focused"],
+    --     args = {
+    --         Tabs = {
+    --             order = 9, type = "header",
+    --             name = addon.L["Tabs"]
+    --         },
+    --         Achievements = {
+    --             order = 10, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
+    --             name = addon.L["Achievements"],
+    --             desc = addon.L["Requires a reload"],
+    --             get = function() return addon.Options.db.AdjustableCategories.Focused[1]; end,
+    --             set = function()
+    --                 addon.Options.db.AdjustableCategories.Focused[1] = not addon.Options.db.AdjustableCategories.Focused[1];
+    --                 addon.Diagnostics.Debug(addon.L["Achievements"], addon.Options.db.AdjustableCategories.Focused[1]);
+    --             end
+    --         },
+    --         Expansions = {
+    --             order = 11, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
+    --             name = addon.L["Expansions"],
+    --             desc = addon.L["Requires a reload"],
+    --             get = function() return addon.Options.db.AdjustableCategories.Focused[2]; end,
+    --             set = function()
+    --                 addon.Options.db.AdjustableCategories.Focused[2] = not addon.Options.db.AdjustableCategories.Focused[2];
+    --                 addon.Diagnostics.Debug(addon.L["Expansions"], addon.Options.db.AdjustableCategories.Focused[2]);
+    --             end
+    --         },
+    --         Events = {
+    --             order = 12, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
+    --             name = addon.L["Events"],
+    --             desc = addon.L["Requires a reload"],
+    --             get = function() return addon.Options.db.AdjustableCategories.Focused[3]; end,
+    --             set = function()
+    --                 addon.Options.db.AdjustableCategories.Focused[3] = not addon.Options.db.AdjustableCategories.Focused[3];
+    --                 addon.Diagnostics.Debug(addon.L["Events"], addon.Options.db.AdjustableCategories.Focused[3]);
+    --             end
+    --         },
+    --         PvP = {
+    --             order = 13, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
+    --             name = addon.GetCategoryInfoTitle(95),
+    --             desc = addon.L["Requires a reload"],
+    --             get = function() return addon.Options.db.AdjustableCategories.Focused[4]; end,
+    --             set = function()
+    --                 addon.Options.db.AdjustableCategories.Focused[4] = not addon.Options.db.AdjustableCategories.Focused[4];
+    --                 addon.Diagnostics.Debug(addon.GetCategoryInfoTitle(95), addon.Options.db.AdjustableCategories.Focused[4]);
+    --             end
+    --         },
+    --         Specials = {
+    --             order = 14, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
+    --             name = addon.L["Specials"],
+    --             desc = addon.L["Requires a reload"],
+    --             get = function() return addon.Options.db.AdjustableCategories.Focused[5]; end,
+    --             set = function()
+    --                 addon.Options.db.AdjustableCategories.Focused[5] = not addon.Options.db.AdjustableCategories.Focused[5];
+    --                 addon.Diagnostics.Debug(addon.L["Specials"], addon.Options.db.AdjustableCategories.Focused[5]);
+    --             end
+    --         },
+    --     }
+    -- };
 
-    addon.Options.InjectOptionsTable(optionsTableFocused, "Focused", "Layout", "args", "AdjustableCategories", "args");
+    -- addon.Options.InjectOptionsTable(optionsTableFocused, "Focused", "Layout", "args", "AdjustableCategories", "args");
 
     local defaultsCurrentZone = {};
     defaultsCurrentZone[1] = false;
@@ -9481,148 +9481,148 @@ function exportedCategories.InjectOptions()
 
     addon.Options.InjectOptionsTable(optionsTableSelectedZone, "SelectedZone", "Layout", "args", "AdjustableCategories", "args");
 
-    local defaultsTrackingAchievements = {};
-    defaultsTrackingAchievements[1] = false;
-    defaultsTrackingAchievements[2] = false;
-    defaultsTrackingAchievements[3] = false;
-    defaultsTrackingAchievements[4] = false;
-    defaultsTrackingAchievements[5] = true;
+    -- local defaultsTrackingAchievements = {};
+    -- defaultsTrackingAchievements[1] = false;
+    -- defaultsTrackingAchievements[2] = false;
+    -- defaultsTrackingAchievements[3] = false;
+    -- defaultsTrackingAchievements[4] = false;
+    -- defaultsTrackingAchievements[5] = true;
 
-    addon.Options.InjectDefaults(defaultsTrackingAchievements, "TrackingAchievements", "AdjustableCategories");
+    -- addon.Options.InjectDefaults(defaultsTrackingAchievements, "TrackingAchievements", "AdjustableCategories");
 
-    local optionsTableTrackingAchievements = {
-        order = 5, type = "group",
-        name = addon.L["Tracking Achievements"],
-        args = {
-            Tabs = {
-                order = 9, type = "header",
-                name = addon.L["Tabs"]
-            },
-            Achievements = {
-                order = 10, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
-                name = addon.L["Achievements"],
-                desc = addon.L["Requires a reload"],
-                get = function() return addon.Options.db.AdjustableCategories.TrackingAchievements[1]; end,
-                set = function()
-                    addon.Options.db.AdjustableCategories.TrackingAchievements[1] = not addon.Options.db.AdjustableCategories.TrackingAchievements[1];
-                    addon.Diagnostics.Debug(addon.L["Achievements"], addon.Options.db.AdjustableCategories.TrackingAchievements[1]);
-                end
-            },
-            Expansions = {
-                order = 11, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
-                name = addon.L["Expansions"],
-                desc = addon.L["Requires a reload"],
-                get = function() return addon.Options.db.AdjustableCategories.TrackingAchievements[2]; end,
-                set = function()
-                    addon.Options.db.AdjustableCategories.TrackingAchievements[2] = not addon.Options.db.AdjustableCategories.TrackingAchievements[2];
-                    addon.Diagnostics.Debug(addon.L["Expansions"], addon.Options.db.AdjustableCategories.TrackingAchievements[2]);
-                end
-            },
-            Events = {
-                order = 12, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
-                name = addon.L["Events"],
-                desc = addon.L["Requires a reload"],
-                get = function() return addon.Options.db.AdjustableCategories.TrackingAchievements[3]; end,
-                set = function()
-                    addon.Options.db.AdjustableCategories.TrackingAchievements[3] = not addon.Options.db.AdjustableCategories.TrackingAchievements[3];
-                    addon.Diagnostics.Debug(addon.L["Events"], addon.Options.db.AdjustableCategories.TrackingAchievements[3]);
-                end
-            },
-            PvP = {
-                order = 13, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
-                name = addon.GetCategoryInfoTitle(95),
-                desc = addon.L["Requires a reload"],
-                get = function() return addon.Options.db.AdjustableCategories.TrackingAchievements[4]; end,
-                set = function()
-                    addon.Options.db.AdjustableCategories.TrackingAchievements[4] = not addon.Options.db.AdjustableCategories.TrackingAchievements[4];
-                    addon.Diagnostics.Debug(addon.GetCategoryInfoTitle(95), addon.Options.db.AdjustableCategories.TrackingAchievements[4]);
-                end
-            },
-            Specials = {
-                order = 14, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
-                name = addon.L["Specials"],
-                desc = addon.L["Requires a reload"],
-                get = function() return addon.Options.db.AdjustableCategories.TrackingAchievements[5]; end,
-                set = function()
-                    addon.Options.db.AdjustableCategories.TrackingAchievements[5] = not addon.Options.db.AdjustableCategories.TrackingAchievements[5];
-                    addon.Diagnostics.Debug(addon.L["Specials"], addon.Options.db.AdjustableCategories.TrackingAchievements[5]);
-                end
-            },
-        }
-    };
+    -- local optionsTableTrackingAchievements = {
+    --     order = 5, type = "group",
+    --     name = addon.L["Tracking Achievements"],
+    --     args = {
+    --         Tabs = {
+    --             order = 9, type = "header",
+    --             name = addon.L["Tabs"]
+    --         },
+    --         Achievements = {
+    --             order = 10, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
+    --             name = addon.L["Achievements"],
+    --             desc = addon.L["Requires a reload"],
+    --             get = function() return addon.Options.db.AdjustableCategories.TrackingAchievements[1]; end,
+    --             set = function()
+    --                 addon.Options.db.AdjustableCategories.TrackingAchievements[1] = not addon.Options.db.AdjustableCategories.TrackingAchievements[1];
+    --                 addon.Diagnostics.Debug(addon.L["Achievements"], addon.Options.db.AdjustableCategories.TrackingAchievements[1]);
+    --             end
+    --         },
+    --         Expansions = {
+    --             order = 11, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
+    --             name = addon.L["Expansions"],
+    --             desc = addon.L["Requires a reload"],
+    --             get = function() return addon.Options.db.AdjustableCategories.TrackingAchievements[2]; end,
+    --             set = function()
+    --                 addon.Options.db.AdjustableCategories.TrackingAchievements[2] = not addon.Options.db.AdjustableCategories.TrackingAchievements[2];
+    --                 addon.Diagnostics.Debug(addon.L["Expansions"], addon.Options.db.AdjustableCategories.TrackingAchievements[2]);
+    --             end
+    --         },
+    --         Events = {
+    --             order = 12, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
+    --             name = addon.L["Events"],
+    --             desc = addon.L["Requires a reload"],
+    --             get = function() return addon.Options.db.AdjustableCategories.TrackingAchievements[3]; end,
+    --             set = function()
+    --                 addon.Options.db.AdjustableCategories.TrackingAchievements[3] = not addon.Options.db.AdjustableCategories.TrackingAchievements[3];
+    --                 addon.Diagnostics.Debug(addon.L["Events"], addon.Options.db.AdjustableCategories.TrackingAchievements[3]);
+    --             end
+    --         },
+    --         PvP = {
+    --             order = 13, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
+    --             name = addon.GetCategoryInfoTitle(95),
+    --             desc = addon.L["Requires a reload"],
+    --             get = function() return addon.Options.db.AdjustableCategories.TrackingAchievements[4]; end,
+    --             set = function()
+    --                 addon.Options.db.AdjustableCategories.TrackingAchievements[4] = not addon.Options.db.AdjustableCategories.TrackingAchievements[4];
+    --                 addon.Diagnostics.Debug(addon.GetCategoryInfoTitle(95), addon.Options.db.AdjustableCategories.TrackingAchievements[4]);
+    --             end
+    --         },
+    --         Specials = {
+    --             order = 14, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
+    --             name = addon.L["Specials"],
+    --             desc = addon.L["Requires a reload"],
+    --             get = function() return addon.Options.db.AdjustableCategories.TrackingAchievements[5]; end,
+    --             set = function()
+    --                 addon.Options.db.AdjustableCategories.TrackingAchievements[5] = not addon.Options.db.AdjustableCategories.TrackingAchievements[5];
+    --                 addon.Diagnostics.Debug(addon.L["Specials"], addon.Options.db.AdjustableCategories.TrackingAchievements[5]);
+    --             end
+    --         },
+    --     }
+    -- };
 
-    addon.Options.InjectOptionsTable(optionsTableTrackingAchievements, "TrackingAchievements", "Layout", "args", "AdjustableCategories", "args");
+    -- addon.Options.InjectOptionsTable(optionsTableTrackingAchievements, "TrackingAchievements", "Layout", "args", "AdjustableCategories", "args");
 
-    local defaultsExcluded = {};
-    defaultsExcluded[1] = false;
-    defaultsExcluded[2] = false;
-    defaultsExcluded[3] = false;
-    defaultsExcluded[4] = false;
-    defaultsExcluded[5] = true;
+    -- local defaultsExcluded = {};
+    -- defaultsExcluded[1] = false;
+    -- defaultsExcluded[2] = false;
+    -- defaultsExcluded[3] = false;
+    -- defaultsExcluded[4] = false;
+    -- defaultsExcluded[5] = true;
 
-    addon.Options.InjectDefaults(defaultsExcluded, "Excluded", "AdjustableCategories");
+    -- addon.Options.InjectDefaults(defaultsExcluded, "Excluded", "AdjustableCategories");
 
-    local optionsTableExcluded = {
-        order = 6, type = "group",
-        name = addon.L["Excluded"],
-        args = {
-            Tabs = {
-                order = 9, type = "header",
-                name = addon.L["Tabs"]
-            },
-            Achievements = {
-                order = 10, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
-                name = addon.L["Achievements"],
-                desc = addon.L["Requires a reload"],
-                get = function() return addon.Options.db.AdjustableCategories.Excluded[1]; end,
-                set = function()
-                    addon.Options.db.AdjustableCategories.Excluded[1] = not addon.Options.db.AdjustableCategories.Excluded[1];
-                    addon.Diagnostics.Debug(addon.L["Achievements"], addon.Options.db.AdjustableCategories.Excluded[1]);
-                end
-            },
-            Expansions = {
-                order = 11, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
-                name = addon.L["Expansions"],
-                desc = addon.L["Requires a reload"],
-                get = function() return addon.Options.db.AdjustableCategories.Excluded[2]; end,
-                set = function()
-                    addon.Options.db.AdjustableCategories.Excluded[2] = not addon.Options.db.AdjustableCategories.Excluded[2];
-                    addon.Diagnostics.Debug(addon.L["Expansions"], addon.Options.db.AdjustableCategories.Excluded[2]);
-                end
-            },
-            Events = {
-                order = 12, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
-                name = addon.L["Events"],
-                desc = addon.L["Requires a reload"],
-                get = function() return addon.Options.db.AdjustableCategories.Excluded[3]; end,
-                set = function()
-                    addon.Options.db.AdjustableCategories.Excluded[3] = not addon.Options.db.AdjustableCategories.Excluded[3];
-                    addon.Diagnostics.Debug(addon.L["Events"], addon.Options.db.AdjustableCategories.Excluded[3]);
-                end
-            },
-            PvP = {
-                order = 13, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
-                name = addon.GetCategoryInfoTitle(95),
-                desc = addon.L["Requires a reload"],
-                get = function() return addon.Options.db.AdjustableCategories.Excluded[4]; end,
-                set = function()
-                    addon.Options.db.AdjustableCategories.Excluded[4] = not addon.Options.db.AdjustableCategories.Excluded[4];
-                    addon.Diagnostics.Debug(addon.GetCategoryInfoTitle(95), addon.Options.db.AdjustableCategories.Excluded[4]);
-                end
-            },
-            Specials = {
-                order = 14, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
-                name = addon.L["Specials"],
-                desc = addon.L["Requires a reload"],
-                get = function() return addon.Options.db.AdjustableCategories.Excluded[5]; end,
-                set = function()
-                    addon.Options.db.AdjustableCategories.Excluded[5] = not addon.Options.db.AdjustableCategories.Excluded[5];
-                    addon.Diagnostics.Debug(addon.L["Specials"], addon.Options.db.AdjustableCategories.Excluded[5]);
-                end
-            },
-        }
-    };
+    -- local optionsTableExcluded = {
+    --     order = 6, type = "group",
+    --     name = addon.L["Excluded"],
+    --     args = {
+    --         Tabs = {
+    --             order = 9, type = "header",
+    --             name = addon.L["Tabs"]
+    --         },
+    --         Achievements = {
+    --             order = 10, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
+    --             name = addon.L["Achievements"],
+    --             desc = addon.L["Requires a reload"],
+    --             get = function() return addon.Options.db.AdjustableCategories.Excluded[1]; end,
+    --             set = function()
+    --                 addon.Options.db.AdjustableCategories.Excluded[1] = not addon.Options.db.AdjustableCategories.Excluded[1];
+    --                 addon.Diagnostics.Debug(addon.L["Achievements"], addon.Options.db.AdjustableCategories.Excluded[1]);
+    --             end
+    --         },
+    --         Expansions = {
+    --             order = 11, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
+    --             name = addon.L["Expansions"],
+    --             desc = addon.L["Requires a reload"],
+    --             get = function() return addon.Options.db.AdjustableCategories.Excluded[2]; end,
+    --             set = function()
+    --                 addon.Options.db.AdjustableCategories.Excluded[2] = not addon.Options.db.AdjustableCategories.Excluded[2];
+    --                 addon.Diagnostics.Debug(addon.L["Expansions"], addon.Options.db.AdjustableCategories.Excluded[2]);
+    --             end
+    --         },
+    --         Events = {
+    --             order = 12, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
+    --             name = addon.L["Events"],
+    --             desc = addon.L["Requires a reload"],
+    --             get = function() return addon.Options.db.AdjustableCategories.Excluded[3]; end,
+    --             set = function()
+    --                 addon.Options.db.AdjustableCategories.Excluded[3] = not addon.Options.db.AdjustableCategories.Excluded[3];
+    --                 addon.Diagnostics.Debug(addon.L["Events"], addon.Options.db.AdjustableCategories.Excluded[3]);
+    --             end
+    --         },
+    --         PvP = {
+    --             order = 13, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
+    --             name = addon.GetCategoryInfoTitle(95),
+    --             desc = addon.L["Requires a reload"],
+    --             get = function() return addon.Options.db.AdjustableCategories.Excluded[4]; end,
+    --             set = function()
+    --                 addon.Options.db.AdjustableCategories.Excluded[4] = not addon.Options.db.AdjustableCategories.Excluded[4];
+    --                 addon.Diagnostics.Debug(addon.GetCategoryInfoTitle(95), addon.Options.db.AdjustableCategories.Excluded[4]);
+    --             end
+    --         },
+    --         Specials = {
+    --             order = 14, type = "toggle", width = 1 * addon.Options.WidthMultiplier,
+    --             name = addon.L["Specials"],
+    --             desc = addon.L["Requires a reload"],
+    --             get = function() return addon.Options.db.AdjustableCategories.Excluded[5]; end,
+    --             set = function()
+    --                 addon.Options.db.AdjustableCategories.Excluded[5] = not addon.Options.db.AdjustableCategories.Excluded[5];
+    --                 addon.Diagnostics.Debug(addon.L["Specials"], addon.Options.db.AdjustableCategories.Excluded[5]);
+    --             end
+    --         },
+    --     }
+    -- };
 
-    addon.Options.InjectOptionsTable(optionsTableExcluded, "Excluded", "Layout", "args", "AdjustableCategories", "args");
+    -- addon.Options.InjectOptionsTable(optionsTableExcluded, "Excluded", "Layout", "args", "AdjustableCategories", "args");
 end
 
