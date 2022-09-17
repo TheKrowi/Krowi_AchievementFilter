@@ -17,11 +17,6 @@ function addon.GetActiveCovenant()
     return C_Covenants.GetActiveCovenantID() + 1; -- 1 offset since Covenant Enum is 1 based (lua) and Covenant Database Table 0 based
 end
 
-function addon.GetMapName(uiMapID)
-    local mapInfo = C_Map.GetMapInfo(uiMapID);
-    return mapInfo and mapInfo.name or uiMapID;
-end
-
 function addon.GetAchievementsInZone(mapID, getAll)
     addon.Diagnostics.Trace("addon.GetAchievementsInZone");
 
@@ -486,27 +481,27 @@ function addon.ChangeAchievementMicroButtonOnClick()
     end);
 end
 
-local cachedIsNotWotLKClassic, cachedIsWotLKClassic;
+local cachedIsNotWrathClassic, cachedIsWrathClassic;
 function addon.IsNotWrathClassic()
-    if cachedIsNotWotLKClassic ~= nil then
-        return cachedIsNotWotLKClassic;
+    if cachedIsNotWrathClassic ~= nil then
+        return cachedIsNotWrathClassic;
     end
     local version = (GetBuildInfo());
     local major = string.match(version, "(%d+)%.(%d+)%.(%d+)(%w?)");
-    cachedIsNotWotLKClassic = major ~= "3";
-    cachedIsWotLKClassic = not cachedIsNotWotLKClassic;
-    return cachedIsNotWotLKClassic;
+    cachedIsNotWrathClassic = major ~= "3";
+    cachedIsWrathClassic = not cachedIsNotWrathClassic;
+    return cachedIsNotWrathClassic;
 end
 
 function addon.IsWrathClassic()
-    if cachedIsWotLKClassic ~= nil then
-        return cachedIsWotLKClassic;
+    if cachedIsWrathClassic ~= nil then
+        return cachedIsWrathClassic;
     end
     local version = (GetBuildInfo());
     local major = string.match(version, "(%d+)%.(%d+)%.(%d+)(%w?)");
-    cachedIsWotLKClassic = major == "3";
-    cachedIsNotWotLKClassic = not cachedIsWotLKClassic;
-    return cachedIsWotLKClassic;
+    cachedIsWrathClassic = major == "3";
+    cachedIsNotWrathClassic = not cachedIsWrathClassic;
+    return cachedIsWrathClassic;
 end
 
 function addon.GetInstanceInfoName(journalInstanceId)
@@ -539,6 +534,11 @@ end
 
 function addon.GetCovenantName(covenantID)
     return C_Covenants and C_Covenants.GetCovenantData(covenantID).name or covenantID;
+end
+
+function addon.GetMapName(uiMapID)
+    local mapInfo = C_Map.GetMapInfo(uiMapID);
+    return mapInfo and mapInfo.name or uiMapID;
 end
 
 -- function KrowiAF_FireEvent(event, ...)

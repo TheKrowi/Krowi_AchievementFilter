@@ -4,6 +4,8 @@ local diagnostics = addon.Diagnostics;
 addon.Options = {}; -- Will be overwritten in Load (intended)
 local options = addon.Options;
 
+options.WidthMultiplier = 170;
+
 options.OptionsTable = {
     name = addon.MetaData.Title,
     type = "group",
@@ -70,6 +72,7 @@ options.InjectOptionsTableAdd = InjectOptionsTableAdd;
 -- Load the options
 function options.Load()
     addon.Options = LibStub("AceDB-3.0"):New("Options", options.Defaults, true);
+    addon.Options.WidthMultiplier = options.WidthMultiplier;
     addon.Options.Open = Open;
     addon.Options.Debug = options.Debug;
     addon.Options.InjectDefaults = InjectDefaults;

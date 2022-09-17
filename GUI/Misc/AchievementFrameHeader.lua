@@ -4,7 +4,7 @@ addon.GUI.AchievementFrameHeader = {};
 local header = addon.GUI.AchievementFrameHeader;
 
 function header:Load()
-    if AchievementFrameHeaderLeftDDLInset == nil then -- WotLK Classic
+    if AchievementFrameHeaderLeftDDLInset == nil then -- Wrath Classic
         local tex = AchievementFrameHeader:CreateTexture();
         tex:SetTexture("Interface/AchievementFrame/UI-Achievement-RightDDLInset");
         tex:SetSize(128, 32);

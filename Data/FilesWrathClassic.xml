@@ -4,7 +4,7 @@
     <Script file="CustomObjectives.lua" />
     <Script file="ExportedTransmogSets.lua" />
     <!-- <Script file="ExportedCustomObjectives.lua" /> -->
-    <Script file="ExportedAchievements.lua" />
+    <Script file="ExportedAchievementsWrathClassic.lua" />
     <Script file="ExportedCategoriesWrathClassic.lua" />
     <Script file="ExportedPetBattles.lua" />
     <Script file="ExportedUiMaps.lua" />

@@ -78,7 +78,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
         if addon.Diagnostics.DebugEnabled() then
             hooksecurefunc(WorldMapFrame, "OnMapChanged", function()
                 local mapID = WorldMapFrame.mapID;
-                print(mapID);
+                print(mapID, addon.GetMapName(mapID));
             end);
         end
 

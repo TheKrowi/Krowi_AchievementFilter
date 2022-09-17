@@ -1,4 +1,4 @@
--- [[ Exported at 2022-09-16 08-43-22 ]] --
+-- [[ Exported at 2022-09-17 22-02-48 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -52,7 +52,7 @@ function exportedAchievements.Load(a, t)
     a[38] = ach:New(38, 10); -- The Summit of Storm Peaks
     a[39] = ach:New(39, 10); -- Into the Basin
     a[40] = ach:New(40, 10); -- Icecrown: The Final Goal
-    a[41] = ach:New(41, 10); -- Loremaster of Northrend
+    a[41] = ach:New(41, 10, fac.Alliance, 1360); -- Loremaster of Northrend
     a[42] = ach:New(42, 25); -- Eastern Kingdoms Explorer
     a[43] = ach:New(43, 25); -- Kalimdor Explorer
     a[44] = ach:New(44, 25); -- Outland Explorer
@@ -489,6 +489,7 @@ function exportedAchievements.Load(a, t)
     a[735] = ach:New(735, 10); -- Working In the Cold
     a[736] = ach:New(736, 10); -- Explore Mulgore
     a[750] = ach:New(750, 10); -- Explore Northern Barrens
+    a[760] = ach:New(760, 10); -- Explore Alterac Mountains
     a[761] = ach:New(761, 10); -- Explore Arathi Highlands
     a[762] = ach:New(762, 10, fac.Horde, 948); -- Ambassador of the Horde
     a[763] = ach:New(763, 20, fac.Horde, 764); -- The Burning Crusader
@@ -625,7 +626,8 @@ function exportedAchievements.Load(a, t)
     a[967] = ach:New(967, 10, fac.Horde, 966); -- Tricks and Treats of Eastern Kingdoms
     a[968] = ach:New(968, 10, fac.Horde, 969); -- Tricks and Treats of Outland
     a[969] = ach:New(969, 10, fac.Alliance, 968); -- Tricks and Treats of Outland
-    a[971] = ach:New(971, 20); -- Tricks and Treats of Azeroth
+    a[970] = ach:New(970, 20, fac.Alliance, 971); -- Tricks and Treats of Azeroth
+    a[971] = ach:New(971, 20, fac.Horde, 970); -- Tricks and Treats of Azeroth
     a[972] = ach:New(972, 10); -- Trick or Treat!
     a[973] = ach:New(973, 10); -- 5 Daily Quests Completed
     a[974] = ach:New(974, 10); -- 50 Daily Quests Completed
@@ -681,10 +683,13 @@ function exportedAchievements.Load(a, t)
     a[1164] = ach:New(1164, 10, fac.Horde, 225); -- Everything Counts
     a[1165] = ach:New(1165, 10); -- "My Storage is ""Gigantique"""
     a[1166] = ach:New(1166, 10); -- To the Looter Go the Spoils
-    a[1167] = ach:New(1167, 25); -- Master of Alterac Valley
-    a[1169] = ach:New(1169, 25); -- Master of Arathi Basin
+    a[1167] = ach:New(1167, 25, fac.Alliance, 1168); -- Master of Alterac Valley
+    a[1168] = ach:New(1168, 25, fac.Horde, 1167); -- Master of Alterac Valley
+    a[1169] = ach:New(1169, 25, fac.Alliance, 1170); -- Master of Arathi Basin
+    a[1170] = ach:New(1170, 25, fac.Horde, 1169); -- Master of Arathi Basin
     a[1171] = ach:New(1171, 25); -- Master of Eye of the Storm
-    a[1172] = ach:New(1172, 25); -- Master of Warsong Gulch
+    a[1172] = ach:New(1172, 25, fac.Alliance, 1173); -- Master of Warsong Gulch
+    a[1173] = ach:New(1173, 25, fac.Horde, 1172); -- Master of Warsong Gulch
     a[1174] = ach:New(1174, 0); -- The Arena Master
     SetTO(a[1174], "From", "Version", "030003", "Before", "Version", "070003");
     a[1175] = ach:New(1175, 50, fac.Horde, 230); -- Battlemaster
@@ -699,6 +704,7 @@ function exportedAchievements.Load(a, t)
     a[1185] = ach:New(1185, 10); -- The Brewfest Diet
     a[1186] = ach:New(1186, 0); -- Down With The Dark Iron
     SetTO(a[1186]);
+    a[1187] = ach:New(1187, 10); -- The Keymaster
     a[1188] = ach:New(1188, 10); -- Shafted!
     a[1189] = ach:New(1189, 10, fac.Alliance, 1271); -- To Hellfire and Back
     a[1190] = ach:New(1190, 10); -- Mysteries of the Marsh
@@ -724,7 +730,7 @@ function exportedAchievements.Load(a, t)
     a[1259] = ach:New(1259, 10); -- Not So Fast
     a[1260] = ach:New(1260, 10); -- Almost Blind Luck
     a[1261] = ach:New(1261, 10); -- G.N.E.R.D. Rage
-    a[1262] = ach:New(1262, 10); -- Loremaster of Outland
+    a[1262] = ach:New(1262, 10, fac.Alliance, 1274); -- Loremaster of Outland
     a[1263] = ach:New(1263, 10); -- Explore Howling Fjord
     a[1264] = ach:New(1264, 10); -- Explore Borean Tundra
     a[1265] = ach:New(1265, 10); -- Explore Dragonblight
@@ -736,6 +742,7 @@ function exportedAchievements.Load(a, t)
     a[1271] = ach:New(1271, 10, fac.Horde, 1189); -- To Hellfire and Back
     a[1272] = ach:New(1272, 10, fac.Horde, 1191); -- Terror of Terokkar
     a[1273] = ach:New(1273, 10, fac.Horde, 1192); -- Nagrand Slam
+    a[1274] = ach:New(1274, 10, fac.Horde, 1262); -- Loremaster of Outland
     a[1275] = ach:New(1275, 10); -- Bombs Away
     a[1276] = ach:New(1276, 10); -- Blade's Edge Bomberman
     a[1277] = ach:New(1277, 10); -- Rapid Defense
@@ -772,6 +779,7 @@ function exportedAchievements.Load(a, t)
     a[1357] = ach:New(1357, 10, fac.Horde, 37); -- Fo' Grizzle My Shizzle
     a[1358] = ach:New(1358, 10, fac.Horde, 33); -- Nothing Boring About Borean
     a[1359] = ach:New(1359, 10, fac.Horde, 35); -- Might of Dragonblight
+    a[1360] = ach:New(1360, 10, fac.Horde, 41); -- Loremaster of Northrend
     a[1396] = ach:New(1396, 10); -- Elders of Northrend
     a[1400] = ach:New(1400, 0, nil, nil, true); -- Realm First! Magic Seeker
     SetTO(a[1400], "Once");
@@ -841,7 +849,7 @@ function exportedAchievements.Load(a, t)
     a[1559] = ach:New(1559, 10); -- 250 Fish
     a[1560] = ach:New(1560, 10); -- 500 Fish
     a[1561] = ach:New(1561, 10); -- 1000 Fish
-    a[1563] = ach:New(1563, 10); -- Hail to the Chef
+    a[1563] = ach:New(1563, 10, fac.Alliance, 1784); -- Hail to the Chef
     a[1576] = ach:New(1576, 10); -- Of Blood and Anguish
     a[1596] = ach:New(1596, 10); -- Guru of Drakuru
     a[1636] = ach:New(1636, 0); -- Competitor's Tabard
@@ -849,19 +857,26 @@ function exportedAchievements.Load(a, t)
     a[1637] = ach:New(1637, 0); -- Spirit of Competition
     SetTO(a[1637]);
     a[1638] = ach:New(1638, 10); -- Skyshattered
-    a[1656] = ach:New(1656, 10); -- Hallowed Be Thy Name
+    a[1656] = ach:New(1656, 10, fac.Alliance, 1657); -- Hallowed Be Thy Name
+    a[1657] = ach:New(1657, 10, fac.Horde, 1656); -- Hallowed Be Thy Name
     a[1658] = ach:New(1658, 10); -- Champion of the Frozen Wastes
-    a[1676] = ach:New(1676, 10); -- Loremaster of Eastern Kingdoms
-    a[1678] = ach:New(1678, 10); -- Loremaster of Kalimdor
-    a[1683] = ach:New(1683, 10); -- Brewmaster
+    a[1676] = ach:New(1676, 10, fac.Alliance, 1677); -- Loremaster of Eastern Kingdoms
+    a[1677] = ach:New(1677, 10, fac.Horde, 1676); -- Loremaster of Eastern Kingdoms
+    a[1678] = ach:New(1678, 10, fac.Alliance, 1680); -- Loremaster of Kalimdor
+    a[1680] = ach:New(1680, 10, fac.Horde, 1678); -- Loremaster of Kalimdor
+    a[1681] = ach:New(1681, 10, fac.Alliance, 1682); -- The Loremaster
+    a[1682] = ach:New(1682, 10, fac.Horde, 1681); -- The Loremaster
+    a[1683] = ach:New(1683, 10, fac.Horde, 1684); -- Brewmaster
+    a[1684] = ach:New(1684, 10, fac.Alliance, 1683); -- Brewmaster
     a[1685] = ach:New(1685, 10, fac.Horde, 1686); -- Holiday Bromance
     a[1686] = ach:New(1686, 10, fac.Alliance, 1685); -- Holiday Bromance
     a[1687] = ach:New(1687, 10); -- Let It Snow
     a[1688] = ach:New(1688, 10); -- The Winter Veil Gourmet
     a[1689] = ach:New(1689, 10); -- He Knows If You've Been Naughty
     a[1690] = ach:New(1690, 10); -- A Frosty Shake
-    a[1691] = ach:New(1691, 10); -- Merrymaker
-    a[1693] = ach:New(1693, 10); -- Fool For Love
+    a[1691] = ach:New(1691, 10, fac.Horde, 1692); -- Merrymaker
+    a[1692] = ach:New(1692, 10, fac.Alliance, 1691); -- Merrymaker
+    a[1693] = ach:New(1693, 10, fac.Horde, 1707); -- Fool For Love
     a[1694] = ach:New(1694, 10); -- Lovely Luck Is On Your Side
     a[1695] = ach:New(1695, 10); -- Dangerous Love
     a[1696] = ach:New(1696, 10); -- The Rocket's Pink Glare
@@ -875,6 +890,7 @@ function exportedAchievements.Load(a, t)
     a[1704] = ach:New(1704, 10); -- I Pitied The Fool
     a[1705] = ach:New(1705, 0); -- Clockwork Rocket Bot
     a[1706] = ach:New(1706, 0); -- Crashin' Thrashin' Racer
+    a[1707] = ach:New(1707, 10, fac.Alliance, 1693); -- Fool For Love
     a[1717] = ach:New(1717, 10); -- Wintergrasp Victory
     a[1718] = ach:New(1718, 10); -- Wintergrasp Veteran
     a[1721] = ach:New(1721, 10); -- Archavon the Stone Watcher (25 player)
@@ -883,7 +899,7 @@ function exportedAchievements.Load(a, t)
     a[1727] = ach:New(1727, 10); -- Leaning Tower
     a[1737] = ach:New(1737, 10, fac.Alliance, 2476); -- Destruction Derby
     a[1751] = ach:New(1751, 10); -- Didn't Stand a Chance
-    a[1752] = ach:New(1752, 10); -- Master of Wintergrasp
+    a[1752] = ach:New(1752, 10, fac.Alliance, 2776); -- Master of Wintergrasp
     a[1755] = ach:New(1755, 10); -- Within Our Grasp
     a[1757] = ach:New(1757, 0, fac.Alliance, 2200); -- Defense of the Ancients
     SetTO(a[1757], "From", "Version", "030003", "Before", "Version", "080001");
@@ -906,6 +922,7 @@ function exportedAchievements.Load(a, t)
     a[1781] = ach:New(1781, 10); -- Critter Gitter
     a[1782] = ach:New(1782, 10, fac.Alliance, 1783); -- Our Daily Bread
     a[1783] = ach:New(1783, 10, fac.Horde, 1782); -- Our Daily Bread
+    a[1784] = ach:New(1784, 10, fac.Horde, 1563); -- Hail to the Chef
     a[1785] = ach:New(1785, 10); -- Dinner Impossible
     a[1786] = ach:New(1786, 10); -- School of Hard Knocks
     a[1788] = ach:New(1788, 10); -- Bad Example
@@ -1026,7 +1043,8 @@ function exportedAchievements.Load(a, t)
     a[2141] = ach:New(2141, 10); -- Stable Keeper
     a[2142] = ach:New(2142, 10); -- Filling Up The Barn
     a[2143] = ach:New(2143, 10); -- Leading the Cavalry
-    a[2144] = ach:New(2144, 50); -- "What a Long, Strange Trip It's Been"
+    a[2144] = ach:New(2144, 50, fac.Alliance, 2145); -- "What a Long, Strange Trip It's Been"
+    a[2145] = ach:New(2145, 50, fac.Horde, 2144); -- "What A Long, Strange Trip It's Been"
     a[2146] = ach:New(2146, 10); -- The Hundred Club (10 player)
     a[2147] = ach:New(2147, 10); -- The Hundred Club (25 player)
     a[2148] = ach:New(2148, 10); -- Denyin' the Scion (10 player)
@@ -1065,8 +1083,10 @@ function exportedAchievements.Load(a, t)
     SetTO(a[2192], "From", "Version", "030003", "Before", "Version", "080001");
     a[2193] = ach:New(2193, 0); -- Explosives Expert
     SetTO(a[2193], "From", "Version", "030003", "Before", "Version", "080001");
-    a[2194] = ach:New(2194, 0); -- Master of Strand of the Ancients
+    a[2194] = ach:New(2194, 0, fac.Alliance, 2195); -- Master of Strand of the Ancients
     SetTO(a[2194], "From", "Version", "030003", "Before", "Version", "080001");
+    a[2195] = ach:New(2195, 25, fac.Horde, 2194); -- Master of Strand of the Ancients
+    SetTO(a[2195], "From", "Version", "030003", "Before", "Version", "080001");
     a[2199] = ach:New(2199, 10); -- Wintergrasp Ranger
     a[2200] = ach:New(2200, 0, fac.Horde, 1757); -- Defense of the Ancients
     SetTO(a[2200], "From", "Version", "030003", "Before", "Version", "080001");
@@ -1122,6 +1142,7 @@ function exportedAchievements.Load(a, t)
     a[2771] = ach:New(2771, 10, fac.Horde, 2770); -- Exalted Champion of the Horde
     a[2772] = ach:New(2772, 10); -- Tilted!
     a[2773] = ach:New(2773, 10); -- It's Just a Flesh Wound
+    a[2776] = ach:New(2776, 10, fac.Horde, 1752); -- Master of Wintergrasp
     a[2777] = ach:New(2777, 10, fac.Alliance, 2787); -- Champion of Darnassus
     a[2778] = ach:New(2778, 10, fac.Alliance, 2785); -- Champion of the Exodar
     a[2779] = ach:New(2779, 10, fac.Alliance, 2786); -- Champion of Gnomeregan
@@ -1135,7 +1156,8 @@ function exportedAchievements.Load(a, t)
     a[2787] = ach:New(2787, 10, fac.Horde, 2777); -- Champion of the Undercity
     a[2788] = ach:New(2788, 10, fac.Horde, 2782); -- Champion of the Horde
     a[2796] = ach:New(2796, 10); -- Brew of the Month
-    a[2798] = ach:New(2798, 10); -- Noble Gardener
+    a[2797] = ach:New(2797, 10, fac.Alliance, 2798); -- Noble Gardener
+    a[2798] = ach:New(2798, 10, fac.Horde, 2797); -- Noble Gardener
     a[2816] = ach:New(2816, 10, fac.Horde, 2817); -- Exalted Argent Champion of the Horde
     a[2817] = ach:New(2817, 10, fac.Alliance, 2816); -- Exalted Argent Champion of the Alliance
     a[2836] = ach:New(2836, 10); -- Lance a Lot
@@ -1444,7 +1466,7 @@ function exportedAchievements.Load(a, t)
     SetTO(a[3436], "From", "PvP Season", 6, "Until", "PvP Season", 6);
     a[3456] = ach:New(3456, 10); -- Dead Man's Party
     a[3457] = ach:New(3457, 10); -- The Captain's Booty
-    a[3478] = ach:New(3478, 10); -- Pilgrim
+    a[3478] = ach:New(3478, 10, fac.Alliance, 3656); -- Pilgrim
     a[3496] = ach:New(3496, 0); -- A Brew-FAST Mount
     a[3536] = ach:New(3536, 0); -- The Marine Marine
     a[3556] = ach:New(3556, 10, fac.Alliance, 3557); -- Pilgrim's Paunch
@@ -1463,6 +1485,7 @@ function exportedAchievements.Load(a, t)
     a[3618] = ach:New(3618, 0); -- Murkimus the Gladiator
     SetTO(a[3618], "Never");
     a[3636] = ach:New(3636, 0); -- Jade Tiger
+    a[3656] = ach:New(3656, 10, fac.Horde, 3478); -- Pilgrim
     a[3676] = ach:New(3676, 10, fac.Alliance, 3677); -- A Silver Confidant
     a[3677] = ach:New(3677, 10, fac.Horde, 3676); -- The Sunreavers
     a[3736] = ach:New(3736, 10); -- Pony Up!
@@ -1490,6 +1513,8 @@ function exportedAchievements.Load(a, t)
     SetTO(a[3810], "From", "Version", "030200", "Before", "Version", "040003a");
     a[3812] = ach:New(3812, 10); -- Call of the Grand Crusade (25 player)
     a[3813] = ach:New(3813, 10); -- Upper Back Pain (25 player)
+    a[3814] = ach:New(3814, 10); -- Resilience Will Fix It (25 player)
+    SetTO(a[3814], "From", "Version", "030200", "Before", "Version", "040003a");
     a[3815] = ach:New(3815, 10); -- Salt and Pepper (25 player)
     a[3816] = ach:New(3816, 10); -- The Traitor King (25 player)
     a[3817] = ach:New(3817, 0); -- A Tribute to Skill (25 player)
@@ -1500,6 +1525,18 @@ function exportedAchievements.Load(a, t)
     SetTO(a[3819], "From", "Version", "030200", "Before", "Version", "040003a");
     a[3836] = ach:New(3836, 10); -- Koralon the Flame Watcher (10 player)
     a[3837] = ach:New(3837, 10); -- Koralon the Flame Watcher (25 player)
+    a[3838] = ach:New(3838, 10); -- Dungeon & Raid Emblem
+    SetTO(a[3838], "From", "Version", "030200", "Before", "Version", "040003a");
+    a[3839] = ach:New(3839, 10); -- 25 Dungeon & Raid Emblems
+    SetTO(a[3839], "From", "Version", "030200", "Before", "Version", "040003a");
+    a[3840] = ach:New(3840, 10); -- 50 Dungeon & Raid Emblems
+    SetTO(a[3840], "From", "Version", "030200", "Before", "Version", "040003a");
+    a[3841] = ach:New(3841, 10); -- 100 Dungeon & Raid Emblems
+    SetTO(a[3841], "From", "Version", "030200", "Before", "Version", "040003a");
+    a[3842] = ach:New(3842, 10); -- 250 Dungeon & Raid Emblems
+    SetTO(a[3842], "From", "Version", "030200", "Before", "Version", "040003a");
+    a[3843] = ach:New(3843, 10); -- 500 Dungeon & Raid Emblems
+    SetTO(a[3843], "From", "Version", "030200", "Before", "Version", "040003a");
     a[3844] = ach:New(3844, 0); -- 1000 Dungeon & Raid Emblems
     SetTO(a[3844], "From", "Version", "030200", "Before", "Version", "040003a");
     a[3845] = ach:New(3845, 20); -- Isle of Conquest All-Star
@@ -1515,6 +1552,8 @@ function exportedAchievements.Load(a, t)
     a[3855] = ach:New(3855, 10); -- Glaive Grave
     a[3856] = ach:New(3856, 10, fac.Alliance, 4256); -- Demolition Derby
     a[3857] = ach:New(3857, 25, fac.Alliance, 3957); -- Master of Isle of Conquest
+    a[3876] = ach:New(3876, 10); -- 1500 Dungeon & Raid Emblems
+    SetTO(a[3876], "From", "Version", "030200", "Before", "Version", "040003a");
     a[3896] = ach:New(3896, 0); -- Onyx Panther
     a[3916] = ach:New(3916, 10); -- Call of the Crusade (25 player)
     a[3917] = ach:New(3917, 10); -- Call of the Crusade (10 player)
@@ -1638,6 +1677,10 @@ function exportedAchievements.Load(a, t)
     a[4637] = ach:New(4637, 25); -- Heroic: Fall of the Lich King (25 player)
     a[4782] = ach:New(4782, 0); -- Green Brewfest Stein
     SetTO(a[4782]);
+    a[4784] = ach:New(4784, 0, fac.Alliance, 4785); -- Emblematic
+    SetTO(a[4784], "From", "Version", "030200", "Before", "Version", "040003a");
+    a[4785] = ach:New(4785, 0, fac.Horde, 4784); -- Emblematic
+    SetTO(a[4785], "From", "Version", "030200", "Before", "Version", "040003a");
     a[4786] = ach:New(4786, 0, fac.Alliance); -- Operation: Gnomeregan
     SetTO(a[4786], "From", "Version", "030305a", "Before", "Version", "040001");
     a[4790] = ach:New(4790, 0, fac.Horde); -- Zalazane's Fall
@@ -2741,7 +2784,6 @@ function exportedAchievements.Load(a, t)
     a[7502] = ach:New(7502, 10); -- Savior of Stoneplow
     a[7509] = ach:New(7509, 5, fac.Horde, 6874); -- Scenaturday
     a[7518] = ach:New(7518, 10); -- "Wanderers, Dreamers, and You"
-    a[7520] = ach:New(7520, 10); -- The Loremaster
     a[7521] = ach:New(7521, 10); -- Time to Open a Pet Store
     a[7522] = ach:New(7522, 10); -- Crypt of Forgotten Kings
     a[7523] = ach:New(7523, 10, fac.Alliance, 7524); -- Theramore's Fall
@@ -7846,7 +7888,15 @@ function exportedAchievements.Load(a, t)
     a[15325] = ach:New(15325, 10, fac.Alliance); -- "Dracthyr, Awaken"
     a[15327] = ach:New(15327, 0); -- Tormented Hero: Shadowlands Season 2
     SetTO(a[15327], "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 6);
+    a[15330] = ach:New(15330, 0); -- Survivor of the Firelord (Season of Mastery)
+    SetTO(a[15330], "Never");
     a[15331] = ach:New(15331, 10); -- Treasures of Zereth Mortis
+    a[15333] = ach:New(15333, 0); -- Survivor of the Shadow Flame (Season of Mastery)
+    SetTO(a[15333], "Never");
+    a[15334] = ach:New(15334, 0); -- Survivor of the Old God (Season of Mastery)
+    SetTO(a[15334], "Never");
+    a[15335] = ach:New(15335, 0); -- Survivor of the Damned (Season of Mastery)
+    SetTO(a[15335], "Never");
     a[15336] = ach:New(15336, 25); -- From A to Zereth
     a[15348] = ach:New(15348, 0); -- Combatant I: Shadowlands Season 3
     SetTO(a[15348], "From", "PvP Season", 32, "Until", "PvP Season", 32);
@@ -8050,6 +8100,8 @@ function exportedAchievements.Load(a, t)
     SetTO(a[15610], "From", "PvP Season", 33, "Until", "PvP Season", 33);
     a[15612] = ach:New(15612, 0); -- Eternal Gladiator's Soul Eater
     SetTO(a[15612], "From", "PvP Season", 33, "Until", "PvP Season", 33);
+    a[15637] = ach:New(15637, 0); -- The Immortal (Season of Mastery)
+    SetTO(a[15637], "Never");
     a[15638] = ach:New(15638, 10, fac.Horde); -- "Dracthyr, Awaken"
     a[15639] = ach:New(15639, 0); -- Elite: Shadowlands Season 4
     SetTO(a[15639], "From", "PvP Season", 33, "Until", "PvP Season", 33);
@@ -8412,6 +8464,7 @@ function exportedAchievements.Load(a, t)
     a[16329] = ach:New(16329, 10); -- "Duck, Duck, Spruce!"
     a[16330] = ach:New(16330, 10); -- You Must Be Made of Hide
     a[16331] = ach:New(16331, 10); -- The Cracked Crystal
+    a[16332] = ach:New(16332, 0); -- The Perfect Pebble
     a[16334] = ach:New(16334, 0); -- Waking Hope
     a[16335] = ach:New(16335, 10); -- What Frozen Things Do
     a[16336] = ach:New(16336, 0); -- Azure Spanner
@@ -8453,6 +8506,8 @@ function exportedAchievements.Load(a, t)
     a[16428] = ach:New(16428, 10); -- Sojourner of Azure Span
     a[16430] = ach:New(16430, 10); -- "All Bark, All Bite"
     a[16432] = ach:New(16432, 10); -- Ready for Raiding VIII
+    a[16433] = ach:New(16433, 0); -- Soul of Iron (Season of Mastery)
+    SetTO(a[16433], "Never");
     a[16434] = ach:New(16434, 10); -- See Me After Class
     a[16438] = ach:New(16438, 10); -- Knowledge is... Preserved?
     a[16440] = ach:New(16440, 10); -- Are You My Broodmother?

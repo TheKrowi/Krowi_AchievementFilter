@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 40.8 - 2022-09-xx
+### Added
+- Some missing German translations
+
+### Wrath Classic
+- Added a bunch of missing achievements
+- Right click menu Wowhead link should link to the correct pages now
+- Fixed category names
+
 ## 40.7 - 2022-09-16
 ### Added
 - Temporary obtainability to We Are All Made of Stars (Heroic) and We Are All Made of Stars (Mythic)
