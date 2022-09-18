@@ -38,6 +38,11 @@ end
 
 local hookedDefaultButtons;
 local function HookDefaultButtons()
+	if WorldMapFrame.overlayFrames == nil then
+		hookedDefaultButtons = true;
+		return;
+	end
+
 	for _, f in next, WorldMapFrame.overlayFrames do
         if WorldMapTrackingOptionsButtonMixin and f.OnLoad == WorldMapTrackingOptionsButtonMixin.OnLoad then
 			f.KrowiWorldMapButtonsIndex = #buttons;
@@ -52,21 +57,19 @@ local function HookDefaultButtons()
 	hookedDefaultButtons = true;
 end
 
--- local hookedHandyNotesButtons;
--- local function HookHandyNotesButtons()
---     for _, f in next, WorldMapFrame.overlayFrames do
---         if HandyNotes_ShadowlandsWorldMapOptionsButtonMixin and f.OnLoad == HandyNotes_ShadowlandsWorldMapOptionsButtonMixin.OnLoad then
--- 			f.KrowiWorldMapButtonsIndex = #buttons;
--- 			tinsert(buttons, f);
---         end
---         if HandyNotes_VisionsOfNZothWorldMapOptionsButtonMixin and f.OnLoad == HandyNotes_VisionsOfNZothWorldMapOptionsButtonMixin.OnLoad then
--- 			f.KrowiWorldMapButtonsIndex = #buttons;
--- 			tinsert(buttons, f);
---         end
---     end
+local isWrathClassic;
+local patchedWrathClassic;
+local function PatchWrathClassic()
+	if WorldMapFrame.RefreshOverlayFrames ~= nil then
+		return;
+	end
 
--- 	hookedHandyNotesButtons = true;
--- end
+	WorldMapFrame.RefreshOverlayFrames = function()
+	end
+	
+	isWrathClassic = true;
+	patchedWrathClassic = true;
+end
 
 function lib:Add(templateName, templateType)
 	if buttons == nil then
@@ -77,20 +80,20 @@ function lib:Add(templateName, templateType)
 		HookDefaultButtons();
 	end
 
-	-- if not hookedHandyNotesButtons then
-	-- 	HookHandyNotesButtons();
-	-- end
+	if not patchedWrathClassic then
+		PatchWrathClassic();
+	end
 
 	local xOffset = 4 + #buttons * 32;
 
 	-- local button = WorldMapFrame:AddOverlayFrame(templateName, templateType, "TOPRIGHT", WorldMapFrame:GetCanvasContainer(), "TOPRIGHT", -xOffset, -2);
-	local button = CreateFrame(templateType, nil, WorldMapFrame, templateName);
+	local button = CreateFrame(templateType, "testbutton", WorldMapFrame, templateName);
 	button:SetPoint("TOPRIGHT", WorldMapFrame:GetCanvasContainer(), "TOPRIGHT", -xOffset, -2);
 	button.relativeFrame = WorldMapFrame:GetCanvasContainer();
-	hooksecurefunc(WorldMapFrame, "RefreshOverlayFrames", function()
-        button:Refresh();
+	hooksecurefunc(WorldMapFrame, isWrathClassic and "OnMapChanged" or "RefreshOverlayFrames", function()
+		button:Refresh();
 		SetPoints();
-    end);
+	end);
 
 	tinsert(buttons, button);
 

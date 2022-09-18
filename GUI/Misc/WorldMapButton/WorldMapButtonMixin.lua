@@ -72,4 +72,5 @@ function KrowiAF_WorldMapButtonMixin:Refresh()
 		self:Disable();
 		self:DesaturateHierarchy(1);
     end
+    print(self.Text, self.NumOfAch, self.NumOfCompAch, self.NumOfNotObtAch)
 end
