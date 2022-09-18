@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 42.0 - 2022-09-18
+### Added
+- Missing map data to Ironforge and The Exodar
+
+### Wrath Classic
+- Added Stranglethorn Vale zone
+- Added the World Map Button
+- Fixed category names (actually now)
+- Removed Northern Stranglethorn and The Cape of Stranglethorn zones
+
 ## 41.0 - 2022-09-17
 ### Added
 - Some missing German translations
