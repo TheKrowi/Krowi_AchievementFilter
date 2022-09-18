@@ -9,3 +9,7 @@
 <li>Fixed category names (actually now)</li>
 <li>Removed Northern Stranglethorn and The Cape of Stranglethorn zones</li>
 </ul>
+<p><h3>Fixed (42.1)</h3></p>
+<ul>
+<li>Options</li>
+</ul>

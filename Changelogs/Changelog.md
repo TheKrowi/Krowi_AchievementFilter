@@ -6,3 +6,6 @@
 - Added the World Map Button
 - Fixed category names (actually now)
 - Removed Northern Stranglethorn and The Cape of Stranglethorn zones
+
+### Fixed (42.1)
+- Options
