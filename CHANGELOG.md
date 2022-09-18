@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 42.0 - 2022-09-xx
+## 42.0 - 2022-09-18
 ### Added
 - Missing map data to Ironforge and The Exodar
 

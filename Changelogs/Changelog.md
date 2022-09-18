@@ -1,8 +1,8 @@
 ### Added
-- Some missing German translations
-- New credits
+- Missing map data to Ironforge and The Exodar
 
 ### Wrath Classic
-- Added a bunch of missing achievements
-- Right click menu Wowhead link should link to the correct pages now
-- Fixed category names
+- Added Stranglethorn Vale zone
+- Added the World Map Button
+- Fixed category names (actually now)
+- Removed Northern Stranglethorn and The Cape of Stranglethorn zones

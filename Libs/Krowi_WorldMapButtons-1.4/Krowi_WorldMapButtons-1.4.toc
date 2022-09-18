@@ -16,10 +16,10 @@
 #		All rights not explicitly addressed in this license are reserved by
 #		the copyright holders.
 
-## Interface: 90105
+## Interface: 90207
 ## Title: Krowi's |cFF1D92C2World Map Buttons|r
-## Version: 1.3
+## Version: 1.4
 ## Author: Krowi
 ## Notes: A simply library to add buttons to the world map.
 
-Krowi_WorldMapButtons-1.3.xml
+Krowi_WorldMapButtons-1.4.xml
