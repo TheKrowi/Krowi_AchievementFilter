@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 42.2 - 2022-09-21
+### Wrath Classic
+- Fixed KAF tabs not showing when the default tab is the Blizzard Achievements
+- Fixed an issue that could cause errors in rare occasions when the Achievement Window was forced to update but no KAF tab was selected
+- Down With The Dark Iron should be marked as obtainable
+
 ## 42.1 - 2022-09-18
 ### Fixed
 - Options
