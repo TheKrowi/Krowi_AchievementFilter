@@ -1,4 +1,4 @@
--- [[ Exported at 2022-09-18 18-29-58 ]] --
+-- [[ Exported at 2022-09-21 10-19-58 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -698,7 +698,7 @@ function exportedAchievements.Load(a, t)
     a[1184] = ach:New(1184, 10, fac.Alliance, 1203); -- Strange Brew
     a[1185] = ach:New(1185, 10); -- The Brewfest Diet
     a[1186] = ach:New(1186, 0); -- Down With The Dark Iron
-    SetTO(a[1186]);
+    SetTO(a[1186], "From", "Version", "030002", "Before", "Version", "080200");
     a[1188] = ach:New(1188, 10); -- Shafted!
     a[1189] = ach:New(1189, 10, fac.Alliance, 1271); -- To Hellfire and Back
     a[1190] = ach:New(1190, 10); -- Mysteries of the Marsh

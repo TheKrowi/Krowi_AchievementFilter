@@ -233,11 +233,15 @@ function KrowiAF_AchievementsFrameMixin:ForceUpdate(toTop) -- Issue #3: Fix
 		return;
 	end
 
+	local selectedTab = addon.GUI.SelectedTab;
+	if not selectedTab then
+		return;
+	end
+
 	if toTop then -- Issue #27: Fix
 		self.ScrollFrame.ScrollBar:SetValue(0);
 	end
 
-	local selectedTab = addon.GUI.SelectedTab;
 	selectedTab.SelectedAchievement = addon.Filters.GetHighestAchievementWhenCollapseSeries(selectedTab.Filters, selectedTab.SelectedAchievement);
 
 	-- Issue #8: Broken
