@@ -62,6 +62,11 @@ function KrowiAF_CategoryButtonMixin:Select(quick)
 		addon.GUI.SummaryFrame:Hide();
 	end
 
+	local selectedTab = addon.GUI.SelectedTab;
+	if not selectedTab then
+		return;
+	end
+
 	local categoriesFrame = addon.GUI.CategoriesFrame;
     categoriesFrame:SelectButton(self, quick);
     categoriesFrame:Update();

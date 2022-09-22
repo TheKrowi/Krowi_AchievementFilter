@@ -464,5 +464,7 @@ function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
 end
 
 function KrowiAF_AchievementButtonMixin:ShowTooltip()
-	addon.GUI.AchievementTooltip.ShowTooltip(self, self.Achievement);
+	if self.Achievement then
+		addon.GUI.AchievementTooltip.ShowTooltip(self, self.Achievement);
+	end
 end
