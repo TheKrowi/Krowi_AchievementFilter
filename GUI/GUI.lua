@@ -77,6 +77,12 @@ function gui:LoadWithBlizzard_AchievementUI()
 
     self.LoadWrathClassicFixes();
 
+    -- This sacrifices the AchievementFrame moving other frames automatically, something to live with I assume
+    UIPanelWindows["AchievementFrame"] = nil;
+    AchievementFrame:SetAttribute("UIPanelLayout-area", nil);
+    AchievementFrame:SetAttribute("UIPanelLayout-enabled", false);
+    tinsert(UISpecialFrames, "AchievementFrame");
+
     diagnostics.Debug("GUI loaded");
 end
 
@@ -98,7 +104,6 @@ function gui.SetCloseButtonOnKeyDown()
     AchievementFrameCloseButton:SetScript("OnKeyDown", function(selfFunc, key)
         if key == GetBindingKey("TOGGLEGAMEMENU") then
             if selfFunc:GetParent():IsShown() then
-                -- selfFunc:Click(selfFunc);
                 selfFunc:GetParent():Hide();
                 selfFunc:SetPropagateKeyboardInput(false);
                 return;

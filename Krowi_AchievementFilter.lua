@@ -27,9 +27,9 @@ addon.Faction.IsNeutral = UnitFactionGroup("player") == "Neutral";
 
 -- [[ Load addon ]] --
 local loadHelper = CreateFrame("Frame");
-loadHelper:RegisterEvent("ADDON_LOADED"); -- 1
-loadHelper:RegisterEvent("PLAYER_LOGIN"); -- 4
-loadHelper:RegisterEvent("PLAYER_ENTERING_WORLD"); -- 5
+loadHelper:RegisterEvent("ADDON_LOADED");
+loadHelper:RegisterEvent("PLAYER_LOGIN");
+loadHelper:RegisterEvent("PLAYER_ENTERING_WORLD");
 loadHelper:RegisterEvent("ACHIEVEMENT_EARNED");
 
 function loadHelper:OnEvent(event, arg1, arg2)

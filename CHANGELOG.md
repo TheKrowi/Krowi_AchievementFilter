@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 43.0 - 2022-09-22
+### Fixed
+- In some cases the game menu would not open anymore after closing the Achievement Window when pressing escape
+
 ## 42.2 - 2022-09-21
 ### Wrath Classic
 - Fixed KAF tabs not showing when the default tab is the Blizzard Achievements
