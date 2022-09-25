@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - Widget events
 
 ### Wrath Classic
+- All categories should have a meaningful text now
 - Compatibility fixes
 
 ## 43.0 - 2022-09-22
