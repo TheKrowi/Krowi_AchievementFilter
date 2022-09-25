@@ -63,11 +63,11 @@ function gui:LoadWithBlizzard_AchievementUI()
         tinsert(sideButtons, gui.SideButton:New(activeEvent, sideButtons));
     end
 
-    local activeWidgetEvents = addon.EventData.GetActiveWidgetEvents();
+    -- local activeWidgetEvents = addon.EventData.GetActiveWidgetEvents();
 
-    for _, activeEvent in next, activeWidgetEvents do
-        tinsert(sideButtons, gui.SideButton:New(activeEvent, sideButtons));
-    end
+    -- for _, activeEvent in next, activeWidgetEvents do
+    --     tinsert(sideButtons, gui.SideButton:New(activeEvent, sideButtons));
+    -- end
 
     self.ResetAchievementFrameHeight();
 
@@ -196,13 +196,13 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
 	if AchievementFrame:IsShown() and tabIsSelected and not resetView and not forceOpen then
         AchievementFrame:Hide();
 	else
-        if addon.IsNotWrathClassic() then
+        if not addon.IsWrathClassic then
             AchievementFrame_SetTabs();
         else
             addon.GUI.ShowHideTabs();
         end
         AchievementFrame:Show();
-        if addon.IsNotWrathClassic() then
+        if not addon.IsWrathClassic then
             AchievementFrame_HideSearchPreview();
         end
         gui.SelectTab(_addonName, tabName);
@@ -261,19 +261,19 @@ function gui.AddDataToBlizzardTabs()
     KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Achievements", AchievementFrameTab1, function()
         AchievementFrameTab_OnClick(1);
     end);
-    if addon.IsNotWrathClassic() then
+    if not addon.IsWrathClassic then
         KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Guild", AchievementFrameTab2, function()
             AchievementFrameTab_OnClick(2);
         end);
     end
-    KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Statistics", addon.IsNotWrathClassic() and AchievementFrameTab3 or AchievementFrameTab2, function()
-        AchievementFrameTab_OnClick(addon.IsNotWrathClassic() and 3 or 2);
+    KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Statistics", addon.IsWrathClassic and AchievementFrameTab2 or AchievementFrameTab3, function()
+        AchievementFrameTab_OnClick(addon.IsWrathClassic and 2 or 3);
     end);
 end
 
 function gui.PrepareTabsOrder()
     KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Achievements", addon.L["Blizzard"], addon.L["Achievements"], "TOGGLEACHIEVEMENT");
-    if addon.IsNotWrathClassic() then
+    if not addon.IsWrathClassic then
         KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Guild", addon.L["Blizzard"], addon.L["Guild"]);
     else
         addon.Options.Defaults.profile.Tabs.Blizzard_AchievementUI.Guild = nil;
@@ -375,7 +375,7 @@ function gui.TabsOrderGetActiveKeys()
 end
 
 function gui.LoadWrathClassicFixes()
-    if addon.IsNotWrathClassic() then
+    if not addon.IsWrathClassic then
         return;
     end
     if AchievementFrame_SetTabs == nil then

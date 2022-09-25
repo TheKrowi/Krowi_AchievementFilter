@@ -310,7 +310,7 @@ function addon.HookAchievementFrameOnShow()
         addon.Data.GetCurrentZoneAchievements();
     end);
 
-    local funcName = addon.IsNotWrathClassic() and "AchievementFrame_SetTabs" or "PanelTemplates_SetTab";
+    local funcName = addon.IsWrathClassic and "PanelTemplates_SetTab" or "AchievementFrame_SetTabs";
     hooksecurefunc(funcName, function()
         addon.GUI.ShowHideTabs();
     end);
@@ -481,29 +481,6 @@ function addon.ChangeAchievementMicroButtonOnClick()
     AchievementMicroButton:SetScript("OnClick", function(self)
         addon.GUI.ToggleAchievementFrame(tab.AddonName, tab.Name);
     end);
-end
-
-local cachedIsNotWrathClassic, cachedIsWrathClassic;
-function addon.IsNotWrathClassic()
-    if cachedIsNotWrathClassic ~= nil then
-        return cachedIsNotWrathClassic;
-    end
-    local version = (GetBuildInfo());
-    local major = string.match(version, "(%d+)%.(%d+)%.(%d+)(%w?)");
-    cachedIsNotWrathClassic = major ~= "3";
-    cachedIsWrathClassic = not cachedIsNotWrathClassic;
-    return cachedIsNotWrathClassic;
-end
-
-function addon.IsWrathClassic()
-    if cachedIsWrathClassic ~= nil then
-        return cachedIsWrathClassic;
-    end
-    local version = (GetBuildInfo());
-    local major = string.match(version, "(%d+)%.(%d+)%.(%d+)(%w?)");
-    cachedIsWrathClassic = major == "3";
-    cachedIsNotWrathClassic = not cachedIsWrathClassic;
-    return cachedIsWrathClassic;
 end
 
 function addon.GetInstanceInfoName(journalInstanceId)

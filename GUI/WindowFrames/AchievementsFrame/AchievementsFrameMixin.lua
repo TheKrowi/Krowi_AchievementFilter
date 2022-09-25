@@ -132,12 +132,12 @@ function KrowiAF_AchievementsFrameMixin:SelectButton(button)
 	addon.GUI.SelectedTab.SelectedAchievement = button.Achievement;
 	button.selected = true;
 
-	if addon.IsNotWrathClassic() then
-		SetFocusedAchievement(button.Achievement.ID);
-	else
+	if addon.IsWrathClassic then
 		local achievements = AchievementFrameAchievements;
 		achievements.selection = button.id;
 		achievements.selectionIndex = button.index;
+	else
+		SetFocusedAchievement(button.Achievement.Id);
 	end
 end
 

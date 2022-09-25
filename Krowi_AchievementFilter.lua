@@ -25,6 +25,13 @@ addon.Faction.IsAlliance = UnitFactionGroup("player") == "Alliance";
 addon.Faction.IsHorde = UnitFactionGroup("player") == "Horde";
 addon.Faction.IsNeutral = UnitFactionGroup("player") == "Neutral";
 
+-- [[ Version data ]] --
+local version = (GetBuildInfo());
+local major = string.match(version, "(%d+)%.(%d+)%.(%d+)(%w?)");
+addon.IsWrathClassic = major == "3";
+addon.IsShadowlandsRetail = major == "9";
+addon.IsDragonflightRetail = major == "10";
+
 -- [[ Load addon ]] --
 local loadHelper = CreateFrame("Frame");
 loadHelper:RegisterEvent("ADDON_LOADED");
@@ -39,7 +46,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
             addon.Data.ExportedCategories.InjectOptions();
             addon.Data.ExportedCalendarEvents.InjectOptions();
             addon.Data.ExportedWorldEvents.InjectOptions();
-            addon.Data.ExportedWidgetEvents.InjectOptions();
+            -- addon.Data.ExportedWidgetEvents.InjectOptions();
 
             addon.GUI.PrepareTabsOrder();
             addon.Tabs.InjectOptions();
@@ -72,7 +79,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
     elseif event == "PLAYER_LOGIN" then
         addon.Data.ExportedCalendarEvents.Load(addon.Data.CalendarEvents);
         addon.Data.ExportedWorldEvents.Load(addon.Data.WorldEvents);
-        addon.Data.ExportedWidgetEvents.Load(addon.Data.WidgetEvents);
+        -- addon.Data.ExportedWidgetEvents.Load(addon.Data.WidgetEvents);
         addon.EventData.Load();
 
         if addon.Diagnostics.DebugEnabled() then
@@ -93,7 +100,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
                 C_Timer.After(5, function()
                     addon.GUI.AlertSystem.ShowActiveCalendarEvents();
                     addon.GUI.AlertSystem.ShowActiveWorldEvents();
-                    addon.GUI.AlertSystem.ShowActiveWidgetEvents();
+                    -- addon.GUI.AlertSystem.ShowActiveWidgetEvents();
                 end);
             end);
         end

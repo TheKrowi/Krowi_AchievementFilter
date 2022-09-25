@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 44.0 - 2022-10-xx
+### Removed
+- Widget events
+
+### Wrath Classic
+- Compatibility fixes
+
 ## 43.0 - 2022-09-22
 ### Fixed
 - In some cases the game menu would not open anymore after closing the Achievement Window when pressing escape

@@ -4,7 +4,7 @@ local _, addon = ...;
 KrowiAF_DataManagerFrameMixin = {};
 
 function KrowiAF_DataManagerFrameMixin:OnLoad()
-	if addon.IsWrathClassic() then
+	if addon.IsWrathClassic then
 		self.TitleText:SetText(addon.L["Data Manager"]);
 	else
     	self:SetTitle(addon.L["Data Manager"]);

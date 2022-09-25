@@ -6,7 +6,7 @@ local achievementsObjectives = addon.GUI.AchievementsObjectives;
 function achievementsObjectives:Load()
 	local frame = CreateFrame("Frame", "KrowiAF_AchievementsObjectives", nil, "KrowiAF_AchievementsObjectives_Template");
 
-	if addon.IsWrathClassic() then -- 14 by default
+	if addon.IsWrathClassic then -- 14 by default
 		ACHIEVEMENTBUTTON_METAROWHEIGHT = 28;
 	end
 

@@ -29,7 +29,7 @@ function section.Add(menu, achievement)
 
 	local addRelatedTab = addon.Options.db.RightClickMenu.WowheadLink.AddRelatedTab;
 	local relatedTab = relatedTabs[addRelatedTab];
-	local wotlk = addon.IsWrathClassic() and "wotlk/" or "";
+	local wotlk = addon.IsWrathClassic and "wotlk/" or "";
 
 	local externalLink = "https://" .. locale .. "wowhead.com/" .. wotlk .. "achievement=" .. achievement.Id .. relatedTab;
 	menu:AddFull({Text = addon.L["Wowhead"], Func = function() popupDialog.ShowExternalLink(externalLink); end});
