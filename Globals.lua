@@ -170,7 +170,6 @@ function addon.AddToTrackingAchievementsCategories(achievement, update)
     for i = 1, #addon.Data.TrackingAchievementsCategories do
         if addon.Options.db.AdjustableCategories.TrackingAchievements[i] then
             local trackingAchievementsCategory = AddTrackingAchievementsCategoriesTree(addon.Data.TrackingAchievementsCategories[i], achievement);
-            print(addon.Data.TrackingAchievementsCategories[i], trackingAchievementsCategory);
             trackingAchievementsCategory:AddAchievement(achievement);
         end
     end

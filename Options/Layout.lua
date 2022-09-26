@@ -5,6 +5,127 @@ options.Layout = {};
 local layout = options.Layout;
 local widthMultiplier = addon.Options.WidthMultiplier;
 
+local function DrawFocusedSubCategories()
+    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
+        return;
+    end
+    -- Reset all
+    for i = 1, #addon.Data.FocusedCategories do
+        addon.Data.FocusedCategories[i].Achievements = nil;
+        addon.Data.FocusedCategories[i].Children = nil;
+    end
+    addon.GUI.CategoriesFrame:Update(true);
+    addon.GUI.AchievementsFrame:ForceUpdate();
+    -- Draw again
+    addon.Data.LoadFocusedAchievements();
+end
+
+local function SetShowFocusedSubCategories()
+    addon.Options.db.Categories.Focused.ShowSubCategories = not addon.Options.db.Categories.Focused.ShowSubCategories;
+    DrawFocusedSubCategories();
+    options.Debug(addon.L["Show Sub Categories"], addon.Options.db.Categories.Focused.ShowSubCategories);
+end
+
+local function ClearAllFocused()
+    for i = 1, #addon.Data.FocusedCategories do
+        addon.Data.FocusedCategories[i].Achievements = nil;
+        addon.Data.FocusedCategories[i].Children = nil;
+    end
+    if addon.GUI.SelectedTab ~= nil then -- If nil, not yet loaded
+        if SavedData.FocusedAchievements then
+            for id, _ in next, SavedData.FocusedAchievements do
+                addon.Data.Achievements[id]:ClearFocus();
+            end
+        end
+        addon.GUI.CategoriesFrame:Update(true);
+        addon.GUI.AchievementsFrame:ForceUpdate();
+    end
+    SavedData.FocusedAchievements = nil;
+end
+
+local function DrawTrackingAchievementsSubCategories()
+    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
+        return;
+    end
+    -- Reset all
+    for i = 1, #addon.Data.TrackingAchievementsCategories do
+        addon.Data.TrackingAchievementsCategories[i].Achievements = nil;
+        addon.Data.TrackingAchievementsCategories[i].Children = nil;
+    end
+    addon.GUI.CategoriesFrame:Update(true);
+    addon.GUI.AchievementsFrame:ForceUpdate();
+    -- Draw again
+    addon.Data.LoadTrackingAchievements();
+end
+
+local function SetShowTrackingAchievementsSubCategories()
+    addon.Options.db.Categories.TrackingAchievements.ShowSubCategories = not addon.Options.db.Categories.TrackingAchievements.ShowSubCategories;
+    DrawTrackingAchievementsSubCategories();
+    options.Debug(addon.L["Show Sub Categories"], addon.Options.db.Categories.TrackingAchievements.ShowSubCategories);
+end
+
+local function ShowExcludedCategory()
+    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
+        return;
+    end
+    if addon.Options.db.Categories.Excluded.Show then
+        addon.Data.LoadExcludedAchievements();
+    else
+        for i = 1, #addon.Data.ExcludedCategories do
+            addon.Data.ExcludedCategories[i].Achievements = nil;
+            addon.Data.ExcludedCategories[i].Children = nil;
+        end
+        addon.GUI.CategoriesFrame:Update(true);
+        addon.GUI.AchievementsFrame:ForceUpdate();
+    end
+end
+
+local function SetShowExcludedCategory()
+    addon.Options.db.Categories.Excluded.Show = not addon.Options.db.Categories.Excluded.Show;
+    ShowExcludedCategory();
+    options.Debug(addon.L["Show Excluded Category"] .. " " .. addon.L["Excluded"], addon.Options.db.Categories.Excluded.Show);
+end
+
+local function IncludeAllExcluded()
+    for i = 1, #addon.Data.ExcludedCategories do
+        addon.Data.ExcludedCategories[i].Achievements = nil;
+        addon.Data.ExcludedCategories[i].Children = nil;
+    end
+    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
+        SavedData.ExcludedAchievements = nil;
+        return;
+    end
+    if SavedData.ExcludedAchievements then
+        for id, _ in next, SavedData.ExcludedAchievements do
+            addon.Data.Achievements[id]:Include();
+        end
+    end
+    addon.GUI.CategoriesFrame:Update(true);
+    addon.GUI.AchievementsFrame:ForceUpdate();
+    SavedData.ExcludedAchievements = nil;
+end
+
+local function DrawExcludedSubCategories()
+    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
+        return;
+    end
+    -- Reset all
+    for i = 1, #addon.Data.ExcludedCategories do
+        addon.Data.ExcludedCategories[i].Achievements = nil;
+        addon.Data.ExcludedCategories[i].Children = nil;
+    end
+    addon.GUI.CategoriesFrame:Update(true);
+    addon.GUI.AchievementsFrame:ForceUpdate();
+    -- Draw again
+    addon.Data.LoadExcludedAchievements();
+end
+
+local function SetShowExcludedSubCategories()
+    addon.Options.db.Categories.Excluded.ShowSubCategories = not addon.Options.db.Categories.Excluded.ShowSubCategories;
+    DrawExcludedSubCategories();
+    options.Debug(addon.L["Show Sub Categories"], addon.Options.db.Categories.Excluded.ShowSubCategories);
+end
+
 function layout.AddMoreFocusedOptions()
     options.InjectOptionsTableAdd({
         order = 1.1, type = "toggle", width = 1 * widthMultiplier,
@@ -125,127 +246,6 @@ local function SetMergeSmallCategoriesThreshold(_, value)
     addon.Options.db.Window.MergeSmallCategoriesThreshold = value;
     addon.GUI.CategoriesFrame:Update(true);
     options.Debug(addon.L["Categories width offset"], addon.Options.db.Window.MergeSmallCategoriesThreshold);
-end
-
-local function DrawFocusedSubCategories()
-    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
-        return;
-    end
-    -- Reset all
-    for i = 1, #addon.Data.FocusedCategories do
-        addon.Data.FocusedCategories[i].Achievements = nil;
-        addon.Data.FocusedCategories[i].Children = nil;
-    end
-    addon.GUI.CategoriesFrame:Update(true);
-    addon.GUI.AchievementsFrame:ForceUpdate();
-    -- Draw again
-    addon.Data.LoadFocusedAchievements();
-end
-
-local function SetShowFocusedSubCategories()
-    addon.Options.db.Categories.Focused.ShowSubCategories = not addon.Options.db.Categories.Focused.ShowSubCategories;
-    DrawFocusedSubCategories();
-    options.Debug(addon.L["Show Sub Categories"], addon.Options.db.Categories.Focused.ShowSubCategories);
-end
-
-local function ClearAllFocused()
-    for i = 1, #addon.Data.FocusedCategories do
-        addon.Data.FocusedCategories[i].Achievements = nil;
-        addon.Data.FocusedCategories[i].Children = nil;
-    end
-    if addon.GUI.SelectedTab ~= nil then -- If nil, not yet loaded
-        if SavedData.FocusedAchievements then
-            for id, _ in next, SavedData.FocusedAchievements do
-                addon.Data.Achievements[id]:ClearFocus();
-            end
-        end
-        addon.GUI.CategoriesFrame:Update(true);
-        addon.GUI.AchievementsFrame:ForceUpdate();
-    end
-    SavedData.FocusedAchievements = nil;
-end
-
-local function DrawTrackingAchievementsSubCategories()
-    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
-        return;
-    end
-    -- Reset all
-    for i = 1, #addon.Data.TrackingAchievementsCategories do
-        addon.Data.TrackingAchievementsCategories[i].Achievements = nil;
-        addon.Data.TrackingAchievementsCategories[i].Children = nil;
-    end
-    addon.GUI.CategoriesFrame:Update(true);
-    addon.GUI.AchievementsFrame:ForceUpdate();
-    -- Draw again
-    addon.Data.LoadTrackingAchievements();
-end
-
-local function SetShowTrackingAchievementsSubCategories()
-    addon.Options.db.Categories.TrackingAchievements.ShowSubCategories = not addon.Options.db.Categories.TrackingAchievements.ShowSubCategories;
-    DrawTrackingAchievementsSubCategories();
-    options.Debug(addon.L["Show Sub Categories"], addon.Options.db.Categories.TrackingAchievements.ShowSubCategories);
-end
-
-local function ShowExcludedCategory()
-    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
-        return;
-    end
-    if addon.Options.db.Categories.Excluded.Show then
-        addon.Data.LoadExcludedAchievements();
-    else
-        for i = 1, #addon.Data.ExcludedCategories do
-            addon.Data.ExcludedCategories[i].Achievements = nil;
-            addon.Data.ExcludedCategories[i].Children = nil;
-        end
-        addon.GUI.CategoriesFrame:Update(true);
-        addon.GUI.AchievementsFrame:ForceUpdate();
-    end
-end
-
-local function SetShowExcludedCategory()
-    addon.Options.db.Categories.Excluded.Show = not addon.Options.db.Categories.Excluded.Show;
-    ShowExcludedCategory();
-    options.Debug(addon.L["Show Excluded Category"] .. " " .. addon.L["Excluded"], addon.Options.db.Categories.Excluded.Show);
-end
-
-local function IncludeAllExcluded()
-    for i = 1, #addon.Data.ExcludedCategories do
-        addon.Data.ExcludedCategories[i].Achievements = nil;
-        addon.Data.ExcludedCategories[i].Children = nil;
-    end
-    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
-        SavedData.ExcludedAchievements = nil;
-        return;
-    end
-    if SavedData.ExcludedAchievements then
-        for id, _ in next, SavedData.ExcludedAchievements do
-            addon.Data.Achievements[id]:Include();
-        end
-    end
-    addon.GUI.CategoriesFrame:Update(true);
-    addon.GUI.AchievementsFrame:ForceUpdate();
-    SavedData.ExcludedAchievements = nil;
-end
-
-local function DrawExcludedSubCategories()
-    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
-        return;
-    end
-    -- Reset all
-    for i = 1, #addon.Data.ExcludedCategories do
-        addon.Data.ExcludedCategories[i].Achievements = nil;
-        addon.Data.ExcludedCategories[i].Children = nil;
-    end
-    addon.GUI.CategoriesFrame:Update(true);
-    addon.GUI.AchievementsFrame:ForceUpdate();
-    -- Draw again
-    addon.Data.LoadExcludedAchievements();
-end
-
-local function SetShowExcludedSubCategories()
-    addon.Options.db.Categories.Excluded.ShowSubCategories = not addon.Options.db.Categories.Excluded.ShowSubCategories;
-    DrawExcludedSubCategories();
-    options.Debug(addon.L["Show Sub Categories"], addon.Options.db.Categories.Excluded.ShowSubCategories);
 end
 
 local function SetCompactAchievements()

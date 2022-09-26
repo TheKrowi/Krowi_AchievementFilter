@@ -22,6 +22,7 @@ local defaultAchievementFrameHeight;
 local defaultAchievementFrameMetalBorderHeight;
 function gui:LoadWithBlizzard_AchievementUI()
     self.LoadWrathClassicAchievementFrameChanges();
+    self.LoadOldAchievementFrameCompatibility();
 
     defaultAchievementFrameWidth = AchievementFrame:GetWidth();
     defaultAchievementFrameHeight = AchievementFrame:GetHeight();
@@ -52,7 +53,7 @@ function gui:LoadWithBlizzard_AchievementUI()
         addon.Tabs[t].Button = gui.AchievementFrameTabButton:New(addon.Tabs[t].Text, {gui.FilterButton, gui.Search.BoxFrame, gui.CategoriesFrame}, addon.Tabs[t].Categories, addon.Tabs[t].Filters, waterMarks[i]);
         KrowiAF_RegisterTabButton(addonName, addon.Tabs[t].Name, addon.Tabs[t].Button);
     end
-    self.LoadOldAchievementFrameCompatibility();
+    self.LoadOldAchievementFrameTabsCompatibility();
 
     local activeCalendarEvents = addon.EventData.GetActiveCalendarEvents();
 
@@ -416,10 +417,6 @@ function gui.LoadOldAchievementFrameCompatibility()
         return;
     end
 
-    for i, t in next, addon.TabsOrder do
-        addon.Tabs[t].Button.Text = addon.Tabs[t].Button.text;
-    end
-
     AchievementFrame.Header = AchievementFrameHeader;
     AchievementFrame.Header.RightDDLInset = AchievementFrameHeaderRightDDLInset;
     AchievementFrame.Header.PointBorder = AchievementFrameHeaderPointBorder;
@@ -429,5 +426,15 @@ function gui.LoadOldAchievementFrameCompatibility()
     if addon.IsShadowlandsRetail then
         AchievementFrame.SearchBox = AchievementFrame.searchBox;
 		AchievementFrame.Header.LeftDDLInset = AchievementFrameHeaderLeftDDLInset;
+    end
+end
+
+function gui.LoadOldAchievementFrameTabsCompatibility()
+    if not addon.IsWrathClassic and not addon.IsShadowlandsRetail then
+        return;
+    end
+
+    for i, t in next, addon.TabsOrder do
+        addon.Tabs[t].Button.Text = addon.Tabs[t].Button.text;
     end
 end

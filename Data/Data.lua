@@ -139,7 +139,7 @@ function data.LoadBlizzardTabAchievements(categories)
         tmpC[id] = addon.Objects.Category:New(name);
 		if parentID == -1 then
 			-- categories:AddCategory(tmpC[id]);
-			tab:AddCategory(tmpC[id]);
+			tab:InsertCategory(tmpC[id], #tab.Children - 2);
 		end
 	end
 
