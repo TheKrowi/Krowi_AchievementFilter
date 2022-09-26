@@ -22,6 +22,7 @@ local defaultAchievements = {
     },
     CollapseSeries = true,
     Excluded = false,
+    Tracking = false,
     SortBy = {
         Criteria = addon.L["Default"],
         ReverseSort = false
@@ -48,7 +49,8 @@ local function InjectCategoryDefaults()
     addon.Util.DeepCopyTable(defaultAchievements, dflts);
     addon.Util.WriteNestedKeys(defaults.profile, {"SelectedZone"}, dflts);
     addon.Util.DeepCopyTable(defaultAchievements, dflts);
-    addon.Util.WriteNestedKeys(defaults.profile, {"ExcludedCategory"}, dflts);
+    addon.Util.WriteNestedKeys(defaults.profile, {"TrackingAchievements"}, dflts);
+    defaults.profile.TrackingAchievements.Tracking = true;
 end
 
 local function InjectTabDefaults()
@@ -77,7 +79,7 @@ function filters:ResetFilters()
         ResetFactionFilters(self.db.Faction);
         ResetFactionFilters(self.db.CurrentZone.Faction);
         ResetFactionFilters(self.db.SelectedZone.Faction);
-        ResetFactionFilters(self.db.ExcludedCategory.Faction);
+        ResetFactionFilters(self.db.TrackingAchievements.Faction);
         for t, _ in next, addon.Tabs do
             ResetFactionFilters(self.db.Tabs[t].Faction);
         end
@@ -169,6 +171,9 @@ local validations = {
     },
     {   -- 11
         Validate = function(_filters, achievement) return not _filters.Special.RealmFirst and achievement.IsRealmFirst; end
+    },
+    {   -- 12
+        Validate = function(_filters, achievement) return not _filters.Tracking and achievement.IsTracking; end
     }
 };
 
@@ -220,8 +225,8 @@ function filters:GetFilters(category)
 		return self.db.CurrentZone;
 	elseif category.IsSelectedZone then
 		return self.db.SelectedZone;
-	elseif category == addon.Data.ExcludedCategory or (category ~= nil and category.Excluded) then
-		return self.db.ExcludedCategory;
+    elseif category.IsTracking then
+        return self.db.TrackingAchievements;
     elseif addon.GUI.SelectedTab.Filters ~= nil then
         return addon.GUI.SelectedTab.Filters;
 	end

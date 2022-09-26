@@ -10,7 +10,7 @@ function addon.GetFirstAchievementId(id)
 end
 
 function addon.InGuildView()
-    return AchievementFrameHeaderTitle:GetText() == GUILD_ACHIEVEMENTS_TITLE;
+    return AchievementFrame.Header.Title:GetText() == GUILD_ACHIEVEMENTS_TITLE;
 end
 
 function addon.GetActiveCovenant()
@@ -72,6 +72,55 @@ function addon.GetAchievementNumbers(_filters, achievement, numOfAch, numOfCompA
 	return numOfAch, numOfCompAch, numOfNotObtAch; -- , numOfIncompAch
 end
 
+local function AddCategoriesTree(category, achievement, extraFunc)
+    local categories = achievement.Category:GetTree();
+    for _, cat in next, categories do
+        local alreadyAdded;
+        if category.Children then
+            for _, child in next, category.Children do
+                if child.Name == cat.Name then
+                    alreadyAdded = true;
+                    category = child;
+                end
+            end
+        end
+        if alreadyAdded == nil then
+            local newCategory = addon.Objects.Category:New(cat.Name);
+            extraFunc(newCategory);
+            category = category:AddCategory(newCategory);
+        end
+        alreadyAdded = nil;
+    end
+    return category;
+end
+
+local function AddFocusedCategoriesTree(focusedCategory, achievement)
+    if not addon.Options.db.Categories.Focused.ShowSubCategories then
+        return focusedCategory;
+    end
+    return AddCategoriesTree(focusedCategory, achievement, function(newCategory)
+
+    end);
+end
+
+local function AddTrackingAchievementsCategoriesTree(trackingAchievementsCategory, achievement)
+    if not addon.Options.db.Categories.TrackingAchievements.ShowSubCategories or achievement.Category == nil then
+        return trackingAchievementsCategory;
+    end
+    return AddCategoriesTree(trackingAchievementsCategory, achievement, function(newCategory)
+        newCategory.IsTracking = true;
+    end);
+end
+
+local function AddExcludedCategoriesTree(excludedCategory, achievement)
+    if not addon.Options.db.Categories.Excluded.ShowSubCategories then
+        return excludedCategory;
+    end
+    return AddCategoriesTree(excludedCategory, achievement, function(newCategory)
+        newCategory.Excluded = true;
+    end);
+end
+
 local function ClearTree(categories)
     for i = #categories, 1, -1 do
         if categories[i].Achievements == nil or #categories[i].Achievements == 0 then -- No more achievements
@@ -87,47 +136,44 @@ function addon.ClearFocusAchievement(achievement, update)
     if addon.Options.db.Categories.Focused.ShowSubCategories then
         ClearTree(achievement.FocusedCategory:GetTree());
     end
-    achievement.FocusedCategory:RemoveFocusedAchievement(achievement);
+    local numFocusedCategories = achievement.FocusedCategories and #achievement.FocusedCategories or 0;
+    for i = 1, numFocusedCategories do
+        achievement.FocusedCategories[i]:RemoveFocusedAchievement(achievement);
+    end
     if update ~= false then
         addon.GUI.CategoriesFrame:Update(true);
         addon.GUI.AchievementsFrame:ForceUpdate();
     end
-    if (addon.Data.FocusedCategory.Achievements and #addon.Data.FocusedCategory.Achievements == 0) or (addon.Data.FocusedCategory.Children and #addon.Data.FocusedCategory.Children == 0) then
-        SavedData.FocusedAchievements = nil;
-        addon.Data.FocusedCategory.Achievements = nil;
+    for i = 1, #addon.Data.FocusedCategories do
+        if (addon.Data.FocusedCategories[i].Achievements and #addon.Data.FocusedCategories[i].Achievements == 0) or (addon.Data.FocusedCategories[i].Children and #addon.Data.FocusedCategories[i].Children == 0) then
+            SavedData.FocusedAchievements = nil;
+            addon.Data.FocusedCategories[i].Achievements = nil;
+        end
     end
 end
-
-local function AddFocusedCategoriesTree(achievement)
-    local focusedCategory = addon.Data.FocusedCategory;
-    if not addon.Options.db.Categories.Focused.ShowSubCategories then
-        return focusedCategory;
-    end
-    local categories = achievement.Category:GetTree();
-    for _, category in next, categories do
-        local alreadyAdded;
-        if focusedCategory.Children then
-            for _, child in next, focusedCategory.Children do
-                if child.Name == category.Name then
-                    alreadyAdded = true;
-                    focusedCategory = child;
-                end
-            end
-        end
-        if alreadyAdded == nil then
-            local newCategory = addon.Objects.Category:New(category.Name);
-            focusedCategory = focusedCategory:AddCategory(newCategory);
-        end
-        alreadyAdded = nil;
-    end
-    return focusedCategory;
-end
-
 
 function addon.FocusAchievement(achievement, update)
     achievement:Focus();
-    local focusedCategory = AddFocusedCategoriesTree(achievement);
-    focusedCategory:AddFocusedAchievement(achievement);
+    for i = 1, #addon.Data.FocusedCategories do
+        if addon.Options.db.AdjustableCategories.Focused[i] then
+            local focusedCategory = AddFocusedCategoriesTree(addon.Data.FocusedCategories[i], achievement);
+            focusedCategory:AddFocusedAchievement(achievement);
+        end
+	end
+    if update ~= false then
+        addon.GUI.CategoriesFrame:Update(true);
+        addon.GUI.AchievementsFrame:ForceUpdate();
+    end
+end
+
+function addon.AddToTrackingAchievementsCategories(achievement, update)
+    for i = 1, #addon.Data.TrackingAchievementsCategories do
+        if addon.Options.db.AdjustableCategories.TrackingAchievements[i] then
+            local trackingAchievementsCategory = AddTrackingAchievementsCategoriesTree(addon.Data.TrackingAchievementsCategories[i], achievement);
+            print(addon.Data.TrackingAchievementsCategories[i], trackingAchievementsCategory);
+            trackingAchievementsCategory:AddAchievement(achievement);
+        end
+    end
     if update ~= false then
         addon.GUI.CategoriesFrame:Update(true);
         addon.GUI.AchievementsFrame:ForceUpdate();
@@ -139,48 +185,31 @@ function addon.IncludeAchievement(achievement, update)
     if addon.Options.db.Categories.Excluded.ShowSubCategories then
         ClearTree(achievement.ExcludedCategory:GetTree());
     end
-    achievement.ExcludedCategory:RemoveExcludedAchievement(achievement);
+    local numExcludedCategories = achievement.ExcludedCategories and #achievement.ExcludedCategories or 0;
+    for i = 1, numExcludedCategories do
+        achievement.ExcludedCategories[i]:RemoveExcludedAchievement(achievement);
+    end
     if update ~= false then
         addon.GUI.CategoriesFrame:Update(true);
         addon.GUI.AchievementsFrame:ForceUpdate();
     end
-    if (addon.Data.ExcludedCategory.Achievements and #addon.Data.ExcludedCategory.Achievements == 0) or (addon.Data.ExcludedCategory.Children and #addon.Data.ExcludedCategory.Children == 0) then
-        SavedData.ExcludedAchievements = nil;
-        addon.Data.ExcludedCategory.Achievements = nil;
-    end
-end
-
-local function AddExcludedCategoriesTree(achievement)
-    local excludedCategory = addon.Data.ExcludedCategory;
-    if not addon.Options.db.Categories.Excluded.ShowSubCategories then
-        return excludedCategory;
-    end
-    local categories = achievement.Category:GetTree();
-    for _, category in next, categories do
-        local alreadyAdded;
-        if excludedCategory.Children then
-            for _, child in next, excludedCategory.Children do
-                if child.Name == category.Name then
-                    alreadyAdded = true;
-                    excludedCategory = child;
-                end
-            end
+    for i = 1, #addon.Data.ExcludedCategories do
+        if (addon.Data.ExcludedCategories[i].Achievements and #addon.Data.ExcludedCategories[i].Achievements == 0) or (addon.Data.ExcludedCategories[i].Children and #addon.Data.ExcludedCategories[i].Children == 0) then
+            SavedData.ExcludedAchievements = nil;
+            addon.Data.ExcludedCategories[i].Achievements = nil;
         end
-        if alreadyAdded == nil then
-            local newCategory = addon.Objects.Category:New(category.Name);
-            newCategory.Excluded = true;
-            excludedCategory = excludedCategory:AddCategory(newCategory);
-        end
-        alreadyAdded = nil;
     end
-    return excludedCategory;
 end
 
 function addon.ExcludeAchievement(achievement, update)
     achievement:Exclude();
     if addon.Options.db.Categories.Excluded.Show then
-        local excludedCategory = AddExcludedCategoriesTree(achievement);
-        excludedCategory:AddExcludedAchievement(achievement);
+        for i = 1, #addon.Data.ExcludedCategories do
+            if addon.Options.db.AdjustableCategories.Excluded[i] then
+                local excludedCategory = AddExcludedCategoriesTree(addon.Data.ExcludedCategories[i], achievement);
+                excludedCategory:AddExcludedAchievement(achievement);
+            end
+        end
         if update ~= false then
             addon.GUI.CategoriesFrame:Update(true);
             addon.GUI.AchievementsFrame:ForceUpdate();
@@ -241,8 +270,13 @@ local function IncrementCharacterPoints(playerGUID, id, points, month, day, year
     end
 end
 
+addon.TrackingAchievements = {};
 local function AddToCache(id, points, flags, isGuild, isStatistic, exists)
-    if isStatistic or isGuild or IsTraching(flags) then
+    if isStatistic or isGuild then
+        return;
+    end
+    local isTracking = IsTraching(flags);
+    if isTracking and not addon.Options.db.Categories.TrackingAchievements.DoLoad then
         return;
     end
     if exists then
@@ -251,6 +285,11 @@ local function AddToCache(id, points, flags, isGuild, isStatistic, exists)
         addon.Data.Achievements[id].DoesNotExist = true;
         return;
     else
+        return; -- Can this be reached?
+    end
+    if isTracking then
+        addon.TrackingAchievements[id] = true;
+        addon.Data.Achievements[id].IsTracking = true;
         return;
     end
     local numCriteria = GetAchievementNumCriteria(id);
@@ -357,11 +396,11 @@ function addon.MakeWindowMovable()
     if not addon.Options.db.Window.Movable then
         return;
     end
-    if AchievementFrame and AchievementFrameHeader then
+    if AchievementFrame and AchievementFrame.Header then
         local pos = SavedData.RememberLastPosition["AchievementWindow"];
         AchievementFrame:SetPoint("TOPLEFT", pos.X, pos.Y);
         MakeMovable(AchievementFrame, "AchievementWindow");
-        MakeMovable(AchievementFrameHeader, "AchievementWindow", AchievementFrame);
+        MakeMovable(AchievementFrame.Header, "AchievementWindow", AchievementFrame);
     end
     if addon.GUI.Calendar.Frame then
         local pos = SavedData.RememberLastPosition["Calendar"];

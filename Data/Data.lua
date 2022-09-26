@@ -10,7 +10,6 @@ data.Achievements = {};
 data.AchievementIDs = {};
 
 data.CategoriesExpansions, data.CategoriesEvents, data.CategoriesPvP, data.CategoriesSpecials, data.CategoriesAchievements = {}, {}, {}, {}, {};
-data.FocusedCategory, data.ExcludedCategory = {}, {};
 
 data.RCMenuExtras = {};
 
@@ -33,8 +32,7 @@ function data.Load()
     custom.max = #data.AchievementIDs;
 
     local tabsCategories;
-    tabsCategories, data.FocusedCategories, data.CurrentZoneCategories, data.SelectedZoneCategories, data.ExcludedCategories = data.ExportedCategories.Load(data.Achievements);
-    data.FocusedCategory, data.ExcludedCategory = data.FocusedCategories[5], data.ExcludedCategories[5];
+    tabsCategories, data.FocusedCategories, data.CurrentZoneCategories, data.SelectedZoneCategories, data.TrackingAchievementsCategories, data.ExcludedCategories = data.ExportedCategories.Load(data.Achievements);
     for t, _ in next, addon.Tabs do
         if tabsCategories[t] ~= nil then
             addon.Tabs[t].Categories = tabsCategories[t];
@@ -60,34 +58,31 @@ function data.Load()
     -- data.PrintCriteria(14879, nil, 0);
 end
 
-function data.LoadFocusedAchievements(achievements)
-    if SavedData.FocusedAchievements == nil or type(SavedData.FocusedAchievements) ~= "table" then
+local function LoadAchievements(sourceTable, func)
+    if sourceTable == nil or type(sourceTable) ~= "table" then
         return;
     end
 
-    for achievementID, _ in next, SavedData.FocusedAchievements do
-        addon.FocusAchievement(achievements[achievementID], false);
+    for achievementId, _ in next, sourceTable do
+        func(data.Achievements[achievementId], false);
     end
 
     addon.GUI.CategoriesFrame:Update(true);
-
-    addon.Diagnostics.Debug("Focused achievements loaded");
-    -- diagnostics.DebugTable(SavedData.FocusedAchievements);
 end
 
-function data.LoadExcludedAchievements(achievements)
-    if SavedData.ExcludedAchievements == nil or type(SavedData.ExcludedAchievements) ~= "table" then
-        return;
-    end
+function data.LoadFocusedAchievements()
+    LoadAchievements(SavedData.FocusedAchievements, addon.FocusAchievement);
+    addon.Diagnostics.Debug("Focused achievements loaded");
+end
 
-    for achievementID, _ in next, SavedData.ExcludedAchievements do
-        addon.ExcludeAchievement(achievements[achievementID], false);
-    end
+function data.LoadTrackingAchievements()
+    LoadAchievements(addon.TrackingAchievements, addon.AddToTrackingAchievementsCategories);
+    addon.Diagnostics.Debug("Tracking achievements loaded");
+end
 
-    addon.GUI.CategoriesFrame:Update(true);
-
+function data.LoadExcludedAchievements()
+    LoadAchievements(SavedData.ExcludedAchievements, addon.ExcludeAchievement);
     addon.Diagnostics.Debug("Excluded achievements loaded");
-    -- diagnostics.DebugTable(SavedData.ExcludedAchievements);
 end
 
 local cachedZone;

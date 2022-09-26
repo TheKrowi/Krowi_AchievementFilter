@@ -98,7 +98,6 @@
         "AchievementFrameBaseTab_OnClick",
         "AchievementFrameAchievements_ForceUpdate",
         "HybridScrollFrame_CreateButtons",
-        "ACHIEVEMENTFRAME_SUBFRAMES",
         "HybridScrollFrame_GetOffset",
         "HybridScrollFrame_Update",
         "SetFocusedAchievement",

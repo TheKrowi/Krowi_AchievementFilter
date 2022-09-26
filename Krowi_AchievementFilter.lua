@@ -43,7 +43,12 @@ function loadHelper:OnEvent(event, arg1, arg2)
     if event == "ADDON_LOADED" then
         if arg1 == "Krowi_AchievementFilter" then -- This always needs to load
             addon.Diagnostics.Load();
+
             addon.Data.ExportedCategories.InjectOptions();
+            addon.Options.Layout.AddMoreFocusedOptions();
+            addon.Options.Layout.AddMoreTrackingAchievementsOptions();
+            addon.Options.Layout.AddMoreExcludedOptions();
+
             addon.Data.ExportedCalendarEvents.InjectOptions();
             addon.Data.ExportedWorldEvents.InjectOptions();
             -- addon.Data.ExportedWidgetEvents.InjectOptions();
@@ -66,8 +71,9 @@ function loadHelper:OnEvent(event, arg1, arg2)
 
             addon.GUI:LoadWithBlizzard_AchievementUI();
 
-            addon.Data.LoadFocusedAchievements(addon.Data.Achievements);
-            addon.Data.LoadExcludedAchievements(addon.Data.Achievements);
+            addon.Data.LoadFocusedAchievements();
+            addon.Data.LoadTrackingAchievements();
+            addon.Data.LoadExcludedAchievements();
 
             addon.MakeWindowMovable();
             addon.GUI.AchievementFrameHeader.HookSetPointsText();

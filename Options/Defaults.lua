@@ -54,6 +54,10 @@ options.Defaults = {
             Focused = {
                 ShowSubCategories = false
             },
+            TrackingAchievements = {
+                DoLoad = false,
+                ShowSubCategories = false
+            },
             Excluded = {
                 Show = true,
                 ShowSubCategories = false
@@ -64,7 +68,7 @@ options.Defaults = {
             Indentation = 10
         },
         AdjustableCategories = {
-
+            -- Build in ExportedCategories
         },
         Achievements = {
             Compact = false,
@@ -115,7 +119,7 @@ options.Defaults = {
         },
         EventReminders = {
             ShowPopUps = true,
-            FadeDelay = 30,
+            FadeDelay = 10,
             DateTimeFormat = {
                 StartTimeAndEndTime = "%d/%m/%Y %R"
             },

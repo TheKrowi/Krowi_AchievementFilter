@@ -12,7 +12,7 @@ options.OptionsTable.args["Credits"] = {
             inline = true,
             args = {
                 Names = {
-                    order = 1, type = "description",
+                    order = 1, type = "description", width = "full",
                     name = addon.Credits.GetSpecialThanksAsString(),
                     fontSize = "medium"
                 }
@@ -24,7 +24,7 @@ options.OptionsTable.args["Credits"] = {
             inline = true,
             args = {
                 Names = {
-                    order = 1, type = "description",
+                    order = 1, type = "description", width = "full",
                     name = addon.Credits.GetDonationsAsString(),
                     fontSize = "medium"
                 }
@@ -36,7 +36,7 @@ options.OptionsTable.args["Credits"] = {
             inline = true,
             args = {
                 Names = {
-                    order = 1, type = "description",
+                    order = 1, type = "description", width = "full",
                     name = addon.Credits.GetLocalizationsAsString(),
                     fontSize = "medium"
                 }

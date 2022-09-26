@@ -21,6 +21,8 @@ local defaultAchievementFrameWidth;
 local defaultAchievementFrameHeight;
 local defaultAchievementFrameMetalBorderHeight;
 function gui:LoadWithBlizzard_AchievementUI()
+    self.LoadWrathClassicAchievementFrameChanges();
+
     defaultAchievementFrameWidth = AchievementFrame:GetWidth();
     defaultAchievementFrameHeight = AchievementFrame:GetHeight();
     defaultAchievementFrameMetalBorderHeight = AchievementFrameMetalBorderLeft:GetHeight();
@@ -50,6 +52,7 @@ function gui:LoadWithBlizzard_AchievementUI()
         addon.Tabs[t].Button = gui.AchievementFrameTabButton:New(addon.Tabs[t].Text, {gui.FilterButton, gui.Search.BoxFrame, gui.CategoriesFrame}, addon.Tabs[t].Categories, addon.Tabs[t].Filters, waterMarks[i]);
         KrowiAF_RegisterTabButton(addonName, addon.Tabs[t].Name, addon.Tabs[t].Button);
     end
+    self.LoadOldAchievementFrameCompatibility();
 
     local activeCalendarEvents = addon.EventData.GetActiveCalendarEvents();
 
@@ -74,8 +77,7 @@ function gui:LoadWithBlizzard_AchievementUI()
     gui.AchievementFrameHeader.CreateTooltip();
 
     self.SetCloseButtonOnKeyDown();
-
-    self.LoadWrathClassicFixes();
+    self:HookShowSubFrame();
 
     -- This sacrifices the AchievementFrame moving other frames automatically, something to live with I assume
     UIPanelWindows["AchievementFrame"] = nil;
@@ -84,6 +86,26 @@ function gui:LoadWithBlizzard_AchievementUI()
     tinsert(UISpecialFrames, "AchievementFrame");
 
     diagnostics.Debug("GUI loaded");
+end
+
+function gui:HookShowSubFrame()
+    hooksecurefunc("AchievementFrame_ShowSubFrame", function(...)
+        self:ShowSubFrame(...);
+    end);
+end
+
+gui.SubFrames = {};
+function gui:ShowSubFrame(...)
+	for _, subFrame in ipairs(self.SubFrames) do
+		show = false;
+		for i = 1, select("#", ...) do
+			if subFrame == select(i, ...) then
+				show = true;
+				break;
+			end
+		end
+		subFrame:SetShown(show);
+	end
 end
 
 function gui.ResetAchievementWindowPosition()
@@ -374,7 +396,7 @@ function gui.TabsOrderGetActiveKeys()
     return SavedData.TabKeys;
 end
 
-function gui.LoadWrathClassicFixes()
+function gui.LoadWrathClassicAchievementFrameChanges()
     if not addon.IsWrathClassic then
         return;
     end
@@ -386,5 +408,26 @@ function gui.LoadWrathClassicFixes()
             GameTooltip:Hide();
             guildMemberRequestFrame = nil;
         end
+    end
+end
+
+function gui.LoadOldAchievementFrameCompatibility()
+    if not addon.IsWrathClassic and not addon.IsShadowlandsRetail then
+        return;
+    end
+
+    for i, t in next, addon.TabsOrder do
+        addon.Tabs[t].Button.Text = addon.Tabs[t].Button.text;
+    end
+
+    AchievementFrame.Header = AchievementFrameHeader;
+    AchievementFrame.Header.RightDDLInset = AchievementFrameHeaderRightDDLInset;
+    AchievementFrame.Header.PointBorder = AchievementFrameHeaderPointBorder;
+    AchievementFrame.Header.Points = AchievementFrameHeaderPoints;
+    AchievementFrame.Header.Title = AchievementFrameHeaderTitle;
+
+    if addon.IsShadowlandsRetail then
+        AchievementFrame.SearchBox = AchievementFrame.searchBox;
+		AchievementFrame.Header.LeftDDLInset = AchievementFrameHeaderLeftDDLInset;
     end
 end

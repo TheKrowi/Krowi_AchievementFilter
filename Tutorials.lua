@@ -1,7 +1,7 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
 
-addon.Tutorials = LibStub("Krowi_Tutorials-2.1");
+addon.Tutorials = LibStub("Krowi_Tutorials-3.0");
 local tutorials = addon.Tutorials;
 
 local media = "Interface\\AddOns\\Krowi_AchievementFilter\\Media\\";

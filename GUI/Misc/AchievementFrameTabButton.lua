@@ -9,17 +9,17 @@ local ourTabIDs = {};
 -- [[ Constructors ]] --
 achFrameTabBtn.__index = achFrameTabBtn; -- Used to support OOP like code
 function achFrameTabBtn:New(text, framesToShow, categories, filters, waterMark)
-	-- Increment ID
-    PanelTemplates_SetNumTabs(AchievementFrame, AchievementFrame.numTabs + 1);
+	-- Increment id
+    local tabId = AchievementFrame.numTabs + 1;
 
 	-- Create frame
-    local frame = CreateFrame("Button", "AchievementFrameTab" .. AchievementFrame.numTabs, AchievementFrame, "AchievementFrameTabButtonTemplate"); -- Blizzard naming
-    frame:SetID(AchievementFrame.numTabs);
+    local frame = CreateFrame("Button", "AchievementFrameTab" .. tabId, AchievementFrame, "AchievementFrameTabButtonTemplate"); -- Blizzard naming
+    frame:SetID(tabId);
     frame:SetText(text);
     addon.Util.InjectMetatable(frame, achFrameTabBtn);
 
 	-- Set properties
-    frame.ID = AchievementFrame.numTabs;
+    frame.ID = tabId;
     tinsert(ourTabIDs, frame.ID);
     frame.FramesToShow = framesToShow;
 
@@ -52,6 +52,8 @@ function achFrameTabBtn:New(text, framesToShow, categories, filters, waterMark)
             frame:AchievementFrame_UpdateTabs(frame, frame.ID, clickedTab);
         end);
     end
+
+    PanelTemplates_SetNumTabs(AchievementFrame, tabId);
 
     return frame;
 end
@@ -117,10 +119,10 @@ function achFrameTabBtn:AchievementFrame_UpdateTabs(thisTab, thisTabID, clickedT
     end
 
     if thisTabID == clickedTab then
-        thisTab.text:SetPoint("CENTER", 0, -5);
+        thisTab.Text:SetPoint("CENTER", 0, -5);
         gui.SelectedTab = self;
     else
-        thisTab.text:SetPoint("CENTER", 0, -3);
+        thisTab.Text:SetPoint("CENTER", 0, -3);
     end
 
     if addon.IsWrathClassic then -- We have to set this manually because this is normally done in the OnClick of each tab

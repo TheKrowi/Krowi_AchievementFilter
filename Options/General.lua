@@ -1,6 +1,7 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
 local options = addon.Options;
+local widthMultiplier = addon.Options.WidthMultiplier;
 
 local popupDialog = LibStub("Krowi_PopopDialog-1.0");
 
@@ -15,7 +16,11 @@ local function OpenTutorialsMenu()
         menu:AddFull({
             Text = (pages[i].IsViewed and "" or "|T132049:0|t") .. string.format(addon.Colors.White, addon.Colors.RemoveColor(pages[i].SubTitle)),
             Func = function()
-                InterfaceOptionsFrame:Hide();
+                if addon.IsWrathClassic or addon.IsShadowlandsRetail then
+                    InterfaceOptionsFrame:Hide();
+                else
+                    SettingsPanel:Close();
+                end
                 addon.Diagnostics.Debug("Showing tutorial for " .. tostring(i));
                 addon.Tutorials.FeaturesTutorial:ShowTutorial(i);
             end
@@ -37,7 +42,11 @@ end
 
 local screenshotModeFrame;
 local function HandleScreenshotMode()
-    InterfaceOptionsFrame:Hide();
+    if addon.IsWrathClassic or addon.IsShadowlandsRetail then
+        InterfaceOptionsFrame:Hide();
+    else
+        SettingsPanel:Close();
+    end
     if screenshotModeFrame == nil then
         screenshotModeFrame = CreateFrame("Frame", nil, UIParent);
         if screenshotModeFrame == nil then
@@ -74,28 +83,28 @@ options.OptionsTable.args["General"] = {
                     inline = true,
                     args = {
                         Version = {
-                            order = 1.1, type = "description", width = "normal",
+                            order = 1.1, type = "description", width = 1 * widthMultiplier,
                             name = string.format(addon.Colors.Yellow, addon.L["Version"] .. ": ") .. addon.MetaData.Version,
                             fontSize = "medium",
                         },
                         Build = {
-                            order = 1.2, type = "description", width = "normal",
+                            order = 1.2, type = "description", width = 1 * widthMultiplier,
                             name = string.format(addon.Colors.Yellow, addon.L["Build"] .. ": ") .. addon.MetaData.Build,
                             fontSize = "medium",
                         },
                         Tutorial = {
-                            order = 1.3, type = "execute",
+                            order = 1.3, type = "execute", width = 1 * widthMultiplier,
                             name = function() return (addon.Tutorials.FeaturesTutorial:HasUnviewedPages() and "|T132049:0|t" or "") .. addon.L["Tutorial"]; end,
                             desc = addon.L["Tutorial Desc"],
                             func = OpenTutorialsMenu
                         },
                         Author = {
-                            order = 2.1, type = "description", width = "double",
+                            order = 2.1, type = "description", width = 2 * widthMultiplier,
                             name = string.format(addon.Colors.Yellow, addon.L["Author"] .. ": ") .. addon.MetaData.Author,
                             fontSize = "medium",
                         },
                         Discord = {
-                            order = 2.3, type = "execute",
+                            order = 2.3, type = "execute", width = 1 * widthMultiplier,
                             name = addon.L["Discord"],
                             desc = addon.Util.ReplaceVars
                             {
@@ -114,7 +123,7 @@ options.OptionsTable.args["General"] = {
                     inline = true,
                     args = {
                         CurseForge = {
-                            order = 1.1, type = "execute",
+                            order = 1.1, type = "execute", width = 1 * widthMultiplier,
                             name = addon.L["CurseForge"],
                             desc = addon.Util.ReplaceVars
                             {
@@ -127,7 +136,7 @@ options.OptionsTable.args["General"] = {
                             end
                         },
                         Wago = {
-                            order = 1.2, type = "execute",
+                            order = 1.2, type = "execute", width = 1 * widthMultiplier,
                             name = addon.L["Wago"],
                             desc = addon.Util.ReplaceVars
                             {
@@ -140,7 +149,7 @@ options.OptionsTable.args["General"] = {
                             end
                         },
                         WoWInterface = {
-                            order = 1.3, type = "execute",
+                            order = 1.3, type = "execute", width = 1 * widthMultiplier,
                             name = addon.L["WoWInterface"],
                             desc = addon.Util.ReplaceVars
                             {
@@ -166,7 +175,7 @@ options.OptionsTable.args["General"] = {
                     inline = true,
                     args = {
                         ShowMinimapIcon = {
-                            order = 1, type = "toggle",
+                            order = 1, type = "toggle", width = 1 * widthMultiplier,
                             name = addon.L["Show minimap icon"],
                             desc = addon.L["Show minimap icon Desc"],
                             get = function() return addon.Options.db.ShowMinimapIcon; end,
@@ -186,7 +195,7 @@ options.OptionsTable.args["General"] = {
                     inline = true,
                     args = {
                         ResetViewOnOpen = {
-                            order = 1.1, type = "toggle",
+                            order = 1.1, type = "toggle", width = 1 * widthMultiplier,
                             name = addon.L["Reset view on open"],
                             desc = addon.L["Reset view on open Desc"],
                             get = function() return addon.Options.db.ResetViewOnOpen; end,
@@ -203,7 +212,7 @@ options.OptionsTable.args["General"] = {
                     inline = true,
                     args = {
                         RebindMicroButton = {
-                            order = 1.1, type = "select", width = 2,
+                            order = 1.1, type = "select", width = 2 * widthMultiplier,
                             name = addon.L["Rebind Micro Button"],
                             desc = addon.L["Rebind Micro Button Desc"],
                             values = function() return addon.GUI.TabsOrderGetActiveKeys(); end,
@@ -217,7 +226,7 @@ options.OptionsTable.args["General"] = {
                             end
                         },
                         SetKeybind = {
-                            order = 1.2, type = "execute",
+                            order = 1.2, type = "execute", width = 1 * widthMultiplier,
                             name = addon.L["Set Keybind"],
                             desc = addon.Util.ReplaceVars
                             {
@@ -246,7 +255,7 @@ options.OptionsTable.args["General"] = {
                     inline = true,
                     args = {
                         ClearOnRightClick = {
-                            order = 1.1, type = "toggle", width = 1.5,
+                            order = 1.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Clear search field on Right Click"],
                             desc = addon.L["Clear search field on Right Click Desc"],
                             get = function() return addon.Options.db.SearchBox.ClearOnRightClick; end,
@@ -256,7 +265,7 @@ options.OptionsTable.args["General"] = {
                             end
                         },
                         ExcludeExcluded = {
-                            order = 1.2, type = "toggle", width = 1.5,
+                            order = 1.2, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Exclude Excluded achievements"],
                             desc = addon.L["Exclude Excluded achievements Desc"],
                             get = function() return addon.Options.db.SearchBox.ExcludeExcluded; end,
@@ -266,7 +275,7 @@ options.OptionsTable.args["General"] = {
                             end
                         },
                         OnlySearchFiltered = {
-                            order = 2.1, type = "toggle", width = 1.5,
+                            order = 2.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Only search filtered achievements"],
                             desc = addon.L["Only search filtered achievements Desc"],
                             get = function() return addon.Options.db.SearchBox.OnlySearchFiltered; end,
@@ -275,9 +284,9 @@ options.OptionsTable.args["General"] = {
                                 options.Debug(addon.L["Only search filtered achievements"], addon.Options.db.SearchBox.OnlySearchFiltered);
                             end
                         },
-                        Blank22 = {order = 2.2, type = "description", width = 1.5, name = ""},
+                        Blank22 = {order = 2.2, type = "description", width = 1.5 * widthMultiplier, name = ""},
                         MinimumCharactersToSearch = {
-                            order = 3.1, type = "range", width = 1.5,
+                            order = 3.1, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Minimum characters to search"],
                             desc = addon.L["Minimum characters to search Desc"],
                             min = 1, max = 10, step = 1,
@@ -296,7 +305,7 @@ options.OptionsTable.args["General"] = {
                     inline = true,
                     args = {
                         NumberOfSearchPreviews = {
-                            order = 1.1, type = "range", width = 1.5,
+                            order = 1.1, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Number of search previews"],
                             desc = addon.ReplaceVarsWithReloadReq(addon.L["Number of search previews Desc"]),
                             min = 1, max = 1000, step = 1, -- max is set by options.MaxNumberOfSearchPreviews after loading has finished
@@ -321,7 +330,7 @@ options.OptionsTable.args["General"] = {
                     inline = true,
                     args = {
                         ResetFactionFilter = {
-                            order = 1.1, type = "toggle", width = "normal",
+                            order = 1.1, type = "toggle", width = 1 * widthMultiplier,
                             name = addon.L["Reset Faction Filters"],
                             desc = addon.Util.ReplaceVars
                             {
@@ -350,7 +359,7 @@ options.OptionsTable.args["General"] = {
                     fontSize = "medium"
                 },
                 EnableDebugInfo = {
-                    order = 2.1, type = "toggle", width = "normal",
+                    order = 2.1, type = "toggle", width = 1 * widthMultiplier,
                     name = addon.L["Enable debug info"],
                     desc = addon.L["Enable debug info Desc"],
                     get = function() return addon.Options.db.EnableDebugInfo; end,
@@ -359,7 +368,7 @@ options.OptionsTable.args["General"] = {
                         options.Debug(addon.L["Enable debug info"], addon.Options.db.EnableDebugInfo);
                     end
                 },
-                Blank12 = {order = 2.2, type = "description", width = "normal", name = ""},
+                Blank12 = {order = 2.2, type = "description", width = 1 * widthMultiplier, name = ""},
                 ScreenshotMode = {
                     order = 2.3, type = "execute",
                     name = addon.L["Screenshot Mode"],
@@ -367,7 +376,7 @@ options.OptionsTable.args["General"] = {
                     func = HandleScreenshotMode
                 },
                 EnableTraceInfo = {
-                    order = 3.1, type = "toggle", width = "full",
+                    order = 3.1, type = "toggle", width = 1 * widthMultiplier,
                     name = addon.L["Enable trace info"],
                     desc = addon.L["Enable trace info Desc"],
                     get = function() return addon.Options.db.EnableTraceInfo; end,
@@ -376,8 +385,9 @@ options.OptionsTable.args["General"] = {
                         options.Debug(addon.L["Enable trace info"], addon.Options.db.EnableTraceInfo);
                     end
                 },
+                Blank32 = {order = 3.2, type = "description", width = 2 * widthMultiplier, name = ""},
                 ShowPlaceholdersFilter = {
-                    order = 4.1, type = "toggle", width = "full",
+                    order = 4.1, type = "toggle", width = 1 * widthMultiplier,
                     name = addon.L["Show placeholders filter"],
                     desc = addon.L["Show placeholders filter Desc"],
                     get = function() return addon.Options.db.ShowPlaceholdersFilter; end,
@@ -385,7 +395,8 @@ options.OptionsTable.args["General"] = {
                         addon.Options.db.ShowPlaceholdersFilter = not addon.Options.db.ShowPlaceholdersFilter;
                         options.Debug(addon.L["Show placeholders filter"], addon.Options.db.ShowPlaceholdersFilter);
                     end
-                }
+                },
+                Blank42 = {order = 4.2, type = "description", width = 2 * widthMultiplier, name = ""}
             }
         }
     }

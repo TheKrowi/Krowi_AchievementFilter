@@ -440,7 +440,11 @@ function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
 			end
 		end
 		if not handled and IsModifiedClick("QUESTWATCHTOGGLE") then
-			AchievementButton_ToggleTracking(self.Achievement.Id);
+			if addon.IsWrathClassic or addon.IsShadowlandsRetail then
+				AchievementButton_ToggleTracking(self.Achievement.Id);
+			else
+				self:ToggleTracking();
+			end
 		end
 		return;
 	end
@@ -466,5 +470,47 @@ end
 function KrowiAF_AchievementButtonMixin:ShowTooltip()
 	if self.Achievement then
 		addon.GUI.AchievementTooltip.ShowTooltip(self, self.Achievement);
+	end
+end
+
+function KrowiAF_AchievementButtonMixin:ToggleTracking()
+	local id = self.Achievement.Id;
+	if self.Achievement.IsTracked then
+		RemoveTrackedAchievement(id);
+		self:SetAsTracked(false);
+		return;
+	end
+
+	local count = GetNumTrackedAchievements();
+	if count >= MAX_TRACKED_ACHIEVEMENTS then
+		UIErrorsFrame:AddMessage(format(ACHIEVEMENT_WATCH_TOO_MANY, MAX_TRACKED_ACHIEVEMENTS), 1.0, 0.1, 0.1, 1.0);
+		return;
+	end
+
+	local _, _, _, completed, _, _, _, _, _, _, _, isGuild, wasEarnedByMe = GetAchievementInfo(id);
+	if (completed and isGuild) or wasEarnedByMe then
+		UIErrorsFrame:AddMessage(ERR_ACHIEVEMENT_WATCH_COMPLETED, 1.0, 0.1, 0.1, 1.0);
+		return;
+	end
+
+	self:SetAsTracked(true);
+	AddTrackedAchievement(id);
+
+	return true;
+end
+
+function KrowiAF_AchievementButtonMixin:SetAsTracked(tracked)
+	self.Achievement.IsTracked = nil;
+	if tracked then
+		self.Achievement.IsTracked = true;
+	end
+	self.Check:SetShown(tracked);
+	self.Tracked:SetChecked(tracked);
+	if tracked then
+		self.Tracked:Show();
+	else
+		if not self.selected then
+			self.Tracked:Hide();
+		end
 	end
 end

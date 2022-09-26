@@ -220,9 +220,9 @@ function summaryFrame:Load()
 	frame:SetPoint("BOTTOM", 0, 20);
 	frame:SetPoint("RIGHT", -20, 0);
 
-    for i, frameName in next, ACHIEVEMENTFRAME_SUBFRAMES do
-		if frameName == gui.AchievementsFrame:GetName() then
-			tinsert(ACHIEVEMENTFRAME_SUBFRAMES, i, frame:GetName());
+    for i, subFrame in next, addon.GUI.SubFrames do
+		if subFrame == gui.AchievementsFrame then
+			tinsert(addon.GUI.SubFrames, i, frame);
 			break;
 		end
 	end

@@ -2,7 +2,24 @@
 All notable changes to this project will be documented in this file.
 
 ## 44.0 - 2022-10-xx
+### Added
+- Dragonflight Dungeons, Raids, Dragonriding, Dragon Racing and Primal Storms data
+- Adjustable Category feature for Focused and Excluded achievements
+- Primal Storm world events data
+- Tracking Achievements category with all the tracking achievements and other hidden ones usually not visible to players
+
+### Changed
+- Default fade delay for event reminder pop ups changed to 10 seconds (down from 30)
+- Localization of the temporary obtainable string is can now be reordered
+- Calendar events and World events options are now grouped via a sidebar instead of a big list
+- World events are now rounded to 5 minutes instead of 1 hour
+- Moved some options from Layout - Categories to Layout - Adjustable Categories
+
+### Fixed
+- Dragonflight compatibility changes
+
 ### Removed
+- Excluded category filter
 - Widget events
 
 ### Wrath Classic
