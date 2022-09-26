@@ -1,6 +1,6 @@
 ## Interface: 30400
 ## Title: Krowi's |cFF1D92C2Achievement Filter|r
-## Version: 44.0-beta2
+## Version: 44.0-beta3
 ## Author: Krowi-Frostmane EU
 ## SavedVariables: Options, SavedData, Filters, EventDetails, Test
 ## Notes: Filters your achievements.

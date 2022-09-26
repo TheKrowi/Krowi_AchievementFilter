@@ -77,8 +77,9 @@ function loadHelper:OnEvent(event, arg1, arg2)
 
             addon.MakeWindowMovable();
             addon.GUI.AchievementFrameHeader.HookSetPointsText();
+            addon.OverwriteFunctions();
             addon.HookAchievementFrameOnShow();
-            addon.HookSelectAchievement();
+            -- addon.HookSelectAchievement();
         elseif arg1 == "WoWUnit" then
             addon.UnitTests:Load();
         end

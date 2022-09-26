@@ -81,10 +81,10 @@ function gui:LoadWithBlizzard_AchievementUI()
     self:HookShowSubFrame();
 
     -- This sacrifices the AchievementFrame moving other frames automatically, something to live with I assume
-    UIPanelWindows["AchievementFrame"] = nil;
-    AchievementFrame:SetAttribute("UIPanelLayout-area", nil);
-    AchievementFrame:SetAttribute("UIPanelLayout-enabled", false);
-    tinsert(UISpecialFrames, "AchievementFrame");
+    -- UIPanelWindows["AchievementFrame"] = nil;
+    -- AchievementFrame:SetAttribute("UIPanelLayout-area", nil);
+    -- AchievementFrame:SetAttribute("UIPanelLayout-enabled", false);
+    -- tinsert(UISpecialFrames, "AchievementFrame");
 
     diagnostics.Debug("GUI loaded");
 end
@@ -206,6 +206,10 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
         LoadAddOn("Blizzard_AchievementUI");
     end
 
+    if addon.IsDragonflightRetail then
+        ClearSelectedCategories();
+    end
+
     AchievementFrameComparison:Hide();
     AchievementFrameTab_OnClick = AchievementFrameBaseTab_OnClick;
 
@@ -219,11 +223,11 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
 	if AchievementFrame:IsShown() and tabIsSelected and not resetView and not forceOpen then
         AchievementFrame:Hide();
 	else
-        if not addon.IsWrathClassic then
+        -- if not addon.IsWrathClassic then
             AchievementFrame_SetTabs();
-        else
-            addon.GUI.ShowHideTabs();
-        end
+        -- else
+        --     addon.GUI.ShowHideTabs();
+        -- end
         AchievementFrame:Show();
         if not addon.IsWrathClassic then
             AchievementFrame_HideSearchPreview();
@@ -401,9 +405,9 @@ function gui.LoadWrathClassicAchievementFrameChanges()
     if not addon.IsWrathClassic then
         return;
     end
-    if AchievementFrame_SetTabs == nil then
-        AchievementFrame_SetTabs = function() end;
-    end
+    -- if AchievementFrame_SetTabs == nil then
+    --     AchievementFrame_SetTabs = function() end;
+    -- end
     if AchievementMeta_OnLeave == nil then
         AchievementMeta_OnLeave = function(self)
             GameTooltip:Hide();

@@ -337,21 +337,86 @@ function addon.ResetCache()
     criteriaCache = nil;
 end
 
-function addon.HookSelectAchievement()
-    hooksecurefunc("AchievementFrame_SelectAchievement", function(id, forceSelect, isComparison)
+function addon.OverwriteFunctions()
+    AchievementFrame_ToggleAchievementFrame = function(toggleStatFrame, toggleGuildView)
+        if addon.IsDragonflightRetail then
+            ClearSelectedCategories();
+        end
+
+        AchievementFrameComparison:Hide();
+        AchievementFrameTab_OnClick = AchievementFrameBaseTab_OnClick;
+
+        if not toggleStatFrame then
+            if AchievementFrame:IsShown() and AchievementFrame.selectedTab == 1 then
+                AchievementFrame:Hide();
+            else
+                AchievementFrame_SetTabs();
+                AchievementFrame:Show();
+                if toggleGuildView then
+                    AchievementFrameTab_OnClick(2);
+                else
+                    AchievementFrameTab_OnClick(1);
+                end
+            end
+            return;
+        end
+        if AchievementFrame:IsShown() and AchievementFrame.selectedTab == (addon.IsWrathClassic and 2 or 3) then
+            AchievementFrame:Hide();
+        else
+            AchievementFrame:Show();
+            AchievementFrame_SetTabs();
+            AchievementFrameTab_OnClick(addon.IsWrathClassic and 2 or 3);
+        end
+    end
+
+    AchievementFrame_DisplayComparison = function(unit)
+        if addon.IsDragonflightRetail then
+            ClearSelectedCategories();
+        else
+            AchievementFrame.wasShown = nil;
+        end
+    
+        AchievementFrameTab_OnClick = AchievementFrameComparisonTab_OnClick;
+        AchievementFrameTab_OnClick(1);
+        if addon.IsDragonflightRetail then
+            AchievementFrame_SetComparisonTabs();
+        elseif addon.IsShadowlandsRetail then
+            AchievementFrame_SetTabs();
+        end
+        AchievementFrame:Show();
+        if addon.IsDragonflightRetail then
+            AchievementFrame_ShowSubFrame(AchievementFrameComparison, AchievementFrameComparison.AchievementContainer);
+        end
+        AchievementFrameComparison_SetUnit(unit);
+        AchievementFrameComparison_ForceUpdate();
+    end
+
+    AchievementFrame_SetTabs = addon.GUI.ShowHideTabs;
+
+    AchievementFrame_SelectAchievement = function(id)
         KrowiAF_SelectAchievementFromID(id);
-    end);
+    end
+
+    if addon.IsWrathClassic then
+        hooksecurefunc("PanelTemplates_SetTab", AchievementFrame_SetTabs);
+    end
 end
+
+-- function addon.HookSelectAchievement()
+--     hooksecurefunc("AchievementFrame_SelectAchievement", function(id, forceSelect, isComparison)
+--         KrowiAF_SelectAchievementFromID(id);
+--     end);
+-- end
 
 function addon.HookAchievementFrameOnShow()
     hooksecurefunc(AchievementFrame, "Show", function()
         addon.Data.GetCurrentZoneAchievements();
     end);
 
-    local funcName = addon.IsWrathClassic and "PanelTemplates_SetTab" or "AchievementFrame_SetTabs";
-    hooksecurefunc(funcName, function()
-        addon.GUI.ShowHideTabs();
-    end);
+    -- local funcName = addon.IsWrathClassic and "PanelTemplates_SetTab" or "AchievementFrame_SetTabs";
+    -- if addon.IsWrathClassic then
+    --     hooksecurefunc("PanelTemplates_SetTab", AchievementFrame_SetTabs);
+    -- end
 end
 
 local function MakeMovable(frame, rememberLastPositionOption, target)
