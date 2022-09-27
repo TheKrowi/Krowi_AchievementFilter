@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - Calendar events and World events options are now grouped via a sidebar instead of a big list
 - World events are now rounded to 5 minutes instead of 1 hour
 - Moved some options from Layout - Categories to Layout - Adjustable Categories
+- Statistics and Guild tabs can now occur in any order
 
 ### Fixed
 - Dragonflight compatibility changes
