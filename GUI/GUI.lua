@@ -206,9 +206,9 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
         LoadAddOn("Blizzard_AchievementUI");
     end
 
-    if addon.IsDragonflightRetail then
-        ClearSelectedCategories();
-    end
+    -- if addon.IsDragonflightRetail then
+    --     ClearSelectedCategories();
+    -- end
 
     AchievementFrameComparison:Hide();
     AchievementFrameTab_OnClick = AchievementFrameBaseTab_OnClick;

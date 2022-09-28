@@ -11,8 +11,8 @@ function calendar:Load()
 end
 
 function calendar:CreateCalendarButton()
-    local button = CreateFrame("Button", "KrowiAF_AchievementCalendarButton", AchievementFrameHeader);
-    button:SetPoint("LEFT", AchievementFrameHeaderPointBorder, "RIGHT");
+    local button = CreateFrame("Button", "KrowiAF_AchievementCalendarButton", AchievementFrame.Header);
+    button:SetPoint("LEFT", AchievementFrame.Header.PointBorder, "RIGHT");
     button:SetSize(40, 40);
 
     local ntex = button:CreateTexture();

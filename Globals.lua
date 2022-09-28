@@ -339,9 +339,9 @@ end
 
 function addon.OverwriteFunctions()
     AchievementFrame_ToggleAchievementFrame = function(toggleStatFrame, toggleGuildView)
-        if addon.IsDragonflightRetail then
-            ClearSelectedCategories();
-        end
+        -- if addon.IsDragonflightRetail then
+        --     ClearSelectedCategories();
+        -- end
 
         AchievementFrameComparison:Hide();
         AchievementFrameTab_OnClick = AchievementFrameBaseTab_OnClick;
@@ -370,9 +370,10 @@ function addon.OverwriteFunctions()
     end
 
     AchievementFrame_DisplayComparison = function(unit)
-        if addon.IsDragonflightRetail then
-            ClearSelectedCategories();
-        else
+        -- if addon.IsDragonflightRetail then
+            -- ClearSelectedCategories();
+        -- else
+        if not addon.IsDragonflightRetail then
             AchievementFrame.wasShown = nil;
         end
     
