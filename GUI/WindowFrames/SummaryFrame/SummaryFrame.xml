@@ -90,11 +90,9 @@
 			</Frame>
 		</Frames>
 		<Scripts>
-			<OnLoad>
-				self:RegisterEvent("ACHIEVEMENT_EARNED");
-			</OnLoad>
 			<OnEvent function="KrowiAF_AchievementFrameSummaryFrame_OnEvent"/>
 			<OnShow function="KrowiAF_AchievementFrameSummaryFrame_OnShow"/>
+			<OnHide function="KrowiAF_AchievementFrameSummaryFrame_OnHide"/>
 		</Scripts>
 	</Frame>
 </Ui>

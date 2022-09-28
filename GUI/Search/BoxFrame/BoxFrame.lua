@@ -71,14 +71,14 @@ local function GetSearchResults(text)
 	text = text:lower();
 	local results = {};
 
-	local numAchievementIds = #addon.Data.AchievementIDs;
+	local numAchievementIds = #addon.Data.AchievementIds;
 	local excludeExcluded = addon.Options.db.SearchBox.ExcludeExcluded;
 	local showPlaceholders = addon.Options.db.ShowPlaceholdersFilter and addon.Filters.db.ShowPlaceholders;
 
 	local achievement;
 	if string.match(text, "^#") then
 		for i = 1, numAchievementIds do
-			achievement = addon.Data.Achievements[addon.Data.AchievementIDs[i]];
+			achievement = addon.Data.Achievements[addon.Data.AchievementIds[i]];
 			if string.find(tostring(achievement.ID):lower(), string.sub(text, 2):lower(), 1, true) then
 				if not (excludeExcluded and achievement.Excluded) then
 					if achievement.DoesNotExist == nil or (showPlaceholders and achievement.DoesNotExist) then
@@ -89,7 +89,7 @@ local function GetSearchResults(text)
 		end
 	else
 		for i = 1, numAchievementIds do
-			achievement = addon.Data.Achievements[addon.Data.AchievementIDs[i]];
+			achievement = addon.Data.Achievements[addon.Data.AchievementIds[i]];
 			local _, name, _, _, _, _, _, description, _, _, _, _, _, _, _ = GetAchievementInfo(achievement.Id);
 			if name and (string.find(name:lower(), text, 1, true) or string.find(description:lower(), text, 1, true)) then
 				if not (excludeExcluded and achievement.Excluded) then

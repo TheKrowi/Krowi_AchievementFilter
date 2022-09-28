@@ -112,7 +112,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
             end);
         end
     elseif event == "ACHIEVEMENT_EARNED" then
-        addon.ResetCache(); -- Will force to fetch achievement data again, updating the character achievement points
+        addon.OnAchievementEarned(arg1);
     end
 end
 loadHelper:SetScript("OnEvent", loadHelper.OnEvent);

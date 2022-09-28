@@ -7,7 +7,7 @@ local data = addon.Data;
 data.TransmogSets = {};
 
 data.Achievements = {};
-data.AchievementIDs = {};
+data.AchievementIds = {};
 
 data.CategoriesExpansions, data.CategoriesEvents, data.CategoriesPvP, data.CategoriesSpecials, data.CategoriesAchievements = {}, {}, {}, {}, {};
 
@@ -27,9 +27,9 @@ function data.Load()
 
     data.ExportedTransmogSets.Load(data.TransmogSets);
 
-    data.AchievementIDs = data.ExportedAchievements.Load(data.Achievements, data.TransmogSets);
+    data.AchievementIds = data.ExportedAchievements.Load(data.Achievements, data.TransmogSets);
     local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.L["Layout"], "cmd", "KROWIAF-0.0").args.Summary.args.Summary.args.NumAchievements; -- cmd and KROWIAF-0.0 are just to make the function work
-    custom.max = #data.AchievementIDs;
+    custom.max = #data.AchievementIds;
 
     local tabsCategories;
     tabsCategories, data.FocusedCategories, data.CurrentZoneCategories, data.SelectedZoneCategories, data.TrackingAchievementsCategories, data.ExcludedCategories = data.ExportedCategories.Load(data.Achievements);
@@ -102,12 +102,12 @@ end
 function data.AddAchievementIfNil(id, points)
     if data.Achievements[id] == nil then
         data.Achievements[id] = addon.Objects.Achievement:New(id, points);
-        tinsert(data.AchievementIDs, id);
+        tinsert(data.AchievementIds, id);
     end
 end
 
-function data.SortAchievementIDs()
-    sort(data.AchievementIDs);
+function data.SortAchievementIds()
+    sort(data.AchievementIds);
 end
 
 local tmpC = {};
@@ -150,18 +150,18 @@ function data.LoadBlizzardTabAchievements(categories)
 		end
 	end
 
-    for i = 1, #data.AchievementIDs do
-        local prevID = GetPreviousAchievement(data.AchievementIDs[i]);
+    for i = 1, #data.AchievementIds do
+        local prevID = GetPreviousAchievement(data.AchievementIds[i]);
         if prevID == 14884 then -- 14884 is a tracking achievement and is not earned by everyone
             prevID = 9;
         end
         if prevID and data.Achievements[prevID] then
-            data.Achievements[prevID]:AddNext(data.Achievements[data.AchievementIDs[i]]);
+            data.Achievements[prevID]:AddNext(data.Achievements[data.AchievementIds[i]]);
         end
     end
 
-    for i = 1, #data.AchievementIDs do
-        local achID = data.AchievementIDs[i];
+    for i = 1, #data.AchievementIds do
+        local achID = data.AchievementIds[i];
         if addedOutOfOrder[achID] == nil then -- Not yet added
             local categoryID = GetAchievementCategory(achID);
             if tmpC[categoryID] ~= nil then

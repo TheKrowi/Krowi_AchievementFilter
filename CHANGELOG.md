@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 - World events are now rounded to 5 minutes instead of 1 hour
 - Moved some options from Layout - Categories to Layout - Adjustable Categories
 - Statistics and Guild tabs can now occur in any order
+- Optimized performance when an achievement is earned
 
 ### Fixed
 - Dragonflight compatibility changes

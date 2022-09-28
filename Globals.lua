@@ -242,8 +242,8 @@ local function SetCharPoints(playerGUID, points)
     SavedData.Characters[playerGUID].Points = points;
 end
 
-local function AddCharCompletedAchievement(playerGUID, achievementID, month, day, year)
-    SavedData.Characters[playerGUID].CompletedAchievements[achievementID] = time{
+local function AddCharCompletedAchievement(playerGUID, achievementId, month, day, year)
+    SavedData.Characters[playerGUID].CompletedAchievements[achievementId] = time{
         year = 2000 + year,
         month = month,
         day = day
@@ -313,7 +313,7 @@ function addon.BuildCache()
     characterPoints = 0;
     local gapSize, i = 0, 1;
     AddCharToSavedData(playerGUID);
-    local highestId = addon.Data.AchievementIDs[#addon.Data.AchievementIDs];
+    local highestId = addon.Data.AchievementIds[#addon.Data.AchievementIds];
     while gapSize < 500 or i < highestId do -- Biggest gap is 209 in 9.0.5 as of 2021-05-03
         local id, _, points, _, month, day, year, _, flags, _, _, isGuild, wasEarnedByMe, _, isStatistic, exists = addon.GetAchievementInfo(i);
 
@@ -328,13 +328,27 @@ function addon.BuildCache()
         end
         i = i + 1;
     end
-    addon.Data.SortAchievementIDs(); -- Achievements are added to the back so we need to make sure the list is sorted again
+    addon.Data.SortAchievementIds(); -- Achievements are added to the back so we need to make sure the list is sorted again
     SetCharPoints(playerGUID, characterPoints);
     return criteriaCache, characterPoints;
 end
 
-function addon.ResetCache()
-    criteriaCache = nil;
+-- function addon.ResetCache()
+--     criteriaCache = nil;
+-- end
+
+function addon.OnAchievementEarned(achievementId)
+    if criteriaCache == nil then
+        return; -- Achievement window is not opened yet
+    end
+    
+    local id, _, points, _, month, day, year, _, flags, _, _, isGuild, wasEarnedByMe, _, isStatistic, exists = addon.GetAchievementInfo(achievementId);
+    if not id then
+        return;
+    end
+    local playerGUID = UnitGUID("player");
+    IncrementCharacterPoints(playerGUID, id, points, month, day, year, flags, isGuild, wasEarnedByMe, isStatistic, exists);
+    SetCharPoints(playerGUID, characterPoints);
 end
 
 function addon.OverwriteFunctions()

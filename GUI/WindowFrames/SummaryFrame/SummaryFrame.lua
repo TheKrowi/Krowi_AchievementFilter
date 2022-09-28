@@ -234,8 +234,12 @@ function summaryFrame:Load()
 end
 
 function KrowiAF_AchievementFrameSummaryFrame_OnShow(self)
-    self:CategoriesStatusBar_Update();
-    self:Achievements_Update();
+    self:RegisterEvent("ACHIEVEMENT_EARNED");
+    self:Update();
+end
+
+function KrowiAF_AchievementFrameSummaryFrame_OnHide(self)
+    self:UnregisterEvent("ACHIEVEMENT_EARNED");
 end
 
 function KrowiAF_AchievementFrameSummaryFrame_OnEvent(self, event)

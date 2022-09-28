@@ -131,8 +131,6 @@ function KrowiAF_CalendarFrameCloseButton_OnKeyDown(self, key)
 end
 
 function KrowiAF_CalendarFrame_OnLoad(self)
-	self:RegisterEvent("ACHIEVEMENT_EARNED");
-
 	C_CalendarResetAbsMonth();
 
 	self.DayButtons = {};
@@ -150,14 +148,9 @@ function KrowiAF_CalendarFrame_OnLoad(self)
 	self.ViewedYear = nil;
 end
 
-function KrowiAF_CalendarFrame_OnEvent(self, event, ...)
-	if event == "ACHIEVEMENT_EARNED" then
-		self:Update();
-	end
-end
-
 local firstTimeOpen = true;
 function KrowiAF_CalendarFrame_OnShow(self)
+	self:RegisterEvent("ACHIEVEMENT_EARNED");
 	if (not self.LockMonth and not addon.Options.db.Calendar.LockMonth) or firstTimeOpen then
 		local currentCalendarTime = C_DateAndTime.GetCurrentCalendarTime();
 		C_CalendarSetAbsMonth(currentCalendarTime.month, currentCalendarTime.year);
@@ -169,7 +162,66 @@ function KrowiAF_CalendarFrame_OnShow(self)
 end
 
 function KrowiAF_CalendarFrame_OnHide(self)
+	self:UnregisterEvent("ACHIEVEMENT_EARNED");
 	PlaySound(SOUNDKIT.IG_SPELLBOOK_CLOSE);
+end
+
+local function AddAchievementToButton(dayButton, achievementId, icon, points)
+	dayButton.Achievements = dayButton.Achievements or {};
+	dayButton.Points = dayButton.Points + points;
+	tinsert(dayButton.Achievements, achievementId);
+	local achievementButtons = dayButton.AchievementButtons;
+	local numAchievements = #dayButton.Achievements;
+	local achievementButton;
+	if numAchievements <= 4 then
+		achievementButton = achievementButtons[numAchievements];
+		achievementButton.Texture:SetTexture(icon);
+		achievementButton:Show();
+	else
+		dayButton.More:Show();
+	end
+end
+
+local function GetSecondsSince(dayButton)
+    return time{year = dayButton.Year, month = dayButton.Month, day = dayButton.Day};
+end
+
+function KrowiAF_CalendarFrame_OnEvent(self, event, ...)
+	if event ~= "ACHIEVEMENT_EARNED" then
+		return;
+	end
+	local achievementId = ...;
+	local id, _, points, _, month, day, year = addon.GetAchievementInfo(achievementId);
+	if not id then
+		return;
+	end
+	if self.ViewedYear ~= 2000 + year or self.ViewedMonth ~= month then
+		return;
+	end
+
+    local firstDate = GetSecondsSince(self.DayButtons[1]);
+	local date = time{
+        year = 2000 + year,
+        month = month,
+        day = day
+    };
+	local dayButtonIndex = floor((date - firstDate) / 86400 + 1); -- 86400 seconds in a day, floor to take changes in DST which would result in x.xx
+	local dayButton = self.DayButtons[dayButtonIndex];
+	AddAchievementToButton(dayButton, achievementId, icon, points);
+	if not dayButton.Dark then
+		self.NumAchievements = self.NumAchievements + 1;
+		self.TotalPoints = self.TotalPoints + points;
+	end
+	self:SetAchievementsAndPoints(self.NumAchievements, self.TotalPoints);
+	if self.SelectedDayButton then
+		self.SelectedDayButton:Deselect();
+		self.SelectedDayButton = nil;
+		self.SelectedDay = nil;
+		self.SelectedMonth = nil;
+		self.SelectedYear = nil;
+		self.WeekdaySelectedTexture:Hide();
+		addon.GUI.Calendar.SideFrame:Hide();
+	end
 end
 
 function KrowiAF_CalendarFrame_OnMouseWheel(self, value)
@@ -463,10 +515,6 @@ function KrowiAF_CalendarFrameMixin:Update()
     self:AddAchievementsToDays();
 end
 
-local function GetSecondsSince(dayButton)
-    return time{year = dayButton.Year, month = dayButton.Month, day = dayButton.Day};
-end
-
 function KrowiAF_CalendarFrameMixin:GetEarnedAchievementsInRange()
     local firstDate = GetSecondsSince(self.DayButtons[1]);
     local lastDate = GetSecondsSince(self.DayButtons[maxDaysPerMonth]);
@@ -480,22 +528,6 @@ function KrowiAF_CalendarFrameMixin:GetEarnedAchievementsInRange()
     return achievementIds;
 end
 
-local function AddAchievementToButton(dayButton, achievementId, icon, points)
-	dayButton.Achievements = dayButton.Achievements or {};
-	dayButton.Points = dayButton.Points + points;
-	tinsert(dayButton.Achievements, achievementId);
-	local achievementButtons = dayButton.AchievementButtons;
-	local numAchievements = #dayButton.Achievements;
-	local achievementButton;
-	if numAchievements <= 4 then
-		achievementButton = achievementButtons[numAchievements];
-		achievementButton.Texture:SetTexture(icon);
-		achievementButton:Show();
-	else
-		dayButton.More:Show();
-	end
-end
-
 function KrowiAF_CalendarFrameMixin:SetAchievementsAndPoints(numAchievements, points)
 	self.MonthAchievementsAndPoints:SetText(tostring(numAchievements) .. " " .. addon.L["Achievements"] .. " (" .. tostring(points) .. " " .. addon.L["Points"] .. ")");
 end
@@ -503,7 +535,7 @@ end
 function KrowiAF_CalendarFrameMixin:AddAchievementsToDays()
     local achievementIds = self:GetEarnedAchievementsInRange();
     local firstDate = GetSecondsSince(self.DayButtons[1]);
-	local numAchievements, totalPoints = 0, 0;
+	self.NumAchievements, self.TotalPoints = 0, 0;
 	local points, icon;
 	local date, dayButtonIndex, dayButton;
     for _, achievementId in next, achievementIds do
@@ -513,9 +545,9 @@ function KrowiAF_CalendarFrameMixin:AddAchievementsToDays()
 		dayButton = self.DayButtons[dayButtonIndex];
         AddAchievementToButton(dayButton, achievementId, icon, points);
 		if not dayButton.Dark then
-			numAchievements = numAchievements + 1;
-			totalPoints = totalPoints + points;
+			self.NumAchievements = self.NumAchievements + 1;
+			self.TotalPoints = self.TotalPoints + points;
 		end
     end
-	self:SetAchievementsAndPoints(numAchievements, totalPoints);
+	self:SetAchievementsAndPoints(self.NumAchievements, self.TotalPoints);
 end
