@@ -69,7 +69,7 @@ function lib.ReadNestedKeys(tbl, keys)
     return tbl;
  end
 
- function lib.WriteNestedKeys(tbl, keys, value)
+function lib.WriteNestedKeys(tbl, keys, value)
     local prev_tbl, last_k;
     for _, k in ipairs(keys) do
        last_k, prev_tbl, tbl = k, tbl, tbl[k];
@@ -81,10 +81,19 @@ function lib.ReadNestedKeys(tbl, keys)
     prev_tbl[last_k] = value;
  end
 
- function lib.Enum(table)
+function lib.Enum(table)
     for i, element in next, table do
         local tmp = element;
         table[tmp] = i;
     end
     return table;
+end
+
+function lib.SplitString(sre, sep)
+    sep = sep or " ";
+    local fields = {};
+    for s in string.gmatch(sre, "([^"..sep.."]+)") do
+        tinsert(fields, s);
+    end
+    return fields;
 end
