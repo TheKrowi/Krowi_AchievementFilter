@@ -19,6 +19,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Dragonflight compatibility changes
+- Earned By filter should update on change again
 
 ### Removed
 - Excluded category filter
