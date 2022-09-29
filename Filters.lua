@@ -147,7 +147,7 @@ local validations = {
                 if nextCompleted then
                     return true;
                 end
-                local prevID = GetPreviousAchievement(achievement.ID);
+                local prevID = GetPreviousAchievement(achievement.Id);
                 if prevID ~= nil then
                     local _, _, _, prevCompleted = addon.GetAchievementInfo(prevID);
                     if not prevCompleted then
@@ -259,10 +259,10 @@ end
 local function CompareName(a, b, reverse, default)
     local nameA, nameB = "", "";
     if a then
-        nameA = select(2, addon.GetAchievementInfo(a.ID));
+        nameA = select(2, addon.GetAchievementInfo(a.Id));
     end
     if b then
-        nameB = select(2, addon.GetAchievementInfo(b.ID));
+        nameB = select(2, addon.GetAchievementInfo(b.Id));
     end
 
     if nameA == nil then
@@ -289,10 +289,10 @@ end
 local function CompareCompletion(a, b, reverse, default)
     local completedA, completedB = false, false;
     if a then
-        completedA = select(4, addon.GetAchievementInfo(a.ID));
+        completedA = select(4, addon.GetAchievementInfo(a.Id));
     end
     if b then
-        completedB = select(4, addon.GetAchievementInfo(b.ID));
+        completedB = select(4, addon.GetAchievementInfo(b.Id));
     end
 
     if completedA == completedB then
@@ -310,9 +310,9 @@ end
 
 local function CompareId(a, b, reverse, default)
     if reverse then
-        return a.ID > b.ID;
+        return a.Id > b.Id;
     end
-    return a.ID < b.ID;
+    return a.Id < b.Id;
 end
 
 function filters:Sort(achievements, defaultOrder)

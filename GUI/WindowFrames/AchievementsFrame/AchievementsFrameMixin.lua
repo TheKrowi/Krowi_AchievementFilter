@@ -213,7 +213,6 @@ function KrowiAF_AchievementsFrameMixin:AdjustSelection()
 end
 
 function KrowiAF_AchievementsFrameMixin:ForceUpdate(toTop) -- Issue #3: Fix
-	-- print("ForceUpdate")
 	-- Clear the cache
 	cachedCategory = nil;
 	cachedAchievements = nil;
@@ -250,7 +249,8 @@ function KrowiAF_AchievementsFrameMixin:ForceUpdate(toTop) -- Issue #3: Fix
 
 	local buttons = self.ScrollFrame.buttons;
 	for _, button in next, buttons do
-		button.Id = nil;
+		-- button.Id = nil;
+		button.Achievement = nil;
 	end
 
 	self:Update();
