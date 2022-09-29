@@ -349,6 +349,7 @@ function addon.OnAchievementEarned(achievementId)
     local playerGUID = UnitGUID("player");
     IncrementCharacterPoints(playerGUID, id, points, month, day, year, flags, isGuild, wasEarnedByMe, isStatistic, exists);
     SetCharPoints(playerGUID, characterPoints);
+    addon.AchievementEarned = true;
 end
 
 function addon.OverwriteFunctions()

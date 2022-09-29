@@ -47,7 +47,8 @@ function KrowiAF_CategoriesFrame_OnShow(self) -- Used in Templates - KrowiAF_Cat
 	end
 	AchievementFrameWaterMark:SetTexture(addon.GUI.SelectedTab and addon.GUI.SelectedTab.WaterMark or "Interface/AchievementFrame/UI-Achievement-AchievementWatermark");
 	AchievementFrameCategoriesBG:SetTexCoord(0, 0.5, 0, 1); -- Set this global texture for player achievements
-	self:Update();
+	self:Update(addon.AchievementEarned);
+	addon.AchievementEarned = nil;
 end
 
 function KrowiAF_CategoriesFrame_OnHide() -- Used in Templates - KrowiAF_CategoriesFrame_Template
