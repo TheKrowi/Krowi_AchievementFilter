@@ -52,7 +52,7 @@ function KrowiAF_CategoriesFrame_OnShow(self) -- Used in Templates - KrowiAF_Cat
 	addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = nil;
 end
 
-function KrowiAF_CategoriesFrame_OnHide() -- Used in Templates - KrowiAF_CategoriesFrame_Template
+function KrowiAF_CategoriesFrame_OnHide(self) -- Used in Templates - KrowiAF_CategoriesFrame_Template
     self:UnregisterEvent("ACHIEVEMENT_EARNED");
 	AchievementFrameCategories:Show(); -- Issue #11: Fix
 	AchievementFrameCategoriesBG:SetWidth(195); -- Set back to default value
