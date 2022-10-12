@@ -1,6 +1,7 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
 local options = addon.Options;
+local widthMultiplier = addon.Options.WidthMultiplier;
 
 local timeDisplaysLine1 = {
     addon.L["Start Time"],
@@ -93,7 +94,7 @@ options.OptionsTable.args["EventReminders"] = {
                     inline = true,
                     args = {
                         ShowPopUps = {
-                            order = 1.1, type = "toggle", width = 1.5,
+                            order = 1.1, type = "toggle", width = 1 * widthMultiplier,
                             name = addon.L["Show pop ups"],
                             desc = addon.L["Show pop ups Desc"],
                             get = function() return addon.Options.db.EventReminders.ShowPopUps; end,
@@ -102,9 +103,9 @@ options.OptionsTable.args["EventReminders"] = {
                                 options.Debug(addon.L["Show pop ups"], addon.Options.db.EventReminders.ShowPopUps);
                             end
                         },
-                        Blank12 = {order = 1.2, type = "description", width = 1.5, name = ""},
+                        Blank12 = {order = 1.2, type = "description", width = 2 * widthMultiplier, name = ""},
                         MaxAlerts = {
-                            order = 2.1, type = "range", width = 1.5,
+                            order = 2.1, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Max number of alerts"],
                             desc = addon.L["Max number of alerts Desc"],
                             min = 1, max = 100, step = 1,
@@ -116,7 +117,7 @@ options.OptionsTable.args["EventReminders"] = {
                             end
                         },
                         FadeDelay = {
-                            order = 2.2, type = "range", width = 1.5,
+                            order = 2.2, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Fade delay"],
                             desc = addon.L["Fade delay Desc"],
                             min = 1, max = 120, step = 1,
@@ -135,7 +136,7 @@ options.OptionsTable.args["EventReminders"] = {
                     inline = true,
                     args = {
                         Compact = {
-                            order = 1.1, type = "toggle", width = 1.5,
+                            order = 1.1, type = "toggle", width = 1 * widthMultiplier,
                             name = addon.L["Compact"],
                             desc = addon.ReplaceVarsWithReloadReq(addon.L["Compact Desc"]),
                             get = function() return addon.Options.db.EventReminders.Compact; end,
@@ -143,8 +144,7 @@ options.OptionsTable.args["EventReminders"] = {
                                 addon.Options.db.EventReminders.Compact = value;
                                 options.Debug(addon.L["Compact"], addon.Options.db.EventReminders.Compact);
                             end
-                        },
-                        Blank12 = {order = 1.2, type = "description", width = 1.5, name = ""},
+                        }
                     }
                 },
                 TimeDisplay = {
@@ -153,14 +153,14 @@ options.OptionsTable.args["EventReminders"] = {
                     inline = true,
                     args = {
                         Line1 = {
-                            order = 1.1, type = "select", width = 1.5,
+                            order = 1.1, type = "select", width = 1.5 * widthMultiplier,
                             name = addon.L["Line"] .. " 1",
                             values = timeDisplaysLine1,
                             get = function() return addon.Options.db.EventReminders.TimeDisplay.Line1; end,
                             set = SetLine1
                         },
                         Line2 = {
-                            order = 1.2, type = "select", width = 1.5,
+                            order = 1.2, type = "select", width = 1.5 * widthMultiplier,
                             name = addon.L["Line"] .. " 2",
                             values = timeDisplaysLine2,
                             get = function() return addon.Options.db.EventReminders.TimeDisplay.Line2; end,
@@ -188,14 +188,14 @@ options.OptionsTable.args["EventReminders"] = {
                     inline = true,
                     args = {
                         StartTimeAndEndTimePresets = {
-                            order = 1.1, type = "select", width = 1.5,
+                            order = 1.1, type = "select", width = 1.5 * widthMultiplier,
                             name = addon.L["Presets"],
                             values = startTimeAndEndTimeDateTimeValues,
                             get = GetStartTimeAndEndTimePresets,
                             set = SetStartTimeAndEndTimePresets
                         },
                         StartTimeAndEndTimeCustom = {
-                            order = 1.2, type = "input", width = 1.5,
+                            order = 1.2, type = "input", width = 1.5 * widthMultiplier,
                             name = addon.L["Custom"],
                             get = function() return addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime; end,
                             set = SetStartTimeAndEndTimeCustom

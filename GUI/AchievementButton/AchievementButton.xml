@@ -149,6 +149,8 @@
 			<OnEnter function="KrowiAF_AchievementButton_OnEnter"/>
 			<OnLeave function="KrowiAF_AchievementButton_OnLeave"/>
 			<OnClick function="KrowiAF_AchievementButton_OnClick"/>
+			<OnShow function="KrowiAF_AchievementButton_OnShow"/>
+			<OnHide function="KrowiAF_AchievementButton_OnHide"/>
 			<OnEvent function="KrowiAF_AchievementButton_OnEvent"/>
 		</Scripts>
 		<Frames>
@@ -308,7 +310,7 @@
 						GameTooltip:Hide();
 					</OnLeave>
 					<OnShow>
-						self:SetChecked(IsTrackedAchievement(self:GetParent().id));
+						self:SetChecked(IsTrackedAchievement(self:GetParent().Achievement.Id));
 					</OnShow>
 				</Scripts>
 				<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>

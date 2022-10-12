@@ -1,4 +1,4 @@
--- [[ Exported at 2022-09-17 22-03-46 ]] --
+-- [[ Exported at 2022-09-25 13-21-57 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -9,7 +9,7 @@ addon.ExtraWrathStrings.enUS = {};
 local extraWrathStrings = addon.ExtraWrathStrings.enUS;
 
 function extraWrathStrings.Load(L)
-    if addon.IsNotWrathClassic() then
+    if not string.match((GetBuildInfo()), "(%d+)%.(%d+)%.(%d+)(%w?)") == "3" then
         return;
     end
 

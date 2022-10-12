@@ -7,17 +7,17 @@ local boxFrame = search.BoxFrame;
 function boxFrame:Load()
 	-- Create frame
     local frame = CreateFrame("EditBox", "KrowiAF_SearchBoxFrame", AchievementFrame, "KrowiAF_SearchBoxFrame_Template");
-	if addon.IsNotWrathClassic() then
-		frame:SetPoint("TOPLEFT", AchievementFrame.searchBox);
-		frame:SetPoint("BOTTOMRIGHT", AchievementFrame.searchBox);
-	else
+	if addon.IsWrathClassic then
 		frame:SetSize(107, 30);
-		frame:SetPoint("TOPLEFT", AchievementFrameHeaderRightDDLInset, "TOPLEFT", 12, 2);
+		frame:SetPoint("TOPLEFT", AchievementFrame.Header.RightDDLInset, "TOPLEFT", 12, 2);
+	else
+		frame:SetPoint("TOPLEFT", AchievementFrame.SearchBox);
+		frame:SetPoint("BOTTOMRIGHT", AchievementFrame.SearchBox);
 	end
 
     frame:SetMaxLetters(40);
 
-	tinsert(ACHIEVEMENTFRAME_SUBFRAMES, frame:GetName());
+	tinsert(addon.GUI.SubFrames, frame);
 
 	addon.GUI.Search.BoxFrame = frame;
 end
@@ -33,8 +33,8 @@ end
 function KrowiAF_SearchBoxFrame_OnShow(self)
 	self:SetFrameLevel(self:GetParent():GetFrameLevel() + 7);
 	KrowiAF_SearchPreviewButton_OnEnter(search.PreviewFrame.Buttons[1]);
-	if addon.IsWrathClassic() then
-		AchievementFrameHeaderRightDDLInset:Show();
+	if addon.IsWrathClassic then
+		AchievementFrame.Header.RightDDLInset:Show();
 	end
 end
 
@@ -44,8 +44,8 @@ function KrowiAF_SearchBoxFrame_OnHide(self)
 	end
 	search.PreviewFrame:Hide();
 	search.ResultsFrame:Hide();
-	if addon.IsWrathClassic() and not AchievementFrameFilterDropDown:IsShown() then
-		AchievementFrameHeaderRightDDLInset:Hide();
+	if addon.IsWrathClassic and not AchievementFrameFilterDropDown:IsShown() then
+		AchievementFrame.Header.RightDDLInset:Hide();
 	end
 end
 
@@ -71,14 +71,14 @@ local function GetSearchResults(text)
 	text = text:lower();
 	local results = {};
 
-	local numAchievementIds = #addon.Data.AchievementIDs;
+	local numAchievementIds = #addon.Data.AchievementIds;
 	local excludeExcluded = addon.Options.db.SearchBox.ExcludeExcluded;
 	local showPlaceholders = addon.Options.db.ShowPlaceholdersFilter and addon.Filters.db.ShowPlaceholders;
 
 	local achievement;
 	if string.match(text, "^#") then
 		for i = 1, numAchievementIds do
-			achievement = addon.Data.Achievements[addon.Data.AchievementIDs[i]];
+			achievement = addon.Data.Achievements[addon.Data.AchievementIds[i]];
 			if string.find(tostring(achievement.ID):lower(), string.sub(text, 2):lower(), 1, true) then
 				if not (excludeExcluded and achievement.Excluded) then
 					if achievement.DoesNotExist == nil or (showPlaceholders and achievement.DoesNotExist) then
@@ -89,7 +89,7 @@ local function GetSearchResults(text)
 		end
 	else
 		for i = 1, numAchievementIds do
-			achievement = addon.Data.Achievements[addon.Data.AchievementIDs[i]];
+			achievement = addon.Data.Achievements[addon.Data.AchievementIds[i]];
 			local _, name, _, _, _, _, _, description, _, _, _, _, _, _, _ = GetAchievementInfo(achievement.Id);
 			if name and (string.find(name:lower(), text, 1, true) or string.find(description:lower(), text, 1, true)) then
 				if not (excludeExcluded and achievement.Excluded) then

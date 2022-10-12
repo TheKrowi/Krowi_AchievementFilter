@@ -29,6 +29,7 @@ local donations = {
     {Name = "Estellar", Realm = "Bronze Dragonflight EU", Class = "PALADIN"},
     {Name = "Seby", Realm = "TwistingNether EU", Class = "HUNTER"},
     {Name = "Swiftstrider (mains everything)", Realm = "Frostmourne NA", Class = ""},
+    {Name = "Orderic", Realm = "Gul'dan EU", Class = "WARLOCK"},
 }
 
 function credits.GetDonationsAsString()

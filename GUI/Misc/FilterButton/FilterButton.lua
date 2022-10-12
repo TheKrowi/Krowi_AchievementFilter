@@ -11,9 +11,9 @@ function filterButton:Load()
     addon.Filters:Load();
     addon.Filters:ResetFilters();
 
-	tinsert(ACHIEVEMENTFRAME_SUBFRAMES, button:GetName());
+	tinsert(addon.GUI.SubFrames, button);
 
-    if addon.IsWrathClassic() then
+    if addon.IsWrathClassic then
         button:SetScript("OnShow", filterButton.OnShow);
         button:SetScript("OnHide", filterButton.OnHide);
     else -- We don't need this in retail
@@ -84,9 +84,7 @@ function KrowiAF_AchievementFrameFilterButton_OnMouseDown(self)
 
     self:AddAchievementFilters(menu, addon.Objects.MenuItem:New({Text = addon.L["Current Zone"]}), addon.Filters.db.CurrentZone);
     self:AddAchievementFilters(menu, addon.Objects.MenuItem:New({Text = addon.L["Selected Zone"]}), addon.Filters.db.SelectedZone);
-    if addon.Options.db.Categories.Excluded.Show then
-        self:AddAchievementFilters(menu, addon.Objects.MenuItem:New({Text = addon.L["Excluded"]}), addon.Filters.db.ExcludedCategory);
-    end
+    self:AddAchievementFilters(menu, addon.Objects.MenuItem:New({Text = addon.L["Tracking Achievements"]}), addon.Filters.db.TrackingAchievements);
 
     menu:AddSeparator();
 

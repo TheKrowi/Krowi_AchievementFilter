@@ -259,25 +259,25 @@ local function SetOrder(index, value)
 	end
 
 	-- print(aName, tName, tab.AddonName, tab.Name);
-	if aName == "Blizzard_AchievementUI"
-	and tab.AddonName == "Blizzard_AchievementUI"
-	and tName == "Guild"
-	and tab.Name == "Statistics" then
-		StaticPopupDialogs["KROWIAF_ERROR_TABSORDER"] = {
-			text = addon.MetaData.Title .. "\n\n" .. addon.L["Error Tabs Order"]:ReplaceVars
-			{
-				blizzard = addon.L["Blizzard"],
-				statistics = addon.L["Statistics"],
-				guild = addon.L["Guild"]
-			},
-			button1 = addon.L["Close"],
-			timeout = 0,
-			whileDead = true,
-			hideOnEscape = true
-		};
-		StaticPopup_Show("KROWIAF_ERROR_TABSORDER");
-		return;
-	end
+	-- if aName == "Blizzard_AchievementUI"
+	-- and tab.AddonName == "Blizzard_AchievementUI"
+	-- and tName == "Guild"
+	-- and tab.Name == "Statistics" then
+	-- 	StaticPopupDialogs["KROWIAF_ERROR_TABSORDER"] = {
+	-- 		text = addon.MetaData.Title .. "\n\n" .. addon.L["Error Tabs Order"]:ReplaceVars
+	-- 		{
+	-- 			blizzard = addon.L["Blizzard"],
+	-- 			statistics = addon.L["Statistics"],
+	-- 			guild = addon.L["Guild"]
+	-- 		},
+	-- 		button1 = addon.L["Close"],
+	-- 		timeout = 0,
+	-- 		whileDead = true,
+	-- 		hideOnEscape = true
+	-- 	};
+	-- 	StaticPopup_Show("KROWIAF_ERROR_TABSORDER");
+	-- 	return;
+	-- end
 
 	-- local oldTab = SavedData.Tabs[indexFound];
 	-- print(indexFound, aName, tName, addon.Options.db.Tabs[aName][tName].Order);

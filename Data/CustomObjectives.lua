@@ -106,7 +106,7 @@ local function AddTransmogCriteria(tooltip, transmogSets)
     local id;
     local owner = tooltip:GetOwner();
     if owner then
-        id = owner.id;
+        id = owner.Achievement.Id;
     end
 
     local numCollectedPerSet = {};
@@ -163,7 +163,7 @@ local function AddTransmogCriteria(tooltip, transmogSets)
     end
 
     owner = tooltip:GetOwner();
-    if owner and id ~= owner.id then
+    if owner and id ~= owner.Achievement.Id then
         transmogCriteriaHelper:UnregisterEvent("GET_ITEM_INFO_RECEIVED");
         return;
     end

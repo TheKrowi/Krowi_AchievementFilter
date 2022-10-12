@@ -4,7 +4,11 @@ local diagnostics = addon.Diagnostics;
 addon.Options = {}; -- Will be overwritten in Load (intended)
 local options = addon.Options;
 
-options.WidthMultiplier = 170;
+if addon.IsWrathClassic or addon.IsShadowlandsRetail then
+    options.WidthMultiplier = 1;
+else
+    options.WidthMultiplier = 200 / 170; -- 170 comes from AceConfigDialog-3.0.lua, 200 fits better on the screen in DF
+end
 
 options.OptionsTable = {
     name = addon.MetaData.Title,
@@ -22,14 +26,20 @@ options.MaxNumberOfSearchPreviews = function()
 end
 
 local function Open()
-    InterfaceAddOnsList_Update(); -- This way the correct category will be shown when calling InterfaceOptionsFrame_OpenToCategory
-    InterfaceOptionsFrame_OpenToCategory(addon.MetaData.Title);
-    for _, button in next, InterfaceOptionsFrameAddOns.buttons do
-        if button.element and button.element.name == addon.MetaData.Title and button.element.collapsed then
-            OptionsListButtonToggle_OnClick(button.toggle);
-            break;
+    if addon.IsWrathClassic or addon.IsShadowlandsRetail then
+        InterfaceAddOnsList_Update(); -- This way the correct category will be shown when calling InterfaceOptionsFrame_OpenToCategory
+        InterfaceOptionsFrame_OpenToCategory(addon.MetaData.Title);
+        for _, button in next, InterfaceOptionsFrameAddOns.buttons do
+            if button.element and button.element.name == addon.MetaData.Title and button.element.collapsed then
+                OptionsListButtonToggle_OnClick(button.toggle);
+                break;
+            end
         end
+        return;
     end
+
+    Settings.GetCategory(addon.MetaData.Title).expanded = true;
+    Settings.OpenToCategory(addon.MetaData.Title, true);
 end
 
 local function InjectDefaults(table, tableName, ...)

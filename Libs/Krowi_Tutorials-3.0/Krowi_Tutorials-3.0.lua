@@ -80,7 +80,7 @@
 		buttonLeft, buttonBottom
 --]]
 
-local lib = LibStub:NewLibrary('Krowi_Tutorials-2.1', 1);
+local lib = LibStub:NewLibrary('Krowi_Tutorials-3.0', 1);
 
 if not lib then
 	return;
@@ -494,8 +494,12 @@ function lib:New(key, savedVariables, icon, font)
 	setmetatable(frame, setmetatable(lib, getmetatable(frame)));
 
 	-- Set portrait and background
-	frame.portrait:SetPoint("TOPLEFT", icon and -4 or -3, icon and 6 or 5);
-	frame.portrait:SetTexture(icon or "Interface\\TutorialFrame\\UI-HELP-PORTRAIT");
+	if not icon then
+		ButtonFrameTemplate_HidePortrait(frame);
+	else
+		frame.PortraitContainer.portrait:SetPoint("TOPLEFT", -4, 6);
+		frame.PortraitContainer.portrait:SetTexture("Interface\\TutorialFrame\\UI-HELP-PORTRAIT");
+	end
 	frame.Inset:SetPoint("TOPLEFT", 4, -23);
 	frame.Inset.Bg:SetColorTexture(0, 0, 0);
 

@@ -1,6 +1,13 @@
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
 
+-- [[ Version data ]] --
+local version = (GetBuildInfo());
+local major = string.match(version, "(%d+)%.(%d+)%.(%d+)(%w?)");
+addon.IsWrathClassic = major == "3";
+addon.IsShadowlandsRetail = major == "9";
+addon.IsDragonflightRetail = major == "10";
+
 -- [[ Ace ]] --
 addon.L = LibStub(addon.Libs.AceLocale):GetLocale(addonName);
 addon.Localization.SetColors(addon.L);
@@ -36,10 +43,15 @@ function loadHelper:OnEvent(event, arg1, arg2)
     if event == "ADDON_LOADED" then
         if arg1 == "Krowi_AchievementFilter" then -- This always needs to load
             addon.Diagnostics.Load();
+
             addon.Data.ExportedCategories.InjectOptions();
+            addon.Options.Layout.AddMoreFocusedOptions();
+            addon.Options.Layout.AddMoreTrackingAchievementsOptions();
+            addon.Options.Layout.AddMoreExcludedOptions();
+
             addon.Data.ExportedCalendarEvents.InjectOptions();
             addon.Data.ExportedWorldEvents.InjectOptions();
-            addon.Data.ExportedWidgetEvents.InjectOptions();
+            -- addon.Data.ExportedWidgetEvents.InjectOptions();
 
             addon.GUI.PrepareTabsOrder();
             addon.Tabs.InjectOptions();
@@ -59,20 +71,22 @@ function loadHelper:OnEvent(event, arg1, arg2)
 
             addon.GUI:LoadWithBlizzard_AchievementUI();
 
-            addon.Data.LoadFocusedAchievements(addon.Data.Achievements);
-            addon.Data.LoadExcludedAchievements(addon.Data.Achievements);
+            addon.Data.LoadFocusedAchievements();
+            addon.Data.LoadTrackingAchievements();
+            addon.Data.LoadExcludedAchievements();
 
             addon.MakeWindowMovable();
             addon.GUI.AchievementFrameHeader.HookSetPointsText();
+            addon.OverwriteFunctions();
             addon.HookAchievementFrameOnShow();
-            addon.HookSelectAchievement();
+            -- addon.HookSelectAchievement();
         elseif arg1 == "WoWUnit" then
             addon.UnitTests:Load();
         end
     elseif event == "PLAYER_LOGIN" then
         addon.Data.ExportedCalendarEvents.Load(addon.Data.CalendarEvents);
         addon.Data.ExportedWorldEvents.Load(addon.Data.WorldEvents);
-        addon.Data.ExportedWidgetEvents.Load(addon.Data.WidgetEvents);
+        -- addon.Data.ExportedWidgetEvents.Load(addon.Data.WidgetEvents);
         addon.EventData.Load();
 
         if addon.Diagnostics.DebugEnabled() then
@@ -93,39 +107,38 @@ function loadHelper:OnEvent(event, arg1, arg2)
                 C_Timer.After(5, function()
                     addon.GUI.AlertSystem.ShowActiveCalendarEvents();
                     addon.GUI.AlertSystem.ShowActiveWorldEvents();
-                    addon.GUI.AlertSystem.ShowActiveWidgetEvents();
+                    -- addon.GUI.AlertSystem.ShowActiveWidgetEvents();
                 end);
             end);
         end
     elseif event == "ACHIEVEMENT_EARNED" then
-        addon.ResetCache(); -- Will force to fetch achievement data again, updating the character achievement points
+        addon.OnAchievementEarned(arg1);
     end
 end
 loadHelper:SetScript("OnEvent", loadHelper.OnEvent);
 
-Numbers = function() return 1, 2, 3 end
+-- Numbers = function() return 1, 2, 3 end
 
+-- function KrowiAF_RunUnitTests()
+--     local AreEqual, Exists, Replace = WoWUnit.AreEqual, WoWUnit.Exists, WoWUnit.Replace
+--     local Tests = WoWUnit(addonName)
+--         -- tests will be called at startup, PLAYER_UPDATE and MONEY_UPDATE events
 
-function KrowiAF_RunUnitTests()
-    local AreEqual, Exists, Replace = WoWUnit.AreEqual, WoWUnit.Exists, WoWUnit.Replace
-    local Tests = WoWUnit(addonName)
-        -- tests will be called at startup, PLAYER_UPDATE and MONEY_UPDATE events
+--     function Tests:PassingTest()
+--         AreEqual({1,2,3}, {Numbers()})
+--         Exists(true)
+--     end
 
-    function Tests:PassingTest()
-        AreEqual({1,2,3}, {Numbers()})
-        Exists(true)
-    end
+--     function Tests:FaillingTest()
+--         AreEqual('Apple', 'Pie')
+--         Exists(false)
+--     end
 
-    function Tests:FaillingTest()
-        AreEqual('Apple', 'Pie')
-        Exists(false)
-    end
-
-    function Tests:MockingTest()
-        -- Replace('GetRealmName', function() return 'Horseshoe' end)
-        -- AreEqual('Horseshoe!', Realm())
-    end
-end
+--     function Tests:MockingTest()
+--         -- Replace('GetRealmName', function() return 'Horseshoe' end)
+--         -- AreEqual('Horseshoe!', Realm())
+--     end
+-- end
 
 -- function KrowiAF_LagGame()
 --     local gapSize, i = 0, 1;

@@ -31,12 +31,22 @@ function eventData.Load()
 
     -- diagnostics.Debug("refreshEvents: " .. tostring(refreshEvents));
     if refreshEvents then -- Events are either empty or an event has elapsed so get new data
+        local utcNow = date("!*t");
+        local locNow = date("*t");
+        local utcServerTimeLocal = date("!*t", C_DateAndTime.GetServerTimeLocal());
+        local serverUtcOffsetDays = utcServerTimeLocal.yday - utcNow.yday;
+        local serverUtcOffsetHours = utcServerTimeLocal.hour - utcNow.hour;
+        local userUtcOffsetDays = locNow.yday - utcNow.yday;
+        local userUtcOffsetHours = locNow.hour - utcNow.hour;
+        local utcOffsethours = (serverUtcOffsetDays * 24 + serverUtcOffsetHours) - (userUtcOffsetDays * 24 + userUtcOffsetHours);
+        local utcOffsetSeconds = utcOffsethours * 3600;
+        
         EventDetails.CalendarEvents = {};
         local events = GetEvents();
         for id, event in next, data.CalendarEvents do
             if events[id] then -- At this time we only handle calendar events, POI's are handeled later
-                local startTime = addon.GetSecondsSince(events[id].startTime);
-                local endTime = addon.GetSecondsSince(events[id].endTime);
+                local startTime = addon.GetSecondsSince(events[id].startTime) - utcOffsetSeconds;
+                local endTime = addon.GetSecondsSince(events[id].endTime) - utcOffsetSeconds;
                 -- diagnostics.Debug(event.ID .. " - " .. events[id].title .. " - " ..
                 --                     date("%Y/%m/%d %H:%M", startTime) .. " - " .. date("%Y/%m/%d %H:%M", endTime));
                 if endTime - time() > 0 then
@@ -129,7 +139,7 @@ function eventData.GetActiveWorldEvents()
 end
 
 function eventData.PrimeAreaPoi()
-    if addon.IsWrathClassic() then
+    if addon.IsWrathClassic then
         return;
     end
     for _, event in next, data.WorldEvents do
@@ -179,72 +189,68 @@ function GetNewWorldEvents(activeWorldEvents)
     end
 end
 
-local GetSavedWidgetEvents, GetNewWidgetEvents;
-function eventData.GetActiveWidgetEvents()
-    diagnostics.Trace("eventData.GetActiveWidgetEvents");
+-- local GetSavedWidgetEvents, GetNewWidgetEvents;
+-- function eventData.GetActiveWidgetEvents()
+--     diagnostics.Trace("eventData.GetActiveWidgetEvents");
 
-    local activeWidgetEvents = {};
-    if EventDetails.WidgetEvents == nil then
-        EventDetails.WidgetEvents = {};
-    end
+--     local activeWidgetEvents = {};
+--     if EventDetails.WidgetEvents == nil then
+--         EventDetails.WidgetEvents = {};
+--     end
 
-    GetSavedWidgetEvents(activeWidgetEvents, time());
-    GetNewWidgetEvents(activeWidgetEvents);
+--     GetSavedWidgetEvents(activeWidgetEvents, time());
+--     GetNewWidgetEvents(activeWidgetEvents);
 
-    return activeWidgetEvents;
-end
+--     return activeWidgetEvents;
+-- end
 
-function GetSavedWidgetEvents(activeWidgetEvents, currentDate)
-    for id, event in next, EventDetails.WidgetEvents do
-        local deltaT = math.floor((event.EndTime - currentDate) / (3600 * 24));
-        -- diagnostics.Debug(id .. " - " .. event.Name .. " - " .. tostring(deltaT));
-        if deltaT < 0 or not addon.Options.db.EventReminders.WidgetEvents[id] then
-            EventDetails.WidgetEvents[id] = nil;
-        end
-    end
+-- function GetSavedWidgetEvents(activeWidgetEvents, currentDate)
+--     for id, event in next, EventDetails.WidgetEvents do
+--         local deltaT = math.floor((event.EndTime - currentDate) / (3600 * 24));
+--         -- diagnostics.Debug(id .. " - " .. event.Name .. " - " .. tostring(deltaT));
+--         if deltaT < 0 or not addon.Options.db.EventReminders.WidgetEvents[id] then
+--             EventDetails.WidgetEvents[id] = nil;
+--         end
+--     end
 
-    for id, event in next, data.WidgetEvents do
-        if EventDetails.WidgetEvents[id] then
-            event.EventDetails = EventDetails.WidgetEvents[id];
-            -- diagnostics.Debug("Existing event active:" .. event.ID .. " - " .. event.EventDetails.Name .. " - " .. tostring(deltaT));
-            tinsert(activeWidgetEvents, event);
-        end
-    end
-end
+--     for id, event in next, data.WidgetEvents do
+--         if EventDetails.WidgetEvents[id] then
+--             event.EventDetails = EventDetails.WidgetEvents[id];
+--             -- diagnostics.Debug("Existing event active:" .. event.ID .. " - " .. event.EventDetails.Name .. " - " .. tostring(deltaT));
+--             tinsert(activeWidgetEvents, event);
+--         end
+--     end
+-- end
 
-function GetNewWidgetEvents(activeWidgetEvents)
-    for _, event in next, data.WidgetEvents do
-        if event.EventDetails == nil and addon.Options.db.EventReminders.WidgetEvents[event.Id] then
-            local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(event.Id);
-            if widgetInfo and widgetInfo.shownState == 1 then -- The event is active
-                local secondsLeft = event.TotalDuration;
-                if secondsLeft == 604800 then
-                    secondsLeft = C_DateAndTime.GetSecondsUntilWeeklyReset();
-                else
-                    secondsLeft = nil;
-                end
-                if secondsLeft == nil or secondsLeft == 0 then
-                    return; -- Widget time not yet supported
-                end
+-- function GetNewWidgetEvents(activeWidgetEvents)
+--     for _, event in next, data.WidgetEvents do
+--         if event.EventDetails == nil and addon.Options.db.EventReminders.WidgetEvents[event.Id] then
+--             local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(event.Id);
+--             if widgetInfo and widgetInfo.shownState == 1 then -- The event is active
+--                 local secondsLeft = event.TotalDuration;
+--                 if secondsLeft == 604800 then
+--                     secondsLeft = C_DateAndTime.GetSecondsUntilWeeklyReset();
+--                 else
+--                     secondsLeft = nil;
+--                 end
+--                 if secondsLeft == nil or secondsLeft == 0 then
+--                     return; -- Widget time not yet supported
+--                 end
 
-                local startTime, endTime = GetStartAndEndTime(secondsLeft, event.TotalDuration or 0);
-                event.EventDetails = {StartTime = startTime, EndTime = endTime, Name = event.Name};
-                EventDetails.WidgetEvents[event.ID] = event.EventDetails;
-                tinsert(activeWidgetEvents, event);
-            else
-                -- diagnostics.Debug("Event not active:" .. event.ID .. " - " .. event.Name);
-            end
-        end
-    end
-end
+--                 local startTime, endTime = GetStartAndEndTime(secondsLeft, event.TotalDuration or 0);
+--                 event.EventDetails = {StartTime = startTime, EndTime = endTime, Name = event.Name};
+--                 EventDetails.WidgetEvents[event.ID] = event.EventDetails;
+--                 tinsert(activeWidgetEvents, event);
+--             else
+--                 -- diagnostics.Debug("Event not active:" .. event.ID .. " - " .. event.Name);
+--             end
+--         end
+--     end
+-- end
 
 function GetStartAndEndTime(secondsLeft, totalDuration) -- both in seconds
-    local endTime = floor((GetServerTime() + secondsLeft) / 3600 + 0.5) * 3600; -- Round to the hour
+    local endTime = floor((GetServerTime() + secondsLeft) / 300 + 0.5) * 300; -- Round to 5 minutes, 1 hour is not precise enough anymore
     local startTime = endTime - totalDuration;
 
     return startTime, endTime;
-end
-
-function KrowiAF_GetEvents()
-    Test = GetEvents();
 end

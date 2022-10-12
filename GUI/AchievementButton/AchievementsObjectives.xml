@@ -139,7 +139,7 @@
         </HighlightTexture>
     </Button>
 
-    <Frame name="KrowiAF_AchievementsObjectives_Template" mixin="AchievementsObjectivesMixin" virtual="true">
+    <Frame name="KrowiAF_AchievementsObjectives_Template" mixin="KrowiAF_AchievementsObjectivesMixin" virtual="true">
         <Size x="125" y="20"/>
         <Scripts>
             <OnLoad function="KrowiAF_AchievementsObjectives_OnLoad"/>

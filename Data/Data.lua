@@ -7,10 +7,9 @@ local data = addon.Data;
 data.TransmogSets = {};
 
 data.Achievements = {};
-data.AchievementIDs = {};
+data.AchievementIds = {};
 
 data.CategoriesExpansions, data.CategoriesEvents, data.CategoriesPvP, data.CategoriesSpecials, data.CategoriesAchievements = {}, {}, {}, {}, {};
-data.FocusedCategory, data.ExcludedCategory = {}, {};
 
 data.RCMenuExtras = {};
 
@@ -28,13 +27,12 @@ function data.Load()
 
     data.ExportedTransmogSets.Load(data.TransmogSets);
 
-    data.AchievementIDs = data.ExportedAchievements.Load(data.Achievements, data.TransmogSets);
+    data.AchievementIds = data.ExportedAchievements.Load(data.Achievements, data.TransmogSets);
     local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.L["Layout"], "cmd", "KROWIAF-0.0").args.Summary.args.Summary.args.NumAchievements; -- cmd and KROWIAF-0.0 are just to make the function work
-    custom.max = #data.AchievementIDs;
+    custom.max = #data.AchievementIds;
 
     local tabsCategories;
-    tabsCategories, data.FocusedCategories, data.CurrentZoneCategories, data.SelectedZoneCategories, data.ExcludedCategories = data.ExportedCategories.Load(data.Achievements);
-    data.FocusedCategory, data.ExcludedCategory = data.FocusedCategories[5], data.ExcludedCategories[5];
+    tabsCategories, data.FocusedCategories, data.CurrentZoneCategories, data.SelectedZoneCategories, data.TrackingAchievementsCategories, data.ExcludedCategories = data.ExportedCategories.Load(data.Achievements);
     for t, _ in next, addon.Tabs do
         if tabsCategories[t] ~= nil then
             addon.Tabs[t].Categories = tabsCategories[t];
@@ -46,14 +44,12 @@ function data.Load()
     data.ExportedUiMaps.Load(data.Maps, data.Achievements);
 
     data.ExportedCalendarEvents.LoadCategories(data.CalendarEvents, data.Achievements);
-    data.ExportedWidgetEvents.LoadCategories(data.WidgetEvents, data.Achievements);
+    -- data.ExportedWidgetEvents.LoadCategories(data.WidgetEvents, data.Achievements);
     data.ExportedWorldEvents.LoadCategories(data.WorldEvents, data.Achievements);
 
     if addon.Tabs["Achievements"] then
         addon.Tabs["Achievements"].Categories = data.LoadBlizzardTabAchievements(addon.Tabs["Achievements"].Categories);
     end
-
-    data.LoadWrathClassicFixes();
 
     isLoaded = true;
     addon.Diagnostics.Debug("Expansion data loaded");
@@ -62,34 +58,31 @@ function data.Load()
     -- data.PrintCriteria(14879, nil, 0);
 end
 
-function data.LoadFocusedAchievements(achievements)
-    if SavedData.FocusedAchievements == nil or type(SavedData.FocusedAchievements) ~= "table" then
+local function LoadAchievements(sourceTable, func)
+    if sourceTable == nil or type(sourceTable) ~= "table" then
         return;
     end
 
-    for achievementID, _ in next, SavedData.FocusedAchievements do
-        addon.FocusAchievement(achievements[achievementID], false);
+    for achievementId, _ in next, sourceTable do
+        func(data.Achievements[achievementId], false);
     end
 
     addon.GUI.CategoriesFrame:Update(true);
-
-    addon.Diagnostics.Debug("Focused achievements loaded");
-    -- diagnostics.DebugTable(SavedData.FocusedAchievements);
 end
 
-function data.LoadExcludedAchievements(achievements)
-    if SavedData.ExcludedAchievements == nil or type(SavedData.ExcludedAchievements) ~= "table" then
-        return;
-    end
+function data.LoadFocusedAchievements()
+    LoadAchievements(SavedData.FocusedAchievements, addon.FocusAchievement);
+    addon.Diagnostics.Debug("Focused achievements loaded");
+end
 
-    for achievementID, _ in next, SavedData.ExcludedAchievements do
-        addon.ExcludeAchievement(achievements[achievementID], false);
-    end
+function data.LoadTrackingAchievements()
+    LoadAchievements(addon.TrackingAchievements, addon.AddToTrackingAchievementsCategories);
+    addon.Diagnostics.Debug("Tracking achievements loaded");
+end
 
-    addon.GUI.CategoriesFrame:Update(true);
-
+function data.LoadExcludedAchievements()
+    LoadAchievements(SavedData.ExcludedAchievements, addon.ExcludeAchievement);
     addon.Diagnostics.Debug("Excluded achievements loaded");
-    -- diagnostics.DebugTable(SavedData.ExcludedAchievements);
 end
 
 local cachedZone;
@@ -109,12 +102,12 @@ end
 function data.AddAchievementIfNil(id, points)
     if data.Achievements[id] == nil then
         data.Achievements[id] = addon.Objects.Achievement:New(id, points);
-        tinsert(data.AchievementIDs, id);
+        tinsert(data.AchievementIds, id);
     end
 end
 
-function data.SortAchievementIDs()
-    sort(data.AchievementIDs);
+function data.SortAchievementIds()
+    sort(data.AchievementIds);
 end
 
 local tmpC = {};
@@ -146,7 +139,7 @@ function data.LoadBlizzardTabAchievements(categories)
         tmpC[id] = addon.Objects.Category:New(name);
 		if parentID == -1 then
 			-- categories:AddCategory(tmpC[id]);
-			tab:AddCategory(tmpC[id]);
+			tab:InsertCategory(tmpC[id], #tab.Children - 2);
 		end
 	end
 
@@ -157,18 +150,18 @@ function data.LoadBlizzardTabAchievements(categories)
 		end
 	end
 
-    for i = 1, #data.AchievementIDs do
-        local prevID = GetPreviousAchievement(data.AchievementIDs[i]);
+    for i = 1, #data.AchievementIds do
+        local prevID = GetPreviousAchievement(data.AchievementIds[i]);
         if prevID == 14884 then -- 14884 is a tracking achievement and is not earned by everyone
             prevID = 9;
         end
         if prevID and data.Achievements[prevID] then
-            data.Achievements[prevID]:AddNext(data.Achievements[data.AchievementIDs[i]]);
+            data.Achievements[prevID]:AddNext(data.Achievements[data.AchievementIds[i]]);
         end
     end
 
-    for i = 1, #data.AchievementIDs do
-        local achID = data.AchievementIDs[i];
+    for i = 1, #data.AchievementIds do
+        local achID = data.AchievementIds[i];
         if addedOutOfOrder[achID] == nil then -- Not yet added
             local categoryID = GetAchievementCategory(achID);
             if tmpC[categoryID] ~= nil then
@@ -183,65 +176,6 @@ function data.LoadBlizzardTabAchievements(categories)
     addedOutOfOrder = nil;
 
     return tab.Children;
-end
-
-function data.LoadWrathClassicFixes()
-    if addon.IsNotWrathClassic() then
-        -- Maybe remove all the new achievements here for retail
-        return;
-    end
-
-    -- data.Achievements[41].Faction = addon.Objects.Faction.Alliance; -- Loremaster of Northrend
-    -- data.Achievements[41].OtherFactionAchievementId = 1360;
-    -- data.Achievements[1360].OtherFactionAchievementId = 41;
-
-    -- data.Achievements[971].Faction = addon.Objects.Faction.Horde; -- Tricks and Treats of Azeroth
-    -- data.Achievements[971].OtherFactionAchievementId = 970;
-    -- data.Achievements[970].OtherFactionAchievementId = 971;
-
-    -- data.Achievements[1167].Faction = addon.Objects.Faction.Alliance; -- Master of Alterac Valley
-    -- data.Achievements[1167].OtherFactionAchievementId = 1168;
-    -- data.Achievements[1168].OtherFactionAchievementId = 1167;
-
-    -- data.Achievements[1169].Faction = addon.Objects.Faction.Alliance; -- Master of Arathi Basin
-    -- data.Achievements[1169].OtherFactionAchievementId = 1170;
-    -- data.Achievements[1170].OtherFactionAchievementId = 1169;
-
-    -- data.Achievements[1172].Faction = addon.Objects.Faction.Alliance; -- Master of Warsong Gulch
-    -- data.Achievements[1172].OtherFactionAchievementId = 1173;
-    -- data.Achievements[1173].OtherFactionAchievementId = 1172;
-
-    -- data.Achievements[1262].Faction = addon.Objects.Faction.Alliance; -- Loremaster of Outland
-    -- data.Achievements[1262].OtherFactionAchievementId = 1274;
-    -- data.Achievements[1274].OtherFactionAchievementId = 1262;
-
-    -- data.Achievements[1563].Faction = addon.Objects.Faction.Alliance; -- Hail to the Chef
-    -- data.Achievements[1563].OtherFactionAchievementId = 1784;
-    -- data.Achievements[1784].OtherFactionAchievementId = 1563;
-
-    -- data.Achievements[1656].Faction = addon.Objects.Faction.Alliance; -- Hallowed Be Thy Name
-    -- data.Achievements[1656].OtherFactionAchievementId = 1657;
-    -- data.Achievements[1657].OtherFactionAchievementId = 1656;
-    
-    -- data.Achievements[1676].Faction = addon.Objects.Faction.Alliance; -- Loremaster of Eastern Kingdoms
-    -- data.Achievements[1676].OtherFactionAchievementId = 1677;
-    -- data.Achievements[1677].OtherFactionAchievementId = 1676;
-    
-    -- data.Achievements[1678].Faction = addon.Objects.Faction.Alliance; -- Loremaster of Kalimdor
-    -- data.Achievements[1678].OtherFactionAchievementId = 1680;
-    -- data.Achievements[1680].OtherFactionAchievementId = 1678;
-    
-    -- data.Achievements[1683].Faction = addon.Objects.Faction.Horde; -- Brewmaster
-    -- data.Achievements[1683].OtherFactionAchievementId = 1684;
-    -- data.Achievements[1684].OtherFactionAchievementId = 1683;
-
-    -- data.Achievements[1691].Faction = addon.Objects.Faction.Horde; -- Merrymaker
-    -- data.Achievements[1691].OtherFactionAchievementId = 1692;
-    -- data.Achievements[1692].OtherFactionAchievementId = 1691;
-    
-    -- data.Achievements[1693].Faction = addon.Objects.Faction.Horde; -- Fool For Love
-    -- data.Achievements[1693].OtherFactionAchievementId = 1707;
-    -- data.Achievements[1707].OtherFactionAchievementId = 1693;
 end
 
 -- function data.PrintCriteria(achievementID, parentCriteriaID, criteriaNumber)

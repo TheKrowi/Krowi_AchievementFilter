@@ -22,6 +22,7 @@ local defaultAchievements = {
     },
     CollapseSeries = true,
     Excluded = false,
+    Tracking = false,
     SortBy = {
         Criteria = addon.L["Default"],
         ReverseSort = false
@@ -48,7 +49,8 @@ local function InjectCategoryDefaults()
     addon.Util.DeepCopyTable(defaultAchievements, dflts);
     addon.Util.WriteNestedKeys(defaults.profile, {"SelectedZone"}, dflts);
     addon.Util.DeepCopyTable(defaultAchievements, dflts);
-    addon.Util.WriteNestedKeys(defaults.profile, {"ExcludedCategory"}, dflts);
+    addon.Util.WriteNestedKeys(defaults.profile, {"TrackingAchievements"}, dflts);
+    defaults.profile.TrackingAchievements.Tracking = true;
 end
 
 local function InjectTabDefaults()
@@ -77,7 +79,7 @@ function filters:ResetFilters()
         ResetFactionFilters(self.db.Faction);
         ResetFactionFilters(self.db.CurrentZone.Faction);
         ResetFactionFilters(self.db.SelectedZone.Faction);
-        ResetFactionFilters(self.db.ExcludedCategory.Faction);
+        ResetFactionFilters(self.db.TrackingAchievements.Faction);
         for t, _ in next, addon.Tabs do
             ResetFactionFilters(self.db.Tabs[t].Faction);
         end
@@ -145,7 +147,7 @@ local validations = {
                 if nextCompleted then
                     return true;
                 end
-                local prevID = GetPreviousAchievement(achievement.ID);
+                local prevID = GetPreviousAchievement(achievement.Id);
                 if prevID ~= nil then
                     local _, _, _, prevCompleted = addon.GetAchievementInfo(prevID);
                     if not prevCompleted then
@@ -169,6 +171,9 @@ local validations = {
     },
     {   -- 11
         Validate = function(_filters, achievement) return not _filters.Special.RealmFirst and achievement.IsRealmFirst; end
+    },
+    {   -- 12
+        Validate = function(_filters, achievement) return not _filters.Tracking and achievement.IsTracking; end
     }
 };
 
@@ -220,8 +225,8 @@ function filters:GetFilters(category)
 		return self.db.CurrentZone;
 	elseif category.IsSelectedZone then
 		return self.db.SelectedZone;
-	elseif category == addon.Data.ExcludedCategory or (category ~= nil and category.Excluded) then
-		return self.db.ExcludedCategory;
+    elseif category.IsTracking then
+        return self.db.TrackingAchievements;
     elseif addon.GUI.SelectedTab.Filters ~= nil then
         return addon.GUI.SelectedTab.Filters;
 	end
@@ -254,10 +259,10 @@ end
 local function CompareName(a, b, reverse, default)
     local nameA, nameB = "", "";
     if a then
-        nameA = select(2, addon.GetAchievementInfo(a.ID));
+        nameA = select(2, addon.GetAchievementInfo(a.Id));
     end
     if b then
-        nameB = select(2, addon.GetAchievementInfo(b.ID));
+        nameB = select(2, addon.GetAchievementInfo(b.Id));
     end
 
     if nameA == nil then
@@ -284,10 +289,10 @@ end
 local function CompareCompletion(a, b, reverse, default)
     local completedA, completedB = false, false;
     if a then
-        completedA = select(4, addon.GetAchievementInfo(a.ID));
+        completedA = select(4, addon.GetAchievementInfo(a.Id));
     end
     if b then
-        completedB = select(4, addon.GetAchievementInfo(b.ID));
+        completedB = select(4, addon.GetAchievementInfo(b.Id));
     end
 
     if completedA == completedB then
@@ -305,9 +310,9 @@ end
 
 local function CompareId(a, b, reverse, default)
     if reverse then
-        return a.ID > b.ID;
+        return a.Id > b.Id;
     end
-    return a.ID < b.ID;
+    return a.Id < b.Id;
 end
 
 function filters:Sort(achievements, defaultOrder)

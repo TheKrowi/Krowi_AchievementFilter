@@ -105,7 +105,7 @@ function temporaryObtainable:GetObtainableState(achievement)
 end
 
 do -- Tooltip, maybe move to not obtainable tooltip lua
-    function temporaryObtainable:AddWasIsWillBe(text, achievement)
+    function temporaryObtainable:GetWasIsWillBe(achievement)
         local start, _end; -- Past, Future
 
         local startFunction = achievement.TemporaryObtainable.Start.Function;
@@ -131,22 +131,22 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         end
 
         -- print(startFunction, start, endFunction, _end)
-        local color;
+        local isWillBeWas, color;
         if start == "Past" and _end == "Future" then
-            text = text .. " " .. addon.L["is"];
+            isWillBeWas = addon.L["is"];
             color = addon.Colors.GreenRGB;
         elseif start == "Future" then
-            text = text .. " " .. addon.L["will be"];
+            isWillBeWas = addon.L["will be"];
             color = addon.Colors.OrangeRGB;
         elseif _end == "Past" then
-            text = text .. " " .. addon.L["was"];
+            isWillBeWas = addon.L["was"];
             color = addon.Colors.RedRGB;
         else
-            text = text .. " " .. addon.L["was"];
+            isWillBeWas = addon.L["was"];
             color = addon.Colors.RedRGB;
         end
 
-        return text, color;
+        return isWillBeWas, color;
     end
 
     local function GetStart(achievement)
@@ -160,12 +160,44 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         end
     end
 
-    local function AddEnd(text, achievement)
+    local function GetEnd(achievement)
         if achievement.TemporaryObtainable.End.Inclusion == "Until" then
-            return text .. " " .. addon.L["until the end of"];
+            return addon.L["until the end of"];
         elseif achievement.TemporaryObtainable.End.Inclusion == "Before" then
-            return text .. " " .. addon.L["up until the start of"];
+            return addon.L["up until the start of"];
         end
+    end
+
+    local isWillBeWas, neverOnceTempObt, startText, startDetail, endText, endDetail;
+    local function FillText()
+        local subString = string.sub(addon.L["Temporary Obtainable Text"], 2, -2);
+        local fields = addon.Util.SplitString(subString, "}{");
+        for i = 1, #fields do
+            if fields[i] == "thisAchievement" then
+                fields[i] = addon.L["This achievement"];
+            elseif fields[i] == "isWillBeWas" then
+                fields[i] = isWillBeWas;
+            elseif fields[i] == "neverOnceTempObt" then
+                fields[i] = neverOnceTempObt;
+            elseif fields[i] == "startText" then
+                fields[i] = startText;
+            elseif fields[i] == "startDetail" then
+                fields[i] = startDetail;
+            elseif fields[i] == "endText" then
+                fields[i] = endText;
+            elseif fields[i] == "endDetail" then
+                fields[i] = endDetail;
+            end
+        end
+        local text = "";
+        for i = 1, #fields do
+            if i ~= 1 then
+                text = text .. " ";
+            end
+            text = text .. fields[i];
+        end
+        text = text .. ".";
+        return text;
     end
 
     function temporaryObtainable:GetNotObtainableText(achievement)
@@ -173,53 +205,52 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
             return addon.L["This achievement is no longer obtainable"], addon.Colors.RedRGB;
         end
 
-        local text = addon.L["This achievement"];
-        local color;
-        text, color = self:AddWasIsWillBe(text, achievement);
+        isWillBeWas, neverOnceTempObt, startText, startDetail, endText, endDetail = nil, nil, nil, nil, nil, nil;
+
+        isWillBeWas, color = self:GetWasIsWillBe(achievement);
 
         if achievement.TemporaryObtainable.Start.Function == "Never" then
-            text = text .. " " .. addon.L["never obtainable"] .. ".";
-            return text, color;
+            neverOnceTempObt = addon.L["never obtainable"];
+            return FillText(), color;
         elseif achievement.TemporaryObtainable.Start.Function == "Once" then
-            text = text .. " " .. addon.L["only obtainable by one player"] .. ".";
-            return text, color;
+            neverOnceTempObt = addon.L["only obtainable by one player"];
+            return FillText(), color;
         end
+        neverOnceTempObt = addon.L["temporary obtainable"];
 
-        text = text .. " " .. addon.L["temporary obtainable"]
-
-        local start = GetStart(achievement);
-        text = text .. " " .. start;
-
+        startText = GetStart(achievement);
         if achievement.TemporaryObtainable.Start.Function == "Mythic+ Season" then
-            text = text .. " " .. addon.L["M+ Season"];
+            startDetail = addon.L["M+ Season"];
         elseif achievement.TemporaryObtainable.Start.Function == "PvP Season" then
-            text = text .. " " .. addon.L["PvP Season"];
+            startDetail = addon.L["PvP Season"];
         elseif achievement.TemporaryObtainable.Start.Function == "Patch" then
-            text = text .. " " .. addon.L["Patch"];
+            startDetail = addon.L["Patch"];
+        elseif achievement.TemporaryObtainable.Start.Function == "Version" then
+            startDetail = addon.L["Version"];
+        else
+            startDetail = achievement.TemporaryObtainable.Start.Function;
+        end
+        startDetail = startDetail .. " " .. achievement.TemporaryObtainable.Start.Value;
+
+        if startText == addon.L["during"] then
+            return FillText(), color;
         end
 
-        text = text .. " " .. achievement.TemporaryObtainable.Start.Value;
-
-        if start == addon.L["during"] then
-            text = text .. ".";
-            return text, color;
-        end
-
-        text = AddEnd(text, achievement);
-
+        endText = GetEnd(achievement);
         if achievement.TemporaryObtainable.End.Function == "Mythic+ Season" then
-            text = text .. " " .. addon.L["M+ Season"];
+            endDetail = addon.L["M+ Season"];
         elseif achievement.TemporaryObtainable.End.Function == "PvP Season" then
-            text = text .. " " .. addon.L["PvP Season"];
+            endDetail = addon.L["PvP Season"];
         elseif achievement.TemporaryObtainable.End.Function == "Patch" then
-            text = text .. " " .. addon.L["Patch"];
+            endDetail = addon.L["Patch"];
+        elseif achievement.TemporaryObtainable.End.Function == "Version" then
+            endDetail = addon.L["Version"];
+        else
+            endDetail = achievement.TemporaryObtainable.End.Function;
         end
+        endDetail = endDetail .. " " .. achievement.TemporaryObtainable.End.Value;
 
-        text = text .. " " .. achievement.TemporaryObtainable.End.Value;
-
-        text = text .. ".";
-
-        return text, color;
+        return FillText(), color;
     end
 end
 

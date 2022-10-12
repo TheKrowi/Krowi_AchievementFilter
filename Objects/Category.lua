@@ -25,6 +25,15 @@ function category:AddCategory(cat)
     return cat;
 end
 
+function category:InsertCategory(cat, pos)
+	self.Children = self.Children or {}; -- By creating the children table here we reduce memory usage because not every category has children
+    tinsert(self.Children, pos, cat);
+    cat.Parent = self;
+    cat.Level = self.Level + 1;
+    cat.NotHidden = self.TabName; -- Has parent so initially we are hidden
+    return cat;
+end
+
 function category:RemoveCategory(cat)
     if self.Children == nil then
         return;

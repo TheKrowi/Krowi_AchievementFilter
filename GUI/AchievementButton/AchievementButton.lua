@@ -9,7 +9,7 @@ function KrowiAF_AchievementButton_OnLoad(self)
 
 	self:Collapse();
 
-	self:RegisterEvent("ACHIEVEMENT_EARNED");
+	-- self:RegisterEvent("ACHIEVEMENT_EARNED");
 end
 
 function KrowiAF_AchievementButton_OnEnter(self)
@@ -34,8 +34,23 @@ function KrowiAF_AchievementButton_OnClick(self, button, down, ignoreModifiers)
 	end
 end
 
-function KrowiAF_AchievementButton_OnEvent(self, event)
-	if event ~= "ACHIEVEMENT_EARNED" or not self.Achievement or not self.index then
+function KrowiAF_AchievementButton_OnShow(self)
+	self:RegisterEvent("ACHIEVEMENT_EARNED");
+end
+
+function KrowiAF_AchievementButton_OnHide(self)
+	self:UnregisterEvent("ACHIEVEMENT_EARNED");
+end
+
+function KrowiAF_AchievementButton_OnEvent(self, event, ...)
+	if event ~= "ACHIEVEMENT_EARNED" then
+		return;
+	end
+	if not self.Achievement or not self.index then
+		return;
+	end
+	local achievementId = ...;
+	if achievementId ~= self.Achievement.Id then
 		return;
 	end
 

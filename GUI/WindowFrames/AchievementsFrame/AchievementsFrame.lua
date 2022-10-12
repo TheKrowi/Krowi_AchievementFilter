@@ -9,7 +9,7 @@ function achievementsFrame:Load()
 	frame:SetPoint("BOTTOM", 0, 20);
 	frame:SetPoint("RIGHT", -20, 0);
 
-	tinsert(ACHIEVEMENTFRAME_SUBFRAMES, frame:GetName());
+	tinsert(addon.GUI.SubFrames, frame);
 
 	local scrollFrame = frame.ScrollFrame;
 	local scrollBar = scrollFrame.ScrollBar;

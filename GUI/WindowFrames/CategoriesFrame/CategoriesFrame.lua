@@ -11,9 +11,9 @@ function categoriesFrame:Load()
 	frame:SetPoint("RIGHT", AchievementFrameCategories, addon.Options.db.Window.CategoriesFrameWidthOffset, 0);
 
 	-- We need to insert the categories frame infront of the achievements frame so the show/hide function fire in the correct order
-	for i, frameName in next, ACHIEVEMENTFRAME_SUBFRAMES do
-		if frameName == addon.GUI.AchievementsFrame:GetName() then
-			tinsert(ACHIEVEMENTFRAME_SUBFRAMES, i, frame:GetName());
+	for i, subFrame in next, addon.GUI.SubFrames do
+		if subFrame == addon.GUI.AchievementsFrame then
+			tinsert(addon.GUI.SubFrames, i, frame);
 			break;
 		end
 	end
@@ -39,27 +39,37 @@ function categoriesFrame:Load()
 end
 
 function KrowiAF_CategoriesFrame_OnShow(self) -- Used in Templates - KrowiAF_CategoriesFrame_Template
+    self:RegisterEvent("ACHIEVEMENT_EARNED");
 	AchievementFrameCategories:Hide(); -- Issue #11: Fix
 	AchievementFrameFilterDropDown:Hide();
-	if addon.IsNotWrathClassic() then
-		AchievementFrame.searchBox:Hide();
-		AchievementFrameHeaderLeftDDLInset:Show();
+	if not addon.IsWrathClassic then
+		AchievementFrame.SearchBox:Hide();
+		AchievementFrame.Header.LeftDDLInset:Show();
 	end
 	AchievementFrameWaterMark:SetTexture(addon.GUI.SelectedTab and addon.GUI.SelectedTab.WaterMark or "Interface/AchievementFrame/UI-Achievement-AchievementWatermark");
 	AchievementFrameCategoriesBG:SetTexCoord(0, 0.5, 0, 1); -- Set this global texture for player achievements
-	self:Update();
+	self:Update(addon.AchievementEarnedUpdateCategoriesFrameOnNextShow);
+	addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = nil;
 end
 
-function KrowiAF_CategoriesFrame_OnHide() -- Used in Templates - KrowiAF_CategoriesFrame_Template
+function KrowiAF_CategoriesFrame_OnHide(self) -- Used in Templates - KrowiAF_CategoriesFrame_Template
+    self:UnregisterEvent("ACHIEVEMENT_EARNED");
 	AchievementFrameCategories:Show(); -- Issue #11: Fix
 	AchievementFrameCategoriesBG:SetWidth(195); -- Set back to default value
 	if not AchievementFrameAchievements:IsShown() then
 		AchievementFrameFilterDropDown:Hide();
-		if addon.IsNotWrathClassic() then
-			AchievementFrameHeaderLeftDDLInset:Hide();
+		if not addon.IsWrathClassic then
+			AchievementFrame.Header.LeftDDLInset:Hide();
 		end
 	end
-	if addon.IsNotWrathClassic() then
-		AchievementFrame.searchBox:Show();
+	if not addon.IsWrathClassic then
+		AchievementFrame.SearchBox:Show();
 	end
+end
+
+function KrowiAF_CategoriesFrame_OnEvent(self, event)
+	if event ~= "ACHIEVEMENT_EARNED" then
+		return;
+	end
+	self:Update(true);
 end

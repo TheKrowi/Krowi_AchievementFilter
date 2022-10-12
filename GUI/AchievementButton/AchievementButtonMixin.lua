@@ -190,7 +190,7 @@ function KrowiAF_AchievementButtonMixin:Update(achievement, index)
 	self:SetAchievement(achievement);
 
 	self.index = index; -- This is used to keep the correct achievement expanded
-	self.Id = achievement.Id;
+	-- self.Id = achievement.Id;
 
 	local selectedTab = addon.GUI.SelectedTab;
 	if selectedTab and achievement == selectedTab.SelectedAchievement then
@@ -247,13 +247,13 @@ function KrowiAF_AchievementButtonMixin:UpdatePlusMinusTexture()
 
 	self.PlusMinus:Show();
 	if self.collapsed and self.saturatedStyle then
-		self.PlusMinus:SetTexCoord(0, 0.5, 0, addon.IsNotWrathClassic() and 0.25 or 0.5);
+		self.PlusMinus:SetTexCoord(0, 0.5, 0, addon.IsWrathClassic and 0.5 or 0.25);
 	elseif self.collapsed then
-		self.PlusMinus:SetTexCoord(0.5, 1, 0, addon.IsNotWrathClassic() and 0.25 or 0.5);
+		self.PlusMinus:SetTexCoord(0.5, 1, 0, addon.IsWrathClassic and 0.5 or 0.25);
 	elseif self.saturatedStyle then
-		self.PlusMinus:SetTexCoord(0, 0.5, addon.IsNotWrathClassic() and 0.25 or 0.5, addon.IsNotWrathClassic() and 0.5 or 1);
+		self.PlusMinus:SetTexCoord(0, 0.5, addon.IsWrathClassic and 0.5 or 0.25, addon.IsWrathClassic and 1 or 0.5);
 	else
-		self.PlusMinus:SetTexCoord(0.5, 1, addon.IsNotWrathClassic() and 0.25 or 0.5, addon.IsNotWrathClassic() and 0.5 or 1);
+		self.PlusMinus:SetTexCoord(0.5, 1, addon.IsWrathClassic and 0.5 or 0.25, addon.IsWrathClassic and 1 or 0.5);
 	end
 end
 
@@ -365,7 +365,7 @@ function KrowiAF_AchievementButtonMixin:Saturate()
 	self.Glow:SetVertexColor(1, 1, 1);
 	self.Icon.Texture:SetVertexColor(1, 1, 1, 1);
 	self.Icon.Border:SetVertexColor(1, 1, 1, 1);
-	self.Shield.Icon:SetTexCoord(0, 0.5, 0, addon.IsNotWrathClassic() and 0.5 or 1);
+	self.Shield.Icon:SetTexCoord(0, 0.5, 0, addon.IsWrathClassic and 1 or 0.5);
 	self.Reward:SetVertexColor(1, 0.82, 0);
 	self.Header:SetVertexColor(1, 1, 1);
 	self.Description:SetTextColor(0, 0, 0, 1);
@@ -403,7 +403,7 @@ function KrowiAF_AchievementButtonMixin:Desaturate()
 	self.Glow:SetVertexColor(0.22, 0.17, 0.13);
 	self.Icon.Texture:SetVertexColor(0.55, 0.55, 0.55, 1);
 	self.Icon.Border:SetVertexColor(0.75, 0.75, 0.75, 1);
-	self.Shield.Icon:SetTexCoord(0.5, 1, 0, addon.IsNotWrathClassic() and 0.5 or 1);
+	self.Shield.Icon:SetTexCoord(0.5, 1, 0, addon.IsWrathClassic and 1 or 0.5);
 	self.Shield.Points:SetVertexColor(0.65, 0.65, 0.65);
 	self.Reward:SetVertexColor(0.8, 0.8, 0.8);
 	self.Header:SetVertexColor(0.65, 0.65, 0.65);
@@ -420,7 +420,7 @@ function KrowiAF_AchievementButtonMixin:SaturatePartial()
 	self.HeaderBackground:SetTexCoord(0, 1, 0.66015625, 0.73828125);
 	self.Icon.Texture:SetVertexColor(1, 1, 1, 1);
 	self.Icon.Border:SetVertexColor(1, 1, 1, 1);
-	self.Shield.Icon:SetTexCoord(0, 0.5, 0, 0.5);
+	self.Shield.Icon:SetTexCoord(0, 0.5, 0, addon.IsWrathClassic and 1 or 0.5);
 	self.Shield.Points:SetVertexColor(1, 1, 1);
 	self.Glow:SetVertexColor(0.1, 0.1, 0.1);
 	SetTsunamis(self);
@@ -440,7 +440,11 @@ function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
 			end
 		end
 		if not handled and IsModifiedClick("QUESTWATCHTOGGLE") then
-			AchievementButton_ToggleTracking(self.Achievement.Id);
+			if addon.IsWrathClassic or addon.IsShadowlandsRetail then
+				AchievementButton_ToggleTracking(self.Achievement.Id);
+			else
+				self:ToggleTracking();
+			end
 		end
 		return;
 	end
@@ -466,5 +470,47 @@ end
 function KrowiAF_AchievementButtonMixin:ShowTooltip()
 	if self.Achievement then
 		addon.GUI.AchievementTooltip.ShowTooltip(self, self.Achievement);
+	end
+end
+
+function KrowiAF_AchievementButtonMixin:ToggleTracking()
+	local id = self.Achievement.Id;
+	if self.Achievement.IsTracked then
+		RemoveTrackedAchievement(id);
+		self:SetAsTracked(false);
+		return;
+	end
+
+	local count = GetNumTrackedAchievements();
+	if count >= MAX_TRACKED_ACHIEVEMENTS then
+		UIErrorsFrame:AddMessage(format(ACHIEVEMENT_WATCH_TOO_MANY, MAX_TRACKED_ACHIEVEMENTS), 1.0, 0.1, 0.1, 1.0);
+		return;
+	end
+
+	local _, _, _, completed, _, _, _, _, _, _, _, isGuild, wasEarnedByMe = GetAchievementInfo(id);
+	if (completed and isGuild) or wasEarnedByMe then
+		UIErrorsFrame:AddMessage(ERR_ACHIEVEMENT_WATCH_COMPLETED, 1.0, 0.1, 0.1, 1.0);
+		return;
+	end
+
+	self:SetAsTracked(true);
+	AddTrackedAchievement(id);
+
+	return true;
+end
+
+function KrowiAF_AchievementButtonMixin:SetAsTracked(tracked)
+	self.Achievement.IsTracked = nil;
+	if tracked then
+		self.Achievement.IsTracked = true;
+	end
+	self.Check:SetShown(tracked);
+	self.Tracked:SetChecked(tracked);
+	if tracked then
+		self.Tracked:Show();
+	else
+		if not self.selected then
+			self.Tracked:Hide();
+		end
 	end
 end

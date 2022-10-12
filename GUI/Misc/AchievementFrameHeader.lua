@@ -4,7 +4,7 @@ addon.GUI.AchievementFrameHeader = {};
 local header = addon.GUI.AchievementFrameHeader;
 
 function header:Load()
-    if AchievementFrameHeaderLeftDDLInset == nil then -- Wrath Classic
+    if addon.IsWrathClassic then
         local tex = AchievementFrameHeader:CreateTexture();
         tex:SetTexture("Interface/AchievementFrame/UI-Achievement-RightDDLInset");
         tex:SetSize(128, 32);
@@ -70,18 +70,18 @@ end
 
 local processHook = true;
 function header.HookSetPointsText()
-    AchievementFrameHeaderPoints:SetPoint("TOP", "AchievementFrameHeaderPointBorder", "TOP", -10, -13);
-    AchievementFrameHeaderPointBorder:SetWidth(175);
+    AchievementFrame.Header.Points:SetPoint("TOP", AchievementFrame.Header.PointBorder, "TOP", -10, -13);
+    AchievementFrame.Header.PointBorder:SetWidth(175);
 
-    hooksecurefunc(AchievementFrameHeaderPoints, "SetText", function()
+    hooksecurefunc(AchievementFrame.Header.Points, "SetText", function()
         if not addon.InGuildView() and processHook then
             local _, points = addon.BuildCache();
             processHook = false;
             if addon.Options.db.AchievementPoints.Format == 1 then
             elseif addon.Options.db.AchievementPoints.Format == 2 then
-                AchievementFrameHeaderPoints:SetText(BreakUpLargeNumbers(points) .. " / " .. BreakUpLargeNumbers(GetTotalAchievementPoints()));
+                AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points) .. " / " .. BreakUpLargeNumbers(GetTotalAchievementPoints()));
             elseif addon.Options.db.AchievementPoints.Format == 3 then
-                AchievementFrameHeaderPoints:SetText(BreakUpLargeNumbers(points));
+                AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points));
             end
         end
         processHook = true;
@@ -190,9 +190,9 @@ local function OnEnter(self)
 end
 
 function header.CreateTooltip()
-    local frame = CreateFrame("Button", nil, AchievementFrameHeader);
-    frame:SetPoint("TOPLEFT", "AchievementFrameHeaderPointBorder");
-    frame:SetPoint("BOTTOMRIGHT", "AchievementFrameHeaderPointBorder");
+    local frame = CreateFrame("Button", nil, AchievementFrame.Header);
+    frame:SetPoint("TOPLEFT", AchievementFrame.Header.PointBorder);
+    frame:SetPoint("BOTTOMRIGHT", AchievementFrame.Header.PointBorder);
     frame:SetScript("OnEnter", OnEnter);
     frame:SetScript("OnLeave", function()
         GameTooltip:Hide();

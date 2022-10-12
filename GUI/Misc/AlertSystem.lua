@@ -41,9 +41,9 @@ function alertSystem.ShowActiveCalendarEvents()
     ShowActiveEvents(addon.EventData.GetActiveCalendarEvents);
 end
 
-function alertSystem.ShowActiveWidgetEvents()
-    ShowActiveEvents(addon.EventData.GetActiveWidgetEvents);
-end
+-- function alertSystem.ShowActiveWidgetEvents()
+--     ShowActiveEvents(addon.EventData.GetActiveWidgetEvents);
+-- end
 
 function alertSystem.ShowActiveWorldEvents()
     ShowActiveEvents(addon.EventData.GetActiveWorldEvents);

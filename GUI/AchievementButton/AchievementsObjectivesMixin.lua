@@ -1,9 +1,9 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
 
-AchievementsObjectivesMixin = {};
+KrowiAF_AchievementsObjectivesMixin = {};
 
-AchievementsObjectivesMixin.Modes = {
+KrowiAF_AchievementsObjectivesMixin.Modes = {
     Criteria = 1,
     Progressive = 2,
 	NoCriteria = 3
@@ -11,33 +11,33 @@ AchievementsObjectivesMixin.Modes = {
 
 local criteriaTable, progressBarTable, miniTable, metaCriteriaTable = {}, {}, {}, {}
 
-function AchievementsObjectivesMixin:ResetTextCriteria()
+function KrowiAF_AchievementsObjectivesMixin:ResetTextCriteria()
 	AchievementButton_ResetTable(criteriaTable);
 end
 
-function AchievementsObjectivesMixin:ResetProgressBars()
+function KrowiAF_AchievementsObjectivesMixin:ResetProgressBars()
 	AchievementButton_ResetTable(progressBarTable);
 end
 
-function AchievementsObjectivesMixin:ResetMiniAchievements()
+function KrowiAF_AchievementsObjectivesMixin:ResetMiniAchievements()
 	AchievementButton_ResetTable(miniTable);
 end
 
-function AchievementsObjectivesMixin:ResetMetas()
+function KrowiAF_AchievementsObjectivesMixin:ResetMetas()
 	for _, metaCriteria in next, metaCriteriaTable do
 		metaCriteria.Id = nil;
 		metaCriteria:Hide();
 	end
 end
 
-function AchievementsObjectivesMixin:ResetAll()
+function KrowiAF_AchievementsObjectivesMixin:ResetAll()
 	self:ResetTextCriteria();
 	self:ResetProgressBars();
 	self:ResetMiniAchievements();
 	self:ResetMetas();
 end
 
-function AchievementsObjectivesMixin:GetTextCriteria(index)
+function KrowiAF_AchievementsObjectivesMixin:GetTextCriteria(index)
 	if criteriaTable[index] then
 		return criteriaTable[index];
 	end
@@ -47,17 +47,20 @@ function AchievementsObjectivesMixin:GetTextCriteria(index)
 	return frame;
 end
 
-function AchievementsObjectivesMixin:GetProgressBar(index)
+function KrowiAF_AchievementsObjectivesMixin:GetProgressBar(index)
 	if progressBarTable[index] then
 		return progressBarTable[index];
 	end
 	local frame = CreateFrame("STATUSBAR", self:GetName() .. "ProgressBar" .. index, self, "AchievementProgressBarTemplate");
+	if addon.IsWrathClassic or addon.IsShadowlandsRetail then
+		frame.Text = frame.text;
+	end
 	AchievementButton_LocalizeProgressBar(frame);
 	progressBarTable[index] = frame;
 	return frame;
 end
 
-function AchievementsObjectivesMixin:GetMiniAchievement(index)
+function KrowiAF_AchievementsObjectivesMixin:GetMiniAchievement(index)
 	if miniTable[index] then
 		return miniTable[index];
 	end
@@ -67,7 +70,7 @@ function AchievementsObjectivesMixin:GetMiniAchievement(index)
 	return frame;
 end
 
-function AchievementsObjectivesMixin:GetMeta(index)
+function KrowiAF_AchievementsObjectivesMixin:GetMeta(index)
 	if metaCriteriaTable[index] then
 		return metaCriteriaTable[index];
 	end
@@ -77,7 +80,7 @@ function AchievementsObjectivesMixin:GetMeta(index)
 	return frame;
 end
 
-function AchievementsObjectivesMixin:AddMeta(index, completed, assetId)
+function KrowiAF_AchievementsObjectivesMixin:AddMeta(index, completed, assetId)
 	local metaCriteria = self:GetMeta(index);
 	metaCriteria:ClearAllPoints();
 	if index == 1 then
@@ -122,7 +125,7 @@ function AchievementsObjectivesMixin:AddMeta(index, completed, assetId)
 end
 
 local progressBarOffset = 10;
-function AchievementsObjectivesMixin:AddProgressBar(index, quantity, reqQuantity, quantityString)
+function KrowiAF_AchievementsObjectivesMixin:AddProgressBar(index, quantity, reqQuantity, quantityString)
 	local progressBar = self:GetProgressBar(index);
 	local extraHeight;
 	if index == 1 then
@@ -132,7 +135,7 @@ function AchievementsObjectivesMixin:AddProgressBar(index, quantity, reqQuantity
 		progressBar:SetPoint("TOP", self:GetProgressBar(index - 1), "BOTTOM", 0, -progressBarOffset);
 		extraHeight = progressBarOffset;
 	end
-	progressBar.text:SetText(string.format("%s", quantityString));
+	progressBar.Text:SetText(string.format("%s", quantityString));
 	progressBar:SetMinMaxValues(0, reqQuantity);
 	progressBar:SetValue(quantity);
 	progressBar:SetParent(self);
@@ -142,7 +145,7 @@ function AchievementsObjectivesMixin:AddProgressBar(index, quantity, reqQuantity
 	return progressBar:GetWidth(), progressBar:GetHeight() + extraHeight;
 end
 
-function AchievementsObjectivesMixin:AddTextCriteria(index, numCriteria, criteriaString, completed)
+function KrowiAF_AchievementsObjectivesMixin:AddTextCriteria(index, numCriteria, criteriaString, completed)
 	local criteria = self:GetTextCriteria(index);
 	criteria:ClearAllPoints();
 	if index == 1 then
@@ -195,7 +198,7 @@ function AchievementsObjectivesMixin:AddTextCriteria(index, numCriteria, criteri
 end
 
 local achievements, rowOffset, columnOffset = {}, 8, 4;
-function AchievementsObjectivesMixin:DisplayProgressiveAchievement(id)
+function KrowiAF_AchievementsObjectivesMixin:DisplayProgressiveAchievement(id)
 	for i in next, achievements do
 		achievements[i] = nil;
 	end
@@ -241,7 +244,7 @@ function AchievementsObjectivesMixin:DisplayProgressiveAchievement(id)
 	self.Mode = self.Modes.Progressive;
 end
 
-function AchievementsObjectivesMixin:SetProgressBarAndTextPoints(numProgressBars, numTextCriteria)
+function KrowiAF_AchievementsObjectivesMixin:SetProgressBarAndTextPoints(numProgressBars, numTextCriteria)
 	-- If we have text criteria and progressBar criteria, display the progressBar criteria first and position the textStrings under them.
 	local criteria;
 	for i = 1, numTextCriteria do
@@ -255,7 +258,7 @@ function AchievementsObjectivesMixin:SetProgressBarAndTextPoints(numProgressBars
 	end
 end
 
-function AchievementsObjectivesMixin:SetTextPoints(numTextCriteria, maxCriteriaWidth)
+function KrowiAF_AchievementsObjectivesMixin:SetTextPoints(numTextCriteria, maxCriteriaWidth)
 	local columns = max(1, floor(self:GetWidth() / maxCriteriaWidth));
 
 	local truncate, flex;
@@ -306,7 +309,7 @@ function AchievementsObjectivesMixin:SetTextPoints(numTextCriteria, maxCriteriaW
 	return top - bottom;
 end
 
-function AchievementsObjectivesMixin:DisplayCriteria(id)
+function KrowiAF_AchievementsObjectivesMixin:DisplayCriteria(id)
 	if not id then
 		return;
 	end

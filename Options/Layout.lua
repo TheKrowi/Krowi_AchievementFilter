@@ -1,6 +1,210 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
 local options = addon.Options;
+options.Layout = {};
+local layout = options.Layout;
+local widthMultiplier = addon.Options.WidthMultiplier;
+
+local function DrawFocusedSubCategories()
+    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
+        return;
+    end
+    -- Reset all
+    for i = 1, #addon.Data.FocusedCategories do
+        addon.Data.FocusedCategories[i].Achievements = nil;
+        addon.Data.FocusedCategories[i].Children = nil;
+    end
+    addon.GUI.CategoriesFrame:Update(true);
+    addon.GUI.AchievementsFrame:ForceUpdate();
+    -- Draw again
+    addon.Data.LoadFocusedAchievements();
+end
+
+local function SetShowFocusedSubCategories()
+    addon.Options.db.Categories.Focused.ShowSubCategories = not addon.Options.db.Categories.Focused.ShowSubCategories;
+    DrawFocusedSubCategories();
+    options.Debug(addon.L["Show Sub Categories"], addon.Options.db.Categories.Focused.ShowSubCategories);
+end
+
+local function ClearAllFocused()
+    for i = 1, #addon.Data.FocusedCategories do
+        addon.Data.FocusedCategories[i].Achievements = nil;
+        addon.Data.FocusedCategories[i].Children = nil;
+    end
+    if addon.GUI.SelectedTab ~= nil then -- If nil, not yet loaded
+        if SavedData.FocusedAchievements then
+            for id, _ in next, SavedData.FocusedAchievements do
+                addon.Data.Achievements[id]:ClearFocus();
+            end
+        end
+        addon.GUI.CategoriesFrame:Update(true);
+        addon.GUI.AchievementsFrame:ForceUpdate();
+    end
+    SavedData.FocusedAchievements = nil;
+end
+
+local function DrawTrackingAchievementsSubCategories()
+    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
+        return;
+    end
+    -- Reset all
+    for i = 1, #addon.Data.TrackingAchievementsCategories do
+        addon.Data.TrackingAchievementsCategories[i].Achievements = nil;
+        addon.Data.TrackingAchievementsCategories[i].Children = nil;
+    end
+    addon.GUI.CategoriesFrame:Update(true);
+    addon.GUI.AchievementsFrame:ForceUpdate();
+    -- Draw again
+    addon.Data.LoadTrackingAchievements();
+end
+
+local function SetShowTrackingAchievementsSubCategories()
+    addon.Options.db.Categories.TrackingAchievements.ShowSubCategories = not addon.Options.db.Categories.TrackingAchievements.ShowSubCategories;
+    DrawTrackingAchievementsSubCategories();
+    options.Debug(addon.L["Show Sub Categories"], addon.Options.db.Categories.TrackingAchievements.ShowSubCategories);
+end
+
+local function ShowExcludedCategory()
+    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
+        return;
+    end
+    if addon.Options.db.Categories.Excluded.Show then
+        addon.Data.LoadExcludedAchievements();
+    else
+        for i = 1, #addon.Data.ExcludedCategories do
+            addon.Data.ExcludedCategories[i].Achievements = nil;
+            addon.Data.ExcludedCategories[i].Children = nil;
+        end
+        addon.GUI.CategoriesFrame:Update(true);
+        addon.GUI.AchievementsFrame:ForceUpdate();
+    end
+end
+
+local function SetShowExcludedCategory()
+    addon.Options.db.Categories.Excluded.Show = not addon.Options.db.Categories.Excluded.Show;
+    ShowExcludedCategory();
+    options.Debug(addon.L["Show Excluded Category"] .. " " .. addon.L["Excluded"], addon.Options.db.Categories.Excluded.Show);
+end
+
+local function IncludeAllExcluded()
+    for i = 1, #addon.Data.ExcludedCategories do
+        addon.Data.ExcludedCategories[i].Achievements = nil;
+        addon.Data.ExcludedCategories[i].Children = nil;
+    end
+    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
+        SavedData.ExcludedAchievements = nil;
+        return;
+    end
+    if SavedData.ExcludedAchievements then
+        for id, _ in next, SavedData.ExcludedAchievements do
+            addon.Data.Achievements[id]:Include();
+        end
+    end
+    addon.GUI.CategoriesFrame:Update(true);
+    addon.GUI.AchievementsFrame:ForceUpdate();
+    SavedData.ExcludedAchievements = nil;
+end
+
+local function DrawExcludedSubCategories()
+    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
+        return;
+    end
+    -- Reset all
+    for i = 1, #addon.Data.ExcludedCategories do
+        addon.Data.ExcludedCategories[i].Achievements = nil;
+        addon.Data.ExcludedCategories[i].Children = nil;
+    end
+    addon.GUI.CategoriesFrame:Update(true);
+    addon.GUI.AchievementsFrame:ForceUpdate();
+    -- Draw again
+    addon.Data.LoadExcludedAchievements();
+end
+
+local function SetShowExcludedSubCategories()
+    addon.Options.db.Categories.Excluded.ShowSubCategories = not addon.Options.db.Categories.Excluded.ShowSubCategories;
+    DrawExcludedSubCategories();
+    options.Debug(addon.L["Show Sub Categories"], addon.Options.db.Categories.Excluded.ShowSubCategories);
+end
+
+function layout.AddMoreFocusedOptions()
+    options.InjectOptionsTableAdd({
+        order = 1.1, type = "toggle", width = 1 * widthMultiplier,
+        name = addon.L["Show Sub Categories"],
+        desc = addon.Util.ReplaceVars
+        {
+            addon.L["Show Sub Categories Desc"],
+            category = addon.L["Focused"]
+        },
+        get = function() return addon.Options.db.Categories.Focused.ShowSubCategories; end,
+        set = SetShowFocusedSubCategories
+    }, "ShowFocusedSubCategories", "args", "Layout", "args", "AdjustableCategories", "args", "Focused");
+
+    options.InjectOptionsTableAdd({
+        order = 1.2, type = "execute", width = 1 * widthMultiplier,
+        name = addon.L["Clear all"],
+        desc = addon.L["Clear all Desc"],
+        func = ClearAllFocused
+    }, "ClearAll", "args", "Layout", "args", "AdjustableCategories", "args", "Focused");
+end
+
+function layout.AddMoreTrackingAchievementsOptions()
+    options.InjectOptionsTableAdd({
+        order = 1.1, type = "toggle", width = 1 * widthMultiplier,
+        name = addon.L["Load Tracking Achievements"],
+        desc = addon.L["Load Tracking Achievements Desc"],
+        get = function() return addon.Options.db.Categories.TrackingAchievements.DoLoad; end,
+        set = function()
+            addon.Options.db.Categories.TrackingAchievements.DoLoad = not addon.Options.db.Categories.TrackingAchievements.DoLoad;
+            options.Debug(addon.L["Load Tracking Achievements"], addon.Options.db.Categories.TrackingAchievements.DoLoad);
+        end
+    }, "LoadTrackingAchievements", "args", "Layout", "args", "AdjustableCategories", "args", "TrackingAchievements");
+
+    options.InjectOptionsTableAdd({
+        order = 1.2, type = "toggle", width = 1 * widthMultiplier,
+        name = addon.L["Show Sub Categories"],
+        desc = addon.Util.ReplaceVars
+        {
+            addon.L["Show Sub Categories Desc"],
+            category = addon.L["Tracking Achievements"]
+        },
+        get = function() return addon.Options.db.Categories.TrackingAchievements.ShowSubCategories; end,
+        set = SetShowTrackingAchievementsSubCategories
+    }, "ShowFocusedSubCategories", "args", "Layout", "args", "AdjustableCategories", "args", "TrackingAchievements");
+end
+
+function layout.AddMoreExcludedOptions()
+    options.InjectOptionsTableAdd({
+        order = 1.1, type = "toggle", width = 1 * widthMultiplier,
+        name = addon.L["Show Excluded Category"],
+        desc = addon.Util.ReplaceVars
+        {
+            addon.L["Show Excluded Category Desc"],
+            excluded = addon.L["Excluded"]
+        },
+        get = function() return addon.Options.db.Categories.Excluded.Show; end,
+        set = SetShowExcludedCategory
+    }, "ShowFocusedSubCategories", "args", "Layout", "args", "AdjustableCategories", "args", "Excluded");
+
+    options.InjectOptionsTableAdd({
+        order = 1.2, type = "execute", width = 1 * widthMultiplier,
+        name = addon.L["Include all"],
+        desc = addon.L["Include all Desc"],
+        func = IncludeAllExcluded
+    }, "IncludeAll", "args", "Layout", "args", "AdjustableCategories", "args", "Excluded");
+
+    options.InjectOptionsTableAdd({
+        order = 2.1, type = "toggle", width = 1 * widthMultiplier,
+        name = addon.L["Show Sub Categories"],
+        desc = addon.Util.ReplaceVars
+        {
+            addon.L["Show Sub Categories Desc"],
+            category = addon.L["Excluded"]
+        },
+        disabled = function() return not addon.Options.db.Categories.Excluded.Show; end,
+        get = function() return addon.Options.db.Categories.Excluded.ShowSubCategories; end,
+        set = SetShowExcludedSubCategories
+    }, "ShowExcludedSubCategories", "args", "Layout", "args", "AdjustableCategories", "args", "Excluded");
+end
 
 local achievementPointsDisplays = {
     addon.L["Account wide (default)"],
@@ -42,96 +246,6 @@ local function SetMergeSmallCategoriesThreshold(_, value)
     addon.Options.db.Window.MergeSmallCategoriesThreshold = value;
     addon.GUI.CategoriesFrame:Update(true);
     options.Debug(addon.L["Categories width offset"], addon.Options.db.Window.MergeSmallCategoriesThreshold);
-end
-
-local function DrawFocusedSubCategories()
-    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
-        return;
-    end
-    -- Reset all
-    addon.Data.FocusedCategory.Achievements = nil;
-    addon.Data.FocusedCategory.Children = nil;
-    addon.GUI.CategoriesFrame:Update(true);
-    addon.GUI.AchievementsFrame:ForceUpdate();
-    -- Draw again
-    addon.Data.LoadFocusedAchievements(addon.Data.Achievements);
-end
-
-local function SetShowFocusedSubCategories()
-    addon.Options.db.Categories.Focused.ShowSubCategories = not addon.Options.db.Categories.Focused.ShowSubCategories;
-    DrawFocusedSubCategories();
-    options.Debug(addon.L["Show Sub Categories"], addon.Options.db.Categories.Focused.ShowSubCategories);
-end
-
-local function ClearAllFocused()
-    addon.Data.FocusedCategory.Achievements = nil;
-    addon.Data.FocusedCategory.Children = nil;
-    if addon.GUI.SelectedTab ~= nil then -- If nil, not yet loaded
-        if SavedData.FocusedAchievements then
-            for id, _ in next, SavedData.FocusedAchievements do
-                addon.Data.Achievements[id]:ClearFocus();
-            end
-        end
-        addon.GUI.CategoriesFrame:Update(true);
-        addon.GUI.AchievementsFrame:ForceUpdate();
-    end
-    SavedData.FocusedAchievements = nil;
-end
-
-local function ShowExcludedCategory()
-    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
-        return;
-    end
-    if addon.Options.db.Categories.Excluded.Show then
-        addon.Data.LoadExcludedAchievements(addon.Data.Achievements);
-    else
-        addon.Data.ExcludedCategory.Achievements = nil;
-        addon.Data.ExcludedCategory.Children = nil;
-        addon.GUI.CategoriesFrame:Update(true);
-        addon.GUI.AchievementsFrame:ForceUpdate();
-    end
-end
-
-local function SetShowExcludedCategory()
-    addon.Options.db.Categories.Excluded.Show = not addon.Options.db.Categories.Excluded.Show;
-    ShowExcludedCategory();
-    options.Debug(addon.L["Show Excluded Category"] .. " " .. addon.L["Excluded"], addon.Options.db.Categories.Excluded.Show);
-end
-
-local function IncludeAllExcluded()
-    addon.Data.ExcludedCategory.Achievements = nil;
-    addon.Data.ExcludedCategory.Children = nil;
-    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
-        SavedData.ExcludedAchievements = nil;
-        return;
-    end
-    if SavedData.ExcludedAchievements then
-        for id, _ in next, SavedData.ExcludedAchievements do
-            addon.Data.Achievements[id]:Include();
-        end
-    end
-    addon.GUI.CategoriesFrame:Update(true);
-    addon.GUI.AchievementsFrame:ForceUpdate();
-    SavedData.ExcludedAchievements = nil;
-end
-
-local function DrawExcludedSubCategories()
-    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
-        return;
-    end
-    -- Reset all
-    addon.Data.ExcludedCategory.Achievements = nil;
-    addon.Data.ExcludedCategory.Children = nil;
-    addon.GUI.CategoriesFrame:Update(true);
-    addon.GUI.AchievementsFrame:ForceUpdate();
-    -- Draw again
-    addon.Data.LoadExcludedAchievements(addon.Data.Achievements);
-end
-
-local function SetShowExcludedSubCategories()
-    addon.Options.db.Categories.Excluded.ShowSubCategories = not addon.Options.db.Categories.Excluded.ShowSubCategories;
-    DrawExcludedSubCategories();
-    options.Debug(addon.L["Show Sub Categories"], addon.Options.db.Categories.Excluded.ShowSubCategories);
 end
 
 local function SetCompactAchievements()
@@ -187,7 +301,7 @@ options.OptionsTable.args["Layout"] = {
                     inline = true,
                     args = {
                         Movable = {
-                            order = 1.1, type = "toggle", width = "normal",
+                            order = 1.1, type = "toggle", width = 2 * widthMultiplier,
                             name = addon.L["Make windows movable"],
                             desc = addon.L["Make windows movable Desc"],
                             get = function() return addon.Options.db.Window.Movable; end,
@@ -197,9 +311,9 @@ options.OptionsTable.args["Layout"] = {
                                 options.Debug(addon.L["Make window movable"], addon.Options.db.Window.Movable);
                             end
                         },
-                        Blank12 = {order = 1.2, type = "description", width = "double", name = ""},
+                        Blank12 = {order = 1.2, type = "description", width = 1 * widthMultiplier, name = ""},
                         AchievementWindow = {
-                            order = 2.1, type = "toggle", width = "double",
+                            order = 2.1, type = "toggle", width = 2 * widthMultiplier,
                             name = addon.L["Remember frame position"]:ReplaceVars
                             {
                                 frame = addon.L["Achievement Window"]
@@ -221,7 +335,7 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         AchievementWindowReset = {
-                            order = 2.2, type = "execute",
+                            order = 2.2, type = "execute", width = 1 * widthMultiplier,
                             name = addon.L["Reset position"],
                             desc = addon.L["Reset position Desc"]:ReplaceVars
                             {
@@ -232,7 +346,7 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         Calendar = {
-                            order = 3.1, type = "toggle", width = "double",
+                            order = 3.1, type = "toggle", width = 2 * widthMultiplier,
                             name = addon.L["Remember frame position"]:ReplaceVars
                             {
                                 frame = addon.L["Achievement Calendar"]
@@ -254,7 +368,7 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         CalendarReset = {
-                            order = 3.2, type = "execute",
+                            order = 3.2, type = "execute", width = 1 * widthMultiplier,
                             name = addon.L["Reset position"],
                             desc = addon.L["Reset position Desc"]:ReplaceVars
                             {
@@ -265,7 +379,7 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         DataManager = {
-                            order = 4.1, type = "toggle", width = "double",
+                            order = 4.1, type = "toggle", width = 2 * widthMultiplier,
                             name = addon.L["Remember frame position"]:ReplaceVars
                             {
                                 frame = addon.L["Data Manager"]
@@ -287,7 +401,7 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         DataManagerReset = {
-                            order = 4.2, type = "execute",
+                            order = 4.2, type = "execute", width = 1 * widthMultiplier,
                             name = addon.L["Reset position"],
                             desc = addon.L["Reset position Desc"]:ReplaceVars
                             {
@@ -305,7 +419,7 @@ options.OptionsTable.args["Layout"] = {
                     inline = true,
                     args = {
                         CategoriesFrameWidthOffset = {
-                            order = 2.1, type = "range", width = 1.5,
+                            order = 2.1, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Categories width offset"],
                             desc = addon.Util.ReplaceVars
                             {
@@ -318,7 +432,7 @@ options.OptionsTable.args["Layout"] = {
                             set = SetCategoriesFrameWidthOffset
                         },
                         AchievementFrameHeightOffset = {
-                            order = 2.2, type = "range", width = 1.5,
+                            order = 2.2, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Achievement window height offset"],
                             desc = addon.ReplaceVarsWithReloadReq {
                                 addon.L["Achievement window height offset Desc"],
@@ -351,19 +465,19 @@ options.OptionsTable.args["Layout"] = {
                     inline = true,
                     args = {
                         Achievements = {
-                            type = "toggle",
+                            type = "toggle", width = 1 * widthMultiplier,
                             name = addon.L["Achievements"],
                             get = function() return addon.Options.db.Tabs["Blizzard_AchievementUI"]["Achievements"].Show; end,
                             set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Achievements"); end
                         },
                         Guild = {
-                            type = "toggle",
+                            type = "toggle", width = 1 * widthMultiplier,
                             name = addon.L["Guild"],
                             get = function() return addon.Options.db.Tabs["Blizzard_AchievementUI"]["Guild"].Show; end,
                             set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Guild"); end
                         },
                         Statistics = {
-                            type = "toggle",
+                            type = "toggle", width = 1 * widthMultiplier,
                             name = addon.L["Statistics"],
                             get = function() return addon.Options.db.Tabs["Blizzard_AchievementUI"]["Statistics"].Show; end,
                             set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Statistics"); end
@@ -383,7 +497,7 @@ options.OptionsTable.args["Layout"] = {
                     inline = true,
                     args = {
                         Format = {
-                            type = "select", width = 1.5,
+                            type = "select", width = 1.5 * widthMultiplier,
                             name = addon.L["Format"],
                             values = achievementPointsDisplays,
                             get = function() return addon.Options.db.AchievementPoints.Format; end,
@@ -401,7 +515,7 @@ options.OptionsTable.args["Layout"] = {
                     inline = true,
                     args = {
                         AlwaysShowRealm = {
-                            order = 1.1, type = "toggle", width = 1.5,
+                            order = 1.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Always show realm"],
                             desc = addon.L["Always show realm Desc"],
                             get = function() return addon.Options.db.AchievementPoints.Tooltip.AlwaysShowRealm; end,
@@ -411,7 +525,7 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         ShowFaction = {
-                            order = 1.2, type = "toggle", width = 1.5,
+                            order = 1.2, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Show faction icon"],
                             desc = addon.L["Show faction icon Desc"],
                             get = function() return addon.Options.db.AchievementPoints.Tooltip.ShowFaction; end,
@@ -421,7 +535,7 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         MaxNumCharacters = {
-                            order = 2.1, type = "range", width = 1.5,
+                            order = 2.1, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Maximum number of characters"],
                             desc = addon.L["Maximum number of characters Desc"],
                             min = 0, max = 100, step = 1,
@@ -433,7 +547,7 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         KeepCurrentCharacter = {
-                            order = 2.2, type = "toggle", width = 1.5,
+                            order = 2.2, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Keep current character"],
                             desc = addon.Util.ReplaceVars
                             {
@@ -468,7 +582,7 @@ options.OptionsTable.args["Layout"] = {
                     inline = true,
                     args = {
                         NumAchievements = {
-                            order = 1.1, type = "range", width = 1.5,
+                            order = 1.1, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Number of summary achievements"],
                             desc = addon.L["Number of summary achievements Desc"],
                             min = 1, max = 25, step = 1,
@@ -493,7 +607,7 @@ options.OptionsTable.args["Layout"] = {
                     inline = true,
                     args = {
                         Indentation = {
-                            order = 1.1, type = "range", width = 1.5,
+                            order = 1.1, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Indentation"],
                             desc = addon.ReplaceVarsWithReloadReq(addon.L["Indentation Desc"]),
                             min = 1, max = 50, step = 1,
@@ -502,75 +616,77 @@ options.OptionsTable.args["Layout"] = {
                         }
                     }
                 },
-                Focused = {
-                    order = 2, type = "group",
-                    name = addon.L["Focused"],
-                    inline = true,
-                    args = {
-                         ShowFocusedSubCategories = {
-                            order = 1.1, type = "toggle", width = "normal",
-                            name = addon.L["Show Sub Categories"],
-                            desc = addon.Util.ReplaceVars
-                            {
-                                addon.L["Show Sub Categories Desc"],
-                                category = addon.L["Focused"]
-                            },
-                            get = function() return addon.Options.db.Categories.Focused.ShowSubCategories; end,
-                            set = SetShowFocusedSubCategories
-                        },
-                        Blank12 = {order = 1.2, type = "description", width = "normal", name = ""},
-                        ClearAll = {
-                            order = 1.3, type = "execute",
-                            name = addon.L["Clear all"],
-                            desc = addon.L["Clear all Desc"],
-                            func = ClearAllFocused
-                        }
-                    }
-                },
-                Excluded = {
-                    order = 3, type = "group",
-                    name = addon.L["Excluded"],
-                    inline = true,
-                    args = {
-                        ShowExcludedCategory = {
-                            order = 1.1, type = "toggle", width = "normal",
-                            name = addon.L["Show Excluded Category"],
-                            desc = addon.Util.ReplaceVars
-                            {
-                                addon.L["Show Excluded Category Desc"],
-                                excluded = addon.L["Excluded"]
-                            },
-                            get = function() return addon.Options.db.Categories.Excluded.Show; end,
-                            set = SetShowExcludedCategory
-                        },
-                        Blank12 = {order = 1.2, type = "description", width = "normal", name = ""},
-                        IncludeAll = {
-                            order = 1.3, type = "execute",
-                            name = addon.L["Include all"],
-                            desc = addon.L["Include all Desc"],
-                            func = IncludeAllExcluded
-                        },
-                        ShowExcludedSubCategories = {
-                            order = 2, type = "toggle", width = "normal",
-                            name = addon.L["Show Sub Categories"],
-                            desc = addon.Util.ReplaceVars
-                            {
-                                addon.L["Show Sub Categories Desc"],
-                                category = addon.L["Excluded"]
-                            },
-                            disabled = function() return not addon.Options.db.Categories.Excluded.Show; end,
-                            get = function() return addon.Options.db.Categories.Excluded.ShowSubCategories; end,
-                            set = SetShowExcludedSubCategories
-                        },
-                    }
-                },
+                -- Moved to AdjustableCategories via AddMoreFocusedOptions
+                -- Focused = {
+                --     order = 2, type = "group",
+                --     name = addon.L["Focused"],
+                --     inline = true,
+                --     args = {
+                --          ShowFocusedSubCategories = {
+                --             order = 1.1, type = "toggle", width = 1 * widthMultiplier,
+                --             name = addon.L["Show Sub Categories"],
+                --             desc = addon.Util.ReplaceVars
+                --             {
+                --                 addon.L["Show Sub Categories Desc"],
+                --                 category = addon.L["Focused"]
+                --             },
+                --             get = function() return addon.Options.db.Categories.Focused.ShowSubCategories; end,
+                --             set = SetShowFocusedSubCategories
+                --         },
+                --         Blank12 = {order = 1.2, type = "description", width = 1 * widthMultiplier, name = ""},
+                --         ClearAll = {
+                --             order = 1.3, type = "execute",
+                --             name = addon.L["Clear all"],
+                --             desc = addon.L["Clear all Desc"],
+                --             func = ClearAllFocused
+                --         }
+                --     }
+                -- },
+                -- Moved to AdjustableCategories via AddMoreExcludedOptions
+                -- Excluded = {
+                --     order = 3, type = "group",
+                --     name = addon.L["Excluded"],
+                --     inline = true,
+                --     args = {
+                --         ShowExcludedCategory = {
+                --             order = 1.1, type = "toggle", width = 1 * widthMultiplier,
+                --             name = addon.L["Show Excluded Category"],
+                --             desc = addon.Util.ReplaceVars
+                --             {
+                --                 addon.L["Show Excluded Category Desc"],
+                --                 excluded = addon.L["Excluded"]
+                --             },
+                --             get = function() return addon.Options.db.Categories.Excluded.Show; end,
+                --             set = SetShowExcludedCategory
+                --         },
+                --         Blank12 = {order = 1.2, type = "description", width = 1 * widthMultiplier, name = ""},
+                --         IncludeAll = {
+                --             order = 1.3, type = "execute",
+                --             name = addon.L["Include all"],
+                --             desc = addon.L["Include all Desc"],
+                --             func = IncludeAllExcluded
+                --         },
+                --         ShowExcludedSubCategories = {
+                --             order = 2, type = "toggle", width = 1 * widthMultiplier,
+                --             name = addon.L["Show Sub Categories"],
+                --             desc = addon.Util.ReplaceVars
+                --             {
+                --                 addon.L["Show Sub Categories Desc"],
+                --                 category = addon.L["Excluded"]
+                --             },
+                --             disabled = function() return not addon.Options.db.Categories.Excluded.Show; end,
+                --             get = function() return addon.Options.db.Categories.Excluded.ShowSubCategories; end,
+                --             set = SetShowExcludedSubCategories
+                --         },
+                --     }
+                -- },
                 Tooltip = {
-                    order = 4, type = "group",
+                    order = 2, type = "group",
                     name = addon.L["Tooltip"],
                     inline = true,
                     args = {
                         ShowNotObtainable = {
-                            order = 1, type = "toggle", width = 1.5,
+                            order = 1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.Util.ReplaceVars
                             {
                                 addon.L["Show Not Obtainable"],
@@ -590,12 +706,12 @@ options.OptionsTable.args["Layout"] = {
                     }
                 },
                 Merge = {
-                    order = 5, type = "group",
+                    order = 3, type = "group",
                     name = addon.L["Merge Small Categories"],
                     inline = true,
                     args = {
                         MergeSmallCategoriesThreshold = {
-                            order = 1.1, type = "range", width = 1.5,
+                            order = 1.1, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Merge small categories threshold"],
                             desc = addon.ReplaceVarsWithReloadReq(addon.L["Merge small categories threshold Desc"]),
                             min = 1, max = 50, step = 1,
@@ -639,7 +755,7 @@ options.OptionsTable.args["Layout"] = {
                     inline = true,
                     args = {
                         CompactAchievements = {
-                            order = 1, type = "toggle", width = 1.5,
+                            order = 1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Compact Achievements"],
                             desc = addon.ReplaceVarsWithReloadReq(addon.L["Compact Achievements Desc"]),
                             get = function() return addon.Options.db.Achievements.Compact; end,
@@ -650,7 +766,7 @@ options.OptionsTable.args["Layout"] = {
                             name = addon.L["Objectives"]
                         },
                         ForceTwoColumns = {
-                            order = 2.1, type = "toggle", width = 1.5,
+                            order = 2.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Force two columns"],
                             desc = addon.L["Force two columns Desc"],
                             get = function() return addon.Options.db.Achievements.Objectives.ForceTwoColumns; end,
@@ -660,7 +776,7 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         ForceTwoColumnsThreshold = {
-                            order = 2.2, type = "range", width = 1.5,
+                            order = 2.2, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Force two columns threshold"],
                             desc = addon.L["Force two columns threshold Desc"],
                             min = 0, max = 50, step = 1,
@@ -701,7 +817,7 @@ options.OptionsTable.args["Layout"] = {
                             name = addon.L["Earned By"] .. " / " .. addon.L["Not Earned By"]
                         },
                         EarnedByCharacters = {
-                            order = 2.1, type = "range", width = 1.5,
+                            order = 2.1, type = "range", width = 1.45 * widthMultiplier,
                             name = addon.L["Number of Earned By characters"]:ReplaceVars
                             {
                                 earnedBy = addon.L["Earned By"]
@@ -716,7 +832,7 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         EarnedByNotCharacters = {
-                            order = 2.2, type = "range", width = 1.5,
+                            order = 2.2, type = "range", width = 1.45 * widthMultiplier,
                             name = addon.L["Number of Not Earned By characters"]:ReplaceVars
                             {
                                 notEarnedBy = addon.L["Not Earned By"]
@@ -731,7 +847,7 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         AlwaysShowRealm = {
-                            order = 3, type = "toggle", width = 1.5,
+                            order = 3, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Always show realm"],
                             desc = addon.L["Always show realm Desc"],
                             get = function() return addon.Options.db.Tooltip.Achievements.EarnedBy.AlwaysShowRealm; end,
@@ -745,7 +861,7 @@ options.OptionsTable.args["Layout"] = {
                             name = addon.L["Part of a chain"]
                         },
                         ShowPartOfAChain = {
-                            order = 5.1, type = "toggle", width = 1.5,
+                            order = 5.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.Util.ReplaceVars
                             {
                                 addon.L["Show Part of a Chain"],
@@ -763,7 +879,7 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         ShowCurrentCharacterIconsPartOfAChain = {
-                            order = 5.2, type = "toggle", width = 1.5,
+                            order = 5.2, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Show current character icons"],
                             desc = addon.Util.ReplaceVars
                             {
@@ -782,7 +898,7 @@ options.OptionsTable.args["Layout"] = {
                             name = addon.L["Required for"]
                         },
                         ShowRequiredFor = {
-                            order = 7.1, type = "toggle", width = 1.5,
+                            order = 7.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.Util.ReplaceVars
                             {
                                 addon.L["Show Required for"],
@@ -800,7 +916,7 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         ShowCurrentCharacterIconsRequiredFor = {
-                            order = 7.2, type = "toggle", width = 1.5,
+                            order = 7.2, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Show current character icons"],
                             desc = addon.Util.ReplaceVars
                             {
@@ -819,7 +935,7 @@ options.OptionsTable.args["Layout"] = {
                             name = addon.L["Other faction"]
                         },
                         ShowOtherFaction = {
-                            order = 9.1, type = "toggle", width = 1.5,
+                            order = 9.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.Util.ReplaceVars
                             {
                                 addon.L["Show Other faction"],
@@ -841,7 +957,7 @@ options.OptionsTable.args["Layout"] = {
                             name = addon.L["Objectives progress"]
                         },
                         ObjectivesProgressShow = {
-                            order = 11.1, type = "toggle", width = 1.5,
+                            order = 11.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.Util.ReplaceVars
                             {
                                 addon.L["Show Objectives progress"],
@@ -856,7 +972,7 @@ options.OptionsTable.args["Layout"] = {
                             set = SetObjectivesProgressShow
                         },
                         ObjectivesProgressShowWhenAchievementCompleted = {
-                            order = 11.2, type = "toggle", width = 1.5,
+                            order = 11.2, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.Util.ReplaceVars
                             {
                                 addon.L["When achievement completed"],
@@ -874,7 +990,7 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         ObjectivesProgressSecondColumnThreshold = {
-                            order = 12, type = "range", width = 1.5,
+                            order = 12, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Second column threshold"],
                             desc = addon.L["Second column threshold Desc"],
                             min = 0, max = 100, step = 1,
@@ -899,7 +1015,7 @@ options.OptionsTable.args["Layout"] = {
                     inline = true,
                     args = {
                         ShowButtonOnAchievement = {
-                            order = 1, type = "toggle", width = "full",
+                            order = 1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.Util.ReplaceVars
                             {
                                 addon.L["Show Right Click Menu"],
@@ -924,7 +1040,7 @@ options.OptionsTable.args["Layout"] = {
                     inline = true,
                     args = {
                         AddLocale = {
-                            order = 1, type = "toggle", width = "full",
+                            order = 1.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Add Locale"],
                             desc = addon.Util.ReplaceVars
                             {
@@ -937,8 +1053,9 @@ options.OptionsTable.args["Layout"] = {
                                 options.Debug(addon.L["Add Locale"], addon.Options.db.RightClickMenu.WowheadLink.AddLocale);
                             end
                         },
+                        Blank12 = {order = 1.2, type = "description", width = 1.5 * widthMultiplier, name = ""},
                         AddRelatedTab = {
-                            order = 2, type = "select", width = 1.5,
+                            order = 2, type = "select", width = 1.5 * widthMultiplier,
                             name = addon.L["Related Tab"],
                             desc = addon.Util.ReplaceVars
                             {
@@ -967,7 +1084,7 @@ options.OptionsTable.args["Layout"] = {
                     inline = true,
                     args = {
                         LockAchievementMonth = {
-                            order = 1, type = "toggle", width = "full",
+                            order = 1.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Lock month when closed by achievement"],
                             desc = addon.L["Lock month when closed by achievement Desc"],
                             get = function() return addon.Options.db.Calendar.LockAchievementMonth; end,
@@ -976,8 +1093,9 @@ options.OptionsTable.args["Layout"] = {
                                 options.Debug(addon.L["Lock month when closed by achievement"], addon.Options.db.Calendar.LockAchievementMonth);
                             end
                         },
+                        Blank12 = {order = 1.2, type = "description", width = 1.5 * widthMultiplier, name = ""},
                         LockMonth = {
-                            order = 2, type = "toggle", width = "full",
+                            order = 2, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Lock month"],
                             desc = addon.L["Lock month Desc"],
                             get = function() return addon.Options.db.Calendar.LockMonth; end,
@@ -994,7 +1112,7 @@ options.OptionsTable.args["Layout"] = {
                     inline = true,
                     args = {
                         FirstDayOfTheWeek = {
-                            order = 1, type = "select", width = 1.5,
+                            order = 1, type = "select", width = 1.5 * widthMultiplier,
                             name = addon.L["First day of the week"],
                             desc = addon.L["First day of the week Desc"],
                             values = CALENDAR_WEEKDAY_NAMES,
