@@ -45,8 +45,8 @@ function eventData.Load()
         local events = GetEvents();
         for id, event in next, data.CalendarEvents do
             if events[id] then -- At this time we only handle calendar events, POI's are handeled later
-                local startTime = addon.GetSecondsSince(events[id].startTime) + utcOffsetSeconds;
-                local endTime = addon.GetSecondsSince(events[id].endTime) + utcOffsetSeconds;
+                local startTime = addon.GetSecondsSince(events[id].startTime) - utcOffsetSeconds;
+                local endTime = addon.GetSecondsSince(events[id].endTime) - utcOffsetSeconds;
                 -- diagnostics.Debug(event.ID .. " - " .. events[id].title .. " - " ..
                 --                     date("%Y/%m/%d %H:%M", startTime) .. " - " .. date("%Y/%m/%d %H:%M", endTime));
                 if endTime - time() > 0 then
