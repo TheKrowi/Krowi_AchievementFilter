@@ -19,6 +19,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Dragonflight compatibility changes
+- Users with a different UTC offset than the server should now correctly display calendar events
 
 ### Removed
 - Excluded category filter

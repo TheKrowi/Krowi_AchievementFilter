@@ -31,12 +31,22 @@ function eventData.Load()
 
     -- diagnostics.Debug("refreshEvents: " .. tostring(refreshEvents));
     if refreshEvents then -- Events are either empty or an event has elapsed so get new data
+        local utcNow = date("!*t");
+        local locNow = date("*t");
+        local utcServerTimeLocal = date("!*t", C_DateAndTime.GetServerTimeLocal());
+        local serverUtcOffsetDays = utcServerTimeLocal.yday - utcNow.yday;
+        local serverUtcOffsetHours = utcServerTimeLocal.hour - utcNow.hour;
+        local userUtcOffsetDays = locNow.yday - utcNow.yday;
+        local userUtcOffsetHours = locNow.hour - utcNow.hour;
+        local utcOffsethours = (serverUtcOffsetDays * 24 + serverUtcOffsetHours) - (userUtcOffsetDays * 24 + userUtcOffsetHours);
+        local utcOffsetSeconds = utcOffsethours * 3600;
+        
         EventDetails.CalendarEvents = {};
         local events = GetEvents();
         for id, event in next, data.CalendarEvents do
             if events[id] then -- At this time we only handle calendar events, POI's are handeled later
-                local startTime = addon.GetSecondsSince(events[id].startTime);
-                local endTime = addon.GetSecondsSince(events[id].endTime);
+                local startTime = addon.GetSecondsSince(events[id].startTime) + utcOffsetSeconds;
+                local endTime = addon.GetSecondsSince(events[id].endTime) + utcOffsetSeconds;
                 -- diagnostics.Debug(event.ID .. " - " .. events[id].title .. " - " ..
                 --                     date("%Y/%m/%d %H:%M", startTime) .. " - " .. date("%Y/%m/%d %H:%M", endTime));
                 if endTime - time() > 0 then
