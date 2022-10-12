@@ -6,6 +6,7 @@
 		<Scripts>
 			<OnShow function="KrowiAF_CategoriesFrame_OnShow"/>
 			<OnHide function="KrowiAF_CategoriesFrame_OnHide"/>
+			<OnEvent function="KrowiAF_CategoriesFrame_OnEvent"/>
 		</Scripts>
 		<Frames>
 			<ScrollFrame name="$parentScrollFrame" parentKey="ScrollFrame" inherits="HybridScrollFrameTemplate">

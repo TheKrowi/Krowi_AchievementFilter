@@ -66,7 +66,11 @@ function achFrameTabBtn:Base_OnClick(id)
     end
 
     if addon.InGuildView() then
-        AchievementFrame_ToggleView();
+        if addon.IsWrathClassic() or addon.IsShadowlands() then
+            AchievementFrame_ToggleView();
+        else
+            AchievementFrame_RefreshView();
+        end
         AchievementFrameGuildEmblemLeft:Hide();
         AchievementFrameGuildEmblemRight:Hide();
     end

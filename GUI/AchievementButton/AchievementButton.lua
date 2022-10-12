@@ -46,11 +46,9 @@ function KrowiAF_AchievementButton_OnEvent(self, event, ...)
 	if event ~= "ACHIEVEMENT_EARNED" then
 		return;
 	end
-
 	if not self.Achievement or not self.index then
 		return;
 	end
-
 	local achievementId = ...;
 	if achievementId ~= self.Achievement.Id then
 		return;

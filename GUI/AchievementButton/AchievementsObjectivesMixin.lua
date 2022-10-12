@@ -52,6 +52,9 @@ function KrowiAF_AchievementsObjectivesMixin:GetProgressBar(index)
 		return progressBarTable[index];
 	end
 	local frame = CreateFrame("STATUSBAR", self:GetName() .. "ProgressBar" .. index, self, "AchievementProgressBarTemplate");
+	if addon.IsWrathClassic or addon.IsShadowlandsRetail then
+		frame.Text = frame.text;
+	end
 	AchievementButton_LocalizeProgressBar(frame);
 	progressBarTable[index] = frame;
 	return frame;
@@ -132,7 +135,7 @@ function KrowiAF_AchievementsObjectivesMixin:AddProgressBar(index, quantity, req
 		progressBar:SetPoint("TOP", self:GetProgressBar(index - 1), "BOTTOM", 0, -progressBarOffset);
 		extraHeight = progressBarOffset;
 	end
-	progressBar.text:SetText(string.format("%s", quantityString));
+	progressBar.Text:SetText(string.format("%s", quantityString));
 	progressBar:SetMinMaxValues(0, reqQuantity);
 	progressBar:SetValue(quantity);
 	progressBar:SetParent(self);

@@ -349,7 +349,7 @@ function addon.OnAchievementEarned(achievementId)
     local playerGUID = UnitGUID("player");
     IncrementCharacterPoints(playerGUID, id, points, month, day, year, flags, isGuild, wasEarnedByMe, isStatistic, exists);
     SetCharPoints(playerGUID, characterPoints);
-    addon.AchievementEarned = true;
+    addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = true;
 end
 
 function addon.OverwriteFunctions()
@@ -527,7 +527,7 @@ end
 function addon.GetNextAchievement(achievement)
     if achievement.NextAchievements then
         for _, nextAchievement in next, achievement.NextAchievements do
-            local _, _, _, completed, _, _, _, _, _, _, _, _, _, earnedBy, _ = addon.GetAchievementInfo(nextAchievement.ID);
+            local _, _, _, completed, _, _, _, _, _, _, _, _, _, earnedBy, _ = addon.GetAchievementInfo(nextAchievement.Id);
             if earnedBy ~= nil then -- Will be nil if the achievement is for the other faction
                 return nextAchievement, completed;
             end

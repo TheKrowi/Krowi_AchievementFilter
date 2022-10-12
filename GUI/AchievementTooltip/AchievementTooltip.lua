@@ -84,14 +84,14 @@ function tooltip.EvaluateCharacters(achievement)
 	local numEarnedByChar = addon.Options.db.Tooltip.Achievements.EarnedBy.Characters;
 	local numNotEarnedByChar = addon.Options.db.Tooltip.Achievements.EarnedBy.NotCharacters;
 	numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy = AddName(achievement, thisRealm, numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy, thisCharacter);
-	if achievement.OtherFactionAchievementId and thisCharacter.CompletedAchievements[achievement.OtherFactionAchievementId] then
+	if achievement.OtherFactionAchievementId and thisCharacter.CompletedAchievements and thisCharacter.CompletedAchievements[achievement.OtherFactionAchievementId] then
 		otherFactionAchievementCompleted = true;
 	end
 	for guid, character in next, SavedData.Characters do
 		if guid ~= thisGuid and (numEarnedBy < numEarnedByChar or numNotEarnedBy < numNotEarnedByChar) then
 			numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy = AddName(achievement, thisRealm, numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy, character);
 		end
-		if achievement.OtherFactionAchievementId and character.CompletedAchievements[achievement.OtherFactionAchievementId] then
+		if achievement.OtherFactionAchievementId and character.CompletedAchievements and character.CompletedAchievements[achievement.OtherFactionAchievementId] then
 			otherFactionAchievementCompleted = true;
 		end
 	end
