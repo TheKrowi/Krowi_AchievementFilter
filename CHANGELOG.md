@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Adjustable Category feature for Focused and Excluded achievements
 - Primal Storm world events data
 - Tracking Achievements category with all the tracking achievements and other hidden ones usually not visible to players
+- New credits
 
 ### Changed
 - Default fade delay for event reminder pop ups changed to 10 seconds (down from 30)
