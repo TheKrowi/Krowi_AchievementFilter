@@ -22,6 +22,7 @@ All notable changes to this project will be documented in this file.
 - Dragonflight compatibility changes
 - Earned By filter should update on change again
 - Users with a different UTC offset than the server should now correctly display calendar events
+- Attempt to fix World Map Buttons
 
 ### Removed
 - Excluded category filter
