@@ -1,4 +1,4 @@
--- [[ Exported at 2022-09-26 08-08-12 ]] --
+-- [[ Exported at 2022-10-13 20-58-44 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -2761,7 +2761,7 @@ function exportedAchievements.Load(a, t)
     a[7438] = ach:New(7438, 10); -- Could We Find More Like That?
     a[7439] = ach:New(7439, 30); -- Glorious!
     a[7462] = ach:New(7462, 5); -- A Rare Catch
-    a[7463] = ach:New(7463, 5); -- High Quality
+    a[7463] = ach:New(7463, 5); -- Lots of Rarity
     a[7464] = ach:New(7464, 10); -- Quality & Quantity
     a[7465] = ach:New(7465, 5); -- An Uncommon Find
     a[7467] = ach:New(7467, 0, fac.Alliance, 7468); -- Theramore's Fall
@@ -8394,7 +8394,7 @@ function exportedAchievements.Load(a, t)
     a[16062] = ach:New(16062, 0); -- Dragon Glyphs: Rusza'thar Reach
     a[16063] = ach:New(16063, 0); -- Dragon Glyphs: Windsong Rise
     a[16064] = ach:New(16064, 0); -- Dragon Glyphs: Cobalt Assembly
-    a[16065] = ach:New(16065, 0); -- Dragon Glyphs: Azure Archive
+    a[16065] = ach:New(16065, 0); -- Dragon Glyphs: Azure Archives
     a[16066] = ach:New(16066, 0); -- Dragon Glyphs: Ruins of Karnthar
     a[16067] = ach:New(16067, 0); -- Dragon Glyphs: Lost Ruins
     a[16068] = ach:New(16068, 0); -- Dragon Glyphs: Brackenhide Hollow
@@ -8412,7 +8412,7 @@ function exportedAchievements.Load(a, t)
     a[16104] = ach:New(16104, 0); -- Dragon Glyphs: Algeth'ar Academy
     a[16105] = ach:New(16105, 0); -- Dragon Glyphs: Veiled Ossuary
     a[16106] = ach:New(16106, 0); -- Dragon Glyphs: Vault of the Incarnates
-    a[16107] = ach:New(16107, 0); -- Dragon Glyphs: Thaldrazsus Apex
+    a[16107] = ach:New(16107, 0); -- Dragon Glyphs: Thaldraszus Apex
     a[16110] = ach:New(16110, 10); -- Subscribed to Hyena Facts
     a[16255] = ach:New(16255, 10); -- Brackenhide Hollow
     a[16256] = ach:New(16256, 10); -- Heroic: Brackenhide Hollow
@@ -8553,7 +8553,7 @@ function exportedAchievements.Load(a, t)
     a[16490] = ach:New(16490, 10); -- Storm Chaser
     a[16492] = ach:New(16492, 20); -- Into the Storm
     a[16493] = ach:New(16493, 5); -- Grand Theft Mammoth
-    a[16494] = ach:New(16494, 5); -- Backing the Throne
+    a[16494] = ach:New(16494, 5); -- Loyalty to the Prince
     a[16495] = ach:New(16495, 5); -- Obsidian Keymaster
     a[16496] = ach:New(16496, 5); -- Obsidian Champion
     a[16497] = ach:New(16497, 5); -- I'm Playing All Sides
@@ -8573,7 +8573,7 @@ function exportedAchievements.Load(a, t)
     a[16511] = ach:New(16511, 5); -- Undead Battler of the Dragon Isles
     a[16512] = ach:New(16512, 10); -- Family Battler of the Dragon Isles
     a[16517] = ach:New(16517, 10); -- Toxicity Strike Team
-    a[16518] = ach:New(16518, 10); -- Explore Thaldrazsus
+    a[16518] = ach:New(16518, 10); -- Explore Thaldraszus
     a[16519] = ach:New(16519, 5); -- Dragon Isles Safari
     a[16522] = ach:New(16522, 5); -- A True Explorer
     a[16528] = ach:New(16528, 5); -- Joining the Khansguard
@@ -8621,7 +8621,7 @@ function exportedAchievements.Load(a, t)
     a[16578] = ach:New(16578, 20); -- Thaldraszus Glyph Hunter
 
     local aIDs = {};
-    for i = 1, 16683 do
+    for i = 1, 16760 do
         if a[i] ~= nil then
             tinsert(aIDs, i);
         end
