@@ -26,7 +26,7 @@ end
 
 local AddButton;
 local function Fix1_3_1Buttons()
-	local old = LibStub("Krowi_WorldMapButtons-1.3");
+	local old = LibStub("Krowi_WorldMapButtons-1.3",true);
 	if old then
 		local children = { WorldMapFrame:GetChildren() };
 		for i, child in ipairs(children) do
