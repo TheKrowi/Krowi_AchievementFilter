@@ -7,7 +7,6 @@ function section.CheckAdd(achievement)
 end
 
 function section.Add(achievement)
-	print(achievement.Id,achievement.IsAccountWide)
 	if achievement.IsAccountWide then
 		if achievement.IsCompleted then
 			GameTooltip:AddLine(ACCOUNT_WIDE_ACHIEVEMENT_COMPLETED);

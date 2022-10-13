@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 45.0 - 2022-10-
+### Fixed
+- Temporary obtainable account wide achievements should no longer display the Earned By section
+
 ## 44.1 - 2022-10-13
 ### Fixed
 - Silent World Map Buttons
