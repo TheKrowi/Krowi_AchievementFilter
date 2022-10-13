@@ -85,13 +85,17 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement)
 		else
 			if flags.IsAccountWide then
 				self.accountWide = true;
-				achievement.IsAccountWide = true;
 				saturatedStyle = "account";
 			else
 				self.accountWide = nil;
-				achievement.IsAccountWide = nil;
 				saturatedStyle = "normal";
 			end
+		end
+
+		if flags.IsAccountWide then
+			achievement.IsAccountWide = true;
+		else
+			achievement.IsAccountWide = nil;
 		end
 
 		self.Header:SetText(name)
