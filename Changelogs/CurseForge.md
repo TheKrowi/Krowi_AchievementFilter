@@ -33,3 +33,8 @@
 <li>All categories should have a meaningful text now</li>
 <li>Compatibility fixes</li>
 </ul>
+<p><h3>Fixed (44.1)</h3></p>
+<ul>
+<li>Silent World Map Buttons</li>
+</ul>
+

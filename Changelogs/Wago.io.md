@@ -27,3 +27,6 @@
 ### Wrath Classic
 - All categories should have a meaningful text now
 - Compatibility fixes
+
+### Fixed (44.1)
+- Silent World Map Buttons

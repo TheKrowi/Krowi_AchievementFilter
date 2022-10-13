@@ -37,3 +37,9 @@
 [*]All categories should have a meaningful text now
 [*]Compatibility fixes
 [/LIST]
+
+[B]Fixed (44.1)[/B]
+[LIST]
+[*]Silent World Map Buttons
+[/LIST]
+
