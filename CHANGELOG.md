@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 44.1 - 2022-10-13
+### Fixed
+- Silent World Map Buttons
+
 ## 44.0 - 2022-10-12
 ### Added
 - Dragonflight Dungeons, Raids, Dragonriding, Dragon Racing and Primal Storms data
