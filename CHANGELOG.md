@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 45.0 - 2022-10-
+## 44.2 - 2022-10-14
 ### Fixed
 - Temporary obtainable account wide achievements should no longer display the Earned By section
 

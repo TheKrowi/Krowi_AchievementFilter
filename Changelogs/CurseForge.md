@@ -35,6 +35,13 @@
 </ul>
 <p><h3>Fixed (44.1)</h3></p>
 <ul>
-<li>Silent World Map Buttons</li>
+<li>Silent World Map Buttons</li>
 </ul>
-
+<p><h3>Fixed (44.2)</h3></p>
+<ul>
+<li>Temporary obtainable account wide achievements should no longer display the Earned By section</li>
+</ul>
+<p><h3>Wrath Classic (44.2)</h3></p>
+<ul>
+<li>Fixed ElvUI compatibility</li>
+</ul>
