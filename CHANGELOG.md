@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Temporary obtainable account wide achievements should no longer display the Earned By section
 
+### Wrath Classic
+- Fixed ElvUI compatibility
+
 ## 44.1 - 2022-10-13
 ### Fixed
 - Silent World Map Buttons

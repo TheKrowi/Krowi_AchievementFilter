@@ -434,6 +434,9 @@ local function SkinHeader()
         AchievementFrameHeaderPoints:ClearAllPoints();
 	    AchievementFrameHeaderPoints:Point('CENTER', AchievementFrameHeaderPointBorder);
     end);
+    if addon.IsWrathClassic then
+        AchievementFrameHeaderLeftDDLInset:SetAlpha(0);
+    end
 end
 
 local function ReskinBlizzard(skins)

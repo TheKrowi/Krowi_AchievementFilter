@@ -13,28 +13,24 @@ function filterButton:Load()
 
 	tinsert(addon.GUI.SubFrames, button);
 
-    if addon.IsWrathClassic then
-        button:SetScript("OnShow", filterButton.OnShow);
-        button:SetScript("OnHide", filterButton.OnHide);
-    else -- We don't need this in retail
-        filterButton.OnShow = nil;
-        filterButton.OnHide = nil;
-    end
+    -- if addon.IsWrathClassic then
+    --     button:SetScript("OnShow", filterButton.OnShow);
+    --     button:SetScript("OnHide", filterButton.OnHide);
+    -- else -- We don't need this in retail
+    --     filterButton.OnShow = nil;
+    --     filterButton.OnHide = nil;
+    -- end
 
 	addon.GUI.FilterButton = button; -- Overwrite with the actual frame since all functions are injected to it
 end
 
-function filterButton.OnShow(self)
-    if KrowiAF_AchievementFrameHeaderLeftDDLInset then
-        KrowiAF_AchievementFrameHeaderLeftDDLInset:Show();
-    end
-end
+-- function filterButton.OnShow(self)
+--     AchievementFrameHeaderLeftDDLInset:Show();
+-- end
 
-function filterButton.OnHide(self)
-    if KrowiAF_AchievementFrameHeaderLeftDDLInset then
-        KrowiAF_AchievementFrameHeaderLeftDDLInset:Hide();
-    end
-end
+-- function filterButton.OnHide(self)
+--     AchievementFrameHeaderLeftDDLInset:Hide();
+-- end
 
 local menu = LibStub("Krowi_Menu-1.0");
 function KrowiAF_AchievementFrameFilterButton_OnMouseDown(self)
