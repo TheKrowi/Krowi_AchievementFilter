@@ -1,4 +1,4 @@
--- [[ Exported at 2022-09-26 08-08-21 ]] --
+-- [[ Exported at 2022-10-13 20-58-53 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -5478,6 +5478,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1343], a[15890]); -- Dragonscale Expedition: The Highest Peaks
     AddA(tmp[1343], a[16323]); -- Fragments of History
     AddA(tmp[1343], a[16338]); -- Fang Flap Fire Fighter
+    AddA(tmp[1343], a[16729]); -- To All the Squirrels Hidden Till Now
     tmp[1390] = cat:New(addon.GetCategoryInfoTitle(95), true); -- Player vs. Player
     AddC(tmp[1341], tmp[1390]);
     AddA(tmp[1390], a[16589]); -- Malicia's Challenge
@@ -5511,6 +5512,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1361], a[16623]); -- Toe Tension
     AddA(tmp[1361], a[16624]); -- Which Knot Was It Again?
     AddA(tmp[1361], a[16625]); -- Belay On!
+    AddA(tmp[1361], a[16758]); -- "Ready, Aim, Catalog!"
     tmp[1362] = cat:New(addon.GetMapName(2112)); -- Valdrakken
     AddC(tmp[1228], tmp[1362]);
     AddA(tmp[1362], a[16556]); -- Great Gourmand of The Ruby Feast
@@ -5529,7 +5531,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1242], a[16410]); -- Siege on Dragonbane Keep: Snack Attack
     AddA(tmp[1242], a[16406]); -- All Sides of the Story
     AddA(tmp[1242], a[16409]); -- Let's Get Quacking
-    AddA(tmp[1242], a[16494]); -- Backing the Throne
+    AddA(tmp[1242], a[16494]); -- Loyalty to the Prince
     AddA(tmp[1242], a[16495]); -- Obsidian Keymaster
     AddA(tmp[1242], a[16496]); -- Obsidian Champion
     AddA(tmp[1242], a[16497]); -- I'm Playing All Sides
@@ -5542,6 +5544,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1248], a[16539]); -- In High Esteem
     AddA(tmp[1248], a[16532]); -- Friends with Sabellian
     AddA(tmp[1248], a[16536]); -- True Friends with Wrathion
+    AddA(tmp[1248], a[16760]); -- The Obsidian Bloodline
     tmp[1306] = cat:New(addon.L["Dragon Glyphs"], true); -- Dragon Glyphs
     AddC(tmp[1232], tmp[1306]);
     AddA(tmp[1306], a[15991]); -- Dragon Glyphs: Crumbling Life Archway
@@ -5652,6 +5655,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1243], a[16424]); -- Who's a Good Bakar?
     AddA(tmp[1243], a[16462]); -- The Ohn'ahran Trail
     AddA(tmp[1243], a[16493]); -- Grand Theft Mammoth
+    AddA(tmp[1243], a[16736]); -- Grand Theft Mammoth
     AddA(tmp[1243], a[16583]); -- Knew You Nokhud Do It!
     tmp[1249] = cat:New(addon.GetCategoryInfoTitle(95), true); -- PvP
     AddC(tmp[1233], tmp[1249]);
@@ -5788,7 +5792,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1256], a[16537]); -- Maximum Power!
     tmp[1308] = cat:New(addon.L["Dragon Glyphs"], true); -- Dragon Glyphs
     AddC(tmp[1234], tmp[1308]);
-    AddA(tmp[1308], a[16065]); -- Dragon Glyphs: Azure Archive
+    AddA(tmp[1308], a[16065]); -- Dragon Glyphs: Azure Archives
     AddA(tmp[1308], a[16068]); -- Dragon Glyphs: Brackenhide Hollow
     AddA(tmp[1308], a[16064]); -- Dragon Glyphs: Cobalt Assembly
     AddA(tmp[1308], a[16069]); -- Dragon Glyphs: Creektooth Den
@@ -5872,7 +5876,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1240], a[16398]); -- Sojourner of Thaldraszus
     tmp[1246] = cat:New(addon.GetCategoryInfoTitle(97), true); -- Exploration
     AddC(tmp[1235], tmp[1246]);
-    AddA(tmp[1246], a[16518]); -- Explore Thaldrazsus
+    AddA(tmp[1246], a[16518]); -- Explore Thaldraszus
     AddA(tmp[1246], a[16679]); -- Adventurer of Thaldraszus
     AddA(tmp[1246], a[16301]); -- Treasures of Thaldraszus
     AddA(tmp[1246], a[16634]); -- Framing a New Perspective
@@ -5891,7 +5895,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1309], a[16100]); -- Dragon Glyphs: South Hold Gate
     AddA(tmp[1309], a[16099]); -- Dragon Glyphs: Stormshroud Peak
     AddA(tmp[1309], a[16098]); -- Dragon Glyphs: Temporal Conflux
-    AddA(tmp[1309], a[16107]); -- Dragon Glyphs: Thaldrazsus Apex
+    AddA(tmp[1309], a[16107]); -- Dragon Glyphs: Thaldraszus Apex
     AddA(tmp[1309], a[16103]); -- Dragon Glyphs: Tyrhold
     AddA(tmp[1309], a[16101]); -- Dragon Glyphs: Valdrakken
     AddA(tmp[1309], a[16106]); -- Dragon Glyphs: Vault of the Incarnates
@@ -5982,7 +5986,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1229], a[16648]); -- Dragonflight Keystone Conqueror: Season One
     AddA(tmp[1229], a[16649]); -- Dragonflight Keystone Master: Season One
     AddA(tmp[1229], a[16650]); -- Dragonflight Keystone Hero: Season One
-    AddA(tmp[1229], a[16429]); -- [PH] Hero: Dragonflight Season 1
+    AddA(tmp[1229], a[16429]); -- Thundering Hero: Dragonflight Season 1
     tmp[1257] = cat:New(addon.GetInstanceInfoName(1201)); -- Algeth'ar Academy
     AddC(tmp[1229], tmp[1257]);
     AddA(tmp[1257], a[16434]); -- See Me After Class
@@ -6102,6 +6106,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1231], a[16511]); -- Undead Battler of the Dragon Isles
     AddA(tmp[1231], a[16512]); -- Family Battler of the Dragon Isles
     AddA(tmp[1231], a[16399]); -- Lovin' Lubbins
+    AddA(tmp[1231], a[16731]); -- Court is Now in Session
     tmp[1268] = cat:New(addon.L["Dragonriding"]); -- Dragonriding
     AddC(tmp[1207], tmp[1268]);
     AddA(tmp[1268], a[15794]); -- A New Friend
@@ -6140,7 +6145,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1303], a[16576]); -- Ohn'ahran Plains Glyph Hunter
     tmp[1304] = cat:New(addon.GetMapName(2024), true); -- The Azure Span
     AddC(tmp[1268], tmp[1304]);
-    AddA(tmp[1304], a[16065]); -- Dragon Glyphs: Azure Archive
+    AddA(tmp[1304], a[16065]); -- Dragon Glyphs: Azure Archives
     AddA(tmp[1304], a[16068]); -- Dragon Glyphs: Brackenhide Hollow
     AddA(tmp[1304], a[16064]); -- Dragon Glyphs: Cobalt Assembly
     AddA(tmp[1304], a[16069]); -- Dragon Glyphs: Creektooth Den
@@ -6162,7 +6167,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1305], a[16100]); -- Dragon Glyphs: South Hold Gate
     AddA(tmp[1305], a[16099]); -- Dragon Glyphs: Stormshroud Peak
     AddA(tmp[1305], a[16098]); -- Dragon Glyphs: Temporal Conflux
-    AddA(tmp[1305], a[16107]); -- Dragon Glyphs: Thaldrazsus Apex
+    AddA(tmp[1305], a[16107]); -- Dragon Glyphs: Thaldraszus Apex
     AddA(tmp[1305], a[16103]); -- Dragon Glyphs: Tyrhold
     AddA(tmp[1305], a[16101]); -- Dragon Glyphs: Valdrakken
     AddA(tmp[1305], a[16106]); -- Dragon Glyphs: Vault of the Incarnates
@@ -6958,7 +6963,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1170], a[7436]); -- Zen Pet Hunter
     AddA(tmp[1170], a[7465]); -- An Uncommon Find
     AddA(tmp[1170], a[7462]); -- A Rare Catch
-    AddA(tmp[1170], a[7463]); -- High Quality
+    AddA(tmp[1170], a[7463]); -- Lots of Rarity
     AddA(tmp[1170], a[7464]); -- Quality & Quantity
     AddA(tmp[1170], a[6608]); -- Family Reunion
     AddA(tmp[1170], a[6571]); -- That Was Close!
@@ -8376,6 +8381,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1345], a[15951]); -- Crimson Gladiator: Dragonflight Season 1
     AddA(tmp[1345], a[15959]); -- Hero of the Alliance: Crimson
     AddA(tmp[1345], a[15958]); -- Hero of the Horde: Crimson
+    AddA(tmp[1345], a[16734]); -- Crimson Soloist: Dragonflight Season 1
     tmp[1368] = cat:New(addon.L["Tracking Achievements"]); -- Tracking Achievements
     AddC(tmp[955], tmp[1368]);
     tmp[1368].HasFlexibleData = true;
@@ -8593,6 +8599,7 @@ function exportedCategories.Load(a)
     AddA(tmp[978], a[15605]); -- Gladiator: Shadowlands Season 4
     AddA(tmp[978], a[15612]); -- Eternal Gladiator's Soul Eater
     AddA(tmp[978], a[15957]); -- Gladiator: Dragonflight Season 1
+    AddA(tmp[978], a[16730]); -- Crimson Gladiator's Drake
     tmp[988] = cat:New(addon.L["Recruit-a-Friend"] .. " (" .. addon.GetCategoryInfoTitle(15234) .. ")"); -- Recruit-a-Friend
     AddC(tmp[972], tmp[988]);
     AddA(tmp[988], a[1436]); -- Friends In High Places

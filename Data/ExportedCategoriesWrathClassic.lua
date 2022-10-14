@@ -1,4 +1,4 @@
--- [[ Exported at 2022-09-26 08-08-22 ]] --
+-- [[ Exported at 2022-10-13 20-58-55 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -2215,7 +2215,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1170], a[7436]); -- Zen Pet Hunter
     AddA(tmp[1170], a[7465]); -- An Uncommon Find
     AddA(tmp[1170], a[7462]); -- A Rare Catch
-    AddA(tmp[1170], a[7463]); -- High Quality
+    AddA(tmp[1170], a[7463]); -- Lots of Rarity
     AddA(tmp[1170], a[7464]); -- Quality & Quantity
     AddA(tmp[1170], a[6608]); -- Family Reunion
     AddA(tmp[1170], a[6571]); -- That Was Close!

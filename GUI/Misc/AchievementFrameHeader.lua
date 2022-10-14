@@ -9,8 +9,8 @@ function header:Load()
         tex:SetTexture("Interface/AchievementFrame/UI-Achievement-RightDDLInset");
         tex:SetSize(128, 32);
         tex:SetPoint("TOPLEFT", 112, -56);
-        tex:Show();
-        KrowiAF_AchievementFrameHeaderLeftDDLInset = tex;
+        tex:Hide();
+        AchievementFrameHeaderLeftDDLInset = tex;
     end
 end
 

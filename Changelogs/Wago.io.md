@@ -30,3 +30,9 @@
 
 ### Fixed (44.1)
 - Silent World Map Buttons
+
+### Fixed (44.2)
+- Temporary obtainable account wide achievements should no longer display the Earned By section
+
+### Wrath Classic (44.2)
+- Fixed ElvUI compatibility

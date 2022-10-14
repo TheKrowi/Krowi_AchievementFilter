@@ -21,6 +21,8 @@ local defaultAchievementFrameWidth;
 local defaultAchievementFrameHeight;
 local defaultAchievementFrameMetalBorderHeight;
 function gui:LoadWithBlizzard_AchievementUI()
+    addon.GUI.AchievementFrameHeader:Load();
+    
     self.LoadWrathClassicAchievementFrameChanges();
     self.LoadOldAchievementFrameCompatibility();
 
@@ -34,7 +36,6 @@ function gui:LoadWithBlizzard_AchievementUI()
     addon.GUI.SummaryFrame:Load();
     gui.CategoriesFrame:Load();
     gui.FilterButton:Load();
-    addon.GUI.AchievementFrameHeader:Load();
 
     gui.Search:Load();
     addon.GUI.Calendar:Load();
@@ -426,10 +427,10 @@ function gui.LoadOldAchievementFrameCompatibility()
     AchievementFrame.Header.PointBorder = AchievementFrameHeaderPointBorder;
     AchievementFrame.Header.Points = AchievementFrameHeaderPoints;
     AchievementFrame.Header.Title = AchievementFrameHeaderTitle;
+	AchievementFrame.Header.LeftDDLInset = AchievementFrameHeaderLeftDDLInset;
 
     if addon.IsShadowlandsRetail then
         AchievementFrame.SearchBox = AchievementFrame.searchBox;
-		AchievementFrame.Header.LeftDDLInset = AchievementFrameHeaderLeftDDLInset;
     end
 end
 

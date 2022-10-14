@@ -44,8 +44,8 @@ function KrowiAF_CategoriesFrame_OnShow(self) -- Used in Templates - KrowiAF_Cat
 	AchievementFrameFilterDropDown:Hide();
 	if not addon.IsWrathClassic then
 		AchievementFrame.SearchBox:Hide();
-		AchievementFrame.Header.LeftDDLInset:Show();
 	end
+	AchievementFrame.Header.LeftDDLInset:Show();
 	AchievementFrameWaterMark:SetTexture(addon.GUI.SelectedTab and addon.GUI.SelectedTab.WaterMark or "Interface/AchievementFrame/UI-Achievement-AchievementWatermark");
 	AchievementFrameCategoriesBG:SetTexCoord(0, 0.5, 0, 1); -- Set this global texture for player achievements
 	self:Update(addon.AchievementEarnedUpdateCategoriesFrameOnNextShow);
@@ -58,9 +58,9 @@ function KrowiAF_CategoriesFrame_OnHide(self) -- Used in Templates - KrowiAF_Cat
 	AchievementFrameCategoriesBG:SetWidth(195); -- Set back to default value
 	if not AchievementFrameAchievements:IsShown() then
 		AchievementFrameFilterDropDown:Hide();
-		if not addon.IsWrathClassic then
-			AchievementFrame.Header.LeftDDLInset:Hide();
-		end
+		-- if not addon.IsWrathClassic then
+		AchievementFrame.Header.LeftDDLInset:Hide();
+		-- end
 	end
 	if not addon.IsWrathClassic then
 		AchievementFrame.SearchBox:Show();
