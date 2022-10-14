@@ -249,11 +249,13 @@ local function SkinAchievementSummary(frame, engine, skins)
     frame.Achievements.Header.Texture:Hide();
 	frame.Categories.Header.Texture:Hide();
 
-    local numChildren = frame:GetNumChildren();
-    for i = 1, numChildren do
-        local child = select(i, frame:GetChildren());
-        if child and not child:GetName() then
-            child:SetBackdrop();
+    if not addon.IsWrathClassic then
+        local numChildren = frame:GetNumChildren();
+        for i = 1, numChildren do
+            local child = select(i, frame:GetChildren());
+            if child and not child:GetName() then
+                child:SetBackdrop();
+            end
         end
     end
 
@@ -435,7 +437,7 @@ local function SkinHeader()
 end
 
 local function ReskinBlizzard(skins)
-    SkinSearchBoxFrame(AchievementFrame.searchBox, AchievementFrameAchievements, skins);
+    SkinSearchBoxFrame(AchievementFrame.SearchBox, AchievementFrameAchievements, skins);
     AchievementFrameFilterDropDown:ClearAllPoints();
 	AchievementFrameFilterDropDown:Point('TOPLEFT', AchievementFrameAchievements, 'TOPLEFT', -18, 26);
     AchievementFrameFilterDropDown:Size(AchievementFrameFilterDropDown:GetWidth(), AchievementFrameFilterDropDown:GetHeight() - 1);
