@@ -435,7 +435,9 @@ local function SkinHeader()
 end
 
 local function ReskinBlizzard(skins)
-    SkinSearchBoxFrame(AchievementFrame.searchBox, AchievementFrameAchievements, skins);
+    if not addon.IsWrathClassic then
+        SkinSearchBoxFrame(AchievementFrame.SearchBox, AchievementFrameAchievements, skins);
+    end
     AchievementFrameFilterDropDown:ClearAllPoints();
 	AchievementFrameFilterDropDown:Point('TOPLEFT', AchievementFrameAchievements, 'TOPLEFT', -18, 26);
     AchievementFrameFilterDropDown:Size(AchievementFrameFilterDropDown:GetWidth(), AchievementFrameFilterDropDown:GetHeight() - 1);
