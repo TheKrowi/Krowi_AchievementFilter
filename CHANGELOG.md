@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 45.0 - 2022-10-xx
+### Changed
+- Further optimized performance when multiple achievements are earned, added a 1 second delay to catch all achievement earned events and only reload data once at the end
+
 ## 44.2 - 2022-10-14
 ### Fixed
 - Temporary obtainable account wide achievements should no longer display the Earned By section

@@ -639,27 +639,17 @@ function addon.GetMapName(uiMapID)
     return mapInfo and mapInfo.name or uiMapID;
 end
 
--- function KrowiAF_FireEvent(event, ...)
---     event=event:upper();--  Events are always uppercase
---     local list={GetFramesRegisteredForEvent(event)};--  Get list of frames
---     for _,frame in ipairs(list) do
---         local func=frame:GetScript("OnEvent");--    Get OnEvent handler
---         if func then 
---             print(frame:GetName());
---         end--   Run it if there is one
---     end
--- end
-
--- /run KrowiAF_FireEvent("ACHIEVEMENT_EARNED");
-
--- function KrowiAF_GetAreaPOILeft()
---     for i = 1, 7216 do
---         local left = C_AreaPoiInfo.GetAreaPOISecondsLeft(i);
---         if left then
---             print(i, left);
---         end
---     end
---     print(i)
--- end
-
--- /run KrowiAF_GetAreaPOILeft();
+addon.DelayObjects = {};
+function addon.DelayFunction(delayObjectName, delayTime, func, ...)
+    if addon.DelayObjects[delayObjectName] ~= nil then
+        -- print("skipping")
+        return;
+    end
+    -- print("start timer")
+    local args = {...};
+    addon.DelayObjects[delayObjectName] = C_Timer.NewTimer(delayTime, function()
+        -- print("run func")
+        func(unpack(args));
+        addon.DelayObjects[delayObjectName] = nil;
+    end);
+end

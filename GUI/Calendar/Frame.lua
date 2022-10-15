@@ -190,38 +190,44 @@ function KrowiAF_CalendarFrame_OnEvent(self, event, ...)
 	if event ~= "ACHIEVEMENT_EARNED" then
 		return;
 	end
-	local achievementId = ...;
-	local id, _, points, _, month, day, year = addon.GetAchievementInfo(achievementId);
-	if not id then
-		return;
-	end
-	if self.ViewedYear ~= 2000 + year or self.ViewedMonth ~= month then
-		return;
-	end
+	-- local achievementId = ...;
+	-- local id, _, points, _, month, day, year = addon.GetAchievementInfo(achievementId);
+	-- if not id then
+	-- 	return;
+	-- end
+	-- if self.ViewedYear ~= 2000 + year or self.ViewedMonth ~= month then
+	-- 	return;
+	-- end
 
-    local firstDate = GetSecondsSince(self.DayButtons[1]);
-	local date = time{
-        year = 2000 + year,
-        month = month,
-        day = day
-    };
-	local dayButtonIndex = floor((date - firstDate) / 86400 + 1); -- 86400 seconds in a day, floor to take changes in DST which would result in x.xx
-	local dayButton = self.DayButtons[dayButtonIndex];
-	AddAchievementToButton(dayButton, achievementId, icon, points);
-	if not dayButton.Dark then
-		self.NumAchievements = self.NumAchievements + 1;
-		self.TotalPoints = self.TotalPoints + points;
-	end
-	self:SetAchievementsAndPoints(self.NumAchievements, self.TotalPoints);
-	if self.SelectedDayButton then
-		self.SelectedDayButton:Deselect();
-		self.SelectedDayButton = nil;
-		self.SelectedDay = nil;
-		self.SelectedMonth = nil;
-		self.SelectedYear = nil;
-		self.WeekdaySelectedTexture:Hide();
-		addon.GUI.Calendar.SideFrame:Hide();
-	end
+    -- local firstDate = GetSecondsSince(self.DayButtons[1]);
+	-- local date = time{
+    --     year = 2000 + year,
+    --     month = month,
+    --     day = day
+    -- };
+	-- local dayButtonIndex = floor((date - firstDate) / 86400 + 1); -- 86400 seconds in a day, floor to take changes in DST which would result in x.xx
+	-- local dayButton = self.DayButtons[dayButtonIndex];
+	-- AddAchievementToButton(dayButton, achievementId, icon, points);
+	-- if not dayButton.Dark then
+	-- 	self.NumAchievements = self.NumAchievements + 1;
+	-- 	self.TotalPoints = self.TotalPoints + points;
+	-- end
+	-- self:SetAchievementsAndPoints(self.NumAchievements, self.TotalPoints);
+	-- if self.SelectedDayButton then
+	-- 	self.SelectedDayButton:Deselect();
+	-- 	self.SelectedDayButton = nil;
+	-- 	self.SelectedDay = nil;
+	-- 	self.SelectedMonth = nil;
+	-- 	self.SelectedYear = nil;
+	-- 	self.WeekdaySelectedTexture:Hide();
+	-- 	addon.GUI.Calendar.SideFrame:Hide();
+	-- end
+	addon.DelayFunction("KrowiAF_CalendarFrame_OnEvent", 1, function()
+		self:Update();
+		if self.SelectedDayButton then
+			self:SetSelectedDay(self.SelectedDayButton, true, true);
+		end
+	end);
 end
 
 function KrowiAF_CalendarFrame_OnMouseWheel(self, value)
@@ -287,7 +293,7 @@ function KrowiAF_CalendarFrameMixin:HideAttributes()
 	self.LastDayDarkTexture:Hide();
 end
 
-function KrowiAF_CalendarFrameMixin:SetSelectedDay(dayButton, keepSelected)
+function KrowiAF_CalendarFrameMixin:SetSelectedDay(dayButton, keepSelected, forceReloadAchievements)
 	local prevSelectedDayButton = self.SelectedDayButton;
 	if prevSelectedDayButton and not keepSelected then -- and prevSelectedDayButton ~= dayButton
 		prevSelectedDayButton:Deselect();
@@ -303,7 +309,7 @@ function KrowiAF_CalendarFrameMixin:SetSelectedDay(dayButton, keepSelected)
 		weekdaySelectedTexture:ClearAllPoints();
 		weekdaySelectedTexture:SetPoint("CENTER", weekdayBackground, "CENTER");
 		weekdaySelectedTexture:Show();
-		self:SetHighlightedDay(dayButton, not keepSelected);
+		self:SetHighlightedDay(dayButton, not keepSelected or forceReloadAchievements);
 	else
 		self.SelectedDayButton = nil;
 		self.SelectedDay = nil;
@@ -311,6 +317,9 @@ function KrowiAF_CalendarFrameMixin:SetSelectedDay(dayButton, keepSelected)
 		self.SelectedYear = nil;
 		dayButton:Deselect();
 		weekdaySelectedTexture:Hide();
+		if addon.GUI.Calendar.SideFrame:IsShown() then
+			addon.GUI.Calendar.SideFrame:Hide();
+		end
 	end
 end
 
