@@ -249,7 +249,7 @@ local function SkinAchievementSummary(frame, engine, skins)
     frame.Achievements.Header.Texture:Hide();
 	frame.Categories.Header.Texture:Hide();
 
-    if not addon.IsWrathClassic then
+    if addon.IsShadowlandsRetail then
         local numChildren = frame:GetNumChildren();
         for i = 1, numChildren do
             local child = select(i, frame:GetChildren());
@@ -418,7 +418,7 @@ local function SkinSideButtons(sideButtons, engine)
         SkinAlertFrameTemplate(button, engine);
         if i == 1 then
             button:ClearAllPoints();
-            button:SetPoint("TOPLEFT", AchievementFrame, "TOPRIGHT", 5, 13); -- Make the 2nd button anchor like the 1st one
+            button:SetPoint("TOPLEFT", AchievementFrame, "TOPRIGHT", 5, addon.IsDragonflightRetail and 6 or 13); -- Make the 2nd button anchor like the 1st one
         else
             button:ClearAllPoints();
             button:SetPoint("TOPLEFT", sideButtons[i - 1], "BOTTOMLEFT", 0, 9); -- Make the 2nd button anchor like the 1st one
@@ -427,13 +427,15 @@ local function SkinSideButtons(sideButtons, engine)
 end
 
 local function SkinHeader()
-    hooksecurefunc(AchievementFrameHeaderPoints, "SetText", function()
-        AchievementFrameHeaderPointBorder:ClearAllPoints();
-	    AchievementFrameHeaderPointBorder:Point('CENTER', AchievementFrameHeaderTitle, 'CENTER', 100, 0);
-        AchievementFrameHeaderPointBorder:SetSize(150, 20);
-        AchievementFrameHeaderPoints:ClearAllPoints();
-	    AchievementFrameHeaderPoints:Point('CENTER', AchievementFrameHeaderPointBorder);
-    end);
+    if not addon.IsDragonflightRetail then
+        hooksecurefunc(AchievementFrame.Header.Points, "SetText", function()
+            AchievementFrame.Header.PointBorder:ClearAllPoints();
+            AchievementFrame.Header.PointBorder:Point('CENTER', AchievementFrame.Header.Title, 'CENTER', 100, 0);
+            AchievementFrame.Header.PointBorder:SetSize(150, 20);
+            AchievementFrame.Header.Points:ClearAllPoints();
+            AchievementFrame.Header.Points:Point('CENTER', AchievementFrame.Header.PointBorder);
+        end);
+    end
     if addon.IsWrathClassic then
         AchievementFrameHeaderLeftDDLInset:SetAlpha(0);
     end
@@ -451,7 +453,7 @@ end
 local function SkinCalendarButton(button, skins)
     skins:HandleButton(button);
     button:ClearAllPoints();
-    button:Point("LEFT", AchievementFrameHeaderPoints, "RIGHT", 30, -1);
+    button:Point("LEFT", AchievementFrame.Header.Points, "RIGHT", 30, -1);
     button:Size(22, 22);
     local fs = button:CreateFontString(nil, nil, "GameFontHighlightSmall");
     fs:SetPoint("CENTER", 0, -2);

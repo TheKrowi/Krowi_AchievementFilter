@@ -8,6 +8,9 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Further optimized performance when multiple achievements are earned, added a 1 second delay to catch all achievement earned events and only reload data once at the end
 
+### Fixed
+- Dragonflight ElvUI compatibility issues
+
 ## 44.2 - 2022-10-14
 ### Fixed
 - Temporary obtainable account wide achievements should no longer display the Earned By section
