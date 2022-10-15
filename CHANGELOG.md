@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## 45.0 - 2022-10-xx
+### Added
+- Option to hide Not Earned By if current character earned the achievement in tooltip
+
 ### Changed
 - Further optimized performance when multiple achievements are earned, added a 1 second delay to catch all achievement earned events and only reload data once at the end
 

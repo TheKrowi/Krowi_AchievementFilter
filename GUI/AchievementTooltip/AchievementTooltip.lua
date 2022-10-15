@@ -69,10 +69,10 @@ local function AddName(achievement, thisRealm, numEarnedBy, earnedBy, numNotEarn
 	return numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy;
 end
 
-local earnedBy, notEarnedBy, otherFactionAchievementCompleted, cachedAchievementId;
+local earnedBy, notEarnedBy, otherFactionAchievementCompleted, earnedByThisCharacter, cachedAchievementId;
 function tooltip.EvaluateCharacters(achievement)
 	if cachedAchievementId == achievement.Id then
-		return earnedBy, notEarnedBy, otherFactionAchievementCompleted;
+		return earnedBy, notEarnedBy, otherFactionAchievementCompleted, earnedByThisCharacter;
 	end
 	cachedAchievementId = achievement.Id;
 	local numEarnedBy, numNotEarnedBy = 0, 0;
@@ -87,6 +87,9 @@ function tooltip.EvaluateCharacters(achievement)
 	if achievement.OtherFactionAchievementId and thisCharacter.CompletedAchievements and thisCharacter.CompletedAchievements[achievement.OtherFactionAchievementId] then
 		otherFactionAchievementCompleted = true;
 	end
+	if thisCharacter.CompletedAchievements and thisCharacter.CompletedAchievements[achievement.Id] then
+		earnedByThisCharacter = true;
+	end
 	for guid, character in next, SavedData.Characters do
 		if guid ~= thisGuid and (numEarnedBy < numEarnedByChar or numNotEarnedBy < numNotEarnedByChar) then
 			numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy = AddName(achievement, thisRealm, numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy, character);
@@ -95,7 +98,7 @@ function tooltip.EvaluateCharacters(achievement)
 			otherFactionAchievementCompleted = true;
 		end
 	end
-	return earnedBy, notEarnedBy, otherFactionAchievementCompleted;
+	return earnedBy, notEarnedBy, otherFactionAchievementCompleted, earnedByThisCharacter;
 end
 
 local function GetCriteriaTextAndColor(achievementID, criteriaIndex)

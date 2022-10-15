@@ -16,11 +16,11 @@ function section.Add(achievement)
 		return;
 	end
 
-	local earnedBy, notEarnedBy = addon.GUI.AchievementTooltip.EvaluateCharacters(achievement);
+	local earnedBy, notEarnedBy, _, earnedByThisCharacter = addon.GUI.AchievementTooltip.EvaluateCharacters(achievement);
 	if earnedBy ~= "" then
 		GameTooltip:AddLine(format(ACHIEVEMENT_EARNED_BY, earnedBy), nil, nil, nil, true);
 	end
-	if notEarnedBy ~= "" then
+	if notEarnedBy ~= "" and (addon.Options.db.Tooltip.Achievements.EarnedBy.HideNotEarnedByIfEarnedByCurrentCharacter ~= earnedByThisCharacter) then
 		GameTooltip:AddLine(format(addon.L["Not earned by:"], notEarnedBy), nil, nil, nil, true);
 	end
 end

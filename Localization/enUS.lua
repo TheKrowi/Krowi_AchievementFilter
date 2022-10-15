@@ -1,4 +1,4 @@
--- [[ Exported at 2022-09-25 13-21-57 ]] --
+-- [[ Exported at 2022-10-15 17-22-05 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -218,6 +218,8 @@ L["was"] = "was";
 L["only obtainable by one player"] = "only obtainable by one player";
 L["Patch"] = "Patch";
 L["Temporary Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}.";
+L["Hide Not Earned By if current character earned the achievement"] = "Hide {notEarnedBy} if current character earned the achievement";
+L["Hide Not Earned By if current character earned the achievement Desc"] = "Hide the {notEarnedBy} section if the current character has earned the achievement. The {earnedBy} section will still be shown as normal.";
 L["Data Manager"] = "Data Manager";
 L["Header tooltip"] = "Header tooltip";
 L["Wowhead"] = "Wowhead";

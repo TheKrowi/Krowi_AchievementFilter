@@ -93,7 +93,8 @@ options.Defaults = {
                 EarnedBy = {
                     Characters = 1,
                     NotCharacters = 1,
-                    AlwaysShowRealm = false
+                    AlwaysShowRealm = false,
+                    HideNotEarnedByIfEarnedByCurrentCharacter = false
                 },
                 ShowPartOfAChain = true,
                 ShowRequiredFor = true,
