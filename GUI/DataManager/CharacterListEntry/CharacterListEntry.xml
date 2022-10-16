@@ -8,31 +8,31 @@
                 <FontString parentKey="Name" inherits="GameFontHighlightSmall" justifyH="LEFT" wordwrap="false">
                     <Size x="134" y="0"/> <!-- 150 - 8 left - 8 right -->
                     <Anchors>
-                        <Anchor point="LEFT" x="8" y="0"/>
+                        <Anchor point="LEFT" x="10" y="0"/>
                     </Anchors>
                 </FontString>
                 <FontString parentKey="Realm" inherits="GameFontHighlightSmall" justifyH="LEFT" wordwrap="false">
                     <Size x="134" y="0"/>
                     <Anchors>
-                        <Anchor point="LEFT" relativeKey="$parent.Name" relativePoint="RIGHT" x="16" y="0"/>
+                        <Anchor point="LEFT" relativeKey="$parent.Name" relativePoint="RIGHT" x="13" y="0"/>
                     </Anchors>
                 </FontString>
                 <Texture parentKey="Class" file="Interface\Glues\CharacterCreate\UI-CharacterCreate-Classes">
                     <Size x="16" y="16"/>
                     <Anchors>
-                        <Anchor point="LEFT" relativeKey="$parent.Realm" relativePoint="RIGHT" x="25" y="0"/>
+                        <Anchor point="LEFT" relativeKey="$parent.Realm" relativePoint="RIGHT" x="24" y="0"/>
                     </Anchors>
                 </Texture>
                 <Texture parentKey="Faction" atlas="worldquest-questmarker-questionmark">
                     <Size x="16" y="15"/>
                     <Anchors>
-                        <Anchor point="LEFT" relativeKey="$parent.Class" relativePoint="RIGHT" x="35" y="0"/>
+                        <Anchor point="LEFT" relativeKey="$parent.Class" relativePoint="RIGHT" x="37" y="0"/>
                     </Anchors>
                 </Texture>
                 <FontString parentKey="Points" inherits="GameFontHighlightSmall" justifyH="LEFT" wordwrap="false">
                     <Size x="84" y="0"/>
                     <Anchors>
-                        <Anchor point="LEFT" relativeKey="$parent.Faction" relativePoint="RIGHT" x="30" y="0"/>
+                        <Anchor point="LEFT" relativeKey="$parent.Faction" relativePoint="RIGHT" x="28" y="0"/>
                     </Anchors>
                 </FontString>
             </Layer>
@@ -41,7 +41,7 @@
             <CheckButton parentKey="HeaderTooltip">
                 <Size x="29" y="29"/>
                 <Anchors>
-                    <Anchor point="LEFT" relativeKey="$parent.Points" relativePoint="RIGHT" x="40" y="0"/>
+                    <Anchor point="LEFT" relativeKey="$parent.Points" relativePoint="RIGHT" x="17" y="0"/>
                 </Anchors>
                 <Scripts>
                     <OnClick>
@@ -60,7 +60,7 @@
             <CheckButton parentKey="EarnedByAchievementTooltip">
                 <Size x="29" y="29"/>
                 <Anchors>
-                    <Anchor point="LEFT" relativeKey="$parent.HeaderTooltip" relativePoint="RIGHT" x="40" y="0"/>
+                    <Anchor point="LEFT" relativeKey="$parent.HeaderTooltip" relativePoint="RIGHT" x="69" y="0"/>
                 </Anchors>
                 <Scripts>
                     <OnClick>
@@ -79,7 +79,7 @@
             <CheckButton parentKey="IgnoreCharacter">
                 <Size x="29" y="29"/>
                 <Anchors>
-                    <Anchor point="LEFT" relativeKey="$parent.EarnedByAchievementTooltip" relativePoint="RIGHT" x="40" y="0"/>
+                    <Anchor point="LEFT" relativeKey="$parent.EarnedByAchievementTooltip" relativePoint="RIGHT" x="69" y="0"/>
                 </Anchors>
                 <Scripts>
                     <OnClick>

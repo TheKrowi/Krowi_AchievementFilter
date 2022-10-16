@@ -6,12 +6,14 @@ All notable changes to this project will be documented in this file.
 - Option to hide Not Earned By if current character earned the achievement in tooltip
 - Exclude character from Earned By section in tooltips via the Data manager
 - Completely ignore character via the Data manager
+- ElvUI support for the Data manager
 
 ### Changed
 - Further optimized performance when multiple achievements are earned, added a 1 second delay to catch all achievement earned events and only reload data once at the end
 
 ### Fixed
 - Dragonflight ElvUI compatibility issues
+- Data manager misalignments
 
 ## 44.2 - 2022-10-14
 ### Fixed

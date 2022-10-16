@@ -50,6 +50,9 @@ options.Defaults = {
                 }
             }
         },
+        TabsGeneral = {
+            Spacing = 0
+        },
         Categories = {
             Focused = {
                 ShowSubCategories = false

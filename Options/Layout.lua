@@ -270,6 +270,13 @@ local function SetCategoryIndentation(_, value)
     options.Debug(addon.L["Indentation"], addon.Options.db.Categories.Indentation);
 end
 
+local function SetTabsSpacing(_, value)
+    if addon.Options.db.TabsGeneral.Spacing == value then return; end
+    addon.Options.db.TabsGeneral.Spacing = value;
+    addon.GUI.ShowHideTabs();
+    options.Debug(addon.L["Spacing"], addon.Options.db.TabsGeneral.Spacing);
+end
+
 local wowheadRelatedTabs = {
     addon.L["None"],
     addon.L["Criteria of"],
@@ -451,8 +458,23 @@ options.OptionsTable.args["Layout"] = {
             order = 2, type = "group",
             name = addon.L["Tabs"],
             args = {
-                Order = {
+                General = {
                     order = 1, type = "group",
+                    name = addon.L["General"],
+                    inline = true,
+                    args = {
+                        Spacing = {
+                            order = 1, type = "range", width = 1.5 * widthMultiplier,
+                            name = addon.L["Spacing"],
+                            desc = addon.L["Spacing Desc"],
+                            min = -50, max = 50, step = 1,
+                            get = function() return addon.Options.db.TabsGeneral.Spacing; end,
+                            set = SetTabsSpacing
+                        },
+                    }
+                },
+                Order = {
+                    order = 2, type = "group",
                     name = addon.L["Order"],
                     inline = true,
                     args = {
@@ -460,24 +482,24 @@ options.OptionsTable.args["Layout"] = {
                     }
                 },
                 Blizzard_AchievementUI = {
-                    order = 2, type = "group",
+                    order = 3, type = "group",
                     name = addon.L["Blizzard"],
                     inline = true,
                     args = {
                         Achievements = {
-                            type = "toggle", width = 1 * widthMultiplier,
+                            order = 1, type = "toggle", width = 1 * widthMultiplier,
                             name = addon.L["Achievements"],
                             get = function() return addon.Options.db.Tabs["Blizzard_AchievementUI"]["Achievements"].Show; end,
                             set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Achievements"); end
                         },
                         Guild = {
-                            type = "toggle", width = 1 * widthMultiplier,
+                            order = 2, type = "toggle", width = 1 * widthMultiplier,
                             name = addon.L["Guild"],
                             get = function() return addon.Options.db.Tabs["Blizzard_AchievementUI"]["Guild"].Show; end,
                             set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Guild"); end
                         },
                         Statistics = {
-                            type = "toggle", width = 1 * widthMultiplier,
+                            order = 3, type = "toggle", width = 1 * widthMultiplier,
                             name = addon.L["Statistics"],
                             get = function() return addon.Options.db.Tabs["Blizzard_AchievementUI"]["Statistics"].Show; end,
                             set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Statistics"); end

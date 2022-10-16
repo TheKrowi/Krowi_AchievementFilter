@@ -278,7 +278,7 @@ function gui.ShowHideTabs(_addonName, tabName)
             if prevTab == nil then
                 btn:SetPoint("BOTTOMLEFT", AchievementFrame, 11, -30);
             else
-                btn:SetPoint("LEFT", prevTab, "RIGHT", -5, 0);
+                btn:SetPoint("LEFT", prevTab, "RIGHT", -5 + addon.Options.db.TabsGeneral.Spacing, 0);
             end
             prevTab = btn;
         end

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-10-15 17-22-05 ]] --
+-- [[ Exported at 2022-10-16 10-12-17 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -222,6 +222,7 @@ L["Hide Not Earned By if current character earned the achievement"] = "Hide {not
 L["Hide Not Earned By if current character earned the achievement Desc"] = "Hide the {notEarnedBy} section if the current character has earned the achievement. The {earnedBy} section will still be shown as normal.";
 L["Data Manager"] = "Data Manager";
 L["Header tooltip"] = "Header tooltip";
+L["Ignore"] = "Ignore";
 L["Wowhead"] = "Wowhead";
 L["Go to"] = "Go to";
 L["Other locations"] = "Other locations";
@@ -306,6 +307,8 @@ L["Order"] = "Order";
 L["Tab"] = "Tab";
 L["FixTabs"] = "All tabs are shown again. This was necessary to introduce the new tabs ordering feature.\nSorry for any inconvenience.";
 L["Error Tabs Order"] = "{blizzard} tab {statistics} can not be in front of {guild}.";
+L["Spacing"] = "Spacing";
+L["Spacing Desc"] = "The distance that will be added to or subtracted from the default distance between tabs.";
 L["Header"] = "Header";
 L["Format"] = "Format";
 L["Account wide (default)"] = "Account wide (default)";

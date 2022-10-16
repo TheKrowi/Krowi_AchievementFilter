@@ -26,7 +26,7 @@ local CharacterColumns = {
 	},
 	{
 		title = addon.L["Points"],
-		width = 100,
+		width = 75,
 		attribute = "Points",
         reverse = true
 	},
@@ -155,7 +155,7 @@ function KrowiAF_CharacterListFrameMixin:OnLoad()
 	local scrollBar = scrollFrame.ScrollBar;
     local scrollBarShow = getmetatable(scrollBar).__index.Show;
     scrollBar.Show = function(selfFunc)
-        self:SetPoint("BOTTOMRIGHT", -26, 3);
+        self:SetPoint("BOTTOMRIGHT", -24, 3);
         scrollBarShow(selfFunc);
     end
     local scrollBarHide = getmetatable(scrollBar).__index.Hide;
@@ -163,12 +163,13 @@ function KrowiAF_CharacterListFrameMixin:OnLoad()
         self:SetPoint("BOTTOMRIGHT", 0, 3);
         scrollBarHide(selfFunc);
     end
+    -- scrollBar.doNotHide = true;
 
 	scrollFrame.update = function()
 		self:Update(cachedCharacters);
 	end
 
-	HybridScrollFrame_CreateButtons(scrollFrame, "KrowiAF_CharacterListEntry_Template", 0, -4);
+	HybridScrollFrame_CreateButtons(scrollFrame, "KrowiAF_CharacterListEntry_Template", 0, 0);
     local buttons = scrollFrame.buttons;
     for _, button in next, buttons do
 		button:PostLoad(scrollFrame);
