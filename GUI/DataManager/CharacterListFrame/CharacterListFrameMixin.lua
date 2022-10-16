@@ -34,6 +34,16 @@ local CharacterColumns = {
 		title = addon.L["Header tooltip"],
 		width = 100,
 		attribute = "ExcludeFromHeaderTooltip"
+	},
+	{
+		title = addon.L["Earned By"],
+		width = 100,
+		attribute = "ExcludeFromEarnedByAchievementTooltip"
+	},
+	{
+		title = addon.L["Ignore"],
+		width = 100,
+		attribute = "IgnoreCharacter"
 	}
 };
 
@@ -46,6 +56,8 @@ local sortFuncs = {
     addon.Objects.CompareFunc:New("string", "Faction");
     addon.Objects.CompareFunc:New("string", "Class");
     addon.Objects.CompareFunc:New("bool", "ExcludeFromHeaderTooltip");
+    addon.Objects.CompareFunc:New("bool", "ExcludeFromEarnedByAchievementTooltip");
+    addon.Objects.CompareFunc:New("bool", "IgnoreCharacter");
 };
 
 local function GetSortedCharacters(column)
@@ -59,6 +71,8 @@ local function GetSortedCharacters(column)
             Faction = character.Faction,
             Points = character.Points,
             ExcludeFromHeaderTooltip = character.ExcludeFromHeaderTooltip,
+            ExcludeFromEarnedByAchievementTooltip = character.ExcludeFromEarnedByAchievementTooltip,
+            IgnoreCharacter = character.Ignore,
             Guid = guid
         });
     end
@@ -108,6 +122,20 @@ local function GetSortedCharacters(column)
         sortFunc = sortFuncs[6];
         sortFuncs[6].Fallback = sortFuncs[2];
         sortFuncs[6].Reverse = column.reverse;
+        sortFuncs[2].Fallback = sortFuncs[3];
+        sortFuncs[3]:SetDefaultFallback();
+    elseif column.attribute == "ExcludeFromEarnedByAchievementTooltip" then
+        column.reverse = not column.reverse;
+        sortFunc = sortFuncs[7];
+        sortFuncs[7].Fallback = sortFuncs[2];
+        sortFuncs[7].Reverse = column.reverse;
+        sortFuncs[2].Fallback = sortFuncs[3];
+        sortFuncs[3]:SetDefaultFallback();
+    elseif column.attribute == "IgnoreCharacter" then
+        column.reverse = not column.reverse;
+        sortFunc = sortFuncs[8];
+        sortFuncs[8].Fallback = sortFuncs[2];
+        sortFuncs[8].Reverse = column.reverse;
         sortFuncs[2].Fallback = sortFuncs[3];
         sortFuncs[3]:SetDefaultFallback();
     end

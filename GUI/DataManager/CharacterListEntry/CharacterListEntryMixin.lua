@@ -29,6 +29,8 @@ function KrowiAF_CharacterListEntryMixin:SetCharacter(character)
     self.Points:SetText(character.Points or "99999");
     self.Guid = character.Guid;
     self.HeaderTooltip:SetChecked(not character.ExcludeFromHeaderTooltip);
+    self.EarnedByAchievementTooltip:SetChecked(not character.ExcludeFromEarnedByAchievementTooltip);
+    self.IgnoreCharacter:SetChecked(character.IgnoreCharacter);
 end
 
 function KrowiAF_CharacterListEntryMixin:ToggleHeaderTooltip()
@@ -36,5 +38,40 @@ function KrowiAF_CharacterListEntryMixin:ToggleHeaderTooltip()
         SavedData.Characters[self.Guid].ExcludeFromHeaderTooltip = nil;
     else
         SavedData.Characters[self.Guid].ExcludeFromHeaderTooltip = true;
+    end
+end
+
+function KrowiAF_CharacterListEntryMixin:ToggleEarnedByAchievementTooltip()
+    if self.EarnedByAchievementTooltip:GetChecked() then
+        SavedData.Characters[self.Guid].ExcludeFromEarnedByAchievementTooltip = nil;
+    else
+        SavedData.Characters[self.Guid].ExcludeFromEarnedByAchievementTooltip = true;
+    end
+end
+
+function KrowiAF_CharacterListEntryMixin:ToggleIgnoreCharacter()
+    if self.IgnoreCharacter:GetChecked() then
+        SavedData.Characters[self.Guid].Ignore = true;
+        SavedData.Characters[self.Guid].ExcludeFromHeaderTooltip = true;
+        SavedData.Characters[self.Guid].ExcludeFromEarnedByAchievementTooltip = true;
+        SavedData.Characters[self.Guid].CompletedAchievements = {};
+        SavedData.Characters[self.Guid].LastCompleted = nil;
+        SavedData.Characters[self.Guid].Points = 0;
+
+        self.Points:SetText("0");
+        self.HeaderTooltip:SetChecked(false);
+        self.EarnedByAchievementTooltip:SetChecked(false);
+    else
+        SavedData.Characters[self.Guid].Ignore = nil;
+        SavedData.Characters[self.Guid].ExcludeFromHeaderTooltip = nil;
+        SavedData.Characters[self.Guid].ExcludeFromEarnedByAchievementTooltip = nil;
+        if self.Guid == UnitGUID("player") then
+            addon.ResetCache();
+            addon.BuildCache();
+            self.Points:SetText(SavedData.Characters[self.Guid].Points or "99999");
+        end
+
+        self.HeaderTooltip:SetChecked(true);
+        self.EarnedByAchievementTooltip:SetChecked(true);
     end
 end

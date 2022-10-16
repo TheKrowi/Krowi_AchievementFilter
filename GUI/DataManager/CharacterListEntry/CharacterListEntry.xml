@@ -37,7 +37,7 @@
                 </FontString>
             </Layer>
         </Layers>
-        <Frames>            
+        <Frames>
             <CheckButton parentKey="HeaderTooltip">
                 <Size x="29" y="29"/>
                 <Anchors>
@@ -47,6 +47,44 @@
                     <OnClick>
                         PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
                         self:GetParent():ToggleHeaderTooltip();
+                    </OnClick>
+                </Scripts>
+                <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+                <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+                <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+                <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+                <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+            </CheckButton>
+        </Frames>
+        <Frames>
+            <CheckButton parentKey="EarnedByAchievementTooltip">
+                <Size x="29" y="29"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.HeaderTooltip" relativePoint="RIGHT" x="40" y="0"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+                        self:GetParent():ToggleEarnedByAchievementTooltip();
+                    </OnClick>
+                </Scripts>
+                <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+                <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+                <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+                <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+                <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+            </CheckButton>
+        </Frames>
+        <Frames>
+            <CheckButton parentKey="IgnoreCharacter">
+                <Size x="29" y="29"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.EarnedByAchievementTooltip" relativePoint="RIGHT" x="40" y="0"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+                        self:GetParent():ToggleIgnoreCharacter();
                     </OnClick>
                 </Scripts>
                 <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>

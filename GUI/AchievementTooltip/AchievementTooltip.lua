@@ -42,6 +42,9 @@ function tooltip.AddAchievementLine(currentAchievement, otherAchievementId, show
 end
 
 local function AddName(achievement, thisRealm, numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy, character)
+	if character.ExcludeFromEarnedByAchievementTooltip then
+		return numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy;
+	end
 	local _, _, _, argbHex = GetClassColor(character.Class);
 	local name = "|c" .. argbHex .. character.Name;
 	if achievement.OtherFactionAchievementId and character.Faction and character.Faction ~= addon.Objects.Faction[achievement.Faction] then

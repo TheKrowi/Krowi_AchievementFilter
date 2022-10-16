@@ -224,9 +224,11 @@ local function AddCharToSavedData(playerGUID)
         SavedData.Characters = {};
     end
     local character = SavedData.Characters[playerGUID];
-    local excludeFromHeaderTooltip;
+    local excludeFromHeaderTooltip, excludeFromEarnedByAchievementTooltip, ignore;
     if character then
         excludeFromHeaderTooltip = character.ExcludeFromHeaderTooltip;
+        excludeFromEarnedByAchievementTooltip = character.ExcludeFromEarnedByAchievementTooltip;
+        ignore = character.Ignore;
     end
     SavedData.Characters[playerGUID] = {
         Name = (UnitFullName("player")),
@@ -234,7 +236,9 @@ local function AddCharToSavedData(playerGUID)
         Class = (select(2, UnitClass("player"))),
         Faction = (UnitFactionGroup("player")),
         CompletedAchievements = {},
-        ExcludeFromHeaderTooltip = excludeFromHeaderTooltip
+        ExcludeFromHeaderTooltip = excludeFromHeaderTooltip,
+        ExcludeFromEarnedByAchievementTooltip = excludeFromEarnedByAchievementTooltip,
+        Ignore = ignore
     };
 end
 
@@ -263,6 +267,9 @@ local function IsTraching(flags)
 end
 
 local function IncrementCharacterPoints(playerGUID, id, points, month, day, year, flags, isGuild, wasEarnedByMe, isStatistic, exists)
+    if SavedData.Characters[playerGUID].Ignore then
+        return;
+    end
     if wasEarnedByMe and points >= 0 and not isStatistic and not isGuild and not IsTraching(flags) and exists then
         characterPoints = characterPoints + points;
         AddCharCompletedAchievement(playerGUID, id, month, day, year);
@@ -270,7 +277,7 @@ local function IncrementCharacterPoints(playerGUID, id, points, month, day, year
 end
 
 addon.TrackingAchievements = {};
-local function AddToCache(id, points, flags, isGuild, isStatistic, exists)
+local function AddToCriteriaCache(id, points, flags, isGuild, isStatistic, exists)
     if isStatistic or isGuild then
         return;
     end
@@ -319,7 +326,7 @@ function addon.BuildCache()
 
         if id then
             IncrementCharacterPoints(playerGUID, id, points, month, day, year, flags, isGuild, wasEarnedByMe, isStatistic, exists);
-            AddToCache(id, points, flags, isGuild, isStatistic, exists);
+            AddToCriteriaCache(id, points, flags, isGuild, isStatistic, exists);
         end
         if id and exists then
             gapSize = 0;
@@ -333,9 +340,9 @@ function addon.BuildCache()
     return criteriaCache, characterPoints;
 end
 
--- function addon.ResetCache()
---     criteriaCache = nil;
--- end
+function addon.ResetCache()
+    criteriaCache = nil;
+end
 
 function addon.OnAchievementEarned(achievementId)
     if criteriaCache == nil then
