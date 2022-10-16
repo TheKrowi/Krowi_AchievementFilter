@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Further optimized performance when multiple achievements are earned, added a 1 second delay to catch all achievement earned events and only reload data once at the end
+- Pre-patch event achievement is now in the correct categories
 
 ### Fixed
 - Dragonflight ElvUI compatibility issues
