@@ -106,7 +106,7 @@ function KrowiAF_AchievementFrameFilterButtonMixin:AddAchievementFilters(_menu, 
     self:AddCheckBox(faction, addon.L["Alliance"], filters, {"Faction", "Alliance"}, true);
     self:AddCheckBox(faction, addon.L["Horde"], filters, {"Faction", "Horde"}, true);
     faction:AddSeparator();
-    faction:AddFull({  Text = addon.L["Select all"],
+    faction:AddFull({  Text = addon.L["Select All"],
                         Func = function()
                             for faction2, _ in next, filters.Faction do
                                 SetCheckBoxValue(filters, {"Faction", faction2}, true, true, true);
