@@ -15,6 +15,10 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Dragonflight ElvUI compatibility issues
 - Data manager misalignments
+- Some more unobtainable achievements have more detailed start and end conditions
+
+### Wrath Classic
+- Temporary obtainable achievements during Wrath of the Lich King are now adjusted to the new patch numbers
 
 ## 44.2 - 2022-10-14
 ### Fixed
