@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Exclude character from Earned By section in tooltips via the Data manager
 - Completely ignore character via the Data manager
 - ElvUI support for the Data manager
+- Plugin to rename Exploration -> Dragon Isles Category to Dragonflight
 
 ### Changed
 - Further optimized performance when multiple achievements are earned, added a 1 second delay to catch all achievement earned events and only reload data once at the end

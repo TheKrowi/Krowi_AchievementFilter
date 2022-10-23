@@ -7,6 +7,7 @@ tinsert(plugins.Plugins, iat);
 
 function iat.LoadLocalization(L)
     L["Instance Achievement Tracker"] = "Instance Achievement Tracker";
+    L["Instance Achievement Tracker Desc"] = "This plugin allows the addition of an extra Right Click Menu item for {iat}.";
     L["IAT Tactics"] = "IAT Tactics";
     L["Add To Right Click Menu"] = "Add To Right Click Menu";
     L["Add To Right Click Menu Desc"] = "Add an option to the Right Click Menu that will direct you to tactics if {iat} has data for it.";
@@ -16,7 +17,7 @@ end
 
 function iat.InjectOptions()
     local defaults = {};
-    defaults.Enabled = true;
+    -- defaults.Enabled = true;
     defaults.AddToRightClickMenu = true;
 
     addon.Options.InjectDefaults(defaults, "InstanceAchievementTracker", "Plugins");
@@ -37,19 +38,27 @@ function iat.InjectOptions()
                 order = 2, type = "header", width = "full",
                 name = ""
             },
-            Enabled = {
-                order = 3, type = "toggle", width = "full",
-                name = addon.L["Enable"],
-                desc = addon.L["Enable Desc"],
-                get = function() return addon.Options.db.Plugins.InstanceAchievementTracker.Enabled; end,
-                set = function()
-                    addon.Options.db.Plugins.InstanceAchievementTracker.Enabled = not addon.Options.db.Plugins.InstanceAchievementTracker.Enabled;
-                    addon.Options.Debug(addon.L["Instance Achievement Tracker"] .. " " .. addon.L["Enable"], addon.Options.db.Plugins.InstanceAchievementTracker.Enabled);
-                end,
-                disabled = function() return not iat.IsLoaded(); end
+            Description = {
+                order = 3, type = "description", width = "full",
+                name = addon.L["Instance Achievement Tracker Desc"]:ReplaceVars
+                {
+                    iat = addon.L["Instance Achievement Tracker"]
+                },
+                fontSize = "medium"
             },
+            -- Enabled = {
+            --     order = 4, type = "toggle", width = "full",
+            --     name = addon.L["Enable"],
+            --     desc = addon.L["Enable Desc"],
+            --     get = function() return addon.Options.db.Plugins.InstanceAchievementTracker.Enabled; end,
+            --     set = function()
+            --         addon.Options.db.Plugins.InstanceAchievementTracker.Enabled = not addon.Options.db.Plugins.InstanceAchievementTracker.Enabled;
+            --         addon.Options.Debug(addon.L["Instance Achievement Tracker"] .. " " .. addon.L["Enable"], addon.Options.db.Plugins.InstanceAchievementTracker.Enabled);
+            --     end,
+            --     disabled = function() return not iat.IsLoaded(); end
+            -- },
             AddToRightClickMenu = {
-                order = 4, type = "toggle", width = "full",
+                order = 5, type = "toggle", width = "full",
                 name = addon.L["Add To Right Click Menu"],
                 desc = addon.Util.ReplaceVars
                 {
@@ -61,7 +70,7 @@ function iat.InjectOptions()
                     addon.Options.db.Plugins.InstanceAchievementTracker.AddToRightClickMenu = not addon.Options.db.Plugins.InstanceAchievementTracker.AddToRightClickMenu;
                     addon.Options.Debug(addon.L["Instance Achievement Tracker"] .. " " .. addon.L["Enable"], addon.Options.db.Plugins.InstanceAchievementTracker.AddToRightClickMenu);
                 end,
-                disabled = function() return not iat.IsLoaded() or not addon.Options.db.Plugins.InstanceAchievementTracker.Enabled; end
+                disabled = function() return not iat.IsLoaded() --[[or not addon.Options.db.Plugins.InstanceAchievementTracker.Enabled;]] end
             }
         }
     };
@@ -85,7 +94,7 @@ end
 
 function iat:AddRightClickMenuItems(rightClickMenu, achievement)
     if self.IsLoaded()
-    and addon.Options.db.Plugins.InstanceAchievementTracker.Enabled
+    -- and addon.Options.db.Plugins.InstanceAchievementTracker.Enabled
     and addon.Options.db.Plugins.InstanceAchievementTracker.AddToRightClickMenu
     and IAT_HasAchievement(achievement.ID) then
 		rightClickMenu:AddFull({Text = addon.L["IAT Tactics"], Func = function() IAT_DisplayAchievement(achievement.ID); end});

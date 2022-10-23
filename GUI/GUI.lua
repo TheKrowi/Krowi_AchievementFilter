@@ -22,7 +22,7 @@ local defaultAchievementFrameHeight;
 local defaultAchievementFrameMetalBorderHeight;
 function gui:LoadWithBlizzard_AchievementUI()
     addon.GUI.AchievementFrameHeader:Load();
-    
+
     self.LoadWrathClassicAchievementFrameChanges();
     self.LoadOldAchievementFrameCompatibility();
 
@@ -80,12 +80,6 @@ function gui:LoadWithBlizzard_AchievementUI()
 
     self.SetCloseButtonOnKeyDown();
     self:HookShowSubFrame();
-
-    -- This sacrifices the AchievementFrame moving other frames automatically, something to live with I assume
-    -- UIPanelWindows["AchievementFrame"] = nil;
-    -- AchievementFrame:SetAttribute("UIPanelLayout-area", nil);
-    -- AchievementFrame:SetAttribute("UIPanelLayout-enabled", false);
-    -- tinsert(UISpecialFrames, "AchievementFrame");
 
     diagnostics.Debug("GUI loaded");
 end
