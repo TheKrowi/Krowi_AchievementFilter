@@ -20,7 +20,7 @@ function dataManagerFrame:Load()
 
 	frame.ResetPosition = self.ResetPosition;
 	addon.GUI.DataManagerFrame = frame;
-	
+
 	frame.Inset:ClearAllPoints();
 	frame.Inset:SetPoint("TOPLEFT", 4, -57);
 	frame.Inset:SetPoint("BOTTOMRIGHT", -4, 0);

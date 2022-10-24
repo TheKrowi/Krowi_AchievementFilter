@@ -173,6 +173,6 @@ function achievement:SetTemporaryObtainable(startInclusion, startFunction, start
             Value = endValue
         };
     end
-    local ach = self;
+    local ach = self; -- Easier to debug
     self.TemporaryObtainable.Obtainable = function() return addon.Data.TemporaryObtainable:GetObtainableState(ach); end;
 end

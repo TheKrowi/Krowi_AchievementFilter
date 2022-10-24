@@ -22,6 +22,7 @@ function KrowiAF_CharacterListEntryMixin:SetCharacter(character)
         return;
     end
 
+    self.Character = character;
     self.Name:SetText(character.Name or "Name");
     self.Realm:SetText(character.Realm or "Realm");
     self.Class:SetTexCoord(unpack(CLASS_ICON_TCOORDS[character.Class]));
@@ -36,17 +37,27 @@ end
 function KrowiAF_CharacterListEntryMixin:ToggleHeaderTooltip()
     if self.HeaderTooltip:GetChecked() then
         SavedData.Characters[self.Guid].ExcludeFromHeaderTooltip = nil;
+        SavedData.Characters[self.Guid].Ignore = nil;
+
+        self.IgnoreCharacter:SetChecked(false);
     else
         SavedData.Characters[self.Guid].ExcludeFromHeaderTooltip = true;
     end
+    self.Character.ExcludeFromHeaderTooltip = SavedData.Characters[self.Guid].ExcludeFromHeaderTooltip;
+    self.Character.IgnoreCharacter = SavedData.Characters[self.Guid].Ignore;
 end
 
 function KrowiAF_CharacterListEntryMixin:ToggleEarnedByAchievementTooltip()
     if self.EarnedByAchievementTooltip:GetChecked() then
         SavedData.Characters[self.Guid].ExcludeFromEarnedByAchievementTooltip = nil;
+        SavedData.Characters[self.Guid].Ignore = nil;
+
+        self.IgnoreCharacter:SetChecked(false);
     else
         SavedData.Characters[self.Guid].ExcludeFromEarnedByAchievementTooltip = true;
     end
+    self.Character.ExcludeFromEarnedByAchievementTooltip = SavedData.Characters[self.Guid].ExcludeFromEarnedByAchievementTooltip;
+    self.Character.IgnoreCharacter = SavedData.Characters[self.Guid].Ignore;
 end
 
 function KrowiAF_CharacterListEntryMixin:ToggleIgnoreCharacter()
@@ -74,4 +85,7 @@ function KrowiAF_CharacterListEntryMixin:ToggleIgnoreCharacter()
         self.HeaderTooltip:SetChecked(true);
         self.EarnedByAchievementTooltip:SetChecked(true);
     end
+    self.Character.ExcludeFromHeaderTooltip = SavedData.Characters[self.Guid].ExcludeFromHeaderTooltip;
+    self.Character.ExcludeFromEarnedByAchievementTooltip = SavedData.Characters[self.Guid].ExcludeFromEarnedByAchievementTooltip;
+    self.Character.IgnoreCharacter = SavedData.Characters[self.Guid].Ignore;
 end

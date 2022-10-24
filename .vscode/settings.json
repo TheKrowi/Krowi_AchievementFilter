@@ -390,10 +390,16 @@
         "AchievementFrameComparison_SetUnit",
         "AchievementFrameComparison_ForceUpdate",
         "AchievementFrameHeaderRightDDLInset",
-        "AchievementFrameCloseButton"
+        "AchievementFrameCloseButton",
+        "InterfaceOptionsFramePanelContainer",
+        "KrowiAF_DataManagerFrameCloseButton"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
-        "undefined-field"
+        "undefined-field",
+        "assign-type-mismatch",
+        "redundant-parameter",
+        "missing-parameter",
+        "param-type-mismatch"
     ]
 }

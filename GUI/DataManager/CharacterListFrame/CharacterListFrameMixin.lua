@@ -150,7 +150,7 @@ function KrowiAF_CharacterListFrameMixin:OnLoad()
     self.ColumnDisplay:LayoutColumns(CharacterColumns);
     self.ColumnDisplay.sortingFunction = self.Sort;
     self.ColumnDisplay:Show();
-    
+
     local scrollFrame = self.ScrollFrame;
 	local scrollBar = scrollFrame.ScrollBar;
     local scrollBarShow = getmetatable(scrollBar).__index.Show;

@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 - Dragonflight ElvUI compatibility issues
 - Data manager misalignments
 - Some more unobtainable achievements have more detailed start and end conditions
+- Data manager character checkboxes should now keep their state after re-opening the window
 
 ### Wrath Classic
 - Temporary obtainable achievements during Wrath of the Lich King are now adjusted to the new patch numbers

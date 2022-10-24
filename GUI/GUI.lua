@@ -92,6 +92,7 @@ end
 
 gui.SubFrames = {};
 function gui:ShowSubFrame(...)
+    local show;
 	for _, subFrame in ipairs(self.SubFrames) do
 		show = false;
 		for i = 1, select("#", ...) do
@@ -406,7 +407,7 @@ function gui.LoadWrathClassicAchievementFrameChanges()
     if AchievementMeta_OnLeave == nil then
         AchievementMeta_OnLeave = function(self)
             GameTooltip:Hide();
-            guildMemberRequestFrame = nil;
+            -- guildMemberRequestFrame = nil;
         end
     end
 end
