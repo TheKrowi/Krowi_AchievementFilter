@@ -1,4 +1,4 @@
--- [[ Exported at 2022-09-25 12-44-45 ]] --
+-- [[ Exported at 2022-10-24 20-43-50 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -81,6 +81,22 @@ function exportedWorldEvents.Load(e)
     e[7299] = event:New(7299, 451165, addon.L["Primalist Tomorrow"], 1978, 5400); -- Primalist Tomorrow
     e[7300] = event:New(7300, 460952, addon.L["Primalist Tomorrow"], 1978, 5400); -- Primalist Tomorrow
     e[7301] = event:New(7301, 135783, addon.L["Primalist Tomorrow"], 1978, 5400); -- Primalist Tomorrow
+    e[7366] = event:New(7366, 451165, addon.L["Badlands"], 15, 5400); -- Badlands
+    e[7367] = event:New(7367, 135783, addon.L["Badlands"], 15, 5400); -- Badlands
+    e[7368] = event:New(7368, 460952, addon.L["Badlands"], 15, 5400); -- Badlands
+    e[7369] = event:New(7369, 132845, addon.L["Badlands"], 15, 5400); -- Badlands
+    e[7370] = event:New(7370, 135783, addon.L["Northern Barrens"], 10, 5400); -- Northern Barrens
+    e[7371] = event:New(7371, 451165, addon.L["Northern Barrens"], 10, 5400); -- Northern Barrens
+    e[7372] = event:New(7372, 460952, addon.L["Northern Barrens"], 10, 5400); -- Northern Barrens
+    e[7373] = event:New(7373, 132845, addon.L["Northern Barrens"], 10, 5400); -- Northern Barrens
+    e[7374] = event:New(7374, 135783, addon.L["Tirisfal Glades"], 18, 5400); -- Tirisfal Glades
+    e[7375] = event:New(7375, 451165, addon.L["Tirisfal Glades"], 18, 5400); -- Tirisfal Glades
+    e[7376] = event:New(7376, 460952, addon.L["Tirisfal Glades"], 18, 5400); -- Tirisfal Glades
+    e[7377] = event:New(7377, 132845, addon.L["Tirisfal Glades"], 18, 5400); -- Tirisfal Glades
+    e[7378] = event:New(7378, 135783, addon.L["Un'Goro"], 78, 5400); -- Un'Goro
+    e[7379] = event:New(7379, 451165, addon.L["Un'Goro"], 78, 5400); -- Un'Goro
+    e[7380] = event:New(7380, 460952, addon.L["Un'Goro"], 78, 5400); -- Un'Goro
+    e[7381] = event:New(7381, 132845, addon.L["Un'Goro"], 78, 5400); -- Un'Goro
 end
 
 function exportedWorldEvents.LoadCategories(e, a)
@@ -88,7 +104,7 @@ function exportedWorldEvents.LoadCategories(e, a)
         return;
     end
 
-    if e[5175] == nil or e[5177] == nil or e[5178] == nil or e[5210] == nil or e[5896] == nil or e[5964] == nil or e[5966] == nil or e[5969] == nil or e[5970] == nil or e[5973] == nil or e[6486] == nil or e[6487] == nil or e[6488] == nil or e[6489] == nil or e[6490] == nil or e[6491] == nil or e[6989] == nil or e[6990] == nil or e[6991] == nil or e[6992] == nil or e[7221] == nil or e[7222] == nil or e[7223] == nil or e[7224] == nil or e[7225] == nil or e[7226] == nil or e[7227] == nil or e[7228] == nil or e[7229] == nil or e[7230] == nil or e[7231] == nil or e[7232] == nil or e[7233] == nil or e[7234] == nil or e[7235] == nil or e[7236] == nil or e[7237] == nil or e[7238] == nil or e[7239] == nil or e[7240] == nil or e[7245] == nil or e[7246] == nil or e[7247] == nil or e[7248] == nil or e[7249] == nil or e[7250] == nil or e[7251] == nil or e[7252] == nil or e[7253] == nil or e[7254] == nil or e[7255] == nil or e[7256] == nil or e[7257] == nil or e[7258] == nil or e[7259] == nil or e[7260] == nil or e[7298] == nil or e[7299] == nil or e[7300] == nil or e[7301] == nil then
+    if e[5175] == nil or e[5177] == nil or e[5178] == nil or e[5210] == nil or e[5896] == nil or e[5964] == nil or e[5966] == nil or e[5969] == nil or e[5970] == nil or e[5973] == nil or e[6486] == nil or e[6487] == nil or e[6488] == nil or e[6489] == nil or e[6490] == nil or e[6491] == nil or e[6989] == nil or e[6990] == nil or e[6991] == nil or e[6992] == nil or e[7221] == nil or e[7222] == nil or e[7223] == nil or e[7224] == nil or e[7225] == nil or e[7226] == nil or e[7227] == nil or e[7228] == nil or e[7229] == nil or e[7230] == nil or e[7231] == nil or e[7232] == nil or e[7233] == nil or e[7234] == nil or e[7235] == nil or e[7236] == nil or e[7237] == nil or e[7238] == nil or e[7239] == nil or e[7240] == nil or e[7245] == nil or e[7246] == nil or e[7247] == nil or e[7248] == nil or e[7249] == nil or e[7250] == nil or e[7251] == nil or e[7252] == nil or e[7253] == nil or e[7254] == nil or e[7255] == nil or e[7256] == nil or e[7257] == nil or e[7258] == nil or e[7259] == nil or e[7260] == nil or e[7298] == nil or e[7299] == nil or e[7300] == nil or e[7301] == nil or e[7366] == nil or e[7367] == nil or e[7368] == nil or e[7369] == nil or e[7370] == nil or e[7371] == nil or e[7372] == nil or e[7373] == nil or e[7374] == nil or e[7375] == nil or e[7376] == nil or e[7377] == nil or e[7378] == nil or e[7379] == nil or e[7380] == nil or e[7381] == nil then
         exportedWorldEvents.Load(e);
     end
 
@@ -152,6 +168,22 @@ function exportedWorldEvents.LoadCategories(e, a)
     e[7299].Category = addon.Tabs["Expansions"].Categories[14].Children[7]; -- Primal Storms
     e[7300].Category = addon.Tabs["Expansions"].Categories[14].Children[7]; -- Primal Storms
     e[7301].Category = addon.Tabs["Expansions"].Categories[14].Children[7]; -- Primal Storms
+    e[7366].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[1].Children[22]; -- Badlands
+    e[7367].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[1].Children[22]; -- Badlands
+    e[7368].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[1].Children[22]; -- Badlands
+    e[7369].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[1].Children[22]; -- Badlands
+    e[7370].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[9]; -- Northern Barrens
+    e[7371].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[9]; -- Northern Barrens
+    e[7372].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[9]; -- Northern Barrens
+    e[7373].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[9]; -- Northern Barrens
+    e[7374].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[5]; -- Durotar
+    e[7375].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[5]; -- Durotar
+    e[7376].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[5]; -- Durotar
+    e[7377].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[5]; -- Durotar
+    e[7378].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[21]; -- Un'Goro Crater
+    e[7379].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[21]; -- Un'Goro Crater
+    e[7380].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[21]; -- Un'Goro Crater
+    e[7381].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[21]; -- Un'Goro Crater
 end
 
 function exportedWorldEvents.InjectOptions()
@@ -220,6 +252,22 @@ function exportedWorldEvents.InjectOptions()
     defaults[7299] = true;
     defaults[7300] = true;
     defaults[7301] = true;
+    defaults[7366] = true;
+    defaults[7367] = true;
+    defaults[7368] = true;
+    defaults[7369] = true;
+    defaults[7370] = true;
+    defaults[7371] = true;
+    defaults[7372] = true;
+    defaults[7373] = true;
+    defaults[7374] = true;
+    defaults[7375] = true;
+    defaults[7376] = true;
+    defaults[7377] = true;
+    defaults[7378] = true;
+    defaults[7379] = true;
+    defaults[7380] = true;
+    defaults[7381] = true;
 
     addon.Options.InjectDefaults(defaults, "WorldEvents", "EventReminders");
 
@@ -946,12 +994,280 @@ function exportedWorldEvents.InjectOptions()
                     },
                 }
             },
-            Legion = {
+            Dragonflight_pre_patch___Firestorms = {
                 order = 73, type = "group",
+                name = addon.L["Dragonflight pre-patch - Firestorms"],
+                args = {
+                    E7368 = {
+                        order = 74, type = "toggle", width = 1 * widthMultiplier,
+                        name = addon.L["Badlands"],
+                        desc = addon.L["Requires a reload"],
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7368]; end,
+                        set = function()
+                            addon.Options.db.EventReminders.WorldEvents[7368] = not addon.Options.db.EventReminders.WorldEvents[7368];
+                            diagnostics.Debug(addon.L["Badlands"], addon.Options.db.EventReminders.WorldEvents[7368]);
+                        end
+                    },
+                    E7372 = {
+                        order = 75, type = "toggle", width = 1 * widthMultiplier,
+                        name = addon.L["Northern Barrens"],
+                        desc = addon.L["Requires a reload"],
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7372]; end,
+                        set = function()
+                            addon.Options.db.EventReminders.WorldEvents[7372] = not addon.Options.db.EventReminders.WorldEvents[7372];
+                            diagnostics.Debug(addon.L["Northern Barrens"], addon.Options.db.EventReminders.WorldEvents[7372]);
+                        end
+                    },
+                    E7376 = {
+                        order = 76, type = "toggle", width = 1 * widthMultiplier,
+                        name = addon.L["Tirisfal Glades"],
+                        desc = addon.L["Requires a reload"],
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7376]; end,
+                        set = function()
+                            addon.Options.db.EventReminders.WorldEvents[7376] = not addon.Options.db.EventReminders.WorldEvents[7376];
+                            diagnostics.Debug(addon.L["Tirisfal Glades"], addon.Options.db.EventReminders.WorldEvents[7376]);
+                        end
+                    },
+                    E7380 = {
+                        order = 77, type = "toggle", width = 1 * widthMultiplier,
+                        name = addon.L["Un'Goro"],
+                        desc = addon.L["Requires a reload"],
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7380]; end,
+                        set = function()
+                            addon.Options.db.EventReminders.WorldEvents[7380] = not addon.Options.db.EventReminders.WorldEvents[7380];
+                            diagnostics.Debug(addon.L["Un'Goro"], addon.Options.db.EventReminders.WorldEvents[7380]);
+                        end
+                    },
+                    Blank78 = {order = 78, type = "description", width = "full", name = ""},
+                    SelectAll79 = {
+                        order = 79, type = "execute", width = 1 * widthMultiplier,
+                        name = addon.L["Select All"],
+                        func = function()
+                            addon.Options.db.EventReminders.WorldEvents[7368] = true;
+                            addon.Options.db.EventReminders.WorldEvents[7372] = true;
+                            addon.Options.db.EventReminders.WorldEvents[7376] = true;
+                            addon.Options.db.EventReminders.WorldEvents[7380] = true;
+                        end
+                    },
+                    DeselectAll80 = {
+                        order = 80, type = "execute",
+                        name = addon.L["Deselect All"],
+                        func = function()
+                            addon.Options.db.EventReminders.WorldEvents[7368] = false;
+                            addon.Options.db.EventReminders.WorldEvents[7372] = false;
+                            addon.Options.db.EventReminders.WorldEvents[7376] = false;
+                            addon.Options.db.EventReminders.WorldEvents[7380] = false;
+                        end
+                    },
+                }
+            },
+            Dragonflight_pre_patch___Sandstorms = {
+                order = 81, type = "group",
+                name = addon.L["Dragonflight pre-patch - Sandstorms"],
+                args = {
+                    E7366 = {
+                        order = 82, type = "toggle", width = 1 * widthMultiplier,
+                        name = addon.L["Badlands"],
+                        desc = addon.L["Requires a reload"],
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7366]; end,
+                        set = function()
+                            addon.Options.db.EventReminders.WorldEvents[7366] = not addon.Options.db.EventReminders.WorldEvents[7366];
+                            diagnostics.Debug(addon.L["Badlands"], addon.Options.db.EventReminders.WorldEvents[7366]);
+                        end
+                    },
+                    E7371 = {
+                        order = 83, type = "toggle", width = 1 * widthMultiplier,
+                        name = addon.L["Northern Barrens"],
+                        desc = addon.L["Requires a reload"],
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7371]; end,
+                        set = function()
+                            addon.Options.db.EventReminders.WorldEvents[7371] = not addon.Options.db.EventReminders.WorldEvents[7371];
+                            diagnostics.Debug(addon.L["Northern Barrens"], addon.Options.db.EventReminders.WorldEvents[7371]);
+                        end
+                    },
+                    E7375 = {
+                        order = 84, type = "toggle", width = 1 * widthMultiplier,
+                        name = addon.L["Tirisfal Glades"],
+                        desc = addon.L["Requires a reload"],
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7375]; end,
+                        set = function()
+                            addon.Options.db.EventReminders.WorldEvents[7375] = not addon.Options.db.EventReminders.WorldEvents[7375];
+                            diagnostics.Debug(addon.L["Tirisfal Glades"], addon.Options.db.EventReminders.WorldEvents[7375]);
+                        end
+                    },
+                    E7379 = {
+                        order = 85, type = "toggle", width = 1 * widthMultiplier,
+                        name = addon.L["Un'Goro"],
+                        desc = addon.L["Requires a reload"],
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7379]; end,
+                        set = function()
+                            addon.Options.db.EventReminders.WorldEvents[7379] = not addon.Options.db.EventReminders.WorldEvents[7379];
+                            diagnostics.Debug(addon.L["Un'Goro"], addon.Options.db.EventReminders.WorldEvents[7379]);
+                        end
+                    },
+                    Blank86 = {order = 86, type = "description", width = "full", name = ""},
+                    SelectAll87 = {
+                        order = 87, type = "execute", width = 1 * widthMultiplier,
+                        name = addon.L["Select All"],
+                        func = function()
+                            addon.Options.db.EventReminders.WorldEvents[7366] = true;
+                            addon.Options.db.EventReminders.WorldEvents[7371] = true;
+                            addon.Options.db.EventReminders.WorldEvents[7375] = true;
+                            addon.Options.db.EventReminders.WorldEvents[7379] = true;
+                        end
+                    },
+                    DeselectAll88 = {
+                        order = 88, type = "execute",
+                        name = addon.L["Deselect All"],
+                        func = function()
+                            addon.Options.db.EventReminders.WorldEvents[7366] = false;
+                            addon.Options.db.EventReminders.WorldEvents[7371] = false;
+                            addon.Options.db.EventReminders.WorldEvents[7375] = false;
+                            addon.Options.db.EventReminders.WorldEvents[7379] = false;
+                        end
+                    },
+                }
+            },
+            Dragonflight_pre_patch___Snowstorms = {
+                order = 89, type = "group",
+                name = addon.L["Dragonflight pre-patch - Snowstorms"],
+                args = {
+                    E7367 = {
+                        order = 90, type = "toggle", width = 1 * widthMultiplier,
+                        name = addon.L["Badlands"],
+                        desc = addon.L["Requires a reload"],
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7367]; end,
+                        set = function()
+                            addon.Options.db.EventReminders.WorldEvents[7367] = not addon.Options.db.EventReminders.WorldEvents[7367];
+                            diagnostics.Debug(addon.L["Badlands"], addon.Options.db.EventReminders.WorldEvents[7367]);
+                        end
+                    },
+                    E7370 = {
+                        order = 91, type = "toggle", width = 1 * widthMultiplier,
+                        name = addon.L["Northern Barrens"],
+                        desc = addon.L["Requires a reload"],
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7370]; end,
+                        set = function()
+                            addon.Options.db.EventReminders.WorldEvents[7370] = not addon.Options.db.EventReminders.WorldEvents[7370];
+                            diagnostics.Debug(addon.L["Northern Barrens"], addon.Options.db.EventReminders.WorldEvents[7370]);
+                        end
+                    },
+                    E7374 = {
+                        order = 92, type = "toggle", width = 1 * widthMultiplier,
+                        name = addon.L["Tirisfal Glades"],
+                        desc = addon.L["Requires a reload"],
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7374]; end,
+                        set = function()
+                            addon.Options.db.EventReminders.WorldEvents[7374] = not addon.Options.db.EventReminders.WorldEvents[7374];
+                            diagnostics.Debug(addon.L["Tirisfal Glades"], addon.Options.db.EventReminders.WorldEvents[7374]);
+                        end
+                    },
+                    E7378 = {
+                        order = 93, type = "toggle", width = 1 * widthMultiplier,
+                        name = addon.L["Un'Goro"],
+                        desc = addon.L["Requires a reload"],
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7378]; end,
+                        set = function()
+                            addon.Options.db.EventReminders.WorldEvents[7378] = not addon.Options.db.EventReminders.WorldEvents[7378];
+                            diagnostics.Debug(addon.L["Un'Goro"], addon.Options.db.EventReminders.WorldEvents[7378]);
+                        end
+                    },
+                    Blank94 = {order = 94, type = "description", width = "full", name = ""},
+                    SelectAll95 = {
+                        order = 95, type = "execute", width = 1 * widthMultiplier,
+                        name = addon.L["Select All"],
+                        func = function()
+                            addon.Options.db.EventReminders.WorldEvents[7367] = true;
+                            addon.Options.db.EventReminders.WorldEvents[7370] = true;
+                            addon.Options.db.EventReminders.WorldEvents[7374] = true;
+                            addon.Options.db.EventReminders.WorldEvents[7378] = true;
+                        end
+                    },
+                    DeselectAll96 = {
+                        order = 96, type = "execute",
+                        name = addon.L["Deselect All"],
+                        func = function()
+                            addon.Options.db.EventReminders.WorldEvents[7367] = false;
+                            addon.Options.db.EventReminders.WorldEvents[7370] = false;
+                            addon.Options.db.EventReminders.WorldEvents[7374] = false;
+                            addon.Options.db.EventReminders.WorldEvents[7378] = false;
+                        end
+                    },
+                }
+            },
+            Dragonflight_pre_patch___Thunderstorms = {
+                order = 97, type = "group",
+                name = addon.L["Dragonflight pre-patch - Thunderstorms"],
+                args = {
+                    E7369 = {
+                        order = 98, type = "toggle", width = 1 * widthMultiplier,
+                        name = addon.L["Badlands"],
+                        desc = addon.L["Requires a reload"],
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7369]; end,
+                        set = function()
+                            addon.Options.db.EventReminders.WorldEvents[7369] = not addon.Options.db.EventReminders.WorldEvents[7369];
+                            diagnostics.Debug(addon.L["Badlands"], addon.Options.db.EventReminders.WorldEvents[7369]);
+                        end
+                    },
+                    E7373 = {
+                        order = 99, type = "toggle", width = 1 * widthMultiplier,
+                        name = addon.L["Northern Barrens"],
+                        desc = addon.L["Requires a reload"],
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7373]; end,
+                        set = function()
+                            addon.Options.db.EventReminders.WorldEvents[7373] = not addon.Options.db.EventReminders.WorldEvents[7373];
+                            diagnostics.Debug(addon.L["Northern Barrens"], addon.Options.db.EventReminders.WorldEvents[7373]);
+                        end
+                    },
+                    E7377 = {
+                        order = 100, type = "toggle", width = 1 * widthMultiplier,
+                        name = addon.L["Tirisfal Glades"],
+                        desc = addon.L["Requires a reload"],
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7377]; end,
+                        set = function()
+                            addon.Options.db.EventReminders.WorldEvents[7377] = not addon.Options.db.EventReminders.WorldEvents[7377];
+                            diagnostics.Debug(addon.L["Tirisfal Glades"], addon.Options.db.EventReminders.WorldEvents[7377]);
+                        end
+                    },
+                    E7381 = {
+                        order = 101, type = "toggle", width = 1 * widthMultiplier,
+                        name = addon.L["Un'Goro"],
+                        desc = addon.L["Requires a reload"],
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7381]; end,
+                        set = function()
+                            addon.Options.db.EventReminders.WorldEvents[7381] = not addon.Options.db.EventReminders.WorldEvents[7381];
+                            diagnostics.Debug(addon.L["Un'Goro"], addon.Options.db.EventReminders.WorldEvents[7381]);
+                        end
+                    },
+                    Blank102 = {order = 102, type = "description", width = "full", name = ""},
+                    SelectAll103 = {
+                        order = 103, type = "execute", width = 1 * widthMultiplier,
+                        name = addon.L["Select All"],
+                        func = function()
+                            addon.Options.db.EventReminders.WorldEvents[7369] = true;
+                            addon.Options.db.EventReminders.WorldEvents[7373] = true;
+                            addon.Options.db.EventReminders.WorldEvents[7377] = true;
+                            addon.Options.db.EventReminders.WorldEvents[7381] = true;
+                        end
+                    },
+                    DeselectAll104 = {
+                        order = 104, type = "execute",
+                        name = addon.L["Deselect All"],
+                        func = function()
+                            addon.Options.db.EventReminders.WorldEvents[7369] = false;
+                            addon.Options.db.EventReminders.WorldEvents[7373] = false;
+                            addon.Options.db.EventReminders.WorldEvents[7377] = false;
+                            addon.Options.db.EventReminders.WorldEvents[7381] = false;
+                        end
+                    },
+                }
+            },
+            Legion = {
+                order = 105, type = "group",
                 name = addon.L["Legion"],
                 args = {
                     E5175 = {
-                        order = 74, type = "toggle", width = 1 * widthMultiplier,
+                        order = 106, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Assault on Azsuna"],
                         desc = addon.L["Requires a reload"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[5175]; end,
@@ -961,7 +1277,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E5177 = {
-                        order = 75, type = "toggle", width = 1 * widthMultiplier,
+                        order = 107, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Assault on Highmountain"],
                         desc = addon.L["Requires a reload"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[5177]; end,
@@ -971,7 +1287,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E5178 = {
-                        order = 76, type = "toggle", width = 1 * widthMultiplier,
+                        order = 108, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Assault on Stormheim"],
                         desc = addon.L["Requires a reload"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[5178]; end,
@@ -981,7 +1297,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E5210 = {
-                        order = 77, type = "toggle", width = 1 * widthMultiplier,
+                        order = 109, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Assault on Val'sharah"],
                         desc = addon.L["Requires a reload"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[5210]; end,
@@ -990,9 +1306,9 @@ function exportedWorldEvents.InjectOptions()
                             diagnostics.Debug(addon.L["Assault on Val'sharah"], addon.Options.db.EventReminders.WorldEvents[5210]);
                         end
                     },
-                    Blank78 = {order = 78, type = "description", width = "full", name = ""},
-                    SelectAll79 = {
-                        order = 79, type = "execute", width = 1 * widthMultiplier,
+                    Blank110 = {order = 110, type = "description", width = "full", name = ""},
+                    SelectAll111 = {
+                        order = 111, type = "execute", width = 1 * widthMultiplier,
                         name = addon.L["Select All"],
                         func = function()
                             addon.Options.db.EventReminders.WorldEvents[5175] = true;
@@ -1001,8 +1317,8 @@ function exportedWorldEvents.InjectOptions()
                             addon.Options.db.EventReminders.WorldEvents[5210] = true;
                         end
                     },
-                    DeselectAll80 = {
-                        order = 80, type = "execute",
+                    DeselectAll112 = {
+                        order = 112, type = "execute",
                         name = addon.L["Deselect All"],
                         func = function()
                             addon.Options.db.EventReminders.WorldEvents[5175] = false;
@@ -1014,11 +1330,11 @@ function exportedWorldEvents.InjectOptions()
                 }
             },
             Shadowlands = {
-                order = 81, type = "group",
+                order = 113, type = "group",
                 name = addon.L["Shadowlands"],
                 args = {
                     E6989 = {
-                        order = 82, type = "toggle", width = 1 * widthMultiplier,
+                        order = 114, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Necrolord Assault"],
                         desc = addon.L["Requires a reload"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[6989]; end,
@@ -1028,7 +1344,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E6990 = {
-                        order = 83, type = "toggle", width = 1 * widthMultiplier,
+                        order = 115, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Venthyr Assault"],
                         desc = addon.L["Requires a reload"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[6990]; end,
@@ -1038,7 +1354,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E6991 = {
-                        order = 84, type = "toggle", width = 1 * widthMultiplier,
+                        order = 116, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Kyrian Assault"],
                         desc = addon.L["Requires a reload"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[6991]; end,
@@ -1048,7 +1364,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E6992 = {
-                        order = 85, type = "toggle", width = 1 * widthMultiplier,
+                        order = 117, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Night Fae Assault"],
                         desc = addon.L["Requires a reload"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[6992]; end,
@@ -1057,9 +1373,9 @@ function exportedWorldEvents.InjectOptions()
                             diagnostics.Debug(addon.L["Night Fae Assault"], addon.Options.db.EventReminders.WorldEvents[6992]);
                         end
                     },
-            Blank86 = {order = 86, type = "description", width = "full", name = ""},
-            SelectAll87 = {
-                order = 87, type = "execute", width = 1 * widthMultiplier,
+            Blank118 = {order = 118, type = "description", width = "full", name = ""},
+            SelectAll119 = {
+                order = 119, type = "execute", width = 1 * widthMultiplier,
                 name = addon.L["Select All"],
                 func = function()
                     addon.Options.db.EventReminders.WorldEvents[6989] = true;
@@ -1068,8 +1384,8 @@ function exportedWorldEvents.InjectOptions()
                     addon.Options.db.EventReminders.WorldEvents[6992] = true;
                 end
             },
-            DeselectAll88 = {
-                order = 88, type = "execute",
+            DeselectAll120 = {
+                order = 120, type = "execute",
                 name = addon.L["Deselect All"],
                 func = function()
                     addon.Options.db.EventReminders.WorldEvents[6989] = false;
@@ -1080,9 +1396,9 @@ function exportedWorldEvents.InjectOptions()
             },
                 }
             },
-            Blank89 = {order = 89, type = "description", width = 2 * widthMultiplier, name = ""},
-            RefreshEvents90 = {
-                order = 90, type = "execute", width = 1 * widthMultiplier,
+            Blank121 = {order = 121, type = "description", width = 2 * widthMultiplier, name = ""},
+            RefreshEvents122 = {
+                order = 122, type = "execute", width = 1 * widthMultiplier,
                 name = addon.L["Refresh Events"],
                 desc = addon.L["Requires a reload"],
                 func = function()

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-10-22 10-42-44 ]] --
+-- [[ Exported at 2022-10-24 20-43-32 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -8026,9 +8026,9 @@ function exportedAchievements.Load(a, t)
     a[15418] = ach:New(15418, 10); -- The Grand Design
     a[15419] = ach:New(15419, 10); -- The Protoform Matrix
     a[15468] = ach:New(15468, 0); -- We Are All Made of Stars (Heroic)
-    SetTO(a[15468], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15468], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15469] = ach:New(15469, 0); -- We Are All Made of Stars (Mythic)
-    SetTO(a[15469], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15469], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15470] = ach:New(15470, 0); -- Ahead of the Curve: The Jailer
     SetTO(a[15470], "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15471] = ach:New(15471, 0); -- Cutting Edge: The Jailer
@@ -8057,6 +8057,7 @@ function exportedAchievements.Load(a, t)
     a[15499] = ach:New(15499, 0); -- Shadowlands Keystone Master: Season Three
     SetTO(a[15499], "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15500] = ach:New(15500, 0); -- "Keystone Hero: Tazavesh, the Veiled Market"
+    SetTO(a[15500], "From", "Mythic+ Season", 7, "Until", "Version", "100000");
     a[15502] = ach:New(15502, 10); -- "Sand, Sand Everywhere!"
     a[15506] = ach:New(15506, 0); -- Shadowlands Keystone Hero: Season Three
     SetTO(a[15506], "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
@@ -8122,45 +8123,45 @@ function exportedAchievements.Load(a, t)
     a[15654] = ach:New(15654, 0); -- Back from the Beyond
     SetTO(a[15654], "From", "Version", "090205", "Before", "Version", "100002");
     a[15663] = ach:New(15663, 10); -- Fate of Nathria
-    SetTO(a[15663], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15663], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15664] = ach:New(15664, 10); -- Heroic: Fate of Nathria
-    SetTO(a[15664], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15664], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15665] = ach:New(15665, 10); -- Mythic: Fate of Nathria
-    SetTO(a[15665], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15665], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15667] = ach:New(15667, 10); -- Fate of Domination
-    SetTO(a[15667], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15667], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15668] = ach:New(15668, 10); -- Heroic: Fate of Domination
-    SetTO(a[15668], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15668], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15669] = ach:New(15669, 10); -- Mythic: Fate of Domination
-    SetTO(a[15669], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15669], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15681] = ach:New(15681, 10); -- Fate of the Sepulcher
-    SetTO(a[15681], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15681], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15682] = ach:New(15682, 10); -- Heroic: Fate of the Sepulcher
-    SetTO(a[15682], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15682], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15683] = ach:New(15683, 10); -- Mythic: Fate of the Sepulcher
-    SetTO(a[15683], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15683], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15684] = ach:New(15684, 10); -- Fates of the Shadowlands Raids
-    SetTO(a[15684], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15684], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15685] = ach:New(15685, 10); -- Heroic: Fates of the Shadowlands Raids
-    SetTO(a[15685], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15685], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15687] = ach:New(15687, 10); -- Mythic: Fates of the Shadowlands Raids
-    SetTO(a[15687], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15687], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15688] = ach:New(15688, 0); -- Shadowlands Keystone Explorer: Season Four
-    SetTO(a[15688], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15688], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15689] = ach:New(15689, 0); -- Shadowlands Keystone Conqueror: Season Four
-    SetTO(a[15689], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15689], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15690] = ach:New(15690, 0); -- Shadowlands Keystone Master: Season Four
-    SetTO(a[15690], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15690], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15691] = ach:New(15691, 0); -- Cryptic Hero: Shadowlands Season 3
     SetTO(a[15691], "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15692] = ach:New(15692, 0); -- Keystone Hero: Return to Karazhan
-    SetTO(a[15692], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15692], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15693] = ach:New(15693, 0); -- Keystone Hero: Operation: Mechagon
-    SetTO(a[15693], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15693], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15694] = ach:New(15694, 0); -- Keystone Hero: Iron Docks
-    SetTO(a[15694], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15694], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15695] = ach:New(15695, 0); -- Keystone Hero: Grimrail Depot
-    SetTO(a[15695], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15695], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15696] = ach:New(15696, 0); -- Ruby Lifeshrine Loop: Bronze
     a[15697] = ach:New(15697, 0); -- Ruby Lifeshrine Loop: Silver
     a[15698] = ach:New(15698, 0); -- Ruby Lifeshrine Loop: Gold

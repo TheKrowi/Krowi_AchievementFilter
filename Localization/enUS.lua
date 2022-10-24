@@ -1,4 +1,4 @@
--- [[ Exported at 2022-10-16 10-12-17 ]] --
+-- [[ Exported at 2022-10-24 19-19-51 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -27,7 +27,6 @@ L["Specials"] = "Specials";
 L["Merge Small Categories"] = "Merge Small Categories";
 L["Obtainable"] = "Obtainable";
 L["Not Obtainable"] = "Not Obtainable";
-L["Select all"] = "Select all";
 L["Covenant"] = "Covenant";
 L["Collapse Chain"] = "Collapse Chain";
 L["Excluded"] = "Excluded";

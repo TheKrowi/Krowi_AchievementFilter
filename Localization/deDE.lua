@@ -1,8 +1,8 @@
--- [[ Exported at 2022-10-16 10-12-17 ]] --
+-- [[ Exported at 2022-10-24 19-19-51 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-09-17 ]] --
+-- [[ German translation by Ta, 2022-10-16 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -27,7 +27,6 @@ L["Specials"] = "Spezial";
 L["Merge Small Categories"] = "Kleine Kategorien zusammenführen";
 L["Obtainable"] = "Verfügbar";
 L["Not Obtainable"] = "Nicht Verfügbar";
-L["Select all"] = "Alle auswählen";
 L["Covenant"] = "Pakt";
 L["Collapse Chain"] = "Serien-Erfolge Ausblenden";
 L["Excluded"] = "Filter: Erfolg Ausgeblendet";
@@ -93,6 +92,34 @@ L["WoW's 18th Anniversary"] = "WoW's 18. Geburtstag";
 L["Season"] = "Saison";
 L["Fated Raids"] = "Schicksalhafte Raids";
 L["Dragon Glyphs"] = "Drachenglyphen";
+L["Dragon Racing"] = "Drachenrennen";
+L["Apex Canopy River Run"] = "Flusslauf des Hohen Blätterdachs";
+L["Emberflow Flight"] = "Glutstrom-Flug";
+L["Flashfrost Flyover"] = "Blitzfrost-Überflug";
+L["Ruby Lifeshrine Loop"] = "Rubinlebensschrein-Schleife";
+L["Uktulut Coaster"] = "Uktuluter Küstenachter";
+L["Wild Preserve Circuit"] = "Wildreservat-Parcours";
+L["Wild Preserve Slalom"] = "Wildreservat-Slalom";
+L["Wingrest Roundabout"] = "Schwingenrastkreisel";
+L["Emerald Garden Ascent"] = "Smaragdgartenaufstieg";
+L["Fen Flythrough"] = "Moor-Durchflug";
+L["Maruukai Dash"] = "Maruukaispurt";
+L["Mirror of the Sky Dash"] = "Spurt zum Spiegel des Himmels";
+L["Ravine River Run"] = "Schluchtflusslauf";
+L["River Rapids Route"] = "Stromschnellenstrecke";
+L["Sundapple Copse Circuit"] = "Sonnentüpfelheinstrecke";
+L["Archive Ambit"] = "Archivring";
+L["Central Circuit"] = "Zentralrundstrecke";
+L["Iskaara Flyover"] = "Iskaara-Überflug";
+L["The Azure Span Slalom"] = "Slalom des Azurblauen Gebirges";
+L["The Azure Span Sprint"] = "Sprint des Azurblauen Gebirges";
+L["The Vakthros Ascent"] = "Vakthrosaufstieg";
+L["Academy Ascent"] = "Akademieaufstieg";
+L["Caverns Criss-Cross"] = "Kreuz und quer durch die Höhlen";
+L["Cliffside Circuit"] = "Klippenrundstrecke";
+L["Garden Gallivant"] = "Gartenpromenade";
+L["Passage Pathway"] = "Weg durch die Passage";
+L["The Flowing Forest Flight"] = "Flug des Wallenden Walds";
 L["Dragonriding"] = "Drachenreiten";
 L["Ta's Pet Collection"] = "Ta's Haustier Collection";
 L["Tracking Achievements"] = "Erfassung von Erfolgen";
@@ -147,10 +174,24 @@ L["Assault: Aqir"] = "Angriff: Ausgegrabene Aqir (Aqir)";
 L["Assault: N'Zoth (Vale of Eternal Blossoms)"] = "Angriffe von N'Zoth (Das Tal der ewigen Blüten)";
 L["Assault: Mogu"] = "Angriff: Die verfeindeten Klans (Mogu)";
 L["Assault: Mantid"] = "Angriff: Der unendliche Schwarm (Mantid)";
-L["Necrolord Assault"] = "Necrolord Paktangriff";
+L["Necrolord Assault"] = "Nekrolord Paktangriff";
 L["Venthyr Assault"] = "Venthyr Paktangriff";
 L["Kyrian Assault"] = "Kyrian Paktangriff";
 L["Night Fae Assault"] = "Night Fae Paktangriff";
+L["Dragonflight - Firestorms"] = "Dragonflight - Feuerstürme";
+L["Dragonflight - Sandstorms"] = "Dragonflight - Sandstürme";
+L["Dragonflight - Snowstorms"] = "Dragonflight - Schneestürme";
+L["Dragonflight - Thunderstorms"] = "Dragonflight - Gewitterstürme";
+L["Nokhudon Hold"] = "Festung Nokhudon";
+L["Ohn'iri Springs"] = "Quellen von Ohn'iri";
+L["Brackenhide Hollow"] = "Brackenfellhöhle";
+L["Cobalt Assembly"] = "Kobaltkonvent";
+L["Imbu"] = "Imbu";
+L["Tyrhold"] = "Tyrhold";
+L["Dragonbane Keep"] = "Drachenfluchfestung";
+L["Slagmire"] = "Schlackensumpf";
+L["Scalecracker Keep"] = "Schuppenknackergipfel";
+L["Primalist Tomorrow"] = "Urzeitliche Primalisten";
 L["This achievement is no longer obtainable"] = "Dieser Erfolg kann nicht länger erzielt werden.";
 L["Not earned by:"] = "Nicht erzielt durch:";
 L["Part of a chain"] = "Teil einer Folgequest";
@@ -176,8 +217,11 @@ L["was"] = "war";
 L["only obtainable by one player"] = "nur von einem Spieler zu erzielen";
 L["Patch"] = "Patch";
 L["Temporary Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}.";
+L["Hide Not Earned By if current character earned the achievement"] = "{notEarnedBy} ausblenden, wenn der aktuelle Charakter den Erfolg schon erlangt hat";
+L["Hide Not Earned By if current character earned the achievement Desc"] = "Blendet den Abschnitt {notEarnedBy} aus, wenn der aktuelle Charakter den Erfolg erworben hat. Der Abschnitt {earnedBy} wird ansonsten weiterhin wie gewohnt angezeigt.";
 L["Data Manager"] = "Daten-Manager";
 L["Header tooltip"] = "Überschrift-Tooltip";
+L["Ignore"] = "Ignorieren";
 L["Wowhead"] = "Wowhead";
 L["Go to"] = "Gehe zu";
 L["Other locations"] = "Weitere...";
@@ -262,6 +306,8 @@ L["Order"] = "Tab Reihenfolge";
 L["Tab"] = "Tab";
 L["FixTabs"] = "Es werden einmalig wieder alle Tabs angezeigt. Dies war notwendig, um die neue Funktion zur Sortierung der Registerkarten einzuführen.\nEntschuldige bitte die Unannehmlichkeiten.";
 L["Error Tabs Order"] = "{blizzard} Tab {statistics} kann nicht vor {guild} stehen.";
+L["Spacing"] = "Abstand";
+L["Spacing Desc"] = "Der Abstand, der zum Standardabstand zwischen den Registerkarten addiert bzw. von diesem subtrahiert wird.";
 L["Header"] = "Header";
 L["Format"] = "Format";
 L["Account wide (default)"] = "Account (Standard)";
