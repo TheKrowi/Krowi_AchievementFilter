@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 45.0 - 2022-10-24
+## 45.0 - 2022-10-25
 ### Added
 - Option to hide Not Earned By if current character earned the achievement in tooltip
 - Exclude character from Earned By section in tooltips via the Data manager

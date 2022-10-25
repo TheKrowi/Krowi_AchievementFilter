@@ -392,7 +392,8 @@
         "AchievementFrameHeaderRightDDLInset",
         "AchievementFrameCloseButton",
         "InterfaceOptionsFramePanelContainer",
-        "KrowiAF_DataManagerFrameCloseButton"
+        "KrowiAF_DataManagerFrameCloseButton",
+        "GameFontDisableSmall"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
@@ -400,6 +401,8 @@
         "assign-type-mismatch",
         "redundant-parameter",
         "missing-parameter",
-        "param-type-mismatch"
+        "param-type-mismatch",
+        "unbalanced-assignments",
+        "ambiguity-1"
     ]
 }
