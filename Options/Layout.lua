@@ -270,6 +270,13 @@ local function SetCategoryIndentation(_, value)
     options.Debug(addon.L["Indentation"], addon.Options.db.Categories.Indentation);
 end
 
+local function SetTabsSpacing(_, value)
+    if addon.Options.db.TabsGeneral.Spacing == value then return; end
+    addon.Options.db.TabsGeneral.Spacing = value;
+    addon.GUI.ShowHideTabs();
+    options.Debug(addon.L["Spacing"], addon.Options.db.TabsGeneral.Spacing);
+end
+
 local wowheadRelatedTabs = {
     addon.L["None"],
     addon.L["Criteria of"],
@@ -451,8 +458,23 @@ options.OptionsTable.args["Layout"] = {
             order = 2, type = "group",
             name = addon.L["Tabs"],
             args = {
-                Order = {
+                General = {
                     order = 1, type = "group",
+                    name = addon.L["General"],
+                    inline = true,
+                    args = {
+                        Spacing = {
+                            order = 1, type = "range", width = 1.5 * widthMultiplier,
+                            name = addon.L["Spacing"],
+                            desc = addon.L["Spacing Desc"],
+                            min = -50, max = 50, step = 1,
+                            get = function() return addon.Options.db.TabsGeneral.Spacing; end,
+                            set = SetTabsSpacing
+                        },
+                    }
+                },
+                Order = {
+                    order = 2, type = "group",
                     name = addon.L["Order"],
                     inline = true,
                     args = {
@@ -460,24 +482,24 @@ options.OptionsTable.args["Layout"] = {
                     }
                 },
                 Blizzard_AchievementUI = {
-                    order = 2, type = "group",
+                    order = 3, type = "group",
                     name = addon.L["Blizzard"],
                     inline = true,
                     args = {
                         Achievements = {
-                            type = "toggle", width = 1 * widthMultiplier,
+                            order = 1, type = "toggle", width = 1 * widthMultiplier,
                             name = addon.L["Achievements"],
                             get = function() return addon.Options.db.Tabs["Blizzard_AchievementUI"]["Achievements"].Show; end,
                             set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Achievements"); end
                         },
                         Guild = {
-                            type = "toggle", width = 1 * widthMultiplier,
+                            order = 2, type = "toggle", width = 1 * widthMultiplier,
                             name = addon.L["Guild"],
                             get = function() return addon.Options.db.Tabs["Blizzard_AchievementUI"]["Guild"].Show; end,
                             set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Guild"); end
                         },
                         Statistics = {
-                            type = "toggle", width = 1 * widthMultiplier,
+                            order = 3, type = "toggle", width = 1 * widthMultiplier,
                             name = addon.L["Statistics"],
                             get = function() return addon.Options.db.Tabs["Blizzard_AchievementUI"]["Statistics"].Show; end,
                             set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Statistics"); end
@@ -847,7 +869,7 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         AlwaysShowRealm = {
-                            order = 3, type = "toggle", width = 1.5 * widthMultiplier,
+                            order = 3.1, type = "toggle", width = 1.45 * widthMultiplier,
                             name = addon.L["Always show realm"],
                             desc = addon.L["Always show realm Desc"],
                             get = function() return addon.Options.db.Tooltip.Achievements.EarnedBy.AlwaysShowRealm; end,
@@ -856,12 +878,30 @@ options.OptionsTable.args["Layout"] = {
                                 options.Debug(addon.L["Always show realm"], addon.Options.db.Tooltip.Achievements.EarnedBy.AlwaysShowRealm);
                             end
                         },
+                        Blank31 = {order = 3.2, type = "description", width = 1.45 * widthMultiplier, name = ""},
+                        HideNotEarnedByIfEarnedByCurrentCharacter = {
+                            order = 4, type = "toggle", width = "full",
+                            name = addon.L["Hide Not Earned By if current character earned the achievement"]:ReplaceVars
+                            {
+                                notEarnedBy = addon.L["Not Earned By"]
+                            },
+                            desc = addon.L["Hide Not Earned By if current character earned the achievement Desc"]:ReplaceVars
+                            {
+                                notEarnedBy = addon.L["Not Earned By"],
+                                earnedBy = addon.L["Earned By"]
+                            },
+                            get = function() return addon.Options.db.Tooltip.Achievements.EarnedBy.HideNotEarnedByIfEarnedByCurrentCharacter; end,
+                            set = function()
+                                addon.Options.db.Tooltip.Achievements.EarnedBy.HideNotEarnedByIfEarnedByCurrentCharacter = not addon.Options.db.Tooltip.Achievements.EarnedBy.HideNotEarnedByIfEarnedByCurrentCharacter;
+                                options.Debug(addon.L["Hide Not Earned By if current character earned the achievement"], addon.Options.db.Tooltip.Achievements.EarnedBy.HideNotEarnedByIfEarnedByCurrentCharacter);
+                            end
+                        },
                         PartOfAChain = {
-                            order = 4, type = "header",
+                            order = 5, type = "header",
                             name = addon.L["Part of a chain"]
                         },
                         ShowPartOfAChain = {
-                            order = 5.1, type = "toggle", width = 1.5 * widthMultiplier,
+                            order = 6.1, type = "toggle", width = 1.45 * widthMultiplier,
                             name = addon.Util.ReplaceVars
                             {
                                 addon.L["Show Part of a Chain"],
@@ -879,7 +919,7 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         ShowCurrentCharacterIconsPartOfAChain = {
-                            order = 5.2, type = "toggle", width = 1.5 * widthMultiplier,
+                            order = 6.2, type = "toggle", width = 1.45 * widthMultiplier,
                             name = addon.L["Show current character icons"],
                             desc = addon.Util.ReplaceVars
                             {
@@ -894,11 +934,11 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         RequiredFor = {
-                            order = 6, type = "header",
+                            order = 7, type = "header",
                             name = addon.L["Required for"]
                         },
                         ShowRequiredFor = {
-                            order = 7.1, type = "toggle", width = 1.5 * widthMultiplier,
+                            order = 8.1, type = "toggle", width = 1.45 * widthMultiplier,
                             name = addon.Util.ReplaceVars
                             {
                                 addon.L["Show Required for"],
@@ -916,7 +956,7 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         ShowCurrentCharacterIconsRequiredFor = {
-                            order = 7.2, type = "toggle", width = 1.5 * widthMultiplier,
+                            order = 8.2, type = "toggle", width = 1.45 * widthMultiplier,
                             name = addon.L["Show current character icons"],
                             desc = addon.Util.ReplaceVars
                             {
@@ -931,11 +971,11 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         OtherFaction = {
-                            order = 8, type = "header",
+                            order = 9, type = "header",
                             name = addon.L["Other faction"]
                         },
                         ShowOtherFaction = {
-                            order = 9.1, type = "toggle", width = 1.5 * widthMultiplier,
+                            order = 10.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.Util.ReplaceVars
                             {
                                 addon.L["Show Other faction"],
@@ -953,11 +993,11 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         ObjectivesProgress = {
-                            order = 10, type = "header",
+                            order = 11, type = "header",
                             name = addon.L["Objectives progress"]
                         },
                         ObjectivesProgressShow = {
-                            order = 11.1, type = "toggle", width = 1.5 * widthMultiplier,
+                            order = 12.1, type = "toggle", width = 1.45 * widthMultiplier,
                             name = addon.Util.ReplaceVars
                             {
                                 addon.L["Show Objectives progress"],
@@ -972,7 +1012,7 @@ options.OptionsTable.args["Layout"] = {
                             set = SetObjectivesProgressShow
                         },
                         ObjectivesProgressShowWhenAchievementCompleted = {
-                            order = 11.2, type = "toggle", width = 1.5 * widthMultiplier,
+                            order = 12.2, type = "toggle", width = 1.45 * widthMultiplier,
                             name = addon.Util.ReplaceVars
                             {
                                 addon.L["When achievement completed"],
@@ -990,7 +1030,7 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         ObjectivesProgressSecondColumnThreshold = {
-                            order = 12, type = "range", width = 1.5 * widthMultiplier,
+                            order = 13, type = "range", width = 1.45 * widthMultiplier,
                             name = addon.L["Second column threshold"],
                             desc = addon.L["Second column threshold Desc"],
                             min = 0, max = 100, step = 1,

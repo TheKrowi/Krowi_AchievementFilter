@@ -1,4 +1,4 @@
--- [[ Exported at 2022-08-13 15-36-24 ]] --
+-- [[ Exported at 2022-10-16 09-53-12 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -25,7 +25,7 @@ end
 
 function tabs.InjectOptions()
     addon.Options.InjectOptionsTableAdd({
-        order = 3, type = "group",
+        order = 4, type = "group",
         name = addon.MetaData.Title,
         inline = true,
         args = {}

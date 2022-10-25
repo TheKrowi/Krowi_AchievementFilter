@@ -52,8 +52,8 @@
                 <Frames>
                     <Slider parentKey="ScrollBar" inherits="HybridScrollBarTemplate">
                         <Anchors>
-                            <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="0" y="-15"/>
-                            <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="0" y="11"/>
+                            <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="0" y="-14"/>
+                            <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="0" y="16"/>
                         </Anchors>
                         <Layers>
                             <Layer level="BACKGROUND">

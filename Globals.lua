@@ -224,9 +224,11 @@ local function AddCharToSavedData(playerGUID)
         SavedData.Characters = {};
     end
     local character = SavedData.Characters[playerGUID];
-    local excludeFromHeaderTooltip;
+    local excludeFromHeaderTooltip, excludeFromEarnedByAchievementTooltip, ignore;
     if character then
         excludeFromHeaderTooltip = character.ExcludeFromHeaderTooltip;
+        excludeFromEarnedByAchievementTooltip = character.ExcludeFromEarnedByAchievementTooltip;
+        ignore = character.Ignore;
     end
     SavedData.Characters[playerGUID] = {
         Name = (UnitFullName("player")),
@@ -234,7 +236,9 @@ local function AddCharToSavedData(playerGUID)
         Class = (select(2, UnitClass("player"))),
         Faction = (UnitFactionGroup("player")),
         CompletedAchievements = {},
-        ExcludeFromHeaderTooltip = excludeFromHeaderTooltip
+        ExcludeFromHeaderTooltip = excludeFromHeaderTooltip,
+        ExcludeFromEarnedByAchievementTooltip = excludeFromEarnedByAchievementTooltip,
+        Ignore = ignore
     };
 end
 
@@ -263,6 +267,9 @@ local function IsTraching(flags)
 end
 
 local function IncrementCharacterPoints(playerGUID, id, points, month, day, year, flags, isGuild, wasEarnedByMe, isStatistic, exists)
+    if SavedData.Characters[playerGUID].Ignore then
+        return;
+    end
     if wasEarnedByMe and points >= 0 and not isStatistic and not isGuild and not IsTraching(flags) and exists then
         characterPoints = characterPoints + points;
         AddCharCompletedAchievement(playerGUID, id, month, day, year);
@@ -270,7 +277,7 @@ local function IncrementCharacterPoints(playerGUID, id, points, month, day, year
 end
 
 addon.TrackingAchievements = {};
-local function AddToCache(id, points, flags, isGuild, isStatistic, exists)
+local function AddToCriteriaCache(id, points, flags, isGuild, isStatistic, exists)
     if isStatistic or isGuild then
         return;
     end
@@ -319,7 +326,7 @@ function addon.BuildCache()
 
         if id then
             IncrementCharacterPoints(playerGUID, id, points, month, day, year, flags, isGuild, wasEarnedByMe, isStatistic, exists);
-            AddToCache(id, points, flags, isGuild, isStatistic, exists);
+            AddToCriteriaCache(id, points, flags, isGuild, isStatistic, exists);
         end
         if id and exists then
             gapSize = 0;
@@ -333,9 +340,9 @@ function addon.BuildCache()
     return criteriaCache, characterPoints;
 end
 
--- function addon.ResetCache()
---     criteriaCache = nil;
--- end
+function addon.ResetCache()
+    criteriaCache = nil;
+end
 
 function addon.OnAchievementEarned(achievementId)
     if criteriaCache == nil then
@@ -639,27 +646,17 @@ function addon.GetMapName(uiMapID)
     return mapInfo and mapInfo.name or uiMapID;
 end
 
--- function KrowiAF_FireEvent(event, ...)
---     event=event:upper();--  Events are always uppercase
---     local list={GetFramesRegisteredForEvent(event)};--  Get list of frames
---     for _,frame in ipairs(list) do
---         local func=frame:GetScript("OnEvent");--    Get OnEvent handler
---         if func then 
---             print(frame:GetName());
---         end--   Run it if there is one
---     end
--- end
-
--- /run KrowiAF_FireEvent("ACHIEVEMENT_EARNED");
-
--- function KrowiAF_GetAreaPOILeft()
---     for i = 1, 7216 do
---         local left = C_AreaPoiInfo.GetAreaPOISecondsLeft(i);
---         if left then
---             print(i, left);
---         end
---     end
---     print(i)
--- end
-
--- /run KrowiAF_GetAreaPOILeft();
+addon.DelayObjects = {};
+function addon.DelayFunction(delayObjectName, delayTime, func, ...)
+    if addon.DelayObjects[delayObjectName] ~= nil then
+        -- print("skipping")
+        return;
+    end
+    -- print("start timer")
+    local args = {...};
+    addon.DelayObjects[delayObjectName] = C_Timer.NewTimer(delayTime, function()
+        -- print("run func")
+        func(unpack(args));
+        addon.DelayObjects[delayObjectName] = nil;
+    end);
+end

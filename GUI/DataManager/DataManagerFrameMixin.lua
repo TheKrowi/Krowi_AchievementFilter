@@ -14,6 +14,7 @@ function KrowiAF_DataManagerFrameMixin:OnLoad()
 end
 
 function KrowiAF_DataManagerFrameMixin:OnShow()
+	-- self.CharacterList:Update();
 	PlaySound(SOUNDKIT.IG_CHARACTER_INFO_OPEN);
 end
 

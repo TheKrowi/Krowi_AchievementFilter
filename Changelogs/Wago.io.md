@@ -1,38 +1,19 @@
 ### Added
-- Dragonflight Dungeons, Raids, Dragonriding, Dragon Racing and Primal Storms data
-- Adjustable Category feature for Focused and Excluded achievements
-- Primal Storm world events data
-- Tracking Achievements category with all the tracking achievements and other hidden ones usually not visible to players
-- New credits
+- Option to hide Not Earned By if current character earned the achievement in tooltip
+- Exclude character from Earned By section in tooltips via the Data manager
+- Completely ignore character via the Data manager
+- ElvUI support for the Data manager
+- Plugin to rename Exploration -> Dragon Isles Category to Dragonflight
 
 ### Changed
-- Default fade delay for event reminder pop ups changed to 10 seconds (down from 30)
-- Localization of the temporary obtainable string is can now be reordered
-- Calendar events and World events options are now grouped via a sidebar instead of a big list
-- World events are now rounded to 5 minutes instead of 1 hour
-- Moved some options from Layout - Categories to Layout - Adjustable Categories
-- Statistics and Guild tabs can now occur in any order
-- Optimized performance when an achievement is earned, still noticeable fps lag when a Summary view is open (might look for optimizations later)
+- Further optimized performance when multiple achievements are earned, added a 1 second delay to catch all achievement earned events and only reload data once at the end
+- Pre-patch event achievement is now in the correct categories
 
 ### Fixed
-- Dragonflight compatibility changes
-- Earned By filter should update on change again
-- Users with a different UTC offset than the server should now correctly display calendar events
-- Attempt to fix World Map Buttons
-
-### Removed
-- Excluded category filter
-- Widget events
+- Dragonflight ElvUI compatibility issues
+- Data manager misalignments
+- Some more unobtainable achievements have more detailed start and end conditions
+- Data manager character checkboxes should now keep their state after re-opening the window
 
 ### Wrath Classic
-- All categories should have a meaningful text now
-- Compatibility fixes
-
-### Fixed (44.1)
-- Silent World Map Buttons
-
-### Fixed (44.2)
-- Temporary obtainable account wide achievements should no longer display the Earned By section
-
-### Wrath Classic (44.2)
-- Fixed ElvUI compatibility
+- Temporary obtainable achievements during Wrath of the Lich King are now adjusted to the new patch numbers

@@ -71,5 +71,6 @@ function KrowiAF_CategoriesFrame_OnEvent(self, event)
 	if event ~= "ACHIEVEMENT_EARNED" then
 		return;
 	end
-	self:Update(true);
+	-- self:Update(true);
+	addon.DelayFunction("KrowiAF_CategoriesFrame_OnEvent", 1, self.Update, self, true);
 end

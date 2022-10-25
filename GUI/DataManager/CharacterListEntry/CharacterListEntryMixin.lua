@@ -22,6 +22,7 @@ function KrowiAF_CharacterListEntryMixin:SetCharacter(character)
         return;
     end
 
+    self.Character = character;
     self.Name:SetText(character.Name or "Name");
     self.Realm:SetText(character.Realm or "Realm");
     self.Class:SetTexCoord(unpack(CLASS_ICON_TCOORDS[character.Class]));
@@ -29,12 +30,62 @@ function KrowiAF_CharacterListEntryMixin:SetCharacter(character)
     self.Points:SetText(character.Points or "99999");
     self.Guid = character.Guid;
     self.HeaderTooltip:SetChecked(not character.ExcludeFromHeaderTooltip);
+    self.EarnedByAchievementTooltip:SetChecked(not character.ExcludeFromEarnedByAchievementTooltip);
+    self.IgnoreCharacter:SetChecked(character.IgnoreCharacter);
 end
 
 function KrowiAF_CharacterListEntryMixin:ToggleHeaderTooltip()
     if self.HeaderTooltip:GetChecked() then
         SavedData.Characters[self.Guid].ExcludeFromHeaderTooltip = nil;
+        SavedData.Characters[self.Guid].Ignore = nil;
+
+        self.IgnoreCharacter:SetChecked(false);
     else
         SavedData.Characters[self.Guid].ExcludeFromHeaderTooltip = true;
     end
+    self.Character.ExcludeFromHeaderTooltip = SavedData.Characters[self.Guid].ExcludeFromHeaderTooltip;
+    self.Character.IgnoreCharacter = SavedData.Characters[self.Guid].Ignore;
+end
+
+function KrowiAF_CharacterListEntryMixin:ToggleEarnedByAchievementTooltip()
+    if self.EarnedByAchievementTooltip:GetChecked() then
+        SavedData.Characters[self.Guid].ExcludeFromEarnedByAchievementTooltip = nil;
+        SavedData.Characters[self.Guid].Ignore = nil;
+
+        self.IgnoreCharacter:SetChecked(false);
+    else
+        SavedData.Characters[self.Guid].ExcludeFromEarnedByAchievementTooltip = true;
+    end
+    self.Character.ExcludeFromEarnedByAchievementTooltip = SavedData.Characters[self.Guid].ExcludeFromEarnedByAchievementTooltip;
+    self.Character.IgnoreCharacter = SavedData.Characters[self.Guid].Ignore;
+end
+
+function KrowiAF_CharacterListEntryMixin:ToggleIgnoreCharacter()
+    if self.IgnoreCharacter:GetChecked() then
+        SavedData.Characters[self.Guid].Ignore = true;
+        SavedData.Characters[self.Guid].ExcludeFromHeaderTooltip = true;
+        SavedData.Characters[self.Guid].ExcludeFromEarnedByAchievementTooltip = true;
+        SavedData.Characters[self.Guid].CompletedAchievements = {};
+        SavedData.Characters[self.Guid].LastCompleted = nil;
+        SavedData.Characters[self.Guid].Points = 0;
+
+        self.Points:SetText("0");
+        self.HeaderTooltip:SetChecked(false);
+        self.EarnedByAchievementTooltip:SetChecked(false);
+    else
+        SavedData.Characters[self.Guid].Ignore = nil;
+        SavedData.Characters[self.Guid].ExcludeFromHeaderTooltip = nil;
+        SavedData.Characters[self.Guid].ExcludeFromEarnedByAchievementTooltip = nil;
+        if self.Guid == UnitGUID("player") then
+            addon.ResetCache();
+            addon.BuildCache();
+            self.Points:SetText(SavedData.Characters[self.Guid].Points or "99999");
+        end
+
+        self.HeaderTooltip:SetChecked(true);
+        self.EarnedByAchievementTooltip:SetChecked(true);
+    end
+    self.Character.ExcludeFromHeaderTooltip = SavedData.Characters[self.Guid].ExcludeFromHeaderTooltip;
+    self.Character.ExcludeFromEarnedByAchievementTooltip = SavedData.Characters[self.Guid].ExcludeFromEarnedByAchievementTooltip;
+    self.Character.IgnoreCharacter = SavedData.Characters[self.Guid].Ignore;
 end

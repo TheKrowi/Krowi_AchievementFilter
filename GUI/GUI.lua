@@ -22,7 +22,7 @@ local defaultAchievementFrameHeight;
 local defaultAchievementFrameMetalBorderHeight;
 function gui:LoadWithBlizzard_AchievementUI()
     addon.GUI.AchievementFrameHeader:Load();
-    
+
     self.LoadWrathClassicAchievementFrameChanges();
     self.LoadOldAchievementFrameCompatibility();
 
@@ -81,12 +81,6 @@ function gui:LoadWithBlizzard_AchievementUI()
     self.SetCloseButtonOnKeyDown();
     self:HookShowSubFrame();
 
-    -- This sacrifices the AchievementFrame moving other frames automatically, something to live with I assume
-    -- UIPanelWindows["AchievementFrame"] = nil;
-    -- AchievementFrame:SetAttribute("UIPanelLayout-area", nil);
-    -- AchievementFrame:SetAttribute("UIPanelLayout-enabled", false);
-    -- tinsert(UISpecialFrames, "AchievementFrame");
-
     diagnostics.Debug("GUI loaded");
 end
 
@@ -98,6 +92,7 @@ end
 
 gui.SubFrames = {};
 function gui:ShowSubFrame(...)
+    local show;
 	for _, subFrame in ipairs(self.SubFrames) do
 		show = false;
 		for i = 1, select("#", ...) do
@@ -278,7 +273,7 @@ function gui.ShowHideTabs(_addonName, tabName)
             if prevTab == nil then
                 btn:SetPoint("BOTTOMLEFT", AchievementFrame, 11, -30);
             else
-                btn:SetPoint("LEFT", prevTab, "RIGHT", -5, 0);
+                btn:SetPoint("LEFT", prevTab, "RIGHT", -5 + addon.Options.db.TabsGeneral.Spacing, 0);
             end
             prevTab = btn;
         end
@@ -412,7 +407,7 @@ function gui.LoadWrathClassicAchievementFrameChanges()
     if AchievementMeta_OnLeave == nil then
         AchievementMeta_OnLeave = function(self)
             GameTooltip:Hide();
-            guildMemberRequestFrame = nil;
+            -- guildMemberRequestFrame = nil;
         end
     end
 end

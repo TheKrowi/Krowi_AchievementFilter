@@ -243,5 +243,6 @@ function KrowiAF_AchievementFrameSummaryFrame_OnHide(self)
 end
 
 function KrowiAF_AchievementFrameSummaryFrame_OnEvent(self, event)
-    self:Update(event);
+    -- self:Update(event);
+    addon.DelayFunction("KrowiAF_AchievementFrameSummaryFrame_OnEvent", 1, self.Update, self, event);
 end

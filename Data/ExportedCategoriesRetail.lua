@@ -1,4 +1,4 @@
--- [[ Exported at 2022-10-13 20-58-53 ]] --
+-- [[ Exported at 2022-10-24 20-43-40 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -133,6 +133,7 @@ function exportedCategories.Load(a)
     AddA(tmp[1006], a[948]); -- Ambassador of the Alliance
     tmp[725] = cat:New(addon.GetMapName(18)); -- Tirisfal Glades
     AddC(tmp[687], tmp[725]);
+    AddA(tmp[725], a[16431]); -- Against the Elements
     tmp[1201] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[725], tmp[1201]);
     AddA(tmp[1201], a[15579]); -- Return to Lordaeron
@@ -318,6 +319,7 @@ function exportedCategories.Load(a)
     AddA(tmp[778], a[945]); -- The Argent Champion
     tmp[659] = cat:New(addon.GetMapName(15)); -- Badlands
     AddC(tmp[687], tmp[659]);
+    AddA(tmp[659], a[16431]); -- Against the Elements
     tmp[661] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[659], tmp[661]);
     AddA(tmp[661], a[4900]); -- Badlands Quests
@@ -434,6 +436,7 @@ function exportedCategories.Load(a)
     AddC(tmp[688], tmp[705]);
     AddA(tmp[705], a[11200]); -- Stand Against the Legion
     AddA(tmp[705], a[11201]); -- Defender of Azeroth: Legion Invasions
+    AddA(tmp[705], a[16431]); -- Against the Elements
     tmp[706] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[705], tmp[706]);
     AddA(tmp[706], a[4933]); -- Northern Barrens Quests
@@ -593,6 +596,7 @@ function exportedCategories.Load(a)
     AddC(tmp[688], tmp[717]);
     AddA(tmp[717], a[3357]); -- Venomhide Ravasaur
     AddA(tmp[717], a[11296]); -- The Ancient Keeper
+    AddA(tmp[717], a[16431]); -- Against the Elements
     tmp[718] = cat:New(addon.GetCategoryInfoTitle(96), true); -- Quests
     AddC(tmp[717], tmp[718]);
     AddA(tmp[718], a[4939]); -- Un'Goro Crater Quests
@@ -5460,7 +5464,6 @@ function exportedCategories.Load(a)
     AddA(tmp[420], a[14763]); -- Crypt Couture
     tmp[1207] = cat:New(addon.GetCategoryInfoTitle(15466)); -- Dragonflight
     AddC(tmp[883], tmp[1207]);
-    AddA(tmp[1207], a[16431]); -- Against the Elements
     tmp[1228] = cat:New(addon.L["Zones"]); -- Zones
     AddC(tmp[1207], tmp[1228]);
     AddA(tmp[1228], a[16585]); -- Loremaster of the Dragon Isles

@@ -50,6 +50,9 @@ options.Defaults = {
                 }
             }
         },
+        TabsGeneral = {
+            Spacing = 0
+        },
         Categories = {
             Focused = {
                 ShowSubCategories = false
@@ -93,7 +96,8 @@ options.Defaults = {
                 EarnedBy = {
                     Characters = 1,
                     NotCharacters = 1,
-                    AlwaysShowRealm = false
+                    AlwaysShowRealm = false,
+                    HideNotEarnedByIfEarnedByCurrentCharacter = false
                 },
                 ShowPartOfAChain = true,
                 ShowRequiredFor = true,

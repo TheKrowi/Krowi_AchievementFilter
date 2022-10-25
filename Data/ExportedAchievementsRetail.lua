@@ -1,4 +1,4 @@
--- [[ Exported at 2022-10-13 20-58-30 ]] --
+-- [[ Exported at 2022-10-24 20-43-19 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -41,7 +41,7 @@ function exportedAchievements.Load(a, t)
     SetTO(a[13], "From", "Version", "030003", "Before", "Version", "090001");
     a[15] = ach:New(15, 10); -- Plenty of Pets
     a[16] = ach:New(16, 0); -- Did Somebody Order a Knuckle Sandwich?
-    SetTO(a[16]);
+    SetTO(a[16], "From", "Version", "000304", "Before", "Version", "040001");
     a[31] = ach:New(31, 10); -- A Simple Re-Quest
     a[32] = ach:New(32, 10); -- 2000 Quests Completed
     a[33] = ach:New(33, 10, fac.Alliance, 1358); -- Nothing Boring About Borean
@@ -83,7 +83,7 @@ function exportedAchievements.Load(a, t)
     a[137] = ach:New(137, 0); -- Stocking Up
     SetTO(a[137], "From", "Version", "030003", "Before", "Version", "080001");
     a[141] = ach:New(141, 0); -- Ultimate Triage
-    SetTO(a[141]);
+    SetTO(a[141], "From", "Version", "030003", "Before", "Version", "080001");
     a[144] = ach:New(144, 10); -- The Lurker Above
     a[150] = ach:New(150, 10); -- The Fishing Diplomat
     a[153] = ach:New(153, 10); -- The Old Gnome and the Sea
@@ -326,13 +326,13 @@ function exportedAchievements.Load(a, t)
     a[546] = ach:New(546, 10); -- Safe Deposit
     a[547] = ach:New(547, 10); -- Veteran of the Wrathgate
     a[556] = ach:New(556, 0); -- Epic
-    SetTO(a[556]);
+    SetTO(a[556], "From", "Version", "030003", "Before", "Version", "080001");
     a[557] = ach:New(557, 0); -- Superior
-    SetTO(a[557]);
+    SetTO(a[557], "From", "Version", "030003", "Before", "Version", "080001");
     a[558] = ach:New(558, 0); -- Greedy
-    SetTO(a[558]);
+    SetTO(a[558], "From", "Version", "030002", "Before", "Version", "080001");
     a[559] = ach:New(559, 0); -- Needy
-    SetTO(a[559]);
+    SetTO(a[559], "From", "Version", "030002", "Before", "Version", "080001");
     a[560] = ach:New(560, 0); -- Deadliest Catch
     SetTO(a[560], "From", "Version", "030002", "Before", "Version", "040001");
     a[561] = ach:New(561, 10); -- D.E.H.T.A's Little P.I.T.A.
@@ -465,7 +465,7 @@ function exportedAchievements.Load(a, t)
     a[701] = ach:New(701, 0, fac.Alliance, 700); -- Freedom of the Alliance
     SetTO(a[701], "From", "PvP Season", 5, "Until", "PvP Season", 18);
     a[705] = ach:New(705, 0); -- Master of Arms
-    SetTO(a[705]);
+    SetTO(a[705], "From", "Version", "000304", "Before", "Version", "040001");
     a[706] = ach:New(706, 10, fac.Horde, 707); -- Frostwolf Howler
     a[707] = ach:New(707, 10, fac.Alliance, 706); -- Stormpike Battle Charger
     a[708] = ach:New(708, 10, fac.Horde, 709); -- Hero of the Frostwolf Clan
@@ -570,7 +570,7 @@ function exportedAchievements.Load(a, t)
     a[890] = ach:New(890, 10); -- Into the Wild Blue Yonder
     a[891] = ach:New(891, 10); -- Giddy Up!
     a[892] = ach:New(892, 0); -- The Right Stuff
-    SetTO(a[892]);
+    SetTO(a[892], "From", "Version", "030002", "Before", "Version", "090001");
     a[893] = ach:New(893, 10); -- Cenarion War Hippogryph
     a[894] = ach:New(894, 10); -- Flying High Over Skettis
     a[896] = ach:New(896, 10); -- A Quest a Day Keeps the Ogres at Bay
@@ -1076,11 +1076,11 @@ function exportedAchievements.Load(a, t)
     SetTO(a[2316], "From", "PvP Season", 4, "Until", "PvP Season", 4);
     a[2336] = ach:New(2336, 0); -- Insane in the Membrane
     a[2357] = ach:New(2357, 0); -- Dreadsteed of Xoroth
-    SetTO(a[2357]);
+    SetTO(a[2357], "From", "Version", "010400", "Before", "Version", "040003a");
     a[2358] = ach:New(2358, 0); -- Charger
-    SetTO(a[2358]);
+    SetTO(a[2358], "From", "Version", "010400", "Before", "Version", "040003a");
     a[2359] = ach:New(2359, 0); -- Swift Flight Form
-    SetTO(a[2359]);
+    SetTO(a[2359], "From", "Version", "020100", "Before", "Version", "040003a");
     a[2398] = ach:New(2398, 0); -- WoW's 4th Anniversary
     SetTO(a[2398]);
     a[2416] = ach:New(2416, 10); -- Hard Boiled
@@ -1105,7 +1105,7 @@ function exportedAchievements.Load(a, t)
     a[2576] = ach:New(2576, 10); -- Blushing Bride
     a[2676] = ach:New(2676, 10); -- I Found One!
     a[2716] = ach:New(2716, 0); -- Dual Talent Specialization
-    SetTO(a[2716]);
+    SetTO(a[2716], "From", "Version", "030100", "Before", "Version", "070003");
     a[2756] = ach:New(2756, 10); -- Argent Aspiration
     a[2758] = ach:New(2758, 10); -- Argent Valor
     a[2760] = ach:New(2760, 10, fac.Alliance, 2769); -- Exalted Champion of Darnassus
@@ -1927,9 +1927,9 @@ function exportedAchievements.Load(a, t)
     a[5370] = ach:New(5370, 10); -- I'm on a Diet
     a[5371] = ach:New(5371, 10); -- Vigorous VanCleef Vindicator
     a[5372] = ach:New(5372, 0); -- Cataclysmically Epic
-    SetTO(a[5372]);
+    SetTO(a[5372], "From", "Version", "040003a", "Before", "Version", "080001");
     a[5373] = ach:New(5373, 0); -- Cataclysmically Superior
-    SetTO(a[5373]);
+    SetTO(a[5373], "From", "Version", "040003a", "Before", "Version", "080001");
     a[5374] = ach:New(5374, 10); -- 45 Exalted Reputations
     a[5375] = ach:New(5375, 10, fac.Alliance, 5376); -- Baradin's Wardens
     a[5376] = ach:New(5376, 10, fac.Horde, 5375); -- Hellscream's Reach
@@ -2200,9 +2200,9 @@ function exportedAchievements.Load(a, t)
     SetTO(a[6322], "From", "PvP Season", 10, "Until", "PvP Season", 10);
     a[6332] = ach:New(6332, 10); -- That Rabbit's Dynamite!
     a[6348] = ach:New(6348, 0); -- Mystically Superior
-    SetTO(a[6348]);
+    SetTO(a[6348], "From", "Version", "050005", "Before", "Version", "080001");
     a[6349] = ach:New(6349, 0); -- Mystically Epic
-    SetTO(a[6349]);
+    SetTO(a[6349], "From", "Version", "050005", "Before", "Version", "080001");
     a[6350] = ach:New(6350, 10); -- To All the Squirrels I Once Caressed?
     a[6351] = ach:New(6351, 10); -- Explore Jade Forest
     a[6365] = ach:New(6365, 10); -- Zen Master Cook
@@ -3762,9 +3762,9 @@ function exportedAchievements.Load(a, t)
     a[9705] = ach:New(9705, 10, fac.Horde, 9539); -- Advanced Husbandry
     a[9706] = ach:New(9706, 10, fac.Horde, 9540); -- The Stable Master
     a[9707] = ach:New(9707, 0); -- Savagely Superior
-    SetTO(a[9707]);
+    SetTO(a[9707], "From", "Version", "060003a", "Before", "Version", "080001");
     a[9708] = ach:New(9708, 0); -- Savagely Epic
-    SetTO(a[9708]);
+    SetTO(a[9708], "From", "Version", "060003a", "Before", "Version", "080001");
     a[9710] = ach:New(9710, 10); -- Poisoning the Well
     a[9711] = ach:New(9711, 10); -- Planned to Fail
     a[9712] = ach:New(9712, 5); -- Shiny Pet Charmer
@@ -4157,9 +4157,9 @@ function exportedAchievements.Load(a, t)
     a[10762] = ach:New(10762, 10); -- The Legion Menu
     a[10763] = ach:New(10763, 10); -- Azsuna Matata
     a[10764] = ach:New(10764, 0); -- Brokenly Superior
-    SetTO(a[10764]);
+    SetTO(a[10764], "From", "Version", "070003", "Before", "Version", "080001");
     a[10765] = ach:New(10765, 0); -- Brokenly Epic
-    SetTO(a[10765]);
+    SetTO(a[10765], "From", "Version", "070003", "Before", "Version", "080001");
     a[10766] = ach:New(10766, 10); -- Egg-cellent!
     a[10769] = ach:New(10769, 10); -- Burning Down the House
     a[10770] = ach:New(10770, 5); -- The Tangerine Traveler
@@ -6367,9 +6367,9 @@ function exportedAchievements.Load(a, t)
     a[12544] = ach:New(12544, 0); -- Level 120 (Legacy)
     SetTO(a[12544], "From", "Version", "080001", "Before", "Version", "090001");
     a[12546] = ach:New(12546, 0); -- Superior (Battle)
-    SetTO(a[12546]);
+    SetTO(a[12546], "From", "Version", "080001", "Before", "Version", "090001");
     a[12547] = ach:New(12547, 0); -- Epic (Battle)
-    SetTO(a[12547]);
+    SetTO(a[12547], "From", "Version", "080001", "Before", "Version", "090001");
     a[12548] = ach:New(12548, 10); -- I'm in Charge Now!
     a[12549] = ach:New(12549, 10); -- Not a Fun Guy
     a[12550] = ach:New(12550, 10); -- Pecking Order
@@ -7975,9 +7975,9 @@ function exportedAchievements.Load(a, t)
     a[15418] = ach:New(15418, 10); -- The Grand Design
     a[15419] = ach:New(15419, 10); -- The Protoform Matrix
     a[15468] = ach:New(15468, 0); -- We Are All Made of Stars (Heroic)
-    SetTO(a[15468], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15468], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15469] = ach:New(15469, 0); -- We Are All Made of Stars (Mythic)
-    SetTO(a[15469], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15469], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15470] = ach:New(15470, 0); -- Ahead of the Curve: The Jailer
     SetTO(a[15470], "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15471] = ach:New(15471, 0); -- Cutting Edge: The Jailer
@@ -8006,6 +8006,7 @@ function exportedAchievements.Load(a, t)
     a[15499] = ach:New(15499, 0); -- Shadowlands Keystone Master: Season Three
     SetTO(a[15499], "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15500] = ach:New(15500, 0); -- "Keystone Hero: Tazavesh, the Veiled Market"
+    SetTO(a[15500], "From", "Mythic+ Season", 7, "Until", "Version", "100000");
     a[15502] = ach:New(15502, 10); -- "Sand, Sand Everywhere!"
     a[15506] = ach:New(15506, 0); -- Shadowlands Keystone Hero: Season Three
     SetTO(a[15506], "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
@@ -8069,45 +8070,45 @@ function exportedAchievements.Load(a, t)
     a[15654] = ach:New(15654, 0); -- Back from the Beyond
     SetTO(a[15654], "From", "Version", "090205", "Before", "Version", "100002");
     a[15663] = ach:New(15663, 10); -- Fate of Nathria
-    SetTO(a[15663], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15663], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15664] = ach:New(15664, 10); -- Heroic: Fate of Nathria
-    SetTO(a[15664], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15664], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15665] = ach:New(15665, 10); -- Mythic: Fate of Nathria
-    SetTO(a[15665], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15665], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15667] = ach:New(15667, 10); -- Fate of Domination
-    SetTO(a[15667], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15667], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15668] = ach:New(15668, 10); -- Heroic: Fate of Domination
-    SetTO(a[15668], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15668], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15669] = ach:New(15669, 10); -- Mythic: Fate of Domination
-    SetTO(a[15669], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15669], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15681] = ach:New(15681, 10); -- Fate of the Sepulcher
-    SetTO(a[15681], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15681], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15682] = ach:New(15682, 10); -- Heroic: Fate of the Sepulcher
-    SetTO(a[15682], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15682], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15683] = ach:New(15683, 10); -- Mythic: Fate of the Sepulcher
-    SetTO(a[15683], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15683], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15684] = ach:New(15684, 10); -- Fates of the Shadowlands Raids
-    SetTO(a[15684], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15684], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15685] = ach:New(15685, 10); -- Heroic: Fates of the Shadowlands Raids
-    SetTO(a[15685], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15685], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15687] = ach:New(15687, 10); -- Mythic: Fates of the Shadowlands Raids
-    SetTO(a[15687], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15687], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15688] = ach:New(15688, 0); -- Shadowlands Keystone Explorer: Season Four
-    SetTO(a[15688], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15688], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15689] = ach:New(15689, 0); -- Shadowlands Keystone Conqueror: Season Four
-    SetTO(a[15689], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15689], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15690] = ach:New(15690, 0); -- Shadowlands Keystone Master: Season Four
-    SetTO(a[15690], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15690], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15691] = ach:New(15691, 0); -- Cryptic Hero: Shadowlands Season 3
     SetTO(a[15691], "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15692] = ach:New(15692, 0); -- Keystone Hero: Return to Karazhan
-    SetTO(a[15692], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15692], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15693] = ach:New(15693, 0); -- Keystone Hero: Operation: Mechagon
-    SetTO(a[15693], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15693], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15694] = ach:New(15694, 0); -- Keystone Hero: Iron Docks
-    SetTO(a[15694], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15694], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15695] = ach:New(15695, 0); -- Keystone Hero: Grimrail Depot
-    SetTO(a[15695], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15695], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15696] = ach:New(15696, 0); -- Ruby Lifeshrine Loop: Bronze
     a[15697] = ach:New(15697, 0); -- Ruby Lifeshrine Loop: Silver
     a[15698] = ach:New(15698, 0); -- Ruby Lifeshrine Loop: Gold

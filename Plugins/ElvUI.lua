@@ -249,7 +249,7 @@ local function SkinAchievementSummary(frame, engine, skins)
     frame.Achievements.Header.Texture:Hide();
 	frame.Categories.Header.Texture:Hide();
 
-    if not addon.IsWrathClassic then
+    if addon.IsShadowlandsRetail then
         local numChildren = frame:GetNumChildren();
         for i = 1, numChildren do
             local child = select(i, frame:GetChildren());
@@ -418,7 +418,7 @@ local function SkinSideButtons(sideButtons, engine)
         SkinAlertFrameTemplate(button, engine);
         if i == 1 then
             button:ClearAllPoints();
-            button:SetPoint("TOPLEFT", AchievementFrame, "TOPRIGHT", 5, 13); -- Make the 2nd button anchor like the 1st one
+            button:SetPoint("TOPLEFT", AchievementFrame, "TOPRIGHT", 5, addon.IsDragonflightRetail and 6 or 13); -- Make the 2nd button anchor like the 1st one
         else
             button:ClearAllPoints();
             button:SetPoint("TOPLEFT", sideButtons[i - 1], "BOTTOMLEFT", 0, 9); -- Make the 2nd button anchor like the 1st one
@@ -427,13 +427,15 @@ local function SkinSideButtons(sideButtons, engine)
 end
 
 local function SkinHeader()
-    hooksecurefunc(AchievementFrameHeaderPoints, "SetText", function()
-        AchievementFrameHeaderPointBorder:ClearAllPoints();
-	    AchievementFrameHeaderPointBorder:Point('CENTER', AchievementFrameHeaderTitle, 'CENTER', 100, 0);
-        AchievementFrameHeaderPointBorder:SetSize(150, 20);
-        AchievementFrameHeaderPoints:ClearAllPoints();
-	    AchievementFrameHeaderPoints:Point('CENTER', AchievementFrameHeaderPointBorder);
-    end);
+    if not addon.IsDragonflightRetail then
+        hooksecurefunc(AchievementFrame.Header.Points, "SetText", function()
+            AchievementFrame.Header.PointBorder:ClearAllPoints();
+            AchievementFrame.Header.PointBorder:Point('CENTER', AchievementFrame.Header.Title, 'CENTER', 100, 0);
+            AchievementFrame.Header.PointBorder:SetSize(150, 20);
+            AchievementFrame.Header.Points:ClearAllPoints();
+            AchievementFrame.Header.Points:Point('CENTER', AchievementFrame.Header.PointBorder);
+        end);
+    end
     if addon.IsWrathClassic then
         AchievementFrameHeaderLeftDDLInset:SetAlpha(0);
     end
@@ -451,7 +453,7 @@ end
 local function SkinCalendarButton(button, skins)
     skins:HandleButton(button);
     button:ClearAllPoints();
-    button:Point("LEFT", AchievementFrameHeaderPoints, "RIGHT", 30, -1);
+    button:Point("LEFT", AchievementFrame.Header.Points, "RIGHT", 30, -1);
     button:Size(22, 22);
     local fs = button:CreateFontString(nil, nil, "GameFontHighlightSmall");
     fs:SetPoint("CENTER", 0, -2);
@@ -564,6 +566,47 @@ local function SkinCalendarSideFrame(frame, engine, skins)
     end
 end
 
+local function SkinDataManager(frame, skins)
+    frame:StripTextures();
+    frame.Inset:StripTextures();
+    frame.CloseButton:Point("TOPRIGHT", 0, 2);
+    skins:HandleFrame(frame, true, nil, -5, 0, -1, 0);
+    
+    frame.CharacterList.InsetFrame:StripTextures();
+    skins:HandleInsetFrame(frame.CharacterList.InsetFrame);
+    skins:HandleScrollBar(frame.CharacterList.ScrollFrame.ScrollBar)
+    
+	local columnDisplay = frame.CharacterList.ColumnDisplay;
+	columnDisplay:StripTextures();
+	columnDisplay.InsetBorderLeft:Hide();
+	columnDisplay.InsetBorderBottomLeft:Hide();
+	columnDisplay.InsetBorderTopLeft:Hide();
+	columnDisplay.InsetBorderTop:Hide();
+    for i = 1, columnDisplay:GetNumChildren() do
+        local child = select(i, columnDisplay:GetChildren())
+        child:StripTextures();
+        child:SetTemplate("Transparent");
+    end
+
+    -- frame.CharacterList.ScrollFrame:ClearAllPoints();
+    -- frame.CharacterList.ScrollFrame:Point("TOPLEFT", frame.CharacterList, "TOPLEFT", 3, 5);
+    -- frame.CharacterList.ScrollFrame:Point("BOTTOMRIGHT", frame.CharacterList, "BOTTOMRIGHT", 0, 0);
+    for _, button in ipairs(frame.CharacterList.ScrollFrame.buttons or {}) do
+        skins:HandleCheckBox(button.HeaderTooltip);
+        button.HeaderTooltip:Size(25, 25);
+        button.HeaderTooltip:ClearAllPoints();
+        button.HeaderTooltip:Point("LEFT", button.Points, "RIGHT", 19, 0);
+        skins:HandleCheckBox(button.EarnedByAchievementTooltip);
+        button.EarnedByAchievementTooltip:Size(25, 25);
+        button.EarnedByAchievementTooltip:ClearAllPoints();
+        button.EarnedByAchievementTooltip:Point("LEFT", button.HeaderTooltip, "RIGHT", 74, 0);
+        skins:HandleCheckBox(button.IgnoreCharacter);
+        button.IgnoreCharacter:Size(25, 25);
+        button.IgnoreCharacter:ClearAllPoints();
+        button.IgnoreCharacter:Point("LEFT", button.EarnedByAchievementTooltip, "RIGHT", 73, 0);
+    end
+end
+
 local engine, skins;
 local function SkinAll()
 	addon.Diagnostics.Trace("elvUISkin.Apply");
@@ -584,6 +627,7 @@ local function SkinAll()
         SkinHeader();
         ReskinBlizzard(skins);
         SkinCalendarButton(addon.GUI.Calendar.Button, skins);
+        SkinDataManager(addon.GUI.DataManagerFrame, skins);
     end
     if SavedData.ElvUISkin.Calendar then
         SkinCalendarFrame(addon.GUI.Calendar.Frame, engine, skins);
@@ -627,6 +671,8 @@ function elvUI.LoadLocalization(L)
     L["Skin Calendar Desc"] = "Applies the ElvUI skin to the Calendar.\n-> Blizzard + Calendar Frame";
     L["Remove Parchment"] = "Remove Parchment";
     L["Remove Parchment Desc"] = "Remove the parchment background from the Calendar Days.\n-> Parchment Remover";
+    L["Skin Data Manager"] = "Skin Data Manager";
+    L["Skin Data Manager Desc"] = "Applies the ElvUI skin to the Data Manager Window.\n-> Blizzard + Achievements";
     L["Skin Ace3"] = "Skin Ace3";
     L["Skin Ace3 Desc"] = "Applies the ElvUI skin to the Options.\n-> Ace3";
 end
@@ -671,7 +717,8 @@ function elvUI.InjectOptions()
             SkinAlertFrames = AddInfo(8, "Skin Alert Frames", function() return SavedData.ElvUISkin.AlertFrames; end),
             SkinCalendar = AddInfo(9, "Skin Calendar", function() return SavedData.ElvUISkin.Calendar; end),
             RemoveParchment = AddInfo(10, "Remove Parchment", function() return SavedData.ElvUISkin.NoParchment; end),
-            SkinAce3 = AddInfo(11, "Skin Ace3", function() return SavedData.ElvUISkin.Options; end)
+            SkinDataManager = AddInfo(11, "Skin Data Manager", function() return SavedData.ElvUISkin.Achievements; end),
+            SkinAce3 = AddInfo(12, "Skin Ace3", function() return SavedData.ElvUISkin.Options; end)
         }
     };
 

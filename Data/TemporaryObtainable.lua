@@ -60,6 +60,7 @@ function temporaryObtainable:GetObtainableState(achievement)
         return "Past";
     end
 
+    local start, _end;
     local startFunction = achievement.TemporaryObtainable.Start.Function;
     if startFunction == "Mythic+ Season" then
         start = self:GetMplusSeasonStartState(achievement);
@@ -77,7 +78,7 @@ function temporaryObtainable:GetObtainableState(achievement)
 
     -- print(achievement.Id, startFunction, start)
 
-    local startState = start;
+    -- local startState = start;
     if start == "Future" then
         -- print(achievement.Id, "Future")
         return "Future";
@@ -94,7 +95,7 @@ function temporaryObtainable:GetObtainableState(achievement)
         _end = self:GetEventEndState(achievement);
     end
 
-    local endState = _end;
+    -- local endState = _end;
     if _end == "Past" then
         -- print(achievement.Id, "Past")
         return "Past";
@@ -207,6 +208,7 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
 
         isWillBeWas, neverOnceTempObt, startText, startDetail, endText, endDetail = nil, nil, nil, nil, nil, nil;
 
+        local color = nil;
         isWillBeWas, color = self:GetWasIsWillBe(achievement);
 
         if achievement.TemporaryObtainable.Start.Function == "Never" then
@@ -310,7 +312,7 @@ do -- Get start and end state
             return "Past";
         end
     end
-    
+
     function temporaryObtainable:GetMplusSeasonEndState(achievement)
         if achievement.TemporaryObtainable.End.Inclusion == "Until" then
             if self:GetCurrentMplusSeason() == 0 then

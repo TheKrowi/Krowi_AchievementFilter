@@ -3,7 +3,7 @@
     <Script file="DataManagerFrameMixin.lua"/>
 
     <Frame name="KrowiAF_DataManagerFrame_Template" toplevel="true" parent="UIParent" enableMouse="true" inherits="ButtonFrameTemplate" mixin="KrowiAF_DataManagerFrameMixin" virtual="true" hidden="true">
-        <Size x="814" y="426"/>
+        <Size x="814" y="426"/> <!-- 426 -->
         <Anchors>
 			<Anchor point="TOPLEFT" x="150" y="-80"/>
         </Anchors>
@@ -160,7 +160,8 @@
             <Frame parentKey="CharacterList" inherits="KrowiAF_CharacterListFrame_Template">
                 <Anchors>
                     <Anchor point="TOPLEFT" x="4" y="-60"/>
-                    <Anchor point="BOTTOMRIGHT" x="-26" y="7"/>
+                    <Anchor point="BOTTOMRIGHT" x="-24" y="3"/>
+                    <!-- <Anchor point="BOTTOMRIGHT" x="0" y="3"/> -->
                 </Anchors>
             </Frame>
             <!-- <Frame parentKey="ApplicantList" hidden="true" inherits="ClubFinderApplicantListFrameTemplate">

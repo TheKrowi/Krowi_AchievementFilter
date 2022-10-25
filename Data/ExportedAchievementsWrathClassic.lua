@@ -1,4 +1,4 @@
--- [[ Exported at 2022-10-13 20-58-44 ]] --
+-- [[ Exported at 2022-10-24 20-43-32 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -38,10 +38,10 @@ function exportedAchievements.Load(a, t)
     a[12] = ach:New(12, 0); -- Level 70 (Legacy)
     SetTO(a[12], "From", "Version", "020003", "Before", "Version", "090001");
     a[13] = ach:New(13, 0); -- Level 80 (Legacy)
-    SetTO(a[13], "From", "Version", "030003", "Before", "Version", "090001");
+    SetTO(a[13], "From", "Version", "030400", "Before", "Version", "090001");
     a[15] = ach:New(15, 10); -- Plenty of Pets
     a[16] = ach:New(16, 0); -- Did Somebody Order a Knuckle Sandwich?
-    SetTO(a[16]);
+    SetTO(a[16], "From", "Version", "000304", "Before", "Version", "040001");
     a[31] = ach:New(31, 10); -- A Simple Re-Quest
     a[32] = ach:New(32, 10); -- 2000 Quests Completed
     a[33] = ach:New(33, 10, fac.Alliance, 1358); -- Nothing Boring About Borean
@@ -79,11 +79,11 @@ function exportedAchievements.Load(a, t)
     a[134] = ach:New(134, 0); -- Master Medic
     SetTO(a[134], "From", "Version", "020003", "Before", "Version", "080001");
     a[135] = ach:New(135, 0); -- Grand Master Medic
-    SetTO(a[135], "From", "Version", "030003", "Before", "Version", "080001");
+    SetTO(a[135], "From", "Version", "030400", "Before", "Version", "080001");
     a[137] = ach:New(137, 0); -- Stocking Up
-    SetTO(a[137], "From", "Version", "030003", "Before", "Version", "080001");
+    SetTO(a[137], "From", "Version", "030400", "Before", "Version", "080001");
     a[141] = ach:New(141, 0); -- Ultimate Triage
-    SetTO(a[141]);
+    SetTO(a[141], "From", "Version", "030400", "Before", "Version", "080001");
     a[144] = ach:New(144, 10); -- The Lurker Above
     a[150] = ach:New(150, 10); -- The Fishing Diplomat
     a[153] = ach:New(153, 10); -- The Old Gnome and the Sea
@@ -167,15 +167,15 @@ function exportedAchievements.Load(a, t)
     a[402] = ach:New(402, 10); -- Three's Company: 1550
     a[403] = ach:New(403, 10); -- Three's Company: 1750
     a[404] = ach:New(404, 0); -- High Five: 2000
-    SetTO(a[404], "From", "Version", "030003", "Before", "Version", "070003");
+    SetTO(a[404], "From", "Version", "030400", "Before", "Version", "070003");
     a[405] = ach:New(405, 10); -- Three's Company: 2000
     a[406] = ach:New(406, 0); -- High Five: 1550
-    SetTO(a[406], "From", "Version", "030003", "Before", "Version", "070003");
+    SetTO(a[406], "From", "Version", "030400", "Before", "Version", "070003");
     a[407] = ach:New(407, 0); -- High Five: 1750
-    SetTO(a[407], "From", "Version", "030003", "Before", "Version", "070003");
+    SetTO(a[407], "From", "Version", "030400", "Before", "Version", "070003");
     a[408] = ach:New(408, 10); -- Hot Streak
     a[409] = ach:New(409, 0); -- Last Man Standing
-    SetTO(a[409], "From", "Version", "030003", "Before", "Version", "070003");
+    SetTO(a[409], "From", "Version", "030400", "Before", "Version", "070003");
     a[411] = ach:New(411, 0); -- Murky
     a[412] = ach:New(412, 0); -- Murloc Costume
     a[414] = ach:New(414, 0); -- Tyrael's Hilt
@@ -326,13 +326,13 @@ function exportedAchievements.Load(a, t)
     a[546] = ach:New(546, 10); -- Safe Deposit
     a[547] = ach:New(547, 10); -- Veteran of the Wrathgate
     a[556] = ach:New(556, 0); -- Epic
-    SetTO(a[556]);
+    SetTO(a[556], "From", "Version", "030400", "Before", "Version", "080001");
     a[557] = ach:New(557, 0); -- Superior
-    SetTO(a[557]);
+    SetTO(a[557], "From", "Version", "030400", "Before", "Version", "080001");
     a[558] = ach:New(558, 0); -- Greedy
-    SetTO(a[558]);
+    SetTO(a[558], "From", "Version", "030002", "Before", "Version", "080001");
     a[559] = ach:New(559, 0); -- Needy
-    SetTO(a[559]);
+    SetTO(a[559], "From", "Version", "030002", "Before", "Version", "080001");
     a[560] = ach:New(560, 0); -- Deadliest Catch
     SetTO(a[560], "From", "Version", "030002", "Before", "Version", "040001");
     a[561] = ach:New(561, 10); -- D.E.H.T.A's Little P.I.T.A.
@@ -465,7 +465,7 @@ function exportedAchievements.Load(a, t)
     a[701] = ach:New(701, 0, fac.Alliance, 700); -- Freedom of the Alliance
     SetTO(a[701], "From", "PvP Season", 5, "Until", "PvP Season", 18);
     a[705] = ach:New(705, 0); -- Master of Arms
-    SetTO(a[705]);
+    SetTO(a[705], "From", "Version", "000304", "Before", "Version", "040001");
     a[706] = ach:New(706, 10, fac.Horde, 707); -- Frostwolf Howler
     a[707] = ach:New(707, 10, fac.Alliance, 706); -- Stormpike Battle Charger
     a[708] = ach:New(708, 10, fac.Horde, 709); -- Hero of the Frostwolf Clan
@@ -481,7 +481,7 @@ function exportedAchievements.Load(a, t)
     a[728] = ach:New(728, 10); -- Explore Durotar
     a[729] = ach:New(729, 0); -- Deathcharger's Reins
     a[730] = ach:New(730, 0); -- Skills to Pay the Bills
-    SetTO(a[730], "From", "Version", "030003", "Before", "Version", "080001");
+    SetTO(a[730], "From", "Version", "030400", "Before", "Version", "080001");
     a[731] = ach:New(731, 10); -- Professional Expert
     a[732] = ach:New(732, 10); -- Professional Classic Master
     a[733] = ach:New(733, 10); -- Professional Outland Master
@@ -571,7 +571,7 @@ function exportedAchievements.Load(a, t)
     a[890] = ach:New(890, 10); -- Into the Wild Blue Yonder
     a[891] = ach:New(891, 10); -- Giddy Up!
     a[892] = ach:New(892, 0); -- The Right Stuff
-    SetTO(a[892]);
+    SetTO(a[892], "From", "Version", "030002", "Before", "Version", "090001");
     a[893] = ach:New(893, 10); -- Cenarion War Hippogryph
     a[894] = ach:New(894, 10); -- Flying High Over Skettis
     a[896] = ach:New(896, 10); -- A Quest a Day Keeps the Ogres at Bay
@@ -678,7 +678,7 @@ function exportedAchievements.Load(a, t)
     a[1159] = ach:New(1159, 10); -- Just the Two of Us: 2200
     a[1160] = ach:New(1160, 10); -- Three's Company: 2200
     a[1161] = ach:New(1161, 0); -- High Five: 2200
-    SetTO(a[1161], "From", "Version", "030003", "Before", "Version", "070003");
+    SetTO(a[1161], "From", "Version", "030400", "Before", "Version", "070003");
     a[1162] = ach:New(1162, 10); -- Hotter Streak
     a[1164] = ach:New(1164, 10, fac.Horde, 225); -- Everything Counts
     a[1165] = ach:New(1165, 10); -- "My Storage is ""Gigantique"""
@@ -691,7 +691,7 @@ function exportedAchievements.Load(a, t)
     a[1172] = ach:New(1172, 25, fac.Alliance); -- Master of Warsong Gulch
     a[1173] = ach:New(1173, 25, fac.Horde); -- Master of Warsong Gulch
     a[1174] = ach:New(1174, 0); -- The Arena Master
-    SetTO(a[1174], "From", "Version", "030003", "Before", "Version", "070003");
+    SetTO(a[1174], "From", "Version", "030400", "Before", "Version", "070003");
     a[1175] = ach:New(1175, 50, fac.Horde, 230); -- Battlemaster
     a[1176] = ach:New(1176, 10); -- Got My Mind On My Money
     a[1177] = ach:New(1177, 10); -- Got My Mind On My Money
@@ -705,6 +705,7 @@ function exportedAchievements.Load(a, t)
     a[1186] = ach:New(1186, 0); -- Down With The Dark Iron
     SetTO(a[1186], "From", "Version", "030002", "Before", "Version", "080200");
     a[1187] = ach:New(1187, 10); -- The Keymaster
+    SetTO(a[1187], "From", "Version", "030002", "Before", "Version", "040003a");
     a[1188] = ach:New(1188, 10); -- Shafted!
     a[1189] = ach:New(1189, 10, fac.Alliance, 1271); -- To Hellfire and Back
     a[1190] = ach:New(1190, 10); -- Mysteries of the Marsh
@@ -768,11 +769,11 @@ function exportedAchievements.Load(a, t)
     a[1307] = ach:New(1307, 0); -- Upper Blackrock Spire (Classic)
     SetTO(a[1307], "From", "Version", "030002", "Before", "Version", "060002");
     a[1308] = ach:New(1308, 0); -- Strand of the Ancients Victory
-    SetTO(a[1308], "From", "Version", "030003", "Before", "Version", "080001");
+    SetTO(a[1308], "From", "Version", "030400", "Before", "Version", "080001");
     a[1309] = ach:New(1309, 0); -- Strand of the Ancients Veteran
-    SetTO(a[1309], "From", "Version", "030003", "Before", "Version", "080001");
+    SetTO(a[1309], "From", "Version", "030400", "Before", "Version", "080001");
     a[1310] = ach:New(1310, 0); -- Storm the Beach
-    SetTO(a[1310], "From", "Version", "030003", "Before", "Version", "080001");
+    SetTO(a[1310], "From", "Version", "030400", "Before", "Version", "080001");
     a[1311] = ach:New(1311, 10); -- Medium Rare
     a[1312] = ach:New(1312, 25); -- Bloody Rare
     a[1356] = ach:New(1356, 10, fac.Horde, 34); -- I've Toured the Fjord
@@ -902,19 +903,19 @@ function exportedAchievements.Load(a, t)
     a[1752] = ach:New(1752, 10, fac.Alliance); -- Master of Wintergrasp
     a[1755] = ach:New(1755, 10); -- Within Our Grasp
     a[1757] = ach:New(1757, 0, fac.Alliance, 2200); -- Defense of the Ancients
-    SetTO(a[1757], "From", "Version", "030003", "Before", "Version", "080001");
+    SetTO(a[1757], "From", "Version", "030400", "Before", "Version", "080001");
     a[1761] = ach:New(1761, 0); -- The Dapper Sapper
-    SetTO(a[1761], "From", "Version", "030003", "Before", "Version", "080001");
+    SetTO(a[1761], "From", "Version", "030400", "Before", "Version", "080001");
     a[1762] = ach:New(1762, 0, fac.Alliance, 2192); -- Not Even a Scratch
-    SetTO(a[1762], "From", "Version", "030003", "Before", "Version", "080001");
+    SetTO(a[1762], "From", "Version", "030400", "Before", "Version", "080001");
     a[1763] = ach:New(1763, 0); -- Artillery Veteran
-    SetTO(a[1763], "From", "Version", "030003", "Before", "Version", "080001");
+    SetTO(a[1763], "From", "Version", "030400", "Before", "Version", "080001");
     a[1764] = ach:New(1764, 0); -- Drop It!
-    SetTO(a[1764], "From", "Version", "030003", "Before", "Version", "080001");
+    SetTO(a[1764], "From", "Version", "030400", "Before", "Version", "080001");
     a[1765] = ach:New(1765, 0); -- Steady Hands
-    SetTO(a[1765], "From", "Version", "030003", "Before", "Version", "080001");
+    SetTO(a[1765], "From", "Version", "030400", "Before", "Version", "080001");
     a[1766] = ach:New(1766, 0); -- Ancient Protector
-    SetTO(a[1766], "From", "Version", "030003", "Before", "Version", "080001");
+    SetTO(a[1766], "From", "Version", "030400", "Before", "Version", "080001");
     a[1777] = ach:New(1777, 10); -- The Northrend Gourmet
     a[1778] = ach:New(1778, 10); -- The Northrend Gourmet
     a[1779] = ach:New(1779, 10); -- The Northrend Gourmet
@@ -980,9 +981,9 @@ function exportedAchievements.Load(a, t)
     a[2016] = ach:New(2016, 10, fac.Alliance, 2017); -- Grizzled Veteran
     a[2017] = ach:New(2017, 10, fac.Horde, 2016); -- Grizzled Veteran
     a[2018] = ach:New(2018, 0); -- Timear Foresees
-    SetTO(a[2018], "From", "Version", "030003", "Before", "Version", "030300");
+    SetTO(a[2018], "From", "Version", "030400", "Before", "Version", "030700");
     a[2019] = ach:New(2019, 0); -- Proof of Demise
-    SetTO(a[2019], "From", "Version", "030003", "Before", "Version", "030300");
+    SetTO(a[2019], "From", "Version", "030400", "Before", "Version", "030700");
     a[2036] = ach:New(2036, 10); -- Intense Cold
     a[2037] = ach:New(2037, 10); -- Chaos Theory
     a[2038] = ach:New(2038, 10); -- Respect Your Elders
@@ -1016,15 +1017,15 @@ function exportedAchievements.Load(a, t)
     a[2083] = ach:New(2083, 10); -- Grand Ice Mammoth
     a[2084] = ach:New(2084, 10); -- Ring of the Kirin Tor
     a[2085] = ach:New(2085, 0); -- 50 Stone Keeper's Shards
-    SetTO(a[2085], "From", "Version", "030003", "Before", "Version", "040001");
+    SetTO(a[2085], "From", "Version", "030400", "Before", "Version", "040001");
     a[2086] = ach:New(2086, 0); -- 100 Stone Keeper's Shards
-    SetTO(a[2086], "From", "Version", "030003", "Before", "Version", "040001");
+    SetTO(a[2086], "From", "Version", "030400", "Before", "Version", "040001");
     a[2087] = ach:New(2087, 0); -- 250 Stone Keeper's Shards
-    SetTO(a[2087], "From", "Version", "030003", "Before", "Version", "040001");
+    SetTO(a[2087], "From", "Version", "030400", "Before", "Version", "040001");
     a[2088] = ach:New(2088, 0); -- 500 Stone Keeper's Shards
-    SetTO(a[2088], "From", "Version", "030003", "Before", "Version", "040001");
+    SetTO(a[2088], "From", "Version", "030400", "Before", "Version", "040001");
     a[2089] = ach:New(2089, 0); -- 1000 Stone Keeper's Shards
-    SetTO(a[2089], "From", "Version", "030003", "Before", "Version", "040001");
+    SetTO(a[2089], "From", "Version", "030400", "Before", "Version", "040001");
     a[2090] = ach:New(2090, 10); -- Challenger
     a[2091] = ach:New(2091, 10); -- Gladiator
     a[2092] = ach:New(2092, 10); -- Duelist
@@ -1068,39 +1069,39 @@ function exportedAchievements.Load(a, t)
     a[2184] = ach:New(2184, 10); -- Just Can't Get Enough (10 player)
     a[2185] = ach:New(2185, 10); -- Just Can't Get Enough (25 player)
     a[2186] = ach:New(2186, 0); -- The Immortal
-    SetTO(a[2186], "From", "Version", "030003", "Before", "Version", "040003a");
+    SetTO(a[2186], "From", "Version", "030400", "Before", "Version", "040003a");
     a[2187] = ach:New(2187, 0); -- The Undying
-    SetTO(a[2187], "From", "Version", "030003", "Before", "Version", "040003a");
+    SetTO(a[2187], "From", "Version", "030400", "Before", "Version", "040003a");
     a[2188] = ach:New(2188, 0); -- Leeeeeeeeeeeeeroy!
     SetTO(a[2188], "From", "Version", "030002", "Before", "Version", "060002");
     a[2189] = ach:New(2189, 0); -- Artillery Expert
-    SetTO(a[2189], "From", "Version", "030003", "Before", "Version", "080001");
+    SetTO(a[2189], "From", "Version", "030400", "Before", "Version", "080001");
     a[2190] = ach:New(2190, 0); -- Drop It Now!
-    SetTO(a[2190], "From", "Version", "030003", "Before", "Version", "080001");
+    SetTO(a[2190], "From", "Version", "030400", "Before", "Version", "080001");
     a[2191] = ach:New(2191, 0); -- Ancient Courtyard Protector
-    SetTO(a[2191], "From", "Version", "030003", "Before", "Version", "080001");
+    SetTO(a[2191], "From", "Version", "030400", "Before", "Version", "080001");
     a[2192] = ach:New(2192, 0, fac.Horde, 1762); -- Not Even a Scratch
-    SetTO(a[2192], "From", "Version", "030003", "Before", "Version", "080001");
+    SetTO(a[2192], "From", "Version", "030400", "Before", "Version", "080001");
     a[2193] = ach:New(2193, 0); -- Explosives Expert
-    SetTO(a[2193], "From", "Version", "030003", "Before", "Version", "080001");
+    SetTO(a[2193], "From", "Version", "030400", "Before", "Version", "080001");
     a[2194] = ach:New(2194, 0, fac.Alliance); -- Master of Strand of the Ancients
-    SetTO(a[2194], "From", "Version", "030003", "Before", "Version", "080001");
+    SetTO(a[2194], "From", "Version", "030400", "Before", "Version", "080001");
     a[2195] = ach:New(2195, 25, fac.Horde); -- Master of Strand of the Ancients
-    SetTO(a[2195], "From", "Version", "030003", "Before", "Version", "080001");
+    SetTO(a[2195], "From", "Version", "030400", "Before", "Version", "080001");
     a[2199] = ach:New(2199, 10); -- Wintergrasp Ranger
     a[2200] = ach:New(2200, 0, fac.Horde, 1757); -- Defense of the Ancients
-    SetTO(a[2200], "From", "Version", "030003", "Before", "Version", "080001");
+    SetTO(a[2200], "From", "Version", "030400", "Before", "Version", "080001");
     a[2256] = ach:New(2256, 10); -- Northern Exposure
     a[2257] = ach:New(2257, 25); -- Frostbitten
     a[2316] = ach:New(2316, 0); -- Brutal Nether Drake
     SetTO(a[2316], "From", "PvP Season", 4, "Until", "PvP Season", 4);
     a[2336] = ach:New(2336, 0); -- Insane in the Membrane
     a[2357] = ach:New(2357, 0); -- Dreadsteed of Xoroth
-    SetTO(a[2357]);
+    SetTO(a[2357], "From", "Version", "010400", "Before", "Version", "040003a");
     a[2358] = ach:New(2358, 0); -- Charger
-    SetTO(a[2358]);
+    SetTO(a[2358], "From", "Version", "010400", "Before", "Version", "040003a");
     a[2359] = ach:New(2359, 0); -- Swift Flight Form
-    SetTO(a[2359]);
+    SetTO(a[2359], "From", "Version", "020100", "Before", "Version", "040003a");
     a[2398] = ach:New(2398, 0); -- WoW's 4th Anniversary
     SetTO(a[2398]);
     a[2416] = ach:New(2416, 10); -- Hard Boiled
@@ -1125,7 +1126,7 @@ function exportedAchievements.Load(a, t)
     a[2576] = ach:New(2576, 10); -- Blushing Bride
     a[2676] = ach:New(2676, 10); -- I Found One!
     a[2716] = ach:New(2716, 0); -- Dual Talent Specialization
-    SetTO(a[2716]);
+    SetTO(a[2716], "From", "Version", "030500", "Before", "Version", "070003");
     a[2756] = ach:New(2756, 10); -- Argent Aspiration
     a[2758] = ach:New(2758, 10); -- Argent Valor
     a[2760] = ach:New(2760, 10, fac.Alliance, 2769); -- Exalted Champion of Darnassus
@@ -1162,298 +1163,298 @@ function exportedAchievements.Load(a, t)
     a[2817] = ach:New(2817, 10, fac.Alliance, 2816); -- Exalted Argent Champion of the Alliance
     a[2836] = ach:New(2836, 10); -- Lance a Lot
     a[2886] = ach:New(2886, 0); -- The Siege of Ulduar (10 player)
-    SetTO(a[2886], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2886], "From", "Version", "030500", "Before", "Version", "070305");
     a[2887] = ach:New(2887, 0); -- The Siege of Ulduar (25 player)
-    SetTO(a[2887], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2887], "From", "Version", "030500", "Before", "Version", "070305");
     a[2888] = ach:New(2888, 0); -- The Antechamber of Ulduar (10 player)
-    SetTO(a[2888], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2888], "From", "Version", "030500", "Before", "Version", "070305");
     a[2889] = ach:New(2889, 0); -- The Antechamber of Ulduar (25 player)
-    SetTO(a[2889], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2889], "From", "Version", "030500", "Before", "Version", "070305");
     a[2890] = ach:New(2890, 0); -- The Keepers of Ulduar (10 player)
-    SetTO(a[2890], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2890], "From", "Version", "030500", "Before", "Version", "070305");
     a[2891] = ach:New(2891, 0); -- The Keepers of Ulduar (25 player)
-    SetTO(a[2891], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2891], "From", "Version", "030500", "Before", "Version", "070305");
     a[2892] = ach:New(2892, 0); -- The Descent into Madness (10 player)
-    SetTO(a[2892], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2892], "From", "Version", "030500", "Before", "Version", "070305");
     a[2893] = ach:New(2893, 0); -- The Descent into Madness (25 player)
-    SetTO(a[2893], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2893], "From", "Version", "030500", "Before", "Version", "070305");
     a[2894] = ach:New(2894, 0); -- The Secrets of Ulduar (10 player)
-    SetTO(a[2894], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2894], "From", "Version", "030500", "Before", "Version", "070305");
     a[2895] = ach:New(2895, 0); -- The Secrets of Ulduar (25 player)
-    SetTO(a[2895], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2895], "From", "Version", "030500", "Before", "Version", "070305");
     a[2903] = ach:New(2903, 0); -- Champion of Ulduar
-    SetTO(a[2903], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2903], "From", "Version", "030500", "Before", "Version", "070305");
     a[2904] = ach:New(2904, 0); -- Conqueror of Ulduar
-    SetTO(a[2904], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2904], "From", "Version", "030500", "Before", "Version", "070305");
     a[2905] = ach:New(2905, 0); -- Unbroken (10 player)
-    SetTO(a[2905], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2905], "From", "Version", "030500", "Before", "Version", "070305");
     a[2906] = ach:New(2906, 0); -- Unbroken (25 player)
-    SetTO(a[2906], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2906], "From", "Version", "030500", "Before", "Version", "070305");
     a[2907] = ach:New(2907, 0); -- Three Car Garage (10 player)
-    SetTO(a[2907], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2907], "From", "Version", "030500", "Before", "Version", "070305");
     a[2908] = ach:New(2908, 0); -- Three Car Garage (25 player)
-    SetTO(a[2908], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2908], "From", "Version", "030500", "Before", "Version", "070305");
     a[2909] = ach:New(2909, 0); -- Take Out Those Turrets (10 player)
-    SetTO(a[2909], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2909], "From", "Version", "030500", "Before", "Version", "070305");
     a[2910] = ach:New(2910, 0); -- Take Out Those Turrets (25 player)
-    SetTO(a[2910], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2910], "From", "Version", "030500", "Before", "Version", "070305");
     a[2911] = ach:New(2911, 0); -- Shutout (10 player)
-    SetTO(a[2911], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2911], "From", "Version", "030500", "Before", "Version", "070305");
     a[2912] = ach:New(2912, 0); -- Shutout (25 player)
-    SetTO(a[2912], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2912], "From", "Version", "030500", "Before", "Version", "070305");
     a[2913] = ach:New(2913, 0); -- Orbital Bombardment (10 player)
-    SetTO(a[2913], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2913], "From", "Version", "030500", "Before", "Version", "070305");
     a[2914] = ach:New(2914, 0); -- Orbital Devastation (10 player)
-    SetTO(a[2914], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2914], "From", "Version", "030500", "Before", "Version", "070305");
     a[2915] = ach:New(2915, 0); -- Nuked from Orbit (10 player)
-    SetTO(a[2915], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2915], "From", "Version", "030500", "Before", "Version", "070305");
     a[2916] = ach:New(2916, 0); -- Orbital Devastation (25 player)
-    SetTO(a[2916], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2916], "From", "Version", "030500", "Before", "Version", "070305");
     a[2917] = ach:New(2917, 0); -- Nuked from Orbit (25 player)
-    SetTO(a[2917], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2917], "From", "Version", "030500", "Before", "Version", "070305");
     a[2918] = ach:New(2918, 0); -- Orbital Bombardment (25 player)
-    SetTO(a[2918], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2918], "From", "Version", "030500", "Before", "Version", "070305");
     a[2919] = ach:New(2919, 0); -- A Quick Shave (10 player)
-    SetTO(a[2919], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2919], "From", "Version", "030500", "Before", "Version", "070305");
     a[2921] = ach:New(2921, 0); -- A Quick Shave (25 player)
-    SetTO(a[2921], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2921], "From", "Version", "030500", "Before", "Version", "070305");
     a[2923] = ach:New(2923, 0); -- "Iron Dwarf, Medium Rare (10 player)"
-    SetTO(a[2923], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2923], "From", "Version", "030500", "Before", "Version", "070305");
     a[2924] = ach:New(2924, 0); -- "Iron Dwarf, Medium Rare (25 player)"
-    SetTO(a[2924], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2924], "From", "Version", "030500", "Before", "Version", "070305");
     a[2925] = ach:New(2925, 0); -- Shattered (10 player)
-    SetTO(a[2925], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2925], "From", "Version", "030500", "Before", "Version", "070305");
     a[2926] = ach:New(2926, 0); -- Shattered (25 player)
-    SetTO(a[2926], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2926], "From", "Version", "030500", "Before", "Version", "070305");
     a[2927] = ach:New(2927, 0); -- Hot Pocket (10 player)
-    SetTO(a[2927], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2927], "From", "Version", "030500", "Before", "Version", "070305");
     a[2928] = ach:New(2928, 0); -- Hot Pocket (25 player)
-    SetTO(a[2928], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2928], "From", "Version", "030500", "Before", "Version", "070305");
     a[2929] = ach:New(2929, 0); -- Stokin' the Furnace (25 player)
-    SetTO(a[2929], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2929], "From", "Version", "030500", "Before", "Version", "070305");
     a[2930] = ach:New(2930, 0); -- Stokin' the Furnace (10 player)
-    SetTO(a[2930], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2930], "From", "Version", "030500", "Before", "Version", "070305");
     a[2931] = ach:New(2931, 0); -- Nerf Engineering (10 player)
-    SetTO(a[2931], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2931], "From", "Version", "030500", "Before", "Version", "070305");
     a[2932] = ach:New(2932, 0); -- Nerf Engineering (25 player)
-    SetTO(a[2932], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2932], "From", "Version", "030500", "Before", "Version", "070305");
     a[2933] = ach:New(2933, 0); -- Nerf Scrapbots (10 player)
-    SetTO(a[2933], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2933], "From", "Version", "030500", "Before", "Version", "070305");
     a[2934] = ach:New(2934, 0); -- Nerf Gravity Bombs (10 player)
-    SetTO(a[2934], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2934], "From", "Version", "030500", "Before", "Version", "070305");
     a[2935] = ach:New(2935, 0); -- Nerf Scrapbots (25 player)
-    SetTO(a[2935], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2935], "From", "Version", "030500", "Before", "Version", "070305");
     a[2936] = ach:New(2936, 0); -- Nerf Gravity Bombs (25 player)
-    SetTO(a[2936], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2936], "From", "Version", "030500", "Before", "Version", "070305");
     a[2937] = ach:New(2937, 0); -- Must Deconstruct Faster (10 player)
-    SetTO(a[2937], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2937], "From", "Version", "030500", "Before", "Version", "070305");
     a[2938] = ach:New(2938, 0); -- Must Deconstruct Faster (25 player)
-    SetTO(a[2938], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2938], "From", "Version", "030500", "Before", "Version", "070305");
     a[2939] = ach:New(2939, 0); -- "I Choose You, Runemaster Molgeim (10 player)"
-    SetTO(a[2939], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2939], "From", "Version", "030500", "Before", "Version", "070305");
     a[2940] = ach:New(2940, 0); -- "I Choose You, Stormcaller Brundir (10 player)"
-    SetTO(a[2940], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2940], "From", "Version", "030500", "Before", "Version", "070305");
     a[2941] = ach:New(2941, 0); -- "I Choose You, Steelbreaker (10 player)"
-    SetTO(a[2941], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2941], "From", "Version", "030500", "Before", "Version", "070305");
     a[2942] = ach:New(2942, 0); -- "I Choose You, Runemaster Molgeim (25 player)"
-    SetTO(a[2942], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2942], "From", "Version", "030500", "Before", "Version", "070305");
     a[2943] = ach:New(2943, 0); -- "I Choose You, Stormcaller Brundir (25 player)"
-    SetTO(a[2943], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2943], "From", "Version", "030500", "Before", "Version", "070305");
     a[2944] = ach:New(2944, 0); -- "I Choose You, Steelbreaker (25 player)"
-    SetTO(a[2944], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2944], "From", "Version", "030500", "Before", "Version", "070305");
     a[2945] = ach:New(2945, 0); -- But I'm On Your Side (10 player)
-    SetTO(a[2945], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2945], "From", "Version", "030500", "Before", "Version", "070305");
     a[2946] = ach:New(2946, 0); -- But I'm On Your Side (25 player)
-    SetTO(a[2946], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2946], "From", "Version", "030500", "Before", "Version", "070305");
     a[2947] = ach:New(2947, 0); -- Can't Do That While Stunned (10 player)
-    SetTO(a[2947], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2947], "From", "Version", "030500", "Before", "Version", "070305");
     a[2948] = ach:New(2948, 0); -- Can't Do That While Stunned (25 player)
-    SetTO(a[2948], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2948], "From", "Version", "030500", "Before", "Version", "070305");
     a[2951] = ach:New(2951, 0); -- With Open Arms (10 player)
-    SetTO(a[2951], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2951], "From", "Version", "030500", "Before", "Version", "070305");
     a[2952] = ach:New(2952, 0); -- With Open Arms (25 player)
-    SetTO(a[2952], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2952], "From", "Version", "030500", "Before", "Version", "070305");
     a[2953] = ach:New(2953, 0); -- Disarmed (10 player)
-    SetTO(a[2953], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2953], "From", "Version", "030500", "Before", "Version", "070305");
     a[2954] = ach:New(2954, 0); -- Disarmed (25 player)
-    SetTO(a[2954], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2954], "From", "Version", "030500", "Before", "Version", "070305");
     a[2955] = ach:New(2955, 0); -- If Looks Could Kill (10 player)
-    SetTO(a[2955], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2955], "From", "Version", "030500", "Before", "Version", "070305");
     a[2956] = ach:New(2956, 0); -- If Looks Could Kill (25 player)
-    SetTO(a[2956], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2956], "From", "Version", "030500", "Before", "Version", "070305");
     a[2957] = ach:New(2957, 0); -- Glory of the Ulduar Raider (10 player)
-    SetTO(a[2957], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2957], "From", "Version", "030500", "Before", "Version", "070305");
     a[2958] = ach:New(2958, 0); -- Glory of the Ulduar Raider (25 player)
-    SetTO(a[2958], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2958], "From", "Version", "030500", "Before", "Version", "070305");
     a[2959] = ach:New(2959, 0); -- Rubble and Roll (10 player)
-    SetTO(a[2959], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2959], "From", "Version", "030500", "Before", "Version", "070305");
     a[2960] = ach:New(2960, 0); -- Rubble and Roll (25 player)
-    SetTO(a[2960], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2960], "From", "Version", "030500", "Before", "Version", "070305");
     a[2961] = ach:New(2961, 0); -- Cheese the Freeze (10 player)
-    SetTO(a[2961], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2961], "From", "Version", "030500", "Before", "Version", "070305");
     a[2962] = ach:New(2962, 0); -- Cheese the Freeze (25 player)
-    SetTO(a[2962], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2962], "From", "Version", "030500", "Before", "Version", "070305");
     a[2963] = ach:New(2963, 0); -- I Have the Coolest Friends (10 player)
-    SetTO(a[2963], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2963], "From", "Version", "030500", "Before", "Version", "070305");
     a[2965] = ach:New(2965, 0); -- I Have the Coolest Friends (25 player)
-    SetTO(a[2965], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2965], "From", "Version", "030500", "Before", "Version", "070305");
     a[2967] = ach:New(2967, 0); -- Getting Cold in Here (10 player)
-    SetTO(a[2967], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2967], "From", "Version", "030500", "Before", "Version", "070305");
     a[2968] = ach:New(2968, 0); -- Getting Cold in Here (25 player)
-    SetTO(a[2968], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2968], "From", "Version", "030500", "Before", "Version", "070305");
     a[2969] = ach:New(2969, 0); -- Staying Buffed All Winter (10 player)
-    SetTO(a[2969], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2969], "From", "Version", "030500", "Before", "Version", "070305");
     a[2970] = ach:New(2970, 0); -- Staying Buffed All Winter (25 player)
-    SetTO(a[2970], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2970], "From", "Version", "030500", "Before", "Version", "070305");
     a[2971] = ach:New(2971, 0); -- Don't Stand in the Lightning (10 player)
-    SetTO(a[2971], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2971], "From", "Version", "030500", "Before", "Version", "070305");
     a[2972] = ach:New(2972, 0); -- Don't Stand in the Lightning (25 player)
-    SetTO(a[2972], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2972], "From", "Version", "030500", "Before", "Version", "070305");
     a[2973] = ach:New(2973, 0); -- I'll Take You All On (10 player)
-    SetTO(a[2973], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2973], "From", "Version", "030500", "Before", "Version", "070305");
     a[2974] = ach:New(2974, 0); -- I'll Take You All On (25 player)
-    SetTO(a[2974], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2974], "From", "Version", "030500", "Before", "Version", "070305");
     a[2975] = ach:New(2975, 0); -- Who Needs Bloodlust? (10 player)
-    SetTO(a[2975], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2975], "From", "Version", "030500", "Before", "Version", "070305");
     a[2976] = ach:New(2976, 0); -- Who Needs Bloodlust? (25 player)
-    SetTO(a[2976], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2976], "From", "Version", "030500", "Before", "Version", "070305");
     a[2977] = ach:New(2977, 0); -- Siffed (10 player)
-    SetTO(a[2977], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2977], "From", "Version", "030500", "Before", "Version", "070305");
     a[2978] = ach:New(2978, 0); -- Siffed (25 player)
-    SetTO(a[2978], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2978], "From", "Version", "030500", "Before", "Version", "070305");
     a[2979] = ach:New(2979, 0); -- Lumberjacked (10 player)
-    SetTO(a[2979], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2979], "From", "Version", "030500", "Before", "Version", "070305");
     a[2980] = ach:New(2980, 0); -- Con-speed-atory (10 player)
-    SetTO(a[2980], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2980], "From", "Version", "030500", "Before", "Version", "070305");
     a[2981] = ach:New(2981, 0); -- Con-speed-atory (25 player)
-    SetTO(a[2981], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2981], "From", "Version", "030500", "Before", "Version", "070305");
     a[2982] = ach:New(2982, 0); -- Getting Back to Nature (10 player)
-    SetTO(a[2982], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2982], "From", "Version", "030500", "Before", "Version", "070305");
     a[2983] = ach:New(2983, 0); -- Getting Back to Nature (25 player)
-    SetTO(a[2983], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2983], "From", "Version", "030500", "Before", "Version", "070305");
     a[2984] = ach:New(2984, 0); -- Deforestation (25 player)
-    SetTO(a[2984], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2984], "From", "Version", "030500", "Before", "Version", "070305");
     a[2985] = ach:New(2985, 0); -- Deforestation (10 player)
-    SetTO(a[2985], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2985], "From", "Version", "030500", "Before", "Version", "070305");
     a[2989] = ach:New(2989, 0); -- Set Up Us the Bomb (10 player)
-    SetTO(a[2989], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2989], "From", "Version", "030500", "Before", "Version", "070305");
     a[2995] = ach:New(2995, 0); -- Not-So-Friendly Fire (25 player)
-    SetTO(a[2995], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2995], "From", "Version", "030500", "Before", "Version", "070305");
     a[2996] = ach:New(2996, 0); -- Shadowdodger (10 player)
-    SetTO(a[2996], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2996], "From", "Version", "030500", "Before", "Version", "070305");
     a[2997] = ach:New(2997, 0); -- Shadowdodger (25 player)
-    SetTO(a[2997], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[2997], "From", "Version", "030500", "Before", "Version", "070305");
     a[3002] = ach:New(3002, 0); -- Supermassive (25 player)
-    SetTO(a[3002], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3002], "From", "Version", "030500", "Before", "Version", "070305");
     a[3003] = ach:New(3003, 0); -- Supermassive (10 player)
-    SetTO(a[3003], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3003], "From", "Version", "030500", "Before", "Version", "070305");
     a[3004] = ach:New(3004, 0); -- He Feeds On Your Tears (10 player)
-    SetTO(a[3004], "From", "Version", "030100", "Before", "Version", "040003a");
+    SetTO(a[3004], "From", "Version", "030500", "Before", "Version", "040003a");
     a[3005] = ach:New(3005, 0); -- He Feeds On Your Tears (25 player)
-    SetTO(a[3005], "From", "Version", "030100", "Before", "Version", "040003a");
+    SetTO(a[3005], "From", "Version", "030500", "Before", "Version", "040003a");
     a[3006] = ach:New(3006, 0); -- Crazy Cat Lady (10 player)
-    SetTO(a[3006], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3006], "From", "Version", "030500", "Before", "Version", "070305");
     a[3007] = ach:New(3007, 0); -- Crazy Cat Lady (25 player)
-    SetTO(a[3007], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3007], "From", "Version", "030500", "Before", "Version", "070305");
     a[3008] = ach:New(3008, 0); -- Drive Me Crazy (10 player)
-    SetTO(a[3008], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3008], "From", "Version", "030500", "Before", "Version", "070305");
     a[3009] = ach:New(3009, 0); -- Kiss and Make Up (10 player)
-    SetTO(a[3009], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3009], "From", "Version", "030500", "Before", "Version", "070305");
     a[3010] = ach:New(3010, 0); -- Drive Me Crazy (25 player)
-    SetTO(a[3010], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3010], "From", "Version", "030500", "Before", "Version", "070305");
     a[3011] = ach:New(3011, 0); -- Kiss and Make Up (25 player)
-    SetTO(a[3011], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3011], "From", "Version", "030500", "Before", "Version", "070305");
     a[3012] = ach:New(3012, 0); -- He's Not Getting Any Older (10 player)
-    SetTO(a[3012], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3012], "From", "Version", "030500", "Before", "Version", "070305");
     a[3013] = ach:New(3013, 0); -- He's Not Getting Any Older (25 player)
-    SetTO(a[3013], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3013], "From", "Version", "030500", "Before", "Version", "070305");
     a[3014] = ach:New(3014, 0); -- They're Coming Out of the Walls (10 player)
-    SetTO(a[3014], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3014], "From", "Version", "030500", "Before", "Version", "070305");
     a[3015] = ach:New(3015, 0); -- In His House He Waits Dreaming (10 player)
-    SetTO(a[3015], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3015], "From", "Version", "030500", "Before", "Version", "070305");
     a[3016] = ach:New(3016, 0); -- In His House He Waits Dreaming (25 player)
-    SetTO(a[3016], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3016], "From", "Version", "030500", "Before", "Version", "070305");
     a[3017] = ach:New(3017, 0); -- They're Coming Out of the Walls (25 player)
-    SetTO(a[3017], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3017], "From", "Version", "030500", "Before", "Version", "070305");
     a[3036] = ach:New(3036, 0); -- Observed (10 player)
-    SetTO(a[3036], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3036], "From", "Version", "030500", "Before", "Version", "070305");
     a[3037] = ach:New(3037, 0); -- Observed (25 player)
-    SetTO(a[3037], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3037], "From", "Version", "030500", "Before", "Version", "070305");
     a[3056] = ach:New(3056, 0); -- Orbit-uary (10 player)
-    SetTO(a[3056], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3056], "From", "Version", "030500", "Before", "Version", "070305");
     a[3057] = ach:New(3057, 0); -- Orbit-uary (25 player)
-    SetTO(a[3057], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3057], "From", "Version", "030500", "Before", "Version", "070305");
     a[3058] = ach:New(3058, 0); -- Heartbreaker (10 player)
-    SetTO(a[3058], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3058], "From", "Version", "030500", "Before", "Version", "070305");
     a[3059] = ach:New(3059, 0); -- Heartbreaker (25 player)
-    SetTO(a[3059], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3059], "From", "Version", "030500", "Before", "Version", "070305");
     a[3076] = ach:New(3076, 0); -- Nine Lives (10 player)
-    SetTO(a[3076], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3076], "From", "Version", "030500", "Before", "Version", "070305");
     a[3077] = ach:New(3077, 0); -- Nine Lives (25 player)
-    SetTO(a[3077], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3077], "From", "Version", "030500", "Before", "Version", "070305");
     a[3096] = ach:New(3096, 0); -- Deadly Gladiator's Frost Wyrm
     SetTO(a[3096], "From", "PvP Season", 5, "Until", "PvP Season", 5);
     a[3097] = ach:New(3097, 0); -- Dwarfageddon (10 player)
-    SetTO(a[3097], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3097], "From", "Version", "030500", "Before", "Version", "070305");
     a[3098] = ach:New(3098, 0); -- Dwarfageddon (25 player)
-    SetTO(a[3098], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3098], "From", "Version", "030500", "Before", "Version", "070305");
     a[3117] = ach:New(3117, 0, nil, nil, true); -- Realm First! Death's Demise
     SetTO(a[3117], "Once");
     a[3118] = ach:New(3118, 0); -- Lumberjacked (25 player)
-    SetTO(a[3118], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3118], "From", "Version", "030500", "Before", "Version", "070305");
     a[3136] = ach:New(3136, 10); -- Emalon the Storm Watcher (10 player)
     a[3137] = ach:New(3137, 10); -- Emalon the Storm Watcher (25 player)
     a[3138] = ach:New(3138, 0); -- Not-So-Friendly Fire (10 player)
-    SetTO(a[3138], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3138], "From", "Version", "030500", "Before", "Version", "070305");
     a[3141] = ach:New(3141, 0); -- Two Lights in the Darkness (10 player)
-    SetTO(a[3141], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3141], "From", "Version", "030500", "Before", "Version", "070305");
     a[3142] = ach:New(3142, 0); -- "Val'anyr, Hammer of Ancient Kings"
     a[3157] = ach:New(3157, 0); -- Three Lights in the Darkness (10 player)
-    SetTO(a[3157], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3157], "From", "Version", "030500", "Before", "Version", "070305");
     a[3158] = ach:New(3158, 0); -- One Light in the Darkness (10 player)
-    SetTO(a[3158], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3158], "From", "Version", "030500", "Before", "Version", "070305");
     a[3159] = ach:New(3159, 0); -- Alone in the Darkness (10 player)
-    SetTO(a[3159], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3159], "From", "Version", "030500", "Before", "Version", "070305");
     a[3161] = ach:New(3161, 0); -- Three Lights in the Darkness (25 player)
-    SetTO(a[3161], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3161], "From", "Version", "030500", "Before", "Version", "070305");
     a[3162] = ach:New(3162, 0); -- Two Lights in the Darkness (25 player)
-    SetTO(a[3162], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3162], "From", "Version", "030500", "Before", "Version", "070305");
     a[3163] = ach:New(3163, 0); -- One Light in the Darkness (25 player)
-    SetTO(a[3163], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3163], "From", "Version", "030500", "Before", "Version", "070305");
     a[3164] = ach:New(3164, 0); -- Alone in the Darkness (25 player)
-    SetTO(a[3164], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3164], "From", "Version", "030500", "Before", "Version", "070305");
     a[3176] = ach:New(3176, 0); -- Lose Your Illusion (10 player)
-    SetTO(a[3176], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3176], "From", "Version", "030500", "Before", "Version", "070305");
     a[3177] = ach:New(3177, 0); -- Knock on Wood (10 player)
-    SetTO(a[3177], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3177], "From", "Version", "030500", "Before", "Version", "070305");
     a[3178] = ach:New(3178, 0); -- "Knock, Knock on Wood (10 player)"
-    SetTO(a[3178], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3178], "From", "Version", "030500", "Before", "Version", "070305");
     a[3179] = ach:New(3179, 0); -- "Knock, Knock, Knock on Wood (10 player)"
-    SetTO(a[3179], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3179], "From", "Version", "030500", "Before", "Version", "070305");
     a[3180] = ach:New(3180, 0); -- Firefighter (10 player)
-    SetTO(a[3180], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3180], "From", "Version", "030500", "Before", "Version", "070305");
     a[3181] = ach:New(3181, 0); -- I Love the Smell of Saronite in the Morning (10 player)
-    SetTO(a[3181], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3181], "From", "Version", "030500", "Before", "Version", "070305");
     a[3182] = ach:New(3182, 0); -- I Could Say That This Cache Was Rare (10 player)
-    SetTO(a[3182], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3182], "From", "Version", "030500", "Before", "Version", "070305");
     a[3183] = ach:New(3183, 0); -- Lose Your Illusion (25 player)
-    SetTO(a[3183], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3183], "From", "Version", "030500", "Before", "Version", "070305");
     a[3184] = ach:New(3184, 0); -- I Could Say That This Cache Was Rare (25 player)
-    SetTO(a[3184], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3184], "From", "Version", "030500", "Before", "Version", "070305");
     a[3185] = ach:New(3185, 0); -- Knock on Wood (25 player)
-    SetTO(a[3185], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3185], "From", "Version", "030500", "Before", "Version", "070305");
     a[3186] = ach:New(3186, 0); -- "Knock, Knock on Wood (25 player)"
-    SetTO(a[3186], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3186], "From", "Version", "030500", "Before", "Version", "070305");
     a[3187] = ach:New(3187, 0); -- "Knock, Knock, Knock on Wood (25 player)"
-    SetTO(a[3187], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3187], "From", "Version", "030500", "Before", "Version", "070305");
     a[3188] = ach:New(3188, 0); -- I Love the Smell of Saronite in the Morning (25 player)
-    SetTO(a[3188], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3188], "From", "Version", "030500", "Before", "Version", "070305");
     a[3189] = ach:New(3189, 0); -- Firefighter (25 player)
-    SetTO(a[3189], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3189], "From", "Version", "030500", "Before", "Version", "070305");
     a[3217] = ach:New(3217, 10); -- Chasing Marcia
     a[3218] = ach:New(3218, 10); -- Turtles All the Way Down
     a[3237] = ach:New(3237, 0); -- Set Up Us the Bomb (25 player)
-    SetTO(a[3237], "From", "Version", "030100", "Before", "Version", "070305");
+    SetTO(a[3237], "From", "Version", "030500", "Before", "Version", "070305");
     a[3259] = ach:New(3259, 0, nil, nil, true); -- Realm First! Celestial Defender
     SetTO(a[3259], "Once");
     a[3296] = ach:New(3296, 10); -- Cooking with Style
@@ -1506,39 +1507,39 @@ function exportedAchievements.Load(a, t)
     a[3803] = ach:New(3803, 10); -- The Faceroller
     a[3804] = ach:New(3804, 10); -- I've Had Worse
     a[3808] = ach:New(3808, 0); -- A Tribute to Skill (10 player)
-    SetTO(a[3808], "From", "Version", "030200", "Before", "Version", "040003a");
+    SetTO(a[3808], "From", "Version", "030600", "Before", "Version", "040003a");
     a[3809] = ach:New(3809, 0); -- A Tribute to Mad Skill (10 player)
-    SetTO(a[3809], "From", "Version", "030200", "Before", "Version", "040003a");
+    SetTO(a[3809], "From", "Version", "030600", "Before", "Version", "040003a");
     a[3810] = ach:New(3810, 0); -- A Tribute to Insanity (10 player)
-    SetTO(a[3810], "From", "Version", "030200", "Before", "Version", "040003a");
+    SetTO(a[3810], "From", "Version", "030600", "Before", "Version", "040003a");
     a[3812] = ach:New(3812, 10); -- Call of the Grand Crusade (25 player)
     a[3813] = ach:New(3813, 10); -- Upper Back Pain (25 player)
     a[3814] = ach:New(3814, 10); -- Resilience Will Fix It (25 player)
-    SetTO(a[3814], "From", "Version", "030200", "Before", "Version", "040003a");
+    SetTO(a[3814], "From", "Version", "030600", "Before", "Version", "040003a");
     a[3815] = ach:New(3815, 10); -- Salt and Pepper (25 player)
     a[3816] = ach:New(3816, 10); -- The Traitor King (25 player)
     a[3817] = ach:New(3817, 0); -- A Tribute to Skill (25 player)
-    SetTO(a[3817], "From", "Version", "030200", "Before", "Version", "040003a");
+    SetTO(a[3817], "From", "Version", "030600", "Before", "Version", "040003a");
     a[3818] = ach:New(3818, 0); -- A Tribute to Mad Skill (25 player)
-    SetTO(a[3818], "From", "Version", "030200", "Before", "Version", "040003a");
+    SetTO(a[3818], "From", "Version", "030600", "Before", "Version", "040003a");
     a[3819] = ach:New(3819, 0); -- A Tribute to Insanity (25 player)
-    SetTO(a[3819], "From", "Version", "030200", "Before", "Version", "040003a");
+    SetTO(a[3819], "From", "Version", "030600", "Before", "Version", "040003a");
     a[3836] = ach:New(3836, 10); -- Koralon the Flame Watcher (10 player)
     a[3837] = ach:New(3837, 10); -- Koralon the Flame Watcher (25 player)
     a[3838] = ach:New(3838, 10); -- Dungeon & Raid Emblem
-    SetTO(a[3838], "From", "Version", "030200", "Before", "Version", "040003a");
+    SetTO(a[3838], "From", "Version", "030600", "Before", "Version", "040003a");
     a[3839] = ach:New(3839, 10); -- 25 Dungeon & Raid Emblems
-    SetTO(a[3839], "From", "Version", "030200", "Before", "Version", "040003a");
+    SetTO(a[3839], "From", "Version", "030600", "Before", "Version", "040003a");
     a[3840] = ach:New(3840, 10); -- 50 Dungeon & Raid Emblems
-    SetTO(a[3840], "From", "Version", "030200", "Before", "Version", "040003a");
+    SetTO(a[3840], "From", "Version", "030600", "Before", "Version", "040003a");
     a[3841] = ach:New(3841, 10); -- 100 Dungeon & Raid Emblems
-    SetTO(a[3841], "From", "Version", "030200", "Before", "Version", "040003a");
+    SetTO(a[3841], "From", "Version", "030600", "Before", "Version", "040003a");
     a[3842] = ach:New(3842, 10); -- 250 Dungeon & Raid Emblems
-    SetTO(a[3842], "From", "Version", "030200", "Before", "Version", "040003a");
+    SetTO(a[3842], "From", "Version", "030600", "Before", "Version", "040003a");
     a[3843] = ach:New(3843, 10); -- 500 Dungeon & Raid Emblems
-    SetTO(a[3843], "From", "Version", "030200", "Before", "Version", "040003a");
+    SetTO(a[3843], "From", "Version", "030600", "Before", "Version", "040003a");
     a[3844] = ach:New(3844, 0); -- 1000 Dungeon & Raid Emblems
-    SetTO(a[3844], "From", "Version", "030200", "Before", "Version", "040003a");
+    SetTO(a[3844], "From", "Version", "030600", "Before", "Version", "040003a");
     a[3845] = ach:New(3845, 20); -- Isle of Conquest All-Star
     a[3846] = ach:New(3846, 10, fac.Alliance, 4176); -- Resource Glut
     a[3847] = ach:New(3847, 10); -- Four Car Garage
@@ -1553,7 +1554,7 @@ function exportedAchievements.Load(a, t)
     a[3856] = ach:New(3856, 10, fac.Alliance, 4256); -- Demolition Derby
     a[3857] = ach:New(3857, 25, fac.Alliance, 3957); -- Master of Isle of Conquest
     a[3876] = ach:New(3876, 10); -- 1500 Dungeon & Raid Emblems
-    SetTO(a[3876], "From", "Version", "030200", "Before", "Version", "040003a");
+    SetTO(a[3876], "From", "Version", "030600", "Before", "Version", "040003a");
     a[3896] = ach:New(3896, 0); -- Onyx Panther
     a[3916] = ach:New(3916, 10); -- Call of the Crusade (25 player)
     a[3917] = ach:New(3917, 10); -- Call of the Crusade (10 player)
@@ -1568,11 +1569,11 @@ function exportedAchievements.Load(a, t)
     a[4078] = ach:New(4078, 0, nil, nil, true); -- Realm First! Grand Crusader
     SetTO(a[4078], "Once");
     a[4079] = ach:New(4079, 0, fac.Horde, 4156); -- A Tribute to Immortality
-    SetTO(a[4079], "From", "Version", "030200", "Before", "Version", "040003a");
+    SetTO(a[4079], "From", "Version", "030600", "Before", "Version", "040003a");
     a[4080] = ach:New(4080, 0); -- A Tribute to Dedicated Insanity
-    SetTO(a[4080], "From", "Version", "030200", "Before", "Version", "040003a");
+    SetTO(a[4080], "From", "Version", "030600", "Before", "Version", "040003a");
     a[4156] = ach:New(4156, 0, fac.Alliance, 4079); -- A Tribute to Immortality
-    SetTO(a[4156], "From", "Version", "030200", "Before", "Version", "040003a");
+    SetTO(a[4156], "From", "Version", "030600", "Before", "Version", "040003a");
     a[4176] = ach:New(4176, 10, fac.Horde, 3846); -- Resource Glut
     a[4177] = ach:New(4177, 10, fac.Horde, 3851); -- Mine
     a[4256] = ach:New(4256, 10, fac.Horde, 3856); -- Demolition Derby
@@ -1580,7 +1581,7 @@ function exportedAchievements.Load(a, t)
     a[4297] = ach:New(4297, 10, fac.Horde, 4298); -- Heroic: Trial of the Champion
     a[4298] = ach:New(4298, 10, fac.Alliance, 4297); -- Heroic: Trial of the Champion
     a[4316] = ach:New(4316, 0); -- 2500 Dungeon & Raid Emblems
-    SetTO(a[4316], "From", "Version", "030200", "Before", "Version", "040003a");
+    SetTO(a[4316], "From", "Version", "030600", "Before", "Version", "040003a");
     a[4396] = ach:New(4396, 10); -- Onyxia's Lair (10 player)
     a[4397] = ach:New(4397, 10); -- Onyxia's Lair (25 player)
     a[4400] = ach:New(4400, 0); -- WoW's 5th Anniversary
@@ -1678,13 +1679,13 @@ function exportedAchievements.Load(a, t)
     a[4782] = ach:New(4782, 0); -- Green Brewfest Stein
     SetTO(a[4782]);
     a[4784] = ach:New(4784, 0, fac.Alliance); -- Emblematic
-    SetTO(a[4784], "From", "Version", "030200", "Before", "Version", "040003a");
+    SetTO(a[4784], "From", "Version", "030600", "Before", "Version", "040003a");
     a[4785] = ach:New(4785, 0, fac.Horde); -- Emblematic
-    SetTO(a[4785], "From", "Version", "030200", "Before", "Version", "040003a");
+    SetTO(a[4785], "From", "Version", "030600", "Before", "Version", "040003a");
     a[4786] = ach:New(4786, 0, fac.Alliance); -- Operation: Gnomeregan
-    SetTO(a[4786], "From", "Version", "030305a", "Before", "Version", "040001");
+    SetTO(a[4786], "From", "Version", "030705a", "Before", "Version", "040001");
     a[4790] = ach:New(4790, 0, fac.Horde); -- Zalazane's Fall
-    SetTO(a[4790], "From", "Version", "030305a", "Before", "Version", "040001");
+    SetTO(a[4790], "From", "Version", "030705a", "Before", "Version", "040001");
     a[4815] = ach:New(4815, 10); -- The Twilight Destroyer (25 player)
     a[4816] = ach:New(4816, 10); -- Heroic: The Twilight Destroyer (25 player)
     a[4817] = ach:New(4817, 10); -- The Twilight Destroyer (10 player)
@@ -1970,9 +1971,9 @@ function exportedAchievements.Load(a, t)
     a[5370] = ach:New(5370, 10); -- I'm on a Diet
     a[5371] = ach:New(5371, 10); -- Vigorous VanCleef Vindicator
     a[5372] = ach:New(5372, 0); -- Cataclysmically Epic
-    SetTO(a[5372]);
+    SetTO(a[5372], "From", "Version", "040003a", "Before", "Version", "080001");
     a[5373] = ach:New(5373, 0); -- Cataclysmically Superior
-    SetTO(a[5373]);
+    SetTO(a[5373], "From", "Version", "040003a", "Before", "Version", "080001");
     a[5374] = ach:New(5374, 10); -- 45 Exalted Reputations
     a[5375] = ach:New(5375, 10, fac.Alliance, 5376); -- Baradin's Wardens
     a[5376] = ach:New(5376, 10, fac.Horde, 5375); -- Hellscream's Reach
@@ -2243,9 +2244,9 @@ function exportedAchievements.Load(a, t)
     SetTO(a[6322], "From", "PvP Season", 10, "Until", "PvP Season", 10);
     a[6332] = ach:New(6332, 10); -- That Rabbit's Dynamite!
     a[6348] = ach:New(6348, 0); -- Mystically Superior
-    SetTO(a[6348]);
+    SetTO(a[6348], "From", "Version", "050005", "Before", "Version", "080001");
     a[6349] = ach:New(6349, 0); -- Mystically Epic
-    SetTO(a[6349]);
+    SetTO(a[6349], "From", "Version", "050005", "Before", "Version", "080001");
     a[6350] = ach:New(6350, 10); -- To All the Squirrels I Once Caressed?
     a[6351] = ach:New(6351, 10); -- Explore Jade Forest
     a[6365] = ach:New(6365, 10); -- Zen Master Cook
@@ -3804,9 +3805,9 @@ function exportedAchievements.Load(a, t)
     a[9705] = ach:New(9705, 10, fac.Horde, 9539); -- Advanced Husbandry
     a[9706] = ach:New(9706, 10, fac.Horde, 9540); -- The Stable Master
     a[9707] = ach:New(9707, 0); -- Savagely Superior
-    SetTO(a[9707]);
+    SetTO(a[9707], "From", "Version", "060003a", "Before", "Version", "080001");
     a[9708] = ach:New(9708, 0); -- Savagely Epic
-    SetTO(a[9708]);
+    SetTO(a[9708], "From", "Version", "060003a", "Before", "Version", "080001");
     a[9710] = ach:New(9710, 10); -- Poisoning the Well
     a[9711] = ach:New(9711, 10); -- Planned to Fail
     a[9712] = ach:New(9712, 5); -- Shiny Pet Charmer
@@ -4199,9 +4200,9 @@ function exportedAchievements.Load(a, t)
     a[10762] = ach:New(10762, 10); -- The Legion Menu
     a[10763] = ach:New(10763, 10); -- Azsuna Matata
     a[10764] = ach:New(10764, 0); -- Brokenly Superior
-    SetTO(a[10764]);
+    SetTO(a[10764], "From", "Version", "070003", "Before", "Version", "080001");
     a[10765] = ach:New(10765, 0); -- Brokenly Epic
-    SetTO(a[10765]);
+    SetTO(a[10765], "From", "Version", "070003", "Before", "Version", "080001");
     a[10766] = ach:New(10766, 10); -- Egg-cellent!
     a[10769] = ach:New(10769, 10); -- Burning Down the House
     a[10770] = ach:New(10770, 5); -- The Tangerine Traveler
@@ -6409,9 +6410,9 @@ function exportedAchievements.Load(a, t)
     a[12544] = ach:New(12544, 0); -- Level 120 (Legacy)
     SetTO(a[12544], "From", "Version", "080001", "Before", "Version", "090001");
     a[12546] = ach:New(12546, 0); -- Superior (Battle)
-    SetTO(a[12546]);
+    SetTO(a[12546], "From", "Version", "080001", "Before", "Version", "090001");
     a[12547] = ach:New(12547, 0); -- Epic (Battle)
-    SetTO(a[12547]);
+    SetTO(a[12547], "From", "Version", "080001", "Before", "Version", "090001");
     a[12548] = ach:New(12548, 10); -- I'm in Charge Now!
     a[12549] = ach:New(12549, 10); -- Not a Fun Guy
     a[12550] = ach:New(12550, 10); -- Pecking Order
@@ -8025,9 +8026,9 @@ function exportedAchievements.Load(a, t)
     a[15418] = ach:New(15418, 10); -- The Grand Design
     a[15419] = ach:New(15419, 10); -- The Protoform Matrix
     a[15468] = ach:New(15468, 0); -- We Are All Made of Stars (Heroic)
-    SetTO(a[15468], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15468], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15469] = ach:New(15469, 0); -- We Are All Made of Stars (Mythic)
-    SetTO(a[15469], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15469], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15470] = ach:New(15470, 0); -- Ahead of the Curve: The Jailer
     SetTO(a[15470], "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15471] = ach:New(15471, 0); -- Cutting Edge: The Jailer
@@ -8056,6 +8057,7 @@ function exportedAchievements.Load(a, t)
     a[15499] = ach:New(15499, 0); -- Shadowlands Keystone Master: Season Three
     SetTO(a[15499], "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15500] = ach:New(15500, 0); -- "Keystone Hero: Tazavesh, the Veiled Market"
+    SetTO(a[15500], "From", "Mythic+ Season", 7, "Until", "Version", "100000");
     a[15502] = ach:New(15502, 10); -- "Sand, Sand Everywhere!"
     a[15506] = ach:New(15506, 0); -- Shadowlands Keystone Hero: Season Three
     SetTO(a[15506], "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
@@ -8121,45 +8123,45 @@ function exportedAchievements.Load(a, t)
     a[15654] = ach:New(15654, 0); -- Back from the Beyond
     SetTO(a[15654], "From", "Version", "090205", "Before", "Version", "100002");
     a[15663] = ach:New(15663, 10); -- Fate of Nathria
-    SetTO(a[15663], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15663], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15664] = ach:New(15664, 10); -- Heroic: Fate of Nathria
-    SetTO(a[15664], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15664], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15665] = ach:New(15665, 10); -- Mythic: Fate of Nathria
-    SetTO(a[15665], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15665], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15667] = ach:New(15667, 10); -- Fate of Domination
-    SetTO(a[15667], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15667], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15668] = ach:New(15668, 10); -- Heroic: Fate of Domination
-    SetTO(a[15668], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15668], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15669] = ach:New(15669, 10); -- Mythic: Fate of Domination
-    SetTO(a[15669], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15669], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15681] = ach:New(15681, 10); -- Fate of the Sepulcher
-    SetTO(a[15681], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15681], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15682] = ach:New(15682, 10); -- Heroic: Fate of the Sepulcher
-    SetTO(a[15682], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15682], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15683] = ach:New(15683, 10); -- Mythic: Fate of the Sepulcher
-    SetTO(a[15683], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15683], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15684] = ach:New(15684, 10); -- Fates of the Shadowlands Raids
-    SetTO(a[15684], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15684], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15685] = ach:New(15685, 10); -- Heroic: Fates of the Shadowlands Raids
-    SetTO(a[15685], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15685], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15687] = ach:New(15687, 10); -- Mythic: Fates of the Shadowlands Raids
-    SetTO(a[15687], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15687], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15688] = ach:New(15688, 0); -- Shadowlands Keystone Explorer: Season Four
-    SetTO(a[15688], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15688], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15689] = ach:New(15689, 0); -- Shadowlands Keystone Conqueror: Season Four
-    SetTO(a[15689], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15689], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15690] = ach:New(15690, 0); -- Shadowlands Keystone Master: Season Four
-    SetTO(a[15690], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15690], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15691] = ach:New(15691, 0); -- Cryptic Hero: Shadowlands Season 3
     SetTO(a[15691], "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15692] = ach:New(15692, 0); -- Keystone Hero: Return to Karazhan
-    SetTO(a[15692], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15692], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15693] = ach:New(15693, 0); -- Keystone Hero: Operation: Mechagon
-    SetTO(a[15693], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15693], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15694] = ach:New(15694, 0); -- Keystone Hero: Iron Docks
-    SetTO(a[15694], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15694], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15695] = ach:New(15695, 0); -- Keystone Hero: Grimrail Depot
-    SetTO(a[15695], "From", "Mythic+ Season", 8, "Until", "Mythic+ Season", 8);
+    SetTO(a[15695], "From", "Mythic+ Season", 8, "Until", "Version", "100000");
     a[15696] = ach:New(15696, 0); -- Ruby Lifeshrine Loop: Bronze
     a[15697] = ach:New(15697, 0); -- Ruby Lifeshrine Loop: Silver
     a[15698] = ach:New(15698, 0); -- Ruby Lifeshrine Loop: Gold

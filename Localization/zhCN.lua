@@ -1,4 +1,4 @@
--- [[ Exported at 2022-09-25 13-21-57 ]] --
+-- [[ Exported at 2022-10-24 19-19-51 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -27,7 +27,6 @@ L["Specials"] = "特殊";
 L["Merge Small Categories"] = "合并小分类";
 L["Obtainable"] = "可见";
 L["Not Obtainable"] = "不可见";
-L["Select all"] = "全选";
 L["Covenant"] = "盟约";
 L["Collapse Chain"] = "折叠链";
 L["Excluded"] = "已排除";

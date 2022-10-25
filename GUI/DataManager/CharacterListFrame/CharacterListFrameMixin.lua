@@ -26,7 +26,7 @@ local CharacterColumns = {
 	},
 	{
 		title = addon.L["Points"],
-		width = 100,
+		width = 75,
 		attribute = "Points",
         reverse = true
 	},
@@ -34,6 +34,16 @@ local CharacterColumns = {
 		title = addon.L["Header tooltip"],
 		width = 100,
 		attribute = "ExcludeFromHeaderTooltip"
+	},
+	{
+		title = addon.L["Earned By"],
+		width = 100,
+		attribute = "ExcludeFromEarnedByAchievementTooltip"
+	},
+	{
+		title = addon.L["Ignore"],
+		width = 100,
+		attribute = "IgnoreCharacter"
 	}
 };
 
@@ -46,6 +56,8 @@ local sortFuncs = {
     addon.Objects.CompareFunc:New("string", "Faction");
     addon.Objects.CompareFunc:New("string", "Class");
     addon.Objects.CompareFunc:New("bool", "ExcludeFromHeaderTooltip");
+    addon.Objects.CompareFunc:New("bool", "ExcludeFromEarnedByAchievementTooltip");
+    addon.Objects.CompareFunc:New("bool", "IgnoreCharacter");
 };
 
 local function GetSortedCharacters(column)
@@ -59,6 +71,8 @@ local function GetSortedCharacters(column)
             Faction = character.Faction,
             Points = character.Points,
             ExcludeFromHeaderTooltip = character.ExcludeFromHeaderTooltip,
+            ExcludeFromEarnedByAchievementTooltip = character.ExcludeFromEarnedByAchievementTooltip,
+            IgnoreCharacter = character.Ignore,
             Guid = guid
         });
     end
@@ -110,6 +124,20 @@ local function GetSortedCharacters(column)
         sortFuncs[6].Reverse = column.reverse;
         sortFuncs[2].Fallback = sortFuncs[3];
         sortFuncs[3]:SetDefaultFallback();
+    elseif column.attribute == "ExcludeFromEarnedByAchievementTooltip" then
+        column.reverse = not column.reverse;
+        sortFunc = sortFuncs[7];
+        sortFuncs[7].Fallback = sortFuncs[2];
+        sortFuncs[7].Reverse = column.reverse;
+        sortFuncs[2].Fallback = sortFuncs[3];
+        sortFuncs[3]:SetDefaultFallback();
+    elseif column.attribute == "IgnoreCharacter" then
+        column.reverse = not column.reverse;
+        sortFunc = sortFuncs[8];
+        sortFuncs[8].Fallback = sortFuncs[2];
+        sortFuncs[8].Reverse = column.reverse;
+        sortFuncs[2].Fallback = sortFuncs[3];
+        sortFuncs[3]:SetDefaultFallback();
     end
 
     table.sort(characters, function(a, b)
@@ -122,12 +150,12 @@ function KrowiAF_CharacterListFrameMixin:OnLoad()
     self.ColumnDisplay:LayoutColumns(CharacterColumns);
     self.ColumnDisplay.sortingFunction = self.Sort;
     self.ColumnDisplay:Show();
-    
+
     local scrollFrame = self.ScrollFrame;
 	local scrollBar = scrollFrame.ScrollBar;
     local scrollBarShow = getmetatable(scrollBar).__index.Show;
     scrollBar.Show = function(selfFunc)
-        self:SetPoint("BOTTOMRIGHT", -26, 3);
+        self:SetPoint("BOTTOMRIGHT", -24, 3);
         scrollBarShow(selfFunc);
     end
     local scrollBarHide = getmetatable(scrollBar).__index.Hide;
@@ -135,12 +163,13 @@ function KrowiAF_CharacterListFrameMixin:OnLoad()
         self:SetPoint("BOTTOMRIGHT", 0, 3);
         scrollBarHide(selfFunc);
     end
+    -- scrollBar.doNotHide = true;
 
 	scrollFrame.update = function()
 		self:Update(cachedCharacters);
 	end
 
-	HybridScrollFrame_CreateButtons(scrollFrame, "KrowiAF_CharacterListEntry_Template", 0, -4);
+	HybridScrollFrame_CreateButtons(scrollFrame, "KrowiAF_CharacterListEntry_Template", 0, 0);
     local buttons = scrollFrame.buttons;
     for _, button in next, buttons do
 		button:PostLoad(scrollFrame);
