@@ -362,7 +362,7 @@ function tutorials.Load()
             numAchievements = tostring(addon.Options.db.Categories.Summary.NumAchievements):SetColorYellow()
         };
     end
-});
+    });
     tinsert(pages, { -- Calendar
         Image = media .. "Calendar",
         ImageSize = {1041, 518},
