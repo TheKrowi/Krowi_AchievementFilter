@@ -22,3 +22,7 @@
 <ul>
 <li>Temporary obtainable achievements during Wrath of the Lich King are now adjusted to the new patch numbers</li>
 </ul>
+<p><h3>Fixed (45.1)</h3></p>
+<ul>
+<li>Clicking the Track checkbox on an achievement should no longer cause an error</li>
+</ul>

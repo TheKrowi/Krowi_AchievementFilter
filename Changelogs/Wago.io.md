@@ -17,3 +17,6 @@
 
 ### Wrath Classic
 - Temporary obtainable achievements during Wrath of the Lich King are now adjusted to the new patch numbers
+
+### Fixed (45.1)
+- Clicking the Track checkbox on an achievement should no longer cause an error

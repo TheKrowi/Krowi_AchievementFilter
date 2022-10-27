@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 45.1 - 2022-10-27
+### Fixed
+- Clicking the Track checkbox on an achievement should no longer cause an error
+
 ## 45.0 - 2022-10-25
 ### Added
 - Option to hide Not Earned By if current character earned the achievement in tooltip

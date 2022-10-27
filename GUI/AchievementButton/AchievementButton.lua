@@ -74,6 +74,23 @@ local function AddRightClickMenuButton(button)
 	button.RightClickMenuButton = rightClickMenuButton;
 end
 
+function KrowiAF_AchievementButtonTracked_OnClick(self)
+	if self:GetChecked() then
+		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+	else
+		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF);
+	end
+	local tracked;
+	if addon.IsWrathClassic or addon.IsShadowlandsRetail then
+		tracked = AchievementButton_ToggleTracking(self:GetParent().Achievement.Id);
+	else
+		tracked = self:GetParent():ToggleTracking();
+	end
+	if not tracked then
+		self:SetChecked(false);
+	end
+end
+
 function KrowiAF_AchievementButton_Small_OnLoad(self)
 	self:TooltipBackdropOnLoad();
 
