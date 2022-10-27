@@ -68,6 +68,24 @@ local function HandleScreenshotMode()
     end
 end
 
+local function ExportCriteria()
+    local criteriaCache = {};
+    for _, id in next, addon.Data.AchievementIds do
+        local numCriteria = GetAchievementNumCriteria(id);
+        if numCriteria > 0 then
+            for i = 1, numCriteria do
+                local criteriaString, criteriaType, _, _, _, _, flags, assetId, _, criteriaId, _ = GetAchievementCriteriaInfo(id, i);
+                tinsert(criteriaCache, {AchievementId = id, CriteriaIndex = i, CriteriaString = criteriaString, CriteriaType = criteriaType, Flags = flags, AssetId = assetId, CriteriaId = criteriaId});
+            end
+        end
+        -- if #criteriaCache > 100 then
+        --     DebugTable = criteriaCache;
+        --     return;
+        -- end
+    end
+    DebugTable = criteriaCache;
+end
+
 options.OptionsTable.args["General"] = {
     type = "group",
     childGroups = "tab",
@@ -385,7 +403,13 @@ options.OptionsTable.args["General"] = {
                         options.Debug(addon.L["Enable trace info"], addon.Options.db.EnableTraceInfo);
                     end
                 },
-                Blank32 = {order = 3.2, type = "description", width = 2 * widthMultiplier, name = ""},
+                Blank32 = {order = 3.2, type = "description", width = 1 * widthMultiplier, name = ""},
+                ExportCriteria = {
+                    order = 3.3, type = "execute",
+                    name = addon.L["Export Criteria"],
+                    desc = addon.L["Export Criteria Desc"],
+                    func = ExportCriteria
+                },
                 ShowPlaceholdersFilter = {
                     order = 4.1, type = "toggle", width = 1 * widthMultiplier,
                     name = addon.L["Show placeholders filter"],
