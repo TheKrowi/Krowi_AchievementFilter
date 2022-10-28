@@ -613,10 +613,6 @@ local function SkinAll()
 
     -- local enabled, engine, skins = elvUISkin.Load();
 
-    if addon.IsWrathClassic then
-        addon.GUI.WorldMapButton:SetFrameStrata("TOOLTIP");
-    end
-
     if SavedData.ElvUISkin.Achievements then
         SkinTabs(skins);
         SkinCategoriesFrame(addon.GUI.CategoriesFrame, skins);
@@ -758,10 +754,15 @@ function elvUI.Load()
         SavedData.ElvUISkin = {};
     end
 
-    local preHookFunction = addon.GUI.LoadWithBlizzard_AchievementUI;
-    function addon.GUI:LoadWithBlizzard_AchievementUI()
-        preHookFunction(self);
+    hooksecurefunc(addon.GUI, "LoadWithBlizzard_AchievementUI", function()
         SkinAll();
+    end);
+
+    if addon.IsWrathClassic then
+        local worldMapModule = engine:GetModule("WorldMap");
+        hooksecurefunc(worldMapModule, "SetSmallWorldMap", function()
+            addon.GUI.WorldMapButton:SetFrameStrata("TOOLTIP");
+        end);
     end
 
     -- return SavedData.ElvUISkin.Achievements, engine, skins;

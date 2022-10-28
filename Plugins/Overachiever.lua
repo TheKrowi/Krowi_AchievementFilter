@@ -159,9 +159,7 @@ function overachiever.Load()
         end
     end
 
-    local preHookFunction = addon.Tutorials.Load;
-    function addon.Tutorials.Load()
-        preHookFunction();
+    hooksecurefunc(addon.Tutorials, "Load", function()
         local preHookOnShow = addon.Tutorials.FeaturesTutorial.Pages[1].OnShow;
         addon.Tutorials.FeaturesTutorial.Pages[1].OnShow = function(self)
             if type(preHookOnShow) == "function" then
@@ -176,7 +174,7 @@ function overachiever.Load()
                 plugin_overachiever_loaded = (overachiever.IsLoaded() and (string.format(addon.Colors.Green, addon.L["Loaded"]:lower())) or (string.format(addon.Colors.Red, addon.L["Not loaded"]:lower())))
             }
         end
-    end
+    end);
 end
 
 function overachiever.IsLoaded()
