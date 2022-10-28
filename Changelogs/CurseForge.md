@@ -42,3 +42,7 @@
 <ul>
 <li>Debug messages</li>
 </ul>
+<p><h3>Wrath Classic (45.4)</h3></p>
+<ul>
+<li>ElvUI plugin should no longer cause errors when ElvUI is not enabled</li>
+</ul>

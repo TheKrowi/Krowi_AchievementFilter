@@ -49,3 +49,8 @@
 [LIST]
 [*]Debug messages
 [/LIST]
+
+[B]Wrath Classic (45.4)[/B]
+[LIST]
+[*]ElvUI plugin should no longer cause errors when ElvUI is not enabled
+[/LIST]
