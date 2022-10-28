@@ -74,6 +74,7 @@ function header.HookSetPointsText()
     AchievementFrame.Header.PointBorder:SetWidth(175);
 
     hooksecurefunc(AchievementFrame.Header.Points, "SetText", function()
+        print("hooked function", addon.InGuildView(), processHook)
         if not addon.InGuildView() and processHook then
             local _, points = addon.BuildCache();
             processHook = false;

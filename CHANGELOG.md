@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Enabling Reset view on open causes a stack overflow
 - Opening a tutorial throws an error due to frame changes
+- ElvUI compatibility
+- The achievement points do not return when going from Guild to Statistics tab
 
 ### Wrath Classic
 - Fixed an error when opening Options -> Layout -> Tabs

@@ -80,6 +80,7 @@ function gui:LoadWithBlizzard_AchievementUI()
 
     self.SetCloseButtonOnKeyDown();
     self:HookShowSubFrame();
+    self.HookBaseTabOnClick();
 
     diagnostics.Debug("GUI loaded");
 end
@@ -87,6 +88,18 @@ end
 function gui:HookShowSubFrame()
     hooksecurefunc("AchievementFrame_ShowSubFrame", function(...)
         self:ShowSubFrame(...);
+    end);
+end
+
+function gui.HookBaseTabOnClick()
+    if addon.IsWrathClassic then
+        return;
+    end
+    hooksecurefunc("AchievementFrameBaseTab_OnClick", function(tabIndex)
+        print("AchievementFrameBaseTab_OnClick")
+        if tabIndex == 3 then
+            AchievementFrame_RefreshView();
+        end
     end);
 end
 
