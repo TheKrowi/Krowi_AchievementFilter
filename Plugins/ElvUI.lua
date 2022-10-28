@@ -613,6 +613,10 @@ local function SkinAll()
 
     -- local enabled, engine, skins = elvUISkin.Load();
 
+    if addon.IsWrathClassic then
+        addon.GUI.WorldMapButton:SetFrameStrata("TOOLTIP");
+    end
+
     if SavedData.ElvUISkin.Achievements then
         SkinTabs(skins);
         SkinCategoriesFrame(addon.GUI.CategoriesFrame, skins);
@@ -675,16 +679,19 @@ function elvUI.LoadLocalization(L)
     L["Skin Data Manager Desc"] = "Applies the ElvUI skin to the Data Manager Window.\n-> Blizzard + Achievements";
     L["Skin Ace3"] = "Skin Ace3";
     L["Skin Ace3 Desc"] = "Applies the ElvUI skin to the Options.\n-> Ace3";
+    L["Fix World Map Button"] = "Fix World Map Button";
+    L["Fix World Map Button Desc"] = "When ElvUI Maps -> World Map -> Smaller World Map is enabled, the World Map Button needs fixing";
 end
 
-local function AddInfo(orderIndex, localizationName, getFunction)
+local function AddInfo(orderIndex, localizationName, getFunction, visible)
     return {
         order = orderIndex, type = "toggle", width = "full",
         name = addon.L[localizationName],
         desc = addon.L[localizationName .. " Desc"],
         descStyle = "inline",
         get = getFunction,
-        disabled = true
+        disabled = true,
+        hidden = not visible
     };
 end
 
@@ -710,15 +717,16 @@ function elvUI.InjectOptions()
                 name = addon.L["ElvUI Desc"],
                 fontSize = "medium"
             },
-            SkinAchievement = AddInfo(4, "Skin Achievements", function() return SavedData.ElvUISkin.Achievements; end),
-            SkinMiscFrames = AddInfo(5, "Skin Misc Frames", function() return SavedData.ElvUISkin.MiscFrames; end),
-            SkinTooltip = AddInfo(6, "Skin Tooltip", function() return SavedData.ElvUISkin.Tooltip; end),
-            SkinTutorials = AddInfo(7, "Skin Tutorials", function() return SavedData.ElvUISkin.Tutorials; end),
-            SkinAlertFrames = AddInfo(8, "Skin Alert Frames", function() return SavedData.ElvUISkin.AlertFrames; end),
-            SkinCalendar = AddInfo(9, "Skin Calendar", function() return SavedData.ElvUISkin.Calendar; end),
-            RemoveParchment = AddInfo(10, "Remove Parchment", function() return SavedData.ElvUISkin.NoParchment; end),
-            SkinDataManager = AddInfo(11, "Skin Data Manager", function() return SavedData.ElvUISkin.Achievements; end),
-            SkinAce3 = AddInfo(12, "Skin Ace3", function() return SavedData.ElvUISkin.Options; end)
+            SkinAchievement = AddInfo(4, "Skin Achievements", function() return SavedData.ElvUISkin.Achievements; end, true),
+            SkinMiscFrames = AddInfo(5, "Skin Misc Frames", function() return SavedData.ElvUISkin.MiscFrames; end, true),
+            SkinTooltip = AddInfo(6, "Skin Tooltip", function() return SavedData.ElvUISkin.Tooltip; end, true),
+            SkinTutorials = AddInfo(7, "Skin Tutorials", function() return SavedData.ElvUISkin.Tutorials; end, true),
+            SkinAlertFrames = AddInfo(8, "Skin Alert Frames", function() return SavedData.ElvUISkin.AlertFrames; end, true),
+            SkinCalendar = AddInfo(9, "Skin Calendar", function() return SavedData.ElvUISkin.Calendar; end, true),
+            RemoveParchment = AddInfo(10, "Remove Parchment", function() return SavedData.ElvUISkin.NoParchment; end, true),
+            SkinDataManager = AddInfo(11, "Skin Data Manager", function() return SavedData.ElvUISkin.Achievements; end, true),
+            SkinAce3 = AddInfo(12, "Skin Ace3", function() return SavedData.ElvUISkin.Options; end, true),
+            FixWorldMapButton = AddInfo(13, "Fix World Map Button", function() return SavedData.ElvUISkin.SmallerWorldMap; end, true)
         }
     };
 
@@ -744,7 +752,8 @@ function elvUI.Load()
         SavedData.ElvUISkin.AlertFrames = blizzardSkins.enable and blizzardSkins.alertframes;
         SavedData.ElvUISkin.Calendar = blizzardSkins.enable and blizzardSkins.calendar;
         SavedData.ElvUISkin.NoParchment = blizzardSkins.enable and blizzardSkins.calendar and privateSkins.parchmentRemoverEnable;
-        SavedData.ElvUISkin.Options = engine.private.skins.ace3Enable;
+        SavedData.ElvUISkin.Options = privateSkins.ace3Enable;
+        SavedData.ElvUISkin.SmallerWorldMap = addon.IsWrathClassic and engine.global.general.smallerWorldMap;
     else
         SavedData.ElvUISkin = {};
     end

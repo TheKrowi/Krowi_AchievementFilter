@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 45.2 - 2022-10-27
+### Wrath Classic
+- Fixed an error when opening Options -> Layout -> Tabs
+
 ## 45.1 - 2022-10-27
 ### Fixed
 - Clicking the Track checkbox on an achievement should no longer cause an error
