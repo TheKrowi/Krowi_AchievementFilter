@@ -747,27 +747,25 @@ end
 function elvUI.Load()
 	addon.Diagnostics.Trace("elvUISkin.Load");
 
-    if not SavedData.ElvUISkin then
-        SavedData.ElvUISkin = {}; -- First time creation
+    SavedData.ElvUISkin = {};
+    if ElvUI == nil then
+        return;
     end
-    if ElvUI ~= nil then
-        engine = unpack(ElvUI);
-        skins = engine:GetModule("Skins");
-        local privateSkins = engine.private.skins;
-        local blizzardSkins = privateSkins.blizzard;
 
-        SavedData.ElvUISkin.Achievements = blizzardSkins.enable and blizzardSkins.achievement;
-        SavedData.ElvUISkin.MiscFrames = blizzardSkins.enable and blizzardSkins.misc;
-        SavedData.ElvUISkin.Tooltip = blizzardSkins.enable and blizzardSkins.tooltip;
-        SavedData.ElvUISkin.Tutorials = blizzardSkins.enable and blizzardSkins.tutorials;
-        SavedData.ElvUISkin.AlertFrames = blizzardSkins.enable and blizzardSkins.alertframes;
-        SavedData.ElvUISkin.Calendar = blizzardSkins.enable and blizzardSkins.calendar;
-        SavedData.ElvUISkin.NoParchment = blizzardSkins.enable and blizzardSkins.calendar and privateSkins.parchmentRemoverEnable;
-        SavedData.ElvUISkin.Options = privateSkins.ace3Enable;
-        SavedData.ElvUISkin.SmallerWorldMap = addon.IsWrathClassic and engine.global.general.smallerWorldMap;
-    else
-        SavedData.ElvUISkin = {};
-    end
+    engine = unpack(ElvUI);
+    skins = engine:GetModule("Skins");
+    local privateSkins = engine.private.skins;
+    local blizzardSkins = privateSkins.blizzard;
+
+    SavedData.ElvUISkin.Achievements = blizzardSkins.enable and blizzardSkins.achievement;
+    SavedData.ElvUISkin.MiscFrames = blizzardSkins.enable and blizzardSkins.misc;
+    SavedData.ElvUISkin.Tooltip = blizzardSkins.enable and blizzardSkins.tooltip;
+    SavedData.ElvUISkin.Tutorials = blizzardSkins.enable and blizzardSkins.tutorials;
+    SavedData.ElvUISkin.AlertFrames = blizzardSkins.enable and blizzardSkins.alertframes;
+    SavedData.ElvUISkin.Calendar = blizzardSkins.enable and blizzardSkins.calendar;
+    SavedData.ElvUISkin.NoParchment = blizzardSkins.enable and blizzardSkins.calendar and privateSkins.parchmentRemoverEnable;
+    SavedData.ElvUISkin.Options = privateSkins.ace3Enable;
+    SavedData.ElvUISkin.SmallerWorldMap = addon.IsWrathClassic and engine.global.general.smallerWorldMap;
 
     hooksecurefunc(addon.GUI, "LoadWithBlizzard_AchievementUI", function()
         SkinAll();
