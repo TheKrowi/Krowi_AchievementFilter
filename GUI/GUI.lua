@@ -96,7 +96,7 @@ function gui.HookBaseTabOnClick()
         return;
     end
     hooksecurefunc("AchievementFrameBaseTab_OnClick", function(tabIndex)
-        print("AchievementFrameBaseTab_OnClick")
+        -- print("AchievementFrameBaseTab_OnClick")
         if tabIndex == 3 then
             AchievementFrame_RefreshView();
         end
