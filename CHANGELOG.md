@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 45.2 - 2022-10-27
+## 45.2 - 2022-10-28
 ### Fixed
 - Enabling Reset view on open causes a stack overflow
 - Opening a tutorial throws an error due to frame changes
