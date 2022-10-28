@@ -33,3 +33,6 @@
 
 ### Removed (45.3)
 - Debug messages
+
+### Wrath Classic (45.4)
+- ElvUI plugin should no longer cause errors when ElvUI is not enabled

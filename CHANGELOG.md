@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 45.4 - 2022-10-28
+### Wrath Classic
+- ElvUI plugin should no longer cause errors when ElvUI is not enabled
+
 ## 45.3 - 2022-10-28
 ### Removed
 - Debug messages
