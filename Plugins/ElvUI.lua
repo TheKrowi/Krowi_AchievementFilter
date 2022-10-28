@@ -312,15 +312,15 @@ local function SkinFilterButton(button, achievementsFrame, skins)
     end
 
 	button:ClearAllPoints();
-	button:Point("BOTTOMLEFT", achievementsFrame, "TOPLEFT", 3, 1);
+	button:Point("BOTTOMLEFT", achievementsFrame, "TOPLEFT", 2, 1);
 end
 
-local function SkinSearchBoxFrame(frame, achievementsFrame, skins)
+local function SkinSearchBoxFrame(frame, skins)
     skins:HandleEditBox(frame);
 	frame.backdrop:Point('TOPLEFT', frame, 'TOPLEFT', -3, -3);
 	frame.backdrop:Point('BOTTOMRIGHT', frame, 'BOTTOMRIGHT', 0, 3);
 	frame:ClearAllPoints();
-	frame:Point('BOTTOMRIGHT', achievementsFrame, 'TOPRIGHT', -20, -2);
+	frame:Point('TOPRIGHT', AchievementFrame, -22, -1);
 	frame:Size(114, 27);
 end
 
@@ -427,36 +427,45 @@ local function SkinSideButtons(sideButtons, engine)
 end
 
 local function SkinHeader()
-    if not addon.IsDragonflightRetail then
+    -- if not addon.IsDragonflightRetail then
+    --     hooksecurefunc(AchievementFrame.Header.Points, "SetText", function()
+    --         AchievementFrame.Header.PointBorder:ClearAllPoints();
+    --         AchievementFrame.Header.PointBorder:Point('CENTER', AchievementFrame.Header.Title, 'CENTER', 100, 0);
+    --         AchievementFrame.Header.PointBorder:SetSize(150, 20);
+    --         AchievementFrame.Header.Points:ClearAllPoints();
+    --         AchievementFrame.Header.Points:Point('CENTER', AchievementFrame.Header.PointBorder);
+    --     end);
+    -- else
         hooksecurefunc(AchievementFrame.Header.Points, "SetText", function()
             AchievementFrame.Header.PointBorder:ClearAllPoints();
-            AchievementFrame.Header.PointBorder:Point('CENTER', AchievementFrame.Header.Title, 'CENTER', 100, 0);
-            AchievementFrame.Header.PointBorder:SetSize(150, 20);
+            AchievementFrame.Header.PointBorder:Point('TOPLEFT', addon.GUI.FilterButton, 'TOPRIGHT', 70, 0);
+            AchievementFrame.Header.PointBorder:Point('BOTTOMRIGHT', addon.GUI.Search.BoxFrame.backdrop, 'BOTTOMLEFT', -80, 0);
             AchievementFrame.Header.Points:ClearAllPoints();
-            AchievementFrame.Header.Points:Point('CENTER', AchievementFrame.Header.PointBorder);
+            AchievementFrame.Header.Points:Point('CENTER', AchievementFrame.Header.PointBorder, 'CENTER', -10, 0);
         end);
-    end
+    -- end
     if addon.IsWrathClassic then
         AchievementFrameHeaderLeftDDLInset:SetAlpha(0);
     end
 end
 
 local function ReskinBlizzard(skins)
+    AchievementFrameCategories:Point("TOPLEFT", AchievementFrame, 21, -26);
     if not addon.IsWrathClassic then
-        SkinSearchBoxFrame(AchievementFrame.SearchBox, AchievementFrameAchievements, skins);
+        SkinSearchBoxFrame(AchievementFrame.SearchBox, skins);
     end
     AchievementFrameFilterDropDown:ClearAllPoints();
-	AchievementFrameFilterDropDown:Point('TOPLEFT', AchievementFrameAchievements, 'TOPLEFT', -18, 26);
+	AchievementFrameFilterDropDown:Point('TOPLEFT', AchievementFrameAchievements, 'TOPLEFT', -16, 25);
     AchievementFrameFilterDropDown:Size(AchievementFrameFilterDropDown:GetWidth(), AchievementFrameFilterDropDown:GetHeight() - 1);
 end
 
 local function SkinCalendarButton(button, skins)
     skins:HandleButton(button);
     button:ClearAllPoints();
-    button:Point("LEFT", AchievementFrame.Header.Points, "RIGHT", 30, -1);
+    button:Point("TOPRIGHT", addon.GUI.Search.BoxFrame, "TOPLEFT", -6, -3);
     button:Size(22, 22);
     local fs = button:CreateFontString(nil, nil, "GameFontHighlightSmall");
-    fs:SetPoint("CENTER", 0, -2);
+    fs:SetPoint("CENTER", 0, 0);
     button:SetFontString(fs);
     local currentCalendarTime = C_DateAndTime.GetCurrentCalendarTime();
 	button:SetText(currentCalendarTime.monthDay);
@@ -620,7 +629,7 @@ local function SkinAll()
         SkinAchievementsFrame(addon.GUI.AchievementsFrame, engine, skins);
         SkinAchievementSummary(addon.GUI.SummaryFrame, engine, skins);
         SkinFilterButton(addon.GUI.FilterButton, addon.GUI.AchievementsFrame, skins);
-        SkinSearchBoxFrame(addon.GUI.Search.BoxFrame, addon.GUI.AchievementsFrame, skins);
+        SkinSearchBoxFrame(addon.GUI.Search.BoxFrame, skins);
         SkinSearchPreviewFrame(addon.GUI.Search.PreviewFrame, addon.GUI.AchievementsFrame, engine, skins);
         SkinSearchResultsFrame(addon.GUI.Search.ResultsFrame, skins);
         SkinSideButtons(addon.GUI.SideButtons, engine);
