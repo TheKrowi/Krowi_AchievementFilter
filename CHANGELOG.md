@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 45.3 - 2022-10-28
+### Removed
+- Debug messages
+
 ## 45.2 - 2022-10-28
 ### Fixed
 - Enabling Reset view on open causes a stack overflow

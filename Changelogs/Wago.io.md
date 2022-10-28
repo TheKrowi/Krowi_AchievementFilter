@@ -30,3 +30,6 @@
 ### Wrath Classic (45.2)
 - Fixed an error when opening Options -> Layout -> Tabs
 - World Map Button should stay on top once again when ElvUI is enabled
+
+### Removed (45.3)
+- Debug messages

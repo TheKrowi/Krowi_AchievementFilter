@@ -38,3 +38,7 @@
 <li>Fixed an error when opening Options -&gt; Layout -&gt; Tabs</li>
 <li>World Map Button should stay on top once again when ElvUI is enabled</li>
 </ul>
+<p><h3>Removed (45.3)</h3></p>
+<ul>
+<li>Debug messages</li>
+</ul>
