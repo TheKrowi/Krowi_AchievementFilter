@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## 45.2 - 2022-10-27
+### Fixed
+- Enabling Reset view on open causes a stack overflow
+
 ### Wrath Classic
 - Fixed an error when opening Options -> Layout -> Tabs
 
