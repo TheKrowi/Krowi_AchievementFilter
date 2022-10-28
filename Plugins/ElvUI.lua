@@ -451,7 +451,13 @@ end
 
 local function ReskinBlizzard(skins)
     AchievementFrameCategories:Point("TOPLEFT", AchievementFrame, 21, -26);
-    if not addon.IsWrathClassic then
+    if addon.IsWrathClassic then
+        AchievementFrameCloseButton:ClearAllPoints();
+        AchievementFrameCloseButton:Point('TOPRIGHT', AchievementFrame, 'TOPRIGHT', 4, 5);
+        AchievementFrame.backdrop:ClearAllPoints();
+        AchievementFrame.backdrop:Point('TOPLEFT', AchievementFrame, 'TOPLEFT', 0, 0);
+        AchievementFrame.backdrop:Point('BOTTOMRIGHT', AchievementFrame, 'BOTTOMRIGHT', 0, 0);
+    else
         SkinSearchBoxFrame(AchievementFrame.SearchBox, skins);
     end
     AchievementFrameFilterDropDown:ClearAllPoints();
