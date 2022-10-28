@@ -178,8 +178,12 @@ local function UpdateFrame(frame, i)
 	frame:SetPoint(point, relativeFrame, relativePoint, offsetX, offsetY);
 
 	-- Title
-	frame.TitleText:SetPoint('TOP', 0, -5);
-	frame.TitleText:SetText(title);
+	if frame.TitleText then
+		frame.TitleText:SetPoint('TOP', 0, -5);
+		frame.TitleText:SetText(title);
+	else
+    	frame:SetTitle(title);
+	end
 
 	-- Image
 	for _, p in next, frame.Pages do

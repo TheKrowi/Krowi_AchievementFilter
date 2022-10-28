@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 45.2 - 2022-10-28
+### Fixed
+- Enabling Reset view on open causes a stack overflow
+- Opening a tutorial throws an error due to frame changes
+- ElvUI compatibility
+- The achievement points do not return when going from Guild to Statistics tab
+
+### Wrath Classic
+- Fixed an error when opening Options -> Layout -> Tabs
+- World Map Button should stay on top once again when ElvUI is enabled
+
 ## 45.1 - 2022-10-27
 ### Fixed
 - Clicking the Track checkbox on an achievement should no longer cause an error

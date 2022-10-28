@@ -75,11 +75,6 @@ function achievementsTabFixes.Load()
                     dragonIslesCategory.Name = addon.GetCategoryInfoTitle(15455);
                 end
             end
-            -- for _, category in next, ACHIEVEMENT_FUNCTIONS.categories do
-            --     if category.id == 15465 then
-            --         -- No easy way to change the name and not break other functionality
-            --     end
-            -- end
             return tabCategories;
         end
     end

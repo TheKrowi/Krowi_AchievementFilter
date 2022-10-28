@@ -59,20 +59,21 @@ function achFrameTabBtn:New(text, framesToShow, categories, filters, waterMark)
 end
 
 function achFrameTabBtn:Base_OnClick(id)
+    -- print("base click", id)
     if addon.IsWrathClassic then
         PanelTemplates_Tab_OnClick(_G["AchievementFrameTab" .. id], AchievementFrame);
     else
-	    AchievementFrame_UpdateTabs(id);
-    end
-
-    if addon.InGuildView() then
-        if addon.IsWrathClassic or addon.IsShadowlandsRetail then
-            AchievementFrame_ToggleView();
-        else
-            AchievementFrame_RefreshView();
+        if addon.InGuildView() then
+            if addon.IsShadowlandsRetail then
+                AchievementFrame_ToggleView();
+            else
+                AchievementFrameBaseTab_OnClick(1);
+                AchievementFrame_RefreshView();
+            end
+            AchievementFrameGuildEmblemLeft:Hide();
+            AchievementFrameGuildEmblemRight:Hide();
         end
-        AchievementFrameGuildEmblemLeft:Hide();
-        AchievementFrameGuildEmblemRight:Hide();
+	    AchievementFrame_UpdateTabs(id);
     end
 
     AchievementFrame_ShowSubFrame(); -- Hide all frames
@@ -103,6 +104,7 @@ end
 
 local achievementFrameSizeSet; -- If multiple tabs are added, this variable makes sure the resizing only fires once
 function achFrameTabBtn:AchievementFrame_UpdateTabs(thisTab, thisTabID, clickedTab)
+    -- print("update tabs", thisTab, thisTabID, clickedTab)
     local ourTabClicked; -- Extra logic to handle multiple tabs of ours
     for _, id in next, ourTabIDs do
         if clickedTab == id then

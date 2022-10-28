@@ -496,7 +496,8 @@ options.OptionsTable.args["Layout"] = {
                             order = 2, type = "toggle", width = 1 * widthMultiplier,
                             name = addon.L["Guild"],
                             get = function() return addon.Options.db.Tabs["Blizzard_AchievementUI"]["Guild"].Show; end,
-                            set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Guild"); end
+                            set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Guild"); end,
+                            hidden = addon.IsWrathClassic
                         },
                         Statistics = {
                             order = 3, type = "toggle", width = 1 * widthMultiplier,

@@ -80,6 +80,7 @@ function gui:LoadWithBlizzard_AchievementUI()
 
     self.SetCloseButtonOnKeyDown();
     self:HookShowSubFrame();
+    self.HookBaseTabOnClick();
 
     diagnostics.Debug("GUI loaded");
 end
@@ -87,6 +88,18 @@ end
 function gui:HookShowSubFrame()
     hooksecurefunc("AchievementFrame_ShowSubFrame", function(...)
         self:ShowSubFrame(...);
+    end);
+end
+
+function gui.HookBaseTabOnClick()
+    if addon.IsWrathClassic then
+        return;
+    end
+    hooksecurefunc("AchievementFrameBaseTab_OnClick", function(tabIndex)
+        print("AchievementFrameBaseTab_OnClick")
+        if tabIndex == 3 then
+            AchievementFrame_RefreshView();
+        end
     end);
 end
 
@@ -162,18 +175,16 @@ function gui.GetSafeScrollChildBottom(scrollChild)
 	return scrollChild:GetBottom() or 0;
 end
 
-function gui.ResetView()
-	diagnostics.Trace("gui.ResetView");
+local resetViewLock;
+local function ResetView()
+    if resetViewLock then
+        return;
+    end
+    resetViewLock = true;
 
-    if gui.CategoriesFrame and gui.SelectedTab and gui.SelectedTab.Categories then -- Checking ID is to know if the frame is initialised or not
-        -- Select the first category
-        if gui.SelectedTab.Categories then
-            local category = gui.SelectedTab.Categories[1];
-            if category.Achievements == nil then
-                category = gui.SelectedTab.Categories[2];
-            end
-            KrowiAF_SelectCategory(category, true);
-        end
+    if gui.SelectedTab and gui.SelectedTab.Categories then
+        local category = gui.SelectedTab.Categories[1];
+        KrowiAF_SelectCategory(category, true);
     end
 
     local search = addon.GUI.Search;
@@ -184,6 +195,8 @@ function gui.ResetView()
     if search.ResultsFrame and search.ResultsFrame.Update and search.ResultsFrame.Hide then
         search.ResultsFrame:Hide();
     end
+
+    resetViewLock = nil;
 end
 
 function gui.SelectTab(_addonName, tabName)
@@ -230,7 +243,7 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
         end
         gui.SelectTab(_addonName, tabName);
         if addon.Options.db.ResetViewOnOpen or resetView then
-            gui.ResetView();
+            ResetView();
         end
 	end
 end
