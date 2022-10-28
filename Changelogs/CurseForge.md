@@ -26,3 +26,15 @@
 <ul>
 <li>Clicking the Track checkbox on an achievement should no longer cause an error</li>
 </ul>
+<p><h3>Fixed (45.2)</h3></p>
+<ul>
+<li>Enabling Reset view on open causes a stack overflow</li>
+<li>Opening a tutorial throws an error due to frame changes</li>
+<li>ElvUI compatibility</li>
+<li>The achievement points do not return when going from Guild to Statistics tab</li>
+</ul>
+<p><h3>Wrath Classic (45.2)</h3></p>
+<ul>
+<li>Fixed an error when opening Options -&gt; Layout -&gt; Tabs</li>
+<li>World Map Button should stay on top once again when ElvUI is enabled</li>
+</ul>
