@@ -393,7 +393,8 @@
         "AchievementFrameCloseButton",
         "InterfaceOptionsFramePanelContainer",
         "KrowiAF_DataManagerFrameCloseButton",
-        "GameFontDisableSmall"
+        "GameFontDisableSmall",
+        "CreateFramePool"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 46.0 - 2022-10-xx
+### Added
+- Zygor achievement button icons on KAF tabs
+
 ## 45.4 - 2022-10-28
 ### Wrath Classic
 - ElvUI plugin should no longer cause errors when ElvUI is not enabled

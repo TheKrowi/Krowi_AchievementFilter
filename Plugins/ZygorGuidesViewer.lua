@@ -5,15 +5,65 @@ plugins.ZygorGuidesViewer = {};
 local zygorGuidesViewer = plugins.ZygorGuidesViewer;
 tinsert(plugins.Plugins, zygorGuidesViewer);
 
+local function Icon_OnClick(self, but)
+	local achievebut = self:GetParent();
+	local achieveID = achievebut.Achievement.Id;
+	if achieveID and ZGV.Achievement.AvailGuides[achieveID] then
+		ZGV.Tabs:LoadGuideToTab(ZGV.Achievement.AvailGuides[achieveID], 1, "achieveid");
+        if not ZGV:IsVisible() then
+            ZGV:ToggleFrame();
+        end
+		return;
+	end
+	ZGV:Error("How odd. Achievement Zygor Button clicked, but we don't seem to have a guide for %s", achievebut.label:GetText());
+end
+
+local function UpdateIcons()
+	ZGV.SearchIconPool:ReleaseAll();
+
+	for i, blizzbutton in ipairs(addon.GUI.AchievementsFrame.ScrollFrame.buttons) do
+		local button = ZGV.SearchIconPool:Acquire();
+		button:SetParent(blizzbutton);
+		button:SetPoint("TOPRIGHT", blizzbutton, "TOPRIGHT", -5, -5);
+		button:SetFrameLevel(blizzbutton.Shield:GetFrameLevel() + 1);
+		button.tooltiptext = ZGV.L['achieveframe_button']:format(blizzbutton.Header:GetText());
+		button:SetScript("OnClick", function(...)
+            Icon_OnClick(...);
+        end);
+
+		local achieveID = blizzbutton.Achievement.Id;
+
+		if achieveID and ZGV.Achievement.AvailGuides[achieveID] and blizzbutton:IsShown() then
+			button:Show()
+		else
+			button:Hide()
+		end
+	end
+end
+
+local function ScheduleUpdate()
+	ZGV:ScheduleTimer(function()
+        UpdateIcons();
+    end,
+    0.0001);
+end
+
 plugins.LoadHelper:RegisterEvent("ADDON_LOADED");
 function zygorGuidesViewer:OnEvent(event, arg1, arg2)
     if event == "ADDON_LOADED" then
         if arg1 == "ZygorGuidesViewer" then
-            local preHookFunction = addon.GUI.ToggleAchievementFrame;
-            function addon.GUI.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen)
-                preHookFunction(_addonName, tabName, resetView, forceOpen);
+            hooksecurefunc(addon.GUI, "ToggleAchievementFrame", function(_addonName, tabName, resetView, forceOpen)
                 ZGV.Achievement:IconSetup();
-            end
+
+                if ZGV.Achievement.KrowiAF_Loaded then
+                    return;
+                end
+                ZGV.SearchIconPool = ZGV.SearchIconPool or CreateFramePool("BUTTON", nil, "ZygorSearchButton");
+                hooksecurefunc(addon.GUI.AchievementsFrame, "Update", function()
+                    ScheduleUpdate();
+                end);
+                ZGV.Achievement.KrowiAF_Loaded = true;
+            end);
         end
     end
 end
