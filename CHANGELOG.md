@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## 46.0 - 2022-10-xx
 ### Added
 - Zygor achievement button icons on KAF tabs
+- Tooltip data for units needed for To All The Squirrels I've Loved Before, 
 
 ## 45.4 - 2022-10-28
 ### Wrath Classic

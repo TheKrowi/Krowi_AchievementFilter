@@ -108,7 +108,15 @@ options.Defaults = {
                     ShowWhenAchievementCompleted = true,
                     SecondColumnThreshold = 25
                 },
-                ShowOtherFaction = true
+                ShowOtherFaction = true,
+            },
+            Units = {
+                ShowCriteria = true,
+                ShowCriteriaIf = {
+                    AchievementIsCompleted = false,
+                    AchievementWasNotEarnedByMe = false,
+                    CriteriaIsCompleted = false
+                }
             }
         },
         Minimap = {

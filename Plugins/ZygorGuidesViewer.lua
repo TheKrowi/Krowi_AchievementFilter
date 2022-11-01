@@ -31,7 +31,7 @@ local function UpdateIcons()
             Icon_OnClick(...);
         end);
 
-		local achieveID = blizzbutton.Achievement.Id;
+		local achieveID = blizzbutton.Achievement and blizzbutton.Achievement.Id;
 
 		if achieveID and ZGV.Achievement.AvailGuides[achieveID] and blizzbutton:IsShown() then
 			button:Show()

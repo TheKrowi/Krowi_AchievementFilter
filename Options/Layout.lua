@@ -1168,6 +1168,65 @@ options.OptionsTable.args["Layout"] = {
                     }
                 }
             }
+        },
+        Units = {
+            order = 10, type = "group",
+            name = addon.L["Units"],
+            args = {
+                Tooltip = {
+                    order = 1, type = "group",
+                    name = addon.L["Tooltip"],
+                    inline = true,
+                    args = {
+                        ShowCriteria = {
+                            order = 1.1, type = "toggle", width = 1 * widthMultiplier,
+                            name = addon.L["Show Criteria"],
+                            desc = addon.L["Show Criteria Desc"],
+                            get = function() return addon.Options.db.Tooltip.Units.ShowCriteria; end,
+                            set = function()
+                                addon.Options.db.Tooltip.Units.ShowCriteria = not addon.Options.db.Tooltip.Units.ShowCriteria;
+                                options.Debug(addon.L["Show Criteria"], addon.Options.db.Tooltip.Units.ShowCriteria);
+                            end
+                        },
+                        Blank12 = {order = 1.2, type = "description", width = 2 * widthMultiplier, name = ""},
+                        ShowCriteriaIf = {
+                            order = 2, type = "header",
+                            name = addon.L["Show Criteria If"]
+                        },
+                        ShowCriteriaIfAchievementIsCompleted = {
+                            order = 3.1, type = "toggle", width = 1.5 * widthMultiplier,
+                            name = addon.L["Achievement is Completed"],
+                            desc = addon.L["Achievement is Completed Desc"],
+                            get = function() return addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementIsCompleted; end,
+                            set = function()
+                                addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementIsCompleted = not addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementIsCompleted;
+                                options.Debug(addon.L["Achievement is Completed"], addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementIsCompleted);
+                            end
+                        },
+                        ShowCriteriaIfAchievementWasNotEarnedByMe = {
+                            order = 3.2, type = "toggle", width = 1.5 * widthMultiplier,
+                            name = addon.L["Achievement was Not Earned by Me"],
+                            desc = addon.L["Achievement was Not Earned by Me Desc"],
+                            get = function() return addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementWasNotEarnedByMe; end,
+                            set = function()
+                                addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementWasNotEarnedByMe = not addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementWasNotEarnedByMe;
+                                options.Debug(addon.L["Achievement was Not Earned by Me"], addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementWasNotEarnedByMe);
+                            end
+                        },
+                        ShowCriteriaIfCriteriaIsCompleted = {
+                            order = 4.1, type = "toggle", width = 1.5 * widthMultiplier,
+                            name = addon.L["Criteria is Completed"],
+                            desc = addon.L["Criteria is Completed Desc"],
+                            get = function() return addon.Options.db.Tooltip.Units.ShowCriteriaIf.CriteriaIsCompleted; end,
+                            set = function()
+                                addon.Options.db.Tooltip.Units.ShowCriteriaIf.CriteriaIsCompleted = not addon.Options.db.Tooltip.Units.ShowCriteriaIf.CriteriaIsCompleted;
+                                options.Debug(addon.L["Criteria is Completed"], addon.Options.db.Tooltip.Units.ShowCriteriaIf.CriteriaIsCompleted);
+                            end
+                        },
+                        Blank42 = {order = 4.2, type = "description", width = 1.5 * widthMultiplier, name = ""},
+                    }
+                }
+            }
         }
     }
 };

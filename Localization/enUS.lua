@@ -1,4 +1,4 @@
--- [[ Exported at 2022-10-24 19-19-51 ]] --
+-- [[ Exported at 2022-11-01 14-17-28 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -192,6 +192,14 @@ L["Dragonbane Keep"] = "Dragonbane Keep";
 L["Slagmire"] = "Slagmire";
 L["Scalecracker Keep"] = "Scalecracker Keep";
 L["Primalist Tomorrow"] = "Primalist Tomorrow";
+L["Dragonflight pre-patch - Firestorms"] = "Dragonflight pre-patch - Firestorms";
+L["Dragonflight pre-patch - Sandstorms"] = "Dragonflight pre-patch - Sandstorms";
+L["Dragonflight pre-patch - Snowstorms"] = "Dragonflight pre-patch - Snowstorms";
+L["Dragonflight pre-patch - Thunderstorms"] = "Dragonflight pre-patch - Thunderstorms";
+L["Badlands"] = "Badlands";
+L["Northern Barrens"] = "Northern Barrens";
+L["Tirisfal Glades"] = "Tirisfal Glades";
+L["Un'Goro Crater"] = "Un'Goro Crater";
 L["This achievement is no longer obtainable"] = "This achievement is no longer obtainable.";
 L["Not earned by:"] = "Not earned by:";
 L["Part of a chain"] = "Part of a chain";
@@ -219,6 +227,8 @@ L["Patch"] = "Patch";
 L["Temporary Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}.";
 L["Hide Not Earned By if current character earned the achievement"] = "Hide {notEarnedBy} if current character earned the achievement";
 L["Hide Not Earned By if current character earned the achievement Desc"] = "Hide the {notEarnedBy} section if the current character has earned the achievement. The {earnedBy} section will still be shown as normal.";
+L["Needs /love for achievement"] = "Needs /love for {achievement}";
+L["Already /loved for achievement"] = "Already /loved for {achievement}";
 L["Data Manager"] = "Data Manager";
 L["Header tooltip"] = "Header tooltip";
 L["Ignore"] = "Ignore";
@@ -285,6 +295,8 @@ L["Enable trace info"] = "Enable trace info";
 L["Enable trace info Desc"] = "Enable / disable trace info.";
 L["Show placeholders filter"] = "Show placeholders filter";
 L["Show placeholders filter Desc"] = "Show / hide the placeholder filter in the filters. This is used to show achievements not yet in game.\n\nMay contain spoilers if enabled!";
+L["Export Criteria"] = "Export Criteria";
+L["Export Criteria Desc"] = "Exports Achievement Criteria to the Saved Variables. This is used to add new content.";
 L["Layout"] = "Layout";
 L["Window"] = "Window";
 L["Movable"] = "Movable";
@@ -385,6 +397,16 @@ L["Lock month"] = "Lock month";
 L["Lock month Desc"] = "Keep the last shown month as the month to show when opening the calendar again after it was closed.";
 L["First day of the week"] = "First day of the week";
 L["First day of the week Desc"] = "The first day of the week the calendar should use.";
+L["Units"] = "Units";
+L["Show Criteria"] = "Show Criteria";
+L["Show Criteria Desc"] = "Show Criteria Desc";
+L["Show Criteria If"] = "Show Criteria If";
+L["Achievement is Completed"] = "Achievement is Completed";
+L["Achievement is Completed Desc"] = "Achievement is Completed Desc";
+L["Achievement was Not Earned by Me"] = "Achievement was Not Earned by Me";
+L["Achievement was Not Earned by Me Desc"] = "Achievement was Not Earned by Me Desc";
+L["Criteria is Completed"] = "Criteria is Completed";
+L["Criteria is Completed Desc"] = "Criteria is Completed Desc";
 L["Event Reminders"] = "Event Reminders";
 L["Pop ups"] = "Pop ups";
 L["Show pop ups"] = "Show pop ups";
