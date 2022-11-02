@@ -16,6 +16,9 @@ local function ProcessUnit()
     end
 
     local _, unit = GameTooltip:GetUnit();
+    if not unit then
+        return;
+    end
     local guid = UnitGUID(unit);
     local unitType, _, _, _, id = ProcessGuid(guid);
     if unitType ~= "Creature" then
