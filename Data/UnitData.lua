@@ -66,7 +66,15 @@ local function ProcessUnit()
 end
 
 function unitData.Load()
-    GameTooltip:HookScript("OnTooltipSetUnit", ProcessUnit);
+    local tocVersion = select(4, GetBuildInfo());
+    if tocVersion < 100002 then
+        GameTooltip:HookScript("OnTooltipSetUnit", ProcessUnit);
+    else
+        local function OnTooltipSetItem(tooltip, data)
+            print("OnTooltipSetItem", tooltip, data)
+        end
+        TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, OnTooltipSetItem)
+    end
 
     data.ExportedUnitData.Load(addon.Data.UnitData);
 end
