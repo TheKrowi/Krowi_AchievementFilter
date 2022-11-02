@@ -10,16 +10,18 @@ local function ProcessGuid(guid)
     return unitType, serverId, instanceId, zoneUid, id, spawnUid;
 end
 
-local function ProcessUnit()
+local function ProcessUnit(guid)
     if not addon.Options.db.Tooltip.Units.ShowCriteria then
         return;
     end
 
-    local _, unit = GameTooltip:GetUnit();
-    if not unit then
+    if not guid then
         return;
     end
-    local guid = UnitGUID(unit);
+    if addon.Diagnostics.DebugEnabled() then
+        GameTooltip:AddLine(guid);
+    end
+
     local unitType, _, _, _, id = ProcessGuid(guid);
     if unitType ~= "Creature" then
         return;
@@ -65,15 +67,25 @@ local function ProcessUnit()
     end
 end
 
+local function ProcessUnit100000()
+    local _, unit = GameTooltip:GetUnit();
+    if not unit then
+        return;
+    end
+    local guid = UnitGUID(unit);
+    ProcessUnit(guid);
+end
+
+local function ProcessUnit100002(tooltip, data)
+    ProcessUnit(data.guid);
+end
+
 function unitData.Load()
     local tocVersion = select(4, GetBuildInfo());
     if tocVersion < 100002 then
-        GameTooltip:HookScript("OnTooltipSetUnit", ProcessUnit);
+        GameTooltip:HookScript("OnTooltipSetUnit", ProcessUnit100000);
     else
-        local function OnTooltipSetItem(tooltip, data)
-            print("OnTooltipSetItem", tooltip, data)
-        end
-        TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, OnTooltipSetItem)
+        TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Unit, ProcessUnit100002)
     end
 
     data.ExportedUnitData.Load(addon.Data.UnitData);
