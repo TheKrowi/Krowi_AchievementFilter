@@ -3,6 +3,9 @@
     <Script file="AchievementsFrameMixin.lua"/>
 	
 	<Frame name="KrowiAF_AchievementsFrame_Template" mixin="KrowiAF_AchievementsFrameMixin" virtual="true" hidden="true">
+		<!-- <Anchors>
+			<Anchor point="TOPLEFT" x="96" y="-116"/>
+		</Anchors> -->
 		<Layers>
 			<Layer level="BACKGROUND">
 				<Texture name="$parentBackground" parentKey="Background" file="Interface\AchievementFrame\UI-Achievement-AchievementBackground">

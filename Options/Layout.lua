@@ -314,7 +314,11 @@ options.OptionsTable.args["Layout"] = {
                             get = function() return addon.Options.db.Window.Movable; end,
                             set = function()
                                 addon.Options.db.Window.Movable = not addon.Options.db.Window.Movable;
-                                addon.MakeWindowMovable();
+                                if addon.Options.db.Window.Movable then
+                                    addon.MakeWindowMovable();
+                                else
+                                    addon.MakeWindowStatic();
+                                end
                                 options.Debug(addon.L["Make window movable"], addon.Options.db.Window.Movable);
                             end
                         },
@@ -366,7 +370,7 @@ options.OptionsTable.args["Layout"] = {
                             set = function()
                                 addon.Options.db.Window.RememberLastPosition.Calendar = not addon.Options.db.Window.RememberLastPosition.Calendar;
                                 if not addon.Options.db.Window.RememberLastPosition.Calendar then
-                                    addon.GUI.Calendar:ResetFramePosition();
+                                    addon.GUI.Calendar.Frame:ResetPosition();
                                 end
                                 options.Debug(addon.L["Remember frame position"]:ReplaceVars
                                 {
@@ -382,7 +386,7 @@ options.OptionsTable.args["Layout"] = {
                                 frame = addon.L["Achievement Calendar"]
                             },
                             func = function()
-                                addon.GUI.Calendar:ResetFramePosition();
+                                addon.GUI.Calendar.Frame:ResetPosition();
                             end
                         },
                         DataManager = {

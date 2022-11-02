@@ -77,7 +77,11 @@ function loadHelper:OnEvent(event, arg1, arg2)
             addon.Data.LoadTrackingAchievements();
             addon.Data.LoadExcludedAchievements();
 
-            addon.MakeWindowMovable();
+            if addon.Options.db.Window.Movable then
+                addon.MakeWindowMovable();
+            else
+                addon.MakeWindowStatic();
+            end
             addon.GUI.AchievementFrameHeader.HookSetPointsText();
             addon.OverwriteFunctions();
             addon.HookAchievementFrameOnShow();

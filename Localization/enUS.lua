@@ -1,8 +1,8 @@
--- [[ Exported at 2022-11-01 14-17-28 ]] --
+-- [[ Exported at 2022-11-02 22-50-04 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ English texts by Krowi, 2022-08-09 ]] --
+-- [[ English texts by Krowi, 2022-11-02 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -301,7 +301,7 @@ L["Layout"] = "Layout";
 L["Window"] = "Window";
 L["Movable"] = "Movable";
 L["Make windows movable"] = "Make windows movable";
-L["Make windows movable Desc"] = "Makes the Achievement window and Calendar view movable/not movable.\n\nWhen checked, keeping the left mouse button pressed moves the Achievement window. This works on the header and borders.";
+L["Make windows movable Desc"] = "Makes the Achievement window Calendar view and Data manager movable/not movable.\n\nWhen checked, keeping the left mouse button pressed moves the Achievement window. This works on the header and borders.";
 L["Remember frame position"] = "Remember {frame} position";
 L["Remember frame position Desc"] = "Remember the {frame} position. This will keep the {frame} in it's last known position the next time you log in.";
 L["Achievement Window"] = "Achievement Window";

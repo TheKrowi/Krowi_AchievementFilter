@@ -76,8 +76,8 @@ local function ProcessUnit100000()
     ProcessUnit(guid);
 end
 
-local function ProcessUnit100002(tooltip, data)
-    ProcessUnit(data.guid);
+local function ProcessUnit100002(tooltip, localData)
+    ProcessUnit(localData.guid);
 end
 
 function unitData.Load()

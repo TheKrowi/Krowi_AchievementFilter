@@ -6,6 +6,8 @@ local dataManagerFrame = addon.GUI.DataManagerFrame;
 function dataManagerFrame:Load()
 	local frame;
 	frame = CreateFrame("Frame", "KrowiAF_DataManagerFrame", UIParent, "KrowiAF_DataManagerFrame_Template");
+	frame.ResetPosition = self.ResetPosition;
+	addon.GUI.SetFrameToLastPosition(frame, "DataManager");
 	KrowiAF_DataManagerFrameCloseButton:SetScript("OnKeyDown", function(selfFunc, key)
 		if key == GetBindingKey("TOGGLEGAMEMENU") then
 			if selfFunc:GetParent():IsShown() then
@@ -18,7 +20,6 @@ function dataManagerFrame:Load()
 		selfFunc:SetPropagateKeyboardInput(true);
 	end);
 
-	frame.ResetPosition = self.ResetPosition;
 	addon.GUI.DataManagerFrame = frame;
 
 	frame.Inset:ClearAllPoints();
@@ -32,10 +33,5 @@ function dataManagerFrame:ResetPosition()
         X = 150,
         Y = -80
     };
-    if not self.ClearAllPoints then
-		return;
-	end
-	local pos = SavedData.RememberLastPosition["DataManager"];
-	self:ClearAllPoints();
-	self:SetPoint("TOPLEFT", pos.X, pos.Y);
+	addon.GUI.SetFrameToLastPosition(self, "DataManager");
 end

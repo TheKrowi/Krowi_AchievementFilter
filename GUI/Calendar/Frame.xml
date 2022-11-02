@@ -3,9 +3,9 @@
 
 	<Frame name="KrowiAF_CalendarFrame_Template" mixin="KrowiAF_CalendarFrameMixin" toplevel="true" enableMouse="true" enableKeyboard="true" frameStrata="HIGH" virtual="true" hidden="true">
 		<Size x="659" y="624"/>
-		<Anchors>
+		<!-- <Anchors>
 			<Anchor point="TOPLEFT" x="15" y="-80"/>
-		</Anchors>
+		</Anchors> -->
 		<Layers>
 			<Layer level="BORDER">
 				<!-- top textures -->

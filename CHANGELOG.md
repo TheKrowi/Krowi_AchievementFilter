@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 - Zygor achievement button icons on KAF tabs
 - Tooltip data for units needing /love for To All The Squirrels I've Loved Before, To All The Squirrels Who Shared My Life, To All the Squirrels Who Cared for Me, To All the Squirrels I Once Caressed?, To All the Squirrels Through Time and Space, To All the Squirrels I Love Despite Their Scars, To All the Squirrels I Set Sail to See, To All the Squirrels I've Loved and Lost (and To All the Squirrels Hidden Till Now once beta is available again)
 
+### Changed
+- Unchecking Make windows movable now properly makes the affected windows static again
+
+### Fixed
+- Make windows movable should no longer throw errors
+
 ## 45.4 - 2022-10-28
 ### Wrath Classic
 - ElvUI plugin should no longer cause errors when ElvUI is not enabled

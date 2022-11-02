@@ -84,8 +84,19 @@ local maxDaysPerMonth = 42; -- 6 weeks
 
 function frame:Load()
 	local frame2 = CreateFrame("Frame", "KrowiAF_AchievementCalendarFrame", UIParent, "KrowiAF_CalendarFrame_Template");
+	frame2.ResetPosition = self.ResetPosition;
+	addon.GUI.SetFrameToLastPosition(frame2, "Calendar");
 
 	addon.GUI.Calendar.Frame = frame2; -- Overwrite with the actual frame since all functions are injected to it
+end
+
+function frame:ResetPosition()
+    SavedData.RememberLastPosition = SavedData.RememberLastPosition or {};
+    SavedData.RememberLastPosition["Calendar"] = {
+        X = 150,
+        Y = -80
+    };
+	addon.GUI.SetFrameToLastPosition(self, "Calendar");
 end
 
 function KrowiAF_CalendarFrameTodayFrame_OnUpdate(self, elapsed)

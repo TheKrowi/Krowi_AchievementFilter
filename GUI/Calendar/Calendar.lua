@@ -45,17 +45,3 @@ function calendar:CreateCalendarButton()
 	end);
     self.Button = button;
 end
-
-function calendar:ResetFramePosition()
-    SavedData.RememberLastPosition = SavedData.RememberLastPosition or {};
-    SavedData.RememberLastPosition["Calendar"] = {
-        X = 150,
-        Y = -80
-    };
-    if not self.Frame.ClearAllPoints then
-        return;
-    end
-	local pos = SavedData.RememberLastPosition["Calendar"];
-	self.Frame:ClearAllPoints();
-	self.Frame:SetPoint("TOPLEFT", pos.X, pos.Y);
-end

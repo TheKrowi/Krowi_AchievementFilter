@@ -5,7 +5,7 @@
     <Frame name="KrowiAF_DataManagerFrame_Template" toplevel="true" parent="UIParent" enableMouse="true" inherits="ButtonFrameTemplate" mixin="KrowiAF_DataManagerFrameMixin" virtual="true" hidden="true">
         <Size x="814" y="426"/> <!-- 426 -->
         <Anchors>
-			<Anchor point="TOPLEFT" x="150" y="-80"/>
+			<Anchor point="CENTER" x="0" y="0"/>
         </Anchors>
         <Frames>
             <!-- <Frame parentKey="PortraitOverlay" frameLevel="300" setAllPoints="true">

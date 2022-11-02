@@ -14,7 +14,6 @@ function gui:LoadWithAddon()
     gui.AlertSystem:Load();
     addon.Filters:InjectDefaults();
     addon.GUI.AchievementFrameHeader.InjectOptions();
-    addon.GUI.DataManagerFrame:Load();
 end
 
 local defaultAchievementFrameWidth;
@@ -39,6 +38,9 @@ function gui:LoadWithBlizzard_AchievementUI()
 
     gui.Search:Load();
     addon.GUI.Calendar:Load();
+    addon.GUI.DataManagerFrame:Load();
+    AchievementFrame.ResetPosition = addon.GUI.ResetAchievementWindowPosition;
+	addon.GUI.SetFrameToLastPosition(AchievementFrame, "AchievementWindow");
 
     gui.AddDataToBlizzardTabs();
 
@@ -124,12 +126,7 @@ function gui.ResetAchievementWindowPosition()
         X = 96,
         Y = -116
     };
-    if not AchievementFrame or not AchievementFrameHeader then
-        return;
-    end
-    local pos = SavedData.RememberLastPosition["AchievementWindow"];
-    AchievementFrame:ClearAllPoints();
-    AchievementFrame:SetPoint("TOPLEFT", pos.X, pos.Y);
+	addon.GUI.SetFrameToLastPosition(AchievementFrame, "AchievementWindow");
 end
 
 function gui.SetCloseButtonOnKeyDown()
@@ -450,4 +447,20 @@ function gui.LoadOldAchievementFrameTabsCompatibility()
     for i, t in next, addon.TabsOrder do
         addon.Tabs[t].Button.Text = addon.Tabs[t].Button.text;
     end
+end
+
+function gui.SetFrameToLastPosition(frame, rememberLastPositionOption)
+    if not frame or not frame.ClearAllPoints then -- frame does not exist yet
+        return;
+    end
+
+    SavedData.RememberLastPosition = SavedData.RememberLastPosition or {};
+    if not SavedData.RememberLastPosition[rememberLastPositionOption] then
+        frame:ResetPosition();
+        return;
+    end
+
+    local pos = SavedData.RememberLastPosition[rememberLastPositionOption];
+	frame:ClearAllPoints();
+	frame:SetPoint("TOPLEFT", pos.X, pos.Y);
 end

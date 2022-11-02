@@ -442,9 +442,37 @@ function addon.HookAchievementFrameOnShow()
     -- end
 end
 
-local function MakeMovable(frame, rememberLastPositionOption, target)
-    if frame:IsMovable() then -- Do not hook it multiple times if another addon already made it movable
+local function MakeStatic(frame, rememberLastPositionOption)
+    if not frame or not frame.ClearAllPoints or not frame:IsMovable() then
         return;
+    end
+
+    if rememberLastPositionOption then
+        addon.GUI.SetFrameToLastPosition(frame, rememberLastPositionOption);
+    end
+
+    frame:SetMovable(false);
+    frame:EnableMouse(false);
+    frame:SetScript("OnMouseDown", function(frame, button)
+    end);
+    frame:SetScript("OnMouseUp", function(frame, button)
+    end);
+end
+
+function addon.MakeWindowStatic()
+    MakeStatic(AchievementFrame, "AchievementWindow");
+    MakeStatic(AchievementFrame.Header);
+    MakeStatic(addon.GUI.Calendar.Frame, "Calendar");
+    MakeStatic(addon.GUI.DataManagerFrame, "DataManager");
+end
+
+local function MakeMovable(frame, rememberLastPositionOption, target)
+    if not frame or not frame.ClearAllPoints or frame:IsMovable() then -- Do not make it movable multiple times if another addon already did it
+        return;
+    end
+
+    if not target then
+        addon.GUI.SetFrameToLastPosition(frame, rememberLastPositionOption);
     end
 
     target = target or frame;
@@ -469,36 +497,10 @@ local function MakeMovable(frame, rememberLastPositionOption, target)
 end
 
 function addon.MakeWindowMovable()
-    SavedData.RememberLastPosition = SavedData.RememberLastPosition or {};
-    if not SavedData.RememberLastPosition["AchievementWindow"] then
-        addon.GUI.ResetAchievementWindowPosition();
-    end
-    if not SavedData.RememberLastPosition["Calendar"] then
-        addon.GUI.Calendar:ResetFramePosition();
-    end
-    if not SavedData.RememberLastPosition["DataManager"] then
-        addon.GUI.DataManagerFrame:ResetPosition();
-    end
-
-    if not addon.Options.db.Window.Movable then
-        return;
-    end
-    if AchievementFrame and AchievementFrame.Header then
-        local pos = SavedData.RememberLastPosition["AchievementWindow"];
-        AchievementFrame:SetPoint("TOPLEFT", pos.X, pos.Y);
-        MakeMovable(AchievementFrame, "AchievementWindow");
-        MakeMovable(AchievementFrame.Header, "AchievementWindow", AchievementFrame);
-    end
-    if addon.GUI.Calendar.Frame then
-        local pos = SavedData.RememberLastPosition["Calendar"];
-        addon.GUI.Calendar.Frame:SetPoint("TOPLEFT", pos.X, pos.Y);
-        MakeMovable(addon.GUI.Calendar.Frame, "Calendar");
-    end
-    if addon.GUI.DataManagerFrame then
-        local pos = SavedData.RememberLastPosition["DataManager"];
-        addon.GUI.DataManagerFrame:SetPoint("TOPLEFT", pos.X, pos.Y);
-        MakeMovable(addon.GUI.DataManagerFrame, "DataManager");
-    end
+    MakeMovable(AchievementFrame, "AchievementWindow");
+    MakeMovable(AchievementFrame.Header, "AchievementWindow", AchievementFrame);
+    MakeMovable(addon.GUI.Calendar.Frame, "Calendar");
+    MakeMovable(addon.GUI.DataManagerFrame, "DataManager");
 end
 
 function addon.GetSecondsSince(date)
