@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-01 21-30-04 ]] --
+-- [[ Exported at 2022-11-03 08-55-46 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -300,5 +300,17 @@ function exportedUnitData.Load(u)
     AddU(u, "174844", 14731, 10, addon.L["Needs /love for achievement"], addon.L["Already /loved for achievement"]);
     AddU(u, "165767", 14731, 11, addon.L["Needs /love for achievement"], addon.L["Already /loved for achievement"]);
     AddU(u, "174641", 14731, 12, addon.L["Needs /love for achievement"], addon.L["Already /loved for achievement"]);
+    AddU(u, "189737", 16729, 1, addon.L["Needs /love for achievement"], addon.L["Already /loved for achievement"]);
+    AddU(u, "192135", 16729, 2, addon.L["Needs /love for achievement"], addon.L["Already /loved for achievement"]);
+    AddU(u, "193756", 16729, 3, addon.L["Needs /love for achievement"], addon.L["Already /loved for achievement"]);
+    AddU(u, "186306", 16729, 4, addon.L["Needs /love for achievement"], addon.L["Already /loved for achievement"]);
+    AddU(u, "192948", 16729, 5, addon.L["Needs /love for achievement"], addon.L["Already /loved for achievement"]);
+    AddU(u, "192942", 16729, 6, addon.L["Needs /love for achievement"], addon.L["Already /loved for achievement"]);
+    AddU(u, "193594", 16729, 7, addon.L["Needs /love for achievement"], addon.L["Already /loved for achievement"]);
+    AddU(u, "186481", 16729, 8, addon.L["Needs /love for achievement"], addon.L["Already /loved for achievement"]);
+    AddU(u, "197718", 16729, 9, addon.L["Needs /love for achievement"], addon.L["Already /loved for achievement"]);
+    AddU(u, "195869", 16729, 10, addon.L["Needs /love for achievement"], addon.L["Already /loved for achievement"]);
+    AddU(u, "196652", 16729, 11, addon.L["Needs /love for achievement"], addon.L["Already /loved for achievement"]);
+    AddU(u, "185148", 16729, 12, addon.L["Needs /love for achievement"], addon.L["Already /loved for achievement"]);
 end
 
