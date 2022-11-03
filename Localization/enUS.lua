@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-02 22-50-04 ]] --
+-- [[ Exported at 2022-11-03 08-43-06 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -399,14 +399,14 @@ L["First day of the week"] = "First day of the week";
 L["First day of the week Desc"] = "The first day of the week the calendar should use.";
 L["Units"] = "Units";
 L["Show Criteria"] = "Show Criteria";
-L["Show Criteria Desc"] = "Show Criteria Desc";
+L["Show Criteria Desc"] = "Show Achievement Criteria on units that are required for an achievement (e.g., /love {criteria} for {achievement}).";
 L["Show Criteria If"] = "Show Criteria If";
 L["Achievement is Completed"] = "Achievement is Completed";
-L["Achievement is Completed Desc"] = "Achievement is Completed Desc";
+L["Achievement is Completed Desc"] = "Show Achievement Criteria even if the Achievement is already completed.";
 L["Achievement was Not Earned by Me"] = "Achievement was Not Earned by Me";
-L["Achievement was Not Earned by Me Desc"] = "Achievement was Not Earned by Me Desc";
+L["Achievement was Not Earned by Me Desc"] = "Show Achievement Criteria if the Achievement was not yet earned by the current character.";
 L["Criteria is Completed"] = "Criteria is Completed";
-L["Criteria is Completed Desc"] = "Criteria is Completed Desc";
+L["Criteria is Completed Desc"] = "Show Achievement Criteria even if the Achievement Criteria is already completed.";
 L["Event Reminders"] = "Event Reminders";
 L["Pop ups"] = "Pop ups";
 L["Show pop ups"] = "Show pop ups";

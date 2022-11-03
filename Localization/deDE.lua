@@ -1,8 +1,8 @@
--- [[ Exported at 2022-11-02 22-50-04 ]] --
+-- [[ Exported at 2022-11-03 08-43-06 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-10-16 ]] --
+-- [[ German translation by Ta, 2022-11-03 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -192,6 +192,14 @@ L["Dragonbane Keep"] = "Drachenfluchfestung";
 L["Slagmire"] = "Schlackensumpf";
 L["Scalecracker Keep"] = "Schuppenknackergipfel";
 L["Primalist Tomorrow"] = "Urzeitliche Primalisten";
+L["Dragonflight pre-patch - Firestorms"] = "Dragonflight Pre-patch - Feuerstürme";
+L["Dragonflight pre-patch - Sandstorms"] = "Dragonflight Pre-patch - Sandstürme";
+L["Dragonflight pre-patch - Snowstorms"] = "Dragonflight Pre-patch - Schneestürme";
+L["Dragonflight pre-patch - Thunderstorms"] = "Dragonflight Pre-patch - Gewitterstürme";
+L["Badlands"] = "Ödland";
+L["Northern Barrens"] = "Nördliches Brachland";
+L["Tirisfal Glades"] = "Tirisfal";
+L["Un'Goro Crater"] = "Der Krater von Un'Goro";
 L["This achievement is no longer obtainable"] = "Dieser Erfolg kann nicht länger erzielt werden.";
 L["Not earned by:"] = "Nicht erzielt durch:";
 L["Part of a chain"] = "Teil einer Folgequest";
@@ -219,7 +227,9 @@ L["Patch"] = "Patch";
 L["Temporary Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}.";
 L["Hide Not Earned By if current character earned the achievement"] = "{notEarnedBy} ausblenden, wenn der aktuelle Charakter den Erfolg schon erlangt hat";
 L["Hide Not Earned By if current character earned the achievement Desc"] = "Blendet den Abschnitt {notEarnedBy} aus, wenn der aktuelle Charakter den Erfolg erworben hat. Der Abschnitt {earnedBy} wird ansonsten weiterhin wie gewohnt angezeigt.";
-L["Data Manager"] = "Daten-Manager";
+L["Needs /love for achievement"] = "Benötigt deine /liebe für {achievement}";
+L["Already /loved for achievement"] = "Hat deine Liebe für {achievement} schon erhalten";
+L["Data Manager"] = "Charakterübersicht";
 L["Header tooltip"] = "Überschrift-Tooltip";
 L["Ignore"] = "Ignorieren";
 L["Wowhead"] = "Wowhead";
@@ -289,7 +299,7 @@ L["Layout"] = "Layout";
 L["Window"] = "Fenster";
 L["Movable"] = "Bewegliche Fenster";
 L["Make windows movable"] = "Fenster verschiebbar machen";
-L["Make windows movable Desc"] = "Macht das Erfolgsfenster und die Kalenderansicht beweglich/nicht beweglich.\n\nWenn diese Option aktiviert ist, wird das Erfolgsfenster bei gedrückter linker Maustaste verschoben. Dies gilt für die Kopfzeile und die Ränder.";
+L["Make windows movable Desc"] = "Macht das Erfolgsfenster, die Kalenderansicht und die Charakterübersicht beweglich/nicht beweglich.\n\nWenn diese Option aktiviert ist, wird das jeweilige Fenster bei gedrückter linker Maustaste verschoben. Dies gilt für die Kopfzeile und die Ränder.";
 L["Remember frame position"] = "{frame} Position merken";
 L["Remember frame position Desc"] = "Die Position des {frame} wird gespeichert. Dadurch bleibt der {frame} bei der nächsten Anmeldung an seiner letzten bekannten Position.";
 L["Achievement Window"] = "Erfolg-Fenster";

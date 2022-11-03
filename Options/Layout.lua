@@ -1185,7 +1185,10 @@ options.OptionsTable.args["Layout"] = {
                         ShowCriteria = {
                             order = 1.1, type = "toggle", width = 1 * widthMultiplier,
                             name = addon.L["Show Criteria"],
-                            desc = addon.L["Show Criteria Desc"],
+                            desc = addon.L["Show Criteria Desc"]:ReplaceVars{
+                                criteria = (GetAchievementCriteriaInfo(1206, 1)),
+                                achievement = (select(2, addon.GetAchievementInfo(1206)))
+                            },
                             get = function() return addon.Options.db.Tooltip.Units.ShowCriteria; end,
                             set = function()
                                 addon.Options.db.Tooltip.Units.ShowCriteria = not addon.Options.db.Tooltip.Units.ShowCriteria;
