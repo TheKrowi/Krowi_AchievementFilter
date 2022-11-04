@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-04 14-43-40 ]] --
+-- [[ Exported at 2022-11-04 15-04-21 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -29,272 +29,333 @@ function exportedTooltipData.Load(d)
     texts[3] = addon.L["Needs to be killed for achievement"];
     texts[5] = addon.L["Needs to be cooked for achievement"];
 
-    AddD(d, 25677, tdt.Unit, 1206, 1, texts[1], texts[2]);
-    AddD(d, 6368, tdt.Unit, 1206, 2, texts[1], texts[2]);
-    AddD(d, 62019, tdt.Unit, 1206, 2, texts[1], texts[2]);
-    AddD(d, 167914, tdt.Unit, 1206, 2, texts[1], texts[2]);
-    AddD(d, 161221, tdt.Unit, 1206, 2, texts[1], texts[2]);
-    AddD(d, 35610, tdt.Unit, 1206, 2, texts[1], texts[2]);
-    AddD(d, 112694, tdt.Unit, 1206, 2, texts[1], texts[2]);
-    AddD(d, 66163, tdt.Unit, 1206, 2, texts[1], texts[2]);
-    AddD(d, 112698, tdt.Unit, 1206, 2, texts[1], texts[2]);
-    AddD(d, 117203, tdt.Unit, 1206, 2, texts[1], texts[2]);
-    AddD(d, 137538, tdt.Unit, 1206, 2, texts[1], texts[2]);
-    AddD(d, 197382, tdt.Unit, 1206, 2, texts[1], texts[2]);
-    AddD(d, 620, tdt.Unit, 1206, 3, texts[1], texts[2]);
-    AddD(d, 62664, tdt.Unit, 1206, 3, texts[1], texts[2]);
-    AddD(d, 197384, tdt.Unit, 1206, 3, texts[1], texts[2]);
-    AddD(d, 138666, tdt.Unit, 1206, 3, texts[1], texts[2]);
-    AddD(d, 148500, tdt.Unit, 1206, 3, texts[1], texts[2]);
-    AddD(d, 129926, tdt.Unit, 1206, 3, texts[1], texts[2]);
-    AddD(d, 150443, tdt.Unit, 1206, 3, texts[1], texts[2]);
-    AddD(d, 134955, tdt.Unit, 1206, 3, texts[1], texts[2]);
-    AddD(d, 150298, tdt.Unit, 1206, 3, texts[1], texts[2]);
-    AddD(d, 621, tdt.Unit, 1206, 3, texts[1], texts[2]);
-    AddD(d, 144478, tdt.Unit, 1206, 3, texts[1], texts[2]);
-    AddD(d, 173201, tdt.Unit, 1206, 3, texts[1], texts[2]);
-    AddD(d, 132981, tdt.Unit, 1206, 3, texts[1], texts[2]);
-    AddD(d, 2442, tdt.Unit, 1206, 4, texts[1], texts[2]);
-    AddD(d, 71444, tdt.Unit, 1206, 4, texts[1], texts[2]);
-    AddD(d, 883, tdt.Unit, 1206, 5, texts[1], texts[2]);
-    AddD(d, 61750, tdt.Unit, 1206, 5, texts[1], texts[2]);
-    AddD(d, 19665, tdt.Unit, 1206, 6, texts[1], texts[2]);
-    AddD(d, 890, tdt.Unit, 1206, 7, texts[1], texts[2]);
-    AddD(d, 61165, tdt.Unit, 1206, 7, texts[1], texts[2]);
-    AddD(d, 112991, tdt.Unit, 1206, 7, texts[1], texts[2]);
-    AddD(d, 13321, tdt.Unit, 1206, 8, texts[1], texts[2]);
-    AddD(d, 61071, tdt.Unit, 1206, 8, texts[1], texts[2]);
-    AddD(d, 70495, tdt.Unit, 1206, 8, texts[1], texts[2]);
-    AddD(d, 4166, tdt.Unit, 1206, 9, texts[1], texts[2]);
-    AddD(d, 62163, tdt.Unit, 1206, 9, texts[1], texts[2]);
-    AddD(d, 124528, tdt.Unit, 1206, 9, texts[1], texts[2]);
-    AddD(d, 124701, tdt.Unit, 1206, 9, texts[1], texts[2]);
-    AddD(d, 124529, tdt.Unit, 1206, 9, texts[1], texts[2]);
-    AddD(d, 127959, tdt.Unit, 1206, 9, texts[1], texts[2]);
-    AddD(d, 5951, tdt.Unit, 1206, 10, texts[1], texts[2]);
-    AddD(d, 61751, tdt.Unit, 1206, 10, texts[1], texts[2]);
-    AddD(d, 9600, tdt.Unit, 1206, 11, texts[1], texts[2]);
-    AddD(d, 61313, tdt.Unit, 1206, 11, texts[1], texts[2]);
-    AddD(d, 67368, tdt.Unit, 1206, 11, texts[1], texts[2]);
-    AddD(d, 61080, tdt.Unit, 1206, 12, texts[1], texts[2]);
-    AddD(d, 146361, tdt.Unit, 1206, 12, texts[1], texts[2]);
-    AddD(d, 99797, tdt.Unit, 1206, 12, texts[1], texts[2]);
-    AddD(d, 96478, tdt.Unit, 1206, 12, texts[1], texts[2]);
-    AddD(d, 112028, tdt.Unit, 1206, 12, texts[1], texts[2]);
-    AddD(d, 100153, tdt.Unit, 1206, 12, texts[1], texts[2]);
-    AddD(d, 95867, tdt.Unit, 1206, 12, texts[1], texts[2]);
-    AddD(d, 96463, tdt.Unit, 1206, 12, texts[1], texts[2]);
-    AddD(d, 96472, tdt.Unit, 1206, 12, texts[1], texts[2]);
-    AddD(d, 96548, tdt.Unit, 1206, 12, texts[1], texts[2]);
-    AddD(d, 56047, tdt.Unit, 1206, 12, texts[1], texts[2]);
-    AddD(d, 56285, tdt.Unit, 1206, 12, texts[1], texts[2]);
-    AddD(d, 100150, tdt.Unit, 1206, 12, texts[1], texts[2]);
-    AddD(d, 158150, tdt.Unit, 1206, 12, texts[1], texts[2]);
-    AddD(d, 147694, tdt.Unit, 1206, 12, texts[1], texts[2]);
-    AddD(d, 94150, tdt.Unit, 1206, 12, texts[1], texts[2]);
-    AddD(d, 96477, tdt.Unit, 1206, 12, texts[1], texts[2]);
-    AddD(d, 144844, tdt.Unit, 1206, 12, texts[1], texts[2]);
-    AddD(d, 2098, tdt.Unit, 1206, 13, texts[1], texts[2]);
-    AddD(d, 61456, tdt.Unit, 1206, 13, texts[1], texts[2]);
-    AddD(d, 1933, tdt.Unit, 1206, 14, texts[1], texts[2]);
-    AddD(d, 141315, tdt.Unit, 1206, 14, texts[1], texts[2]);
-    AddD(d, 157926, tdt.Unit, 1206, 14, texts[1], texts[2]);
-    AddD(d, 160579, tdt.Unit, 1206, 14, texts[1], texts[2]);
-    AddD(d, 61170, tdt.Unit, 1206, 14, texts[1], texts[2]);
-    AddD(d, 132300, tdt.Unit, 1206, 14, texts[1], texts[2]);
-    AddD(d, 64402, tdt.Unit, 1206, 14, texts[1], texts[2]);
-    AddD(d, 141137, tdt.Unit, 1206, 14, texts[1], texts[2]);
-    AddD(d, 158224, tdt.Unit, 1206, 14, texts[1], texts[2]);
-    AddD(d, 158242, tdt.Unit, 1206, 14, texts[1], texts[2]);
-    AddD(d, 60761, tdt.Unit, 1206, 15, texts[1], texts[2]);
-    AddD(d, 17467, tdt.Unit, 1206, 16, texts[1], texts[2]);
-    AddD(d, 61255, tdt.Unit, 1206, 16, texts[1], texts[2]);
-    AddD(d, 80890, tdt.Unit, 1206, 16, texts[1], texts[2]);
-    AddD(d, 114571, tdt.Unit, 1206, 16, texts[1], texts[2]);
-    AddD(d, 1412, tdt.Unit, 1206, 17, texts[1], texts[2]);
-    AddD(d, 61081, tdt.Unit, 1206, 17, texts[1], texts[2]);
-    AddD(d, 63607, tdt.Unit, 1206, 17, texts[1], texts[2]);
-    AddD(d, 100152, tdt.Unit, 1206, 17, texts[1], texts[2]);
-    AddD(d, 155638, tdt.Unit, 1206, 17, texts[1], texts[2]);
-    AddD(d, 73915, tdt.Unit, 1206, 17, texts[1], texts[2]);
-    AddD(d, 144846, tdt.Unit, 1206, 17, texts[1], texts[2]);
-    AddD(d, 100151, tdt.Unit, 1206, 17, texts[1], texts[2]);
-    AddD(d, 74001, tdt.Unit, 1206, 17, texts[1], texts[2]);
-    AddD(d, 56046, tdt.Unit, 1206, 17, texts[1], texts[2]);
-    AddD(d, 56284, tdt.Unit, 1206, 17, texts[1], texts[2]);
-    AddD(d, 95654, tdt.Unit, 1206, 17, texts[1], texts[2]);
-    AddD(d, 96011, tdt.Unit, 1206, 17, texts[1], texts[2]);
-    AddD(d, 74713, tdt.Unit, 1206, 17, texts[1], texts[2]);
-    AddD(d, 99798, tdt.Unit, 1206, 17, texts[1], texts[2]);
-    AddD(d, 80881, tdt.Unit, 1206, 17, texts[1], texts[2]);
-    AddD(d, 25679, tdt.Unit, 1206, 18, texts[1], texts[2]);
-    AddD(d, 10685, tdt.Unit, 1206, 19, texts[1], texts[2]);
-    AddD(d, 1420, tdt.Unit, 1206, 20, texts[1], texts[2]);
-    AddD(d, 61369, tdt.Unit, 1206, 20, texts[1], texts[2]);
-    AddD(d, 174540, tdt.Unit, 1206, 20, texts[1], texts[2]);
-    AddD(d, 150305, tdt.Unit, 1206, 20, texts[1], texts[2]);
-    AddD(d, 2620, tdt.Unit, 1206, 21, texts[1], texts[2]);
-    AddD(d, 61141, tdt.Unit, 1206, 21, texts[1], texts[2]);
-    AddD(d, 165757, tdt.Unit, 1206, 21, texts[1], texts[2]);
-    AddD(d, 75486, tdt.Unit, 1206, 21, texts[1], texts[2]);
-    AddD(d, 77908, tdt.Unit, 1206, 21, texts[1], texts[2]);
-    AddD(d, 16068, tdt.Unit, 2556, 1, texts[3], texts[4]);
-    AddD(d, 62022, tdt.Unit, 2556, 1, texts[3], texts[4]);
-    AddD(d, 4953, tdt.Unit, 2556, 2, texts[3], texts[4]);
-    AddD(d, 61367, tdt.Unit, 2556, 2, texts[3], texts[4]);
-    AddD(d, 14881, tdt.Unit, 2556, 3, texts[3], texts[4]);
-    AddD(d, 61327, tdt.Unit, 2556, 3, texts[3], texts[4]);
-    AddD(d, 66580, tdt.Unit, 2556, 3, texts[3], texts[4]);
-    AddD(d, 97327, tdt.Unit, 2556, 3, texts[3], texts[4]);
-    AddD(d, 106469, tdt.Unit, 2556, 3, texts[3], texts[4]);
-    AddD(d, 133222, tdt.Unit, 2556, 3, texts[3], texts[4]);
-    AddD(d, 156544, tdt.Unit, 2556, 3, texts[3], texts[4]);
-    AddD(d, 168702, tdt.Unit, 2556, 3, texts[3], texts[4]);
-    AddD(d, 168703, tdt.Unit, 2556, 3, texts[3], texts[4]);
-    AddD(d, 1412, tdt.Unit, 2556, 4, texts[3], texts[4]);
-    AddD(d, 61081, tdt.Unit, 2556, 4, texts[3], texts[4]);
-    AddD(d, 63607, tdt.Unit, 2556, 4, texts[3], texts[4]);
-    AddD(d, 80881, tdt.Unit, 2556, 4, texts[3], texts[4]);
-    AddD(d, 95654, tdt.Unit, 2556, 4, texts[3], texts[4]);
-    AddD(d, 96011, tdt.Unit, 2556, 4, texts[3], texts[4]);
-    AddD(d, 99798, tdt.Unit, 2556, 4, texts[3], texts[4]);
-    AddD(d, 100151, tdt.Unit, 2556, 4, texts[3], texts[4]);
-    AddD(d, 100152, tdt.Unit, 2556, 4, texts[3], texts[4]);
-    AddD(d, 144846, tdt.Unit, 2556, 4, texts[3], texts[4]);
-    AddD(d, 32428, tdt.Unit, 2556, 5, texts[3], texts[4]);
-    AddD(d, 24270, tdt.Unit, 2556, 6, texts[3], texts[4]);
-    AddD(d, 62640, tdt.Unit, 2556, 6, texts[3], texts[4]);
-    AddD(d, 6271, tdt.Unit, 2556, 7, texts[3], texts[4]);
-    AddD(d, 61143, tdt.Unit, 2556, 7, texts[3], texts[4]);
-    AddD(d, 28202, tdt.Unit, 2556, 8, texts[3], texts[4]);
-    AddD(d, 4076, tdt.Unit, 2556, 9, texts[3], texts[4]);
-    AddD(d, 61169, tdt.Unit, 2556, 9, texts[3], texts[4]);
-    AddD(d, 82454, tdt.Unit, 2556, 9, texts[3], texts[4]);
-    AddD(d, 2914, tdt.Unit, 2556, 10, texts[3], texts[4]);
-    AddD(d, 47794, tdt.Unit, 2556, 10, texts[3], texts[4]);
-    AddD(d, 61142, tdt.Unit, 2556, 10, texts[3], texts[4]);
-    AddD(d, 97376, tdt.Unit, 2556, 10, texts[3], texts[4]);
-    AddD(d, 106470, tdt.Unit, 2556, 10, texts[3], texts[4]);
-    AddD(d, 182787, tdt.Unit, 2556, 10, texts[3], texts[4]);
-    AddD(d, 192561, tdt.Unit, 2556, 10, texts[3], texts[4]);
-    AddD(d, 193640, tdt.Unit, 2556, 10, texts[3], texts[4]);
-    AddD(d, 32261, tdt.Unit, 2556, 11, texts[3], texts[4]);
-    AddD(d, 62435, tdt.Unit, 2556, 11, texts[3], texts[4]);
-    AddD(d, 3300, tdt.Unit, 2556, 12, texts[3], texts[4]);
-    AddD(d, 61325, tdt.Unit, 2556, 12, texts[3], texts[4]);
-    AddD(d, 115086, tdt.Unit, 2556, 12, texts[3], texts[4]);
-    AddD(d, 133223, tdt.Unit, 2556, 12, texts[3], texts[4]);
-    AddD(d, 16030, tdt.Unit, 2556, 13, texts[3], texts[4]);
-    AddD(d, 61753, tdt.Unit, 2556, 13, texts[3], texts[4]);
-    AddD(d, 89832, tdt.Unit, 2556, 13, texts[3], texts[4]);
-    AddD(d, 97560, tdt.Unit, 2556, 13, texts[3], texts[4]);
-    AddD(d, 97641, tdt.Unit, 2556, 13, texts[3], texts[4]);
-    AddD(d, 15476, tdt.Unit, 2556, 14, texts[3], texts[4]);
-    AddD(d, 61326, tdt.Unit, 2556, 14, texts[3], texts[4]);
-    AddD(d, 117659, tdt.Unit, 2556, 14, texts[3], texts[4]);
-    AddD(d, 24174, tdt.Unit, 2556, 15, texts[3], texts[4]);
-    AddD(d, 62641, tdt.Unit, 2556, 15, texts[3], texts[4]);
-    AddD(d, 9699, tdt.Unit, 2556, 16, texts[3], texts[4]);
-    AddD(d, 61328, tdt.Unit, 2556, 16, texts[3], texts[4]);
-    AddD(d, 195260, tdt.Unit, 2556, 16, texts[3], texts[4]);
-    AddD(d, 32258, tdt.Unit, 2556, 17, texts[3], texts[4]);
-    AddD(d, 61438, tdt.Unit, 2556, 17, texts[3], texts[4]);
-    AddD(d, 4075, tdt.Unit, 2556, 18, texts[3], texts[4]);
-    AddD(d, 61366, tdt.Unit, 2556, 18, texts[3], texts[4]);
-    AddD(d, 74908, tdt.Unit, 2556, 18, texts[3], texts[4]);
-    AddD(d, 76704, tdt.Unit, 2556, 18, texts[3], texts[4]);
-    AddD(d, 80093, tdt.Unit, 2556, 18, texts[3], texts[4]);
-    AddD(d, 85722, tdt.Unit, 2556, 18, texts[3], texts[4]);
-    AddD(d, 92251, tdt.Unit, 2556, 18, texts[3], texts[4]);
-    AddD(d, 99796, tdt.Unit, 2556, 18, texts[3], texts[4]);
-    AddD(d, 115087, tdt.Unit, 2556, 18, texts[3], texts[4]);
-    AddD(d, 116249, tdt.Unit, 2556, 18, texts[3], texts[4]);
-    AddD(d, 116495, tdt.Unit, 2556, 18, texts[3], texts[4]);
-    AddD(d, 141587, tdt.Unit, 2556, 18, texts[3], texts[4]);
-    AddD(d, 144845, tdt.Unit, 2556, 18, texts[3], texts[4]);
-    AddD(d, 158050, tdt.Unit, 2556, 18, texts[3], texts[4]);
-    AddD(d, 169044, tdt.Unit, 2556, 18, texts[3], texts[4]);
-    AddD(d, 29328, tdt.Unit, 2557, 1, texts[1], texts[2]);
-    AddD(d, 62693, tdt.Unit, 2557, 1, texts[1], texts[2]);
-    AddD(d, 150873, tdt.Unit, 2557, 1, texts[1], texts[2]);
-    AddD(d, 31685, tdt.Unit, 2557, 2, texts[1], texts[2]);
-    AddD(d, 62695, tdt.Unit, 2557, 2, texts[1], texts[2]);
-    AddD(d, 28407, tdt.Unit, 2557, 3, texts[1], texts[2]);
-    AddD(d, 24746, tdt.Unit, 2557, 4, texts[1], texts[2]);
-    AddD(d, 32498, tdt.Unit, 2557, 5, texts[1], texts[2]);
-    AddD(d, 31889, tdt.Unit, 2557, 6, texts[1], texts[2]);
-    AddD(d, 62818, tdt.Unit, 2557, 6, texts[1], texts[2]);
-    AddD(d, 6653, tdt.Unit, 2557, 7, texts[1], texts[2]);
-    AddD(d, 61368, tdt.Unit, 2557, 7, texts[1], texts[2]);
-    AddD(d, 97420, tdt.Unit, 2557, 7, texts[1], texts[2]);
-    AddD(d, 9700, tdt.Unit, 2557, 8, texts[1], texts[2]);
-    AddD(d, 61383, tdt.Unit, 2557, 8, texts[1], texts[2]);
-    AddD(d, 31890, tdt.Unit, 2557, 9, texts[1], texts[2]);
-    AddD(d, 61677, tdt.Unit, 2557, 9, texts[1], texts[2]);
-    AddD(d, 26503, tdt.Unit, 2557, 10, texts[1], texts[2]);
-    AddD(d, 28093, tdt.Unit, 2557, 11, texts[1], texts[2]);
-    AddD(d, 28440, tdt.Unit, 2557, 12, texts[1], texts[2]);
-    AddD(d, 62835, tdt.Unit, 2557, 12, texts[1], texts[2]);
-    AddD(d, 156526, tdt.Item, 12744, 1, texts[5], texts[6], fac.Alliance);
-    AddD(d, 162288, tdt.Item, 12744, 1, texts[5], texts[6], fac.Alliance);
-    AddD(d, 162289, tdt.Item, 12744, 1, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259421, tdt.Spell, 12744, 1, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259422, tdt.Spell, 12744, 1, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259423, tdt.Spell, 12744, 1, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259418, tdt.Spell, 12744, 2, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259420, tdt.Spell, 12744, 2, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259419, tdt.Spell, 12744, 2, texts[5], texts[6], fac.Alliance);
-    AddD(d, 156525, tdt.Item, 12744, 2, texts[5], texts[6], fac.Alliance);
-    AddD(d, 162287, tdt.Item, 12744, 2, texts[5], texts[6], fac.Alliance);
-    AddD(d, 162292, tdt.Item, 12744, 3, texts[5], texts[6], fac.Alliance);
-    AddD(d, 154889, tdt.Item, 12744, 3, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259432, tdt.Spell, 12744, 3, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259430, tdt.Spell, 12744, 3, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259431, tdt.Spell, 12744, 3, texts[5], texts[6], fac.Alliance);
-    AddD(d, 154882, tdt.Item, 12744, 4, texts[5], texts[6], fac.Alliance);
-    AddD(d, 162286, tdt.Item, 12744, 4, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259414, tdt.Spell, 12744, 4, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259415, tdt.Spell, 12744, 4, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259416, tdt.Spell, 12744, 4, texts[5], texts[6], fac.Alliance);
-    AddD(d, 154881, tdt.Item, 12744, 5, texts[5], texts[6], fac.Alliance);
-    AddD(d, 162285, tdt.Item, 12744, 5, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259412, tdt.Spell, 12744, 5, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259411, tdt.Spell, 12744, 5, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259413, tdt.Spell, 12744, 5, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259438, tdt.Spell, 12744, 6, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259436, tdt.Spell, 12744, 6, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259437, tdt.Spell, 12744, 6, texts[5], texts[6], fac.Alliance);
-    AddD(d, 162294, tdt.Item, 12744, 6, texts[5], texts[6], fac.Alliance);
-    AddD(d, 154887, tdt.Item, 12744, 6, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259442, tdt.Spell, 12744, 7, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259443, tdt.Spell, 12744, 7, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259444, tdt.Spell, 12744, 7, texts[5], texts[6], fac.Alliance);
-    AddD(d, 162296, tdt.Item, 12744, 7, texts[5], texts[6], fac.Alliance);
-    AddD(d, 154885, tdt.Item, 12744, 7, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259424, tdt.Spell, 12744, 8, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259425, tdt.Spell, 12744, 8, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259426, tdt.Spell, 12744, 8, texts[5], texts[6], fac.Alliance);
-    AddD(d, 154883, tdt.Item, 12744, 8, texts[5], texts[6], fac.Alliance);
-    AddD(d, 162290, tdt.Item, 12744, 8, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259441, tdt.Spell, 12744, 9, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259439, tdt.Spell, 12744, 9, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259440, tdt.Spell, 12744, 9, texts[5], texts[6], fac.Alliance);
-    AddD(d, 154888, tdt.Item, 12744, 9, texts[5], texts[6], fac.Alliance);
-    AddD(d, 162295, tdt.Item, 12744, 9, texts[5], texts[6], fac.Alliance);
-    AddD(d, 162293, tdt.Item, 12744, 10, texts[5], texts[6], fac.Alliance);
-    AddD(d, 154891, tdt.Item, 12744, 10, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259434, tdt.Spell, 12744, 10, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259433, tdt.Spell, 12744, 10, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259435, tdt.Spell, 12744, 10, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259447, tdt.Spell, 12744, 11, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259445, tdt.Spell, 12744, 11, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259446, tdt.Spell, 12744, 11, texts[5], texts[6], fac.Alliance);
-    AddD(d, 162297, tdt.Item, 12744, 11, texts[5], texts[6], fac.Alliance);
-    AddD(d, 154886, tdt.Item, 12744, 11, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259427, tdt.Spell, 12744, 12, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259429, tdt.Spell, 12744, 12, texts[5], texts[6], fac.Alliance);
-    AddD(d, 259428, tdt.Spell, 12744, 12, texts[5], texts[6], fac.Alliance);
-    AddD(d, 154884, tdt.Item, 12744, 12, texts[5], texts[6], fac.Alliance);
-    AddD(d, 162291, tdt.Item, 12744, 12, texts[5], texts[6], fac.Alliance);
+    AddD(d, 25677, tdt.Unit, 1206, 1, texts[1], texts[2]); -- "Borean Frog"
+    AddD(d, 6368, tdt.Unit, 1206, 2, texts[1], texts[2]); -- "Cat"
+    AddD(d, 62019, tdt.Unit, 1206, 2, texts[1], texts[2]); -- "Cat"
+    AddD(d, 167914, tdt.Unit, 1206, 2, texts[1], texts[2]); -- "Cat"
+    AddD(d, 161221, tdt.Unit, 1206, 2, texts[1], texts[2]); -- "Cat"
+    AddD(d, 35610, tdt.Unit, 1206, 2, texts[1], texts[2]); -- "Cat"
+    AddD(d, 112694, tdt.Unit, 1206, 2, texts[1], texts[2]); -- "Cat"
+    AddD(d, 66163, tdt.Unit, 1206, 2, texts[1], texts[2]); -- "Cat"
+    AddD(d, 112698, tdt.Unit, 1206, 2, texts[1], texts[2]); -- "Cat"
+    AddD(d, 117203, tdt.Unit, 1206, 2, texts[1], texts[2]); -- "Cat"
+    AddD(d, 137538, tdt.Unit, 1206, 2, texts[1], texts[2]); -- "Cat"
+    AddD(d, 197382, tdt.Unit, 1206, 2, texts[1], texts[2]); -- "Cat"
+    AddD(d, 620, tdt.Unit, 1206, 3, texts[1], texts[2]); -- "Chicken"
+    AddD(d, 62664, tdt.Unit, 1206, 3, texts[1], texts[2]); -- "Chicken"
+    AddD(d, 197384, tdt.Unit, 1206, 3, texts[1], texts[2]); -- "Chicken"
+    AddD(d, 138666, tdt.Unit, 1206, 3, texts[1], texts[2]); -- "Chicken"
+    AddD(d, 148500, tdt.Unit, 1206, 3, texts[1], texts[2]); -- "Chicken"
+    AddD(d, 129926, tdt.Unit, 1206, 3, texts[1], texts[2]); -- "Chicken"
+    AddD(d, 150443, tdt.Unit, 1206, 3, texts[1], texts[2]); -- "Chicken"
+    AddD(d, 134955, tdt.Unit, 1206, 3, texts[1], texts[2]); -- "Chicken"
+    AddD(d, 150298, tdt.Unit, 1206, 3, texts[1], texts[2]); -- "Chicken"
+    AddD(d, 621, tdt.Unit, 1206, 3, texts[1], texts[2]); -- "Chicken"
+    AddD(d, 144478, tdt.Unit, 1206, 3, texts[1], texts[2]); -- "Chicken"
+    AddD(d, 173201, tdt.Unit, 1206, 3, texts[1], texts[2]); -- "Chicken"
+    AddD(d, 132981, tdt.Unit, 1206, 3, texts[1], texts[2]); -- "Chicken"
+    AddD(d, 2442, tdt.Unit, 1206, 4, texts[1], texts[2]); -- "Cow"
+    AddD(d, 71444, tdt.Unit, 1206, 4, texts[1], texts[2]); -- "Cow"
+    AddD(d, 883, tdt.Unit, 1206, 5, texts[1], texts[2]); -- "Deer"
+    AddD(d, 61750, tdt.Unit, 1206, 5, texts[1], texts[2]); -- "Deer"
+    AddD(d, 19665, tdt.Unit, 1206, 6, texts[1], texts[2]); -- "Ewe"
+    AddD(d, 890, tdt.Unit, 1206, 7, texts[1], texts[2]); -- "Fawn"
+    AddD(d, 61165, tdt.Unit, 1206, 7, texts[1], texts[2]); -- "Fawn"
+    AddD(d, 112991, tdt.Unit, 1206, 7, texts[1], texts[2]); -- "Fawn"
+    AddD(d, 13321, tdt.Unit, 1206, 8, texts[1], texts[2]); -- "Small Frog"
+    AddD(d, 61071, tdt.Unit, 1206, 8, texts[1], texts[2]); -- "Small Frog"
+    AddD(d, 70495, tdt.Unit, 1206, 8, texts[1], texts[2]); -- "Small Frog"
+    AddD(d, 4166, tdt.Unit, 1206, 9, texts[1], texts[2]); -- "Gazelle"
+    AddD(d, 62163, tdt.Unit, 1206, 9, texts[1], texts[2]); -- "Gazelle"
+    AddD(d, 124528, tdt.Unit, 1206, 9, texts[1], texts[2]); -- "Gazelle"
+    AddD(d, 124701, tdt.Unit, 1206, 9, texts[1], texts[2]); -- "Gazelle"
+    AddD(d, 124529, tdt.Unit, 1206, 9, texts[1], texts[2]); -- "Gazelle"
+    AddD(d, 127959, tdt.Unit, 1206, 9, texts[1], texts[2]); -- "Gazelle"
+    AddD(d, 5951, tdt.Unit, 1206, 10, texts[1], texts[2]); -- "Hare"
+    AddD(d, 61751, tdt.Unit, 1206, 10, texts[1], texts[2]); -- "Hare"
+    AddD(d, 9600, tdt.Unit, 1206, 11, texts[1], texts[2]); -- "Parrot"
+    AddD(d, 61313, tdt.Unit, 1206, 11, texts[1], texts[2]); -- "Parrot"
+    AddD(d, 67368, tdt.Unit, 1206, 11, texts[1], texts[2]); -- "Parrot"
+    AddD(d, 61080, tdt.Unit, 1206, 12, texts[1], texts[2]); -- "Rabbit"
+    AddD(d, 146361, tdt.Unit, 1206, 12, texts[1], texts[2]); -- "Rabbit"
+    AddD(d, 99797, tdt.Unit, 1206, 12, texts[1], texts[2]); -- "Rabbit"
+    AddD(d, 96478, tdt.Unit, 1206, 12, texts[1], texts[2]); -- "Rabbit"
+    AddD(d, 112028, tdt.Unit, 1206, 12, texts[1], texts[2]); -- "Rabbit"
+    AddD(d, 100153, tdt.Unit, 1206, 12, texts[1], texts[2]); -- "Rabbit"
+    AddD(d, 95867, tdt.Unit, 1206, 12, texts[1], texts[2]); -- "Rabbit"
+    AddD(d, 96463, tdt.Unit, 1206, 12, texts[1], texts[2]); -- "Rabbit"
+    AddD(d, 96472, tdt.Unit, 1206, 12, texts[1], texts[2]); -- "Rabbit"
+    AddD(d, 96548, tdt.Unit, 1206, 12, texts[1], texts[2]); -- "Rabbit"
+    AddD(d, 56047, tdt.Unit, 1206, 12, texts[1], texts[2]); -- "Rabbit"
+    AddD(d, 56285, tdt.Unit, 1206, 12, texts[1], texts[2]); -- "Rabbit"
+    AddD(d, 100150, tdt.Unit, 1206, 12, texts[1], texts[2]); -- "Rabbit"
+    AddD(d, 158150, tdt.Unit, 1206, 12, texts[1], texts[2]); -- "Rabbit"
+    AddD(d, 147694, tdt.Unit, 1206, 12, texts[1], texts[2]); -- "Rabbit"
+    AddD(d, 94150, tdt.Unit, 1206, 12, texts[1], texts[2]); -- "Rabbit"
+    AddD(d, 96477, tdt.Unit, 1206, 12, texts[1], texts[2]); -- "Rabbit"
+    AddD(d, 144844, tdt.Unit, 1206, 12, texts[1], texts[2]); -- "Rabbit"
+    AddD(d, 2098, tdt.Unit, 1206, 13, texts[1], texts[2]); -- "Ram"
+    AddD(d, 61456, tdt.Unit, 1206, 13, texts[1], texts[2]); -- "Ram"
+    AddD(d, 1933, tdt.Unit, 1206, 14, texts[1], texts[2]); -- "Sheep"
+    AddD(d, 141315, tdt.Unit, 1206, 14, texts[1], texts[2]); -- "Sheep"
+    AddD(d, 157926, tdt.Unit, 1206, 14, texts[1], texts[2]); -- "Sheep"
+    AddD(d, 160579, tdt.Unit, 1206, 14, texts[1], texts[2]); -- "Sheep"
+    AddD(d, 61170, tdt.Unit, 1206, 14, texts[1], texts[2]); -- "Sheep"
+    AddD(d, 132300, tdt.Unit, 1206, 14, texts[1], texts[2]); -- "Sheep"
+    AddD(d, 64402, tdt.Unit, 1206, 14, texts[1], texts[2]); -- "Sheep"
+    AddD(d, 141137, tdt.Unit, 1206, 14, texts[1], texts[2]); -- "Sheep"
+    AddD(d, 158224, tdt.Unit, 1206, 14, texts[1], texts[2]); -- "Sheep"
+    AddD(d, 158242, tdt.Unit, 1206, 14, texts[1], texts[2]); -- "Sheep"
+    AddD(d, 60761, tdt.Unit, 1206, 15, texts[1], texts[2]); -- "Shore Crab"
+    AddD(d, 17467, tdt.Unit, 1206, 16, texts[1], texts[2]); -- "Skunk"
+    AddD(d, 61255, tdt.Unit, 1206, 16, texts[1], texts[2]); -- "Skunk"
+    AddD(d, 80890, tdt.Unit, 1206, 16, texts[1], texts[2]); -- "Skunk"
+    AddD(d, 114571, tdt.Unit, 1206, 16, texts[1], texts[2]); -- "Skunk"
+    AddD(d, 1412, tdt.Unit, 1206, 17, texts[1], texts[2]); -- "Squirrel"
+    AddD(d, 61081, tdt.Unit, 1206, 17, texts[1], texts[2]); -- "Squirrel"
+    AddD(d, 63607, tdt.Unit, 1206, 17, texts[1], texts[2]); -- "Squirrel"
+    AddD(d, 100152, tdt.Unit, 1206, 17, texts[1], texts[2]); -- "Squirrel"
+    AddD(d, 155638, tdt.Unit, 1206, 17, texts[1], texts[2]); -- "Squirrel"
+    AddD(d, 73915, tdt.Unit, 1206, 17, texts[1], texts[2]); -- "Squirrel"
+    AddD(d, 144846, tdt.Unit, 1206, 17, texts[1], texts[2]); -- "Squirrel"
+    AddD(d, 100151, tdt.Unit, 1206, 17, texts[1], texts[2]); -- "Squirrel"
+    AddD(d, 74001, tdt.Unit, 1206, 17, texts[1], texts[2]); -- "Squirrel"
+    AddD(d, 56046, tdt.Unit, 1206, 17, texts[1], texts[2]); -- "Squirrel"
+    AddD(d, 56284, tdt.Unit, 1206, 17, texts[1], texts[2]); -- "Squirrel"
+    AddD(d, 95654, tdt.Unit, 1206, 17, texts[1], texts[2]); -- "Squirrel"
+    AddD(d, 96011, tdt.Unit, 1206, 17, texts[1], texts[2]); -- "Squirrel"
+    AddD(d, 74713, tdt.Unit, 1206, 17, texts[1], texts[2]); -- "Squirrel"
+    AddD(d, 99798, tdt.Unit, 1206, 17, texts[1], texts[2]); -- "Squirrel"
+    AddD(d, 80881, tdt.Unit, 1206, 17, texts[1], texts[2]); -- "Squirrel"
+    AddD(d, 25679, tdt.Unit, 1206, 18, texts[1], texts[2]); -- "Steam Frog"
+    AddD(d, 10685, tdt.Unit, 1206, 19, texts[1], texts[2]); -- "Swine"
+    AddD(d, 1420, tdt.Unit, 1206, 20, texts[1], texts[2]); -- "Toad"
+    AddD(d, 61369, tdt.Unit, 1206, 20, texts[1], texts[2]); -- "Toad"
+    AddD(d, 174540, tdt.Unit, 1206, 20, texts[1], texts[2]); -- "Toad"
+    AddD(d, 150305, tdt.Unit, 1206, 20, texts[1], texts[2]); -- "Toad"
+    AddD(d, 2620, tdt.Unit, 1206, 21, texts[1], texts[2]); -- "Prairie Dog"
+    AddD(d, 61141, tdt.Unit, 1206, 21, texts[1], texts[2]); -- "Prairie Dog"
+    AddD(d, 165757, tdt.Unit, 1206, 21, texts[1], texts[2]); -- "Prairie Dog"
+    AddD(d, 75486, tdt.Unit, 1206, 21, texts[1], texts[2]); -- "Prairie Dog"
+    AddD(d, 77908, tdt.Unit, 1206, 21, texts[1], texts[2]); -- "Prairie Dog"
+    AddD(d, 16068, tdt.Unit, 2556, 1, texts[3], texts[4]); -- "Larva"
+    AddD(d, 62022, tdt.Unit, 2556, 1, texts[3], texts[4]); -- "Larva"
+    AddD(d, 4953, tdt.Unit, 2556, 2, texts[3], texts[4]); -- "Water Snake"
+    AddD(d, 61367, tdt.Unit, 2556, 2, texts[3], texts[4]); -- "Water Snake"
+    AddD(d, 14881, tdt.Unit, 2556, 3, texts[3], texts[4]); -- "Spider"
+    AddD(d, 61327, tdt.Unit, 2556, 3, texts[3], texts[4]); -- "Spider"
+    AddD(d, 66580, tdt.Unit, 2556, 3, texts[3], texts[4]); -- "Spider"
+    AddD(d, 97327, tdt.Unit, 2556, 3, texts[3], texts[4]); -- "Spider"
+    AddD(d, 106469, tdt.Unit, 2556, 3, texts[3], texts[4]); -- "Spider"
+    AddD(d, 133222, tdt.Unit, 2556, 3, texts[3], texts[4]); -- "Spider"
+    AddD(d, 156544, tdt.Unit, 2556, 3, texts[3], texts[4]); -- "Spider"
+    AddD(d, 168702, tdt.Unit, 2556, 3, texts[3], texts[4]); -- "Spider"
+    AddD(d, 168703, tdt.Unit, 2556, 3, texts[3], texts[4]); -- "Spider"
+    AddD(d, 1412, tdt.Unit, 2556, 4, texts[3], texts[4]); -- "Squirrel"
+    AddD(d, 61081, tdt.Unit, 2556, 4, texts[3], texts[4]); -- "Squirrel"
+    AddD(d, 63607, tdt.Unit, 2556, 4, texts[3], texts[4]); -- "Squirrel"
+    AddD(d, 80881, tdt.Unit, 2556, 4, texts[3], texts[4]); -- "Squirrel"
+    AddD(d, 95654, tdt.Unit, 2556, 4, texts[3], texts[4]); -- "Squirrel"
+    AddD(d, 96011, tdt.Unit, 2556, 4, texts[3], texts[4]); -- "Squirrel"
+    AddD(d, 99798, tdt.Unit, 2556, 4, texts[3], texts[4]); -- "Squirrel"
+    AddD(d, 100151, tdt.Unit, 2556, 4, texts[3], texts[4]); -- "Squirrel"
+    AddD(d, 100152, tdt.Unit, 2556, 4, texts[3], texts[4]); -- "Squirrel"
+    AddD(d, 144846, tdt.Unit, 2556, 4, texts[3], texts[4]); -- "Squirrel"
+    AddD(d, 32428, tdt.Unit, 2556, 5, texts[3], texts[4]); -- "Underbelly Rat"
+    AddD(d, 24270, tdt.Unit, 2556, 6, texts[3], texts[4]); -- "Devouring Maggot"
+    AddD(d, 62640, tdt.Unit, 2556, 6, texts[3], texts[4]); -- "Devouring Maggot"
+    AddD(d, 6271, tdt.Unit, 2556, 7, texts[3], texts[4]); -- "Mouse"
+    AddD(d, 61143, tdt.Unit, 2556, 7, texts[3], texts[4]); -- "Mouse"
+    AddD(d, 28202, tdt.Unit, 2556, 8, texts[3], texts[4]); -- "Zul'Drak Rat"
+    AddD(d, 4076, tdt.Unit, 2556, 9, texts[3], texts[4]); -- "Roach"
+    AddD(d, 61169, tdt.Unit, 2556, 9, texts[3], texts[4]); -- "Roach"
+    AddD(d, 82454, tdt.Unit, 2556, 9, texts[3], texts[4]); -- "Roach"
+    AddD(d, 2914, tdt.Unit, 2556, 10, texts[3], texts[4]); -- "Snake"
+    AddD(d, 47794, tdt.Unit, 2556, 10, texts[3], texts[4]); -- "Snake"
+    AddD(d, 61142, tdt.Unit, 2556, 10, texts[3], texts[4]); -- "Snake"
+    AddD(d, 97376, tdt.Unit, 2556, 10, texts[3], texts[4]); -- "Snake"
+    AddD(d, 106470, tdt.Unit, 2556, 10, texts[3], texts[4]); -- "Snake"
+    AddD(d, 182787, tdt.Unit, 2556, 10, texts[3], texts[4]); -- "Snake"
+    AddD(d, 192561, tdt.Unit, 2556, 10, texts[3], texts[4]); -- "Snake"
+    AddD(d, 193640, tdt.Unit, 2556, 10, texts[3], texts[4]); -- "Snake"
+    AddD(d, 32261, tdt.Unit, 2556, 11, texts[3], texts[4]); -- "Crystal Spider"
+    AddD(d, 62435, tdt.Unit, 2556, 11, texts[3], texts[4]); -- "Crystal Spider"
+    AddD(d, 3300, tdt.Unit, 2556, 12, texts[3], texts[4]); -- "Adder"
+    AddD(d, 61325, tdt.Unit, 2556, 12, texts[3], texts[4]); -- "Adder"
+    AddD(d, 115086, tdt.Unit, 2556, 12, texts[3], texts[4]); -- "Adder"
+    AddD(d, 133223, tdt.Unit, 2556, 12, texts[3], texts[4]); -- "Adder"
+    AddD(d, 16030, tdt.Unit, 2556, 13, texts[3], texts[4]); -- "Maggot"
+    AddD(d, 61753, tdt.Unit, 2556, 13, texts[3], texts[4]); -- "Maggot"
+    AddD(d, 89832, tdt.Unit, 2556, 13, texts[3], texts[4]); -- "Maggot"
+    AddD(d, 97560, tdt.Unit, 2556, 13, texts[3], texts[4]); -- "Maggot"
+    AddD(d, 97641, tdt.Unit, 2556, 13, texts[3], texts[4]); -- "Maggot"
+    AddD(d, 15476, tdt.Unit, 2556, 14, texts[3], texts[4]); -- "Scorpion"
+    AddD(d, 61326, tdt.Unit, 2556, 14, texts[3], texts[4]); -- "Scorpion"
+    AddD(d, 117659, tdt.Unit, 2556, 14, texts[3], texts[4]); -- "Scorpion"
+    AddD(d, 24174, tdt.Unit, 2556, 15, texts[3], texts[4]); -- "Fjord Rat"
+    AddD(d, 62641, tdt.Unit, 2556, 15, texts[3], texts[4]); -- "Fjord Rat"
+    AddD(d, 9699, tdt.Unit, 2556, 16, texts[3], texts[4]); -- "Fire Beetle"
+    AddD(d, 61328, tdt.Unit, 2556, 16, texts[3], texts[4]); -- "Fire Beetle"
+    AddD(d, 195260, tdt.Unit, 2556, 16, texts[3], texts[4]); -- "Fire Beetle"
+    AddD(d, 32258, tdt.Unit, 2556, 17, texts[3], texts[4]); -- "Gold Beetle"
+    AddD(d, 61438, tdt.Unit, 2556, 17, texts[3], texts[4]); -- "Gold Beetle"
+    AddD(d, 4075, tdt.Unit, 2556, 18, texts[3], texts[4]); -- "Rat"
+    AddD(d, 61366, tdt.Unit, 2556, 18, texts[3], texts[4]); -- "Rat"
+    AddD(d, 74908, tdt.Unit, 2556, 18, texts[3], texts[4]); -- "Rat"
+    AddD(d, 76704, tdt.Unit, 2556, 18, texts[3], texts[4]); -- "Rat"
+    AddD(d, 80093, tdt.Unit, 2556, 18, texts[3], texts[4]); -- "Rat"
+    AddD(d, 85722, tdt.Unit, 2556, 18, texts[3], texts[4]); -- "Rat"
+    AddD(d, 92251, tdt.Unit, 2556, 18, texts[3], texts[4]); -- "Rat"
+    AddD(d, 99796, tdt.Unit, 2556, 18, texts[3], texts[4]); -- "Rat"
+    AddD(d, 115087, tdt.Unit, 2556, 18, texts[3], texts[4]); -- "Rat"
+    AddD(d, 116249, tdt.Unit, 2556, 18, texts[3], texts[4]); -- "Rat"
+    AddD(d, 116495, tdt.Unit, 2556, 18, texts[3], texts[4]); -- "Rat"
+    AddD(d, 141587, tdt.Unit, 2556, 18, texts[3], texts[4]); -- "Rat"
+    AddD(d, 144845, tdt.Unit, 2556, 18, texts[3], texts[4]); -- "Rat"
+    AddD(d, 158050, tdt.Unit, 2556, 18, texts[3], texts[4]); -- "Rat"
+    AddD(d, 169044, tdt.Unit, 2556, 18, texts[3], texts[4]); -- "Rat"
+    AddD(d, 29328, tdt.Unit, 2557, 1, texts[1], texts[2]); -- "Arctic Hare"
+    AddD(d, 62693, tdt.Unit, 2557, 1, texts[1], texts[2]); -- "Arctic Hare"
+    AddD(d, 150873, tdt.Unit, 2557, 1, texts[1], texts[2]); -- "Arctic Hare"
+    AddD(d, 31685, tdt.Unit, 2557, 2, texts[1], texts[2]); -- "Borean Marmot"
+    AddD(d, 62695, tdt.Unit, 2557, 2, texts[1], texts[2]); -- "Borean Marmot"
+    AddD(d, 28407, tdt.Unit, 2557, 3, texts[1], texts[2]); -- "Fjord Penguin"
+    AddD(d, 24746, tdt.Unit, 2557, 4, texts[1], texts[2]); -- "Fjord Turkey"
+    AddD(d, 32498, tdt.Unit, 2557, 5, texts[1], texts[2]); -- "Glacier Penguin"
+    AddD(d, 31889, tdt.Unit, 2557, 6, texts[1], texts[2]); -- "Grizzly Squirrel"
+    AddD(d, 62818, tdt.Unit, 2557, 6, texts[1], texts[2]); -- "Grizzly Squirrel"
+    AddD(d, 6653, tdt.Unit, 2557, 7, texts[1], texts[2]); -- "Huge Toad"
+    AddD(d, 61368, tdt.Unit, 2557, 7, texts[1], texts[2]); -- "Huge Toad"
+    AddD(d, 97420, tdt.Unit, 2557, 7, texts[1], texts[2]); -- "Huge Toad"
+    AddD(d, 9700, tdt.Unit, 2557, 8, texts[1], texts[2]); -- "Lava Crab"
+    AddD(d, 61383, tdt.Unit, 2557, 8, texts[1], texts[2]); -- "Lava Crab"
+    AddD(d, 31890, tdt.Unit, 2557, 9, texts[1], texts[2]); -- "Mountain Skunk"
+    AddD(d, 61677, tdt.Unit, 2557, 9, texts[1], texts[2]); -- "Mountain Skunk"
+    AddD(d, 26503, tdt.Unit, 2557, 10, texts[1], texts[2]); -- "Scalawag Frog"
+    AddD(d, 28093, tdt.Unit, 2557, 11, texts[1], texts[2]); -- "Sholazar Tickbird"
+    AddD(d, 28440, tdt.Unit, 2557, 12, texts[1], texts[2]); -- "Tundra Penguin"
+    AddD(d, 62835, tdt.Unit, 2557, 12, texts[1], texts[2]); -- "Tundra Penguin"
+    AddD(d, 156526, tdt.Item, 12744, 1, texts[5], texts[6], fac.Alliance); -- "Bountiful Captain's Feast"
+    AddD(d, 162288, tdt.Item, 12744, 1, texts[5], texts[6], fac.Alliance); -- "Bountiful Captain's Feast"
+    AddD(d, 162289, tdt.Item, 12744, 1, texts[5], texts[6], fac.Alliance); -- "Bountiful Captain's Feast"
+    AddD(d, 259421, tdt.Spell, 12744, 1, texts[5], texts[6], fac.Alliance); -- "Bountiful Captain's Feast"
+    AddD(d, 259422, tdt.Spell, 12744, 1, texts[5], texts[6], fac.Alliance); -- "Bountiful Captain's Feast"
+    AddD(d, 259423, tdt.Spell, 12744, 1, texts[5], texts[6], fac.Alliance); -- "Bountiful Captain's Feast"
+    AddD(d, 259418, tdt.Spell, 12744, 2, texts[5], texts[6], fac.Alliance); -- "Galley Banquet"
+    AddD(d, 259420, tdt.Spell, 12744, 2, texts[5], texts[6], fac.Alliance); -- "Galley Banquet"
+    AddD(d, 259419, tdt.Spell, 12744, 2, texts[5], texts[6], fac.Alliance); -- "Galley Banquet"
+    AddD(d, 156525, tdt.Item, 12744, 2, texts[5], texts[6], fac.Alliance); -- "Galley Banquet"
+    AddD(d, 162287, tdt.Item, 12744, 2, texts[5], texts[6], fac.Alliance); -- "Galley Banquet"
+    AddD(d, 162292, tdt.Item, 12744, 3, texts[5], texts[6], fac.Alliance); -- "Grilled Catfish"
+    AddD(d, 154889, tdt.Item, 12744, 3, texts[5], texts[6], fac.Alliance); -- "Grilled Catfish"
+    AddD(d, 259432, tdt.Spell, 12744, 3, texts[5], texts[6], fac.Alliance); -- "Grilled Catfish"
+    AddD(d, 259430, tdt.Spell, 12744, 3, texts[5], texts[6], fac.Alliance); -- "Grilled Catfish"
+    AddD(d, 259431, tdt.Spell, 12744, 3, texts[5], texts[6], fac.Alliance); -- "Grilled Catfish"
+    AddD(d, 154882, tdt.Item, 12744, 4, texts[5], texts[6], fac.Alliance); -- "Honey-Glazed Haunches"
+    AddD(d, 162286, tdt.Item, 12744, 4, texts[5], texts[6], fac.Alliance); -- "Honey-Glazed Haunches"
+    AddD(d, 259414, tdt.Spell, 12744, 4, texts[5], texts[6], fac.Alliance); -- "Honey-Glazed Haunches"
+    AddD(d, 259415, tdt.Spell, 12744, 4, texts[5], texts[6], fac.Alliance); -- "Honey-Glazed Haunches"
+    AddD(d, 259416, tdt.Spell, 12744, 4, texts[5], texts[6], fac.Alliance); -- "Honey-Glazed Haunches"
+    AddD(d, 154881, tdt.Item, 12744, 5, texts[5], texts[6], fac.Alliance); -- "Kul Tiramisu"
+    AddD(d, 162285, tdt.Item, 12744, 5, texts[5], texts[6], fac.Alliance); -- "Kul Tiramisu"
+    AddD(d, 259412, tdt.Spell, 12744, 5, texts[5], texts[6], fac.Alliance); -- "Kul Tiramisu"
+    AddD(d, 259411, tdt.Spell, 12744, 5, texts[5], texts[6], fac.Alliance); -- "Kul Tiramisu"
+    AddD(d, 259413, tdt.Spell, 12744, 5, texts[5], texts[6], fac.Alliance); -- "Kul Tiramisu"
+    AddD(d, 259438, tdt.Spell, 12744, 6, texts[5], texts[6], fac.Alliance); -- "Loa Loaf"
+    AddD(d, 259436, tdt.Spell, 12744, 6, texts[5], texts[6], fac.Alliance); -- "Loa Loaf"
+    AddD(d, 259437, tdt.Spell, 12744, 6, texts[5], texts[6], fac.Alliance); -- "Loa Loaf"
+    AddD(d, 162294, tdt.Item, 12744, 6, texts[5], texts[6], fac.Alliance); -- "Loa Loaf"
+    AddD(d, 154887, tdt.Item, 12744, 6, texts[5], texts[6], fac.Alliance); -- "Loa Loaf"
+    AddD(d, 259442, tdt.Spell, 12744, 7, texts[5], texts[6], fac.Alliance); -- "Mon'Dazi"
+    AddD(d, 259443, tdt.Spell, 12744, 7, texts[5], texts[6], fac.Alliance); -- "Mon'Dazi"
+    AddD(d, 259444, tdt.Spell, 12744, 7, texts[5], texts[6], fac.Alliance); -- "Mon'Dazi"
+    AddD(d, 162296, tdt.Item, 12744, 7, texts[5], texts[6], fac.Alliance); -- "Mon'Dazi"
+    AddD(d, 154885, tdt.Item, 12744, 7, texts[5], texts[6], fac.Alliance); -- "Mon'Dazi"
+    AddD(d, 259424, tdt.Spell, 12744, 8, texts[5], texts[6], fac.Alliance); -- "Ravenberry Tarts"
+    AddD(d, 259425, tdt.Spell, 12744, 8, texts[5], texts[6], fac.Alliance); -- "Ravenberry Tarts"
+    AddD(d, 259426, tdt.Spell, 12744, 8, texts[5], texts[6], fac.Alliance); -- "Ravenberry Tarts"
+    AddD(d, 154883, tdt.Item, 12744, 8, texts[5], texts[6], fac.Alliance); -- "Ravenberry Tarts"
+    AddD(d, 162290, tdt.Item, 12744, 8, texts[5], texts[6], fac.Alliance); -- "Ravenberry Tarts"
+    AddD(d, 259441, tdt.Spell, 12744, 9, texts[5], texts[6], fac.Alliance); -- "Sailor's Pie"
+    AddD(d, 259439, tdt.Spell, 12744, 9, texts[5], texts[6], fac.Alliance); -- "Sailor's Pie"
+    AddD(d, 259440, tdt.Spell, 12744, 9, texts[5], texts[6], fac.Alliance); -- "Sailor's Pie"
+    AddD(d, 154888, tdt.Item, 12744, 9, texts[5], texts[6], fac.Alliance); -- "Sailor's Pie"
+    AddD(d, 162295, tdt.Item, 12744, 9, texts[5], texts[6], fac.Alliance); -- "Sailor's Pie"
+    AddD(d, 162293, tdt.Item, 12744, 10, texts[5], texts[6], fac.Alliance); -- "Seasoned Loins"
+    AddD(d, 154891, tdt.Item, 12744, 10, texts[5], texts[6], fac.Alliance); -- "Seasoned Loins"
+    AddD(d, 259434, tdt.Spell, 12744, 10, texts[5], texts[6], fac.Alliance); -- "Seasoned Loins"
+    AddD(d, 259433, tdt.Spell, 12744, 10, texts[5], texts[6], fac.Alliance); -- "Seasoned Loins"
+    AddD(d, 259435, tdt.Spell, 12744, 10, texts[5], texts[6], fac.Alliance); -- "Seasoned Loins"
+    AddD(d, 259447, tdt.Spell, 12744, 11, texts[5], texts[6], fac.Alliance); -- "Spiced Snapper"
+    AddD(d, 259445, tdt.Spell, 12744, 11, texts[5], texts[6], fac.Alliance); -- "Spiced Snapper"
+    AddD(d, 259446, tdt.Spell, 12744, 11, texts[5], texts[6], fac.Alliance); -- "Spiced Snapper"
+    AddD(d, 162297, tdt.Item, 12744, 11, texts[5], texts[6], fac.Alliance); -- "Spiced Snapper"
+    AddD(d, 154886, tdt.Item, 12744, 11, texts[5], texts[6], fac.Alliance); -- "Spiced Snapper"
+    AddD(d, 259427, tdt.Spell, 12744, 12, texts[5], texts[6], fac.Alliance); -- "Swamp Fish 'n Chips"
+    AddD(d, 259429, tdt.Spell, 12744, 12, texts[5], texts[6], fac.Alliance); -- "Swamp Fish 'n Chips"
+    AddD(d, 259428, tdt.Spell, 12744, 12, texts[5], texts[6], fac.Alliance); -- "Swamp Fish 'n Chips"
+    AddD(d, 154884, tdt.Item, 12744, 12, texts[5], texts[6], fac.Alliance); -- "Swamp Fish 'n Chips"
+    AddD(d, 162291, tdt.Item, 12744, 12, texts[5], texts[6], fac.Alliance); -- "Swamp Fish 'n Chips"
+    AddD(d, 156526, tdt.Item, 12746, 1, texts[5], texts[6], fac.Horde); -- "Bountiful Captain's Feast"
+    AddD(d, 162288, tdt.Item, 12746, 1, texts[5], texts[6], fac.Horde); -- "Bountiful Captain's Feast"
+    AddD(d, 162289, tdt.Item, 12746, 1, texts[5], texts[6], fac.Horde); -- "Bountiful Captain's Feast"
+    AddD(d, 259421, tdt.Spell, 12746, 1, texts[5], texts[6], fac.Horde); -- "Bountiful Captain's Feast"
+    AddD(d, 259422, tdt.Spell, 12746, 1, texts[5], texts[6], fac.Horde); -- "Bountiful Captain's Feast"
+    AddD(d, 259423, tdt.Spell, 12746, 1, texts[5], texts[6], fac.Horde); -- "Bountiful Captain's Feast"
+    AddD(d, 259418, tdt.Spell, 12746, 2, texts[5], texts[6], fac.Horde); -- "Galley Banquet"
+    AddD(d, 259420, tdt.Spell, 12746, 2, texts[5], texts[6], fac.Horde); -- "Galley Banquet"
+    AddD(d, 259419, tdt.Spell, 12746, 2, texts[5], texts[6], fac.Horde); -- "Galley Banquet"
+    AddD(d, 156525, tdt.Item, 12746, 2, texts[5], texts[6], fac.Horde); -- "Galley Banquet"
+    AddD(d, 162287, tdt.Item, 12746, 2, texts[5], texts[6], fac.Horde); -- "Galley Banquet"
+    AddD(d, 162292, tdt.Item, 12746, 3, texts[5], texts[6], fac.Horde); -- "Grilled Catfish"
+    AddD(d, 154889, tdt.Item, 12746, 3, texts[5], texts[6], fac.Horde); -- "Grilled Catfish"
+    AddD(d, 259432, tdt.Spell, 12746, 3, texts[5], texts[6], fac.Horde); -- "Grilled Catfish"
+    AddD(d, 259430, tdt.Spell, 12746, 3, texts[5], texts[6], fac.Horde); -- "Grilled Catfish"
+    AddD(d, 259431, tdt.Spell, 12746, 3, texts[5], texts[6], fac.Horde); -- "Grilled Catfish"
+    AddD(d, 154882, tdt.Item, 12746, 4, texts[5], texts[6], fac.Horde); -- "Honey-Glazed Haunches"
+    AddD(d, 162286, tdt.Item, 12746, 4, texts[5], texts[6], fac.Horde); -- "Honey-Glazed Haunches"
+    AddD(d, 259414, tdt.Spell, 12746, 4, texts[5], texts[6], fac.Horde); -- "Honey-Glazed Haunches"
+    AddD(d, 259415, tdt.Spell, 12746, 4, texts[5], texts[6], fac.Horde); -- "Honey-Glazed Haunches"
+    AddD(d, 259416, tdt.Spell, 12746, 4, texts[5], texts[6], fac.Horde); -- "Honey-Glazed Haunches"
+    AddD(d, 154881, tdt.Item, 12746, 5, texts[5], texts[6], fac.Horde); -- "Kul Tiramisu"
+    AddD(d, 162285, tdt.Item, 12746, 5, texts[5], texts[6], fac.Horde); -- "Kul Tiramisu"
+    AddD(d, 259412, tdt.Spell, 12746, 5, texts[5], texts[6], fac.Horde); -- "Kul Tiramisu"
+    AddD(d, 259411, tdt.Spell, 12746, 5, texts[5], texts[6], fac.Horde); -- "Kul Tiramisu"
+    AddD(d, 259413, tdt.Spell, 12746, 5, texts[5], texts[6], fac.Horde); -- "Kul Tiramisu"
+    AddD(d, 259438, tdt.Spell, 12746, 6, texts[5], texts[6], fac.Horde); -- "Loa Loaf"
+    AddD(d, 259436, tdt.Spell, 12746, 6, texts[5], texts[6], fac.Horde); -- "Loa Loaf"
+    AddD(d, 259437, tdt.Spell, 12746, 6, texts[5], texts[6], fac.Horde); -- "Loa Loaf"
+    AddD(d, 162294, tdt.Item, 12746, 6, texts[5], texts[6], fac.Horde); -- "Loa Loaf"
+    AddD(d, 154887, tdt.Item, 12746, 6, texts[5], texts[6], fac.Horde); -- "Loa Loaf"
+    AddD(d, 259442, tdt.Spell, 12746, 7, texts[5], texts[6], fac.Horde); -- "Mon'Dazi"
+    AddD(d, 259443, tdt.Spell, 12746, 7, texts[5], texts[6], fac.Horde); -- "Mon'Dazi"
+    AddD(d, 259444, tdt.Spell, 12746, 7, texts[5], texts[6], fac.Horde); -- "Mon'Dazi"
+    AddD(d, 162296, tdt.Item, 12746, 7, texts[5], texts[6], fac.Horde); -- "Mon'Dazi"
+    AddD(d, 154885, tdt.Item, 12746, 7, texts[5], texts[6], fac.Horde); -- "Mon'Dazi"
+    AddD(d, 259424, tdt.Spell, 12746, 8, texts[5], texts[6], fac.Horde); -- "Ravenberry Tarts"
+    AddD(d, 259425, tdt.Spell, 12746, 8, texts[5], texts[6], fac.Horde); -- "Ravenberry Tarts"
+    AddD(d, 259426, tdt.Spell, 12746, 8, texts[5], texts[6], fac.Horde); -- "Ravenberry Tarts"
+    AddD(d, 154883, tdt.Item, 12746, 8, texts[5], texts[6], fac.Horde); -- "Ravenberry Tarts"
+    AddD(d, 162290, tdt.Item, 12746, 8, texts[5], texts[6], fac.Horde); -- "Ravenberry Tarts"
+    AddD(d, 259441, tdt.Spell, 12746, 9, texts[5], texts[6], fac.Horde); -- "Sailor's Pie"
+    AddD(d, 259439, tdt.Spell, 12746, 9, texts[5], texts[6], fac.Horde); -- "Sailor's Pie"
+    AddD(d, 259440, tdt.Spell, 12746, 9, texts[5], texts[6], fac.Horde); -- "Sailor's Pie"
+    AddD(d, 154888, tdt.Item, 12746, 9, texts[5], texts[6], fac.Horde); -- "Sailor's Pie"
+    AddD(d, 162295, tdt.Item, 12746, 9, texts[5], texts[6], fac.Horde); -- "Sailor's Pie"
+    AddD(d, 162293, tdt.Item, 12746, 10, texts[5], texts[6], fac.Horde); -- "Seasoned Loins"
+    AddD(d, 154891, tdt.Item, 12746, 10, texts[5], texts[6], fac.Horde); -- "Seasoned Loins"
+    AddD(d, 259434, tdt.Spell, 12746, 10, texts[5], texts[6], fac.Horde); -- "Seasoned Loins"
+    AddD(d, 259433, tdt.Spell, 12746, 10, texts[5], texts[6], fac.Horde); -- "Seasoned Loins"
+    AddD(d, 259435, tdt.Spell, 12746, 10, texts[5], texts[6], fac.Horde); -- "Seasoned Loins"
+    AddD(d, 259447, tdt.Spell, 12746, 11, texts[5], texts[6], fac.Horde); -- "Spiced Snapper"
+    AddD(d, 259445, tdt.Spell, 12746, 11, texts[5], texts[6], fac.Horde); -- "Spiced Snapper"
+    AddD(d, 259446, tdt.Spell, 12746, 11, texts[5], texts[6], fac.Horde); -- "Spiced Snapper"
+    AddD(d, 162297, tdt.Item, 12746, 11, texts[5], texts[6], fac.Horde); -- "Spiced Snapper"
+    AddD(d, 154886, tdt.Item, 12746, 11, texts[5], texts[6], fac.Horde); -- "Spiced Snapper"
+    AddD(d, 259427, tdt.Spell, 12746, 12, texts[5], texts[6], fac.Horde); -- "Swamp Fish 'n Chips"
+    AddD(d, 259429, tdt.Spell, 12746, 12, texts[5], texts[6], fac.Horde); -- "Swamp Fish 'n Chips"
+    AddD(d, 259428, tdt.Spell, 12746, 12, texts[5], texts[6], fac.Horde); -- "Swamp Fish 'n Chips"
+    AddD(d, 154884, tdt.Item, 12746, 12, texts[5], texts[6], fac.Horde); -- "Swamp Fish 'n Chips"
+    AddD(d, 162291, tdt.Item, 12746, 12, texts[5], texts[6], fac.Horde); -- "Swamp Fish 'n Chips"
 end
 
