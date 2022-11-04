@@ -13,9 +13,13 @@
 [Click here for full description](Descriptions/Wago.io.md)
 
 **Support me**
-<a href="https://www.paypal.com/donate/?hosted_button_id=NYWTBA4XM6ZS6" alt="Curseforge">
+<br>
+<br>
+<a href="https://www.paypal.com/donate/?hosted_button_id=NYWTBA4XM6ZS6" alt="Paypal">
   <img src="https://www.paypalobjects.com/en_US/BE/i/btn/btn_donateCC_LG.gif" />
 </a>
-
-
-Patreon: https://www.patreon.com/Krowi
+<br>
+<br>
+<a href="https://www.patreon.com/Krowi" alt="Patreon">
+  <img src="https://github.com/codebard/patron-button-and-widgets-by-codebard/blob/master/images/become_a_patron_button.png" />
+</a>
