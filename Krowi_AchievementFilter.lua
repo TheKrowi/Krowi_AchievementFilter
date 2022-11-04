@@ -67,7 +67,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
             addon.Icon.Load();
             addon.Tutorials.Load();
 
-            addon.UnitData.Load(); -- Might be moved to PLAYER_LOGIN event but easier for testing on every /reload
+            addon.TooltipData.Load(); -- Might be moved to PLAYER_LOGIN event but easier for testing on every /reload
         elseif arg1 == "Blizzard_AchievementUI" then -- This needs the Blizzard_AchievementUI addon available to load
             addon.Data.Load();
 

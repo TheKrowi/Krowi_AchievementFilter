@@ -10,8 +10,8 @@
     <Script file="ExportedUiMaps.lua" />
     <Script file="ExportedCalendarEventsRetail.lua" />
     <Script file="ExportedWorldEvents.lua" />
-    <Script file="ExportedTooltipData.lua" />
+    <Script file="ExportedTooltipDataRetail.lua" />
     <Script file="EventData.lua" />
-    <Script file="UnitData.lua" />
+    <Script file="TooltipData.lua" />
     <Script file="SavedData.lua" />
 </Ui>
