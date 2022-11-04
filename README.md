@@ -11,3 +11,7 @@
 </a>
 
 [Click here for full description](Descriptions/Wago.io.md)
+
+**Support**
+Paypal: https://www.paypal.com/donate/?hosted_button_id=NYWTBA4XM6ZS6&item_name=Krowi%27s%20Achievement%20Filter%20%28from%20wago.io%29&cmd=_s-xclick
+Patreon: https://www.patreon.com/Krowi
