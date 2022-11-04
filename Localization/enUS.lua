@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-04 16-53-52 ]] --
+-- [[ Exported at 2022-11-04 18-36-19 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -402,9 +402,11 @@ L["Lock month"] = "Lock month";
 L["Lock month Desc"] = "Keep the last shown month as the month to show when opening the calendar again after it was closed.";
 L["First day of the week"] = "First day of the week";
 L["First day of the week Desc"] = "The first day of the week the calendar should use.";
-L["Units"] = "Units";
+L["Criteria"] = "Criteria";
 L["Show Criteria"] = "Show Criteria";
 L["Show Criteria Desc"] = "Show Achievement Criteria on units that are required for an achievement (e.g., /love {criteria} for {achievement}).";
+L["Show For Achievement"] = "Show For Achievement";
+L["Show For Achievement Desc"] = "Show the achievement for which the criteria is needed.";
 L["Show Criteria If"] = "Show Criteria If";
 L["Achievement is Completed"] = "Achievement is Completed";
 L["Achievement is Completed Desc"] = "Show Achievement Criteria even if the Achievement is already completed.";

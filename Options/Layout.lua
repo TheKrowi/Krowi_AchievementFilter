@@ -1173,9 +1173,9 @@ options.OptionsTable.args["Layout"] = {
                 }
             }
         },
-        Units = {
+        Criteria = {
             order = 10, type = "group",
-            name = addon.L["Units"],
+            name = addon.L["Criteria"],
             args = {
                 Tooltip = {
                     order = 1, type = "group",
@@ -1183,7 +1183,7 @@ options.OptionsTable.args["Layout"] = {
                     inline = true,
                     args = {
                         ShowCriteria = {
-                            order = 1.1, type = "toggle", width = 1 * widthMultiplier,
+                            order = 1.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Show Criteria"],
                             desc = function() return addon.L["Show Criteria Desc"]:ReplaceVars{
                                 criteria = (GetAchievementCriteriaInfo(1206, 1)),
@@ -1196,7 +1196,7 @@ options.OptionsTable.args["Layout"] = {
                             end
                         },
                         ShowForAchievement = {
-                            order = 1.2, type = "toggle", width = 1 * widthMultiplier,
+                            order = 1.2, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Show For Achievement"],
                             desc = function() return addon.L["Show For Achievement Desc"]:ReplaceVars{
                                 criteria = (GetAchievementCriteriaInfo(1206, 1)),
@@ -1208,7 +1208,7 @@ options.OptionsTable.args["Layout"] = {
                                 options.Debug(addon.L["Show For Achievement"], addon.Options.db.Tooltip.Units.ShowForAchievement);
                             end
                         },
-                        Blank12 = {order = 1.3, type = "description", width = 1 * widthMultiplier, name = ""},
+                        -- Blank12 = {order = 1.3, type = "description", width = 1 * widthMultiplier, name = ""},
                         ShowCriteriaIf = {
                             order = 2, type = "header",
                             name = addon.L["Show Criteria If"]

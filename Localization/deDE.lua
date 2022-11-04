@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-04 16-53-52 ]] --
+-- [[ Exported at 2022-11-04 18-36-19 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -399,7 +399,7 @@ L["Lock month"] = "Gewählten Monat behalten immer behalten.";
 L["Lock month Desc"] = "Behalte den zuletzt angezeigten immer Monat bei, wenn du den Kalender wieder öffnest, nachdem er geschlossen wurde.";
 L["First day of the week"] = "Erster Tag der Woche";
 L["First day of the week Desc"] = "Der erste Tag der Woche, den der Kalender verwenden soll.";
-L["Units"] = "Tooltip";
+L["Criteria"] = "Tooltip";
 L["Show Criteria"] = "Zeige Erfolgs-Kriterien";
 L["Show Criteria Desc"] = "Zeige Erfolgs-Kriterien im Einheiten Tooltip die für das Erlangen eines Erfolgs notwendig sind.";
 L["Show Criteria If"] = "Zeige Erfolgs-Kriterien wenn";
