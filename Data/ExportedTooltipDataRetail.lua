@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-04 15-04-20 ]] --
+-- [[ Exported at 2022-11-04 17-45-18 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -23,11 +23,11 @@ function exportedTooltipData.Load(d)
 
     local texts = {};
     texts[2] = addon.L["Already /loved for achievement"];
-    texts[4] = addon.L["Already killed for achievement"];
     texts[6] = addon.L["Already cooked for achievement"];
+    texts[4] = addon.L["Already killed for achievement"];
     texts[1] = addon.L["Needs /love for achievement"];
-    texts[3] = addon.L["Needs to be killed for achievement"];
     texts[5] = addon.L["Needs to be cooked for achievement"];
+    texts[3] = addon.L["Needs to be killed for achievement"];
 
     AddD(d, 25677, tdt.Unit, 1206, 1, texts[1], texts[2]); -- "Borean Frog"
     AddD(d, 6368, tdt.Unit, 1206, 2, texts[1], texts[2]); -- "Cat"
@@ -138,6 +138,78 @@ function exportedTooltipData.Load(d)
     AddD(d, 165757, tdt.Unit, 1206, 21, texts[1], texts[2]); -- "Prairie Dog"
     AddD(d, 75486, tdt.Unit, 1206, 21, texts[1], texts[2]); -- "Prairie Dog"
     AddD(d, 77908, tdt.Unit, 1206, 21, texts[1], texts[2]); -- "Prairie Dog"
+    AddD(d, 33925, tdt.Item, 1800, 1, texts[5], texts[6]); -- "Delicious Chocolate Cake"
+    AddD(d, 33924, tdt.Item, 1800, 1, texts[5], texts[6]); -- "Delicious Chocolate Cake"
+    AddD(d, 43779, tdt.Spell, 1800, 1, texts[5], texts[6]); -- "Delicious Chocolate Cake"
+    AddD(d, 27694, tdt.Item, 1800, 2, texts[5], texts[6]); -- "Blackened Trout"
+    AddD(d, 27661, tdt.Item, 1800, 2, texts[5], texts[6]); -- "Blackened Trout"
+    AddD(d, 33290, tdt.Spell, 1800, 2, texts[5], texts[6]); -- "Blackened Trout"
+    AddD(d, 27684, tdt.Item, 1800, 3, texts[5], texts[6]); -- "Buzzard Bites"
+    AddD(d, 27651, tdt.Item, 1800, 3, texts[5], texts[6]); -- "Buzzard Bites"
+    AddD(d, 33279, tdt.Spell, 1800, 3, texts[5], texts[6]); -- "Buzzard Bites"
+    AddD(d, 30156, tdt.Item, 1800, 4, texts[5], texts[6]); -- "Clam Bar"
+    AddD(d, 30155, tdt.Item, 1800, 4, texts[5], texts[6]); -- "Clam Bar"
+    AddD(d, 36210, tdt.Spell, 1800, 4, texts[5], texts[6]); -- "Clam Bar"
+    AddD(d, 27695, tdt.Item, 1800, 5, texts[5], texts[6]); -- "Feltail Delight"
+    AddD(d, 27662, tdt.Item, 1800, 5, texts[5], texts[6]); -- "Feltail Delight"
+    AddD(d, 33291, tdt.Spell, 1800, 5, texts[5], texts[6]); -- "Feltail Delight"
+    AddD(d, 27688, tdt.Item, 1800, 6, texts[5], texts[6]); -- "Ravager Dog"
+    AddD(d, 27655, tdt.Item, 1800, 6, texts[5], texts[6]); -- "Ravager Dog"
+    AddD(d, 33284, tdt.Spell, 1800, 6, texts[5], texts[6]); -- "Ravager Dog"
+    AddD(d, 33871, tdt.Item, 1800, 7, texts[5], texts[6]); -- "Stormchops"
+    AddD(d, 33866, tdt.Item, 1800, 7, texts[5], texts[6]); -- "Stormchops"
+    AddD(d, 43758, tdt.Spell, 1800, 7, texts[5], texts[6]); -- "Stormchops"
+    AddD(d, 27696, tdt.Item, 1800, 8, texts[5], texts[6]); -- "Blackened Sporefish"
+    AddD(d, 27663, tdt.Item, 1800, 8, texts[5], texts[6]); -- "Blackened Sporefish"
+    AddD(d, 33292, tdt.Spell, 1800, 8, texts[5], texts[6]); -- "Blackened Sporefish"
+    AddD(d, 27690, tdt.Item, 1800, 9, texts[5], texts[6]); -- "Blackened Basilisk"
+    AddD(d, 27657, tdt.Item, 1800, 9, texts[5], texts[6]); -- "Blackened Basilisk"
+    AddD(d, 33286, tdt.Spell, 1800, 9, texts[5], texts[6]); -- "Blackened Basilisk"
+    AddD(d, 27697, tdt.Item, 1800, 10, texts[5], texts[6]); -- "Grilled Mudfish"
+    AddD(d, 27664, tdt.Item, 1800, 10, texts[5], texts[6]); -- "Grilled Mudfish"
+    AddD(d, 33293, tdt.Spell, 1800, 10, texts[5], texts[6]); -- "Grilled Mudfish"
+    AddD(d, 27698, tdt.Item, 1800, 11, texts[5], texts[6]); -- "Poached Bluefish"
+    AddD(d, 27665, tdt.Item, 1800, 11, texts[5], texts[6]); -- "Poached Bluefish"
+    AddD(d, 33294, tdt.Spell, 1800, 11, texts[5], texts[6]); -- "Poached Bluefish"
+    AddD(d, 33869, tdt.Item, 1800, 12, texts[5], texts[6]); -- "Broiled Bloodfin"
+    AddD(d, 43761, tdt.Spell, 1800, 12, texts[5], texts[6]); -- "Broiled Bloodfin"
+    AddD(d, 33867, tdt.Item, 1800, 12, texts[5], texts[6]); -- "Broiled Bloodfin"
+    AddD(d, 27699, tdt.Item, 1800, 13, texts[5], texts[6]); -- "Golden Fish Sticks"
+    AddD(d, 33295, tdt.Spell, 1800, 13, texts[5], texts[6]); -- "Golden Fish Sticks"
+    AddD(d, 27666, tdt.Item, 1800, 13, texts[5], texts[6]); -- "Golden Fish Sticks"
+    AddD(d, 33875, tdt.Item, 1800, 14, texts[5], texts[6]); -- "Kibler's Bits"
+    AddD(d, 33874, tdt.Item, 1800, 14, texts[5], texts[6]); -- "Kibler's Bits"
+    AddD(d, 43772, tdt.Spell, 1800, 14, texts[5], texts[6]); -- "Kibler's Bits"
+    AddD(d, 27691, tdt.Item, 1800, 15, texts[5], texts[6]); -- "Roasted Clefthoof"
+    AddD(d, 27658, tdt.Item, 1800, 15, texts[5], texts[6]); -- "Roasted Clefthoof"
+    AddD(d, 33287, tdt.Spell, 1800, 15, texts[5], texts[6]); -- "Roasted Clefthoof"
+    AddD(d, 27693, tdt.Item, 1800, 16, texts[5], texts[6]); -- "Talbuk Steak"
+    AddD(d, 27660, tdt.Item, 1800, 16, texts[5], texts[6]); -- "Talbuk Steak"
+    AddD(d, 33289, tdt.Spell, 1800, 16, texts[5], texts[6]); -- "Talbuk Steak"
+    AddD(d, 27692, tdt.Item, 1800, 17, texts[5], texts[6]); -- "Warp Burger"
+    AddD(d, 27659, tdt.Item, 1800, 17, texts[5], texts[6]); -- "Warp Burger"
+    AddD(d, 33288, tdt.Spell, 1800, 17, texts[5], texts[6]); -- "Warp Burger"
+    AddD(d, 31674, tdt.Item, 1800, 18, texts[5], texts[6]); -- "Crunchy Serpent"
+    AddD(d, 31673, tdt.Item, 1800, 18, texts[5], texts[6]); -- "Crunchy Serpent"
+    AddD(d, 38868, tdt.Spell, 1800, 18, texts[5], texts[6]); -- "Crunchy Serpent"
+    AddD(d, 31675, tdt.Item, 1800, 19, texts[5], texts[6]); -- "Mok'Nathal Shortribs"
+    AddD(d, 31672, tdt.Item, 1800, 19, texts[5], texts[6]); -- "Mok'Nathal Shortribs"
+    AddD(d, 38867, tdt.Spell, 1800, 19, texts[5], texts[6]); -- "Mok'Nathal Shortribs"
+    AddD(d, 33052, tdt.Item, 1800, 20, texts[5], texts[6]); -- "Fisherman's Feast"
+    AddD(d, 42302, tdt.Spell, 1800, 20, texts[5], texts[6]); -- "Fisherman's Feast"
+    AddD(d, 33053, tdt.Item, 1800, 21, texts[5], texts[6]); -- "Hot Buttered Trout"
+    AddD(d, 42305, tdt.Spell, 1800, 21, texts[5], texts[6]); -- "Hot Buttered Trout"
+    AddD(d, 33870, tdt.Item, 1800, 22, texts[5], texts[6]); -- "Skullfish Soup"
+    AddD(d, 33825, tdt.Item, 1800, 22, texts[5], texts[6]); -- "Skullfish Soup"
+    AddD(d, 43707, tdt.Spell, 1800, 22, texts[5], texts[6]); -- "Skullfish Soup"
+    AddD(d, 27700, tdt.Item, 1800, 23, texts[5], texts[6]); -- "Spicy Crawdad"
+    AddD(d, 27667, tdt.Item, 1800, 23, texts[5], texts[6]); -- "Spicy Crawdad"
+    AddD(d, 33296, tdt.Spell, 1800, 23, texts[5], texts[6]); -- "Spicy Crawdad"
+    AddD(d, 33873, tdt.Item, 1800, 24, texts[5], texts[6]); -- "Spicy Hot Talbuk"
+    AddD(d, 33872, tdt.Item, 1800, 24, texts[5], texts[6]); -- "Spicy Hot Talbuk"
+    AddD(d, 43765, tdt.Spell, 1800, 24, texts[5], texts[6]); -- "Spicy Hot Talbuk"
+    AddD(d, 42296, tdt.Spell, 1800, 25, texts[5], texts[6]); -- "Stewed Trout"
+    AddD(d, 33048, tdt.Item, 1800, 25, texts[5], texts[6]); -- "Stewed Trout"
     AddD(d, 16068, tdt.Unit, 2556, 1, texts[3], texts[4]); -- "Larva"
     AddD(d, 62022, tdt.Unit, 2556, 1, texts[3], texts[4]); -- "Larva"
     AddD(d, 4953, tdt.Unit, 2556, 2, texts[3], texts[4]); -- "Water Snake"

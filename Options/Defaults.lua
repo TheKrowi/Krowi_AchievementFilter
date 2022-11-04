@@ -112,6 +112,7 @@ options.Defaults = {
             },
             Units = {
                 ShowCriteria = true,
+                ShowForAchievement = true,
                 ShowCriteriaIf = {
                     AchievementIsCompleted = false,
                     AchievementWasNotEarnedByMe = false,

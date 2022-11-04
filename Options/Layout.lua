@@ -1195,7 +1195,20 @@ options.OptionsTable.args["Layout"] = {
                                 options.Debug(addon.L["Show Criteria"], addon.Options.db.Tooltip.Units.ShowCriteria);
                             end
                         },
-                        Blank12 = {order = 1.2, type = "description", width = 2 * widthMultiplier, name = ""},
+                        ShowForAchievement = {
+                            order = 1.2, type = "toggle", width = 1 * widthMultiplier,
+                            name = addon.L["Show For Achievement"],
+                            desc = function() return addon.L["Show For Achievement Desc"]:ReplaceVars{
+                                criteria = (GetAchievementCriteriaInfo(1206, 1)),
+                                achievement = (select(2, addon.GetAchievementInfo(1206)))
+                            }; end,
+                            get = function() return addon.Options.db.Tooltip.Units.ShowForAchievement; end,
+                            set = function()
+                                addon.Options.db.Tooltip.Units.ShowForAchievement = not addon.Options.db.Tooltip.Units.ShowForAchievement;
+                                options.Debug(addon.L["Show For Achievement"], addon.Options.db.Tooltip.Units.ShowForAchievement);
+                            end
+                        },
+                        Blank12 = {order = 1.3, type = "description", width = 1 * widthMultiplier, name = ""},
                         ShowCriteriaIf = {
                             order = 2, type = "header",
                             name = addon.L["Show Criteria If"]

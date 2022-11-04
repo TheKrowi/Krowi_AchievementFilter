@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-04 13-53-21 ]] --
+-- [[ Exported at 2022-11-04 16-53-52 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -227,12 +227,13 @@ L["Patch"] = "Patch";
 L["Temporary Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}.";
 L["Hide Not Earned By if current character earned the achievement"] = "Hide {notEarnedBy} if current character earned the achievement";
 L["Hide Not Earned By if current character earned the achievement Desc"] = "Hide the {notEarnedBy} section if the current character has earned the achievement. The {earnedBy} section will still be shown as normal.";
-L["Needs /love for achievement"] = "Needs /love for {achievement}";
-L["Already /loved for achievement"] = "Already /loved for {achievement}";
-L["Needs to be killed for achievement"] = "Needs to be killed for {achievement}";
-L["Already killed for achievement"] = "Already killed for {achievement}";
-L["Needs to be cooked for achievement"] = "Needs to be cooked for {achievement}";
-L["Already cooked for achievement"] = "Already cooked for {achievement}";
+L["for achievement"] = "for {achievement}";
+L["Needs /love for achievement"] = "Needs /love {forAchievement}";
+L["Already /loved for achievement"] = "Already /loved {forAchievement}";
+L["Needs to be killed for achievement"] = "Needs to be killed {forAchievement}";
+L["Already killed for achievement"] = "Already killed {forAchievement}";
+L["Needs to be cooked for achievement"] = "Needs to be cooked {forAchievement}";
+L["Already cooked for achievement"] = "Already cooked {forAchievement}";
 L["Data Manager"] = "Data Manager";
 L["Header tooltip"] = "Header tooltip";
 L["Ignore"] = "Ignore";

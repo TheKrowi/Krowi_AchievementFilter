@@ -42,17 +42,22 @@ local function AddTooltipLine(tooltipLine)
         return;
     end
 
+    local icon, text, color;
     if criteriaIsCompleted then
-        local color = addon.Colors.GreenRGB;
-        GameTooltip:AddLine("|T136814:0|t " .. tooltipLine.CompletedText:ReplaceVars{
-            achievement = name
-        }, color.R, color.G, color.B);
+        icon = "|T136814:0|t";
+        text = tooltipLine.CompletedText;
+        color = addon.Colors.GreenRGB;
     else
-        local color = addon.Colors.RedRGB;
-        GameTooltip:AddLine("|T136813:0|t " .. tooltipLine.NotCompletedText:ReplaceVars{
-            achievement = name
-        }, color.R, color.G, color.B);
+        icon = "|T136813:0|t";
+        text = tooltipLine.NotCompletedText;
+        color = addon.Colors.RedRGB;
     end
+    text = text:ReplaceVars{
+        forAchievement = addon.Options.db.Tooltip.Units.ShowForAchievement and addon.L["for achievement"] or ""
+    };
+    GameTooltip:AddLine(icon .. " " .. string.trim(text:ReplaceVars{
+        achievement = name
+    }), color.R, color.G, color.B);
 end
 
 local function ProcessUnit(guid)
