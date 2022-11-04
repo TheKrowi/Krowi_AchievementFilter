@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-03 18-27-07 ]] --
+-- [[ Exported at 2022-11-04 13-53-21 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -229,6 +229,8 @@ L["Hide Not Earned By if current character earned the achievement"] = "{notEarne
 L["Hide Not Earned By if current character earned the achievement Desc"] = "Blendet den Abschnitt {notEarnedBy} aus, wenn der aktuelle Charakter den Erfolg erworben hat. Der Abschnitt {earnedBy} wird ansonsten weiterhin wie gewohnt angezeigt.";
 L["Needs /love for achievement"] = "Benötigt deine /liebe für {achievement}";
 L["Already /loved for achievement"] = "Hat deine Liebe für {achievement} schon erhalten";
+L["Needs to be killed for achievement"] = "Muss für {achievement} getötet werden";
+L["Already killed for achievement"] = "Bereits getötet für {achievement}";
 L["Data Manager"] = "Charakterübersicht";
 L["Header tooltip"] = "Überschrift-Tooltip";
 L["Ignore"] = "Ignorieren";
@@ -295,6 +297,8 @@ L["Enable trace info"] = "Trace-Informationen einschalten";
 L["Enable trace info Desc"] = "Trace-Informationen einschalten/ausschalten";
 L["Show placeholders filter"] = "Filter \"Platzhalter\" anzeigen";
 L["Show placeholders filter Desc"] = "Zeigt / Versteckt den Platzhalterfilter in den Filtern. Dieser wird verwendet, um Erfolge anzuzeigen, die noch nicht im Spiel sind.\n\nKann Spoiler enthalten, wenn aktiviert!";
+L["Export Criteria"] = "Erfolgs-Kriterien Export";
+L["Export Criteria Desc"] = "Exportiert Erfolgs-Kriterien in die Gespeicherten Variablen. Dies wird verwendet, um neue Inhalte hinzuzufügen.";
 L["Layout"] = "Layout";
 L["Window"] = "Fenster";
 L["Movable"] = "Bewegliche Fenster";
@@ -395,6 +399,16 @@ L["Lock month"] = "Gewählten Monat behalten immer behalten.";
 L["Lock month Desc"] = "Behalte den zuletzt angezeigten immer Monat bei, wenn du den Kalender wieder öffnest, nachdem er geschlossen wurde.";
 L["First day of the week"] = "Erster Tag der Woche";
 L["First day of the week Desc"] = "Der erste Tag der Woche, den der Kalender verwenden soll.";
+L["Units"] = "Tooltip";
+L["Show Criteria"] = "Zeige Erfolgs-Kriterien";
+L["Show Criteria Desc"] = "Zeige Erfolgs-Kriterien im Einheiten Tooltip die für das Erlangen eines Erfolgs notwendig sind.";
+L["Show Criteria If"] = "Zeige Erfolgs-Kriterien wenn";
+L["Achievement is Completed"] = "Erfolg abgeschlossen ist";
+L["Achievement is Completed Desc"] = "Zeige die Erfolgs-Kriterien an, auch wenn der Erfolg bereits abgeschlossen ist.";
+L["Achievement was Not Earned by Me"] = "Erfolg nicht durch den aktuellen Charakter abgeschlossen wurde";
+L["Achievement was Not Earned by Me Desc"] = "Zeigt die Erfolgs-Kriterien an, solange der aktuelle Charakter den Erfolg noch nicht erreicht hat.";
+L["Criteria is Completed"] = "Kriterien erfüllt sind";
+L["Criteria is Completed Desc"] = "Erfolgs-Kriterien anzeigen, auch wenn die Erfolgs-Kriterien bereits erfüllt sind.";
 L["Event Reminders"] = "Event Erinnerung";
 L["Pop ups"] = "Popup-Fenster";
 L["Show pop ups"] = "Zeige Ereignis Popup-Fenster";

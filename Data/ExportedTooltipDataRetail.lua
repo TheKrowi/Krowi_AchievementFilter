@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-04 12-27-04 ]] --
+-- [[ Exported at 2022-11-04 14-43-40 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -24,8 +24,10 @@ function exportedTooltipData.Load(d)
     local texts = {};
     texts[2] = addon.L["Already /loved for achievement"];
     texts[4] = addon.L["Already killed for achievement"];
+    texts[6] = addon.L["Already cooked for achievement"];
     texts[1] = addon.L["Needs /love for achievement"];
     texts[3] = addon.L["Needs to be killed for achievement"];
+    texts[5] = addon.L["Needs to be cooked for achievement"];
 
     AddD(d, 25677, tdt.Unit, 1206, 1, texts[1], texts[2]);
     AddD(d, 6368, tdt.Unit, 1206, 2, texts[1], texts[2]);
@@ -294,6 +296,67 @@ function exportedTooltipData.Load(d)
     AddD(d, 64787, tdt.Unit, 6350, 16, texts[1], texts[2]);
     AddD(d, 63957, tdt.Unit, 6350, 17, texts[1], texts[2]);
     AddD(d, 64802, tdt.Unit, 6350, 17, texts[1], texts[2]);
+    AddD(d, 156526, tdt.Item, 12744, 1, texts[5], texts[6], fac.Alliance);
+    AddD(d, 162288, tdt.Item, 12744, 1, texts[5], texts[6], fac.Alliance);
+    AddD(d, 162289, tdt.Item, 12744, 1, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259421, tdt.Spell, 12744, 1, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259422, tdt.Spell, 12744, 1, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259423, tdt.Spell, 12744, 1, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259418, tdt.Spell, 12744, 2, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259420, tdt.Spell, 12744, 2, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259419, tdt.Spell, 12744, 2, texts[5], texts[6], fac.Alliance);
+    AddD(d, 156525, tdt.Item, 12744, 2, texts[5], texts[6], fac.Alliance);
+    AddD(d, 162287, tdt.Item, 12744, 2, texts[5], texts[6], fac.Alliance);
+    AddD(d, 162292, tdt.Item, 12744, 3, texts[5], texts[6], fac.Alliance);
+    AddD(d, 154889, tdt.Item, 12744, 3, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259432, tdt.Spell, 12744, 3, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259430, tdt.Spell, 12744, 3, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259431, tdt.Spell, 12744, 3, texts[5], texts[6], fac.Alliance);
+    AddD(d, 154882, tdt.Item, 12744, 4, texts[5], texts[6], fac.Alliance);
+    AddD(d, 162286, tdt.Item, 12744, 4, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259414, tdt.Spell, 12744, 4, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259415, tdt.Spell, 12744, 4, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259416, tdt.Spell, 12744, 4, texts[5], texts[6], fac.Alliance);
+    AddD(d, 154881, tdt.Item, 12744, 5, texts[5], texts[6], fac.Alliance);
+    AddD(d, 162285, tdt.Item, 12744, 5, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259412, tdt.Spell, 12744, 5, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259411, tdt.Spell, 12744, 5, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259413, tdt.Spell, 12744, 5, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259438, tdt.Spell, 12744, 6, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259436, tdt.Spell, 12744, 6, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259437, tdt.Spell, 12744, 6, texts[5], texts[6], fac.Alliance);
+    AddD(d, 162294, tdt.Item, 12744, 6, texts[5], texts[6], fac.Alliance);
+    AddD(d, 154887, tdt.Item, 12744, 6, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259442, tdt.Spell, 12744, 7, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259443, tdt.Spell, 12744, 7, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259444, tdt.Spell, 12744, 7, texts[5], texts[6], fac.Alliance);
+    AddD(d, 162296, tdt.Item, 12744, 7, texts[5], texts[6], fac.Alliance);
+    AddD(d, 154885, tdt.Item, 12744, 7, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259424, tdt.Spell, 12744, 8, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259425, tdt.Spell, 12744, 8, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259426, tdt.Spell, 12744, 8, texts[5], texts[6], fac.Alliance);
+    AddD(d, 154883, tdt.Item, 12744, 8, texts[5], texts[6], fac.Alliance);
+    AddD(d, 162290, tdt.Item, 12744, 8, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259441, tdt.Spell, 12744, 9, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259439, tdt.Spell, 12744, 9, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259440, tdt.Spell, 12744, 9, texts[5], texts[6], fac.Alliance);
+    AddD(d, 154888, tdt.Item, 12744, 9, texts[5], texts[6], fac.Alliance);
+    AddD(d, 162295, tdt.Item, 12744, 9, texts[5], texts[6], fac.Alliance);
+    AddD(d, 162293, tdt.Item, 12744, 10, texts[5], texts[6], fac.Alliance);
+    AddD(d, 154891, tdt.Item, 12744, 10, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259434, tdt.Spell, 12744, 10, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259433, tdt.Spell, 12744, 10, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259435, tdt.Spell, 12744, 10, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259447, tdt.Spell, 12744, 11, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259445, tdt.Spell, 12744, 11, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259446, tdt.Spell, 12744, 11, texts[5], texts[6], fac.Alliance);
+    AddD(d, 162297, tdt.Item, 12744, 11, texts[5], texts[6], fac.Alliance);
+    AddD(d, 154886, tdt.Item, 12744, 11, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259427, tdt.Spell, 12744, 12, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259429, tdt.Spell, 12744, 12, texts[5], texts[6], fac.Alliance);
+    AddD(d, 259428, tdt.Spell, 12744, 12, texts[5], texts[6], fac.Alliance);
+    AddD(d, 154884, tdt.Item, 12744, 12, texts[5], texts[6], fac.Alliance);
+    AddD(d, 162291, tdt.Item, 12744, 12, texts[5], texts[6], fac.Alliance);
     AddD(d, 88417, tdt.Unit, 14728, 1, texts[1], texts[2]);
     AddD(d, 88975, tdt.Unit, 14728, 1, texts[1], texts[2]);
     AddD(d, 82045, tdt.Unit, 14728, 2, texts[1], texts[2]);

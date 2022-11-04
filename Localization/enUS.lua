@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-03 18-27-07 ]] --
+-- [[ Exported at 2022-11-04 13-53-21 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -231,6 +231,8 @@ L["Needs /love for achievement"] = "Needs /love for {achievement}";
 L["Already /loved for achievement"] = "Already /loved for {achievement}";
 L["Needs to be killed for achievement"] = "Needs to be killed for {achievement}";
 L["Already killed for achievement"] = "Already killed for {achievement}";
+L["Needs to be cooked for achievement"] = "Needs to be cooked for {achievement}";
+L["Already cooked for achievement"] = "Already cooked for {achievement}";
 L["Data Manager"] = "Data Manager";
 L["Header tooltip"] = "Header tooltip";
 L["Ignore"] = "Ignore";

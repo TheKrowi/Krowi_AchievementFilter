@@ -11,6 +11,13 @@ local function ProcessGuid(guid)
 end
 
 local function AddTooltipLine(tooltipLine)
+    if tooltipLine.Faction then
+        if addon.Faction.IsAlliance and tooltipLine.Faction ~= addon.Objects.Faction.Alliance
+        or addon.Faction.IsHorde and tooltipLine.Faction ~= addon.Objects.Faction.Horde then
+            return;
+        end
+    end
+
     local _, name, _, achievementIsCompleted, _, _, _, _, _, _, _, _, wasEarnedByMe = addon.GetAchievementInfo(tooltipLine.AchievementId);
     if not name then -- Achievement does not exist
         return;
@@ -60,13 +67,13 @@ local function ProcessUnit(guid)
         GameTooltip:AddLine(guid);
     end
 
-    local unitType, _, _, _, id = ProcessGuid(guid);
-    id = tonumber(id);
-    if unitType ~= "Creature" or not id then
+    local unitType, _, _, _, unitId = ProcessGuid(guid);
+    unitId = tonumber(unitId);
+    if unitType ~= "Creature" or not unitId then
         return;
     end
 
-    local unitDatum = addon.Data.TooltipData[id];
+    local unitDatum = addon.Data.TooltipData[unitId];
     if not unitDatum then
         return;
     end
@@ -90,49 +97,21 @@ local function ProcessItem(itemId)
         GameTooltip:AddLine(itemId);
     end
 
-    -- local unitType, _, _, _, id = ProcessGuid(guid);
-    -- if unitType ~= "Creature" then
-    --     return;
-    -- end
-    -- local unitDatum = addon.Data.ItemData[id];
-    -- if not unitDatum then
-    --     return;
-    -- end
-    -- local _, name, _, achievementIsCompleted, _, _, _, _, _, _, _, _, wasEarnedByMe = addon.GetAchievementInfo(unitDatum.AchievementId);
-    -- if not name then -- Achievement does not exist
-    --     return;
-    -- end
+    itemId = tonumber(itemId);
+    if not itemId then
+        return;
+    end
 
-    -- local show = false;
-    -- if not wasEarnedByMe and addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementWasNotEarnedByMe then
-    --     show = true;
-    -- end
+    local unitDatum = addon.Data.TooltipData[itemId];
+    if not unitDatum then
+        return;
+    end
 
-    -- if achievementIsCompleted and addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementIsCompleted then
-    --     show = true;
-    -- end
-
-    -- if not show then
-    --     return;
-    -- end
-
-    -- local _, _, criteriaIsCompleted = GetAchievementCriteriaInfo(unitDatum.AchievementId, unitDatum.CriteriaIndex);
-
-    -- if criteriaIsCompleted and not addon.Options.db.Tooltip.Units.ShowCriteriaIf.CriteriaIsCompleted then
-    --     return;
-    -- end
-
-    -- if criteriaIsCompleted then
-    --     local color = addon.Colors.GreenRGB;
-    --     GameTooltip:AddLine("|T136814:0|t " .. unitDatum.CompletedText:ReplaceVars{
-    --         achievement = name
-    --     }, color.R, color.G, color.B);
-    -- else
-    --     local color = addon.Colors.RedRGB;
-    --     GameTooltip:AddLine("|T136813:0|t " .. unitDatum.NotCompletedText:ReplaceVars{
-    --         achievement = name
-    --     }, color.R, color.G, color.B);
-    -- end
+    for _, tooltipLine in next, unitDatum.TooltipLines do
+        if tooltipLine.Type == addon.Objects.TooltipDataType.Item then
+            AddTooltipLine(tooltipLine);
+        end
+    end
 end
 
 local function ProcessUnit100000()
