@@ -464,3 +464,11 @@ function gui.SetFrameToLastPosition(frame, rememberLastPositionOption)
 	frame:ClearAllPoints();
 	frame:SetPoint("TOPLEFT", pos.X, pos.Y);
 end
+
+function gui.RefreshView()
+    for t, _ in next, addon.Tabs do
+        addon.Tabs[t].Filters.Refresh = true;
+    end
+    addon.GUI.CategoriesFrame:Update();
+    addon.GUI.AchievementsFrame:ForceUpdate();
+end

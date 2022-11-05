@@ -16,6 +16,7 @@ All notable changes to this project will be documented in this file.
 - Make windows movable should no longer throw errors
 - Including the last excluded achievement could prevent showing the Excluded category again when excluding another achievement during the same session
 - Clearing focus of the last focused achievement could prevent showing the Focused category again when focusing another achievement during the same session
+- Excluding, including, focusing and clearing focus should now properly update numbers
 
 ## 45.4 - 2022-10-28
 ### Wrath Classic

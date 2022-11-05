@@ -146,8 +146,7 @@ function addon.ClearFocusAchievement(achievement, update)
     end
     achievement.FocusedCategories = nil;
     if update ~= false then
-        addon.GUI.CategoriesFrame:Update(true);
-        addon.GUI.AchievementsFrame:ForceUpdate();
+        addon.GUI.RefreshView();
     end
     for i = 1, #addon.Data.FocusedCategories do
         if (addon.Data.FocusedCategories[i].Achievements and #addon.Data.FocusedCategories[i].Achievements == 0) or (addon.Data.FocusedCategories[i].Children and #addon.Data.FocusedCategories[i].Children == 0) then
@@ -166,8 +165,7 @@ function addon.FocusAchievement(achievement, update)
         end
 	end
     if update ~= false then
-        addon.GUI.CategoriesFrame:Update(true);
-        addon.GUI.AchievementsFrame:ForceUpdate();
+        addon.GUI.RefreshView();
     end
 end
 
@@ -197,8 +195,7 @@ function addon.IncludeAchievement(achievement, update)
     end
     achievement.ExcludedCategories = nil;
     if update ~= false then
-        addon.GUI.CategoriesFrame:Update(true);
-        addon.GUI.AchievementsFrame:ForceUpdate();
+        addon.GUI.RefreshView();
     end
     for i = 1, #addon.Data.ExcludedCategories do
         if (addon.Data.ExcludedCategories[i].Achievements and #addon.Data.ExcludedCategories[i].Achievements == 0) or (addon.Data.ExcludedCategories[i].Children and #addon.Data.ExcludedCategories[i].Children == 0) then
@@ -218,11 +215,10 @@ function addon.ExcludeAchievement(achievement, update)
             end
         end
         if update ~= false then
-            addon.GUI.CategoriesFrame:Update(true);
-            addon.GUI.AchievementsFrame:ForceUpdate();
+            addon.GUI.RefreshView();
         end
     else
-        addon.GUI.AchievementsFrame:ForceUpdate();
+        addon.GUI.RefreshView();
     end
 end
 
