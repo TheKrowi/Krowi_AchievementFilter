@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 - Including the last excluded achievement could prevent showing the Excluded category again when excluding another achievement during the same session
 - Clearing focus of the last focused achievement could prevent showing the Focused category again when focusing another achievement during the same session
 - Excluding, including, focusing and clearing focus should now properly update numbers
+- TW region should no longer have errors when clicking an achievement with text criteria
 
 ## 45.4 - 2022-10-28
 ### Wrath Classic

@@ -42,6 +42,7 @@ function KrowiAF_AchievementsObjectivesMixin:GetTextCriteria(index)
 		return criteriaTable[index];
 	end
 	local frame = CreateFrame("FRAME", self:GetName() .. "TextCriteria" .. index, self, "KrowiAF_TextCriteria_Template");
+	frame.Name = frame.Label; -- Fixes #56
 	AchievementFrame_LocalizeCriteria(frame);
 	criteriaTable[index] = frame;
 	return frame;
