@@ -348,7 +348,7 @@ function addon.OnAchievementEarned(achievementId)
     if criteriaCache == nil then
         return; -- Achievement window is not opened yet
     end
-    
+
     local id, _, points, _, month, day, year, _, flags, _, _, isGuild, wasEarnedByMe, _, isStatistic, exists = addon.GetAchievementInfo(achievementId);
     if not id then
         return;
