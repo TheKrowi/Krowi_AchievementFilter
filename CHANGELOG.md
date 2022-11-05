@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 - Zygor achievement button icons on KAF tabs
 - Tooltip data for units needing /love for To All The Squirrels I've Loved Before, To All The Squirrels Who Shared My Life, To All the Squirrels Who Cared for Me, To All the Squirrels I Once Caressed?, To All the Squirrels Through Time and Space, To All the Squirrels I Love Despite Their Scars, To All the Squirrels I Set Sail to See, To All the Squirrels I've Loved and Lost and To All the Squirrels Hidden Till Now
 - Tooltip data for units needing to be killed for Pest Control
-- Tooltip data for items and recipes for The Outland Gourmet, The Northrend Gourmet, The Kul Tiran Menu and The Zandalari Menu
+- Tooltip data for items and recipes for The Outland Gourmet, The Northrend Gourmet, The Cataclysmic Gourmet, The Kul Tiran Menu and The Zandalari Menu
 - New Credits
 
 ### Changed
