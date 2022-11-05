@@ -125,7 +125,9 @@ local function ClearTree(categories)
     for i = #categories, 1, -1 do
         if categories[i].Achievements == nil or #categories[i].Achievements == 0 then -- No more achievements
             if categories[i].Children == nil or #categories[i].Children == 0 then -- And no more children
-                categories[i].Parent:RemoveCategory(categories[i]);
+                if categories[i].Parent.TabName == nil then -- Do not remove the special category
+                    categories[i].Parent:RemoveCategory(categories[i]);
+                end
             end
         end
     end
@@ -133,13 +135,16 @@ end
 
 function addon.ClearFocusAchievement(achievement, update)
     achievement:ClearFocus();
-    if addon.Options.db.Categories.Focused.ShowSubCategories then
-        ClearTree(achievement.FocusedCategory:GetTree());
-    end
     local numFocusedCategories = achievement.FocusedCategories and #achievement.FocusedCategories or 0;
     for i = 1, numFocusedCategories do
         achievement.FocusedCategories[i]:RemoveFocusedAchievement(achievement);
     end
+    if addon.Options.db.Categories.Focused.ShowSubCategories then
+        for i = 1, numFocusedCategories do
+            ClearTree(achievement.FocusedCategories[i]:GetTree());
+        end
+    end
+    achievement.FocusedCategories = nil;
     if update ~= false then
         addon.GUI.CategoriesFrame:Update(true);
         addon.GUI.AchievementsFrame:ForceUpdate();
@@ -181,13 +186,16 @@ end
 
 function addon.IncludeAchievement(achievement, update)
     achievement:Include();
-    if addon.Options.db.Categories.Excluded.ShowSubCategories then
-        ClearTree(achievement.ExcludedCategory:GetTree());
-    end
     local numExcludedCategories = achievement.ExcludedCategories and #achievement.ExcludedCategories or 0;
     for i = 1, numExcludedCategories do
         achievement.ExcludedCategories[i]:RemoveExcludedAchievement(achievement);
     end
+    if addon.Options.db.Categories.Excluded.ShowSubCategories then
+        for i = 1, numExcludedCategories do
+            ClearTree(achievement.ExcludedCategories[i]:GetTree());
+        end
+    end
+    achievement.ExcludedCategories = nil;
     if update ~= false then
         addon.GUI.CategoriesFrame:Update(true);
         addon.GUI.AchievementsFrame:ForceUpdate();
