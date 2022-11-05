@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 46.0 - 2022-10-xx
+## 46.0 - 2022-11-06
 ### Added
 - Zygor achievement button icons on KAF tabs
 - Tooltip data for units needing /love for To All The Squirrels I've Loved Before, To All The Squirrels Who Shared My Life, To All the Squirrels Who Cared for Me, To All the Squirrels I Once Caressed?, To All the Squirrels Through Time and Space, To All the Squirrels I Love Despite Their Scars, To All the Squirrels I Set Sail to See, To All the Squirrels I've Loved and Lost and To All the Squirrels Hidden Till Now

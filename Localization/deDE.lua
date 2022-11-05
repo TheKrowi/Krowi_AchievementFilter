@@ -1,8 +1,8 @@
--- [[ Exported at 2022-11-04 18-36-19 ]] --
+-- [[ Exported at 2022-11-05 23-04-56 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-11-03 ]] --
+-- [[ German translation by Ta, 2022-11-04 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -227,10 +227,13 @@ L["Patch"] = "Patch";
 L["Temporary Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}.";
 L["Hide Not Earned By if current character earned the achievement"] = "{notEarnedBy} ausblenden, wenn der aktuelle Charakter den Erfolg schon erlangt hat";
 L["Hide Not Earned By if current character earned the achievement Desc"] = "Blendet den Abschnitt {notEarnedBy} aus, wenn der aktuelle Charakter den Erfolg erworben hat. Der Abschnitt {earnedBy} wird ansonsten weiterhin wie gewohnt angezeigt.";
+L["for achievement"] = "für {achievement}";
 L["Needs /love for achievement"] = "Benötigt deine /liebe für {achievement}";
 L["Already /loved for achievement"] = "Hat deine Liebe für {achievement} schon erhalten";
-L["Needs to be killed for achievement"] = "Muss für {achievement} getötet werden";
+L["Needs to be killed for achievement"] = "Muss noch für {achievement} getötet werden";
 L["Already killed for achievement"] = "Bereits getötet für {achievement}";
+L["Needs to be cooked for achievement"] = "Muss noch für {achievement} gekocht werden";
+L["Already cooked for achievement"] = "Bereits gekocht für {achievement}";
 L["Data Manager"] = "Charakterübersicht";
 L["Header tooltip"] = "Überschrift-Tooltip";
 L["Ignore"] = "Ignorieren";
@@ -399,10 +402,12 @@ L["Lock month"] = "Gewählten Monat behalten immer behalten.";
 L["Lock month Desc"] = "Behalte den zuletzt angezeigten immer Monat bei, wenn du den Kalender wieder öffnest, nachdem er geschlossen wurde.";
 L["First day of the week"] = "Erster Tag der Woche";
 L["First day of the week Desc"] = "Der erste Tag der Woche, den der Kalender verwenden soll.";
-L["Criteria"] = "Tooltip";
-L["Show Criteria"] = "Zeige Erfolgs-Kriterien";
-L["Show Criteria Desc"] = "Zeige Erfolgs-Kriterien im Einheiten Tooltip die für das Erlangen eines Erfolgs notwendig sind.";
-L["Show Criteria If"] = "Zeige Erfolgs-Kriterien wenn";
+L["Criteria"] = "Kriterien";
+L["Show Criteria"] = "Zeige Kriterien";
+L["Show Criteria Desc"] = "Zeige Kriterien im Einheiten Tooltip die für das Erlangen eines Erfolgs notwendig sind.";
+L["Show For Achievement"] = "Zeige Kriterien für Erfolg";
+L["Show For Achievement Desc"] = "Zeige den Erfolg für den die Erfolgs-Kriterien benötigt werden.";
+L["Show Criteria If"] = "Zeige Kriterien wenn";
 L["Achievement is Completed"] = "Erfolg abgeschlossen ist";
 L["Achievement is Completed Desc"] = "Zeige die Erfolgs-Kriterien an, auch wenn der Erfolg bereits abgeschlossen ist.";
 L["Achievement was Not Earned by Me"] = "Erfolg nicht durch den aktuellen Charakter abgeschlossen wurde";
