@@ -21,5 +21,5 @@
 <br>
 <br>
 <a href="https://www.patreon.com/Krowi" alt="Patreon">
-  <img src="https://github.com/codebard/patron-button-and-widgets-by-codebard/blob/master/images/become_a_patron_button.png" />
+  <img src="https://raw.githubusercontent.com/codebard/patron-button-and-widgets-by-codebard/master/images/become_a_patron_button.png" />
 </a>
