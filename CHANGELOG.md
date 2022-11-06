@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## 46.1 - 2022-11-xx
 ### Added
+- Tooltip data for items and recipes for The Legion Menu
 
 ### Fixed
 - On rare occasions a character does not have a realm associated
