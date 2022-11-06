@@ -1,48 +1,20 @@
 <p><h3>Added</h3></p>
 <ul>
-<li>Option to hide Not Earned By if current character earned the achievement in tooltip</li>
-<li>Exclude character from Earned By section in tooltips via the Data manager</li>
-<li>Completely ignore character via the Data manager</li>
-<li>ElvUI support for the Data manager</li>
-<li>Plugin to rename Exploration -&gt; Dragon Isles Category to Dragonflight</li>
+<li>Zygor achievement button icons on KAF tabs</li>
+<li>Tooltip data for units needing /love for To All The Squirrels I've Loved Before, To All The Squirrels Who Shared My Life, To All the Squirrels Who Cared for Me, To All the Squirrels I Once Caressed?, To All the Squirrels Through Time and Space, To All the Squirrels I Love Despite Their Scars, To All the Squirrels I Set Sail to See, To All the Squirrels I've Loved and Lost and To All the Squirrels Hidden Till Now</li>
+<li>Tooltip data for units needing to be killed for Pest Control</li>
+<li>Tooltip data for items and recipes for The Outland Gourmet, The Northrend Gourmet, The Cataclysmic Gourmet, The Pandaren Gourmet, The Draenor Gourmet, The Kul Tiran Menu and The Zandalari Menu</li>
+<li>New Credits</li>
 </ul>
 <p><h3>Changed</h3></p>
 <ul>
-<li>Further optimized performance when multiple achievements are earned, added a 1 second delay to catch all achievement earned events and only reload data once at the end</li>
-<li>Pre-patch event achievement is now in the correct categories</li>
+<li>Unchecking Make windows movable now properly makes the affected windows static again</li>
 </ul>
 <p><h3>Fixed</h3></p>
 <ul>
-<li>Dragonflight ElvUI compatibility issues</li>
-<li>Data manager misalignments</li>
-<li>Some more unobtainable achievements have more detailed start and end conditions</li>
-<li>Data manager character checkboxes should now keep their state after re-opening the window</li>
-</ul>
-<p><h3>Wrath Classic</h3></p>
-<ul>
-<li>Temporary obtainable achievements during Wrath of the Lich King are now adjusted to the new patch numbers</li>
-</ul>
-<p><h3>Fixed (45.1)</h3></p>
-<ul>
-<li>Clicking the Track checkbox on an achievement should no longer cause an error</li>
-</ul>
-<p><h3>Fixed (45.2)</h3></p>
-<ul>
-<li>Enabling Reset view on open causes a stack overflow</li>
-<li>Opening a tutorial throws an error due to frame changes</li>
-<li>ElvUI compatibility</li>
-<li>The achievement points do not return when going from Guild to Statistics tab</li>
-</ul>
-<p><h3>Wrath Classic (45.2)</h3></p>
-<ul>
-<li>Fixed an error when opening Options -&gt; Layout -&gt; Tabs</li>
-<li>World Map Button should stay on top once again when ElvUI is enabled</li>
-</ul>
-<p><h3>Removed (45.3)</h3></p>
-<ul>
-<li>Debug messages</li>
-</ul>
-<p><h3>Wrath Classic (45.4)</h3></p>
-<ul>
-<li>ElvUI plugin should no longer cause errors when ElvUI is not enabled</li>
+<li>Make windows movable should no longer throw errors</li>
+<li>Including the last excluded achievement could prevent showing the Excluded category again when excluding another achievement during the same session</li>
+<li>Clearing focus of the last focused achievement could prevent showing the Focused category again when focusing another achievement during the same session</li>
+<li>Excluding, including, focusing and clearing focus should now properly update numbers</li>
+<li>TW region should no longer have errors when clicking an achievement with text criteria</li>
 </ul>

@@ -89,6 +89,21 @@ function achievement:AddCategory(category)
     end
 end
 
+function achievement:AddSpecialCategory(categories, category)
+    categories = categories or {};
+    tinsert(categories, category);
+end
+
+function achievement:AddFocusedCategory(category)
+    self.FocusedCategories = self.FocusedCategories or {};
+    self:AddSpecialCategory(self.FocusedCategories, category);
+end
+
+function achievement:AddExcludedCategory(category)
+    self.ExcludedCategories = self.ExcludedCategories or {};
+    self:AddSpecialCategory(self.ExcludedCategories, category);
+end
+
 function achievement:Include()
     self.Excluded = nil;
     if SavedData.ExcludedAchievements == nil then

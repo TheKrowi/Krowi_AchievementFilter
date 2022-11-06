@@ -1,8 +1,8 @@
--- [[ Exported at 2022-10-24 19-19-51 ]] --
+-- [[ Exported at 2022-11-05 23-04-56 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ English texts by Krowi, 2022-08-09 ]] --
+-- [[ English texts by Krowi, 2022-11-02 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -192,6 +192,14 @@ L["Dragonbane Keep"] = "Dragonbane Keep";
 L["Slagmire"] = "Slagmire";
 L["Scalecracker Keep"] = "Scalecracker Keep";
 L["Primalist Tomorrow"] = "Primalist Tomorrow";
+L["Dragonflight pre-patch - Firestorms"] = "Dragonflight pre-patch - Firestorms";
+L["Dragonflight pre-patch - Sandstorms"] = "Dragonflight pre-patch - Sandstorms";
+L["Dragonflight pre-patch - Snowstorms"] = "Dragonflight pre-patch - Snowstorms";
+L["Dragonflight pre-patch - Thunderstorms"] = "Dragonflight pre-patch - Thunderstorms";
+L["Badlands"] = "Badlands";
+L["Northern Barrens"] = "Northern Barrens";
+L["Tirisfal Glades"] = "Tirisfal Glades";
+L["Un'Goro Crater"] = "Un'Goro Crater";
 L["This achievement is no longer obtainable"] = "This achievement is no longer obtainable.";
 L["Not earned by:"] = "Not earned by:";
 L["Part of a chain"] = "Part of a chain";
@@ -219,6 +227,13 @@ L["Patch"] = "Patch";
 L["Temporary Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}.";
 L["Hide Not Earned By if current character earned the achievement"] = "Hide {notEarnedBy} if current character earned the achievement";
 L["Hide Not Earned By if current character earned the achievement Desc"] = "Hide the {notEarnedBy} section if the current character has earned the achievement. The {earnedBy} section will still be shown as normal.";
+L["for achievement"] = "for {achievement}";
+L["Needs /love for achievement"] = "Needs /love {forAchievement}";
+L["Already /loved for achievement"] = "Already /loved {forAchievement}";
+L["Needs to be killed for achievement"] = "Needs to be killed {forAchievement}";
+L["Already killed for achievement"] = "Already killed {forAchievement}";
+L["Needs to be cooked for achievement"] = "Needs to be cooked {forAchievement}";
+L["Already cooked for achievement"] = "Already cooked {forAchievement}";
 L["Data Manager"] = "Data Manager";
 L["Header tooltip"] = "Header tooltip";
 L["Ignore"] = "Ignore";
@@ -285,11 +300,13 @@ L["Enable trace info"] = "Enable trace info";
 L["Enable trace info Desc"] = "Enable / disable trace info.";
 L["Show placeholders filter"] = "Show placeholders filter";
 L["Show placeholders filter Desc"] = "Show / hide the placeholder filter in the filters. This is used to show achievements not yet in game.\n\nMay contain spoilers if enabled!";
+L["Export Criteria"] = "Export Criteria";
+L["Export Criteria Desc"] = "Exports Achievement Criteria to the Saved Variables. This is used to add new content.";
 L["Layout"] = "Layout";
 L["Window"] = "Window";
 L["Movable"] = "Movable";
 L["Make windows movable"] = "Make windows movable";
-L["Make windows movable Desc"] = "Makes the Achievement window and Calendar view movable/not movable.\n\nWhen checked, keeping the left mouse button pressed moves the Achievement window. This works on the header and borders.";
+L["Make windows movable Desc"] = "Makes the Achievement window Calendar view and Data manager movable/not movable.\n\nWhen checked, keeping the left mouse button pressed moves the Achievement window. This works on the header and borders.";
 L["Remember frame position"] = "Remember {frame} position";
 L["Remember frame position Desc"] = "Remember the {frame} position. This will keep the {frame} in it's last known position the next time you log in.";
 L["Achievement Window"] = "Achievement Window";
@@ -385,6 +402,18 @@ L["Lock month"] = "Lock month";
 L["Lock month Desc"] = "Keep the last shown month as the month to show when opening the calendar again after it was closed.";
 L["First day of the week"] = "First day of the week";
 L["First day of the week Desc"] = "The first day of the week the calendar should use.";
+L["Criteria"] = "Criteria";
+L["Show Criteria"] = "Show Criteria";
+L["Show Criteria Desc"] = "Show Achievement Criteria on units that are required for an achievement (e.g., /love {criteria} for {achievement}).";
+L["Show For Achievement"] = "Show For Achievement";
+L["Show For Achievement Desc"] = "Show the achievement for which the criteria is needed.";
+L["Show Criteria If"] = "Show Criteria If";
+L["Achievement is Completed"] = "Achievement is Completed";
+L["Achievement is Completed Desc"] = "Show Achievement Criteria even if the Achievement is already completed.";
+L["Achievement was Not Earned by Me"] = "Achievement was Not Earned by Me";
+L["Achievement was Not Earned by Me Desc"] = "Show Achievement Criteria if the Achievement was not yet earned by the current character.";
+L["Criteria is Completed"] = "Criteria is Completed";
+L["Criteria is Completed Desc"] = "Show Achievement Criteria even if the Achievement Criteria is already completed.";
 L["Event Reminders"] = "Event Reminders";
 L["Pop ups"] = "Pop ups";
 L["Show pop ups"] = "Show pop ups";

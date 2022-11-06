@@ -66,6 +66,8 @@ function loadHelper:OnEvent(event, arg1, arg2)
 
             addon.Icon.Load();
             addon.Tutorials.Load();
+
+            addon.TooltipData.Load(); -- Might be moved to PLAYER_LOGIN event but easier for testing on every /reload
         elseif arg1 == "Blizzard_AchievementUI" then -- This needs the Blizzard_AchievementUI addon available to load
             addon.Data.Load();
 
@@ -75,7 +77,11 @@ function loadHelper:OnEvent(event, arg1, arg2)
             addon.Data.LoadTrackingAchievements();
             addon.Data.LoadExcludedAchievements();
 
-            addon.MakeWindowMovable();
+            if addon.Options.db.Window.Movable then
+                addon.MakeWindowMovable();
+            else
+                addon.MakeWindowStatic();
+            end
             addon.GUI.AchievementFrameHeader.HookSetPointsText();
             addon.OverwriteFunctions();
             addon.HookAchievementFrameOnShow();

@@ -1,6 +1,7 @@
 <Ui>
     <Script file="Objects.lua" />
     <Script file="Faction.lua" />
+    <Script file="TooltipDataType.lua" />
     <Script file="TransmogSet.lua" />
     <Script file="Achievement.lua" />
     <Script file="Category.lua" />

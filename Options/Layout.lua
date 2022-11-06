@@ -314,7 +314,11 @@ options.OptionsTable.args["Layout"] = {
                             get = function() return addon.Options.db.Window.Movable; end,
                             set = function()
                                 addon.Options.db.Window.Movable = not addon.Options.db.Window.Movable;
-                                addon.MakeWindowMovable();
+                                if addon.Options.db.Window.Movable then
+                                    addon.MakeWindowMovable();
+                                else
+                                    addon.MakeWindowStatic();
+                                end
                                 options.Debug(addon.L["Make window movable"], addon.Options.db.Window.Movable);
                             end
                         },
@@ -366,7 +370,7 @@ options.OptionsTable.args["Layout"] = {
                             set = function()
                                 addon.Options.db.Window.RememberLastPosition.Calendar = not addon.Options.db.Window.RememberLastPosition.Calendar;
                                 if not addon.Options.db.Window.RememberLastPosition.Calendar then
-                                    addon.GUI.Calendar:ResetFramePosition();
+                                    addon.GUI.Calendar.Frame:ResetPosition();
                                 end
                                 options.Debug(addon.L["Remember frame position"]:ReplaceVars
                                 {
@@ -382,7 +386,7 @@ options.OptionsTable.args["Layout"] = {
                                 frame = addon.L["Achievement Calendar"]
                             },
                             func = function()
-                                addon.GUI.Calendar:ResetFramePosition();
+                                addon.GUI.Calendar.Frame:ResetPosition();
                             end
                         },
                         DataManager = {
@@ -1165,6 +1169,81 @@ options.OptionsTable.args["Layout"] = {
                                 options.Debug(addon.L["First day of the week"], addon.Options.db.Calendar.FirstWeekDay);
                             end
                         }
+                    }
+                }
+            }
+        },
+        Criteria = {
+            order = 10, type = "group",
+            name = addon.L["Criteria"],
+            args = {
+                Tooltip = {
+                    order = 1, type = "group",
+                    name = addon.L["Tooltip"],
+                    inline = true,
+                    args = {
+                        ShowCriteria = {
+                            order = 1.1, type = "toggle", width = 1.5 * widthMultiplier,
+                            name = addon.L["Show Criteria"],
+                            desc = function() return addon.L["Show Criteria Desc"]:ReplaceVars{
+                                criteria = (GetAchievementCriteriaInfo(1206, 1)),
+                                achievement = (select(2, addon.GetAchievementInfo(1206)))
+                            }; end,
+                            get = function() return addon.Options.db.Tooltip.Units.ShowCriteria; end,
+                            set = function()
+                                addon.Options.db.Tooltip.Units.ShowCriteria = not addon.Options.db.Tooltip.Units.ShowCriteria;
+                                options.Debug(addon.L["Show Criteria"], addon.Options.db.Tooltip.Units.ShowCriteria);
+                            end
+                        },
+                        ShowForAchievement = {
+                            order = 1.2, type = "toggle", width = 1.5 * widthMultiplier,
+                            name = addon.L["Show For Achievement"],
+                            desc = function() return addon.L["Show For Achievement Desc"]:ReplaceVars{
+                                criteria = (GetAchievementCriteriaInfo(1206, 1)),
+                                achievement = (select(2, addon.GetAchievementInfo(1206)))
+                            }; end,
+                            get = function() return addon.Options.db.Tooltip.Units.ShowForAchievement; end,
+                            set = function()
+                                addon.Options.db.Tooltip.Units.ShowForAchievement = not addon.Options.db.Tooltip.Units.ShowForAchievement;
+                                options.Debug(addon.L["Show For Achievement"], addon.Options.db.Tooltip.Units.ShowForAchievement);
+                            end
+                        },
+                        -- Blank12 = {order = 1.3, type = "description", width = 1 * widthMultiplier, name = ""},
+                        ShowCriteriaIf = {
+                            order = 2, type = "header",
+                            name = addon.L["Show Criteria If"]
+                        },
+                        ShowCriteriaIfAchievementIsCompleted = {
+                            order = 3.1, type = "toggle", width = 1.5 * widthMultiplier,
+                            name = addon.L["Achievement is Completed"],
+                            desc = addon.L["Achievement is Completed Desc"],
+                            get = function() return addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementIsCompleted; end,
+                            set = function()
+                                addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementIsCompleted = not addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementIsCompleted;
+                                options.Debug(addon.L["Achievement is Completed"], addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementIsCompleted);
+                            end
+                        },
+                        ShowCriteriaIfAchievementWasNotEarnedByMe = {
+                            order = 3.2, type = "toggle", width = 1.5 * widthMultiplier,
+                            name = addon.L["Achievement was Not Earned by Me"],
+                            desc = addon.L["Achievement was Not Earned by Me Desc"],
+                            get = function() return addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementWasNotEarnedByMe; end,
+                            set = function()
+                                addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementWasNotEarnedByMe = not addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementWasNotEarnedByMe;
+                                options.Debug(addon.L["Achievement was Not Earned by Me"], addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementWasNotEarnedByMe);
+                            end
+                        },
+                        ShowCriteriaIfCriteriaIsCompleted = {
+                            order = 4.1, type = "toggle", width = 1.5 * widthMultiplier,
+                            name = addon.L["Criteria is Completed"],
+                            desc = addon.L["Criteria is Completed Desc"],
+                            get = function() return addon.Options.db.Tooltip.Units.ShowCriteriaIf.CriteriaIsCompleted; end,
+                            set = function()
+                                addon.Options.db.Tooltip.Units.ShowCriteriaIf.CriteriaIsCompleted = not addon.Options.db.Tooltip.Units.ShowCriteriaIf.CriteriaIsCompleted;
+                                options.Debug(addon.L["Criteria is Completed"], addon.Options.db.Tooltip.Units.ShowCriteriaIf.CriteriaIsCompleted);
+                            end
+                        },
+                        Blank42 = {order = 4.2, type = "description", width = 1.5 * widthMultiplier, name = ""},
                     }
                 }
             }

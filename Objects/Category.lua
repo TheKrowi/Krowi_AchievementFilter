@@ -64,14 +64,16 @@ function category:AddAchievement(achievement)
 end
 
 function category:AddFocusedAchievement(achievement)
-    self:AddAchievement(achievement);
-    achievement.FocusedCategory = self;
+    self.Achievements = self.Achievements or {}; -- By creating the achievements table here we reduce memory usage because not every category has achievements
+    achievement:AddFocusedCategory(self);
+    tinsert(self.Achievements, achievement);
     return achievement;
 end
 
 function category:AddExcludedAchievement(achievement)
-    self:AddAchievement(achievement);
-    achievement.ExcludedCategory = self;
+    self.Achievements = self.Achievements or {}; -- By creating the achievements table here we reduce memory usage because not every category has achievements
+    achievement:AddExcludedCategory(self);
+    tinsert(self.Achievements, achievement);
     return achievement;
 end
 
@@ -89,12 +91,10 @@ end
 
 function category:RemoveFocusedAchievement(achievement)
     self:RemoveAchievement(achievement);
-    achievement.FocusedCategory = nil;
 end
 
 function category:RemoveExcludedAchievement(achievement)
     self:RemoveAchievement(achievement);
-    achievement.ExcludedCategory = nil;
 end
 
 function category:GetTree()

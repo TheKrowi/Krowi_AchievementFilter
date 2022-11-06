@@ -1,8 +1,8 @@
--- [[ Exported at 2022-10-24 19-19-51 ]] --
+-- [[ Exported at 2022-11-05 23-04-56 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-10-16 ]] --
+-- [[ German translation by Ta, 2022-11-04 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -192,6 +192,14 @@ L["Dragonbane Keep"] = "Drachenfluchfestung";
 L["Slagmire"] = "Schlackensumpf";
 L["Scalecracker Keep"] = "Schuppenknackergipfel";
 L["Primalist Tomorrow"] = "Urzeitliche Primalisten";
+L["Dragonflight pre-patch - Firestorms"] = "Dragonflight Pre-patch - Feuerstürme";
+L["Dragonflight pre-patch - Sandstorms"] = "Dragonflight Pre-patch - Sandstürme";
+L["Dragonflight pre-patch - Snowstorms"] = "Dragonflight Pre-patch - Schneestürme";
+L["Dragonflight pre-patch - Thunderstorms"] = "Dragonflight Pre-patch - Gewitterstürme";
+L["Badlands"] = "Ödland";
+L["Northern Barrens"] = "Nördliches Brachland";
+L["Tirisfal Glades"] = "Tirisfal";
+L["Un'Goro Crater"] = "Der Krater von Un'Goro";
 L["This achievement is no longer obtainable"] = "Dieser Erfolg kann nicht länger erzielt werden.";
 L["Not earned by:"] = "Nicht erzielt durch:";
 L["Part of a chain"] = "Teil einer Folgequest";
@@ -219,7 +227,14 @@ L["Patch"] = "Patch";
 L["Temporary Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}.";
 L["Hide Not Earned By if current character earned the achievement"] = "{notEarnedBy} ausblenden, wenn der aktuelle Charakter den Erfolg schon erlangt hat";
 L["Hide Not Earned By if current character earned the achievement Desc"] = "Blendet den Abschnitt {notEarnedBy} aus, wenn der aktuelle Charakter den Erfolg erworben hat. Der Abschnitt {earnedBy} wird ansonsten weiterhin wie gewohnt angezeigt.";
-L["Data Manager"] = "Daten-Manager";
+L["for achievement"] = "für {achievement}";
+L["Needs /love for achievement"] = "Benötigt deine /liebe für {achievement}";
+L["Already /loved for achievement"] = "Hat deine Liebe für {achievement} schon erhalten";
+L["Needs to be killed for achievement"] = "Muss noch für {achievement} getötet werden";
+L["Already killed for achievement"] = "Bereits getötet für {achievement}";
+L["Needs to be cooked for achievement"] = "Muss noch für {achievement} gekocht werden";
+L["Already cooked for achievement"] = "Bereits gekocht für {achievement}";
+L["Data Manager"] = "Charakterübersicht";
 L["Header tooltip"] = "Überschrift-Tooltip";
 L["Ignore"] = "Ignorieren";
 L["Wowhead"] = "Wowhead";
@@ -285,11 +300,13 @@ L["Enable trace info"] = "Trace-Informationen einschalten";
 L["Enable trace info Desc"] = "Trace-Informationen einschalten/ausschalten";
 L["Show placeholders filter"] = "Filter \"Platzhalter\" anzeigen";
 L["Show placeholders filter Desc"] = "Zeigt / Versteckt den Platzhalterfilter in den Filtern. Dieser wird verwendet, um Erfolge anzuzeigen, die noch nicht im Spiel sind.\n\nKann Spoiler enthalten, wenn aktiviert!";
+L["Export Criteria"] = "Erfolgs-Kriterien Export";
+L["Export Criteria Desc"] = "Exportiert Erfolgs-Kriterien in die Gespeicherten Variablen. Dies wird verwendet, um neue Inhalte hinzuzufügen.";
 L["Layout"] = "Layout";
 L["Window"] = "Fenster";
 L["Movable"] = "Bewegliche Fenster";
 L["Make windows movable"] = "Fenster verschiebbar machen";
-L["Make windows movable Desc"] = "Macht das Erfolgsfenster und die Kalenderansicht beweglich/nicht beweglich.\n\nWenn diese Option aktiviert ist, wird das Erfolgsfenster bei gedrückter linker Maustaste verschoben. Dies gilt für die Kopfzeile und die Ränder.";
+L["Make windows movable Desc"] = "Macht das Erfolgsfenster, die Kalenderansicht und die Charakterübersicht beweglich/nicht beweglich.\n\nWenn diese Option aktiviert ist, wird das jeweilige Fenster bei gedrückter linker Maustaste verschoben. Dies gilt für die Kopfzeile und die Ränder.";
 L["Remember frame position"] = "{frame} Position merken";
 L["Remember frame position Desc"] = "Die Position des {frame} wird gespeichert. Dadurch bleibt der {frame} bei der nächsten Anmeldung an seiner letzten bekannten Position.";
 L["Achievement Window"] = "Erfolg-Fenster";
@@ -385,6 +402,18 @@ L["Lock month"] = "Gewählten Monat behalten immer behalten.";
 L["Lock month Desc"] = "Behalte den zuletzt angezeigten immer Monat bei, wenn du den Kalender wieder öffnest, nachdem er geschlossen wurde.";
 L["First day of the week"] = "Erster Tag der Woche";
 L["First day of the week Desc"] = "Der erste Tag der Woche, den der Kalender verwenden soll.";
+L["Criteria"] = "Kriterien";
+L["Show Criteria"] = "Zeige Kriterien";
+L["Show Criteria Desc"] = "Zeige Kriterien im Einheiten Tooltip die für das Erlangen eines Erfolgs notwendig sind.";
+L["Show For Achievement"] = "Zeige Kriterien für Erfolg";
+L["Show For Achievement Desc"] = "Zeige den Erfolg für den die Erfolgs-Kriterien benötigt werden.";
+L["Show Criteria If"] = "Zeige Kriterien wenn";
+L["Achievement is Completed"] = "Erfolg abgeschlossen ist";
+L["Achievement is Completed Desc"] = "Zeige die Erfolgs-Kriterien an, auch wenn der Erfolg bereits abgeschlossen ist.";
+L["Achievement was Not Earned by Me"] = "Erfolg nicht durch den aktuellen Charakter abgeschlossen wurde";
+L["Achievement was Not Earned by Me Desc"] = "Zeigt die Erfolgs-Kriterien an, solange der aktuelle Charakter den Erfolg noch nicht erreicht hat.";
+L["Criteria is Completed"] = "Kriterien erfüllt sind";
+L["Criteria is Completed Desc"] = "Erfolgs-Kriterien anzeigen, auch wenn die Erfolgs-Kriterien bereits erfüllt sind.";
 L["Event Reminders"] = "Event Erinnerung";
 L["Pop ups"] = "Popup-Fenster";
 L["Show pop ups"] = "Zeige Ereignis Popup-Fenster";
