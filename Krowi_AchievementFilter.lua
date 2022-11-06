@@ -1,6 +1,8 @@
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
 
+-- LoadAddOn("Blizzard_AchievementUI");
+
 -- [[ Version data ]] --
 local version = (GetBuildInfo());
 local major = string.match(version, "(%d+)%.(%d+)%.(%d+)(%w?)");
@@ -39,53 +41,64 @@ loadHelper:RegisterEvent("PLAYER_LOGIN");
 loadHelper:RegisterEvent("PLAYER_ENTERING_WORLD");
 loadHelper:RegisterEvent("ACHIEVEMENT_EARNED");
 
+local function LoadKrowi_AchievementFilter()
+    addon.Diagnostics.Load();
+
+    addon.Data.ExportedCategories.InjectOptions();
+    addon.Options.Layout.AddMoreFocusedOptions();
+    addon.Options.Layout.AddMoreTrackingAchievementsOptions();
+    addon.Options.Layout.AddMoreExcludedOptions();
+
+    addon.Data.ExportedCalendarEvents.InjectOptions();
+    addon.Data.ExportedWorldEvents.InjectOptions();
+    -- addon.Data.ExportedWidgetEvents.InjectOptions();
+
+    addon.GUI.PrepareTabsOrder();
+    addon.Tabs.InjectOptions();
+    addon.Plugins:InjectOptions();
+    addon.Options.Load();
+
+    addon.Plugins:Load();
+
+    addon.Data.SavedData.Load();
+
+    addon.GUI:LoadWithAddon();
+
+    addon.Icon.Load();
+    addon.Tutorials.Load();
+
+    addon.TooltipData.Load(); -- Might be moved to PLAYER_LOGIN event but easier for testing on every /reload
+end
+
+local function LoadBlizzard_AchievementUI()
+    addon.Data.Load();
+
+    addon.GUI:LoadWithBlizzard_AchievementUI();
+
+    addon.Data.LoadFocusedAchievements();
+    addon.Data.LoadTrackingAchievements();
+    addon.Data.LoadExcludedAchievements();
+
+    if addon.Options.db.Window.Movable then
+        addon.MakeWindowMovable();
+    else
+        addon.MakeWindowStatic();
+    end
+    addon.GUI.AchievementFrameHeader.HookSetPointsText();
+    addon.OverwriteFunctions();
+    addon.HookAchievementFrameOnShow();
+    -- addon.HookSelectAchievement();
+end
+
 function loadHelper:OnEvent(event, arg1, arg2)
     if event == "ADDON_LOADED" then
         if arg1 == "Krowi_AchievementFilter" then -- This always needs to load
-            addon.Diagnostics.Load();
-
-            addon.Data.ExportedCategories.InjectOptions();
-            addon.Options.Layout.AddMoreFocusedOptions();
-            addon.Options.Layout.AddMoreTrackingAchievementsOptions();
-            addon.Options.Layout.AddMoreExcludedOptions();
-
-            addon.Data.ExportedCalendarEvents.InjectOptions();
-            addon.Data.ExportedWorldEvents.InjectOptions();
-            -- addon.Data.ExportedWidgetEvents.InjectOptions();
-
-            addon.GUI.PrepareTabsOrder();
-            addon.Tabs.InjectOptions();
-            addon.Plugins:InjectOptions();
-            addon.Options.Load();
-
-            addon.Plugins:Load();
-
-            addon.Data.SavedData.Load();
-
-            addon.GUI:LoadWithAddon();
-
-            addon.Icon.Load();
-            addon.Tutorials.Load();
-
-            addon.TooltipData.Load(); -- Might be moved to PLAYER_LOGIN event but easier for testing on every /reload
-        elseif arg1 == "Blizzard_AchievementUI" then -- This needs the Blizzard_AchievementUI addon available to load
-            addon.Data.Load();
-
-            addon.GUI:LoadWithBlizzard_AchievementUI();
-
-            addon.Data.LoadFocusedAchievements();
-            addon.Data.LoadTrackingAchievements();
-            addon.Data.LoadExcludedAchievements();
-
-            if addon.Options.db.Window.Movable then
-                addon.MakeWindowMovable();
-            else
-                addon.MakeWindowStatic();
+            LoadKrowi_AchievementFilter();
+            if IsAddOnLoaded("Blizzard_AchievementUI") then
+                LoadBlizzard_AchievementUI();
             end
-            addon.GUI.AchievementFrameHeader.HookSetPointsText();
-            addon.OverwriteFunctions();
-            addon.HookAchievementFrameOnShow();
-            -- addon.HookSelectAchievement();
+        elseif arg1 == "Blizzard_AchievementUI" then -- This needs the Blizzard_AchievementUI addon available to load
+            LoadBlizzard_AchievementUI();
         elseif arg1 == "WoWUnit" then
             addon.UnitTests:Load();
         end
