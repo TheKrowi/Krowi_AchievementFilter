@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 46.1 - 2022-11-xx
+## 46.1 - 2022-11-07
 ### Added
 - Tooltip data for items and recipes for The Legion Menu
 
@@ -9,6 +9,9 @@ All notable changes to this project will be documented in this file.
 - On rare occasions a character does not have a realm associated
 - When Blizzard_AchievementUI is loaded first, opening the achievement window should no longer trigger an error
 - When Blizzard_AchievementUI is loaded first, clicking an event reminder should no longer trigger an error
+
+### Removed
+- WoWUnit (dev unit testing)
 
 ## 46.0 - 2022-11-06
 ### Added

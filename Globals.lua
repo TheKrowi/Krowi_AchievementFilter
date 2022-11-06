@@ -402,7 +402,7 @@ function addon.OverwriteFunctions()
         if not addon.IsDragonflightRetail then
             AchievementFrame.wasShown = nil;
         end
-    
+
         AchievementFrameTab_OnClick = AchievementFrameComparisonTab_OnClick;
         AchievementFrameTab_OnClick(1);
         if addon.IsDragonflightRetail then
