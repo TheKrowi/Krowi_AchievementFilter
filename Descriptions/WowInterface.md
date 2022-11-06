@@ -37,7 +37,9 @@ Achievement Filter completely replaces the default Achievements tab and adds sev
 [B]Features[/B]
 [LIST]
 [*]Enhanced [B][I]searching[/I][/B], [B][I]filtering[/I][/B], [B][I]sorting[/I][/B] and [B][I]tracking[/I][/B] of achievements per tab.
-[*]Enhanced [B][I]tooltip[/I][/B] to show more about the achievement and related achievements.
+[*]Enhanced [B][I]achievement tooltip[/I][/B] to show more about the achievement and related achievements.
+[*]Enhanced [B][I]unit and item tooltip[/I][/B] to show if the unit or item is required for an achievement. (Still working on expanding this.)
+[*][B][I]Movable windows[/I][/B] with the option to remember their last position.
 [*]Achievements are sorted in a way so they make more sense and are easier to find.
 [*]A [B][I]Right Click Menu[/I][/B] for each achievement with a link to Wowhead, IAT (3.18.0+) (if tactics are available), Transmog sets (if linked to collecting it), Go to (related achievements) and wow-petguide.com (Xu-Fu's Pet Guides).
 [*]A [B][I]tutorial[/I][/B] for first time users with an ingame explanation of the most important features.
