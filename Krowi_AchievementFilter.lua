@@ -1,6 +1,8 @@
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
 
+LoadAddOn("Blizzard_AchievementUI"); -- For testing
+
 -- [[ Version data ]] --
 local version = (GetBuildInfo());
 local major = string.match(version, "(%d+)%.(%d+)%.(%d+)(%w?)");

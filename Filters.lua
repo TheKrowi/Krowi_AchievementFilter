@@ -343,7 +343,3 @@ function filters:Sort(achievements, defaultOrder)
     end);
     return achievements;
 end
-
--- if not addon.UnitTests.Active then return; end
--- filters.CompareIdFunc = CompareId;
--- filters.CompareCompletionFunc = CompareCompletion;

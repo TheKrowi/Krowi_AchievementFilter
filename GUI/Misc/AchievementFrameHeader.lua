@@ -204,8 +204,3 @@ function header.CreateTooltip()
         addon.GUI.DataManagerFrame:Show();
     end);
 end
-
--- if not addon.UnitTests.Active then return; end
--- header.ComparePointsFunc = ComparePoints;
--- header.CompareNamesFunc = CompareNames;
--- header.CompareRealmsFunc = CompareRealms;
