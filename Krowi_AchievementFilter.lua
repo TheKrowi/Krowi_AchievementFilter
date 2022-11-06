@@ -94,9 +94,9 @@ function loadHelper:OnEvent(event, arg1, arg2)
     if event == "ADDON_LOADED" then
         if arg1 == "Krowi_AchievementFilter" then -- This always needs to load
             LoadKrowi_AchievementFilter();
-            if IsAddOnLoaded("Blizzard_AchievementUI") then
-                LoadBlizzard_AchievementUI();
-            end
+            -- if IsAddOnLoaded("Blizzard_AchievementUI") then
+            --     LoadBlizzard_AchievementUI();
+            -- end
         elseif arg1 == "Blizzard_AchievementUI" then -- This needs the Blizzard_AchievementUI addon available to load
             LoadBlizzard_AchievementUI();
         elseif arg1 == "WoWUnit" then
@@ -116,6 +116,10 @@ function loadHelper:OnEvent(event, arg1, arg2)
         end
 
         addon.ChangeAchievementMicroButtonOnClick();
+
+        if IsAddOnLoaded("Blizzard_AchievementUI") then
+            LoadBlizzard_AchievementUI();
+        end
     elseif event == "PLAYER_ENTERING_WORLD" then
          -- arg1 = isLogin, arg2 = isReload
         if arg1 then -- On a fresh login we need to prime the area poi to get world events
