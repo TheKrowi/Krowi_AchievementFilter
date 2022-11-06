@@ -179,10 +179,12 @@ local function OnEnter(self)
     local characters = GetSortedCharacters();
     characters = LimitNumCharacters(characters);
     for _, character in next, characters do
+        local _, realm, name = strsplit("-", character.Guid);
         local r, g, b = GetClassColor(character.Class);
-        local name = character.Name;
+        print(character.Name, character.Realm, (character.Name or name), (character.Realm or realm))
+        name = (character.Name or name);
         if addon.Options.db.AchievementPoints.Tooltip.AlwaysShowRealm or character.Realm ~= (select(2, UnitFullName("player"))) then
-            name = name .. " - " .. character.Realm;
+            name = name .. " - " .. (character.Realm or realm);
         end
         name = AddFactionIcon(name, character.Faction)
         GameTooltip:AddDoubleLine(name, tostring(BreakUpLargeNumbers(character.Points)), r, g, b, 1, 1, 1);

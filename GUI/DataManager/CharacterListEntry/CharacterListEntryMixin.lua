@@ -23,8 +23,8 @@ function KrowiAF_CharacterListEntryMixin:SetCharacter(character)
     end
 
     self.Character = character;
-    self.Name:SetText(character.Name or "Name");
-    self.Realm:SetText(character.Realm or "Realm");
+    self.Name:SetText(character.Name or "Unknown");
+    self.Realm:SetText(character.Realm or "Unknown");
     self.Class:SetTexCoord(unpack(CLASS_ICON_TCOORDS[character.Class]));
     self.Faction:SetAtlas(GetFactionIcon(character.Faction));
     self.Points:SetText(character.Points or "99999");

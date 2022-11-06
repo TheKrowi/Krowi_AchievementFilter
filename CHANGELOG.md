@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 46.1 - 2022-11-xx
+### Added
+
+### Fixed
+- On rare occasions a character does not have a realm associated
+
 ## 46.0 - 2022-11-06
 ### Added
 - Zygor achievement button icons on KAF tabs
