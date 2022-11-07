@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## 46.3 - 2022-11-xx
 ### Added
-- Tooltip data for items and recipes for Second That Emotion
+- Tooltip data for items and recipes for Second That Emotion and Cataclysmically Delicious
 
 ## 46.2 - 2022-11-07
 ### Fixed
