@@ -25,3 +25,9 @@
 
 ### Removed (46.1)
 - WoWUnit (dev unit testing)
+
+### Fixed (46.2)
+- Possible error when a character's save data is corrupt.
+
+### Removed (46.2)
+- Print statement when mousing over the achievement points
