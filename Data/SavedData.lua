@@ -5,7 +5,7 @@ local data = addon.Data;
 data.SavedData = {};
 local savedData = data.SavedData;
 
-local LoadSolutions, Resolve;
+local LoadVerifications, Verify, LoadSolutions, Resolve;
 function savedData.Load()
     SavedData = SavedData or {}; -- Does not exist yet for new users
     SavedData.Fixes = SavedData.Fixes or {}; -- Does not exist yet for new users
@@ -29,7 +29,25 @@ function savedData.Load()
         Resolve(LoadSolutions(), prevBuild, currBuild, prevVersion, currVersion, false);
     end
 
+    Verify(LoadVerifications());
+
     diagnostics.Debug("SavedData loaded");
+end
+
+local VerifySavedCharacterData;
+function LoadVerifications()
+    local verifications = {
+        VerifySavedCharacterData, -- 1
+    };
+
+    return verifications;
+end
+
+function Verify(verifications)
+    for _, verification in next, verifications do
+        verification();
+    end
+    diagnostics.Debug("Verified all");
 end
 
 local FixFeaturesTutorialProgress, FixElvUISkin, FixFilters, FixEventDetails, FixShowExcludedCategory, FixEventDetails2, FixCharacters, FixEventAlert;
@@ -68,6 +86,18 @@ function Resolve(solutions, prevBuild, currBuild, prevVersion, currVersion, firs
         solution(prevBuild, currBuild, prevVersion, currVersion, firstTime);
     end
     diagnostics.Debug("Resolved all");
+end
+
+function VerifySavedCharacterData()
+    for guid, character in next, SavedData.Characters do
+        local _, realm, name = strsplit("-", guid);
+        if character.Name == nil then
+            SavedData.Characters[guid].Name = name;
+        end
+        if character.Realm == nil then
+            SavedData.Characters[guid].Realm = realm;
+        end
+    end
 end
 
 function FixFeaturesTutorialProgress(prevBuild, currBuild, prevVersion, currVersion, firstTime)

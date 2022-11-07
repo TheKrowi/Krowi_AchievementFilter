@@ -32,3 +32,11 @@
 <ul>
 <li>WoWUnit (dev unit testing)</li>
 </ul>
+<p><h3>Fixed (46.2)</h3></p>
+<ul>
+<li>Possible error when a character's save data is corrupt.</li>
+</ul>
+<p><h3>Removed (46.2)</h3></p>
+<ul>
+<li>Print statement when mousing over the achievement points</li>
+</ul>
