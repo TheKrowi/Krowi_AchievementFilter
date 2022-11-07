@@ -1,6 +1,6 @@
 ## Interface: 100000
 ## Title: Krowi's |cFF1D92C2Achievement Filter|r
-## Version: 46.0
+## Version: 46.1
 ## Author: Krowi-Frostmane EU
 ## SavedVariables: Options, SavedData, Filters, EventDetails, DebugTable
 ## Notes: Filters your achievements.
@@ -12,8 +12,6 @@
 ## X-Wago-Project-ID: XrNkx46a
 ## X-WoWInterface: https://www.wowinterface.com/downloads/info26229-KrowisAchievementFilter
 ## X-WoWInterface-Project-ID: 26229
-
-UnitTests\UnitTests.lua
 
 API.lua
 
@@ -43,5 +41,3 @@ Data\FilesRetail.xml
 
 Filters.lua
 GUI\Files.xml
-
-UnitTests\Files.xml

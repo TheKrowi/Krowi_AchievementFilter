@@ -18,3 +18,17 @@
 <li>Excluding, including, focusing and clearing focus should now properly update numbers</li>
 <li>TW region should no longer have errors when clicking an achievement with text criteria</li>
 </ul>
+<p><h3>Added (46.1)</h3></p>
+<ul>
+<li>Tooltip data for items and recipes for The Legion Menu</li>
+</ul>
+<p><h3>Fixed (46.1)</h3></p>
+<ul>
+<li>On rare occasions a character does not have a realm associated</li>
+<li>When Blizzard_AchievementUI is loaded first, opening the achievement window should no longer trigger an error</li>
+<li>When Blizzard_AchievementUI is loaded first, clicking an event reminder should no longer trigger an error</li>
+</ul>
+<p><h3>Removed (46.1)</h3></p>
+<ul>
+<li>WoWUnit (dev unit testing)</li>
+</ul>

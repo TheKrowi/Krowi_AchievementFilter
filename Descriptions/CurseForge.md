@@ -32,7 +32,9 @@
 <p><h3>Features</h3></p>
 <ul>
 <li>Enhanced <strong><em>searching</em></strong>, <strong><em>filtering</em></strong>, <strong><em>sorting</em></strong> and <strong><em>tracking</em></strong> of achievements per tab.</li>
-<li>Enhanced <strong><em>tooltip</em></strong> to show more about the achievement and related achievements.</li>
+<li>Enhanced <strong><em>achievement tooltip</em></strong> to show more about the achievement and related achievements.</li>
+<li>Enhanced <strong><em>unit and item tooltip</em></strong> to show if the unit or item is required for an achievement. (Still working on expanding this.)</li>
+<li><strong><em>Movable windows</em></strong> with the option to remember their last position.</li>
 <li>Achievements are sorted in a way so they make more sense and are easier to find.</li>
 <li>A <strong><em>Right Click Menu</em></strong> for each achievement with a link to Wowhead, IAT (3.18.0+) (if tactics are available), Transmog sets (if linked to collecting it), Go to (related achievements) and wow-petguide.com (Xu-Fu's Pet Guides).</li>
 <li>A <strong><em>tutorial</em></strong> for first time users with an ingame explanation of the most important features.</li>
