@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-06 19-55-36 ]] --
+-- [[ Exported at 2022-11-07 22-55-25 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -24,9 +24,11 @@ function exportedTooltipData.Load(d)
     local texts = {};
     texts[2] = addon.L["Already /loved for achievement"];
     texts[6] = addon.L["Already cooked for achievement"];
+    texts[8] = addon.L["Already eaten for achievement"];
     texts[4] = addon.L["Already killed for achievement"];
     texts[1] = addon.L["Needs /love for achievement"];
     texts[5] = addon.L["Needs to be cooked for achievement"];
+    texts[7] = addon.L["Needs to be eaten for achievement"];
     texts[3] = addon.L["Needs to be killed for achievement"];
 
     AddD(d, 25677, tdt.Unit, 1206, 1, texts[1], texts[2]); -- "Borean Frog"
@@ -257,6 +259,18 @@ function exportedTooltipData.Load(d)
     AddD(d, 44954, tdt.Item, 1779, 45, texts[5], texts[6]); -- "Worg Tartare"
     AddD(d, 44953, tdt.Item, 1779, 45, texts[5], texts[6]); -- "Worg Tartare"
     AddD(d, 62350, tdt.Spell, 1779, 45, texts[5], texts[6]); -- "Worg Tartare"
+    AddD(d, 43509, tdt.Item, 1780, 1, texts[7], texts[8]); -- "Bad Clams"
+    AddD(d, 43491, tdt.Item, 1780, 1, texts[7], texts[8]); -- "Bad Clams"
+    AddD(d, 58523, tdt.Spell, 1780, 1, texts[7], texts[8]); -- "Bad Clams"
+    AddD(d, 43510, tdt.Item, 1780, 2, texts[7], texts[8]); -- "Haunted Herring"
+    AddD(d, 43492, tdt.Item, 1780, 2, texts[7], texts[8]); -- "Haunted Herring"
+    AddD(d, 58525, tdt.Spell, 1780, 2, texts[7], texts[8]); -- "Haunted Herring"
+    AddD(d, 43488, tdt.Item, 1780, 3, texts[7], texts[8]); -- "Last Week's Mammoth"
+    AddD(d, 43508, tdt.Item, 1780, 3, texts[7], texts[8]); -- "Last Week's Mammoth"
+    AddD(d, 58521, tdt.Spell, 1780, 3, texts[7], texts[8]); -- "Last Week's Mammoth"
+    AddD(d, 43490, tdt.Item, 1780, 4, texts[7], texts[8]); -- "Tasty Cupcake"
+    AddD(d, 43507, tdt.Item, 1780, 4, texts[7], texts[8]); -- "Tasty Cupcake"
+    AddD(d, 58512, tdt.Spell, 1780, 4, texts[7], texts[8]); -- "Tasty Cupcake"
     AddD(d, 33925, tdt.Item, 1800, 1, texts[5], texts[6]); -- "Delicious Chocolate Cake"
     AddD(d, 33924, tdt.Item, 1800, 1, texts[5], texts[6]); -- "Delicious Chocolate Cake"
     AddD(d, 43779, tdt.Spell, 1800, 1, texts[5], texts[6]); -- "Delicious Chocolate Cake"

@@ -1,8 +1,8 @@
--- [[ Exported at 2022-11-06 18-20-04 ]] --
+-- [[ Exported at 2022-11-07 22-47-55 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ English texts by Krowi, 2022-11-02 ]] --
+-- [[ English texts by Krowi, 2022-11-07 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -234,6 +234,8 @@ L["Needs to be killed for achievement"] = "Needs to be killed {forAchievement}";
 L["Already killed for achievement"] = "Already killed {forAchievement}";
 L["Needs to be cooked for achievement"] = "Needs to be cooked {forAchievement}";
 L["Already cooked for achievement"] = "Already cooked {forAchievement}";
+L["Needs to be eaten for achievement"] = "Needs to be eaten {forAchievement}";
+L["Already eaten for achievement"] = "Already eaten {forAchievement}";
 L["Data Manager"] = "Data Manager";
 L["Header tooltip"] = "Header tooltip";
 L["Ignore"] = "Ignore";
