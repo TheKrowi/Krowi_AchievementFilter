@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## 46.2 - 2022-11-07
 ### Fixed
-- Possible error when a character's save data is corrupt.
+- Possible error when a character's save data is corrupt
 
 ### Removed
 - Print statement when mousing over the achievement points
