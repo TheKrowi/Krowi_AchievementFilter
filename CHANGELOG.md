@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 ## 46.4 - 2022-11-xx
 ### Added
 
+### Changed
+- Showing Tooltip Criteria if the achievement was not earned by the current character is checked by default
+- Tooltip Criteria is shown by default if the achievement is not completed
+
+### Fixed
+- Recipes should no longer show tooltip data more than once
+
 ## 46.3 - 2022-11-09
 ### Added
 - Tooltip data for items and recipes for Second That Emotion, Cataclysmically Delicious, Pandaren Cuisine and Pandaren Delicacies

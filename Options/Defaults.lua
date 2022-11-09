@@ -110,12 +110,12 @@ options.Defaults = {
                 },
                 ShowOtherFaction = true,
             },
-            Units = {
-                ShowCriteria = true,
+            Criteria = {
+                Show = true,
                 ShowForAchievement = true,
-                ShowCriteriaIf = {
+                ShowIf = {
                     AchievementIsCompleted = false,
-                    AchievementWasNotEarnedByMe = false,
+                    AchievementWasNotEarnedByMe = true,
                     CriteriaIsCompleted = false
                 }
             }

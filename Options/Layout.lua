@@ -1189,10 +1189,10 @@ options.OptionsTable.args["Layout"] = {
                                 criteria = (GetAchievementCriteriaInfo(1206, 1)),
                                 achievement = (select(2, addon.GetAchievementInfo(1206)))
                             }; end,
-                            get = function() return addon.Options.db.Tooltip.Units.ShowCriteria; end,
+                            get = function() return addon.Options.db.Tooltip.Criteria.Show; end,
                             set = function()
-                                addon.Options.db.Tooltip.Units.ShowCriteria = not addon.Options.db.Tooltip.Units.ShowCriteria;
-                                options.Debug(addon.L["Show Criteria"], addon.Options.db.Tooltip.Units.ShowCriteria);
+                                addon.Options.db.Tooltip.Criteria.Show = not addon.Options.db.Tooltip.Criteria.Show;
+                                options.Debug(addon.L["Show Criteria"], addon.Options.db.Tooltip.Criteria.Show);
                             end
                         },
                         ShowForAchievement = {
@@ -1202,10 +1202,10 @@ options.OptionsTable.args["Layout"] = {
                                 criteria = (GetAchievementCriteriaInfo(1206, 1)),
                                 achievement = (select(2, addon.GetAchievementInfo(1206)))
                             }; end,
-                            get = function() return addon.Options.db.Tooltip.Units.ShowForAchievement; end,
+                            get = function() return addon.Options.db.Tooltip.Criteria.ShowForAchievement; end,
                             set = function()
-                                addon.Options.db.Tooltip.Units.ShowForAchievement = not addon.Options.db.Tooltip.Units.ShowForAchievement;
-                                options.Debug(addon.L["Show For Achievement"], addon.Options.db.Tooltip.Units.ShowForAchievement);
+                                addon.Options.db.Tooltip.Criteria.ShowForAchievement = not addon.Options.db.Tooltip.Criteria.ShowForAchievement;
+                                options.Debug(addon.L["Show For Achievement"], addon.Options.db.Tooltip.Criteria.ShowForAchievement);
                             end
                         },
                         -- Blank12 = {order = 1.3, type = "description", width = 1 * widthMultiplier, name = ""},
@@ -1217,30 +1217,30 @@ options.OptionsTable.args["Layout"] = {
                             order = 3.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Achievement is Completed"],
                             desc = addon.L["Achievement is Completed Desc"],
-                            get = function() return addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementIsCompleted; end,
+                            get = function() return addon.Options.db.Tooltip.Criteria.ShowIf.AchievementIsCompleted; end,
                             set = function()
-                                addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementIsCompleted = not addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementIsCompleted;
-                                options.Debug(addon.L["Achievement is Completed"], addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementIsCompleted);
+                                addon.Options.db.Tooltip.Criteria.ShowIf.AchievementIsCompleted = not addon.Options.db.Tooltip.Criteria.ShowIf.AchievementIsCompleted;
+                                options.Debug(addon.L["Achievement is Completed"], addon.Options.db.Tooltip.Criteria.ShowIf.AchievementIsCompleted);
                             end
                         },
                         ShowCriteriaIfAchievementWasNotEarnedByMe = {
                             order = 3.2, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Achievement was Not Earned by Me"],
                             desc = addon.L["Achievement was Not Earned by Me Desc"],
-                            get = function() return addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementWasNotEarnedByMe; end,
+                            get = function() return addon.Options.db.Tooltip.Criteria.ShowIf.AchievementWasNotEarnedByMe; end,
                             set = function()
-                                addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementWasNotEarnedByMe = not addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementWasNotEarnedByMe;
-                                options.Debug(addon.L["Achievement was Not Earned by Me"], addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementWasNotEarnedByMe);
+                                addon.Options.db.Tooltip.Criteria.ShowIf.AchievementWasNotEarnedByMe = not addon.Options.db.Tooltip.Criteria.ShowIf.AchievementWasNotEarnedByMe;
+                                options.Debug(addon.L["Achievement was Not Earned by Me"], addon.Options.db.Tooltip.Criteria.ShowIf.AchievementWasNotEarnedByMe);
                             end
                         },
                         ShowCriteriaIfCriteriaIsCompleted = {
                             order = 4.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Criteria is Completed"],
                             desc = addon.L["Criteria is Completed Desc"],
-                            get = function() return addon.Options.db.Tooltip.Units.ShowCriteriaIf.CriteriaIsCompleted; end,
+                            get = function() return addon.Options.db.Tooltip.Criteria.ShowIf.CriteriaIsCompleted; end,
                             set = function()
-                                addon.Options.db.Tooltip.Units.ShowCriteriaIf.CriteriaIsCompleted = not addon.Options.db.Tooltip.Units.ShowCriteriaIf.CriteriaIsCompleted;
-                                options.Debug(addon.L["Criteria is Completed"], addon.Options.db.Tooltip.Units.ShowCriteriaIf.CriteriaIsCompleted);
+                                addon.Options.db.Tooltip.Criteria.ShowIf.CriteriaIsCompleted = not addon.Options.db.Tooltip.Criteria.ShowIf.CriteriaIsCompleted;
+                                options.Debug(addon.L["Criteria is Completed"], addon.Options.db.Tooltip.Criteria.ShowIf.CriteriaIsCompleted);
                             end
                         },
                         Blank42 = {order = 4.2, type = "description", width = 1.5 * widthMultiplier, name = ""},

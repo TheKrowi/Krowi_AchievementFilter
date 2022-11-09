@@ -23,12 +23,12 @@ local function AddTooltipLine(tooltipLine)
         return;
     end
 
-    local show = false;
-    if not wasEarnedByMe and addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementWasNotEarnedByMe then
+    local show = not achievementIsCompleted;
+    if not wasEarnedByMe and addon.Options.db.Tooltip.Criteria.ShowIf.AchievementWasNotEarnedByMe then
         show = true;
     end
 
-    if achievementIsCompleted and addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementIsCompleted then
+    if achievementIsCompleted and addon.Options.db.Tooltip.Criteria.ShowIf.AchievementIsCompleted then
         show = true;
     end
 
@@ -38,7 +38,7 @@ local function AddTooltipLine(tooltipLine)
 
     local _, _, criteriaIsCompleted = GetAchievementCriteriaInfo(tooltipLine.AchievementId, tooltipLine.CriteriaIndex);
 
-    if criteriaIsCompleted and not addon.Options.db.Tooltip.Units.ShowCriteriaIf.CriteriaIsCompleted then
+    if criteriaIsCompleted and not addon.Options.db.Tooltip.Criteria.ShowIf.CriteriaIsCompleted then
         return;
     end
 
@@ -53,7 +53,7 @@ local function AddTooltipLine(tooltipLine)
         color = addon.Colors.RedRGB;
     end
     text = text:ReplaceVars{
-        forAchievement = addon.Options.db.Tooltip.Units.ShowForAchievement and addon.L["for achievement"] or ""
+        forAchievement = addon.Options.db.Tooltip.Criteria.ShowForAchievement and addon.L["for achievement"] or ""
     };
     GameTooltip:AddLine(icon .. " " .. string.trim(text:ReplaceVars{
         achievement = name
@@ -61,7 +61,7 @@ local function AddTooltipLine(tooltipLine)
 end
 
 local function ProcessUnit(guid)
-    if not addon.Options.db.Tooltip.Units.ShowCriteria then
+    if not addon.Options.db.Tooltip.Criteria.Show then
         return;
     end
 
@@ -91,7 +91,7 @@ local function ProcessUnit(guid)
 end
 
 local function ProcessItem(itemId)
-    if not addon.Options.db.Tooltip.Units.ShowCriteria then
+    if not addon.Options.db.Tooltip.Criteria.Show then
         return;
     end
 

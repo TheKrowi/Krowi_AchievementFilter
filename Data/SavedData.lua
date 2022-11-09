@@ -52,7 +52,7 @@ end
 
 local FixFeaturesTutorialProgress, FixElvUISkin, FixFilters, FixEventDetails, FixShowExcludedCategory, FixEventDetails2, FixCharacters, FixEventAlert;
 local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters, FixNewEarnedByFilter, FixTabs2, FixNewEarnedByFilter2;
-local FixEventDetails3;
+local FixEventDetails3, FixTooltipCriteria;
 function LoadSolutions()
     local solutions = {
         FixFeaturesTutorialProgress, -- 1
@@ -71,6 +71,7 @@ function LoadSolutions()
         FixTabs2, -- 14
         FixNewEarnedByFilter2, -- 15
         FixEventDetails3, -- 16
+        FixTooltipCriteria, -- 17
     };
 
     return solutions;
@@ -498,4 +499,28 @@ function FixEventDetails3(prevBuild, currBuild, prevVersion, currVersion, firstT
     SavedData.Fixes.FixEventDetails3 = true;
 
     diagnostics.Debug("EventDetails3 reset");
+end
+
+function FixTooltipCriteria(prevBuild, currBuild, prevVersion, currVersion, firstTime)
+    -- In version 46.4 addon.Options.db.Tooltip.Units was moved to addon.Options.db.Tooltip.Criteria
+    -- Here we clean up the old addon.Options.db.Tooltip.Units for users pre 46.4
+    -- addon.Options.db.Tooltip.Criteria is created by the Options so we don't need to do this here, just copy if previous existed
+
+    if firstTime and currVersion > "46.4" then
+        diagnostics.Debug("First time Tooltip Criteria OK");
+        return;
+    end
+    if addon.Options.db.Tooltip.Units == nil then
+        diagnostics.Debug("Tooltip Criteria already moved");
+        return;
+    end
+
+    addon.Options.db.Tooltip.Criteria = addon.Options.db.Tooltip.Units;
+    addon.Options.db.Tooltip.Criteria.Show = addon.Options.db.Tooltip.Criteria.ShowCriteria;
+    addon.Options.db.Tooltip.Criteria.ShowIf = addon.Options.db.Tooltip.Criteria.ShowCriteriaIf;
+    addon.Options.db.Tooltip.Units = nil;
+    addon.Options.db.Tooltip.Criteria.ShowCriteria = nil;
+    addon.Options.db.Tooltip.Criteria.ShowCriteriaIf = nil;
+
+    diagnostics.Debug("Tooltip Criteria moved");
 end
