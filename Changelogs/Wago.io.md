@@ -31,3 +31,12 @@
 
 ### Removed (46.2)
 - Print statement when mousing over the achievement points
+
+### Added (46.3)
+- Tooltip data for items and recipes for Second That Emotion, Cataclysmically Delicious, Pandaren Cuisine and Pandaren Delicacies
+
+### Changed (46.3)
+- Somewhat reduced the size of the exports
+
+### Fixed (46.3)
+- First time user have an initial login error once should no longer happen

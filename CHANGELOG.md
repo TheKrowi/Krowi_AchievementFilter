@@ -1,12 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 46.3 - 2022-11-xx
+## 46.3 - 2022-11-09
 ### Added
-- Tooltip data for items and recipes for Second That Emotion and Cataclysmically Delicious
+- Tooltip data for items and recipes for Second That Emotion, Cataclysmically Delicious, Pandaren Cuisine and Pandaren Delicacies
 
 ### Changed
 - Somewhat reduced the size of the exports
+
+### Fixed
+- First time user have an initial login error once should no longer happen
 
 ## 46.2 - 2022-11-07
 ### Fixed
