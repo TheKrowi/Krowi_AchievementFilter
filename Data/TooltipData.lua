@@ -128,6 +128,15 @@ local function ProcessUnit100000()
     ProcessUnit(guid);
 end
 
+local function DoProcessItem(tt, itemId)
+    local classId = (select(12, GetItemInfo(itemId)));
+    if classId == Enum.ItemClass.Recipe then
+        tt.isFirstTime = not tt.isFirstTime;
+        return not tt.isFirstTime;
+    end
+    return true;
+end
+
 local function ProcessItem100000()
     local _, link = GameTooltip:GetItem();
     if not link then
@@ -135,7 +144,10 @@ local function ProcessItem100000()
     end
     local itemId = (select(3, strfind(link, "item:(%d+)")));
     itemId = tonumber(itemId);
-    ProcessItem(itemId);
+
+    if DoProcessItem(GameTooltip, itemId) then
+        ProcessItem(itemId);
+    end
 end
 
 local function ProcessUnit100002(tooltip, localData)
