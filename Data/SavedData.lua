@@ -89,6 +89,9 @@ function Resolve(solutions, prevBuild, currBuild, prevVersion, currVersion, firs
 end
 
 function VerifySavedCharacterData()
+    if not SavedData.Characters then
+        return;
+    end
     for guid, character in next, SavedData.Characters do
         local _, realm, name = strsplit("-", guid);
         if character.Name == nil then

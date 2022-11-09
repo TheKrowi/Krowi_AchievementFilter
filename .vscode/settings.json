@@ -405,6 +405,7 @@
         "missing-parameter",
         "param-type-mismatch",
         "unbalanced-assignments",
-        "ambiguity-1"
+        "ambiguity-1",
+        "missing-return"
     ]
 }

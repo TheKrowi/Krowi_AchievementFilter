@@ -47,3 +47,18 @@
 [LIST]
 [*]Print statement when mousing over the achievement points
 [/LIST]
+
+[B]Added (46.3)[/B]
+[LIST]
+[*]Tooltip data for items and recipes for Second That Emotion, Cataclysmically Delicious, Pandaren Cuisine and Pandaren Delicacies
+[/LIST]
+
+[B]Changed (46.3)[/B]
+[LIST]
+[*]Somewhat reduced the size of the exports
+[/LIST]
+
+[B]Fixed (46.3)[/B]
+[LIST]
+[*]First time user have an initial login error once should no longer happen
+[/LIST]
