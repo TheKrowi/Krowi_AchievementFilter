@@ -155,7 +155,7 @@ local function ProcessUnit100002(tooltip, localData)
 end
 
 local function ProcessItem100002(tooltip, localData)
-    -- ProcessItem(localData.guid);
+    ProcessItem(localData.id);
 end
 
 function tooltipData.Load()
