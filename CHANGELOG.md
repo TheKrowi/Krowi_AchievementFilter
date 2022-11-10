@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## 46.4 - 2022-11-xx
 ### Added
-- Tooltip data for items and recipes for Draenor Cuisine
+- Tooltip data for items and recipes for Draenor Cuisine anf Drown Your Sorrows
 
 ### Changed
 - Showing Tooltip Criteria if the achievement was not earned by the current character is checked by default

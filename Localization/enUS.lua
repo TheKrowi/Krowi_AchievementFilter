@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-07 22-47-55 ]] --
+-- [[ Exported at 2022-11-11 00-23-56 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -236,6 +236,8 @@ L["Needs to be cooked for achievement"] = "Needs to be cooked {forAchievement}";
 L["Already cooked for achievement"] = "Already cooked {forAchievement}";
 L["Needs to be eaten for achievement"] = "Needs to be eaten {forAchievement}";
 L["Already eaten for achievement"] = "Already eaten {forAchievement}";
+L["Needs to be drunk for achievement"] = "Needs to be drunk {forAchievement}";
+L["Already drank for achievement"] = "Already drank {forAchievement}";
 L["Data Manager"] = "Data Manager";
 L["Header tooltip"] = "Header tooltip";
 L["Ignore"] = "Ignore";
@@ -413,7 +415,7 @@ L["Show Criteria If"] = "Show Criteria If";
 L["Achievement is Completed"] = "Achievement is Completed";
 L["Achievement is Completed Desc"] = "Show Achievement Criteria even if the Achievement is already completed.";
 L["Achievement was Not Earned by Me"] = "Achievement was Not Earned by Me";
-L["Achievement was Not Earned by Me Desc"] = "Show Achievement Criteria if the Achievement was not yet earned by the current character.";
+L["Achievement was Not Earned by Me Desc"] = "Show Achievement Criteria if the Achievement was not yet earned by the current character. This allows for more control if you play multiple characters.";
 L["Criteria is Completed"] = "Criteria is Completed";
 L["Criteria is Completed Desc"] = "Show Achievement Criteria even if the Achievement Criteria is already completed.";
 L["Event Reminders"] = "Event Reminders";

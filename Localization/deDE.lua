@@ -1,8 +1,8 @@
--- [[ Exported at 2022-11-07 22-47-55 ]] --
+-- [[ Exported at 2022-11-11 00-23-56 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-11-04 ]] --
+-- [[ German translation by Ta, 2022-11-09 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -228,12 +228,14 @@ L["Temporary Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempOb
 L["Hide Not Earned By if current character earned the achievement"] = "{notEarnedBy} ausblenden, wenn der aktuelle Charakter den Erfolg schon erlangt hat";
 L["Hide Not Earned By if current character earned the achievement Desc"] = "Blendet den Abschnitt {notEarnedBy} aus, wenn der aktuelle Charakter den Erfolg erworben hat. Der Abschnitt {earnedBy} wird ansonsten weiterhin wie gewohnt angezeigt.";
 L["for achievement"] = "für {achievement}";
-L["Needs /love for achievement"] = "Benötigt deine /liebe für {achievement}";
-L["Already /loved for achievement"] = "Hat deine Liebe für {achievement} schon erhalten";
-L["Needs to be killed for achievement"] = "Muss noch für {achievement} getötet werden";
-L["Already killed for achievement"] = "Bereits getötet für {achievement}";
-L["Needs to be cooked for achievement"] = "Muss noch für {achievement} gekocht werden";
-L["Already cooked for achievement"] = "Bereits gekocht für {achievement}";
+L["Needs /love for achievement"] = "Benötigt deine /liebe {forAchievement}";
+L["Already /loved for achievement"] = "Hat deine Liebe {forAchievement} schon erhalten";
+L["Needs to be killed for achievement"] = "Muss noch {forAchievement} getötet werden";
+L["Already killed for achievement"] = "Bereits getötet {forAchievement}";
+L["Needs to be cooked for achievement"] = "Muss noch {forAchievement} gekocht werden";
+L["Already cooked for achievement"] = "Bereits gekocht {forAchievement}";
+L["Needs to be eaten for achievement"] = "Muss noch {forAchievement} gegessen werden";
+L["Already eaten for achievement"] = "Bereits gegessen {forAchievement}";
 L["Data Manager"] = "Charakterübersicht";
 L["Header tooltip"] = "Überschrift-Tooltip";
 L["Ignore"] = "Ignorieren";
