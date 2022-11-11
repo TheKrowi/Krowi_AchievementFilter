@@ -1,4 +1,4 @@
--- [[ Exported at 2022-10-24 20-43-50 ]] --
+-- [[ Exported at 2022-11-11 11-29-51 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -93,13 +93,13 @@ function exportedWorldEvents.Load(e)
     e[7375] = event:New(7375, 451165, addon.L["Tirisfal Glades"], 18, 5400); -- Tirisfal Glades
     e[7376] = event:New(7376, 460952, addon.L["Tirisfal Glades"], 18, 5400); -- Tirisfal Glades
     e[7377] = event:New(7377, 132845, addon.L["Tirisfal Glades"], 18, 5400); -- Tirisfal Glades
-    e[7378] = event:New(7378, 135783, addon.L["Un'Goro"], 78, 5400); -- Un'Goro
-    e[7379] = event:New(7379, 451165, addon.L["Un'Goro"], 78, 5400); -- Un'Goro
-    e[7380] = event:New(7380, 460952, addon.L["Un'Goro"], 78, 5400); -- Un'Goro
-    e[7381] = event:New(7381, 132845, addon.L["Un'Goro"], 78, 5400); -- Un'Goro
+    e[7378] = event:New(7378, 135783, addon.L["Un'Goro Crater"], 78, 5400); -- Un'Goro Crater
+    e[7379] = event:New(7379, 451165, addon.L["Un'Goro Crater"], 78, 5400); -- Un'Goro Crater
+    e[7380] = event:New(7380, 460952, addon.L["Un'Goro Crater"], 78, 5400); -- Un'Goro Crater
+    e[7381] = event:New(7381, 132845, addon.L["Un'Goro Crater"], 78, 5400); -- Un'Goro Crater
 end
 
-function exportedWorldEvents.LoadCategories(e, a)
+function exportedWorldEvents.LoadCategories(e)
     if addon.IsWrathClassic then
         return;
     end
@@ -1030,12 +1030,12 @@ function exportedWorldEvents.InjectOptions()
                     },
                     E7380 = {
                         order = 77, type = "toggle", width = 1 * widthMultiplier,
-                        name = addon.L["Un'Goro"],
+                        name = addon.L["Un'Goro Crater"],
                         desc = addon.L["Requires a reload"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7380]; end,
                         set = function()
                             addon.Options.db.EventReminders.WorldEvents[7380] = not addon.Options.db.EventReminders.WorldEvents[7380];
-                            diagnostics.Debug(addon.L["Un'Goro"], addon.Options.db.EventReminders.WorldEvents[7380]);
+                            diagnostics.Debug(addon.L["Un'Goro Crater"], addon.Options.db.EventReminders.WorldEvents[7380]);
                         end
                     },
                     Blank78 = {order = 78, type = "description", width = "full", name = ""},
@@ -1097,12 +1097,12 @@ function exportedWorldEvents.InjectOptions()
                     },
                     E7379 = {
                         order = 85, type = "toggle", width = 1 * widthMultiplier,
-                        name = addon.L["Un'Goro"],
+                        name = addon.L["Un'Goro Crater"],
                         desc = addon.L["Requires a reload"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7379]; end,
                         set = function()
                             addon.Options.db.EventReminders.WorldEvents[7379] = not addon.Options.db.EventReminders.WorldEvents[7379];
-                            diagnostics.Debug(addon.L["Un'Goro"], addon.Options.db.EventReminders.WorldEvents[7379]);
+                            diagnostics.Debug(addon.L["Un'Goro Crater"], addon.Options.db.EventReminders.WorldEvents[7379]);
                         end
                     },
                     Blank86 = {order = 86, type = "description", width = "full", name = ""},
@@ -1164,12 +1164,12 @@ function exportedWorldEvents.InjectOptions()
                     },
                     E7378 = {
                         order = 93, type = "toggle", width = 1 * widthMultiplier,
-                        name = addon.L["Un'Goro"],
+                        name = addon.L["Un'Goro Crater"],
                         desc = addon.L["Requires a reload"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7378]; end,
                         set = function()
                             addon.Options.db.EventReminders.WorldEvents[7378] = not addon.Options.db.EventReminders.WorldEvents[7378];
-                            diagnostics.Debug(addon.L["Un'Goro"], addon.Options.db.EventReminders.WorldEvents[7378]);
+                            diagnostics.Debug(addon.L["Un'Goro Crater"], addon.Options.db.EventReminders.WorldEvents[7378]);
                         end
                     },
                     Blank94 = {order = 94, type = "description", width = "full", name = ""},
@@ -1231,12 +1231,12 @@ function exportedWorldEvents.InjectOptions()
                     },
                     E7381 = {
                         order = 101, type = "toggle", width = 1 * widthMultiplier,
-                        name = addon.L["Un'Goro"],
+                        name = addon.L["Un'Goro Crater"],
                         desc = addon.L["Requires a reload"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7381]; end,
                         set = function()
                             addon.Options.db.EventReminders.WorldEvents[7381] = not addon.Options.db.EventReminders.WorldEvents[7381];
-                            diagnostics.Debug(addon.L["Un'Goro"], addon.Options.db.EventReminders.WorldEvents[7381]);
+                            diagnostics.Debug(addon.L["Un'Goro Crater"], addon.Options.db.EventReminders.WorldEvents[7381]);
                         end
                     },
                     Blank102 = {order = 102, type = "description", width = "full", name = ""},
