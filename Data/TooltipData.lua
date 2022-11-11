@@ -10,7 +10,7 @@ local function ProcessGuid(guid)
     return unitType, serverId, instanceId, zoneUid, id, spawnUid;
 end
 
-local function AddTooltipLine(tooltipLine)
+local function AddTooltipLine(tooltip, tooltipLine)
     if tooltipLine.Faction then
         if addon.Faction.IsAlliance and tooltipLine.Faction ~= addon.Objects.Faction.Alliance
         or addon.Faction.IsHorde and tooltipLine.Faction ~= addon.Objects.Faction.Horde then
@@ -55,12 +55,12 @@ local function AddTooltipLine(tooltipLine)
     text = text:ReplaceVars{
         forAchievement = addon.Options.db.Tooltip.Criteria.ShowForAchievement and addon.L["for achievement"] or ""
     };
-    GameTooltip:AddLine(icon .. " " .. string.trim(text:ReplaceVars{
+    tooltip:AddLine(icon .. " " .. string.trim(text:ReplaceVars{
         achievement = name
     }), color.R, color.G, color.B);
 end
 
-local function ProcessUnit(guid)
+local function ProcessUnit(tooltip, guid)
     if not addon.Options.db.Tooltip.Criteria.Show then
         return;
     end
@@ -69,7 +69,7 @@ local function ProcessUnit(guid)
         return;
     end
     if addon.Diagnostics.DebugEnabled() then
-        GameTooltip:AddLine(guid);
+        tooltip:AddLine(guid);
     end
 
     local unitType, _, _, _, unitId = ProcessGuid(guid);
@@ -85,12 +85,12 @@ local function ProcessUnit(guid)
 
     for _, tooltipLine in next, unitDatum.TooltipLines do
         if tooltipLine.Type == addon.Objects.TooltipDataType.Unit then
-            AddTooltipLine(tooltipLine);
+            AddTooltipLine(tooltip, tooltipLine);
         end
     end
 end
 
-local function ProcessItem(itemId)
+local function ProcessItem(tooltip, itemId)
     if not addon.Options.db.Tooltip.Criteria.Show then
         return;
     end
@@ -98,8 +98,9 @@ local function ProcessItem(itemId)
     if not itemId then
         return;
     end
+
     if addon.Diagnostics.DebugEnabled() then
-        GameTooltip:AddLine(itemId);
+        tooltip:AddLine(itemId);
     end
 
     itemId = tonumber(itemId);
@@ -114,48 +115,53 @@ local function ProcessItem(itemId)
 
     for _, tooltipLine in next, unitDatum.TooltipLines do
         if tooltipLine.Type == addon.Objects.TooltipDataType.Item then
-            AddTooltipLine(tooltipLine);
+            AddTooltipLine(tooltip, tooltipLine);
         end
     end
 end
 
-local function ProcessUnit100000()
-    local _, unit = GameTooltip:GetUnit();
+local function ProcessUnit100000(tooltip)
+    local _, unit = tooltip:GetUnit();
     if not unit then
         return;
     end
     local guid = UnitGUID(unit);
-    ProcessUnit(guid);
+    ProcessUnit(tooltip, guid);
 end
 
-local function DoProcessItem(tt, itemId)
+local function DoProcessItem(tooltip, itemId)
+    if not itemId then
+        return;
+    end
     local classId = (select(12, GetItemInfo(itemId)));
     if classId == Enum.ItemClass.Recipe then
-        tt.isFirstTime = not tt.isFirstTime;
-        return not tt.isFirstTime;
+        tooltip.isFirstTime = not tooltip.isFirstTime;
+        return not tooltip.isFirstTime;
     end
     return true;
 end
 
-local function ProcessItem100000()
-    local _, link = GameTooltip:GetItem();
+local function ProcessItem100000(tooltip)
+    local _, link = tooltip:GetItem();
     if not link then
         return;
     end
     local itemId = (select(3, strfind(link, "item:(%d+)")));
     itemId = tonumber(itemId);
 
-    if DoProcessItem(GameTooltip, itemId) then
-        ProcessItem(itemId);
+    if not DoProcessItem(tooltip, itemId) then -- This is to skip embedded items
+        return;
     end
+
+    ProcessItem(tooltip, itemId);
 end
 
 local function ProcessUnit100002(tooltip, localData)
-    ProcessUnit(localData.guid);
+    ProcessUnit(tooltip, localData.guid);
 end
 
 local function ProcessItem100002(tooltip, localData)
-    ProcessItem(localData.id);
+    ProcessItem(tooltip, localData.id);
 end
 
 function tooltipData.Load()
@@ -163,6 +169,7 @@ function tooltipData.Load()
     if tocVersion < 100002 then
         GameTooltip:HookScript("OnTooltipSetUnit", ProcessUnit100000);
         GameTooltip:HookScript("OnTooltipSetItem", ProcessItem100000);
+        ItemRefTooltip:HookScript("OnTooltipSetItem", ProcessItem100000);
     else
         TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Unit, ProcessUnit100002);
         TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, ProcessItem100002);

@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## 46.4 - 2022-11-xx
 ### Added
 - Tooltip data for items and recipes for Draenor Cuisine anf Drown Your Sorrows
+- ItemRefTooltip now also shows tooltip data (the one you see when you click an item from chat)
 
 ### Changed
 - Showing Tooltip Criteria if the achievement was not earned by the current character is checked by default
@@ -11,6 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Recipes should no longer show tooltip data more than once
+- A nil item should no longer cause any errors
 
 ## 46.3 - 2022-11-09
 ### Added
