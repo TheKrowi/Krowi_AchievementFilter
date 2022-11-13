@@ -18,7 +18,7 @@
 		the copyright holders.
 ]]
 
-local lib = LibStub:NewLibrary('Krowi_WorldMapButtons-1.4', 2);
+local lib = LibStub:NewLibrary('Krowi_WorldMapButtons-1.4', 3);
 
 if not lib then
 	return;
@@ -40,13 +40,19 @@ local function Fix1_3_1Buttons()
 	Fix1_3_1Buttons = function() end;
 end
 
+lib.XOffset, lib.YOffset = 4, -2;
+function lib:SetOffsets(xOffset, yOffset)
+	self.XOffset = xOffset or self.XOffset;
+	self.YOffset = yOffset or self.YOffset;
+end
+
 function lib.SetPoints()
 	Fix1_3_1Buttons();
 
-	local xOffset = 4;
+	local xOffset = lib.XOffset;
 	for _, button in next, lib.Buttons do
 		if button:IsShown() then
-			button:SetPoint("TOPRIGHT", button.relativeFrame, -xOffset, -2);
+			button:SetPoint("TOPRIGHT", button.relativeFrame, -xOffset, lib.YOffset);
 			xOffset = xOffset + 32;
 		end
 	end
@@ -99,23 +105,23 @@ function AddButton(button)
 end
 
 function lib:Add(templateName, templateType)
-	if lib.Buttons == nil then
-		lib.Buttons = lib.buttons or {}; -- 'Krowi_WorldMapButtons-1.4', 1 compatibility
+	if self.Buttons == nil then
+		self.Buttons = self.buttons or {}; -- 'Krowi_WorldMapButtons-1.4', 1 compatibility
 		if NumKrowi_WorldMapButtons then
 			NumKrowi_WorldMapButtons = NumKrowi_WorldMapButtons - 1; -- 'Krowi_WorldMapButtons-1.4', 1 compatibility
 		end
-		lib.NumButtons = NumKrowi_WorldMapButtons or 0; -- 'Krowi_WorldMapButtons-1.4', 1 compatibility
+		self.NumButtons = NumKrowi_WorldMapButtons or 0; -- 'Krowi_WorldMapButtons-1.4', 1 compatibility
 	end
 
-	if not lib.HookedDefaultButtons then
+	if not self.HookedDefaultButtons then
 		HookDefaultButtons();
 	end
 
-	if not lib.PatchedWrathClassic then
+	if not self.PatchedWrathClassic then
 		PatchWrathClassic();
 	end
 
-	lib.NumButtons = lib.NumButtons + 1;
-	local button = CreateFrame(templateType, "Krowi_WorldMapButtons" .. lib.NumButtons, WorldMapFrame, templateName);
+	self.NumButtons = self.NumButtons + 1;
+	local button = CreateFrame(templateType, "Krowi_WorldMapButtons" .. self.NumButtons, WorldMapFrame, templateName);
 	return AddButton(button);
 end
