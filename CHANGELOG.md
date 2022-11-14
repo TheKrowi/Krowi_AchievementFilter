@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## 46.4 - 2022-11-xx
 ### Added
-- Tooltip data for items and recipes for Draenor Cuisine anf Drown Your Sorrows
+- Tooltip data for items and recipes for Draenor Cuisine and Drown Your Sorrows
 - ItemRefTooltip now also shows tooltip data (the one you see when you click an item from chat)
 - Option to hide the World Map icon
 

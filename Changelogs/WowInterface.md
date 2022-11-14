@@ -65,7 +65,7 @@
 
 [B]Added (46.4)[/B]
 [LIST]
-[*]Tooltip data for items and recipes for Draenor Cuisine anf Drown Your Sorrows
+[*]Tooltip data for items and recipes for Draenor Cuisine and Drown Your Sorrows
 [*]ItemRefTooltip now also shows tooltip data (the one you see when you click an item from chat)
 [*]Option to hide the World Map icon
 [/LIST]

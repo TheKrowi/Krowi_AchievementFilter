@@ -399,7 +399,20 @@
         "ItemRefTooltip",
         "WORLDMAP_BUTTON",
         "COLORBLIND_NEUTRAL",
-        "FACTION_STANDING_LABEL4"
+        "FACTION_STANDING_LABEL4",
+        "strsplit",
+        "CreateColor",
+        "IsModifierKeyDown",
+        "GetNumTrackedAchievements",
+        "RemoveTrackedAchievement",
+        "AddTrackedAchievement",
+        "Enum",
+        "strfind",
+        "GetCVar",
+        "C_MythicPlus",
+        "GetPreviousArenaSeason",
+        "GetCurrentArenaSeason",
+        "CreateFont"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
