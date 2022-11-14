@@ -1,12 +1,12 @@
--- [[ Exported at 2022-11-11 11-32-48 ]] --
+-- [[ Exported at 2022-11-14 20-57-07 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ English texts by Krowi, 2022-11-07 ]] --
+-- [[ English texts by Krowi, 2022-11-14 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
-local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true, true);
+local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true);
 
 local tab = "|T:1:8|t";
 L["TAB"] = tab;
@@ -224,7 +224,7 @@ L["will be"] = "will be";
 L["was"] = "was";
 L["only obtainable by one player"] = "only obtainable by one player";
 L["Patch"] = "Patch";
-L["Temporary Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}.";
+L["Temporary Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}";
 L["Hide Not Earned By if current character earned the achievement"] = "Hide {notEarnedBy} if current character earned the achievement";
 L["Hide Not Earned By if current character earned the achievement Desc"] = "Hide the {notEarnedBy} section if the current character has earned the achievement. The {earnedBy} section will still be shown as normal.";
 L["for achievement"] = "for {achievement}";
@@ -269,6 +269,8 @@ L["WoWInterface"] = "WoWInterface";
 L["WoWInterface Desc"] = "Open a popup dialog with a link to the {addonName} {woWInterface} page.";
 L["Show minimap icon"] = "Show minimap icon";
 L["Show minimap icon Desc"] = "Show / hide the minimap icon.";
+L["Show world map icon"] = "Show world map icon";
+L["Show world map icon Desc"] = "Show / hide the world map icon.";
 L["Reset view"] = "Reset view";
 L["Reset view on open"] = "Reset view on open";
 L["Reset view on open Desc"] = "Collapse all categories and select the first category\nor\nKeep the last selected category when last closed.";

@@ -41,3 +41,19 @@
 ### Fixed (46.3)
 - First time user have an initial login error once should no longer happen
 
+### Added (46.4)
+- Tooltip data for items and recipes for Draenor Cuisine anf Drown Your Sorrows
+- ItemRefTooltip now also shows tooltip data (the one you see when you click an item from chat)
+- Option to hide the World Map icon
+
+### Changed (46.4)
+- Showing Tooltip Criteria if the achievement was not earned by the current character is checked by default
+- Tooltip Criteria is shown by default if the achievement is not completed
+
+### Fixed (46.4)
+- Recipes should no longer show tooltip data more than once
+- A nil item should no longer cause any errors
+
+### Wrath Classic (46.4)
+- Added some missing texts
+- Disabled the plugin to rename a dragonflight category there isn't

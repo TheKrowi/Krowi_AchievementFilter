@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Tooltip data for items and recipes for Draenor Cuisine anf Drown Your Sorrows
 - ItemRefTooltip now also shows tooltip data (the one you see when you click an item from chat)
+- Option to hide the World Map icon
 
 ### Changed
 - Showing Tooltip Criteria if the achievement was not earned by the current character is checked by default
@@ -13,6 +14,10 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Recipes should no longer show tooltip data more than once
 - A nil item should no longer cause any errors
+
+### Wrath Classic
+- Added some missing texts
+- Disabled the plugin to rename a dragonflight category there isn't
 
 ## 46.3 - 2022-11-09
 ### Added

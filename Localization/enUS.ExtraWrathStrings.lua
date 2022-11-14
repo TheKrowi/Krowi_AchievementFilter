@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-11 11-32-48 ]] --
+-- [[ Exported at 2022-11-14 20-57-07 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -119,5 +119,7 @@ function extraWrathStrings.Load(L)
     L["GetCategoryInfo15233"] = "Warlords of Draenor";
     L["GetCategoryInfo15117"] = "Pet Battles";
     L["GetCategoryInfo15454"] = "Timewalking";
+    L["Completed"] = "Completed";
+    L["Not Completed"] = "Not Completed";
 end
 

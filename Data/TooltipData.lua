@@ -169,10 +169,23 @@ function tooltipData.Load()
     if tocVersion < 100002 then
         GameTooltip:HookScript("OnTooltipSetUnit", ProcessUnit100000);
         GameTooltip:HookScript("OnTooltipSetItem", ProcessItem100000);
+        -- GameTooltip:HookScript("OnShow", function(self)
+		-- 	-- Debug all of the available fields on the owner.
+        --     local owner = self:GetOwner();
+		-- 	-- self:AddDoubleLine("GetOwner", tostring(owner:GetName()));
+		-- 	for i,j in pairs(self) do
+		-- 		self:AddDoubleLine(tostring(i), tostring(j));
+		-- 	end
+		-- 	self:Show();
+        -- end);
+
         ItemRefTooltip:HookScript("OnTooltipSetItem", ProcessItem100000);
     else
         TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Unit, ProcessUnit100002);
         TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, ProcessItem100002);
+        TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Object, function(tooltip, localData)
+            addon.Diagnostics.DebugTable(localData);
+        end);
     end
 
     data.ExportedTooltipData.Load(addon.Data.TooltipData);

@@ -5,6 +5,7 @@ local options = addon.Options;
 options.Defaults = {
     profile = {
         ShowMinimapIcon = false,
+        ShowWorldmapIcon = true,
         ResetViewOnOpen = false,
         MicroButtonTab = 1,
         EnableDebugInfo = false,

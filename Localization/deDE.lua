@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-11 11-32-48 ]] --
+-- [[ Exported at 2022-11-14 20-57-07 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -224,7 +224,7 @@ L["will be"] = "wird";
 L["was"] = "war";
 L["only obtainable by one player"] = "nur von einem Spieler zu erzielen";
 L["Patch"] = "Patch";
-L["Temporary Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}.";
+L["Temporary Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}";
 L["Hide Not Earned By if current character earned the achievement"] = "{notEarnedBy} ausblenden, wenn der aktuelle Charakter den Erfolg schon erlangt hat";
 L["Hide Not Earned By if current character earned the achievement Desc"] = "Blendet den Abschnitt {notEarnedBy} aus, wenn der aktuelle Charakter den Erfolg erworben hat. Der Abschnitt {earnedBy} wird ansonsten weiterhin wie gewohnt angezeigt.";
 L["for achievement"] = "für {achievement}";

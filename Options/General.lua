@@ -30,7 +30,7 @@ local function OpenTutorialsMenu()
     menu:Open();
 end
 
-local function SetShowHideIcon()
+local function SetShowHideMinimapIcon()
     addon.Options.db.ShowMinimapIcon = not addon.Options.db.ShowMinimapIcon;
     if addon.Options.db.ShowMinimapIcon then
         addon.Icon:Show("Krowi_AchievementFilterLDB");
@@ -38,6 +38,13 @@ local function SetShowHideIcon()
         addon.Icon:Hide("Krowi_AchievementFilterLDB");
     end
     options.Debug(addon.L["Show minimap icon"], addon.Options.db.ShowMinimapIcon);
+end
+
+local function SetShowHideWorldmapIcon()
+    addon.Options.db.ShowWorldmapIcon = not addon.Options.db.ShowWorldmapIcon;
+    addon.GUI.WorldMapButton:Refresh();
+    addon.WorldMapButtons.SetPoints();
+    options.Debug(addon.L["Show worldmap icon"], addon.Options.db.ShowWorldmapIcon);
 end
 
 local screenshotModeFrame;
@@ -197,7 +204,21 @@ options.OptionsTable.args["General"] = {
                             name = addon.L["Show minimap icon"],
                             desc = addon.L["Show minimap icon Desc"],
                             get = function() return addon.Options.db.ShowMinimapIcon; end,
-                            set = SetShowHideIcon
+                            set = SetShowHideMinimapIcon
+                        }
+                    }
+                },
+                Worldmap = {
+                    order = 1, type = "group",
+                    name = addon.L["World Map"],
+                    inline = true,
+                    args = {
+                        ShowMinimapIcon = {
+                            order = 1, type = "toggle", width = 1 * widthMultiplier,
+                            name = addon.L["Show world map icon"],
+                            desc = addon.L["Show world map icon Desc"],
+                            get = function() return addon.Options.db.ShowWorldmapIcon; end,
+                            set = SetShowHideWorldmapIcon
                         }
                     }
                 }
