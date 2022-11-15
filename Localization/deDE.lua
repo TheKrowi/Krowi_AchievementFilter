@@ -1,8 +1,8 @@
--- [[ Exported at 2022-11-14 20-57-07 ]] --
+-- [[ Exported at 2022-11-15 17-20-22 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-11-09 ]] --
+-- [[ German translation by Ta, 2022-11-14 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -236,6 +236,8 @@ L["Needs to be cooked for achievement"] = "Muss noch {forAchievement} gekocht we
 L["Already cooked for achievement"] = "Bereits gekocht {forAchievement}";
 L["Needs to be eaten for achievement"] = "Muss noch {forAchievement} gegessen werden";
 L["Already eaten for achievement"] = "Bereits gegessen {forAchievement}";
+L["Needs to be drunk for achievement"] = "Muss noch {forAchievement} getrunken werden";
+L["Already drank for achievement"] = "Bereits getrunken {for Achievement}";
 L["Data Manager"] = "Charakterübersicht";
 L["Header tooltip"] = "Überschrift-Tooltip";
 L["Ignore"] = "Ignorieren";
@@ -267,6 +269,8 @@ L["WoWInterface"] = "WoWInterface";
 L["WoWInterface Desc"] = "Öffnet ein Popup-Fenster mit einem Link zur Seite {addonName} {woWInterface}.";
 L["Show minimap icon"] = "Zeige Minimap Icon";
 L["Show minimap icon Desc"] = "Zeige / Verstecke das Minimap Icon.";
+L["Show world map icon"] = "Zeige Welt-Map Icon";
+L["Show world map icon Desc"] = "Zeige / Verstecke das Welt-Map Icon.";
 L["Reset view"] = "Ansicht zurücksetzen";
 L["Reset view on open"] = "Zurücksetzen der Ansicht beim Öffnen";
 L["Reset view on open Desc"] = "Alle Kategorien ausblenden und die erste Kategorie auswählen oder die zuletzt ausgewählte Kategorie beibehalten, wenn sie zuletzt geschlossen wurde.";
