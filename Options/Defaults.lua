@@ -5,6 +5,7 @@ local options = addon.Options;
 options.Defaults = {
     profile = {
         ShowMinimapIcon = false,
+        ShowWorldmapIcon = true,
         ResetViewOnOpen = false,
         MicroButtonTab = 1,
         EnableDebugInfo = false,
@@ -110,12 +111,12 @@ options.Defaults = {
                 },
                 ShowOtherFaction = true,
             },
-            Units = {
-                ShowCriteria = true,
+            Criteria = {
+                Show = true,
                 ShowForAchievement = true,
-                ShowCriteriaIf = {
+                ShowIf = {
                     AchievementIsCompleted = false,
-                    AchievementWasNotEarnedByMe = false,
+                    AchievementWasNotEarnedByMe = true,
                     CriteriaIsCompleted = false
                 }
             }

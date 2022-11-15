@@ -22,7 +22,7 @@ function globalStrings.Load(L)
     L["Completed"] = CRITERIA_COMPLETED;
     L["Not Completed"] = CRITERIA_NOT_COMPLETED;
     L["Faction"] = FACTION;
-    L["Neutral"] = FACTION_NEUTRAL;
+    L["Neutral"] = FACTION_NEUTRAL or FACTION_STANDING_LABEL4; -- Wrath Classic fallback FACTION_STANDING_LABEL4
     L["Alliance"] = FACTION_ALLIANCE;
     L["Horde"] = FACTION_HORDE;
     L["Kyrian"] = addon.GetCovenantName(1);
@@ -73,4 +73,5 @@ function globalStrings.Load(L)
     L["Minimap"] = MINIMAP_LABEL;
     L["Class"] = CLASS;
     L["Category"] = CATEGORY;
+    L["World Map"] = WORLDMAP_BUTTON;
 end

@@ -10,7 +10,7 @@ local function ProcessGuid(guid)
     return unitType, serverId, instanceId, zoneUid, id, spawnUid;
 end
 
-local function AddTooltipLine(tooltipLine)
+local function AddTooltipLine(tooltip, tooltipLine)
     if tooltipLine.Faction then
         if addon.Faction.IsAlliance and tooltipLine.Faction ~= addon.Objects.Faction.Alliance
         or addon.Faction.IsHorde and tooltipLine.Faction ~= addon.Objects.Faction.Horde then
@@ -23,12 +23,12 @@ local function AddTooltipLine(tooltipLine)
         return;
     end
 
-    local show = false;
-    if not wasEarnedByMe and addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementWasNotEarnedByMe then
+    local show = not achievementIsCompleted;
+    if not wasEarnedByMe and addon.Options.db.Tooltip.Criteria.ShowIf.AchievementWasNotEarnedByMe then
         show = true;
     end
 
-    if achievementIsCompleted and addon.Options.db.Tooltip.Units.ShowCriteriaIf.AchievementIsCompleted then
+    if achievementIsCompleted and addon.Options.db.Tooltip.Criteria.ShowIf.AchievementIsCompleted then
         show = true;
     end
 
@@ -38,7 +38,7 @@ local function AddTooltipLine(tooltipLine)
 
     local _, _, criteriaIsCompleted = GetAchievementCriteriaInfo(tooltipLine.AchievementId, tooltipLine.CriteriaIndex);
 
-    if criteriaIsCompleted and not addon.Options.db.Tooltip.Units.ShowCriteriaIf.CriteriaIsCompleted then
+    if criteriaIsCompleted and not addon.Options.db.Tooltip.Criteria.ShowIf.CriteriaIsCompleted then
         return;
     end
 
@@ -53,15 +53,15 @@ local function AddTooltipLine(tooltipLine)
         color = addon.Colors.RedRGB;
     end
     text = text:ReplaceVars{
-        forAchievement = addon.Options.db.Tooltip.Units.ShowForAchievement and addon.L["for achievement"] or ""
+        forAchievement = addon.Options.db.Tooltip.Criteria.ShowForAchievement and addon.L["for achievement"] or ""
     };
-    GameTooltip:AddLine(icon .. " " .. string.trim(text:ReplaceVars{
+    tooltip:AddLine(icon .. " " .. string.trim(text:ReplaceVars{
         achievement = name
     }), color.R, color.G, color.B);
 end
 
-local function ProcessUnit(guid)
-    if not addon.Options.db.Tooltip.Units.ShowCriteria then
+local function ProcessUnit(tooltip, guid)
+    if not addon.Options.db.Tooltip.Criteria.Show then
         return;
     end
 
@@ -69,7 +69,7 @@ local function ProcessUnit(guid)
         return;
     end
     if addon.Diagnostics.DebugEnabled() then
-        GameTooltip:AddLine(guid);
+        tooltip:AddLine(guid);
     end
 
     local unitType, _, _, _, unitId = ProcessGuid(guid);
@@ -85,21 +85,22 @@ local function ProcessUnit(guid)
 
     for _, tooltipLine in next, unitDatum.TooltipLines do
         if tooltipLine.Type == addon.Objects.TooltipDataType.Unit then
-            AddTooltipLine(tooltipLine);
+            AddTooltipLine(tooltip, tooltipLine);
         end
     end
 end
 
-local function ProcessItem(itemId)
-    if not addon.Options.db.Tooltip.Units.ShowCriteria then
+local function ProcessItem(tooltip, itemId)
+    if not addon.Options.db.Tooltip.Criteria.Show then
         return;
     end
 
     if not itemId then
         return;
     end
+
     if addon.Diagnostics.DebugEnabled() then
-        GameTooltip:AddLine(itemId);
+        tooltip:AddLine(itemId);
     end
 
     itemId = tonumber(itemId);
@@ -114,36 +115,53 @@ local function ProcessItem(itemId)
 
     for _, tooltipLine in next, unitDatum.TooltipLines do
         if tooltipLine.Type == addon.Objects.TooltipDataType.Item then
-            AddTooltipLine(tooltipLine);
+            AddTooltipLine(tooltip, tooltipLine);
         end
     end
 end
 
-local function ProcessUnit100000()
-    local _, unit = GameTooltip:GetUnit();
+local function ProcessUnit100000(tooltip)
+    local _, unit = tooltip:GetUnit();
     if not unit then
         return;
     end
     local guid = UnitGUID(unit);
-    ProcessUnit(guid);
+    ProcessUnit(tooltip, guid);
 end
 
-local function ProcessItem100000()
-    local _, link = GameTooltip:GetItem();
+local function DoProcessItem(tooltip, itemId)
+    if not itemId then
+        return;
+    end
+    local classId = (select(12, GetItemInfo(itemId)));
+    if classId == Enum.ItemClass.Recipe then
+        tooltip.isFirstTime = not tooltip.isFirstTime;
+        return not tooltip.isFirstTime;
+    end
+    return true;
+end
+
+local function ProcessItem100000(tooltip)
+    local _, link = tooltip:GetItem();
     if not link then
         return;
     end
     local itemId = (select(3, strfind(link, "item:(%d+)")));
     itemId = tonumber(itemId);
-    ProcessItem(itemId);
+
+    if not DoProcessItem(tooltip, itemId) then -- This is to skip embedded items
+        return;
+    end
+
+    ProcessItem(tooltip, itemId);
 end
 
 local function ProcessUnit100002(tooltip, localData)
-    ProcessUnit(localData.guid);
+    ProcessUnit(tooltip, localData.guid);
 end
 
 local function ProcessItem100002(tooltip, localData)
-    -- ProcessItem(localData.guid);
+    ProcessItem(tooltip, localData.id);
 end
 
 function tooltipData.Load()
@@ -151,9 +169,23 @@ function tooltipData.Load()
     if tocVersion < 100002 then
         GameTooltip:HookScript("OnTooltipSetUnit", ProcessUnit100000);
         GameTooltip:HookScript("OnTooltipSetItem", ProcessItem100000);
+        -- GameTooltip:HookScript("OnShow", function(self)
+		-- 	-- Debug all of the available fields on the owner.
+        --     local owner = self:GetOwner();
+		-- 	-- self:AddDoubleLine("GetOwner", tostring(owner:GetName()));
+		-- 	for i,j in pairs(self) do
+		-- 		self:AddDoubleLine(tostring(i), tostring(j));
+		-- 	end
+		-- 	self:Show();
+        -- end);
+
+        ItemRefTooltip:HookScript("OnTooltipSetItem", ProcessItem100000);
     else
         TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Unit, ProcessUnit100002);
         TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, ProcessItem100002);
+        TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Object, function(tooltip, localData)
+            addon.Diagnostics.DebugTable(localData);
+        end);
     end
 
     data.ExportedTooltipData.Load(addon.Data.TooltipData);

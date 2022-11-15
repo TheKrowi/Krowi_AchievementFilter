@@ -1,8 +1,8 @@
--- [[ Exported at 2022-11-07 22-47-55 ]] --
+-- [[ Exported at 2022-11-15 17-20-22 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ English texts by Krowi, 2022-11-07 ]] --
+-- [[ English texts by Krowi, 2022-11-14 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -224,7 +224,7 @@ L["will be"] = "will be";
 L["was"] = "was";
 L["only obtainable by one player"] = "only obtainable by one player";
 L["Patch"] = "Patch";
-L["Temporary Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}.";
+L["Temporary Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}";
 L["Hide Not Earned By if current character earned the achievement"] = "Hide {notEarnedBy} if current character earned the achievement";
 L["Hide Not Earned By if current character earned the achievement Desc"] = "Hide the {notEarnedBy} section if the current character has earned the achievement. The {earnedBy} section will still be shown as normal.";
 L["for achievement"] = "for {achievement}";
@@ -236,6 +236,8 @@ L["Needs to be cooked for achievement"] = "Needs to be cooked {forAchievement}";
 L["Already cooked for achievement"] = "Already cooked {forAchievement}";
 L["Needs to be eaten for achievement"] = "Needs to be eaten {forAchievement}";
 L["Already eaten for achievement"] = "Already eaten {forAchievement}";
+L["Needs to be drunk for achievement"] = "Needs to be drunk {forAchievement}";
+L["Already drank for achievement"] = "Already drank {forAchievement}";
 L["Data Manager"] = "Data Manager";
 L["Header tooltip"] = "Header tooltip";
 L["Ignore"] = "Ignore";
@@ -267,6 +269,8 @@ L["WoWInterface"] = "WoWInterface";
 L["WoWInterface Desc"] = "Open a popup dialog with a link to the {addonName} {woWInterface} page.";
 L["Show minimap icon"] = "Show minimap icon";
 L["Show minimap icon Desc"] = "Show / hide the minimap icon.";
+L["Show world map icon"] = "Show world map icon";
+L["Show world map icon Desc"] = "Show / hide the world map icon.";
 L["Reset view"] = "Reset view";
 L["Reset view on open"] = "Reset view on open";
 L["Reset view on open Desc"] = "Collapse all categories and select the first category\nor\nKeep the last selected category when last closed.";
@@ -413,7 +417,7 @@ L["Show Criteria If"] = "Show Criteria If";
 L["Achievement is Completed"] = "Achievement is Completed";
 L["Achievement is Completed Desc"] = "Show Achievement Criteria even if the Achievement is already completed.";
 L["Achievement was Not Earned by Me"] = "Achievement was Not Earned by Me";
-L["Achievement was Not Earned by Me Desc"] = "Show Achievement Criteria if the Achievement was not yet earned by the current character.";
+L["Achievement was Not Earned by Me Desc"] = "Show Achievement Criteria if the Achievement was not yet earned by the current character. This allows for more control if you play multiple characters.";
 L["Criteria is Completed"] = "Criteria is Completed";
 L["Criteria is Completed Desc"] = "Show Achievement Criteria even if the Achievement Criteria is already completed.";
 L["Event Reminders"] = "Event Reminders";

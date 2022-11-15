@@ -52,6 +52,12 @@ function KrowiAF_WorldMapButtonMixin:OnHide()
 end
 
 function KrowiAF_WorldMapButtonMixin:Refresh()
+    if not addon.Options.db.ShowWorldmapIcon then
+        self:Hide();
+        return;
+    end
+    self:Show();
+
     if not IsAddOnLoaded("Blizzard_AchievementUI") then
         LoadAddOn("Blizzard_AchievementUI");
     end

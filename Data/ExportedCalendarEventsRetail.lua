@@ -1,4 +1,4 @@
--- [[ Exported at 2022-10-24 20-43-50 ]] --
+-- [[ Exported at 2022-11-11 11-29-51 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -41,7 +41,7 @@ function exportedCalendarEvents.Load(e)
     e[1332] = event:New(1332, 4254074); -- Fated Raids: Sepulcher of the First Ones (CN)
 end
 
-function exportedCalendarEvents.LoadCategories(e, a)
+function exportedCalendarEvents.LoadCategories(e)
     if e[141] == nil or e[181] == nil or e[201] == nil or e[324] == nil or e[327] == nil or e[341] == nil or e[372] == nil or e[398] == nil or e[404] == nil or e[409] == nil or e[423] == nil or e[479] == nil or e[1262] == nil or e[1315] == nil or e[1316] == nil or e[1317] == nil or e[1325] == nil or e[1326] == nil or e[1328] == nil or e[1329] == nil or e[1331] == nil or e[1332] == nil then
         exportedCalendarEvents.Load(e);
     end

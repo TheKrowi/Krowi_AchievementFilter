@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-07 22-47-55 ]] --
+-- [[ Exported at 2022-11-15 17-20-22 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -169,7 +169,7 @@ L["will be"] = "将在";
 L["was"] = "已在";
 L["only obtainable by one player"] = "可由单角色获得";
 L["Patch"] = "补丁";
-L["Temporary Obtainable Text"] = "{thisAchievement}{isWillBeWas}{startText}{startDetail}{endText}{endDetail}{neverOnceTempObt}.";
+L["Temporary Obtainable Text"] = "{thisAchievement}{isWillBeWas}{startText}{startDetail}{endText}{endDetail}{neverOnceTempObt}";
 L["Data Manager"] = "数据管理";
 L["Header tooltip"] = "标题提示信息";
 L["Wowhead"] = "Wowhead";

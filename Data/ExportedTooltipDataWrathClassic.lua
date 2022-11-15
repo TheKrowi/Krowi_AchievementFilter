@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-09 07-30-15 ]] --
+-- [[ Exported at 2022-11-11 11-32-56 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -26,10 +26,12 @@ function exportedTooltipData.Load(d)
     t[6] = addon.L["Already cooked for achievement"];
     t[8] = addon.L["Already eaten for achievement"];
     t[4] = addon.L["Already killed for achievement"];
+    t[10] = addon.L["Already drank for achievement"];
     t[1] = addon.L["Needs /love for achievement"];
     t[5] = addon.L["Needs to be cooked for achievement"];
     t[7] = addon.L["Needs to be eaten for achievement"];
     t[3] = addon.L["Needs to be killed for achievement"];
+    t[9] = addon.L["Needs to be drunk for achievement"];
 
     AddD(d, 25677, tdt.Unit, 1206, 1, t[1], t[2]); -- "Borean Frog"
     AddD(d, 6368, tdt.Unit, 1206, 2, t[1], t[2]); -- "Cat"

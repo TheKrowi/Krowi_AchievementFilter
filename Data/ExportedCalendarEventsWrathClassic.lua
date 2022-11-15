@@ -1,4 +1,4 @@
--- [[ Exported at 2022-10-24 20-43-50 ]] --
+-- [[ Exported at 2022-11-11 11-29-51 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -31,7 +31,7 @@ function exportedCalendarEvents.Load(e)
     e[423] = event:New(423, 236709); -- Love is in the Air
 end
 
-function exportedCalendarEvents.LoadCategories(e, a)
+function exportedCalendarEvents.LoadCategories(e)
     if e[141] == nil or e[181] == nil or e[201] == nil or e[324] == nil or e[327] == nil or e[341] == nil or e[372] == nil or e[374] == nil or e[398] == nil or e[404] == nil or e[409] == nil or e[423] == nil then
         exportedCalendarEvents.Load(e);
     end

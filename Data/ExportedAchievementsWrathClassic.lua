@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-07 23-49-10 ]] --
+-- [[ Exported at 2022-11-11 11-28-55 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -2087,7 +2087,6 @@ function exportedAchievements.Load(a, t)
     a[5750] = b:New(5750, 10); -- Tunnel Vision
     a[5751] = b:New(5751, 10); -- 2500 Daily Quests Completed
     a[5752] = b:New(5752, 10); -- Justly Rewarded
-    a[5754] = b:New(5754, 10); -- Drown Your Sorrows
     a[5755] = b:New(5755, 10); -- Thirty Tabards
     a[5759] = b:New(5759, 10); -- Spirit Twister
     a[5760] = b:New(5760, 10); -- Ring Out!
@@ -2685,8 +2684,6 @@ function exportedAchievements.Load(a, t)
     a[7324] = b:New(7324, 10); -- One Step at a Time
     a[7325] = b:New(7325, 10); -- Now I Am the Master
     a[7328] = b:New(7328, 10); -- Ironpaw Chef
-    a[7329] = b:New(7329, 10); -- Pandaren Cuisine
-    a[7330] = b:New(7330, 10); -- Pandaren Delicacies
     a[7331] = b:New(7331, 10); -- The Three Brew Fathers
     a[7332] = b:New(7332, 10); -- The Broken Hearted
     a[7333] = b:New(7333, 10); -- The Four Celestials
@@ -3641,7 +3638,6 @@ function exportedAchievements.Load(a, t)
     a[9498] = b:New(9498, 5); -- Wingman
     a[9499] = b:New(9499, 5); -- Wingmen
     a[9500] = b:New(9500, 10); -- Draenor Cook
-    a[9502] = b:New(9502, 10); -- Draenor Cuisine
     a[9503] = b:New(9503, 10); -- Draenor Fisherman
     a[9505] = b:New(9505, 0); -- Draenor Medic
     O(a[9505], "From", "Version", "060003", "Before", "Version", "080001");
