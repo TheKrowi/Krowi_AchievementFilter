@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-16 19-29-00 ]] --
+-- [[ Exported at 2022-11-16 20-27-32 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -8602,7 +8602,7 @@ function exportedAchievements.Load(a, t)
     a[16578] = b:New(16578, 20); -- Thaldraszus Glyph Hunter
 
     local aIDs = {};
-    for i = 1, 16760 do
+    for i = 1, 17119 do
         if a[i] ~= nil then
             tinsert(aIDs, i);
         end

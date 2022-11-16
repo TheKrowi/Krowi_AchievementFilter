@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-11 11-29-20 ]] --
+-- [[ Exported at 2022-11-16 20-31-53 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -5473,9 +5473,10 @@ function exportedCategories.Load(a)
     C(t[1341], t[1342]);
     A(t[1342], a[16291]); -- An Ancient Awakening
     A(t[1342], a[16292]); -- Mastering the Waygates
+    A(t[1342], a[16808]); -- Friend of the Dragon Isles
     t[1343] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[1341], t[1343]);
-    A(t[1343], a[16400]); -- Explore the Waking Shores
+    A(t[1343], a[16761]); -- Dragon Isles Explorer
     A(t[1343], a[16446]); -- That's Pretty Neat!
     A(t[1343], a[16298]); -- Treasure Hunter of the Dragon Isles
     A(t[1343], a[15890]); -- Dragonscale Expedition: The Highest Peaks
@@ -5527,6 +5528,7 @@ function exportedCategories.Load(a)
     A(t[1237], a[16401]); -- Sojourner of the Waking Shores
     t[1242] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[1232], t[1242]);
+    A(t[1242], a[16400]); -- Explore the Waking Shores
     A(t[1242], a[16676]); -- Adventurer of The Waking Shores
     A(t[1242], a[16297]); -- Treasures of The Waking Shores
     A(t[1242], a[16411]); -- Siege on Dragonbane Keep: Home Sweet Home
@@ -5990,6 +5992,7 @@ function exportedCategories.Load(a)
     A(t[1229], a[16649]); -- Dragonflight Keystone Master: Season One
     A(t[1229], a[16650]); -- Dragonflight Keystone Hero: Season One
     A(t[1229], a[16429]); -- Thundering Hero: Dragonflight Season 1
+    A(t[1229], a[17119]); -- Deep Cuts From the Vault
     t[1257] = c:New(k.GetInstanceInfoName(1201)); -- Algeth'ar Academy
     C(t[1229], t[1257]);
     A(t[1257], a[16434]); -- See Me After Class
@@ -6005,6 +6008,7 @@ function exportedCategories.Load(a)
     A(t[1258], a[16296]); -- Growlbossify
     A(t[1258], a[16430]); -- "All Bark, All Bite"
     A(t[1258], a[16404]); -- So You Can Kill This in a Way That Matters...
+    A(t[1258], a[16762]); -- The Vegetarian Diet
     A(t[1258], a[16255]); -- Brackenhide Hollow
     A(t[1258], a[16256]); -- Heroic: Brackenhide Hollow
     A(t[1258], a[16257]); -- Mythic: Brackenhide Hollow
@@ -6022,8 +6026,8 @@ function exportedCategories.Load(a)
     C(t[1229], t[1260]);
     A(t[1260], a[16438]); -- Knowledge is... Preserved?
     A(t[1260], a[16432]); -- Ready for Raiding VIII
-    A(t[1260], a[16440]); -- Are You My Broodmother?
     A(t[1260], a[16453]); -- Liquid Hot Magma
+    A(t[1260], a[16440]); -- Are You My Broodmother?
     A(t[1260], a[16263]); -- Neltharus
     A(t[1260], a[16264]); -- Heroic: Neltharus
     A(t[1260], a[16265]); -- Mythic: Neltharus
@@ -6038,9 +6042,9 @@ function exportedCategories.Load(a)
     A(t[1261], a[16640]); -- Keystone Hero: Ruby Life Pools
     t[1262] = c:New(k.GetInstanceInfoName(1203)); -- The Azure Vault
     C(t[1229], t[1262]);
-    A(t[1262], a[16330]); -- You Must Be Made of Hide
     A(t[1262], a[16445]); -- Icy What You Did There
     A(t[1262], a[16331]); -- The Cracked Crystal
+    A(t[1262], a[16330]); -- You Must Be Made of Hide
     A(t[1262], a[16272]); -- The Azure Vault
     A(t[1262], a[16273]); -- Heroic: The Azure Vault
     A(t[1262], a[16274]); -- Mythic: The Azure Vault
@@ -6048,10 +6052,10 @@ function exportedCategories.Load(a)
     t[1263] = c:New(k.GetInstanceInfoName(1198)); -- The Nokhud Offensive
     C(t[1229], t[1263]);
     A(t[1263], a[16447]); -- What Are The Chances...
-    A(t[1263], a[16275]); -- The Nokhud Offensive
     A(t[1263], a[16456]); -- Weapons of the Maruukai
     A(t[1263], a[16602]); -- Nokhud Deed Goes Unnoticed
     A(t[1263], a[16620]); -- Ohuna Incubation
+    A(t[1263], a[16275]); -- The Nokhud Offensive
     A(t[1263], a[16276]); -- Heroic: The Nokhud Offensive
     A(t[1263], a[16277]); -- Mythic: The Nokhud Offensive
     A(t[1263], a[16641]); -- Keystone Hero: The Nokhud Offensive
@@ -6069,20 +6073,26 @@ function exportedCategories.Load(a)
     A(t[1230], a[16355]); -- Glory of the Vault Raider
     t[1265] = c:New(k.GetInstanceInfoName(1200)); -- Vault of the Incarnates
     C(t[1230], t[1265]);
+    A(t[1265], a[17110]); -- The Primal Bulwark
+    A(t[1265], a[17111]); -- Caverns of Infusion
+    A(t[1265], a[17112]); -- Fury of the Storm
     A(t[1265], a[16343]); -- Vault of the Incarnates
     A(t[1265], a[16345]); -- Heroic: Vault of the Incarnates
     A(t[1265], a[16354]); -- Mythic: Vault of the Incarnates
+    A(t[1265], a[17107]); -- Ahead of the Curve: Raszageth the Storm-Eater
+    A(t[1265], a[17108]); -- Cutting Edge: Raszageth the Storm-Eater
     A(t[1265], a[16395]); -- Vaulternative Fashion
+    A(t[1265], a[17119]); -- Deep Cuts From the Vault
     t[1266] = c:New(k.L["Glory"]); -- Glory
     C(t[1265], t[1266]);
     A(t[1266], a[16335]); -- What Frozen Things Do
     A(t[1266], a[16365]); -- Little Friends
     A(t[1266], a[16364]); -- The Lunker Below
     A(t[1266], a[16419]); -- I Was Saving That For Later
-    A(t[1266], a[16442]); -- Incubation Extermination
-    A(t[1266], a[16450]); -- The Power is MINE!
-    A(t[1266], a[16451]); -- The Ol Raszle Daszle
     A(t[1266], a[16458]); -- Nothing But Air
+    A(t[1266], a[16450]); -- The Power is MINE!
+    A(t[1266], a[16442]); -- Incubation Extermination
+    A(t[1266], a[16451]); -- The Ol Raszle Daszle
     t[1267] = c:New(k.L["Mythic"]); -- Mythic
     C(t[1265], t[1267]);
     A(t[1267], a[16346]); -- Mythic: Eranog
@@ -6423,7 +6433,7 @@ function exportedCategories.Load(a)
     A(t[1277], a[15830]); -- The Flowing Forest Flight Advanced: Bronze
     A(t[1277], a[15831]); -- The Flowing Forest Flight Advanced: Silver
     A(t[1277], a[15832]); -- The Flowing Forest Flight Advanced: Gold
-    t[1360] = c:New(k.GetCategoryInfoTitle(15474)); -- Primal Storms
+    t[1360] = c:New(k.L["Primal Storms"]); -- Primal Storms
     C(t[1207], t[1360]);
     A(t[1360], a[16492]); -- Into the Storm
     A(t[1360], a[16498]); -- Elemental Overflow
@@ -6554,6 +6564,8 @@ function exportedCategories.Load(a)
     A(t[1161], a[1244]); -- Well Read
     A(t[1161], a[1832]); -- Tastes Like Chicken
     A(t[1161], a[1833]); -- It's Happy Hour Somewhere
+    A(t[1161], a[16789]); -- Lucky Penny
+    A(t[1161], a[16790]); -- Curious Coin
     t[1169] = c:New(k.GetCategoryInfoTitle(168)); -- Dungeons & Raids
     C(t[952], t[1169]);
     A(t[1169], a[4476]); -- Looking For More
@@ -6593,6 +6605,8 @@ function exportedCategories.Load(a)
     A(t[1149], a[4856]); -- It Belongs in a Museum!
     A(t[1149], a[9422]); -- "The Search For Fact, Not Truth"
     A(t[1149], a[141]); -- Ultimate Triage
+    A(t[1149], a[16799]); -- Personal Crafter
+    A(t[1149], a[16791]); -- Merchant Artisan
     t[1150] = c:New(k.GetCategoryInfoTitle(14864)); -- Classic
     C(t[1149], t[1150]);
     A(t[1150], a[116]); -- Professional Journeyman
@@ -6898,6 +6912,9 @@ function exportedCategories.Load(a)
     A(t[1391], a[16631]); -- Dragon Isles Cook
     A(t[1391], a[16632]); -- Dragon Isles Fisherman
     A(t[1391], a[16683]); -- In Tyr's Footsteps
+    A(t[1391], a[16794]); -- Dragon Isles Crafting Order Apprentice
+    A(t[1391], a[16795]); -- Dragon Isles Crafting Order Journeyman
+    A(t[1391], a[16800]); -- Dragon Isles Crafting Order Master
     t[1163] = c:New(k.GetCategoryInfoTitle(201)); -- Reputation
     C(t[952], t[1163]);
     A(t[1163], a[522]); -- Somebody Likes Me
@@ -8385,6 +8402,7 @@ function exportedCategories.Load(a)
     A(t[1345], a[15959]); -- Hero of the Alliance: Crimson
     A(t[1345], a[15958]); -- Hero of the Horde: Crimson
     A(t[1345], a[16734]); -- Crimson Soloist: Dragonflight Season 1
+    A(t[1345], a[17119]); -- Deep Cuts From the Vault
     t[1368] = c:New(k.L["Tracking Achievements"]); -- Tracking Achievements
     C(t[955], t[1368]);
     t[1368].HasFlexibleData = true;
@@ -8936,6 +8954,7 @@ function exportedCategories.Load(a)
     t[1101] = c:New((UnitName("player")) .. " " .. (GetTitleName(334))); -- Player the Fabulous
     C(t[971], t[1101]);
     A(t[1101], a[11761]); -- Azeroth's Next Top Model
+    A(t[1101], a[17119]); -- Deep Cuts From the Vault
     t[1102] = c:New(k.GetCategoryInfoTitle(15246)); -- Collections
     C(t[1101], t[1102]);
     A(t[1102], a[10681]); -- Fashionista: Head
@@ -9015,6 +9034,7 @@ function exportedCategories.Load(a)
     A(t[1104], a[14831]); -- "I Live, I Die, I Queue Again"
     A(t[1104], a[15102]); -- It's Off the Chain!
     A(t[1104], a[15408]); -- Cosmic Chic
+    A(t[1104], a[16764]); -- Crimson Carpet Fashion
     t[1105] = c:New(k.L["Realm First!"]); -- Realm First!
     C(t[971], t[1105]);
     t[1106] = c:New(k.L["Leveling"]); -- Leveling
@@ -9132,6 +9152,7 @@ function exportedCategories.Load(a)
     A(t[1114], a[11224]); -- Realm First! Legion Keystone Master
     A(t[1114], a[13078]); -- Realm First! Battle for Azeroth Keystone Master
     A(t[1114], a[14662]); -- Realm First! Shadowlands Keystone Master
+    A(t[1114], a[16801]); -- Realm First! Dragonflight Keystone Hero
     t[1115] = c:New(k.GetCategoryInfoTitle(15271), true); -- Raids
     C(t[1105], t[1115]);
     A(t[1115], a[1402]); -- Realm First! Conqueror of Naxxramas
