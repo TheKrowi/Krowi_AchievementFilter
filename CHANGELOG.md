@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 47.0 - 2022-11-xx
+### Added
+- Search options to additionally search Ids and Rewards without prefixing the search request (planning to expand this feature in future releases)
+
 ## 46.4 - 2022-11-15
 ### Added
 - Tooltip data for items and recipes for Draenor Cuisine and Drown Your Sorrows

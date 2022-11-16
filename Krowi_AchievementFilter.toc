@@ -1,6 +1,6 @@
 ## Interface: 100000
 ## Title: Krowi's |cFF1D92C2Achievement Filter|r
-## Version: 46.4
+## Version: 47.0-beta1
 ## Author: Krowi-Frostmane EU
 ## SavedVariables: Options, SavedData, Filters, EventDetails, DebugTable
 ## Notes: Filters your achievements.
@@ -40,4 +40,5 @@ Objects\Files.xml
 Data\FilesRetail.xml
 
 Filters.lua
+SearchOptions.lua
 GUI\Files.xml

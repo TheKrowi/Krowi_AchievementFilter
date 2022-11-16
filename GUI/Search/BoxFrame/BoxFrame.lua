@@ -13,6 +13,7 @@ function boxFrame:Load()
 	else
 		frame:SetPoint("TOPLEFT", AchievementFrame.SearchBox);
 		frame:SetPoint("BOTTOMRIGHT", AchievementFrame.SearchBox);
+		-- frame:SetPoint("BOTTOMRIGHT", addon.GUI.Search.OptionsMenuButton, "BOTTOMLEFT");
 	end
 
     frame:SetMaxLetters(40);
@@ -36,6 +37,7 @@ function KrowiAF_SearchBoxFrame_OnShow(self)
 	if addon.IsWrathClassic then
 		AchievementFrame.Header.RightDDLInset:Show();
 	end
+	addon.GUI.Search.OptionsMenuButton:Show();
 end
 
 function KrowiAF_SearchBoxFrame_OnHide(self)
@@ -47,6 +49,7 @@ function KrowiAF_SearchBoxFrame_OnHide(self)
 	if addon.IsWrathClassic and not AchievementFrameFilterDropDown:IsShown() then
 		AchievementFrame.Header.RightDDLInset:Hide();
 	end
+	addon.GUI.Search.OptionsMenuButton:Hide();
 end
 
 function KrowiAF_SearchBoxFrame_OnEnterPressed(self)
@@ -90,23 +93,28 @@ local function GetSearchResults(text)
 	else
 		for i = 1, numAchievementIds do
 			achievement = addon.Data.Achievements[addon.Data.AchievementIds[i]];
-			local _, name, _, _, _, _, _, description, _, _, _, _, _, _, _ = GetAchievementInfo(achievement.Id);
-			if name and (string.find(name:lower(), text, 1, true) or string.find(description:lower(), text, 1, true)) then
-				if not (excludeExcluded and achievement.Excluded) then
-					local value = 1;
-					if addon.Options.db.SearchBox.OnlySearchFiltered then
-						local category;
-						if addon.Filters.db.MergeSmallCategories then
-							category = achievement:GetMergedCategory(); -- This way we get the parent category
-						else
-							category = achievement.Category;
+			local id, name, _, _, _, _, _, description, _, _, rewardText, _, _, _, _ = GetAchievementInfo(achievement.Id);
+			if id then
+				if (addon.SearchOptions.db.SearchIds and string.find(tostring(id), text, 1, true))
+				or (addon.SearchOptions.db.SearchNames and string.find(name:lower(), text, 1, true))
+				or (addon.SearchOptions.db.SearchDescriptions and string.find(description:lower(), text, 1, true))
+				or (addon.SearchOptions.db.SearchRewards and string.find(rewardText:lower(), text, 1, true)) then
+					if not (excludeExcluded and achievement.Excluded) then
+						local value = 1;
+						if addon.Options.db.SearchBox.OnlySearchFiltered then
+							local category;
+							if addon.Filters.db.MergeSmallCategories then
+								category = achievement:GetMergedCategory(); -- This way we get the parent category
+							else
+								category = achievement.Category;
+							end
+							local filters = addon.Tabs[category:GetTree()[1].TabName].Filters;
+							value = addon.Filters.Validate(filters, achievement);
 						end
-						local filters = addon.Tabs[category:GetTree()[1].TabName].Filters;
-						value = addon.Filters.Validate(filters, achievement);
-					end
-					if value > 0 then
-						achievement.Name = name;
-						tinsert(results, achievement);
+						if value > 0 then
+							achievement.Name = name;
+							tinsert(results, achievement);
+						end
 					end
 				end
 			end
