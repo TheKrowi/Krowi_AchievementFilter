@@ -183,9 +183,9 @@ function tooltipData.Load()
     else
         TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Unit, ProcessUnit100002);
         TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, ProcessItem100002);
-        TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Object, function(tooltip, localData)
-            addon.Diagnostics.DebugTable(localData);
-        end);
+        -- TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Object, function(tooltip, localData)
+        --     addon.Diagnostics.DebugTable(localData);
+        -- end);
     end
 
     data.ExportedTooltipData.Load(addon.Data.TooltipData);

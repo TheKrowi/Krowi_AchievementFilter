@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-11 11-28-41 ]] --
+-- [[ Exported at 2022-11-16 19-28-45 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -8454,6 +8454,7 @@ function exportedAchievements.Load(a, t)
     a[16429] = b:New(16429, 0); -- Thundering Hero: Dragonflight Season 1
     a[16430] = b:New(16430, 10); -- "All Bark, All Bite"
     a[16431] = b:New(16431, 0); -- Against the Elements
+    O(a[16431], "From", "Version", "100002", "Until", "Version", "100002");
     a[16432] = b:New(16432, 10); -- Ready for Raiding VIII
     a[16434] = b:New(16434, 10); -- See Me After Class
     a[16438] = b:New(16438, 10); -- Knowledge is... Preserved?

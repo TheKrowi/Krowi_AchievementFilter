@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-11 11-29-51 ]] --
+-- [[ Exported at 2022-11-16 19-47-49 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -176,10 +176,10 @@ function exportedWorldEvents.LoadCategories(e)
     e[7371].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[9]; -- Northern Barrens
     e[7372].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[9]; -- Northern Barrens
     e[7373].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[9]; -- Northern Barrens
-    e[7374].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[5]; -- Durotar
-    e[7375].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[5]; -- Durotar
-    e[7376].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[5]; -- Durotar
-    e[7377].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[5]; -- Durotar
+    e[7374].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[1].Children[6]; -- Tirisfal Glades
+    e[7375].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[1].Children[6]; -- Tirisfal Glades
+    e[7376].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[1].Children[6]; -- Tirisfal Glades
+    e[7377].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[1].Children[6]; -- Tirisfal Glades
     e[7378].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[21]; -- Un'Goro Crater
     e[7379].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[21]; -- Un'Goro Crater
     e[7380].Category = addon.Tabs["Expansions"].Categories[5].Children[1].Children[2].Children[21]; -- Un'Goro Crater
