@@ -12,7 +12,7 @@ function optionsMenuButton:Load()
 		-- frame:SetPoint("TOPLEFT", AchievementFrame.Header.RightDDLInset, "TOPLEFT", 12, 2);
 	-- else
 		-- button:SetPoint("TOPLEFT", AchievementFrame.SearchBox);
-		button:SetPoint("LEFT", addon.GUI.Search.BoxFrame, "RIGHT");
+		button:SetPoint("LEFT", addon.GUI.Search.BoxFrame, "LEFT", -6, 0);
 	-- end
 
     addon.SearchOptions:Load();

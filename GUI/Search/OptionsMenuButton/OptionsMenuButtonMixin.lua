@@ -10,7 +10,10 @@ function KrowiAF_SearchOptionsMenuButtonMixin:AddCheckBox(_menu, text, options, 
                     end,
                     Func = function()
 						addon.Util.WriteNestedKeys(options, keys, not addon.Util.ReadNestedKeys(options, keys));
-                        -- self.UpdateAchievementFrame();
+                        addon.SearchOptions.Changed = true;
+						if addon.IsWrathClassic then
+							KrowiAF_SearchBoxFrame_OnFocusGained(addon.GUI.Search.BoxFrame);
+						end
                     end,
                     IsNotRadio = true,
                     NotCheckable = false,

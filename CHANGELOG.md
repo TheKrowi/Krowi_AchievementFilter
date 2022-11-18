@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 47.0 - 2022-11-xx
+## 47.0 - 2022-11-18
 ### Added
 - Search options to additionally search Ids and Rewards without prefixing the search request (planning to expand this feature in future releases)
 - New achievements

@@ -29,6 +29,7 @@ function KrowiAF_SearchBoxFrame_OnLoad(self)
 		local ancestry = search.PreviewFrame;
 		return DoesAncestryInclude(ancestry, GetMouseFocus());
     end
+	self.searchIcon:Hide();
 end
 
 function KrowiAF_SearchBoxFrame_OnShow(self)
@@ -148,6 +149,9 @@ function KrowiAF_SearchBoxFrame_OnFocusGained(self)
 	addon.GUI.Search.ResultsFrame:Hide();
 
 	if self:HasFocus() and strlen(self:GetText()) >= addon.Options.db.SearchBox.MinimumCharactersToSearch then
+		if addon.SearchOptions.Changed then
+			self.Results = GetSearchResults(self:GetText());
+		end
 		self:ShowSearchPreviewResults();
 	else
 		addon.GUI.Search.PreviewFrame:Hide();

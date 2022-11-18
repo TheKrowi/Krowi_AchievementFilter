@@ -3,13 +3,13 @@
     <Script file="OptionsMenuButtonMixin.lua"/>
 
 	<DropDownToggleButton name="KrowiAF_SearchOptionsMenuButton_Template" mixin="KrowiAF_SearchOptionsMenuButtonMixin" inherits="UIMenuButtonStretchTemplate" virtual="true" hidden="true">
-		<Size x="22" y="22"/>
+		<Size x="18" y="22"/>
 		<Layers>
 			<Layer level="ARTWORK">
-				<Texture parentKey="Icon" file="Interface\ChatFrame\ChatFrameExpandArrow">
-					<Size x="10" y="12"/>
+				<Texture parentKey="Icon" atlas="common-search-magnifyingglass">
+					<Size x="10" y="10"/>
 					<Anchors>
-						<Anchor point="RIGHT" relativeKey="$parent.Right" relativePoint="RIGHT" x="-5"/>
+						<Anchor point="CENTER"/>
 					</Anchors>
 				</Texture>
 			</Layer>
