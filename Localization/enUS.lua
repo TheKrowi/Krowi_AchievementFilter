@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-15 17-20-22 ]] --
+-- [[ Exported at 2022-11-18 08-21-57 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -126,6 +126,7 @@ L["Tracking Achievements"] = "Tracking Achievements";
 L["Going away with"] = "Going away with";
 L["Dragonflight Pre-patch"] = "Dragonflight Pre-patch";
 L["Dragonflight"] = "Dragonflight";
+L["Primal Storms"] = "Primal Storms";
 L["No time data available"] = "No time data available";
 L["Feast of Winter Veil"] = "Feast of Winter Veil";
 L["Noblegarden"] = "Noblegarden";

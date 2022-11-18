@@ -1,8 +1,8 @@
--- [[ Exported at 2022-11-15 17-20-22 ]] --
+-- [[ Exported at 2022-11-18 08-21-57 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-11-14 ]] --
+-- [[ German translation by Ta, 2022-11-18 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -126,6 +126,7 @@ L["Tracking Achievements"] = "Erfassung von Erfolgen";
 L["Going away with"] = "Nicht mehr erzielbar ab";
 L["Dragonflight Pre-patch"] = "Dragonflight Pre-patch";
 L["Dragonflight"] = "Dragonflight";
+L["Primal Storms"] = "Urstürme";
 L["No time data available"] = "Keine Zeitdaten verfügbar";
 L["Feast of Winter Veil"] = "Winterhauch";
 L["Noblegarden"] = "Nobelgarten";

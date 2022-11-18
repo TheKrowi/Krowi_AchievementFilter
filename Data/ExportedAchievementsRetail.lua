@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-11 11-28-41 ]] --
+-- [[ Exported at 2022-11-16 20-27-17 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -8454,6 +8454,7 @@ function exportedAchievements.Load(a, t)
     a[16429] = b:New(16429, 0); -- Thundering Hero: Dragonflight Season 1
     a[16430] = b:New(16430, 10); -- "All Bark, All Bite"
     a[16431] = b:New(16431, 0); -- Against the Elements
+    O(a[16431], "From", "Version", "100002", "Until", "Version", "100002");
     a[16432] = b:New(16432, 10); -- Ready for Raiding VIII
     a[16434] = b:New(16434, 10); -- See Me After Class
     a[16438] = b:New(16438, 10); -- Knowledge is... Preserved?
@@ -8658,9 +8659,30 @@ function exportedAchievements.Load(a, t)
     a[16736] = b:New(16736, 10); -- Grand Theft Mammoth
     a[16758] = b:New(16758, 0); -- "Ready, Aim, Catalog!"
     a[16760] = b:New(16760, 10); -- The Obsidian Bloodline
+    a[16761] = b:New(16761, 25); -- Dragon Isles Explorer
+    a[16762] = b:New(16762, 10); -- The Vegetarian Diet
+    a[16764] = b:New(16764, 10); -- Crimson Carpet Fashion
+    a[16789] = b:New(16789, 5); -- Lucky Penny
+    a[16790] = b:New(16790, 5); -- Curious Coin
+    a[16791] = b:New(16791, 50); -- Merchant Artisan
+    a[16794] = b:New(16794, 10); -- Dragon Isles Crafting Order Apprentice
+    a[16795] = b:New(16795, 10); -- Dragon Isles Crafting Order Journeyman
+    a[16799] = b:New(16799, 25); -- Personal Crafter
+    a[16800] = b:New(16800, 10); -- Dragon Isles Crafting Order Master
+    a[16801] = b:New(16801, 0); -- Realm First! Dragonflight Keystone Hero
+    O(a[16801], "Once");
+    a[16808] = b:New(16808, 15); -- Friend of the Dragon Isles
+    a[17107] = b:New(17107, 0); -- Ahead of the Curve: Raszageth the Storm-Eater
+    O(a[17107], "From", "Mythic+ Season", 9, "Until", "Mythic+ Season", 9);
+    a[17108] = b:New(17108, 0); -- Cutting Edge: Raszageth the Storm-Eater
+    O(a[17108], "From", "Mythic+ Season", 9, "Until", "Mythic+ Season", 9);
+    a[17110] = b:New(17110, 10); -- The Primal Bulwark
+    a[17111] = b:New(17111, 10); -- Caverns of Infusion
+    a[17112] = b:New(17112, 10); -- Fury of the Storm
+    a[17119] = b:New(17119, 10); -- Deep Cuts From the Vault
 
     local aIDs = {};
-    for i = 1, 16760 do
+    for i = 1, 17119 do
         if a[i] ~= nil then
             tinsert(aIDs, i);
         end

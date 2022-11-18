@@ -1,7 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 46.4 - 2022-11-xx
+## 47.0 - 2022-11-18
+### Added
+- Search options to additionally search Ids and Rewards without prefixing the search request (planning to expand this feature in future releases)
+- New achievements
+
+### Changed
+- Achievements and categories
+
+## 46.4 - 2022-11-15
 ### Added
 - Tooltip data for items and recipes for Draenor Cuisine and Drown Your Sorrows
 - ItemRefTooltip now also shows tooltip data (the one you see when you click an item from chat)

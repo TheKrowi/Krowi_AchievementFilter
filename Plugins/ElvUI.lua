@@ -304,7 +304,7 @@ end
 local function SkinFilterButton(button, achievementsFrame, skins)
     skins:HandleButton(button);
 
-    local highlightTex = button.GetHighlightTexture and button:GetHighlightTexture()
+    local highlightTex = button.GetHighlightTexture and button:GetHighlightTexture();
     if highlightTex then
         highlightTex:SetTexture();
     else
@@ -313,6 +313,20 @@ local function SkinFilterButton(button, achievementsFrame, skins)
 
 	button:ClearAllPoints();
 	button:Point("BOTTOMLEFT", achievementsFrame, "TOPLEFT", 2, 1);
+end
+
+local function SkinSearchOptionsButton(button, searchBoxFrame, skins)
+    skins:HandleButton(button);
+
+    local highlightTex = button.GetHighlightTexture and button:GetHighlightTexture();
+    if highlightTex then
+        highlightTex:SetTexture();
+    else
+        button:StripTextures();
+    end
+
+	button:ClearAllPoints();
+	button:Point("LEFT", searchBoxFrame, "LEFT", -3, 0);
 end
 
 local function SkinSearchBoxFrame(frame, skins)
@@ -325,7 +339,7 @@ local function SkinSearchBoxFrame(frame, skins)
 end
 
 local function SkinSearchButton(self, engine, skins)
-	self:StripTextures()
+	self:StripTextures();
 
 	if self.Icon then
 		skins:HandleIcon(self.Icon);
@@ -635,6 +649,7 @@ local function SkinAll()
         SkinAchievementsFrame(addon.GUI.AchievementsFrame, engine, skins);
         SkinAchievementSummary(addon.GUI.SummaryFrame, engine, skins);
         SkinFilterButton(addon.GUI.FilterButton, addon.GUI.AchievementsFrame, skins);
+        SkinSearchOptionsButton(addon.GUI.Search.OptionsMenuButton, addon.GUI.Search.BoxFrame, skins);
         SkinSearchBoxFrame(addon.GUI.Search.BoxFrame, skins);
         SkinSearchPreviewFrame(addon.GUI.Search.PreviewFrame, addon.GUI.AchievementsFrame, engine, skins);
         SkinSearchResultsFrame(addon.GUI.Search.ResultsFrame, skins);

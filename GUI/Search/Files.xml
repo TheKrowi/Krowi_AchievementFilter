@@ -5,4 +5,5 @@
     <Include file="PreviewButton\PreviewButton.xml"/>
     <Include file="PreviewFrame\PreviewFrame.xml"/>
     <Include file="BoxFrame\BoxFrame.xml"/>
+    <Include file="OptionsMenuButton\OptionsMenuButton.xml"/>
 </Ui>
