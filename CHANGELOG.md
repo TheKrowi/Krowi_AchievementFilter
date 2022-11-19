@@ -1,7 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 47.1 - 2022-11-xx
+## 48.0 - 2022-11-xx
+### Changed
+- Rewritten the side button feature to be more reliable
+
 ### Removed
 - Primal storm achievement and events from Tirisfal Glades
 
