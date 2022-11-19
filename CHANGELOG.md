@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## 48.0 - 2022-11-xx
+### Added
+- Primal storm event reminders when the boss is up
+
 ### Changed
 - Rewritten the side button feature to be more reliable
 

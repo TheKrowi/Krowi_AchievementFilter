@@ -82,7 +82,15 @@ local function ExportCriteria()
         if numCriteria > 0 then
             for i = 1, numCriteria do
                 local criteriaString, criteriaType, _, _, _, _, flags, assetId, _, criteriaId, _ = GetAchievementCriteriaInfo(id, i);
-                tinsert(criteriaCache, {AchievementId = id, CriteriaIndex = i, CriteriaString = criteriaString, CriteriaType = criteriaType, Flags = flags, AssetId = assetId, CriteriaId = criteriaId});
+                tinsert(criteriaCache, {
+                    AchievementId = id,
+                    CriteriaIndex = i,
+                    CriteriaString = criteriaString,
+                    CriteriaType = criteriaType,
+                    Flags = flags,
+                    AssetId = assetId,
+                    CriteriaId = criteriaId
+                });
             end
         end
         -- if #criteriaCache > 100 then
@@ -92,6 +100,35 @@ local function ExportCriteria()
     end
     DebugTable = criteriaCache;
 end
+
+-- local function ExportAchievements()
+--     local achievementsCache = {};
+--     local gapSize, i = 0, 1;
+--     while gapSize < 500 do
+--         local id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy, isStatistic, exists = addon.GetAchievementInfo(i);
+
+--         if id then
+--             tinsert(achievementsCache, {
+--                 Id = id,
+--                 Name = name,
+--                 Description = description,
+--                 RewardText = rewardText,
+--                 Points = points,
+--                 -- CategoryAgtId = nil,
+--                 Flags = flags,
+--                 -- UiOrder = nil,
+--                 IconFileId = icon
+--             });
+--         end
+--         if id and exists then
+--             gapSize = 0;
+--         else
+--             gapSize = gapSize + 1;
+--         end
+--         i = i + 1;
+--     end
+--     DebugTable = achievementsCache;
+-- end
 
 options.OptionsTable.args["General"] = {
     type = "group",
@@ -441,7 +478,13 @@ options.OptionsTable.args["General"] = {
                         options.Debug(addon.L["Show placeholders filter"], addon.Options.db.ShowPlaceholdersFilter);
                     end
                 },
-                Blank42 = {order = 4.2, type = "description", width = 2 * widthMultiplier, name = ""}
+                Blank42 = {order = 4.2, type = "description", width = 2 * widthMultiplier, name = ""},
+                -- ExportAchievements = {
+                --     order = 4.3, type = "execute",
+                --     name = addon.L["Export Achievements"],
+                --     desc = addon.L["Export Achievements Desc"],
+                --     func = ExportAchievements
+                -- },
             }
         }
     }
