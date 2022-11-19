@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-16 20-31-53 ]] --
+-- [[ Exported at 2022-11-19 00-20-08 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -133,7 +133,6 @@ function exportedCategories.Load(a)
     A(t[1006], a[948]); -- Ambassador of the Alliance
     t[725] = c:New(k.GetMapName(18)); -- Tirisfal Glades
     C(t[687], t[725]);
-    A(t[725], a[16431]); -- Against the Elements
     t[1201] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
     C(t[725], t[1201]);
     A(t[1201], a[15579]); -- Return to Lordaeron

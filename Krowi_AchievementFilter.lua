@@ -1,7 +1,7 @@
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
 
-LoadAddOn("Blizzard_AchievementUI"); -- For testing
+-- LoadAddOn("Blizzard_AchievementUI"); -- For testing
 
 -- [[ Version data ]] --
 local version = (GetBuildInfo());
