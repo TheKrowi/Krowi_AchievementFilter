@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Rewritten the side button feature to be more reliable
 
+### Fixed
+- Some missing and wrong achievements causing search errors
+
 ### Removed
 - Primal storm achievement and events from Tirisfal Glades
 

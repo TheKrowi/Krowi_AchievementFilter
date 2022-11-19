@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-19 00-20-08 ]] --
+-- [[ Exported at 2022-11-19 17-53-00 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -5794,6 +5794,9 @@ function exportedCategories.Load(a)
     A(t[1256], a[16564]); -- It Takes a Tuskarr Family
     A(t[1256], a[16565]); -- It Takes a Tuskarr Village
     A(t[1256], a[16537]); -- Maximum Power!
+    A(t[1256], a[16317]); -- Secret Fishing Spots
+    A(t[1256], a[16321]); -- Cutting Tusk Equipment
+    A(t[1256], a[16322]); -- Best in Slot
     t[1308] = c:New(k.L["Dragon Glyphs"], true); -- Dragon Glyphs
     C(t[1234], t[1308]);
     A(t[1308], a[16065]); -- Dragon Glyphs: Azure Archives

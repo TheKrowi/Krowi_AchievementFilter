@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-19 00-17-19 ]] --
+-- [[ Exported at 2022-11-19 17-53-19 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -2356,7 +2356,6 @@ function exportedAchievements.Load(a, t)
     a[6620] = b:New(6620, 10); -- No Time To Heal
     a[6621] = b:New(6621, 5); -- Big City Pet Brawlin' - Horde
     a[6622] = b:New(6622, 10); -- Big City Pet Brawler
-    a[6634] = b:New(6634, 0); -- Challenge Conquerors: Gold - Guild Edition
     a[6671] = b:New(6671, 10); -- Seeds of Doubt
     a[6674] = b:New(6674, 10); -- "Anything You Can Do, I Can Do Better..."
     a[6683] = b:New(6683, 10); -- Less Than Three
@@ -8437,10 +8436,7 @@ function exportedAchievements.Load(a, t)
     a[16305] = b:New(16305, 0); -- River Rapids Route Advanced: Bronze
     a[16306] = b:New(16306, 0); -- River Rapids Route Advanced: Silver
     a[16307] = b:New(16307, 0); -- River Rapids Route Advanced: Gold
-    a[16317] = b:New(16317, 0); -- Secret Fishing Spots
     a[16320] = b:New(16320, 10); -- Does Steam Do Fire Damage?
-    a[16321] = b:New(16321, 0); -- Cutting Tusk Equipment
-    a[16322] = b:New(16322, 0); -- Best in Slot
     a[16323] = b:New(16323, 5); -- Fragments of History
     a[16329] = b:New(16329, 10); -- "Duck, Duck, Spruce!"
     a[16330] = b:New(16330, 10); -- You Must Be Made of Hide
