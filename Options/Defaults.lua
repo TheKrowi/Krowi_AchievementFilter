@@ -82,9 +82,10 @@ options.Defaults = {
                 CriteriaBehaviour = 2
             },
             Modifiers = {
-                PasteToChat = 3,
-                ToggleTracking = 3,
-                AddRemoveWatchList = 1
+                PasteToChat = 4,
+                ToggleTracking = 4,
+                ToggleWatchList = 2,
+                ToggleExcluded = 1
             }
         },
         RightClickMenu = {

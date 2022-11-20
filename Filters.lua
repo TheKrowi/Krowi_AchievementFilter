@@ -159,7 +159,7 @@ local validations = {
         end
     },
     {   -- 9
-        Validate = function(_filters, achievement) return not _filters.Excluded and achievement.Excluded end
+        Validate = function(_filters, achievement) return not _filters.Excluded and achievement.IsExcluded end
     },
     {   -- 10
         Validate = function(_filters, achievement)

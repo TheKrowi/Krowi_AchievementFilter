@@ -402,14 +402,24 @@ options.OptionsTable.args["General"] = {
                                 watchList = addon.L["Watch List"]
                             },
                             values = addon.Modifiers,
-                            get = function() return addon.Options.db.Achievements.Modifiers.AddRemoveWatchList; end,
+                            get = function() return addon.Options.db.Achievements.Modifiers.ToggleWatchList; end,
                             set = function (_, value)
-                                if addon.Options.db.Achievements.Modifiers.AddRemoveWatchList == value then return; end;
-                                addon.Options.db.Achievements.Modifiers.AddRemoveWatchList = value;
-                                options.Debug(addon.L["Add to/Remove from Watch List"], addon.Options.db.Achievements.Modifiers.AddRemoveWatchList);
+                                if addon.Options.db.Achievements.Modifiers.ToggleWatchList == value then return; end;
+                                addon.Options.db.Achievements.Modifiers.ToggleWatchList = value;
+                                options.Debug(addon.L["Add to/Remove from Watch List"], addon.Options.db.Achievements.Modifiers.ToggleWatchList);
                             end
                         },
-                        Blank12 = {order = 3.2, type = "description", width = 1.5 * widthMultiplier, name = ""}
+                        Excluded = {
+                            order = 2.1, type = "select", width = 1 * widthMultiplier,
+                            name = addon.L["Include"] .. " / " .. addon.L["Exclude"],
+                            values = addon.Modifiers,
+                            get = function() return addon.Options.db.Achievements.Modifiers.ToggleExcluded; end,
+                            set = function (_, value)
+                                if addon.Options.db.Achievements.Modifiers.ToggleExcluded == value then return; end;
+                                addon.Options.db.Achievements.Modifiers.ToggleExcluded = value;
+                                options.Debug(addon.L["Include"] .. " / " .. addon.L["Exclude"], addon.Options.db.Achievements.Modifiers.ToggleExcluded);
+                            end
+                        }
                     }
                 }
             }

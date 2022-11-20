@@ -63,7 +63,7 @@ local function AddClearWatch(menu, achievement)
 end
 
 local function AddIncludeExclude(menu, achievement)
-	if achievement.Excluded then
+	if achievement.IsExcluded then
 		menu:AddFull({Text = addon.L["Include"], Func = function()
 			addon.IncludeAchievement(achievement);
 			rightClickMenu:Close();

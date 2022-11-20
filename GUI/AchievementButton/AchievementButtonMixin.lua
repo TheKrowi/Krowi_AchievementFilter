@@ -170,7 +170,14 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement, refresh)
 			self.ExtraIcon:Show();
 		elseif achievement.IsWatched then
 			self.ExtraIcon.Texture:SetAtlas("groupfinder-eye-frame");
-			self.ExtraIcon.Text = addon.L["Achievement is watched"];
+			self.ExtraIcon.Text = addon.L["Achievement is watched"]:ReplaceVars
+			{
+				watchList = addon.L["Watch List"]
+			};
+			self.ExtraIcon:Show();
+		elseif achievement.IsExcluded then
+			self.ExtraIcon.Texture:SetAtlas("XMarksTheSpot");
+			self.ExtraIcon.Text = addon.L["Achievement is excluded"];
 			self.ExtraIcon:Show();
 		else
 			self.ExtraIcon:Hide();
@@ -455,11 +462,18 @@ function KrowiAF_AchievementButtonMixin:ProcessedModifiers(ignoreModifiers)
 			end
 			handled = true;
 		end
-		if not handled and addon.IsCustomModifierKeyDown(addon.Options.db.Achievements.Modifiers.AddRemoveWatchList) then
+		if not handled and addon.IsCustomModifierKeyDown(addon.Options.db.Achievements.Modifiers.ToggleWatchList) then
 			if self.Achievement.IsWatched then
 				addon.ClearWatchAchievement(self.Achievement);
 			else
 				addon.WatchAchievement(self.Achievement);
+			end
+		end
+		if not handled and addon.IsCustomModifierKeyDown(addon.Options.db.Achievements.Modifiers.ToggleExcluded) then
+			if self.Achievement.IsExcluded then
+				addon.IncludeAchievement(self.Achievement);
+			else
+				addon.ExcludeAchievement(self.Achievement);
 			end
 		end
 		return true;

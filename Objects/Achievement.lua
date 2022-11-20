@@ -105,7 +105,7 @@ function achievement:AddExcludedCategory(category)
 end
 
 function achievement:Include()
-    self.Excluded = nil;
+    self.IsExcluded = nil;
     if SavedData.ExcludedAchievements == nil then
         return;
     end
@@ -113,7 +113,7 @@ function achievement:Include()
 end
 
 function achievement:Exclude()
-    self.Excluded = true;
+    self.IsExcluded = true;
     SavedData.ExcludedAchievements = SavedData.ExcludedAchievements or {};
     SavedData.ExcludedAchievements[self.ID] = true;
 end

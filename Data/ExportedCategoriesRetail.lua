@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-20 10-37-56 ]] --
+-- [[ Exported at 2022-11-20 23-37-15 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -5636,7 +5636,7 @@ function exportedCategories.Load(a)
     A(t[1319], a[15745]); -- Wingrest Roundabout Advanced: Bronze
     A(t[1319], a[15746]); -- Wingrest Roundabout Advanced: Silver
     A(t[1319], a[15747]); -- Wingrest Roundabout Advanced: Gold
-    t[1363] = c:New(k.GetCategoryInfoTitle(15474), true); -- Primal Storms
+    t[1363] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1232], t[1363]);
     A(t[1363], a[16463]); -- Thunderstorms in The Waking Shores
     A(t[1363], a[16465]); -- Sandstorms in The Waking Shores
@@ -5748,7 +5748,7 @@ function exportedCategories.Load(a)
     A(t[1322], a[15760]); -- Sundapple Copse Circuit Advanced: Bronze
     A(t[1322], a[15761]); -- Sundapple Copse Circuit Advanced: Silver
     A(t[1322], a[15762]); -- Sundapple Copse Circuit Advanced: Gold
-    t[1364] = c:New(k.GetCategoryInfoTitle(15474), true); -- Primal Storms
+    t[1364] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1233], t[1364]);
     A(t[1364], a[16475]); -- Thunderstorms in the Ohn'ahran Plains
     A(t[1364], a[16476]); -- Chasing Storms in the Ohn'ahran Plains
@@ -5868,7 +5868,7 @@ function exportedCategories.Load(a)
     A(t[1331], a[15821]); -- The Vakthros Ascent Advanced: Bronze
     A(t[1331], a[15822]); -- The Vakthros Ascent Advanced: Silver
     A(t[1331], a[15823]); -- The Vakthros Ascent Advanced: Gold
-    t[1365] = c:New(k.GetCategoryInfoTitle(15474), true); -- Primal Storms
+    t[1365] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1234], t[1365]);
     A(t[1365], a[16480]); -- Thunderstorms in The Azure Span
     A(t[1365], a[16481]); -- Sandstorms in The Azure Span
@@ -5964,7 +5964,7 @@ function exportedCategories.Load(a)
     A(t[1335], a[15830]); -- The Flowing Forest Flight Advanced: Bronze
     A(t[1335], a[15831]); -- The Flowing Forest Flight Advanced: Silver
     A(t[1335], a[15832]); -- The Flowing Forest Flight Advanced: Gold
-    t[1366] = c:New(k.GetCategoryInfoTitle(15474), true); -- Primal Storms
+    t[1366] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1235], t[1366]);
     A(t[1366], a[16485]); -- Thunderstorms in Thaldraszus
     A(t[1366], a[16486]); -- Sandstorms in Thaldraszus

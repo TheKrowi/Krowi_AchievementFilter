@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Keybindings in the options (they are still available under the normal key bindings)
 - Adjustable key modifiers to paste an achievement to chat (default Shift), to track an achievement in the quest log (default Shift)
 - Adjustable key modifier to add/remove an achievement to/from the watch list (default Alt)
+- Adjustable key modifier to include/exclude an achievement (default not set)
 
 ### Changed
 - Rewritten the side button feature to be more reliable, will now clean old and add new events properly

@@ -633,6 +633,7 @@ function addon.DelayFunction(delayObjectName, delayTime, func, ...)
 end
 
 addon.Modifiers = {
+    addon.L["None"],
     addon.L["Alt"],
     addon.L["Ctrl"],
     addon.L["Shift"],
@@ -645,23 +646,25 @@ addon.Modifiers = {
 };
 
 function addon.IsCustomModifierKeyDown(modifier)
-	if modifier == 1 then
-        return IsAltKeyDown();
+    if modifier == 1 then
+        return;
     elseif modifier == 2 then
-        return IsControlKeyDown();
+        return IsAltKeyDown();
     elseif modifier == 3 then
-        return IsShiftKeyDown();
+        return IsControlKeyDown();
     elseif modifier == 4 then
-        return IsRightAltKeyDown();
+        return IsShiftKeyDown();
     elseif modifier == 5 then
-        return IsRightControlKeyDown();
+        return IsRightAltKeyDown();
     elseif modifier == 6 then
-        return IsRightShiftKeyDown();
+        return IsRightControlKeyDown();
     elseif modifier == 7 then
-        return IsLeftAltKeyDown();
+        return IsRightShiftKeyDown();
     elseif modifier == 8 then
-        return IsLeftControlKeyDown();
+        return IsLeftAltKeyDown();
     elseif modifier == 9 then
+        return IsLeftControlKeyDown();
+    elseif modifier == 10 then
         return IsLeftShiftKeyDown();
     end
 end
