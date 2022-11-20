@@ -36,17 +36,29 @@ function achievementMenu.AddGoToAchievementWithCategoryLine(menu, achievement, c
 	});
 end
 
-local function AddClearFocusFocus(menu, achievement)
-	if achievement.Focused then
-		menu:AddFull({Text = addon.L["Clear focus"], Func = function()
-			addon.ClearFocusAchievement(achievement);
-			rightClickMenu:Close();
-		end});
+local function AddClearWatch(menu, achievement)
+	if achievement.IsWatched then
+		menu:AddFull({
+			Text = addon.L["Remove from Watch List"]:ReplaceVars
+			{
+				watchList = addon.L["Watch List"]
+			},
+			Func = function()
+				addon.ClearWatchAchievement(achievement);
+				rightClickMenu:Close();
+			end
+		});
 	else
-		menu:AddFull({Text = addon.L["Focus"], Func = function()
-			addon.FocusAchievement(achievement);
-			rightClickMenu:Close();
-		end});
+		menu:AddFull({
+			Text = addon.L["Add to Watch List"]:ReplaceVars
+			{
+				watchList = addon.L["Watch List"]
+			},
+			Func = function()
+				addon.WatchAchievement(achievement);
+				rightClickMenu:Close();
+			end
+		});
 	end
 end
 
@@ -67,7 +79,7 @@ end
 local function AddMore(achievement)
 	local more = addon.Objects.MenuItem:New({Text = addon.L["More"]});
 
-	AddClearFocusFocus(more, achievement);
+	AddClearWatch(more, achievement);
 	AddIncludeExclude(more, achievement);
 
 	rightClickMenu:Add(more);

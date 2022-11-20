@@ -55,6 +55,7 @@ end
 function sideButton:New(index)
     local frame = CreateFrame("Button", "AchievementFrameSideButton" .. index, AchievementFrame, "KrowiAF_AlertFrame_" .. (addon.Options.db.EventReminders.Compact and "Small" or "Normal") .. "_Template"); -- Blizzard naming
     frame:SetParent(AchievementFrame); -- Set parent to automatically hide when the AchievementFrame is hidden
+    frame:RegisterForClicks("LeftButtonUp");
 
     frame.SetEvent = SetEvent;
     frame.Reset = Reset;

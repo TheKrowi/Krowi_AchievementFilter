@@ -32,7 +32,7 @@ function data.Load()
     custom.max = #data.AchievementIds;
 
     local tabsCategories;
-    tabsCategories, data.FocusedCategories, data.CurrentZoneCategories, data.SelectedZoneCategories, data.TrackingAchievementsCategories, data.ExcludedCategories = data.ExportedCategories.Load(data.Achievements);
+    tabsCategories, data.WatchListCategories, data.CurrentZoneCategories, data.SelectedZoneCategories, data.TrackingAchievementsCategories, data.ExcludedCategories = data.ExportedCategories.Load(data.Achievements);
     for t, _ in next, addon.Tabs do
         if tabsCategories[t] ~= nil then
             addon.Tabs[t].Categories = tabsCategories[t];
@@ -70,9 +70,9 @@ local function LoadAchievements(sourceTable, func)
     addon.GUI.CategoriesFrame:Update(true);
 end
 
-function data.LoadFocusedAchievements()
-    LoadAchievements(SavedData.FocusedAchievements, addon.FocusAchievement);
-    addon.Diagnostics.Debug("Focused achievements loaded");
+function data.LoadWatchedAchievements()
+    LoadAchievements(SavedData.WatchedAchievements, addon.WatchAchievement);
+    addon.Diagnostics.Debug("Watched achievements loaded");
 end
 
 function data.LoadTrackingAchievements()

@@ -181,6 +181,10 @@ end
 
 function KrowiAF_AchievementButton_Light_OnClick(self, button, down, ignoreModifiers)
 	if button == "LeftButton" then
+		if self:ProcessedModifiers(ignoreModifiers) then
+			return;
+		end
+		
     	KrowiAF_SelectAchievementFromID(self.Achievement.Id);
 	else
 		KrowiAF_AchievementButton_OnClick(self, button, down, ignoreModifiers);

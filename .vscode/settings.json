@@ -412,7 +412,15 @@
         "C_MythicPlus",
         "GetPreviousArenaSeason",
         "GetCurrentArenaSeason",
-        "CreateFont"
+        "CreateFont",
+        "KEY_BINDINGS_MAC",
+        "SETTINGS_KEYBINDINGS_LABEL",
+        "IsRightAltKeyDown",
+        "IsLeftShiftKeyDown",
+        "IsLeftControlKeyDown",
+        "IsLeftAltKeyDown",
+        "IsRightShiftKeyDown",
+        "IsRightControlKeyDown"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

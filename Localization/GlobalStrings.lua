@@ -3,6 +3,43 @@ local _, addon = ...;
 addon.GlobalStrings = {};
 local globalStrings = addon.GlobalStrings;
 
+function addon.GetCovenantName(covenantID)
+    return C_Covenants and C_Covenants.GetCovenantData(covenantID).name or covenantID;
+end
+
+function addon.GetInstanceInfoName(journalInstanceId)
+    local name = EJ_GetInstanceInfo and (EJ_GetInstanceInfo(journalInstanceId)) or nil;
+    if name then
+        return name;
+    end
+    name = addon.L["EJ_GetInstanceInfo" .. journalInstanceId];
+    if name then
+        return name;
+    end
+    return journalInstanceId;
+end
+
+function addon.GetCategoryInfoTitle(categoryId)
+    local title = (GetCategoryInfo(categoryId));
+    if title then
+        return title;
+    end
+    title = addon.L["GetCategoryInfo" .. categoryId];
+    if title then
+        return title;
+    end
+    return categoryId;
+end
+
+function addon.GetLFGDungeonInfo(dungeonID)
+    return GetLFGDungeonInfo and GetLFGDungeonInfo(dungeonID) or dungeonID;
+end
+
+function addon.GetMapName(uiMapID)
+    local mapInfo = C_Map.GetMapInfo(uiMapID);
+    return mapInfo and mapInfo.name or uiMapID;
+end
+
 function globalStrings.Load(L)
     L["Expansion"] = EXPANSION_FILTER_TEXT;
     L["Classic"] = EXPANSION_NAME0;
@@ -57,6 +94,8 @@ function globalStrings.Load(L)
     L["Summary"] = ACHIEVEMENT_SUMMARY_CATEGORY;
     L["Achievements Earned"] = ACHIEVEMENTS_COMPLETED;
     L["Key Bindings"] = KEY_BINDINGS;
+    L["Keybindings"] = SETTINGS_KEYBINDINGS_LABEL;
+    L["Bindings"] = KEY_BINDINGS_MAC;
     L["January"] = MONTH_JANUARY;
     L["February"] = MONTH_FEBRUARY;
     L["March"] = MONTH_MARCH;

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-19 18-21-55 ]] --
+-- [[ Exported at 2022-11-20 09-10-53 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -94,17 +94,17 @@ function exportedWorldEvents.Load(e)
     e[7300] = event:New(7300, 460952, addon.L["Primalist Tomorrow"], 1978, 5400); -- Primalist Tomorrow
     e[7301] = event:New(7301, 135783, addon.L["Primalist Tomorrow"], 1978, 5400); -- Primalist Tomorrow
     e[7366] = event:New(7366, 451165, addon.L["Badlands Elements"], 15, 5400); -- Badlands Elements
-    e[7367] = event:New(7367, 135783, addon.L["Badlands Elements"], 15, 5400); -- Badlands Elements
+    e[7367] = event:New(7367, 132845, addon.L["Badlands Elements"], 15, 5400); -- Badlands Elements
     e[7368] = event:New(7368, 460952, addon.L["Badlands Elements"], 15, 5400); -- Badlands Elements
-    e[7369] = event:New(7369, 132845, addon.L["Badlands Elements"], 15, 5400); -- Badlands Elements
-    e[7370] = event:New(7370, 135783, addon.L["Northern Barrens Elements"], 10, 5400); -- Northern Barrens Elements
+    e[7369] = event:New(7369, 135783, addon.L["Badlands Elements"], 15, 5400); -- Badlands Elements
+    e[7370] = event:New(7370, 132845, addon.L["Northern Barrens Elements"], 10, 5400); -- Northern Barrens Elements
     e[7371] = event:New(7371, 451165, addon.L["Northern Barrens Elements"], 10, 5400); -- Northern Barrens Elements
     e[7372] = event:New(7372, 460952, addon.L["Northern Barrens Elements"], 10, 5400); -- Northern Barrens Elements
-    e[7373] = event:New(7373, 132845, addon.L["Northern Barrens Elements"], 10, 5400); -- Northern Barrens Elements
-    e[7378] = event:New(7378, 135783, addon.L["Un'Goro Crater Elements"], 78, 5400); -- Un'Goro Crater Elements
+    e[7373] = event:New(7373, 135783, addon.L["Northern Barrens Elements"], 10, 5400); -- Northern Barrens Elements
+    e[7378] = event:New(7378, 132845, addon.L["Un'Goro Crater Elements"], 78, 5400); -- Un'Goro Crater Elements
     e[7379] = event:New(7379, 451165, addon.L["Un'Goro Crater Elements"], 78, 5400); -- Un'Goro Crater Elements
     e[7380] = event:New(7380, 460952, addon.L["Un'Goro Crater Elements"], 78, 5400); -- Un'Goro Crater Elements
-    e[7381] = event:New(7381, 132845, addon.L["Un'Goro Crater Elements"], 78, 5400); -- Un'Goro Crater Elements
+    e[7381] = event:New(7381, 135783, addon.L["Un'Goro Crater Elements"], 78, 5400); -- Un'Goro Crater Elements
 end
 
 function exportedWorldEvents.LoadCategories(e)
@@ -1234,34 +1234,34 @@ function exportedWorldEvents.InjectOptions()
                             diagnostics.Debug(addon.L["Northern Barrens Storms"], addon.Options.db.EventReminders.WorldEvents[7071]);
                         end
                     },
-                    E7367 = {
+                    E7369 = {
                         order = 97, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Badlands Elements"],
-                        get = function() return addon.Options.db.EventReminders.WorldEvents[7367]; end,
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7369]; end,
                         set = function()
-                            addon.Options.db.EventReminders.WorldEvents[7367] = not addon.Options.db.EventReminders.WorldEvents[7367];
+                            addon.Options.db.EventReminders.WorldEvents[7369] = not addon.Options.db.EventReminders.WorldEvents[7369];
                             addon.GUI.SideButtonSystem.Refresh();
-                            diagnostics.Debug(addon.L["Badlands Elements"], addon.Options.db.EventReminders.WorldEvents[7367]);
+                            diagnostics.Debug(addon.L["Badlands Elements"], addon.Options.db.EventReminders.WorldEvents[7369]);
                         end
                     },
-                    E7370 = {
+                    E7373 = {
                         order = 98, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Northern Barrens Elements"],
-                        get = function() return addon.Options.db.EventReminders.WorldEvents[7370]; end,
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7373]; end,
                         set = function()
-                            addon.Options.db.EventReminders.WorldEvents[7370] = not addon.Options.db.EventReminders.WorldEvents[7370];
+                            addon.Options.db.EventReminders.WorldEvents[7373] = not addon.Options.db.EventReminders.WorldEvents[7373];
                             addon.GUI.SideButtonSystem.Refresh();
-                            diagnostics.Debug(addon.L["Northern Barrens Elements"], addon.Options.db.EventReminders.WorldEvents[7370]);
+                            diagnostics.Debug(addon.L["Northern Barrens Elements"], addon.Options.db.EventReminders.WorldEvents[7373]);
                         end
                     },
-                    E7378 = {
+                    E7381 = {
                         order = 99, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Un'Goro Crater Elements"],
-                        get = function() return addon.Options.db.EventReminders.WorldEvents[7378]; end,
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7381]; end,
                         set = function()
-                            addon.Options.db.EventReminders.WorldEvents[7378] = not addon.Options.db.EventReminders.WorldEvents[7378];
+                            addon.Options.db.EventReminders.WorldEvents[7381] = not addon.Options.db.EventReminders.WorldEvents[7381];
                             addon.GUI.SideButtonSystem.Refresh();
-                            diagnostics.Debug(addon.L["Un'Goro Crater Elements"], addon.Options.db.EventReminders.WorldEvents[7378]);
+                            diagnostics.Debug(addon.L["Un'Goro Crater Elements"], addon.Options.db.EventReminders.WorldEvents[7381]);
                         end
                     },
                     Blank100 = {order = 100, type = "description", width = "full", name = ""},
@@ -1272,9 +1272,9 @@ function exportedWorldEvents.InjectOptions()
                             addon.Options.db.EventReminders.WorldEvents[7060] = true;
                             addon.Options.db.EventReminders.WorldEvents[7070] = true;
                             addon.Options.db.EventReminders.WorldEvents[7071] = true;
-                            addon.Options.db.EventReminders.WorldEvents[7367] = true;
-                            addon.Options.db.EventReminders.WorldEvents[7370] = true;
-                            addon.Options.db.EventReminders.WorldEvents[7378] = true;
+                            addon.Options.db.EventReminders.WorldEvents[7369] = true;
+                            addon.Options.db.EventReminders.WorldEvents[7373] = true;
+                            addon.Options.db.EventReminders.WorldEvents[7381] = true;
                         end
                     },
                     DeselectAll102 = {
@@ -1284,9 +1284,9 @@ function exportedWorldEvents.InjectOptions()
                             addon.Options.db.EventReminders.WorldEvents[7060] = false;
                             addon.Options.db.EventReminders.WorldEvents[7070] = false;
                             addon.Options.db.EventReminders.WorldEvents[7071] = false;
-                            addon.Options.db.EventReminders.WorldEvents[7367] = false;
-                            addon.Options.db.EventReminders.WorldEvents[7370] = false;
-                            addon.Options.db.EventReminders.WorldEvents[7378] = false;
+                            addon.Options.db.EventReminders.WorldEvents[7369] = false;
+                            addon.Options.db.EventReminders.WorldEvents[7373] = false;
+                            addon.Options.db.EventReminders.WorldEvents[7381] = false;
                         end
                     },
                 }
@@ -1325,34 +1325,34 @@ function exportedWorldEvents.InjectOptions()
                             diagnostics.Debug(addon.L["Northern Barrens Storms"], addon.Options.db.EventReminders.WorldEvents[7062]);
                         end
                     },
-                    E7369 = {
+                    E7367 = {
                         order = 107, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Badlands Elements"],
-                        get = function() return addon.Options.db.EventReminders.WorldEvents[7369]; end,
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7367]; end,
                         set = function()
-                            addon.Options.db.EventReminders.WorldEvents[7369] = not addon.Options.db.EventReminders.WorldEvents[7369];
+                            addon.Options.db.EventReminders.WorldEvents[7367] = not addon.Options.db.EventReminders.WorldEvents[7367];
                             addon.GUI.SideButtonSystem.Refresh();
-                            diagnostics.Debug(addon.L["Badlands Elements"], addon.Options.db.EventReminders.WorldEvents[7369]);
+                            diagnostics.Debug(addon.L["Badlands Elements"], addon.Options.db.EventReminders.WorldEvents[7367]);
                         end
                     },
-                    E7373 = {
+                    E7370 = {
                         order = 108, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Northern Barrens Elements"],
-                        get = function() return addon.Options.db.EventReminders.WorldEvents[7373]; end,
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7370]; end,
                         set = function()
-                            addon.Options.db.EventReminders.WorldEvents[7373] = not addon.Options.db.EventReminders.WorldEvents[7373];
+                            addon.Options.db.EventReminders.WorldEvents[7370] = not addon.Options.db.EventReminders.WorldEvents[7370];
                             addon.GUI.SideButtonSystem.Refresh();
-                            diagnostics.Debug(addon.L["Northern Barrens Elements"], addon.Options.db.EventReminders.WorldEvents[7373]);
+                            diagnostics.Debug(addon.L["Northern Barrens Elements"], addon.Options.db.EventReminders.WorldEvents[7370]);
                         end
                     },
-                    E7381 = {
+                    E7378 = {
                         order = 109, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Un'Goro Crater Elements"],
-                        get = function() return addon.Options.db.EventReminders.WorldEvents[7381]; end,
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7378]; end,
                         set = function()
-                            addon.Options.db.EventReminders.WorldEvents[7381] = not addon.Options.db.EventReminders.WorldEvents[7381];
+                            addon.Options.db.EventReminders.WorldEvents[7378] = not addon.Options.db.EventReminders.WorldEvents[7378];
                             addon.GUI.SideButtonSystem.Refresh();
-                            diagnostics.Debug(addon.L["Un'Goro Crater Elements"], addon.Options.db.EventReminders.WorldEvents[7381]);
+                            diagnostics.Debug(addon.L["Un'Goro Crater Elements"], addon.Options.db.EventReminders.WorldEvents[7378]);
                         end
                     },
                     Blank110 = {order = 110, type = "description", width = "full", name = ""},
@@ -1363,9 +1363,9 @@ function exportedWorldEvents.InjectOptions()
                             addon.Options.db.EventReminders.WorldEvents[7058] = true;
                             addon.Options.db.EventReminders.WorldEvents[7061] = true;
                             addon.Options.db.EventReminders.WorldEvents[7062] = true;
-                            addon.Options.db.EventReminders.WorldEvents[7369] = true;
-                            addon.Options.db.EventReminders.WorldEvents[7373] = true;
-                            addon.Options.db.EventReminders.WorldEvents[7381] = true;
+                            addon.Options.db.EventReminders.WorldEvents[7367] = true;
+                            addon.Options.db.EventReminders.WorldEvents[7370] = true;
+                            addon.Options.db.EventReminders.WorldEvents[7378] = true;
                         end
                     },
                     DeselectAll112 = {
@@ -1375,9 +1375,9 @@ function exportedWorldEvents.InjectOptions()
                             addon.Options.db.EventReminders.WorldEvents[7058] = false;
                             addon.Options.db.EventReminders.WorldEvents[7061] = false;
                             addon.Options.db.EventReminders.WorldEvents[7062] = false;
-                            addon.Options.db.EventReminders.WorldEvents[7369] = false;
-                            addon.Options.db.EventReminders.WorldEvents[7373] = false;
-                            addon.Options.db.EventReminders.WorldEvents[7381] = false;
+                            addon.Options.db.EventReminders.WorldEvents[7367] = false;
+                            addon.Options.db.EventReminders.WorldEvents[7370] = false;
+                            addon.Options.db.EventReminders.WorldEvents[7378] = false;
                         end
                     },
                 }

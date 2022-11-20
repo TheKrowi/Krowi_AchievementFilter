@@ -455,4 +455,5 @@ function gui.RefreshView()
     end
     addon.GUI.CategoriesFrame:Update();
     addon.GUI.AchievementsFrame:ForceUpdate();
+    addon.GUI.SummaryFrame:UpdateAchievementsOnNextShow();
 end

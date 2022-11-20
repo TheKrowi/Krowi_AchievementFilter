@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-18 08-21-57 ]] --
+-- [[ Exported at 2022-11-20 16-07-07 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -50,7 +50,7 @@ L["Covenant Assaults"] = "盟约突袭";
 L["Drops"] = "掉落";
 L["Dueler's Guild"] = "决斗俱乐部";
 L["Faction Assaults"] = "阵营突袭";
-L["Focused"] = "已跟踪";
+L["Watch List"] = "已跟踪";
 L["Gifts"] = "礼物";
 L["Gladiator's Sanctum"] = "角斗士圣殿";
 L["Glory"] = "荣耀";
@@ -178,8 +178,8 @@ L["Other locations"] = "其他地点";
 L["Transmog Sets"] = "幻化套装";
 L["Xu-Fu's Pet Guides"] = "Xu-Fu's Pet Guides";
 L["More"] = "更多";
-L["Focus"] = "跟踪";
-L["Clear focus"] = "清除跟踪";
+L["Add to Watch List"] = "跟踪";
+L["Remove from Watch List"] = "清除跟踪";
 L["Exclude"] = "排除";
 L["Include"] = "包含";
 L["No achievements are available with the current set of filters"] = "当前过滤条件下无可用成就";

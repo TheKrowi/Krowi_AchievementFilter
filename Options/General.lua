@@ -1,9 +1,50 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
 local options = addon.Options;
+options.General = {};
+local general = options.General;
 local widthMultiplier = addon.Options.WidthMultiplier;
 
 local popupDialog = LibStub("Krowi_PopopDialog-1.0");
+
+function general.AddKeybindingOptions()
+    local w = 1;
+    for i, binding in next, addon.Bindings do
+        addon.Options.InjectOptionsTableAdd({
+            order = i + 0.1, type = "description", width = w * widthMultiplier,
+            name = binding.Text
+        }, "Binding" .. i .. "Name", "args", "General", "args", "KeyBinding", "args", "Keybindings");
+        local command = binding.Name;
+        addon.Options.InjectOptionsTableAdd({
+            order = i + 0.2, type = "keybinding", width = w * widthMultiplier,
+            name = "",
+            desc = "",
+            get = function() return GetBindingKey(command); end,
+            set = function(_, value)
+                local key = GetBindingKey(command);
+                if key then
+                    SetBinding(key);
+                end
+                SetBinding(value, command, 1);
+                SaveBindings(GetCurrentBindingSet());
+                end
+        }, "Binding" .. i .. "Key1", "args", "General", "args", "KeyBinding", "args", "Keybindings");
+        addon.Options.InjectOptionsTableAdd({
+            order = i + 0.3, type = "keybinding", width = w * widthMultiplier,
+            name = "",
+            desc = "",
+            get = function() return select(2, GetBindingKey(command)); end,
+            set = function(_, value)
+                local _, key = GetBindingKey(command);
+                if key then
+                    SetBinding(key);
+                end
+                SetBinding(value, command, 2);
+                SaveBindings(GetCurrentBindingSet());
+                end
+        }, "Binding" .. i .. "Key2", "args", "General", "args", "KeyBinding", "args", "Keybindings");
+    end
+end
 
 local function OpenTutorialsMenu()
     local menu = LibStub("Krowi_Menu-1.0");
@@ -317,6 +358,58 @@ options.OptionsTable.args["General"] = {
                                 end
                             end
                         }
+                    }
+                },
+                Keybindings = {
+                    order = 3, type = "group",
+                    name = addon.L["Keybindings"],
+                    inline = true,
+                    args = {
+
+                    }
+                },
+                Modifiers = {
+                    order = 4, type = "group",
+                    name = addon.L["Modifiers"],
+                    inline = true,
+                    args = {
+                        LinkToChat = {
+                            order = 1.1, type = "select", width = 1 * widthMultiplier,
+                            name = addon.L["Paste to Chat"],
+                            values = addon.Modifiers,
+                            get = function() return addon.Options.db.Achievements.Modifiers.PasteToChat; end,
+                            set = function (_, value)
+                                if addon.Options.db.Achievements.Modifiers.PasteToChat == value then return; end;
+                                addon.Options.db.Achievements.Modifiers.PasteToChat = value;
+                                options.Debug(addon.L["Paste to Chat"], addon.Options.db.Achievements.Modifiers.PasteToChat);
+                            end
+                        },
+                        ToggleTracking = {
+                            order = 1.2, type = "select", width = 1 * widthMultiplier,
+                            name = addon.L["Toggle Tracking"],
+                            values = addon.Modifiers,
+                            get = function() return addon.Options.db.Achievements.Modifiers.ToggleTracking; end,
+                            set = function (_, value)
+                                if addon.Options.db.Achievements.Modifiers.ToggleTracking == value then return; end;
+                                addon.Options.db.Achievements.Modifiers.ToggleTracking = value;
+                                options.Debug(addon.L["Toggle Tracking"], addon.Options.db.Achievements.Modifiers.ToggleTracking);
+                            end
+                        },
+                        WatchList = {
+                            order = 2.1, type = "select", width = 1 * widthMultiplier,
+                            name = addon.L["Add to / Remove from Watch List"]:ReplaceVars
+                            {
+                                watchList = addon.L["Watch List"]
+                            },
+                            values = addon.Modifiers,
+                            get = function() return addon.Options.db.Achievements.Modifiers.AddRemoveWatchList; end,
+                            set = function (_, value)
+                                if addon.Options.db.Achievements.Modifiers.AddRemoveWatchList == value then return; end;
+                                addon.Options.db.Achievements.Modifiers.AddRemoveWatchList = value;
+                                options.Debug(addon.L["Add to/Remove from Watch List"], addon.Options.db.Achievements.Modifiers.AddRemoveWatchList);
+                            end
+                        },
+                        Blank12 = {order = 3.2, type = "description", width = 1.5 * widthMultiplier, name = ""}
                     }
                 }
             }

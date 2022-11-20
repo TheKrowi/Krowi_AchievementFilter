@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-19 17-53-01 ]] --
+-- [[ Exported at 2022-11-20 10-37-57 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -20,7 +20,7 @@ end
 
 function exportedCategories.Load(a)
     local t = {};
-    local focusedCategories = {};
+    local watchListCategories = {};
     local currentZoneCategories = {};
     local selectedZoneCategories = {};
     local trackingAchievementsCategories = {};
@@ -32,10 +32,10 @@ function exportedCategories.Load(a)
     C(t[1100], t[1202]);
     t[1202].AlwaysVisible = true;
     t[1202].IsSummary = true;
-    t[1216] = c:New(k.L["Focused"]); -- Focused
+    t[1216] = c:New(k.L["Watch List"]); -- Watch List
     C(t[1100], t[1216]);
     t[1216].HasFlexibleData = true;
-    tinsert(focusedCategories, t[1216]);
+    tinsert(watchListCategories, t[1216]);
     t[1212] = c:New(k.L["Current Zone"]); -- Current Zone
     C(t[1100], t[1212]);
     t[1212].HasFlexibleData = true;
@@ -62,10 +62,10 @@ function exportedCategories.Load(a)
     C(t[883], t[1203]);
     t[1203].AlwaysVisible = true;
     t[1203].IsSummary = true;
-    t[1217] = c:New(k.L["Focused"]); -- Focused
+    t[1217] = c:New(k.L["Watch List"]); -- Watch List
     C(t[883], t[1217]);
     t[1217].HasFlexibleData = true;
-    tinsert(focusedCategories, t[1217]);
+    tinsert(watchListCategories, t[1217]);
     t[1213] = c:New(k.L["Current Zone"]); -- Current Zone
     C(t[883], t[1213]);
     t[1213].HasFlexibleData = true;
@@ -2299,10 +2299,10 @@ function exportedCategories.Load(a)
     C(t[884], t[1206]);
     t[1206].AlwaysVisible = true;
     t[1206].IsSummary = true;
-    t[1218] = c:New(k.L["Focused"]); -- Focused
+    t[1218] = c:New(k.L["Watch List"]); -- Watch List
     C(t[884], t[1218]);
     t[1218].HasFlexibleData = true;
-    tinsert(focusedCategories, t[1218]);
+    tinsert(watchListCategories, t[1218]);
     t[1214] = c:New(k.L["Current Zone"]); -- Current Zone
     C(t[884], t[1214]);
     t[1214].HasFlexibleData = true;
@@ -2681,10 +2681,10 @@ function exportedCategories.Load(a)
     C(t[955], t[1205]);
     t[1205].AlwaysVisible = true;
     t[1205].IsSummary = true;
-    t[1219] = c:New(k.L["Focused"]); -- Focused
+    t[1219] = c:New(k.L["Watch List"]); -- Watch List
     C(t[955], t[1219]);
     t[1219].HasFlexibleData = true;
-    tinsert(focusedCategories, t[1219]);
+    tinsert(watchListCategories, t[1219]);
     t[1215] = c:New(k.L["Current Zone"]); -- Current Zone
     C(t[955], t[1215]);
     t[1215].HasFlexibleData = true;
@@ -3151,10 +3151,10 @@ function exportedCategories.Load(a)
     C(t[971], t[1204]);
     t[1204].AlwaysVisible = true;
     t[1204].IsSummary = true;
-    t[949] = c:New(k.L["Focused"]); -- Focused
+    t[949] = c:New(k.L["Watch List"]); -- Watch List
     C(t[971], t[949]);
     t[949].HasFlexibleData = true;
-    tinsert(focusedCategories, t[949]);
+    tinsert(watchListCategories, t[949]);
     t[433] = c:New(k.L["Current Zone"]); -- Current Zone
     C(t[971], t[433]);
     t[433].HasFlexibleData = true;
@@ -4005,22 +4005,22 @@ function exportedCategories.Load(a)
     tabs["Events"] = events.Children;
     tabs["PvP"] = pvp.Children;
     tabs["Specials"] = specials.Children;
-    return tabs, focusedCategories, currentZoneCategories, selectedZoneCategories, trackingAchievementsCategories, excludedCategories;
+    return tabs, watchListCategories, currentZoneCategories, selectedZoneCategories, trackingAchievementsCategories, excludedCategories;
 end
 
 function exportedCategories.InjectOptions()
-    local defaultsFocused = {};
-    defaultsFocused[1] = false;
-    defaultsFocused[2] = false;
-    defaultsFocused[3] = false;
-    defaultsFocused[4] = false;
-    defaultsFocused[5] = true;
+    local defaultsWatchList = {};
+    defaultsWatchList[1] = false;
+    defaultsWatchList[2] = false;
+    defaultsWatchList[3] = false;
+    defaultsWatchList[4] = false;
+    defaultsWatchList[5] = true;
 
-    k.Options.InjectDefaults(defaultsFocused, "Focused", "AdjustableCategories");
+    k.Options.InjectDefaults(defaultsWatchList, "WatchList", "AdjustableCategories");
 
-    local optionsTableFocused = {
+    local optionsTableWatchList = {
         order = 2, type = "group",
-        name = k.L["Focused"],
+        name = k.L["Watch List"],
         args = {
             Tabs = {
                 order = 9, type = "header",
@@ -4030,56 +4030,56 @@ function exportedCategories.InjectOptions()
                 order = 10, type = "toggle", width = 1 * k.Options.WidthMultiplier,
                 name = k.L["Achievements"],
                 desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.Focused[1]; end,
+                get = function() return k.Options.db.AdjustableCategories.WatchList[1]; end,
                 set = function()
-                    k.Options.db.AdjustableCategories.Focused[1] = not k.Options.db.AdjustableCategories.Focused[1];
-                    k.Diagnostics.Debug(k.L["Achievements"], k.Options.db.AdjustableCategories.Focused[1]);
+                    k.Options.db.AdjustableCategories.WatchList[1] = not k.Options.db.AdjustableCategories.WatchList[1];
+                    k.Diagnostics.Debug(k.L["Achievements"], k.Options.db.AdjustableCategories.WatchList[1]);
                 end
             },
             Expansions = {
                 order = 11, type = "toggle", width = 1 * k.Options.WidthMultiplier,
                 name = k.L["Expansions"],
                 desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.Focused[2]; end,
+                get = function() return k.Options.db.AdjustableCategories.WatchList[2]; end,
                 set = function()
-                    k.Options.db.AdjustableCategories.Focused[2] = not k.Options.db.AdjustableCategories.Focused[2];
-                    k.Diagnostics.Debug(k.L["Expansions"], k.Options.db.AdjustableCategories.Focused[2]);
+                    k.Options.db.AdjustableCategories.WatchList[2] = not k.Options.db.AdjustableCategories.WatchList[2];
+                    k.Diagnostics.Debug(k.L["Expansions"], k.Options.db.AdjustableCategories.WatchList[2]);
                 end
             },
             Events = {
                 order = 12, type = "toggle", width = 1 * k.Options.WidthMultiplier,
                 name = k.L["Events"],
                 desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.Focused[3]; end,
+                get = function() return k.Options.db.AdjustableCategories.WatchList[3]; end,
                 set = function()
-                    k.Options.db.AdjustableCategories.Focused[3] = not k.Options.db.AdjustableCategories.Focused[3];
-                    k.Diagnostics.Debug(k.L["Events"], k.Options.db.AdjustableCategories.Focused[3]);
+                    k.Options.db.AdjustableCategories.WatchList[3] = not k.Options.db.AdjustableCategories.WatchList[3];
+                    k.Diagnostics.Debug(k.L["Events"], k.Options.db.AdjustableCategories.WatchList[3]);
                 end
             },
             PvP = {
                 order = 13, type = "toggle", width = 1 * k.Options.WidthMultiplier,
                 name = k.GetCategoryInfoTitle(95),
                 desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.Focused[4]; end,
+                get = function() return k.Options.db.AdjustableCategories.WatchList[4]; end,
                 set = function()
-                    k.Options.db.AdjustableCategories.Focused[4] = not k.Options.db.AdjustableCategories.Focused[4];
-                    k.Diagnostics.Debug(k.GetCategoryInfoTitle(95), k.Options.db.AdjustableCategories.Focused[4]);
+                    k.Options.db.AdjustableCategories.WatchList[4] = not k.Options.db.AdjustableCategories.WatchList[4];
+                    k.Diagnostics.Debug(k.GetCategoryInfoTitle(95), k.Options.db.AdjustableCategories.WatchList[4]);
                 end
             },
             Specials = {
                 order = 14, type = "toggle", width = 1 * k.Options.WidthMultiplier,
                 name = k.L["Specials"],
                 desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.Focused[5]; end,
+                get = function() return k.Options.db.AdjustableCategories.WatchList[5]; end,
                 set = function()
-                    k.Options.db.AdjustableCategories.Focused[5] = not k.Options.db.AdjustableCategories.Focused[5];
-                    k.Diagnostics.Debug(k.L["Specials"], k.Options.db.AdjustableCategories.Focused[5]);
+                    k.Options.db.AdjustableCategories.WatchList[5] = not k.Options.db.AdjustableCategories.WatchList[5];
+                    k.Diagnostics.Debug(k.L["Specials"], k.Options.db.AdjustableCategories.WatchList[5]);
                 end
             },
         }
     };
 
-    k.Options.InjectOptionsTable(optionsTableFocused, "Focused", "Layout", "args", "AdjustableCategories", "args");
+    k.Options.InjectOptionsTable(optionsTableWatchList, "WatchList", "Layout", "args", "AdjustableCategories", "args");
 
     local defaultsCurrentZone = {};
     defaultsCurrentZone[1] = false;

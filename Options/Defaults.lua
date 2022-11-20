@@ -55,7 +55,7 @@ options.Defaults = {
             Spacing = 0
         },
         Categories = {
-            Focused = {
+            WatchList = {
                 ShowSubCategories = false
             },
             TrackingAchievements = {
@@ -80,6 +80,11 @@ options.Defaults = {
                 ForceTwoColumns = true,
                 ForceTwoColumnsThreshold = 20,
                 CriteriaBehaviour = 2
+            },
+            Modifiers = {
+                PasteToChat = 3,
+                ToggleTracking = 3,
+                AddRemoveWatchList = 1
             }
         },
         RightClickMenu = {

@@ -103,7 +103,15 @@ local function BuildLastCompleted(event)
     end
 end
 
+local updateAchievementsOnNextShow;
 function KrowiAF_SummaryFrameMixin:Achievements_Update(event)
     BuildLastCompleted(event);
-    self.ScrollFrameBorder:Update(SavedData.Characters[UnitGUID("player")].LastCompleted);
+    self.ScrollFrameBorder:Update(SavedData.Characters[UnitGUID("player")].LastCompleted, updateAchievementsOnNextShow);
+end
+
+function KrowiAF_SummaryFrameMixin:UpdateAchievementsOnNextShow()
+    updateAchievementsOnNextShow = true;
+    if self:IsShown() then
+        self:Achievements_Update();
+    end
 end

@@ -63,9 +63,9 @@ function category:AddAchievement(achievement)
     return achievement;
 end
 
-function category:AddFocusedAchievement(achievement)
+function category:AddWatchedAchievement(achievement)
     self.Achievements = self.Achievements or {}; -- By creating the achievements table here we reduce memory usage because not every category has achievements
-    achievement:AddFocusedCategory(self);
+    achievement:AddWatchListCategory(self);
     tinsert(self.Achievements, achievement);
     return achievement;
 end
@@ -89,7 +89,7 @@ function category:RemoveAchievement(achievement)
     end
 end
 
-function category:RemoveFocusedAchievement(achievement)
+function category:RemoveWatchedAchievement(achievement)
     self:RemoveAchievement(achievement);
 end
 

@@ -124,8 +124,3 @@ end
 function KAF_RefreshSideButtonSystem()
     sideButtonSystem.Refresh();
 end
-
--- Need to add a system to refresh either every 5 minutes or every time an event elapses, how to check this elapse?
--- Calendar event check end time and current time?
--- World event?
--- Can we check remaining time reaching 0?

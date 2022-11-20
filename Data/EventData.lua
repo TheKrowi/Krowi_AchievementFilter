@@ -123,11 +123,11 @@ function eventData.GetActiveCalendarEvents()
     return activeCalendarEvents;
 end
 
-local GetEventDetails, GetStartAndEndTime;
+local GetStartAndEndTime;
 function eventData.GetActiveWorldEvents()
     local activeWorldEvents = {};
     for _, event in next, data.WorldEvents do
-        event.EventDetails = GetEventDetails(event);
+        event.EventDetails = eventData.GetEventDetails(event);
         if event.EventDetails then
             tinsert(activeWorldEvents, event);
         end
@@ -153,7 +153,7 @@ function eventData.PrimeAreaPoi()
     end
 end
 
-function GetEventDetails(event)
+function eventData.GetEventDetails(event)
     if not addon.Options.db.EventReminders.WorldEvents[event.Id] then
         return;
     end
