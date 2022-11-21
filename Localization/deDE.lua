@@ -1,8 +1,8 @@
--- [[ Exported at 2022-11-21 18-54-16 ]] --
+-- [[ Exported at 2022-11-21 22-31-50 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-11-20 ]] --
+-- [[ German translation by Ta, 2022-11-21 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -394,6 +394,8 @@ L["Error Tabs Order"] = "{blizzard} Tab {statistics} kann nicht vor {guild} steh
 L["Open"] = "Öffnen";
 L["Header tooltip"] = "Überschrift-Tooltip";
 L["Achievement shown temporarily"] = "Dieser Erfolg wird nur vorübergehend angezeigt, da er keinem der gesetzten Filter entspricht.";
+L["Achievement is watched"] = "Erfolg auf Beobachtungsliste";
+L["Achievement is excluded"] = "Erfolg wurde ausgeblendet";
 L["Screenshots"] = "Bildschirmfoto";
 L["WoW's 10th Anniversary"] = "10-jähriges Jubiläum von WoW";
 L["Fated Raids: Castle Nathria"] = "Schicksalhafte Raids: Schloss Nathria";

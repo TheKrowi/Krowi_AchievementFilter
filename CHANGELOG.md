@@ -22,6 +22,7 @@ All notable changes to this project will be documented in this file.
 
 ### Removed
 - Primal storm achievement and events from Tirisfal Glades
+- Snake for Pest Control in Dragon Isles
 
 ## 47.0 - 2022-11-18
 ### Added
