@@ -11,31 +11,6 @@ local function OnEnter(self)
     end
 end
 
--- local function OnShow(self, otherButtons)
---     self:UpdateEventRuntime(); -- Here for instant update on show
---     local eventElapsed;
---     if self.Event.MapID then -- Handle the world events different, elapsed if not visible on the map
---         local poiInfo = C_AreaPoiInfo.GetAreaPOIInfo(self.Event.MapID, self.Event.Id);
---         eventElapsed = poiInfo == nil;
---     else
---         eventElapsed = self.Event.EventDetails.EndTime - time() < 0;
---     end
---     if eventElapsed then -- Event finished so remove button and reorder rest
---         for i = 1, #otherButtons, 1 do
---             if otherButtons[i].Event.ID == self.Event.ID then -- Found this button
---                 if i == 1 and i + 1 <= #otherButtons then -- Button is the 1st and there are more
---                     otherButtons[i + 1]:ClearAllPoints();
---                     otherButtons[i + 1]:SetPoint("TOPLEFT", AchievementFrame, "TOPRIGHT", 0, 0); -- Make the 2nd button anchor like the 1st one
---                 elseif i < #otherButtons then -- Button is somewhere in the middle
---                     otherButtons[i + 1]:ClearAllPoints();
---                     otherButtons[i + 1]:SetPoint("TOPLEFT", otherButtons[i - 1], "BOTTOMLEFT", 0, 0); -- Make the 2nd button anchor like the 1st one
---                 -- else -- Button is the last, nothing to move
---                 end
---             end
---         end
---     end
--- end
-
 local function SetEvent(self, event)
     self.Event = event;
 	self.Icon.Texture:SetTexture(event.Icon);

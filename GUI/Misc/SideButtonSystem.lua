@@ -43,46 +43,18 @@ end
 
 local function Refresh()
     ResetButtons();
-    local activeCalendarEvents = addon.EventData.GetActiveCalendarEvents();
-
+    local activeCalendarEvents = addon.EventData.GetActiveCalendarEvents(true);
     for _, activeEvent in next, activeCalendarEvents do
         AddEvent(activeEvent);
     end
 
-    local activeWorldEvents = addon.EventData.GetActiveWorldEvents();
-
+    local activeWorldEvents = addon.EventData.GetActiveWorldEvents(true);
     for _, activeEvent in next, activeWorldEvents do
         AddEvent(activeEvent);
     end
 
     SetPoints();
 end
-
--- local function CheckElapsed(button)
---     local event = button.Event;
---     if not event then -- Button is there but not visible
---         return;
---     end
-
---     local eventElapsed;
---     if event.EventDetails.EndTime then
---         return event.EventDetails.EndTime - time() < 0;
---     end
---     if event.MapID then -- Handle the world events different, elapsed if not visible on the map as a fallback
---         local poiInfo = C_AreaPoiInfo.GetAreaPOIInfo(event.MapID, event.Id);
---         return poiInfo == nil;
---     end
---     return eventElapsed;
--- end
-
--- local function CheckElapsedButtons()
---     for _, button in next, buttons do
---         if CheckElapsed(button) then
---             sideButtonSystem.Refresh();
---             return;
---         end
---     end
--- end
 
 function sideButtonSystem.Refresh()
     -- Empty placeholder function for optimal code execution

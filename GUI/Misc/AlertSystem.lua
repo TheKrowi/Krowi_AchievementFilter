@@ -30,7 +30,7 @@ local function ShowActiveEvents(getActiveEvents)
         return;
     end
 
-    local activeEvents = getActiveEvents();
+    local activeEvents = getActiveEvents(true);
 
     for _, activeEvent in next, activeEvents do
         addon.GUI.AlertSystem:AddAlert(activeEvent, addon.Options.db.EventReminders.FadeDelay);
@@ -40,10 +40,6 @@ end
 function alertSystem.ShowActiveCalendarEvents()
     ShowActiveEvents(addon.EventData.GetActiveCalendarEvents);
 end
-
--- function alertSystem.ShowActiveWidgetEvents()
---     ShowActiveEvents(addon.EventData.GetActiveWidgetEvents);
--- end
 
 function alertSystem.ShowActiveWorldEvents()
     ShowActiveEvents(addon.EventData.GetActiveWorldEvents);

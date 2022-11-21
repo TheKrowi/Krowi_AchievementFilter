@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-20 09-10-53 ]] --
+-- [[ Exported at 2022-11-21 20-16-16 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1493,38 +1493,28 @@ function exportedWorldEvents.InjectOptions()
                             diagnostics.Debug(addon.L["Night Fae Assault"], addon.Options.db.EventReminders.WorldEvents[6992]);
                         end
                     },
-            Blank126 = {order = 126, type = "description", width = "full", name = ""},
-            SelectAll127 = {
-                order = 127, type = "execute", width = 1 * widthMultiplier,
-                name = addon.L["Select All"],
-                func = function()
-                    addon.Options.db.EventReminders.WorldEvents[6989] = true;
-                    addon.Options.db.EventReminders.WorldEvents[6990] = true;
-                    addon.Options.db.EventReminders.WorldEvents[6991] = true;
-                    addon.Options.db.EventReminders.WorldEvents[6992] = true;
-                end
-            },
-            DeselectAll128 = {
-                order = 128, type = "execute",
-                name = addon.L["Deselect All"],
-                func = function()
-                    addon.Options.db.EventReminders.WorldEvents[6989] = false;
-                    addon.Options.db.EventReminders.WorldEvents[6990] = false;
-                    addon.Options.db.EventReminders.WorldEvents[6991] = false;
-                    addon.Options.db.EventReminders.WorldEvents[6992] = false;
-                end
-            },
+                    Blank126 = {order = 126, type = "description", width = "full", name = ""},
+                    SelectAll127 = {
+                        order = 127, type = "execute", width = 1 * widthMultiplier,
+                        name = addon.L["Select All"],
+                        func = function()
+                            addon.Options.db.EventReminders.WorldEvents[6989] = true;
+                            addon.Options.db.EventReminders.WorldEvents[6990] = true;
+                            addon.Options.db.EventReminders.WorldEvents[6991] = true;
+                            addon.Options.db.EventReminders.WorldEvents[6992] = true;
+                        end
+                    },
+                    DeselectAll128 = {
+                        order = 128, type = "execute",
+                        name = addon.L["Deselect All"],
+                        func = function()
+                            addon.Options.db.EventReminders.WorldEvents[6989] = false;
+                            addon.Options.db.EventReminders.WorldEvents[6990] = false;
+                            addon.Options.db.EventReminders.WorldEvents[6991] = false;
+                            addon.Options.db.EventReminders.WorldEvents[6992] = false;
+                        end
+                    },
                 }
-            },
-            Blank129 = {order = 129, type = "description", width = 2 * widthMultiplier, name = ""},
-            RefreshEvents130 = {
-                order = 130, type = "execute", width = 1 * widthMultiplier,
-                name = addon.L["Refresh Events"],
-                desc = addon.L["Requires a reload"],
-                func = function()
-                    EventDetails.WorldEvents = nil;
-                    addon.EventData.Load();
-                end
             },
         }
     };

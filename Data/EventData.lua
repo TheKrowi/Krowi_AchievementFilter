@@ -67,8 +67,12 @@ function GetEvents()
     return events;
 end
 
-function eventData.GetActiveCalendarEvents()
-    local activeCalendarEvents = {};
+local activeCalendarEvents;
+function eventData.GetActiveCalendarEvents(refresh)
+    if activeCalendarEvents ~= nil and not refresh then
+        return activeCalendarEvents;
+    end
+    activeCalendarEvents = {};
 
     for _, event in next, data.CalendarEvents do
         if event.EventDetails ~= nil and addon.Options.db.EventReminders.CalendarEvents[event.ID] then
@@ -85,9 +89,19 @@ function eventData.GetActiveCalendarEvents()
     return activeCalendarEvents;
 end
 
-local GetStartAndEndTime;
-function eventData.GetActiveWorldEvents()
-    local activeWorldEvents = {};
+local function GetStartAndEndTime(secondsLeft, totalDuration) -- both in seconds
+    local endTime = floor((GetServerTime() + secondsLeft) / 300 + 0.5) * 300; -- Round to 5 minutes, 1 hour is not precise enough anymore
+    local startTime = endTime - totalDuration;
+
+    return startTime, endTime;
+end
+
+local activeWorldEvents;
+function eventData.GetActiveWorldEvents(refresh)
+    if activeWorldEvents ~= nil and not refresh then
+        return activeWorldEvents;
+    end
+    activeWorldEvents = {};
     for _, event in next, data.WorldEvents do
         event.EventDetails = eventData.GetEventDetails(event);
         if event.EventDetails then
@@ -96,13 +110,6 @@ function eventData.GetActiveWorldEvents()
     end
 
     return activeWorldEvents;
-end
-
-function KAF_GetActiveWorldEvents()
-    local events = eventData.GetActiveWorldEvents();
-    for i, event in next, events do
-        print(i, event.Id, event.Name);
-    end
 end
 
 function eventData.PrimeAreaPoi()
@@ -132,11 +139,4 @@ function eventData.GetEventDetails(event)
     end
 
     return {StartTime = startTime, EndTime = endTime, Name = event.Name};
-end
-
-function GetStartAndEndTime(secondsLeft, totalDuration) -- both in seconds
-    local endTime = floor((GetServerTime() + secondsLeft) / 300 + 0.5) * 300; -- Round to 5 minutes, 1 hour is not precise enough anymore
-    local startTime = endTime - totalDuration;
-
-    return startTime, endTime;
 end

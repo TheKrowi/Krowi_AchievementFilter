@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-20 09-10-53 ]] --
+-- [[ Exported at 2022-11-21 20-16-16 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -424,32 +424,22 @@ function exportedCalendarEvents.InjectOptions()
                             diagnostics.Debug(addon.L["WoW's 18th Anniversary"], addon.Options.db.EventReminders.CalendarEvents[1262]);
                         end
                     },
-            Blank36 = {order = 36, type = "description", width = "full", name = ""},
-            SelectAll37 = {
-                order = 37, type = "execute", width = 1 * widthMultiplier,
-                name = addon.L["Select All"],
-                func = function()
-                    addon.Options.db.EventReminders.CalendarEvents[1262] = true;
-                end
-            },
-            DeselectAll38 = {
-                order = 38, type = "execute",
-                name = addon.L["Deselect All"],
-                func = function()
-                    addon.Options.db.EventReminders.CalendarEvents[1262] = false;
-                end
-            },
+                    Blank36 = {order = 36, type = "description", width = "full", name = ""},
+                    SelectAll37 = {
+                        order = 37, type = "execute", width = 1 * widthMultiplier,
+                        name = addon.L["Select All"],
+                        func = function()
+                            addon.Options.db.EventReminders.CalendarEvents[1262] = true;
+                        end
+                    },
+                    DeselectAll38 = {
+                        order = 38, type = "execute",
+                        name = addon.L["Deselect All"],
+                        func = function()
+                            addon.Options.db.EventReminders.CalendarEvents[1262] = false;
+                        end
+                    },
                 }
-            },
-            Blank39 = {order = 39, type = "description", width = 2 * widthMultiplier, name = ""},
-            RefreshEvents40 = {
-                order = 40, type = "execute", width = 1 * widthMultiplier,
-                name = addon.L["Refresh Events"],
-                desc = addon.L["Requires a reload"],
-                func = function()
-                    EventDetails.CalendarEvents = nil;
-                    addon.EventData.Load();
-                end
             },
         }
     };
