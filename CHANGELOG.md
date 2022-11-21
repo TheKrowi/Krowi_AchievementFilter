@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - Rewritten the side button feature to be more reliable, will now clean old and add new events properly
 - Event Reminders now try to get the time information again if not available the first time
 - Renamed everything related to focusing an achievement to watching an achievement
+- Calendar Events should refresh more reliably
 
 ### Fixed
 - Some missing and wrong achievements causing search errors

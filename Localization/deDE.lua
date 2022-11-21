@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-20 23-40-57 ]] --
+-- [[ Exported at 2022-11-21 18-54-16 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -535,7 +535,7 @@ L["Right Shift"] = "Rechts Shift";
 L["Left Alt"] = "Links Alt";
 L["Left Ctrl"] = "Links Ctrl";
 L["Left Shift"] = "Links Shift";
-L["Keybindings Desc"] = "Um die Tastaturbelegung für {addonName} zu ändern, wählen Sie den Tab "Spiel" oben links in diesem Fenster. Wählen Sie dann die Kategorie {keybindings} auf der linken Seite. Wählen Sie schließlich AddOns in der rechten Ansicht.";
+L["Keybindings Desc"] = "Um die Tastaturbelegung für {addonName} zu ändern, wählen Sie den Tab \"Spiel\" oben links in diesem Fenster. Wählen Sie dann die Kategorie {keybindings} auf der linken Seite. Wählen Sie schließlich AddOns in der rechten Ansicht.";
 L["Modifiers"] = "Modifikatoren";
 L["Paste to Chat"] = "Kopiere in das Chat Fenster";
 L["Toggle Tracking"] = "Erfolgs-Verfolgung umschalten";

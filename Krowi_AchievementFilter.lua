@@ -91,13 +91,11 @@ local function LoadBlizzard_AchievementUI()
     addon.GUI.AchievementFrameHeader.HookSetPointsText();
     addon.OverwriteFunctions();
     addon.HookAchievementFrameOnShow();
-    -- addon.HookSelectAchievement();
 end
 
 local function LoadPlayerLogin()
     addon.Data.ExportedCalendarEvents.Load(addon.Data.CalendarEvents);
     addon.Data.ExportedWorldEvents.Load(addon.Data.WorldEvents);
-    -- addon.Data.ExportedWidgetEvents.Load(addon.Data.WidgetEvents);
     addon.EventData.Load();
 
     if addon.Diagnostics.DebugEnabled() then
@@ -125,9 +123,6 @@ function loadHelper:OnEvent(event, arg1, arg2)
         end
     elseif event == "PLAYER_ENTERING_WORLD" then
          -- arg1 = isLogin, arg2 = isReload
-        if arg1 then -- On a fresh login we need to prime the area poi to get world events
-            -- addon.EventData.PrimeAreaPoi();
-        end
         if arg1 or arg2 then
             C_Timer.After(0, function()
                 C_Timer.After(5, function()

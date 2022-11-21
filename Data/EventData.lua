@@ -1,64 +1,31 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
-local diagnostics = addon.Diagnostics;
 local data = addon.Data;
 addon.EventData = {};
 local eventData = addon.EventData;
 
 local GetEvents;
 function eventData.Load()
-    local refreshEvents = false;
+    local utcNow = date("!*t");
+    local locNow = date("*t");
+    local utcServerTimeLocal = date("!*t", C_DateAndTime.GetServerTimeLocal());
+    local serverUtcOffsetDays = utcServerTimeLocal.yday - utcNow.yday;
+    local serverUtcOffsetHours = utcServerTimeLocal.hour - utcNow.hour;
+    local userUtcOffsetDays = locNow.yday - utcNow.yday;
+    local userUtcOffsetHours = locNow.hour - utcNow.hour;
+    local utcOffsethours = (serverUtcOffsetDays * 24 + serverUtcOffsetHours) - (userUtcOffsetDays * 24 + userUtcOffsetHours);
+    local utcOffsetSeconds = utcOffsethours * 3600;
 
-    if EventDetails == nil then
-        EventDetails = {};
-    end
-
-    if type(EventDetails.CalendarEvents) == "table" then -- Check if all event end dates are in the future
-        if next(EventDetails.CalendarEvents) == nil then
-            refreshEvents = true;
-        else
-            for id, event in next, EventDetails.CalendarEvents do
-                local deltaT = (event.EndTime or 0) - time(); -- (event.EndTime - time()) / (3600 * 24)
-                -- diagnostics.Debug(id .. " - " .. event.Name .. " - " .. tostring(deltaT));
-                if deltaT < 0 then
-                    refreshEvents = true;
-                end
-            end
-        end
-    else
-        refreshEvents = true;
-    end
-
-    -- diagnostics.Debug("refreshEvents: " .. tostring(refreshEvents));
-    if refreshEvents then -- Events are either empty or an event has elapsed so get new data
-        local utcNow = date("!*t");
-        local locNow = date("*t");
-        local utcServerTimeLocal = date("!*t", C_DateAndTime.GetServerTimeLocal());
-        local serverUtcOffsetDays = utcServerTimeLocal.yday - utcNow.yday;
-        local serverUtcOffsetHours = utcServerTimeLocal.hour - utcNow.hour;
-        local userUtcOffsetDays = locNow.yday - utcNow.yday;
-        local userUtcOffsetHours = locNow.hour - utcNow.hour;
-        local utcOffsethours = (serverUtcOffsetDays * 24 + serverUtcOffsetHours) - (userUtcOffsetDays * 24 + userUtcOffsetHours);
-        local utcOffsetSeconds = utcOffsethours * 3600;
-        
-        EventDetails.CalendarEvents = {};
-        local events = GetEvents();
-        for id, event in next, data.CalendarEvents do
-            if events[id] then -- At this time we only handle calendar events, POI's are handeled later
-                local startTime = addon.GetSecondsSince(events[id].startTime) - utcOffsetSeconds;
-                local endTime = addon.GetSecondsSince(events[id].endTime) - utcOffsetSeconds;
-                -- diagnostics.Debug(event.ID .. " - " .. events[id].title .. " - " ..
-                --                     date("%Y/%m/%d %H:%M", startTime) .. " - " .. date("%Y/%m/%d %H:%M", endTime));
-                if endTime - time() > 0 then
-                    EventDetails.CalendarEvents[id] = {StartTime = startTime, EndTime = endTime, Name = events[id].title}; -- Cache for later
-                end
-                -- EventDetails.CalendarEvents[id] = events[id]; -- Cache for later
-            end
-        end
-    end
-
+    local events = GetEvents();
     for id, event in next, data.CalendarEvents do
-        event.EventDetails = EventDetails.CalendarEvents[id];
+        if events[id] then -- At this time we only handle calendar events, POI's are handeled later
+            local startTime = addon.GetSecondsSince(events[id].startTime) - utcOffsetSeconds;
+            local endTime = addon.GetSecondsSince(events[id].endTime) - utcOffsetSeconds;
+            addon.Diagnostics.Print(event.ID, events[id].title, date("%Y/%m/%d %H:%M", startTime), date("%Y/%m/%d %H:%M", endTime));
+            if endTime - time() > 0 then
+                event.EventDetails = {StartTime = startTime, EndTime = endTime, Name = events[id].title}; -- Cache for later
+            end
+        end
     end
 end
 
@@ -78,20 +45,18 @@ function GetEvents()
         for j = date.monthDay, numDays, 1 do
             date.numDayEvents = C_Calendar.GetNumDayEvents(0, date.monthDay);
             for k = 1, date.numDayEvents, 1 do
-                -- print(date, k)
+                addon.Diagnostics.Print(date, k)
                 local event = C_Calendar.GetDayEvent(0, date.monthDay, k);
                 if events[event.eventID] == nil then
                     events[event.eventID] = event;
                 end
             end
-            -- print(date.year, date.month, date.monthDay)
-            if pcall(function() date = C_DateAndTime.AdjustTimeByDays(date, 1) end) then
-                -- print("no error")
+            addon.Diagnostics.Print(date.year, date.month, date.monthDay)
+            if pcall(function() date = C_DateAndTime.AdjustTimeByDays(date, 1) end) then -- Wrath Classic tends to error out sometimes
+                addon.Diagnostics.Print("no error")
             else
-                -- print(date.year, date.month, date.monthDay)
-                -- print("error")
+                addon.Diagnostics.Print("error", date.year, date.month, date.monthDay)
             end
-            -- date = C_DateAndTime.AdjustTimeByDays(date, 1);
         end
         C_Calendar.SetMonth(1);
     end
@@ -102,20 +67,17 @@ function GetEvents()
     return events;
 end
 
--- local activeCalendarEvents;
 function eventData.GetActiveCalendarEvents()
-    diagnostics.Trace("eventData.GetActiveCalendarEvents");
-
     local activeCalendarEvents = {};
 
     for _, event in next, data.CalendarEvents do
         if event.EventDetails ~= nil and addon.Options.db.EventReminders.CalendarEvents[event.ID] then
             local deltaT = math.floor((event.EventDetails.StartTime - time()) / (3600 * 24));
             if deltaT < 0 then
-                -- diagnostics.Debug("Event active:" .. event.ID .. " - " .. event.EventDetails.Name .. " - " .. tostring(deltaT));
+                addon.Diagnostics.Print("Event active", event.Id, event.EventDetails.StartTime, time(), 3600 * 24, deltaT);
                 tinsert(activeCalendarEvents, event);
             else
-                -- diagnostics.Debug("Event not active:" .. event.ID .. " - " .. event.EventDetails.Name .. " - " .. tostring(deltaT));
+                addon.Diagnostics.Print("Event not active", event.Id, event.EventDetails.StartTime, time(), 3600 * 24, deltaT);
             end
         end
     end
