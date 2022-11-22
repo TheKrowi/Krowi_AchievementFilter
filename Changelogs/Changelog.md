@@ -1,6 +1,25 @@
 ### Added
-- Search options to additionally search Ids and Rewards without prefixing the search request (planning to expand this feature in future releases)
-- New achievements
+- Primal storm event reminders when the boss is up
+- Keybindings in the options (they are still available under the normal key bindings)
+- Adjustable key modifiers to paste an achievement to chat (default Shift), to track an achievement in the quest log (default Shift)
+- Adjustable key modifier to add/remove an achievement to/from the watch list (default Alt)
+- Adjustable key modifier to include/exclude an achievement (default not set)
 
 ### Changed
-- Achievements and categories
+- Rewritten the side button feature to be more reliable, will now clean old and add new events properly
+- Event Reminders now try to get the time information again if not available the first time
+- Renamed everything related to focusing an achievement to watching an achievement
+- Calendar Events should refresh more reliably
+
+### Fixed
+- Some missing and wrong achievements causing search errors
+- No more accidentally closing side buttons when right clicking
+- Switched Primal Thunderstorm and Primal Snowstorm icons
+
+### Removed
+- Primal storm achievement and events from Tirisfal Glades
+- Snake for Pest Control in Dragon Isles
+
+### Wrath Classic
+- Ulduar 10 and 25 achievements are obtainable, just like the other raid achievements
+- Tooltip data should now validate correctly
