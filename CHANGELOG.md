@@ -26,6 +26,7 @@ All notable changes to this project will be documented in this file.
 
 ### Wrath Classic
 - Ulduar 10 and 25 achievements are obtainable, just like the other raid achievements
+- Tooltip data should now validate correctly
 
 ## 47.0 - 2022-11-18
 ### Added
