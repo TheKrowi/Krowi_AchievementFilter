@@ -57,6 +57,9 @@ local function AddTooltipLine(tooltip, tooltipLine)
     tooltip:AddLine(icon .. " " .. string.trim(text:ReplaceVars{
         achievement = name
     }), color.R, color.G, color.B);
+    if addon.Diagnostics.DebugEnabled() then
+        tooltip:AddLine(tooltipLine.AchievementId .. " - " .. tooltipLine.CriteriaIndex);
+    end
 end
 
 local function ProcessUnit(tooltip, guid)
