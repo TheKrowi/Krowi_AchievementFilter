@@ -38,3 +38,8 @@
 [LIST]
 [*]Error skinning side buttons when ElvUI is enabled
 [/LIST]
+
+[B]Fixed (48.2)[/B]
+[LIST]
+[*]The ElvUI skins should no longer be applied to the side buttons if the rest of the achievement window is not skinned
+[/LIST]
