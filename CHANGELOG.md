@@ -24,6 +24,9 @@ All notable changes to this project will be documented in this file.
 - Primal storm achievement and events from Tirisfal Glades
 - Snake for Pest Control in Dragon Isles
 
+### Wrath Classic
+- Ulduar 10 and 25 achievements are obtainable, just like the other raid achievements
+
 ## 47.0 - 2022-11-18
 ### Added
 - Search options to additionally search Ids and Rewards without prefixing the search request (planning to expand this feature in future releases)

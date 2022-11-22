@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-19 17-53-19 ]] --
+-- [[ Exported at 2022-11-22 16-35-44 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1124,7 +1124,7 @@ function exportedAchievements.Load(a, t)
     a[2576] = b:New(2576, 10); -- Blushing Bride
     a[2676] = b:New(2676, 10); -- I Found One!
     a[2716] = b:New(2716, 0); -- Dual Talent Specialization
-    O(a[2716], "From", "Version", "030500", "Before", "Version", "070003");
+    O(a[2716], "From", "Version", "030400", "Before", "Version", "070003");
     a[2756] = b:New(2756, 10); -- Argent Aspiration
     a[2758] = b:New(2758, 10); -- Argent Valor
     a[2760] = b:New(2760, 10, fac.Alliance, 2769); -- Exalted Champion of Darnassus
@@ -1161,298 +1161,158 @@ function exportedAchievements.Load(a, t)
     a[2817] = b:New(2817, 10, fac.Alliance, 2816); -- Exalted Argent Champion of the Alliance
     a[2836] = b:New(2836, 10); -- Lance a Lot
     a[2886] = b:New(2886, 0); -- The Siege of Ulduar (10 player)
-    O(a[2886], "From", "Version", "030500", "Before", "Version", "070305");
     a[2887] = b:New(2887, 0); -- The Siege of Ulduar (25 player)
-    O(a[2887], "From", "Version", "030500", "Before", "Version", "070305");
     a[2888] = b:New(2888, 0); -- The Antechamber of Ulduar (10 player)
-    O(a[2888], "From", "Version", "030500", "Before", "Version", "070305");
     a[2889] = b:New(2889, 0); -- The Antechamber of Ulduar (25 player)
-    O(a[2889], "From", "Version", "030500", "Before", "Version", "070305");
     a[2890] = b:New(2890, 0); -- The Keepers of Ulduar (10 player)
-    O(a[2890], "From", "Version", "030500", "Before", "Version", "070305");
     a[2891] = b:New(2891, 0); -- The Keepers of Ulduar (25 player)
-    O(a[2891], "From", "Version", "030500", "Before", "Version", "070305");
     a[2892] = b:New(2892, 0); -- The Descent into Madness (10 player)
-    O(a[2892], "From", "Version", "030500", "Before", "Version", "070305");
     a[2893] = b:New(2893, 0); -- The Descent into Madness (25 player)
-    O(a[2893], "From", "Version", "030500", "Before", "Version", "070305");
     a[2894] = b:New(2894, 0); -- The Secrets of Ulduar (10 player)
-    O(a[2894], "From", "Version", "030500", "Before", "Version", "070305");
     a[2895] = b:New(2895, 0); -- The Secrets of Ulduar (25 player)
-    O(a[2895], "From", "Version", "030500", "Before", "Version", "070305");
     a[2903] = b:New(2903, 0); -- Champion of Ulduar
-    O(a[2903], "From", "Version", "030500", "Before", "Version", "070305");
     a[2904] = b:New(2904, 0); -- Conqueror of Ulduar
-    O(a[2904], "From", "Version", "030500", "Before", "Version", "070305");
     a[2905] = b:New(2905, 0); -- Unbroken (10 player)
-    O(a[2905], "From", "Version", "030500", "Before", "Version", "070305");
     a[2906] = b:New(2906, 0); -- Unbroken (25 player)
-    O(a[2906], "From", "Version", "030500", "Before", "Version", "070305");
     a[2907] = b:New(2907, 0); -- Three Car Garage (10 player)
-    O(a[2907], "From", "Version", "030500", "Before", "Version", "070305");
     a[2908] = b:New(2908, 0); -- Three Car Garage (25 player)
-    O(a[2908], "From", "Version", "030500", "Before", "Version", "070305");
     a[2909] = b:New(2909, 0); -- Take Out Those Turrets (10 player)
-    O(a[2909], "From", "Version", "030500", "Before", "Version", "070305");
     a[2910] = b:New(2910, 0); -- Take Out Those Turrets (25 player)
-    O(a[2910], "From", "Version", "030500", "Before", "Version", "070305");
     a[2911] = b:New(2911, 0); -- Shutout (10 player)
-    O(a[2911], "From", "Version", "030500", "Before", "Version", "070305");
     a[2912] = b:New(2912, 0); -- Shutout (25 player)
-    O(a[2912], "From", "Version", "030500", "Before", "Version", "070305");
     a[2913] = b:New(2913, 0); -- Orbital Bombardment (10 player)
-    O(a[2913], "From", "Version", "030500", "Before", "Version", "070305");
     a[2914] = b:New(2914, 0); -- Orbital Devastation (10 player)
-    O(a[2914], "From", "Version", "030500", "Before", "Version", "070305");
     a[2915] = b:New(2915, 0); -- Nuked from Orbit (10 player)
-    O(a[2915], "From", "Version", "030500", "Before", "Version", "070305");
     a[2916] = b:New(2916, 0); -- Orbital Devastation (25 player)
-    O(a[2916], "From", "Version", "030500", "Before", "Version", "070305");
     a[2917] = b:New(2917, 0); -- Nuked from Orbit (25 player)
-    O(a[2917], "From", "Version", "030500", "Before", "Version", "070305");
     a[2918] = b:New(2918, 0); -- Orbital Bombardment (25 player)
-    O(a[2918], "From", "Version", "030500", "Before", "Version", "070305");
     a[2919] = b:New(2919, 0); -- A Quick Shave (10 player)
-    O(a[2919], "From", "Version", "030500", "Before", "Version", "070305");
     a[2921] = b:New(2921, 0); -- A Quick Shave (25 player)
-    O(a[2921], "From", "Version", "030500", "Before", "Version", "070305");
     a[2923] = b:New(2923, 0); -- "Iron Dwarf, Medium Rare (10 player)"
-    O(a[2923], "From", "Version", "030500", "Before", "Version", "070305");
     a[2924] = b:New(2924, 0); -- "Iron Dwarf, Medium Rare (25 player)"
-    O(a[2924], "From", "Version", "030500", "Before", "Version", "070305");
     a[2925] = b:New(2925, 0); -- Shattered (10 player)
-    O(a[2925], "From", "Version", "030500", "Before", "Version", "070305");
     a[2926] = b:New(2926, 0); -- Shattered (25 player)
-    O(a[2926], "From", "Version", "030500", "Before", "Version", "070305");
     a[2927] = b:New(2927, 0); -- Hot Pocket (10 player)
-    O(a[2927], "From", "Version", "030500", "Before", "Version", "070305");
     a[2928] = b:New(2928, 0); -- Hot Pocket (25 player)
-    O(a[2928], "From", "Version", "030500", "Before", "Version", "070305");
     a[2929] = b:New(2929, 0); -- Stokin' the Furnace (25 player)
-    O(a[2929], "From", "Version", "030500", "Before", "Version", "070305");
     a[2930] = b:New(2930, 0); -- Stokin' the Furnace (10 player)
-    O(a[2930], "From", "Version", "030500", "Before", "Version", "070305");
     a[2931] = b:New(2931, 0); -- Nerf Engineering (10 player)
-    O(a[2931], "From", "Version", "030500", "Before", "Version", "070305");
     a[2932] = b:New(2932, 0); -- Nerf Engineering (25 player)
-    O(a[2932], "From", "Version", "030500", "Before", "Version", "070305");
     a[2933] = b:New(2933, 0); -- Nerf Scrapbots (10 player)
-    O(a[2933], "From", "Version", "030500", "Before", "Version", "070305");
     a[2934] = b:New(2934, 0); -- Nerf Gravity Bombs (10 player)
-    O(a[2934], "From", "Version", "030500", "Before", "Version", "070305");
     a[2935] = b:New(2935, 0); -- Nerf Scrapbots (25 player)
-    O(a[2935], "From", "Version", "030500", "Before", "Version", "070305");
     a[2936] = b:New(2936, 0); -- Nerf Gravity Bombs (25 player)
-    O(a[2936], "From", "Version", "030500", "Before", "Version", "070305");
     a[2937] = b:New(2937, 0); -- Must Deconstruct Faster (10 player)
-    O(a[2937], "From", "Version", "030500", "Before", "Version", "070305");
     a[2938] = b:New(2938, 0); -- Must Deconstruct Faster (25 player)
-    O(a[2938], "From", "Version", "030500", "Before", "Version", "070305");
     a[2939] = b:New(2939, 0); -- "I Choose You, Runemaster Molgeim (10 player)"
-    O(a[2939], "From", "Version", "030500", "Before", "Version", "070305");
     a[2940] = b:New(2940, 0); -- "I Choose You, Stormcaller Brundir (10 player)"
-    O(a[2940], "From", "Version", "030500", "Before", "Version", "070305");
     a[2941] = b:New(2941, 0); -- "I Choose You, Steelbreaker (10 player)"
-    O(a[2941], "From", "Version", "030500", "Before", "Version", "070305");
     a[2942] = b:New(2942, 0); -- "I Choose You, Runemaster Molgeim (25 player)"
-    O(a[2942], "From", "Version", "030500", "Before", "Version", "070305");
     a[2943] = b:New(2943, 0); -- "I Choose You, Stormcaller Brundir (25 player)"
-    O(a[2943], "From", "Version", "030500", "Before", "Version", "070305");
     a[2944] = b:New(2944, 0); -- "I Choose You, Steelbreaker (25 player)"
-    O(a[2944], "From", "Version", "030500", "Before", "Version", "070305");
     a[2945] = b:New(2945, 0); -- But I'm On Your Side (10 player)
-    O(a[2945], "From", "Version", "030500", "Before", "Version", "070305");
     a[2946] = b:New(2946, 0); -- But I'm On Your Side (25 player)
-    O(a[2946], "From", "Version", "030500", "Before", "Version", "070305");
     a[2947] = b:New(2947, 0); -- Can't Do That While Stunned (10 player)
-    O(a[2947], "From", "Version", "030500", "Before", "Version", "070305");
     a[2948] = b:New(2948, 0); -- Can't Do That While Stunned (25 player)
-    O(a[2948], "From", "Version", "030500", "Before", "Version", "070305");
     a[2951] = b:New(2951, 0); -- With Open Arms (10 player)
-    O(a[2951], "From", "Version", "030500", "Before", "Version", "070305");
     a[2952] = b:New(2952, 0); -- With Open Arms (25 player)
-    O(a[2952], "From", "Version", "030500", "Before", "Version", "070305");
     a[2953] = b:New(2953, 0); -- Disarmed (10 player)
-    O(a[2953], "From", "Version", "030500", "Before", "Version", "070305");
     a[2954] = b:New(2954, 0); -- Disarmed (25 player)
-    O(a[2954], "From", "Version", "030500", "Before", "Version", "070305");
     a[2955] = b:New(2955, 0); -- If Looks Could Kill (10 player)
-    O(a[2955], "From", "Version", "030500", "Before", "Version", "070305");
     a[2956] = b:New(2956, 0); -- If Looks Could Kill (25 player)
-    O(a[2956], "From", "Version", "030500", "Before", "Version", "070305");
     a[2957] = b:New(2957, 0); -- Glory of the Ulduar Raider (10 player)
-    O(a[2957], "From", "Version", "030500", "Before", "Version", "070305");
     a[2958] = b:New(2958, 0); -- Glory of the Ulduar Raider (25 player)
-    O(a[2958], "From", "Version", "030500", "Before", "Version", "070305");
     a[2959] = b:New(2959, 0); -- Rubble and Roll (10 player)
-    O(a[2959], "From", "Version", "030500", "Before", "Version", "070305");
     a[2960] = b:New(2960, 0); -- Rubble and Roll (25 player)
-    O(a[2960], "From", "Version", "030500", "Before", "Version", "070305");
     a[2961] = b:New(2961, 0); -- Cheese the Freeze (10 player)
-    O(a[2961], "From", "Version", "030500", "Before", "Version", "070305");
     a[2962] = b:New(2962, 0); -- Cheese the Freeze (25 player)
-    O(a[2962], "From", "Version", "030500", "Before", "Version", "070305");
     a[2963] = b:New(2963, 0); -- I Have the Coolest Friends (10 player)
-    O(a[2963], "From", "Version", "030500", "Before", "Version", "070305");
     a[2965] = b:New(2965, 0); -- I Have the Coolest Friends (25 player)
-    O(a[2965], "From", "Version", "030500", "Before", "Version", "070305");
     a[2967] = b:New(2967, 0); -- Getting Cold in Here (10 player)
-    O(a[2967], "From", "Version", "030500", "Before", "Version", "070305");
     a[2968] = b:New(2968, 0); -- Getting Cold in Here (25 player)
-    O(a[2968], "From", "Version", "030500", "Before", "Version", "070305");
     a[2969] = b:New(2969, 0); -- Staying Buffed All Winter (10 player)
-    O(a[2969], "From", "Version", "030500", "Before", "Version", "070305");
     a[2970] = b:New(2970, 0); -- Staying Buffed All Winter (25 player)
-    O(a[2970], "From", "Version", "030500", "Before", "Version", "070305");
     a[2971] = b:New(2971, 0); -- Don't Stand in the Lightning (10 player)
-    O(a[2971], "From", "Version", "030500", "Before", "Version", "070305");
     a[2972] = b:New(2972, 0); -- Don't Stand in the Lightning (25 player)
-    O(a[2972], "From", "Version", "030500", "Before", "Version", "070305");
     a[2973] = b:New(2973, 0); -- I'll Take You All On (10 player)
-    O(a[2973], "From", "Version", "030500", "Before", "Version", "070305");
     a[2974] = b:New(2974, 0); -- I'll Take You All On (25 player)
-    O(a[2974], "From", "Version", "030500", "Before", "Version", "070305");
     a[2975] = b:New(2975, 0); -- Who Needs Bloodlust? (10 player)
-    O(a[2975], "From", "Version", "030500", "Before", "Version", "070305");
     a[2976] = b:New(2976, 0); -- Who Needs Bloodlust? (25 player)
-    O(a[2976], "From", "Version", "030500", "Before", "Version", "070305");
     a[2977] = b:New(2977, 0); -- Siffed (10 player)
-    O(a[2977], "From", "Version", "030500", "Before", "Version", "070305");
     a[2978] = b:New(2978, 0); -- Siffed (25 player)
-    O(a[2978], "From", "Version", "030500", "Before", "Version", "070305");
     a[2979] = b:New(2979, 0); -- Lumberjacked (10 player)
-    O(a[2979], "From", "Version", "030500", "Before", "Version", "070305");
     a[2980] = b:New(2980, 0); -- Con-speed-atory (10 player)
-    O(a[2980], "From", "Version", "030500", "Before", "Version", "070305");
     a[2981] = b:New(2981, 0); -- Con-speed-atory (25 player)
-    O(a[2981], "From", "Version", "030500", "Before", "Version", "070305");
     a[2982] = b:New(2982, 0); -- Getting Back to Nature (10 player)
-    O(a[2982], "From", "Version", "030500", "Before", "Version", "070305");
     a[2983] = b:New(2983, 0); -- Getting Back to Nature (25 player)
-    O(a[2983], "From", "Version", "030500", "Before", "Version", "070305");
     a[2984] = b:New(2984, 0); -- Deforestation (25 player)
-    O(a[2984], "From", "Version", "030500", "Before", "Version", "070305");
     a[2985] = b:New(2985, 0); -- Deforestation (10 player)
-    O(a[2985], "From", "Version", "030500", "Before", "Version", "070305");
     a[2989] = b:New(2989, 0); -- Set Up Us the Bomb (10 player)
-    O(a[2989], "From", "Version", "030500", "Before", "Version", "070305");
     a[2995] = b:New(2995, 0); -- Not-So-Friendly Fire (25 player)
-    O(a[2995], "From", "Version", "030500", "Before", "Version", "070305");
     a[2996] = b:New(2996, 0); -- Shadowdodger (10 player)
-    O(a[2996], "From", "Version", "030500", "Before", "Version", "070305");
     a[2997] = b:New(2997, 0); -- Shadowdodger (25 player)
-    O(a[2997], "From", "Version", "030500", "Before", "Version", "070305");
     a[3002] = b:New(3002, 0); -- Supermassive (25 player)
-    O(a[3002], "From", "Version", "030500", "Before", "Version", "070305");
     a[3003] = b:New(3003, 0); -- Supermassive (10 player)
-    O(a[3003], "From", "Version", "030500", "Before", "Version", "070305");
     a[3004] = b:New(3004, 0); -- He Feeds On Your Tears (10 player)
-    O(a[3004], "From", "Version", "030500", "Before", "Version", "040003a");
+    O(a[3004], "From", "Version", "030400", "Before", "Version", "040003a");
     a[3005] = b:New(3005, 0); -- He Feeds On Your Tears (25 player)
-    O(a[3005], "From", "Version", "030500", "Before", "Version", "040003a");
+    O(a[3005], "From", "Version", "030400", "Before", "Version", "040003a");
     a[3006] = b:New(3006, 0); -- Crazy Cat Lady (10 player)
-    O(a[3006], "From", "Version", "030500", "Before", "Version", "070305");
     a[3007] = b:New(3007, 0); -- Crazy Cat Lady (25 player)
-    O(a[3007], "From", "Version", "030500", "Before", "Version", "070305");
     a[3008] = b:New(3008, 0); -- Drive Me Crazy (10 player)
-    O(a[3008], "From", "Version", "030500", "Before", "Version", "070305");
     a[3009] = b:New(3009, 0); -- Kiss and Make Up (10 player)
-    O(a[3009], "From", "Version", "030500", "Before", "Version", "070305");
     a[3010] = b:New(3010, 0); -- Drive Me Crazy (25 player)
-    O(a[3010], "From", "Version", "030500", "Before", "Version", "070305");
     a[3011] = b:New(3011, 0); -- Kiss and Make Up (25 player)
-    O(a[3011], "From", "Version", "030500", "Before", "Version", "070305");
     a[3012] = b:New(3012, 0); -- He's Not Getting Any Older (10 player)
-    O(a[3012], "From", "Version", "030500", "Before", "Version", "070305");
     a[3013] = b:New(3013, 0); -- He's Not Getting Any Older (25 player)
-    O(a[3013], "From", "Version", "030500", "Before", "Version", "070305");
     a[3014] = b:New(3014, 0); -- They're Coming Out of the Walls (10 player)
-    O(a[3014], "From", "Version", "030500", "Before", "Version", "070305");
     a[3015] = b:New(3015, 0); -- In His House He Waits Dreaming (10 player)
-    O(a[3015], "From", "Version", "030500", "Before", "Version", "070305");
     a[3016] = b:New(3016, 0); -- In His House He Waits Dreaming (25 player)
-    O(a[3016], "From", "Version", "030500", "Before", "Version", "070305");
     a[3017] = b:New(3017, 0); -- They're Coming Out of the Walls (25 player)
-    O(a[3017], "From", "Version", "030500", "Before", "Version", "070305");
     a[3036] = b:New(3036, 0); -- Observed (10 player)
-    O(a[3036], "From", "Version", "030500", "Before", "Version", "070305");
     a[3037] = b:New(3037, 0); -- Observed (25 player)
-    O(a[3037], "From", "Version", "030500", "Before", "Version", "070305");
     a[3056] = b:New(3056, 0); -- Orbit-uary (10 player)
-    O(a[3056], "From", "Version", "030500", "Before", "Version", "070305");
     a[3057] = b:New(3057, 0); -- Orbit-uary (25 player)
-    O(a[3057], "From", "Version", "030500", "Before", "Version", "070305");
     a[3058] = b:New(3058, 0); -- Heartbreaker (10 player)
-    O(a[3058], "From", "Version", "030500", "Before", "Version", "070305");
     a[3059] = b:New(3059, 0); -- Heartbreaker (25 player)
-    O(a[3059], "From", "Version", "030500", "Before", "Version", "070305");
     a[3076] = b:New(3076, 0); -- Nine Lives (10 player)
-    O(a[3076], "From", "Version", "030500", "Before", "Version", "070305");
     a[3077] = b:New(3077, 0); -- Nine Lives (25 player)
-    O(a[3077], "From", "Version", "030500", "Before", "Version", "070305");
     a[3096] = b:New(3096, 0); -- Deadly Gladiator's Frost Wyrm
     O(a[3096], "From", "PvP Season", 5, "Until", "PvP Season", 5);
     a[3097] = b:New(3097, 0); -- Dwarfageddon (10 player)
-    O(a[3097], "From", "Version", "030500", "Before", "Version", "070305");
     a[3098] = b:New(3098, 0); -- Dwarfageddon (25 player)
-    O(a[3098], "From", "Version", "030500", "Before", "Version", "070305");
     a[3117] = b:New(3117, 0, nil, nil, true); -- Realm First! Death's Demise
     O(a[3117], "Once");
     a[3118] = b:New(3118, 0); -- Lumberjacked (25 player)
-    O(a[3118], "From", "Version", "030500", "Before", "Version", "070305");
     a[3136] = b:New(3136, 10); -- Emalon the Storm Watcher (10 player)
     a[3137] = b:New(3137, 10); -- Emalon the Storm Watcher (25 player)
     a[3138] = b:New(3138, 0); -- Not-So-Friendly Fire (10 player)
-    O(a[3138], "From", "Version", "030500", "Before", "Version", "070305");
     a[3141] = b:New(3141, 0); -- Two Lights in the Darkness (10 player)
-    O(a[3141], "From", "Version", "030500", "Before", "Version", "070305");
     a[3142] = b:New(3142, 0); -- "Val'anyr, Hammer of Ancient Kings"
     a[3157] = b:New(3157, 0); -- Three Lights in the Darkness (10 player)
-    O(a[3157], "From", "Version", "030500", "Before", "Version", "070305");
     a[3158] = b:New(3158, 0); -- One Light in the Darkness (10 player)
-    O(a[3158], "From", "Version", "030500", "Before", "Version", "070305");
     a[3159] = b:New(3159, 0); -- Alone in the Darkness (10 player)
-    O(a[3159], "From", "Version", "030500", "Before", "Version", "070305");
     a[3161] = b:New(3161, 0); -- Three Lights in the Darkness (25 player)
-    O(a[3161], "From", "Version", "030500", "Before", "Version", "070305");
     a[3162] = b:New(3162, 0); -- Two Lights in the Darkness (25 player)
-    O(a[3162], "From", "Version", "030500", "Before", "Version", "070305");
     a[3163] = b:New(3163, 0); -- One Light in the Darkness (25 player)
-    O(a[3163], "From", "Version", "030500", "Before", "Version", "070305");
     a[3164] = b:New(3164, 0); -- Alone in the Darkness (25 player)
-    O(a[3164], "From", "Version", "030500", "Before", "Version", "070305");
     a[3176] = b:New(3176, 0); -- Lose Your Illusion (10 player)
-    O(a[3176], "From", "Version", "030500", "Before", "Version", "070305");
     a[3177] = b:New(3177, 0); -- Knock on Wood (10 player)
-    O(a[3177], "From", "Version", "030500", "Before", "Version", "070305");
     a[3178] = b:New(3178, 0); -- "Knock, Knock on Wood (10 player)"
-    O(a[3178], "From", "Version", "030500", "Before", "Version", "070305");
     a[3179] = b:New(3179, 0); -- "Knock, Knock, Knock on Wood (10 player)"
-    O(a[3179], "From", "Version", "030500", "Before", "Version", "070305");
     a[3180] = b:New(3180, 0); -- Firefighter (10 player)
-    O(a[3180], "From", "Version", "030500", "Before", "Version", "070305");
     a[3181] = b:New(3181, 0); -- I Love the Smell of Saronite in the Morning (10 player)
-    O(a[3181], "From", "Version", "030500", "Before", "Version", "070305");
     a[3182] = b:New(3182, 0); -- I Could Say That This Cache Was Rare (10 player)
-    O(a[3182], "From", "Version", "030500", "Before", "Version", "070305");
     a[3183] = b:New(3183, 0); -- Lose Your Illusion (25 player)
-    O(a[3183], "From", "Version", "030500", "Before", "Version", "070305");
     a[3184] = b:New(3184, 0); -- I Could Say That This Cache Was Rare (25 player)
-    O(a[3184], "From", "Version", "030500", "Before", "Version", "070305");
     a[3185] = b:New(3185, 0); -- Knock on Wood (25 player)
-    O(a[3185], "From", "Version", "030500", "Before", "Version", "070305");
     a[3186] = b:New(3186, 0); -- "Knock, Knock on Wood (25 player)"
-    O(a[3186], "From", "Version", "030500", "Before", "Version", "070305");
     a[3187] = b:New(3187, 0); -- "Knock, Knock, Knock on Wood (25 player)"
-    O(a[3187], "From", "Version", "030500", "Before", "Version", "070305");
     a[3188] = b:New(3188, 0); -- I Love the Smell of Saronite in the Morning (25 player)
-    O(a[3188], "From", "Version", "030500", "Before", "Version", "070305");
     a[3189] = b:New(3189, 0); -- Firefighter (25 player)
-    O(a[3189], "From", "Version", "030500", "Before", "Version", "070305");
     a[3217] = b:New(3217, 10); -- Chasing Marcia
     a[3218] = b:New(3218, 10); -- Turtles All the Way Down
     a[3237] = b:New(3237, 0); -- Set Up Us the Bomb (25 player)
-    O(a[3237], "From", "Version", "030500", "Before", "Version", "070305");
     a[3259] = b:New(3259, 0, nil, nil, true); -- Realm First! Celestial Defender
     O(a[3259], "Once");
     a[3296] = b:New(3296, 10); -- Cooking with Style
@@ -1505,39 +1365,39 @@ function exportedAchievements.Load(a, t)
     a[3803] = b:New(3803, 10); -- The Faceroller
     a[3804] = b:New(3804, 10); -- I've Had Worse
     a[3808] = b:New(3808, 0); -- A Tribute to Skill (10 player)
-    O(a[3808], "From", "Version", "030600", "Before", "Version", "040003a");
+    O(a[3808], "From", "Version", "030400", "Before", "Version", "040003a");
     a[3809] = b:New(3809, 0); -- A Tribute to Mad Skill (10 player)
-    O(a[3809], "From", "Version", "030600", "Before", "Version", "040003a");
+    O(a[3809], "From", "Version", "030400", "Before", "Version", "040003a");
     a[3810] = b:New(3810, 0); -- A Tribute to Insanity (10 player)
-    O(a[3810], "From", "Version", "030600", "Before", "Version", "040003a");
+    O(a[3810], "From", "Version", "030400", "Before", "Version", "040003a");
     a[3812] = b:New(3812, 10); -- Call of the Grand Crusade (25 player)
     a[3813] = b:New(3813, 10); -- Upper Back Pain (25 player)
     a[3814] = b:New(3814, 10); -- Resilience Will Fix It (25 player)
-    O(a[3814], "From", "Version", "030600", "Before", "Version", "040003a");
+    O(a[3814], "From", "Version", "030400", "Before", "Version", "040003a");
     a[3815] = b:New(3815, 10); -- Salt and Pepper (25 player)
     a[3816] = b:New(3816, 10); -- The Traitor King (25 player)
     a[3817] = b:New(3817, 0); -- A Tribute to Skill (25 player)
-    O(a[3817], "From", "Version", "030600", "Before", "Version", "040003a");
+    O(a[3817], "From", "Version", "030400", "Before", "Version", "040003a");
     a[3818] = b:New(3818, 0); -- A Tribute to Mad Skill (25 player)
-    O(a[3818], "From", "Version", "030600", "Before", "Version", "040003a");
+    O(a[3818], "From", "Version", "030400", "Before", "Version", "040003a");
     a[3819] = b:New(3819, 0); -- A Tribute to Insanity (25 player)
-    O(a[3819], "From", "Version", "030600", "Before", "Version", "040003a");
+    O(a[3819], "From", "Version", "030400", "Before", "Version", "040003a");
     a[3836] = b:New(3836, 10); -- Koralon the Flame Watcher (10 player)
     a[3837] = b:New(3837, 10); -- Koralon the Flame Watcher (25 player)
     a[3838] = b:New(3838, 10); -- Dungeon & Raid Emblem
-    O(a[3838], "From", "Version", "030600", "Before", "Version", "040003a");
+    O(a[3838], "From", "Version", "030400", "Before", "Version", "040003a");
     a[3839] = b:New(3839, 10); -- 25 Dungeon & Raid Emblems
-    O(a[3839], "From", "Version", "030600", "Before", "Version", "040003a");
+    O(a[3839], "From", "Version", "030400", "Before", "Version", "040003a");
     a[3840] = b:New(3840, 10); -- 50 Dungeon & Raid Emblems
-    O(a[3840], "From", "Version", "030600", "Before", "Version", "040003a");
+    O(a[3840], "From", "Version", "030400", "Before", "Version", "040003a");
     a[3841] = b:New(3841, 10); -- 100 Dungeon & Raid Emblems
-    O(a[3841], "From", "Version", "030600", "Before", "Version", "040003a");
+    O(a[3841], "From", "Version", "030400", "Before", "Version", "040003a");
     a[3842] = b:New(3842, 10); -- 250 Dungeon & Raid Emblems
-    O(a[3842], "From", "Version", "030600", "Before", "Version", "040003a");
+    O(a[3842], "From", "Version", "030400", "Before", "Version", "040003a");
     a[3843] = b:New(3843, 10); -- 500 Dungeon & Raid Emblems
-    O(a[3843], "From", "Version", "030600", "Before", "Version", "040003a");
+    O(a[3843], "From", "Version", "030400", "Before", "Version", "040003a");
     a[3844] = b:New(3844, 0); -- 1000 Dungeon & Raid Emblems
-    O(a[3844], "From", "Version", "030600", "Before", "Version", "040003a");
+    O(a[3844], "From", "Version", "030400", "Before", "Version", "040003a");
     a[3845] = b:New(3845, 20); -- Isle of Conquest All-Star
     a[3846] = b:New(3846, 10, fac.Alliance, 4176); -- Resource Glut
     a[3847] = b:New(3847, 10); -- Four Car Garage
@@ -1552,7 +1412,7 @@ function exportedAchievements.Load(a, t)
     a[3856] = b:New(3856, 10, fac.Alliance, 4256); -- Demolition Derby
     a[3857] = b:New(3857, 25, fac.Alliance, 3957); -- Master of Isle of Conquest
     a[3876] = b:New(3876, 10); -- 1500 Dungeon & Raid Emblems
-    O(a[3876], "From", "Version", "030600", "Before", "Version", "040003a");
+    O(a[3876], "From", "Version", "030400", "Before", "Version", "040003a");
     a[3896] = b:New(3896, 0); -- Onyx Panther
     a[3916] = b:New(3916, 10); -- Call of the Crusade (25 player)
     a[3917] = b:New(3917, 10); -- Call of the Crusade (10 player)
@@ -1567,11 +1427,11 @@ function exportedAchievements.Load(a, t)
     a[4078] = b:New(4078, 0, nil, nil, true); -- Realm First! Grand Crusader
     O(a[4078], "Once");
     a[4079] = b:New(4079, 0, fac.Horde, 4156); -- A Tribute to Immortality
-    O(a[4079], "From", "Version", "030600", "Before", "Version", "040003a");
+    O(a[4079], "From", "Version", "030400", "Before", "Version", "040003a");
     a[4080] = b:New(4080, 0); -- A Tribute to Dedicated Insanity
-    O(a[4080], "From", "Version", "030600", "Before", "Version", "040003a");
+    O(a[4080], "From", "Version", "030400", "Before", "Version", "040003a");
     a[4156] = b:New(4156, 0, fac.Alliance, 4079); -- A Tribute to Immortality
-    O(a[4156], "From", "Version", "030600", "Before", "Version", "040003a");
+    O(a[4156], "From", "Version", "030400", "Before", "Version", "040003a");
     a[4176] = b:New(4176, 10, fac.Horde, 3846); -- Resource Glut
     a[4177] = b:New(4177, 10, fac.Horde, 3851); -- Mine
     a[4256] = b:New(4256, 10, fac.Horde, 3856); -- Demolition Derby
@@ -1579,7 +1439,7 @@ function exportedAchievements.Load(a, t)
     a[4297] = b:New(4297, 10, fac.Horde, 4298); -- Heroic: Trial of the Champion
     a[4298] = b:New(4298, 10, fac.Alliance, 4297); -- Heroic: Trial of the Champion
     a[4316] = b:New(4316, 0); -- 2500 Dungeon & Raid Emblems
-    O(a[4316], "From", "Version", "030600", "Before", "Version", "040003a");
+    O(a[4316], "From", "Version", "030400", "Before", "Version", "040003a");
     a[4396] = b:New(4396, 10); -- Onyxia's Lair (10 player)
     a[4397] = b:New(4397, 10); -- Onyxia's Lair (25 player)
     a[4400] = b:New(4400, 0); -- WoW's 5th Anniversary
@@ -1677,13 +1537,13 @@ function exportedAchievements.Load(a, t)
     a[4782] = b:New(4782, 0); -- Green Brewfest Stein
     O(a[4782]);
     a[4784] = b:New(4784, 0, fac.Alliance); -- Emblematic
-    O(a[4784], "From", "Version", "030600", "Before", "Version", "040003a");
+    O(a[4784], "From", "Version", "030400", "Before", "Version", "040003a");
     a[4785] = b:New(4785, 0, fac.Horde); -- Emblematic
-    O(a[4785], "From", "Version", "030600", "Before", "Version", "040003a");
+    O(a[4785], "From", "Version", "030400", "Before", "Version", "040003a");
     a[4786] = b:New(4786, 0, fac.Alliance); -- Operation: Gnomeregan
-    O(a[4786], "From", "Version", "030705a", "Before", "Version", "040001");
+    O(a[4786], "From", "Version", "030400", "Before", "Version", "040001");
     a[4790] = b:New(4790, 0, fac.Horde); -- Zalazane's Fall
-    O(a[4790], "From", "Version", "030705a", "Before", "Version", "040001");
+    O(a[4790], "From", "Version", "030400", "Before", "Version", "040001");
     a[4815] = b:New(4815, 10); -- The Twilight Destroyer (25 player)
     a[4816] = b:New(4816, 10); -- Heroic: The Twilight Destroyer (25 player)
     a[4817] = b:New(4817, 10); -- The Twilight Destroyer (10 player)
