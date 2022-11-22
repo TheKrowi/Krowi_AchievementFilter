@@ -41,6 +41,7 @@ local function ResetButtons()
 	end
 end
 
+
 local function Refresh()
     ResetButtons();
     local activeCalendarEvents = addon.EventData.GetActiveCalendarEvents(true);
@@ -58,7 +59,7 @@ end
 
 function sideButtonSystem.Refresh()
     -- Empty placeholder function for optimal code execution
-    -- This way we don;t have to check each refresh if the block is initialized saving us a check each time
+    -- This way we don't have to check each refresh if the block is initialized saving us a check each time
 end
 
 local refreshIfShown = false;

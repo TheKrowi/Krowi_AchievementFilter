@@ -23,3 +23,6 @@
 ### Wrath Classic
 - Ulduar 10 and 25 achievements are obtainable, just like the other raid achievements
 - Tooltip data should now validate correctly
+
+### Fixed (48.1)
+- Error skinning side buttons when ElvUI is enabled
