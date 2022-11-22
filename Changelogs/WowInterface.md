@@ -33,3 +33,8 @@
 [*]Ulduar 10 and 25 achievements are obtainable, just like the other raid achievements
 [*]Tooltip data should now validate correctly
 [/LIST]
+
+[B]Fixed (48.1)[/B]
+[LIST]
+[*]Error skinning side buttons when ElvUI is enabled
+[/LIST]

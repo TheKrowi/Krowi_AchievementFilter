@@ -427,37 +427,40 @@ local function SkinAlertFrameTemplate(frame, engine)
     end
 end
 
-local function SkinSideButtons(sideButtons, engine)
-    for i, button in next, sideButtons do
+local function SkinSideButton(button, prevButton, engine)
+    if not button.HasElvUiSkin then
         SkinAlertFrameTemplate(button, engine);
-        if i == 1 then
-            button:ClearAllPoints();
-            button:SetPoint("TOPLEFT", AchievementFrame, "TOPRIGHT", 5, addon.IsDragonflightRetail and 6 or 13); -- Make the 2nd button anchor like the 1st one
-        else
-            button:ClearAllPoints();
-            button:SetPoint("TOPLEFT", sideButtons[i - 1], "BOTTOMLEFT", 0, 9); -- Make the 2nd button anchor like the 1st one
-        end
+    end
+    if not prevButton then
+        button:ClearAllPoints();
+        button:SetPoint("TOPLEFT", AchievementFrame, "TOPRIGHT", 5, addon.IsDragonflightRetail and 6 or 13); -- Make the 2nd button anchor like the 1st one
+    else
+        button:ClearAllPoints();
+        button:SetPoint("TOPLEFT", prevButton, "BOTTOMLEFT", 0, 9); -- Make the 2nd button anchor like the 1st one
+    end
+    button.HasElvUiSkin = true;
+end
+
+local function SkinSideButtons(engine)
+    local i = 1;
+    local button = _G["AchievementFrameSideButton" .. i];
+    local prevButton;
+    while button do
+        SkinSideButton(button, prevButton, engine);
+        prevButton = button;
+        i = i + 1;
+        button = _G["AchievementFrameSideButton" .. i];
     end
 end
 
 local function SkinHeader()
-    -- if not addon.IsDragonflightRetail then
-    --     hooksecurefunc(AchievementFrame.Header.Points, "SetText", function()
-    --         AchievementFrame.Header.PointBorder:ClearAllPoints();
-    --         AchievementFrame.Header.PointBorder:Point('CENTER', AchievementFrame.Header.Title, 'CENTER', 100, 0);
-    --         AchievementFrame.Header.PointBorder:SetSize(150, 20);
-    --         AchievementFrame.Header.Points:ClearAllPoints();
-    --         AchievementFrame.Header.Points:Point('CENTER', AchievementFrame.Header.PointBorder);
-    --     end);
-    -- else
-        hooksecurefunc(AchievementFrame.Header.Points, "SetText", function()
-            AchievementFrame.Header.PointBorder:ClearAllPoints();
-            AchievementFrame.Header.PointBorder:Point('TOPLEFT', addon.GUI.FilterButton, 'TOPRIGHT', 70, 0);
-            AchievementFrame.Header.PointBorder:Point('BOTTOMRIGHT', addon.GUI.Search.BoxFrame.backdrop, 'BOTTOMLEFT', -80, 0);
-            AchievementFrame.Header.Points:ClearAllPoints();
-            AchievementFrame.Header.Points:Point('CENTER', AchievementFrame.Header.PointBorder, 'CENTER', -10, 0);
-        end);
-    -- end
+    hooksecurefunc(AchievementFrame.Header.Points, "SetText", function()
+        AchievementFrame.Header.PointBorder:ClearAllPoints();
+        AchievementFrame.Header.PointBorder:Point('TOPLEFT', addon.GUI.FilterButton, 'TOPRIGHT', 70, 0);
+        AchievementFrame.Header.PointBorder:Point('BOTTOMRIGHT', addon.GUI.Search.BoxFrame.backdrop, 'BOTTOMLEFT', -80, 0);
+        AchievementFrame.Header.Points:ClearAllPoints();
+        AchievementFrame.Header.Points:Point('CENTER', AchievementFrame.Header.PointBorder, 'CENTER', -10, 0);
+    end);
     if addon.IsWrathClassic then
         AchievementFrameHeaderLeftDDLInset:SetAlpha(0);
     end
@@ -638,7 +641,6 @@ end
 
 local engine, skins;
 local function SkinAll()
-	addon.Diagnostics.Trace("elvUISkin.Apply");
 
     -- local enabled, engine, skins = elvUISkin.Load();
 
@@ -653,7 +655,6 @@ local function SkinAll()
         SkinSearchBoxFrame(addon.GUI.Search.BoxFrame, skins);
         SkinSearchPreviewFrame(addon.GUI.Search.PreviewFrame, addon.GUI.AchievementsFrame, engine, skins);
         SkinSearchResultsFrame(addon.GUI.Search.ResultsFrame, skins);
-        SkinSideButtons(addon.GUI.SideButtons, engine);
         SkinHeader();
         ReskinBlizzard(skins);
         SkinCalendarButton(addon.GUI.Calendar.Button, skins);
@@ -784,6 +785,15 @@ function elvUI.Load()
 
     hooksecurefunc(addon.GUI, "LoadWithBlizzard_AchievementUI", function()
         SkinAll();
+    end);
+
+    hooksecurefunc(addon.GUI.SideButtonSystem, "Load", function()
+        SkinSideButtons(engine);
+        hooksecurefunc(addon.GUI.SideButtonSystem, "Refresh", function()
+            if SavedData.ElvUISkin.Achievements then
+                SkinSideButtons(engine);
+            end
+        end);
     end);
 
     if addon.IsWrathClassic then

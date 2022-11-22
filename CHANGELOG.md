@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 48.1 - 2022-11-22
+### Fixed
+- Error skinning side buttons when ElvUI is enabled
+
 ## 48.0 - 2022-11-22
 ### Added
 - Primal storm event reminders when the boss is up
