@@ -788,7 +788,9 @@ function elvUI.Load()
     end);
 
     hooksecurefunc(addon.GUI.SideButtonSystem, "Load", function()
-        SkinSideButtons(engine);
+        if SavedData.ElvUISkin.Achievements then
+            SkinSideButtons(engine);
+        end
         hooksecurefunc(addon.GUI.SideButtonSystem, "Refresh", function()
             if SavedData.ElvUISkin.Achievements then
                 SkinSideButtons(engine);
