@@ -7,8 +7,16 @@ function KrowiAF_AlertFrameMixin:UpdateEventRuntime()
     local line1, line2, timeLeft;
 
     if self.Event.EventDetails.StartTime == nil or self.Event.EventDetails.EndTime == nil then
-        self.Unlocked:SetText(addon.L["No time data available"]);
-        return;
+        if self.Event.MapId then
+            self.Event.EventDetails = addon.EventData.GetEventDetails(self.Event);
+            if self.Event.EventDetails.StartTime == nil or self.Event.EventDetails.EndTime == nil then
+                self.Unlocked:SetText(addon.L["No time data available"]);
+                return;
+            end
+        else
+            self.Unlocked:SetText(addon.L["No time data available"]);
+            return;
+        end
     end
 
     if addon.Options.db.EventReminders.TimeDisplay.Line1 == 3 or addon.Options.db.EventReminders.TimeDisplay.Line2 == 4 then -- Time Left

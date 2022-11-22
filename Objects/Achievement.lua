@@ -94,9 +94,9 @@ function achievement:AddSpecialCategory(categories, category)
     tinsert(categories, category);
 end
 
-function achievement:AddFocusedCategory(category)
-    self.FocusedCategories = self.FocusedCategories or {};
-    self:AddSpecialCategory(self.FocusedCategories, category);
+function achievement:AddWatchListCategory(category)
+    self.WatchListCategories = self.WatchListCategories or {};
+    self:AddSpecialCategory(self.WatchListCategories, category);
 end
 
 function achievement:AddExcludedCategory(category)
@@ -105,7 +105,7 @@ function achievement:AddExcludedCategory(category)
 end
 
 function achievement:Include()
-    self.Excluded = nil;
+    self.IsExcluded = nil;
     if SavedData.ExcludedAchievements == nil then
         return;
     end
@@ -113,23 +113,23 @@ function achievement:Include()
 end
 
 function achievement:Exclude()
-    self.Excluded = true;
+    self.IsExcluded = true;
     SavedData.ExcludedAchievements = SavedData.ExcludedAchievements or {};
     SavedData.ExcludedAchievements[self.ID] = true;
 end
 
-function achievement:ClearFocus()
-    self.Focused = nil;
-    if SavedData.FocusedAchievements == nil then
+function achievement:ClearWatch()
+    self.IsWatched = nil;
+    if SavedData.WatchedAchievements == nil then
         return;
     end
-    SavedData.FocusedAchievements[self.ID] = nil;
+    SavedData.WatchedAchievements[self.ID] = nil;
 end
 
-function achievement:Focus()
-    self.Focused = true;
-    SavedData.FocusedAchievements = SavedData.FocusedAchievements or {};
-    SavedData.FocusedAchievements[self.ID] = true;
+function achievement:Watch()
+    self.IsWatched = true;
+    SavedData.WatchedAchievements = SavedData.WatchedAchievements or {};
+    SavedData.WatchedAchievements[self.ID] = true;
 end
 
 function achievement:AddPrevious(ach, addBack)

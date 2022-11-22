@@ -60,7 +60,7 @@ local function HideEmptyText(self)
     end
 end
 
-function AchievementsFrameLightMixin:Update(achievements)
+function AchievementsFrameLightMixin:Update(achievements, refreshAchievements)
     local numAchievements = achievements and #achievements or 0;
     HideEmptyText(self);
     if numAchievements <= 0 then
@@ -82,7 +82,7 @@ function AchievementsFrameLightMixin:Update(achievements)
         id = achievements[i + offset];
         displayedHeight = displayedHeight + button:GetHeight();
         if id ~= nil then
-            button:SetAchievement(addon.Data.Achievements[id]);
+            button:SetAchievement(addon.Data.Achievements[id], refreshAchievements);
             button:Show();
         else
             button:Hide();

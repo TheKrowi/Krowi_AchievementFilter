@@ -295,7 +295,7 @@ do -- Get start and end state
 
     function temporaryObtainable:GetEventStartState(achievement)
         if achievement.TemporaryObtainable.End.Inclusion == "From" then
-            local events = EventDetails.CalendarEvents;
+            local events = addon.Data.CalendarEvents;
             for _, event in next, events do
                 if event.Id == achievement.TemporaryObtainable.Start.Value then
                     return time() >= event.StartTime and "Past" or "Future";
@@ -303,7 +303,7 @@ do -- Get start and end state
             end
             return "Past";
         elseif achievement.TemporaryObtainable.End.Inclusion == "After" then -- Should not be used
-            local events = EventDetails.CalendarEvents;
+            local events = addon.Data.CalendarEvents;
             for _, event in next, events do
                 if event.Id == achievement.TemporaryObtainable.Start.Value then
                     return time() >= event.EndTime and "Past" or "Future";
@@ -351,7 +351,7 @@ do -- Get start and end state
 
     function temporaryObtainable:GetEventEndState(achievement)
         if achievement.TemporaryObtainable.End.Inclusion == "Until" then
-            local events = EventDetails.CalendarEvents;
+            local events = addon.Data.CalendarEvents;
             for _, event in next, events do
                 if event.Id == achievement.TemporaryObtainable.End.Value then
                     return time() > event.EndTime and "Past" or "Future";
@@ -359,7 +359,7 @@ do -- Get start and end state
             end
             return "Past";
         elseif achievement.TemporaryObtainable.End.Inclusion == "Before" then
-            local events = EventDetails.CalendarEvents;
+            local events = addon.Data.CalendarEvents;
             for _, event in next, events do
                 if event.Id == achievement.TemporaryObtainable.End.Value then
                     return time() >= event.StartTime and "Past" or "Future";

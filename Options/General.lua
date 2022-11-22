@@ -1,9 +1,50 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
 local options = addon.Options;
+options.General = {};
+local general = options.General;
 local widthMultiplier = addon.Options.WidthMultiplier;
 
 local popupDialog = LibStub("Krowi_PopopDialog-1.0");
+
+function general.AddKeybindingOptions()
+    local w = 1;
+    for i, binding in next, addon.Bindings do
+        addon.Options.InjectOptionsTableAdd({
+            order = i + 0.1, type = "description", width = w * widthMultiplier,
+            name = binding.Text
+        }, "Binding" .. i .. "Name", "args", "General", "args", "KeyBinding", "args", "Keybindings");
+        local command = binding.Name;
+        addon.Options.InjectOptionsTableAdd({
+            order = i + 0.2, type = "keybinding", width = w * widthMultiplier,
+            name = "",
+            desc = "",
+            get = function() return GetBindingKey(command); end,
+            set = function(_, value)
+                local key = GetBindingKey(command);
+                if key then
+                    SetBinding(key);
+                end
+                SetBinding(value, command, 1);
+                SaveBindings(GetCurrentBindingSet());
+                end
+        }, "Binding" .. i .. "Key1", "args", "General", "args", "KeyBinding", "args", "Keybindings");
+        addon.Options.InjectOptionsTableAdd({
+            order = i + 0.3, type = "keybinding", width = w * widthMultiplier,
+            name = "",
+            desc = "",
+            get = function() return select(2, GetBindingKey(command)); end,
+            set = function(_, value)
+                local _, key = GetBindingKey(command);
+                if key then
+                    SetBinding(key);
+                end
+                SetBinding(value, command, 2);
+                SaveBindings(GetCurrentBindingSet());
+                end
+        }, "Binding" .. i .. "Key2", "args", "General", "args", "KeyBinding", "args", "Keybindings");
+    end
+end
 
 local function OpenTutorialsMenu()
     local menu = LibStub("Krowi_Menu-1.0");
@@ -82,7 +123,15 @@ local function ExportCriteria()
         if numCriteria > 0 then
             for i = 1, numCriteria do
                 local criteriaString, criteriaType, _, _, _, _, flags, assetId, _, criteriaId, _ = GetAchievementCriteriaInfo(id, i);
-                tinsert(criteriaCache, {AchievementId = id, CriteriaIndex = i, CriteriaString = criteriaString, CriteriaType = criteriaType, Flags = flags, AssetId = assetId, CriteriaId = criteriaId});
+                tinsert(criteriaCache, {
+                    AchievementId = id,
+                    CriteriaIndex = i,
+                    CriteriaString = criteriaString,
+                    CriteriaType = criteriaType,
+                    Flags = flags,
+                    AssetId = assetId,
+                    CriteriaId = criteriaId
+                });
             end
         end
         -- if #criteriaCache > 100 then
@@ -92,6 +141,35 @@ local function ExportCriteria()
     end
     DebugTable = criteriaCache;
 end
+
+-- local function ExportAchievements()
+--     local achievementsCache = {};
+--     local gapSize, i = 0, 1;
+--     while gapSize < 500 do
+--         local id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy, isStatistic, exists = addon.GetAchievementInfo(i);
+
+--         if id then
+--             tinsert(achievementsCache, {
+--                 Id = id,
+--                 Name = name,
+--                 Description = description,
+--                 RewardText = rewardText,
+--                 Points = points,
+--                 -- CategoryAgtId = nil,
+--                 Flags = flags,
+--                 -- UiOrder = nil,
+--                 IconFileId = icon
+--             });
+--         end
+--         if id and exists then
+--             gapSize = 0;
+--         else
+--             gapSize = gapSize + 1;
+--         end
+--         i = i + 1;
+--     end
+--     DebugTable = achievementsCache;
+-- end
 
 options.OptionsTable.args["General"] = {
     type = "group",
@@ -281,6 +359,68 @@ options.OptionsTable.args["General"] = {
                             end
                         }
                     }
+                },
+                Keybindings = {
+                    order = 3, type = "group",
+                    name = addon.L["Keybindings"],
+                    inline = true,
+                    args = {
+
+                    }
+                },
+                Modifiers = {
+                    order = 4, type = "group",
+                    name = addon.L["Modifiers"],
+                    inline = true,
+                    args = {
+                        LinkToChat = {
+                            order = 1.1, type = "select", width = 1 * widthMultiplier,
+                            name = addon.L["Paste to Chat"],
+                            values = addon.Modifiers,
+                            get = function() return addon.Options.db.Achievements.Modifiers.PasteToChat; end,
+                            set = function (_, value)
+                                if addon.Options.db.Achievements.Modifiers.PasteToChat == value then return; end;
+                                addon.Options.db.Achievements.Modifiers.PasteToChat = value;
+                                options.Debug(addon.L["Paste to Chat"], addon.Options.db.Achievements.Modifiers.PasteToChat);
+                            end
+                        },
+                        ToggleTracking = {
+                            order = 1.2, type = "select", width = 1 * widthMultiplier,
+                            name = addon.L["Toggle Tracking"],
+                            values = addon.Modifiers,
+                            get = function() return addon.Options.db.Achievements.Modifiers.ToggleTracking; end,
+                            set = function (_, value)
+                                if addon.Options.db.Achievements.Modifiers.ToggleTracking == value then return; end;
+                                addon.Options.db.Achievements.Modifiers.ToggleTracking = value;
+                                options.Debug(addon.L["Toggle Tracking"], addon.Options.db.Achievements.Modifiers.ToggleTracking);
+                            end
+                        },
+                        WatchList = {
+                            order = 2.1, type = "select", width = 1 * widthMultiplier,
+                            name = addon.L["Add to / Remove from Watch List"]:ReplaceVars
+                            {
+                                watchList = addon.L["Watch List"]
+                            },
+                            values = addon.Modifiers,
+                            get = function() return addon.Options.db.Achievements.Modifiers.ToggleWatchList; end,
+                            set = function (_, value)
+                                if addon.Options.db.Achievements.Modifiers.ToggleWatchList == value then return; end;
+                                addon.Options.db.Achievements.Modifiers.ToggleWatchList = value;
+                                options.Debug(addon.L["Add to/Remove from Watch List"], addon.Options.db.Achievements.Modifiers.ToggleWatchList);
+                            end
+                        },
+                        Excluded = {
+                            order = 2.1, type = "select", width = 1 * widthMultiplier,
+                            name = addon.L["Include"] .. " / " .. addon.L["Exclude"],
+                            values = addon.Modifiers,
+                            get = function() return addon.Options.db.Achievements.Modifiers.ToggleExcluded; end,
+                            set = function (_, value)
+                                if addon.Options.db.Achievements.Modifiers.ToggleExcluded == value then return; end;
+                                addon.Options.db.Achievements.Modifiers.ToggleExcluded = value;
+                                options.Debug(addon.L["Include"] .. " / " .. addon.L["Exclude"], addon.Options.db.Achievements.Modifiers.ToggleExcluded);
+                            end
+                        }
+                    }
                 }
             }
         },
@@ -441,7 +581,13 @@ options.OptionsTable.args["General"] = {
                         options.Debug(addon.L["Show placeholders filter"], addon.Options.db.ShowPlaceholdersFilter);
                     end
                 },
-                Blank42 = {order = 4.2, type = "description", width = 2 * widthMultiplier, name = ""}
+                Blank42 = {order = 4.2, type = "description", width = 2 * widthMultiplier, name = ""},
+                -- ExportAchievements = {
+                --     order = 4.3, type = "execute",
+                --     name = addon.L["Export Achievements"],
+                --     desc = addon.L["Export Achievements Desc"],
+                --     func = ExportAchievements
+                -- },
             }
         }
     }

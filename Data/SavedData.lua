@@ -52,7 +52,7 @@ end
 
 local FixFeaturesTutorialProgress, FixElvUISkin, FixFilters, FixEventDetails, FixShowExcludedCategory, FixEventDetails2, FixCharacters, FixEventAlert;
 local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters, FixNewEarnedByFilter, FixTabs2, FixNewEarnedByFilter2;
-local FixEventDetails3, FixTooltipCriteria;
+local FixEventDetails3, FixTooltipCriteria, FixFocusedAchievements, FixFocusedOptions;
 function LoadSolutions()
     local solutions = {
         FixFeaturesTutorialProgress, -- 1
@@ -72,6 +72,8 @@ function LoadSolutions()
         FixNewEarnedByFilter2, -- 15
         FixEventDetails3, -- 16
         FixTooltipCriteria, -- 17
+        FixFocusedAchievements, -- 18
+        FixFocusedOptions, -- 19
     };
 
     return solutions;
@@ -523,4 +525,44 @@ function FixTooltipCriteria(prevBuild, currBuild, prevVersion, currVersion, firs
     addon.Options.db.Tooltip.Criteria.ShowCriteriaIf = nil;
 
     diagnostics.Debug("Tooltip Criteria moved");
+end
+
+function FixFocusedAchievements(prevBuild, currBuild, prevVersion, currVersion, firstTime)
+    -- In version 48.0 SavedData.FocusedAchievements was renamed to SavedData.WatchedAchievements
+    -- Here we clean up the old SavedData.FocusedAchievements for users pre 48.0
+    -- SavedData.WatchedAchievements is created by the Options so we don't need to do this here, just copy if previous existed
+
+    if firstTime and currVersion > "48.0" then
+        diagnostics.Debug("First time Focused Achievements OK");
+        return;
+    end
+    if SavedData.FocusedAchievements == nil then
+        diagnostics.Debug("Focused Achievements already renamed");
+        return;
+    end
+
+    SavedData.WatchedAchievements = SavedData.FocusedAchievements;
+    SavedData.FocusedAchievements = nil;
+
+    diagnostics.Debug("Focused Achievements renamed");
+end
+
+function FixFocusedOptions(prevBuild, currBuild, prevVersion, currVersion, firstTime)
+    -- In version 48.0 addon.Options.db.Categories.Focused was moved to addon.Options.db.Categories.WatchList
+    -- Here we clean up the old addon.Options.db.Categories.Focused for users pre 48.0
+    -- addon.Options.db.Categories.WatchList is created by the Options so we don't need to do this here, just copy if previous existed
+
+    if firstTime and currVersion > "48.0" then
+        diagnostics.Debug("First time Focused Options OK");
+        return;
+    end
+    if addon.Options.db.Categories.Focused == nil then
+        diagnostics.Debug("Focused Options already moved");
+        return;
+    end
+
+    addon.Options.db.Categories.WatchList = addon.Options.db.Categories.Focused;
+    addon.Options.db.Categories.Focused = nil;
+
+    diagnostics.Debug("Focused Options moved");
 end

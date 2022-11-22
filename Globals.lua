@@ -94,11 +94,11 @@ local function AddCategoriesTree(category, achievement, extraFunc)
     return category;
 end
 
-local function AddFocusedCategoriesTree(focusedCategory, achievement)
-    if not addon.Options.db.Categories.Focused.ShowSubCategories then
-        return focusedCategory;
+local function AddWatchListCategoriesTree(watchListCategory, achievement)
+    if not addon.Options.db.Categories.WatchList.ShowSubCategories then
+        return watchListCategory;
     end
-    return AddCategoriesTree(focusedCategory, achievement, function(newCategory)
+    return AddCategoriesTree(watchListCategory, achievement, function(newCategory)
 
     end);
 end
@@ -133,39 +133,41 @@ local function ClearTree(categories)
     end
 end
 
-function addon.ClearFocusAchievement(achievement, update)
-    achievement:ClearFocus();
-    local numFocusedCategories = achievement.FocusedCategories and #achievement.FocusedCategories or 0;
-    for i = 1, numFocusedCategories do
-        achievement.FocusedCategories[i]:RemoveFocusedAchievement(achievement);
+function addon.ClearWatchAchievement(achievement, update)
+    achievement:ClearWatch();
+    local numWatchListCategories = achievement.WatchListCategories and #achievement.WatchListCategories or 0;
+    for i = 1, numWatchListCategories do
+        achievement.WatchListCategories[i]:RemoveWatchedAchievement(achievement);
     end
-    if addon.Options.db.Categories.Focused.ShowSubCategories then
-        for i = 1, numFocusedCategories do
-            ClearTree(achievement.FocusedCategories[i]:GetTree());
+    if addon.Options.db.Categories.WatchList.ShowSubCategories then
+        for i = 1, numWatchListCategories do
+            ClearTree(achievement.WatchListCategories[i]:GetTree());
         end
     end
-    achievement.FocusedCategories = nil;
+    achievement.WatchListCategories = nil;
     if update ~= false then
         addon.GUI.RefreshView();
+        -- addon.GUI.SummaryFrame:Achievements_Update("KROWIAF_FORCE_UPDATE");
     end
-    for i = 1, #addon.Data.FocusedCategories do
-        if (addon.Data.FocusedCategories[i].Achievements and #addon.Data.FocusedCategories[i].Achievements == 0) or (addon.Data.FocusedCategories[i].Children and #addon.Data.FocusedCategories[i].Children == 0) then
-            SavedData.FocusedAchievements = nil;
-            addon.Data.FocusedCategories[i].Achievements = nil;
+    for i = 1, #addon.Data.WatchListCategories do
+        if (addon.Data.WatchListCategories[i].Achievements and #addon.Data.WatchListCategories[i].Achievements == 0) or (addon.Data.WatchListCategories[i].Children and #addon.Data.WatchListCategories[i].Children == 0) then
+            SavedData.WatchedAchievements = nil;
+            addon.Data.WatchListCategories[i].Achievements = nil;
         end
     end
 end
 
-function addon.FocusAchievement(achievement, update)
-    achievement:Focus();
-    for i = 1, #addon.Data.FocusedCategories do
-        if addon.Options.db.AdjustableCategories.Focused[i] then
-            local focusedCategory = AddFocusedCategoriesTree(addon.Data.FocusedCategories[i], achievement);
-            focusedCategory:AddFocusedAchievement(achievement);
+function addon.WatchAchievement(achievement, update)
+    achievement:Watch();
+    for i = 1, #addon.Data.WatchListCategories do
+        if addon.Options.db.AdjustableCategories.WatchList[i] then
+            local watchListCategory = AddWatchListCategoriesTree(addon.Data.WatchListCategories[i], achievement);
+            watchListCategory:AddWatchedAchievement(achievement);
         end
 	end
     if update ~= false then
         addon.GUI.RefreshView();
+        -- addon.GUI.SummaryFrame:Achievements_Update("KROWIAF_FORCE_UPDATE");
     end
 end
 
@@ -615,43 +617,6 @@ function addon.ChangeAchievementMicroButtonOnClick()
     end);
 end
 
-function addon.GetInstanceInfoName(journalInstanceId)
-    local name = EJ_GetInstanceInfo and (EJ_GetInstanceInfo(journalInstanceId)) or nil;
-    if name then
-        return name;
-    end
-    name = addon.L["EJ_GetInstanceInfo" .. journalInstanceId];
-    if name then
-        return name;
-    end
-    return journalInstanceId;
-end
-
-function addon.GetCategoryInfoTitle(categoryId)
-    local title = (GetCategoryInfo(categoryId));
-    if title then
-        return title;
-    end
-    title = addon.L["GetCategoryInfo" .. categoryId];
-    if title then
-        return title;
-    end
-    return categoryId;
-end
-
-function addon.GetLFGDungeonInfo(dungeonID)
-    return GetLFGDungeonInfo and GetLFGDungeonInfo(dungeonID) or dungeonID;
-end
-
-function addon.GetCovenantName(covenantID)
-    return C_Covenants and C_Covenants.GetCovenantData(covenantID).name or covenantID;
-end
-
-function addon.GetMapName(uiMapID)
-    local mapInfo = C_Map.GetMapInfo(uiMapID);
-    return mapInfo and mapInfo.name or uiMapID;
-end
-
 addon.DelayObjects = {};
 function addon.DelayFunction(delayObjectName, delayTime, func, ...)
     if addon.DelayObjects[delayObjectName] ~= nil then
@@ -665,4 +630,41 @@ function addon.DelayFunction(delayObjectName, delayTime, func, ...)
         func(unpack(args));
         addon.DelayObjects[delayObjectName] = nil;
     end);
+end
+
+addon.Modifiers = {
+    addon.L["None"],
+    addon.L["Alt"],
+    addon.L["Ctrl"],
+    addon.L["Shift"],
+    addon.L["Right Alt"],
+    addon.L["Right Ctrl"],
+    addon.L["Right Shift"],
+    addon.L["Left Alt"],
+    addon.L["Left Ctrl"],
+    addon.L["Left Shift"]
+};
+
+function addon.IsCustomModifierKeyDown(modifier)
+    if modifier == 1 then
+        return;
+    elseif modifier == 2 then
+        return IsAltKeyDown();
+    elseif modifier == 3 then
+        return IsControlKeyDown();
+    elseif modifier == 4 then
+        return IsShiftKeyDown();
+    elseif modifier == 5 then
+        return IsRightAltKeyDown();
+    elseif modifier == 6 then
+        return IsRightControlKeyDown();
+    elseif modifier == 7 then
+        return IsRightShiftKeyDown();
+    elseif modifier == 8 then
+        return IsLeftAltKeyDown();
+    elseif modifier == 9 then
+        return IsLeftControlKeyDown();
+    elseif modifier == 10 then
+        return IsLeftShiftKeyDown();
+    end
 end

@@ -3,8 +3,8 @@ local addonName, addon = ...;
 local diagnostics = addon.Diagnostics;
 addon.GUI = {};
 local gui = addon.GUI;
-gui.SideButtons = {};
-local sideButtons = gui.SideButtons;
+-- gui.SideButtons = {};
+-- local sideButtons = gui.SideButtons;
 
 gui.Tabs = {};
 
@@ -35,6 +35,8 @@ function gui:LoadWithBlizzard_AchievementUI()
     addon.GUI.SummaryFrame:Load();
     gui.CategoriesFrame:Load();
     gui.FilterButton:Load();
+    gui.SideButtonSystem.Load();
+    -- print("ach loading")
 
     gui.Search:Load();
     addon.GUI.Calendar:Load();
@@ -57,24 +59,6 @@ function gui:LoadWithBlizzard_AchievementUI()
         KrowiAF_RegisterTabButton(addonName, addon.Tabs[t].Name, addon.Tabs[t].Button);
     end
     self.LoadOldAchievementFrameTabsCompatibility();
-
-    local activeCalendarEvents = addon.EventData.GetActiveCalendarEvents();
-
-    for _, activeEvent in next, activeCalendarEvents do
-        tinsert(sideButtons, gui.SideButton:New(activeEvent, sideButtons));
-    end
-
-    local activeWorldEvents = addon.EventData.GetActiveWorldEvents();
-
-    for _, activeEvent in next, activeWorldEvents do
-        tinsert(sideButtons, gui.SideButton:New(activeEvent, sideButtons));
-    end
-
-    -- local activeWidgetEvents = addon.EventData.GetActiveWidgetEvents();
-
-    -- for _, activeEvent in next, activeWidgetEvents do
-    --     tinsert(sideButtons, gui.SideButton:New(activeEvent, sideButtons));
-    -- end
 
     self.ResetAchievementFrameHeight();
 
@@ -471,4 +455,5 @@ function gui.RefreshView()
     end
     addon.GUI.CategoriesFrame:Update();
     addon.GUI.AchievementsFrame:ForceUpdate();
+    addon.GUI.SummaryFrame:UpdateAchievementsOnNextShow();
 end

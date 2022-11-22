@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-18 08-21-57 ]] --
+-- [[ Exported at 2022-11-21 22-31-50 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -30,7 +30,6 @@ L["Covenant"] = "Congrégation";
 L["ID"] = "ID";
 L["Earned By"] = "Obtenu par";
 L["Account"] = "Compte";
-L["Character only"] = "Personnage uniquement";
 L["Tabs"] = "Onglets";
 L["Special Categories"] = "Catégorie Spéciale";
 L["Current Zone"] = "Zone Actuelle";
@@ -48,10 +47,6 @@ L["Pirates' Day"] = "Jour des pirates";
 L["The Entitled"] = "Titres pour";
 L["Vendor"] = "Marchands";
 L["WoW's Anniversary"] = "Anniversaire de WoW";
-L["Fated Raids"] = "Raids fatidiques";
-L["Ta's Pet Collection"] = "Collection de mascottes";
-L["Going away with"] = "Temporaires";
-L["Dragonflight Pre-patch"] = "Prépatch";
 L["Day of the Dead"] = "Jour des morts";
 L["Assault on Azsuna"] = "Azsuna";
 L["Assault on Highmountain"] = "Haut-Roc";
@@ -72,4 +67,9 @@ L["Part of a chain"] = "Chaîne";
 L["Required for"] = "Requis pour";
 L["Other faction"] = "Faction adverse";
 L["Objectives progress"] = "Progression";
+L["Character only"] = "Personnage uniquement";
+L["Fated Raids"] = "Raids fatidiques";
+L["Ta's Pet Collection"] = "Collection de mascottes";
+L["Going away with"] = "Temporaires";
+L["Dragonflight Pre-patch"] = "Prépatch";
 

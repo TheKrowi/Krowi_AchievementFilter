@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-11 11-32-56 ]] --
+-- [[ Exported at 2022-11-22 18-57-10 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -383,7 +383,6 @@ function exportedTooltipData.Load(d)
     AddD(d, 97376, tdt.Unit, 2556, 10, t[3], t[4]); -- "Snake"
     AddD(d, 106470, tdt.Unit, 2556, 10, t[3], t[4]); -- "Snake"
     AddD(d, 182787, tdt.Unit, 2556, 10, t[3], t[4]); -- "Snake"
-    AddD(d, 192561, tdt.Unit, 2556, 10, t[3], t[4]); -- "Snake"
     AddD(d, 193640, tdt.Unit, 2556, 10, t[3], t[4]); -- "Snake"
     AddD(d, 32261, tdt.Unit, 2556, 11, t[3], t[4]); -- "Crystal Spider"
     AddD(d, 62435, tdt.Unit, 2556, 11, t[3], t[4]); -- "Crystal Spider"

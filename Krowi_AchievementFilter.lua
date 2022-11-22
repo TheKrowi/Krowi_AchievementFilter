@@ -1,7 +1,7 @@
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
 
-LoadAddOn("Blizzard_AchievementUI"); -- For testing
+-- LoadAddOn("Blizzard_AchievementUI"); -- For testing
 
 -- [[ Version data ]] --
 local version = (GetBuildInfo());
@@ -20,13 +20,17 @@ LibStub(addon.Libs.AceEvent):Embed(addon.Event);
 addon.Tabs.Load();
 
 -- [[ Binding names ]] --
+addon.Bindings = {};
 BINDING_HEADER_AF_NAME = addon.MetaData.Title;
-for t, tab in next, addon.Tabs do
+for _, t in next, addon.TabsOrder do
+    local tab = addon.Tabs[t];
     if type(tab) ~= "function" then
-        _G["BINDING_NAME_KrowiAF_OPEN_TAB_" .. tostring(tab.Name)] = addon.L["Toggle"] .. " " .. tab.Text .. " "  .. addon.L["tab"];
+        tinsert(addon.Bindings, {Name = "KrowiAF_OPEN_TAB_" .. tostring(tab.Name), Text = addon.L["Toggle"] .. " " .. tab.Text .. " "  .. addon.L["tab"]});
+        _G["BINDING_NAME_" .. addon.Bindings[#addon.Bindings].Name] = addon.Bindings[#addon.Bindings].Text;
     end
 end
-_G["BINDING_NAME_KrowiAF_OPEN_CAT_Current_Zone"] = addon.L["Open"] .. " " .. addon.L["Current Zone"] .. " " .. addon.L["Category"];
+tinsert(addon.Bindings, {Name = "KrowiAF_OPEN_CAT_Current_Zone", Text = addon.L["Open"] .. " " .. addon.L["Current Zone"] .. " " .. addon.L["Category"]});
+_G["BINDING_NAME_" .. addon.Bindings[#addon.Bindings].Name] = addon.Bindings[#addon.Bindings].Text;
 
 -- [[ Faction data ]] --
 addon.Faction = {};
@@ -45,13 +49,13 @@ local function LoadKrowi_AchievementFilter()
     addon.Diagnostics.Load();
 
     addon.Data.ExportedCategories.InjectOptions();
-    addon.Options.Layout.AddMoreFocusedOptions();
+    addon.Options.Layout.AddMoreWatchListOptions();
     addon.Options.Layout.AddMoreTrackingAchievementsOptions();
     addon.Options.Layout.AddMoreExcludedOptions();
+    addon.Options.General.AddKeybindingOptions();
 
     addon.Data.ExportedCalendarEvents.InjectOptions();
     addon.Data.ExportedWorldEvents.InjectOptions();
-    -- addon.Data.ExportedWidgetEvents.InjectOptions();
 
     addon.GUI.PrepareTabsOrder();
     addon.Tabs.InjectOptions();
@@ -75,7 +79,7 @@ local function LoadBlizzard_AchievementUI()
 
     addon.GUI:LoadWithBlizzard_AchievementUI();
 
-    addon.Data.LoadFocusedAchievements();
+    addon.Data.LoadWatchedAchievements();
     addon.Data.LoadTrackingAchievements();
     addon.Data.LoadExcludedAchievements();
 
@@ -87,13 +91,11 @@ local function LoadBlizzard_AchievementUI()
     addon.GUI.AchievementFrameHeader.HookSetPointsText();
     addon.OverwriteFunctions();
     addon.HookAchievementFrameOnShow();
-    -- addon.HookSelectAchievement();
 end
 
 local function LoadPlayerLogin()
     addon.Data.ExportedCalendarEvents.Load(addon.Data.CalendarEvents);
     addon.Data.ExportedWorldEvents.Load(addon.Data.WorldEvents);
-    -- addon.Data.ExportedWidgetEvents.Load(addon.Data.WidgetEvents);
     addon.EventData.Load();
 
     if addon.Diagnostics.DebugEnabled() then
@@ -121,9 +123,6 @@ function loadHelper:OnEvent(event, arg1, arg2)
         end
     elseif event == "PLAYER_ENTERING_WORLD" then
          -- arg1 = isLogin, arg2 = isReload
-        if arg1 then -- On a fresh login we need to prime the area poi to get world events
-            addon.EventData.PrimeAreaPoi();
-        end
         if arg1 or arg2 then
             C_Timer.After(0, function()
                 C_Timer.After(5, function()

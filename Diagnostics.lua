@@ -37,3 +37,9 @@ function diagnostics.Load() -- Load the diagnostics
         return addon.Options.db.EnableTraceInfo; -- Needs a function because these change during run time
     end;
 end
+
+function diagnostics.Print(...)
+    if diagnostics.DebugEnabled() then
+        print(addon.MetaData.Title, ...)
+    end
+end

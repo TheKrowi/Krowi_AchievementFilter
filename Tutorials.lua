@@ -82,7 +82,7 @@ function tutorials.Load()
             expansionFeatures = (GetCategoryInfo(15301)),
             currentZone = L["Current Zone"]:SetColorYellow(),
             selectedZone = L["Selected Zone"]:SetColorYellow(),
-            focusedCategory = L["Focused"]:SetColorYellow(),
+            watchListCategory = L["Watch List"]:SetColorYellow(),
             excludedCategory = L["Excluded"]:SetColorYellow(),
             layout = L["Layout"],
             categories = L["Categories"]
@@ -304,9 +304,15 @@ function tutorials.Load()
             xuFuPetGuides = L["Xu-Fu's Pet Guides"]:SetColorYellow(),
             petBattles = (GetCategoryInfo(15117)),
             more = L["More"]:SetColorYellow(),
-            focus = L["Focus"]:SetColorYellow(),
-            clearFocus = L["Clear focus"]:SetColorYellow(),
-            focused = L["Focused"]:SetColorYellow(),
+            addToWatch = L["Add to Watch List"]:ReplaceVars
+            {
+                watchList = addon.L["Watch List"]
+            }:SetColorYellow(),
+            removeFromWatch = L["Remove from Watch List"]:ReplaceVars
+            {
+                watchList = addon.L["Watch List"]
+            }:SetColorYellow(),
+            watchList = L["Watch List"]:SetColorYellow(),
             include = L["Include"]:SetColorYellow(),
             exclude = L["Exclude"]:SetColorYellow(),
             layout = L["Layout"],

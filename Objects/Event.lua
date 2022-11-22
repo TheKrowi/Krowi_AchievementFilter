@@ -12,7 +12,8 @@ function event:New(id, icon, name, mapID, totalDuration)
     instance.ID = instance.Id;
     instance.Icon = icon or 0;
     instance.Name = name;
-    instance.MapID = mapID;
+    instance.MapId = mapID;
+    instance.MapID = instance.MapId;
     instance.TotalDuration = totalDuration;
     return instance;
 end

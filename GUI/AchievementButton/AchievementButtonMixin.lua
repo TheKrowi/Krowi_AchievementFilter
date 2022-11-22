@@ -58,7 +58,7 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
 	return height;
 end
 
-function KrowiAF_AchievementButtonMixin:SetAchievement(achievement)
+function KrowiAF_AchievementButtonMixin:SetAchievement(achievement, refresh)
 	if not achievement then
 		self.Achievement = nil;
 		return;
@@ -67,7 +67,7 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement)
 	local id, name, points, completed, month, day, year, description, flags, icon, rewardText, _, wasEarnedByMe, earnedBy = addon.GetAchievementInfo(achievement.Id);
 	flags = addon.Objects.Flags:New(flags);
 
-	if self.Achievement ~= achievement then
+	if self.Achievement ~= achievement or refresh then
 		self.Achievement = achievement;
 
 		local saturatedStyle;
@@ -167,6 +167,17 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement)
 		if achievement.AlwaysVisible then
 			self.ExtraIcon.Texture:SetAtlas("flightpath");
 			self.ExtraIcon.Text = addon.L["Achievement shown temporarily"];
+			self.ExtraIcon:Show();
+		elseif achievement.IsWatched then
+			self.ExtraIcon.Texture:SetAtlas("groupfinder-eye-frame");
+			self.ExtraIcon.Text = addon.L["Achievement is watched"]:ReplaceVars
+			{
+				watchList = addon.L["Watch List"]
+			};
+			self.ExtraIcon:Show();
+		elseif achievement.IsExcluded then
+			self.ExtraIcon.Texture:SetAtlas("XMarksTheSpot");
+			self.ExtraIcon.Text = addon.L["Achievement is excluded"];
 			self.ExtraIcon:Show();
 		else
 			self.ExtraIcon:Hide();
@@ -430,10 +441,10 @@ function KrowiAF_AchievementButtonMixin:SaturatePartial()
 	SetTsunamis(self);
 end
 
-function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
+function KrowiAF_AchievementButtonMixin:ProcessedModifiers(ignoreModifiers)
 	if IsModifierKeyDown() and not ignoreModifiers then
 		local handled = nil;
-		if IsModifiedClick("CHATLINK") then
+		if addon.IsCustomModifierKeyDown(addon.Options.db.Achievements.Modifiers.PasteToChat) then
 			local achievementLink = GetAchievementLink(self.Achievement.Id);
 			if achievementLink then
 				handled = ChatEdit_InsertLink(achievementLink);
@@ -443,13 +454,34 @@ function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
 				end
 			end
 		end
-		if not handled and IsModifiedClick("QUESTWATCHTOGGLE") then
+		if not handled and addon.IsCustomModifierKeyDown(addon.Options.db.Achievements.Modifiers.ToggleTracking) then
 			if addon.IsWrathClassic or addon.IsShadowlandsRetail then
 				AchievementButton_ToggleTracking(self.Achievement.Id);
 			else
 				self:ToggleTracking();
 			end
+			handled = true;
 		end
+		if not handled and addon.IsCustomModifierKeyDown(addon.Options.db.Achievements.Modifiers.ToggleWatchList) then
+			if self.Achievement.IsWatched then
+				addon.ClearWatchAchievement(self.Achievement);
+			else
+				addon.WatchAchievement(self.Achievement);
+			end
+		end
+		if not handled and addon.IsCustomModifierKeyDown(addon.Options.db.Achievements.Modifiers.ToggleExcluded) then
+			if self.Achievement.IsExcluded then
+				addon.IncludeAchievement(self.Achievement);
+			else
+				addon.ExcludeAchievement(self.Achievement);
+			end
+		end
+		return true;
+	end
+end
+
+function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
+	if self:ProcessedModifiers(ignoreModifiers) then
 		return;
 	end
 

@@ -5,42 +5,42 @@ options.Layout = {};
 local layout = options.Layout;
 local widthMultiplier = addon.Options.WidthMultiplier;
 
-local function DrawFocusedSubCategories()
+local function DrawWatchListSubCategories()
     if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
         return;
     end
     -- Reset all
-    for i = 1, #addon.Data.FocusedCategories do
-        addon.Data.FocusedCategories[i].Achievements = nil;
-        addon.Data.FocusedCategories[i].Children = nil;
+    for i = 1, #addon.Data.WatchListCategories do
+        addon.Data.WatchListCategories[i].Achievements = nil;
+        addon.Data.WatchListCategories[i].Children = nil;
     end
     addon.GUI.CategoriesFrame:Update(true);
     addon.GUI.AchievementsFrame:ForceUpdate();
     -- Draw again
-    addon.Data.LoadFocusedAchievements();
+    addon.Data.LoadWatchedAchievements();
 end
 
-local function SetShowFocusedSubCategories()
-    addon.Options.db.Categories.Focused.ShowSubCategories = not addon.Options.db.Categories.Focused.ShowSubCategories;
-    DrawFocusedSubCategories();
-    options.Debug(addon.L["Show Sub Categories"], addon.Options.db.Categories.Focused.ShowSubCategories);
+local function SetShowWatchListSubCategories()
+    addon.Options.db.Categories.WatchList.ShowSubCategories = not addon.Options.db.Categories.WatchList.ShowSubCategories;
+    DrawWatchListSubCategories();
+    options.Debug(addon.L["Show Sub Categories"], addon.Options.db.Categories.WatchList.ShowSubCategories);
 end
 
-local function ClearAllFocused()
-    for i = 1, #addon.Data.FocusedCategories do
-        addon.Data.FocusedCategories[i].Achievements = nil;
-        addon.Data.FocusedCategories[i].Children = nil;
+local function ClearAllWatched()
+    for i = 1, #addon.Data.WatchListCategories do
+        addon.Data.WatchListCategories[i].Achievements = nil;
+        addon.Data.WatchListCategories[i].Children = nil;
     end
     if addon.GUI.SelectedTab ~= nil then -- If nil, not yet loaded
-        if SavedData.FocusedAchievements then
-            for id, _ in next, SavedData.FocusedAchievements do
-                addon.Data.Achievements[id]:ClearFocus();
+        if SavedData.WatchedAchievements then
+            for id, _ in next, SavedData.WatchedAchievements do
+                addon.Data.Achievements[id]:DoNotWatch();
             end
         end
         addon.GUI.CategoriesFrame:Update(true);
         addon.GUI.AchievementsFrame:ForceUpdate();
     end
-    SavedData.FocusedAchievements = nil;
+    SavedData.WatchedAchievements = nil;
 end
 
 local function DrawTrackingAchievementsSubCategories()
@@ -126,25 +126,25 @@ local function SetShowExcludedSubCategories()
     options.Debug(addon.L["Show Sub Categories"], addon.Options.db.Categories.Excluded.ShowSubCategories);
 end
 
-function layout.AddMoreFocusedOptions()
+function layout.AddMoreWatchListOptions()
     options.InjectOptionsTableAdd({
         order = 1.1, type = "toggle", width = 1 * widthMultiplier,
         name = addon.L["Show Sub Categories"],
         desc = addon.Util.ReplaceVars
         {
             addon.L["Show Sub Categories Desc"],
-            category = addon.L["Focused"]
+            category = addon.L["Watch List"]
         },
-        get = function() return addon.Options.db.Categories.Focused.ShowSubCategories; end,
-        set = SetShowFocusedSubCategories
-    }, "ShowFocusedSubCategories", "args", "Layout", "args", "AdjustableCategories", "args", "Focused");
+        get = function() return addon.Options.db.Categories.WatchList.ShowSubCategories; end,
+        set = SetShowWatchListSubCategories
+    }, "ShowWatchedSubCategories", "args", "Layout", "args", "AdjustableCategories", "args", "WatchList");
 
     options.InjectOptionsTableAdd({
         order = 1.2, type = "execute", width = 1 * widthMultiplier,
         name = addon.L["Clear all"],
         desc = addon.L["Clear all Desc"],
-        func = ClearAllFocused
-    }, "ClearAll", "args", "Layout", "args", "AdjustableCategories", "args", "Focused");
+        func = ClearAllWatched
+    }, "ClearAll", "args", "Layout", "args", "AdjustableCategories", "args", "WatchList");
 end
 
 function layout.AddMoreTrackingAchievementsOptions()
@@ -169,7 +169,7 @@ function layout.AddMoreTrackingAchievementsOptions()
         },
         get = function() return addon.Options.db.Categories.TrackingAchievements.ShowSubCategories; end,
         set = SetShowTrackingAchievementsSubCategories
-    }, "ShowFocusedSubCategories", "args", "Layout", "args", "AdjustableCategories", "args", "TrackingAchievements");
+    }, "ShowTrackingSubCategories", "args", "Layout", "args", "AdjustableCategories", "args", "TrackingAchievements");
 end
 
 function layout.AddMoreExcludedOptions()
@@ -183,7 +183,7 @@ function layout.AddMoreExcludedOptions()
         },
         get = function() return addon.Options.db.Categories.Excluded.Show; end,
         set = SetShowExcludedCategory
-    }, "ShowFocusedSubCategories", "args", "Layout", "args", "AdjustableCategories", "args", "Excluded");
+    }, "ShowExcludedSubCategories", "args", "Layout", "args", "AdjustableCategories", "args", "Excluded");
 
     options.InjectOptionsTableAdd({
         order = 1.2, type = "execute", width = 1 * widthMultiplier,
@@ -643,70 +643,6 @@ options.OptionsTable.args["Layout"] = {
                         }
                     }
                 },
-                -- Moved to AdjustableCategories via AddMoreFocusedOptions
-                -- Focused = {
-                --     order = 2, type = "group",
-                --     name = addon.L["Focused"],
-                --     inline = true,
-                --     args = {
-                --          ShowFocusedSubCategories = {
-                --             order = 1.1, type = "toggle", width = 1 * widthMultiplier,
-                --             name = addon.L["Show Sub Categories"],
-                --             desc = addon.Util.ReplaceVars
-                --             {
-                --                 addon.L["Show Sub Categories Desc"],
-                --                 category = addon.L["Focused"]
-                --             },
-                --             get = function() return addon.Options.db.Categories.Focused.ShowSubCategories; end,
-                --             set = SetShowFocusedSubCategories
-                --         },
-                --         Blank12 = {order = 1.2, type = "description", width = 1 * widthMultiplier, name = ""},
-                --         ClearAll = {
-                --             order = 1.3, type = "execute",
-                --             name = addon.L["Clear all"],
-                --             desc = addon.L["Clear all Desc"],
-                --             func = ClearAllFocused
-                --         }
-                --     }
-                -- },
-                -- Moved to AdjustableCategories via AddMoreExcludedOptions
-                -- Excluded = {
-                --     order = 3, type = "group",
-                --     name = addon.L["Excluded"],
-                --     inline = true,
-                --     args = {
-                --         ShowExcludedCategory = {
-                --             order = 1.1, type = "toggle", width = 1 * widthMultiplier,
-                --             name = addon.L["Show Excluded Category"],
-                --             desc = addon.Util.ReplaceVars
-                --             {
-                --                 addon.L["Show Excluded Category Desc"],
-                --                 excluded = addon.L["Excluded"]
-                --             },
-                --             get = function() return addon.Options.db.Categories.Excluded.Show; end,
-                --             set = SetShowExcludedCategory
-                --         },
-                --         Blank12 = {order = 1.2, type = "description", width = 1 * widthMultiplier, name = ""},
-                --         IncludeAll = {
-                --             order = 1.3, type = "execute",
-                --             name = addon.L["Include all"],
-                --             desc = addon.L["Include all Desc"],
-                --             func = IncludeAllExcluded
-                --         },
-                --         ShowExcludedSubCategories = {
-                --             order = 2, type = "toggle", width = 1 * widthMultiplier,
-                --             name = addon.L["Show Sub Categories"],
-                --             desc = addon.Util.ReplaceVars
-                --             {
-                --                 addon.L["Show Sub Categories Desc"],
-                --                 category = addon.L["Excluded"]
-                --             },
-                --             disabled = function() return not addon.Options.db.Categories.Excluded.Show; end,
-                --             get = function() return addon.Options.db.Categories.Excluded.ShowSubCategories; end,
-                --             set = SetShowExcludedSubCategories
-                --         },
-                --     }
-                -- },
                 Tooltip = {
                     order = 2, type = "group",
                     name = addon.L["Tooltip"],
@@ -753,23 +689,6 @@ options.OptionsTable.args["Layout"] = {
             order = 6, type = "group",
             name = addon.L["Adjustable Categories"],
             args = {
-                -- Indentation = {
-                --     order = 1, type = "group",
-                --     name = addon.L["Focused"],
-                --     inline = true,
-                --     args = {
-                --         E5177 = {
-                --             order = 3, type = "toggle",
-                --             name = addon.L["Assault on Highmountain"],
-                --             desc = addon.L["Requires a reload"],
-                --             get = function() return addon.Options.db.EventReminders.WorldEvents[5177]; end,
-                --             set = function()
-                --                 addon.Options.db.EventReminders.WorldEvents[5177] = not addon.Options.db.EventReminders.WorldEvents[5177];
-                --                 diagnostics.Debug(addon.L["Assault on Highmountain"], addon.Options.db.EventReminders.WorldEvents[5177]);
-                --             end
-                --         }
-                --     }
-                -- }
             }
         },
         Achievements = {
