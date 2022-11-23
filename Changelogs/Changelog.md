@@ -29,3 +29,6 @@
 
 ### Fixed (48.2)
 - The ElvUI skins should no longer be applied to the side buttons if the rest of the achievement window is not skinned
+
+### Fixed (48.3)
+- Error on first login after updating to 48.2 when the alert system tries to load but not all data is available
