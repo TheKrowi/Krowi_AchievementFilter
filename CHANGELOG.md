@@ -1,7 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 48.1 - 2022-11-22
+## 48.3 - 2022-11-xx
+### Fixed
+- Error on first login after updating to 48.2 when the alert system tries to load but not all data is available
+
+## 48.2 - 2022-11-22
 ### Fixed
 - The ElvUI skins should no longer be applied to the side buttons if the rest of the achievement window is not skinned
 
