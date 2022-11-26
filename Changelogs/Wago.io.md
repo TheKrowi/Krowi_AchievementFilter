@@ -35,3 +35,6 @@
 
 ### Fixed (48.4)
 - GW2UI causes error on login/reload
+
+### Removed (48.5)
+- Rogue print

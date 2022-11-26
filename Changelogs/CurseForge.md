@@ -45,3 +45,7 @@
 <ul>
 <li>GW2UI causes error on login/reload</li>
 </ul>
+<p><h3>Removed (48.5)</h3></p>
+<ul>
+<li>Rogue print</li>
+</ul>

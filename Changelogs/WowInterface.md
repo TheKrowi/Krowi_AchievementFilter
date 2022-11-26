@@ -53,3 +53,8 @@
 [LIST]
 [*]GW2UI causes error on login/reload
 [/LIST]
+
+[B]Removed (48.5)[/B]
+[LIST]
+[*]Rogue print
+[/LIST]
