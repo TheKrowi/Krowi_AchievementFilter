@@ -1,10 +1,10 @@
 ## Interface: 100002
 ## Title: Krowi's |cFF1D92C2Achievement Filter|r
-## Version: 48.3
+## Version: 48.4-b1
 ## Author: Krowi-Frostmane EU
 ## SavedVariables: Options, SavedData, Filters, DebugTable
 ## Notes: Filters your achievements.
-## X-Discord-Invite-Link: https://discord.gg/DCxq5rRNW5
+## X-Discord-Invite-Link: https://discord.gg/mdBFQJYeQZ
 ## X-Discord-Server-Name: Krowi's Addons
 ## X-CurseForge: https://www.curseforge.com/wow/addons/krowi-achievement-filter
 ## X-Curse-Project-ID: 413582
