@@ -56,6 +56,6 @@ Achievement Filter completely replaces the default Achievements tab and adds sev
 
 More features are planned in the future and can be requested via the issues system or discord.
 
-Feel free to join discord and say hi: [https://discord.gg/DCxq5rRNW5](https://discord.gg/DCxq5rRNW5).
+Feel free to join discord and say hi: [https://discord.gg/mdBFQJYeQZ](https://discord.gg/mdBFQJYeQZ).
 
 Creating and maintaining addons takes a lot of time. If you can miss something, feel free to drop a donation!

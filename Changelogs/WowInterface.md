@@ -48,3 +48,8 @@
 [LIST]
 [*]Error on first login after updating to 48.2 when the alert system tries to load but not all data is available
 [/LIST]
+
+[B]Fixed (48.4)[/B]
+[LIST]
+[*]GW2UI causes error on login/reload
+[/LIST]
