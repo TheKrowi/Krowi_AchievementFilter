@@ -1,7 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 48.4 - 2022-11-xx
+## 48.4 - 2022-11-26
+### Fixed
+- Error on login/reload when another addon did some achievement loading in a strange order
 
 ## 48.3 - 2022-11-23
 ### Fixed

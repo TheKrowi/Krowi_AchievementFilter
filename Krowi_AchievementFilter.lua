@@ -91,6 +91,8 @@ local function LoadBlizzard_AchievementUI()
     addon.GUI.AchievementFrameHeader.HookSetPointsText();
     addon.OverwriteFunctions();
     addon.HookAchievementFrameOnShow();
+
+    LoadBlizzard_AchievementUI = function() end
 end
 
 local function LoadPlayerLogin()
