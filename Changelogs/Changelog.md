@@ -38,3 +38,6 @@
 
 ### Removed (48.5)
 - Rogue print
+
+### Fixed (48.6)
+- Achievements should now be correctly marked as completed if prior to earning the achievement it was visible in the achievement window

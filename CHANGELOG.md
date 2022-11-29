@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 48.6 - 2022-11-xx
+### Fixed
+- Achievements should now be correctly marked as completed if prior to earning the achievement it was visible in the achievement window
+
 ## 48.5 - 2022-11-26
 ### Removed
 - Rogue print
