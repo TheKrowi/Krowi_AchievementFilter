@@ -1,8 +1,8 @@
 ## Interface: 100002
 ## Title: Krowi's |cFF1D92C2Achievement Filter|r
-## Version: 48.6
+## Version: 49.0
 ## Author: Krowi-Frostmane EU
-## SavedVariables: Options, SavedData, Filters, DebugTable
+## SavedVariables: Options, SavedData, Filters, DebugTable, TEST
 ## Notes: Filters your achievements.
 ## X-Discord-Invite-Link: https://discord.gg/mdBFQJYeQZ
 ## X-Discord-Server-Name: Krowi's Addons

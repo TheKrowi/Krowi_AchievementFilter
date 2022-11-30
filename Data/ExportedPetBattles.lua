@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-11 11-29-35 ]] --
+-- [[ Exported at 2022-11-30 04-32-21 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1633,6 +1633,196 @@ function exportedPetBattles.Load(m)
     AddCEL(m[14881], 14881, 8, url .. "Encounter/1202");
     AddCEL(m[14881], 14881, 9, url .. "Encounter/1201");
     AddCEL(m[14881], 14881, 10, url .. "Encounter/1203");
+    m[16464] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Section/97"); -- Battle on the Dragon Isles
+    AddCEL(m[16464], 16464, 1, url .. "Encounter/1370");
+    AddCEL(m[16464], 16464, 2, url .. "Encounter/1373");
+    AddCEL(m[16464], 16464, 3, url .. "Encounter/1366");
+    AddCEL(m[16464], 16464, 4, url .. "Encounter/1372");
+    AddCEL(m[16464], 16464, 5, url .. "Encounter/1376");
+    AddCEL(m[16464], 16464, 6, url .. "Encounter/1367");
+    AddCEL(m[16464], 16464, 7, url .. "Encounter/1369");
+    AddCEL(m[16464], 16464, 8, url .. "Encounter/1375");
+    m[16501] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Encounter/1474"); -- Aquatic Battler of the Dragon Isles
+    AddCEL(m[16501], 16501, 1, url .. "Encounter/1481");
+    AddCEL(m[16501], 16501, 2, url .. "Encounter/1477");
+    AddCEL(m[16501], 16501, 3, url .. "Encounter/1484");
+    AddCEL(m[16501], 16501, 4, url .. "Encounter/1475");
+    AddCEL(m[16501], 16501, 5, url .. "Encounter/1480");
+    AddCEL(m[16501], 16501, 6, url .. "Encounter/1483");
+    AddCEL(m[16501], 16501, 7, url .. "Encounter/1478");
+    AddCEL(m[16501], 16501, 8, url .. "Encounter/1474");
+    m[16503] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Encounter/1462"); -- Beast Battler of the Dragon Isles
+    AddCEL(m[16503], 16503, 1, url .. "Encounter/1469");
+    AddCEL(m[16503], 16503, 2, url .. "Encounter/1465");
+    AddCEL(m[16503], 16503, 3, url .. "Encounter/1472");
+    AddCEL(m[16503], 16503, 4, url .. "Encounter/1463");
+    AddCEL(m[16503], 16503, 5, url .. "Encounter/1468");
+    AddCEL(m[16503], 16503, 6, url .. "Encounter/1471");
+    AddCEL(m[16503], 16503, 7, url .. "Encounter/1466");
+    AddCEL(m[16503], 16503, 8, url .. "Encounter/1462");
+    m[16504] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Encounter/1426"); -- Critter Battler of the Dragon Isles
+    AddCEL(m[16504], 16504, 1, url .. "Encounter/1433");
+    AddCEL(m[16504], 16504, 2, url .. "Encounter/1429");
+    AddCEL(m[16504], 16504, 3, url .. "Encounter/1436");
+    AddCEL(m[16504], 16504, 4, url .. "Encounter/1427");
+    AddCEL(m[16504], 16504, 5, url .. "Encounter/1432");
+    AddCEL(m[16504], 16504, 6, url .. "Encounter/1435");
+    AddCEL(m[16504], 16504, 7, url .. "Encounter/1430");
+    AddCEL(m[16504], 16504, 8, url .. "Encounter/1426");
+    m[16505] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Encounter/1390"); -- Dragonkin Battler of the Dragon Isles
+    AddCEL(m[16505], 16505, 1, url .. "Encounter/1397");
+    AddCEL(m[16505], 16505, 2, url .. "Encounter/1393");
+    AddCEL(m[16505], 16505, 3, url .. "Encounter/1400");
+    AddCEL(m[16505], 16505, 4, url .. "Encounter/1391");
+    AddCEL(m[16505], 16505, 5, url .. "Encounter/1396");
+    AddCEL(m[16505], 16505, 6, url .. "Encounter/1399");
+    AddCEL(m[16505], 16505, 7, url .. "Encounter/1394");
+    AddCEL(m[16505], 16505, 8, url .. "Encounter/1390");
+    m[16506] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Encounter/1450"); -- Elemental Battler of the Dragon Isles
+    AddCEL(m[16506], 16506, 1, url .. "Encounter/1457");
+    AddCEL(m[16506], 16506, 2, url .. "Encounter/1453");
+    AddCEL(m[16506], 16506, 3, url .. "Encounter/1460");
+    AddCEL(m[16506], 16506, 4, url .. "Encounter/1451");
+    AddCEL(m[16506], 16506, 5, url .. "Encounter/1456");
+    AddCEL(m[16506], 16506, 6, url .. "Encounter/1459");
+    AddCEL(m[16506], 16506, 7, url .. "Encounter/1454");
+    AddCEL(m[16506], 16506, 8, url .. "Encounter/1450");
+    m[16507] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Encounter/1402"); -- Flying Battler of the Dragon Isles
+    AddCEL(m[16507], 16507, 1, url .. "Encounter/1409");
+    AddCEL(m[16507], 16507, 2, url .. "Encounter/1405");
+    AddCEL(m[16507], 16507, 3, url .. "Encounter/1412");
+    AddCEL(m[16507], 16507, 4, url .. "Encounter/1403");
+    AddCEL(m[16507], 16507, 5, url .. "Encounter/1408");
+    AddCEL(m[16507], 16507, 6, url .. "Encounter/1411");
+    AddCEL(m[16507], 16507, 7, url .. "Encounter/1406");
+    AddCEL(m[16507], 16507, 8, url .. "Encounter/1402");
+    m[16508] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Encounter/1378"); -- Humanoid Battler of the Dragon Isles
+    AddCEL(m[16508], 16508, 1, url .. "Encounter/1385");
+    AddCEL(m[16508], 16508, 2, url .. "Encounter/1381");
+    AddCEL(m[16508], 16508, 3, url .. "Encounter/1388");
+    AddCEL(m[16508], 16508, 4, url .. "Encounter/1379");
+    AddCEL(m[16508], 16508, 5, url .. "Encounter/1384");
+    AddCEL(m[16508], 16508, 6, url .. "Encounter/1387");
+    AddCEL(m[16508], 16508, 7, url .. "Encounter/1382");
+    AddCEL(m[16508], 16508, 8, url .. "Encounter/1378");
+    m[16509] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Encounter/1438"); -- Magic Battler of the Dragon Isles
+    AddCEL(m[16509], 16509, 1, url .. "Encounter/1445");
+    AddCEL(m[16509], 16509, 2, url .. "Encounter/1441");
+    AddCEL(m[16509], 16509, 3, url .. "Encounter/1448");
+    AddCEL(m[16509], 16509, 4, url .. "Encounter/1439");
+    AddCEL(m[16509], 16509, 5, url .. "Encounter/1444");
+    AddCEL(m[16509], 16509, 6, url .. "Encounter/1447");
+    AddCEL(m[16509], 16509, 7, url .. "Encounter/1442");
+    AddCEL(m[16509], 16509, 8, url .. "Encounter/1438");
+    m[16510] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Encounter/1486"); -- Mechanical Battler of the Dragon Isles
+    AddCEL(m[16510], 16510, 1, url .. "Encounter/1493");
+    AddCEL(m[16510], 16510, 2, url .. "Encounter/1489");
+    AddCEL(m[16510], 16510, 3, url .. "Encounter/1496");
+    AddCEL(m[16510], 16510, 4, url .. "Encounter/1487");
+    AddCEL(m[16510], 16510, 5, url .. "Encounter/1492");
+    AddCEL(m[16510], 16510, 6, url .. "Encounter/1495");
+    AddCEL(m[16510], 16510, 7, url .. "Encounter/1490");
+    AddCEL(m[16510], 16510, 8, url .. "Encounter/1486");
+    m[16511] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Encounter/1414"); -- Undead Battler of the Dragon Isles
+    AddCEL(m[16511], 16511, 1, url .. "Encounter/1421");
+    AddCEL(m[16511], 16511, 2, url .. "Encounter/1417");
+    AddCEL(m[16511], 16511, 3, url .. "Encounter/1424");
+    AddCEL(m[16511], 16511, 4, url .. "Encounter/1415");
+    AddCEL(m[16511], 16511, 5, url .. "Encounter/1420");
+    AddCEL(m[16511], 16511, 6, url .. "Encounter/1423");
+    AddCEL(m[16511], 16511, 7, url .. "Encounter/1418");
+    AddCEL(m[16511], 16511, 8, url .. "Encounter/1414");
+    m[16512] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Section/98"); -- Family Battler of the Dragon Isles
+    local tempA16501 = AddCEL(m[16512], 16512, 1, url .. "Encounter/1474");
+    AddCEL(tempA16501, 16501, 1, url .. "Encounter/1481");
+    AddCEL(tempA16501, 16501, 2, url .. "Encounter/1477");
+    AddCEL(tempA16501, 16501, 3, url .. "Encounter/1484");
+    AddCEL(tempA16501, 16501, 4, url .. "Encounter/1475");
+    AddCEL(tempA16501, 16501, 5, url .. "Encounter/1480");
+    AddCEL(tempA16501, 16501, 6, url .. "Encounter/1483");
+    AddCEL(tempA16501, 16501, 7, url .. "Encounter/1478");
+    AddCEL(tempA16501, 16501, 8, url .. "Encounter/1474");
+    local tempA16503 = AddCEL(m[16512], 16512, 2, url .. "Encounter/1462");
+    AddCEL(tempA16503, 16503, 1, url .. "Encounter/1469");
+    AddCEL(tempA16503, 16503, 2, url .. "Encounter/1465");
+    AddCEL(tempA16503, 16503, 3, url .. "Encounter/1472");
+    AddCEL(tempA16503, 16503, 4, url .. "Encounter/1463");
+    AddCEL(tempA16503, 16503, 5, url .. "Encounter/1468");
+    AddCEL(tempA16503, 16503, 6, url .. "Encounter/1471");
+    AddCEL(tempA16503, 16503, 7, url .. "Encounter/1466");
+    AddCEL(tempA16503, 16503, 8, url .. "Encounter/1462");
+    local tempA16504 = AddCEL(m[16512], 16512, 3, url .. "Encounter/1426");
+    AddCEL(tempA16504, 16504, 1, url .. "Encounter/1433");
+    AddCEL(tempA16504, 16504, 2, url .. "Encounter/1429");
+    AddCEL(tempA16504, 16504, 3, url .. "Encounter/1436");
+    AddCEL(tempA16504, 16504, 4, url .. "Encounter/1427");
+    AddCEL(tempA16504, 16504, 5, url .. "Encounter/1432");
+    AddCEL(tempA16504, 16504, 6, url .. "Encounter/1435");
+    AddCEL(tempA16504, 16504, 7, url .. "Encounter/1430");
+    AddCEL(tempA16504, 16504, 8, url .. "Encounter/1426");
+    local tempA16505 = AddCEL(m[16512], 16512, 4, url .. "Encounter/1390");
+    AddCEL(tempA16505, 16505, 1, url .. "Encounter/1397");
+    AddCEL(tempA16505, 16505, 2, url .. "Encounter/1393");
+    AddCEL(tempA16505, 16505, 3, url .. "Encounter/1400");
+    AddCEL(tempA16505, 16505, 4, url .. "Encounter/1391");
+    AddCEL(tempA16505, 16505, 5, url .. "Encounter/1396");
+    AddCEL(tempA16505, 16505, 6, url .. "Encounter/1399");
+    AddCEL(tempA16505, 16505, 7, url .. "Encounter/1394");
+    AddCEL(tempA16505, 16505, 8, url .. "Encounter/1390");
+    local tempA16506 = AddCEL(m[16512], 16512, 5, url .. "Encounter/1450");
+    AddCEL(tempA16506, 16506, 1, url .. "Encounter/1457");
+    AddCEL(tempA16506, 16506, 2, url .. "Encounter/1453");
+    AddCEL(tempA16506, 16506, 3, url .. "Encounter/1460");
+    AddCEL(tempA16506, 16506, 4, url .. "Encounter/1451");
+    AddCEL(tempA16506, 16506, 5, url .. "Encounter/1456");
+    AddCEL(tempA16506, 16506, 6, url .. "Encounter/1459");
+    AddCEL(tempA16506, 16506, 7, url .. "Encounter/1454");
+    AddCEL(tempA16506, 16506, 8, url .. "Encounter/1450");
+    local tempA16507 = AddCEL(m[16512], 16512, 6, url .. "Encounter/1402");
+    AddCEL(tempA16507, 16507, 1, url .. "Encounter/1409");
+    AddCEL(tempA16507, 16507, 2, url .. "Encounter/1405");
+    AddCEL(tempA16507, 16507, 3, url .. "Encounter/1412");
+    AddCEL(tempA16507, 16507, 4, url .. "Encounter/1403");
+    AddCEL(tempA16507, 16507, 5, url .. "Encounter/1408");
+    AddCEL(tempA16507, 16507, 6, url .. "Encounter/1411");
+    AddCEL(tempA16507, 16507, 7, url .. "Encounter/1406");
+    AddCEL(tempA16507, 16507, 8, url .. "Encounter/1402");
+    local tempA16508 = AddCEL(m[16512], 16512, 7, url .. "Encounter/1378");
+    AddCEL(tempA16508, 16508, 1, url .. "Encounter/1385");
+    AddCEL(tempA16508, 16508, 2, url .. "Encounter/1381");
+    AddCEL(tempA16508, 16508, 3, url .. "Encounter/1388");
+    AddCEL(tempA16508, 16508, 4, url .. "Encounter/1379");
+    AddCEL(tempA16508, 16508, 5, url .. "Encounter/1384");
+    AddCEL(tempA16508, 16508, 6, url .. "Encounter/1387");
+    AddCEL(tempA16508, 16508, 7, url .. "Encounter/1382");
+    AddCEL(tempA16508, 16508, 8, url .. "Encounter/1378");
+    local tempA16509 = AddCEL(m[16512], 16512, 8, url .. "Encounter/1438");
+    AddCEL(tempA16509, 16509, 1, url .. "Encounter/1445");
+    AddCEL(tempA16509, 16509, 2, url .. "Encounter/1441");
+    AddCEL(tempA16509, 16509, 3, url .. "Encounter/1448");
+    AddCEL(tempA16509, 16509, 4, url .. "Encounter/1439");
+    AddCEL(tempA16509, 16509, 5, url .. "Encounter/1444");
+    AddCEL(tempA16509, 16509, 6, url .. "Encounter/1447");
+    AddCEL(tempA16509, 16509, 7, url .. "Encounter/1442");
+    AddCEL(tempA16509, 16509, 8, url .. "Encounter/1438");
+    local tempA16510 = AddCEL(m[16512], 16512, 9, url .. "Encounter/1486");
+    AddCEL(tempA16510, 16510, 1, url .. "Encounter/1493");
+    AddCEL(tempA16510, 16510, 2, url .. "Encounter/1489");
+    AddCEL(tempA16510, 16510, 3, url .. "Encounter/1496");
+    AddCEL(tempA16510, 16510, 4, url .. "Encounter/1487");
+    AddCEL(tempA16510, 16510, 5, url .. "Encounter/1492");
+    AddCEL(tempA16510, 16510, 6, url .. "Encounter/1495");
+    AddCEL(tempA16510, 16510, 7, url .. "Encounter/1490");
+    AddCEL(tempA16510, 16510, 8, url .. "Encounter/1486");
+    local tempA16511 = AddCEL(m[16512], 16512, 10, url .. "Encounter/1414");
+    AddCEL(tempA16511, 16511, 1, url .. "Encounter/1421");
+    AddCEL(tempA16511, 16511, 2, url .. "Encounter/1417");
+    AddCEL(tempA16511, 16511, 3, url .. "Encounter/1424");
+    AddCEL(tempA16511, 16511, 4, url .. "Encounter/1415");
+    AddCEL(tempA16511, 16511, 5, url .. "Encounter/1420");
+    AddCEL(tempA16511, 16511, 6, url .. "Encounter/1423");
+    AddCEL(tempA16511, 16511, 7, url .. "Encounter/1418");
+    AddCEL(tempA16511, 16511, 8, url .. "Encounter/1414");
     m[9069] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Section/12"); -- An Awfully Big Adventure
     AddCEL(m[9069], 9069, 1, url .. "Encounter/112");
     AddCEL(m[9069], 9069, 2, url .. "Encounter/92");

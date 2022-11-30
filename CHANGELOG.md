@@ -1,9 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 48.6 - 2022-11-xx
+## 49.0 - 2022-11-30
+### Added
+- Pet Battle Links for Dragonflight Pet Battle Achievements
+- Transmog sets for Vaulternative Fashion
+
 ### Fixed
 - Achievements should now be correctly marked as completed if prior to earning the achievement it was visible in the achievement window
+- Cataclysm, Mists of Pandaria, Warlords of Dreanor and Dragonflight raids should now show all achievements in the Current and Selected Zone categories
 
 ## 48.5 - 2022-11-26
 ### Removed
