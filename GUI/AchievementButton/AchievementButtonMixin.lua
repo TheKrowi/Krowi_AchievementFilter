@@ -200,9 +200,9 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement, refresh)
 	self:UpdatePlusMinusTexture();
 end
 
-function KrowiAF_AchievementButtonMixin:Update(achievement, index)
+function KrowiAF_AchievementButtonMixin:Update(achievement, index, refresh)
 	local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe, _ = addon.GetAchievementInfo(achievement.Id);
-	self:SetAchievement(achievement);
+	self:SetAchievement(achievement, refresh);
 
 	self.index = index; -- This is used to keep the correct achievement expanded
 	-- self.Id = achievement.Id;

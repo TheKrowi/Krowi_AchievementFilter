@@ -363,6 +363,7 @@ function addon.OnAchievementEarned(achievementId)
     IncrementCharacterPoints(playerGUID, id, points, month, day, year, flags, isGuild, wasEarnedByMe, isStatistic, exists);
     SetCharPoints(playerGUID, characterPoints);
     addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = true;
+    addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = true;
 end
 
 function addon.OverwriteFunctions()
