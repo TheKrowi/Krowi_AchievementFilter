@@ -33,6 +33,7 @@ function achievementsFrame:Load()
 		button:PostLoad(scrollFrame);
 	end
 
+	-- This does not suffice anymore for Dragonflight
 	hooksecurefunc("AchievementFrameAchievements_ForceUpdate", function()
 		frame:ForceUpdate();
 	end); -- Issue #3: Fix
@@ -40,4 +41,11 @@ function achievementsFrame:Load()
 	frame.ScrollBarStep = scrollBar:GetValueStep();
 
 	addon.GUI.AchievementsFrame = frame; -- Overwrite with the actual frame since all functions are injected to it
+end
+
+function KrowiAF_AchievementsFrame_OnShow(self)
+	if addon.AchievementEarnedUpdateAchievementsFrameOnNextShow then
+		self:ForceUpdate();
+		addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = nil;
+	end
 end

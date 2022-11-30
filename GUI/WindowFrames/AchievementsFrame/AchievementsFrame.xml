@@ -55,5 +55,8 @@
 			</ScrollFrame>
 			<Frame name="$parentBorder" parentKey="Border" setAllPoints="true" inherits="AchivementGoldBorderBackdrop"/>
 		</Frames>
+		<Scripts>
+			<OnShow function="KrowiAF_AchievementsFrame_OnShow"/>
+		</Scripts>
 	</Frame>
 </Ui>
