@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 49.1 - 2022-12-02
+### Added
+- Tooltip data for the Dragonflight Pet Battle achievements
+
+### Fixed
+- 3rd level Right Click Menu pet links are on the 2nd level
+- Loremaster of the Dragon Isles moved from Dragonflight - Zones to Dragonflight - Zones - Dragon Isles - Quests
+
 ## 49.0 - 2022-11-30
 ### Added
 - Pet Battle Links for Dragonflight Pet Battle Achievements

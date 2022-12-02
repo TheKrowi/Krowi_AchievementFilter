@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-30 04-32-55 ]] --
+-- [[ Exported at 2022-12-02 08-46-09 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -394,8 +394,6 @@ L["Error Tabs Order"] = "{blizzard} Tab {statistics} kann nicht vor {guild} steh
 L["Open"] = "Öffnen";
 L["Header tooltip"] = "Überschrift-Tooltip";
 L["Achievement shown temporarily"] = "Dieser Erfolg wird nur vorübergehend angezeigt, da er keinem der gesetzten Filter entspricht.";
-L["Achievement is watched"] = "Erfolg auf Beobachtungsliste";
-L["Achievement is excluded"] = "Erfolg wurde ausgeblendet";
 L["Screenshots"] = "Bildschirmfoto";
 L["WoW's 10th Anniversary"] = "10-jähriges Jubiläum von WoW";
 L["Fated Raids: Castle Nathria"] = "Schicksalhafte Raids: Schloss Nathria";
@@ -545,4 +543,6 @@ L["Add to / Remove from Watch List"] = "Hinzufügen zur / Löschen von der Beoba
 L["Badlands Storms"] = "Ödland";
 L["Northern Barrens Storms"] = "Nördliches Brachland";
 L["Un'Goro Crater Storms"] = "Der Krater von Un'Goro";
+L["Achievement is watched"] = "Erfolg auf Beobachtungsliste";
+L["Achievement is excluded"] = "Erfolg wurde ausgeblendet";
 

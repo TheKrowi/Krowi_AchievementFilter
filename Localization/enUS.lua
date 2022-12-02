@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-30 04-32-55 ]] --
+-- [[ Exported at 2022-12-02 08-46-09 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -394,8 +394,6 @@ L["Error Tabs Order"] = "{blizzard} tab {statistics} can not be in front of {gui
 L["Open"] = "Open";
 L["Header tooltip"] = "Header tooltip";
 L["Achievement shown temporarily"] = "This achievement is shown temporarily because it does not match any set filters.";
-L["Achievement is watched"] = "This achievement is in your {watchList}.";
-L["Achievement is excluded"] = "This achievement is excluded.";
 L["Screenshots"] = "Screenshots";
 L["WoW's 10th Anniversary"] = "WoW's 10th Anniversary";
 L["Fated Raids: Castle Nathria"] = "Fated Raids: Castle Nathria";
@@ -545,4 +543,8 @@ L["Add to / Remove from Watch List"] = "Add to / Remove from Watch List";
 L["Badlands Storms"] = "Badlands";
 L["Northern Barrens Storms"] = "Northern Barrens";
 L["Un'Goro Crater Storms"] = "Un'Goro Crater";
+L["Achievement is watched"] = "This achievement is in your {watchList}.";
+L["Achievement is excluded"] = "This achievement is excluded.";
+L["Needs to be defeated for achievement"] = "Needs to be defeated {forAchievement}";
+L["Already defeated for achievement"] = "Already defeated {forAchievement}";
 

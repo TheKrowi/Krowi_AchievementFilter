@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-30 04-32-21 ]] --
+-- [[ Exported at 2022-12-02 08-30-04 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -11,12 +11,11 @@ data.ExportedPetBattles = {};
 local exportedPetBattles = data.ExportedPetBattles;
 
 local function AddEL(m, t, e)
-    m:AddExtLinkFull(t, e)
+    m:AddExtLinkFull(t, e);
 end
 
 local function AddCEL(m, a, c, e)
-    m:AddCritExtLinkFull(a, c, e)
-    return m;
+    return m:AddCritExtLinkFull(a, c, e);
 end
 
 function exportedPetBattles.Load(m)
