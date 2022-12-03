@@ -1,9 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 49.1 - 2022-12-02
+## 49.1 - 2022-12-03
 ### Added
 - Tooltip data for the Dragonflight Pet Battle achievements
+- Tooltip data now always display the achievement icon (especially useful for pet battle achievements)
 
 ### Fixed
 - 3rd level Right Click Menu pet links are on the 2nd level
