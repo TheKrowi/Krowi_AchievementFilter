@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-30 04-32-57 ]] --
+-- [[ Exported at 2022-12-03 13-59-10 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -11,9 +11,9 @@ local data = addon.Data;
 data.ExportedTooltipData = {};
 local exportedTooltipData = data.ExportedTooltipData;
 
-local function AddD(d, id, type, achId, criIdx, nComplTxt, complTxt, faction)
+local function AddD(d, id, type, achId, criIdx, nComplTxt, complTxt, faction, decorator)
     d[id] = d[id] or {TooltipLines = {}};
-    tinsert(d[id].TooltipLines, {AchievementId = achId, Type = type, CriteriaIndex = criIdx, NotCompletedText = nComplTxt, CompletedText = complTxt, Faction = faction});
+    tinsert(d[id].TooltipLines, {AchievementId = achId, Type = type, CriteriaIndex = criIdx, NotCompletedText = nComplTxt, CompletedText = complTxt, Faction = faction, Decorator = decorator});
 end
 
 function exportedTooltipData.Load(d)
@@ -27,11 +27,13 @@ function exportedTooltipData.Load(d)
     t[8] = addon.L["Already eaten for achievement"];
     t[4] = addon.L["Already killed for achievement"];
     t[10] = addon.L["Already drank for achievement"];
+    t[12] = addon.L["Already defeated for achievement"];
     t[1] = addon.L["Needs /love for achievement"];
     t[5] = addon.L["Needs to be cooked for achievement"];
     t[7] = addon.L["Needs to be eaten for achievement"];
     t[3] = addon.L["Needs to be killed for achievement"];
     t[9] = addon.L["Needs to be drunk for achievement"];
+    t[11] = addon.L["Needs to be defeated for achievement"];
 
     AddD(d, 2442, tdt.Unit, 1206, 1, t[1], t[2]); -- "Cow"
     AddD(d, 620, tdt.Unit, 1206, 2, t[1], t[2]); -- "Chicken"

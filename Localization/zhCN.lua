@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-30 04-32-55 ]] --
+-- [[ Exported at 2022-12-03 12-16-40 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -294,8 +294,6 @@ L["Error Tabs Order"] = "{blizzard} 的标签页 {statistics} 不能放置于 {g
 L["Open"] = "打开";
 L["Header tooltip"] = "标题提示信息";
 L["Achievement shown temporarily"] = "暂时显示成就";
-L["Achievement is watched"] = "该成就在{watchList}中";
-L["Achievement is excluded"] = "该成就被排除在外";
 L["Screenshots"] = "截屏";
 L["WoW's 10th Anniversary"] = "魔兽世界十周年";
 L["Fated Raids: Castle Nathria"] = "宿命团队副本:纳斯利亚堡";
@@ -429,4 +427,8 @@ L["Add to / Remove from Watch List"] = "在跟踪列表中添加/移除";
 L["Badlands Storms"] = "荒芜之地";
 L["Northern Barrens Storms"] = "北贫瘠之地";
 L["Un'Goro Crater Storms"] = "安戈洛环形山";
+L["Achievement is watched"] = "该成就在{watchList}中";
+L["Achievement is excluded"] = "该成就被排除在外";
+L["Needs to be defeated for achievement"] = "{forAchievement} 需要击败";
+L["Already defeated for achievement"] = "{forAchievement} 已击败";
 

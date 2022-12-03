@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-30 04-32-56 ]] --
+-- [[ Exported at 2022-12-03 13-59-09 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -11,9 +11,9 @@ local data = addon.Data;
 data.ExportedTooltipData = {};
 local exportedTooltipData = data.ExportedTooltipData;
 
-local function AddD(d, id, type, achId, criIdx, nComplTxt, complTxt, faction)
+local function AddD(d, id, type, achId, criIdx, nComplTxt, complTxt, faction, decorator)
     d[id] = d[id] or {TooltipLines = {}};
-    tinsert(d[id].TooltipLines, {AchievementId = achId, Type = type, CriteriaIndex = criIdx, NotCompletedText = nComplTxt, CompletedText = complTxt, Faction = faction});
+    tinsert(d[id].TooltipLines, {AchievementId = achId, Type = type, CriteriaIndex = criIdx, NotCompletedText = nComplTxt, CompletedText = complTxt, Faction = faction, Decorator = decorator});
 end
 
 function exportedTooltipData.Load(d)
@@ -27,11 +27,13 @@ function exportedTooltipData.Load(d)
     t[8] = addon.L["Already eaten for achievement"];
     t[4] = addon.L["Already killed for achievement"];
     t[10] = addon.L["Already drank for achievement"];
+    t[12] = addon.L["Already defeated for achievement"];
     t[1] = addon.L["Needs /love for achievement"];
     t[5] = addon.L["Needs to be cooked for achievement"];
     t[7] = addon.L["Needs to be eaten for achievement"];
     t[3] = addon.L["Needs to be killed for achievement"];
     t[9] = addon.L["Needs to be drunk for achievement"];
+    t[11] = addon.L["Needs to be defeated for achievement"];
 
     AddD(d, 25677, tdt.Unit, 1206, 1, t[1], t[2]); -- "Borean Frog"
     AddD(d, 6368, tdt.Unit, 1206, 2, t[1], t[2]); -- "Cat"
@@ -1364,6 +1366,94 @@ function exportedTooltipData.Load(d)
     AddD(d, 174844, tdt.Unit, 14731, 10, t[1], t[2]); -- "Shardling"
     AddD(d, 165767, tdt.Unit, 14731, 11, t[1], t[2]); -- "Emaciated Bat"
     AddD(d, 174641, tdt.Unit, 14731, 12, t[1], t[2]); -- "Creeper"
+    AddD(d, 197447, tdt.Unit, 16464, 1, t[11], t[12]); -- "Eye of the Stormling"
+    AddD(d, 197417, tdt.Unit, 16464, 2, t[11], t[12]); -- "Mini Manafiend Melee"
+    AddD(d, 189376, tdt.Unit, 16464, 3, t[11], t[12]); -- "Swog the Elder"
+    AddD(d, 196069, tdt.Unit, 16464, 4, t[11], t[12]); -- "The Grand Master"
+    AddD(d, 197336, tdt.Unit, 16464, 5, t[11], t[12]); -- "The Oldest Dragonfly"
+    AddD(d, 196264, tdt.Unit, 16464, 6, t[11], t[12]); -- "The Terrible Three"
+    AddD(d, 197102, tdt.Unit, 16464, 7, t[11], t[12]); -- "Two and Two Together"
+    AddD(d, 197350, tdt.Unit, 16464, 8, t[11], t[12]); -- "You Have to Start Somewhere"
+    AddD(d, 197417, tdt.Unit, 16501, 1, t[11], t[12]); -- "Arcantus"
+    AddD(d, 197102, tdt.Unit, 16501, 2, t[11], t[12]); -- "Bakhushek"
+    AddD(d, 197336, tdt.Unit, 16501, 3, t[11], t[12]); -- "Enyobon"
+    AddD(d, 196264, tdt.Unit, 16501, 4, t[11], t[12]); -- "Haniko"
+    AddD(d, 196069, tdt.Unit, 16501, 5, t[11], t[12]); -- "Patchu"
+    AddD(d, 197350, tdt.Unit, 16501, 6, t[11], t[12]); -- "Setimothes"
+    AddD(d, 197447, tdt.Unit, 16501, 7, t[11], t[12]); -- "Stormamu"
+    AddD(d, 189376, tdt.Unit, 16501, 8, t[11], t[12]); -- "Swog"
+    AddD(d, 197417, tdt.Unit, 16503, 1, t[11], t[12]); -- "Arcantus"
+    AddD(d, 197102, tdt.Unit, 16503, 2, t[11], t[12]); -- "Bakhushek"
+    AddD(d, 197336, tdt.Unit, 16503, 3, t[11], t[12]); -- "Enyobon"
+    AddD(d, 196264, tdt.Unit, 16503, 4, t[11], t[12]); -- "Haniko"
+    AddD(d, 196069, tdt.Unit, 16503, 5, t[11], t[12]); -- "Patchu"
+    AddD(d, 197350, tdt.Unit, 16503, 6, t[11], t[12]); -- "Setimothes"
+    AddD(d, 197447, tdt.Unit, 16503, 7, t[11], t[12]); -- "Stormamu"
+    AddD(d, 189376, tdt.Unit, 16503, 8, t[11], t[12]); -- "Swog"
+    AddD(d, 197417, tdt.Unit, 16504, 1, t[11], t[12]); -- "Arcantus"
+    AddD(d, 197102, tdt.Unit, 16504, 2, t[11], t[12]); -- "Bakhushek"
+    AddD(d, 197336, tdt.Unit, 16504, 3, t[11], t[12]); -- "Enyobon"
+    AddD(d, 196264, tdt.Unit, 16504, 4, t[11], t[12]); -- "Haniko"
+    AddD(d, 196069, tdt.Unit, 16504, 5, t[11], t[12]); -- "Patchu"
+    AddD(d, 197350, tdt.Unit, 16504, 6, t[11], t[12]); -- "Setimothes"
+    AddD(d, 197447, tdt.Unit, 16504, 7, t[11], t[12]); -- "Stormamu"
+    AddD(d, 189376, tdt.Unit, 16504, 8, t[11], t[12]); -- "Swog"
+    AddD(d, 197417, tdt.Unit, 16505, 1, t[11], t[12]); -- "Arcantus"
+    AddD(d, 197102, tdt.Unit, 16505, 2, t[11], t[12]); -- "Bakhushek"
+    AddD(d, 197336, tdt.Unit, 16505, 3, t[11], t[12]); -- "Enyobon"
+    AddD(d, 196264, tdt.Unit, 16505, 4, t[11], t[12]); -- "Haniko"
+    AddD(d, 196069, tdt.Unit, 16505, 5, t[11], t[12]); -- "Patchu"
+    AddD(d, 197350, tdt.Unit, 16505, 6, t[11], t[12]); -- "Setimothes"
+    AddD(d, 197447, tdt.Unit, 16505, 7, t[11], t[12]); -- "Stormamu"
+    AddD(d, 189376, tdt.Unit, 16505, 8, t[11], t[12]); -- "Swog"
+    AddD(d, 197417, tdt.Unit, 16506, 1, t[11], t[12]); -- "Arcantus"
+    AddD(d, 197102, tdt.Unit, 16506, 2, t[11], t[12]); -- "Bakhushek"
+    AddD(d, 197336, tdt.Unit, 16506, 3, t[11], t[12]); -- "Enyobon"
+    AddD(d, 196264, tdt.Unit, 16506, 4, t[11], t[12]); -- "Haniko"
+    AddD(d, 196069, tdt.Unit, 16506, 5, t[11], t[12]); -- "Patchu"
+    AddD(d, 197350, tdt.Unit, 16506, 6, t[11], t[12]); -- "Setimothes"
+    AddD(d, 197447, tdt.Unit, 16506, 7, t[11], t[12]); -- "Stormamu"
+    AddD(d, 189376, tdt.Unit, 16506, 8, t[11], t[12]); -- "Swog"
+    AddD(d, 197417, tdt.Unit, 16507, 1, t[11], t[12]); -- "Arcantus"
+    AddD(d, 197102, tdt.Unit, 16507, 2, t[11], t[12]); -- "Bakhushek"
+    AddD(d, 197336, tdt.Unit, 16507, 3, t[11], t[12]); -- "Enyobon"
+    AddD(d, 196264, tdt.Unit, 16507, 4, t[11], t[12]); -- "Haniko"
+    AddD(d, 196069, tdt.Unit, 16507, 5, t[11], t[12]); -- "Patchu"
+    AddD(d, 197350, tdt.Unit, 16507, 6, t[11], t[12]); -- "Setimothes"
+    AddD(d, 197447, tdt.Unit, 16507, 7, t[11], t[12]); -- "Stormamu"
+    AddD(d, 189376, tdt.Unit, 16507, 8, t[11], t[12]); -- "Swog"
+    AddD(d, 197417, tdt.Unit, 16508, 1, t[11], t[12]); -- "Arcantus"
+    AddD(d, 197102, tdt.Unit, 16508, 2, t[11], t[12]); -- "Bakhushek"
+    AddD(d, 197336, tdt.Unit, 16508, 3, t[11], t[12]); -- "Enyobon"
+    AddD(d, 196264, tdt.Unit, 16508, 4, t[11], t[12]); -- "Haniko"
+    AddD(d, 196069, tdt.Unit, 16508, 5, t[11], t[12]); -- "Patchu"
+    AddD(d, 197350, tdt.Unit, 16508, 6, t[11], t[12]); -- "Setimothes"
+    AddD(d, 197447, tdt.Unit, 16508, 7, t[11], t[12]); -- "Stormamu"
+    AddD(d, 189376, tdt.Unit, 16508, 8, t[11], t[12]); -- "Swog"
+    AddD(d, 197417, tdt.Unit, 16509, 1, t[11], t[12]); -- "Arcantus"
+    AddD(d, 197102, tdt.Unit, 16509, 2, t[11], t[12]); -- "Bakhushek"
+    AddD(d, 197336, tdt.Unit, 16509, 3, t[11], t[12]); -- "Enyobon"
+    AddD(d, 196264, tdt.Unit, 16509, 4, t[11], t[12]); -- "Haniko"
+    AddD(d, 196069, tdt.Unit, 16509, 5, t[11], t[12]); -- "Patchu"
+    AddD(d, 197350, tdt.Unit, 16509, 6, t[11], t[12]); -- "Setimothes"
+    AddD(d, 197447, tdt.Unit, 16509, 7, t[11], t[12]); -- "Stormamu"
+    AddD(d, 189376, tdt.Unit, 16509, 8, t[11], t[12]); -- "Swog"
+    AddD(d, 197417, tdt.Unit, 16510, 1, t[11], t[12]); -- "Arcantus"
+    AddD(d, 197102, tdt.Unit, 16510, 2, t[11], t[12]); -- "Bakhushek"
+    AddD(d, 197336, tdt.Unit, 16510, 3, t[11], t[12]); -- "Enyobon"
+    AddD(d, 196264, tdt.Unit, 16510, 4, t[11], t[12]); -- "Haniko"
+    AddD(d, 196069, tdt.Unit, 16510, 5, t[11], t[12]); -- "Patchu"
+    AddD(d, 197350, tdt.Unit, 16510, 6, t[11], t[12]); -- "Setimothes"
+    AddD(d, 197447, tdt.Unit, 16510, 7, t[11], t[12]); -- "Stormamu"
+    AddD(d, 189376, tdt.Unit, 16510, 8, t[11], t[12]); -- "Swog"
+    AddD(d, 197417, tdt.Unit, 16511, 1, t[11], t[12]); -- "Arcantus"
+    AddD(d, 197102, tdt.Unit, 16511, 2, t[11], t[12]); -- "Bakhushek"
+    AddD(d, 197336, tdt.Unit, 16511, 3, t[11], t[12]); -- "Enyobon"
+    AddD(d, 196264, tdt.Unit, 16511, 4, t[11], t[12]); -- "Haniko"
+    AddD(d, 196069, tdt.Unit, 16511, 5, t[11], t[12]); -- "Patchu"
+    AddD(d, 197350, tdt.Unit, 16511, 6, t[11], t[12]); -- "Setimothes"
+    AddD(d, 197447, tdt.Unit, 16511, 7, t[11], t[12]); -- "Stormamu"
+    AddD(d, 189376, tdt.Unit, 16511, 8, t[11], t[12]); -- "Swog"
     AddD(d, 189737, tdt.Unit, 16729, 1, t[1], t[2]); -- "Kelp Nibbler"
     AddD(d, 192135, tdt.Unit, 16729, 2, t[1], t[2]); -- "Phoenix Hatchling"
     AddD(d, 193756, tdt.Unit, 16729, 3, t[1], t[2]); -- "Docile Kit"
