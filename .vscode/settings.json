@@ -431,7 +431,8 @@
         "param-type-mismatch",
         "unbalanced-assignments",
         "ambiguity-1",
-        "missing-return"
+        "missing-return",
+        "duplicate-set-field"
     ],
     "fsdeploy.nodes": [
         {

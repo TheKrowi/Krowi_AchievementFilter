@@ -1,8 +1,8 @@
--- [[ Exported at 2022-12-02 08-46-09 ]] --
+-- [[ Exported at 2022-12-03 12-16-40 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-11-21 ]] --
+-- [[ German translation by Ta, 2022-12-02 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -545,4 +545,6 @@ L["Northern Barrens Storms"] = "Nördliches Brachland";
 L["Un'Goro Crater Storms"] = "Der Krater von Un'Goro";
 L["Achievement is watched"] = "Erfolg auf Beobachtungsliste";
 L["Achievement is excluded"] = "Erfolg wurde ausgeblendet";
+L["Needs to be defeated for achievement"] = "Muss noch {forAchievement} besiegt werden";
+L["Already defeated for achievement"] = "Bereits besiegt {forAchievement}";
 

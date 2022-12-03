@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-02 09-18-12 ]] --
+-- [[ Exported at 2022-12-03 13-59-09 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -11,9 +11,9 @@ local data = addon.Data;
 data.ExportedTooltipData = {};
 local exportedTooltipData = data.ExportedTooltipData;
 
-local function AddD(d, id, type, achId, criIdx, nComplTxt, complTxt, faction)
+local function AddD(d, id, type, achId, criIdx, nComplTxt, complTxt, faction, decorator)
     d[id] = d[id] or {TooltipLines = {}};
-    tinsert(d[id].TooltipLines, {AchievementId = achId, Type = type, CriteriaIndex = criIdx, NotCompletedText = nComplTxt, CompletedText = complTxt, Faction = faction});
+    tinsert(d[id].TooltipLines, {AchievementId = achId, Type = type, CriteriaIndex = criIdx, NotCompletedText = nComplTxt, CompletedText = complTxt, Faction = faction, Decorator = decorator});
 end
 
 function exportedTooltipData.Load(d)

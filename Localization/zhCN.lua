@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-02 08-46-09 ]] --
+-- [[ Exported at 2022-12-03 12-16-40 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -429,4 +429,6 @@ L["Northern Barrens Storms"] = "北贫瘠之地";
 L["Un'Goro Crater Storms"] = "安戈洛环形山";
 L["Achievement is watched"] = "该成就在{watchList}中";
 L["Achievement is excluded"] = "该成就被排除在外";
+L["Needs to be defeated for achievement"] = "{forAchievement} 需要击败";
+L["Already defeated for achievement"] = "{forAchievement} 已击败";
 

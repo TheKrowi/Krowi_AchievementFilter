@@ -18,7 +18,7 @@ local function AddTooltipLine(tooltip, tooltipLine)
         end
     end
 
-    local _, name, _, achievementIsCompleted, _, _, _, _, _, _, _, _, wasEarnedByMe = addon.GetAchievementInfo(tooltipLine.AchievementId);
+    local _, name, _, achievementIsCompleted, _, _, _, _, _, achievementIcon, _, _, wasEarnedByMe = addon.GetAchievementInfo(tooltipLine.AchievementId);
     if not name then -- Achievement does not exist
         return;
     end
@@ -54,7 +54,7 @@ local function AddTooltipLine(tooltip, tooltipLine)
     text = text:ReplaceVars{
         forAchievement = addon.Options.db.Tooltip.Criteria.ShowForAchievement and addon.L["for achievement"] or ""
     };
-    tooltip:AddLine(icon .. " " .. string.trim(text:ReplaceVars{
+    tooltip:AddLine(icon .. " |T" .. achievementIcon .. ":0|t " .. string.trim(text:ReplaceVars{
         achievement = name
     }), color.R, color.G, color.B);
     if addon.Diagnostics.DebugEnabled() then
