@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-30 04-32-12 ]] --
+-- [[ Exported at 2022-12-04 09-33-17 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -5465,11 +5465,11 @@ function exportedCategories.Load(a)
     C(t[883], t[1207]);
     t[1228] = c:New(k.L["Zones"]); -- Zones
     C(t[1207], t[1228]);
-    A(t[1228], a[16585]); -- Loremaster of the Dragon Isles
     t[1341] = c:New(k.GetCategoryInfoTitle(15465)); -- Dragon Isles
     C(t[1228], t[1341]);
     t[1342] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
     C(t[1341], t[1342]);
+    A(t[1342], a[16585]); -- Loremaster of the Dragon Isles
     A(t[1342], a[16291]); -- An Ancient Awakening
     A(t[1342], a[16292]); -- Mastering the Waygates
     A(t[1342], a[16808]); -- Friend of the Dragon Isles

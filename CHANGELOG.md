@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 49.2 - 2022-12-04
+### Wrath Classic
+- Pet Battle links should no longer cause an error
+
 ## 49.1 - 2022-12-03
 ### Added
 - Tooltip data for the Dragonflight Pet Battle achievements

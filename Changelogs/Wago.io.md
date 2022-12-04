@@ -13,3 +13,6 @@
 ### Fixed (49.1)
 - 3rd level Right Click Menu pet links are on the 2nd level
 - Loremaster of the Dragon Isles moved from Dragonflight - Zones to Dragonflight - Zones - Dragon Isles - Quests
+
+### Wrath Classic (49.2)
+- Pet Battle links should no longer cause an error
