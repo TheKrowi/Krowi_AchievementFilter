@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-30 04-32-04 ]] --
+-- [[ Exported at 2022-12-04 09-32-05 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -8418,7 +8418,6 @@ function exportedAchievements.Load(a, t)
     a[16461] = b:New(16461, 10); -- Stormed Off
     a[16462] = b:New(16462, 10); -- The Ohn'ahran Trail
     a[16463] = b:New(16463, 5); -- Thunderstorms in The Waking Shores
-    a[16464] = b:New(16464, 10); -- Battle on the Dragon Isles
     a[16465] = b:New(16465, 5); -- Sandstorms in The Waking Shores
     a[16466] = b:New(16466, 5); -- Firestorms in The Waking Shores
     a[16467] = b:New(16467, 5); -- Snowstorms in The Waking Shores
@@ -8449,17 +8448,7 @@ function exportedAchievements.Load(a, t)
     a[16498] = b:New(16498, 5); -- Elemental Overflow
     a[16499] = b:New(16499, 5); -- Elemental Overflowing
     a[16500] = b:New(16500, 10); -- Elemental Overload
-    a[16501] = b:New(16501, 5); -- Aquatic Battler of the Dragon Isles
     a[16502] = b:New(16502, 0); -- Storming the Runway
-    a[16503] = b:New(16503, 5); -- Beast Battler of the Dragon Isles
-    a[16504] = b:New(16504, 5); -- Critter Battler of the Dragon Isles
-    a[16505] = b:New(16505, 5); -- Dragonkin Battler of the Dragon Isles
-    a[16506] = b:New(16506, 5); -- Elemental Battler of the Dragon Isles
-    a[16507] = b:New(16507, 5); -- Flying Battler of the Dragon Isles
-    a[16508] = b:New(16508, 5); -- Humanoid Battler of the Dragon Isles
-    a[16509] = b:New(16509, 5); -- Magic Battler of the Dragon Isles
-    a[16510] = b:New(16510, 5); -- Mechanical Battler of the Dragon Isles
-    a[16511] = b:New(16511, 5); -- Undead Battler of the Dragon Isles
     a[16512] = b:New(16512, 10); -- Family Battler of the Dragon Isles
     a[16517] = b:New(16517, 10); -- Toxicity Strike Team
     a[16518] = b:New(16518, 10); -- Explore Thaldraszus
