@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 49.3 - 2022-12-09
+### Added
+- Grand Hunts Event Reminders
+
+### Fixed
+- Leftovers' Revenge moves from Ohn'arhran Plains Reputation to The Azure Span Reputation
+
 ## 49.2 - 2022-12-04
 ### Wrath Classic
 - Pet Battle links should no longer cause an error

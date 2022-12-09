@@ -184,7 +184,7 @@ local function OnEnter(self)
         if addon.Options.db.AchievementPoints.Tooltip.AlwaysShowRealm or character.Realm ~= (select(2, UnitFullName("player"))) then
             name = name .. " - " .. character.Realm;
         end
-        name = AddFactionIcon(name, character.Faction)
+        name = AddFactionIcon(name, character.Faction);
         GameTooltip:AddDoubleLine(name, tostring(BreakUpLargeNumbers(character.Points)), r, g, b, 1, 1, 1);
     end
     GameTooltip:Show();

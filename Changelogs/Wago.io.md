@@ -16,3 +16,9 @@
 
 ### Wrath Classic (49.2)
 - Pet Battle links should no longer cause an error
+
+### Added (49.3)
+- Grand Hunts Event Reminders
+
+### Fixed (49.3)
+- Leftovers' Revenge moves from Ohn'arhran Plains Reputation to The Azure Span Reputation
