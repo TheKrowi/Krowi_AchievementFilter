@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 - Grand Hunts Event Reminders
 
 ### Fixed
-- Leftovers' Revenge moves from Ohn'arhran Plains Reputation to The Azure Span Reputation
+- Leftovers' Revenge moved from Ohn'arhran Plains Reputation to The Azure Span Reputation
 
 ## 49.2 - 2022-12-04
 ### Wrath Classic

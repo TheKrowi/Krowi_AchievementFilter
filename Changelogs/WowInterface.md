@@ -34,5 +34,5 @@
 
 [B]Fixed (49.3)[/B]
 [LIST]
-[*]Leftovers' Revenge moves from Ohn'arhran Plains Reputation to The Azure Span Reputation
+[*]Leftovers' Revenge moved from Ohn'arhran Plains Reputation to The Azure Span Reputation
 [/LIST]
