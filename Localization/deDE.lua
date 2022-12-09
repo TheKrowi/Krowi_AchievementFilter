@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-03 12-16-40 ]] --
+-- [[ Exported at 2022-12-09 14-47-34 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -467,10 +467,10 @@ L["Ta's Pet Collection"] = "Ta's Haustier Collection";
 L["Tracking Achievements"] = "Erfassung von Erfolgen";
 L["Load Tracking Achievements"] = "Aktivere die Erfassung von Erfolgen";
 L["Load Tracking Achievements Desc"] = "Aktivere die Erfassung von Erfolgen Beschreibung";
-L["Dragonflight - Firestorms"] = "Dragonflight - Feuerstürme";
-L["Dragonflight - Sandstorms"] = "Dragonflight - Sandstürme";
-L["Dragonflight - Snowstorms"] = "Dragonflight - Schneestürme";
-L["Dragonflight - Thunderstorms"] = "Dragonflight - Gewitterstürme";
+L["DF - Firestorms"] = "DF - Feuerstürme";
+L["DF - Sandstorms"] = "DF - Sandstürme";
+L["DF - Snowstorms"] = "DF - Schneestürme";
+L["DF - Thunderstorms"] = "DF - Gewitterstürme";
 L["Nokhudon Hold"] = "Festung Nokhudon";
 L["Ohn'iri Springs"] = "Quellen von Ohn'iri";
 L["Brackenhide Hollow"] = "Brackenfellhöhle";

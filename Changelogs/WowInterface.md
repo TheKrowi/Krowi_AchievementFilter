@@ -26,3 +26,13 @@
 [LIST]
 [*]Pet Battle links should no longer cause an error
 [/LIST]
+
+[B]Added (49.3)[/B]
+[LIST]
+[*]Grand Hunts Event Reminders
+[/LIST]
+
+[B]Fixed (49.3)[/B]
+[LIST]
+[*]Leftovers' Revenge moves from Ohn'arhran Plains Reputation to The Azure Span Reputation
+[/LIST]

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-03 12-16-40 ]] --
+-- [[ Exported at 2022-12-09 14-47-34 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -363,10 +363,10 @@ L["Patch"] = "补丁";
 L["Temporary Obtainable Text"] = "{thisAchievement}{isWillBeWas}{startText}{startDetail}{endText}{endDetail}{neverOnceTempObt}";
 L["Tracking Achievements"] = "追踪中的成就";
 L["Load Tracking Achievements"] = "加载追踪中的成就";
-L["Dragonflight - Firestorms"] = "巨龙时代-火焰风暴";
-L["Dragonflight - Sandstorms"] = "巨龙时代-沙暴";
-L["Dragonflight - Snowstorms"] = "巨龙时代-雪暴";
-L["Dragonflight - Thunderstorms"] = "巨龙时代-雷暴";
+L["DF - Firestorms"] = "巨龙时代-火焰风暴";
+L["DF - Sandstorms"] = "巨龙时代-沙暴";
+L["DF - Snowstorms"] = "巨龙时代-雪暴";
+L["DF - Thunderstorms"] = "巨龙时代-雷暴";
 L["Nokhudon Hold"] = "诺库顿要塞";
 L["Ohn'iri Springs"] = "欧恩伊尔清泉";
 L["Brackenhide Hollow"] = "蕨皮山谷";

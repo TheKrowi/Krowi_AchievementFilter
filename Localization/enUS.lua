@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-03 12-16-40 ]] --
+-- [[ Exported at 2022-12-09 14-47-34 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -467,10 +467,10 @@ L["Ta's Pet Collection"] = "Ta's Pet Collection";
 L["Tracking Achievements"] = "Tracking Achievements";
 L["Load Tracking Achievements"] = "Load Tracking Achievements";
 L["Load Tracking Achievements Desc"] = "Load Tracking Achievements Desc";
-L["Dragonflight - Firestorms"] = "Dragonflight - Firestorms";
-L["Dragonflight - Sandstorms"] = "Dragonflight - Sandstorms";
-L["Dragonflight - Snowstorms"] = "Dragonflight - Snowstorms";
-L["Dragonflight - Thunderstorms"] = "Dragonflight - Thunderstorms";
+L["DF - Firestorms"] = "DF - Firestorms";
+L["DF - Sandstorms"] = "DF - Sandstorms";
+L["DF - Snowstorms"] = "DF - Snowstorms";
+L["DF - Thunderstorms"] = "DF - Thunderstorms";
 L["Nokhudon Hold"] = "Nokhudon Hold";
 L["Ohn'iri Springs"] = "Ohn'iri Springs";
 L["Brackenhide Hollow"] = "Brackenhide Hollow";
@@ -547,4 +547,9 @@ L["Achievement is watched"] = "This achievement is in your {watchList}.";
 L["Achievement is excluded"] = "This achievement is excluded.";
 L["Needs to be defeated for achievement"] = "Needs to be defeated {forAchievement}";
 L["Already defeated for achievement"] = "Already defeated {forAchievement}";
+L["DF - Grand Hunts"] = "DF - Grand Hunts";
+L["Grand Hunts: Ohn'ahran Plains"] = "Grand Hunts: Ohn'ahran Plains";
+L["Grand Hunts: The Waking Shore"] = "Grand Hunts: The Waking Shore";
+L["Grand Hunts: Thaldraszus"] = "Grand Hunts: Thaldraszus";
+L["Grand Hunts: The Azure Span"] = "Grand Hunts: The Azure Span";
 

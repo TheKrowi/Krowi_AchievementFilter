@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-04 09-33-17 ]] --
+-- [[ Exported at 2022-12-09 14-31-23 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -5667,14 +5667,13 @@ function exportedCategories.Load(a)
     t[1253] = c:New(k.GetCategoryInfoTitle(201), true); -- Reputation
     C(t[1233], t[1253]);
     A(t[1253], a[16443]); -- Soupervisor
-    A(t[1253], a[16444]); -- Leftovers' Revenge
     A(t[1253], a[16528]); -- Joining the Khansguard
+    A(t[1253], a[16544]); -- Grand Hunter
     A(t[1253], a[16540]); -- Hunt Master
+    A(t[1253], a[16545]); -- The Best at What I Do
     A(t[1253], a[16541]); -- Longhunter
     A(t[1253], a[16542]); -- The Disgruntled Hunter
     A(t[1253], a[16543]); -- Tetrachromancer
-    A(t[1253], a[16545]); -- The Best at What I Do
-    A(t[1253], a[16544]); -- Grand Hunter
     t[1307] = c:New(k.L["Dragon Glyphs"], true); -- Dragon Glyphs
     C(t[1233], t[1307]);
     A(t[1307], a[16061]); -- Dragon Glyphs: Dragonsprings Summit
@@ -5797,6 +5796,7 @@ function exportedCategories.Load(a)
     A(t[1256], a[16317]); -- Secret Fishing Spots
     A(t[1256], a[16321]); -- Cutting Tusk Equipment
     A(t[1256], a[16322]); -- Best in Slot
+    A(t[1256], a[16444]); -- Leftovers' Revenge
     t[1308] = c:New(k.L["Dragon Glyphs"], true); -- Dragon Glyphs
     C(t[1234], t[1308]);
     A(t[1308], a[16065]); -- Dragon Glyphs: Azure Archives
@@ -7560,6 +7560,14 @@ function exportedCategories.Load(a)
     A(t[1211], a[15687]); -- Mythic: Fates of the Shadowlands Raids
     t[1358] = c:New(k.GetCategoryInfoTitle(15466)); -- Dragonflight
     C(t[884], t[1358]);
+    t[1392] = c:New((select(2, k.GetAchievementInfo(16544)))); -- Grand Hunter
+    C(t[1358], t[1392]);
+    A(t[1392], a[16544]); -- Grand Hunter
+    A(t[1392], a[16540]); -- Hunt Master
+    A(t[1392], a[16545]); -- The Best at What I Do
+    A(t[1392], a[16541]); -- Longhunter
+    A(t[1392], a[16542]); -- The Disgruntled Hunter
+    A(t[1392], a[16543]); -- Tetrachromancer
     t[1174] = c:New(k.L["Miscellaneous"]); -- Miscellaneous
     C(t[884], t[1174]);
     A(t[1174], a[1636]); -- Competitor's Tabard
