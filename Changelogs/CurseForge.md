@@ -33,4 +33,5 @@
 <p><h3>Added (49.4)</h3></p>
 <ul>
 <li>Siege on Dragonbane Keep and Community Feast Event Reminders</li>
+<li>Tooltip data for Who's a Good Bakar?</li>
 </ul>

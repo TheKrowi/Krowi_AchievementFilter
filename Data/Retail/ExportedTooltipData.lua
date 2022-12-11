@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-04 09-38-52 ]] --
+-- [[ Exported at 2022-12-11 22-08-40 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -27,12 +27,14 @@ function exportedTooltipData.Load(d)
     t[8] = addon.L["Already eaten for achievement"];
     t[4] = addon.L["Already killed for achievement"];
     t[10] = addon.L["Already drank for achievement"];
+    t[14] = addon.L["Already petted for achievement"];
     t[12] = addon.L["Already defeated for achievement"];
     t[1] = addon.L["Needs /love for achievement"];
     t[5] = addon.L["Needs to be cooked for achievement"];
     t[7] = addon.L["Needs to be eaten for achievement"];
     t[3] = addon.L["Needs to be killed for achievement"];
     t[9] = addon.L["Needs to be drunk for achievement"];
+    t[13] = addon.L["Needs to be petted for achievement"];
     t[11] = addon.L["Needs to be defeated for achievement"];
 
     AddD(d, 25677, tdt.Unit, 1206, 1, t[1], t[2]); -- "Borean Frog"
@@ -1366,6 +1368,26 @@ function exportedTooltipData.Load(d)
     AddD(d, 174844, tdt.Unit, 14731, 10, t[1], t[2]); -- "Shardling"
     AddD(d, 165767, tdt.Unit, 14731, 11, t[1], t[2]); -- "Emaciated Bat"
     AddD(d, 174641, tdt.Unit, 14731, 12, t[1], t[2]); -- "Creeper"
+    AddD(d, 197569, tdt.Unit, 16424, 1, t[13], t[14]); -- "Alli"
+    AddD(d, 189274, tdt.Unit, 16424, 2, t[13], t[14]); -- "Baba"
+    AddD(d, 196871, tdt.Unit, 16424, 3, t[13], t[14]); -- "Baga"
+    AddD(d, 195669, tdt.Unit, 16424, 4, t[13], t[14]); -- "Berrel"
+    AddD(d, 187840, tdt.Unit, 16424, 5, t[13], t[14]); -- "Elaichi"
+    AddD(d, 187667, tdt.Unit, 16424, 6, t[13], t[14]); -- "Ellam"
+    AddD(d, 189387, tdt.Unit, 16424, 7, t[13], t[14]); -- "Fogl"
+    AddD(d, 186189, tdt.Unit, 16424, 8, t[13], t[14]); -- "Gentara"
+    AddD(d, 189377, tdt.Unit, 16424, 9, t[13], t[14]); -- "Hugo"
+    AddD(d, 196650, tdt.Unit, 16424, 10, t[13], t[14]); -- "Katei"
+    AddD(d, 190043, tdt.Unit, 16424, 11, t[13], t[14]); -- "Laila"
+    AddD(d, 192687, tdt.Unit, 16424, 12, t[13], t[14]); -- "Nahma"
+    AddD(d, 189278, tdt.Unit, 16424, 13, t[13], t[14]); -- "Pesca"
+    AddD(d, 191405, tdt.Unit, 16424, 14, t[13], t[14]); -- "Rotti"
+    AddD(d, 197514, tdt.Unit, 16424, 15, t[13], t[14]); -- "Soyoo"
+    AddD(d, 197518, tdt.Unit, 16424, 16, t[13], t[14]); -- "Taivan"
+    AddD(d, 189276, tdt.Unit, 16424, 17, t[13], t[14]); -- "Tseg"
+    AddD(d, 196651, tdt.Unit, 16424, 18, t[13], t[14]); -- "Vinyu"
+    AddD(d, 191408, tdt.Unit, 16424, 19, t[13], t[14]); -- "Wish"
+    AddD(d, 189388, tdt.Unit, 16424, 20, t[13], t[14]); -- "Zephyr"
     AddD(d, 197447, tdt.Unit, 16464, 1, t[11], t[12]); -- "Eye of the Stormling"
     AddD(d, 197417, tdt.Unit, 16464, 2, t[11], t[12]); -- "Mini Manafiend Melee"
     AddD(d, 189376, tdt.Unit, 16464, 3, t[11], t[12]); -- "Swog the Elder"

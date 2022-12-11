@@ -1,8 +1,8 @@
--- [[ Exported at 2022-12-11 18-19-55 ]] --
+-- [[ Exported at 2022-12-11 22-15-06 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-12-10 ]] --
+-- [[ German translation by Ta, 2022-12-11 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -552,4 +552,13 @@ L["Grand Hunts: Ohn'ahran Plains"] = "Große Jagd: Ebenen von Ohn'ahra";
 L["Grand Hunts: The Waking Shore"] = "Große Jagd: Die Küste des Erwachens";
 L["Grand Hunts: Thaldraszus"] = "Große Jagd: Thaldraszus";
 L["Grand Hunts: The Azure Span"] = "Große Jagd: Das Azurblaue Gebirge";
+L["DF - Community Feast"] = "DF - Gemeinschaftliches Festmahl";
+L["Community Feast: Cooking"] = "Gemeinschaftliches Festmahl: Kochen";
+L["Community Feast: Soon"] = "Gemeinschaftliches Festmahl: Bald";
+L["Community Feast: Ready"] = "Gemeinschaftliches Festmahl: Fertig";
+L["DF - Siege on Dragonbane Keep"] = "DF - Belagerung der Drachenfluchfestung";
+L["Siege on Dragonbane Keep: Active"] = "Belagerung der Drachenfluchfestung: Aktiv";
+L["Siege on Dragonbane Keep: Gathering"] = "Belagerung der Drachenfluchfestung: Sammeln";
+L["Siege on Dragonbane Keep"] = "Belagerung der Drachenfluchfestung";
+L["Community Feast"] = "Gemeinschaftliches Festmahl";
 

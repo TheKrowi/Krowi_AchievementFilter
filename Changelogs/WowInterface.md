@@ -40,4 +40,5 @@
 [B]Added (49.4)[/B]
 [LIST]
 [*]Siege on Dragonbane Keep and Community Feast Event Reminders
+[*]Tooltip data for Who's a Good Bakar?
 [/LIST]

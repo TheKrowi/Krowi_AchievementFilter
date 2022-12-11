@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-11 18-19-55 ]] --
+-- [[ Exported at 2022-12-11 22-15-06 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -559,4 +559,8 @@ L["Community Feast: Ready"] = "Community Feast: Ready";
 L["DF - Siege on Dragonbane Keep"] = "DF - Siege on Dragonbane Keep";
 L["Siege on Dragonbane Keep: Active"] = "Siege on Dragonbane Keep: Active";
 L["Siege on Dragonbane Keep: Gathering"] = "Siege on Dragonbane Keep: Gathering";
+L["Siege on Dragonbane Keep"] = "Siege on Dragonbane Keep";
+L["Community Feast"] = "Community Feast";
+L["Needs to be petted for achievement"] = "Needs to be petted {forAchievement}";
+L["Already petted for achievement"] = "Already petted {forAchievement}";
 

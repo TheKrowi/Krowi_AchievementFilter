@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## 49.4 - 2022-12-xx
 ### Added
 - Siege on Dragonbane Keep and Community Feast Event Reminders
+- Tooltip data for Who's a Good Bakar?
 
 ## 49.3 - 2022-12-09
 ### Added
