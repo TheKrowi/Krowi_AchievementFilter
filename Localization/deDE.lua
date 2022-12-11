@@ -1,8 +1,8 @@
--- [[ Exported at 2022-12-09 14-47-34 ]] --
+-- [[ Exported at 2022-12-11 18-19-55 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-12-02 ]] --
+-- [[ German translation by Ta, 2022-12-10 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -489,10 +489,10 @@ L["Hide Not Earned By if current character earned the achievement Desc"] = "Blen
 L["Spacing"] = "Abstand";
 L["Spacing Desc"] = "Der Abstand, der zum Standardabstand zwischen den Registerkarten addiert bzw. von diesem subtrahiert wird.";
 L["Ignore"] = "Ignorieren";
-L["Dragonflight pre-patch - Firestorms"] = "Dragonflight Pre-patch - Feuerstürme";
-L["Dragonflight pre-patch - Sandstorms"] = "Dragonflight Pre-patch - Sandstürme";
-L["Dragonflight pre-patch - Snowstorms"] = "Dragonflight Pre-patch - Schneestürme";
-L["Dragonflight pre-patch - Thunderstorms"] = "Dragonflight Pre-patch - Gewitterstürme";
+L["Dragonflight pre-patch - Firestorms"] = "Dragonflight Pre-patch: Feuerstürme";
+L["Dragonflight pre-patch - Sandstorms"] = "Dragonflight Pre-patch: Sandstürme";
+L["Dragonflight pre-patch - Snowstorms"] = "Dragonflight Pre-patch: Schneestürme";
+L["Dragonflight pre-patch - Thunderstorms"] = "Dragonflight Pre-patch: Gewitterstürme";
 L["Badlands Elements"] = "Ödland";
 L["Northern Barrens Elements"] = "Nördliches Brachland";
 L["Un'Goro Crater Elements"] = "Der Krater von Un'Goro";
@@ -547,4 +547,9 @@ L["Achievement is watched"] = "Erfolg auf Beobachtungsliste";
 L["Achievement is excluded"] = "Erfolg wurde ausgeblendet";
 L["Needs to be defeated for achievement"] = "Muss noch {forAchievement} besiegt werden";
 L["Already defeated for achievement"] = "Bereits besiegt {forAchievement}";
+L["DF - Grand Hunts"] = "DF - Große Jagd";
+L["Grand Hunts: Ohn'ahran Plains"] = "Große Jagd: Ebenen von Ohn'ahra";
+L["Grand Hunts: The Waking Shore"] = "Große Jagd: Die Küste des Erwachens";
+L["Grand Hunts: Thaldraszus"] = "Große Jagd: Thaldraszus";
+L["Grand Hunts: The Azure Span"] = "Große Jagd: Das Azurblaue Gebirge";
 

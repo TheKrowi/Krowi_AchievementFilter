@@ -22,3 +22,6 @@
 
 ### Fixed (49.3)
 - Leftovers' Revenge moved from Ohn'arhran Plains Reputation to The Azure Span Reputation
+
+### Added (49.4)
+- Siege on Dragonbane Keep and Community Feast Event Reminders

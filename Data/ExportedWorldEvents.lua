@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-09 14-38-43 ]] --
+-- [[ Exported at 2022-12-11 18-14-39 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -41,6 +41,10 @@ function exportedWorldEvents.Load(e)
     e[6990] = event:New(6990, 3257751, addon.L["Venthyr Assault"], 1550, 302400); -- Venthyr Assault
     e[6991] = event:New(6991, 3257748, addon.L["Kyrian Assault"], 1550, 302400); -- Kyrian Assault
     e[6992] = event:New(6992, 3257750, addon.L["Night Fae Assault"], 1550, 302400); -- Night Fae Assault
+    e[7104] = event:New(7104, 1394891, addon.L["Siege on Dragonbane Keep: Active"], 2022, 3600); -- Siege on Dragonbane Keep: Active
+    e[7218] = event:New(7218, 4240492, addon.L["Community Feast: Cooking"], 2024, 900); -- Community Feast: Cooking
+    e[7219] = event:New(7219, 4240492, addon.L["Community Feast: Soon"], 2024, 900); -- Community Feast: Soon
+    e[7220] = event:New(7220, 4240492, addon.L["Community Feast: Ready"], 2024, 2700); -- Community Feast: Ready
     e[7221] = event:New(7221, 132845, addon.L["Nokhudon Hold"], 1978, 5400); -- Nokhudon Hold
     e[7222] = event:New(7222, 451165, addon.L["Nokhudon Hold"], 1978, 5400); -- Nokhudon Hold
     e[7223] = event:New(7223, 460952, addon.L["Nokhudon Hold"], 1978, 5400); -- Nokhudon Hold
@@ -77,6 +81,7 @@ function exportedWorldEvents.Load(e)
     e[7258] = event:New(7258, 451165, addon.L["Scalecracker Keep"], 1978, 5400); -- Scalecracker Keep
     e[7259] = event:New(7259, 460952, addon.L["Scalecracker Keep"], 1978, 5400); -- Scalecracker Keep
     e[7260] = event:New(7260, 135783, addon.L["Scalecracker Keep"], 1978, 5400); -- Scalecracker Keep
+    e[7267] = event:New(7267, 1394891, addon.L["Siege on Dragonbane Keep: Gathering"], 2022, 3600); -- Siege on Dragonbane Keep: Gathering
     e[7298] = event:New(7298, 132845, addon.L["Primalist Tomorrow"], 1978, 5400); -- Primalist Tomorrow
     e[7299] = event:New(7299, 451165, addon.L["Primalist Tomorrow"], 1978, 5400); -- Primalist Tomorrow
     e[7300] = event:New(7300, 460952, addon.L["Primalist Tomorrow"], 1978, 5400); -- Primalist Tomorrow
@@ -92,7 +97,7 @@ function exportedWorldEvents.LoadCategories(e)
         return;
     end
 
-    if e[5175] == nil or e[5177] == nil or e[5178] == nil or e[5210] == nil or e[5896] == nil or e[5964] == nil or e[5966] == nil or e[5969] == nil or e[5970] == nil or e[5973] == nil or e[6486] == nil or e[6487] == nil or e[6488] == nil or e[6489] == nil or e[6490] == nil or e[6491] == nil or e[6989] == nil or e[6990] == nil or e[6991] == nil or e[6992] == nil or e[7221] == nil or e[7222] == nil or e[7223] == nil or e[7224] == nil or e[7225] == nil or e[7226] == nil or e[7227] == nil or e[7228] == nil or e[7229] == nil or e[7230] == nil or e[7231] == nil or e[7232] == nil or e[7233] == nil or e[7234] == nil or e[7235] == nil or e[7236] == nil or e[7237] == nil or e[7238] == nil or e[7239] == nil or e[7240] == nil or e[7245] == nil or e[7246] == nil or e[7247] == nil or e[7248] == nil or e[7249] == nil or e[7250] == nil or e[7251] == nil or e[7252] == nil or e[7253] == nil or e[7254] == nil or e[7255] == nil or e[7256] == nil or e[7257] == nil or e[7258] == nil or e[7259] == nil or e[7260] == nil or e[7298] == nil or e[7299] == nil or e[7300] == nil or e[7301] == nil or e[7342] == nil or e[7343] == nil or e[7344] == nil or e[7345] == nil then
+    if e[5175] == nil or e[5177] == nil or e[5178] == nil or e[5210] == nil or e[5896] == nil or e[5964] == nil or e[5966] == nil or e[5969] == nil or e[5970] == nil or e[5973] == nil or e[6486] == nil or e[6487] == nil or e[6488] == nil or e[6489] == nil or e[6490] == nil or e[6491] == nil or e[6989] == nil or e[6990] == nil or e[6991] == nil or e[6992] == nil or e[7104] == nil or e[7218] == nil or e[7219] == nil or e[7220] == nil or e[7221] == nil or e[7222] == nil or e[7223] == nil or e[7224] == nil or e[7225] == nil or e[7226] == nil or e[7227] == nil or e[7228] == nil or e[7229] == nil or e[7230] == nil or e[7231] == nil or e[7232] == nil or e[7233] == nil or e[7234] == nil or e[7235] == nil or e[7236] == nil or e[7237] == nil or e[7238] == nil or e[7239] == nil or e[7240] == nil or e[7245] == nil or e[7246] == nil or e[7247] == nil or e[7248] == nil or e[7249] == nil or e[7250] == nil or e[7251] == nil or e[7252] == nil or e[7253] == nil or e[7254] == nil or e[7255] == nil or e[7256] == nil or e[7257] == nil or e[7258] == nil or e[7259] == nil or e[7260] == nil or e[7267] == nil or e[7298] == nil or e[7299] == nil or e[7300] == nil or e[7301] == nil or e[7342] == nil or e[7343] == nil or e[7344] == nil or e[7345] == nil then
         exportedWorldEvents.Load(e);
     end
 
@@ -116,6 +121,10 @@ function exportedWorldEvents.LoadCategories(e)
     e[6990].Category = addon.Tabs["Events"].Categories[11].Children[1].Children[4]; -- Venthyr Assault
     e[6991].Category = addon.Tabs["Events"].Categories[11].Children[1].Children[1]; -- Kyrian Assault
     e[6992].Category = addon.Tabs["Events"].Categories[11].Children[1].Children[3]; -- Night Fae Assault
+    e[7104].Category = addon.Tabs["Events"].Categories[12].Children[1]; -- Siege on Dragonbane Keep
+    e[7218].Category = addon.Tabs["Events"].Categories[12].Children[3]; -- Community Feast
+    e[7219].Category = addon.Tabs["Events"].Categories[12].Children[3]; -- Community Feast
+    e[7220].Category = addon.Tabs["Events"].Categories[12].Children[3]; -- Community Feast
     e[7221].Category = addon.Tabs["Expansions"].Categories[14].Children[7]; -- Primal Storms
     e[7222].Category = addon.Tabs["Expansions"].Categories[14].Children[7]; -- Primal Storms
     e[7223].Category = addon.Tabs["Expansions"].Categories[14].Children[7]; -- Primal Storms
@@ -152,14 +161,15 @@ function exportedWorldEvents.LoadCategories(e)
     e[7258].Category = addon.Tabs["Expansions"].Categories[14].Children[7]; -- Primal Storms
     e[7259].Category = addon.Tabs["Expansions"].Categories[14].Children[7]; -- Primal Storms
     e[7260].Category = addon.Tabs["Expansions"].Categories[14].Children[7]; -- Primal Storms
+    e[7267].Category = addon.Tabs["Events"].Categories[12].Children[1]; -- Siege on Dragonbane Keep
     e[7298].Category = addon.Tabs["Expansions"].Categories[14].Children[7]; -- Primal Storms
     e[7299].Category = addon.Tabs["Expansions"].Categories[14].Children[7]; -- Primal Storms
     e[7300].Category = addon.Tabs["Expansions"].Categories[14].Children[7]; -- Primal Storms
     e[7301].Category = addon.Tabs["Expansions"].Categories[14].Children[7]; -- Primal Storms
-    e[7342].Category = addon.Tabs["Events"].Categories[12].Children[1]; -- Grand Hunter
-    e[7343].Category = addon.Tabs["Events"].Categories[12].Children[1]; -- Grand Hunter
-    e[7344].Category = addon.Tabs["Events"].Categories[12].Children[1]; -- Grand Hunter
-    e[7345].Category = addon.Tabs["Events"].Categories[12].Children[1]; -- Grand Hunter
+    e[7342].Category = addon.Tabs["Events"].Categories[12].Children[2]; -- Grand Hunter
+    e[7343].Category = addon.Tabs["Events"].Categories[12].Children[2]; -- Grand Hunter
+    e[7344].Category = addon.Tabs["Events"].Categories[12].Children[2]; -- Grand Hunter
+    e[7345].Category = addon.Tabs["Events"].Categories[12].Children[2]; -- Grand Hunter
 end
 
 function exportedWorldEvents.InjectOptions()
@@ -188,6 +198,10 @@ function exportedWorldEvents.InjectOptions()
     defaults[6990] = true;
     defaults[6991] = true;
     defaults[6992] = true;
+    defaults[7104] = true;
+    defaults[7218] = true;
+    defaults[7219] = true;
+    defaults[7220] = true;
     defaults[7221] = true;
     defaults[7222] = true;
     defaults[7223] = true;
@@ -224,6 +238,7 @@ function exportedWorldEvents.InjectOptions()
     defaults[7258] = true;
     defaults[7259] = true;
     defaults[7260] = true;
+    defaults[7267] = true;
     defaults[7298] = true;
     defaults[7299] = true;
     defaults[7300] = true;
@@ -402,12 +417,67 @@ function exportedWorldEvents.InjectOptions()
                     },
                 }
             },
-            DF___Firestorms = {
+            DF___Community_Feast = {
                 order = 17, type = "group",
+                name = addon.L["DF - Community Feast"],
+                args = {
+                    E7218 = {
+                        order = 18, type = "toggle", width = 1 * widthMultiplier,
+                        name = addon.L["Community Feast: Cooking"],
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7218]; end,
+                        set = function()
+                            addon.Options.db.EventReminders.WorldEvents[7218] = not addon.Options.db.EventReminders.WorldEvents[7218];
+                            addon.GUI.SideButtonSystem.Refresh();
+                            diagnostics.Debug(addon.L["Community Feast: Cooking"], addon.Options.db.EventReminders.WorldEvents[7218]);
+                        end
+                    },
+                    E7219 = {
+                        order = 19, type = "toggle", width = 1 * widthMultiplier,
+                        name = addon.L["Community Feast: Soon"],
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7219]; end,
+                        set = function()
+                            addon.Options.db.EventReminders.WorldEvents[7219] = not addon.Options.db.EventReminders.WorldEvents[7219];
+                            addon.GUI.SideButtonSystem.Refresh();
+                            diagnostics.Debug(addon.L["Community Feast: Soon"], addon.Options.db.EventReminders.WorldEvents[7219]);
+                        end
+                    },
+                    E7220 = {
+                        order = 20, type = "toggle", width = 1 * widthMultiplier,
+                        name = addon.L["Community Feast: Ready"],
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7220]; end,
+                        set = function()
+                            addon.Options.db.EventReminders.WorldEvents[7220] = not addon.Options.db.EventReminders.WorldEvents[7220];
+                            addon.GUI.SideButtonSystem.Refresh();
+                            diagnostics.Debug(addon.L["Community Feast: Ready"], addon.Options.db.EventReminders.WorldEvents[7220]);
+                        end
+                    },
+                    Blank21 = {order = 21, type = "description", width = "full", name = ""},
+                    SelectAll22 = {
+                        order = 22, type = "execute", width = 1 * widthMultiplier,
+                        name = addon.L["Select All"],
+                        func = function()
+                            addon.Options.db.EventReminders.WorldEvents[7218] = true;
+                            addon.Options.db.EventReminders.WorldEvents[7219] = true;
+                            addon.Options.db.EventReminders.WorldEvents[7220] = true;
+                        end
+                    },
+                    DeselectAll23 = {
+                        order = 23, type = "execute",
+                        name = addon.L["Deselect All"],
+                        func = function()
+                            addon.Options.db.EventReminders.WorldEvents[7218] = false;
+                            addon.Options.db.EventReminders.WorldEvents[7219] = false;
+                            addon.Options.db.EventReminders.WorldEvents[7220] = false;
+                        end
+                    },
+                }
+            },
+            DF___Firestorms = {
+                order = 24, type = "group",
                 name = addon.L["DF - Firestorms"],
                 args = {
                     E7223 = {
-                        order = 18, type = "toggle", width = 1 * widthMultiplier,
+                        order = 25, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Nokhudon Hold"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7223]; end,
                         set = function()
@@ -417,7 +487,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7227 = {
-                        order = 19, type = "toggle", width = 1 * widthMultiplier,
+                        order = 26, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Ohn'iri Springs"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7227]; end,
                         set = function()
@@ -427,7 +497,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7231 = {
-                        order = 20, type = "toggle", width = 1 * widthMultiplier,
+                        order = 27, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Brackenhide Hollow"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7231]; end,
                         set = function()
@@ -437,7 +507,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7235 = {
-                        order = 21, type = "toggle", width = 1 * widthMultiplier,
+                        order = 28, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Cobalt Assembly"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7235]; end,
                         set = function()
@@ -447,7 +517,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7239 = {
-                        order = 22, type = "toggle", width = 1 * widthMultiplier,
+                        order = 29, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Imbu"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7239]; end,
                         set = function()
@@ -457,7 +527,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7247 = {
-                        order = 23, type = "toggle", width = 1 * widthMultiplier,
+                        order = 30, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Tyrhold"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7247]; end,
                         set = function()
@@ -467,7 +537,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7251 = {
-                        order = 24, type = "toggle", width = 1 * widthMultiplier,
+                        order = 31, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Dragonbane Keep"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7251]; end,
                         set = function()
@@ -477,7 +547,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7255 = {
-                        order = 25, type = "toggle", width = 1 * widthMultiplier,
+                        order = 32, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Slagmire"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7255]; end,
                         set = function()
@@ -487,7 +557,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7259 = {
-                        order = 26, type = "toggle", width = 1 * widthMultiplier,
+                        order = 33, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Scalecracker Keep"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7259]; end,
                         set = function()
@@ -497,7 +567,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7300 = {
-                        order = 27, type = "toggle", width = 1 * widthMultiplier,
+                        order = 34, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Primalist Tomorrow"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7300]; end,
                         set = function()
@@ -506,9 +576,9 @@ function exportedWorldEvents.InjectOptions()
                             diagnostics.Debug(addon.L["Primalist Tomorrow"], addon.Options.db.EventReminders.WorldEvents[7300]);
                         end
                     },
-                    Blank28 = {order = 28, type = "description", width = "full", name = ""},
-                    SelectAll29 = {
-                        order = 29, type = "execute", width = 1 * widthMultiplier,
+                    Blank35 = {order = 35, type = "description", width = "full", name = ""},
+                    SelectAll36 = {
+                        order = 36, type = "execute", width = 1 * widthMultiplier,
                         name = addon.L["Select All"],
                         func = function()
                             addon.Options.db.EventReminders.WorldEvents[7223] = true;
@@ -523,8 +593,8 @@ function exportedWorldEvents.InjectOptions()
                             addon.Options.db.EventReminders.WorldEvents[7300] = true;
                         end
                     },
-                    DeselectAll30 = {
-                        order = 30, type = "execute",
+                    DeselectAll37 = {
+                        order = 37, type = "execute",
                         name = addon.L["Deselect All"],
                         func = function()
                             addon.Options.db.EventReminders.WorldEvents[7223] = false;
@@ -542,11 +612,11 @@ function exportedWorldEvents.InjectOptions()
                 }
             },
             DF___Grand_Hunts = {
-                order = 31, type = "group",
+                order = 38, type = "group",
                 name = addon.L["DF - Grand Hunts"],
                 args = {
                     E7342 = {
-                        order = 32, type = "toggle", width = 1 * widthMultiplier,
+                        order = 39, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Grand Hunts: Ohn'ahran Plains"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7342]; end,
                         set = function()
@@ -556,7 +626,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7343 = {
-                        order = 33, type = "toggle", width = 1 * widthMultiplier,
+                        order = 40, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Grand Hunts: The Waking Shore"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7343]; end,
                         set = function()
@@ -566,7 +636,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7344 = {
-                        order = 34, type = "toggle", width = 1 * widthMultiplier,
+                        order = 41, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Grand Hunts: Thaldraszus"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7344]; end,
                         set = function()
@@ -576,7 +646,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7345 = {
-                        order = 35, type = "toggle", width = 1 * widthMultiplier,
+                        order = 42, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Grand Hunts: The Azure Span"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7345]; end,
                         set = function()
@@ -585,9 +655,9 @@ function exportedWorldEvents.InjectOptions()
                             diagnostics.Debug(addon.L["Grand Hunts: The Azure Span"], addon.Options.db.EventReminders.WorldEvents[7345]);
                         end
                     },
-                    Blank36 = {order = 36, type = "description", width = "full", name = ""},
-                    SelectAll37 = {
-                        order = 37, type = "execute", width = 1 * widthMultiplier,
+                    Blank43 = {order = 43, type = "description", width = "full", name = ""},
+                    SelectAll44 = {
+                        order = 44, type = "execute", width = 1 * widthMultiplier,
                         name = addon.L["Select All"],
                         func = function()
                             addon.Options.db.EventReminders.WorldEvents[7342] = true;
@@ -596,8 +666,8 @@ function exportedWorldEvents.InjectOptions()
                             addon.Options.db.EventReminders.WorldEvents[7345] = true;
                         end
                     },
-                    DeselectAll38 = {
-                        order = 38, type = "execute",
+                    DeselectAll45 = {
+                        order = 45, type = "execute",
                         name = addon.L["Deselect All"],
                         func = function()
                             addon.Options.db.EventReminders.WorldEvents[7342] = false;
@@ -609,11 +679,11 @@ function exportedWorldEvents.InjectOptions()
                 }
             },
             DF___Sandstorms = {
-                order = 39, type = "group",
+                order = 46, type = "group",
                 name = addon.L["DF - Sandstorms"],
                 args = {
                     E7222 = {
-                        order = 40, type = "toggle", width = 1 * widthMultiplier,
+                        order = 47, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Nokhudon Hold"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7222]; end,
                         set = function()
@@ -623,7 +693,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7226 = {
-                        order = 41, type = "toggle", width = 1 * widthMultiplier,
+                        order = 48, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Ohn'iri Springs"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7226]; end,
                         set = function()
@@ -633,7 +703,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7230 = {
-                        order = 42, type = "toggle", width = 1 * widthMultiplier,
+                        order = 49, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Brackenhide Hollow"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7230]; end,
                         set = function()
@@ -643,7 +713,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7234 = {
-                        order = 43, type = "toggle", width = 1 * widthMultiplier,
+                        order = 50, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Cobalt Assembly"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7234]; end,
                         set = function()
@@ -653,7 +723,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7238 = {
-                        order = 44, type = "toggle", width = 1 * widthMultiplier,
+                        order = 51, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Imbu"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7238]; end,
                         set = function()
@@ -663,7 +733,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7246 = {
-                        order = 45, type = "toggle", width = 1 * widthMultiplier,
+                        order = 52, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Tyrhold"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7246]; end,
                         set = function()
@@ -673,7 +743,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7250 = {
-                        order = 46, type = "toggle", width = 1 * widthMultiplier,
+                        order = 53, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Dragonbane Keep"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7250]; end,
                         set = function()
@@ -683,7 +753,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7254 = {
-                        order = 47, type = "toggle", width = 1 * widthMultiplier,
+                        order = 54, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Slagmire"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7254]; end,
                         set = function()
@@ -693,7 +763,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7258 = {
-                        order = 48, type = "toggle", width = 1 * widthMultiplier,
+                        order = 55, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Scalecracker Keep"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7258]; end,
                         set = function()
@@ -703,7 +773,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7299 = {
-                        order = 49, type = "toggle", width = 1 * widthMultiplier,
+                        order = 56, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Primalist Tomorrow"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7299]; end,
                         set = function()
@@ -712,9 +782,9 @@ function exportedWorldEvents.InjectOptions()
                             diagnostics.Debug(addon.L["Primalist Tomorrow"], addon.Options.db.EventReminders.WorldEvents[7299]);
                         end
                     },
-                    Blank50 = {order = 50, type = "description", width = "full", name = ""},
-                    SelectAll51 = {
-                        order = 51, type = "execute", width = 1 * widthMultiplier,
+                    Blank57 = {order = 57, type = "description", width = "full", name = ""},
+                    SelectAll58 = {
+                        order = 58, type = "execute", width = 1 * widthMultiplier,
                         name = addon.L["Select All"],
                         func = function()
                             addon.Options.db.EventReminders.WorldEvents[7222] = true;
@@ -729,8 +799,8 @@ function exportedWorldEvents.InjectOptions()
                             addon.Options.db.EventReminders.WorldEvents[7299] = true;
                         end
                     },
-                    DeselectAll52 = {
-                        order = 52, type = "execute",
+                    DeselectAll59 = {
+                        order = 59, type = "execute",
                         name = addon.L["Deselect All"],
                         func = function()
                             addon.Options.db.EventReminders.WorldEvents[7222] = false;
@@ -747,12 +817,55 @@ function exportedWorldEvents.InjectOptions()
                     },
                 }
             },
+            DF___Siege_on_Dragonbane_Keep = {
+                order = 60, type = "group",
+                name = addon.L["DF - Siege on Dragonbane Keep"],
+                args = {
+                    E7104 = {
+                        order = 61, type = "toggle", width = 1 * widthMultiplier,
+                        name = addon.L["Siege on Dragonbane Keep: Active"],
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7104]; end,
+                        set = function()
+                            addon.Options.db.EventReminders.WorldEvents[7104] = not addon.Options.db.EventReminders.WorldEvents[7104];
+                            addon.GUI.SideButtonSystem.Refresh();
+                            diagnostics.Debug(addon.L["Siege on Dragonbane Keep: Active"], addon.Options.db.EventReminders.WorldEvents[7104]);
+                        end
+                    },
+                    E7267 = {
+                        order = 62, type = "toggle", width = 1 * widthMultiplier,
+                        name = addon.L["Siege on Dragonbane Keep: Gathering"],
+                        get = function() return addon.Options.db.EventReminders.WorldEvents[7267]; end,
+                        set = function()
+                            addon.Options.db.EventReminders.WorldEvents[7267] = not addon.Options.db.EventReminders.WorldEvents[7267];
+                            addon.GUI.SideButtonSystem.Refresh();
+                            diagnostics.Debug(addon.L["Siege on Dragonbane Keep: Gathering"], addon.Options.db.EventReminders.WorldEvents[7267]);
+                        end
+                    },
+                    Blank63 = {order = 63, type = "description", width = "full", name = ""},
+                    SelectAll64 = {
+                        order = 64, type = "execute", width = 1 * widthMultiplier,
+                        name = addon.L["Select All"],
+                        func = function()
+                            addon.Options.db.EventReminders.WorldEvents[7104] = true;
+                            addon.Options.db.EventReminders.WorldEvents[7267] = true;
+                        end
+                    },
+                    DeselectAll65 = {
+                        order = 65, type = "execute",
+                        name = addon.L["Deselect All"],
+                        func = function()
+                            addon.Options.db.EventReminders.WorldEvents[7104] = false;
+                            addon.Options.db.EventReminders.WorldEvents[7267] = false;
+                        end
+                    },
+                }
+            },
             DF___Snowstorms = {
-                order = 53, type = "group",
+                order = 66, type = "group",
                 name = addon.L["DF - Snowstorms"],
                 args = {
                     E7224 = {
-                        order = 54, type = "toggle", width = 1 * widthMultiplier,
+                        order = 67, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Nokhudon Hold"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7224]; end,
                         set = function()
@@ -762,7 +875,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7228 = {
-                        order = 55, type = "toggle", width = 1 * widthMultiplier,
+                        order = 68, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Ohn'iri Springs"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7228]; end,
                         set = function()
@@ -772,7 +885,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7232 = {
-                        order = 56, type = "toggle", width = 1 * widthMultiplier,
+                        order = 69, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Brackenhide Hollow"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7232]; end,
                         set = function()
@@ -782,7 +895,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7236 = {
-                        order = 57, type = "toggle", width = 1 * widthMultiplier,
+                        order = 70, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Cobalt Assembly"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7236]; end,
                         set = function()
@@ -792,7 +905,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7240 = {
-                        order = 58, type = "toggle", width = 1 * widthMultiplier,
+                        order = 71, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Imbu"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7240]; end,
                         set = function()
@@ -802,7 +915,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7248 = {
-                        order = 59, type = "toggle", width = 1 * widthMultiplier,
+                        order = 72, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Tyrhold"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7248]; end,
                         set = function()
@@ -812,7 +925,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7252 = {
-                        order = 60, type = "toggle", width = 1 * widthMultiplier,
+                        order = 73, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Dragonbane Keep"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7252]; end,
                         set = function()
@@ -822,7 +935,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7256 = {
-                        order = 61, type = "toggle", width = 1 * widthMultiplier,
+                        order = 74, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Slagmire"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7256]; end,
                         set = function()
@@ -832,7 +945,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7260 = {
-                        order = 62, type = "toggle", width = 1 * widthMultiplier,
+                        order = 75, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Scalecracker Keep"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7260]; end,
                         set = function()
@@ -842,7 +955,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7301 = {
-                        order = 63, type = "toggle", width = 1 * widthMultiplier,
+                        order = 76, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Primalist Tomorrow"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7301]; end,
                         set = function()
@@ -851,9 +964,9 @@ function exportedWorldEvents.InjectOptions()
                             diagnostics.Debug(addon.L["Primalist Tomorrow"], addon.Options.db.EventReminders.WorldEvents[7301]);
                         end
                     },
-                    Blank64 = {order = 64, type = "description", width = "full", name = ""},
-                    SelectAll65 = {
-                        order = 65, type = "execute", width = 1 * widthMultiplier,
+                    Blank77 = {order = 77, type = "description", width = "full", name = ""},
+                    SelectAll78 = {
+                        order = 78, type = "execute", width = 1 * widthMultiplier,
                         name = addon.L["Select All"],
                         func = function()
                             addon.Options.db.EventReminders.WorldEvents[7224] = true;
@@ -868,8 +981,8 @@ function exportedWorldEvents.InjectOptions()
                             addon.Options.db.EventReminders.WorldEvents[7301] = true;
                         end
                     },
-                    DeselectAll66 = {
-                        order = 66, type = "execute",
+                    DeselectAll79 = {
+                        order = 79, type = "execute",
                         name = addon.L["Deselect All"],
                         func = function()
                             addon.Options.db.EventReminders.WorldEvents[7224] = false;
@@ -887,11 +1000,11 @@ function exportedWorldEvents.InjectOptions()
                 }
             },
             DF___Thunderstorms = {
-                order = 67, type = "group",
+                order = 80, type = "group",
                 name = addon.L["DF - Thunderstorms"],
                 args = {
                     E7221 = {
-                        order = 68, type = "toggle", width = 1 * widthMultiplier,
+                        order = 81, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Nokhudon Hold"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7221]; end,
                         set = function()
@@ -901,7 +1014,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7225 = {
-                        order = 69, type = "toggle", width = 1 * widthMultiplier,
+                        order = 82, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Ohn'iri Springs"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7225]; end,
                         set = function()
@@ -911,7 +1024,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7229 = {
-                        order = 70, type = "toggle", width = 1 * widthMultiplier,
+                        order = 83, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Brackenhide Hollow"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7229]; end,
                         set = function()
@@ -921,7 +1034,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7233 = {
-                        order = 71, type = "toggle", width = 1 * widthMultiplier,
+                        order = 84, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Cobalt Assembly"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7233]; end,
                         set = function()
@@ -931,7 +1044,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7237 = {
-                        order = 72, type = "toggle", width = 1 * widthMultiplier,
+                        order = 85, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Imbu"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7237]; end,
                         set = function()
@@ -941,7 +1054,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7245 = {
-                        order = 73, type = "toggle", width = 1 * widthMultiplier,
+                        order = 86, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Tyrhold"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7245]; end,
                         set = function()
@@ -951,7 +1064,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7249 = {
-                        order = 74, type = "toggle", width = 1 * widthMultiplier,
+                        order = 87, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Dragonbane Keep"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7249]; end,
                         set = function()
@@ -961,7 +1074,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7253 = {
-                        order = 75, type = "toggle", width = 1 * widthMultiplier,
+                        order = 88, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Slagmire"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7253]; end,
                         set = function()
@@ -971,7 +1084,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7257 = {
-                        order = 76, type = "toggle", width = 1 * widthMultiplier,
+                        order = 89, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Scalecracker Keep"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7257]; end,
                         set = function()
@@ -981,7 +1094,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E7298 = {
-                        order = 77, type = "toggle", width = 1 * widthMultiplier,
+                        order = 90, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Primalist Tomorrow"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[7298]; end,
                         set = function()
@@ -990,9 +1103,9 @@ function exportedWorldEvents.InjectOptions()
                             diagnostics.Debug(addon.L["Primalist Tomorrow"], addon.Options.db.EventReminders.WorldEvents[7298]);
                         end
                     },
-                    Blank78 = {order = 78, type = "description", width = "full", name = ""},
-                    SelectAll79 = {
-                        order = 79, type = "execute", width = 1 * widthMultiplier,
+                    Blank91 = {order = 91, type = "description", width = "full", name = ""},
+                    SelectAll92 = {
+                        order = 92, type = "execute", width = 1 * widthMultiplier,
                         name = addon.L["Select All"],
                         func = function()
                             addon.Options.db.EventReminders.WorldEvents[7221] = true;
@@ -1007,8 +1120,8 @@ function exportedWorldEvents.InjectOptions()
                             addon.Options.db.EventReminders.WorldEvents[7298] = true;
                         end
                     },
-                    DeselectAll80 = {
-                        order = 80, type = "execute",
+                    DeselectAll93 = {
+                        order = 93, type = "execute",
                         name = addon.L["Deselect All"],
                         func = function()
                             addon.Options.db.EventReminders.WorldEvents[7221] = false;
@@ -1026,11 +1139,11 @@ function exportedWorldEvents.InjectOptions()
                 }
             },
             Legion = {
-                order = 81, type = "group",
+                order = 94, type = "group",
                 name = addon.L["Legion"],
                 args = {
                     E5175 = {
-                        order = 82, type = "toggle", width = 1 * widthMultiplier,
+                        order = 95, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Assault on Azsuna"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[5175]; end,
                         set = function()
@@ -1040,7 +1153,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E5177 = {
-                        order = 83, type = "toggle", width = 1 * widthMultiplier,
+                        order = 96, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Assault on Highmountain"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[5177]; end,
                         set = function()
@@ -1050,7 +1163,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E5178 = {
-                        order = 84, type = "toggle", width = 1 * widthMultiplier,
+                        order = 97, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Assault on Stormheim"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[5178]; end,
                         set = function()
@@ -1060,7 +1173,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E5210 = {
-                        order = 85, type = "toggle", width = 1 * widthMultiplier,
+                        order = 98, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Assault on Val'sharah"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[5210]; end,
                         set = function()
@@ -1069,9 +1182,9 @@ function exportedWorldEvents.InjectOptions()
                             diagnostics.Debug(addon.L["Assault on Val'sharah"], addon.Options.db.EventReminders.WorldEvents[5210]);
                         end
                     },
-                    Blank86 = {order = 86, type = "description", width = "full", name = ""},
-                    SelectAll87 = {
-                        order = 87, type = "execute", width = 1 * widthMultiplier,
+                    Blank99 = {order = 99, type = "description", width = "full", name = ""},
+                    SelectAll100 = {
+                        order = 100, type = "execute", width = 1 * widthMultiplier,
                         name = addon.L["Select All"],
                         func = function()
                             addon.Options.db.EventReminders.WorldEvents[5175] = true;
@@ -1080,8 +1193,8 @@ function exportedWorldEvents.InjectOptions()
                             addon.Options.db.EventReminders.WorldEvents[5210] = true;
                         end
                     },
-                    DeselectAll88 = {
-                        order = 88, type = "execute",
+                    DeselectAll101 = {
+                        order = 101, type = "execute",
                         name = addon.L["Deselect All"],
                         func = function()
                             addon.Options.db.EventReminders.WorldEvents[5175] = false;
@@ -1093,11 +1206,11 @@ function exportedWorldEvents.InjectOptions()
                 }
             },
             Shadowlands = {
-                order = 89, type = "group",
+                order = 102, type = "group",
                 name = addon.L["Shadowlands"],
                 args = {
                     E6989 = {
-                        order = 90, type = "toggle", width = 1 * widthMultiplier,
+                        order = 103, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Necrolord Assault"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[6989]; end,
                         set = function()
@@ -1107,7 +1220,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E6990 = {
-                        order = 91, type = "toggle", width = 1 * widthMultiplier,
+                        order = 104, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Venthyr Assault"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[6990]; end,
                         set = function()
@@ -1117,7 +1230,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E6991 = {
-                        order = 92, type = "toggle", width = 1 * widthMultiplier,
+                        order = 105, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Kyrian Assault"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[6991]; end,
                         set = function()
@@ -1127,7 +1240,7 @@ function exportedWorldEvents.InjectOptions()
                         end
                     },
                     E6992 = {
-                        order = 93, type = "toggle", width = 1 * widthMultiplier,
+                        order = 106, type = "toggle", width = 1 * widthMultiplier,
                         name = addon.L["Night Fae Assault"],
                         get = function() return addon.Options.db.EventReminders.WorldEvents[6992]; end,
                         set = function()
@@ -1136,9 +1249,9 @@ function exportedWorldEvents.InjectOptions()
                             diagnostics.Debug(addon.L["Night Fae Assault"], addon.Options.db.EventReminders.WorldEvents[6992]);
                         end
                     },
-                    Blank94 = {order = 94, type = "description", width = "full", name = ""},
-                    SelectAll95 = {
-                        order = 95, type = "execute", width = 1 * widthMultiplier,
+                    Blank107 = {order = 107, type = "description", width = "full", name = ""},
+                    SelectAll108 = {
+                        order = 108, type = "execute", width = 1 * widthMultiplier,
                         name = addon.L["Select All"],
                         func = function()
                             addon.Options.db.EventReminders.WorldEvents[6989] = true;
@@ -1147,8 +1260,8 @@ function exportedWorldEvents.InjectOptions()
                             addon.Options.db.EventReminders.WorldEvents[6992] = true;
                         end
                     },
-                    DeselectAll96 = {
-                        order = 96, type = "execute",
+                    DeselectAll109 = {
+                        order = 109, type = "execute",
                         name = addon.L["Deselect All"],
                         func = function()
                             addon.Options.db.EventReminders.WorldEvents[6989] = false;
