@@ -1,8 +1,8 @@
--- [[ Exported at 2022-12-11 22-15-06 ]] --
+-- [[ Exported at 2022-12-13 07-11-41 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-12-11 ]] --
+-- [[ German translation by Ta, 2022-12-12 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -561,4 +561,6 @@ L["Siege on Dragonbane Keep: Active"] = "Belagerung der Drachenfluchfestung: Akt
 L["Siege on Dragonbane Keep: Gathering"] = "Belagerung der Drachenfluchfestung: Sammeln";
 L["Siege on Dragonbane Keep"] = "Belagerung der Drachenfluchfestung";
 L["Community Feast"] = "Gemeinschaftliches Festmahl";
+L["Needs to be petted for achievement"] = "Muss noch {forAchievement} gestreichelt werden";
+L["Already petted for achievement"] = "Bereits gestreichelt {forAchievement}";
 

@@ -26,3 +26,4 @@
 ### Added (49.4)
 - Siege on Dragonbane Keep and Community Feast Event Reminders
 - Tooltip data for Who's a Good Bakar?
+- Experimental searching of achievement criteria; Use @ as a prefix
