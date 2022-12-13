@@ -1,8 +1,8 @@
--- [[ Exported at 2022-12-09 14-47-34 ]] --
+-- [[ Exported at 2022-12-13 07-11-41 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-12-02 ]] --
+-- [[ German translation by Ta, 2022-12-12 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -489,10 +489,10 @@ L["Hide Not Earned By if current character earned the achievement Desc"] = "Blen
 L["Spacing"] = "Abstand";
 L["Spacing Desc"] = "Der Abstand, der zum Standardabstand zwischen den Registerkarten addiert bzw. von diesem subtrahiert wird.";
 L["Ignore"] = "Ignorieren";
-L["Dragonflight pre-patch - Firestorms"] = "Dragonflight Pre-patch - Feuerstürme";
-L["Dragonflight pre-patch - Sandstorms"] = "Dragonflight Pre-patch - Sandstürme";
-L["Dragonflight pre-patch - Snowstorms"] = "Dragonflight Pre-patch - Schneestürme";
-L["Dragonflight pre-patch - Thunderstorms"] = "Dragonflight Pre-patch - Gewitterstürme";
+L["Dragonflight pre-patch - Firestorms"] = "Dragonflight Pre-patch: Feuerstürme";
+L["Dragonflight pre-patch - Sandstorms"] = "Dragonflight Pre-patch: Sandstürme";
+L["Dragonflight pre-patch - Snowstorms"] = "Dragonflight Pre-patch: Schneestürme";
+L["Dragonflight pre-patch - Thunderstorms"] = "Dragonflight Pre-patch: Gewitterstürme";
 L["Badlands Elements"] = "Ödland";
 L["Northern Barrens Elements"] = "Nördliches Brachland";
 L["Un'Goro Crater Elements"] = "Der Krater von Un'Goro";
@@ -547,4 +547,20 @@ L["Achievement is watched"] = "Erfolg auf Beobachtungsliste";
 L["Achievement is excluded"] = "Erfolg wurde ausgeblendet";
 L["Needs to be defeated for achievement"] = "Muss noch {forAchievement} besiegt werden";
 L["Already defeated for achievement"] = "Bereits besiegt {forAchievement}";
+L["DF - Grand Hunts"] = "DF - Große Jagd";
+L["Grand Hunts: Ohn'ahran Plains"] = "Große Jagd: Ebenen von Ohn'ahra";
+L["Grand Hunts: The Waking Shore"] = "Große Jagd: Die Küste des Erwachens";
+L["Grand Hunts: Thaldraszus"] = "Große Jagd: Thaldraszus";
+L["Grand Hunts: The Azure Span"] = "Große Jagd: Das Azurblaue Gebirge";
+L["DF - Community Feast"] = "DF - Gemeinschaftliches Festmahl";
+L["Community Feast: Cooking"] = "Gemeinschaftliches Festmahl: Kochen";
+L["Community Feast: Soon"] = "Gemeinschaftliches Festmahl: Bald";
+L["Community Feast: Ready"] = "Gemeinschaftliches Festmahl: Fertig";
+L["DF - Siege on Dragonbane Keep"] = "DF - Belagerung der Drachenfluchfestung";
+L["Siege on Dragonbane Keep: Active"] = "Belagerung der Drachenfluchfestung: Aktiv";
+L["Siege on Dragonbane Keep: Gathering"] = "Belagerung der Drachenfluchfestung: Sammeln";
+L["Siege on Dragonbane Keep"] = "Belagerung der Drachenfluchfestung";
+L["Community Feast"] = "Gemeinschaftliches Festmahl";
+L["Needs to be petted for achievement"] = "Muss noch {forAchievement} gestreichelt werden";
+L["Already petted for achievement"] = "Bereits gestreichelt {forAchievement}";
 

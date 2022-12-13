@@ -34,5 +34,11 @@
 
 [B]Fixed (49.3)[/B]
 [LIST]
-[*]Leftovers' Revenge moves from Ohn'arhran Plains Reputation to The Azure Span Reputation
+[*]Leftovers' Revenge moved from Ohn'arhran Plains Reputation to The Azure Span Reputation
+[/LIST]
+
+[B]Added (49.4)[/B]
+[LIST]
+[*]Siege on Dragonbane Keep and Community Feast Event Reminders
+[*]Tooltip data for Who's a Good Bakar?
 [/LIST]

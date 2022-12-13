@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-09 14-31-23 ]] --
+-- [[ Exported at 2022-12-11 17-57-35 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -5500,14 +5500,14 @@ function exportedCategories.Load(a)
     A(t[1361], a[16522]); -- A True Explorer
     A(t[1361], a[16530]); -- Ally of the Flights
     A(t[1361], a[16549]); -- Popular Around the Isles
+    A(t[1361], a[16571]); -- Well Supplied
     A(t[1361], a[16560]); -- Wildlife Photographer
     A(t[1361], a[16566]); -- Great Shot!
     A(t[1361], a[16567]); -- A Lot of Great Shots!
     A(t[1361], a[16568]); -- Great Shots Galore!
-    A(t[1361], a[16570]); -- A Legendary Album
-    A(t[1361], a[16571]); -- Well Supplied
     A(t[1361], a[16572]); -- Legendary Photograph
     A(t[1361], a[16573]); -- Legendary Photographs
+    A(t[1361], a[16570]); -- A Legendary Album
     A(t[1361], a[16587]); -- Lead Climber
     A(t[1361], a[16588]); -- How Did These Get Here?
     A(t[1361], a[16591]); -- The Gentleman Elemental
@@ -7560,6 +7560,11 @@ function exportedCategories.Load(a)
     A(t[1211], a[15687]); -- Mythic: Fates of the Shadowlands Raids
     t[1358] = c:New(k.GetCategoryInfoTitle(15466)); -- Dragonflight
     C(t[884], t[1358]);
+    t[1394] = c:New(k.L["Siege on Dragonbane Keep"]); -- Siege on Dragonbane Keep
+    C(t[1358], t[1394]);
+    A(t[1394], a[16411]); -- Siege on Dragonbane Keep: Home Sweet Home
+    A(t[1394], a[16412]); -- Siege on Dragonbane Keep: Chiseled Record
+    A(t[1394], a[16410]); -- Siege on Dragonbane Keep: Snack Attack
     t[1392] = c:New((select(2, k.GetAchievementInfo(16544)))); -- Grand Hunter
     C(t[1358], t[1392]);
     A(t[1392], a[16544]); -- Grand Hunter
@@ -7568,6 +7573,10 @@ function exportedCategories.Load(a)
     A(t[1392], a[16541]); -- Longhunter
     A(t[1392], a[16542]); -- The Disgruntled Hunter
     A(t[1392], a[16543]); -- Tetrachromancer
+    t[1393] = c:New(k.L["Community Feast"]); -- Community Feast
+    C(t[1358], t[1393]);
+    A(t[1393], a[16444]); -- Leftovers' Revenge
+    A(t[1393], a[16443]); -- Soupervisor
     t[1174] = c:New(k.L["Miscellaneous"]); -- Miscellaneous
     C(t[884], t[1174]);
     A(t[1174], a[1636]); -- Competitor's Tabard

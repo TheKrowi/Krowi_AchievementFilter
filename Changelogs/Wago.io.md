@@ -21,4 +21,8 @@
 - Grand Hunts Event Reminders
 
 ### Fixed (49.3)
-- Leftovers' Revenge moves from Ohn'arhran Plains Reputation to The Azure Span Reputation
+- Leftovers' Revenge moved from Ohn'arhran Plains Reputation to The Azure Span Reputation
+
+### Added (49.4)
+- Siege on Dragonbane Keep and Community Feast Event Reminders
+- Tooltip data for Who's a Good Bakar?

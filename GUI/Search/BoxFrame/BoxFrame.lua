@@ -71,6 +71,7 @@ function KrowiAF_SearchBoxFrame_OnEnterPressed(self)
 	end
 end
 
+local criteriaCache;
 local function GetSearchResults(text)
 	text = text:lower();
 	local results = {};
@@ -83,11 +84,34 @@ local function GetSearchResults(text)
 	if string.match(text, "^#") then
 		for i = 1, numAchievementIds do
 			achievement = addon.Data.Achievements[addon.Data.AchievementIds[i]];
-			if string.find(tostring(achievement.ID):lower(), string.sub(text, 2):lower(), 1, true) then
+			if string.find(tostring(achievement.ID):lower(), string.sub(text, 2), 1, true) then
 				if not (excludeExcluded and achievement.Excluded) then
 					if achievement.DoesNotExist == nil or (showPlaceholders and achievement.DoesNotExist) then
 						tinsert(results, achievement);
 					end
+				end
+			end
+		end
+	elseif string.match(text, "^@") then
+		if criteriaCache == nil then
+			criteriaCache = {};
+			local numCriteria, criteriaString;
+			for i = 1, numAchievementIds do
+				achievement = addon.Data.Achievements[addon.Data.AchievementIds[i]];
+				numCriteria = GetAchievementNumCriteria(achievement.Id);
+				for j = 1, numCriteria do -- Build the cache the first time to limit API requests
+					criteriaString = GetAchievementCriteriaInfo(achievement.Id, j);
+					tinsert(criteriaCache, {Achievement = achievement, CriteriaString = criteriaString});
+				end
+			end
+		end
+
+		local criteriaString;
+		for _, criteria in next, criteriaCache do
+			achievement, criteriaString = criteria.Achievement, criteria.CriteriaString;
+			if string.find(criteriaString:lower(), string.sub(text, 2), 1, true) then
+				if not (excludeExcluded and achievement.Excluded) and (achievement.DoesNotExist == nil or (showPlaceholders and achievement.DoesNotExist)) then
+					tinsert(results, achievement);
 				end
 			end
 		end

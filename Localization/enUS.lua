@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-09 14-47-34 ]] --
+-- [[ Exported at 2022-12-13 07-11-41 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -552,4 +552,15 @@ L["Grand Hunts: Ohn'ahran Plains"] = "Grand Hunts: Ohn'ahran Plains";
 L["Grand Hunts: The Waking Shore"] = "Grand Hunts: The Waking Shore";
 L["Grand Hunts: Thaldraszus"] = "Grand Hunts: Thaldraszus";
 L["Grand Hunts: The Azure Span"] = "Grand Hunts: The Azure Span";
+L["DF - Community Feast"] = "DF - Community Feast";
+L["Community Feast: Cooking"] = "Community Feast: Cooking";
+L["Community Feast: Soon"] = "Community Feast: Soon";
+L["Community Feast: Ready"] = "Community Feast: Ready";
+L["DF - Siege on Dragonbane Keep"] = "DF - Siege on Dragonbane Keep";
+L["Siege on Dragonbane Keep: Active"] = "Siege on Dragonbane Keep: Active";
+L["Siege on Dragonbane Keep: Gathering"] = "Siege on Dragonbane Keep: Gathering";
+L["Siege on Dragonbane Keep"] = "Siege on Dragonbane Keep";
+L["Community Feast"] = "Community Feast";
+L["Needs to be petted for achievement"] = "Needs to be petted {forAchievement}";
+L["Already petted for achievement"] = "Already petted {forAchievement}";
 
