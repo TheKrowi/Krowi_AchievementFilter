@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 49.5 - 2022-12-14
+### Fixed
+- Primal Storm events should now correctly appear as a reminder
+- Community Feast: Soon should now track the remaining time correctly
+
 ## 49.4 - 2022-12-13
 ### Added
 - Siege on Dragonbane Keep and Community Feast Event Reminders
