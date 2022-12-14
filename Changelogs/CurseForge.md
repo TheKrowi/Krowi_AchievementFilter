@@ -34,4 +34,10 @@
 <ul>
 <li>Siege on Dragonbane Keep and Community Feast Event Reminders</li>
 <li>Tooltip data for Who's a Good Bakar?</li>
+<li>Experimental searching of achievement criteria; Use @ as a prefix</li>
+</ul>
+<p><h3>Fixed (49.5)</h3></p>
+<ul>
+<li>Primal Storm events should now correctly appear as a reminder</li>
+<li>Community Feast: Soon should now track the remaining time correctly</li>
 </ul>
