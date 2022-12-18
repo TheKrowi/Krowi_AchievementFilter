@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-13 07-11-41 ]] --
+-- [[ Exported at 2022-12-18 17-52-31 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -161,7 +161,7 @@ L["WoWInterface Desc"] = "Open a popup dialog with a link to the {addonName} {wo
 L["Show minimap icon"] = "Show minimap icon";
 L["Show minimap icon Desc"] = "Show / hide the minimap icon.";
 L["Reset view on open"] = "Reset view on open";
-L["Reset view on open Desc"] = "Collapse all categories and select the first category\nor\nKeep the last selected category when last closed.";
+L["Reset view on open Desc"] = "Collapse all categories and select the summary.";
 L["Search"] = "Search";
 L["Clear search field on Right Click"] = "Clear search field on Right Click";
 L["Clear search field on Right Click Desc"] = "Enable / disable clearing the search field when Right Clicking in it.";
@@ -493,9 +493,6 @@ L["Dragonflight pre-patch - Firestorms"] = "Dragonflight pre-patch - Firestorms"
 L["Dragonflight pre-patch - Sandstorms"] = "Dragonflight pre-patch - Sandstorms";
 L["Dragonflight pre-patch - Snowstorms"] = "Dragonflight pre-patch - Snowstorms";
 L["Dragonflight pre-patch - Thunderstorms"] = "Dragonflight pre-patch - Thunderstorms";
-L["Badlands Elements"] = "Badlands";
-L["Northern Barrens Elements"] = "Northern Barrens";
-L["Un'Goro Crater Elements"] = "Un'Goro Crater";
 L["Export Criteria"] = "Export Criteria";
 L["Export Criteria Desc"] = "Exports Achievement Criteria to the Saved Variables. This is used to add new content.";
 L["Criteria"] = "Criteria";
@@ -540,9 +537,6 @@ L["Modifiers"] = "Modifiers";
 L["Paste to Chat"] = "Paste to Chat";
 L["Toggle Tracking"] = "Toggle Tracking";
 L["Add to / Remove from Watch List"] = "Add to / Remove from Watch List";
-L["Badlands Storms"] = "Badlands";
-L["Northern Barrens Storms"] = "Northern Barrens";
-L["Un'Goro Crater Storms"] = "Un'Goro Crater";
 L["Achievement is watched"] = "This achievement is in your {watchList}.";
 L["Achievement is excluded"] = "This achievement is excluded.";
 L["Needs to be defeated for achievement"] = "Needs to be defeated {forAchievement}";
@@ -563,4 +557,6 @@ L["Siege on Dragonbane Keep"] = "Siege on Dragonbane Keep";
 L["Community Feast"] = "Community Feast";
 L["Needs to be petted for achievement"] = "Needs to be petted {forAchievement}";
 L["Already petted for achievement"] = "Already petted {forAchievement}";
+L["Toggle window once opened"] = "Toggle window once opened";
+L["Toggle window once opened Desc"] = "When the achievement window is opened the first time, open the window to the correct tab and select the summary. From the second time onwards, regardless of the keybind used, open the last view.";
 

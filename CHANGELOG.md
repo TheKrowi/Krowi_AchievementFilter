@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 50.0 - 2022-12-xx
+### Added
+- Toggle window once opened option
+
 ## 49.5 - 2022-12-14
 ### Fixed
 - Primal Storm events should now correctly appear as a reminder

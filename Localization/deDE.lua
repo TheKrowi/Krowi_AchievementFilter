@@ -1,8 +1,8 @@
--- [[ Exported at 2022-12-13 07-11-41 ]] --
+-- [[ Exported at 2022-12-18 17-52-31 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-12-12 ]] --
+-- [[ German translation by Ta, 2022-12-18 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -161,7 +161,7 @@ L["WoWInterface Desc"] = "Öffnet ein Popup-Fenster mit einem Link zur Seite {ad
 L["Show minimap icon"] = "Zeige Minimap Icon";
 L["Show minimap icon Desc"] = "Zeige / Verstecke das Minimap Icon.";
 L["Reset view on open"] = "Zurücksetzen der Ansicht beim Öffnen";
-L["Reset view on open Desc"] = "Alle Kategorien ausblenden und die erste Kategorie auswählen oder die zuletzt ausgewählte Kategorie beibehalten, wenn sie zuletzt geschlossen wurde.";
+L["Reset view on open Desc"] = "Alle geöffneten Kategorien schliessen und die erste Kategorie auswählen.";
 L["Search"] = "Suche";
 L["Clear search field on Right Click"] = "Lösche das Such-Feld durch Rechts-Klick";
 L["Clear search field on Right Click Desc"] = "Aktivieren/deaktiviere das Löschen des Suchfeldes, wenn Du mit der rechten Maustaste darauf klickst.";
@@ -493,9 +493,6 @@ L["Dragonflight pre-patch - Firestorms"] = "Dragonflight Pre-patch: Feuerstürme
 L["Dragonflight pre-patch - Sandstorms"] = "Dragonflight Pre-patch: Sandstürme";
 L["Dragonflight pre-patch - Snowstorms"] = "Dragonflight Pre-patch: Schneestürme";
 L["Dragonflight pre-patch - Thunderstorms"] = "Dragonflight Pre-patch: Gewitterstürme";
-L["Badlands Elements"] = "Ödland";
-L["Northern Barrens Elements"] = "Nördliches Brachland";
-L["Un'Goro Crater Elements"] = "Der Krater von Un'Goro";
 L["Export Criteria"] = "Erfolgs-Kriterien Export";
 L["Export Criteria Desc"] = "Exportiert Erfolgs-Kriterien in die Gespeicherten Variablen. Dies wird verwendet, um neue Inhalte hinzuzufügen.";
 L["Criteria"] = "Kriterien";
@@ -540,9 +537,6 @@ L["Modifiers"] = "Modifikatoren";
 L["Paste to Chat"] = "Kopiere in das Chat Fenster";
 L["Toggle Tracking"] = "Erfolgs-Verfolgung umschalten";
 L["Add to / Remove from Watch List"] = "Hinzufügen zur / Löschen von der Beobachtungsliste";
-L["Badlands Storms"] = "Ödland";
-L["Northern Barrens Storms"] = "Nördliches Brachland";
-L["Un'Goro Crater Storms"] = "Der Krater von Un'Goro";
 L["Achievement is watched"] = "Erfolg auf Beobachtungsliste";
 L["Achievement is excluded"] = "Erfolg wurde ausgeblendet";
 L["Needs to be defeated for achievement"] = "Muss noch {forAchievement} besiegt werden";
@@ -563,4 +557,6 @@ L["Siege on Dragonbane Keep"] = "Belagerung der Drachenfluchfestung";
 L["Community Feast"] = "Gemeinschaftliches Festmahl";
 L["Needs to be petted for achievement"] = "Muss noch {forAchievement} gestreichelt werden";
 L["Already petted for achievement"] = "Bereits gestreichelt {forAchievement}";
+L["Toggle window once opened"] = "Fenster nach dem Öffnen umschalten";
+L["Toggle window once opened Desc"] = "Wenn das Erfolgsfenster das erste Mal geöffnet wird, öffnet sich ein Tab und wählt die Zusammenfassung. Ab dem zweiten Mal, unabhängig von der verwendeten Tastenkombination, öffnet sich die letzte Ansicht.";
 

@@ -7,6 +7,7 @@ options.Defaults = {
         ShowMinimapIcon = false,
         ShowWorldmapIcon = true,
         ResetViewOnOpen = false,
+        ToggleWindow = true,
         MicroButtonTab = 1,
         EnableDebugInfo = false,
         EnableTraceInfo = false,

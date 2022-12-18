@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-11 17-57-35 ]] --
+-- [[ Exported at 2022-12-16 09-51-30 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -5750,10 +5750,10 @@ function exportedCategories.Load(a)
     t[1364] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1233], t[1364]);
     A(t[1364], a[16475]); -- Thunderstorms in the Ohn'ahran Plains
-    A(t[1364], a[16476]); -- Chasing Storms in the Ohn'ahran Plains
     A(t[1364], a[16477]); -- Sandstorms in the Ohn'ahran Plains
     A(t[1364], a[16478]); -- Firestorms in the Ohn'ahran Plains
     A(t[1364], a[16479]); -- Snowstorms in the Ohn'ahran Plains
+    A(t[1364], a[16476]); -- Chasing Storms in the Ohn'ahran Plains
     t[1234] = c:New(k.GetMapName(2024)); -- The Azure Span
     C(t[1228], t[1234]);
     t[1239] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
