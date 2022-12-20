@@ -221,7 +221,7 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
     if not addon.IsWrathClassic then
         AchievementFrame_HideSearchPreview();
     end
-    if firstTimeLatch or not addon.Options.db.ToggleWindow then
+    if firstTimeLatch or not addon.Options.db.ToggleWindow or resetView or forceOpen then
         gui.SelectTab(_addonName, tabName);
     end
     if addon.Options.db.ResetViewOnOpen or resetView then
