@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-18 17-52-31 ]] --
+-- [[ Exported at 2022-12-20 09-48-30 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -559,4 +559,10 @@ L["Needs to be petted for achievement"] = "Muss noch {forAchievement} gestreiche
 L["Already petted for achievement"] = "Bereits gestreichelt {forAchievement}";
 L["Toggle window once opened"] = "Fenster nach dem Öffnen umschalten";
 L["Toggle window once opened Desc"] = "Wenn das Erfolgsfenster das erste Mal geöffnet wird, öffnet sich ein Tab und wählt die Zusammenfassung. Ab dem zweiten Mal, unabhängig von der verwendeten Tastenkombination, öffnet sich die letzte Ansicht.";
+L["%d/%m/%Y %I:%M %p"] = "%d/%m/%Y %I:%M %p";
+L["%m/%d/%Y %R"] = "%m/%d/%Y %R";
+L["%m/%d/%Y %I:%M %p"] = "%m/%d/%Y %I:%M %p";
+L["%Y/%m/%d %R"] = "%Y/%m/%d %R";
+L["%Y/%m/%d %I:%M %p"] = "%Y/%m/%d %I:%M %p";
+L["%c"] = "%c";
 

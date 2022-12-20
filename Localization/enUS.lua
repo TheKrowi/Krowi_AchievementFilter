@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-18 17-52-31 ]] --
+-- [[ Exported at 2022-12-20 09-48-30 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -559,4 +559,10 @@ L["Needs to be petted for achievement"] = "Needs to be petted {forAchievement}";
 L["Already petted for achievement"] = "Already petted {forAchievement}";
 L["Toggle window once opened"] = "Toggle window once opened";
 L["Toggle window once opened Desc"] = "When the achievement window is opened the first time, open the window to the correct tab and select the summary. From the second time onwards, regardless of the keybind used, open the last view.";
+L["%d/%m/%Y %I:%M %p"] = "%d/%m/%Y %I:%M %p";
+L["%m/%d/%Y %R"] = "%m/%d/%Y %R";
+L["%m/%d/%Y %I:%M %p"] = "%m/%d/%Y %I:%M %p";
+L["%Y/%m/%d %R"] = "%Y/%m/%d %R";
+L["%Y/%m/%d %I:%M %p"] = "%Y/%m/%d %I:%M %p";
+L["%c"] = "%c";
 

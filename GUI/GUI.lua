@@ -211,8 +211,6 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
         end
     end
 
-    print(tabIsSelected, not addon.Options.db.ToggleWindow)
-
     if (AchievementFrame:IsShown() and (addon.Options.db.ToggleWindow or tabIsSelected)) and not resetView and not forceOpen then
         AchievementFrame:Hide();
         return;

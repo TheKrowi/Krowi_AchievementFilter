@@ -28,14 +28,14 @@ local function AddStartTimeAndEndTimeFormat(format)
 end
 
 AddStartTimeAndEndTimeFormat(options.Defaults.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime);
-AddStartTimeAndEndTimeFormat("%d/%m/%Y %I:%M %p");
-AddStartTimeAndEndTimeFormat("%m/%d/%Y %R");
-AddStartTimeAndEndTimeFormat("%m/%d/%Y %I:%M %p");
-AddStartTimeAndEndTimeFormat("%Y/%m/%d %R");
-AddStartTimeAndEndTimeFormat("%Y/%m/%d %I:%M %p");
-AddStartTimeAndEndTimeFormat("%c");
+AddStartTimeAndEndTimeFormat(addon.L["%d/%m/%Y %I:%M %p"]);
+AddStartTimeAndEndTimeFormat(addon.L["%m/%d/%Y %R"]);
+AddStartTimeAndEndTimeFormat(addon.L["%m/%d/%Y %I:%M %p"]);
+AddStartTimeAndEndTimeFormat(addon.L["%Y/%m/%d %R"]);
+AddStartTimeAndEndTimeFormat(addon.L["%Y/%m/%d %I:%M %p"]);
+AddStartTimeAndEndTimeFormat(addon.L["%c"]);
 tinsert(startTimeAndEndTimeDateTimeValues, "Custom");
-tinsert(startTimeAndEndTimeDateTimeFormats, "%m/%d/%y %R");
+tinsert(startTimeAndEndTimeDateTimeFormats, addon.L["%m/%d/%y %R"]);
 
 local function SetLine1(_, value)
     if addon.Options.db.EventReminders.TimeDisplay.Line1 == value then return; end;
