@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-20 09-48-30 ]] --
+-- [[ Exported at 2022-12-20 14-56-57 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -565,4 +565,7 @@ L["%m/%d/%Y %I:%M %p"] = "%m/%d/%Y %I:%M %p";
 L["%Y/%m/%d %R"] = "%Y/%m/%d %R";
 L["%Y/%m/%d %I:%M %p"] = "%Y/%m/%d %I:%M %p";
 L["%c"] = "%c";
+L["Show All Results in Category"] = "Show All Results in Category";
+L["Show All Results in Category Desc"] = "Show all the search results in a category that will persist during this session.";
+L["Search Results"] = "Search Results";
 

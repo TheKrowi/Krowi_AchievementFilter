@@ -48,7 +48,7 @@ function KrowiAF_AchievementsFrameMixin:Update()
 	local offset = HybridScrollFrame_GetOffset(scrollFrame);
 	local buttons = scrollFrame.buttons;
 
-	local updateAchievements = cachedCategory ~= selectedCategory;
+	local updateAchievements = cachedCategory ~= selectedCategory or selectedCategory.HasFlexibleData;
 	cachedCategory = selectedCategory;
 	if cachedCategory.IsCurrentZone then
 		updateAchievements = addon.Data.GetCurrentZoneAchievements() or updateAchievements;

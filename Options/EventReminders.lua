@@ -35,7 +35,7 @@ AddStartTimeAndEndTimeFormat(addon.L["%Y/%m/%d %R"]);
 AddStartTimeAndEndTimeFormat(addon.L["%Y/%m/%d %I:%M %p"]);
 AddStartTimeAndEndTimeFormat(addon.L["%c"]);
 tinsert(startTimeAndEndTimeDateTimeValues, "Custom");
-tinsert(startTimeAndEndTimeDateTimeFormats, addon.L["%m/%d/%y %R"]);
+tinsert(startTimeAndEndTimeDateTimeFormats, addon.L["%m/%d/%Y %R"]);
 
 local function SetLine1(_, value)
     if addon.Options.db.EventReminders.TimeDisplay.Line1 == value then return; end;

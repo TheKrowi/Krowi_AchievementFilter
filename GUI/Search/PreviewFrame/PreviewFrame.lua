@@ -27,21 +27,43 @@ function previewFrame:Load()
 	addon.GUI.Search.PreviewFrame = frame;
 end
 
+local function ShowSearchResultsAsCategory(query, results)
+    for i = 1, #addon.Data.SearchResultsCategories do
+        addon.Data.SearchResultsCategories[i].Achievements = results;
+        addon.Data.SearchResultsCategories[i].Name = addon.L["Search Results"] .. " (" .. query .. ")";
+    end
+    for i = 1, #addon.Data.SearchResultsCategories do
+        if addon.Options.db.AdjustableCategories.SearchResults[i] then
+            KrowiAF_SelectCategory(addon.Data.SearchResultsCategories[i]);
+            return;
+        end
+    end
+end
+
+local function ShowSearchResultsAsFrame(query, results)
+    local resultsFrame = search.ResultsFrame;
+    resultsFrame:Update(query, results);
+    if #results == 0 then
+        resultsFrame:Hide();
+        return;
+    end
+    resultsFrame:Show();
+end
+
 function KrowiAF_ShowFullSearchResultsButton_OnClick(self)
     local search = addon.GUI.Search;
     local boxFrame = search.BoxFrame;
-    local resultsFrame = search.ResultsFrame;
     local results = boxFrame.Results;
 
-    resultsFrame:Update(boxFrame:GetText(), results);
-	if #results == 0 then
-		resultsFrame:Hide();
-		return;
-	end
-    search.PreviewFrame:Hide();
-	boxFrame:ClearFocus();
-    resultsFrame:Show();
+    if addon.Options.db.SearchBox.ShowAllResultsInCategory then
+        ShowSearchResultsAsCategory(boxFrame:GetText(), results);
+    else
+        ShowSearchResultsAsFrame(boxFrame:GetText(), results);
+    end
+
     PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+    boxFrame:ClearFocus();
+    search.PreviewFrame:Hide();
 end
 
 function KrowiAF_AchievementFrameSearchPreviewFrame_OnShow(self)

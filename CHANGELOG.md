@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Toggle window once opened option
 - Option for localization team to localize time formats for event reminders
+- Option (on by default) to open the search results in a category instead of the inline window
+
+### Fixed
+- Clicking the World Map Button will now properly update the category when it's already selected
 
 ## 49.5 - 2022-12-14
 ### Fixed

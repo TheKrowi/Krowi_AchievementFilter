@@ -506,7 +506,18 @@ options.OptionsTable.args["General"] = {
                                 addon.Options.db.SearchBox.NumberOfSearchPreviews = value;
                                 options.Debug(addon.L["Number of search previews"], addon.Options.db.SearchBox.NumberOfSearchPreviews);
                             end
-                        }
+                        },
+                        Blank12 = {order = 1.2, type = "description", width = 1.5 * widthMultiplier, name = ""},
+                        ShowAllResultsInCategory = {
+                            order = 2.1, type = "toggle", width = 1.5 * widthMultiplier,
+                            name = addon.L["Show All Results in Category"],
+                            desc = addon.L["Show All Results in Category Desc"],
+                            get = function() return addon.Options.db.SearchBox.ShowAllResultsInCategory; end,
+                            set = function()
+                                addon.Options.db.SearchBox.ShowAllResultsInCategory = not addon.Options.db.SearchBox.ShowAllResultsInCategory;
+                                options.Debug(addon.L["Show All Results in Category"], addon.Options.db.SearchBox.ShowAllResultsInCategory);
+                            end
+                        },
                     }
                 }
             }

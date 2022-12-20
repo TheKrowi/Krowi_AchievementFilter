@@ -136,7 +136,8 @@ options.Defaults = {
             NumberOfSearchPreviews = 5,
             ClearOnRightClick = true,
             ExcludeExcluded = true,
-            OnlySearchFiltered = false
+            OnlySearchFiltered = false,
+            ShowAllResultsInCategory = true
         },
         EventReminders = {
             ShowPopUps = true,
