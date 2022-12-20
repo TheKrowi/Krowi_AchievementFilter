@@ -29,7 +29,7 @@ end
 
 local function ShowSearchResultsAsCategory(query, results)
     for i = 1, #addon.Data.SearchResultsCategories do
-        addon.Data.SearchResultsCategories[i].Achievements = results;
+        addon.Data.SearchResultsCategories[i].Achievements = addon.Options.db.AdjustableCategories.SearchResults[i] and results or nil;
         addon.Data.SearchResultsCategories[i].Name = addon.L["Search Results"] .. " (" .. query .. ")";
     end
     for i = 1, #addon.Data.SearchResultsCategories do
