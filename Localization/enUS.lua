@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-20 14-56-57 ]] --
+-- [[ Exported at 2022-12-22 10-38-09 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -568,4 +568,5 @@ L["%c"] = "%c";
 L["Show All Results in Category"] = "Show All Results in Category";
 L["Show All Results in Category Desc"] = "Show all the search results in a category that will persist during this session.";
 L["Search Results"] = "Search Results";
+L["Are you sure you want to delete character?"] = "Are you sure you want to delete {character}? This character will be added again if you log in to it. If you don't want to see this character, check the {ignore} flag.";
 

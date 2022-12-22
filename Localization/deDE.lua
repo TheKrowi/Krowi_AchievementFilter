@@ -1,8 +1,8 @@
--- [[ Exported at 2022-12-20 14-56-57 ]] --
+-- [[ Exported at 2022-12-22 10-38-09 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-12-18 ]] --
+-- [[ German translation by Ta, 2022-12-20 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -565,4 +565,7 @@ L["%m/%d/%Y %I:%M %p"] = "%m/%d/%Y %I:%M %p";
 L["%Y/%m/%d %R"] = "%Y/%m/%d %R";
 L["%Y/%m/%d %I:%M %p"] = "%Y/%m/%d %I:%M %p";
 L["%c"] = "%c";
+L["Show All Results in Category"] = "Zeige alle Suchergebnisse in einer Kategorie an";
+L["Show All Results in Category Desc"] = "Alle Suchergebnisse in einer Kategorie anzeigen, die während dieser Sitzung bestehen bleibt.";
+L["Search Results"] = "Suchergebnisse";
 

@@ -44,6 +44,11 @@ local CharacterColumns = {
 		title = addon.L["Ignore"],
 		width = 100,
 		attribute = "IgnoreCharacter"
+	},
+	{
+		title = addon.L["Delete"],
+		width = 100,
+		attribute = "DeleteCharacter"
 	}
 };
 
@@ -215,4 +220,8 @@ end
 
 function KrowiAF_CharacterListFrameMixin:Sort(columnIndex)
     self:GetParent():Update(GetSortedCharacters(CharacterColumns[columnIndex]));
+end
+
+function KrowiAF_CharacterListFrameMixin:Refresh()
+    self:Update(GetSortedCharacters());
 end

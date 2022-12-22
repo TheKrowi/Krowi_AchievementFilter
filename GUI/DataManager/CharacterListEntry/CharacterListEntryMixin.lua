@@ -89,3 +89,26 @@ function KrowiAF_CharacterListEntryMixin:ToggleIgnoreCharacter()
     self.Character.ExcludeFromEarnedByAchievementTooltip = SavedData.Characters[self.Guid].ExcludeFromEarnedByAchievementTooltip;
     self.Character.IgnoreCharacter = SavedData.Characters[self.Guid].Ignore;
 end
+
+local function DeleteCharacterCallback(self)
+    SavedData.Characters[self.Guid] = nil;
+    addon.GUI.DataManagerFrame.CharacterList:Refresh();
+end
+
+function KrowiAF_CharacterListEntryMixin:DeleteCharacterFunction()
+    if not StaticPopup_IsCustomGenericConfirmationShown("KrowiAF_ConfirmDeleteCharacter") then
+        StaticPopup_ShowCustomGenericConfirmation(
+            {
+                text = addon.L["Are you sure you want to delete character?"]:ReplaceVars
+                {
+                    character = SavedData.Characters[self.Guid].Name:SetColorYellow(),
+                    ignore = addon.L["Ignore"]:SetColorYellow()
+                },
+                callback = function()
+                    DeleteCharacterCallback(self);
+                end,
+                referenceKey = "KrowiAF_ConfirmDeleteCharacter"
+            }
+        );
+    end
+end
