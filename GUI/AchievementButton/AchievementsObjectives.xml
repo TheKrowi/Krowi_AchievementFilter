@@ -144,6 +144,7 @@
         <Scripts>
             <OnLoad function="KrowiAF_AchievementsObjectives_OnLoad"/>
             <OnEvent function="KrowiAF_AchievementsObjectives_OnEvent"/>
+            <OnShow function="KrowiAF_AchievementsObjectives_OnShow"/>
         </Scripts>
     </Frame>
 </Ui>

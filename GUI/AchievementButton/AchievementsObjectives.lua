@@ -42,6 +42,7 @@ function KrowiAF_AchievementsObjectives_OnLoad(self)
 	self:RegisterEvent("CRITERIA_UPDATE");
 end
 
+local refreshOnNextShow;
 function KrowiAF_AchievementsObjectives_OnEvent(self, event)
 	if event ~= "CRITERIA_UPDATE" then
 		return;
@@ -49,14 +50,26 @@ function KrowiAF_AchievementsObjectives_OnEvent(self, event)
 
 	local selectedTab = addon.GUI.SelectedTab;
 	if selectedTab and selectedTab.SelectedAchievement then
-		local id = self.Id;
 		local button = self:GetParent();
 		self.Id = nil;
 		if self:IsVisible() then
 			button:DisplayObjectives(true);
 			-- AchievementFrameAchievements_Update();
+		else
+			refreshOnNextShow = true;
 		end
 	else
 		self.Id = nil;
 	end
+end
+
+function KrowiAF_AchievementsObjectives_OnShow(self)
+	if not refreshOnNextShow then
+		return;
+	end
+
+	local button = self:GetParent();
+	button:DisplayObjectives(true);
+
+	refreshOnNextShow = nil;
 end

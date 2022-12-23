@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Clicking the World Map Button will now properly update the category when it's already selected
+- When opening the achievement window, the selected achievement's objectives should update more reliably
 
 ## 49.5 - 2022-12-14
 ### Fixed
