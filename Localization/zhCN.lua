@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-13 07-11-41 ]] --
+-- [[ Exported at 2022-12-22 10-38-09 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -386,9 +386,6 @@ L["Dragonflight pre-patch - Firestorms"] = "巨龙时代前夕-火焰风暴";
 L["Dragonflight pre-patch - Sandstorms"] = "巨龙时代前夕-沙暴";
 L["Dragonflight pre-patch - Snowstorms"] = "巨龙时代前夕-雪暴";
 L["Dragonflight pre-patch - Thunderstorms"] = "巨龙时代前夕-雷暴";
-L["Badlands Elements"] = "荒芜之地";
-L["Northern Barrens Elements"] = "北贫瘠之地";
-L["Un'Goro Crater Elements"] = "安戈洛环形山";
 L["Criteria"] = "成就标准";
 L["Show Criteria"] = "显示成就标准";
 L["Show Criteria If"] = "显示标准的条件";
@@ -424,11 +421,30 @@ L["Modifiers"] = "修饰符";
 L["Paste to Chat"] = "粘贴到聊天栏";
 L["Toggle Tracking"] = "切换跟踪";
 L["Add to / Remove from Watch List"] = "在跟踪列表中添加/移除";
-L["Badlands Storms"] = "荒芜之地";
-L["Northern Barrens Storms"] = "北贫瘠之地";
-L["Un'Goro Crater Storms"] = "安戈洛环形山";
 L["Achievement is watched"] = "该成就在{watchList}中";
 L["Achievement is excluded"] = "该成就被排除在外";
 L["Needs to be defeated for achievement"] = "{forAchievement} 需要击败";
 L["Already defeated for achievement"] = "{forAchievement} 已击败";
+L["DF - Grand Hunts"] = "DF - 洪荒狩猎";
+L["Grand Hunts: Ohn'ahran Plains"] = "洪荒狩猎: 欧恩哈拉平原";
+L["Grand Hunts: The Waking Shore"] = "洪荒狩猎: 觉醒海岸";
+L["Grand Hunts: Thaldraszus"] = "洪荒狩猎: 索德拉苏斯";
+L["Grand Hunts: The Azure Span"] = "洪荒狩猎: 碧蓝林海";
+L["DF - Community Feast"] = "DF - 社区盛宴";
+L["Community Feast: Cooking"] = "社区盛宴: 烹饪";
+L["Community Feast: Soon"] = "社区盛宴: 在即";
+L["Community Feast: Ready"] = "社区盛宴: 就绪";
+L["DF - Siege on Dragonbane Keep"] = "DF - 围攻灭龙要塞";
+L["Siege on Dragonbane Keep: Active"] = "围攻灭龙要塞: 激活";
+L["Siege on Dragonbane Keep: Gathering"] = "围攻灭龙要塞: 收集";
+L["Siege on Dragonbane Keep"] = "围攻灭龙要塞";
+L["Community Feast"] = "社区盛宴";
+L["Needs to be petted for achievement"] = "{forAchievement} 需要抚摸";
+L["Already petted for achievement"] = "{forAchievement} 已抚摸";
+L["%d/%m/%Y %I:%M %p"] = "%d/%m/%Y %I:%M %p";
+L["%m/%d/%Y %R"] = "%m/%d/%Y %R";
+L["%m/%d/%Y %I:%M %p"] = "%m/%d/%Y %I:%M %p";
+L["%Y/%m/%d %R"] = "%Y/%m/%d %R";
+L["%Y/%m/%d %I:%M %p"] = "%Y/%m/%d %I:%M %p";
+L["%c"] = "%c";
 

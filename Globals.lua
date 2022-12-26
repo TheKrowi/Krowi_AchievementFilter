@@ -316,6 +316,12 @@ local function AddToCriteriaCache(id, points, flags, isGuild, isStatistic, exist
     end
 end
 
+local function CacheAchievement(id, name)
+    if addon.Data.Achievements[id] then
+        addon.Data.Achievements[id].Name = name;
+    end
+end
+
 function addon.BuildCache()
     if criteriaCache ~= nil then -- Build cache the first time
         return criteriaCache, characterPoints;
@@ -328,12 +334,14 @@ function addon.BuildCache()
     AddCharToSavedData(playerGUID);
     local highestId = addon.Data.AchievementIds[#addon.Data.AchievementIds];
     while gapSize < 500 or i < highestId do -- Biggest gap is 209 in 9.0.5 as of 2021-05-03
-        local id, _, points, _, month, day, year, _, flags, _, _, isGuild, wasEarnedByMe, _, isStatistic, exists = addon.GetAchievementInfo(i);
+        local id, name, points, _, month, day, year, _, flags, _, _, isGuild, wasEarnedByMe, _, isStatistic, exists = addon.GetAchievementInfo(i);
 
         if id then
             IncrementCharacterPoints(playerGUID, id, points, month, day, year, flags, isGuild, wasEarnedByMe, isStatistic, exists);
             AddToCriteriaCache(id, points, flags, isGuild, isStatistic, exists);
+            -- CacheAchievement(id, name);
         end
+
         if id and exists then
             gapSize = 0;
         else

@@ -154,7 +154,7 @@ function KrowiAF_SelectCategory(category, collapsed)
 	-- Select category
 	for i, cat in next, categoriesTree do
 		if cat.TabName == nil then
-			if not cat.IsSelected or (cat.NotCollapsed == collapsed) then -- Issue #23: Fix -- Issue #25 Broken, Fix
+			if not cat.IsSelected or (cat.NotCollapsed == collapsed) or cat.HasFlexibleData then -- Issue #23: Fix -- Issue #25 Broken, Fix
 				SelectCategory(cat, collapsed, i ~= #categoriesTree); -- Issue #23: Broken
 			end
 		end

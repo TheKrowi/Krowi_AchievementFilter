@@ -71,7 +71,95 @@ function KrowiAF_SearchBoxFrame_OnEnterPressed(self)
 	end
 end
 
+local function SearchAchievements(text, numAchievementIds, results, excludeExcluded)
+	local achievement;
+	for i = 1, numAchievementIds do
+		achievement = addon.Data.Achievements[addon.Data.AchievementIds[i]];
+		local id, name, _, _, _, _, _, description, _, _, rewardText, _, _, _, _ = GetAchievementInfo(achievement.Id);
+		if id then
+			if (addon.SearchOptions.db.SearchIds and string.find(tostring(id), text, 1, true))
+			or (addon.SearchOptions.db.SearchNames and string.find(name:lower(), text, 1, true))
+			or (addon.SearchOptions.db.SearchDescriptions and string.find(description:lower(), text, 1, true))
+			or (addon.SearchOptions.db.SearchRewards and string.find(rewardText:lower(), text, 1, true)) then
+				if not (excludeExcluded and achievement.Excluded) then
+					local value = 1;
+					if addon.Options.db.SearchBox.OnlySearchFiltered then
+						local category;
+						if addon.Filters.db.MergeSmallCategories then
+							category = achievement:GetMergedCategory(); -- This way we get the parent category
+						else
+							category = achievement.Category;
+						end
+						local filters = addon.Tabs[category:GetTree()[1].TabName].Filters;
+						value = addon.Filters.Validate(filters, achievement);
+					end
+					if value > 0 then
+						achievement.Name = name;
+						tinsert(results, achievement);
+					end
+				end
+			end
+		end
+	end
+	return results;
+end
+
+local function SearchAchievementIds(text, numAchievementIds, results, excludeExcluded, showPlaceholders)
+	local achievement;
+	for i = 1, numAchievementIds do
+		achievement = addon.Data.Achievements[addon.Data.AchievementIds[i]];
+		if string.find(tostring(achievement.ID):lower(), string.sub(text, 2), 1, true) then
+			if not (excludeExcluded and achievement.Excluded) then
+				if achievement.DoesNotExist == nil or (showPlaceholders and achievement.DoesNotExist) then
+					tinsert(results, achievement);
+				end
+			end
+		end
+	end
+	return results;
+end
+
+local function DistinctTable(tbl)
+	local hash = {}
+	for _,v in ipairs(tbl) do
+		hash[v] = true
+	end
+
+	local res = {}
+	for k,_ in pairs(hash) do
+		res[#res+1] = k
+	end
+	return res;
+end
+
 local criteriaCache;
+local function SearchCriteria(text, numAchievementIds, results, excludeExcluded)
+	local achievement;
+	if criteriaCache == nil then
+		criteriaCache = {};
+		local numCriteria, criteriaString;
+		for i = 1, numAchievementIds do
+			achievement = addon.Data.Achievements[addon.Data.AchievementIds[i]];
+			numCriteria = GetAchievementNumCriteria(achievement.Id);
+			for j = 1, numCriteria do -- Build the cache the first time to limit API requests
+				criteriaString = GetAchievementCriteriaInfo(achievement.Id, j);
+				tinsert(criteriaCache, {Achievement = achievement, CriteriaString = criteriaString});
+			end
+		end
+	end
+
+	local criteriaString;
+	for _, criteria in next, criteriaCache do
+		achievement, criteriaString = criteria.Achievement, criteria.CriteriaString;
+		if string.find(criteriaString:lower(), string.sub(text, 2), 1, true) then
+			if not (excludeExcluded and achievement.Excluded) then
+				tinsert(results, achievement);
+			end
+		end
+	end
+	return DistinctTable(results);
+end
+
 local function GetSearchResults(text)
 	text = text:lower();
 	local results = {};
@@ -80,73 +168,19 @@ local function GetSearchResults(text)
 	local excludeExcluded = addon.Options.db.SearchBox.ExcludeExcluded;
 	local showPlaceholders = addon.Options.db.ShowPlaceholdersFilter and addon.Filters.db.ShowPlaceholders;
 
-	local achievement;
 	if string.match(text, "^#") then
-		for i = 1, numAchievementIds do
-			achievement = addon.Data.Achievements[addon.Data.AchievementIds[i]];
-			if string.find(tostring(achievement.ID):lower(), string.sub(text, 2), 1, true) then
-				if not (excludeExcluded and achievement.Excluded) then
-					if achievement.DoesNotExist == nil or (showPlaceholders and achievement.DoesNotExist) then
-						tinsert(results, achievement);
-					end
-				end
-			end
-		end
+		results = SearchAchievementIds(text, numAchievementIds, results, excludeExcluded, showPlaceholders);
 	elseif string.match(text, "^@") then
-		if criteriaCache == nil then
-			criteriaCache = {};
-			local numCriteria, criteriaString;
-			for i = 1, numAchievementIds do
-				achievement = addon.Data.Achievements[addon.Data.AchievementIds[i]];
-				numCriteria = GetAchievementNumCriteria(achievement.Id);
-				for j = 1, numCriteria do -- Build the cache the first time to limit API requests
-					criteriaString = GetAchievementCriteriaInfo(achievement.Id, j);
-					tinsert(criteriaCache, {Achievement = achievement, CriteriaString = criteriaString});
-				end
-			end
-		end
-
-		local criteriaString;
-		for _, criteria in next, criteriaCache do
-			achievement, criteriaString = criteria.Achievement, criteria.CriteriaString;
-			if string.find(criteriaString:lower(), string.sub(text, 2), 1, true) then
-				if not (excludeExcluded and achievement.Excluded) and (achievement.DoesNotExist == nil or (showPlaceholders and achievement.DoesNotExist)) then
-					tinsert(results, achievement);
-				end
-			end
-		end
+		results = SearchCriteria(text, numAchievementIds, results, excludeExcluded);
 	else
-		for i = 1, numAchievementIds do
-			achievement = addon.Data.Achievements[addon.Data.AchievementIds[i]];
-			local id, name, _, _, _, _, _, description, _, _, rewardText, _, _, _, _ = GetAchievementInfo(achievement.Id);
-			if id then
-				if (addon.SearchOptions.db.SearchIds and string.find(tostring(id), text, 1, true))
-				or (addon.SearchOptions.db.SearchNames and string.find(name:lower(), text, 1, true))
-				or (addon.SearchOptions.db.SearchDescriptions and string.find(description:lower(), text, 1, true))
-				or (addon.SearchOptions.db.SearchRewards and string.find(rewardText:lower(), text, 1, true)) then
-					if not (excludeExcluded and achievement.Excluded) then
-						local value = 1;
-						if addon.Options.db.SearchBox.OnlySearchFiltered then
-							local category;
-							if addon.Filters.db.MergeSmallCategories then
-								category = achievement:GetMergedCategory(); -- This way we get the parent category
-							else
-								category = achievement.Category;
-							end
-							local filters = addon.Tabs[category:GetTree()[1].TabName].Filters;
-							value = addon.Filters.Validate(filters, achievement);
-						end
-						if value > 0 then
-							achievement.Name = name;
-							tinsert(results, achievement);
-						end
-					end
-				end
-			end
+		results = SearchAchievements(text, numAchievementIds, results, excludeExcluded);
+		if addon.SearchOptions.db.SearchCriteria then
+			results = SearchCriteria(text, numAchievementIds, results, excludeExcluded);
+		else
+			table.sort(results, function(a, b)
+				return a.Name < b.Name;
+			end);
 		end
-		table.sort(results, function(a, b)
-			return a.Name < b.Name;
-		end);
 	end
 
     return results;

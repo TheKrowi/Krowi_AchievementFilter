@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-13 07-11-41 ]] --
+-- [[ Exported at 2022-12-22 10-38-09 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -72,4 +72,10 @@ L["Fated Raids"] = "Raids fatidiques";
 L["Ta's Pet Collection"] = "Collection de mascottes";
 L["Going away with"] = "Temporaires";
 L["Dragonflight Pre-patch"] = "Prépatch";
+L["%d/%m/%Y %I:%M %p"] = "%d/%m/%Y %I:%M %p";
+L["%m/%d/%Y %R"] = "%m/%d/%Y %R";
+L["%m/%d/%Y %I:%M %p"] = "%m/%d/%Y %I:%M %p";
+L["%Y/%m/%d %R"] = "%Y/%m/%d %R";
+L["%Y/%m/%d %I:%M %p"] = "%Y/%m/%d %I:%M %p";
+L["%c"] = "%c";
 

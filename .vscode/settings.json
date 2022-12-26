@@ -420,7 +420,10 @@
         "IsLeftControlKeyDown",
         "IsLeftAltKeyDown",
         "IsRightShiftKeyDown",
-        "IsRightControlKeyDown"
+        "IsRightControlKeyDown",
+        "DELETE",
+        "StaticPopup_IsCustomGenericConfirmationShown",
+        "StaticPopup_ShowCustomGenericConfirmation"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
@@ -432,7 +435,8 @@
         "unbalanced-assignments",
         "ambiguity-1",
         "missing-return",
-        "duplicate-set-field"
+        "duplicate-set-field",
+        "cast-local-type"
     ],
     "fsdeploy.nodes": [
         {

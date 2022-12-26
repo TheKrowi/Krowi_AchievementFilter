@@ -7,6 +7,7 @@ options.Defaults = {
         ShowMinimapIcon = false,
         ShowWorldmapIcon = true,
         ResetViewOnOpen = false,
+        ToggleWindow = true,
         MicroButtonTab = 1,
         EnableDebugInfo = false,
         EnableTraceInfo = false,
@@ -135,7 +136,8 @@ options.Defaults = {
             NumberOfSearchPreviews = 5,
             ClearOnRightClick = true,
             ExcludeExcluded = true,
-            OnlySearchFiltered = false
+            OnlySearchFiltered = false,
+            ShowAllResultsInCategory = true
         },
         EventReminders = {
             ShowPopUps = true,

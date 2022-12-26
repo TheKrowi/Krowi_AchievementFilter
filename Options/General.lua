@@ -312,14 +312,26 @@ options.OptionsTable.args["General"] = {
                     inline = true,
                     args = {
                         ResetViewOnOpen = {
-                            order = 1.1, type = "toggle", width = 1 * widthMultiplier,
+                            order = 1.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Reset view on open"],
                             desc = addon.L["Reset view on open Desc"],
                             get = function() return addon.Options.db.ResetViewOnOpen; end,
                             set = function()
                                 addon.Options.db.ResetViewOnOpen = not addon.Options.db.ResetViewOnOpen;
+                                addon.Options.db.ToggleWindow = false;
                                 options.Debug(addon.L["Reset view on open"], addon.Options.db.ResetViewOnOpen);
                             end
+                        },
+                        ToggleWindow = {
+                            order = 1.1, type = "toggle", width = 1.5 * widthMultiplier,
+                            name = addon.L["Toggle window once opened"],
+                            desc = addon.L["Toggle window once opened Desc"],
+                            get = function() return addon.Options.db.ToggleWindow; end,
+                            set = function()
+                                addon.Options.db.ToggleWindow = not addon.Options.db.ToggleWindow;
+                                options.Debug(addon.L["Toggle window once opened"], addon.Options.db.ToggleWindow);
+                            end,
+                            disabled = function() return addon.Options.db.ResetViewOnOpen; end
                         }
                     }
                 },
@@ -494,7 +506,18 @@ options.OptionsTable.args["General"] = {
                                 addon.Options.db.SearchBox.NumberOfSearchPreviews = value;
                                 options.Debug(addon.L["Number of search previews"], addon.Options.db.SearchBox.NumberOfSearchPreviews);
                             end
-                        }
+                        },
+                        Blank12 = {order = 1.2, type = "description", width = 1.5 * widthMultiplier, name = ""},
+                        ShowAllResultsInCategory = {
+                            order = 2.1, type = "toggle", width = 1.5 * widthMultiplier,
+                            name = addon.L["Show All Results in Category"],
+                            desc = addon.L["Show All Results in Category Desc"],
+                            get = function() return addon.Options.db.SearchBox.ShowAllResultsInCategory; end,
+                            set = function()
+                                addon.Options.db.SearchBox.ShowAllResultsInCategory = not addon.Options.db.SearchBox.ShowAllResultsInCategory;
+                                options.Debug(addon.L["Show All Results in Category"], addon.Options.db.SearchBox.ShowAllResultsInCategory);
+                            end
+                        },
                     }
                 }
             }

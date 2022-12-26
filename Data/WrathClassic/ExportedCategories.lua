@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-11 17-57-36 ]] --
+-- [[ Exported at 2022-12-20 13-48-16 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -23,6 +23,7 @@ function exportedCategories.Load(a)
     local watchListCategories = {};
     local currentZoneCategories = {};
     local selectedZoneCategories = {};
+    local searchResultsCategories = {};
     local trackingAchievementsCategories = {};
     local excludedCategories = {};
     t[1100] = c:New(k.L["Achievements"]); -- TAB - Achievements
@@ -46,6 +47,11 @@ function exportedCategories.Load(a)
     t[1220].HasFlexibleData = true;
     tinsert(selectedZoneCategories, t[1220]);
     t[1220].IsSelectedZone = true;
+    t[1395] = c:New(k.L["Search Results"]); -- Search Results
+    C(t[1100], t[1395]);
+    t[1395].HasFlexibleData = true;
+    tinsert(searchResultsCategories, t[1395]);
+    t[1395].IsSearchResults = true;
     t[1371] = c:New(k.L["Tracking Achievements"]); -- Tracking Achievements
     C(t[1100], t[1371]);
     t[1371].HasFlexibleData = true;
@@ -76,6 +82,11 @@ function exportedCategories.Load(a)
     t[1223].HasFlexibleData = true;
     tinsert(selectedZoneCategories, t[1223]);
     t[1223].IsSelectedZone = true;
+    t[1399] = c:New(k.L["Search Results"]); -- Search Results
+    C(t[883], t[1399]);
+    t[1399].HasFlexibleData = true;
+    tinsert(searchResultsCategories, t[1399]);
+    t[1399].IsSearchResults = true;
     t[1] = c:New(k.GetCategoryInfoTitle(14864)); -- Classic
     C(t[883], t[1]);
     t[648] = c:New(k.L["Zones"]); -- Zones
@@ -2313,6 +2324,11 @@ function exportedCategories.Load(a)
     t[1221].HasFlexibleData = true;
     tinsert(selectedZoneCategories, t[1221]);
     t[1221].IsSelectedZone = true;
+    t[1398] = c:New(k.L["Search Results"]); -- Search Results
+    C(t[884], t[1398]);
+    t[1398].HasFlexibleData = true;
+    tinsert(searchResultsCategories, t[1398]);
+    t[1398].IsSearchResults = true;
     t[918] = c:New(k.L["Holidays"]); -- Holidays
     C(t[884], t[918]);
     A(t[918], a[2144]); -- "What a Long, Strange Trip It's Been"
@@ -2695,6 +2711,11 @@ function exportedCategories.Load(a)
     t[1222].HasFlexibleData = true;
     tinsert(selectedZoneCategories, t[1222]);
     t[1222].IsSelectedZone = true;
+    t[1397] = c:New(k.L["Search Results"]); -- Search Results
+    C(t[955], t[1397]);
+    t[1397].HasFlexibleData = true;
+    tinsert(searchResultsCategories, t[1397]);
+    t[1397].IsSearchResults = true;
     t[1162] = c:New(k.GetCategoryInfoTitle(95)); -- Player vs. Player
     C(t[955], t[1162]);
     A(t[1162], a[10561]); -- Honorable Medallion
@@ -3165,6 +3186,11 @@ function exportedCategories.Load(a)
     t[850].HasFlexibleData = true;
     tinsert(selectedZoneCategories, t[850]);
     t[850].IsSelectedZone = true;
+    t[1396] = c:New(k.L["Search Results"]); -- Search Results
+    C(t[971], t[1396]);
+    t[1396].HasFlexibleData = true;
+    tinsert(searchResultsCategories, t[1396]);
+    t[1396].IsSearchResults = true;
     t[972] = c:New(k.L["Bur's Mount Collection"]); -- Bur's Mount Collection
     C(t[971], t[972]);
     A(t[972], a[3356]); -- Winterspring Frostsaber
@@ -4005,7 +4031,7 @@ function exportedCategories.Load(a)
     tabs["Events"] = events.Children;
     tabs["PvP"] = pvp.Children;
     tabs["Specials"] = specials.Children;
-    return tabs, watchListCategories, currentZoneCategories, selectedZoneCategories, trackingAchievementsCategories, excludedCategories;
+    return tabs, watchListCategories, currentZoneCategories, selectedZoneCategories, searchResultsCategories, trackingAchievementsCategories, excludedCategories;
 end
 
 function exportedCategories.InjectOptions()
@@ -4225,6 +4251,78 @@ function exportedCategories.InjectOptions()
 
     k.Options.InjectOptionsTable(optionsTableSelectedZone, "SelectedZone", "Layout", "args", "AdjustableCategories", "args");
 
+    local defaultsSearchResults = {};
+    defaultsSearchResults[1] = false;
+    defaultsSearchResults[2] = false;
+    defaultsSearchResults[3] = false;
+    defaultsSearchResults[4] = false;
+    defaultsSearchResults[5] = true;
+
+    k.Options.InjectDefaults(defaultsSearchResults, "SearchResults", "AdjustableCategories");
+
+    local optionsTableSearchResults = {
+        order = 5, type = "group",
+        name = k.L["Search Results"],
+        args = {
+            Tabs = {
+                order = 9, type = "header",
+                name = k.L["Tabs"]
+            },
+            Achievements = {
+                order = 10, type = "toggle", width = 1 * k.Options.WidthMultiplier,
+                name = k.L["Achievements"],
+                desc = k.L["Requires a reload"],
+                get = function() return k.Options.db.AdjustableCategories.SearchResults[1]; end,
+                set = function()
+                    k.Options.db.AdjustableCategories.SearchResults[1] = not k.Options.db.AdjustableCategories.SearchResults[1];
+                    k.Diagnostics.Debug(k.L["Achievements"], k.Options.db.AdjustableCategories.SearchResults[1]);
+                end
+            },
+            Expansions = {
+                order = 11, type = "toggle", width = 1 * k.Options.WidthMultiplier,
+                name = k.L["Expansions"],
+                desc = k.L["Requires a reload"],
+                get = function() return k.Options.db.AdjustableCategories.SearchResults[2]; end,
+                set = function()
+                    k.Options.db.AdjustableCategories.SearchResults[2] = not k.Options.db.AdjustableCategories.SearchResults[2];
+                    k.Diagnostics.Debug(k.L["Expansions"], k.Options.db.AdjustableCategories.SearchResults[2]);
+                end
+            },
+            Events = {
+                order = 12, type = "toggle", width = 1 * k.Options.WidthMultiplier,
+                name = k.L["Events"],
+                desc = k.L["Requires a reload"],
+                get = function() return k.Options.db.AdjustableCategories.SearchResults[3]; end,
+                set = function()
+                    k.Options.db.AdjustableCategories.SearchResults[3] = not k.Options.db.AdjustableCategories.SearchResults[3];
+                    k.Diagnostics.Debug(k.L["Events"], k.Options.db.AdjustableCategories.SearchResults[3]);
+                end
+            },
+            PvP = {
+                order = 13, type = "toggle", width = 1 * k.Options.WidthMultiplier,
+                name = k.GetCategoryInfoTitle(95),
+                desc = k.L["Requires a reload"],
+                get = function() return k.Options.db.AdjustableCategories.SearchResults[4]; end,
+                set = function()
+                    k.Options.db.AdjustableCategories.SearchResults[4] = not k.Options.db.AdjustableCategories.SearchResults[4];
+                    k.Diagnostics.Debug(k.GetCategoryInfoTitle(95), k.Options.db.AdjustableCategories.SearchResults[4]);
+                end
+            },
+            Specials = {
+                order = 14, type = "toggle", width = 1 * k.Options.WidthMultiplier,
+                name = k.L["Specials"],
+                desc = k.L["Requires a reload"],
+                get = function() return k.Options.db.AdjustableCategories.SearchResults[5]; end,
+                set = function()
+                    k.Options.db.AdjustableCategories.SearchResults[5] = not k.Options.db.AdjustableCategories.SearchResults[5];
+                    k.Diagnostics.Debug(k.L["Specials"], k.Options.db.AdjustableCategories.SearchResults[5]);
+                end
+            },
+        }
+    };
+
+    k.Options.InjectOptionsTable(optionsTableSearchResults, "SearchResults", "Layout", "args", "AdjustableCategories", "args");
+
     local defaultsTrackingAchievements = {};
     defaultsTrackingAchievements[1] = false;
     defaultsTrackingAchievements[2] = false;
@@ -4235,7 +4333,7 @@ function exportedCategories.InjectOptions()
     k.Options.InjectDefaults(defaultsTrackingAchievements, "TrackingAchievements", "AdjustableCategories");
 
     local optionsTableTrackingAchievements = {
-        order = 5, type = "group",
+        order = 6, type = "group",
         name = k.L["Tracking Achievements"],
         args = {
             Tabs = {
@@ -4307,7 +4405,7 @@ function exportedCategories.InjectOptions()
     k.Options.InjectDefaults(defaultsExcluded, "Excluded", "AdjustableCategories");
 
     local optionsTableExcluded = {
-        order = 6, type = "group",
+        order = 7, type = "group",
         name = k.L["Excluded"],
         args = {
             Tabs = {

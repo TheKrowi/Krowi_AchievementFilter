@@ -113,4 +113,5 @@ function globalStrings.Load(L)
     L["Class"] = CLASS;
     L["Category"] = CATEGORY;
     L["World Map"] = WORLDMAP_BUTTON;
+    L["Delete"] = DELETE;
 end

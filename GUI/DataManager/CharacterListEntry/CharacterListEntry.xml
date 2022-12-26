@@ -94,6 +94,22 @@
                 <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
             </CheckButton>
         </Frames>
+        <Frames>
+            <Button parentKey="DeleteCharacter">
+                <Size x="20" y="20"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.IgnoreCharacter" relativePoint="RIGHT" x="73" y="0"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+                        self:GetParent():DeleteCharacterFunction();
+                    </OnClick>
+                </Scripts>
+                <NormalTexture atlas="communities-icon-redx"/>
+                <HighlightTexture atlas="communities-icon-redx" alphaMode="ADD" alpha="0.4"/>
+            </Button>
+        </Frames>
         <NormalTexture setAllPoints="true" file="Interface\GuildFrame\GuildFrame">
             <TexCoords left="0.36230469" right="0.38183594" top="0.95898438" bottom="0.99804688"/>
         </NormalTexture>

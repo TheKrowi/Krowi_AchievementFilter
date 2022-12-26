@@ -191,6 +191,7 @@ function gui.SelectTab(_addonName, tabName)
     end
 end
 
+local firstTimeLatch = true;
 function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -- Issue #26 Broken, Fix
     if not IsAddOnLoaded("Blizzard_AchievementUI") then
         LoadAddOn("Blizzard_AchievementUI");
@@ -210,23 +211,23 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
         end
     end
 
-	if AchievementFrame:IsShown() and tabIsSelected and not resetView and not forceOpen then
+    if (AchievementFrame:IsShown() and (addon.Options.db.ToggleWindow or tabIsSelected)) and not resetView and not forceOpen then
         AchievementFrame:Hide();
-	else
-        -- if not addon.IsWrathClassic then
-            AchievementFrame_SetTabs();
-        -- else
-        --     addon.GUI.ShowHideTabs();
-        -- end
-        AchievementFrame:Show();
-        if not addon.IsWrathClassic then
-            AchievementFrame_HideSearchPreview();
-        end
+        return;
+    end
+
+    AchievementFrame_SetTabs();
+    AchievementFrame:Show();
+    if not addon.IsWrathClassic then
+        AchievementFrame_HideSearchPreview();
+    end
+    if firstTimeLatch or not addon.Options.db.ToggleWindow or resetView or forceOpen then
         gui.SelectTab(_addonName, tabName);
-        if addon.Options.db.ResetViewOnOpen or resetView then
-            ResetView();
-        end
-	end
+    end
+    if addon.Options.db.ResetViewOnOpen or resetView then
+        ResetView();
+    end
+    firstTimeLatch = nil;
 end
 
 function gui.ShowHideTabs(_addonName, tabName)
