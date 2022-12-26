@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 50.0 - 2022-12-xx
+## 50.0 - 2022-12-26
 ### Added
 - Toggle window once opened option
 - Option for localization team to localize time formats for event reminders
