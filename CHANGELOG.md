@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 51.0 - 2023-01-xx
+### Added
+- 10.0.5 achievements (WIP)
+
+### Removed
+- Individual Dragon Racing achievements as they are now marked as tracking achievements
+
 ## 50.0 - 2022-12-26
 ### Added
 - Toggle window once opened option

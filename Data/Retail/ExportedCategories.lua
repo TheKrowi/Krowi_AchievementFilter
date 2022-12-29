@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-20 13-48-15 ]] --
+-- [[ Exported at 2022-12-29 16-20-04 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -5583,70 +5583,6 @@ function exportedCategories.Load(a)
     A(t[1310], a[15927]); -- Waking Shores Advanced: Bronze
     A(t[1310], a[15928]); -- Waking Shores Advanced: Silver
     A(t[1310], a[15929]); -- Waking Shores Advanced: Gold
-    t[1317] = c:New(k.L["Apex Canopy River Run"]); -- Apex Canopy River Run
-    C(t[1310], t[1317]);
-    A(t[1317], a[15730]); -- Apex Canopy River Run: Bronze
-    A(t[1317], a[15731]); -- Apex Canopy River Run: Silver
-    A(t[1317], a[15732]); -- Apex Canopy River Run: Gold
-    A(t[1317], a[15733]); -- Apex Canopy River Run Advanced: Bronze
-    A(t[1317], a[15734]); -- Apex Canopy River Run Advanced: Silver
-    A(t[1317], a[15735]); -- Apex Canopy River Run Advanced: Gold
-    t[1316] = c:New(k.L["Emberflow Flight"]); -- Emberflow Flight
-    C(t[1310], t[1316]);
-    A(t[1316], a[15724]); -- Emberflow Flight: Bronze
-    A(t[1316], a[15725]); -- Emberflow Flight: Silver
-    A(t[1316], a[15726]); -- Emberflow Flight: Gold
-    A(t[1316], a[15727]); -- Emberflow Flight Advanced: Bronze
-    A(t[1316], a[15728]); -- Emberflow Flight Advanced: Silver
-    A(t[1316], a[15729]); -- Emberflow Flight Advanced: Gold
-    t[1320] = c:New(k.L["Flashfrost Flyover"]); -- Flashfrost Flyover
-    C(t[1310], t[1320]);
-    A(t[1320], a[15705]); -- Flashfrost Flyover: Bronze
-    A(t[1320], a[15706]); -- Flashfrost Flyover: Silver
-    A(t[1320], a[15707]); -- Flashfrost Flyover: Gold
-    A(t[1320], a[15709]); -- Flashfrost Flyover Advanced: Bronze
-    A(t[1320], a[15710]); -- Flashfrost Flyover Advanced: Silver
-    A(t[1320], a[15711]); -- Flashfrost Flyover Advanced: Gold
-    t[1314] = c:New(k.L["Ruby Lifeshrine Loop"]); -- Ruby Lifeshrine Loop
-    C(t[1310], t[1314]);
-    A(t[1314], a[15696]); -- Ruby Lifeshrine Loop: Bronze
-    A(t[1314], a[15697]); -- Ruby Lifeshrine Loop: Silver
-    A(t[1314], a[15698]); -- Ruby Lifeshrine Loop: Gold
-    A(t[1314], a[15702]); -- Ruby Lifeshrine Loop Advanced: Bronze
-    A(t[1314], a[15703]); -- Ruby Lifeshrine Loop Advanced: Silver
-    A(t[1314], a[15704]); -- Ruby Lifeshrine Loop Advanced: Gold
-    t[1318] = c:New(k.L["Uktulut Coaster"]); -- Uktulut Coaster
-    C(t[1310], t[1318]);
-    A(t[1318], a[15736]); -- Uktulut Coaster: Bronze
-    A(t[1318], a[15737]); -- Uktulut Coaster: Silver
-    A(t[1318], a[15738]); -- Uktulut Coaster: Gold
-    A(t[1318], a[15739]); -- Uktulut Coaster Advanced: Bronze
-    A(t[1318], a[15740]); -- Uktulut Coaster Advanced: Silver
-    A(t[1318], a[15741]); -- Uktulut Coaster Advanced: Gold
-    t[1321] = c:New(k.L["Wild Preserve Circuit"]); -- Wild Preserve Circuit
-    C(t[1310], t[1321]);
-    A(t[1321], a[15718]); -- Wild Preserve Circuit: Bronze
-    A(t[1321], a[15719]); -- Wild Preserve Circuit: Silver
-    A(t[1321], a[15720]); -- Wild Preserve Circuit: Gold
-    A(t[1321], a[15721]); -- Wild Preserve Circuit Advanced: Bronze
-    A(t[1321], a[15722]); -- Wild Preserve Circuit Advanced: Silver
-    A(t[1321], a[15723]); -- Wild Preserve Circuit Advanced: Gold
-    t[1315] = c:New(k.L["Wild Preserve Slalom"]); -- Wild Preserve Slalom
-    C(t[1310], t[1315]);
-    A(t[1315], a[15712]); -- Wild Preserve Slalom: Bronze
-    A(t[1315], a[15713]); -- Wild Preserve Slalom: Silver
-    A(t[1315], a[15714]); -- Wild Preserve Slalom: Gold
-    A(t[1315], a[15715]); -- Wild Preserve Slalom Advanced: Bronze
-    A(t[1315], a[15716]); -- Wild Preserve Slalom Advanced: Silver
-    A(t[1315], a[15717]); -- Wild Preserve Slalom Advanced: Gold
-    t[1319] = c:New(k.L["Wingrest Roundabout"]); -- Wingrest Roundabout
-    C(t[1310], t[1319]);
-    A(t[1319], a[15742]); -- Wingrest Roundabout: Bronze
-    A(t[1319], a[15743]); -- Wingrest Roundabout: Silver
-    A(t[1319], a[15744]); -- Wingrest Roundabout: Gold
-    A(t[1319], a[15745]); -- Wingrest Roundabout Advanced: Bronze
-    A(t[1319], a[15746]); -- Wingrest Roundabout Advanced: Silver
-    A(t[1319], a[15747]); -- Wingrest Roundabout Advanced: Gold
     t[1363] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1232], t[1363]);
     A(t[1363], a[16463]); -- Thunderstorms in The Waking Shores
@@ -5708,56 +5644,6 @@ function exportedCategories.Load(a)
     A(t[1311], a[15930]); -- Ohn'ahran Plains Advanced: Bronze
     A(t[1311], a[15931]); -- Ohn'ahran Plains Advanced: Silver
     A(t[1311], a[15932]); -- Ohn'ahran Plains Advanced: Gold
-    t[1325] = c:New(k.L["Emerald Garden Ascent"]); -- Emerald Garden Ascent
-    C(t[1311], t[1325]);
-    A(t[1325], a[15775]); -- Emerald Garden Ascent: Bronze
-    A(t[1325], a[15776]); -- Emerald Garden Ascent: Silver
-    A(t[1325], a[15777]); -- Emerald Garden Ascent: Gold
-    A(t[1325], a[15778]); -- Emerald Garden Ascent Advanced: Bronze
-    A(t[1325], a[15779]); -- Emerald Garden Ascent Advanced: Silver
-    A(t[1325], a[15780]); -- Emerald Garden Ascent Advanced: Gold
-    t[1323] = c:New(k.L["Fen Flythrough"]); -- Fen Flythrough
-    C(t[1311], t[1323]);
-    A(t[1323], a[15763]); -- Fen Flythrough: Bronze
-    A(t[1323], a[15764]); -- Fen Flythrough: Silver
-    A(t[1323], a[15765]); -- Fen Flythrough: Gold
-    A(t[1323], a[15766]); -- Fen Flythrough Advanced: Bronze
-    A(t[1323], a[15767]); -- Fen Flythrough Advanced: Silver
-    A(t[1323], a[15768]); -- Fen Flythrough Advanced: Gold
-    t[1328] = c:New(k.L["Maruukai Dash"]); -- Maruukai Dash
-    C(t[1311], t[1328]);
-    A(t[1328], a[15782]); -- Maruukai Dash: Bronze
-    A(t[1328], a[15783]); -- Maruukai Dash: Silver
-    A(t[1328], a[15784]); -- Maruukai Dash: Gold
-    t[1327] = c:New(k.L["Mirror of the Sky Dash"]); -- Mirror of the Sky Dash
-    C(t[1311], t[1327]);
-    A(t[1327], a[15785]); -- Mirror of the Sky Dash: Bronze
-    A(t[1327], a[15786]); -- Mirror of the Sky Dash: Silver
-    A(t[1327], a[15787]); -- Mirror of the Sky Dash: Gold
-    t[1324] = c:New(k.L["Ravine River Run"]); -- Ravine River Run
-    C(t[1311], t[1324]);
-    A(t[1324], a[15769]); -- Ravine River Run: Bronze
-    A(t[1324], a[15770]); -- Ravine River Run: Silver
-    A(t[1324], a[15771]); -- Ravine River Run: Gold
-    A(t[1324], a[15772]); -- Ravine River Run Advanced: Bronze
-    A(t[1324], a[15773]); -- Ravine River Run Advanced: Silver
-    A(t[1324], a[15774]); -- "Ravine River Ru, Advanced: Gold"
-    t[1326] = c:New(k.L["River Rapids Route"]); -- River Rapids Route
-    C(t[1311], t[1326]);
-    A(t[1326], a[16302]); -- River Rapids Route: Bronze
-    A(t[1326], a[16303]); -- River Rapids Route: Silver
-    A(t[1326], a[16304]); -- River Rapids Route: Gold
-    A(t[1326], a[16305]); -- River Rapids Route Advanced: Bronze
-    A(t[1326], a[16306]); -- River Rapids Route Advanced: Silver
-    A(t[1326], a[16307]); -- River Rapids Route Advanced: Gold
-    t[1322] = c:New(k.L["Sundapple Copse Circuit"]); -- Sundapple Copse Circuit
-    C(t[1311], t[1322]);
-    A(t[1322], a[15757]); -- Sundapple Copse Circuit: Bronze
-    A(t[1322], a[15758]); -- Sundapple Copse Circuit: Silver
-    A(t[1322], a[15759]); -- Sundapple Copse Circuit: Gold
-    A(t[1322], a[15760]); -- Sundapple Copse Circuit Advanced: Bronze
-    A(t[1322], a[15761]); -- Sundapple Copse Circuit Advanced: Silver
-    A(t[1322], a[15762]); -- Sundapple Copse Circuit Advanced: Gold
     t[1364] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1233], t[1364]);
     A(t[1364], a[16475]); -- Thunderstorms in the Ohn'ahran Plains
@@ -5831,54 +5717,6 @@ function exportedCategories.Load(a)
     A(t[1312], a[15933]); -- Azure Span Advanced: Bronze
     A(t[1312], a[15934]); -- Azure Span Advanced: Silver
     A(t[1312], a[15935]); -- Azure Span Advanced: Gold
-    t[1334] = c:New(k.L["Archive Ambit"]); -- Archive Ambit
-    C(t[1312], t[1334]);
-    A(t[1334], a[15847]); -- Archive Ambit: Bronze
-    A(t[1334], a[15848]); -- Archive Ambit: Silver
-    A(t[1334], a[15849]); -- Archive Ambit: Gold
-    A(t[1334], a[15850]); -- Archive Ambit Advanced: Bronze
-    A(t[1334], a[15851]); -- Archive Ambit Advanced: Silver
-    A(t[1334], a[15852]); -- Archive Ambit Advanced: Gold
-    t[1333] = c:New(k.L["Central Circuit"]); -- Central Circuit
-    C(t[1312], t[1333]);
-    A(t[1333], a[15841]); -- Frostland Flyover: Bronze
-    A(t[1333], a[15842]); -- Frostland Flyover: Silver
-    A(t[1333], a[15843]); -- Frostland Flyover: Gold
-    A(t[1333], a[15844]); -- Frostland Flyover Advanced: Bronze
-    A(t[1333], a[15845]); -- Frostland Flyover Advanced: Silver
-    A(t[1333], a[15846]); -- Frostland Flyover Advanced: Gold
-    t[1332] = c:New(k.L["Iskaara Flyover"]); -- Iskaara Flyover
-    C(t[1312], t[1332]);
-    A(t[1332], a[15835]); -- Iskaara Tour: Bronze
-    A(t[1332], a[15836]); -- Iskaara Tour: Silver
-    A(t[1332], a[15837]); -- Iskaara Tour: Gold
-    A(t[1332], a[15838]); -- Iskaara Tour Advanced: Bronze
-    A(t[1332], a[15839]); -- Iskaara Tour Advanced: Silver
-    A(t[1332], a[15840]); -- Iskaara Tour Advanced: Gold
-    t[1330] = c:New(k.L["The Azure Span Slalom"]); -- The Azure Span Slalom
-    C(t[1312], t[1330]);
-    A(t[1330], a[15799]); -- The Azure Span Slalom: Bronze
-    A(t[1330], a[15800]); -- The Azure Span Slalom: Silver
-    A(t[1330], a[15801]); -- The Azure Span Slalom: Gold
-    A(t[1330], a[15802]); -- The Azure Span Slalom Advanced: Bronze
-    A(t[1330], a[15803]); -- The Azure Span Slalom Advanced: Silver
-    A(t[1330], a[15804]); -- The Azure Span Slalom Advanced: Gold
-    t[1329] = c:New(k.L["The Azure Span Sprint"]); -- The Azure Span Sprint
-    C(t[1312], t[1329]);
-    A(t[1329], a[15788]); -- The Azure Span Sprint: Bronze
-    A(t[1329], a[15789]); -- The Azure Span Sprint: Silver
-    A(t[1329], a[15790]); -- The Azure Span Sprint: Gold
-    A(t[1329], a[15791]); -- The Azure Span Sprint Advanced: Bronze
-    A(t[1329], a[15792]); -- The Azure Span Sprint Advanced: Silver
-    A(t[1329], a[15793]); -- The Azure Span Sprint Advanced: Gold
-    t[1331] = c:New(k.L["The Vakthros Ascent"]); -- The Vakthros Ascent
-    C(t[1312], t[1331]);
-    A(t[1331], a[15818]); -- The Vakthros Ascent: Bronze
-    A(t[1331], a[15819]); -- The Vakthros Ascent: Silver
-    A(t[1331], a[15820]); -- The Vakthros Ascent: Gold
-    A(t[1331], a[15821]); -- The Vakthros Ascent Advanced: Bronze
-    A(t[1331], a[15822]); -- The Vakthros Ascent Advanced: Silver
-    A(t[1331], a[15823]); -- The Vakthros Ascent Advanced: Gold
     t[1365] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1234], t[1365]);
     A(t[1365], a[16480]); -- Thunderstorms in The Azure Span
@@ -5927,54 +5765,6 @@ function exportedCategories.Load(a)
     A(t[1313], a[15936]); -- Thaldraszus Advanced: Bronze
     A(t[1313], a[15937]); -- Thaldraszus Advanced: Silver
     A(t[1313], a[15938]); -- Thaldraszus Advanced: Gold
-    t[1338] = c:New(k.L["Academy Ascent"]); -- Academy Ascent
-    C(t[1313], t[1338]);
-    A(t[1338], a[15897]); -- Academy Ascent: Bronze
-    A(t[1338], a[15898]); -- Academy Ascent: Silver
-    A(t[1338], a[15899]); -- Academy Ascent: Gold
-    A(t[1338], a[15900]); -- Academy Ascent Advanced: Bronze
-    A(t[1338], a[15901]); -- Academy Ascent Advanced: Silver
-    A(t[1338], a[15902]); -- Academy Ascent Advanced: Gold
-    t[1340] = c:New(k.L["Caverns Criss-Cross"]); -- Caverns Criss-Cross
-    C(t[1313], t[1340]);
-    A(t[1340], a[15909]); -- Caverns Criss-Cross: Bronze
-    A(t[1340], a[15910]); -- Caverns Criss-Cross: Silver
-    A(t[1340], a[15911]); -- Caverns Criss-Cross: Gold
-    A(t[1340], a[15912]); -- Caverns Criss-Cross Advanced: Bronze
-    A(t[1340], a[15913]); -- Caverns Criss-Cross Advanced: Silver
-    A(t[1340], a[15914]); -- Caverns Criss-Cross Advanced: Gold
-    t[1337] = c:New(k.L["Cliffside Circuit"]); -- Cliffside Circuit
-    C(t[1313], t[1337]);
-    A(t[1337], a[15891]); -- Cliffside Circuit: Bronze
-    A(t[1337], a[15892]); -- Cliffside Circuit: Silver
-    A(t[1337], a[15893]); -- Cliffside Circuit: Gold
-    A(t[1337], a[15894]); -- Cliffside Circuit Advanced: Bronze
-    A(t[1337], a[15895]); -- Cliffside Circuit Advanced: Silver
-    A(t[1337], a[15896]); -- Cliffside Circuit Advanced: Gold
-    t[1339] = c:New(k.L["Garden Gallivant"]); -- Garden Gallivant
-    C(t[1313], t[1339]);
-    A(t[1339], a[15903]); -- Garden Gallivant: Bronze
-    A(t[1339], a[15904]); -- Garden Gallivant: Silver
-    A(t[1339], a[15905]); -- Garden Gallivant: Gold
-    A(t[1339], a[15906]); -- Garden Gallivant Advanced: Bronze
-    A(t[1339], a[15907]); -- Garden Gallivant Advanced: Silver
-    A(t[1339], a[15908]); -- Garden Gallivant Advanced: Gold
-    t[1336] = c:New(k.L["Passage Pathway"]); -- Passage Pathway
-    C(t[1313], t[1336]);
-    A(t[1336], a[15855]); -- Tyrhold Trial: Bronze
-    A(t[1336], a[15856]); -- Tyrhold Trial: Silver
-    A(t[1336], a[15857]); -- Tyrhold Trial: Gold
-    A(t[1336], a[15858]); -- Tyrhold Trial Advanced: Bronze
-    A(t[1336], a[15859]); -- Tyrhold Trial Advanced: Silver
-    A(t[1336], a[15860]); -- Tyrhold Trial Advanced: Gold
-    t[1335] = c:New(k.L["The Flowing Forest Flight"]); -- The Flowing Forest Flight
-    C(t[1313], t[1335]);
-    A(t[1335], a[15827]); -- The Flowing Forest Flight: Bronze
-    A(t[1335], a[15828]); -- The Flowing Forest Flight: Silver
-    A(t[1335], a[15829]); -- The Flowing Forest Flight: Gold
-    A(t[1335], a[15830]); -- The Flowing Forest Flight Advanced: Bronze
-    A(t[1335], a[15831]); -- The Flowing Forest Flight Advanced: Silver
-    A(t[1335], a[15832]); -- The Flowing Forest Flight Advanced: Gold
     t[1366] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1235], t[1366]);
     A(t[1366], a[16485]); -- Thunderstorms in Thaldraszus
@@ -6212,70 +6002,6 @@ function exportedCategories.Load(a)
     A(t[1293], a[15927]); -- Waking Shores Advanced: Bronze
     A(t[1293], a[15928]); -- Waking Shores Advanced: Silver
     A(t[1293], a[15929]); -- Waking Shores Advanced: Gold
-    t[1298] = c:New(k.L["Apex Canopy River Run"]); -- Apex Canopy River Run
-    C(t[1293], t[1298]);
-    A(t[1298], a[15730]); -- Apex Canopy River Run: Bronze
-    A(t[1298], a[15731]); -- Apex Canopy River Run: Silver
-    A(t[1298], a[15732]); -- Apex Canopy River Run: Gold
-    A(t[1298], a[15733]); -- Apex Canopy River Run Advanced: Bronze
-    A(t[1298], a[15734]); -- Apex Canopy River Run Advanced: Silver
-    A(t[1298], a[15735]); -- Apex Canopy River Run Advanced: Gold
-    t[1299] = c:New(k.L["Emberflow Flight"]); -- Emberflow Flight
-    C(t[1293], t[1299]);
-    A(t[1299], a[15724]); -- Emberflow Flight: Bronze
-    A(t[1299], a[15725]); -- Emberflow Flight: Silver
-    A(t[1299], a[15726]); -- Emberflow Flight: Gold
-    A(t[1299], a[15727]); -- Emberflow Flight Advanced: Bronze
-    A(t[1299], a[15728]); -- Emberflow Flight Advanced: Silver
-    A(t[1299], a[15729]); -- Emberflow Flight Advanced: Gold
-    t[1295] = c:New(k.L["Flashfrost Flyover"]); -- Flashfrost Flyover
-    C(t[1293], t[1295]);
-    A(t[1295], a[15705]); -- Flashfrost Flyover: Bronze
-    A(t[1295], a[15706]); -- Flashfrost Flyover: Silver
-    A(t[1295], a[15707]); -- Flashfrost Flyover: Gold
-    A(t[1295], a[15709]); -- Flashfrost Flyover Advanced: Bronze
-    A(t[1295], a[15710]); -- Flashfrost Flyover Advanced: Silver
-    A(t[1295], a[15711]); -- Flashfrost Flyover Advanced: Gold
-    t[1301] = c:New(k.L["Ruby Lifeshrine Loop"]); -- Ruby Lifeshrine Loop
-    C(t[1293], t[1301]);
-    A(t[1301], a[15696]); -- Ruby Lifeshrine Loop: Bronze
-    A(t[1301], a[15697]); -- Ruby Lifeshrine Loop: Silver
-    A(t[1301], a[15698]); -- Ruby Lifeshrine Loop: Gold
-    A(t[1301], a[15702]); -- Ruby Lifeshrine Loop Advanced: Bronze
-    A(t[1301], a[15703]); -- Ruby Lifeshrine Loop Advanced: Silver
-    A(t[1301], a[15704]); -- Ruby Lifeshrine Loop Advanced: Gold
-    t[1297] = c:New(k.L["Uktulut Coaster"]); -- Uktulut Coaster
-    C(t[1293], t[1297]);
-    A(t[1297], a[15736]); -- Uktulut Coaster: Bronze
-    A(t[1297], a[15737]); -- Uktulut Coaster: Silver
-    A(t[1297], a[15738]); -- Uktulut Coaster: Gold
-    A(t[1297], a[15739]); -- Uktulut Coaster Advanced: Bronze
-    A(t[1297], a[15740]); -- Uktulut Coaster Advanced: Silver
-    A(t[1297], a[15741]); -- Uktulut Coaster Advanced: Gold
-    t[1294] = c:New(k.L["Wild Preserve Circuit"]); -- Wild Preserve Circuit
-    C(t[1293], t[1294]);
-    A(t[1294], a[15718]); -- Wild Preserve Circuit: Bronze
-    A(t[1294], a[15719]); -- Wild Preserve Circuit: Silver
-    A(t[1294], a[15720]); -- Wild Preserve Circuit: Gold
-    A(t[1294], a[15721]); -- Wild Preserve Circuit Advanced: Bronze
-    A(t[1294], a[15722]); -- Wild Preserve Circuit Advanced: Silver
-    A(t[1294], a[15723]); -- Wild Preserve Circuit Advanced: Gold
-    t[1300] = c:New(k.L["Wild Preserve Slalom"]); -- Wild Preserve Slalom
-    C(t[1293], t[1300]);
-    A(t[1300], a[15712]); -- Wild Preserve Slalom: Bronze
-    A(t[1300], a[15713]); -- Wild Preserve Slalom: Silver
-    A(t[1300], a[15714]); -- Wild Preserve Slalom: Gold
-    A(t[1300], a[15715]); -- Wild Preserve Slalom Advanced: Bronze
-    A(t[1300], a[15716]); -- Wild Preserve Slalom Advanced: Silver
-    A(t[1300], a[15717]); -- Wild Preserve Slalom Advanced: Gold
-    t[1296] = c:New(k.L["Wingrest Roundabout"]); -- Wingrest Roundabout
-    C(t[1293], t[1296]);
-    A(t[1296], a[15742]); -- Wingrest Roundabout: Bronze
-    A(t[1296], a[15743]); -- Wingrest Roundabout: Silver
-    A(t[1296], a[15744]); -- Wingrest Roundabout: Gold
-    A(t[1296], a[15745]); -- Wingrest Roundabout Advanced: Bronze
-    A(t[1296], a[15746]); -- Wingrest Roundabout Advanced: Silver
-    A(t[1296], a[15747]); -- Wingrest Roundabout Advanced: Gold
     t[1285] = c:New(k.GetMapName(2023)); -- Ohn'ahran Plains
     C(t[1269], t[1285]);
     A(t[1285], a[15918]); -- Ohn'ahran Plains: Bronze
@@ -6284,56 +6010,6 @@ function exportedCategories.Load(a)
     A(t[1285], a[15930]); -- Ohn'ahran Plains Advanced: Bronze
     A(t[1285], a[15931]); -- Ohn'ahran Plains Advanced: Silver
     A(t[1285], a[15932]); -- Ohn'ahran Plains Advanced: Gold
-    t[1289] = c:New(k.L["Emerald Garden Ascent"]); -- Emerald Garden Ascent
-    C(t[1285], t[1289]);
-    A(t[1289], a[15775]); -- Emerald Garden Ascent: Bronze
-    A(t[1289], a[15776]); -- Emerald Garden Ascent: Silver
-    A(t[1289], a[15777]); -- Emerald Garden Ascent: Gold
-    A(t[1289], a[15778]); -- Emerald Garden Ascent Advanced: Bronze
-    A(t[1289], a[15779]); -- Emerald Garden Ascent Advanced: Silver
-    A(t[1289], a[15780]); -- Emerald Garden Ascent Advanced: Gold
-    t[1291] = c:New(k.L["Fen Flythrough"]); -- Fen Flythrough
-    C(t[1285], t[1291]);
-    A(t[1291], a[15763]); -- Fen Flythrough: Bronze
-    A(t[1291], a[15764]); -- Fen Flythrough: Silver
-    A(t[1291], a[15765]); -- Fen Flythrough: Gold
-    A(t[1291], a[15766]); -- Fen Flythrough Advanced: Bronze
-    A(t[1291], a[15767]); -- Fen Flythrough Advanced: Silver
-    A(t[1291], a[15768]); -- Fen Flythrough Advanced: Gold
-    t[1286] = c:New(k.L["Maruukai Dash"]); -- Maruukai Dash
-    C(t[1285], t[1286]);
-    A(t[1286], a[15782]); -- Maruukai Dash: Bronze
-    A(t[1286], a[15783]); -- Maruukai Dash: Silver
-    A(t[1286], a[15784]); -- Maruukai Dash: Gold
-    t[1287] = c:New(k.L["Mirror of the Sky Dash"]); -- Mirror of the Sky Dash
-    C(t[1285], t[1287]);
-    A(t[1287], a[15785]); -- Mirror of the Sky Dash: Bronze
-    A(t[1287], a[15786]); -- Mirror of the Sky Dash: Silver
-    A(t[1287], a[15787]); -- Mirror of the Sky Dash: Gold
-    t[1290] = c:New(k.L["Ravine River Run"]); -- Ravine River Run
-    C(t[1285], t[1290]);
-    A(t[1290], a[15769]); -- Ravine River Run: Bronze
-    A(t[1290], a[15770]); -- Ravine River Run: Silver
-    A(t[1290], a[15771]); -- Ravine River Run: Gold
-    A(t[1290], a[15772]); -- Ravine River Run Advanced: Bronze
-    A(t[1290], a[15773]); -- Ravine River Run Advanced: Silver
-    A(t[1290], a[15774]); -- "Ravine River Ru, Advanced: Gold"
-    t[1288] = c:New(k.L["River Rapids Route"]); -- River Rapids Route
-    C(t[1285], t[1288]);
-    A(t[1288], a[16302]); -- River Rapids Route: Bronze
-    A(t[1288], a[16303]); -- River Rapids Route: Silver
-    A(t[1288], a[16304]); -- River Rapids Route: Gold
-    A(t[1288], a[16305]); -- River Rapids Route Advanced: Bronze
-    A(t[1288], a[16306]); -- River Rapids Route Advanced: Silver
-    A(t[1288], a[16307]); -- River Rapids Route Advanced: Gold
-    t[1292] = c:New(k.L["Sundapple Copse Circuit"]); -- Sundapple Copse Circuit
-    C(t[1285], t[1292]);
-    A(t[1292], a[15757]); -- Sundapple Copse Circuit: Bronze
-    A(t[1292], a[15758]); -- Sundapple Copse Circuit: Silver
-    A(t[1292], a[15759]); -- Sundapple Copse Circuit: Gold
-    A(t[1292], a[15760]); -- Sundapple Copse Circuit Advanced: Bronze
-    A(t[1292], a[15761]); -- Sundapple Copse Circuit Advanced: Silver
-    A(t[1292], a[15762]); -- Sundapple Copse Circuit Advanced: Gold
     t[1278] = c:New(k.GetMapName(2024)); -- The Azure Span
     C(t[1269], t[1278]);
     A(t[1278], a[15921]); -- Azure Span: Bronze
@@ -6342,54 +6018,6 @@ function exportedCategories.Load(a)
     A(t[1278], a[15933]); -- Azure Span Advanced: Bronze
     A(t[1278], a[15934]); -- Azure Span Advanced: Silver
     A(t[1278], a[15935]); -- Azure Span Advanced: Gold
-    t[1279] = c:New(k.L["Archive Ambit"]); -- Archive Ambit
-    C(t[1278], t[1279]);
-    A(t[1279], a[15847]); -- Archive Ambit: Bronze
-    A(t[1279], a[15848]); -- Archive Ambit: Silver
-    A(t[1279], a[15849]); -- Archive Ambit: Gold
-    A(t[1279], a[15850]); -- Archive Ambit Advanced: Bronze
-    A(t[1279], a[15851]); -- Archive Ambit Advanced: Silver
-    A(t[1279], a[15852]); -- Archive Ambit Advanced: Gold
-    t[1280] = c:New(k.L["Central Circuit"]); -- Central Circuit
-    C(t[1278], t[1280]);
-    A(t[1280], a[15841]); -- Frostland Flyover: Bronze
-    A(t[1280], a[15842]); -- Frostland Flyover: Silver
-    A(t[1280], a[15843]); -- Frostland Flyover: Gold
-    A(t[1280], a[15844]); -- Frostland Flyover Advanced: Bronze
-    A(t[1280], a[15845]); -- Frostland Flyover Advanced: Silver
-    A(t[1280], a[15846]); -- Frostland Flyover Advanced: Gold
-    t[1281] = c:New(k.L["Iskaara Flyover"]); -- Iskaara Flyover
-    C(t[1278], t[1281]);
-    A(t[1281], a[15835]); -- Iskaara Tour: Bronze
-    A(t[1281], a[15836]); -- Iskaara Tour: Silver
-    A(t[1281], a[15837]); -- Iskaara Tour: Gold
-    A(t[1281], a[15838]); -- Iskaara Tour Advanced: Bronze
-    A(t[1281], a[15839]); -- Iskaara Tour Advanced: Silver
-    A(t[1281], a[15840]); -- Iskaara Tour Advanced: Gold
-    t[1283] = c:New(k.L["The Azure Span Slalom"]); -- The Azure Span Slalom
-    C(t[1278], t[1283]);
-    A(t[1283], a[15799]); -- The Azure Span Slalom: Bronze
-    A(t[1283], a[15800]); -- The Azure Span Slalom: Silver
-    A(t[1283], a[15801]); -- The Azure Span Slalom: Gold
-    A(t[1283], a[15802]); -- The Azure Span Slalom Advanced: Bronze
-    A(t[1283], a[15803]); -- The Azure Span Slalom Advanced: Silver
-    A(t[1283], a[15804]); -- The Azure Span Slalom Advanced: Gold
-    t[1284] = c:New(k.L["The Azure Span Sprint"]); -- The Azure Span Sprint
-    C(t[1278], t[1284]);
-    A(t[1284], a[15788]); -- The Azure Span Sprint: Bronze
-    A(t[1284], a[15789]); -- The Azure Span Sprint: Silver
-    A(t[1284], a[15790]); -- The Azure Span Sprint: Gold
-    A(t[1284], a[15791]); -- The Azure Span Sprint Advanced: Bronze
-    A(t[1284], a[15792]); -- The Azure Span Sprint Advanced: Silver
-    A(t[1284], a[15793]); -- The Azure Span Sprint Advanced: Gold
-    t[1282] = c:New(k.L["The Vakthros Ascent"]); -- The Vakthros Ascent
-    C(t[1278], t[1282]);
-    A(t[1282], a[15818]); -- The Vakthros Ascent: Bronze
-    A(t[1282], a[15819]); -- The Vakthros Ascent: Silver
-    A(t[1282], a[15820]); -- The Vakthros Ascent: Gold
-    A(t[1282], a[15821]); -- The Vakthros Ascent Advanced: Bronze
-    A(t[1282], a[15822]); -- The Vakthros Ascent Advanced: Silver
-    A(t[1282], a[15823]); -- The Vakthros Ascent Advanced: Gold
     t[1276] = c:New(k.GetMapName(2025)); -- Thaldraszus
     C(t[1269], t[1276]);
     A(t[1276], a[15924]); -- Thaldraszus: Bronze
@@ -6398,54 +6026,6 @@ function exportedCategories.Load(a)
     A(t[1276], a[15936]); -- Thaldraszus Advanced: Bronze
     A(t[1276], a[15937]); -- Thaldraszus Advanced: Silver
     A(t[1276], a[15938]); -- Thaldraszus Advanced: Gold
-    t[1273] = c:New(k.L["Academy Ascent"]); -- Academy Ascent
-    C(t[1276], t[1273]);
-    A(t[1273], a[15897]); -- Academy Ascent: Bronze
-    A(t[1273], a[15898]); -- Academy Ascent: Silver
-    A(t[1273], a[15899]); -- Academy Ascent: Gold
-    A(t[1273], a[15900]); -- Academy Ascent Advanced: Bronze
-    A(t[1273], a[15901]); -- Academy Ascent Advanced: Silver
-    A(t[1273], a[15902]); -- Academy Ascent Advanced: Gold
-    t[1271] = c:New(k.L["Caverns Criss-Cross"]); -- Caverns Criss-Cross
-    C(t[1276], t[1271]);
-    A(t[1271], a[15909]); -- Caverns Criss-Cross: Bronze
-    A(t[1271], a[15910]); -- Caverns Criss-Cross: Silver
-    A(t[1271], a[15911]); -- Caverns Criss-Cross: Gold
-    A(t[1271], a[15912]); -- Caverns Criss-Cross Advanced: Bronze
-    A(t[1271], a[15913]); -- Caverns Criss-Cross Advanced: Silver
-    A(t[1271], a[15914]); -- Caverns Criss-Cross Advanced: Gold
-    t[1274] = c:New(k.L["Cliffside Circuit"]); -- Cliffside Circuit
-    C(t[1276], t[1274]);
-    A(t[1274], a[15891]); -- Cliffside Circuit: Bronze
-    A(t[1274], a[15892]); -- Cliffside Circuit: Silver
-    A(t[1274], a[15893]); -- Cliffside Circuit: Gold
-    A(t[1274], a[15894]); -- Cliffside Circuit Advanced: Bronze
-    A(t[1274], a[15895]); -- Cliffside Circuit Advanced: Silver
-    A(t[1274], a[15896]); -- Cliffside Circuit Advanced: Gold
-    t[1272] = c:New(k.L["Garden Gallivant"]); -- Garden Gallivant
-    C(t[1276], t[1272]);
-    A(t[1272], a[15903]); -- Garden Gallivant: Bronze
-    A(t[1272], a[15904]); -- Garden Gallivant: Silver
-    A(t[1272], a[15905]); -- Garden Gallivant: Gold
-    A(t[1272], a[15906]); -- Garden Gallivant Advanced: Bronze
-    A(t[1272], a[15907]); -- Garden Gallivant Advanced: Silver
-    A(t[1272], a[15908]); -- Garden Gallivant Advanced: Gold
-    t[1275] = c:New(k.L["Passage Pathway"]); -- Passage Pathway
-    C(t[1276], t[1275]);
-    A(t[1275], a[15855]); -- Tyrhold Trial: Bronze
-    A(t[1275], a[15856]); -- Tyrhold Trial: Silver
-    A(t[1275], a[15857]); -- Tyrhold Trial: Gold
-    A(t[1275], a[15858]); -- Tyrhold Trial Advanced: Bronze
-    A(t[1275], a[15859]); -- Tyrhold Trial Advanced: Silver
-    A(t[1275], a[15860]); -- Tyrhold Trial Advanced: Gold
-    t[1277] = c:New(k.L["The Flowing Forest Flight"]); -- The Flowing Forest Flight
-    C(t[1276], t[1277]);
-    A(t[1277], a[15827]); -- The Flowing Forest Flight: Bronze
-    A(t[1277], a[15828]); -- The Flowing Forest Flight: Silver
-    A(t[1277], a[15829]); -- The Flowing Forest Flight: Gold
-    A(t[1277], a[15830]); -- The Flowing Forest Flight Advanced: Bronze
-    A(t[1277], a[15831]); -- The Flowing Forest Flight Advanced: Silver
-    A(t[1277], a[15832]); -- The Flowing Forest Flight Advanced: Gold
     t[1360] = c:New(k.L["Primal Storms"]); -- Primal Storms
     C(t[1207], t[1360]);
     A(t[1360], a[16492]); -- Into the Storm
