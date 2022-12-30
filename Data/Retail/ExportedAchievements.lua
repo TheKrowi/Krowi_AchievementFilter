@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-29 16-19-27 ]] --
+-- [[ Exported at 2022-12-30 10-49-38 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -8051,10 +8051,10 @@ function exportedAchievements.Load(a, t)
     a[15638] = b:New(15638, 10, fac.Horde); -- "Dracthyr, Awaken"
     a[15639] = b:New(15639, 0); -- Elite: Shadowlands Season 4
     O(a[15639], "From", "PvP Season", 33, "Until", "PvP Season", 33);
+    a[15640] = b:New(15640, 0); -- Return to Darkness
     a[15641] = b:New(15641, 10); -- Many More Mini Minions
     a[15642] = b:New(15642, 10); -- Proven Pet Parent
     a[15643] = b:New(15643, 10); -- What Can I Say? They Love Me.
-    a[15644] = b:New(15644, 10); -- Good Things Come in Small Packages
     a[15645] = b:New(15645, 0); -- To Catch Falling Stars
     a[15646] = b:New(15646, 10); -- Re-Re-Re-Renowned
     a[15647] = b:New(15647, 10); -- Dead Men Tell Some Tales
@@ -8548,7 +8548,6 @@ function exportedAchievements.Load(a, t)
     a[16729] = b:New(16729, 10); -- To All the Squirrels Hidden Til Now
     a[16730] = b:New(16730, 0); -- Crimson Gladiator's Drake
     O(a[16730], "From", "PvP Season", 34, "Until", "PvP Season", 34);
-    a[16731] = b:New(16731, 10); -- Court is Now in Session
     a[16734] = b:New(16734, 0); -- Crimson Soloist: Dragonflight Season 1
     O(a[16734], "From", "PvP Season", 34, "Until", "PvP Season", 34);
     a[16736] = b:New(16736, 10); -- Grand Theft Mammoth
@@ -8560,10 +8559,7 @@ function exportedAchievements.Load(a, t)
     a[16789] = b:New(16789, 5); -- Lucky Penny
     a[16790] = b:New(16790, 5); -- Curious Coin
     a[16791] = b:New(16791, 50); -- Merchant Artisan
-    a[16794] = b:New(16794, 10); -- Dragon Isles Crafting Order Apprentice
-    a[16795] = b:New(16795, 10); -- Dragon Isles Crafting Order Journeyman
     a[16799] = b:New(16799, 25); -- Personal Crafter
-    a[16800] = b:New(16800, 10); -- Dragon Isles Crafting Order Master
     a[16801] = b:New(16801, 0); -- Realm First! Dragonflight Keystone Hero
     O(a[16801], "Once");
     a[16808] = b:New(16808, 15); -- Friend of the Dragon Isles
@@ -8575,9 +8571,30 @@ function exportedAchievements.Load(a, t)
     a[17111] = b:New(17111, 10); -- Caverns of Infusion
     a[17112] = b:New(17112, 10); -- Fury of the Storm
     a[17119] = b:New(17119, 10); -- Deep Cuts From the Vault
+    a[17195] = b:New(17195, 10); -- Waking Shores Reverse: Bronze
+    a[17196] = b:New(17196, 10); -- Waking Shores Reverse: Silver
+    a[17197] = b:New(17197, 10); -- Waking Shores Reverse: Gold
+    a[17198] = b:New(17198, 10); -- Ohn'ahran Plains Reverse: Bronze
+    a[17199] = b:New(17199, 10); -- Ohn'ahran Plains Reverse: Silver
+    a[17200] = b:New(17200, 10); -- Ohn'ahran Plains Reverse: Gold
+    a[17201] = b:New(17201, 10); -- Azure Span Reverse: Bronze
+    a[17202] = b:New(17202, 10); -- Azure Span Reverse: Silver
+    a[17203] = b:New(17203, 10); -- Azure Span Reverse: Gold
+    a[17204] = b:New(17204, 10); -- Thaldraszus Reverse: Bronze
+    a[17205] = b:New(17205, 10); -- Thaldraszus Reverse: Silver
+    a[17206] = b:New(17206, 10); -- Thaldraszus Reverse: Gold
+    a[17207] = b:New(17207, 10); -- Discombobberlated
+    a[17314] = b:New(17314, 0); -- Heroic Edition: Tangled Dreamweaver
+    a[17316] = b:New(17316, 10); -- Dragon Isles Crafting Order Apprentice
+    a[17317] = b:New(17317, 10); -- Dragon Isles Crafting Order Journeyman
+    a[17318] = b:New(17318, 10); -- Dragon Isles Crafting Order Master
+    a[17321] = b:New(17321, 10); -- Elders of the Dragon Isles
+    a[17330] = b:New(17330, 10); -- Reverse Racer: Bronze
+    a[17331] = b:New(17331, 10); -- Reverse Racer: Silver
+    a[17332] = b:New(17332, 10); -- Reverse Racer: Gold
 
     local aIDs = {};
-    for i = 1, 17119 do
+    for i = 1, 17332 do
         if a[i] ~= nil then
             tinsert(aIDs, i);
         end

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-29 16-20-04 ]] --
+-- [[ Exported at 2022-12-30 10-52-16 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -5583,6 +5583,9 @@ function exportedCategories.Load(a)
     A(t[1310], a[15927]); -- Waking Shores Advanced: Bronze
     A(t[1310], a[15928]); -- Waking Shores Advanced: Silver
     A(t[1310], a[15929]); -- Waking Shores Advanced: Gold
+    A(t[1310], a[17195]); -- Waking Shores Reverse: Bronze
+    A(t[1310], a[17196]); -- Waking Shores Reverse: Silver
+    A(t[1310], a[17197]); -- Waking Shores Reverse: Gold
     t[1363] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1232], t[1363]);
     A(t[1363], a[16463]); -- Thunderstorms in The Waking Shores
@@ -5644,6 +5647,9 @@ function exportedCategories.Load(a)
     A(t[1311], a[15930]); -- Ohn'ahran Plains Advanced: Bronze
     A(t[1311], a[15931]); -- Ohn'ahran Plains Advanced: Silver
     A(t[1311], a[15932]); -- Ohn'ahran Plains Advanced: Gold
+    A(t[1311], a[17198]); -- Ohn'ahran Plains Reverse: Bronze
+    A(t[1311], a[17199]); -- Ohn'ahran Plains Reverse: Silver
+    A(t[1311], a[17200]); -- Ohn'ahran Plains Reverse: Gold
     t[1364] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1233], t[1364]);
     A(t[1364], a[16475]); -- Thunderstorms in the Ohn'ahran Plains
@@ -5717,6 +5723,9 @@ function exportedCategories.Load(a)
     A(t[1312], a[15933]); -- Azure Span Advanced: Bronze
     A(t[1312], a[15934]); -- Azure Span Advanced: Silver
     A(t[1312], a[15935]); -- Azure Span Advanced: Gold
+    A(t[1312], a[17201]); -- Azure Span Reverse: Bronze
+    A(t[1312], a[17202]); -- Azure Span Reverse: Silver
+    A(t[1312], a[17203]); -- Azure Span Reverse: Gold
     t[1365] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1234], t[1365]);
     A(t[1365], a[16480]); -- Thunderstorms in The Azure Span
@@ -5765,6 +5774,9 @@ function exportedCategories.Load(a)
     A(t[1313], a[15936]); -- Thaldraszus Advanced: Bronze
     A(t[1313], a[15937]); -- Thaldraszus Advanced: Silver
     A(t[1313], a[15938]); -- Thaldraszus Advanced: Gold
+    A(t[1313], a[17204]); -- Thaldraszus Reverse: Bronze
+    A(t[1313], a[17205]); -- Thaldraszus Reverse: Silver
+    A(t[1313], a[17206]); -- Thaldraszus Reverse: Gold
     t[1366] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1235], t[1366]);
     A(t[1366], a[16485]); -- Thunderstorms in Thaldraszus
@@ -5922,7 +5934,6 @@ function exportedCategories.Load(a)
     A(t[1231], a[16511]); -- Undead Battler of the Dragon Isles
     A(t[1231], a[16512]); -- Family Battler of the Dragon Isles
     A(t[1231], a[16399]); -- Lovin' Lubbins
-    A(t[1231], a[16731]); -- Court is Now in Session
     t[1268] = c:New(k.L["Dragonriding"]); -- Dragonriding
     C(t[1207], t[1268]);
     A(t[1268], a[15794]); -- A New Friend
@@ -5994,6 +6005,9 @@ function exportedCategories.Load(a)
     A(t[1269], a[15939]); -- Dragon Racing Completionist
     A(t[1269], a[15940]); -- Dragon Racing Completionist: Silver
     A(t[1269], a[15941]); -- Dragon Racing Completionist: Gold
+    A(t[1269], a[17330]); -- Reverse Racer: Bronze
+    A(t[1269], a[17331]); -- Reverse Racer: Silver
+    A(t[1269], a[17332]); -- Reverse Racer: Gold
     t[1293] = c:New(k.GetMapName(2022)); -- The Waking Shores
     C(t[1269], t[1293]);
     A(t[1293], a[15915]); -- Waking Shores: Bronze
@@ -6002,6 +6016,9 @@ function exportedCategories.Load(a)
     A(t[1293], a[15927]); -- Waking Shores Advanced: Bronze
     A(t[1293], a[15928]); -- Waking Shores Advanced: Silver
     A(t[1293], a[15929]); -- Waking Shores Advanced: Gold
+    A(t[1293], a[17195]); -- Waking Shores Reverse: Bronze
+    A(t[1293], a[17196]); -- Waking Shores Reverse: Silver
+    A(t[1293], a[17197]); -- Waking Shores Reverse: Gold
     t[1285] = c:New(k.GetMapName(2023)); -- Ohn'ahran Plains
     C(t[1269], t[1285]);
     A(t[1285], a[15918]); -- Ohn'ahran Plains: Bronze
@@ -6010,6 +6027,9 @@ function exportedCategories.Load(a)
     A(t[1285], a[15930]); -- Ohn'ahran Plains Advanced: Bronze
     A(t[1285], a[15931]); -- Ohn'ahran Plains Advanced: Silver
     A(t[1285], a[15932]); -- Ohn'ahran Plains Advanced: Gold
+    A(t[1285], a[17198]); -- Ohn'ahran Plains Reverse: Bronze
+    A(t[1285], a[17199]); -- Ohn'ahran Plains Reverse: Silver
+    A(t[1285], a[17200]); -- Ohn'ahran Plains Reverse: Gold
     t[1278] = c:New(k.GetMapName(2024)); -- The Azure Span
     C(t[1269], t[1278]);
     A(t[1278], a[15921]); -- Azure Span: Bronze
@@ -6018,6 +6038,9 @@ function exportedCategories.Load(a)
     A(t[1278], a[15933]); -- Azure Span Advanced: Bronze
     A(t[1278], a[15934]); -- Azure Span Advanced: Silver
     A(t[1278], a[15935]); -- Azure Span Advanced: Gold
+    A(t[1278], a[17201]); -- Azure Span Reverse: Bronze
+    A(t[1278], a[17202]); -- Azure Span Reverse: Silver
+    A(t[1278], a[17203]); -- Azure Span Reverse: Gold
     t[1276] = c:New(k.GetMapName(2025)); -- Thaldraszus
     C(t[1269], t[1276]);
     A(t[1276], a[15924]); -- Thaldraszus: Bronze
@@ -6026,6 +6049,9 @@ function exportedCategories.Load(a)
     A(t[1276], a[15936]); -- Thaldraszus Advanced: Bronze
     A(t[1276], a[15937]); -- Thaldraszus Advanced: Silver
     A(t[1276], a[15938]); -- Thaldraszus Advanced: Gold
+    A(t[1276], a[17204]); -- Thaldraszus Reverse: Bronze
+    A(t[1276], a[17205]); -- Thaldraszus Reverse: Silver
+    A(t[1276], a[17206]); -- Thaldraszus Reverse: Gold
     t[1360] = c:New(k.L["Primal Storms"]); -- Primal Storms
     C(t[1207], t[1360]);
     A(t[1360], a[16492]); -- Into the Storm
@@ -6505,9 +6531,10 @@ function exportedCategories.Load(a)
     A(t[1391], a[16631]); -- Dragon Isles Cook
     A(t[1391], a[16632]); -- Dragon Isles Fisherman
     A(t[1391], a[16683]); -- In Tyr's Footsteps
-    A(t[1391], a[16794]); -- Dragon Isles Crafting Order Apprentice
-    A(t[1391], a[16795]); -- Dragon Isles Crafting Order Journeyman
-    A(t[1391], a[16800]); -- Dragon Isles Crafting Order Master
+    A(t[1391], a[17207]); -- Discombobberlated
+    A(t[1391], a[17316]); -- Dragon Isles Crafting Order Apprentice
+    A(t[1391], a[17317]); -- Dragon Isles Crafting Order Journeyman
+    A(t[1391], a[17318]); -- Dragon Isles Crafting Order Master
     t[1163] = c:New(k.GetCategoryInfoTitle(201)); -- Reputation
     C(t[952], t[1163]);
     A(t[1163], a[522]); -- Somebody Likes Me
@@ -6568,7 +6595,6 @@ function exportedCategories.Load(a)
     A(t[1170], a[15641]); -- Many More Mini Minions
     A(t[1170], a[15642]); -- Proven Pet Parent
     A(t[1170], a[15643]); -- What Can I Say? They Love Me.
-    A(t[1170], a[15644]); -- Good Things Come in Small Packages
     A(t[1170], a[6554]); -- He's Mine!
     A(t[1170], a[6555]); -- Building a Team
     A(t[1170], a[6556]); -- Going to Need More Traps
@@ -6693,13 +6719,14 @@ function exportedCategories.Load(a)
     A(t[885], a[1281]); -- The Rocket's Red Glare
     A(t[885], a[1552]); -- Frenzied Firecracker
     A(t[885], a[937]); -- Elune's Blessing
-    A(t[885], a[6006]); -- Elders of Cataclysm
+    A(t[885], a[915]); -- Elders of the Alliance
+    A(t[885], a[914]); -- Elders of the Horde
     A(t[885], a[912]); -- Elders of Eastern Kingdoms
     A(t[885], a[911]); -- Elders of Kalimdor
     A(t[885], a[1396]); -- Elders of Northrend
+    A(t[885], a[6006]); -- Elders of Cataclysm
+    A(t[885], a[17321]); -- Elders of the Dragon Isles
     A(t[885], a[910]); -- Elders of the Dungeons
-    A(t[885], a[915]); -- Elders of the Alliance
-    A(t[885], a[914]); -- Elders of the Horde
     A(t[885], a[913]); -- To Honor One's Elders
     t[910] = c:New(k.GetCategoryInfoTitle(187)); -- Love is in the Air
     C(t[918], t[910]);
@@ -8829,10 +8856,14 @@ function exportedCategories.Load(a)
     A(t[1119], a[12230]); -- Collector's Edition: Gilded Ravasaur
     A(t[1119], a[12232]); -- Collector's Edition: Tottle
     A(t[1119], a[14283]); -- Heroic Edition: Ensorcelled Everwyrm
+    A(t[1119], a[17314]); -- Heroic Edition: Tangled Dreamweaver
     t[1120] = c:New(k.L["Diablo III"], true); -- Diablo III
     C(t[1117], t[1120]);
     A(t[1120], a[7412]); -- Collector's Edition: Fetish Shaman
     A(t[1120], a[8795]); -- Collector's Edition: Treasure Goblin
+    t[1400] = c:New(k.L["Diablo IV"], true); -- Diablo IV
+    C(t[1117], t[1400]);
+    A(t[1400], a[15640]); -- Return to Darkness
     t[1121] = c:New(k.L["Overwatch"], true); -- Overwatch
     C(t[1117], t[1121]);
     A(t[1121], a[11064]); -- Collector's Edition: Baby Winston

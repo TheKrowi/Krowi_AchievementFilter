@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 ## 51.0 - 2023-01-xx
 ### Added
 - 10.0.5 achievements (WIP)
+- 3.4.1 achievements (WIP)
+
+### Fixed
+- Backend split between Wrath Classic and Retail resulting in smaller export for Wrath Classic
+- Backend split between Wrath Classic and Retail resulting in automatic removal of removed achievements
 
 ### Removed
 - Individual Dragon Racing achievements as they are now marked as tracking achievements
