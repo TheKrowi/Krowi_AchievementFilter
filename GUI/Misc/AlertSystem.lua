@@ -3,20 +3,28 @@ local _, addon = ...;
 local gui = addon.GUI;
 gui.AlertSystem = {};
 local alertSystem = gui.AlertSystem;
+local helperFrame;
 
-alertSystem.__index = alertSystem; -- Used to inject all the namespace functions to the frame
-function alertSystem:Load()
-    local system = AlertFrame:AddQueuedAlertFrameSubSystem(
-        "KrowiAF_AlertFrame_" .. (addon.Options.db.EventReminders.Compact and "Small" or "Normal") .. "_Template",
-        self.SetUp,
-        addon.Options.db.EventReminders.MaxAlerts,
-        100);
-    addon.Util.InjectMetatable(system, alertSystem); -- Inject all the namespace functions to the frame
+local function ShowActiveEvents()
+    if not addon.Options.db.EventReminders.ShowPopUps then
+        return;
+    end
 
-	addon.GUI.AlertSystem = system; -- Overwrite with the actual frame since all functions are injected to it
+    local activeEvents = addon.EventData:GetActiveEvents(true);
+    for _, activeEvent in next, activeEvents do
+        alertSystem:AddAlert(activeEvent, addon.Options.db.EventReminders.FadeDelay);
+    end
 end
 
-function alertSystem.SetUp(frame, event, duration)
+local function OnUpdate(self, elapsed)
+    self.TimeSinceLastUpdate = self.TimeSinceLastUpdate + elapsed;
+    if self.TimeSinceLastUpdate > 1 then
+        self.TimeSinceLastUpdate = 0;
+        -- Check if new events are active, if so, prompt the user
+    end
+end
+
+local function SetUp(frame, event, duration)
 	frame.Event = event;
 	frame.Name:SetText(event.EventDetails.Name);
     frame:UpdateEventRuntime();
@@ -25,22 +33,18 @@ function alertSystem.SetUp(frame, event, duration)
     frame.TimeSinceLastUpdate = 0;
 end
 
-local function ShowActiveEvents(getActiveEvents)
-    if not addon.Options.db.EventReminders.ShowPopUps then
-        return;
-    end
+function alertSystem:Load()
+    helperFrame = CreateFrame("Frame");
+    helperFrame.TimeSinceLastUpdate = 0;
+    helperFrame:SetScript("OnUpdate", OnUpdate);
 
-    local activeEvents = getActiveEvents(true);
+    alertSystem = AlertFrame:AddQueuedAlertFrameSubSystem(
+        "KrowiAF_AlertFrame_" .. (addon.Options.db.EventReminders.Compact and "Small" or "Normal") .. "_Template",
+        SetUp,
+        addon.Options.db.EventReminders.MaxAlerts,
+        100);
 
-    for _, activeEvent in next, activeEvents do
-        addon.GUI.AlertSystem:AddAlert(activeEvent, addon.Options.db.EventReminders.FadeDelay);
-    end
-end
+    alertSystem.ShowActiveEvents = ShowActiveEvents;
 
-function alertSystem.ShowActiveCalendarEvents()
-    ShowActiveEvents(addon.EventData.GetActiveCalendarEvents);
-end
-
-function alertSystem.ShowActiveWorldEvents()
-    ShowActiveEvents(addon.EventData.GetActiveWorldEvents);
+	addon.GUI.AlertSystem = alertSystem; -- Overwrite with the actual frame since all functions are injected to it
 end

@@ -146,8 +146,8 @@ options.Defaults = {
                 StartTimeAndEndTime = "%d/%m/%Y %R"
             },
             TimeDisplay = {
-                Line1 = 2,
-                Line2 = 4
+                Line1 = 1,
+                Line2 = 3
             },
             Compact = false,
             MaxAlerts = 5

@@ -82,6 +82,7 @@ options.InjectOptionsTableAdd = InjectOptionsTableAdd;
 -- Load the options
 function options.Load()
     addon.Options = LibStub("AceDB-3.0"):New("Options", options.Defaults, true);
+    -- addon.Options.Defaults = options.Defaults;
     addon.Options.WidthMultiplier = options.WidthMultiplier;
     addon.Options.Open = Open;
     addon.Options.Debug = options.Debug;

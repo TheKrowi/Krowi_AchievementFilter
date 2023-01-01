@@ -6,10 +6,10 @@ KrowiAF_AlertFrameMixin = {};
 function KrowiAF_AlertFrameMixin:UpdateEventRuntime()
     local line1, line2, timeLeft;
 
-    if self.Event.EventDetails == nil or self.Event.EventDetails.StartTime == nil or self.Event.EventDetails.EndTime == nil then
+    if self.Event.EventDetails == nil or self.Event.EventDetails.EndTime == nil then
         if self.Event.MapId then
             self.Event.EventDetails = addon.EventData.GetEventDetails(self.Event);
-            if self.Event.EventDetails == nil or self.Event.EventDetails.StartTime == nil or self.Event.EventDetails.EndTime == nil then
+            if self.Event.EventDetails == nil or self.Event.EventDetails.EndTime == nil then
                 self.Unlocked:SetText(addon.L["No time data available"]);
                 return;
             end
@@ -19,7 +19,7 @@ function KrowiAF_AlertFrameMixin:UpdateEventRuntime()
         end
     end
 
-    if addon.Options.db.EventReminders.TimeDisplay.Line1 == 3 or addon.Options.db.EventReminders.TimeDisplay.Line2 == 4 then -- Time Left
+    if addon.Options.db.EventReminders.TimeDisplay.Line1 == 2 or addon.Options.db.EventReminders.TimeDisplay.Line2 == 3 then -- Time Left
         local secondsLeft = self.Event.EventDetails.EndTime - time();
         local days = floor(secondsLeft / 86400);
         local hours = floor(mod(secondsLeft, 86400) / 3600);
@@ -31,21 +31,17 @@ function KrowiAF_AlertFrameMixin:UpdateEventRuntime()
         timeLeft = timeLeft .. (minutes > 0 and " " or "") .. (seconds > 0 and seconds .. " Sec" or "");
     end
 
-    if addon.Options.db.EventReminders.TimeDisplay.Line1 == 1 then -- Start Time
-        line1 = tostring(date(addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime, self.Event.EventDetails.StartTime));
-    elseif addon.Options.db.EventReminders.TimeDisplay.Line1 == 2 then -- End Time
+    if addon.Options.db.EventReminders.TimeDisplay.Line1 == 1 then -- End Time
         line1 = tostring(date(addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime, self.Event.EventDetails.EndTime));
-    elseif addon.Options.db.EventReminders.TimeDisplay.Line1 == 3 then -- Time Left
+    elseif addon.Options.db.EventReminders.TimeDisplay.Line1 == 2 then -- Time Left
         line1 = timeLeft;
     end
 
     if addon.Options.db.EventReminders.TimeDisplay.Line2 == 1 or addon.Options.db.EventReminders.Compact then -- None
         line2 = "";
-    elseif addon.Options.db.EventReminders.TimeDisplay.Line2 == 2 then -- Start Time
-        line2 = "\n" .. tostring(date(addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime, self.Event.EventDetails.StartTime));
-    elseif addon.Options.db.EventReminders.TimeDisplay.Line2 == 3 then -- End Time
+    elseif addon.Options.db.EventReminders.TimeDisplay.Line2 == 2 then -- End Time
         line2 = "\n" .. tostring(date(addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime, self.Event.EventDetails.EndTime));
-    elseif addon.Options.db.EventReminders.TimeDisplay.Line2 == 4 then -- Time Left
+    elseif addon.Options.db.EventReminders.TimeDisplay.Line2 == 3 then -- Time Left
         line2 = "\n" .. timeLeft;
     end
 

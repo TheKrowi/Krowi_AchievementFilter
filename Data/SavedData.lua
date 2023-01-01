@@ -52,7 +52,7 @@ end
 
 local FixFeaturesTutorialProgress, FixElvUISkin, FixFilters, FixEventDetails, FixShowExcludedCategory, FixEventDetails2, FixCharacters, FixEventAlert;
 local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters, FixNewEarnedByFilter, FixTabs2, FixNewEarnedByFilter2;
-local FixEventDetails3, FixTooltipCriteria, FixFocusedAchievements, FixFocusedOptions;
+local FixEventDetails3, FixTooltipCriteria, FixFocusedAchievements, FixFocusedOptions, FixEventRemindersTimeDisplay;
 function LoadSolutions()
     local solutions = {
         FixFeaturesTutorialProgress, -- 1
@@ -74,6 +74,7 @@ function LoadSolutions()
         FixTooltipCriteria, -- 17
         FixFocusedAchievements, -- 18
         FixFocusedOptions, -- 19
+        FixEventRemindersTimeDisplay, -- 20
     };
 
     return solutions;
@@ -565,4 +566,31 @@ function FixFocusedOptions(prevBuild, currBuild, prevVersion, currVersion, first
     addon.Options.db.Categories.Focused = nil;
 
     diagnostics.Debug("Focused Options moved");
+end
+
+function FixEventRemindersTimeDisplay(prevBuild, currBuild, prevVersion, currVersion, firstTime)
+    -- In version 51.0 EventReminders.TimeDisplay's Start Time option is being removed
+    -- Here we fix the numbering
+
+    if firstTime and currVersion > "51.0" then
+        diagnostics.Debug("First time EventReminders TimeDisplay Options OK");
+        return;
+    end
+    if SavedData.Fixes.FixEventRemindersTimeDisplay == true then
+        diagnostics.Debug("EventReminders TimeDisplay Options already fixed");
+        return;
+    end
+
+    if addon.Options.db.EventReminders.TimeDisplay.Line1 > 1 then
+        addon.Options.db.EventReminders.TimeDisplay.Line1 = addon.Options.db.EventReminders.TimeDisplay.Line1 - 1;
+    end
+    if addon.Options.db.EventReminders.TimeDisplay.Line2 == 2 then -- If Start Time is selected, fall back to the defaults
+        addon.Options.db.EventReminders.TimeDisplay.Line2 = 3;
+    elseif addon.Options.db.EventReminders.TimeDisplay.Line2 > 1 then
+        addon.Options.db.EventReminders.TimeDisplay.Line2 = addon.Options.db.EventReminders.TimeDisplay.Line2 - 1;
+    end
+
+    SavedData.Fixes.FixEventRemindersTimeDisplay = true;
+    
+    diagnostics.Debug("EventReminders TimeDisplay Options fixed");
 end

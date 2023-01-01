@@ -98,7 +98,7 @@ end
 local function LoadPlayerLogin()
     addon.Data.ExportedCalendarEvents.Load(addon.Data.CalendarEvents);
     addon.Data.ExportedWorldEvents.Load(addon.Data.WorldEvents);
-    addon.EventData.Load();
+    addon.EventData.CalculateUtcOffsetSeconds();
 
     if addon.Diagnostics.DebugEnabled() then
         hooksecurefunc(WorldMapFrame, "OnMapChanged", function()
@@ -128,9 +128,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
         if arg1 or arg2 then
             C_Timer.After(0, function()
                 C_Timer.After(5, function()
-                    addon.GUI.AlertSystem.ShowActiveCalendarEvents();
-                    addon.GUI.AlertSystem.ShowActiveWorldEvents();
-                    -- addon.GUI.AlertSystem.ShowActiveWidgetEvents();
+                    addon.GUI.AlertSystem.ShowActiveEvents();
                 end);
             end);
         end

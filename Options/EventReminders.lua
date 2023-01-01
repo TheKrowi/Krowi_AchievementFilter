@@ -4,14 +4,12 @@ local options = addon.Options;
 local widthMultiplier = addon.Options.WidthMultiplier;
 
 local timeDisplaysLine1 = {
-    addon.L["Start Time"],
     addon.L["End Time"],
     addon.L["Time Left"]
 };
 
 local timeDisplaysLine2 = {
     addon.L["None"],
-    addon.L["Start Time"],
     addon.L["End Time"],
     addon.L["Time Left"]
 };

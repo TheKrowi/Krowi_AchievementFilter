@@ -44,16 +44,10 @@ end
 
 local function Refresh()
     ResetButtons();
-    local activeCalendarEvents = addon.EventData.GetActiveCalendarEvents(true);
-    for _, activeEvent in next, activeCalendarEvents do
+    local activeEvents = addon.EventData:GetActiveEvents(true);
+    for _, activeEvent in next, activeEvents do
         AddEvent(activeEvent);
     end
-
-    local activeWorldEvents = addon.EventData.GetActiveWorldEvents(true);
-    for _, activeEvent in next, activeWorldEvents do
-        AddEvent(activeEvent);
-    end
-
     SetPoints();
 end
 

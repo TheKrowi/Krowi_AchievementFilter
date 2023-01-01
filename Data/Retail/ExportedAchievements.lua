@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-30 10-49-38 ]] --
+-- [[ Exported at 2023-01-01 21-37-15 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -3650,7 +3650,6 @@ function exportedAchievements.Load(a, t)
     a[9547] = b:New(9547, 10); -- Everything Is Awesome!
     a[9548] = b:New(9548, 10); -- Buried Treasures
     a[9550] = b:New(9550, 0); -- "Boldly, You Sought the Power of Ragnaros"
-    O(a[9550], "From", "Event", "514", "Until", "Event", "514");
     a[9551] = b:New(9551, 10); -- Demon's Souls
     a[9552] = b:New(9552, 10); -- No Tag-backs!
     a[9562] = b:New(9562, 10, fac.Horde, 9564); -- Securing Draenor

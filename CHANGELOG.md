@@ -6,12 +6,17 @@ All notable changes to this project will be documented in this file.
 - 10.0.5 achievements (WIP)
 - 3.4.1 achievements (WIP)
 
+### Changed
+- Great Gourmand of The Ruby Feast is now linked to Valdrakken instead of the Dragon Isles since the starting quests for these items is from Valdrakken
+- Optimized the Event Handling
+
 ### Fixed
 - Backend split between Wrath Classic and Retail resulting in smaller export for Wrath Classic
 - Backend split between Wrath Classic and Retail resulting in automatic removal of removed achievements
 
 ### Removed
 - Individual Dragon Racing achievements as they are now marked as tracking achievements
+- Start Time display for Event Reminders (This reduces the manual data collection on my end and has little to no importance)
 
 ## 50.0 - 2022-12-26
 ### Added
