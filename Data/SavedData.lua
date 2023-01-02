@@ -605,11 +605,12 @@ function FixEventRemindersShowPopUpsOptions(prevBuild, currBuild, prevVersion, c
         diagnostics.Debug("First time EventReminders ShowPopUps Options OK");
         return;
     end
-    if addon.Options.db.EventReminders.ShowPopUps == nil then
+    if type(addon.Options.db.EventReminders.ShowPopUps) == "table" then
         diagnostics.Debug("EventReminders ShowPopUps Options already moved");
         return;
     end
 
+    print(type(addon.Options.db.EventReminders.ShowPopUps))
     addon.Options.db.EventReminders.ShowPopUps.OnLogin = addon.Options.db.EventReminders.ShowPopUps;
     addon.Options.db.EventReminders.ShowPopUps = nil;
 
