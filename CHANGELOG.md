@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Event Reminder when a new event starts while playing (on by default)
 - Adjustable interval to check for new events and clean up ended events (default 60 seconds)
 - Option to show/hide event reminders inside instances
+- Default values to the General options (WIP)
 
 ### Changed
 - Great Gourmand of The Ruby Feast is now linked to Valdrakken instead of the Dragon Isles since the starting quests for these items is from Valdrakken

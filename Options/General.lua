@@ -549,15 +549,7 @@ options.OptionsTable.args["General"] = {
                     end
                 },
                 Blank42 = {order = 4.2, type = "description", width = 2 * widthMultiplier, name = ""},
-                -- ExportAchievements = {
-                --     order = 4.3, type = "execute",
-                --     name = addon.L["Export Achievements"],
-                --     desc = addon.L["Export Achievements Desc"],
-                --     func = ExportAchievements
-                -- },
             }
         }
     }
 };
-
--- function InvertValue(value)
