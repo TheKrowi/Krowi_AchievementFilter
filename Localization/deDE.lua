@@ -1,8 +1,8 @@
--- [[ Exported at 2022-12-22 10-38-09 ]] --
+-- [[ Exported at 2023-01-02 19-13-23 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-12-20 ]] --
+-- [[ German translation by Ta, 2022-12-26 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -244,8 +244,8 @@ L["Show Right Click Menu"] = "{rightClickMenu} Button anzeigen";
 L["Show Right Click Menu Desc"] = "Zeigt / Versteckt den {rightClickMenu} Button auf jedem Erfolg.\n\nDies dient als Alternative für einen Rechtsklick auf den Erfolg.\n\n{reloadRequired}";
 L["Event Reminders"] = "Event Erinnerung";
 L["Pop ups"] = "Popup-Fenster";
-L["Show pop ups"] = "Zeige Ereignis Popup-Fenster";
-L["Show pop ups Desc"] = "Ereignis Popups beim Neuladen oder Betreten des Spiels anzeigen/ausblenden. Diese Option hat keinen Einfluss auf die Ereignis-Erinnerungen neben dem Erfolgs-Fenster.";
+L["Show"] = "Zeige Ereignis Popup-Fenster";
+L["Show pop ups on login Desc"] = "Ereignis Popups beim Neuladen oder Betreten des Spiels anzeigen/ausblenden. Diese Option hat keinen Einfluss auf die Ereignis-Erinnerungen neben dem Erfolgs-Fenster.";
 L["Max number of alerts"] = "Maximale Anzahl der Ereignis Popup-Fenster";
 L["Max number of alerts Desc"] = "Die maximale Anzahl der gleichzeitig angezeigten Ereignis Popup Fenster.";
 L["Fade delay"] = "Ausblendeverzögerung";
@@ -560,7 +560,7 @@ L["Already petted for achievement"] = "Bereits gestreichelt {forAchievement}";
 L["Toggle window once opened"] = "Fenster nach dem Öffnen umschalten";
 L["Toggle window once opened Desc"] = "Wenn das Erfolgsfenster das erste Mal geöffnet wird, öffnet sich ein Tab und wählt die Zusammenfassung. Ab dem zweiten Mal, unabhängig von der verwendeten Tastenkombination, öffnet sich die letzte Ansicht.";
 L["%d/%m/%Y %I:%M %p"] = "%d/%m/%Y %I:%M %p";
-L["%m/%d/%Y %R"] = "%m/%d/%Y %R";
+L["%m/%d/%Y %R"] = "%d.%md.%Y %R";
 L["%m/%d/%Y %I:%M %p"] = "%m/%d/%Y %I:%M %p";
 L["%Y/%m/%d %R"] = "%Y/%m/%d %R";
 L["%Y/%m/%d %I:%M %p"] = "%Y/%m/%d %I:%M %p";
@@ -568,4 +568,5 @@ L["%c"] = "%c";
 L["Show All Results in Category"] = "Zeige alle Suchergebnisse in einer Kategorie an";
 L["Show All Results in Category Desc"] = "Alle Suchergebnisse in einer Kategorie anzeigen, die während dieser Sitzung bestehen bleibt.";
 L["Search Results"] = "Suchergebnisse";
+L["Are you sure you want to delete character?"] = "Sind Sie sicher, dass Sie {character} löschen möchten? Dieser Charakter wird aber wieder hinzugefügt, wenn Sie sich erneut einloggen. Wenn Sie den Charakter dauerhaft nicht sehen wollen, markieren Sie bitte die {ignore} Checkbox.";
 

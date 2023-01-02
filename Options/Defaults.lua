@@ -142,7 +142,9 @@ options.Defaults = {
         EventReminders = {
             ShowPopUps = {
                 OnLogin = true,
-                OnEventStart = true
+                OnLoginInInstances = false,
+                OnEventStart = true,
+                OnEventStartInInstances = false
             },
             FadeDelay = 10,
             DateTimeFormat = {

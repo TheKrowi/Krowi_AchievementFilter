@@ -136,7 +136,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
         if arg1 or arg2 then
             C_Timer.After(0, function()
                 C_Timer.After(5, function()
-                    addon.GUI.AlertSystem.ShowActiveEvents(addon.Options.db.EventReminders.ShowPopUps.OnLogin);
+                    addon.GUI.AlertSystem.ShowActiveEvents();
                 end);
             end);
         end

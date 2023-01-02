@@ -3,6 +3,7 @@ local _, addon = ...;
 local data = addon.Data;
 addon.EventData = {};
 local eventData = addon.EventData;
+local activeEvents;
 
 local utcOffsetSeconds;
 local function GetUtcOffsetSeconds()
@@ -21,7 +22,6 @@ local function GetUtcOffsetSeconds()
     return utcOffsetSeconds;
 end
 
-local activeCalendarEvents;
 local function ProcessDayEvent(dayEvent)
     local calendarEvent = data.CalendarEvents[dayEvent.eventID];
     local startTime = addon.GetSecondsSince(dayEvent.startTime) - GetUtcOffsetSeconds();
@@ -31,18 +31,17 @@ local function ProcessDayEvent(dayEvent)
     if eventHasStarted and not eventHasEnded then
         addon.Diagnostics.Print("Event active", calendarEvent.Id, dayEvent.title, startTime, time(), endTime, eventHasStarted, eventHasEnded);
         calendarEvent.EventDetails = {EndTime = endTime, Name = dayEvent.title};
-        tinsert(activeCalendarEvents, calendarEvent);
+        tinsert(activeEvents, calendarEvent);
     else
         addon.Diagnostics.Print("Event not active", calendarEvent.Id, startTime, time(), endTime, eventHasStarted, eventHasEnded);
     end
 end
 
 local stopCalendarEventsRefresh;
-local function GetActiveCalendarEvents(refresh)
-    if activeCalendarEvents ~= nil and (not refresh or stopCalendarEventsRefresh) then
-        return activeCalendarEvents;
+local function GetActiveCalendarEvents()
+    if stopCalendarEventsRefresh then
+        return;
     end
-    activeCalendarEvents = {};
 
     local currentDate = C_DateAndTime.GetCurrentCalendarTime();
     C_Calendar.SetAbsMonth(currentDate.month, currentDate.year);
@@ -55,8 +54,6 @@ local function GetActiveCalendarEvents(refresh)
             ProcessDayEvent(dayEvent);
         end
     end
-
-    return activeCalendarEvents;
 end
 
 function eventData.LoadBlizzard_Calendar()
@@ -68,22 +65,14 @@ function eventData.LoadBlizzard_Calendar()
     end);
 end
 
-local activeWorldEvents;
-local function GetActiveWorldEvents(refresh)
-    if activeWorldEvents ~= nil and not refresh then
-        return activeWorldEvents;
-    end
-    activeWorldEvents = {};
-
+local function GetActiveWorldEvents()
     for _, event in next, data.WorldEvents do
         event.EventDetails = eventData.GetEventDetails(event);
         if event.EventDetails then
             addon.Diagnostics.Print("Event active", event.Id, event.EventDetails.Name, time(), event.EventDetails.EndTime);
-            tinsert(activeWorldEvents, event);
+            tinsert(activeEvents, event);
         end
     end
-
-    return activeWorldEvents;
 end
 
 function eventData.GetEventDetails(event)
@@ -105,18 +94,16 @@ function eventData.GetEventDetails(event)
     return {EndTime = endTime, Name = event.Name};
 end
 
-local activeEvents;
 function eventData:GetActiveEvents(refresh)
     addon.Diagnostics.Print("GetActiveEvents", activeEvents ~= nil, refresh, activeEvents ~= nil and not refresh);
     if activeEvents ~= nil and not refresh then
         return activeEvents;
     end
-    if not KrowiAF_IgnoreCalendarEvents then
-        activeEvents = GetActiveCalendarEvents(refresh);
-    else
-        activeEvents = {};
-    end
-    addon.Util.ConcatTables(activeEvents, GetActiveWorldEvents(refresh));
+
+    activeEvents = {};
+    GetActiveCalendarEvents();
+    GetActiveWorldEvents();
+
     return activeEvents;
 end
 

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-22 10-38-09 ]] --
+-- [[ Exported at 2023-01-02 19-13-23 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -244,8 +244,8 @@ L["Show Right Click Menu"] = "Show {rightClickMenu} button";
 L["Show Right Click Menu Desc"] = "Show / hide {rightClickMenu} button on each achievement.\n\nThis serves as an alternative for right clicking the achievement.\n\n{reloadRequired}";
 L["Event Reminders"] = "Event Reminders";
 L["Pop ups"] = "Pop ups";
-L["Show pop ups"] = "Show pop ups";
-L["Show pop ups Desc"] = "Show / hide event pop ups when reloading or joining the game. This option has no effect on the event reminders next to the achievements window.";
+L["Show"] = "Show";
+L["Show pop ups on login Desc"] = "Show / hide event pop ups when reloading or joining the game.";
 L["Max number of alerts"] = "Max number of alerts";
 L["Max number of alerts Desc"] = "The maximum number of alerts shown at once.";
 L["Fade delay"] = "Fade delay";
@@ -569,4 +569,12 @@ L["Show All Results in Category"] = "Show All Results in Category";
 L["Show All Results in Category Desc"] = "Show all the search results in a category that will persist during this session.";
 L["Search Results"] = "Search Results";
 L["Are you sure you want to delete character?"] = "Are you sure you want to delete {character}? This character will be added again if you log in to it. If you don't want to see this character, check the {ignore} flag.";
+L["On Login / Reload"] = "On Login / Reload";
+L["In instances"] = "In instances";
+L["Show pop ups on login in instances Desc"] = "Show / hide event pop ups when reloading or joining the game while inside an instance.";
+L["Show pop ups on event start Desc"] = "Show / hide event pop up for an event when it starts.";
+L["On Event Start"] = "On Event Start";
+L["Show pop ups on event start in instances Desc"] = "Show / hide event pop up for an event when it starts while inside an instance.";
+L["Refresh interval"] = "Refresh interval";
+L["Refresh interval Desc"] = "The time in seconds between refreshing the event data. A longer time may delay creation of new pop ups and clean-up of old ones.";
 

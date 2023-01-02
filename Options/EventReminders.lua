@@ -85,29 +85,71 @@ options.OptionsTable.args["EventReminders"] = {
                     name = addon.L["Pop ups"],
                     inline = true,
                     args = {
+                        OnLoginReload = {
+                            order = 1, type = "header",
+                            name = addon.L["On Login / Reload"]
+                        },
                         ShowPopUpsOnLogin = {
-                            order = 1.1, type = "toggle", width = 1 * widthMultiplier,
-                            name = addon.L["Show pop ups on login"],
+                            order = 2.1, type = "toggle", width = 1 * widthMultiplier,
+                            name = addon.L["Show"],
                             desc = addon.L["Show pop ups on login Desc"],
                             get = function() return addon.Options.db.EventReminders.ShowPopUps.OnLogin; end,
                             set = function(_, value)
                                 addon.Options.db.EventReminders.ShowPopUps.OnLogin = value;
+                                if not value then
+                                    addon.Options.db.EventReminders.ShowPopUps.OnLoginInInstances = value;
+                                end
                                 options.Debug(addon.L["Show pop ups on login"], addon.Options.db.EventReminders.ShowPopUps.OnLogin);
                             end
                         },
+                        ShowPopUpsOnLoginInInstances = {
+                            order = 2.2, type = "toggle", width = 1 * widthMultiplier,
+                            name = addon.L["In instances"],
+                            desc = addon.L["Show pop ups on login in instances Desc"],
+                            get = function() return addon.Options.db.EventReminders.ShowPopUps.OnLoginInInstances; end,
+                            set = function(_, value)
+                                addon.Options.db.EventReminders.ShowPopUps.OnLoginInInstances = value;
+                                options.Debug(addon.L["Show pop ups on login in instances"], addon.Options.db.EventReminders.ShowPopUps.OnLoginInInstances);
+                            end,
+                            disabled = function() return not addon.Options.db.EventReminders.ShowPopUps.OnLogin end
+                        },
+                        Blank23 = {order = 2.3, type = "description", width = 1 * widthMultiplier, name = ""},
+                        OnEventStart = {
+                            order = 3, type = "header",
+                            name = addon.L["On Event Start"]
+                        },
                         ShowPopUpsOnEventStart = {
-                            order = 1.2, type = "toggle", width = 1 * widthMultiplier,
-                            name = addon.L["Show pop ups on event start"],
+                            order = 4.1, type = "toggle", width = 1 * widthMultiplier,
+                            name = addon.L["Show"],
                             desc = addon.L["Show pop ups on event start Desc"],
                             get = function() return addon.Options.db.EventReminders.ShowPopUps.OnEventStart; end,
                             set = function(_, value)
                                 addon.Options.db.EventReminders.ShowPopUps.OnEventStart = value;
+                                
+                                if not value then
+                                    addon.Options.db.EventReminders.ShowPopUps.OnEventStartInInstances = value;
+                                end
                                 options.Debug(addon.L["Show pop ups on event start"], addon.Options.db.EventReminders.ShowPopUps.OnEventStart);
                             end
                         },
-                        Blank13 = {order = 1.3, type = "description", width = 1 * widthMultiplier, name = ""},
+                        ShowPopUpsOnEventStartInInstances = {
+                            order = 4.2, type = "toggle", width = 1 * widthMultiplier,
+                            name = addon.L["In instances"],
+                            desc = addon.L["Show pop ups on event start in instances Desc"],
+                            get = function() return addon.Options.db.EventReminders.ShowPopUps.OnEventStartInInstances; end,
+                            set = function(_, value)
+                                addon.Options.db.EventReminders.ShowPopUps.OnEventStartInInstances = value;
+                                options.Debug(addon.L["Show pop ups on event start in instances"], addon.Options.db.EventReminders.ShowPopUps.OnEventStartInInstances);
+                            end,
+                            disabled = function() return not addon.Options.db.EventReminders.ShowPopUps.OnEventStart end
+                        },
+                        Blank43 = {order = 4.3, type = "description", width = 1 * widthMultiplier, name = ""},
+                        Other = {
+                            order = 5, type = "header",
+                            name = addon.L["Other"]
+                        },
                         MaxAlerts = {
-                            order = 2.1, type = "range", width = 1.5 * widthMultiplier,
+                            order = 6.1, type = "range", width = 1.45 * widthMultiplier,
                             name = addon.L["Max number of alerts"],
                             desc = addon.L["Max number of alerts Desc"],
                             min = 1, max = 100, step = 1,
@@ -119,7 +161,7 @@ options.OptionsTable.args["EventReminders"] = {
                             end
                         },
                         FadeDelay = {
-                            order = 2.2, type = "range", width = 1.5 * widthMultiplier,
+                            order = 6.2, type = "range", width = 1.45 * widthMultiplier,
                             name = addon.L["Fade delay"],
                             desc = addon.L["Fade delay Desc"],
                             min = 1, max = 120, step = 1,
@@ -131,7 +173,7 @@ options.OptionsTable.args["EventReminders"] = {
                             end
                         },
                         RefreshInterval = {
-                            order = 3.1, type = "range", width = 1.5 * widthMultiplier,
+                            order = 7.1, type = "range", width = 1.45 * widthMultiplier,
                             name = addon.L["Refresh interval"],
                             desc = addon.L["Refresh interval Desc"],
                             min = 1, max = 3600, step = 1,
