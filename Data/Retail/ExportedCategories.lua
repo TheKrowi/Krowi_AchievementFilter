@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-02 09-33-10 ]] --
+-- [[ Exported at 2023-01-02 16-39-45 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -5504,8 +5504,8 @@ function exportedCategories.Load(a)
     A(t[1390], a[16611]); -- Resource Scavanger
     A(t[1390], a[16613]); -- Finder's Keepers
     A(t[1390], a[16614]); -- Bloodstained Bounty
-    A(t[1390], a[16615]); -- Blood Bank
     A(t[1390], a[16616]); -- Prosperously Bloody
+    A(t[1390], a[16615]); -- Blood Bank
     t[1361] = c:New(k.GetCategoryInfoTitle(201), true); -- Reputation
     C(t[1341], t[1361]);
     A(t[1361], a[16522]); -- A True Explorer

@@ -44,7 +44,7 @@ end
 
 local function Refresh()
     ResetButtons();
-    local activeEvents = addon.EventData:GetActiveEvents(true);
+    local activeEvents = addon.EventData:GetActiveEvents();
     for _, activeEvent in next, activeEvents do
         AddEvent(activeEvent);
     end
@@ -59,8 +59,7 @@ end
 local refreshIfShown = false;
 local function OnUpdate(self, elapsed)
     self.TimeSinceLastUpdate = self.TimeSinceLastUpdate + elapsed;
-    -- print(self.TimeSinceLastUpdate)
-    if self.TimeSinceLastUpdate > 5 then
+    if self.TimeSinceLastUpdate > addon.Options.db.EventReminders.RefreshInterval then
         refreshIfShown = true;
         if AchievementFrame:IsShown() then
             sideButtonSystem.Refresh();

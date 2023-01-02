@@ -5,22 +5,39 @@ gui.AlertSystem = {};
 local alertSystem = gui.AlertSystem;
 local helperFrame;
 
-local function ShowActiveEvents()
-    if not addon.Options.db.EventReminders.ShowPopUps then
+local function ShowActiveEvents(showPopUps)
+    if not showPopUps then
         return;
     end
 
-    local activeEvents = addon.EventData:GetActiveEvents(true);
+    local activeEvents = addon.EventData:GetActiveEvents();
     for _, activeEvent in next, activeEvents do
         alertSystem:AddAlert(activeEvent, addon.Options.db.EventReminders.FadeDelay);
     end
 end
 
+local prevActiveEvents;
 local function OnUpdate(self, elapsed)
     self.TimeSinceLastUpdate = self.TimeSinceLastUpdate + elapsed;
-    if self.TimeSinceLastUpdate > 1 then
+    if self.TimeSinceLastUpdate > addon.Options.db.EventReminders.RefreshInterval then
         self.TimeSinceLastUpdate = 0;
-        -- Check if new events are active, if so, prompt the user
+        local currActiveEvents = addon.EventData:GetActiveEvents(true); -- This does the refresh of the event data and should be the only location
+        if addon.Options.db.EventReminders.ShowPopUps.OnEventStart then
+            prevActiveEvents = prevActiveEvents or currActiveEvents;
+            local matchFound;
+            for _, currActiveEvent in next, currActiveEvents do
+                for _, prevActiveEvent in next, prevActiveEvents do
+                    if currActiveEvent.Id == prevActiveEvent.Id then
+                        matchFound = true;
+                    end
+                end
+                if not matchFound then
+                    addon.Diagnostics.Print("New event, show pop up", currActiveEvent.Id, currActiveEvent.EventDetails.Name);
+                    alertSystem:AddAlert(currActiveEvent, addon.Options.db.EventReminders.FadeDelay);
+                end
+            end
+            prevActiveEvents = currActiveEvents
+        end
     end
 end
 

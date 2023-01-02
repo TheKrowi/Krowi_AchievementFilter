@@ -5,11 +5,14 @@ All notable changes to this project will be documented in this file.
 ### Added
 - 10.0.5 achievements (WIP)
 - 3.4.1 achievements (WIP)
+- Event Reminder when a new event starts while playing (on by default)
+- Adjustable interval to check for new events and clean up ended events (default 60 seconds)
 
 ### Changed
 - Great Gourmand of The Ruby Feast is now linked to Valdrakken instead of the Dragon Isles since the starting quests for these items is from Valdrakken
 - Optimized the Event Handling
 - Moved Are You My Broodmother? from Neltharus to Ruby Life Pools
+- Moved Prosperously Bloody before Blood Bank
 
 ### Fixed
 - Backend split between Wrath Classic and Retail resulting in smaller export for Wrath Classic

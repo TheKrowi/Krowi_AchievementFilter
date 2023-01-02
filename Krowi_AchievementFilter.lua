@@ -109,12 +109,18 @@ local function LoadPlayerLogin()
     addon.ChangeAchievementMicroButtonOnClick();
 end
 
+local function LoadBlizzard_Calendar()
+    addon.EventData.LoadBlizzard_Calendar();
+end
+
 function loadHelper:OnEvent(event, arg1, arg2)
     if event == "ADDON_LOADED" then
         if arg1 == "Krowi_AchievementFilter" then -- This always needs to load
             LoadKrowi_AchievementFilter();
         elseif arg1 == "Blizzard_AchievementUI" then -- This needs the Blizzard_AchievementUI addon available to load
             LoadBlizzard_AchievementUI();
+        elseif arg1 == "Blizzard_Calendar" then
+            LoadBlizzard_Calendar();
         end
     elseif event == "PLAYER_LOGIN" then
         LoadPlayerLogin();
@@ -122,12 +128,15 @@ function loadHelper:OnEvent(event, arg1, arg2)
         if IsAddOnLoaded("Blizzard_AchievementUI") then
             LoadBlizzard_AchievementUI();
         end
+        if IsAddOnLoaded("Blizzard_Calendar") then
+            LoadBlizzard_Calendar();
+        end
     elseif event == "PLAYER_ENTERING_WORLD" then
          -- arg1 = isLogin, arg2 = isReload
         if arg1 or arg2 then
             C_Timer.After(0, function()
                 C_Timer.After(5, function()
-                    addon.GUI.AlertSystem.ShowActiveEvents();
+                    addon.GUI.AlertSystem.ShowActiveEvents(addon.Options.db.EventReminders.ShowPopUps.OnLogin);
                 end);
             end);
         end

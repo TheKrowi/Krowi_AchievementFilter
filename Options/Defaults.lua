@@ -140,7 +140,10 @@ options.Defaults = {
             ShowAllResultsInCategory = true
         },
         EventReminders = {
-            ShowPopUps = true,
+            ShowPopUps = {
+                OnLogin = true,
+                OnEventStart = true
+            },
             FadeDelay = 10,
             DateTimeFormat = {
                 StartTimeAndEndTime = "%d/%m/%Y %R"
@@ -150,7 +153,8 @@ options.Defaults = {
                 Line2 = 3
             },
             Compact = false,
-            MaxAlerts = 5
+            MaxAlerts = 5,
+            RefreshInterval = 60
         },
         Filters = {
             ResetFactionFilters = true
