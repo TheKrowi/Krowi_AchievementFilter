@@ -5,7 +5,7 @@ addon.EventData = {};
 local eventData = addon.EventData;
 
 local utcOffsetSeconds;
-function eventData.CalculateUtcOffsetSeconds()
+local function GetUtcOffsetSeconds()
     local utcNow = date("!*t");
     local locNow = date("*t");
     local utcServerTimeLocal = date("!*t", C_DateAndTime.GetServerTimeLocal());
@@ -15,13 +15,16 @@ function eventData.CalculateUtcOffsetSeconds()
     local userUtcOffsetHours = locNow.hour - utcNow.hour;
     local utcOffsethours = (serverUtcOffsetDays * 24 + serverUtcOffsetHours) - (userUtcOffsetDays * 24 + userUtcOffsetHours);
     utcOffsetSeconds = utcOffsethours * 3600;
+    GetUtcOffsetSeconds = function() -- Overwrite the current function to not have an if statement
+        return utcOffsetSeconds;
+    end
 end
 
 local activeCalendarEvents;
 local function ProcessDayEvent(dayEvent)
     local calendarEvent = data.CalendarEvents[dayEvent.eventID];
-    local startTime = addon.GetSecondsSince(dayEvent.startTime) - utcOffsetSeconds;
-    local endTime = addon.GetSecondsSince(dayEvent.endTime) - utcOffsetSeconds;
+    local startTime = addon.GetSecondsSince(dayEvent.startTime) - GetUtcOffsetSeconds();
+    local endTime = addon.GetSecondsSince(dayEvent.endTime) - GetUtcOffsetSeconds();
     local eventHasStarted = startTime <= time();
     local eventHasEnded = endTime <= time();
     if eventHasStarted and not eventHasEnded then

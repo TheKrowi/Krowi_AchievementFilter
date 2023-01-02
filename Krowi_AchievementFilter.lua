@@ -98,7 +98,6 @@ end
 local function LoadPlayerLogin()
     addon.Data.ExportedCalendarEvents.Load(addon.Data.CalendarEvents);
     addon.Data.ExportedWorldEvents.Load(addon.Data.WorldEvents);
-    addon.EventData.CalculateUtcOffsetSeconds();
 
     if addon.Diagnostics.DebugEnabled() then
         hooksecurefunc(WorldMapFrame, "OnMapChanged", function()

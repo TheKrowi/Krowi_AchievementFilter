@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Great Gourmand of The Ruby Feast is now linked to Valdrakken instead of the Dragon Isles since the starting quests for these items is from Valdrakken
 - Optimized the Event Handling
+- Moved Are You My Broodmother? from Neltharus to Ruby Life Pools
 
 ### Fixed
 - Backend split between Wrath Classic and Retail resulting in smaller export for Wrath Classic
