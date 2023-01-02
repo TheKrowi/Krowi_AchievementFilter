@@ -79,10 +79,29 @@ local function InjectOptionsTableAdd(table, key, tableName, ...)
 end
 options.InjectOptionsTableAdd = InjectOptionsTableAdd;
 
+string["AddDefaultValueText"] = function(self, ...)
+    local value = options.Defaults.profile;
+    for i = 1, select("#", ...), 1 do
+        value = value[(select(i, ...))];
+    end
+    return self .. "\n\n" .. addon.L["Default value"] .. ": " .. tostring(value);
+end
+
+string["AddDefaultValueTextWithValues"] = function(self, values, ...)
+    local value = options.Defaults.profile;
+    for i = 1, select("#", ...), 1 do
+        value = value[(select(i, ...))];
+    end
+    return self .. "\n\n" .. addon.L["Default value"] .. ": " .. tostring(values[value]);
+end
+
+string["AddReloadRequired"] = function(self)
+    return self .. "\n\n" .. addon.L["Requires a reload"];
+end
+
 -- Load the options
 function options.Load()
     addon.Options = LibStub("AceDB-3.0"):New("Options", options.Defaults, true);
-    -- addon.Options.Defaults = options.Defaults;
     addon.Options.WidthMultiplier = options.WidthMultiplier;
     addon.Options.Open = Open;
     addon.Options.Debug = options.Debug;
@@ -117,6 +136,9 @@ function options.Load()
         end
         addon.Options.db.Calendar.FirstWeekDay = CALENDAR_FIRST_WEEKDAY;
     end
+
+    local rebindMicroButton = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.MetaData.Title, "cmd", "KROWIAF-0.0").args.KeyBinding.args.MicroButton.args.RebindMicroButton;
+    rebindMicroButton.desc = rebindMicroButton.desc:AddDefaultValueTextWithValues(addon.GUI.TabsOrderGetActiveKeys(), "MicroButtonTab");
 
     diagnostics.Debug("Options loaded");
     -- diagnostics.DebugTable(addon.Options.db, 1);

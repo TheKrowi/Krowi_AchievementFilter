@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-02 19-13-23 ]] --
+-- [[ Exported at 2023-01-02 22-34-05 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -172,7 +172,7 @@ L["Only search filtered achievements Desc"] = "Only search achievements that are
 L["Minimum characters to search"] = "Minimum characters to search";
 L["Minimum characters to search Desc"] = "The number of characters needed in order to start searching for achievements matching the query.\nThe smaller the number, the greater the impact (1) on the game.\n\n(1) FPS drops and stuttering while searching";
 L["Number of search previews"] = "Number of search previews";
-L["Number of search previews Desc"] = "The numbers of achievements shown as a preview of the full list of found achievements.\n\n{reloadRequired}";
+L["Number of search previews Desc"] = "The numbers of achievements shown as a preview of the full list of found achievements.";
 L["Filters"] = "Filters";
 L["Reset Faction Filters"] = "Reset Faction Filters";
 L["Reset Faction Filters Desc"] = "Reset / keep the Faction Filters.\n\nThis means that when you're i.e. logging in on an {alliance} character and any of the {neutral}, {alliance} or {horde} Faction Filters are checked / unchecked, only the {neutral} and {alliance} Faction Filters will be checked and the {horde} Faction Filter will be unckecked.\n\nThis is preferred when switching a lot between {alliance} and {horde}.";
@@ -577,4 +577,5 @@ L["On Event Start"] = "On Event Start";
 L["Show pop ups on event start in instances Desc"] = "Show / hide event pop up for an event when it starts while inside an instance.";
 L["Refresh interval"] = "Refresh interval";
 L["Refresh interval Desc"] = "The time in seconds between refreshing the event data. A longer time may delay creation of new pop ups and clean-up of old ones.";
+L["Default value"] = "Default value";
 

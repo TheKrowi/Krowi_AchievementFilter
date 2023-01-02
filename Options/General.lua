@@ -27,7 +27,7 @@ function general.AddKeybindingOptions()
                 end
                 SetBinding(value, command, 1);
                 SaveBindings(GetCurrentBindingSet());
-                end
+            end
         }, "Binding" .. i .. "Key1", "args", "General", "args", "KeyBinding", "args", "Keybindings");
         addon.Options.InjectOptionsTableAdd({
             order = i + 0.3, type = "keybinding", width = w * widthMultiplier,
@@ -41,7 +41,7 @@ function general.AddKeybindingOptions()
                 end
                 SetBinding(value, command, 2);
                 SaveBindings(GetCurrentBindingSet());
-                end
+            end
         }, "Binding" .. i .. "Key2", "args", "General", "args", "KeyBinding", "args", "Keybindings");
     end
 end
@@ -62,7 +62,6 @@ local function OpenTutorialsMenu()
                 else
                     SettingsPanel:Close();
                 end
-                addon.Diagnostics.Debug("Showing tutorial for " .. tostring(i));
                 addon.Tutorials.FeaturesTutorial:ShowTutorial(i);
             end
         });
@@ -78,14 +77,20 @@ local function SetShowHideMinimapIcon()
     else
         addon.Icon:Hide("Krowi_AchievementFilterLDB");
     end
-    options.Debug(addon.L["Show minimap icon"], addon.Options.db.ShowMinimapIcon);
 end
 
 local function SetShowHideWorldmapIcon()
     addon.Options.db.ShowWorldmapIcon = not addon.Options.db.ShowWorldmapIcon;
     addon.GUI.WorldMapButton:Refresh();
     addon.WorldMapButtons.SetPoints();
-    options.Debug(addon.L["Show worldmap icon"], addon.Options.db.ShowWorldmapIcon);
+end
+
+local function SetKeybind()
+    local tab = SavedData.Tabs[addon.Options.db.MicroButtonTab];
+    if tab.BindingName then
+        SetBinding("Y", tab.BindingName);
+        SaveBindings(GetCurrentBindingSet());
+    end
 end
 
 local screenshotModeFrame;
@@ -142,35 +147,6 @@ local function ExportCriteria()
     DebugTable = criteriaCache;
 end
 
--- local function ExportAchievements()
---     local achievementsCache = {};
---     local gapSize, i = 0, 1;
---     while gapSize < 500 do
---         local id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy, isStatistic, exists = addon.GetAchievementInfo(i);
-
---         if id then
---             tinsert(achievementsCache, {
---                 Id = id,
---                 Name = name,
---                 Description = description,
---                 RewardText = rewardText,
---                 Points = points,
---                 -- CategoryAgtId = nil,
---                 Flags = flags,
---                 -- UiOrder = nil,
---                 IconFileId = icon
---             });
---         end
---         if id and exists then
---             gapSize = 0;
---         else
---             gapSize = gapSize + 1;
---         end
---         i = i + 1;
---     end
---     DebugTable = achievementsCache;
--- end
-
 options.OptionsTable.args["General"] = {
     type = "group",
     childGroups = "tab",
@@ -187,12 +163,12 @@ options.OptionsTable.args["General"] = {
                     args = {
                         Version = {
                             order = 1.1, type = "description", width = 1 * widthMultiplier,
-                            name = string.format(addon.Colors.Yellow, addon.L["Version"] .. ": ") .. addon.MetaData.Version,
+                            name = (addon.L["Version"] .. ": "):SetColorYellow() .. addon.MetaData.Version,
                             fontSize = "medium",
                         },
                         Build = {
                             order = 1.2, type = "description", width = 1 * widthMultiplier,
-                            name = string.format(addon.Colors.Yellow, addon.L["Build"] .. ": ") .. addon.MetaData.Build,
+                            name = (addon.L["Build"] .. ": "):SetColorYellow() .. addon.MetaData.Build,
                             fontSize = "medium",
                         },
                         Tutorial = {
@@ -203,15 +179,13 @@ options.OptionsTable.args["General"] = {
                         },
                         Author = {
                             order = 2.1, type = "description", width = 2 * widthMultiplier,
-                            name = string.format(addon.Colors.Yellow, addon.L["Author"] .. ": ") .. addon.MetaData.Author,
+                            name = (addon.L["Author"] .. ": "):SetColorYellow() .. addon.MetaData.Author,
                             fontSize = "medium",
                         },
                         Discord = {
                             order = 2.3, type = "execute", width = 1 * widthMultiplier,
                             name = addon.L["Discord"],
-                            desc = addon.Util.ReplaceVars
-                            {
-                                addon.L["Discord Desc"],
+                            desc = addon.L["Discord Desc"]:ReplaceVars {
                                 serverName = addon.MetaData.DiscordServerName
                             },
                             func = function()
@@ -228,9 +202,7 @@ options.OptionsTable.args["General"] = {
                         CurseForge = {
                             order = 1.1, type = "execute", width = 1 * widthMultiplier,
                             name = addon.L["CurseForge"],
-                            desc = addon.Util.ReplaceVars
-                            {
-                                addon.L["CurseForge Desc"],
+                            desc = addon.L["CurseForge Desc"]:ReplaceVars {
                                 addonName = addon.MetaData.Title,
                                 curseForge = addon.L["CurseForge"]
                             },
@@ -241,9 +213,7 @@ options.OptionsTable.args["General"] = {
                         Wago = {
                             order = 1.2, type = "execute", width = 1 * widthMultiplier,
                             name = addon.L["Wago"],
-                            desc = addon.Util.ReplaceVars
-                            {
-                                addon.L["Wago Desc"],
+                            desc = addon.L["Wago Desc"]:ReplaceVars {
                                 addonName = addon.MetaData.Title,
                                 wago = addon.L["Wago"]
                             },
@@ -254,9 +224,7 @@ options.OptionsTable.args["General"] = {
                         WoWInterface = {
                             order = 1.3, type = "execute", width = 1 * widthMultiplier,
                             name = addon.L["WoWInterface"],
-                            desc = addon.Util.ReplaceVars
-                            {
-                                addon.L["WoWInterface Desc"],
+                            desc = addon.L["WoWInterface Desc"]:ReplaceVars {
                                 addonName = addon.MetaData.Title,
                                 woWInterface = addon.L["WoWInterface"]
                             },
@@ -280,7 +248,7 @@ options.OptionsTable.args["General"] = {
                         ShowMinimapIcon = {
                             order = 1, type = "toggle", width = 1 * widthMultiplier,
                             name = addon.L["Show minimap icon"],
-                            desc = addon.L["Show minimap icon Desc"],
+                            desc = addon.L["Show minimap icon Desc"]:AddDefaultValueText("ShowMinimapIcon"),
                             get = function() return addon.Options.db.ShowMinimapIcon; end,
                             set = SetShowHideMinimapIcon
                         }
@@ -294,7 +262,7 @@ options.OptionsTable.args["General"] = {
                         ShowMinimapIcon = {
                             order = 1, type = "toggle", width = 1 * widthMultiplier,
                             name = addon.L["Show world map icon"],
-                            desc = addon.L["Show world map icon Desc"],
+                            desc = addon.L["Show world map icon Desc"]:AddDefaultValueText("ShowWorldmapIcon"),
                             get = function() return addon.Options.db.ShowWorldmapIcon; end,
                             set = SetShowHideWorldmapIcon
                         }
@@ -314,22 +282,20 @@ options.OptionsTable.args["General"] = {
                         ResetViewOnOpen = {
                             order = 1.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Reset view on open"],
-                            desc = addon.L["Reset view on open Desc"],
+                            desc = addon.L["Reset view on open Desc"]:AddDefaultValueText("ResetViewOnOpen"),
                             get = function() return addon.Options.db.ResetViewOnOpen; end,
                             set = function()
                                 addon.Options.db.ResetViewOnOpen = not addon.Options.db.ResetViewOnOpen;
                                 addon.Options.db.ToggleWindow = false;
-                                options.Debug(addon.L["Reset view on open"], addon.Options.db.ResetViewOnOpen);
                             end
                         },
                         ToggleWindow = {
                             order = 1.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Toggle window once opened"],
-                            desc = addon.L["Toggle window once opened Desc"],
+                            desc = addon.L["Toggle window once opened Desc"]:AddDefaultValueText("ToggleWindow"),
                             get = function() return addon.Options.db.ToggleWindow; end,
                             set = function()
                                 addon.Options.db.ToggleWindow = not addon.Options.db.ToggleWindow;
-                                options.Debug(addon.L["Toggle window once opened"], addon.Options.db.ToggleWindow);
                             end,
                             disabled = function() return addon.Options.db.ResetViewOnOpen; end
                         }
@@ -343,32 +309,21 @@ options.OptionsTable.args["General"] = {
                         RebindMicroButton = {
                             order = 1.1, type = "select", width = 2 * widthMultiplier,
                             name = addon.L["Rebind Micro Button"],
-                            desc = addon.L["Rebind Micro Button Desc"],
+                            desc = addon.L["Rebind Micro Button Desc"], -- Do AddDefaultValueTextWithValues during options.load
                             values = function() return addon.GUI.TabsOrderGetActiveKeys(); end,
-                            get = function()
-                                return addon.Options.db.MicroButtonTab;
-                            end,
+                            get = function() return addon.Options.db.MicroButtonTab; end,
                             set = function (_, value)
                                 addon.Options.db.MicroButtonTab = value;
                                 addon.ChangeAchievementMicroButtonOnClick();
-                                options.Debug(addon.L["Rebind Micro Button"], addon.Options.db.MicroButtonTab);
                             end
                         },
                         SetKeybind = {
                             order = 1.2, type = "execute", width = 1 * widthMultiplier,
                             name = addon.L["Set Keybind"],
-                            desc = addon.Util.ReplaceVars
-                            {
-                                addon.L["Set Keybind Desc"],
+                            desc = addon.L["Set Keybind Desc"]:ReplaceVars {
                                 keyBindings = addon.L["Key Bindings"]
                             },
-                            func = function()
-                                local tab = SavedData.Tabs[addon.Options.db.MicroButtonTab];
-                                if tab.BindingName then
-                                    SetBinding("Y", tab.BindingName);
-                                    SaveBindings(GetCurrentBindingSet());
-                                end
-                            end
+                            func = SetKeybind
                         }
                     }
                 },
@@ -376,9 +331,7 @@ options.OptionsTable.args["General"] = {
                     order = 3, type = "group",
                     name = addon.L["Keybindings"],
                     inline = true,
-                    args = {
-
-                    }
+                    args = { }
                 },
                 Modifiers = {
                     order = 4, type = "group",
@@ -388,23 +341,23 @@ options.OptionsTable.args["General"] = {
                         LinkToChat = {
                             order = 1.1, type = "select", width = 1 * widthMultiplier,
                             name = addon.L["Paste to Chat"],
+                            desc = addon.L["Paste to Chat"]:AddDefaultValueTextWithValues(addon.Modifiers, "Achievements", "Modifiers", "PasteToChat"),
                             values = addon.Modifiers,
                             get = function() return addon.Options.db.Achievements.Modifiers.PasteToChat; end,
                             set = function (_, value)
                                 if addon.Options.db.Achievements.Modifiers.PasteToChat == value then return; end;
                                 addon.Options.db.Achievements.Modifiers.PasteToChat = value;
-                                options.Debug(addon.L["Paste to Chat"], addon.Options.db.Achievements.Modifiers.PasteToChat);
                             end
                         },
                         ToggleTracking = {
                             order = 1.2, type = "select", width = 1 * widthMultiplier,
                             name = addon.L["Toggle Tracking"],
+                            desc = addon.L["Toggle Tracking"]:AddDefaultValueTextWithValues(addon.Modifiers, "Achievements", "Modifiers", "ToggleTracking"),
                             values = addon.Modifiers,
                             get = function() return addon.Options.db.Achievements.Modifiers.ToggleTracking; end,
                             set = function (_, value)
                                 if addon.Options.db.Achievements.Modifiers.ToggleTracking == value then return; end;
                                 addon.Options.db.Achievements.Modifiers.ToggleTracking = value;
-                                options.Debug(addon.L["Toggle Tracking"], addon.Options.db.Achievements.Modifiers.ToggleTracking);
                             end
                         },
                         WatchList = {
@@ -413,23 +366,26 @@ options.OptionsTable.args["General"] = {
                             {
                                 watchList = addon.L["Watch List"]
                             },
+                            desc = addon.L["Add to / Remove from Watch List"]:ReplaceVars
+                            {
+                                watchList = addon.L["Watch List"]
+                            }:AddDefaultValueTextWithValues(addon.Modifiers, "Achievements", "Modifiers", "ToggleWatchList"),
                             values = addon.Modifiers,
                             get = function() return addon.Options.db.Achievements.Modifiers.ToggleWatchList; end,
                             set = function (_, value)
                                 if addon.Options.db.Achievements.Modifiers.ToggleWatchList == value then return; end;
                                 addon.Options.db.Achievements.Modifiers.ToggleWatchList = value;
-                                options.Debug(addon.L["Add to/Remove from Watch List"], addon.Options.db.Achievements.Modifiers.ToggleWatchList);
                             end
                         },
                         Excluded = {
                             order = 2.1, type = "select", width = 1 * widthMultiplier,
                             name = addon.L["Include"] .. " / " .. addon.L["Exclude"],
+                            desc = addon.L["Include"] .. " / " .. addon.L["Exclude"]:AddDefaultValueTextWithValues(addon.Modifiers, "Achievements", "Modifiers", "ToggleExcluded"),
                             values = addon.Modifiers,
                             get = function() return addon.Options.db.Achievements.Modifiers.ToggleExcluded; end,
                             set = function (_, value)
                                 if addon.Options.db.Achievements.Modifiers.ToggleExcluded == value then return; end;
                                 addon.Options.db.Achievements.Modifiers.ToggleExcluded = value;
-                                options.Debug(addon.L["Include"] .. " / " .. addon.L["Exclude"], addon.Options.db.Achievements.Modifiers.ToggleExcluded);
                             end
                         }
                     }
@@ -448,44 +404,40 @@ options.OptionsTable.args["General"] = {
                         ClearOnRightClick = {
                             order = 1.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Clear search field on Right Click"],
-                            desc = addon.L["Clear search field on Right Click Desc"],
+                            desc = addon.L["Clear search field on Right Click Desc"]:AddDefaultValueText("SearchBox", "ClearOnRightClick"),
                             get = function() return addon.Options.db.SearchBox.ClearOnRightClick; end,
                             set = function()
                                 addon.Options.db.SearchBox.ClearOnRightClick = not addon.Options.db.SearchBox.ClearOnRightClick;
-                                options.Debug(addon.L["Clear search field on Right Click"], addon.Options.db.SearchBox.ClearOnRightClick);
                             end
                         },
                         ExcludeExcluded = {
                             order = 1.2, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Exclude Excluded achievements"],
-                            desc = addon.L["Exclude Excluded achievements Desc"],
+                            desc = addon.L["Exclude Excluded achievements Desc"]:AddDefaultValueText("SearchBox", "ExcludeExcluded"),
                             get = function() return addon.Options.db.SearchBox.ExcludeExcluded; end,
                             set = function()
                                 addon.Options.db.SearchBox.ExcludeExcluded = not addon.Options.db.SearchBox.ExcludeExcluded;
-                                options.Debug(addon.L["Exclude Excluded achievements"], addon.Options.db.SearchBox.ExcludeExcluded);
                             end
                         },
                         OnlySearchFiltered = {
                             order = 2.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Only search filtered achievements"],
-                            desc = addon.L["Only search filtered achievements Desc"],
+                            desc = addon.L["Only search filtered achievements Desc"]:AddDefaultValueText("SearchBox", "OnlySearchFiltered"),
                             get = function() return addon.Options.db.SearchBox.OnlySearchFiltered; end,
                             set = function()
                                 addon.Options.db.SearchBox.OnlySearchFiltered = not addon.Options.db.SearchBox.OnlySearchFiltered;
-                                options.Debug(addon.L["Only search filtered achievements"], addon.Options.db.SearchBox.OnlySearchFiltered);
                             end
                         },
                         Blank22 = {order = 2.2, type = "description", width = 1.5 * widthMultiplier, name = ""},
                         MinimumCharactersToSearch = {
                             order = 3.1, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Minimum characters to search"],
-                            desc = addon.L["Minimum characters to search Desc"],
+                            desc = addon.L["Minimum characters to search Desc"]:AddDefaultValueText("SearchBox", "MinimumCharactersToSearch"),
                             min = 1, max = 10, step = 1,
                             get = function() return addon.Options.db.SearchBox.MinimumCharactersToSearch; end,
                             set = function(_, value)
                                 if addon.Options.db.SearchBox.MinimumCharactersToSearch == value then return; end
                                 addon.Options.db.SearchBox.MinimumCharactersToSearch = value;
-                                options.Debug(addon.L["Minimum characters to search"], addon.Options.db.SearchBox.MinimumCharactersToSearch);
                             end
                         }
                     }
@@ -498,24 +450,22 @@ options.OptionsTable.args["General"] = {
                         NumberOfSearchPreviews = {
                             order = 1.1, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Number of search previews"],
-                            desc = addon.ReplaceVarsWithReloadReq(addon.L["Number of search previews Desc"]),
+                            desc = addon.L["Number of search previews Desc"]:AddDefaultValueText("SearchBox", "NumberOfSearchPreviews"):AddReloadRequired(),
                             min = 1, max = 1000, step = 1, -- max is set by options.MaxNumberOfSearchPreviews after loading has finished
                             get = function() return addon.Options.db.SearchBox.NumberOfSearchPreviews; end,
                             set = function(_, value)
                                 if addon.Options.db.SearchBox.NumberOfSearchPreviews == value then return; end
                                 addon.Options.db.SearchBox.NumberOfSearchPreviews = value;
-                                options.Debug(addon.L["Number of search previews"], addon.Options.db.SearchBox.NumberOfSearchPreviews);
                             end
                         },
                         Blank12 = {order = 1.2, type = "description", width = 1.5 * widthMultiplier, name = ""},
                         ShowAllResultsInCategory = {
                             order = 2.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Show All Results in Category"],
-                            desc = addon.L["Show All Results in Category Desc"],
+                            desc = addon.L["Show All Results in Category Desc"]:AddDefaultValueText("SearchBox", "ShowAllResultsInCategory"),
                             get = function() return addon.Options.db.SearchBox.ShowAllResultsInCategory; end,
                             set = function()
                                 addon.Options.db.SearchBox.ShowAllResultsInCategory = not addon.Options.db.SearchBox.ShowAllResultsInCategory;
-                                options.Debug(addon.L["Show All Results in Category"], addon.Options.db.SearchBox.ShowAllResultsInCategory);
                             end
                         },
                     }
@@ -534,17 +484,14 @@ options.OptionsTable.args["General"] = {
                         ResetFactionFilter = {
                             order = 1.1, type = "toggle", width = 1 * widthMultiplier,
                             name = addon.L["Reset Faction Filters"],
-                            desc = addon.Util.ReplaceVars
-                            {
-                                addon.L["Reset Faction Filters Desc"],
+                            desc = addon.L["Reset Faction Filters Desc"]:ReplaceVars {
                                 neutral = addon.L["Neutral"],
                                 alliance = addon.L["Alliance"],
                                 horde = addon.L["Horde"]
-                            },
+                            }:AddDefaultValueText("Filters", "ResetFactionFilters"),
                             get = function() return addon.Options.db.Filters.ResetFactionFilters; end,
                             set = function()
                                 addon.Options.db.Filters.ResetFactionFilters = not addon.Options.db.Filters.ResetFactionFilters;
-                                options.Debug(addon.L["Reset Faction Filters"], addon.Options.db.Filters.ResetFactionFilters);
                             end
                         }
                     }
@@ -563,11 +510,10 @@ options.OptionsTable.args["General"] = {
                 EnableDebugInfo = {
                     order = 2.1, type = "toggle", width = 1 * widthMultiplier,
                     name = addon.L["Enable debug info"],
-                    desc = addon.L["Enable debug info Desc"],
+                    desc = addon.L["Enable debug info Desc"]:AddDefaultValueText("EnableDebugInfo"),
                     get = function() return addon.Options.db.EnableDebugInfo; end,
                     set = function()
                         addon.Options.db.EnableDebugInfo = not addon.Options.db.EnableDebugInfo;
-                        options.Debug(addon.L["Enable debug info"], addon.Options.db.EnableDebugInfo);
                     end
                 },
                 Blank12 = {order = 2.2, type = "description", width = 1 * widthMultiplier, name = ""},
@@ -580,11 +526,10 @@ options.OptionsTable.args["General"] = {
                 EnableTraceInfo = {
                     order = 3.1, type = "toggle", width = 1 * widthMultiplier,
                     name = addon.L["Enable trace info"],
-                    desc = addon.L["Enable trace info Desc"],
+                    desc = addon.L["Enable trace info Desc"]:AddDefaultValueText("EnableTraceInfo"),
                     get = function() return addon.Options.db.EnableTraceInfo; end,
                     set = function()
                         addon.Options.db.EnableTraceInfo = not addon.Options.db.EnableTraceInfo;
-                        options.Debug(addon.L["Enable trace info"], addon.Options.db.EnableTraceInfo);
                     end
                 },
                 Blank32 = {order = 3.2, type = "description", width = 1 * widthMultiplier, name = ""},
@@ -597,11 +542,10 @@ options.OptionsTable.args["General"] = {
                 ShowPlaceholdersFilter = {
                     order = 4.1, type = "toggle", width = 1 * widthMultiplier,
                     name = addon.L["Show placeholders filter"],
-                    desc = addon.L["Show placeholders filter Desc"],
+                    desc = addon.L["Show placeholders filter Desc"]:AddDefaultValueText("ShowPlaceholdersFilter"),
                     get = function() return addon.Options.db.ShowPlaceholdersFilter; end,
                     set = function()
                         addon.Options.db.ShowPlaceholdersFilter = not addon.Options.db.ShowPlaceholdersFilter;
-                        options.Debug(addon.L["Show placeholders filter"], addon.Options.db.ShowPlaceholdersFilter);
                     end
                 },
                 Blank42 = {order = 4.2, type = "description", width = 2 * widthMultiplier, name = ""},
@@ -615,3 +559,112 @@ options.OptionsTable.args["General"] = {
         }
     }
 };
+
+-- function InvertValue(value)
+
+-- local function AddGroup(table, key, order, name, inline)
+--     if inline == nil then
+--         inline = true;
+--     end
+--     table[key] = {
+--         order = order, type = "group",
+--         name = name,
+--         inline = inline,
+--         args = {}
+--     };
+--     return table[key].args;
+-- end
+
+-- local function AddDescription(table, key, order, name, width, fontSize)
+--     table[key] = {
+--         order = order, type = "description", width = (width or 1) * widthMultiplier,
+--         name = name,
+--         fontSize = fontSize or "medium"
+--     };
+--     return table[key];
+-- end
+
+-- local function AddExecute(table, key, order, name, desc, func, width)
+--     table[key] = {
+--         order = order, type = "execute", width = (width or 1) * widthMultiplier,
+--         name = name,
+--         desc = desc,
+--         func = func
+--     };
+--     return table[key];
+-- end
+
+-- local function OpenTutorialsMenu()
+--     local menu = LibStub("Krowi_Menu-1.0");
+--     local pages = addon.Tutorials.FeaturesTutorial.Pages;
+
+--     menu:Clear(); -- Reset menu
+
+--     menu:AddFull({Text = addon.L["View Tutorial"], IsTitle = true});
+--     for i, _ in next, pages do
+--         menu:AddFull({
+--             Text = (pages[i].IsViewed and "" or "|T132049:0|t") .. string.format(addon.Colors.White, addon.Colors.RemoveColor(pages[i].SubTitle)),
+--             Func = function()
+--                 if addon.IsWrathClassic or addon.IsShadowlandsRetail then
+--                     InterfaceOptionsFrame:Hide();
+--                 else
+--                     SettingsPanel:Close();
+--                 end
+--                 addon.Diagnostics.Debug("Showing tutorial for " .. tostring(i));
+--                 addon.Tutorials.FeaturesTutorial:ShowTutorial(i);
+--             end
+--         });
+--     end
+
+--     menu:Open();
+-- end
+
+-- local function ShowDiscordLink()
+--     popupDialog.ShowExternalLink(addon.MetaData.DiscordInviteLink);
+-- end
+
+-- local function ShowCurseForgeLink()
+--     popupDialog.ShowExternalLink(addon.MetaData.CurseForge);
+-- end
+
+-- local function ShowWagoLink()
+--     popupDialog.ShowExternalLink(addon.MetaData.Wago);
+-- end
+
+-- local function ShowWoWInterfaceLink()
+--     popupDialog.ShowExternalLink(addon.MetaData.WoWInterface);
+-- end
+
+-- local group = options.OptionsTable.args["General"].args;
+-- local info = AddGroup(group, "Info", 1, addon.L["Info"]);
+-- local general = AddGroup(info, "General", 1, addon.L["General"]);
+-- AddDescription( general,    "Version",  1.1,    (addon.L["Version"] .. ": "):SetColorYellow() .. addon.MetaData.Version);
+-- AddDescription( general,    "Build",    1.2,    (addon.L["Build"] .. ": "):SetColorYellow() .. addon.MetaData.Build);
+-- AddExecute(     general,    "Tutorial", 1.3,    function() return (addon.Tutorials.FeaturesTutorial:HasUnviewedPages() and "|T132049:0|t" or "") .. addon.L["Tutorial"]; end,
+--                 addon.L["Tutorial Desc"],
+--                 OpenTutorialsMenu);
+-- AddDescription( general,    "Author",   2.1,    (addon.L["Author"] .. ": "):SetColorYellow() .. addon.MetaData.Author, 2);
+-- AddExecute(     general,    "Discord",  2.3,    addon.L["Discord"],
+--                 addon.L["Discord Desc"]:ReplaceVars {
+--                     serverName = addon.MetaData.DiscordServerName
+--                 },
+--                 ShowDiscordLink);
+-- local source = AddGroup(info, "Sources", 2, addon.L["Sources"]);
+-- AddExecute( source, "CurseForge",   1.1,    addon.L["CurseForge"],
+--             addon.L["CurseForge Desc"]:ReplaceVars {
+--                 addonName = addon.MetaData.Title,
+--                 curseForge = addon.L["CurseForge"]
+--             },
+--             ShowCurseForgeLink);
+-- AddExecute( source, "Wago",   1.1,    addon.L["Wago"],
+--             addon.L["Wago Desc"]:ReplaceVars {
+--                 addonName = addon.MetaData.Title,
+--                 curseForge = addon.L["Wago"]
+--             },
+--             ShowWagoLink);
+-- AddExecute( source, "WoWInterface",   1.1,    addon.L["WoWInterface"],
+--             addon.L["WoWInterface Desc"]:ReplaceVars {
+--                 addonName = addon.MetaData.Title,
+--                 curseForge = addon.L["WoWInterface"]
+--             },
+--             ShowWoWInterfaceLink);

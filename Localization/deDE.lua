@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-02 19-13-23 ]] --
+-- [[ Exported at 2023-01-02 22-34-05 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -172,7 +172,7 @@ L["Only search filtered achievements Desc"] = "Nur Erfolge suchen, die mit den e
 L["Minimum characters to search"] = "Mindestanzahl der zu suchenden Charaktere";
 L["Minimum characters to search Desc"] = "Die Anzahl der Charaktere, die benötigt werden, um die Suche nach Erfolgen, die der Abfrage entsprechen, zu starten. Je kleiner die Zahl, desto größer die Auswirkung (1) auf das Spiel.\n\n(1) FPS-Einbrüche und Stottern bei der Suche";
 L["Number of search previews"] = "Anzahl der Such-Vorschauen";
-L["Number of search previews Desc"] = "Die Anzahl der Erfolge, die als Vorschau in der gesamten Liste der gefundenen Erfolge angezeigt werden.\n\n{reloadRequired}";
+L["Number of search previews Desc"] = "Die Anzahl der Erfolge, die als Vorschau in der gesamten Liste der gefundenen Erfolge angezeigt werden.";
 L["Filters"] = "Filter";
 L["Reset Faction Filters"] = "Fraktions Filter zurücksetzen";
 L["Reset Faction Filters Desc"] = "Die Fraktions-Filter zurücksetzen / beibehalten. Das bedeutet, dass, wenn du dich z.B. mit einem {Allianz}-Charakter anmeldest und einer der {neutralen}, {Allianz}- oder {Horden} Fraktions-Filter aktiviert/deaktiviert ist, werden nur die {neutral} und {alliance} Fraktions-Filter aktiviert. Diese Option wird bevorzugt, wenn viel zwischen {Allianz} und {Horde} gewechselt wird.";
