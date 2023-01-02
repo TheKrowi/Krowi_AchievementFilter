@@ -18,6 +18,7 @@ local function GetUtcOffsetSeconds()
     GetUtcOffsetSeconds = function() -- Overwrite the current function to not have an if statement
         return utcOffsetSeconds;
     end
+    return utcOffsetSeconds;
 end
 
 local activeCalendarEvents;
