@@ -423,7 +423,8 @@
         "IsRightControlKeyDown",
         "DELETE",
         "StaticPopup_IsCustomGenericConfirmationShown",
-        "StaticPopup_ShowCustomGenericConfirmation"
+        "StaticPopup_ShowCustomGenericConfirmation",
+        "strsplittable"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

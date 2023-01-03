@@ -38,9 +38,9 @@ local function SetPriority(index, value)
     addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[otherIndex] = currentReverse;
 end
 
-function header.InjectOptions()
+function header.InjectDynamicOptions()
     for i = 1, #headerSortPriorities do
-        addon.Options.InjectOptionsTableAdd({
+        KrowiAF_InjectOptions.AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Priority" .. i, {
             order = i + 0.1, type = "select",
             name = "",
             values = headerSortPriorities,
@@ -48,23 +48,23 @@ function header.InjectOptions()
             set = function (_, value)
                 SetPriority(i, value);
             end
-        }, "Priority" .. i, "args", "Layout", "args", "Header", "args", "Tooltip", "args", "SortPriority");
-        addon.Options.InjectOptionsTableAdd({
+        });
+        KrowiAF_InjectOptions.AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Blank" .. i .. "2", {
             order = i + 0.2, type = "description", width = 0.1,
             name = ""
-        }, "Blank" .. i .. "2", "args", "Layout", "args", "Header", "args", "Tooltip", "args", "SortPriority");
-        addon.Options.InjectOptionsTableAdd({
+        });
+        KrowiAF_InjectOptions.AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Reverse" .. i, {
             order = i + 0.3, type = "toggle", width = "normal",
             name = addon.L["Reverse Sort"],
             get = function() return addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[i]; end,
             set = function()
                 addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[i] = not addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[i];
             end
-        }, "Reverse" .. i, "args", "Layout", "args", "Header", "args", "Tooltip", "args", "SortPriority");
-        addon.Options.InjectOptionsTableAdd({
+        });
+        KrowiAF_InjectOptions.AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Blank" .. i .. "4", {
             order = i + 0.4, type = "description", width = "normal",
             name = ""
-        }, "Blank" .. i .. "4", "args", "Layout", "args", "Header", "args", "Tooltip", "args", "SortPriority");
+        });
     end
 end
 

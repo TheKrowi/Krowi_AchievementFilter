@@ -70,6 +70,7 @@ local function InjectOptionsTable(table, tableName, ...)
 end
 options.InjectOptionsTable = InjectOptionsTable;
 
+-- Move to API
 local function InjectOptionsTableAdd(table, key, tableName, ...)
     local destTable = options.OptionsTable.args;
     for i = 1, select("#", ...), 1 do
@@ -79,25 +80,7 @@ local function InjectOptionsTableAdd(table, key, tableName, ...)
 end
 options.InjectOptionsTableAdd = InjectOptionsTableAdd;
 
-string["AddDefaultValueText"] = function(self, ...)
-    local value = options.Defaults.profile;
-    for i = 1, select("#", ...), 1 do
-        value = value[(select(i, ...))];
-    end
-    return self .. "\n\n" .. addon.L["Default value"] .. ": " .. tostring(value);
-end
-
-string["AddDefaultValueTextWithValues"] = function(self, values, ...)
-    local value = options.Defaults.profile;
-    for i = 1, select("#", ...), 1 do
-        value = value[(select(i, ...))];
-    end
-    return self .. "\n\n" .. addon.L["Default value"] .. ": " .. tostring(values[value]);
-end
-
-string["AddReloadRequired"] = function(self)
-    return self .. "\n\n" .. addon.L["Requires a reload"];
-end
+-- local function InjectOptions
 
 -- Load the options
 function options.Load()
@@ -110,6 +93,7 @@ function options.Load()
     addon.Options.InjectOptionsTable = InjectOptionsTable;
     addon.Options.InjectOptionsTableAdd = InjectOptionsTableAdd;
     addon.Options.db = addon.Options.profile;
+    addon.Options.OptionsTable = options.OptionsTable; -- Do this for now while working on the rewrite
 
     LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.MetaData.Title, options.OptionsTable.args.General);
     LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addon.MetaData.Title, addon.MetaData.Title, nil);
@@ -138,8 +122,30 @@ function options.Load()
     end
 
     local rebindMicroButton = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.MetaData.Title, "cmd", "KROWIAF-0.0").args.KeyBinding.args.MicroButton.args.RebindMicroButton;
-    rebindMicroButton.desc = rebindMicroButton.desc:AddDefaultValueTextWithValues(addon.GUI.TabsOrderGetActiveKeys(), "MicroButtonTab");
+    rebindMicroButton.desc = rebindMicroButton.desc:AddDefaultValueText("MicroButtonTab", addon.GUI.TabsOrderGetActiveKeys());
+
+
 
     diagnostics.Debug("Options loaded");
     -- diagnostics.DebugTable(addon.Options.db, 1);
+end
+
+string["AddDefaultValueText"] = function(self, valuePath, values)
+    local value = options.Defaults.profile;
+    local pathParts = strsplittable(".", valuePath);
+    for _, part in next, pathParts do
+        part = tonumber(part) and tonumber(part) or part;
+        value = value[part];
+    end
+    if type(value) == "boolean" then
+        value = value and addon.L["Checked"] or addon.L["Unchecked"];
+    end
+    if values then
+        value = values[value];
+    end
+    return self .. "\n\n" .. addon.L["Default value"] .. ": " .. tostring(value);
+end
+
+string["AddReloadRequired"] = function(self)
+    return self .. "\n\n" .. addon.L["Requires a reload"];
 end

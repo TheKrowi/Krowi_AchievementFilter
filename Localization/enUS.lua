@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-02 22-34-05 ]] --
+-- [[ Exported at 2023-01-03 14-09-08 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -193,7 +193,7 @@ L["Make windows movable Desc"] = "Makes the Achievement window Calendar view and
 L["Categories width offset"] = "Categories width offset";
 L["Categories width offset Desc"] = "The width that will be added to or subtracted from the default categories width.\n\nThis value can be changed while the achievement window is open and having one of the tabs selected added by {addonName}. This might have an impact (1) on the game.\n\n(1) FPS drops and stuttering while adjusting the value, NOT during normal addon use";
 L["Achievement window height offset"] = "Achievement window height offset";
-L["Achievement window height offset Desc"] = "The height that will be added to or subtracted from the default achievement window height.\n\nThis value can be changed while the achievement window is open and having one of the tabs selected added by {addonName}. This might have an impact (1) on the game.\n\n(1) FPS drops and stuttering while adjusting the value, NOT during normal addon use\n\n{reloadRequired}";
+L["Achievement window height offset Desc"] = "The height that will be added to or subtracted from the default achievement window height.\n\nThis value can be changed while the achievement window is open and having one of the tabs selected added by {addonName}. This might have an impact (1) on the game.\n\n(1) FPS drops and stuttering while adjusting the value, NOT during normal addon use";
 L["Blizzard"] = "Blizzard";
 L["Order"] = "Order";
 L["Tab"] = "Tab";

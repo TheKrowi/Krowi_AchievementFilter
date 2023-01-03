@@ -5,6 +5,39 @@ options.Layout = {};
 local layout = options.Layout;
 local widthMultiplier = addon.Options.WidthMultiplier;
 
+function layout.InjectDynamicCategoryOptions(categoryIndex, category, categoryDisplayName, tabIndex, tab, tabDisplayName, defaultValue)
+    if not KrowiAF_InjectOptions.DefaultsExists("AdjustableCategories." .. category) then
+        KrowiAF_InjectOptions.AddDefaults("AdjustableCategories", category, { });
+    end
+
+    KrowiAF_InjectOptions.AddDefaults("AdjustableCategories." .. category, tabIndex, defaultValue);
+
+    if not KrowiAF_InjectOptions.TableExists("Layout.args.AdjustableCategories.args." .. category) then
+        KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args", category, {
+            order = categoryIndex, type = "group",
+            name = categoryDisplayName,
+            args = {}
+        });
+    end
+
+    if not KrowiAF_InjectOptions.TableExists("Layout.args.AdjustableCategories.args." .. category .. ".args.Tabs") then
+        KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args." .. category .. ".args", "Tabs", {
+            order = tabIndex + 9, type = "header",
+            name = addon.L["Tabs"]
+        });
+    end
+
+    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args." .. category .. ".args", tab, {
+        order = tabIndex + 10, type = "toggle", width = 1 * widthMultiplier,
+        name = tabDisplayName,
+        desc = addon.L["Requires a reload"]:AddDefaultValueText("AdjustableCategories." .. category .. "." .. tabIndex),
+        get = function() return addon.Options.db.AdjustableCategories[category][tabIndex]; end,
+        set = function()
+            addon.Options.db.AdjustableCategories[category][tabIndex] = not addon.Options.db.AdjustableCategories[category][tabIndex];
+        end
+    });
+end
+
 local function DrawWatchListSubCategories()
     if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
         return;
@@ -212,42 +245,6 @@ local achievementPointsDisplays = {
     addon.L["Character only"]
 };
 
-local function SetCategoriesFrameWidthOffset(_, value)
-    if addon.Options.db.Window.CategoriesFrameWidthOffset == value then return; end
-    addon.Options.db.Window.CategoriesFrameWidthOffset = value;
-    if addon.GUI.SelectedTab then -- Need to check if it exists since this can be triggered before it's created
-        addon.GUI.CategoriesFrame:Hide();
-        addon.GUI.SetAchievementFrameWidth();
-        addon.GUI.CategoriesFrame:Show();
-    end
-    options.Debug(addon.L["Categories width offset"], addon.Options.db.Window.CategoriesFrameWidthOffset);
-end
-
-local function SetMaxNumberOfSearchPreviews()
-    local numberOfSearchPreviews = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.MetaData.Title, "cmd", "KROWIAF-0.0").args.Search.args.SearchPreview.args.NumberOfSearchPreviews; -- cmd and KROWIAF-0.0 are just to make the function work
-    numberOfSearchPreviews.max = options.MaxNumberOfSearchPreviews();
-    if numberOfSearchPreviews.get() > numberOfSearchPreviews.max then
-        numberOfSearchPreviews.set(nil, numberOfSearchPreviews.max);
-    end
-end
-
-local function SetAchievementFrameHeightOffset(_, value)
-    if addon.Options.db.Window.AchievementFrameHeightOffset == value then return; end
-    addon.Options.db.Window.AchievementFrameHeightOffset = value;
-    SetMaxNumberOfSearchPreviews();
-    if addon.GUI.SelectedTab then -- Need to check if it exists since this can be triggered before it's created
-        addon.GUI.SetAchievementFrameHeight();
-    end
-    options.Debug(addon.L["Achievement window height offset"], addon.Options.db.Window.AchievementFrameHeightOffset);
-end
-
-local function SetMergeSmallCategoriesThreshold(_, value)
-    if addon.Options.db.Window.MergeSmallCategoriesThreshold == value then return; end
-    addon.Options.db.Window.MergeSmallCategoriesThreshold = value;
-    addon.GUI.CategoriesFrame:Update(true);
-    options.Debug(addon.L["Categories width offset"], addon.Options.db.Window.MergeSmallCategoriesThreshold);
-end
-
 local function SetCompactAchievements()
     addon.Options.db.Achievements.Compact = not addon.Options.db.Achievements.Compact;
     options.Debug(addon.L["Compact Achievements"], addon.Options.db.Achievements.Compact);
@@ -258,23 +255,6 @@ local function SetObjectivesProgressShow()
     local objectivesProgressShowWhenAchievementCompleted = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.L["Layout"], "cmd", "KROWIAF-0.0").args.Achievements.args.Tooltip.args.ObjectivesProgressShowWhenAchievementCompleted; -- cmd and KROWIAF-0.0 are just to make the function work
     objectivesProgressShowWhenAchievementCompleted.disabled = not addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show;                        
     options.Debug(addon.L["Show Objectives progress"], addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show);
-end
-
-local function SetCategoryIndentation(_, value)
-    if addon.Options.db.Categories.Indentation == value then return; end
-    addon.Options.db.Categories.Indentation = value;
-    local buttons = addon.GUI.CategoriesFrame.ScrollFrame.buttons;
-    for _, button in next, buttons do
-        button:SetIndentation(addon.Options.db.Categories.Indentation);
-    end
-    options.Debug(addon.L["Indentation"], addon.Options.db.Categories.Indentation);
-end
-
-local function SetTabsSpacing(_, value)
-    if addon.Options.db.TabsGeneral.Spacing == value then return; end
-    addon.Options.db.TabsGeneral.Spacing = value;
-    addon.GUI.ShowHideTabs();
-    options.Debug(addon.L["Spacing"], addon.Options.db.TabsGeneral.Spacing);
 end
 
 local wowheadRelatedTabs = {
@@ -293,6 +273,84 @@ local criteriaBehaviour = {
     -- addon.L["Wrap"]
 };
 
+local function SwitchMovable()
+    addon.Options.db.Window.Movable = not addon.Options.db.Window.Movable;
+    if addon.Options.db.Window.Movable then
+        addon.MakeWindowMovable();
+    else
+        addon.MakeWindowStatic();
+    end
+end
+
+local function SwitchRememberLastPositionAchievementWindow()
+    addon.Options.db.Window.RememberLastPosition.AchievementWindow = not addon.Options.db.Window.RememberLastPosition.AchievementWindow;
+    if not addon.Options.db.Window.RememberLastPosition.AchievementWindow then
+        addon.GUI.ResetAchievementWindowPosition();
+    end
+end
+
+local function SwitchRememberLastPositionCalendar()
+    addon.Options.db.Window.RememberLastPosition.Calendar = not addon.Options.db.Window.RememberLastPosition.Calendar;
+    if not addon.Options.db.Window.RememberLastPosition.Calendar then
+        addon.GUI.Calendar.Frame:ResetPosition();
+    end
+end
+
+local function SwitchRememberLastPositionDataManager()
+    addon.Options.db.Window.RememberLastPosition.DataManager = not addon.Options.db.Window.RememberLastPosition.DataManager;
+    if not addon.Options.db.Window.RememberLastPosition.DataManager then
+        addon.GUI.DataManagerFrame:ResetPosition();
+    end
+end
+
+local function SetCategoriesFrameWidthOffset(_, value)
+    if addon.Options.db.Window.CategoriesFrameWidthOffset == value then return; end
+    addon.Options.db.Window.CategoriesFrameWidthOffset = value;
+    if addon.GUI.SelectedTab then -- Need to check if it exists since this can be triggered before it's created
+        addon.GUI.CategoriesFrame:Hide();
+        addon.GUI.SetAchievementFrameWidth();
+        addon.GUI.CategoriesFrame:Show();
+    end
+end
+
+local function SetMaxNumberOfSearchPreviews()
+    local numberOfSearchPreviews = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.MetaData.Title, "cmd", "KROWIAF-0.0").args.Search.args.SearchPreview.args.NumberOfSearchPreviews; -- cmd and KROWIAF-0.0 are just to make the function work
+    numberOfSearchPreviews.max = options.MaxNumberOfSearchPreviews();
+    if numberOfSearchPreviews.get() > numberOfSearchPreviews.max then
+        numberOfSearchPreviews.set(nil, numberOfSearchPreviews.max);
+    end
+end
+
+local function SetAchievementFrameHeightOffset(_, value)
+    if addon.Options.db.Window.AchievementFrameHeightOffset == value then return; end
+    addon.Options.db.Window.AchievementFrameHeightOffset = value;
+    SetMaxNumberOfSearchPreviews();
+    if addon.GUI.SelectedTab then -- Need to check if it exists since this can be triggered before it's created
+        addon.GUI.SetAchievementFrameHeight();
+    end
+end
+
+local function SetTabsSpacing(_, value)
+    if addon.Options.db.TabsGeneral.Spacing == value then return; end
+    addon.Options.db.TabsGeneral.Spacing = value;
+    addon.GUI.ShowHideTabs();
+end
+
+local function SetCategoryIndentation(_, value)
+    if addon.Options.db.Categories.Indentation == value then return; end
+    addon.Options.db.Categories.Indentation = value;
+    local buttons = addon.GUI.CategoriesFrame.ScrollFrame.buttons;
+    for _, button in next, buttons do
+        button:SetIndentation(addon.Options.db.Categories.Indentation);
+    end
+end
+
+local function SetMergeSmallCategoriesThreshold(_, value)
+    if addon.Options.db.Window.MergeSmallCategoriesThreshold == value then return; end
+    addon.Options.db.Window.MergeSmallCategoriesThreshold = value;
+    addon.GUI.CategoriesFrame:Update(true);
+end
+
 options.OptionsTable.args["Layout"] = {
     type = "group",
     childGroups = "tab",
@@ -310,46 +368,26 @@ options.OptionsTable.args["Layout"] = {
                         Movable = {
                             order = 1.1, type = "toggle", width = 2 * widthMultiplier,
                             name = addon.L["Make windows movable"],
-                            desc = addon.L["Make windows movable Desc"],
+                            desc = addon.L["Make windows movable Desc"]:AddDefaultValueText("Window.Movable"),
                             get = function() return addon.Options.db.Window.Movable; end,
-                            set = function()
-                                addon.Options.db.Window.Movable = not addon.Options.db.Window.Movable;
-                                if addon.Options.db.Window.Movable then
-                                    addon.MakeWindowMovable();
-                                else
-                                    addon.MakeWindowStatic();
-                                end
-                                options.Debug(addon.L["Make window movable"], addon.Options.db.Window.Movable);
-                            end
+                            set = SwitchMovable
                         },
                         Blank12 = {order = 1.2, type = "description", width = 1 * widthMultiplier, name = ""},
                         AchievementWindow = {
                             order = 2.1, type = "toggle", width = 2 * widthMultiplier,
-                            name = addon.L["Remember frame position"]:ReplaceVars
-                            {
+                            name = addon.L["Remember frame position"]:ReplaceVars {
                                 frame = addon.L["Achievement Window"]
                             },
-                            desc = addon.L["Remember frame position Desc"]:ReplaceVars
-                            {
+                            desc = addon.L["Remember frame position Desc"]:ReplaceVars {
                                 frame = addon.L["Achievement Window"]
-                            },
+                            }:AddDefaultValueText("Window.RememberLastPosition.AchievementWindow"),
                             get = function() return addon.Options.db.Window.RememberLastPosition.AchievementWindow; end,
-                            set = function()
-                                addon.Options.db.Window.RememberLastPosition.AchievementWindow = not addon.Options.db.Window.RememberLastPosition.AchievementWindow;
-                                if not addon.Options.db.Window.RememberLastPosition.AchievementWindow then
-                                    addon.GUI.ResetAchievementWindowPosition();
-                                end
-                                options.Debug(addon.L["Remember frame position"]:ReplaceVars
-                                {
-                                    frame = addon.L["Achievement Window"]
-                                }, addon.Options.db.Window.RememberLastPosition.AchievementWindow);
-                            end
+                            set = SwitchRememberLastPositionAchievementWindow
                         },
                         AchievementWindowReset = {
                             order = 2.2, type = "execute", width = 1 * widthMultiplier,
                             name = addon.L["Reset position"],
-                            desc = addon.L["Reset position Desc"]:ReplaceVars
-                            {
+                            desc = addon.L["Reset position Desc"]:ReplaceVars {
                                 frame = addon.L["Achievement Window"]
                             },
                             func = function()
@@ -358,31 +396,19 @@ options.OptionsTable.args["Layout"] = {
                         },
                         Calendar = {
                             order = 3.1, type = "toggle", width = 2 * widthMultiplier,
-                            name = addon.L["Remember frame position"]:ReplaceVars
-                            {
+                            name = addon.L["Remember frame position"]:ReplaceVars {
                                 frame = addon.L["Achievement Calendar"]
                             },
-                            desc = addon.L["Remember frame position Desc"]:ReplaceVars
-                            {
+                            desc = addon.L["Remember frame position Desc"]:ReplaceVars {
                                 frame = addon.L["Achievement Calendar"]
-                            },
+                            }:AddDefaultValueText("Window.RememberLastPosition.Calendar"),
                             get = function() return addon.Options.db.Window.RememberLastPosition.Calendar; end,
-                            set = function()
-                                addon.Options.db.Window.RememberLastPosition.Calendar = not addon.Options.db.Window.RememberLastPosition.Calendar;
-                                if not addon.Options.db.Window.RememberLastPosition.Calendar then
-                                    addon.GUI.Calendar.Frame:ResetPosition();
-                                end
-                                options.Debug(addon.L["Remember frame position"]:ReplaceVars
-                                {
-                                    frame = addon.L["Achievement Calendar"]
-                                }, addon.Options.db.Window.RememberLastPosition.Calendar);
-                            end
+                            set = SwitchRememberLastPositionCalendar
                         },
                         CalendarReset = {
                             order = 3.2, type = "execute", width = 1 * widthMultiplier,
                             name = addon.L["Reset position"],
-                            desc = addon.L["Reset position Desc"]:ReplaceVars
-                            {
+                            desc = addon.L["Reset position Desc"]:ReplaceVars {
                                 frame = addon.L["Achievement Calendar"]
                             },
                             func = function()
@@ -391,31 +417,19 @@ options.OptionsTable.args["Layout"] = {
                         },
                         DataManager = {
                             order = 4.1, type = "toggle", width = 2 * widthMultiplier,
-                            name = addon.L["Remember frame position"]:ReplaceVars
-                            {
+                            name = addon.L["Remember frame position"]:ReplaceVars {
                                 frame = addon.L["Data Manager"]
                             },
-                            desc = addon.L["Remember frame position Desc"]:ReplaceVars
-                            {
+                            desc = addon.L["Remember frame position Desc"]:ReplaceVars {
                                 frame = addon.L["Data Manager"]
-                            },
+                            }:AddDefaultValueText("Window.RememberLastPosition.DataManager"),
                             get = function() return addon.Options.db.Window.RememberLastPosition.DataManager; end,
-                            set = function()
-                                addon.Options.db.Window.RememberLastPosition.DataManager = not addon.Options.db.Window.RememberLastPosition.DataManager;
-                                if not addon.Options.db.Window.RememberLastPosition.DataManager then
-                                    addon.GUI.DataManagerFrame:ResetPosition();
-                                end
-                                options.Debug(addon.L["Remember frame position"]:ReplaceVars
-                                {
-                                    frame = addon.L["Data Manager"]
-                                }, addon.Options.db.Window.RememberLastPosition.DataManager);
-                            end
+                            set = SwitchRememberLastPositionDataManager
                         },
                         DataManagerReset = {
                             order = 4.2, type = "execute", width = 1 * widthMultiplier,
                             name = addon.L["Reset position"],
-                            desc = addon.L["Reset position Desc"]:ReplaceVars
-                            {
+                            desc = addon.L["Reset position Desc"]:ReplaceVars {
                                 frame = addon.L["Data Manager"]
                             },
                             func = function()
@@ -432,12 +446,10 @@ options.OptionsTable.args["Layout"] = {
                         CategoriesFrameWidthOffset = {
                             order = 2.1, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Categories width offset"],
-                            desc = addon.Util.ReplaceVars
-                            {
-                                addon.L["Categories width offset Desc"],
+                            desc = addon.L["Categories width offset Desc"]:ReplaceVars {
                                 addonName = addon.MetaData.Title,
                                 tabName = string.format(addon.Colors.Yellow, addon.L["Expansions"])
-                            },
+                            }:AddDefaultValueText("Window.CategoriesFrameWidthOffset"),
                             min = -125, max = 250, step = 1,
                             get = function() return addon.Options.db.Window.CategoriesFrameWidthOffset; end,
                             set = SetCategoriesFrameWidthOffset
@@ -445,11 +457,10 @@ options.OptionsTable.args["Layout"] = {
                         AchievementFrameHeightOffset = {
                             order = 2.2, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Achievement window height offset"],
-                            desc = addon.ReplaceVarsWithReloadReq {
-                                addon.L["Achievement window height offset Desc"],
+                            desc = addon.L["Achievement window height offset Desc"]:ReplaceVars {
                                 addonName = addon.MetaData.Title,
                                 tabName = string.format(addon.Colors.Yellow, addon.L["Expansions"])
-                            },
+                            }:AddDefaultValueText("Window.AchievementFrameHeightOffset"):AddReloadRequired(),
                             min = -50, max = 750, step = 1,
                             get = function() return addon.Options.db.Window.AchievementFrameHeightOffset; end,
                             set = SetAchievementFrameHeightOffset
@@ -470,7 +481,7 @@ options.OptionsTable.args["Layout"] = {
                         Spacing = {
                             order = 1, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Spacing"],
-                            desc = addon.L["Spacing Desc"],
+                            desc = addon.L["Spacing Desc"]:AddDefaultValueText("TabsGeneral.Spacing"),
                             min = -50, max = 50, step = 1,
                             get = function() return addon.Options.db.TabsGeneral.Spacing; end,
                             set = SetTabsSpacing
@@ -481,37 +492,9 @@ options.OptionsTable.args["Layout"] = {
                     order = 2, type = "group",
                     name = addon.L["Order"],
                     inline = true,
-                    args = {
-                        -- Dynamically added
-                    }
+                    args = { --[[ Dynamically build via KrowiAF_RegisterTabOptions ]] }
                 },
-                Blizzard_AchievementUI = {
-                    order = 3, type = "group",
-                    name = addon.L["Blizzard"],
-                    inline = true,
-                    args = {
-                        Achievements = {
-                            order = 1, type = "toggle", width = 1 * widthMultiplier,
-                            name = addon.L["Achievements"],
-                            get = function() return addon.Options.db.Tabs["Blizzard_AchievementUI"]["Achievements"].Show; end,
-                            set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Achievements"); end
-                        },
-                        Guild = {
-                            order = 2, type = "toggle", width = 1 * widthMultiplier,
-                            name = addon.L["Guild"],
-                            get = function() return addon.Options.db.Tabs["Blizzard_AchievementUI"]["Guild"].Show; end,
-                            set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Guild"); end,
-                            hidden = addon.IsWrathClassic
-                        },
-                        Statistics = {
-                            order = 3, type = "toggle", width = 1 * widthMultiplier,
-                            name = addon.L["Statistics"],
-                            get = function() return addon.Options.db.Tabs["Blizzard_AchievementUI"]["Statistics"].Show; end,
-                            set = function() addon.GUI.ShowHideTabs("Blizzard_AchievementUI", "Statistics"); end
-                        }
-                    }
-                },
-                -- More dynamically added
+                --[[ Addon specific tab options dynamically build via KrowiAF_RegisterTabOptions ]]
             }
         },
         Header = {
@@ -526,12 +509,12 @@ options.OptionsTable.args["Layout"] = {
                         Format = {
                             type = "select", width = 1.5 * widthMultiplier,
                             name = addon.L["Format"],
+                            desc = (""):AddDefaultValueText("AchievementPoints.Format", achievementPointsDisplays),
                             values = achievementPointsDisplays,
                             get = function() return addon.Options.db.AchievementPoints.Format; end,
                             set = function (_, value)
                                 if addon.Options.db.AchievementPoints.Format == value then return; end;
                                 addon.Options.db.AchievementPoints.Format = value;
-                                options.Debug(addon.L["Format"], addon.Options.db.AchievementPoints.Format);
                             end
                         }
                     }
@@ -544,56 +527,48 @@ options.OptionsTable.args["Layout"] = {
                         AlwaysShowRealm = {
                             order = 1.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Always show realm"],
-                            desc = addon.L["Always show realm Desc"],
+                            desc = addon.L["Always show realm Desc"]:AddDefaultValueText("AchievementPoints.Tooltip.AlwaysShowRealm"),
                             get = function() return addon.Options.db.AchievementPoints.Tooltip.AlwaysShowRealm; end,
                             set = function()
                                 addon.Options.db.AchievementPoints.Tooltip.AlwaysShowRealm = not addon.Options.db.AchievementPoints.Tooltip.AlwaysShowRealm;
-                                options.Debug(addon.L["Always show realm"], addon.Options.db.AchievementPoints.Tooltip.AlwaysShowRealm);
                             end
                         },
                         ShowFaction = {
                             order = 1.2, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Show faction icon"],
-                            desc = addon.L["Show faction icon Desc"],
+                            desc = addon.L["Show faction icon Desc"]:AddDefaultValueText("AchievementPoints.Tooltip.ShowFaction"),
                             get = function() return addon.Options.db.AchievementPoints.Tooltip.ShowFaction; end,
                             set = function()
                                 addon.Options.db.AchievementPoints.Tooltip.ShowFaction = not addon.Options.db.AchievementPoints.Tooltip.ShowFaction;
-                                options.Debug(addon.L["Show faction icon"], addon.Options.db.AchievementPoints.Tooltip.ShowFaction);
                             end
                         },
                         MaxNumCharacters = {
                             order = 2.1, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Maximum number of characters"],
-                            desc = addon.L["Maximum number of characters Desc"],
+                            desc = addon.L["Maximum number of characters Desc"]:AddDefaultValueText("AchievementPoints.Tooltip.MaxNumCharacters"),
                             min = 0, max = 100, step = 1,
                             get = function() return addon.Options.db.AchievementPoints.Tooltip.MaxNumCharacters; end,
                             set = function(_, value)
                                 if addon.Options.db.AchievementPoints.Tooltip.MaxNumCharacters == value then return; end
                                 addon.Options.db.AchievementPoints.Tooltip.MaxNumCharacters = value;
-                                options.Debug(addon.L["Maximum number of characters"], addon.Options.db.AchievementPoints.Tooltip.MaxNumCharacters);
                             end
                         },
                         KeepCurrentCharacter = {
                             order = 2.2, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Keep current character"],
-                            desc = addon.Util.ReplaceVars
-                            {
-                                addon.L["Keep current character Desc"],
+                            desc = addon.L["Keep current character Desc"]:ReplaceVars {
                                 maxNumChar = addon.L["Maximum number of characters"]
-                            },
+                            }:AddDefaultValueText("AchievementPoints.Tooltip.KeepCurrentCharacter"),
                             get = function() return addon.Options.db.AchievementPoints.Tooltip.KeepCurrentCharacter; end,
                             set = function()
                                 addon.Options.db.AchievementPoints.Tooltip.KeepCurrentCharacter = not addon.Options.db.AchievementPoints.Tooltip.KeepCurrentCharacter;
-                                options.Debug(addon.L["Keep current character"], addon.Options.db.AchievementPoints.Tooltip.KeepCurrentCharacter);
                             end
                         },
                         SortPriority = {
                             order = 3, type = "group",
                             name = addon.L["Sort priority"],
                             inline = true,
-                            args = {
-                                -- Dynamically added
-                            }
+                            args = { --[[ Dynamically build via addon.GUI.AchievementFrameHeader.InjectDynamicOptions ]] }
                         }
                     }
                 }
@@ -611,13 +586,12 @@ options.OptionsTable.args["Layout"] = {
                         NumAchievements = {
                             order = 1.1, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Number of summary achievements"],
-                            desc = addon.L["Number of summary achievements Desc"],
+                            desc = addon.L["Number of summary achievements Desc"]:AddDefaultValueText("Categories.Summary.NumAchievements"),
                             min = 1, max = 25, step = 1,
                             get = function() return addon.Options.db.Categories.Summary.NumAchievements; end,
                             set = function(_, value)
                                 if addon.Options.db.Categories.Summary.NumAchievements == value then return; end
                                 addon.Options.db.Categories.Summary.NumAchievements = value;
-                                options.Debug(addon.L["Number of summary achievements"], addon.Options.db.Categories.Summary.NumAchievements);
                             end
                         }
                     }
@@ -636,7 +610,7 @@ options.OptionsTable.args["Layout"] = {
                         Indentation = {
                             order = 1.1, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Indentation"],
-                            desc = addon.ReplaceVarsWithReloadReq(addon.L["Indentation Desc"]),
+                            desc = addon.L["Indentation Desc"]:AddDefaultValueText("Categories.Indentation"):AddReloadRequired(),
                             min = 1, max = 50, step = 1,
                             get = function() return addon.Options.db.Categories.Indentation; end,
                             set = SetCategoryIndentation
@@ -650,20 +624,15 @@ options.OptionsTable.args["Layout"] = {
                     args = {
                         ShowNotObtainable = {
                             order = 1, type = "toggle", width = 1.5 * widthMultiplier,
-                            name = addon.Util.ReplaceVars
-                            {
-                                addon.L["Show Not Obtainable"],
+                            name = addon.L["Show Not Obtainable"]:ReplaceVars {
                                 notObtainable = addon.L["Not Obtainable"]
                             },
-                            desc = addon.Util.ReplaceVars
-                            {
-                                addon.L["Show Not Obtainable Desc"],
+                            desc = addon.L["Show Not Obtainable Desc"]:ReplaceVars {
                                 notObtainable = addon.L["Not Obtainable"]
-                            },
+                            }:AddDefaultValueText("Tooltip.Categories.ShowNotObtainable"),
                             get = function() return addon.Options.db.Tooltip.Categories.ShowNotObtainable; end,
                             set = function()
                                 addon.Options.db.Tooltip.Categories.ShowNotObtainable = not addon.Options.db.Tooltip.Categories.ShowNotObtainable;
-                                options.Debug(addon.L["Show Not Obtainable"], addon.Options.db.Tooltip.Categories.ShowNotObtainable);
                             end
                         }
                     }
@@ -676,7 +645,7 @@ options.OptionsTable.args["Layout"] = {
                         MergeSmallCategoriesThreshold = {
                             order = 1.1, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Merge small categories threshold"],
-                            desc = addon.ReplaceVarsWithReloadReq(addon.L["Merge small categories threshold Desc"]),
+                            desc = addon.L["Merge small categories threshold Desc"]:AddDefaultValueText("Window.MergeSmallCategoriesThreshold"):AddReloadRequired(),
                             min = 1, max = 50, step = 1,
                             get = function() return addon.Options.db.Window.MergeSmallCategoriesThreshold; end,
                             set = SetMergeSmallCategoriesThreshold
@@ -688,8 +657,7 @@ options.OptionsTable.args["Layout"] = {
         AdjustableCategories = {
             order = 6, type = "group",
             name = addon.L["Adjustable Categories"],
-            args = {
-            }
+            args = { --[[ Dynamically build ]] }
         },
         Achievements = {
             order = 7, type = "group",

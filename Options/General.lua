@@ -1,50 +1,9 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
 local options = addon.Options;
-options.General = {};
-local general = options.General;
-local widthMultiplier = addon.Options.WidthMultiplier;
+local widthMultiplier = options.WidthMultiplier;
 
 local popupDialog = LibStub("Krowi_PopopDialog-1.0");
-
-function general.AddKeybindingOptions()
-    local w = 1;
-    for i, binding in next, addon.Bindings do
-        addon.Options.InjectOptionsTableAdd({
-            order = i + 0.1, type = "description", width = w * widthMultiplier,
-            name = binding.Text
-        }, "Binding" .. i .. "Name", "args", "General", "args", "KeyBinding", "args", "Keybindings");
-        local command = binding.Name;
-        addon.Options.InjectOptionsTableAdd({
-            order = i + 0.2, type = "keybinding", width = w * widthMultiplier,
-            name = "",
-            desc = "",
-            get = function() return GetBindingKey(command); end,
-            set = function(_, value)
-                local key = GetBindingKey(command);
-                if key then
-                    SetBinding(key);
-                end
-                SetBinding(value, command, 1);
-                SaveBindings(GetCurrentBindingSet());
-            end
-        }, "Binding" .. i .. "Key1", "args", "General", "args", "KeyBinding", "args", "Keybindings");
-        addon.Options.InjectOptionsTableAdd({
-            order = i + 0.3, type = "keybinding", width = w * widthMultiplier,
-            name = "",
-            desc = "",
-            get = function() return select(2, GetBindingKey(command)); end,
-            set = function(_, value)
-                local _, key = GetBindingKey(command);
-                if key then
-                    SetBinding(key);
-                end
-                SetBinding(value, command, 2);
-                SaveBindings(GetCurrentBindingSet());
-            end
-        }, "Binding" .. i .. "Key2", "args", "General", "args", "KeyBinding", "args", "Keybindings");
-    end
-end
 
 local function OpenTutorialsMenu()
     local menu = LibStub("Krowi_Menu-1.0");
@@ -85,12 +44,21 @@ local function SetShowHideWorldmapIcon()
     addon.WorldMapButtons.SetPoints();
 end
 
-local function SetKeybind()
+local function SetMicroButtonTabKeybind()
     local tab = SavedData.Tabs[addon.Options.db.MicroButtonTab];
     if tab.BindingName then
         SetBinding("Y", tab.BindingName);
         SaveBindings(GetCurrentBindingSet());
     end
+end
+
+local function SetBindingKeybind(value, command, index)
+	local key = select(index, GetBindingKey(command));
+	if key then
+		SetBinding(key);
+	end
+	SetBinding(value, command, index);
+	SaveBindings(GetCurrentBindingSet());
 end
 
 local screenshotModeFrame;
@@ -280,7 +248,7 @@ options.OptionsTable.args["General"] = {
                     inline = true,
                     args = {
                         ResetViewOnOpen = {
-                            order = 1.1, type = "toggle", width = 1.5 * widthMultiplier,
+                            order = 1.1, type = "toggle", width = 1.45 * widthMultiplier,
                             name = addon.L["Reset view on open"],
                             desc = addon.L["Reset view on open Desc"]:AddDefaultValueText("ResetViewOnOpen"),
                             get = function() return addon.Options.db.ResetViewOnOpen; end,
@@ -290,7 +258,7 @@ options.OptionsTable.args["General"] = {
                             end
                         },
                         ToggleWindow = {
-                            order = 1.1, type = "toggle", width = 1.5 * widthMultiplier,
+                            order = 1.1, type = "toggle", width = 1.45 * widthMultiplier,
                             name = addon.L["Toggle window once opened"],
                             desc = addon.L["Toggle window once opened Desc"]:AddDefaultValueText("ToggleWindow"),
                             get = function() return addon.Options.db.ToggleWindow; end,
@@ -307,9 +275,9 @@ options.OptionsTable.args["General"] = {
                     inline = true,
                     args = {
                         RebindMicroButton = {
-                            order = 1.1, type = "select", width = 2 * widthMultiplier,
+                            order = 1.1, type = "select", width = 1.95 * widthMultiplier,
                             name = addon.L["Rebind Micro Button"],
-                            desc = addon.L["Rebind Micro Button Desc"], -- Do AddDefaultValueTextWithValues during options.load
+                            desc = addon.L["Rebind Micro Button Desc"], -- Do AddDefaultValueTextFromValues during options.load
                             values = function() return addon.GUI.TabsOrderGetActiveKeys(); end,
                             get = function() return addon.Options.db.MicroButtonTab; end,
                             set = function (_, value)
@@ -318,30 +286,59 @@ options.OptionsTable.args["General"] = {
                             end
                         },
                         SetKeybind = {
-                            order = 1.2, type = "execute", width = 1 * widthMultiplier,
+                            order = 1.2, type = "execute", width = 0.95 * widthMultiplier,
                             name = addon.L["Set Keybind"],
                             desc = addon.L["Set Keybind Desc"]:ReplaceVars {
                                 keyBindings = addon.L["Key Bindings"]
                             },
-                            func = SetKeybind
+                            func = SetMicroButtonTabKeybind
                         }
                     }
                 },
-                Keybindings = {
+                Tabs = {
                     order = 3, type = "group",
-                    name = addon.L["Keybindings"],
+                    name = addon.L["Keybindings"] .. " (" .. addon.L["Tabs"] .. ")",
                     inline = true,
-                    args = { }
+                    args = { --[[ Dynamically build via KrowiAF_RegisterTabOptions ]] }
+                },
+                Custom = {
+                    order = 4, type = "group",
+                    name = addon.L["Keybindings"] .. " (" .. addon.L["Custom"] .. ")",
+                    inline = true,
+                    args = {
+                        OpenCurrentZoneCategoryName = {
+                            order = 1.1, type = "description", width = 0.95 * widthMultiplier,
+                            name = addon.L["Open"] .. " " .. addon.L["Current Zone"] .. " "  .. addon.L["Category"]
+                        },
+                        OpenCurrentZoneCategoryKey1 = {
+                            order = 1.2, type = "keybinding", width = 0.95 * widthMultiplier,
+                            name = "",
+                            desc = "",
+                            get = function() return GetBindingKey("KrowiAF_OPEN_CAT_Current_Zone"); end,
+                            set = function(_, value)
+                                SetBindingKeybind(value, "KrowiAF_OPEN_CAT_Current_Zone", 1);
+                            end
+                        },
+                        OpenCurrentZoneCategoryKey2 = {
+                            order = 1.3, type = "keybinding", width = 0.95 * widthMultiplier,
+                            name = "",
+                            desc = "",
+                            get = function() return select(2, GetBindingKey("KrowiAF_OPEN_CAT_Current_Zone")); end,
+                            set = function(_, value)
+                                SetBindingKeybind(value, "KrowiAF_OPEN_CAT_Current_Zone", 2);
+                            end
+                        }
+                    }
                 },
                 Modifiers = {
-                    order = 4, type = "group",
+                    order = 5, type = "group",
                     name = addon.L["Modifiers"],
                     inline = true,
                     args = {
                         LinkToChat = {
-                            order = 1.1, type = "select", width = 1 * widthMultiplier,
+                            order = 1.1, type = "select", width = 0.95 * widthMultiplier,
                             name = addon.L["Paste to Chat"],
-                            desc = addon.L["Paste to Chat"]:AddDefaultValueTextWithValues(addon.Modifiers, "Achievements", "Modifiers", "PasteToChat"),
+                            desc = addon.L["Paste to Chat"]:AddDefaultValueText("Achievements.Modifiers.PasteToChat", addon.Modifiers),
                             values = addon.Modifiers,
                             get = function() return addon.Options.db.Achievements.Modifiers.PasteToChat; end,
                             set = function (_, value)
@@ -350,9 +347,9 @@ options.OptionsTable.args["General"] = {
                             end
                         },
                         ToggleTracking = {
-                            order = 1.2, type = "select", width = 1 * widthMultiplier,
+                            order = 1.2, type = "select", width = 0.95 * widthMultiplier,
                             name = addon.L["Toggle Tracking"],
-                            desc = addon.L["Toggle Tracking"]:AddDefaultValueTextWithValues(addon.Modifiers, "Achievements", "Modifiers", "ToggleTracking"),
+                            desc = addon.L["Toggle Tracking"]:AddDefaultValueText("Achievements.Modifiers.ToggleTracking", addon.Modifiers),
                             values = addon.Modifiers,
                             get = function() return addon.Options.db.Achievements.Modifiers.ToggleTracking; end,
                             set = function (_, value)
@@ -361,15 +358,13 @@ options.OptionsTable.args["General"] = {
                             end
                         },
                         WatchList = {
-                            order = 2.1, type = "select", width = 1 * widthMultiplier,
-                            name = addon.L["Add to / Remove from Watch List"]:ReplaceVars
-                            {
+                            order = 2.1, type = "select", width = 0.95 * widthMultiplier,
+                            name = addon.L["Add to / Remove from Watch List"]:ReplaceVars {
                                 watchList = addon.L["Watch List"]
                             },
-                            desc = addon.L["Add to / Remove from Watch List"]:ReplaceVars
-                            {
+                            desc = addon.L["Add to / Remove from Watch List"]:ReplaceVars {
                                 watchList = addon.L["Watch List"]
-                            }:AddDefaultValueTextWithValues(addon.Modifiers, "Achievements", "Modifiers", "ToggleWatchList"),
+                            }:AddDefaultValueText("Achievements.Modifiers.ToggleWatchList", addon.Modifiers),
                             values = addon.Modifiers,
                             get = function() return addon.Options.db.Achievements.Modifiers.ToggleWatchList; end,
                             set = function (_, value)
@@ -378,9 +373,9 @@ options.OptionsTable.args["General"] = {
                             end
                         },
                         Excluded = {
-                            order = 2.1, type = "select", width = 1 * widthMultiplier,
+                            order = 2.1, type = "select", width = 0.95 * widthMultiplier,
                             name = addon.L["Include"] .. " / " .. addon.L["Exclude"],
-                            desc = addon.L["Include"] .. " / " .. addon.L["Exclude"]:AddDefaultValueTextWithValues(addon.Modifiers, "Achievements", "Modifiers", "ToggleExcluded"),
+                            desc = addon.L["Include"] .. " / " .. addon.L["Exclude"]:AddDefaultValueText("Achievements.Modifiers.ToggleExcluded", addon.Modifiers),
                             values = addon.Modifiers,
                             get = function() return addon.Options.db.Achievements.Modifiers.ToggleExcluded; end,
                             set = function (_, value)
@@ -404,7 +399,7 @@ options.OptionsTable.args["General"] = {
                         ClearOnRightClick = {
                             order = 1.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Clear search field on Right Click"],
-                            desc = addon.L["Clear search field on Right Click Desc"]:AddDefaultValueText("SearchBox", "ClearOnRightClick"),
+                            desc = addon.L["Clear search field on Right Click Desc"]:AddDefaultValueText("SearchBox.ClearOnRightClick"),
                             get = function() return addon.Options.db.SearchBox.ClearOnRightClick; end,
                             set = function()
                                 addon.Options.db.SearchBox.ClearOnRightClick = not addon.Options.db.SearchBox.ClearOnRightClick;
@@ -413,7 +408,7 @@ options.OptionsTable.args["General"] = {
                         ExcludeExcluded = {
                             order = 1.2, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Exclude Excluded achievements"],
-                            desc = addon.L["Exclude Excluded achievements Desc"]:AddDefaultValueText("SearchBox", "ExcludeExcluded"),
+                            desc = addon.L["Exclude Excluded achievements Desc"]:AddDefaultValueText("SearchBox.ExcludeExcluded"),
                             get = function() return addon.Options.db.SearchBox.ExcludeExcluded; end,
                             set = function()
                                 addon.Options.db.SearchBox.ExcludeExcluded = not addon.Options.db.SearchBox.ExcludeExcluded;
@@ -422,7 +417,7 @@ options.OptionsTable.args["General"] = {
                         OnlySearchFiltered = {
                             order = 2.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Only search filtered achievements"],
-                            desc = addon.L["Only search filtered achievements Desc"]:AddDefaultValueText("SearchBox", "OnlySearchFiltered"),
+                            desc = addon.L["Only search filtered achievements Desc"]:AddDefaultValueText("SearchBox.OnlySearchFiltered"),
                             get = function() return addon.Options.db.SearchBox.OnlySearchFiltered; end,
                             set = function()
                                 addon.Options.db.SearchBox.OnlySearchFiltered = not addon.Options.db.SearchBox.OnlySearchFiltered;
@@ -432,7 +427,7 @@ options.OptionsTable.args["General"] = {
                         MinimumCharactersToSearch = {
                             order = 3.1, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Minimum characters to search"],
-                            desc = addon.L["Minimum characters to search Desc"]:AddDefaultValueText("SearchBox", "MinimumCharactersToSearch"),
+                            desc = addon.L["Minimum characters to search Desc"]:AddDefaultValueText("SearchBox.MinimumCharactersToSearch"),
                             min = 1, max = 10, step = 1,
                             get = function() return addon.Options.db.SearchBox.MinimumCharactersToSearch; end,
                             set = function(_, value)
@@ -450,7 +445,7 @@ options.OptionsTable.args["General"] = {
                         NumberOfSearchPreviews = {
                             order = 1.1, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Number of search previews"],
-                            desc = addon.L["Number of search previews Desc"]:AddDefaultValueText("SearchBox", "NumberOfSearchPreviews"):AddReloadRequired(),
+                            desc = addon.L["Number of search previews Desc"]:AddDefaultValueText("SearchBox.NumberOfSearchPreviews"):AddReloadRequired(),
                             min = 1, max = 1000, step = 1, -- max is set by options.MaxNumberOfSearchPreviews after loading has finished
                             get = function() return addon.Options.db.SearchBox.NumberOfSearchPreviews; end,
                             set = function(_, value)
@@ -462,7 +457,7 @@ options.OptionsTable.args["General"] = {
                         ShowAllResultsInCategory = {
                             order = 2.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Show All Results in Category"],
-                            desc = addon.L["Show All Results in Category Desc"]:AddDefaultValueText("SearchBox", "ShowAllResultsInCategory"),
+                            desc = addon.L["Show All Results in Category Desc"]:AddDefaultValueText("SearchBox.ShowAllResultsInCategory"),
                             get = function() return addon.Options.db.SearchBox.ShowAllResultsInCategory; end,
                             set = function()
                                 addon.Options.db.SearchBox.ShowAllResultsInCategory = not addon.Options.db.SearchBox.ShowAllResultsInCategory;
@@ -488,7 +483,7 @@ options.OptionsTable.args["General"] = {
                                 neutral = addon.L["Neutral"],
                                 alliance = addon.L["Alliance"],
                                 horde = addon.L["Horde"]
-                            }:AddDefaultValueText("Filters", "ResetFactionFilters"),
+                            }:AddDefaultValueText("Filters.ResetFactionFilters"),
                             get = function() return addon.Options.db.Filters.ResetFactionFilters; end,
                             set = function()
                                 addon.Options.db.Filters.ResetFactionFilters = not addon.Options.db.Filters.ResetFactionFilters;

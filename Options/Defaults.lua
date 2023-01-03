@@ -36,22 +36,7 @@ options.Defaults = {
                 KeepCurrentCharacter = true
             }
         },
-        Tabs = {
-            Blizzard_AchievementUI = {
-                Achievements = {
-                    Show = false
-                    -- Order added dynamically
-                },
-                Guild = {
-                    Show = true
-                    -- Order added dynamically
-                },
-                Statistics = {
-                    Show = true
-                    -- Order added dynamically
-                }
-            }
-        },
+        Tabs = { --[[ Dynamically build via KrowiAF_RegisterTabOptions ]] },
         TabsGeneral = {
             Spacing = 0
         },

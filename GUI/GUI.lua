@@ -13,7 +13,7 @@ function gui:LoadWithAddon()
     gui.WorldMapButton.Load();
     gui.AlertSystem:Load();
     addon.Filters:InjectDefaults();
-    addon.GUI.AchievementFrameHeader.InjectOptions();
+    -- addon.GUI.AchievementFrameHeader.InjectDynamicOptions();
 end
 
 local defaultAchievementFrameWidth;
@@ -290,13 +290,13 @@ function gui.AddDataToBlizzardTabs()
 end
 
 function gui.PrepareTabsOrder()
-    KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Achievements", addon.L["Blizzard"], addon.L["Achievements"], "TOGGLEACHIEVEMENT");
+    KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Achievements", addon.L["Blizzard"], addon.L["Achievements"], "TOGGLEACHIEVEMENT", false);
     if not addon.IsWrathClassic then
-        KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Guild", addon.L["Blizzard"], addon.L["Guild"]);
+        KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Guild", addon.L["Blizzard"], addon.L["Guild"], nil, true);
     else
         addon.Options.Defaults.profile.Tabs.Blizzard_AchievementUI.Guild = nil;
     end
-    KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Statistics", addon.L["Blizzard"], addon.L["Statistics"], "TOGGLESTATISTICS");
+    KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Statistics", addon.L["Blizzard"], addon.L["Statistics"], "TOGGLESTATISTICS", true);
 end
 
 function gui.ShowStatusBarTooltip(self, anchor)

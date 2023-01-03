@@ -457,13 +457,13 @@ function addon.HookAchievementFrameOnShow()
     -- end
 end
 
-local function MakeStatic(frame, rememberLastPositionOption)
+local function MakeStatic(frame, rememberLastPositionOption, target)
     if not frame or not frame.ClearAllPoints or not frame:IsMovable() then
         return;
     end
 
     if rememberLastPositionOption then
-        addon.GUI.SetFrameToLastPosition(frame, rememberLastPositionOption);
+        addon.GUI.SetFrameToLastPosition(target or frame, rememberLastPositionOption);
     end
 
     frame:SetMovable(false);
@@ -475,8 +475,11 @@ local function MakeStatic(frame, rememberLastPositionOption)
 end
 
 function addon.MakeWindowStatic()
+    if not IsAddOnLoaded("Blizzard_AchievementUI") then
+        return;
+    end
     MakeStatic(AchievementFrame, "AchievementWindow");
-    MakeStatic(AchievementFrame.Header);
+    MakeStatic(AchievementFrame.Header, "AchievementWindow", AchievementFrame);
     MakeStatic(addon.GUI.Calendar.Frame, "Calendar");
     MakeStatic(addon.GUI.DataManagerFrame, "DataManager");
 end
@@ -512,6 +515,9 @@ local function MakeMovable(frame, rememberLastPositionOption, target)
 end
 
 function addon.MakeWindowMovable()
+    if not IsAddOnLoaded("Blizzard_AchievementUI") then
+        return;
+    end
     MakeMovable(AchievementFrame, "AchievementWindow");
     MakeMovable(AchievementFrame.Header, "AchievementWindow", AchievementFrame);
     MakeMovable(addon.GUI.Calendar.Frame, "Calendar");

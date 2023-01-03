@@ -20,17 +20,17 @@ LibStub(addon.Libs.AceEvent):Embed(addon.Event);
 addon.Tabs.Load();
 
 -- [[ Binding names ]] --
-addon.Bindings = {};
-BINDING_HEADER_AF_NAME = addon.MetaData.Title;
-for _, t in next, addon.TabsOrder do
-    local tab = addon.Tabs[t];
-    if type(tab) ~= "function" then
-        tinsert(addon.Bindings, {Name = "KrowiAF_OPEN_TAB_" .. tostring(tab.Name), Text = addon.L["Toggle"] .. " " .. tab.Text .. " "  .. addon.L["tab"]});
-        _G["BINDING_NAME_" .. addon.Bindings[#addon.Bindings].Name] = addon.Bindings[#addon.Bindings].Text;
-    end
-end
-tinsert(addon.Bindings, {Name = "KrowiAF_OPEN_CAT_Current_Zone", Text = addon.L["Open"] .. " " .. addon.L["Current Zone"] .. " " .. addon.L["Category"]});
-_G["BINDING_NAME_" .. addon.Bindings[#addon.Bindings].Name] = addon.Bindings[#addon.Bindings].Text;
+-- addon.Bindings = {};
+-- BINDING_HEADER_AF_NAME = addon.MetaData.Title;
+-- for _, t in next, addon.TabsOrder do
+--     local tab = addon.Tabs[t];
+--     if type(tab) ~= "function" then
+--         tinsert(addon.Bindings, {Name = "KrowiAF_OPEN_TAB_" .. tostring(tab.Name), Text = addon.L["Toggle"] .. " " .. tab.Text .. " "  .. addon.L["tab"]});
+--         _G["BINDING_NAME_" .. addon.Bindings[#addon.Bindings].Name] = addon.Bindings[#addon.Bindings].Text;
+--     end
+-- end
+-- tinsert(addon.Bindings, {Name = "KrowiAF_OPEN_CAT_Current_Zone", Text = addon.L["Open"] .. " " .. addon.L["Current Zone"] .. " " .. addon.L["Category"]});
+-- _G["BINDING_NAME_" .. addon.Bindings[#addon.Bindings].Name] = addon.Bindings[#addon.Bindings].Text;
 
 -- [[ Faction data ]] --
 addon.Faction = {};
@@ -48,17 +48,18 @@ loadHelper:RegisterEvent("ACHIEVEMENT_EARNED");
 local function LoadKrowi_AchievementFilter()
     addon.Diagnostics.Load();
 
-    addon.Data.ExportedCategories.InjectOptions();
+    addon.Data.ExportedCategories.InjectDynamicOptions();
     addon.Options.Layout.AddMoreWatchListOptions();
     addon.Options.Layout.AddMoreTrackingAchievementsOptions();
     addon.Options.Layout.AddMoreExcludedOptions();
-    addon.Options.General.AddKeybindingOptions();
+    -- addon.Options.General.InjectDynamicOptions();
 
     addon.Data.ExportedCalendarEvents.InjectOptions();
     addon.Data.ExportedWorldEvents.InjectOptions();
 
     addon.GUI.PrepareTabsOrder();
-    addon.Tabs.InjectOptions();
+    addon.Tabs.InjectDynamicOptions();
+    addon.GUI.AchievementFrameHeader.InjectDynamicOptions();
     addon.Plugins:InjectOptions();
     addon.Options.Load();
 

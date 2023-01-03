@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 - Event Reminder when a new event starts while playing (on by default)
 - Adjustable interval to check for new events and clean up ended events (default 60 seconds)
 - Option to show/hide event reminders inside instances
-- Default values to the General options (WIP)
+- Default values to the General and Layout options (WIP)
 
 ### Changed
 - Great Gourmand of The Ruby Feast is now linked to Valdrakken instead of the Dragon Isles since the starting quests for these items is from Valdrakken
@@ -19,6 +19,8 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Backend split between Wrath Classic and Retail resulting in smaller export for Wrath Classic
 - Backend split between Wrath Classic and Retail resulting in automatic removal of removed achievements
+- Error when making the windows movable/static when the Achievement UI is not yet loaded
+- Bug when remembering the achievement window's location and making the windows static again, the achievement window would snap to it's default location
 
 ### Removed
 - Individual Dragon Racing achievements as they are now marked as tracking achievements

@@ -1,8 +1,8 @@
--- [[ Exported at 2023-01-02 22-34-05 ]] --
+-- [[ Exported at 2023-01-03 14-09-08 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-12-26 ]] --
+-- [[ German translation by Ta, 2023-01-03 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -193,7 +193,7 @@ L["Make windows movable Desc"] = "Macht das Erfolgsfenster, die Kalenderansicht 
 L["Categories width offset"] = "Kategorien Fenster Abstands-Breite";
 L["Categories width offset Desc"] = "Die Breite, die zur Standardkategorienbreite addiert oder von ihr subtrahiert wird.\n\nDieser Wert kann geändert werden, während das Erfolgsfenster geöffnet ist und eine der von {AddonName} hinzugefügten Tabs ausgewählt wurde. Dies kann Auswirkungen (1) auf das Spiel haben.\n\n(1) FPS-Einbrüche und Stottern während der Anpassung des Wertes, NICHT während der normalen Addon-Nutzung\n\n{reloadRequired}";
 L["Achievement window height offset"] = "Erfolgs Fenster Höhen-Abstand";
-L["Achievement window height offset Desc"] = "Die Höhe, die zur Standardhöhe des Erfolg-Fensters addiert oder davon subtrahiert wird.\n\nDieser Wert kann geändert werden, während das Erfolg-Fenster geöffnet ist und eine der von {addonName} hinzugefügten Registerkarten ausgewählt wurde. Dies kann Auswirkungen (1) auf das Spiel haben.\n\n(1) FPS-Einbrüche und Stottern während der Anpassung des Wertes, NICHT während der normalen Addon-Nutzung\n\n{reloadRequired}";
+L["Achievement window height offset Desc"] = "Die Höhe, die zur Standardhöhe des Erfolg-Fensters addiert oder davon subtrahiert wird.\n\nDieser Wert kann geändert werden, während das Erfolg-Fenster geöffnet ist und eine der von {addonName} hinzugefügten Registerkarten ausgewählt wurde. Dies kann Auswirkungen (1) auf das Spiel haben.\n\n(1) FPS-Einbrüche und Stottern während der Anpassung des Wertes, NICHT während der normalen Addon-Nutzung";
 L["Blizzard"] = "Blizzard";
 L["Order"] = "Tab Reihenfolge";
 L["Tab"] = "Tab";
@@ -244,8 +244,8 @@ L["Show Right Click Menu"] = "{rightClickMenu} Button anzeigen";
 L["Show Right Click Menu Desc"] = "Zeigt / Versteckt den {rightClickMenu} Button auf jedem Erfolg.\n\nDies dient als Alternative für einen Rechtsklick auf den Erfolg.\n\n{reloadRequired}";
 L["Event Reminders"] = "Event Erinnerung";
 L["Pop ups"] = "Popup-Fenster";
-L["Show"] = "Zeige Ereignis Popup-Fenster";
-L["Show pop ups on login Desc"] = "Ereignis Popups beim Neuladen oder Betreten des Spiels anzeigen/ausblenden. Diese Option hat keinen Einfluss auf die Ereignis-Erinnerungen neben dem Erfolgs-Fenster.";
+L["Show"] = "Zeige";
+L["Show pop ups on login Desc"] = "Ereignis Popups beim Neuladen oder Betreten des Spiels anzeigen/ausblenden.";
 L["Max number of alerts"] = "Maximale Anzahl der Ereignis Popup-Fenster";
 L["Max number of alerts Desc"] = "Die maximale Anzahl der gleichzeitig angezeigten Ereignis Popup Fenster.";
 L["Fade delay"] = "Ausblendeverzögerung";
