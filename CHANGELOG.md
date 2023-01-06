@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 - Event Reminder when a new event starts while playing (on by default)
 - Adjustable interval to check for new events and clean up ended events (default 60 seconds)
 - Option to show/hide event reminders inside instances
-- Default values to the General, Layout and Event Reminders options (WIP)
+- Default values to the options
 - Tooltip data for Great Gourmand of The Ruby Feast
 
 ### Changed
