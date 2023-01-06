@@ -2,7 +2,6 @@
     <Script file="Options.lua" />
     <Script file="Defaults.lua" />
     
-    <Script file="GeneralNew.lua" />
     <Script file="General.lua" />
     <Script file="Layout.lua" />
     <Script file="EventReminders.lua" />

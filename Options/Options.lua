@@ -22,6 +22,10 @@ options.Debug = function(parameterName, value)
     diagnostics.Debug(parameterName .. ": " .. tostring(value));
 end
 
+options.MaxNumberOfSearchPreviews = function()
+    return 17 + math.floor(addon.Options.db.Window.AchievementFrameHeightOffset / 29);
+end
+
 local function Open()
     if addon.IsWrathClassic or addon.IsShadowlandsRetail then
         InterfaceAddOnsList_Update(); -- This way the correct category will be shown when calling InterfaceOptionsFrame_OpenToCategory

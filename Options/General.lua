@@ -15,7 +15,7 @@ function general.PostLoad()
     rebindMicroButton.desc = rebindMicroButton.desc:AddDefaultValueText("MicroButtonTab", addon.GUI.TabsOrderGetActiveKeys());
 
     local numberOfSearchPreviews = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.MetaData.Title, "cmd", "KROWIAF-0.0").args.Search.args.SearchPreview.args.NumberOfSearchPreviews;
-    numberOfSearchPreviews.max = function() return 17 + math.floor(addon.Options.db.Window.AchievementFrameHeightOffset / 29); end;
+    numberOfSearchPreviews.max = options.MaxNumberOfSearchPreviews();
 end
 
 local function GeneralTutorialFunc()
@@ -74,31 +74,34 @@ local function SetBindingKeybind(value, command, index)
 	SaveBindings(GetCurrentBindingSet());
 end
 
-local screenshotModeFrame;
+local screenshotModeFrame, screenshotModeCloseButton;
 local function HandleScreenshotMode()
     if addon.IsWrathClassic or addon.IsShadowlandsRetail then
         InterfaceOptionsFrame:Hide();
     else
-        SettingsPanel:Close();
+        SettingsPanel:Close(); -- Causes "blocked from an action" message
     end
     if screenshotModeFrame == nil then
         screenshotModeFrame = CreateFrame("Frame", nil, UIParent);
-        if screenshotModeFrame == nil then
-            error("Screenshot frame failed to be created.");
-            return;
-        end
-        screenshotModeFrame:SetAllPoints();
         screenshotModeFrame:SetPoint("CENTER");
-        screenshotModeFrame:SetSize(64, 64);
+        screenshotModeFrame:SetAllPoints();
 
         screenshotModeFrame.tex = screenshotModeFrame:CreateTexture();
         screenshotModeFrame.tex:SetAllPoints();
         screenshotModeFrame.tex:SetTexture("Interface/AddOns/Krowi_AchievementFilter/Media/Black");
         screenshotModeFrame.tex:SetTexCoord(0, 0.390625, 0, 0.78125);
-    elseif screenshotModeFrame:IsShown() then
-        screenshotModeFrame:Hide();
+        screenshotModeCloseButton = CreateFrame("Button", nil, UIParent, "UIPanelButtonTemplate");
+        screenshotModeCloseButton:SetPoint("TOPRIGHT");
+        screenshotModeCloseButton:SetSize(200, 22);
+        screenshotModeCloseButton:SetText("Close Screenshot Mode");
+        screenshotModeCloseButton:SetScript("OnClick", function(self)
+            screenshotModeFrame:Hide();
+            self:Hide();
+        end);
+        screenshotModeCloseButton:Show();
     else
         screenshotModeFrame:Show();
+        screenshotModeCloseButton:Show();
     end
 end
 
