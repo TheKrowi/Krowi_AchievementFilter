@@ -1,6 +1,18 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
 local options = addon.Options;
+options.Credits = {};
+local credits = options.Credits;
+tinsert(options.OptionsTables, credits);
+
+function credits.RegisterOptionsTable()
+    LibStub("AceConfig-3.0"):RegisterOptionsTable(options.OptionsTable.args.Credits.name, options.OptionsTable.args.Credits);
+    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(options.OptionsTable.args.Credits.name, options.OptionsTable.args.Credits.name, addon.MetaData.Title);
+end
+
+function credits.PostLoad()
+    
+end
 
 options.OptionsTable.args["Credits"] = {
     type = "group",

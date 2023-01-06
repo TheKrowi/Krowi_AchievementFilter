@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-03 14-09-08 ]] --
+-- [[ Exported at 2023-01-06 18-17-20 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -241,7 +241,7 @@ L["Second column threshold"] = "Second column threshold";
 L["Second column threshold Desc"] = "Achievements with more objectives than this number will be visible in two columns instead of one.";
 L["Right Click Menu"] = "Right Click Menu";
 L["Show Right Click Menu"] = "Show {rightClickMenu} button";
-L["Show Right Click Menu Desc"] = "Show / hide {rightClickMenu} button on each achievement.\n\nThis serves as an alternative for right clicking the achievement.\n\n{reloadRequired}";
+L["Show Right Click Menu Desc"] = "Show / hide {rightClickMenu} button on each achievement.\n\nThis serves as an alternative for right clicking the achievement.";
 L["Event Reminders"] = "Event Reminders";
 L["Pop ups"] = "Pop ups";
 L["Show"] = "Show";

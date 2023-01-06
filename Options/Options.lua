@@ -22,8 +22,10 @@ options.Debug = function(parameterName, value)
     diagnostics.Debug(parameterName .. ": " .. tostring(value));
 end
 
-options.MaxNumberOfSearchPreviews = function()
-    return 17 + math.floor(addon.Options.db.Window.AchievementFrameHeightOffset / 29);
+function options.SetMaxNumberOfSearchPreviews()
+    local numberOfSearchPreviews = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.MetaData.Title, "cmd", "KROWIAF-0.0").args.Search.args.SearchPreview.args.NumberOfSearchPreviews;
+    numberOfSearchPreviews.max = 17 + math.floor(addon.Options.db.Window.AchievementFrameHeightOffset / 29);
+    return numberOfSearchPreviews;
 end
 
 local function Open()
@@ -100,32 +102,11 @@ function options.Load()
         optionsTable.RegisterOptionsTable();
     end
 
-    LibStub("AceConfig-3.0"):RegisterOptionsTable(options.OptionsTable.args.Layout.name, options.OptionsTable.args.Layout);
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(options.OptionsTable.args.Layout.name, options.OptionsTable.args.Layout.name, addon.MetaData.Title);
-
-    LibStub("AceConfig-3.0"):RegisterOptionsTable(options.OptionsTable.args.EventReminders.name, options.OptionsTable.args.EventReminders);
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(options.OptionsTable.args.EventReminders.name, options.OptionsTable.args.EventReminders.name, addon.MetaData.Title);
-
-    LibStub("AceConfig-3.0"):RegisterOptionsTable(options.OptionsTable.args.Plugins.name, options.OptionsTable.args.Plugins);
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(options.OptionsTable.args.Plugins.name, options.OptionsTable.args.Plugins.name, addon.MetaData.Title);
-
-    LibStub("AceConfig-3.0"):RegisterOptionsTable(options.OptionsTable.args.Credits.name, options.OptionsTable.args.Credits);
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(options.OptionsTable.args.Credits.name, options.OptionsTable.args.Credits.name, addon.MetaData.Title);
-
-    -- Extra things to set in the options panel based loaded options we can't do while loading the addon files
-    if addon.Options.db.Calendar.FirstWeekDay < 1 or addon.Options.db.Calendar.FirstWeekDay > 7 then
-        if not IsAddOnLoaded("Blizzard_Calendar") then -- This is to make sure we get the 1st day of the week correct
-            LoadAddOn("Blizzard_Calendar"); -- breaks Blizzard_Calendar
-        end
-        addon.Options.db.Calendar.FirstWeekDay = CALENDAR_FIRST_WEEKDAY;
-    end
-
     for _, optionsTable in next, options.OptionsTables do
         optionsTable.PostLoad();
     end
 
     diagnostics.Debug("Options loaded");
-    -- diagnostics.DebugTable(addon.Options.db, 1);
 end
 
 string["AddDefaultValueText"] = function(self, valuePath, values)

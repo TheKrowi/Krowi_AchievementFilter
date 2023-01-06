@@ -1,8 +1,8 @@
--- [[ Exported at 2023-01-03 14-09-08 ]] --
+-- [[ Exported at 2023-01-06 18-17-20 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2023-01-03 ]] --
+-- [[ German translation by Ta, 2023-01-04 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -241,15 +241,15 @@ L["Second column threshold"] = "Zweite Spalte: Schwellenwert";
 L["Second column threshold Desc"] = "Erfolge mit mehr Teilaufgaben als dieser Zahl werden in zwei Spalten statt in einer angezeigt.";
 L["Right Click Menu"] = "Rechts-Klick Menü";
 L["Show Right Click Menu"] = "{rightClickMenu} Button anzeigen";
-L["Show Right Click Menu Desc"] = "Zeigt / Versteckt den {rightClickMenu} Button auf jedem Erfolg.\n\nDies dient als Alternative für einen Rechtsklick auf den Erfolg.\n\n{reloadRequired}";
+L["Show Right Click Menu Desc"] = "Zeigt / Versteckt den {rightClickMenu} Button auf jedem Erfolg.\n\nDies dient als Alternative für einen Rechtsklick auf den Erfolg.";
 L["Event Reminders"] = "Event Erinnerung";
 L["Pop ups"] = "Popup-Fenster";
 L["Show"] = "Zeige";
-L["Show pop ups on login Desc"] = "Ereignis Popups beim Neuladen oder Betreten des Spiels anzeigen/ausblenden.";
+L["Show pop ups on login Desc"] = "Ereignis Popup-Fenster beim Neuladen oder Betreten des Spiels anzeigen/ausblenden.";
 L["Max number of alerts"] = "Maximale Anzahl der Ereignis Popup-Fenster";
-L["Max number of alerts Desc"] = "Die maximale Anzahl der gleichzeitig angezeigten Ereignis Popup Fenster.";
+L["Max number of alerts Desc"] = "Die maximale Anzahl der gleichzeitig angezeigten Ereignis Popup-Fenster.";
 L["Fade delay"] = "Ausblendeverzögerung";
-L["Fade delay Desc"] = "Zeit in Sekunden, die das Ereignis Popup Fenster braucht, um zu verschwinden, wenn es ignoriert wird. Mit einem Rechtsklick wird es sofort geschlossen.";
+L["Fade delay Desc"] = "Zeit in Sekunden, die das Ereignis Popup-Fenster braucht, um zu verschwinden, wenn es ignoriert wird. Mit einem Rechtsklick wird es sofort geschlossen.";
 L["Compact"] = "Kompakte Erfolge anzeigen";
 L["Compact Desc"] = "Verwende eine kompaktere Version mit nur einer Zeile der Zeitanzeige.\n\n{reloadRequired}";
 L["Time display"] = "Zeit Anzeige";
@@ -569,4 +569,13 @@ L["Show All Results in Category"] = "Zeige alle Suchergebnisse in einer Kategori
 L["Show All Results in Category Desc"] = "Alle Suchergebnisse in einer Kategorie anzeigen, die während dieser Sitzung bestehen bleibt.";
 L["Search Results"] = "Suchergebnisse";
 L["Are you sure you want to delete character?"] = "Sind Sie sicher, dass Sie {character} löschen möchten? Dieser Charakter wird aber wieder hinzugefügt, wenn Sie sich erneut einloggen. Wenn Sie den Charakter dauerhaft nicht sehen wollen, markieren Sie bitte die {ignore} Checkbox.";
+L["On Login / Reload"] = "Beim Login / Neu-laden";
+L["In instances"] = "In einer Instanz";
+L["Show pop ups on login in instances Desc"] = "Ein-/Ausblenden von Ereignis Popup-Fensters beim Neu-laden oder Betreten des Spiels innerhalb einer Instanz.";
+L["Show pop ups on event start Desc"] = "Ein-/Ausblenden des Popup-Fensters für ein Ereignis, sobald es beginnt.";
+L["On Event Start"] = "Bei Ereignisbeginn";
+L["Show pop ups on event start in instances Desc"] = "Ein-/Ausblenden des Popup-Fensters für ein Ereignis, sobald es beginnt, während man sich in einer Instanz befindet.";
+L["Refresh interval"] = "Aktualisierungsintervall";
+L["Refresh interval Desc"] = "Die Zeit in Sekunden zwischen den Aktualisierungen der Ereignis-Daten. Eine längere Zeitspanne kann die Erstellung neuer Popup-Fenster bzw. das Bereinigen vorhandener Popup-Fenster verzögern.";
+L["Default value"] = "Vorgabewert (Standard)";
 

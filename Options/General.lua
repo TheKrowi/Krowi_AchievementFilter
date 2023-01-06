@@ -5,17 +5,19 @@ options.General = {};
 local general = options.General;
 tinsert(options.OptionsTables, general);
 
+local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
+local AdjustedWidth = KrowiAF_InjectOptions.AdjustedWidth;
+
 function general.RegisterOptionsTable()
     LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.MetaData.Title, options.OptionsTable.args.General);
     LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addon.MetaData.Title, addon.MetaData.Title, nil);
 end
 
 function general.PostLoad()
-    local rebindMicroButton = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.MetaData.Title, "cmd", "KROWIAF-0.0").args.KeyBinding.args.MicroButton.args.Rebind;
+    local rebindMicroButton = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.MetaData.Title, "cmd", "KROWIAF-0.0").args.KeyBinding.args.General.args.MicroButton.args.Rebind;
     rebindMicroButton.desc = rebindMicroButton.desc:AddDefaultValueText("MicroButtonTab", addon.GUI.TabsOrderGetActiveKeys());
 
-    local numberOfSearchPreviews = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.MetaData.Title, "cmd", "KROWIAF-0.0").args.Search.args.SearchPreview.args.NumberOfSearchPreviews;
-    numberOfSearchPreviews.max = options.MaxNumberOfSearchPreviews();
+    options.SetMaxNumberOfSearchPreviews();
 end
 
 local function GeneralTutorialFunc()
@@ -123,20 +125,12 @@ local function ExportCriteria()
                 });
             end
         end
-        -- if #criteriaCache > 100 then
-        --     DebugTable = criteriaCache;
-        --     return;
-        -- end
     end
     DebugTable = criteriaCache;
 end
 
--- KrowiAF_InjectOptions.SetAutoOrder();
-local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
-local AdjustedWidth = KrowiAF_InjectOptions.AdjustedWidth;
 options.OptionsTable.args["General"] = {
-    type = "group",
-    childGroups = "tab",
+    type = "group", childGroups = "tab",
     name = addon.L["General"],
     args = {
         Info = {
@@ -148,14 +142,12 @@ options.OptionsTable.args["General"] = {
                     name = addon.L["General"],
                     args = {
                         Version = {
-                            order = OrderPP(), type = "description", width = AdjustedWidth(),
+                            order = OrderPP(), type = "description", width = AdjustedWidth(), fontSize = "medium",
                             name = (addon.L["Version"] .. ": "):SetColorYellow() .. addon.MetaData.Version,
-                            fontSize = "medium",
                         },
                         Build = {
-                            order = OrderPP(), type = "description", width = AdjustedWidth(),
+                            order = OrderPP(), type = "description", width = AdjustedWidth(), fontSize = "medium",
                             name = (addon.L["Build"] .. ": "):SetColorYellow() .. addon.MetaData.Build,
-                            fontSize = "medium",
                         },
                         Tutorial = {
                             order = OrderPP(), type = "execute", width = AdjustedWidth(),
@@ -164,9 +156,8 @@ options.OptionsTable.args["General"] = {
                             func = GeneralTutorialFunc
                         },
                         Author = {
-                            order = OrderPP(), type = "description", width = AdjustedWidth(2),
+                            order = OrderPP(), type = "description", width = AdjustedWidth(2), fontSize = "medium",
                             name = (addon.L["Author"] .. ": "):SetColorYellow() .. addon.MetaData.Author,
-                            fontSize = "medium",
                         },
                         Discord = {
                             order = OrderPP(), type = "execute", width = AdjustedWidth(),
@@ -235,118 +226,127 @@ options.OptionsTable.args["General"] = {
             }
         },
         KeyBinding = {
-            order = OrderPP(), type = "group",
+            order = OrderPP(), type = "group", childGroups = "tab",
             name = addon.L["Key Binding"],
             args = {
-                ResetView = {
-                    order = OrderPP(), type = "group", inline = true,
-                    name = addon.L["Reset view"],
+                General = {
+                    order = OrderPP(), type = "group",
+                    name = addon.L["General"],
                     args = {
-                        ResetViewOnOpen = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
-                            name = addon.L["Reset view on open"],
-                            desc = addon.L["Reset view on open Desc"]:AddDefaultValueText("ResetViewOnOpen"),
-                            get = function() return addon.Options.db.ResetViewOnOpen; end,
-                            set = function()
-                                addon.Options.db.ResetViewOnOpen = not addon.Options.db.ResetViewOnOpen;
-                                addon.Options.db.ToggleWindow = false;
-                            end
+                        ResetView = {
+                            order = OrderPP(), type = "group", inline = true,
+                            name = addon.L["Reset view"],
+                            args = {
+                                ResetViewOnOpen = {
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
+                                    name = addon.L["Reset view on open"],
+                                    desc = addon.L["Reset view on open Desc"]:AddDefaultValueText("ResetViewOnOpen"),
+                                    get = function() return addon.Options.db.ResetViewOnOpen; end,
+                                    set = function() addon.Options.db.ResetViewOnOpen = not addon.Options.db.ResetViewOnOpen; end
+                                },
+                                ToggleWindow = {
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
+                                    name = addon.L["Toggle window once opened"],
+                                    desc = addon.L["Toggle window once opened Desc"]:AddDefaultValueText("ToggleWindow"),
+                                    get = function() return addon.Options.db.ToggleWindow; end,
+                                    set = function() addon.Options.db.ToggleWindow = not addon.Options.db.ToggleWindow; end,
+                                    disabled = function() return addon.Options.db.ResetViewOnOpen; end
+                                }
+                            }
                         },
-                        ToggleWindow = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
-                            name = addon.L["Toggle window once opened"],
-                            desc = addon.L["Toggle window once opened Desc"]:AddDefaultValueText("ToggleWindow"),
-                            get = function() return addon.Options.db.ToggleWindow; end,
-                            set = function() addon.Options.db.ToggleWindow = not addon.Options.db.ToggleWindow; end,
-                            disabled = function() return addon.Options.db.ResetViewOnOpen; end
+                        MicroButton = {
+                            order = OrderPP(), type = "group", inline = true,
+                            name = addon.L["Micro Button"],
+                            args = {
+                                Rebind = {
+                                    order = OrderPP(), type = "select", width = AdjustedWidth(1.95),
+                                    name = addon.L["Rebind Micro Button"],
+                                    desc = addon.L["Rebind Micro Button Desc"], -- AddDefaultValueTextFromValues via PostLoad
+                                    values = function() return addon.GUI.TabsOrderGetActiveKeys(); end,
+                                    get = function() return addon.Options.db.MicroButtonTab; end,
+                                    set = function(_, value)
+                                        addon.Options.db.MicroButtonTab = value;
+                                        addon.ChangeAchievementMicroButtonOnClick();
+                                    end
+                                },
+                                SetKeybind = {
+                                    order = OrderPP(), type = "execute", width = AdjustedWidth(0.95),
+                                    name = addon.L["Set Keybind"],
+                                    desc = addon.L["Set Keybind Desc"]:ReplaceVars(addon.L["Key Bindings"]),
+                                    func = MicroButtonSetKeybindFunc
+                                }
+                            }
+                        },
+                        Modifiers = {
+                            order = OrderPP(), type = "group", inline = true,
+                            name = addon.L["Modifiers"],
+                            args = {
+                                PasteToChat = {
+                                    order = OrderPP(), type = "select", width = AdjustedWidth(0.95),
+                                    name = addon.L["Paste to Chat"],
+                                    desc = addon.L["Paste to Chat"]:AddDefaultValueText("Achievements.Modifiers.PasteToChat", addon.Modifiers),
+                                    values = addon.Modifiers,
+                                    get = function() return addon.Options.db.Achievements.Modifiers.PasteToChat; end,
+                                    set = function(_, value) addon.Options.db.Achievements.Modifiers.PasteToChat = value; end
+                                },
+                                ToggleTracking = {
+                                    order = OrderPP(), type = "select", width = AdjustedWidth(0.95),
+                                    name = addon.L["Toggle Tracking"],
+                                    desc = addon.L["Toggle Tracking"]:AddDefaultValueText("Achievements.Modifiers.ToggleTracking", addon.Modifiers),
+                                    values = addon.Modifiers,
+                                    get = function() return addon.Options.db.Achievements.Modifiers.ToggleTracking; end,
+                                    set = function(_, value) addon.Options.db.Achievements.Modifiers.ToggleTracking = value; end
+                                },
+                                ToggleWatchList = {
+                                    order = OrderPP(), type = "select", width = AdjustedWidth(0.95),
+                                    name = addon.L["Add to / Remove from Watch List"]:ReplaceVars(addon.L["Watch List"]),
+                                    desc = addon.L["Add to / Remove from Watch List"]:ReplaceVars(addon.L["Watch List"]):AddDefaultValueText("Achievements.Modifiers.ToggleWatchList", addon.Modifiers),
+                                    values = addon.Modifiers,
+                                    get = function() return addon.Options.db.Achievements.Modifiers.ToggleWatchList; end,
+                                    set = function(_, value) addon.Options.db.Achievements.Modifiers.ToggleWatchList = value; end
+                                },
+                                ToggleExcluded = {
+                                    order = OrderPP(), type = "select", width = AdjustedWidth(0.95),
+                                    name = addon.L["Include"] .. " / " .. addon.L["Exclude"],
+                                    desc = addon.L["Include"] .. " / " .. addon.L["Exclude"]:AddDefaultValueText("Achievements.Modifiers.ToggleExcluded", addon.Modifiers),
+                                    values = addon.Modifiers,
+                                    get = function() return addon.Options.db.Achievements.Modifiers.ToggleExcluded; end,
+                                    set = function(_, value) addon.Options.db.Achievements.Modifiers.ToggleExcluded = value; end
+                                }
+                            }
                         }
                     }
                 },
-                MicroButton = {
-                    order = OrderPP(), type = "group", inline = true,
-                    name = addon.L["Micro Button"],
+                Keybindings = {
+                    order = OrderPP(), type = "group",
+                    name = addon.L["Keybindings"],
                     args = {
-                        Rebind = {
-                            order = OrderPP(), type = "select", width = AdjustedWidth(1.95),
-                            name = addon.L["Rebind Micro Button"],
-                            desc = addon.L["Rebind Micro Button Desc"], -- AddDefaultValueTextFromValues via PostLoad
-                            values = function() return addon.GUI.TabsOrderGetActiveKeys(); end,
-                            get = function() return addon.Options.db.MicroButtonTab; end,
-                            set = function(_, value)
-                                addon.Options.db.MicroButtonTab = value;
-                                addon.ChangeAchievementMicroButtonOnClick();
-                            end
+                        Tabs = {
+                            order = OrderPP(), type = "group", inline = true,
+                            name = addon.L["Tabs"],
+                            args = { --[[ Dynamically build via KrowiAF_RegisterTabOptions ]] }
                         },
-                        SetKeybind = {
-                            order = OrderPP(), type = "execute", width = AdjustedWidth(0.95),
-                            name = addon.L["Set Keybind"],
-                            desc = addon.L["Set Keybind Desc"]:ReplaceVars(addon.L["Key Bindings"]),
-                            func = MicroButtonSetKeybindFunc
-                        }
-                    }
-                },
-                Tabs = {
-                    order = OrderPP(), type = "group", inline = true,
-                    name = addon.L["Keybindings"] .. " (" .. addon.L["Tabs"] .. ")",
-                    args = { --[[ Dynamically build via KrowiAF_RegisterTabOptions ]] }
-                },
-                Custom = {
-                    order = OrderPP(), type = "group", inline = true,
-                    name = addon.L["Keybindings"] .. " (" .. addon.L["Custom"] .. ")",
-                    args = {
-                        OpenCurrentZoneCategoryName = {
-                            order = OrderPP(), type = "description", width = AdjustedWidth(0.95),
-                            name = addon.L["Open"] .. " " .. addon.L["Current Zone"] .. " "  .. addon.L["Category"]
-                        },
-                        OpenCurrentZoneCategoryKey1 = {
-                            order = OrderPP(), type = "keybinding", width = AdjustedWidth(0.95),
-                            name = "", desc = "",
-                            get = function() return GetBindingKey("KrowiAF_OPEN_CAT_Current_Zone"); end,
-                            set = function(_, value) SetBindingKeybind(value, "KrowiAF_OPEN_CAT_Current_Zone", 1); end
-                        },
-                        OpenCurrentZoneCategoryKey2 = {
-                            order = OrderPP(), type = "keybinding", width = AdjustedWidth(0.95),
-                            name = "", desc = "",
-                            get = function() return select(2, GetBindingKey("KrowiAF_OPEN_CAT_Current_Zone")); end,
-                            set = function(_, value) SetBindingKeybind(value, "KrowiAF_OPEN_CAT_Current_Zone", 2); end
-                        }
-                    }
-                },
-                Modifiers = {
-                    order = OrderPP(), type = "group", inline = true,
-                    name = addon.L["Modifiers"],
-                    args = {
-                        PasteToChat = {
-                            order = OrderPP(), type = "select", width = AdjustedWidth(0.95),
-                            name = addon.L["Paste to Chat"],
-                            desc = addon.L["Paste to Chat"]:AddDefaultValueText("Achievements.Modifiers.PasteToChat", addon.Modifiers),
-                            values = addon.Modifiers,
-                            get = function() return addon.Options.db.Achievements.Modifiers.PasteToChat; end,
-                            set = function(_, value) addon.Options.db.Achievements.Modifiers.PasteToChat = value; end
-                        },
-                        ToggleTracking = {
-                            order = OrderPP(), type = "select", width = AdjustedWidth(0.95),
-                            name = addon.L["Toggle Tracking"],
-                            desc = addon.L["Toggle Tracking"]:AddDefaultValueText("Achievements.Modifiers.ToggleTracking", addon.Modifiers),
-                            values = addon.Modifiers,
-                            get = function() return addon.Options.db.Achievements.Modifiers.ToggleTracking; end,
-                            set = function(_, value) addon.Options.db.Achievements.Modifiers.ToggleTracking = value; end
-                        },
-                        ToggleWatchList = {
-                            order = OrderPP(), type = "select", width = AdjustedWidth(0.95),
-                            name = addon.L["Add to / Remove from Watch List"]:ReplaceVars(addon.L["Watch List"]),
-                            desc = addon.L["Add to / Remove from Watch List"]:ReplaceVars(addon.L["Watch List"]):AddDefaultValueText("Achievements.Modifiers.ToggleWatchList", addon.Modifiers),
-                            values = addon.Modifiers,
-                            get = function() return addon.Options.db.Achievements.Modifiers.ToggleWatchList; end,
-                            set = function(_, value) addon.Options.db.Achievements.Modifiers.ToggleWatchList = value; end
-                        },
-                        ToggleExcluded = {
-                            order = OrderPP(), type = "select", width = AdjustedWidth(0.95),
-                            name = addon.L["Include"] .. " / " .. addon.L["Exclude"],
-                            desc = addon.L["Include"] .. " / " .. addon.L["Exclude"]:AddDefaultValueText("Achievements.Modifiers.ToggleExcluded", addon.Modifiers),
-                            values = addon.Modifiers,
-                            get = function() return addon.Options.db.Achievements.Modifiers.ToggleExcluded; end,
-                            set = function(_, value) addon.Options.db.Achievements.Modifiers.ToggleExcluded = value; end
+                        Custom = {
+                            order = OrderPP(), type = "group", inline = true,
+                            name = addon.L["Custom"],
+                            args = {
+                                OpenCurrentZoneCategoryName = {
+                                    order = OrderPP(), type = "description", width = AdjustedWidth(0.93),
+                                    name = addon.L["Open"] .. " " .. addon.L["Current Zone"] .. " "  .. addon.L["Category"]
+                                },
+                                OpenCurrentZoneCategoryKey1 = {
+                                    order = OrderPP(), type = "keybinding", width = AdjustedWidth(0.93),
+                                    name = "", desc = "",
+                                    get = function() return GetBindingKey("KrowiAF_OPEN_CAT_Current_Zone"); end,
+                                    set = function(_, value) SetBindingKeybind(value, "KrowiAF_OPEN_CAT_Current_Zone", 1); end
+                                },
+                                OpenCurrentZoneCategoryKey2 = {
+                                    order = OrderPP(), type = "keybinding", width = AdjustedWidth(0.93),
+                                    name = "", desc = "",
+                                    get = function() return select(2, GetBindingKey("KrowiAF_OPEN_CAT_Current_Zone")); end,
+                                    set = function(_, value) SetBindingKeybind(value, "KrowiAF_OPEN_CAT_Current_Zone", 2); end
+                                }
+                            }
                         }
                     }
                 }
@@ -406,7 +406,7 @@ options.OptionsTable.args["General"] = {
                             get = function() return addon.Options.db.SearchBox.NumberOfSearchPreviews; end,
                             set = function(_, value) addon.Options.db.SearchBox.NumberOfSearchPreviews = value; end
                         },
-                        Blank12 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
+                        Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
                         ShowAllResultsInCategory = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
                             name = addon.L["Show All Results in Category"],
@@ -445,45 +445,50 @@ options.OptionsTable.args["General"] = {
             order = OrderPP(), type = "group",
             name = addon.L["Debug"],
             args = {
-                Description = {
-                    order = OrderPP(), type = "description", width = "full",
-                    name = addon.L["Debug Desc"],
-                    fontSize = "medium"
-                },
-                EnableDebugInfo = {
-                    order = OrderPP(), type = "toggle", width = AdjustedWidth(),
-                    name = addon.L["Enable debug info"],
-                    desc = addon.L["Enable debug info Desc"]:AddDefaultValueText("EnableDebugInfo"),
-                    get = function() return addon.Options.db.EnableDebugInfo; end,
-                    set = function() addon.Options.db.EnableDebugInfo = not addon.Options.db.EnableDebugInfo; end
-                },
-                Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
-                ScreenshotMode = {
-                    order = OrderPP(), type = "execute",
-                    name = addon.L["Screenshot Mode"],
-                    desc = addon.L["Screenshot Mode Desc"],
-                    func = HandleScreenshotMode
-                },
-                EnableTraceInfo = {
-                    order = OrderPP(), type = "toggle", width = AdjustedWidth(),
-                    name = addon.L["Enable trace info"],
-                    desc = addon.L["Enable trace info Desc"]:AddDefaultValueText("EnableTraceInfo"),
-                    get = function() return addon.Options.db.EnableTraceInfo; end,
-                    set = function() addon.Options.db.EnableTraceInfo = not addon.Options.db.EnableTraceInfo; end
-                },
-                Blank2 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
-                ExportCriteria = {
-                    order = OrderPP(), type = "execute",
-                    name = addon.L["Export Criteria"],
-                    desc = addon.L["Export Criteria Desc"],
-                    func = ExportCriteria
-                },
-                ShowPlaceholdersFilter = {
-                    order = OrderPP(), type = "toggle", width = AdjustedWidth(),
-                    name = addon.L["Show placeholders filter"],
-                    desc = addon.L["Show placeholders filter Desc"]:AddDefaultValueText("ShowPlaceholdersFilter"),
-                    get = function() return addon.Options.db.ShowPlaceholdersFilter; end,
-                    set = function() addon.Options.db.ShowPlaceholdersFilter = not addon.Options.db.ShowPlaceholdersFilter; end
+                Debug = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["Debug"],
+                    args = {
+                        Description = {
+                            order = OrderPP(), type = "description", width = "full", fontSize = "medium",
+                            name = addon.L["Debug Desc"],
+                        },
+                        EnableDebugInfo = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(),
+                            name = addon.L["Enable debug info"],
+                            desc = addon.L["Enable debug info Desc"]:AddDefaultValueText("EnableDebugInfo"),
+                            get = function() return addon.Options.db.EnableDebugInfo; end,
+                            set = function() addon.Options.db.EnableDebugInfo = not addon.Options.db.EnableDebugInfo; end
+                        },
+                        Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
+                        ScreenshotMode = {
+                            order = OrderPP(), type = "execute",
+                            name = addon.L["Screenshot Mode"],
+                            desc = addon.L["Screenshot Mode Desc"],
+                            func = HandleScreenshotMode
+                        },
+                        EnableTraceInfo = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(),
+                            name = addon.L["Enable trace info"],
+                            desc = addon.L["Enable trace info Desc"]:AddDefaultValueText("EnableTraceInfo"),
+                            get = function() return addon.Options.db.EnableTraceInfo; end,
+                            set = function() addon.Options.db.EnableTraceInfo = not addon.Options.db.EnableTraceInfo; end
+                        },
+                        Blank2 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
+                        ExportCriteria = {
+                            order = OrderPP(), type = "execute",
+                            name = addon.L["Export Criteria"],
+                            desc = addon.L["Export Criteria Desc"],
+                            func = ExportCriteria
+                        },
+                        ShowPlaceholdersFilter = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(),
+                            name = addon.L["Show placeholders filter"],
+                            desc = addon.L["Show placeholders filter Desc"]:AddDefaultValueText("ShowPlaceholdersFilter"),
+                            get = function() return addon.Options.db.ShowPlaceholdersFilter; end,
+                            set = function() addon.Options.db.ShowPlaceholdersFilter = not addon.Options.db.ShowPlaceholdersFilter; end
+                        }
+                    }
                 }
             }
         }

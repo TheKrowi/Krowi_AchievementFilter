@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-05 09-20-12 ]] --
+-- [[ Exported at 2023-01-06 19-59-54 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -2775,40 +2775,40 @@ end
 function exportedCategories.InjectDynamicOptions()
     local o = k.Options.Layout.InjectDynamicAdjustableCategoryOptions;
 
-    o(1, "WatchList", k.L["Watch List"], 1, "Achievements", k.L["Achievements"], false);
-    o(1, "WatchList", k.L["Watch List"], 2, "Expansions", k.L["Expansions"], false);
-    o(1, "WatchList", k.L["Watch List"], 3, "Events", k.L["Events"], false);
-    o(1, "WatchList", k.L["Watch List"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
-    o(1, "WatchList", k.L["Watch List"], 5, "Specials", k.L["Specials"], true);
+    o("WatchList", k.L["Watch List"], 1, "Achievements", k.L["Achievements"], false);
+    o("WatchList", k.L["Watch List"], 2, "Expansions", k.L["Expansions"], false);
+    o("WatchList", k.L["Watch List"], 3, "Events", k.L["Events"], false);
+    o("WatchList", k.L["Watch List"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
+    o("WatchList", k.L["Watch List"], 5, "Specials", k.L["Specials"], true);
 
-    o(2, "CurrentZone", k.L["Current Zone"], 1, "Achievements", k.L["Achievements"], false);
-    o(2, "CurrentZone", k.L["Current Zone"], 2, "Expansions", k.L["Expansions"], false);
-    o(2, "CurrentZone", k.L["Current Zone"], 3, "Events", k.L["Events"], false);
-    o(2, "CurrentZone", k.L["Current Zone"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
-    o(2, "CurrentZone", k.L["Current Zone"], 5, "Specials", k.L["Specials"], true);
+    o("CurrentZone", k.L["Current Zone"], 1, "Achievements", k.L["Achievements"], false);
+    o("CurrentZone", k.L["Current Zone"], 2, "Expansions", k.L["Expansions"], false);
+    o("CurrentZone", k.L["Current Zone"], 3, "Events", k.L["Events"], false);
+    o("CurrentZone", k.L["Current Zone"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
+    o("CurrentZone", k.L["Current Zone"], 5, "Specials", k.L["Specials"], true);
 
-    o(3, "SelectedZone", k.L["Selected Zone"], 1, "Achievements", k.L["Achievements"], false);
-    o(3, "SelectedZone", k.L["Selected Zone"], 2, "Expansions", k.L["Expansions"], false);
-    o(3, "SelectedZone", k.L["Selected Zone"], 3, "Events", k.L["Events"], false);
-    o(3, "SelectedZone", k.L["Selected Zone"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
-    o(3, "SelectedZone", k.L["Selected Zone"], 5, "Specials", k.L["Specials"], true);
+    o("SelectedZone", k.L["Selected Zone"], 1, "Achievements", k.L["Achievements"], false);
+    o("SelectedZone", k.L["Selected Zone"], 2, "Expansions", k.L["Expansions"], false);
+    o("SelectedZone", k.L["Selected Zone"], 3, "Events", k.L["Events"], false);
+    o("SelectedZone", k.L["Selected Zone"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
+    o("SelectedZone", k.L["Selected Zone"], 5, "Specials", k.L["Specials"], true);
 
-    o(4, "SearchResults", k.L["Search Results"], 1, "Achievements", k.L["Achievements"], false);
-    o(4, "SearchResults", k.L["Search Results"], 2, "Expansions", k.L["Expansions"], false);
-    o(4, "SearchResults", k.L["Search Results"], 3, "Events", k.L["Events"], false);
-    o(4, "SearchResults", k.L["Search Results"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
-    o(4, "SearchResults", k.L["Search Results"], 5, "Specials", k.L["Specials"], true);
+    o("SearchResults", k.L["Search Results"], 1, "Achievements", k.L["Achievements"], false);
+    o("SearchResults", k.L["Search Results"], 2, "Expansions", k.L["Expansions"], false);
+    o("SearchResults", k.L["Search Results"], 3, "Events", k.L["Events"], false);
+    o("SearchResults", k.L["Search Results"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
+    o("SearchResults", k.L["Search Results"], 5, "Specials", k.L["Specials"], true);
 
-    o(5, "TrackingAchievements", k.L["Tracking Achievements"], 1, "Achievements", k.L["Achievements"], false);
-    o(5, "TrackingAchievements", k.L["Tracking Achievements"], 2, "Expansions", k.L["Expansions"], false);
-    o(5, "TrackingAchievements", k.L["Tracking Achievements"], 3, "Events", k.L["Events"], false);
-    o(5, "TrackingAchievements", k.L["Tracking Achievements"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
-    o(5, "TrackingAchievements", k.L["Tracking Achievements"], 5, "Specials", k.L["Specials"], true);
+    o("TrackingAchievements", k.L["Tracking Achievements"], 1, "Achievements", k.L["Achievements"], false);
+    o("TrackingAchievements", k.L["Tracking Achievements"], 2, "Expansions", k.L["Expansions"], false);
+    o("TrackingAchievements", k.L["Tracking Achievements"], 3, "Events", k.L["Events"], false);
+    o("TrackingAchievements", k.L["Tracking Achievements"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
+    o("TrackingAchievements", k.L["Tracking Achievements"], 5, "Specials", k.L["Specials"], true);
 
-    o(6, "Excluded", k.L["Excluded"], 1, "Achievements", k.L["Achievements"], false);
-    o(6, "Excluded", k.L["Excluded"], 2, "Expansions", k.L["Expansions"], false);
-    o(6, "Excluded", k.L["Excluded"], 3, "Events", k.L["Events"], false);
-    o(6, "Excluded", k.L["Excluded"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
-    o(6, "Excluded", k.L["Excluded"], 5, "Specials", k.L["Specials"], true);
+    o("Excluded", k.L["Excluded"], 1, "Achievements", k.L["Achievements"], false);
+    o("Excluded", k.L["Excluded"], 2, "Expansions", k.L["Expansions"], false);
+    o("Excluded", k.L["Excluded"], 3, "Events", k.L["Events"], false);
+    o("Excluded", k.L["Excluded"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
+    o("Excluded", k.L["Excluded"], 5, "Specials", k.L["Specials"], true);
 end
 
