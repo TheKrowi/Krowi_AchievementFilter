@@ -9,11 +9,10 @@ All notable changes to this project will be documented in this file.
 - Adjustable interval to check for new events and clean up ended events (default 60 seconds)
 - Option to show/hide event reminders inside instances
 - Default values to the General and Layout options (WIP)
+- Tooltip data for Great Gourmand of The Ruby Feast
 
 ### Changed
-- Great Gourmand of The Ruby Feast is now linked to Valdrakken instead of the Dragon Isles since the starting quests for these items is from Valdrakken
 - Optimized the Event Handling
-- Moved Are You My Broodmother? from Neltharus to Ruby Life Pools
 - Moved Prosperously Bloody before Blood Bank
 
 ### Fixed
@@ -21,6 +20,10 @@ All notable changes to this project will be documented in this file.
 - Backend split between Wrath Classic and Retail resulting in automatic removal of removed achievements
 - Error when making the windows movable/static when the Achievement UI is not yet loaded
 - Bug when remembering the achievement window's location and making the windows static again, the achievement window would snap to it's default location
+- Error when clearing the watch list or including all excluded achievements from the options if the achievement UI was not yet opened at least once
+- Moved Are You My Broodmother? from Neltharus to Ruby Life Pools
+- Moved Soupervisor from Ohn'ahran Plains to The Azure Span
+- Great Gourmand of The Ruby Feast is now linked to Valdrakken instead of the Dragon Isles since the starting quests for these items is from Valdrakken
 
 ### Removed
 - Individual Dragon Racing achievements as they are now marked as tracking achievements

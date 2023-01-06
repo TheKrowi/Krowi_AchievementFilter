@@ -49,9 +49,9 @@ local function LoadKrowi_AchievementFilter()
     addon.Diagnostics.Load();
 
     addon.Data.ExportedCategories.InjectDynamicOptions();
-    addon.Options.Layout.AddMoreWatchListOptions();
-    addon.Options.Layout.AddMoreTrackingAchievementsOptions();
-    addon.Options.Layout.AddMoreExcludedOptions();
+    -- addon.Options.Layout.InjectMoreDynamicWatchListOptions();
+    -- addon.Options.Layout.AddMoreTrackingAchievementsOptions();
+    -- addon.Options.Layout.AddMoreExcludedOptions();
     -- addon.Options.General.InjectDynamicOptions();
 
     addon.Data.ExportedCalendarEvents.InjectOptions();

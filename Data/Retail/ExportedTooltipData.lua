@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-11 22-08-40 ]] --
+-- [[ Exported at 2023-01-04 17-16-45 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1476,6 +1476,26 @@ function exportedTooltipData.Load(d)
     AddD(d, 197350, tdt.Unit, 16511, 6, t[11], t[12]); -- "Setimothes"
     AddD(d, 197447, tdt.Unit, 16511, 7, t[11], t[12]); -- "Stormamu"
     AddD(d, 189376, tdt.Unit, 16511, 8, t[11], t[12]); -- "Swog"
+    AddD(d, 200886, tdt.Item, 16556, 1, t[9], t[10]); -- "Lemon Silverleaf Tea"
+    AddD(d, 200885, tdt.Item, 16556, 2, t[9], t[10]); -- "Cinna-Cinderbloom Tea"
+    AddD(d, 200759, tdt.Item, 16556, 3, t[7], t[8]); -- "Aruunem Berrytart"
+    AddD(d, 200887, tdt.Item, 16556, 4, t[9], t[10]); -- "Charred Porter"
+    AddD(d, 200888, tdt.Item, 16556, 5, t[7], t[8]); -- "Coal-Fired Rib Rack"
+    AddD(d, 200889, tdt.Item, 16556, 6, t[7], t[8]); -- "Highly-Spiced Haunch"
+    AddD(d, 200890, tdt.Item, 16556, 7, t[7], t[8]); -- "Stonetalen Bloom Skewer"
+    AddD(d, 200891, tdt.Item, 16556, 8, t[7], t[8]); -- "Druidic Dreamsalad"
+    AddD(d, 200892, tdt.Item, 16556, 9, t[9], t[10]); -- "Dragonfruit Punch"
+    AddD(d, 200893, tdt.Item, 16556, 10, t[7], t[8]); -- "Azsunian-Poached Lobster"
+    AddD(d, 200894, tdt.Item, 16556, 11, t[9], t[10]); -- "Rare Vintage Arcwine"
+    AddD(d, 200896, tdt.Item, 16556, 12, t[7], t[8]); -- "Captain's Carmelized Catfish"
+    AddD(d, 200897, tdt.Item, 16556, 13, t[9], t[10]); -- "Venrick's Goat Milk"
+    AddD(d, 200898, tdt.Item, 16556, 14, t[7], t[8]); -- "Mantis Shrimp Cocktail"
+    AddD(d, 200899, tdt.Item, 16556, 15, t[7], t[8]); -- "Seared Sea Mist Noodles"
+    AddD(d, 200900, tdt.Item, 16556, 16, t[7], t[8]); -- "Fried Emperor Wraps"
+    AddD(d, 200901, tdt.Item, 16556, 17, t[7], t[8]); -- "Roquefort-Stuffed Peppers"
+    AddD(d, 200902, tdt.Item, 16556, 18, t[7], t[8]); -- "Ravenberry Panacotta Delight"
+    AddD(d, 200904, tdt.Item, 16556, 19, t[7], t[8]); -- "Picante Pomfruit Cake"
+    AddD(d, 200903, tdt.Item, 16556, 20, t[9], t[10]); -- "Moira's Choice Espresso"
     AddD(d, 189737, tdt.Unit, 16729, 1, t[1], t[2]); -- "Kelp Nibbler"
     AddD(d, 192135, tdt.Unit, 16729, 2, t[1], t[2]); -- "Phoenix Hatchling"
     AddD(d, 193756, tdt.Unit, 16729, 3, t[1], t[2]); -- "Docile Kit"

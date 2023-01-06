@@ -5,61 +5,28 @@ options.Layout = {};
 local layout = options.Layout;
 local widthMultiplier = addon.Options.WidthMultiplier;
 
-function layout.InjectDynamicCategoryOptions(categoryIndex, category, categoryDisplayName, tabIndex, tab, tabDisplayName, defaultValue)
-    if not KrowiAF_InjectOptions.DefaultsExists("AdjustableCategories." .. category) then
-        KrowiAF_InjectOptions.AddDefaults("AdjustableCategories", category, { });
-    end
-
-    KrowiAF_InjectOptions.AddDefaults("AdjustableCategories." .. category, tabIndex, defaultValue);
-
-    if not KrowiAF_InjectOptions.TableExists("Layout.args.AdjustableCategories.args." .. category) then
-        KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args", category, {
-            order = categoryIndex, type = "group",
-            name = categoryDisplayName,
-            args = {}
-        });
-    end
-
-    if not KrowiAF_InjectOptions.TableExists("Layout.args.AdjustableCategories.args." .. category .. ".args.Tabs") then
-        KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args." .. category .. ".args", "Tabs", {
-            order = tabIndex + 9, type = "header",
-            name = addon.L["Tabs"]
-        });
-    end
-
-    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args." .. category .. ".args", tab, {
-        order = tabIndex + 10, type = "toggle", width = 1 * widthMultiplier,
-        name = tabDisplayName,
-        desc = addon.L["Requires a reload"]:AddDefaultValueText("AdjustableCategories." .. category .. "." .. tabIndex),
-        get = function() return addon.Options.db.AdjustableCategories[category][tabIndex]; end,
-        set = function()
-            addon.Options.db.AdjustableCategories[category][tabIndex] = not addon.Options.db.AdjustableCategories[category][tabIndex];
-        end
-    });
-end
-
-local function DrawWatchListSubCategories()
-    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
+-- [[ InjectDynamicFixedWatchListOptions ]]
+local function DrawSubCategories(categories)
+    if addon.GUI.SelectedTab == nil then
         return;
     end
+
     -- Reset all
-    for i = 1, #addon.Data.WatchListCategories do
-        addon.Data.WatchListCategories[i].Achievements = nil;
-        addon.Data.WatchListCategories[i].Children = nil;
+    for i = 1, #categories do
+        categories[i].Achievements = nil;
+        categories[i].Children = nil;
     end
     addon.GUI.CategoriesFrame:Update(true);
     addon.GUI.AchievementsFrame:ForceUpdate();
+
     -- Draw again
     addon.Data.LoadWatchedAchievements();
 end
 
-local function SetShowWatchListSubCategories()
-    addon.Options.db.Categories.WatchList.ShowSubCategories = not addon.Options.db.Categories.WatchList.ShowSubCategories;
-    DrawWatchListSubCategories();
-    options.Debug(addon.L["Show Sub Categories"], addon.Options.db.Categories.WatchList.ShowSubCategories);
-end
-
 local function ClearAllWatched()
+    if not addon.Data.WatchListCategories then
+        LoadAddOn("Blizzard_AchievementUI");
+    end
     for i = 1, #addon.Data.WatchListCategories do
         addon.Data.WatchListCategories[i].Achievements = nil;
         addon.Data.WatchListCategories[i].Children = nil;
@@ -67,7 +34,7 @@ local function ClearAllWatched()
     if addon.GUI.SelectedTab ~= nil then -- If nil, not yet loaded
         if SavedData.WatchedAchievements then
             for id, _ in next, SavedData.WatchedAchievements do
-                addon.Data.Achievements[id]:DoNotWatch();
+                addon.Data.Achievements[id]:ClearWatch();
             end
         end
         addon.GUI.CategoriesFrame:Update(true);
@@ -76,27 +43,69 @@ local function ClearAllWatched()
     SavedData.WatchedAchievements = nil;
 end
 
-local function DrawTrackingAchievementsSubCategories()
-    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
-        return;
+local function InjectDynamicFixedWatchListOptions()
+    local highestIndex = 1;
+    if KrowiAF_InjectOptions.TableExists("Layout.args.AdjustableCategories.args.WatchList.args.ShowWatchedSubCategories") then
+        return highestIndex;
     end
-    -- Reset all
-    for i = 1, #addon.Data.TrackingAchievementsCategories do
-        addon.Data.TrackingAchievementsCategories[i].Achievements = nil;
-        addon.Data.TrackingAchievementsCategories[i].Children = nil;
-    end
-    addon.GUI.CategoriesFrame:Update(true);
-    addon.GUI.AchievementsFrame:ForceUpdate();
-    -- Draw again
-    addon.Data.LoadTrackingAchievements();
+
+    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "ShowWatchedSubCategories", {
+        order = 1.1, type = "toggle", width = 1 * widthMultiplier,
+        name = addon.L["Show Sub Categories"],
+        desc = addon.L["Show Sub Categories Desc"]:ReplaceVars {
+            category = addon.L["Watch List"]
+        }:AddDefaultValueText("Categories.WatchList.ShowSubCategories"),
+        get = function() return addon.Options.db.Categories.WatchList.ShowSubCategories; end,
+        set = function()
+            addon.Options.db.Categories.WatchList.ShowSubCategories = not addon.Options.db.Categories.WatchList.ShowSubCategories;
+            DrawSubCategories(addon.Data.WatchListCategories);
+        end
+    });
+
+    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "ClearAll", {
+        order = 1.2, type = "execute", width = 1 * widthMultiplier,
+        name = addon.L["Clear all"],
+        desc = addon.L["Clear all Desc"],
+        func = ClearAllWatched
+    });
+
+    return highestIndex;
 end
 
-local function SetShowTrackingAchievementsSubCategories()
-    addon.Options.db.Categories.TrackingAchievements.ShowSubCategories = not addon.Options.db.Categories.TrackingAchievements.ShowSubCategories;
-    DrawTrackingAchievementsSubCategories();
-    options.Debug(addon.L["Show Sub Categories"], addon.Options.db.Categories.TrackingAchievements.ShowSubCategories);
+-- [[ InjectMoreDynamicTrackingAchievementsOptions ]]
+local function InjectMoreDynamicTrackingAchievementsOptions()
+    local highestIndex = 1;
+    if KrowiAF_InjectOptions.TableExists("Layout.args.AdjustableCategories.args.TrackingAchievements.args.LoadTrackingAchievements") then
+        return highestIndex;
+    end
+
+    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args.TrackingAchievements.args", "LoadTrackingAchievements", {
+        order = 1.1, type = "toggle", width = 1 * widthMultiplier,
+        name = addon.L["Load Tracking Achievements"],
+        desc = addon.L["Load Tracking Achievements Desc"]:AddDefaultValueText("Categories.TrackingAchievements.DoLoad"),
+        get = function() return addon.Options.db.Categories.TrackingAchievements.DoLoad; end,
+        set = function()
+            addon.Options.db.Categories.TrackingAchievements.DoLoad = not addon.Options.db.Categories.TrackingAchievements.DoLoad;
+        end
+    });
+
+    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args.TrackingAchievements.args", "ShowTrackingSubCategories", {
+        order = 1.2, type = "toggle", width = 1 * widthMultiplier,
+        name = addon.L["Show Sub Categories"],
+        desc = addon.L["Show Sub Categories Desc"]:ReplaceVars {
+            category = addon.L["Tracking Achievements"]
+        }:AddDefaultValueText("Categories.TrackingAchievements.ShowSubCategories"),
+        get = function() return addon.Options.db.Categories.TrackingAchievements.ShowSubCategories; end,
+        set = function()
+            addon.Options.db.Categories.TrackingAchievements.ShowSubCategories = not addon.Options.db.Categories.TrackingAchievements.ShowSubCategories;
+            DrawSubCategories(addon.Data.TrackingAchievementsCategories);
+        end
+    });
+
+    return highestIndex;
 end
 
+-- [[ InjectMoreDynamicExcludedOptions ]]
 local function ShowExcludedCategory()
     if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
         return;
@@ -113,13 +122,11 @@ local function ShowExcludedCategory()
     end
 end
 
-local function SetShowExcludedCategory()
-    addon.Options.db.Categories.Excluded.Show = not addon.Options.db.Categories.Excluded.Show;
-    ShowExcludedCategory();
-    options.Debug(addon.L["Show Excluded Category"] .. " " .. addon.L["Excluded"], addon.Options.db.Categories.Excluded.Show);
-end
-
 local function IncludeAllExcluded()
+    if not addon.Data.ExcludedCategories then
+        LoadAddOn("Blizzard_AchievementUI");
+    end
+
     for i = 1, #addon.Data.ExcludedCategories do
         addon.Data.ExcludedCategories[i].Achievements = nil;
         addon.Data.ExcludedCategories[i].Children = nil;
@@ -138,105 +145,94 @@ local function IncludeAllExcluded()
     SavedData.ExcludedAchievements = nil;
 end
 
-local function DrawExcludedSubCategories()
-    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
-        return;
+local function InjectMoreDynamicExcludedOptions()
+    local highestIndex = 2;
+    if KrowiAF_InjectOptions.TableExists("Layout.args.AdjustableCategories.args.Excluded.args.ShowExcludedSubCategories") then
+        return highestIndex;
     end
-    -- Reset all
-    for i = 1, #addon.Data.ExcludedCategories do
-        addon.Data.ExcludedCategories[i].Achievements = nil;
-        addon.Data.ExcludedCategories[i].Children = nil;
-    end
-    addon.GUI.CategoriesFrame:Update(true);
-    addon.GUI.AchievementsFrame:ForceUpdate();
-    -- Draw again
-    addon.Data.LoadExcludedAchievements();
-end
 
-local function SetShowExcludedSubCategories()
-    addon.Options.db.Categories.Excluded.ShowSubCategories = not addon.Options.db.Categories.Excluded.ShowSubCategories;
-    DrawExcludedSubCategories();
-    options.Debug(addon.L["Show Sub Categories"], addon.Options.db.Categories.Excluded.ShowSubCategories);
-end
-
-function layout.AddMoreWatchListOptions()
-    options.InjectOptionsTableAdd({
-        order = 1.1, type = "toggle", width = 1 * widthMultiplier,
-        name = addon.L["Show Sub Categories"],
-        desc = addon.Util.ReplaceVars
-        {
-            addon.L["Show Sub Categories Desc"],
-            category = addon.L["Watch List"]
-        },
-        get = function() return addon.Options.db.Categories.WatchList.ShowSubCategories; end,
-        set = SetShowWatchListSubCategories
-    }, "ShowWatchedSubCategories", "args", "Layout", "args", "AdjustableCategories", "args", "WatchList");
-
-    options.InjectOptionsTableAdd({
-        order = 1.2, type = "execute", width = 1 * widthMultiplier,
-        name = addon.L["Clear all"],
-        desc = addon.L["Clear all Desc"],
-        func = ClearAllWatched
-    }, "ClearAll", "args", "Layout", "args", "AdjustableCategories", "args", "WatchList");
-end
-
-function layout.AddMoreTrackingAchievementsOptions()
-    options.InjectOptionsTableAdd({
-        order = 1.1, type = "toggle", width = 1 * widthMultiplier,
-        name = addon.L["Load Tracking Achievements"],
-        desc = addon.L["Load Tracking Achievements Desc"],
-        get = function() return addon.Options.db.Categories.TrackingAchievements.DoLoad; end,
-        set = function()
-            addon.Options.db.Categories.TrackingAchievements.DoLoad = not addon.Options.db.Categories.TrackingAchievements.DoLoad;
-            options.Debug(addon.L["Load Tracking Achievements"], addon.Options.db.Categories.TrackingAchievements.DoLoad);
-        end
-    }, "LoadTrackingAchievements", "args", "Layout", "args", "AdjustableCategories", "args", "TrackingAchievements");
-
-    options.InjectOptionsTableAdd({
-        order = 1.2, type = "toggle", width = 1 * widthMultiplier,
-        name = addon.L["Show Sub Categories"],
-        desc = addon.Util.ReplaceVars
-        {
-            addon.L["Show Sub Categories Desc"],
-            category = addon.L["Tracking Achievements"]
-        },
-        get = function() return addon.Options.db.Categories.TrackingAchievements.ShowSubCategories; end,
-        set = SetShowTrackingAchievementsSubCategories
-    }, "ShowTrackingSubCategories", "args", "Layout", "args", "AdjustableCategories", "args", "TrackingAchievements");
-end
-
-function layout.AddMoreExcludedOptions()
-    options.InjectOptionsTableAdd({
+    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args.Excluded.args", "Show", {
         order = 1.1, type = "toggle", width = 1 * widthMultiplier,
         name = addon.L["Show Excluded Category"],
-        desc = addon.Util.ReplaceVars
-        {
-            addon.L["Show Excluded Category Desc"],
+        desc = addon.L["Show Excluded Category Desc"]:ReplaceVars {
             excluded = addon.L["Excluded"]
-        },
+        }:AddDefaultValueText("Categories.Excluded.Show"),
         get = function() return addon.Options.db.Categories.Excluded.Show; end,
-        set = SetShowExcludedCategory
-    }, "ShowExcludedSubCategories", "args", "Layout", "args", "AdjustableCategories", "args", "Excluded");
+        set = function()
+            addon.Options.db.Categories.Excluded.Show = not addon.Options.db.Categories.Excluded.Show;
+            ShowExcludedCategory();
+        end
+    });
 
-    options.InjectOptionsTableAdd({
+    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args.Excluded.args", "IncludeAll", {
         order = 1.2, type = "execute", width = 1 * widthMultiplier,
         name = addon.L["Include all"],
         desc = addon.L["Include all Desc"],
         func = IncludeAllExcluded
-    }, "IncludeAll", "args", "Layout", "args", "AdjustableCategories", "args", "Excluded");
+    });
 
-    options.InjectOptionsTableAdd({
+    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args.Excluded.args", "ShowExcludedSubCategories", {
         order = 2.1, type = "toggle", width = 1 * widthMultiplier,
         name = addon.L["Show Sub Categories"],
-        desc = addon.Util.ReplaceVars
-        {
-            addon.L["Show Sub Categories Desc"],
+        desc = addon.L["Show Sub Categories Desc"]:ReplaceVars {
             category = addon.L["Excluded"]
-        },
+        }:AddDefaultValueText("Categories.Excluded.ShowSubCategories"),
         disabled = function() return not addon.Options.db.Categories.Excluded.Show; end,
         get = function() return addon.Options.db.Categories.Excluded.ShowSubCategories; end,
-        set = SetShowExcludedSubCategories
-    }, "ShowExcludedSubCategories", "args", "Layout", "args", "AdjustableCategories", "args", "Excluded");
+        set = function()
+            addon.Options.db.Categories.Excluded.ShowSubCategories = not addon.Options.db.Categories.Excluded.ShowSubCategories;
+            DrawSubCategories(addon.Data.ExcludedCategories);
+        end
+    });
+
+    return highestIndex;
+end
+
+local function InjectDynamicFixedAdjustableCategoriesOptions(category)
+    if category == "WatchList" then
+        return InjectDynamicFixedWatchListOptions();
+    elseif category == "TrackingAchievements" then
+        return InjectMoreDynamicTrackingAchievementsOptions();
+    elseif category == "Excluded" then
+        return InjectMoreDynamicExcludedOptions();
+    else
+        return 0;
+    end
+end
+
+function layout.InjectDynamicAdjustableCategoryOptions(categoryIndex, category, categoryDisplayName, tabIndex, tab, tabDisplayName, defaultValue)
+    if not KrowiAF_InjectOptions.DefaultsExists("AdjustableCategories." .. category) then
+        KrowiAF_InjectOptions.AddDefaults("AdjustableCategories", category, { });
+    end
+
+    KrowiAF_InjectOptions.AddDefaults("AdjustableCategories." .. category, tabIndex, defaultValue);
+
+    if not KrowiAF_InjectOptions.TableExists("Layout.args.AdjustableCategories.args." .. category) then
+        KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args", category, {
+            order = categoryIndex, type = "group",
+            name = categoryDisplayName,
+            args = {}
+        });
+    end
+
+    local index = InjectDynamicFixedAdjustableCategoriesOptions(category);
+
+    if not KrowiAF_InjectOptions.TableExists("Layout.args.AdjustableCategories.args." .. category .. ".args.Tabs") then
+        KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args." .. category .. ".args", "Tabs", {
+            order = index + tabIndex, type = "header",
+            name = addon.L["Tabs"]
+        });
+    end
+
+    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args." .. category .. ".args", tab, {
+        order = index + 1 + tabIndex, type = "toggle", width = 1 * widthMultiplier,
+        name = tabDisplayName,
+        desc = addon.L["Requires a reload"]:AddDefaultValueText("AdjustableCategories." .. category .. "." .. tabIndex),
+        get = function() return addon.Options.db.AdjustableCategories[category][tabIndex]; end,
+        set = function()
+            addon.Options.db.AdjustableCategories[category][tabIndex] = not addon.Options.db.AdjustableCategories[category][tabIndex];
+        end
+    });
 end
 
 local achievementPointsDisplays = {
@@ -244,11 +240,6 @@ local achievementPointsDisplays = {
     addon.L["Character / Account wide"],
     addon.L["Character only"]
 };
-
-local function SetCompactAchievements()
-    addon.Options.db.Achievements.Compact = not addon.Options.db.Achievements.Compact;
-    options.Debug(addon.L["Compact Achievements"], addon.Options.db.Achievements.Compact);
-end
 
 local function SetObjectivesProgressShow()
     addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show = not addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show;
@@ -657,7 +648,7 @@ options.OptionsTable.args["Layout"] = {
         AdjustableCategories = {
             order = 6, type = "group",
             name = addon.L["Adjustable Categories"],
-            args = { --[[ Dynamically build ]] }
+            args = { --[[ Dynamically build via InjectDynamicAdjustableCategoryOptions ]] }
         },
         Achievements = {
             order = 7, type = "group",
@@ -671,9 +662,11 @@ options.OptionsTable.args["Layout"] = {
                         CompactAchievements = {
                             order = 1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Compact Achievements"],
-                            desc = addon.ReplaceVarsWithReloadReq(addon.L["Compact Achievements Desc"]),
+                            desc = addon.L["Compact Achievements Desc"]:AddDefaultValueText("Achievements.Compact"):AddReloadRequired(),
                             get = function() return addon.Options.db.Achievements.Compact; end,
-                            set = SetCompactAchievements,
+                            set = function()
+                                addon.Options.db.Achievements.Compact = not addon.Options.db.Achievements.Compact;
+                            end,
                         },
                         Objectives = {
                             order = 2, type = "header",
@@ -682,41 +675,37 @@ options.OptionsTable.args["Layout"] = {
                         ForceTwoColumns = {
                             order = 2.1, type = "toggle", width = 1.5 * widthMultiplier,
                             name = addon.L["Force two columns"],
-                            desc = addon.L["Force two columns Desc"],
+                            desc = addon.L["Force two columns Desc"]:AddDefaultValueText("Achievements.Objectives.ForceTwoColumns"),
                             get = function() return addon.Options.db.Achievements.Objectives.ForceTwoColumns; end,
                             set = function()
                                 addon.Options.db.Achievements.Objectives.ForceTwoColumns = not addon.Options.db.Achievements.Objectives.ForceTwoColumns;
-                                options.Debug(addon.L["Force two columns"], addon.Options.db.Achievements.Objectives.ForceTwoColumns);
                             end
                         },
                         ForceTwoColumnsThreshold = {
                             order = 2.2, type = "range", width = 1.5 * widthMultiplier,
                             name = addon.L["Force two columns threshold"],
-                            desc = addon.L["Force two columns threshold Desc"],
+                            desc = addon.L["Force two columns threshold Desc"]:AddDefaultValueText("Achievements.Objectives.ForceTwoColumnsThreshold"),
                             min = 0, max = 50, step = 1,
                             get = function() return addon.Options.db.Achievements.Objectives.ForceTwoColumnsThreshold; end,
                             set = function(_, value)
                                 if addon.Options.db.Achievements.Objectives.ForceTwoColumnsThreshold == value then return; end
                                 addon.Options.db.Achievements.Objectives.ForceTwoColumnsThreshold = value;
-                                options.Debug(addon.L["Force two columns threshold"], addon.Options.db.Achievements.Objectives.ForceTwoColumnsThreshold);
                             end,
                             disabled = function() return not addon.Options.db.Achievements.Objectives.ForceTwoColumns; end
                         },
                         CriteriaBehaviour = {
                             order = 3.1, type = "select", style = "radio",
                             name = addon.L["Criteria Behaviour"],
-                            desc = addon.L["Criteria Behaviour Desc"]:ReplaceVars
-                            {
+                            desc = addon.L["Criteria Behaviour Desc"]:ReplaceVars {
                                 overflow = addon.L["Overflow"],
                                 truncate = addon.L["Truncate"],
                                 flexible = addon.L["Flexible"]
-                            },
+                            }:AddDefaultValueText("Achievements.Objectives.CriteriaBehaviour"),
                             values = criteriaBehaviour,
                             get = function() return addon.Options.db.Achievements.Objectives.CriteriaBehaviour; end,
                             set = function (_, value)
                                 if addon.Options.db.Achievements.Objectives.CriteriaBehaviour == value then return; end;
                                 addon.Options.db.Achievements.Objectives.CriteriaBehaviour = value;
-                                options.Debug(addon.L["Criteria Behaviour"], addon.Options.db.Achievements.Objectives.CriteriaBehaviour);
                             end
                         }
                     }
@@ -732,60 +721,52 @@ options.OptionsTable.args["Layout"] = {
                         },
                         EarnedByCharacters = {
                             order = 2.1, type = "range", width = 1.45 * widthMultiplier,
-                            name = addon.L["Number of Earned By characters"]:ReplaceVars
-                            {
+                            name = addon.L["Number of Earned By characters"]:ReplaceVars {
                                 earnedBy = addon.L["Earned By"]
                             },
-                            desc = addon.L["Number of Earned By characters Desc"],
+                            desc = addon.L["Number of Earned By characters Desc"]:AddDefaultValueText("Tooltip.Achievements.EarnedBy.Characters"),
                             min = 0, max = 100, step = 1,
                             get = function() return addon.Options.db.Tooltip.Achievements.EarnedBy.Characters; end,
                             set = function(_, value)
                                 if addon.Options.db.Tooltip.Achievements.EarnedBy.Characters == value then return; end
                                 addon.Options.db.Tooltip.Achievements.EarnedBy.Characters = value;
-                                options.Debug(addon.L["Number of Earned By characters"], addon.Options.db.Tooltip.Achievements.EarnedBy.Characters);
                             end
                         },
                         EarnedByNotCharacters = {
                             order = 2.2, type = "range", width = 1.45 * widthMultiplier,
-                            name = addon.L["Number of Not Earned By characters"]:ReplaceVars
-                            {
+                            name = addon.L["Number of Not Earned By characters"]:ReplaceVars {
                                 notEarnedBy = addon.L["Not Earned By"]
                             },
-                            desc = addon.L["Number of Not Earned By characters Desc"],
+                            desc = addon.L["Number of Not Earned By characters Desc"]:AddDefaultValueText("Tooltip.Achievements.EarnedBy.NotCharacters"),
                             min = 0, max = 100, step = 1,
                             get = function() return addon.Options.db.Tooltip.Achievements.EarnedBy.NotCharacters; end,
                             set = function(_, value)
                                 if addon.Options.db.Tooltip.Achievements.EarnedBy.NotCharacters == value then return; end
                                 addon.Options.db.Tooltip.Achievements.EarnedBy.NotCharacters = value;
-                                options.Debug(addon.L["Number of Not Earned By characters"], addon.Options.db.Tooltip.Achievements.EarnedBy.NotCharacters);
                             end
                         },
                         AlwaysShowRealm = {
                             order = 3.1, type = "toggle", width = 1.45 * widthMultiplier,
                             name = addon.L["Always show realm"],
-                            desc = addon.L["Always show realm Desc"],
+                            desc = addon.L["Always show realm Desc"]:AddDefaultValueText("Tooltip.Achievements.EarnedBy.AlwaysShowRealm"),
                             get = function() return addon.Options.db.Tooltip.Achievements.EarnedBy.AlwaysShowRealm; end,
                             set = function()
                                 addon.Options.db.Tooltip.Achievements.EarnedBy.AlwaysShowRealm = not addon.Options.db.Tooltip.Achievements.EarnedBy.AlwaysShowRealm;
-                                options.Debug(addon.L["Always show realm"], addon.Options.db.Tooltip.Achievements.EarnedBy.AlwaysShowRealm);
                             end
                         },
                         Blank31 = {order = 3.2, type = "description", width = 1.45 * widthMultiplier, name = ""},
                         HideNotEarnedByIfEarnedByCurrentCharacter = {
                             order = 4, type = "toggle", width = "full",
-                            name = addon.L["Hide Not Earned By if current character earned the achievement"]:ReplaceVars
-                            {
+                            name = addon.L["Hide Not Earned By if current character earned the achievement"]:ReplaceVars {
                                 notEarnedBy = addon.L["Not Earned By"]
                             },
-                            desc = addon.L["Hide Not Earned By if current character earned the achievement Desc"]:ReplaceVars
-                            {
+                            desc = addon.L["Hide Not Earned By if current character earned the achievement Desc"]:ReplaceVars {
                                 notEarnedBy = addon.L["Not Earned By"],
                                 earnedBy = addon.L["Earned By"]
-                            },
+                            }:AddDefaultValueText("Tooltip.Achievements.EarnedBy.HideNotEarnedByIfEarnedByCurrentCharacter"),
                             get = function() return addon.Options.db.Tooltip.Achievements.EarnedBy.HideNotEarnedByIfEarnedByCurrentCharacter; end,
                             set = function()
                                 addon.Options.db.Tooltip.Achievements.EarnedBy.HideNotEarnedByIfEarnedByCurrentCharacter = not addon.Options.db.Tooltip.Achievements.EarnedBy.HideNotEarnedByIfEarnedByCurrentCharacter;
-                                options.Debug(addon.L["Hide Not Earned By if current character earned the achievement"], addon.Options.db.Tooltip.Achievements.EarnedBy.HideNotEarnedByIfEarnedByCurrentCharacter);
                             end
                         },
                         PartOfAChain = {
@@ -794,35 +775,28 @@ options.OptionsTable.args["Layout"] = {
                         },
                         ShowPartOfAChain = {
                             order = 6.1, type = "toggle", width = 1.45 * widthMultiplier,
-                            name = addon.Util.ReplaceVars
-                            {
-                                addon.L["Show Part of a Chain"],
+                            name = addon.L["Show Part of a Chain"]:ReplaceVars {
                                 partOfAChain = addon.L["Part of a chain"]
                             },
-                            desc = addon.Util.ReplaceVars
+                            desc = addon.L["Show Part of a Chain Desc"]:ReplaceVars
                             {
-                                addon.L["Show Part of a Chain Desc"],
                                 partOfAChain = addon.L["Part of a chain"]
-                            },
+                            }:AddDefaultValueText("Tooltip.Achievements.ShowPartOfAChain"),
                             get = function() return addon.Options.db.Tooltip.Achievements.ShowPartOfAChain; end,
                             set = function()
                                 addon.Options.db.Tooltip.Achievements.ShowPartOfAChain = not addon.Options.db.Tooltip.Achievements.ShowPartOfAChain;
-                                options.Debug(addon.L["Show Part of a Chain"], addon.Options.db.Tooltip.Achievements.ShowPartOfAChain);
                             end
                         },
                         ShowCurrentCharacterIconsPartOfAChain = {
                             order = 6.2, type = "toggle", width = 1.45 * widthMultiplier,
                             name = addon.L["Show current character icons"],
-                            desc = addon.Util.ReplaceVars
-                            {
-                                addon.L["Show current character icons Desc"],
+                            desc = addon.L["Show current character icons Desc"]:ReplaceVars {
                                 partOfAChain = addon.L["Part of a chain"],
                                 requiredFor = addon.L["Required for"]
-                            },
+                            }:AddDefaultValueText("Tooltip.Achievements.ShowCurrentCharacterIconsPartOfAChain"),
                             get = function() return addon.Options.db.Tooltip.Achievements.ShowCurrentCharacterIconsPartOfAChain; end,
                             set = function()
                                 addon.Options.db.Tooltip.Achievements.ShowCurrentCharacterIconsPartOfAChain = not addon.Options.db.Tooltip.Achievements.ShowCurrentCharacterIconsPartOfAChain;
-                                options.Debug(addon.L["Show current character icons"], addon.Options.db.Tooltip.Achievements.ShowCurrentCharacterIconsPartOfAChain);
                             end
                         },
                         RequiredFor = {

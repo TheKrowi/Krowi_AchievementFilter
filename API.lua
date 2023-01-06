@@ -195,6 +195,155 @@ function KrowiAF_RegisterTabButton(_addonName, tabName, button, selectFunc)
 	end
 end
 
+
+do --[[ KrowiAF_InjectOptions ]]
+	KrowiAF_InjectOptions = {};
+	function KrowiAF_InjectOptions.AddTable(destTablePath, key, table)
+		local destTable;
+		if type(destTablePath) == "table" then
+			destTable = destTablePath;
+		elseif type(destTablePath) == "string" then
+			destTable = addon.Options.OptionsTable.args;
+			local pathParts = strsplittable(".", destTablePath);
+			for _, part in next, pathParts do
+				destTable = destTable[part];
+			end
+		end
+		destTable[key] = table;
+		return destTable[key];
+	end
+
+	function KrowiAF_InjectOptions.TableExists(destTablePath)
+		local destTable = addon.Options.OptionsTable.args;
+		local pathParts = strsplittable(".", destTablePath);
+		for _, part in next, pathParts do
+			destTable = destTable[part];
+		end
+		return destTable and true or false;
+	end
+
+	function KrowiAF_InjectOptions.AddDefaults(destTablePath, key, table)
+		local destTable = addon.Options.Defaults.profile;
+		local pathParts = strsplittable(".", destTablePath);
+		for _, part in next, pathParts do
+			destTable = destTable[part];
+		end
+		destTable[key] = table;
+	end
+
+	function KrowiAF_InjectOptions.DefaultsExists(destTablePath)
+		local destTable = addon.Options.Defaults.profile;
+		local pathParts = strsplittable(".", destTablePath);
+		for _, part in next, pathParts do
+			destTable = destTable[part];
+		end
+		return destTable and true or false;
+	end
+
+	local autoOrder = 1;
+	-- function KrowiAF_InjectOptions.SetAutoOrder()
+	-- 	autoOrder = 1;
+	-- end
+
+	function KrowiAF_InjectOptions.AutoOrderPlusPlus()
+		local current = autoOrder;
+		autoOrder = autoOrder + 1;
+		return current;
+	end
+
+	function KrowiAF_InjectOptions.AdjustedWidth(number)
+		return (number or 1) * addon.Options.WidthMultiplier;
+	end
+
+	-- local lastAddedGroup;
+	-- function KrowiAF_InjectOptions.AddGroup(destTablePath, key, name, order, inline, childGroups)
+	-- 	if type(destTablePath) == "table" and key == nil then
+	-- 		local tbl = destTablePath;
+	-- 		key = tbl[2] or tbl.key;
+	-- 		name = tbl[3] or tbl.name;
+	-- 		order = tbl[4] or tbl.order;
+	-- 		inline = tbl[6] or tbl.inline;
+	-- 		childGroups = tbl[7] or tbl.childGroups;
+	-- 		destTablePath = tbl[1] or tbl.destTablePath;
+	-- 	end
+	-- 	local group = KrowiAF_InjectOptions.AddTable(destTablePath or lastAddedGroup, key, {
+	-- 		order = order or AutoOrderPlusPlus(), type = "group",
+	-- 		name = name or key,
+	-- 		childGroups = childGroups,
+	-- 		inline = inline,
+	-- 		args = {}
+	-- 	});
+	-- 	lastAddedGroup = group.args;
+	-- 	return lastAddedGroup;
+	-- end
+
+	-- function KrowiAF_InjectOptions.AddDescription(destTablePath, key, name, order, width, fontSize)
+	-- 	if type(destTablePath) == "table" and key == nil then
+	-- 		local tbl = destTablePath;
+	-- 		key = tbl[2] or tbl.key;
+	-- 		name = tbl[3] or tbl.name;
+	-- 		order = tbl[4] or tbl.order;
+	-- 		width = tbl[6] or tbl.width;
+	-- 		fontSize = tbl[7] or tbl.fontSize;
+	-- 		destTablePath = tbl[1] or tbl.destTablePath;
+	-- 	elseif type(destTablePath) == "string" and key == nil then
+	-- 		key = destTablePath;
+	-- 		destTablePath = nil;
+	-- 	end
+	-- 	return KrowiAF_InjectOptions.AddTable(destTablePath or lastAddedGroup, key, {
+	-- 		order = order or AutoOrderPlusPlus(), type = "description", width = (width or 1) * addon.Options.WidthMultiplier,
+	-- 		name = name or key,
+	-- 		fontSize = fontSize or "medium"
+	-- 	});
+	-- end
+
+	-- function KrowiAF_InjectOptions.AddExecute(destTablePath, key, name, order, desc, width, func)
+	-- 	if type(destTablePath) == "table" and key == nil then
+	-- 		local tbl = destTablePath;
+	-- 		key = tbl[2] or tbl.key;
+	-- 		name = tbl[3] or tbl.name;
+	-- 		order = tbl[4] or tbl.order;
+	-- 		desc = tbl[5] or tbl.desc;
+	-- 		width = tbl[6] or tbl.width;
+	-- 		func = tbl[7] or tbl.func;
+	-- 		destTablePath = tbl[1] or tbl.destTablePath;
+	-- 	elseif type(destTablePath) == "string" and key == nil then
+	-- 		key = destTablePath;
+	-- 		destTablePath = nil;
+	-- 	end
+	-- 	return KrowiAF_InjectOptions.AddTable(destTablePath or lastAddedGroup, key, {
+	-- 		order = order or AutoOrderPlusPlus(), type = "execute", width = (width or 1) * addon.Options.WidthMultiplier,
+	-- 		name = name or key,
+	-- 		desc = desc,
+	-- 		func = func
+	-- 	});
+	-- end
+
+	-- function KrowiAF_InjectOptions.AddToggle(destTablePath, key, name, order, desc, width, get, set)
+	-- 	if type(destTablePath) == "table" and key == nil then
+	-- 		local tbl = destTablePath;
+	-- 		key = tbl[2] or tbl.key;
+	-- 		name = tbl[3] or tbl.name;
+	-- 		order = tbl[4] or tbl.order;
+	-- 		desc = tbl[5] or tbl.desc;
+	-- 		width = tbl[6] or tbl.width;
+	-- 		get = tbl[7] or tbl.get;
+	-- 		set = tbl[7] or tbl.set;
+	-- 		destTablePath = tbl[1] or tbl.destTablePath;
+	-- 	elseif type(destTablePath) == "string" and key == nil then
+	-- 		key = destTablePath;
+	-- 		destTablePath = nil;
+	-- 	end
+	-- 	return KrowiAF_InjectOptions.AddTable(destTablePath or lastAddedGroup, key, {
+	-- 		order = order or AutoOrderPlusPlus(), type = "toggle", width = (width or 1) * addon.Options.WidthMultiplier,
+	-- 		name = name or key,
+	-- 		desc = desc,
+	-- 		get = get,
+	-- 		set = set
+	-- 	});
+	-- end
+end
+
 do --[[ KrowiAF_RegisterTabOptions ]]
 	local function GetIndexOrInsert(_addonName, tabName, addonDisplayName, tabDisplayName, bindingName)
 		local index;
@@ -314,23 +463,25 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 		SaveBindings(GetCurrentBindingSet());
 	end
 
-	local function InjectKeyBindingOptionsTable(_addonName, addonDisplayName, tabDisplayName, bindingName, index, widthMultiplier)
+	local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
+	local AdjustedWidth = KrowiAF_InjectOptions.AdjustedWidth;
+	local function InjectKeyBindingOptionsTable(_addonName, addonDisplayName, tabDisplayName, bindingName)
 		if not bindingName then
 			return;
 		end
 
 		if not KrowiAF_InjectOptions.TableExists("General.args.KeyBinding.args.Tabs.args." .. _addonName .. "Header") then
 			KrowiAF_InjectOptions.AddTable("General.args.KeyBinding.args.Tabs.args", _addonName .. "Header", {
-				order = index - 0.1, type = "header",
+				order = OrderPP(), type = "header",
 				name = addonDisplayName
 			});
 		end
-		KrowiAF_InjectOptions.AddTable("General.args.KeyBinding.args.Tabs.args", "Binding" .. index .. "Name", {
-			order = index + 0.1, type = "description", width = 0.95 * widthMultiplier,
+		KrowiAF_InjectOptions.AddTable("General.args.KeyBinding.args.Tabs.args", "Binding" .. OrderPP() .. "Name", {
+			order = OrderPP(), type = "description", width = AdjustedWidth(0.95),
 			name = addon.L["Toggle"] .. " " .. tabDisplayName .. " "  .. addon.L["tab"]
 		});
-		KrowiAF_InjectOptions.AddTable("General.args.KeyBinding.args.Tabs.args", "Binding" .. index .. "Key1", {
-			order = index + 0.2, type = "keybinding", width = 0.95 * widthMultiplier,
+		KrowiAF_InjectOptions.AddTable("General.args.KeyBinding.args.Tabs.args", "Binding" .. OrderPP() .. "Key1", {
+			order = OrderPP(), type = "keybinding", width = AdjustedWidth(0.95),
 			name = "",
 			desc = "",
 			get = function() return GetBindingKey(bindingName); end,
@@ -338,8 +489,8 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 				SetKeybind(value, bindingName, 1);
 			end
 		});
-		KrowiAF_InjectOptions.AddTable("General.args.KeyBinding.args.Tabs.args", "Binding" .. index .. "Key2", {
-			order = index + 0.3, type = "keybinding", width = 0.95 * widthMultiplier,
+		KrowiAF_InjectOptions.AddTable("General.args.KeyBinding.args.Tabs.args", "Binding" .. OrderPP() .. "Key2", {
+			order = OrderPP(), type = "keybinding", width = AdjustedWidth(0.95),
 			name = "",
 			desc = "",
 			get = function() return select(2, GetBindingKey(bindingName)); end,
@@ -349,9 +500,9 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 		});
 	end
 
-	local function InjectTabsOrderOptionsTable(index, widthMultiplier)
-		KrowiAF_InjectOptions.AddTable("Layout.args.Tabs.args.Order.args", tostring(index), {
-			order = index, type = "select", width = 1.95 * widthMultiplier,
+	local function InjectTabsOrderOptionsTable(index)
+		KrowiAF_InjectOptions.AddTable("Layout.args.Tabs.args.Order.args", tostring(OrderPP()), {
+			order = OrderPP(), type = "select", width = AdjustedWidth(1.95),
 			name = "",
 			values = function() return addon.GUI.TabsOrderGetActiveKeys(); end,
 			get = function() return GetOrder(index); end,
@@ -361,7 +512,7 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 		});
 	end
 
-	local function InjectTabsShowOptionsTable(_addonName, tabName, addonDisplayName, tabDisplayName, index, widthMultiplier)
+	local function InjectTabsShowOptionsTable(_addonName, tabName, addonDisplayName, tabDisplayName)
 		if not KrowiAF_InjectOptions.TableExists("Layout.args.Tabs.args." .. _addonName) then
 			KrowiAF_InjectOptions.AddTable("Layout.args.Tabs.args", _addonName, {
 				type = "group",
@@ -371,7 +522,7 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 			});
 		end
 		KrowiAF_InjectOptions.AddTable("Layout.args.Tabs.args." .. _addonName .. ".args", tabName, {
-			order = index, type = "toggle", width = 0.95 * widthMultiplier,
+			order = OrderPP(), type = "toggle", width = AdjustedWidth(0.95),
 			name = tabDisplayName,
 			desc = (""):AddDefaultValueText("Tabs." .. _addonName .. "." .. tabName .. ".Show"),
 			get = function() return addon.Options.db.Tabs[_addonName][tabName].Show; end,
@@ -380,10 +531,9 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 	end
 
 	local function InjectOptionsTable(_addonName, tabName, addonDisplayName, tabDisplayName, bindingName, index)
-		local widthMultiplier = addon.Options.WidthMultiplier;
-		InjectKeyBindingOptionsTable(_addonName, addonDisplayName, tabDisplayName, bindingName, index, widthMultiplier);
-		InjectTabsOrderOptionsTable(index, widthMultiplier);
-		InjectTabsShowOptionsTable(_addonName, tabName, addonDisplayName, tabDisplayName, index, widthMultiplier);
+		InjectKeyBindingOptionsTable(_addonName, addonDisplayName, tabDisplayName, bindingName);
+		InjectTabsOrderOptionsTable(index);
+		InjectTabsShowOptionsTable(_addonName, tabName, addonDisplayName, tabDisplayName);
 	end
 
 	function KrowiAF_RegisterTabOptions(_addonName, tabName, addonDisplayName, tabDisplayName, bindingName, showByDefault)
@@ -400,44 +550,5 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 		InjectOptionsDefaults(_addonName, tabName, showByDefault);
 		SetOptionsOrder(_addonName, tabName, index);
 		InjectOptionsTable(_addonName, tabName, addonDisplayName, tabDisplayName, bindingName, index);
-	end
-end
-
-do --[[ KrowiAF_InjectOptions ]]
-	KrowiAF_InjectOptions = {};
-	function KrowiAF_InjectOptions.AddTable(destTablePath, key, table)
-		local destTable = addon.Options.OptionsTable.args;
-		local pathParts = strsplittable(".", destTablePath);
-		for _, part in next, pathParts do
-			destTable = destTable[part];
-		end
-		destTable[key] = table;
-	end
-
-	function KrowiAF_InjectOptions.TableExists(destTablePath)
-		local destTable = addon.Options.OptionsTable.args;
-		local pathParts = strsplittable(".", destTablePath);
-		for _, part in next, pathParts do
-			destTable = destTable[part];
-		end
-		return destTable and true or false;
-	end
-
-	function KrowiAF_InjectOptions.AddDefaults(destTablePath, key, table)
-		local destTable = addon.Options.Defaults.profile;
-		local pathParts = strsplittable(".", destTablePath);
-		for _, part in next, pathParts do
-			destTable = destTable[part];
-		end
-		destTable[key] = table;
-	end
-
-	function KrowiAF_InjectOptions.DefaultsExists(destTablePath)
-		local destTable = addon.Options.Defaults.profile;
-		local pathParts = strsplittable(".", destTablePath);
-		for _, part in next, pathParts do
-			destTable = destTable[part];
-		end
-		return destTable and true or false;
 	end
 end

@@ -44,7 +44,11 @@ function lib.ReplaceVars(str, vars)
         str = vars[1];
     end
     return string.gsub(str, "({([^}]+)})", function(whole, i)
-        return vars[i] or whole;
+        if type(vars) == "table" then
+            return vars[i] or whole;
+        else
+            return vars;
+        end
     end);
 end
 
