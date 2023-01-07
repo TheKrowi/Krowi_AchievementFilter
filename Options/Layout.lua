@@ -616,6 +616,13 @@ options.OptionsTable.args["Layout"] = {
                                     get = function() return addon.Options.db.Achievements.Compact; end,
                                     set = function() addon.Options.db.Achievements.Compact = not addon.Options.db.Achievements.Compact; end,
                                 },
+                                HideDateCompleted = {
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                                    name = addon.L["Hide Date Completed"],
+                                    desc = addon.L["Hide Date Completed Desc"]:AddDefaultValueText("Achievements.HideDateCompleted"):AddReloadRequired(),
+                                    get = function() return addon.Options.db.Achievements.HideDateCompleted; end,
+                                    set = function() addon.Options.db.Achievements.HideDateCompleted = not addon.Options.db.Achievements.HideDateCompleted; end,
+                                },
                                 Objectives = {
                                     order = OrderPP(), type = "header",
                                     name = addon.L["Objectives"]
@@ -665,7 +672,7 @@ options.OptionsTable.args["Layout"] = {
                                     name = addon.L["Earned By"] .. " / " .. addon.L["Not Earned By"]
                                 },
                                 EarnedByCharacters = {
-                                    order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
+                                    order = OrderPP(), type = "range", width = AdjustedWidth(1.4),
                                     name = addon.L["Number of Earned By characters"]:ReplaceVars(addon.L["Earned By"]),
                                     desc = addon.L["Number of Earned By characters Desc"]:AddDefaultValueText("Tooltip.Achievements.EarnedBy.Characters"),
                                     min = 0, max = 100, step = 1,
@@ -673,7 +680,7 @@ options.OptionsTable.args["Layout"] = {
                                     set = function(_, value) addon.Options.db.Tooltip.Achievements.EarnedBy.Characters = value; end
                                 },
                                 EarnedByNotCharacters = {
-                                    order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
+                                    order = OrderPP(), type = "range", width = AdjustedWidth(1.4),
                                     name = addon.L["Number of Not Earned By characters"]:ReplaceVars(addon.L["Not Earned By"]),
                                     desc = addon.L["Number of Not Earned By characters Desc"]:AddDefaultValueText("Tooltip.Achievements.EarnedBy.NotCharacters"),
                                     min = 0, max = 100, step = 1,
@@ -681,13 +688,13 @@ options.OptionsTable.args["Layout"] = {
                                     set = function(_, value)addon.Options.db.Tooltip.Achievements.EarnedBy.NotCharacters = value;end
                                 },
                                 AlwaysShowRealm = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                                     name = addon.L["Always show realm"],
                                     desc = addon.L["Always show realm Desc"]:AddDefaultValueText("Tooltip.Achievements.EarnedBy.AlwaysShowRealm"),
                                     get = function() return addon.Options.db.Tooltip.Achievements.EarnedBy.AlwaysShowRealm; end,
                                     set = function() addon.Options.db.Tooltip.Achievements.EarnedBy.AlwaysShowRealm = not addon.Options.db.Tooltip.Achievements.EarnedBy.AlwaysShowRealm; end
                                 },
-                                Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.45), name = ""},
+                                Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.4), name = ""},
                                 HideNotEarnedByIfEarnedByCurrentCharacter = {
                                     order = OrderPP(), type = "toggle", width = "full",
                                     name = addon.L["Hide Not Earned By if current character earned the achievement"]:ReplaceVars(addon.L["Not Earned By"]),
@@ -703,14 +710,14 @@ options.OptionsTable.args["Layout"] = {
                                     name = addon.L["Part of a chain"]
                                 },
                                 ShowPartOfAChain = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                                     name = addon.L["Show Part of a Chain"]:ReplaceVars(addon.L["Part of a chain"]),
                                     desc = addon.L["Show Part of a Chain Desc"]:ReplaceVars(addon.L["Part of a chain"]):AddDefaultValueText("Tooltip.Achievements.ShowPartOfAChain"),
                                     get = function() return addon.Options.db.Tooltip.Achievements.ShowPartOfAChain; end,
                                     set = function() addon.Options.db.Tooltip.Achievements.ShowPartOfAChain = not addon.Options.db.Tooltip.Achievements.ShowPartOfAChain; end
                                 },
                                 ShowCurrentCharacterIconsPartOfAChain = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                                     name = addon.L["Show current character icons"],
                                     desc = addon.L["Show current character icons Desc"]:ReplaceVars{
                                         partOfAChain = addon.L["Part of a chain"],
@@ -725,14 +732,14 @@ options.OptionsTable.args["Layout"] = {
                                     name = addon.L["Required for"]
                                 },
                                 ShowRequiredFor = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                                     name = addon.L["Show Required for"]:ReplaceVars(addon.L["Required for"]),
                                     desc = addon.L["Show Required for Desc"]:ReplaceVars(addon.L["Required for"]):AddDefaultValueText("Tooltip.Achievements.ShowRequiredFor"),
                                     get = function() return addon.Options.db.Tooltip.Achievements.ShowRequiredFor; end,
                                     set = function() addon.Options.db.Tooltip.Achievements.ShowRequiredFor = not addon.Options.db.Tooltip.Achievements.ShowRequiredFor; end
                                 },
                                 ShowCurrentCharacterIconsRequiredFor = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                                     name = addon.L["Show current character icons"],
                                     desc = addon.L["Show current character icons Desc"]:ReplaceVars{
                                         partOfAChain = addon.L["Part of a chain"],
@@ -747,7 +754,7 @@ options.OptionsTable.args["Layout"] = {
                                     name = addon.L["Other faction"]
                                 },
                                 ShowOtherFaction = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                                     name = addon.L["Show Other faction"]:ReplaceVars(addon.L["Other faction"]),
                                     desc = addon.L["Show Other faction Desc"]:ReplaceVars(addon.L["Other faction"]):AddDefaultValueText("Tooltip.Achievements.ShowOtherFaction"),
                                     get = function() return addon.Options.db.Tooltip.Achievements.ShowOtherFaction; end,
@@ -758,14 +765,14 @@ options.OptionsTable.args["Layout"] = {
                                     name = addon.L["Objectives progress"]
                                 },
                                 ObjectivesProgressShow = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                                     name = addon.L["Show Objectives progress"]:ReplaceVars(addon.L["Objectives progress"]),
                                     desc = addon.L["Show Objectives progress Desc"]:ReplaceVars(addon.L["Objectives progress"]):AddDefaultValueText("Tooltip.Achievements.ObjectivesProgress.Show"),
                                     get = function() return addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show; end,
                                     set = function() addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show = not addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show; end
                                 },
                                 ObjectivesProgressShowWhenAchievementCompleted = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                                     name = addon.L["When achievement completed"]:ReplaceVars(addon.L["Objectives progress"]),
                                     desc = addon.L["When achievement completed Desc"]:ReplaceVars(addon.L["Objectives progress"]):AddDefaultValueText("Tooltip.Achievements.ObjectivesProgress.ShowWhenAchievementCompleted"),
                                     get = function() return addon.Options.db.Tooltip.Achievements.ObjectivesProgress.ShowWhenAchievementCompleted; end,
@@ -773,7 +780,7 @@ options.OptionsTable.args["Layout"] = {
                                     disabled = function() return not addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show; end
                                 },
                                 ObjectivesProgressSecondColumnThreshold = {
-                                    order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
+                                    order = OrderPP(), type = "range", width = AdjustedWidth(1.4),
                                     name = addon.L["Second column threshold"],
                                     desc = addon.L["Second column threshold Desc"]:AddDefaultValueText("Tooltip.Achievements.ObjectivesProgress.SecondColumnThreshold"),
                                     min = 0, max = 100, step = 1,

@@ -1,13 +1,11 @@
--- [[ Exported at 2023-01-06 22-19-43 ]] --
+-- [[ Exported at 2023-01-07 17-41-37 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
 -- [[ Namespaces ]] --
 local _, addon = ...;
-local diagnostics = addon.Diagnostics;
 local objects = addon.Objects;
 local event = objects.Event;
-local widthMultiplier = addon.Options.WidthMultiplier;
 local data = addon.Data;
 data.ExportedCalendarEvents = {};
 local exportedCalendarEvents = data.ExportedCalendarEvents;

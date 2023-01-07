@@ -10,10 +10,12 @@ All notable changes to this project will be documented in this file.
 - Option to show/hide event reminders inside instances
 - Default values to the options
 - Tooltip data for Great Gourmand of The Ruby Feast
+- Option to hide the completion date of the achievements
 
 ### Changed
 - Optimized the Event Handling
 - Moved Prosperously Bloody before Blood Bank
+- WoW's Anniversary Calendar Events are now under Other
 
 ### Fixed
 - Backend split between Wrath Classic and Retail resulting in smaller export for Wrath Classic
@@ -28,6 +30,7 @@ All notable changes to this project will be documented in this file.
 ### Removed
 - Individual Dragon Racing achievements as they are now marked as tracking achievements
 - Start Time display for Event Reminders (This reduces the manual data collection on my end and has little to no importance)
+- Fated Raids Calendar Events
 
 ## 50.0 - 2022-12-26
 ### Added

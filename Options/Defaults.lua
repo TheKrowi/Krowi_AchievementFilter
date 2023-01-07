@@ -62,6 +62,7 @@ options.Defaults = {
         },
         Achievements = {
             Compact = false,
+            HideDateCompleted = false,
             Objectives = {
                 ForceTwoColumns = true,
                 ForceTwoColumnsThreshold = 20,

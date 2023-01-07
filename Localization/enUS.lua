@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-06 18-17-20 ]] --
+-- [[ Exported at 2023-01-07 19-00-12 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -578,4 +578,8 @@ L["Show pop ups on event start in instances Desc"] = "Show / hide event pop up f
 L["Refresh interval"] = "Refresh interval";
 L["Refresh interval Desc"] = "The time in seconds between refreshing the event data. A longer time may delay creation of new pop ups and clean-up of old ones.";
 L["Default value"] = "Default value";
+L["Unchecked"] = "Unchecked";
+L["Checked"] = "Checked";
+L["Hide Date Completed"] = "Hide completion date";
+L["Hide Date Completed Desc"] = "Hide the date the achievement was completed on.";
 

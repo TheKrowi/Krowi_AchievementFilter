@@ -1,13 +1,11 @@
--- [[ Exported at 2023-01-06 22-19-43 ]] --
+-- [[ Exported at 2023-01-07 17-41-37 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
 -- [[ Namespaces ]] --
 local _, addon = ...;
-local diagnostics = addon.Diagnostics;
 local objects = addon.Objects;
 local event = objects.Event;
-local widthMultiplier = addon.Options.WidthMultiplier;
 local data = addon.Data;
 data.ExportedWorldEvents = {};
 local exportedWorldEvents = data.ExportedWorldEvents;
@@ -177,6 +175,11 @@ function exportedWorldEvents.InjectDynamicOptions()
         return;
     end
 
+    KrowiAF_RegisterEventOptions("World", "Legion", addon.L["Legion"], 5175, addon.L["Assault on Azsuna"]);
+    KrowiAF_RegisterEventOptions("World", "Legion", addon.L["Legion"], 5177, addon.L["Assault on Highmountain"]);
+    KrowiAF_RegisterEventOptions("World", "Legion", addon.L["Legion"], 5178, addon.L["Assault on Stormheim"]);
+    KrowiAF_RegisterEventOptions("World", "Legion", addon.L["Legion"], 5210, addon.L["Assault on Val'sharah"]);
+    KrowiAF_RegisterDeSelectAllEventOptions("World", "Legion", { 5175, 5177, 5178, 5210 });
     KrowiAF_RegisterEventOptions("World", "Battle_for_Azeroth", addon.L["Battle for Azeroth"], 5896, addon.L["Assault on Tiragarde Sound"]);
     KrowiAF_RegisterEventOptions("World", "Battle_for_Azeroth", addon.L["Battle for Azeroth"], 5964, addon.L["Assault on Drustvar"]);
     KrowiAF_RegisterEventOptions("World", "Battle_for_Azeroth", addon.L["Battle for Azeroth"], 5966, addon.L["Assault on Stormsong Valley"]);
@@ -190,51 +193,23 @@ function exportedWorldEvents.InjectDynamicOptions()
     KrowiAF_RegisterEventOptions("World", "Battle_for_Azeroth", addon.L["Battle for Azeroth"], 6490, addon.L["Assault: Mogu"]);
     KrowiAF_RegisterEventOptions("World", "Battle_for_Azeroth", addon.L["Battle for Azeroth"], 6491, addon.L["Assault: Mantid"]);
     KrowiAF_RegisterDeSelectAllEventOptions("World", "Battle_for_Azeroth", { 5896, 5964, 5966, 5969, 5970, 5973, 6486, 6487, 6488, 6489, 6490, 6491 });
-    KrowiAF_RegisterEventOptions("World", "DF___Community_Feast", addon.L["DF - Community Feast"], 7218, addon.L["Community Feast: Cooking"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Community_Feast", addon.L["DF - Community Feast"], 7219, addon.L["Community Feast: Soon"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Community_Feast", addon.L["DF - Community Feast"], 7220, addon.L["Community Feast: Ready"]);
-    KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Community_Feast", { 7218, 7219, 7220 });
-    KrowiAF_RegisterEventOptions("World", "DF___Firestorms", addon.L["DF - Firestorms"], 7223, addon.L["Nokhudon Hold"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Firestorms", addon.L["DF - Firestorms"], 7227, addon.L["Ohn'iri Springs"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Firestorms", addon.L["DF - Firestorms"], 7231, addon.L["Brackenhide Hollow"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Firestorms", addon.L["DF - Firestorms"], 7235, addon.L["Cobalt Assembly"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Firestorms", addon.L["DF - Firestorms"], 7239, addon.L["Imbu"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Firestorms", addon.L["DF - Firestorms"], 7247, addon.L["Tyrhold"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Firestorms", addon.L["DF - Firestorms"], 7251, addon.L["Dragonbane Keep"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Firestorms", addon.L["DF - Firestorms"], 7255, addon.L["Slagmire"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Firestorms", addon.L["DF - Firestorms"], 7259, addon.L["Scalecracker Keep"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Firestorms", addon.L["DF - Firestorms"], 7300, addon.L["Primalist Tomorrow"]);
-    KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Firestorms", { 7223, 7227, 7231, 7235, 7239, 7247, 7251, 7255, 7259, 7300 });
+    KrowiAF_RegisterEventOptions("World", "Shadowlands", addon.L["Shadowlands"], 6989, addon.L["Necrolord Assault"]);
+    KrowiAF_RegisterEventOptions("World", "Shadowlands", addon.L["Shadowlands"], 6990, addon.L["Venthyr Assault"]);
+    KrowiAF_RegisterEventOptions("World", "Shadowlands", addon.L["Shadowlands"], 6991, addon.L["Kyrian Assault"]);
+    KrowiAF_RegisterEventOptions("World", "Shadowlands", addon.L["Shadowlands"], 6992, addon.L["Night Fae Assault"]);
+    KrowiAF_RegisterDeSelectAllEventOptions("World", "Shadowlands", { 6989, 6990, 6991, 6992 });
+    KrowiAF_RegisterEventOptions("World", "DF___Siege_on_Dragonbane_Keep", addon.L["DF - Siege on Dragonbane Keep"], 7104, addon.L["Siege on Dragonbane Keep: Active"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Siege_on_Dragonbane_Keep", addon.L["DF - Siege on Dragonbane Keep"], 7267, addon.L["Siege on Dragonbane Keep: Gathering"]);
+    KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Siege_on_Dragonbane_Keep", { 7104, 7267 });
     KrowiAF_RegisterEventOptions("World", "DF___Grand_Hunts", addon.L["DF - Grand Hunts"], 7342, addon.L["Grand Hunts: Ohn'ahran Plains"]);
     KrowiAF_RegisterEventOptions("World", "DF___Grand_Hunts", addon.L["DF - Grand Hunts"], 7343, addon.L["Grand Hunts: The Waking Shore"]);
     KrowiAF_RegisterEventOptions("World", "DF___Grand_Hunts", addon.L["DF - Grand Hunts"], 7344, addon.L["Grand Hunts: Thaldraszus"]);
     KrowiAF_RegisterEventOptions("World", "DF___Grand_Hunts", addon.L["DF - Grand Hunts"], 7345, addon.L["Grand Hunts: The Azure Span"]);
     KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Grand_Hunts", { 7342, 7343, 7344, 7345 });
-    KrowiAF_RegisterEventOptions("World", "DF___Sandstorms", addon.L["DF - Sandstorms"], 7222, addon.L["Nokhudon Hold"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Sandstorms", addon.L["DF - Sandstorms"], 7226, addon.L["Ohn'iri Springs"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Sandstorms", addon.L["DF - Sandstorms"], 7230, addon.L["Brackenhide Hollow"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Sandstorms", addon.L["DF - Sandstorms"], 7234, addon.L["Cobalt Assembly"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Sandstorms", addon.L["DF - Sandstorms"], 7238, addon.L["Imbu"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Sandstorms", addon.L["DF - Sandstorms"], 7246, addon.L["Tyrhold"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Sandstorms", addon.L["DF - Sandstorms"], 7250, addon.L["Dragonbane Keep"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Sandstorms", addon.L["DF - Sandstorms"], 7254, addon.L["Slagmire"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Sandstorms", addon.L["DF - Sandstorms"], 7258, addon.L["Scalecracker Keep"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Sandstorms", addon.L["DF - Sandstorms"], 7299, addon.L["Primalist Tomorrow"]);
-    KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Sandstorms", { 7222, 7226, 7230, 7234, 7238, 7246, 7250, 7254, 7258, 7299 });
-    KrowiAF_RegisterEventOptions("World", "DF___Siege_on_Dragonbane_Keep", addon.L["DF - Siege on Dragonbane Keep"], 7104, addon.L["Siege on Dragonbane Keep: Active"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Siege_on_Dragonbane_Keep", addon.L["DF - Siege on Dragonbane Keep"], 7267, addon.L["Siege on Dragonbane Keep: Gathering"]);
-    KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Siege_on_Dragonbane_Keep", { 7104, 7267 });
-    KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", addon.L["DF - Snowstorms"], 7224, addon.L["Nokhudon Hold"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", addon.L["DF - Snowstorms"], 7228, addon.L["Ohn'iri Springs"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", addon.L["DF - Snowstorms"], 7232, addon.L["Brackenhide Hollow"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", addon.L["DF - Snowstorms"], 7236, addon.L["Cobalt Assembly"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", addon.L["DF - Snowstorms"], 7240, addon.L["Imbu"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", addon.L["DF - Snowstorms"], 7248, addon.L["Tyrhold"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", addon.L["DF - Snowstorms"], 7252, addon.L["Dragonbane Keep"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", addon.L["DF - Snowstorms"], 7256, addon.L["Slagmire"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", addon.L["DF - Snowstorms"], 7260, addon.L["Scalecracker Keep"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", addon.L["DF - Snowstorms"], 7301, addon.L["Primalist Tomorrow"]);
-    KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Snowstorms", { 7224, 7228, 7232, 7236, 7240, 7248, 7252, 7256, 7260, 7301 });
+    KrowiAF_RegisterEventOptions("World", "DF___Community_Feast", addon.L["DF - Community Feast"], 7218, addon.L["Community Feast: Cooking"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Community_Feast", addon.L["DF - Community Feast"], 7219, addon.L["Community Feast: Soon"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Community_Feast", addon.L["DF - Community Feast"], 7220, addon.L["Community Feast: Ready"]);
+    KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Community_Feast", { 7218, 7219, 7220 });
     KrowiAF_RegisterEventOptions("World", "DF___Thunderstorms", addon.L["DF - Thunderstorms"], 7221, addon.L["Nokhudon Hold"]);
     KrowiAF_RegisterEventOptions("World", "DF___Thunderstorms", addon.L["DF - Thunderstorms"], 7225, addon.L["Ohn'iri Springs"]);
     KrowiAF_RegisterEventOptions("World", "DF___Thunderstorms", addon.L["DF - Thunderstorms"], 7229, addon.L["Brackenhide Hollow"]);
@@ -246,15 +221,38 @@ function exportedWorldEvents.InjectDynamicOptions()
     KrowiAF_RegisterEventOptions("World", "DF___Thunderstorms", addon.L["DF - Thunderstorms"], 7257, addon.L["Scalecracker Keep"]);
     KrowiAF_RegisterEventOptions("World", "DF___Thunderstorms", addon.L["DF - Thunderstorms"], 7298, addon.L["Primalist Tomorrow"]);
     KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Thunderstorms", { 7221, 7225, 7229, 7233, 7237, 7245, 7249, 7253, 7257, 7298 });
-    KrowiAF_RegisterEventOptions("World", "Legion", addon.L["Legion"], 5175, addon.L["Assault on Azsuna"]);
-    KrowiAF_RegisterEventOptions("World", "Legion", addon.L["Legion"], 5177, addon.L["Assault on Highmountain"]);
-    KrowiAF_RegisterEventOptions("World", "Legion", addon.L["Legion"], 5178, addon.L["Assault on Stormheim"]);
-    KrowiAF_RegisterEventOptions("World", "Legion", addon.L["Legion"], 5210, addon.L["Assault on Val'sharah"]);
-    KrowiAF_RegisterDeSelectAllEventOptions("World", "Legion", { 5175, 5177, 5178, 5210 });
-    KrowiAF_RegisterEventOptions("World", "Shadowlands", addon.L["Shadowlands"], 6989, addon.L["Necrolord Assault"]);
-    KrowiAF_RegisterEventOptions("World", "Shadowlands", addon.L["Shadowlands"], 6990, addon.L["Venthyr Assault"]);
-    KrowiAF_RegisterEventOptions("World", "Shadowlands", addon.L["Shadowlands"], 6991, addon.L["Kyrian Assault"]);
-    KrowiAF_RegisterEventOptions("World", "Shadowlands", addon.L["Shadowlands"], 6992, addon.L["Night Fae Assault"]);
-    KrowiAF_RegisterDeSelectAllEventOptions("World", "Shadowlands", { 6989, 6990, 6991, 6992 });
+    KrowiAF_RegisterEventOptions("World", "DF___Sandstorms", addon.L["DF - Sandstorms"], 7222, addon.L["Nokhudon Hold"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Sandstorms", addon.L["DF - Sandstorms"], 7226, addon.L["Ohn'iri Springs"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Sandstorms", addon.L["DF - Sandstorms"], 7230, addon.L["Brackenhide Hollow"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Sandstorms", addon.L["DF - Sandstorms"], 7234, addon.L["Cobalt Assembly"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Sandstorms", addon.L["DF - Sandstorms"], 7238, addon.L["Imbu"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Sandstorms", addon.L["DF - Sandstorms"], 7246, addon.L["Tyrhold"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Sandstorms", addon.L["DF - Sandstorms"], 7250, addon.L["Dragonbane Keep"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Sandstorms", addon.L["DF - Sandstorms"], 7254, addon.L["Slagmire"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Sandstorms", addon.L["DF - Sandstorms"], 7258, addon.L["Scalecracker Keep"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Sandstorms", addon.L["DF - Sandstorms"], 7299, addon.L["Primalist Tomorrow"]);
+    KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Sandstorms", { 7222, 7226, 7230, 7234, 7238, 7246, 7250, 7254, 7258, 7299 });
+    KrowiAF_RegisterEventOptions("World", "DF___Firestorms", addon.L["DF - Firestorms"], 7223, addon.L["Nokhudon Hold"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Firestorms", addon.L["DF - Firestorms"], 7227, addon.L["Ohn'iri Springs"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Firestorms", addon.L["DF - Firestorms"], 7231, addon.L["Brackenhide Hollow"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Firestorms", addon.L["DF - Firestorms"], 7235, addon.L["Cobalt Assembly"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Firestorms", addon.L["DF - Firestorms"], 7239, addon.L["Imbu"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Firestorms", addon.L["DF - Firestorms"], 7247, addon.L["Tyrhold"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Firestorms", addon.L["DF - Firestorms"], 7251, addon.L["Dragonbane Keep"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Firestorms", addon.L["DF - Firestorms"], 7255, addon.L["Slagmire"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Firestorms", addon.L["DF - Firestorms"], 7259, addon.L["Scalecracker Keep"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Firestorms", addon.L["DF - Firestorms"], 7300, addon.L["Primalist Tomorrow"]);
+    KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Firestorms", { 7223, 7227, 7231, 7235, 7239, 7247, 7251, 7255, 7259, 7300 });
+    KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", addon.L["DF - Snowstorms"], 7224, addon.L["Nokhudon Hold"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", addon.L["DF - Snowstorms"], 7228, addon.L["Ohn'iri Springs"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", addon.L["DF - Snowstorms"], 7232, addon.L["Brackenhide Hollow"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", addon.L["DF - Snowstorms"], 7236, addon.L["Cobalt Assembly"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", addon.L["DF - Snowstorms"], 7240, addon.L["Imbu"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", addon.L["DF - Snowstorms"], 7248, addon.L["Tyrhold"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", addon.L["DF - Snowstorms"], 7252, addon.L["Dragonbane Keep"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", addon.L["DF - Snowstorms"], 7256, addon.L["Slagmire"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", addon.L["DF - Snowstorms"], 7260, addon.L["Scalecracker Keep"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", addon.L["DF - Snowstorms"], 7301, addon.L["Primalist Tomorrow"]);
+    KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Snowstorms", { 7224, 7228, 7232, 7236, 7240, 7248, 7252, 7256, 7260, 7301 });
 end
 

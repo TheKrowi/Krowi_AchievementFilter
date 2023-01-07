@@ -238,14 +238,14 @@ options.OptionsTable.args["General"] = {
                             name = addon.L["Reset view"],
                             args = {
                                 ResetViewOnOpen = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                                     name = addon.L["Reset view on open"],
                                     desc = addon.L["Reset view on open Desc"]:AddDefaultValueText("ResetViewOnOpen"),
                                     get = function() return addon.Options.db.ResetViewOnOpen; end,
                                     set = function() addon.Options.db.ResetViewOnOpen = not addon.Options.db.ResetViewOnOpen; end
                                 },
                                 ToggleWindow = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                                     name = addon.L["Toggle window once opened"],
                                     desc = addon.L["Toggle window once opened Desc"]:AddDefaultValueText("ToggleWindow"),
                                     get = function() return addon.Options.db.ToggleWindow; end,
@@ -259,7 +259,7 @@ options.OptionsTable.args["General"] = {
                             name = addon.L["Micro Button"],
                             args = {
                                 Rebind = {
-                                    order = OrderPP(), type = "select", width = AdjustedWidth(1.95),
+                                    order = OrderPP(), type = "select", width = AdjustedWidth(1.9),
                                     name = addon.L["Rebind Micro Button"],
                                     desc = addon.L["Rebind Micro Button Desc"], -- AddDefaultValueTextFromValues via PostLoad
                                     values = function() return addon.GUI.TabsOrderGetActiveKeys(); end,
@@ -270,7 +270,7 @@ options.OptionsTable.args["General"] = {
                                     end
                                 },
                                 SetKeybind = {
-                                    order = OrderPP(), type = "execute", width = AdjustedWidth(0.95),
+                                    order = OrderPP(), type = "execute", width = AdjustedWidth(0.9),
                                     name = addon.L["Set Keybind"],
                                     desc = addon.L["Set Keybind Desc"]:ReplaceVars(addon.L["Key Bindings"]),
                                     func = MicroButtonSetKeybindFunc
@@ -282,7 +282,7 @@ options.OptionsTable.args["General"] = {
                             name = addon.L["Modifiers"],
                             args = {
                                 PasteToChat = {
-                                    order = OrderPP(), type = "select", width = AdjustedWidth(0.95),
+                                    order = OrderPP(), type = "select", width = AdjustedWidth(0.93),
                                     name = addon.L["Paste to Chat"],
                                     desc = addon.L["Paste to Chat"]:AddDefaultValueText("Achievements.Modifiers.PasteToChat", addon.Modifiers),
                                     values = addon.Modifiers,
@@ -290,7 +290,7 @@ options.OptionsTable.args["General"] = {
                                     set = function(_, value) addon.Options.db.Achievements.Modifiers.PasteToChat = value; end
                                 },
                                 ToggleTracking = {
-                                    order = OrderPP(), type = "select", width = AdjustedWidth(0.95),
+                                    order = OrderPP(), type = "select", width = AdjustedWidth(0.93),
                                     name = addon.L["Toggle Tracking"],
                                     desc = addon.L["Toggle Tracking"]:AddDefaultValueText("Achievements.Modifiers.ToggleTracking", addon.Modifiers),
                                     values = addon.Modifiers,
@@ -298,7 +298,7 @@ options.OptionsTable.args["General"] = {
                                     set = function(_, value) addon.Options.db.Achievements.Modifiers.ToggleTracking = value; end
                                 },
                                 ToggleWatchList = {
-                                    order = OrderPP(), type = "select", width = AdjustedWidth(0.95),
+                                    order = OrderPP(), type = "select", width = AdjustedWidth(0.93),
                                     name = addon.L["Add to / Remove from Watch List"]:ReplaceVars(addon.L["Watch List"]),
                                     desc = addon.L["Add to / Remove from Watch List"]:ReplaceVars(addon.L["Watch List"]):AddDefaultValueText("Achievements.Modifiers.ToggleWatchList", addon.Modifiers),
                                     values = addon.Modifiers,
@@ -306,7 +306,7 @@ options.OptionsTable.args["General"] = {
                                     set = function(_, value) addon.Options.db.Achievements.Modifiers.ToggleWatchList = value; end
                                 },
                                 ToggleExcluded = {
-                                    order = OrderPP(), type = "select", width = AdjustedWidth(0.95),
+                                    order = OrderPP(), type = "select", width = AdjustedWidth(0.93),
                                     name = addon.L["Include"] .. " / " .. addon.L["Exclude"],
                                     desc = addon.L["Include"] .. " / " .. addon.L["Exclude"]:AddDefaultValueText("Achievements.Modifiers.ToggleExcluded", addon.Modifiers),
                                     values = addon.Modifiers,
