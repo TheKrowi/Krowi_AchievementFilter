@@ -464,14 +464,14 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 end
 
 do --[[ KrowiAF_RegisterEventOptions ]]
-	local function InjectOptionsDefaults(eventId, hideByDefault)
+	local function InjectOptionsDefaults(eventType, eventId, hideByDefault)
 		if hideByDefault == nil then
 			hideByDefault = false;
 		end
-		if not KrowiAF_InjectOptions.DefaultsExists("EventReminders.CalendarEvents") then
-			KrowiAF_InjectOptions.AddDefaults("EventReminders", "CalendarEvents", { });
+		if not KrowiAF_InjectOptions.DefaultsExists("EventReminders." .. eventType .. "Events") then
+			KrowiAF_InjectOptions.AddDefaults("EventReminders", eventType .. "Events", { });
 		end
-		KrowiAF_InjectOptions.AddDefaults("EventReminders.CalendarEvents", eventId, not hideByDefault);
+		KrowiAF_InjectOptions.AddDefaults("EventReminders." .. eventType .. "Events", eventId, not hideByDefault);
 	end
 
 	local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
@@ -487,16 +487,16 @@ do --[[ KrowiAF_RegisterEventOptions ]]
 		KrowiAF_InjectOptions.AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", tostring(eventId), {
 			order = OrderPP(), type = "toggle", width = AdjustedWidth(),
 			name = eventDisplayName,
-			get = function() return addon.Options.db.EventReminders.CalendarEvents[eventId]; end,
+			get = function() return addon.Options.db.EventReminders[eventType .. "Events"][eventId]; end,
 			set = function()
-				addon.Options.db.EventReminders.CalendarEvents[eventId] = not addon.Options.db.EventReminders.CalendarEvents[eventId];
+				addon.Options.db.EventReminders[eventType .. "Events"][eventId] = not addon.Options.db.EventReminders[eventType .. "Events"][eventId];
 				addon.GUI.SideButtonSystem.Refresh();
 			end
 		});
 	end
 
 	function KrowiAF_RegisterEventOptions(eventType, groupName, groupDisplayName, eventId, eventDisplayName, hideByDefault)
-		InjectOptionsDefaults(eventId, hideByDefault);
+		InjectOptionsDefaults(eventType, eventId, hideByDefault);
 		InjectOptionsTable(eventType, groupName, groupDisplayName, eventId, eventDisplayName);
 	end
 
@@ -513,7 +513,7 @@ do --[[ KrowiAF_RegisterEventOptions ]]
 			name = addon.L["Select All"],
 			func = function()
 				for _, eventId in next, eventIds do
-					addon.Options.db.EventReminders.CalendarEvents[eventId] = true;
+					addon.Options.db.EventReminders[eventType .. "Events"][eventId] = true;
 				end
 			end
 		});
@@ -522,7 +522,7 @@ do --[[ KrowiAF_RegisterEventOptions ]]
 			name = addon.L["Deselect All"],
 			func = function()
 				for _, eventId in next, eventIds do
-					addon.Options.db.EventReminders.CalendarEvents[eventId] = false;
+					addon.Options.db.EventReminders[eventType .. "Events"][eventId] = false;
 				end
 			end
 		});
