@@ -3,8 +3,8 @@ All notable changes to this project will be documented in this file.
 
 ## 51.0 - 2023-01-xx
 ### Added
-- 10.0.5 achievements (WIP)
-- 3.4.1 achievements (WIP)
+- 10.0.5 achievements
+- 3.4.1 achievements
 - Event Reminder when a new event starts while playing (on by default)
 - Adjustable interval to check for new events and clean up ended events (default 60 seconds)
 - Option to show/hide event reminders inside instances

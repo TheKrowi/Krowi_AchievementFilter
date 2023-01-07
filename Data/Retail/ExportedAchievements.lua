@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-01 21-37-15 ]] --
+-- [[ Exported at 2023-01-07 21-37-44 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -8544,10 +8544,30 @@ function exportedAchievements.Load(a, t)
     a[16678] = b:New(16678, 0); -- Adventurer of The Azure Span
     a[16679] = b:New(16679, 5); -- Adventurer of Thaldraszus
     a[16683] = b:New(16683, 15); -- In Tyr's Footsteps
+    a[16696] = b:New(16696, 5); -- Renewed Proto-Drake Armor
+    a[16697] = b:New(16697, 5); -- Renewed Proto-Drake Head Features
+    a[16698] = b:New(16698, 5); -- Renewed Proto-Drake Tail Features
+    a[16699] = b:New(16699, 5); -- Renewed Proto-Drake Scales and Patterns
+    a[16700] = b:New(16700, 5); -- Renewed Proto-Drake Horns and Hair
+    a[16701] = b:New(16701, 5); -- Windborne Velocidrake Scales and Patterns
+    a[16702] = b:New(16702, 5); -- Windborne Velocidrake Armor
+    a[16704] = b:New(16704, 5); -- Windborne Velocidrake Horns and Fur
+    a[16705] = b:New(16705, 5); -- Windborne Velocidrake Head Features
+    a[16706] = b:New(16706, 5); -- Windborne Velocidrake Back and Tail
+    a[16707] = b:New(16707, 5); -- Highland Drake Scales and Patterns
+    a[16708] = b:New(16708, 5); -- Highland Drake Armor
+    a[16710] = b:New(16710, 5); -- Highland Drake Horns and Hair
+    a[16711] = b:New(16711, 5); -- Highland Drake Back and Tail
+    a[16712] = b:New(16712, 5); -- Highland Drake Head Features
+    a[16723] = b:New(16723, 5); -- Cliffside Wylderdrake Scales and Patterns
+    a[16724] = b:New(16724, 5); -- Cliffside Wylderdrake Armor
+    a[16725] = b:New(16725, 5); -- Cliffside Wylderdrake Horns and Manes
+    a[16726] = b:New(16726, 5); -- Cliffside Wylderdrake Back and Tail
+    a[16727] = b:New(16727, 5); -- Cliffside Wylderdrake Head Features
     a[16729] = b:New(16729, 10); -- To All the Squirrels Hidden Til Now
     a[16730] = b:New(16730, 0); -- Crimson Gladiator's Drake
     O(a[16730], "From", "PvP Season", 34, "Until", "PvP Season", 34);
-    a[16734] = b:New(16734, 0); -- Crimson Soloist: Dragonflight Season 1
+    a[16734] = b:New(16734, 0); -- Crimson Legend: Dragonflight Season 1
     O(a[16734], "From", "PvP Season", 34, "Until", "PvP Season", 34);
     a[16736] = b:New(16736, 10); -- Grand Theft Mammoth
     a[16758] = b:New(16758, 0); -- "Ready, Aim, Catalog!"
@@ -8584,16 +8604,20 @@ function exportedAchievements.Load(a, t)
     a[17206] = b:New(17206, 10); -- Thaldraszus Reverse: Gold
     a[17207] = b:New(17207, 10); -- Discombobberlated
     a[17314] = b:New(17314, 0); -- Heroic Edition: Tangled Dreamweaver
-    a[17316] = b:New(17316, 10); -- Dragon Isles Crafting Order Apprentice
-    a[17317] = b:New(17317, 10); -- Dragon Isles Crafting Order Journeyman
-    a[17318] = b:New(17318, 10); -- Dragon Isles Crafting Order Master
     a[17321] = b:New(17321, 10); -- Elders of the Dragon Isles
     a[17330] = b:New(17330, 10); -- Reverse Racer: Bronze
     a[17331] = b:New(17331, 10); -- Reverse Racer: Silver
     a[17332] = b:New(17332, 10); -- Reverse Racer: Gold
+    a[17334] = b:New(17334, 10); -- Trading Post Enthusiast
+    a[17335] = b:New(17335, 5); -- Airborne Tumbler
+    a[17336] = b:New(17336, 5); -- Airborne Tumbler
+    a[17339] = b:New(17339, 0); -- Legend: Dragonflight Season 1
+    a[17342] = b:New(17342, 5); -- The Future We Make
+    a[17343] = b:New(17343, 5); -- Drop It Like It's Hot
+    a[17345] = b:New(17345, 5); -- Airborne Tumbler
 
     local aIDs = {};
-    for i = 1, 17332 do
+    for i = 1, 17345 do
         if a[i] ~= nil then
             tinsert(aIDs, i);
         end

@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-06 19-59-53 ]] --
+-- [[ Exported at 2023-01-07 21-38-07 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -5506,6 +5506,9 @@ function exportedCategories.Load(a)
     A(t[1390], a[16614]); -- Bloodstained Bounty
     A(t[1390], a[16616]); -- Prosperously Bloody
     A(t[1390], a[16615]); -- Blood Bank
+    A(t[1390], a[17335]); -- Airborne Tumbler
+    A(t[1390], a[17336]); -- Airborne Tumbler
+    A(t[1390], a[17345]); -- Airborne Tumbler
     t[1361] = c:New(k.GetCategoryInfoTitle(201), true); -- Reputation
     C(t[1341], t[1361]);
     A(t[1361], a[16522]); -- A True Explorer
@@ -5739,6 +5742,8 @@ function exportedCategories.Load(a)
     C(t[1235], t[1240]);
     A(t[1240], a[16363]); -- Just Don't Ask Me to Spell It
     A(t[1240], a[16398]); -- Sojourner of Thaldraszus
+    A(t[1240], a[17342]); -- The Future We Make
+    A(t[1240], a[17343]); -- Drop It Like It's Hot
     t[1246] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[1235], t[1246]);
     A(t[1246], a[16518]); -- Explore Thaldraszus
@@ -6081,6 +6086,28 @@ function exportedCategories.Load(a)
     A(t[1360], a[16487]); -- Firestorms in Thaldraszus
     A(t[1360], a[16488]); -- Snowstorms in Thaldraszus
     A(t[1360], a[16502]); -- Storming the Runway
+    t[1401] = c:New(k.GetCategoryInfoTitle(15478)); -- Dragon Isle Drake Cosmetics
+    C(t[1207], t[1401]);
+    A(t[1401], a[16696]); -- Renewed Proto-Drake Armor
+    A(t[1401], a[16697]); -- Renewed Proto-Drake Head Features
+    A(t[1401], a[16698]); -- Renewed Proto-Drake Tail Features
+    A(t[1401], a[16699]); -- Renewed Proto-Drake Scales and Patterns
+    A(t[1401], a[16700]); -- Renewed Proto-Drake Horns and Hair
+    A(t[1401], a[16701]); -- Windborne Velocidrake Scales and Patterns
+    A(t[1401], a[16702]); -- Windborne Velocidrake Armor
+    A(t[1401], a[16704]); -- Windborne Velocidrake Horns and Fur
+    A(t[1401], a[16705]); -- Windborne Velocidrake Head Features
+    A(t[1401], a[16706]); -- Windborne Velocidrake Back and Tail
+    A(t[1401], a[16707]); -- Highland Drake Scales and Patterns
+    A(t[1401], a[16708]); -- Highland Drake Armor
+    A(t[1401], a[16710]); -- Highland Drake Horns and Hair
+    A(t[1401], a[16711]); -- Highland Drake Back and Tail
+    A(t[1401], a[16712]); -- Highland Drake Head Features
+    A(t[1401], a[16723]); -- Cliffside Wylderdrake Scales and Patterns
+    A(t[1401], a[16724]); -- Cliffside Wylderdrake Armor
+    A(t[1401], a[16725]); -- Cliffside Wylderdrake Horns and Manes
+    A(t[1401], a[16726]); -- Cliffside Wylderdrake Back and Tail
+    A(t[1401], a[16727]); -- Cliffside Wylderdrake Head Features
     t[952] = c:New(k.L["Other"]); -- Other
     C(t[883], t[952]);
     t[1160] = c:New(k.L["Zones"]); -- Zones
@@ -6147,6 +6174,7 @@ function exportedCategories.Load(a)
     A(t[1168], a[2357]); -- Dreadsteed of Xoroth
     A(t[1168], a[2358]); -- Charger
     A(t[1168], a[2359]); -- Swift Flight Form
+    A(t[1168], a[17334]); -- Trading Post Enthusiast
     t[1159] = c:New(k.GetCategoryInfoTitle(96)); -- Quests
     C(t[952], t[1159]);
     A(t[1159], a[503]); -- 50 Quests Completed
@@ -6532,9 +6560,6 @@ function exportedCategories.Load(a)
     A(t[1391], a[16632]); -- Dragon Isles Fisherman
     A(t[1391], a[16683]); -- In Tyr's Footsteps
     A(t[1391], a[17207]); -- Discombobberlated
-    A(t[1391], a[17316]); -- Dragon Isles Crafting Order Apprentice
-    A(t[1391], a[17317]); -- Dragon Isles Crafting Order Journeyman
-    A(t[1391], a[17318]); -- Dragon Isles Crafting Order Master
     t[1163] = c:New(k.GetCategoryInfoTitle(201)); -- Reputation
     C(t[952], t[1163]);
     A(t[1163], a[522]); -- Somebody Likes Me
@@ -8048,7 +8073,8 @@ function exportedCategories.Load(a)
     A(t[1345], a[15951]); -- Crimson Gladiator: Dragonflight Season 1
     A(t[1345], a[15959]); -- Hero of the Alliance: Crimson
     A(t[1345], a[15958]); -- Hero of the Horde: Crimson
-    A(t[1345], a[16734]); -- Crimson Soloist: Dragonflight Season 1
+    A(t[1345], a[17339]); -- Legend: Dragonflight Season 1
+    A(t[1345], a[16734]); -- Crimson Legend: Dragonflight Season 1
     A(t[1345], a[17119]); -- Deep Cuts From the Vault
     t[1368] = c:New(k.L["Tracking Achievements"]); -- Tracking Achievements
     C(t[955], t[1368]);
