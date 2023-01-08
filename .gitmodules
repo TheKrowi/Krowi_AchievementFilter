@@ -7,3 +7,6 @@
 [submodule "Libs/Krowi_PopopDialog"]
 	path = Libs/Krowi_PopopDialog
 	url = https://github.com/TheKrowi/Krowi_PopopDialog
+[submodule "Libs/Krowi_ProgressBar"]
+	path = Libs/Krowi_ProgressBar
+	url = https://github.com/TheKrowi/Krowi_ProgressBar
