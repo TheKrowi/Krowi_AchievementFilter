@@ -1,6 +1,3 @@
-[submodule "Libs/Krowi_WorldMapButtons"]
-	path = Libs/Krowi_WorldMapButtons
-	url = https://github.com/TheKrowi/Krowi_WorldMapButtons
 [submodule "Libs/Krowi_Menu"]
 	path = Libs/Krowi_Menu
 	url = https://github.com/TheKrowi/Krowi_Menu
