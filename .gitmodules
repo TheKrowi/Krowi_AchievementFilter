@@ -7,3 +7,6 @@
 [submodule "Libs/Krowi_ProgressBar"]
 	path = Libs/Krowi_ProgressBar
 	url = https://github.com/TheKrowi/Krowi_ProgressBar
+[submodule "Libs/Krowi_WorldMapButtons"]
+	path = Libs/Krowi_WorldMapButtons
+	url = https://github.com/TheKrowi/Krowi_WorldMapButtons
