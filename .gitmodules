@@ -13,3 +13,6 @@
 [submodule "Libs/Krowi_Tutorials"]
 	path = Libs/Krowi_Tutorials
 	url = https://github.com/TheKrowi/Krowi_Tutorials
+[submodule "Libs/Krowi_Util"]
+	path = Libs/Krowi_Util
+	url = https://github.com/TheKrowi/Krowi_Util
