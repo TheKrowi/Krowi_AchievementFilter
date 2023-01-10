@@ -129,7 +129,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
         end
     elseif event == "PLAYER_ENTERING_WORLD" then
          -- arg1 = isLogin, arg2 = isReload
-        if arg1 or arg2 then
+        if arg1 or (arg2 and addon.Diagnostics.DebugEnabled()) then
             C_Timer.After(0, function()
                 C_Timer.After(5, function()
                     addon.GUI.AlertSystem.ShowActiveEvents();
