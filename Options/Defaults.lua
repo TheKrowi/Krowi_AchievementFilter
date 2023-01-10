@@ -129,6 +129,7 @@ options.Defaults = {
             ShowPopUps = {
                 OnLogin = true,
                 OnLoginInInstances = false,
+                OnLoginDelay = 5,
                 OnEventStart = true,
                 OnEventStartInInstances = false
             },

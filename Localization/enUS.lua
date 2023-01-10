@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-07 19-00-12 ]] --
+-- [[ Exported at 2023-01-10 23-02-47 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -582,4 +582,6 @@ L["Unchecked"] = "Unchecked";
 L["Checked"] = "Checked";
 L["Hide Date Completed"] = "Hide completion date";
 L["Hide Date Completed Desc"] = "Hide the date the achievement was completed on.";
+L["Delay"] = "Delay";
+L["Show pop ups on login delay Desc"] = "Delay the initial event pop ups when loging in.";
 

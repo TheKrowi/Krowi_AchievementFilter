@@ -131,7 +131,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
          -- arg1 = isLogin, arg2 = isReload
         if arg1 or (arg2 and addon.Diagnostics.DebugEnabled()) then
             C_Timer.After(0, function()
-                C_Timer.After(5, function()
+                C_Timer.After(addon.Options.db.EventReminders.ShowPopUps.OnLoginDelay, function()
                     addon.GUI.AlertSystem.ShowActiveEvents();
                 end);
             end);
