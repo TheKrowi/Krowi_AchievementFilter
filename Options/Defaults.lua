@@ -126,14 +126,21 @@ options.Defaults = {
             ShowAllResultsInCategory = true
         },
         EventReminders = {
-            ShowPopUps = {
-                OnLogin = true,
-                OnLoginInInstances = false,
-                OnLoginDelay = 5,
-                OnEventStart = true,
-                OnEventStartInInstances = false
+            PopUps = {
+                FadeDelay = 10,
+                MaxAlerts = 5,
+                OffsetX = 0,
+                OffsetY = 128,
+                GrowDirection = 1,
+                Spacing = 10,
+                Show = {
+                    OnLogin = true,
+                    OnLoginInInstances = false,
+                    OnLoginDelay = 5,
+                    OnEventStart = true,
+                    OnEventStartInInstances = false
+                },
             },
-            FadeDelay = 10,
             DateTimeFormat = {
                 StartTimeAndEndTime = "%d/%m/%Y %R"
             },
@@ -142,7 +149,6 @@ options.Defaults = {
                 Line2 = 3
             },
             Compact = false,
-            MaxAlerts = 5,
             RefreshInterval = 60
         },
         Filters = {

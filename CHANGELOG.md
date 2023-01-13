@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - Tooltip data for Great Gourmand of The Ruby Feast
 - Option to hide the completion date of the achievements
 - Option to delay the initial Event Reminders on login (default 5 seconds)
+- Movable Event Reminder Pop Ups
 
 ### Changed
 - Optimized the Event Handling

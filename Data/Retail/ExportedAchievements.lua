@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-07 21-37-44 ]] --
+-- [[ Exported at 2023-01-13 15-17-51 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -8603,6 +8603,7 @@ function exportedAchievements.Load(a, t)
     a[17205] = b:New(17205, 10); -- Thaldraszus Reverse: Silver
     a[17206] = b:New(17206, 10); -- Thaldraszus Reverse: Gold
     a[17207] = b:New(17207, 10); -- Discombobberlated
+    a[17305] = b:New(17305, 10); -- Trading Post: Dragonflight
     a[17314] = b:New(17314, 0); -- Heroic Edition: Tangled Dreamweaver
     a[17321] = b:New(17321, 10); -- Elders of the Dragon Isles
     a[17330] = b:New(17330, 10); -- Reverse Racer: Bronze

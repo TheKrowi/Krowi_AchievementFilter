@@ -52,7 +52,7 @@ end
 
 local FixFeaturesTutorialProgress, FixElvUISkin, FixFilters, FixEventDetails, FixShowExcludedCategory, FixEventDetails2, FixCharacters, FixEventAlert;
 local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters, FixNewEarnedByFilter, FixTabs2, FixNewEarnedByFilter2;
-local FixEventDetails3, FixTooltipCriteria, FixFocusedAchievements, FixFocusedOptions, FixEventRemindersTimeDisplay;
+local FixEventDetails3, FixTooltipCriteria, FixFocusedAchievements, FixFocusedOptions, FixEventRemindersTimeDisplay, FixEventRemindersOptions;
 function LoadSolutions()
     local solutions = {
         FixFeaturesTutorialProgress, -- 1
@@ -75,6 +75,7 @@ function LoadSolutions()
         FixFocusedAchievements, -- 18
         FixFocusedOptions, -- 19
         FixEventRemindersTimeDisplay, -- 20
+        FixEventRemindersOptions, -- 21
     };
 
     return solutions;
@@ -593,4 +594,28 @@ function FixEventRemindersTimeDisplay(prevBuild, currBuild, prevVersion, currVer
     SavedData.Fixes.FixEventRemindersTimeDisplay = true;
 
     diagnostics.Debug("EventReminders TimeDisplay Options fixed");
+end
+
+function FixEventRemindersOptions(prevBuild, currBuild, prevVersion, currVersion, firstTime)
+    -- In version 51.0 addon.Options.db.EventReminders.MaxAlerts and addon.Options.db.EventReminders.FadeDelay was
+    -- moved to addon.Options.db.EventReminders.PopUps.MaxAlerts and addon.Options.db.EventReminders.PopUps.FadeDelay
+    -- Here we clean up the old addon.Options.db.EventReminders.MaxAlerts and addon.Options.db.EventReminders.FadeDelay for users pre 51.0
+    -- addon.Options.db.EventReminders.PopUps.MaxAlerts and addon.Options.db.EventReminders.PopUps.FadeDelay are created by the Options
+    -- so we don't need to do this here, just copy if previous existed
+
+    if firstTime and currVersion > "51.0" then
+        diagnostics.Debug("EventReminders Options OK");
+        return;
+    end
+    if addon.Options.db.EventReminders.MaxAlerts == nil and addon.Options.db.EventReminders.FadeDelay == nil then
+        diagnostics.Debug("EventReminders Options already moved");
+        return;
+    end
+
+    addon.Options.db.EventReminders.PopUps.MaxAlerts = addon.Options.db.EventReminders.MaxAlerts;
+    addon.Options.db.EventReminders.PopUps.FadeDelay = addon.Options.db.EventReminders.FadeDelay;
+    addon.Options.db.EventReminders.MaxAlerts = nil;
+    addon.Options.db.EventReminders.FadeDelay = nil;
+
+    diagnostics.Debug("EventReminders Options moved");
 end

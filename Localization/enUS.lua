@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-10 23-02-47 ]] --
+-- [[ Exported at 2023-01-13 15-03-17 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -584,4 +584,14 @@ L["Hide Date Completed"] = "Hide completion date";
 L["Hide Date Completed Desc"] = "Hide the date the achievement was completed on.";
 L["Delay"] = "Delay";
 L["Show pop ups on login delay Desc"] = "Delay the initial event pop ups when loging in.";
+L["Up"] = "Up";
+L["Down"] = "Down";
+L["Location"] = "Location";
+L["Grow direction"] = "Grow direction";
+L["Grow direction Desc"] = "The direction in which new reminders will be added.";
+L["XYZ offset"] = "{xyz} offset";
+L["X offset Desc"] = "The horizontal offset from the start position.";
+L["Y offset Desc"] = "The vertical offset from the start position.";
+L["Show placeholders Desc"] = "Show a set of placeholder events so there is visual feedback of what the above settings do. They can be closed again by moving the mouse over them or right clicking them.";
+L["Placeholder"] = "Placeholder";
 

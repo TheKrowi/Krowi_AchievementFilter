@@ -708,6 +708,7 @@ function elvUI.LoadLocalization(L)
     L["Skin Ace3 Desc"] = "Applies the ElvUI skin to the Options.\n-> Ace3";
     L["Fix World Map Button"] = "Fix World Map Button";
     L["Fix World Map Button Desc"] = "When ElvUI Maps -> World Map -> Smaller World Map is enabled, the World Map Button needs fixing";
+    L["Alert System Overwrite Desc"] = "The location settings are not active when ElvUI is enabled. Moving the Loot / Alert Frames anchor will achieve the same result.";
 end
 
 local function AddInfo(orderIndex, localizationName, getFunction, visible)
@@ -760,6 +761,22 @@ function elvUI.InjectOptions()
     addon.Options.InjectOptionsTable(optionsTable, "ElvUI", "Plugins", "args");
 end
 
+local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
+local function DisableOptions()
+    local growDirection = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Options.OptionsTable.args.EventReminders.name, "cmd", "KROWIAF-0.0").args.PopUps.args.Location.args.GrowDirection;
+    growDirection.disabled = true;
+    local spacing = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Options.OptionsTable.args.EventReminders.name, "cmd", "KROWIAF-0.0").args.PopUps.args.Location.args.Spacing;
+    spacing.disabled = true;
+    local offsetX = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Options.OptionsTable.args.EventReminders.name, "cmd", "KROWIAF-0.0").args.PopUps.args.Location.args.OffsetX;
+    offsetX.disabled = true;
+    local offsetY = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Options.OptionsTable.args.EventReminders.name, "cmd", "KROWIAF-0.0").args.PopUps.args.Location.args.OffsetY;
+    offsetY.disabled = true;
+    KrowiAF_InjectOptions.AddTable("EventReminders.args.PopUps.args.Location.args", "ElvUIComment", {
+        order = OrderPP(), type = "description", width = "full",
+        name = addon.L["Alert System Overwrite Desc"]
+    });
+end
+
 function elvUI.Load()
 	addon.Diagnostics.Trace("elvUISkin.Load");
 
@@ -804,6 +821,8 @@ function elvUI.Load()
             addon.GUI.WorldMapButton:SetFrameStrata("TOOLTIP");
         end);
     end
+
+    DisableOptions();
 
     -- return SavedData.ElvUISkin.Achievements, engine, skins;
     addon.Diagnostics.Debug("ElvUISkin loaded");

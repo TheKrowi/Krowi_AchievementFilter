@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-07 21-38-07 ]] --
+-- [[ Exported at 2023-01-13 15-18-11 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -6174,6 +6174,7 @@ function exportedCategories.Load(a)
     A(t[1168], a[2357]); -- Dreadsteed of Xoroth
     A(t[1168], a[2358]); -- Charger
     A(t[1168], a[2359]); -- Swift Flight Form
+    A(t[1168], a[17305]); -- Trading Post: Dragonflight
     A(t[1168], a[17334]); -- Trading Post Enthusiast
     t[1159] = c:New(k.GetCategoryInfoTitle(96)); -- Quests
     C(t[952], t[1159]);

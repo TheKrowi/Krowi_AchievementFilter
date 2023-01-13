@@ -28,6 +28,11 @@ local timeDisplaysLine2 = {
     addon.L["Time Left"]
 };
 
+local growDirection = {
+    addon.L["Up"],
+    addon.L["Down"]
+};
+
 local startTimeAndEndTimeDateTimeFormats, startTimeAndEndTimeDateTimeValues = {}, {};
 
 local function AddFormat(formats, values, format)
@@ -48,6 +53,42 @@ AddStartTimeAndEndTimeFormat(addon.L["%Y/%m/%d %I:%M %p"]);
 AddStartTimeAndEndTimeFormat(addon.L["%c"]);
 tinsert(startTimeAndEndTimeDateTimeValues, "Custom");
 tinsert(startTimeAndEndTimeDateTimeFormats, addon.L["%m/%d/%Y %R"]);
+
+local function PopUpsGrowDirectionSet(_, value)
+    if addon.Options.db.EventReminders.PopUps.GrowDirection == value then return; end;
+    addon.Options.db.EventReminders.PopUps.GrowDirection = value;
+    addon.GUI.AlertSystem.UpdateGrowDirection();
+    AlertFrame:UpdateAnchors();
+end
+
+local function PopUpsSpavingSet(_, value)
+    if addon.Options.db.EventReminders.PopUps.Spacing == value then return; end;
+    addon.Options.db.EventReminders.PopUps.Spacing = value;
+    addon.GUI.AlertSystem.UpdateGrowDirection();
+    AlertFrame:UpdateAnchors();
+end
+
+local function PopUpsOffsetXSet(_, value)
+    if addon.Options.db.EventReminders.PopUps.OffsetX == value then return; end;
+    addon.Options.db.EventReminders.PopUps.OffsetX = value;
+    AlertFrame:ClearAllPoints();
+    AlertFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", addon.Options.db.EventReminders.PopUps.OffsetX, addon.Options.db.EventReminders.PopUps.OffsetY);
+end
+
+local function PopUpsOffsetYSet(_, value)
+    if addon.Options.db.EventReminders.PopUps.OffsetY == value then return; end;
+    addon.Options.db.EventReminders.PopUps.OffsetY = value;
+    AlertFrame:ClearAllPoints();
+    AlertFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", addon.Options.db.EventReminders.PopUps.OffsetX, addon.Options.db.EventReminders.PopUps.OffsetY);
+end
+
+local function PopUpsShowPlaceholderFunc()
+    local calendarEvents = addon.Data.CalendarEvents;
+    for _, event in next, calendarEvents do
+        event.EventDetails = {EndTime = time() + 60, Name = addon.L["Placeholder"]};
+        addon.GUI.AlertSystem:AddAlert(event, 60);
+    end
+end
 
 local function TimeDisplayLine1Set(_, value)
     if addon.Options.db.EventReminders.TimeDisplay.Line1 == value then return; end;
@@ -84,88 +125,6 @@ options.OptionsTable.args["EventReminders"] = {
             order = OrderPP(), type = "group",
             name = addon.L["General"],
             args = {
-                PopUps = {
-                    order = OrderPP(), type = "group", inline = true,
-                    name = addon.L["Pop ups"],
-                    args = {
-                        OnLoginReload = {
-                            order = OrderPP(), type = "header",
-                            name = addon.L["On Login / Reload"]
-                        },
-                        ShowPopUpsOnLogin = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
-                            name = addon.L["Show"],
-                            desc = addon.L["Show pop ups on login Desc"]:AddDefaultValueText("EventReminders.ShowPopUps.OnLogin"),
-                            get = function() return addon.Options.db.EventReminders.ShowPopUps.OnLogin; end,
-                            set = function(_, value) addon.Options.db.EventReminders.ShowPopUps.OnLogin = value; end
-                        },
-                        ShowPopUpsOnLoginInInstances = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.75),
-                            name = addon.L["In instances"],
-                            desc = addon.L["Show pop ups on login in instances Desc"]:AddDefaultValueText("EventReminders.ShowPopUps.OnLoginInInstances"),
-                            get = function() return addon.Options.db.EventReminders.ShowPopUps.OnLoginInInstances; end,
-                            set = function(_, value) addon.Options.db.EventReminders.ShowPopUps.OnLoginInInstances = value; end,
-                            disabled = function() return not addon.Options.db.EventReminders.ShowPopUps.OnLogin end
-                        },
-                        ShowPopUpsOnLoginDelay = {
-                            order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
-                            name = addon.L["Delay"],
-                            desc = addon.L["Show pop ups on login delay Desc"]:AddDefaultValueText("EventReminders.ShowPopUps.OnLoginDelay"),
-                            min = 1, max = 600, step = 1,
-                            get = function() return addon.Options.db.EventReminders.ShowPopUps.OnLoginDelay; end,
-                            set = function(_, value) addon.Options.db.EventReminders.ShowPopUps.OnLoginDelay = value; end
-                        },
-                        Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
-                        OnEventStart = {
-                            order = OrderPP(), type = "header",
-                            name = addon.L["On Event Start"]
-                        },
-                        ShowPopUpsOnEventStart = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
-                            name = addon.L["Show"],
-                            desc = addon.L["Show pop ups on event start Desc"]:AddDefaultValueText("EventReminders.ShowPopUps.OnEventStart"),
-                            get = function() return addon.Options.db.EventReminders.ShowPopUps.OnEventStart; end,
-                            set = function(_, value) addon.Options.db.EventReminders.ShowPopUps.OnEventStart = value; end
-                        },
-                        ShowPopUpsOnEventStartInInstances = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.75),
-                            name = addon.L["In instances"],
-                            desc = addon.L["Show pop ups on event start in instances Desc"]:AddDefaultValueText("EventReminders.ShowPopUps.OnEventStartInInstances"),
-                            get = function() return addon.Options.db.EventReminders.ShowPopUps.OnEventStartInInstances; end,
-                            set = function(_, value) addon.Options.db.EventReminders.ShowPopUps.OnEventStartInInstances = value; end,
-                            disabled = function() return not addon.Options.db.EventReminders.ShowPopUps.OnEventStart end
-                        },
-                        Blank2 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
-                        Other = {
-                            order = OrderPP(), type = "header",
-                            name = addon.L["Other"]
-                        },
-                        MaxAlerts = {
-                            order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
-                            name = addon.L["Max number of alerts"],
-                            desc = addon.L["Max number of alerts Desc"]:AddDefaultValueText("EventReminders.MaxAlerts"),
-                            min = 1, max = 100, step = 1,
-                            get = function() return addon.Options.db.EventReminders.MaxAlerts; end,
-                            set = function(_, value) addon.Options.db.EventReminders.MaxAlerts = value; end
-                        },
-                        FadeDelay = {
-                            order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
-                            name = addon.L["Fade delay"],
-                            desc = addon.L["Fade delay Desc"]:AddDefaultValueText("EventReminders.FadeDelay"),
-                            min = 1, max = 120, step = 1,
-                            get = function() return addon.Options.db.EventReminders.FadeDelay; end,
-                            set = function(_, value) addon.Options.db.EventReminders.FadeDelay = value; end
-                        },
-                        RefreshInterval = {
-                            order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
-                            name = addon.L["Refresh interval"],
-                            desc = addon.L["Refresh interval Desc"]:AddDefaultValueText("EventReminders.RefreshInterval"),
-                            min = 1, max = 3600, step = 1,
-                            get = function() return addon.Options.db.EventReminders.RefreshInterval; end,
-                            set = function(_, value) addon.Options.db.EventReminders.RefreshInterval = value; end
-                        }
-                    }
-                },
                 Style = {
                     order = OrderPP(), type = "group", inline = true,
                     name = addon.L["Style"],
@@ -185,7 +144,7 @@ options.OptionsTable.args["EventReminders"] = {
                     inline = true,
                     args = {
                         Line1 = {
-                            order = OrderPP(), type = "select", width = AdjustedWidth(1.5),
+                            order = OrderPP(), type = "select", width = AdjustedWidth(1.45),
                             name = addon.L["Line"] .. " 1",
                             desc = (""):AddDefaultValueText("EventReminders.TimeDisplay.Line1", timeDisplaysLine1),
                             values = timeDisplaysLine1,
@@ -193,13 +152,143 @@ options.OptionsTable.args["EventReminders"] = {
                             set = TimeDisplayLine1Set
                         },
                         Line2 = {
-                            order = OrderPP(), type = "select", width = AdjustedWidth(1.5),
+                            order = OrderPP(), type = "select", width = AdjustedWidth(1.45),
                             name = addon.L["Line"] .. " 2",
                             desc = (""):AddDefaultValueText("EventReminders.TimeDisplay.Line2", timeDisplaysLine2),
                             values = timeDisplaysLine2,
                             get = function() return addon.Options.db.EventReminders.TimeDisplay.Line2; end,
                             set = TimeDisplayLine2Set,
                             disabled = function() return addon.Options.db.EventReminders.Compact; end
+                        }
+                    }
+                }
+            }
+        },
+        PopUps = {
+            order = OrderPP(), type = "group",
+            name = addon.L["Pop ups"],
+            args = {
+                OnLoginReload = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["On Login / Reload"],
+                    args = {
+                        ShowPopUpsOnLogin = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
+                            name = addon.L["Show"],
+                            desc = addon.L["Show pop ups on login Desc"]:AddDefaultValueText("EventReminders.PopUps.Show.OnLogin"),
+                            get = function() return addon.Options.db.EventReminders.PopUps.Show.OnLogin; end,
+                            set = function(_, value) addon.Options.db.EventReminders.PopUps.Show.OnLogin = value; end
+                        },
+                        ShowPopUpsOnLoginInInstances = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.75),
+                            name = addon.L["In instances"],
+                            desc = addon.L["Show pop ups on login in instances Desc"]:AddDefaultValueText("EventReminders.PopUps.Show.OnLoginInInstances"),
+                            get = function() return addon.Options.db.EventReminders.PopUps.Show.OnLoginInInstances; end,
+                            set = function(_, value) addon.Options.db.EventReminders.PopUps.Show.OnLoginInInstances = value; end,
+                            disabled = function() return not addon.Options.db.EventReminders.PopUps.Show.OnLogin end
+                        },
+                        ShowPopUpsOnLoginDelay = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
+                            name = addon.L["Delay"],
+                            desc = addon.L["Show pop ups on login delay Desc"]:AddDefaultValueText("EventReminders.PopUps.Show.OnLoginDelay"),
+                            min = 1, max = 600, step = 1,
+                            get = function() return addon.Options.db.EventReminders.PopUps.Show.OnLoginDelay; end,
+                            set = function(_, value) addon.Options.db.EventReminders.PopUps.Show.OnLoginDelay = value; end
+                        }
+                    }
+                },
+                OnEventStart = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["On Event Start"],
+                    args = {
+                        ShowPopUpsOnEventStart = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
+                            name = addon.L["Show"],
+                            desc = addon.L["Show pop ups on event start Desc"]:AddDefaultValueText("EventReminders.PopUps.Show.OnEventStart"),
+                            get = function() return addon.Options.db.EventReminders.PopUps.Show.OnEventStart; end,
+                            set = function(_, value) addon.Options.db.EventReminders.PopUps.Show.OnEventStart = value; end
+                        },
+                        ShowPopUpsOnEventStartInInstances = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.75),
+                            name = addon.L["In instances"],
+                            desc = addon.L["Show pop ups on event start in instances Desc"]:AddDefaultValueText("EventReminders.PopUps.Show.OnEventStartInInstances"),
+                            get = function() return addon.Options.db.EventReminders.PopUps.Show.OnEventStartInInstances; end,
+                            set = function(_, value) addon.Options.db.EventReminders.PopUps.Show.OnEventStartInInstances = value; end,
+                            disabled = function() return not addon.Options.db.EventReminders.PopUps.Show.OnEventStart end
+                        }
+                    }
+                },
+                Location = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["Location"],
+                    args = {
+                        GrowDirection = {
+                            order = OrderPP(), type = "select", width = AdjustedWidth(1.45),
+                            name = addon.L["Grow direction"],
+                            desc = addon.L["Grow direction Desc"]:AddDefaultValueText("EventReminders.PopUps.GrowDirection", growDirection),
+                            values = growDirection,
+                            get = function() return addon.Options.db.EventReminders.PopUps.GrowDirection; end,
+                            set = PopUpsGrowDirectionSet
+                        },
+                        Spacing = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
+                            name = addon.L["Spacing"],
+                            desc = addon.L["Spacing Desc"]:AddDefaultValueText("EventReminders.PopUps.Spacing"),
+                            min = 0, max = 100, step = 1,
+                            get = function() return addon.Options.db.EventReminders.PopUps.Spacing; end,
+                            set = PopUpsSpavingSet
+                        },
+                        OffsetX = {
+                            order = OrderPP(), type = "range", width = "full",
+                            name = addon.L["XYZ offset"]:ReplaceVars("X"),
+                            desc = addon.L["X offset Desc"]:AddDefaultValueText("EventReminders.PopUps.OffsetX"),
+                            min = -2000, max = 2000, step = 1,
+                            get = function() return addon.Options.db.EventReminders.PopUps.OffsetX; end,
+                            set = PopUpsOffsetXSet
+                        },
+                        OffsetY = {
+                            order = OrderPP(), type = "range", width = "full",
+                            name = addon.L["XYZ offset"]:ReplaceVars("Y"),
+                            desc = addon.L["Y offset Desc"]:AddDefaultValueText("EventReminders.PopUps.OffsetY"),
+                            min = 0, max = 2000, step = 1,
+                            get = function() return addon.Options.db.EventReminders.PopUps.OffsetY; end,
+                            set = PopUpsOffsetYSet
+                        },
+                        ShowPlaceholder = {
+                            order = OrderPP(), type = "execute", width = AdjustedWidth(),
+                            name = addon.L["Show placeholders"],
+                            desc = addon.L["Show placeholders Desc"],
+                            func = PopUpsShowPlaceholderFunc
+                        }
+                    }
+                },
+                Other = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["Other"],
+                    args = {
+                        MaxAlerts = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
+                            name = addon.L["Max number of alerts"],
+                            desc = addon.L["Max number of alerts Desc"]:AddDefaultValueText("EventReminders.PopUps.MaxAlerts"),
+                            min = 1, max = 100, step = 1,
+                            get = function() return addon.Options.db.EventReminders.PopUps.MaxAlerts; end,
+                            set = function(_, value) addon.Options.db.EventReminders.PopUps.MaxAlerts = value; end
+                        },
+                        FadeDelay = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
+                            name = addon.L["Fade delay"],
+                            desc = addon.L["Fade delay Desc"]:AddDefaultValueText("EventReminders.PopUps.FadeDelay"),
+                            min = 1, max = 120, step = 1,
+                            get = function() return addon.Options.db.EventReminders.PopUps.FadeDelay; end,
+                            set = function(_, value) addon.Options.db.EventReminders.PopUps.FadeDelay = value; end
+                        },
+                        RefreshInterval = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
+                            name = addon.L["Refresh interval"],
+                            desc = addon.L["Refresh interval Desc"]:AddDefaultValueText("EventReminders.RefreshInterval"),
+                            min = 1, max = 3600, step = 1,
+                            get = function() return addon.Options.db.EventReminders.RefreshInterval; end,
+                            set = function(_, value) addon.Options.db.EventReminders.RefreshInterval = value; end
                         }
                     }
                 }
