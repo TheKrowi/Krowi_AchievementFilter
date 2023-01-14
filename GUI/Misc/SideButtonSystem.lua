@@ -44,7 +44,7 @@ end
 
 local function Refresh()
     ResetButtons();
-    local activeEvents = addon.EventData:GetActiveEvents();
+    local activeEvents = addon.EventData:GetActiveEvents(); -- Alert system does the refreshing
     for _, activeEvent in next, activeEvents do
         AddEvent(activeEvent);
     end

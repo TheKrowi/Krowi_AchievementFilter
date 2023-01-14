@@ -1,8 +1,8 @@
--- [[ Exported at 2023-01-13 15-03-17 ]] --
+-- [[ Exported at 2023-01-14 18-59-58 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2023-01-04 ]] --
+-- [[ German translation by Ta, 2023-01-13 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -245,7 +245,7 @@ L["Show Right Click Menu Desc"] = "Zeigt / Versteckt den {rightClickMenu} Button
 L["Event Reminders"] = "Event Erinnerung";
 L["Pop ups"] = "Popup-Fenster";
 L["Show"] = "Zeige";
-L["Show pop ups on login Desc"] = "Ereignis Popup-Fenster beim Neuladen oder Betreten des Spiels anzeigen/ausblenden.";
+L["Show alertSystem on login Desc"] = "Ereignis {alertSystem} beim Neuladen oder Betreten des Spiels anzeigen/ausblenden.";
 L["Max number of alerts"] = "Maximale Anzahl der Ereignis Popup-Fenster";
 L["Max number of alerts Desc"] = "Die maximale Anzahl der gleichzeitig angezeigten Ereignis Popup-Fenster.";
 L["Fade delay"] = "Ausblendeverzögerung";
@@ -571,11 +571,27 @@ L["Search Results"] = "Suchergebnisse";
 L["Are you sure you want to delete character?"] = "Sind Sie sicher, dass Sie {character} löschen möchten? Dieser Charakter wird aber wieder hinzugefügt, wenn Sie sich erneut einloggen. Wenn Sie den Charakter dauerhaft nicht sehen wollen, markieren Sie bitte die {ignore} Checkbox.";
 L["On Login / Reload"] = "Beim Login / Neu-laden";
 L["In instances"] = "In einer Instanz";
-L["Show pop ups on login in instances Desc"] = "Ein-/Ausblenden von Ereignis Popup-Fensters beim Neu-laden oder Betreten des Spiels innerhalb einer Instanz.";
-L["Show pop ups on event start Desc"] = "Ein-/Ausblenden des Popup-Fensters für ein Ereignis, sobald es beginnt.";
+L["Show alertSystem on login in instances Desc"] = "Ein-/Ausblenden von Ereignis {alertSystem} beim Neu-laden oder Betreten des Spiels innerhalb einer Instanz.";
+L["Show alertSystem on event start Desc"] = "Ein-/Ausblenden des {alertSystem} für ein Ereignis, sobald es beginnt.";
 L["On Event Start"] = "Bei Ereignisbeginn";
-L["Show pop ups on event start in instances Desc"] = "Ein-/Ausblenden des Popup-Fensters für ein Ereignis, sobald es beginnt, während man sich in einer Instanz befindet.";
+L["Show alertSystem on event start in instances Desc"] = "Ein-/Ausblenden des {alertSystem} für ein Ereignis, sobald es beginnt, während man sich in einer Instanz befindet.";
 L["Refresh interval"] = "Aktualisierungsintervall";
 L["Refresh interval Desc"] = "Die Zeit in Sekunden zwischen den Aktualisierungen der Ereignis-Daten. Eine längere Zeitspanne kann die Erstellung neuer Popup-Fenster bzw. das Bereinigen vorhandener Popup-Fenster verzögern.";
 L["Default value"] = "Vorgabewert (Standard)";
+L["Unchecked"] = "Nicht aktiviert";
+L["Checked"] = "Aktivert";
+L["Hide Date Completed"] = "Erfolgs Abschluss-Datum verbergen";
+L["Hide Date Completed Desc"] = "Verbirgt das Datum, an dem der Erfolg abgeschlossen wurde.";
+L["Delay"] = "Verzögerung";
+L["Show pop ups on login delay Desc"] = "Verzögern Sie das Einblenden der ersten Ereignis-Popups beim Einloggen.";
+L["Up"] = "Hoch";
+L["Down"] = "Runter";
+L["Location"] = "Ort";
+L["Grow direction"] = "Richtung";
+L["Grow direction Desc"] = "Die Richtung, in der neue Benachrichtigungs-Fenster hinzugefügt werden sollen.";
+L["XYZ offset"] = "{xyz} offset";
+L["X offset Desc"] = "Der horizontale Versatz von der Startposition.";
+L["Y offset Desc"] = "Der vertikale Versatz von der Startposition.";
+L["Show placeholders Desc"] = "Zeigt eine Reihe von Platzhalter-Ereignissen an, um eine visuelle Anzeige der Wirkung der oben genannten Einstellungen zu ermöglichen. Sie können wieder geschlossen werden, indem Sie die Maus über sie bewegen oder mit der rechten Maustaste darauf klicken.";
+L["Placeholder"] = "Platzhalter";
 

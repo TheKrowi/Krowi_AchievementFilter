@@ -136,10 +136,17 @@ options.Defaults = {
                 Show = {
                     OnLogin = true,
                     OnLoginInInstances = false,
-                    OnLoginDelay = 5,
                     OnEventStart = true,
                     OnEventStartInInstances = false
                 },
+            },
+            ChatMessages = {
+                Show = {
+                    OnLogin = false,
+                    OnLoginInInstances = false,
+                    OnEventStart = false,
+                    OnEventStartInInstances = false
+                }
             },
             DateTimeFormat = {
                 StartTimeAndEndTime = "%d/%m/%Y %R"
@@ -149,7 +156,8 @@ options.Defaults = {
                 Line2 = 3
             },
             Compact = false,
-            RefreshInterval = 60
+            RefreshInterval = 60,
+            OnLoginDelay = 5,
         },
         Filters = {
             ResetFactionFilters = true

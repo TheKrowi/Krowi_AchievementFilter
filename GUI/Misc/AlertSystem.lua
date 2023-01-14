@@ -5,41 +5,117 @@ gui.AlertSystem = {};
 local alertSystem = gui.AlertSystem;
 local helperFrame;
 
-local function OnUpdate(self, elapsed)
-    self.TimeSinceLastUpdate = self.TimeSinceLastUpdate + elapsed;
-    if self.TimeSinceLastUpdate > addon.Options.db.EventReminders.RefreshInterval then
-        self.TimeSinceLastUpdate = 0;
-        local activeEvents = addon.EventData:GetActiveEvents(true); -- This does the refresh of the event data and should be the only location
-        local isInInstance = (select(3, GetInstanceInfo())) ~= 0;
-        if not addon.Options.db.EventReminders.PopUps.Show.OnEventStart or (not addon.Options.db.EventReminders.PopUps.Show.OnEventStartInInstances and isInInstance) then
-            return;
-        end
+local function GetRuntimeText(event, chat)
+    local runtime, timeLeft;
 
-        for _, event in next, activeEvents do
-            if not SavedData.ActiveEvents[event.Id] then
-                alertSystem:AddAlert(event, addon.Options.db.EventReminders.PopUps.FadeDelay);
+    if event.EventDetails == nil or event.EventDetails.EndTime == nil then
+        if event.MapId then
+            event.EventDetails = addon.EventData.GetEventDetails(event);
+            if event.EventDetails == nil or event.EventDetails.EndTime == nil then
+                return addon.L["No time data available"], "";
             end
-            SavedData.ActiveEvents[event.Id] = event.EventDetails and event.EventDetails.EndTime or (time() + 3600);
-        end
-        for i, endTime in next, SavedData.ActiveEvents do
-            if endTime < time() then
-                SavedData.ActiveEvents[i] = nil;
-            end
+        else
+            return addon.L["No time data available"], "";
         end
     end
+
+    if addon.Options.db.EventReminders.TimeDisplay.Line1 == 2 or addon.Options.db.EventReminders.TimeDisplay.Line2 == 3 or chat then -- Time Left
+        local secondsLeft = event.EventDetails.EndTime - time();
+        local days = floor(secondsLeft / 86400);
+        local hours = floor(mod(secondsLeft, 86400) / 3600);
+        local minutes = floor(mod(secondsLeft, 3600) / 60);
+        local seconds = floor(mod(secondsLeft, 60));
+        timeLeft = days > 0 and days .. " Days" or "";
+        timeLeft = timeLeft .. (days > 0 and " " or "") .. (hours > 0 and hours .. " Hr" or "");
+        timeLeft = timeLeft .. (hours > 0 and " " or "") .. (minutes > 0 and minutes .. " Min" or "");
+        timeLeft = timeLeft .. (minutes > 0 and " " or "") .. (seconds > 0 and seconds .. " Sec" or "");
+    end
+
+    if chat then
+        return timeLeft;
+    end
+
+    if addon.Options.db.EventReminders.TimeDisplay.Line1 == 1 then -- End Time
+        runtime = tostring(date(addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime, event.EventDetails.EndTime));
+    elseif addon.Options.db.EventReminders.TimeDisplay.Line1 == 2 then -- Time Left
+        runtime = timeLeft;
+    end
+
+    if addon.Options.db.EventReminders.TimeDisplay.Line2 == 1 or addon.Options.db.EventReminders.Compact then -- None
+        return runtime;
+    elseif addon.Options.db.EventReminders.TimeDisplay.Line2 == 2 then -- End Time
+        return runtime .. "\n" .. tostring(date(addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime, event.EventDetails.EndTime));
+    elseif addon.Options.db.EventReminders.TimeDisplay.Line2 == 3 then -- Time Left
+        return runtime .. "\n" .. timeLeft;
+    end
+
+    return runtime;
 end
 
-local function ShowActiveEvents()
-    local isInInstance = (select(3, GetInstanceInfo())) ~= 0;
-    if not addon.Options.db.EventReminders.PopUps.Show.OnLogin or (not addon.Options.db.EventReminders.PopUps.Show.OnLoginInInstances and isInInstance) then
+local printOnce;
+local function OnUpdate(self, elapsed)
+    self.TimeSinceLastUpdate = self.TimeSinceLastUpdate + elapsed;
+    if self.TimeSinceLastUpdate <= addon.Options.db.EventReminders.RefreshInterval then
         return;
     end
 
-    local activeEvents = addon.EventData:GetActiveEvents();
+    self.TimeSinceLastUpdate = 0;
+    local isInInstance = (select(3, GetInstanceInfo())) ~= 0;
+    local showPopUps = addon.Options.db.EventReminders.PopUps.Show.OnEventStart and (not isInInstance or (addon.Options.db.EventReminders.PopUps.Show.OnEventStartInInstances and isInInstance));
+    local showChatMessages = addon.Options.db.EventReminders.ChatMessages.Show.OnEventStart and (not isInInstance or (addon.Options.db.EventReminders.ChatMessages.Show.OnEventStartInInstances and isInInstance));
+
+    if not showPopUps and not showChatMessages then
+        return;
+    end
+
+    local activeEvents = addon.EventData:GetActiveEvents(true);
+    for _, event in next, activeEvents do
+        if not SavedData.ActiveEvents[event.Id] then
+            if showPopUps then
+                alertSystem:AddAlert(event, addon.Options.db.EventReminders.PopUps.FadeDelay);
+            end
+            if showChatMessages then
+                if not printOnce then
+                    print(addon.MetaData.Title, "-", addon.L["Active events"] .. ":");
+                    printOnce = true;
+                end
+                print("    -", event.EventDetails and event.EventDetails.Name or addon.L["Collecting data"], "(" .. GetRuntimeText(event, true) .. ")");
+            end
+        end
+        SavedData.ActiveEvents[event.Id] = event.EventDetails and event.EventDetails.EndTime or (time() + 3600);
+    end
+    for i, endTime in next, SavedData.ActiveEvents do
+        if endTime < time() then
+            SavedData.ActiveEvents[i] = nil;
+        end
+    end
+    printOnce = nil;
+end
+
+local function ShowActiveEventsOnLogin()
+    local isInInstance = (select(3, GetInstanceInfo())) ~= 0;
+    local showPopUps = addon.Options.db.EventReminders.PopUps.Show.OnLogin and (not isInInstance or (addon.Options.db.EventReminders.PopUps.Show.OnLoginInInstances and isInInstance));
+    local showChatMessages = addon.Options.db.EventReminders.ChatMessages.Show.OnLogin and (not isInInstance or (addon.Options.db.EventReminders.ChatMessages.Show.OnLoginInInstances and isInInstance));
+
+    if not showPopUps and not showChatMessages then
+        return;
+    end
+
+    local activeEvents = addon.EventData:GetActiveEvents(true);
     for _, event in next, activeEvents do
         SavedData.ActiveEvents[event.Id] = event.EventDetails and event.EventDetails.EndTime or (time() + 3600);
-        alertSystem:AddAlert(event, addon.Options.db.EventReminders.PopUps.FadeDelay);
+        if showPopUps then
+            alertSystem:AddAlert(event, addon.Options.db.EventReminders.PopUps.FadeDelay);
+        end
+        if showChatMessages then
+            if not printOnce then
+                print(addon.MetaData.Title, "-", addon.L["Active events"] .. ":");
+                printOnce = true;
+            end
+            print("    -", event.EventDetails and event.EventDetails.Name or addon.L["Collecting data"], "(" .. GetRuntimeText(event, true) .. ")");
+        end
     end
+    printOnce = nil;
 
     helperFrame:SetScript("OnUpdate", OnUpdate); -- Set OnUpdate here to prevent OnUpdate and ShowActiveEvents to run at the same time
 end
@@ -126,8 +202,9 @@ function alertSystem:Load()
 		OverwriteAdjustAnchors(alertFrameSubSystem)
 	end)
 
-    alertSystem.ShowActiveEvents = ShowActiveEvents;
+    alertSystem.ShowActiveEventsOnLogin = ShowActiveEventsOnLogin;
     alertSystem.UpdateGrowDirection = UpdateGrowDirection;
+    alertSystem.GetRuntimeText = GetRuntimeText;
 
     SavedData.ActiveEvents = SavedData.ActiveEvents or {};
 

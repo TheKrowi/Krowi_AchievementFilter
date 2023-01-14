@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-13 15-18-11 ]] --
+-- [[ Exported at 2023-01-14 19-07-11 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -8995,50 +8995,6 @@ function exportedCategories.Load(a)
     A(t[1347], a[15251]); -- The Jailer's Gauntlet: Layer 1
     t[1372] = c:New(k.L["Going away with"]); -- Going away with
     C(t[971], t[1372]);
-    t[1373] = c:New(k.L["Dragonflight Pre-patch"]); -- Dragonflight Pre-patch
-    C(t[1372], t[1373]);
-    t[1376] = c:New(k.GetCategoryInfoTitle(15272)); -- Dungeons
-    C(t[1373], t[1376]);
-    A(t[1376], a[15688]); -- Shadowlands Keystone Explorer: Season Four
-    A(t[1376], a[15689]); -- Shadowlands Keystone Conqueror: Season Four
-    A(t[1376], a[15690]); -- Shadowlands Keystone Master: Season Four
-    A(t[1376], a[15756]); -- Shrouded Hero: Shadowlands Season 4
-    A(t[1376], a[15694]); -- Keystone Hero: Iron Docks
-    A(t[1376], a[15695]); -- Keystone Hero: Grimrail Depot
-    A(t[1376], a[15692]); -- Keystone Hero: Return to Karazhan
-    A(t[1376], a[15693]); -- Keystone Hero: Operation: Mechagon
-    t[1377] = c:New(k.GetCategoryInfoTitle(95)); -- Player vs. Player
-    C(t[1373], t[1377]);
-    A(t[1377], a[15609]); -- Combatant I: Shadowlands Season 4
-    A(t[1377], a[15610]); -- Combatant II: Shadowlands Season 4
-    A(t[1377], a[15600]); -- Challenger I: Shadowlands Season 4
-    A(t[1377], a[15601]); -- Challenger II: Shadowlands Season 4
-    A(t[1377], a[15602]); -- Rival I: Shadowlands Season 4
-    A(t[1377], a[15603]); -- Rival II: Shadowlands Season 4
-    A(t[1377], a[15604]); -- Duelist: Shadowlands Season 4
-    A(t[1377], a[15639]); -- Elite: Shadowlands Season 4
-    A(t[1377], a[15606]); -- Eternal Gladiator: Shadowlands Season 4
-    A(t[1377], a[15608]); -- Hero of the Alliance: Eternal
-    A(t[1377], a[15607]); -- Hero of the Horde: Eternal
-    t[1375] = c:New(k.L["Dragonflight"]); -- Dragonflight
-    C(t[1372], t[1375]);
-    A(t[1375], a[15654]); -- Back from the Beyond
-    t[1374] = c:New(k.GetCategoryInfoTitle(15271)); -- Raids
-    C(t[1375], t[1374]);
-    A(t[1374], a[15663]); -- Fate of Nathria
-    A(t[1374], a[15664]); -- Heroic: Fate of Nathria
-    A(t[1374], a[15665]); -- Mythic: Fate of Nathria
-    A(t[1374], a[15667]); -- Fate of Domination
-    A(t[1374], a[15668]); -- Heroic: Fate of Domination
-    A(t[1374], a[15669]); -- Mythic: Fate of Domination
-    A(t[1374], a[15681]); -- Fate of the Sepulcher
-    A(t[1374], a[15682]); -- Heroic: Fate of the Sepulcher
-    A(t[1374], a[15683]); -- Mythic: Fate of the Sepulcher
-    A(t[1374], a[15684]); -- Fates of the Shadowlands Raids
-    A(t[1374], a[15685]); -- Heroic: Fates of the Shadowlands Raids
-    A(t[1374], a[15687]); -- Mythic: Fates of the Shadowlands Raids
-    A(t[1374], a[15468]); -- We Are All Made of Stars (Heroic)
-    A(t[1374], a[15469]); -- We Are All Made of Stars (Mythic)
     t[1367] = c:New(k.L["Tracking Achievements"]); -- Tracking Achievements
     C(t[971], t[1367]);
     t[1367].HasFlexibleData = true;

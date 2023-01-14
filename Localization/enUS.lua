@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-13 15-03-17 ]] --
+-- [[ Exported at 2023-01-14 18-59-58 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -245,7 +245,7 @@ L["Show Right Click Menu Desc"] = "Show / hide {rightClickMenu} button on each a
 L["Event Reminders"] = "Event Reminders";
 L["Pop ups"] = "Pop ups";
 L["Show"] = "Show";
-L["Show pop ups on login Desc"] = "Show / hide event pop ups when reloading or joining the game.";
+L["Show alertSystem on login Desc"] = "Show / hide event {alertSystem} when reloading or joining the game.";
 L["Max number of alerts"] = "Max number of alerts";
 L["Max number of alerts Desc"] = "The maximum number of alerts shown at once.";
 L["Fade delay"] = "Fade delay";
@@ -571,10 +571,10 @@ L["Search Results"] = "Search Results";
 L["Are you sure you want to delete character?"] = "Are you sure you want to delete {character}? This character will be added again if you log in to it. If you don't want to see this character, check the {ignore} flag.";
 L["On Login / Reload"] = "On Login / Reload";
 L["In instances"] = "In instances";
-L["Show pop ups on login in instances Desc"] = "Show / hide event pop ups when reloading or joining the game while inside an instance.";
-L["Show pop ups on event start Desc"] = "Show / hide event pop up for an event when it starts.";
+L["Show alertSystem on login in instances Desc"] = "Show / hide event {alertSystem} when reloading or joining the game while inside an instance.";
+L["Show alertSystem on event start Desc"] = "Show / hide event {alertSystem} for an event when it starts.";
 L["On Event Start"] = "On Event Start";
-L["Show pop ups on event start in instances Desc"] = "Show / hide event pop up for an event when it starts while inside an instance.";
+L["Show alertSystem on event start in instances Desc"] = "Show / hide event {alertSystem} for an event when it starts while inside an instance.";
 L["Refresh interval"] = "Refresh interval";
 L["Refresh interval Desc"] = "The time in seconds between refreshing the event data. A longer time may delay creation of new pop ups and clean-up of old ones.";
 L["Default value"] = "Default value";
@@ -594,4 +594,5 @@ L["X offset Desc"] = "The horizontal offset from the start position.";
 L["Y offset Desc"] = "The vertical offset from the start position.";
 L["Show placeholders Desc"] = "Show a set of placeholder events so there is visual feedback of what the above settings do. They can be closed again by moving the mouse over them or right clicking them.";
 L["Placeholder"] = "Placeholder";
+L["Chat messages"] = "Chat messages";
 

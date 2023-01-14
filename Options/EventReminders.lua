@@ -161,6 +161,28 @@ options.OptionsTable.args["EventReminders"] = {
                             disabled = function() return addon.Options.db.EventReminders.Compact; end
                         }
                     }
+                },
+                Other = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["Other"],
+                    args = {
+                        RefreshInterval = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
+                            name = addon.L["Refresh interval"],
+                            desc = addon.L["Refresh interval Desc"]:AddDefaultValueText("EventReminders.RefreshInterval"),
+                            min = 1, max = 3600, step = 1,
+                            get = function() return addon.Options.db.EventReminders.RefreshInterval; end,
+                            set = function(_, value) addon.Options.db.EventReminders.RefreshInterval = value; end
+                        },
+                        ShowPopUpsOnLoginDelay = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
+                            name = addon.L["Delay"],
+                            desc = addon.L["Show pop ups on login delay Desc"]:AddDefaultValueText("EventReminders.OnLoginDelay"),
+                            min = 1, max = 600, step = 1,
+                            get = function() return addon.Options.db.EventReminders.OnLoginDelay; end,
+                            set = function(_, value) addon.Options.db.EventReminders.OnLoginDelay = value; end
+                        }
+                    }
                 }
             }
         },
@@ -175,25 +197,17 @@ options.OptionsTable.args["EventReminders"] = {
                         ShowPopUpsOnLogin = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
                             name = addon.L["Show"],
-                            desc = addon.L["Show pop ups on login Desc"]:AddDefaultValueText("EventReminders.PopUps.Show.OnLogin"),
+                            desc = addon.L["Show alertSystem on login Desc"]:ReplaceVars(addon.L["Pop ups"]):AddDefaultValueText("EventReminders.PopUps.Show.OnLogin"),
                             get = function() return addon.Options.db.EventReminders.PopUps.Show.OnLogin; end,
                             set = function(_, value) addon.Options.db.EventReminders.PopUps.Show.OnLogin = value; end
                         },
                         ShowPopUpsOnLoginInInstances = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(0.75),
                             name = addon.L["In instances"],
-                            desc = addon.L["Show pop ups on login in instances Desc"]:AddDefaultValueText("EventReminders.PopUps.Show.OnLoginInInstances"),
+                            desc = addon.L["Show alertSystem on login in instances Desc"]:ReplaceVars(addon.L["Pop ups"]):AddDefaultValueText("EventReminders.PopUps.Show.OnLoginInInstances"),
                             get = function() return addon.Options.db.EventReminders.PopUps.Show.OnLoginInInstances; end,
                             set = function(_, value) addon.Options.db.EventReminders.PopUps.Show.OnLoginInInstances = value; end,
                             disabled = function() return not addon.Options.db.EventReminders.PopUps.Show.OnLogin end
-                        },
-                        ShowPopUpsOnLoginDelay = {
-                            order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
-                            name = addon.L["Delay"],
-                            desc = addon.L["Show pop ups on login delay Desc"]:AddDefaultValueText("EventReminders.PopUps.Show.OnLoginDelay"),
-                            min = 1, max = 600, step = 1,
-                            get = function() return addon.Options.db.EventReminders.PopUps.Show.OnLoginDelay; end,
-                            set = function(_, value) addon.Options.db.EventReminders.PopUps.Show.OnLoginDelay = value; end
                         }
                     }
                 },
@@ -204,14 +218,14 @@ options.OptionsTable.args["EventReminders"] = {
                         ShowPopUpsOnEventStart = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
                             name = addon.L["Show"],
-                            desc = addon.L["Show pop ups on event start Desc"]:AddDefaultValueText("EventReminders.PopUps.Show.OnEventStart"),
+                            desc = addon.L["Show alertSystem on event start Desc"]:ReplaceVars(addon.L["Pop ups"]):AddDefaultValueText("EventReminders.PopUps.Show.OnEventStart"),
                             get = function() return addon.Options.db.EventReminders.PopUps.Show.OnEventStart; end,
                             set = function(_, value) addon.Options.db.EventReminders.PopUps.Show.OnEventStart = value; end
                         },
                         ShowPopUpsOnEventStartInInstances = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(0.75),
                             name = addon.L["In instances"],
-                            desc = addon.L["Show pop ups on event start in instances Desc"]:AddDefaultValueText("EventReminders.PopUps.Show.OnEventStartInInstances"),
+                            desc = addon.L["Show alertSystem on event start in instances Desc"]:ReplaceVars(addon.L["Pop ups"]):AddDefaultValueText("EventReminders.PopUps.Show.OnEventStartInInstances"),
                             get = function() return addon.Options.db.EventReminders.PopUps.Show.OnEventStartInInstances; end,
                             set = function(_, value) addon.Options.db.EventReminders.PopUps.Show.OnEventStartInInstances = value; end,
                             disabled = function() return not addon.Options.db.EventReminders.PopUps.Show.OnEventStart end
@@ -281,14 +295,54 @@ options.OptionsTable.args["EventReminders"] = {
                             min = 1, max = 120, step = 1,
                             get = function() return addon.Options.db.EventReminders.PopUps.FadeDelay; end,
                             set = function(_, value) addon.Options.db.EventReminders.PopUps.FadeDelay = value; end
+                        }
+                    }
+                }
+            }
+        },
+        ChatMessages = {
+            order = OrderPP(), type = "group",
+            name = addon.L["Chat messages"],
+            args = {
+                OnLoginReload = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["On Login / Reload"],
+                    args = {
+                        ShowChatMessagesOnLogin = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
+                            name = addon.L["Show"],
+                            desc = addon.L["Show alertSystem on login Desc"]:ReplaceVars(addon.L["Chat messages"]):AddDefaultValueText("EventReminders.ChatMessages.Show.OnLogin"),
+                            get = function() return addon.Options.db.EventReminders.ChatMessages.Show.OnLogin; end,
+                            set = function(_, value) addon.Options.db.EventReminders.ChatMessages.Show.OnLogin = value; end
                         },
-                        RefreshInterval = {
-                            order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
-                            name = addon.L["Refresh interval"],
-                            desc = addon.L["Refresh interval Desc"]:AddDefaultValueText("EventReminders.RefreshInterval"),
-                            min = 1, max = 3600, step = 1,
-                            get = function() return addon.Options.db.EventReminders.RefreshInterval; end,
-                            set = function(_, value) addon.Options.db.EventReminders.RefreshInterval = value; end
+                        ShowChatMessagesOnLoginInInstances = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.75),
+                            name = addon.L["In instances"],
+                            desc = addon.L["Show alertSystem on login in instances Desc"]:ReplaceVars(addon.L["Chat messages"]):AddDefaultValueText("EventReminders.ChatMessages.Show.OnLoginInInstances"),
+                            get = function() return addon.Options.db.EventReminders.ChatMessages.Show.OnLoginInInstances; end,
+                            set = function(_, value) addon.Options.db.EventReminders.ChatMessages.Show.OnLoginInInstances = value; end,
+                            disabled = function() return not addon.Options.db.EventReminders.ChatMessages.Show.OnLogin end
+                        }
+                    }
+                },
+                OnEventStart = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["On Event Start"],
+                    args = {
+                        ShowChatMessagesOnEventStart = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
+                            name = addon.L["Show"],
+                            desc = addon.L["Show alertSystem on event start Desc"]:ReplaceVars(addon.L["Chat messages"]):AddDefaultValueText("EventReminders.ChatMessages.Show.OnEventStart"),
+                            get = function() return addon.Options.db.EventReminders.ChatMessages.Show.OnEventStart; end,
+                            set = function(_, value) addon.Options.db.EventReminders.ChatMessages.Show.OnEventStart = value; end
+                        },
+                        ShowChatMessagesOnEventStartInInstances = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.75),
+                            name = addon.L["In instances"],
+                            desc = addon.L["Show alertSystem on event start in instances Desc"]:ReplaceVars(addon.L["Chat messages"]):AddDefaultValueText("EventReminders.ChatMessages.Show.OnEventStartInInstances"),
+                            get = function() return addon.Options.db.EventReminders.ChatMessages.Show.OnEventStartInInstances; end,
+                            set = function(_, value) addon.Options.db.EventReminders.ChatMessages.Show.OnEventStartInInstances = value; end,
+                            disabled = function() return not addon.Options.db.EventReminders.ChatMessages.Show.OnEventStart end
                         }
                     }
                 }
