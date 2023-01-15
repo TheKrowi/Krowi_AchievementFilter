@@ -10,6 +10,7 @@
 [*]Option to hide the completion date of the achievements
 [*]Option to delay the initial Event Reminders on login (default 5 seconds)
 [*]Movable Event Reminder Pop Ups
+[*]Event Reminders as Chat Messages
 [/LIST]
 
 [B]Changed[/B]
@@ -36,4 +37,5 @@
 [*]Individual Dragon Racing achievements as they are now marked as tracking achievements
 [*]Start Time display for Event Reminders (This reduces the manual data collection on my end and has little to no importance)
 [*]Fated Raids Calendar Events
+[*]Going away with Dragonflight category
 [/LIST]
