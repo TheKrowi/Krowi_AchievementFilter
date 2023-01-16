@@ -11,12 +11,12 @@
     <Include file="AceConfig-3.0\AceConfig-3.0.xml" />
 
     <Script file="MetaLua\MetaLua.lua" />
-    <Include file="Krowi_Util-1.0\Krowi_Util-1.0.xml" />
-    <Include file="Krowi_PopopDialog-1.0\Krowi_PopopDialog-1.0.xml" />
-    <Include file="Krowi_Tutorials-3.0\Krowi_Tutorials-3.0.xml" />
-    <Include file="Krowi_Menu-1.0\Krowi_Menu-1.0.xml" />
-    <Include file="Krowi_ProgressBar-1.1\Krowi_ProgressBar-1.1.xml" />
-    <Include file="Krowi_WorldMapButtons-1.4\Krowi_WorldMapButtons-1.4.xml" />
+    <Include file="Krowi_Util\Krowi_Util-1.0.xml" />
+    <Include file="Krowi_PopopDialog\Krowi_PopopDialog-1.0.xml" />
+    <Include file="Krowi_Tutorials\Krowi_Tutorials-3.0.xml" />
+    <Include file="Krowi_Menu\Krowi_Menu-1.0.xml" />
+    <Include file="Krowi_ProgressBar\Krowi_ProgressBar-1.1.xml" />
+    <Include file="Krowi_WorldMapButtons\Krowi_WorldMapButtons-1.4.xml" />
     
     <Script file="Libs.lua" />
 </Ui>

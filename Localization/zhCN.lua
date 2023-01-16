@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-22 10-38-09 ]] --
+-- [[ Exported at 2023-01-16 17-36-03 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -200,7 +200,7 @@ L["Right Click Menu"] = "右键菜单";
 L["Show Right Click Menu"] = "显示 {rightClickMenu} 按钮";
 L["Event Reminders"] = "事件提醒";
 L["Pop ups"] = "弹窗";
-L["Show pop ups"] = "显示弹窗";
+L["Show"] = "显示弹窗";
 L["Max number of alerts"] = "成就提醒的最大数量";
 L["Fade delay"] = "消失延迟";
 L["Compact"] = "简洁模式";
@@ -441,10 +441,31 @@ L["Siege on Dragonbane Keep"] = "围攻灭龙要塞";
 L["Community Feast"] = "社区盛宴";
 L["Needs to be petted for achievement"] = "{forAchievement} 需要抚摸";
 L["Already petted for achievement"] = "{forAchievement} 已抚摸";
+L["Toggle window once opened"] = "打开后切换窗口";
 L["%d/%m/%Y %I:%M %p"] = "%d/%m/%Y %I:%M %p";
 L["%m/%d/%Y %R"] = "%m/%d/%Y %R";
 L["%m/%d/%Y %I:%M %p"] = "%m/%d/%Y %I:%M %p";
 L["%Y/%m/%d %R"] = "%Y/%m/%d %R";
 L["%Y/%m/%d %I:%M %p"] = "%Y/%m/%d %I:%M %p";
 L["%c"] = "%c";
+L["Show All Results in Category"] = "在分类中显示所有结果";
+L["Search Results"] = "搜索结果";
+L["Are you sure you want to delete character?"] = "是否确认删除 {character}？该角色在下次登录时会重新添加。如果你不想看到这个角色，请勾选 {ignore} 标签。";
+L["On Login / Reload"] = "登录/重载时";
+L["In instances"] = "副本中";
+L["On Event Start"] = "事件开始时";
+L["Refresh interval"] = "刷新间隔";
+L["Default value"] = "默认值";
+L["Unchecked"] = "未勾选";
+L["Checked"] = "已勾选";
+L["Hide Date Completed"] = "隐藏完成时间";
+L["Delay"] = "延迟";
+L["Up"] = "上";
+L["Down"] = "下";
+L["Location"] = "位置";
+L["Grow direction"] = "增长方向";
+L["XYZ offset"] = "{xyz} 偏移量";
+L["Placeholder"] = "占位符";
+L["Chat messages"] = "聊天消息";
+L["Diablo IV"] = "暗黑破坏神IV";
 

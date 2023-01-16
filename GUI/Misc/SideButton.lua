@@ -14,7 +14,7 @@ end
 local function SetEvent(self, event)
     self.Event = event;
 	self.Icon.Texture:SetTexture(event.Icon);
-    self.Name:SetText(event.EventDetails.Name);
+    self.Name:SetText(event.EventDetails and event.EventDetails.Name or addon.L["Collecting data"]);
     self:UpdateEventRuntime();
     self.TimeSinceLastUpdate = 0;
     self:SetScript("OnUpdate", KrowiAF_AlertFrame_OnUpdate);

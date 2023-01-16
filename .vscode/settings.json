@@ -423,7 +423,8 @@
         "IsRightControlKeyDown",
         "DELETE",
         "StaticPopup_IsCustomGenericConfirmationShown",
-        "StaticPopup_ShowCustomGenericConfirmation"
+        "StaticPopup_ShowCustomGenericConfirmation",
+        "strsplittable"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
@@ -446,13 +447,13 @@
             "exclude":"**/{.git,.github,.vscode,Changelogs,Descriptions}/**",
             "deleteTargetOnDeploy": true
         },
-        {
-            "source":"C:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
-            "target":"F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\Krowi_AchievementFilter",
-            "include":"**/*.{lua,toc,blp,tga,xml,md}",
-            "exclude":"**/{.git,.github,.vscode,Changelogs,Descriptions}/**",
-            "deleteTargetOnDeploy": true
-        },
+        // {
+        //     "source":"C:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
+        //     "target":"F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\Krowi_AchievementFilter",
+        //     "include":"**/*.{lua,toc,blp,tga,xml,md}",
+        //     "exclude":"**/{.git,.github,.vscode,Changelogs,Descriptions}/**",
+        //     "deleteTargetOnDeploy": true
+        // },
         // {
         //     "source":"C:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
         //     "target":"F:\\World of Warcraft\\_beta_\\Interface\\AddOns\\Krowi_AchievementFilter",

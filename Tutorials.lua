@@ -343,9 +343,9 @@ function tutorials.Load()
             self.Text = self.Text:ReplaceVars
             {
                 popUpEnabled = GetText1Or2(options.EventReminders.ShowPopUps, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
-                numPopUps = tostring(addon.Options.db.EventReminders.MaxAlerts):SetColorYellow(),
+                numPopUps = tostring(addon.Options.db.EventReminders.PopUps.MaxAlerts):SetColorYellow(),
                 compactEnabled = GetText1Or2(options.EventReminders.Compact, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
-                eventAlertFadeDelay = tostring(addon.Options.db.EventReminders.FadeDelay):SetColorYellow()
+                eventAlertFadeDelay = tostring(addon.Options.db.EventReminders.PopUps.FadeDelay):SetColorYellow()
             };
         end
     });

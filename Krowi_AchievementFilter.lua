@@ -20,17 +20,17 @@ LibStub(addon.Libs.AceEvent):Embed(addon.Event);
 addon.Tabs.Load();
 
 -- [[ Binding names ]] --
-addon.Bindings = {};
-BINDING_HEADER_AF_NAME = addon.MetaData.Title;
-for _, t in next, addon.TabsOrder do
-    local tab = addon.Tabs[t];
-    if type(tab) ~= "function" then
-        tinsert(addon.Bindings, {Name = "KrowiAF_OPEN_TAB_" .. tostring(tab.Name), Text = addon.L["Toggle"] .. " " .. tab.Text .. " "  .. addon.L["tab"]});
-        _G["BINDING_NAME_" .. addon.Bindings[#addon.Bindings].Name] = addon.Bindings[#addon.Bindings].Text;
-    end
-end
-tinsert(addon.Bindings, {Name = "KrowiAF_OPEN_CAT_Current_Zone", Text = addon.L["Open"] .. " " .. addon.L["Current Zone"] .. " " .. addon.L["Category"]});
-_G["BINDING_NAME_" .. addon.Bindings[#addon.Bindings].Name] = addon.Bindings[#addon.Bindings].Text;
+-- addon.Bindings = {};
+-- BINDING_HEADER_AF_NAME = addon.MetaData.Title;
+-- for _, t in next, addon.TabsOrder do
+--     local tab = addon.Tabs[t];
+--     if type(tab) ~= "function" then
+--         tinsert(addon.Bindings, {Name = "KrowiAF_OPEN_TAB_" .. tostring(tab.Name), Text = addon.L["Toggle"] .. " " .. tab.Text .. " "  .. addon.L["tab"]});
+--         _G["BINDING_NAME_" .. addon.Bindings[#addon.Bindings].Name] = addon.Bindings[#addon.Bindings].Text;
+--     end
+-- end
+-- tinsert(addon.Bindings, {Name = "KrowiAF_OPEN_CAT_Current_Zone", Text = addon.L["Open"] .. " " .. addon.L["Current Zone"] .. " " .. addon.L["Category"]});
+-- _G["BINDING_NAME_" .. addon.Bindings[#addon.Bindings].Name] = addon.Bindings[#addon.Bindings].Text;
 
 -- [[ Faction data ]] --
 addon.Faction = {};
@@ -48,17 +48,13 @@ loadHelper:RegisterEvent("ACHIEVEMENT_EARNED");
 local function LoadKrowi_AchievementFilter()
     addon.Diagnostics.Load();
 
-    addon.Data.ExportedCategories.InjectOptions();
-    addon.Options.Layout.AddMoreWatchListOptions();
-    addon.Options.Layout.AddMoreTrackingAchievementsOptions();
-    addon.Options.Layout.AddMoreExcludedOptions();
-    addon.Options.General.AddKeybindingOptions();
-
-    addon.Data.ExportedCalendarEvents.InjectOptions();
-    addon.Data.ExportedWorldEvents.InjectOptions();
+    addon.Data.ExportedCategories.InjectDynamicOptions();
+    addon.Data.ExportedCalendarEvents.InjectDynamicOptions();
+    addon.Data.ExportedWorldEvents.InjectDynamicOptions();
 
     addon.GUI.PrepareTabsOrder();
-    addon.Tabs.InjectOptions();
+    addon.Tabs.InjectDynamicOptions();
+    addon.GUI.AchievementFrameHeader.InjectDynamicOptions();
     addon.Plugins:InjectOptions();
     addon.Options.Load();
 
@@ -98,7 +94,6 @@ end
 local function LoadPlayerLogin()
     addon.Data.ExportedCalendarEvents.Load(addon.Data.CalendarEvents);
     addon.Data.ExportedWorldEvents.Load(addon.Data.WorldEvents);
-    addon.EventData.Load();
 
     if addon.Diagnostics.DebugEnabled() then
         hooksecurefunc(WorldMapFrame, "OnMapChanged", function()
@@ -110,12 +105,18 @@ local function LoadPlayerLogin()
     addon.ChangeAchievementMicroButtonOnClick();
 end
 
+local function LoadBlizzard_Calendar()
+    addon.EventData.LoadBlizzard_Calendar();
+end
+
 function loadHelper:OnEvent(event, arg1, arg2)
     if event == "ADDON_LOADED" then
         if arg1 == "Krowi_AchievementFilter" then -- This always needs to load
             LoadKrowi_AchievementFilter();
         elseif arg1 == "Blizzard_AchievementUI" then -- This needs the Blizzard_AchievementUI addon available to load
             LoadBlizzard_AchievementUI();
+        elseif arg1 == "Blizzard_Calendar" then
+            LoadBlizzard_Calendar();
         end
     elseif event == "PLAYER_LOGIN" then
         LoadPlayerLogin();
@@ -123,14 +124,15 @@ function loadHelper:OnEvent(event, arg1, arg2)
         if IsAddOnLoaded("Blizzard_AchievementUI") then
             LoadBlizzard_AchievementUI();
         end
+        if IsAddOnLoaded("Blizzard_Calendar") then
+            LoadBlizzard_Calendar();
+        end
     elseif event == "PLAYER_ENTERING_WORLD" then
          -- arg1 = isLogin, arg2 = isReload
-        if arg1 or arg2 then
+        if arg1 or (arg2 and addon.Diagnostics.DebugEnabled()) then
             C_Timer.After(0, function()
-                C_Timer.After(5, function()
-                    addon.GUI.AlertSystem.ShowActiveCalendarEvents();
-                    addon.GUI.AlertSystem.ShowActiveWorldEvents();
-                    -- addon.GUI.AlertSystem.ShowActiveWidgetEvents();
+                C_Timer.After(addon.Options.db.EventReminders.OnLoginDelay, function()
+                    addon.GUI.AlertSystem.ShowActiveEventsOnLogin();
                 end);
             end);
         end

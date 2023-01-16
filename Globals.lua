@@ -457,13 +457,13 @@ function addon.HookAchievementFrameOnShow()
     -- end
 end
 
-local function MakeStatic(frame, rememberLastPositionOption)
+local function MakeStatic(frame, rememberLastPositionOption, target)
     if not frame or not frame.ClearAllPoints or not frame:IsMovable() then
         return;
     end
 
     if rememberLastPositionOption then
-        addon.GUI.SetFrameToLastPosition(frame, rememberLastPositionOption);
+        addon.GUI.SetFrameToLastPosition(target or frame, rememberLastPositionOption);
     end
 
     frame:SetMovable(false);
@@ -475,8 +475,11 @@ local function MakeStatic(frame, rememberLastPositionOption)
 end
 
 function addon.MakeWindowStatic()
+    if not IsAddOnLoaded("Blizzard_AchievementUI") then
+        return;
+    end
     MakeStatic(AchievementFrame, "AchievementWindow");
-    MakeStatic(AchievementFrame.Header);
+    MakeStatic(AchievementFrame.Header, "AchievementWindow", AchievementFrame);
     MakeStatic(addon.GUI.Calendar.Frame, "Calendar");
     MakeStatic(addon.GUI.DataManagerFrame, "DataManager");
 end
@@ -512,6 +515,9 @@ local function MakeMovable(frame, rememberLastPositionOption, target)
 end
 
 function addon.MakeWindowMovable()
+    if not IsAddOnLoaded("Blizzard_AchievementUI") then
+        return;
+    end
     MakeMovable(AchievementFrame, "AchievementWindow");
     MakeMovable(AchievementFrame.Header, "AchievementWindow", AchievementFrame);
     MakeMovable(addon.GUI.Calendar.Frame, "Calendar");
@@ -535,6 +541,10 @@ function addon.ReplaceVarsWithReloadReq(str, vars)
     end
     vars["reloadRequired"] = addon.L["Requires a reload"];
     return addon.Util.ReplaceVars(str, vars);
+end
+
+string["InjectAddonName"] = function(str)
+    return str:ReplaceVars{addonName = addon.MetaData.Title};
 end
 
 function addon.GetAchievementInfo(achievementID) -- Returns an additional bool indicating if the achievement is added to the game yet or not

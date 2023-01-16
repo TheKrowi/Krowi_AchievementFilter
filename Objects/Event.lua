@@ -5,7 +5,7 @@ objects.Event = {};
 local event = objects.Event;
 
 event.__index = event;
-function event:New(id, icon, name, mapID, totalDuration)
+function event:New(id, icon, name, mapID)
     local instance = setmetatable({}, event);
 
     instance.Id = id or 0;
@@ -14,7 +14,6 @@ function event:New(id, icon, name, mapID, totalDuration)
     instance.Name = name;
     instance.MapId = mapID;
     instance.MapID = instance.MapId;
-    instance.TotalDuration = totalDuration;
     return instance;
 end
 

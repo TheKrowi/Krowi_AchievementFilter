@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-22 10-38-09 ]] --
+-- [[ Exported at 2023-01-16 17-36-03 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -172,7 +172,7 @@ L["Only search filtered achievements Desc"] = "Only search achievements that are
 L["Minimum characters to search"] = "Minimum characters to search";
 L["Minimum characters to search Desc"] = "The number of characters needed in order to start searching for achievements matching the query.\nThe smaller the number, the greater the impact (1) on the game.\n\n(1) FPS drops and stuttering while searching";
 L["Number of search previews"] = "Number of search previews";
-L["Number of search previews Desc"] = "The numbers of achievements shown as a preview of the full list of found achievements.\n\n{reloadRequired}";
+L["Number of search previews Desc"] = "The numbers of achievements shown as a preview of the full list of found achievements.";
 L["Filters"] = "Filters";
 L["Reset Faction Filters"] = "Reset Faction Filters";
 L["Reset Faction Filters Desc"] = "Reset / keep the Faction Filters.\n\nThis means that when you're i.e. logging in on an {alliance} character and any of the {neutral}, {alliance} or {horde} Faction Filters are checked / unchecked, only the {neutral} and {alliance} Faction Filters will be checked and the {horde} Faction Filter will be unckecked.\n\nThis is preferred when switching a lot between {alliance} and {horde}.";
@@ -193,7 +193,7 @@ L["Make windows movable Desc"] = "Makes the Achievement window Calendar view and
 L["Categories width offset"] = "Categories width offset";
 L["Categories width offset Desc"] = "The width that will be added to or subtracted from the default categories width.\n\nThis value can be changed while the achievement window is open and having one of the tabs selected added by {addonName}. This might have an impact (1) on the game.\n\n(1) FPS drops and stuttering while adjusting the value, NOT during normal addon use";
 L["Achievement window height offset"] = "Achievement window height offset";
-L["Achievement window height offset Desc"] = "The height that will be added to or subtracted from the default achievement window height.\n\nThis value can be changed while the achievement window is open and having one of the tabs selected added by {addonName}. This might have an impact (1) on the game.\n\n(1) FPS drops and stuttering while adjusting the value, NOT during normal addon use\n\n{reloadRequired}";
+L["Achievement window height offset Desc"] = "The height that will be added to or subtracted from the default achievement window height.\n\nThis value can be changed while the achievement window is open and having one of the tabs selected added by {addonName}. This might have an impact (1) on the game.\n\n(1) FPS drops and stuttering while adjusting the value, NOT during normal addon use";
 L["Blizzard"] = "Blizzard";
 L["Order"] = "Order";
 L["Tab"] = "Tab";
@@ -241,11 +241,11 @@ L["Second column threshold"] = "Second column threshold";
 L["Second column threshold Desc"] = "Achievements with more objectives than this number will be visible in two columns instead of one.";
 L["Right Click Menu"] = "Right Click Menu";
 L["Show Right Click Menu"] = "Show {rightClickMenu} button";
-L["Show Right Click Menu Desc"] = "Show / hide {rightClickMenu} button on each achievement.\n\nThis serves as an alternative for right clicking the achievement.\n\n{reloadRequired}";
+L["Show Right Click Menu Desc"] = "Show / hide {rightClickMenu} button on each achievement.\n\nThis serves as an alternative for right clicking the achievement.";
 L["Event Reminders"] = "Event Reminders";
 L["Pop ups"] = "Pop ups";
-L["Show pop ups"] = "Show pop ups";
-L["Show pop ups Desc"] = "Show / hide event pop ups when reloading or joining the game. This option has no effect on the event reminders next to the achievements window.";
+L["Show"] = "Show";
+L["Show alertSystem on login Desc"] = "Show / hide event {alertSystem} when reloading or joining the game.";
 L["Max number of alerts"] = "Max number of alerts";
 L["Max number of alerts Desc"] = "The maximum number of alerts shown at once.";
 L["Fade delay"] = "Fade delay";
@@ -569,4 +569,31 @@ L["Show All Results in Category"] = "Show All Results in Category";
 L["Show All Results in Category Desc"] = "Show all the search results in a category that will persist during this session.";
 L["Search Results"] = "Search Results";
 L["Are you sure you want to delete character?"] = "Are you sure you want to delete {character}? This character will be added again if you log in to it. If you don't want to see this character, check the {ignore} flag.";
+L["On Login / Reload"] = "On Login / Reload";
+L["In instances"] = "In instances";
+L["Show alertSystem on login in instances Desc"] = "Show / hide event {alertSystem} when reloading or joining the game while inside an instance.";
+L["Show alertSystem on event start Desc"] = "Show / hide event {alertSystem} for an event when it starts.";
+L["On Event Start"] = "On Event Start";
+L["Show alertSystem on event start in instances Desc"] = "Show / hide event {alertSystem} for an event when it starts while inside an instance.";
+L["Refresh interval"] = "Refresh interval";
+L["Refresh interval Desc"] = "The time in seconds between refreshing the event data. A longer time may delay creation of new pop ups and clean-up of old ones.";
+L["Default value"] = "Default value";
+L["Unchecked"] = "Unchecked";
+L["Checked"] = "Checked";
+L["Hide Date Completed"] = "Hide completion date";
+L["Hide Date Completed Desc"] = "Hide the date the achievement was completed on.";
+L["Delay"] = "Delay";
+L["Show pop ups on login delay Desc"] = "Delay the initial event pop ups when loging in.";
+L["Up"] = "Up";
+L["Down"] = "Down";
+L["Location"] = "Location";
+L["Grow direction"] = "Grow direction";
+L["Grow direction Desc"] = "The direction in which new reminders will be added.";
+L["XYZ offset"] = "{xyz} offset";
+L["X offset Desc"] = "The horizontal offset from the start position.";
+L["Y offset Desc"] = "The vertical offset from the start position.";
+L["Show placeholders Desc"] = "Show a set of placeholder events so there is visual feedback of what the above settings do. They can be closed again by moving the mouse over them or right clicking them.";
+L["Placeholder"] = "Placeholder";
+L["Chat messages"] = "Chat messages";
+L["Diablo IV"] = "Diablo IV";
 

@@ -1,0 +1,18 @@
+[submodule "Libs/Krowi_Menu"]
+	path = Libs/Krowi_Menu
+	url = https://github.com/TheKrowi/Krowi_Menu
+[submodule "Libs/Krowi_PopopDialog"]
+	path = Libs/Krowi_PopopDialog
+	url = https://github.com/TheKrowi/Krowi_PopopDialog
+[submodule "Libs/Krowi_ProgressBar"]
+	path = Libs/Krowi_ProgressBar
+	url = https://github.com/TheKrowi/Krowi_ProgressBar
+[submodule "Libs/Krowi_WorldMapButtons"]
+	path = Libs/Krowi_WorldMapButtons
+	url = https://github.com/TheKrowi/Krowi_WorldMapButtons
+[submodule "Libs/Krowi_Tutorials"]
+	path = Libs/Krowi_Tutorials
+	url = https://github.com/TheKrowi/Krowi_Tutorials
+[submodule "Libs/Krowi_Util"]
+	path = Libs/Krowi_Util
+	url = https://github.com/TheKrowi/Krowi_Util

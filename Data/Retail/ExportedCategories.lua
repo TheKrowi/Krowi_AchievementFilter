@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-20 13-48-15 ]] --
+-- [[ Exported at 2023-01-14 19-07-11 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -5504,8 +5504,11 @@ function exportedCategories.Load(a)
     A(t[1390], a[16611]); -- Resource Scavanger
     A(t[1390], a[16613]); -- Finder's Keepers
     A(t[1390], a[16614]); -- Bloodstained Bounty
-    A(t[1390], a[16615]); -- Blood Bank
     A(t[1390], a[16616]); -- Prosperously Bloody
+    A(t[1390], a[16615]); -- Blood Bank
+    A(t[1390], a[17335]); -- Airborne Tumbler
+    A(t[1390], a[17336]); -- Airborne Tumbler
+    A(t[1390], a[17345]); -- Airborne Tumbler
     t[1361] = c:New(k.GetCategoryInfoTitle(201), true); -- Reputation
     C(t[1341], t[1361]);
     A(t[1361], a[16522]); -- A True Explorer
@@ -5583,70 +5586,9 @@ function exportedCategories.Load(a)
     A(t[1310], a[15927]); -- Waking Shores Advanced: Bronze
     A(t[1310], a[15928]); -- Waking Shores Advanced: Silver
     A(t[1310], a[15929]); -- Waking Shores Advanced: Gold
-    t[1317] = c:New(k.L["Apex Canopy River Run"]); -- Apex Canopy River Run
-    C(t[1310], t[1317]);
-    A(t[1317], a[15730]); -- Apex Canopy River Run: Bronze
-    A(t[1317], a[15731]); -- Apex Canopy River Run: Silver
-    A(t[1317], a[15732]); -- Apex Canopy River Run: Gold
-    A(t[1317], a[15733]); -- Apex Canopy River Run Advanced: Bronze
-    A(t[1317], a[15734]); -- Apex Canopy River Run Advanced: Silver
-    A(t[1317], a[15735]); -- Apex Canopy River Run Advanced: Gold
-    t[1316] = c:New(k.L["Emberflow Flight"]); -- Emberflow Flight
-    C(t[1310], t[1316]);
-    A(t[1316], a[15724]); -- Emberflow Flight: Bronze
-    A(t[1316], a[15725]); -- Emberflow Flight: Silver
-    A(t[1316], a[15726]); -- Emberflow Flight: Gold
-    A(t[1316], a[15727]); -- Emberflow Flight Advanced: Bronze
-    A(t[1316], a[15728]); -- Emberflow Flight Advanced: Silver
-    A(t[1316], a[15729]); -- Emberflow Flight Advanced: Gold
-    t[1320] = c:New(k.L["Flashfrost Flyover"]); -- Flashfrost Flyover
-    C(t[1310], t[1320]);
-    A(t[1320], a[15705]); -- Flashfrost Flyover: Bronze
-    A(t[1320], a[15706]); -- Flashfrost Flyover: Silver
-    A(t[1320], a[15707]); -- Flashfrost Flyover: Gold
-    A(t[1320], a[15709]); -- Flashfrost Flyover Advanced: Bronze
-    A(t[1320], a[15710]); -- Flashfrost Flyover Advanced: Silver
-    A(t[1320], a[15711]); -- Flashfrost Flyover Advanced: Gold
-    t[1314] = c:New(k.L["Ruby Lifeshrine Loop"]); -- Ruby Lifeshrine Loop
-    C(t[1310], t[1314]);
-    A(t[1314], a[15696]); -- Ruby Lifeshrine Loop: Bronze
-    A(t[1314], a[15697]); -- Ruby Lifeshrine Loop: Silver
-    A(t[1314], a[15698]); -- Ruby Lifeshrine Loop: Gold
-    A(t[1314], a[15702]); -- Ruby Lifeshrine Loop Advanced: Bronze
-    A(t[1314], a[15703]); -- Ruby Lifeshrine Loop Advanced: Silver
-    A(t[1314], a[15704]); -- Ruby Lifeshrine Loop Advanced: Gold
-    t[1318] = c:New(k.L["Uktulut Coaster"]); -- Uktulut Coaster
-    C(t[1310], t[1318]);
-    A(t[1318], a[15736]); -- Uktulut Coaster: Bronze
-    A(t[1318], a[15737]); -- Uktulut Coaster: Silver
-    A(t[1318], a[15738]); -- Uktulut Coaster: Gold
-    A(t[1318], a[15739]); -- Uktulut Coaster Advanced: Bronze
-    A(t[1318], a[15740]); -- Uktulut Coaster Advanced: Silver
-    A(t[1318], a[15741]); -- Uktulut Coaster Advanced: Gold
-    t[1321] = c:New(k.L["Wild Preserve Circuit"]); -- Wild Preserve Circuit
-    C(t[1310], t[1321]);
-    A(t[1321], a[15718]); -- Wild Preserve Circuit: Bronze
-    A(t[1321], a[15719]); -- Wild Preserve Circuit: Silver
-    A(t[1321], a[15720]); -- Wild Preserve Circuit: Gold
-    A(t[1321], a[15721]); -- Wild Preserve Circuit Advanced: Bronze
-    A(t[1321], a[15722]); -- Wild Preserve Circuit Advanced: Silver
-    A(t[1321], a[15723]); -- Wild Preserve Circuit Advanced: Gold
-    t[1315] = c:New(k.L["Wild Preserve Slalom"]); -- Wild Preserve Slalom
-    C(t[1310], t[1315]);
-    A(t[1315], a[15712]); -- Wild Preserve Slalom: Bronze
-    A(t[1315], a[15713]); -- Wild Preserve Slalom: Silver
-    A(t[1315], a[15714]); -- Wild Preserve Slalom: Gold
-    A(t[1315], a[15715]); -- Wild Preserve Slalom Advanced: Bronze
-    A(t[1315], a[15716]); -- Wild Preserve Slalom Advanced: Silver
-    A(t[1315], a[15717]); -- Wild Preserve Slalom Advanced: Gold
-    t[1319] = c:New(k.L["Wingrest Roundabout"]); -- Wingrest Roundabout
-    C(t[1310], t[1319]);
-    A(t[1319], a[15742]); -- Wingrest Roundabout: Bronze
-    A(t[1319], a[15743]); -- Wingrest Roundabout: Silver
-    A(t[1319], a[15744]); -- Wingrest Roundabout: Gold
-    A(t[1319], a[15745]); -- Wingrest Roundabout Advanced: Bronze
-    A(t[1319], a[15746]); -- Wingrest Roundabout Advanced: Silver
-    A(t[1319], a[15747]); -- Wingrest Roundabout Advanced: Gold
+    A(t[1310], a[17195]); -- Waking Shores Reverse: Bronze
+    A(t[1310], a[17196]); -- Waking Shores Reverse: Silver
+    A(t[1310], a[17197]); -- Waking Shores Reverse: Gold
     t[1363] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1232], t[1363]);
     A(t[1363], a[16463]); -- Thunderstorms in The Waking Shores
@@ -5677,7 +5619,6 @@ function exportedCategories.Load(a)
     A(t[1249], a[16595]); -- Tour of Duty: Ohn'ahran Plains
     t[1253] = c:New(k.GetCategoryInfoTitle(201), true); -- Reputation
     C(t[1233], t[1253]);
-    A(t[1253], a[16443]); -- Soupervisor
     A(t[1253], a[16528]); -- Joining the Khansguard
     A(t[1253], a[16544]); -- Grand Hunter
     A(t[1253], a[16540]); -- Hunt Master
@@ -5708,56 +5649,9 @@ function exportedCategories.Load(a)
     A(t[1311], a[15930]); -- Ohn'ahran Plains Advanced: Bronze
     A(t[1311], a[15931]); -- Ohn'ahran Plains Advanced: Silver
     A(t[1311], a[15932]); -- Ohn'ahran Plains Advanced: Gold
-    t[1325] = c:New(k.L["Emerald Garden Ascent"]); -- Emerald Garden Ascent
-    C(t[1311], t[1325]);
-    A(t[1325], a[15775]); -- Emerald Garden Ascent: Bronze
-    A(t[1325], a[15776]); -- Emerald Garden Ascent: Silver
-    A(t[1325], a[15777]); -- Emerald Garden Ascent: Gold
-    A(t[1325], a[15778]); -- Emerald Garden Ascent Advanced: Bronze
-    A(t[1325], a[15779]); -- Emerald Garden Ascent Advanced: Silver
-    A(t[1325], a[15780]); -- Emerald Garden Ascent Advanced: Gold
-    t[1323] = c:New(k.L["Fen Flythrough"]); -- Fen Flythrough
-    C(t[1311], t[1323]);
-    A(t[1323], a[15763]); -- Fen Flythrough: Bronze
-    A(t[1323], a[15764]); -- Fen Flythrough: Silver
-    A(t[1323], a[15765]); -- Fen Flythrough: Gold
-    A(t[1323], a[15766]); -- Fen Flythrough Advanced: Bronze
-    A(t[1323], a[15767]); -- Fen Flythrough Advanced: Silver
-    A(t[1323], a[15768]); -- Fen Flythrough Advanced: Gold
-    t[1328] = c:New(k.L["Maruukai Dash"]); -- Maruukai Dash
-    C(t[1311], t[1328]);
-    A(t[1328], a[15782]); -- Maruukai Dash: Bronze
-    A(t[1328], a[15783]); -- Maruukai Dash: Silver
-    A(t[1328], a[15784]); -- Maruukai Dash: Gold
-    t[1327] = c:New(k.L["Mirror of the Sky Dash"]); -- Mirror of the Sky Dash
-    C(t[1311], t[1327]);
-    A(t[1327], a[15785]); -- Mirror of the Sky Dash: Bronze
-    A(t[1327], a[15786]); -- Mirror of the Sky Dash: Silver
-    A(t[1327], a[15787]); -- Mirror of the Sky Dash: Gold
-    t[1324] = c:New(k.L["Ravine River Run"]); -- Ravine River Run
-    C(t[1311], t[1324]);
-    A(t[1324], a[15769]); -- Ravine River Run: Bronze
-    A(t[1324], a[15770]); -- Ravine River Run: Silver
-    A(t[1324], a[15771]); -- Ravine River Run: Gold
-    A(t[1324], a[15772]); -- Ravine River Run Advanced: Bronze
-    A(t[1324], a[15773]); -- Ravine River Run Advanced: Silver
-    A(t[1324], a[15774]); -- "Ravine River Ru, Advanced: Gold"
-    t[1326] = c:New(k.L["River Rapids Route"]); -- River Rapids Route
-    C(t[1311], t[1326]);
-    A(t[1326], a[16302]); -- River Rapids Route: Bronze
-    A(t[1326], a[16303]); -- River Rapids Route: Silver
-    A(t[1326], a[16304]); -- River Rapids Route: Gold
-    A(t[1326], a[16305]); -- River Rapids Route Advanced: Bronze
-    A(t[1326], a[16306]); -- River Rapids Route Advanced: Silver
-    A(t[1326], a[16307]); -- River Rapids Route Advanced: Gold
-    t[1322] = c:New(k.L["Sundapple Copse Circuit"]); -- Sundapple Copse Circuit
-    C(t[1311], t[1322]);
-    A(t[1322], a[15757]); -- Sundapple Copse Circuit: Bronze
-    A(t[1322], a[15758]); -- Sundapple Copse Circuit: Silver
-    A(t[1322], a[15759]); -- Sundapple Copse Circuit: Gold
-    A(t[1322], a[15760]); -- Sundapple Copse Circuit Advanced: Bronze
-    A(t[1322], a[15761]); -- Sundapple Copse Circuit Advanced: Silver
-    A(t[1322], a[15762]); -- Sundapple Copse Circuit Advanced: Gold
+    A(t[1311], a[17198]); -- Ohn'ahran Plains Reverse: Bronze
+    A(t[1311], a[17199]); -- Ohn'ahran Plains Reverse: Silver
+    A(t[1311], a[17200]); -- Ohn'ahran Plains Reverse: Gold
     t[1364] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1233], t[1364]);
     A(t[1364], a[16475]); -- Thunderstorms in the Ohn'ahran Plains
@@ -5808,6 +5702,7 @@ function exportedCategories.Load(a)
     A(t[1256], a[16321]); -- Cutting Tusk Equipment
     A(t[1256], a[16322]); -- Best in Slot
     A(t[1256], a[16444]); -- Leftovers' Revenge
+    A(t[1256], a[16443]); -- Soupervisor
     t[1308] = c:New(k.L["Dragon Glyphs"], true); -- Dragon Glyphs
     C(t[1234], t[1308]);
     A(t[1308], a[16065]); -- Dragon Glyphs: Azure Archives
@@ -5831,54 +5726,9 @@ function exportedCategories.Load(a)
     A(t[1312], a[15933]); -- Azure Span Advanced: Bronze
     A(t[1312], a[15934]); -- Azure Span Advanced: Silver
     A(t[1312], a[15935]); -- Azure Span Advanced: Gold
-    t[1334] = c:New(k.L["Archive Ambit"]); -- Archive Ambit
-    C(t[1312], t[1334]);
-    A(t[1334], a[15847]); -- Archive Ambit: Bronze
-    A(t[1334], a[15848]); -- Archive Ambit: Silver
-    A(t[1334], a[15849]); -- Archive Ambit: Gold
-    A(t[1334], a[15850]); -- Archive Ambit Advanced: Bronze
-    A(t[1334], a[15851]); -- Archive Ambit Advanced: Silver
-    A(t[1334], a[15852]); -- Archive Ambit Advanced: Gold
-    t[1333] = c:New(k.L["Central Circuit"]); -- Central Circuit
-    C(t[1312], t[1333]);
-    A(t[1333], a[15841]); -- Frostland Flyover: Bronze
-    A(t[1333], a[15842]); -- Frostland Flyover: Silver
-    A(t[1333], a[15843]); -- Frostland Flyover: Gold
-    A(t[1333], a[15844]); -- Frostland Flyover Advanced: Bronze
-    A(t[1333], a[15845]); -- Frostland Flyover Advanced: Silver
-    A(t[1333], a[15846]); -- Frostland Flyover Advanced: Gold
-    t[1332] = c:New(k.L["Iskaara Flyover"]); -- Iskaara Flyover
-    C(t[1312], t[1332]);
-    A(t[1332], a[15835]); -- Iskaara Tour: Bronze
-    A(t[1332], a[15836]); -- Iskaara Tour: Silver
-    A(t[1332], a[15837]); -- Iskaara Tour: Gold
-    A(t[1332], a[15838]); -- Iskaara Tour Advanced: Bronze
-    A(t[1332], a[15839]); -- Iskaara Tour Advanced: Silver
-    A(t[1332], a[15840]); -- Iskaara Tour Advanced: Gold
-    t[1330] = c:New(k.L["The Azure Span Slalom"]); -- The Azure Span Slalom
-    C(t[1312], t[1330]);
-    A(t[1330], a[15799]); -- The Azure Span Slalom: Bronze
-    A(t[1330], a[15800]); -- The Azure Span Slalom: Silver
-    A(t[1330], a[15801]); -- The Azure Span Slalom: Gold
-    A(t[1330], a[15802]); -- The Azure Span Slalom Advanced: Bronze
-    A(t[1330], a[15803]); -- The Azure Span Slalom Advanced: Silver
-    A(t[1330], a[15804]); -- The Azure Span Slalom Advanced: Gold
-    t[1329] = c:New(k.L["The Azure Span Sprint"]); -- The Azure Span Sprint
-    C(t[1312], t[1329]);
-    A(t[1329], a[15788]); -- The Azure Span Sprint: Bronze
-    A(t[1329], a[15789]); -- The Azure Span Sprint: Silver
-    A(t[1329], a[15790]); -- The Azure Span Sprint: Gold
-    A(t[1329], a[15791]); -- The Azure Span Sprint Advanced: Bronze
-    A(t[1329], a[15792]); -- The Azure Span Sprint Advanced: Silver
-    A(t[1329], a[15793]); -- The Azure Span Sprint Advanced: Gold
-    t[1331] = c:New(k.L["The Vakthros Ascent"]); -- The Vakthros Ascent
-    C(t[1312], t[1331]);
-    A(t[1331], a[15818]); -- The Vakthros Ascent: Bronze
-    A(t[1331], a[15819]); -- The Vakthros Ascent: Silver
-    A(t[1331], a[15820]); -- The Vakthros Ascent: Gold
-    A(t[1331], a[15821]); -- The Vakthros Ascent Advanced: Bronze
-    A(t[1331], a[15822]); -- The Vakthros Ascent Advanced: Silver
-    A(t[1331], a[15823]); -- The Vakthros Ascent Advanced: Gold
+    A(t[1312], a[17201]); -- Azure Span Reverse: Bronze
+    A(t[1312], a[17202]); -- Azure Span Reverse: Silver
+    A(t[1312], a[17203]); -- Azure Span Reverse: Gold
     t[1365] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1234], t[1365]);
     A(t[1365], a[16480]); -- Thunderstorms in The Azure Span
@@ -5892,6 +5742,8 @@ function exportedCategories.Load(a)
     C(t[1235], t[1240]);
     A(t[1240], a[16363]); -- Just Don't Ask Me to Spell It
     A(t[1240], a[16398]); -- Sojourner of Thaldraszus
+    A(t[1240], a[17342]); -- The Future We Make
+    A(t[1240], a[17343]); -- Drop It Like It's Hot
     t[1246] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[1235], t[1246]);
     A(t[1246], a[16518]); -- Explore Thaldraszus
@@ -5927,54 +5779,9 @@ function exportedCategories.Load(a)
     A(t[1313], a[15936]); -- Thaldraszus Advanced: Bronze
     A(t[1313], a[15937]); -- Thaldraszus Advanced: Silver
     A(t[1313], a[15938]); -- Thaldraszus Advanced: Gold
-    t[1338] = c:New(k.L["Academy Ascent"]); -- Academy Ascent
-    C(t[1313], t[1338]);
-    A(t[1338], a[15897]); -- Academy Ascent: Bronze
-    A(t[1338], a[15898]); -- Academy Ascent: Silver
-    A(t[1338], a[15899]); -- Academy Ascent: Gold
-    A(t[1338], a[15900]); -- Academy Ascent Advanced: Bronze
-    A(t[1338], a[15901]); -- Academy Ascent Advanced: Silver
-    A(t[1338], a[15902]); -- Academy Ascent Advanced: Gold
-    t[1340] = c:New(k.L["Caverns Criss-Cross"]); -- Caverns Criss-Cross
-    C(t[1313], t[1340]);
-    A(t[1340], a[15909]); -- Caverns Criss-Cross: Bronze
-    A(t[1340], a[15910]); -- Caverns Criss-Cross: Silver
-    A(t[1340], a[15911]); -- Caverns Criss-Cross: Gold
-    A(t[1340], a[15912]); -- Caverns Criss-Cross Advanced: Bronze
-    A(t[1340], a[15913]); -- Caverns Criss-Cross Advanced: Silver
-    A(t[1340], a[15914]); -- Caverns Criss-Cross Advanced: Gold
-    t[1337] = c:New(k.L["Cliffside Circuit"]); -- Cliffside Circuit
-    C(t[1313], t[1337]);
-    A(t[1337], a[15891]); -- Cliffside Circuit: Bronze
-    A(t[1337], a[15892]); -- Cliffside Circuit: Silver
-    A(t[1337], a[15893]); -- Cliffside Circuit: Gold
-    A(t[1337], a[15894]); -- Cliffside Circuit Advanced: Bronze
-    A(t[1337], a[15895]); -- Cliffside Circuit Advanced: Silver
-    A(t[1337], a[15896]); -- Cliffside Circuit Advanced: Gold
-    t[1339] = c:New(k.L["Garden Gallivant"]); -- Garden Gallivant
-    C(t[1313], t[1339]);
-    A(t[1339], a[15903]); -- Garden Gallivant: Bronze
-    A(t[1339], a[15904]); -- Garden Gallivant: Silver
-    A(t[1339], a[15905]); -- Garden Gallivant: Gold
-    A(t[1339], a[15906]); -- Garden Gallivant Advanced: Bronze
-    A(t[1339], a[15907]); -- Garden Gallivant Advanced: Silver
-    A(t[1339], a[15908]); -- Garden Gallivant Advanced: Gold
-    t[1336] = c:New(k.L["Passage Pathway"]); -- Passage Pathway
-    C(t[1313], t[1336]);
-    A(t[1336], a[15855]); -- Tyrhold Trial: Bronze
-    A(t[1336], a[15856]); -- Tyrhold Trial: Silver
-    A(t[1336], a[15857]); -- Tyrhold Trial: Gold
-    A(t[1336], a[15858]); -- Tyrhold Trial Advanced: Bronze
-    A(t[1336], a[15859]); -- Tyrhold Trial Advanced: Silver
-    A(t[1336], a[15860]); -- Tyrhold Trial Advanced: Gold
-    t[1335] = c:New(k.L["The Flowing Forest Flight"]); -- The Flowing Forest Flight
-    C(t[1313], t[1335]);
-    A(t[1335], a[15827]); -- The Flowing Forest Flight: Bronze
-    A(t[1335], a[15828]); -- The Flowing Forest Flight: Silver
-    A(t[1335], a[15829]); -- The Flowing Forest Flight: Gold
-    A(t[1335], a[15830]); -- The Flowing Forest Flight Advanced: Bronze
-    A(t[1335], a[15831]); -- The Flowing Forest Flight Advanced: Silver
-    A(t[1335], a[15832]); -- The Flowing Forest Flight Advanced: Gold
+    A(t[1313], a[17204]); -- Thaldraszus Reverse: Bronze
+    A(t[1313], a[17205]); -- Thaldraszus Reverse: Silver
+    A(t[1313], a[17206]); -- Thaldraszus Reverse: Gold
     t[1366] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1235], t[1366]);
     A(t[1366], a[16485]); -- Thunderstorms in Thaldraszus
@@ -6040,7 +5847,6 @@ function exportedCategories.Load(a)
     A(t[1260], a[16438]); -- Knowledge is... Preserved?
     A(t[1260], a[16432]); -- Ready for Raiding VIII
     A(t[1260], a[16453]); -- Liquid Hot Magma
-    A(t[1260], a[16440]); -- Are You My Broodmother?
     A(t[1260], a[16263]); -- Neltharus
     A(t[1260], a[16264]); -- Heroic: Neltharus
     A(t[1260], a[16265]); -- Mythic: Neltharus
@@ -6049,6 +5855,7 @@ function exportedCategories.Load(a)
     C(t[1229], t[1261]);
     A(t[1261], a[16402]); -- Dragon Kill Points
     A(t[1261], a[16320]); -- Does Steam Do Fire Damage?
+    A(t[1261], a[16440]); -- Are You My Broodmother?
     A(t[1261], a[16266]); -- Ruby Life Pools
     A(t[1261], a[16267]); -- Heroic: Ruby Life Pools
     A(t[1261], a[16268]); -- Mythic: Ruby Life Pools
@@ -6132,7 +5939,6 @@ function exportedCategories.Load(a)
     A(t[1231], a[16511]); -- Undead Battler of the Dragon Isles
     A(t[1231], a[16512]); -- Family Battler of the Dragon Isles
     A(t[1231], a[16399]); -- Lovin' Lubbins
-    A(t[1231], a[16731]); -- Court is Now in Session
     t[1268] = c:New(k.L["Dragonriding"]); -- Dragonriding
     C(t[1207], t[1268]);
     A(t[1268], a[15794]); -- A New Friend
@@ -6204,6 +6010,9 @@ function exportedCategories.Load(a)
     A(t[1269], a[15939]); -- Dragon Racing Completionist
     A(t[1269], a[15940]); -- Dragon Racing Completionist: Silver
     A(t[1269], a[15941]); -- Dragon Racing Completionist: Gold
+    A(t[1269], a[17330]); -- Reverse Racer: Bronze
+    A(t[1269], a[17331]); -- Reverse Racer: Silver
+    A(t[1269], a[17332]); -- Reverse Racer: Gold
     t[1293] = c:New(k.GetMapName(2022)); -- The Waking Shores
     C(t[1269], t[1293]);
     A(t[1293], a[15915]); -- Waking Shores: Bronze
@@ -6212,70 +6021,9 @@ function exportedCategories.Load(a)
     A(t[1293], a[15927]); -- Waking Shores Advanced: Bronze
     A(t[1293], a[15928]); -- Waking Shores Advanced: Silver
     A(t[1293], a[15929]); -- Waking Shores Advanced: Gold
-    t[1298] = c:New(k.L["Apex Canopy River Run"]); -- Apex Canopy River Run
-    C(t[1293], t[1298]);
-    A(t[1298], a[15730]); -- Apex Canopy River Run: Bronze
-    A(t[1298], a[15731]); -- Apex Canopy River Run: Silver
-    A(t[1298], a[15732]); -- Apex Canopy River Run: Gold
-    A(t[1298], a[15733]); -- Apex Canopy River Run Advanced: Bronze
-    A(t[1298], a[15734]); -- Apex Canopy River Run Advanced: Silver
-    A(t[1298], a[15735]); -- Apex Canopy River Run Advanced: Gold
-    t[1299] = c:New(k.L["Emberflow Flight"]); -- Emberflow Flight
-    C(t[1293], t[1299]);
-    A(t[1299], a[15724]); -- Emberflow Flight: Bronze
-    A(t[1299], a[15725]); -- Emberflow Flight: Silver
-    A(t[1299], a[15726]); -- Emberflow Flight: Gold
-    A(t[1299], a[15727]); -- Emberflow Flight Advanced: Bronze
-    A(t[1299], a[15728]); -- Emberflow Flight Advanced: Silver
-    A(t[1299], a[15729]); -- Emberflow Flight Advanced: Gold
-    t[1295] = c:New(k.L["Flashfrost Flyover"]); -- Flashfrost Flyover
-    C(t[1293], t[1295]);
-    A(t[1295], a[15705]); -- Flashfrost Flyover: Bronze
-    A(t[1295], a[15706]); -- Flashfrost Flyover: Silver
-    A(t[1295], a[15707]); -- Flashfrost Flyover: Gold
-    A(t[1295], a[15709]); -- Flashfrost Flyover Advanced: Bronze
-    A(t[1295], a[15710]); -- Flashfrost Flyover Advanced: Silver
-    A(t[1295], a[15711]); -- Flashfrost Flyover Advanced: Gold
-    t[1301] = c:New(k.L["Ruby Lifeshrine Loop"]); -- Ruby Lifeshrine Loop
-    C(t[1293], t[1301]);
-    A(t[1301], a[15696]); -- Ruby Lifeshrine Loop: Bronze
-    A(t[1301], a[15697]); -- Ruby Lifeshrine Loop: Silver
-    A(t[1301], a[15698]); -- Ruby Lifeshrine Loop: Gold
-    A(t[1301], a[15702]); -- Ruby Lifeshrine Loop Advanced: Bronze
-    A(t[1301], a[15703]); -- Ruby Lifeshrine Loop Advanced: Silver
-    A(t[1301], a[15704]); -- Ruby Lifeshrine Loop Advanced: Gold
-    t[1297] = c:New(k.L["Uktulut Coaster"]); -- Uktulut Coaster
-    C(t[1293], t[1297]);
-    A(t[1297], a[15736]); -- Uktulut Coaster: Bronze
-    A(t[1297], a[15737]); -- Uktulut Coaster: Silver
-    A(t[1297], a[15738]); -- Uktulut Coaster: Gold
-    A(t[1297], a[15739]); -- Uktulut Coaster Advanced: Bronze
-    A(t[1297], a[15740]); -- Uktulut Coaster Advanced: Silver
-    A(t[1297], a[15741]); -- Uktulut Coaster Advanced: Gold
-    t[1294] = c:New(k.L["Wild Preserve Circuit"]); -- Wild Preserve Circuit
-    C(t[1293], t[1294]);
-    A(t[1294], a[15718]); -- Wild Preserve Circuit: Bronze
-    A(t[1294], a[15719]); -- Wild Preserve Circuit: Silver
-    A(t[1294], a[15720]); -- Wild Preserve Circuit: Gold
-    A(t[1294], a[15721]); -- Wild Preserve Circuit Advanced: Bronze
-    A(t[1294], a[15722]); -- Wild Preserve Circuit Advanced: Silver
-    A(t[1294], a[15723]); -- Wild Preserve Circuit Advanced: Gold
-    t[1300] = c:New(k.L["Wild Preserve Slalom"]); -- Wild Preserve Slalom
-    C(t[1293], t[1300]);
-    A(t[1300], a[15712]); -- Wild Preserve Slalom: Bronze
-    A(t[1300], a[15713]); -- Wild Preserve Slalom: Silver
-    A(t[1300], a[15714]); -- Wild Preserve Slalom: Gold
-    A(t[1300], a[15715]); -- Wild Preserve Slalom Advanced: Bronze
-    A(t[1300], a[15716]); -- Wild Preserve Slalom Advanced: Silver
-    A(t[1300], a[15717]); -- Wild Preserve Slalom Advanced: Gold
-    t[1296] = c:New(k.L["Wingrest Roundabout"]); -- Wingrest Roundabout
-    C(t[1293], t[1296]);
-    A(t[1296], a[15742]); -- Wingrest Roundabout: Bronze
-    A(t[1296], a[15743]); -- Wingrest Roundabout: Silver
-    A(t[1296], a[15744]); -- Wingrest Roundabout: Gold
-    A(t[1296], a[15745]); -- Wingrest Roundabout Advanced: Bronze
-    A(t[1296], a[15746]); -- Wingrest Roundabout Advanced: Silver
-    A(t[1296], a[15747]); -- Wingrest Roundabout Advanced: Gold
+    A(t[1293], a[17195]); -- Waking Shores Reverse: Bronze
+    A(t[1293], a[17196]); -- Waking Shores Reverse: Silver
+    A(t[1293], a[17197]); -- Waking Shores Reverse: Gold
     t[1285] = c:New(k.GetMapName(2023)); -- Ohn'ahran Plains
     C(t[1269], t[1285]);
     A(t[1285], a[15918]); -- Ohn'ahran Plains: Bronze
@@ -6284,56 +6032,9 @@ function exportedCategories.Load(a)
     A(t[1285], a[15930]); -- Ohn'ahran Plains Advanced: Bronze
     A(t[1285], a[15931]); -- Ohn'ahran Plains Advanced: Silver
     A(t[1285], a[15932]); -- Ohn'ahran Plains Advanced: Gold
-    t[1289] = c:New(k.L["Emerald Garden Ascent"]); -- Emerald Garden Ascent
-    C(t[1285], t[1289]);
-    A(t[1289], a[15775]); -- Emerald Garden Ascent: Bronze
-    A(t[1289], a[15776]); -- Emerald Garden Ascent: Silver
-    A(t[1289], a[15777]); -- Emerald Garden Ascent: Gold
-    A(t[1289], a[15778]); -- Emerald Garden Ascent Advanced: Bronze
-    A(t[1289], a[15779]); -- Emerald Garden Ascent Advanced: Silver
-    A(t[1289], a[15780]); -- Emerald Garden Ascent Advanced: Gold
-    t[1291] = c:New(k.L["Fen Flythrough"]); -- Fen Flythrough
-    C(t[1285], t[1291]);
-    A(t[1291], a[15763]); -- Fen Flythrough: Bronze
-    A(t[1291], a[15764]); -- Fen Flythrough: Silver
-    A(t[1291], a[15765]); -- Fen Flythrough: Gold
-    A(t[1291], a[15766]); -- Fen Flythrough Advanced: Bronze
-    A(t[1291], a[15767]); -- Fen Flythrough Advanced: Silver
-    A(t[1291], a[15768]); -- Fen Flythrough Advanced: Gold
-    t[1286] = c:New(k.L["Maruukai Dash"]); -- Maruukai Dash
-    C(t[1285], t[1286]);
-    A(t[1286], a[15782]); -- Maruukai Dash: Bronze
-    A(t[1286], a[15783]); -- Maruukai Dash: Silver
-    A(t[1286], a[15784]); -- Maruukai Dash: Gold
-    t[1287] = c:New(k.L["Mirror of the Sky Dash"]); -- Mirror of the Sky Dash
-    C(t[1285], t[1287]);
-    A(t[1287], a[15785]); -- Mirror of the Sky Dash: Bronze
-    A(t[1287], a[15786]); -- Mirror of the Sky Dash: Silver
-    A(t[1287], a[15787]); -- Mirror of the Sky Dash: Gold
-    t[1290] = c:New(k.L["Ravine River Run"]); -- Ravine River Run
-    C(t[1285], t[1290]);
-    A(t[1290], a[15769]); -- Ravine River Run: Bronze
-    A(t[1290], a[15770]); -- Ravine River Run: Silver
-    A(t[1290], a[15771]); -- Ravine River Run: Gold
-    A(t[1290], a[15772]); -- Ravine River Run Advanced: Bronze
-    A(t[1290], a[15773]); -- Ravine River Run Advanced: Silver
-    A(t[1290], a[15774]); -- "Ravine River Ru, Advanced: Gold"
-    t[1288] = c:New(k.L["River Rapids Route"]); -- River Rapids Route
-    C(t[1285], t[1288]);
-    A(t[1288], a[16302]); -- River Rapids Route: Bronze
-    A(t[1288], a[16303]); -- River Rapids Route: Silver
-    A(t[1288], a[16304]); -- River Rapids Route: Gold
-    A(t[1288], a[16305]); -- River Rapids Route Advanced: Bronze
-    A(t[1288], a[16306]); -- River Rapids Route Advanced: Silver
-    A(t[1288], a[16307]); -- River Rapids Route Advanced: Gold
-    t[1292] = c:New(k.L["Sundapple Copse Circuit"]); -- Sundapple Copse Circuit
-    C(t[1285], t[1292]);
-    A(t[1292], a[15757]); -- Sundapple Copse Circuit: Bronze
-    A(t[1292], a[15758]); -- Sundapple Copse Circuit: Silver
-    A(t[1292], a[15759]); -- Sundapple Copse Circuit: Gold
-    A(t[1292], a[15760]); -- Sundapple Copse Circuit Advanced: Bronze
-    A(t[1292], a[15761]); -- Sundapple Copse Circuit Advanced: Silver
-    A(t[1292], a[15762]); -- Sundapple Copse Circuit Advanced: Gold
+    A(t[1285], a[17198]); -- Ohn'ahran Plains Reverse: Bronze
+    A(t[1285], a[17199]); -- Ohn'ahran Plains Reverse: Silver
+    A(t[1285], a[17200]); -- Ohn'ahran Plains Reverse: Gold
     t[1278] = c:New(k.GetMapName(2024)); -- The Azure Span
     C(t[1269], t[1278]);
     A(t[1278], a[15921]); -- Azure Span: Bronze
@@ -6342,54 +6043,9 @@ function exportedCategories.Load(a)
     A(t[1278], a[15933]); -- Azure Span Advanced: Bronze
     A(t[1278], a[15934]); -- Azure Span Advanced: Silver
     A(t[1278], a[15935]); -- Azure Span Advanced: Gold
-    t[1279] = c:New(k.L["Archive Ambit"]); -- Archive Ambit
-    C(t[1278], t[1279]);
-    A(t[1279], a[15847]); -- Archive Ambit: Bronze
-    A(t[1279], a[15848]); -- Archive Ambit: Silver
-    A(t[1279], a[15849]); -- Archive Ambit: Gold
-    A(t[1279], a[15850]); -- Archive Ambit Advanced: Bronze
-    A(t[1279], a[15851]); -- Archive Ambit Advanced: Silver
-    A(t[1279], a[15852]); -- Archive Ambit Advanced: Gold
-    t[1280] = c:New(k.L["Central Circuit"]); -- Central Circuit
-    C(t[1278], t[1280]);
-    A(t[1280], a[15841]); -- Frostland Flyover: Bronze
-    A(t[1280], a[15842]); -- Frostland Flyover: Silver
-    A(t[1280], a[15843]); -- Frostland Flyover: Gold
-    A(t[1280], a[15844]); -- Frostland Flyover Advanced: Bronze
-    A(t[1280], a[15845]); -- Frostland Flyover Advanced: Silver
-    A(t[1280], a[15846]); -- Frostland Flyover Advanced: Gold
-    t[1281] = c:New(k.L["Iskaara Flyover"]); -- Iskaara Flyover
-    C(t[1278], t[1281]);
-    A(t[1281], a[15835]); -- Iskaara Tour: Bronze
-    A(t[1281], a[15836]); -- Iskaara Tour: Silver
-    A(t[1281], a[15837]); -- Iskaara Tour: Gold
-    A(t[1281], a[15838]); -- Iskaara Tour Advanced: Bronze
-    A(t[1281], a[15839]); -- Iskaara Tour Advanced: Silver
-    A(t[1281], a[15840]); -- Iskaara Tour Advanced: Gold
-    t[1283] = c:New(k.L["The Azure Span Slalom"]); -- The Azure Span Slalom
-    C(t[1278], t[1283]);
-    A(t[1283], a[15799]); -- The Azure Span Slalom: Bronze
-    A(t[1283], a[15800]); -- The Azure Span Slalom: Silver
-    A(t[1283], a[15801]); -- The Azure Span Slalom: Gold
-    A(t[1283], a[15802]); -- The Azure Span Slalom Advanced: Bronze
-    A(t[1283], a[15803]); -- The Azure Span Slalom Advanced: Silver
-    A(t[1283], a[15804]); -- The Azure Span Slalom Advanced: Gold
-    t[1284] = c:New(k.L["The Azure Span Sprint"]); -- The Azure Span Sprint
-    C(t[1278], t[1284]);
-    A(t[1284], a[15788]); -- The Azure Span Sprint: Bronze
-    A(t[1284], a[15789]); -- The Azure Span Sprint: Silver
-    A(t[1284], a[15790]); -- The Azure Span Sprint: Gold
-    A(t[1284], a[15791]); -- The Azure Span Sprint Advanced: Bronze
-    A(t[1284], a[15792]); -- The Azure Span Sprint Advanced: Silver
-    A(t[1284], a[15793]); -- The Azure Span Sprint Advanced: Gold
-    t[1282] = c:New(k.L["The Vakthros Ascent"]); -- The Vakthros Ascent
-    C(t[1278], t[1282]);
-    A(t[1282], a[15818]); -- The Vakthros Ascent: Bronze
-    A(t[1282], a[15819]); -- The Vakthros Ascent: Silver
-    A(t[1282], a[15820]); -- The Vakthros Ascent: Gold
-    A(t[1282], a[15821]); -- The Vakthros Ascent Advanced: Bronze
-    A(t[1282], a[15822]); -- The Vakthros Ascent Advanced: Silver
-    A(t[1282], a[15823]); -- The Vakthros Ascent Advanced: Gold
+    A(t[1278], a[17201]); -- Azure Span Reverse: Bronze
+    A(t[1278], a[17202]); -- Azure Span Reverse: Silver
+    A(t[1278], a[17203]); -- Azure Span Reverse: Gold
     t[1276] = c:New(k.GetMapName(2025)); -- Thaldraszus
     C(t[1269], t[1276]);
     A(t[1276], a[15924]); -- Thaldraszus: Bronze
@@ -6398,54 +6054,9 @@ function exportedCategories.Load(a)
     A(t[1276], a[15936]); -- Thaldraszus Advanced: Bronze
     A(t[1276], a[15937]); -- Thaldraszus Advanced: Silver
     A(t[1276], a[15938]); -- Thaldraszus Advanced: Gold
-    t[1273] = c:New(k.L["Academy Ascent"]); -- Academy Ascent
-    C(t[1276], t[1273]);
-    A(t[1273], a[15897]); -- Academy Ascent: Bronze
-    A(t[1273], a[15898]); -- Academy Ascent: Silver
-    A(t[1273], a[15899]); -- Academy Ascent: Gold
-    A(t[1273], a[15900]); -- Academy Ascent Advanced: Bronze
-    A(t[1273], a[15901]); -- Academy Ascent Advanced: Silver
-    A(t[1273], a[15902]); -- Academy Ascent Advanced: Gold
-    t[1271] = c:New(k.L["Caverns Criss-Cross"]); -- Caverns Criss-Cross
-    C(t[1276], t[1271]);
-    A(t[1271], a[15909]); -- Caverns Criss-Cross: Bronze
-    A(t[1271], a[15910]); -- Caverns Criss-Cross: Silver
-    A(t[1271], a[15911]); -- Caverns Criss-Cross: Gold
-    A(t[1271], a[15912]); -- Caverns Criss-Cross Advanced: Bronze
-    A(t[1271], a[15913]); -- Caverns Criss-Cross Advanced: Silver
-    A(t[1271], a[15914]); -- Caverns Criss-Cross Advanced: Gold
-    t[1274] = c:New(k.L["Cliffside Circuit"]); -- Cliffside Circuit
-    C(t[1276], t[1274]);
-    A(t[1274], a[15891]); -- Cliffside Circuit: Bronze
-    A(t[1274], a[15892]); -- Cliffside Circuit: Silver
-    A(t[1274], a[15893]); -- Cliffside Circuit: Gold
-    A(t[1274], a[15894]); -- Cliffside Circuit Advanced: Bronze
-    A(t[1274], a[15895]); -- Cliffside Circuit Advanced: Silver
-    A(t[1274], a[15896]); -- Cliffside Circuit Advanced: Gold
-    t[1272] = c:New(k.L["Garden Gallivant"]); -- Garden Gallivant
-    C(t[1276], t[1272]);
-    A(t[1272], a[15903]); -- Garden Gallivant: Bronze
-    A(t[1272], a[15904]); -- Garden Gallivant: Silver
-    A(t[1272], a[15905]); -- Garden Gallivant: Gold
-    A(t[1272], a[15906]); -- Garden Gallivant Advanced: Bronze
-    A(t[1272], a[15907]); -- Garden Gallivant Advanced: Silver
-    A(t[1272], a[15908]); -- Garden Gallivant Advanced: Gold
-    t[1275] = c:New(k.L["Passage Pathway"]); -- Passage Pathway
-    C(t[1276], t[1275]);
-    A(t[1275], a[15855]); -- Tyrhold Trial: Bronze
-    A(t[1275], a[15856]); -- Tyrhold Trial: Silver
-    A(t[1275], a[15857]); -- Tyrhold Trial: Gold
-    A(t[1275], a[15858]); -- Tyrhold Trial Advanced: Bronze
-    A(t[1275], a[15859]); -- Tyrhold Trial Advanced: Silver
-    A(t[1275], a[15860]); -- Tyrhold Trial Advanced: Gold
-    t[1277] = c:New(k.L["The Flowing Forest Flight"]); -- The Flowing Forest Flight
-    C(t[1276], t[1277]);
-    A(t[1277], a[15827]); -- The Flowing Forest Flight: Bronze
-    A(t[1277], a[15828]); -- The Flowing Forest Flight: Silver
-    A(t[1277], a[15829]); -- The Flowing Forest Flight: Gold
-    A(t[1277], a[15830]); -- The Flowing Forest Flight Advanced: Bronze
-    A(t[1277], a[15831]); -- The Flowing Forest Flight Advanced: Silver
-    A(t[1277], a[15832]); -- The Flowing Forest Flight Advanced: Gold
+    A(t[1276], a[17204]); -- Thaldraszus Reverse: Bronze
+    A(t[1276], a[17205]); -- Thaldraszus Reverse: Silver
+    A(t[1276], a[17206]); -- Thaldraszus Reverse: Gold
     t[1360] = c:New(k.L["Primal Storms"]); -- Primal Storms
     C(t[1207], t[1360]);
     A(t[1360], a[16492]); -- Into the Storm
@@ -6475,6 +6086,28 @@ function exportedCategories.Load(a)
     A(t[1360], a[16487]); -- Firestorms in Thaldraszus
     A(t[1360], a[16488]); -- Snowstorms in Thaldraszus
     A(t[1360], a[16502]); -- Storming the Runway
+    t[1401] = c:New(k.GetCategoryInfoTitle(15478)); -- Dragon Isle Drake Cosmetics
+    C(t[1207], t[1401]);
+    A(t[1401], a[16696]); -- Renewed Proto-Drake Armor
+    A(t[1401], a[16697]); -- Renewed Proto-Drake Head Features
+    A(t[1401], a[16698]); -- Renewed Proto-Drake Tail Features
+    A(t[1401], a[16699]); -- Renewed Proto-Drake Scales and Patterns
+    A(t[1401], a[16700]); -- Renewed Proto-Drake Horns and Hair
+    A(t[1401], a[16701]); -- Windborne Velocidrake Scales and Patterns
+    A(t[1401], a[16702]); -- Windborne Velocidrake Armor
+    A(t[1401], a[16704]); -- Windborne Velocidrake Horns and Fur
+    A(t[1401], a[16705]); -- Windborne Velocidrake Head Features
+    A(t[1401], a[16706]); -- Windborne Velocidrake Back and Tail
+    A(t[1401], a[16707]); -- Highland Drake Scales and Patterns
+    A(t[1401], a[16708]); -- Highland Drake Armor
+    A(t[1401], a[16710]); -- Highland Drake Horns and Hair
+    A(t[1401], a[16711]); -- Highland Drake Back and Tail
+    A(t[1401], a[16712]); -- Highland Drake Head Features
+    A(t[1401], a[16723]); -- Cliffside Wylderdrake Scales and Patterns
+    A(t[1401], a[16724]); -- Cliffside Wylderdrake Armor
+    A(t[1401], a[16725]); -- Cliffside Wylderdrake Horns and Manes
+    A(t[1401], a[16726]); -- Cliffside Wylderdrake Back and Tail
+    A(t[1401], a[16727]); -- Cliffside Wylderdrake Head Features
     t[952] = c:New(k.L["Other"]); -- Other
     C(t[883], t[952]);
     t[1160] = c:New(k.L["Zones"]); -- Zones
@@ -6541,6 +6174,8 @@ function exportedCategories.Load(a)
     A(t[1168], a[2357]); -- Dreadsteed of Xoroth
     A(t[1168], a[2358]); -- Charger
     A(t[1168], a[2359]); -- Swift Flight Form
+    A(t[1168], a[17305]); -- Trading Post: Dragonflight
+    A(t[1168], a[17334]); -- Trading Post Enthusiast
     t[1159] = c:New(k.GetCategoryInfoTitle(96)); -- Quests
     C(t[952], t[1159]);
     A(t[1159], a[503]); -- 50 Quests Completed
@@ -6925,9 +6560,7 @@ function exportedCategories.Load(a)
     A(t[1391], a[16631]); -- Dragon Isles Cook
     A(t[1391], a[16632]); -- Dragon Isles Fisherman
     A(t[1391], a[16683]); -- In Tyr's Footsteps
-    A(t[1391], a[16794]); -- Dragon Isles Crafting Order Apprentice
-    A(t[1391], a[16795]); -- Dragon Isles Crafting Order Journeyman
-    A(t[1391], a[16800]); -- Dragon Isles Crafting Order Master
+    A(t[1391], a[17207]); -- Discombobberlated
     t[1163] = c:New(k.GetCategoryInfoTitle(201)); -- Reputation
     C(t[952], t[1163]);
     A(t[1163], a[522]); -- Somebody Likes Me
@@ -6988,7 +6621,6 @@ function exportedCategories.Load(a)
     A(t[1170], a[15641]); -- Many More Mini Minions
     A(t[1170], a[15642]); -- Proven Pet Parent
     A(t[1170], a[15643]); -- What Can I Say? They Love Me.
-    A(t[1170], a[15644]); -- Good Things Come in Small Packages
     A(t[1170], a[6554]); -- He's Mine!
     A(t[1170], a[6555]); -- Building a Team
     A(t[1170], a[6556]); -- Going to Need More Traps
@@ -7113,13 +6745,14 @@ function exportedCategories.Load(a)
     A(t[885], a[1281]); -- The Rocket's Red Glare
     A(t[885], a[1552]); -- Frenzied Firecracker
     A(t[885], a[937]); -- Elune's Blessing
-    A(t[885], a[6006]); -- Elders of Cataclysm
+    A(t[885], a[915]); -- Elders of the Alliance
+    A(t[885], a[914]); -- Elders of the Horde
     A(t[885], a[912]); -- Elders of Eastern Kingdoms
     A(t[885], a[911]); -- Elders of Kalimdor
     A(t[885], a[1396]); -- Elders of Northrend
+    A(t[885], a[6006]); -- Elders of Cataclysm
+    A(t[885], a[17321]); -- Elders of the Dragon Isles
     A(t[885], a[910]); -- Elders of the Dungeons
-    A(t[885], a[915]); -- Elders of the Alliance
-    A(t[885], a[914]); -- Elders of the Horde
     A(t[885], a[913]); -- To Honor One's Elders
     t[910] = c:New(k.GetCategoryInfoTitle(187)); -- Love is in the Air
     C(t[918], t[910]);
@@ -8441,7 +8074,8 @@ function exportedCategories.Load(a)
     A(t[1345], a[15951]); -- Crimson Gladiator: Dragonflight Season 1
     A(t[1345], a[15959]); -- Hero of the Alliance: Crimson
     A(t[1345], a[15958]); -- Hero of the Horde: Crimson
-    A(t[1345], a[16734]); -- Crimson Soloist: Dragonflight Season 1
+    A(t[1345], a[17339]); -- Legend: Dragonflight Season 1
+    A(t[1345], a[16734]); -- Crimson Legend: Dragonflight Season 1
     A(t[1345], a[17119]); -- Deep Cuts From the Vault
     t[1368] = c:New(k.L["Tracking Achievements"]); -- Tracking Achievements
     C(t[955], t[1368]);
@@ -9249,10 +8883,14 @@ function exportedCategories.Load(a)
     A(t[1119], a[12230]); -- Collector's Edition: Gilded Ravasaur
     A(t[1119], a[12232]); -- Collector's Edition: Tottle
     A(t[1119], a[14283]); -- Heroic Edition: Ensorcelled Everwyrm
+    A(t[1119], a[17314]); -- Heroic Edition: Tangled Dreamweaver
     t[1120] = c:New(k.L["Diablo III"], true); -- Diablo III
     C(t[1117], t[1120]);
     A(t[1120], a[7412]); -- Collector's Edition: Fetish Shaman
     A(t[1120], a[8795]); -- Collector's Edition: Treasure Goblin
+    t[1400] = c:New(k.L["Diablo IV"], true); -- Diablo IV
+    C(t[1117], t[1400]);
+    A(t[1400], a[15640]); -- Return to Darkness
     t[1121] = c:New(k.L["Overwatch"], true); -- Overwatch
     C(t[1117], t[1121]);
     A(t[1121], a[11064]); -- Collector's Edition: Baby Winston
@@ -9357,50 +8995,6 @@ function exportedCategories.Load(a)
     A(t[1347], a[15251]); -- The Jailer's Gauntlet: Layer 1
     t[1372] = c:New(k.L["Going away with"]); -- Going away with
     C(t[971], t[1372]);
-    t[1373] = c:New(k.L["Dragonflight Pre-patch"]); -- Dragonflight Pre-patch
-    C(t[1372], t[1373]);
-    t[1376] = c:New(k.GetCategoryInfoTitle(15272)); -- Dungeons
-    C(t[1373], t[1376]);
-    A(t[1376], a[15688]); -- Shadowlands Keystone Explorer: Season Four
-    A(t[1376], a[15689]); -- Shadowlands Keystone Conqueror: Season Four
-    A(t[1376], a[15690]); -- Shadowlands Keystone Master: Season Four
-    A(t[1376], a[15756]); -- Shrouded Hero: Shadowlands Season 4
-    A(t[1376], a[15694]); -- Keystone Hero: Iron Docks
-    A(t[1376], a[15695]); -- Keystone Hero: Grimrail Depot
-    A(t[1376], a[15692]); -- Keystone Hero: Return to Karazhan
-    A(t[1376], a[15693]); -- Keystone Hero: Operation: Mechagon
-    t[1377] = c:New(k.GetCategoryInfoTitle(95)); -- Player vs. Player
-    C(t[1373], t[1377]);
-    A(t[1377], a[15609]); -- Combatant I: Shadowlands Season 4
-    A(t[1377], a[15610]); -- Combatant II: Shadowlands Season 4
-    A(t[1377], a[15600]); -- Challenger I: Shadowlands Season 4
-    A(t[1377], a[15601]); -- Challenger II: Shadowlands Season 4
-    A(t[1377], a[15602]); -- Rival I: Shadowlands Season 4
-    A(t[1377], a[15603]); -- Rival II: Shadowlands Season 4
-    A(t[1377], a[15604]); -- Duelist: Shadowlands Season 4
-    A(t[1377], a[15639]); -- Elite: Shadowlands Season 4
-    A(t[1377], a[15606]); -- Eternal Gladiator: Shadowlands Season 4
-    A(t[1377], a[15608]); -- Hero of the Alliance: Eternal
-    A(t[1377], a[15607]); -- Hero of the Horde: Eternal
-    t[1375] = c:New(k.L["Dragonflight"]); -- Dragonflight
-    C(t[1372], t[1375]);
-    A(t[1375], a[15654]); -- Back from the Beyond
-    t[1374] = c:New(k.GetCategoryInfoTitle(15271)); -- Raids
-    C(t[1375], t[1374]);
-    A(t[1374], a[15663]); -- Fate of Nathria
-    A(t[1374], a[15664]); -- Heroic: Fate of Nathria
-    A(t[1374], a[15665]); -- Mythic: Fate of Nathria
-    A(t[1374], a[15667]); -- Fate of Domination
-    A(t[1374], a[15668]); -- Heroic: Fate of Domination
-    A(t[1374], a[15669]); -- Mythic: Fate of Domination
-    A(t[1374], a[15681]); -- Fate of the Sepulcher
-    A(t[1374], a[15682]); -- Heroic: Fate of the Sepulcher
-    A(t[1374], a[15683]); -- Mythic: Fate of the Sepulcher
-    A(t[1374], a[15684]); -- Fates of the Shadowlands Raids
-    A(t[1374], a[15685]); -- Heroic: Fates of the Shadowlands Raids
-    A(t[1374], a[15687]); -- Mythic: Fates of the Shadowlands Raids
-    A(t[1374], a[15468]); -- We Are All Made of Stars (Heroic)
-    A(t[1374], a[15469]); -- We Are All Made of Stars (Mythic)
     t[1367] = c:New(k.L["Tracking Achievements"]); -- Tracking Achievements
     C(t[971], t[1367]);
     t[1367].HasFlexibleData = true;
@@ -9420,437 +9014,43 @@ function exportedCategories.Load(a)
     return tabs, watchListCategories, currentZoneCategories, selectedZoneCategories, searchResultsCategories, trackingAchievementsCategories, excludedCategories;
 end
 
-function exportedCategories.InjectOptions()
-    local defaultsWatchList = {};
-    defaultsWatchList[1] = false;
-    defaultsWatchList[2] = false;
-    defaultsWatchList[3] = false;
-    defaultsWatchList[4] = false;
-    defaultsWatchList[5] = true;
+function exportedCategories.InjectDynamicOptions()
+    local o = k.Options.Layout.InjectDynamicAdjustableCategoryOptions;
 
-    k.Options.InjectDefaults(defaultsWatchList, "WatchList", "AdjustableCategories");
+    o("WatchList", k.L["Watch List"], 1, "Achievements", k.L["Achievements"], false);
+    o("WatchList", k.L["Watch List"], 2, "Expansions", k.L["Expansions"], false);
+    o("WatchList", k.L["Watch List"], 3, "Events", k.L["Events"], false);
+    o("WatchList", k.L["Watch List"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
+    o("WatchList", k.L["Watch List"], 5, "Specials", k.L["Specials"], true);
 
-    local optionsTableWatchList = {
-        order = 2, type = "group",
-        name = k.L["Watch List"],
-        args = {
-            Tabs = {
-                order = 9, type = "header",
-                name = k.L["Tabs"]
-            },
-            Achievements = {
-                order = 10, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Achievements"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.WatchList[1]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.WatchList[1] = not k.Options.db.AdjustableCategories.WatchList[1];
-                    k.Diagnostics.Debug(k.L["Achievements"], k.Options.db.AdjustableCategories.WatchList[1]);
-                end
-            },
-            Expansions = {
-                order = 11, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Expansions"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.WatchList[2]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.WatchList[2] = not k.Options.db.AdjustableCategories.WatchList[2];
-                    k.Diagnostics.Debug(k.L["Expansions"], k.Options.db.AdjustableCategories.WatchList[2]);
-                end
-            },
-            Events = {
-                order = 12, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Events"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.WatchList[3]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.WatchList[3] = not k.Options.db.AdjustableCategories.WatchList[3];
-                    k.Diagnostics.Debug(k.L["Events"], k.Options.db.AdjustableCategories.WatchList[3]);
-                end
-            },
-            PvP = {
-                order = 13, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.GetCategoryInfoTitle(95),
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.WatchList[4]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.WatchList[4] = not k.Options.db.AdjustableCategories.WatchList[4];
-                    k.Diagnostics.Debug(k.GetCategoryInfoTitle(95), k.Options.db.AdjustableCategories.WatchList[4]);
-                end
-            },
-            Specials = {
-                order = 14, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Specials"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.WatchList[5]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.WatchList[5] = not k.Options.db.AdjustableCategories.WatchList[5];
-                    k.Diagnostics.Debug(k.L["Specials"], k.Options.db.AdjustableCategories.WatchList[5]);
-                end
-            },
-        }
-    };
+    o("CurrentZone", k.L["Current Zone"], 1, "Achievements", k.L["Achievements"], false);
+    o("CurrentZone", k.L["Current Zone"], 2, "Expansions", k.L["Expansions"], false);
+    o("CurrentZone", k.L["Current Zone"], 3, "Events", k.L["Events"], false);
+    o("CurrentZone", k.L["Current Zone"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
+    o("CurrentZone", k.L["Current Zone"], 5, "Specials", k.L["Specials"], true);
 
-    k.Options.InjectOptionsTable(optionsTableWatchList, "WatchList", "Layout", "args", "AdjustableCategories", "args");
+    o("SelectedZone", k.L["Selected Zone"], 1, "Achievements", k.L["Achievements"], false);
+    o("SelectedZone", k.L["Selected Zone"], 2, "Expansions", k.L["Expansions"], false);
+    o("SelectedZone", k.L["Selected Zone"], 3, "Events", k.L["Events"], false);
+    o("SelectedZone", k.L["Selected Zone"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
+    o("SelectedZone", k.L["Selected Zone"], 5, "Specials", k.L["Specials"], true);
 
-    local defaultsCurrentZone = {};
-    defaultsCurrentZone[1] = false;
-    defaultsCurrentZone[2] = false;
-    defaultsCurrentZone[3] = false;
-    defaultsCurrentZone[4] = false;
-    defaultsCurrentZone[5] = true;
+    o("SearchResults", k.L["Search Results"], 1, "Achievements", k.L["Achievements"], false);
+    o("SearchResults", k.L["Search Results"], 2, "Expansions", k.L["Expansions"], false);
+    o("SearchResults", k.L["Search Results"], 3, "Events", k.L["Events"], false);
+    o("SearchResults", k.L["Search Results"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
+    o("SearchResults", k.L["Search Results"], 5, "Specials", k.L["Specials"], true);
 
-    k.Options.InjectDefaults(defaultsCurrentZone, "CurrentZone", "AdjustableCategories");
+    o("TrackingAchievements", k.L["Tracking Achievements"], 1, "Achievements", k.L["Achievements"], false);
+    o("TrackingAchievements", k.L["Tracking Achievements"], 2, "Expansions", k.L["Expansions"], false);
+    o("TrackingAchievements", k.L["Tracking Achievements"], 3, "Events", k.L["Events"], false);
+    o("TrackingAchievements", k.L["Tracking Achievements"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
+    o("TrackingAchievements", k.L["Tracking Achievements"], 5, "Specials", k.L["Specials"], true);
 
-    local optionsTableCurrentZone = {
-        order = 3, type = "group",
-        name = k.L["Current Zone"],
-        args = {
-            Tabs = {
-                order = 9, type = "header",
-                name = k.L["Tabs"]
-            },
-            Achievements = {
-                order = 10, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Achievements"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.CurrentZone[1]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.CurrentZone[1] = not k.Options.db.AdjustableCategories.CurrentZone[1];
-                    k.Diagnostics.Debug(k.L["Achievements"], k.Options.db.AdjustableCategories.CurrentZone[1]);
-                end
-            },
-            Expansions = {
-                order = 11, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Expansions"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.CurrentZone[2]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.CurrentZone[2] = not k.Options.db.AdjustableCategories.CurrentZone[2];
-                    k.Diagnostics.Debug(k.L["Expansions"], k.Options.db.AdjustableCategories.CurrentZone[2]);
-                end
-            },
-            Events = {
-                order = 12, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Events"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.CurrentZone[3]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.CurrentZone[3] = not k.Options.db.AdjustableCategories.CurrentZone[3];
-                    k.Diagnostics.Debug(k.L["Events"], k.Options.db.AdjustableCategories.CurrentZone[3]);
-                end
-            },
-            PvP = {
-                order = 13, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.GetCategoryInfoTitle(95),
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.CurrentZone[4]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.CurrentZone[4] = not k.Options.db.AdjustableCategories.CurrentZone[4];
-                    k.Diagnostics.Debug(k.GetCategoryInfoTitle(95), k.Options.db.AdjustableCategories.CurrentZone[4]);
-                end
-            },
-            Specials = {
-                order = 14, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Specials"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.CurrentZone[5]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.CurrentZone[5] = not k.Options.db.AdjustableCategories.CurrentZone[5];
-                    k.Diagnostics.Debug(k.L["Specials"], k.Options.db.AdjustableCategories.CurrentZone[5]);
-                end
-            },
-        }
-    };
-
-    k.Options.InjectOptionsTable(optionsTableCurrentZone, "CurrentZone", "Layout", "args", "AdjustableCategories", "args");
-
-    local defaultsSelectedZone = {};
-    defaultsSelectedZone[1] = false;
-    defaultsSelectedZone[2] = false;
-    defaultsSelectedZone[3] = false;
-    defaultsSelectedZone[4] = false;
-    defaultsSelectedZone[5] = true;
-
-    k.Options.InjectDefaults(defaultsSelectedZone, "SelectedZone", "AdjustableCategories");
-
-    local optionsTableSelectedZone = {
-        order = 4, type = "group",
-        name = k.L["Selected Zone"],
-        args = {
-            Tabs = {
-                order = 9, type = "header",
-                name = k.L["Tabs"]
-            },
-            Achievements = {
-                order = 10, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Achievements"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.SelectedZone[1]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.SelectedZone[1] = not k.Options.db.AdjustableCategories.SelectedZone[1];
-                    k.Diagnostics.Debug(k.L["Achievements"], k.Options.db.AdjustableCategories.SelectedZone[1]);
-                end
-            },
-            Expansions = {
-                order = 11, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Expansions"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.SelectedZone[2]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.SelectedZone[2] = not k.Options.db.AdjustableCategories.SelectedZone[2];
-                    k.Diagnostics.Debug(k.L["Expansions"], k.Options.db.AdjustableCategories.SelectedZone[2]);
-                end
-            },
-            Events = {
-                order = 12, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Events"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.SelectedZone[3]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.SelectedZone[3] = not k.Options.db.AdjustableCategories.SelectedZone[3];
-                    k.Diagnostics.Debug(k.L["Events"], k.Options.db.AdjustableCategories.SelectedZone[3]);
-                end
-            },
-            PvP = {
-                order = 13, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.GetCategoryInfoTitle(95),
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.SelectedZone[4]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.SelectedZone[4] = not k.Options.db.AdjustableCategories.SelectedZone[4];
-                    k.Diagnostics.Debug(k.GetCategoryInfoTitle(95), k.Options.db.AdjustableCategories.SelectedZone[4]);
-                end
-            },
-            Specials = {
-                order = 14, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Specials"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.SelectedZone[5]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.SelectedZone[5] = not k.Options.db.AdjustableCategories.SelectedZone[5];
-                    k.Diagnostics.Debug(k.L["Specials"], k.Options.db.AdjustableCategories.SelectedZone[5]);
-                end
-            },
-        }
-    };
-
-    k.Options.InjectOptionsTable(optionsTableSelectedZone, "SelectedZone", "Layout", "args", "AdjustableCategories", "args");
-
-    local defaultsSearchResults = {};
-    defaultsSearchResults[1] = false;
-    defaultsSearchResults[2] = false;
-    defaultsSearchResults[3] = false;
-    defaultsSearchResults[4] = false;
-    defaultsSearchResults[5] = true;
-
-    k.Options.InjectDefaults(defaultsSearchResults, "SearchResults", "AdjustableCategories");
-
-    local optionsTableSearchResults = {
-        order = 5, type = "group",
-        name = k.L["Search Results"],
-        args = {
-            Tabs = {
-                order = 9, type = "header",
-                name = k.L["Tabs"]
-            },
-            Achievements = {
-                order = 10, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Achievements"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.SearchResults[1]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.SearchResults[1] = not k.Options.db.AdjustableCategories.SearchResults[1];
-                    k.Diagnostics.Debug(k.L["Achievements"], k.Options.db.AdjustableCategories.SearchResults[1]);
-                end
-            },
-            Expansions = {
-                order = 11, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Expansions"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.SearchResults[2]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.SearchResults[2] = not k.Options.db.AdjustableCategories.SearchResults[2];
-                    k.Diagnostics.Debug(k.L["Expansions"], k.Options.db.AdjustableCategories.SearchResults[2]);
-                end
-            },
-            Events = {
-                order = 12, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Events"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.SearchResults[3]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.SearchResults[3] = not k.Options.db.AdjustableCategories.SearchResults[3];
-                    k.Diagnostics.Debug(k.L["Events"], k.Options.db.AdjustableCategories.SearchResults[3]);
-                end
-            },
-            PvP = {
-                order = 13, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.GetCategoryInfoTitle(95),
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.SearchResults[4]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.SearchResults[4] = not k.Options.db.AdjustableCategories.SearchResults[4];
-                    k.Diagnostics.Debug(k.GetCategoryInfoTitle(95), k.Options.db.AdjustableCategories.SearchResults[4]);
-                end
-            },
-            Specials = {
-                order = 14, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Specials"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.SearchResults[5]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.SearchResults[5] = not k.Options.db.AdjustableCategories.SearchResults[5];
-                    k.Diagnostics.Debug(k.L["Specials"], k.Options.db.AdjustableCategories.SearchResults[5]);
-                end
-            },
-        }
-    };
-
-    k.Options.InjectOptionsTable(optionsTableSearchResults, "SearchResults", "Layout", "args", "AdjustableCategories", "args");
-
-    local defaultsTrackingAchievements = {};
-    defaultsTrackingAchievements[1] = false;
-    defaultsTrackingAchievements[2] = false;
-    defaultsTrackingAchievements[3] = false;
-    defaultsTrackingAchievements[4] = false;
-    defaultsTrackingAchievements[5] = true;
-
-    k.Options.InjectDefaults(defaultsTrackingAchievements, "TrackingAchievements", "AdjustableCategories");
-
-    local optionsTableTrackingAchievements = {
-        order = 6, type = "group",
-        name = k.L["Tracking Achievements"],
-        args = {
-            Tabs = {
-                order = 9, type = "header",
-                name = k.L["Tabs"]
-            },
-            Achievements = {
-                order = 10, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Achievements"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.TrackingAchievements[1]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.TrackingAchievements[1] = not k.Options.db.AdjustableCategories.TrackingAchievements[1];
-                    k.Diagnostics.Debug(k.L["Achievements"], k.Options.db.AdjustableCategories.TrackingAchievements[1]);
-                end
-            },
-            Expansions = {
-                order = 11, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Expansions"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.TrackingAchievements[2]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.TrackingAchievements[2] = not k.Options.db.AdjustableCategories.TrackingAchievements[2];
-                    k.Diagnostics.Debug(k.L["Expansions"], k.Options.db.AdjustableCategories.TrackingAchievements[2]);
-                end
-            },
-            Events = {
-                order = 12, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Events"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.TrackingAchievements[3]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.TrackingAchievements[3] = not k.Options.db.AdjustableCategories.TrackingAchievements[3];
-                    k.Diagnostics.Debug(k.L["Events"], k.Options.db.AdjustableCategories.TrackingAchievements[3]);
-                end
-            },
-            PvP = {
-                order = 13, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.GetCategoryInfoTitle(95),
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.TrackingAchievements[4]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.TrackingAchievements[4] = not k.Options.db.AdjustableCategories.TrackingAchievements[4];
-                    k.Diagnostics.Debug(k.GetCategoryInfoTitle(95), k.Options.db.AdjustableCategories.TrackingAchievements[4]);
-                end
-            },
-            Specials = {
-                order = 14, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Specials"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.TrackingAchievements[5]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.TrackingAchievements[5] = not k.Options.db.AdjustableCategories.TrackingAchievements[5];
-                    k.Diagnostics.Debug(k.L["Specials"], k.Options.db.AdjustableCategories.TrackingAchievements[5]);
-                end
-            },
-        }
-    };
-
-    k.Options.InjectOptionsTable(optionsTableTrackingAchievements, "TrackingAchievements", "Layout", "args", "AdjustableCategories", "args");
-
-    local defaultsExcluded = {};
-    defaultsExcluded[1] = false;
-    defaultsExcluded[2] = false;
-    defaultsExcluded[3] = false;
-    defaultsExcluded[4] = false;
-    defaultsExcluded[5] = true;
-
-    k.Options.InjectDefaults(defaultsExcluded, "Excluded", "AdjustableCategories");
-
-    local optionsTableExcluded = {
-        order = 7, type = "group",
-        name = k.L["Excluded"],
-        args = {
-            Tabs = {
-                order = 9, type = "header",
-                name = k.L["Tabs"]
-            },
-            Achievements = {
-                order = 10, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Achievements"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.Excluded[1]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.Excluded[1] = not k.Options.db.AdjustableCategories.Excluded[1];
-                    k.Diagnostics.Debug(k.L["Achievements"], k.Options.db.AdjustableCategories.Excluded[1]);
-                end
-            },
-            Expansions = {
-                order = 11, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Expansions"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.Excluded[2]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.Excluded[2] = not k.Options.db.AdjustableCategories.Excluded[2];
-                    k.Diagnostics.Debug(k.L["Expansions"], k.Options.db.AdjustableCategories.Excluded[2]);
-                end
-            },
-            Events = {
-                order = 12, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Events"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.Excluded[3]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.Excluded[3] = not k.Options.db.AdjustableCategories.Excluded[3];
-                    k.Diagnostics.Debug(k.L["Events"], k.Options.db.AdjustableCategories.Excluded[3]);
-                end
-            },
-            PvP = {
-                order = 13, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.GetCategoryInfoTitle(95),
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.Excluded[4]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.Excluded[4] = not k.Options.db.AdjustableCategories.Excluded[4];
-                    k.Diagnostics.Debug(k.GetCategoryInfoTitle(95), k.Options.db.AdjustableCategories.Excluded[4]);
-                end
-            },
-            Specials = {
-                order = 14, type = "toggle", width = 1 * k.Options.WidthMultiplier,
-                name = k.L["Specials"],
-                desc = k.L["Requires a reload"],
-                get = function() return k.Options.db.AdjustableCategories.Excluded[5]; end,
-                set = function()
-                    k.Options.db.AdjustableCategories.Excluded[5] = not k.Options.db.AdjustableCategories.Excluded[5];
-                    k.Diagnostics.Debug(k.L["Specials"], k.Options.db.AdjustableCategories.Excluded[5]);
-                end
-            },
-        }
-    };
-
-    k.Options.InjectOptionsTable(optionsTableExcluded, "Excluded", "Layout", "args", "AdjustableCategories", "args");
+    o("Excluded", k.L["Excluded"], 1, "Achievements", k.L["Achievements"], false);
+    o("Excluded", k.L["Excluded"], 2, "Expansions", k.L["Expansions"], false);
+    o("Excluded", k.L["Excluded"], 3, "Events", k.L["Events"], false);
+    o("Excluded", k.L["Excluded"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
+    o("Excluded", k.L["Excluded"], 5, "Specials", k.L["Specials"], true);
 end
 

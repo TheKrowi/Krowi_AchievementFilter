@@ -36,22 +36,7 @@ options.Defaults = {
                 KeepCurrentCharacter = true
             }
         },
-        Tabs = {
-            Blizzard_AchievementUI = {
-                Achievements = {
-                    Show = false
-                    -- Order added dynamically
-                },
-                Guild = {
-                    Show = true
-                    -- Order added dynamically
-                },
-                Statistics = {
-                    Show = true
-                    -- Order added dynamically
-                }
-            }
-        },
+        Tabs = { --[[ Dynamically build via KrowiAF_RegisterTabOptions ]] },
         TabsGeneral = {
             Spacing = 0
         },
@@ -77,6 +62,7 @@ options.Defaults = {
         },
         Achievements = {
             Compact = false,
+            HideDateCompleted = false,
             Objectives = {
                 ForceTwoColumns = true,
                 ForceTwoColumnsThreshold = 20,
@@ -140,17 +126,38 @@ options.Defaults = {
             ShowAllResultsInCategory = true
         },
         EventReminders = {
-            ShowPopUps = true,
-            FadeDelay = 10,
+            PopUps = {
+                FadeDelay = 10,
+                MaxAlerts = 5,
+                OffsetX = 0,
+                OffsetY = 128,
+                GrowDirection = 1,
+                Spacing = 10,
+                Show = {
+                    OnLogin = true,
+                    OnLoginInInstances = false,
+                    OnEventStart = true,
+                    OnEventStartInInstances = false
+                },
+            },
+            ChatMessages = {
+                Show = {
+                    OnLogin = false,
+                    OnLoginInInstances = false,
+                    OnEventStart = false,
+                    OnEventStartInInstances = false
+                }
+            },
             DateTimeFormat = {
                 StartTimeAndEndTime = "%d/%m/%Y %R"
             },
             TimeDisplay = {
-                Line1 = 2,
-                Line2 = 4
+                Line1 = 1,
+                Line2 = 3
             },
             Compact = false,
-            MaxAlerts = 5
+            RefreshInterval = 60,
+            OnLoginDelay = 5,
         },
         Filters = {
             ResetFactionFilters = true

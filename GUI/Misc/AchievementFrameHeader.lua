@@ -38,33 +38,33 @@ local function SetPriority(index, value)
     addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[otherIndex] = currentReverse;
 end
 
-function header.InjectOptions()
+local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
+local AdjustedWidth = KrowiAF_InjectOptions.AdjustedWidth;
+function header.InjectDynamicOptions()
     for i = 1, #headerSortPriorities do
-        addon.Options.InjectOptionsTableAdd({
-            order = i + 0.1, type = "select",
+        KrowiAF_InjectOptions.AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Priority" .. i, {
+            order = OrderPP(), type = "select", width = AdjustedWidth(0.95),
             name = "",
+            -- desc = (""):AddDefaultValueText("AchievementPoints.Tooltip.Sort.Priority." .. i, headerSortPriorities), -- Does not show cause name is empty
             values = headerSortPriorities,
             get = function() return addon.Options.db.AchievementPoints.Tooltip.Sort.Priority[i]; end,
-            set = function (_, value)
-                SetPriority(i, value);
-            end
-        }, "Priority" .. i, "args", "Layout", "args", "Header", "args", "Tooltip", "args", "SortPriority");
-        addon.Options.InjectOptionsTableAdd({
-            order = i + 0.2, type = "description", width = 0.1,
+            set = function (_, value) SetPriority(i, value); end
+        });
+        KrowiAF_InjectOptions.AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Blank1" .. i, {
+            order = OrderPP(), type = "description", width = AdjustedWidth(0.1),
             name = ""
-        }, "Blank" .. i .. "2", "args", "Layout", "args", "Header", "args", "Tooltip", "args", "SortPriority");
-        addon.Options.InjectOptionsTableAdd({
-            order = i + 0.3, type = "toggle", width = "normal",
+        });
+        KrowiAF_InjectOptions.AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Reverse" .. i, {
+            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.95),
             name = addon.L["Reverse Sort"],
+            desc = (""):AddDefaultValueText("AchievementPoints.Tooltip.Sort.Reverse." .. i),
             get = function() return addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[i]; end,
-            set = function()
-                addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[i] = not addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[i];
-            end
-        }, "Reverse" .. i, "args", "Layout", "args", "Header", "args", "Tooltip", "args", "SortPriority");
-        addon.Options.InjectOptionsTableAdd({
-            order = i + 0.4, type = "description", width = "normal",
+            set = function() addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[i] = not addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[i]; end
+        });
+        KrowiAF_InjectOptions.AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Blank2" .. i, {
+            order = OrderPP(), type = "description", width = AdjustedWidth(0.85),
             name = ""
-        }, "Blank" .. i .. "4", "args", "Layout", "args", "Header", "args", "Tooltip", "args", "SortPriority");
+        });
     end
 end
 

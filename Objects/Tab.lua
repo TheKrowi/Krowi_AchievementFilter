@@ -10,12 +10,9 @@ function tab:New(addonName, name, bindingName)
         error("Usage: New(addonName, name[, bindingName])", 2);
     end
 
-    local self = {};
-    setmetatable(self, tab);
-
-    self.AddonName = addonName;
-    self.Name = name;
-    self.BindingName = bindingName;
-
-    return self;
+    local instance = setmetatable({}, tab);
+    instance.AddonName = addonName;
+    instance.Name = name;
+    instance.BindingName = bindingName;
+    return instance;
 end

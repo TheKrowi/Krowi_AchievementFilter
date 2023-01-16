@@ -3,6 +3,7 @@ local _, addon = ...;
 local diagnostics = addon.Diagnostics;
 addon.Options = {}; -- Will be overwritten in Load (intended)
 local options = addon.Options;
+options.OptionsTables = {};
 
 if addon.IsWrathClassic or addon.IsShadowlandsRetail then
     options.WidthMultiplier = 1;
@@ -21,8 +22,10 @@ options.Debug = function(parameterName, value)
     diagnostics.Debug(parameterName .. ": " .. tostring(value));
 end
 
-options.MaxNumberOfSearchPreviews = function()
-    return 17 + math.floor(addon.Options.db.Window.AchievementFrameHeightOffset / 29);
+function options.SetMaxNumberOfSearchPreviews()
+    local numberOfSearchPreviews = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.MetaData.Title, "cmd", "KROWIAF-0.0").args.Search.args.SearchPreview.args.NumberOfSearchPreviews;
+    numberOfSearchPreviews.max = 17 + math.floor(addon.Options.db.Window.AchievementFrameHeightOffset / 29);
+    return numberOfSearchPreviews;
 end
 
 local function Open()
@@ -70,6 +73,7 @@ local function InjectOptionsTable(table, tableName, ...)
 end
 options.InjectOptionsTable = InjectOptionsTable;
 
+-- Move to API
 local function InjectOptionsTableAdd(table, key, tableName, ...)
     local destTable = options.OptionsTable.args;
     for i = 1, select("#", ...), 1 do
@@ -78,6 +82,8 @@ local function InjectOptionsTableAdd(table, key, tableName, ...)
     destTable[tableName][key] = table;
 end
 options.InjectOptionsTableAdd = InjectOptionsTableAdd;
+
+-- local function InjectOptions
 
 -- Load the options
 function options.Load()
@@ -90,33 +96,35 @@ function options.Load()
     addon.Options.InjectOptionsTable = InjectOptionsTable;
     addon.Options.InjectOptionsTableAdd = InjectOptionsTableAdd;
     addon.Options.db = addon.Options.profile;
+    addon.Options.OptionsTable = options.OptionsTable; -- Do this for now while working on the rewrite
 
-    LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.MetaData.Title, options.OptionsTable.args.General);
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addon.MetaData.Title, addon.MetaData.Title, nil);
+    for _, optionsTable in next, options.OptionsTables do
+        optionsTable.RegisterOptionsTable();
+    end
 
-    LibStub("AceConfig-3.0"):RegisterOptionsTable(options.OptionsTable.args.Layout.name, options.OptionsTable.args.Layout);
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(options.OptionsTable.args.Layout.name, options.OptionsTable.args.Layout.name, addon.MetaData.Title);
-
-    LibStub("AceConfig-3.0"):RegisterOptionsTable(options.OptionsTable.args.EventReminders.name, options.OptionsTable.args.EventReminders);
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(options.OptionsTable.args.EventReminders.name, options.OptionsTable.args.EventReminders.name, addon.MetaData.Title);
-
-    LibStub("AceConfig-3.0"):RegisterOptionsTable(options.OptionsTable.args.Plugins.name, options.OptionsTable.args.Plugins);
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(options.OptionsTable.args.Plugins.name, options.OptionsTable.args.Plugins.name, addon.MetaData.Title);
-
-    LibStub("AceConfig-3.0"):RegisterOptionsTable(options.OptionsTable.args.Credits.name, options.OptionsTable.args.Credits);
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(options.OptionsTable.args.Credits.name, options.OptionsTable.args.Credits.name, addon.MetaData.Title);
-
-    -- Extra things to set in the options panel based loaded options we can't do while loading the addon files
-    local numberOfSearchPreviews = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.MetaData.Title, "cmd", "KROWIAF-0.0").args.Search.args.SearchPreview.args.NumberOfSearchPreviews; -- cmd and KROWIAF-0.0 are just to make the function work
-    numberOfSearchPreviews.max = options.MaxNumberOfSearchPreviews();
-
-    if addon.Options.db.Calendar.FirstWeekDay < 1 or addon.Options.db.Calendar.FirstWeekDay > 7 then
-        if not IsAddOnLoaded("Blizzard_Calendar") then -- This is to make sure we get the 1st day of the week correct
-            LoadAddOn("Blizzard_Calendar"); -- breaks Blizzard_Calendar
-        end
-        addon.Options.db.Calendar.FirstWeekDay = CALENDAR_FIRST_WEEKDAY;
+    for _, optionsTable in next, options.OptionsTables do
+        optionsTable.PostLoad();
     end
 
     diagnostics.Debug("Options loaded");
-    -- diagnostics.DebugTable(addon.Options.db, 1);
+end
+
+string["AddDefaultValueText"] = function(self, valuePath, values)
+    local value = options.Defaults.profile;
+    local pathParts = strsplittable(".", valuePath);
+    for _, part in next, pathParts do
+        part = tonumber(part) and tonumber(part) or part;
+        value = value[part];
+    end
+    if type(value) == "boolean" then
+        value = value and addon.L["Checked"] or addon.L["Unchecked"];
+    end
+    if values then
+        value = values[value];
+    end
+    return self .. "\n\n" .. addon.L["Default value"] .. ": " .. tostring(value);
+end
+
+string["AddReloadRequired"] = function(self)
+    return self .. "\n\n" .. addon.L["Requires a reload"];
 end

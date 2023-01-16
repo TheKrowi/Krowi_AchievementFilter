@@ -1,8 +1,8 @@
--- [[ Exported at 2022-12-22 10-38-09 ]] --
+-- [[ Exported at 2023-01-16 17-36-03 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2022-12-20 ]] --
+-- [[ German translation by Ta, 2023-01-14 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -172,7 +172,7 @@ L["Only search filtered achievements Desc"] = "Nur Erfolge suchen, die mit den e
 L["Minimum characters to search"] = "Mindestanzahl der zu suchenden Charaktere";
 L["Minimum characters to search Desc"] = "Die Anzahl der Charaktere, die benötigt werden, um die Suche nach Erfolgen, die der Abfrage entsprechen, zu starten. Je kleiner die Zahl, desto größer die Auswirkung (1) auf das Spiel.\n\n(1) FPS-Einbrüche und Stottern bei der Suche";
 L["Number of search previews"] = "Anzahl der Such-Vorschauen";
-L["Number of search previews Desc"] = "Die Anzahl der Erfolge, die als Vorschau in der gesamten Liste der gefundenen Erfolge angezeigt werden.\n\n{reloadRequired}";
+L["Number of search previews Desc"] = "Die Anzahl der Erfolge, die als Vorschau in der gesamten Liste der gefundenen Erfolge angezeigt werden.";
 L["Filters"] = "Filter";
 L["Reset Faction Filters"] = "Fraktions Filter zurücksetzen";
 L["Reset Faction Filters Desc"] = "Die Fraktions-Filter zurücksetzen / beibehalten. Das bedeutet, dass, wenn du dich z.B. mit einem {Allianz}-Charakter anmeldest und einer der {neutralen}, {Allianz}- oder {Horden} Fraktions-Filter aktiviert/deaktiviert ist, werden nur die {neutral} und {alliance} Fraktions-Filter aktiviert. Diese Option wird bevorzugt, wenn viel zwischen {Allianz} und {Horde} gewechselt wird.";
@@ -193,7 +193,7 @@ L["Make windows movable Desc"] = "Macht das Erfolgsfenster, die Kalenderansicht 
 L["Categories width offset"] = "Kategorien Fenster Abstands-Breite";
 L["Categories width offset Desc"] = "Die Breite, die zur Standardkategorienbreite addiert oder von ihr subtrahiert wird.\n\nDieser Wert kann geändert werden, während das Erfolgsfenster geöffnet ist und eine der von {AddonName} hinzugefügten Tabs ausgewählt wurde. Dies kann Auswirkungen (1) auf das Spiel haben.\n\n(1) FPS-Einbrüche und Stottern während der Anpassung des Wertes, NICHT während der normalen Addon-Nutzung\n\n{reloadRequired}";
 L["Achievement window height offset"] = "Erfolgs Fenster Höhen-Abstand";
-L["Achievement window height offset Desc"] = "Die Höhe, die zur Standardhöhe des Erfolg-Fensters addiert oder davon subtrahiert wird.\n\nDieser Wert kann geändert werden, während das Erfolg-Fenster geöffnet ist und eine der von {addonName} hinzugefügten Registerkarten ausgewählt wurde. Dies kann Auswirkungen (1) auf das Spiel haben.\n\n(1) FPS-Einbrüche und Stottern während der Anpassung des Wertes, NICHT während der normalen Addon-Nutzung\n\n{reloadRequired}";
+L["Achievement window height offset Desc"] = "Die Höhe, die zur Standardhöhe des Erfolg-Fensters addiert oder davon subtrahiert wird.\n\nDieser Wert kann geändert werden, während das Erfolg-Fenster geöffnet ist und eine der von {addonName} hinzugefügten Registerkarten ausgewählt wurde. Dies kann Auswirkungen (1) auf das Spiel haben.\n\n(1) FPS-Einbrüche und Stottern während der Anpassung des Wertes, NICHT während der normalen Addon-Nutzung";
 L["Blizzard"] = "Blizzard";
 L["Order"] = "Tab Reihenfolge";
 L["Tab"] = "Tab";
@@ -241,15 +241,15 @@ L["Second column threshold"] = "Zweite Spalte: Schwellenwert";
 L["Second column threshold Desc"] = "Erfolge mit mehr Teilaufgaben als dieser Zahl werden in zwei Spalten statt in einer angezeigt.";
 L["Right Click Menu"] = "Rechts-Klick Menü";
 L["Show Right Click Menu"] = "{rightClickMenu} Button anzeigen";
-L["Show Right Click Menu Desc"] = "Zeigt / Versteckt den {rightClickMenu} Button auf jedem Erfolg.\n\nDies dient als Alternative für einen Rechtsklick auf den Erfolg.\n\n{reloadRequired}";
+L["Show Right Click Menu Desc"] = "Zeigt / Versteckt den {rightClickMenu} Button auf jedem Erfolg.\n\nDies dient als Alternative für einen Rechtsklick auf den Erfolg.";
 L["Event Reminders"] = "Event Erinnerung";
 L["Pop ups"] = "Popup-Fenster";
-L["Show pop ups"] = "Zeige Ereignis Popup-Fenster";
-L["Show pop ups Desc"] = "Ereignis Popups beim Neuladen oder Betreten des Spiels anzeigen/ausblenden. Diese Option hat keinen Einfluss auf die Ereignis-Erinnerungen neben dem Erfolgs-Fenster.";
+L["Show"] = "Zeige";
+L["Show alertSystem on login Desc"] = "Ereignis {alertSystem} beim Neuladen oder Betreten des Spiels anzeigen/ausblenden.";
 L["Max number of alerts"] = "Maximale Anzahl der Ereignis Popup-Fenster";
-L["Max number of alerts Desc"] = "Die maximale Anzahl der gleichzeitig angezeigten Ereignis Popup Fenster.";
+L["Max number of alerts Desc"] = "Die maximale Anzahl der gleichzeitig angezeigten Ereignis Popup-Fenster.";
 L["Fade delay"] = "Ausblendeverzögerung";
-L["Fade delay Desc"] = "Zeit in Sekunden, die das Ereignis Popup Fenster braucht, um zu verschwinden, wenn es ignoriert wird. Mit einem Rechtsklick wird es sofort geschlossen.";
+L["Fade delay Desc"] = "Zeit in Sekunden, die das Ereignis Popup-Fenster braucht, um zu verschwinden, wenn es ignoriert wird. Mit einem Rechtsklick wird es sofort geschlossen.";
 L["Compact"] = "Kompakte Erfolge anzeigen";
 L["Compact Desc"] = "Verwende eine kompaktere Version mit nur einer Zeile der Zeitanzeige.\n\n{reloadRequired}";
 L["Time display"] = "Zeit Anzeige";
@@ -560,7 +560,7 @@ L["Already petted for achievement"] = "Bereits gestreichelt {forAchievement}";
 L["Toggle window once opened"] = "Fenster nach dem Öffnen umschalten";
 L["Toggle window once opened Desc"] = "Wenn das Erfolgsfenster das erste Mal geöffnet wird, öffnet sich ein Tab und wählt die Zusammenfassung. Ab dem zweiten Mal, unabhängig von der verwendeten Tastenkombination, öffnet sich die letzte Ansicht.";
 L["%d/%m/%Y %I:%M %p"] = "%d/%m/%Y %I:%M %p";
-L["%m/%d/%Y %R"] = "%m/%d/%Y %R";
+L["%m/%d/%Y %R"] = "%d.%md.%Y %R";
 L["%m/%d/%Y %I:%M %p"] = "%m/%d/%Y %I:%M %p";
 L["%Y/%m/%d %R"] = "%Y/%m/%d %R";
 L["%Y/%m/%d %I:%M %p"] = "%Y/%m/%d %I:%M %p";
@@ -568,4 +568,32 @@ L["%c"] = "%c";
 L["Show All Results in Category"] = "Zeige alle Suchergebnisse in einer Kategorie an";
 L["Show All Results in Category Desc"] = "Alle Suchergebnisse in einer Kategorie anzeigen, die während dieser Sitzung bestehen bleibt.";
 L["Search Results"] = "Suchergebnisse";
+L["Are you sure you want to delete character?"] = "Sind Sie sicher, dass Sie {character} löschen möchten? Dieser Charakter wird aber wieder hinzugefügt, wenn Sie sich erneut einloggen. Wenn Sie den Charakter dauerhaft nicht sehen wollen, markieren Sie bitte die {ignore} Checkbox.";
+L["On Login / Reload"] = "Beim Login / Neu-laden";
+L["In instances"] = "In einer Instanz";
+L["Show alertSystem on login in instances Desc"] = "Ein-/Ausblenden von Ereignis {alertSystem} beim Neu-laden oder Betreten des Spiels innerhalb einer Instanz.";
+L["Show alertSystem on event start Desc"] = "Ein-/Ausblenden des {alertSystem} für ein Ereignis, sobald es beginnt.";
+L["On Event Start"] = "Bei Ereignisbeginn";
+L["Show alertSystem on event start in instances Desc"] = "Ein-/Ausblenden des {alertSystem} für ein Ereignis, sobald es beginnt, während man sich in einer Instanz befindet.";
+L["Refresh interval"] = "Aktualisierungsintervall";
+L["Refresh interval Desc"] = "Die Zeit in Sekunden zwischen den Aktualisierungen der Ereignis-Daten. Eine längere Zeitspanne kann die Erstellung neuer Popup-Fenster bzw. das Bereinigen vorhandener Popup-Fenster verzögern.";
+L["Default value"] = "Vorgabewert (Standard)";
+L["Unchecked"] = "Nicht aktiviert";
+L["Checked"] = "Aktivert";
+L["Hide Date Completed"] = "Erfolgs Abschluss-Datum verbergen";
+L["Hide Date Completed Desc"] = "Verbirgt das Datum, an dem der Erfolg abgeschlossen wurde.";
+L["Delay"] = "Verzögerung";
+L["Show pop ups on login delay Desc"] = "Verzögern Sie das Einblenden der ersten Ereignis-Popups beim Einloggen.";
+L["Up"] = "Hoch";
+L["Down"] = "Runter";
+L["Location"] = "Ort";
+L["Grow direction"] = "Richtung";
+L["Grow direction Desc"] = "Die Richtung, in der neue Benachrichtigungs-Fenster hinzugefügt werden sollen.";
+L["XYZ offset"] = "{xyz} offset";
+L["X offset Desc"] = "Der horizontale Versatz von der Startposition.";
+L["Y offset Desc"] = "Der vertikale Versatz von der Startposition.";
+L["Show placeholders Desc"] = "Zeigt eine Reihe von Platzhalter-Ereignissen an, um eine visuelle Anzeige der Wirkung der oben genannten Einstellungen zu ermöglichen. Sie können wieder geschlossen werden, indem Sie die Maus über sie bewegen oder mit der rechten Maustaste darauf klicken.";
+L["Placeholder"] = "Platzhalter";
+L["Chat messages"] = "Chat-Mitteilungen";
+L["Diablo IV"] = "Diablo IV";
 

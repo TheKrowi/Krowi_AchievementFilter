@@ -72,8 +72,8 @@ function temporaryObtainable:GetObtainableState(achievement)
         return "Past";
     elseif startFunction == "Once" then
         return "Past";
-    elseif startFunction == "Event" then
-        start = self:GetEventStartState(achievement);
+    -- elseif startFunction == "Event" then
+    --     start = self:GetEventStartState(achievement);
     end
 
     -- print(achievement.Id, startFunction, start)
@@ -91,8 +91,8 @@ function temporaryObtainable:GetObtainableState(achievement)
         _end = self:GetPvpSeasonEndState(achievement);
     elseif endFunction == "Version" then
         _end = self:GetVersionEndState(achievement);
-    elseif startFunction == "Event" then
-        _end = self:GetEventEndState(achievement);
+    -- elseif startFunction == "Event" then
+    --     _end = self:GetEventEndState(achievement);
     end
 
     -- local endState = _end;
@@ -116,8 +116,8 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
             start = self:GetPvpSeasonStartState(achievement);
         elseif startFunction == "Version" then
             start = self:GetVersionStartState(achievement);
-        elseif startFunction == "Event" then
-            start = self:GetEventStartState(achievement);
+        -- elseif startFunction == "Event" then
+        --     start = self:GetEventStartState(achievement);
         end
 
         local endFunction = achievement.TemporaryObtainable.End.Function;
@@ -127,8 +127,8 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
             _end = self:GetPvpSeasonEndState(achievement);
         elseif endFunction == "Version" then
             _end = self:GetVersionEndState(achievement);
-        elseif startFunction == "Event" then
-            _end = self:GetEventEndState(achievement);
+        -- elseif startFunction == "Event" then
+        --     _end = self:GetEventEndState(achievement);
         end
 
         -- print(startFunction, start, endFunction, _end)
@@ -293,25 +293,25 @@ do -- Get start and end state
         end
     end
 
-    function temporaryObtainable:GetEventStartState(achievement)
-        if achievement.TemporaryObtainable.End.Inclusion == "From" then
-            local events = addon.Data.CalendarEvents;
-            for _, event in next, events do
-                if event.Id == achievement.TemporaryObtainable.Start.Value then
-                    return time() >= event.StartTime and "Past" or "Future";
-                end
-            end
-            return "Past";
-        elseif achievement.TemporaryObtainable.End.Inclusion == "After" then -- Should not be used
-            local events = addon.Data.CalendarEvents;
-            for _, event in next, events do
-                if event.Id == achievement.TemporaryObtainable.Start.Value then
-                    return time() >= event.EndTime and "Past" or "Future";
-                end
-            end
-            return "Past";
-        end
-    end
+    -- function temporaryObtainable:GetEventStartState(achievement)
+    --     if achievement.TemporaryObtainable.End.Inclusion == "From" then
+    --         local events = addon.Data.CalendarEvents;
+    --         for _, event in next, events do
+    --             if event.Id == achievement.TemporaryObtainable.Start.Value and event.StartTime ~= nil then
+    --                 return time() >= event.StartTime and "Past" or "Future";
+    --             end
+    --         end
+    --         return "Past";
+    --     elseif achievement.TemporaryObtainable.End.Inclusion == "After" then -- Should not be used
+    --         local events = addon.Data.CalendarEvents;
+    --         for _, event in next, events do
+    --             if event.Id == achievement.TemporaryObtainable.Start.Value then
+    --                 return time() >= event.EndTime and "Past" or "Future";
+    --             end
+    --         end
+    --         return "Past";
+    --     end
+    -- end
 
     function temporaryObtainable:GetMplusSeasonEndState(achievement)
         if achievement.TemporaryObtainable.End.Inclusion == "Until" then
@@ -349,23 +349,23 @@ do -- Get start and end state
         end
     end
 
-    function temporaryObtainable:GetEventEndState(achievement)
-        if achievement.TemporaryObtainable.End.Inclusion == "Until" then
-            local events = addon.Data.CalendarEvents;
-            for _, event in next, events do
-                if event.Id == achievement.TemporaryObtainable.End.Value then
-                    return time() > event.EndTime and "Past" or "Future";
-                end
-            end
-            return "Past";
-        elseif achievement.TemporaryObtainable.End.Inclusion == "Before" then
-            local events = addon.Data.CalendarEvents;
-            for _, event in next, events do
-                if event.Id == achievement.TemporaryObtainable.End.Value then
-                    return time() >= event.StartTime and "Past" or "Future";
-                end
-            end
-            return "Past";
-        end
-    end
+    -- function temporaryObtainable:GetEventEndState(achievement)
+    --     if achievement.TemporaryObtainable.End.Inclusion == "Until" then
+    --         local events = addon.Data.CalendarEvents;
+    --         for _, event in next, events do
+    --             if event.Id == achievement.TemporaryObtainable.End.Value then
+    --                 return time() > event.EndTime and "Past" or "Future";
+    --             end
+    --         end
+    --         return "Past";
+    --     elseif achievement.TemporaryObtainable.End.Inclusion == "Before" then
+    --         local events = addon.Data.CalendarEvents;
+    --         for _, event in next, events do
+    --             if event.Id == achievement.TemporaryObtainable.End.Value then
+    --                 return time() >= event.StartTime and "Past" or "Future";
+    --             end
+    --         end
+    --         return "Past";
+    --     end
+    -- end
 end

@@ -126,7 +126,9 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement, refresh)
 			self.Completed = true;
 			achievement.IsCompleted = true;
 			self.DateCompleted:SetText(FormatShortDate(day, month, year));
-			self.DateCompleted:Show();
+			if not addon.Options.db.Achievements.HideDateCompleted then
+				self.DateCompleted:Show();
+			end
 			if self.saturatedStyle ~= saturatedStyle then
 				self:Saturate();
 			end
@@ -134,7 +136,9 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement, refresh)
 			self.Completed = true;
 			achievement.IsCompleted = true;
 			self.DateCompleted:SetText(FormatShortDate(day, month, year));
-			self.DateCompleted:Show();
+			if not addon.Options.db.Achievements.HideDateCompleted then
+				self.DateCompleted:Show();
+			end
 			self:SaturatePartial();
 		else
 			self.Completed = nil;

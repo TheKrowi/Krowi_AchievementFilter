@@ -76,7 +76,7 @@ local function ProcessUnit(tooltip, guid)
 
     local unitType, _, _, _, unitId = ProcessGuid(guid);
     unitId = tonumber(unitId);
-    if unitType ~= "Creature" or not unitId then
+    if (unitType ~= "Creature" and unitType ~= "Vehicle") or not unitId then
         return;
     end
 

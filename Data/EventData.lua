@@ -3,9 +3,10 @@ local _, addon = ...;
 local data = addon.Data;
 addon.EventData = {};
 local eventData = addon.EventData;
+local activeEvents;
 
-local GetEvents;
-function eventData.Load()
+local utcOffsetSeconds;
+local function GetUtcOffsetSeconds()
     local utcNow = date("!*t");
     local locNow = date("*t");
     local utcServerTimeLocal = date("!*t", C_DateAndTime.GetServerTimeLocal());
@@ -14,111 +15,63 @@ function eventData.Load()
     local userUtcOffsetDays = locNow.yday - utcNow.yday;
     local userUtcOffsetHours = locNow.hour - utcNow.hour;
     local utcOffsethours = (serverUtcOffsetDays * 24 + serverUtcOffsetHours) - (userUtcOffsetDays * 24 + userUtcOffsetHours);
-    local utcOffsetSeconds = utcOffsethours * 3600;
+    utcOffsetSeconds = utcOffsethours * 3600;
+    GetUtcOffsetSeconds = function() -- Overwrite the current function to not have an if statement
+        return utcOffsetSeconds;
+    end
+    return utcOffsetSeconds;
+end
 
-    local events = GetEvents();
-    for id, event in next, data.CalendarEvents do
-        if events[id] then -- At this time we only handle calendar events, POI's are handeled later
-            local startTime = addon.GetSecondsSince(events[id].startTime) - utcOffsetSeconds;
-            local endTime = addon.GetSecondsSince(events[id].endTime) - utcOffsetSeconds;
-            addon.Diagnostics.Print(event.ID, events[id].title, date("%Y/%m/%d %H:%M", startTime), date("%Y/%m/%d %H:%M", endTime));
-            if endTime - time() > 0 then
-                event.EventDetails = {StartTime = startTime, EndTime = endTime, Name = events[id].title}; -- Cache for later
-            end
-        end
+local function ProcessDayEvent(dayEvent)
+    local calendarEvent = data.CalendarEvents[dayEvent.eventID];
+    local startTime = addon.GetSecondsSince(dayEvent.startTime) - GetUtcOffsetSeconds();
+    local endTime = addon.GetSecondsSince(dayEvent.endTime) - GetUtcOffsetSeconds();
+    local eventHasStarted = startTime <= time();
+    local eventHasEnded = endTime <= time();
+    if eventHasStarted and not eventHasEnded then
+        addon.Diagnostics.Print("Event active", calendarEvent.Id, dayEvent.title, startTime, time(), endTime, eventHasStarted, eventHasEnded);
+        calendarEvent.EventDetails = {EndTime = endTime, Name = dayEvent.title};
+        tinsert(activeEvents, calendarEvent);
+    else
+        addon.Diagnostics.Print("Event not active", calendarEvent.Id, startTime, time(), endTime, eventHasStarted, eventHasEnded);
     end
 end
 
-function GetEvents()
-    -- Make sure we're starting from the correct date
+local stopCalendarEventsRefresh;
+local function GetActiveCalendarEvents()
+    if stopCalendarEventsRefresh then
+        return;
+    end
+
     local currentDate = C_DateAndTime.GetCurrentCalendarTime();
     C_Calendar.SetAbsMonth(currentDate.month, currentDate.year);
+    local numDayEvents = C_Calendar.GetNumDayEvents(0, currentDate.monthDay);
+    local calendarEvents = data.CalendarEvents;
 
-    local events = {};
-    local date = currentDate;
-    for i = 1, 12, 1 do
-        local monthInfo = C_Calendar.GetMonthInfo();
-        if i > 1 then
-            date = {year = monthInfo.year, month = monthInfo.month, monthDay = 1, weekday = monthInfo.firstWeekday, hour = 0, minute = 0}; -- First day of month
-        end
-        local numDays = monthInfo.numDays; -- Days in month
-        for j = date.monthDay, numDays, 1 do
-            date.numDayEvents = C_Calendar.GetNumDayEvents(0, date.monthDay);
-            for k = 1, date.numDayEvents, 1 do
-                addon.Diagnostics.Print(date, k)
-                local event = C_Calendar.GetDayEvent(0, date.monthDay, k);
-                if events[event.eventID] == nil then
-                    events[event.eventID] = event;
-                end
-            end
-            addon.Diagnostics.Print(date.year, date.month, date.monthDay)
-            if pcall(function() date = C_DateAndTime.AdjustTimeByDays(date, 1) end) then -- Wrath Classic tends to error out sometimes
-                addon.Diagnostics.Print("no error")
-            else
-                addon.Diagnostics.Print("error", date.year, date.month, date.monthDay)
-            end
-        end
-        C_Calendar.SetMonth(1);
-    end
-
-    -- Set the date back to the current date
-    C_Calendar.SetAbsMonth(currentDate.month, currentDate.year);
-
-    return events;
-end
-
-local activeCalendarEvents;
-function eventData.GetActiveCalendarEvents(refresh)
-    if activeCalendarEvents ~= nil and not refresh then
-        return activeCalendarEvents;
-    end
-    activeCalendarEvents = {};
-
-    for _, event in next, data.CalendarEvents do
-        if event.EventDetails ~= nil and addon.Options.db.EventReminders.CalendarEvents[event.ID] then
-            local deltaT = math.floor((event.EventDetails.StartTime - time()) / (3600 * 24));
-            if deltaT < 0 then
-                addon.Diagnostics.Print("Event active", event.Id, event.EventDetails.StartTime, time(), 3600 * 24, deltaT);
-                tinsert(activeCalendarEvents, event);
-            else
-                addon.Diagnostics.Print("Event not active", event.Id, event.EventDetails.StartTime, time(), 3600 * 24, deltaT);
-            end
+    for k = 1, numDayEvents, 1 do
+        local dayEvent = C_Calendar.GetDayEvent(0, currentDate.monthDay, k);
+        if calendarEvents[dayEvent.eventID] and addon.Options.db.EventReminders.CalendarEvents[dayEvent.eventID] then
+            ProcessDayEvent(dayEvent);
         end
     end
-
-    return activeCalendarEvents;
 end
 
-local function GetStartAndEndTime(secondsLeft, totalDuration) -- both in seconds
-    local endTime = floor((GetServerTime() + secondsLeft) / 300 + 0.5) * 300; -- Round to 5 minutes, 1 hour is not precise enough anymore
-    local startTime = endTime - totalDuration;
-
-    return startTime, endTime;
+function eventData.LoadBlizzard_Calendar()
+    hooksecurefunc(CalendarFrame, "Show", function()
+        stopCalendarEventsRefresh = true;
+    end);
+    hooksecurefunc(CalendarFrame, "Hide", function()
+        stopCalendarEventsRefresh = nil;
+    end);
 end
 
-local activeWorldEvents;
-function eventData.GetActiveWorldEvents(refresh)
-    if activeWorldEvents ~= nil and not refresh then
-        return activeWorldEvents;
-    end
-    activeWorldEvents = {};
+local function GetActiveWorldEvents()
     for _, event in next, data.WorldEvents do
         event.EventDetails = eventData.GetEventDetails(event);
         if event.EventDetails then
-            tinsert(activeWorldEvents, event);
+            addon.Diagnostics.Print("Event active", event.Id, event.EventDetails.Name, time(), event.EventDetails.EndTime);
+            tinsert(activeEvents, event);
         end
-    end
-
-    return activeWorldEvents;
-end
-
-function eventData.PrimeAreaPoi()
-    if addon.IsWrathClassic then
-        return;
-    end
-    for _, event in next, data.WorldEvents do
-        C_AreaPoiInfo.GetAreaPOIInfo(event.MapID, event.ID);
-        C_AreaPoiInfo.GetAreaPOISecondsLeft(event.ID);
     end
 end
 
@@ -127,16 +80,31 @@ function eventData.GetEventDetails(event)
         return;
     end
 
-    local poiInfo = C_AreaPoiInfo.GetAreaPOIInfo(event.MapID, event.ID);
+    local poiInfo = C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id);
     if not poiInfo then -- The event is not active
         return;
     end
 
-    local secondsLeft = C_AreaPoiInfo.GetAreaPOISecondsLeft(event.ID);
-    local startTime, endTime;
+    local secondsLeft = C_AreaPoiInfo.GetAreaPOISecondsLeft(event.Id);
+    local endTime;
     if secondsLeft ~= nil and secondsLeft ~= 0 then
-        startTime, endTime = GetStartAndEndTime(secondsLeft, event.TotalDuration or 0);
+        endTime = floor((GetServerTime() + secondsLeft) / 60 + 0.5) * 60; -- Round to 1 minute, 1 hour is not precise enough anymore
     end
 
-    return {StartTime = startTime, EndTime = endTime, Name = event.Name};
+    return {EndTime = endTime, Name = event.Name};
 end
+
+function eventData:GetActiveEvents(refresh)
+    addon.Diagnostics.Print("GetActiveEvents", activeEvents ~= nil, refresh, activeEvents ~= nil and not refresh);
+    if activeEvents ~= nil and not refresh then
+        return activeEvents;
+    end
+
+    activeEvents = {};
+    GetActiveCalendarEvents();
+    GetActiveWorldEvents();
+
+    return activeEvents;
+end
+
+KrowiAF_IgnoreCalendarEvents = false;
