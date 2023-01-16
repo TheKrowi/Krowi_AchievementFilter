@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-14 18-59-58 ]] --
+-- [[ Exported at 2023-01-16 17-36-03 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -595,4 +595,5 @@ L["Y offset Desc"] = "The vertical offset from the start position.";
 L["Show placeholders Desc"] = "Show a set of placeholder events so there is visual feedback of what the above settings do. They can be closed again by moving the mouse over them or right clicking them.";
 L["Placeholder"] = "Placeholder";
 L["Chat messages"] = "Chat messages";
+L["Diablo IV"] = "Diablo IV";
 

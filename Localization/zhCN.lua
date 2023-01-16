@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-14 18-59-58 ]] --
+-- [[ Exported at 2023-01-16 17-36-03 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -456,4 +456,16 @@ L["In instances"] = "副本中";
 L["On Event Start"] = "事件开始时";
 L["Refresh interval"] = "刷新间隔";
 L["Default value"] = "默认值";
+L["Unchecked"] = "未勾选";
+L["Checked"] = "已勾选";
+L["Hide Date Completed"] = "隐藏完成时间";
+L["Delay"] = "延迟";
+L["Up"] = "上";
+L["Down"] = "下";
+L["Location"] = "位置";
+L["Grow direction"] = "增长方向";
+L["XYZ offset"] = "{xyz} 偏移量";
+L["Placeholder"] = "占位符";
+L["Chat messages"] = "聊天消息";
+L["Diablo IV"] = "暗黑破坏神IV";
 

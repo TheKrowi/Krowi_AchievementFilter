@@ -1,8 +1,8 @@
--- [[ Exported at 2023-01-14 18-59-58 ]] --
+-- [[ Exported at 2023-01-16 17-36-03 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2023-01-13 ]] --
+-- [[ German translation by Ta, 2023-01-14 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -594,4 +594,6 @@ L["X offset Desc"] = "Der horizontale Versatz von der Startposition.";
 L["Y offset Desc"] = "Der vertikale Versatz von der Startposition.";
 L["Show placeholders Desc"] = "Zeigt eine Reihe von Platzhalter-Ereignissen an, um eine visuelle Anzeige der Wirkung der oben genannten Einstellungen zu ermöglichen. Sie können wieder geschlossen werden, indem Sie die Maus über sie bewegen oder mit der rechten Maustaste darauf klicken.";
 L["Placeholder"] = "Platzhalter";
+L["Chat messages"] = "Chat-Mitteilungen";
+L["Diablo IV"] = "Diablo IV";
 
