@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 51.1 - 2023-01-17
+### Fixed
+- Blizzard Achievement tab is once again able to be hidden/shown from the options
+
 ## 51.0 - 2023-01-16
 ### Added
 - 10.0.5 achievements
