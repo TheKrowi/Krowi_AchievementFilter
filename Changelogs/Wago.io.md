@@ -31,3 +31,6 @@
 - Start Time display for Event Reminders (This reduces the manual data collection on my end and has little to no importance)
 - Fated Raids Calendar Events
 - Going away with Dragonflight category
+
+### Fixed (51.1)
+- Blizzard Achievement tab is once again able to be hidden/shown from the options
