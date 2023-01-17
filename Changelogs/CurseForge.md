@@ -36,3 +36,7 @@
 <li>Fated Raids Calendar Events</li>
 <li>Going away with Dragonflight category</li>
 </ul>
+<p><h3>Fixed (51.1)</h3></p>
+<ul>
+<li>Blizzard Achievement tab is once again able to be hidden/shown from the options</li>
+</ul>
