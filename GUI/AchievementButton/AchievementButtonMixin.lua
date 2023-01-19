@@ -459,7 +459,7 @@ function KrowiAF_AchievementButtonMixin:ProcessedModifiers(ignoreModifiers)
 			end
 		end
 		if not handled and addon.IsCustomModifierKeyDown(addon.Options.db.Achievements.Modifiers.ToggleTracking) then
-			if addon.IsWrathClassic or addon.IsShadowlandsRetail then
+			if addon.IsWrathClassic then
 				AchievementButton_ToggleTracking(self.Achievement.Id);
 			else
 				self:ToggleTracking();

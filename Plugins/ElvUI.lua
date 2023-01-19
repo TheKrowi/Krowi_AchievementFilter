@@ -249,16 +249,6 @@ local function SkinAchievementSummary(frame, engine, skins)
     frame.Achievements.Header.Texture:Hide();
 	frame.Categories.Header.Texture:Hide();
 
-    if addon.IsShadowlandsRetail then
-        local numChildren = frame:GetNumChildren();
-        for i = 1, numChildren do
-            local child = select(i, frame:GetChildren());
-            if child and not child:GetName() then
-                child:SetBackdrop();
-            end
-        end
-    end
-
     frame.ScrollFrameBorder.NineSlice:SetAlpha(0);
     frame.ScrollFrameBorder.ScrollFrame.ScrollBar.trackBG:SetAlpha(0);
     frame.ScrollFrameBorder.ScrollFrame:CreateBackdrop("Transparent");
@@ -684,33 +674,6 @@ function elvUI:OnEvent(event, arg1, arg2)
     end
 end
 
-function elvUI.LoadLocalization(L)
-    L["ElvUI"] = "ElvUI";
-    L["ElvUI Desc"] = "Each of the options below are controlled by ElvUI and are just informational.\n\n" ..
-                        "To change these, go to Game Menu -> ElvUI -> Skins and check the desired options. See each option below for what to check.\n ";
-    L["Skin Achievements"] = "Skin Achievements";
-    L["Skin Achievements Desc"] = "Applies the ElvUI skin to the Achievements Window.\n-> Blizzard + Achievements";
-    L["Skin Misc Frames"] = "Skin Misc Frames";
-    L["Skin Misc Frames Desc"] = "Applies the ElvUI skin to the Filter Menu, Right Click Menu and Popup Dialog.\n-> Blizzard + Misc Frames";
-    L["Skin Tooltip"] = "Skin Tooltip";
-    L["Skin Tooltip Desc"] = "Applies the ElvUI skin to the Tooltip.\n-> Blizzard + Tooltip";
-    L["Skin Tutorials"] = "Skin Tutorials";
-    L["Skin Tutorials Desc"] = "Applies the ElvUI skin to the Tutorials.\n-> Blizzard + Tutorials";
-    L["Skin Alert Frames"] = "Skin Alert Frames";
-    L["Skin Alert Frames Desc"] = "Applies the ElvUI skin to the Alert Frames.\n-> Blizzard + Alert Frames";
-    L["Skin Calendar"] = "Skin Calendar";
-    L["Skin Calendar Desc"] = "Applies the ElvUI skin to the Calendar.\n-> Blizzard + Calendar Frame";
-    L["Remove Parchment"] = "Remove Parchment";
-    L["Remove Parchment Desc"] = "Remove the parchment background from the Calendar Days.\n-> Parchment Remover";
-    L["Skin Data Manager"] = "Skin Data Manager";
-    L["Skin Data Manager Desc"] = "Applies the ElvUI skin to the Data Manager Window.\n-> Blizzard + Achievements";
-    L["Skin Ace3"] = "Skin Ace3";
-    L["Skin Ace3 Desc"] = "Applies the ElvUI skin to the Options.\n-> Ace3";
-    L["Fix World Map Button"] = "Fix World Map Button";
-    L["Fix World Map Button Desc"] = "When ElvUI Maps -> World Map -> Smaller World Map is enabled, the World Map Button needs fixing";
-    L["Alert System Overwrite Desc"] = "The location settings are not active when ElvUI is enabled. Moving the Loot / Alert Frames anchor will achieve the same result.";
-end
-
 local function AddInfo(localizationName, getFunction, hidden)
     return {
         order = KrowiAF_InjectOptions.AutoOrderPlusPlus(), type = "toggle", width = "full",
@@ -741,12 +704,12 @@ end
 
 local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
 local function DisableOptions()
-    local appName = addon.Options.OptionsTable.args.EventReminders.name;
+    local appName = "Event Reminders";
     KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.GrowDirection").disabled = true;
     KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.Spacing").disabled = true;
     KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.OffsetX").disabled = true;
     KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.OffsetY").disabled = true;
-    KrowiAF_InjectOptions.AddTable("EventReminders.args.PopUps.args.Location.args", "ElvUIComment", {
+    KrowiAF_InjectOptions.AddTable(KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args"), "ElvUIComment", {
         order = OrderPP(), type = "description", width = "full",
         name = addon.L["Alert System Overwrite Desc"]
     });

@@ -418,8 +418,6 @@ function addon.OverwriteFunctions()
         AchievementFrameTab_OnClick(1);
         if addon.IsDragonflightRetail then
             AchievementFrame_SetComparisonTabs();
-        elseif addon.IsShadowlandsRetail then
-            AchievementFrame_SetTabs();
         end
         AchievementFrame:Show();
         if addon.IsDragonflightRetail then

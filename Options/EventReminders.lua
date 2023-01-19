@@ -9,8 +9,8 @@ local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
 local AdjustedWidth = KrowiAF_InjectOptions.AdjustedWidth;
 
 function eventReminders.RegisterOptionsTable()
-    LibStub("AceConfig-3.0"):RegisterOptionsTable(options.OptionsTable.args.EventReminders.name, options.OptionsTable.args.EventReminders);
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(options.OptionsTable.args.EventReminders.name, options.OptionsTable.args.EventReminders.name, addon.MetaData.Title);
+    LibStub("AceConfig-3.0"):RegisterOptionsTable("Event Reminders", options.OptionsTable.args.EventReminders);
+    LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Event Reminders", "Event Reminders", addon.MetaData.Title);
 end
 
 function eventReminders.PostLoad()
@@ -372,7 +372,7 @@ options.OptionsTable.args["EventReminders"] = {
                             values = startTimeAndEndTimeDateTimeValues,
                             get = StartTimeAndEndTimePresetsGet,
                             set = function(_, value)
-                                local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.L["Event Reminders"], "cmd", "KROWIAF-0.0").args.DateTimeFormat.args.StartTimeAndEndTime.args.Custom;
+                                local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable("Event Reminders", "cmd", "KROWIAF-0.0").args.DateTimeFormat.args.StartTimeAndEndTime.args.Custom;
                                 custom.set(nil, startTimeAndEndTimeDateTimeFormats[value]);
                             end
                         },

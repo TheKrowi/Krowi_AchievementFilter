@@ -7,7 +7,6 @@ local addonName, addon = ...;
 local version = (GetBuildInfo());
 local major = string.match(version, "(%d+)%.(%d+)%.(%d+)(%w?)");
 addon.IsWrathClassic = major == "3";
-addon.IsShadowlandsRetail = major == "9";
 addon.IsDragonflightRetail = major == "10";
 
 -- [[ Ace ]] --

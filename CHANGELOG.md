@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 ## 51.2 - 2023-01-17
 ### Changed
 - Backend plugin options
+- Code cleanup
+- Moved plugin localization into separate file; allows for the plugin texts also to be localized
 
 ### Removed
 - Overachiever compatibility

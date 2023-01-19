@@ -5,13 +5,6 @@ plugins.AchievementsTabFixes = {};
 local achievementsTabFixes = plugins.AchievementsTabFixes;
 tinsert(plugins.Plugins, achievementsTabFixes);
 
-function achievementsTabFixes.LoadLocalization(L)
-    L["AchievementsTabFixes"] = "Achievements Tab Fixes";
-    L["AchievementsTabFixes Desc"] = "This plugin provides some fixes for the Achievements Tab, toggleable below.";
-    L["RenameExplorationDragonIslesCategory"] = "Rename Exploration -> Dragon Isles Category to Dragonflight";
-    L["RenameExplorationDragonIslesCategory Desc"] = "Renames the Exploration -> Dragon Isles Category to Dragonflight.";
-end
-
 function achievementsTabFixes.InjectOptions()
     KrowiAF_InjectOptions.AddDefaults("Plugins", "AchievementsTabFixes", {
         RenameExplorationDragonIslesCategory = true;

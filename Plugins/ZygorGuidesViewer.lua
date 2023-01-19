@@ -68,11 +68,6 @@ function zygorGuidesViewer:OnEvent(event, arg1, arg2)
     end
 end
 
-function zygorGuidesViewer.LoadLocalization(L)
-    L["Zygor Guides Viewer"] = "Zygor Guides Viewer";
-    L["Zygor Guides Viewer Desc"] = "This plugin adds the magnifying glasses again to the Blizzard Achievements tab.\n\nThere are no options.";
-end
-
 function zygorGuidesViewer.InjectOptions()
     KrowiAF_InjectOptions.AddPluginTable("ZygorGuidesViewer", addon.L["Zygor Guides Viewer"], addon.L["Zygor Guides Viewer Desc"], function()
         return IsAddOnLoaded("ZygorGuidesViewer");

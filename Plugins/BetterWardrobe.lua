@@ -19,11 +19,6 @@ function betterWardrobe:OnEvent(event, arg1, arg2)
     end
 end
 
-function betterWardrobe.LoadLocalization(L)
-    L["Better Wardrobe"] = "Better Wardrobe";
-    L["Better Wardrobe Desc"] = "This plugin fixes the link to the wardrobe that is broken by {betterWardrobe}.\n\nThere are no options.";
-end
-
 function betterWardrobe.InjectOptions()
     KrowiAF_InjectOptions.AddPluginTable("BetterWardrobe", addon.L["Better Wardrobe"], addon.L["Better Wardrobe Desc"], function()
         return IsAddOnLoaded("BetterWardrobe");

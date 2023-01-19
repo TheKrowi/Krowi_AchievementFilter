@@ -5,15 +5,6 @@ plugins.InstanceAchievementTracker = {};
 local iat = plugins.InstanceAchievementTracker;
 tinsert(plugins.Plugins, iat);
 
-function iat.LoadLocalization(L)
-    L["Instance Achievement Tracker"] = "Instance Achievement Tracker";
-    L["Instance Achievement Tracker Desc"] = "This plugin allows the addition of an extra Right Click Menu item for {iat}.";
-    L["IAT Tactics"] = "IAT Tactics";
-    L["Add To Right Click Menu"] = "Add To Right Click Menu";
-    L["Add To Right Click Menu Desc"] = "Add an option to the Right Click Menu that will direct you to tactics if {iat} has data for it.";
-    L["Instance Achievement Tracker PluginText"] = "|T:1:8|t" .. "- Shortcut to {plugin_iat} if tactics for the achievement are available ({plugin_iat} is {plugin_enabled}).\n";
-end
-
 function iat.InjectOptions()
     KrowiAF_InjectOptions.AddDefaults("Plugins", "InstanceAchievementTracker", {
         AddToRightClickMenu = true;

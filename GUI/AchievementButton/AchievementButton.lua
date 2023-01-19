@@ -81,7 +81,7 @@ function KrowiAF_AchievementButtonTracked_OnClick(self)
 		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF);
 	end
 	local tracked;
-	if addon.IsWrathClassic or addon.IsShadowlandsRetail then
+	if addon.IsWrathClassic then
 		tracked = AchievementButton_ToggleTracking(self:GetParent().Achievement.Id);
 	else
 		tracked = self:GetParent():ToggleTracking();

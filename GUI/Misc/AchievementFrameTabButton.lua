@@ -64,12 +64,8 @@ function achFrameTabBtn:Base_OnClick(id)
         PanelTemplates_Tab_OnClick(_G["AchievementFrameTab" .. id], AchievementFrame);
     else
         if addon.InGuildView() then
-            if addon.IsShadowlandsRetail then
-                AchievementFrame_ToggleView();
-            else
-                AchievementFrameBaseTab_OnClick(1);
-                AchievementFrame_RefreshView();
-            end
+            AchievementFrameBaseTab_OnClick(1);
+            AchievementFrame_RefreshView();
             AchievementFrameGuildEmblemLeft:Hide();
             AchievementFrameGuildEmblemRight:Hide();
         end
