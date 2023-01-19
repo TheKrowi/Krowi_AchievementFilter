@@ -19,19 +19,6 @@ LibStub(addon.Libs.AceEvent):Embed(addon.Event);
 -- [[ Tabs ]] --
 addon.Tabs.Load();
 
--- [[ Binding names ]] --
--- addon.Bindings = {};
--- BINDING_HEADER_AF_NAME = addon.MetaData.Title;
--- for _, t in next, addon.TabsOrder do
---     local tab = addon.Tabs[t];
---     if type(tab) ~= "function" then
---         tinsert(addon.Bindings, {Name = "KrowiAF_OPEN_TAB_" .. tostring(tab.Name), Text = addon.L["Toggle"] .. " " .. tab.Text .. " "  .. addon.L["tab"]});
---         _G["BINDING_NAME_" .. addon.Bindings[#addon.Bindings].Name] = addon.Bindings[#addon.Bindings].Text;
---     end
--- end
--- tinsert(addon.Bindings, {Name = "KrowiAF_OPEN_CAT_Current_Zone", Text = addon.L["Open"] .. " " .. addon.L["Current Zone"] .. " " .. addon.L["Category"]});
--- _G["BINDING_NAME_" .. addon.Bindings[#addon.Bindings].Name] = addon.Bindings[#addon.Bindings].Text;
-
 -- [[ Faction data ]] --
 addon.Faction = {};
 addon.Faction.IsAlliance = UnitFactionGroup("player") == "Alliance";

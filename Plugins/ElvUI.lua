@@ -711,66 +711,41 @@ function elvUI.LoadLocalization(L)
     L["Alert System Overwrite Desc"] = "The location settings are not active when ElvUI is enabled. Moving the Loot / Alert Frames anchor will achieve the same result.";
 end
 
-local function AddInfo(orderIndex, localizationName, getFunction, visible)
+local function AddInfo(localizationName, getFunction, hidden)
     return {
-        order = orderIndex, type = "toggle", width = "full",
+        order = KrowiAF_InjectOptions.AutoOrderPlusPlus(), type = "toggle", width = "full",
         name = addon.L[localizationName],
         desc = addon.L[localizationName .. " Desc"],
         descStyle = "inline",
         get = getFunction,
         disabled = true,
-        hidden = not visible
+        hidden = hidden
     };
 end
 
 function elvUI.InjectOptions()
-    local optionsTable = {
-        type = "group",
-        name = addon.L["ElvUI"],
-        args = {
-            Loaded = {
-                order = 1, type = "toggle", width = "full",
-                name = addon.L["Loaded"],
-                desc = addon.L["Loaded Desc"],
-                descStyle = "inline",
-                get = function() return ElvUI ~= nil end,
-                disabled = true
-            },
-            Line = {
-                order = 2, type = "header", width = "full",
-                name = ""
-            },
-            Description = {
-                order = 3, type = "description", width = "full",
-                name = addon.L["ElvUI Desc"],
-                fontSize = "medium"
-            },
-            SkinAchievement = AddInfo(4, "Skin Achievements", function() return SavedData.ElvUISkin.Achievements; end, true),
-            SkinMiscFrames = AddInfo(5, "Skin Misc Frames", function() return SavedData.ElvUISkin.MiscFrames; end, true),
-            SkinTooltip = AddInfo(6, "Skin Tooltip", function() return SavedData.ElvUISkin.Tooltip; end, true),
-            SkinTutorials = AddInfo(7, "Skin Tutorials", function() return SavedData.ElvUISkin.Tutorials; end, true),
-            SkinAlertFrames = AddInfo(8, "Skin Alert Frames", function() return SavedData.ElvUISkin.AlertFrames; end, true),
-            SkinCalendar = AddInfo(9, "Skin Calendar", function() return SavedData.ElvUISkin.Calendar; end, true),
-            RemoveParchment = AddInfo(10, "Remove Parchment", function() return SavedData.ElvUISkin.NoParchment; end, true),
-            SkinDataManager = AddInfo(11, "Skin Data Manager", function() return SavedData.ElvUISkin.Achievements; end, true),
-            SkinAce3 = AddInfo(12, "Skin Ace3", function() return SavedData.ElvUISkin.Options; end, true),
-            FixWorldMapButton = AddInfo(13, "Fix World Map Button", function() return SavedData.ElvUISkin.SmallerWorldMap; end, true)
-        }
-    };
-
-    addon.Options.InjectOptionsTable(optionsTable, "ElvUI", "Plugins", "args");
+    local pluginTable = KrowiAF_InjectOptions.AddPluginTable("ElvUI", addon.L["ElvUI"], addon.L["ElvUI Desc"], function()
+        return ElvUI ~= nil;
+    end);
+    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinAchievement", AddInfo("Skin Achievements", function() return SavedData.ElvUISkin.Achievements; end));
+    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinMiscFrames", AddInfo("Skin Misc Frames", function() return SavedData.ElvUISkin.MiscFrames; end));
+    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinTooltip", AddInfo("Skin Tooltip", function() return SavedData.ElvUISkin.Tooltip; end));
+    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinTutorials", AddInfo("Skin Tutorials", function() return SavedData.ElvUISkin.Tutorials; end));
+    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinAlertFrames", AddInfo("Skin Alert Frames", function() return SavedData.ElvUISkin.AlertFrames; end));
+    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinCalendar", AddInfo("Skin Calendar", function() return SavedData.ElvUISkin.Calendar; end));
+    KrowiAF_InjectOptions.AddTable(pluginTable, "RemoveParchment", AddInfo("Remove Parchment", function() return SavedData.ElvUISkin.NoParchment; end));
+    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinDataManager", AddInfo("Skin Data Manager", function() return SavedData.ElvUISkin.Achievements; end));
+    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinAce3", AddInfo("Skin Ace3", function() return SavedData.ElvUISkin.Options; end));
+    KrowiAF_InjectOptions.AddTable(pluginTable, "FixWorldMapButton", AddInfo("Fix World Map Button", function() return SavedData.ElvUISkin.SmallerWorldMap; end));
 end
 
 local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
 local function DisableOptions()
-    local growDirection = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Options.OptionsTable.args.EventReminders.name, "cmd", "KROWIAF-0.0").args.PopUps.args.Location.args.GrowDirection;
-    growDirection.disabled = true;
-    local spacing = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Options.OptionsTable.args.EventReminders.name, "cmd", "KROWIAF-0.0").args.PopUps.args.Location.args.Spacing;
-    spacing.disabled = true;
-    local offsetX = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Options.OptionsTable.args.EventReminders.name, "cmd", "KROWIAF-0.0").args.PopUps.args.Location.args.OffsetX;
-    offsetX.disabled = true;
-    local offsetY = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Options.OptionsTable.args.EventReminders.name, "cmd", "KROWIAF-0.0").args.PopUps.args.Location.args.OffsetY;
-    offsetY.disabled = true;
+    local appName = addon.Options.OptionsTable.args.EventReminders.name;
+    KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.GrowDirection").disabled = true;
+    KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.Spacing").disabled = true;
+    KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.OffsetX").disabled = true;
+    KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.OffsetY").disabled = true;
     KrowiAF_InjectOptions.AddTable("EventReminders.args.PopUps.args.Location.args", "ElvUIComment", {
         order = OrderPP(), type = "description", width = "full",
         name = addon.L["Alert System Overwrite Desc"]

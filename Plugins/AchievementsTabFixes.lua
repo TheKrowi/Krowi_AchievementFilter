@@ -13,47 +13,22 @@ function achievementsTabFixes.LoadLocalization(L)
 end
 
 function achievementsTabFixes.InjectOptions()
-    local defaults = {};
-    defaults.RenameExplorationDragonIslesCategory = true;
+    KrowiAF_InjectOptions.AddDefaults("Plugins", "AchievementsTabFixes", {
+        RenameExplorationDragonIslesCategory = true;
+    });
 
-    addon.Options.InjectDefaults(defaults, "AchievementsTabFixes", "Plugins");
-
-    local optionsTable = {
-        type = "group",
-        name = addon.L["AchievementsTabFixes"],
-        args = {
-            Loaded = {
-                order = 1, type = "toggle", width = "full",
-                name = addon.L["Loaded"],
-                desc = addon.L["Loaded Desc"],
-                descStyle = "inline",
-                get = function() return true end,
-                disabled = true
-            },
-            Line = {
-                order = 2, type = "header", width = "full",
-                name = ""
-            },
-            Description = {
-                order = 3, type = "description", width = "full",
-                name = addon.L["AchievementsTabFixes Desc"],
-                fontSize = "medium"
-            },
-            RenameExplorationDragonIslesCategory = {
-                order = 4, type = "toggle", width = "full",
-                name = addon.L["RenameExplorationDragonIslesCategory"],
-                desc = addon.L["RenameExplorationDragonIslesCategory Desc"],
-                get = function() return addon.Options.db.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory; end,
-                set = function()
-                    addon.Options.db.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory = not addon.Options.db.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory;
-                    addon.Options.Debug(addon.L["AchievementsTabFixes"] .. " " .. addon.L["RenameExplorationDragonIslesCategory"], addon.Options.db.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory);
-                end,
-                hidden = addon.IsWrathClassic
-            },
-        }
-    };
-
-    addon.Options.InjectOptionsTable(optionsTable, "AchievementsTabFixes", "Plugins", "args");
+    local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
+    local pluginTable = KrowiAF_InjectOptions.AddPluginTable("AchievementsTabFixes", addon.L["AchievementsTabFixes"], addon.L["AchievementsTabFixes Desc"], function()
+        return true;
+    end);
+    KrowiAF_InjectOptions.AddTable(pluginTable, "RenameExplorationDragonIslesCategory", {
+        order = OrderPP(), type = "toggle", width = "full",
+        name = addon.L["RenameExplorationDragonIslesCategory"],
+        desc = addon.L["RenameExplorationDragonIslesCategory Desc"]:AddDefaultValueText("Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory"),
+        get = function() return addon.Options.db.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory; end,
+        set = function() addon.Options.db.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory = not addon.Options.db.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory; end,
+        hidden = addon.IsWrathClassic
+    });
 end
 
 local function FindCategory(categories, name)

@@ -64,27 +64,6 @@ local function InjectDefaultsAdd(table, tableName, ...)
 end
 options.InjectDefaultsAdd = InjectDefaultsAdd;
 
-local function InjectOptionsTable(table, tableName, ...)
-    local destTable = options.OptionsTable.args;
-    for i = 1, select("#", ...), 1 do
-        destTable = destTable[select(i, ...)];
-    end
-    destTable[tableName] = table;
-end
-options.InjectOptionsTable = InjectOptionsTable;
-
--- Move to API
-local function InjectOptionsTableAdd(table, key, tableName, ...)
-    local destTable = options.OptionsTable.args;
-    for i = 1, select("#", ...), 1 do
-        destTable = destTable[select(i, ...)];
-    end
-    destTable[tableName][key] = table;
-end
-options.InjectOptionsTableAdd = InjectOptionsTableAdd;
-
--- local function InjectOptions
-
 -- Load the options
 function options.Load()
     addon.Options = LibStub("AceDB-3.0"):New("Options", options.Defaults, true);
@@ -93,8 +72,6 @@ function options.Load()
     addon.Options.Debug = options.Debug;
     addon.Options.InjectDefaults = InjectDefaults;
     addon.Options.InjectDefaultsAdd = InjectDefaultsAdd;
-    addon.Options.InjectOptionsTable = InjectOptionsTable;
-    addon.Options.InjectOptionsTableAdd = InjectOptionsTableAdd;
     addon.Options.db = addon.Options.profile;
     addon.Options.OptionsTable = options.OptionsTable; -- Do this for now while working on the rewrite
 

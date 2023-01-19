@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 51.2 - 2023-01-17
+### Changed
+- Backend plugin options
+
+### Removed
+- Overachiever compatibility
+
 ## 51.1 - 2023-01-17
 ### Fixed
 - Blizzard Achievement tab is once again able to be hidden/shown from the options

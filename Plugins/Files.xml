@@ -3,7 +3,6 @@
     <Script file="BetterWardrobe.lua" />
     <Script file="ElvUI.lua" />
     <Script file="InstanceAchievementTracker.lua" />
-    <Script file="Overachiever.lua" />
     <Script file="ZygorGuidesViewer.lua" />
     <Script file="AchievementsTabFixes.lua" />
 </Ui>
