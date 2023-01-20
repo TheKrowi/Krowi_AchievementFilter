@@ -10,7 +10,6 @@ local isCriteriaProgressBar = 0x00000001;
 flags.__index = flags;
 function flags:New(sourceFlags)
     local instance = setmetatable({}, flags);
-
     instance.IsAccountWide = bit.band(sourceFlags, isAccountWideFlag) == isAccountWideFlag;
     instance.IsCriteriaProgressBar = bit.band(sourceFlags, isCriteriaProgressBar) == isCriteriaProgressBar;
     return instance;

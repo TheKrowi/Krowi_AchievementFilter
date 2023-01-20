@@ -39,20 +39,13 @@ end
 
 compareFunc.__index = compareFunc;
 function compareFunc:New(type, property)
-    -- if type(func) ~= "function" then
-    --     error("Usage: New(func)", 2);
-    -- end
-
-    local self = {};
-    setmetatable(self, compareFunc);
-
-    self.ToLower = type == "string" and StringToLower or DoNothing;
-    self.NilTo = type == "bool" and NilToFalse or NilToNil;
-    self.DoCompare = type =="bool" and CompareBool or CompareNormal;
-    self.Property = property;
-    self:SetDefaultFallback();
-
-    return self;
+    local instance = setmetatable({}, compareFunc);
+    instance.ToLower = type == "string" and StringToLower or DoNothing;
+    instance.NilTo = type == "bool" and NilToFalse or NilToNil;
+    instance.DoCompare = type =="bool" and CompareBool or CompareNormal;
+    instance.Property = property;
+    instance:SetDefaultFallback();
+    return instance;
 end
 
 function compareFunc:Compare(a, b)

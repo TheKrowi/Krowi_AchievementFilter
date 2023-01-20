@@ -19,8 +19,8 @@ function achFrameTabBtn:New(text, framesToShow, categories, filters, waterMark)
     addon.Util.InjectMetatable(frame, achFrameTabBtn);
 
 	-- Set properties
-    frame.ID = tabId;
-    tinsert(ourTabIDs, frame.ID);
+    frame.Id = tabId;
+    tinsert(ourTabIDs, frame.Id);
     frame.FramesToShow = framesToShow;
 
     frame.SelectedAchievement = nil; -- Issue #6: Fix
@@ -45,11 +45,11 @@ function achFrameTabBtn:New(text, framesToShow, categories, filters, waterMark)
 
     if addon.IsWrathClassic then
         hooksecurefunc("PanelTemplates_SetTab", function(_, clickedTab) -- Issue #1: Broken
-            frame:AchievementFrame_UpdateTabs(frame, frame.ID, clickedTab);
+            frame:AchievementFrame_UpdateTabs(frame, frame.Id, clickedTab);
         end);
     else
         hooksecurefunc("AchievementFrame_UpdateTabs", function(clickedTab) -- Issue #1: Broken
-            frame:AchievementFrame_UpdateTabs(frame, frame.ID, clickedTab);
+            frame:AchievementFrame_UpdateTabs(frame, frame.Id, clickedTab);
         end);
     end
 
@@ -135,6 +135,6 @@ end
 
 function achFrameTabBtn:Select()
     if gui.SelectedTab ~= self then
-        self:OnClick(self.ID);
+        self:OnClick(self.Id);
     end
 end

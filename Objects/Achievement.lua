@@ -7,9 +7,7 @@ local achievement = objects.Achievement;
 achievement.__index = achievement;
 function achievement:New(id, points, faction, otherFactionAchievementId, isRealmFirst, hasWowheadLink, customObjectives)
     local instance = setmetatable({}, achievement);
-
     instance.Id = id or 0;
-    instance.ID = instance.Id;
     instance.Points = points or 0;
     instance.Faction = faction;
     instance.OtherFactionAchievementId = otherFactionAchievementId;
@@ -24,20 +22,20 @@ function achievement:GetMergedCategory()
     for _, category in next, categories do
         if category.MergedAchievements ~= nil then
             for _, ach in next, category.MergedAchievements do
-                if ach.ID == self.ID then
+                if ach.Id == self.Id then
                     return category;
                 end
             end
         end
         if category.Achievements ~= nil then
             for _, ach in next, category.Achievements do
-                if ach.ID == self.ID then
+                if ach.Id == self.Id then
                     return category;
                 end
             end
         end
     end
-    error("The achievement with ID " .. self.ID .. " has no category."); -- Should in theory never happen, means there is a problem with the database
+    error("The achievement with ID " .. self.Id .. " has no category."); -- Should in theory never happen, means there is a problem with the database
 end
 
 function achievement:GetRequiredForIds()
@@ -59,13 +57,13 @@ function achievement:GetPartOfAChainIDs(validate, filters)
         return self.PartOfAChainIDs;
     end
     self.PartOfAChainIDs = {};
-    if self.ID == 15077 or self.ID == 15078 then -- Issue #49 : Fix
+    if self.Id == 15077 or self.Id == 15078 then -- Issue #49 : Fix
         return self.PartOfAChainIDs;
     end
-	if not addon.GetNextAchievement(self) and not GetPreviousAchievement(self.ID) then
+	if not addon.GetNextAchievement(self) and not GetPreviousAchievement(self.Id) then
 		return self.PartOfAChainIDs;
 	end
-    local id = addon.GetFirstAchievementId(self.ID);
+    local id = addon.GetFirstAchievementId(self.Id);
     local ach = addon.Data.Achievements[id];
 	while ach do
         if validate and filters then
@@ -109,13 +107,13 @@ function achievement:Include()
     if SavedData.ExcludedAchievements == nil then
         return;
     end
-    SavedData.ExcludedAchievements[self.ID] = nil;
+    SavedData.ExcludedAchievements[self.Id] = nil;
 end
 
 function achievement:Exclude()
     self.IsExcluded = true;
     SavedData.ExcludedAchievements = SavedData.ExcludedAchievements or {};
-    SavedData.ExcludedAchievements[self.ID] = true;
+    SavedData.ExcludedAchievements[self.Id] = true;
 end
 
 function achievement:ClearWatch()
@@ -123,18 +121,18 @@ function achievement:ClearWatch()
     if SavedData.WatchedAchievements == nil then
         return;
     end
-    SavedData.WatchedAchievements[self.ID] = nil;
+    SavedData.WatchedAchievements[self.Id] = nil;
 end
 
 function achievement:Watch()
     self.IsWatched = true;
     SavedData.WatchedAchievements = SavedData.WatchedAchievements or {};
-    SavedData.WatchedAchievements[self.ID] = true;
+    SavedData.WatchedAchievements[self.Id] = true;
 end
 
 function achievement:AddPrevious(ach, addBack)
     self.PreviousAchievements = self.PreviousAchievements or {};
-    self.PreviousAchievements[ach.ID] = self.PreviousAchievements[ach.ID] or ach;
+    self.PreviousAchievements[ach.Id] = self.PreviousAchievements[ach.Id] or ach;
     if addBack then
         ach:AddNext(self);
     end
@@ -143,7 +141,7 @@ end
 function achievement:AddNext(ach, addBack)
     self.NextAchievements = self.NextAchievements or {};
     self.NumNextAchievements = self.NumNextAchievements ~= nil and self.NumNextAchievements + 1 or 1;
-    self.NextAchievements[ach.ID] = self.NextAchievements[ach.ID] or ach;
+    self.NextAchievements[ach.Id] = self.NextAchievements[ach.Id] or ach;
     if addBack then
         ach:AddPrevious(self);
     end

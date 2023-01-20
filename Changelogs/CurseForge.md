@@ -40,3 +40,17 @@
 <ul>
 <li>Blizzard Achievement tab is once again able to be hidden/shown from the options</li>
 </ul>
+<p><h3>Changed (51.2)</h3></p>
+<ul>
+<li>Backend plugin options</li>
+<li>Code cleanup</li>
+<li>Moved plugin localization into separate file; allows for the plugin texts also to be localized</li>
+</ul>
+<p><h3>Fixed (51.2)</h3></p>
+<ul>
+<li>Talking head frame should once again be independent</li>
+</ul>
+<p><h3>Removed (51.2)</h3></p>
+<ul>
+<li>Overachiever compatibility</li>
+</ul>

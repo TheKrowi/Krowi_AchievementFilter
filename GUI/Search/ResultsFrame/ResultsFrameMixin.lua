@@ -40,7 +40,7 @@ function KrowiAF_SearchResultsFrameMixin:Update(query, results)
 	for i, button in next, buttons do
 		local index = offset + i;
 		if index <= self.NumResults then
-			local achievementId = savedResults[index].ID;
+			local achievementId = savedResults[index].Id;
 			local _, name, _, completed, _, _, _, _, _, icon = addon.GetAchievementInfo(achievementId);
 			button.name:SetText(name);
 			button.icon:SetTexture(icon);

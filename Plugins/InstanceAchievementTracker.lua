@@ -38,9 +38,9 @@ end
 function iat:AddRightClickMenuItems(rightClickMenu, achievement)
     if self.IsLoaded()
     and addon.Options.db.Plugins.InstanceAchievementTracker.AddToRightClickMenu
-    and IAT_HasAchievement(achievement.ID) then
+    and IAT_HasAchievement(achievement.Id) then
 		rightClickMenu:AddFull({Text = addon.L["IAT Tactics"], Func = function()
-            IAT_DisplayAchievement(achievement.ID);
+            IAT_DisplayAchievement(achievement.Id);
         end});
 	end
 end

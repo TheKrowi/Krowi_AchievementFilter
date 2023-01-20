@@ -1,11 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 51.2 - 2023-01-17
+## 51.2 - 2023-01-20
 ### Changed
 - Backend plugin options
 - Code cleanup
 - Moved plugin localization into separate file; allows for the plugin texts also to be localized
+
+### Fixed
+- Talking head frame should once again be independent
 
 ### Removed
 - Overachiever compatibility

@@ -138,32 +138,10 @@ local function AdjustQueuedAnchors(self, relativeAlert)
 	return relativeAlert
 end
 
-local function AdjustAnchors(self, relativeAlert)
-	if self.alertFrame:IsShown() then
-		self.alertFrame:ClearAllPoints()
-		self.alertFrame:SetPoint(SavedData.AlertSystem.GrowDirection.Point, relativeAlert, SavedData.AlertSystem.GrowDirection.RelativePoint, 0, SavedData.AlertSystem.GrowDirection.Offset)
-		return self.alertFrame
-	end
-	return relativeAlert
-end
-
-local function AdjustAnchorsNonAlert(self, relativeAlert)
-	if self.anchorFrame:IsShown() then
-		self.anchorFrame:ClearAllPoints()
-		self.anchorFrame:SetPoint(SavedData.AlertSystem.GrowDirection.Point, relativeAlert, SavedData.AlertSystem.GrowDirection.RelativePoint, 0, SavedData.AlertSystem.GrowDirection.Offset)
-		return self.anchorFrame
-	end
-	return relativeAlert
-end
-
 -- Credits to ElvUI
 local function OverwriteAdjustAnchors(alertFrameSubSystem)
 	if alertFrameSubSystem.alertFramePool then -- Queued alert system
-		alertFrameSubSystem.AdjustAnchors = AdjustQueuedAnchors
-	elseif not alertFrameSubSystem.anchorFrame then -- Simple alert system
-		alertFrameSubSystem.AdjustAnchors = AdjustAnchors
-	elseif alertFrameSubSystem.anchorFrame then -- Anchor frame system
-		alertFrameSubSystem.AdjustAnchors = AdjustAnchorsNonAlert
+		alertFrameSubSystem.AdjustAnchors = AdjustQueuedAnchors;
 	end
 end
 
