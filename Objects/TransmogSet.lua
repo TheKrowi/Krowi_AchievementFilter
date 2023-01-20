@@ -6,11 +6,8 @@ local transmogSet = objects.TransmogSet;
 
 transmogSet.__index = transmogSet;
 function transmogSet:New(id, classMask)
-    local self = {};
-    setmetatable(self, transmogSet);
-
-    self.Id = id or 0;
-    self.ClassMask = classMask or 0;
-
-    return self;
+    local instance = setmetatable({}, transmogSet);
+    instance.Id = id or 0;
+    instance.ClassMask = classMask or 0;
+    return instance;
 end

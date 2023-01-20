@@ -9,8 +9,8 @@ local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
 local AdjustedWidth = KrowiAF_InjectOptions.AdjustedWidth;
 
 function layout.RegisterOptionsTable()
-    LibStub("AceConfig-3.0"):RegisterOptionsTable(options.OptionsTable.args.Layout.name, options.OptionsTable.args.Layout);
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(options.OptionsTable.args.Layout.name, options.OptionsTable.args.Layout.name, addon.MetaData.Title);
+    LibStub("AceConfig-3.0"):RegisterOptionsTable("Layout", options.OptionsTable.args.Layout);
+    LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Layout", "Layout", addon.MetaData.Title);
 end
 
 function layout.PostLoad()

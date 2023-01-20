@@ -5,7 +5,7 @@ addon.Options = {}; -- Will be overwritten in Load (intended)
 local options = addon.Options;
 options.OptionsTables = {};
 
-if addon.IsWrathClassic or addon.IsShadowlandsRetail then
+if addon.IsWrathClassic then
     options.WidthMultiplier = 1;
 else
     options.WidthMultiplier = 200 / 170; -- 170 comes from AceConfigDialog-3.0.lua, 200 fits better on the screen in DF
@@ -18,18 +18,14 @@ options.OptionsTable = {
     args = {}
 };
 
-options.Debug = function(parameterName, value)
-    diagnostics.Debug(parameterName .. ": " .. tostring(value));
-end
-
 function options.SetMaxNumberOfSearchPreviews()
-    local numberOfSearchPreviews = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.MetaData.Title, "cmd", "KROWIAF-0.0").args.Search.args.SearchPreview.args.NumberOfSearchPreviews;
+    local numberOfSearchPreviews = KrowiAF_GetOptions.GetTable(addon.MetaData.Title, "args.Search.args.SearchPreview.args.NumberOfSearchPreviews");
     numberOfSearchPreviews.max = 17 + math.floor(addon.Options.db.Window.AchievementFrameHeightOffset / 29);
     return numberOfSearchPreviews;
 end
 
 local function Open()
-    if addon.IsWrathClassic or addon.IsShadowlandsRetail then
+    if addon.IsWrathClassic then
         InterfaceAddOnsList_Update(); -- This way the correct category will be shown when calling InterfaceOptionsFrame_OpenToCategory
         InterfaceOptionsFrame_OpenToCategory(addon.MetaData.Title);
         for _, button in next, InterfaceOptionsFrameAddOns.buttons do
@@ -45,58 +41,12 @@ local function Open()
     Settings.OpenToCategory(addon.MetaData.Title, true);
 end
 
-local function InjectDefaults(table, tableName, ...)
-    local destTable = options.Defaults.profile;
-    for i = 1, select("#", ...), 1 do
-        destTable = destTable[select(i, ...)];
-    end
-    destTable[tableName] = table;
-end
-options.InjectDefaults = InjectDefaults;
-
-local function InjectDefaultsAdd(table, tableName, ...)
-    local destTable = options.Defaults.profile;
-    for i = 1, select("#", ...), 1 do
-        destTable = destTable[select(i, ...)];
-    end
-    tinsert(destTable[tableName], table);
-    return destTable[tableName];
-end
-options.InjectDefaultsAdd = InjectDefaultsAdd;
-
-local function InjectOptionsTable(table, tableName, ...)
-    local destTable = options.OptionsTable.args;
-    for i = 1, select("#", ...), 1 do
-        destTable = destTable[select(i, ...)];
-    end
-    destTable[tableName] = table;
-end
-options.InjectOptionsTable = InjectOptionsTable;
-
--- Move to API
-local function InjectOptionsTableAdd(table, key, tableName, ...)
-    local destTable = options.OptionsTable.args;
-    for i = 1, select("#", ...), 1 do
-        destTable = destTable[select(i, ...)];
-    end
-    destTable[tableName][key] = table;
-end
-options.InjectOptionsTableAdd = InjectOptionsTableAdd;
-
--- local function InjectOptions
-
 -- Load the options
 function options.Load()
     addon.Options = LibStub("AceDB-3.0"):New("Options", options.Defaults, true);
     addon.Options.WidthMultiplier = options.WidthMultiplier;
     addon.Options.Open = Open;
-    addon.Options.Debug = options.Debug;
-    addon.Options.InjectDefaults = InjectDefaults;
-    addon.Options.InjectDefaultsAdd = InjectDefaultsAdd;
-    addon.Options.InjectOptionsTable = InjectOptionsTable;
-    addon.Options.InjectOptionsTableAdd = InjectOptionsTableAdd;
     addon.Options.db = addon.Options.profile;
-    addon.Options.OptionsTable = options.OptionsTable; -- Do this for now while working on the rewrite
 
     for _, optionsTable in next, options.OptionsTables do
         optionsTable.RegisterOptionsTable();

@@ -195,6 +195,17 @@ function KrowiAF_RegisterTabButton(_addonName, tabName, button, selectFunc)
 	end
 end
 
+do --[[ KrowiAF_GetOptions ]]
+	KrowiAF_GetOptions = {};
+	function KrowiAF_GetOptions.GetTable(appName, tablePath)
+		local tbl = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(appName, "cmd", "KROWIAF-0.0");
+		local pathParts = strsplittable(".", tablePath);
+		for _, part in next, pathParts do
+			tbl = tbl[part];
+		end
+		return tbl;
+	end
+end
 
 do --[[ KrowiAF_InjectOptions ]]
 	KrowiAF_InjectOptions = {};
@@ -247,7 +258,6 @@ do --[[ KrowiAF_InjectOptions ]]
 		return current;
 	end
 
-	
 	function KrowiAF_InjectOptions.PlusPlusAutoOrder(amount)
 		autoOrder = autoOrder + (1 or amount);
 		return autoOrder;
@@ -255,6 +265,33 @@ do --[[ KrowiAF_InjectOptions ]]
 
 	function KrowiAF_InjectOptions.AdjustedWidth(number)
 		return (number or 1) * addon.Options.WidthMultiplier;
+	end
+
+	local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
+	function KrowiAF_InjectOptions.AddPluginTable(pluginName, pluginDisplayName, desc, loadedFunc)
+		return KrowiAF_InjectOptions.AddTable("Plugins.args", pluginName, {
+			type = "group",
+			name = pluginDisplayName,
+			args = {
+				Loaded = {
+					order = OrderPP(), type = "toggle", width = "full",
+					name = addon.L["Loaded"],
+					desc = addon.L["Loaded Desc"],
+					descStyle = "inline",
+					get = loadedFunc,
+					disabled = true
+				},
+				Line = {
+					order = OrderPP(), type = "header", width = "full",
+					name = ""
+				},
+				Description = {
+					order = OrderPP(), type = "description", width = "full",
+					name = desc,
+					fontSize = "medium"
+				}
+			}
+		}).args;
 	end
 end
 

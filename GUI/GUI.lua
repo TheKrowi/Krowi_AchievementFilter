@@ -408,7 +408,7 @@ function gui.LoadWrathClassicAchievementFrameChanges()
 end
 
 function gui.LoadOldAchievementFrameCompatibility()
-    if not addon.IsWrathClassic and not addon.IsShadowlandsRetail then
+    if not addon.IsWrathClassic then
         return;
     end
 
@@ -418,14 +418,10 @@ function gui.LoadOldAchievementFrameCompatibility()
     AchievementFrame.Header.Points = AchievementFrameHeaderPoints;
     AchievementFrame.Header.Title = AchievementFrameHeaderTitle;
 	AchievementFrame.Header.LeftDDLInset = AchievementFrameHeaderLeftDDLInset;
-
-    if addon.IsShadowlandsRetail then
-        AchievementFrame.SearchBox = AchievementFrame.searchBox;
-    end
 end
 
 function gui.LoadOldAchievementFrameTabsCompatibility()
-    if not addon.IsWrathClassic and not addon.IsShadowlandsRetail then
+    if not addon.IsWrathClassic then
         return;
     end
 

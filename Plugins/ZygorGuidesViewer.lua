@@ -5,38 +5,38 @@ plugins.ZygorGuidesViewer = {};
 local zygorGuidesViewer = plugins.ZygorGuidesViewer;
 tinsert(plugins.Plugins, zygorGuidesViewer);
 
-local function Icon_OnClick(self, but)
-	local achievebut = self:GetParent();
-	local achieveID = achievebut.Achievement.Id;
-	if achieveID and ZGV.Achievement.AvailGuides[achieveID] then
-		ZGV.Tabs:LoadGuideToTab(ZGV.Achievement.AvailGuides[achieveID], 1, "achieveid");
+local function Icon_OnClick(self)
+	local button = self:GetParent();
+	local achievementId = button.Achievement.Id;
+	if achievementId and ZGV.Achievement.AvailGuides[achievementId] then
+		ZGV.Tabs:LoadGuideToTab(ZGV.Achievement.AvailGuides[achievementId], 1, "achieveid");
         if not ZGV:IsVisible() then
             ZGV:ToggleFrame();
         end
 		return;
 	end
-	ZGV:Error("How odd. Achievement Zygor Button clicked, but we don't seem to have a guide for %s", achievebut.label:GetText());
+	ZGV:Error("How odd. Achievement Zygor Button clicked, but we don't seem to have a guide for %s", button.label:GetText());
 end
 
 local function UpdateIcons()
 	ZGV.SearchIconPool:ReleaseAll();
 
-	for i, blizzbutton in ipairs(addon.GUI.AchievementsFrame.ScrollFrame.buttons) do
-		local button = ZGV.SearchIconPool:Acquire();
-		button:SetParent(blizzbutton);
-		button:SetPoint("TOPRIGHT", blizzbutton, "TOPRIGHT", -5, -5);
-		button:SetFrameLevel(blizzbutton.Shield:GetFrameLevel() + 1);
-		button.tooltiptext = ZGV.L['achieveframe_button']:format(blizzbutton.Header:GetText());
-		button:SetScript("OnClick", function(...)
+	for _, button in ipairs(addon.GUI.AchievementsFrame.ScrollFrame.buttons) do
+		local icon = ZGV.SearchIconPool:Acquire();
+		icon:SetParent(button);
+		icon:SetPoint("TOPRIGHT", button, "TOPRIGHT", -5, -5);
+		icon:SetFrameLevel(button.Shield:GetFrameLevel() + 1);
+		icon.tooltiptext = ZGV.L['achieveframe_button']:format(button.Header:GetText());
+		icon:SetScript("OnClick", function(...)
             Icon_OnClick(...);
         end);
 
-		local achieveID = blizzbutton.Achievement and blizzbutton.Achievement.Id;
+		local achievementId = button.Achievement and button.Achievement.Id;
 
-		if achieveID and ZGV.Achievement.AvailGuides[achieveID] and blizzbutton:IsShown() then
-			button:Show()
+		if achievementId and ZGV.Achievement.AvailGuides[achievementId] and button:IsShown() then
+			icon:Show()
 		else
-			button:Hide()
+			icon:Hide()
 		end
 	end
 end
@@ -68,35 +68,8 @@ function zygorGuidesViewer:OnEvent(event, arg1, arg2)
     end
 end
 
-function zygorGuidesViewer.LoadLocalization(L)
-    L["Zygor Guides Viewer"] = "Zygor Guides Viewer";
-    L["Zygor Guides Viewer Desc"] = "This plugin adds the magnifying glasses again to the Blizzard Achievements tab.\n\nThere are no options.";
-end
-
 function zygorGuidesViewer.InjectOptions()
-    local optionsTable = {
-        type = "group",
-        name = addon.L["Zygor Guides Viewer"],
-        args = {
-            Loaded = {
-                order = 1, type = "toggle", width = "full",
-                name = addon.L["Loaded"],
-                desc = addon.L["Loaded Desc"],
-                descStyle = "inline",
-                get = function() return IsAddOnLoaded("ZygorGuidesViewer") end,
-                disabled = true
-            },
-            Line = {
-                order = 2, type = "header", width = "full",
-                name = ""
-            },
-            Description = {
-                order = 3, type = "description", width = "full",
-                name = addon.L["Zygor Guides Viewer Desc"],
-                fontSize = "medium"
-            }
-        }
-    };
-
-    addon.Options.InjectOptionsTable(optionsTable, "ZygorGuidesViewer", "Plugins", "args");
+    KrowiAF_InjectOptions.AddPluginTable("ZygorGuidesViewer", addon.L["Zygor Guides Viewer"], addon.L["Zygor Guides Viewer Desc"], function()
+        return IsAddOnLoaded("ZygorGuidesViewer");
+    end);
 end

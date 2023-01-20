@@ -57,9 +57,7 @@ options.Defaults = {
             },
             Indentation = 10
         },
-        AdjustableCategories = {
-            -- Build in ExportedCategories
-        },
+        AdjustableCategories = { --[[ Dynamically build via ExportedCategories ]] },
         Achievements = {
             Compact = false,
             HideDateCompleted = false,

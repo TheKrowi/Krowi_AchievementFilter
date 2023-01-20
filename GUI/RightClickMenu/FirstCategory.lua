@@ -9,7 +9,7 @@ end
 
 function section.Add(menu, achievement)
 	menu:AddFull({Text = achievement.Category:GetPath(), IsTitle = true});
-	addon.GUI.RightClickMenu.AchievementMenu.AddGoToAchievementLine(menu, achievement.ID);
+	addon.GUI.RightClickMenu.AchievementMenu.AddGoToAchievementLine(menu, achievement.Id);
 end
 
 local numSections = #addon.GUI.RightClickMenu.AchievementMenu.Sections;

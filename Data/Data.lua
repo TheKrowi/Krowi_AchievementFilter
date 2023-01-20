@@ -28,7 +28,7 @@ function data.Load()
     data.ExportedTransmogSets.Load(data.TransmogSets);
 
     data.AchievementIds = data.ExportedAchievements.Load(data.Achievements, data.TransmogSets);
-    local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.L["Layout"], "cmd", "KROWIAF-0.0").args.Summary.args.Summary.args.NumAchievements; -- cmd and KROWIAF-0.0 are just to make the function work
+    local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable("Layout", "cmd", "KROWIAF-0.0").args.Summary.args.Summary.args.NumAchievements; -- cmd and KROWIAF-0.0 are just to make the function work
     custom.max = #data.AchievementIds;
 
     local tabsCategories;

@@ -34,3 +34,14 @@
 
 ### Fixed (51.1)
 - Blizzard Achievement tab is once again able to be hidden/shown from the options
+
+### Changed (51.2)
+- Backend plugin options
+- Code cleanup
+- Moved plugin localization into separate file; allows for the plugin texts also to be localized
+
+### Fixed (51.2)
+- Talking head frame should once again be independent
+
+### Removed (51.2)
+- Overachiever compatibility

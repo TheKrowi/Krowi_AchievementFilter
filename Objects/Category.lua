@@ -6,14 +6,12 @@ local category = objects.Category;
 
 category.__index = category;
 function category:New(name, canMerge)
-    local self = {};
-    setmetatable(self, category);
-
-    self.Name = name or "Unknown";
-    self.CanMerge = canMerge;
-    self.Level = 0;
-    self.NotHidden = true;
-    return self;
+    local instance = setmetatable({}, category);
+    instance.Name = name or "Unknown";
+    instance.CanMerge = canMerge;
+    instance.Level = 0;
+    instance.NotHidden = true;
+    return instance;
 end
 
 function category:AddCategory(cat)
@@ -82,7 +80,7 @@ function category:RemoveAchievement(achievement)
         return;
     end
     for i, _ in next, self.Achievements do
-        if self.Achievements[i].ID == achievement.ID then
+        if self.Achievements[i].Id == achievement.Id then
             tremove(self.Achievements, i);
             return;
         end

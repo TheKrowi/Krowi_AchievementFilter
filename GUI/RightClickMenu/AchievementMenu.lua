@@ -100,8 +100,8 @@ function achievementMenu:Open(achievement, anchor, offsetX, offsetY)
 	end
 
 	-- Extra menu defined at the achievement self including pet battles
-	if addon.Data.RCMenuExtras[achievement.ID] ~= nil then
-		rightClickMenu:Add(addon.Data.RCMenuExtras[achievement.ID]);
+	if addon.Data.RCMenuExtras[achievement.Id] ~= nil then
+		rightClickMenu:Add(addon.Data.RCMenuExtras[achievement.Id]);
 	end
 
 	addon.Plugins:AddRightClickMenuItems(rightClickMenu, achievement);

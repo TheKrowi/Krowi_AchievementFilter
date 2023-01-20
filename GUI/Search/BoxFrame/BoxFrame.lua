@@ -108,7 +108,7 @@ local function SearchAchievementIds(text, numAchievementIds, results, excludeExc
 	local achievement;
 	for i = 1, numAchievementIds do
 		achievement = addon.Data.Achievements[addon.Data.AchievementIds[i]];
-		if string.find(tostring(achievement.ID):lower(), string.sub(text, 2), 1, true) then
+		if string.find(tostring(achievement.Id):lower(), string.sub(text, 2), 1, true) then
 			if not (excludeExcluded and achievement.Excluded) then
 				if achievement.DoesNotExist == nil or (showPlaceholders and achievement.DoesNotExist) then
 					tinsert(results, achievement);

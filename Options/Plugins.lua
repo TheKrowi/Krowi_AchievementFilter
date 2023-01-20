@@ -6,8 +6,8 @@ local plugins = options.Plugins;
 tinsert(options.OptionsTables, plugins);
 
 function plugins.RegisterOptionsTable()
-    LibStub("AceConfig-3.0"):RegisterOptionsTable(options.OptionsTable.args.Plugins.name, options.OptionsTable.args.Plugins);
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(options.OptionsTable.args.Plugins.name, options.OptionsTable.args.Plugins.name, addon.MetaData.Title);
+    LibStub("AceConfig-3.0"):RegisterOptionsTable("Plugins", options.OptionsTable.args.Plugins);
+    LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Plugins", "Plugins", addon.MetaData.Title);
 end
 
 function plugins.PostLoad()

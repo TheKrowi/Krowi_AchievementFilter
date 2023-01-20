@@ -15,8 +15,8 @@ function KrowiAF_SearchBoxFrameMixin:ShowSearchPreviewResults()
 	local lastButton;
 	for i = 1, #buttons do
 		if i <= numResults and i <= numButtons then
-			local achievementID = results[i].ID;
-			local _, name, _, _, _, _, _, _, _, icon, _, _, _, _ = addon.GetAchievementInfo(achievementID);
+			local achievementId = results[i].Id;
+			local _, name, _, _, _, _, _, _, _, icon, _, _, _, _ = addon.GetAchievementInfo(achievementId);
 			buttons[i].Name:SetText(name);
 			buttons[i].Icon:SetTexture(icon);
 			buttons[i].Achievement = results[i];
