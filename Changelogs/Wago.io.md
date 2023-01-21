@@ -45,3 +45,6 @@
 
 ### Removed (51.2)
 - Overachiever compatibility
+
+### Fixed (51.3)
+- Loading achievements that are watched/excluded but are removed from the database should no longer cause an error
