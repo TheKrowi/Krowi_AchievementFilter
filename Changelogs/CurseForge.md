@@ -54,3 +54,7 @@
 <ul>
 <li>Overachiever compatibility</li>
 </ul>
+<p><h3>Fixed (51.3)</h3></p>
+<ul>
+<li>Loading achievements that are watched/excluded but are removed from the database should no longer cause an error</li>
+</ul>
