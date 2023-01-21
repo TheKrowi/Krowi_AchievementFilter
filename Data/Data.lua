@@ -61,7 +61,11 @@ local function LoadAchievements(sourceTable, func)
     end
 
     for achievementId, _ in next, sourceTable do
-        func(data.Achievements[achievementId], false);
+        if data.Achievements[achievementId] then -- This is to clean up achievements that are no longer in the dataset
+            func(data.Achievements[achievementId], false);
+        else
+            sourceTable[achievementId] = nil;
+        end
     end
 
     addon.GUI.CategoriesFrame:Update(true);
