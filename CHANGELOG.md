@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 51.4 - 2023-01-xx
+### Added
+- Tooltip data for the The Winter Veil Gourmet achievement
+
 ## 51.3 - 2023-01-21
 ### Fixed
 - Loading achievements that are watched/excluded but are removed from the database should no longer cause an error

@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-04 17-16-45 ]] --
+-- [[ Exported at 2023-01-22 23-00-10 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -146,6 +146,12 @@ function exportedTooltipData.Load(d)
     AddD(d, 165757, tdt.Unit, 1206, 21, t[1], t[2]); -- "Prairie Dog"
     AddD(d, 75486, tdt.Unit, 1206, 21, t[1], t[2]); -- "Prairie Dog"
     AddD(d, 77908, tdt.Unit, 1206, 21, t[1], t[2]); -- "Prairie Dog"
+    AddD(d, 17200, tdt.Item, 1688, 1, t[5], t[6]); -- "Gingerbread Cookie"
+    AddD(d, 17197, tdt.Item, 1688, 1, t[5], t[6]); -- "Gingerbread Cookie"
+    AddD(d, 17201, tdt.Item, 1688, 2, t[5], t[6]); -- "Winter Veil Egg Nog"
+    AddD(d, 17198, tdt.Item, 1688, 2, t[5], t[6]); -- "Winter Veil Egg Nog"
+    AddD(d, 34413, tdt.Item, 1688, 3, t[5], t[6]); -- "Hot Apple Cider"
+    AddD(d, 34411, tdt.Item, 1688, 3, t[5], t[6]); -- "Hot Apple Cider"
     AddD(d, 43509, tdt.Item, 1779, 1, t[5], t[6]); -- "Bad Clams"
     AddD(d, 43491, tdt.Item, 1779, 1, t[5], t[6]); -- "Bad Clams"
     AddD(d, 58523, tdt.Spell, 1779, 1, t[5], t[6]); -- "Bad Clams"
