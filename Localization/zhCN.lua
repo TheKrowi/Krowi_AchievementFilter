@@ -70,6 +70,7 @@ L["The Entitled"] = "头衔";
 L["Vendor"] = "商人";
 L["Zones"] = "地区";
 L["Realm First!"] = "服务器第一!";
+L["Feats of Strength"] = "Feats of Strength";
 L["Leveling"] = "升级";
 L["Level 80"] = "等级 80";
 L["Level 85"] = "等级 85";

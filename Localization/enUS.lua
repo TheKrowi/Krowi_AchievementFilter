@@ -70,6 +70,7 @@ L["The Entitled"] = "The Entitled";
 L["Vendor"] = "Vendor";
 L["Zones"] = "Zones";
 L["Realm First!"] = "Realm First!";
+L["Feats of Strength"] = "Feats of Strength";
 L["Leveling"] = "Leveling";
 L["Level 80"] = "Level 80";
 L["Level 85"] = "Level 85";
