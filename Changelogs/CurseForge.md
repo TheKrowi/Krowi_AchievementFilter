@@ -58,3 +58,8 @@
 <ul>
 <li>Loading achievements that are watched/excluded but are removed from the database should no longer cause an error</li>
 </ul>
+<p><h3>Added (51.4)</h3></p>
+<ul>
+<li>Tooltip data for the The Winter Veil Gourmet achievement</li>
+<li>Realm First! Dragonflight Keystone Hero</li>
+</ul>
