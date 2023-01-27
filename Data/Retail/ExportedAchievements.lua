@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-14 19-06-23 ]] --
+-- [[ Exported at 2023-01-23 22-32-09 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -8579,7 +8579,7 @@ function exportedAchievements.Load(a, t)
     a[16790] = b:New(16790, 5); -- Curious Coin
     a[16791] = b:New(16791, 50); -- Merchant Artisan
     a[16799] = b:New(16799, 25); -- Personal Crafter
-    a[16801] = b:New(16801, 0); -- Realm First! Dragonflight Keystone Hero
+    a[16801] = b:New(16801, 0, nil, nil, true); -- Realm First! Dragonflight Keystone Hero
     O(a[16801], "Once");
     a[16808] = b:New(16808, 15); -- Friend of the Dragon Isles
     a[17107] = b:New(17107, 0); -- Ahead of the Curve: Raszageth the Storm-Eater

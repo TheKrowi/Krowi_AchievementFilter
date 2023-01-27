@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 51.4 - 2023-01-25
+### Added
+- Tooltip data for the The Winter Veil Gourmet achievement
+- Realm First! Dragonflight Keystone Hero
+
 ## 51.3 - 2023-01-21
 ### Fixed
 - Loading achievements that are watched/excluded but are removed from the database should no longer cause an error
