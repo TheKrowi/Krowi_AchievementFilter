@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - Trying to track/untrack an earned achievement will now untrack it (solution for completed tracked achievements)
 - The Earned By filter now has effect on the ability to track or untrack achievements (more logical behaviour)
 - Feats of Strength filter
+- Option to only show events that have time data available (will prevent showing events saying 'No time data available')
 
 ### Fixed
 - Earning a tracked achievement should now also untrack the achievement

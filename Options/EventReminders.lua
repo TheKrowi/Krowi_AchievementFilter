@@ -208,6 +208,14 @@ options.OptionsTable.args["EventReminders"] = {
                             get = function() return addon.Options.db.EventReminders.PopUps.Show.OnLoginInInstances; end,
                             set = function(_, value) addon.Options.db.EventReminders.PopUps.Show.OnLoginInInstances = value; end,
                             disabled = function() return not addon.Options.db.EventReminders.PopUps.Show.OnLogin end
+                        },
+                        ShowPopUpsOnLoginOnlyWhenTimeDataIsAvailable = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
+                            name = addon.L["Only when time data is available"],
+                            desc = addon.L["Show alertSystem on login only when time data is available Desc"]:ReplaceVars(addon.L["Pop ups"]):AddDefaultValueText("EventReminders.PopUps.Show.OnLoginOnlyWhenTimeDataIsAvailable"),
+                            get = function() return addon.Options.db.EventReminders.PopUps.Show.OnLoginOnlyWhenTimeDataIsAvailable; end,
+                            set = function(_, value) addon.Options.db.EventReminders.PopUps.Show.OnLoginOnlyWhenTimeDataIsAvailable = value; end,
+                            disabled = function() return not addon.Options.db.EventReminders.PopUps.Show.OnLogin end
                         }
                     }
                 },
@@ -228,6 +236,14 @@ options.OptionsTable.args["EventReminders"] = {
                             desc = addon.L["Show alertSystem on event start in instances Desc"]:ReplaceVars(addon.L["Pop ups"]):AddDefaultValueText("EventReminders.PopUps.Show.OnEventStartInInstances"),
                             get = function() return addon.Options.db.EventReminders.PopUps.Show.OnEventStartInInstances; end,
                             set = function(_, value) addon.Options.db.EventReminders.PopUps.Show.OnEventStartInInstances = value; end,
+                            disabled = function() return not addon.Options.db.EventReminders.PopUps.Show.OnEventStart end
+                        },
+                        ShowPopUpsOnLoginOnlyWhenTimeDataIsAvailable = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
+                            name = addon.L["Only when time data is available"],
+                            desc = addon.L["Show alertSystem on event start only when time data is available Desc"]:ReplaceVars(addon.L["Pop ups"]):AddDefaultValueText("EventReminders.PopUps.Show.OnEventStartOnlyWhenTimeDataIsAvailable"),
+                            get = function() return addon.Options.db.EventReminders.PopUps.Show.OnEventStartOnlyWhenTimeDataIsAvailable; end,
+                            set = function(_, value) addon.Options.db.EventReminders.PopUps.Show.OnEventStartOnlyWhenTimeDataIsAvailable = value; end,
                             disabled = function() return not addon.Options.db.EventReminders.PopUps.Show.OnEventStart end
                         }
                     }
@@ -322,6 +338,14 @@ options.OptionsTable.args["EventReminders"] = {
                             get = function() return addon.Options.db.EventReminders.ChatMessages.Show.OnLoginInInstances; end,
                             set = function(_, value) addon.Options.db.EventReminders.ChatMessages.Show.OnLoginInInstances = value; end,
                             disabled = function() return not addon.Options.db.EventReminders.ChatMessages.Show.OnLogin end
+                        },
+                        ShowChatMessagesOnLoginOnlyWhenTimeDataIsAvailable = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
+                            name = addon.L["Only when time data is available"],
+                            desc = addon.L["Show alertSystem on login only when time data is available Desc"]:ReplaceVars(addon.L["Chat messages"]):AddDefaultValueText("EventReminders.ChatMessages.Show.OnLoginOnlyWhenTimeDataIsAvailable"),
+                            get = function() return addon.Options.db.EventReminders.ChatMessages.Show.OnLoginOnlyWhenTimeDataIsAvailable; end,
+                            set = function(_, value) addon.Options.db.EventReminders.ChatMessages.Show.OnLoginOnlyWhenTimeDataIsAvailable = value; end,
+                            disabled = function() return not addon.Options.db.EventReminders.ChatMessages.Show.OnLogin end
                         }
                     }
                 },
@@ -342,6 +366,14 @@ options.OptionsTable.args["EventReminders"] = {
                             desc = addon.L["Show alertSystem on event start in instances Desc"]:ReplaceVars(addon.L["Chat messages"]):AddDefaultValueText("EventReminders.ChatMessages.Show.OnEventStartInInstances"),
                             get = function() return addon.Options.db.EventReminders.ChatMessages.Show.OnEventStartInInstances; end,
                             set = function(_, value) addon.Options.db.EventReminders.ChatMessages.Show.OnEventStartInInstances = value; end,
+                            disabled = function() return not addon.Options.db.EventReminders.ChatMessages.Show.OnEventStart end
+                        },
+                        ShowChatMessagesOnLoginOnlyWhenTimeDataIsAvailable = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
+                            name = addon.L["Only when time data is available"],
+                            desc = addon.L["Show alertSystem on event start only when time data is available Desc"]:ReplaceVars(addon.L["Chat messages"]):AddDefaultValueText("EventReminders.ChatMessages.Show.OnEventStartOnlyWhenTimeDataIsAvailable"),
+                            get = function() return addon.Options.db.EventReminders.ChatMessages.Show.OnEventStartOnlyWhenTimeDataIsAvailable; end,
+                            set = function(_, value) addon.Options.db.EventReminders.ChatMessages.Show.OnEventStartOnlyWhenTimeDataIsAvailable = value; end,
                             disabled = function() return not addon.Options.db.EventReminders.ChatMessages.Show.OnEventStart end
                         }
                     }

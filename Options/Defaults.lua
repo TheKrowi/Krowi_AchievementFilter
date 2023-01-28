@@ -134,16 +134,20 @@ options.Defaults = {
                 Show = {
                     OnLogin = true,
                     OnLoginInInstances = false,
+                    OnLoginOnlyWhenTimeDataIsAvailable = true,
                     OnEventStart = true,
-                    OnEventStartInInstances = false
+                    OnEventStartInInstances = false,
+                    OnEventStartOnlyWhenTimeDataIsAvailable = true,
                 },
             },
             ChatMessages = {
                 Show = {
                     OnLogin = false,
                     OnLoginInInstances = false,
+                    OnLoginOnlyWhenTimeDataIsAvailable = true,
                     OnEventStart = false,
-                    OnEventStartInInstances = false
+                    OnEventStartInInstances = false,
+                    OnEventStartOnlyWhenTimeDataIsAvailable = true,
                 }
             },
             DateTimeFormat = {
