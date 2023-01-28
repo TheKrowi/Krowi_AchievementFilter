@@ -131,24 +131,38 @@ options.Defaults = {
                 OffsetY = 128,
                 GrowDirection = 1,
                 Spacing = 10,
-                Show = {
-                    OnLogin = true,
-                    OnLoginInInstances = false,
-                    OnLoginOnlyWhenTimeDataIsAvailable = true,
-                    OnEventStart = true,
-                    OnEventStartInInstances = false,
-                    OnEventStartOnlyWhenTimeDataIsAvailable = true,
+                OnLogin = {
+                    Show = true,
+                    ShowInInstances = false,
+                    ShowOnlyWhenTimeDataIsAvailable = true
+                },
+                OnReload = {
+                    Show = true,
+                    ShowInInstances = false,
+                    ShowOnlyWhenTimeDataIsAvailable = true
+                },
+                OnEventStart = {
+                    Show = true,
+                    ShowInInstances = false,
+                    ShowOnlyWhenTimeDataIsAvailable = true
                 },
             },
             ChatMessages = {
-                Show = {
-                    OnLogin = false,
-                    OnLoginInInstances = false,
-                    OnLoginOnlyWhenTimeDataIsAvailable = true,
-                    OnEventStart = false,
-                    OnEventStartInInstances = false,
-                    OnEventStartOnlyWhenTimeDataIsAvailable = true,
-                }
+                OnLogin = {
+                    Show = false,
+                    ShowInInstances = false,
+                    ShowOnlyWhenTimeDataIsAvailable = true
+                },
+                OnReload = {
+                    Show = false,
+                    ShowInInstances = false,
+                    ShowOnlyWhenTimeDataIsAvailable = true
+                },
+                OnEventStart = {
+                    Show = false,
+                    ShowInInstances = false,
+                    ShowOnlyWhenTimeDataIsAvailable = true
+                },
             },
             DateTimeFormat = {
                 StartTimeAndEndTime = "%d/%m/%Y %R"

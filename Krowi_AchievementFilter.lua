@@ -115,13 +115,19 @@ function loadHelper:OnEvent(event, arg1, arg2)
         end
     elseif event == "PLAYER_ENTERING_WORLD" then
          -- arg1 = isLogin, arg2 = isReload
-        if arg1 or (arg2 and addon.Diagnostics.DebugEnabled()) then
-            C_Timer.After(0, function()
-                C_Timer.After(addon.Options.db.EventReminders.OnLoginDelay, function()
-                    addon.GUI.AlertSystem.ShowActiveEventsOnLogin();
-                end);
-            end);
+        local popUpsOptions, chatMessagesOptions;
+        if arg1 then
+            popUpsOptions = addon.Options.db.EventReminders.PopUps.OnLogin;
+            chatMessagesOptions = addon.Options.db.EventReminders.ChatMessages.OnLogin;
+        elseif arg2 then
+            popUpsOptions = addon.Options.db.EventReminders.PopUps.OnReload;
+            chatMessagesOptions = addon.Options.db.EventReminders.ChatMessages.OnReload;
         end
+        C_Timer.After(0, function()
+            C_Timer.After(addon.Options.db.EventReminders.OnLoginDelay, function()
+                addon.GUI.AlertSystem.ShowActiveEventsOnPlayerEnteringWorld(popUpsOptions, chatMessagesOptions);
+            end);
+        end);
     elseif event == "ACHIEVEMENT_EARNED" then
         addon.OnAchievementEarned(arg1);
     end

@@ -5,6 +5,8 @@ gui.AlertSystem = {};
 local alertSystem = gui.AlertSystem;
 local helperFrame;
 
+local placeholderEpoch = 9999999999;
+
 local function GetRuntimeText(event, chat)
     local runtime, timeLeft;
 
@@ -52,24 +54,62 @@ local function GetRuntimeText(event, chat)
     return runtime;
 end
 
+local function ShowActiveEventPopUp(event, canShow, canShowWithTimeDataOnly)
+    if not canShow then
+        return;
+    end
+    if SavedData.ActiveEventPopUpsShown[event.Id] then
+        if SavedData.ActiveEventPopUpsShown[event.Id] == placeholderEpoch then
+            SavedData.ActiveEventPopUpsShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch;
+        end
+        return;
+    end
+    if not canShowWithTimeDataOnly or (canShowWithTimeDataOnly and event.EventDetails and event.EventDetails.EndTime) then
+        alertSystem:AddAlert(event, addon.Options.db.EventReminders.PopUps.FadeDelay);
+        SavedData.ActiveEventPopUpsShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch;
+    end
+end
+
 local printOnce;
-local function ShowActiveEvent(event, showPopUps, showPopUpsWithTimeDataOnly, showChatMessages, showChatMessagesWithTimeDataOnly)
-    if showPopUps then
-        if not showPopUpsWithTimeDataOnly or (showPopUpsWithTimeDataOnly and event.EventDetails and event.EventDetails.EndTime) then
-            alertSystem:AddAlert(event, addon.Options.db.EventReminders.PopUps.FadeDelay);
-            SavedData.ActiveEvents[event.Id] = event.EventDetails and event.EventDetails.EndTime or (time() + 3600);
-        end
+local function ShowActiveEventChatMessage(event, canShow, canShowWithTimeDataOnly)
+    if not canShow then
+        return;
     end
-    if showChatMessages then
-        if not showChatMessagesWithTimeDataOnly or (showChatMessagesWithTimeDataOnly and event.EventDetails and event.EventDetails.EndTime) then
-            if not printOnce then
-                print(addon.MetaData.Title, "-", addon.L["Active events"] .. ":");
-                printOnce = true;
-            end
-            print("    -", event.EventDetails and event.EventDetails.Name or addon.L["Collecting data"], "(" .. GetRuntimeText(event, true) .. ")");
-            SavedData.ActiveEvents[event.Id] = event.EventDetails and event.EventDetails.EndTime or (time() + 3600);
+    if SavedData.ActiveEventChatMessagesShown[event.Id] then
+        if SavedData.ActiveEventChatMessagesShown[event.Id] == placeholderEpoch then
+            SavedData.ActiveEventChatMessagesShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch;
         end
+        return;
     end
+    if not canShowWithTimeDataOnly or (canShowWithTimeDataOnly and event.EventDetails and event.EventDetails.EndTime) then
+        if not printOnce then
+            print(addon.MetaData.Title, "-", addon.L["Active events"] .. ":");
+            printOnce = true;
+        end
+        print("    -", event.EventDetails and event.EventDetails.Name or addon.L["Collecting data"], "(" .. GetRuntimeText(event, true) .. ")");
+        SavedData.ActiveEventChatMessagesShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch;
+    end
+end
+
+local function ShowActiveEvents(popUpsOptions, chatMessagesOptions)
+    local isInInstance = (select(3, GetInstanceInfo())) ~= 0;
+    local canShowPopUps = popUpsOptions.Show and (not isInInstance or (popUpsOptions.ShowInInstances and isInInstance));
+    local canShowChatMessages = chatMessagesOptions.Show and (not isInInstance or (chatMessagesOptions.ShowInInstances and isInInstance));
+    local canShowPopUpsWithTimeDataOnly = popUpsOptions.ShowOnlyWhenTimeDataIsAvailable;
+    local canShowChatMessagesWithTimeDataOnly = chatMessagesOptions.ShowOnlyWhenTimeDataIsAvailable;
+
+    if not canShowPopUps and not canShowChatMessages then
+        return;
+    end
+
+    local activeEvents = addon.EventData.GetActiveEvents(true);
+    for _, event in next, activeEvents do
+        ShowActiveEventPopUp(event, canShowPopUps, canShowPopUpsWithTimeDataOnly);
+        ShowActiveEventChatMessage(event, canShowChatMessages, canShowChatMessagesWithTimeDataOnly);
+    end
+    printOnce = nil;
+
+    return true;
 end
 
 local function OnUpdate(self, elapsed)
@@ -79,46 +119,32 @@ local function OnUpdate(self, elapsed)
     end
 
     self.TimeSinceLastUpdate = 0;
-    local isInInstance = (select(3, GetInstanceInfo())) ~= 0;
-    local showPopUps = addon.Options.db.EventReminders.PopUps.Show.OnEventStart and (not isInInstance or (addon.Options.db.EventReminders.PopUps.Show.OnEventStartInInstances and isInInstance));
-    local showChatMessages = addon.Options.db.EventReminders.ChatMessages.Show.OnEventStart and (not isInInstance or (addon.Options.db.EventReminders.ChatMessages.Show.OnEventStartInInstances and isInInstance));
-    local showPopUpsWithTimeDataOnly = addon.Options.db.EventReminders.PopUps.Show.OnEventStartOnlyWhenTimeDataIsAvailable;
-    local showChatMessagesWithTimeDataOnly = addon.Options.db.EventReminders.ChatMessages.Show.OnEventStartOnlyWhenTimeDataIsAvailable;
+    local popUpsOptions = addon.Options.db.EventReminders.PopUps.OnEventStart;
+    local chatMessagesOptions = addon.Options.db.EventReminders.ChatMessages.OnEventStart;
 
-    if not showPopUps and not showChatMessages then
+    if not ShowActiveEvents(popUpsOptions, chatMessagesOptions) then
         return;
     end
 
-    local activeEvents = addon.EventData:GetActiveEvents(true);
-    for _, event in next, activeEvents do
-        if not SavedData.ActiveEvents[event.Id] then
-            ShowActiveEvent(event, showPopUps, showPopUpsWithTimeDataOnly, showChatMessages, showChatMessagesWithTimeDataOnly);
+    for i, endTime in next, SavedData.ActiveEventPopUpsShown do
+        if endTime < time() then
+            SavedData.ActiveEventPopUpsShown[i] = nil;
         end
     end
-    printOnce = nil;
-    for i, endTime in next, SavedData.ActiveEvents do
+    for i, endTime in next, SavedData.ActiveEventChatMessagesShown do
         if endTime < time() then
-            SavedData.ActiveEvents[i] = nil;
+            SavedData.ActiveEventChatMessagesShown[i] = nil;
         end
     end
 end
 
-local function ShowActiveEventsOnLogin()
-    local isInInstance = (select(3, GetInstanceInfo())) ~= 0;
-    local showPopUps = addon.Options.db.EventReminders.PopUps.Show.OnLogin and (not isInInstance or (addon.Options.db.EventReminders.PopUps.Show.OnLoginInInstances and isInInstance));
-    local showChatMessages = addon.Options.db.EventReminders.ChatMessages.Show.OnLogin and (not isInInstance or (addon.Options.db.EventReminders.ChatMessages.Show.OnLoginInInstances and isInInstance));
-    local showPopUpsWithTimeDataOnly = addon.Options.db.EventReminders.PopUps.Show.OnLoginOnlyWhenTimeDataIsAvailable;
-    local showChatMessagesWithTimeDataOnly = addon.Options.db.EventReminders.ChatMessages.Show.OnLoginOnlyWhenTimeDataIsAvailable;
-
-    if not showPopUps and not showChatMessages then
+local function ShowActiveEventsOnPlayerEnteringWorld(popUpsOptions, chatMessagesOptions)
+    SavedData.ActiveEventPopUpsShown = {};
+    SavedData.ActiveEventChatMessagesShown = {};
+    
+    if not ShowActiveEvents(popUpsOptions, chatMessagesOptions) then
         return;
     end
-
-    local activeEvents = addon.EventData:GetActiveEvents(true);
-    for _, event in next, activeEvents do
-        ShowActiveEvent(event, showPopUps, showPopUpsWithTimeDataOnly, showChatMessages, showChatMessagesWithTimeDataOnly);
-    end
-    printOnce = nil;
 
     helperFrame:SetScript("OnUpdate", OnUpdate); -- Set OnUpdate here to prevent OnUpdate and ShowActiveEvents to run at the same time
 end
@@ -183,7 +209,7 @@ function alertSystem:Load()
 		OverwriteAdjustAnchors(alertFrameSubSystem)
 	end)
 
-    alertSystem.ShowActiveEventsOnLogin = ShowActiveEventsOnLogin;
+    alertSystem.ShowActiveEventsOnPlayerEnteringWorld = ShowActiveEventsOnPlayerEnteringWorld;
     alertSystem.UpdateGrowDirection = UpdateGrowDirection;
     alertSystem.GetRuntimeText = GetRuntimeText;
 

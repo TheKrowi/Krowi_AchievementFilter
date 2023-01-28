@@ -8,6 +8,9 @@ All notable changes to this project will be documented in this file.
 - Feats of Strength filter
 - Option to only show events that have time data available (will prevent showing events saying 'No time data available')
 
+### Changed
+- Split on login and on reload pop ups and chat messages options (settings might be corrupt and need to be reconfigured once)
+
 ### Fixed
 - Earning a tracked achievement should now also untrack the achievement
 
