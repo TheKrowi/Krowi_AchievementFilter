@@ -123,11 +123,13 @@ function loadHelper:OnEvent(event, arg1, arg2)
             popUpsOptions = addon.Options.db.EventReminders.PopUps.OnReload;
             chatMessagesOptions = addon.Options.db.EventReminders.ChatMessages.OnReload;
         end
-        C_Timer.After(0, function()
-            C_Timer.After(addon.Options.db.EventReminders.OnLoginDelay, function()
-                addon.GUI.AlertSystem.ShowActiveEventsOnPlayerEnteringWorld(popUpsOptions, chatMessagesOptions);
+        if arg1 or arg2 then -- Required cause event also is called when zoning in an instance for example
+            C_Timer.After(0, function()
+                C_Timer.After(addon.Options.db.EventReminders.OnLoginDelay, function()
+                    addon.GUI.AlertSystem.ShowActiveEventsOnPlayerEnteringWorld(popUpsOptions, chatMessagesOptions);
+                end);
             end);
-        end);
+        end
     elseif event == "ACHIEVEMENT_EARNED" then
         addon.OnAchievementEarned(arg1);
     end
