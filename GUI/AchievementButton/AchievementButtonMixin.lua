@@ -527,9 +527,12 @@ function KrowiAF_AchievementButtonMixin:ToggleTracking()
 		return;
 	end
 
-	local _, _, _, completed, _, _, _, _, _, _, _, isGuild, wasEarnedByMe = GetAchievementInfo(id);
-	if (completed and isGuild) or wasEarnedByMe then
+	local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = GetAchievementInfo(id);
+	-- if (completed and isGuild) or wasEarnedByMe then
+	local earnedByFilter = addon.Filters.db.EarnedBy;
+	if (earnedByFilter == addon.Filters.Account and completed or wasEarnedByMe) or (earnedByFilter == addon.Filters.CharacterAccount and completed and wasEarnedByMe) then
 		UIErrorsFrame:AddMessage(ERR_ACHIEVEMENT_WATCH_COMPLETED, 1.0, 0.1, 0.1, 1.0);
+		self:SetAsTracked(false);
 		return;
 	end
 
@@ -546,7 +549,7 @@ function KrowiAF_AchievementButtonMixin:SetAsTracked(tracked)
 	end
 	self.Check:SetShown(tracked);
 	self.Tracked:SetChecked(tracked);
-	if tracked then
+	if tracked and not self.Compact then
 		self.Tracked:Show();
 	else
 		if not self.selected then

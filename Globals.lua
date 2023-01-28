@@ -372,6 +372,10 @@ function addon.OnAchievementEarned(achievementId)
     SetCharPoints(playerGUID, characterPoints);
     addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = true;
     addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = true;
+    local achievement = addon.Data.Achievements[achievementId];
+    if achievement then
+        achievement.IsTracked = nil;
+    end
 end
 
 function addon.OverwriteFunctions()

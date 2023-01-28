@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 51.5 - 2023-01-28
+### Added
+- Trying to track/untrack an earned achievement will now untrack it (solution for completed tracked achievements)
+- The Earned By filter now has effect on the ability to track or untrack achievements (more logical behaviour)
+
+### Fixed
+- Earning a tracked achievement should now also untrack the achievement
+
 ## 51.4 - 2023-01-25
 ### Added
 - Tooltip data for the The Winter Veil Gourmet achievement
