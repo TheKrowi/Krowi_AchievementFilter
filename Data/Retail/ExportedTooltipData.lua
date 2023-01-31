@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-25 07-42-27 ]] --
+-- [[ Exported at 2023-01-29 12-14-30 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -27,6 +27,7 @@ function exportedTooltipData.Load(d)
     t[8] = addon.L["Already eaten for achievement"];
     t[4] = addon.L["Already killed for achievement"];
     t[10] = addon.L["Already drank for achievement"];
+    t[16] = addon.L["Already completed for achievement"];
     t[14] = addon.L["Already petted for achievement"];
     t[12] = addon.L["Already defeated for achievement"];
     t[1] = addon.L["Needs /love for achievement"];
@@ -34,6 +35,7 @@ function exportedTooltipData.Load(d)
     t[7] = addon.L["Needs to be eaten for achievement"];
     t[3] = addon.L["Needs to be killed for achievement"];
     t[9] = addon.L["Needs to be drunk for achievement"];
+    t[15] = addon.L["Needs to be completed for achievement"];
     t[13] = addon.L["Needs to be petted for achievement"];
     t[11] = addon.L["Needs to be defeated for achievement"];
 
@@ -1374,6 +1376,18 @@ function exportedTooltipData.Load(d)
     AddD(d, 174844, tdt.Unit, 14731, 10, t[1], t[2]); -- "Shardling"
     AddD(d, 165767, tdt.Unit, 14731, 11, t[1], t[2]); -- "Emaciated Bat"
     AddD(d, 174641, tdt.Unit, 14731, 12, t[1], t[2]); -- "Creeper"
+    AddD(d, 191947, tdt.Unit, 15799, 0, t[15], t[16]); -- The Azure Span Slalom: Bronze
+    AddD(d, 191947, tdt.Unit, 15800, 0, t[15], t[16]); -- The Azure Span Slalom: Silver
+    AddD(d, 191947, tdt.Unit, 15801, 0, t[15], t[16]); -- The Azure Span Slalom: Gold
+    AddD(d, 191947, tdt.Unit, 15802, 0, t[15], t[16]); -- The Azure Span Slalom Advanced: Bronze
+    AddD(d, 191947, tdt.Unit, 15803, 0, t[15], t[16]); -- The Azure Span Slalom Advanced: Silver
+    AddD(d, 191947, tdt.Unit, 15804, 0, t[15], t[16]); -- The Azure Span Slalom Advanced: Gold
+    AddD(d, 192555, tdt.Unit, 15827, 0, t[15], t[16]); -- The Flowing Forest Flight: Bronze
+    AddD(d, 192555, tdt.Unit, 15828, 0, t[15], t[16]); -- The Flowing Forest Flight: Silver
+    AddD(d, 192555, tdt.Unit, 15829, 0, t[15], t[16]); -- The Flowing Forest Flight: Gold
+    AddD(d, 192555, tdt.Unit, 15830, 0, t[15], t[16]); -- The Flowing Forest Flight Advanced: Bronze
+    AddD(d, 192555, tdt.Unit, 15831, 0, t[15], t[16]); -- The Flowing Forest Flight Advanced: Silver
+    AddD(d, 192555, tdt.Unit, 15832, 0, t[15], t[16]); -- The Flowing Forest Flight Advanced: Gold
     AddD(d, 197569, tdt.Unit, 16424, 1, t[13], t[14]); -- "Alli"
     AddD(d, 189274, tdt.Unit, 16424, 2, t[13], t[14]); -- "Baba"
     AddD(d, 196871, tdt.Unit, 16424, 3, t[13], t[14]); -- "Baga"
@@ -1514,5 +1528,11 @@ function exportedTooltipData.Load(d)
     AddD(d, 195869, tdt.Unit, 16729, 10, t[1], t[2]); -- "Diminuitive Boghopper"
     AddD(d, 196652, tdt.Unit, 16729, 11, t[1], t[2]); -- "Reservoir Filly"
     AddD(d, 185148, tdt.Unit, 16729, 12, t[1], t[2]); -- "Rocdrop Scarab"
+    AddD(d, 191947, tdt.Unit, 17162, 0, t[15], t[16]); -- The Azure Span Slalom Reverse: Bronze
+    AddD(d, 191947, tdt.Unit, 17163, 0, t[15], t[16]); -- The Azure Span Slalom Reverse: Silver
+    AddD(d, 191947, tdt.Unit, 17164, 0, t[15], t[16]); -- The Azure Span Slalom Reverse: Gold
+    AddD(d, 192555, tdt.Unit, 17177, 0, t[15], t[16]); -- The Flowing Forest Flight Reverse: Bronze
+    AddD(d, 192555, tdt.Unit, 17178, 0, t[15], t[16]); -- The Flowing Forest Flight Reverse: Silver
+    AddD(d, 192555, tdt.Unit, 17179, 0, t[15], t[16]); -- The Flowing Forest Flight Reverse: Gold
 end
 

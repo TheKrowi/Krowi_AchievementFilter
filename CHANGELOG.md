@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Earning a tracked achievement should now also untrack the achievement
+- Famliar Skies points is now 0 again instead of the previous 5
 
 ## 51.4 - 2023-01-25
 ### Added

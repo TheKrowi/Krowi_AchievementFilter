@@ -36,7 +36,12 @@ local function AddTooltipLine(tooltip, tooltipLine)
         return;
     end
 
-    local _, _, criteriaIsCompleted = GetAchievementCriteriaInfo(tooltipLine.AchievementId, tooltipLine.CriteriaIndex);
+    local criteriaIsCompleted;
+    if tooltipLine.CriteriaIndex ~= 0 then
+        _, _, criteriaIsCompleted = GetAchievementCriteriaInfo(tooltipLine.AchievementId, tooltipLine.CriteriaIndex);
+    else
+        criteriaIsCompleted = achievementIsCompleted;
+    end
     if criteriaIsCompleted and not addon.Options.db.Tooltip.Criteria.ShowIf.CriteriaIsCompleted then
         return;
     end
@@ -51,9 +56,13 @@ local function AddTooltipLine(tooltip, tooltipLine)
         text = tooltipLine.NotCompletedText;
         color = addon.Colors.RedRGB;
     end
-    text = text:ReplaceVars{
-        forAchievement = addon.Options.db.Tooltip.Criteria.ShowForAchievement and addon.L["for achievement"] or ""
-    };
+    if tooltipLine.CriteriaIndex ~= 0 then
+        text = text:ReplaceVars{
+            forAchievement = addon.Options.db.Tooltip.Criteria.ShowForAchievement and addon.L["for achievement"] or ""
+        };
+    else
+        text = name;
+    end
     tooltip:AddLine(icon .. " |T" .. achievementIcon .. ":0|t " .. string.trim(text:ReplaceVars{
         achievement = name
     }), color.R, color.G, color.B);

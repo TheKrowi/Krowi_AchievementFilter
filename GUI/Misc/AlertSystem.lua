@@ -65,8 +65,9 @@ local function ShowActiveEventPopUp(event, canShow, canShowWithTimeDataOnly)
         return;
     end
     if not canShowWithTimeDataOnly or (canShowWithTimeDataOnly and event.EventDetails and event.EventDetails.EndTime) then
-        alertSystem:AddAlert(event, addon.Options.db.EventReminders.PopUps.FadeDelay);
         SavedData.ActiveEventPopUpsShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch;
+        alertSystem:AddAlert(event, addon.Options.db.EventReminders.PopUps.FadeDelay);
+        -- print(SavedData.ActiveEventPopUpsShown[event.Id], event.EventDetails, event.EventDetails and event.EventDetails.EndTime);
     end
 end
 
@@ -86,8 +87,9 @@ local function ShowActiveEventChatMessage(event, canShow, canShowWithTimeDataOnl
             print(addon.MetaData.Title, "-", addon.L["Active events"] .. ":");
             printOnce = true;
         end
-        print("    -", event.EventDetails and event.EventDetails.Name or addon.L["Collecting data"], "(" .. GetRuntimeText(event, true) .. ")");
         SavedData.ActiveEventChatMessagesShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch;
+        print("    -", event.EventDetails and event.EventDetails.Name or addon.L["Collecting data"], "(" .. GetRuntimeText(event, true) .. ")"); --,
+        -- SavedData.ActiveEventPopUpsShown[event.Id], event.EventDetails, event.EventDetails and event.EventDetails.EndTime);
     end
 end
 
@@ -126,13 +128,16 @@ local function OnUpdate(self, elapsed)
         return;
     end
 
+    local currentTime = time() + 60; -- Wait 60 extra seconds to remove active event end time data to give Blizzard the time to actually end the event
+    -- This should solve an edge case when the end time is < current time and we remove the event from the active event list but Blizzard still thinks it's active
+    -- triggering pop ups and chat messages
     for i, endTime in next, SavedData.ActiveEventPopUpsShown do
-        if endTime < time() then
+        if endTime < currentTime then
             SavedData.ActiveEventPopUpsShown[i] = nil;
         end
     end
     for i, endTime in next, SavedData.ActiveEventChatMessagesShown do
-        if endTime < time() then
+        if endTime < currentTime then
             SavedData.ActiveEventChatMessagesShown[i] = nil;
         end
     end
