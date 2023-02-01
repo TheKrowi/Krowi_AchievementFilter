@@ -54,7 +54,7 @@ local function GetRuntimeText(event, chat)
     return runtime;
 end
 
-local function ShowActiveEventPopUp(event, canShow, canShowWithTimeDataOnly)
+local function ShowActiveEventPopUp(event, canShow, canShowWithTimeDataOnly, currentTime)
     if not canShow then
         return;
     end
@@ -66,13 +66,15 @@ local function ShowActiveEventPopUp(event, canShow, canShowWithTimeDataOnly)
     end
     if not canShowWithTimeDataOnly or (canShowWithTimeDataOnly and event.EventDetails and event.EventDetails.EndTime) then
         SavedData.ActiveEventPopUpsShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch;
-        alertSystem:AddAlert(event, addon.Options.db.EventReminders.PopUps.FadeDelay);
-        -- print(SavedData.ActiveEventPopUpsShown[event.Id], event.EventDetails, event.EventDetails and event.EventDetails.EndTime);
+        if SavedData.ActiveEventPopUpsShown[event.Id] >= currentTime then
+            alertSystem:AddAlert(event, addon.Options.db.EventReminders.PopUps.FadeDelay);
+            -- print(SavedData.ActiveEventPopUpsShown[event.Id], event.EventDetails, event.EventDetails and event.EventDetails.EndTime);
+        end
     end
 end
 
 local printOnce;
-local function ShowActiveEventChatMessage(event, canShow, canShowWithTimeDataOnly)
+local function ShowActiveEventChatMessage(event, canShow, canShowWithTimeDataOnly, currentTime)
     if not canShow then
         return;
     end
@@ -88,12 +90,14 @@ local function ShowActiveEventChatMessage(event, canShow, canShowWithTimeDataOnl
             printOnce = true;
         end
         SavedData.ActiveEventChatMessagesShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch;
-        print("    -", event.EventDetails and event.EventDetails.Name or addon.L["Collecting data"], "(" .. GetRuntimeText(event, true) .. ")"); --,
-        -- SavedData.ActiveEventPopUpsShown[event.Id], event.EventDetails, event.EventDetails and event.EventDetails.EndTime);
+        if SavedData.ActiveEventChatMessagesShown[event.Id] >= currentTime then
+            print("    -", event.EventDetails and event.EventDetails.Name or addon.L["Collecting data"], "(" .. GetRuntimeText(event, true) .. ")"); --,
+            -- SavedData.ActiveEventPopUpsShown[event.Id], event.EventDetails, event.EventDetails and event.EventDetails.EndTime);
+        end
     end
 end
 
-local function ShowActiveEvents(popUpsOptions, chatMessagesOptions)
+local function ShowActiveEvents(popUpsOptions, chatMessagesOptions, currentTime)
     local isInInstance = (select(3, GetInstanceInfo())) ~= 0;
     local canShowPopUps = popUpsOptions.Show and (not isInInstance or (popUpsOptions.ShowInInstances and isInInstance));
     local canShowChatMessages = chatMessagesOptions.Show and (not isInInstance or (chatMessagesOptions.ShowInInstances and isInInstance));
@@ -106,8 +110,8 @@ local function ShowActiveEvents(popUpsOptions, chatMessagesOptions)
 
     local activeEvents = addon.EventData.GetActiveEvents(true);
     for _, event in next, activeEvents do
-        ShowActiveEventPopUp(event, canShowPopUps, canShowPopUpsWithTimeDataOnly);
-        ShowActiveEventChatMessage(event, canShowChatMessages, canShowChatMessagesWithTimeDataOnly);
+        ShowActiveEventPopUp(event, canShowPopUps, canShowPopUpsWithTimeDataOnly, currentTime);
+        ShowActiveEventChatMessage(event, canShowChatMessages, canShowChatMessagesWithTimeDataOnly, currentTime);
     end
     printOnce = nil;
 
@@ -124,13 +128,11 @@ local function OnUpdate(self, elapsed)
     local popUpsOptions = addon.Options.db.EventReminders.PopUps.OnEventStart;
     local chatMessagesOptions = addon.Options.db.EventReminders.ChatMessages.OnEventStart;
 
-    if not ShowActiveEvents(popUpsOptions, chatMessagesOptions) then
+    local currentTime = time();
+    if not ShowActiveEvents(popUpsOptions, chatMessagesOptions, currentTime) then
         return;
     end
 
-    local currentTime = time() + 60; -- Wait 60 extra seconds to remove active event end time data to give Blizzard the time to actually end the event
-    -- This should solve an edge case when the end time is < current time and we remove the event from the active event list but Blizzard still thinks it's active
-    -- triggering pop ups and chat messages
     for i, endTime in next, SavedData.ActiveEventPopUpsShown do
         if endTime < currentTime then
             SavedData.ActiveEventPopUpsShown[i] = nil;
@@ -146,8 +148,8 @@ end
 local function ShowActiveEventsOnPlayerEnteringWorld(popUpsOptions, chatMessagesOptions)
     SavedData.ActiveEventPopUpsShown = {};
     SavedData.ActiveEventChatMessagesShown = {};
-    
-    if not ShowActiveEvents(popUpsOptions, chatMessagesOptions) then
+
+    if not ShowActiveEvents(popUpsOptions, chatMessagesOptions, time()) then
         return;
     end
 

@@ -194,13 +194,30 @@ function tooltipData.Load()
     else
         TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Unit, ProcessUnit100002);
         TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, ProcessItem100002);
-        -- TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Object, function(tooltip, localData)
-        --     addon.Diagnostics.DebugTable(localData);
+        -- for i = 0, 30, 1 do
+        --     TooltipDataProcessor.AddTooltipPostCall(i, function(tooltip, localData)
+        --         addon.Diagnostics.DebugTable(localData);
+        --         tooltip:AddLine(tostring(i));
+        --     end);
+        -- end
+        -- hooksecurefunc("WorldMap_GetQuestTimeForTooltip", function(questID)
+        --     print(questID);
+        -- end);
+        -- GameTooltip:HookScript("OnShow", function(self)
+        --     DebugTable = {};
+        --     local charactersPerLine = 1000;
+        --     for line in TableToString(self, charactersPerLine):gmatch("[^\r\n]+") do
+        --         tinsert(DebugTable, line);
+        --     end
         -- end);
     end
 
     data.ExportedTooltipData.Load(addon.Data.TooltipData);
 end
+
+-- function KrowiAF_DumpTooltip()
+--     DebugTable = GameTooltip;
+-- end
 
 -- local unitLink = "|cffffff00|Hunit:%s|h[%s]|h|r"
 

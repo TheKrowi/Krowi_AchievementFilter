@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-29 12-14-30 ]] --
+-- [[ Exported at 2023-02-02 00-20-19 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1376,18 +1376,126 @@ function exportedTooltipData.Load(d)
     AddD(d, 174844, tdt.Unit, 14731, 10, t[1], t[2]); -- "Shardling"
     AddD(d, 165767, tdt.Unit, 14731, 11, t[1], t[2]); -- "Emaciated Bat"
     AddD(d, 174641, tdt.Unit, 14731, 12, t[1], t[2]); -- "Creeper"
+    AddD(d, 190123, tdt.Unit, 15696, 0, t[15], t[16]); -- Ruby Lifeshrine Loop: Bronze
+    AddD(d, 190123, tdt.Unit, 15697, 0, t[15], t[16]); -- Ruby Lifeshrine Loop: Silver
+    AddD(d, 190123, tdt.Unit, 15698, 0, t[15], t[16]); -- Ruby Lifeshrine Loop: Gold
+    AddD(d, 190123, tdt.Unit, 15702, 0, t[15], t[16]); -- Ruby Lifeshrine Loop Advanced: Bronze
+    AddD(d, 190123, tdt.Unit, 15703, 0, t[15], t[16]); -- Ruby Lifeshrine Loop Advanced: Silver
+    AddD(d, 190123, tdt.Unit, 15704, 0, t[15], t[16]); -- Ruby Lifeshrine Loop Advanced: Gold
+    AddD(d, 190326, tdt.Unit, 15705, 0, t[15], t[16]); -- Flashfrost Flyover: Bronze
+    AddD(d, 190326, tdt.Unit, 15706, 0, t[15], t[16]); -- Flashfrost Flyover: Silver
+    AddD(d, 190326, tdt.Unit, 15707, 0, t[15], t[16]); -- Flashfrost Flyover: Gold
+    AddD(d, 190326, tdt.Unit, 15709, 0, t[15], t[16]); -- Flashfrost Flyover Advanced: Bronze
+    AddD(d, 190326, tdt.Unit, 15710, 0, t[15], t[16]); -- Flashfrost Flyover Advanced: Silver
+    AddD(d, 190326, tdt.Unit, 15711, 0, t[15], t[16]); -- Flashfrost Flyover Advanced: Gold
+    AddD(d, 190473, tdt.Unit, 15712, 0, t[15], t[16]); -- Wild Preserve Slalom: Bronze
+    AddD(d, 190473, tdt.Unit, 15713, 0, t[15], t[16]); -- Wild Preserve Slalom: Silver
+    AddD(d, 190473, tdt.Unit, 15714, 0, t[15], t[16]); -- Wild Preserve Slalom: Gold
+    AddD(d, 190473, tdt.Unit, 15715, 0, t[15], t[16]); -- Wild Preserve Slalom Advanced: Bronze
+    AddD(d, 190473, tdt.Unit, 15716, 0, t[15], t[16]); -- Wild Preserve Slalom Advanced: Silver
+    AddD(d, 190473, tdt.Unit, 15717, 0, t[15], t[16]); -- Wild Preserve Slalom Advanced: Gold
+    AddD(d, 190503, tdt.Unit, 15718, 0, t[15], t[16]); -- Wild Preserve Circuit: Bronze
+    AddD(d, 190503, tdt.Unit, 15719, 0, t[15], t[16]); -- Wild Preserve Circuit: Silver
+    AddD(d, 190503, tdt.Unit, 15720, 0, t[15], t[16]); -- Wild Preserve Circuit: Gold
+    AddD(d, 190503, tdt.Unit, 15721, 0, t[15], t[16]); -- Wild Preserve Circuit Advanced: Bronze
+    AddD(d, 190503, tdt.Unit, 15722, 0, t[15], t[16]); -- Wild Preserve Circuit Advanced: Silver
+    AddD(d, 190503, tdt.Unit, 15723, 0, t[15], t[16]); -- Wild Preserve Circuit Advanced: Gold
+    AddD(d, 190519, tdt.Unit, 15724, 0, t[15], t[16]); -- Emberflow Flight: Bronze
+    AddD(d, 190519, tdt.Unit, 15725, 0, t[15], t[16]); -- Emberflow Flight: Silver
+    AddD(d, 190519, tdt.Unit, 15726, 0, t[15], t[16]); -- Emberflow Flight: Gold
+    AddD(d, 190519, tdt.Unit, 15727, 0, t[15], t[16]); -- Emberflow Flight Advanced: Bronze
+    AddD(d, 190519, tdt.Unit, 15728, 0, t[15], t[16]); -- Emberflow Flight Advanced: Silver
+    AddD(d, 190519, tdt.Unit, 15729, 0, t[15], t[16]); -- Emberflow Flight Advanced: Gold
+    AddD(d, 190551, tdt.Unit, 15730, 0, t[15], t[16]); -- Apex Canopy River Run: Bronze
+    AddD(d, 190551, tdt.Unit, 15731, 0, t[15], t[16]); -- Apex Canopy River Run: Silver
+    AddD(d, 190551, tdt.Unit, 15732, 0, t[15], t[16]); -- Apex Canopy River Run: Gold
+    AddD(d, 190551, tdt.Unit, 15733, 0, t[15], t[16]); -- Apex Canopy River Run Advanced: Bronze
+    AddD(d, 190551, tdt.Unit, 15734, 0, t[15], t[16]); -- Apex Canopy River Run Advanced: Silver
+    AddD(d, 190551, tdt.Unit, 15735, 0, t[15], t[16]); -- Apex Canopy River Run Advanced: Gold
+    AddD(d, 190667, tdt.Unit, 15736, 0, t[15], t[16]); -- Uktulut Coaster: Bronze
+    AddD(d, 190667, tdt.Unit, 15737, 0, t[15], t[16]); -- Uktulut Coaster: Silver
+    AddD(d, 190667, tdt.Unit, 15738, 0, t[15], t[16]); -- Uktulut Coaster: Gold
+    AddD(d, 190667, tdt.Unit, 15739, 0, t[15], t[16]); -- Uktulut Coaster Advanced: Bronze
+    AddD(d, 190667, tdt.Unit, 15740, 0, t[15], t[16]); -- Uktulut Coaster Advanced: Silver
+    AddD(d, 190667, tdt.Unit, 15741, 0, t[15], t[16]); -- Uktulut Coaster Advanced: Gold
+    AddD(d, 190753, tdt.Unit, 15742, 0, t[15], t[16]); -- Wingrest Roundabout: Bronze
+    AddD(d, 190753, tdt.Unit, 15743, 0, t[15], t[16]); -- Wingrest Roundabout: Silver
+    AddD(d, 190753, tdt.Unit, 15744, 0, t[15], t[16]); -- Wingrest Roundabout: Gold
+    AddD(d, 190753, tdt.Unit, 15745, 0, t[15], t[16]); -- Wingrest Roundabout Advanced: Bronze
+    AddD(d, 190753, tdt.Unit, 15746, 0, t[15], t[16]); -- Wingrest Roundabout Advanced: Silver
+    AddD(d, 190753, tdt.Unit, 15747, 0, t[15], t[16]); -- Wingrest Roundabout Advanced: Gold
+    AddD(d, 190928, tdt.Unit, 15757, 0, t[15], t[16]); -- Sundapple Copse Circuit: Bronze
+    AddD(d, 190928, tdt.Unit, 15758, 0, t[15], t[16]); -- Sundapple Copse Circuit: Silver
+    AddD(d, 190928, tdt.Unit, 15759, 0, t[15], t[16]); -- Sundapple Copse Circuit: Gold
+    AddD(d, 190928, tdt.Unit, 15760, 0, t[15], t[16]); -- Sundapple Copse Circuit Advanced: Bronze
+    AddD(d, 190928, tdt.Unit, 15761, 0, t[15], t[16]); -- Sundapple Copse Circuit Advanced: Silver
+    AddD(d, 190928, tdt.Unit, 15762, 0, t[15], t[16]); -- Sundapple Copse Circuit Advanced: Gold
+    AddD(d, 191121, tdt.Unit, 15763, 0, t[15], t[16]); -- Fen Flythrough: Bronze
+    AddD(d, 191121, tdt.Unit, 15764, 0, t[15], t[16]); -- Fen Flythrough: Silver
+    AddD(d, 191121, tdt.Unit, 15765, 0, t[15], t[16]); -- Fen Flythrough: Gold
+    AddD(d, 191121, tdt.Unit, 15766, 0, t[15], t[16]); -- Fen Flythrough Advanced: Bronze
+    AddD(d, 191121, tdt.Unit, 15767, 0, t[15], t[16]); -- Fen Flythrough Advanced: Silver
+    AddD(d, 191121, tdt.Unit, 15768, 0, t[15], t[16]); -- Fen Flythrough Advanced: Gold
+    AddD(d, 191165, tdt.Unit, 15769, 0, t[15], t[16]); -- Ravine River Run: Bronze
+    AddD(d, 191165, tdt.Unit, 15770, 0, t[15], t[16]); -- Ravine River Run: Silver
+    AddD(d, 191165, tdt.Unit, 15771, 0, t[15], t[16]); -- Ravine River Run: Gold
+    AddD(d, 191165, tdt.Unit, 15772, 0, t[15], t[16]); -- Ravine River Run Advanced: Bronze
+    AddD(d, 191165, tdt.Unit, 15773, 0, t[15], t[16]); -- Ravine River Run Advanced: Silver
+    AddD(d, 191165, tdt.Unit, 15774, 0, t[15], t[16]); -- "Ravine River Ru, Advanced: Gold"
+    AddD(d, 191247, tdt.Unit, 15775, 0, t[15], t[16]); -- Emerald Garden Ascent: Bronze
+    AddD(d, 191247, tdt.Unit, 15776, 0, t[15], t[16]); -- Emerald Garden Ascent: Silver
+    AddD(d, 191247, tdt.Unit, 15777, 0, t[15], t[16]); -- Emerald Garden Ascent: Gold
+    AddD(d, 191247, tdt.Unit, 15778, 0, t[15], t[16]); -- Emerald Garden Ascent Advanced: Bronze
+    AddD(d, 191247, tdt.Unit, 15779, 0, t[15], t[16]); -- Emerald Garden Ascent Advanced: Silver
+    AddD(d, 191247, tdt.Unit, 15780, 0, t[15], t[16]); -- Emerald Garden Ascent Advanced: Gold
+    AddD(d, 191572, tdt.Unit, 15788, 0, t[15], t[16]); -- The Azure Span Sprint: Bronze
+    AddD(d, 191572, tdt.Unit, 15789, 0, t[15], t[16]); -- The Azure Span Sprint: Silver
+    AddD(d, 191572, tdt.Unit, 15790, 0, t[15], t[16]); -- The Azure Span Sprint: Gold
+    AddD(d, 191572, tdt.Unit, 15791, 0, t[15], t[16]); -- The Azure Span Sprint Advanced: Bronze
+    AddD(d, 191572, tdt.Unit, 15792, 0, t[15], t[16]); -- The Azure Span Sprint Advanced: Silver
+    AddD(d, 191572, tdt.Unit, 15793, 0, t[15], t[16]); -- The Azure Span Sprint Advanced: Gold
     AddD(d, 191947, tdt.Unit, 15799, 0, t[15], t[16]); -- The Azure Span Slalom: Bronze
     AddD(d, 191947, tdt.Unit, 15800, 0, t[15], t[16]); -- The Azure Span Slalom: Silver
     AddD(d, 191947, tdt.Unit, 15801, 0, t[15], t[16]); -- The Azure Span Slalom: Gold
     AddD(d, 191947, tdt.Unit, 15802, 0, t[15], t[16]); -- The Azure Span Slalom Advanced: Bronze
     AddD(d, 191947, tdt.Unit, 15803, 0, t[15], t[16]); -- The Azure Span Slalom Advanced: Silver
     AddD(d, 191947, tdt.Unit, 15804, 0, t[15], t[16]); -- The Azure Span Slalom Advanced: Gold
+    AddD(d, 192115, tdt.Unit, 15818, 0, t[15], t[16]); -- The Vakthros Ascent: Bronze
+    AddD(d, 192115, tdt.Unit, 15819, 0, t[15], t[16]); -- The Vakthros Ascent: Silver
+    AddD(d, 192115, tdt.Unit, 15820, 0, t[15], t[16]); -- The Vakthros Ascent: Gold
+    AddD(d, 192115, tdt.Unit, 15821, 0, t[15], t[16]); -- The Vakthros Ascent Advanced: Bronze
+    AddD(d, 192115, tdt.Unit, 15822, 0, t[15], t[16]); -- The Vakthros Ascent Advanced: Silver
+    AddD(d, 192115, tdt.Unit, 15823, 0, t[15], t[16]); -- The Vakthros Ascent Advanced: Gold
     AddD(d, 192555, tdt.Unit, 15827, 0, t[15], t[16]); -- The Flowing Forest Flight: Bronze
     AddD(d, 192555, tdt.Unit, 15828, 0, t[15], t[16]); -- The Flowing Forest Flight: Silver
     AddD(d, 192555, tdt.Unit, 15829, 0, t[15], t[16]); -- The Flowing Forest Flight: Gold
     AddD(d, 192555, tdt.Unit, 15830, 0, t[15], t[16]); -- The Flowing Forest Flight Advanced: Bronze
     AddD(d, 192555, tdt.Unit, 15831, 0, t[15], t[16]); -- The Flowing Forest Flight Advanced: Silver
     AddD(d, 192555, tdt.Unit, 15832, 0, t[15], t[16]); -- The Flowing Forest Flight Advanced: Gold
+    AddD(d, 192886, tdt.Unit, 15835, 0, t[15], t[16]); -- Iskaara Tour: Bronze
+    AddD(d, 192886, tdt.Unit, 15836, 0, t[15], t[16]); -- Iskaara Tour: Silver
+    AddD(d, 192886, tdt.Unit, 15837, 0, t[15], t[16]); -- Iskaara Tour: Gold
+    AddD(d, 192886, tdt.Unit, 15838, 0, t[15], t[16]); -- Iskaara Tour Advanced: Bronze
+    AddD(d, 192886, tdt.Unit, 15839, 0, t[15], t[16]); -- Iskaara Tour Advanced: Silver
+    AddD(d, 192886, tdt.Unit, 15840, 0, t[15], t[16]); -- Iskaara Tour Advanced: Gold
+    AddD(d, 192945, tdt.Unit, 15841, 0, t[15], t[16]); -- Frostland Flyover: Bronze
+    AddD(d, 192945, tdt.Unit, 15842, 0, t[15], t[16]); -- Frostland Flyover: Silver
+    AddD(d, 192945, tdt.Unit, 15843, 0, t[15], t[16]); -- Frostland Flyover: Gold
+    AddD(d, 192945, tdt.Unit, 15844, 0, t[15], t[16]); -- Frostland Flyover Advanced: Bronze
+    AddD(d, 192945, tdt.Unit, 15845, 0, t[15], t[16]); -- Frostland Flyover Advanced: Silver
+    AddD(d, 192945, tdt.Unit, 15846, 0, t[15], t[16]); -- Frostland Flyover Advanced: Gold
+    AddD(d, 193027, tdt.Unit, 15847, 0, t[15], t[16]); -- Archive Ambit: Bronze
+    AddD(d, 193027, tdt.Unit, 15848, 0, t[15], t[16]); -- Archive Ambit: Silver
+    AddD(d, 193027, tdt.Unit, 15849, 0, t[15], t[16]); -- Archive Ambit: Gold
+    AddD(d, 193027, tdt.Unit, 15850, 0, t[15], t[16]); -- Archive Ambit Advanced: Bronze
+    AddD(d, 193027, tdt.Unit, 15851, 0, t[15], t[16]); -- Archive Ambit Advanced: Silver
+    AddD(d, 193027, tdt.Unit, 15852, 0, t[15], t[16]); -- Archive Ambit Advanced: Gold
+    AddD(d, 196092, tdt.Unit, 16302, 0, t[15], t[16]); -- River Rapids Route: Bronze
+    AddD(d, 196092, tdt.Unit, 16303, 0, t[15], t[16]); -- River Rapids Route: Silver
+    AddD(d, 196092, tdt.Unit, 16304, 0, t[15], t[16]); -- River Rapids Route: Gold
+    AddD(d, 196092, tdt.Unit, 16305, 0, t[15], t[16]); -- River Rapids Route Advanced: Bronze
+    AddD(d, 196092, tdt.Unit, 16306, 0, t[15], t[16]); -- River Rapids Route Advanced: Silver
+    AddD(d, 196092, tdt.Unit, 16307, 0, t[15], t[16]); -- River Rapids Route Advanced: Gold
     AddD(d, 197569, tdt.Unit, 16424, 1, t[13], t[14]); -- "Alli"
     AddD(d, 189274, tdt.Unit, 16424, 2, t[13], t[14]); -- "Baba"
     AddD(d, 196871, tdt.Unit, 16424, 3, t[13], t[14]); -- "Baga"
@@ -1528,9 +1636,63 @@ function exportedTooltipData.Load(d)
     AddD(d, 195869, tdt.Unit, 16729, 10, t[1], t[2]); -- "Diminuitive Boghopper"
     AddD(d, 196652, tdt.Unit, 16729, 11, t[1], t[2]); -- "Reservoir Filly"
     AddD(d, 185148, tdt.Unit, 16729, 12, t[1], t[2]); -- "Rocdrop Scarab"
+    AddD(d, 190123, tdt.Unit, 17120, 0, t[15], t[16]); -- Ruby Lifeshrine Loop Reverse: Bronze
+    AddD(d, 190123, tdt.Unit, 17121, 0, t[15], t[16]); -- Ruby Lifeshrine Loop Reverse: Silver
+    AddD(d, 190123, tdt.Unit, 17122, 0, t[15], t[16]); -- Ruby Lifeshrine Loop Reverse: Gold
+    AddD(d, 190473, tdt.Unit, 17123, 0, t[15], t[16]); -- Wild Preserve Slalom Reverse: Bronze
+    AddD(d, 190473, tdt.Unit, 17124, 0, t[15], t[16]); -- Wild Preserve Slalom Reverse: Silver
+    AddD(d, 190473, tdt.Unit, 17125, 0, t[15], t[16]); -- Wild Preserve Slalom Reverse: Gold
+    AddD(d, 190519, tdt.Unit, 17126, 0, t[15], t[16]); -- Emberflow Flight Reverse: Bronze
+    AddD(d, 190519, tdt.Unit, 17127, 0, t[15], t[16]); -- Emberflow Flight Reverse: Silver
+    AddD(d, 190519, tdt.Unit, 17128, 0, t[15], t[16]); -- Emberflow Flight Reverse: Gold
+    AddD(d, 190551, tdt.Unit, 17129, 0, t[15], t[16]); -- Apex Canopy River Run Reverse: Bronze
+    AddD(d, 190551, tdt.Unit, 17130, 0, t[15], t[16]); -- Apex Canopy River Run Reverse: Silver
+    AddD(d, 190551, tdt.Unit, 17131, 0, t[15], t[16]); -- Apex Canopy River Run Reverse: Gold
+    AddD(d, 190667, tdt.Unit, 17132, 0, t[15], t[16]); -- Uktulut Coaster Reverse: Bronze
+    AddD(d, 190667, tdt.Unit, 17133, 0, t[15], t[16]); -- Uktulut Coaster Reverse: Silver
+    AddD(d, 190667, tdt.Unit, 17134, 0, t[15], t[16]); -- Uktulut Coaster Reverse: Gold
+    AddD(d, 190753, tdt.Unit, 17135, 0, t[15], t[16]); -- Wingrest Roundabout Reverse: Bronze
+    AddD(d, 190753, tdt.Unit, 17136, 0, t[15], t[16]); -- Wingrest Roundabout Reverse: Silver
+    AddD(d, 190753, tdt.Unit, 17137, 0, t[15], t[16]); -- Wingrest Roundabout Reverse: Gold
+    AddD(d, 190326, tdt.Unit, 17138, 0, t[15], t[16]); -- Flashfrost Flyover Reverse: Bronze
+    AddD(d, 190326, tdt.Unit, 17139, 0, t[15], t[16]); -- Flashfrost Flyover Reverse: Silver
+    AddD(d, 190326, tdt.Unit, 17140, 0, t[15], t[16]); -- Flashfrost Flyover Reverse: Gold
+    AddD(d, 190503, tdt.Unit, 17141, 0, t[15], t[16]); -- Wild Preserve Circuit Reverse: Bronze
+    AddD(d, 190503, tdt.Unit, 17142, 0, t[15], t[16]); -- Wild Preserve Circuit Reverse: Silver
+    AddD(d, 190503, tdt.Unit, 17143, 0, t[15], t[16]); -- Wild Preserve Circuit Reverse: Gold
+    AddD(d, 190928, tdt.Unit, 17144, 0, t[15], t[16]); -- Sundapple Copse Circuit Reverse: Bronze
+    AddD(d, 190928, tdt.Unit, 17145, 0, t[15], t[16]); -- Sundapple Copse Circuit Reverse: Silver
+    AddD(d, 190928, tdt.Unit, 17146, 0, t[15], t[16]); -- Sundapple Copse Circuit Reverse: Gold
+    AddD(d, 191121, tdt.Unit, 17147, 0, t[15], t[16]); -- Fen Flythrough Reverse: Bronze
+    AddD(d, 191121, tdt.Unit, 17148, 0, t[15], t[16]); -- Fen Flythrough Reverse: Silver
+    AddD(d, 191121, tdt.Unit, 17149, 0, t[15], t[16]); -- Fen Flythrough Reverse: Gold
+    AddD(d, 191165, tdt.Unit, 17150, 0, t[15], t[16]); -- Ravine River Run Reverse: Bronze
+    AddD(d, 191165, tdt.Unit, 17151, 0, t[15], t[16]); -- Ravine River Run Reverse: Silver
+    AddD(d, 191165, tdt.Unit, 17152, 0, t[15], t[16]); -- Ravine River Run Reverse: Gold
+    AddD(d, 191247, tdt.Unit, 17153, 0, t[15], t[16]); -- Emerald Garden Ascent Reverse: Bronze
+    AddD(d, 191247, tdt.Unit, 17154, 0, t[15], t[16]); -- Emerald Garden Ascent Reverse: Silver
+    AddD(d, 191247, tdt.Unit, 17155, 0, t[15], t[16]); -- Emerald Garden Ascent Reverse: Gold
+    AddD(d, 196092, tdt.Unit, 17156, 0, t[15], t[16]); -- River Rapids Route Reverse: Bronze
+    AddD(d, 196092, tdt.Unit, 17157, 0, t[15], t[16]); -- River Rapids Route Reverse: Silver
+    AddD(d, 196092, tdt.Unit, 17158, 0, t[15], t[16]); -- River Rapids Route Reverse: Gold
+    AddD(d, 191572, tdt.Unit, 17159, 0, t[15], t[16]); -- The Azure Span Sprint Reverse: Bronze
+    AddD(d, 191572, tdt.Unit, 17160, 0, t[15], t[16]); -- The Azure Span Sprint Reverse: Silver
+    AddD(d, 191572, tdt.Unit, 17161, 0, t[15], t[16]); -- The Azure Span Sprint Reverse: Gold
     AddD(d, 191947, tdt.Unit, 17162, 0, t[15], t[16]); -- The Azure Span Slalom Reverse: Bronze
     AddD(d, 191947, tdt.Unit, 17163, 0, t[15], t[16]); -- The Azure Span Slalom Reverse: Silver
     AddD(d, 191947, tdt.Unit, 17164, 0, t[15], t[16]); -- The Azure Span Slalom Reverse: Gold
+    AddD(d, 192115, tdt.Unit, 17165, 0, t[15], t[16]); -- The Vakthros Ascent Reverse: Bronze
+    AddD(d, 192115, tdt.Unit, 17166, 0, t[15], t[16]); -- The Vakthros Ascent Reverse: Silver
+    AddD(d, 192115, tdt.Unit, 17167, 0, t[15], t[16]); -- The Vakthros Ascent Reverse: Gold
+    AddD(d, 192886, tdt.Unit, 17168, 0, t[15], t[16]); -- Iskaara Tour Reverse: Bronze
+    AddD(d, 192886, tdt.Unit, 17169, 0, t[15], t[16]); -- Iskaara Tour Reverse: Silver
+    AddD(d, 192886, tdt.Unit, 17170, 0, t[15], t[16]); -- Iskaara Tour Reverse: Gold
+    AddD(d, 192945, tdt.Unit, 17171, 0, t[15], t[16]); -- Frostland Flyover Reverse: Bronze
+    AddD(d, 192945, tdt.Unit, 17172, 0, t[15], t[16]); -- Frostland Flyover Reverse: Silver
+    AddD(d, 192945, tdt.Unit, 17173, 0, t[15], t[16]); -- Frostland Flyover Reverse: Gold
+    AddD(d, 193027, tdt.Unit, 17174, 0, t[15], t[16]); -- Archive Ambit Reverse: Bronze
+    AddD(d, 193027, tdt.Unit, 17175, 0, t[15], t[16]); -- Archive Ambit Reverse: Silver
+    AddD(d, 193027, tdt.Unit, 17176, 0, t[15], t[16]); -- Archive Ambit Reverse: Gold
     AddD(d, 192555, tdt.Unit, 17177, 0, t[15], t[16]); -- The Flowing Forest Flight Reverse: Bronze
     AddD(d, 192555, tdt.Unit, 17178, 0, t[15], t[16]); -- The Flowing Forest Flight Reverse: Silver
     AddD(d, 192555, tdt.Unit, 17179, 0, t[15], t[16]); -- The Flowing Forest Flight Reverse: Gold
