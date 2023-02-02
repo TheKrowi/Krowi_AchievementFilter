@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-23 22-32-09 ]] --
+-- [[ Exported at 2023-02-02 21-19-48 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -2017,14 +2017,6 @@ function exportedAchievements.Load(a, t)
     a[5518] = b:New(5518, 10); -- Stood in the Fire
     a[5533] = b:New(5533, 0); -- Veteran of the Shifting Sands
     O(a[5533], "Never");
-    a[5535] = b:New(5535, 0); -- 1000 Valor Points
-    O(a[5535]);
-    a[5536] = b:New(5536, 0); -- 5000 Valor Points
-    O(a[5536]);
-    a[5537] = b:New(5537, 0); -- "25,000 Valor Points"
-    O(a[5537]);
-    a[5538] = b:New(5538, 0); -- "50,000 Valor Points"
-    O(a[5538]);
     a[5539] = b:New(5539, 0); -- "50,000 Conquest Points"
     O(a[5539], "From", "PvP Season", 5, "Until", "PvP Season", 18);
     a[5540] = b:New(5540, 0); -- "25,000 Conquest Points"
@@ -2523,8 +2515,6 @@ function exportedAchievements.Load(a, t)
     O(a[6920], "From", "Version", "050005", "Before", "Version", "060002");
     a[6922] = b:New(6922, 10); -- Timing is Everything
     a[6923] = b:New(6923, 10); -- Brewmoon Festival
-    a[6924] = b:New(6924, 0); -- "100,000 Valor Points"
-    O(a[6924]);
     a[6925] = b:New(6925, 20); -- Pandaria Dungeon Hero
     a[6926] = b:New(6926, 10); -- Tranquil Master
     a[6927] = b:New(6927, 25); -- Glory of the Pandaria Hero
@@ -8362,7 +8352,7 @@ function exportedAchievements.Load(a, t)
     a[16447] = b:New(16447, 10); -- What Are The Chances...
     a[16450] = b:New(16450, 10); -- The Power is MINE!
     a[16451] = b:New(16451, 0); -- The Ol Raszle Daszle
-    a[16452] = b:New(16452, 5); -- Famliar Skies
+    a[16452] = b:New(16452, 0); -- Famliar Skies
     a[16453] = b:New(16453, 10); -- Liquid Hot Magma
     a[16456] = b:New(16456, 10); -- Weapons of the Maruukai
     a[16457] = b:New(16457, 10); -- Explore the Ohn'ahran Plains

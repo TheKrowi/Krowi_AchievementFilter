@@ -18,7 +18,8 @@ local defaultAchievements = {
         Horde = false
     },
     Special = {
-        RealmFirst = false
+        RealmFirst = false,
+        FeatsOfStrength = true
     },
     CollapseSeries = true,
     Excluded = false,
@@ -173,6 +174,9 @@ local validations = {
         Validate = function(_filters, achievement) return not _filters.Special.RealmFirst and achievement.IsRealmFirst; end
     },
     {   -- 12
+        Validate = function(_filters, achievement) return not _filters.Special.FeatsOfStrength and achievement.Points == 0 and not achievement.IsRealmFirst and not achievement.IsTracking; end
+    },
+    {   -- 13
         Validate = function(_filters, achievement) return not _filters.Tracking and achievement.IsTracking; end
     }
 };

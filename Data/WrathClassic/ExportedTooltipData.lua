@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-25 07-42-28 ]] --
+-- [[ Exported at 2023-02-02 21-20-26 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -27,6 +27,7 @@ function exportedTooltipData.Load(d)
     t[8] = addon.L["Already eaten for achievement"];
     t[4] = addon.L["Already killed for achievement"];
     t[10] = addon.L["Already drank for achievement"];
+    t[16] = addon.L["Already completed for achievement"];
     t[14] = addon.L["Already petted for achievement"];
     t[12] = addon.L["Already defeated for achievement"];
     t[1] = addon.L["Needs /love for achievement"];
@@ -34,6 +35,7 @@ function exportedTooltipData.Load(d)
     t[7] = addon.L["Needs to be eaten for achievement"];
     t[3] = addon.L["Needs to be killed for achievement"];
     t[9] = addon.L["Needs to be drunk for achievement"];
+    t[15] = addon.L["Needs to be completed for achievement"];
     t[13] = addon.L["Needs to be petted for achievement"];
     t[11] = addon.L["Needs to be defeated for achievement"];
 

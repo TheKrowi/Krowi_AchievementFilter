@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-19 17-25-20 ]] --
+-- [[ Exported at 2023-01-29 12-01-53 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -597,4 +597,9 @@ L["Show placeholders Desc"] = "Show a set of placeholder events so there is visu
 L["Placeholder"] = "Placeholder";
 L["Chat messages"] = "Chat messages";
 L["Diablo IV"] = "Diablo IV";
+L["Only when time data is available"] = "Only when time data is available";
+L["Show alertSystem on login only when time data is available Desc"] = "Show / hide event {alertSystem} when reloading or joining the game only when the remaining event time is available.";
+L["Show alertSystem on event start only when time data is available Desc"] = "Show / hide event {alertSystem} for an event when it starts only when the remaining event time is available.";
+L["Needs to be completed for achievement"] = "Needs to be completed {forAchievement}";
+L["Already completed for achievement"] = "Already completed {forAchievement}";
 

@@ -131,20 +131,38 @@ options.Defaults = {
                 OffsetY = 128,
                 GrowDirection = 1,
                 Spacing = 10,
-                Show = {
-                    OnLogin = true,
-                    OnLoginInInstances = false,
-                    OnEventStart = true,
-                    OnEventStartInInstances = false
+                OnLogin = {
+                    Show = true,
+                    ShowInInstances = false,
+                    ShowOnlyWhenTimeDataIsAvailable = true
+                },
+                OnReload = {
+                    Show = true,
+                    ShowInInstances = false,
+                    ShowOnlyWhenTimeDataIsAvailable = true
+                },
+                OnEventStart = {
+                    Show = true,
+                    ShowInInstances = false,
+                    ShowOnlyWhenTimeDataIsAvailable = true
                 },
             },
             ChatMessages = {
-                Show = {
-                    OnLogin = false,
-                    OnLoginInInstances = false,
-                    OnEventStart = false,
-                    OnEventStartInInstances = false
-                }
+                OnLogin = {
+                    Show = false,
+                    ShowInInstances = false,
+                    ShowOnlyWhenTimeDataIsAvailable = true
+                },
+                OnReload = {
+                    Show = false,
+                    ShowInInstances = false,
+                    ShowOnlyWhenTimeDataIsAvailable = true
+                },
+                OnEventStart = {
+                    Show = false,
+                    ShowInInstances = false,
+                    ShowOnlyWhenTimeDataIsAvailable = true
+                },
             },
             DateTimeFormat = {
                 StartTimeAndEndTime = "%d/%m/%Y %R"

@@ -52,7 +52,8 @@ end
 
 local FixFeaturesTutorialProgress, FixElvUISkin, FixFilters, FixEventDetails, FixShowExcludedCategory, FixEventDetails2, FixCharacters, FixEventAlert;
 local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters, FixNewEarnedByFilter, FixTabs2, FixNewEarnedByFilter2;
-local FixEventDetails3, FixTooltipCriteria, FixFocusedAchievements, FixFocusedOptions, FixEventRemindersTimeDisplay, FixEventRemindersOptions;
+local FixEventDetails3, FixTooltipCriteria, FixFocusedAchievements, FixFocusedOptions, FixEventRemindersTimeDisplay, FixEventRemindersOptions, FixEventRemindersOptions2;
+local FixActiveEvents;
 function LoadSolutions()
     local solutions = {
         FixFeaturesTutorialProgress, -- 1
@@ -76,6 +77,8 @@ function LoadSolutions()
         FixFocusedOptions, -- 19
         FixEventRemindersTimeDisplay, -- 20
         FixEventRemindersOptions, -- 21
+        FixEventRemindersOptions2, -- 22
+        FixActiveEvents, -- 23
     };
 
     return solutions;
@@ -597,7 +600,7 @@ function FixEventRemindersTimeDisplay(prevBuild, currBuild, prevVersion, currVer
 end
 
 function FixEventRemindersOptions(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    -- In version 51.0 addon.Options.db.EventReminders.MaxAlerts and addon.Options.db.EventReminders.FadeDelay was
+    -- In version 51.0 addon.Options.db.EventReminders.MaxAlerts and addon.Options.db.EventReminders.FadeDelay were
     -- moved to addon.Options.db.EventReminders.PopUps.MaxAlerts and addon.Options.db.EventReminders.PopUps.FadeDelay
     -- Here we clean up the old addon.Options.db.EventReminders.MaxAlerts and addon.Options.db.EventReminders.FadeDelay for users pre 51.0
     -- addon.Options.db.EventReminders.PopUps.MaxAlerts and addon.Options.db.EventReminders.PopUps.FadeDelay are created by the Options
@@ -618,4 +621,61 @@ function FixEventRemindersOptions(prevBuild, currBuild, prevVersion, currVersion
     addon.Options.db.EventReminders.FadeDelay = nil;
 
     diagnostics.Debug("EventReminders Options moved");
+end
+
+function FixEventRemindersOptions2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
+    -- In version 52.0 addon.Options.db.EventReminders.PopUps.Show and addon.Options.db.EventReminders.ChatMessages.Show were
+    -- moved and split to addon.Options.db.EventReminders.PopUps.OnLogin, addon.Options.db.EventReminders.PopUps.OnReload,
+    -- addon.Options.db.EventReminders.PopUps.OnEventStart, addon.Options.db.EventReminders.ChatMessages.OnLogin,
+    -- addon.Options.db.EventReminders.ChatMessages.OnReload and addon.Options.db.EventReminders.ChatMessages.OnEventStart
+    -- Here we clean up the old addon.Options.db.EventReminders.PopUps.Show and addon.Options.db.EventReminders.ChatMessages.Show for users pre 52.0
+    -- New options mentioned above are created by the Options so we don't need to do this here, just copy if previous existed
+
+    if firstTime and currVersion > "51.5" then
+        diagnostics.Debug("EventReminders Options2 OK");
+        return;
+    end
+    if addon.Options.db.EventReminders.PopUps.Show == nil and addon.Options.db.EventReminders.ChatMessages.Show == nil then
+        diagnostics.Debug("EventReminders Options2 already moved");
+        return;
+    end
+
+    addon.Options.db.EventReminders.PopUps.OnLogin = {
+        Show = addon.Options.db.EventReminders.PopUps.Show.OnLogin,
+        ShowInInstances = addon.Options.db.EventReminders.PopUps.Show.OnLoginInInstances,
+    };
+    addon.Options.db.EventReminders.PopUps.OnEventStart = {
+        Show = addon.Options.db.EventReminders.PopUps.Show.OnEventStart,
+        ShowInInstances = addon.Options.db.EventReminders.PopUps.Show.OnEventStartInInstances,
+    };
+    addon.Options.db.EventReminders.ChatMessages.OnLogin = {
+        Show = addon.Options.db.EventReminders.ChatMessages.Show.OnLogin,
+        ShowInInstances = addon.Options.db.EventReminders.ChatMessages.Show.OnLoginInInstances,
+    };
+    addon.Options.db.EventReminders.ChatMessages.OnEventStart = {
+        Show = addon.Options.db.EventReminders.ChatMessages.Show.OnEventStart,
+        ShowInInstances = addon.Options.db.EventReminders.ChatMessages.Show.OnEventStartInInstances,
+    };
+    addon.Options.db.EventReminders.PopUps.Show = nil;
+    addon.Options.db.EventReminders.ChatMessages.Show = nil;
+
+    diagnostics.Debug("EventReminders Options2 moved");
+end
+
+function FixActiveEvents(prevBuild, currBuild, prevVersion, currVersion, firstTime)
+    -- In version 52.0 SavedData.ActiveEvents became obsolete
+    -- Here we clean up the old SavedData.ActiveEvents for users pre 52.0
+
+    if firstTime and currVersion > "34.0" then
+        diagnostics.Debug("SavedData.ActiveEvents OK");
+        return;
+    end
+    if SavedData.ActiveEvents == nil then
+        diagnostics.Debug("SavedData.ActiveEvents already cleared from previous version");
+        return;
+    end
+
+    SavedData.ActiveEvents = nil;
+
+    diagnostics.Debug("Cleared SavedData.ActiveEvents from previous version");
 end

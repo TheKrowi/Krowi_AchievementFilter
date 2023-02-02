@@ -224,7 +224,7 @@ function addon.ExcludeAchievement(achievement, update)
     end
 end
 
-local criteriaCache, characterPoints;
+local criteriaCache, characterPoints, cachedCompletedAchievements;
 local function AddCharToSavedData(playerGUID)
     if not SavedData.Characters then
         SavedData.Characters = {};
@@ -236,6 +236,7 @@ local function AddCharToSavedData(playerGUID)
         excludeFromEarnedByAchievementTooltip = character.ExcludeFromEarnedByAchievementTooltip;
         ignore = character.Ignore;
     end
+    -- cachedCompletedAchievements = SavedData.Characters[playerGUID] and SavedData.Characters[playerGUID].CompletedAchievements or {};
     SavedData.Characters[playerGUID] = {
         Name = (UnitFullName("player")),
         Realm = (select(2, UnitFullName("player"))),
@@ -252,11 +253,14 @@ local function SetCharPoints(playerGUID, points)
     SavedData.Characters[playerGUID].Points = points;
 end
 
-local function AddCharCompletedAchievement(playerGUID, achievementId, month, day, year)
-    SavedData.Characters[playerGUID].CompletedAchievements[achievementId] = time{
+local function AddCharCompletedAchievement(playerGUID, achievementId, year, month, day, hour, min, sec)
+    SavedData.Characters[playerGUID].CompletedAchievements[achievementId] = --[[ cachedCompletedAchievements[achievementId] or ]] time{
         year = 2000 + year,
         month = month,
-        day = day
+        day = day,
+        -- hour = hour or 0,
+        -- min = min or 0,
+        -- sec = sec or 0
     };
 end
 
@@ -272,13 +276,13 @@ local function IsTraching(flags)
     return CheckHexFlags(flags, "100000"); -- See https://wowpedia.fandom.com/wiki/API_GetAchievementInfo for all flags
 end
 
-local function IncrementCharacterPoints(playerGUID, id, points, month, day, year, flags, isGuild, wasEarnedByMe, isStatistic, exists)
+local function IncrementCharacterPoints(playerGUID, id, points, flags, isGuild, wasEarnedByMe, isStatistic, exists, year, month, day, hour, min, sec)
     if SavedData.Characters[playerGUID].Ignore then
         return;
     end
     if wasEarnedByMe and points >= 0 and not isStatistic and not isGuild and not IsTraching(flags) and exists then
         characterPoints = characterPoints + points;
-        AddCharCompletedAchievement(playerGUID, id, month, day, year);
+        AddCharCompletedAchievement(playerGUID, id, year, month, day, hour, min, sec);
     end
 end
 
@@ -337,7 +341,7 @@ function addon.BuildCache()
         local id, name, points, _, month, day, year, _, flags, _, _, isGuild, wasEarnedByMe, _, isStatistic, exists = addon.GetAchievementInfo(i);
 
         if id then
-            IncrementCharacterPoints(playerGUID, id, points, month, day, year, flags, isGuild, wasEarnedByMe, isStatistic, exists);
+            IncrementCharacterPoints(playerGUID, id, points, flags, isGuild, wasEarnedByMe, isStatistic, exists, year, month, day);
             AddToCriteriaCache(id, points, flags, isGuild, isStatistic, exists);
             -- CacheAchievement(id, name);
         end
@@ -368,10 +372,15 @@ function addon.OnAchievementEarned(achievementId)
         return;
     end
     local playerGUID = UnitGUID("player");
-    IncrementCharacterPoints(playerGUID, id, points, month, day, year, flags, isGuild, wasEarnedByMe, isStatistic, exists);
+    local dateTable = date("*t", time());
+    IncrementCharacterPoints(playerGUID, id, points, flags, isGuild, wasEarnedByMe, isStatistic, exists, year, month, day, dateTable.hour, dateTable.min, dateTable.sec);
     SetCharPoints(playerGUID, characterPoints);
     addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = true;
     addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = true;
+    local achievement = addon.Data.Achievements[achievementId];
+    if achievement then
+        achievement.IsTracked = nil;
+    end
 end
 
 function addon.OverwriteFunctions()

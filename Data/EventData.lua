@@ -22,6 +22,10 @@ local function GetUtcOffsetSeconds()
     return utcOffsetSeconds;
 end
 
+function KrowiAF_GetUtcOffsetSeconds()
+    return GetUtcOffsetSeconds();
+end
+
 local function ProcessDayEvent(dayEvent)
     local calendarEvent = data.CalendarEvents[dayEvent.eventID];
     local startTime = addon.GetSecondsSince(dayEvent.startTime) - GetUtcOffsetSeconds();
@@ -94,7 +98,7 @@ function eventData.GetEventDetails(event)
     return {EndTime = endTime, Name = event.Name};
 end
 
-function eventData:GetActiveEvents(refresh)
+function eventData.GetActiveEvents(refresh)
     addon.Diagnostics.Print("GetActiveEvents", activeEvents ~= nil, refresh, activeEvents ~= nil and not refresh);
     if activeEvents ~= nil and not refresh then
         return activeEvents;

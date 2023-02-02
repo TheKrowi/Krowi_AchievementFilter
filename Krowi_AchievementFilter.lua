@@ -115,10 +115,18 @@ function loadHelper:OnEvent(event, arg1, arg2)
         end
     elseif event == "PLAYER_ENTERING_WORLD" then
          -- arg1 = isLogin, arg2 = isReload
-        if arg1 or (arg2 and addon.Diagnostics.DebugEnabled()) then
+        local popUpsOptions, chatMessagesOptions;
+        if arg1 then
+            popUpsOptions = addon.Options.db.EventReminders.PopUps.OnLogin;
+            chatMessagesOptions = addon.Options.db.EventReminders.ChatMessages.OnLogin;
+        elseif arg2 then
+            popUpsOptions = addon.Options.db.EventReminders.PopUps.OnReload;
+            chatMessagesOptions = addon.Options.db.EventReminders.ChatMessages.OnReload;
+        end
+        if arg1 or arg2 then -- Required cause event also is called when zoning in an instance for example
             C_Timer.After(0, function()
                 C_Timer.After(addon.Options.db.EventReminders.OnLoginDelay, function()
-                    addon.GUI.AlertSystem.ShowActiveEventsOnLogin();
+                    addon.GUI.AlertSystem.ShowActiveEventsOnPlayerEnteringWorld(popUpsOptions, chatMessagesOptions);
                 end);
             end);
         end
