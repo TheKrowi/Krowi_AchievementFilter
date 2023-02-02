@@ -1,4 +1,4 @@
--- [[ Exported at 2023-02-02 00-20-19 ]] --
+-- [[ Exported at 2023-02-02 21-20-26 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1490,6 +1490,36 @@ function exportedTooltipData.Load(d)
     AddD(d, 193027, tdt.Unit, 15850, 0, t[15], t[16]); -- Archive Ambit Advanced: Bronze
     AddD(d, 193027, tdt.Unit, 15851, 0, t[15], t[16]); -- Archive Ambit Advanced: Silver
     AddD(d, 193027, tdt.Unit, 15852, 0, t[15], t[16]); -- Archive Ambit Advanced: Gold
+    AddD(d, 193651, tdt.Unit, 15855, 0, t[15], t[16]); -- Tyrhold Trial: Bronze
+    AddD(d, 193651, tdt.Unit, 15856, 0, t[15], t[16]); -- Tyrhold Trial: Silver
+    AddD(d, 193651, tdt.Unit, 15857, 0, t[15], t[16]); -- Tyrhold Trial: Gold
+    AddD(d, 193651, tdt.Unit, 15858, 0, t[15], t[16]); -- Tyrhold Trial Advanced: Bronze
+    AddD(d, 193651, tdt.Unit, 15859, 0, t[15], t[16]); -- Tyrhold Trial Advanced: Silver
+    AddD(d, 193651, tdt.Unit, 15860, 0, t[15], t[16]); -- Tyrhold Trial Advanced: Gold
+    AddD(d, 193911, tdt.Unit, 15891, 0, t[15], t[16]); -- Cliffside Circuit: Bronze
+    AddD(d, 193911, tdt.Unit, 15892, 0, t[15], t[16]); -- Cliffside Circuit: Silver
+    AddD(d, 193911, tdt.Unit, 15893, 0, t[15], t[16]); -- Cliffside Circuit: Gold
+    AddD(d, 193911, tdt.Unit, 15894, 0, t[15], t[16]); -- Cliffside Circuit Advanced: Bronze
+    AddD(d, 193911, tdt.Unit, 15895, 0, t[15], t[16]); -- Cliffside Circuit Advanced: Silver
+    AddD(d, 193911, tdt.Unit, 15896, 0, t[15], t[16]); -- Cliffside Circuit Advanced: Gold
+    AddD(d, 193951, tdt.Unit, 15897, 0, t[15], t[16]); -- Academy Ascent: Bronze
+    AddD(d, 193951, tdt.Unit, 15898, 0, t[15], t[16]); -- Academy Ascent: Silver
+    AddD(d, 193951, tdt.Unit, 15899, 0, t[15], t[16]); -- Academy Ascent: Gold
+    AddD(d, 193951, tdt.Unit, 15900, 0, t[15], t[16]); -- Academy Ascent Advanced: Bronze
+    AddD(d, 193951, tdt.Unit, 15901, 0, t[15], t[16]); -- Academy Ascent Advanced: Silver
+    AddD(d, 193951, tdt.Unit, 15902, 0, t[15], t[16]); -- Academy Ascent Advanced: Gold
+    AddD(d, 194348, tdt.Unit, 15903, 0, t[15], t[16]); -- Garden Gallivant: Bronze
+    AddD(d, 194348, tdt.Unit, 15904, 0, t[15], t[16]); -- Garden Gallivant: Silver
+    AddD(d, 194348, tdt.Unit, 15905, 0, t[15], t[16]); -- Garden Gallivant: Gold
+    AddD(d, 194348, tdt.Unit, 15906, 0, t[15], t[16]); -- Garden Gallivant Advanced: Bronze
+    AddD(d, 194348, tdt.Unit, 15907, 0, t[15], t[16]); -- Garden Gallivant Advanced: Silver
+    AddD(d, 194348, tdt.Unit, 15908, 0, t[15], t[16]); -- Garden Gallivant Advanced: Gold
+    AddD(d, 194372, tdt.Unit, 15909, 0, t[15], t[16]); -- Caverns Criss-Cross: Bronze
+    AddD(d, 194372, tdt.Unit, 15910, 0, t[15], t[16]); -- Caverns Criss-Cross: Silver
+    AddD(d, 194372, tdt.Unit, 15911, 0, t[15], t[16]); -- Caverns Criss-Cross: Gold
+    AddD(d, 194372, tdt.Unit, 15912, 0, t[15], t[16]); -- Caverns Criss-Cross Advanced: Bronze
+    AddD(d, 194372, tdt.Unit, 15913, 0, t[15], t[16]); -- Caverns Criss-Cross Advanced: Silver
+    AddD(d, 194372, tdt.Unit, 15914, 0, t[15], t[16]); -- Caverns Criss-Cross Advanced: Gold
     AddD(d, 196092, tdt.Unit, 16302, 0, t[15], t[16]); -- River Rapids Route: Bronze
     AddD(d, 196092, tdt.Unit, 16303, 0, t[15], t[16]); -- River Rapids Route: Silver
     AddD(d, 196092, tdt.Unit, 16304, 0, t[15], t[16]); -- River Rapids Route: Gold
@@ -1696,5 +1726,20 @@ function exportedTooltipData.Load(d)
     AddD(d, 192555, tdt.Unit, 17177, 0, t[15], t[16]); -- The Flowing Forest Flight Reverse: Bronze
     AddD(d, 192555, tdt.Unit, 17178, 0, t[15], t[16]); -- The Flowing Forest Flight Reverse: Silver
     AddD(d, 192555, tdt.Unit, 17179, 0, t[15], t[16]); -- The Flowing Forest Flight Reverse: Gold
+    AddD(d, 193651, tdt.Unit, 17180, 0, t[15], t[16]); -- Tyrhold Trial Reverse: Bronze
+    AddD(d, 193651, tdt.Unit, 17181, 0, t[15], t[16]); -- Tyrhold Trial Reverse: Silver
+    AddD(d, 193651, tdt.Unit, 17182, 0, t[15], t[16]); -- Tyrhold Trial Reverse: Gold
+    AddD(d, 193911, tdt.Unit, 17183, 0, t[15], t[16]); -- Cliffside Circuit Reverse: Bronze
+    AddD(d, 193911, tdt.Unit, 17184, 0, t[15], t[16]); -- Cliffside Circuit Reverse: Silver
+    AddD(d, 193911, tdt.Unit, 17185, 0, t[15], t[16]); -- Cliffside Circuit Reverse: Gold
+    AddD(d, 193951, tdt.Unit, 17186, 0, t[15], t[16]); -- Academy Ascent Reverse: Bronze
+    AddD(d, 193951, tdt.Unit, 17187, 0, t[15], t[16]); -- Academy Ascent Reverse: Silver
+    AddD(d, 193951, tdt.Unit, 17188, 0, t[15], t[16]); -- Academy Ascent Reverse: Gold
+    AddD(d, 194348, tdt.Unit, 17189, 0, t[15], t[16]); -- Garden Gallivant Reverse: Bronze
+    AddD(d, 194348, tdt.Unit, 17190, 0, t[15], t[16]); -- Garden Gallivant Reverse: Silver
+    AddD(d, 194348, tdt.Unit, 17191, 0, t[15], t[16]); -- Garden Gallivant Reverse: Gold
+    AddD(d, 194372, tdt.Unit, 17192, 0, t[15], t[16]); -- Caverns Criss-Cross Reverse: Bronze
+    AddD(d, 194372, tdt.Unit, 17193, 0, t[15], t[16]); -- Caverns Criss-Cross Reverse: Silver
+    AddD(d, 194372, tdt.Unit, 17194, 0, t[15], t[16]); -- Caverns Criss-Cross Reverse: Gold
 end
 
