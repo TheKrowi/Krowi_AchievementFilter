@@ -100,7 +100,7 @@ function filters:Load()
 end
 
 -- [[ Validation ]] --
-local completedCache, ignoreCollapseSeriesCache;
+local completedCache, ignoreCollapseSeriesCache, pointsCache;
 local validations = {
     {   -- 1
         Validate = function(_filters, achievement) return not _filters.Completion.Completed and completedCache; end
@@ -174,7 +174,7 @@ local validations = {
         Validate = function(_filters, achievement) return not _filters.Special.RealmFirst and achievement.IsRealmFirst; end
     },
     {   -- 12
-        Validate = function(_filters, achievement) return not _filters.Special.FeatsOfStrength and achievement.Points == 0 and not achievement.IsRealmFirst and not achievement.IsTracking; end
+        Validate = function(_filters, achievement) return not _filters.Special.FeatsOfStrength and pointsCache == 0 and not achievement.IsRealmFirst and not achievement.IsTracking; end
     },
     {   -- 13
         Validate = function(_filters, achievement) return not _filters.Tracking and achievement.IsTracking; end
@@ -185,7 +185,8 @@ function filters.Validate(_filters, achievement, ignoreCollapseSeries)
     if achievement.AlwaysVisible then
         return 2;
     end
-    local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = addon.GetAchievementInfo(achievement.Id);
+    local _, _, points, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = addon.GetAchievementInfo(achievement.Id);
+    pointsCache = points;
     if addon.Filters.db.EarnedBy == addon.Filters.CharacterOnly then
         completedCache = wasEarnedByMe;
     else
