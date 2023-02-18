@@ -20,3 +20,7 @@
 <li>Drop It Like It's Hot and The Future We Make to the The Primalist Future map</li>
 <li>10.0.7 achievements (WIP)</li>
 </ul>
+<p><h3>Fixed (52.2)</h3></p>
+<ul>
+<li>Saved Data loading</li>
+</ul>
