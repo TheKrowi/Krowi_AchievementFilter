@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 52.2 - 2023-02-18
+### Fixed
+- Saved Data loading
+
 ## 52.1 - 2023-02-18
 ### Added
 - Drop It Like It's Hot and The Future We Make to the The Primalist Future map
