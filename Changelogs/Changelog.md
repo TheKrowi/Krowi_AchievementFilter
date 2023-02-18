@@ -15,3 +15,6 @@
 ### Added (52.1)
 - Drop It Like It's Hot and The Future We Make to the The Primalist Future map
 - 10.0.7 achievements (WIP)
+
+### Fixed (52.2)
+- Saved Data loading

@@ -640,22 +640,26 @@ function FixEventRemindersOptions2(prevBuild, currBuild, prevVersion, currVersio
         return;
     end
 
+    if addon.Options.db.EventReminders.PopUps.Show then
     addon.Options.db.EventReminders.PopUps.OnLogin = {
-        Show = addon.Options.db.EventReminders.PopUps.Show.OnLogin,
-        ShowInInstances = addon.Options.db.EventReminders.PopUps.Show.OnLoginInInstances,
-    };
-    addon.Options.db.EventReminders.PopUps.OnEventStart = {
-        Show = addon.Options.db.EventReminders.PopUps.Show.OnEventStart,
-        ShowInInstances = addon.Options.db.EventReminders.PopUps.Show.OnEventStartInInstances,
-    };
-    addon.Options.db.EventReminders.ChatMessages.OnLogin = {
-        Show = addon.Options.db.EventReminders.ChatMessages.Show.OnLogin,
-        ShowInInstances = addon.Options.db.EventReminders.ChatMessages.Show.OnLoginInInstances,
-    };
-    addon.Options.db.EventReminders.ChatMessages.OnEventStart = {
-        Show = addon.Options.db.EventReminders.ChatMessages.Show.OnEventStart,
-        ShowInInstances = addon.Options.db.EventReminders.ChatMessages.Show.OnEventStartInInstances,
-    };
+            Show = addon.Options.db.EventReminders.PopUps.Show.OnLogin,
+            ShowInInstances = addon.Options.db.EventReminders.PopUps.Show.OnLoginInInstances,
+        };
+        addon.Options.db.EventReminders.PopUps.OnEventStart = {
+            Show = addon.Options.db.EventReminders.PopUps.Show.OnEventStart,
+            ShowInInstances = addon.Options.db.EventReminders.PopUps.Show.OnEventStartInInstances,
+        };
+    end
+    if addon.Options.db.EventReminders.ChatMessages.Show then
+        addon.Options.db.EventReminders.ChatMessages.OnLogin = {
+            Show = addon.Options.db.EventReminders.ChatMessages.Show.OnLogin,
+            ShowInInstances = addon.Options.db.EventReminders.ChatMessages.Show.OnLoginInInstances,
+        };
+        addon.Options.db.EventReminders.ChatMessages.OnEventStart = {
+            Show = addon.Options.db.EventReminders.ChatMessages.Show.OnEventStart,
+            ShowInInstances = addon.Options.db.EventReminders.ChatMessages.Show.OnEventStartInInstances,
+        };
+    end
     addon.Options.db.EventReminders.PopUps.Show = nil;
     addon.Options.db.EventReminders.ChatMessages.Show = nil;
 
