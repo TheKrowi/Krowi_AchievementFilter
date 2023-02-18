@@ -11,3 +11,7 @@
 ### Fixed
 - Earning a tracked achievement should now also untrack the achievement
 - Famliar Skies points is now 0 again instead of the previous 5
+
+### Added (52.1)
+- Drop It Like It's Hot and The Future We Make to the The Primalist Future map
+- 10.0.7 achievements (WIP)

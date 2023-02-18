@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 52.1 - 2023-02-18
+### Added
+- Drop It Like It's Hot and The Future We Make to the The Primalist Future map
+- 10.0.7 achievements (WIP)
+
 ## 52.0 - 2023-02-02
 ### Added
 - Trying to track/untrack an earned achievement will now untrack it (solution for completed tracked achievements)
