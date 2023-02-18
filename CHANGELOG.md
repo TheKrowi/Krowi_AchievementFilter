@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 52.1 - 2023-xx-xx
+## 52.1 - 2023-02-18
 ### Added
 - Drop It Like It's Hot and The Future We Make to the The Primalist Future map
 - 10.0.7 achievements (WIP)
