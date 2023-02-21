@@ -24,3 +24,8 @@
 <ul>
 <li>Saved Data loading</li>
 </ul>
+<p><h3>Wrath Classic (52.3)</h3></p>
+<ul>
+<li>Bumped Krowi_WorldMapButtons to 1.5</li>
+<li>Fixed Leatrix Maps compatibility</li>
+</ul>

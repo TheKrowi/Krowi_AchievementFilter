@@ -18,3 +18,7 @@
 
 ### Fixed (52.2)
 - Saved Data loading
+
+### Wrath Classic (52.3)
+- Bumped Krowi_WorldMapButtons to 1.5
+- Fixed Leatrix Maps compatibility
