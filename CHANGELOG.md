@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 52.3 - 2023-02-21
+### Wrath Classic
+- Bumped Krowi_WorldMapButtons to 1.5
+- Fixed Leatrix Maps compatibility
+
 ## 52.2 - 2023-02-18
 ### Fixed
 - Saved Data loading
