@@ -34,3 +34,8 @@
 [*]Bumped Krowi_WorldMapButtons to 1.5
 [*]Fixed Leatrix Maps compatibility
 [/LIST]
+
+[B]Wrath Classic (52.4)[/B]
+[LIST]
+[*]Bumped Krowi_WorldMapButtons to 1.4.4 (1.5 does no longer exist)
+[/LIST]

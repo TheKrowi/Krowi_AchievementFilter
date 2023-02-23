@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 52.4 - 2023-02-23
+### Wrath Classic
+- Bumped Krowi_WorldMapButtons to 1.4.4 (1.5 does no longer exist)
+
 ## 52.3 - 2023-02-21
 ### Wrath Classic
 - Bumped Krowi_WorldMapButtons to 1.5
