@@ -41,6 +41,11 @@ local CharacterColumns = {
 		attribute = "ExcludeFromEarnedByAchievementTooltip"
 	},
 	{
+		title = addon.L["Most progress"],
+		width = 100,
+		attribute = "ExcludeFromMostProgressAchievementTooltip"
+	},
+	{
 		title = addon.L["Ignore"],
 		width = 100,
 		attribute = "IgnoreCharacter"
@@ -62,6 +67,7 @@ local sortFuncs = {
     addon.Objects.CompareFunc:New("string", "Class");
     addon.Objects.CompareFunc:New("bool", "ExcludeFromHeaderTooltip");
     addon.Objects.CompareFunc:New("bool", "ExcludeFromEarnedByAchievementTooltip");
+    addon.Objects.CompareFunc:New("bool", "ExcludeFromMostProgressAchievementTooltip");
     addon.Objects.CompareFunc:New("bool", "IgnoreCharacter");
 };
 
@@ -77,6 +83,7 @@ local function GetSortedCharacters(column)
             Points = character.Points,
             ExcludeFromHeaderTooltip = character.ExcludeFromHeaderTooltip,
             ExcludeFromEarnedByAchievementTooltip = character.ExcludeFromEarnedByAchievementTooltip,
+            ExcludeFromMostProgressAchievementTooltip = character.ExcludeFromMostProgressAchievementTooltip,
             IgnoreCharacter = character.Ignore,
             Guid = guid
         });
@@ -136,11 +143,18 @@ local function GetSortedCharacters(column)
         sortFuncs[7].Reverse = column.reverse;
         sortFuncs[2].Fallback = sortFuncs[3];
         sortFuncs[3]:SetDefaultFallback();
-    elseif column.attribute == "IgnoreCharacter" then
+    elseif column.attribute == "ExcludeFromMostProgressAchievementTooltip" then
         column.reverse = not column.reverse;
         sortFunc = sortFuncs[8];
         sortFuncs[8].Fallback = sortFuncs[2];
         sortFuncs[8].Reverse = column.reverse;
+        sortFuncs[2].Fallback = sortFuncs[3];
+        sortFuncs[3]:SetDefaultFallback();
+    elseif column.attribute == "IgnoreCharacter" then
+        column.reverse = not column.reverse;
+        sortFunc = sortFuncs[9];
+        sortFuncs[9].Fallback = sortFuncs[2];
+        sortFuncs[9].Reverse = column.reverse;
         sortFuncs[2].Fallback = sortFuncs[3];
         sortFuncs[3]:SetDefaultFallback();
     end
@@ -189,15 +203,6 @@ function KrowiAF_CharacterListFrameMixin:Update(characters)
     local buttons = scrollFrame.buttons;
 	local offset = HybridScrollFrame_GetOffset(scrollFrame);
     local button, character;
-    -- cachedCharacters = GetSortedCharacters();
-    -- tinsert(characters, {
-    --     Name = "NAME@@@@@@@@@@@@@@@@@@@@",
-    --     Realm = "NAME@@@@@@@@@@@@@@@@@@@@",
-    --     Class = "PALADIN",
-    --     Faction = "Alliance",
-    --     Points = "NAME@@@@@@@@@@@@@@@@@@@@",
-    --     Guid = guid
-    -- });
 
 	local displayedHeight = 0;
     for i = 1, #buttons do

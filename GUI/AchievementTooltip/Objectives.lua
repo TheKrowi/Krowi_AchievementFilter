@@ -12,10 +12,10 @@ function section.CheckAdd(achievement)
 	if not addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show or pastObtainable then
 		return;
 	end
-	if achievement.Completed and not addon.Options.db.Tooltip.Achievements.ObjectivesProgress.ShowWhenAchievementCompleted then
+	if achievement.IsCompleted and not addon.Options.db.Tooltip.Achievements.ObjectivesProgress.ShowWhenAchievementCompleted then
 		return;
 	end
-	numCriteria = GetAchievementNumCriteria(achievement.Id);
+	numCriteria = addon.GetAchievementNumCriteria(achievement.Id);
 	return numCriteria > 0 or type(achievement.CustomObjectives) == "function";
 end
 

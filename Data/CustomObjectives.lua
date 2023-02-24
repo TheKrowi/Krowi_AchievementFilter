@@ -3,67 +3,6 @@ local data = addon.Data;
 data.CustomObjectives = {};
 local customObjectives = data.CustomObjectives;
 
-customObjectives[11474] = function()
-    local achievementId = 11474;
-    local numCriteria = GetAchievementNumCriteria(achievementId);
-    for i = 1, numCriteria, 1 do
-        local assetId = select(8, GetAchievementCriteriaInfo(achievementId, i));
-        local criteriaString, _, completed, quantity, reqQuantity, _, _, _, _, _, _ = GetAchievementCriteriaInfo(assetId, 1);
-        addon.GUI.AchievementTooltip.AddCriteria({
-            {
-                criteriaString,
-                completed,
-                quantity,
-                reqQuantity
-            }
-        });
-    end
-end
-
-customObjectives[15406] = function()
-    addon.GUI.AchievementTooltip.AddCriteria({
-        {
-            "",
-            tonumber((GetStatistic(15406))) >= 1,
-            (GetStatistic(15406)),
-            1
-        }
-    });
-end
-
-customObjectives[15407] = function()
-    addon.GUI.AchievementTooltip.AddCriteria({
-        {
-            "",
-            tonumber((GetStatistic(15407))) >= 5,
-            (GetStatistic(15407)),
-            5
-        }
-    });
-end
-
-customObjectives[15410] = function()
-    addon.GUI.AchievementTooltip.AddCriteria({
-        {
-            "",
-            tonumber((GetStatistic(15410))) >= 25,
-            (GetStatistic(15410)),
-            25
-        }
-    });
-end
-
-customObjectives[15411] = function()
-    addon.GUI.AchievementTooltip.AddCriteria({
-        {
-            "",
-            tonumber((GetStatistic(15411))) >= 50,
-            (GetStatistic(15411)),
-            50
-        }
-    });
-end
-
 local co;
 local transmogCriteriaHelper = CreateFrame("Frame");
 function transmogCriteriaHelper:OnEvent(event)

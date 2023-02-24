@@ -142,7 +142,7 @@ local function SearchCriteria(text, numAchievementIds, results, excludeExcluded)
 			achievement = addon.Data.Achievements[addon.Data.AchievementIds[i]];
 			numCriteria = GetAchievementNumCriteria(achievement.Id);
 			for j = 1, numCriteria do -- Build the cache the first time to limit API requests
-				criteriaString = GetAchievementCriteriaInfo(achievement.Id, j);
+				criteriaString = addon.GetAchievementCriteriaInfo(achievement.Id, j);
 				tinsert(criteriaCache, {Achievement = achievement, CriteriaString = criteriaString});
 			end
 		end

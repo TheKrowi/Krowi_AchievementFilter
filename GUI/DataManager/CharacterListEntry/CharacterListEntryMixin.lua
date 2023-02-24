@@ -31,6 +31,7 @@ function KrowiAF_CharacterListEntryMixin:SetCharacter(character)
     self.Guid = character.Guid;
     self.HeaderTooltip:SetChecked(not character.ExcludeFromHeaderTooltip);
     self.EarnedByAchievementTooltip:SetChecked(not character.ExcludeFromEarnedByAchievementTooltip);
+    self.MostProgressAchievementTooltip:SetChecked(not character.ExcludeFromMostProgressAchievementTooltip);
     self.IgnoreCharacter:SetChecked(character.IgnoreCharacter);
 end
 
@@ -60,11 +61,25 @@ function KrowiAF_CharacterListEntryMixin:ToggleEarnedByAchievementTooltip()
     self.Character.IgnoreCharacter = SavedData.Characters[self.Guid].Ignore;
 end
 
+function KrowiAF_CharacterListEntryMixin:ToggleMostProgressAchievementTooltip()
+    if self.MostProgressAchievementTooltip:GetChecked() then
+        SavedData.Characters[self.Guid].ExcludeFromMostProgressAchievementTooltip = nil;
+        SavedData.Characters[self.Guid].Ignore = nil;
+
+        self.IgnoreCharacter:SetChecked(false);
+    else
+        SavedData.Characters[self.Guid].ExcludeFromMostProgressAchievementTooltip = true;
+    end
+    self.Character.ExcludeFromMostProgressAchievementTooltip = SavedData.Characters[self.Guid].ExcludeFromMostProgressAchievementTooltip;
+    self.Character.IgnoreCharacter = SavedData.Characters[self.Guid].Ignore;
+end
+
 function KrowiAF_CharacterListEntryMixin:ToggleIgnoreCharacter()
     if self.IgnoreCharacter:GetChecked() then
         SavedData.Characters[self.Guid].Ignore = true;
         SavedData.Characters[self.Guid].ExcludeFromHeaderTooltip = true;
         SavedData.Characters[self.Guid].ExcludeFromEarnedByAchievementTooltip = true;
+        SavedData.Characters[self.Guid].ExcludeFromMostProgressAchievementTooltip = true;
         SavedData.Characters[self.Guid].CompletedAchievements = {};
         SavedData.Characters[self.Guid].LastCompleted = nil;
         SavedData.Characters[self.Guid].Points = 0;
@@ -76,6 +91,7 @@ function KrowiAF_CharacterListEntryMixin:ToggleIgnoreCharacter()
         SavedData.Characters[self.Guid].Ignore = nil;
         SavedData.Characters[self.Guid].ExcludeFromHeaderTooltip = nil;
         SavedData.Characters[self.Guid].ExcludeFromEarnedByAchievementTooltip = nil;
+        SavedData.Characters[self.Guid].ExcludeFromMostProgressAchievementTooltip = nil;
         if self.Guid == UnitGUID("player") then
             addon.ResetCache();
             addon.BuildCache();
@@ -87,6 +103,7 @@ function KrowiAF_CharacterListEntryMixin:ToggleIgnoreCharacter()
     end
     self.Character.ExcludeFromHeaderTooltip = SavedData.Characters[self.Guid].ExcludeFromHeaderTooltip;
     self.Character.ExcludeFromEarnedByAchievementTooltip = SavedData.Characters[self.Guid].ExcludeFromEarnedByAchievementTooltip;
+    self.Character.ExcludeFromMostProgressAchievementTooltip = SavedData.Characters[self.Guid].ExcludeFromMostProgressAchievementTooltip;
     self.Character.IgnoreCharacter = SavedData.Characters[self.Guid].Ignore;
 end
 

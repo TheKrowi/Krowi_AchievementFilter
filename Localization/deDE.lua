@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-29 12-01-53 ]] --
+-- [[ Exported at 2023-02-25 00-48-20 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -570,7 +570,6 @@ L["Show All Results in Category"] = "Zeige alle Suchergebnisse in einer Kategori
 L["Show All Results in Category Desc"] = "Alle Suchergebnisse in einer Kategorie anzeigen, die während dieser Sitzung bestehen bleibt.";
 L["Search Results"] = "Suchergebnisse";
 L["Are you sure you want to delete character?"] = "Sind Sie sicher, dass Sie {character} löschen möchten? Dieser Charakter wird aber wieder hinzugefügt, wenn Sie sich erneut einloggen. Wenn Sie den Charakter dauerhaft nicht sehen wollen, markieren Sie bitte die {ignore} Checkbox.";
-L["On Login / Reload"] = "Beim Login / Neu-laden";
 L["In instances"] = "In einer Instanz";
 L["Show alertSystem on login in instances Desc"] = "Ein-/Ausblenden von Ereignis {alertSystem} beim Neu-laden oder Betreten des Spiels innerhalb einer Instanz.";
 L["Show alertSystem on event start Desc"] = "Ein-/Ausblenden des {alertSystem} für ein Ereignis, sobald es beginnt.";

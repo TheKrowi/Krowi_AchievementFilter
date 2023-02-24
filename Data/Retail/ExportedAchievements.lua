@@ -1,4 +1,4 @@
--- [[ Exported at 2023-02-09 16-37-39 ]] --
+-- [[ Exported at 2023-02-24 21-20-17 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -4506,7 +4506,7 @@ function exportedAchievements.Load(a, t)
     O(a[11471], "From", "PvP Season", 19, "Until", "PvP Season", 25);
     a[11472] = b:New(11472); -- "Hell, It's About Nine"
     O(a[11472], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[11474] = b:New(11474, nil, nil, nil, nil, custObj[11474]); -- "Free For All, More For Me"
+    a[11474] = b:New(11474); -- "Free For All, More For Me"
     a[11475] = b:New(11475); -- Mission Accomplished
     a[11476] = b:New(11476); -- Saddle Sore
     a[11477] = b:New(11477); -- Off the Top Rook
@@ -7874,8 +7874,8 @@ function exportedAchievements.Load(a, t)
     a[15401] = b:New(15401); -- Wisdom Comes From the Desert
     a[15402] = b:New(15402); -- Cyphers of the First Ones
     a[15404] = b:New(15404); -- Cosmic Empowerment
-    a[15406] = b:New(15406, nil, nil, nil, nil, custObj[15406]); -- Synthesized!
-    a[15407] = b:New(15407, nil, nil, nil, nil, custObj[15407]); -- Synthe-fived!
+    a[15406] = b:New(15406); -- Synthesized!
+    a[15407] = b:New(15407); -- Synthe-fived!
     a[15408] = b:New(15408); -- Cosmic Chic
     T(a[15408], t[2319]); -- Cosmic Aspirant's Plate (Aspirant)
     T(a[15408], t[2318]); -- Cosmic Aspirant's Chain (Aspirant)
@@ -7954,8 +7954,8 @@ function exportedAchievements.Load(a, t)
     T(a[15409], t[2354]); -- Mercurial Punisher's Painweave (Normal)
     T(a[15409], t[2356]); -- Mercurial Punisher's Painweave (Heroic)
     T(a[15409], t[2357]); -- Mercurial Punisher's Painweave (Mythic)
-    a[15410] = b:New(15410, nil, nil, nil, nil, custObj[15410]); -- Synthe-superfived!
-    a[15411] = b:New(15411, nil, nil, nil, nil, custObj[15411]); -- Synthe-supersized!
+    a[15410] = b:New(15410); -- Synthe-superfived!
+    a[15411] = b:New(15411); -- Synthe-supersized!
     a[15416] = b:New(15416); -- Domination's Grasp
     a[15417] = b:New(15417); -- Sepulcher of the First Ones
     a[15418] = b:New(15418); -- The Grand Design
@@ -8412,7 +8412,7 @@ function exportedAchievements.Load(a, t)
     a[16529] = b:New(16529); -- Joining the Community
     a[16530] = b:New(16530); -- Ally of the Flights
     a[16531] = b:New(16531); -- A Whole Heap of Lunkers
-    a[16532] = b:New(16532); -- Friends with Sabellian
+    a[16532] = b:New(16532); -- True Friends with Sabellian
     a[16533] = b:New(16533); -- Lots of Lunkers
     a[16536] = b:New(16536); -- True Friends with Wrathion
     a[16537] = b:New(16537); -- Maximum Power!
@@ -8593,6 +8593,18 @@ function exportedAchievements.Load(a, t)
     a[17205] = b:New(17205); -- Thaldraszus Reverse: Silver
     a[17206] = b:New(17206); -- Thaldraszus Reverse: Gold
     a[17207] = b:New(17207); -- Discombobberlated
+    a[17279] = b:New(17279); -- Forbidden Reach: Bronze
+    a[17280] = b:New(17280); -- Forbidden Reach: Silver
+    a[17281] = b:New(17281); -- Forbidden Reach: Gold
+    a[17284] = b:New(17284); -- Forbidden Reach Advanced: Bronze
+    a[17286] = b:New(17286); -- Forbidden Reach Advanced: Silver
+    a[17287] = b:New(17287); -- Forbidden Reach Advanced: Gold
+    a[17288] = b:New(17288); -- Forbidden Reach Reverse: Bronze
+    a[17289] = b:New(17289); -- Forbidden Reach Reverse: Silver
+    a[17290] = b:New(17290); -- Forbidden Reach Reverse: Gold
+    a[17294] = b:New(17294); -- Forbidden Reach Racing Completionist
+    a[17296] = b:New(17296); -- Forbidden Reach Racing Completionist: Silver
+    a[17298] = b:New(17298); -- Forbidden Reach Racing Completionist: Gold
     a[17305] = b:New(17305); -- Trading Post: Dragonflight
     a[17314] = b:New(17314); -- Heroic Edition: Tangled Dreamweaver
     a[17321] = b:New(17321); -- Elders of the Dragon Isles
@@ -8606,9 +8618,18 @@ function exportedAchievements.Load(a, t)
     a[17342] = b:New(17342); -- The Future We Make
     a[17343] = b:New(17343); -- Drop It Like It's Hot
     a[17345] = b:New(17345); -- Airborne Tumbler
+    a[17524] = b:New(17524); -- Adventurer of the Forbidden Reach
+    a[17525] = b:New(17525); -- Champion of the Forbidden Reach
+    a[17526] = b:New(17526); -- Treasures of the Forbidden Reach
+    a[17527] = b:New(17527); -- Scavenger of the Forbidden Reach
+    a[17528] = b:New(17528); -- Hoarder of the Forbidden Reach
+    a[17529] = b:New(17529); -- Forbidden Spoils
+    a[17530] = b:New(17530); -- Librarian of the Reach
+    a[17531] = b:New(17531); -- X Marks the Spot
+    a[17532] = b:New(17532); -- Scroll Hunter
 
     local aIDs = {};
-    for i = 1, 17345 do
+    for i = 1, 17532 do
         if a[i] ~= nil then
             tinsert(aIDs, i);
         end

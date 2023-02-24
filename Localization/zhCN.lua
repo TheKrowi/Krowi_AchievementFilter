@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-29 12-01-53 ]] --
+-- [[ Exported at 2023-02-25 00-48-20 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -452,7 +452,6 @@ L["%c"] = "%c";
 L["Show All Results in Category"] = "在分类中显示所有结果";
 L["Search Results"] = "搜索结果";
 L["Are you sure you want to delete character?"] = "是否确认删除 {character}？该角色在下次登录时会重新添加。如果你不想看到这个角色，请勾选 {ignore} 标签。";
-L["On Login / Reload"] = "登录/重载时";
 L["In instances"] = "副本中";
 L["On Event Start"] = "事件开始时";
 L["Refresh interval"] = "刷新间隔";

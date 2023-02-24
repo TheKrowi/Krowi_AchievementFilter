@@ -224,27 +224,30 @@ function addon.ExcludeAchievement(achievement, update)
     end
 end
 
-local criteriaCache, characterPoints, cachedCompletedAchievements;
+local criteriaCache, characterPoints;
 local function AddCharToSavedData(playerGUID)
     if not SavedData.Characters then
         SavedData.Characters = {};
     end
     local character = SavedData.Characters[playerGUID];
-    local excludeFromHeaderTooltip, excludeFromEarnedByAchievementTooltip, ignore;
+    local excludeFromHeaderTooltip, excludeFromEarnedByAchievementTooltip, excludeFromMostProgressAchievementTooltip, ignore;
     if character then
         excludeFromHeaderTooltip = character.ExcludeFromHeaderTooltip;
         excludeFromEarnedByAchievementTooltip = character.ExcludeFromEarnedByAchievementTooltip;
+        excludeFromMostProgressAchievementTooltip = character.ExcludeFromMostProgressAchievementTooltip;
         ignore = character.Ignore;
     end
-    -- cachedCompletedAchievements = SavedData.Characters[playerGUID] and SavedData.Characters[playerGUID].CompletedAchievements or {};
+
     SavedData.Characters[playerGUID] = {
         Name = (UnitFullName("player")),
         Realm = (select(2, UnitFullName("player"))),
         Class = (select(2, UnitClass("player"))),
         Faction = (UnitFactionGroup("player")),
         CompletedAchievements = {},
+        NotCompletedAchievements = {},
         ExcludeFromHeaderTooltip = excludeFromHeaderTooltip,
         ExcludeFromEarnedByAchievementTooltip = excludeFromEarnedByAchievementTooltip,
+        ExcludeFromMostProgressAchievementTooltip = excludeFromMostProgressAchievementTooltip,
         Ignore = ignore
     };
 end
@@ -287,7 +290,7 @@ local function IncrementCharacterPoints(playerGUID, id, points, flags, isGuild, 
 end
 
 addon.TrackingAchievements = {};
-local function AddToCriteriaCache(id, points, flags, isGuild, isStatistic, exists)
+local function AddToCriteriaCache(playerGUID, id, points, flags, isGuild, wasEarnedByMe, isStatistic, exists)
     if isStatistic or isGuild then
         return;
     end
@@ -312,17 +315,17 @@ local function AddToCriteriaCache(id, points, flags, isGuild, isStatistic, exist
     if numCriteria <= 0 then
         return;
     end
+    if not wasEarnedByMe then
+        SavedData.Characters[playerGUID].NotCompletedAchievements[id] = {};
+    end
     for j = 1, numCriteria do
-        local _, criteriaType, _, _, _, _, _, assetID = GetAchievementCriteriaInfo(id, j);
+        local _, criteriaType, criteriaIsCompleted, quantity, _, _, _, assetID, _, _, _, hasValueProgress = addon.GetAchievementCriteriaInfo(id, j);
         if criteriaType == 8 then -- See https://wowpedia.fandom.com/wiki/API_GetAchievementCriteriaInfo for all criteria types
             tinsert(criteriaCache, {AchievementId = assetID, RequiredForId = id});
         end
-    end
-end
-
-local function CacheAchievement(id, name)
-    if addon.Data.Achievements[id] then
-        addon.Data.Achievements[id].Name = name;
+        if not wasEarnedByMe then
+            SavedData.Characters[playerGUID].NotCompletedAchievements[id][j] = hasValueProgress and quantity or criteriaIsCompleted;
+        end
     end
 end
 
@@ -342,7 +345,7 @@ function addon.BuildCache()
 
         if id then
             IncrementCharacterPoints(playerGUID, id, points, flags, isGuild, wasEarnedByMe, isStatistic, exists, year, month, day);
-            AddToCriteriaCache(id, points, flags, isGuild, isStatistic, exists);
+            AddToCriteriaCache(playerGUID, id, points, flags, isGuild, wasEarnedByMe, isStatistic, exists);
             -- CacheAchievement(id, name);
         end
 
@@ -562,7 +565,6 @@ function addon.GetAchievementInfo(achievementID) -- Returns an additional bool i
         return achievementID, " * Placeholder for " .. achievementID .. " * ", 0, false, nil, nil, nil,
         " * This is the placeholder for " .. achievementID .. " until it's available next patch.", 0, 134400, "", false, false, "", false, false;
     end
-    return nil; -- Achievement info not found, default function also returns nil when not found
 end
 
 function addon.GetNextAchievement(achievement)
@@ -575,6 +577,25 @@ function addon.GetNextAchievement(achievement)
         end
     end
     return nil, false;
+end
+
+function addon.GetAchievementCriteriaInfo(achievementId, criteriaIndex, countHidden)
+    local criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible;
+    if type(addon.Data.CustomCriteria[achievementId]) == "function" then
+        criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible = addon.Data.CustomCriteria[achievementId](criteriaIndex);
+    else
+        criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible = GetAchievementCriteriaInfo(achievementId, criteriaIndex, countHidden);
+    end
+    local hasValueProgress = (quantity ~= nil and reqQuantity ~= nil and not (quantity == 0 and (reqQuantity == 0 or reqQuantity == 1))) or achievementId == 17335;
+    return criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible, hasValueProgress;
+end
+
+function addon.GetAchievementNumCriteria(achievementId)
+    if type(addon.Data.CustomCriteria[achievementId]) == "function" then
+        return addon.Data.CustomCriteria[achievementId]();
+    else
+        return GetAchievementNumCriteria(achievementId);
+    end
 end
 
 -- function addon.GetOpposingFaction(faction)

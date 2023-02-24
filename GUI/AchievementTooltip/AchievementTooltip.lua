@@ -104,15 +104,15 @@ function tooltip.EvaluateCharacters(achievement)
 	return earnedBy, notEarnedBy, otherFactionAchievementCompleted, earnedByThisCharacter;
 end
 
-local function GetCriteriaTextAndColor(achievementID, criteriaIndex)
-	local criteriaString, completed, quantity, reqQuantity;
-	if type(achievementID) == "table" then
-		criteriaString, completed, quantity, reqQuantity = unpack(achievementID[criteriaIndex]);
+local function GetCriteriaTextAndColor(achievementId, criteriaIndex)
+	local criteriaString, completed, quantity, reqQuantity, hasValueProgress;
+	if type(achievementId) == "table" then
+		criteriaString, completed, quantity, reqQuantity, hasValueProgress = unpack(achievementId[criteriaIndex]);
 	else
-		criteriaString, _, completed, quantity, reqQuantity, _, _, _, _, _, _ = GetAchievementCriteriaInfo(achievementID, criteriaIndex);
+		criteriaString, _, completed, quantity, reqQuantity, _, _, _, _, _, _, hasValueProgress = addon.GetAchievementCriteriaInfo(achievementId, criteriaIndex);
 	end
 	local icon, color;
-	if criteriaString ~= "" or (quantity ~= nil and reqQuantity ~= nil and not (quantity == 0 and (reqQuantity == 0 or reqQuantity == 1))) then
+	if criteriaString ~= "" or hasValueProgress then
 		if completed then
 			icon = "|T136814:0|t";
 			color = addon.Colors.GreenRGB;
@@ -122,8 +122,8 @@ local function GetCriteriaTextAndColor(achievementID, criteriaIndex)
 		end
 	end
 	local text = criteriaString;
-	if not completed and quantity ~= nil and reqQuantity ~= nil and not (quantity == 0 and (reqQuantity == 0 or reqQuantity == 1)) then
-		text = text .. (text ~= "" and " " or "") .. "(" .. tostring(quantity) .. "/" .. tostring(reqQuantity) .. ")";
+	if not completed and hasValueProgress then
+		text = text .. (text ~= "" and " " or "") .. (text ~= "" and "(" or "") .. tostring(quantity) .. "/" .. tostring(reqQuantity) .. (text ~= "" and ")" or "");
 	end
 	if icon then
 		text = icon .. addon.L["TAB"] .. (text or "");

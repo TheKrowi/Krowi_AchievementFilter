@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 53.0 - 2023-xx-xx
+### Added
+- See the characters with the most progress for a given achievement in its tooltip
+
+### Changed
+- Custom objectives are now handled in a different way to allow more flexibility in the future
+
+### Fixed
+- Achievement objectives in the tooltip for completed achievements should once again listen to the settings 
+
 ## 52.4 - 2023-02-23
 ### Wrath Classic
 - Bumped Krowi_WorldMapButtons to 1.4.4 (1.5 does no longer exist)

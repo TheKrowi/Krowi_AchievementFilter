@@ -127,6 +127,7 @@ end
 
 local progressBarOffset = 10;
 function KrowiAF_AchievementsObjectivesMixin:AddProgressBar(index, quantity, reqQuantity, quantityString)
+	print(index, quantity, reqQuantity, quantityString)
 	local progressBar = self:GetProgressBar(index);
 	local extraHeight;
 	if index == 1 then
@@ -315,30 +316,29 @@ function KrowiAF_AchievementsObjectivesMixin:DisplayCriteria(id)
 		return;
 	end
 
-	local numCriteria = GetAchievementNumCriteria(id);
+	local numCriteria = addon.GetAchievementNumCriteria(id);
 	if numCriteria == 0 then
 		self.Mode = self.Modes.NoCriteria;
 		return;
 	end
 
-	local progressBarWidth, progressBarHeight;
+	local progressBarHeight;
 	local totalProgressBarHeight = 0;
 	local textCriteriaWidth, textCriteriaHeight;
 	local totalTextCriteriaHeight = 0;
 	local numCriteriaRows = 0;
-	local numExtraCriteriaRows = 0;
 
 	local numTextCriteria, numProgressBars, numMetas = 0, 0, 0;
 	local maxCriteriaWidth = 0;
 	for i = 1, numCriteria do
-		local criteriaString, criteriaType, completed, quantity, reqQuantity, _, flags, assetID, quantityString = GetAchievementCriteriaInfo(id, i);
+		local criteriaString, criteriaType, completed, quantity, reqQuantity, _, flags, assetID, quantityString = addon.GetAchievementCriteriaInfo(id, i);
 		flags = addon.Objects.Flags:New(flags);
 		if criteriaType == CRITERIA_TYPE_ACHIEVEMENT and assetID then
 			numMetas = numMetas + 1;
 			self:AddMeta(numMetas, completed, assetID)
 		elseif flags.IsCriteriaProgressBar then
 			numProgressBars = numProgressBars + 1;
-			progressBarWidth, progressBarHeight = self:AddProgressBar(numProgressBars, quantity, reqQuantity, quantityString);
+			_, progressBarHeight = self:AddProgressBar(numProgressBars, quantity, reqQuantity, quantityString);
 			totalProgressBarHeight = totalProgressBarHeight + progressBarHeight;
 			numCriteriaRows = numCriteriaRows + 1;
 		else

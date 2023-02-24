@@ -101,6 +101,10 @@ options.Defaults = {
                     SecondColumnThreshold = 25
                 },
                 ShowOtherFaction = true,
+                MostProgress = {
+                    Characters = 1,
+                    AlwaysShowRealm = false
+                }
             },
             Criteria = {
                 Show = true,
