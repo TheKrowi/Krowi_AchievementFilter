@@ -4,7 +4,7 @@ local section = {};
 
 local numCriteria;
 function section.CheckAdd(achievement)
-	if achievement.IsCompleted or addon.Options.db.Tooltip.Achievements.MostProgress.Characters <= 0 then
+	if achievement.IsCompleted or achievement.IsAccountWide or addon.Options.db.Tooltip.Achievements.MostProgress.Characters <= 0 then
 		return;
 	end
 	numCriteria = GetAchievementNumCriteria(achievement.Id);

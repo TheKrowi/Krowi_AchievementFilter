@@ -267,23 +267,15 @@ local function AddCharCompletedAchievement(playerGUID, achievementId, year, mont
     };
 end
 
-local function CheckHexFlags(flags, flag)
-    return (flags / tonumber(flag, 16)) % 2 >= 1;
-end
-
 local function CheckDecFlags(flags, flag)
     return (flags / flag) % 2 >= 1;
-end
-
-local function IsTraching(flags)
-    return CheckHexFlags(flags, "100000"); -- See https://wowpedia.fandom.com/wiki/API_GetAchievementInfo for all flags
 end
 
 local function IncrementCharacterPoints(playerGUID, id, points, flags, isGuild, wasEarnedByMe, isStatistic, exists, year, month, day, hour, min, sec)
     if SavedData.Characters[playerGUID].Ignore then
         return;
     end
-    if wasEarnedByMe and points >= 0 and not isStatistic and not isGuild and not IsTraching(flags) and exists then
+    if wasEarnedByMe and points >= 0 and not isStatistic and not isGuild and not flags.IsTracking and exists then
         characterPoints = characterPoints + points;
         AddCharCompletedAchievement(playerGUID, id, year, month, day, hour, min, sec);
     end
@@ -294,8 +286,7 @@ local function AddToCriteriaCache(playerGUID, id, points, flags, isGuild, wasEar
     if isStatistic or isGuild then
         return;
     end
-    local isTracking = IsTraching(flags);
-    if isTracking and not addon.Options.db.Categories.TrackingAchievements.DoLoad then
+    if flags.IsTracking and not addon.Options.db.Categories.TrackingAchievements.DoLoad then
         return;
     end
     if exists then
@@ -306,7 +297,7 @@ local function AddToCriteriaCache(playerGUID, id, points, flags, isGuild, wasEar
     else
         return; -- Can this be reached?
     end
-    if isTracking then
+    if flags.IsTracking then
         addon.TrackingAchievements[id] = true;
         addon.Data.Achievements[id].IsTracking = true;
         return;
@@ -315,7 +306,7 @@ local function AddToCriteriaCache(playerGUID, id, points, flags, isGuild, wasEar
     if numCriteria <= 0 then
         return;
     end
-    if not wasEarnedByMe then
+    if not wasEarnedByMe and not flags.IsAccountWide then
         SavedData.Characters[playerGUID].NotCompletedAchievements[id] = {};
     end
     for j = 1, numCriteria do
@@ -323,7 +314,7 @@ local function AddToCriteriaCache(playerGUID, id, points, flags, isGuild, wasEar
         if criteriaType == 8 then -- See https://wowpedia.fandom.com/wiki/API_GetAchievementCriteriaInfo for all criteria types
             tinsert(criteriaCache, {AchievementId = assetID, RequiredForId = id});
         end
-        if not wasEarnedByMe then
+        if not wasEarnedByMe and not flags.IsAccountWide then
             SavedData.Characters[playerGUID].NotCompletedAchievements[id][j] = hasValueProgress and quantity or criteriaIsCompleted;
         end
     end
@@ -342,6 +333,7 @@ function addon.BuildCache()
     local highestId = addon.Data.AchievementIds[#addon.Data.AchievementIds];
     while gapSize < 500 or i < highestId do -- Biggest gap is 209 in 9.0.5 as of 2021-05-03
         local id, name, points, _, month, day, year, _, flags, _, _, isGuild, wasEarnedByMe, _, isStatistic, exists = addon.GetAchievementInfo(i);
+        flags = addon.Objects.Flags:New(flags);
 
         if id then
             IncrementCharacterPoints(playerGUID, id, points, flags, isGuild, wasEarnedByMe, isStatistic, exists, year, month, day);
@@ -365,6 +357,14 @@ function addon.ResetCache()
     criteriaCache = nil;
 end
 
+local function RemoveFromNotCompletedAchievements(playerGUID, achievementId)
+    if not SavedData.Characters[playerGUID] or SavedData.Characters[playerGUID].Ignore or not SavedData.Characters[playerGUID].NotCompletedAchievements then
+        return;
+    end
+
+    SavedData.Characters[playerGUID].NotCompletedAchievements[achievementId] = nil;
+end
+
 function addon.OnAchievementEarned(achievementId)
     if criteriaCache == nil then
         return; -- Achievement window is not opened yet
@@ -378,6 +378,7 @@ function addon.OnAchievementEarned(achievementId)
     local dateTable = date("*t", time());
     IncrementCharacterPoints(playerGUID, id, points, flags, isGuild, wasEarnedByMe, isStatistic, exists, year, month, day, dateTable.hour, dateTable.min, dateTable.sec);
     SetCharPoints(playerGUID, characterPoints);
+    RemoveFromNotCompletedAchievements(playerGUID, achievementId);
     addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = true;
     addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = true;
     local achievement = addon.Data.Achievements[achievementId];
@@ -597,24 +598,6 @@ function addon.GetAchievementNumCriteria(achievementId)
         return GetAchievementNumCriteria(achievementId);
     end
 end
-
--- function addon.GetOpposingFaction(faction)
---     if faction == addon.Objects.Faction.Alliance then
---         return addon.Objects.Faction.Horde;
---     elseif faction == addon.Objects.Faction.Horde then
---         return addon.Objects.Faction.Alliance;
---     end
--- end
-
--- function addon.GetFactionName(faction)
---     if faction == addon.Objects.Faction.Alliance then
---         return addon.L["Alliance"];
---     elseif faction == addon.Objects.Faction.Horde then
---         return addon.L["Horde"];
---     else
---         return addon.L["Neutral"];
---     end
--- end
 
 function addon.GetUsableSets(transmogSets)
     local usableTransmogSets = {};
