@@ -7,6 +7,7 @@
 
 ### Fixed
 - Achievement objectives in the tooltip for completed achievements should once again listen to the settings
+- Added a bunch of checks for the Selected Tab
 
 ### Wrath Classic
 - Fixed an error with the Keybindings localization

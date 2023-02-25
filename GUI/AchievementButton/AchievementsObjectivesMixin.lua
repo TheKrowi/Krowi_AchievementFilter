@@ -127,7 +127,6 @@ end
 
 local progressBarOffset = 10;
 function KrowiAF_AchievementsObjectivesMixin:AddProgressBar(index, quantity, reqQuantity, quantityString)
-	print(index, quantity, reqQuantity, quantityString)
 	local progressBar = self:GetProgressBar(index);
 	local extraHeight;
 	if index == 1 then

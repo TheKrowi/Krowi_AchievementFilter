@@ -124,6 +124,9 @@ end
 
 function KrowiAF_CategoriesFrameMixin:SelectButton(button, quick)
 	local selectedTab = addon.GUI.SelectedTab;
+	if selectedTab == nil then
+		return;
+	end
 	local categories = selectedTab.Categories;
 	local achievementsFrame = addon.GUI.AchievementsFrame;
 	local buttonCategory = button.Category;

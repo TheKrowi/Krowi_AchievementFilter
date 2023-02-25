@@ -503,7 +503,9 @@ function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
 
 	achievementsFrame:ClearSelection();
 	achievementsFrame:SelectButton(self);
-	self:Update(addon.GUI.SelectedTab.SelectedAchievement, self.index);
+	if addon.GUI.SelectedTab then
+		self:Update(addon.GUI.SelectedTab.SelectedAchievement, self.index);
+	end
 	achievementsFrame:ExpandSelection(self);
 end
 

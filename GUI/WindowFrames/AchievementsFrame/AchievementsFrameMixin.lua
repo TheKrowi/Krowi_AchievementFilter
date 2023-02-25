@@ -41,6 +41,9 @@ local highlightedButton;
 function KrowiAF_AchievementsFrameMixin:Update()
 	-- print("AchievementsFrame:Update")
 	local selectedTab = addon.GUI.SelectedTab;
+	if not selectedTab then
+		return;
+	end
 	local selectedCategory = selectedTab.SelectedCategory;
 	local selectedAchievement = selectedTab.SelectedAchievement;
 
@@ -125,10 +128,15 @@ function KrowiAF_AchievementsFrameMixin:ClearSelection()
 		button:Collapse();
 	end
 
-	addon.GUI.SelectedTab.SelectedAchievement = nil;
+	if addon.GUI.SelectedTab then
+		addon.GUI.SelectedTab.SelectedAchievement = nil;
+	end
 end
 
 function KrowiAF_AchievementsFrameMixin:SelectButton(button)
+	if not addon.GUI.SelectedTab then
+		return;
+	end
 	addon.GUI.SelectedTab.SelectedAchievement = button.Achievement;
 	button.selected = true;
 

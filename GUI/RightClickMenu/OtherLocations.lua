@@ -8,7 +8,7 @@ end
 
 function section.Add(menu, achievement)
     menu:AddFull({Text = addon.L["Other locations"], IsTitle = true});
-	local selectedCategory = addon.GUI.SelectedTab.SelectedCategory;
+	local selectedCategory = addon.GUI.SelectedTab and addon.GUI.SelectedTab.SelectedCategory or nil;
 	if selectedCategory ~= achievement.Category then
 		addon.GUI.RightClickMenu.AchievementMenu.AddGoToAchievementWithCategoryLine(menu, achievement, achievement.Category);
 	end

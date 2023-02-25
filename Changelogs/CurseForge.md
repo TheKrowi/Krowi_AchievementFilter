@@ -10,6 +10,7 @@
 <p><h3>Fixed</h3></p>
 <ul>
 <li>Achievement objectives in the tooltip for completed achievements should once again listen to the settings</li>
+<li>Added a bunch of checks for the Selected Tab</li>
 </ul>
 <p><h3>Wrath Classic</h3></p>
 <ul>
