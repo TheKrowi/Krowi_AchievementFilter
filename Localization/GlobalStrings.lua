@@ -94,7 +94,7 @@ function globalStrings.Load(L)
     L["Summary"] = ACHIEVEMENT_SUMMARY_CATEGORY;
     L["Achievements Earned"] = ACHIEVEMENTS_COMPLETED;
     L["Key Bindings"] = KEY_BINDINGS;
-    L["Keybindings"] = SETTINGS_KEYBINDINGS_LABEL;
+    L["Keybindings"] = SETTINGS_KEYBINDINGS_LABEL or KEY_BINDINGS; -- Wrath Classic fallback KEY_BINDINGS
     L["Bindings"] = KEY_BINDINGS_MAC;
     L["January"] = MONTH_JANUARY;
     L["February"] = MONTH_FEBRUARY;

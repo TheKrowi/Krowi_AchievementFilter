@@ -622,10 +622,16 @@ local function SkinDataManager(frame, skins)
         button.EarnedByAchievementTooltip:Size(25, 25);
         button.EarnedByAchievementTooltip:ClearAllPoints();
         button.EarnedByAchievementTooltip:Point("LEFT", button.HeaderTooltip, "RIGHT", 74, 0);
+
+        skins:HandleCheckBox(button.MostProgressAchievementTooltip);
+        button.MostProgressAchievementTooltip:Size(25, 25);
+        button.MostProgressAchievementTooltip:ClearAllPoints();
+        button.MostProgressAchievementTooltip:Point("LEFT", button.EarnedByAchievementTooltip, "RIGHT", 74, 0);
+
         skins:HandleCheckBox(button.IgnoreCharacter);
         button.IgnoreCharacter:Size(25, 25);
         button.IgnoreCharacter:ClearAllPoints();
-        button.IgnoreCharacter:Point("LEFT", button.EarnedByAchievementTooltip, "RIGHT", 73, 0);
+        button.IgnoreCharacter:Point("LEFT", button.MostProgressAchievementTooltip, "RIGHT", 73, 0);
     end
 end
 

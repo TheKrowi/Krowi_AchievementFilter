@@ -81,12 +81,14 @@ function KrowiAF_CharacterListEntryMixin:ToggleIgnoreCharacter()
         SavedData.Characters[self.Guid].ExcludeFromEarnedByAchievementTooltip = true;
         SavedData.Characters[self.Guid].ExcludeFromMostProgressAchievementTooltip = true;
         SavedData.Characters[self.Guid].CompletedAchievements = {};
+        SavedData.Characters[self.Guid].NotCompletedAchievements = {};
         SavedData.Characters[self.Guid].LastCompleted = nil;
         SavedData.Characters[self.Guid].Points = 0;
 
         self.Points:SetText("0");
         self.HeaderTooltip:SetChecked(false);
         self.EarnedByAchievementTooltip:SetChecked(false);
+        self.MostProgressAchievementTooltip:SetChecked(false);
     else
         SavedData.Characters[self.Guid].Ignore = nil;
         SavedData.Characters[self.Guid].ExcludeFromHeaderTooltip = nil;
@@ -100,6 +102,7 @@ function KrowiAF_CharacterListEntryMixin:ToggleIgnoreCharacter()
 
         self.HeaderTooltip:SetChecked(true);
         self.EarnedByAchievementTooltip:SetChecked(true);
+        self.MostProgressAchievementTooltip:SetChecked(true);
     end
     self.Character.ExcludeFromHeaderTooltip = SavedData.Characters[self.Guid].ExcludeFromHeaderTooltip;
     self.Character.ExcludeFromEarnedByAchievementTooltip = SavedData.Characters[self.Guid].ExcludeFromEarnedByAchievementTooltip;
