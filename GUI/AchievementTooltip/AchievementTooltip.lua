@@ -41,69 +41,6 @@ function tooltip.AddAchievementLine(currentAchievement, otherAchievementId, show
 	GameTooltip:AddLine(icon .. addon.L["TAB"] .. currentCharacterIcon .. name .. nameSuffix, color.R, color.G, color.B); -- Achievement name
 end
 
-local function AddName(achievement, thisRealm, numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy, character)
-	if character.ExcludeFromEarnedByAchievementTooltip then
-		return numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy;
-	end
-	local _, _, _, argbHex = GetClassColor(character.Class);
-	local name = "|c" .. argbHex .. character.Name;
-	if achievement.OtherFactionAchievementId and character.Faction and character.Faction ~= addon.Objects.Faction[achievement.Faction] then
-		name = name .. " (" .. addon.L[character.Faction] .. ")";
-	end
-	if addon.Options.db.Tooltip.Achievements.EarnedBy.AlwaysShowRealm or character.Realm ~= thisRealm then
-		name = name .. " - " .. character.Realm;
-	end
-	name = name .. "|r";
-	if character.CompletedAchievements then
-		if character.CompletedAchievements[achievement.Id] or (achievement.OtherFactionAchievementId and character.CompletedAchievements[achievement.OtherFactionAchievementId]) then
-			if numEarnedBy < addon.Options.db.Tooltip.Achievements.EarnedBy.Characters then
-				earnedBy = earnedBy == "" and name or earnedBy .. ", " .. name;
-				numEarnedBy = numEarnedBy + 1;
-			end
-		else
-			if addon.Objects.Faction[achievement.Faction] == character.Faction or achievement.Faction == nil or achievement.OtherFactionAchievementId ~= nil then
-				if numNotEarnedBy < addon.Options.db.Tooltip.Achievements.EarnedBy.NotCharacters then
-					notEarnedBy = notEarnedBy == "" and name or notEarnedBy .. ", " .. name;
-					numNotEarnedBy = numNotEarnedBy + 1;
-				end
-			end
-		end
-	end
-	return numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy;
-end
-
-local earnedBy, notEarnedBy, otherFactionAchievementCompleted, earnedByThisCharacter, cachedAchievementId;
-function tooltip.EvaluateCharacters(achievement)
-	if cachedAchievementId == achievement.Id then
-		return earnedBy, notEarnedBy, otherFactionAchievementCompleted, earnedByThisCharacter;
-	end
-	cachedAchievementId = achievement.Id;
-	local numEarnedBy, numNotEarnedBy = 0, 0;
-	earnedBy, notEarnedBy = "", "";
-	otherFactionAchievementCompleted = false;
-	local thisGuid = UnitGUID("player");
-	local thisCharacter = SavedData.Characters[thisGuid];
-	local thisRealm = thisCharacter.Realm;
-	local numEarnedByChar = addon.Options.db.Tooltip.Achievements.EarnedBy.Characters;
-	local numNotEarnedByChar = addon.Options.db.Tooltip.Achievements.EarnedBy.NotCharacters;
-	numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy = AddName(achievement, thisRealm, numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy, thisCharacter);
-	if achievement.OtherFactionAchievementId and thisCharacter.CompletedAchievements and thisCharacter.CompletedAchievements[achievement.OtherFactionAchievementId] then
-		otherFactionAchievementCompleted = true;
-	end
-	if thisCharacter.CompletedAchievements and thisCharacter.CompletedAchievements[achievement.Id] then
-		earnedByThisCharacter = true;
-	end
-	for guid, character in next, SavedData.Characters do
-		if guid ~= thisGuid and (numEarnedBy < numEarnedByChar or numNotEarnedBy < numNotEarnedByChar) then
-			numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy = AddName(achievement, thisRealm, numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy, character);
-		end
-		if achievement.OtherFactionAchievementId and character.CompletedAchievements and character.CompletedAchievements[achievement.OtherFactionAchievementId] then
-			otherFactionAchievementCompleted = true;
-		end
-	end
-	return earnedBy, notEarnedBy, otherFactionAchievementCompleted, earnedByThisCharacter;
-end
-
 local function GetCriteriaTextAndColor(achievementId, criteriaIndex)
 	local criteriaString, completed, quantity, reqQuantity, hasValueProgress;
 	if type(achievementId) == "table" then

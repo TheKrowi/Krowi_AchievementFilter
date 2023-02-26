@@ -333,14 +333,11 @@ function addon.BuildCache()
     local highestId = addon.Data.AchievementIds[#addon.Data.AchievementIds];
     while gapSize < 500 or i < highestId do -- Biggest gap is 209 in 9.0.5 as of 2021-05-03
         local id, name, points, _, month, day, year, _, flags, _, _, isGuild, wasEarnedByMe, _, isStatistic, exists = addon.GetAchievementInfo(i);
-        flags = addon.Objects.Flags:New(flags);
-
         if id then
             IncrementCharacterPoints(playerGUID, id, points, flags, isGuild, wasEarnedByMe, isStatistic, exists, year, month, day);
             AddToCriteriaCache(playerGUID, id, points, flags, isGuild, wasEarnedByMe, isStatistic, exists);
             -- CacheAchievement(id, name);
         end
-
         if id and exists then
             gapSize = 0;
         else
@@ -561,10 +558,12 @@ end
 function addon.GetAchievementInfo(achievementID) -- Returns an additional bool indicating if the achievement is added to the game yet or not
     local id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy, isStatistic = GetAchievementInfo(achievementID);
     if id then
+        flags = addon.Objects.Flags:New(flags);
         return id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy, isStatistic, true;
     else
+        flags = addon.Objects.Flags:New(0);
         return achievementID, " * Placeholder for " .. achievementID .. " * ", 0, false, nil, nil, nil,
-        " * This is the placeholder for " .. achievementID .. " until it's available next patch.", 0, 134400, "", false, false, "", false, false;
+        " * This is the placeholder for " .. achievementID .. " until it's available next patch.", flags, 134400, "", false, false, "", false, false;
     end
 end
 

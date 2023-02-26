@@ -424,7 +424,8 @@
         "DELETE",
         "StaticPopup_IsCustomGenericConfirmationShown",
         "StaticPopup_ShowCustomGenericConfirmation",
-        "strsplittable"
+        "strsplittable",
+        "VIDEO_OPTIONS_ENABLED"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

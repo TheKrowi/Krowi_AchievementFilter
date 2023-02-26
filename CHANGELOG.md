@@ -14,7 +14,7 @@ All notable changes to this project will be documented in this file.
 - Added a bunch of checks for the Selected Tab
 
 ### Wrath Classic
-- Fixed an error with the Keybindings localization
+- Fixed an error with the Keybindings and Enabled localization
 
 ## 52.4 - 2023-02-23
 ### Wrath Classic

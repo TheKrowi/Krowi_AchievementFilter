@@ -10,4 +10,4 @@
 - Added a bunch of checks for the Selected Tab
 
 ### Wrath Classic
-- Fixed an error with the Keybindings localization
+- Fixed an error with the Keybindings and Enabled localization

@@ -82,7 +82,7 @@ function globalStrings.Load(L)
     L["Icon"] = EMBLEM_SYMBOL;
     L["Key Binding"] = KEY_BINDING;
     L["Achievement Points"] = ACHIEVEMENT_POINTS;
-    L["Enabled"] = PVP_WAR_MODE_ENABLED;
+    L["Enabled"] = PVP_WAR_MODE_ENABLED or VIDEO_OPTIONS_ENABLED;
     L["Disabled"] = ADDON_DISABLED;
     L["Show All %d Results"] = ENCOUNTER_JOURNAL_SHOW_SEARCH_RESULTS;
     L["Game Menu"] = MAINMENU_BUTTON;

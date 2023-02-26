@@ -9,6 +9,22 @@ function section.CheckAdd(achievement)
 	return achievement.OtherFactionAchievementId ~= nil;
 end
 
+local function IsOtherFactionAchievementCompleted(achievement)
+	local thisGuid = UnitGUID("player");
+	local thisCharacter = SavedData.Characters[thisGuid];
+	if not achievement.OtherFactionAchievementId then
+		return false;
+	end
+	if thisCharacter.CompletedAchievements and thisCharacter.CompletedAchievements[achievement.OtherFactionAchievementId] then
+		return true;
+	end
+	for _, character in next, SavedData.Characters do
+		if character.CompletedAchievements and character.CompletedAchievements[achievement.OtherFactionAchievementId] then
+			return true;
+		end
+	end
+end
+
 function section.Add(achievement)
 	local faction = addon.L["Neutral"];
 	if addon.Faction.IsAlliance then
@@ -18,7 +34,7 @@ function section.Add(achievement)
 	end
 	GameTooltip:AddLine(addon.L["Other faction"] .. " (" .. faction .. ")"); -- Header
 
-	local _, _, otherFactionAchievementCompleted = addon.GUI.AchievementTooltip.EvaluateCharacters(achievement);
+	local otherFactionAchievementCompleted = IsOtherFactionAchievementCompleted(achievement);
 	addon.GUI.AchievementTooltip.AddAchievementLine(achievement, achievement.OtherFactionAchievementId, addon.Options.db.Tooltip.Achievements.ShowCurrentCharacterIconsRequiredFor, nil, otherFactionAchievementCompleted);
 end
 
