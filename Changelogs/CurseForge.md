@@ -14,5 +14,5 @@
 </ul>
 <p><h3>Wrath Classic</h3></p>
 <ul>
-<li>Fixed an error with the Keybindings localization</li>
+<li>Fixed an error with the Keybindings and Enabled localization</li>
 </ul>

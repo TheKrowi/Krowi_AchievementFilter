@@ -17,5 +17,5 @@
 
 [B]Wrath Classic[/B]
 [LIST]
-[*]Fixed an error with the Keybindings localization
+[*]Fixed an error with the Keybindings and Enabled localization
 [/LIST]
