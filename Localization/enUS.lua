@@ -1,4 +1,4 @@
--- [[ Exported at 2023-02-25 00-48-20 ]] --
+-- [[ Exported at 2023-02-26 15-36-01 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -6,7 +6,7 @@
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
-local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true);
+local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true, true);
 
 local tab = "|T:1:8|t";
 L["TAB"] = tab;
