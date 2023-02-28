@@ -4,6 +4,7 @@
 
 ### Changed
 - Custom objectives are now handled in a different way to allow more flexibility in the future
+- Moved SavedVariables Options, SavedData and Filters to KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters
 
 ### Fixed
 - Achievement objectives in the tooltip for completed achievements should once again listen to the settings

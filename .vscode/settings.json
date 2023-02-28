@@ -425,7 +425,12 @@
         "StaticPopup_IsCustomGenericConfirmationShown",
         "StaticPopup_ShowCustomGenericConfirmation",
         "strsplittable",
-        "VIDEO_OPTIONS_ENABLED"
+        "VIDEO_OPTIONS_ENABLED",
+        "KrowiAF_Options",
+        "KrowiAF_SavedData",
+        "KrowiAF_Filters",
+        "Options",
+        "SavedData"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

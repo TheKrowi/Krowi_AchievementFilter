@@ -8,7 +8,7 @@ end
 
 local function IsEarnedByThisCharacter(achievement)
 	local thisGuid = UnitGUID("player");
-	local thisCharacter = SavedData.Characters[thisGuid];
+	local thisCharacter = KrowiAF_SavedData.Characters[thisGuid];
 	return thisCharacter.CompletedAchievements and thisCharacter.CompletedAchievements[achievement.Id];
 end
 
@@ -47,12 +47,12 @@ local function EvaluateCharacters(achievement)
 	local numEarnedBy, numNotEarnedBy = 0, 0;
 	local earnedBy, notEarnedBy = "", "";
 	local thisGuid = UnitGUID("player");
-	local thisCharacter = SavedData.Characters[thisGuid];
+	local thisCharacter = KrowiAF_SavedData.Characters[thisGuid];
 	local thisRealm = thisCharacter.Realm;
 	local numEarnedByChar = addon.Options.db.Tooltip.Achievements.EarnedBy.Characters;
 	local numNotEarnedByChar = addon.Options.db.Tooltip.Achievements.EarnedBy.NotCharacters;
 	numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy = AddName(achievement, thisRealm, numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy, thisCharacter);
-	for guid, character in next, SavedData.Characters do
+	for guid, character in next, KrowiAF_SavedData.Characters do
 		if guid ~= thisGuid and (numEarnedBy < numEarnedByChar or numNotEarnedBy < numNotEarnedByChar) then
 			numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy = AddName(achievement, thisRealm, numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy, character);
 		end

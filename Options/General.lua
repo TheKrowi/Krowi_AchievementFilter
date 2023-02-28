@@ -60,7 +60,7 @@ local function WorldMapShowWorldMapIconSet()
 end
 
 local function MicroButtonSetKeybindFunc()
-    local tab = SavedData.Tabs[addon.Options.db.MicroButtonTab];
+    local tab = KrowiAF_SavedData.Tabs[addon.Options.db.MicroButtonTab];
     if tab.BindingName then
         SetBinding("Y", tab.BindingName);
         SaveBindings(GetCurrentBindingSet());

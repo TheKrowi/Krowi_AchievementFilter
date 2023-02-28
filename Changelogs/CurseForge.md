@@ -6,6 +6,7 @@
 <p><h3>Changed</h3></p>
 <ul>
 <li>Custom objectives are now handled in a different way to allow more flexibility in the future</li>
+<li>Moved SavedVariables Options, SavedData and Filters to KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters</li>
 </ul>
 <p><h3>Fixed</h3></p>
 <ul>

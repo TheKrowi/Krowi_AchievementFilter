@@ -151,7 +151,7 @@ function addon.ClearWatchAchievement(achievement, update)
     end
     for i = 1, #addon.Data.WatchListCategories do
         if (addon.Data.WatchListCategories[i].Achievements and #addon.Data.WatchListCategories[i].Achievements == 0) or (addon.Data.WatchListCategories[i].Children and #addon.Data.WatchListCategories[i].Children == 0) then
-            SavedData.WatchedAchievements = nil;
+            KrowiAF_SavedData.WatchedAchievements = nil;
             addon.Data.WatchListCategories[i].Achievements = nil;
         end
     end
@@ -201,7 +201,7 @@ function addon.IncludeAchievement(achievement, update)
     end
     for i = 1, #addon.Data.ExcludedCategories do
         if (addon.Data.ExcludedCategories[i].Achievements and #addon.Data.ExcludedCategories[i].Achievements == 0) or (addon.Data.ExcludedCategories[i].Children and #addon.Data.ExcludedCategories[i].Children == 0) then
-            SavedData.ExcludedAchievements = nil;
+            KrowiAF_SavedData.ExcludedAchievements = nil;
             addon.Data.ExcludedCategories[i].Achievements = nil;
         end
     end
@@ -226,10 +226,10 @@ end
 
 local criteriaCache, characterPoints;
 local function AddCharToSavedData(playerGUID)
-    if not SavedData.Characters then
-        SavedData.Characters = {};
+    if not KrowiAF_SavedData.Characters then
+        KrowiAF_SavedData.Characters = {};
     end
-    local character = SavedData.Characters[playerGUID];
+    local character = KrowiAF_SavedData.Characters[playerGUID];
     local excludeFromHeaderTooltip, excludeFromEarnedByAchievementTooltip, excludeFromMostProgressAchievementTooltip, ignore;
     if character then
         excludeFromHeaderTooltip = character.ExcludeFromHeaderTooltip;
@@ -238,7 +238,7 @@ local function AddCharToSavedData(playerGUID)
         ignore = character.Ignore;
     end
 
-    SavedData.Characters[playerGUID] = {
+    KrowiAF_SavedData.Characters[playerGUID] = {
         Name = (UnitFullName("player")),
         Realm = (select(2, UnitFullName("player"))),
         Class = (select(2, UnitClass("player"))),
@@ -253,11 +253,11 @@ local function AddCharToSavedData(playerGUID)
 end
 
 local function SetCharPoints(playerGUID, points)
-    SavedData.Characters[playerGUID].Points = points;
+    KrowiAF_SavedData.Characters[playerGUID].Points = points;
 end
 
 local function AddCharCompletedAchievement(playerGUID, achievementId, year, month, day, hour, min, sec)
-    SavedData.Characters[playerGUID].CompletedAchievements[achievementId] = --[[ cachedCompletedAchievements[achievementId] or ]] time{
+    KrowiAF_SavedData.Characters[playerGUID].CompletedAchievements[achievementId] = --[[ cachedCompletedAchievements[achievementId] or ]] time{
         year = 2000 + year,
         month = month,
         day = day,
@@ -272,7 +272,7 @@ local function CheckDecFlags(flags, flag)
 end
 
 local function IncrementCharacterPoints(playerGUID, id, points, flags, isGuild, wasEarnedByMe, isStatistic, exists, year, month, day, hour, min, sec)
-    if SavedData.Characters[playerGUID].Ignore then
+    if KrowiAF_SavedData.Characters[playerGUID].Ignore then
         return;
     end
     if wasEarnedByMe and points >= 0 and not isStatistic and not isGuild and not flags.IsTracking and exists then
@@ -307,7 +307,7 @@ local function AddToCriteriaCache(playerGUID, id, points, flags, isGuild, wasEar
         return;
     end
     if not wasEarnedByMe and not flags.IsAccountWide then
-        SavedData.Characters[playerGUID].NotCompletedAchievements[id] = {};
+        KrowiAF_SavedData.Characters[playerGUID].NotCompletedAchievements[id] = {};
     end
     for j = 1, numCriteria do
         local _, criteriaType, criteriaIsCompleted, quantity, _, _, _, assetID, _, _, _, hasValueProgress = addon.GetAchievementCriteriaInfo(id, j);
@@ -315,7 +315,7 @@ local function AddToCriteriaCache(playerGUID, id, points, flags, isGuild, wasEar
             tinsert(criteriaCache, {AchievementId = assetID, RequiredForId = id});
         end
         if not wasEarnedByMe and not flags.IsAccountWide then
-            SavedData.Characters[playerGUID].NotCompletedAchievements[id][j] = hasValueProgress and quantity or criteriaIsCompleted;
+            KrowiAF_SavedData.Characters[playerGUID].NotCompletedAchievements[id][j] = hasValueProgress and quantity or criteriaIsCompleted;
         end
     end
 end
@@ -355,11 +355,11 @@ function addon.ResetCache()
 end
 
 local function RemoveFromNotCompletedAchievements(playerGUID, achievementId)
-    if not SavedData.Characters[playerGUID] or SavedData.Characters[playerGUID].Ignore or not SavedData.Characters[playerGUID].NotCompletedAchievements then
+    if not KrowiAF_SavedData.Characters[playerGUID] or KrowiAF_SavedData.Characters[playerGUID].Ignore or not KrowiAF_SavedData.Characters[playerGUID].NotCompletedAchievements then
         return;
     end
 
-    SavedData.Characters[playerGUID].NotCompletedAchievements[achievementId] = nil;
+    KrowiAF_SavedData.Characters[playerGUID].NotCompletedAchievements[achievementId] = nil;
 end
 
 function addon.OnAchievementEarned(achievementId)
@@ -513,8 +513,8 @@ local function MakeMovable(frame, rememberLastPositionOption, target)
     frame:SetScript("OnMouseUp", function(frame, button)
         target:StopMovingOrSizing();
         if addon.Options.db.Window.RememberLastPosition[rememberLastPositionOption] then
-            SavedData.RememberLastPosition = SavedData.RememberLastPosition or {};
-            SavedData.RememberLastPosition[rememberLastPositionOption] = {
+            KrowiAF_SavedData.RememberLastPosition = KrowiAF_SavedData.RememberLastPosition or {};
+            KrowiAF_SavedData.RememberLastPosition[rememberLastPositionOption] = {
                 X = target:GetLeft(),
                 Y = target:GetTop() - UIParent:GetTop()
             };
@@ -630,14 +630,14 @@ end
 
 function addon.ChangeAchievementMicroButtonOnClick()
     addon.GUI.TabsOrderGetActiveKeys(); -- Cleanup unused tabs
-    if addon.Options.db.MicroButtonTab > #SavedData.Tabs then
-        for i, _ in next, SavedData.Tabs do
-            if SavedData.Tabs[i].AddonName == addonName and SavedData.Tabs[i].Name == "Achievements" then
+    if addon.Options.db.MicroButtonTab > #KrowiAF_SavedData.Tabs then
+        for i, _ in next, KrowiAF_SavedData.Tabs do
+            if KrowiAF_SavedData.Tabs[i].AddonName == addonName and KrowiAF_SavedData.Tabs[i].Name == "Achievements" then
                 addon.Options.db.MicroButtonTab = i;
             end
         end
     end
-    local tab = SavedData.Tabs[addon.Options.db.MicroButtonTab];
+    local tab = KrowiAF_SavedData.Tabs[addon.Options.db.MicroButtonTab];
     if tab.AddonName == "Blizzard_AchievementUI" then
         return;
     end

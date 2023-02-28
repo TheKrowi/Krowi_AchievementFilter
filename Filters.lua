@@ -88,7 +88,7 @@ function filters:ResetFilters()
 end
 
 function filters:Load()
-    local filters2 = LibStub("AceDB-3.0"):New("Filters", defaults, true);
+    local filters2 = LibStub("AceDB-3.0"):New("KrowiAF_Filters", defaults, true);
     self.db = filters2.profile;
     for t, _ in next, addon.Tabs do
         addon.Tabs[t].Filters = filters2.profile.Tabs[t];

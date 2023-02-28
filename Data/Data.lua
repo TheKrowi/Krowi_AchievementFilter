@@ -72,7 +72,7 @@ local function LoadAchievements(sourceTable, func)
 end
 
 function data.LoadWatchedAchievements()
-    LoadAchievements(SavedData.WatchedAchievements, addon.WatchAchievement);
+    LoadAchievements(KrowiAF_SavedData.WatchedAchievements, addon.WatchAchievement);
     addon.Diagnostics.Debug("Watched achievements loaded");
 end
 
@@ -82,7 +82,7 @@ function data.LoadTrackingAchievements()
 end
 
 function data.LoadExcludedAchievements()
-    LoadAchievements(SavedData.ExcludedAchievements, addon.ExcludeAchievement);
+    LoadAchievements(KrowiAF_SavedData.ExcludedAchievements, addon.ExcludeAchievement);
     addon.Diagnostics.Debug("Excluded achievements loaded");
 end
 

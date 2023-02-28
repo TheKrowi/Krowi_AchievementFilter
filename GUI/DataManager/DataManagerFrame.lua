@@ -28,8 +28,8 @@ function dataManagerFrame:Load()
 end
 
 function dataManagerFrame:ResetPosition()
-    SavedData.RememberLastPosition = SavedData.RememberLastPosition or {};
-    SavedData.RememberLastPosition["DataManager"] = {
+    KrowiAF_SavedData.RememberLastPosition = KrowiAF_SavedData.RememberLastPosition or {};
+    KrowiAF_SavedData.RememberLastPosition["DataManager"] = {
         X = 150,
         Y = -80
     };

@@ -5,22 +5,47 @@ local data = addon.Data;
 data.SavedData = {};
 local savedData = data.SavedData;
 
+function savedData.FixSavedVariables()
+    -- Special function that needs to be called before loading anything !!!
+    -- In version 53.0 Options, SavedData, Filters are replaced by KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters
+    -- Here we try to copy the data from the old to new location for users pre 53.0
+
+    if KrowiAF_Options and KrowiAF_SavedData and KrowiAF_Filters then
+        -- print("Options, SavedData, Filters already moved to new location");
+        return;
+    end
+
+    if not KrowiAF_Options and Options then
+        KrowiAF_Options = Options;
+    end
+
+    if not KrowiAF_SavedData and SavedData then
+        KrowiAF_SavedData = SavedData;
+    end
+
+    if not KrowiAF_Filters and Filters then
+        KrowiAF_Filters = Filters;
+    end
+
+    -- print("Moved Options, SavedData, Filters to new locations");
+end
+
 local LoadVerifications, Verify, LoadSolutions, Resolve;
 function savedData.Load()
-    SavedData = SavedData or {}; -- Does not exist yet for new users
-    SavedData.Fixes = SavedData.Fixes or {}; -- Does not exist yet for new users
+    KrowiAF_SavedData = KrowiAF_SavedData or {}; -- Does not exist yet for new users
+    KrowiAF_SavedData.Fixes = KrowiAF_SavedData.Fixes or {}; -- Does not exist yet for new users
 
-    local prevBuild = SavedData["Build"];
+    local prevBuild = KrowiAF_SavedData["Build"];
     diagnostics.Debug("Previous Build: " .. tostring(prevBuild)); -- Can be nil
-    SavedData["Build"] = addon.MetaData.Build;
-    local currBuild = SavedData["Build"];
-    diagnostics.Debug("Current Build: " .. SavedData["Build"]);
+    KrowiAF_SavedData["Build"] = addon.MetaData.Build;
+    local currBuild = KrowiAF_SavedData["Build"];
+    diagnostics.Debug("Current Build: " .. KrowiAF_SavedData["Build"]);
 
-    local prevVersion = SavedData["Version"];
+    local prevVersion = KrowiAF_SavedData["Version"];
     diagnostics.Debug("Previous Version: " .. tostring(prevVersion)); -- Can be nil
-    SavedData["Version"] = addon.MetaData.Version;
-    local currVersion = SavedData["Version"];
-    diagnostics.Debug("Current Version: " .. SavedData["Version"]);
+    KrowiAF_SavedData["Version"] = addon.MetaData.Version;
+    local currVersion = KrowiAF_SavedData["Version"];
+    diagnostics.Debug("Current Version: " .. KrowiAF_SavedData["Version"]);
 
     if prevBuild == nil and prevVersion == nil then
         -- First time user
@@ -175,15 +200,16 @@ function FixEventDetails(prevBuild, currBuild, prevVersion, currVersion, firstTi
 
     -- Now we just make sure to remove the fix flag for users pre 34.0
     if firstTime and currVersion > "28.0" then
+        KrowiAF_SavedData.Fixes.FixEventDetails = true;
         diagnostics.Debug("First time EventDetails OK");
         return;
     end
-    if SavedData.Fixes.FixEventDetails == nil then
+    if KrowiAF_SavedData.Fixes.FixEventDetails == true then
         diagnostics.Debug("EventDetails already reset");
         return;
     end
 
-    SavedData.Fixes.FixEventDetails = nil;
+    KrowiAF_SavedData.Fixes.FixEventDetails = true;
 
     diagnostics.Debug("EventDetails reset");
 end
@@ -214,17 +240,17 @@ function FixEventDetails2(prevBuild, currBuild, prevVersion, currVersion, firstT
     -- EventDetails is created by the Event Data so we don't need to do this here
 
     if firstTime and currVersion > "34.0" then
-        SavedData.Fixes.FixEventDetails2 = true;
+        KrowiAF_SavedData.Fixes.FixEventDetails2 = true;
         diagnostics.Debug("First time EventDetails2 OK");
         return;
     end
-    if SavedData.Fixes.FixEventDetails2 == true then
+    if KrowiAF_SavedData.Fixes.FixEventDetails2 == true then
         diagnostics.Debug("EventDetails2 already reset");
         return;
     end
 
     EventDetails = nil;
-    SavedData.Fixes.FixEventDetails2 = true;
+    KrowiAF_SavedData.Fixes.FixEventDetails2 = true;
 
     diagnostics.Debug("EventDetails2 reset");
 end
@@ -327,15 +353,16 @@ function FixTabs(prevBuild, currBuild, prevVersion, currVersion, firstTime)
 
     -- Now we just make sure to remove the fix flag for users pre 37.0
     if firstTime and currVersion > "35.0" then
+        KrowiAF_SavedData.Fixes.FixTabs = true;
         diagnostics.Debug("First time Tabs port OK");
         return;
     end
-    if SavedData.Fixes.FixTabs == nil then
+    if KrowiAF_SavedData.Fixes.FixTabs == true then
         diagnostics.Debug("Tabs already ported from previous version");
         return;
     end
 
-    SavedData.Fixes.FixTabs = nil;
+    KrowiAF_SavedData.Fixes.FixTabs = true;
 
     diagnostics.Debug("Ported Tabs from previous version");
 end
@@ -355,11 +382,11 @@ function FixCovenantFilters(prevBuild, currBuild, prevVersion, currVersion, firs
     -- Here we clean up the old data
 
     if firstTime and currVersion > "35.1" then
-        SavedData.Fixes.FixCovenantFilters = true;
+        KrowiAF_SavedData.Fixes.FixCovenantFilters = true;
         diagnostics.Debug("First time Covenant filters OK");
         return;
     end
-    if SavedData.Fixes.FixCovenantFilters == true then
+    if KrowiAF_SavedData.Fixes.FixCovenantFilters == true then
         diagnostics.Debug("Covenant filters already cleared from previous version");
         return;
     end
@@ -368,7 +395,7 @@ function FixCovenantFilters(prevBuild, currBuild, prevVersion, currVersion, firs
         ClearCovenant(Filters.profiles);
     end
 
-    SavedData.Fixes.FixCovenantFilters = true;
+    KrowiAF_SavedData.Fixes.FixCovenantFilters = true;
 
     diagnostics.Debug("Cleared covenant filters from previous version");
 end
@@ -378,11 +405,11 @@ function FixNewEarnedByFilter(prevBuild, currBuild, prevVersion, currVersion, fi
     -- Here we transfer that data
 
     if firstTime and currVersion > "35.1" then
-        SavedData.Fixes.FixNewEarnedByFilter = true;
+        KrowiAF_SavedData.Fixes.FixNewEarnedByFilter = true;
         diagnostics.Debug("First time New earned by filter OK");
         return;
     end
-    if SavedData.Fixes.FixNewEarnedByFilter == true then
+    if KrowiAF_SavedData.Fixes.FixNewEarnedByFilter == true then
         diagnostics.Debug("New earned by filter already transfered from previous version");
         return;
     end
@@ -391,7 +418,7 @@ function FixNewEarnedByFilter(prevBuild, currBuild, prevVersion, currVersion, fi
         Filters.profiles.Default.EarnedBy = (GetCategoryInfo(92)) .. " / " .. addon.L["Account"];
     end
 
-    SavedData.Fixes.FixNewEarnedByFilter = true;
+    KrowiAF_SavedData.Fixes.FixNewEarnedByFilter = true;
 
     diagnostics.Debug("Transfered new earned by filter from previous version");
 end
@@ -415,11 +442,11 @@ function FixTabs2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
     -- Remove bad tabs from addon.Options.db.Tabs, remove duplicate SavedData.TabKeys value
 
     if firstTime and currVersion > "37.0" then
-        SavedData.Fixes.FixTabs2 = true;
+        KrowiAF_SavedData.Fixes.FixTabs2 = true;
         diagnostics.Debug("First time Tabs2 OK");
         return;
     end
-    if SavedData.Fixes.FixTabs2 == true then
+    if KrowiAF_SavedData.Fixes.FixTabs2 == true then
         diagnostics.Debug("Tabs2 already ported from previous version");
         return;
     end
@@ -459,7 +486,7 @@ function FixTabs2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
         }
     }, "args", "Layout", "args", "Tabs", "args", "Order");
 
-    SavedData.Fixes.FixTabs2 = true;
+    KrowiAF_SavedData.Fixes.FixTabs2 = true;
 
     diagnostics.Debug("Ported Tabs2 from previous version");
 end
@@ -469,11 +496,11 @@ function FixNewEarnedByFilter2(prevBuild, currBuild, prevVersion, currVersion, f
     -- Here we transfer that data
     
     if firstTime and currVersion > "37.0" then
-        SavedData.Fixes.FixNewEarnedByFilter2 = true;
+        KrowiAF_SavedData.Fixes.FixNewEarnedByFilter2 = true;
         diagnostics.Debug("First time New earned by filter2 OK");
         return;
     end
-    if SavedData.Fixes.FixNewEarnedByFilter2 == true then
+    if KrowiAF_SavedData.Fixes.FixNewEarnedByFilter2 == true then
         diagnostics.Debug("New earned by filter2 already transfered from previous version");
         return;
     end
@@ -482,7 +509,7 @@ function FixNewEarnedByFilter2(prevBuild, currBuild, prevVersion, currVersion, f
         Filters.profiles.Default.EarnedBy = addon.L["Character only"];
     end
 
-    SavedData.Fixes.FixNewEarnedByFilter2 = true;
+    KrowiAF_SavedData.Fixes.FixNewEarnedByFilter2 = true;
 
     diagnostics.Debug("Transfered new earned by filter2 from previous version");
 end
@@ -493,17 +520,17 @@ function FixEventDetails3(prevBuild, currBuild, prevVersion, currVersion, firstT
     -- EventDetails is created by the Event Data so we don't need to do this here
 
     if firstTime and currVersion > "38.0" then
-        SavedData.Fixes.FixEventDetails3 = true;
+        KrowiAF_SavedData.Fixes.FixEventDetails3 = true;
         diagnostics.Debug("First time EventDetails3 OK");
         return;
     end
-    if SavedData.Fixes.FixEventDetails3 == true then
+    if KrowiAF_SavedData.Fixes.FixEventDetails3 == true then
         diagnostics.Debug("EventDetails3 already reset");
         return;
     end
 
     EventDetails = nil;
-    SavedData.Fixes.FixEventDetails3 = true;
+    KrowiAF_SavedData.Fixes.FixEventDetails3 = true;
 
     diagnostics.Debug("EventDetails3 reset");
 end
@@ -577,10 +604,11 @@ function FixEventRemindersTimeDisplay(prevBuild, currBuild, prevVersion, currVer
     -- Here we fix the numbering
 
     if firstTime and currVersion > "51.0" then
+        KrowiAF_SavedData.Fixes.FixEventRemindersTimeDisplay = true;
         diagnostics.Debug("First time EventReminders TimeDisplay Options OK");
         return;
     end
-    if SavedData.Fixes.FixEventRemindersTimeDisplay == true then
+    if KrowiAF_SavedData.Fixes.FixEventRemindersTimeDisplay == true then
         diagnostics.Debug("EventReminders TimeDisplay Options already fixed");
         return;
     end
@@ -594,7 +622,7 @@ function FixEventRemindersTimeDisplay(prevBuild, currBuild, prevVersion, currVer
         addon.Options.db.EventReminders.TimeDisplay.Line2 = addon.Options.db.EventReminders.TimeDisplay.Line2 - 1;
     end
 
-    SavedData.Fixes.FixEventRemindersTimeDisplay = true;
+    KrowiAF_SavedData.Fixes.FixEventRemindersTimeDisplay = true;
 
     diagnostics.Debug("EventReminders TimeDisplay Options fixed");
 end
@@ -631,7 +659,7 @@ function FixEventRemindersOptions2(prevBuild, currBuild, prevVersion, currVersio
     -- Here we clean up the old addon.Options.db.EventReminders.PopUps.Show and addon.Options.db.EventReminders.ChatMessages.Show for users pre 52.0
     -- New options mentioned above are created by the Options so we don't need to do this here, just copy if previous existed
 
-    if firstTime and currVersion > "51.5" then
+    if firstTime and currVersion > "51.4" then
         diagnostics.Debug("EventReminders Options2 OK");
         return;
     end
@@ -670,7 +698,7 @@ function FixActiveEvents(prevBuild, currBuild, prevVersion, currVersion, firstTi
     -- In version 52.0 SavedData.ActiveEvents became obsolete
     -- Here we clean up the old SavedData.ActiveEvents for users pre 52.0
 
-    if firstTime and currVersion > "34.0" then
+    if firstTime and currVersion > "51.4" then
         diagnostics.Debug("SavedData.ActiveEvents OK");
         return;
     end

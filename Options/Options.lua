@@ -43,7 +43,7 @@ end
 
 -- Load the options
 function options.Load()
-    addon.Options = LibStub("AceDB-3.0"):New("Options", options.Defaults, true);
+    addon.Options = LibStub("AceDB-3.0"):New("KrowiAF_Options", options.Defaults, true);
     addon.Options.WidthMultiplier = options.WidthMultiplier;
     addon.Options.Open = Open;
     addon.Options.db = addon.Options.profile;

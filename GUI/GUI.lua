@@ -105,8 +105,8 @@ function gui:ShowSubFrame(...)
 end
 
 function gui.ResetAchievementWindowPosition()
-    SavedData.RememberLastPosition = SavedData.RememberLastPosition or {};
-    SavedData.RememberLastPosition["AchievementWindow"] = {
+    KrowiAF_SavedData.RememberLastPosition = KrowiAF_SavedData.RememberLastPosition or {};
+    KrowiAF_SavedData.RememberLastPosition["AchievementWindow"] = {
         X = 96,
         Y = -116
     };
@@ -326,7 +326,7 @@ end
 local needsCleanup = {};
 function gui.TabsOrderGetActiveKeys()
     if not needsCleanup then
-        return SavedData.TabKeys;
+        return KrowiAF_SavedData.TabKeys;
     end
 
     -- local numTabs = #addon.Options.db.Tabs;
@@ -342,10 +342,10 @@ function gui.TabsOrderGetActiveKeys()
             end
         else
             addon.Options.db.Tabs[tabsAddonName] = nil;
-            for i = #SavedData.Tabs, 1, -1 do
-                if SavedData.Tabs[i].AddonName == tabsAddonName then
-                    tremove(SavedData.Tabs, i);
-                    tremove(SavedData.TabKeys, i);
+            for i = #KrowiAF_SavedData.Tabs, 1, -1 do
+                if KrowiAF_SavedData.Tabs[i].AddonName == tabsAddonName then
+                    tremove(KrowiAF_SavedData.Tabs, i);
+                    tremove(KrowiAF_SavedData.TabKeys, i);
                 end
             end
         end
@@ -365,15 +365,15 @@ function gui.TabsOrderGetActiveKeys()
         properIndex = properIndex + 1;
     end
 
-    SavedData.FirstTimeSetUp = SavedData.FirstTimeSetUp or {};
+    KrowiAF_SavedData.FirstTimeSetUp = KrowiAF_SavedData.FirstTimeSetUp or {};
 
-    if not SavedData.FirstTimeSetUp.SwitchAchievementTabs then
+    if not KrowiAF_SavedData.FirstTimeSetUp.SwitchAchievementTabs then
         local blizzAchId, addonAchId = 1, 1;
-        for i, _ in next, SavedData.Tabs do
-            if SavedData.Tabs[i].AddonName == "Blizzard_AchievementUI" and SavedData.Tabs[i].Name == "Achievements" then
+        for i, _ in next, KrowiAF_SavedData.Tabs do
+            if KrowiAF_SavedData.Tabs[i].AddonName == "Blizzard_AchievementUI" and KrowiAF_SavedData.Tabs[i].Name == "Achievements" then
                 blizzAchId = i;
             end
-            if SavedData.Tabs[i].AddonName == addonName and SavedData.Tabs[i].Name == "Achievements" then
+            if KrowiAF_SavedData.Tabs[i].AddonName == addonName and KrowiAF_SavedData.Tabs[i].Name == "Achievements" then
                 addonAchId = i;
             end
         end
@@ -381,15 +381,15 @@ function gui.TabsOrderGetActiveKeys()
         addon.Options.db.Tabs[addonName]["Achievements"].Order = blizzAchId;
         addon.Options.db.MicroButtonTab = addonAchId;
         local binding = GetBindingByKey("Y");
-        if binding == SavedData.Tabs[blizzAchId].BindingName then
-            SetBinding("Y", SavedData.Tabs[addonAchId].BindingName);
+        if binding == KrowiAF_SavedData.Tabs[blizzAchId].BindingName then
+            SetBinding("Y", KrowiAF_SavedData.Tabs[addonAchId].BindingName);
             SaveBindings(GetCurrentBindingSet());
         end
-        SavedData.FirstTimeSetUp.SwitchAchievementTabs = true;
+        KrowiAF_SavedData.FirstTimeSetUp.SwitchAchievementTabs = true;
     end
 
     needsCleanup = nil;
-    return SavedData.TabKeys;
+    return KrowiAF_SavedData.TabKeys;
 end
 
 function gui.LoadWrathClassicAchievementFrameChanges()
@@ -435,13 +435,13 @@ function gui.SetFrameToLastPosition(frame, rememberLastPositionOption)
         return;
     end
 
-    SavedData.RememberLastPosition = SavedData.RememberLastPosition or {};
-    if not SavedData.RememberLastPosition[rememberLastPositionOption] then
+    KrowiAF_SavedData.RememberLastPosition = KrowiAF_SavedData.RememberLastPosition or {};
+    if not KrowiAF_SavedData.RememberLastPosition[rememberLastPositionOption] then
         frame:ResetPosition();
         return;
     end
 
-    local pos = SavedData.RememberLastPosition[rememberLastPositionOption];
+    local pos = KrowiAF_SavedData.RememberLastPosition[rememberLastPositionOption];
 	frame:ClearAllPoints();
 	frame:SetPoint("TOPLEFT", pos.X, pos.Y);
 end

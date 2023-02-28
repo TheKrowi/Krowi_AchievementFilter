@@ -11,14 +11,14 @@ end
 
 local function IsOtherFactionAchievementCompleted(achievement)
 	local thisGuid = UnitGUID("player");
-	local thisCharacter = SavedData.Characters[thisGuid];
+	local thisCharacter = KrowiAF_SavedData.Characters[thisGuid];
 	if not achievement.OtherFactionAchievementId then
 		return false;
 	end
 	if thisCharacter.CompletedAchievements and thisCharacter.CompletedAchievements[achievement.OtherFactionAchievementId] then
 		return true;
 	end
-	for _, character in next, SavedData.Characters do
+	for _, character in next, KrowiAF_SavedData.Characters do
 		if character.CompletedAchievements and character.CompletedAchievements[achievement.OtherFactionAchievementId] then
 			return true;
 		end

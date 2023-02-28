@@ -82,7 +82,7 @@ end
 
 local function BuildCharactersList(achievement)
 	local characters = {};
-	for guid, character in next, SavedData.Characters do
+	for guid, character in next, KrowiAF_SavedData.Characters do
 		local score = GetProgressScore(character, achievement.Id);
 		if score then
 			tinsert(characters, {
@@ -122,7 +122,7 @@ function section.Add(achievement)
 	end
 
 	local thisGuid = UnitGUID("player");
-	local thisCharacter = SavedData.Characters[thisGuid];
+	local thisCharacter = KrowiAF_SavedData.Characters[thisGuid];
 	local thisRealm = thisCharacter.Realm;
 	local names = "";
 	local numberOfNames = 0;
@@ -131,7 +131,7 @@ function section.Add(achievement)
 			names, numberOfNames = AddName(character, achievement, thisRealm, names, numberOfNames);
 		end
 	end
-	local details = GetDetails(SavedData.Characters[characters[1].Guid], achievement.Id);
+	local details = GetDetails(KrowiAF_SavedData.Characters[characters[1].Guid], achievement.Id);
 
 	GameTooltip:AddLine(addon.L["Most progress"]); -- Header
 	GameTooltip:AddLine(names);

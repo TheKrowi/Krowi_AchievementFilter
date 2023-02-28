@@ -49,15 +49,15 @@ local function WatchListClearAllFunc()
         addon.Data.WatchListCategories[i].Children = nil;
     end
     if addon.GUI.SelectedTab ~= nil then -- If nil, not yet loaded
-        if SavedData.WatchedAchievements then
-            for id, _ in next, SavedData.WatchedAchievements do
+        if KrowiAF_SavedData.WatchedAchievements then
+            for id, _ in next, KrowiAF_SavedData.WatchedAchievements do
                 addon.Data.Achievements[id]:ClearWatch();
             end
         end
         addon.GUI.CategoriesFrame:Update(true);
         addon.GUI.AchievementsFrame:ForceUpdate();
     end
-    SavedData.WatchedAchievements = nil;
+    KrowiAF_SavedData.WatchedAchievements = nil;
 end
 
 local function InjectDynamicFixedWatchListOptions()
@@ -139,17 +139,17 @@ local function ExcludedIncludeAllFunc()
         addon.Data.ExcludedCategories[i].Children = nil;
     end
     if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
-        SavedData.ExcludedAchievements = nil;
+        KrowiAF_SavedData.ExcludedAchievements = nil;
         return;
     end
-    if SavedData.ExcludedAchievements then
-        for id, _ in next, SavedData.ExcludedAchievements do
+    if KrowiAF_SavedData.ExcludedAchievements then
+        for id, _ in next, KrowiAF_SavedData.ExcludedAchievements do
             addon.Data.Achievements[id]:Include();
         end
     end
     addon.GUI.CategoriesFrame:Update(true);
     addon.GUI.AchievementsFrame:ForceUpdate();
-    SavedData.ExcludedAchievements = nil;
+    KrowiAF_SavedData.ExcludedAchievements = nil;
 end
 
 local function InjectMoreDynamicExcludedOptions()
