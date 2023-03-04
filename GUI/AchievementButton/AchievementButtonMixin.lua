@@ -65,7 +65,6 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement, refresh)
 	end
 
 	local id, name, points, completed, month, day, year, description, flags, icon, rewardText, _, wasEarnedByMe, earnedBy = addon.GetAchievementInfo(achievement.Id);
-	flags = addon.Objects.Flags:New(flags);
 
 	if self.Achievement ~= achievement or refresh then
 		self.Achievement = achievement;
@@ -503,7 +502,9 @@ function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
 
 	achievementsFrame:ClearSelection();
 	achievementsFrame:SelectButton(self);
-	self:Update(addon.GUI.SelectedTab.SelectedAchievement, self.index);
+	if addon.GUI.SelectedTab then
+		self:Update(addon.GUI.SelectedTab.SelectedAchievement, self.index);
+	end
 	achievementsFrame:ExpandSelection(self);
 end
 
@@ -528,7 +529,6 @@ function KrowiAF_AchievementButtonMixin:ToggleTracking()
 	end
 
 	local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = GetAchievementInfo(id);
-	-- if (completed and isGuild) or wasEarnedByMe then
 	local earnedByFilter = addon.Filters.db.EarnedBy;
 	if (earnedByFilter == addon.Filters.Account and completed or wasEarnedByMe) or (earnedByFilter == addon.Filters.CharacterAccount and completed and wasEarnedByMe) then
 		UIErrorsFrame:AddMessage(ERR_ACHIEVEMENT_WATCH_COMPLETED, 1.0, 0.1, 0.1, 1.0);

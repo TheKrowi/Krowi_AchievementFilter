@@ -388,7 +388,7 @@ function tutorials.Load()
         end
     });
 
-    tutorials.FeaturesTutorial = tutorials:New("FeaturesTutorial", SavedData);
+    tutorials.FeaturesTutorial = tutorials:New("FeaturesTutorial", KrowiAF_SavedData);
     tutorials.FeaturesTutorial:SetFrameTitle(addon.MetaData.Title .. " - " .. addon.MetaData.BuildVersion);
     tutorials.FeaturesTutorial:SetPages(pages);
     tutorials.FeaturesTutorial:SetImageMargin(10);

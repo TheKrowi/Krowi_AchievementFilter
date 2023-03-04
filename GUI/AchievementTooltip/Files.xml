@@ -8,4 +8,5 @@
     <Script file="RequiredFor.lua" />
     <Script file="OtherFaction.lua" />
     <Script file="Objectives.lua" />
+    <Script file="MostProgress.lua" />
 </Ui>

@@ -51,9 +51,9 @@ function KrowiAF_SearchResultsFrameMixin:Update(query, results)
 				button.resultType:SetText(ACHIEVEMENTFRAME_FILTER_INCOMPLETE);
 			end
 			local category = savedResults[index].Category;
-			if not category then
-				print(achievementId, name)
-			end
+			-- if not category then
+			-- 	print(achievementId, name)
+			-- end
 			local categoriesTree = category:GetTree();
 			local path = categoriesTree[1].Name;
 			for j = 2, #categoriesTree do

@@ -37,7 +37,7 @@ end
 local function SetCheckBoxValue(filters, keys, value, checkTabs, refresh)
     addon.Util.WriteNestedKeys(filters, keys, value);
     if checkTabs then
-        if filters ~= addon.GUI.SelectedTab.Filters then
+        if addon.GUI.SelectedTab and filters ~= addon.GUI.SelectedTab.Filters then
             filters.Refresh = true;
         end
         if filters == addon.Filters.db then
@@ -76,7 +76,7 @@ function KrowiAF_AchievementFrameFilterButtonMixin:AddRadioButton(parentMenu, _m
                     Func = function()
                         addon.Util.WriteNestedKeys(filters, keys, text); -- e.g.: filters.SortBy.Criteria = text;
                         if checkTabs then
-                            if filters ~= addon.GUI.SelectedTab.Filters then
+                            if addon.GUI.SelectedTab and filters ~= addon.GUI.SelectedTab.Filters then
                                 filters.Refresh = true;
                             end
                             if filters == addon.Filters.db then

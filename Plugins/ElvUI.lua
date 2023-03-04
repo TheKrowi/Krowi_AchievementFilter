@@ -174,7 +174,7 @@ local function SkinAchievementsFrame(frame, engine, skins)
 		local textStrings, metas = 0, 0;
         local criteria, object;
 		for i = 1, numCriteria do
-			local _, criteriaType, completed, _, _, _, _, assetID = GetAchievementCriteriaInfo(id, i);
+			local _, criteriaType, completed, _, _, _, _, assetID = addon.GetAchievementCriteriaInfo(id, i);
 			if assetID and criteriaType == _G.CRITERIA_TYPE_ACHIEVEMENT then
 				metas = metas + 1;
 				criteria, object = self:GetMeta(metas), 'Label';
@@ -487,7 +487,7 @@ end
 local function SkinCalendarDayButton(button, engine, skins)
     button.DarkFrame:SetAlpha(.5);
 
-    if SavedData.ElvUISkin.NoParchment then
+    if KrowiAF_SavedData.ElvUISkin.NoParchment then
         button:DisableDrawLayer('BACKGROUND');
     end
 
@@ -622,10 +622,16 @@ local function SkinDataManager(frame, skins)
         button.EarnedByAchievementTooltip:Size(25, 25);
         button.EarnedByAchievementTooltip:ClearAllPoints();
         button.EarnedByAchievementTooltip:Point("LEFT", button.HeaderTooltip, "RIGHT", 74, 0);
+
+        skins:HandleCheckBox(button.MostProgressAchievementTooltip);
+        button.MostProgressAchievementTooltip:Size(25, 25);
+        button.MostProgressAchievementTooltip:ClearAllPoints();
+        button.MostProgressAchievementTooltip:Point("LEFT", button.EarnedByAchievementTooltip, "RIGHT", 74, 0);
+
         skins:HandleCheckBox(button.IgnoreCharacter);
         button.IgnoreCharacter:Size(25, 25);
         button.IgnoreCharacter:ClearAllPoints();
-        button.IgnoreCharacter:Point("LEFT", button.EarnedByAchievementTooltip, "RIGHT", 73, 0);
+        button.IgnoreCharacter:Point("LEFT", button.MostProgressAchievementTooltip, "RIGHT", 73, 0);
     end
 end
 
@@ -634,7 +640,7 @@ local function SkinAll()
 
     -- local enabled, engine, skins = elvUISkin.Load();
 
-    if SavedData.ElvUISkin.Achievements then
+    if KrowiAF_SavedData.ElvUISkin.Achievements then
         SkinTabs(skins);
         SkinCategoriesFrame(addon.GUI.CategoriesFrame, skins);
         SkinGameTooltipProgressBar(addon.GUI.GameTooltipProgressBar, engine);
@@ -650,14 +656,14 @@ local function SkinAll()
         SkinCalendarButton(addon.GUI.Calendar.Button, skins);
         SkinDataManager(addon.GUI.DataManagerFrame, skins);
     end
-    if SavedData.ElvUISkin.Calendar then
+    if KrowiAF_SavedData.ElvUISkin.Calendar then
         SkinCalendarFrame(addon.GUI.Calendar.Frame, engine, skins);
         SkinCalendarSideFrame(addon.GUI.Calendar.SideFrame, engine, skins);
     end
 end
 
 local function SkinAlertFrames()
-    if not SavedData.ElvUISkin.AlertFrames then
+    if not KrowiAF_SavedData.ElvUISkin.AlertFrames then
         return;
     end
 
@@ -690,16 +696,16 @@ function elvUI.InjectOptions()
     local pluginTable = KrowiAF_InjectOptions.AddPluginTable("ElvUI", addon.L["ElvUI"], addon.L["ElvUI Desc"], function()
         return ElvUI ~= nil;
     end);
-    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinAchievement", AddInfo("Skin Achievements", function() return SavedData.ElvUISkin.Achievements; end));
-    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinMiscFrames", AddInfo("Skin Misc Frames", function() return SavedData.ElvUISkin.MiscFrames; end));
-    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinTooltip", AddInfo("Skin Tooltip", function() return SavedData.ElvUISkin.Tooltip; end));
-    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinTutorials", AddInfo("Skin Tutorials", function() return SavedData.ElvUISkin.Tutorials; end));
-    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinAlertFrames", AddInfo("Skin Alert Frames", function() return SavedData.ElvUISkin.AlertFrames; end));
-    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinCalendar", AddInfo("Skin Calendar", function() return SavedData.ElvUISkin.Calendar; end));
-    KrowiAF_InjectOptions.AddTable(pluginTable, "RemoveParchment", AddInfo("Remove Parchment", function() return SavedData.ElvUISkin.NoParchment; end));
-    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinDataManager", AddInfo("Skin Data Manager", function() return SavedData.ElvUISkin.Achievements; end));
-    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinAce3", AddInfo("Skin Ace3", function() return SavedData.ElvUISkin.Options; end));
-    KrowiAF_InjectOptions.AddTable(pluginTable, "FixWorldMapButton", AddInfo("Fix World Map Button", function() return SavedData.ElvUISkin.SmallerWorldMap; end));
+    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinAchievement", AddInfo("Skin Achievements", function() return KrowiAF_SavedData.ElvUISkin.Achievements; end));
+    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinMiscFrames", AddInfo("Skin Misc Frames", function() return KrowiAF_SavedData.ElvUISkin.MiscFrames; end));
+    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinTooltip", AddInfo("Skin Tooltip", function() return KrowiAF_SavedData.ElvUISkin.Tooltip; end));
+    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinTutorials", AddInfo("Skin Tutorials", function() return KrowiAF_SavedData.ElvUISkin.Tutorials; end));
+    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinAlertFrames", AddInfo("Skin Alert Frames", function() return KrowiAF_SavedData.ElvUISkin.AlertFrames; end));
+    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinCalendar", AddInfo("Skin Calendar", function() return KrowiAF_SavedData.ElvUISkin.Calendar; end));
+    KrowiAF_InjectOptions.AddTable(pluginTable, "RemoveParchment", AddInfo("Remove Parchment", function() return KrowiAF_SavedData.ElvUISkin.NoParchment; end));
+    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinDataManager", AddInfo("Skin Data Manager", function() return KrowiAF_SavedData.ElvUISkin.Achievements; end));
+    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinAce3", AddInfo("Skin Ace3", function() return KrowiAF_SavedData.ElvUISkin.Options; end));
+    KrowiAF_InjectOptions.AddTable(pluginTable, "FixWorldMapButton", AddInfo("Fix World Map Button", function() return KrowiAF_SavedData.ElvUISkin.SmallerWorldMap; end));
 end
 
 local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
@@ -718,7 +724,7 @@ end
 function elvUI.Load()
 	addon.Diagnostics.Trace("elvUISkin.Load");
 
-    SavedData.ElvUISkin = {};
+    KrowiAF_SavedData.ElvUISkin = {};
     if ElvUI == nil then
         return;
     end
@@ -728,26 +734,26 @@ function elvUI.Load()
     local privateSkins = engine.private.skins;
     local blizzardSkins = privateSkins.blizzard;
 
-    SavedData.ElvUISkin.Achievements = blizzardSkins.enable and blizzardSkins.achievement;
-    SavedData.ElvUISkin.MiscFrames = blizzardSkins.enable and blizzardSkins.misc;
-    SavedData.ElvUISkin.Tooltip = blizzardSkins.enable and blizzardSkins.tooltip;
-    SavedData.ElvUISkin.Tutorials = blizzardSkins.enable and blizzardSkins.tutorials;
-    SavedData.ElvUISkin.AlertFrames = blizzardSkins.enable and blizzardSkins.alertframes;
-    SavedData.ElvUISkin.Calendar = blizzardSkins.enable and blizzardSkins.calendar;
-    SavedData.ElvUISkin.NoParchment = blizzardSkins.enable and blizzardSkins.calendar and privateSkins.parchmentRemoverEnable;
-    SavedData.ElvUISkin.Options = privateSkins.ace3Enable;
-    SavedData.ElvUISkin.SmallerWorldMap = addon.IsWrathClassic and engine.global.general.smallerWorldMap;
+    KrowiAF_SavedData.ElvUISkin.Achievements = blizzardSkins.enable and blizzardSkins.achievement;
+    KrowiAF_SavedData.ElvUISkin.MiscFrames = blizzardSkins.enable and blizzardSkins.misc;
+    KrowiAF_SavedData.ElvUISkin.Tooltip = blizzardSkins.enable and blizzardSkins.tooltip;
+    KrowiAF_SavedData.ElvUISkin.Tutorials = blizzardSkins.enable and blizzardSkins.tutorials;
+    KrowiAF_SavedData.ElvUISkin.AlertFrames = blizzardSkins.enable and blizzardSkins.alertframes;
+    KrowiAF_SavedData.ElvUISkin.Calendar = blizzardSkins.enable and blizzardSkins.calendar;
+    KrowiAF_SavedData.ElvUISkin.NoParchment = blizzardSkins.enable and blizzardSkins.calendar and privateSkins.parchmentRemoverEnable;
+    KrowiAF_SavedData.ElvUISkin.Options = privateSkins.ace3Enable;
+    KrowiAF_SavedData.ElvUISkin.SmallerWorldMap = addon.IsWrathClassic and engine.global.general.smallerWorldMap;
 
     hooksecurefunc(addon.GUI, "LoadWithBlizzard_AchievementUI", function()
         SkinAll();
     end);
 
     hooksecurefunc(addon.GUI.SideButtonSystem, "Load", function()
-        if SavedData.ElvUISkin.Achievements then
+        if KrowiAF_SavedData.ElvUISkin.Achievements then
             SkinSideButtons(engine);
         end
         hooksecurefunc(addon.GUI.SideButtonSystem, "Refresh", function()
-            if SavedData.ElvUISkin.Achievements then
+            if KrowiAF_SavedData.ElvUISkin.Achievements then
                 SkinSideButtons(engine);
             end
         end);
@@ -762,7 +768,7 @@ function elvUI.Load()
 
     DisableOptions();
 
-    -- return SavedData.ElvUISkin.Achievements, engine, skins;
+    -- return KrowiAF_SavedData.ElvUISkin.Achievements, engine, skins;
     addon.Diagnostics.Debug("ElvUISkin loaded");
-    -- addon.Diagnostics.DebugTable(SavedData.ElvUISkin, 1);
+    -- addon.Diagnostics.DebugTable(KrowiAF_SavedData.ElvUISkin, 1);
 end

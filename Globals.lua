@@ -99,7 +99,7 @@ local function AddWatchListCategoriesTree(watchListCategory, achievement)
         return watchListCategory;
     end
     return AddCategoriesTree(watchListCategory, achievement, function(newCategory)
-
+        newCategory.IsWatchList = true;
     end);
 end
 
@@ -151,7 +151,7 @@ function addon.ClearWatchAchievement(achievement, update)
     end
     for i = 1, #addon.Data.WatchListCategories do
         if (addon.Data.WatchListCategories[i].Achievements and #addon.Data.WatchListCategories[i].Achievements == 0) or (addon.Data.WatchListCategories[i].Children and #addon.Data.WatchListCategories[i].Children == 0) then
-            SavedData.WatchedAchievements = nil;
+            KrowiAF_SavedData.WatchedAchievements = nil;
             addon.Data.WatchListCategories[i].Achievements = nil;
         end
     end
@@ -201,7 +201,7 @@ function addon.IncludeAchievement(achievement, update)
     end
     for i = 1, #addon.Data.ExcludedCategories do
         if (addon.Data.ExcludedCategories[i].Achievements and #addon.Data.ExcludedCategories[i].Achievements == 0) or (addon.Data.ExcludedCategories[i].Children and #addon.Data.ExcludedCategories[i].Children == 0) then
-            SavedData.ExcludedAchievements = nil;
+            KrowiAF_SavedData.ExcludedAchievements = nil;
             addon.Data.ExcludedCategories[i].Achievements = nil;
         end
     end
@@ -224,37 +224,40 @@ function addon.ExcludeAchievement(achievement, update)
     end
 end
 
-local criteriaCache, characterPoints, cachedCompletedAchievements;
+local criteriaCache, characterPoints;
 local function AddCharToSavedData(playerGUID)
-    if not SavedData.Characters then
-        SavedData.Characters = {};
+    if not KrowiAF_SavedData.Characters then
+        KrowiAF_SavedData.Characters = {};
     end
-    local character = SavedData.Characters[playerGUID];
-    local excludeFromHeaderTooltip, excludeFromEarnedByAchievementTooltip, ignore;
+    local character = KrowiAF_SavedData.Characters[playerGUID];
+    local excludeFromHeaderTooltip, excludeFromEarnedByAchievementTooltip, excludeFromMostProgressAchievementTooltip, ignore;
     if character then
         excludeFromHeaderTooltip = character.ExcludeFromHeaderTooltip;
         excludeFromEarnedByAchievementTooltip = character.ExcludeFromEarnedByAchievementTooltip;
+        excludeFromMostProgressAchievementTooltip = character.ExcludeFromMostProgressAchievementTooltip;
         ignore = character.Ignore;
     end
-    -- cachedCompletedAchievements = SavedData.Characters[playerGUID] and SavedData.Characters[playerGUID].CompletedAchievements or {};
-    SavedData.Characters[playerGUID] = {
+
+    KrowiAF_SavedData.Characters[playerGUID] = {
         Name = (UnitFullName("player")),
         Realm = (select(2, UnitFullName("player"))),
         Class = (select(2, UnitClass("player"))),
         Faction = (UnitFactionGroup("player")),
         CompletedAchievements = {},
+        NotCompletedAchievements = {},
         ExcludeFromHeaderTooltip = excludeFromHeaderTooltip,
         ExcludeFromEarnedByAchievementTooltip = excludeFromEarnedByAchievementTooltip,
+        ExcludeFromMostProgressAchievementTooltip = excludeFromMostProgressAchievementTooltip,
         Ignore = ignore
     };
 end
 
 local function SetCharPoints(playerGUID, points)
-    SavedData.Characters[playerGUID].Points = points;
+    KrowiAF_SavedData.Characters[playerGUID].Points = points;
 end
 
 local function AddCharCompletedAchievement(playerGUID, achievementId, year, month, day, hour, min, sec)
-    SavedData.Characters[playerGUID].CompletedAchievements[achievementId] = --[[ cachedCompletedAchievements[achievementId] or ]] time{
+    KrowiAF_SavedData.Characters[playerGUID].CompletedAchievements[achievementId] = --[[ cachedCompletedAchievements[achievementId] or ]] time{
         year = 2000 + year,
         month = month,
         day = day,
@@ -264,35 +267,26 @@ local function AddCharCompletedAchievement(playerGUID, achievementId, year, mont
     };
 end
 
-local function CheckHexFlags(flags, flag)
-    return (flags / tonumber(flag, 16)) % 2 >= 1;
-end
-
 local function CheckDecFlags(flags, flag)
     return (flags / flag) % 2 >= 1;
 end
 
-local function IsTraching(flags)
-    return CheckHexFlags(flags, "100000"); -- See https://wowpedia.fandom.com/wiki/API_GetAchievementInfo for all flags
-end
-
 local function IncrementCharacterPoints(playerGUID, id, points, flags, isGuild, wasEarnedByMe, isStatistic, exists, year, month, day, hour, min, sec)
-    if SavedData.Characters[playerGUID].Ignore then
+    if KrowiAF_SavedData.Characters[playerGUID].Ignore then
         return;
     end
-    if wasEarnedByMe and points >= 0 and not isStatistic and not isGuild and not IsTraching(flags) and exists then
+    if wasEarnedByMe and points >= 0 and not isStatistic and not isGuild and not flags.IsTracking and exists then
         characterPoints = characterPoints + points;
         AddCharCompletedAchievement(playerGUID, id, year, month, day, hour, min, sec);
     end
 end
 
 addon.TrackingAchievements = {};
-local function AddToCriteriaCache(id, points, flags, isGuild, isStatistic, exists)
+local function AddToCriteriaCache(playerGUID, id, points, flags, isGuild, wasEarnedByMe, isStatistic, exists)
     if isStatistic or isGuild then
         return;
     end
-    local isTracking = IsTraching(flags);
-    if isTracking and not addon.Options.db.Categories.TrackingAchievements.DoLoad then
+    if flags.IsTracking and not addon.Options.db.Categories.TrackingAchievements.DoLoad then
         return;
     end
     if exists then
@@ -303,7 +297,7 @@ local function AddToCriteriaCache(id, points, flags, isGuild, isStatistic, exist
     else
         return; -- Can this be reached?
     end
-    if isTracking then
+    if flags.IsTracking then
         addon.TrackingAchievements[id] = true;
         addon.Data.Achievements[id].IsTracking = true;
         return;
@@ -312,17 +306,17 @@ local function AddToCriteriaCache(id, points, flags, isGuild, isStatistic, exist
     if numCriteria <= 0 then
         return;
     end
+    if not wasEarnedByMe and not flags.IsAccountWide then
+        KrowiAF_SavedData.Characters[playerGUID].NotCompletedAchievements[id] = {};
+    end
     for j = 1, numCriteria do
-        local _, criteriaType, _, _, _, _, _, assetID = GetAchievementCriteriaInfo(id, j);
+        local _, criteriaType, criteriaIsCompleted, quantity, _, _, _, assetID, _, _, _, hasValueProgress = addon.GetAchievementCriteriaInfo(id, j);
         if criteriaType == 8 then -- See https://wowpedia.fandom.com/wiki/API_GetAchievementCriteriaInfo for all criteria types
             tinsert(criteriaCache, {AchievementId = assetID, RequiredForId = id});
         end
-    end
-end
-
-local function CacheAchievement(id, name)
-    if addon.Data.Achievements[id] then
-        addon.Data.Achievements[id].Name = name;
+        if not wasEarnedByMe and not flags.IsAccountWide then
+            KrowiAF_SavedData.Characters[playerGUID].NotCompletedAchievements[id][j] = hasValueProgress and quantity or criteriaIsCompleted;
+        end
     end
 end
 
@@ -339,13 +333,11 @@ function addon.BuildCache()
     local highestId = addon.Data.AchievementIds[#addon.Data.AchievementIds];
     while gapSize < 500 or i < highestId do -- Biggest gap is 209 in 9.0.5 as of 2021-05-03
         local id, name, points, _, month, day, year, _, flags, _, _, isGuild, wasEarnedByMe, _, isStatistic, exists = addon.GetAchievementInfo(i);
-
         if id then
             IncrementCharacterPoints(playerGUID, id, points, flags, isGuild, wasEarnedByMe, isStatistic, exists, year, month, day);
-            AddToCriteriaCache(id, points, flags, isGuild, isStatistic, exists);
+            AddToCriteriaCache(playerGUID, id, points, flags, isGuild, wasEarnedByMe, isStatistic, exists);
             -- CacheAchievement(id, name);
         end
-
         if id and exists then
             gapSize = 0;
         else
@@ -362,6 +354,14 @@ function addon.ResetCache()
     criteriaCache = nil;
 end
 
+local function RemoveFromNotCompletedAchievements(playerGUID, achievementId)
+    if not KrowiAF_SavedData.Characters[playerGUID] or KrowiAF_SavedData.Characters[playerGUID].Ignore or not KrowiAF_SavedData.Characters[playerGUID].NotCompletedAchievements then
+        return;
+    end
+
+    KrowiAF_SavedData.Characters[playerGUID].NotCompletedAchievements[achievementId] = nil;
+end
+
 function addon.OnAchievementEarned(achievementId)
     if criteriaCache == nil then
         return; -- Achievement window is not opened yet
@@ -375,6 +375,7 @@ function addon.OnAchievementEarned(achievementId)
     local dateTable = date("*t", time());
     IncrementCharacterPoints(playerGUID, id, points, flags, isGuild, wasEarnedByMe, isStatistic, exists, year, month, day, dateTable.hour, dateTable.min, dateTable.sec);
     SetCharPoints(playerGUID, characterPoints);
+    RemoveFromNotCompletedAchievements(playerGUID, achievementId);
     addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = true;
     addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = true;
     local achievement = addon.Data.Achievements[achievementId];
@@ -512,8 +513,8 @@ local function MakeMovable(frame, rememberLastPositionOption, target)
     frame:SetScript("OnMouseUp", function(frame, button)
         target:StopMovingOrSizing();
         if addon.Options.db.Window.RememberLastPosition[rememberLastPositionOption] then
-            SavedData.RememberLastPosition = SavedData.RememberLastPosition or {};
-            SavedData.RememberLastPosition[rememberLastPositionOption] = {
+            KrowiAF_SavedData.RememberLastPosition = KrowiAF_SavedData.RememberLastPosition or {};
+            KrowiAF_SavedData.RememberLastPosition[rememberLastPositionOption] = {
                 X = target:GetLeft(),
                 Y = target:GetTop() - UIParent:GetTop()
             };
@@ -557,12 +558,13 @@ end
 function addon.GetAchievementInfo(achievementID) -- Returns an additional bool indicating if the achievement is added to the game yet or not
     local id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy, isStatistic = GetAchievementInfo(achievementID);
     if id then
+        flags = addon.Objects.Flags:New(flags);
         return id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy, isStatistic, true;
     else
+        flags = addon.Objects.Flags:New(0);
         return achievementID, " * Placeholder for " .. achievementID .. " * ", 0, false, nil, nil, nil,
-        " * This is the placeholder for " .. achievementID .. " until it's available next patch.", 0, 134400, "", false, false, "", false, false;
+        " * This is the placeholder for " .. achievementID .. " until it's available next patch.", flags, 134400, "", false, false, "", false, false;
     end
-    return nil; -- Achievement info not found, default function also returns nil when not found
 end
 
 function addon.GetNextAchievement(achievement)
@@ -577,23 +579,24 @@ function addon.GetNextAchievement(achievement)
     return nil, false;
 end
 
--- function addon.GetOpposingFaction(faction)
---     if faction == addon.Objects.Faction.Alliance then
---         return addon.Objects.Faction.Horde;
---     elseif faction == addon.Objects.Faction.Horde then
---         return addon.Objects.Faction.Alliance;
---     end
--- end
+function addon.GetAchievementCriteriaInfo(achievementId, criteriaIndex, countHidden)
+    local criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible;
+    if type(addon.Data.CustomCriteria[achievementId]) == "function" then
+        criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible = addon.Data.CustomCriteria[achievementId](criteriaIndex);
+    else
+        criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible = GetAchievementCriteriaInfo(achievementId, criteriaIndex, countHidden);
+    end
+    local hasValueProgress = (quantity ~= nil and reqQuantity ~= nil and not (quantity == 0 and (reqQuantity == 0 or reqQuantity == 1))) or achievementId == 17335;
+    return criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible, hasValueProgress;
+end
 
--- function addon.GetFactionName(faction)
---     if faction == addon.Objects.Faction.Alliance then
---         return addon.L["Alliance"];
---     elseif faction == addon.Objects.Faction.Horde then
---         return addon.L["Horde"];
---     else
---         return addon.L["Neutral"];
---     end
--- end
+function addon.GetAchievementNumCriteria(achievementId)
+    if type(addon.Data.CustomCriteria[achievementId]) == "function" then
+        return addon.Data.CustomCriteria[achievementId]();
+    else
+        return GetAchievementNumCriteria(achievementId);
+    end
+end
 
 function addon.GetUsableSets(transmogSets)
     local usableTransmogSets = {};
@@ -627,14 +630,14 @@ end
 
 function addon.ChangeAchievementMicroButtonOnClick()
     addon.GUI.TabsOrderGetActiveKeys(); -- Cleanup unused tabs
-    if addon.Options.db.MicroButtonTab > #SavedData.Tabs then
-        for i, _ in next, SavedData.Tabs do
-            if SavedData.Tabs[i].AddonName == addonName and SavedData.Tabs[i].Name == "Achievements" then
+    if addon.Options.db.MicroButtonTab > #KrowiAF_SavedData.Tabs then
+        for i, _ in next, KrowiAF_SavedData.Tabs do
+            if KrowiAF_SavedData.Tabs[i].AddonName == addonName and KrowiAF_SavedData.Tabs[i].Name == "Achievements" then
                 addon.Options.db.MicroButtonTab = i;
             end
         end
     end
-    local tab = SavedData.Tabs[addon.Options.db.MicroButtonTab];
+    local tab = KrowiAF_SavedData.Tabs[addon.Options.db.MicroButtonTab];
     if tab.AddonName == "Blizzard_AchievementUI" then
         return;
     end

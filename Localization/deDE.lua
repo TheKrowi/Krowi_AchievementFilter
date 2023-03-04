@@ -1,8 +1,8 @@
--- [[ Exported at 2023-01-29 12-01-53 ]] --
+-- [[ Exported at 2023-03-04 12-28-03 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2023-01-14 ]] --
+-- [[ German translation by Ta, 2023-02-25 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -570,7 +570,6 @@ L["Show All Results in Category"] = "Zeige alle Suchergebnisse in einer Kategori
 L["Show All Results in Category Desc"] = "Alle Suchergebnisse in einer Kategorie anzeigen, die während dieser Sitzung bestehen bleibt.";
 L["Search Results"] = "Suchergebnisse";
 L["Are you sure you want to delete character?"] = "Sind Sie sicher, dass Sie {character} löschen möchten? Dieser Charakter wird aber wieder hinzugefügt, wenn Sie sich erneut einloggen. Wenn Sie den Charakter dauerhaft nicht sehen wollen, markieren Sie bitte die {ignore} Checkbox.";
-L["On Login / Reload"] = "Beim Login / Neu-laden";
 L["In instances"] = "In einer Instanz";
 L["Show alertSystem on login in instances Desc"] = "Ein-/Ausblenden von Ereignis {alertSystem} beim Neu-laden oder Betreten des Spiels innerhalb einer Instanz.";
 L["Show alertSystem on event start Desc"] = "Ein-/Ausblenden des {alertSystem} für ein Ereignis, sobald es beginnt.";
@@ -597,4 +596,18 @@ L["Show placeholders Desc"] = "Zeigt eine Reihe von Platzhalter-Ereignissen an, 
 L["Placeholder"] = "Platzhalter";
 L["Chat messages"] = "Chat-Mitteilungen";
 L["Diablo IV"] = "Diablo IV";
+L["Only when time data is available"] = "Nur wenn Zeit-Daten verfügbar sind";
+L["Show alertSystem on login only when time data is available Desc"] = "Das Ereignis {alertSystem} beim Beitritt zum Spiel nur anzeigen/ausblenden, wenn noch eine Restzeit für das Ereignis vorhanden ist.";
+L["Show alertSystem on event start only when time data is available Desc"] = "Das Ereignis {alertSystem} für ein Ereignis das gerade beginnt nur anzeigen/ausblenden, wenn noch eine Restzeit für das Ereignis verfügbar ist";
+L["Needs to be completed for achievement"] = "Muss noch {forAchievement} abgeschlossen werden";
+L["Already completed for achievement"] = "Schon abgeschlossen {forAchievement}";
+L["Most progress"] = "Größter Erfolgs-Fortschritt";
+L["Number of Most progress characters"] = "Anzahl der Charaktere mit den größten Erfolgs-Fortschritten";
+L["Number of Most progress characters Desc"] = "Die Anzahl der Charaktere, die angezeigt werden, die schon einen Erfolgs-Fortschritt gemacht haben.\n\nWenn Sie den Wert 0 einstellen, wird diese Funktion deaktiviert.";
+L["On Login"] = "Beim Login";
+L["On Reload"] = "Nach einem Reload";
+L["Show alertSystem on reload Desc"] = "Ereignis {alertSystem} anzeigen/ausblenden, wenn das Spiel neu geladen wird.";
+L["Show alertSystem on reload in instances Desc"] = "Ereignis {alertSystem} anzeigen/ausblenden, wenn das Spiel innerhalb einer Instanz neu geladen wird.";
+L["Show alertSystem on reload only when time data is available Desc"] = "Das Ereignis {alertSystem} beim Neuladen des Spiels nur anzeigen/ausblenden, wenn noch Restzeit für das Ereignis vorhanden ist.";
+L["Active events"] = "Aktive Ereignisse";
 

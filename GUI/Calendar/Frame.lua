@@ -91,8 +91,8 @@ function frame:Load()
 end
 
 function frame:ResetPosition()
-    SavedData.RememberLastPosition = SavedData.RememberLastPosition or {};
-    SavedData.RememberLastPosition["Calendar"] = {
+    KrowiAF_SavedData.RememberLastPosition = KrowiAF_SavedData.RememberLastPosition or {};
+    KrowiAF_SavedData.RememberLastPosition["Calendar"] = {
         X = 150,
         Y = -80
     };
@@ -540,7 +540,7 @@ function KrowiAF_CalendarFrameMixin:GetEarnedAchievementsInRange()
     local lastDate = GetSecondsSince(self.DayButtons[maxDaysPerMonth]);
 
     local achievementIds = {};
-    for achievementId, date in next, SavedData.Characters[UnitGUID("player")].CompletedAchievements do
+    for achievementId, date in next, KrowiAF_SavedData.Characters[UnitGUID("player")].CompletedAchievements do
         if date >= firstDate and date <= lastDate then
             tinsert(achievementIds, achievementId);
         end
@@ -560,7 +560,7 @@ function KrowiAF_CalendarFrameMixin:AddAchievementsToDays()
 	local date, dayButtonIndex, dayButton;
     for _, achievementId in next, achievementIds do
         _, _, points, _, _, _, _, _, _, icon = addon.GetAchievementInfo(achievementId);
-        date = SavedData.Characters[UnitGUID("player")].CompletedAchievements[achievementId];
+        date = KrowiAF_SavedData.Characters[UnitGUID("player")].CompletedAchievements[achievementId];
         dayButtonIndex = floor((date - firstDate) / 86400 + 1); -- 86400 seconds in a day, floor to take changes in DST which would result in x.xx
 		dayButton = self.DayButtons[dayButtonIndex];
         AddAchievementToButton(dayButton, achievementId, icon, points);

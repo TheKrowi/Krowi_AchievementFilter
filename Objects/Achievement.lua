@@ -103,30 +103,30 @@ end
 
 function achievement:Include()
     self.IsExcluded = nil;
-    if SavedData.ExcludedAchievements == nil then
+    if KrowiAF_SavedData.ExcludedAchievements == nil then
         return;
     end
-    SavedData.ExcludedAchievements[self.Id] = nil;
+    KrowiAF_SavedData.ExcludedAchievements[self.Id] = nil;
 end
 
 function achievement:Exclude()
     self.IsExcluded = true;
-    SavedData.ExcludedAchievements = SavedData.ExcludedAchievements or {};
-    SavedData.ExcludedAchievements[self.Id] = true;
+    KrowiAF_SavedData.ExcludedAchievements = KrowiAF_SavedData.ExcludedAchievements or {};
+    KrowiAF_SavedData.ExcludedAchievements[self.Id] = true;
 end
 
 function achievement:ClearWatch()
     self.IsWatched = nil;
-    if SavedData.WatchedAchievements == nil then
+    if KrowiAF_SavedData.WatchedAchievements == nil then
         return;
     end
-    SavedData.WatchedAchievements[self.Id] = nil;
+    KrowiAF_SavedData.WatchedAchievements[self.Id] = nil;
 end
 
 function achievement:Watch()
     self.IsWatched = true;
-    SavedData.WatchedAchievements = SavedData.WatchedAchievements or {};
-    SavedData.WatchedAchievements[self.Id] = true;
+    KrowiAF_SavedData.WatchedAchievements = KrowiAF_SavedData.WatchedAchievements or {};
+    KrowiAF_SavedData.WatchedAchievements[self.Id] = true;
 end
 
 function achievement:AddPrevious(ach, addBack)

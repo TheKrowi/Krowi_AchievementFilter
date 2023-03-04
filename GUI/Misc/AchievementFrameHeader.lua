@@ -99,7 +99,7 @@ local sortFuncs = {
 
 local function GetSortedCharacters()
     local characters = {};
-    for guid, character in next, SavedData.Characters do
+    for guid, character in next, KrowiAF_SavedData.Characters do
         tinsert(characters, {
             Name = character.Name,
             Realm = character.Realm,

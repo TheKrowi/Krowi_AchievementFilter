@@ -10,7 +10,7 @@ local menuItem = objects.MenuItem;
 function menuItem:AddCritExtLinkFull(achievementID, criteriaNum, externalLink)
     local exists = select(16, addon.GetAchievementInfo(achievementID));
     if exists then
-        local criteriaString = GetAchievementCriteriaInfo(achievementID, criteriaNum);
+        local criteriaString = addon.GetAchievementCriteriaInfo(achievementID, criteriaNum);
         return self:AddExtLinkFull(criteriaString, externalLink);
     end
 end

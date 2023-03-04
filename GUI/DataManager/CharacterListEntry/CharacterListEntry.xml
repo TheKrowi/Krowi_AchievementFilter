@@ -76,10 +76,29 @@
             </CheckButton>
         </Frames>
         <Frames>
-            <CheckButton parentKey="IgnoreCharacter">
+            <CheckButton parentKey="MostProgressAchievementTooltip">
                 <Size x="29" y="29"/>
                 <Anchors>
                     <Anchor point="LEFT" relativeKey="$parent.EarnedByAchievementTooltip" relativePoint="RIGHT" x="69" y="0"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+                        self:GetParent():ToggleMostProgressAchievementTooltip();
+                    </OnClick>
+                </Scripts>
+                <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+                <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+                <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+                <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+                <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+            </CheckButton>
+        </Frames>
+        <Frames>
+            <CheckButton parentKey="IgnoreCharacter">
+                <Size x="29" y="29"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.MostProgressAchievementTooltip" relativePoint="RIGHT" x="69" y="0"/>
                 </Anchors>
                 <Scripts>
                     <OnClick>

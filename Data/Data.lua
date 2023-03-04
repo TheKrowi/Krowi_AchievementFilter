@@ -72,7 +72,7 @@ local function LoadAchievements(sourceTable, func)
 end
 
 function data.LoadWatchedAchievements()
-    LoadAchievements(SavedData.WatchedAchievements, addon.WatchAchievement);
+    LoadAchievements(KrowiAF_SavedData.WatchedAchievements, addon.WatchAchievement);
     addon.Diagnostics.Debug("Watched achievements loaded");
 end
 
@@ -82,7 +82,7 @@ function data.LoadTrackingAchievements()
 end
 
 function data.LoadExcludedAchievements()
-    LoadAchievements(SavedData.ExcludedAchievements, addon.ExcludeAchievement);
+    LoadAchievements(KrowiAF_SavedData.ExcludedAchievements, addon.ExcludeAchievement);
     addon.Diagnostics.Debug("Excluded achievements loaded");
 end
 
@@ -213,7 +213,7 @@ end
 --         elseif string.match(description:lower(), "undead") then
 --             family = "Undead";
 --         end
---         local criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID = GetAchievementCriteriaInfo(achievementID, i);
+--         local criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID = addon.GetAchievementCriteriaInfo(achievementID, i);
 --         if GetAchievementInfo(assetID) ~= nil then -- Means the assetID was not an achievementID but something else like a quest
 --             data.PrintCriteria(assetID, "A" .. tostring(id), i);
 --         else

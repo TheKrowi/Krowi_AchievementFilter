@@ -216,7 +216,7 @@ function KrowiAF_AchievementsObjectivesMixin:DisplayProgressiveAchievement(id)
 	local numColumns = floor(objectivesWidth / (miniAchievementWidth + columnOffset));
 	local numRows = ceil(#achievements / numColumns);
 	local width = min(numColumns, #achievements) * (miniAchievementWidth + columnOffset) - columnOffset;
-	local xOffset1 = (objectivesWidth - width) / 2;
+	local offsetX = (objectivesWidth - width) / 2;
 
 	for i, achId in ipairs(achievements) do
 		local _, _, points, _, _, _, _, _, _, icon = addon.GetAchievementInfo(achId);
@@ -225,7 +225,7 @@ function KrowiAF_AchievementsObjectivesMixin:DisplayProgressiveAchievement(id)
 		miniAchievement.Id = achId;
 		miniAchievement.Icon:SetTexture(icon);
 		if i == 1 then
-			miniAchievement:SetPoint("TOPLEFT", self, "TOPLEFT", xOffset1, 0);
+			miniAchievement:SetPoint("TOPLEFT", self, "TOPLEFT", offsetX, 0);
 		elseif mod(i, numColumns) == 1 then
 			miniAchievement:SetPoint("TOPLEFT", self:GetMiniAchievement(i - numColumns), "BOTTOMLEFT", 0, -rowOffset);
 		else
@@ -315,30 +315,29 @@ function KrowiAF_AchievementsObjectivesMixin:DisplayCriteria(id)
 		return;
 	end
 
-	local numCriteria = GetAchievementNumCriteria(id);
+	local numCriteria = addon.GetAchievementNumCriteria(id);
 	if numCriteria == 0 then
 		self.Mode = self.Modes.NoCriteria;
 		return;
 	end
 
-	local progressBarWidth, progressBarHeight;
+	local progressBarHeight;
 	local totalProgressBarHeight = 0;
 	local textCriteriaWidth, textCriteriaHeight;
 	local totalTextCriteriaHeight = 0;
 	local numCriteriaRows = 0;
-	local numExtraCriteriaRows = 0;
 
 	local numTextCriteria, numProgressBars, numMetas = 0, 0, 0;
 	local maxCriteriaWidth = 0;
 	for i = 1, numCriteria do
-		local criteriaString, criteriaType, completed, quantity, reqQuantity, _, flags, assetID, quantityString = GetAchievementCriteriaInfo(id, i);
+		local criteriaString, criteriaType, completed, quantity, reqQuantity, _, flags, assetID, quantityString = addon.GetAchievementCriteriaInfo(id, i);
 		flags = addon.Objects.Flags:New(flags);
 		if criteriaType == CRITERIA_TYPE_ACHIEVEMENT and assetID then
 			numMetas = numMetas + 1;
 			self:AddMeta(numMetas, completed, assetID)
 		elseif flags.IsCriteriaProgressBar then
 			numProgressBars = numProgressBars + 1;
-			progressBarWidth, progressBarHeight = self:AddProgressBar(numProgressBars, quantity, reqQuantity, quantityString);
+			_, progressBarHeight = self:AddProgressBar(numProgressBars, quantity, reqQuantity, quantityString);
 			totalProgressBarHeight = totalProgressBarHeight + progressBarHeight;
 			numCriteriaRows = numCriteriaRows + 1;
 		else

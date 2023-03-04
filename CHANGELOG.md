@@ -1,6 +1,23 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 53.0 - 2023-03-04
+### Added
+- See the characters with the most progress for a given achievement in its tooltip
+- Additional options and data management
+- Option to ignore filters in the Watch List
+
+### Changed
+- Custom objectives are now handled in a different way to allow more flexibility in the future
+- Moved SavedVariables Options, SavedData and Filters to KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters
+
+### Fixed
+- Achievement objectives in the tooltip for completed achievements should once again listen to the settings
+- Added a bunch of checks for the Selected Tab
+
+### Wrath Classic
+- Fixed an error with the Keybindings and Enabled localization
+
 ## 52.4 - 2023-02-23
 ### Wrath Classic
 - Bumped Krowi_WorldMapButtons to 1.4.4 (1.5 does no longer exist)

@@ -3,8 +3,8 @@ local _, addon = ...;
 local section = {};
 
 function section.CheckAdd(achievement)
-    local selectedCategory = addon.GUI.SelectedTab.SelectedCategory;
-    return selectedCategory.IsCurrentZone or selectedCategory.IsSelectedZone;
+    local selectedCategory = addon.GUI.SelectedTab and addon.GUI.SelectedTab.SelectedCategory or nil;
+    return selectedCategory and (selectedCategory.IsCurrentZone or selectedCategory.IsSelectedZone);
 end
 
 function section.Add(menu, achievement)

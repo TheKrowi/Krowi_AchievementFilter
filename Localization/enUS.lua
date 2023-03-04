@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-29 12-01-53 ]] --
+-- [[ Exported at 2023-03-04 12-28-03 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -235,7 +235,7 @@ L["Show Required for Desc"] = "Show / hide {requiredFor}.\n\nWhen checked, the a
 L["Show Other faction"] = "Show Other faction";
 L["Show Other faction Desc"] = "Show / hide {otherFaction}.\n\nWhen checked and if available, the other faction's achievement will be visible in the tooltip. This might make it more clear why your fresh Horde character has certain achievements if you only played Alliance before.";
 L["Show Objectives progress"] = "Show {objectivesProgress}";
-L["Show Objectives progress Desc"] = "Show / hide {objectivesProgress}.\n\nWhen checked, the {objectivesProgress} of the achievements will be visible in the tooltip.";
+L["Show Objectives progress Desc"] = "Show / hide {objectivesProgress}.\n\nWhen checked, the {objectivesProgress} of the achievement will be visible in the tooltip.";
 L["When achievement completed"] = "When achievement completed";
 L["When achievement completed Desc"] = "Show / hide {objectivesProgress} when achievement is completed.\n\nWhen checked, the {objectivesProgress} of the achievements will be visible in the tooltip regardless if the achievement is completed or not.";
 L["Second column threshold"] = "Second column threshold";
@@ -246,7 +246,7 @@ L["Show Right Click Menu Desc"] = "Show / hide {rightClickMenu} button on each a
 L["Event Reminders"] = "Event Reminders";
 L["Pop ups"] = "Pop ups";
 L["Show"] = "Show";
-L["Show alertSystem on login Desc"] = "Show / hide event {alertSystem} when reloading or joining the game.";
+L["Show alertSystem on login Desc"] = "Show / hide event {alertSystem} when joining the game.";
 L["Max number of alerts"] = "Max number of alerts";
 L["Max number of alerts Desc"] = "The maximum number of alerts shown at once.";
 L["Fade delay"] = "Fade delay";
@@ -570,9 +570,8 @@ L["Show All Results in Category"] = "Show All Results in Category";
 L["Show All Results in Category Desc"] = "Show all the search results in a category that will persist during this session.";
 L["Search Results"] = "Search Results";
 L["Are you sure you want to delete character?"] = "Are you sure you want to delete {character}? This character will be added again if you log in to it. If you don't want to see this character, check the {ignore} flag.";
-L["On Login / Reload"] = "On Login / Reload";
 L["In instances"] = "In instances";
-L["Show alertSystem on login in instances Desc"] = "Show / hide event {alertSystem} when reloading or joining the game while inside an instance.";
+L["Show alertSystem on login in instances Desc"] = "Show / hide event {alertSystem} when joining the game while inside an instance.";
 L["Show alertSystem on event start Desc"] = "Show / hide event {alertSystem} for an event when it starts.";
 L["On Event Start"] = "On Event Start";
 L["Show alertSystem on event start in instances Desc"] = "Show / hide event {alertSystem} for an event when it starts while inside an instance.";
@@ -598,8 +597,19 @@ L["Placeholder"] = "Placeholder";
 L["Chat messages"] = "Chat messages";
 L["Diablo IV"] = "Diablo IV";
 L["Only when time data is available"] = "Only when time data is available";
-L["Show alertSystem on login only when time data is available Desc"] = "Show / hide event {alertSystem} when reloading or joining the game only when the remaining event time is available.";
+L["Show alertSystem on login only when time data is available Desc"] = "Show / hide event {alertSystem} when joining the game only when the remaining event time is available.";
 L["Show alertSystem on event start only when time data is available Desc"] = "Show / hide event {alertSystem} for an event when it starts only when the remaining event time is available.";
 L["Needs to be completed for achievement"] = "Needs to be completed {forAchievement}";
 L["Already completed for achievement"] = "Already completed {forAchievement}";
+L["Most progress"] = "Most progress";
+L["Number of Most progress characters"] = "Number of Most progress characters";
+L["Number of Most progress characters Desc"] = "The number of characters that will be displayed that have progress towards the achievement.\n\nSetting it to 0 will disable this feature.";
+L["On Login"] = "On Login";
+L["On Reload"] = "On Reload";
+L["Show alertSystem on reload Desc"] = "Show / hide event {alertSystem} when reloading the game.";
+L["Show alertSystem on reload in instances Desc"] = "Show / hide event {alertSystem} when reloading the game while inside an instance.";
+L["Show alertSystem on reload only when time data is available Desc"] = "Show / hide event {alertSystem} when reloading the game only when the remaining event time is available.";
+L["Active events"] = "Active events";
+L["Ignore Filters"] = "Ignore Filters";
+L["Ignore Filters Desc"] = "Ignore any filters and show all the achievements in the {category}.";
 

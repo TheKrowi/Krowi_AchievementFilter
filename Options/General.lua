@@ -60,7 +60,7 @@ local function WorldMapShowWorldMapIconSet()
 end
 
 local function MicroButtonSetKeybindFunc()
-    local tab = SavedData.Tabs[addon.Options.db.MicroButtonTab];
+    local tab = KrowiAF_SavedData.Tabs[addon.Options.db.MicroButtonTab];
     if tab.BindingName then
         SetBinding("Y", tab.BindingName);
         SaveBindings(GetCurrentBindingSet());
@@ -113,7 +113,7 @@ local function ExportCriteria()
         local numCriteria = GetAchievementNumCriteria(id);
         if numCriteria > 0 then
             for i = 1, numCriteria do
-                local criteriaString, criteriaType, _, _, _, _, flags, assetId, _, criteriaId, _ = GetAchievementCriteriaInfo(id, i);
+                local criteriaString, criteriaType, _, _, _, _, flags, assetId, _, criteriaId, _ = addon.GetAchievementCriteriaInfo(id, i);
                 tinsert(criteriaCache, {
                     AchievementId = id,
                     CriteriaIndex = i,

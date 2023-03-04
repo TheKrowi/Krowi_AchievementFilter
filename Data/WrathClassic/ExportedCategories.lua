@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-14 19-07-12 ]] --
+-- [[ Exported at 2023-03-04 11-51-30 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -37,6 +37,7 @@ function exportedCategories.Load(a)
     C(t[1100], t[1216]);
     t[1216].HasFlexibleData = true;
     tinsert(watchListCategories, t[1216]);
+    t[1216].IsWatchList = true;
     t[1212] = c:New(k.L["Current Zone"]); -- Current Zone
     C(t[1100], t[1212]);
     t[1212].HasFlexibleData = true;
@@ -72,6 +73,7 @@ function exportedCategories.Load(a)
     C(t[883], t[1217]);
     t[1217].HasFlexibleData = true;
     tinsert(watchListCategories, t[1217]);
+    t[1217].IsWatchList = true;
     t[1213] = c:New(k.L["Current Zone"]); -- Current Zone
     C(t[883], t[1213]);
     t[1213].HasFlexibleData = true;
@@ -1844,6 +1846,7 @@ function exportedCategories.Load(a)
     C(t[884], t[1218]);
     t[1218].HasFlexibleData = true;
     tinsert(watchListCategories, t[1218]);
+    t[1218].IsWatchList = true;
     t[1214] = c:New(k.L["Current Zone"]); -- Current Zone
     C(t[884], t[1214]);
     t[1214].HasFlexibleData = true;
@@ -2082,6 +2085,7 @@ function exportedCategories.Load(a)
     C(t[955], t[1219]);
     t[1219].HasFlexibleData = true;
     tinsert(watchListCategories, t[1219]);
+    t[1219].IsWatchList = true;
     t[1215] = c:New(k.L["Current Zone"]); -- Current Zone
     C(t[955], t[1215]);
     t[1215].HasFlexibleData = true;
@@ -2367,6 +2371,7 @@ function exportedCategories.Load(a)
     C(t[971], t[949]);
     t[949].HasFlexibleData = true;
     tinsert(watchListCategories, t[949]);
+    t[949].IsWatchList = true;
     t[433] = c:New(k.L["Current Zone"]); -- Current Zone
     C(t[971], t[433]);
     t[433].HasFlexibleData = true;

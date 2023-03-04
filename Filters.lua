@@ -88,7 +88,7 @@ function filters:ResetFilters()
 end
 
 function filters:Load()
-    local filters2 = LibStub("AceDB-3.0"):New("Filters", defaults, true);
+    local filters2 = LibStub("AceDB-3.0"):New("KrowiAF_Filters", defaults, true);
     self.db = filters2.profile;
     for t, _ in next, addon.Tabs do
         addon.Tabs[t].Filters = filters2.profile.Tabs[t];
@@ -182,6 +182,9 @@ local validations = {
 };
 
 function filters.Validate(_filters, achievement, ignoreCollapseSeries)
+    if _filters.Ignore then
+        return 3;
+    end
     if achievement.AlwaysVisible then
         return 2;
     end
@@ -206,6 +209,8 @@ function filters:AutoValidate(achievement, ignoreCollapseSeries)
 end
 
 function filters:GetFilters(category)
+    self.db.Ignore = nil;
+
     if addon.GUI.SelectedTab == nil then
         local categoriesTree = category:GetTree();
 
@@ -230,6 +235,9 @@ function filters:GetFilters(category)
 		return self.db.CurrentZone;
 	elseif category.IsSelectedZone then
 		return self.db.SelectedZone;
+	elseif category.IsWatchList then
+        self.db.Ignore = addon.Options.db.Categories.WatchList.IgnoreFilters;
+        return self.db;
     elseif category.IsTracking then
         return self.db.TrackingAchievements;
     elseif addon.GUI.SelectedTab.Filters ~= nil then

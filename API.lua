@@ -298,15 +298,15 @@ end
 do --[[ KrowiAF_RegisterTabOptions ]]
 	local function GetIndexOrInsert(_addonName, tabName, addonDisplayName, tabDisplayName, bindingName)
 		local index;
-		for i, tab in next, SavedData.Tabs do
+		for i, tab in next, KrowiAF_SavedData.Tabs do
 			if tab.AddonName == _addonName and tab.Name == tabName then
 				index = i;
 			end
 		end
 		if index == nil then
-			tinsert(SavedData.Tabs, addon.Objects.Tab:New(_addonName, tabName, bindingName));
-			tinsert(SavedData.TabKeys, addonDisplayName .. " - " .. tabDisplayName);
-			index = #SavedData.TabKeys;
+			tinsert(KrowiAF_SavedData.Tabs, addon.Objects.Tab:New(_addonName, tabName, bindingName));
+			tinsert(KrowiAF_SavedData.TabKeys, addonDisplayName .. " - " .. tabDisplayName);
+			index = #KrowiAF_SavedData.TabKeys;
 		end
 		return index;
 	end
@@ -340,7 +340,7 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 		for addonName2, tabs in next, addon.Options.db.Tabs do
 			for tabName, tab in next, tabs do
 				if tab.Order == index then
-					for i, tab2 in next, SavedData.Tabs do
+					for i, tab2 in next, KrowiAF_SavedData.Tabs do
 						if tab2.AddonName == addonName2 and tab2.Name == tabName then
 							return i;
 						end
@@ -354,7 +354,7 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 		addon.GUI.TabsOrderGetActiveKeys(); -- Just to make sure the list is cleaned up
 
 		-- We get the addon name and tab name for the selected tab
-		local tab = SavedData.Tabs[value];
+		local tab = KrowiAF_SavedData.Tabs[value];
 		-- print(value, tab.AddonName, tab.Name, addon.Options.db.Tabs[tab.AddonName][tab.Name].Order);
 
 		-- Get the current order
@@ -392,13 +392,13 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 		-- 	return;
 		-- end
 
-		-- local oldTab = SavedData.Tabs[indexFound];
+		-- local oldTab = KrowiAF_SavedData.Tabs[indexFound];
 		-- print(indexFound, aName, tName, addon.Options.db.Tabs[aName][tName].Order);
 		addon.Options.db.Tabs[aName][tName].Order = order;
 		-- print(aName, tName, addon.Options.db.Tabs[aName][tName].Order);
 
 		-- Set current selection to index
-		-- local tab = SavedData.Tabs[value];
+		-- local tab = KrowiAF_SavedData.Tabs[value];
 		addon.Options.db.Tabs[tab.AddonName][tab.Name].Order = index;
 		-- print(tab.AddonName, tab.Name, addon.Options.db.Tabs[tab.AddonName][tab.Name].Order);
 		-- print(aName, tName, addon.Options.db.Tabs[aName][tName].Order);
@@ -488,9 +488,9 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 		tabDisplayName = tabDisplayName or tabName;
 
 		-- Make sure all tables exist
-		SavedData = SavedData or {};
-		SavedData.TabKeys = SavedData.TabKeys or {};
-		SavedData.Tabs = SavedData.Tabs or {};
+		KrowiAF_SavedData = KrowiAF_SavedData or {};
+		KrowiAF_SavedData.TabKeys = KrowiAF_SavedData.TabKeys or {};
+		KrowiAF_SavedData.Tabs = KrowiAF_SavedData.Tabs or {};
 
 		local index = GetIndexOrInsert(_addonName, tabName, addonDisplayName, tabDisplayName, bindingName);
 
