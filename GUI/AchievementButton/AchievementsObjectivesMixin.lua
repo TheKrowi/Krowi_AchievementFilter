@@ -216,7 +216,7 @@ function KrowiAF_AchievementsObjectivesMixin:DisplayProgressiveAchievement(id)
 	local numColumns = floor(objectivesWidth / (miniAchievementWidth + columnOffset));
 	local numRows = ceil(#achievements / numColumns);
 	local width = min(numColumns, #achievements) * (miniAchievementWidth + columnOffset) - columnOffset;
-	local xOffset1 = (objectivesWidth - width) / 2;
+	local offsetX = (objectivesWidth - width) / 2;
 
 	for i, achId in ipairs(achievements) do
 		local _, _, points, _, _, _, _, _, _, icon = addon.GetAchievementInfo(achId);
@@ -225,7 +225,7 @@ function KrowiAF_AchievementsObjectivesMixin:DisplayProgressiveAchievement(id)
 		miniAchievement.Id = achId;
 		miniAchievement.Icon:SetTexture(icon);
 		if i == 1 then
-			miniAchievement:SetPoint("TOPLEFT", self, "TOPLEFT", xOffset1, 0);
+			miniAchievement:SetPoint("TOPLEFT", self, "TOPLEFT", offsetX, 0);
 		elseif mod(i, numColumns) == 1 then
 			miniAchievement:SetPoint("TOPLEFT", self:GetMiniAchievement(i - numColumns), "BOTTOMLEFT", 0, -rowOffset);
 		else

@@ -1,4 +1,4 @@
--- [[ Exported at 2023-02-26 15-36-01 ]] --
+-- [[ Exported at 2023-03-04 12-28-03 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -610,4 +610,6 @@ L["Show alertSystem on reload Desc"] = "Show / hide event {alertSystem} when rel
 L["Show alertSystem on reload in instances Desc"] = "Show / hide event {alertSystem} when reloading the game while inside an instance.";
 L["Show alertSystem on reload only when time data is available Desc"] = "Show / hide event {alertSystem} when reloading the game only when the remaining event time is available.";
 L["Active events"] = "Active events";
+L["Ignore Filters"] = "Ignore Filters";
+L["Ignore Filters Desc"] = "Ignore any filters and show all the achievements in the {category}.";
 

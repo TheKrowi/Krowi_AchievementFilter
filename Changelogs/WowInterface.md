@@ -2,6 +2,7 @@
 [LIST]
 [*]See the characters with the most progress for a given achievement in its tooltip
 [*]Additional options and data management
+[*]Option to ignore filters in the Watch List
 [/LIST]
 
 [B]Changed[/B]

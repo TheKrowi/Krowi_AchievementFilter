@@ -42,7 +42,8 @@ options.Defaults = {
         },
         Categories = {
             WatchList = {
-                ShowSubCategories = false
+                ShowSubCategories = false,
+                IgnoreFilters = true
             },
             TrackingAchievements = {
                 DoLoad = false,

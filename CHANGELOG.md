@@ -1,10 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 53.0 - 2023-xx-xx
+## 53.0 - 2023-03-04
 ### Added
 - See the characters with the most progress for a given achievement in its tooltip
 - Additional options and data management
+- Option to ignore filters in the Watch List
 
 ### Changed
 - Custom objectives are now handled in a different way to allow more flexibility in the future

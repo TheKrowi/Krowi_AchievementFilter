@@ -99,7 +99,7 @@ local function AddWatchListCategoriesTree(watchListCategory, achievement)
         return watchListCategory;
     end
     return AddCategoriesTree(watchListCategory, achievement, function(newCategory)
-
+        newCategory.IsWatchList = true;
     end);
 end
 

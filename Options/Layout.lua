@@ -84,6 +84,16 @@ local function InjectDynamicFixedWatchListOptions()
         desc = addon.L["Clear all Desc"],
         func = WatchListClearAllFunc
     });
+    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "IgnoreFilters", {
+        order = OrderPP(), type = "toggle", width = AdjustedWidth(),
+        name = addon.L["Ignore Filters"],
+        desc = addon.L["Ignore Filters Desc"]:ReplaceVars(addon.L["Watch List"]):AddDefaultValueText("Categories.WatchList.IgnoreFilters"),
+        get = function() return addon.Options.db.Categories.WatchList.IgnoreFilters; end,
+        set = function()
+            addon.Options.db.Categories.WatchList.IgnoreFilters = not addon.Options.db.Categories.WatchList.IgnoreFilters;
+            DrawSubCategories(addon.Data.WatchListCategories);
+        end
+    });
 end
 
 -- [[ InjectMoreDynamicTrackingAchievementsOptions ]]
