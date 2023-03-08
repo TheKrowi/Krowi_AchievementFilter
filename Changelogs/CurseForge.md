@@ -18,3 +18,7 @@
 <ul>
 <li>Fixed an error with the Keybindings and Enabled localization</li>
 </ul>
+<p><h3>Fixed (53.1)</h3></p>
+<ul>
+<li>New user should no longer get errors for the old SavedData object</li>
+</ul>

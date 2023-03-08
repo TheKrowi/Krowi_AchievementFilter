@@ -13,3 +13,6 @@
 
 ### Wrath Classic
 - Fixed an error with the Keybindings and Enabled localization
+
+### Fixed (53.1)
+- New user should no longer get errors for the old SavedData object
