@@ -1,8 +1,8 @@
--- [[ Exported at 2023-03-04 12-28-03 ]] --
+-- [[ Exported at 2023-03-08 07-19-23 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2023-02-25 ]] --
+-- [[ German translation by Ta, 2023-03-07 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -393,7 +393,7 @@ L["Truncate"] = "Abschneiden";
 L["Flexible"] = "Flexibel";
 L["Error Tabs Order"] = "{blizzard} Tab {statistics} kann nicht vor {guild} stehen.";
 L["Open"] = "Öffnen";
-L["Header tooltip"] = "Überschrift-Tooltip";
+L["Header tooltip"] = "Überschrift";
 L["Achievement shown temporarily"] = "Dieser Erfolg wird nur vorübergehend angezeigt, da er keinem der gesetzten Filter entspricht.";
 L["Screenshots"] = "Bildschirmfoto";
 L["WoW's 10th Anniversary"] = "10-jähriges Jubiläum von WoW";
@@ -601,7 +601,7 @@ L["Show alertSystem on login only when time data is available Desc"] = "Das Erei
 L["Show alertSystem on event start only when time data is available Desc"] = "Das Ereignis {alertSystem} für ein Ereignis das gerade beginnt nur anzeigen/ausblenden, wenn noch eine Restzeit für das Ereignis verfügbar ist";
 L["Needs to be completed for achievement"] = "Muss noch {forAchievement} abgeschlossen werden";
 L["Already completed for achievement"] = "Schon abgeschlossen {forAchievement}";
-L["Most progress"] = "Größter Erfolgs-Fortschritt";
+L["Most progress"] = "Fortschritt";
 L["Number of Most progress characters"] = "Anzahl der Charaktere mit den größten Erfolgs-Fortschritten";
 L["Number of Most progress characters Desc"] = "Die Anzahl der Charaktere, die angezeigt werden, die schon einen Erfolgs-Fortschritt gemacht haben.\n\nWenn Sie den Wert 0 einstellen, wird diese Funktion deaktiviert.";
 L["On Login"] = "Beim Login";
@@ -610,4 +610,6 @@ L["Show alertSystem on reload Desc"] = "Ereignis {alertSystem} anzeigen/ausblend
 L["Show alertSystem on reload in instances Desc"] = "Ereignis {alertSystem} anzeigen/ausblenden, wenn das Spiel innerhalb einer Instanz neu geladen wird.";
 L["Show alertSystem on reload only when time data is available Desc"] = "Das Ereignis {alertSystem} beim Neuladen des Spiels nur anzeigen/ausblenden, wenn noch Restzeit für das Ereignis vorhanden ist.";
 L["Active events"] = "Aktive Ereignisse";
+L["Ignore Filters"] = "Filter Ingorieren";
+L["Ignore Filters Desc"] = "Ignoriere jegliche Filter und zeige alle Erfolge in dieser {category}.";
 
