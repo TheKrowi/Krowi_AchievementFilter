@@ -122,16 +122,16 @@ function Resolve(solutions, prevBuild, currBuild, prevVersion, currVersion, firs
 end
 
 function VerifySavedCharacterData()
-    if not SavedData.Characters then
+    if not KrowiAF_SavedData.Characters then
         return;
     end
-    for guid, character in next, SavedData.Characters do
+    for guid, character in next, KrowiAF_SavedData.Characters do
         local _, realm, name = strsplit("-", guid);
         if character.Name == nil then
-            SavedData.Characters[guid].Name = name;
+            KrowiAF_SavedData.Characters[guid].Name = name;
         end
         if character.Realm == nil then
-            SavedData.Characters[guid].Realm = realm;
+            KrowiAF_SavedData.Characters[guid].Realm = realm;
         end
     end
 end

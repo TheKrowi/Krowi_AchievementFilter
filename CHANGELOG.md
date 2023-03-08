@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 53.1 - 2023-03-08
+### Fixed
+- New user should no longer get errors for the old SavedData object
+
 ## 53.0 - 2023-03-04
 ### Added
 - See the characters with the most progress for a given achievement in its tooltip
