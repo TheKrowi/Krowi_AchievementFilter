@@ -18,13 +18,13 @@ function tooltip.AddAchievementLine(currentAchievement, otherAchievementId, show
 	end
 	if completed then
 		icon = "|T136814:0|t";
-		color = sameAchievement and addon.Colors.LightGreenRGB or addon.Colors.GreenRGB;
+		color = sameAchievement and addon.Util.Colors.LightGreenRGB or addon.Util.Colors.GreenRGB;
 	elseif state and (not state or state == "Past") then
 		icon = "|T136813:0|t";
-		color = sameAchievement and addon.Colors.LightRedRGB or addon.Colors.RedRGB;
+		color = sameAchievement and addon.Util.Colors.LightRedRGB or addon.Util.Colors.RedRGB;
 	else
 		icon = "|T136815:0|t";
-		color = sameAchievement and addon.Colors.LightGreyRGB or addon.Colors.GreyRGB;
+		color = sameAchievement and addon.Util.Colors.LightGreyRGB or addon.Util.Colors.GreyRGB;
 	end
 
 	if showCurrentCharacterIcons then
@@ -52,10 +52,10 @@ local function GetCriteriaTextAndColor(achievementId, criteriaIndex)
 	if criteriaString ~= "" or hasValueProgress then
 		if completed then
 			icon = "|T136814:0|t";
-			color = addon.Colors.GreenRGB;
+			color = addon.Util.Colors.GreenRGB;
 		else
 			icon = "|T136815:0|t";
-			color = addon.Colors.GreyRGB;
+			color = addon.Util.Colors.GreyRGB;
 		end
 	end
 	local text = criteriaString;
@@ -66,7 +66,7 @@ local function GetCriteriaTextAndColor(achievementId, criteriaIndex)
 		text = icon .. addon.L["TAB"] .. (text or "");
 	end
 
-	return text or "", color or addon.Colors.WhiteRGB;
+	return text or "", color or addon.Util.Colors.WhiteRGB;
 end
 
 function tooltip.AddCriteriaLine(achievementId, criteriaIndex)
@@ -76,7 +76,7 @@ end
 
 function tooltip.AddDoubleCriteriaLine(achievementId, criteriaIndex1, criteriaIndex2)
 	local texts = {"", ""};
-	local colors = {addon.Colors.WhiteRGB, addon.Colors.WhiteRGB};
+	local colors = {addon.Util.Colors.WhiteRGB, addon.Util.Colors.WhiteRGB};
 	for i, criteriaIndex in next, {criteriaIndex1, criteriaIndex2} do
 		texts[i], colors[i] = GetCriteriaTextAndColor(achievementId, criteriaIndex);
 	end

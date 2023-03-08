@@ -50,11 +50,11 @@ local function AddTooltipLine(tooltip, tooltipLine)
     if criteriaIsCompleted then
         icon = "|T136814:0|t";
         text = tooltipLine.CompletedText;
-        color = addon.Colors.GreenRGB;
+        color = addon.Util.Colors.GreenRGB;
     else
         icon = "|T136813:0|t";
         text = tooltipLine.NotCompletedText;
-        color = addon.Colors.RedRGB;
+        color = addon.Util.Colors.RedRGB;
     end
     if tooltipLine.CriteriaIndex ~= 0 then
         text = text:ReplaceVars{

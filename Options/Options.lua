@@ -59,7 +59,11 @@ function options.Load()
     diagnostics.Debug("Options loaded");
 end
 
-string["AddDefaultValueText"] = function(self, valuePath, values)
+string["InjectAddonName_KAF"] = function(str)
+    return str:ReplaceVars{addonName = addon.MetaData.Title};
+end
+
+string["AddDefaultValueText_KAF"] = function(self, valuePath, values)
     local value = options.Defaults.profile;
     local pathParts = strsplittable(".", valuePath);
     for _, part in next, pathParts do
@@ -75,6 +79,6 @@ string["AddDefaultValueText"] = function(self, valuePath, values)
     return self .. "\n\n" .. addon.L["Default value"] .. ": " .. tostring(value);
 end
 
-string["AddReloadRequired"] = function(self)
+string["AddReloadRequired_KAF"] = function(self)
     return self .. "\n\n" .. addon.L["Requires a reload"];
 end

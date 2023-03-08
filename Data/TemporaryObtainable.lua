@@ -135,16 +135,16 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         local isWillBeWas, color;
         if start == "Past" and _end == "Future" then
             isWillBeWas = addon.L["is"];
-            color = addon.Colors.GreenRGB;
+            color = addon.Util.Colors.GreenRGB;
         elseif start == "Future" then
             isWillBeWas = addon.L["will be"];
-            color = addon.Colors.OrangeRGB;
+            color = addon.Util.Colors.OrangeRGB;
         elseif _end == "Past" then
             isWillBeWas = addon.L["was"];
-            color = addon.Colors.RedRGB;
+            color = addon.Util.Colors.RedRGB;
         else
             isWillBeWas = addon.L["was"];
-            color = addon.Colors.RedRGB;
+            color = addon.Util.Colors.RedRGB;
         end
 
         return isWillBeWas, color;
@@ -203,7 +203,7 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
 
     function temporaryObtainable:GetNotObtainableText(achievement)
         if achievement.TemporaryObtainable.Start == nil and achievement.TemporaryObtainable.End == nil then
-            return addon.L["This achievement is no longer obtainable"], addon.Colors.RedRGB;
+            return addon.L["This achievement is no longer obtainable"], addon.Util.Colors.RedRGB;
         end
 
         isWillBeWas, neverOnceTempObt, startText, startDetail, endText, endDetail = nil, nil, nil, nil, nil, nil;

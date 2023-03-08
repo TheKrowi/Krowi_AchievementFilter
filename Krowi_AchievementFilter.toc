@@ -19,7 +19,6 @@ Libs\Files.xml
 
 Plugins\Files.xml
 
-Colors.lua
 MetaData.lua
 Credits.lua
 

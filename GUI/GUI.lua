@@ -317,7 +317,7 @@ function gui.ShowStatusBarTooltip(self, anchor)
 	end
 	text = self.NumOfCompAch .. text .. " / " .. self.NumOfAch;
 
-	gui.GameTooltipProgressBar:Show(GameTooltip, 0, self.NumOfAch, self.NumOfCompAch, numOfNotObtAch, 0, 0, addon.Colors.GreenRGB, addon.Colors.RedRGB, nil, nil, text);
+	gui.GameTooltipProgressBar:Show(GameTooltip, 0, self.NumOfAch, self.NumOfCompAch, numOfNotObtAch, 0, 0, addon.Util.Colors.GreenRGB, addon.Util.Colors.RedRGB, nil, nil, text);
 
 	GameTooltip:SetMinimumWidth(140);
     GameTooltip:Show();

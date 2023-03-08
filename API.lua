@@ -471,7 +471,7 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 		KrowiAF_InjectOptions.AddTable("Layout.args.Tabs.args.Show.args.Show.args", _addonName .. tabName, {
 			order = OrderPP(), type = "toggle", width = AdjustedWidth(0.95),
 			name = tabDisplayName,
-			desc = (""):AddDefaultValueText("Tabs." .. _addonName .. "." .. tabName .. ".Show"),
+			desc = (""):AddDefaultValueText_KAF("Tabs." .. _addonName .. "." .. tabName .. ".Show"),
 			get = function() return addon.Options.db.Tabs[_addonName][tabName].Show; end,
 			set = function() addon.GUI.ShowHideTabs(_addonName, tabName); end
 		});

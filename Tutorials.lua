@@ -26,7 +26,7 @@ local function GetTextColorLower(text, lower, color)
         text = text:lower();
     end
     if color then
-        text = addon.Colors.SetTextColor(text, color);
+        text = addon.Util.Colors.SetTextColor(text, color);
     end
     return text;
 end
@@ -38,11 +38,10 @@ local function GetText1Or2(test, text1, lower1, color1, text2, lower2, color2)
     return GetTextColorLower(text2, lower2 or lower1, color2 or color1);
 end
 
-
 local pages = {};
 function tutorials.Load()
     local options = addon.Options.db;
-    local colors = addon.Colors;
+    local colors = addon.Util.Colors;
     local L = addon.L;
 
     tinsert(pages, { -- TabButtons
@@ -199,7 +198,7 @@ function tutorials.Load()
             {
                 earnedByNumber = tostring(addon.Options.db.Tooltip.Achievements.EarnedBy.Characters):SetColorYellow(),
                 notEarnedByNumber = tostring(addon.Options.db.Tooltip.Achievements.EarnedBy.NotCharacters):SetColorYellow(),
-                achievementPointsEarnedByFormat = string.format(addon.Colors.Yellow, LibStub("AceConfigRegistry-3.0"):GetOptionsTable("Layout", "cmd", "KROWIAF-0.0").args.Header.args.AchievementPoints.args.Format.values[addon.Options.db.AchievementPoints.Format])
+                achievementPointsEarnedByFormat = string.format(addon.Util.Colors.Yellow, LibStub("AceConfigRegistry-3.0"):GetOptionsTable("Layout", "cmd", "KROWIAF-0.0").args.Header.args.AchievementPoints.args.Format.values[addon.Options.db.AchievementPoints.Format])
             };
         end
     });
@@ -383,7 +382,7 @@ function tutorials.Load()
             {
                 lockMonth = GetText1Or2(addon.Options.db.Calendar.LockMonth, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
                 lockAchievementMonth = GetText1Or2(addon.Options.db.Calendar.LockAchievementMonth, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
-                firstWeekDay = string.format(addon.Colors.Yellow, LibStub("AceConfigRegistry-3.0"):GetOptionsTable("Layout", "cmd", "KROWIAF-0.0").args.Calendar.args.Weekdays.args.FirstDayOfTheWeek.values[addon.Options.db.Calendar.FirstWeekDay]),
+                firstWeekDay = string.format(addon.Util.Colors.Yellow, LibStub("AceConfigRegistry-3.0"):GetOptionsTable("Layout", "cmd", "KROWIAF-0.0").args.Calendar.args.Weekdays.args.FirstDayOfTheWeek.values[addon.Options.db.Calendar.FirstWeekDay]),
             };
         end
     });
