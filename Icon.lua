@@ -26,8 +26,8 @@ local function CreateIcon()
             tt:AddDoubleLine(addon.MetaData.Title, addon.MetaData.BuildVersion);
             -- tt:AddLine(" "); -- Empty line
 		    GameTooltip_AddBlankLineToTooltip(tt);
-            tt:AddLine(addon.L["Left click"] .. " " .. string.format(addon.Util.Colors.AddonBlue, addon.L["Icon Left click"]));
-            tt:AddLine(addon.L["Right click"] .. " "  .. string.format(addon.Util.Colors.AddonBlue, addon.L["Icon Right click"]));
+            tt:AddLine(addon.L["Left click"] .. " " .. addon.L["Icon Left click"]:SetColorAddonBlue());
+            tt:AddLine(addon.L["Right click"] .. " "  .. addon.L["Icon Right click"]:SetColorAddonBlue());
         end,
     });
 end
