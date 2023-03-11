@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 53.2 - 2023-03-08
+### Changed
+- Select All and Deselect All buttons for events are now right aligned
+
 ## 53.1 - 2023-03-08
 ### Fixed
 - New user should no longer get errors for the old SavedData object

@@ -545,6 +545,9 @@ do --[[ KrowiAF_RegisterEventOptions ]]
 		KrowiAF_InjectOptions.AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", "Blank1", {
 			order = OrderPP(), type = "description", width = "full", name = ""
 		});
+		KrowiAF_InjectOptions.AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", "Blank2", {
+			order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""
+		});
 		KrowiAF_InjectOptions.AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", "SelectAll", {
 			order = OrderPP(), type = "execute", width = AdjustedWidth(),
 			name = addon.L["Select All"],
