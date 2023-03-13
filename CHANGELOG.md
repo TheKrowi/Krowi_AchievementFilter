@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## 53.2 - 2023-03-08
 ### Added
 - Filter to always show completed achievements; overwrites all other filters if checked and the achievement is completed
+- 10.0.7 achievements (over 40+ new ones)
 
 ### Changed
 - Select All and Deselect All buttons for events are now right aligned

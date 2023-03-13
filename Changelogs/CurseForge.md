@@ -25,6 +25,7 @@
 <p><h3>Added (53.2)</h3></p>
 <ul>
 <li>Filter to always show completed achievements; overwrites all other filters if checked and the achievement is completed</li>
+<li>10.0.7 achievements (over 40+ new ones)</li>
 </ul>
 <p><h3>Changed (53.2)</h3></p>
 <ul>

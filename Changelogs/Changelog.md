@@ -19,6 +19,7 @@
 
 ### Added (53.2)
 - Filter to always show completed achievements; overwrites all other filters if checked and the achievement is completed
+- 10.0.7 achievements (over 40+ new ones)
 
 ### Changed (53.2)
 - Select All and Deselect All buttons for events are now right aligned

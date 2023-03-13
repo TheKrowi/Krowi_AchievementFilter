@@ -30,6 +30,7 @@
 [B]Added (53.2)[/B]
 [LIST]
 [*]Filter to always show completed achievements; overwrites all other filters if checked and the achievement is completed
+[*]10.0.7 achievements (over 40+ new ones)
 [/LIST]
 
 [B]Changed (53.2)[/B]
