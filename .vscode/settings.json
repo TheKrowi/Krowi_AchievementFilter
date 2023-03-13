@@ -430,7 +430,8 @@
         "KrowiAF_SavedData",
         "KrowiAF_Filters",
         "Options",
-        "SavedData"
+        "SavedData",
+        "ITEM_QUALITY_COLORS"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

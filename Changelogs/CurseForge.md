@@ -22,3 +22,11 @@
 <ul>
 <li>New user should no longer get errors for the old SavedData object</li>
 </ul>
+<p><h3>Added (53.2)</h3></p>
+<ul>
+<li>Filter to always show completed achievements; overwrites all other filters if checked and the achievement is completed</li>
+</ul>
+<p><h3>Changed (53.2)</h3></p>
+<ul>
+<li>Select All and Deselect All buttons for events are now right aligned</li>
+</ul>

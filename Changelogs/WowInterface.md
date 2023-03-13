@@ -26,3 +26,13 @@
 [LIST]
 [*]New user should no longer get errors for the old SavedData object
 [/LIST]
+
+[B]Added (53.2)[/B]
+[LIST]
+[*]Filter to always show completed achievements; overwrites all other filters if checked and the achievement is completed
+[/LIST]
+
+[B]Changed (53.2)[/B]
+[LIST]
+[*]Select All and Deselect All buttons for events are now right aligned
+[/LIST]
