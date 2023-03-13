@@ -6,7 +6,7 @@
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
-local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true);
+local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true, true);
 
 local tab = "|T:1:8|t";
 L["TAB"] = tab;
