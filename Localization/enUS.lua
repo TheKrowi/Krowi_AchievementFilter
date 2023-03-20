@@ -1,4 +1,4 @@
--- [[ Exported at 2023-03-08 07-19-23 ]] --
+-- [[ Exported at 2023-03-20 17-59-34 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -612,4 +612,6 @@ L["Show alertSystem on reload only when time data is available Desc"] = "Show / 
 L["Active events"] = "Active events";
 L["Ignore Filters"] = "Ignore Filters";
 L["Ignore Filters Desc"] = "Ignore any filters and show all the achievements in the {category}.";
+L["until the end of"] = "until the end of";
+L["Always Show Completed"] = "Always Show Completed";
 
