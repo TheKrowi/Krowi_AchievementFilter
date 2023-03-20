@@ -136,28 +136,28 @@ local function AddTransmogCriteria(tooltip, transmogSets)
             local collected = false;
             for j, item in next, invType.Items do
                 if item.Collected then
-                    color = addon.Colors.Green;
+                    color = addon.Util.Colors.Green;
                     if headerSetCollected == j then
                         collected = true;
                     end
                 else
-                    color = addon.Colors.Grey;
+                    color = addon.Util.Colors.Grey;
                 end
                 text = text .. (j ~= 1 and ", " or "") .. string.format(color, item.Description);
             end
             if collected then
                 icon = "|T136814:0|t";
-                color = addon.Colors.Green;
+                color = addon.Util.Colors.Green;
             else
                 icon = "|T136815:0|t";
-                color = addon.Colors.Grey;
+                color = addon.Util.Colors.Grey;
             end
             text = icon .. addon.L["TAB"] .. string.format(color, _G[invType.EquipLoc] or invType.EquipLoc) .. ":" .. addon.L["TAB"] .. text;
             tooltip:AddLine(text);
         end
     else
-        tooltip:AddLine(string.format(addon.Colors.Red, addon.L["This achievement can't be earned by this character."]));
-        tooltip:AddLine(string.format(addon.Colors.Red, addon.L["This character's class has no transmog set that meet the requirements."]));
+        tooltip:AddLine(string.format(addon.Util.Colors.Red, addon.L["This achievement can't be earned by this character."]));
+        tooltip:AddLine(string.format(addon.Util.Colors.Red, addon.L["This character's class has no transmog set that meet the requirements."]));
     end
     tooltip:Show();
     transmogCriteriaHelper:UnregisterEvent("GET_ITEM_INFO_RECEIVED");

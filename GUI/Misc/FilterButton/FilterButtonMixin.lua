@@ -123,6 +123,7 @@ function KrowiAF_AchievementFrameFilterButtonMixin:AddAchievementFilters(_menu, 
         self:AddCheckBox(tmpMenu, addon.L["Tracking"], filters, {"Tracking"}, true);
     end
     self:AddCheckBox(tmpMenu, addon.L["Excluded"], filters, {"Excluded"}, true);
+    self:AddCheckBox(tmpMenu, addon.L["Always Show Completed"], filters, {"Completion", "AlwaysShowCompleted"}, true);
 
     tmpMenu:AddSeparator();
 

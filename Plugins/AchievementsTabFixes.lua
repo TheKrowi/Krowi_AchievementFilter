@@ -17,7 +17,7 @@ function achievementsTabFixes.InjectOptions()
     KrowiAF_InjectOptions.AddTable(pluginTable, "RenameExplorationDragonIslesCategory", {
         order = OrderPP(), type = "toggle", width = "full",
         name = addon.L["RenameExplorationDragonIslesCategory"],
-        desc = addon.L["RenameExplorationDragonIslesCategory Desc"]:AddDefaultValueText("Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory"),
+        desc = addon.L["RenameExplorationDragonIslesCategory Desc"]:AddDefaultValueText_KAF("Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory"),
         get = function() return addon.Options.db.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory; end,
         set = function() addon.Options.db.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory = not addon.Options.db.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory; end,
         hidden = addon.IsWrathClassic

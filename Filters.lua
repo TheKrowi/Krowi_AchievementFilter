@@ -6,7 +6,8 @@ local filters = addon.Filters;
 local defaultAchievements = {
     Completion = {
         Completed = true,
-        NotCompleted = true
+        NotCompleted = true,
+        AlwaysShowCompleted = false
     },
     Obtainability = {
         Obtainable = true,
@@ -196,6 +197,9 @@ function filters.Validate(_filters, achievement, ignoreCollapseSeries)
         completedCache = completed;
     end
     ignoreCollapseSeriesCache = ignoreCollapseSeries;
+    if _filters.Completion.AlwaysShowCompleted and completedCache then
+        return 4; -- Special filter that overwrites the rest
+    end
     for i, validation in next, validations do
         if validation.Validate(_filters, achievement) then -- If true, DO NOT show achievement
             return -i;

@@ -45,7 +45,7 @@ function header.InjectDynamicOptions()
         KrowiAF_InjectOptions.AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Priority" .. i, {
             order = OrderPP(), type = "select", width = AdjustedWidth(0.95),
             name = "",
-            -- desc = (""):AddDefaultValueText("AchievementPoints.Tooltip.Sort.Priority." .. i, headerSortPriorities), -- Does not show cause name is empty
+            -- desc = (""):AddDefaultValueText_KAF("AchievementPoints.Tooltip.Sort.Priority." .. i, headerSortPriorities), -- Does not show cause name is empty
             values = headerSortPriorities,
             get = function() return addon.Options.db.AchievementPoints.Tooltip.Sort.Priority[i]; end,
             set = function (_, value) SetPriority(i, value); end
@@ -57,7 +57,7 @@ function header.InjectDynamicOptions()
         KrowiAF_InjectOptions.AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Reverse" .. i, {
             order = OrderPP(), type = "toggle", width = AdjustedWidth(0.95),
             name = addon.L["Reverse Sort"],
-            desc = (""):AddDefaultValueText("AchievementPoints.Tooltip.Sort.Reverse." .. i),
+            desc = (""):AddDefaultValueText_KAF("AchievementPoints.Tooltip.Sort.Reverse." .. i),
             get = function() return addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[i]; end,
             set = function() addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[i] = not addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[i]; end
         });

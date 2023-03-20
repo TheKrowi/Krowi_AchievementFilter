@@ -1,4 +1,4 @@
--- [[ Exported at 2023-03-04 11-51-29 ]] --
+-- [[ Exported at 2023-03-20 13-41-30 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -268,6 +268,7 @@ function exportedCategories.Load(a)
     t[739] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[675], t[739]);
     A(t[739], a[781]); -- Explore Northern Stranglethorn
+    A(t[739], a[17366]); -- Relics of a Fallen Empire
     t[1016] = c:New(k.GetCategoryInfoTitle(201), true); -- Reputation
     C(t[675], t[1016]);
     A(t[1016], a[948]); -- Ambassador of the Alliance
@@ -5605,6 +5606,7 @@ function exportedCategories.Load(a)
     A(t[1238], a[15394]); -- Ohn'a'Roll
     A(t[1238], a[16405]); -- Sojourner of Ohn'ahran Plains
     A(t[1238], a[16574]); -- Sleeping on the Job
+    A(t[1238], a[17546]); -- A New Beginning
     t[1243] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[1233], t[1243]);
     A(t[1243], a[16457]); -- Explore the Ohn'ahran Plains
@@ -5705,6 +5707,7 @@ function exportedCategories.Load(a)
     A(t[1256], a[16322]); -- Best in Slot
     A(t[1256], a[16444]); -- Leftovers' Revenge
     A(t[1256], a[16443]); -- Soupervisor
+    A(t[1256], a[17427]); -- Winterpelt Conversationalist
     t[1308] = c:New(k.L["Dragon Glyphs"], true); -- Dragon Glyphs
     C(t[1234], t[1308]);
     A(t[1308], a[16065]); -- Dragon Glyphs: Azure Archives
@@ -5799,7 +5802,9 @@ function exportedCategories.Load(a)
     A(t[1241], a[15638]); -- "Dracthyr, Awaken"
     t[1244] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[1236], t[1244]);
-    A(t[1244], a[16452]); -- Famliar Skies
+    A(t[1244], a[16452]); -- Familiar Skies
+    A(t[1244], a[17534]); -- Explore the Forbidden Reach
+    A(t[1244], a[17315]); -- While We Were Sleeping
     A(t[1244], a[17524]); -- Adventurer of the Forbidden Reach
     A(t[1244], a[17525]); -- Champion of the Forbidden Reach
     A(t[1244], a[17526]); -- Treasures of the Forbidden Reach
@@ -5809,10 +5814,25 @@ function exportedCategories.Load(a)
     A(t[1244], a[17530]); -- Librarian of the Reach
     A(t[1244], a[17531]); -- X Marks the Spot
     A(t[1244], a[17532]); -- Scroll Hunter
+    A(t[1244], a[17397]); -- Door To Door
+    A(t[1244], a[17413]); -- Door Buster
+    A(t[1244], a[17509]); -- "Every Door, Everywhere, All At Once"
+    A(t[1244], a[17543]); -- You Know How to Reach Me
     t[1252] = c:New(k.GetCategoryInfoTitle(95), true); -- PvP
     C(t[1236], t[1252]);
     t[1254] = c:New(k.GetCategoryInfoTitle(201), true); -- Reputation
     C(t[1236], t[1254]);
+    t[1408] = c:New(k.L["Dragon Glyphs"], true); -- Dragon Glyphs
+    C(t[1236], t[1408]);
+    A(t[1408], a[17398]); -- Dragon Glyphs: Winglord's Perch
+    A(t[1408], a[17399]); -- Dragon Glyphs: Talon's Watch
+    A(t[1408], a[17400]); -- Dragon Glyphs: Froststone Peak
+    A(t[1408], a[17401]); -- Dragon Glyphs: Dragonskull Island
+    A(t[1408], a[17402]); -- Dragon Glyphs: Stormsunder Mountain
+    A(t[1408], a[17403]); -- Dragon Glyphs: The Frosted Spine
+    A(t[1408], a[17404]); -- Dragon Glyphs: Talonlords' Perch
+    A(t[1408], a[17405]); -- Dragon Glyphs: Caldera of the Menders
+    A(t[1408], a[17411]); -- Forbidden Reach Glyph Hunter
     t[1407] = c:New(k.L["Dragon Racing"], true); -- Dragon Racing
     C(t[1236], t[1407]);
     A(t[1407], a[17279]); -- Forbidden Reach: Bronze
@@ -5827,6 +5847,9 @@ function exportedCategories.Load(a)
     A(t[1407], a[17294]); -- Forbidden Reach Racing Completionist
     A(t[1407], a[17296]); -- Forbidden Reach Racing Completionist: Silver
     A(t[1407], a[17298]); -- Forbidden Reach Racing Completionist: Gold
+    t[1410] = c:New(k.L["Primal Storms"], true); -- Primal Storms
+    C(t[1236], t[1410]);
+    A(t[1410], a[17540]); -- Under the Weather
     t[1229] = c:New(k.GetCategoryInfoTitle(15272)); -- Dungeons
     C(t[1207], t[1229]);
     A(t[1229], a[16294]); -- Dragonflight Dungeon Hero
@@ -5952,6 +5975,7 @@ function exportedCategories.Load(a)
     C(t[1207], t[1231]);
     A(t[1231], a[16519]); -- Dragon Isles Safari
     A(t[1231], a[16464]); -- Battle on the Dragon Isles
+    A(t[1231], a[17406]); -- Battle on the Dragon Isles II
     A(t[1231], a[16501]); -- Aquatic Battler of the Dragon Isles
     A(t[1231], a[16503]); -- Beast Battler of the Dragon Isles
     A(t[1231], a[16504]); -- Critter Battler of the Dragon Isles
@@ -5964,6 +5988,7 @@ function exportedCategories.Load(a)
     A(t[1231], a[16511]); -- Undead Battler of the Dragon Isles
     A(t[1231], a[16512]); -- Family Battler of the Dragon Isles
     A(t[1231], a[16399]); -- Lovin' Lubbins
+    A(t[1231], a[17541]); -- Global Swarming
     t[1268] = c:New(k.L["Dragonriding"]); -- Dragonriding
     C(t[1207], t[1268]);
     A(t[1268], a[15794]); -- A New Friend
@@ -6280,6 +6305,12 @@ function exportedCategories.Load(a)
     A(t[1149], a[141]); -- Ultimate Triage
     A(t[1149], a[16799]); -- Personal Crafter
     A(t[1149], a[16791]); -- Merchant Artisan
+    A(t[1149], a[17410]); -- Craftsman of the Zandalar Tribe
+    A(t[1149], a[17412]); -- Craftsman of the Argent Dawn
+    A(t[1149], a[17496]); -- Renowned Weaponsmith
+    A(t[1149], a[17497]); -- Renowned Armorsmith
+    A(t[1149], a[17498]); -- Renowned Leatherworking Specialist
+    A(t[1149], a[17499]); -- Renowned Tailoring Specialist
     t[1150] = c:New(k.GetCategoryInfoTitle(14864)); -- Classic
     C(t[1149], t[1150]);
     A(t[1150], a[116]); -- Professional Journeyman
@@ -6318,6 +6349,7 @@ function exportedCategories.Load(a)
     A(t[1150], a[131]); -- Journeyman Medic
     A(t[1150], a[132]); -- Expert Medic
     A(t[1150], a[133]); -- Artisan Medic
+    A(t[1150], a[17367]); -- Deadliest Cache
     t[1151] = c:New(k.GetCategoryInfoTitle(14865)); -- The Burning Crusade
     C(t[1149], t[1151]);
     A(t[1151], a[733]); -- Professional Outland Master
@@ -8335,6 +8367,9 @@ function exportedCategories.Load(a)
     A(t[988], a[8213]); -- Friends In Places Higher Yet
     A(t[988], a[8794]); -- Friends In Places Even Higher Than That
     A(t[988], a[9925]); -- Friends In Places Yet Even Higher Than That
+    t[1409] = c:New(k.L["Recruit-a-Friend"]); -- Recruit-a-Friend
+    C(t[972], t[1409]);
+    A(t[1409], a[17426]); -- Toolbox Trouble
     t[1043] = c:New(k.L["The Entitled"] .. " " .. (UnitName("player"))); -- The Entitled Player
     C(t[971], t[1043]);
     t[1045] = c:New(k.GetCategoryInfoTitle(14864)); -- Classic

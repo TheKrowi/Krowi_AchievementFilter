@@ -551,10 +551,6 @@ function addon.ReplaceVarsWithReloadReq(str, vars)
     return addon.Util.ReplaceVars(str, vars);
 end
 
-string["InjectAddonName"] = function(str)
-    return str:ReplaceVars{addonName = addon.MetaData.Title};
-end
-
 function addon.GetAchievementInfo(achievementID) -- Returns an additional bool indicating if the achievement is added to the game yet or not
     local id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy, isStatistic = GetAchievementInfo(achievementID);
     if id then

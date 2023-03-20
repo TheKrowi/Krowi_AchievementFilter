@@ -1,4 +1,4 @@
--- [[ Exported at 2023-02-24 21-20-24 ]] --
+-- [[ Exported at 2023-03-20 13-40-44 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1577,7 +1577,7 @@ function exportedAchievements.Load(a, t)
     a[17304] = b:New(17304); -- Defense Protocol Alpha: Terminated
 
     local aIDs = {};
-    for i = 1, 17532 do
+    for i = 1, 17546 do
         if a[i] ~= nil then
             tinsert(aIDs, i);
         end

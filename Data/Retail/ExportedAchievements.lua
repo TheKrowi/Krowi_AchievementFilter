@@ -1,4 +1,4 @@
--- [[ Exported at 2023-02-24 21-20-17 ]] --
+-- [[ Exported at 2023-03-20 13-40-23 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -8352,7 +8352,7 @@ function exportedAchievements.Load(a, t)
     a[16447] = b:New(16447); -- What Are The Chances...
     a[16450] = b:New(16450); -- The Power is MINE!
     a[16451] = b:New(16451); -- The Ol Raszle Daszle
-    a[16452] = b:New(16452); -- Famliar Skies
+    a[16452] = b:New(16452); -- Familiar Skies
     a[16453] = b:New(16453); -- Liquid Hot Magma
     a[16456] = b:New(16456); -- Weapons of the Maruukai
     a[16457] = b:New(16457); -- Explore the Ohn'ahran Plains
@@ -8607,6 +8607,7 @@ function exportedAchievements.Load(a, t)
     a[17298] = b:New(17298); -- Forbidden Reach Racing Completionist: Gold
     a[17305] = b:New(17305); -- Trading Post: Dragonflight
     a[17314] = b:New(17314); -- Heroic Edition: Tangled Dreamweaver
+    a[17315] = b:New(17315); -- While We Were Sleeping
     a[17321] = b:New(17321); -- Elders of the Dragon Isles
     a[17330] = b:New(17330); -- Reverse Racer: Bronze
     a[17331] = b:New(17331); -- Reverse Racer: Silver
@@ -8618,6 +8619,35 @@ function exportedAchievements.Load(a, t)
     a[17342] = b:New(17342); -- The Future We Make
     a[17343] = b:New(17343); -- Drop It Like It's Hot
     a[17345] = b:New(17345); -- Airborne Tumbler
+    a[17366] = b:New(17366); -- Relics of a Fallen Empire
+    a[17367] = b:New(17367); -- Deadliest Cache
+    a[17397] = b:New(17397); -- Door To Door
+    a[17398] = b:New(17398); -- Dragon Glyphs: Winglord's Perch
+    a[17399] = b:New(17399); -- Dragon Glyphs: Talon's Watch
+    a[17400] = b:New(17400); -- Dragon Glyphs: Froststone Peak
+    a[17401] = b:New(17401); -- Dragon Glyphs: Dragonskull Island
+    a[17402] = b:New(17402); -- Dragon Glyphs: Stormsunder Mountain
+    a[17403] = b:New(17403); -- Dragon Glyphs: The Frosted Spine
+    a[17404] = b:New(17404); -- Dragon Glyphs: Talonlords' Perch
+    a[17405] = b:New(17405); -- Dragon Glyphs: Caldera of the Menders
+    a[17406] = b:New(17406); -- Battle on the Dragon Isles II
+    a[17410] = b:New(17410); -- Craftsman of the Zandalar Tribe
+    O(a[17410]);
+    a[17411] = b:New(17411); -- Forbidden Reach Glyph Hunter
+    a[17412] = b:New(17412); -- Craftsman of the Argent Dawn
+    O(a[17412]);
+    a[17413] = b:New(17413); -- Door Buster
+    a[17426] = b:New(17426); -- Toolbox Trouble
+    a[17427] = b:New(17427); -- Winterpelt Conversationalist
+    a[17496] = b:New(17496); -- Renowned Weaponsmith
+    O(a[17496]);
+    a[17497] = b:New(17497); -- Renowned Armorsmith
+    O(a[17497]);
+    a[17498] = b:New(17498); -- Renowned Leatherworking Specialist
+    O(a[17498]);
+    a[17499] = b:New(17499); -- Renowned Tailoring Specialist
+    O(a[17499]);
+    a[17509] = b:New(17509); -- "Every Door, Everywhere, All At Once"
     a[17524] = b:New(17524); -- Adventurer of the Forbidden Reach
     a[17525] = b:New(17525); -- Champion of the Forbidden Reach
     a[17526] = b:New(17526); -- Treasures of the Forbidden Reach
@@ -8627,9 +8657,14 @@ function exportedAchievements.Load(a, t)
     a[17530] = b:New(17530); -- Librarian of the Reach
     a[17531] = b:New(17531); -- X Marks the Spot
     a[17532] = b:New(17532); -- Scroll Hunter
+    a[17534] = b:New(17534); -- Explore the Forbidden Reach
+    a[17540] = b:New(17540); -- Under the Weather
+    a[17541] = b:New(17541); -- Global Swarming
+    a[17543] = b:New(17543); -- You Know How to Reach Me
+    a[17546] = b:New(17546); -- A New Beginning
 
     local aIDs = {};
-    for i = 1, 17532 do
+    for i = 1, 17546 do
         if a[i] ~= nil then
             tinsert(aIDs, i);
         end

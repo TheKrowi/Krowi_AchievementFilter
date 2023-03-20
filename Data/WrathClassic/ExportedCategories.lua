@@ -1,4 +1,4 @@
--- [[ Exported at 2023-03-04 11-51-30 ]] --
+-- [[ Exported at 2023-03-20 13-41-31 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -2461,6 +2461,8 @@ function exportedCategories.Load(a)
     t[988] = c:New(k.L["Recruit-a-Friend"] .. " (" .. k.GetCategoryInfoTitle(15234) .. ")"); -- Recruit-a-Friend
     C(t[972], t[988]);
     A(t[988], a[1436]); -- Friends In High Places
+    t[1409] = c:New(k.L["Recruit-a-Friend"]); -- Recruit-a-Friend
+    C(t[972], t[1409]);
     t[1043] = c:New(k.L["The Entitled"] .. " " .. (UnitName("player"))); -- The Entitled Player
     C(t[971], t[1043]);
     t[1045] = c:New(k.GetCategoryInfoTitle(14864)); -- Classic
