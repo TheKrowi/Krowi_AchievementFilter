@@ -12,3 +12,7 @@
 <ul>
 <li>A bunch of wrong world map - achievement links</li>
 </ul>
+<p><h3>Fixed (45.1)</h3></p>
+<ul>
+<li>New user should no longer get errors for the old SavedData object (again)</li>
+</ul>
