@@ -15,7 +15,7 @@
 [*]A bunch of wrong world map - achievement links
 [/LIST]
 
-[B]Fixed (45.1)[/B]
+[B]Fixed (54.1)[/B]
 [LIST]
 [*]New user should no longer get errors for the old SavedData object (again)
 [/LIST]
