@@ -137,15 +137,15 @@ function VerifySavedCharacterData()
 end
 
 function FixFeaturesTutorialProgress(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    -- In version 23.0 the tutorial was rewritten and moved from addon.Options.db.FeaturesTutorial to SavedData.FeaturesTutorial
+    -- In version 23.0 the tutorial was rewritten and moved from addon.Options.db.FeaturesTutorial to KrowiAF_SavedData.FeaturesTutorial
     -- Here we clean up the old addon.Options.db.FeaturesTutorial for users pre 23.0
-    -- SavedData.FeaturesTutorial is created by the Tutorial so we don't need to do this here
+    -- KrowiAF_SavedData.FeaturesTutorial is created by the Tutorial so we don't need to do this here
 
     if firstTime and currVersion > "23.0" then
         diagnostics.Debug("First time Features Tutorial Progress OK");
         return;
     end
-    if SavedData.FeaturesTutorial then
+    if KrowiAF_SavedData.FeaturesTutorial then
         diagnostics.Debug("Features Tutorial Progress already cleared from previous version");
         return;
     end
@@ -156,15 +156,15 @@ function FixFeaturesTutorialProgress(prevBuild, currBuild, prevVersion, currVers
 end
 
 function FixElvUISkin(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    -- In version 23.0 the ElvUI skin settings were moved from addon.Options.db.ElvUISkin to SavedData.ElvUISkin
+    -- In version 23.0 the ElvUI skin settings were moved from addon.Options.db.ElvUISkin to KrowiAF_SavedData.ElvUISkin
     -- Here we clean up the old addon.Options.db.ElvUISkin for users pre 23.0
-    -- SavedData.ElvUISkin is created by the ElvUI plugin so we don't need to do this here
+    -- KrowiAF_SavedData.ElvUISkin is created by the ElvUI plugin so we don't need to do this here
 
     if firstTime and currVersion > "23.0" then
         diagnostics.Debug("First time ElvUISkin OK");
         return;
     end
-    if SavedData.ElvUISkin then
+    if KrowiAF_SavedData.ElvUISkin then
         diagnostics.Debug("ElvUISkin already cleared from previous version");
         return;
     end
@@ -257,18 +257,18 @@ end
 
 function FixCharacters(prevBuild, currBuild, prevVersion, currVersion, firstTime)
     -- In version 34.0 the character cache structure changed
-    -- Here we clean up the old SavedData.CharacterAchievementPoints for users pre 34.0
+    -- Here we clean up the old KrowiAF_SavedData.CharacterAchievementPoints for users pre 34.0
 
     if firstTime and currVersion > "34.0" then
         diagnostics.Debug("First time CharacterAchievementPoints OK");
         return;
     end
-    if SavedData.CharacterAchievementPoints == nil then
+    if KrowiAF_SavedData.CharacterAchievementPoints == nil then
         diagnostics.Debug("CharacterAchievementPoints already cleared from previous version");
         return;
     end
 
-    SavedData.CharacterAchievementPoints = nil;
+    KrowiAF_SavedData.CharacterAchievementPoints = nil;
 
     diagnostics.Debug("Cleared CharacterAchievementPoints from previous version");
 end
@@ -437,9 +437,9 @@ function FixTabs2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
     -- }
     -- Porting from pre 34.0 versions is impossible since 37.0 simply overwrites it with default values
     -- Porting from 35.0 - pre 37.0 is difficult because mixed data needs to be handled
-    -- Lastly, data is handled based on SavedData.Tabs and is new in 37.0 so cleanup is needed in SavedData.TabKeys
+    -- Lastly, data is handled based on KrowiAF_SavedData.Tabs and is new in 37.0 so cleanup is needed in KrowiAF_SavedData.TabKeys
     -- Choosing to reset data, cleanup and inform user
-    -- Remove bad tabs from addon.Options.db.Tabs, remove duplicate SavedData.TabKeys value
+    -- Remove bad tabs from addon.Options.db.Tabs, remove duplicate KrowiAF_SavedData.TabKeys value
 
     if firstTime and currVersion > "37.0" then
         KrowiAF_SavedData.Fixes.FixTabs2 = true;
@@ -459,7 +459,7 @@ function FixTabs2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
 
     local newTabKeys = {};
     local addonName2, tabName;
-    for i, tab in next, SavedData.Tabs do
+    for i, tab in next, KrowiAF_SavedData.Tabs do
         addonName2 = tab.AddonName;
         tabName = tab.Name;
         local order = i;
@@ -470,9 +470,9 @@ function FixTabs2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
             order = 1;
         end
         addon.Options.db.Tabs[addonName2][tabName].Order = order;
-        tinsert(newTabKeys, SavedData.TabKeys[i]);
+        tinsert(newTabKeys, KrowiAF_SavedData.TabKeys[i]);
     end
-    SavedData.TabKeys = newTabKeys;
+    KrowiAF_SavedData.TabKeys = newTabKeys;
 
     addon.Options.InjectOptionsTable({
         Locked = {
@@ -560,21 +560,21 @@ function FixTooltipCriteria(prevBuild, currBuild, prevVersion, currVersion, firs
 end
 
 function FixFocusedAchievements(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    -- In version 48.0 SavedData.FocusedAchievements was renamed to SavedData.WatchedAchievements
-    -- Here we clean up the old SavedData.FocusedAchievements for users pre 48.0
-    -- SavedData.WatchedAchievements is created by the Options so we don't need to do this here, just copy if previous existed
+    -- In version 48.0 KrowiAF_SavedData.FocusedAchievements was renamed to KrowiAF_SavedData.WatchedAchievements
+    -- Here we clean up the old KrowiAF_SavedData.FocusedAchievements for users pre 48.0
+    -- KrowiAF_SavedData.WatchedAchievements is created by the Options so we don't need to do this here, just copy if previous existed
 
     if firstTime and currVersion > "48.0" then
         diagnostics.Debug("First time Focused Achievements OK");
         return;
     end
-    if SavedData.FocusedAchievements == nil then
+    if KrowiAF_SavedData.FocusedAchievements == nil then
         diagnostics.Debug("Focused Achievements already renamed");
         return;
     end
 
-    SavedData.WatchedAchievements = SavedData.FocusedAchievements;
-    SavedData.FocusedAchievements = nil;
+    KrowiAF_SavedData.WatchedAchievements = KrowiAF_SavedData.FocusedAchievements;
+    KrowiAF_SavedData.FocusedAchievements = nil;
 
     diagnostics.Debug("Focused Achievements renamed");
 end
@@ -695,19 +695,19 @@ function FixEventRemindersOptions2(prevBuild, currBuild, prevVersion, currVersio
 end
 
 function FixActiveEvents(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    -- In version 52.0 SavedData.ActiveEvents became obsolete
-    -- Here we clean up the old SavedData.ActiveEvents for users pre 52.0
+    -- In version 52.0 KrowiAF_SavedData.ActiveEvents became obsolete
+    -- Here we clean up the old KrowiAF_SavedData.ActiveEvents for users pre 52.0
 
     if firstTime and currVersion > "51.4" then
-        diagnostics.Debug("SavedData.ActiveEvents OK");
+        diagnostics.Debug("KrowiAF_SavedData.ActiveEvents OK");
         return;
     end
-    if SavedData.ActiveEvents == nil then
-        diagnostics.Debug("SavedData.ActiveEvents already cleared from previous version");
+    if KrowiAF_SavedData.ActiveEvents == nil then
+        diagnostics.Debug("KrowiAF_SavedData.ActiveEvents already cleared from previous version");
         return;
     end
 
-    SavedData.ActiveEvents = nil;
+    KrowiAF_SavedData.ActiveEvents = nil;
 
-    diagnostics.Debug("Cleared SavedData.ActiveEvents from previous version");
+    diagnostics.Debug("Cleared KrowiAF_SavedData.ActiveEvents from previous version");
 end

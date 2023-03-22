@@ -8,3 +8,6 @@
 
 ### Fixed
 - A bunch of wrong world map - achievement links
+
+### Fixed (45.1)
+- New user should no longer get errors for the old SavedData object (again)
