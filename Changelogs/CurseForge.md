@@ -24,4 +24,5 @@
 <ul>
 <li>Removed a ton of achievements from the new zone</li>
 <li>Rare error when an achievement of the opposing faction has more criteria than is visible by the current faction</li>
+<li>Keybindings names</li>
 </ul>

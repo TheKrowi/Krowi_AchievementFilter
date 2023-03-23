@@ -1,13 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 54.2 - 2023-03-23
+## 54.2 - 2023-03-24
 ### Added
 - Possibility to show a faction icon on the achievement if the achievement is faction specific
 
 ### Fixed
 - Removed a ton of achievements from the new zone
 - Rare error when an achievement of the opposing faction has more criteria than is visible by the current faction
+- Keybindings names
 
 ## 54.1 - 2023-03-22
 ### Fixed

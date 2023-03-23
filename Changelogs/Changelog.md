@@ -18,3 +18,4 @@
 ### Fixed (54.2)
 - Removed a ton of achievements from the new zone
 - Rare error when an achievement of the opposing faction has more criteria than is visible by the current faction
+- Keybindings names

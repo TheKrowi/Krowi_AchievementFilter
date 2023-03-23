@@ -18,6 +18,9 @@ LibStub(addon.Libs.AceEvent):Embed(addon.Event);
 -- [[ Tabs ]] --
 addon.Tabs.Load();
 
+-- [[ Binding names ]] --
+BINDING_HEADER_KrowiAF = addon.MetaData.Title;
+
 -- [[ Faction data ]] --
 addon.Faction = {};
 addon.Faction.IsAlliance = UnitFactionGroup("player") == "Alliance";

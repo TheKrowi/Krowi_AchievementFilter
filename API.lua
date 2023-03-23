@@ -497,6 +497,10 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 		InjectOptionsDefaults(_addonName, tabName, showByDefault);
 		SetOptionsOrder(_addonName, tabName, index);
 		InjectOptionsTable(_addonName, tabName, addonDisplayName, tabDisplayName, bindingName, index);
+
+		if bindingName then
+			_G["BINDING_NAME_" .. bindingName] = addon.L["Toggle"] .. " " .. tabDisplayName .. " "  .. addon.L["tab"];
+		end
 	end
 end
 

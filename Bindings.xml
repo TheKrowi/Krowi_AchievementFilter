@@ -5,22 +5,22 @@
 -->
 
 <Bindings>
-    <Binding name="KrowiAF_OPEN_TAB_Achievements" header="AF_NAME" category="ADDONS">
+    <Binding name="KrowiAF_OPEN_TAB_Achievements" category="BINDING_HEADER_KrowiAF">
         KrowiAF_ToggleAchievementFrame("Krowi_AchievementFilter", "Achievements");
     </Binding>
-    <Binding name="KrowiAF_OPEN_TAB_Expansions" category="ADDONS">
+    <Binding name="KrowiAF_OPEN_TAB_Expansions" category="BINDING_HEADER_KrowiAF">
         KrowiAF_ToggleAchievementFrame("Krowi_AchievementFilter", "Expansions");
     </Binding>
-    <Binding name="KrowiAF_OPEN_TAB_Events" category="ADDONS">
+    <Binding name="KrowiAF_OPEN_TAB_Events" category="BINDING_HEADER_KrowiAF">
         KrowiAF_ToggleAchievementFrame("Krowi_AchievementFilter", "Events");
     </Binding>
-    <Binding name="KrowiAF_OPEN_TAB_PvP" category="ADDONS">
+    <Binding name="KrowiAF_OPEN_TAB_PvP" category="BINDING_HEADER_KrowiAF">
         KrowiAF_ToggleAchievementFrame("Krowi_AchievementFilter", "PvP");
     </Binding>
-    <Binding name="KrowiAF_OPEN_TAB_Specials" category="ADDONS">
+    <Binding name="KrowiAF_OPEN_TAB_Specials" category="BINDING_HEADER_KrowiAF">
         KrowiAF_ToggleAchievementFrame("Krowi_AchievementFilter", "Specials");
     </Binding>
-    <Binding name="KrowiAF_OPEN_CAT_Current_Zone" category="ADDONS">
+    <Binding name="KrowiAF_OPEN_CAT_Current_Zone" category="BINDING_HEADER_KrowiAF">
         KrowiAF_OpenCurrentZone(true);
     </Binding>
 </Bindings>
