@@ -17,4 +17,4 @@
 
 ### Fixed (54.2)
 - Removed a ton of achievements from the new zone
-- Workaround (plugin) for Wowhead Quick Link since the author is not active right now (issue #105)
+- Rare error when an achievement of the opposing faction has more criteria than is visible by the current faction

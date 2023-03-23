@@ -1,4 +1,4 @@
--- [[ Exported at 2023-03-23 07-53-40 ]] --
+-- [[ Exported at 2023-03-23 19-45-49 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -46,7 +46,5 @@ function pluginStrings.Load(L)
     L["Fix World Map Button"] = "Fix World Map Button";
     L["Fix World Map Button Desc"] = "When ElvUI Maps -> World Map -> Smaller World Map is enabled, the World Map Button needs fixing";
     L["Alert System Overwrite Desc"] = "The location settings are not active when ElvUI is enabled. Moving the Loot / Alert Frames anchor will achieve the same result.";
-    L["Wowhead Quick Link"] = "Wowhead Quick Link";
-    L["Wowhead Quick Link Desc"] = "This plugin implements backwards compatibility with old versions of {wowheadQuickLink}.\n\nThere are no options.";
 end
 

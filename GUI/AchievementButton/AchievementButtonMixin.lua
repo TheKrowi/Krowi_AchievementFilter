@@ -167,15 +167,13 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement, refresh)
 			end
 		end
 
-		if achievement.Faction and addon.Options.db.Achievements.ShowFactionIcon then
-			if achievement.Faction == addon.Objects.Faction.Alliance then
-				self.Faction.Icon:SetAtlas("MountJournalIcons-Alliance");
-			elseif achievement.Faction == addon.Objects.Faction.Horde then
-				self.Faction.Icon:SetAtlas("MountJournalIcons-Horde");
-			end
+		self.Faction:Hide();
+		if achievement.Faction == addon.Objects.Faction.Alliance and addon.Options.db.Achievements.ShowAllianceFactionIcon then
+			self.Faction.Icon:SetAtlas("MountJournalIcons-Alliance");
 			self.Faction:Show();
-		else
-			self.Faction:Hide();
+		elseif achievement.Faction == addon.Objects.Faction.Horde and addon.Options.db.Achievements.ShowHordeFactionIcon then
+			self.Faction.Icon:SetAtlas("MountJournalIcons-Horde");
+			self.Faction:Show();
 		end
 
 		if achievement.AlwaysVisible then

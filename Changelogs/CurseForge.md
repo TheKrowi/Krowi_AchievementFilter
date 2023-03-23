@@ -23,5 +23,5 @@
 <p><h3>Fixed (54.2)</h3></p>
 <ul>
 <li>Removed a ton of achievements from the new zone</li>
-<li>Workaround (plugin) for Wowhead Quick Link since the author is not active right now (issue #105)</li>
+<li>Rare error when an achievement of the opposing faction has more criteria than is visible by the current faction</li>
 </ul>
