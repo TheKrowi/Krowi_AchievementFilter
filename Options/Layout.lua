@@ -633,6 +633,13 @@ options.OptionsTable.args["Layout"] = {
                                     get = function() return addon.Options.db.Achievements.HideDateCompleted; end,
                                     set = function() addon.Options.db.Achievements.HideDateCompleted = not addon.Options.db.Achievements.HideDateCompleted; end,
                                 },
+                                ShowFactionIcon = {
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                                    name = addon.L["Show Faction Icon"],
+                                    desc = addon.L["Show Faction Icon Desc"]:AddDefaultValueText_KAF("Achievements.ShowFactionIcon"),
+                                    get = function() return addon.Options.db.Achievements.ShowFactionIcon; end,
+                                    set = function() addon.Options.db.Achievements.ShowFactionIcon = not addon.Options.db.Achievements.ShowFactionIcon; end,
+                                },
                                 Objectives = {
                                     order = OrderPP(), type = "header",
                                     name = addon.L["Objectives"]

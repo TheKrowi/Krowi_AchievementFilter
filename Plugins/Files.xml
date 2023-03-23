@@ -5,4 +5,5 @@
     <Script file="InstanceAchievementTracker.lua" />
     <Script file="ZygorGuidesViewer.lua" />
     <Script file="AchievementsTabFixes.lua" />
+    <Script file="WowheadQuickLink.lua" />
 </Ui>

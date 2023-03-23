@@ -16,3 +16,12 @@
 <ul>
 <li>New user should no longer get errors for the old SavedData object (again)</li>
 </ul>
+<p><h3>Added (54.2)</h3></p>
+<ul>
+<li>Possibility to show a faction icon on the achievement if the achievement is faction specific</li>
+</ul>
+<p><h3>Fixed (54.2)</h3></p>
+<ul>
+<li>Removed a ton of achievements from the new zone</li>
+<li>Workaround (plugin) for Wowhead Quick Link since the author is not active right now (issue #105)</li>
+</ul>

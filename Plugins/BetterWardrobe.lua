@@ -20,7 +20,7 @@ function betterWardrobe:OnEvent(event, arg1, arg2)
 end
 
 function betterWardrobe.InjectOptions()
-    KrowiAF_InjectOptions.AddPluginTable("BetterWardrobe", addon.L["Better Wardrobe"], addon.L["Better Wardrobe Desc"], function()
+    KrowiAF_InjectOptions.AddPluginTable("BetterWardrobe", addon.L["Better Wardrobe"], addon.L["Better Wardrobe Desc"]:ReplaceVars(addon.L["Better Wardrobe"]), function()
         return IsAddOnLoaded("BetterWardrobe");
     end);
 end
