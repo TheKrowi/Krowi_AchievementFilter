@@ -23,6 +23,8 @@
 [B]Added (54.2)[/B]
 [LIST]
 [*]Possibility to show a faction icon on the achievement if the achievement is faction specific
+[*]More sub zones for The Forbidden Reach
+[*]Tooltip data for the new Forbidden Reach Dragon Races
 [/LIST]
 
 [B]Fixed (54.2)[/B]
