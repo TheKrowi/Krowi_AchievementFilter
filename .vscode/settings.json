@@ -431,7 +431,9 @@
         "KrowiAF_Filters",
         "Options",
         "SavedData",
-        "ITEM_QUALITY_COLORS"
+        "ITEM_QUALITY_COLORS",
+        "GW2_ADDON",
+        "AchivementFrameLeftPanel"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

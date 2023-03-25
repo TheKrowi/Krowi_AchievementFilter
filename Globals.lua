@@ -454,11 +454,13 @@ end
 --     end);
 -- end
 
-function addon.HookAchievementFrameOnShow()
+function addon.HookFunctions()
     hooksecurefunc(AchievementFrame, "Show", function()
         addon.Data.GetCurrentZoneAchievements();
     end);
 
+    hooksecurefunc("AchievementFrame_SetComparisonTabs", addon.GUI.ShowHideTabs);
+    
     -- local funcName = addon.IsWrathClassic and "PanelTemplates_SetTab" or "AchievementFrame_SetTabs";
     -- if addon.IsWrathClassic then
     --     hooksecurefunc("PanelTemplates_SetTab", AchievementFrame_SetTabs);
