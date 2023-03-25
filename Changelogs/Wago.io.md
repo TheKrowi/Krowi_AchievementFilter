@@ -16,6 +16,7 @@
 - Possibility to show a faction icon on the achievement if the achievement is faction specific
 - More sub zones for The Forbidden Reach
 - Tooltip data for the new Forbidden Reach Dragon Races
+- Pet Battle Links and tooltips for the new Forbidden Reach Pet Battle Achievements
 
 ### Fixed (54.2)
 - Removed a ton of achievements from the new zone

@@ -1,4 +1,4 @@
--- [[ Exported at 2022-12-04 09-23-15 ]] --
+-- [[ Exported at 2023-03-25 08-59-21 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1822,6 +1822,20 @@ function exportedPetBattles.Load(m)
     AddCEL(tempA16511, 16511, 6, url .. "Encounter/1423");
     AddCEL(tempA16511, 16511, 7, url .. "Encounter/1418");
     AddCEL(tempA16511, 16511, 8, url .. "Encounter/1414");
+    m[17406] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Section/97"); -- Battle on the Dragon Isles II
+    AddCEL(m[17406], 17406, 1, url .. "Encounter/1498");
+    AddCEL(m[17406], 17406, 2, url .. "Encounter/1500");
+    AddCEL(m[17406], 17406, 3, url .. "Encounter/1502");
+    AddCEL(m[17406], 17406, 4, url .. "Encounter/1504");
+    AddCEL(m[17406], 17406, 5, url .. "Encounter/1497");
+    AddCEL(m[17406], 17406, 6, url .. "Encounter/1499");
+    AddCEL(m[17406], 17406, 7, url .. "Encounter/1501");
+    AddCEL(m[17406], 17406, 8, url .. "Encounter/1503");
+    m[17541] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Section/99"); -- Global Swarming
+    AddCEL(m[17541], 17541, 1, url .. "Encounter/1506");
+    AddCEL(m[17541], 17541, 2, url .. "Encounter/1514");
+    AddCEL(m[17541], 17541, 3, url .. "Encounter/1510");
+    AddCEL(m[17541], 17541, 4, url .. "Encounter/1518");
     m[9069] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Section/12"); -- An Awfully Big Adventure
     AddCEL(m[9069], 9069, 1, url .. "Encounter/112");
     AddCEL(m[9069], 9069, 2, url .. "Encounter/92");
