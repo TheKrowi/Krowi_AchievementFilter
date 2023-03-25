@@ -62,44 +62,174 @@ local function SkinTabs()
     end);
 end
 
-local function SkinCategoriesFrame(frame, skins)
-    -- -- Frame
-    -- frame:StripTextures();
-    -- frame.ScrollFrame.ScrollBar.trackBG:SetAlpha(0);
-    -- frame.ScrollFrame:CreateBackdrop("Transparent");
-	-- frame.ScrollFrame.backdrop:Point("TOPLEFT", 0, 4);
-	-- frame.ScrollFrame.backdrop:Point("BOTTOMRIGHT", -2, -3);
+local function SetCategory(self, category)
+    if not category then
+        return; -- Skip hidden buttons
+    end
+    local children = category.Children;
+    local indentation = addon.Options.db.Categories.Indentation;
+    indentation = 2 + (category.Level - 1) * indentation;
+    self.Label:SetText(category.Name);
+    self.Label:SetPoint("LEFT", self, "LEFT", 25 + indentation, 0);
+    self.arrow:Hide();
+    if children and #children > 0 and category.ShowCollapseIcon then
+        self.arrow:Show();
+        if category.NotCollapsed then
+            self.arrow:SetRotation(-1.5707);
+        else
+            self.arrow:SetRotation(0);
+        end
+    end
 
-    -- -- Buttons
-    -- local buttons = frame.ScrollFrame.buttons;
-    -- for _, button in next, buttons do
-    --     button:StripTextures(true);
-	-- 	button:StyleButton();
-    -- end
-
-    -- -- Scrollbar
-    -- skins:HandleScrollBar(frame.ScrollFrame.ScrollBar, 5);
+    --for summary and watchlist
+    local iconTexture = "Interface/AddOns/GW2_UI/textures/uistuff/arrow_right";
+    if category.IsSummary or category.IsWatchList then
+        iconTexture = category.IsWatchList and "Interface/AddOns/GW2_UI/textures/uistuff/watchicon" or "Interface/AddOns/GW2_UI/textures/uistuff/hamburger";
+        self.arrow:SetTexture(iconTexture);
+        self.arrow:SetSize(25, 25);
+        self.arrow:Show();
+        self.arrow:SetRotation(0);
+        self.Label:SetPoint("LEFT", self, "LEFT", 40, 0);
+    else
+        self.arrow:SetTexture(iconTexture);
+    end
 end
 
-local function SkinGameTooltipProgressBar(progressBar, engine)
-    -- progressBar.BorderLeftTop:StripTextures();
-    -- progressBar.BorderLeftMiddle:StripTextures();
-    -- progressBar.BorderLeftBottom:StripTextures();
-    -- progressBar.BorderRightTop:StripTextures();
-    -- progressBar.BorderRightMiddle:StripTextures();
-    -- progressBar.BorderRightBottom:StripTextures();
-    -- progressBar.BorderMiddleTop:StripTextures();
-    -- progressBar.BorderMiddleMiddle:StripTextures();
-    -- progressBar.BorderMiddleBottom:StripTextures();
-    -- progressBar.Background:Hide();
-    -- local fills = progressBar.Fill;
-    -- for _, fill in next, fills do
-    --     fill:SetTexture(engine.media.normTex);
-    -- end
-    -- progressBar:CreateBackdrop();
-    -- progressBar.backdrop:Point("TOPLEFT", 7, -5);
-    -- progressBar.backdrop:Point("BOTTOMRIGHT", -5, 5);
-    -- progressBar:SetColors({R = 4/255, G = 179/255, B = 30/255}, {R = 179/255, G = 4/255, B = 30/255});
+local function SkinCategory(button)
+    button:GwStripTextures();
+    button:SetHeight(36);
+	button:SetPoint("LEFT", 2, 0);
+
+    button.BackgroundMid:SetTexture("Interface/AddOns/GW2_UI/textures/character/menu-bg");
+    button.BackgroundMid:ClearAllPoints();
+    button.BackgroundMid:SetPoint("TOPLEFT", button, "TOPLEFT", 0, 0);
+    button.BackgroundMid:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 0, 0);
+
+    local arrow = button:CreateTexture("bg", "BACKGROUND", nil, 0);
+    button.arrow = arrow;
+    button.arrow:ClearAllPoints();
+    button.arrow:SetPoint("LEFT", 10, 0);
+    button.arrow:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/arrow_right");
+    button.arrow:SetSize(16, 16);
+
+    button.Label:SetTextColor(255 / 255, 241 / 255, 209 / 255);
+    button.Label:SetShadowColor(0, 0, 0, 0);
+    button.Label:SetShadowOffset(1, -1);
+    button.Label:SetFont(DAMAGE_TEXT_FONT, 14);
+    button.Label:SetJustifyH("LEFT");
+    button.Label:SetJustifyV("MIDDLE");
+
+    button:SetHighlightTexture("Interface/AddOns/GW2_UI/textures/character/menu-hover");
+    local hl = button:GetHighlightTexture();
+    hl:SetVertexColor(0.8, 0.8, 0.8, 0.8);
+    hl:GwSetInside(button.BackgroundMid);
+    button:HookScript("OnEnter", function()
+        GW2_ADDON.TriggerButtonHoverAnimation(button, hl);
+    end);
+
+    button.SetIndentation = function(self, indentation)
+        button.arrow:SetPoint("LEFT", 10 + (self.Category.Level - 1) * indentation, 0);
+    end;
+
+    local originalSetCategory = button.SetCategory;
+    button.SetCategory = function(self, category)
+        originalSetCategory(self, category);
+        SetCategory(self, category);
+    end;
+end
+
+local function UpdateCategoryState(button, index)
+    if not button.Category then
+        return;
+    end
+
+    local zebra = (index % 2) == 1 or false;
+    if zebra then
+        button.BackgroundMid:SetVertexColor(1, 1, 1, 1);
+    else
+        button.BackgroundMid:SetVertexColor(0, 0, 0, 0);
+    end
+end
+
+local function HandleAchivementsScrollControls(self)
+    local scrollBar = self.ScrollFrame.ScrollBar;
+    scrollBar:SetWidth(20);
+
+    scrollBar.trackBG:ClearAllPoints();
+    scrollBar.trackBG:SetPoint("TOP",  0, 0);
+    scrollBar.trackBG:SetPoint("BOTTOM", 0, 0);
+    scrollBar.trackBG:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/scrollbg");
+
+    scrollBar.ScrollUpButton:ClearAllPoints();
+    scrollBar.ScrollUpButton:SetPoint("BOTTOM", scrollBar, "TOP", 0, 0);
+    scrollBar.ScrollUpButton:SetSize(12, 12);
+    local bg = scrollBar.ScrollUpButton:CreateTexture("bg", "BACKGROUND", nil, 0);
+    bg:ClearAllPoints();
+    bg:SetPoint("TOPLEFT", 0, 0);
+    bg:SetPoint("BOTTOMRIGHT", 0, 0);
+    bg:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/scrollbutton");
+
+    scrollBar.ScrollDownButton:ClearAllPoints();
+    scrollBar.ScrollDownButton:SetPoint("TOP", scrollBar, "BOTTOM", 0, 0);
+    scrollBar.ScrollDownButton:SetSize(12, 12);
+    bg = scrollBar.ScrollDownButton:CreateTexture("bg", "BACKGROUND", nil, 0)
+    bg:ClearAllPoints();
+    bg:SetPoint("TOPLEFT", 0, 0);
+    bg:SetPoint("BOTTOMRIGHT", 0, 0);
+    bg:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/scrollbutton");
+    bg:SetTexCoord(0, 1, 1, 0);
+end
+
+local function HandleTrimScrollBar(frame)
+    frame:GwStripTextures();
+    GW2_ADDON.HandleNextPrevButton(frame.ScrollUpButton, "up");
+    GW2_ADDON.HandleNextPrevButton(frame.ScrollDownButton, "down");
+    frame.thumbTexture:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/scrollbarmiddle");
+    frame.thumbTexture:SetSize(12, 12);
+end
+
+local function SkinCategoriesFrame(frame)
+    -- -- Frame
+    frame:GwStripTextures();
+
+    -- Buttons
+    local buttons = frame.ScrollFrame.buttons;
+    for _, button in next, buttons do
+        SkinCategory(button);
+    end
+    hooksecurefunc(frame, "Update", function(self)
+        local scrollFrame = self.ScrollFrame;
+        local _buttons = scrollFrame.buttons;
+        for i = 1, #_buttons do
+            UpdateCategoryState(buttons[i], i);
+        end
+    end);
+
+    -- Scrollbar
+    HandleTrimScrollBar(frame.ScrollFrame.ScrollBar);
+    HandleAchivementsScrollControls(frame);
+end
+
+local function SkinGameTooltipProgressBar(progressBar)
+    progressBar.BorderLeftTop:GwStripTextures();
+    progressBar.BorderLeftMiddle:GwStripTextures();
+    progressBar.BorderLeftBottom:GwStripTextures();
+    progressBar.BorderRightTop:GwStripTextures();
+    progressBar.BorderRightMiddle:GwStripTextures();
+    progressBar.BorderRightBottom:GwStripTextures();
+    progressBar.BorderMiddleTop:GwStripTextures();
+    progressBar.BorderMiddleMiddle:GwStripTextures();
+    progressBar.BorderMiddleBottom:GwStripTextures();
+    progressBar.Background:Hide();
+    local fills = progressBar.Fill;
+    for _, fill in next, fills do
+        fill:SetTexture("Interface/Addons/GW2_UI/textures/uistuff/gwstatusbar");
+    end
+    progressBar:GwCreateBackdrop(GW2_ADDON.constBackdropFrameColorBorder, true);
+    progressBar.backdrop:SetPoint("TOPLEFT", 6, -5);
+    progressBar.backdrop:SetPoint("BOTTOMRIGHT", -6, 5);
+    progressBar.backdrop:SetBackdropBorderColor(0, 0, 0, 1);
+    progressBar:SetColors({R = 4/255, G = 179/255, B = 30/255}, {R = 179/255, G = 4/255, B = 30/255});
 end
 
 local function SkinAchievementButton(button, engine, skins)
@@ -687,8 +817,8 @@ local function SkinAll()
 
     if KrowiAF_SavedData.GW2_UISkin.Achievements then
         SkinTabs();
-    --     SkinCategoriesFrame(addon.GUI.CategoriesFrame, skins);
-    --     SkinGameTooltipProgressBar(addon.GUI.GameTooltipProgressBar, engine);
+        SkinCategoriesFrame(addon.GUI.CategoriesFrame);
+        SkinGameTooltipProgressBar(addon.GUI.GameTooltipProgressBar);
     --     SkinAchievementsFrame(addon.GUI.AchievementsFrame, engine, skins);
     --     SkinAchievementSummary(addon.GUI.SummaryFrame, engine, skins);
     --     SkinFilterButton(addon.GUI.FilterButton, addon.GUI.AchievementsFrame, skins);

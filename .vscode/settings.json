@@ -433,7 +433,8 @@
         "SavedData",
         "ITEM_QUALITY_COLORS",
         "GW2_ADDON",
-        "AchivementFrameLeftPanel"
+        "AchivementFrameLeftPanel",
+        "DAMAGE_TEXT_FONT"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
