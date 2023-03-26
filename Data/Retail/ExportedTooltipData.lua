@@ -1,4 +1,4 @@
--- [[ Exported at 2023-03-25 14-19-41 ]] --
+-- [[ Exported at 2023-03-26 14-55-33 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1795,9 +1795,9 @@ function exportedTooltipData.Load(d)
     AddD(d, 200417, tdt.Unit, 17276, 0, t[15], t[16]); -- Forbidden Reach Rush Reverse: Bronze
     AddD(d, 200417, tdt.Unit, 17277, 0, t[15], t[16]); -- Forbidden Reach Rush Reverse: Silver
     AddD(d, 200417, tdt.Unit, 17278, 0, t[15], t[16]); -- Forbidden Reach Rush Reverse: Gold
-    AddD(d, 200685, tdt.Unit, 17541, 1, t[11], t[12]); -- "Vortex"
-    AddD(d, 200693, tdt.Unit, 17541, 2, t[11], t[12]); -- "Tremblor"
-    AddD(d, 200689, tdt.Unit, 17541, 3, t[11], t[12]); -- "Wildfire"
-    AddD(d, 200697, tdt.Unit, 17541, 4, t[11], t[12]); -- "Flow"
+    AddD(d, 200684, tdt.Unit, 17541, 1, t[11], t[12]); -- "Vortex"
+    AddD(d, 200692, tdt.Unit, 17541, 2, t[11], t[12]); -- "Tremblor"
+    AddD(d, 200688, tdt.Unit, 17541, 3, t[11], t[12]); -- "Wildfire"
+    AddD(d, 200696, tdt.Unit, 17541, 4, t[11], t[12]); -- "Flow"
 end
 
