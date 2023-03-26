@@ -277,7 +277,7 @@
 					</Layer>
 				</Layers>
 			</Frame>
-			<CheckButton name="$parentTracked" parentKey="Tracked" hidden="true" inherits="AchievementCheckButtonTemplate">
+			<CheckButton name="$parentTracked" parentKey="Tracked" hidden="true">
 				<Size>
 					<AbsDimension x="15" y="15"/>
 				</Size>
