@@ -22,3 +22,4 @@
 - Removed a ton of achievements from the new zone
 - Rare error when an achievement of the opposing faction has more criteria than is visible by the current faction
 - Keybindings names
+- Achievements trakced by other addons or in previous sessions are not properly tracked when opening the achievement window
