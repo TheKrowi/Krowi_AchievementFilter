@@ -208,6 +208,22 @@ local function SkinCategoriesFrame(frame)
     -- Scrollbar
     HandleTrimScrollBar(frame.ScrollFrame.ScrollBar);
     HandleAchivementsScrollControls(frame);
+
+    -- Re-adjust scrollings after frame size change
+    local scrollChild = frame.ScrollFrame.scrollChild;
+    local buttonHeight = buttons[1]:GetHeight();
+	frame.ScrollFrame.buttonHeight = math.floor(buttonHeight + 0.5);
+	local numButtons = math.ceil(frame.ScrollFrame:GetHeight() / buttonHeight) + 1;
+
+	scrollChild:SetHeight(numButtons * buttonHeight);
+	frame.ScrollFrame:SetVerticalScroll(0);
+	frame.ScrollFrame:UpdateScrollChildRect();
+	local scrollBar = frame.ScrollFrame.scrollBar;
+	scrollBar:SetMinMaxValues(0, numButtons * buttonHeight);
+	scrollBar.buttonHeight = buttonHeight;
+	scrollBar:SetValueStep(buttonHeight);
+	scrollBar:SetStepsPerPage(numButtons - 2);
+	scrollBar:SetValue(0);
 end
 
 local function SkinGameTooltipProgressBar(progressBar)
@@ -232,9 +248,258 @@ local function SkinGameTooltipProgressBar(progressBar)
     progressBar:SetColors({R = 4/255, G = 179/255, B = 30/255}, {R = 179/255, G = 4/255, B = 30/255});
 end
 
-local function SkinAchievementButton(button, engine, skins)
+local function SetSmallText(self)
+    self:SetFont(UNIT_NAME_FONT,11)
+    self:SetTextColor(0.7,0.7,0.7)
+end
+
+local function SetNormalText(self)
+    self:SetFont(UNIT_NAME_FONT,12)
+    self:SetTextColor(1,1,1)
+end
+
+local function SetTitleText(self)
+    self:SetFont(DAMAGE_TEXT_FONT, 14)
+    self:SetTextColor(1,1,1)
+end
+
+local barColors = {
+    incomplete = { r = 93 / 255, g = 93 / 255, b = 93 / 255, a = 1 },
+    red = { r = 153 / 255, g = 60 / 255, b = 48 / 255, a = 1 },
+    blue = { r = 48 / 255, g = 56 / 255, b = 153 / 255 , a = 1 },
+};
+
+local function SkinCriteriaStatusbar(parentFrame, self)
+    if self.skinned then
+        return;
+    end
+    self.skinned = true;
+
+    self:GwStripTextures();
+    local text = self.Text;
+
+    local bar = select(1, self:GetRegions());
+    local fill = select(6, self:GetRegions());
+
+    fill:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/gwstatusbar");
+    bar:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/StatusBar");
+    bar:SetVertexColor(1, 1, 1, 0.5);
+
+    local bColor = barColors.incomplete;
+    if parentFrame.Completed and parentFrame.accountWide then
+        bColor = barColors.blue;
+    elseif parentFrame.Completed and not parentFrame.accountWide  then
+        bColor = barColors.red;
+    end
+
+    self:SetStatusBarColor( bColor.r, bColor.g, bColor.b);
+
+    text:SetFont(DAMAGE_TEXT_FONT, 11);
+    text:SetTextColor(1, 1, 1);
+    text:SetHeight(bar:GetHeight());
+    text:SetJustifyV("MIDDLE");
+end
+
+local function skinAchievementFrameListAchievement(self)
+    self:GwStripTextures();
+    self.Background:Hide();
+    self.HeaderBackground:Hide();
+	self.BottomLeftTsunami:Hide();
+	self.BottomRightTsunami:Hide();
+	self.TopLeftTsunami:Hide();
+	self.TopRightTsunami:Hide();
+	self.BottomTsunami:Hide();
+	self.TopTsunami:Hide();
+
+    self:SetHeight(120);
+    self.CollapsedHeight = 120;
+
+    self.cBackground = self:CreateTexture("cBackground", "BACKGROUND", nil, 2);
+    self.cBackground:ClearAllPoints();
+    self.cBackground:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 0);
+    self.cBackground:SetSize(self:GetHeight(), self:GetHeight());
+    self.cBackground:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/statusbar");
+    self.cBackground:SetVertexColor(1, 1, 1, 0.4);
+
+    self.trackBackground = self:CreateTexture("trackBackground", "BACKGROUND", nil, 1);
+    self.trackBackground:ClearAllPoints();
+    self.trackBackground:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", 0, 0);
+    self.trackBackground:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 0);
+    self.trackBackground:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/achievementfootertracked");
+
+    local tbg = select(2, self.Tracked:GetRegions());
+    local highlight = select(3, self.Tracked:GetRegions());
+    local tText = select(1, self.Tracked:GetRegions());
+    local hover = select(4, self.Tracked:GetRegions());
+    local checked = select(5, self.Tracked:GetRegions());
+    tbg:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/watchicon");
+    highlight:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/watchiconactive");
+    checked:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/watchiconactive");
+    hover:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/watchicon");
+    tText:Hide();
+
+    self.gwBackdrop = CreateFrame("Frame",nil,self,"GwDarkInsetBorder");
+
+    self.Header:ClearAllPoints();
+    self.Header:SetPoint("TOPLEFT", self.cBackground, "TOPRIGHT", 20, 0);
+    self.Header:SetPoint("TOPRIGHT", self, "TOPRIGHT", -20, 0);
+    self.Header:SetHeight(30);
+    SetTitleText(self.Header);
+    self.Header:SetJustifyH("LEFT");
+
+    self.Description:ClearAllPoints();
+    self.Description:SetPoint("TOPLEFT", self.Header, "BOTTOMLEFT", 0, -5);
+    self.Description:SetPoint("TOPRIGHT", self.Header, "BOTTOMRIGHT", 0, -5);
+    self.Description:SetJustifyH("LEFT");
+    self.Description:SetHeight(40);
+    hooksecurefunc(self.Description, "SetTextColor", function(_, r, g, b)
+        if r == 0 and g == 0 and b == 0 then
+            self.Description:SetTextColor(1, 1, 1);
+        end
+    end);
+    SetNormalText(self.Description);
+
+    self.rewardIcon = self:CreateTexture("rewardIcon", "BORDER", nil, 0);
+    self.rewardIcon:ClearAllPoints();
+    self.rewardIcon:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT", 125, 3);
+    self.rewardIcon:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/rewardchestsmall");
+    self.rewardIcon:SetSize(24, 24);
+
+    hooksecurefunc(self.Reward, "Hide", function()
+        self.rewardIcon:Hide();
+    end);
+    hooksecurefunc(self.Reward, "Show", function()
+        self.rewardIcon:Show();
+    end);
+
+    if not self.Reward:IsShown() then
+      self.rewardIcon:Hide();
+    end
+
+    self.Reward:ClearAllPoints();
+    self.Reward:SetPoint("BOTTOMLEFT", self.rewardIcon, "BOTTOMRIGHT", 5, 5);
+    self.Reward:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", 0, 5);
+    self.Reward:SetJustifyH("LEFT");
+    self.Reward:SetHeight(15);
+    SetSmallText(self.Reward);
+
+    self.HiddenDescription:SetPoint("TOPLEFT", self.Header, "BOTTOMLEFT", 0, -5);
+    self.HiddenDescription:SetPoint("TOPRIGHT", self.Header, "BOTTOMRIGHT", 0, -5);
+    self.HiddenDescription:SetJustifyH("LEFT");
+    self.HiddenDescription:SetHeight(40);
+    SetNormalText(self.HiddenDescription);
+
+    self.DateCompleted:ClearAllPoints();
+    self.DateCompleted:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", -5, 5);
+    self.DateCompleted:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT", 0, 5);
+    self.DateCompleted:SetHeight(15);
+    self.DateCompleted:SetJustifyH("RIGHT");
+    SetSmallText(self.DateCompleted);
+
+    self.Icon.Border:Hide();
+    self.Icon.Texture:Hide();
+
+    self.Shield:ClearAllPoints();
+    self.Shield:SetPoint("CENTER", self.cBackground, "CENTER", 0, 0);
+
+    hooksecurefunc(self, "ToggleTracking", function(self)
+      self.GwUpdateAchievementFrameListAchievement(self);
+    end);
+
+    hooksecurefunc(self, "DisplayObjectives", function(self, id, completed)
+        local objectivesFrame = addon.GUI.AchievementsObjectives;
+
+        objectivesFrame:ClearAllPoints();
+        objectivesFrame:SetPoint("TOPLEFT",self.HiddenDescription,"BOTTOMLEFT");
+        objectivesFrame:SetPoint("TOPRIGHT",self.HiddenDescription,"BOTTOMRIGHT");
+
+        local i = 1;
+        while _G["KrowiAF_AchievementsObjectivesMeta" .. i] do
+            SetSmallText(_G["KrowiAF_AchievementsObjectivesMeta" .. i].Label);
+            i = i + 1;
+        end
+
+        i = 1;
+        while _G["KrowiAF_AchievementsObjectivesTextCriteria" .. i] do
+            SetSmallText(_G["KrowiAF_AchievementsObjectivesTextCriteria" .. i].Name);
+            i = i + 1;
+        end
+
+        i = 1;
+        while _G["KrowiAF_AchievementsObjectivesProgressBar" .. i] do
+            SkinCriteriaStatusbar(self, _G["KrowiAF_AchievementsObjectivesProgressBar" .. i]);
+            i = i + 1;
+        end
+    end);
+
+    if not self.completeFlare then
+      self.completeFlare = self:CreateTexture("completeFlare", "BACKGROUND", nil, 0)
+      self.completeFlare:ClearAllPoints();
+      self.completeFlare:SetPoint("TOPLEFT",self,"TOPLEFT",0,0)
+      self.completeFlare:SetSize(256,128)
+      self.completeFlare:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/achievementcompletebg")
+
+    end
+    if not self.fBackground then
+      self.fBackground = self:CreateTexture("fBackground", "BACKGROUND", nil, 0)
+      self.fBackground:ClearAllPoints();
+      self.fBackground:SetPoint("TOPLEFT")
+      self.fBackground:SetPoint("BOTTOMRIGHT")
+      self.fBackground:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/statusbar")
+      self.fBackground:SetVertexColor(1,1,1,0.2)
+    end
+    if not self.bottomBar then
+      self.bottomBar = self:CreateTexture("bottomBar", "BACKGROUND", nil, 2)
+      self.bottomBar:ClearAllPoints();
+      self.bottomBar:SetPoint("BOTTOMRIGHT")
+      self.bottomBar:SetSize(512,64)
+      self.bottomBar:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/achievementfooter")
+    end
+    if not self.completedBackground then
+      self.completedBackground = self:CreateTexture("completedBackground", "BACKGROUND", nil, 3)
+      self.completedBackground:ClearAllPoints();
+      self.completedBackground:SetPoint("TOPLEFT",self,"TOPLEFT",0,0)
+      self.completedBackground:SetPoint("BOTTOMLEFT",self,"TOPLEFT",0,-120)
+      self.completedBackground:SetWidth(240)
+      self.completedBackground:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/achievementcomplete")
+      self.completedBackground:SetVertexColor(1,1,1,0.7)
+    end
+
+    self.Tracked:ClearAllPoints()
+    self.Tracked:SetPoint("BOTTOMRIGHT",self.bottomBar,"BOTTOMRIGHT",-7,0)
+    self.Tracked:SetSize(30,30)
+    self.Tracked:HookScript("OnClick",function()
+    --   if selectedCategoryID == "watchlist" then
+        -- UpdateCategoriesDataProvider()
+    --   end
+    end)
+
+    self.Highlight:GwStripTextures()
+    self.Highlight.Bottom = _G[self.Highlight:GetName() .. "Bottom"]
+    self.Highlight.Bottom:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/achievementhover")
+    self.Highlight.Bottom:SetBlendMode("ADD")
+    self.Highlight.Bottom:ClearAllPoints()
+    self.Highlight.Bottom:SetPoint("TOPLEFT",self,"TOPLEFT",0,0)
+    self.Highlight.Bottom:SetPoint("BOTTOMRIGHT",self,"BOTTOMRIGHT",0,0)
+    self.Highlight.Bottom:SetTexCoord(0,1,0,1)
+    self.Highlight.Bottom:SetVertexColor(1,1,1,1)
+    self.hasSkinnedHighlight = true
+
+    self:HookScript("OnEnter",function()
+      GW2_ADDON.TriggerButtonHoverAnimation(self,self.Highlight.Bottom)
+    end)
+end
+
+local function SkinAchievementButton(buttons, button, index)
+	skinAchievementFrameListAchievement(button)
+
+    if index == 1 then
+        button:SetPoint("TOPLEFT", 0, 0);
+    else
+        button:SetPoint("TOPLEFT", buttons[index - 1], "BOTTOMLEFT", 0, -5);
+    end
+
 	-- button:SetFrameLevel(button:GetFrameLevel() + 2)
-	-- button:StripTextures(true)
 	-- button:CreateBackdrop(nil, true)
 	-- button.backdrop:SetInside()
 	-- button.Icon:CreateBackdrop(nil, nil, nil, nil, nil, nil, true)
@@ -308,11 +573,30 @@ local function SetAchievementButtonColor(frame, engine)
     -- end
 end
 
-local function SkinAchievementsFrame(frame, engine, skins)
-    -- -- Frame
+local function SkinAchievementsFrame(frame)
+    -- Frame
     -- select(2, frame:GetChildren()):Hide();
     -- frame.Background:Hide();
     -- frame.Artwork:Hide();
+    frame:GwStripTextures();
+
+    frame.Background:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/listbackground");
+    frame.Background:SetTexCoord(0, 1, 0, 1);
+
+    frame.ScrollFrame:SetPoint("TOPLEFT", 8, -8);
+
+    hooksecurefunc(addon.GUI.CategoriesFrame, "Show_Hide", function(self, func, offsetX)
+        frame:ClearPoint("TOPLEFT");
+        frame:SetPoint("TOP", 0, -10);
+        frame:SetPoint("LEFT", self, "RIGHT", offsetX, 0);
+        frame:SetPoint("BOTTOM", 0, 20);
+	    frame:SetPoint("RIGHT", frame.ScrollFrame.ScrollBar:IsShown() and -20 or 0, 0);
+    end);
+
+    hooksecurefunc(frame, "Show_Hide", function(self, func, offsetX)
+        frame:ClearPoint("RIGHT");
+	    frame:SetPoint("RIGHT", self:IsShown() and -20 or 0, 0);
+    end);
 
     -- local numChildren = frame:GetNumChildren();
     -- for i = 1, numChildren do
@@ -322,15 +606,11 @@ local function SkinAchievementsFrame(frame, engine, skins)
     --     end
     -- end
 
-	-- frame.ScrollFrame:CreateBackdrop("Transparent");
-	-- frame.ScrollFrame.backdrop:Point("TOPLEFT", -2, 2);
-	-- frame.ScrollFrame.backdrop:Point("BOTTOMRIGHT", -2, -3);
-
-    -- -- Buttons
-    -- local buttons = frame.ScrollFrame.buttons;
-    -- for _, button in next, buttons do
-    --     SkinAchievementButton(button, engine, skins);
-    -- end
+    -- Buttons
+    local buttons = frame.ScrollFrame.buttons;
+    for i, button in next, buttons do
+        SkinAchievementButton(buttons, button, i);
+    end
 
     -- hooksecurefunc(frame, "Update", function(frame)
     --     for _, button in next, buttons do
@@ -376,8 +656,25 @@ local function SkinAchievementsFrame(frame, engine, skins)
 	-- 	end
     -- end
 
-    -- -- Scrollbar
-    -- skins:HandleScrollBar(frame.ScrollFrame.ScrollBar, 5);
+    -- Scrollbar
+    HandleTrimScrollBar(frame.ScrollFrame.ScrollBar);
+    HandleAchivementsScrollControls(frame);
+
+    -- Re-adjust scrollings after frame size change
+    local scrollChild = frame.ScrollFrame.scrollChild;
+    local buttonHeight = buttons[1]:GetHeight();
+    frame.ScrollFrame.buttonHeight = math.floor(buttonHeight + 0.5);
+    local numButtons = math.ceil(frame.ScrollFrame:GetHeight() / buttonHeight) + 1;
+
+    scrollChild:SetHeight(numButtons * buttonHeight);
+    frame.ScrollFrame:SetVerticalScroll(0);
+    frame.ScrollFrame:UpdateScrollChildRect();
+    local scrollBar = frame.ScrollFrame.scrollBar;
+    scrollBar:SetMinMaxValues(0, numButtons * buttonHeight);
+    scrollBar.buttonHeight = buttonHeight;
+    scrollBar:SetValueStep(buttonHeight);
+    scrollBar:SetStepsPerPage(numButtons - 2);
+    scrollBar:SetValue(0);
 end
 
 local function SkinStatusBar(statusBar, engine)
@@ -466,41 +763,93 @@ local function SkinAchievementSummary(frame, engine, skins)
     -- skins:HandleScrollBar(frame.ScrollFrameBorder.ScrollFrame.ScrollBar, 5);
 end
 
-local function SkinFilterButton(button, achievementsFrame, skins)
-    -- skins:HandleButton(button);
+local constBackdropDropDown = {
+    bgFile = "Interface/AddOns/GW2_UI/textures/uistuff/gwstatusbar",
+    edgeFile = "",
+    tile = false,
+    tileSize = 64,
+    edgeSize = 32,
+    insets = {left = 0, right = 0, top = 0, bottom = 0}
+};
 
-    -- local highlightTex = button.GetHighlightTexture and button:GetHighlightTexture();
-    -- if highlightTex then
-    --     highlightTex:SetTexture();
-    -- else
-    --     button:StripTextures();
-    -- end
+local function SkinFilterButton(button)
+    button:GwStripTextures();
+    button.TopLeft:Hide();
+	button.TopRight:Hide();
+	button.BottomLeft:Hide();
+	button.BottomRight:Hide();
+	button.TopMiddle:Hide();
+	button.MiddleLeft:Hide();
+	button.MiddleRight:Hide();
+	button.BottomMiddle:Hide();
+	button.MiddleMiddle:Hide();
 
-	-- button:ClearAllPoints();
-	-- button:Point("BOTTOMLEFT", achievementsFrame, "TOPLEFT", 2, 1);
+    button:SetSize(155, 32);
+
+    button:GwCreateBackdrop(constBackdropDropDown, true);
+    button.backdrop:SetBackdropColor(0, 0, 0);
+
+    button:SetFrameLevel(button:GetFrameLevel() + 2);
+
+    button:ClearAllPoints();
+    button:SetPoint('BOTTOMLEFT', AchievementFrame.SearchBox, 'TOPLEFT', 0, 10);
+    button:SetPoint('BOTTOMRIGHT', AchievementFrame.SearchBox, 'TOPRIGHT', 0, 10);
+
+    button.backdrop:ClearAllPoints()
+    button.backdrop:SetPoint('TOPLEFT', AchievementFrameFilterDropDown, 'TOPLEFT', 0, 0);
+    button.backdrop:SetPoint('BOTTOMRIGHT', AchievementFrameFilterDropDown, 'BOTTOMRIGHT', 0, 0);
+    button.backdrop:SetAlpha(0.5);
+
+    local text = button.Text;
+    text:ClearAllPoints();
+    text:SetPoint("LEFT", button, "LEFT", 10, 0);
+    text:SetFont(UNIT_NAME_FONT, 12, "");
+    text:SetTextColor(178 / 255, 178 / 255, 178 / 255);
+    text:SetHeight(button:GetHeight());
+    text:SetJustifyV("MIDDLE");
+
+    local icon = button.Icon;
+    icon:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/arrowup_down");
+    icon:SetRotation(3.14);
+    icon:SetPoint("RIGHT", -15, 0);
+    icon:SetSize(20, 20);
+
+    -- button:HookScript("OnMouseDown", function(self)
+    --     self.Icon:SetPoint("RIGHT", -15, 0);
+    -- end);
 end
 
 local function SkinSearchOptionsButton(button, searchBoxFrame, skins)
-    -- skins:HandleButton(button);
+    button:GwStripTextures();
+    button.TopLeft:Hide();
+	button.TopRight:Hide();
+	button.BottomLeft:Hide();
+	button.BottomRight:Hide();
+	button.TopMiddle:Hide();
+	button.MiddleLeft:Hide();
+	button.MiddleRight:Hide();
+	button.BottomMiddle:Hide();
+	button.MiddleMiddle:Hide();
+    local icon = button.Icon;
+    icon:SetAtlas("common-search-magnifyingglass");
+    button:GwCreateBackdrop(constBackdropDropDown, true);
+    button.backdrop:SetBackdropColor(0, 0, 0);
 
-    -- local highlightTex = button.GetHighlightTexture and button:GetHighlightTexture();
-    -- if highlightTex then
-    --     highlightTex:SetTexture();
-    -- else
-    --     button:StripTextures();
-    -- end
-
-	-- button:ClearAllPoints();
-	-- button:Point("LEFT", searchBoxFrame, "LEFT", -3, 0);
+	button:ClearAllPoints();
+	button:SetPoint("RIGHT", searchBoxFrame, "RIGHT", -3, 0);
 end
 
-local function SkinSearchBoxFrame(frame, skins)
-    -- skins:HandleEditBox(frame);
-	-- frame.backdrop:Point('TOPLEFT', frame, 'TOPLEFT', -3, -3);
-	-- frame.backdrop:Point('BOTTOMRIGHT', frame, 'BOTTOMRIGHT', 0, 3);
-	-- frame:ClearAllPoints();
-	-- frame:Point('TOPRIGHT', AchievementFrame, -22, -1);
-	-- frame:Size(114, 27);
+local function SkinSearchBoxFrame(frame)
+    frame:ClearAllPoints();
+    frame:SetPoint('BOTTOMLEFT', AchievementFrameCategories, 'TOPLEFT', 0, 10);
+    frame:SetWidth(237);
+    frame:SetFont(UNIT_NAME_FONT, 14, "");
+    GW2_ADDON.SkinTextBox(frame.Middle, frame.Left, frame.Right);
+    frame:SetHeight(26);
+    frame.searchIcon:Hide();
+    frame:SetFont(UNIT_NAME_FONT, 14, "");
+    frame.Instructions:SetFont(UNIT_NAME_FONT, 14, "");
+    frame.Instructions:SetTextColor(178 / 255, 178 / 255, 178 / 255);
 end
 
 local function SkinSearchButton(self, engine, skins)
@@ -819,11 +1168,11 @@ local function SkinAll()
         SkinTabs();
         SkinCategoriesFrame(addon.GUI.CategoriesFrame);
         SkinGameTooltipProgressBar(addon.GUI.GameTooltipProgressBar);
-    --     SkinAchievementsFrame(addon.GUI.AchievementsFrame, engine, skins);
+        SkinAchievementsFrame(addon.GUI.AchievementsFrame);
     --     SkinAchievementSummary(addon.GUI.SummaryFrame, engine, skins);
-    --     SkinFilterButton(addon.GUI.FilterButton, addon.GUI.AchievementsFrame, skins);
-    --     SkinSearchOptionsButton(addon.GUI.Search.OptionsMenuButton, addon.GUI.Search.BoxFrame, skins);
-    --     SkinSearchBoxFrame(addon.GUI.Search.BoxFrame, skins);
+        SkinFilterButton(addon.GUI.FilterButton);
+        SkinSearchOptionsButton(addon.GUI.Search.OptionsMenuButton, addon.GUI.Search.BoxFrame);
+        SkinSearchBoxFrame(addon.GUI.Search.BoxFrame);
     --     SkinSearchPreviewFrame(addon.GUI.Search.PreviewFrame, addon.GUI.AchievementsFrame, engine, skins);
     --     SkinSearchResultsFrame(addon.GUI.Search.ResultsFrame, skins);
     --     SkinHeader();
@@ -918,6 +1267,25 @@ function gw2_ui.Load()
     -- KrowiAF_SavedData.ElvUISkin.NoParchment = blizzardSkins.enable and blizzardSkins.calendar and privateSkins.parchmentRemoverEnable;
     -- KrowiAF_SavedData.ElvUISkin.Options = privateSkins.ace3Enable;
     -- KrowiAF_SavedData.ElvUISkin.SmallerWorldMap = addon.IsWrathClassic and engine.global.general.smallerWorldMap;
+
+    -- local originalLoadWithBlizzard_AchievementUI = addon.GUI.LoadWithBlizzard_AchievementUI;
+    -- addon.GUI.LoadWithBlizzard_AchievementUI = function(self)
+    --     -- Rearange frame here first
+    --     -- AchievementFrameCategories:SetSize(221, 426);
+    --     -- AchievementFrameCategories:ClearAllPoints();
+    --     -- AchievementFrameCategories:SetPoint("TOPLEFT", 10, -172);
+    --     -- originalLoadWithBlizzard_AchievementUI(self);
+    --     -- local numButtons = #addon.GUI.CategoriesFrame.ScrollFrame.buttons;
+    --     -- local buttonHeight = 36;
+    --     -- addon.GUI.CategoriesFrame.ScrollFrame.scrollChild:SetHeight(numButtons * buttonHeight);
+
+    --     -- local scrollBar = addon.GUI.CategoriesFrame.ScrollFrame.ScrollBar;
+    --     -- scrollBar:SetMinMaxValues(0, numButtons * buttonHeight)
+    --     -- scrollBar.buttonHeight = buttonHeight;
+    --     -- scrollBar:SetValueStep(buttonHeight);
+    --     -- scrollBar:SetStepsPerPage(numButtons - 2); -- one additional button was added above. Need to remove that, and one more to make the current bottom the new top (and vice versa)
+    --     -- scrollBar:SetValue(0);
+    -- end
 
     hooksecurefunc(addon.GUI, "LoadWithBlizzard_AchievementUI", function()
         SkinAll();

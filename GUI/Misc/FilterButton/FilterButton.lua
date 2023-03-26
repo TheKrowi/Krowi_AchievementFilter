@@ -34,7 +34,7 @@ end
 
 local menu = LibStub("Krowi_Menu-1.0");
 function KrowiAF_AchievementFrameFilterButton_OnMouseDown(self)
-    UIMenuButtonStretchMixin.OnMouseDown(self);
+    -- UIMenuButtonStretchMixin.OnMouseDown(self);
 	PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
 
     -- Reset menu
