@@ -683,8 +683,8 @@ end
 local function AddInfo(localizationName, getFunction, hidden)
     return {
         order = KrowiAF_InjectOptions.AutoOrderPlusPlus(), type = "toggle", width = "full",
-        name = addon.L[localizationName],
-        desc = addon.L[localizationName .. " Desc"],
+        name = addon.L["ElvUI " .. localizationName],
+        desc = addon.L["ElvUI " .. localizationName .. " Desc"],
         descStyle = "inline",
         get = getFunction,
         disabled = true,
@@ -717,7 +717,7 @@ local function DisableOptions()
     KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.OffsetY").disabled = true;
     KrowiAF_InjectOptions.AddTable(KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args"), "ElvUIComment", {
         order = OrderPP(), type = "description", width = "full",
-        name = addon.L["Alert System Overwrite Desc"]
+        name = addon.L["Alert System Overwrite Desc"]:ReplaceVars(addon.L["ElvUI"])
     });
 end
 
