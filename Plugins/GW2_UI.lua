@@ -46,18 +46,18 @@ do -- [[ Shared ]]
     end
 
     function gw2_ui.SetSmallText(self)
-        self:SetFont(UNIT_NAME_FONT,11)
-        self:SetTextColor(0.7,0.7,0.7)
+        self:SetFont(UNIT_NAME_FONT, 11);
+        self:SetTextColor(0.7, 0.7, 0.7);
     end
 
     function gw2_ui.SetNormalText(self)
-        self:SetFont(UNIT_NAME_FONT,12)
-        self:SetTextColor(1,1,1)
+        self:SetFont(UNIT_NAME_FONT, 12);
+        self:SetTextColor(1, 1, 1);
     end
 
     function gw2_ui.SetTitleText(self)
-        self:SetFont(DAMAGE_TEXT_FONT, 14)
-        self:SetTextColor(1,1,1)
+        self:SetFont(DAMAGE_TEXT_FONT, 14);
+        self:SetTextColor(1, 1, 1);
     end
 end
 
@@ -302,14 +302,33 @@ do -- [[ Achievements]]
 
         if self.Completed then
             self.Tracked:Hide();
-            self.DateCompleted:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", -5, 5 + buttonOffset);
-            self.DateCompleted:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT", 0, 5 + buttonOffset);
+            self.DateCompleted:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", -5, 7 + buttonOffset);
+            self.DateCompleted:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT", 0, 7 + buttonOffset);
             self.bottomBar:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/achievementfooternotrack");
         else
             self.Tracked:Show();
-            self.DateCompleted:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", -50, 5 + buttonOffset);
-            self.DateCompleted:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT", 0, 5 + buttonOffset);
+            self.DateCompleted:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", -50, 7 + buttonOffset);
+            self.DateCompleted:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT", 0, 7 + buttonOffset);
             self.bottomBar:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/achievementfooter");
+        end
+    end
+
+    local function ExpandAchievement(self)
+        if not self.Achievement then
+            return;
+        end
+
+        local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe, _ = addon.GetAchievementInfo(self.Achievement.Id);
+        if not completed or not wasEarnedByMe then
+            self.Tracked:Show();
+            self.DateCompleted:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", -50, 7 + buttonOffset);
+            self.DateCompleted:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT", 0, 7 + buttonOffset);
+            self.bottomBar:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/achievementfooter");
+        else
+            self.Tracked:Hide();
+            self.DateCompleted:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", -5, 7 + buttonOffset);
+            self.DateCompleted:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT", 0, 7 + buttonOffset);
+            self.bottomBar:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/achievementfooternotrack");
         end
     end
 
@@ -357,6 +376,8 @@ do -- [[ Achievements]]
     end
 
     local function SkinAchievementButton(buttons, button, index)
+        local scaling = button.Compact and 0.712 or 1;
+
         -- Hide unnecessary base objects
         button:GwStripTextures();
         button.Background:Hide();
@@ -369,8 +390,8 @@ do -- [[ Achievements]]
         button.TopTsunami:Hide();
 
         -- Set new height
-        button:SetHeight(125);
-        button.CollapsedHeight = 125;
+        button:SetHeight(125 * scaling);
+        button.CollapsedHeight = 125 * scaling;
 
         -- Add a new background for the shield and points
         button.cBackground = button:CreateTexture("cBackground", "BACKGROUND", nil, 2);
@@ -406,7 +427,9 @@ do -- [[ Achievements]]
         button.Description:SetPoint("TOPLEFT", button.Header, "BOTTOMLEFT", 0, -5);
         button.Description:SetPoint("TOPRIGHT", button.Header, "BOTTOMRIGHT", 0, -5);
         button.Description:SetJustifyH("LEFT");
-        button.Description:SetHeight(40);
+        if not button.Compact then
+            button.Description:SetHeight(40);
+        end
         hooksecurefunc(button.Description, "SetTextColor", function(_, r, g, b)
             if r == 0 and g == 0 and b == 0 then
                 button.Description:SetTextColor(1, 1, 1);
@@ -447,8 +470,8 @@ do -- [[ Achievements]]
 
         -- Reskin completion date
         button.DateCompleted:ClearAllPoints();
-        button.DateCompleted:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", -5, 5 + buttonOffset);
-        button.DateCompleted:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", 0, 5 + buttonOffset);
+        button.DateCompleted:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", -5, 7 + buttonOffset);
+        button.DateCompleted:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", 0, 7 + buttonOffset);
         button.DateCompleted:SetHeight(15);
         button.DateCompleted:SetJustifyH("RIGHT");
         gw2_ui.SetSmallText(button.DateCompleted);
@@ -491,7 +514,7 @@ do -- [[ Achievements]]
         button.completeFlare = button:CreateTexture("completeFlare", "BACKGROUND", nil, 0);
         button.completeFlare:ClearAllPoints();
         button.completeFlare:SetPoint("TOPLEFT", button, "TOPLEFT", 0, 0);
-        button.completeFlare:SetSize(256, 128);
+        button.completeFlare:SetSize(256 * scaling, 128 * scaling);
         button.completeFlare:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/achievementcompletebg");
 
         -- Not sure what this one is
@@ -513,8 +536,8 @@ do -- [[ Achievements]]
         button.completedBackground = button:CreateTexture("completedBackground", "BACKGROUND", nil, 3);
         button.completedBackground:ClearAllPoints();
         button.completedBackground:SetPoint("TOPLEFT", button, "TOPLEFT", 0, 0);
-        button.completedBackground:SetPoint("BOTTOMLEFT", button, "TOPLEFT", 0, -120);
-        button.completedBackground:SetWidth(240);
+        button.completedBackground:SetPoint("BOTTOMLEFT", button, "TOPLEFT", 0, -120  * scaling);
+        button.completedBackground:SetWidth(240 * scaling);
         button.completedBackground:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/achievementcomplete");
         button.completedBackground:SetVertexColor(1, 1, 1, 0.7);
 
@@ -525,7 +548,7 @@ do -- [[ Achievements]]
         button.Tracked:SetPushedTexture("Interface/AddOns/GW2_UI/textures/uistuff/watchicon");
         _G[button:GetName() .. "TrackedText"]:Hide();
         button.Tracked:ClearAllPoints();
-        button.Tracked:SetPoint("BOTTOMRIGHT", button.bottomBar, "BOTTOMRIGHT", -7, buttonOffset);
+        button.Tracked:SetPoint("BOTTOMRIGHT", button.bottomBar, "BOTTOMRIGHT", -7, 0);
         button.Tracked:SetSize(30, 30);
 
         -- Highligh that will cover the entire button
@@ -545,6 +568,7 @@ do -- [[ Achievements]]
 
         hooksecurefunc(button, "SetAchievement", SetAchievement);
         hooksecurefunc(button, "Collapse", CollapseAchievement);
+        hooksecurefunc(button, "Expand", ExpandAchievement);
     end
 
     local function SkinAchievementsFrame(frame)
@@ -576,6 +600,14 @@ do -- [[ Achievements]]
         for i, button in next, buttons do
             SkinAchievementButton(buttons, button, i);
         end
+
+        -- Objectives
+        hooksecurefunc(addon.GUI.AchievementsObjectives, "DisplayCriteria", function(self)
+            self:SetHeight(self:GetHeight() + 10);
+        end);
+        hooksecurefunc(addon.GUI.AchievementsObjectives, "DisplayProgressiveAchievement", function(self)
+            self:SetHeight(self:GetHeight() + 10);
+        end);
 
         -- Scrollbar
         gw2_ui.HandleAchivementsScrollControls(frame);
@@ -616,46 +648,25 @@ do -- [[ Summary ]]
         if statusBar.Button then
             local button = statusBar.Button;
             button:GwStripTextures();
-
-        --     local htex = button:CreateTexture();
-        --     htex:SetColorTexture(1, 1, 1, 0.3);
-        --     htex:SetAllPoints(statusBar.backdrop);
-        --     button:SetHighlightTexture(htex);
-
-        --     button:SetScript("OnLeave", function(self)
-        --     end);
-        --     button:SetScript("OnEnter", function(self)
-        --     end);
         end
 
-        -- statusBar:GwStripTextures()
-        local fname = statusBar:GetName()
-        -- local bar = _G[fname.."FillBar"]
-        -- local title = _G[fname.."Title"] or statusBar.Label
-        -- local text = _G[fname.."Text"]
-        local spark = _G[fname.."Spark"]
+        local fname = statusBar:GetName();
+        local spark = _G[fname .. "Spark"];
 
         if not spark then
-            statusBar.spark = statusBar:CreateTexture(fname .. "Spark", "BORDER", nil, 7);
+            statusBar.spark = statusBar:CreateTexture(fname .. "Spark", "OVERLAY", nil, 7);
             statusBar.spark:ClearAllPoints();
-            statusBar.spark:SetPoint("RIGHT", fills[2], "RIGHT", 0, 0);
-            statusBar.spark:SetSize(10, fills[2]:GetHeight());
+            statusBar.spark:SetPoint("RIGHT", fills[#fills], "RIGHT", 0, 0);
+            statusBar.spark:SetSize(10, fills[#fills]:GetHeight());
             statusBar.spark:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/statusbar-spark-white");
         end
 
-        -- bar:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/StatusBar")
-        -- bar:SetVertexColor(1, 1, 1, 0.5)
-        -- bar:GwSetOutside()
         statusBar.TextLeft:ClearAllPoints();
         statusBar.TextLeft:SetPoint("BOTTOMLEFT", statusBar.backdrop, "TOPLEFT", 0, 5);
         gw2_ui.SetNormalText(statusBar.TextLeft);
 
-        -- statusBar.TextRight:ClearAllPoints();
-        -- statusBar.TextRight:SetPoint("RIGHT", statusBar, "RIGHT", -5, 0);
         statusBar.TextRight:SetFont(DAMAGE_TEXT_FONT, 11);
         statusBar.TextRight:SetTextColor(1, 1, 1);
-        -- statusBar.TextRight:SetHeight(statusBar.backdrop:GetHeight());
-        -- statusBar.TextRight:SetJustifyV("MIDDLE");
     end
 
     local function SkinAchievementSummaryHeaders(self)
