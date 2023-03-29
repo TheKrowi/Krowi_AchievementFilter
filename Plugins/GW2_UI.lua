@@ -869,32 +869,19 @@ do -- [[ Search ]]
     end
     gw2_ui.SkinSearchBoxFrame = SkinSearchBoxFrame;
 
-    local function SkinSearchButton(self, engine, skins)
-        -- self:StripTextures();
+    local function SkinSearchPreviewFrame(frame, searchBoxFrame)
+        frame:GwStripTextures();
+        frame:ClearAllPoints();
+        frame:SetPoint("TOPLEFT", searchBoxFrame, "BOTTOMLEFT", 0, 0);
+        frame:SetPoint("TOPRIGHT", searchBoxFrame, "BOTTOMRIGHT", 0, 0);
 
-        -- if self.Icon then
-        -- 	skins:HandleIcon(self.Icon);
-        -- end
-
-        -- self:CreateBackdrop('Transparent');
-        -- self:SetHighlightTexture(engine.media.normTex);
-
-        -- local hl = self:GetHighlightTexture();
-        -- hl:SetVertexColor(1, 1, 1, 0.3);
-        -- hl:Point('TOPLEFT', 1, -1);
-        -- hl:Point('BOTTOMRIGHT', -1, 1);
+        for _, button in next, frame.Buttons do
+            button.Name:SetFont(UNIT_NAME_FONT, 12, "");
+            button:SetPoint("RIGHT");
+        end
+        frame.ShowFullSearchResultsButton.Text:SetFont(UNIT_NAME_FONT, 12, "");
     end
-
-    local function SkinSearchPreviewFrame(frame, achievementsFrame, engine, skins)
-        -- frame:StripTextures();
-        -- frame:ClearAllPoints();
-        -- frame:Point('TOPLEFT', achievementsFrame, 'TOPRIGHT', 22, 25);
-
-        -- for _, button in next, frame.Buttons do
-        -- 	SkinSearchButton(button, engine, skins);
-        -- end
-        -- SkinSearchButton(frame.ShowFullSearchResultsButton, engine, skins);
-    end
+    gw2_ui.SkinSearchPreviewFrame = SkinSearchPreviewFrame;
 
     local function SkinSearchResultsFrame(frame, skins)
         -- frame:StripTextures();
@@ -920,77 +907,143 @@ local function ForceAlpha(self, alpha, forced)
 	-- end
 end
 
-local function SkinAlertFrameTemplate(frame, engine)
-    -- frame:SetAlpha(1);
+local constBackdropAlertFrame = {
+    bgFile = "Interface/AddOns/GW2_UI/textures/hud/toast-bg",
+    edgeFile = "",
+    tile = false,
+    tileSize = 64,
+    edgeSize = 32,
+    insets = {left = 2, right = 2, top = 2, bottom = 2}
+}
 
-    -- if not frame.hooked then
-    --     hooksecurefunc(frame, 'SetAlpha', ForceAlpha);
-    --     frame.hooked = true;
-    -- end
+local function AddFlare(frame, flarFrame)
+    if not flarFrame then return end
 
-    -- if not frame.backdrop then
-    --     frame:CreateBackdrop('Transparent');
-    --     frame.backdrop:Point('TOPLEFT', frame.Background, 'TOPLEFT', -2, -6);
-    --     frame.backdrop:Point('BOTTOMRIGHT', frame.Background, 'BOTTOMRIGHT', -2, 6);
-    -- end
+    if not frame.flareIcon then
+        frame.flareIcon = flarFrame
+    end
 
-    -- -- Background
-    -- frame.Background:SetTexture();
-    -- frame.glow:Kill();
-    -- frame.shine:Kill();
+    if not flarFrame.flare then
+        flarFrame.flare = flarFrame:CreateTexture(nil, "BACKGROUND")
+        flarFrame.flare:SetTexture("Interface/AddOns/GW2_UI/textures/hud/level-up-flare")
+        flarFrame.flare:SetPoint("CENTER")
+        flarFrame.flare:SetSize(120, 120)
+        flarFrame.flare:Show()
+    end
+    if not flarFrame.flare2 then
+        flarFrame.flare2 = flarFrame:CreateTexture(nil, "BACKGROUND")
+        flarFrame.flare2:SetTexture("Interface/AddOns/GW2_UI/textures/hud/level-up-flare")
+        flarFrame.flare2:SetPoint("CENTER")
+        flarFrame.flare2:SetSize(120, 120)
+        flarFrame.flare2:Show()
+    end
 
-    -- -- Text
-    -- frame.Unlocked:FontTemplate(nil, 12);
-    -- frame.Unlocked:SetTextColor(1, 1, 1);
-    -- frame.Name:FontTemplate(nil, 12);
+    if not flarFrame.animationGroup1 then
+        flarFrame.animationGroup1 = flarFrame.flare:CreateAnimationGroup()
+        local a1 = flarFrame.animationGroup1:CreateAnimation("Rotation")
+        a1:SetDegrees(2000)
+        a1:SetDuration(60)
+        a1:SetSmoothing("OUT")
+    end
 
-    -- -- Icon
-    -- frame.Icon.Texture:SetTexCoord(unpack(engine.TexCoords));
-    -- frame.Icon.Overlay:Kill();
-
-    -- frame.Icon.Texture:ClearAllPoints();
-    -- frame.Icon.Texture:Point('LEFT', frame, 7, 0);
-
-    -- if not frame.Icon.Texture.b then
-    --     frame.Icon.Texture.b = CreateFrame('Frame', nil, frame);
-    --     frame.Icon.Texture.b:SetTemplate();
-    --     frame.Icon.Texture.b:SetOutside(frame.Icon.Texture);
-    --     frame.Icon.Texture:SetParent(frame.Icon.Texture.b);
-    -- end
+    if not flarFrame.animationGroup2 then
+        flarFrame.animationGroup2 = flarFrame.flare2:CreateAnimationGroup()
+        local a2 = flarFrame.animationGroup2:CreateAnimation("Rotation")
+        a2:SetDegrees(-2000)
+        a2:SetDuration(60)
+        a2:SetSmoothing("OUT")
+    end
 end
 
-local function SkinSideButton(button, prevButton, engine)
-    -- if not button.HasElvUiSkin then
-    --     SkinAlertFrameTemplate(button, engine);
-    -- end
-    -- if not prevButton then
-    --     button:ClearAllPoints();
-    --     button:SetPoint("TOPLEFT", AchievementFrame, "TOPRIGHT", 5, addon.IsDragonflightRetail and 6 or 13); -- Make the 2nd button anchor like the 1st one
-    -- else
-    --     button:ClearAllPoints();
-    --     button:SetPoint("TOPLEFT", prevButton, "BOTTOMLEFT", 0, 9); -- Make the 2nd button anchor like the 1st one
-    -- end
-    -- button.HasElvUiSkin = true;
+local function SkinAlertFrameTemplate(frame, addFlare)
+    frame:SetAlpha(1);
+
+    if not frame.hooked then
+        hooksecurefunc(frame, 'SetAlpha', ForceAlpha);
+        frame.hooked = true;
+    end
+
+    if not frame.backdrop then
+        frame:GwCreateBackdrop(constBackdropAlertFrame)
+        frame.backdrop:SetPoint("TOPLEFT", frame.Background, "TOPLEFT", -10, 0);
+        frame.backdrop:SetPoint("BOTTOMRIGHT", frame.Background, "BOTTOMRIGHT", 5, 0);
+    end
+
+    -- Background
+    frame.Background:SetTexture();
+    frame.glow:GwKill();
+    frame.shine:GwKill();
+
+    -- Text
+    frame.Unlocked:SetTextColor(1, 1, 1);
+    frame.Name:SetPoint("LEFT", frame, "LEFT", 60, 0);
+    frame.Name:SetPoint("RIGHT", frame, "RIGHT", -10, 0);
+
+    -- Icon
+    frame.Icon.Texture:SetSize(45, 45);
+    frame.Icon.Texture:SetTexCoord(0.1, 0.9, 0.1, 0.9);
+    frame.Icon.Overlay:GwKill();
+
+    frame.Icon.Texture:ClearAllPoints();
+    frame.Icon.Texture:SetPoint("LEFT", frame, 7, 0);
+
+    if not frame.Icon.Texture.b then
+        frame.Icon.Texture.b = CreateFrame("Frame", nil, frame);
+        frame.Icon.Texture.b:SetAllPoints(frame.Icon.Texture);
+        frame.Icon.Texture:SetParent(frame.Icon.Texture.b);
+        frame.Icon.iconBorder = frame.Icon.Texture.b:CreateTexture(nil, "ARTWORK");
+        frame.Icon.iconBorder:SetTexture("Interface/AddOns/GW2_UI/textures/bag/bagitemborder");
+        frame.Icon.iconBorder:SetAllPoints(frame.Icon.Texture.b);
+    end
+
+    -- Flare
+    if addFlare then
+        AddFlare(frame, frame.Icon.Texture.b);
+    end
 end
 
-local function SkinSideButtons(engine)
-    -- local i = 1;
-    -- local button = _G["AchievementFrameSideButton" .. i];
-    -- local prevButton;
-    -- while button do
-    --     SkinSideButton(button, prevButton, engine);
-    --     prevButton = button;
-    --     i = i + 1;
-    --     button = _G["AchievementFrameSideButton" .. i];
-    -- end
+local function SkinSideButton(button, prevButton)
+    if not button.HasGw2UiSkin then
+        SkinAlertFrameTemplate(button, false);
+    end
+    if not prevButton then
+        button:ClearAllPoints();
+        button:SetPoint("TOPLEFT", AchievementFrame, "TOPRIGHT", 5, addon.IsDragonflightRetail and 6 or 13); -- Make the 2nd button anchor like the 1st one
+    else
+        button:ClearAllPoints();
+        button:SetPoint("TOPLEFT", prevButton, "BOTTOMLEFT", 0, 9); -- Make the 2nd button anchor like the 1st one
+    end
+    button.HasGw2UiSkin = true;
 end
 
-local function SkinHeader()
-    hooksecurefunc(AchievementFrame.Header.Points, "SetText", function()
+local function SkinSideButtons()
+    local i = 1;
+    local button = _G["AchievementFrameSideButton" .. i];
+    local prevButton;
+    while button do
+        SkinSideButton(button, prevButton);
+        prevButton = button;
+        i = i + 1;
+        button = _G["AchievementFrameSideButton" .. i];
+    end
+end
+
+do -- [[ Header ]]
+    local function UpdatePointsDisplay()
         if not addon.InGuildView() and addon.Options.db.AchievementPoints.Format == 2 then
-            AchievementFrame.Header.Points:SetHeight(100);
+            AchievementFrame.Header.Points:SetHeight(AchievementFrame.Header.Shield:GetHeight());
+            AchievementFrame.Header.Points:SetPoint("TOP", AchievementFrame.Header.Shield);
+            AchievementFrame.Header.Points:SetPoint("BOTTOM", AchievementFrame.Header.Shield);
+            AchievementFrame.Header.Points:SetPoint("RIGHT", addon.GUI.Search.BoxFrame);
         end
-    end);
+    end
+
+    local function SkinHeader()
+        hooksecurefunc(AchievementFrame.Header.Points, "SetText", UpdatePointsDisplay);
+        hooksecurefunc("AchievementFrame_RefreshView", UpdatePointsDisplay);
+        hooksecurefunc("AchievementFrame_UpdateTabs", UpdatePointsDisplay);
+    end
+    gw2_ui.SkinHeader = SkinHeader;
 end
 
 local function ReskinBlizzard(skins)
@@ -1007,6 +1060,9 @@ local function ReskinBlizzard(skins)
     -- AchievementFrameFilterDropDown:ClearAllPoints();
 	-- AchievementFrameFilterDropDown:Point('TOPLEFT', AchievementFrameAchievements, 'TOPLEFT', -16, 25);
     -- AchievementFrameFilterDropDown:Size(AchievementFrameFilterDropDown:GetWidth(), AchievementFrameFilterDropDown:GetHeight() - 1);
+    addon.GUI.AchievementFrameHeader.Button:ClearAllPoints();
+    addon.GUI.AchievementFrameHeader.Button:SetPoint("TOPLEFT", AchievementFrame.Header.Shield);
+    addon.GUI.AchievementFrameHeader.Button:SetPoint("BOTTOMRIGHT", AchievementFrame.Header.Points);
 end
 
 do -- [[ Calendar ]]
@@ -1183,7 +1239,7 @@ local function ReskinGw2Ui()
     AchievementFrame.tex:SetPoint("TOPLEFT", AchievementFrame, "TOPLEFT", 0, 0);
     AchievementFrame.tex:SetPoint("BOTTOMRIGHT", AchievementFrame, "BOTTOMRIGHT", 0, 0);
 
-    hooksecurefunc(addon.GUI, "ToggleAchievementFramec", function()
+    hooksecurefunc(addon.GUI, "ToggleAchievementFrame", function()
         if addon.GUI.SelectedTab then
             addon.GUI.SetAchievementFrameWidth();
             addon.GUI.SetAchievementFrameHeight();
@@ -1191,11 +1247,7 @@ local function ReskinGw2Ui()
     end);
 end
 
-local engine, skins;
 local function SkinAll()
-
-    -- -- local enabled, engine, skins = elvUISkin.Load();
-
     if KrowiAF_SavedData.GW2_UISkin.Achievements then
         gw2_ui.SkinTabs();
         gw2_ui.SkinCategoriesFrame(addon.GUI.CategoriesFrame);
@@ -1205,10 +1257,10 @@ local function SkinAll()
         SkinFilterButton(addon.GUI.FilterButton);
         gw2_ui.SkinSearchOptionsButton(addon.GUI.Search.OptionsMenuButton, addon.GUI.Search.BoxFrame);
         gw2_ui.SkinSearchBoxFrame(addon.GUI.Search.BoxFrame);
-    --     SkinSearchPreviewFrame(addon.GUI.Search.PreviewFrame, addon.GUI.AchievementsFrame, engine, skins);
+        gw2_ui.SkinSearchPreviewFrame(addon.GUI.Search.PreviewFrame, addon.GUI.Search.BoxFrame);
     --     SkinSearchResultsFrame(addon.GUI.Search.ResultsFrame, skins);
-        SkinHeader();
-    --     ReskinBlizzard(skins);
+        gw2_ui.SkinHeader();
+        ReskinBlizzard();
         gw2_ui.SkinCalendarButton(addon.GUI.Calendar.Button);
     --     SkinDataManager(addon.GUI.DataManagerFrame, skins);
         ReskinGw2Ui();
@@ -1220,21 +1272,21 @@ local function SkinAll()
 end
 
 local function SkinAlertFrames()
-    -- if not KrowiAF_SavedData.ElvUISkin.AlertFrames then
-    --     return;
-    -- end
+    if not KrowiAF_SavedData.GW2_UISkin.AlertFrames then
+        return;
+    end
 
-    -- hooksecurefunc(addon.GUI.AlertSystem, "setUpFunction", function(frame)
-    --     SkinAlertFrameTemplate(frame, engine);
-    -- end);
+    hooksecurefunc(addon.GUI.AlertSystem, "setUpFunction", function(frame)
+        SkinAlertFrameTemplate(frame);
+    end);
 end
 
 plugins.LoadHelper:RegisterEvent("ADDON_LOADED");
 plugins.LoadHelper:RegisterEvent("PLAYER_LOGIN");
 function gw2_ui:OnEvent(event, arg1, arg2)
-    -- if event == "PLAYER_LOGIN" then
-    --     SkinAlertFrames();
-    -- end
+    if event == "PLAYER_LOGIN" then
+        SkinAlertFrames();
+    end
 end
 
 local function AddInfo(localizationName, getFunction, hidden)
@@ -1295,7 +1347,7 @@ function gw2_ui.Load()
     -- KrowiAF_SavedData.ElvUISkin.MiscFrames = blizzardSkins.enable and blizzardSkins.misc;
     -- KrowiAF_SavedData.ElvUISkin.Tooltip = blizzardSkins.enable and blizzardSkins.tooltip;
     -- KrowiAF_SavedData.ElvUISkin.Tutorials = blizzardSkins.enable and blizzardSkins.tutorials;
-    -- KrowiAF_SavedData.ElvUISkin.AlertFrames = blizzardSkins.enable and blizzardSkins.alertframes;
+    KrowiAF_SavedData.GW2_UISkin.AlertFrames = GW2_ADDON.GetSetting("ALERTFRAME_SKIN_ENABLED");
     -- KrowiAF_SavedData.ElvUISkin.Calendar = blizzardSkins.enable and blizzardSkins.calendar;
     -- KrowiAF_SavedData.ElvUISkin.NoParchment = blizzardSkins.enable and blizzardSkins.calendar and privateSkins.parchmentRemoverEnable;
     -- KrowiAF_SavedData.ElvUISkin.Options = privateSkins.ace3Enable;
@@ -1324,16 +1376,16 @@ function gw2_ui.Load()
         SkinAll();
     end);
 
-    -- hooksecurefunc(addon.GUI.SideButtonSystem, "Load", function()
-    --     if KrowiAF_SavedData.ElvUISkin.Achievements then
-    --         SkinSideButtons(engine);
-    --     end
-    --     hooksecurefunc(addon.GUI.SideButtonSystem, "Refresh", function()
-    --         if KrowiAF_SavedData.ElvUISkin.Achievements then
-    --             SkinSideButtons(engine);
-    --         end
-    --     end);
-    -- end);
+    hooksecurefunc(addon.GUI.SideButtonSystem, "Load", function()
+        if KrowiAF_SavedData.GW2_UISkin.Achievements then
+            SkinSideButtons();
+        end
+        hooksecurefunc(addon.GUI.SideButtonSystem, "Refresh", function()
+            if KrowiAF_SavedData.GW2_UISkin.Achievements then
+                SkinSideButtons();
+            end
+        end);
+    end);
 
     -- if addon.IsWrathClassic then
     --     local worldMapModule = engine:GetModule("WorldMap");

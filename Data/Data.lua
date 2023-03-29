@@ -16,6 +16,7 @@ data.RCMenuExtras = {};
 data.Maps = {};
 
 data.CalendarEvents, data.WidgetEvents, data.WorldEvents = {}, {}, {};
+KrowiAF_WorldEvents = data.WorldEvents;
 
 local isLoaded;
 function data.Load()
