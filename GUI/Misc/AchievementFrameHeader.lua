@@ -192,6 +192,7 @@ end
 
 function header.CreateTooltip()
     local frame = CreateFrame("Button", nil, AchievementFrame.Header);
+    addon.GUI.AchievementFrameHeader.Button = frame;
     frame:SetPoint("TOPLEFT", AchievementFrame.Header.PointBorder);
     frame:SetPoint("BOTTOMRIGHT", AchievementFrame.Header.PointBorder);
     frame:SetScript("OnEnter", OnEnter);

@@ -230,6 +230,21 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
     firstTimeLatch = nil;
 end
 
+function gui.UpdateTabsLayout(tabsOrder)
+    local prevTab;
+    for _, btn in next, tabsOrder do
+        if btn and btn:IsShown() then
+            btn:ClearAllPoints();
+            if prevTab == nil then
+                btn:SetPoint("BOTTOMLEFT", AchievementFrame, 11, -30);
+            else
+                btn:SetPoint("LEFT", prevTab, "RIGHT", -5 + addon.Options.db.TabsGeneral.Spacing, 0);
+            end
+            prevTab = btn;
+        end
+    end
+end
+
 function gui.ShowHideTabs(_addonName, tabName)
     if _addonName and tabName then
         if not addon.Options.db.Tabs[_addonName] or not addon.Options.db.Tabs[_addonName][tabName] then
@@ -261,18 +276,7 @@ function gui.ShowHideTabs(_addonName, tabName)
         end
     end
 
-    local prevTab;
-    for _, btn in next, tabsOrder do
-        if btn and btn:IsShown() then
-            btn:ClearAllPoints();
-            if prevTab == nil then
-                btn:SetPoint("BOTTOMLEFT", AchievementFrame, 11, -30);
-            else
-                btn:SetPoint("LEFT", prevTab, "RIGHT", -5 + addon.Options.db.TabsGeneral.Spacing, 0);
-            end
-            prevTab = btn;
-        end
-    end
+    addon.GUI.UpdateTabsLayout(tabsOrder);
 end
 
 function gui.AddDataToBlizzardTabs()
