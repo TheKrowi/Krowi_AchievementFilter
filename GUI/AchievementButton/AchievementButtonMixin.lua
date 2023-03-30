@@ -332,7 +332,6 @@ local function SetTsunamis(self)
 	if achievement.TemporaryObtainable then
 		state = achievement.TemporaryObtainable.Obtainable();
 	end
-	local notObtainable = state and (state == false or state == "Past" or state == "Future");
 
 	local texture;
 	if state and (state == false or state == "Past") then

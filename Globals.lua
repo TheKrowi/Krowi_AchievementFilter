@@ -459,7 +459,9 @@ function addon.HookFunctions()
         addon.Data.GetCurrentZoneAchievements();
     end);
 
-    hooksecurefunc("AchievementFrame_SetComparisonTabs", addon.GUI.ShowHideTabs);
+    if addon.IsDragonflightRetail then
+        hooksecurefunc("AchievementFrame_SetComparisonTabs", addon.GUI.ShowHideTabs);
+    end
     
     -- local funcName = addon.IsWrathClassic and "PanelTemplates_SetTab" or "AchievementFrame_SetTabs";
     -- if addon.IsWrathClassic then

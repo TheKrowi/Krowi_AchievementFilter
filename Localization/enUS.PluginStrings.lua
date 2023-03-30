@@ -1,4 +1,4 @@
--- [[ Exported at 2023-03-30 01-16-35 ]] --
+-- [[ Exported at 2023-03-30 22-40-18 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -47,7 +47,7 @@ function pluginStrings.Load(L)
     L["ElvUI Fix World Map Button Desc"] = "When ElvUI Maps -> World Map -> Smaller World Map is enabled, the World Map Button needs fixing";
     L["Alert System Overwrite Desc"] = "The location settings are not active when {addon} is enabled. Moving the Loot / Alert Frames anchor will achieve the same result.";
     L["GW2_UI"] = "GW 2 UI";
-    L["GW2_UI Desc"] = "Each of the options below are controlled by GW 2 UI and are just informational.\n\nTo change these, go to Game Menu -> GW 2 UI -> General -> Skins and check the desired options. See each option below for what to check.\n";
+    L["GW2_UI Skins Desc"] = "Each of the options below are controlled by GW 2 UI and are just informational.\n\nTo change these, go to Game Menu -> GW 2 UI -> General -> Skins and check the desired options. See each option below for what to check.\n";
     L["GW2_UI Skin Achievements"] = "Skin Achievements";
     L["GW2_UI Skin Achievements Desc"] = "Applies the GW 2 UI skin to the Achievements Window.\n-> Achievements";
     L["GW2_UI Skin Alert Frames"] = "Skin Alert Frames";
@@ -59,5 +59,7 @@ function pluginStrings.Load(L)
     L["GW2_UI Skin Tooltip"] = "Skin Tooltip";
     L["GW2_UI Skin Tooltip Desc"] = "Applies the GW 2 UI skin to the Tooltips.\n-> Tooltips";
     L["GW2_UI Modules Desc"] = "To change these, go to Game Menu -> GW 2 UI -> General -> Modules and check the desired options. See each option below for what to check.\n";
+    L["Unsupported GW2_UI Desc"] = "The current version '{version}' of GW 2 UI is not supported.";
+    L["At least version is required"] = "At least version '{version}' is required.\n";
 end
 
