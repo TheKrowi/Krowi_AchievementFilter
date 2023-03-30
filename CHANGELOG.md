@@ -1,12 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 54.2 - 2023-03-27
+## 55.0 - 2023-04-01
 ### Added
 - Possibility to show a faction icon on the achievement if the achievement is faction specific
 - More sub zones for The Forbidden Reach
 - Tooltip data for the new Forbidden Reach Dragon Races
 - Pet Battle Links and tooltips for the new Forbidden Reach Pet Battle Achievements
+- GW2 UI support
 
 ### Fixed
 - Removed a ton of achievements from the new zone
