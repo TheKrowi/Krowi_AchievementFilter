@@ -699,13 +699,21 @@ do -- [[ Summary ]]
         end);
 
         SkinAchievementSummaryHeaders(frame.Achievements.Header);
+        frame.Achievements.Header:ClearAllPoints();
+        frame.Achievements.Header:SetPoint("TOPLEFT", frame.Achievements, "TOPLEFT", -1, 6);
+        frame.Achievements.Header:SetPoint("TOPRIGHT", frame.Achievements, "TOPRIGHT", 14, 6);
         SkinAchievementSummaryHeaders(frame.Categories.Header);
+        frame.Categories.Header:ClearPoint("LEFT");
+        frame.Categories.Header:ClearPoint("RIGHT");
+        frame.Categories.Header:SetPoint("LEFT", frame.Categories, "LEFT", 3, 0);
+        frame.Categories.Header:SetPoint("RIGHT", frame.Categories, "RIGHT", 8, 0);
 
         -- Buttons
         local buttons = frame.ScrollFrameBorder.ScrollFrame.buttons;
         for i, button in next, buttons do
             gw2_ui.SkinAchievementButton(buttons, button, i);
         end
+        frame.ScrollFrameBorder:SetPoint("RIGHT", frame.Achievements.Header, "RIGHT", -17, 0);
 
         SkinStatusBar(frame.TotalStatusBar);
         frame.TotalStatusBar:SetWidth(574);

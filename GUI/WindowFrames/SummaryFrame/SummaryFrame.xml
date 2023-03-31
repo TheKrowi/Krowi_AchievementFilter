@@ -59,8 +59,10 @@
 					<Frame name="$parentHeader" parentKey="Header">
 						<Size x="0" y="20"/>
 						<Anchors>
-							<Anchor point="TOPLEFT" x="0" y="0"/>
-							<Anchor point="TOPRIGHT" x="0" y="0"/>
+							<Anchor point="LEFT" x="0" y="0"/>
+							<Anchor point="TOP" x="0" y="0"/>
+							<Anchor point="RIGHT" x="0" y="0"/>
+							<Anchor point="BOTTOM" x="0" y="0"/>
 						</Anchors>
 						<Layers>
 							<Layer level="BACKGROUND">
