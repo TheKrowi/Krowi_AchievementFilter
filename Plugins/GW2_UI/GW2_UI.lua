@@ -44,6 +44,13 @@ do -- [[ Shared ]]
         bg:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/scrollbutton");
         bg:SetTexCoord(0, 1, 1, 0);
     end
+
+    function gw2_ui.SetThumbHeight(self)
+        -- local scrollFrame = self.ScrollFrame;
+        -- if scrollFrame.totalHeight then
+        --     scrollFrame.ScrollBar.thumbTexture:SetHeight(scrollFrame.ScrollBar:GetHeight() * (scrollFrame:GetHeight() / (scrollFrame.totalHeight + scrollFrame:GetHeight())));
+        -- end
+    end
 end
 
 do -- [[ Tabs ]]
@@ -199,11 +206,11 @@ do -- [[ Categories ]]
             SkinCategoryButton(button);
         end
         hooksecurefunc(frame, "Update", function(self)
-            local scrollFrame = self.ScrollFrame;
-            local _buttons = scrollFrame.buttons;
+            local _buttons = self.ScrollFrame.buttons;
             for i = 1, #_buttons do
                 UpdateCategoryState(buttons[i], i);
             end
+            gw2_ui.SetThumbHeight(self);
         end);
 
         -- Scrollbar
@@ -601,6 +608,9 @@ do -- [[ Achievements]]
         for i, button in next, buttons do
             SkinAchievementButton(buttons, button, i);
         end
+        hooksecurefunc(frame, "Update", function(self)
+            gw2_ui.SetThumbHeight(self);
+        end);
 
         -- Objectives
         hooksecurefunc(addon.GUI.AchievementsObjectives, "DisplayCriteria", function(self)
@@ -714,6 +724,9 @@ do -- [[ Summary ]]
             gw2_ui.SkinAchievementButton(buttons, button, i);
         end
         frame.ScrollFrameBorder:SetPoint("RIGHT", frame.Achievements.Header, "RIGHT", -17, 0);
+        hooksecurefunc(frame.ScrollFrameBorder, "Update", function(self)
+            gw2_ui.SetThumbHeight(self);
+        end);
 
         SkinStatusBar(frame.TotalStatusBar);
         frame.TotalStatusBar:SetWidth(574);

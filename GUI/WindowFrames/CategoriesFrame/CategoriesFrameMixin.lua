@@ -57,6 +57,9 @@ function KrowiAF_CategoriesFrameMixin:Update(getAchNums)
 	local offset = HybridScrollFrame_GetOffset(scrollFrame);
 	local buttons = scrollFrame.buttons;
 
+    local buttonHeight = buttons[1]:GetHeight();
+    local numButtons = math.ceil(scrollFrame:GetHeight() / buttonHeight) + 1;
+
 	local displayCategories = {};
 	local categories = selectedTab.Categories;
 	for _, category in next, categories do
@@ -65,12 +68,12 @@ function KrowiAF_CategoriesFrameMixin:Update(getAchNums)
 
 	local displayedHeight = 0;
 	local button, category;
-	for i = 1, #buttons do
+	for i = 1, numButtons do
 		button = buttons[i];
 		category = displayCategories[i + offset];
-		displayedHeight = displayedHeight + button:GetHeight();
 		button:SetCategory(category);
 		if category then
+			displayedHeight = displayedHeight + buttonHeight;
 			button:Show();
 			if category == selectedTab.SelectedCategory then
 				button:LockHighlight();
@@ -82,7 +85,7 @@ function KrowiAF_CategoriesFrameMixin:Update(getAchNums)
 		end
 	end
 
-	local totalHeight = #displayCategories * buttons[1]:GetHeight();
+	local totalHeight = #displayCategories * buttonHeight;
 	HybridScrollFrame_Update(scrollFrame, totalHeight, displayedHeight);
 end
 
