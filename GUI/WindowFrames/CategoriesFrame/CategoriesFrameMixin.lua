@@ -66,6 +66,14 @@ function KrowiAF_CategoriesFrameMixin:Update(getAchNums)
 		GetDisplayCategories(displayCategories, category, getAchNums);
 	end
 
+	local dataProvider = self.ScrollBox:GetDataProvider();
+	scrollFrame:Hide();
+	dataProvider:Flush();
+	for _, category in next, displayCategories do
+		print(category.Name)
+		dataProvider:Insert(category);
+	end
+
 	local displayedHeight = 0;
 	local button, category;
 	for i = 1, numButtons do

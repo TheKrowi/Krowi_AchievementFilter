@@ -436,7 +436,11 @@
         "AchivementFrameLeftPanel",
         "DAMAGE_TEXT_FONT",
         "UNIT_NAME_FONT",
-        "round"
+        "round",
+        "CreateDataProvider",
+        "CreateScrollBoxListLinearView",
+        "ScrollUtil",
+        "CreateAnchor"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

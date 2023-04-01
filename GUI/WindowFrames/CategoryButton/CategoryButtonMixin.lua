@@ -50,6 +50,13 @@ function KrowiAF_CategoryButtonMixin:SetCategory(category)
 	else
 		self.showTooltipFunc = addon.GUI.ShowStatusBarTooltip;
 	end
+
+	local selectedTab = addon.GUI.SelectedTab;
+	if not selectedTab then
+		return;
+	end
+
+	self:UpdateSelectionState(category == selectedTab.SelectedCategory);
 end
 
 function KrowiAF_CategoryButtonMixin:Select(quick)
@@ -62,6 +69,8 @@ function KrowiAF_CategoryButtonMixin:Select(quick)
 		addon.GUI.SummaryFrame:Hide();
 	end
 
+
+
 	local selectedTab = addon.GUI.SelectedTab;
 	if not selectedTab then
 		return;
@@ -70,4 +79,12 @@ function KrowiAF_CategoryButtonMixin:Select(quick)
 	local categoriesFrame = addon.GUI.CategoriesFrame;
     categoriesFrame:SelectButton(self, quick);
     categoriesFrame:Update();
+end
+
+function KrowiAF_CategoryButtonMixin:UpdateSelectionState(selected)
+	if selected then
+		self:LockHighlight();
+	else
+		self:UnlockHighlight();
+	end
 end

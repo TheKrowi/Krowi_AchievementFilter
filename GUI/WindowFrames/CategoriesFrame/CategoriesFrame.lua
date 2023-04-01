@@ -35,6 +35,16 @@ function categoriesFrame:Load()
 
 	HybridScrollFrame_CreateButtons(scrollFrame, "KrowiAF_CategoryButton_Template", -2, 0, "TOPRIGHT", "TOPRIGHT", 0, 0, "TOPRIGHT", "BOTTOMRIGHT");
 
+	-- New scroll element
+	local view = CreateScrollBoxListLinearView();
+	view:SetElementInitializer("KrowiAF_CategoryButton_Template", function(_frame, elementData)
+		_frame:SetCategory(elementData);
+	end);
+	ScrollUtil.InitScrollBoxListWithScrollBar(frame.ScrollBox, frame.ScrollBar, view);
+
+	local newDataProvider = CreateDataProvider();
+	frame.ScrollBox:SetDataProvider(newDataProvider);
+
 	addon.GUI.CategoriesFrame = frame;
 end
 

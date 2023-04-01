@@ -29,6 +29,20 @@
 					</Slider>
 				</Frames>
 			</ScrollFrame>
+
+			<Frame parentKey="ScrollBox" inherits="WowScrollBoxList" frameStrata="HIGH">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="0" y="-5"/>
+					<Anchor point="BOTTOMRIGHT" x="0" y="5"/>
+				</Anchors>
+			</Frame>
+ 
+			<EventFrame parentKey="ScrollBar" inherits="WowTrimScrollBar" frameStrata="HIGH">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="1" y="-3"/>
+					<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="1" y="1"/>
+				</Anchors>
+			</EventFrame>
 		</Frames>
 	</Frame>
 </Ui>
