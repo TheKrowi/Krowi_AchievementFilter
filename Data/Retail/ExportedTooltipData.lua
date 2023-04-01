@@ -1,4 +1,4 @@
--- [[ Exported at 2023-02-02 21-20-26 ]] --
+-- [[ Exported at 2023-03-26 14-55-33 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1661,7 +1661,7 @@ function exportedTooltipData.Load(d)
     AddD(d, 192948, tdt.Unit, 16729, 5, t[1], t[2]); -- "Thicket Glider"
     AddD(d, 192942, tdt.Unit, 16729, 6, t[1], t[2]); -- "Thunderspine Calf"
     AddD(d, 193594, tdt.Unit, 16729, 7, t[1], t[2]); -- "Timbertooth Kit"
-    AddD(d, 186481, tdt.Unit, 16729, 8, t[1], t[2]); -- "Frost Spiderling"
+    AddD(d, 186481, tdt.Unit, 16729, 8, t[1], t[2]); -- "Frosty Spiderling"
     AddD(d, 197718, tdt.Unit, 16729, 9, t[1], t[2]); -- "Crimson Knocker"
     AddD(d, 195869, tdt.Unit, 16729, 10, t[1], t[2]); -- "Diminuitive Boghopper"
     AddD(d, 196652, tdt.Unit, 16729, 11, t[1], t[2]); -- "Reservoir Filly"
@@ -1741,5 +1741,63 @@ function exportedTooltipData.Load(d)
     AddD(d, 194372, tdt.Unit, 17192, 0, t[15], t[16]); -- Caverns Criss-Cross Reverse: Bronze
     AddD(d, 194372, tdt.Unit, 17193, 0, t[15], t[16]); -- Caverns Criss-Cross Reverse: Silver
     AddD(d, 194372, tdt.Unit, 17194, 0, t[15], t[16]); -- Caverns Criss-Cross Reverse: Gold
+    AddD(d, 200183, tdt.Unit, 17214, 0, t[15], t[16]); -- Stormsunder Crater Circuit: Bronze
+    AddD(d, 200183, tdt.Unit, 17215, 0, t[15], t[16]); -- Stormsunder Crater Circuit: Silver
+    AddD(d, 200183, tdt.Unit, 17216, 0, t[15], t[16]); -- Stormsunder Crater Circuit: Gold
+    AddD(d, 200183, tdt.Unit, 17217, 0, t[15], t[16]); -- Stormsunder Crater Circuit Advanced: Bronze
+    AddD(d, 200183, tdt.Unit, 17218, 0, t[15], t[16]); -- Stormsunder Crater Circuit Advanced: Silver
+    AddD(d, 200183, tdt.Unit, 17219, 0, t[15], t[16]); -- Stormsunder Crater Circuit Advanced: Gold
+    AddD(d, 200183, tdt.Unit, 17220, 0, t[15], t[16]); -- Stormsunder Crater Circuit Reverse: Bronze
+    AddD(d, 200183, tdt.Unit, 17221, 0, t[15], t[16]); -- Stormsunder Crater Circuit Reverse: Silver
+    AddD(d, 200183, tdt.Unit, 17222, 0, t[15], t[16]); -- Stormsunder Crater Circuit Reverse: Gold
+    AddD(d, 200212, tdt.Unit, 17223, 0, t[15], t[16]); -- Morqut Ascent: Bronze
+    AddD(d, 200212, tdt.Unit, 17224, 0, t[15], t[16]); -- Morqut Ascent: Silver
+    AddD(d, 200212, tdt.Unit, 17225, 0, t[15], t[16]); -- Morqut Ascent: Gold
+    AddD(d, 200212, tdt.Unit, 17237, 0, t[15], t[16]); -- Morqut Ascent Advanced: Bronze
+    AddD(d, 200212, tdt.Unit, 17238, 0, t[15], t[16]); -- Morqut Ascent Advanced: Silver
+    AddD(d, 200212, tdt.Unit, 17239, 0, t[15], t[16]); -- Morqut Ascent Advanced: Gold
+    AddD(d, 200212, tdt.Unit, 17240, 0, t[15], t[16]); -- Morqut Ascent Reverse: Bronze
+    AddD(d, 200212, tdt.Unit, 17241, 0, t[15], t[16]); -- Morqut Ascent Reverse: Silver
+    AddD(d, 200212, tdt.Unit, 17242, 0, t[15], t[16]); -- Morqut Ascent Reverse: Gold
+    AddD(d, 200236, tdt.Unit, 17243, 0, t[15], t[16]); -- Aerie Chasm Cruise: Bronze
+    AddD(d, 200236, tdt.Unit, 17244, 0, t[15], t[16]); -- Aerie Chasm Cruise: Silver
+    AddD(d, 200236, tdt.Unit, 17245, 0, t[15], t[16]); -- Aerie Chasm Cruise: Gold
+    AddD(d, 200236, tdt.Unit, 17246, 0, t[15], t[16]); -- Aerie Chasm Cruise Advanced: Bronze
+    AddD(d, 200236, tdt.Unit, 17247, 0, t[15], t[16]); -- Aerie Chasm Cruise Advanced: Silver
+    AddD(d, 200236, tdt.Unit, 17248, 0, t[15], t[16]); -- Aerie Chasm Cruise Advanced: Gold
+    AddD(d, 200236, tdt.Unit, 17249, 0, t[15], t[16]); -- Aerie Chasm Cruise Reverse: Bronze
+    AddD(d, 200236, tdt.Unit, 17250, 0, t[15], t[16]); -- Aerie Chasm Cruise Reverse: Silver
+    AddD(d, 200236, tdt.Unit, 17251, 0, t[15], t[16]); -- Aerie Chasm Cruise Reverse: Gold
+    AddD(d, 200247, tdt.Unit, 17252, 0, t[15], t[16]); -- Southern Reach Route: Bronze
+    AddD(d, 200247, tdt.Unit, 17253, 0, t[15], t[16]); -- Southern Reach Route: Silver
+    AddD(d, 200247, tdt.Unit, 17254, 0, t[15], t[16]); -- Southern Reach Route: Gold
+    AddD(d, 200247, tdt.Unit, 17255, 0, t[15], t[16]); -- Southern Reach Route Advanced: Bronze
+    AddD(d, 200247, tdt.Unit, 17256, 0, t[15], t[16]); -- Southern Reach Route Advanced: Silver
+    AddD(d, 200247, tdt.Unit, 17257, 0, t[15], t[16]); -- Southern Reach Route Advanced: Gold
+    AddD(d, 200247, tdt.Unit, 17258, 0, t[15], t[16]); -- Southern Reach Route Reverse: Bronze
+    AddD(d, 200247, tdt.Unit, 17259, 0, t[15], t[16]); -- Southern Reach Route Reverse: Silver
+    AddD(d, 200247, tdt.Unit, 17260, 0, t[15], t[16]); -- Southern Reach Route Reverse: Gold
+    AddD(d, 200316, tdt.Unit, 17261, 0, t[15], t[16]); -- Caldera Coaster: Bronze
+    AddD(d, 200316, tdt.Unit, 17262, 0, t[15], t[16]); -- Caldera Coaster: Silver
+    AddD(d, 200316, tdt.Unit, 17263, 0, t[15], t[16]); -- Caldera Coaster: Gold
+    AddD(d, 200316, tdt.Unit, 17264, 0, t[15], t[16]); -- Caldera Coaster Advanced: Bronze
+    AddD(d, 200316, tdt.Unit, 17265, 0, t[15], t[16]); -- Caldera Coaster Advanced: Silver
+    AddD(d, 200316, tdt.Unit, 17266, 0, t[15], t[16]); -- Caldera Coaster Advanced: Gold
+    AddD(d, 200316, tdt.Unit, 17267, 0, t[15], t[16]); -- Caldera Coaster Reverse: Bronze
+    AddD(d, 200316, tdt.Unit, 17268, 0, t[15], t[16]); -- Caldera Coaster Reverse: Silver
+    AddD(d, 200316, tdt.Unit, 17269, 0, t[15], t[16]); -- Caldera Coaster Reverse: Gold
+    AddD(d, 200417, tdt.Unit, 17270, 0, t[15], t[16]); -- Forbidden Reach Rush: Bronze
+    AddD(d, 200417, tdt.Unit, 17271, 0, t[15], t[16]); -- Forbidden Reach Rush: Silver
+    AddD(d, 200417, tdt.Unit, 17272, 0, t[15], t[16]); -- Forbidden Reach Rush: Gold
+    AddD(d, 200417, tdt.Unit, 17273, 0, t[15], t[16]); -- Forbidden Reach Rush Advanced: Bronze
+    AddD(d, 200417, tdt.Unit, 17274, 0, t[15], t[16]); -- Forbidden Reach Rush Advanced: Silver
+    AddD(d, 200417, tdt.Unit, 17275, 0, t[15], t[16]); -- Forbidden Reach Rush Advanced: Gold
+    AddD(d, 200417, tdt.Unit, 17276, 0, t[15], t[16]); -- Forbidden Reach Rush Reverse: Bronze
+    AddD(d, 200417, tdt.Unit, 17277, 0, t[15], t[16]); -- Forbidden Reach Rush Reverse: Silver
+    AddD(d, 200417, tdt.Unit, 17278, 0, t[15], t[16]); -- Forbidden Reach Rush Reverse: Gold
+    AddD(d, 200684, tdt.Unit, 17541, 1, t[11], t[12]); -- "Vortex"
+    AddD(d, 200692, tdt.Unit, 17541, 2, t[11], t[12]); -- "Tremblor"
+    AddD(d, 200688, tdt.Unit, 17541, 3, t[11], t[12]); -- "Wildfire"
+    AddD(d, 200696, tdt.Unit, 17541, 4, t[11], t[12]); -- "Flow"
 end
 

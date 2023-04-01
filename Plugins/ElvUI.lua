@@ -58,47 +58,47 @@ local function SkinGameTooltipProgressBar(progressBar, engine)
 end
 
 local function SkinAchievementButton(button, engine, skins)
-	button:SetFrameLevel(button:GetFrameLevel() + 2)
-	button:StripTextures(true)
-	button:CreateBackdrop(nil, true)
-	button.backdrop:SetInside()
-	button.Icon:CreateBackdrop(nil, nil, nil, nil, nil, nil, true)
-	button.Icon:Size(button.Compact and 36 or 54, button.Compact and 36 or 54)
-	button.Icon:ClearAllPoints()
-	button.Icon:Point("TOPLEFT", button.Compact and 6 or 8, button.Compact and -6 or -8)
-	button.Icon.Border:Kill()
-	button.Icon.Texture:SetTexCoord(unpack(engine.TexCoords))
-	button.Icon.Texture:SetInside()
+	button:SetFrameLevel(button:GetFrameLevel() + 2);
+	button:StripTextures(true);
+	button:CreateBackdrop(nil, true);
+	button.backdrop:SetInside();
+	button.Icon:CreateBackdrop(nil, nil, nil, nil, nil, nil, true);
+	button.Icon:Size(button.Compact and 36 or 54, button.Compact and 36 or 54);
+	button.Icon:ClearAllPoints();
+	button.Icon:Point("TOPLEFT", button.Compact and 6 or 8, button.Compact and -6 or -8);
+	button.Icon.Border:Kill();
+	button.Icon.Texture:SetTexCoord(unpack(engine.TexCoords));
+	button.Icon.Texture:SetInside();
 
 	if button.Highlight then
-		button.Highlight:StripTextures()
-		button:HookScript("OnEnter", function(self) self.backdrop:SetBackdropBorderColor(1, 1, 0) end)
-		button:HookScript("OnLeave", function(self) self.backdrop:SetBackdropBorderColor(unpack(engine.media.bordercolor)) end)
+		button.Highlight:StripTextures();
+		button:HookScript("OnEnter", function(self) self.backdrop:SetBackdropBorderColor(1, 1, 0) end);
+		button:HookScript("OnLeave", function(self) self.backdrop:SetBackdropBorderColor(unpack(engine.media.bordercolor)) end);
 	end
 
 	if button.Header then
-		button.Header:SetTextColor(1, 1, 1)
+		button.Header:SetTextColor(1, 1, 1);
 	end
 
 	if button.Description then
-		button.Description:SetTextColor(.6, .6, .6)
+		button.Description:SetTextColor(.6, .6, .6);
 		hooksecurefunc(button.Description, "SetTextColor", function(_, r, g, b)
 			if r == 0 and g == 0 and b == 0 then
-				button.Description:SetTextColor(.6, .6, .6)
+				button.Description:SetTextColor(.6, .6, .6);
 			end
-		end)
+		end);
 	end
 
 	if button.HiddenDescription then
-		button.HiddenDescription:SetTextColor(1, 1, 1)
+		button.HiddenDescription:SetTextColor(1, 1, 1);
 	end
 
 	if button.Tracked then
-		button.Tracked:GetRegions():SetTextColor(1, 1, 1)
-		skins:HandleCheckBox(button.Tracked)
-		button.Tracked:Size(18)
-		button.Tracked:ClearAllPoints()
-		button.Tracked:Point("TOPLEFT", button.Icon, "BOTTOMLEFT", 0, -2)
+		button.Tracked:GetRegions():SetTextColor(1, 1, 1);
+		skins:HandleCheckBox(button.Tracked);
+		button.Tracked:Size(18);
+		button.Tracked:ClearAllPoints();
+		button.Tracked:Point("TOPLEFT", button.Icon, "BOTTOMLEFT", 0, -2);
 	end
 end
 
@@ -683,8 +683,8 @@ end
 local function AddInfo(localizationName, getFunction, hidden)
     return {
         order = KrowiAF_InjectOptions.AutoOrderPlusPlus(), type = "toggle", width = "full",
-        name = addon.L[localizationName],
-        desc = addon.L[localizationName .. " Desc"],
+        name = addon.L["ElvUI " .. localizationName],
+        desc = addon.L["ElvUI " .. localizationName .. " Desc"],
         descStyle = "inline",
         get = getFunction,
         disabled = true,
@@ -717,7 +717,7 @@ local function DisableOptions()
     KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.OffsetY").disabled = true;
     KrowiAF_InjectOptions.AddTable(KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args"), "ElvUIComment", {
         order = OrderPP(), type = "description", width = "full",
-        name = addon.L["Alert System Overwrite Desc"]
+        name = addon.L["Alert System Overwrite Desc"]:ReplaceVars(addon.L["ElvUI"])
     });
 end
 

@@ -73,15 +73,16 @@ function AchievementsFrameLightMixin:Update(achievements, refreshAchievements)
     local offset = HybridScrollFrame_GetOffset(scrollFrame);
     local buttons = scrollFrame.buttons;
 
-    local totalHeight = numAchievements * buttons[1]:GetHeight();
-	local displayedHeight = 0;
+    local buttonHeight = buttons[1]:GetHeight();
+    local numButtons = math.ceil(scrollFrame:GetHeight() / buttonHeight) + 1;
 
+	local displayedHeight = 0;
     local id;
-    for i = 1, #buttons do
+    for i = 1, numButtons do
         local button = buttons[i];
         id = achievements[i + offset];
-        displayedHeight = displayedHeight + button:GetHeight();
         if id ~= nil then
+            displayedHeight = displayedHeight + buttonHeight;
             button:SetAchievement(addon.Data.Achievements[id], refreshAchievements);
             button:Show();
         else
@@ -91,5 +92,7 @@ function AchievementsFrameLightMixin:Update(achievements, refreshAchievements)
             KrowiAF_AchievementButton_Light_OnEnter(button);
         end
     end
+
+    local totalHeight = numAchievements * buttonHeight;
     HybridScrollFrame_Update(scrollFrame, totalHeight, displayedHeight);
 end

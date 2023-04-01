@@ -152,22 +152,22 @@ function data.LoadBlizzardTabAchievements(categories)
 	end
 
     for i = 1, #data.AchievementIds do
-        local prevID = GetPreviousAchievement(data.AchievementIds[i]);
-        if prevID == 14884 then -- 14884 is a tracking achievement and is not earned by everyone
-            prevID = 9;
+        local prevId = GetPreviousAchievement(data.AchievementIds[i]);
+        if prevId == 14884 then -- 14884 is a tracking achievement and is not earned by everyone
+            prevId = 9;
         end
-        if prevID and data.Achievements[prevID] then
-            data.Achievements[prevID]:AddNext(data.Achievements[data.AchievementIds[i]]);
+        if prevId and data.Achievements[prevId] then
+            data.Achievements[prevId]:AddNext(data.Achievements[data.AchievementIds[i]]);
         end
     end
 
     for i = 1, #data.AchievementIds do
-        local achID = data.AchievementIds[i];
-        if addedOutOfOrder[achID] == nil then -- Not yet added
-            local categoryID = GetAchievementCategory(achID);
+        local achId = data.AchievementIds[i];
+        if addedOutOfOrder[achId] == nil then -- Not yet added
+            local categoryID = GetAchievementCategory(achId);
             if tmpC[categoryID] ~= nil then
-                achID = addon.GetFirstAchievementId(achID);
-                AddAchievementsToCategory(categoryID, achID);
+                achId = addon.GetFirstAchievementId(achId);
+                AddAchievementsToCategory(categoryID, achId);
             end
         end
     end

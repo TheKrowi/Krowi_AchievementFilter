@@ -50,6 +50,9 @@ function KrowiAF_AchievementsFrameMixin:Update()
 	local scrollFrame = self.ScrollFrame;
 	local offset = HybridScrollFrame_GetOffset(scrollFrame);
 	local buttons = scrollFrame.buttons;
+	
+    local buttonHeight = buttons[1]:GetHeight();
+    local numButtons = math.ceil(scrollFrame:GetHeight() / buttonHeight) + 1;
 
 	local updateAchievements = cachedCategory ~= selectedCategory or selectedCategory.HasFlexibleData;
 	cachedCategory = selectedCategory;
@@ -71,7 +74,7 @@ function KrowiAF_AchievementsFrameMixin:Update()
 
 	local displayedHeight = 0;
 	local button, index, achievement;
-	for i = 1, #buttons do
+	for i = 1, numButtons do
 		button = buttons[i];
 		index = i + offset;
 		achievement = cachedAchievements[index];
@@ -89,10 +92,7 @@ function KrowiAF_AchievementsFrameMixin:Update()
 	local extraHeight = scrollFrame.largeButtonHeight or buttonCollapsedHeight;
 	totalHeight = totalHeight + extraHeight - buttonCollapsedHeight;
 
-	-- print("HybridScrollFrame_Update", totalHeight, displayedHeight)
 	HybridScrollFrame_Update(scrollFrame, totalHeight, displayedHeight);
-	-- local _, maxVal = scrollFrame.ScrollBar:GetMinMaxValues();
-	-- print(maxVal, scrollFrame.ScrollBar:GetValue())
 
 	if not selectedAchievement then
 		HybridScrollFrame_CollapseButton(scrollFrame);

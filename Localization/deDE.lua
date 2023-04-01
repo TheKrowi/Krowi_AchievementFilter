@@ -1,8 +1,8 @@
--- [[ Exported at 2023-03-20 17-59-34 ]] --
+-- [[ Exported at 2023-03-30 22-40-18 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2023-03-13 ]] --
+-- [[ German translation by Ta, 2023-03-23 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -614,4 +614,6 @@ L["Ignore Filters"] = "Filter Ingorieren";
 L["Ignore Filters Desc"] = "Ignoriere jegliche Filter und zeige alle Erfolge in dieser {category}.";
 L["until the end of"] = "bis zum Ende von";
 L["Always Show Completed"] = "Erreichte Erfolge anzeigen";
+L["Show Faction Faction Icon"] = "Zeige {faction} Fraktions Symbol";
+L["Show Faction Faction Icon Desc"] = "Zeigt das {faction} Fraktionssymbol auf den Erfolgen an, wenn nur {faction} Spieler diese verdienen können.";
 

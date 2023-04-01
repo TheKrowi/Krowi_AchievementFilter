@@ -633,6 +633,20 @@ options.OptionsTable.args["Layout"] = {
                                     get = function() return addon.Options.db.Achievements.HideDateCompleted; end,
                                     set = function() addon.Options.db.Achievements.HideDateCompleted = not addon.Options.db.Achievements.HideDateCompleted; end,
                                 },
+                                ShowAllianceFactionIcon = {
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                                    name = addon.L["Show Faction Faction Icon"]:ReplaceVars(addon.L["Alliance"]),
+                                    desc = addon.L["Show Faction Faction Icon Desc"]:ReplaceVars(addon.L["Alliance"]):AddDefaultValueText_KAF("Achievements.ShowAllianceFactionIcon"),
+                                    get = function() return addon.Options.db.Achievements.ShowAllianceFactionIcon; end,
+                                    set = function() addon.Options.db.Achievements.ShowAllianceFactionIcon = not addon.Options.db.Achievements.ShowAllianceFactionIcon; end,
+                                },
+                                ShowHordeFactionIcon = {
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                                    name = addon.L["Show Faction Faction Icon"]:ReplaceVars(addon.L["Horde"]),
+                                    desc = addon.L["Show Faction Faction Icon Desc"]:ReplaceVars(addon.L["Horde"]):AddDefaultValueText_KAF("Achievements.ShowHordeFactionIcon"),
+                                    get = function() return addon.Options.db.Achievements.ShowHordeFactionIcon; end,
+                                    set = function() addon.Options.db.Achievements.ShowHordeFactionIcon = not addon.Options.db.Achievements.ShowHordeFactionIcon; end,
+                                },
                                 Objectives = {
                                     order = OrderPP(), type = "header",
                                     name = addon.L["Objectives"]

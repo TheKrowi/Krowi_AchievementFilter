@@ -13,11 +13,15 @@ function general.RegisterOptionsTable()
     LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addon.MetaData.Title, addon.MetaData.Title, nil);
 end
 
+local openCurrentZoneCategoryName;
 function general.PostLoad()
     local rebindMicroButton = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.MetaData.Title, "cmd", "KROWIAF-0.0").args.KeyBinding.args.General.args.MicroButton.args.Rebind;
     rebindMicroButton.desc = rebindMicroButton.desc:AddDefaultValueText_KAF("MicroButtonTab", addon.GUI.TabsOrderGetActiveKeys());
 
     options.SetMaxNumberOfSearchPreviews();
+
+    openCurrentZoneCategoryName = addon.L["Open"] .. " " .. addon.L["Current Zone"] .. " "  .. addon.L["Category"];
+    _G["BINDING_NAME_" .. "KrowiAF_OPEN_CAT_Current_Zone"] = openCurrentZoneCategoryName;
 end
 
 local function GeneralTutorialFunc()
@@ -332,7 +336,7 @@ options.OptionsTable.args["General"] = {
                             args = {
                                 OpenCurrentZoneCategoryName = {
                                     order = OrderPP(), type = "description", width = AdjustedWidth(0.93),
-                                    name = addon.L["Open"] .. " " .. addon.L["Current Zone"] .. " "  .. addon.L["Category"]
+                                    name = function() return openCurrentZoneCategoryName; end
                                 },
                                 OpenCurrentZoneCategoryKey1 = {
                                     order = OrderPP(), type = "keybinding", width = AdjustedWidth(0.93),

@@ -431,7 +431,12 @@
         "KrowiAF_Filters",
         "Options",
         "SavedData",
-        "ITEM_QUALITY_COLORS"
+        "ITEM_QUALITY_COLORS",
+        "GW2_ADDON",
+        "AchivementFrameLeftPanel",
+        "DAMAGE_TEXT_FONT",
+        "UNIT_NAME_FONT",
+        "round"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

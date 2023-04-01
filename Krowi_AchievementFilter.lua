@@ -18,6 +18,9 @@ LibStub(addon.Libs.AceEvent):Embed(addon.Event);
 -- [[ Tabs ]] --
 addon.Tabs.Load();
 
+-- [[ Binding names ]] --
+BINDING_HEADER_KrowiAF = addon.MetaData.Title;
+
 -- [[ Faction data ]] --
 addon.Faction = {};
 addon.Faction.IsAlliance = UnitFactionGroup("player") == "Alliance";
@@ -72,7 +75,7 @@ local function LoadBlizzard_AchievementUI()
     end
     addon.GUI.AchievementFrameHeader.HookSetPointsText();
     addon.OverwriteFunctions();
-    addon.HookAchievementFrameOnShow();
+    addon.HookFunctions();
 
     LoadBlizzard_AchievementUI = function() end
 end

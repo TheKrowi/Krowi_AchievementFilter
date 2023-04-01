@@ -266,7 +266,18 @@
 					</Layer>
 				</Layers>
 			</Frame>
-			<CheckButton name="$parentTracked" parentKey="Tracked" hidden="true" inherits="AchievementCheckButtonTemplate">
+			<Frame name="$parentFaction" enableMouse="false" parentKey="Faction">
+				<Size x="42" y="40"/>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="$parentShield" relativePoint="TOPLEFT"/>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentIcon" parentKey="Icon" atlas="MountJournalIcons-Alliance" setAllPoints="true"/>
+					</Layer>
+				</Layers>
+			</Frame>
+			<CheckButton name="$parentTracked" parentKey="Tracked" hidden="true">
 				<Size>
 					<AbsDimension x="15" y="15"/>
 				</Size>

@@ -72,12 +72,11 @@ function KrowiAF_SummaryFrameMixin:CategoriesStatusBar_Update(event)
     totalStatusBar:UpdateTextures();
 
     local header = self.Categories.Header;
-    header:ClearAllPoints();
-    header:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 0, 0);
-    header:SetPoint("TOPRIGHT", self, "BOTTOMRIGHT", 0, 0);
+    header:ClearPoint("TOP");
+    header:ClearPoint("BOTTOM");
+    header:SetPoint("TOP", self, "BOTTOM", 0, 0);
     offset = self:GetBottom() - lastShown:GetBottom();
-    header:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 0, offset);
-    header:SetPoint("TOPRIGHT", self, "BOTTOMRIGHT", 0, offset);
+    header:SetPoint("TOP", self, "BOTTOM", 0, offset);
 end
 
 local function BuildLastCompleted(event)

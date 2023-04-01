@@ -167,6 +167,15 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement, refresh)
 			end
 		end
 
+		self.Faction:Hide();
+		if achievement.Faction == addon.Objects.Faction.Alliance and addon.Options.db.Achievements.ShowAllianceFactionIcon then
+			self.Faction.Icon:SetAtlas("MountJournalIcons-Alliance");
+			self.Faction:Show();
+		elseif achievement.Faction == addon.Objects.Faction.Horde and addon.Options.db.Achievements.ShowHordeFactionIcon then
+			self.Faction.Icon:SetAtlas("MountJournalIcons-Horde");
+			self.Faction:Show();
+		end
+
 		if achievement.AlwaysVisible then
 			self.ExtraIcon.Texture:SetAtlas("flightpath");
 			self.ExtraIcon.Text = addon.L["Achievement shown temporarily"];
@@ -188,6 +197,7 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement, refresh)
 	end
 
 	if IsTrackedAchievement(id) then -- Issue #10 : Fix
+		self.Achievement.IsTracked = true;
 		self.Check:Show();
 		self.Header:SetWidth(self.Header:GetStringWidth() + 4); -- This +4 here is to fudge around any string width issues that arize from resizing a string set to its string width. See bug 144418 for an example.
 		self.Tracked:SetChecked(true);
@@ -195,6 +205,7 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement, refresh)
 			self.Tracked:Show();
 		end
 	else
+		self.Achievement.IsTracked = nil;
 		self.Check:Hide();
 		self.Tracked:SetChecked(false);
 		self.Tracked:Hide();
@@ -321,7 +332,6 @@ local function SetTsunamis(self)
 	if achievement.TemporaryObtainable then
 		state = achievement.TemporaryObtainable.Obtainable();
 	end
-	local notObtainable = state and (state == false or state == "Past" or state == "Future");
 
 	local texture;
 	if state and (state == false or state == "Past") then
