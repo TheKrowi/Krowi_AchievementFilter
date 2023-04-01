@@ -191,7 +191,7 @@ function KrowiAF_CategoriesFrameMixin:SelectButton(button, quick)
 	selectedTab.SelectedCategory = buttonCategory; -- Issue #21: Broken, Fix
 	if not quick then -- Skip refreshing achievements if we're still busy selecting the correct category
 		achievementsFrame:ClearSelection();
-		achievementsFrame.ScrollFrame.ScrollBar:SetValue(0);
+		-- achievementsFrame.ScrollFrame.ScrollBar:SetValue(0);
 		achievementsFrame:Update();
 	end
 end

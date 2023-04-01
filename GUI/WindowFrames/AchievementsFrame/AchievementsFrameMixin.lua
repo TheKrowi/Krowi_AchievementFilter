@@ -3,6 +3,36 @@ local _, addon = ...;
 
 KrowiAF_AchievementsFrameMixin = {};
 
+function KrowiAF_AchievementsFrameMixin:OnLoad()
+	local template = "KrowiAF_AchievementButton_" .. (addon.Options.db.Achievements.Compact and "Small" or "Normal") .. "_Template";
+
+	self.ScrollView = CreateScrollBoxListLinearView();
+	self.ScrollView:SetElementInitializer(template, function(_frame, achievement)
+		_frame:SetAchievement(achievement);
+	end);
+	self.ScrollView:SetElementExtentCalculator(function(dataIndex, elementData)
+		-- if SelectionBehaviorMixin.IsElementDataIntrusiveSelected(elementData) then
+		-- 	return AchievementTemplateMixin.CalculateSelectedHeight(elementData);
+		-- else
+			return addon.Options.db.Achievements.Compact and 48 or 84;
+		-- end
+	end);
+	ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView);
+
+	local anchorsWithBar = {
+        CreateAnchor("TOPLEFT", self, "TOPLEFT", 0, -5),
+        CreateAnchor("BOTTOMRIGHT", self.ScrollBar, "BOTTOMLEFT", 0, 5)
+    };
+
+    local anchorsWithoutBar = {
+        CreateAnchor("TOPLEFT", self, "TOPLEFT", 0, -5),
+        CreateAnchor("BOTTOMRIGHT", self, "BOTTOMRIGHT", 0, 5)
+    };
+
+    ScrollUtil.AddManagedScrollBarVisibilityBehavior(self.ScrollBox, self.ScrollBar, anchorsWithBar, anchorsWithoutBar);
+	ScrollUtil.AddResizableChildrenBehavior(self.ScrollBox);
+end
+
 function KrowiAF_AchievementsFrameMixin.Show_Hide(frame, func, offsetX)
 	local scrollFrame = frame.ScrollFrame;
 	frame:SetPoint("RIGHT", offsetX, 0);
@@ -37,6 +67,23 @@ local function GetFilteredAchievements(category)
 end
 
 local cachedCategory, cachedAchievements; -- Caching this speeds up the scrolling of achievements when the selected category isn't changed
+function KrowiAF_AchievementsFrameMixin:UpdateDataProvider(updateAchievements)
+	local selectedTab = addon.GUI.SelectedTab;
+	if selectedTab == nil then
+		return;
+	end
+
+	if updateAchievements then
+		cachedAchievements = GetFilteredAchievements(cachedCategory);
+	end
+
+	local newDataProvider = CreateDataProvider();
+	for _, achievement in next, cachedAchievements do
+		newDataProvider:Insert(achievement);
+	end
+	self.ScrollBox:SetDataProvider(newDataProvider);
+end
+
 local highlightedButton;
 function KrowiAF_AchievementsFrameMixin:Update()
 	-- print("AchievementsFrame:Update")
@@ -47,12 +94,12 @@ function KrowiAF_AchievementsFrameMixin:Update()
 	local selectedCategory = selectedTab.SelectedCategory;
 	local selectedAchievement = selectedTab.SelectedAchievement;
 
-	local scrollFrame = self.ScrollFrame;
-	local offset = HybridScrollFrame_GetOffset(scrollFrame);
-	local buttons = scrollFrame.buttons;
+	-- local scrollFrame = self.ScrollFrame;
+	-- local offset = HybridScrollFrame_GetOffset(scrollFrame);
+	-- local buttons = scrollFrame.buttons;
 	
-    local buttonHeight = buttons[1]:GetHeight();
-    local numButtons = math.ceil(scrollFrame:GetHeight() / buttonHeight) + 1;
+    -- local buttonHeight = buttons[1]:GetHeight();
+    -- local numButtons = math.ceil(scrollFrame:GetHeight() / buttonHeight) + 1;
 
 	local updateAchievements = cachedCategory ~= selectedCategory or selectedCategory.HasFlexibleData;
 	cachedCategory = selectedCategory;
@@ -60,43 +107,44 @@ function KrowiAF_AchievementsFrameMixin:Update()
 		updateAchievements = addon.Data.GetCurrentZoneAchievements() or updateAchievements;
 	end
 
-	if updateAchievements then
-		cachedAchievements = GetFilteredAchievements(cachedCategory);
-	end
+	-- if updateAchievements then
+	-- 	cachedAchievements = GetFilteredAchievements(cachedCategory);
+		self:UpdateDataProvider(updateAchievements);
+	-- end
 
 	self.Text:Hide();
 
 	-- Let's try just always hide it. When switching tabs and the new tab has no achievement selected, this line or ClearSelection is not called
 	-- if selectedAchievement then
 	addon.GUI.AchievementsObjectives:Hide();
-	scrollFrame.ScrollBar:SetValueStep(self.ScrollBarStep);
+	-- scrollFrame.ScrollBar:SetValueStep(self.ScrollBarStep);
 	-- end
 
-	local displayedHeight = 0;
-	local button, index, achievement;
-	for i = 1, numButtons do
-		button = buttons[i];
-		index = i + offset;
-		achievement = cachedAchievements[index];
-		if achievement then
-			button:Update(cachedAchievements[index], index);
-			displayedHeight = displayedHeight + button:GetHeight();
-			button:Show();
-		else
-			button:Hide();
-		end
-	end
+	-- local displayedHeight = 0;
+	-- local button, index, achievement;
+	-- for i = 1, numButtons do
+	-- 	button = buttons[i];
+	-- 	index = i + offset;
+	-- 	achievement = cachedAchievements[index];
+	-- 	if achievement then
+	-- 		button:Update(cachedAchievements[index], index);
+	-- 		displayedHeight = displayedHeight + button:GetHeight();
+	-- 		button:Show();
+	-- 	else
+	-- 		button:Hide();
+	-- 	end
+	-- end
 
-	local buttonCollapsedHeight = buttons[1].CollapsedHeight;
-	local totalHeight = #cachedAchievements * buttonCollapsedHeight;
-	local extraHeight = scrollFrame.largeButtonHeight or buttonCollapsedHeight;
-	totalHeight = totalHeight + extraHeight - buttonCollapsedHeight;
+	-- local buttonCollapsedHeight = buttons[1].CollapsedHeight;
+	-- local totalHeight = #cachedAchievements * buttonCollapsedHeight;
+	-- local extraHeight = scrollFrame.largeButtonHeight or buttonCollapsedHeight;
+	-- totalHeight = totalHeight + extraHeight - buttonCollapsedHeight;
 
-	HybridScrollFrame_Update(scrollFrame, totalHeight, displayedHeight);
+	-- HybridScrollFrame_Update(scrollFrame, totalHeight, displayedHeight);
 
-	if not selectedAchievement then
-		HybridScrollFrame_CollapseButton(scrollFrame);
-	end
+	-- if not selectedAchievement then
+	-- 	HybridScrollFrame_CollapseButton(scrollFrame);
+	-- end
 
 	-- Make sure the correct tooltip is shown when scrolling
 	if highlightedButton then
@@ -121,12 +169,12 @@ function KrowiAF_AchievementsFrameMixin:ExpandSelection(button)
 end
 
 function KrowiAF_AchievementsFrameMixin:ClearSelection()
-	addon.GUI.AchievementsObjectives:Hide();
-	local buttons = self.ScrollFrame.buttons;
-	for _, button in next, buttons do
-		button.selected = nil;
-		button:Collapse();
-	end
+	-- addon.GUI.AchievementsObjectives:Hide();
+	-- local buttons = self.ScrollFrame.buttons;
+	-- for _, button in next, buttons do
+	-- 	button.selected = nil;
+	-- 	button:Collapse();
+	-- end
 
 	if addon.GUI.SelectedTab then
 		addon.GUI.SelectedTab.SelectedAchievement = nil;

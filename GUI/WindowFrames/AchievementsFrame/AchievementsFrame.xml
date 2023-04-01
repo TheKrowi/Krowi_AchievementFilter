@@ -3,9 +3,10 @@
     <Script file="AchievementsFrameMixin.lua"/>
 	
 	<Frame name="KrowiAF_AchievementsFrame_Template" mixin="KrowiAF_AchievementsFrameMixin" virtual="true" hidden="true">
-		<!-- <Anchors>
-			<Anchor point="TOPLEFT" x="96" y="-116"/>
-		</Anchors> -->
+		<Anchors>
+			<Anchor point="BOTTOM" y="20"/>
+			<Anchor point="RIGHT" x="-20"/>
+		</Anchors>
 		<Layers>
 			<Layer level="BACKGROUND">
 				<Texture name="$parentBackground" parentKey="Background" file="Interface\AchievementFrame\UI-Achievement-AchievementBackground">
@@ -32,7 +33,7 @@
 				</Texture>
 			</Layer>
 		</Layers>
-		<Frames>
+		<!-- <Frames>
 			<ScrollFrame name="$parentScrollFrame" parentKey="ScrollFrame" inherits="HybridScrollFrameTemplate">
 				<Anchors>
 					<Anchor point="TOPLEFT" x="4" y="-3"/>
@@ -54,8 +55,25 @@
 				</Frames>
 			</ScrollFrame>
 			<Frame name="$parentBorder" parentKey="Border" setAllPoints="true" inherits="AchivementGoldBorderBackdrop"/>
+		</Frames> -->
+		<Frames>
+			<Frame parentKey="ScrollBox" inherits="WowScrollBoxList"/>
+			<EventFrame parentKey="ScrollBar" inherits="WowTrimScrollBar">
+				<Anchors>
+					<Anchor point="TOPRIGHT"/>
+					<Anchor point="BOTTOMRIGHT"/>
+				</Anchors>
+			</EventFrame>
+			<Frame parentKey="Border" inherits="AchivementGoldBorderBackdrop">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+					<Anchor point="BOTTOMLEFT"/>
+					<Anchor point="RIGHT" relativeKey="$parent.ScrollBox"/>
+				</Anchors>
+			</Frame>
 		</Frames>
 		<Scripts>
+			<OnLoad method="OnLoad"/>
 			<OnShow function="KrowiAF_AchievementsFrame_OnShow"/>
 		</Scripts>
 	</Frame>
