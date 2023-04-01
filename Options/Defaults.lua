@@ -19,7 +19,7 @@ options.Defaults = {
                 Calendar = false,
                 DataManager = false
             },
-            CategoriesFrameWidthOffset = 25,
+            CategoriesFrameWidthOffset = 50,
             AchievementFrameHeightOffset = 250,
             MergeSmallCategoriesThreshold = 10
         },

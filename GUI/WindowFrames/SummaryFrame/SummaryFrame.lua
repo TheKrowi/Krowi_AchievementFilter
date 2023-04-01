@@ -216,7 +216,7 @@ end
 
 function summaryFrame:Load()
     local frame = CreateFrame("Frame", "KrowiAF_AchievementFrameSummaryFrame", AchievementFrame, "KrowiAF_SummaryFrame_Template");
-	frame:SetPoint("TOPLEFT", AchievementFrameCategories, "TOPRIGHT", 22, 0);
+	frame:SetPoint("TOPLEFT", addon.GUI.CategoriesFrame, "TOPRIGHT", 0, 0);
 	frame:SetPoint("BOTTOM", 0, 20);
 	frame:SetPoint("RIGHT", -20, 0);
 

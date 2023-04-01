@@ -299,9 +299,9 @@ local function OffsetsCategoriesFrameWidthSet(_, value)
     if addon.Options.db.Window.CategoriesFrameWidthOffset == value then return; end
     addon.Options.db.Window.CategoriesFrameWidthOffset = value;
     if addon.GUI.SelectedTab then
-        addon.GUI.CategoriesFrame:Hide();
+        -- addon.GUI.CategoriesFrame:Hide();
         addon.GUI.SetAchievementFrameWidth();
-        addon.GUI.CategoriesFrame:Show();
+        -- addon.GUI.CategoriesFrame:Show();
     end
 end
 
@@ -324,9 +324,8 @@ end
 local function SetCategoryIndentation(_, value)
     if addon.Options.db.Categories.Indentation == value then return; end
     addon.Options.db.Categories.Indentation = value;
-    local buttons = addon.GUI.CategoriesFrame.ScrollFrame.buttons;
-    for _, button in next, buttons do
-        button:SetIndentation(addon.Options.db.Categories.Indentation);
+    if addon.GUI.CategoriesFrame.ScrollView then
+        addon.GUI.CategoriesFrame.ScrollView:Layout();
     end
 end
 

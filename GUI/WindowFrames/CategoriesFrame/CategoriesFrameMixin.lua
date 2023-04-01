@@ -3,20 +3,72 @@ local _, addon = ...;
 
 KrowiAF_CategoriesFrameMixin = {};
 
-function KrowiAF_CategoriesFrameMixin:Show_Hide(func, offsetX)
-	local scrollFrame = self.ScrollFrame;
+function KrowiAF_CategoriesFrameMixin:SetRightPoint()
+	self:SetPoint("RIGHT", AchievementFrameCategories, addon.Options.db.Window.CategoriesFrameWidthOffset, 0);
+	AchievementFrameCategoriesBG:SetWidth(self:GetWidth() - 4);
+end
 
-	self:SetPoint("RIGHT", AchievementFrameAchievements, "LEFT", addon.Options.db.Window.CategoriesFrameWidthOffset - offsetX, 0);
-	local width = self:GetWidth();
-	scrollFrame:GetScrollChild():SetWidth(width);
-	addon.GUI.AchievementsFrame:SetPoint("TOPLEFT", self, "TOPRIGHT", offsetX, 0);
-	addon.GUI.SummaryFrame:SetPoint("TOPLEFT", self, "TOPRIGHT", offsetX, 0);
-	local watermarkWidthOffset = width - 7;
-	AchievementFrameWaterMark:SetWidth(watermarkWidthOffset);
-	AchievementFrameWaterMark:SetTexCoord(0, (watermarkWidthOffset) / 256, 0, 1);
-	AchievementFrameCategoriesBG:SetWidth(width - 2); -- Offset of 2 needed to compensate with Blizzard tabs
+function KrowiAF_CategoriesFrameMixin:OnLoad()
+	self:SetRightPoint();
 
-	func(scrollFrame.ScrollBar);
+	self.ScrollView = CreateScrollBoxListLinearView();
+	self.ScrollView:SetElementInitializer("KrowiAF_CategoryButton_Template", function(_frame, category)
+		_frame:SetCategory(category);
+	end);
+	self.ScrollView:SetElementIndentCalculator(function(category)
+		if not category then
+			return 0;
+		end
+		return 2 + (category.Level - 1) * addon.Options.db.Categories.Indentation;
+	end);
+	ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView);
+
+	local anchorsWithBar = {
+        CreateAnchor("TOPLEFT", self, "TOPLEFT", 0, -5),
+        CreateAnchor("BOTTOMRIGHT", self.ScrollBar, "BOTTOMLEFT", 0, 5)
+    };
+
+    local anchorsWithoutBar = {
+        CreateAnchor("TOPLEFT", self, "TOPLEFT", 0, -5),
+        CreateAnchor("BOTTOMRIGHT", self, "BOTTOMRIGHT", 0, 5)
+    };
+
+    ScrollUtil.AddManagedScrollBarVisibilityBehavior(self.ScrollBox, self.ScrollBar, anchorsWithBar, anchorsWithoutBar);
+end
+
+function KrowiAF_CategoriesFrameMixin:OnShow()
+	self:RegisterEvent("ACHIEVEMENT_EARNED");
+	self:SetRightPoint();
+	AchievementFrameCategories:Hide();
+	AchievementFrame.Header.LeftDDLInset:Show();
+	AchievementFrameFilterDropDown:Hide();
+	if not addon.IsWrathClassic then
+		AchievementFrame.SearchBox:Hide();
+	end
+	AchievementFrameWaterMark:SetTexture(addon.GUI.SelectedTab and addon.GUI.SelectedTab.WaterMark or "Interface/AchievementFrame/UI-Achievement-AchievementWatermark");
+
+	self:Update(addon.AchievementEarnedUpdateCategoriesFrameOnNextShow);
+	addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = nil;
+end
+
+function KrowiAF_CategoriesFrameMixin:OnHide()
+	self:UnregisterEvent("ACHIEVEMENT_EARNED");
+	AchievementFrameCategories:Show();
+	AchievementFrameCategoriesBG:SetWidth(195);
+	if not AchievementFrameAchievements:IsShown() then
+		AchievementFrame.Header.LeftDDLInset:Hide();
+		AchievementFrameFilterDropDown:Hide();
+	end
+	if not addon.IsWrathClassic then
+		AchievementFrame.SearchBox:Show();
+	end
+end
+
+function KrowiAF_CategoriesFrameMixin:OnEvent(event)
+	if event ~= "ACHIEVEMENT_EARNED" then
+		return;
+	end
+	addon.DelayFunction("KrowiAF_CategoriesFrame_OnEvent", 1, self.Update, self, true);
 end
 
 local function GetDisplayCategories(displayCategories, category, getAchNums)
@@ -40,8 +92,26 @@ local function GetDisplayCategories(displayCategories, category, getAchNums)
 	end
 end
 
+function KrowiAF_CategoriesFrameMixin:UpdateDataProvider(getAchNums)
+	local selectedTab = addon.GUI.SelectedTab;
+	if selectedTab == nil then
+		return;
+	end
+
+	local displayCategories = {};
+	local categories = selectedTab.Categories;
+	for _, category in next, categories do
+		GetDisplayCategories(displayCategories, category, getAchNums);
+	end
+
+	local newDataProvider = CreateDataProvider();
+	for _, category in next, displayCategories do
+		newDataProvider:Insert(category);
+	end
+	self.ScrollBox:SetDataProvider(newDataProvider);
+end
+
 function KrowiAF_CategoriesFrameMixin:Update(getAchNums)
-	-- print("CategoriesFrame:Update", getAchNums)
 	local selectedTab = addon.GUI.SelectedTab;
 	if selectedTab == nil then
 		return;
@@ -53,70 +123,28 @@ function KrowiAF_CategoriesFrameMixin:Update(getAchNums)
 		getAchNums = true;
 	end
 
-	local scrollFrame = self.ScrollFrame;
-	local offset = HybridScrollFrame_GetOffset(scrollFrame);
-	local buttons = scrollFrame.buttons;
-
-    local buttonHeight = buttons[1]:GetHeight();
-    local numButtons = math.ceil(scrollFrame:GetHeight() / buttonHeight) + 1;
-
-	local displayCategories = {};
-	local categories = selectedTab.Categories;
-	for _, category in next, categories do
-		GetDisplayCategories(displayCategories, category, getAchNums);
-	end
-
-	local dataProvider = self.ScrollBox:GetDataProvider();
-	scrollFrame:Hide();
-	dataProvider:Flush();
-	for _, category in next, displayCategories do
-		print(category.Name)
-		dataProvider:Insert(category);
-	end
-
-	local displayedHeight = 0;
-	local button, category;
-	for i = 1, numButtons do
-		button = buttons[i];
-		category = displayCategories[i + offset];
-		button:SetCategory(category);
-		if category then
-			displayedHeight = displayedHeight + buttonHeight;
-			button:Show();
-			if category == selectedTab.SelectedCategory then
-				button:LockHighlight();
-			else
-				button:UnlockHighlight();
-			end
-		else
-			button:Hide();
-		end
-	end
-
-	local totalHeight = #displayCategories * buttonHeight;
-	HybridScrollFrame_Update(scrollFrame, totalHeight, displayedHeight);
+	self:UpdateDataProvider(getAchNums);
 end
 
-local function HideCategory(button, category)
-	if category.Level > button.Category.Level then
+local function HideCategory(targetCategory, category)
+	if category.Level > targetCategory.Level then
 		category.NotHidden = nil;
 	end
 
 	local children = category.Children;
 	if children then
 		for _, child in next, children do
-			HideCategory(button, child);
+			HideCategory(targetCategory, child);
 		end
 	end
 end
 
-local function OpenCloseCategory(button, category)
-	local buttonCategory = button.Category;
-	if category.Level == buttonCategory.Level and category.Parent == buttonCategory.Parent then -- Category on same level and same parent
+local function OpenCloseCategory(targetCategory, category)
+	if category.Level == targetCategory.Level and category.Parent == targetCategory.Parent then -- Category on same level and same parent
 		category.NotCollapsed = nil;
 	end
-	if category.Level > buttonCategory.Level then -- Category on higher level
-		if category.Parent == buttonCategory then -- Show child of clicked button
+	if category.Level > targetCategory.Level then -- Category on higher level
+		if category.Parent == targetCategory then -- Show child of clicked button
 			category.NotHidden = true;
 		else
 			category.NotHidden = nil; -- Hide the rest
@@ -128,7 +156,7 @@ local function OpenCloseCategory(button, category)
 	local children = category.Children;
 	if children then
 		for _, child in next, children do
-			OpenCloseCategory(button, child);
+			OpenCloseCategory(targetCategory, child);
 		end
 	end
 end
@@ -144,11 +172,11 @@ function KrowiAF_CategoriesFrameMixin:SelectButton(button, quick)
 	if buttonCategory.IsSelected and buttonCategory.NotCollapsed then -- Collapse selected categories -- Issue #12: Fix
 		buttonCategory.NotCollapsed = nil;
 		for _, category in next, categories do
-			HideCategory(button, category);
+			HideCategory(buttonCategory, category);
 		end
 	else -- Open selected category, close other highest level categories
 		for _, category in next, categories do
-			OpenCloseCategory(button, category);
+			OpenCloseCategory(buttonCategory, category);
 		end
 		buttonCategory.NotCollapsed = true;
 	end
@@ -165,5 +193,23 @@ function KrowiAF_CategoriesFrameMixin:SelectButton(button, quick)
 		achievementsFrame:ClearSelection();
 		achievementsFrame.ScrollFrame.ScrollBar:SetValue(0);
 		achievementsFrame:Update();
+	end
+end
+
+function KrowiAF_CategoriesFrameMixin:ExpandToCategory(category)
+	local selectedTab = addon.GUI.SelectedTab;
+	if selectedTab == nil then
+		return;
+	end
+
+	-- Get the merged category now we're sure it's loaded
+	category = category:GetMergedCategory();
+	local categoriesTree = category:GetTree();
+
+	local categories = selectedTab.Categories;
+	for i = 1, #categoriesTree - 1 do
+		for _, _category in next, categories do
+			OpenCloseCategory(categoriesTree[i], _category);
+		end
 	end
 end

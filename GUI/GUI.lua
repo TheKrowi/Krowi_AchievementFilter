@@ -31,9 +31,9 @@ function gui:LoadWithBlizzard_AchievementUI()
     self.SetAchievementFrameHeight(); -- Do this in order to create the correct amount of buttons based on our settings
 
     addon.GUI.AchievementsObjectives:Load();
+    gui.CategoriesFrame:Load();
     gui.AchievementsFrame:Load();
     addon.GUI.SummaryFrame:Load();
-    gui.CategoriesFrame:Load();
     gui.FilterButton:Load();
     gui.SideButtonSystem.Load();
     -- print("ach loading")
@@ -130,6 +130,7 @@ end
 
 function gui.SetAchievementFrameWidth()
     AchievementFrame:SetWidth(defaultAchievementFrameWidth + addon.Options.db.Window.CategoriesFrameWidthOffset);
+    addon.GUI.CategoriesFrame:SetRightPoint();
 end
 
 function gui.ResetAchievementFrameWidth()

@@ -89,43 +89,33 @@ function KrowiAF_SelectAchievementFromID(id)
 end
 
 local function SelectCategory(category, collapsed, quick)
-	local shown = false;
-	local previousScrollValue;
-
 	local categoriesFrame = addon.GUI.CategoriesFrame;
-	local scrollFrame = categoriesFrame.ScrollFrame;
-	local scrollBar = scrollFrame.ScrollBar;
-	local buttons = scrollFrame.buttons;
+	categoriesFrame:ExpandToCategory(category);
+	categoriesFrame:Update();
 
-	while not shown do
-		for _, button in next, buttons do
-			if button.Category == category and math.ceil(button:GetBottom()) >= math.ceil(addon.GUI.GetSafeScrollChildBottom(scrollFrame)) then
-				button:Select(quick);
-				shown = button;
-				break;
-			end
-		end
-
-		local _, maxVal = scrollBar:GetMinMaxValues();
-		if shown then
-			local newHeight = scrollBar:GetValue() + scrollFrame:GetBottom() - shown:GetBottom();
-			newHeight = math.ceil(newHeight / scrollBar:GetValueStep()) * scrollBar:GetValueStep();
-			newHeight = min(newHeight, maxVal);
-			scrollBar:SetValue(newHeight);
-
-			if collapsed then
-				shown:Select(quick);
-			end
-		else
-			local scrollValue = scrollBar:GetValue();
-			if scrollValue == maxVal or scrollValue == previousScrollValue then
-				return;
-			else
-				previousScrollValue = scrollValue;
-				HybridScrollFrame_OnMouseWheel(scrollFrame, -1);
-			end
-		end
+	local scrollBox = categoriesFrame.ScrollBox;
+	local dataProvider = scrollBox:GetDataProvider();
+	if not dataProvider then
+		return;
 	end
+
+	category = dataProvider:FindElementDataByPredicate(function(elementData)
+		return elementData == category;
+	end);
+	if not category then
+		return;
+	end
+
+	local button = scrollBox:FindFrame(category);
+	if not button then
+		return;
+	end
+
+	button:Select(quick);
+	if collapsed then
+		button:Select();
+	end
+	scrollBox:ScrollToElementData(category, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
 end
 
 function KrowiAF_SelectCategory(category, collapsed)
@@ -152,13 +142,7 @@ function KrowiAF_SelectCategory(category, collapsed)
     end
 
 	-- Select category
-	for i, cat in next, categoriesTree do
-		if cat.TabName == nil then
-			if not cat.IsSelected or (cat.NotCollapsed == collapsed) or cat.HasFlexibleData then -- Issue #23: Fix -- Issue #25 Broken, Fix
-				SelectCategory(cat, collapsed, i ~= #categoriesTree); -- Issue #23: Broken
-			end
-		end
-	end
+	SelectCategory(category, collapsed, collapsed); -- Issue #23: Broken
 
 	-- Reset the forced show so when clicking away, the category will be hidden again
 	if category.NumOfAch == 0 then
