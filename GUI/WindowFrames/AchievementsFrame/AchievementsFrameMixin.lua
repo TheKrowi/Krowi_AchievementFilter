@@ -220,6 +220,17 @@ function KrowiAF_AchievementsFrameMixin.ClearHighlightedButton()
 	highlightedButton = nil;
 end
 
+function KrowiAF_AchievementsFrameMixin:ScrollToNearest(achievement)
+	local scrollBox = self.ScrollBox;
+	local dataIndex = scrollBox:FindIndex(achievement);
+	local scrollOffset = scrollBox:GetDerivedScrollOffset();
+	if (scrollBox:GetExtentUntil(dataIndex) + scrollBox:GetElementExtent(dataIndex)) > (scrollOffset + scrollBox:GetVisibleExtent()) then
+		scrollBox:ScrollToElementDataIndex(dataIndex, ScrollBoxConstants.AlignEnd);
+	elseif scrollBox:GetExtentUntil(dataIndex) < scrollOffset then
+		scrollBox:ScrollToElementDataIndex(dataIndex, ScrollBoxConstants.AlignBegin);
+	end
+end
+
 function KrowiAF_AchievementsFrameMixin:ExpandSelection(button)
 	-- if button then
 	-- 	HybridScrollFrame_ExpandButton(self.ScrollFrame, ((button.index - 1) * button.CollapsedHeight), button:GetHeight());

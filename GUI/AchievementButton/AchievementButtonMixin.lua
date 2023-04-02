@@ -520,6 +520,7 @@ function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
 	self:Update(self.Achievement, self.Index);
 	print("pre upsate")
 	achievementsFrame.ScrollBox:FullUpdate(true);
+	achievementsFrame:ScrollToNearest(self.Achievement);
 
 	-- local achievementsFrame = addon.GUI.AchievementsFrame;
 	-- local scrollFrame = achievementsFrame.ScrollFrame;
