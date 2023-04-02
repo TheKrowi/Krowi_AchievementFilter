@@ -22,6 +22,7 @@ function KrowiAF_CategoriesFrameMixin:OnLoad()
 		return 2 + (category.Level - 1) * addon.Options.db.Categories.Indentation;
 	end);
 	ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView);
+	self.SelectionBehavior = ScrollUtil.AddSelectionBehavior(self.ScrollBox, SelectionBehaviorFlags.Deselectable, SelectionBehaviorFlags.Intrusive);
 
 	local anchorsWithBar = {
         CreateAnchor("TOPLEFT", self, "TOPLEFT", 0, -5),
@@ -151,8 +152,7 @@ local function OpenCloseCategory(targetCategory, category)
 		end
 		category.NotCollapsed = nil;
 	end
-	category.IsSelected = nil; -- Issue #12: Fix
-
+	
 	local children = category.Children;
 	if children then
 		for _, child in next, children do
@@ -169,7 +169,7 @@ function KrowiAF_CategoriesFrameMixin:SelectButton(button, quick)
 	local categories = selectedTab.Categories;
 	local achievementsFrame = addon.GUI.AchievementsFrame;
 	local buttonCategory = button.Category;
-	if buttonCategory.IsSelected and buttonCategory.NotCollapsed then -- Collapse selected categories -- Issue #12: Fix
+	if buttonCategory == selectedTab.SelectedCategory and buttonCategory.NotCollapsed then -- Collapse selected categories -- Issue #12: Fix
 		buttonCategory.NotCollapsed = nil;
 		for _, category in next, categories do
 			HideCategory(buttonCategory, category);
@@ -181,8 +181,6 @@ function KrowiAF_CategoriesFrameMixin:SelectButton(button, quick)
 		buttonCategory.NotCollapsed = true;
 	end
 
-	buttonCategory.IsSelected = true; -- Issue #12: Fix
-
 	if buttonCategory == selectedTab.SelectedCategory and buttonCategory.HasFlexibleData ~= true then
 		-- If this category was selected already, bail after changing collapsed states.
 		return;
@@ -190,8 +188,8 @@ function KrowiAF_CategoriesFrameMixin:SelectButton(button, quick)
 
 	selectedTab.SelectedCategory = buttonCategory; -- Issue #21: Broken, Fix
 	if not quick then -- Skip refreshing achievements if we're still busy selecting the correct category
-		achievementsFrame:ClearSelection();
-		-- achievementsFrame.ScrollFrame.ScrollBar:SetValue(0);
+		achievementsFrame:ClearFullSelection();
+		achievementsFrame.ScrollBox:ScrollToBegin();
 		achievementsFrame:Update();
 	end
 end

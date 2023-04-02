@@ -3,6 +3,21 @@ local _, addon = ...;
 
 KrowiAF_CategoryButtonMixin = {};
 
+function KrowiAF_CategoryButtonMixin:OnEnter()
+	if self.showTooltipFunc then
+		self.showTooltipFunc(self);
+	end
+end
+
+function KrowiAF_CategoryButtonMixin:OnLeave()
+	GameTooltip:SetMinimumWidth(0, false);
+	GameTooltip:Hide();
+end
+
+function KrowiAF_CategoryButtonMixin:OnClick()
+	self:Select();
+end
+
 function KrowiAF_CategoryButtonMixin:SetCategory(category)
 	if not category then
 		self.Category = nil;

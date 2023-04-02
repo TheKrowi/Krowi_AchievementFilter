@@ -3,20 +3,25 @@ local _, addon = ...;
 
 KrowiAF_AchievementsFrameMixin = {};
 
-local function SetSelectedAchievement(achievement)
-	addon.GUI.SelectedTab.SelectedAchievement = achievement;
-	print(achievement.Id)
-end
+-- local function SetSelectedAchievement(achievement)
+-- 	addon.GUI.SelectedTab.SelectedAchievement = achievement;
+-- 	print(achievement.Id)
+-- end
 
 function KrowiAF_AchievementsFrameMixin:OnLoad()
 	local template = "KrowiAF_AchievementButton_" .. (addon.Options.db.Achievements.Compact and "Small" or "Normal") .. "_Template";
 
 	self.ScrollView = CreateScrollBoxListLinearView();
 	self.ScrollView:SetElementInitializer(template, function(_frame, achievement)
-		_frame:SetAchievement(achievement);
-		_frame.SelectionBehavior = self.SelectionBehavior;
+		-- print("building list again")
+		-- _frame:SetAchievement(achievement);
+		print("Setting achievement", achievement.Id)
+		_frame:Update(achievement);
+		print("Achievement set", achievement.Id)
+		-- _frame.SelectionBehavior = self.SelectionBehavior;
 	end);
 	self.ScrollView:SetElementExtentCalculator(function(dataIndex, achievement)
+		print("SetElementExtentCalculator", achievement.Id)
 		-- if SelectionBehaviorMixin.IsElementDataIntrusiveSelected(elementData) then
 		-- 	return AchievementTemplateMixin.CalculateSelectedHeight(elementData);
 		-- else
@@ -32,24 +37,46 @@ function KrowiAF_AchievementsFrameMixin:OnLoad()
 			-- if button then
 			-- 	print(button:GetHeight())
 			-- end
+
+			local selectedTab = addon.GUI.SelectedTab;
+			local button = self.ScrollView:GetFrames()[dataIndex];
+			-- print("SetElementExtentCalculator", dataIndex, button, (button and button:GetHeight() or 0))
+			if button then
+				print(button:GetHeight(), achievement.Id)
+			end
+			if button --[[ and selectedTab and button.Achievement == selectedTab.SelectedAchievement ]]  then
+				-- print(button:GetHeight(), achievement.Id)
+				-- button:Update(achievement)
+				return button.NewHeight;
+			end
+			-- return 0;
+			
+			-- local button = self.ScrollBox:FindFrameByPredicate(function(frame, achievement)
+			-- 	return frame.selected;
+			-- end);
+			-- if not button then
+			-- 	return;
+			-- end
+		
+
 			return addon.Options.db.Achievements.Compact and 48 or 84;
 		-- end
 	end);
     self.ScrollView:SetPadding(0, 0, 5, 5, 0);
 	ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView);
 
-	self.SelectionBehavior = ScrollUtil.AddSelectionBehavior(self.ScrollBox, SelectionBehaviorFlags.Deselectable, SelectionBehaviorFlags.Intrusive);
-	self.SelectionBehavior:RegisterCallback(SelectionBehaviorMixin.Event.OnSelectionChanged, function(o, elementData, selected)
-		if selected then
-			SetSelectedAchievement(elementData);
-		else
-			SetSelectedAchievement(nil);
-		end
-		local button = self.ScrollBox:FindFrame(elementData);
-		if button then
-			button:SetSelected(selected);
-		end
-	end, self);
+	-- self.SelectionBehavior = ScrollUtil.AddSelectionBehavior(self.ScrollBox, SelectionBehaviorFlags.Deselectable, SelectionBehaviorFlags.Intrusive);
+	-- self.SelectionBehavior:RegisterCallback(SelectionBehaviorMixin.Event.OnSelectionChanged, function(o, elementData, selected)
+	-- 	if selected then
+	-- 		SetSelectedAchievement(elementData);
+	-- 	else
+	-- 		SetSelectedAchievement(nil);
+	-- 	end
+	-- 	local button = self.ScrollBox:FindFrame(elementData);
+	-- 	if button then
+	-- 		button:SetSelected(selected);
+	-- 	end
+	-- end, self);
 
 	local anchorsWithBar = {
         CreateAnchor("TOPLEFT", self, "TOPLEFT", 0, -5),
@@ -123,6 +150,7 @@ function KrowiAF_AchievementsFrameMixin:Update()
 	if not selectedTab then
 		return;
 	end
+
 	local selectedCategory = selectedTab.SelectedCategory;
 	local selectedAchievement = selectedTab.SelectedAchievement;
 
@@ -148,7 +176,7 @@ function KrowiAF_AchievementsFrameMixin:Update()
 
 	-- Let's try just always hide it. When switching tabs and the new tab has no achievement selected, this line or ClearSelection is not called
 	-- if selectedAchievement then
-	addon.GUI.AchievementsObjectives:Hide();
+	-- addon.GUI.AchievementsObjectives:Hide();
 	-- scrollFrame.ScrollBar:SetValueStep(self.ScrollBarStep);
 	-- end
 
@@ -208,16 +236,58 @@ function KrowiAF_AchievementsFrameMixin:ClearSelection()
 	-- 	button:Collapse();
 	-- end
 
-	if addon.GUI.SelectedTab then
-		addon.GUI.SelectedTab.SelectedAchievement = nil;
+	-- if addon.GUI.SelectedTab then
+	-- 	addon.GUI.SelectedTab.SelectedAchievement = nil;
+	-- end
+
+	local button = self.ScrollBox:FindFrameByPredicate(function(frame, achievement)
+		return frame.selected;
+	end);
+	if not button then
+		print("No selected buttons found")
+		return;
 	end
+
+	print("Collapsing", button.Achievement.Id)
+	button.selected = nil;
+	button:Collapse();
+	print(button.NewHeight)
+end
+
+function KrowiAF_AchievementsFrameMixin:ClearFullSelection()
+	addon.GUI.AchievementsObjectives:Hide();
+	addon.GUI.SelectedTab.SelectedAchievement = nil;
 end
 
 function KrowiAF_AchievementsFrameMixin:SelectButton(button)
-	-- if not addon.GUI.SelectedTab then
-	-- 	return;
-	-- end
-	-- addon.GUI.SelectedTab.SelectedAchievement = button.Achievement;
+	if not addon.GUI.SelectedTab then
+		return;
+	end
+
+	print("selecting button")
+	self:ClearSelection();
+	print("collapsed button")
+
+	addon.GUI.SelectedTab.SelectedAchievement = button.Achievement;
+	-- button.selected = true;
+
+	if addon.IsWrathClassic then
+	-- 	local achievements = AchievementFrameAchievements;
+	-- 	achievements.selection = button.id;
+	-- 	achievements.selectionIndex = button.index;
+	else
+		SetFocusedAchievement(button.Achievement.Id);
+	end
+end
+
+function KrowiAF_AchievementsFrameMixin:DeselectButton(button)
+	if not addon.GUI.SelectedTab then
+		return;
+	end
+
+	self:ClearSelection();
+
+	addon.GUI.SelectedTab.SelectedAchievement = nil;
 	-- button.selected = true;
 
 	-- if addon.IsWrathClassic then
@@ -225,7 +295,7 @@ function KrowiAF_AchievementsFrameMixin:SelectButton(button)
 	-- 	achievements.selection = button.id;
 	-- 	achievements.selectionIndex = button.index;
 	-- else
-	-- 	SetFocusedAchievement(button.Achievement.Id);
+		-- SetFocusedAchievement(button.Achievement.Id);
 	-- end
 end
 

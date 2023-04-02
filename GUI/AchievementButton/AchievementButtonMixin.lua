@@ -59,6 +59,7 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
 end
 
 function KrowiAF_AchievementButtonMixin:SetAchievement(achievement, refresh)
+	-- print("SetAchievement")
 	if not achievement then
 		self.Achievement = nil;
 		return;
@@ -294,6 +295,7 @@ function KrowiAF_AchievementButtonMixin:Collapse()
 	self.collapsed = true;
 	self:UpdatePlusMinusTexture();
 	self:SetHeight(self.CollapsedHeight);
+	self.NewHeight = self.CollapsedHeight;
 	self.Background:SetTexCoord(0, 1, 1 - (self.CollapsedHeight / 256), 1);
 	if not self:IsMouseOver() then
 		self.Highlight:Hide();
@@ -317,6 +319,7 @@ function KrowiAF_AchievementButtonMixin:Expand(height)
 	self.collapsed = nil;
 	self:UpdatePlusMinusTexture();
 	self:SetHeight(height);
+	self.NewHeight = height;
 	self.Background:SetTexCoord(0, 1, max(0, 1 - (height / 256)), 1);
 	self.HiddenDescription:Show();
 	self.Description:Hide();
@@ -494,9 +497,29 @@ function KrowiAF_AchievementButtonMixin:ProcessedModifiers(ignoreModifiers)
 end
 
 function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
+	print("button clicked")
 	if self:ProcessedModifiers(ignoreModifiers) then
 		return;
 	end
+
+	print("button clicked 2")
+	local selectedTab = addon.GUI.SelectedTab;
+	if not selectedTab then
+		return;
+	end
+
+	print("button clicked 3")
+	local achievementsFrame = addon.GUI.AchievementsFrame;
+	-- print(self)
+	if not self.selected then
+		achievementsFrame:SelectButton(self);
+	else
+		achievementsFrame:DeselectButton(self);
+	end
+	-- achievementsFrame:Update();
+	self:Update(self.Achievement, self.Index);
+	print("pre upsate")
+	achievementsFrame.ScrollBox:FullUpdate(true);
 
 	-- local achievementsFrame = addon.GUI.AchievementsFrame;
 	-- local scrollFrame = achievementsFrame.ScrollFrame;
@@ -504,9 +527,9 @@ function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
 	-- 	if not self:IsMouseOver() then
 	-- 		self.Highlight:Hide();
 	-- 	end
-	-- 	achievementsFrame:ClearSelection();
-	-- 	HybridScrollFrame_CollapseButton(scrollFrame);
-	-- 	achievementsFrame:Update();
+	-- 	-- achievementsFrame:ClearSelection();
+	-- 	-- HybridScrollFrame_CollapseButton(scrollFrame);
+	-- 	-- achievementsFrame:Update();
 	-- 	return;
 	-- end
 
@@ -516,8 +539,6 @@ function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
 	-- 	self:Update(addon.GUI.SelectedTab.SelectedAchievement, self.index);
 	-- end
 	-- achievementsFrame:ExpandSelection(self);
-
-	self.SelectionBehavior:ToggleSelect(self);
 end
 
 function KrowiAF_AchievementButtonMixin:ShowTooltip()
