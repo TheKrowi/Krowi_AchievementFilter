@@ -55,8 +55,8 @@
 				<Texture name="$parentBottomTsunami" parentKey="BottomTsunami" file="Interface\AchievementFrame\UI-Achievement-Borders">
 					<Size x="370" y="16"/>
 					<Anchors>
-						<Anchor point="BOTTOMLEFT" relativeTo="$parentBottomLeftTsunami" relativePoint="BOTTOMRIGHT" x="0" y="3"/>
-						<Anchor point="BOTTOMRIGHT" relativeTo="$parentBottomRightTsunami" relativePoint="BOTTOMLEFT"/>
+						<Anchor point="BOTTOMLEFT" relativeKey="$parent.BottomLeftTsunami" relativePoint="BOTTOMRIGHT" x="0" y="3"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.BottomRightTsunami" relativePoint="BOTTOMLEFT"/>
 					</Anchors>
 					<Color r="1" g="1" b="1" a=".35"/>
 					<TexCoords left="0" right="0.72265" top="0.51953125" bottom="0.58203125"/>
@@ -64,8 +64,8 @@
 				<Texture name="$parentTopTsunami" parentKey="TopTsunami" file="Interface\AchievementFrame\UI-Achievement-Borders">
 					<Size x="370" y="16"/>
 					<Anchors>
-						<Anchor point="TOPLEFT" relativeTo="$parentTopLeftTsunami" relativePoint="TOPRIGHT" x="0" y="-3"/>
-						<Anchor point="TOPRIGHT" relativeTo="$parentTopRightTsunami" relativePoint="TOPLEFT"/>
+						<Anchor point="TOPLEFT" relativeKey="$parent.TopLeftTsunami" relativePoint="TOPRIGHT" x="0" y="-3"/>
+						<Anchor point="TOPRIGHT" relativeKey="$parent.TopRightTsunami" relativePoint="TOPLEFT"/>
 					</Anchors>
 					<Color r="1" g="1" b="1" a="0.3"/>
 					<TexCoords left="0.72265" right="0" top="0.58203125" bottom="0.51953125"/>
@@ -84,7 +84,7 @@
 				<Texture name="$parentGlow" parentKey="Glow" file="Interface\AchievementFrame\UI-Achievement-Borders">
 					<Size x="10" y="64"/>
 					<Anchors>
-						<Anchor point="TOPLEFT" relativeTo="$parentHeaderBackground" relativePoint="BOTTOMLEFT" x="0" y="2"/>
+						<Anchor point="TOPLEFT" relativeKey="$parent.HeaderBackground" relativePoint="BOTTOMLEFT" x="0" y="2"/>
 						<Anchor point="RIGHT" x="0" y="2"/>
 					</Anchors>
 					<TexCoords left="0" right="1" top="0.00390625" bottom="0.25390625"/>
@@ -102,13 +102,13 @@
 				<FontString name="$parentHeader" parentKey="Header" inherits="GameFontHighlightMedium" text="For the Alliance!">
 					<Size x="320" y="20"/>
 					<Anchors>
-						<Anchor point="TOP" relativeTo="$parentHeaderBackground" relativePoint="TOP" x="0" y="0"/>
+						<Anchor point="TOP" relativeKey="$parent.HeaderBackground" relativePoint="TOP" x="0" y="0"/>
 					</Anchors>
 				</FontString>
 				<FontString name="$parentReward" parentKey="Reward" inherits="GameFontNormalSmall" hidden="true">
 					<Size x="400" y="20"/>
 					<Anchors>
-						<Anchor point="TOP" relativeTo="$parentRewardBackground" relativePoint="TOP" x="0" y="1"/>
+						<Anchor point="TOP" relativeKey="$parent.RewardBackground" relativePoint="TOP" x="0" y="1"/>
 					</Anchors>
 				</FontString>
 				<FontString name="$parentDescription" parentKey="Description" inherits="AchievementDescriptionFont">
@@ -119,8 +119,8 @@
 				</FontString>
 				<FontString name="$parentHiddenDescription" parentKey="HiddenDescription" inherits="AchievementDescriptionFont" hidden="true">
 					<Anchors>
-						<Anchor point="TOPLEFT" relativeTo="$parentDescription" x="0" y="0"/>
-						<Anchor point="TOPRIGHT" relativeTo="$parentDescription" x="0" y="0"/>
+						<Anchor point="TOPLEFT" relativeKey="$parent.Description" x="0" y="0"/>
+						<Anchor point="TOPRIGHT" relativeKey="$parent.Description" x="0" y="0"/>
 					</Anchors>
 				</FontString>
 				<FontString name="$parentDateCompleted" parentKey="DateCompleted" inherits="AchievementDateFont" text="5/16/08" justifyH="CENTER" hidden="true">
@@ -132,7 +132,7 @@
 				<Texture name="$parentCheck" parentKey="Check" file="Interface\Buttons\UI-CheckBox-Check" hidden="true">
 					<Size x="20" y="16"/>
 					<Anchors>
-						<Anchor point="LEFT" relativeTo="$parentHeader" relativePoint="RIGHT" x="0" y="-1"/>
+						<Anchor point="LEFT" relativeKey="$parent.Header" relativePoint="RIGHT" x="0" y="-1"/>
 					</Anchors>
 					<TexCoords left="0" right="1" top="0" bottom="1"/>
 				</Texture>
@@ -157,59 +157,59 @@
 			<Frame name="$parentHighlight" setAllPoints="true" hidden="true" enableMouse="false" parentKey="Highlight">
 				<Layers>
 					<Layer level="OVERLAY">
-						<Texture name="$parentTopLeft" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
+						<Texture name="$parentTopLeft" parentKey="TopLeft" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
 							<Size x="16" y="16"/>
 							<Anchors>
 								<Anchor point="TOPLEFT" x="-1" y="2"/>
 							</Anchors>
 							<TexCoords left="0.06640625" right="0" top="0.4375" bottom="0.65625"/>
 						</Texture>
-						<Texture name="$parentBottomLeft" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
+						<Texture name="$parentBottomLeft" parentKey="BottomLeft" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
 							<Size x="16" y="16"/>
 							<Anchors>
 								<Anchor point="BOTTOMLEFT" x="-1" y="-2"/>
 							</Anchors>
 							<TexCoords left="0.06640625" right="0" top="0.65625" bottom="0.4375"/>
 						</Texture>
-						<Texture name="$parentTopRight" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
+						<Texture name="$parentTopRight" parentKey="TopRight" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
 							<Size x="16" y="16"/>
 							<Anchors>
 								<Anchor point="TOPRIGHT" x="1" y="2"/>
 							</Anchors>
 							<TexCoords left="0" right="0.06640625" top="0.4375" bottom="0.65625"/>
 						</Texture>
-						<Texture name="$parentBottomRight" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
+						<Texture name="$parentBottomRight" parentKey="BottomRight" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
 							<Size x="16" y="16"/>
 							<Anchors>
 								<Anchor point="BOTTOMRIGHT" x="1" y="-2"/>
 							</Anchors>
 							<TexCoords left="0" right="0.06640625" top="0.65625" bottom="0.4375"/>
 						</Texture>
-						<Texture name="$parentTop" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
+						<Texture name="$parentTop" parentKey="Top" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
 							<Anchors>
-								<Anchor point="TOPLEFT" relativeTo="$parentTopLeft" relativePoint="TOPRIGHT"/>
-								<Anchor point="BOTTOMRIGHT" relativeTo="$parentTopRight" relativePoint="BOTTOMLEFT"/>
+								<Anchor point="TOPLEFT" relativeKey="$parent.TopLeft" relativePoint="TOPRIGHT"/>
+								<Anchor point="BOTTOMRIGHT" relativeKey="$parent.TopRight" relativePoint="BOTTOMLEFT"/>
 							</Anchors>
 							<TexCoords left="0" right="0.015" top="0.4375" bottom="0.65625"/>
 						</Texture>
-						<Texture name="$parentBottom" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
+						<Texture name="$parentBottom" parentKey="Bottom" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
 							<Anchors>
-								<Anchor point="TOPLEFT" relativeTo="$parentBottomLeft" relativePoint="TOPRIGHT"/>
-								<Anchor point="BOTTOMRIGHT" relativeTo="$parentBottomRight" relativePoint="BOTTOMLEFT"/>
+								<Anchor point="TOPLEFT" relativeKey="$parent.BottomLeft" relativePoint="TOPRIGHT"/>
+								<Anchor point="BOTTOMRIGHT" relativeKey="$parent.BottomRight" relativePoint="BOTTOMLEFT"/>
 							</Anchors>
 							<TexCoords left="0" right="0.015" top="0.65625" bottom="0.4375"/>
 						</Texture>
-						<Texture name="$parentLeft" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
+						<Texture name="$parentLeft" parentKey="Left" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
 							<Anchors>
-								<Anchor point="TOPLEFT" relativeTo="$parentTopLeft" relativePoint="BOTTOMLEFT"/>
-								<Anchor point="BOTTOMRIGHT" relativeTo="$parentBottomLeft" relativePoint="TOPRIGHT"/>
+								<Anchor point="TOPLEFT" relativeKey="$parent.TopLeft" relativePoint="BOTTOMLEFT"/>
+								<Anchor point="BOTTOMRIGHT" relativeKey="$parent.BottomLeft" relativePoint="TOPRIGHT"/>
 							</Anchors>
 							<TexCoords left="0.06640625" right="0" top="0.65625" bottom="0.6"/>
 						</Texture>
-						<Texture name="$parentRight" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
+						<Texture name="$parentRight" parentKey="Right" file="Interface\PaperDollInfoFrame\UI-Character-ReputationBar-Highlight" alphaMode="ADD">
 							<Anchors>
-								<Anchor point="TOPLEFT" relativeTo="$parentTopRight" relativePoint="BOTTOMLEFT"/>
-								<Anchor point="BOTTOMRIGHT" relativeTo="$parentBottomRight" relativePoint="TOPRIGHT"/>
+								<Anchor point="TOPLEFT" relativeKey="$parent.TopRight" relativePoint="BOTTOMLEFT"/>
+								<Anchor point="BOTTOMRIGHT" relativeKey="$parent.BottomRight" relativePoint="TOPRIGHT"/>
 							</Anchors>
 							<TexCoords left="0" right="0.06640625" top="0.65625" bottom="0.6"/>
 						</Texture>
@@ -269,7 +269,7 @@
 			<Frame name="$parentFaction" enableMouse="false" parentKey="Faction">
 				<Size x="42" y="40"/>
 				<Anchors>
-					<Anchor point="TOPRIGHT" relativeTo="$parentShield" relativePoint="TOPLEFT"/>
+					<Anchor point="TOPRIGHT" relativeKey="$parent.Shield" relativePoint="TOPLEFT"/>
 				</Anchors>
 				<Layers>
 					<Layer level="BACKGROUND">
@@ -323,7 +323,7 @@
 			<Frame hidden="true" name="$parentExtraIcon" parentKey="ExtraIcon">
 				<Size x="15" y="15"/>
 				<Anchors>
-					<Anchor point="TOP" relativeTo="$parentPlusMinus" relativePoint="BOTTOM" x="-1" y="-5"/>
+					<Anchor point="TOP" relativeKey="$parent.PlusMinus" relativePoint="BOTTOM" x="-1" y="-5"/>
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">

@@ -26,8 +26,8 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
 
 	objectives:SetParent(self);
 	objectives:SetPoint("TOP", self.HiddenDescription, "BOTTOM", 0, -8);
-	objectives:SetPoint("LEFT", self, "LEFT", self.XObjectivesOffset, 0); -- Set it each time to take the scrollbar into account
-	objectives:SetPoint("RIGHT", self, "RIGHT", -self.XObjectivesOffset, 0); -- Set it each time to take the scrollbar into account
+	objectives:SetPoint("LEFT", self, "LEFT", 0, 0); -- Set it each time to take the scrollbar into account
+	objectives:SetPoint("RIGHT", self, "RIGHT", 0, 0); -- Set it each time to take the scrollbar into account
 	objectives.Completed = self.Completed;
 	objectives.FontHeight = self.FontHeight;
 	local height = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT; -- Compact or not, we need this height
@@ -498,24 +498,26 @@ function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
 		return;
 	end
 
-	local achievementsFrame = addon.GUI.AchievementsFrame;
-	local scrollFrame = achievementsFrame.ScrollFrame;
-	if self.selected then
-		if not self:IsMouseOver() then
-			self.Highlight:Hide();
-		end
-		achievementsFrame:ClearSelection();
-		HybridScrollFrame_CollapseButton(scrollFrame);
-		achievementsFrame:Update();
-		return;
-	end
+	-- local achievementsFrame = addon.GUI.AchievementsFrame;
+	-- local scrollFrame = achievementsFrame.ScrollFrame;
+	-- if self.selected then
+	-- 	if not self:IsMouseOver() then
+	-- 		self.Highlight:Hide();
+	-- 	end
+	-- 	achievementsFrame:ClearSelection();
+	-- 	HybridScrollFrame_CollapseButton(scrollFrame);
+	-- 	achievementsFrame:Update();
+	-- 	return;
+	-- end
 
-	achievementsFrame:ClearSelection();
-	achievementsFrame:SelectButton(self);
-	if addon.GUI.SelectedTab then
-		self:Update(addon.GUI.SelectedTab.SelectedAchievement, self.index);
-	end
-	achievementsFrame:ExpandSelection(self);
+	-- achievementsFrame:ClearSelection();
+	-- achievementsFrame:SelectButton(self);
+	-- if addon.GUI.SelectedTab then
+	-- 	self:Update(addon.GUI.SelectedTab.SelectedAchievement, self.index);
+	-- end
+	-- achievementsFrame:ExpandSelection(self);
+
+	self.SelectionBehavior:ToggleSelect(self);
 end
 
 function KrowiAF_AchievementButtonMixin:ShowTooltip()

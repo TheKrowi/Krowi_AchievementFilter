@@ -3,21 +3,53 @@ local _, addon = ...;
 
 KrowiAF_AchievementsFrameMixin = {};
 
+local function SetSelectedAchievement(achievement)
+	addon.GUI.SelectedTab.SelectedAchievement = achievement;
+	print(achievement.Id)
+end
+
 function KrowiAF_AchievementsFrameMixin:OnLoad()
 	local template = "KrowiAF_AchievementButton_" .. (addon.Options.db.Achievements.Compact and "Small" or "Normal") .. "_Template";
 
 	self.ScrollView = CreateScrollBoxListLinearView();
 	self.ScrollView:SetElementInitializer(template, function(_frame, achievement)
 		_frame:SetAchievement(achievement);
+		_frame.SelectionBehavior = self.SelectionBehavior;
 	end);
-	self.ScrollView:SetElementExtentCalculator(function(dataIndex, elementData)
+	self.ScrollView:SetElementExtentCalculator(function(dataIndex, achievement)
 		-- if SelectionBehaviorMixin.IsElementDataIntrusiveSelected(elementData) then
 		-- 	return AchievementTemplateMixin.CalculateSelectedHeight(elementData);
 		-- else
+		-- local dataProvider = self.ScrollBox:GetDataProvider();
+		-- if not dataProvider then
+		-- 	return addon.Options.db.Achievements.Compact and 48 or 84;
+		-- end
+		-- local button = self.ScrollBox:FindFrame(achievement);
+		-- if not button then
+		-- 	return;
+		-- end
+			-- local button = self.ScrollBox:FindFrame(achievement);
+			-- if button then
+			-- 	print(button:GetHeight())
+			-- end
 			return addon.Options.db.Achievements.Compact and 48 or 84;
 		-- end
 	end);
+    self.ScrollView:SetPadding(0, 0, 5, 5, 0);
 	ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView);
+
+	self.SelectionBehavior = ScrollUtil.AddSelectionBehavior(self.ScrollBox, SelectionBehaviorFlags.Deselectable, SelectionBehaviorFlags.Intrusive);
+	self.SelectionBehavior:RegisterCallback(SelectionBehaviorMixin.Event.OnSelectionChanged, function(o, elementData, selected)
+		if selected then
+			SetSelectedAchievement(elementData);
+		else
+			SetSelectedAchievement(nil);
+		end
+		local button = self.ScrollBox:FindFrame(elementData);
+		if button then
+			button:SetSelected(selected);
+		end
+	end, self);
 
 	local anchorsWithBar = {
         CreateAnchor("TOPLEFT", self, "TOPLEFT", 0, -5),
@@ -161,11 +193,11 @@ function KrowiAF_AchievementsFrameMixin.ClearHighlightedButton()
 end
 
 function KrowiAF_AchievementsFrameMixin:ExpandSelection(button)
-	if button then
-		HybridScrollFrame_ExpandButton(self.ScrollFrame, ((button.index - 1) * button.CollapsedHeight), button:GetHeight());
-	end
-	self:Update();
-	self:AdjustSelection();
+	-- if button then
+	-- 	HybridScrollFrame_ExpandButton(self.ScrollFrame, ((button.index - 1) * button.CollapsedHeight), button:GetHeight());
+	-- end
+	-- self:Update();
+	-- self:AdjustSelection();
 end
 
 function KrowiAF_AchievementsFrameMixin:ClearSelection()
@@ -182,19 +214,19 @@ function KrowiAF_AchievementsFrameMixin:ClearSelection()
 end
 
 function KrowiAF_AchievementsFrameMixin:SelectButton(button)
-	if not addon.GUI.SelectedTab then
-		return;
-	end
-	addon.GUI.SelectedTab.SelectedAchievement = button.Achievement;
-	button.selected = true;
+	-- if not addon.GUI.SelectedTab then
+	-- 	return;
+	-- end
+	-- addon.GUI.SelectedTab.SelectedAchievement = button.Achievement;
+	-- button.selected = true;
 
-	if addon.IsWrathClassic then
-		local achievements = AchievementFrameAchievements;
-		achievements.selection = button.id;
-		achievements.selectionIndex = button.index;
-	else
-		SetFocusedAchievement(button.Achievement.Id);
-	end
+	-- if addon.IsWrathClassic then
+	-- 	local achievements = AchievementFrameAchievements;
+	-- 	achievements.selection = button.id;
+	-- 	achievements.selectionIndex = button.index;
+	-- else
+	-- 	SetFocusedAchievement(button.Achievement.Id);
+	-- end
 end
 
  -- Looks for the selection if it's not already visible

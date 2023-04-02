@@ -443,7 +443,9 @@
         "CreateAnchor",
         "KrowiAF_CategoriesFrame",
         "FindInTableIf",
-        "ScrollBoxConstants"
+        "ScrollBoxConstants",
+        "SelectionBehaviorFlags",
+        "SelectionBehaviorMixin"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
