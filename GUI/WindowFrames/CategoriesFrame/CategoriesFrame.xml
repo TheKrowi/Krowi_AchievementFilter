@@ -8,12 +8,19 @@
 			<Anchor point="BOTTOMLEFT" relativeTo="AchievementFrameCategories"/>
 		</Anchors>
 		<Frames>
-			<Frame parentKey="ScrollBox" inherits="WowScrollBoxList"/>
+			<Frame parentKey="ScrollBox" inherits="WowScrollBoxList">
+				<KeyValues>
+					<KeyValue key="wheelPanScalar" value="1.0" type="number"/>
+				</KeyValues>
+			</Frame>
 			<EventFrame parentKey="ScrollBar" inherits="WowTrimScrollBar">
 				<Anchors>
 					<Anchor point="TOPRIGHT"/>
 					<Anchor point="BOTTOMRIGHT"/>
 				</Anchors>
+				<KeyValues>
+					<KeyValue key="wheelPanScalar" value="1.0" type="number"/>
+				</KeyValues>
 			</EventFrame>
 			<Frame parentKey="Border" inherits="AchivementGoldBorderBackdrop">
 				<Anchors>

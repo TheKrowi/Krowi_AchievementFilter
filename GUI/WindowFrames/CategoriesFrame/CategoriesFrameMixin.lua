@@ -34,6 +34,10 @@ function KrowiAF_CategoriesFrameMixin:OnLoad()
     };
 
     ScrollUtil.AddManagedScrollBarVisibilityBehavior(self.ScrollBox, self.ScrollBar, anchorsWithBar, anchorsWithoutBar);
+
+	hooksecurefunc(self.ScrollBar, "ScrollInDirection", function(self, percentage, direction)
+		print("ScrollInDirection",percentage, direction)
+	end);
 end
 
 function KrowiAF_CategoriesFrameMixin:OnShow()
@@ -199,7 +203,7 @@ function KrowiAF_CategoriesFrameMixin:ShowSubFrame(category)
 		local achievementsFrame = addon.GUI.AchievementsFrame;
 		achievementsFrame:Show();
 		achievementsFrame:ClearFullSelection();
-		achievementsFrame.ScrollBox:ScrollToBegin();
+		-- achievementsFrame.ScrollBox:ScrollToBegin();
 		achievementsFrame:Update();
 	end
 end

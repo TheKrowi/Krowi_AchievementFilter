@@ -9,36 +9,12 @@ function achievementsFrame:Load()
 
 	tinsert(addon.GUI.SubFrames, frame);
 
-	-- local scrollFrame = frame.ScrollFrame;
-	-- local scrollBar = scrollFrame.ScrollBar;
-	-- local scrollBarShow = getmetatable(scrollBar).__index.Show;
-	-- scrollBar.Show = function()
-	-- 	frame.Show_Hide(frame, scrollBarShow, -46);
-	-- end;
-	-- local scrollBarHide = getmetatable(scrollBar).__index.Hide;
-	-- scrollBar.Hide = function()
-	-- 	frame.Show_Hide(frame, scrollBarHide, -20);
-	-- end;
-
-	-- scrollFrame.update = function()
-	-- 	frame:Update();
-	-- end
-
-	-- local template = "KrowiAF_AchievementButton_" .. (addon.Options.db.Achievements.Compact and "Small" or "Normal") .. "_Template";
-	-- HybridScrollFrame_CreateButtons(scrollFrame, template, 0, -2);
-	-- local buttons = scrollFrame.buttons;
-    -- for _, button in next, buttons do
-	-- 	button:PostLoad(scrollFrame);
-	-- end
-
 	-- This does not suffice anymore for Dragonflight
 	hooksecurefunc("AchievementFrameAchievements_ForceUpdate", function()
 		frame:ForceUpdate();
 	end); -- Issue #3: Fix
 
-	-- frame.ScrollBarStep = scrollBar:GetValueStep();
-
-	addon.GUI.AchievementsFrame = frame; -- Overwrite with the actual frame since all functions are injected to it
+	addon.GUI.AchievementsFrame = frame;
 end
 
 function KrowiAF_AchievementsFrame_OnShow(self)
