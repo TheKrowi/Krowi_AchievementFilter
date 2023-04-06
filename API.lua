@@ -99,12 +99,12 @@ local function SelectCategory(category, collapsed, quick)
 		return;
 	end
 
-	category = dataProvider:FindElementDataByPredicate(function(elementData)
-		return elementData == category;
-	end);
-	if not category then
-		return;
-	end
+	-- category = dataProvider:FindElementDataByPredicate(function(elementData)
+	-- 	return elementData == category;
+	-- end);
+	-- if not category then
+	-- 	return;
+	-- end
 
 	scrollBox:ScrollToElementData(category, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
 
