@@ -497,28 +497,22 @@ function KrowiAF_AchievementButtonMixin:ProcessedModifiers(ignoreModifiers)
 end
 
 function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
-	print("button clicked")
 	if self:ProcessedModifiers(ignoreModifiers) then
 		return;
 	end
 
-	print("button clicked 2")
 	local selectedTab = addon.GUI.SelectedTab;
 	if not selectedTab then
 		return;
 	end
 
-	print("button clicked 3")
 	local achievementsFrame = addon.GUI.AchievementsFrame;
-	-- print(self)
 	if not self.selected then
 		achievementsFrame:SelectButton(self);
 	else
 		achievementsFrame:DeselectButton(self);
 	end
-	-- achievementsFrame:Update();
 	self:Update(self.Achievement, self.Index);
-	print("pre upsate")
 	achievementsFrame.ScrollBox:FullUpdate(true);
 	achievementsFrame:ScrollToNearest(self.Achievement);
 
