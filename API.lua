@@ -2,59 +2,59 @@
 local addonName, addon = ...;
 
 function KrowiAF_SelectAchievementWithCategory(achievement, category)
-	local scrollFrame = addon.GUI.AchievementsFrame.ScrollFrame;
-	local scrollBar = scrollFrame.ScrollBar;
+	-- local scrollFrame = addon.GUI.AchievementsFrame.ScrollFrame;
+	-- local scrollBar = scrollFrame.ScrollBar;
 
 	KrowiAF_SelectCategory(category);
 
-	-- Select achievement
-	local shown = false;
-	local previousScrollValue;
-	local buttons;
+	-- -- Select achievement
+	-- local shown = false;
+	-- local previousScrollValue;
+	-- local buttons;
 
-	local loops, maxLoops = 0, 1000;
+	-- local loops, maxLoops = 0, 1000;
 
-	while not shown do
-		loops = loops + 1;
-		if loops >= maxLoops then
-			error("Oops, something went wrong. This is a known error of Krowi's Achievement Filter and I'm doing my best to fix this as quick as possible. For now, uncheck the 'Merge small categories' to reduce the change for this error to occur. Please do not report this error. Sorry for any inconvenience. - Krowi", 2);
-		end
-		buttons = scrollFrame.buttons;
-		for _, button in next, buttons do
-			if button.Achievement == achievement and math.ceil(button:GetTop()) >= math.ceil(addon.GUI.GetSafeScrollChildBottom(scrollFrame)) then
-				-- selectedAchievement = selectedTab.SelectedAchievement;
-				-- if not (selectedAchievement == achievement) then
-					button:Select(true);
-				-- end
-				shown = button;
-				break;
-			end
-		end
-		if scrollBar:IsShown() then
-			local _, maxVal = scrollBar:GetMinMaxValues();
-			if shown then
-				-- Make sure we move the correct achievement to the top, this extra bid is needed since button:Select() already moves the achievement
-				for _, button in next, buttons do
-					if button.Achievement == achievement then
-						shown = button;
-						break;
-					end
-				end
-				local newHeight = scrollBar:GetValue() + scrollFrame:GetTop() - shown:GetTop();
-				newHeight = min(newHeight, maxVal);
-				scrollBar:SetValue(newHeight);
-			else
-				local scrollValue = scrollBar:GetValue();
-				if scrollValue == maxVal or scrollValue == previousScrollValue then
-					return;
-				else
-					previousScrollValue = scrollValue;
-					HybridScrollFrame_OnMouseWheel(scrollFrame, -1);
-				end
-			end
-		end
-	end
-	achievement.AlwaysVisible = nil; -- Can be reached though vscode thinks not
+	-- while not shown do
+	-- 	loops = loops + 1;
+	-- 	if loops >= maxLoops then
+	-- 		error("Oops, something went wrong. This is a known error of Krowi's Achievement Filter and I'm doing my best to fix this as quick as possible. For now, uncheck the 'Merge small categories' to reduce the change for this error to occur. Please do not report this error. Sorry for any inconvenience. - Krowi", 2);
+	-- 	end
+	-- 	buttons = scrollFrame.buttons;
+	-- 	for _, button in next, buttons do
+	-- 		if button.Achievement == achievement and math.ceil(button:GetTop()) >= math.ceil(addon.GUI.GetSafeScrollChildBottom(scrollFrame)) then
+	-- 			-- selectedAchievement = selectedTab.SelectedAchievement;
+	-- 			-- if not (selectedAchievement == achievement) then
+	-- 				button:Select(true);
+	-- 			-- end
+	-- 			shown = button;
+	-- 			break;
+	-- 		end
+	-- 	end
+	-- 	if scrollBar:IsShown() then
+	-- 		local _, maxVal = scrollBar:GetMinMaxValues();
+	-- 		if shown then
+	-- 			-- Make sure we move the correct achievement to the top, this extra bid is needed since button:Select() already moves the achievement
+	-- 			for _, button in next, buttons do
+	-- 				if button.Achievement == achievement then
+	-- 					shown = button;
+	-- 					break;
+	-- 				end
+	-- 			end
+	-- 			local newHeight = scrollBar:GetValue() + scrollFrame:GetTop() - shown:GetTop();
+	-- 			newHeight = min(newHeight, maxVal);
+	-- 			scrollBar:SetValue(newHeight);
+	-- 		else
+	-- 			local scrollValue = scrollBar:GetValue();
+	-- 			if scrollValue == maxVal or scrollValue == previousScrollValue then
+	-- 				return;
+	-- 			else
+	-- 				previousScrollValue = scrollValue;
+	-- 				HybridScrollFrame_OnMouseWheel(scrollFrame, -1);
+	-- 			end
+	-- 		end
+	-- 	end
+	-- end
+	-- achievement.AlwaysVisible = nil; -- Can be reached though vscode thinks not
 end
 
 function KrowiAF_SelectAchievement(achievement)
@@ -73,12 +73,12 @@ function KrowiAF_SelectAchievement(achievement)
 		category = achievement.Category;
 	end
 
-	local tabFilters = addon.Tabs[category:GetTree()[1].TabName].Filters;
-	achievement = filters.GetHighestAchievementWhenCollapseSeries(tabFilters, achievement);
-	if filters.Validate(tabFilters, achievement) < 0 then
-		achievement.AlwaysVisible = true;
-	end
-	addon.GUI.AchievementsFrame:ForceUpdate(true);
+	-- local tabFilters = addon.Tabs[category:GetTree()[1].TabName].Filters;
+	-- achievement = filters.GetHighestAchievementWhenCollapseSeries(tabFilters, achievement);
+	-- if filters.Validate(tabFilters, achievement) < 0 then
+	-- 	achievement.AlwaysVisible = true;
+	-- end
+	-- addon.GUI.AchievementsFrame:ForceUpdate(true);
 
 	KrowiAF_SelectAchievementWithCategory(achievement, category);
 end
@@ -106,16 +106,9 @@ local function SelectCategory(category, collapsed, quick)
 		return;
 	end
 
-	local button = scrollBox:FindFrame(category);
-	if not button then
-		return;
-	end
-
-	button:Select(quick);
-	if collapsed then
-		button:Select();
-	end
 	scrollBox:ScrollToElementData(category, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
+
+	categoriesFrame:ShowSubFrame(category);
 end
 
 function KrowiAF_SelectCategory(category, collapsed)

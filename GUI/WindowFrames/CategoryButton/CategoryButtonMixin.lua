@@ -67,22 +67,32 @@ function KrowiAF_CategoryButtonMixin:SetCategory(category)
 end
 
 function KrowiAF_CategoryButtonMixin:Select(quick)
-	if self.Category.IsSummary then
-		addon.GUI.SummaryFrame:Show();
-		addon.GUI.AchievementsFrame:Hide();
-	else
-		addon.GUI.AchievementsFrame:Show();
-		addon.GUI.SummaryFrame:Hide();
-	end
-
 	local selectedTab = addon.GUI.SelectedTab;
 	if not selectedTab then
 		return;
 	end
 
+	local category = self.Category;
 	local categoriesFrame = addon.GUI.CategoriesFrame;
+	categoriesFrame:ShowSubFrame(self.Category);
     categoriesFrame:SelectButton(self, quick);
     categoriesFrame:Update();
+
+	local scrollBox = categoriesFrame.ScrollBox;
+	local dataProvider = scrollBox:GetDataProvider();
+	if not dataProvider then
+		return;
+	end
+
+	category = dataProvider:FindElementDataByPredicate(function(elementData)
+		return elementData == category;
+	end);
+	if not category then
+		return;
+	end
+
+	-- categoriesFrame:ScrollToNearest(category);
+	-- scrollBox:ScrollToElementData(category, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
 end
 
 function KrowiAF_CategoryButtonMixin:UpdateSelectionState(selected)

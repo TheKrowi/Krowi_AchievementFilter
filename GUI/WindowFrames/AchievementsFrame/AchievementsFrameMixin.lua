@@ -13,8 +13,10 @@ function KrowiAF_AchievementsFrameMixin:OnLoad()
 	self.ScrollView:SetElementExtentCalculator(function(dataIndex, achievement)
 			local button = self.ScrollView:GetFrames()[dataIndex];
 			if button then
+				-- print("button.NewHeight", button.NewHeight)
 				return button.NewHeight;
 			end
+			-- print("addon.Options.db.Achievements.Compact", addon.Options.db.Achievements.Compact and 48 or 84)
 			return addon.Options.db.Achievements.Compact and 48 or 84;
 	end);
     self.ScrollView:SetPadding(0, 0, 5, 5, 0);
@@ -87,6 +89,7 @@ end
 
 local highlightedButton;
 function KrowiAF_AchievementsFrameMixin:Update()
+	print("update")
 	local selectedTab = addon.GUI.SelectedTab;
 	if not selectedTab then
 		return;
@@ -102,6 +105,8 @@ function KrowiAF_AchievementsFrameMixin:Update()
 	self:UpdateDataProvider(updateAchievements);
 
 	self.Text:Hide();
+	-- addon.GUI.AchievementsObjectives:Hide();
+	-- self:ClearSelection();
 
 	-- Make sure the correct tooltip is shown when scrolling
 	if highlightedButton then
@@ -129,11 +134,15 @@ function KrowiAF_AchievementsFrameMixin:ScrollToNearest(achievement)
 end
 
 function KrowiAF_AchievementsFrameMixin:ExpandSelection(button)
-	-- if button then
-	-- 	HybridScrollFrame_ExpandButton(self.ScrollFrame, ((button.index - 1) * button.CollapsedHeight), button:GetHeight());
-	-- end
-	-- self:Update();
-	-- self:AdjustSelection();
+	if button then
+		print("Expanding",button.Achievement.Id)
+		self:SelectButton(button);
+		button:Update(button.Achievement, button.Index);
+		self.ScrollBox:FullUpdate(true);
+		self:ScrollToNearest(button.Achievement);
+	else
+		print("no achievement selected")
+	end
 end
 
 function KrowiAF_AchievementsFrameMixin:ClearSelection()
@@ -161,12 +170,8 @@ function KrowiAF_AchievementsFrameMixin:SelectButton(button)
 		return;
 	end
 
-	print("selecting button")
 	self:ClearSelection();
-	print("collapsed button")
-
 	addon.GUI.SelectedTab.SelectedAchievement = button.Achievement;
-	-- button.selected = true;
 
 	if addon.IsWrathClassic then
 	-- 	local achievements = AchievementFrameAchievements;
@@ -196,75 +201,14 @@ function KrowiAF_AchievementsFrameMixin:DeselectButton(button)
 	-- end
 end
 
- -- Looks for the selection if it's not already visible
  function KrowiAF_AchievementsFrameMixin:FindSelection()
-	local scrollFrame = self.ScrollFrame;
-	local scrollBar = scrollFrame.ScrollBar;
-	local buttons = scrollFrame.buttons;
-	local _, maxVal = scrollBar:GetMinMaxValues();
-	local scrollHeight = scrollFrame:GetHeight();
-	local newHeight = 0;
-
-	scrollBar:SetValue(0);
-	while true do
-		for _, button in next, buttons do
-			if button.selected then
-				local scrollBarValue = scrollBar:GetValue();
-				local scrollFrameTop = scrollFrame:GetTop();
-				local buttonTop = button:GetTop();
-				newHeight = scrollBarValue + scrollFrameTop - buttonTop;
-				newHeight = min(newHeight, maxVal);
-				scrollBar:SetValue(newHeight);
-				return button;
-			end
+	return self.ScrollBox:FindFrameByPredicate(function(frame, achievement)
+		if not addon.GUI.SelectedTab then
+			return;
 		end
-		if not scrollBar:IsVisible() or scrollBar:GetValue() == maxVal then
-			return; -- Failed to find the selected button :(
-		else
-			newHeight = newHeight + scrollHeight;
-			newHeight = min(newHeight, maxVal);
-			scrollBar:SetValue(newHeight);
-		end
-	end
-end
-
--- When the selection is already visible, adjust it so it fits
-
-function KrowiAF_AchievementsFrameMixin:AdjustSelection()
-	local scrollFrame = self.ScrollFrame;
-	local scrollBar = scrollFrame.ScrollBar;
-	local buttons = scrollFrame.buttons;
-	local selectedButton;
-
-	-- Check if selection is visible
-	for _, button in next, buttons do
-		if button.selected then
-			selectedButton = button;
-			break;
-		end
-	end
-
-	if not selectedButton then
-		self:FindSelection();
-		return;
-	end
-
-	local newHeight;
-	if selectedButton:GetTop() > scrollFrame:GetTop() then
-		newHeight = scrollBar:GetValue() + scrollFrame:GetTop() - selectedButton:GetTop();
-	elseif selectedButton:GetBottom() < scrollFrame:GetBottom() then
-		if selectedButton:GetHeight() > scrollFrame:GetHeight() then
-			newHeight = scrollBar:GetValue() + scrollFrame:GetTop() - selectedButton:GetTop();
-		else
-			newHeight = scrollBar:GetValue() + scrollFrame:GetBottom() - selectedButton:GetBottom();
-		end
-	end
-	if newHeight then
-		local _, maxVal = scrollBar:GetMinMaxValues();
-		newHeight = min(newHeight, maxVal);
-		scrollBar:SetValueStep(1);
-		scrollBar:SetValue(newHeight);
-	end
+		print(frame.Achievement.Id, addon.GUI.SelectedTab.SelectedAchievement.Id)
+		return frame.Achievement == addon.GUI.SelectedTab.SelectedAchievement;
+	end);
 end
 
 function KrowiAF_AchievementsFrameMixin:ForceUpdate(toTop) -- Issue #3: Fix

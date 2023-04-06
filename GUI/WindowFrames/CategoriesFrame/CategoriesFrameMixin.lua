@@ -22,7 +22,6 @@ function KrowiAF_CategoriesFrameMixin:OnLoad()
 		return 2 + (category.Level - 1) * addon.Options.db.Categories.Indentation;
 	end);
 	ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView);
-	self.SelectionBehavior = ScrollUtil.AddSelectionBehavior(self.ScrollBox, SelectionBehaviorFlags.Deselectable, SelectionBehaviorFlags.Intrusive);
 
 	local anchorsWithBar = {
         CreateAnchor("TOPLEFT", self, "TOPLEFT", 0, -5),
@@ -161,6 +160,20 @@ local function OpenCloseCategory(targetCategory, category)
 	end
 end
 
+local function ExpandCategory(categories, targetCategory)
+	for _, category in next, categories do
+		OpenCloseCategory(targetCategory, category);
+	end
+	targetCategory.NotCollapsed = true;
+end
+
+local function CollapseCategory(categories, targetCategory)
+	for _, category in next, categories do
+		HideCategory(targetCategory, category);
+	end
+	targetCategory.NotCollapsed = nil;
+end
+
 function KrowiAF_CategoriesFrameMixin:SelectButton(button, quick)
 	local selectedTab = addon.GUI.SelectedTab;
 	if selectedTab == nil then
@@ -170,15 +183,9 @@ function KrowiAF_CategoriesFrameMixin:SelectButton(button, quick)
 	local achievementsFrame = addon.GUI.AchievementsFrame;
 	local buttonCategory = button.Category;
 	if buttonCategory == selectedTab.SelectedCategory and buttonCategory.NotCollapsed then -- Collapse selected categories -- Issue #12: Fix
-		buttonCategory.NotCollapsed = nil;
-		for _, category in next, categories do
-			HideCategory(buttonCategory, category);
-		end
+		CollapseCategory(categories, buttonCategory)
 	else -- Open selected category, close other highest level categories
-		for _, category in next, categories do
-			OpenCloseCategory(buttonCategory, category);
-		end
-		buttonCategory.NotCollapsed = true;
+		ExpandCategory(categories, buttonCategory)
 	end
 
 	if buttonCategory == selectedTab.SelectedCategory and buttonCategory.HasFlexibleData ~= true then
@@ -205,9 +212,32 @@ function KrowiAF_CategoriesFrameMixin:ExpandToCategory(category)
 	local categoriesTree = category:GetTree();
 
 	local categories = selectedTab.Categories;
-	for i = 1, #categoriesTree - 1 do
-		for _, _category in next, categories do
-			OpenCloseCategory(categoriesTree[i], _category);
-		end
+	for i = 1, #categoriesTree do
+		ExpandCategory(categories, categoriesTree[i])
+	end
+	selectedTab.SelectedCategory = category;
+end
+
+function KrowiAF_CategoriesFrameMixin:ShowSubFrame(category)
+	if category.IsSummary then
+		addon.GUI.SummaryFrame:Show();
+		addon.GUI.AchievementsFrame:Hide();
+	else
+		addon.GUI.AchievementsFrame:Show();
+		addon.GUI.SummaryFrame:Hide();
+	end
+end
+
+function KrowiAF_CategoriesFrameMixin:ScrollToNearest(category)
+	local scrollBox = self.ScrollBox;
+	local dataIndex = scrollBox:FindIndex(category);
+	local scrollOffset = scrollBox:GetDerivedScrollOffset();
+	print(category.Name, dataIndex, (scrollBox:GetExtentUntil(dataIndex) + scrollBox:GetElementExtent(dataIndex)), (scrollOffset + scrollBox:GetVisibleExtent()),
+		scrollBox:GetExtentUntil(dataIndex), scrollOffset,
+		(scrollBox:GetExtentUntil(dataIndex) + scrollBox:GetElementExtent(dataIndex)) > (scrollOffset + scrollBox:GetVisibleExtent()), scrollBox:GetExtentUntil(dataIndex) < scrollOffset)
+	if (scrollBox:GetExtentUntil(dataIndex) + scrollBox:GetElementExtent(dataIndex)) > (scrollOffset + scrollBox:GetVisibleExtent()) then
+		scrollBox:ScrollToElementDataIndex(dataIndex, ScrollBoxConstants.AlignEnd);
+	elseif scrollBox:GetExtentUntil(dataIndex) < scrollOffset then
+		scrollBox:ScrollToElementDataIndex(dataIndex, ScrollBoxConstants.AlignBegin);
 	end
 end

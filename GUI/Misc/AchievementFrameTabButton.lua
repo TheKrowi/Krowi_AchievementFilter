@@ -84,8 +84,8 @@ function achFrameTabBtn:Base_OnClick(id)
 		addon.GUI.SummaryFrame:Hide();
         addon.GUI.AchievementsFrame:Update();
         if self.SelectedAchievement then
-            local button = addon.GUI.AchievementsFrame:FindSelection();
-	        addon.GUI.AchievementsFrame:ExpandSelection(button);
+            -- local button = addon.GUI.AchievementsFrame:FindSelection();
+	        -- addon.GUI.AchievementsFrame:ExpandSelection(button);
         end
 	end
     AchievementFrameWaterMark:SetTexture(self.WaterMark);
