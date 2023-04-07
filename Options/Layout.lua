@@ -329,6 +329,17 @@ local function SetCategoryIndentation(_, value)
     end
 end
 
+local function SetCategoryMouseWheelPanScalar(_, value)
+    if addon.Options.db.Categories.MouseWheelPanScalar == value then return; end
+    addon.Options.db.Categories.MouseWheelPanScalar = value;
+    if addon.GUI.CategoriesFrame.ScrollBox then
+        addon.GUI.CategoriesFrame.ScrollBox.wheelPanScalar = value;
+    end
+    if addon.GUI.CategoriesFrame.ScrollBar then
+        addon.GUI.CategoriesFrame.ScrollBar.wheelPanScalar = value;
+    end
+end
+
 local function MergeMergeSmallCategoriesThresholdSet(_, value)
     if addon.Options.db.Window.MergeSmallCategoriesThreshold == value then return; end
     addon.Options.db.Window.MergeSmallCategoriesThreshold = value;
@@ -567,6 +578,20 @@ options.OptionsTable.args["Layout"] = {
                             min = 1, max = 50, step = 1,
                             get = function() return addon.Options.db.Categories.Indentation; end,
                             set = SetCategoryIndentation
+                        }
+                    }
+                },
+                MouseWheelPanScalar = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["Mouse Wheel Scroll Speed"],
+                    args = {
+                        MouseWheelPanScalar = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
+                            name = addon.L["Mouse Wheel Scroll Speed"],
+                            desc = addon.L["Mouse Wheel Scroll Speed Desc"]:AddDefaultValueText_KAF("Categories.MouseWheelPanScalar"),
+                            min = 1, max = 50, step = 1,
+                            get = function() return addon.Options.db.Categories.MouseWheelPanScalar; end,
+                            set = SetCategoryMouseWheelPanScalar
                         }
                     }
                 },

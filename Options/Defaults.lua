@@ -56,7 +56,8 @@ options.Defaults = {
             Summary = {
                 NumAchievements = 25
             },
-            Indentation = 10
+            Indentation = 10,
+            MouseWheelPanScalar = 1
         },
         AdjustableCategories = { --[[ Dynamically build via ExportedCategories ]] },
         Achievements = {

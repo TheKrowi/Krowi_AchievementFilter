@@ -11,6 +11,9 @@ end
 function KrowiAF_CategoriesFrameMixin:OnLoad()
 	self:SetRightPoint();
 
+	self.ScrollBox.wheelPanScalar = addon.Options.db.Categories.MouseWheelPanScalar;
+	self.ScrollBar.wheelPanScalar = addon.Options.db.Categories.MouseWheelPanScalar;
+
 	self.ScrollView = CreateScrollBoxListLinearView();
 	self.ScrollView:SetElementInitializer("KrowiAF_CategoryButton_Template", function(_frame, category)
 		_frame:SetCategory(category);
