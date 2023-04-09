@@ -1,5 +1,11 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
+addon.GUI.AchievementButton = {};
+local achievementButton = addon.GUI.AchievementButton;
+
+function achievementButton.GetCollapsedHeight()
+	return addon.Options.db.Achievements.Compact and 48 or 84;
+end
 
 function KrowiAF_AchievementButton_OnLoad(self)
 	_, self.FontHeight = self.Description:GetFont();
@@ -26,7 +32,8 @@ end
 function KrowiAF_AchievementButton_OnLeave(self)
 	addon.GUI.AchievementsFrame.ClearHighlightedButton();
 	AchievementMeta_OnLeave(self);
-	if not self.selected then
+	local selectedTab = addon.GUI.SelectedTab;
+	if selectedTab and self.Achievement ~= selectedTab.SelectedAchievement then
 		self.Highlight:Hide();
 	end
 end

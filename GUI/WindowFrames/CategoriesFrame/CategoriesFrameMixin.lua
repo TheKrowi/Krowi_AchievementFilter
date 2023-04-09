@@ -3,17 +3,7 @@ local _, addon = ...;
 
 KrowiAF_CategoriesFrameMixin = {};
 
-function KrowiAF_CategoriesFrameMixin:SetRightPoint()
-	self:SetPoint("RIGHT", AchievementFrameCategories, addon.Options.db.Window.CategoriesFrameWidthOffset, 0);
-	AchievementFrameCategoriesBG:SetWidth(self:GetWidth() - 4);
-end
-
-function KrowiAF_CategoriesFrameMixin:OnLoad()
-	self:SetRightPoint();
-
-	self.ScrollBox.wheelPanScalar = addon.Options.db.Categories.MouseWheelPanScalar;
-	self.ScrollBar.wheelPanScalar = addon.Options.db.Categories.MouseWheelPanScalar;
-
+local function CreateScrollView(self)
 	self.ScrollView = CreateScrollBoxListLinearView();
 	self.ScrollView:SetElementInitializer("KrowiAF_CategoryButton_Template", function(_frame, category)
 		_frame:SetCategory(category);
@@ -25,7 +15,9 @@ function KrowiAF_CategoriesFrameMixin:OnLoad()
 		return 2 + (category.Level - 1) * addon.Options.db.Categories.Indentation;
 	end);
 	ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView);
+end
 
+local function AddManagedScrollBarVisibilityBehavior(self)
 	local anchorsWithBar = {
         CreateAnchor("TOPLEFT", self, "TOPLEFT", 0, -5),
         CreateAnchor("BOTTOMRIGHT", self.ScrollBar, "BOTTOMLEFT", 0, 5)
@@ -37,10 +29,21 @@ function KrowiAF_CategoriesFrameMixin:OnLoad()
     };
 
     ScrollUtil.AddManagedScrollBarVisibilityBehavior(self.ScrollBox, self.ScrollBar, anchorsWithBar, anchorsWithoutBar);
+end
 
-	hooksecurefunc(self.ScrollBar, "ScrollInDirection", function(self, percentage, direction)
-		print("ScrollInDirection",percentage, direction)
-	end);
+function KrowiAF_CategoriesFrameMixin:SetRightPoint()
+	self:SetPoint("RIGHT", AchievementFrameCategories, addon.Options.db.Window.CategoriesFrameWidthOffset, 0);
+	AchievementFrameCategoriesBG:SetWidth(self:GetWidth() - 4);
+end
+
+function KrowiAF_CategoriesFrameMixin:OnLoad()
+	self:SetRightPoint();
+
+	self.ScrollBox.wheelPanScalar = addon.Options.db.Categories.MouseWheelPanScalar;
+	self.ScrollBar.wheelPanScalar = addon.Options.db.Categories.MouseWheelPanScalar;
+
+	CreateScrollView(self);
+	AddManagedScrollBarVisibilityBehavior(self);
 end
 
 local function RestoreScrollPosition(frame)

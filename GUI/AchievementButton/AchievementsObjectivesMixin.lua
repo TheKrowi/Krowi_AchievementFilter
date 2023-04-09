@@ -369,42 +369,42 @@ function KrowiAF_AchievementsObjectivesMixin:DisplayCriteria(id)
 	self.Mode = self.Modes.Criteria;
 end
 
-local cachedWidth;
-function KrowiAF_AchievementsObjectivesMixin:PrepareForAchievement(achievement, forced)
-	local objectives = addon.GUI.AchievementsObjectives;
-	-- local topAnchor = self.HiddenDescription;
+-- local cachedWidth;
+-- function KrowiAF_AchievementsObjectivesMixin:PrepareForAchievement(achievement, forced)
+-- 	local objectives = addon.GUI.AchievementsObjectives;
+-- 	-- local topAnchor = self.HiddenDescription;
 
-	-- objectives:SetParent(self);
-	-- objectives:SetPoint("TOP", self.HiddenDescription, "BOTTOM", 0, -8);
-	-- objectives:SetPoint("LEFT", self, "LEFT", 0, 0); -- Set it each time to take the scrollbar into account
-	-- objectives:SetPoint("RIGHT", self, "RIGHT", 0, 0); -- Set it each time to take the scrollbar into account
-	-- objectives.FontHeight = self.FontHeight;
-	local id = achievement.Id;
-	objectives.Completed = achievement.IsCompleted;
-	if objectives.Id == id and cachedWidth == objectives:GetWidth() and not forced then
-		-- Cached, nothing to do
-	elseif self.Completed and GetPreviousAchievement(id) then
-		objectives:SetHeight(1);
-		objectives:ResetAll();
-		objectives:DisplayProgressiveAchievement(id);
-	else
-		objectives:SetHeight(1);
-		objectives:ResetAll();
-		objectives:DisplayCriteria(id);
-		cachedWidth = objectives:GetWidth();
-	end
-	objectives.Id = id;
-	objectives:Show();
+-- 	-- objectives:SetParent(self);
+-- 	-- objectives:SetPoint("TOP", self.HiddenDescription, "BOTTOM", 0, -8);
+-- 	-- objectives:SetPoint("LEFT", self, "LEFT", 0, 0); -- Set it each time to take the scrollbar into account
+-- 	-- objectives:SetPoint("RIGHT", self, "RIGHT", 0, 0); -- Set it each time to take the scrollbar into account
+-- 	-- objectives.FontHeight = self.FontHeight;
+-- 	local id = achievement.Id;
+-- 	objectives.Completed = achievement.IsCompleted;
+-- 	if objectives.Id == id and cachedWidth == objectives:GetWidth() and not forced then
+-- 		-- Cached, nothing to do
+-- 	elseif self.Completed and GetPreviousAchievement(id) then
+-- 		objectives:SetHeight(1);
+-- 		objectives:ResetAll();
+-- 		objectives:DisplayProgressiveAchievement(id);
+-- 	else
+-- 		objectives:SetHeight(1);
+-- 		objectives:ResetAll();
+-- 		objectives:DisplayCriteria(id);
+-- 		cachedWidth = objectives:GetWidth();
+-- 	end
+-- 	objectives.Id = id;
+-- 	objectives:Show();
 
-	-- local height = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT; -- Compact or not, we need this height
-	-- height = height + objectives:GetHeight() - 1;
-	-- if height ~= self.CollapsedHeight or self.numLines > self.MaxDescriptionLinesCollapsed then
-	-- 	local descriptionHeight = self.HiddenDescription:GetHeight();
-	-- 	height = height + descriptionHeight - ACHIEVEMENTBUTTON_DESCRIPTIONHEIGHT;
-	-- 	if self.Reward:IsShown() then
-	-- 		height = height + 4;
-	-- 	end
-	-- end
-	-- height = max(ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT, height);
-	-- return height;
-end
+-- 	-- local height = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT; -- Compact or not, we need this height
+-- 	-- height = height + objectives:GetHeight() - 1;
+-- 	-- if height ~= self.CollapsedHeight or self.numLines > self.MaxDescriptionLinesCollapsed then
+-- 	-- 	local descriptionHeight = self.HiddenDescription:GetHeight();
+-- 	-- 	height = height + descriptionHeight - ACHIEVEMENTBUTTON_DESCRIPTIONHEIGHT;
+-- 	-- 	if self.Reward:IsShown() then
+-- 	-- 		height = height + 4;
+-- 	-- 	end
+-- 	-- end
+-- 	-- height = max(ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT, height);
+-- 	-- return height;
+-- end

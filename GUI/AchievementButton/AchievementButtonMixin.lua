@@ -22,12 +22,11 @@ end
 local cachedWidth;
 function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
 	local objectives = addon.GUI.AchievementsObjectives;
-	local topAnchor = self.HiddenDescription;
 
 	objectives:SetParent(self);
 	objectives:SetPoint("TOP", self.HiddenDescription, "BOTTOM", 0, -8);
-	-- objectives:SetPoint("LEFT", self, "LEFT", 0, 0); -- Set it each time to take the scrollbar into account
-	-- objectives:SetPoint("RIGHT", self, "RIGHT", 0, 0); -- Set it each time to take the scrollbar into account
+	objectives:SetPoint("LEFT", self.ObjectivesLeftAnchor, "RIGHT", 0, 0); -- Set it each time to take the scrollbar into account
+	objectives:SetPoint("RIGHT", self.Shield, "LEFT", 0, 0); -- Set it each time to take the scrollbar into account
 	objectives.Completed = self.Completed;
 	objectives.FontHeight = self.FontHeight;
 	local height = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT; -- Compact or not, we need this height
@@ -217,6 +216,12 @@ function KrowiAF_AchievementButtonMixin:Update(achievement, index, refresh)
 	self.index = index; -- This is used to keep the correct achievement expanded
 	-- self.Id = achievement.Id;
 
+	local objectives = addon.GUI.AchievementsObjectives;
+	local objectivesParent = objectives:GetParent();
+	if objectivesParent and objectivesParent.Achievement and objectivesParent.Achievement.Id ~= objectives.Id then
+		objectives:Hide();
+	end
+
 	local selectedTab = addon.GUI.SelectedTab;
 	if selectedTab and achievement == selectedTab.SelectedAchievement then
 		-- self.selected = true;
@@ -226,12 +231,7 @@ function KrowiAF_AchievementButtonMixin:Update(achievement, index, refresh)
 		if not completed or not wasEarnedByMe then
 			self.Tracked:Show();
 		end
-	else--[[ if self.selected then ]]
-		-- self.selected = nil;
-		-- local objectives = addon.GUI.AchievementsObjectives;
-		-- if objectives.Id == achievement.Id then
-		-- 	objectives:Hide();
-		-- end
+	else
 		self:Collapse();
 	end
 
@@ -593,22 +593,4 @@ function KrowiAF_AchievementButtonMixin:SetAsTracked(isTracked)
 			self.Tracked:Hide();
 		end
 	end
-end
-
-function KrowiAF_AchievementButtonMixin:CalculateSelectedHeight(achievement)
-	local height = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT; -- Compact or not, we need this height
-	height = height + addon.GUI.AchievementsObjectives:GetHeight() - 1;
-
-	-- self.HiddenDescription:SetText(description);
-	local numLines = 1;--ceil(self.HiddenDescription:GetHeight() / self.FontHeight);
-
-	if height ~= addon.GUI.AchievementsObjectives.CollapsedHeight or numLines > addon.GUI.AchievementsObjectives.MaxDescriptionLinesCollapsed then
-		local descriptionHeight = 20;--self.HiddenDescription:GetHeight();
-		height = height + descriptionHeight - ACHIEVEMENTBUTTON_DESCRIPTIONHEIGHT;
-		-- if self.Reward:IsShown() then
-		-- 	height = height + 4;
-		-- end
-	end
-	height = max(ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT, height);
-	return height;
 end
