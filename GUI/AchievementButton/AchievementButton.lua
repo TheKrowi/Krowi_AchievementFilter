@@ -7,6 +7,7 @@ function KrowiAF_AchievementButton_OnLoad(self)
 	-- Very not efficient to do this every time !!! Fix later
 	addon.GUI.AchievementsObjectives.FontHeight = self.FontHeight;
 	addon.GUI.AchievementsObjectives.CollapsedHeight = self.CollapsedHeight;
+	addon.GUI.AchievementsObjectives.MaxDescriptionLinesCollapsed = self.MaxDescriptionLinesCollapsed;
 
 	local descriptionHeight = self.FontHeight * self.MaxDescriptionLinesCollapsed;
 	self.Description:SetHeight(descriptionHeight);

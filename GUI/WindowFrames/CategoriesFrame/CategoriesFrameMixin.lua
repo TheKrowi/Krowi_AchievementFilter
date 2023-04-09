@@ -218,7 +218,6 @@ function KrowiAF_CategoriesFrameMixin:ShowSubFrame(category)
 		local achievementsFrame = addon.GUI.AchievementsFrame;
 		achievementsFrame:Show();
 		achievementsFrame:ClearFullSelection();
-		-- achievementsFrame.ScrollBox:ScrollToBegin();
 		achievementsFrame:Update();
 	end
 end

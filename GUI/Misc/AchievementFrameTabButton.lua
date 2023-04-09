@@ -82,11 +82,13 @@ function achFrameTabBtn:Base_OnClick(id)
 	else
 		addon.GUI.SummaryFrame:Hide();
 		addon.GUI.AchievementsFrame:Show();
-		addon.GUI.AchievementsFrame:ClearFullSelection();
+		-- addon.GUI.AchievementsFrame:ClearFullSelection();
         addon.GUI.AchievementsFrame:Update();
         if self.SelectedAchievement then
             -- local button = addon.GUI.AchievementsFrame:FindSelection();
 	        -- addon.GUI.AchievementsFrame:ExpandSelection(button);
+            print("Updating after tab change", self.Extend)
+            addon.GUI.AchievementsFrame.ScrollBox:FullUpdate(ScrollBoxConstants.UpdateImmediately);
         end
 	end
     AchievementFrameWaterMark:SetTexture(self.WaterMark);

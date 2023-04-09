@@ -3,46 +3,74 @@ local _, addon = ...;
 
 KrowiAF_AchievementsFrameMixin = {};
 
-local function CalculateButtonHeight()
+-- local function ReCalculateScrollBar(self, extend)
+-- 	local oldOnSizeChanged = self:GetScript("OnSizeChanged");
+-- 	self:SetScript("OnSizeChanged", nil);
+-- 	local oldScrollOffset = self:GetDerivedScrollOffset();
 
-end
+-- 	-- self:RecalculateDerivedExtent();
+-- 	extend = self:GetView().extent + extend;
+-- 	self:GetView():SetExtent(extend);
+-- 	local scrollRange = self:GetDerivedScrollRange();
+-- 	if scrollRange > 0 then
+-- 		local deltaScrollOffset = (self:GetDerivedScrollOffset() - oldScrollOffset);
+-- 		local scrollPercentage = self:GetScrollPercentage() - (deltaScrollOffset / scrollRange);
+-- 		self:SetScrollPercentageInternal(scrollPercentage, ScrollBoxConstants.NoScrollInterpolation);
+-- 	else
+-- 		self:ScrollToBegin(ScrollBoxConstants.NoScrollInterpolation);
+-- 	end
+	
+-- 	self:SetPanExtentPercentage(self:CalculatePanExtentPercentage());
+-- 	local forceLayout = true;
+-- 	self:Update(forceLayout);
+-- 	self:TriggerEvent(BaseScrollBoxEvents.OnLayout);
+-- 	self:SetScript("OnSizeChanged", oldOnSizeChanged);
+-- end
 
 function KrowiAF_AchievementsFrameMixin:OnLoad()
 	local template = "KrowiAF_AchievementButton_" .. (addon.Options.db.Achievements.Compact and "Small" or "Normal") .. "_Template";
 
 	self.ScrollView = CreateScrollBoxListLinearView();
 	self.ScrollView:SetElementInitializer(template, function(_frame, achievement)
-		print("update", achievement and achievement.Id)
+		-- print("update", achievement and achievement.Id)
 		_frame:Update(achievement);
+		print(achievement.Id, _frame:GetHeight())
 	end);
+	self.ScrollView:SetElementExtent(addon.Options.db.Achievements.Compact and 48 or 84);
 	self.ScrollView:SetElementExtentCalculator(function(dataIndex, achievement) -- This fires before setting the elements
-		-- print("Set size")
-		local button = self.ScrollView:GetFrames()[dataIndex];
-		-- if button then
-		-- 	-- print("button.NewHeight", button.NewHeight)
-		-- 	return button.NewHeight;
-		-- end
+	-- 	-- print("Set size")
+	-- 	-- local button = self.ScrollView:GetFrames()[dataIndex];
+	-- 	-- if button then
+	-- 	-- 	-- print("button.NewHeight", button.NewHeight)
+	-- 	-- 	return button.NewHeight;
+	-- 	-- end
 
 		local selectedTab = addon.GUI.SelectedTab;
-		-- if selectedTab == nil then
-		-- 	return;
-		-- end
-		-- print(achievement.Id, selectedTab and selectedTab.SelectedAchievement == achievement, button)
-		-- if button and selectedTab and selectedTab.SelectedAchievement == achievement then
-		-- 	-- We can't rely on the button here as it has old data, new data = nt yet set
-		-- 	button:Update(achievement);
-		-- 	print(button, achievement.Id, button.NewHeight)
-		-- 	return button.NewHeight;
-		-- end
+	-- 	-- if selectedTab == nil then
+	-- 	-- 	return;
+	-- 	-- end
+	-- 	-- print(achievement.Id, selectedTab and selectedTab.SelectedAchievement == achievement, button)
+	-- 	-- if button and selectedTab and selectedTab.SelectedAchievement == achievement then
+	-- 	-- 	-- We can't rely on the button here as it has old data, new data = nt yet set
+	-- 	-- 	button:Update(achievement);
+	-- 	-- 	print(button, achievement.Id, button.NewHeight)
+	-- 	-- 	return button.NewHeight;
+	-- 	-- end
 
-		if selectedTab and selectedTab.SelectedAchievement == achievement then
-			addon.GUI.AchievementsObjectives:PrepareForAchievement(achievement);
-			return KrowiAF_AchievementButtonMixin:CalculateSelectedHeight(achievement);
+	-- 	-- if selectedTab and selectedTab.SelectedAchievement == achievement then
+		local base = addon.Options.db.Achievements.Compact and 48 or 84;
+		if selectedTab and SelectionBehaviorMixin.IsElementDataIntrusiveSelected(achievement) then
+	-- 	-- 	-- print(achievement.Id, achievement.selected)
+	-- 	-- 	-- addon.GUI.AchievementsObjectives:PrepareForAchievement(achievement);
+	-- 	-- 	-- return KrowiAF_AchievementButtonMixin:CalculateSelectedHeight(achievement);
+	-- 	-- 	return 150;
+			base = base + selectedTab.Extend;
 		end
+		return base;
 
-		-- print("addon.Options.db.Achievements.Compact", addon.Options.db.Achievements.Compact and 48 or 84)
-			print(achievement.Id, addon.Options.db.Achievements.Compact and 48 or 84)
-		return addon.Options.db.Achievements.Compact and 48 or 84;
+	-- 	-- print("addon.Options.db.Achievements.Compact", addon.Options.db.Achievements.Compact and 48 or 84)
+	-- 	-- print(achievement.Id, addon.Options.db.Achievements.Compact and 48 or 84)
+	-- 	return addon.Options.db.Achievements.Compact and 48 or 84;
 	end);
     self.ScrollView:SetPadding(0, 0, 5, 5, 0);
 	ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView);
@@ -58,6 +86,28 @@ function KrowiAF_AchievementsFrameMixin:OnLoad()
     };
 
     ScrollUtil.AddManagedScrollBarVisibilityBehavior(self.ScrollBox, self.ScrollBar, anchorsWithBar, anchorsWithoutBar);
+
+	self.SelectionBehavior = ScrollUtil.AddSelectionBehavior(self.ScrollBox, SelectionBehaviorFlags.Deselectable, SelectionBehaviorFlags.Intrusive);
+	self.SelectionBehavior:RegisterCallback(SelectionBehaviorMixin.Event.OnSelectionChanged, function(o, achievement, selected)
+		local selectedTab = addon.GUI.SelectedTab;
+		if not selectedTab then
+			return;
+		end
+		if selected then
+			selectedTab.SelectedAchievement = achievement;
+		else
+			selectedTab.SelectedAchievement = nil;
+		end
+		local button = self.ScrollBox:FindFrame(achievement);
+		if button then
+			button:Update(achievement);
+			SetFocusedAchievement(achievement.Id);
+			print(achievement.Id, button:GetHeight())
+			-- Adjust scroll bar size here manually, easier instead if first calculating height and then showing objectives
+			selectedTab.Extend = button:GetHeight() - (addon.Options.db.Achievements.Compact and 48 or 84);
+			-- ReCalculateScrollBar(self.ScrollBox, selectedTab.Extend);
+		end
+	end, self);
 	ScrollUtil.AddResizableChildrenBehavior(self.ScrollBox);
 end
 
@@ -186,8 +236,10 @@ function KrowiAF_AchievementsFrameMixin:ClearSelection()
 end
 
 function KrowiAF_AchievementsFrameMixin:ClearFullSelection()
+	print("ClearFullSelection")
 	addon.GUI.AchievementsObjectives:Hide();
 	addon.GUI.SelectedTab.SelectedAchievement = nil;
+	self.SelectionBehavior:ClearSelections();
 end
 
 function KrowiAF_AchievementsFrameMixin:SelectButton(button)
@@ -294,7 +346,8 @@ function KrowiAF_AchievementsFrameMixin:SelectAchievement(achievement)
 	print("Selecting", achievement.Id)
 
 	selectedTab.SelectedAchievement = achievement;
-    self:Update();
+    -- self:Update();
+	-- self.ScrollBox:Update(true);
 end
 
 function KrowiAF_AchievementsFrameMixin:DeselectAchievement(achievement)
@@ -306,5 +359,6 @@ function KrowiAF_AchievementsFrameMixin:DeselectAchievement(achievement)
 	print("Deselecting", achievement.Id)
 	
 	selectedTab.SelectedAchievement = nil;
-    self:Update();
+    -- self:Update();
+	-- self.ScrollBox:Update(true);
 end

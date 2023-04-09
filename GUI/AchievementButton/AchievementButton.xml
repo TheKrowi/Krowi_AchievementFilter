@@ -9,7 +9,7 @@
 		<Color r="1.0" g="1.0" b="1.0"/>
 	</Font>
 
-	<Button name="KrowiAF_AchievementButton_Template" mixin="KrowiAF_AchievementButtonMixin" inherits="TooltipBorderBackdropTemplate" registerForClicks="LeftButtonUp, RightButtonUp" virtual="true">
+	<EventButton name="KrowiAF_AchievementButton_Template" mixin="KrowiAF_AchievementButtonMixin" inherits="TooltipBorderBackdropTemplate" registerForClicks="LeftButtonUp, RightButtonUp" virtual="true">
 		<Layers>
 			<Layer level="BACKGROUND">
 				<Texture name="$parentBackground" parentKey="Background" file="Interface\AchievementFrame\UI-Achievement-Parchment-Horizontal">
@@ -338,30 +338,30 @@
 				</Scripts>
 			</Frame>
 		</Frames>
-  	</Button>
+  	</EventButton>
 
-	<Button name="KrowiAF_AchievementButton_Small_Template" inherits="KrowiAF_AchievementButton_Template" virtual="true">
+	<EventButton name="KrowiAF_AchievementButton_Small_Template" inherits="KrowiAF_AchievementButton_Template" virtual="true">
     	<Size x="434" y="42"/>
 		<Scripts>
 			<OnLoad function="KrowiAF_AchievementButton_Small_OnLoad"/>
 		</Scripts>
-  	</Button>
+  	</EventButton>
 
-	<Button name="KrowiAF_AchievementButton_Normal_Template" inherits="KrowiAF_AchievementButton_Template" virtual="true">
+	<EventButton name="KrowiAF_AchievementButton_Normal_Template" inherits="KrowiAF_AchievementButton_Template" virtual="true">
 		<Size x="434" y="142"/>
 		<Scripts>
 			<OnLoad function="KrowiAF_AchievementButton_Normal_OnLoad"/>
 		</Scripts>
-	</Button>
+	</EventButton>
 
-	<Button name="KrowiAF_AchievementButton_Light_Template" inherits="KrowiAF_AchievementButton_Small_Template" virtual="true">
+	<EventButton name="KrowiAF_AchievementButton_Light_Template" inherits="KrowiAF_AchievementButton_Small_Template" virtual="true">
 		<Scripts>
 			<OnLoad inherit="prepend" function="KrowiAF_AchievementButton_Light_OnLoad"/>
 			<OnEnter function="KrowiAF_AchievementButton_Light_OnEnter"/>
 			<OnLeave function="KrowiAF_AchievementButton_Light_OnLeave"/>
 			<OnClick function="KrowiAF_AchievementButton_Light_OnClick"/>
 		</Scripts>
-	</Button>
+	</EventButton>
 
 	<Button name="KrowiAF_RightClickMenuButton_Template" virtual="true">
 		<Size x="15" y="15"/>
