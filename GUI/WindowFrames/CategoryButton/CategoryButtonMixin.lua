@@ -15,7 +15,7 @@ function KrowiAF_CategoryButtonMixin:OnLeave()
 end
 
 function KrowiAF_CategoryButtonMixin:OnClick()
-    addon.GUI.CategoriesFrame:SelectButton(self);
+    addon.GUI.CategoriesFrame:SelectCategory(self.Category);
 end
 
 function KrowiAF_CategoryButtonMixin:SetCategory(category)

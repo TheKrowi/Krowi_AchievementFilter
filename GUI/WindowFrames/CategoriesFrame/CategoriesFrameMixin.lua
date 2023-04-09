@@ -43,6 +43,16 @@ function KrowiAF_CategoriesFrameMixin:OnLoad()
 	end);
 end
 
+local function RestoreScrollPosition(frame)
+	local selectedTab = addon.GUI.SelectedTab;
+	if selectedTab == nil then
+		return;
+	end
+	if selectedTab.SelectedCategory and selectedTab.CategoryScrollPercentage then
+		frame.ScrollBox:SetScrollPercentage(selectedTab.CategoryScrollPercentage);
+	end
+end
+
 function KrowiAF_CategoriesFrameMixin:OnShow()
 	self:RegisterEvent("ACHIEVEMENT_EARNED");
 	self:SetRightPoint();
@@ -56,6 +66,8 @@ function KrowiAF_CategoriesFrameMixin:OnShow()
 
 	self:Update(addon.AchievementEarnedUpdateCategoriesFrameOnNextShow);
 	addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = nil;
+
+	RestoreScrollPosition(self);
 end
 
 function KrowiAF_CategoriesFrameMixin:OnHide()
@@ -211,7 +223,7 @@ function KrowiAF_CategoriesFrameMixin:ShowSubFrame(category)
 	end
 end
 
-function KrowiAF_CategoriesFrameMixin:SelectButton(button)
+function KrowiAF_CategoriesFrameMixin:SelectCategory(category)
 	local selectedTab = addon.GUI.SelectedTab;
 	if not selectedTab then
 		return;
@@ -225,16 +237,17 @@ function KrowiAF_CategoriesFrameMixin:SelectButton(button)
 	local categoriesTree = firstFrameCategory:GetTree();
 
 	local categories = selectedTab.Categories;
-	if button.Category == selectedTab.SelectedCategory and button.Category.NotCollapsed then
-		CollapseCategory(categories, button.Category);
+	if category == selectedTab.SelectedCategory and category.NotCollapsed then
+		CollapseCategory(categories, category);
 	else
-		ExpandCategory(categories, button.Category);
-		selectedTab.SelectedCategory = button.Category;
+		ExpandCategory(categories, category);
+		selectedTab.SelectedCategory = category;
 	end
     self:Update();
 
 	local targetCategory = firstFrameCategory.NotHidden and firstFrameCategory or categoriesTree[2];
 	scrollBox:ScrollToElementData(targetCategory, ScrollBoxConstants.AlignBegin, ScrollBoxConstants.NoScrollInterpolation);
+	selectedTab.CategoryScrollPercentage = scrollBox:GetScrollPercentage();
 
 	if prevCategory == selectedTab.SelectedCategory and prevCategory.HasFlexibleData ~= true then
 		-- If this category was selected already, bail after changing collapsed states.

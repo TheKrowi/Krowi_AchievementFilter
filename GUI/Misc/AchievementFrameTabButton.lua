@@ -80,8 +80,9 @@ function achFrameTabBtn:Base_OnClick(id)
 		addon.GUI.SummaryFrame:Show();
 		addon.GUI.AchievementsFrame:Hide();
 	else
-		addon.GUI.AchievementsFrame:Show();
 		addon.GUI.SummaryFrame:Hide();
+		addon.GUI.AchievementsFrame:Show();
+		addon.GUI.AchievementsFrame:ClearFullSelection();
         addon.GUI.AchievementsFrame:Update();
         if self.SelectedAchievement then
             -- local button = addon.GUI.AchievementsFrame:FindSelection();
