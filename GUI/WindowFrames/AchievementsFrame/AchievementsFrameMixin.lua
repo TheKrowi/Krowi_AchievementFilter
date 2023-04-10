@@ -9,11 +9,10 @@ local function CreateScrollView(self)
 	local template = "KrowiAF_AchievementButton_" .. (addon.Options.db.Achievements.Compact and "Small" or "Normal") .. "_Template";
 
 	self.ScrollView = CreateScrollBoxListLinearView();
-	self.ScrollView:SetElementInitializer(template, function(_frame, achievement)
-		_frame:Update(achievement);
+	self.ScrollView:SetElementInitializer(template, function(button, achievement)
+		button:Update(achievement);
 	end);
-	self.ScrollView:SetElementExtent(getCollapsedHeight());
-	self.ScrollView:SetElementExtentCalculator(function(dataIndex, achievement) -- This fires before setting the elements
+	self.ScrollView:SetElementExtentCalculator(function(_, achievement) -- This fires before setting the elements
 		local selectedTab = addon.GUI.SelectedTab;
 		local base = getCollapsedHeight();
 		if selectedTab and SelectionBehaviorMixin.IsElementDataIntrusiveSelected(achievement) then
@@ -40,28 +39,32 @@ local function AddManagedScrollBarVisibilityBehavior(self)
     ScrollUtil.AddManagedScrollBarVisibilityBehavior(self.ScrollBox, self.ScrollBar, anchorsWithBar, anchorsWithoutBar);
 end
 
+local function ScrollBoxSelectionChanged(self, achievement, selected)
+	local selectedTab = addon.GUI.SelectedTab;
+	if not selectedTab then
+		return;
+	end
+
+	selectedTab.SelectedAchievement = selected and achievement or nil;
+	local button = self.ScrollBox:FindFrame(achievement);
+	if not button then
+		return;
+	end
+
+	button:Update(achievement);
+	SetFocusedAchievement(achievement.Id);
+	selectedTab.Extend = button:GetHeight() - getCollapsedHeight();
+end
+
 local function AddSelectionBehavior(self)
 	self.SelectionBehavior = ScrollUtil.AddSelectionBehavior(self.ScrollBox, SelectionBehaviorFlags.Deselectable, SelectionBehaviorFlags.Intrusive);
-	self.SelectionBehavior:RegisterCallback(SelectionBehaviorMixin.Event.OnSelectionChanged, function(o, achievement, selected)
-		local selectedTab = addon.GUI.SelectedTab;
-		if not selectedTab then
-			return;
-		end
-		if selected then
-			selectedTab.SelectedAchievement = achievement;
-		else
-			selectedTab.SelectedAchievement = nil;
-		end
-		local button = self.ScrollBox:FindFrame(achievement);
-		if button then
-			button:Update(achievement);
-			SetFocusedAchievement(achievement.Id);
-			selectedTab.Extend = button:GetHeight() - getCollapsedHeight();
-		end
-	end, self);
+	self.SelectionBehavior:RegisterCallback(SelectionBehaviorMixin.Event.OnSelectionChanged, ScrollBoxSelectionChanged, self);
 end
 
 function KrowiAF_AchievementsFrameMixin:OnLoad()
+	self.ScrollBox.wheelPanScalar = addon.Options.db.Achievements.MouseWheelPanScalar;
+	self.ScrollBar.wheelPanScalar = addon.Options.db.Achievements.MouseWheelPanScalar;
+
 	CreateScrollView(self);
 	AddManagedScrollBarVisibilityBehavior(self);
 	AddSelectionBehavior(self);
@@ -95,12 +98,7 @@ local function GetFilteredAchievements(category)
 end
 
 local cachedCategory, cachedAchievements; -- Caching this speeds up the scrolling of achievements when the selected category isn't changed
-function KrowiAF_AchievementsFrameMixin:UpdateDataProvider(updateAchievements)
-	local selectedTab = addon.GUI.SelectedTab;
-	if selectedTab == nil then
-		return;
-	end
-
+local function UpdateDataProvider(self, updateAchievements)
 	if updateAchievements then
 		cachedAchievements = GetFilteredAchievements(cachedCategory);
 	end
@@ -126,7 +124,7 @@ function KrowiAF_AchievementsFrameMixin:Update()
 		updateAchievements = addon.Data.GetCurrentZoneAchievements() or updateAchievements;
 	end
 
-	self:UpdateDataProvider(updateAchievements);
+	UpdateDataProvider(self, updateAchievements);
 
 	self.Text:Hide();
 
@@ -146,96 +144,26 @@ end
 
 function KrowiAF_AchievementsFrameMixin:ScrollToNearest(achievement)
 	local scrollBox = self.ScrollBox;
+	scrollBox:RecalculateDerivedExtent();
 	local dataIndex = scrollBox:FindIndex(achievement);
 	local scrollOffset = scrollBox:GetDerivedScrollOffset();
-	if (scrollBox:GetExtentUntil(dataIndex) + scrollBox:GetElementExtent(dataIndex)) > (scrollOffset + scrollBox:GetVisibleExtent()) then
+	local achievementButtonTop = scrollBox:GetExtentUntil(dataIndex);
+	local achievementButtonBottom = achievementButtonTop + scrollBox:GetElementExtent(dataIndex);
+	local scrollBoxHeight = scrollBox:GetVisibleExtent();
+	if achievementButtonBottom > (scrollOffset + scrollBoxHeight) then
 		scrollBox:ScrollToElementDataIndex(dataIndex, ScrollBoxConstants.AlignEnd);
-	elseif scrollBox:GetExtentUntil(dataIndex) < scrollOffset then
+	elseif achievementButtonTop < scrollOffset then
 		scrollBox:ScrollToElementDataIndex(dataIndex, ScrollBoxConstants.AlignBegin);
 	end
 end
 
-function KrowiAF_AchievementsFrameMixin:ExpandSelection(button)
-	if button then
-		print("Expanding",button.Achievement.Id)
-		self:SelectButton(button);
-		button:Update(button.Achievement, button.Index);
-		self.ScrollBox:FullUpdate(true);
-		self:ScrollToNearest(button.Achievement);
-	else
-		print("no achievement selected")
-	end
-end
-
-function KrowiAF_AchievementsFrameMixin:ClearSelection()
-	local button = self.ScrollBox:FindFrameByPredicate(function(frame, achievement)
-		return frame.selected;
-	end);
-	if not button then
-		print("No selected buttons found")
-		return;
-	end
-
-	print("Collapsing", button.Achievement.Id)
-	button.selected = nil;
-	button:Collapse();
-	print(button.NewHeight)
-end
-
 function KrowiAF_AchievementsFrameMixin:ClearFullSelection()
-	-- print("ClearFullSelection")
 	addon.GUI.AchievementsObjectives:Hide();
 	addon.GUI.SelectedTab.SelectedAchievement = nil;
 	self.SelectionBehavior:ClearSelections();
 end
 
-function KrowiAF_AchievementsFrameMixin:SelectButton(button)
-	if not addon.GUI.SelectedTab then
-		return;
-	end
-
-	self:ClearSelection();
-	addon.GUI.SelectedTab.SelectedAchievement = button.Achievement;
-
-	if addon.IsWrathClassic then
-	-- 	local achievements = AchievementFrameAchievements;
-	-- 	achievements.selection = button.id;
-	-- 	achievements.selectionIndex = button.index;
-	else
-		SetFocusedAchievement(button.Achievement.Id);
-	end
-end
-
-function KrowiAF_AchievementsFrameMixin:DeselectButton(button)
-	if not addon.GUI.SelectedTab then
-		return;
-	end
-
-	self:ClearSelection();
-
-	addon.GUI.SelectedTab.SelectedAchievement = nil;
-	-- button.selected = true;
-
-	-- if addon.IsWrathClassic then
-	-- 	local achievements = AchievementFrameAchievements;
-	-- 	achievements.selection = button.id;
-	-- 	achievements.selectionIndex = button.index;
-	-- else
-		-- SetFocusedAchievement(button.Achievement.Id);
-	-- end
-end
-
- function KrowiAF_AchievementsFrameMixin:FindSelection()
-	return self.ScrollBox:FindFrameByPredicate(function(frame, achievement)
-		if not addon.GUI.SelectedTab then
-			return;
-		end
-		print(frame.Achievement.Id, addon.GUI.SelectedTab.SelectedAchievement.Id)
-		return frame.Achievement == addon.GUI.SelectedTab.SelectedAchievement;
-	end);
-end
-
-function KrowiAF_AchievementsFrameMixin:ForceUpdate(toTop) -- Issue #3: Fix
+function KrowiAF_AchievementsFrameMixin:ForceUpdate()
 	-- Clear the cache
 	cachedCategory = nil;
 	cachedAchievements = nil;
@@ -251,61 +179,20 @@ function KrowiAF_AchievementsFrameMixin:ForceUpdate(toTop) -- Issue #3: Fix
 		end
 	end
 
-	if not self:IsShown() then -- Issue #8: Fix, Issue #10 : Broken
+	if not self:IsShown() then
 		return;
 	end
 
 	local selectedTab = addon.GUI.SelectedTab;
 	if not selectedTab then
 		return;
-	end
-
-	if toTop then -- Issue #27: Fix
-		self.ScrollFrame.ScrollBar:SetValue(0);
-	end
-
-	selectedTab.SelectedAchievement = addon.Filters.GetHighestAchievementWhenCollapseSeries(selectedTab.Filters, selectedTab.SelectedAchievement);
-
-	-- Issue #8: Broken
-	addon.GUI.AchievementsObjectives:Hide();
-	addon.GUI.AchievementsObjectives.id = nil;
-
-	local buttons = self.ScrollFrame.buttons;
-	for _, button in next, buttons do
-		-- button.Id = nil;
-		button.Achievement = nil;
 	end
 
 	self:Update();
 
 	if selectedTab.SelectedAchievement then
-		local button = self:FindSelection();
-		self:ExpandSelection(button);
+		self.ScrollBox:ScrollToElementData(selectedTab.SelectedAchievement, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
+		self.SelectionBehavior:SelectElementData(selectedTab.SelectedAchievement);
+		self:ScrollToNearest(selectedTab.SelectedAchievement);
 	end
-end
-
-function KrowiAF_AchievementsFrameMixin:SelectAchievement(achievement)
-	local selectedTab = addon.GUI.SelectedTab;
-	if not selectedTab then
-		return;
-	end
-
-	print("Selecting", achievement.Id)
-
-	selectedTab.SelectedAchievement = achievement;
-    -- self:Update();
-	-- self.ScrollBox:Update(true);
-end
-
-function KrowiAF_AchievementsFrameMixin:DeselectAchievement(achievement)
-	local selectedTab = addon.GUI.SelectedTab;
-	if not selectedTab then
-		return;
-	end
-
-	print("Deselecting", achievement.Id)
-	
-	selectedTab.SelectedAchievement = nil;
-    -- self:Update();
-	-- self.ScrollBox:Update(true);
 end

@@ -9,18 +9,8 @@ end
 
 function KrowiAF_AchievementButton_OnLoad(self)
 	_, self.FontHeight = self.Description:GetFont();
-
-	-- Very not efficient to do this every time !!! Fix later
-	addon.GUI.AchievementsObjectives.FontHeight = self.FontHeight;
-	addon.GUI.AchievementsObjectives.CollapsedHeight = self.CollapsedHeight;
-	addon.GUI.AchievementsObjectives.MaxDescriptionLinesCollapsed = self.MaxDescriptionLinesCollapsed;
-
-	local descriptionHeight = self.FontHeight * self.MaxDescriptionLinesCollapsed;
-	self.Description:SetHeight(descriptionHeight);
-
+	self.Description:SetHeight(self.FontHeight * self.MaxDescriptionLinesCollapsed);
 	self:Collapse();
-
-	-- self:RegisterEvent("ACHIEVEMENT_EARNED");
 end
 
 function KrowiAF_AchievementButton_OnEnter(self)
@@ -104,8 +94,6 @@ function KrowiAF_AchievementButtonTracked_OnClick(self)
 end
 
 function KrowiAF_AchievementButton_Small_OnLoad(self)
-	self:TooltipBackdropOnLoad();
-
 	self.BottomLeftTsunami:Hide();
 	self.BottomRightTsunami:Hide();
 	self.TopLeftTsunami:Hide();
@@ -139,13 +127,9 @@ function KrowiAF_AchievementButton_Small_OnLoad(self)
 	if addon.Options.db.RightClickMenu.ShowButtonOnAchievement then
 		AddRightClickMenuButton(self);
 	end
-
-	KrowiAF_AchievementButton_OnLoad(self);
 end
 
 function KrowiAF_AchievementButton_Normal_OnLoad(self)
-	self:TooltipBackdropOnLoad();
-
 	self.MaxDescriptionLinesCollapsed = 3;
 	self.CollapsedHeight = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT;
 	self.ObjectivesLeftAnchor = self.Icon.Border;
@@ -153,8 +137,6 @@ function KrowiAF_AchievementButton_Normal_OnLoad(self)
 	if addon.Options.db.RightClickMenu.ShowButtonOnAchievement then
 		AddRightClickMenuButton(self);
 	end
-
-	KrowiAF_AchievementButton_OnLoad(self);
 end
 
 function KrowiAF_AchievementButton_Light_OnLoad(self)
@@ -167,6 +149,9 @@ function KrowiAF_AchievementButton_Light_OnLoad(self)
 		self.RewardBackground:Hide();
 		self.PlusMinus:Hide();
 	end);
+	self:SetScript("OnShow", nil);
+	self:SetScript("OnHide", nil);
+	self:SetScript("OnEvent", nil);
 end
 
 function KrowiAF_AchievementButton_Light_OnEnter(self)
@@ -178,7 +163,6 @@ function KrowiAF_AchievementButton_Light_OnEnter(self)
     GameTooltip:SetPoint("TOPLEFT", self, "TOPRIGHT");
     local link = GetAchievementLink(self.Achievement.Id);
     GameTooltip:SetHyperlink(link);
-    -- AchievementFrameAchievements_CheckGuildMembersTooltip(self);
     GameTooltip:Show();
     if GameTooltip:GetTop() > self:GetTop() then
         GameTooltip:ClearAllPoints();
@@ -196,7 +180,7 @@ function KrowiAF_AchievementButton_Light_OnClick(self, button, down, ignoreModif
 		if self:ProcessedModifiers(ignoreModifiers) then
 			return;
 		end
-		
+
     	KrowiAF_SelectAchievementFromID(self.Achievement.Id);
 	else
 		KrowiAF_AchievementButton_OnClick(self, button, down, ignoreModifiers);

@@ -9,10 +9,9 @@ function achievementsFrame:Load()
 
 	tinsert(addon.GUI.SubFrames, frame);
 
-	-- This does not suffice anymore for Dragonflight
 	hooksecurefunc("AchievementFrameAchievements_ForceUpdate", function()
 		frame:ForceUpdate();
-	end); -- Issue #3: Fix
+	end);
 
 	addon.GUI.AchievementsFrame = frame;
 end

@@ -75,7 +75,8 @@ options.Defaults = {
                 ToggleTracking = 4,
                 ToggleWatchList = 2,
                 ToggleExcluded = 1
-            }
+            },
+            MouseWheelPanScalar = 1
         },
         RightClickMenu = {
             ShowButtonOnAchievement = false,

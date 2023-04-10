@@ -63,11 +63,7 @@ function KrowiAF_CategoryButtonMixin:SetCategory(category)
 		return;
 	end
 
-	self:UpdateSelectionState(category == selectedTab.SelectedCategory);
-end
-
-function KrowiAF_CategoryButtonMixin:UpdateSelectionState(selected)
-	if selected then
+	if category == selectedTab.SelectedCategory then
 		self:LockHighlight();
 	else
 		self:UnlockHighlight();

@@ -146,12 +146,14 @@
 			</Layer>
 		</Layers>
 		<Scripts>
+			<OnLoad inherit="prepend" function="KrowiAF_AchievementButton_OnLoad"/>
 			<OnEnter function="KrowiAF_AchievementButton_OnEnter"/>
 			<OnLeave function="KrowiAF_AchievementButton_OnLeave"/>
 			<OnClick function="KrowiAF_AchievementButton_OnClick"/>
 			<OnShow function="KrowiAF_AchievementButton_OnShow"/>
 			<OnHide function="KrowiAF_AchievementButton_OnHide"/>
 			<OnEvent function="KrowiAF_AchievementButton_OnEvent"/>
+			<OnSizeChanged method="OnSizeChanged"/>
 		</Scripts>
 		<Frames>
 			<Frame name="$parentHighlight" setAllPoints="true" hidden="true" enableMouse="false" parentKey="Highlight">
@@ -343,20 +345,20 @@
 	<EventButton name="KrowiAF_AchievementButton_Small_Template" inherits="KrowiAF_AchievementButton_Template" virtual="true">
     	<Size x="434" y="42"/>
 		<Scripts>
-			<OnLoad function="KrowiAF_AchievementButton_Small_OnLoad"/>
+			<OnLoad inherit="append" function="KrowiAF_AchievementButton_Small_OnLoad"/>
 		</Scripts>
   	</EventButton>
 
 	<EventButton name="KrowiAF_AchievementButton_Normal_Template" inherits="KrowiAF_AchievementButton_Template" virtual="true">
 		<Size x="434" y="142"/>
 		<Scripts>
-			<OnLoad function="KrowiAF_AchievementButton_Normal_OnLoad"/>
+			<OnLoad inherit="append" function="KrowiAF_AchievementButton_Normal_OnLoad"/>
 		</Scripts>
 	</EventButton>
 
 	<EventButton name="KrowiAF_AchievementButton_Light_Template" inherits="KrowiAF_AchievementButton_Small_Template" virtual="true">
 		<Scripts>
-			<OnLoad inherit="prepend" function="KrowiAF_AchievementButton_Light_OnLoad"/>
+			<OnLoad inherit="append" function="KrowiAF_AchievementButton_Light_OnLoad"/>
 			<OnEnter function="KrowiAF_AchievementButton_Light_OnEnter"/>
 			<OnLeave function="KrowiAF_AchievementButton_Light_OnLeave"/>
 			<OnClick function="KrowiAF_AchievementButton_Light_OnClick"/>

@@ -5,8 +5,8 @@ KrowiAF_CategoriesFrameMixin = {};
 
 local function CreateScrollView(self)
 	self.ScrollView = CreateScrollBoxListLinearView();
-	self.ScrollView:SetElementInitializer("KrowiAF_CategoryButton_Template", function(_frame, category)
-		_frame:SetCategory(category);
+	self.ScrollView:SetElementInitializer("KrowiAF_CategoryButton_Template", function(button, category)
+		button:SetCategory(category);
 	end);
 	self.ScrollView:SetElementIndentCalculator(function(category)
 		if not category then
@@ -114,14 +114,9 @@ local function GetDisplayCategories(displayCategories, category, getAchNums)
 	end
 end
 
-function KrowiAF_CategoriesFrameMixin:UpdateDataProvider(getAchNums)
-	local selectedTab = addon.GUI.SelectedTab;
-	if selectedTab == nil then
-		return;
-	end
-
+local function UpdateDataProvider(self, getAchNums)
 	local displayCategories = {};
-	local categories = selectedTab.Categories;
+	local categories = addon.GUI.SelectedTab.Categories;
 	for _, category in next, categories do
 		GetDisplayCategories(displayCategories, category, getAchNums);
 	end
@@ -145,7 +140,7 @@ function KrowiAF_CategoriesFrameMixin:Update(getAchNums)
 		getAchNums = true;
 	end
 
-	self:UpdateDataProvider(getAchNums);
+	UpdateDataProvider(self, getAchNums);
 end
 
 local function OpenCloseCategory(targetCategory, category)

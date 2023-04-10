@@ -74,7 +74,7 @@ function AchievementsFrameLightMixin:Update(achievements, refreshAchievements)
     local buttons = scrollFrame.buttons;
 
     local buttonHeight = buttons[1]:GetHeight();
-    local numButtons = math.ceil(scrollFrame:GetHeight() / buttonHeight) + 1;
+    local numButtons = min(math.ceil(scrollFrame:GetHeight() / buttonHeight) + 1, #buttons);
 
 	local displayedHeight = 0;
     local id;

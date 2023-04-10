@@ -9,9 +9,9 @@ local function SelectAchievement(achievement)
 		return;
 	end
 
-	achievementsFrame.SelectionBehavior:SelectElementData(achievement);
-	scrollBox:FullUpdate(ScrollBoxConstants.UpdateImmediately);
 	scrollBox:ScrollToElementData(achievement, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
+	achievementsFrame.SelectionBehavior:SelectElementData(achievement);
+	achievementsFrame:ScrollToNearest(achievement);
 end
 
 function KrowiAF_SelectAchievementWithCategory(achievement, category)

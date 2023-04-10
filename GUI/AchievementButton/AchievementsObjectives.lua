@@ -18,7 +18,6 @@ function KrowiAF_AchievementsObjectives_OnEnter(self)
 	GameTooltip:SetPoint("TOPLEFT", self, "BOTTOMLEFT");
 	local link = GetAchievementLink(self.Id);
 	GameTooltip:SetHyperlink(link);
-	-- AchievementFrameAchievements_CheckGuildMembersTooltip(self);
 	GameTooltip:Show();
 	if GameTooltip:GetTop() > self:GetBottom() then
 		GameTooltip:ClearAllPoints();
@@ -36,40 +35,4 @@ function KrowiAF_AchievementsObjectives_OnClick(self, button, down)
 	elseif button == "RightButton" then
 		addon.GUI.RightClickMenu.AchievementMenu:Open(addon.Data.Achievements[self.Id]);
 	end
-end
-
-function KrowiAF_AchievementsObjectives_OnLoad(self)
-	self:RegisterEvent("CRITERIA_UPDATE");
-end
-
-local refreshOnNextShow;
-function KrowiAF_AchievementsObjectives_OnEvent(self, event)
-	if event ~= "CRITERIA_UPDATE" then
-		return;
-	end
-
-	local selectedTab = addon.GUI.SelectedTab;
-	if selectedTab and selectedTab.SelectedAchievement then
-		local button = self:GetParent();
-		self.Id = nil;
-		if self:IsVisible() then
-			button:DisplayObjectives(true);
-			-- AchievementFrameAchievements_Update();
-		else
-			refreshOnNextShow = true;
-		end
-	else
-		self.Id = nil;
-	end
-end
-
-function KrowiAF_AchievementsObjectives_OnShow(self)
-	if not refreshOnNextShow then
-		return;
-	end
-
-	local button = self:GetParent();
-	button:DisplayObjectives(true);
-
-	refreshOnNextShow = nil;
 end

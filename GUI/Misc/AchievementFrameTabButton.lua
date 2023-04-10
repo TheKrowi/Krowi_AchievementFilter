@@ -73,7 +73,6 @@ function achFrameTabBtn:Base_OnClick(id)
     end
 
     AchievementFrame_ShowSubFrame(); -- Hide all frames
-    -- addon.GUI.AchievementsFrame.ScrollFrame.ScrollBar:SetValue(0);
 
     AchievementFrame_ShowSubFrame(unpack(self.FramesToShow));
     if self.SelectedCategory.IsSummary then
@@ -82,13 +81,11 @@ function achFrameTabBtn:Base_OnClick(id)
 	else
 		addon.GUI.SummaryFrame:Hide();
 		addon.GUI.AchievementsFrame:Show();
-		-- addon.GUI.AchievementsFrame:ClearFullSelection();
         addon.GUI.AchievementsFrame:Update();
         if self.SelectedAchievement then
-            -- local button = addon.GUI.AchievementsFrame:FindSelection();
-	        -- addon.GUI.AchievementsFrame:ExpandSelection(button);
-            print("Updating after tab change", self.Extend)
-            addon.GUI.AchievementsFrame.ScrollBox:FullUpdate(ScrollBoxConstants.UpdateImmediately);
+	        addon.GUI.AchievementsFrame.ScrollBox:ScrollToElementData(self.SelectedAchievement, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
+            addon.GUI.AchievementsFrame.SelectionBehavior:SelectElementData(self.SelectedAchievement);
+            addon.GUI.AchievementsFrame:ScrollToNearest(self.SelectedAchievement);
         end
 	end
     AchievementFrameWaterMark:SetTexture(self.WaterMark);

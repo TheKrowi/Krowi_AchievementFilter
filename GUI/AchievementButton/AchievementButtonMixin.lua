@@ -19,19 +19,38 @@ function KrowiAF_AchievementButtonMixin:PostLoad(scrollFrame)
 	addon.GUI.AchievementsObjectives:SetParent(self);
 end
 
-local cachedWidth;
+local cachedWidthOnSizeChanged;
+function KrowiAF_AchievementButtonMixin:OnSizeChanged(width, height)
+	local selectedTab = addon.GUI.SelectedTab;
+	if selectedTab and self.Achievement and selectedTab.SelectedAchievement == self.Achievement then
+		-- print("Achievement button size changed", self.Achievement.Id,  width, height, cachedWidth)
+		if cachedWidthOnSizeChanged and cachedWidthOnSizeChanged ~= width then
+			local oldOnSizeChanged = self:GetScript("OnSizeChanged");
+			self:SetScript("OnSizeChanged", nil);
+
+			self:Update(self.Achievement, self.index);
+			addon.GUI.AchievementsFrame.SelectionBehavior:TriggerEvent(SelectionBehaviorMixin.Event.OnSelectionChanged, self.Achievement, true);
+			addon.GUI.AchievementsFrame:ScrollToNearest(self.Achievement);
+
+			self:SetScript("OnSizeChanged", oldOnSizeChanged);
+		end
+		cachedWidthOnSizeChanged = width;
+	end
+end
+
+local cachedWidthDisplayObjectives;
 function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
 	local objectives = addon.GUI.AchievementsObjectives;
 
 	objectives:SetParent(self);
 	objectives:SetPoint("TOP", self.HiddenDescription, "BOTTOM", 0, -8);
-	objectives:SetPoint("LEFT", self.ObjectivesLeftAnchor, "RIGHT", 0, 0); -- Set it each time to take the scrollbar into account
-	objectives:SetPoint("RIGHT", self.Shield, "LEFT", 0, 0); -- Set it each time to take the scrollbar into account
+	objectives:SetPoint("LEFT", self.ObjectivesLeftAnchor, "RIGHT", 0, 0);
+	objectives:SetPoint("RIGHT", self.Shield, "LEFT", 0, 0);
 	objectives.Completed = self.Completed;
 	objectives.FontHeight = self.FontHeight;
 	local height = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT; -- Compact or not, we need this height
 	local id = self.Achievement.Id;
-	if objectives.Id == id and cachedWidth == objectives:GetWidth() and not forced then
+	if objectives.Id == id and cachedWidthDisplayObjectives == objectives:GetWidth() and not forced then
 		-- Cached, nothing to do
 	elseif self.Completed and GetPreviousAchievement(id) then
 		objectives:SetHeight(1);
@@ -41,7 +60,7 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
 		objectives:SetHeight(1);
 		objectives:ResetAll();
 		objectives:DisplayCriteria(id);
-		cachedWidth = objectives:GetWidth();
+		cachedWidthDisplayObjectives = objectives:GetWidth();
 	end
 	objectives:Show();
 	height = height + objectives:GetHeight() - 1;
@@ -210,21 +229,20 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement, refresh)
 end
 
 function KrowiAF_AchievementButtonMixin:Update(achievement, index, refresh)
-	local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe, _ = addon.GetAchievementInfo(achievement.Id);
+	local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = addon.GetAchievementInfo(achievement.Id);
 	self:SetAchievement(achievement, refresh);
 
 	self.index = index; -- This is used to keep the correct achievement expanded
 	-- self.Id = achievement.Id;
 
+	local selectedTab = addon.GUI.SelectedTab;
 	local objectives = addon.GUI.AchievementsObjectives;
 	local objectivesParent = objectives:GetParent();
-	if objectivesParent and objectivesParent.Achievement and objectivesParent.Achievement.Id ~= objectives.Id then
+	if objectivesParent and objectivesParent.Achievement and objectivesParent.Achievement.Id ~= objectives.Id or selectedTab.SelectedAchievement == nil then
 		objectives:Hide();
 	end
 
-	local selectedTab = addon.GUI.SelectedTab;
 	if selectedTab and achievement == selectedTab.SelectedAchievement then
-		-- self.selected = true;
 		self.Highlight:Show();
 		local height = self:DisplayObjectives();
 		self:Expand(height);
@@ -502,46 +520,7 @@ function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
 
 	local achievementsFrame = addon.GUI.AchievementsFrame;
 	achievementsFrame.SelectionBehavior:ToggleSelect(self);
-
-	-- local selectedTab = addon.GUI.SelectedTab;
-	-- if not selectedTab then
-	-- 	return;
-	-- end
-
-	-- local achievementsFrame = addon.GUI.AchievementsFrame;
-	-- if self.Achievement == selectedTab.SelectedAchievement then
-	-- 	achievementsFrame:DeselectAchievement(self.Achievement);
-	-- else
-	-- 	achievementsFrame:SelectAchievement(self.Achievement);
-	-- end
-
-	-- if not self.selected then
-	-- 	achievementsFrame:SelectButton(self);
-	-- else
-	-- 	achievementsFrame:DeselectButton(self);
-	-- end
-	-- self:Update(self.Achievement, self.Index);
-	-- achievementsFrame.ScrollBox:FullUpdate(true);
-	-- achievementsFrame:ScrollToNearest(self.Achievement);
-
-	-- local achievementsFrame = addon.GUI.AchievementsFrame;
-	-- local scrollFrame = achievementsFrame.ScrollFrame;
-	-- if self.selected then
-	-- 	if not self:IsMouseOver() then
-	-- 		self.Highlight:Hide();
-	-- 	end
-	-- 	-- achievementsFrame:ClearSelection();
-	-- 	-- HybridScrollFrame_CollapseButton(scrollFrame);
-	-- 	-- achievementsFrame:Update();
-	-- 	return;
-	-- end
-
-	-- achievementsFrame:ClearSelection();
-	-- achievementsFrame:SelectButton(self);
-	-- if addon.GUI.SelectedTab then
-	-- 	self:Update(addon.GUI.SelectedTab.SelectedAchievement, self.index);
-	-- end
-	-- achievementsFrame:ExpandSelection(self);
+	achievementsFrame:ScrollToNearest(self.Achievement);
 end
 
 function KrowiAF_AchievementButtonMixin:ShowTooltip()
@@ -583,8 +562,6 @@ function KrowiAF_AchievementButtonMixin:SetAsTracked(isTracked)
 	if isTracked then
 		self.Achievement.IsTracked = true;
 	end
-	self.Check:SetShown(isTracked);
-	self.Tracked:SetChecked(isTracked);
 	if isTracked and not self.Compact then
 		self.Tracked:Show();
 	else
@@ -593,4 +570,6 @@ function KrowiAF_AchievementButtonMixin:SetAsTracked(isTracked)
 			self.Tracked:Hide();
 		end
 	end
+	self.Check:SetShown(isTracked);
+	self.Tracked:SetChecked(isTracked);
 end
