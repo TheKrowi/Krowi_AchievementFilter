@@ -68,6 +68,17 @@ function KrowiAF_AchievementsFrameMixin:OnLoad()
 	CreateScrollView(self);
 	AddManagedScrollBarVisibilityBehavior(self);
 	AddSelectionBehavior(self);
+
+	hooksecurefunc("AchievementFrameAchievements_ForceUpdate", function()
+		self:ForceUpdate();
+	end);
+end
+
+function KrowiAF_AchievementsFrameMixin:OnShow()
+	if addon.AchievementEarnedUpdateAchievementsFrameOnNextShow then
+		self:ForceUpdate();
+		addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = nil;
+	end
 end
 
 local function Validate(achievements, displayAchievements, defaultOrder)

@@ -82,7 +82,6 @@ function gui.HookBaseTabOnClick()
         return;
     end
     hooksecurefunc("AchievementFrameBaseTab_OnClick", function(tabIndex)
-        -- print("AchievementFrameBaseTab_OnClick")
         if tabIndex == 3 then
             AchievementFrame_RefreshView();
         end
@@ -423,6 +422,7 @@ function gui.LoadOldAchievementFrameCompatibility()
     AchievementFrame.Header.Points = AchievementFrameHeaderPoints;
     AchievementFrame.Header.Title = AchievementFrameHeaderTitle;
 	AchievementFrame.Header.LeftDDLInset = AchievementFrameHeaderLeftDDLInset;
+    SetFocusedAchievement = function(achievementId) end
 end
 
 function gui.LoadOldAchievementFrameTabsCompatibility()

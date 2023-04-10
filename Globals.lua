@@ -442,31 +442,20 @@ function addon.OverwriteFunctions()
     AchievementFrame_SelectAchievement = function(id)
         KrowiAF_SelectAchievementFromID(id);
     end
-
-    if addon.IsWrathClassic then
-        hooksecurefunc("PanelTemplates_SetTab", AchievementFrame_SetTabs);
-    end
 end
-
--- function addon.HookSelectAchievement()
---     hooksecurefunc("AchievementFrame_SelectAchievement", function(id, forceSelect, isComparison)
---         KrowiAF_SelectAchievementFromID(id);
---     end);
--- end
 
 function addon.HookFunctions()
     hooksecurefunc(AchievementFrame, "Show", function()
         addon.Data.GetCurrentZoneAchievements();
     end);
 
+    if addon.IsWrathClassic then
+        hooksecurefunc("PanelTemplates_SetTab", AchievementFrame_SetTabs);
+    end
+
     if addon.IsDragonflightRetail then
         hooksecurefunc("AchievementFrame_SetComparisonTabs", addon.GUI.ShowHideTabs);
     end
-    
-    -- local funcName = addon.IsWrathClassic and "PanelTemplates_SetTab" or "AchievementFrame_SetTabs";
-    -- if addon.IsWrathClassic then
-    --     hooksecurefunc("PanelTemplates_SetTab", AchievementFrame_SetTabs);
-    -- end
 end
 
 local function MakeStatic(frame, rememberLastPositionOption, target)
