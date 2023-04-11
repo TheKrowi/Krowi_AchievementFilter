@@ -4,22 +4,6 @@ addon.GUI.Calendar.SideFrame = {};
 local sideFrame = addon.GUI.Calendar.SideFrame;
 
 local function OnAchievementsFrameViewAcquiredFrame(self, frame, elementData, new)
-    -- print(frame, elementData.Id, new)
-    -- for i,v in pairs(frame) do
-    --     -- if type(v) == "function" then
-    --         print(i,v)
-    --     -- end
-    -- end
-    -- for i,v in pairs(elementData) do
-    --     -- if type(v) == "function" then
-    --         print(i,v)
-    --     -- end
-    -- end
-    -- for i,v in pairs(new) do
-    --     -- if type(v) == "function" then
-    --         print(i,v)
-    --     -- end
-    -- end
     frame:HookScript("OnClick", function(self, button, down, ignoreModifiers)
         if button == "LeftButton" then
             local calendarFrame = addon.GUI.Calendar.Frame;
@@ -37,7 +21,7 @@ function sideFrame:Load()
 
     frame.AchievementsFrame:AlwaysHideBorder();
 
-    frame.AchievementsFrame.ScrollView:RegisterCallback(ScrollBoxListViewMixin.Event.OnAcquiredFrame, OnAchievementsFrameViewAcquiredFrame, self);
+    frame.AchievementsFrame.ScrollView:RegisterCallback(ScrollBoxListViewMixin.Event.OnAcquiredFrame, OnAchievementsFrameViewAcquiredFrame, frame);
 
 	addon.GUI.Calendar.SideFrame = frame; -- Overwrite with the actual frame since all functions are injected to it
 end

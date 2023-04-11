@@ -3,13 +3,15 @@ local _, addon = ...;
 addon.GUI.AchievementButton = {};
 local achievementButton = addon.GUI.AchievementButton;
 
+achievementButton.CollapsedHeightSmall = 48;
+achievementButton.CollapsedHeightNormal = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT;
 function achievementButton.GetCollapsedHeight(template)
 	if template == "KrowiAF_AchievementButton_Small_Template" or template == "KrowiAF_AchievementButton_Light_Template" then
-		return 48;
+		return achievementButton.CollapsedHeightSmall;
 	elseif template == "KrowiAF_AchievementButton_Normal_Template" then
-		return ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT;
+		return achievementButton.CollapsedHeightNormal;
 	end
-	return ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT;
+	return achievementButton.CollapsedHeightNormal;
 end
 
 function KrowiAF_AchievementButton_OnLoad(self)

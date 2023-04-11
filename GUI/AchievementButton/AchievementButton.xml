@@ -288,7 +288,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="ARTWORK">
-						<FontString name="$parentText" inherits="GameFontNormalSmall" text="TRACK_ACHIEVEMENT">
+						<FontString name="$parentText" parentKey="Text" inherits="GameFontNormalSmall" text="TRACK_ACHIEVEMENT">
 							<Anchors>
 								<Anchor point="LEFT" relativePoint="RIGHT"/>
 							</Anchors>

@@ -17,28 +17,30 @@ local function SkinTabs(skins)
     end
 end
 
-local function SkinCategoriesFrame(frame, engine, skins)
-    -- Scrollbar
-    skins:HandleTrimScrollBar(frame.ScrollBar);
-
-    if not KrowiAF_SavedData.ElvUISkin.NoParchment then
-        return;
+do -- [[ Categories ]]
+    local function OnCategoriesFrameViewAcquiredFrame(frame, skins)
+        frame:StripTextures(true);
+        skins:HandleFrame(frame, true, nil, 0, -1);
+        frame:StyleButton();
     end
 
-    -- Frame
-    frame:StripTextures();
+    local function SkinCategoriesFrame(frame, skins)
+        -- Scrollbar
+        skins:HandleTrimScrollBar(frame.ScrollBar);
 
-    -- Buttons
-    hooksecurefunc(frame.ScrollBox, "Update", function()
-        for _, button in next, { frame.ScrollBox.ScrollTarget:GetChildren() } do
-            if button and not button.IsSkinned then
-                button:StripTextures(true);
-                skins:HandleFrame(button, true, nil, 0, -1);
-                button:StyleButton();
-                button.IsSkinned = true;
-            end
+        if not KrowiAF_SavedData.ElvUISkin.NoParchment then
+            return;
         end
-    end);
+
+        -- Frame
+        frame:StripTextures();
+
+        -- Buttons
+        frame.ScrollView:RegisterCallback(ScrollBoxListViewMixin.Event.OnAcquiredFrame, function(self, _frame, elementData, new)
+            OnCategoriesFrameViewAcquiredFrame(_frame, skins);
+        end, frame);
+    end
+    elvUI.SkinCategoriesFrame = SkinCategoriesFrame;
 end
 
 local function SkinGameTooltipProgressBar(progressBar, engine)
@@ -89,9 +91,9 @@ do -- [[ Achievements ]]
 
         if button.Description then
             button.Description:SetTextColor(.6, .6, .6);
-            hooksecurefunc(button.Description, "SetTextColor", function(_, r, g, b)
+            hooksecurefunc(button.Description, "SetTextColor", function(self, r, g, b)
                 if r == 0 and g == 0 and b == 0 then
-                    button.Description:SetTextColor(.6, .6, .6);
+                    self:SetTextColor(.6, .6, .6);
                 end
             end);
         end
@@ -655,7 +657,7 @@ local engine, skins;
 local function SkinAll()
     if KrowiAF_SavedData.ElvUISkin.Achievements then
         SkinTabs(skins);
-        SkinCategoriesFrame(addon.GUI.CategoriesFrame, engine, skins);
+        elvUI.SkinCategoriesFrame(addon.GUI.CategoriesFrame, skins);
         SkinGameTooltipProgressBar(addon.GUI.GameTooltipProgressBar, engine);
         elvUI.SkinAchievementsFrame(addon.GUI.AchievementsFrame, engine, skins);
         elvUI.SkinAchievementSummary(addon.GUI.SummaryFrame, engine, skins);

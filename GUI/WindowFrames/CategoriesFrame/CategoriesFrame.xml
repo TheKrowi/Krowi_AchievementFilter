@@ -5,7 +5,7 @@
 	<Frame name="KrowiAF_CategoriesFrame_Template" mixin="KrowiAF_CategoriesFrameMixin" virtual="true" hidden="true">
 		<Anchors>
 			<Anchor point="TOPLEFT" relativeTo="AchievementFrameCategories"/>
-			<Anchor point="BOTTOMLEFT" relativeTo="AchievementFrameCategories"/>
+			<Anchor point="BOTTOM" y="20"/>
 		</Anchors>
 		<Frames>
 			<Frame parentKey="ScrollBox" inherits="WowScrollBoxList"/>

@@ -6,15 +6,15 @@ local getCollapsedHeight = achievementButton.GetCollapsedHeight;
 KrowiAF_AchievementsFrameMixin = {};
 
 local function CreateScrollView(self)
-	local template = "KrowiAF_AchievementButton_" .. (addon.Options.db.Achievements.Compact and "Small" or "Normal") .. "_Template";
+	self.ButtonTemplate = "KrowiAF_AchievementButton_" .. (addon.Options.db.Achievements.Compact and "Small" or "Normal") .. "_Template";
 
 	self.ScrollView = CreateScrollBoxListLinearView();
-	self.ScrollView:SetElementInitializer(template, function(button, achievement)
+	self.ScrollView:SetElementInitializer(self.ButtonTemplate, function(button, achievement)
 		button:Update(achievement);
 	end);
 	self.ScrollView:SetElementExtentCalculator(function(_, achievement) -- This fires before setting the elements
 		local selectedTab = addon.GUI.SelectedTab;
-		local base = getCollapsedHeight(template);
+		local base = getCollapsedHeight(self.ButtonTemplate);
 		if selectedTab and SelectionBehaviorMixin.IsElementDataIntrusiveSelected(achievement) then
 			base = base + selectedTab.Extend;
 		end
@@ -53,7 +53,7 @@ local function ScrollBoxSelectionChanged(self, achievement, selected)
 
 	button:Update(achievement);
 	SetFocusedAchievement(achievement.Id);
-	selectedTab.Extend = button:GetHeight() - getCollapsedHeight();
+	selectedTab.Extend = button:GetHeight() - getCollapsedHeight(self.ButtonTemplate);
 end
 
 local function AddSelectionBehavior(self)

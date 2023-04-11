@@ -117,10 +117,8 @@ do -- [[ Categories ]]
         end
 
         local children = category.Children;
-        local indentation = addon.Options.db.Categories.Indentation;
-        indentation = 2 + (category.Level - 1) * indentation;
         self.Label:SetText(category.Name);
-        self.Label:SetPoint("LEFT", self, "LEFT", 25 + indentation, 0);
+        self.Label:SetPoint("LEFT", self, "LEFT", 25, 0);
         self.arrow:Hide();
         if children and #children > 0 and category.ShowCollapseIcon then
             self.arrow:Show();
@@ -138,6 +136,19 @@ do -- [[ Categories ]]
             self.Label:SetPoint("LEFT", self, "LEFT", 40, 0);
         end
         self.arrow:SetTexture(iconTexture);
+    end
+
+    local function UpdateCategoryState(button, index)
+        if not button.Category then
+            return;
+        end
+
+        local zebra = (index % 2) == 1 or false;
+        if zebra then
+            button.BackgroundMid:SetVertexColor(1, 1, 1, 1);
+        else
+            button.BackgroundMid:SetVertexColor(0, 0, 0, 0);
+        end
     end
 
     local function SkinCategoryButton(button)
@@ -168,32 +179,18 @@ do -- [[ Categories ]]
         local hl = button:GetHighlightTexture();
         hl:SetVertexColor(0.8, 0.8, 0.8, 0.8);
         hl:GwSetInside(button.BackgroundMid);
-        button:HookScript("OnEnter", function()
-            GW2_ADDON.TriggerButtonHoverAnimation(button, hl);
+        button:HookScript("OnEnter", function(self)
+            GW2_ADDON.TriggerButtonHoverAnimation(self, hl);
         end);
-
-        button.SetIndentation = function(self, indentation)
-            button.arrow:SetPoint("LEFT", 10 + (self.Category.Level - 1) * indentation, 0);
-        end;
-
-        local originalSetCategory = button.SetCategory;
-        button.SetCategory = function(self, category)
-            originalSetCategory(self, category);
-            SetCategory(self, category);
-        end;
     end
 
-    local function UpdateCategoryState(button, index)
-        if not button.Category then
-            return;
-        end
+    local function OnCategoriesFrameViewAcquiredFrame(self, frame, elementData, new)
+        SkinCategoryButton(frame);
+    end
 
-        local zebra = (index % 2) == 1 or false;
-        if zebra then
-            button.BackgroundMid:SetVertexColor(1, 1, 1, 1);
-        else
-            button.BackgroundMid:SetVertexColor(0, 0, 0, 0);
-        end
+    local function OnCategoriesFrameViewInitializedFrame(self, frame, elementData)
+        SetCategory(frame, elementData);
+        UpdateCategoryState(frame, frame:GetOrderIndex());
     end
 
     local function SkinCategoriesFrame(frame)
@@ -201,27 +198,12 @@ do -- [[ Categories ]]
         frame:GwStripTextures();
 
         -- Buttons
-        local buttons = frame.ScrollFrame.buttons;
-        for _, button in next, buttons do
-            SkinCategoryButton(button);
-        end
-        hooksecurefunc(frame, "Update", function(self)
-            local _buttons = self.ScrollFrame.buttons;
-            for i = 1, #_buttons do
-                UpdateCategoryState(buttons[i], i);
-            end
-            gw2_ui.SetThumbHeight(self);
-        end);
+        frame.ScrollView:RegisterCallback(ScrollBoxListViewMixin.Event.OnAcquiredFrame, OnCategoriesFrameViewAcquiredFrame, frame);
+        frame.ScrollView:RegisterCallback(ScrollBoxListViewMixin.Event.OnInitializedFrame, OnCategoriesFrameViewInitializedFrame, frame);
+        frame.ScrollView:SetElementExtent(36);
 
         -- Scrollbar
-        gw2_ui.HandleAchivementsScrollControls(frame);
-
-        -- Re-adjust scrollings after frame size change
-        local buttonHeight = buttons[1]:GetHeight();
-        frame.ScrollFrame.buttonHeight = math.floor(buttonHeight + 0.5);
-        local scrollBar = frame.ScrollFrame.scrollBar;
-        scrollBar.buttonHeight = buttonHeight;
-        scrollBar:SetValue(0);
+        GW2_ADDON.HandleTrimScrollBar(frame.ScrollBar);
     end
     gw2_ui.SkinCategoriesFrame = SkinCategoriesFrame;
 end
@@ -379,7 +361,7 @@ do -- [[ Achievements]]
         CollapseAchievement(self);
     end
 
-    local function SkinAchievementButton(buttons, button, index)
+    local function SkinAchievementButton(button)
         local scaling = button.Compact and 0.712 or 1;
 
         -- Hide unnecessary base objects
@@ -434,9 +416,9 @@ do -- [[ Achievements]]
         if not button.Compact then
             button.Description:SetHeight(40);
         end
-        hooksecurefunc(button.Description, "SetTextColor", function(_, r, g, b)
+        hooksecurefunc(button.Description, "SetTextColor", function(self, r, g, b)
             if r == 0 and g == 0 and b == 0 then
-                button.Description:SetTextColor(1, 1, 1);
+                self:SetTextColor(1, 1, 1);
             end
         end);
         GW2_ADDON.AchievementFrameSkinFunction.SetNormalText(button.Description);
@@ -447,11 +429,11 @@ do -- [[ Achievements]]
         button.rewardIcon:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", 125, 3 + buttonOffset);
         button.rewardIcon:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/rewardchestsmall");
         button.rewardIcon:SetSize(24, 24);
-        hooksecurefunc(button.Reward, "Hide", function()
-            button.rewardIcon:Hide();
+        hooksecurefunc(button.Reward, "Hide", function(self)
+            self:GetParent().rewardIcon:Hide();
         end);
-        hooksecurefunc(button.Reward, "Show", function()
-            button.rewardIcon:Show();
+        hooksecurefunc(button.Reward, "Show", function(self)
+            self:GetParent().rewardIcon:Show();
         end);
         if not button.Reward:IsShown() then
         button.rewardIcon:Hide();
@@ -492,32 +474,6 @@ do -- [[ Achievements]]
         button.ExtraIcon:ClearAllPoints();
         button.ExtraIcon:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", 3, 8);
 
-        -- Make sure the achievement objectives are skinned
-        hooksecurefunc(button, "DisplayObjectives", function(self, id, completed)
-            local objectivesFrame = addon.GUI.AchievementsObjectives;
-            objectivesFrame:ClearAllPoints();
-            objectivesFrame:SetPoint("TOPLEFT", self.HiddenDescription, "BOTTOMLEFT");
-            objectivesFrame:SetPoint("TOPRIGHT", self.HiddenDescription, "BOTTOMRIGHT");
-
-            local i = 1;
-            while _G["KrowiAF_AchievementsObjectivesMeta" .. i] do
-                GW2_ADDON.AchievementFrameSkinFunction.SetSmallText(_G["KrowiAF_AchievementsObjectivesMeta" .. i].Label);
-                i = i + 1;
-            end
-
-            i = 1;
-            while _G["KrowiAF_AchievementsObjectivesTextCriteria" .. i] do
-                GW2_ADDON.AchievementFrameSkinFunction.SetSmallText(_G["KrowiAF_AchievementsObjectivesTextCriteria" .. i].Name);
-                i = i + 1;
-            end
-
-            i = 1;
-            while _G["KrowiAF_AchievementsObjectivesProgressBar" .. i] do
-                SkinCriteriaStatusbar(self, _G["KrowiAF_AchievementsObjectivesProgressBar" .. i]);
-                i = i + 1;
-            end
-        end);
-
         -- Extra flare when achievement is completed
         button.completeFlare = button:CreateTexture("completeFlare", "BACKGROUND", nil, 0);
         button.completeFlare:ClearAllPoints();
@@ -554,14 +510,13 @@ do -- [[ Achievements]]
         button.Tracked:SetHighlightTexture("Interface/AddOns/GW2_UI/textures/uistuff/watchiconactive");
         button.Tracked:SetCheckedTexture("Interface/AddOns/GW2_UI/textures/uistuff/watchiconactive");
         button.Tracked:SetPushedTexture("Interface/AddOns/GW2_UI/textures/uistuff/watchicon");
-        _G[button:GetName() .. "TrackedText"]:Hide();
+        button.Tracked.Text:Hide();
         button.Tracked:ClearAllPoints();
         button.Tracked:SetPoint("BOTTOMRIGHT", button.bottomBar, "BOTTOMRIGHT", -7, 0);
         button.Tracked:SetSize(30, 30);
 
         -- Highligh that will cover the entire button
         button.Highlight:GwStripTextures();
-        button.Highlight.Bottom = _G[button.Highlight:GetName() .. "Bottom"];
         button.Highlight.Bottom:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/achievementhover");
         button.Highlight.Bottom:SetBlendMode("ADD");
         button.Highlight.Bottom:ClearAllPoints();
@@ -570,66 +525,111 @@ do -- [[ Achievements]]
         button.Highlight.Bottom:SetTexCoord(0, 1, 0, 1);
         button.Highlight.Bottom:SetVertexColor(1, 1, 1, 1);
         button.hasSkinnedHighlight = true;
-        button:HookScript("OnEnter",function()
-            GW2_ADDON.TriggerButtonHoverAnimation(button,button.Highlight.Bottom);
+        button:HookScript("OnEnter", function(self)
+            GW2_ADDON.TriggerButtonHoverAnimation(self, self.Highlight.Bottom);
         end);
 
-        hooksecurefunc(button, "SetAchievement", SetAchievement);
+        hooksecurefunc(button, "Collapse", CollapseAchievement);
         hooksecurefunc(button, "Collapse", CollapseAchievement);
         hooksecurefunc(button, "Expand", ExpandAchievement);
     end
     gw2_ui.SkinAchievementButton = SkinAchievementButton;
 
-    local function SkinAchievementsFrame(frame)
+    local function OnAchievementsFrameViewAcquiredFrame(self, frame, elementData, new)
+        SkinAchievementButton(frame);
+    end
+
+    local function OnAchievementsFrameViewInitializedFrame(self, frame, elementData)
+        SetAchievement(frame, elementData);
+    end
+
+    local function SetAchievementsObjectivesAnchors()
+        local objectivesFrame = addon.GUI.AchievementsObjectives;
+        local parent = objectivesFrame:GetParent();
+        if not parent then
+            return;
+        end
+        objectivesFrame:ClearAllPoints();
+        objectivesFrame:SetPoint("TOPLEFT", parent.HiddenDescription, "BOTTOMLEFT");
+        objectivesFrame:SetPoint("TOPRIGHT", parent.HiddenDescription, "BOTTOMRIGHT");
+    end
+
+    local function SkinAchievementsObjectives()
+        local objectivesFrame = addon.GUI.AchievementsObjectives;
+        local parent = objectivesFrame:GetParent();
+        if not parent then
+            return;
+        end
+
+        local i = 1;
+        while _G["KrowiAF_AchievementsObjectivesMeta" .. i] do
+            GW2_ADDON.AchievementFrameSkinFunction.SetSmallText(_G["KrowiAF_AchievementsObjectivesMeta" .. i].Label);
+            i = i + 1;
+        end
+
+        i = 1;
+        while _G["KrowiAF_AchievementsObjectivesTextCriteria" .. i] do
+            GW2_ADDON.AchievementFrameSkinFunction.SetSmallText(_G["KrowiAF_AchievementsObjectivesTextCriteria" .. i].Label);
+            i = i + 1;
+        end
+
+        i = 1;
+        while _G["KrowiAF_AchievementsObjectivesProgressBar" .. i] do
+            SkinCriteriaStatusbar(parent, _G["KrowiAF_AchievementsObjectivesProgressBar" .. i]);
+            i = i + 1;
+        end
+    end
+
+    local function SkinAchievementsFrame(frame, categoriesFrame)
         -- Frame
         frame:GwStripTextures();
 
         frame.Background:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/listbackground");
         frame.Background:SetTexCoord(0, 1, 0, 1);
 
-        frame.ScrollFrame:SetPoint("TOPLEFT", 8, -8);
-        frame.ScrollFrame.ScrollBar:SetPoint("TOPLEFT", frame.ScrollFrame, "TOPRIGHT", 1, -4);
-        frame.ScrollFrame.ScrollBar:SetPoint("BOTTOMLEFT", frame.ScrollFrame, "BOTTOMRIGHT", 1, 6);
-
-        hooksecurefunc(addon.GUI.CategoriesFrame, "Show_Hide", function(self, func, offsetX)
-            frame:ClearPoint("TOPLEFT");
-            frame:SetPoint("TOP", 0, -10);
-            frame:SetPoint("LEFT", self, "RIGHT", offsetX, 0);
-            frame:SetPoint("BOTTOM", 0, 20);
-            frame:SetPoint("RIGHT", frame.ScrollFrame.ScrollBar:IsShown() and -20 or 0, 0);
-        end);
-
-        hooksecurefunc(frame, "Show_Hide", function(self, func, offsetX)
-            self:ClearPoint("RIGHT");
-            self:SetPoint("RIGHT", self:IsShown() and -20 or 0, 0);
+        frame:HookScript("OnShow", function(self)
+            self:ClearPoint("TOPLEFT");
+            self:SetPoint("TOP", 0, -10);
+            self:SetPoint("LEFT", categoriesFrame, "RIGHT");
         end);
 
         -- Buttons
-        local buttons = frame.ScrollFrame.buttons;
-        for i, button in next, buttons do
-            SkinAchievementButton(buttons, button, i);
-        end
-        hooksecurefunc(frame, "Update", function(self)
-            gw2_ui.SetThumbHeight(self);
-        end);
+        addon.GUI.AchievementButton.CollapsedHeightSmall = 125 * 0.712;
+        addon.GUI.AchievementButton.CollapsedHeightNormal = 125;
+        frame.ScrollView:RegisterCallback(ScrollBoxListViewMixin.Event.OnAcquiredFrame, OnAchievementsFrameViewAcquiredFrame, frame);
+        frame.ScrollView:RegisterCallback(ScrollBoxListViewMixin.Event.OnInitializedFrame, OnAchievementsFrameViewInitializedFrame, frame);
 
         -- Objectives
-        hooksecurefunc(addon.GUI.AchievementsObjectives, "DisplayCriteria", function(self)
-            self:SetHeight(self:GetHeight() + 10);
+        hooksecurefunc(addon.GUI.AchievementsObjectives, "GetTextCriteria", function(self, index)
+            GW2_ADDON.AchievementFrameSkinFunction.SetSmallText(_G["KrowiAF_AchievementsObjectivesTextCriteria" .. index].Label);
         end);
-        hooksecurefunc(addon.GUI.AchievementsObjectives, "DisplayProgressiveAchievement", function(self)
-            self:SetHeight(self:GetHeight() + 10);
+
+        hooksecurefunc(addon.GUI.AchievementsObjectives, "GetProgressBar", function(self, index)
+            SkinCriteriaStatusbar(self, _G["KrowiAF_AchievementsObjectivesProgressBar" .. index]);
         end);
+
+        hooksecurefunc(addon.GUI.AchievementsObjectives, "GetMeta", function(self, index)
+            GW2_ADDON.AchievementFrameSkinFunction.SetSmallText(_G["KrowiAF_AchievementsObjectivesMeta" .. index].Label);
+        end);
+
+        local preHookDisplayCriteria = addon.GUI.AchievementsObjectives.DisplayCriteria;
+        function addon.GUI.AchievementsObjectives:DisplayCriteria(id)
+            SetAchievementsObjectivesAnchors()
+            preHookDisplayCriteria(self, id);
+            SkinAchievementsObjectives();
+            self:SetHeight(self:GetHeight() + 10);
+        end
+
+        local preHookDisplayProgressiveAchievement = addon.GUI.AchievementsObjectives.DisplayProgressiveAchievement;
+        function addon.GUI.AchievementsObjectives:DisplayProgressiveAchievement(id)
+            SetAchievementsObjectivesAnchors()
+            preHookDisplayProgressiveAchievement(self, id);
+            SkinAchievementsObjectives();
+            self:SetHeight(self:GetHeight() + 10);
+        end
 
         -- Scrollbar
-        gw2_ui.HandleAchivementsScrollControls(frame);
-
-        -- Re-adjust scrollings after frame size change
-        local buttonHeight = buttons[1]:GetHeight();
-        frame.ScrollFrame.buttonHeight = math.floor(buttonHeight + 0.5);
-        local scrollBar = frame.ScrollFrame.scrollBar;
-        scrollBar.buttonHeight = buttonHeight;
-        scrollBar:SetValue(0);
+        GW2_ADDON.HandleTrimScrollBar(frame.ScrollBar);
     end
     gw2_ui.SkinAchievementsFrame = SkinAchievementsFrame;
 end
@@ -849,10 +849,10 @@ do -- [[ Search ]]
     end
     gw2_ui.SkinSearchOptionsButton = SkinSearchOptionsButton;
 
-    local function SkinSearchBoxFrame(frame)
+    local function SkinSearchBoxFrame(frame, categoriesFrame)
         frame:ClearAllPoints();
-        frame:SetPoint('BOTTOMLEFT', AchievementFrameCategories, 'TOPLEFT', 0, 10);
-        frame:SetWidth(237);
+        frame:SetPoint("BOTTOMLEFT", categoriesFrame, "TOPLEFT", 0, 10);
+        frame:SetPoint("BOTTOMRIGHT", categoriesFrame, "TOPRIGHT", 0, 10);
         frame:SetFont(UNIT_NAME_FONT, 14, "");
         GW2_ADDON.SkinTextBox(frame.Middle, frame.Left, frame.Right);
         frame:SetHeight(26);
@@ -860,10 +860,6 @@ do -- [[ Search ]]
         frame:SetFont(UNIT_NAME_FONT, 14, "");
         frame.Instructions:SetFont(UNIT_NAME_FONT, 14, "");
         frame.Instructions:SetTextColor(178 / 255, 178 / 255, 178 / 255);
-
-        hooksecurefunc(addon.GUI.CategoriesFrame, "Show_Hide", function(self, func, offsetX)
-            frame:SetWidth(self:GetWidth() + offsetX);
-        end);
     end
     gw2_ui.SkinSearchBoxFrame = SkinSearchBoxFrame;
 
@@ -1188,11 +1184,11 @@ local function SkinAll()
         gw2_ui.SkinTabs();
         gw2_ui.SkinCategoriesFrame(addon.GUI.CategoriesFrame);
         SkinGameTooltipProgressBar(addon.GUI.GameTooltipProgressBar);
-        gw2_ui.SkinAchievementsFrame(addon.GUI.AchievementsFrame);
-        gw2_ui.SkinAchievementSummary(addon.GUI.SummaryFrame);
+        gw2_ui.SkinAchievementsFrame(addon.GUI.AchievementsFrame, addon.GUI.CategoriesFrame);
+        -- gw2_ui.SkinAchievementSummary(addon.GUI.SummaryFrame);
         SkinFilterButton(addon.GUI.FilterButton);
         gw2_ui.SkinSearchOptionsButton(addon.GUI.Search.OptionsMenuButton, addon.GUI.Search.BoxFrame);
-        gw2_ui.SkinSearchBoxFrame(addon.GUI.Search.BoxFrame);
+        gw2_ui.SkinSearchBoxFrame(addon.GUI.Search.BoxFrame, addon.GUI.CategoriesFrame);
         gw2_ui.SkinSearchPreviewFrame(addon.GUI.Search.PreviewFrame, addon.GUI.Search.BoxFrame);
     --     gw2_ui.SkinSearchResultsFrame(addon.GUI.Search.ResultsFrame);
         gw2_ui.SkinHeader();
