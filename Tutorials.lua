@@ -364,7 +364,7 @@ function tutorials.Load()
     OnShow = function(self)
         self.Text = self.Text:ReplaceVars
         {
-            numAchievements = tostring(addon.Options.db.Categories.Summary.NumAchievements):SetColorYellow()
+            numAchievements = tostring(addon.Options.db.Summary.NumAchievements):SetColorYellow()
         };
     end
     });

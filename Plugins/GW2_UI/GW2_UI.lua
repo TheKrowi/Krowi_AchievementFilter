@@ -9,47 +9,39 @@ local gw2_ui = plugins.GW2_UI;
 tinsert(plugins.Plugins, gw2_ui);
 
 do -- [[ Shared ]]
-    function gw2_ui.HandleAchivementsScrollControls(self)
-        local scrollBar = self.ScrollFrame.ScrollBar;
+    function gw2_ui.HandleScrollBar(self)
+        self:SetWidth(20);
 
-        scrollBar:GwStripTextures();
-        GW2_ADDON.HandleNextPrevButton(scrollBar.ScrollUpButton, "up");
-        GW2_ADDON.HandleNextPrevButton(scrollBar.ScrollDownButton, "down");
-        scrollBar.thumbTexture:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/scrollbarmiddle");
-        scrollBar.thumbTexture:SetSize(12, 12);
+        self.Back:SetSize(12, 12);
+        local bgBack = self.Back:CreateTexture(nil, "BACKGROUND", nil, 0);
+        bgBack:ClearAllPoints();
+        bgBack:SetPoint("TOPLEFT", 0, 0);
+        bgBack:SetPoint("BOTTOMRIGHT", 0, 0);
+        bgBack:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/scrollbutton");
 
-        scrollBar:SetWidth(20);
+        self.Forward:SetSize(12, 12);
+        local bgForward = self.Forward:CreateTexture(nil, "BACKGROUND", nil, 0);
+        bgForward:ClearAllPoints();
+        bgForward:SetPoint("TOPLEFT", 0, 0);
+        bgForward:SetPoint("BOTTOMRIGHT", 0, 0);
+        bgForward:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/scrollbutton");
+        bgForward:SetTexCoord(0, 1, 1, 0);
 
-        scrollBar.trackBG:ClearAllPoints();
-        scrollBar.trackBG:SetPoint("TOP",  0, 0);
-        scrollBar.trackBG:SetPoint("BOTTOM", 0, 0);
-        scrollBar.trackBG:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/scrollbg");
+        local track = self.Track;
+        track:ClearAllPoints();
+        track:SetPoint("TOPLEFT", self.Back, "BOTTOMLEFT", 0, 0);
+        track:SetPoint("BOTTOMRIGHT", self.Forward, "TOPRIGHT", 0, 0);
+        local backdrop = self.Track.Thumb.backdrop;
+        backdrop:ClearAllPoints();
+        backdrop:SetPoint("TOP", 0, -1);
+        backdrop:SetPoint("BOTTOM", 0, 1);
+        backdrop:SetWidth(12);
 
-        scrollBar.ScrollUpButton:ClearAllPoints();
-        scrollBar.ScrollUpButton:SetPoint("BOTTOM", scrollBar, "TOP", 0, 0);
-        scrollBar.ScrollUpButton:SetSize(12, 12);
-        local bg = scrollBar.ScrollUpButton:CreateTexture("bg", "BACKGROUND", nil, 0);
-        bg:ClearAllPoints();
-        bg:SetPoint("TOPLEFT", 0, 0);
-        bg:SetPoint("BOTTOMRIGHT", 0, 0);
-        bg:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/scrollbutton");
-
-        scrollBar.ScrollDownButton:ClearAllPoints();
-        scrollBar.ScrollDownButton:SetPoint("TOP", scrollBar, "BOTTOM", 0, 0);
-        scrollBar.ScrollDownButton:SetSize(12, 12);
-        bg = scrollBar.ScrollDownButton:CreateTexture("bg", "BACKGROUND", nil, 0)
-        bg:ClearAllPoints();
-        bg:SetPoint("TOPLEFT", 0, 0);
-        bg:SetPoint("BOTTOMRIGHT", 0, 0);
-        bg:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/scrollbutton");
-        bg:SetTexCoord(0, 1, 1, 0);
-    end
-
-    function gw2_ui.SetThumbHeight(self)
-        -- local scrollFrame = self.ScrollFrame;
-        -- if scrollFrame.totalHeight then
-        --     scrollFrame.ScrollBar.thumbTexture:SetHeight(scrollFrame.ScrollBar:GetHeight() * (scrollFrame:GetHeight() / (scrollFrame.totalHeight + scrollFrame:GetHeight())));
-        -- end
+        local bgTrack = track:CreateTexture(nil, "BACKGROUND", nil, 0);
+        bgTrack:ClearAllPoints();
+        bgTrack:SetPoint("TOP", 0, 0);
+        bgTrack:SetPoint("BOTTOM", 0, 0);
+        bgTrack:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/scrollbg");
     end
 end
 
@@ -77,12 +69,9 @@ do -- [[ Tabs ]]
 
                     tab.icon = tab:CreateTexture("icon", "BACKGROUND", nil, 0);
                     tab.icon:SetAllPoints();
-
                     tab.icon:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/tabicon_achievement");
-
                     tab.icon:SetTexCoord(0.5, 1, 0, 0.625);
                 end
-
                 tab:SetScript("OnShow", function(self)
                 end);
 
@@ -204,6 +193,7 @@ do -- [[ Categories ]]
 
         -- Scrollbar
         GW2_ADDON.HandleTrimScrollBar(frame.ScrollBar);
+        gw2_ui.HandleScrollBar(frame.ScrollBar);
     end
     gw2_ui.SkinCategoriesFrame = SkinCategoriesFrame;
 end
@@ -630,6 +620,7 @@ do -- [[ Achievements]]
 
         -- Scrollbar
         GW2_ADDON.HandleTrimScrollBar(frame.ScrollBar);
+        gw2_ui.HandleScrollBar(frame.ScrollBar);
     end
     gw2_ui.SkinAchievementsFrame = SkinAchievementsFrame;
 
@@ -655,6 +646,7 @@ do -- [[ Achievements]]
 
          -- Scrollbar
          GW2_ADDON.HandleTrimScrollBar(frame.ScrollBar);
+         gw2_ui.HandleScrollBar(frame.ScrollBar);
 
     end
     gw2_ui.SkinAchievementsFrameLight = SkinAchievementsFrameLight;

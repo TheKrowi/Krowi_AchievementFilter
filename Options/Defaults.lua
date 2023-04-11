@@ -53,10 +53,11 @@ options.Defaults = {
                 Show = true,
                 ShowSubCategories = false
             },
-            Summary = {
-                NumAchievements = 25
-            },
             Indentation = 10,
+            MouseWheelPanScalar = 1
+        },
+        Summary = {
+            NumAchievements = 25,
             MouseWheelPanScalar = 1
         },
         AdjustableCategories = { --[[ Dynamically build via ExportedCategories ]] },
@@ -190,7 +191,8 @@ options.Defaults = {
         Calendar = {
             FirstWeekDay = -1,
             LockAchievementMonth = true,
-            LockMonth = false
+            LockMonth = false,
+            MouseWheelPanScalar = 1
         },
         Plugins = {}
     }

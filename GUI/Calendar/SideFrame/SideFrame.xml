@@ -18,8 +18,8 @@
 			<Frame parentKey="Header" inherits="DialogHeaderTemplate"/>
 			<Frame name="$parentAchievementsFrame" parentKey="AchievementsFrame" inherits="KrowiAF_AchievementsFrameLight_Template">
 				<Anchors>
-					<Anchor point="TOPLEFT" x="15" y="-28"/>
-					<Anchor point="BOTTOMRIGHT" x="-15" y="30"/>
+					<Anchor point="TOPLEFT" x="9" y="-27"/>
+					<Anchor point="BOTTOMRIGHT" x="-9" y="9"/>
 				</Anchors>
 			</Frame>	
 			<Button name="$parentCloseButton" parentKey="CloseButton" inherits="UIPanelCloseButton">

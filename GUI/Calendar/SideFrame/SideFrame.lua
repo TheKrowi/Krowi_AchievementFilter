@@ -19,8 +19,9 @@ function sideFrame:Load()
     frame:SetPoint("TOPLEFT", parent, "TOPRIGHT", 0, -24);
     frame:SetPoint("BOTTOM", parent, "BOTTOM", 0, 0); --320
 
+	frame.AchievementsFrame.ScrollBox.wheelPanScalar = addon.Options.db.Calendar.MouseWheelPanScalar;
+	frame.AchievementsFrame.ScrollBar.wheelPanScalar = addon.Options.db.Calendar.MouseWheelPanScalar;
     frame.AchievementsFrame:AlwaysHideBorder();
-
     frame.AchievementsFrame.ScrollView:RegisterCallback(ScrollBoxListViewMixin.Event.OnAcquiredFrame, OnAchievementsFrameViewAcquiredFrame, frame);
 
 	addon.GUI.Calendar.SideFrame = frame; -- Overwrite with the actual frame since all functions are injected to it

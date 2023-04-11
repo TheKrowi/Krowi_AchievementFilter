@@ -78,7 +78,7 @@ end
 local FixFeaturesTutorialProgress, FixElvUISkin, FixFilters, FixEventDetails, FixShowExcludedCategory, FixEventDetails2, FixCharacters, FixEventAlert;
 local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters, FixNewEarnedByFilter, FixTabs2, FixNewEarnedByFilter2;
 local FixEventDetails3, FixTooltipCriteria, FixFocusedAchievements, FixFocusedOptions, FixEventRemindersTimeDisplay, FixEventRemindersOptions, FixEventRemindersOptions2;
-local FixActiveEvents;
+local FixActiveEvents, FixSummaryOptions;
 function LoadSolutions()
     local solutions = {
         FixFeaturesTutorialProgress, -- 1
@@ -104,6 +104,7 @@ function LoadSolutions()
         FixEventRemindersOptions, -- 21
         FixEventRemindersOptions2, -- 22
         FixActiveEvents, -- 23
+        FixSummaryOptions, -- 24
     };
 
     return solutions;
@@ -710,4 +711,24 @@ function FixActiveEvents(prevBuild, currBuild, prevVersion, currVersion, firstTi
     KrowiAF_SavedData.ActiveEvents = nil;
 
     diagnostics.Debug("Cleared KrowiAF_SavedData.ActiveEvents from previous version");
+end
+
+function FixFocusedOptions(prevBuild, currBuild, prevVersion, currVersion, firstTime)
+    -- In version 56.0 addon.Options.db.Categories.Summary.NumAchievements was moved to addon.Options.db.Summary.NumAchievements
+    -- Here we clean up the old addon.Options.db.Categories.Summary.NumAchievements for users pre 56.0
+    -- addon.Options.db.Summary.NumAchievements is created by the Options so we don't need to do this here, just copy if previous existed
+
+    if firstTime and currVersion > "56.0" then
+        diagnostics.Debug("First time Summary Options OK");
+        return;
+    end
+    if addon.Options.db.Categories.Summary == nil then
+        diagnostics.Debug("Summary Options already moved");
+        return;
+    end
+
+    addon.Options.db.Summary = addon.Options.db.Categories.Summary;
+    addon.Options.db.Categories.Summary = nil;
+
+    diagnostics.Debug("Summary Options moved");
 end

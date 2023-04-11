@@ -228,6 +228,8 @@ function summaryFrame:Load()
 	end
 
     BuildCategories(frame);
+	frame.AchievementsFrame.ScrollBox.wheelPanScalar = addon.Options.db.Summary.MouseWheelPanScalar;
+	frame.AchievementsFrame.ScrollBar.wheelPanScalar = addon.Options.db.Summary.MouseWheelPanScalar;
 
     addon.GUI.SummaryFrame = frame;
 end

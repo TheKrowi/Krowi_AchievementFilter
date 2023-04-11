@@ -329,6 +329,17 @@ local function SetCategoryIndentation(_, value)
     end
 end
 
+local function SetSummaryMouseWheelPanScalar(_, value)
+    if addon.Options.db.Summary.MouseWheelPanScalar == value then return; end
+    addon.Options.db.Summary.MouseWheelPanScalar = value;
+    if addon.GUI.SummaryFrame.AchievementsFrame.ScrollBox then
+        addon.GUI.SummaryFrame.AchievementsFrame.ScrollBox.wheelPanScalar = value;
+    end
+    if addon.GUI.SummaryFrame.AchievementsFrame.ScrollBar then
+        addon.GUI.SummaryFrame.AchievementsFrame.ScrollBar.wheelPanScalar = value;
+    end
+end
+
 local function SetCategoriesMouseWheelPanScalar(_, value)
     if addon.Options.db.Categories.MouseWheelPanScalar == value then return; end
     addon.Options.db.Categories.MouseWheelPanScalar = value;
@@ -348,6 +359,17 @@ local function SetAchievementsMouseWheelPanScalar(_, value)
     end
     if addon.GUI.AchievementsFrame.ScrollBar then
         addon.GUI.AchievementsFrame.ScrollBar.wheelPanScalar = value;
+    end
+end
+
+local function SetCalendarMouseWheelPanScalar(_, value)
+    if addon.Options.db.Calendar.MouseWheelPanScalar == value then return; end
+    addon.Options.db.Calendar.MouseWheelPanScalar = value;
+    if addon.GUI.Calendar.SideFrame.AchievementsFrame.ScrollBox then
+        addon.GUI.Calendar.SideFrame.AchievementsFrame.ScrollBox.wheelPanScalar = value;
+    end
+    if addon.GUI.Calendar.SideFrame.AchievementsFrame.ScrollBar then
+        addon.GUI.Calendar.SideFrame.AchievementsFrame.ScrollBar.wheelPanScalar = value;
     end
 end
 
@@ -565,11 +587,25 @@ options.OptionsTable.args["Layout"] = {
                         NumAchievements = {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                             name = addon.L["Number of summary achievements"],
-                            desc = addon.L["Number of summary achievements Desc"]:AddDefaultValueText_KAF("Categories.Summary.NumAchievements"),
+                            desc = addon.L["Number of summary achievements Desc"]:AddDefaultValueText_KAF("Summary.NumAchievements"),
                             min = 1, max = 25, step = 1,
-                            get = function() return addon.Options.db.Categories.Summary.NumAchievements; end,
-                            set = function(_, value) addon.Options.db.Categories.Summary.NumAchievements = value; end
-                        }
+                            get = function() return addon.Options.db.Summary.NumAchievements; end,
+                            set = function(_, value) addon.Options.db.Summary.NumAchievements = value; end
+                        },
+                        MouseWheelPanScalar = {
+                            order = OrderPP(), type = "group", inline = true,
+                            name = addon.L["Mouse Wheel Scroll Speed"],
+                            args = {
+                                MouseWheelPanScalar = {
+                                    order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
+                                    name = addon.L["Mouse Wheel Scroll Speed"],
+                                    desc = addon.L["Mouse Wheel Scroll Speed Desc"]:AddDefaultValueText_KAF("Summary.MouseWheelPanScalar"),
+                                    min = 1, max = 50, step = 1,
+                                    get = function() return addon.Options.db.Summary.MouseWheelPanScalar; end,
+                                    set = SetSummaryMouseWheelPanScalar
+                                }
+                            }
+                        },
                     }
                 }
             }
@@ -729,7 +765,7 @@ options.OptionsTable.args["Layout"] = {
                                     set = SetAchievementsMouseWheelPanScalar
                                 }
                             }
-                        },
+                        }
                     }
                 },
                 Tooltip = {
@@ -967,6 +1003,20 @@ options.OptionsTable.args["Layout"] = {
                                 addon.Options.db.Calendar.FirstWeekDay = value;
                                 addon.GUI.Calendar.Frame:Update();
                             end
+                        }
+                    }
+                },
+                SideFrameMouseWheelPanScalar = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["Side Window"] .. " " .. addon.L["Mouse Wheel Scroll Speed"],
+                    args = {
+                        MouseWheelPanScalar = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
+                            name = addon.L["Mouse Wheel Scroll Speed"],
+                            desc = addon.L["Mouse Wheel Scroll Speed Desc"]:AddDefaultValueText_KAF("Calendar.MouseWheelPanScalar"),
+                            min = 1, max = 50, step = 1,
+                            get = function() return addon.Options.db.Calendar.MouseWheelPanScalar; end,
+                            set = SetCalendarMouseWheelPanScalar
                         }
                     }
                 }

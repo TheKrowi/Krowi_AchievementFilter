@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 56.0 - 2023-04-xx
+### Added
+- Scroll speed of the categories list, achievements list, summary list and calendar side window is now adjustable
+
+### Changed
+- Updated the categories list, achievements list, summary list and calendar side window to the new DF scroll bars
+- Moves Summary options to its own section (backend)
+
 ## 55.0 - 2023-04-01
 ### Added
 - Possibility to show a faction icon on the achievement if the achievement is faction specific
