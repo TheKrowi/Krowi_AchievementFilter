@@ -591,21 +591,21 @@ options.OptionsTable.args["Layout"] = {
                             min = 1, max = 25, step = 1,
                             get = function() return addon.Options.db.Summary.NumAchievements; end,
                             set = function(_, value) addon.Options.db.Summary.NumAchievements = value; end
-                        },
+                        }
+                    }
+                },
+                MouseWheelPanScalar = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["Mouse Wheel Scroll Speed"],
+                    args = {
                         MouseWheelPanScalar = {
-                            order = OrderPP(), type = "group", inline = true,
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                             name = addon.L["Mouse Wheel Scroll Speed"],
-                            args = {
-                                MouseWheelPanScalar = {
-                                    order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
-                                    name = addon.L["Mouse Wheel Scroll Speed"],
-                                    desc = addon.L["Mouse Wheel Scroll Speed Desc"]:AddDefaultValueText_KAF("Summary.MouseWheelPanScalar"),
-                                    min = 1, max = 50, step = 1,
-                                    get = function() return addon.Options.db.Summary.MouseWheelPanScalar; end,
-                                    set = SetSummaryMouseWheelPanScalar
-                                }
-                            }
-                        },
+                            desc = addon.L["Mouse Wheel Scroll Speed Desc"]:ReplaceVars(addon.L["Achievements"]):AddDefaultValueText_KAF("Summary.MouseWheelPanScalar"),
+                            min = 1, max = 50, step = 1,
+                            get = function() return addon.Options.db.Summary.MouseWheelPanScalar; end,
+                            set = SetSummaryMouseWheelPanScalar
+                        }
                     }
                 }
             }
@@ -635,7 +635,7 @@ options.OptionsTable.args["Layout"] = {
                         MouseWheelPanScalar = {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                             name = addon.L["Mouse Wheel Scroll Speed"],
-                            desc = addon.L["Mouse Wheel Scroll Speed Desc"]:AddDefaultValueText_KAF("Categories.MouseWheelPanScalar"),
+                            desc = addon.L["Mouse Wheel Scroll Speed Desc"]:ReplaceVars(addon.L["Categories"]):AddDefaultValueText_KAF("Categories.MouseWheelPanScalar"),
                             min = 1, max = 50, step = 1,
                             get = function() return addon.Options.db.Categories.MouseWheelPanScalar; end,
                             set = SetCategoriesMouseWheelPanScalar
@@ -759,7 +759,7 @@ options.OptionsTable.args["Layout"] = {
                                 MouseWheelPanScalar = {
                                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                                     name = addon.L["Mouse Wheel Scroll Speed"],
-                                    desc = addon.L["Mouse Wheel Scroll Speed Desc"]:AddDefaultValueText_KAF("Achievements.MouseWheelPanScalar"),
+                                    desc = addon.L["Mouse Wheel Scroll Speed Desc"]:ReplaceVars(addon.L["Achievements"]):AddDefaultValueText_KAF("Achievements.MouseWheelPanScalar"),
                                     min = 1, max = 50, step = 1,
                                     get = function() return addon.Options.db.Achievements.MouseWheelPanScalar; end,
                                     set = SetAchievementsMouseWheelPanScalar
@@ -1013,7 +1013,7 @@ options.OptionsTable.args["Layout"] = {
                         MouseWheelPanScalar = {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                             name = addon.L["Mouse Wheel Scroll Speed"],
-                            desc = addon.L["Mouse Wheel Scroll Speed Desc"]:AddDefaultValueText_KAF("Calendar.MouseWheelPanScalar"),
+                            desc = addon.L["Mouse Wheel Scroll Speed Desc"]:ReplaceVars(addon.L["Achievements"]):AddDefaultValueText_KAF("Calendar.MouseWheelPanScalar"),
                             min = 1, max = 50, step = 1,
                             get = function() return addon.Options.db.Calendar.MouseWheelPanScalar; end,
                             set = SetCalendarMouseWheelPanScalar

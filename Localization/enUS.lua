@@ -1,4 +1,4 @@
--- [[ Exported at 2023-03-30 22-40-18 ]] --
+-- [[ Exported at 2023-04-11 20-19-39 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -6,7 +6,7 @@
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
-local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true, true);
+local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true);
 
 local tab = "|T:1:8|t";
 L["TAB"] = tab;
@@ -616,4 +616,8 @@ L["until the end of"] = "until the end of";
 L["Always Show Completed"] = "Always Show Completed";
 L["Show Faction Faction Icon"] = "Show {faction} Faction Icon";
 L["Show Faction Faction Icon Desc"] = "Show the {faction} faction icon on the achievement if only {faction} players can earn it.";
+L["Mouse Wheel Scroll Speed"] = "Mouse Wheel Scroll Speed";
+L["Mouse Wheel Scroll Speed Desc"] = "The number of {items} that will be scrolled when clicking the scroll bar's up/down buttons or spinning the mouse wheel.";
+L["Side Window"] = "Side Window";
+L["Categories"] = "Categories";
 
