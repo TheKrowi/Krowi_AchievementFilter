@@ -1,12 +1,6 @@
 ### Added
-- Possibility to show a faction icon on the achievement if the achievement is faction specific
-- More sub zones for The Forbidden Reach
-- Tooltip data for the new Forbidden Reach Dragon Races
-- Pet Battle Links and tooltips for the new Forbidden Reach Pet Battle Achievements
-- GW2 UI support
+- Scroll speed of the categories list, achievements list, summary list and calendar side window is now adjustable
 
-### Fixed
-- Removed a ton of achievements from the new zone
-- Rare error when an achievement of the opposing faction has more criteria than is visible by the current faction
-- Keybindings names
-- Achievements trakced by other addons or in previous sessions are not properly tracked when opening the achievement window
+### Changed
+- Updated the categories list, achievements list, summary list and calendar side window to the new DF scroll bars
+- Moves Summary options to its own section (backend)
