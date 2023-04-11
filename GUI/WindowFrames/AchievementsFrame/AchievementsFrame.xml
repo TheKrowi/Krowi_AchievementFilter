@@ -7,12 +7,28 @@
 			<Anchor point="BOTTOM" y="20"/>
 			<Anchor point="RIGHT" x="-20"/>
 		</Anchors>
+		<Frames>
+			<Frame parentKey="ScrollBox" inherits="WowScrollBoxList"/>
+			<EventFrame parentKey="ScrollBar" inherits="WowTrimScrollBar">
+				<Anchors>
+					<Anchor point="TOPRIGHT"/>
+					<Anchor point="BOTTOMRIGHT"/>
+				</Anchors>
+			</EventFrame>
+			<Frame parentKey="Border" inherits="AchivementGoldBorderBackdrop">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+					<Anchor point="BOTTOMLEFT"/>
+					<Anchor point="RIGHT" relativeKey="$parent.ScrollBox"/>
+				</Anchors>
+			</Frame>
+		</Frames>
 		<Layers>
 			<Layer level="BACKGROUND">
 				<Texture name="$parentBackground" parentKey="Background" file="Interface\AchievementFrame\UI-Achievement-AchievementBackground">
 					<Anchors>
-						<Anchor point="TOPLEFT" x="3" y="-3"/>
-						<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
+						<Anchor point="TOPLEFT" relativeKey="$parent.Border" x="3" y="-3"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.Border" x="-3" y="3"/>
 					</Anchors>
 					<TexCoords left="0" right="1" top="0" bottom="0.5"/>
 				</Texture>
@@ -33,22 +49,6 @@
 				</Texture>
 			</Layer>
 		</Layers>
-		<Frames>
-			<Frame parentKey="ScrollBox" inherits="WowScrollBoxList"/>
-			<EventFrame parentKey="ScrollBar" inherits="WowTrimScrollBar">
-				<Anchors>
-					<Anchor point="TOPRIGHT"/>
-					<Anchor point="BOTTOMRIGHT"/>
-				</Anchors>
-			</EventFrame>
-			<Frame parentKey="Border" inherits="AchivementGoldBorderBackdrop">
-				<Anchors>
-					<Anchor point="TOPLEFT"/>
-					<Anchor point="BOTTOMLEFT"/>
-					<Anchor point="RIGHT" relativeKey="$parent.ScrollBox"/>
-				</Anchors>
-			</Frame>
-		</Frames>
 		<Scripts>
 			<OnLoad method="OnLoad"/>
 			<OnShow method="OnShow"/>

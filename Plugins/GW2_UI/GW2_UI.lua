@@ -578,6 +578,7 @@ do -- [[ Achievements]]
         hooksecurefunc(button, "Collapse", CollapseAchievement);
         hooksecurefunc(button, "Expand", ExpandAchievement);
     end
+    gw2_ui.SkinAchievementButton = SkinAchievementButton;
 
     local function SkinAchievementsFrame(frame)
         -- Frame
@@ -631,7 +632,6 @@ do -- [[ Achievements]]
         scrollBar:SetValue(0);
     end
     gw2_ui.SkinAchievementsFrame = SkinAchievementsFrame;
-    gw2_ui.SkinAchievementButton = SkinAchievementButton;
 end
 
 do -- [[ Summary ]]
