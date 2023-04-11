@@ -1,22 +1,10 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
-addon.GUI.AchievementButton = {};
-local achievementButton = addon.GUI.AchievementButton;
-
-achievementButton.CollapsedHeightSmall = 48;
-achievementButton.CollapsedHeightNormal = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT;
-function achievementButton.GetCollapsedHeight(template)
-	if template == "KrowiAF_AchievementButton_Small_Template" or template == "KrowiAF_AchievementButton_Light_Template" then
-		return achievementButton.CollapsedHeightSmall;
-	elseif template == "KrowiAF_AchievementButton_Normal_Template" then
-		return achievementButton.CollapsedHeightNormal;
-	end
-	return achievementButton.CollapsedHeightNormal;
-end
 
 function KrowiAF_AchievementButton_OnLoad(self)
 	_, self.FontHeight = self.Description:GetFont();
 	self.Description:SetHeight(self.FontHeight * self.MaxDescriptionLinesCollapsed);
+	self.MinExpandedHeight = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT;
 	self:Collapse();
 end
 

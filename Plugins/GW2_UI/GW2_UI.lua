@@ -368,6 +368,7 @@ do -- [[ Achievements]]
         -- Set new height
         button:SetHeight(125 * scaling);
         button.CollapsedHeight = 125 * scaling;
+        button.MinExpandedHeight = 125 - 30; -- 30 is the bottom bar
 
         -- Add a new background for the shield and points
         button.cBackground = button:CreateTexture("cBackground", "BACKGROUND", nil, 2);
@@ -520,7 +521,6 @@ do -- [[ Achievements]]
         end);
 
         hooksecurefunc(button, "Collapse", CollapseAchievement);
-        hooksecurefunc(button, "Collapse", CollapseAchievement);
         hooksecurefunc(button, "Expand", ExpandAchievement);
     end
     gw2_ui.SkinAchievementButton = SkinAchievementButton;
@@ -584,8 +584,7 @@ do -- [[ Achievements]]
         end);
 
         -- Buttons
-        addon.GUI.AchievementButton.CollapsedHeightSmall = 125 * 0.712;
-        addon.GUI.AchievementButton.CollapsedHeightNormal = 125;
+        SkinAchievementButton(frame.DummyFrame);
         frame.ScrollView:RegisterCallback(ScrollBoxListViewMixin.Event.OnAcquiredFrame, OnAchievementsFrameViewAcquiredFrame, frame);
         frame.ScrollView:RegisterCallback(ScrollBoxListViewMixin.Event.OnInitializedFrame, OnAchievementsFrameViewInitializedFrame, frame);
 
@@ -629,20 +628,10 @@ do -- [[ Achievements]]
         frame:GwStripTextures();
 
         -- Buttons
-        hooksecurefunc(frame.ScrollBox, "Update", function()
-            for _, button in next, { frame.ScrollBox.ScrollTarget:GetChildren() } do
-                if button then
-                    if not button.IsSkinned then
-                        SkinAchievementButton(button);
-                        button.IsSkinned = true;
-                    end
-                    if button:IsShown() and button.Achievement then
-                        SetAchievement(button, button.Achievement);
-                    end
-                end
-            end
-        end);
-        frame.ScrollView:SetElementExtent(addon.GUI.AchievementButton.CollapsedHeightSmall);
+        SkinAchievementButton(frame.DummyFrame);
+        frame.ScrollView:RegisterCallback(ScrollBoxListViewMixin.Event.OnAcquiredFrame, OnAchievementsFrameViewAcquiredFrame, frame);
+        frame.ScrollView:RegisterCallback(ScrollBoxListViewMixin.Event.OnInitializedFrame, OnAchievementsFrameViewInitializedFrame, frame);
+        frame.ScrollView:SetElementExtent(frame.DummyFrame.CollapsedHeight);
 
          -- Scrollbar
          GW2_ADDON.HandleTrimScrollBar(frame.ScrollBar);

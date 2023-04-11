@@ -48,7 +48,7 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
 	objectives:SetPoint("RIGHT", self.Shield, "LEFT", 0, 0);
 	objectives.Completed = self.Completed;
 	objectives.FontHeight = self.FontHeight;
-	local height = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT; -- Compact or not, we need this height
+	local height = self.MinExpandedHeight; -- Compact or not, we need this height
 	local id = self.Achievement.Id;
 	if objectives.Id == id and cachedWidthDisplayObjectives == objectives:GetWidth() and not forced then
 		-- Cached, nothing to do
@@ -72,7 +72,7 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
 		end
 	end
 	objectives.Id = id;
-	height = max(ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT, height);
+	height = max(self.MinExpandedHeight, height);
 	return height;
 end
 

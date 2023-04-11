@@ -1,19 +1,18 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
-local achievementButton = addon.GUI.AchievementButton;
-local getCollapsedHeight = achievementButton.GetCollapsedHeight;
 
 AchievementsFrameLightMixin = {};
 
 local refreshAchievements;
 local function CreateScrollView(self)
 	local template = "KrowiAF_AchievementButton_Light_Template";
+    self.DummyFrame = CreateFrame("Button", nil, self, template);
 
 	self.ScrollView = CreateScrollBoxListLinearView();
 	self.ScrollView:SetElementInitializer(template, function(button, achievement)
 		button:Update(achievement, refreshAchievements, true);
 	end);
-	self.ScrollView:SetElementExtent(getCollapsedHeight(template));
+	self.ScrollView:SetElementExtent(self.DummyFrame.CollapsedHeight);
     self.ScrollView:SetPadding(0, 0, 5, 5, 0);
 	ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView);
 	ScrollUtil.AddResizableChildrenBehavior(self.ScrollBox);
