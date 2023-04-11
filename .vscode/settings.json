@@ -445,7 +445,8 @@
         "FindInTableIf",
         "ScrollBoxConstants",
         "SelectionBehaviorFlags",
-        "SelectionBehaviorMixin"
+        "SelectionBehaviorMixin",
+        "ScrollBoxListViewMixin"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

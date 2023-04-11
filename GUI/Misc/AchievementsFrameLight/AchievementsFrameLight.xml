@@ -1,7 +1,7 @@
 <Ui>
     <Script file="AchievementsFrameLightMixin.lua" />
     
-    <Frame name="KrowiAF_AchievementsFrameLight_Template" mixin="AchievementsFrameLightMixin" inherits="AchivementGoldBorderBackdrop" virtual="true">
+    <Frame name="KrowiAF_AchievementsFrameLight_Template" mixin="AchievementsFrameLightMixin" virtual="true">
         <Layers>
             <Layer level="BACKGROUND">
                 <FontString name="$parentEmptyText" parentKey="EmptyText" inherits="GameFontHighlight" text="NO_COMPLETED_ACHIEVEMENTS">
@@ -12,7 +12,7 @@
             </Layer>
         </Layers>
         <Frames>
-            <ScrollFrame name="$parentScrollFrame" parentKey="ScrollFrame" inherits="HybridScrollFrameTemplate">
+            <!-- <ScrollFrame name="$parentScrollFrame" parentKey="ScrollFrame" inherits="HybridScrollFrameTemplate">
                 <Anchors>
                     <Anchor point="TOPLEFT" x="0" y="-5"/>
                     <Anchor point="BOTTOMRIGHT" x="0" y="5"/>
@@ -20,8 +20,8 @@
                 <Frames>
                     <Slider name="$parentScrollBar" parentKey="ScrollBar" inherits="HybridScrollBarTemplate">
                         <Anchors>
-                            <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="1" y="-11"/> <!-- -13 -->
-                            <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="1" y="10"/> <!-- -11 -->
+                            <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="1" y="-11"/> 
+                            <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="1" y="10"/>
                         </Anchors>
                         <Scripts>
                             <OnLoad>
@@ -31,7 +31,24 @@
                         </Scripts>
                     </Slider>
                 </Frames>
-            </ScrollFrame>					
+            </ScrollFrame>-->
+            <Frame parentKey="ScrollBox" inherits="WowScrollBoxList"/>
+			<EventFrame parentKey="ScrollBar" inherits="WowTrimScrollBar">
+				<Anchors>
+					<Anchor point="TOPRIGHT"/>
+					<Anchor point="BOTTOMRIGHT"/>
+				</Anchors>
+			</EventFrame>
+			<Frame parentKey="Border" inherits="AchivementGoldBorderBackdrop">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+					<Anchor point="BOTTOMLEFT"/>
+					<Anchor point="RIGHT" relativeKey="$parent.ScrollBox"/>
+				</Anchors>
+			</Frame>
         </Frames>
+		<Scripts>
+			<OnLoad method="OnLoad"/>
+		</Scripts>
     </Frame>
 </Ui>

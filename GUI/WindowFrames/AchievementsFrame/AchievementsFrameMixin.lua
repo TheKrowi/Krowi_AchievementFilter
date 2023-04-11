@@ -14,7 +14,7 @@ local function CreateScrollView(self)
 	end);
 	self.ScrollView:SetElementExtentCalculator(function(_, achievement) -- This fires before setting the elements
 		local selectedTab = addon.GUI.SelectedTab;
-		local base = getCollapsedHeight();
+		local base = getCollapsedHeight(template);
 		if selectedTab and SelectionBehaviorMixin.IsElementDataIntrusiveSelected(achievement) then
 			base = base + selectedTab.Extend;
 		end
@@ -70,7 +70,7 @@ function KrowiAF_AchievementsFrameMixin:OnLoad()
 	AddSelectionBehavior(self);
 
 	hooksecurefunc("AchievementFrameAchievements_ForceUpdate", function()
-		self:ForceUpdate();
+		self:ForceUpdate(true);
 	end);
 end
 
@@ -109,7 +109,7 @@ local function GetFilteredAchievements(category)
 end
 
 local cachedCategory, cachedAchievements; -- Caching this speeds up the scrolling of achievements when the selected category isn't changed
-local function UpdateDataProvider(self, updateAchievements)
+local function UpdateDataProvider(self, updateAchievements, retainScrollPosition)
 	if updateAchievements then
 		cachedAchievements = GetFilteredAchievements(cachedCategory);
 	end
@@ -118,11 +118,11 @@ local function UpdateDataProvider(self, updateAchievements)
 	for _, achievement in next, cachedAchievements do
 		newDataProvider:Insert(achievement);
 	end
-	self.ScrollBox:SetDataProvider(newDataProvider);
+	self.ScrollBox:SetDataProvider(newDataProvider, retainScrollPosition);
 end
 
 local highlightedButton;
-function KrowiAF_AchievementsFrameMixin:Update()
+function KrowiAF_AchievementsFrameMixin:Update(retainScrollPosition)
 	local selectedTab = addon.GUI.SelectedTab;
 	if not selectedTab then
 		return;
@@ -135,7 +135,7 @@ function KrowiAF_AchievementsFrameMixin:Update()
 		updateAchievements = addon.Data.GetCurrentZoneAchievements() or updateAchievements;
 	end
 
-	UpdateDataProvider(self, updateAchievements);
+	UpdateDataProvider(self, updateAchievements, retainScrollPosition);
 
 	self.Text:Hide();
 

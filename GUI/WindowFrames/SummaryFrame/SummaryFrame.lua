@@ -228,7 +228,6 @@ function summaryFrame:Load()
 	end
 
     BuildCategories(frame);
-    frame.ScrollFrameBorder:Build("BOTTOMRIGHT", frame.Categories.Header, "TOPRIGHT", -40, 5, -14, 5);
 
     addon.GUI.SummaryFrame = frame;
 end

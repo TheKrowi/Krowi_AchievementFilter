@@ -114,7 +114,7 @@ local function GetDisplayCategories(displayCategories, category, getAchNums)
 	end
 end
 
-local function UpdateDataProvider(self, getAchNums)
+local function UpdateDataProvider(self, getAchNums, retainScrollPosition)
 	local displayCategories = {};
 	local categories = addon.GUI.SelectedTab.Categories;
 	for _, category in next, categories do
@@ -125,10 +125,10 @@ local function UpdateDataProvider(self, getAchNums)
 	for _, category in next, displayCategories do
 		newDataProvider:Insert(category);
 	end
-	self.ScrollBox:SetDataProvider(newDataProvider);
+	self.ScrollBox:SetDataProvider(newDataProvider, retainScrollPosition);
 end
 
-function KrowiAF_CategoriesFrameMixin:Update(getAchNums)
+function KrowiAF_CategoriesFrameMixin:Update(getAchNums, retainScrollPosition)
 	local selectedTab = addon.GUI.SelectedTab;
 	if selectedTab == nil then
 		return;
@@ -140,7 +140,7 @@ function KrowiAF_CategoriesFrameMixin:Update(getAchNums)
 		getAchNums = true;
 	end
 
-	UpdateDataProvider(self, getAchNums);
+	UpdateDataProvider(self, getAchNums, retainScrollPosition);
 end
 
 local function OpenCloseCategory(targetCategory, category)
@@ -228,11 +228,6 @@ function KrowiAF_CategoriesFrameMixin:SelectCategory(category)
 
 	local prevCategory = selectedTab.SelectedCategory;
 
-	local scrollBox = self.ScrollBox;
-	local firstFrame = scrollBox:GetFrames()[1];
-	local firstFrameCategory = firstFrame.Category;
-	local categoriesTree = firstFrameCategory:GetTree();
-
 	local categories = selectedTab.Categories;
 	if category == selectedTab.SelectedCategory and category.NotCollapsed then
 		CollapseCategory(categories, category);
@@ -240,11 +235,7 @@ function KrowiAF_CategoriesFrameMixin:SelectCategory(category)
 		ExpandCategory(categories, category);
 		selectedTab.SelectedCategory = category;
 	end
-    self:Update();
-
-	local targetCategory = firstFrameCategory.NotHidden and firstFrameCategory or categoriesTree[2];
-	scrollBox:ScrollToElementData(targetCategory, ScrollBoxConstants.AlignBegin, ScrollBoxConstants.NoScrollInterpolation);
-	selectedTab.CategoryScrollPercentage = scrollBox:GetScrollPercentage();
+    self:Update(nil, true);
 
 	if prevCategory == selectedTab.SelectedCategory and prevCategory.HasFlexibleData ~= true then
 		-- If this category was selected already, bail after changing collapsed states.

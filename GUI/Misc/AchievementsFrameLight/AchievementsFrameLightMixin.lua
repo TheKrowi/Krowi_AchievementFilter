@@ -1,98 +1,77 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
+local achievementButton = addon.GUI.AchievementButton;
+local getCollapsedHeight = achievementButton.GetCollapsedHeight;
 
 AchievementsFrameLightMixin = {};
 
-local function ReskinHybridScrollFrame(scrollFrame)
-    local scrollBar = scrollFrame.ScrollBar;
-    scrollBar.ScrollBarTop:Hide();
-    scrollBar.ScrollBarMiddle:Hide();
-    scrollBar.ScrollBarBottom:Hide();
-    scrollBar.trackBG:SetPoint("TOPLEFT", scrollBar.ScrollUpButton, "BOTTOMLEFT", 0, 10);
-    scrollBar.trackBG:SetPoint("BOTTOMRIGHT", scrollBar.ScrollDownButton, "TOPRIGHT", -1, -10);
+local refreshAchievements;
+local function CreateScrollView(self)
+	local template = "KrowiAF_AchievementButton_Light_Template";
+
+	self.ScrollView = CreateScrollBoxListLinearView();
+	self.ScrollView:SetElementInitializer(template, function(button, achievement)
+		button:Update(achievement, refreshAchievements, true);
+	end);
+	self.ScrollView:SetElementExtent(getCollapsedHeight(template));
+    self.ScrollView:SetPadding(0, 0, 5, 5, 0);
+	ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView);
+	ScrollUtil.AddResizableChildrenBehavior(self.ScrollBox);
 end
 
-local alwaysHideBorder, cachedAchievements;
-function AchievementsFrameLightMixin:Build(point, relativeTo, relativePoint, offsetXShow, offsetYShow, offsetXHide, offsetYHide, _alwaysHideBorder)
-    alwaysHideBorder = _alwaysHideBorder;
-    if alwaysHideBorder then
-        self.NineSlice:Hide();
-    end
+local function AddManagedScrollBarVisibilityBehavior(self)
+	local anchorsWithBar = {
+        CreateAnchor("TOPLEFT", self, "TOPLEFT", 0, -5),
+        CreateAnchor("BOTTOMRIGHT", self.ScrollBar, "BOTTOMLEFT", 0, 5)
+    };
 
-    local scrollFrame = self.ScrollFrame;
-    local scrollBar = scrollFrame.ScrollBar;
+    local anchorsWithoutBar = {
+        CreateAnchor("TOPLEFT", self, "TOPLEFT", 0, -5),
+        CreateAnchor("BOTTOMRIGHT", self, "BOTTOMRIGHT", 0, 5)
+    };
 
-    ReskinHybridScrollFrame(scrollFrame);
+    ScrollUtil.AddManagedScrollBarVisibilityBehavior(self.ScrollBox, self.ScrollBar, anchorsWithBar, anchorsWithoutBar);
+end
 
-    local scrollBarShow = getmetatable(scrollBar).__index.Show;
-    scrollBar.Show = function(selfFunc)
-        self:SetPoint(point, relativeTo, relativePoint, offsetXShow, offsetYShow);
-        scrollBarShow(selfFunc);
-    end
-    local scrollBarHide = getmetatable(scrollBar).__index.Hide;
-    scrollBar.Hide = function(selfFunc)
-        self:SetPoint(point, relativeTo, relativePoint, offsetXHide, offsetYHide);
-        scrollBarHide(selfFunc);
-    end
+function AchievementsFrameLightMixin:OnLoad()
+    CreateScrollView(self);
+	AddManagedScrollBarVisibilityBehavior(self);
+end
 
-    scrollFrame.update = function()
-		self:Update(cachedAchievements);
-	end
-
-    HybridScrollFrame_CreateButtons(scrollFrame, "KrowiAF_AchievementButton_Light_Template", 4, 0);
-    local buttons = scrollFrame.buttons;
-    for _, button in next, buttons do
-        button:PostLoad(scrollFrame);
-    end
+local alwaysHideBorder;
+function AchievementsFrameLightMixin:AlwaysHideBorder()
+    alwaysHideBorder = true;
+    self.Border:Hide();
 end
 
 local function ShowEmptyText(self)
     self.EmptyText:Show();
-    self.ScrollFrame:Hide();
-    self.NineSlice:Hide();
+    self.Border:Hide();
 end
 
 local function HideEmptyText(self)
     self.EmptyText:Hide();
-    self.ScrollFrame:Show();
     if not alwaysHideBorder then
-        self.NineSlice:Show();
+        self.Border:Show();
     end
 end
 
-function AchievementsFrameLightMixin:Update(achievements, refreshAchievements)
-    local numAchievements = achievements and #achievements or 0;
+local function UpdateDataProvider(self, achievementIds)
+	local newDataProvider = CreateDataProvider();
+	for _, achievementId in next, achievementIds do
+		newDataProvider:Insert(addon.Data.Achievements[achievementId]);
+	end
+	self.ScrollBox:SetDataProvider(newDataProvider);
+end
+
+function AchievementsFrameLightMixin:Update(achievementIds, _refreshAchievements)
+    local numAchievements = achievementIds and #achievementIds or 0;
     HideEmptyText(self);
     if numAchievements <= 0 then
         ShowEmptyText(self);
         return;
     end
-    cachedAchievements = achievements;
 
-    local scrollFrame = self.ScrollFrame;
-    local offset = HybridScrollFrame_GetOffset(scrollFrame);
-    local buttons = scrollFrame.buttons;
-
-    local buttonHeight = buttons[1]:GetHeight();
-    local numButtons = min(math.ceil(scrollFrame:GetHeight() / buttonHeight) + 1, #buttons);
-
-	local displayedHeight = 0;
-    local id;
-    for i = 1, numButtons do
-        local button = buttons[i];
-        id = achievements[i + offset];
-        if id ~= nil then
-            displayedHeight = displayedHeight + buttonHeight;
-            button:SetAchievement(addon.Data.Achievements[id], refreshAchievements);
-            button:Show();
-        else
-            button:Hide();
-        end
-        if button:IsMouseOver() then
-            KrowiAF_AchievementButton_Light_OnEnter(button);
-        end
-    end
-
-    local totalHeight = numAchievements * buttonHeight;
-    HybridScrollFrame_Update(scrollFrame, totalHeight, displayedHeight);
+    refreshAchievements = _refreshAchievements;
+    UpdateDataProvider(self, achievementIds);
 end

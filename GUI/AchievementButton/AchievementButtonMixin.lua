@@ -28,7 +28,7 @@ function KrowiAF_AchievementButtonMixin:OnSizeChanged(width, height)
 			local oldOnSizeChanged = self:GetScript("OnSizeChanged");
 			self:SetScript("OnSizeChanged", nil);
 
-			self:Update(self.Achievement, self.index);
+			self:Update(self.Achievement);
 			addon.GUI.AchievementsFrame.SelectionBehavior:TriggerEvent(SelectionBehaviorMixin.Event.OnSelectionChanged, self.Achievement, true);
 			addon.GUI.AchievementsFrame:ScrollToNearest(self.Achievement);
 
@@ -228,12 +228,9 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement, refresh)
 	self:UpdatePlusMinusTexture();
 end
 
-function KrowiAF_AchievementButtonMixin:Update(achievement, index, refresh)
+function KrowiAF_AchievementButtonMixin:Update(achievement, refresh, notSelectable)
 	local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = addon.GetAchievementInfo(achievement.Id);
 	self:SetAchievement(achievement, refresh);
-
-	self.index = index; -- This is used to keep the correct achievement expanded
-	-- self.Id = achievement.Id;
 
 	local selectedTab = addon.GUI.SelectedTab;
 	local objectives = addon.GUI.AchievementsObjectives;
@@ -242,7 +239,7 @@ function KrowiAF_AchievementButtonMixin:Update(achievement, index, refresh)
 		objectives:Hide();
 	end
 
-	if selectedTab and achievement == selectedTab.SelectedAchievement then
+	if selectedTab and achievement == selectedTab.SelectedAchievement and not notSelectable then
 		self.Highlight:Show();
 		local height = self:DisplayObjectives();
 		self:Expand(height);
