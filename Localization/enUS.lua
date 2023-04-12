@@ -1,4 +1,4 @@
--- [[ Exported at 2023-04-12 22-15-23 ]] --
+-- [[ Exported at 2023-04-12 23-00-53 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -621,4 +621,5 @@ L["Mouse Wheel Scroll Speed Desc"] = "The number of {items} that will be scrolle
 L["Side Window"] = "Side Window";
 L["Categories"] = "Categories";
 L["Click here to view in achievement window"] = "Click here to view in achievement window";
+L["Click here to view in achievement"] = "Click here to view in achievement";
 

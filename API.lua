@@ -48,7 +48,6 @@ function KrowiAF_SelectAchievement(achievement)
 end
 
 function KrowiAF_SelectAchievementFromID(id)
-	print()
 	if not IsAddOnLoaded("Blizzard_AchievementUI") then
         LoadAddOn("Blizzard_AchievementUI");
     end

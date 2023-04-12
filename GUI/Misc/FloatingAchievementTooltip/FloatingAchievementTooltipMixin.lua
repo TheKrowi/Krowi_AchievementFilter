@@ -7,7 +7,6 @@ KrowiAF_FloatingAchievementTooltipMixin = {};
 function KrowiAF_FloatingAchievementTooltipMixin:OnLoad()
 	GameTooltip_OnLoad(self);
 	self:RegisterForDrag("LeftButton");
-    self.AchievementClick:SetText("[" .. addon.L["Click here to view in achievement window"] .. "]");
 end
 
 function KrowiAF_FloatingAchievementTooltipMixin:OnDragStart()

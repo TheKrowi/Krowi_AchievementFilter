@@ -1,8 +1,8 @@
--- [[ Exported at 2023-04-12 22-15-23 ]] --
+-- [[ Exported at 2023-04-12 23-00-53 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2023-03-23 ]] --
+-- [[ German translation by Ta, 2023-04-12 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -616,4 +616,9 @@ L["until the end of"] = "bis zum Ende von";
 L["Always Show Completed"] = "Erreichte Erfolge anzeigen";
 L["Show Faction Faction Icon"] = "Zeige {faction} Fraktions Symbol";
 L["Show Faction Faction Icon Desc"] = "Zeigt das {faction} Fraktionssymbol auf den Erfolgen an, wenn nur {faction} Spieler diese verdienen können.";
+L["Mouse Wheel Scroll Speed"] = "Maus Rad Scroll-Geschwindigkeit";
+L["Mouse Wheel Scroll Speed Desc"] = "Die Anzahl der {items}, die beim Klicken auf die Buttons nach oben/unten in der Scroll-Leiste oder beim Drehen des Mausrads neu angezeigt werden.";
+L["Side Window"] = "Scroll-Leiste";
+L["Categories"] = "Kategorien";
+L["Click here to view in achievement window"] = "Hier klicken, um diesen Erfolg im Erfolgs-Fenster anzuzeigen";
 
