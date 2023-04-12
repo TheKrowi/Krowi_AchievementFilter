@@ -371,6 +371,14 @@ do -- [[ Achievements]]
         button.CollapsedHeight = 125 * scaling;
         button.MinExpandedHeight = 125 - 30; -- 30 is the bottom bar
 
+        -- Skin RightClickMenuButton if it exists
+        if button.RightClickMenuButton then
+            button.RightClickMenuButton:SetNormalTexture("Interface/AddOns/GW2_UI/Textures/uistuff/arrowdown_up");
+            button.RightClickMenuButton:GetNormalTexture():SetTexCoord(0, 1, 0, 1);
+            button.RightClickMenuButton:SetPushedTexture("Interface/AddOns/GW2_UI/Textures/uistuff/arrowdown_down");
+            button.RightClickMenuButton:GetPushedTexture():SetTexCoord(0, 1, 0, 1);
+        end
+
         -- Add a new background for the shield and points
         button.cBackground = button:CreateTexture("cBackground", "BACKGROUND", nil, 2);
         button.cBackground:ClearAllPoints();
