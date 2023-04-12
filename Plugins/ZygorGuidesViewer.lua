@@ -21,7 +21,7 @@ end
 local function UpdateIcons()
 	ZGV.SearchIconPool:ReleaseAll();
 
-	for _, button in ipairs(addon.GUI.AchievementsFrame.ScrollFrame.buttons) do
+    for _, button in ipairs(addon.GUI.AchievementsFrame.ScrollView.frames) do
 		local icon = ZGV.SearchIconPool:Acquire();
 		icon:SetParent(button);
 		icon:SetPoint("TOPRIGHT", button, "TOPRIGHT", -5, -5);

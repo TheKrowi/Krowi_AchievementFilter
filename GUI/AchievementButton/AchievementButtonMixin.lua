@@ -3,22 +3,6 @@ local _, addon = ...;
 
 KrowiAF_AchievementButtonMixin = {};
 
-function KrowiAF_AchievementButtonMixin:PostLoad(scrollFrame)
-	self:SetPoint("RIGHT", scrollFrame, -5, 0);
-
-	local xHeaderOffset = max(self.PlusMinus:GetRight() - self:GetLeft(), self:GetRight() - self.DateCompleted:GetLeft()) + 2;
-	self.Header:SetPoint("LEFT", xHeaderOffset, 0);
-	self.Header:SetPoint("RIGHT", -xHeaderOffset, 0);
-
-	local xDescriptionOffset = max(self.PlusMinus:GetRight() - self:GetLeft(), self:GetRight() - self.Shield:GetLeft());
-	self.Description:SetPoint("LEFT", xDescriptionOffset, 0);
-	self.Description:SetPoint("RIGHT", -xDescriptionOffset, 0);
-
-	local xObjectivesOffset = max(self.ObjectivesLeftAnchor:GetRight() - self:GetLeft(), self:GetRight() - self.Shield:GetLeft());
-	self.XObjectivesOffset = xObjectivesOffset;
-	addon.GUI.AchievementsObjectives:SetParent(self);
-end
-
 local cachedWidthOnSizeChanged;
 function KrowiAF_AchievementButtonMixin:OnSizeChanged(width, height)
 	local selectedTab = addon.GUI.SelectedTab;
