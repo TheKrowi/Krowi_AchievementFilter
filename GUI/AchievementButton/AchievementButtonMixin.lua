@@ -219,7 +219,7 @@ function KrowiAF_AchievementButtonMixin:Update(achievement, refresh, notSelectab
 	local selectedTab = addon.GUI.SelectedTab;
 	local objectives = addon.GUI.AchievementsObjectives;
 	local objectivesParent = objectives:GetParent();
-	if objectivesParent and objectivesParent.Achievement and objectivesParent.Achievement.Id ~= objectives.Id or selectedTab.SelectedAchievement == nil then
+	if (objectivesParent and objectivesParent.Achievement and objectivesParent.Achievement.Id ~= objectives.Id) or (selectedTab and selectedTab.SelectedAchievement == nil) then
 		objectives:Hide();
 	end
 
