@@ -1,4 +1,4 @@
--- [[ Exported at 2023-04-11 20-19-39 ]] --
+-- [[ Exported at 2023-04-12 22-15-23 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -6,7 +6,7 @@
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
-local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true);
+local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true, true);
 
 local tab = "|T:1:8|t";
 L["TAB"] = tab;
@@ -620,4 +620,5 @@ L["Mouse Wheel Scroll Speed"] = "Mouse Wheel Scroll Speed";
 L["Mouse Wheel Scroll Speed Desc"] = "The number of {items} that will be scrolled when clicking the scroll bar's up/down buttons or spinning the mouse wheel.";
 L["Side Window"] = "Side Window";
 L["Categories"] = "Categories";
+L["Click here to view in achievement window"] = "Click here to view in achievement window";
 

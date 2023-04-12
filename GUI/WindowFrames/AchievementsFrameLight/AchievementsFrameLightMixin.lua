@@ -1,7 +1,7 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
 
-AchievementsFrameLightMixin = {};
+KrowiAF_AchievementsFrameLightMixin = {};
 
 local refreshAchievements;
 local function CreateScrollView(self)
@@ -32,13 +32,13 @@ local function AddManagedScrollBarVisibilityBehavior(self)
     ScrollUtil.AddManagedScrollBarVisibilityBehavior(self.ScrollBox, self.ScrollBar, anchorsWithBar, anchorsWithoutBar);
 end
 
-function AchievementsFrameLightMixin:OnLoad()
+function KrowiAF_AchievementsFrameLightMixin:OnLoad()
     CreateScrollView(self);
 	AddManagedScrollBarVisibilityBehavior(self);
 end
 
 local alwaysHideBorder;
-function AchievementsFrameLightMixin:AlwaysHideBorder()
+function KrowiAF_AchievementsFrameLightMixin:AlwaysHideBorder()
     alwaysHideBorder = true;
     self.Border:Hide();
 end
@@ -63,7 +63,7 @@ local function UpdateDataProvider(self, achievementIds)
 	self.ScrollBox:SetDataProvider(newDataProvider);
 end
 
-function AchievementsFrameLightMixin:Update(achievementIds, _refreshAchievements)
+function KrowiAF_AchievementsFrameLightMixin:Update(achievementIds, _refreshAchievements)
     local numAchievements = achievementIds and #achievementIds or 0;
     HideEmptyText(self);
     if numAchievements <= 0 then

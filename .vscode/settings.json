@@ -446,7 +446,12 @@
         "ScrollBoxConstants",
         "SelectionBehaviorFlags",
         "SelectionBehaviorMixin",
-        "ScrollBoxListViewMixin"
+        "ScrollBoxListViewMixin",
+        "GameTooltip_OnLoad",
+        "ValidateFramePosition",
+        "tCompare",
+        "CreateBaseTooltipInfo",
+        "KrowiAF_FloatingAchievementTooltip"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

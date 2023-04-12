@@ -13,7 +13,7 @@ function gui:LoadWithAddon()
     gui.WorldMapButton.Load();
     gui.AlertSystem:Load();
     addon.Filters:InjectDefaults();
-    -- addon.GUI.AchievementFrameHeader.InjectDynamicOptions();
+    gui.FloatingAchievementTooltip.Load();
 end
 
 local defaultAchievementFrameWidth;

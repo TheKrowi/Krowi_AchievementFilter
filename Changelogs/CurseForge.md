@@ -1,6 +1,7 @@
 <p><h3>Added</h3></p>
 <ul>
 <li>Scroll speed of the categories list, achievements list, summary list and calendar side window is now adjustable</li>
+<li>The tooltip opened by clicking an achievement link from chat for example now has a a clickable link to open the achievement window like the battle pet journal does</li>
 </ul>
 <p><h3>Changed</h3></p>
 <ul>

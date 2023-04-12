@@ -48,6 +48,11 @@ function KrowiAF_SelectAchievement(achievement)
 end
 
 function KrowiAF_SelectAchievementFromID(id)
+	print()
+	if not IsAddOnLoaded("Blizzard_AchievementUI") then
+        LoadAddOn("Blizzard_AchievementUI");
+    end
+
 	local achievement = addon.Data.Achievements[id];
 	KrowiAF_SelectAchievement(achievement);
 end
