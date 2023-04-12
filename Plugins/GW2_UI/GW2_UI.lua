@@ -174,6 +174,9 @@ do -- [[ Categories ]]
     end
 
     local function OnCategoriesFrameViewAcquiredFrame(self, frame, elementData, new)
+        if not new then
+            return;
+        end
         SkinCategoryButton(frame);
     end
 
@@ -300,12 +303,10 @@ do -- [[ Achievements]]
         if self.Completed then
             self.completedBackground:Show();
             self.cBackground:Hide();
-            self.gwBackdrop:Show();
             self.completedBackground:SetAlpha(1);
         else
             -- self.completedBackground:Hide();
             self.cBackground:Show();
-            self.gwBackdrop:Hide();
             -- if self.accountWide then
                 self.completedBackground:Show();
                 self.completedBackground:SetAlpha(0.1);
@@ -526,6 +527,9 @@ do -- [[ Achievements]]
     gw2_ui.SkinAchievementButton = SkinAchievementButton;
 
     local function OnAchievementsFrameViewAcquiredFrame(self, frame, elementData, new)
+        if not new then
+            return;
+        end
         SkinAchievementButton(frame);
     end
 
