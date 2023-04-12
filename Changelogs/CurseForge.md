@@ -7,3 +7,7 @@
 <li>Updated the categories list, achievements list, summary list and calendar side window to the new DF scroll bars</li>
 <li>Moves Summary options to its own section (backend)</li>
 </ul>
+<p><h3>Fixed</h3></p>
+<ul>
+<li>When GW2 UI skin is enable, the right click menu button (if shown) is now also skinned</li>
+</ul>

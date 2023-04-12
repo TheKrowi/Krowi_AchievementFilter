@@ -9,6 +9,9 @@ All notable changes to this project will be documented in this file.
 - Updated the categories list, achievements list, summary list and calendar side window to the new DF scroll bars
 - Moves Summary options to its own section (backend)
 
+### Fixed
+- When GW2 UI skin is enable, the right click menu button (if shown) is now also skinned
+
 ## 55.0 - 2023-04-01
 ### Added
 - Possibility to show a faction icon on the achievement if the achievement is faction specific
