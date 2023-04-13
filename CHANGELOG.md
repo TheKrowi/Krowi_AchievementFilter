@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 ## 56.0 - 2023-04-xx
 ### Added
 - Scroll speed of the categories list, achievements list, summary list and calendar side window is now adjustable
-- The tooltip opened by clicking an achievement link from chat for example now has a a clickable link to open the achievement window like the battle pet journal does
+- The tooltip opened by clicking an achievement link from chat for example now has a a clickable link to open the achievement window like the battle pet journal does (ElvUI and GW2 UI supported)
 - 10.1 map data (10), categories (18), achievements (over 160+) and events (6)
 
 ### Changed

@@ -653,7 +653,7 @@ local function SkinDataManager(frame, skins)
     end
 end
 
-local engine, skins;
+local engine, skins, tooltip;
 local function SkinAll()
     if KrowiAF_SavedData.ElvUISkin.Achievements then
         SkinTabs(skins);
@@ -687,11 +687,21 @@ local function SkinAlertFrames()
     end);
 end
 
+local function SkinFloatingAchievementTooltip()
+    if not KrowiAF_SavedData.ElvUISkin.Tooltip then
+        return;
+    end
+
+    tooltip:SetStyle(KrowiAF_FloatingAchievementTooltip);
+    skins:HandleCloseButton(KrowiAF_FloatingAchievementTooltip.CloseButton);
+end
+
 plugins.LoadHelper:RegisterEvent("ADDON_LOADED");
 plugins.LoadHelper:RegisterEvent("PLAYER_LOGIN");
 function elvUI:OnEvent(event, arg1, arg2)
     if event == "PLAYER_LOGIN" then
         SkinAlertFrames();
+        SkinFloatingAchievementTooltip();
     end
 end
 
@@ -746,6 +756,7 @@ function elvUI.Load()
 
     engine = unpack(ElvUI);
     skins = engine:GetModule("Skins");
+    tooltip = engine:GetModule("Tooltip");
     local privateSkins = engine.private.skins;
     local blizzardSkins = privateSkins.blizzard;
 

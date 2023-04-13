@@ -1214,12 +1214,36 @@ local function SkinAlertFrames()
     end);
 end
 
+local function SkinFloatingAchievementTooltip()
+    if not KrowiAF_SavedData.GW2_UISkin.Tooltip then
+        return;
+    end
+
+    local tooltip = KrowiAF_FloatingAchievementTooltip;
+    tooltip.CloseButton:SetNormalTexture("Interface/AddOns/GW2_UI/textures/uistuff/window-close-button-normal");
+    tooltip.CloseButton:SetHighlightTexture("Interface/AddOns/GW2_UI/textures/uistuff/window-close-button-hover");
+    tooltip.CloseButton:SetPushedTexture("Interface/AddOns/GW2_UI/textures/uistuff/window-close-button-hover");
+    tooltip.CloseButton:SetSize(20, 20);
+    tooltip.CloseButton:ClearAllPoints();
+    tooltip.CloseButton:SetPoint("TOPRIGHT", -3, -3);
+    tooltip.NineSlice:Hide();
+    tooltip:GwCreateBackdrop({
+        bgFile = "Interface/AddOns/GW2_UI/textures/uistuff/UI-Tooltip-Background",
+        edgeFile = "Interface/AddOns/GW2_UI/textures/uistuff/UI-Tooltip-Border",
+        tile = false,
+        tileSize = 64,
+        edgeSize = 32,
+        insets = {left = 2, right = 2, top = 2, bottom = 2}
+    });
+end
+
 plugins.LoadHelper:RegisterEvent("ADDON_LOADED");
 plugins.LoadHelper:RegisterEvent("PLAYER_LOGIN");
 function gw2_ui:OnEvent(event, arg1, arg2)
     if event == "PLAYER_LOGIN" then
         if GW2_ADDON and gw2_ui.IsLoaded() then
             SkinAlertFrames();
+            SkinFloatingAchievementTooltip();
         end
     end
 end

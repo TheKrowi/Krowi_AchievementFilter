@@ -20,7 +20,7 @@ function floatingAchievementTooltip.Load()
         tooltip:ItemRefSetHyperlink(link);
         tooltip.AchievementClick:SetText("[" .. addon.L["Click here to view in achievement window"] .. "]");
         if tooltip:GetWidth() < tooltip.AchievementClick:GetFontString():GetWidth() + 24 then
-            tooltip.AchievementClick:SetText("[" .. addon.L["Click here to view in achievement"] .. "]");
+            tooltip.AchievementClick:SetText("[" .. addon.L["Click here to view in achievements"] .. "]");
         end
         -- tooltip:SetWidth(max(tooltip:GetWidth(), tooltip.AchievementClick:GetFontString():GetWidth() + 24));
         tooltip:SetHeight(tooltip:GetHeight() + 29);
