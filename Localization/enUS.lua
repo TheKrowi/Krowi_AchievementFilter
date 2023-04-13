@@ -1,4 +1,4 @@
--- [[ Exported at 2023-04-12 23-00-53 ]] --
+-- [[ Exported at 2023-04-13 13-10-20 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -622,4 +622,12 @@ L["Side Window"] = "Side Window";
 L["Categories"] = "Categories";
 L["Click here to view in achievement window"] = "Click here to view in achievement window";
 L["Click here to view in achievement"] = "Click here to view in achievement";
+L["DF - Fyrakk Assault"] = "DF - Fyrakk Assault";
+L["Ohn'ahran Plains"] = "Ohn'ahran Plains";
+L["Azure Span"] = "Azure Span";
+L["DF - Researchers Under Fire"] = "DF - Researchers Under Fire";
+L["Titan Lockdown: Soon"] = "Titan Lockdown: Soon";
+L["Zaqali Ruin Investigation: Soon"] = "Zaqali Ruin Investigation: Soon";
+L["Titan Lockdown: Active"] = "Titan Lockdown: Active";
+L["Zaqali Ruin Investigation: Active"] = "Zaqali Ruin Investigation: Active";
 

@@ -1,4 +1,4 @@
--- [[ Exported at 2023-03-20 13-41-30 ]] --
+-- [[ Exported at 2023-04-13 13-02-22 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -2022,6 +2022,7 @@ function exportedCategories.Load(a)
     A(t[135], a[5288]); -- No Static at All
     A(t[135], a[4847]); -- The Vortex Pinnacle
     A(t[135], a[5064]); -- Heroic: The Vortex Pinnacle
+    A(t[135], a[17847]); -- Keystone Hero: The Vortex Pinnacle
     t[136] = c:New(k.GetInstanceInfoName(71)); -- Grim Batol
     C(t[130], t[136]);
     A(t[136], a[5297]); -- Umbrage for Umbriss
@@ -3776,6 +3777,7 @@ function exportedCategories.Load(a)
     A(t[243], a[10795]); -- Neltharion's Lair
     A(t[243], a[10796]); -- Heroic: Neltharion's Lair
     A(t[243], a[10797]); -- Mythic: Neltharion's Lair
+    A(t[243], a[17850]); -- Keystone Hero: Neltharion's Lair
     t[244] = c:New(k.GetInstanceInfoName(777)); -- Assault on Violet Hold
     C(t[238], t[244]);
     A(t[244], a[10554]); -- I Made a Food!
@@ -4413,6 +4415,7 @@ function exportedCategories.Load(a)
     A(t[327], a[12831]); -- Freehold
     A(t[327], a[12832]); -- Heroic: Freehold
     A(t[327], a[12833]); -- Mythic: Freehold
+    A(t[327], a[17848]); -- Keystone Hero: Freehold
     t[328] = c:New(k.GetInstanceInfoName(1021)); -- Waycrest Manor
     C(t[325], t[328]);
     A(t[328], a[12495]); -- Run Wild Like a Man On Fire
@@ -4445,6 +4448,7 @@ function exportedCategories.Load(a)
     A(t[331], a[12500]); -- Underrot
     A(t[331], a[12501]); -- Heroic: Underrot
     A(t[331], a[12502]); -- Mythic: Underrot
+    A(t[331], a[17849]); -- Keystone Hero: The Underrot
     t[332] = c:New(k.GetInstanceInfoName(1030)); -- Temple of Sethraliss
     C(t[325], t[332]);
     A(t[332], a[12507]); -- Snake Eater
@@ -5496,6 +5500,9 @@ function exportedCategories.Load(a)
     A(t[1343], a[16323]); -- Fragments of History
     A(t[1343], a[16338]); -- Fang Flap Fire Fighter
     A(t[1343], a[16729]); -- To All the Squirrels Hidden Til Now
+    A(t[1343], a[17830]); -- Stones Can't Fly!
+    A(t[1343], a[17977]); -- Stones Can Try To Fly!
+    A(t[1343], a[17978]); -- Stones Can Fly!
     t[1390] = c:New(k.GetCategoryInfoTitle(95), true); -- Player vs. Player
     C(t[1341], t[1390]);
     A(t[1390], a[16589]); -- Malicia's Challenge
@@ -5557,6 +5564,7 @@ function exportedCategories.Load(a)
     A(t[1242], a[16496]); -- Obsidian Champion
     A(t[1242], a[16497]); -- I'm Playing All Sides
     A(t[1242], a[16584]); -- Symbols of Hope
+    A(t[1242], a[17561]); -- Ancient Stones of the Waking Shores
     t[1247] = c:New(k.GetCategoryInfoTitle(95), true); -- PvP
     C(t[1232], t[1247]);
     A(t[1247], a[16592]); -- Tour of Duty: The Waking Shores
@@ -5618,6 +5626,8 @@ function exportedCategories.Load(a)
     A(t[1243], a[16493]); -- Petty Theft Mammoth
     A(t[1243], a[16736]); -- Grand Theft Mammoth
     A(t[1243], a[16583]); -- Knew You Nokhud Do It!
+    A(t[1243], a[17506]); -- Still Standing in the Fire
+    A(t[1243], a[17562]); -- Ancient Stones of the Ohn'ahran Plains
     t[1249] = c:New(k.GetCategoryInfoTitle(95), true); -- PvP
     C(t[1233], t[1249]);
     A(t[1249], a[16595]); -- Tour of Duty: Ohn'ahran Plains
@@ -5681,6 +5691,8 @@ function exportedCategories.Load(a)
     A(t[1245], a[16638]); -- Ley Line in the Span
     A(t[1245], a[16622]); -- Three Minutes or It's Free
     A(t[1245], a[16581]); -- Seeing Blue
+    A(t[1245], a[17506]); -- Still Standing in the Fire
+    A(t[1245], a[17563]); -- Ancient Stones of the Azure Span
     t[1250] = c:New(k.GetCategoryInfoTitle(95), true); -- PvP
     C(t[1234], t[1250]);
     A(t[1250], a[16594]); -- Tour of Duty: The Azure Span
@@ -5756,6 +5768,7 @@ function exportedCategories.Load(a)
     A(t[1246], a[16301]); -- Treasures of Thaldraszus
     A(t[1246], a[16634]); -- Framing a New Perspective
     A(t[1246], a[16621]); -- "One of Everything, Please"
+    A(t[1246], a[17564]); -- Ancient Stones of Thaldraszus
     t[1251] = c:New(k.GetCategoryInfoTitle(95), true); -- PvP
     C(t[1235], t[1251]);
     A(t[1251], a[16593]); -- Tour of Duty: Thaldraszus
@@ -5802,7 +5815,7 @@ function exportedCategories.Load(a)
     A(t[1241], a[15638]); -- "Dracthyr, Awaken"
     t[1244] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[1236], t[1244]);
-    A(t[1244], a[16452]); -- Familiar Skies
+    A(t[1244], a[16452]); -- Famliar Skies
     A(t[1244], a[17534]); -- Explore the Forbidden Reach
     A(t[1244], a[17315]); -- While We Were Sleeping
     A(t[1244], a[17524]); -- Adventurer of the Forbidden Reach
@@ -5850,6 +5863,48 @@ function exportedCategories.Load(a)
     t[1410] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1236], t[1410]);
     A(t[1410], a[17540]); -- Under the Weather
+    t[1414] = c:New(k.GetMapName(2133)); -- Zaralek Cavern
+    C(t[1228], t[1414]);
+    A(t[1414], a[17785]); -- "Que Zara(lek), Zara(lek)"
+    t[1415] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
+    C(t[1414], t[1415]);
+    t[1416] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
+    C(t[1414], t[1416]);
+    A(t[1416], a[17766]); -- Explore Zaralek Cavern
+    A(t[1416], a[17783]); -- Adventurer of Zaralek Cavern
+    A(t[1416], a[17786]); -- Treasures of Zaralek Cavern
+    A(t[1416], a[17741]); -- Slow and Steady Wins the Race
+    A(t[1416], a[17781]); -- The Smell of Money
+    A(t[1416], a[17567]); -- Ancient Stones of Zaralek
+    t[1417] = c:New(k.GetCategoryInfoTitle(95), true); -- Player vs. Player
+    C(t[1414], t[1417]);
+    t[1418] = c:New(k.GetCategoryInfoTitle(201), true); -- Reputation
+    C(t[1414], t[1418]);
+    t[1427] = c:New(k.L["Dragon Glyphs"], true); -- Dragon Glyphs
+    C(t[1414], t[1427]);
+    A(t[1427], a[17510]); -- Dragon Glyphs: Glimmerogg
+    A(t[1427], a[17511]); -- Dragon Glyphs: Nal ks'kol
+    A(t[1427], a[17512]); -- Dragon Glyphs: Loamm
+    A(t[1427], a[17513]); -- Dragon Glyphs: Zaqali Caldera
+    A(t[1427], a[17514]); -- Dragon Glyphs: Slitherdrake Roost
+    A(t[1427], a[17515]); -- Dragon Glyphs: The Throughway
+    A(t[1427], a[17516]); -- Dragon Glyphs: Acidbite Ravine
+    A(t[1427], a[17517]); -- Dragon Glyphs: Aberrus Approach
+    A(t[1427], a[18150]); -- Zaralek Cavern Glyph Hunter
+    t[1424] = c:New(k.L["Dragon Racing"], true); -- Dragon Racing
+    C(t[1414], t[1424]);
+    A(t[1424], a[17483]); -- Zaralek Cavern: Bronze
+    A(t[1424], a[17484]); -- Zaralek Cavern: Silver
+    A(t[1424], a[17485]); -- Zaralek Cavern: Gold
+    A(t[1424], a[17486]); -- Zaralek Cavern Advanced: Bronze
+    A(t[1424], a[17487]); -- Zaralek Cavern Advanced: Silver
+    A(t[1424], a[17488]); -- Zaralek Cavern Advanced: Gold
+    A(t[1424], a[17489]); -- Zaralek Cavern Reverse: Bronze
+    A(t[1424], a[17490]); -- Zaralek Cavern Reverse: Silver
+    A(t[1424], a[17491]); -- Zaralek Cavern Reverse: Gold
+    A(t[1424], a[17492]); -- Zaralek Cavern Racing Completionist
+    A(t[1424], a[17493]); -- Zaralek Cavern Racing Completionist: Silver
+    A(t[1424], a[17494]); -- Zaralek Cavern Racing Completionist: Gold
     t[1229] = c:New(k.GetCategoryInfoTitle(15272)); -- Dungeons
     C(t[1207], t[1229]);
     A(t[1229], a[16294]); -- Dragonflight Dungeon Hero
@@ -5861,6 +5916,15 @@ function exportedCategories.Load(a)
     A(t[1229], a[16650]); -- Dragonflight Keystone Hero: Season One
     A(t[1229], a[16429]); -- Thundering Hero: Dragonflight Season 1
     A(t[1229], a[17119]); -- Deep Cuts From the Vault
+    A(t[1229], a[17842]); -- Dragonflight Keystone Explorer: Season Two
+    A(t[1229], a[17843]); -- Dragonflight Keystone Conqueror: Season Two
+    A(t[1229], a[17844]); -- Dragonflight Keystone Master: Season Two
+    A(t[1229], a[17845]); -- Dragonflight Keystone Hero: Season Two
+    A(t[1229], a[17846]); -- Smoldering Hero: Dragonflight Season 2
+    A(t[1229], a[18027]); -- Dragonflight Season 2 Master
+    A(t[1229], a[17830]); -- Stones Can't Fly!
+    A(t[1229], a[17977]); -- Stones Can Try To Fly!
+    A(t[1229], a[17978]); -- Stones Can Fly!
     t[1257] = c:New(k.GetInstanceInfoName(1201)); -- Algeth'ar Academy
     C(t[1229], t[1257]);
     A(t[1257], a[16434]); -- See Me After Class
@@ -5939,6 +6003,10 @@ function exportedCategories.Load(a)
     t[1230] = c:New(k.GetCategoryInfoTitle(15271)); -- Raids
     C(t[1207], t[1230]);
     A(t[1230], a[16355]); -- Glory of the Vault Raider
+    A(t[1230], a[18251]); -- Glory of the Aberrus Raider
+    A(t[1230], a[17830]); -- Stones Can't Fly!
+    A(t[1230], a[17977]); -- Stones Can Try To Fly!
+    A(t[1230], a[17978]); -- Stones Can Fly!
     t[1265] = c:New(k.GetInstanceInfoName(1200)); -- Vault of the Incarnates
     C(t[1230], t[1265]);
     A(t[1265], a[17110]); -- The Primal Bulwark
@@ -5971,6 +6039,39 @@ function exportedCategories.Load(a)
     A(t[1267], a[16351]); -- Mythic: Kurog Grimtotem
     A(t[1267], a[16352]); -- Mythic: Broodkeeper Diurna
     A(t[1267], a[16353]); -- Mythic: Raszageth the Storm-Eater
+    t[1420] = c:New(k.GetInstanceInfoName(1208)); -- Aberrus, the Shadowed Crucible
+    C(t[1230], t[1420]);
+    A(t[1420], a[18163]); -- Discarded Works
+    A(t[1420], a[18164]); -- Fury of Giants
+    A(t[1420], a[18165]); -- Neltharion's Shadow
+    A(t[1420], a[18167]); -- Edge of the Void
+    A(t[1420], a[18160]); -- "Aberrus, the Shadowed Crucible"
+    A(t[1420], a[18161]); -- "Heroic: Aberrus, the Shadowed Crucible"
+    A(t[1420], a[18162]); -- "Mythic: Aberrus, the Shadowed Crucible"
+    A(t[1420], a[18253]); -- Ahead of the Curve: Scalecommander Sarkareth
+    A(t[1420], a[18254]); -- Cutting Edge: Scalecommander Sarkareth
+    t[1421] = c:New(k.L["Glory"]); -- Glory
+    C(t[1420], t[1421]);
+    A(t[1421], a[18229]); -- Cosplate
+    A(t[1421], a[18168]); -- I'll Make My Own Shadowflame
+    A(t[1421], a[18173]); -- Tabula Rasa
+    A(t[1421], a[18228]); -- Are You Even Trying?
+    A(t[1421], a[18230]); -- Whac-A-Swog
+    A(t[1421], a[18193]); -- Eggscellent Eggsecution
+    A(t[1421], a[18172]); -- Escar-Go-Go-Go
+    A(t[1421], a[18149]); -- Objects in Transit May Shatter
+    A(t[1421], a[17877]); -- "We'll Never See That Again, Surely"
+    t[1422] = c:New(k.L["Mythic"]); -- Mythic
+    C(t[1420], t[1422]);
+    A(t[1422], a[18151]); -- "Mythic: Kazzara, the Hellforged"
+    A(t[1422], a[18152]); -- Mythic: The Amalgamation Chamber
+    A(t[1422], a[18153]); -- Mythic: The Forgotten Experiments
+    A(t[1422], a[18154]); -- Mythic: Assault of the Zaqali
+    A(t[1422], a[18155]); -- "Mythic: Rashok, the Elder"
+    A(t[1422], a[18156]); -- "Mythic: The Vigilant Steward, Zskarn"
+    A(t[1422], a[18157]); -- Mythic: Magmorax
+    A(t[1422], a[18158]); -- Mythic: Echo of Neltharion
+    A(t[1422], a[18159]); -- Mythic: Scalecommander Sarkareth
     t[1231] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[1207], t[1231]);
     A(t[1231], a[16519]); -- Dragon Isles Safari
@@ -5989,6 +6090,19 @@ function exportedCategories.Load(a)
     A(t[1231], a[16512]); -- Family Battler of the Dragon Isles
     A(t[1231], a[16399]); -- Lovin' Lubbins
     A(t[1231], a[17541]); -- Global Swarming
+    A(t[1231], a[17879]); -- Zaralek Cavern Safari
+    A(t[1231], a[17880]); -- Battle in Zaralek Cavern
+    A(t[1231], a[17881]); -- Aquatic Battler of Zaralek Cavern
+    A(t[1231], a[17882]); -- Beast Battler of Zaralek Cavern
+    A(t[1231], a[17883]); -- Critter Battler of Zaralek Cavern
+    A(t[1231], a[17890]); -- Dragonkin Battler of Zaralek Cavern
+    A(t[1231], a[17904]); -- Elemental Battler of Zaralek Cavern
+    A(t[1231], a[17905]); -- Flying Battler of Zaralek Cavern
+    A(t[1231], a[17915]); -- Humanoid Battler of Zaralek Cavern
+    A(t[1231], a[17916]); -- Magic Battler of Zaralek Cavern
+    A(t[1231], a[17917]); -- Mechanical Battler of Zaralek Cavern
+    A(t[1231], a[17918]); -- Undead Battler of Zaralek Caverm
+    A(t[1231], a[17934]); -- Family Battler of Zaralek Cavern
     t[1268] = c:New(k.L["Dragonriding"]); -- Dragonriding
     C(t[1207], t[1268]);
     A(t[1268], a[15794]); -- A New Friend
@@ -6055,6 +6169,17 @@ function exportedCategories.Load(a)
     A(t[1305], a[16106]); -- Dragon Glyphs: Vault of the Incarnates
     A(t[1305], a[16105]); -- Dragon Glyphs: Veiled Ossuary
     A(t[1305], a[16578]); -- Thaldraszus Glyph Hunter
+    t[1426] = c:New(k.GetMapName(2133), true); -- Zaralek Cavern
+    C(t[1268], t[1426]);
+    A(t[1426], a[17510]); -- Dragon Glyphs: Glimmerogg
+    A(t[1426], a[17511]); -- Dragon Glyphs: Nal ks'kol
+    A(t[1426], a[17512]); -- Dragon Glyphs: Loamm
+    A(t[1426], a[17513]); -- Dragon Glyphs: Zaqali Caldera
+    A(t[1426], a[17514]); -- Dragon Glyphs: Slitherdrake Roost
+    A(t[1426], a[17515]); -- Dragon Glyphs: The Throughway
+    A(t[1426], a[17516]); -- Dragon Glyphs: Acidbite Ravine
+    A(t[1426], a[17517]); -- Dragon Glyphs: Aberrus Approach
+    A(t[1426], a[18150]); -- Zaralek Cavern Glyph Hunter
     t[1269] = c:New(k.L["Dragon Racing"]); -- Dragon Racing
     C(t[1207], t[1269]);
     A(t[1269], a[15939]); -- Dragon Racing Completionist
@@ -6107,6 +6232,34 @@ function exportedCategories.Load(a)
     A(t[1276], a[17204]); -- Thaldraszus Reverse: Bronze
     A(t[1276], a[17205]); -- Thaldraszus Reverse: Silver
     A(t[1276], a[17206]); -- Thaldraszus Reverse: Gold
+    t[1411] = c:New(k.GetMapName(2107)); -- The Forbidden Reach
+    C(t[1269], t[1411]);
+    A(t[1411], a[17279]); -- Forbidden Reach: Bronze
+    A(t[1411], a[17280]); -- Forbidden Reach: Silver
+    A(t[1411], a[17281]); -- Forbidden Reach: Gold
+    A(t[1411], a[17284]); -- Forbidden Reach Advanced: Bronze
+    A(t[1411], a[17286]); -- Forbidden Reach Advanced: Silver
+    A(t[1411], a[17287]); -- Forbidden Reach Advanced: Gold
+    A(t[1411], a[17288]); -- Forbidden Reach Reverse: Bronze
+    A(t[1411], a[17289]); -- Forbidden Reach Reverse: Silver
+    A(t[1411], a[17290]); -- Forbidden Reach Reverse: Gold
+    A(t[1411], a[17294]); -- Forbidden Reach Racing Completionist
+    A(t[1411], a[17296]); -- Forbidden Reach Racing Completionist: Silver
+    A(t[1411], a[17298]); -- Forbidden Reach Racing Completionist: Gold
+    t[1423] = c:New(k.GetMapName(2133)); -- Zaralek Cavern
+    C(t[1269], t[1423]);
+    A(t[1423], a[17483]); -- Zaralek Cavern: Bronze
+    A(t[1423], a[17484]); -- Zaralek Cavern: Silver
+    A(t[1423], a[17485]); -- Zaralek Cavern: Gold
+    A(t[1423], a[17486]); -- Zaralek Cavern Advanced: Bronze
+    A(t[1423], a[17487]); -- Zaralek Cavern Advanced: Silver
+    A(t[1423], a[17488]); -- Zaralek Cavern Advanced: Gold
+    A(t[1423], a[17489]); -- Zaralek Cavern Reverse: Bronze
+    A(t[1423], a[17490]); -- Zaralek Cavern Reverse: Silver
+    A(t[1423], a[17491]); -- Zaralek Cavern Reverse: Gold
+    A(t[1423], a[17492]); -- Zaralek Cavern Racing Completionist
+    A(t[1423], a[17493]); -- Zaralek Cavern Racing Completionist: Silver
+    A(t[1423], a[17494]); -- Zaralek Cavern Racing Completionist: Gold
     t[1360] = c:New(k.L["Primal Storms"]); -- Primal Storms
     C(t[1207], t[1360]);
     A(t[1360], a[16492]); -- Into the Storm
@@ -6910,6 +7063,8 @@ function exportedCategories.Load(a)
     A(t[913], a[13342]); -- Extinguishing Kul Tiras
     A(t[913], a[1038]); -- The Flame Warden
     A(t[913], a[1039]); -- The Flame Keeper
+    A(t[913], a[17737]); -- Flame Warden of the Dragon Isles
+    A(t[913], a[17738]); -- Flame Keeper of the Dragon Isles
     t[919] = c:New(k.L["Pirates' Day"]); -- Pirates' Day
     C(t[918], t[919]);
     A(t[919], a[3457]); -- The Captain's Booty
@@ -7284,6 +7439,30 @@ function exportedCategories.Load(a)
     C(t[1358], t[1393]);
     A(t[1393], a[16444]); -- Leftovers' Revenge
     A(t[1393], a[16443]); -- Soupervisor
+    t[1425] = c:New(k.L["Fyrakk Assault"]); -- Fyrakk Assault
+    C(t[1358], t[1425]);
+    A(t[1425], a[17506]); -- Still Standing in the Fire
+    t[1428] = c:New(k.L["Researchers Under Fire"]); -- Researchers Under Fire
+    C(t[1358], t[1428]);
+    t[1429] = c:New(k.L["Zaqali Ruin Investigation"]); -- Zaqali Ruin Investigation
+    C(t[1428], t[1429]);
+    A(t[1429], a[18200]); -- Cooling the Research Field
+    A(t[1429], a[18207]); -- Hot Research Zone
+    A(t[1429], a[18209]); -- Nothing Stops the Research
+    A(t[1429], a[18206]); -- A Djaradin Puzzle
+    A(t[1429], a[18205]); -- A Pillar of the Research Community
+    A(t[1429], a[18204]); -- Research Mishap
+    A(t[1429], a[18208]); -- The Small Disruptions
+    A(t[1429], a[18199]); -- Zaqali Ritual Buster
+    t[1430] = c:New(k.L["Titan Lockdown"]); -- Titan Lockdown
+    C(t[1428], t[1430]);
+    A(t[1430], a[18200]); -- Cooling the Research Field
+    A(t[1430], a[18207]); -- Hot Research Zone
+    A(t[1430], a[18209]); -- Nothing Stops the Research
+    A(t[1430], a[18203]); -- A Research Sampler
+    A(t[1430], a[18174]); -- Contaminant Cleaner
+    A(t[1430], a[18201]); -- Lockdown Mystery
+    A(t[1430], a[18202]); -- Rockin Research
     t[1174] = c:New(k.L["Miscellaneous"]); -- Miscellaneous
     C(t[884], t[1174]);
     A(t[1174], a[1636]); -- Competitor's Tabard
@@ -8136,6 +8315,22 @@ function exportedCategories.Load(a)
     A(t[1345], a[17339]); -- Legend: Dragonflight Season 1
     A(t[1345], a[16734]); -- Crimson Legend: Dragonflight Season 1
     A(t[1345], a[17119]); -- Deep Cuts From the Vault
+    t[1413] = c:New(k.L["Season"] .. " " .. 2); -- Season 2
+    C(t[1344], t[1413]);
+    A(t[1413], a[17799]); -- Combatant I: Dragonflight Season 2
+    A(t[1413], a[17800]); -- Combatant II: Dragonflight Season 2
+    A(t[1413], a[17797]); -- Challenger I: Dragonflight Season 2
+    A(t[1413], a[17798]); -- Challenger II: Dragonflight Season 2
+    A(t[1413], a[17795]); -- Rival I: Dragonflight Season 2
+    A(t[1413], a[17796]); -- Rival II: Dragonflight Season 2
+    A(t[1413], a[17794]); -- Duelist: Dragonflight Season 2
+    A(t[1413], a[17831]); -- Elite: Dragonflight Season 2
+    A(t[1413], a[17764]); -- Obsidian Gladiator: Dragonflight Season 2
+    A(t[1413], a[17768]); -- Hero of the Alliance: Obsidian
+    A(t[1413], a[17772]); -- Hero of the Horde: Obsidian
+    A(t[1413], a[17801]); -- Legend: Dragonflight Season 2
+    A(t[1413], a[17767]); -- Obsidian Legend: Dragonflight Season 2
+    A(t[1413], a[18027]); -- Dragonflight Season 2 Master
     t[1368] = c:New(k.L["Tracking Achievements"]); -- Tracking Achievements
     C(t[955], t[1368]);
     t[1368].HasFlexibleData = true;
@@ -8360,6 +8555,8 @@ function exportedCategories.Load(a)
     A(t[978], a[15612]); -- Eternal Gladiator's Soul Eater
     A(t[978], a[15957]); -- Gladiator: Dragonflight Season 1
     A(t[978], a[16730]); -- Crimson Gladiator's Drake
+    A(t[978], a[17740]); -- Gladiator: Dragonflight Season 2
+    A(t[978], a[17778]); -- Obsidian Gladiator's Slitherdrake
     t[988] = c:New(k.L["Recruit-a-Friend"] .. " (" .. k.GetCategoryInfoTitle(15234) .. ")"); -- Recruit-a-Friend
     C(t[972], t[988]);
     A(t[988], a[1436]); -- Friends In High Places
