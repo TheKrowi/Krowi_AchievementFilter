@@ -3,13 +3,14 @@ local _, addon = ...;
 
 KrowiAF_AchievementsFrameMixin = {};
 
+local refreshAchievements;
 local function CreateScrollView(self)
 	local template = "KrowiAF_AchievementButton_" .. (addon.Options.db.Achievements.Compact and "Small" or "Normal") .. "_Template";
     self.DummyFrame = CreateFrame("Button", nil, self, template);
 
 	self.ScrollView = CreateScrollBoxListLinearView();
 	self.ScrollView:SetElementInitializer(template, function(button, achievement)
-		button:Update(achievement);
+		button:Update(achievement, refreshAchievements);
 	end);
 	self.ScrollView:SetElementExtentCalculator(function(_, achievement) -- This fires before setting the elements
 		local selectedTab = addon.GUI.SelectedTab;
@@ -68,13 +69,13 @@ function KrowiAF_AchievementsFrameMixin:OnLoad()
 	AddManagedScrollBarVisibilityBehavior(self);
 	AddSelectionBehavior(self);
 
-	hooksecurefunc("AchievementFrameAchievements_ForceUpdate", function()
-		self:ForceUpdate(true);
+	hooksecurefunc("AchievementFrame_ForceUpdate", function()
+		self:ForceUpdate();
 	end);
 end
 
 function KrowiAF_AchievementsFrameMixin:OnShow()
-	if addon.AchievementEarnedUpdateAchievementsFrameOnNextShow then
+	if addon.AchievementEarnedUpdateAchievementsFrameOnNextShow or refreshAchievements then
 		self:ForceUpdate();
 		addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = nil;
 	end
@@ -189,6 +190,7 @@ function KrowiAF_AchievementsFrameMixin:ForceUpdate()
 		end
 	end
 
+	refreshAchievements = true;
 	if not self:IsShown() then
 		return;
 	end
@@ -199,6 +201,7 @@ function KrowiAF_AchievementsFrameMixin:ForceUpdate()
 	end
 
 	self:Update();
+	refreshAchievements = nil;
 
 	if selectedTab.SelectedAchievement then
 		self.ScrollBox:ScrollToElementData(selectedTab.SelectedAchievement, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);

@@ -7,6 +7,9 @@ local floatingAchievementTooltip = gui.FloatingAchievementTooltip;
 function floatingAchievementTooltip.Load()
     local tooltip = KrowiAF_FloatingAchievementTooltip;
     hooksecurefunc("SetItemRef", function(link)
+        if IsModifiedClick() then
+            return;
+        end
         local type = strsplit(":", link);
         if type ~= "achievement" then
             tooltip:Hide();
