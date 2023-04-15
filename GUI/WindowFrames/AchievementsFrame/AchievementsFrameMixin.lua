@@ -3,14 +3,13 @@ local _, addon = ...;
 
 KrowiAF_AchievementsFrameMixin = {};
 
-local refreshAchievements;
 local function CreateScrollView(self)
 	local template = "KrowiAF_AchievementButton_" .. (addon.Options.db.Achievements.Compact and "Small" or "Normal") .. "_Template";
     self.DummyFrame = CreateFrame("Button", nil, self, template);
 
 	self.ScrollView = CreateScrollBoxListLinearView();
 	self.ScrollView:SetElementInitializer(template, function(button, achievement)
-		button:Update(achievement, refreshAchievements);
+		button:Update(achievement);
 	end);
 	self.ScrollView:SetElementExtentCalculator(function(_, achievement) -- This fires before setting the elements
 		local selectedTab = addon.GUI.SelectedTab;
@@ -45,7 +44,12 @@ local function ScrollBoxSelectionChanged(self, achievement, selected)
 		return;
 	end
 
-	selectedTab.SelectedAchievement = selected and achievement or nil;
+	if selected then
+		selectedTab.SelectedAchievement = achievement;
+	elseif achievement == selectedTab.SelectedAchievement then
+		selectedTab.SelectedAchievement = nil;
+	end
+	-- selectedTab.SelectedAchievement = selected and achievement or nil;
 	local button = self.ScrollBox:FindFrame(achievement);
 	if not button then
 		return;
@@ -74,8 +78,9 @@ function KrowiAF_AchievementsFrameMixin:OnLoad()
 	end);
 end
 
+local updateOnNextShow;
 function KrowiAF_AchievementsFrameMixin:OnShow()
-	if addon.AchievementEarnedUpdateAchievementsFrameOnNextShow or refreshAchievements then
+	if addon.AchievementEarnedUpdateAchievementsFrameOnNextShow or updateOnNextShow then
 		self:ForceUpdate();
 		addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = nil;
 	end
@@ -190,7 +195,7 @@ function KrowiAF_AchievementsFrameMixin:ForceUpdate()
 		end
 	end
 
-	refreshAchievements = true;
+	updateOnNextShow = true;
 	if not self:IsShown() then
 		return;
 	end
@@ -199,9 +204,14 @@ function KrowiAF_AchievementsFrameMixin:ForceUpdate()
 	if not selectedTab then
 		return;
 	end
+	updateOnNextShow = nil;
+
+	local buttons = self.ScrollView:GetFrames();
+	for _, button in next, buttons do
+		button.Achievement = nil;
+	end
 
 	self:Update();
-	refreshAchievements = nil;
 
 	if selectedTab.SelectedAchievement then
 		self.ScrollBox:ScrollToElementData(selectedTab.SelectedAchievement, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
