@@ -41,8 +41,6 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
 		cachedWidthDisplayObjectives = objectives:GetWidth();
 	end
 	objectives:Show();
-	print(height, objectives:GetHeight(), self.HiddenDescription:GetHeight(), ACHIEVEMENTBUTTON_DESCRIPTIONHEIGHT, self.Reward:IsShown())
-	print("2",self.HiddenDescription:GetWidth(), self.Description:GetWidth())
 	height = height + objectives:GetHeight() - 1;
 	if height ~= self.CollapsedHeight or self.numLines > self.MaxDescriptionLinesCollapsed then
 		local descriptionHeight = self.HiddenDescription:GetHeight();
@@ -52,7 +50,6 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
 		end
 	end
 	objectives.Id = id;
-	print(self.MinExpandedHeight, height)
 	height = max(self.MinExpandedHeight, height);
 	return height;
 end
@@ -212,7 +209,6 @@ end
 function KrowiAF_AchievementButtonMixin:Update(achievement, refresh, notSelectable)
 	local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = addon.GetAchievementInfo(achievement.Id);
 	self:SetAchievement(achievement, refresh);
-	print("1", self.HiddenDescription:IsShown(), self.HiddenDescription:GetWidth(), self.Description:GetWidth())
 
 	local selectedTab = addon.GUI.SelectedTab;
 	local objectives = addon.GUI.AchievementsObjectives;
@@ -224,7 +220,6 @@ function KrowiAF_AchievementButtonMixin:Update(achievement, refresh, notSelectab
 	if selectedTab and achievement == selectedTab.SelectedAchievement and not notSelectable then
 		self.Highlight:Show();
 		local height = self:DisplayObjectives(self.ForceDisplayObjectives);
-		print("Expanding to", height)
 		self:Expand(height);
 		if not completed or not wasEarnedByMe then
 			self.Tracked:Show();

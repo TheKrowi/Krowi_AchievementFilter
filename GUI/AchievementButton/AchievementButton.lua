@@ -3,7 +3,8 @@ local _, addon = ...;
 
 function KrowiAF_AchievementButton_OnLoad(self)
 	_, self.FontHeight = self.Description:GetFont();
-	self.Description:SetHeight(self.FontHeight * self.MaxDescriptionLinesCollapsed);
+	 -- Fix line height to 10 as self.FontHeight can be larger or smaller depending on skins used
+	self.Description:SetHeight(10 * self.MaxDescriptionLinesCollapsed);
 	self.MinExpandedHeight = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT;
 	self:Collapse();
 end
