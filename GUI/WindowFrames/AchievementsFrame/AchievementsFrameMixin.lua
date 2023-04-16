@@ -63,6 +63,32 @@ end
 local function AddSelectionBehavior(self)
 	self.SelectionBehavior = ScrollUtil.AddSelectionBehavior(self.ScrollBox, SelectionBehaviorFlags.Deselectable, SelectionBehaviorFlags.Intrusive);
 	self.SelectionBehavior:RegisterCallback(SelectionBehaviorMixin.Event.OnSelectionChanged, ScrollBoxSelectionChanged, self);
+
+	-- function self.SelectionBehavior:SetElementDataSelected_Internal(elementData, newSelected)
+	-- 	local deselected = nil;
+	-- 	if newSelected then
+	-- 		-- Works under the current single selection policy. When multi-select is added,
+	-- 		-- change this.
+	-- 		deselected = self:DeselectByPredicate(function(data)
+	-- 			return data ~= elementData and self:IsElementDataSelected(data);
+	-- 		end);
+	-- 	end
+	-- 	local changed = self:IsElementDataSelected(elementData) ~= newSelected;
+	-- 	if self.selectionFlags:IsSet(SelectionBehaviorFlags.Intrusive) then
+	-- 		elementData.selected = newSelected;
+	-- 	else
+	-- 		self.selections[elementData] = newSelected;
+	-- 	end
+	-- 	print("deselected", deselected, "changed", changed)
+	-- 	if deselected then
+	-- 		for index, data in ipairs(deselected) do
+	-- 			self:TriggerEvent(SelectionBehaviorMixin.Event.OnSelectionChanged, data, false);
+	-- 		end
+	-- 	end
+	-- 	if changed then
+	-- 		self:TriggerEvent(SelectionBehaviorMixin.Event.OnSelectionChanged, elementData, newSelected);
+	-- 	end
+	-- end
 end
 
 function KrowiAF_AchievementsFrameMixin:OnLoad()
@@ -162,6 +188,9 @@ function KrowiAF_AchievementsFrameMixin:ScrollToNearest(achievement)
 	local scrollBox = self.ScrollBox;
 	scrollBox:RecalculateDerivedExtent();
 	local dataIndex = scrollBox:FindIndex(achievement);
+	if not dataIndex then
+		return;
+	end
 	local scrollOffset = scrollBox:GetDerivedScrollOffset();
 	local achievementButtonTop = scrollBox:GetExtentUntil(dataIndex);
 	local achievementButtonBottom = achievementButtonTop + scrollBox:GetElementExtent(dataIndex);
@@ -215,6 +244,7 @@ function KrowiAF_AchievementsFrameMixin:ForceUpdate()
 
 	if selectedTab.SelectedAchievement then
 		self.ScrollBox:ScrollToElementData(selectedTab.SelectedAchievement, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
+		-- print("forceupdate select")
 		self.SelectionBehavior:SelectElementData(selectedTab.SelectedAchievement);
 		self:ScrollToNearest(selectedTab.SelectedAchievement);
 	end

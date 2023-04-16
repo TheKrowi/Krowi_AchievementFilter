@@ -3,7 +3,6 @@ local _, addon = ...;
 
 KrowiAF_FloatingAchievementTooltipMixin = {};
 
-
 function KrowiAF_FloatingAchievementTooltipMixin:OnLoad()
 	GameTooltip_OnLoad(self);
 	self:RegisterForDrag("LeftButton");

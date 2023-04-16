@@ -9,7 +9,9 @@ local function SelectAchievement(achievement)
 		return;
 	end
 
+	achievementsFrame:ForceUpdate();
 	scrollBox:ScrollToElementData(achievement, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
+	-- print("api select")
 	achievementsFrame.SelectionBehavior:SelectElementData(achievement);
 	achievementsFrame:ScrollToNearest(achievement);
 end

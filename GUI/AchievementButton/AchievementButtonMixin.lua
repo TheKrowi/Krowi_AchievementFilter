@@ -7,10 +7,13 @@ function KrowiAF_AchievementButtonMixin:OnSizeChanged(width, height)
 	local selectedTab = addon.GUI.SelectedTab;
 	if selectedTab and self.Achievement and selectedTab.SelectedAchievement == self.Achievement then
 		if self.CachedWidthOnSizeChanged and self.CachedWidthOnSizeChanged ~= width then
-			self.ForceDisplayObjectives = true;
-			addon.GUI.AchievementsFrame.SelectionBehavior:TriggerEvent(SelectionBehaviorMixin.Event.OnSelectionChanged, self.Achievement, true);
-			addon.GUI.AchievementsFrame:ScrollToNearest(self.Achievement);
-			self.ForceDisplayObjectives = nil;
+			-- Delay here to give the previous OnSizeChanged to finish
+			addon.DelayFunction("KrowiAF_AchievementButtonMixin_OnSizeChanged", 0.01, function()
+				self.ForceDisplayObjectives = true;
+				addon.GUI.AchievementsFrame.SelectionBehavior:TriggerEvent(SelectionBehaviorMixin.Event.OnSelectionChanged, self.Achievement, true);
+				addon.GUI.AchievementsFrame:ScrollToNearest(self.Achievement);
+				self.ForceDisplayObjectives = nil;
+			end);
 		end
 		self.CachedWidthOnSizeChanged = width;
 	end
@@ -85,7 +88,7 @@ function KrowiAF_AchievementButtonMixin:SetAchievementData(achievement, id, name
 		achievement.IsAccountWide = nil;
 	end
 
-	self.Header:SetText(name)
+	self.Header:SetText(name);
 
 	local normalFont = self.Compact and GameFontHighlight or AchievementPointsFontHighlight;
 	local smallFont = self.Compact and GameFontHighlightSmall or AchievementPointsFontHighlightSmall;
@@ -191,18 +194,12 @@ function KrowiAF_AchievementButtonMixin:SetAchievement(achievement, refresh)
 		return;
 	end
 
-	local id, name, points, completed, month, day, year, description, flags, icon, rewardText, _, wasEarnedByMe = addon.GetAchievementInfo(achievement.Id);
-
 	if self.Achievement ~= achievement or refresh then
+		local id, name, points, completed, month, day, year, description, flags, icon, rewardText, _, wasEarnedByMe = addon.GetAchievementInfo(achievement.Id);
 		self:SetAchievementData(achievement, id, name, points, completed, month, day, year, description, flags, icon, rewardText, wasEarnedByMe);
 	end
 
-	local isTracked = IsTrackedAchievement(id);
-	self:SetAsTracked(isTracked);
-	if isTracked then -- Issue #10 : Fix
-		self.Header:SetWidth(self.Header:GetStringWidth() + 4); -- This +4 here is to fudge around any string width issues that arize from resizing a string set to its string width. See bug 144418 for an example.
-	end
-
+	self:SetAsTracked(IsTrackedAchievement(achievement.Id));
 	self:UpdatePlusMinusTexture();
 end
 
@@ -547,4 +544,6 @@ function KrowiAF_AchievementButtonMixin:SetAsTracked(isTracked)
 	end
 	self.Check:SetShown(isTracked);
 	self.Tracked:SetChecked(isTracked);
+	-- This +4 here is to fudge around any string width issues that arize from resizing a string set to its string width. See bug 144418 for an example.
+	self.Header:SetWidth(isTracked and self.Header:GetStringWidth() + 4 or ACHIEVEMENTBUTTON_LABELWIDTH);
 end
