@@ -1,4 +1,4 @@
--- [[ Exported at 2023-04-13 13-01-25 ]] --
+-- [[ Exported at 2023-04-18 23-04-59 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1851,7 +1851,7 @@ function exportedTooltipData.Load(d)
     AddD(d, 202973, tdt.Unit, 17482, 0, t[15], t[16]); -- Sulfur Sprint Reverse: Gold
     AddD(d, 200684, tdt.Unit, 17541, 1, t[11], t[12]); -- "Vortex"
     AddD(d, 200692, tdt.Unit, 17541, 2, t[11], t[12]); -- "Tremblor"
-    AddD(d, 200688, tdt.Unit, 17541, 3, t[11], t[12]); -- "Wildfire"
+    AddD(d, 200686, tdt.Unit, 17541, 3, t[11], t[12]); -- "Wildfire"
     AddD(d, 200696, tdt.Unit, 17541, 4, t[11], t[12]); -- "Flow"
 end
 
