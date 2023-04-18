@@ -34,14 +34,16 @@ end
 
 function KrowiAF_AchievementButton_OnShow(self)
 	self:RegisterEvent("ACHIEVEMENT_EARNED");
+	self:RegisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED");
 end
 
 function KrowiAF_AchievementButton_OnHide(self)
 	self:UnregisterEvent("ACHIEVEMENT_EARNED");
+	self:UnregisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED");
 end
 
 function KrowiAF_AchievementButton_OnEvent(self, event, ...)
-	if event ~= "ACHIEVEMENT_EARNED" then
+	if event ~= "ACHIEVEMENT_EARNED" and event ~= "TRACKED_ACHIEVEMENT_LIST_CHANGED" then
 		return;
 	end
 	if not self.Achievement then
@@ -53,8 +55,12 @@ function KrowiAF_AchievementButton_OnEvent(self, event, ...)
 	end
 
 	local achievement = self.Achievement;
-	self.Achievement = nil;
-	self:Update(achievement);
+	if event ~= "ACHIEVEMENT_EARNED" then
+		self.Achievement = nil;
+		self:Update(achievement);
+	elseif event ~= "TRACKED_ACHIEVEMENT_LIST_CHANGED" then
+		self:SetAsTracked(IsTrackedAchievement(achievement.Id));
+	end
 end
 
 function KrowiAF_AchievementButtonExtraIcon_OnEnter(self)

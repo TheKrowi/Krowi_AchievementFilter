@@ -502,6 +502,8 @@ function KrowiAF_AchievementButtonMixin:ShowTooltip()
 end
 
 function KrowiAF_AchievementButtonMixin:ToggleTracking()
+	self:UnregisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED");
+
 	local id = self.Achievement.Id;
 	if self.Achievement.IsTracked then
 		RemoveTrackedAchievement(id);
@@ -525,6 +527,8 @@ function KrowiAF_AchievementButtonMixin:ToggleTracking()
 
 	self:SetAsTracked(true);
 	AddTrackedAchievement(id);
+
+	self:RegisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED");
 
 	return true;
 end

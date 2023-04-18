@@ -9,3 +9,4 @@
 
 ### Fixed
 - When GW2 UI skin is enable, the right click menu button (if shown) is now also skinned
+- When (un)tracking achievements while the achievement is visible in the achievement window, the tracked state of the achievement now also updated
