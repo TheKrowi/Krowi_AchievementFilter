@@ -1,4 +1,4 @@
--- [[ Exported at 2023-04-13 13-02-22 ]] --
+-- [[ Exported at 2023-04-21 09-46-20 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -5491,6 +5491,7 @@ function exportedCategories.Load(a)
     A(t[1342], a[16291]); -- An Ancient Awakening
     A(t[1342], a[16292]); -- Mastering the Waygates
     A(t[1342], a[16808]); -- Friend of the Dragon Isles
+    A(t[1342], a[17739]); -- Embers of Neltharion
     t[1343] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[1341], t[1343]);
     A(t[1343], a[16761]); -- Dragon Isles Explorer
@@ -5503,6 +5504,7 @@ function exportedCategories.Load(a)
     A(t[1343], a[17830]); -- Stones Can't Fly!
     A(t[1343], a[17977]); -- Stones Can Try To Fly!
     A(t[1343], a[17978]); -- Stones Can Fly!
+    A(t[1343], a[17560]); -- Ancient Stones of the Dragon Isles
     t[1390] = c:New(k.GetCategoryInfoTitle(95), true); -- Player vs. Player
     C(t[1341], t[1390]);
     A(t[1390], a[16589]); -- Malicia's Challenge
@@ -5543,6 +5545,7 @@ function exportedCategories.Load(a)
     t[1362] = c:New(k.GetMapName(2112)); -- Valdrakken
     C(t[1228], t[1362]);
     A(t[1362], a[16556]); -- Great Gourmand of The Ruby Feast
+    A(t[1362], a[17734]); -- Active Listening Skills
     t[1232] = c:New(k.GetMapName(2022)); -- The Waking Shores
     C(t[1228], t[1232]);
     t[1237] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
@@ -5615,6 +5618,7 @@ function exportedCategories.Load(a)
     A(t[1238], a[16405]); -- Sojourner of Ohn'ahran Plains
     A(t[1238], a[16574]); -- Sleeping on the Job
     A(t[1238], a[17546]); -- A New Beginning
+    A(t[1238], a[17735]); -- We Didn't Start the Fire
     t[1243] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[1233], t[1243]);
     A(t[1243], a[16457]); -- Explore the Ohn'ahran Plains
@@ -5866,6 +5870,8 @@ function exportedCategories.Load(a)
     t[1414] = c:New(k.GetMapName(2133)); -- Zaralek Cavern
     C(t[1228], t[1414]);
     A(t[1414], a[17785]); -- "Que Zara(lek), Zara(lek)"
+    A(t[1414], a[17841]); -- Pyramid Scheme
+    A(t[1414], a[18271]); -- He'sSss All Mine
     t[1415] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
     C(t[1414], t[1415]);
     t[1416] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
@@ -5876,10 +5882,21 @@ function exportedCategories.Load(a)
     A(t[1416], a[17741]); -- Slow and Steady Wins the Race
     A(t[1416], a[17781]); -- The Smell of Money
     A(t[1416], a[17567]); -- Ancient Stones of Zaralek
+    A(t[1416], a[17832]); -- Sniffen Around
+    A(t[1416], a[17833]); -- Sniffen Sage
+    A(t[1416], a[17878]); -- Me Want Bite
+    A(t[1416], a[18100]); -- Cavern Clawbbering
+    A(t[1416], a[18255]); -- Proof of Myrrit
+    A(t[1416], a[18257]); -- Can You Dig It?
+    A(t[1416], a[18284]); -- A Niffen's Best Buddy
+    A(t[1416], a[18361]); -- To All the Squirrels Burrowed Beneath
     t[1417] = c:New(k.GetCategoryInfoTitle(95), true); -- Player vs. Player
     C(t[1414], t[1417]);
+    A(t[1417], a[17851]); -- Tour of Duty: Zaralek Cavern
+    A(t[1417], a[17852]); -- Elemental Conjuror
     t[1418] = c:New(k.GetCategoryInfoTitle(201), true); -- Reputation
     C(t[1414], t[1418]);
+    A(t[1418], a[17763]); -- There's No Place Like Loamm
     t[1427] = c:New(k.L["Dragon Glyphs"], true); -- Dragon Glyphs
     C(t[1414], t[1427]);
     A(t[1427], a[17510]); -- Dragon Glyphs: Glimmerogg
@@ -6050,6 +6067,7 @@ function exportedCategories.Load(a)
     A(t[1420], a[18162]); -- "Mythic: Aberrus, the Shadowed Crucible"
     A(t[1420], a[18253]); -- Ahead of the Curve: Scalecommander Sarkareth
     A(t[1420], a[18254]); -- Cutting Edge: Scalecommander Sarkareth
+    A(t[1420], a[17765]); -- What We Wear In The Shadowflame
     t[1421] = c:New(k.L["Glory"]); -- Glory
     C(t[1420], t[1421]);
     A(t[1421], a[18229]); -- Cosplate
@@ -6109,6 +6127,7 @@ function exportedCategories.Load(a)
     A(t[1268], a[15795]); -- Together in the Skies
     A(t[1268], a[15797]); -- An Azure Ally
     A(t[1268], a[15796]); -- Cliffside Companion
+    A(t[1268], a[17779]); -- A Serpentine Discovery
     t[1302] = c:New(k.GetMapName(2022), true); -- The Waking Shores
     C(t[1268], t[1302]);
     A(t[1302], a[15991]); -- Dragon Glyphs: Crumbling Life Archway
@@ -6771,6 +6790,7 @@ function exportedCategories.Load(a)
     A(t[1391], a[16632]); -- Dragon Isles Fisherman
     A(t[1391], a[16683]); -- In Tyr's Footsteps
     A(t[1391], a[17207]); -- Discombobberlated
+    A(t[1391], a[17736]); -- The Gift of Cheese
     t[1163] = c:New(k.GetCategoryInfoTitle(201)); -- Reputation
     C(t[952], t[1163]);
     A(t[1163], a[522]); -- Somebody Likes Me
@@ -7442,6 +7462,7 @@ function exportedCategories.Load(a)
     t[1425] = c:New(k.L["Fyrakk Assault"]); -- Fyrakk Assault
     C(t[1358], t[1425]);
     A(t[1425], a[17506]); -- Still Standing in the Fire
+    A(t[1425], a[17735]); -- We Didn't Start the Fire
     t[1428] = c:New(k.L["Researchers Under Fire"]); -- Researchers Under Fire
     C(t[1358], t[1428]);
     t[1429] = c:New(k.L["Zaqali Ruin Investigation"]); -- Zaqali Ruin Investigation
@@ -8974,6 +8995,7 @@ function exportedCategories.Load(a)
     A(t[1104], a[15102]); -- It's Off the Chain!
     A(t[1104], a[15408]); -- Cosmic Chic
     A(t[1104], a[16764]); -- Crimson Carpet Fashion
+    A(t[1104], a[18249]); -- Obsidian Tie Event
     t[1105] = c:New(k.L["Realm First!"]); -- Realm First!
     C(t[971], t[1105]);
     t[1106] = c:New(k.L["Leveling"]); -- Leveling
@@ -9151,6 +9173,7 @@ function exportedCategories.Load(a)
     t[1400] = c:New(k.L["Diablo IV"], true); -- Diablo IV
     C(t[1117], t[1400]);
     A(t[1400], a[15640]); -- Return to Darkness
+    A(t[1400], a[18258]); -- Little Lord of Lies
     t[1121] = c:New(k.L["Overwatch"], true); -- Overwatch
     C(t[1117], t[1121]);
     A(t[1121], a[11064]); -- Collector's Edition: Baby Winston

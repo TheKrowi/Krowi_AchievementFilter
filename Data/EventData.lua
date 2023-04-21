@@ -33,11 +33,11 @@ local function ProcessDayEvent(dayEvent)
     local eventHasStarted = startTime <= time();
     local eventHasEnded = endTime <= time();
     if eventHasStarted and not eventHasEnded then
-        addon.Diagnostics.Print("Event active", calendarEvent.Id, dayEvent.title, startTime, time(), endTime, eventHasStarted, eventHasEnded);
+        -- addon.Diagnostics.Print("Event active", calendarEvent.Id, dayEvent.title, startTime, time(), endTime, eventHasStarted, eventHasEnded);
         calendarEvent.EventDetails = {EndTime = endTime, Name = dayEvent.title};
         tinsert(activeEvents, calendarEvent);
     else
-        addon.Diagnostics.Print("Event not active", calendarEvent.Id, startTime, time(), endTime, eventHasStarted, eventHasEnded);
+        -- addon.Diagnostics.Print("Event not active", calendarEvent.Id, startTime, time(), endTime, eventHasStarted, eventHasEnded);
     end
 end
 
@@ -73,7 +73,7 @@ local function GetActiveWorldEvents()
     for _, event in next, data.WorldEvents do
         event.EventDetails = eventData.GetEventDetails(event);
         if event.EventDetails then
-            addon.Diagnostics.Print("Event active", event.Id, event.EventDetails.Name, time(), event.EventDetails.EndTime);
+            -- addon.Diagnostics.Print("Event active", event.Id, event.EventDetails.Name, time(), event.EventDetails.EndTime);
             tinsert(activeEvents, event);
         end
     end
@@ -99,7 +99,7 @@ function eventData.GetEventDetails(event)
 end
 
 function eventData.GetActiveEvents(refresh)
-    addon.Diagnostics.Print("GetActiveEvents", activeEvents ~= nil, refresh, activeEvents ~= nil and not refresh);
+    -- addon.Diagnostics.Print("GetActiveEvents", activeEvents ~= nil, refresh, activeEvents ~= nil and not refresh);
     if activeEvents ~= nil and not refresh then
         return activeEvents;
     end

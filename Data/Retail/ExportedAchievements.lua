@@ -1,4 +1,4 @@
--- [[ Exported at 2023-04-13 13-00-36 ]] --
+-- [[ Exported at 2023-04-21 09-46-41 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -8685,18 +8685,25 @@ function exportedAchievements.Load(a, t)
     a[17541] = b:New(17541); -- Global Swarming
     a[17543] = b:New(17543); -- You Know How to Reach Me
     a[17546] = b:New(17546); -- A New Beginning
+    a[17560] = b:New(17560); -- Ancient Stones of the Dragon Isles
     a[17561] = b:New(17561); -- Ancient Stones of the Waking Shores
     a[17562] = b:New(17562); -- Ancient Stones of the Ohn'ahran Plains
     a[17563] = b:New(17563); -- Ancient Stones of the Azure Span
     a[17564] = b:New(17564); -- Ancient Stones of Thaldraszus
     a[17567] = b:New(17567); -- Ancient Stones of Zaralek
+    a[17734] = b:New(17734); -- Active Listening Skills
+    a[17735] = b:New(17735); -- We Didn't Start the Fire
+    a[17736] = b:New(17736); -- The Gift of Cheese
     a[17737] = b:New(17737, fac.Alliance); -- Flame Warden of the Dragon Isles
     a[17738] = b:New(17738, fac.Horde); -- Flame Keeper of the Dragon Isles
+    a[17739] = b:New(17739); -- Embers of Neltharion
     a[17740] = b:New(17740); -- Gladiator: Dragonflight Season 2
     O(a[17740], "From", "PvP Season", 35, "Until", "PvP Season", 35);
     a[17741] = b:New(17741); -- Slow and Steady Wins the Race
+    a[17763] = b:New(17763); -- There's No Place Like Loamm
     a[17764] = b:New(17764); -- Obsidian Gladiator: Dragonflight Season 2
     O(a[17764], "From", "PvP Season", 35, "Until", "PvP Season", 35);
+    a[17765] = b:New(17765); -- What We Wear In The Shadowflame
     a[17766] = b:New(17766); -- Explore Zaralek Cavern
     a[17767] = b:New(17767); -- Obsidian Legend: Dragonflight Season 2
     O(a[17767], "From", "PvP Season", 35, "Until", "PvP Season", 35);
@@ -8706,6 +8713,7 @@ function exportedAchievements.Load(a, t)
     O(a[17772], "From", "PvP Season", 35, "Until", "PvP Season", 35);
     a[17778] = b:New(17778); -- Obsidian Gladiator's Slitherdrake
     O(a[17778], "From", "PvP Season", 35, "Until", "PvP Season", 35);
+    a[17779] = b:New(17779); -- A Serpentine Discovery
     a[17781] = b:New(17781); -- The Smell of Money
     a[17783] = b:New(17783); -- Adventurer of Zaralek Cavern
     a[17785] = b:New(17785); -- "Que Zara(lek), Zara(lek)"
@@ -8729,6 +8737,9 @@ function exportedAchievements.Load(a, t)
     a[17830] = b:New(17830); -- Stones Can't Fly!
     a[17831] = b:New(17831); -- Elite: Dragonflight Season 2
     O(a[17831], "From", "PvP Season", 35, "Until", "PvP Season", 35);
+    a[17832] = b:New(17832); -- Sniffen Around
+    a[17833] = b:New(17833); -- Sniffen Sage
+    a[17841] = b:New(17841); -- Pyramid Scheme
     a[17842] = b:New(17842); -- Dragonflight Keystone Explorer: Season Two
     O(a[17842], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
     a[17843] = b:New(17843); -- Dragonflight Keystone Conqueror: Season Two
@@ -8747,7 +8758,10 @@ function exportedAchievements.Load(a, t)
     O(a[17849], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
     a[17850] = b:New(17850); -- Keystone Hero: Neltharion's Lair
     O(a[17850], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
+    a[17851] = b:New(17851); -- Tour of Duty: Zaralek Cavern
+    a[17852] = b:New(17852); -- Elemental Conjuror
     a[17877] = b:New(17877); -- "We'll Never See That Again, Surely"
+    a[17878] = b:New(17878); -- Me Want Bite
     a[17879] = b:New(17879); -- Zaralek Cavern Safari
     a[17880] = b:New(17880); -- Battle in Zaralek Cavern
     a[17881] = b:New(17881); -- Aquatic Battler of Zaralek Cavern
@@ -8765,6 +8779,7 @@ function exportedAchievements.Load(a, t)
     a[17978] = b:New(17978); -- Stones Can Fly!
     a[18027] = b:New(18027); -- Dragonflight Season 2 Master
     O(a[18027], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
+    a[18100] = b:New(18100); -- Cavern Clawbbering
     a[18149] = b:New(18149); -- Objects in Transit May Shatter
     a[18150] = b:New(18150); -- Zaralek Cavern Glyph Hunter
     a[18151] = b:New(18151); -- "Mythic: Kazzara, the Hellforged"
@@ -8802,14 +8817,21 @@ function exportedAchievements.Load(a, t)
     a[18228] = b:New(18228); -- Are You Even Trying?
     a[18229] = b:New(18229); -- Cosplate
     a[18230] = b:New(18230); -- Whac-A-Swog
+    a[18249] = b:New(18249); -- Obsidian Tie Event
     a[18251] = b:New(18251); -- Glory of the Aberrus Raider
     a[18253] = b:New(18253); -- Ahead of the Curve: Scalecommander Sarkareth
     O(a[18253], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
     a[18254] = b:New(18254); -- Cutting Edge: Scalecommander Sarkareth
     O(a[18254], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
+    a[18255] = b:New(18255); -- Proof of Myrrit
+    a[18257] = b:New(18257); -- Can You Dig It?
+    a[18258] = b:New(18258); -- Little Lord of Lies
+    a[18271] = b:New(18271); -- He'sSss All Mine
+    a[18284] = b:New(18284); -- A Niffen's Best Buddy
+    a[18361] = b:New(18361); -- To All the Squirrels Burrowed Beneath
 
     local aIDs = {};
-    for i = 1, 18254 do
+    for i = 1, 18361 do
         if a[i] ~= nil then
             tinsert(aIDs, i);
         end
