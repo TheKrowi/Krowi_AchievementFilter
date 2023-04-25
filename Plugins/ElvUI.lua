@@ -18,13 +18,18 @@ local function SkinTabs(skins)
 end
 
 do -- [[ Categories ]]
-    local function OnCategoriesFrameViewAcquiredFrame(frame, skins)
+    local function OnCategoriesFrameViewAcquiredFrame(frame, engine, skins)
         frame:StripTextures(true);
         skins:HandleFrame(frame, true, nil, 0, -1);
         frame:StyleButton();
+
+        frame:SetHighlightTexture(engine.media.normTex);
+        local hl = frame:GetHighlightTexture();
+        hl:SetVertexColor(0.8, 0.8, 0.8, 0.25);
+        hl:SetInside(frame.backdrop);
     end
 
-    local function SkinCategoriesFrame(frame, skins)
+    local function SkinCategoriesFrame(frame, engine, skins)
         -- Scrollbar
         skins:HandleTrimScrollBar(frame.ScrollBar);
 
@@ -37,7 +42,7 @@ do -- [[ Categories ]]
 
         -- Buttons
         frame.ScrollView:RegisterCallback(ScrollBoxListViewMixin.Event.OnAcquiredFrame, function(self, _frame, elementData, new)
-            OnCategoriesFrameViewAcquiredFrame(_frame, skins);
+            OnCategoriesFrameViewAcquiredFrame(_frame, engine, skins);
         end, frame);
     end
     elvUI.SkinCategoriesFrame = SkinCategoriesFrame;
@@ -657,7 +662,7 @@ local engine, skins, tooltip;
 local function SkinAll()
     if KrowiAF_SavedData.ElvUISkin.Achievements then
         SkinTabs(skins);
-        elvUI.SkinCategoriesFrame(addon.GUI.CategoriesFrame, skins);
+        elvUI.SkinCategoriesFrame(addon.GUI.CategoriesFrame, engine, skins);
         SkinGameTooltipProgressBar(addon.GUI.GameTooltipProgressBar, engine);
         elvUI.SkinAchievementsFrame(addon.GUI.AchievementsFrame, engine, skins);
         elvUI.SkinAchievementSummary(addon.GUI.SummaryFrame, engine, skins);

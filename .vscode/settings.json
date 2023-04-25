@@ -451,7 +451,8 @@
         "ValidateFramePosition",
         "tCompare",
         "CreateBaseTooltipInfo",
-        "KrowiAF_FloatingAchievementTooltip"
+        "KrowiAF_FloatingAchievementTooltip",
+        "SetupButtonHighlight"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
