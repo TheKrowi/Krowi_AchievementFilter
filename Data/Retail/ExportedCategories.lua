@@ -1,4 +1,4 @@
--- [[ Exported at 2023-04-21 09-46-20 ]] --
+-- [[ Exported at 2023-04-28 15-27-31 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -5939,6 +5939,7 @@ function exportedCategories.Load(a)
     A(t[1229], a[17845]); -- Dragonflight Keystone Hero: Season Two
     A(t[1229], a[17846]); -- Smoldering Hero: Dragonflight Season 2
     A(t[1229], a[18027]); -- Dragonflight Season 2 Master
+    A(t[1229], a[18380]); -- Dragonflight Season 2 Hero
     A(t[1229], a[17830]); -- Stones Can't Fly!
     A(t[1229], a[17977]); -- Stones Can Try To Fly!
     A(t[1229], a[17978]); -- Stones Can Fly!
@@ -6068,6 +6069,8 @@ function exportedCategories.Load(a)
     A(t[1420], a[18253]); -- Ahead of the Curve: Scalecommander Sarkareth
     A(t[1420], a[18254]); -- Cutting Edge: Scalecommander Sarkareth
     A(t[1420], a[17765]); -- What We Wear In The Shadowflame
+    A(t[1420], a[18027]); -- Dragonflight Season 2 Master
+    A(t[1420], a[18380]); -- Dragonflight Season 2 Hero
     t[1421] = c:New(k.L["Glory"]); -- Glory
     C(t[1420], t[1421]);
     A(t[1421], a[18229]); -- Cosplate
@@ -8352,6 +8355,7 @@ function exportedCategories.Load(a)
     A(t[1413], a[17801]); -- Legend: Dragonflight Season 2
     A(t[1413], a[17767]); -- Obsidian Legend: Dragonflight Season 2
     A(t[1413], a[18027]); -- Dragonflight Season 2 Master
+    A(t[1413], a[18380]); -- Dragonflight Season 2 Hero
     t[1368] = c:New(k.L["Tracking Achievements"]); -- Tracking Achievements
     C(t[955], t[1368]);
     t[1368].HasFlexibleData = true;
@@ -8915,6 +8919,7 @@ function exportedCategories.Load(a)
     C(t[971], t[1101]);
     A(t[1101], a[11761]); -- Azeroth's Next Top Model
     A(t[1101], a[17119]); -- Deep Cuts From the Vault
+    A(t[1101], a[18380]); -- Dragonflight Season 2 Hero
     t[1102] = c:New(k.GetCategoryInfoTitle(15246)); -- Collections
     C(t[1101], t[1102]);
     A(t[1102], a[10681]); -- Fashionista: Head

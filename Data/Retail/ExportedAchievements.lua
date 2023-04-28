@@ -1,4 +1,4 @@
--- [[ Exported at 2023-04-21 09-46-41 ]] --
+-- [[ Exported at 2023-04-28 15-22-19 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -8778,7 +8778,6 @@ function exportedAchievements.Load(a, t)
     a[17977] = b:New(17977); -- Stones Can Try To Fly!
     a[17978] = b:New(17978); -- Stones Can Fly!
     a[18027] = b:New(18027); -- Dragonflight Season 2 Master
-    O(a[18027], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
     a[18100] = b:New(18100); -- Cavern Clawbbering
     a[18149] = b:New(18149); -- Objects in Transit May Shatter
     a[18150] = b:New(18150); -- Zaralek Cavern Glyph Hunter
@@ -8829,9 +8828,10 @@ function exportedAchievements.Load(a, t)
     a[18271] = b:New(18271); -- He'sSss All Mine
     a[18284] = b:New(18284); -- A Niffen's Best Buddy
     a[18361] = b:New(18361); -- To All the Squirrels Burrowed Beneath
+    a[18380] = b:New(18380); -- Dragonflight Season 2 Hero
 
     local aIDs = {};
-    for i = 1, 18361 do
+    for i = 1, 18380 do
         if a[i] ~= nil then
             tinsert(aIDs, i);
         end
