@@ -20,6 +20,14 @@ end
 function KrowiAF_FloatingAchievementTooltipMixin:ItemRefSetHyperlink(link)
 	self:SetPadding(0, 0);
 	self:SetHyperlink(link);
+	if addon.IsWrathClassic then
+		local _, id = strsplit(":", link);
+		self.info = {
+			tooltipData = {
+				id = tonumber(id)
+			}
+		};
+	end
 	local title = _G[self:GetName().."TextLeft1"];
 	if title and title:GetRight() - self.CloseButton:GetLeft() > 0 then
 		local xPadding = 16;
@@ -27,15 +35,17 @@ function KrowiAF_FloatingAchievementTooltipMixin:ItemRefSetHyperlink(link)
 	end
 end
 
-function KrowiAF_FloatingAchievementTooltipMixin:SetHyperlink(...)
-	-- it's the same hyperlink as current data, close instead
-	if self.info and self.info.getterName == "GetHyperlink" then
-		local getterArgs = {...};
-		if tCompare(self.info.getterArgs, getterArgs) then
-			self:Hide();
-			return false;
+if not addon.IsWrathClassic then
+	function KrowiAF_FloatingAchievementTooltipMixin:SetHyperlink(...)
+		-- it's the same hyperlink as current data, close instead
+		if self.info and self.info.getterName == "GetHyperlink" then
+			local getterArgs = {...};
+			if tCompare(self.info.getterArgs, getterArgs) then
+				self:Hide();
+				return false;
+			end
 		end
+		local tooltipInfo = CreateBaseTooltipInfo("GetHyperlink", ...);
+		return self:ProcessInfo(tooltipInfo);
 	end
-	local tooltipInfo = CreateBaseTooltipInfo("GetHyperlink", ...);
-	return self:ProcessInfo(tooltipInfo);
 end
