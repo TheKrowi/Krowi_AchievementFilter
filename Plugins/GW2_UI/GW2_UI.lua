@@ -670,7 +670,7 @@ do -- [[ Summary ]]
             fill:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/gwstatusbar");
         end
         statusBar:AdjustOffsets(8, 8);
-        statusBar:GwCreateBackdrop(GW2_ADDON.constBackdropFrameColorBorder, true);
+        statusBar:GwCreateBackdrop(GW2_ADDON.BackdropTemplates.DefaultWithColorableBorder, true);
         statusBar.backdrop:SetPoint("TOPLEFT", 13, -13);
         statusBar.backdrop:SetPoint("BOTTOMRIGHT", -11, 13);
         statusBar.backdrop:SetBackdropBorderColor(0, 0, 0, 1);

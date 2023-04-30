@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 - When GW2 UI skin is enable, the right click menu button (if shown) is now also skinned
 - When (un)tracking achievements while the achievement is visible in the achievement window, the tracked state of the achievement now also updated
 - Wildfire for Global Swarming now has the correct npc id
+- When GW2 UI skin is enable, the summary status bars now have the proper background
 
 ## 55.0 - 2023-04-01
 ### Added
