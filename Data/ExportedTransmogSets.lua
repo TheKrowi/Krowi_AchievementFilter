@@ -1,4 +1,4 @@
--- [[ Exported at 2022-11-30 04-31-33 ]] --
+-- [[ Exported at 2023-05-02 19-57-07 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1799,5 +1799,57 @@ function exportedTransmogSets.Load(t)
     t[2747] = tSet:New(2747, 3592); -- Life-Bound
     t[2748] = tSet:New(2748, 35); -- Dreamfire
     t[2749] = tSet:New(2749, 35); -- Primal Molten
+    t[2858] = tSet:New(2858, 1); -- Irons of the Onyx Crucible
+    t[2859] = tSet:New(2859, 2); -- Heartfire Sentinel's Authority
+    t[2860] = tSet:New(2860, 256); -- Sinister Savant's Cursethreads
+    t[2861] = tSet:New(2861, 64); -- Runes of the Cinderwolf
+    t[2862] = tSet:New(2862, 8); -- Lurking Specter's Shadeweave
+    t[2863] = tSet:New(2863, 16); -- The Furnace Seraph's Verdict
+    t[2864] = tSet:New(2864, 512); -- Fangs of the Vermillion Forge
+    t[2865] = tSet:New(2865, 128); -- Underlight Conjurer's Brilliance
+    t[2866] = tSet:New(2866, 4); -- Ashen Predator's Scaleform
+    t[2867] = tSet:New(2867, 4096); -- Legacy of Obsidian Secrets
+    t[2868] = tSet:New(2868, 1024); -- Strands of the Autumn Blaze
+    t[2869] = tSet:New(2869, 2048); -- Kinslayer's Burdens
+    t[2870] = tSet:New(2870, 32); -- Lingering Phantom's Encasement
+    t[2871] = tSet:New(2871, 2); -- Heartfire Sentinel's Authority
+    t[2872] = tSet:New(2872, 2); -- Heartfire Sentinel's Authority
+    t[2873] = tSet:New(2873, 2); -- Heartfire Sentinel's Authority
+    t[2874] = tSet:New(2874, 256); -- Sinister Savant's Cursethreads
+    t[2875] = tSet:New(2875, 256); -- Sinister Savant's Cursethreads
+    t[2876] = tSet:New(2876, 256); -- Sinister Savant's Cursethreads
+    t[2877] = tSet:New(2877, 64); -- Runes of the Cinderwolf
+    t[2878] = tSet:New(2878, 64); -- Runes of the Cinderwolf
+    t[2879] = tSet:New(2879, 64); -- Runes of the Cinderwolf
+    t[2880] = tSet:New(2880, 8); -- Lurking Specter's Shadeweave
+    t[2881] = tSet:New(2881, 8); -- Lurking Specter's Shadeweave
+    t[2882] = tSet:New(2882, 8); -- Lurking Specter's Shadeweave
+    t[2883] = tSet:New(2883, 16); -- The Furnace Seraph's Verdict
+    t[2884] = tSet:New(2884, 16); -- The Furnace Seraph's Verdict
+    t[2885] = tSet:New(2885, 16); -- The Furnace Seraph's Verdict
+    t[2886] = tSet:New(2886, 512); -- Fangs of the Vermillion Forge
+    t[2887] = tSet:New(2887, 512); -- Fangs of the Vermillion Forge
+    t[2888] = tSet:New(2888, 512); -- Fangs of the Vermillion Forge
+    t[2889] = tSet:New(2889, 4); -- Ashen Predator's Scaleform
+    t[2890] = tSet:New(2890, 4); -- Ashen Predator's Scaleform
+    t[2891] = tSet:New(2891, 4); -- Ashen Predator's Scaleform
+    t[2892] = tSet:New(2892, 1024); -- Strands of the Autumn Blaze
+    t[2893] = tSet:New(2893, 1024); -- Strands of the Autumn Blaze
+    t[2894] = tSet:New(2894, 1024); -- Strands of the Autumn Blaze
+    t[2895] = tSet:New(2895, 32); -- Lingering Phantom's Encasement
+    t[2896] = tSet:New(2896, 32); -- Lingering Phantom's Encasement
+    t[2897] = tSet:New(2897, 32); -- Lingering Phantom's Encasement
+    t[2898] = tSet:New(2898, 1); -- Irons of the Onyx Crucible
+    t[2899] = tSet:New(2899, 1); -- Irons of the Onyx Crucible
+    t[2900] = tSet:New(2900, 1); -- Irons of the Onyx Crucible
+    t[2901] = tSet:New(2901, 2048); -- Kinslayer's Burdens
+    t[2902] = tSet:New(2902, 2048); -- Kinslayer's Burdens
+    t[2903] = tSet:New(2903, 2048); -- Kinslayer's Burdens
+    t[2904] = tSet:New(2904, 4096); -- Legacy of Obsidian Secrets
+    t[2905] = tSet:New(2905, 4096); -- Legacy of Obsidian Secrets
+    t[2906] = tSet:New(2906, 4096); -- Legacy of Obsidian Secrets
+    t[2907] = tSet:New(2907, 128); -- Underlight Conjurer's Brilliance
+    t[2908] = tSet:New(2908, 128); -- Underlight Conjurer's Brilliance
+    t[2909] = tSet:New(2909, 128); -- Underlight Conjurer's Brilliance
 end
 

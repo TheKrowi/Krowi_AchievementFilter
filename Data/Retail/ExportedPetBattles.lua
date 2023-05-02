@@ -1,4 +1,4 @@
--- [[ Exported at 2023-03-25 08-59-21 ]] --
+-- [[ Exported at 2023-05-02 22-21-39 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1836,6 +1836,112 @@ function exportedPetBattles.Load(m)
     AddCEL(m[17541], 17541, 2, url .. "Encounter/1514");
     AddCEL(m[17541], 17541, 3, url .. "Encounter/1510");
     AddCEL(m[17541], 17541, 4, url .. "Encounter/1518");
+    m[17880] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Section/97"); -- Battle in Zaralek Cavern
+    AddCEL(m[17880], 17880, 1, url .. "Encounter/1526");
+    AddCEL(m[17880], 17880, 2, url .. "Encounter/1527");
+    AddCEL(m[17880], 17880, 3, url .. "Encounter/1528");
+    AddCEL(m[17880], 17880, 4, url .. "Encounter/1529");
+    m[17881] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Encounter/1562"); -- Aquatic Battler of Zaralek Cavern
+    AddCEL(m[17881], 17881, 1, url .. "Encounter/1562");
+    AddCEL(m[17881], 17881, 2, url .. "Encounter/1563");
+    AddCEL(m[17881], 17881, 3, url .. "Encounter/1564");
+    AddCEL(m[17881], 17881, 4, url .. "Encounter/1565");
+    m[17882] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Encounter/1558"); -- Beast Battler of Zaralek Cavern
+    AddCEL(m[17882], 17882, 1, url .. "Encounter/1558");
+    AddCEL(m[17882], 17882, 2, url .. "Encounter/1559");
+    AddCEL(m[17882], 17882, 3, url .. "Encounter/1560");
+    AddCEL(m[17882], 17882, 4, url .. "Encounter/1561");
+    m[17883] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Encounter/1546"); -- Critter Battler of Zaralek Cavern
+    AddCEL(m[17883], 17883, 1, url .. "Encounter/1546");
+    AddCEL(m[17883], 17883, 2, url .. "Encounter/1547");
+    AddCEL(m[17883], 17883, 3, url .. "Encounter/1548");
+    AddCEL(m[17883], 17883, 4, url .. "Encounter/1549");
+    m[17890] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Encounter/1534"); -- Dragonkin Battler of Zaralek Cavern
+    AddCEL(m[17890], 17890, 1, url .. "Encounter/1534");
+    AddCEL(m[17890], 17890, 2, url .. "Encounter/1535");
+    AddCEL(m[17890], 17890, 3, url .. "Encounter/1536");
+    AddCEL(m[17890], 17890, 4, url .. "Encounter/1537");
+    m[17904] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Encounter/1554"); -- Elemental Battler of Zaralek Cavern
+    AddCEL(m[17904], 17904, 1, url .. "Encounter/1554");
+    AddCEL(m[17904], 17904, 2, url .. "Encounter/1555");
+    AddCEL(m[17904], 17904, 3, url .. "Encounter/1556");
+    AddCEL(m[17904], 17904, 4, url .. "Encounter/1557");
+    m[17905] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Encounter/1538"); -- Flying Battler of Zaralek Cavern
+    AddCEL(m[17905], 17905, 1, url .. "Encounter/1538");
+    AddCEL(m[17905], 17905, 2, url .. "Encounter/1539");
+    AddCEL(m[17905], 17905, 3, url .. "Encounter/1540");
+    AddCEL(m[17905], 17905, 4, url .. "Encounter/1541");
+    m[17915] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Encounter/1530"); -- Humanoid Battler of Zaralek Cavern
+    AddCEL(m[17915], 17915, 1, url .. "Encounter/1530");
+    AddCEL(m[17915], 17915, 2, url .. "Encounter/1531");
+    AddCEL(m[17915], 17915, 3, url .. "Encounter/1532");
+    AddCEL(m[17915], 17915, 4, url .. "Encounter/1533");
+    m[17916] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Encounter/1550"); -- Magic Battler of Zaralek Cavern
+    AddCEL(m[17916], 17916, 1, url .. "Encounter/1550");
+    AddCEL(m[17916], 17916, 2, url .. "Encounter/1551");
+    AddCEL(m[17916], 17916, 3, url .. "Encounter/1552");
+    AddCEL(m[17916], 17916, 4, url .. "Encounter/1553");
+    m[17917] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Encounter/1566"); -- Mechanical Battler of Zaralek Cavern
+    AddCEL(m[17917], 17917, 1, url .. "Encounter/1566");
+    AddCEL(m[17917], 17917, 2, url .. "Encounter/1567");
+    AddCEL(m[17917], 17917, 3, url .. "Encounter/1568");
+    AddCEL(m[17917], 17917, 4, url .. "Encounter/1569");
+    m[17918] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Encounter/1542"); -- Undead Battler of Zaralek Caverm
+    AddCEL(m[17918], 17918, 1, url .. "Encounter/1542");
+    AddCEL(m[17918], 17918, 2, url .. "Encounter/1543");
+    AddCEL(m[17918], 17918, 3, url .. "Encounter/1544");
+    AddCEL(m[17918], 17918, 4, url .. "Encounter/1545");
+    m[17934] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Section/100"); -- Family Battler of Zaralek Cavern
+    local tempA17881 = AddCEL(m[17934], 17934, 1, url .. "Encounter/1562");
+    AddCEL(tempA17881, 17881, 1, url .. "Encounter/1562");
+    AddCEL(tempA17881, 17881, 2, url .. "Encounter/1563");
+    AddCEL(tempA17881, 17881, 3, url .. "Encounter/1564");
+    AddCEL(tempA17881, 17881, 4, url .. "Encounter/1565");
+    local tempA17882 = AddCEL(m[17934], 17934, 2, url .. "Encounter/1558");
+    AddCEL(tempA17882, 17882, 1, url .. "Encounter/1558");
+    AddCEL(tempA17882, 17882, 2, url .. "Encounter/1559");
+    AddCEL(tempA17882, 17882, 3, url .. "Encounter/1560");
+    AddCEL(tempA17882, 17882, 4, url .. "Encounter/1561");
+    local tempA17883 = AddCEL(m[17934], 17934, 3, url .. "Encounter/1546");
+    AddCEL(tempA17883, 17883, 1, url .. "Encounter/1546");
+    AddCEL(tempA17883, 17883, 2, url .. "Encounter/1547");
+    AddCEL(tempA17883, 17883, 3, url .. "Encounter/1548");
+    AddCEL(tempA17883, 17883, 4, url .. "Encounter/1549");
+    local tempA17890 = AddCEL(m[17934], 17934, 4, url .. "Encounter/1534");
+    AddCEL(tempA17890, 17890, 1, url .. "Encounter/1534");
+    AddCEL(tempA17890, 17890, 2, url .. "Encounter/1535");
+    AddCEL(tempA17890, 17890, 3, url .. "Encounter/1536");
+    AddCEL(tempA17890, 17890, 4, url .. "Encounter/1537");
+    local tempA17904 = AddCEL(m[17934], 17934, 5, url .. "Encounter/1554");
+    AddCEL(tempA17904, 17904, 1, url .. "Encounter/1554");
+    AddCEL(tempA17904, 17904, 2, url .. "Encounter/1555");
+    AddCEL(tempA17904, 17904, 3, url .. "Encounter/1556");
+    AddCEL(tempA17904, 17904, 4, url .. "Encounter/1557");
+    local tempA17905 = AddCEL(m[17934], 17934, 6, url .. "Encounter/1538");
+    AddCEL(tempA17905, 17905, 1, url .. "Encounter/1538");
+    AddCEL(tempA17905, 17905, 2, url .. "Encounter/1539");
+    AddCEL(tempA17905, 17905, 3, url .. "Encounter/1540");
+    AddCEL(tempA17905, 17905, 4, url .. "Encounter/1541");
+    local tempA17915 = AddCEL(m[17934], 17934, 7, url .. "Encounter/1530");
+    AddCEL(tempA17915, 17915, 1, url .. "Encounter/1530");
+    AddCEL(tempA17915, 17915, 2, url .. "Encounter/1531");
+    AddCEL(tempA17915, 17915, 3, url .. "Encounter/1532");
+    AddCEL(tempA17915, 17915, 4, url .. "Encounter/1533");
+    local tempA17916 = AddCEL(m[17934], 17934, 8, url .. "Encounter/1550");
+    AddCEL(tempA17916, 17916, 1, url .. "Encounter/1550");
+    AddCEL(tempA17916, 17916, 2, url .. "Encounter/1551");
+    AddCEL(tempA17916, 17916, 3, url .. "Encounter/1552");
+    AddCEL(tempA17916, 17916, 4, url .. "Encounter/1553");
+    local tempA17917 = AddCEL(m[17934], 17934, 9, url .. "Encounter/1566");
+    AddCEL(tempA17917, 17917, 1, url .. "Encounter/1566");
+    AddCEL(tempA17917, 17917, 2, url .. "Encounter/1567");
+    AddCEL(tempA17917, 17917, 3, url .. "Encounter/1568");
+    AddCEL(tempA17917, 17917, 4, url .. "Encounter/1569");
+    local tempA17918 = AddCEL(m[17934], 17934, 10, url .. "Encounter/1542");
+    AddCEL(tempA17918, 17918, 1, url .. "Encounter/1542");
+    AddCEL(tempA17918, 17918, 2, url .. "Encounter/1543");
+    AddCEL(tempA17918, 17918, 3, url .. "Encounter/1544");
+    AddCEL(tempA17918, 17918, 4, url .. "Encounter/1545");
     m[9069] = menItm:NewExtLink(addon.L["Xu-Fu's Pet Guides"], url .. "Section/12"); -- An Awfully Big Adventure
     AddCEL(m[9069], 9069, 1, url .. "Encounter/112");
     AddCEL(m[9069], 9069, 2, url .. "Encounter/92");

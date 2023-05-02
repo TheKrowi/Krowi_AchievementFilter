@@ -1,8 +1,8 @@
--- [[ Exported at 2023-04-13 13-10-20 ]] --
+-- [[ Exported at 2023-05-02 19-23-44 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2023-04-12 ]] --
+-- [[ German translation by Ta, 2023-04-22 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -620,5 +620,14 @@ L["Mouse Wheel Scroll Speed"] = "Maus Rad Scroll-Geschwindigkeit";
 L["Mouse Wheel Scroll Speed Desc"] = "Die Anzahl der {items}, die beim Klicken auf die Buttons nach oben/unten in der Scroll-Leiste oder beim Drehen des Mausrads neu angezeigt werden.";
 L["Side Window"] = "Scroll-Leiste";
 L["Categories"] = "Kategorien";
-L["Click here to view in achievement window"] = "Hier klicken, um diesen Erfolg im Erfolgs-Fenster anzuzeigen";
+L["Click here to view in achievement window"] = "Hier klicken, um im Erfolgs-Fenster anzuzeigen";
+L["Click here to view in achievements"] = "Im Erfolgs-Fenster öffnen";
+L["DF - Fyrakk Assault"] = "DF - Angriffe von Fyrakk";
+L["Ohn'ahran Plains"] = "Ebenen von Ohn'ahra";
+L["Azure Span"] = "Das Azurblaue Gebirge";
+L["DF - Researchers Under Fire"] = "DF - Forscher unter Feuer";
+L["Titan Lockdown: Soon"] = "Titanenabriegelung: Bald";
+L["Zaqali Ruin Investigation: Soon"] = "Zaqaliruinen: Bald";
+L["Titan Lockdown: Active"] = "Titanenabriegelung: Aktiv";
+L["Zaqali Ruin Investigation: Active"] = "Zaqaliruinen: Aktiv";
 

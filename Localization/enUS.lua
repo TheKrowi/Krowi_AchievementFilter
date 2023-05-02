@@ -1,4 +1,4 @@
--- [[ Exported at 2023-04-13 13-10-20 ]] --
+-- [[ Exported at 2023-05-02 19-23-44 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -621,7 +621,7 @@ L["Mouse Wheel Scroll Speed Desc"] = "The number of {items} that will be scrolle
 L["Side Window"] = "Side Window";
 L["Categories"] = "Categories";
 L["Click here to view in achievement window"] = "Click here to view in achievement window";
-L["Click here to view in achievement"] = "Click here to view in achievement";
+L["Click here to view in achievements"] = "Click here to view in achievements";
 L["DF - Fyrakk Assault"] = "DF - Fyrakk Assault";
 L["Ohn'ahran Plains"] = "Ohn'ahran Plains";
 L["Azure Span"] = "Azure Span";
