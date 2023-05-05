@@ -14,3 +14,6 @@
 - When (un)tracking achievements while the achievement is visible in the achievement window, the tracked state of the achievement now also updated
 - Wildfire for Global Swarming now has the correct npc id
 - When GW2 UI skin is enable, the summary status bars now have the proper background
+
+### Fixed (56.1)
+- The tooltip opened by clicking an achievement link from chat for example now has a a clickable link to open the achievement window like the battle pet journal does show now actually open the achievement window

@@ -36,7 +36,8 @@ function KrowiAF_FloatingAchievementTooltip_AchievementClick_OnClick(self)
         return;
     end
 
-    local id = parent.info and parent.info.tooltipData and parent.info.tooltipData.id;
+    local info = parent:GetPrimaryTooltipInfo();
+    local id = info and info.tooltipData and info.tooltipData.id;
     if not id then
         return;
     end

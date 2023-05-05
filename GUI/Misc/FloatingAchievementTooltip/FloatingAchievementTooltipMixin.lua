@@ -38,14 +38,19 @@ end
 if not addon.IsWrathClassic then
 	function KrowiAF_FloatingAchievementTooltipMixin:SetHyperlink(...)
 		-- it's the same hyperlink as current data, close instead
-		if self.info and self.info.getterName == "GetHyperlink" then
+		local info = self:GetPrimaryTooltipInfo();
+		if info and info.getterName == "GetHyperlink" then
 			local getterArgs = {...};
-			if tCompare(self.info.getterArgs, getterArgs) then
+			if tCompare(info.getterArgs, getterArgs) then
 				self:Hide();
 				return false;
 			end
 		end
 		local tooltipInfo = CreateBaseTooltipInfo("GetHyperlink", ...);
 		return self:ProcessInfo(tooltipInfo);
+	end
+else
+	function KrowiAF_FloatingAchievementTooltipMixin:GetPrimaryTooltipInfo()
+		return self.info;
 	end
 end

@@ -18,3 +18,7 @@
 <li>Wildfire for Global Swarming now has the correct npc id</li>
 <li>When GW2 UI skin is enable, the summary status bars now have the proper background</li>
 </ul>
+<p><h3>Fixed (56.1)</h3></p>
+<ul>
+<li>The tooltip opened by clicking an achievement link from chat for example now has a a clickable link to open the achievement window like the battle pet journal does show now actually open the achievement window</li>
+</ul>

@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 56.1 - 2023-05-05
+### Fixed
+- The tooltip opened by clicking an achievement link from chat for example now has a a clickable link to open the achievement window like the battle pet journal does show now actually open the achievement window
+
 ## 56.0 - 2023-05-02
 ### Added
 - Scroll speed of the categories list, achievements list, summary list and calendar side window is now adjustable
