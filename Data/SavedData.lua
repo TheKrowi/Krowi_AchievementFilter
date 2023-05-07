@@ -442,7 +442,6 @@ function FixTabs2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
     -- Choosing to reset data, cleanup and inform user
     -- Remove bad tabs from addon.Options.db.Tabs, remove duplicate KrowiAF_SavedData.TabKeys value
 
-    print(firstTime, currVersion, KrowiAF_SavedData.Fixes.FixTabs2)
     if firstTime and currVersion > "37.0" then
         KrowiAF_SavedData.Fixes.FixTabs2 = true;
         diagnostics.Debug("First time Tabs2 OK");
