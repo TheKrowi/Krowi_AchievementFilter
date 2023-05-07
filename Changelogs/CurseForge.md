@@ -22,3 +22,8 @@
 <ul>
 <li>The tooltip opened by clicking an achievement link from chat for example now has a a clickable link to open the achievement window like the battle pet journal does show now actually open the achievement window</li>
 </ul>
+<p><h3>Fixed (56.2)</h3></p>
+<ul>
+<li>Hertz Locker is marked as unobtainable</li>
+<li>Bug related to porting tabs order from older versions</li>
+</ul>
