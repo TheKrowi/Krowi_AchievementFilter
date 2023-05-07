@@ -1,59 +1,26 @@
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
 
-function KrowiAF_SelectAchievementWithCategory(achievement, category)
-	local scrollFrame = addon.GUI.AchievementsFrame.ScrollFrame;
-	local scrollBar = scrollFrame.ScrollBar;
+local function SelectAchievement(achievement)
+	local achievementsFrame = addon.GUI.AchievementsFrame;
+	local scrollBox = achievementsFrame.ScrollBox;
+	local dataProvider = scrollBox:GetDataProvider();
+	if not dataProvider then
+		return;
+	end
 
+	achievementsFrame:ForceUpdate();
+	scrollBox:ScrollToElementData(achievement, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
+	-- print("api select")
+	achievementsFrame.SelectionBehavior:SelectElementData(achievement);
+	achievementsFrame:ScrollToNearest(achievement);
+end
+
+function KrowiAF_SelectAchievementWithCategory(achievement, category)
 	KrowiAF_SelectCategory(category);
 
-	-- Select achievement
-	local shown = false;
-	local previousScrollValue;
-	local buttons;
+	SelectAchievement(achievement);
 
-	local loops, maxLoops = 0, 1000;
-
-	while not shown do
-		loops = loops + 1;
-		if loops >= maxLoops then
-			error("Oops, something went wrong. This is a known error of Krowi's Achievement Filter and I'm doing my best to fix this as quick as possible. For now, uncheck the 'Merge small categories' to reduce the change for this error to occur. Please do not report this error. Sorry for any inconvenience. - Krowi", 2);
-		end
-		buttons = scrollFrame.buttons;
-		for _, button in next, buttons do
-			if button.Achievement == achievement and math.ceil(button:GetTop()) >= math.ceil(addon.GUI.GetSafeScrollChildBottom(scrollFrame)) then
-				-- selectedAchievement = selectedTab.SelectedAchievement;
-				-- if not (selectedAchievement == achievement) then
-					button:Select(true);
-				-- end
-				shown = button;
-				break;
-			end
-		end
-		if scrollBar:IsShown() then
-			local _, maxVal = scrollBar:GetMinMaxValues();
-			if shown then
-				-- Make sure we move the correct achievement to the top, this extra bid is needed since button:Select() already moves the achievement
-				for _, button in next, buttons do
-					if button.Achievement == achievement then
-						shown = button;
-						break;
-					end
-				end
-				local newHeight = scrollBar:GetValue() + scrollFrame:GetTop() - shown:GetTop();
-				newHeight = min(newHeight, maxVal);
-				scrollBar:SetValue(newHeight);
-			else
-				local scrollValue = scrollBar:GetValue();
-				if scrollValue == maxVal or scrollValue == previousScrollValue then
-					return;
-				else
-					previousScrollValue = scrollValue;
-					HybridScrollFrame_OnMouseWheel(scrollFrame, -1);
-				end
-			end
-		end
-	end
 	achievement.AlwaysVisible = nil; -- Can be reached though vscode thinks not
 end
 
@@ -78,54 +45,33 @@ function KrowiAF_SelectAchievement(achievement)
 	if filters.Validate(tabFilters, achievement) < 0 then
 		achievement.AlwaysVisible = true;
 	end
-	addon.GUI.AchievementsFrame:ForceUpdate(true);
 
 	KrowiAF_SelectAchievementWithCategory(achievement, category);
 end
 
 function KrowiAF_SelectAchievementFromID(id)
+	if not IsAddOnLoaded("Blizzard_AchievementUI") then
+        LoadAddOn("Blizzard_AchievementUI");
+    end
+
 	local achievement = addon.Data.Achievements[id];
 	KrowiAF_SelectAchievement(achievement);
 end
 
 local function SelectCategory(category, collapsed, quick)
-	local shown = false;
-	local previousScrollValue;
-
 	local categoriesFrame = addon.GUI.CategoriesFrame;
-	local scrollFrame = categoriesFrame.ScrollFrame;
-	local scrollBar = scrollFrame.ScrollBar;
-	local buttons = scrollFrame.buttons;
+	categoriesFrame:ExpandToCategory(category);
+	categoriesFrame:Update();
 
-	while not shown do
-		for _, button in next, buttons do
-			if button.Category == category and math.ceil(button:GetBottom()) >= math.ceil(addon.GUI.GetSafeScrollChildBottom(scrollFrame)) then
-				button:Select(quick);
-				shown = button;
-				break;
-			end
-		end
-
-		local _, maxVal = scrollBar:GetMinMaxValues();
-		if shown then
-			local newHeight = scrollBar:GetValue() + scrollFrame:GetBottom() - shown:GetBottom();
-			newHeight = math.ceil(newHeight / scrollBar:GetValueStep()) * scrollBar:GetValueStep();
-			newHeight = min(newHeight, maxVal);
-			scrollBar:SetValue(newHeight);
-
-			if collapsed then
-				shown:Select(quick);
-			end
-		else
-			local scrollValue = scrollBar:GetValue();
-			if scrollValue == maxVal or scrollValue == previousScrollValue then
-				return;
-			else
-				previousScrollValue = scrollValue;
-				HybridScrollFrame_OnMouseWheel(scrollFrame, -1);
-			end
-		end
+	local scrollBox = categoriesFrame.ScrollBox;
+	local dataProvider = scrollBox:GetDataProvider();
+	if not dataProvider then
+		return;
 	end
+
+	scrollBox:ScrollToElementData(category, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
+
+	categoriesFrame:ShowSubFrame(category);
 end
 
 function KrowiAF_SelectCategory(category, collapsed)
@@ -152,13 +98,7 @@ function KrowiAF_SelectCategory(category, collapsed)
     end
 
 	-- Select category
-	for i, cat in next, categoriesTree do
-		if cat.TabName == nil then
-			if not cat.IsSelected or (cat.NotCollapsed == collapsed) or cat.HasFlexibleData then -- Issue #23: Fix -- Issue #25 Broken, Fix
-				SelectCategory(cat, collapsed, i ~= #categoriesTree); -- Issue #23: Broken
-			end
-		end
-	end
+	SelectCategory(category, collapsed, collapsed); -- Issue #23: Broken
 
 	-- Reset the forced show so when clicking away, the category will be hidden again
 	if category.NumOfAch == 0 then
@@ -198,6 +138,7 @@ end
 do --[[ KrowiAF_GetOptions ]]
 	KrowiAF_GetOptions = {};
 	function KrowiAF_GetOptions.GetTable(appName, tablePath)
+		print(appName, tablePath)
 		local tbl = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(appName, "cmd", "KROWIAF-0.0");
 		local pathParts = strsplittable(".", tablePath);
 		for _, part in next, pathParts do

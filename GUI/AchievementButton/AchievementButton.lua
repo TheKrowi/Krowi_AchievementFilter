@@ -3,13 +3,10 @@ local _, addon = ...;
 
 function KrowiAF_AchievementButton_OnLoad(self)
 	_, self.FontHeight = self.Description:GetFont();
-
-	local descriptionHeight = self.FontHeight * self.MaxDescriptionLinesCollapsed;
-	self.Description:SetHeight(descriptionHeight);
-
+	self.MaxDescriptionLinesCollapsed = min(max(1, floor(30 / self.FontHeight)), self.MaxDescriptionLinesCollapsed);
+	self.Description:SetHeight(10 * self.MaxDescriptionLinesCollapsed);
+	self.MinExpandedHeight = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT;
 	self:Collapse();
-
-	-- self:RegisterEvent("ACHIEVEMENT_EARNED");
 end
 
 function KrowiAF_AchievementButton_OnEnter(self)
@@ -21,7 +18,8 @@ end
 function KrowiAF_AchievementButton_OnLeave(self)
 	addon.GUI.AchievementsFrame.ClearHighlightedButton();
 	AchievementMeta_OnLeave(self);
-	if not self.selected then
+	local selectedTab = addon.GUI.SelectedTab;
+	if selectedTab and self.Achievement ~= selectedTab.SelectedAchievement then
 		self.Highlight:Hide();
 	end
 end
@@ -36,17 +34,19 @@ end
 
 function KrowiAF_AchievementButton_OnShow(self)
 	self:RegisterEvent("ACHIEVEMENT_EARNED");
+	self:RegisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED");
 end
 
 function KrowiAF_AchievementButton_OnHide(self)
 	self:UnregisterEvent("ACHIEVEMENT_EARNED");
+	self:UnregisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED");
 end
 
 function KrowiAF_AchievementButton_OnEvent(self, event, ...)
-	if event ~= "ACHIEVEMENT_EARNED" then
+	if event ~= "ACHIEVEMENT_EARNED" and event ~= "TRACKED_ACHIEVEMENT_LIST_CHANGED" then
 		return;
 	end
-	if not self.Achievement or not self.index then
+	if not self.Achievement then
 		return;
 	end
 	local achievementId = ...;
@@ -55,8 +55,12 @@ function KrowiAF_AchievementButton_OnEvent(self, event, ...)
 	end
 
 	local achievement = self.Achievement;
-	self.Achievement = nil;
-	self:Update(achievement, self.index);
+	if event ~= "ACHIEVEMENT_EARNED" then
+		self.Achievement = nil;
+		self:Update(achievement);
+	elseif event ~= "TRACKED_ACHIEVEMENT_LIST_CHANGED" then
+		self:SetAsTracked(IsTrackedAchievement(achievement.Id));
+	end
 end
 
 function KrowiAF_AchievementButtonExtraIcon_OnEnter(self)
@@ -92,8 +96,6 @@ function KrowiAF_AchievementButtonTracked_OnClick(self)
 end
 
 function KrowiAF_AchievementButton_Small_OnLoad(self)
-	self:TooltipBackdropOnLoad();
-
 	self.BottomLeftTsunami:Hide();
 	self.BottomRightTsunami:Hide();
 	self.TopLeftTsunami:Hide();
@@ -127,13 +129,9 @@ function KrowiAF_AchievementButton_Small_OnLoad(self)
 	if addon.Options.db.RightClickMenu.ShowButtonOnAchievement then
 		AddRightClickMenuButton(self);
 	end
-
-	KrowiAF_AchievementButton_OnLoad(self);
 end
 
 function KrowiAF_AchievementButton_Normal_OnLoad(self)
-	self:TooltipBackdropOnLoad();
-
 	self.MaxDescriptionLinesCollapsed = 3;
 	self.CollapsedHeight = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT;
 	self.ObjectivesLeftAnchor = self.Icon.Border;
@@ -141,8 +139,6 @@ function KrowiAF_AchievementButton_Normal_OnLoad(self)
 	if addon.Options.db.RightClickMenu.ShowButtonOnAchievement then
 		AddRightClickMenuButton(self);
 	end
-
-	KrowiAF_AchievementButton_OnLoad(self);
 end
 
 function KrowiAF_AchievementButton_Light_OnLoad(self)
@@ -155,6 +151,9 @@ function KrowiAF_AchievementButton_Light_OnLoad(self)
 		self.RewardBackground:Hide();
 		self.PlusMinus:Hide();
 	end);
+	self:SetScript("OnShow", nil);
+	self:SetScript("OnHide", nil);
+	self:SetScript("OnEvent", nil);
 end
 
 function KrowiAF_AchievementButton_Light_OnEnter(self)
@@ -166,7 +165,6 @@ function KrowiAF_AchievementButton_Light_OnEnter(self)
     GameTooltip:SetPoint("TOPLEFT", self, "TOPRIGHT");
     local link = GetAchievementLink(self.Achievement.Id);
     GameTooltip:SetHyperlink(link);
-    -- AchievementFrameAchievements_CheckGuildMembersTooltip(self);
     GameTooltip:Show();
     if GameTooltip:GetTop() > self:GetTop() then
         GameTooltip:ClearAllPoints();
@@ -184,7 +182,7 @@ function KrowiAF_AchievementButton_Light_OnClick(self, button, down, ignoreModif
 		if self:ProcessedModifiers(ignoreModifiers) then
 			return;
 		end
-		
+
     	KrowiAF_SelectAchievementFromID(self.Achievement.Id);
 	else
 		KrowiAF_AchievementButton_OnClick(self, button, down, ignoreModifiers);

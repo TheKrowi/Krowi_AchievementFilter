@@ -1,4 +1,4 @@
--- [[ Exported at 2023-03-20 13-40-23 ]] --
+-- [[ Exported at 2023-05-06 22-00-03 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -7114,6 +7114,7 @@ function exportedAchievements.Load(a, t)
     a[13785] = b:New(13785); -- Cutting Edge: Queen Azshara
     O(a[13785], "From", "Mythic+ Season", 3, "Until", "Mythic+ Season", 3);
     a[13789] = b:New(13789); -- Hertz Locker
+    O(a[13789], "From", "Version", "080200", "Before", "Version", "090001");
     a[13790] = b:New(13790); -- Armed for Action
     a[13791] = b:New(13791); -- Making the Mount
     a[13836] = b:New(13836); -- Feline Figurines Found
@@ -8336,6 +8337,7 @@ function exportedAchievements.Load(a, t)
     a[16427] = b:New(16427); -- Go With the Flow
     a[16428] = b:New(16428); -- Sojourner of Azure Span
     a[16429] = b:New(16429); -- Thundering Hero: Dragonflight Season 1
+    O(a[16429], "From", "Mythic+ Season", 9, "Until", "Mythic+ Season", 9);
     a[16430] = b:New(16430); -- "All Bark, All Bite"
     a[16431] = b:New(16431); -- Against the Elements
     O(a[16431], "From", "Version", "100002", "Until", "Version", "100002");
@@ -8352,7 +8354,7 @@ function exportedAchievements.Load(a, t)
     a[16447] = b:New(16447); -- What Are The Chances...
     a[16450] = b:New(16450); -- The Power is MINE!
     a[16451] = b:New(16451); -- The Ol Raszle Daszle
-    a[16452] = b:New(16452); -- Familiar Skies
+    a[16452] = b:New(16452); -- Famliar Skies
     a[16453] = b:New(16453); -- Liquid Hot Magma
     a[16456] = b:New(16456); -- Weapons of the Maruukai
     a[16457] = b:New(16457); -- Explore the Ohn'ahran Plains
@@ -8616,6 +8618,7 @@ function exportedAchievements.Load(a, t)
     a[17335] = b:New(17335); -- Airborne Tumbler
     a[17336] = b:New(17336); -- Airborne Tumbler
     a[17339] = b:New(17339); -- Legend: Dragonflight Season 1
+    O(a[17339], "From", "PvP Season", 34, "Until", "PvP Season", 34);
     a[17342] = b:New(17342); -- The Future We Make
     a[17343] = b:New(17343); -- Drop It Like It's Hot
     a[17345] = b:New(17345); -- Airborne Tumbler
@@ -8639,6 +8642,18 @@ function exportedAchievements.Load(a, t)
     a[17413] = b:New(17413); -- Door Buster
     a[17426] = b:New(17426); -- Toolbox Trouble
     a[17427] = b:New(17427); -- Winterpelt Conversationalist
+    a[17483] = b:New(17483); -- Zaralek Cavern: Bronze
+    a[17484] = b:New(17484); -- Zaralek Cavern: Silver
+    a[17485] = b:New(17485); -- Zaralek Cavern: Gold
+    a[17486] = b:New(17486); -- Zaralek Cavern Advanced: Bronze
+    a[17487] = b:New(17487); -- Zaralek Cavern Advanced: Silver
+    a[17488] = b:New(17488); -- Zaralek Cavern Advanced: Gold
+    a[17489] = b:New(17489); -- Zaralek Cavern Reverse: Bronze
+    a[17490] = b:New(17490); -- Zaralek Cavern Reverse: Silver
+    a[17491] = b:New(17491); -- Zaralek Cavern Reverse: Gold
+    a[17492] = b:New(17492); -- Zaralek Cavern Racing Completionist
+    a[17493] = b:New(17493); -- Zaralek Cavern Racing Completionist: Silver
+    a[17494] = b:New(17494); -- Zaralek Cavern Racing Completionist: Gold
     a[17496] = b:New(17496); -- Renowned Weaponsmith
     O(a[17496]);
     a[17497] = b:New(17497); -- Renowned Armorsmith
@@ -8647,7 +8662,16 @@ function exportedAchievements.Load(a, t)
     O(a[17498]);
     a[17499] = b:New(17499); -- Renowned Tailoring Specialist
     O(a[17499]);
+    a[17506] = b:New(17506); -- Still Standing in the Fire
     a[17509] = b:New(17509); -- "Every Door, Everywhere, All At Once"
+    a[17510] = b:New(17510); -- Dragon Glyphs: Glimmerogg
+    a[17511] = b:New(17511); -- Dragon Glyphs: Nal ks'kol
+    a[17512] = b:New(17512); -- Dragon Glyphs: Loamm
+    a[17513] = b:New(17513); -- Dragon Glyphs: Zaqali Caldera
+    a[17514] = b:New(17514); -- Dragon Glyphs: Slitherdrake Roost
+    a[17515] = b:New(17515); -- Dragon Glyphs: The Throughway
+    a[17516] = b:New(17516); -- Dragon Glyphs: Acidbite Ravine
+    a[17517] = b:New(17517); -- Dragon Glyphs: Aberrus Approach
     a[17524] = b:New(17524); -- Adventurer of the Forbidden Reach
     a[17525] = b:New(17525); -- Champion of the Forbidden Reach
     a[17526] = b:New(17526); -- Treasures of the Forbidden Reach
@@ -8662,9 +8686,205 @@ function exportedAchievements.Load(a, t)
     a[17541] = b:New(17541); -- Global Swarming
     a[17543] = b:New(17543); -- You Know How to Reach Me
     a[17546] = b:New(17546); -- A New Beginning
+    a[17560] = b:New(17560); -- Ancient Stones of the Dragon Isles
+    a[17561] = b:New(17561); -- Ancient Stones of the Waking Shores
+    a[17562] = b:New(17562); -- Ancient Stones of the Ohn'ahran Plains
+    a[17563] = b:New(17563); -- Ancient Stones of the Azure Span
+    a[17564] = b:New(17564); -- Ancient Stones of Thaldraszus
+    a[17567] = b:New(17567); -- Ancient Stones of Zaralek
+    a[17734] = b:New(17734); -- Active Listening Skills
+    a[17735] = b:New(17735); -- We Didn't Start the Fire
+    a[17736] = b:New(17736); -- The Gift of Cheese
+    a[17737] = b:New(17737, fac.Alliance); -- Flame Warden of the Dragon Isles
+    a[17738] = b:New(17738, fac.Horde); -- Flame Keeper of the Dragon Isles
+    a[17739] = b:New(17739); -- Embers of Neltharion
+    a[17740] = b:New(17740); -- Gladiator: Dragonflight Season 2
+    O(a[17740], "From", "PvP Season", 35, "Until", "PvP Season", 35);
+    a[17741] = b:New(17741); -- Slow and Steady Wins the Race
+    a[17763] = b:New(17763); -- There's No Place Like Loamm
+    a[17764] = b:New(17764); -- Obsidian Gladiator: Dragonflight Season 2
+    O(a[17764], "From", "PvP Season", 35, "Until", "PvP Season", 35);
+    a[17765] = b:New(17765); -- What We Wear In The Shadowflame
+    T(a[17765], t[2900]); -- Irons of the Onyx Crucible (Raid Finder)
+    T(a[17765], t[2858]); -- Irons of the Onyx Crucible (Normal)
+    T(a[17765], t[2898]); -- Irons of the Onyx Crucible (Heroic)
+    T(a[17765], t[2899]); -- Irons of the Onyx Crucible (Mythic)
+    T(a[17765], t[2873]); -- Heartfire Sentinel's Authority (Raid Finder)
+    T(a[17765], t[2859]); -- Heartfire Sentinel's Authority (Normal)
+    T(a[17765], t[2871]); -- Heartfire Sentinel's Authority (Heroic)
+    T(a[17765], t[2872]); -- Heartfire Sentinel's Authority (Mythic)
+    T(a[17765], t[2891]); -- Ashen Predator's Scaleform (Raid Finder)
+    T(a[17765], t[2866]); -- Ashen Predator's Scaleform (Normal)
+    T(a[17765], t[2889]); -- Ashen Predator's Scaleform (Heroic)
+    T(a[17765], t[2890]); -- Ashen Predator's Scaleform (Mythic)
+    T(a[17765], t[2882]); -- Lurking Specter's Shadeweave (Raid Finder)
+    T(a[17765], t[2862]); -- Lurking Specter's Shadeweave (Normal)
+    T(a[17765], t[2880]); -- Lurking Specter's Shadeweave (Heroic)
+    T(a[17765], t[2881]); -- Lurking Specter's Shadeweave (Mythic)
+    T(a[17765], t[2885]); -- The Furnace Seraph's Verdict (Raid Finder)
+    T(a[17765], t[2863]); -- The Furnace Seraph's Verdict (Normal)
+    T(a[17765], t[2883]); -- The Furnace Seraph's Verdict (Heroic)
+    T(a[17765], t[2884]); -- The Furnace Seraph's Verdict (Mythic)
+    T(a[17765], t[2897]); -- Lingering Phantom's Encasement (Raid Finder)
+    T(a[17765], t[2870]); -- Lingering Phantom's Encasement (Normal)
+    T(a[17765], t[2895]); -- Lingering Phantom's Encasement (Heroic)
+    T(a[17765], t[2896]); -- Lingering Phantom's Encasement (Mythic)
+    T(a[17765], t[2879]); -- Runes of the Cinderwolf (Raid Finder)
+    T(a[17765], t[2861]); -- Runes of the Cinderwolf (Normal)
+    T(a[17765], t[2877]); -- Runes of the Cinderwolf (Heroic)
+    T(a[17765], t[2878]); -- Runes of the Cinderwolf (Mythic)
+    T(a[17765], t[2909]); -- Underlight Conjurer's Brilliance (Raid Finder)
+    T(a[17765], t[2865]); -- Underlight Conjurer's Brilliance (Normal)
+    T(a[17765], t[2907]); -- Underlight Conjurer's Brilliance (Heroic)
+    T(a[17765], t[2908]); -- Underlight Conjurer's Brilliance (Mythic)
+    T(a[17765], t[2876]); -- Sinister Savant's Cursethreads (Raid Finder)
+    T(a[17765], t[2860]); -- Sinister Savant's Cursethreads (Normal)
+    T(a[17765], t[2874]); -- Sinister Savant's Cursethreads (Heroic)
+    T(a[17765], t[2875]); -- Sinister Savant's Cursethreads (Mythic)
+    T(a[17765], t[2888]); -- Fangs of the Vermillion Forge (Raid Finder)
+    T(a[17765], t[2864]); -- Fangs of the Vermillion Forge (Normal)
+    T(a[17765], t[2886]); -- Fangs of the Vermillion Forge (Heroic)
+    T(a[17765], t[2887]); -- Fangs of the Vermillion Forge (Mythic)
+    T(a[17765], t[2894]); -- Strands of the Autumn Blaze (Raid Finder)
+    T(a[17765], t[2868]); -- Strands of the Autumn Blaze (Normal)
+    T(a[17765], t[2892]); -- Strands of the Autumn Blaze (Heroic)
+    T(a[17765], t[2893]); -- Strands of the Autumn Blaze (Mythic)
+    T(a[17765], t[2903]); -- Kinslayer's Burdens (Raid Finder)
+    T(a[17765], t[2869]); -- Kinslayer's Burdens (Normal)
+    T(a[17765], t[2901]); -- Kinslayer's Burdens (Heroic)
+    T(a[17765], t[2902]); -- Kinslayer's Burdens (Mythic)
+    T(a[17765], t[2906]); -- Legacy of Obsidian Secrets (Raid Finder)
+    T(a[17765], t[2867]); -- Legacy of Obsidian Secrets (Normal)
+    T(a[17765], t[2904]); -- Legacy of Obsidian Secrets (Heroic)
+    T(a[17765], t[2905]); -- Legacy of Obsidian Secrets (Mythic)
+    a[17766] = b:New(17766); -- Explore Zaralek Cavern
+    a[17767] = b:New(17767); -- Obsidian Legend: Dragonflight Season 2
+    O(a[17767], "From", "PvP Season", 35, "Until", "PvP Season", 35);
+    a[17768] = b:New(17768, fac.Alliance); -- Hero of the Alliance: Obsidian
+    O(a[17768], "From", "PvP Season", 35, "Until", "PvP Season", 35);
+    a[17772] = b:New(17772, fac.Horde); -- Hero of the Horde: Obsidian
+    O(a[17772], "From", "PvP Season", 35, "Until", "PvP Season", 35);
+    a[17778] = b:New(17778); -- Obsidian Gladiator's Slitherdrake
+    O(a[17778], "From", "PvP Season", 35, "Until", "PvP Season", 35);
+    a[17779] = b:New(17779); -- A Serpentine Discovery
+    a[17781] = b:New(17781); -- The Smell of Money
+    a[17783] = b:New(17783); -- Adventurer of Zaralek Cavern
+    a[17785] = b:New(17785); -- "Que Zara(lek), Zara(lek)"
+    a[17786] = b:New(17786); -- Treasures of Zaralek Cavern
+    a[17794] = b:New(17794); -- Duelist: Dragonflight Season 2
+    O(a[17794], "From", "PvP Season", 35, "Until", "PvP Season", 35);
+    a[17795] = b:New(17795); -- Rival I: Dragonflight Season 2
+    O(a[17795], "From", "PvP Season", 35, "Until", "PvP Season", 35);
+    a[17796] = b:New(17796); -- Rival II: Dragonflight Season 2
+    O(a[17796], "From", "PvP Season", 35, "Until", "PvP Season", 35);
+    a[17797] = b:New(17797); -- Challenger I: Dragonflight Season 2
+    O(a[17797], "From", "PvP Season", 35, "Until", "PvP Season", 35);
+    a[17798] = b:New(17798); -- Challenger II: Dragonflight Season 2
+    O(a[17798], "From", "PvP Season", 35, "Until", "PvP Season", 35);
+    a[17799] = b:New(17799); -- Combatant I: Dragonflight Season 2
+    O(a[17799], "From", "PvP Season", 35, "Until", "PvP Season", 35);
+    a[17800] = b:New(17800); -- Combatant II: Dragonflight Season 2
+    O(a[17800], "From", "PvP Season", 35, "Until", "PvP Season", 35);
+    a[17801] = b:New(17801); -- Legend: Dragonflight Season 2
+    O(a[17801], "From", "PvP Season", 35, "Until", "PvP Season", 35);
+    a[17830] = b:New(17830); -- Stones Can't Fly!
+    a[17831] = b:New(17831); -- Elite: Dragonflight Season 2
+    O(a[17831], "From", "PvP Season", 35, "Until", "PvP Season", 35);
+    a[17832] = b:New(17832); -- Sniffen Around
+    a[17833] = b:New(17833); -- Sniffen Sage
+    a[17841] = b:New(17841); -- Pyramid Scheme
+    a[17842] = b:New(17842); -- Dragonflight Keystone Explorer: Season Two
+    O(a[17842], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
+    a[17843] = b:New(17843); -- Dragonflight Keystone Conqueror: Season Two
+    O(a[17843], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
+    a[17844] = b:New(17844); -- Dragonflight Keystone Master: Season Two
+    O(a[17844], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
+    a[17845] = b:New(17845); -- Dragonflight Keystone Hero: Season Two
+    O(a[17845], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
+    a[17846] = b:New(17846); -- Smoldering Hero: Dragonflight Season 2
+    O(a[17846], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
+    a[17847] = b:New(17847); -- Keystone Hero: The Vortex Pinnacle
+    O(a[17847], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
+    a[17848] = b:New(17848); -- Keystone Hero: Freehold
+    O(a[17848], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
+    a[17849] = b:New(17849); -- Keystone Hero: The Underrot
+    O(a[17849], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
+    a[17850] = b:New(17850); -- Keystone Hero: Neltharion's Lair
+    O(a[17850], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
+    a[17851] = b:New(17851); -- Tour of Duty: Zaralek Cavern
+    a[17852] = b:New(17852); -- Elemental Conjuror
+    a[17877] = b:New(17877); -- "We'll Never See That Again, Surely"
+    a[17878] = b:New(17878); -- Me Want Bite
+    a[17879] = b:New(17879); -- Zaralek Cavern Safari
+    a[17880] = b:New(17880); -- Battle in Zaralek Cavern
+    a[17881] = b:New(17881); -- Aquatic Battler of Zaralek Cavern
+    a[17882] = b:New(17882); -- Beast Battler of Zaralek Cavern
+    a[17883] = b:New(17883); -- Critter Battler of Zaralek Cavern
+    a[17890] = b:New(17890); -- Dragonkin Battler of Zaralek Cavern
+    a[17904] = b:New(17904); -- Elemental Battler of Zaralek Cavern
+    a[17905] = b:New(17905); -- Flying Battler of Zaralek Cavern
+    a[17915] = b:New(17915); -- Humanoid Battler of Zaralek Cavern
+    a[17916] = b:New(17916); -- Magic Battler of Zaralek Cavern
+    a[17917] = b:New(17917); -- Mechanical Battler of Zaralek Cavern
+    a[17918] = b:New(17918); -- Undead Battler of Zaralek Caverm
+    a[17934] = b:New(17934); -- Family Battler of Zaralek Cavern
+    a[17977] = b:New(17977); -- Stones Can Try To Fly!
+    a[17978] = b:New(17978); -- Stones Can Fly!
+    a[18027] = b:New(18027); -- Dragonflight Season 2 Master
+    a[18100] = b:New(18100); -- Cavern Clawbbering
+    a[18149] = b:New(18149); -- Objects in Transit May Shatter
+    a[18150] = b:New(18150); -- Zaralek Cavern Glyph Hunter
+    a[18151] = b:New(18151); -- "Mythic: Kazzara, the Hellforged"
+    a[18152] = b:New(18152); -- Mythic: The Amalgamation Chamber
+    a[18153] = b:New(18153); -- Mythic: The Forgotten Experiments
+    a[18154] = b:New(18154); -- Mythic: Assault of the Zaqali
+    a[18155] = b:New(18155); -- "Mythic: Rashok, the Elder"
+    a[18156] = b:New(18156); -- "Mythic: The Vigilant Steward, Zskarn"
+    a[18157] = b:New(18157); -- Mythic: Magmorax
+    a[18158] = b:New(18158); -- Mythic: Echo of Neltharion
+    a[18159] = b:New(18159); -- Mythic: Scalecommander Sarkareth
+    a[18160] = b:New(18160); -- "Aberrus, the Shadowed Crucible"
+    a[18161] = b:New(18161); -- "Heroic: Aberrus, the Shadowed Crucible"
+    a[18162] = b:New(18162); -- "Mythic: Aberrus, the Shadowed Crucible"
+    a[18163] = b:New(18163); -- Discarded Works
+    a[18164] = b:New(18164); -- Fury of Giants
+    a[18165] = b:New(18165); -- Neltharion's Shadow
+    a[18167] = b:New(18167); -- Edge of the Void
+    a[18168] = b:New(18168); -- I'll Make My Own Shadowflame
+    a[18172] = b:New(18172); -- Escar-Go-Go-Go
+    a[18173] = b:New(18173); -- Tabula Rasa
+    a[18174] = b:New(18174); -- Contaminant Cleaner
+    a[18193] = b:New(18193); -- Eggscellent Eggsecution
+    a[18199] = b:New(18199); -- Zaqali Ritual Buster
+    a[18200] = b:New(18200); -- Cooling the Research Field
+    a[18201] = b:New(18201); -- Lockdown Mystery
+    a[18202] = b:New(18202); -- Rockin Research
+    a[18203] = b:New(18203); -- A Research Sampler
+    a[18204] = b:New(18204); -- Research Mishap
+    a[18205] = b:New(18205); -- A Pillar of the Research Community
+    a[18206] = b:New(18206); -- A Djaradin Puzzle
+    a[18207] = b:New(18207); -- Hot Research Zone
+    a[18208] = b:New(18208); -- The Small Disruptions
+    a[18209] = b:New(18209); -- Nothing Stops the Research
+    a[18228] = b:New(18228); -- Are You Even Trying?
+    a[18229] = b:New(18229); -- Cosplate
+    a[18230] = b:New(18230); -- Whac-A-Swog
+    a[18249] = b:New(18249); -- Obsidian Tie Event
+    a[18251] = b:New(18251); -- Glory of the Aberrus Raider
+    a[18253] = b:New(18253); -- Ahead of the Curve: Scalecommander Sarkareth
+    O(a[18253], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
+    a[18254] = b:New(18254); -- Cutting Edge: Scalecommander Sarkareth
+    O(a[18254], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
+    a[18255] = b:New(18255); -- Proof of Myrrit
+    a[18257] = b:New(18257); -- Can You Dig It?
+    a[18258] = b:New(18258); -- Little Lord of Lies
+    a[18271] = b:New(18271); -- He'sSss All Mine
+    a[18284] = b:New(18284); -- A Niffen's Best Buddy
+    a[18361] = b:New(18361); -- To All the Squirrels Burrowed Beneath
+    a[18380] = b:New(18380); -- Dragonflight Season 2 Hero
 
     local aIDs = {};
-    for i = 1, 17546 do
+    for i = 1, 18380 do
         if a[i] ~= nil then
             tinsert(aIDs, i);
         end

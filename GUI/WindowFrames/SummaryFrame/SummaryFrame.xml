@@ -84,7 +84,7 @@
 					</Frame>
 				</Frames>
 			</Frame>
-			<Frame name="$parentScrollFrameBorder" parentKey="ScrollFrameBorder" inherits="KrowiAF_AchievementsFrameLight_Template">
+			<Frame name="$parentAchievementsFrame" parentKey="AchievementsFrame" inherits="KrowiAF_AchievementsFrameLight_Template">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentAchievementsHeader" relativePoint="BOTTOMLEFT" x="9" y="-5"/>
 					<Anchor point="BOTTOMRIGHT" relativeTo="$parentCategoriesHeader" relativePoint="TOPRIGHT" x="-14" y="5"/>

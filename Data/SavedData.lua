@@ -78,7 +78,7 @@ end
 local FixFeaturesTutorialProgress, FixElvUISkin, FixFilters, FixEventDetails, FixShowExcludedCategory, FixEventDetails2, FixCharacters, FixEventAlert;
 local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters, FixNewEarnedByFilter, FixTabs2, FixNewEarnedByFilter2;
 local FixEventDetails3, FixTooltipCriteria, FixFocusedAchievements, FixFocusedOptions, FixEventRemindersTimeDisplay, FixEventRemindersOptions, FixEventRemindersOptions2;
-local FixActiveEvents;
+local FixActiveEvents, FixSummaryOptions;
 function LoadSolutions()
     local solutions = {
         FixFeaturesTutorialProgress, -- 1
@@ -104,6 +104,7 @@ function LoadSolutions()
         FixEventRemindersOptions, -- 21
         FixEventRemindersOptions2, -- 22
         FixActiveEvents, -- 23
+        FixSummaryOptions, -- 24
     };
 
     return solutions;
@@ -441,6 +442,7 @@ function FixTabs2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
     -- Choosing to reset data, cleanup and inform user
     -- Remove bad tabs from addon.Options.db.Tabs, remove duplicate KrowiAF_SavedData.TabKeys value
 
+    print(firstTime, currVersion, KrowiAF_SavedData.Fixes.FixTabs2)
     if firstTime and currVersion > "37.0" then
         KrowiAF_SavedData.Fixes.FixTabs2 = true;
         diagnostics.Debug("First time Tabs2 OK");
@@ -474,17 +476,16 @@ function FixTabs2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
     end
     KrowiAF_SavedData.TabKeys = newTabKeys;
 
-    addon.Options.InjectOptionsTable({
-        Locked = {
-            order = 1, type = "description", width = "full",
-            name = "Tabs have been changed from your previous version and have been reset. This should be a one time thing. The addon should work properly without these settings changable. Please reload at any time to fix this section. Sorry for any inconvenience.\n\n- Krowi\n\n"
-        },
-        Reload = {
-            order = 2, type = "execute",
-            name = "Reload",
-            func = C_UI.Reload
-        }
-    }, "args", "Layout", "args", "Tabs", "args", "Order");
+    local tabsOrderTable = KrowiAF_GetOptions.GetTable("Layout", "args.Tabs.args.Order.args");
+    KrowiAF_InjectOptions.AddTable(tabsOrderTable, "Locked", {
+        order = 1, type = "description", width = "full",
+        name = "Tabs have been changed from your previous version and have been reset. This should be a one time thing. The addon should work properly without these settings changable. Please reload at any time to fix this section. Sorry for any inconvenience.\n\n- Krowi\n\n"
+    });
+    KrowiAF_InjectOptions.AddTable(tabsOrderTable, "Reload", {
+        order = 2, type = "execute",
+        name = "Reload",
+        func = C_UI.Reload
+    });
 
     KrowiAF_SavedData.Fixes.FixTabs2 = true;
 
@@ -710,4 +711,24 @@ function FixActiveEvents(prevBuild, currBuild, prevVersion, currVersion, firstTi
     KrowiAF_SavedData.ActiveEvents = nil;
 
     diagnostics.Debug("Cleared KrowiAF_SavedData.ActiveEvents from previous version");
+end
+
+function FixFocusedOptions(prevBuild, currBuild, prevVersion, currVersion, firstTime)
+    -- In version 56.0 addon.Options.db.Categories.Summary.NumAchievements was moved to addon.Options.db.Summary.NumAchievements
+    -- Here we clean up the old addon.Options.db.Categories.Summary.NumAchievements for users pre 56.0
+    -- addon.Options.db.Summary.NumAchievements is created by the Options so we don't need to do this here, just copy if previous existed
+
+    if firstTime and currVersion > "56.0" then
+        diagnostics.Debug("First time Summary Options OK");
+        return;
+    end
+    if addon.Options.db.Categories.Summary == nil then
+        diagnostics.Debug("Summary Options already moved");
+        return;
+    end
+
+    addon.Options.db.Summary = addon.Options.db.Categories.Summary;
+    addon.Options.db.Categories.Summary = nil;
+
+    diagnostics.Debug("Summary Options moved");
 end

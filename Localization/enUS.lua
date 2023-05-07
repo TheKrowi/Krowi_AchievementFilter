@@ -1,4 +1,4 @@
--- [[ Exported at 2023-03-30 22-40-18 ]] --
+-- [[ Exported at 2023-05-02 19-23-44 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -616,4 +616,18 @@ L["until the end of"] = "until the end of";
 L["Always Show Completed"] = "Always Show Completed";
 L["Show Faction Faction Icon"] = "Show {faction} Faction Icon";
 L["Show Faction Faction Icon Desc"] = "Show the {faction} faction icon on the achievement if only {faction} players can earn it.";
+L["Mouse Wheel Scroll Speed"] = "Mouse Wheel Scroll Speed";
+L["Mouse Wheel Scroll Speed Desc"] = "The number of {items} that will be scrolled when clicking the scroll bar's up/down buttons or spinning the mouse wheel.";
+L["Side Window"] = "Side Window";
+L["Categories"] = "Categories";
+L["Click here to view in achievement window"] = "Click here to view in achievement window";
+L["Click here to view in achievements"] = "Click here to view in achievements";
+L["DF - Fyrakk Assault"] = "DF - Fyrakk Assault";
+L["Ohn'ahran Plains"] = "Ohn'ahran Plains";
+L["Azure Span"] = "Azure Span";
+L["DF - Researchers Under Fire"] = "DF - Researchers Under Fire";
+L["Titan Lockdown: Soon"] = "Titan Lockdown: Soon";
+L["Zaqali Ruin Investigation: Soon"] = "Zaqali Ruin Investigation: Soon";
+L["Titan Lockdown: Active"] = "Titan Lockdown: Active";
+L["Zaqali Ruin Investigation: Active"] = "Zaqali Ruin Investigation: Active";
 

@@ -19,7 +19,7 @@ options.Defaults = {
                 Calendar = false,
                 DataManager = false
             },
-            CategoriesFrameWidthOffset = 25,
+            CategoriesFrameWidthOffset = 50,
             AchievementFrameHeightOffset = 250,
             MergeSmallCategoriesThreshold = 10
         },
@@ -53,10 +53,12 @@ options.Defaults = {
                 Show = true,
                 ShowSubCategories = false
             },
-            Summary = {
-                NumAchievements = 25
-            },
-            Indentation = 10
+            Indentation = 10,
+            MouseWheelPanScalar = 1
+        },
+        Summary = {
+            NumAchievements = 25,
+            MouseWheelPanScalar = 1
         },
         AdjustableCategories = { --[[ Dynamically build via ExportedCategories ]] },
         Achievements = {
@@ -74,7 +76,8 @@ options.Defaults = {
                 ToggleTracking = 4,
                 ToggleWatchList = 2,
                 ToggleExcluded = 1
-            }
+            },
+            MouseWheelPanScalar = 1
         },
         RightClickMenu = {
             ShowButtonOnAchievement = false,
@@ -188,7 +191,8 @@ options.Defaults = {
         Calendar = {
             FirstWeekDay = -1,
             LockAchievementMonth = true,
-            LockMonth = false
+            LockMonth = false,
+            MouseWheelPanScalar = 1
         },
         Plugins = {}
     }

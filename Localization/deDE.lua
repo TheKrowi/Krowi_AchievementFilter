@@ -1,8 +1,8 @@
--- [[ Exported at 2023-03-30 22-40-18 ]] --
+-- [[ Exported at 2023-05-02 19-23-44 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2023-03-23 ]] --
+-- [[ German translation by Ta, 2023-04-22 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -616,4 +616,18 @@ L["until the end of"] = "bis zum Ende von";
 L["Always Show Completed"] = "Erreichte Erfolge anzeigen";
 L["Show Faction Faction Icon"] = "Zeige {faction} Fraktions Symbol";
 L["Show Faction Faction Icon Desc"] = "Zeigt das {faction} Fraktionssymbol auf den Erfolgen an, wenn nur {faction} Spieler diese verdienen können.";
+L["Mouse Wheel Scroll Speed"] = "Maus Rad Scroll-Geschwindigkeit";
+L["Mouse Wheel Scroll Speed Desc"] = "Die Anzahl der {items}, die beim Klicken auf die Buttons nach oben/unten in der Scroll-Leiste oder beim Drehen des Mausrads neu angezeigt werden.";
+L["Side Window"] = "Scroll-Leiste";
+L["Categories"] = "Kategorien";
+L["Click here to view in achievement window"] = "Hier klicken, um im Erfolgs-Fenster anzuzeigen";
+L["Click here to view in achievements"] = "Im Erfolgs-Fenster öffnen";
+L["DF - Fyrakk Assault"] = "DF - Angriffe von Fyrakk";
+L["Ohn'ahran Plains"] = "Ebenen von Ohn'ahra";
+L["Azure Span"] = "Das Azurblaue Gebirge";
+L["DF - Researchers Under Fire"] = "DF - Forscher unter Feuer";
+L["Titan Lockdown: Soon"] = "Titanenabriegelung: Bald";
+L["Zaqali Ruin Investigation: Soon"] = "Zaqaliruinen: Bald";
+L["Titan Lockdown: Active"] = "Titanenabriegelung: Aktiv";
+L["Zaqali Ruin Investigation: Active"] = "Zaqaliruinen: Aktiv";
 

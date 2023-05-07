@@ -3,6 +3,41 @@ local _, addon = ...;
 
 KrowiAF_AchievementsObjectivesMixin = {};
 
+function KrowiAF_AchievementsObjectivesMixin:OnLoad()
+	self:RegisterEvent("CRITERIA_UPDATE");
+end
+
+local refreshOnNextShow;
+function KrowiAF_AchievementsObjectivesMixin:OnEvent(event)
+	if event ~= "CRITERIA_UPDATE" then
+		return;
+	end
+
+	local selectedTab = addon.GUI.SelectedTab;
+	if selectedTab and selectedTab.SelectedAchievement then
+		local button = self:GetParent();
+		self.Id = nil;
+		if self:IsVisible() then
+			button:DisplayObjectives(true);
+		else
+			refreshOnNextShow = true;
+		end
+	else
+		self.Id = nil;
+	end
+end
+
+function KrowiAF_AchievementsObjectivesMixin:OnShow()
+	if not refreshOnNextShow then
+		return;
+	end
+
+	local button = self:GetParent();
+	button:DisplayObjectives(true);
+
+	refreshOnNextShow = nil;
+end
+
 KrowiAF_AchievementsObjectivesMixin.Modes = {
     Criteria = 1,
     Progressive = 2,
@@ -11,19 +46,19 @@ KrowiAF_AchievementsObjectivesMixin.Modes = {
 
 local criteriaTable, progressBarTable, miniTable, metaCriteriaTable = {}, {}, {}, {}
 
-function KrowiAF_AchievementsObjectivesMixin:ResetTextCriteria()
+local function ResetTextCriteria()
 	AchievementButton_ResetTable(criteriaTable);
 end
 
-function KrowiAF_AchievementsObjectivesMixin:ResetProgressBars()
+local function ResetProgressBars()
 	AchievementButton_ResetTable(progressBarTable);
 end
 
-function KrowiAF_AchievementsObjectivesMixin:ResetMiniAchievements()
+local function ResetMiniAchievements()
 	AchievementButton_ResetTable(miniTable);
 end
 
-function KrowiAF_AchievementsObjectivesMixin:ResetMetas()
+local function ResetMetas()
 	for _, metaCriteria in next, metaCriteriaTable do
 		metaCriteria.Id = nil;
 		metaCriteria:Hide();
@@ -31,10 +66,10 @@ function KrowiAF_AchievementsObjectivesMixin:ResetMetas()
 end
 
 function KrowiAF_AchievementsObjectivesMixin:ResetAll()
-	self:ResetTextCriteria();
-	self:ResetProgressBars();
-	self:ResetMiniAchievements();
-	self:ResetMetas();
+	ResetTextCriteria();
+	ResetProgressBars();
+	ResetMiniAchievements();
+	ResetMetas();
 end
 
 function KrowiAF_AchievementsObjectivesMixin:GetTextCriteria(index)
@@ -81,7 +116,7 @@ function KrowiAF_AchievementsObjectivesMixin:GetMeta(index)
 	return frame;
 end
 
-function KrowiAF_AchievementsObjectivesMixin:AddMeta(index, completed, assetId)
+local function AddMeta(self, index, completed, assetId)
 	local metaCriteria = self:GetMeta(index);
 	metaCriteria:ClearAllPoints();
 	if index == 1 then
@@ -126,7 +161,7 @@ function KrowiAF_AchievementsObjectivesMixin:AddMeta(index, completed, assetId)
 end
 
 local progressBarOffset = 10;
-function KrowiAF_AchievementsObjectivesMixin:AddProgressBar(index, quantity, reqQuantity, quantityString)
+local function AddProgressBar(self, index, quantity, reqQuantity, quantityString)
 	local progressBar = self:GetProgressBar(index);
 	local extraHeight;
 	if index == 1 then
@@ -146,7 +181,7 @@ function KrowiAF_AchievementsObjectivesMixin:AddProgressBar(index, quantity, req
 	return progressBar:GetWidth(), progressBar:GetHeight() + extraHeight;
 end
 
-function KrowiAF_AchievementsObjectivesMixin:AddTextCriteria(index, numCriteria, criteriaString, completed)
+local function AddTextCriteria(self, index, numCriteria, criteriaString, completed)
 	local criteria = self:GetTextCriteria(index);
 	criteria:ClearAllPoints();
 	if index == 1 then
@@ -200,6 +235,10 @@ end
 
 local achievements, rowOffset, columnOffset = {}, 8, 4;
 function KrowiAF_AchievementsObjectivesMixin:DisplayProgressiveAchievement(id)
+	if not id then
+		return;
+	end
+
 	for i in next, achievements do
 		achievements[i] = nil;
 	end
@@ -245,7 +284,7 @@ function KrowiAF_AchievementsObjectivesMixin:DisplayProgressiveAchievement(id)
 	self.Mode = self.Modes.Progressive;
 end
 
-function KrowiAF_AchievementsObjectivesMixin:SetProgressBarAndTextPoints(numProgressBars, numTextCriteria)
+local function SetProgressBarAndTextPoints(self, numProgressBars, numTextCriteria)
 	-- If we have text criteria and progressBar criteria, display the progressBar criteria first and position the textStrings under them.
 	local criteria;
 	for i = 1, numTextCriteria do
@@ -259,7 +298,7 @@ function KrowiAF_AchievementsObjectivesMixin:SetProgressBarAndTextPoints(numProg
 	end
 end
 
-function KrowiAF_AchievementsObjectivesMixin:SetTextPoints(numTextCriteria, maxCriteriaWidth)
+local function SetTextPoints(self, numTextCriteria, maxCriteriaWidth)
 	local columns = max(1, floor(self:GetWidth() / maxCriteriaWidth));
 
 	local truncate, flex;
@@ -334,15 +373,15 @@ function KrowiAF_AchievementsObjectivesMixin:DisplayCriteria(id)
 		flags = addon.Objects.Flags:New(flags);
 		if criteriaType == CRITERIA_TYPE_ACHIEVEMENT and assetID then
 			numMetas = numMetas + 1;
-			self:AddMeta(numMetas, completed, assetID)
+			AddMeta(self, numMetas, completed, assetID)
 		elseif flags.IsCriteriaProgressBar then
 			numProgressBars = numProgressBars + 1;
-			_, progressBarHeight = self:AddProgressBar(numProgressBars, quantity, reqQuantity, quantityString);
+			_, progressBarHeight = AddProgressBar(self, numProgressBars, quantity, reqQuantity, quantityString);
 			totalProgressBarHeight = totalProgressBarHeight + progressBarHeight;
 			numCriteriaRows = numCriteriaRows + 1;
 		else
 			numTextCriteria = numTextCriteria + 1;
-			textCriteriaWidth, textCriteriaHeight = self:AddTextCriteria(numTextCriteria, numCriteria, criteriaString, completed);
+			textCriteriaWidth, textCriteriaHeight = AddTextCriteria(self, numTextCriteria, numCriteria, criteriaString, completed);
 			maxCriteriaWidth = max(maxCriteriaWidth, textCriteriaWidth);
 			totalTextCriteriaHeight = totalTextCriteriaHeight + textCriteriaHeight;
 			numCriteriaRows = numCriteriaRows + 1;
@@ -350,11 +389,11 @@ function KrowiAF_AchievementsObjectivesMixin:DisplayCriteria(id)
 	end
 	local height = 0;
 	if numProgressBars > 0 then
-		self:SetProgressBarAndTextPoints(numProgressBars, numTextCriteria);
+		SetProgressBarAndTextPoints(self, numProgressBars, numTextCriteria);
 		height = totalProgressBarHeight + totalTextCriteriaHeight;
 	elseif numTextCriteria > 0 then
 		height = totalTextCriteriaHeight;
-		height = self:SetTextPoints(numTextCriteria, maxCriteriaWidth);
+		height = SetTextPoints(self, numTextCriteria, maxCriteriaWidth);
 		if numMetas > 0 then
 			self:GetMeta(1):ClearAllPoints();
 			self:GetMeta(1):SetPoint("TOP", self:GetTextCriteria(numTextCriteria), "BOTTOM", 0, 0);

@@ -5,7 +5,7 @@ KrowiAF_AchievementFrameFilterButtonMixin = {};
 
 function KrowiAF_AchievementFrameFilterButtonMixin.UpdateAchievementFrame()
     addon.GUI.CategoriesFrame:Update(true);
-    addon.GUI.AchievementsFrame:ForceUpdate(true); -- Issue #27: Fix
+    addon.GUI.AchievementsFrame:ForceUpdate(); -- Issue #27: Fix
     addon.GUI.SummaryFrame:Update();
 end
 

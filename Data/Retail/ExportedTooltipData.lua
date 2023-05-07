@@ -1,4 +1,4 @@
--- [[ Exported at 2023-03-26 14-55-33 ]] --
+-- [[ Exported at 2023-05-02 20-00-13 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1795,9 +1795,63 @@ function exportedTooltipData.Load(d)
     AddD(d, 200417, tdt.Unit, 17276, 0, t[15], t[16]); -- Forbidden Reach Rush Reverse: Bronze
     AddD(d, 200417, tdt.Unit, 17277, 0, t[15], t[16]); -- Forbidden Reach Rush Reverse: Silver
     AddD(d, 200417, tdt.Unit, 17278, 0, t[15], t[16]); -- Forbidden Reach Rush Reverse: Gold
+    AddD(d, 202524, tdt.Unit, 17429, 0, t[15], t[16]); -- Crystal Circuit: Bronze
+    AddD(d, 202524, tdt.Unit, 17430, 0, t[15], t[16]); -- Crystal Circuit: Silver
+    AddD(d, 202524, tdt.Unit, 17431, 0, t[15], t[16]); -- Crystal Circuit: Gold
+    AddD(d, 202524, tdt.Unit, 17432, 0, t[15], t[16]); -- Crystal Circuit Advanced: Bronze
+    AddD(d, 202524, tdt.Unit, 17433, 0, t[15], t[16]); -- Crystal Circuit Advanced: Silver
+    AddD(d, 202524, tdt.Unit, 17434, 0, t[15], t[16]); -- Crystal Circuit Advanced: Gold
+    AddD(d, 202524, tdt.Unit, 17435, 0, t[15], t[16]); -- Crystal Circuit Reverse: Bronze
+    AddD(d, 202524, tdt.Unit, 17436, 0, t[15], t[16]); -- Crystal Circuit Reverse: Silver
+    AddD(d, 202524, tdt.Unit, 17437, 0, t[15], t[16]); -- Crystal Circuit Reverse: Gold
+    AddD(d, 202676, tdt.Unit, 17438, 0, t[15], t[16]); -- Caldera Cruise: Bronze
+    AddD(d, 202676, tdt.Unit, 17439, 0, t[15], t[16]); -- Caldera Cruise: Silver
+    AddD(d, 202676, tdt.Unit, 17440, 0, t[15], t[16]); -- Caldera Cruise: Gold
+    AddD(d, 202676, tdt.Unit, 17441, 0, t[15], t[16]); -- Caldera Cruise Advanced: Bronze
+    AddD(d, 202676, tdt.Unit, 17442, 0, t[15], t[16]); -- Caldera Cruise Advanced: Silver
+    AddD(d, 202676, tdt.Unit, 17443, 0, t[15], t[16]); -- Caldera Cruise Advanced: Gold
+    AddD(d, 202676, tdt.Unit, 17444, 0, t[15], t[16]); -- Caldera Cruise Reverse: Bronze
+    AddD(d, 202676, tdt.Unit, 17445, 0, t[15], t[16]); -- Caldera Cruise Reverse: Silver
+    AddD(d, 202676, tdt.Unit, 17446, 0, t[15], t[16]); -- Caldera Cruise Reverse: Gold
+    AddD(d, 202749, tdt.Unit, 17447, 0, t[15], t[16]); -- Brimstone Scramble: Bronze
+    AddD(d, 202749, tdt.Unit, 17448, 0, t[15], t[16]); -- Brimstone Scramble: Silver
+    AddD(d, 202749, tdt.Unit, 17449, 0, t[15], t[16]); -- Brimstone Scramble: Gold
+    AddD(d, 202749, tdt.Unit, 17450, 0, t[15], t[16]); -- Brimstone Scramble Advanced: Bronze
+    AddD(d, 202749, tdt.Unit, 17451, 0, t[15], t[16]); -- Brimstone Scramble Advanced: Silver
+    AddD(d, 202749, tdt.Unit, 17452, 0, t[15], t[16]); -- Brimstone Scramble Advanced: Gold
+    AddD(d, 202749, tdt.Unit, 17453, 0, t[15], t[16]); -- Brimstone Scramble Reverse: Bronze
+    AddD(d, 202749, tdt.Unit, 17454, 0, t[15], t[16]); -- Brimstone Scramble Reverse: Silver
+    AddD(d, 202749, tdt.Unit, 17455, 0, t[15], t[16]); -- Brimstone Scramble Reverse: Gold
+    AddD(d, 202772, tdt.Unit, 17456, 0, t[15], t[16]); -- Shimmering Slalom: Bronze
+    AddD(d, 202772, tdt.Unit, 17457, 0, t[15], t[16]); -- Shimmering Slalom: Silver
+    AddD(d, 202772, tdt.Unit, 17458, 0, t[15], t[16]); -- Shimmering Slalom: Gold
+    AddD(d, 202772, tdt.Unit, 17459, 0, t[15], t[16]); -- Shimmering Slalom Advanced: Bronze
+    AddD(d, 202772, tdt.Unit, 17460, 0, t[15], t[16]); -- Shimmering Slalom Advanced: Silver
+    AddD(d, 202772, tdt.Unit, 17461, 0, t[15], t[16]); -- Shimmering Slalom Advanced: Gold
+    AddD(d, 202772, tdt.Unit, 17462, 0, t[15], t[16]); -- Shimmering Slalom Reverse: Bronze
+    AddD(d, 202772, tdt.Unit, 17463, 0, t[15], t[16]); -- Shimmering Slalom Reverse: Silver
+    AddD(d, 202772, tdt.Unit, 17464, 0, t[15], t[16]); -- Shimmering Slalom Reverse: Gold
+    AddD(d, 202795, tdt.Unit, 17465, 0, t[15], t[16]); -- Loamm Roamm: Bronze
+    AddD(d, 202795, tdt.Unit, 17466, 0, t[15], t[16]); -- Loamm Roamm: Silver
+    AddD(d, 202795, tdt.Unit, 17467, 0, t[15], t[16]); -- Loamm Roamm: Gold
+    AddD(d, 202795, tdt.Unit, 17468, 0, t[15], t[16]); -- Loamm Roamm Advanced: Bronze
+    AddD(d, 202795, tdt.Unit, 17469, 0, t[15], t[16]); -- Loamm Roamm Advanced: Silver
+    AddD(d, 202795, tdt.Unit, 17470, 0, t[15], t[16]); -- Loamm Roamm Advanced: Gold
+    AddD(d, 202795, tdt.Unit, 17471, 0, t[15], t[16]); -- Loamm Roamm Reverse: Bronze
+    AddD(d, 202795, tdt.Unit, 17472, 0, t[15], t[16]); -- Loamm Roamm Reverse: Silver
+    AddD(d, 202795, tdt.Unit, 17473, 0, t[15], t[16]); -- Loamm Roamm Reverse: Gold
+    AddD(d, 202973, tdt.Unit, 17474, 0, t[15], t[16]); -- Sulfur Sprint: Bronze
+    AddD(d, 202973, tdt.Unit, 17475, 0, t[15], t[16]); -- Sulfur Sprint: Silver
+    AddD(d, 202973, tdt.Unit, 17476, 0, t[15], t[16]); -- Sulfur Sprint: Gold
+    AddD(d, 202973, tdt.Unit, 17477, 0, t[15], t[16]); -- Sulfur Sprint Advanced: Bronze
+    AddD(d, 202973, tdt.Unit, 17478, 0, t[15], t[16]); -- Sulfur Sprint Advanced: Silver
+    AddD(d, 202973, tdt.Unit, 17479, 0, t[15], t[16]); -- Sulfur Sprint Advanced: Gold
+    AddD(d, 202973, tdt.Unit, 17480, 0, t[15], t[16]); -- Sulfur Sprint Reverse: Bronze
+    AddD(d, 202973, tdt.Unit, 17481, 0, t[15], t[16]); -- Sulfur Sprint Reverse: Silver
+    AddD(d, 202973, tdt.Unit, 17482, 0, t[15], t[16]); -- Sulfur Sprint Reverse: Gold
     AddD(d, 200684, tdt.Unit, 17541, 1, t[11], t[12]); -- "Vortex"
     AddD(d, 200692, tdt.Unit, 17541, 2, t[11], t[12]); -- "Tremblor"
-    AddD(d, 200688, tdt.Unit, 17541, 3, t[11], t[12]); -- "Wildfire"
+    AddD(d, 200686, tdt.Unit, 17541, 3, t[11], t[12]); -- "Wildfire"
     AddD(d, 200696, tdt.Unit, 17541, 4, t[11], t[12]); -- "Flow"
 end
 

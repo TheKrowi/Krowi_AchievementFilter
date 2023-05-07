@@ -3,11 +3,19 @@ local _, addon = ...;
 
 KrowiAF_CategoryButtonMixin = {};
 
-function KrowiAF_CategoryButtonMixin:SetIndentation(indentation)
-	if not self.Category then
-		return; -- Skip hidden buttons
+function KrowiAF_CategoryButtonMixin:OnEnter()
+	if self.showTooltipFunc then
+		self.showTooltipFunc(self);
 	end
-	self:SetPoint("LEFT", 2 + (self.Category.Level - 1) * indentation, 0);
+end
+
+function KrowiAF_CategoryButtonMixin:OnLeave()
+	GameTooltip:SetMinimumWidth(0, false);
+	GameTooltip:Hide();
+end
+
+function KrowiAF_CategoryButtonMixin:OnClick()
+    addon.GUI.CategoriesFrame:SelectCategory(self.Category);
 end
 
 function KrowiAF_CategoryButtonMixin:SetCategory(category)
@@ -18,7 +26,6 @@ function KrowiAF_CategoryButtonMixin:SetCategory(category)
 
 	self.Category = category;
 
-	self:SetIndentation(addon.Options.db.Categories.Indentation);
 	local parent = category.Parent;
 	if parent.TabName == nil then -- Not top level category
 		self.Label:SetFontObject("GameFontHighlight");
@@ -50,24 +57,15 @@ function KrowiAF_CategoryButtonMixin:SetCategory(category)
 	else
 		self.showTooltipFunc = addon.GUI.ShowStatusBarTooltip;
 	end
-end
-
-function KrowiAF_CategoryButtonMixin:Select(quick)
-	-- print("KrowiAF_CategoryButtonMixin:Select")
-	if self.Category.IsSummary then
-		addon.GUI.SummaryFrame:Show();
-		addon.GUI.AchievementsFrame:Hide();
-	else
-		addon.GUI.AchievementsFrame:Show();
-		addon.GUI.SummaryFrame:Hide();
-	end
 
 	local selectedTab = addon.GUI.SelectedTab;
 	if not selectedTab then
 		return;
 	end
 
-	local categoriesFrame = addon.GUI.CategoriesFrame;
-    categoriesFrame:SelectButton(self, quick);
-    categoriesFrame:Update();
+	if category == selectedTab.SelectedCategory then
+		self:LockHighlight();
+	else
+		self:UnlockHighlight();
+	end
 end

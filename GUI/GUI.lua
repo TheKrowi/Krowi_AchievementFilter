@@ -13,7 +13,7 @@ function gui:LoadWithAddon()
     gui.WorldMapButton.Load();
     gui.AlertSystem:Load();
     addon.Filters:InjectDefaults();
-    -- addon.GUI.AchievementFrameHeader.InjectDynamicOptions();
+    gui.FloatingAchievementTooltip.Load();
 end
 
 local defaultAchievementFrameWidth;
@@ -31,9 +31,9 @@ function gui:LoadWithBlizzard_AchievementUI()
     self.SetAchievementFrameHeight(); -- Do this in order to create the correct amount of buttons based on our settings
 
     addon.GUI.AchievementsObjectives:Load();
+    gui.CategoriesFrame:Load();
     gui.AchievementsFrame:Load();
     addon.GUI.SummaryFrame:Load();
-    gui.CategoriesFrame:Load();
     gui.FilterButton:Load();
     gui.SideButtonSystem.Load();
     -- print("ach loading")
@@ -82,7 +82,6 @@ function gui.HookBaseTabOnClick()
         return;
     end
     hooksecurefunc("AchievementFrameBaseTab_OnClick", function(tabIndex)
-        -- print("AchievementFrameBaseTab_OnClick")
         if tabIndex == 3 then
             AchievementFrame_RefreshView();
         end
@@ -130,6 +129,7 @@ end
 
 function gui.SetAchievementFrameWidth()
     AchievementFrame:SetWidth(defaultAchievementFrameWidth + addon.Options.db.Window.CategoriesFrameWidthOffset);
+    addon.GUI.CategoriesFrame:SetRightPoint();
 end
 
 function gui.ResetAchievementFrameWidth()
@@ -422,6 +422,7 @@ function gui.LoadOldAchievementFrameCompatibility()
     AchievementFrame.Header.Points = AchievementFrameHeaderPoints;
     AchievementFrame.Header.Title = AchievementFrameHeaderTitle;
 	AchievementFrame.Header.LeftDDLInset = AchievementFrameHeaderLeftDDLInset;
+    SetFocusedAchievement = function(achievementId) end
 end
 
 function gui.LoadOldAchievementFrameTabsCompatibility()

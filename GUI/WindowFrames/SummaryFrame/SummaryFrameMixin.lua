@@ -80,7 +80,7 @@ function KrowiAF_SummaryFrameMixin:CategoriesStatusBar_Update(event)
 end
 
 local function BuildLastCompleted(event)
-    local numLastCompleted = addon.Options.db.Categories.Summary.NumAchievements or 25;
+    local numLastCompleted = addon.Options.db.Summary.NumAchievements or 25;
     local lastCompleted = KrowiAF_SavedData.Characters[UnitGUID("player")].LastCompleted;
     if type(lastCompleted) == "table"
     and #lastCompleted == numLastCompleted
@@ -105,7 +105,7 @@ end
 local updateAchievementsOnNextShow;
 function KrowiAF_SummaryFrameMixin:Achievements_Update(event)
     BuildLastCompleted(event);
-    self.ScrollFrameBorder:Update(KrowiAF_SavedData.Characters[UnitGUID("player")].LastCompleted, updateAchievementsOnNextShow);
+    self.AchievementsFrame:Update(KrowiAF_SavedData.Characters[UnitGUID("player")].LastCompleted, updateAchievementsOnNextShow);
 end
 
 function KrowiAF_SummaryFrameMixin:UpdateAchievementsOnNextShow()

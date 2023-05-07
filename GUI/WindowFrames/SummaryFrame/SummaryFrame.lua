@@ -216,7 +216,7 @@ end
 
 function summaryFrame:Load()
     local frame = CreateFrame("Frame", "KrowiAF_AchievementFrameSummaryFrame", AchievementFrame, "KrowiAF_SummaryFrame_Template");
-	frame:SetPoint("TOPLEFT", AchievementFrameCategories, "TOPRIGHT", 22, 0);
+	frame:SetPoint("TOPLEFT", addon.GUI.CategoriesFrame, "TOPRIGHT", 0, 0);
 	frame:SetPoint("BOTTOM", 0, 20);
 	frame:SetPoint("RIGHT", -20, 0);
 
@@ -228,7 +228,8 @@ function summaryFrame:Load()
 	end
 
     BuildCategories(frame);
-    frame.ScrollFrameBorder:Build("BOTTOMRIGHT", frame.Categories.Header, "TOPRIGHT", -40, 5, -14, 5);
+	frame.AchievementsFrame.ScrollBox.wheelPanScalar = addon.Options.db.Summary.MouseWheelPanScalar;
+	frame.AchievementsFrame.ScrollBar.wheelPanScalar = addon.Options.db.Summary.MouseWheelPanScalar;
 
     addon.GUI.SummaryFrame = frame;
 end

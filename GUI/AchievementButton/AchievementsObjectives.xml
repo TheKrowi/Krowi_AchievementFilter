@@ -142,9 +142,9 @@
     <Frame name="KrowiAF_AchievementsObjectives_Template" mixin="KrowiAF_AchievementsObjectivesMixin" virtual="true">
         <Size x="125" y="20"/>
         <Scripts>
-            <OnLoad function="KrowiAF_AchievementsObjectives_OnLoad"/>
-            <OnEvent function="KrowiAF_AchievementsObjectives_OnEvent"/>
-            <OnShow function="KrowiAF_AchievementsObjectives_OnShow"/>
+            <OnLoad method="OnLoad"/>
+            <OnEvent method="OnEvent"/>
+            <OnShow method="OnShow"/>
         </Scripts>
     </Frame>
 </Ui>
