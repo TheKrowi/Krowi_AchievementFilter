@@ -27,3 +27,7 @@
 <li>Hertz Locker is marked as unobtainable</li>
 <li>Bug related to porting tabs order from older versions</li>
 </ul>
+<p><h3>Removed (56.3)</h3></p>
+<ul>
+<li>Rogue print statement</li>
+</ul>

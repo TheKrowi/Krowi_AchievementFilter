@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 56.3 - 2023-05-07
+### Removed
+- Rogue print statement
+
 ## 56.2 - 2023-05-06
 ### Fixed
 - Hertz Locker is marked as unobtainable
