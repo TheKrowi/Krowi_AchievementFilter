@@ -21,3 +21,6 @@
 ### Fixed (56.2)
 - Hertz Locker is marked as unobtainable
 - Bug related to porting tabs order from older versions
+
+### Removed (56.3)
+- Rogue print statement
