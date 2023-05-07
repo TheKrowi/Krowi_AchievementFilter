@@ -1,4 +1,4 @@
--- [[ Exported at 2023-05-02 19-58-04 ]] --
+-- [[ Exported at 2023-05-06 22-00-03 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -7114,6 +7114,7 @@ function exportedAchievements.Load(a, t)
     a[13785] = b:New(13785); -- Cutting Edge: Queen Azshara
     O(a[13785], "From", "Mythic+ Season", 3, "Until", "Mythic+ Season", 3);
     a[13789] = b:New(13789); -- Hertz Locker
+    O(a[13789], "From", "Version", "080200", "Before", "Version", "090001");
     a[13790] = b:New(13790); -- Armed for Action
     a[13791] = b:New(13791); -- Making the Mount
     a[13836] = b:New(13836); -- Feline Figurines Found

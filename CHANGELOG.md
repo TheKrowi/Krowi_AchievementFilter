@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 56.2 - 2023-05-06
+### Fixed
+- Hertz Locker is marked as unobtainable
+- Bug related to porting tabs order from older versions
+
 ## 56.1 - 2023-05-05
 ### Fixed
 - The tooltip opened by clicking an achievement link from chat for example now has a a clickable link to open the achievement window like the battle pet journal does show now actually open the achievement window

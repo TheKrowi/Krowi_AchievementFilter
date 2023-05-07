@@ -138,6 +138,7 @@ end
 do --[[ KrowiAF_GetOptions ]]
 	KrowiAF_GetOptions = {};
 	function KrowiAF_GetOptions.GetTable(appName, tablePath)
+		print(appName, tablePath)
 		local tbl = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(appName, "cmd", "KROWIAF-0.0");
 		local pathParts = strsplittable(".", tablePath);
 		for _, part in next, pathParts do

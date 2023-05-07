@@ -442,6 +442,7 @@ function FixTabs2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
     -- Choosing to reset data, cleanup and inform user
     -- Remove bad tabs from addon.Options.db.Tabs, remove duplicate KrowiAF_SavedData.TabKeys value
 
+    print(firstTime, currVersion, KrowiAF_SavedData.Fixes.FixTabs2)
     if firstTime and currVersion > "37.0" then
         KrowiAF_SavedData.Fixes.FixTabs2 = true;
         diagnostics.Debug("First time Tabs2 OK");
@@ -475,17 +476,16 @@ function FixTabs2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
     end
     KrowiAF_SavedData.TabKeys = newTabKeys;
 
-    addon.Options.InjectOptionsTable({
-        Locked = {
-            order = 1, type = "description", width = "full",
-            name = "Tabs have been changed from your previous version and have been reset. This should be a one time thing. The addon should work properly without these settings changable. Please reload at any time to fix this section. Sorry for any inconvenience.\n\n- Krowi\n\n"
-        },
-        Reload = {
-            order = 2, type = "execute",
-            name = "Reload",
-            func = C_UI.Reload
-        }
-    }, "args", "Layout", "args", "Tabs", "args", "Order");
+    local tabsOrderTable = KrowiAF_GetOptions.GetTable("Layout", "args.Tabs.args.Order.args");
+    KrowiAF_InjectOptions.AddTable(tabsOrderTable, "Locked", {
+        order = 1, type = "description", width = "full",
+        name = "Tabs have been changed from your previous version and have been reset. This should be a one time thing. The addon should work properly without these settings changable. Please reload at any time to fix this section. Sorry for any inconvenience.\n\n- Krowi\n\n"
+    });
+    KrowiAF_InjectOptions.AddTable(tabsOrderTable, "Reload", {
+        order = 2, type = "execute",
+        name = "Reload",
+        func = C_UI.Reload
+    });
 
     KrowiAF_SavedData.Fixes.FixTabs2 = true;
 
