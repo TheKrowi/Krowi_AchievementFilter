@@ -24,3 +24,6 @@
 
 ### Removed (56.3)
 - Rogue print statement
+
+### Fixed (56.4)
+- Zaqali Ruin Investigation and Titan Lockdown events should now have a working icon

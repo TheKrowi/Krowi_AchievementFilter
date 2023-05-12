@@ -1,4 +1,4 @@
--- [[ Exported at 2023-05-02 20-00-13 ]] --
+-- [[ Exported at 2023-05-09 23-03-22 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1853,5 +1853,16 @@ function exportedTooltipData.Load(d)
     AddD(d, 200692, tdt.Unit, 17541, 2, t[11], t[12]); -- "Tremblor"
     AddD(d, 200686, tdt.Unit, 17541, 3, t[11], t[12]); -- "Wildfire"
     AddD(d, 200696, tdt.Unit, 17541, 4, t[11], t[12]); -- "Flow"
+    AddD(d, 204792, tdt.Unit, 17880, 2, t[11], t[12]); -- "Are They Not Beautiful?"
+    AddD(d, 204792, tdt.Unit, 17881, 2, t[11], t[12]); -- "Shinmura"
+    AddD(d, 204792, tdt.Unit, 17882, 2, t[11], t[12]); -- "Shinmura"
+    AddD(d, 204792, tdt.Unit, 17883, 2, t[11], t[12]); -- "Shinmura"
+    AddD(d, 204792, tdt.Unit, 17890, 2, t[11], t[12]); -- "Shinmura"
+    AddD(d, 204792, tdt.Unit, 17904, 2, t[11], t[12]); -- "Shinmura"
+    AddD(d, 204792, tdt.Unit, 17905, 2, t[11], t[12]); -- "Shinmura"
+    AddD(d, 204792, tdt.Unit, 17915, 2, t[11], t[12]); -- "Shinmura"
+    AddD(d, 204792, tdt.Unit, 17916, 2, t[11], t[12]); -- "Shinmura"
+    AddD(d, 204792, tdt.Unit, 17917, 2, t[11], t[12]); -- "Shinmura"
+    AddD(d, 204792, tdt.Unit, 17918, 2, t[11], t[12]); -- "Shinmura"
 end
 

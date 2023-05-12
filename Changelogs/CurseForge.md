@@ -31,3 +31,7 @@
 <ul>
 <li>Rogue print statement</li>
 </ul>
+<p><h3>Fixed (56.4)</h3></p>
+<ul>
+<li>Zaqali Ruin Investigation and Titan Lockdown events should now have a working icon</li>
+</ul>

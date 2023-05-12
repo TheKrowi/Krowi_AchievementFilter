@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 56.4 - 2023-05-12
+### Fixed
+- Zaqali Ruin Investigation and Titan Lockdown events should now have a working icon
+
 ## 56.3 - 2023-05-07
 ### Removed
 - Rogue print statement
