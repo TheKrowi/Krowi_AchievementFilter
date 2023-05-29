@@ -22,11 +22,10 @@ local function AddPartOfAChainAchievement(currentAchievement, id, nameSuffix)
 	for nextId, _ in next, nextAchievements do
 		if achievement.NumNextAchievements > 1 then
 			if addon.Data.Achievements[nextId].Faction then
+				-- print(nextId, addon.Data.Achievements[nextId].Faction, addon.Objects.Faction[addon.Data.Achievements[nextId].Faction])
 				nameSuffix = " (";
-				if addon.Data.Achievements[nextId].Faction then
-					nameSuffix = nameSuffix .. addon.L[addon.Objects.Faction[addon.Data.Achievements[nextId].Faction]];
-					nameSuffix = nameSuffix .. ")";
-				end
+				nameSuffix = nameSuffix .. addon.L[addon.Objects.Faction[addon.Data.Achievements[nextId].Faction]];
+				nameSuffix = nameSuffix .. ")";
 			end
 		end
 		AddPartOfAChainAchievement(currentAchievement, nextId, nameSuffix);

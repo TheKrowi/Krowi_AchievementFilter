@@ -1,4 +1,4 @@
--- [[ Exported at 2023-05-02 20-00-10 ]] --
+-- [[ Exported at 2023-05-11 20-26-22 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -90,10 +90,10 @@ function exportedWorldEvents.Load(e)
     e[7345] = event:New(7345, 4622465, addon.L["Grand Hunts: The Azure Span"], 1978); -- Grand Hunts: The Azure Span
     e[7429] = event:New(7429, 4914672, addon.L["Ohn'ahran Plains"], 1978); -- Ohn'ahran Plains
     e[7432] = event:New(7432, 4914672, addon.L["Azure Span"], 1978); -- Azure Span
-    e[7459] = event:New(7459, 0, addon.L["Titan Lockdown: Soon"], 2133); -- Titan Lockdown: Soon
-    e[7460] = event:New(7460, 0, addon.L["Zaqali Ruin Investigation: Soon"], 2133); -- Zaqali Ruin Investigation: Soon
-    e[7461] = event:New(7461, 0, addon.L["Titan Lockdown: Active"], 2133); -- Titan Lockdown: Active
-    e[7462] = event:New(7462, 0, addon.L["Zaqali Ruin Investigation: Active"], 2133); -- Zaqali Ruin Investigation: Active
+    e[7459] = event:New(7459, 254117, addon.L["Titan Lockdown: Soon"], 2133); -- Titan Lockdown: Soon
+    e[7460] = event:New(7460, 4237659, addon.L["Zaqali Ruin Investigation: Soon"], 2133); -- Zaqali Ruin Investigation: Soon
+    e[7461] = event:New(7461, 254117, addon.L["Titan Lockdown: Active"], 2133); -- Titan Lockdown: Active
+    e[7462] = event:New(7462, 4237659, addon.L["Zaqali Ruin Investigation: Active"], 2133); -- Zaqali Ruin Investigation: Active
 end
 
 function exportedWorldEvents.LoadCategories(e)

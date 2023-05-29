@@ -1,4 +1,4 @@
--- [[ Exported at 2023-05-06 22-00-03 ]] --
+-- [[ Exported at 2023-05-29 21-00-37 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1461,6 +1461,7 @@ function exportedAchievements.Load(a, t)
     a[3618] = b:New(3618); -- Murkimus the Gladiator
     O(a[3618], "Never");
     a[3636] = b:New(3636); -- Jade Tiger
+    O(a[3636], "Never");
     a[3676] = b:New(3676, fac.Alliance, 3677); -- A Silver Confidant
     a[3677] = b:New(3677, fac.Horde, 3676); -- The Sunreavers
     a[3736] = b:New(3736); -- Pony Up!
@@ -1514,6 +1515,7 @@ function exportedAchievements.Load(a, t)
     a[3856] = b:New(3856, fac.Alliance, 4256); -- Demolition Derby
     a[3857] = b:New(3857, fac.Alliance, 3957); -- Master of Isle of Conquest
     a[3896] = b:New(3896); -- Onyx Panther
+    O(a[3896], "Never");
     a[3916] = b:New(3916); -- Call of the Crusade (25 player)
     a[3917] = b:New(3917); -- Call of the Crusade (10 player)
     a[3918] = b:New(3918); -- Call of the Grand Crusade (10 player)
@@ -2017,6 +2019,14 @@ function exportedAchievements.Load(a, t)
     a[5518] = b:New(5518); -- Stood in the Fire
     a[5533] = b:New(5533); -- Veteran of the Shifting Sands
     O(a[5533], "Never");
+    a[5535] = b:New(5535); -- 1000 Valor Points
+    O(a[5535], "From", "Version", "050005", "Before", "Version", "060002");
+    a[5536] = b:New(5536); -- 5000 Valor Points
+    O(a[5536], "From", "Version", "050005", "Before", "Version", "060002");
+    a[5537] = b:New(5537); -- "25,000 Valor Points"
+    O(a[5537], "From", "Version", "050005", "Before", "Version", "060002");
+    a[5538] = b:New(5538); -- "50,000 Valor Points"
+    O(a[5538], "From", "Version", "050005", "Before", "Version", "060002");
     a[5539] = b:New(5539); -- "50,000 Conquest Points"
     O(a[5539], "From", "PvP Season", 5, "Until", "PvP Season", 18);
     a[5540] = b:New(5540); -- "25,000 Conquest Points"
@@ -2515,6 +2525,8 @@ function exportedAchievements.Load(a, t)
     O(a[6920], "From", "Version", "050005", "Before", "Version", "060002");
     a[6922] = b:New(6922); -- Timing is Everything
     a[6923] = b:New(6923); -- Brewmoon Festival
+    a[6924] = b:New(6924); -- "100,000 Valor Points"
+    O(a[6924], "From", "Version", "050005", "Before", "Version", "060002");
     a[6925] = b:New(6925); -- Pandaria Dungeon Hero
     a[6926] = b:New(6926); -- Tranquil Master
     a[6927] = b:New(6927); -- Glory of the Pandaria Hero
@@ -8876,15 +8888,18 @@ function exportedAchievements.Load(a, t)
     a[18254] = b:New(18254); -- Cutting Edge: Scalecommander Sarkareth
     O(a[18254], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
     a[18255] = b:New(18255); -- Proof of Myrrit
+    a[18256] = b:New(18256); -- "Nasz'uro, the Unbound Legacy"
     a[18257] = b:New(18257); -- Can You Dig It?
     a[18258] = b:New(18258); -- Little Lord of Lies
     a[18271] = b:New(18271); -- He'sSss All Mine
     a[18284] = b:New(18284); -- A Niffen's Best Buddy
     a[18361] = b:New(18361); -- To All the Squirrels Burrowed Beneath
     a[18380] = b:New(18380); -- Dragonflight Season 2 Hero
+    a[18542] = b:New(18542); -- Dragonflight Keystone Master: Season Two
+    O(a[18542], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
 
     local aIDs = {};
-    for i = 1, 18380 do
+    for i = 1, 18542 do
         if a[i] ~= nil then
             tinsert(aIDs, i);
         end

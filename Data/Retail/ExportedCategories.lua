@@ -1,4 +1,4 @@
--- [[ Exported at 2023-05-02 19-58-30 ]] --
+-- [[ Exported at 2023-05-29 21-02-10 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -89,6 +89,303 @@ function exportedCategories.Load(a)
     t[1399].HasFlexibleData = true;
     tinsert(searchResultsCategories, t[1399]);
     t[1399].IsSearchResults = true;
+    t[1431] = c:New(k.L["Cross-Expansion"]); -- Cross-Expansion
+    C(t[883], t[1431]);
+    t[1160] = c:New(k.L["Zones"]); -- Zones
+    C(t[1431], t[1160]);
+    t[953] = c:New((select(2, k.GetAchievementInfo(14222)))); -- Exile's Reach
+    C(t[1160], t[953]);
+    A(t[953], a[14222]); -- Exile's Reach
+    t[1432] = c:New(k.GetCategoryInfoTitle(92)); -- Character
+    C(t[1431], t[1432]);
+    A(t[1432], a[6]); -- Level 10
+    A(t[1432], a[7]); -- Level 20
+    A(t[1432], a[8]); -- Level 30
+    A(t[1432], a[9]); -- Level 40
+    A(t[1432], a[14782]); -- Level 50
+    A(t[1432], a[14783]); -- Level 60
+    A(t[1432], a[15805]); -- Level 70
+    A(t[1432], a[10]); -- Level 50 (Legacy)
+    A(t[1432], a[11]); -- Level 60 (Legacy)
+    A(t[1432], a[12]); -- Level 70 (Legacy)
+    A(t[1432], a[13]); -- Level 80 (Legacy)
+    A(t[1432], a[4826]); -- Level 85 (Legacy)
+    A(t[1432], a[6193]); -- Level 90 (Legacy)
+    A(t[1432], a[9060]); -- Level 100 (Legacy)
+    A(t[1432], a[10671]); -- Level 110 (Legacy)
+    A(t[1432], a[12544]); -- Level 120 (Legacy)
+    A(t[1432], a[7382]); -- Dynamic Duo
+    A(t[1432], a[7383]); -- Terrific Trio
+    A(t[1432], a[7384]); -- Quintessential Quintet
+    A(t[1432], a[7380]); -- Double Agent
+    A(t[1432], a[546]); -- Safe Deposit
+    A(t[1432], a[1176]); -- Got My Mind On My Money
+    A(t[1432], a[1177]); -- Got My Mind On My Money
+    A(t[1432], a[1178]); -- Got My Mind On My Money
+    A(t[1432], a[1180]); -- Got My Mind On My Money
+    A(t[1432], a[1181]); -- Got My Mind On My Money
+    A(t[1432], a[5455]); -- Got My Mind On My Money
+    A(t[1432], a[5456]); -- Got My Mind On My Money
+    A(t[1432], a[6753]); -- Got My Mind On My Money
+    A(t[1432], a[558]); -- Greedy
+    A(t[1432], a[559]); -- Needy
+    A(t[1432], a[891]); -- Giddy Up!
+    A(t[1432], a[889]); -- Fast and Furious
+    A(t[1432], a[890]); -- Into the Wild Blue Yonder
+    A(t[1432], a[5180]); -- Breaking the Sound Barrier
+    A(t[1432], a[892]); -- The Right Stuff
+    A(t[1432], a[2357]); -- Dreadsteed of Xoroth
+    A(t[1432], a[2358]); -- Charger
+    A(t[1432], a[2359]); -- Swift Flight Form
+    A(t[1432], a[545]); -- Shave and a Haircut
+    A(t[1432], a[557]); -- Superior
+    A(t[1432], a[5373]); -- Cataclysmically Superior
+    A(t[1432], a[6348]); -- Mystically Superior
+    A(t[1432], a[9707]); -- Savagely Superior
+    A(t[1432], a[10764]); -- Brokenly Superior
+    A(t[1432], a[12546]); -- Superior (Battle)
+    A(t[1432], a[14796]); -- Superior
+    A(t[1432], a[556]); -- Epic
+    A(t[1432], a[5372]); -- Cataclysmically Epic
+    A(t[1432], a[6349]); -- Mystically Epic
+    A(t[1432], a[9708]); -- Savagely Epic
+    A(t[1432], a[10765]); -- Brokenly Epic
+    A(t[1432], a[12547]); -- Epic (Battle)
+    A(t[1432], a[14797]); -- Epic
+    A(t[1432], a[705]); -- Master of Arms
+    A(t[1432], a[16]); -- Did Somebody Order a Knuckle Sandwich?
+    A(t[1432], a[2716]); -- Dual Talent Specialization
+    A(t[1432], a[17305]); -- Trading Post: Dragonflight
+    A(t[1432], a[17334]); -- Trading Post Enthusiast
+    t[1159] = c:New(k.GetCategoryInfoTitle(96)); -- Quests
+    C(t[1431], t[1159]);
+    A(t[1159], a[503]); -- 50 Quests Completed
+    A(t[1159], a[504]); -- 100 Quests Completed
+    A(t[1159], a[505]); -- 250 Quests Completed
+    A(t[1159], a[506]); -- 500 Quests Completed
+    A(t[1159], a[507]); -- 1000 Quests Completed
+    A(t[1159], a[508]); -- 1500 Quests Completed
+    A(t[1159], a[32]); -- 2000 Quests Completed
+    A(t[1159], a[978]); -- 3000 Quests Completed
+    A(t[1159], a[973]); -- 5 Daily Quests Completed
+    A(t[1159], a[974]); -- 50 Daily Quests Completed
+    A(t[1159], a[975]); -- 200 Daily Quests Completed
+    A(t[1159], a[976]); -- 500 Daily Quests Completed
+    A(t[1159], a[977]); -- 1000 Daily Quests Completed
+    A(t[1159], a[5751]); -- 2500 Daily Quests Completed
+    A(t[1159], a[7410]); -- 5000 Daily Quests Completed
+    A(t[1159], a[7411]); -- 10000 Daily Quests Completed
+    A(t[1159], a[31]); -- A Simple Re-Quest
+    A(t[1159], a[11126]); -- 50 World Quests Completed
+    A(t[1159], a[11127]); -- 200 World Quests Completed
+    A(t[1159], a[11128]); -- 500 World Quests Completed
+    A(t[1159], a[11129]); -- 1000 World Quests Completed
+    A(t[1159], a[11130]); -- 2500 World Quests Completed
+    A(t[1159], a[11131]); -- 5000 World Quests Completed
+    A(t[1159], a[11132]); -- "10,000 World Quests Completed"
+    A(t[1159], a[4956]); -- 5 Dungeon Quests Completed
+    A(t[1159], a[4957]); -- 20 Dungeon Quests Completed
+    A(t[1159], a[1182]); -- The Bread Winner
+    A(t[1159], a[5752]); -- Justly Rewarded
+    t[1161] = c:New(k.GetCategoryInfoTitle(97)); -- Exploration
+    C(t[1431], t[1161]);
+    A(t[1161], a[964]); -- Going Down?
+    A(t[1161], a[1244]); -- Well Read
+    A(t[1161], a[1832]); -- Tastes Like Chicken
+    A(t[1161], a[1833]); -- It's Happy Hour Somewhere
+    A(t[1161], a[16789]); -- Lucky Penny
+    A(t[1161], a[16790]); -- Curious Coin
+    t[1169] = c:New(k.GetCategoryInfoTitle(168)); -- Dungeons & Raids
+    C(t[1431], t[1169]);
+    A(t[1169], a[4476]); -- Looking For More
+    A(t[1169], a[4477]); -- Looking For Many
+    A(t[1169], a[4478]); -- Looking For Multitudes
+    t[1149] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
+    C(t[1431], t[1149]);
+    A(t[1149], a[1998]); -- Cooking Award
+    A(t[1149], a[1999]); -- 10 Cooking Awards
+    A(t[1149], a[2000]); -- 25 Cooking Awards
+    A(t[1149], a[2001]); -- 50 Cooking Awards
+    A(t[1149], a[2002]); -- 100 Cooking Awards
+    A(t[1149], a[1795]); -- Lunch Lady
+    A(t[1149], a[1796]); -- Short Order Cook
+    A(t[1149], a[1797]); -- Chef de Partie
+    A(t[1149], a[1798]); -- Sous Chef
+    A(t[1149], a[1799]); -- Chef de Cuisine
+    A(t[1149], a[5471]); -- Iron Chef
+    A(t[1149], a[7328]); -- Ironpaw Chef
+    A(t[1149], a[1563]); -- Hail to the Chef
+    A(t[1149], a[153]); -- The Old Gnome and the Sea
+    A(t[1149], a[5478]); -- The Limnologist
+    A(t[1149], a[5479]); -- The Oceanographer
+    A(t[1149], a[1243]); -- Fish Don't Leave Footprints
+    A(t[1149], a[3218]); -- Turtles All the Way Down
+    A(t[1149], a[1556]); -- 25 Fish
+    A(t[1149], a[1557]); -- 50 Fish
+    A(t[1149], a[1558]); -- 100 Fish
+    A(t[1149], a[1559]); -- 250 Fish
+    A(t[1149], a[1560]); -- 500 Fish
+    A(t[1149], a[1561]); -- 1000 Fish
+    A(t[1149], a[1516]); -- Accomplished Angler
+    A(t[1149], a[5315]); -- Digger
+    A(t[1149], a[5469]); -- Diggerer
+    A(t[1149], a[5470]); -- Diggerest
+    A(t[1149], a[4854]); -- I Had It in My Hand
+    A(t[1149], a[4855]); -- What was Briefly Yours is Now Mine
+    A(t[1149], a[4856]); -- It Belongs in a Museum!
+    A(t[1149], a[9422]); -- "The Search For Fact, Not Truth"
+    A(t[1149], a[141]); -- Ultimate Triage
+    A(t[1149], a[16799]); -- Personal Crafter
+    A(t[1149], a[16791]); -- Merchant Artisan
+    A(t[1149], a[17410]); -- Craftsman of the Zandalar Tribe
+    A(t[1149], a[17412]); -- Craftsman of the Argent Dawn
+    A(t[1149], a[17496]); -- Renowned Weaponsmith
+    A(t[1149], a[17497]); -- Renowned Armorsmith
+    A(t[1149], a[17498]); -- Renowned Leatherworking Specialist
+    A(t[1149], a[17499]); -- Renowned Tailoring Specialist
+    A(t[1149], a[17207]); -- Discombobberlated
+    t[1163] = c:New(k.GetCategoryInfoTitle(201)); -- Reputation
+    C(t[1431], t[1163]);
+    A(t[1163], a[522]); -- Somebody Likes Me
+    A(t[1163], a[523]); -- 5 Exalted Reputations
+    A(t[1163], a[524]); -- 10 Exalted Reputations
+    A(t[1163], a[521]); -- 15 Exalted Reputations
+    A(t[1163], a[520]); -- 20 Exalted Reputations
+    A(t[1163], a[519]); -- 25 Exalted Reputations
+    A(t[1163], a[518]); -- 30 Exalted Reputations
+    A(t[1163], a[1014]); -- 35 Exalted Reputations
+    A(t[1163], a[5374]); -- 45 Exalted Reputations
+    A(t[1163], a[5723]); -- 50 Exalted Reputations
+    A(t[1163], a[6826]); -- 55 Exalted Reputations
+    A(t[1163], a[11177]); -- 70 Exalted Reputations
+    A(t[1163], a[12865]); -- 90 Exalted Reputations
+    A(t[1163], a[5794]); -- Time Flies When You're Having Fun
+    A(t[1163], a[12243]); -- Allied Races: Lightforged Draenei
+    A(t[1163], a[12414]); -- Heritage of the Lightforged
+    A(t[1163], a[14013]); -- Allied Races: Mechagnome
+    A(t[1163], a[14014]); -- Heritage of the Mechagnome
+    A(t[1163], a[12242]); -- Allied Races: Void Elf
+    A(t[1163], a[12291]); -- Heritage of the Void
+    A(t[1163], a[12515]); -- Allied Races: Dark Iron Dwarf
+    A(t[1163], a[13076]); -- Heritage of the Dark Iron
+    A(t[1163], a[13163]); -- Allied Races: Kul Tiran
+    A(t[1163], a[13504]); -- Heritage of the Kul Tirans
+    A(t[1163], a[12245]); -- Allied Races: Highmountain Tauren
+    A(t[1163], a[12415]); -- Heritage of Highmountain
+    A(t[1163], a[12244]); -- Allied Races: Nightborne
+    A(t[1163], a[12413]); -- Heritage of the Nightborne
+    A(t[1163], a[12518]); -- Allied Races: Mag'har Orc
+    A(t[1163], a[13077]); -- Heritage of the Mag'har
+    A(t[1163], a[13161]); -- Allied Races: Zandalari Troll
+    A(t[1163], a[13503]); -- Heritage of the Zandalari
+    A(t[1163], a[13206]); -- Allied Races: Vulpera
+    A(t[1163], a[14002]); -- Heritage of the Vulpera
+    t[1170] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
+    C(t[1431], t[1170]);
+    t[1433] = c:New(k.GetCategoryInfoTitle(15118), true); -- Collect
+    C(t[1170], t[1433]);
+    A(t[1433], a[7482]); -- Trainer Extraordinaire
+    A(t[1433], a[7483]); -- Battle Master
+    A(t[1433], a[6600]); -- Ultimate Trainer
+    A(t[1433], a[7521]); -- Time to Open a Pet Store
+    A(t[1433], a[9712]); -- Shiny Pet Charmer
+    A(t[1433], a[12927]); -- Polished Pet Charmer
+    A(t[1433], a[1017]); -- Can I Keep Him?
+    A(t[1433], a[15]); -- Plenty of Pets
+    A(t[1433], a[1248]); -- Plethora of Pets
+    A(t[1433], a[1250]); -- "Shop Smart, Shop Pet...Smart"
+    A(t[1433], a[2516]); -- Lil' Game Hunter
+    A(t[1433], a[5876]); -- Petting Zoo
+    A(t[1433], a[5877]); -- Menagerie
+    A(t[1433], a[5875]); -- Littlest Pet Shop
+    A(t[1433], a[7500]); -- Going to Need More Leashes
+    A(t[1433], a[7501]); -- That's a Lot of Pet Food
+    A(t[1433], a[9643]); -- So. Many. Pets.
+    A(t[1433], a[12992]); -- Pet Emporium
+    A(t[1433], a[12958]); -- Master of Minions
+    A(t[1433], a[15641]); -- Many More Mini Minions
+    A(t[1433], a[15642]); -- Proven Pet Parent
+    A(t[1433], a[15643]); -- What Can I Say? They Love Me.
+    A(t[1433], a[6554]); -- He's Mine!
+    A(t[1433], a[6555]); -- Building a Team
+    A(t[1433], a[6556]); -- Going to Need More Traps
+    A(t[1433], a[6557]); -- Master Pet Hunter
+    A(t[1433], a[7436]); -- Zen Pet Hunter
+    A(t[1433], a[7465]); -- An Uncommon Find
+    A(t[1433], a[7462]); -- A Rare Catch
+    A(t[1433], a[7463]); -- Lots of Rarity
+    A(t[1433], a[7464]); -- Quality & Quantity
+    A(t[1433], a[6608]); -- Family Reunion
+    A(t[1433], a[6571]); -- That Was Close!
+    t[1434] = c:New(k.GetCategoryInfoTitle(15119), true); -- Battle
+    C(t[1170], t[1434]);
+    A(t[1434], a[6594]); -- Cat Fight!
+    A(t[1434], a[6593]); -- Experienced Pet Battler
+    A(t[1434], a[6462]); -- Master Pet Battler
+    A(t[1434], a[6591]); -- Grand Master Pet Battler
+    A(t[1434], a[6592]); -- Legendary Pet Battler
+    A(t[1434], a[6851]); -- Take 'Em All On!
+    A(t[1434], a[6595]); -- Pet Brawler
+    A(t[1434], a[6596]); -- Experienced Pet Brawler
+    A(t[1434], a[6597]); -- Master Pet Brawler
+    A(t[1434], a[6598]); -- Grand Master Pet Brawler
+    A(t[1434], a[6599]); -- Legendary Pet Brawler
+    A(t[1434], a[8297]); -- Merciless Pet Brawler
+    A(t[1434], a[8298]); -- Vengeful Pet Brawler
+    A(t[1434], a[8300]); -- Brutal Pet Brawler
+    A(t[1434], a[8301]); -- Deadly Pet Brawler
+    A(t[1434], a[12279]); -- Mechanical Brawler
+    A(t[1434], a[12280]); -- Aquatic Brawler
+    A(t[1434], a[12281]); -- Beast Brawler
+    A(t[1434], a[12282]); -- Elemental Brawler
+    A(t[1434], a[12283]); -- Magic Brawler
+    A(t[1434], a[12284]); -- Critter Brawler
+    A(t[1434], a[12285]); -- Undead Brawler
+    A(t[1434], a[12286]); -- Flying Brawler
+    A(t[1434], a[12287]); -- Dragonkin Brawler
+    A(t[1434], a[12289]); -- Humanoid Brawler
+    A(t[1434], a[12290]); -- Family Brawler
+    A(t[1434], a[6618]); -- On A Roll
+    A(t[1434], a[6619]); -- Win Streak
+    A(t[1434], a[6620]); -- No Time To Heal
+    t[1435] = c:New(k.GetCategoryInfoTitle(15120), true); -- Level
+    C(t[1170], t[1435]);
+    A(t[1435], a[7433]); -- Newbie
+    A(t[1435], a[6566]); -- Just a Pup
+    A(t[1435], a[6567]); -- Growing Up
+    A(t[1435], a[6568]); -- Time for a Leash
+    A(t[1435], a[6569]); -- Old Timer
+    A(t[1435], a[6570]); -- All Growns Up!
+    A(t[1435], a[6579]); -- Rookie Pet Group
+    A(t[1435], a[6580]); -- Rookie Pet Crew
+    A(t[1435], a[6583]); -- Rookie Pet Mob
+    A(t[1435], a[6578]); -- Pro Pet Group
+    A(t[1435], a[6581]); -- Pro Pet Crew
+    A(t[1435], a[6582]); -- Pro Pet Mob
+    A(t[1435], a[6609]); -- No Favorites
+    A(t[1435], a[6610]); -- All Pets Allowed
+    A(t[1435], a[9070]); -- Overstuffed
+    t[1171] = c:New(k.GetCategoryInfoTitle(15246)); -- Collections
+    C(t[1431], t[1171]);
+    A(t[1171], a[621]); -- Represent
+    A(t[1171], a[1020]); -- Ten Tabards
+    A(t[1171], a[1021]); -- Twenty-Five Tabards
+    A(t[1171], a[5755]); -- Thirty Tabards
+    A(t[1171], a[9911]); -- Where's the Mailbox?
+    A(t[1171], a[9906]); -- Alt-ernative Lifestyle
+    A(t[1171], a[9908]); -- Ready for Powerleveling
+    A(t[1171], a[9670]); -- Toying Around
+    A(t[1171], a[9671]); -- Having a Ball
+    A(t[1171], a[9672]); -- Tons of Toys
+    A(t[1171], a[9673]); -- The Toymaster
+    A(t[1171], a[11176]); -- Remember to Share
+    A(t[1171], a[12996]); -- Toybox Tycoon
+    A(t[1171], a[15781]); -- The Joy of Toy
+    t[1172] = c:New(k.GetCategoryInfoTitle(81)); -- Feats of Strength
+    C(t[1431], t[1172]);
+    A(t[1172], a[4496]); -- It's Over Nine Thousand!
+    A(t[1172], a[3636]); -- Jade Tiger
+    A(t[1172], a[3896]); -- Onyx Panther
     t[1] = c:New(k.GetCategoryInfoTitle(14864)); -- Classic
     C(t[883], t[1]);
     t[648] = c:New(k.L["Zones"]); -- Zones
@@ -109,6 +406,8 @@ function exportedCategories.Load(a)
     A(t[922], a[388]); -- City Defender
     A(t[922], a[11065]); -- It All Makes Sense Now
     A(t[922], a[603]); -- Wrath of the Horde
+    A(t[922], a[5474]); -- Let's Do Lunch: Stormwind
+    A(t[922], a[5476]); -- Fish or Cut Bait: Stormwind
     t[1033] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[922], t[1033]);
     A(t[1033], a[9924]); -- Field Photographer
@@ -120,10 +419,14 @@ function exportedCategories.Load(a)
     A(t[970], a[616]); -- Overthrow the Council
     A(t[970], a[619]); -- For the Horde!
     A(t[970], a[603]); -- Wrath of the Horde
+    A(t[970], a[5841]); -- Let's Do Lunch: Ironforge
+    A(t[970], a[5847]); -- Fish or Cut Bait: Ironforge
     t[974] = c:New(k.GetMapName(90)); -- Undercity
     C(t[687], t[974]);
     A(t[974], a[612]); -- Downing the Dark Lady
     A(t[974], a[604]); -- Wrath of the Alliance
+    A(t[974], a[5844]); -- Let's Do Lunch: Undercity
+    A(t[974], a[5850]); -- Fish or Cut Bait: Undercity
     t[721] = c:New(k.GetMapName(27)); -- Dun Morogh
     C(t[687], t[721]);
     A(t[721], a[11200]); -- Stand Against the Legion
@@ -398,6 +701,8 @@ function exportedCategories.Load(a)
     C(t[688], t[975]);
     A(t[975], a[617]); -- Immortal No More
     A(t[975], a[603]); -- Wrath of the Horde
+    A(t[975], a[5842]); -- Let's Do Lunch: Darnassus
+    A(t[975], a[5848]); -- Fish or Cut Bait: Darnassus
     t[921] = c:New(k.GetMapName(85)); -- Orgrimmar
     C(t[688], t[921]);
     A(t[921], a[610]); -- Orgrimmar Offensive
@@ -406,6 +711,8 @@ function exportedCategories.Load(a)
     A(t[921], a[1006]); -- City Defender
     A(t[921], a[11065]); -- It All Makes Sense Now
     A(t[921], a[604]); -- Wrath of the Alliance
+    A(t[921], a[5475]); -- Let's Do Lunch: Orgrimmar
+    A(t[921], a[5477]); -- Fish or Cut Bait: Orgrimmar
     t[1018] = c:New(k.GetCategoryInfoTitle(201), true); -- Reputation
     C(t[921], t[1018]);
     A(t[1018], a[762]); -- Ambassador of the Horde
@@ -413,6 +720,8 @@ function exportedCategories.Load(a)
     C(t[688], t[923]);
     A(t[923], a[611]); -- Bleeding Bloodhoof
     A(t[923], a[604]); -- Wrath of the Alliance
+    A(t[923], a[5843]); -- Let's Do Lunch: Thunder Bluff
+    A(t[923], a[5849]); -- Fish or Cut Bait: Thunder Bluff
     t[756] = c:New(k.GetMapName(57)); -- Teldrassil
     C(t[688], t[756]);
     t[757] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
@@ -760,6 +1069,33 @@ function exportedCategories.Load(a)
     C(t[3], t[796]);
     A(t[796], a[11744]); -- "Drop Dead, Gorgeous"
     A(t[796], a[425]); -- "Atiesh, Greatstaff of the Guardian"
+    t[1150] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
+    C(t[1], t[1150]);
+    A(t[1150], a[116]); -- Professional Journeyman
+    A(t[1150], a[731]); -- Professional Expert
+    A(t[1150], a[732]); -- Professional Classic Master
+    A(t[1150], a[121]); -- Journeyman Cook
+    A(t[1150], a[122]); -- Expert Cook
+    A(t[1150], a[123]); -- Classic Cook
+    A(t[1150], a[5845]); -- A Bunch of Lunch
+    A(t[1150], a[5779]); -- You'll Feel Right as Rain
+    A(t[1150], a[126]); -- Journeyman Fisherman
+    A(t[1150], a[127]); -- Expert Fisherman
+    A(t[1150], a[128]); -- Artisan Fisherman
+    A(t[1150], a[1257]); -- The Scavenger
+    A(t[1150], a[150]); -- The Fishing Diplomat
+    A(t[1150], a[306]); -- Master Angler of Azeroth
+    A(t[1150], a[878]); -- One That Didn't Get Away
+    A(t[1150], a[1836]); -- Old Crafty
+    A(t[1150], a[1837]); -- Old Ironjaw
+    A(t[1150], a[5851]); -- Gone Fishin'
+    A(t[1150], a[4857]); -- Journeyman Archaeologist
+    A(t[1150], a[4919]); -- Expert Archaeologist
+    A(t[1150], a[4920]); -- Artisan Archaeologist
+    A(t[1150], a[131]); -- Journeyman Medic
+    A(t[1150], a[132]); -- Expert Medic
+    A(t[1150], a[133]); -- Artisan Medic
+    A(t[1150], a[17367]); -- Deadliest Cache
     t[785] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[1], t[785]);
     A(t[785], a[6586]); -- Eastern Kingdoms Safari
@@ -1082,6 +1418,22 @@ function exportedCategories.Load(a)
     A(t[82], a[11749]); -- "Suns Out, Thori'dals Out"
     A(t[82], a[725]); -- "Thori'dal, the Stars' Fury"
     A(t[82], a[9824]); -- Raiding with Leashes III: Drinkin' From the Sunwell
+    t[1151] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
+    C(t[55], t[1151]);
+    A(t[1151], a[733]); -- Professional Outland Master
+    A(t[1151], a[124]); -- Outland Cook
+    A(t[1151], a[877]); -- The Cake Is Not A Lie
+    A(t[1151], a[906]); -- Kickin' It Up a Notch
+    A(t[1151], a[1800]); -- The Outland Gourmet
+    A(t[1151], a[1801]); -- Captain Rumsey's Lager
+    A(t[1151], a[129]); -- Outland Fisherman
+    A(t[1151], a[1257]); -- The Scavenger
+    A(t[1151], a[726]); -- Mr. Pinchy's Magical Crawdad Box
+    A(t[1151], a[144]); -- The Lurker Above
+    A(t[1151], a[905]); -- Old Man Barlowned
+    A(t[1151], a[1225]); -- Outland Angler
+    A(t[1151], a[4921]); -- Master Archaeologist
+    A(t[1151], a[134]); -- Master Medic
     t[786] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[55], t[786]);
     A(t[786], a[6587]); -- Outland Safari
@@ -1811,6 +2163,32 @@ function exportedCategories.Load(a)
     C(t[126], t[128]);
     A(t[128], a[4815]); -- The Twilight Destroyer (25 player)
     A(t[128], a[4816]); -- Heroic: The Twilight Destroyer (25 player)
+    t[1152] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
+    C(t[83], t[1152]);
+    A(t[1152], a[734]); -- Professional Northrend Master
+    A(t[1152], a[735]); -- Working In the Cold
+    A(t[1152], a[125]); -- Northrend Cook
+    A(t[1152], a[1777]); -- The Northrend Gourmet
+    A(t[1152], a[1778]); -- The Northrend Gourmet
+    A(t[1152], a[1779]); -- The Northrend Gourmet
+    A(t[1152], a[1780]); -- Second That Emotion
+    A(t[1152], a[1781]); -- Critter Gitter
+    A(t[1152], a[1785]); -- Dinner Impossible
+    A(t[1152], a[3296]); -- Cooking with Style
+    A(t[1152], a[1782]); -- Our Daily Bread
+    A(t[1152], a[1783]); -- Our Daily Bread
+    A(t[1152], a[130]); -- Northrend Fisherman
+    A(t[1152], a[1517]); -- Northrend Angler
+    A(t[1152], a[3217]); -- Chasing Marcia
+    A(t[1152], a[2094]); -- A Penny For Your Thoughts
+    A(t[1152], a[2095]); -- Silver in the City
+    A(t[1152], a[1957]); -- There's Gold In That There Fountain
+    A(t[1152], a[2096]); -- The Coin Master
+    A(t[1152], a[1958]); -- I Smell A Giant Rat
+    A(t[1152], a[4922]); -- Grand Master Archaeologist
+    A(t[1152], a[135]); -- Grand Master Medic
+    A(t[1152], a[137]); -- Stocking Up
+    A(t[1152], a[730]); -- Skills to Pay the Bills
     t[787] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[83], t[787]);
     A(t[787], a[6588]); -- Northrend Safari
@@ -2209,6 +2587,25 @@ function exportedCategories.Load(a)
     A(t[909], a[6114]); -- Heroic: Warmaster Blackhorn
     A(t[909], a[6115]); -- Heroic: Spine of Deathwing
     A(t[909], a[6116]); -- Heroic: Madness of Deathwing
+    t[1153] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
+    C(t[129], t[1153]);
+    A(t[1153], a[4924]); -- Professional Cataclysmic Master
+    A(t[1153], a[4914]); -- Working In the Heat
+    A(t[1153], a[4916]); -- Cataclysmic Cook
+    A(t[1153], a[5472]); -- The Cataclysmic Gourmet
+    A(t[1153], a[5473]); -- The Cataclysmic Gourmet
+    A(t[1153], a[4917]); -- Cataclysmic Fisherman
+    A(t[1153], a[4923]); -- Illustrious Grand Master Archaeologist
+    A(t[1153], a[5511]); -- It's Always in the Last Place You Look
+    A(t[1153], a[4858]); -- Seven Scepters
+    A(t[1153], a[5191]); -- Tragedy in Three Acts
+    A(t[1153], a[5193]); -- Blue Streak
+    A(t[1153], a[5192]); -- The Harder they Fall
+    A(t[1153], a[4859]); -- Kings Under the Mountain
+    A(t[1153], a[5301]); -- The Boy Who Would be King
+    A(t[1153], a[4918]); -- Illustrious Grand Master Medic
+    A(t[1153], a[5480]); -- Preparing for Disaster
+    A(t[1153], a[4915]); -- More Skills to Pay the Bills
     t[788] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[129], t[788]);
     A(t[788], a[7525]); -- Taming Cataclysm
@@ -2256,6 +2653,11 @@ function exportedCategories.Load(a)
     A(t[189], a[8325]); -- Chapter V: Judgment of the Black Prince
     A(t[189], a[8306]); -- Hordebreaker
     A(t[189], a[8307]); -- Darkspear Revolutionary
+    A(t[189], a[5535]); -- 1000 Valor Points
+    A(t[189], a[5536]); -- 5000 Valor Points
+    A(t[189], a[5537]); -- "25,000 Valor Points"
+    A(t[189], a[5538]); -- "50,000 Valor Points"
+    A(t[189], a[6924]); -- "100,000 Valor Points"
     t[491] = c:New(k.L["Zones"]); -- Zones
     C(t[189], t[491]);
     t[526] = c:New(k.GetMapName(424)); -- Pandaria
@@ -2337,6 +2739,16 @@ function exportedCategories.Load(a)
     A(t[518], a[6544]); -- The Tillers
     A(t[518], a[6551]); -- Friend on the Farm
     A(t[518], a[6552]); -- Friends on the Farm
+    t[1436] = c:New(k.GetCategoryInfoTitle(169), true); -- Professions
+    C(t[493], t[1436]);
+    A(t[1436], a[7300]); -- Master of the Grill
+    A(t[1436], a[7301]); -- Master of the Wok
+    A(t[1436], a[7302]); -- Master of the Pot
+    A(t[1436], a[7303]); -- Master of the Steamer
+    A(t[1436], a[7304]); -- Master of the Oven
+    A(t[1436], a[7305]); -- Master of the Brew
+    A(t[1436], a[7306]); -- Master of Pandaren Cooking
+    A(t[1436], a[7325]); -- Now I Am the Master
     t[494] = c:New(k.GetMapName(418)); -- Krasarang Wilds
     C(t[491], t[494]);
     t[513] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
@@ -2346,6 +2758,7 @@ function exportedCategories.Load(a)
     A(t[513], a[7287]); -- Champion of Chi-Ji
     A(t[513], a[7928]); -- Operation: Shieldwall Campaign
     A(t[513], a[7929]); -- Dominance Offensive Campaign
+    A(t[513], a[7614]); -- Locking Down the Docks
     t[514] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[494], t[514]);
     A(t[514], a[6975]); -- Explore Krasarang Wilds
@@ -2356,6 +2769,7 @@ function exportedCategories.Load(a)
     C(t[494], t[543]);
     A(t[543], a[8205]); -- Operation: Shieldwall
     A(t[543], a[8206]); -- Dominance Offensive
+    A(t[543], a[7274]); -- Learning from the Best
     t[495] = c:New(k.GetMapName(379)); -- Kun-Lai Summit
     C(t[491], t[495]);
     A(t[495], a[6480]); -- "Settle Down, Bro"
@@ -2769,6 +3183,97 @@ function exportedCategories.Load(a)
     A(t[901], a[8480]); -- Mythic: Siegecrafter Blackfuse
     A(t[901], a[8481]); -- Mythic: Paragons of the Klaxxi
     A(t[901], a[8482]); -- Mythic: Garrosh Hellscream
+    t[1437] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
+    C(t[189], t[1437]);
+    A(t[1437], a[6830]); -- Professional Zen Master
+    A(t[1437], a[6835]); -- Working For a Living
+    A(t[1437], a[7378]); -- Jack of All Trades
+    A(t[1437], a[7379]); -- Pandaren Master of All
+    A(t[1437], a[6838]); -- Zen Master Medic
+    A(t[1437], a[6836]); -- Serious Skills to Pay the Bills
+    t[1143] = c:New(k.GetCategoryInfoTitle(170), true); -- Cooking
+    C(t[1437], t[1143]);
+    A(t[1143], a[6365]); -- Zen Master Cook
+    A(t[1143], a[7326]); -- The Pandaren Gourmet
+    A(t[1143], a[7327]); -- The Pandaren Gourmet
+    t[1438] = c:New(k.GetCategoryInfoTitle(171), true); -- Fishing
+    C(t[1437], t[1438]);
+    A(t[1438], a[6839]); -- Zen Master Fisherman
+    A(t[1438], a[7611]); -- Pandarian Angler
+    t[1440] = c:New(k.GetCategoryInfoTitle(15071)); -- Archaeology
+    C(t[1437], t[1440]);
+    A(t[1440], a[6837]); -- Zen Master Archaeologist
+    A(t[1440], a[7612]); -- The Seat of Knowledge
+    A(t[1440], a[8219]); -- History of the Mantid
+    t[1441] = c:New(k.L["Pandaren"], true); -- Pandaren
+    C(t[1440], t[1441]);
+    A(t[1441], a[7331]); -- The Three Brew Fathers
+    A(t[1441], a[7332]); -- The Broken Hearted
+    A(t[1441], a[7333]); -- The Four Celestials
+    A(t[1441], a[7338]); -- Collector: Pandaren Tea Sets
+    A(t[1441], a[7358]); -- Collector: Pandaren Tea Sets
+    A(t[1441], a[7339]); -- Collector: Pandaren Game Boards
+    A(t[1441], a[7359]); -- Collector: Pandaren Game Boards
+    A(t[1441], a[7340]); -- Collector: Twin Stein Sets of Brewfather Quan Tou Kuo
+    A(t[1441], a[7360]); -- Collector: Twin Stein Sets of Brewfather Quan Tou Kuo
+    A(t[1441], a[7341]); -- Collector: Walking Canes of Brewfather Ren Yun
+    A(t[1441], a[7361]); -- Collector: Walking Canes of Brewfather Ren Yun
+    A(t[1441], a[7342]); -- Collector: Empty Kegs of Brewfather Xin Wo Yin
+    A(t[1441], a[7362]); -- Collector: Empty Kegs of Brewfather Xin Wo Yin
+    A(t[1441], a[7343]); -- Collector: Carved Bronze Mirrors
+    A(t[1441], a[7363]); -- Collector: Carved Bronze Mirrors
+    A(t[1441], a[7344]); -- Collector: Gold-Inlaid Porcelain Funerary Figurines
+    A(t[1441], a[7364]); -- Collector: Gold-Inlaid Porcelain Funerary Figurines
+    A(t[1441], a[7345]); -- Collector: Apothecary Tins
+    A(t[1441], a[7365]); -- Collector: Apothecary Tins
+    A(t[1441], a[7346]); -- Collector: Pearls of Yu'lon
+    A(t[1441], a[7366]); -- Collector: Pearls of Yu'lon
+    A(t[1441], a[7347]); -- Collector: Standards of Niuzao
+    A(t[1441], a[7367]); -- Collector: Standards of Niuzao
+    t[1442] = c:New(k.L["Mogu"], true); -- Mogu
+    C(t[1440], t[1442]);
+    A(t[1442], a[7334]); -- Instruments of Cruelty
+    A(t[1442], a[7335]); -- Symbols of Strength
+    A(t[1442], a[7337]); -- Documents of a Dark History
+    A(t[1442], a[7336]); -- Stone Servants
+    A(t[1442], a[7348]); -- Collector: Manacles of Rebellion
+    A(t[1442], a[7368]); -- Collector: Manacles of Rebellion
+    A(t[1442], a[7349]); -- Collector: Cracked Mogu Runestones
+    A(t[1442], a[7369]); -- Collector: Cracked Mogu Runestones
+    A(t[1442], a[7350]); -- Collector: Terracotta Arms
+    A(t[1442], a[7370]); -- Collector: Terracotta Arms
+    A(t[1442], a[7351]); -- Collector: Petrified Bone Whips
+    A(t[1442], a[7371]); -- Collector: Petrified Bone Whips
+    A(t[1442], a[7352]); -- Collector: Thunder King Insignias
+    A(t[1442], a[7372]); -- Collector: Thunder King Insignias
+    A(t[1442], a[7373]); -- Collector: Edicts of the Thunder King
+    A(t[1442], a[7353]); -- Collector: Edicts of the Thunder King
+    A(t[1442], a[7354]); -- Collector: Iron Amulets
+    A(t[1442], a[7374]); -- Collector: Iron Amulets
+    A(t[1442], a[7355]); -- Collector: Warlord's Branding Irons
+    A(t[1442], a[7375]); -- Collector: Warlord's Branding Irons
+    A(t[1442], a[7356]); -- Collector: Mogu Coins
+    A(t[1442], a[7376]); -- Collector: Mogu Coins
+    A(t[1442], a[7357]); -- Collector: Worn Monument Ledgers
+    A(t[1442], a[7377]); -- Collector: Worn Monument Ledgers
+    t[1443] = c:New(k.L["Mantid"], true); -- Mantid
+    C(t[1440], t[1443]);
+    A(t[1443], a[8220]); -- Collector: Banners of the Mantid Empire
+    A(t[1443], a[8221]); -- Collector: Banners of the Mantid Empire
+    A(t[1443], a[8222]); -- Collector: Ancient Sap Feeders
+    A(t[1443], a[8223]); -- Collector: Ancient Sap Feeders
+    A(t[1443], a[8224]); -- Collector: Praying Mantids
+    A(t[1443], a[8225]); -- Collector: Praying Mantids
+    A(t[1443], a[8226]); -- Collector: Inert Sound Beacons
+    A(t[1443], a[8227]); -- Collector: Inert Sound Beacons
+    A(t[1443], a[8228]); -- Collector: Remains of Paragons
+    A(t[1443], a[8229]); -- Collector: Remains of Paragons
+    A(t[1443], a[8230]); -- Collector: Mantid Lamps
+    A(t[1443], a[8231]); -- Collector: Mantid Lamps
+    A(t[1443], a[8232]); -- Collector: Pollen Collectors
+    A(t[1443], a[8233]); -- Collector: Pollen Collectors
+    A(t[1443], a[8234]); -- Collector: Kypari Sap Containers
+    A(t[1443], a[8235]); -- Collector: Kypari Sap Containers
     t[549] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[189], t[549]);
     A(t[549], a[6616]); -- Pandaria Tamer
@@ -2999,6 +3504,9 @@ function exportedCategories.Load(a)
     A(t[489], a[9478]); -- Savage Friends
     t[450] = c:New(k.GetMapName(539)); -- Shadowmoon Valley
     C(t[449], t[450]);
+    A(t[450], a[9458]); -- Blind Lake Sturgeon Angler
+    A(t[450], a[9410]); -- Unite the Clans
+    A(t[450], a[9413]); -- Strength and Honor
     t[457] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
     C(t[450], t[457]);
     A(t[457], a[8845]); -- As I Walk Through the Valley of the Shadow of Moon
@@ -3022,6 +3530,9 @@ function exportedCategories.Load(a)
     A(t[460], a[9470]); -- Council of Exarchs
     t[451] = c:New(k.GetMapName(525)); -- Frostfire Ridge
     C(t[449], t[451]);
+    A(t[451], a[9455]); -- Fire Ammonite Angler
+    A(t[451], a[9410]); -- Unite the Clans
+    A(t[451], a[9413]); -- Strength and Honor
     t[461] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
     C(t[451], t[461]);
     A(t[461], a[8671]); -- You'll Get Caught Up In The... Frostfire!
@@ -3045,6 +3556,9 @@ function exportedCategories.Load(a)
     t[452] = c:New(k.GetMapName(543)); -- Gorgrond
     C(t[449], t[452]);
     A(t[452], a[9423]); -- Goliaths of Gorgrond
+    A(t[452], a[9460]); -- Jawless Skulker Angler
+    A(t[452], a[9411]); -- Highmaul Historian
+    A(t[452], a[9414]); -- Ogre Observer
     t[465] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
     C(t[452], t[465]);
     A(t[465], a[8923]); -- Putting the Gore in Gorgrond
@@ -3069,6 +3583,9 @@ function exportedCategories.Load(a)
     A(t[468], a[9475]); -- Laughing Skull Orcs
     t[453] = c:New(k.GetMapName(535)); -- Talador
     C(t[449], t[453]);
+    A(t[453], a[9457]); -- Blackwater Whiptail Angler
+    A(t[453], a[9411]); -- Highmaul Historian
+    A(t[453], a[9414]); -- Ogre Observer
     t[469] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
     C(t[453], t[469]);
     A(t[469], a[8920]); -- Don't Let the Tala-door Hit You on the Way Out
@@ -3091,6 +3608,9 @@ function exportedCategories.Load(a)
     t[454] = c:New(k.GetMapName(542)); -- Spires of Arak
     C(t[449], t[454]);
     A(t[454], a[9425]); -- So Grossly Incandescent
+    A(t[454], a[9456]); -- Abyssal Gulper Eel Angler
+    A(t[454], a[9415]); -- Secrets of Skettis
+    A(t[454], a[9412]); -- Arakkoa Archivist
     t[473] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
     C(t[454], t[473]);
     A(t[473], a[8925]); -- Between Arak and a Hard Place
@@ -3109,6 +3629,11 @@ function exportedCategories.Load(a)
     A(t[476], a[9072]); -- Mantle of the Talon King
     t[455] = c:New(k.GetMapName(550)); -- Nagrand
     C(t[449], t[455]);
+    A(t[455], a[9459]); -- Fat Sleeper Angler
+    A(t[455], a[9410]); -- Unite the Clans
+    A(t[455], a[9411]); -- Highmaul Historian
+    A(t[455], a[9413]); -- Strength and Honor
+    A(t[455], a[9414]); -- Ogre Observer
     t[477] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
     C(t[455], t[477]);
     A(t[477], a[8927]); -- Nagrandeur
@@ -3373,6 +3898,24 @@ function exportedCategories.Load(a)
     A(t[891], a[10039]); -- Mythic: Xhul'horac
     A(t[891], a[10042]); -- Mythic: Mannoroth
     A(t[891], a[10043]); -- Mythic: Archimonde
+    t[1155] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
+    C(t[223], t[1155]);
+    A(t[1155], a[9464]); -- Professional Draenor Master
+    A(t[1155], a[9507]); -- Working in Draenor
+    A(t[1155], a[9087]); -- Draenor Master of All
+    A(t[1155], a[9453]); -- Draenic Stone Collector
+    A(t[1155], a[9454]); -- Draenic Seed Collector
+    A(t[1155], a[9071]); -- Inspector Gadgetzan
+    A(t[1155], a[9500]); -- Draenor Cook
+    A(t[1155], a[9501]); -- The Draenor Gourmet
+    A(t[1155], a[9503]); -- Draenor Fisherman
+    A(t[1155], a[9461]); -- Sea Scorpion Angler
+    A(t[1155], a[9462]); -- Draenor Angler
+    A(t[1155], a[9547]); -- Everything Is Awesome!
+    A(t[1155], a[9409]); -- Draenor Archaeologist
+    A(t[1155], a[9419]); -- Draenor Curator
+    A(t[1155], a[9505]); -- Draenor Medic
+    A(t[1155], a[9506]); -- Savage Skills to Pay the Bills
     t[548] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[223], t[548]);
     A(t[548], a[9685]); -- Draenor Safari
@@ -3610,6 +4153,14 @@ function exportedCategories.Load(a)
     t[405] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[382], t[405]);
     A(t[405], a[11066]); -- Underbelly Tycoon
+    t[1448] = c:New(k.GetCategoryInfoTitle(169), true); -- Professions
+    C(t[382], t[1448]);
+    A(t[1448], a[10591]); -- All Grown Up
+    A(t[1448], a[10592]); -- Never A Day's Rest
+    A(t[1448], a[10593]); -- Everything Tastes Better
+    A(t[1448], a[10722]); -- The Wish Remover
+    A(t[1448], a[10585]); -- Fel-Smelter
+    A(t[1448], a[10586]); -- Mass Obliteration
     t[384] = c:New(k.GetMapName(630)); -- Azsuna
     C(t[381], t[384]);
     t[385] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
@@ -3990,6 +4541,36 @@ function exportedCategories.Load(a)
     A(t[882], a[12000]); -- Mythic: The Coven of Shivarra
     A(t[882], a[12001]); -- Mythic: Aggramar
     A(t[882], a[12002]); -- Mythic: Argus the Unmaker
+    t[1156] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
+    C(t[237], t[1156]);
+    A(t[1156], a[10582]); -- Professional Legion Master
+    A(t[1156], a[10581]); -- Working the Isles
+    A(t[1156], a[10583]); -- Legion Master of All
+    A(t[1156], a[10761]); -- Resourceful
+    A(t[1156], a[10587]); -- Hot Swapper
+    A(t[1156], a[10588]); -- The Shortest Distance
+    A(t[1156], a[10589]); -- Legion Cook
+    A(t[1156], a[10762]); -- The Legion Menu
+    A(t[1156], a[10594]); -- Legion Fisherman
+    A(t[1156], a[10597]); -- Legion Aquaculture
+    A(t[1156], a[10595]); -- A Cast Above the Rest
+    A(t[1156], a[10596]); -- Bigger Fish to Fry
+    A(t[1156], a[10598]); -- Fishing 'Round the Isles
+    A(t[1156], a[11725]); -- Fisherfriend of the Isles
+    A(t[1156], a[10600]); -- Legion Archaeologist
+    A(t[1156], a[10601]); -- Surveying the Land
+    A(t[1156], a[10602]); -- This Side Up
+    A(t[1156], a[10603]); -- A Keen Eye
+    A(t[1156], a[10604]); -- Legion Curator
+    A(t[1156], a[10605]); -- Handle With Care
+    A(t[1156], a[10606]); -- The Dwarven Dream
+    A(t[1156], a[10607]); -- Getting Your Hands Dirty
+    A(t[1156], a[10608]); -- Sifting Through the Sand
+    A(t[1156], a[10609]); -- No Stone Unturned
+    A(t[1156], a[10599]); -- Legion Medic
+    A(t[1156], a[10580]); -- Heroic Skills to Pay the Bills
+    A(t[1156], a[11138]); -- Is There a Medic in the Zone?
+    A(t[1156], a[11139]); -- Field Medic
     t[430] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[237], t[430]);
     A(t[430], a[11233]); -- Broken Isles Safari
@@ -4124,6 +4705,15 @@ function exportedCategories.Load(a)
     A(t[275], a[12947]); -- Azerothian Diplomat
     A(t[275], a[12955]); -- Champions of Azeroth
     A(t[275], a[12956]); -- Tortollan Seekers
+    t[1447] = c:New(k.GetMapName(1161) .. " & " .. k.GetMapName(1165)); -- Boralus & Dazar'alor
+    C(t[259], t[1447]);
+    A(t[1447], a[12741]); -- Giving a Scrap
+    A(t[1447], a[13056]); -- Giving a Scrap
+    A(t[1447], a[12738]); -- Holy Scrap!
+    A(t[1447], a[12739]); -- Scraptastic!
+    A(t[1447], a[12740]); -- Full of Scrap!
+    A(t[1447], a[12758]); -- Baiting the Enemy
+    A(t[1447], a[12759]); -- Baiting the Enemy
     t[276] = c:New(k.GetMapName(895)); -- Tiragarde Sound
     C(t[259], t[276]);
     t[281] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
@@ -4280,6 +4870,7 @@ function exportedCategories.Load(a)
     t[307] = c:New(k.GetMapName(1462)); -- Mechagon Island
     C(t[259], t[307]);
     A(t[307], a[13708]); -- Most Minis Wins
+    A(t[307], a[13489]); -- Secret Fish of Mechagon
     t[308] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
     C(t[307], t[308]);
     A(t[308], a[13553]); -- The Mechagonian Threat
@@ -4634,6 +5225,34 @@ function exportedCategories.Load(a)
     A(t[872], a[14052]); -- "Mythic: Il'gynoth, Corruption Reborn"
     A(t[872], a[14054]); -- Mythic: Carapace of N'Zoth
     A(t[872], a[14055]); -- Mythic: N'Zoth the Corruptor
+    t[1157] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
+    C(t[258], t[1157]);
+    A(t[1157], a[12731]); -- Professional Kul Tiran Master
+    A(t[1157], a[12733]); -- Professional Zandalari Master
+    A(t[1157], a[12734]); -- Working in Kul Tiras
+    A(t[1157], a[12735]); -- Working in Zandalar
+    A(t[1157], a[12736]); -- Kul Tiran Master of All
+    A(t[1157], a[12737]); -- Zandalari Master of All
+    A(t[1157], a[13516]); -- Massive Tool
+    A(t[1157], a[12742]); -- Kul Tiran Cook
+    A(t[1157], a[12743]); -- Zandalari Cook
+    A(t[1157], a[12744]); -- The Kul Tiran Menu
+    A(t[1157], a[12746]); -- The Zandalari Menu
+    A(t[1157], a[12747]); -- Catering for Combat
+    A(t[1157], a[12753]); -- Kul Tiran Fisherman
+    A(t[1157], a[12754]); -- Zandalari Fisherman
+    A(t[1157], a[13502]); -- Secret Fish and Where to Find Them
+    A(t[1157], a[12757]); -- Angling for Battle
+    A(t[1157], a[12755]); -- Scent of the Sea
+    A(t[1157], a[12756]); -- Fish Me In the Moonlight
+    A(t[1157], a[12990]); -- Catchin' Some Rays
+    A(t[1157], a[12760]); -- Kul Tiran Archaeologist
+    A(t[1157], a[12761]); -- Zandalari Archaeologist
+    A(t[1157], a[12762]); -- Kul Tiran Curator
+    A(t[1157], a[12764]); -- Zandalari Curator
+    A(t[1157], a[12765]); -- Exotic Discoveries
+    A(t[1157], a[12769]); -- Light Travel
+    A(t[1157], a[12770]); -- Lengthy Legwork
     t[343] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[258], t[343]);
     A(t[343], a[12930]); -- Battle Safari
@@ -5296,6 +5915,13 @@ function exportedCategories.Load(a)
     A(t[1042], a[15487]); -- Mythic: Lords of Dread
     A(t[1042], a[15488]); -- Mythic: Rygelon
     A(t[1042], a[15489]); -- Mythic: The Jailer
+    t[1158] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
+    C(t[6], t[1158]);
+    A(t[1158], a[14328]); -- Professional Shadowlands Master
+    A(t[1158], a[14329]); -- Working the Afterlife
+    A(t[1158], a[14330]); -- Shadowlands Master of All
+    A(t[1158], a[14332]); -- Shadowlands Cook
+    A(t[1158], a[14333]); -- Shadowlands Fisherman
     t[380] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[6], t[380]);
     A(t[380], a[14867]); -- Shadowlands Safari
@@ -5492,6 +6118,7 @@ function exportedCategories.Load(a)
     A(t[1342], a[16292]); -- Mastering the Waygates
     A(t[1342], a[16808]); -- Friend of the Dragon Isles
     A(t[1342], a[17739]); -- Embers of Neltharion
+    A(t[1342], a[16683]); -- In Tyr's Footsteps
     t[1343] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[1341], t[1343]);
     A(t[1343], a[16761]); -- Dragon Isles Explorer
@@ -5937,6 +6564,7 @@ function exportedCategories.Load(a)
     A(t[1229], a[17843]); -- Dragonflight Keystone Conqueror: Season Two
     A(t[1229], a[17844]); -- Dragonflight Keystone Master: Season Two
     A(t[1229], a[17845]); -- Dragonflight Keystone Hero: Season Two
+    A(t[1229], a[18542]); -- Dragonflight Keystone Master: Season Two
     A(t[1229], a[17846]); -- Smoldering Hero: Dragonflight Season 2
     A(t[1229], a[18027]); -- Dragonflight Season 2 Master
     A(t[1229], a[18380]); -- Dragonflight Season 2 Hero
@@ -6069,6 +6697,7 @@ function exportedCategories.Load(a)
     A(t[1420], a[18253]); -- Ahead of the Curve: Scalecommander Sarkareth
     A(t[1420], a[18254]); -- Cutting Edge: Scalecommander Sarkareth
     A(t[1420], a[17765]); -- What We Wear In The Shadowflame
+    A(t[1420], a[18256]); -- "Nasz'uro, the Unbound Legacy"
     A(t[1420], a[18027]); -- Dragonflight Season 2 Master
     A(t[1420], a[18380]); -- Dragonflight Season 2 Hero
     t[1421] = c:New(k.L["Glory"]); -- Glory
@@ -6093,6 +6722,14 @@ function exportedCategories.Load(a)
     A(t[1422], a[18157]); -- Mythic: Magmorax
     A(t[1422], a[18158]); -- Mythic: Echo of Neltharion
     A(t[1422], a[18159]); -- Mythic: Scalecommander Sarkareth
+    t[1391] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
+    C(t[1207], t[1391]);
+    A(t[1391], a[16627]); -- Professional Draconic Master
+    A(t[1391], a[16626]); -- Working with Wyrms
+    A(t[1391], a[16630]); -- Draconic Master of All
+    A(t[1391], a[16631]); -- Dragon Isles Cook
+    A(t[1391], a[16632]); -- Dragon Isles Fisherman
+    A(t[1391], a[17736]); -- The Gift of Cheese
     t[1231] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[1207], t[1231]);
     A(t[1231], a[16519]); -- Dragon Isles Safari
@@ -6335,600 +6972,6 @@ function exportedCategories.Load(a)
     A(t[1401], a[16727]); -- Cliffside Wylderdrake Head Features
     t[952] = c:New(k.L["Other"]); -- Other
     C(t[883], t[952]);
-    t[1160] = c:New(k.L["Zones"]); -- Zones
-    C(t[952], t[1160]);
-    t[953] = c:New((select(2, k.GetAchievementInfo(14222)))); -- Exile's Reach
-    C(t[1160], t[953]);
-    A(t[953], a[14222]); -- Exile's Reach
-    t[1168] = c:New(k.GetCategoryInfoTitle(92)); -- Character
-    C(t[952], t[1168]);
-    A(t[1168], a[6]); -- Level 10
-    A(t[1168], a[7]); -- Level 20
-    A(t[1168], a[8]); -- Level 30
-    A(t[1168], a[9]); -- Level 40
-    A(t[1168], a[14782]); -- Level 50
-    A(t[1168], a[14783]); -- Level 60
-    A(t[1168], a[15805]); -- Level 70
-    A(t[1168], a[10]); -- Level 50 (Legacy)
-    A(t[1168], a[11]); -- Level 60 (Legacy)
-    A(t[1168], a[12]); -- Level 70 (Legacy)
-    A(t[1168], a[13]); -- Level 80 (Legacy)
-    A(t[1168], a[4826]); -- Level 85 (Legacy)
-    A(t[1168], a[6193]); -- Level 90 (Legacy)
-    A(t[1168], a[9060]); -- Level 100 (Legacy)
-    A(t[1168], a[10671]); -- Level 110 (Legacy)
-    A(t[1168], a[12544]); -- Level 120 (Legacy)
-    A(t[1168], a[7382]); -- Dynamic Duo
-    A(t[1168], a[7383]); -- Terrific Trio
-    A(t[1168], a[7384]); -- Quintessential Quintet
-    A(t[1168], a[7380]); -- Double Agent
-    A(t[1168], a[546]); -- Safe Deposit
-    A(t[1168], a[1176]); -- Got My Mind On My Money
-    A(t[1168], a[1177]); -- Got My Mind On My Money
-    A(t[1168], a[1178]); -- Got My Mind On My Money
-    A(t[1168], a[1180]); -- Got My Mind On My Money
-    A(t[1168], a[1181]); -- Got My Mind On My Money
-    A(t[1168], a[5455]); -- Got My Mind On My Money
-    A(t[1168], a[5456]); -- Got My Mind On My Money
-    A(t[1168], a[6753]); -- Got My Mind On My Money
-    A(t[1168], a[891]); -- Giddy Up!
-    A(t[1168], a[889]); -- Fast and Furious
-    A(t[1168], a[890]); -- Into the Wild Blue Yonder
-    A(t[1168], a[5180]); -- Breaking the Sound Barrier
-    A(t[1168], a[545]); -- Shave and a Haircut
-    A(t[1168], a[557]); -- Superior
-    A(t[1168], a[5373]); -- Cataclysmically Superior
-    A(t[1168], a[6348]); -- Mystically Superior
-    A(t[1168], a[9707]); -- Savagely Superior
-    A(t[1168], a[10764]); -- Brokenly Superior
-    A(t[1168], a[12546]); -- Superior (Battle)
-    A(t[1168], a[14796]); -- Superior
-    A(t[1168], a[556]); -- Epic
-    A(t[1168], a[5372]); -- Cataclysmically Epic
-    A(t[1168], a[6349]); -- Mystically Epic
-    A(t[1168], a[9708]); -- Savagely Epic
-    A(t[1168], a[10765]); -- Brokenly Epic
-    A(t[1168], a[12547]); -- Epic (Battle)
-    A(t[1168], a[14797]); -- Epic
-    A(t[1168], a[705]); -- Master of Arms
-    A(t[1168], a[16]); -- Did Somebody Order a Knuckle Sandwich?
-    A(t[1168], a[2716]); -- Dual Talent Specialization
-    A(t[1168], a[558]); -- Greedy
-    A(t[1168], a[559]); -- Needy
-    A(t[1168], a[892]); -- The Right Stuff
-    A(t[1168], a[2357]); -- Dreadsteed of Xoroth
-    A(t[1168], a[2358]); -- Charger
-    A(t[1168], a[2359]); -- Swift Flight Form
-    A(t[1168], a[17305]); -- Trading Post: Dragonflight
-    A(t[1168], a[17334]); -- Trading Post Enthusiast
-    t[1159] = c:New(k.GetCategoryInfoTitle(96)); -- Quests
-    C(t[952], t[1159]);
-    A(t[1159], a[503]); -- 50 Quests Completed
-    A(t[1159], a[504]); -- 100 Quests Completed
-    A(t[1159], a[505]); -- 250 Quests Completed
-    A(t[1159], a[506]); -- 500 Quests Completed
-    A(t[1159], a[507]); -- 1000 Quests Completed
-    A(t[1159], a[508]); -- 1500 Quests Completed
-    A(t[1159], a[32]); -- 2000 Quests Completed
-    A(t[1159], a[978]); -- 3000 Quests Completed
-    A(t[1159], a[973]); -- 5 Daily Quests Completed
-    A(t[1159], a[974]); -- 50 Daily Quests Completed
-    A(t[1159], a[975]); -- 200 Daily Quests Completed
-    A(t[1159], a[976]); -- 500 Daily Quests Completed
-    A(t[1159], a[977]); -- 1000 Daily Quests Completed
-    A(t[1159], a[5751]); -- 2500 Daily Quests Completed
-    A(t[1159], a[7410]); -- 5000 Daily Quests Completed
-    A(t[1159], a[7411]); -- 10000 Daily Quests Completed
-    A(t[1159], a[11126]); -- 50 World Quests Completed
-    A(t[1159], a[11127]); -- 200 World Quests Completed
-    A(t[1159], a[11128]); -- 500 World Quests Completed
-    A(t[1159], a[11129]); -- 1000 World Quests Completed
-    A(t[1159], a[11130]); -- 2500 World Quests Completed
-    A(t[1159], a[11131]); -- 5000 World Quests Completed
-    A(t[1159], a[11132]); -- "10,000 World Quests Completed"
-    A(t[1159], a[31]); -- A Simple Re-Quest
-    A(t[1159], a[4956]); -- 5 Dungeon Quests Completed
-    A(t[1159], a[4957]); -- 20 Dungeon Quests Completed
-    A(t[1159], a[1182]); -- The Bread Winner
-    A(t[1159], a[5752]); -- Justly Rewarded
-    t[1161] = c:New(k.GetCategoryInfoTitle(97)); -- Exploration
-    C(t[952], t[1161]);
-    A(t[1161], a[964]); -- Going Down?
-    A(t[1161], a[1244]); -- Well Read
-    A(t[1161], a[1832]); -- Tastes Like Chicken
-    A(t[1161], a[1833]); -- It's Happy Hour Somewhere
-    A(t[1161], a[16789]); -- Lucky Penny
-    A(t[1161], a[16790]); -- Curious Coin
-    t[1169] = c:New(k.GetCategoryInfoTitle(168)); -- Dungeons & Raids
-    C(t[952], t[1169]);
-    A(t[1169], a[4476]); -- Looking For More
-    A(t[1169], a[4478]); -- Looking For Multitudes
-    t[1149] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
-    C(t[952], t[1149]);
-    A(t[1149], a[1998]); -- Cooking Award
-    A(t[1149], a[1999]); -- 10 Cooking Awards
-    A(t[1149], a[2000]); -- 25 Cooking Awards
-    A(t[1149], a[2001]); -- 50 Cooking Awards
-    A(t[1149], a[2002]); -- 100 Cooking Awards
-    A(t[1149], a[1795]); -- Lunch Lady
-    A(t[1149], a[1796]); -- Short Order Cook
-    A(t[1149], a[1797]); -- Chef de Partie
-    A(t[1149], a[1798]); -- Sous Chef
-    A(t[1149], a[1799]); -- Chef de Cuisine
-    A(t[1149], a[5471]); -- Iron Chef
-    A(t[1149], a[7328]); -- Ironpaw Chef
-    A(t[1149], a[1563]); -- Hail to the Chef
-    A(t[1149], a[153]); -- The Old Gnome and the Sea
-    A(t[1149], a[5478]); -- The Limnologist
-    A(t[1149], a[5479]); -- The Oceanographer
-    A(t[1149], a[1243]); -- Fish Don't Leave Footprints
-    A(t[1149], a[3218]); -- Turtles All the Way Down
-    A(t[1149], a[1556]); -- 25 Fish
-    A(t[1149], a[1557]); -- 50 Fish
-    A(t[1149], a[1558]); -- 100 Fish
-    A(t[1149], a[1559]); -- 250 Fish
-    A(t[1149], a[1560]); -- 500 Fish
-    A(t[1149], a[1561]); -- 1000 Fish
-    A(t[1149], a[1516]); -- Accomplished Angler
-    A(t[1149], a[5315]); -- Digger
-    A(t[1149], a[5469]); -- Diggerer
-    A(t[1149], a[5470]); -- Diggerest
-    A(t[1149], a[4854]); -- I Had It in My Hand
-    A(t[1149], a[4855]); -- What was Briefly Yours is Now Mine
-    A(t[1149], a[4856]); -- It Belongs in a Museum!
-    A(t[1149], a[9422]); -- "The Search For Fact, Not Truth"
-    A(t[1149], a[141]); -- Ultimate Triage
-    A(t[1149], a[16799]); -- Personal Crafter
-    A(t[1149], a[16791]); -- Merchant Artisan
-    A(t[1149], a[17410]); -- Craftsman of the Zandalar Tribe
-    A(t[1149], a[17412]); -- Craftsman of the Argent Dawn
-    A(t[1149], a[17496]); -- Renowned Weaponsmith
-    A(t[1149], a[17497]); -- Renowned Armorsmith
-    A(t[1149], a[17498]); -- Renowned Leatherworking Specialist
-    A(t[1149], a[17499]); -- Renowned Tailoring Specialist
-    t[1150] = c:New(k.GetCategoryInfoTitle(14864)); -- Classic
-    C(t[1149], t[1150]);
-    A(t[1150], a[116]); -- Professional Journeyman
-    A(t[1150], a[731]); -- Professional Expert
-    A(t[1150], a[732]); -- Professional Classic Master
-    A(t[1150], a[121]); -- Journeyman Cook
-    A(t[1150], a[122]); -- Expert Cook
-    A(t[1150], a[123]); -- Classic Cook
-    A(t[1150], a[5842]); -- Let's Do Lunch: Darnassus
-    A(t[1150], a[5844]); -- Let's Do Lunch: Undercity
-    A(t[1150], a[5841]); -- Let's Do Lunch: Ironforge
-    A(t[1150], a[5843]); -- Let's Do Lunch: Thunder Bluff
-    A(t[1150], a[5474]); -- Let's Do Lunch: Stormwind
-    A(t[1150], a[5475]); -- Let's Do Lunch: Orgrimmar
-    A(t[1150], a[5845]); -- A Bunch of Lunch
-    A(t[1150], a[5779]); -- You'll Feel Right as Rain
-    A(t[1150], a[126]); -- Journeyman Fisherman
-    A(t[1150], a[127]); -- Expert Fisherman
-    A(t[1150], a[128]); -- Artisan Fisherman
-    A(t[1150], a[1257]); -- The Scavenger
-    A(t[1150], a[150]); -- The Fishing Diplomat
-    A(t[1150], a[306]); -- Master Angler of Azeroth
-    A(t[1150], a[878]); -- One That Didn't Get Away
-    A(t[1150], a[1836]); -- Old Crafty
-    A(t[1150], a[1837]); -- Old Ironjaw
-    A(t[1150], a[5848]); -- Fish or Cut Bait: Darnassus
-    A(t[1150], a[5850]); -- Fish or Cut Bait: Undercity
-    A(t[1150], a[5847]); -- Fish or Cut Bait: Ironforge
-    A(t[1150], a[5849]); -- Fish or Cut Bait: Thunder Bluff
-    A(t[1150], a[5476]); -- Fish or Cut Bait: Stormwind
-    A(t[1150], a[5477]); -- Fish or Cut Bait: Orgrimmar
-    A(t[1150], a[5851]); -- Gone Fishin'
-    A(t[1150], a[4857]); -- Journeyman Archaeologist
-    A(t[1150], a[4919]); -- Expert Archaeologist
-    A(t[1150], a[4920]); -- Artisan Archaeologist
-    A(t[1150], a[131]); -- Journeyman Medic
-    A(t[1150], a[132]); -- Expert Medic
-    A(t[1150], a[133]); -- Artisan Medic
-    A(t[1150], a[17367]); -- Deadliest Cache
-    t[1151] = c:New(k.GetCategoryInfoTitle(14865)); -- The Burning Crusade
-    C(t[1149], t[1151]);
-    A(t[1151], a[733]); -- Professional Outland Master
-    A(t[1151], a[124]); -- Outland Cook
-    A(t[1151], a[877]); -- The Cake Is Not A Lie
-    A(t[1151], a[906]); -- Kickin' It Up a Notch
-    A(t[1151], a[1800]); -- The Outland Gourmet
-    A(t[1151], a[1801]); -- Captain Rumsey's Lager
-    A(t[1151], a[129]); -- Outland Fisherman
-    A(t[1151], a[1257]); -- The Scavenger
-    A(t[1151], a[726]); -- Mr. Pinchy's Magical Crawdad Box
-    A(t[1151], a[144]); -- The Lurker Above
-    A(t[1151], a[905]); -- Old Man Barlowned
-    A(t[1151], a[1225]); -- Outland Angler
-    A(t[1151], a[4921]); -- Master Archaeologist
-    A(t[1151], a[134]); -- Master Medic
-    t[1152] = c:New(k.GetCategoryInfoTitle(14866)); -- Wrath of the Lich King
-    C(t[1149], t[1152]);
-    A(t[1152], a[734]); -- Professional Northrend Master
-    A(t[1152], a[735]); -- Working In the Cold
-    A(t[1152], a[125]); -- Northrend Cook
-    A(t[1152], a[1777]); -- The Northrend Gourmet
-    A(t[1152], a[1778]); -- The Northrend Gourmet
-    A(t[1152], a[1779]); -- The Northrend Gourmet
-    A(t[1152], a[1780]); -- Second That Emotion
-    A(t[1152], a[1781]); -- Critter Gitter
-    A(t[1152], a[1785]); -- Dinner Impossible
-    A(t[1152], a[3296]); -- Cooking with Style
-    A(t[1152], a[1782]); -- Our Daily Bread
-    A(t[1152], a[1783]); -- Our Daily Bread
-    A(t[1152], a[130]); -- Northrend Fisherman
-    A(t[1152], a[1517]); -- Northrend Angler
-    A(t[1152], a[3217]); -- Chasing Marcia
-    A(t[1152], a[2094]); -- A Penny For Your Thoughts
-    A(t[1152], a[2095]); -- Silver in the City
-    A(t[1152], a[1957]); -- There's Gold In That There Fountain
-    A(t[1152], a[2096]); -- The Coin Master
-    A(t[1152], a[1958]); -- I Smell A Giant Rat
-    A(t[1152], a[4922]); -- Grand Master Archaeologist
-    A(t[1152], a[135]); -- Grand Master Medic
-    A(t[1152], a[137]); -- Stocking Up
-    A(t[1152], a[730]); -- Skills to Pay the Bills
-    t[1153] = c:New(k.GetCategoryInfoTitle(15072)); -- Cataclysm
-    C(t[1149], t[1153]);
-    A(t[1153], a[4924]); -- Professional Cataclysmic Master
-    A(t[1153], a[4914]); -- Working In the Heat
-    A(t[1153], a[4916]); -- Cataclysmic Cook
-    A(t[1153], a[5472]); -- The Cataclysmic Gourmet
-    A(t[1153], a[5473]); -- The Cataclysmic Gourmet
-    A(t[1153], a[4917]); -- Cataclysmic Fisherman
-    A(t[1153], a[4923]); -- Illustrious Grand Master Archaeologist
-    A(t[1153], a[5511]); -- It's Always in the Last Place You Look
-    A(t[1153], a[4858]); -- Seven Scepters
-    A(t[1153], a[5191]); -- Tragedy in Three Acts
-    A(t[1153], a[5193]); -- Blue Streak
-    A(t[1153], a[5192]); -- The Harder they Fall
-    A(t[1153], a[4859]); -- Kings Under the Mountain
-    A(t[1153], a[5301]); -- The Boy Who Would be King
-    A(t[1153], a[4918]); -- Illustrious Grand Master Medic
-    A(t[1153], a[5480]); -- Preparing for Disaster
-    A(t[1153], a[4915]); -- More Skills to Pay the Bills
-    t[1154] = c:New(k.GetCategoryInfoTitle(15164)); -- Mists of Pandaria
-    C(t[1149], t[1154]);
-    A(t[1154], a[6830]); -- Professional Zen Master
-    A(t[1154], a[6835]); -- Working For a Living
-    A(t[1154], a[7378]); -- Jack of All Trades
-    A(t[1154], a[7379]); -- Pandaren Master of All
-    A(t[1154], a[6365]); -- Zen Master Cook
-    A(t[1154], a[7300]); -- Master of the Grill
-    A(t[1154], a[7301]); -- Master of the Wok
-    A(t[1154], a[7302]); -- Master of the Pot
-    A(t[1154], a[7303]); -- Master of the Steamer
-    A(t[1154], a[7304]); -- Master of the Oven
-    A(t[1154], a[7305]); -- Master of the Brew
-    A(t[1154], a[7306]); -- Master of Pandaren Cooking
-    A(t[1154], a[7325]); -- Now I Am the Master
-    A(t[1154], a[7326]); -- The Pandaren Gourmet
-    A(t[1154], a[7327]); -- The Pandaren Gourmet
-    A(t[1154], a[6839]); -- Zen Master Fisherman
-    A(t[1154], a[7611]); -- Pandarian Angler
-    A(t[1154], a[7614]); -- Locking Down the Docks
-    A(t[1154], a[7274]); -- Learning from the Best
-    A(t[1154], a[6837]); -- Zen Master Archaeologist
-    A(t[1154], a[7331]); -- The Three Brew Fathers
-    A(t[1154], a[7332]); -- The Broken Hearted
-    A(t[1154], a[7333]); -- The Four Celestials
-    A(t[1154], a[7334]); -- Instruments of Cruelty
-    A(t[1154], a[7335]); -- Symbols of Strength
-    A(t[1154], a[7337]); -- Documents of a Dark History
-    A(t[1154], a[7336]); -- Stone Servants
-    A(t[1154], a[7338]); -- Collector: Pandaren Tea Sets
-    A(t[1154], a[7358]); -- Collector: Pandaren Tea Sets
-    A(t[1154], a[7339]); -- Collector: Pandaren Game Boards
-    A(t[1154], a[7359]); -- Collector: Pandaren Game Boards
-    A(t[1154], a[7340]); -- Collector: Twin Stein Sets of Brewfather Quan Tou Kuo
-    A(t[1154], a[7360]); -- Collector: Twin Stein Sets of Brewfather Quan Tou Kuo
-    A(t[1154], a[7341]); -- Collector: Walking Canes of Brewfather Ren Yun
-    A(t[1154], a[7361]); -- Collector: Walking Canes of Brewfather Ren Yun
-    A(t[1154], a[7342]); -- Collector: Empty Kegs of Brewfather Xin Wo Yin
-    A(t[1154], a[7362]); -- Collector: Empty Kegs of Brewfather Xin Wo Yin
-    A(t[1154], a[7343]); -- Collector: Carved Bronze Mirrors
-    A(t[1154], a[7363]); -- Collector: Carved Bronze Mirrors
-    A(t[1154], a[7344]); -- Collector: Gold-Inlaid Porcelain Funerary Figurines
-    A(t[1154], a[7364]); -- Collector: Gold-Inlaid Porcelain Funerary Figurines
-    A(t[1154], a[7345]); -- Collector: Apothecary Tins
-    A(t[1154], a[7365]); -- Collector: Apothecary Tins
-    A(t[1154], a[7346]); -- Collector: Pearls of Yu'lon
-    A(t[1154], a[7366]); -- Collector: Pearls of Yu'lon
-    A(t[1154], a[7347]); -- Collector: Standards of Niuzao
-    A(t[1154], a[7367]); -- Collector: Standards of Niuzao
-    A(t[1154], a[7348]); -- Collector: Manacles of Rebellion
-    A(t[1154], a[7368]); -- Collector: Manacles of Rebellion
-    A(t[1154], a[7349]); -- Collector: Cracked Mogu Runestones
-    A(t[1154], a[7369]); -- Collector: Cracked Mogu Runestones
-    A(t[1154], a[7350]); -- Collector: Terracotta Arms
-    A(t[1154], a[7370]); -- Collector: Terracotta Arms
-    A(t[1154], a[7351]); -- Collector: Petrified Bone Whips
-    A(t[1154], a[7371]); -- Collector: Petrified Bone Whips
-    A(t[1154], a[7352]); -- Collector: Thunder King Insignias
-    A(t[1154], a[7372]); -- Collector: Thunder King Insignias
-    A(t[1154], a[7373]); -- Collector: Edicts of the Thunder King
-    A(t[1154], a[7353]); -- Collector: Edicts of the Thunder King
-    A(t[1154], a[7354]); -- Collector: Iron Amulets
-    A(t[1154], a[7374]); -- Collector: Iron Amulets
-    A(t[1154], a[7355]); -- Collector: Warlord's Branding Irons
-    A(t[1154], a[7375]); -- Collector: Warlord's Branding Irons
-    A(t[1154], a[7356]); -- Collector: Mogu Coins
-    A(t[1154], a[7376]); -- Collector: Mogu Coins
-    A(t[1154], a[7357]); -- Collector: Worn Monument Ledgers
-    A(t[1154], a[7377]); -- Collector: Worn Monument Ledgers
-    A(t[1154], a[8220]); -- Collector: Banners of the Mantid Empire
-    A(t[1154], a[8221]); -- Collector: Banners of the Mantid Empire
-    A(t[1154], a[8222]); -- Collector: Ancient Sap Feeders
-    A(t[1154], a[8223]); -- Collector: Ancient Sap Feeders
-    A(t[1154], a[8224]); -- Collector: Praying Mantids
-    A(t[1154], a[8225]); -- Collector: Praying Mantids
-    A(t[1154], a[8226]); -- Collector: Inert Sound Beacons
-    A(t[1154], a[8227]); -- Collector: Inert Sound Beacons
-    A(t[1154], a[8228]); -- Collector: Remains of Paragons
-    A(t[1154], a[8229]); -- Collector: Remains of Paragons
-    A(t[1154], a[8230]); -- Collector: Mantid Lamps
-    A(t[1154], a[8231]); -- Collector: Mantid Lamps
-    A(t[1154], a[8232]); -- Collector: Pollen Collectors
-    A(t[1154], a[8233]); -- Collector: Pollen Collectors
-    A(t[1154], a[8234]); -- Collector: Kypari Sap Containers
-    A(t[1154], a[8235]); -- Collector: Kypari Sap Containers
-    A(t[1154], a[7612]); -- The Seat of Knowledge
-    A(t[1154], a[8219]); -- History of the Mantid
-    A(t[1154], a[6838]); -- Zen Master Medic
-    A(t[1154], a[6836]); -- Serious Skills to Pay the Bills
-    t[1155] = c:New(k.GetCategoryInfoTitle(15233)); -- Warlords of Dreanor
-    C(t[1149], t[1155]);
-    A(t[1155], a[9464]); -- Professional Draenor Master
-    A(t[1155], a[9507]); -- Working in Draenor
-    A(t[1155], a[9087]); -- Draenor Master of All
-    A(t[1155], a[9453]); -- Draenic Stone Collector
-    A(t[1155], a[9454]); -- Draenic Seed Collector
-    A(t[1155], a[9071]); -- Inspector Gadgetzan
-    A(t[1155], a[9500]); -- Draenor Cook
-    A(t[1155], a[9501]); -- The Draenor Gourmet
-    A(t[1155], a[9503]); -- Draenor Fisherman
-    A(t[1155], a[9455]); -- Fire Ammonite Angler
-    A(t[1155], a[9456]); -- Abyssal Gulper Eel Angler
-    A(t[1155], a[9457]); -- Blackwater Whiptail Angler
-    A(t[1155], a[9458]); -- Blind Lake Sturgeon Angler
-    A(t[1155], a[9459]); -- Fat Sleeper Angler
-    A(t[1155], a[9460]); -- Jawless Skulker Angler
-    A(t[1155], a[9461]); -- Sea Scorpion Angler
-    A(t[1155], a[9462]); -- Draenor Angler
-    A(t[1155], a[9547]); -- Everything Is Awesome!
-    A(t[1155], a[9409]); -- Draenor Archaeologist
-    A(t[1155], a[9413]); -- Strength and Honor
-    A(t[1155], a[9414]); -- Ogre Observer
-    A(t[1155], a[9415]); -- Secrets of Skettis
-    A(t[1155], a[9410]); -- Unite the Clans
-    A(t[1155], a[9411]); -- Highmaul Historian
-    A(t[1155], a[9412]); -- Arakkoa Archivist
-    A(t[1155], a[9419]); -- Draenor Curator
-    A(t[1155], a[9505]); -- Draenor Medic
-    A(t[1155], a[9506]); -- Savage Skills to Pay the Bills
-    t[1156] = c:New(k.GetCategoryInfoTitle(15258)); -- Legion
-    C(t[1149], t[1156]);
-    A(t[1156], a[10582]); -- Professional Legion Master
-    A(t[1156], a[10581]); -- Working the Isles
-    A(t[1156], a[10583]); -- Legion Master of All
-    A(t[1156], a[10761]); -- Resourceful
-    A(t[1156], a[10587]); -- Hot Swapper
-    A(t[1156], a[10588]); -- The Shortest Distance
-    A(t[1156], a[10589]); -- Legion Cook
-    A(t[1156], a[10591]); -- All Grown Up
-    A(t[1156], a[10592]); -- Never A Day's Rest
-    A(t[1156], a[10762]); -- The Legion Menu
-    A(t[1156], a[10593]); -- Everything Tastes Better
-    A(t[1156], a[10594]); -- Legion Fisherman
-    A(t[1156], a[10597]); -- Legion Aquaculture
-    A(t[1156], a[10595]); -- A Cast Above the Rest
-    A(t[1156], a[10596]); -- Bigger Fish to Fry
-    A(t[1156], a[10598]); -- Fishing 'Round the Isles
-    A(t[1156], a[10722]); -- The Wish Remover
-    A(t[1156], a[11725]); -- Fisherfriend of the Isles
-    A(t[1156], a[10600]); -- Legion Archaeologist
-    A(t[1156], a[10601]); -- Surveying the Land
-    A(t[1156], a[10602]); -- This Side Up
-    A(t[1156], a[10603]); -- A Keen Eye
-    A(t[1156], a[10604]); -- Legion Curator
-    A(t[1156], a[10605]); -- Handle With Care
-    A(t[1156], a[10606]); -- The Dwarven Dream
-    A(t[1156], a[10607]); -- Getting Your Hands Dirty
-    A(t[1156], a[10608]); -- Sifting Through the Sand
-    A(t[1156], a[10609]); -- No Stone Unturned
-    A(t[1156], a[10599]); -- Legion Medic
-    A(t[1156], a[10580]); -- Heroic Skills to Pay the Bills
-    A(t[1156], a[11138]); -- Is There a Medic in the Zone?
-    A(t[1156], a[11139]); -- Field Medic
-    A(t[1156], a[10585]); -- Fel-Smelter
-    A(t[1156], a[10586]); -- Mass Obliteration
-    t[1157] = c:New(k.GetCategoryInfoTitle(15305)); -- Battle for Azeroth
-    C(t[1149], t[1157]);
-    A(t[1157], a[12731]); -- Professional Kul Tiran Master
-    A(t[1157], a[12733]); -- Professional Zandalari Master
-    A(t[1157], a[12734]); -- Working in Kul Tiras
-    A(t[1157], a[12735]); -- Working in Zandalar
-    A(t[1157], a[12736]); -- Kul Tiran Master of All
-    A(t[1157], a[12737]); -- Zandalari Master of All
-    A(t[1157], a[12741]); -- Giving a Scrap
-    A(t[1157], a[13056]); -- Giving a Scrap
-    A(t[1157], a[12738]); -- Holy Scrap!
-    A(t[1157], a[12739]); -- Scraptastic!
-    A(t[1157], a[12740]); -- Full of Scrap!
-    A(t[1157], a[13516]); -- Massive Tool
-    A(t[1157], a[12742]); -- Kul Tiran Cook
-    A(t[1157], a[12743]); -- Zandalari Cook
-    A(t[1157], a[12744]); -- The Kul Tiran Menu
-    A(t[1157], a[12746]); -- The Zandalari Menu
-    A(t[1157], a[12747]); -- Catering for Combat
-    A(t[1157], a[12753]); -- Kul Tiran Fisherman
-    A(t[1157], a[12754]); -- Zandalari Fisherman
-    A(t[1157], a[13489]); -- Secret Fish of Mechagon
-    A(t[1157], a[13502]); -- Secret Fish and Where to Find Them
-    A(t[1157], a[12757]); -- Angling for Battle
-    A(t[1157], a[12755]); -- Scent of the Sea
-    A(t[1157], a[12756]); -- Fish Me In the Moonlight
-    A(t[1157], a[12758]); -- Baiting the Enemy
-    A(t[1157], a[12759]); -- Baiting the Enemy
-    A(t[1157], a[12990]); -- Catchin' Some Rays
-    A(t[1157], a[12760]); -- Kul Tiran Archaeologist
-    A(t[1157], a[12761]); -- Zandalari Archaeologist
-    A(t[1157], a[12762]); -- Kul Tiran Curator
-    A(t[1157], a[12764]); -- Zandalari Curator
-    A(t[1157], a[12765]); -- Exotic Discoveries
-    A(t[1157], a[12769]); -- Light Travel
-    A(t[1157], a[12770]); -- Lengthy Legwork
-    t[1158] = c:New(k.GetCategoryInfoTitle(15439)); -- Shadowlands
-    C(t[1149], t[1158]);
-    A(t[1158], a[14328]); -- Professional Shadowlands Master
-    A(t[1158], a[14329]); -- Working the Afterlife
-    A(t[1158], a[14330]); -- Shadowlands Master of All
-    A(t[1158], a[14332]); -- Shadowlands Cook
-    A(t[1158], a[14333]); -- Shadowlands Fisherman
-    t[1391] = c:New(k.GetCategoryInfoTitle(15466)); -- Dragonflight
-    C(t[1149], t[1391]);
-    A(t[1391], a[16627]); -- Professional Draconic Master
-    A(t[1391], a[16626]); -- Working with Wyrms
-    A(t[1391], a[16630]); -- Draconic Master of All
-    A(t[1391], a[16631]); -- Dragon Isles Cook
-    A(t[1391], a[16632]); -- Dragon Isles Fisherman
-    A(t[1391], a[16683]); -- In Tyr's Footsteps
-    A(t[1391], a[17207]); -- Discombobberlated
-    A(t[1391], a[17736]); -- The Gift of Cheese
-    t[1163] = c:New(k.GetCategoryInfoTitle(201)); -- Reputation
-    C(t[952], t[1163]);
-    A(t[1163], a[522]); -- Somebody Likes Me
-    A(t[1163], a[523]); -- 5 Exalted Reputations
-    A(t[1163], a[524]); -- 10 Exalted Reputations
-    A(t[1163], a[521]); -- 15 Exalted Reputations
-    A(t[1163], a[520]); -- 20 Exalted Reputations
-    A(t[1163], a[519]); -- 25 Exalted Reputations
-    A(t[1163], a[518]); -- 30 Exalted Reputations
-    A(t[1163], a[1014]); -- 35 Exalted Reputations
-    A(t[1163], a[5374]); -- 45 Exalted Reputations
-    A(t[1163], a[5723]); -- 50 Exalted Reputations
-    A(t[1163], a[6826]); -- 55 Exalted Reputations
-    A(t[1163], a[11177]); -- 70 Exalted Reputations
-    A(t[1163], a[12865]); -- 90 Exalted Reputations
-    A(t[1163], a[5794]); -- Time Flies When You're Having Fun
-    A(t[1163], a[12243]); -- Allied Races: Lightforged Draenei
-    A(t[1163], a[12414]); -- Heritage of the Lightforged
-    A(t[1163], a[14013]); -- Allied Races: Mechagnome
-    A(t[1163], a[14014]); -- Heritage of the Mechagnome
-    A(t[1163], a[12242]); -- Allied Races: Void Elf
-    A(t[1163], a[12291]); -- Heritage of the Void
-    A(t[1163], a[12515]); -- Allied Races: Dark Iron Dwarf
-    A(t[1163], a[13076]); -- Heritage of the Dark Iron
-    A(t[1163], a[13163]); -- Allied Races: Kul Tiran
-    A(t[1163], a[13504]); -- Heritage of the Kul Tirans
-    A(t[1163], a[12245]); -- Allied Races: Highmountain Tauren
-    A(t[1163], a[12415]); -- Heritage of Highmountain
-    A(t[1163], a[12244]); -- Allied Races: Nightborne
-    A(t[1163], a[12413]); -- Heritage of the Nightborne
-    A(t[1163], a[12518]); -- Allied Races: Mag'har Orc
-    A(t[1163], a[13077]); -- Heritage of the Mag'har
-    A(t[1163], a[13161]); -- Allied Races: Zandalari Troll
-    A(t[1163], a[13503]); -- Heritage of the Zandalari
-    A(t[1163], a[13206]); -- Allied Races: Vulpera
-    A(t[1163], a[14002]); -- Heritage of the Vulpera
-    t[1170] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
-    C(t[952], t[1170]);
-    A(t[1170], a[7482]); -- Trainer Extraordinaire
-    A(t[1170], a[7483]); -- Battle Master
-    A(t[1170], a[6600]); -- Ultimate Trainer
-    A(t[1170], a[7521]); -- Time to Open a Pet Store
-    A(t[1170], a[9712]); -- Shiny Pet Charmer
-    A(t[1170], a[12927]); -- Polished Pet Charmer
-    A(t[1170], a[1017]); -- Can I Keep Him?
-    A(t[1170], a[15]); -- Plenty of Pets
-    A(t[1170], a[1248]); -- Plethora of Pets
-    A(t[1170], a[1250]); -- "Shop Smart, Shop Pet...Smart"
-    A(t[1170], a[2516]); -- Lil' Game Hunter
-    A(t[1170], a[5876]); -- Petting Zoo
-    A(t[1170], a[5877]); -- Menagerie
-    A(t[1170], a[5875]); -- Littlest Pet Shop
-    A(t[1170], a[7500]); -- Going to Need More Leashes
-    A(t[1170], a[7501]); -- That's a Lot of Pet Food
-    A(t[1170], a[9643]); -- So. Many. Pets.
-    A(t[1170], a[12992]); -- Pet Emporium
-    A(t[1170], a[12958]); -- Master of Minions
-    A(t[1170], a[15641]); -- Many More Mini Minions
-    A(t[1170], a[15642]); -- Proven Pet Parent
-    A(t[1170], a[15643]); -- What Can I Say? They Love Me.
-    A(t[1170], a[6554]); -- He's Mine!
-    A(t[1170], a[6555]); -- Building a Team
-    A(t[1170], a[6556]); -- Going to Need More Traps
-    A(t[1170], a[6557]); -- Master Pet Hunter
-    A(t[1170], a[7436]); -- Zen Pet Hunter
-    A(t[1170], a[7465]); -- An Uncommon Find
-    A(t[1170], a[7462]); -- A Rare Catch
-    A(t[1170], a[7463]); -- Lots of Rarity
-    A(t[1170], a[7464]); -- Quality & Quantity
-    A(t[1170], a[6608]); -- Family Reunion
-    A(t[1170], a[6571]); -- That Was Close!
-    A(t[1170], a[6594]); -- Cat Fight!
-    A(t[1170], a[6593]); -- Experienced Pet Battler
-    A(t[1170], a[6462]); -- Master Pet Battler
-    A(t[1170], a[6591]); -- Grand Master Pet Battler
-    A(t[1170], a[6592]); -- Legendary Pet Battler
-    A(t[1170], a[6851]); -- Take 'Em All On!
-    A(t[1170], a[6595]); -- Pet Brawler
-    A(t[1170], a[6596]); -- Experienced Pet Brawler
-    A(t[1170], a[6597]); -- Master Pet Brawler
-    A(t[1170], a[6598]); -- Grand Master Pet Brawler
-    A(t[1170], a[6599]); -- Legendary Pet Brawler
-    A(t[1170], a[8297]); -- Merciless Pet Brawler
-    A(t[1170], a[8298]); -- Vengeful Pet Brawler
-    A(t[1170], a[8300]); -- Brutal Pet Brawler
-    A(t[1170], a[12279]); -- Mechanical Brawler
-    A(t[1170], a[12280]); -- Aquatic Brawler
-    A(t[1170], a[12281]); -- Beast Brawler
-    A(t[1170], a[12282]); -- Elemental Brawler
-    A(t[1170], a[12283]); -- Magic Brawler
-    A(t[1170], a[12284]); -- Critter Brawler
-    A(t[1170], a[12285]); -- Undead Brawler
-    A(t[1170], a[12286]); -- Flying Brawler
-    A(t[1170], a[12287]); -- Dragonkin Brawler
-    A(t[1170], a[12289]); -- Humanoid Brawler
-    A(t[1170], a[12290]); -- Family Brawler
-    A(t[1170], a[6618]); -- On A Roll
-    A(t[1170], a[6619]); -- Win Streak
-    A(t[1170], a[6620]); -- No Time To Heal
-    A(t[1170], a[7433]); -- Newbie
-    A(t[1170], a[6566]); -- Just a Pup
-    A(t[1170], a[6567]); -- Growing Up
-    A(t[1170], a[6568]); -- Time for a Leash
-    A(t[1170], a[6569]); -- Old Timer
-    A(t[1170], a[6570]); -- All Growns Up!
-    A(t[1170], a[6579]); -- Rookie Pet Group
-    A(t[1170], a[6580]); -- Rookie Pet Crew
-    A(t[1170], a[6583]); -- Rookie Pet Mob
-    A(t[1170], a[6578]); -- Pro Pet Group
-    A(t[1170], a[6581]); -- Pro Pet Crew
-    A(t[1170], a[6582]); -- Pro Pet Mob
-    A(t[1170], a[6609]); -- No Favorites
-    A(t[1170], a[6610]); -- All Pets Allowed
-    A(t[1170], a[9070]); -- Overstuffed
-    t[1171] = c:New(k.GetCategoryInfoTitle(15246)); -- Collections
-    C(t[952], t[1171]);
-    A(t[1171], a[621]); -- Represent
-    A(t[1171], a[1020]); -- Ten Tabards
-    A(t[1171], a[1021]); -- Twenty-Five Tabards
-    A(t[1171], a[5755]); -- Thirty Tabards
-    A(t[1171], a[9911]); -- Where's the Mailbox?
-    A(t[1171], a[9906]); -- Alt-ernative Lifestyle
-    A(t[1171], a[9908]); -- Ready for Powerleveling
-    A(t[1171], a[9670]); -- Toying Around
-    A(t[1171], a[9671]); -- Having a Ball
-    A(t[1171], a[9672]); -- Tons of Toys
-    A(t[1171], a[9673]); -- The Toymaster
-    A(t[1171], a[11176]); -- Remember to Share
-    A(t[1171], a[12996]); -- Toybox Tycoon
-    A(t[1171], a[15781]); -- The Joy of Toy
-    t[1172] = c:New(k.GetCategoryInfoTitle(81)); -- Feats of Strength
-    C(t[952], t[1172]);
-    A(t[1172], a[4496]); -- It's Over Nine Thousand!
-    A(t[1172], a[3636]); -- Jade Tiger
-    A(t[1172], a[3896]); -- Onyx Panther
     t[1370] = c:New(k.L["Tracking Achievements"]); -- Tracking Achievements
     C(t[883], t[1370]);
     t[1370].HasFlexibleData = true;

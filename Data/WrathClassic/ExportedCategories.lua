@@ -1,4 +1,4 @@
--- [[ Exported at 2023-05-02 19-58-31 ]] --
+-- [[ Exported at 2023-05-29 21-02-10 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -89,6 +89,131 @@ function exportedCategories.Load(a)
     t[1399].HasFlexibleData = true;
     tinsert(searchResultsCategories, t[1399]);
     t[1399].IsSearchResults = true;
+    t[1431] = c:New(k.L["Cross-Expansion"]); -- Cross-Expansion
+    C(t[883], t[1431]);
+    t[1160] = c:New(k.L["Zones"]); -- Zones
+    C(t[1431], t[1160]);
+    t[953] = c:New((select(2, k.GetAchievementInfo(14222)))); -- Exile's Reach
+    C(t[1160], t[953]);
+    t[1432] = c:New(k.GetCategoryInfoTitle(92)); -- Character
+    C(t[1431], t[1432]);
+    A(t[1432], a[6]); -- Level 10
+    A(t[1432], a[7]); -- Level 20
+    A(t[1432], a[8]); -- Level 30
+    A(t[1432], a[9]); -- Level 40
+    A(t[1432], a[10]); -- Level 50 (Legacy)
+    A(t[1432], a[11]); -- Level 60 (Legacy)
+    A(t[1432], a[12]); -- Level 70 (Legacy)
+    A(t[1432], a[13]); -- Level 80 (Legacy)
+    A(t[1432], a[16433]); -- Soul of Iron (Season of Mastery)
+    A(t[1432], a[546]); -- Safe Deposit
+    A(t[1432], a[1176]); -- Got My Mind On My Money
+    A(t[1432], a[1177]); -- Got My Mind On My Money
+    A(t[1432], a[1178]); -- Got My Mind On My Money
+    A(t[1432], a[1180]); -- Got My Mind On My Money
+    A(t[1432], a[1181]); -- Got My Mind On My Money
+    A(t[1432], a[558]); -- Greedy
+    A(t[1432], a[559]); -- Needy
+    A(t[1432], a[891]); -- Giddy Up!
+    A(t[1432], a[889]); -- Fast and Furious
+    A(t[1432], a[890]); -- Into the Wild Blue Yonder
+    A(t[1432], a[892]); -- The Right Stuff
+    A(t[1432], a[2357]); -- Dreadsteed of Xoroth
+    A(t[1432], a[2358]); -- Charger
+    A(t[1432], a[2359]); -- Swift Flight Form
+    A(t[1432], a[545]); -- Shave and a Haircut
+    A(t[1432], a[557]); -- Superior
+    A(t[1432], a[556]); -- Epic
+    A(t[1432], a[705]); -- Master of Arms
+    A(t[1432], a[16]); -- Did Somebody Order a Knuckle Sandwich?
+    A(t[1432], a[2716]); -- Dual Talent Specialization
+    A(t[1432], a[1187]); -- The Keymaster
+    t[1159] = c:New(k.GetCategoryInfoTitle(96)); -- Quests
+    C(t[1431], t[1159]);
+    A(t[1159], a[503]); -- 50 Quests Completed
+    A(t[1159], a[504]); -- 100 Quests Completed
+    A(t[1159], a[505]); -- 250 Quests Completed
+    A(t[1159], a[506]); -- 500 Quests Completed
+    A(t[1159], a[507]); -- 1000 Quests Completed
+    A(t[1159], a[508]); -- 1500 Quests Completed
+    A(t[1159], a[32]); -- 2000 Quests Completed
+    A(t[1159], a[978]); -- 3000 Quests Completed
+    A(t[1159], a[973]); -- 5 Daily Quests Completed
+    A(t[1159], a[974]); -- 50 Daily Quests Completed
+    A(t[1159], a[975]); -- 200 Daily Quests Completed
+    A(t[1159], a[976]); -- 500 Daily Quests Completed
+    A(t[1159], a[977]); -- 1000 Daily Quests Completed
+    A(t[1159], a[31]); -- A Simple Re-Quest
+    A(t[1159], a[1182]); -- The Bread Winner
+    t[1161] = c:New(k.GetCategoryInfoTitle(97)); -- Exploration
+    C(t[1431], t[1161]);
+    A(t[1161], a[964]); -- Going Down?
+    A(t[1161], a[1244]); -- Well Read
+    A(t[1161], a[1832]); -- Tastes Like Chicken
+    A(t[1161], a[1833]); -- It's Happy Hour Somewhere
+    t[1169] = c:New(k.GetCategoryInfoTitle(168)); -- Dungeons & Raids
+    C(t[1431], t[1169]);
+    A(t[1169], a[4476]); -- Looking For More
+    A(t[1169], a[4477]); -- Looking For Many
+    A(t[1169], a[4478]); -- Looking For Multitudes
+    t[1149] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
+    C(t[1431], t[1149]);
+    A(t[1149], a[1998]); -- Cooking Award
+    A(t[1149], a[1999]); -- 10 Cooking Awards
+    A(t[1149], a[2000]); -- 25 Cooking Awards
+    A(t[1149], a[2001]); -- 50 Cooking Awards
+    A(t[1149], a[2002]); -- 100 Cooking Awards
+    A(t[1149], a[1795]); -- Lunch Lady
+    A(t[1149], a[1796]); -- Short Order Cook
+    A(t[1149], a[1797]); -- Chef de Partie
+    A(t[1149], a[1798]); -- Sous Chef
+    A(t[1149], a[1799]); -- Chef de Cuisine
+    A(t[1149], a[1563]); -- Hail to the Chef
+    A(t[1149], a[1784]); -- Hail to the Chef
+    A(t[1149], a[153]); -- The Old Gnome and the Sea
+    A(t[1149], a[1243]); -- Fish Don't Leave Footprints
+    A(t[1149], a[3218]); -- Turtles All the Way Down
+    A(t[1149], a[1556]); -- 25 Fish
+    A(t[1149], a[1557]); -- 50 Fish
+    A(t[1149], a[1558]); -- 100 Fish
+    A(t[1149], a[1559]); -- 250 Fish
+    A(t[1149], a[1560]); -- 500 Fish
+    A(t[1149], a[1561]); -- 1000 Fish
+    A(t[1149], a[1516]); -- Accomplished Angler
+    A(t[1149], a[141]); -- Ultimate Triage
+    t[1163] = c:New(k.GetCategoryInfoTitle(201)); -- Reputation
+    C(t[1431], t[1163]);
+    A(t[1163], a[522]); -- Somebody Likes Me
+    A(t[1163], a[523]); -- 5 Exalted Reputations
+    A(t[1163], a[524]); -- 10 Exalted Reputations
+    A(t[1163], a[521]); -- 15 Exalted Reputations
+    A(t[1163], a[520]); -- 20 Exalted Reputations
+    A(t[1163], a[519]); -- 25 Exalted Reputations
+    A(t[1163], a[518]); -- 30 Exalted Reputations
+    A(t[1163], a[1014]); -- 35 Exalted Reputations
+    t[1170] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
+    C(t[1431], t[1170]);
+    t[1433] = c:New(k.GetCategoryInfoTitle(15118), true); -- Collect
+    C(t[1170], t[1433]);
+    A(t[1433], a[1017]); -- Can I Keep Him?
+    A(t[1433], a[15]); -- Plenty of Pets
+    A(t[1433], a[1248]); -- Plethora of Pets
+    A(t[1433], a[1250]); -- "Shop Smart, Shop Pet...Smart"
+    A(t[1433], a[2516]); -- Lil' Game Hunter
+    t[1434] = c:New(k.GetCategoryInfoTitle(15119), true); -- Battle
+    C(t[1170], t[1434]);
+    t[1435] = c:New(k.GetCategoryInfoTitle(15120), true); -- Level
+    C(t[1170], t[1435]);
+    t[1171] = c:New(k.GetCategoryInfoTitle(15246)); -- Collections
+    C(t[1431], t[1171]);
+    A(t[1171], a[621]); -- Represent
+    A(t[1171], a[1020]); -- Ten Tabards
+    A(t[1171], a[1021]); -- Twenty-Five Tabards
+    t[1172] = c:New(k.GetCategoryInfoTitle(81)); -- Feats of Strength
+    C(t[1431], t[1172]);
+    A(t[1172], a[4496]); -- It's Over Nine Thousand!
+    A(t[1172], a[3636]); -- Jade Tiger
+    A(t[1172], a[3896]); -- Onyx Panther
     t[1] = c:New(k.GetCategoryInfoTitle(14864)); -- Classic
     C(t[883], t[1]);
     t[648] = c:New(k.L["Zones"]); -- Zones
@@ -652,6 +777,26 @@ function exportedCategories.Load(a)
     A(t[796], a[425]); -- "Atiesh, Greatstaff of the Guardian"
     A(t[796], a[15335]); -- Survivor of the Damned (Season of Mastery)
     A(t[796], a[15637]); -- The Immortal (Season of Mastery)
+    t[1150] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
+    C(t[1], t[1150]);
+    A(t[1150], a[116]); -- Professional Journeyman
+    A(t[1150], a[731]); -- Professional Expert
+    A(t[1150], a[732]); -- Professional Classic Master
+    A(t[1150], a[121]); -- Journeyman Cook
+    A(t[1150], a[122]); -- Expert Cook
+    A(t[1150], a[123]); -- Classic Cook
+    A(t[1150], a[126]); -- Journeyman Fisherman
+    A(t[1150], a[127]); -- Expert Fisherman
+    A(t[1150], a[128]); -- Artisan Fisherman
+    A(t[1150], a[1257]); -- The Scavenger
+    A(t[1150], a[150]); -- The Fishing Diplomat
+    A(t[1150], a[306]); -- Master Angler of Azeroth
+    A(t[1150], a[878]); -- One That Didn't Get Away
+    A(t[1150], a[1836]); -- Old Crafty
+    A(t[1150], a[1837]); -- Old Ironjaw
+    A(t[1150], a[131]); -- Journeyman Medic
+    A(t[1150], a[132]); -- Expert Medic
+    A(t[1150], a[133]); -- Artisan Medic
     t[785] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[1], t[785]);
     t[55] = c:New(k.GetCategoryInfoTitle(14865)); -- The Burning Crusade
@@ -935,6 +1080,21 @@ function exportedCategories.Load(a)
     C(t[73], t[82]);
     A(t[82], a[698]); -- Sunwell Plateau
     A(t[82], a[725]); -- "Thori'dal, the Stars' Fury"
+    t[1151] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
+    C(t[55], t[1151]);
+    A(t[1151], a[733]); -- Professional Outland Master
+    A(t[1151], a[124]); -- Outland Cook
+    A(t[1151], a[877]); -- The Cake Is Not A Lie
+    A(t[1151], a[906]); -- Kickin' It Up a Notch
+    A(t[1151], a[1800]); -- The Outland Gourmet
+    A(t[1151], a[1801]); -- Captain Rumsey's Lager
+    A(t[1151], a[129]); -- Outland Fisherman
+    A(t[1151], a[1257]); -- The Scavenger
+    A(t[1151], a[726]); -- Mr. Pinchy's Magical Crawdad Box
+    A(t[1151], a[144]); -- The Lurker Above
+    A(t[1151], a[905]); -- Old Man Barlowned
+    A(t[1151], a[1225]); -- Outland Angler
+    A(t[1151], a[134]); -- Master Medic
     t[786] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[55], t[786]);
     t[83] = c:New(k.GetCategoryInfoTitle(14866)); -- Wrath of the Lich King
@@ -1596,6 +1756,31 @@ function exportedCategories.Load(a)
     C(t[126], t[128]);
     A(t[128], a[4815]); -- The Twilight Destroyer (25 player)
     A(t[128], a[4816]); -- Heroic: The Twilight Destroyer (25 player)
+    t[1152] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
+    C(t[83], t[1152]);
+    A(t[1152], a[734]); -- Professional Northrend Master
+    A(t[1152], a[735]); -- Working In the Cold
+    A(t[1152], a[125]); -- Northrend Cook
+    A(t[1152], a[1777]); -- The Northrend Gourmet
+    A(t[1152], a[1778]); -- The Northrend Gourmet
+    A(t[1152], a[1779]); -- The Northrend Gourmet
+    A(t[1152], a[1780]); -- Second That Emotion
+    A(t[1152], a[1781]); -- Critter Gitter
+    A(t[1152], a[1785]); -- Dinner Impossible
+    A(t[1152], a[3296]); -- Cooking with Style
+    A(t[1152], a[1782]); -- Our Daily Bread
+    A(t[1152], a[1783]); -- Our Daily Bread
+    A(t[1152], a[130]); -- Northrend Fisherman
+    A(t[1152], a[1517]); -- Northrend Angler
+    A(t[1152], a[3217]); -- Chasing Marcia
+    A(t[1152], a[2094]); -- A Penny For Your Thoughts
+    A(t[1152], a[2095]); -- Silver in the City
+    A(t[1152], a[1957]); -- There's Gold In That There Fountain
+    A(t[1152], a[2096]); -- The Coin Master
+    A(t[1152], a[1958]); -- I Smell A Giant Rat
+    A(t[1152], a[135]); -- Grand Master Medic
+    A(t[1152], a[137]); -- Stocking Up
+    A(t[1152], a[730]); -- Skills to Pay the Bills
     t[787] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[83], t[787]);
     t[1138] = c:New(k.GetCategoryInfoTitle(14901)); -- Wintergrasp
@@ -1650,182 +1835,6 @@ function exportedCategories.Load(a)
     A(t[781], a[4596]); -- The Sword in the Skull
     t[952] = c:New(k.L["Other"]); -- Other
     C(t[883], t[952]);
-    t[1160] = c:New(k.L["Zones"]); -- Zones
-    C(t[952], t[1160]);
-    t[953] = c:New((select(2, k.GetAchievementInfo(14222)))); -- Exile's Reach
-    C(t[1160], t[953]);
-    t[1168] = c:New(k.GetCategoryInfoTitle(92)); -- Character
-    C(t[952], t[1168]);
-    A(t[1168], a[6]); -- Level 10
-    A(t[1168], a[7]); -- Level 20
-    A(t[1168], a[8]); -- Level 30
-    A(t[1168], a[9]); -- Level 40
-    A(t[1168], a[10]); -- Level 50 (Legacy)
-    A(t[1168], a[11]); -- Level 60 (Legacy)
-    A(t[1168], a[12]); -- Level 70 (Legacy)
-    A(t[1168], a[13]); -- Level 80 (Legacy)
-    A(t[1168], a[16433]); -- Soul of Iron (Season of Mastery)
-    A(t[1168], a[546]); -- Safe Deposit
-    A(t[1168], a[1176]); -- Got My Mind On My Money
-    A(t[1168], a[1177]); -- Got My Mind On My Money
-    A(t[1168], a[1178]); -- Got My Mind On My Money
-    A(t[1168], a[1180]); -- Got My Mind On My Money
-    A(t[1168], a[1181]); -- Got My Mind On My Money
-    A(t[1168], a[891]); -- Giddy Up!
-    A(t[1168], a[889]); -- Fast and Furious
-    A(t[1168], a[890]); -- Into the Wild Blue Yonder
-    A(t[1168], a[545]); -- Shave and a Haircut
-    A(t[1168], a[557]); -- Superior
-    A(t[1168], a[556]); -- Epic
-    A(t[1168], a[705]); -- Master of Arms
-    A(t[1168], a[16]); -- Did Somebody Order a Knuckle Sandwich?
-    A(t[1168], a[2716]); -- Dual Talent Specialization
-    A(t[1168], a[558]); -- Greedy
-    A(t[1168], a[559]); -- Needy
-    A(t[1168], a[892]); -- The Right Stuff
-    A(t[1168], a[2357]); -- Dreadsteed of Xoroth
-    A(t[1168], a[2358]); -- Charger
-    A(t[1168], a[2359]); -- Swift Flight Form
-    A(t[1168], a[1187]); -- The Keymaster
-    t[1159] = c:New(k.GetCategoryInfoTitle(96)); -- Quests
-    C(t[952], t[1159]);
-    A(t[1159], a[503]); -- 50 Quests Completed
-    A(t[1159], a[504]); -- 100 Quests Completed
-    A(t[1159], a[505]); -- 250 Quests Completed
-    A(t[1159], a[506]); -- 500 Quests Completed
-    A(t[1159], a[507]); -- 1000 Quests Completed
-    A(t[1159], a[508]); -- 1500 Quests Completed
-    A(t[1159], a[32]); -- 2000 Quests Completed
-    A(t[1159], a[978]); -- 3000 Quests Completed
-    A(t[1159], a[973]); -- 5 Daily Quests Completed
-    A(t[1159], a[974]); -- 50 Daily Quests Completed
-    A(t[1159], a[975]); -- 200 Daily Quests Completed
-    A(t[1159], a[976]); -- 500 Daily Quests Completed
-    A(t[1159], a[977]); -- 1000 Daily Quests Completed
-    A(t[1159], a[31]); -- A Simple Re-Quest
-    A(t[1159], a[1182]); -- The Bread Winner
-    t[1161] = c:New(k.GetCategoryInfoTitle(97)); -- Exploration
-    C(t[952], t[1161]);
-    A(t[1161], a[964]); -- Going Down?
-    A(t[1161], a[1244]); -- Well Read
-    A(t[1161], a[1832]); -- Tastes Like Chicken
-    A(t[1161], a[1833]); -- It's Happy Hour Somewhere
-    t[1169] = c:New(k.GetCategoryInfoTitle(168)); -- Dungeons & Raids
-    C(t[952], t[1169]);
-    A(t[1169], a[4476]); -- Looking For More
-    A(t[1169], a[4478]); -- Looking For Multitudes
-    t[1149] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
-    C(t[952], t[1149]);
-    A(t[1149], a[1998]); -- Cooking Award
-    A(t[1149], a[1999]); -- 10 Cooking Awards
-    A(t[1149], a[2000]); -- 25 Cooking Awards
-    A(t[1149], a[2001]); -- 50 Cooking Awards
-    A(t[1149], a[2002]); -- 100 Cooking Awards
-    A(t[1149], a[1795]); -- Lunch Lady
-    A(t[1149], a[1796]); -- Short Order Cook
-    A(t[1149], a[1797]); -- Chef de Partie
-    A(t[1149], a[1798]); -- Sous Chef
-    A(t[1149], a[1799]); -- Chef de Cuisine
-    A(t[1149], a[1563]); -- Hail to the Chef
-    A(t[1149], a[1784]); -- Hail to the Chef
-    A(t[1149], a[153]); -- The Old Gnome and the Sea
-    A(t[1149], a[1243]); -- Fish Don't Leave Footprints
-    A(t[1149], a[3218]); -- Turtles All the Way Down
-    A(t[1149], a[1556]); -- 25 Fish
-    A(t[1149], a[1557]); -- 50 Fish
-    A(t[1149], a[1558]); -- 100 Fish
-    A(t[1149], a[1559]); -- 250 Fish
-    A(t[1149], a[1560]); -- 500 Fish
-    A(t[1149], a[1561]); -- 1000 Fish
-    A(t[1149], a[1516]); -- Accomplished Angler
-    A(t[1149], a[141]); -- Ultimate Triage
-    t[1150] = c:New(k.GetCategoryInfoTitle(14864)); -- Classic
-    C(t[1149], t[1150]);
-    A(t[1150], a[116]); -- Professional Journeyman
-    A(t[1150], a[731]); -- Professional Expert
-    A(t[1150], a[732]); -- Professional Classic Master
-    A(t[1150], a[121]); -- Journeyman Cook
-    A(t[1150], a[122]); -- Expert Cook
-    A(t[1150], a[123]); -- Classic Cook
-    A(t[1150], a[126]); -- Journeyman Fisherman
-    A(t[1150], a[127]); -- Expert Fisherman
-    A(t[1150], a[128]); -- Artisan Fisherman
-    A(t[1150], a[1257]); -- The Scavenger
-    A(t[1150], a[150]); -- The Fishing Diplomat
-    A(t[1150], a[306]); -- Master Angler of Azeroth
-    A(t[1150], a[878]); -- One That Didn't Get Away
-    A(t[1150], a[1836]); -- Old Crafty
-    A(t[1150], a[1837]); -- Old Ironjaw
-    A(t[1150], a[131]); -- Journeyman Medic
-    A(t[1150], a[132]); -- Expert Medic
-    A(t[1150], a[133]); -- Artisan Medic
-    t[1151] = c:New(k.GetCategoryInfoTitle(14865)); -- The Burning Crusade
-    C(t[1149], t[1151]);
-    A(t[1151], a[733]); -- Professional Outland Master
-    A(t[1151], a[124]); -- Outland Cook
-    A(t[1151], a[877]); -- The Cake Is Not A Lie
-    A(t[1151], a[906]); -- Kickin' It Up a Notch
-    A(t[1151], a[1800]); -- The Outland Gourmet
-    A(t[1151], a[1801]); -- Captain Rumsey's Lager
-    A(t[1151], a[129]); -- Outland Fisherman
-    A(t[1151], a[1257]); -- The Scavenger
-    A(t[1151], a[726]); -- Mr. Pinchy's Magical Crawdad Box
-    A(t[1151], a[144]); -- The Lurker Above
-    A(t[1151], a[905]); -- Old Man Barlowned
-    A(t[1151], a[1225]); -- Outland Angler
-    A(t[1151], a[134]); -- Master Medic
-    t[1152] = c:New(k.GetCategoryInfoTitle(14866)); -- Wrath of the Lich King
-    C(t[1149], t[1152]);
-    A(t[1152], a[734]); -- Professional Northrend Master
-    A(t[1152], a[735]); -- Working In the Cold
-    A(t[1152], a[125]); -- Northrend Cook
-    A(t[1152], a[1777]); -- The Northrend Gourmet
-    A(t[1152], a[1778]); -- The Northrend Gourmet
-    A(t[1152], a[1779]); -- The Northrend Gourmet
-    A(t[1152], a[1780]); -- Second That Emotion
-    A(t[1152], a[1781]); -- Critter Gitter
-    A(t[1152], a[1785]); -- Dinner Impossible
-    A(t[1152], a[3296]); -- Cooking with Style
-    A(t[1152], a[1782]); -- Our Daily Bread
-    A(t[1152], a[1783]); -- Our Daily Bread
-    A(t[1152], a[130]); -- Northrend Fisherman
-    A(t[1152], a[1517]); -- Northrend Angler
-    A(t[1152], a[3217]); -- Chasing Marcia
-    A(t[1152], a[2094]); -- A Penny For Your Thoughts
-    A(t[1152], a[2095]); -- Silver in the City
-    A(t[1152], a[1957]); -- There's Gold In That There Fountain
-    A(t[1152], a[2096]); -- The Coin Master
-    A(t[1152], a[1958]); -- I Smell A Giant Rat
-    A(t[1152], a[135]); -- Grand Master Medic
-    A(t[1152], a[137]); -- Stocking Up
-    A(t[1152], a[730]); -- Skills to Pay the Bills
-    t[1163] = c:New(k.GetCategoryInfoTitle(201)); -- Reputation
-    C(t[952], t[1163]);
-    A(t[1163], a[522]); -- Somebody Likes Me
-    A(t[1163], a[523]); -- 5 Exalted Reputations
-    A(t[1163], a[524]); -- 10 Exalted Reputations
-    A(t[1163], a[521]); -- 15 Exalted Reputations
-    A(t[1163], a[520]); -- 20 Exalted Reputations
-    A(t[1163], a[519]); -- 25 Exalted Reputations
-    A(t[1163], a[518]); -- 30 Exalted Reputations
-    A(t[1163], a[1014]); -- 35 Exalted Reputations
-    t[1170] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
-    C(t[952], t[1170]);
-    A(t[1170], a[1017]); -- Can I Keep Him?
-    A(t[1170], a[15]); -- Plenty of Pets
-    A(t[1170], a[1248]); -- Plethora of Pets
-    A(t[1170], a[1250]); -- "Shop Smart, Shop Pet...Smart"
-    A(t[1170], a[2516]); -- Lil' Game Hunter
-    t[1171] = c:New(k.GetCategoryInfoTitle(15246)); -- Collections
-    C(t[952], t[1171]);
-    A(t[1171], a[621]); -- Represent
-    A(t[1171], a[1020]); -- Ten Tabards
-    A(t[1171], a[1021]); -- Twenty-Five Tabards
-    t[1172] = c:New(k.GetCategoryInfoTitle(81)); -- Feats of Strength
-    C(t[952], t[1172]);
-    A(t[1172], a[4496]); -- It's Over Nine Thousand!
-    A(t[1172], a[3636]); -- Jade Tiger
-    A(t[1172], a[3896]); -- Onyx Panther
     t[1370] = c:New(k.L["Tracking Achievements"]); -- Tracking Achievements
     C(t[883], t[1370]);
     t[1370].HasFlexibleData = true;
