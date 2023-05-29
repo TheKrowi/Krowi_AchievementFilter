@@ -1,4 +1,4 @@
--- [[ Exported at 2023-05-09 23-03-22 ]] --
+-- [[ Exported at 2023-05-12 18-36-26 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1795,6 +1795,14 @@ function exportedTooltipData.Load(d)
     AddD(d, 200417, tdt.Unit, 17276, 0, t[15], t[16]); -- Forbidden Reach Rush Reverse: Bronze
     AddD(d, 200417, tdt.Unit, 17277, 0, t[15], t[16]); -- Forbidden Reach Rush Reverse: Silver
     AddD(d, 200417, tdt.Unit, 17278, 0, t[15], t[16]); -- Forbidden Reach Rush Reverse: Gold
+    AddD(d, 201849, tdt.Unit, 17406, 1, t[11], t[12]); -- "Adinakon"
+    AddD(d, 201858, tdt.Unit, 17406, 2, t[11], t[12]); -- "Lyver"
+    AddD(d, 202440, tdt.Unit, 17406, 3, t[11], t[12]); -- "Enok the Stinky"
+    AddD(d, 202452, tdt.Unit, 17406, 4, t[11], t[12]); -- "Right Twice a Day"
+    AddD(d, 201802, tdt.Unit, 17406, 5, t[11], t[12]); -- "Sharp as Flint"
+    AddD(d, 201878, tdt.Unit, 17406, 6, t[11], t[12]); -- "Paws of Thunder"
+    AddD(d, 201899, tdt.Unit, 17406, 7, t[11], t[12]); -- "A New Vocation"
+    AddD(d, 202458, tdt.Unit, 17406, 8, t[11], t[12]); -- "They're Full of Stars!"
     AddD(d, 202524, tdt.Unit, 17429, 0, t[15], t[16]); -- Crystal Circuit: Bronze
     AddD(d, 202524, tdt.Unit, 17430, 0, t[15], t[16]); -- Crystal Circuit: Silver
     AddD(d, 202524, tdt.Unit, 17431, 0, t[15], t[16]); -- Crystal Circuit: Gold
@@ -1853,16 +1861,49 @@ function exportedTooltipData.Load(d)
     AddD(d, 200692, tdt.Unit, 17541, 2, t[11], t[12]); -- "Tremblor"
     AddD(d, 200686, tdt.Unit, 17541, 3, t[11], t[12]); -- "Wildfire"
     AddD(d, 200696, tdt.Unit, 17541, 4, t[11], t[12]); -- "Flow"
+    AddD(d, 201004, tdt.Unit, 17880, 1, t[11], t[12]); -- "To a Land Down Under"
     AddD(d, 204792, tdt.Unit, 17880, 2, t[11], t[12]); -- "Are They Not Beautiful?"
+    AddD(d, 204926, tdt.Unit, 17880, 3, t[11], t[12]); -- "Delver Mardei"
+    AddD(d, 204934, tdt.Unit, 17880, 4, t[11], t[12]); -- "Do you Even Train?"
+    AddD(d, 201004, tdt.Unit, 17881, 1, t[11], t[12]); -- "Explorer Bezzert"
     AddD(d, 204792, tdt.Unit, 17881, 2, t[11], t[12]); -- "Shinmura"
+    AddD(d, 204926, tdt.Unit, 17881, 3, t[11], t[12]); -- "Delver Mardei"
+    AddD(d, 204934, tdt.Unit, 17881, 4, t[11], t[12]); -- "Trainer Orlogg"
+    AddD(d, 201004, tdt.Unit, 17882, 1, t[11], t[12]); -- "Explorer Bezzert"
     AddD(d, 204792, tdt.Unit, 17882, 2, t[11], t[12]); -- "Shinmura"
+    AddD(d, 204926, tdt.Unit, 17882, 3, t[11], t[12]); -- "Delver Mardei"
+    AddD(d, 204934, tdt.Unit, 17882, 4, t[11], t[12]); -- "Trainer Orlogg"
+    AddD(d, 201004, tdt.Unit, 17883, 1, t[11], t[12]); -- "Explorer Bezzert"
     AddD(d, 204792, tdt.Unit, 17883, 2, t[11], t[12]); -- "Shinmura"
+    AddD(d, 204926, tdt.Unit, 17883, 3, t[11], t[12]); -- "Delver Mardei"
+    AddD(d, 204934, tdt.Unit, 17883, 4, t[11], t[12]); -- "Trainer Orlogg"
+    AddD(d, 201004, tdt.Unit, 17890, 1, t[11], t[12]); -- "Explorer Bezzert"
     AddD(d, 204792, tdt.Unit, 17890, 2, t[11], t[12]); -- "Shinmura"
+    AddD(d, 204926, tdt.Unit, 17890, 3, t[11], t[12]); -- "Delver Mardei"
+    AddD(d, 204934, tdt.Unit, 17890, 4, t[11], t[12]); -- "Trainer Orlogg"
+    AddD(d, 201004, tdt.Unit, 17904, 1, t[11], t[12]); -- "Explorer Bezzert"
     AddD(d, 204792, tdt.Unit, 17904, 2, t[11], t[12]); -- "Shinmura"
+    AddD(d, 204926, tdt.Unit, 17904, 3, t[11], t[12]); -- "Delver Mardei"
+    AddD(d, 204934, tdt.Unit, 17904, 4, t[11], t[12]); -- "Trainer Orlogg"
+    AddD(d, 201004, tdt.Unit, 17905, 1, t[11], t[12]); -- "Explorer Bezzert"
     AddD(d, 204792, tdt.Unit, 17905, 2, t[11], t[12]); -- "Shinmura"
+    AddD(d, 204926, tdt.Unit, 17905, 3, t[11], t[12]); -- "Delver Mardei"
+    AddD(d, 204934, tdt.Unit, 17905, 4, t[11], t[12]); -- "Trainer Orlogg"
+    AddD(d, 201004, tdt.Unit, 17915, 1, t[11], t[12]); -- "Explorer Bezzert"
     AddD(d, 204792, tdt.Unit, 17915, 2, t[11], t[12]); -- "Shinmura"
+    AddD(d, 204926, tdt.Unit, 17915, 3, t[11], t[12]); -- "Delver Mardei"
+    AddD(d, 204934, tdt.Unit, 17915, 4, t[11], t[12]); -- "Trainer Orlogg"
+    AddD(d, 201004, tdt.Unit, 17916, 1, t[11], t[12]); -- "Explorer Bezzert"
     AddD(d, 204792, tdt.Unit, 17916, 2, t[11], t[12]); -- "Shinmura"
+    AddD(d, 204926, tdt.Unit, 17916, 3, t[11], t[12]); -- "Delver Mardei"
+    AddD(d, 204934, tdt.Unit, 17916, 4, t[11], t[12]); -- "Trainer Orlogg"
+    AddD(d, 201004, tdt.Unit, 17917, 1, t[11], t[12]); -- "Explorer Bezzert"
     AddD(d, 204792, tdt.Unit, 17917, 2, t[11], t[12]); -- "Shinmura"
+    AddD(d, 204926, tdt.Unit, 17917, 3, t[11], t[12]); -- "Delver Mardei"
+    AddD(d, 204934, tdt.Unit, 17917, 4, t[11], t[12]); -- "Trainer Orlogg"
+    AddD(d, 201004, tdt.Unit, 17918, 1, t[11], t[12]); -- "Explorer Bezzert"
     AddD(d, 204792, tdt.Unit, 17918, 2, t[11], t[12]); -- "Shinmura"
+    AddD(d, 204926, tdt.Unit, 17918, 3, t[11], t[12]); -- "Delver Mardei"
+    AddD(d, 204934, tdt.Unit, 17918, 4, t[11], t[12]); -- "Trainer Orlogg"
 end
 

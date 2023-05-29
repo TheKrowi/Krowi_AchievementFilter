@@ -1,4 +1,4 @@
--- [[ Exported at 2023-05-06 22-00-30 ]] --
+-- [[ Exported at 2023-05-29 21-00-46 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1344,6 +1344,7 @@ function exportedAchievements.Load(a, t)
     a[3618] = b:New(3618); -- Murkimus the Gladiator
     O(a[3618], "Never");
     a[3636] = b:New(3636); -- Jade Tiger
+    O(a[3636], "Never");
     a[3656] = b:New(3656, fac.Horde); -- Pilgrim
     a[3676] = b:New(3676, fac.Alliance, 3677); -- A Silver Confidant
     a[3677] = b:New(3677, fac.Horde, 3676); -- The Sunreavers
@@ -1414,6 +1415,7 @@ function exportedAchievements.Load(a, t)
     a[3876] = b:New(3876); -- 1500 Dungeon & Raid Emblems
     O(a[3876], "From", "Version", "030400", "Before", "Version", "040003a");
     a[3896] = b:New(3896); -- Onyx Panther
+    O(a[3896], "Never");
     a[3916] = b:New(3916); -- Call of the Crusade (25 player)
     a[3917] = b:New(3917); -- Call of the Crusade (10 player)
     a[3918] = b:New(3918); -- Call of the Grand Crusade (10 player)
@@ -1577,7 +1579,7 @@ function exportedAchievements.Load(a, t)
     a[17304] = b:New(17304); -- Defense Protocol Alpha: Terminated
 
     local aIDs = {};
-    for i = 1, 18380 do
+    for i = 1, 18542 do
         if a[i] ~= nil then
             tinsert(aIDs, i);
         end

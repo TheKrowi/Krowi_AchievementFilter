@@ -9,4 +9,5 @@
     <Script file="OtherFaction.lua" />
     <Script file="Objectives.lua" />
     <Script file="MostProgress.lua" />
+    <!-- <Script file="Comment.lua" /> -->
 </Ui>

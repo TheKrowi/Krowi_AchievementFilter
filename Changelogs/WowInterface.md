@@ -41,3 +41,23 @@
 [LIST]
 [*]Zaqali Ruin Investigation and Titan Lockdown events should now have a working icon
 [/LIST]
+
+[B]Added (56.5)[/B]
+[LIST]
+[*]Tooltip data for Battle on the Dragon Isles II and Family Battler of Zaralek Cavern
+[*]Moved Expansions - Other to Expansions - Cross-Expansion
+[*]Expansion Profession achievements moved to the Expansion
+[*]Most Profession achievements are now linked to a zone
+[*]A bunch of other achievements are moved around and more are marked unobtainable
+[*]Nasz'uro, the Unbound Legacy to the Aberrus, the Shadowed Crucible raid
+[/LIST]
+
+[B]Fixed (56.5)[/B]
+[LIST]
+[*]An error could occur when mousing over one of the season 2 m+ rating achievements
+[/LIST]
+
+[B]Removed (56.5)[/B]
+[LIST]
+[*]Court is Now in Session and Good Things Come in Small Packages (removed before 10.0.2)
+[/LIST]
