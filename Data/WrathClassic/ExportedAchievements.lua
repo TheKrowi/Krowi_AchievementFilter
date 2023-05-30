@@ -1,4 +1,4 @@
--- [[ Exported at 2023-05-29 21-00-46 ]] --
+-- [[ Exported at 2023-05-30 23-40-36 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -56,7 +56,7 @@ function exportedAchievements.Load(a, t)
     a[44] = b:New(44); -- Outland Explorer
     a[45] = b:New(45); -- Northrend Explorer
     a[46] = b:New(46); -- Universal Explorer
-    a[73] = b:New(73); -- Disgracin' The Basin
+    a[73] = b:New(73, nil, nil, true); -- Disgracin' The Basin
     a[116] = b:New(116); -- Professional Journeyman
     a[121] = b:New(121); -- Journeyman Cook
     a[122] = b:New(122); -- Expert Cook
@@ -85,55 +85,55 @@ function exportedAchievements.Load(a, t)
     a[144] = b:New(144); -- The Lurker Above
     a[150] = b:New(150); -- The Fishing Diplomat
     a[153] = b:New(153); -- The Old Gnome and the Sea
-    a[154] = b:New(154); -- Arathi Basin Victory
-    a[155] = b:New(155); -- Arathi Basin Veteran
-    a[156] = b:New(156); -- Territorial Dominance
-    a[157] = b:New(157); -- To The Rescue!
-    a[158] = b:New(158); -- Me and the Cappin' Makin' it Happen
-    a[159] = b:New(159); -- Let's Get This Done
-    a[161] = b:New(161); -- Resilient Victory
-    a[162] = b:New(162); -- We Had It All Along *cough*
-    a[165] = b:New(165); -- Arathi Basin Perfection
-    a[166] = b:New(166); -- Warsong Gulch Victory
-    a[167] = b:New(167); -- Warsong Gulch Veteran
-    a[168] = b:New(168); -- Warsong Gulch Perfection
-    a[199] = b:New(199); -- Capture the Flag
-    a[200] = b:New(200); -- Persistent Defender
-    a[201] = b:New(201); -- Warsong Expedience
-    a[202] = b:New(202, fac.Alliance, 1502); -- Quick Cap
-    a[203] = b:New(203, fac.Alliance, 1251); -- Not In My House
-    a[204] = b:New(204); -- Ironman
-    a[206] = b:New(206, fac.Alliance, 1252); -- Supreme Defender
-    a[207] = b:New(207); -- Save the Day
-    a[208] = b:New(208); -- Eye of the Storm Victory
-    a[209] = b:New(209); -- Eye of the Storm Veteran
-    a[211] = b:New(211); -- Storm Glory
-    a[212] = b:New(212); -- Storm Capper
-    a[213] = b:New(213); -- Stormtrooper
-    a[214] = b:New(214); -- Flurry
-    a[216] = b:New(216); -- Bound for Glory
-    a[218] = b:New(218); -- Alterac Valley Victory
-    a[219] = b:New(219); -- Alterac Valley Veteran
-    a[220] = b:New(220, fac.Alliance, 873); -- Stormpike Perfection
-    a[221] = b:New(221); -- Alterac Grave Robber
-    a[222] = b:New(222); -- Tower Defense
-    a[223] = b:New(223); -- The Sickly Gazelle
-    a[224] = b:New(224, fac.Horde, 1151); -- Loyal Defender
-    a[225] = b:New(225, fac.Alliance, 1164); -- Everything Counts
-    a[226] = b:New(226); -- The Alterac Blitz
-    a[227] = b:New(227); -- Damage Control
-    a[229] = b:New(229); -- The Grim Reaper
-    a[230] = b:New(230, fac.Alliance, 1175); -- Battlemaster
-    a[231] = b:New(231); -- Wrecking Ball
-    a[233] = b:New(233); -- Bloodthirsty Berserker
-    a[238] = b:New(238); -- An Honorable Kill
-    a[239] = b:New(239); -- 25000 Honorable Kills
-    a[245] = b:New(245); -- That Takes Class
-    a[246] = b:New(246, fac.Alliance, 1005); -- Know Thy Enemy
-    a[247] = b:New(247); -- "Make Love, Not Warcraft"
+    a[154] = b:New(154, nil, nil, true); -- Arathi Basin Victory
+    a[155] = b:New(155, nil, nil, true); -- Arathi Basin Veteran
+    a[156] = b:New(156, nil, nil, true); -- Territorial Dominance
+    a[157] = b:New(157, nil, nil, true); -- To The Rescue!
+    a[158] = b:New(158, nil, nil, true); -- Me and the Cappin' Makin' it Happen
+    a[159] = b:New(159, nil, nil, true); -- Let's Get This Done
+    a[161] = b:New(161, nil, nil, true); -- Resilient Victory
+    a[162] = b:New(162, nil, nil, true); -- We Had It All Along *cough*
+    a[165] = b:New(165, nil, nil, true); -- Arathi Basin Perfection
+    a[166] = b:New(166, nil, nil, true); -- Warsong Gulch Victory
+    a[167] = b:New(167, nil, nil, true); -- Warsong Gulch Veteran
+    a[168] = b:New(168, nil, nil, true); -- Warsong Gulch Perfection
+    a[199] = b:New(199, nil, nil, true); -- Capture the Flag
+    a[200] = b:New(200, nil, nil, true); -- Persistent Defender
+    a[201] = b:New(201, nil, nil, true); -- Warsong Expedience
+    a[202] = b:New(202, fac.Alliance, 1502, true); -- Quick Cap
+    a[203] = b:New(203, fac.Alliance, 1251, true); -- Not In My House
+    a[204] = b:New(204, nil, nil, true); -- Ironman
+    a[206] = b:New(206, fac.Alliance, 1252, true); -- Supreme Defender
+    a[207] = b:New(207, nil, nil, true); -- Save the Day
+    a[208] = b:New(208, nil, nil, true); -- Eye of the Storm Victory
+    a[209] = b:New(209, nil, nil, true); -- Eye of the Storm Veteran
+    a[211] = b:New(211, nil, nil, true); -- Storm Glory
+    a[212] = b:New(212, nil, nil, true); -- Storm Capper
+    a[213] = b:New(213, nil, nil, true); -- Stormtrooper
+    a[214] = b:New(214, nil, nil, true); -- Flurry
+    a[216] = b:New(216, nil, nil, true); -- Bound for Glory
+    a[218] = b:New(218, nil, nil, true); -- Alterac Valley Victory
+    a[219] = b:New(219, nil, nil, true); -- Alterac Valley Veteran
+    a[220] = b:New(220, fac.Alliance, 873, true); -- Stormpike Perfection
+    a[221] = b:New(221, nil, nil, true); -- Alterac Grave Robber
+    a[222] = b:New(222, nil, nil, true); -- Tower Defense
+    a[223] = b:New(223, nil, nil, true); -- The Sickly Gazelle
+    a[224] = b:New(224, fac.Horde, 1151, true); -- Loyal Defender
+    a[225] = b:New(225, fac.Alliance, 1164, true); -- Everything Counts
+    a[226] = b:New(226, nil, nil, true); -- The Alterac Blitz
+    a[227] = b:New(227, nil, nil, true); -- Damage Control
+    a[229] = b:New(229, nil, nil, true); -- The Grim Reaper
+    a[230] = b:New(230, fac.Alliance, 1175, true); -- Battlemaster
+    a[231] = b:New(231, nil, nil, true); -- Wrecking Ball
+    a[233] = b:New(233, nil, nil, true); -- Bloodthirsty Berserker
+    a[238] = b:New(238, nil, nil, true); -- An Honorable Kill
+    a[239] = b:New(239, nil, nil, true); -- 25000 Honorable Kills
+    a[245] = b:New(245, nil, nil, true); -- That Takes Class
+    a[246] = b:New(246, fac.Alliance, 1005, true); -- Know Thy Enemy
+    a[247] = b:New(247, nil, nil, true); -- "Make Love, Not Warcraft"
     a[248] = b:New(248); -- Sunday's Finest
     a[249] = b:New(249); -- Dressed for the Occasion
-    a[252] = b:New(252); -- With a Little Helper from My Friends
+    a[252] = b:New(252, nil, nil, true); -- With a Little Helper from My Friends
     a[255] = b:New(255); -- Bring Me The Head of... Oh Wait
     a[259] = b:New(259, fac.Horde, 1255); -- Scrooge
     a[260] = b:New(260); -- Charming
@@ -154,25 +154,25 @@ function exportedAchievements.Load(a, t)
     a[295] = b:New(295); -- Direbrewfest
     a[303] = b:New(303); -- "Have Keg, Will Travel"
     a[306] = b:New(306); -- Master Angler of Azeroth
-    a[388] = b:New(388, fac.Alliance, 1006); -- City Defender
-    a[389] = b:New(389); -- Gurubashi Arena Master
-    a[396] = b:New(396); -- Gurubashi Arena Grand Master
-    a[397] = b:New(397); -- Step Into The Arena
-    a[398] = b:New(398); -- Mercilessly Dedicated
-    a[399] = b:New(399); -- Just the Two of Us: 1550
-    a[400] = b:New(400); -- Just the Two of Us: 1750
-    a[401] = b:New(401); -- Just the Two of Us: 2000
-    a[402] = b:New(402); -- Three's Company: 1550
-    a[403] = b:New(403); -- Three's Company: 1750
-    a[404] = b:New(404); -- High Five: 2000
+    a[388] = b:New(388, fac.Alliance, 1006, true); -- City Defender
+    a[389] = b:New(389, nil, nil, true); -- Gurubashi Arena Master
+    a[396] = b:New(396, nil, nil, true); -- Gurubashi Arena Grand Master
+    a[397] = b:New(397, nil, nil, true); -- Step Into The Arena
+    a[398] = b:New(398, nil, nil, true); -- Mercilessly Dedicated
+    a[399] = b:New(399, nil, nil, true); -- Just the Two of Us: 1550
+    a[400] = b:New(400, nil, nil, true); -- Just the Two of Us: 1750
+    a[401] = b:New(401, nil, nil, true); -- Just the Two of Us: 2000
+    a[402] = b:New(402, nil, nil, true); -- Three's Company: 1550
+    a[403] = b:New(403, nil, nil, true); -- Three's Company: 1750
+    a[404] = b:New(404, nil, nil, true); -- High Five: 2000
     O(a[404], "From", "Version", "030400", "Before", "Version", "070003");
-    a[405] = b:New(405); -- Three's Company: 2000
-    a[406] = b:New(406); -- High Five: 1550
+    a[405] = b:New(405, nil, nil, true); -- Three's Company: 2000
+    a[406] = b:New(406, nil, nil, true); -- High Five: 1550
     O(a[406], "From", "Version", "030400", "Before", "Version", "070003");
-    a[407] = b:New(407); -- High Five: 1750
+    a[407] = b:New(407, nil, nil, true); -- High Five: 1750
     O(a[407], "From", "Version", "030400", "Before", "Version", "070003");
-    a[408] = b:New(408); -- Hot Streak
-    a[409] = b:New(409); -- Last Man Standing
+    a[408] = b:New(408, nil, nil, true); -- Hot Streak
+    a[409] = b:New(409, nil, nil, true); -- Last Man Standing
     O(a[409], "From", "Version", "030400", "Before", "Version", "070003");
     a[411] = b:New(411); -- Murky
     a[412] = b:New(412); -- Murloc Costume
@@ -180,11 +180,11 @@ function exportedAchievements.Load(a, t)
     a[415] = b:New(415); -- Big Blizzard Bear
     a[416] = b:New(416); -- Scarab Lord
     O(a[416], "Never");
-    a[418] = b:New(418); -- Merciless Gladiator
+    a[418] = b:New(418, nil, nil, true); -- Merciless Gladiator
     O(a[418], "From", "PvP Season", 2, "Until", "PvP Season", 2);
-    a[419] = b:New(419); -- Vengeful Gladiator
+    a[419] = b:New(419, nil, nil, true); -- Vengeful Gladiator
     O(a[419], "From", "PvP Season", 3, "Until", "PvP Season", 3);
-    a[420] = b:New(420); -- Brutal Gladiator
+    a[420] = b:New(420, nil, nil, true); -- Brutal Gladiator
     O(a[420], "From", "PvP Season", 4, "Until", "PvP Season", 4);
     a[424] = b:New(424); -- Why? Because It's Red
     a[425] = b:New(425); -- "Atiesh, Greatstaff of the Guardian"
@@ -198,85 +198,85 @@ function exportedAchievements.Load(a, t)
     O(a[431]);
     a[432] = b:New(432); -- Champion of the Naaru
     O(a[432]);
-    a[433] = b:New(433, fac.Alliance, 443); -- Grand Marshal
+    a[433] = b:New(433, fac.Alliance, 443, true); -- Grand Marshal
     O(a[433], "From", "Version", "010400", "Before", "Version", "020001");
-    a[434] = b:New(434, fac.Alliance, 445); -- Field Marshal
+    a[434] = b:New(434, fac.Alliance, 445, true); -- Field Marshal
     O(a[434], "From", "Version", "010400", "Before", "Version", "020001");
-    a[435] = b:New(435, fac.Alliance, 444); -- Commander
+    a[435] = b:New(435, fac.Alliance, 444, true); -- Commander
     O(a[435], "From", "Version", "010400", "Before", "Version", "020001");
-    a[436] = b:New(436, fac.Alliance, 447); -- Lieutenant Commander
+    a[436] = b:New(436, fac.Alliance, 447, true); -- Lieutenant Commander
     O(a[436], "From", "Version", "010400", "Before", "Version", "020001");
-    a[437] = b:New(437, fac.Alliance, 448); -- Knight-Champion
+    a[437] = b:New(437, fac.Alliance, 448, true); -- Knight-Champion
     O(a[437], "From", "Version", "010400", "Before", "Version", "020001");
-    a[438] = b:New(438, fac.Alliance, 469); -- Knight-Captain
+    a[438] = b:New(438, fac.Alliance, 469, true); -- Knight-Captain
     O(a[438], "From", "Version", "010400", "Before", "Version", "020001");
-    a[439] = b:New(439, fac.Alliance, 451); -- Knight
+    a[439] = b:New(439, fac.Alliance, 451, true); -- Knight
     O(a[439], "From", "Version", "010400", "Before", "Version", "020001");
-    a[440] = b:New(440, fac.Alliance, 452); -- Sergeant Major
+    a[440] = b:New(440, fac.Alliance, 452, true); -- Sergeant Major
     O(a[440], "From", "Version", "010400", "Before", "Version", "020001");
-    a[441] = b:New(441, fac.Alliance, 450); -- Master Sergeant
+    a[441] = b:New(441, fac.Alliance, 450, true); -- Master Sergeant
     O(a[441], "From", "Version", "010400", "Before", "Version", "020001");
-    a[442] = b:New(442, fac.Alliance, 454); -- Private
+    a[442] = b:New(442, fac.Alliance, 454, true); -- Private
     O(a[442], "From", "Version", "010400", "Before", "Version", "020001");
-    a[443] = b:New(443, fac.Horde, 433); -- High Warlord
+    a[443] = b:New(443, fac.Horde, 433, true); -- High Warlord
     O(a[443], "From", "Version", "010400", "Before", "Version", "020001");
-    a[444] = b:New(444, fac.Horde, 435); -- Lieutenant General
+    a[444] = b:New(444, fac.Horde, 435, true); -- Lieutenant General
     O(a[444], "From", "Version", "010400", "Before", "Version", "020001");
-    a[445] = b:New(445, fac.Horde, 434); -- Warlord
+    a[445] = b:New(445, fac.Horde, 434, true); -- Warlord
     O(a[445], "From", "Version", "010400", "Before", "Version", "020001");
-    a[446] = b:New(446, fac.Horde, 473); -- General
+    a[446] = b:New(446, fac.Horde, 473, true); -- General
     O(a[446], "From", "Version", "010400", "Before", "Version", "020001");
-    a[447] = b:New(447, fac.Horde, 436); -- Champion
+    a[447] = b:New(447, fac.Horde, 436, true); -- Champion
     O(a[447], "From", "Version", "010400", "Before", "Version", "020001");
-    a[448] = b:New(448, fac.Horde, 437); -- Centurion
+    a[448] = b:New(448, fac.Horde, 437, true); -- Centurion
     O(a[448], "From", "Version", "010400", "Before", "Version", "020001");
-    a[449] = b:New(449, fac.Horde, 472); -- Blood Guard
+    a[449] = b:New(449, fac.Horde, 472, true); -- Blood Guard
     O(a[449], "From", "Version", "010400", "Before", "Version", "020001");
-    a[450] = b:New(450, fac.Horde, 441); -- Senior Sergeant
+    a[450] = b:New(450, fac.Horde, 441, true); -- Senior Sergeant
     O(a[450], "From", "Version", "010400", "Before", "Version", "020001");
-    a[451] = b:New(451, fac.Horde, 439); -- Stone Guard
+    a[451] = b:New(451, fac.Horde, 439, true); -- Stone Guard
     O(a[451], "From", "Version", "010400", "Before", "Version", "020001");
-    a[452] = b:New(452, fac.Horde, 440); -- First Sergeant
+    a[452] = b:New(452, fac.Horde, 440, true); -- First Sergeant
     O(a[452], "From", "Version", "010400", "Before", "Version", "020001");
-    a[453] = b:New(453, fac.Horde, 471); -- Sergeant
+    a[453] = b:New(453, fac.Horde, 471, true); -- Sergeant
     O(a[453], "From", "Version", "010400", "Before", "Version", "020001");
-    a[454] = b:New(454, fac.Horde, 442); -- Scout
+    a[454] = b:New(454, fac.Horde, 442, true); -- Scout
     O(a[454], "From", "Version", "010400", "Before", "Version", "020001");
-    a[456] = b:New(456, nil, nil, true); -- Realm First! Obsidian Slayer
+    a[456] = b:New(456, nil, nil, nil, true); -- Realm First! Obsidian Slayer
     O(a[456], "Once");
-    a[457] = b:New(457, nil, nil, true); -- Realm First! Level 80
+    a[457] = b:New(457, nil, nil, nil, true); -- Realm First! Level 80
     O(a[457], "Once");
-    a[458] = b:New(458, nil, nil, true); -- Realm First! Level 80 Rogue
+    a[458] = b:New(458, nil, nil, nil, true); -- Realm First! Level 80 Rogue
     O(a[458], "Once");
-    a[459] = b:New(459, nil, nil, true); -- Realm First! Level 80 Warrior
+    a[459] = b:New(459, nil, nil, nil, true); -- Realm First! Level 80 Warrior
     O(a[459], "Once");
-    a[460] = b:New(460, nil, nil, true); -- Realm First! Level 80 Mage
+    a[460] = b:New(460, nil, nil, nil, true); -- Realm First! Level 80 Mage
     O(a[460], "Once");
-    a[461] = b:New(461, nil, nil, true); -- Realm First! Level 80 Death Knight
+    a[461] = b:New(461, nil, nil, nil, true); -- Realm First! Level 80 Death Knight
     O(a[461], "Once");
-    a[462] = b:New(462, nil, nil, true); -- Realm First! Level 80 Hunter
+    a[462] = b:New(462, nil, nil, nil, true); -- Realm First! Level 80 Hunter
     O(a[462], "Once");
-    a[463] = b:New(463, nil, nil, true); -- Realm First! Level 80 Warlock
+    a[463] = b:New(463, nil, nil, nil, true); -- Realm First! Level 80 Warlock
     O(a[463], "Once");
-    a[464] = b:New(464, nil, nil, true); -- Realm First! Level 80 Priest
+    a[464] = b:New(464, nil, nil, nil, true); -- Realm First! Level 80 Priest
     O(a[464], "Once");
-    a[465] = b:New(465, nil, nil, true); -- Realm First! Level 80 Paladin
+    a[465] = b:New(465, nil, nil, nil, true); -- Realm First! Level 80 Paladin
     O(a[465], "Once");
-    a[466] = b:New(466, nil, nil, true); -- Realm First! Level 80 Druid
+    a[466] = b:New(466, nil, nil, nil, true); -- Realm First! Level 80 Druid
     O(a[466], "Once");
-    a[467] = b:New(467, nil, nil, true); -- Realm First! Level 80 Shaman
+    a[467] = b:New(467, nil, nil, nil, true); -- Realm First! Level 80 Shaman
     O(a[467], "Once");
-    a[468] = b:New(468, fac.Horde, 470); -- Grunt
+    a[468] = b:New(468, fac.Horde, 470, true); -- Grunt
     O(a[468], "From", "Version", "010400", "Before", "Version", "020001");
-    a[469] = b:New(469, fac.Horde, 438); -- Legionnaire
+    a[469] = b:New(469, fac.Horde, 438, true); -- Legionnaire
     O(a[469], "From", "Version", "010400", "Before", "Version", "020001");
-    a[470] = b:New(470, fac.Alliance, 468); -- Corporal
+    a[470] = b:New(470, fac.Alliance, 468, true); -- Corporal
     O(a[470], "From", "Version", "010400", "Before", "Version", "020001");
-    a[471] = b:New(471, fac.Alliance, 453); -- Sergeant
+    a[471] = b:New(471, fac.Alliance, 453, true); -- Sergeant
     O(a[471], "From", "Version", "010400", "Before", "Version", "020001");
-    a[472] = b:New(472, fac.Alliance, 449); -- Knight-Lieutenant
+    a[472] = b:New(472, fac.Alliance, 449, true); -- Knight-Lieutenant
     O(a[472], "From", "Version", "010400", "Before", "Version", "020001");
-    a[473] = b:New(473, fac.Alliance, 446); -- Marshal
+    a[473] = b:New(473, fac.Alliance, 446, true); -- Marshal
     O(a[473], "From", "Version", "010400", "Before", "Version", "020001");
     a[477] = b:New(477); -- Utgarde Keep
     a[478] = b:New(478); -- The Nexus
@@ -308,11 +308,11 @@ function exportedAchievements.Load(a, t)
     a[506] = b:New(506); -- 500 Quests Completed
     a[507] = b:New(507); -- 1000 Quests Completed
     a[508] = b:New(508); -- 1500 Quests Completed
-    a[509] = b:New(509); -- 10000 Honorable Kills
-    a[512] = b:New(512); -- 5000 Honorable Kills
-    a[513] = b:New(513); -- 100 Honorable Kills
-    a[515] = b:New(515); -- 500 Honorable Kills
-    a[516] = b:New(516); -- 1000 Honorable Kills
+    a[509] = b:New(509, nil, nil, true); -- 10000 Honorable Kills
+    a[512] = b:New(512, nil, nil, true); -- 5000 Honorable Kills
+    a[513] = b:New(513, nil, nil, true); -- 100 Honorable Kills
+    a[515] = b:New(515, nil, nil, true); -- 500 Honorable Kills
+    a[516] = b:New(516, nil, nil, true); -- 1000 Honorable Kills
     a[518] = b:New(518); -- 30 Exalted Reputations
     a[519] = b:New(519); -- 25 Exalted Reputations
     a[520] = b:New(520); -- 20 Exalted Reputations
@@ -350,32 +350,32 @@ function exportedAchievements.Load(a, t)
     a[577] = b:New(577); -- The Fall of Naxxramas (25 player)
     a[578] = b:New(578); -- The Dedicated Few (10 player)
     a[579] = b:New(579); -- The Dedicated Few (25 player)
-    a[582] = b:New(582); -- Alterac Valley All-Star
-    a[583] = b:New(583); -- Arathi Basin All-Star
-    a[584] = b:New(584); -- Arathi Basin Assassin
-    a[587] = b:New(587); -- Stormy Assassin
-    a[603] = b:New(603, fac.Horde, 604); -- Wrath of the Horde
-    a[604] = b:New(604, fac.Alliance, 603); -- Wrath of the Alliance
+    a[582] = b:New(582, nil, nil, true); -- Alterac Valley All-Star
+    a[583] = b:New(583, nil, nil, true); -- Arathi Basin All-Star
+    a[584] = b:New(584, nil, nil, true); -- Arathi Basin Assassin
+    a[587] = b:New(587, nil, nil, true); -- Stormy Assassin
+    a[603] = b:New(603, fac.Horde, 604, true); -- Wrath of the Horde
+    a[604] = b:New(604, fac.Alliance, 603, true); -- Wrath of the Alliance
     a[605] = b:New(605); -- A Coin of Ancestry
     a[606] = b:New(606); -- 5 Coins of Ancestry
     a[607] = b:New(607); -- 10 Coins of Ancestry
     a[608] = b:New(608); -- 25 Coins of Ancestry
     a[609] = b:New(609); -- 50 Coins of Ancestry
-    a[610] = b:New(610, fac.Alliance, 615); -- Orgrimmar Offensive
+    a[610] = b:New(610, fac.Alliance, 615, true); -- Orgrimmar Offensive
     O(a[610], "From", "Version", "030002", "Before", "Version", "080001");
-    a[611] = b:New(611, fac.Alliance, 616); -- Bleeding Bloodhoof
+    a[611] = b:New(611, fac.Alliance, 616, true); -- Bleeding Bloodhoof
     O(a[611], "From", "Version", "030002", "Before", "Version", "090001");
-    a[612] = b:New(612, fac.Alliance, 617); -- Downing the Dark Lady
+    a[612] = b:New(612, fac.Alliance, 617, true); -- Downing the Dark Lady
     O(a[612], "From", "Version", "030002", "Before", "Version", "090001");
-    a[613] = b:New(613, fac.Alliance, 618); -- Killed in Quel'Thalas
-    a[614] = b:New(614, fac.Alliance, 619); -- For the Alliance!
-    a[615] = b:New(615, fac.Horde, 610); -- Storming Stormwind
+    a[613] = b:New(613, fac.Alliance, 618, true); -- Killed in Quel'Thalas
+    a[614] = b:New(614, fac.Alliance, 619, true); -- For the Alliance!
+    a[615] = b:New(615, fac.Horde, 610, true); -- Storming Stormwind
     O(a[615], "From", "Version", "030002", "Before", "Version", "090001");
-    a[616] = b:New(616, fac.Horde, 611); -- Overthrow the Council
-    a[617] = b:New(617, fac.Horde, 612); -- Immortal No More
+    a[616] = b:New(616, fac.Horde, 611, true); -- Overthrow the Council
+    a[617] = b:New(617, fac.Horde, 612, true); -- Immortal No More
     O(a[617], "From", "Version", "030002", "Before", "Version", "080001");
-    a[618] = b:New(618, fac.Horde, 613); -- Putting Out the Light
-    a[619] = b:New(619, fac.Horde, 614); -- For the Horde!
+    a[618] = b:New(618, fac.Horde, 613, true); -- Putting Out the Light
+    a[619] = b:New(619, fac.Horde, 614, true); -- For the Horde!
     a[621] = b:New(621); -- Represent
     a[622] = b:New(622); -- The Spellweaver's Downfall (10 player)
     a[623] = b:New(623); -- The Spellweaver's Downfall (25 player)
@@ -457,25 +457,25 @@ function exportedAchievements.Load(a, t)
     a[696] = b:New(696); -- Tempest Keep
     a[697] = b:New(697); -- The Black Temple
     a[698] = b:New(698); -- Sunwell Plateau
-    a[699] = b:New(699); -- World Wide Winner
-    a[700] = b:New(700, fac.Horde, 701); -- Freedom of the Horde
+    a[699] = b:New(699, nil, nil, true); -- World Wide Winner
+    a[700] = b:New(700, fac.Horde, 701, true); -- Freedom of the Horde
     O(a[700], "From", "PvP Season", 5, "Until", "PvP Season", 18);
-    a[701] = b:New(701, fac.Alliance, 700); -- Freedom of the Alliance
+    a[701] = b:New(701, fac.Alliance, 700, true); -- Freedom of the Alliance
     O(a[701], "From", "PvP Season", 5, "Until", "PvP Season", 18);
     a[705] = b:New(705); -- Master of Arms
     O(a[705], "From", "Version", "000304", "Before", "Version", "040001");
-    a[706] = b:New(706, fac.Horde, 707); -- Frostwolf Howler
-    a[707] = b:New(707, fac.Alliance, 706); -- Stormpike Battle Charger
-    a[708] = b:New(708, fac.Horde, 709); -- Hero of the Frostwolf Clan
-    a[709] = b:New(709, fac.Alliance, 708); -- Hero of the Stormpike Guard
-    a[710] = b:New(710, fac.Horde, 711); -- The Defiler
-    a[711] = b:New(711, fac.Alliance, 710); -- Knight of Arathor
-    a[712] = b:New(712, fac.Horde, 713); -- Warsong Outrider
-    a[713] = b:New(713, fac.Alliance, 712); -- Silverwing Sentinel
-    a[714] = b:New(714, fac.Horde, 907); -- The Conqueror
+    a[706] = b:New(706, fac.Horde, 707, true); -- Frostwolf Howler
+    a[707] = b:New(707, fac.Alliance, 706, true); -- Stormpike Battle Charger
+    a[708] = b:New(708, fac.Horde, 709, true); -- Hero of the Frostwolf Clan
+    a[709] = b:New(709, fac.Alliance, 708, true); -- Hero of the Stormpike Guard
+    a[710] = b:New(710, fac.Horde, 711, true); -- The Defiler
+    a[711] = b:New(711, fac.Alliance, 710, true); -- Knight of Arathor
+    a[712] = b:New(712, fac.Horde, 713, true); -- Warsong Outrider
+    a[713] = b:New(713, fac.Alliance, 712, true); -- Silverwing Sentinel
+    a[714] = b:New(714, fac.Horde, 907, true); -- The Conqueror
     a[725] = b:New(725); -- "Thori'dal, the Stars' Fury"
     a[726] = b:New(726); -- Mr. Pinchy's Magical Crawdad Box
-    a[727] = b:New(727); -- Call in the Cavalry
+    a[727] = b:New(727, nil, nil, true); -- Call in the Cavalry
     a[728] = b:New(728); -- Explore Durotar
     a[729] = b:New(729); -- Deathcharger's Reins
     a[730] = b:New(730); -- Skills to Pay the Bills
@@ -509,8 +509,8 @@ function exportedAchievements.Load(a, t)
     a[780] = b:New(780); -- Explore Redridge Mountains
     a[781] = b:New(781); -- Explore Northern Stranglethorn
     a[782] = b:New(782); -- Explore Swamp of Sorrows
-    a[783] = b:New(783); -- The Perfect Storm
-    a[784] = b:New(784); -- Eye of the Storm Domination
+    a[783] = b:New(783, nil, nil, true); -- The Perfect Storm
+    a[784] = b:New(784, nil, nil, true); -- Eye of the Storm Domination
     a[802] = b:New(802); -- Explore Westfall
     a[841] = b:New(841); -- Explore Wetlands
     a[842] = b:New(842); -- Explore Teldrassil
@@ -540,13 +540,13 @@ function exportedAchievements.Load(a, t)
     a[866] = b:New(866); -- Explore Nagrand
     a[867] = b:New(867); -- Explore Terokkar Forest
     a[868] = b:New(868); -- Explore Isle of Quel'Danas
-    a[869] = b:New(869); -- 50000 Honorable Kills
-    a[870] = b:New(870); -- 100000 Honorable Kills
+    a[869] = b:New(869, nil, nil, true); -- 50000 Honorable Kills
+    a[870] = b:New(870, nil, nil, true); -- 100000 Honorable Kills
     a[871] = b:New(871); -- "Avast Ye, Admiral!"
-    a[872] = b:New(872); -- Frenzied Defender
-    a[873] = b:New(873, fac.Horde, 220); -- Frostwolf Perfection
-    a[875] = b:New(875); -- Vengefully Dedicated
-    a[876] = b:New(876); -- Brutally Dedicated
+    a[872] = b:New(872, nil, nil, true); -- Frenzied Defender
+    a[873] = b:New(873, fac.Horde, 220, true); -- Frostwolf Perfection
+    a[875] = b:New(875, nil, nil, true); -- Vengefully Dedicated
+    a[876] = b:New(876, nil, nil, true); -- Brutally Dedicated
     a[877] = b:New(877); -- The Cake Is Not A Lie
     a[878] = b:New(878); -- One That Didn't Get Away
     a[879] = b:New(879); -- Old School Ride
@@ -559,11 +559,11 @@ function exportedAchievements.Load(a, t)
     a[883] = b:New(883); -- Reins of the Raven Lord
     a[884] = b:New(884); -- Swift White Hawkstrider
     a[885] = b:New(885); -- Ashes of Al'ar
-    a[886] = b:New(886); -- Swift Nether Drake
+    a[886] = b:New(886, nil, nil, true); -- Swift Nether Drake
     O(a[886], "From", "PvP Season", 1, "Until", "PvP Season", 1);
-    a[887] = b:New(887); -- Merciless Nether Drake
+    a[887] = b:New(887, nil, nil, true); -- Merciless Nether Drake
     O(a[887], "From", "PvP Season", 2, "Until", "PvP Season", 2);
-    a[888] = b:New(888); -- Vengeful Nether Drake
+    a[888] = b:New(888, nil, nil, true); -- Vengeful Nether Drake
     O(a[888], "From", "PvP Season", 3, "Until", "PvP Season", 3);
     a[889] = b:New(889); -- Fast and Furious
     a[890] = b:New(890); -- Into the Wild Blue Yonder
@@ -582,9 +582,9 @@ function exportedAchievements.Load(a, t)
     a[903] = b:New(903); -- Shattrath Divided
     a[905] = b:New(905); -- Old Man Barlowned
     a[906] = b:New(906); -- Kickin' It Up a Notch
-    a[907] = b:New(907, fac.Alliance, 714); -- The Justicar
-    a[908] = b:New(908, fac.Alliance, 909); -- Call to Arms!
-    a[909] = b:New(909, fac.Horde, 908); -- Call to Arms!
+    a[907] = b:New(907, fac.Alliance, 714, true); -- The Justicar
+    a[908] = b:New(908, fac.Alliance, 909, true); -- Call to Arms!
+    a[909] = b:New(909, fac.Horde, 908, true); -- Call to Arms!
     a[910] = b:New(910); -- Elders of the Dungeons
     a[911] = b:New(911); -- Elders of Kalimdor
     a[912] = b:New(912); -- Elders of Eastern Kingdoms
@@ -636,8 +636,8 @@ function exportedAchievements.Load(a, t)
     a[979] = b:New(979); -- The Mask Task
     a[980] = b:New(980); -- The Horseman's Reins
     a[981] = b:New(981); -- That Sparkling Smile
-    a[1005] = b:New(1005, fac.Horde, 246); -- Know Thy Enemy
-    a[1006] = b:New(1006, fac.Horde, 388); -- City Defender
+    a[1005] = b:New(1005, fac.Horde, 246, true); -- Know Thy Enemy
+    a[1006] = b:New(1006, fac.Horde, 388, true); -- City Defender
     a[1007] = b:New(1007); -- The Wyrmrest Accord
     a[1008] = b:New(1008); -- The Kirin Tor
     a[1009] = b:New(1009); -- Knights of the Ebon Blade
@@ -670,27 +670,27 @@ function exportedAchievements.Load(a, t)
     a[1040] = b:New(1040, fac.Alliance, 1041); -- Rotten Hallow
     a[1041] = b:New(1041, fac.Horde, 1040); -- Rotten Hallow
     a[1145] = b:New(1145); -- King of the Fire Festival
-    a[1151] = b:New(1151, fac.Alliance, 224); -- Loyal Defender
-    a[1153] = b:New(1153); -- Overly Defensive
-    a[1157] = b:New(1157); -- Duel-icious
-    a[1159] = b:New(1159); -- Just the Two of Us: 2200
-    a[1160] = b:New(1160); -- Three's Company: 2200
-    a[1161] = b:New(1161); -- High Five: 2200
+    a[1151] = b:New(1151, fac.Alliance, 224, true); -- Loyal Defender
+    a[1153] = b:New(1153, nil, nil, true); -- Overly Defensive
+    a[1157] = b:New(1157, nil, nil, true); -- Duel-icious
+    a[1159] = b:New(1159, nil, nil, true); -- Just the Two of Us: 2200
+    a[1160] = b:New(1160, nil, nil, true); -- Three's Company: 2200
+    a[1161] = b:New(1161, nil, nil, true); -- High Five: 2200
     O(a[1161], "From", "Version", "030400", "Before", "Version", "070003");
-    a[1162] = b:New(1162); -- Hotter Streak
-    a[1164] = b:New(1164, fac.Horde, 225); -- Everything Counts
+    a[1162] = b:New(1162, nil, nil, true); -- Hotter Streak
+    a[1164] = b:New(1164, fac.Horde, 225, true); -- Everything Counts
     a[1165] = b:New(1165); -- "My Storage is ""Gigantique"""
-    a[1166] = b:New(1166); -- To the Looter Go the Spoils
-    a[1167] = b:New(1167, fac.Alliance); -- Master of Alterac Valley
+    a[1166] = b:New(1166, nil, nil, true); -- To the Looter Go the Spoils
+    a[1167] = b:New(1167, fac.Alliance, nil, true); -- Master of Alterac Valley
     a[1168] = b:New(1168, fac.Horde); -- Master of Alterac Valley
-    a[1169] = b:New(1169, fac.Alliance); -- Master of Arathi Basin
+    a[1169] = b:New(1169, fac.Alliance, nil, true); -- Master of Arathi Basin
     a[1170] = b:New(1170, fac.Horde); -- Master of Arathi Basin
-    a[1171] = b:New(1171); -- Master of Eye of the Storm
-    a[1172] = b:New(1172, fac.Alliance); -- Master of Warsong Gulch
+    a[1171] = b:New(1171, nil, nil, true); -- Master of Eye of the Storm
+    a[1172] = b:New(1172, fac.Alliance, nil, true); -- Master of Warsong Gulch
     a[1173] = b:New(1173, fac.Horde); -- Master of Warsong Gulch
-    a[1174] = b:New(1174); -- The Arena Master
+    a[1174] = b:New(1174, nil, nil, true); -- The Arena Master
     O(a[1174], "From", "Version", "030400", "Before", "Version", "070003");
-    a[1175] = b:New(1175, fac.Horde, 230); -- Battlemaster
+    a[1175] = b:New(1175, fac.Horde, 230, true); -- Battlemaster
     a[1176] = b:New(1176); -- Got My Mind On My Money
     a[1177] = b:New(1177); -- Got My Mind On My Money
     a[1178] = b:New(1178); -- Got My Mind On My Money
@@ -720,13 +720,13 @@ function exportedAchievements.Load(a, t)
     a[1244] = b:New(1244); -- Well Read
     a[1248] = b:New(1248); -- Plethora of Pets
     a[1250] = b:New(1250); -- "Shop Smart, Shop Pet...Smart"
-    a[1251] = b:New(1251, fac.Horde, 203); -- Not In My House
-    a[1252] = b:New(1252, fac.Horde, 206); -- Supreme Defender
+    a[1251] = b:New(1251, fac.Horde, 203, true); -- Not In My House
+    a[1252] = b:New(1252, fac.Horde, 206, true); -- Supreme Defender
     a[1254] = b:New(1254); -- Friend or Fowl?
     a[1255] = b:New(1255, fac.Alliance, 259); -- Scrooge
     a[1257] = b:New(1257); -- The Scavenger
-    a[1258] = b:New(1258); -- Take a Chill Pill
-    a[1259] = b:New(1259); -- Not So Fast
+    a[1258] = b:New(1258, nil, nil, true); -- Take a Chill Pill
+    a[1259] = b:New(1259, nil, nil, true); -- Not So Fast
     a[1260] = b:New(1260); -- Almost Blind Luck
     a[1261] = b:New(1261); -- G.N.E.R.D. Rage
     a[1262] = b:New(1262, fac.Alliance); -- Loremaster of Outland
@@ -766,11 +766,11 @@ function exportedAchievements.Load(a, t)
     a[1297] = b:New(1297); -- Hadronox Denied
     a[1307] = b:New(1307); -- Upper Blackrock Spire (Classic)
     O(a[1307], "From", "Version", "030002", "Before", "Version", "060002");
-    a[1308] = b:New(1308); -- Strand of the Ancients Victory
+    a[1308] = b:New(1308, nil, nil, true); -- Strand of the Ancients Victory
     O(a[1308], "From", "Version", "030400", "Before", "Version", "080001");
-    a[1309] = b:New(1309); -- Strand of the Ancients Veteran
+    a[1309] = b:New(1309, nil, nil, true); -- Strand of the Ancients Veteran
     O(a[1309], "From", "Version", "030400", "Before", "Version", "080001");
-    a[1310] = b:New(1310); -- Storm the Beach
+    a[1310] = b:New(1310, nil, nil, true); -- Storm the Beach
     O(a[1310], "From", "Version", "030400", "Before", "Version", "080001");
     a[1311] = b:New(1311); -- Medium Rare
     a[1312] = b:New(1312); -- Bloody Rare
@@ -780,65 +780,65 @@ function exportedAchievements.Load(a, t)
     a[1359] = b:New(1359, fac.Horde, 35); -- Might of Dragonblight
     a[1360] = b:New(1360, fac.Horde); -- Loremaster of Northrend
     a[1396] = b:New(1396); -- Elders of Northrend
-    a[1400] = b:New(1400, nil, nil, true); -- Realm First! Magic Seeker
+    a[1400] = b:New(1400, nil, nil, nil, true); -- Realm First! Magic Seeker
     O(a[1400], "Once");
-    a[1402] = b:New(1402, nil, nil, true); -- Realm First! Conqueror of Naxxramas
+    a[1402] = b:New(1402, nil, nil, nil, true); -- Realm First! Conqueror of Naxxramas
     O(a[1402], "Once");
-    a[1404] = b:New(1404, nil, nil, true); -- Realm First! Level 80 Gnome
+    a[1404] = b:New(1404, nil, nil, nil, true); -- Realm First! Level 80 Gnome
     O(a[1404], "Once");
-    a[1405] = b:New(1405, nil, nil, true); -- Realm First! Level 80 Blood Elf
+    a[1405] = b:New(1405, nil, nil, nil, true); -- Realm First! Level 80 Blood Elf
     O(a[1405], "Once");
-    a[1406] = b:New(1406, nil, nil, true); -- Realm First! Level 80 Draenei
+    a[1406] = b:New(1406, nil, nil, nil, true); -- Realm First! Level 80 Draenei
     O(a[1406], "Once");
-    a[1407] = b:New(1407, nil, nil, true); -- Realm First! Level 80 Dwarf
+    a[1407] = b:New(1407, nil, nil, nil, true); -- Realm First! Level 80 Dwarf
     O(a[1407], "Once");
-    a[1408] = b:New(1408, nil, nil, true); -- Realm First! Level 80 Human
+    a[1408] = b:New(1408, nil, nil, nil, true); -- Realm First! Level 80 Human
     O(a[1408], "Once");
-    a[1409] = b:New(1409, nil, nil, true); -- Realm First! Level 80 Night Elf
+    a[1409] = b:New(1409, nil, nil, nil, true); -- Realm First! Level 80 Night Elf
     O(a[1409], "Once");
-    a[1410] = b:New(1410, nil, nil, true); -- Realm First! Level 80 Orc
+    a[1410] = b:New(1410, nil, nil, nil, true); -- Realm First! Level 80 Orc
     O(a[1410], "Once");
-    a[1411] = b:New(1411, nil, nil, true); -- Realm First! Level 80 Tauren
+    a[1411] = b:New(1411, nil, nil, nil, true); -- Realm First! Level 80 Tauren
     O(a[1411], "Once");
-    a[1412] = b:New(1412, nil, nil, true); -- Realm First! Level 80 Troll
+    a[1412] = b:New(1412, nil, nil, nil, true); -- Realm First! Level 80 Troll
     O(a[1412], "Once");
-    a[1413] = b:New(1413, nil, nil, true); -- Realm First! Level 80 Forsaken
+    a[1413] = b:New(1413, nil, nil, nil, true); -- Realm First! Level 80 Forsaken
     O(a[1413], "Once");
-    a[1414] = b:New(1414, nil, nil, true); -- Realm First! Grand Master Blacksmith
+    a[1414] = b:New(1414, nil, nil, nil, true); -- Realm First! Grand Master Blacksmith
     O(a[1414], "Once");
-    a[1415] = b:New(1415, nil, nil, true); -- Realm First! Grand Master Alchemist
+    a[1415] = b:New(1415, nil, nil, nil, true); -- Realm First! Grand Master Alchemist
     O(a[1415], "Once");
-    a[1416] = b:New(1416, nil, nil, true); -- Realm First! Grand Master Cook
+    a[1416] = b:New(1416, nil, nil, nil, true); -- Realm First! Grand Master Cook
     O(a[1416], "Once");
-    a[1417] = b:New(1417, nil, nil, true); -- Realm First! Grand Master Enchanter
+    a[1417] = b:New(1417, nil, nil, nil, true); -- Realm First! Grand Master Enchanter
     O(a[1417], "Once");
-    a[1418] = b:New(1418, nil, nil, true); -- Realm First! Grand Master Engineer
+    a[1418] = b:New(1418, nil, nil, nil, true); -- Realm First! Grand Master Engineer
     O(a[1418], "Once");
-    a[1419] = b:New(1419, nil, nil, true); -- Realm First! Grand Master Medic
+    a[1419] = b:New(1419, nil, nil, nil, true); -- Realm First! Grand Master Medic
     O(a[1419], "Once");
-    a[1420] = b:New(1420, nil, nil, true); -- Realm First! Grand Master Angler
+    a[1420] = b:New(1420, nil, nil, nil, true); -- Realm First! Grand Master Angler
     O(a[1420], "Once");
-    a[1421] = b:New(1421, nil, nil, true); -- Realm First! Grand Master Herbalist
+    a[1421] = b:New(1421, nil, nil, nil, true); -- Realm First! Grand Master Herbalist
     O(a[1421], "Once");
-    a[1422] = b:New(1422, nil, nil, true); -- Realm First! Grand Master Scribe
+    a[1422] = b:New(1422, nil, nil, nil, true); -- Realm First! Grand Master Scribe
     O(a[1422], "Once");
-    a[1423] = b:New(1423, nil, nil, true); -- Realm First! Grand Master Jewelcrafter
+    a[1423] = b:New(1423, nil, nil, nil, true); -- Realm First! Grand Master Jewelcrafter
     O(a[1423], "Once");
-    a[1424] = b:New(1424, nil, nil, true); -- Realm First! Grand Master Leatherworker
+    a[1424] = b:New(1424, nil, nil, nil, true); -- Realm First! Grand Master Leatherworker
     O(a[1424], "Once");
-    a[1425] = b:New(1425, nil, nil, true); -- Realm First! Grand Master Miner
+    a[1425] = b:New(1425, nil, nil, nil, true); -- Realm First! Grand Master Miner
     O(a[1425], "Once");
-    a[1426] = b:New(1426, nil, nil, true); -- Realm First! Grand Master Skinner
+    a[1426] = b:New(1426, nil, nil, nil, true); -- Realm First! Grand Master Skinner
     O(a[1426], "Once");
-    a[1427] = b:New(1427, nil, nil, true); -- Realm First! Grand Master Tailor
+    a[1427] = b:New(1427, nil, nil, nil, true); -- Realm First! Grand Master Tailor
     O(a[1427], "Once");
     a[1428] = b:New(1428); -- Mine Sweeper
     a[1436] = b:New(1436); -- Friends In High Places
     O(a[1436]);
     a[1457] = b:New(1457); -- Explore Crystalsong Forest
-    a[1463] = b:New(1463, nil, nil, true); -- Realm First! Northrend Vanguard
+    a[1463] = b:New(1463, nil, nil, nil, true); -- Realm First! Northrend Vanguard
     O(a[1463], "Once");
-    a[1502] = b:New(1502, fac.Horde, 202); -- Quick Cap
+    a[1502] = b:New(1502, fac.Horde, 202, true); -- Quick Cap
     a[1516] = b:New(1516); -- Accomplished Angler
     a[1517] = b:New(1517); -- Northrend Angler
     a[1552] = b:New(1552); -- Frenzied Firecracker
@@ -890,29 +890,29 @@ function exportedAchievements.Load(a, t)
     a[1705] = b:New(1705); -- Clockwork Rocket Bot
     a[1706] = b:New(1706); -- Crashin' Thrashin' Racer
     a[1707] = b:New(1707, fac.Alliance); -- Fool For Love
-    a[1717] = b:New(1717); -- Wintergrasp Victory
-    a[1718] = b:New(1718); -- Wintergrasp Veteran
+    a[1717] = b:New(1717, nil, nil, true); -- Wintergrasp Victory
+    a[1718] = b:New(1718, nil, nil, true); -- Wintergrasp Veteran
     a[1721] = b:New(1721); -- Archavon the Stone Watcher (25 player)
     a[1722] = b:New(1722); -- Archavon the Stone Watcher (10 player)
-    a[1723] = b:New(1723); -- Vehicular Gnomeslaughter
-    a[1727] = b:New(1727); -- Leaning Tower
-    a[1737] = b:New(1737, fac.Alliance, 2476); -- Destruction Derby
-    a[1751] = b:New(1751); -- Didn't Stand a Chance
-    a[1752] = b:New(1752, fac.Alliance); -- Master of Wintergrasp
-    a[1755] = b:New(1755); -- Within Our Grasp
-    a[1757] = b:New(1757, fac.Alliance, 2200); -- Defense of the Ancients
+    a[1723] = b:New(1723, nil, nil, true); -- Vehicular Gnomeslaughter
+    a[1727] = b:New(1727, nil, nil, true); -- Leaning Tower
+    a[1737] = b:New(1737, fac.Alliance, 2476, true); -- Destruction Derby
+    a[1751] = b:New(1751, nil, nil, true); -- Didn't Stand a Chance
+    a[1752] = b:New(1752, fac.Alliance, nil, true); -- Master of Wintergrasp
+    a[1755] = b:New(1755, nil, nil, true); -- Within Our Grasp
+    a[1757] = b:New(1757, fac.Alliance, 2200, true); -- Defense of the Ancients
     O(a[1757], "From", "Version", "030400", "Before", "Version", "080001");
-    a[1761] = b:New(1761); -- The Dapper Sapper
+    a[1761] = b:New(1761, nil, nil, true); -- The Dapper Sapper
     O(a[1761], "From", "Version", "030400", "Before", "Version", "080001");
-    a[1762] = b:New(1762, fac.Alliance, 2192); -- Not Even a Scratch
+    a[1762] = b:New(1762, fac.Alliance, 2192, true); -- Not Even a Scratch
     O(a[1762], "From", "Version", "030400", "Before", "Version", "080001");
-    a[1763] = b:New(1763); -- Artillery Veteran
+    a[1763] = b:New(1763, nil, nil, true); -- Artillery Veteran
     O(a[1763], "From", "Version", "030400", "Before", "Version", "080001");
-    a[1764] = b:New(1764); -- Drop It!
+    a[1764] = b:New(1764, nil, nil, true); -- Drop It!
     O(a[1764], "From", "Version", "030400", "Before", "Version", "080001");
-    a[1765] = b:New(1765); -- Steady Hands
+    a[1765] = b:New(1765, nil, nil, true); -- Steady Hands
     O(a[1765], "From", "Version", "030400", "Before", "Version", "080001");
-    a[1766] = b:New(1766); -- Ancient Protector
+    a[1766] = b:New(1766, nil, nil, true); -- Ancient Protector
     O(a[1766], "From", "Version", "030400", "Before", "Version", "080001");
     a[1777] = b:New(1777); -- The Northrend Gourmet
     a[1778] = b:New(1778); -- The Northrend Gourmet
@@ -976,8 +976,8 @@ function exportedAchievements.Load(a, t)
     a[2000] = b:New(2000); -- 25 Cooking Awards
     a[2001] = b:New(2001); -- 50 Cooking Awards
     a[2002] = b:New(2002); -- 100 Cooking Awards
-    a[2016] = b:New(2016, fac.Alliance, 2017); -- Grizzled Veteran
-    a[2017] = b:New(2017, fac.Horde, 2016); -- Grizzled Veteran
+    a[2016] = b:New(2016, fac.Alliance, 2017, true); -- Grizzled Veteran
+    a[2017] = b:New(2017, fac.Horde, 2016, true); -- Grizzled Veteran
     a[2018] = b:New(2018); -- Timear Foresees
     O(a[2018], "From", "Version", "030400", "Before", "Version", "030700");
     a[2019] = b:New(2019); -- Proof of Demise
@@ -1009,25 +1009,25 @@ function exportedAchievements.Load(a, t)
     a[2078] = b:New(2078); -- Traveler's Tundra Mammoth
     a[2079] = b:New(2079); -- Tabard of the Protector
     O(a[2079]);
-    a[2080] = b:New(2080); -- Black War Mammoth
+    a[2080] = b:New(2080, nil, nil, true); -- Black War Mammoth
     a[2081] = b:New(2081); -- Grand Black War Mammoth
     a[2082] = b:New(2082); -- Ice Mammoth
     a[2083] = b:New(2083); -- Grand Ice Mammoth
     a[2084] = b:New(2084); -- Ring of the Kirin Tor
-    a[2085] = b:New(2085); -- 50 Stone Keeper's Shards
+    a[2085] = b:New(2085, nil, nil, true); -- 50 Stone Keeper's Shards
     O(a[2085], "From", "Version", "030400", "Before", "Version", "040001");
-    a[2086] = b:New(2086); -- 100 Stone Keeper's Shards
+    a[2086] = b:New(2086, nil, nil, true); -- 100 Stone Keeper's Shards
     O(a[2086], "From", "Version", "030400", "Before", "Version", "040001");
-    a[2087] = b:New(2087); -- 250 Stone Keeper's Shards
+    a[2087] = b:New(2087, nil, nil, true); -- 250 Stone Keeper's Shards
     O(a[2087], "From", "Version", "030400", "Before", "Version", "040001");
-    a[2088] = b:New(2088); -- 500 Stone Keeper's Shards
+    a[2088] = b:New(2088, nil, nil, true); -- 500 Stone Keeper's Shards
     O(a[2088], "From", "Version", "030400", "Before", "Version", "040001");
-    a[2089] = b:New(2089); -- 1000 Stone Keeper's Shards
+    a[2089] = b:New(2089, nil, nil, true); -- 1000 Stone Keeper's Shards
     O(a[2089], "From", "Version", "030400", "Before", "Version", "040001");
-    a[2090] = b:New(2090); -- Challenger
-    a[2091] = b:New(2091); -- Gladiator
-    a[2092] = b:New(2092); -- Duelist
-    a[2093] = b:New(2093); -- Rival
+    a[2090] = b:New(2090, nil, nil, true); -- Challenger
+    a[2091] = b:New(2091, nil, nil, true); -- Gladiator
+    a[2092] = b:New(2092, nil, nil, true); -- Duelist
+    a[2093] = b:New(2093, nil, nil, true); -- Rival
     a[2094] = b:New(2094); -- A Penny For Your Thoughts
     a[2095] = b:New(2095); -- Silver in the City
     a[2096] = b:New(2096); -- The Coin Master
@@ -1072,26 +1072,26 @@ function exportedAchievements.Load(a, t)
     O(a[2187], "From", "Version", "030400", "Before", "Version", "040003a");
     a[2188] = b:New(2188); -- Leeeeeeeeeeeeeroy!
     O(a[2188], "From", "Version", "030002", "Before", "Version", "060002");
-    a[2189] = b:New(2189); -- Artillery Expert
+    a[2189] = b:New(2189, nil, nil, true); -- Artillery Expert
     O(a[2189], "From", "Version", "030400", "Before", "Version", "080001");
-    a[2190] = b:New(2190); -- Drop It Now!
+    a[2190] = b:New(2190, nil, nil, true); -- Drop It Now!
     O(a[2190], "From", "Version", "030400", "Before", "Version", "080001");
-    a[2191] = b:New(2191); -- Ancient Courtyard Protector
+    a[2191] = b:New(2191, nil, nil, true); -- Ancient Courtyard Protector
     O(a[2191], "From", "Version", "030400", "Before", "Version", "080001");
-    a[2192] = b:New(2192, fac.Horde, 1762); -- Not Even a Scratch
+    a[2192] = b:New(2192, fac.Horde, 1762, true); -- Not Even a Scratch
     O(a[2192], "From", "Version", "030400", "Before", "Version", "080001");
-    a[2193] = b:New(2193); -- Explosives Expert
+    a[2193] = b:New(2193, nil, nil, true); -- Explosives Expert
     O(a[2193], "From", "Version", "030400", "Before", "Version", "080001");
-    a[2194] = b:New(2194, fac.Alliance); -- Master of Strand of the Ancients
+    a[2194] = b:New(2194, fac.Alliance, nil, true); -- Master of Strand of the Ancients
     O(a[2194], "From", "Version", "030400", "Before", "Version", "080001");
     a[2195] = b:New(2195, fac.Horde); -- Master of Strand of the Ancients
     O(a[2195], "From", "Version", "030400", "Before", "Version", "080001");
-    a[2199] = b:New(2199); -- Wintergrasp Ranger
-    a[2200] = b:New(2200, fac.Horde, 1757); -- Defense of the Ancients
+    a[2199] = b:New(2199, nil, nil, true); -- Wintergrasp Ranger
+    a[2200] = b:New(2200, fac.Horde, 1757, true); -- Defense of the Ancients
     O(a[2200], "From", "Version", "030400", "Before", "Version", "080001");
     a[2256] = b:New(2256); -- Northern Exposure
     a[2257] = b:New(2257); -- Frostbitten
-    a[2316] = b:New(2316); -- Brutal Nether Drake
+    a[2316] = b:New(2316, nil, nil, true); -- Brutal Nether Drake
     O(a[2316], "From", "PvP Season", 4, "Until", "PvP Season", 4);
     a[2336] = b:New(2336); -- Insane in the Membrane
     a[2357] = b:New(2357); -- Dreadsteed of Xoroth
@@ -1112,7 +1112,7 @@ function exportedAchievements.Load(a, t)
     a[2436] = b:New(2436); -- Desert Rose
     a[2456] = b:New(2456); -- Vampire Hunter
     O(a[2456], "From", "Version", "030002", "Until", "Version", "030002");
-    a[2476] = b:New(2476, fac.Horde, 1737); -- Destruction Derby
+    a[2476] = b:New(2476, fac.Horde, 1737, true); -- Destruction Derby
     a[2496] = b:New(2496); -- The Fifth Element
     O(a[2496], "From", "Version", "030002", "Before", "Version", "030008");
     a[2497] = b:New(2497, fac.Horde, 2419); -- Spring Fling
@@ -1277,11 +1277,11 @@ function exportedAchievements.Load(a, t)
     a[3059] = b:New(3059); -- Heartbreaker (25 player)
     a[3076] = b:New(3076); -- Nine Lives (10 player)
     a[3077] = b:New(3077); -- Nine Lives (25 player)
-    a[3096] = b:New(3096); -- Deadly Gladiator's Frost Wyrm
+    a[3096] = b:New(3096, nil, nil, true); -- Deadly Gladiator's Frost Wyrm
     O(a[3096], "From", "PvP Season", 5, "Until", "PvP Season", 5);
     a[3097] = b:New(3097); -- Dwarfageddon (10 player)
     a[3098] = b:New(3098); -- Dwarfageddon (25 player)
-    a[3117] = b:New(3117, nil, nil, true); -- Realm First! Death's Demise
+    a[3117] = b:New(3117, nil, nil, nil, true); -- Realm First! Death's Demise
     O(a[3117], "Once");
     a[3118] = b:New(3118); -- Lumberjacked (25 player)
     a[3136] = b:New(3136); -- Emalon the Storm Watcher (10 player)
@@ -1313,15 +1313,15 @@ function exportedAchievements.Load(a, t)
     a[3217] = b:New(3217); -- Chasing Marcia
     a[3218] = b:New(3218); -- Turtles All the Way Down
     a[3237] = b:New(3237); -- Set Up Us the Bomb (25 player)
-    a[3259] = b:New(3259, nil, nil, true); -- Realm First! Celestial Defender
+    a[3259] = b:New(3259, nil, nil, nil, true); -- Realm First! Celestial Defender
     O(a[3259], "Once");
     a[3296] = b:New(3296); -- Cooking with Style
     a[3316] = b:New(3316); -- Herald of the Titans
-    a[3336] = b:New(3336); -- Deadly Gladiator
+    a[3336] = b:New(3336, nil, nil, true); -- Deadly Gladiator
     O(a[3336], "From", "PvP Season", 5, "Until", "PvP Season", 5);
     a[3356] = b:New(3356, fac.Alliance, 3357); -- Winterspring Frostsaber
     a[3357] = b:New(3357, fac.Horde, 3356); -- Venomhide Ravasaur
-    a[3436] = b:New(3436); -- Furious Gladiator
+    a[3436] = b:New(3436, nil, nil, true); -- Furious Gladiator
     O(a[3436], "From", "PvP Season", 6, "Until", "PvP Season", 6);
     a[3456] = b:New(3456); -- Dead Man's Party
     a[3457] = b:New(3457); -- The Captain's Booty
@@ -1341,7 +1341,7 @@ function exportedAchievements.Load(a, t)
     a[3582] = b:New(3582); -- Terokkar Turkey Time
     a[3596] = b:New(3596, fac.Alliance, 3597); -- Pilgrim's Progress
     a[3597] = b:New(3597, fac.Horde, 3596); -- Pilgrim's Progress
-    a[3618] = b:New(3618); -- Murkimus the Gladiator
+    a[3618] = b:New(3618, nil, nil, true); -- Murkimus the Gladiator
     O(a[3618], "Never");
     a[3636] = b:New(3636); -- Jade Tiger
     O(a[3636], "Never");
@@ -1349,14 +1349,14 @@ function exportedAchievements.Load(a, t)
     a[3676] = b:New(3676, fac.Alliance, 3677); -- A Silver Confidant
     a[3677] = b:New(3677, fac.Horde, 3676); -- The Sunreavers
     a[3736] = b:New(3736); -- Pony Up!
-    a[3756] = b:New(3756); -- Furious Gladiator's Frost Wyrm
+    a[3756] = b:New(3756, nil, nil, true); -- Furious Gladiator's Frost Wyrm
     O(a[3756], "From", "PvP Season", 6, "Until", "PvP Season", 6);
-    a[3757] = b:New(3757); -- Relentless Gladiator's Frost Wyrm
+    a[3757] = b:New(3757, nil, nil, true); -- Relentless Gladiator's Frost Wyrm
     O(a[3757], "From", "PvP Season", 7, "Until", "PvP Season", 7);
-    a[3758] = b:New(3758); -- Relentless Gladiator
+    a[3758] = b:New(3758, nil, nil, true); -- Relentless Gladiator
     O(a[3758], "From", "PvP Season", 7, "Until", "PvP Season", 7);
-    a[3776] = b:New(3776); -- Isle of Conquest Victory
-    a[3777] = b:New(3777); -- Isle of Conquest Veteran
+    a[3776] = b:New(3776, nil, nil, true); -- Isle of Conquest Victory
+    a[3777] = b:New(3777, nil, nil, true); -- Isle of Conquest Veteran
     a[3778] = b:New(3778, fac.Horde, 4296); -- Trial of the Champion
     a[3797] = b:New(3797); -- Upper Back Pain (10 player)
     a[3798] = b:New(3798); -- Resilience Will Fix It (10 player)
@@ -1399,19 +1399,19 @@ function exportedAchievements.Load(a, t)
     O(a[3843], "From", "Version", "030400", "Before", "Version", "040003a");
     a[3844] = b:New(3844); -- 1000 Dungeon & Raid Emblems
     O(a[3844], "From", "Version", "030400", "Before", "Version", "040003a");
-    a[3845] = b:New(3845); -- Isle of Conquest All-Star
-    a[3846] = b:New(3846, fac.Alliance, 4176); -- Resource Glut
-    a[3847] = b:New(3847); -- Four Car Garage
-    a[3848] = b:New(3848); -- A-bomb-inable
-    a[3849] = b:New(3849); -- A-bomb-ination
-    a[3850] = b:New(3850); -- Mowed Down
-    a[3851] = b:New(3851, fac.Alliance, 4177); -- Mine
-    a[3852] = b:New(3852); -- Cut the Blue Wire... No the Red Wire!
-    a[3853] = b:New(3853); -- All Over the Isle
-    a[3854] = b:New(3854); -- Back Door Job
-    a[3855] = b:New(3855); -- Glaive Grave
-    a[3856] = b:New(3856, fac.Alliance, 4256); -- Demolition Derby
-    a[3857] = b:New(3857, fac.Alliance, 3957); -- Master of Isle of Conquest
+    a[3845] = b:New(3845, nil, nil, true); -- Isle of Conquest All-Star
+    a[3846] = b:New(3846, fac.Alliance, 4176, true); -- Resource Glut
+    a[3847] = b:New(3847, nil, nil, true); -- Four Car Garage
+    a[3848] = b:New(3848, nil, nil, true); -- A-bomb-inable
+    a[3849] = b:New(3849, nil, nil, true); -- A-bomb-ination
+    a[3850] = b:New(3850, nil, nil, true); -- Mowed Down
+    a[3851] = b:New(3851, fac.Alliance, 4177, true); -- Mine
+    a[3852] = b:New(3852, nil, nil, true); -- Cut the Blue Wire... No the Red Wire!
+    a[3853] = b:New(3853, nil, nil, true); -- All Over the Isle
+    a[3854] = b:New(3854, nil, nil, true); -- Back Door Job
+    a[3855] = b:New(3855, nil, nil, true); -- Glaive Grave
+    a[3856] = b:New(3856, fac.Alliance, 4256, true); -- Demolition Derby
+    a[3857] = b:New(3857, fac.Alliance, 3957, true); -- Master of Isle of Conquest
     a[3876] = b:New(3876); -- 1500 Dungeon & Raid Emblems
     O(a[3876], "From", "Version", "030400", "Before", "Version", "040003a");
     a[3896] = b:New(3896); -- Onyx Panther
@@ -1421,12 +1421,12 @@ function exportedAchievements.Load(a, t)
     a[3918] = b:New(3918); -- Call of the Grand Crusade (10 player)
     a[3936] = b:New(3936); -- "Not One, But Two Jormungars (10 player)"
     a[3937] = b:New(3937); -- "Not One, But Two Jormungars (25 player)"
-    a[3957] = b:New(3957, fac.Horde, 3857); -- Master of Isle of Conquest
+    a[3957] = b:New(3957, fac.Horde, 3857, true); -- Master of Isle of Conquest
     a[3996] = b:New(3996); -- Three Sixty Pain Spike (10 player)
     a[3997] = b:New(3997); -- Three Sixty Pain Spike (25 player)
     a[4016] = b:New(4016); -- "Earth, Wind & Fire (10 player)"
     a[4017] = b:New(4017); -- "Earth, Wind & Fire (25 player)"
-    a[4078] = b:New(4078, nil, nil, true); -- Realm First! Grand Crusader
+    a[4078] = b:New(4078, nil, nil, nil, true); -- Realm First! Grand Crusader
     O(a[4078], "Once");
     a[4079] = b:New(4079, fac.Horde, 4156); -- A Tribute to Immortality
     O(a[4079], "From", "Version", "030400", "Before", "Version", "040003a");
@@ -1434,9 +1434,9 @@ function exportedAchievements.Load(a, t)
     O(a[4080], "From", "Version", "030400", "Before", "Version", "040003a");
     a[4156] = b:New(4156, fac.Alliance, 4079); -- A Tribute to Immortality
     O(a[4156], "From", "Version", "030400", "Before", "Version", "040003a");
-    a[4176] = b:New(4176, fac.Horde, 3846); -- Resource Glut
-    a[4177] = b:New(4177, fac.Horde, 3851); -- Mine
-    a[4256] = b:New(4256, fac.Horde, 3856); -- Demolition Derby
+    a[4176] = b:New(4176, fac.Horde, 3846, true); -- Resource Glut
+    a[4177] = b:New(4177, fac.Horde, 3851, true); -- Mine
+    a[4256] = b:New(4256, fac.Horde, 3856, true); -- Demolition Derby
     a[4296] = b:New(4296, fac.Alliance, 3778); -- Trial of the Champion
     a[4297] = b:New(4297, fac.Horde, 4298); -- Heroic: Trial of the Champion
     a[4298] = b:New(4298, fac.Alliance, 4297); -- Heroic: Trial of the Champion
@@ -1481,7 +1481,7 @@ function exportedAchievements.Load(a, t)
     a[4537] = b:New(4537); -- I've Gone and Made a Mess (10 player)
     a[4538] = b:New(4538); -- Dances with Oozes (10 player)
     a[4539] = b:New(4539); -- "Once Bitten, Twice Shy (10 player)"
-    a[4576] = b:New(4576, nil, nil, true); -- Realm First! Fall of the Lich King
+    a[4576] = b:New(4576, nil, nil, nil, true); -- Realm First! Fall of the Lich King
     O(a[4576], "Once");
     a[4577] = b:New(4577); -- Flu Shot Shortage (10 player)
     a[4578] = b:New(4578); -- "Nausea, Heartburn, Indigestion... (10 player)"
@@ -1496,9 +1496,9 @@ function exportedAchievements.Load(a, t)
     a[4596] = b:New(4596); -- The Sword in the Skull
     a[4597] = b:New(4597); -- The Frozen Throne (25 player)
     a[4598] = b:New(4598); -- The Ashen Verdict
-    a[4599] = b:New(4599); -- Wrathful Gladiator
+    a[4599] = b:New(4599, nil, nil, true); -- Wrathful Gladiator
     O(a[4599], "From", "PvP Season", 8, "Until", "PvP Season", 8);
-    a[4600] = b:New(4600); -- Wrathful Gladiator's Frost Wyrm
+    a[4600] = b:New(4600, nil, nil, true); -- Wrathful Gladiator's Frost Wyrm
     O(a[4600], "From", "PvP Season", 8, "Until", "PvP Season", 8);
     a[4601] = b:New(4601); -- Been Waiting a Long Time for This (10 player)
     a[4602] = b:New(4602); -- Glory of the Icecrown Raider (10 player)
