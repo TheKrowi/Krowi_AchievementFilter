@@ -1,7 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 56.5 - 2023-05-12
+## 57.0 - 2023-06-xx
+### Added
+- PvP filter
+
+## 56.5 - 2023-05-29
 ### Added
 - Tooltip data for Battle on the Dragon Isles II and Family Battler of Zaralek Cavern
 - Moved Expansions - Other to Expansions - Cross-Expansion

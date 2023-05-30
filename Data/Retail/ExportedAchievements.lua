@@ -1,4 +1,4 @@
--- [[ Exported at 2023-05-30 23-40-09 ]] --
+-- [[ Exported at 2023-05-30 23-54-42 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1804,7 +1804,7 @@ function exportedAchievements.Load(a, t)
     a[5191] = b:New(5191); -- Tragedy in Three Acts
     a[5192] = b:New(5192); -- The Harder they Fall
     a[5193] = b:New(5193); -- Blue Streak
-    a[5208] = b:New(5208); -- Twin Peaking
+    a[5208] = b:New(5208, nil, nil, true); -- Twin Peaking
     a[5209] = b:New(5209, nil, nil, true); -- Twin Peaks Veteran
     a[5210] = b:New(5210, nil, nil, true); -- Two-Timer
     a[5211] = b:New(5211, nil, nil, true); -- Top Defender
@@ -1823,7 +1823,7 @@ function exportedAchievements.Load(a, t)
     a[5229] = b:New(5229, fac.Alliance, 5228, true); -- Drag a Maw
     a[5230] = b:New(5230, nil, nil, true); -- Twin Peaks Mountaineer
     a[5231] = b:New(5231, fac.Alliance, 5552, true); -- Double Jeopardy
-    a[5245] = b:New(5245); -- Battle for Gilneas Victory
+    a[5245] = b:New(5245, nil, nil, true); -- Battle for Gilneas Victory
     a[5246] = b:New(5246, nil, nil, true); -- Battle for Gilneas Veteran
     a[5247] = b:New(5247, nil, nil, true); -- Battle for Gilneas Perfection
     a[5248] = b:New(5248, nil, nil, true); -- Bustin' Caps to Make It Haps
@@ -2027,13 +2027,13 @@ function exportedAchievements.Load(a, t)
     O(a[5537], "From", "Version", "050005", "Before", "Version", "060002");
     a[5538] = b:New(5538); -- "50,000 Valor Points"
     O(a[5538], "From", "Version", "050005", "Before", "Version", "060002");
-    a[5539] = b:New(5539); -- "50,000 Conquest Points"
+    a[5539] = b:New(5539, nil, nil, true); -- "50,000 Conquest Points"
     O(a[5539], "From", "PvP Season", 5, "Until", "PvP Season", 18);
-    a[5540] = b:New(5540); -- "25,000 Conquest Points"
+    a[5540] = b:New(5540, nil, nil, true); -- "25,000 Conquest Points"
     O(a[5540], "From", "PvP Season", 5, "Until", "PvP Season", 18);
-    a[5541] = b:New(5541); -- 5000 Conquest Points
+    a[5541] = b:New(5541, nil, nil, true); -- 5000 Conquest Points
     O(a[5541], "From", "PvP Season", 5, "Until", "PvP Season", 18);
-    a[5542] = b:New(5542); -- 1000 Conquest Points
+    a[5542] = b:New(5542, nil, nil, true); -- 1000 Conquest Points
     O(a[5542], "From", "PvP Season", 5, "Until", "PvP Season", 18);
     a[5546] = b:New(5546); -- Glutton for Icy Punishment
     a[5547] = b:New(5547); -- Glutton for Shadowy Punishment
@@ -2350,8 +2350,8 @@ function exportedAchievements.Load(a, t)
     a[6733] = b:New(6733); -- Heroic: Lei Shi
     a[6734] = b:New(6734); -- Heroic: Sha of Fear
     a[6736] = b:New(6736); -- What Does This Button Do?
-    a[6739] = b:New(6739); -- Silvershard Mines Victory
-    a[6740] = b:New(6740); -- Temple of Kotmogu Victory
+    a[6739] = b:New(6739, nil, nil, true); -- Silvershard Mines Victory
+    a[6740] = b:New(6740, nil, nil, true); -- Temple of Kotmogu Victory
     a[6741] = b:New(6741, nil, nil, true); -- Cataclysmic Gladiator's Twilight Drake
     O(a[6741], "From", "PvP Season", 11, "Until", "PvP Season", 11);
     a[6742] = b:New(6742); -- 60 Exalted Reputations
@@ -3657,7 +3657,7 @@ function exportedAchievements.Load(a, t)
     a[9562] = b:New(9562, fac.Horde, 9564); -- Securing Draenor
     a[9564] = b:New(9564, fac.Alliance, 9562); -- Securing Draenor
     a[9565] = b:New(9565); -- Master Trapper
-    a[9566] = b:New(9566, fac.Horde, 9729); -- Victory in Hillsbrad
+    a[9566] = b:New(9566, fac.Horde, 9729, true); -- Victory in Hillsbrad
     O(a[9566]);
     a[9571] = b:New(9571); -- Broke Back Precipice
     a[9572] = b:New(9572); -- Proving Yourself: Bronze Damage
@@ -3774,7 +3774,7 @@ function exportedAchievements.Load(a, t)
     a[9726] = b:New(9726); -- Treasure Hunter
     a[9727] = b:New(9727); -- Expert Treasure Hunter
     a[9728] = b:New(9728); -- Grand Treasure Hunter
-    a[9729] = b:New(9729, fac.Alliance, 9566); -- Victory in Hillsbrad
+    a[9729] = b:New(9729, fac.Alliance, 9566, true); -- Victory in Hillsbrad
     O(a[9729]);
     a[9738] = b:New(9738, fac.Alliance, 9508, true); -- Warlord of Draenor
     a[9755] = b:New(9755); -- Darkmoon Race Enthusiast
@@ -7048,9 +7048,9 @@ function exportedAchievements.Load(a, t)
     a[13698] = b:New(13698); -- Clean Up On Aisle Mechagon
     a[13699] = b:New(13699); -- Periodic Destruction
     a[13700] = b:New(13700, fac.Horde); -- The Mechagonian Threat
-    a[13701] = b:New(13701); -- Battlefield Brawler
-    a[13702] = b:New(13702); -- Battlefield Tactician
-    a[13703] = b:New(13703); -- Battlefield Master
+    a[13701] = b:New(13701, nil, nil, true); -- Battlefield Brawler
+    a[13702] = b:New(13702, nil, nil, true); -- Battlefield Tactician
+    a[13703] = b:New(13703, nil, nil, true); -- Battlefield Master
     a[13704] = b:New(13704, fac.Alliance, 13645); -- Nautical Battlefield Training
     a[13706] = b:New(13706); -- Stay Positive
     a[13707] = b:New(13707); -- Mrrl's Secret Stash
