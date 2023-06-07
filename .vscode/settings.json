@@ -452,7 +452,10 @@
         "tCompare",
         "CreateBaseTooltipInfo",
         "KrowiAF_FloatingAchievementTooltip",
-        "SetupButtonHighlight"
+        "SetupButtonHighlight",
+        "UnitIsDeadOrGhost",
+        "YES",
+        "NO"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

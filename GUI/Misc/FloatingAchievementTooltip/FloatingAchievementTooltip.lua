@@ -12,11 +12,13 @@ function floatingAchievementTooltip.Load()
         end
         local type = strsplit(":", link);
         if type ~= "achievement" then
-            tooltip:Hide();
+            -- tooltip:Hide();
+            HideUIPanel(tooltip);
             return;
         end
 		HideUIPanel(ItemRefTooltip);
-        tooltip:Show();
+        -- tooltip:Show();
+        ShowUIPanel(tooltip);
         if not tooltip:IsShown() then
 			tooltip:SetOwner(UIParent, "ANCHOR_PRESERVE");
 		end

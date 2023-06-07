@@ -1,9 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 57.0 - 2023-06-xx
+## 57.0 - 2023-06-07
 ### Added
 - PvP filter
+
+### Wrath Classic
+- Fixed the character deletion confirmation
 
 ## 56.5 - 2023-05-29
 ### Added

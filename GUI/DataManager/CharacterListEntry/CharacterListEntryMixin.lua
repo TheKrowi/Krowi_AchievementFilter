@@ -115,7 +115,34 @@ local function DeleteCharacterCallback(self)
     addon.GUI.DataManagerFrame.CharacterList:Refresh();
 end
 
+function ShowWrathClassicDeleteCharacterConfirmation(self)
+    -- GENERIC_CONFIRMATION
+    StaticPopupDialogs["KrowiAF_ConfirmDeleteCharacter"] = {
+        text = addon.L["Are you sure you want to delete character?"]:ReplaceVars
+            {
+                character = KrowiAF_SavedData.Characters[self.Guid].Name:SetColorYellow(),
+                ignore = addon.L["Ignore"]:SetColorYellow()
+            },
+        button1 = YES,
+        button2 = NO,
+        OnAccept = function()
+            DeleteCharacterCallback(self);
+        end,
+        hideOnEscape = 1,
+        timeout = 0,
+        multiple = 1,
+        whileDead = 1,
+        wide = 1, -- Always wide to accomodate the alert icon if it is present.
+    };
+    StaticPopup_Show("KrowiAF_ConfirmDeleteCharacter");
+end
+
 function KrowiAF_CharacterListEntryMixin:DeleteCharacterFunction()
+    if addon.IsWrathClassic then
+        ShowWrathClassicDeleteCharacterConfirmation(self);
+        return;
+    end
+
     if not StaticPopup_IsCustomGenericConfirmationShown("KrowiAF_ConfirmDeleteCharacter") then
         StaticPopup_ShowCustomGenericConfirmation(
             {
