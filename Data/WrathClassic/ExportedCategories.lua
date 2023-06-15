@@ -1,4 +1,4 @@
--- [[ Exported at 2023-05-29 21-02-10 ]] --
+-- [[ Exported at 2023-06-15 19-16-33 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -101,10 +101,10 @@ function exportedCategories.Load(a)
     A(t[1432], a[7]); -- Level 20
     A(t[1432], a[8]); -- Level 30
     A(t[1432], a[9]); -- Level 40
-    A(t[1432], a[10]); -- Level 50 (Legacy)
-    A(t[1432], a[11]); -- Level 60 (Legacy)
-    A(t[1432], a[12]); -- Level 70 (Legacy)
-    A(t[1432], a[13]); -- Level 80 (Legacy)
+    A(t[1432], a[10]); -- Level 50
+    A(t[1432], a[11]); -- Level 60
+    A(t[1432], a[12]); -- Level 70
+    A(t[1432], a[13]); -- Level 80
     A(t[1432], a[16433]); -- Soul of Iron (Season of Mastery)
     A(t[1432], a[546]); -- Safe Deposit
     A(t[1432], a[1176]); -- Got My Mind On My Money
@@ -116,7 +116,7 @@ function exportedCategories.Load(a)
     A(t[1432], a[559]); -- Needy
     A(t[1432], a[891]); -- Giddy Up!
     A(t[1432], a[889]); -- Fast and Furious
-    A(t[1432], a[890]); -- Into the Wild Blue Yonder
+    A(t[1432], a[890]); -- Into The Wild Blue Yonder
     A(t[1432], a[892]); -- The Right Stuff
     A(t[1432], a[2357]); -- Dreadsteed of Xoroth
     A(t[1432], a[2358]); -- Charger
@@ -138,11 +138,11 @@ function exportedCategories.Load(a)
     A(t[1159], a[508]); -- 1500 Quests Completed
     A(t[1159], a[32]); -- 2000 Quests Completed
     A(t[1159], a[978]); -- 3000 Quests Completed
-    A(t[1159], a[973]); -- 5 Daily Quests Completed
-    A(t[1159], a[974]); -- 50 Daily Quests Completed
-    A(t[1159], a[975]); -- 200 Daily Quests Completed
-    A(t[1159], a[976]); -- 500 Daily Quests Completed
-    A(t[1159], a[977]); -- 1000 Daily Quests Completed
+    A(t[1159], a[973]); -- 5 Daily Quests Complete
+    A(t[1159], a[974]); -- 50 Daily Quests Complete
+    A(t[1159], a[975]); -- 200 Daily Quests Complete
+    A(t[1159], a[976]); -- 500 Daily Quests Complete
+    A(t[1159], a[977]); -- 1000 Daily Quests Complete
     A(t[1159], a[31]); -- A Simple Re-Quest
     A(t[1159], a[1182]); -- The Bread Winner
     t[1161] = c:New(k.GetCategoryInfoTitle(97)); -- Exploration
@@ -158,11 +158,11 @@ function exportedCategories.Load(a)
     A(t[1169], a[4478]); -- Looking For Multitudes
     t[1149] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
     C(t[1431], t[1149]);
-    A(t[1149], a[1998]); -- Cooking Award
-    A(t[1149], a[1999]); -- 10 Cooking Awards
-    A(t[1149], a[2000]); -- 25 Cooking Awards
-    A(t[1149], a[2001]); -- 50 Cooking Awards
-    A(t[1149], a[2002]); -- 100 Cooking Awards
+    A(t[1149], a[1998]); -- Dalaran Cooking Award
+    A(t[1149], a[1999]); -- 10 Dalaran Cooking Awards
+    A(t[1149], a[2000]); -- 25 Dalaran Cooking Awards
+    A(t[1149], a[2001]); -- 50 Dalaran Cooking Awards
+    A(t[1149], a[2002]); -- 100 Dalaran Cooking Awards
     A(t[1149], a[1795]); -- Lunch Lady
     A(t[1149], a[1796]); -- Short Order Cook
     A(t[1149], a[1797]); -- Chef de Partie
@@ -226,7 +226,7 @@ function exportedCategories.Load(a)
     C(t[648], t[687]);
     A(t[687], a[1676]); -- Loremaster of Eastern Kingdoms
     A(t[687], a[1677]); -- Loremaster of Eastern Kingdoms
-    A(t[687], a[42]); -- Eastern Kingdoms Explorer
+    A(t[687], a[42]); -- Explore Eastern Kingdoms
     A(t[687], a[1681]); -- The Loremaster
     A(t[687], a[1682]); -- The Loremaster
     t[922] = c:New(k.GetMapName(1453)); -- Stormwind City
@@ -241,8 +241,8 @@ function exportedCategories.Load(a)
     A(t[1022], a[948]); -- Ambassador of the Alliance
     t[970] = c:New(k.GetMapName(1455)); -- Ironforge
     C(t[687], t[970]);
-    A(t[970], a[616]); -- Overthrow the Council
-    A(t[970], a[619]); -- For the Horde!
+    A(t[970], a[616]); -- Death to the King!
+    A(t[970], a[619]); -- For The Horde!
     A(t[970], a[603]); -- Wrath of the Horde
     t[974] = c:New(k.GetMapName(1458)); -- Undercity
     C(t[687], t[974]);
@@ -370,7 +370,7 @@ function exportedCategories.Load(a)
     A(t[1386], a[941]); -- Hemet Nesingwary: The Collected Quests
     t[1387] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[1385], t[1387]);
-    A(t[1387], a[781]); -- Explore Northern Stranglethorn
+    A(t[1387], a[781]); -- Explore Stranglethorn Vale
     t[1388] = c:New(k.GetCategoryInfoTitle(95), true); -- Player vs. Player
     C(t[1385], t[1388]);
     A(t[1388], a[389]); -- Gurubashi Arena Master
@@ -464,7 +464,7 @@ function exportedCategories.Load(a)
     C(t[648], t[688]);
     A(t[688], a[1678]); -- Loremaster of Kalimdor
     A(t[688], a[1680]); -- Loremaster of Kalimdor
-    A(t[688], a[43]); -- Kalimdor Explorer
+    A(t[688], a[43]); -- Explore Kalimdor
     A(t[688], a[1681]); -- The Loremaster
     A(t[688], a[1682]); -- The Loremaster
     t[975] = c:New(k.GetMapName(1457)); -- Darnassus
@@ -473,8 +473,8 @@ function exportedCategories.Load(a)
     A(t[975], a[603]); -- Wrath of the Horde
     t[921] = c:New(k.GetMapName(1454)); -- Orgrimmar
     C(t[688], t[921]);
-    A(t[921], a[610]); -- Orgrimmar Offensive
-    A(t[921], a[614]); -- For the Alliance!
+    A(t[921], a[610]); -- Death to the Warchief!
+    A(t[921], a[614]); -- For The Alliance!
     A(t[921], a[1006]); -- City Defender
     A(t[921], a[604]); -- Wrath of the Alliance
     t[1018] = c:New(k.GetCategoryInfoTitle(201), true); -- Reputation
@@ -518,7 +518,7 @@ function exportedCategories.Load(a)
     C(t[688], t[1379]);
     t[1381] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[1379], t[1381]);
-    A(t[1381], a[750]); -- Explore Northern Barrens
+    A(t[1381], a[750]); -- Explore The Barrens
     t[1382] = c:New(k.GetCategoryInfoTitle(201), true); -- Reputation
     C(t[1379], t[1382]);
     A(t[1382], a[762]); -- Ambassador of the Horde
@@ -612,7 +612,7 @@ function exportedCategories.Load(a)
     C(t[713], t[714]);
     t[770] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[713], t[770]);
-    A(t[770], a[851]); -- Explore Tanaris
+    A(t[770], a[851]); -- Explore Tanaris Desert
     t[992] = c:New(k.GetCategoryInfoTitle(201), true); -- Reputation
     C(t[713], t[992]);
     A(t[992], a[948]); -- Ambassador of the Alliance
@@ -717,7 +717,7 @@ function exportedCategories.Load(a)
     A(t[22], a[643]); -- Lower Blackrock Spire
     t[797] = c:New(k.GetInstanceInfoName(559)); -- Upper Blackrock Spire
     C(t[2], t[797]);
-    A(t[797], a[1307]); -- Upper Blackrock Spire (Classic)
+    A(t[797], a[1307]); -- Upper Blackrock Spire
     A(t[797], a[2188]); -- Leeeeeeeeeeeeeroy!
     t[23] = c:New(k.GetInstanceInfoName(230)); -- Dire Maul
     C(t[2], t[23]);
@@ -781,10 +781,10 @@ function exportedCategories.Load(a)
     C(t[1], t[1150]);
     A(t[1150], a[116]); -- Professional Journeyman
     A(t[1150], a[731]); -- Professional Expert
-    A(t[1150], a[732]); -- Professional Classic Master
+    A(t[1150], a[732]); -- Professional Artisan
     A(t[1150], a[121]); -- Journeyman Cook
     A(t[1150], a[122]); -- Expert Cook
-    A(t[1150], a[123]); -- Classic Cook
+    A(t[1150], a[123]); -- Artisan Cook
     A(t[1150], a[126]); -- Journeyman Fisherman
     A(t[1150], a[127]); -- Expert Fisherman
     A(t[1150], a[128]); -- Artisan Fisherman
@@ -794,9 +794,9 @@ function exportedCategories.Load(a)
     A(t[1150], a[878]); -- One That Didn't Get Away
     A(t[1150], a[1836]); -- Old Crafty
     A(t[1150], a[1837]); -- Old Ironjaw
-    A(t[1150], a[131]); -- Journeyman Medic
-    A(t[1150], a[132]); -- Expert Medic
-    A(t[1150], a[133]); -- Artisan Medic
+    A(t[1150], a[131]); -- Journeyman in First Aid
+    A(t[1150], a[132]); -- Expert in First Aid
+    A(t[1150], a[133]); -- Artisan in First Aid
     t[785] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[1], t[785]);
     t[55] = c:New(k.GetCategoryInfoTitle(14865)); -- The Burning Crusade
@@ -807,7 +807,7 @@ function exportedCategories.Load(a)
     A(t[616], a[1274]); -- Loremaster of Outland
     A(t[616], a[1311]); -- Medium Rare
     A(t[616], a[1312]); -- Bloody Rare
-    A(t[616], a[44]); -- Outland Explorer
+    A(t[616], a[44]); -- Explore Outland
     A(t[616], a[763]); -- The Burning Crusader
     A(t[616], a[764]); -- The Burning Crusader
     A(t[616], a[894]); -- Flying High Over Skettis
@@ -821,12 +821,12 @@ function exportedCategories.Load(a)
     t[924] = c:New(k.GetMapName(1954)); -- Silvermoon City
     C(t[616], t[924]);
     A(t[924], a[613]); -- Killed in Quel'Thalas
-    A(t[924], a[614]); -- For the Alliance!
+    A(t[924], a[614]); -- For The Alliance!
     A(t[924], a[604]); -- Wrath of the Alliance
     t[969] = c:New(k.GetMapName(1947)); -- The Exodar
     C(t[616], t[969]);
     A(t[969], a[618]); -- Putting Out the Light
-    A(t[969], a[619]); -- For the Horde!
+    A(t[969], a[619]); -- For The Horde!
     A(t[969], a[603]); -- Wrath of the Horde
     t[758] = c:New(k.GetMapName(1943)); -- Azuremyst Isle
     C(t[616], t[758]);
@@ -1082,19 +1082,19 @@ function exportedCategories.Load(a)
     A(t[82], a[725]); -- "Thori'dal, the Stars' Fury"
     t[1151] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
     C(t[55], t[1151]);
-    A(t[1151], a[733]); -- Professional Outland Master
-    A(t[1151], a[124]); -- Outland Cook
+    A(t[1151], a[733]); -- Professional Master
+    A(t[1151], a[124]); -- Master Cook
     A(t[1151], a[877]); -- The Cake Is Not A Lie
     A(t[1151], a[906]); -- Kickin' It Up a Notch
     A(t[1151], a[1800]); -- The Outland Gourmet
     A(t[1151], a[1801]); -- Captain Rumsey's Lager
-    A(t[1151], a[129]); -- Outland Fisherman
+    A(t[1151], a[129]); -- Master Fisherman
     A(t[1151], a[1257]); -- The Scavenger
     A(t[1151], a[726]); -- Mr. Pinchy's Magical Crawdad Box
     A(t[1151], a[144]); -- The Lurker Above
     A(t[1151], a[905]); -- Old Man Barlowned
     A(t[1151], a[1225]); -- Outland Angler
-    A(t[1151], a[134]); -- Master Medic
+    A(t[1151], a[134]); -- Master in First Aid
     t[786] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[55], t[786]);
     t[83] = c:New(k.GetCategoryInfoTitle(14866)); -- Wrath of the Lich King
@@ -1106,7 +1106,7 @@ function exportedCategories.Load(a)
     A(t[577], a[2256]); -- Northern Exposure
     A(t[577], a[2257]); -- Frostbitten
     A(t[577], a[2557]); -- To All The Squirrels Who Shared My Life
-    A(t[577], a[45]); -- Northrend Explorer
+    A(t[577], a[45]); -- Explore Northrend
     A(t[577], a[1008]); -- The Kirin Tor
     A(t[577], a[1009]); -- Knights of the Ebon Blade
     A(t[577], a[1010]); -- Northrend Vanguard
@@ -1234,6 +1234,8 @@ function exportedCategories.Load(a)
     A(t[84], a[1288]); -- Northrend Dungeonmaster
     A(t[84], a[1289]); -- Northrend Dungeon Hero
     A(t[84], a[17304]); -- Defense Protocol Alpha: Terminated
+    A(t[84], a[18614]); -- Defense Protocol Beta: Terminated
+    A(t[84], a[18688]); -- Defense Protocol Beta: Terminated
     A(t[84], a[1658]); -- Champion of the Frozen Wastes
     A(t[84], a[2136]); -- Glory of the Hero
     A(t[84], a[2018]); -- Timear Foresees
@@ -1260,6 +1262,7 @@ function exportedCategories.Load(a)
     A(t[86], a[477]); -- Utgarde Keep
     A(t[86], a[489]); -- Heroic: Utgarde Keep
     A(t[86], a[17213]); -- Defense Protocol Alpha: Utgarde Keep
+    A(t[86], a[18590]); -- Defense Protocol Beta: Utgarde Keep
     t[87] = c:New(k.GetInstanceInfoName(281)); -- The Nexus
     C(t[84], t[87]);
     A(t[87], a[2150]); -- Split Personality
@@ -1268,6 +1271,7 @@ function exportedCategories.Load(a)
     A(t[87], a[478]); -- The Nexus
     A(t[87], a[490]); -- Heroic: The Nexus
     A(t[87], a[17283]); -- Defense Protocol Alpha: The Nexus
+    A(t[87], a[18591]); -- Defense Protocol Beta: The Nexus
     t[88] = c:New(k.GetInstanceInfoName(272)); -- Azjol-Nerub
     C(t[84], t[88]);
     A(t[88], a[1296]); -- Watch Him Die
@@ -1276,6 +1280,7 @@ function exportedCategories.Load(a)
     A(t[88], a[480]); -- Azjol-Nerub
     A(t[88], a[491]); -- Heroic: Azjol-Nerub
     A(t[88], a[17285]); -- Defense Protocol Alpha: Azjol-Nerub
+    A(t[88], a[18592]); -- Defense Protocol Beta: Azjol-Nerub
     t[89] = c:New(k.GetInstanceInfoName(271)); -- Ahn'kahet: The Old Kingdom
     C(t[84], t[89]);
     A(t[89], a[2038]); -- Respect Your Elders
@@ -1284,6 +1289,7 @@ function exportedCategories.Load(a)
     A(t[89], a[481]); -- Ahn'kahet: The Old Kingdom
     A(t[89], a[492]); -- Heroic: Ahn'kahet: The Old Kingdom
     A(t[89], a[17291]); -- Defense Protocol Alpha: Ahn'kahet: The Old Kingdom
+    A(t[89], a[18593]); -- Defense Protocol Beta: Ahn'kahet: The Old Kingdom
     t[90] = c:New(k.GetInstanceInfoName(273)); -- Drak'Tharon Keep
     C(t[84], t[90]);
     A(t[90], a[2151]); -- Consumption Junction
@@ -1292,6 +1298,7 @@ function exportedCategories.Load(a)
     A(t[90], a[482]); -- Drak'Tharon Keep
     A(t[90], a[493]); -- Heroic: Drak'Tharon Keep
     A(t[90], a[17292]); -- Defense Protocol Alpha: Drak'Tharon Keep
+    A(t[90], a[18594]); -- Defense Protocol Beta: Drak'Tharon Keep
     t[91] = c:New(k.GetInstanceInfoName(283)); -- The Violet Hold
     C(t[84], t[91]);
     A(t[91], a[1865]); -- Lockdown!
@@ -1301,6 +1308,7 @@ function exportedCategories.Load(a)
     A(t[91], a[483]); -- The Violet Hold
     A(t[91], a[494]); -- Heroic: The Violet Hold
     A(t[91], a[17293]); -- Defense Protocol Alpha: The Violet Hold
+    A(t[91], a[18595]); -- Defense Protocol Beta: The Violet Hold
     t[92] = c:New(k.GetInstanceInfoName(274)); -- Gundrak
     C(t[84], t[92]);
     A(t[92], a[2058]); -- Snakes. Why'd It Have To Be Snakes?
@@ -1310,6 +1318,7 @@ function exportedCategories.Load(a)
     A(t[92], a[484]); -- Gundrak
     A(t[92], a[495]); -- Heroic: Gundrak
     A(t[92], a[17295]); -- Defense Protocol Alpha: Gundrak
+    A(t[92], a[18596]); -- Defense Protocol Beta: Gundrak
     t[93] = c:New(k.GetInstanceInfoName(277)); -- Halls of Stone
     C(t[84], t[93]);
     A(t[93], a[1866]); -- Good Grief
@@ -1318,6 +1327,7 @@ function exportedCategories.Load(a)
     A(t[93], a[485]); -- Halls of Stone
     A(t[93], a[496]); -- Heroic: Halls of Stone
     A(t[93], a[17297]); -- Defense Protocol Alpha: Halls of Stone
+    A(t[93], a[18597]); -- Defense Protocol Beta: Halls of Stone
     t[94] = c:New(k.GetInstanceInfoName(275)); -- Halls of Lightning
     C(t[84], t[94]);
     A(t[94], a[1834]); -- Lightning Struck
@@ -1326,6 +1336,7 @@ function exportedCategories.Load(a)
     A(t[94], a[486]); -- Halls of Lightning
     A(t[94], a[497]); -- Heroic: Halls of Lightning
     A(t[94], a[17299]); -- Defense Protocol Alpha: Halls of Lightning
+    A(t[94], a[18598]); -- Defense Protocol Beta: Halls of Lightning
     t[95] = c:New(k.GetInstanceInfoName(282)); -- The Oculus
     C(t[84], t[95]);
     A(t[95], a[1868]); -- Make It Count
@@ -1336,6 +1347,7 @@ function exportedCategories.Load(a)
     A(t[95], a[487]); -- The Oculus
     A(t[95], a[498]); -- Heroic: The Oculus
     A(t[95], a[17300]); -- Defense Protocol Alpha: The Oculus
+    A(t[95], a[18599]); -- Defense Protocol Beta: The Oculus
     t[97] = c:New(k.GetInstanceInfoName(286)); -- Utgarde Pinnacle
     C(t[84], t[97]);
     A(t[97], a[2043]); -- The Incredible Hulk
@@ -1345,6 +1357,7 @@ function exportedCategories.Load(a)
     A(t[97], a[488]); -- Utgarde Pinnacle
     A(t[97], a[499]); -- Heroic: Utgarde Pinnacle
     A(t[97], a[17301]); -- Defense Protocol Alpha: Utgarde Pinnacle
+    A(t[97], a[18600]); -- Defense Protocol Beta: Utgarde Pinnacle
     t[96] = c:New(k.GetInstanceInfoName(279)); -- The Culling of Stratholme
     C(t[84], t[96]);
     A(t[96], a[1872]); -- Zombiefest!
@@ -1352,6 +1365,7 @@ function exportedCategories.Load(a)
     A(t[96], a[479]); -- The Culling of Stratholme
     A(t[96], a[500]); -- Heroic: The Culling of Stratholme
     A(t[96], a[17302]); -- Defense Protocol Alpha: The Culling of Stratholme
+    A(t[96], a[18601]); -- Defense Protocol Beta: The Culling of Stratholme
     t[98] = c:New(k.GetInstanceInfoName(284)); -- Trial of the Champion
     C(t[84], t[98]);
     A(t[98], a[3803]); -- The Faceroller
@@ -1361,6 +1375,8 @@ function exportedCategories.Load(a)
     A(t[98], a[3778]); -- Trial of the Champion
     A(t[98], a[4298]); -- Heroic: Trial of the Champion
     A(t[98], a[4297]); -- Heroic: Trial of the Champion
+    A(t[98], a[18677]); -- Defense Protocol Beta: Trial of the Champion
+    A(t[98], a[18678]); -- Defense Protocol Beta: Trial of the Champion
     t[99] = c:New(k.GetInstanceInfoName(280)); -- The Forge of Souls
     C(t[84], t[99]);
     A(t[99], a[4522]); -- Soul Power
@@ -1421,7 +1437,7 @@ function exportedCategories.Load(a)
     C(t[105], t[106]);
     A(t[106], a[1997]); -- Momma Said Knock You Out (10 player)
     A(t[106], a[1858]); -- Arachnophobia (10 player)
-    A(t[106], a[1856]); -- Make Quick Werk of Him (10 player)
+    A(t[106], a[1856]); -- Make Quick Werk Of Him (10 player)
     A(t[106], a[2178]); -- Shocking! (10 player)
     A(t[106], a[2180]); -- Subtraction (10 player)
     A(t[106], a[1996]); -- The Safety Dance (10 player)
@@ -1442,7 +1458,7 @@ function exportedCategories.Load(a)
     C(t[105], t[107]);
     A(t[107], a[2140]); -- Momma Said Knock You Out (25 player)
     A(t[107], a[1859]); -- Arachnophobia (25 player)
-    A(t[107], a[1857]); -- Make Quick Werk of Him (25 player)
+    A(t[107], a[1857]); -- Make Quick Werk Of Him (25 player)
     A(t[107], a[2179]); -- Shocking! (25 player)
     A(t[107], a[2181]); -- Subtraction (25 player)
     A(t[107], a[2139]); -- The Safety Dance (25 player)
@@ -1482,20 +1498,22 @@ function exportedCategories.Load(a)
     t[112] = c:New((GetDifficultyInfo(3))); -- The Eye of Eternity 10
     C(t[111], t[112]);
     A(t[112], a[2148]); -- Denyin' the Scion (10 player)
-    A(t[112], a[1874]); -- You Don't Have an Eternity (10 player)
-    A(t[112], a[1869]); -- A Poke in the Eye (10 player)
+    A(t[112], a[1874]); -- You Don't Have An Eternity (10 player)
+    A(t[112], a[1869]); -- A Poke In The Eye (10 player)
     A(t[112], a[622]); -- The Spellweaver's Downfall (10 player)
     t[113] = c:New((GetDifficultyInfo(4))); -- The Eye of Eternity 25
     C(t[111], t[113]);
     A(t[113], a[2149]); -- Denyin' the Scion (25 player)
-    A(t[113], a[1875]); -- You Don't Have an Eternity (25 player)
-    A(t[113], a[1870]); -- A Poke in the Eye (25 player)
+    A(t[113], a[1875]); -- You Don't Have An Eternity (25 player)
+    A(t[113], a[1870]); -- A Poke In The Eye (25 player)
     A(t[113], a[623]); -- The Spellweaver's Downfall (25 player)
     t[114] = c:New(k.GetInstanceInfoName(759)); -- Ulduar
     C(t[85], t[114]);
     A(t[114], a[4626]); -- And I'll Form the Head!
     A(t[114], a[3142]); -- "Val'anyr, Hammer of Ancient Kings"
     A(t[114], a[3316]); -- Herald of the Titans
+    A(t[114], a[17340]); -- Ahead of the Curve: Yogg-Saron
+    A(t[114], a[17341]); -- Cutting Edge: Ulduar
     t[115] = c:New((GetDifficultyInfo(3))); -- Ulduar 10
     C(t[114], t[115]);
     A(t[115], a[3097]); -- Dwarfageddon (10 player)
@@ -1758,9 +1776,9 @@ function exportedCategories.Load(a)
     A(t[128], a[4816]); -- Heroic: The Twilight Destroyer (25 player)
     t[1152] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
     C(t[83], t[1152]);
-    A(t[1152], a[734]); -- Professional Northrend Master
-    A(t[1152], a[735]); -- Working In the Cold
-    A(t[1152], a[125]); -- Northrend Cook
+    A(t[1152], a[734]); -- Professional Grand Master
+    A(t[1152], a[735]); -- Working Day and Night
+    A(t[1152], a[125]); -- Grand Master Cook
     A(t[1152], a[1777]); -- The Northrend Gourmet
     A(t[1152], a[1778]); -- The Northrend Gourmet
     A(t[1152], a[1779]); -- The Northrend Gourmet
@@ -1770,7 +1788,7 @@ function exportedCategories.Load(a)
     A(t[1152], a[3296]); -- Cooking with Style
     A(t[1152], a[1782]); -- Our Daily Bread
     A(t[1152], a[1783]); -- Our Daily Bread
-    A(t[1152], a[130]); -- Northrend Fisherman
+    A(t[1152], a[130]); -- Grand Master Fisherman
     A(t[1152], a[1517]); -- Northrend Angler
     A(t[1152], a[3217]); -- Chasing Marcia
     A(t[1152], a[2094]); -- A Penny For Your Thoughts
@@ -1778,7 +1796,7 @@ function exportedCategories.Load(a)
     A(t[1152], a[1957]); -- There's Gold In That There Fountain
     A(t[1152], a[2096]); -- The Coin Master
     A(t[1152], a[1958]); -- I Smell A Giant Rat
-    A(t[1152], a[135]); -- Grand Master Medic
+    A(t[1152], a[135]); -- Grand Master in First Aid
     A(t[1152], a[137]); -- Stocking Up
     A(t[1152], a[730]); -- Skills to Pay the Bills
     t[787] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
@@ -1873,7 +1891,7 @@ function exportedCategories.Load(a)
     t[1398].IsSearchResults = true;
     t[918] = c:New(k.L["Holidays"]); -- Holidays
     C(t[884], t[918]);
-    A(t[918], a[2144]); -- "What a Long, Strange Trip It's Been"
+    A(t[918], a[2144]); -- "What A Long, Strange Trip It's Been"
     A(t[918], a[2145]); -- "What A Long, Strange Trip It's Been"
     t[885] = c:New(k.GetCategoryInfoTitle(160)); -- Lunar Festival
     C(t[918], t[885]);
@@ -1940,7 +1958,7 @@ function exportedCategories.Load(a)
     A(t[912], a[1786]); -- School of Hard Knocks
     A(t[912], a[1790]); -- "Hail To The King, Baby"
     A(t[912], a[275]); -- Veteran Nanny
-    A(t[912], a[1793]); -- For the Children
+    A(t[912], a[1793]); -- For The Children
     t[913] = c:New(k.GetCategoryInfoTitle( 161)); -- Midsummer
     C(t[918], t[913]);
     A(t[913], a[263]); -- Ice the Frost Lord
@@ -1976,7 +1994,7 @@ function exportedCategories.Load(a)
     A(t[914], a[1185]); -- The Brewfest Diet
     A(t[914], a[2796]); -- Brew of the Month
     A(t[914], a[1183]); -- Brew of the Year
-    A(t[914], a[1260]); -- Almost Blind Luck
+    A(t[914], a[1260]); -- Drunken Stupor
     A(t[914], a[295]); -- Direbrewfest
     A(t[914], a[293]); -- Disturbing the Peace
     A(t[914], a[303]); -- "Have Keg, Will Travel"
@@ -2242,8 +2260,8 @@ function exportedCategories.Load(a)
     A(t[973], a[2192]); -- Not Even a Scratch
     A(t[973], a[1763]); -- Artillery Veteran
     A(t[973], a[2189]); -- Artillery Expert
-    A(t[973], a[1764]); -- Drop It!
-    A(t[973], a[2190]); -- Drop It Now!
+    A(t[973], a[1764]); -- Drop it!
+    A(t[973], a[2190]); -- Drop it now!
     A(t[973], a[1766]); -- Ancient Protector
     A(t[973], a[2191]); -- Ancient Courtyard Protector
     A(t[973], a[1757]); -- Defense of the Ancients
@@ -2270,7 +2288,7 @@ function exportedCategories.Load(a)
     A(t[958], a[1502]); -- Quick Cap
     A(t[958], a[206]); -- Supreme Defender
     A(t[958], a[1252]); -- Supreme Defender
-    A(t[958], a[207]); -- Save the Day
+    A(t[958], a[207]); -- Save The Day
     A(t[958], a[1172]); -- Master of Warsong Gulch
     A(t[958], a[1173]); -- Master of Warsong Gulch
     A(t[958], a[1259]); -- Not So Fast
@@ -2421,7 +2439,7 @@ function exportedCategories.Load(a)
     A(t[987], a[980]); -- The Horseman's Reins
     A(t[987], a[3496]); -- A Brew-FAST Mount
     A(t[987], a[4627]); -- X-45 Heartbreaker
-    A(t[987], a[2144]); -- "What a Long, Strange Trip It's Been"
+    A(t[987], a[2144]); -- "What A Long, Strange Trip It's Been"
     A(t[987], a[2145]); -- "What A Long, Strange Trip It's Been"
     t[989] = c:New(k.L["Achievements"]); -- Achievements
     C(t[972], t[989]);
@@ -2463,10 +2481,10 @@ function exportedCategories.Load(a)
     A(t[978], a[887]); -- Merciless Nether Drake
     A(t[978], a[888]); -- Vengeful Nether Drake
     A(t[978], a[2316]); -- Brutal Nether Drake
-    A(t[978], a[3096]); -- Deadly Gladiator's Frost Wyrm
-    A(t[978], a[3756]); -- Furious Gladiator's Frost Wyrm
-    A(t[978], a[3757]); -- Relentless Gladiator's Frost Wyrm
-    A(t[978], a[4600]); -- Wrathful Gladiator's Frost Wyrm
+    A(t[978], a[3096]); -- Deadly Gladiator's Frostwyrm
+    A(t[978], a[3756]); -- Furious Gladiator's Frostwyrm
+    A(t[978], a[3757]); -- Relentless Gladiator's Frostwyrm
+    A(t[978], a[4600]); -- Wrathful Gladiator's Frostwyrm
     t[988] = c:New(k.L["Recruit-a-Friend"] .. " (" .. k.GetCategoryInfoTitle(15234) .. ")"); -- Recruit-a-Friend
     C(t[972], t[988]);
     A(t[988], a[1436]); -- Friends In High Places
@@ -2585,7 +2603,7 @@ function exportedCategories.Load(a)
     A(t[1085], a[1682]); -- The Loremaster
     t[1086] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[1084], t[1086]);
-    A(t[1086], a[46]); -- Universal Explorer
+    A(t[1086], a[46]); -- World Explorer
     t[1088] = c:New(k.GetCategoryInfoTitle(201), true); -- Reputation
     C(t[1084], t[1088]);
     A(t[1088], a[1015]); -- 40 Exalted Reputations
@@ -2610,7 +2628,7 @@ function exportedCategories.Load(a)
     A(t[1094], a[1693]); -- Fool For Love
     A(t[1094], a[2797]); -- Noble Gardener
     A(t[1094], a[2798]); -- Noble Gardener
-    A(t[1094], a[1793]); -- For the Children
+    A(t[1094], a[1793]); -- For The Children
     A(t[1094], a[1038]); -- The Flame Warden
     A(t[1094], a[1039]); -- The Flame Keeper
     A(t[1094], a[1684]); -- Brewmaster
@@ -2680,13 +2698,13 @@ function exportedCategories.Load(a)
     A(t[1111], a[1415]); -- Realm First! Grand Master Alchemist
     A(t[1111], a[1420]); -- Realm First! Grand Master Angler
     A(t[1111], a[1414]); -- Realm First! Grand Master Blacksmith
-    A(t[1111], a[1416]); -- Realm First! Grand Master Cook
+    A(t[1111], a[1416]); -- Realm First! Cooking Grand Master
     A(t[1111], a[1417]); -- Realm First! Grand Master Enchanter
     A(t[1111], a[1418]); -- Realm First! Grand Master Engineer
     A(t[1111], a[1421]); -- Realm First! Grand Master Herbalist
     A(t[1111], a[1423]); -- Realm First! Grand Master Jewelcrafter
     A(t[1111], a[1424]); -- Realm First! Grand Master Leatherworker
-    A(t[1111], a[1419]); -- Realm First! Grand Master Medic
+    A(t[1111], a[1419]); -- Realm First! First Aid Grand Master
     A(t[1111], a[1425]); -- Realm First! Grand Master Miner
     A(t[1111], a[1422]); -- Realm First! Grand Master Scribe
     A(t[1111], a[1426]); -- Realm First! Grand Master Skinner

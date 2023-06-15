@@ -1,4 +1,4 @@
--- [[ Exported at 2023-05-29 21-00-37 ]] --
+-- [[ Exported at 2023-06-15 19-15-59 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -29,13 +29,13 @@ function exportedAchievements.Load(a, t)
     a[7] = b:New(7); -- Level 20
     a[8] = b:New(8); -- Level 30
     a[9] = b:New(9); -- Level 40
-    a[10] = b:New(10); -- Level 50 (Legacy)
+    a[10] = b:New(10); -- Level 50
     O(a[10], "From", "Version", "000304", "Before", "Version", "090001");
-    a[11] = b:New(11); -- Level 60 (Legacy)
+    a[11] = b:New(11); -- Level 60
     O(a[11], "From", "Version", "000304", "Before", "Version", "090001");
-    a[12] = b:New(12); -- Level 70 (Legacy)
+    a[12] = b:New(12); -- Level 70
     O(a[12], "From", "Version", "020003", "Before", "Version", "090001");
-    a[13] = b:New(13); -- Level 80 (Legacy)
+    a[13] = b:New(13); -- Level 80
     O(a[13], "From", "Version", "030003", "Before", "Version", "090001");
     a[15] = b:New(15); -- Plenty of Pets
     a[16] = b:New(16); -- Did Somebody Order a Knuckle Sandwich?
@@ -51,32 +51,32 @@ function exportedAchievements.Load(a, t)
     a[39] = b:New(39); -- Into the Basin
     a[40] = b:New(40); -- Icecrown: The Final Goal
     a[41] = b:New(41); -- Loremaster of Northrend
-    a[42] = b:New(42); -- Eastern Kingdoms Explorer
-    a[43] = b:New(43); -- Kalimdor Explorer
-    a[44] = b:New(44); -- Outland Explorer
-    a[45] = b:New(45); -- Northrend Explorer
-    a[46] = b:New(46); -- Universal Explorer
-    a[73] = b:New(73); -- Disgracin' The Basin
+    a[42] = b:New(42); -- Explore Eastern Kingdoms
+    a[43] = b:New(43); -- Explore Kalimdor
+    a[44] = b:New(44); -- Explore Outland
+    a[45] = b:New(45); -- Explore Northrend
+    a[46] = b:New(46); -- World Explorer
+    a[73] = b:New(73, nil, nil, true); -- Disgracin' The Basin
     a[116] = b:New(116); -- Professional Journeyman
     a[121] = b:New(121); -- Journeyman Cook
     a[122] = b:New(122); -- Expert Cook
-    a[123] = b:New(123); -- Classic Cook
-    a[124] = b:New(124); -- Outland Cook
-    a[125] = b:New(125); -- Northrend Cook
+    a[123] = b:New(123); -- Artisan Cook
+    a[124] = b:New(124); -- Master Cook
+    a[125] = b:New(125); -- Grand Master Cook
     a[126] = b:New(126); -- Journeyman Fisherman
     a[127] = b:New(127); -- Expert Fisherman
     a[128] = b:New(128); -- Artisan Fisherman
-    a[129] = b:New(129); -- Outland Fisherman
-    a[130] = b:New(130); -- Northrend Fisherman
-    a[131] = b:New(131); -- Journeyman Medic
+    a[129] = b:New(129); -- Master Fisherman
+    a[130] = b:New(130); -- Grand Master Fisherman
+    a[131] = b:New(131); -- Journeyman in First Aid
     O(a[131], "From", "Version", "000304", "Before", "Version", "080001");
-    a[132] = b:New(132); -- Expert Medic
+    a[132] = b:New(132); -- Expert in First Aid
     O(a[132], "From", "Version", "000304", "Before", "Version", "080001");
-    a[133] = b:New(133); -- Artisan Medic
+    a[133] = b:New(133); -- Artisan in First Aid
     O(a[133], "From", "Version", "000304", "Before", "Version", "080001");
-    a[134] = b:New(134); -- Master Medic
+    a[134] = b:New(134); -- Master in First Aid
     O(a[134], "From", "Version", "020003", "Before", "Version", "080001");
-    a[135] = b:New(135); -- Grand Master Medic
+    a[135] = b:New(135); -- Grand Master in First Aid
     O(a[135], "From", "Version", "030003", "Before", "Version", "080001");
     a[137] = b:New(137); -- Stocking Up
     O(a[137], "From", "Version", "030003", "Before", "Version", "080001");
@@ -85,55 +85,55 @@ function exportedAchievements.Load(a, t)
     a[144] = b:New(144); -- The Lurker Above
     a[150] = b:New(150); -- The Fishing Diplomat
     a[153] = b:New(153); -- The Old Gnome and the Sea
-    a[154] = b:New(154); -- Arathi Basin Victory
-    a[155] = b:New(155); -- Arathi Basin Veteran
-    a[156] = b:New(156); -- Territorial Dominance
-    a[157] = b:New(157); -- To The Rescue!
-    a[158] = b:New(158); -- Me and the Cappin' Makin' it Happen
-    a[159] = b:New(159); -- Let's Get This Done
-    a[161] = b:New(161); -- Resilient Victory
-    a[162] = b:New(162); -- We Had It All Along *cough*
-    a[165] = b:New(165); -- Arathi Basin Perfection
-    a[166] = b:New(166); -- Warsong Gulch Victory
-    a[167] = b:New(167); -- Warsong Gulch Veteran
-    a[168] = b:New(168); -- Warsong Gulch Perfection
-    a[199] = b:New(199); -- Capture the Flag
-    a[200] = b:New(200); -- Persistent Defender
-    a[201] = b:New(201); -- Warsong Expedience
-    a[202] = b:New(202, fac.Alliance, 1502); -- Quick Cap
-    a[203] = b:New(203, fac.Alliance, 1251); -- Not In My House
-    a[204] = b:New(204); -- Ironman
-    a[206] = b:New(206, fac.Alliance, 1252); -- Supreme Defender
-    a[207] = b:New(207); -- Save the Day
-    a[208] = b:New(208); -- Eye of the Storm Victory
-    a[209] = b:New(209); -- Eye of the Storm Veteran
-    a[211] = b:New(211); -- Storm Glory
-    a[212] = b:New(212); -- Storm Capper
-    a[213] = b:New(213); -- Stormtrooper
-    a[214] = b:New(214); -- Flurry
-    a[216] = b:New(216); -- Bound for Glory
-    a[218] = b:New(218); -- Alterac Valley Victory
-    a[219] = b:New(219); -- Alterac Valley Veteran
-    a[220] = b:New(220, fac.Alliance, 873); -- Stormpike Perfection
-    a[221] = b:New(221); -- Alterac Grave Robber
-    a[222] = b:New(222); -- Tower Defense
-    a[223] = b:New(223); -- The Sickly Gazelle
-    a[224] = b:New(224, fac.Horde, 1151); -- Loyal Defender
-    a[225] = b:New(225, fac.Alliance, 1164); -- Everything Counts
-    a[226] = b:New(226); -- The Alterac Blitz
-    a[227] = b:New(227); -- Damage Control
-    a[229] = b:New(229); -- The Grim Reaper
-    a[230] = b:New(230, fac.Alliance, 1175); -- Battlemaster
-    a[231] = b:New(231); -- Wrecking Ball
-    a[233] = b:New(233); -- Bloodthirsty Berserker
-    a[238] = b:New(238); -- An Honorable Kill
-    a[239] = b:New(239); -- 25000 Honorable Kills
-    a[245] = b:New(245); -- That Takes Class
-    a[246] = b:New(246, fac.Alliance, 1005); -- Know Thy Enemy
-    a[247] = b:New(247); -- "Make Love, Not Warcraft"
+    a[154] = b:New(154, nil, nil, true); -- Arathi Basin Victory
+    a[155] = b:New(155, nil, nil, true); -- Arathi Basin Veteran
+    a[156] = b:New(156, nil, nil, true); -- Territorial Dominance
+    a[157] = b:New(157, nil, nil, true); -- To The Rescue!
+    a[158] = b:New(158, nil, nil, true); -- Me and the Cappin' Makin' it Happen
+    a[159] = b:New(159, nil, nil, true); -- Let's Get This Done
+    a[161] = b:New(161, nil, nil, true); -- Resilient Victory
+    a[162] = b:New(162, nil, nil, true); -- We Had It All Along *cough*
+    a[165] = b:New(165, nil, nil, true); -- Arathi Basin Perfection
+    a[166] = b:New(166, nil, nil, true); -- Warsong Gulch Victory
+    a[167] = b:New(167, nil, nil, true); -- Warsong Gulch Veteran
+    a[168] = b:New(168, nil, nil, true); -- Warsong Gulch Perfection
+    a[199] = b:New(199, nil, nil, true); -- Capture the Flag
+    a[200] = b:New(200, nil, nil, true); -- Persistent Defender
+    a[201] = b:New(201, nil, nil, true); -- Warsong Expedience
+    a[202] = b:New(202, fac.Alliance, 1502, true); -- Quick Cap
+    a[203] = b:New(203, fac.Alliance, 1251, true); -- Not In My House
+    a[204] = b:New(204, nil, nil, true); -- Ironman
+    a[206] = b:New(206, fac.Alliance, 1252, true); -- Supreme Defender
+    a[207] = b:New(207, nil, nil, true); -- Save The Day
+    a[208] = b:New(208, nil, nil, true); -- Eye of the Storm Victory
+    a[209] = b:New(209, nil, nil, true); -- Eye of the Storm Veteran
+    a[211] = b:New(211, nil, nil, true); -- Storm Glory
+    a[212] = b:New(212, nil, nil, true); -- Storm Capper
+    a[213] = b:New(213, nil, nil, true); -- Stormtrooper
+    a[214] = b:New(214, nil, nil, true); -- Flurry
+    a[216] = b:New(216, nil, nil, true); -- Bound for Glory
+    a[218] = b:New(218, nil, nil, true); -- Alterac Valley Victory
+    a[219] = b:New(219, nil, nil, true); -- Alterac Valley Veteran
+    a[220] = b:New(220, fac.Alliance, 873, true); -- Stormpike Perfection
+    a[221] = b:New(221, nil, nil, true); -- Alterac Grave Robber
+    a[222] = b:New(222, nil, nil, true); -- Tower Defense
+    a[223] = b:New(223, nil, nil, true); -- The Sickly Gazelle
+    a[224] = b:New(224, fac.Horde, 1151, true); -- Loyal Defender
+    a[225] = b:New(225, fac.Alliance, 1164, true); -- Everything Counts
+    a[226] = b:New(226, nil, nil, true); -- The Alterac Blitz
+    a[227] = b:New(227, nil, nil, true); -- Damage Control
+    a[229] = b:New(229, nil, nil, true); -- The Grim Reaper
+    a[230] = b:New(230, fac.Alliance, 1175, true); -- Battlemaster
+    a[231] = b:New(231, nil, nil, true); -- Wrecking Ball
+    a[233] = b:New(233, nil, nil, true); -- Bloodthirsty Berserker
+    a[238] = b:New(238, nil, nil, true); -- An Honorable Kill
+    a[239] = b:New(239, nil, nil, true); -- 25000 Honorable Kills
+    a[245] = b:New(245, nil, nil, true); -- That Takes Class
+    a[246] = b:New(246, fac.Alliance, 1005, true); -- Know Thy Enemy
+    a[247] = b:New(247, nil, nil, true); -- "Make Love, Not Warcraft"
     a[248] = b:New(248); -- Sunday's Finest
     a[249] = b:New(249); -- Dressed for the Occasion
-    a[252] = b:New(252); -- With a Little Helper from My Friends
+    a[252] = b:New(252, nil, nil, true); -- With a Little Helper from My Friends
     a[255] = b:New(255); -- Bring Me The Head of... Oh Wait
     a[259] = b:New(259, fac.Horde, 1255); -- Scrooge
     a[260] = b:New(260); -- Charming
@@ -154,25 +154,25 @@ function exportedAchievements.Load(a, t)
     a[295] = b:New(295); -- Direbrewfest
     a[303] = b:New(303); -- "Have Keg, Will Travel"
     a[306] = b:New(306); -- Master Angler of Azeroth
-    a[388] = b:New(388, fac.Alliance, 1006); -- City Defender
-    a[389] = b:New(389); -- Gurubashi Arena Master
-    a[396] = b:New(396); -- Gurubashi Arena Grand Master
-    a[397] = b:New(397); -- Step Into The Arena
-    a[398] = b:New(398); -- Mercilessly Dedicated
-    a[399] = b:New(399); -- Just the Two of Us: 1550
-    a[400] = b:New(400); -- Just the Two of Us: 1750
-    a[401] = b:New(401); -- Just the Two of Us: 2000
-    a[402] = b:New(402); -- Three's Company: 1550
-    a[403] = b:New(403); -- Three's Company: 1750
-    a[404] = b:New(404); -- High Five: 2000
+    a[388] = b:New(388, fac.Alliance, 1006, true); -- City Defender
+    a[389] = b:New(389, nil, nil, true); -- Gurubashi Arena Master
+    a[396] = b:New(396, nil, nil, true); -- Gurubashi Arena Grand Master
+    a[397] = b:New(397, nil, nil, true); -- Step Into The Arena
+    a[398] = b:New(398, nil, nil, true); -- Mercilessly Dedicated
+    a[399] = b:New(399, nil, nil, true); -- Just the Two of Us: 1550
+    a[400] = b:New(400, nil, nil, true); -- Just the Two of Us: 1750
+    a[401] = b:New(401, nil, nil, true); -- Just the Two of Us: 2000
+    a[402] = b:New(402, nil, nil, true); -- Three's Company: 1550
+    a[403] = b:New(403, nil, nil, true); -- Three's Company: 1750
+    a[404] = b:New(404, nil, nil, true); -- High Five: 2000
     O(a[404], "From", "Version", "030003", "Before", "Version", "070003");
-    a[405] = b:New(405); -- Three's Company: 2000
-    a[406] = b:New(406); -- High Five: 1550
+    a[405] = b:New(405, nil, nil, true); -- Three's Company: 2000
+    a[406] = b:New(406, nil, nil, true); -- High Five: 1550
     O(a[406], "From", "Version", "030003", "Before", "Version", "070003");
-    a[407] = b:New(407); -- High Five: 1750
+    a[407] = b:New(407, nil, nil, true); -- High Five: 1750
     O(a[407], "From", "Version", "030003", "Before", "Version", "070003");
-    a[408] = b:New(408); -- Hot Streak
-    a[409] = b:New(409); -- Last Man Standing
+    a[408] = b:New(408, nil, nil, true); -- Hot Streak
+    a[409] = b:New(409, nil, nil, true); -- Last Man Standing
     O(a[409], "From", "Version", "030003", "Before", "Version", "070003");
     a[411] = b:New(411); -- Murky
     a[412] = b:New(412); -- Murloc Costume
@@ -180,11 +180,11 @@ function exportedAchievements.Load(a, t)
     a[415] = b:New(415); -- Big Blizzard Bear
     a[416] = b:New(416); -- Scarab Lord
     O(a[416], "Never");
-    a[418] = b:New(418); -- Merciless Gladiator
+    a[418] = b:New(418, nil, nil, true); -- Merciless Gladiator
     O(a[418], "From", "PvP Season", 2, "Until", "PvP Season", 2);
-    a[419] = b:New(419); -- Vengeful Gladiator
+    a[419] = b:New(419, nil, nil, true); -- Vengeful Gladiator
     O(a[419], "From", "PvP Season", 3, "Until", "PvP Season", 3);
-    a[420] = b:New(420); -- Brutal Gladiator
+    a[420] = b:New(420, nil, nil, true); -- Brutal Gladiator
     O(a[420], "From", "PvP Season", 4, "Until", "PvP Season", 4);
     a[424] = b:New(424); -- Why? Because It's Red
     a[425] = b:New(425); -- "Atiesh, Greatstaff of the Guardian"
@@ -198,85 +198,85 @@ function exportedAchievements.Load(a, t)
     O(a[431]);
     a[432] = b:New(432); -- Champion of the Naaru
     O(a[432]);
-    a[433] = b:New(433, fac.Alliance, 443); -- Grand Marshal
+    a[433] = b:New(433, fac.Alliance, 443, true); -- Grand Marshal
     O(a[433], "From", "Version", "010400", "Before", "Version", "020001");
-    a[434] = b:New(434, fac.Alliance, 445); -- Field Marshal
+    a[434] = b:New(434, fac.Alliance, 445, true); -- Field Marshal
     O(a[434], "From", "Version", "010400", "Before", "Version", "020001");
-    a[435] = b:New(435, fac.Alliance, 444); -- Commander
+    a[435] = b:New(435, fac.Alliance, 444, true); -- Commander
     O(a[435], "From", "Version", "010400", "Before", "Version", "020001");
-    a[436] = b:New(436, fac.Alliance, 447); -- Lieutenant Commander
+    a[436] = b:New(436, fac.Alliance, 447, true); -- Lieutenant Commander
     O(a[436], "From", "Version", "010400", "Before", "Version", "020001");
-    a[437] = b:New(437, fac.Alliance, 448); -- Knight-Champion
+    a[437] = b:New(437, fac.Alliance, 448, true); -- Knight-Champion
     O(a[437], "From", "Version", "010400", "Before", "Version", "020001");
-    a[438] = b:New(438, fac.Alliance, 469); -- Knight-Captain
+    a[438] = b:New(438, fac.Alliance, 469, true); -- Knight-Captain
     O(a[438], "From", "Version", "010400", "Before", "Version", "020001");
-    a[439] = b:New(439, fac.Alliance, 451); -- Knight
+    a[439] = b:New(439, fac.Alliance, 451, true); -- Knight
     O(a[439], "From", "Version", "010400", "Before", "Version", "020001");
-    a[440] = b:New(440, fac.Alliance, 452); -- Sergeant Major
+    a[440] = b:New(440, fac.Alliance, 452, true); -- Sergeant Major
     O(a[440], "From", "Version", "010400", "Before", "Version", "020001");
-    a[441] = b:New(441, fac.Alliance, 450); -- Master Sergeant
+    a[441] = b:New(441, fac.Alliance, 450, true); -- Master Sergeant
     O(a[441], "From", "Version", "010400", "Before", "Version", "020001");
-    a[442] = b:New(442, fac.Alliance, 454); -- Private
+    a[442] = b:New(442, fac.Alliance, 454, true); -- Private
     O(a[442], "From", "Version", "010400", "Before", "Version", "020001");
-    a[443] = b:New(443, fac.Horde, 433); -- High Warlord
+    a[443] = b:New(443, fac.Horde, 433, true); -- High Warlord
     O(a[443], "From", "Version", "010400", "Before", "Version", "020001");
-    a[444] = b:New(444, fac.Horde, 435); -- Lieutenant General
+    a[444] = b:New(444, fac.Horde, 435, true); -- Lieutenant General
     O(a[444], "From", "Version", "010400", "Before", "Version", "020001");
-    a[445] = b:New(445, fac.Horde, 434); -- Warlord
+    a[445] = b:New(445, fac.Horde, 434, true); -- Warlord
     O(a[445], "From", "Version", "010400", "Before", "Version", "020001");
-    a[446] = b:New(446, fac.Horde, 473); -- General
+    a[446] = b:New(446, fac.Horde, 473, true); -- General
     O(a[446], "From", "Version", "010400", "Before", "Version", "020001");
-    a[447] = b:New(447, fac.Horde, 436); -- Champion
+    a[447] = b:New(447, fac.Horde, 436, true); -- Champion
     O(a[447], "From", "Version", "010400", "Before", "Version", "020001");
-    a[448] = b:New(448, fac.Horde, 437); -- Centurion
+    a[448] = b:New(448, fac.Horde, 437, true); -- Centurion
     O(a[448], "From", "Version", "010400", "Before", "Version", "020001");
-    a[449] = b:New(449, fac.Horde, 472); -- Blood Guard
+    a[449] = b:New(449, fac.Horde, 472, true); -- Blood Guard
     O(a[449], "From", "Version", "010400", "Before", "Version", "020001");
-    a[450] = b:New(450, fac.Horde, 441); -- Senior Sergeant
+    a[450] = b:New(450, fac.Horde, 441, true); -- Senior Sergeant
     O(a[450], "From", "Version", "010400", "Before", "Version", "020001");
-    a[451] = b:New(451, fac.Horde, 439); -- Stone Guard
+    a[451] = b:New(451, fac.Horde, 439, true); -- Stone Guard
     O(a[451], "From", "Version", "010400", "Before", "Version", "020001");
-    a[452] = b:New(452, fac.Horde, 440); -- First Sergeant
+    a[452] = b:New(452, fac.Horde, 440, true); -- First Sergeant
     O(a[452], "From", "Version", "010400", "Before", "Version", "020001");
-    a[453] = b:New(453, fac.Horde, 471); -- Sergeant
+    a[453] = b:New(453, fac.Horde, 471, true); -- Sergeant
     O(a[453], "From", "Version", "010400", "Before", "Version", "020001");
-    a[454] = b:New(454, fac.Horde, 442); -- Scout
+    a[454] = b:New(454, fac.Horde, 442, true); -- Scout
     O(a[454], "From", "Version", "010400", "Before", "Version", "020001");
-    a[456] = b:New(456, nil, nil, true); -- Realm First! Obsidian Slayer
+    a[456] = b:New(456, nil, nil, nil, true); -- Realm First! Obsidian Slayer
     O(a[456], "Once");
-    a[457] = b:New(457, nil, nil, true); -- Realm First! Level 80
+    a[457] = b:New(457, nil, nil, nil, true); -- Realm First! Level 80
     O(a[457], "Once");
-    a[458] = b:New(458, nil, nil, true); -- Realm First! Level 80 Rogue
+    a[458] = b:New(458, nil, nil, nil, true); -- Realm First! Level 80 Rogue
     O(a[458], "Once");
-    a[459] = b:New(459, nil, nil, true); -- Realm First! Level 80 Warrior
+    a[459] = b:New(459, nil, nil, nil, true); -- Realm First! Level 80 Warrior
     O(a[459], "Once");
-    a[460] = b:New(460, nil, nil, true); -- Realm First! Level 80 Mage
+    a[460] = b:New(460, nil, nil, nil, true); -- Realm First! Level 80 Mage
     O(a[460], "Once");
-    a[461] = b:New(461, nil, nil, true); -- Realm First! Level 80 Death Knight
+    a[461] = b:New(461, nil, nil, nil, true); -- Realm First! Level 80 Death Knight
     O(a[461], "Once");
-    a[462] = b:New(462, nil, nil, true); -- Realm First! Level 80 Hunter
+    a[462] = b:New(462, nil, nil, nil, true); -- Realm First! Level 80 Hunter
     O(a[462], "Once");
-    a[463] = b:New(463, nil, nil, true); -- Realm First! Level 80 Warlock
+    a[463] = b:New(463, nil, nil, nil, true); -- Realm First! Level 80 Warlock
     O(a[463], "Once");
-    a[464] = b:New(464, nil, nil, true); -- Realm First! Level 80 Priest
+    a[464] = b:New(464, nil, nil, nil, true); -- Realm First! Level 80 Priest
     O(a[464], "Once");
-    a[465] = b:New(465, nil, nil, true); -- Realm First! Level 80 Paladin
+    a[465] = b:New(465, nil, nil, nil, true); -- Realm First! Level 80 Paladin
     O(a[465], "Once");
-    a[466] = b:New(466, nil, nil, true); -- Realm First! Level 80 Druid
+    a[466] = b:New(466, nil, nil, nil, true); -- Realm First! Level 80 Druid
     O(a[466], "Once");
-    a[467] = b:New(467, nil, nil, true); -- Realm First! Level 80 Shaman
+    a[467] = b:New(467, nil, nil, nil, true); -- Realm First! Level 80 Shaman
     O(a[467], "Once");
-    a[468] = b:New(468, fac.Horde, 470); -- Grunt
+    a[468] = b:New(468, fac.Horde, 470, true); -- Grunt
     O(a[468], "From", "Version", "010400", "Before", "Version", "020001");
-    a[469] = b:New(469, fac.Horde, 438); -- Legionnaire
+    a[469] = b:New(469, fac.Horde, 438, true); -- Legionnaire
     O(a[469], "From", "Version", "010400", "Before", "Version", "020001");
-    a[470] = b:New(470, fac.Alliance, 468); -- Corporal
+    a[470] = b:New(470, fac.Alliance, 468, true); -- Corporal
     O(a[470], "From", "Version", "010400", "Before", "Version", "020001");
-    a[471] = b:New(471, fac.Alliance, 453); -- Sergeant
+    a[471] = b:New(471, fac.Alliance, 453, true); -- Sergeant
     O(a[471], "From", "Version", "010400", "Before", "Version", "020001");
-    a[472] = b:New(472, fac.Alliance, 449); -- Knight-Lieutenant
+    a[472] = b:New(472, fac.Alliance, 449, true); -- Knight-Lieutenant
     O(a[472], "From", "Version", "010400", "Before", "Version", "020001");
-    a[473] = b:New(473, fac.Alliance, 446); -- Marshal
+    a[473] = b:New(473, fac.Alliance, 446, true); -- Marshal
     O(a[473], "From", "Version", "010400", "Before", "Version", "020001");
     a[477] = b:New(477); -- Utgarde Keep
     a[478] = b:New(478); -- The Nexus
@@ -308,11 +308,11 @@ function exportedAchievements.Load(a, t)
     a[506] = b:New(506); -- 500 Quests Completed
     a[507] = b:New(507); -- 1000 Quests Completed
     a[508] = b:New(508); -- 1500 Quests Completed
-    a[509] = b:New(509); -- 10000 Honorable Kills
-    a[512] = b:New(512); -- 5000 Honorable Kills
-    a[513] = b:New(513); -- 100 Honorable Kills
-    a[515] = b:New(515); -- 500 Honorable Kills
-    a[516] = b:New(516); -- 1000 Honorable Kills
+    a[509] = b:New(509, nil, nil, true); -- 10000 Honorable Kills
+    a[512] = b:New(512, nil, nil, true); -- 5000 Honorable Kills
+    a[513] = b:New(513, nil, nil, true); -- 100 Honorable Kills
+    a[515] = b:New(515, nil, nil, true); -- 500 Honorable Kills
+    a[516] = b:New(516, nil, nil, true); -- 1000 Honorable Kills
     a[518] = b:New(518); -- 30 Exalted Reputations
     a[519] = b:New(519); -- 25 Exalted Reputations
     a[520] = b:New(520); -- 20 Exalted Reputations
@@ -350,32 +350,32 @@ function exportedAchievements.Load(a, t)
     a[577] = b:New(577); -- The Fall of Naxxramas (25 player)
     a[578] = b:New(578); -- The Dedicated Few (10 player)
     a[579] = b:New(579); -- The Dedicated Few (25 player)
-    a[582] = b:New(582); -- Alterac Valley All-Star
-    a[583] = b:New(583); -- Arathi Basin All-Star
-    a[584] = b:New(584); -- Arathi Basin Assassin
-    a[587] = b:New(587); -- Stormy Assassin
-    a[603] = b:New(603, fac.Horde, 604); -- Wrath of the Horde
-    a[604] = b:New(604, fac.Alliance, 603); -- Wrath of the Alliance
+    a[582] = b:New(582, nil, nil, true); -- Alterac Valley All-Star
+    a[583] = b:New(583, nil, nil, true); -- Arathi Basin All-Star
+    a[584] = b:New(584, nil, nil, true); -- Arathi Basin Assassin
+    a[587] = b:New(587, nil, nil, true); -- Stormy Assassin
+    a[603] = b:New(603, fac.Horde, 604, true); -- Wrath of the Horde
+    a[604] = b:New(604, fac.Alliance, 603, true); -- Wrath of the Alliance
     a[605] = b:New(605); -- A Coin of Ancestry
     a[606] = b:New(606); -- 5 Coins of Ancestry
     a[607] = b:New(607); -- 10 Coins of Ancestry
     a[608] = b:New(608); -- 25 Coins of Ancestry
     a[609] = b:New(609); -- 50 Coins of Ancestry
-    a[610] = b:New(610, fac.Alliance, 615); -- Orgrimmar Offensive
+    a[610] = b:New(610, fac.Alliance, 615, true); -- Death to the Warchief!
     O(a[610], "From", "Version", "030002", "Before", "Version", "080001");
-    a[611] = b:New(611, fac.Alliance, 616); -- Bleeding Bloodhoof
+    a[611] = b:New(611, fac.Alliance, 616, true); -- Bleeding Bloodhoof
     O(a[611], "From", "Version", "030002", "Before", "Version", "090001");
-    a[612] = b:New(612, fac.Alliance, 617); -- Downing the Dark Lady
+    a[612] = b:New(612, fac.Alliance, 617, true); -- Downing the Dark Lady
     O(a[612], "From", "Version", "030002", "Before", "Version", "090001");
-    a[613] = b:New(613, fac.Alliance, 618); -- Killed in Quel'Thalas
-    a[614] = b:New(614, fac.Alliance, 619); -- For the Alliance!
-    a[615] = b:New(615, fac.Horde, 610); -- Storming Stormwind
+    a[613] = b:New(613, fac.Alliance, 618, true); -- Killed in Quel'Thalas
+    a[614] = b:New(614, fac.Alliance, 619, true); -- For The Alliance!
+    a[615] = b:New(615, fac.Horde, 610, true); -- Storming Stormwind
     O(a[615], "From", "Version", "030002", "Before", "Version", "090001");
-    a[616] = b:New(616, fac.Horde, 611); -- Overthrow the Council
-    a[617] = b:New(617, fac.Horde, 612); -- Immortal No More
+    a[616] = b:New(616, fac.Horde, 611, true); -- Death to the King!
+    a[617] = b:New(617, fac.Horde, 612, true); -- Immortal No More
     O(a[617], "From", "Version", "030002", "Before", "Version", "080001");
-    a[618] = b:New(618, fac.Horde, 613); -- Putting Out the Light
-    a[619] = b:New(619, fac.Horde, 614); -- For the Horde!
+    a[618] = b:New(618, fac.Horde, 613, true); -- Putting Out the Light
+    a[619] = b:New(619, fac.Horde, 614, true); -- For The Horde!
     a[621] = b:New(621); -- Represent
     a[622] = b:New(622); -- The Spellweaver's Downfall (10 player)
     a[623] = b:New(623); -- The Spellweaver's Downfall (25 player)
@@ -457,36 +457,36 @@ function exportedAchievements.Load(a, t)
     a[696] = b:New(696); -- Tempest Keep
     a[697] = b:New(697); -- The Black Temple
     a[698] = b:New(698); -- Sunwell Plateau
-    a[699] = b:New(699); -- World Wide Winner
-    a[700] = b:New(700, fac.Horde, 701); -- Freedom of the Horde
+    a[699] = b:New(699, nil, nil, true); -- World Wide Winner
+    a[700] = b:New(700, fac.Horde, 701, true); -- Freedom of the Horde
     O(a[700], "From", "PvP Season", 5, "Until", "PvP Season", 18);
-    a[701] = b:New(701, fac.Alliance, 700); -- Freedom of the Alliance
+    a[701] = b:New(701, fac.Alliance, 700, true); -- Freedom of the Alliance
     O(a[701], "From", "PvP Season", 5, "Until", "PvP Season", 18);
     a[705] = b:New(705); -- Master of Arms
     O(a[705], "From", "Version", "000304", "Before", "Version", "040001");
-    a[706] = b:New(706, fac.Horde, 707); -- Frostwolf Howler
-    a[707] = b:New(707, fac.Alliance, 706); -- Stormpike Battle Charger
-    a[708] = b:New(708, fac.Horde, 709); -- Hero of the Frostwolf Clan
-    a[709] = b:New(709, fac.Alliance, 708); -- Hero of the Stormpike Guard
-    a[710] = b:New(710, fac.Horde, 711); -- The Defiler
-    a[711] = b:New(711, fac.Alliance, 710); -- Knight of Arathor
-    a[712] = b:New(712, fac.Horde, 713); -- Warsong Outrider
-    a[713] = b:New(713, fac.Alliance, 712); -- Silverwing Sentinel
-    a[714] = b:New(714, fac.Horde, 907); -- The Conqueror
+    a[706] = b:New(706, fac.Horde, 707, true); -- Frostwolf Howler
+    a[707] = b:New(707, fac.Alliance, 706, true); -- Stormpike Battle Charger
+    a[708] = b:New(708, fac.Horde, 709, true); -- Hero of the Frostwolf Clan
+    a[709] = b:New(709, fac.Alliance, 708, true); -- Hero of the Stormpike Guard
+    a[710] = b:New(710, fac.Horde, 711, true); -- The Defiler
+    a[711] = b:New(711, fac.Alliance, 710, true); -- Knight of Arathor
+    a[712] = b:New(712, fac.Horde, 713, true); -- Warsong Outrider
+    a[713] = b:New(713, fac.Alliance, 712, true); -- Silverwing Sentinel
+    a[714] = b:New(714, fac.Horde, 907, true); -- The Conqueror
     a[725] = b:New(725); -- "Thori'dal, the Stars' Fury"
     a[726] = b:New(726); -- Mr. Pinchy's Magical Crawdad Box
-    a[727] = b:New(727); -- Call in the Cavalry
+    a[727] = b:New(727, nil, nil, true); -- Call in the Cavalry
     a[728] = b:New(728); -- Explore Durotar
     a[729] = b:New(729); -- Deathcharger's Reins
     a[730] = b:New(730); -- Skills to Pay the Bills
     O(a[730], "From", "Version", "030003", "Before", "Version", "080001");
     a[731] = b:New(731); -- Professional Expert
-    a[732] = b:New(732); -- Professional Classic Master
-    a[733] = b:New(733); -- Professional Outland Master
-    a[734] = b:New(734); -- Professional Northrend Master
-    a[735] = b:New(735); -- Working In the Cold
+    a[732] = b:New(732); -- Professional Artisan
+    a[733] = b:New(733); -- Professional Master
+    a[734] = b:New(734); -- Professional Grand Master
+    a[735] = b:New(735); -- Working Day and Night
     a[736] = b:New(736); -- Explore Mulgore
-    a[750] = b:New(750); -- Explore Northern Barrens
+    a[750] = b:New(750); -- Explore The Barrens
     a[761] = b:New(761); -- Explore Arathi Highlands
     a[762] = b:New(762, fac.Horde, 948); -- Ambassador of the Horde
     a[763] = b:New(763, fac.Horde, 764); -- The Burning Crusader
@@ -506,10 +506,10 @@ function exportedAchievements.Load(a, t)
     a[778] = b:New(778); -- Explore Duskwood
     a[779] = b:New(779); -- Explore Loch Modan
     a[780] = b:New(780); -- Explore Redridge Mountains
-    a[781] = b:New(781); -- Explore Northern Stranglethorn
+    a[781] = b:New(781); -- Explore Stranglethorn Vale
     a[782] = b:New(782); -- Explore Swamp of Sorrows
-    a[783] = b:New(783); -- The Perfect Storm
-    a[784] = b:New(784); -- Eye of the Storm Domination
+    a[783] = b:New(783, nil, nil, true); -- The Perfect Storm
+    a[784] = b:New(784, nil, nil, true); -- Eye of the Storm Domination
     a[802] = b:New(802); -- Explore Westfall
     a[841] = b:New(841); -- Explore Wetlands
     a[842] = b:New(842); -- Explore Teldrassil
@@ -521,7 +521,7 @@ function exportedAchievements.Load(a, t)
     a[848] = b:New(848); -- Explore Desolace
     a[849] = b:New(849); -- Explore Feralas
     a[850] = b:New(850); -- Explore Dustwallow Marsh
-    a[851] = b:New(851); -- Explore Tanaris
+    a[851] = b:New(851); -- Explore Tanaris Desert
     a[852] = b:New(852); -- Explore Azshara
     a[853] = b:New(853); -- Explore Felwood
     a[854] = b:New(854); -- Explore Un'Goro Crater
@@ -539,13 +539,13 @@ function exportedAchievements.Load(a, t)
     a[866] = b:New(866); -- Explore Nagrand
     a[867] = b:New(867); -- Explore Terokkar Forest
     a[868] = b:New(868); -- Explore Isle of Quel'Danas
-    a[869] = b:New(869); -- 50000 Honorable Kills
-    a[870] = b:New(870); -- 100000 Honorable Kills
+    a[869] = b:New(869, nil, nil, true); -- 50000 Honorable Kills
+    a[870] = b:New(870, nil, nil, true); -- 100000 Honorable Kills
     a[871] = b:New(871); -- "Avast Ye, Admiral!"
-    a[872] = b:New(872); -- Frenzied Defender
-    a[873] = b:New(873, fac.Horde, 220); -- Frostwolf Perfection
-    a[875] = b:New(875); -- Vengefully Dedicated
-    a[876] = b:New(876); -- Brutally Dedicated
+    a[872] = b:New(872, nil, nil, true); -- Frenzied Defender
+    a[873] = b:New(873, fac.Horde, 220, true); -- Frostwolf Perfection
+    a[875] = b:New(875, nil, nil, true); -- Vengefully Dedicated
+    a[876] = b:New(876, nil, nil, true); -- Brutally Dedicated
     a[877] = b:New(877); -- The Cake Is Not A Lie
     a[878] = b:New(878); -- One That Didn't Get Away
     a[879] = b:New(879); -- Old School Ride
@@ -558,14 +558,14 @@ function exportedAchievements.Load(a, t)
     a[883] = b:New(883); -- Reins of the Raven Lord
     a[884] = b:New(884); -- Swift White Hawkstrider
     a[885] = b:New(885); -- Ashes of Al'ar
-    a[886] = b:New(886); -- Swift Nether Drake
+    a[886] = b:New(886, nil, nil, true); -- Swift Nether Drake
     O(a[886], "From", "PvP Season", 1, "Until", "PvP Season", 1);
-    a[887] = b:New(887); -- Merciless Nether Drake
+    a[887] = b:New(887, nil, nil, true); -- Merciless Nether Drake
     O(a[887], "From", "PvP Season", 2, "Until", "PvP Season", 2);
-    a[888] = b:New(888); -- Vengeful Nether Drake
+    a[888] = b:New(888, nil, nil, true); -- Vengeful Nether Drake
     O(a[888], "From", "PvP Season", 3, "Until", "PvP Season", 3);
     a[889] = b:New(889); -- Fast and Furious
-    a[890] = b:New(890); -- Into the Wild Blue Yonder
+    a[890] = b:New(890); -- Into The Wild Blue Yonder
     a[891] = b:New(891); -- Giddy Up!
     a[892] = b:New(892); -- The Right Stuff
     O(a[892], "From", "Version", "030002", "Before", "Version", "090001");
@@ -581,9 +581,9 @@ function exportedAchievements.Load(a, t)
     a[903] = b:New(903); -- Shattrath Divided
     a[905] = b:New(905); -- Old Man Barlowned
     a[906] = b:New(906); -- Kickin' It Up a Notch
-    a[907] = b:New(907, fac.Alliance, 714); -- The Justicar
-    a[908] = b:New(908, fac.Alliance, 909); -- Call to Arms!
-    a[909] = b:New(909, fac.Horde, 908); -- Call to Arms!
+    a[907] = b:New(907, fac.Alliance, 714, true); -- The Justicar
+    a[908] = b:New(908, fac.Alliance, 909, true); -- Call to Arms!
+    a[909] = b:New(909, fac.Horde, 908, true); -- Call to Arms!
     a[910] = b:New(910); -- Elders of the Dungeons
     a[911] = b:New(911); -- Elders of Kalimdor
     a[912] = b:New(912); -- Elders of Eastern Kingdoms
@@ -625,17 +625,17 @@ function exportedAchievements.Load(a, t)
     a[969] = b:New(969, fac.Alliance, 968); -- Tricks and Treats of Outland
     a[971] = b:New(971); -- Tricks and Treats of Azeroth
     a[972] = b:New(972); -- Trick or Treat!
-    a[973] = b:New(973); -- 5 Daily Quests Completed
-    a[974] = b:New(974); -- 50 Daily Quests Completed
-    a[975] = b:New(975); -- 200 Daily Quests Completed
-    a[976] = b:New(976); -- 500 Daily Quests Completed
-    a[977] = b:New(977); -- 1000 Daily Quests Completed
+    a[973] = b:New(973); -- 5 Daily Quests Complete
+    a[974] = b:New(974); -- 50 Daily Quests Complete
+    a[975] = b:New(975); -- 200 Daily Quests Complete
+    a[976] = b:New(976); -- 500 Daily Quests Complete
+    a[977] = b:New(977); -- 1000 Daily Quests Complete
     a[978] = b:New(978); -- 3000 Quests Completed
     a[979] = b:New(979); -- The Mask Task
     a[980] = b:New(980); -- The Horseman's Reins
     a[981] = b:New(981); -- That Sparkling Smile
-    a[1005] = b:New(1005, fac.Horde, 246); -- Know Thy Enemy
-    a[1006] = b:New(1006, fac.Horde, 388); -- City Defender
+    a[1005] = b:New(1005, fac.Horde, 246, true); -- Know Thy Enemy
+    a[1006] = b:New(1006, fac.Horde, 388, true); -- City Defender
     a[1007] = b:New(1007); -- The Wyrmrest Accord
     a[1008] = b:New(1008); -- The Kirin Tor
     a[1009] = b:New(1009); -- Knights of the Ebon Blade
@@ -668,24 +668,24 @@ function exportedAchievements.Load(a, t)
     a[1040] = b:New(1040, fac.Alliance, 1041); -- Rotten Hallow
     a[1041] = b:New(1041, fac.Horde, 1040); -- Rotten Hallow
     a[1145] = b:New(1145); -- King of the Fire Festival
-    a[1151] = b:New(1151, fac.Alliance, 224); -- Loyal Defender
-    a[1153] = b:New(1153); -- Overly Defensive
-    a[1157] = b:New(1157); -- Duel-icious
-    a[1159] = b:New(1159); -- Just the Two of Us: 2200
-    a[1160] = b:New(1160); -- Three's Company: 2200
-    a[1161] = b:New(1161); -- High Five: 2200
+    a[1151] = b:New(1151, fac.Alliance, 224, true); -- Loyal Defender
+    a[1153] = b:New(1153, nil, nil, true); -- Overly Defensive
+    a[1157] = b:New(1157, nil, nil, true); -- Duel-icious
+    a[1159] = b:New(1159, nil, nil, true); -- Just the Two of Us: 2200
+    a[1160] = b:New(1160, nil, nil, true); -- Three's Company: 2200
+    a[1161] = b:New(1161, nil, nil, true); -- High Five: 2200
     O(a[1161], "From", "Version", "030003", "Before", "Version", "070003");
-    a[1162] = b:New(1162); -- Hotter Streak
-    a[1164] = b:New(1164, fac.Horde, 225); -- Everything Counts
+    a[1162] = b:New(1162, nil, nil, true); -- Hotter Streak
+    a[1164] = b:New(1164, fac.Horde, 225, true); -- Everything Counts
     a[1165] = b:New(1165); -- "My Storage is ""Gigantique"""
-    a[1166] = b:New(1166); -- To the Looter Go the Spoils
-    a[1167] = b:New(1167); -- Master of Alterac Valley
-    a[1169] = b:New(1169); -- Master of Arathi Basin
-    a[1171] = b:New(1171); -- Master of Eye of the Storm
-    a[1172] = b:New(1172); -- Master of Warsong Gulch
-    a[1174] = b:New(1174); -- The Arena Master
+    a[1166] = b:New(1166, nil, nil, true); -- To the Looter Go the Spoils
+    a[1167] = b:New(1167, nil, nil, true); -- Master of Alterac Valley
+    a[1169] = b:New(1169, nil, nil, true); -- Master of Arathi Basin
+    a[1171] = b:New(1171, nil, nil, true); -- Master of Eye of the Storm
+    a[1172] = b:New(1172, nil, nil, true); -- Master of Warsong Gulch
+    a[1174] = b:New(1174, nil, nil, true); -- The Arena Master
     O(a[1174], "From", "Version", "030003", "Before", "Version", "070003");
-    a[1175] = b:New(1175, fac.Horde, 230); -- Battlemaster
+    a[1175] = b:New(1175, fac.Horde, 230, true); -- Battlemaster
     a[1176] = b:New(1176); -- Got My Mind On My Money
     a[1177] = b:New(1177); -- Got My Mind On My Money
     a[1178] = b:New(1178); -- Got My Mind On My Money
@@ -713,14 +713,14 @@ function exportedAchievements.Load(a, t)
     a[1244] = b:New(1244); -- Well Read
     a[1248] = b:New(1248); -- Plethora of Pets
     a[1250] = b:New(1250); -- "Shop Smart, Shop Pet...Smart"
-    a[1251] = b:New(1251, fac.Horde, 203); -- Not In My House
-    a[1252] = b:New(1252, fac.Horde, 206); -- Supreme Defender
+    a[1251] = b:New(1251, fac.Horde, 203, true); -- Not In My House
+    a[1252] = b:New(1252, fac.Horde, 206, true); -- Supreme Defender
     a[1254] = b:New(1254); -- Friend or Fowl?
     a[1255] = b:New(1255, fac.Alliance, 259); -- Scrooge
     a[1257] = b:New(1257); -- The Scavenger
-    a[1258] = b:New(1258); -- Take a Chill Pill
-    a[1259] = b:New(1259); -- Not So Fast
-    a[1260] = b:New(1260); -- Almost Blind Luck
+    a[1258] = b:New(1258, nil, nil, true); -- Take a Chill Pill
+    a[1259] = b:New(1259, nil, nil, true); -- Not So Fast
+    a[1260] = b:New(1260); -- Drunken Stupor
     a[1261] = b:New(1261); -- G.N.E.R.D. Rage
     a[1262] = b:New(1262); -- Loremaster of Outland
     a[1263] = b:New(1263); -- Explore Howling Fjord
@@ -756,13 +756,13 @@ function exportedAchievements.Load(a, t)
     a[1295] = b:New(1295); -- Crashin' & Thrashin'
     a[1296] = b:New(1296); -- Watch Him Die
     a[1297] = b:New(1297); -- Hadronox Denied
-    a[1307] = b:New(1307); -- Upper Blackrock Spire (Classic)
+    a[1307] = b:New(1307); -- Upper Blackrock Spire
     O(a[1307], "From", "Version", "030002", "Before", "Version", "060002");
-    a[1308] = b:New(1308); -- Strand of the Ancients Victory
+    a[1308] = b:New(1308, nil, nil, true); -- Strand of the Ancients Victory
     O(a[1308], "From", "Version", "030003", "Before", "Version", "080001");
-    a[1309] = b:New(1309); -- Strand of the Ancients Veteran
+    a[1309] = b:New(1309, nil, nil, true); -- Strand of the Ancients Veteran
     O(a[1309], "From", "Version", "030003", "Before", "Version", "080001");
-    a[1310] = b:New(1310); -- Storm the Beach
+    a[1310] = b:New(1310, nil, nil, true); -- Storm the Beach
     O(a[1310], "From", "Version", "030003", "Before", "Version", "080001");
     a[1311] = b:New(1311); -- Medium Rare
     a[1312] = b:New(1312); -- Bloody Rare
@@ -771,65 +771,65 @@ function exportedAchievements.Load(a, t)
     a[1358] = b:New(1358, fac.Horde, 33); -- Nothing Boring About Borean
     a[1359] = b:New(1359, fac.Horde, 35); -- Might of Dragonblight
     a[1396] = b:New(1396); -- Elders of Northrend
-    a[1400] = b:New(1400, nil, nil, true); -- Realm First! Magic Seeker
+    a[1400] = b:New(1400, nil, nil, nil, true); -- Realm First! Magic Seeker
     O(a[1400], "Once");
-    a[1402] = b:New(1402, nil, nil, true); -- Realm First! Conqueror of Naxxramas
+    a[1402] = b:New(1402, nil, nil, nil, true); -- Realm First! Conqueror of Naxxramas
     O(a[1402], "Once");
-    a[1404] = b:New(1404, nil, nil, true); -- Realm First! Level 80 Gnome
+    a[1404] = b:New(1404, nil, nil, nil, true); -- Realm First! Level 80 Gnome
     O(a[1404], "Once");
-    a[1405] = b:New(1405, nil, nil, true); -- Realm First! Level 80 Blood Elf
+    a[1405] = b:New(1405, nil, nil, nil, true); -- Realm First! Level 80 Blood Elf
     O(a[1405], "Once");
-    a[1406] = b:New(1406, nil, nil, true); -- Realm First! Level 80 Draenei
+    a[1406] = b:New(1406, nil, nil, nil, true); -- Realm First! Level 80 Draenei
     O(a[1406], "Once");
-    a[1407] = b:New(1407, nil, nil, true); -- Realm First! Level 80 Dwarf
+    a[1407] = b:New(1407, nil, nil, nil, true); -- Realm First! Level 80 Dwarf
     O(a[1407], "Once");
-    a[1408] = b:New(1408, nil, nil, true); -- Realm First! Level 80 Human
+    a[1408] = b:New(1408, nil, nil, nil, true); -- Realm First! Level 80 Human
     O(a[1408], "Once");
-    a[1409] = b:New(1409, nil, nil, true); -- Realm First! Level 80 Night Elf
+    a[1409] = b:New(1409, nil, nil, nil, true); -- Realm First! Level 80 Night Elf
     O(a[1409], "Once");
-    a[1410] = b:New(1410, nil, nil, true); -- Realm First! Level 80 Orc
+    a[1410] = b:New(1410, nil, nil, nil, true); -- Realm First! Level 80 Orc
     O(a[1410], "Once");
-    a[1411] = b:New(1411, nil, nil, true); -- Realm First! Level 80 Tauren
+    a[1411] = b:New(1411, nil, nil, nil, true); -- Realm First! Level 80 Tauren
     O(a[1411], "Once");
-    a[1412] = b:New(1412, nil, nil, true); -- Realm First! Level 80 Troll
+    a[1412] = b:New(1412, nil, nil, nil, true); -- Realm First! Level 80 Troll
     O(a[1412], "Once");
-    a[1413] = b:New(1413, nil, nil, true); -- Realm First! Level 80 Forsaken
+    a[1413] = b:New(1413, nil, nil, nil, true); -- Realm First! Level 80 Forsaken
     O(a[1413], "Once");
-    a[1414] = b:New(1414, nil, nil, true); -- Realm First! Grand Master Blacksmith
+    a[1414] = b:New(1414, nil, nil, nil, true); -- Realm First! Grand Master Blacksmith
     O(a[1414], "Once");
-    a[1415] = b:New(1415, nil, nil, true); -- Realm First! Grand Master Alchemist
+    a[1415] = b:New(1415, nil, nil, nil, true); -- Realm First! Grand Master Alchemist
     O(a[1415], "Once");
-    a[1416] = b:New(1416, nil, nil, true); -- Realm First! Grand Master Cook
+    a[1416] = b:New(1416, nil, nil, nil, true); -- Realm First! Cooking Grand Master
     O(a[1416], "Once");
-    a[1417] = b:New(1417, nil, nil, true); -- Realm First! Grand Master Enchanter
+    a[1417] = b:New(1417, nil, nil, nil, true); -- Realm First! Grand Master Enchanter
     O(a[1417], "Once");
-    a[1418] = b:New(1418, nil, nil, true); -- Realm First! Grand Master Engineer
+    a[1418] = b:New(1418, nil, nil, nil, true); -- Realm First! Grand Master Engineer
     O(a[1418], "Once");
-    a[1419] = b:New(1419, nil, nil, true); -- Realm First! Grand Master Medic
+    a[1419] = b:New(1419, nil, nil, nil, true); -- Realm First! First Aid Grand Master
     O(a[1419], "Once");
-    a[1420] = b:New(1420, nil, nil, true); -- Realm First! Grand Master Angler
+    a[1420] = b:New(1420, nil, nil, nil, true); -- Realm First! Grand Master Angler
     O(a[1420], "Once");
-    a[1421] = b:New(1421, nil, nil, true); -- Realm First! Grand Master Herbalist
+    a[1421] = b:New(1421, nil, nil, nil, true); -- Realm First! Grand Master Herbalist
     O(a[1421], "Once");
-    a[1422] = b:New(1422, nil, nil, true); -- Realm First! Grand Master Scribe
+    a[1422] = b:New(1422, nil, nil, nil, true); -- Realm First! Grand Master Scribe
     O(a[1422], "Once");
-    a[1423] = b:New(1423, nil, nil, true); -- Realm First! Grand Master Jewelcrafter
+    a[1423] = b:New(1423, nil, nil, nil, true); -- Realm First! Grand Master Jewelcrafter
     O(a[1423], "Once");
-    a[1424] = b:New(1424, nil, nil, true); -- Realm First! Grand Master Leatherworker
+    a[1424] = b:New(1424, nil, nil, nil, true); -- Realm First! Grand Master Leatherworker
     O(a[1424], "Once");
-    a[1425] = b:New(1425, nil, nil, true); -- Realm First! Grand Master Miner
+    a[1425] = b:New(1425, nil, nil, nil, true); -- Realm First! Grand Master Miner
     O(a[1425], "Once");
-    a[1426] = b:New(1426, nil, nil, true); -- Realm First! Grand Master Skinner
+    a[1426] = b:New(1426, nil, nil, nil, true); -- Realm First! Grand Master Skinner
     O(a[1426], "Once");
-    a[1427] = b:New(1427, nil, nil, true); -- Realm First! Grand Master Tailor
+    a[1427] = b:New(1427, nil, nil, nil, true); -- Realm First! Grand Master Tailor
     O(a[1427], "Once");
     a[1428] = b:New(1428); -- Mine Sweeper
     a[1436] = b:New(1436); -- Friends In High Places
     O(a[1436]);
     a[1457] = b:New(1457); -- Explore Crystalsong Forest
-    a[1463] = b:New(1463, nil, nil, true); -- Realm First! Northrend Vanguard
+    a[1463] = b:New(1463, nil, nil, nil, true); -- Realm First! Northrend Vanguard
     O(a[1463], "Once");
-    a[1502] = b:New(1502, fac.Horde, 202); -- Quick Cap
+    a[1502] = b:New(1502, fac.Horde, 202, true); -- Quick Cap
     a[1516] = b:New(1516); -- Accomplished Angler
     a[1517] = b:New(1517); -- Northrend Angler
     a[1552] = b:New(1552); -- Frenzied Firecracker
@@ -873,29 +873,29 @@ function exportedAchievements.Load(a, t)
     a[1704] = b:New(1704); -- I Pitied The Fool
     a[1705] = b:New(1705); -- Clockwork Rocket Bot
     a[1706] = b:New(1706); -- Crashin' Thrashin' Racer
-    a[1717] = b:New(1717); -- Wintergrasp Victory
-    a[1718] = b:New(1718); -- Wintergrasp Veteran
+    a[1717] = b:New(1717, nil, nil, true); -- Wintergrasp Victory
+    a[1718] = b:New(1718, nil, nil, true); -- Wintergrasp Veteran
     a[1721] = b:New(1721); -- Archavon the Stone Watcher (25 player)
     a[1722] = b:New(1722); -- Archavon the Stone Watcher (10 player)
-    a[1723] = b:New(1723); -- Vehicular Gnomeslaughter
-    a[1727] = b:New(1727); -- Leaning Tower
-    a[1737] = b:New(1737, fac.Alliance, 2476); -- Destruction Derby
-    a[1751] = b:New(1751); -- Didn't Stand a Chance
-    a[1752] = b:New(1752); -- Master of Wintergrasp
-    a[1755] = b:New(1755); -- Within Our Grasp
-    a[1757] = b:New(1757, fac.Alliance, 2200); -- Defense of the Ancients
+    a[1723] = b:New(1723, nil, nil, true); -- Vehicular Gnomeslaughter
+    a[1727] = b:New(1727, nil, nil, true); -- Leaning Tower
+    a[1737] = b:New(1737, fac.Alliance, 2476, true); -- Destruction Derby
+    a[1751] = b:New(1751, nil, nil, true); -- Didn't Stand a Chance
+    a[1752] = b:New(1752, nil, nil, true); -- Master of Wintergrasp
+    a[1755] = b:New(1755, nil, nil, true); -- Within Our Grasp
+    a[1757] = b:New(1757, fac.Alliance, 2200, true); -- Defense of the Ancients
     O(a[1757], "From", "Version", "030003", "Before", "Version", "080001");
-    a[1761] = b:New(1761); -- The Dapper Sapper
+    a[1761] = b:New(1761, nil, nil, true); -- The Dapper Sapper
     O(a[1761], "From", "Version", "030003", "Before", "Version", "080001");
-    a[1762] = b:New(1762, fac.Alliance, 2192); -- Not Even a Scratch
+    a[1762] = b:New(1762, fac.Alliance, 2192, true); -- Not Even a Scratch
     O(a[1762], "From", "Version", "030003", "Before", "Version", "080001");
-    a[1763] = b:New(1763); -- Artillery Veteran
+    a[1763] = b:New(1763, nil, nil, true); -- Artillery Veteran
     O(a[1763], "From", "Version", "030003", "Before", "Version", "080001");
-    a[1764] = b:New(1764); -- Drop It!
+    a[1764] = b:New(1764, nil, nil, true); -- Drop it!
     O(a[1764], "From", "Version", "030003", "Before", "Version", "080001");
-    a[1765] = b:New(1765); -- Steady Hands
+    a[1765] = b:New(1765, nil, nil, true); -- Steady Hands
     O(a[1765], "From", "Version", "030003", "Before", "Version", "080001");
-    a[1766] = b:New(1766); -- Ancient Protector
+    a[1766] = b:New(1766, nil, nil, true); -- Ancient Protector
     O(a[1766], "From", "Version", "030003", "Before", "Version", "080001");
     a[1777] = b:New(1777); -- The Northrend Gourmet
     a[1778] = b:New(1778); -- The Northrend Gourmet
@@ -911,7 +911,7 @@ function exportedAchievements.Load(a, t)
     a[1790] = b:New(1790); -- "Hail To The King, Baby"
     a[1791] = b:New(1791); -- Home Alone
     a[1792] = b:New(1792); -- "Aw, Isn't It Cute?"
-    a[1793] = b:New(1793); -- For the Children
+    a[1793] = b:New(1793); -- For The Children
     a[1795] = b:New(1795); -- Lunch Lady
     a[1796] = b:New(1796); -- Short Order Cook
     a[1797] = b:New(1797); -- Chef de Partie
@@ -926,8 +926,8 @@ function exportedAchievements.Load(a, t)
     a[1834] = b:New(1834); -- Lightning Struck
     a[1836] = b:New(1836); -- Old Crafty
     a[1837] = b:New(1837); -- Old Ironjaw
-    a[1856] = b:New(1856); -- Make Quick Werk of Him (10 player)
-    a[1857] = b:New(1857); -- Make Quick Werk of Him (25 player)
+    a[1856] = b:New(1856); -- Make Quick Werk Of Him (10 player)
+    a[1857] = b:New(1857); -- Make Quick Werk Of Him (25 player)
     a[1858] = b:New(1858); -- Arachnophobia (10 player)
     a[1859] = b:New(1859); -- Arachnophobia (25 player)
     a[1860] = b:New(1860); -- Gotta Go!
@@ -937,13 +937,13 @@ function exportedAchievements.Load(a, t)
     a[1866] = b:New(1866); -- Good Grief
     a[1867] = b:New(1867); -- Timely Death
     a[1868] = b:New(1868); -- Make It Count
-    a[1869] = b:New(1869); -- A Poke in the Eye (10 player)
-    a[1870] = b:New(1870); -- A Poke in the Eye (25 player)
+    a[1869] = b:New(1869); -- A Poke In The Eye (10 player)
+    a[1870] = b:New(1870); -- A Poke In The Eye (25 player)
     a[1871] = b:New(1871); -- Experienced Drake Rider
     a[1872] = b:New(1872); -- Zombiefest!
     a[1873] = b:New(1873); -- Lodi Dodi We Loves the Skadi
-    a[1874] = b:New(1874); -- You Don't Have an Eternity (10 player)
-    a[1875] = b:New(1875); -- You Don't Have an Eternity (25 player)
+    a[1874] = b:New(1874); -- You Don't Have An Eternity (10 player)
+    a[1875] = b:New(1875); -- You Don't Have An Eternity (25 player)
     a[1876] = b:New(1876); -- Besting the Black Dragonflight (10 player)
     a[1877] = b:New(1877); -- Less Is More (25 player)
     a[1919] = b:New(1919); -- On The Rocks
@@ -953,13 +953,13 @@ function exportedAchievements.Load(a, t)
     a[1958] = b:New(1958); -- I Smell A Giant Rat
     a[1996] = b:New(1996); -- The Safety Dance (10 player)
     a[1997] = b:New(1997); -- Momma Said Knock You Out (10 player)
-    a[1998] = b:New(1998); -- Cooking Award
-    a[1999] = b:New(1999); -- 10 Cooking Awards
-    a[2000] = b:New(2000); -- 25 Cooking Awards
-    a[2001] = b:New(2001); -- 50 Cooking Awards
-    a[2002] = b:New(2002); -- 100 Cooking Awards
-    a[2016] = b:New(2016, fac.Alliance, 2017); -- Grizzled Veteran
-    a[2017] = b:New(2017, fac.Horde, 2016); -- Grizzled Veteran
+    a[1998] = b:New(1998); -- Dalaran Cooking Award
+    a[1999] = b:New(1999); -- 10 Dalaran Cooking Awards
+    a[2000] = b:New(2000); -- 25 Dalaran Cooking Awards
+    a[2001] = b:New(2001); -- 50 Dalaran Cooking Awards
+    a[2002] = b:New(2002); -- 100 Dalaran Cooking Awards
+    a[2016] = b:New(2016, fac.Alliance, 2017, true); -- Grizzled Veteran
+    a[2017] = b:New(2017, fac.Horde, 2016, true); -- Grizzled Veteran
     a[2018] = b:New(2018); -- Timear Foresees
     O(a[2018], "From", "Version", "030003", "Before", "Version", "030300");
     a[2019] = b:New(2019); -- Proof of Demise
@@ -991,25 +991,25 @@ function exportedAchievements.Load(a, t)
     a[2078] = b:New(2078); -- Traveler's Tundra Mammoth
     a[2079] = b:New(2079); -- Tabard of the Protector
     O(a[2079]);
-    a[2080] = b:New(2080); -- Black War Mammoth
+    a[2080] = b:New(2080, nil, nil, true); -- Black War Mammoth
     a[2081] = b:New(2081); -- Grand Black War Mammoth
     a[2082] = b:New(2082); -- Ice Mammoth
     a[2083] = b:New(2083); -- Grand Ice Mammoth
     a[2084] = b:New(2084); -- Ring of the Kirin Tor
-    a[2085] = b:New(2085); -- 50 Stone Keeper's Shards
+    a[2085] = b:New(2085, nil, nil, true); -- 50 Stone Keeper's Shards
     O(a[2085], "From", "Version", "030003", "Before", "Version", "040001");
-    a[2086] = b:New(2086); -- 100 Stone Keeper's Shards
+    a[2086] = b:New(2086, nil, nil, true); -- 100 Stone Keeper's Shards
     O(a[2086], "From", "Version", "030003", "Before", "Version", "040001");
-    a[2087] = b:New(2087); -- 250 Stone Keeper's Shards
+    a[2087] = b:New(2087, nil, nil, true); -- 250 Stone Keeper's Shards
     O(a[2087], "From", "Version", "030003", "Before", "Version", "040001");
-    a[2088] = b:New(2088); -- 500 Stone Keeper's Shards
+    a[2088] = b:New(2088, nil, nil, true); -- 500 Stone Keeper's Shards
     O(a[2088], "From", "Version", "030003", "Before", "Version", "040001");
-    a[2089] = b:New(2089); -- 1000 Stone Keeper's Shards
+    a[2089] = b:New(2089, nil, nil, true); -- 1000 Stone Keeper's Shards
     O(a[2089], "From", "Version", "030003", "Before", "Version", "040001");
-    a[2090] = b:New(2090); -- Challenger
-    a[2091] = b:New(2091); -- Gladiator
-    a[2092] = b:New(2092); -- Duelist
-    a[2093] = b:New(2093); -- Rival
+    a[2090] = b:New(2090, nil, nil, true); -- Challenger
+    a[2091] = b:New(2091, nil, nil, true); -- Gladiator
+    a[2092] = b:New(2092, nil, nil, true); -- Duelist
+    a[2093] = b:New(2093, nil, nil, true); -- Rival
     a[2094] = b:New(2094); -- A Penny For Your Thoughts
     a[2095] = b:New(2095); -- Silver in the City
     a[2096] = b:New(2096); -- The Coin Master
@@ -1024,7 +1024,7 @@ function exportedAchievements.Load(a, t)
     a[2141] = b:New(2141); -- Stable Keeper
     a[2142] = b:New(2142); -- Filling Up The Barn
     a[2143] = b:New(2143); -- Leading the Cavalry
-    a[2144] = b:New(2144); -- "What a Long, Strange Trip It's Been"
+    a[2144] = b:New(2144); -- "What A Long, Strange Trip It's Been"
     a[2146] = b:New(2146); -- The Hundred Club (10 player)
     a[2147] = b:New(2147); -- The Hundred Club (25 player)
     a[2148] = b:New(2148); -- Denyin' the Scion (10 player)
@@ -1053,24 +1053,24 @@ function exportedAchievements.Load(a, t)
     O(a[2187], "From", "Version", "030003", "Before", "Version", "040003a");
     a[2188] = b:New(2188); -- Leeeeeeeeeeeeeroy!
     O(a[2188], "From", "Version", "030002", "Before", "Version", "060002");
-    a[2189] = b:New(2189); -- Artillery Expert
+    a[2189] = b:New(2189, nil, nil, true); -- Artillery Expert
     O(a[2189], "From", "Version", "030003", "Before", "Version", "080001");
-    a[2190] = b:New(2190); -- Drop It Now!
+    a[2190] = b:New(2190, nil, nil, true); -- Drop it now!
     O(a[2190], "From", "Version", "030003", "Before", "Version", "080001");
-    a[2191] = b:New(2191); -- Ancient Courtyard Protector
+    a[2191] = b:New(2191, nil, nil, true); -- Ancient Courtyard Protector
     O(a[2191], "From", "Version", "030003", "Before", "Version", "080001");
-    a[2192] = b:New(2192, fac.Horde, 1762); -- Not Even a Scratch
+    a[2192] = b:New(2192, fac.Horde, 1762, true); -- Not Even a Scratch
     O(a[2192], "From", "Version", "030003", "Before", "Version", "080001");
-    a[2193] = b:New(2193); -- Explosives Expert
+    a[2193] = b:New(2193, nil, nil, true); -- Explosives Expert
     O(a[2193], "From", "Version", "030003", "Before", "Version", "080001");
-    a[2194] = b:New(2194); -- Master of Strand of the Ancients
+    a[2194] = b:New(2194, nil, nil, true); -- Master of Strand of the Ancients
     O(a[2194], "From", "Version", "030003", "Before", "Version", "080001");
-    a[2199] = b:New(2199); -- Wintergrasp Ranger
-    a[2200] = b:New(2200, fac.Horde, 1757); -- Defense of the Ancients
+    a[2199] = b:New(2199, nil, nil, true); -- Wintergrasp Ranger
+    a[2200] = b:New(2200, fac.Horde, 1757, true); -- Defense of the Ancients
     O(a[2200], "From", "Version", "030003", "Before", "Version", "080001");
     a[2256] = b:New(2256); -- Northern Exposure
     a[2257] = b:New(2257); -- Frostbitten
-    a[2316] = b:New(2316); -- Brutal Nether Drake
+    a[2316] = b:New(2316, nil, nil, true); -- Brutal Nether Drake
     O(a[2316], "From", "PvP Season", 4, "Until", "PvP Season", 4);
     a[2336] = b:New(2336); -- Insane in the Membrane
     a[2357] = b:New(2357); -- Dreadsteed of Xoroth
@@ -1091,7 +1091,7 @@ function exportedAchievements.Load(a, t)
     a[2436] = b:New(2436); -- Desert Rose
     a[2456] = b:New(2456); -- Vampire Hunter
     O(a[2456], "From", "Version", "030002", "Until", "Version", "030002");
-    a[2476] = b:New(2476, fac.Horde, 1737); -- Destruction Derby
+    a[2476] = b:New(2476, fac.Horde, 1737, true); -- Destruction Derby
     a[2496] = b:New(2496); -- The Fifth Element
     O(a[2496], "From", "Version", "030002", "Before", "Version", "030008");
     a[2497] = b:New(2497, fac.Horde, 2419); -- Spring Fling
@@ -1367,13 +1367,13 @@ function exportedAchievements.Load(a, t)
     O(a[3076], "From", "Version", "030100", "Before", "Version", "070305");
     a[3077] = b:New(3077); -- Nine Lives (25 player)
     O(a[3077], "From", "Version", "030100", "Before", "Version", "070305");
-    a[3096] = b:New(3096); -- Deadly Gladiator's Frost Wyrm
+    a[3096] = b:New(3096, nil, nil, true); -- Deadly Gladiator's Frostwyrm
     O(a[3096], "From", "PvP Season", 5, "Until", "PvP Season", 5);
     a[3097] = b:New(3097); -- Dwarfageddon (10 player)
     O(a[3097], "From", "Version", "030100", "Before", "Version", "070305");
     a[3098] = b:New(3098); -- Dwarfageddon (25 player)
     O(a[3098], "From", "Version", "030100", "Before", "Version", "070305");
-    a[3117] = b:New(3117, nil, nil, true); -- Realm First! Death's Demise
+    a[3117] = b:New(3117, nil, nil, nil, true); -- Realm First! Death's Demise
     O(a[3117], "Once");
     a[3118] = b:New(3118); -- Lumberjacked (25 player)
     O(a[3118], "From", "Version", "030100", "Before", "Version", "070305");
@@ -1430,15 +1430,15 @@ function exportedAchievements.Load(a, t)
     a[3218] = b:New(3218); -- Turtles All the Way Down
     a[3237] = b:New(3237); -- Set Up Us the Bomb (25 player)
     O(a[3237], "From", "Version", "030100", "Before", "Version", "070305");
-    a[3259] = b:New(3259, nil, nil, true); -- Realm First! Celestial Defender
+    a[3259] = b:New(3259, nil, nil, nil, true); -- Realm First! Celestial Defender
     O(a[3259], "Once");
     a[3296] = b:New(3296); -- Cooking with Style
     a[3316] = b:New(3316); -- Herald of the Titans
-    a[3336] = b:New(3336); -- Deadly Gladiator
+    a[3336] = b:New(3336, nil, nil, true); -- Deadly Gladiator
     O(a[3336], "From", "PvP Season", 5, "Until", "PvP Season", 5);
     a[3356] = b:New(3356, fac.Alliance, 3357); -- Winterspring Frostsaber
     a[3357] = b:New(3357, fac.Horde, 3356); -- Venomhide Ravasaur
-    a[3436] = b:New(3436); -- Furious Gladiator
+    a[3436] = b:New(3436, nil, nil, true); -- Furious Gladiator
     O(a[3436], "From", "PvP Season", 6, "Until", "PvP Season", 6);
     a[3456] = b:New(3456); -- Dead Man's Party
     a[3457] = b:New(3457); -- The Captain's Booty
@@ -1458,21 +1458,21 @@ function exportedAchievements.Load(a, t)
     a[3582] = b:New(3582); -- Terokkar Turkey Time
     a[3596] = b:New(3596, fac.Alliance, 3597); -- Pilgrim's Progress
     a[3597] = b:New(3597, fac.Horde, 3596); -- Pilgrim's Progress
-    a[3618] = b:New(3618); -- Murkimus the Gladiator
+    a[3618] = b:New(3618, nil, nil, true); -- Murkimus the Gladiator
     O(a[3618], "Never");
     a[3636] = b:New(3636); -- Jade Tiger
     O(a[3636], "Never");
     a[3676] = b:New(3676, fac.Alliance, 3677); -- A Silver Confidant
     a[3677] = b:New(3677, fac.Horde, 3676); -- The Sunreavers
     a[3736] = b:New(3736); -- Pony Up!
-    a[3756] = b:New(3756); -- Furious Gladiator's Frost Wyrm
+    a[3756] = b:New(3756, nil, nil, true); -- Furious Gladiator's Frostwyrm
     O(a[3756], "From", "PvP Season", 6, "Until", "PvP Season", 6);
-    a[3757] = b:New(3757); -- Relentless Gladiator's Frost Wyrm
+    a[3757] = b:New(3757, nil, nil, true); -- Relentless Gladiator's Frostwyrm
     O(a[3757], "From", "PvP Season", 7, "Until", "PvP Season", 7);
-    a[3758] = b:New(3758); -- Relentless Gladiator
+    a[3758] = b:New(3758, nil, nil, true); -- Relentless Gladiator
     O(a[3758], "From", "PvP Season", 7, "Until", "PvP Season", 7);
-    a[3776] = b:New(3776); -- Isle of Conquest Victory
-    a[3777] = b:New(3777); -- Isle of Conquest Veteran
+    a[3776] = b:New(3776, nil, nil, true); -- Isle of Conquest Victory
+    a[3777] = b:New(3777, nil, nil, true); -- Isle of Conquest Veteran
     a[3778] = b:New(3778, fac.Horde, 4296); -- Trial of the Champion
     a[3797] = b:New(3797); -- Upper Back Pain (10 player)
     a[3798] = b:New(3798); -- Resilience Will Fix It (10 player)
@@ -1501,19 +1501,19 @@ function exportedAchievements.Load(a, t)
     a[3837] = b:New(3837); -- Koralon the Flame Watcher (25 player)
     a[3844] = b:New(3844); -- 1000 Dungeon & Raid Emblems
     O(a[3844], "From", "Version", "030200", "Before", "Version", "040003a");
-    a[3845] = b:New(3845); -- Isle of Conquest All-Star
-    a[3846] = b:New(3846, fac.Alliance, 4176); -- Resource Glut
-    a[3847] = b:New(3847); -- Four Car Garage
-    a[3848] = b:New(3848); -- A-bomb-inable
-    a[3849] = b:New(3849); -- A-bomb-ination
-    a[3850] = b:New(3850); -- Mowed Down
-    a[3851] = b:New(3851, fac.Alliance, 4177); -- Mine
-    a[3852] = b:New(3852); -- Cut the Blue Wire... No the Red Wire!
-    a[3853] = b:New(3853); -- All Over the Isle
-    a[3854] = b:New(3854); -- Back Door Job
-    a[3855] = b:New(3855); -- Glaive Grave
-    a[3856] = b:New(3856, fac.Alliance, 4256); -- Demolition Derby
-    a[3857] = b:New(3857, fac.Alliance, 3957); -- Master of Isle of Conquest
+    a[3845] = b:New(3845, nil, nil, true); -- Isle of Conquest All-Star
+    a[3846] = b:New(3846, fac.Alliance, 4176, true); -- Resource Glut
+    a[3847] = b:New(3847, nil, nil, true); -- Four Car Garage
+    a[3848] = b:New(3848, nil, nil, true); -- A-bomb-inable
+    a[3849] = b:New(3849, nil, nil, true); -- A-bomb-ination
+    a[3850] = b:New(3850, nil, nil, true); -- Mowed Down
+    a[3851] = b:New(3851, fac.Alliance, 4177, true); -- Mine
+    a[3852] = b:New(3852, nil, nil, true); -- Cut the Blue Wire... No the Red Wire!
+    a[3853] = b:New(3853, nil, nil, true); -- All Over the Isle
+    a[3854] = b:New(3854, nil, nil, true); -- Back Door Job
+    a[3855] = b:New(3855, nil, nil, true); -- Glaive Grave
+    a[3856] = b:New(3856, fac.Alliance, 4256, true); -- Demolition Derby
+    a[3857] = b:New(3857, fac.Alliance, 3957, true); -- Master of Isle of Conquest
     a[3896] = b:New(3896); -- Onyx Panther
     O(a[3896], "Never");
     a[3916] = b:New(3916); -- Call of the Crusade (25 player)
@@ -1521,12 +1521,12 @@ function exportedAchievements.Load(a, t)
     a[3918] = b:New(3918); -- Call of the Grand Crusade (10 player)
     a[3936] = b:New(3936); -- "Not One, But Two Jormungars (10 player)"
     a[3937] = b:New(3937); -- "Not One, But Two Jormungars (25 player)"
-    a[3957] = b:New(3957, fac.Horde, 3857); -- Master of Isle of Conquest
+    a[3957] = b:New(3957, fac.Horde, 3857, true); -- Master of Isle of Conquest
     a[3996] = b:New(3996); -- Three Sixty Pain Spike (10 player)
     a[3997] = b:New(3997); -- Three Sixty Pain Spike (25 player)
     a[4016] = b:New(4016); -- "Earth, Wind & Fire (10 player)"
     a[4017] = b:New(4017); -- "Earth, Wind & Fire (25 player)"
-    a[4078] = b:New(4078, nil, nil, true); -- Realm First! Grand Crusader
+    a[4078] = b:New(4078, nil, nil, nil, true); -- Realm First! Grand Crusader
     O(a[4078], "Once");
     a[4079] = b:New(4079, fac.Horde, 4156); -- A Tribute to Immortality
     O(a[4079], "From", "Version", "030200", "Before", "Version", "040003a");
@@ -1534,9 +1534,9 @@ function exportedAchievements.Load(a, t)
     O(a[4080], "From", "Version", "030200", "Before", "Version", "040003a");
     a[4156] = b:New(4156, fac.Alliance, 4079); -- A Tribute to Immortality
     O(a[4156], "From", "Version", "030200", "Before", "Version", "040003a");
-    a[4176] = b:New(4176, fac.Horde, 3846); -- Resource Glut
-    a[4177] = b:New(4177, fac.Horde, 3851); -- Mine
-    a[4256] = b:New(4256, fac.Horde, 3856); -- Demolition Derby
+    a[4176] = b:New(4176, fac.Horde, 3846, true); -- Resource Glut
+    a[4177] = b:New(4177, fac.Horde, 3851, true); -- Mine
+    a[4256] = b:New(4256, fac.Horde, 3856, true); -- Demolition Derby
     a[4296] = b:New(4296, fac.Alliance, 3778); -- Trial of the Champion
     a[4297] = b:New(4297, fac.Horde, 4298); -- Heroic: Trial of the Champion
     a[4298] = b:New(4298, fac.Alliance, 4297); -- Heroic: Trial of the Champion
@@ -1581,7 +1581,7 @@ function exportedAchievements.Load(a, t)
     a[4537] = b:New(4537); -- I've Gone and Made a Mess (10 player)
     a[4538] = b:New(4538); -- Dances with Oozes (10 player)
     a[4539] = b:New(4539); -- "Once Bitten, Twice Shy (10 player)"
-    a[4576] = b:New(4576, nil, nil, true); -- Realm First! Fall of the Lich King
+    a[4576] = b:New(4576, nil, nil, nil, true); -- Realm First! Fall of the Lich King
     O(a[4576], "Once");
     a[4577] = b:New(4577); -- Flu Shot Shortage (10 player)
     a[4578] = b:New(4578); -- "Nausea, Heartburn, Indigestion... (10 player)"
@@ -1596,9 +1596,9 @@ function exportedAchievements.Load(a, t)
     a[4596] = b:New(4596); -- The Sword in the Skull
     a[4597] = b:New(4597); -- The Frozen Throne (25 player)
     a[4598] = b:New(4598); -- The Ashen Verdict
-    a[4599] = b:New(4599); -- Wrathful Gladiator
+    a[4599] = b:New(4599, nil, nil, true); -- Wrathful Gladiator
     O(a[4599], "From", "PvP Season", 8, "Until", "PvP Season", 8);
-    a[4600] = b:New(4600); -- Wrathful Gladiator's Frost Wyrm
+    a[4600] = b:New(4600, nil, nil, true); -- Wrathful Gladiator's Frostwyrm
     O(a[4600], "From", "PvP Season", 8, "Until", "PvP Season", 8);
     a[4601] = b:New(4601); -- Been Waiting a Long Time for This (10 player)
     a[4602] = b:New(4602); -- Glory of the Icecrown Raider (10 player)
@@ -1756,27 +1756,27 @@ function exportedAchievements.Load(a, t)
     a[4982] = b:New(4982, fac.Horde, 4869); -- Sinking into Vashj'ir
     a[4995] = b:New(4995); -- Explore the Cape of Stranglethorn
     a[4996] = b:New(4996); -- Explore Southern Barrens
-    a[4998] = b:New(4998, nil, nil, true); -- Realm First! Level 85 Shaman
+    a[4998] = b:New(4998, nil, nil, nil, true); -- Realm First! Level 85 Shaman
     O(a[4998], "Once");
-    a[4999] = b:New(4999, nil, nil, true); -- Realm First! Level 85
+    a[4999] = b:New(4999, nil, nil, nil, true); -- Realm First! Level 85
     O(a[4999], "Once");
-    a[5000] = b:New(5000, nil, nil, true); -- Realm First! Level 85 Druid
+    a[5000] = b:New(5000, nil, nil, nil, true); -- Realm First! Level 85 Druid
     O(a[5000], "Once");
-    a[5001] = b:New(5001, nil, nil, true); -- Realm First! Level 85 Paladin
+    a[5001] = b:New(5001, nil, nil, nil, true); -- Realm First! Level 85 Paladin
     O(a[5001], "Once");
-    a[5002] = b:New(5002, nil, nil, true); -- Realm First! Level 85 Priest
+    a[5002] = b:New(5002, nil, nil, nil, true); -- Realm First! Level 85 Priest
     O(a[5002], "Once");
-    a[5003] = b:New(5003, nil, nil, true); -- Realm First! Level 85 Warlock
+    a[5003] = b:New(5003, nil, nil, nil, true); -- Realm First! Level 85 Warlock
     O(a[5003], "Once");
-    a[5004] = b:New(5004, nil, nil, true); -- Realm First! Level 85 Hunter
+    a[5004] = b:New(5004, nil, nil, nil, true); -- Realm First! Level 85 Hunter
     O(a[5004], "Once");
-    a[5005] = b:New(5005, nil, nil, true); -- Realm First! Level 85 Death Knight
+    a[5005] = b:New(5005, nil, nil, nil, true); -- Realm First! Level 85 Death Knight
     O(a[5005], "Once");
-    a[5006] = b:New(5006, nil, nil, true); -- Realm First! Level 85 Mage
+    a[5006] = b:New(5006, nil, nil, nil, true); -- Realm First! Level 85 Mage
     O(a[5006], "Once");
-    a[5007] = b:New(5007, nil, nil, true); -- Realm First! Level 85 Warrior
+    a[5007] = b:New(5007, nil, nil, nil, true); -- Realm First! Level 85 Warrior
     O(a[5007], "Once");
-    a[5008] = b:New(5008, nil, nil, true); -- Realm First! Level 85 Rogue
+    a[5008] = b:New(5008, nil, nil, nil, true); -- Realm First! Level 85 Rogue
     O(a[5008], "Once");
     a[5060] = b:New(5060); -- Heroic: Blackrock Caverns
     a[5061] = b:New(5061); -- Heroic: Throne of the Tides
@@ -1804,44 +1804,44 @@ function exportedAchievements.Load(a, t)
     a[5191] = b:New(5191); -- Tragedy in Three Acts
     a[5192] = b:New(5192); -- The Harder they Fall
     a[5193] = b:New(5193); -- Blue Streak
-    a[5208] = b:New(5208); -- Twin Peaking
-    a[5209] = b:New(5209); -- Twin Peaks Veteran
-    a[5210] = b:New(5210); -- Two-Timer
-    a[5211] = b:New(5211); -- Top Defender
-    a[5213] = b:New(5213, fac.Alliance, 5214); -- Soaring Spirits
-    a[5214] = b:New(5214, fac.Horde, 5213); -- Soaring Spirits
-    a[5215] = b:New(5215); -- Twin Peaks Perfection
-    a[5216] = b:New(5216); -- Peak Speed
-    a[5219] = b:New(5219, fac.Alliance, 5220); -- I'm in the White Lodge
-    a[5220] = b:New(5220, fac.Horde, 5219); -- I'm in the Black Lodge
-    a[5221] = b:New(5221, fac.Alliance, 5222); -- "Fire, Walk With Me"
-    a[5222] = b:New(5222, fac.Horde, 5221); -- "Fire, Walk With Me"
-    a[5223] = b:New(5223); -- Master of Twin Peaks
-    a[5226] = b:New(5226, fac.Alliance, 5227); -- Cloud Nine
-    a[5227] = b:New(5227, fac.Horde, 5226); -- Cloud Nine
-    a[5228] = b:New(5228, fac.Horde, 5229); -- Wild Hammering
-    a[5229] = b:New(5229, fac.Alliance, 5228); -- Drag a Maw
-    a[5230] = b:New(5230); -- Twin Peaks Mountaineer
-    a[5231] = b:New(5231, fac.Alliance, 5552); -- Double Jeopardy
-    a[5245] = b:New(5245); -- Battle for Gilneas Victory
-    a[5246] = b:New(5246); -- Battle for Gilneas Veteran
-    a[5247] = b:New(5247); -- Battle for Gilneas Perfection
-    a[5248] = b:New(5248); -- Bustin' Caps to Make It Haps
-    a[5249] = b:New(5249); -- One Two Three You Don't Know About Me
-    a[5250] = b:New(5250); -- Out of the Fog
-    a[5251] = b:New(5251); -- Not Your Average PUG'er
-    a[5252] = b:New(5252); -- Don't Get Cocky Kid
-    a[5253] = b:New(5253); -- Full Coverage
-    a[5254] = b:New(5254); -- Newbs to Plowshares
-    a[5255] = b:New(5255); -- Jugger Not
-    a[5256] = b:New(5256); -- Battle for Gilneas All-Star
-    a[5257] = b:New(5257); -- Battle for Gilneas Assassin
-    a[5258] = b:New(5258); -- Master of the Battle for Gilneas
-    a[5262] = b:New(5262); -- Double Rainbow
-    a[5266] = b:New(5266); -- Three's Company: 2400
-    a[5267] = b:New(5267); -- Three's Company: 2700
-    a[5268] = b:New(5268, fac.Alliance, 5269); -- In Service of the Alliance
-    a[5269] = b:New(5269, fac.Horde, 5268); -- In Service of the Horde
+    a[5208] = b:New(5208, nil, nil, true); -- Twin Peaking
+    a[5209] = b:New(5209, nil, nil, true); -- Twin Peaks Veteran
+    a[5210] = b:New(5210, nil, nil, true); -- Two-Timer
+    a[5211] = b:New(5211, nil, nil, true); -- Top Defender
+    a[5213] = b:New(5213, fac.Alliance, 5214, true); -- Soaring Spirits
+    a[5214] = b:New(5214, fac.Horde, 5213, true); -- Soaring Spirits
+    a[5215] = b:New(5215, nil, nil, true); -- Twin Peaks Perfection
+    a[5216] = b:New(5216, nil, nil, true); -- Peak Speed
+    a[5219] = b:New(5219, fac.Alliance, 5220, true); -- I'm in the White Lodge
+    a[5220] = b:New(5220, fac.Horde, 5219, true); -- I'm in the Black Lodge
+    a[5221] = b:New(5221, fac.Alliance, 5222, true); -- "Fire, Walk With Me"
+    a[5222] = b:New(5222, fac.Horde, 5221, true); -- "Fire, Walk With Me"
+    a[5223] = b:New(5223, nil, nil, true); -- Master of Twin Peaks
+    a[5226] = b:New(5226, fac.Alliance, 5227, true); -- Cloud Nine
+    a[5227] = b:New(5227, fac.Horde, 5226, true); -- Cloud Nine
+    a[5228] = b:New(5228, fac.Horde, 5229, true); -- Wild Hammering
+    a[5229] = b:New(5229, fac.Alliance, 5228, true); -- Drag a Maw
+    a[5230] = b:New(5230, nil, nil, true); -- Twin Peaks Mountaineer
+    a[5231] = b:New(5231, fac.Alliance, 5552, true); -- Double Jeopardy
+    a[5245] = b:New(5245, nil, nil, true); -- Battle for Gilneas Victory
+    a[5246] = b:New(5246, nil, nil, true); -- Battle for Gilneas Veteran
+    a[5247] = b:New(5247, nil, nil, true); -- Battle for Gilneas Perfection
+    a[5248] = b:New(5248, nil, nil, true); -- Bustin' Caps to Make It Haps
+    a[5249] = b:New(5249, nil, nil, true); -- One Two Three You Don't Know About Me
+    a[5250] = b:New(5250, nil, nil, true); -- Out of the Fog
+    a[5251] = b:New(5251, nil, nil, true); -- Not Your Average PUG'er
+    a[5252] = b:New(5252, nil, nil, true); -- Don't Get Cocky Kid
+    a[5253] = b:New(5253, nil, nil, true); -- Full Coverage
+    a[5254] = b:New(5254, nil, nil, true); -- Newbs to Plowshares
+    a[5255] = b:New(5255, nil, nil, true); -- Jugger Not
+    a[5256] = b:New(5256, nil, nil, true); -- Battle for Gilneas All-Star
+    a[5257] = b:New(5257, nil, nil, true); -- Battle for Gilneas Assassin
+    a[5258] = b:New(5258, nil, nil, true); -- Master of the Battle for Gilneas
+    a[5262] = b:New(5262, nil, nil, true); -- Double Rainbow
+    a[5266] = b:New(5266, nil, nil, true); -- Three's Company: 2400
+    a[5267] = b:New(5267, nil, nil, true); -- Three's Company: 2700
+    a[5268] = b:New(5268, fac.Alliance, 5269, true); -- In Service of the Alliance
+    a[5269] = b:New(5269, fac.Horde, 5268, true); -- In Service of the Horde
     a[5281] = b:New(5281); -- Crushing Bones and Cracking Skulls
     a[5282] = b:New(5282); -- Arrested Development
     a[5283] = b:New(5283); -- Too Hot to Handle
@@ -1879,47 +1879,47 @@ function exportedAchievements.Load(a, t)
     a[5319] = b:New(5319, fac.Horde, 5318); -- "20,000 Leagues Under the Sea"
     a[5320] = b:New(5320, fac.Alliance, 5321); -- King of the Mountain
     a[5321] = b:New(5321, fac.Horde, 5320); -- King of the Mountain
-    a[5322] = b:New(5322, fac.Alliance, 5323); -- In Service of the Alliance
-    a[5323] = b:New(5323, fac.Horde, 5322); -- In Service of the Horde
-    a[5324] = b:New(5324, fac.Horde, 5327); -- In Service of the Horde
-    a[5325] = b:New(5325, fac.Horde, 5328); -- Veteran of the Horde
-    a[5326] = b:New(5326, fac.Horde, 5329); -- Warbringer of the Horde
-    a[5327] = b:New(5327, fac.Alliance, 5324); -- In Service of the Alliance
-    a[5328] = b:New(5328, fac.Alliance, 5325); -- Veteran of the Alliance
-    a[5329] = b:New(5329, fac.Alliance, 5326); -- Warbound Veteran of the Alliance
-    a[5330] = b:New(5330, fac.Alliance, 5345); -- Private
-    a[5331] = b:New(5331, fac.Alliance, 5346); -- Corporal
-    a[5332] = b:New(5332, fac.Alliance, 5347); -- Sergeant
-    a[5333] = b:New(5333, fac.Alliance, 5348); -- Master Sergeant
-    a[5334] = b:New(5334, fac.Alliance, 5349); -- Sergeant Major
-    a[5335] = b:New(5335, fac.Alliance, 5350); -- Knight
-    a[5336] = b:New(5336, fac.Alliance, 5351); -- Knight-Lieutenant
-    a[5337] = b:New(5337, fac.Alliance, 5352); -- Knight-Captain
-    a[5338] = b:New(5338, fac.Horde, 5359); -- Centurion
-    a[5339] = b:New(5339, fac.Alliance, 5353); -- Lieutenant Commander
-    a[5340] = b:New(5340, fac.Alliance, 5354); -- Commander
-    a[5341] = b:New(5341, fac.Alliance, 5355); -- Marshal
-    a[5342] = b:New(5342, fac.Horde, 5357); -- Warlord
-    a[5343] = b:New(5343, fac.Alliance, 5356); -- Grand Marshal
-    a[5344] = b:New(5344, fac.Alliance, 5358); -- Hero of the Alliance: Vicious
+    a[5322] = b:New(5322, fac.Alliance, 5323, true); -- In Service of the Alliance
+    a[5323] = b:New(5323, fac.Horde, 5322, true); -- In Service of the Horde
+    a[5324] = b:New(5324, fac.Horde, 5327, true); -- In Service of the Horde
+    a[5325] = b:New(5325, fac.Horde, 5328, true); -- Veteran of the Horde
+    a[5326] = b:New(5326, fac.Horde, 5329, true); -- Warbringer of the Horde
+    a[5327] = b:New(5327, fac.Alliance, 5324, true); -- In Service of the Alliance
+    a[5328] = b:New(5328, fac.Alliance, 5325, true); -- Veteran of the Alliance
+    a[5329] = b:New(5329, fac.Alliance, 5326, true); -- Warbound Veteran of the Alliance
+    a[5330] = b:New(5330, fac.Alliance, 5345, true); -- Private
+    a[5331] = b:New(5331, fac.Alliance, 5346, true); -- Corporal
+    a[5332] = b:New(5332, fac.Alliance, 5347, true); -- Sergeant
+    a[5333] = b:New(5333, fac.Alliance, 5348, true); -- Master Sergeant
+    a[5334] = b:New(5334, fac.Alliance, 5349, true); -- Sergeant Major
+    a[5335] = b:New(5335, fac.Alliance, 5350, true); -- Knight
+    a[5336] = b:New(5336, fac.Alliance, 5351, true); -- Knight-Lieutenant
+    a[5337] = b:New(5337, fac.Alliance, 5352, true); -- Knight-Captain
+    a[5338] = b:New(5338, fac.Horde, 5359, true); -- Centurion
+    a[5339] = b:New(5339, fac.Alliance, 5353, true); -- Lieutenant Commander
+    a[5340] = b:New(5340, fac.Alliance, 5354, true); -- Commander
+    a[5341] = b:New(5341, fac.Alliance, 5355, true); -- Marshal
+    a[5342] = b:New(5342, fac.Horde, 5357, true); -- Warlord
+    a[5343] = b:New(5343, fac.Alliance, 5356, true); -- Grand Marshal
+    a[5344] = b:New(5344, fac.Alliance, 5358, true); -- Hero of the Alliance: Vicious
     O(a[5344], "From", "PvP Season", 9, "Until", "PvP Season", 9);
-    a[5345] = b:New(5345, fac.Horde, 5330); -- Scout
-    a[5346] = b:New(5346, fac.Horde, 5331); -- Grunt
-    a[5347] = b:New(5347, fac.Horde, 5332); -- Sergeant
-    a[5348] = b:New(5348, fac.Horde, 5333); -- Senior Sergeant
-    a[5349] = b:New(5349, fac.Horde, 5334); -- First Sergeant
-    a[5350] = b:New(5350, fac.Horde, 5335); -- Stone Guard
-    a[5351] = b:New(5351, fac.Horde, 5336); -- Blood Guard
-    a[5352] = b:New(5352, fac.Horde, 5337); -- Legionnaire
-    a[5353] = b:New(5353, fac.Horde, 5339); -- Champion
-    a[5354] = b:New(5354, fac.Horde, 5340); -- Lieutenant General
-    a[5355] = b:New(5355, fac.Horde, 5341); -- General
-    a[5356] = b:New(5356, fac.Horde, 5343); -- High Warlord
-    a[5357] = b:New(5357, fac.Alliance, 5342); -- Field Marshal
-    a[5358] = b:New(5358, fac.Horde, 5344); -- Hero of the Horde: Vicious
+    a[5345] = b:New(5345, fac.Horde, 5330, true); -- Scout
+    a[5346] = b:New(5346, fac.Horde, 5331, true); -- Grunt
+    a[5347] = b:New(5347, fac.Horde, 5332, true); -- Sergeant
+    a[5348] = b:New(5348, fac.Horde, 5333, true); -- Senior Sergeant
+    a[5349] = b:New(5349, fac.Horde, 5334, true); -- First Sergeant
+    a[5350] = b:New(5350, fac.Horde, 5335, true); -- Stone Guard
+    a[5351] = b:New(5351, fac.Horde, 5336, true); -- Blood Guard
+    a[5352] = b:New(5352, fac.Horde, 5337, true); -- Legionnaire
+    a[5353] = b:New(5353, fac.Horde, 5339, true); -- Champion
+    a[5354] = b:New(5354, fac.Horde, 5340, true); -- Lieutenant General
+    a[5355] = b:New(5355, fac.Horde, 5341, true); -- General
+    a[5356] = b:New(5356, fac.Horde, 5343, true); -- High Warlord
+    a[5357] = b:New(5357, fac.Alliance, 5342, true); -- Field Marshal
+    a[5358] = b:New(5358, fac.Horde, 5344, true); -- Hero of the Horde: Vicious
     O(a[5358], "From", "PvP Season", 9, "Until", "PvP Season", 9);
-    a[5359] = b:New(5359, fac.Alliance, 5338); -- Knight-Champion
-    a[5363] = b:New(5363); -- 250000 Honorable Kills
+    a[5359] = b:New(5359, fac.Alliance, 5338, true); -- Knight-Champion
+    a[5363] = b:New(5363, nil, nil, true); -- 250000 Honorable Kills
     a[5366] = b:New(5366); -- Ready for Raiding
     a[5367] = b:New(5367); -- Rat Pack
     a[5368] = b:New(5368); -- Prototype Prodigy
@@ -1935,43 +1935,43 @@ function exportedAchievements.Load(a, t)
     a[5376] = b:New(5376, fac.Horde, 5375); -- Hellscream's Reach
     a[5377] = b:New(5377); -- Collector's Edition: Lil' Deathwing
     a[5378] = b:New(5378); -- Deathy
-    a[5381] = b:New(5381, nil, nil, true); -- Realm First! Illustrious Alchemist
+    a[5381] = b:New(5381, nil, nil, nil, true); -- Realm First! Illustrious Alchemist
     O(a[5381], "Once");
-    a[5382] = b:New(5382, nil, nil, true); -- Realm First! Illustrious Blacksmith
+    a[5382] = b:New(5382, nil, nil, nil, true); -- Realm First! Illustrious Blacksmith
     O(a[5382], "Once");
-    a[5383] = b:New(5383, nil, nil, true); -- Realm First! Illustrious Cook
+    a[5383] = b:New(5383, nil, nil, nil, true); -- Realm First! Illustrious Cook
     O(a[5383], "Once");
-    a[5384] = b:New(5384, nil, nil, true); -- Realm First! Illustrious Enchanter
+    a[5384] = b:New(5384, nil, nil, nil, true); -- Realm First! Illustrious Enchanter
     O(a[5384], "Once");
-    a[5385] = b:New(5385, nil, nil, true); -- Realm First! Illustrious Engineer
+    a[5385] = b:New(5385, nil, nil, nil, true); -- Realm First! Illustrious Engineer
     O(a[5385], "Once");
-    a[5386] = b:New(5386, nil, nil, true); -- Realm First! Illustrious Medic
+    a[5386] = b:New(5386, nil, nil, nil, true); -- Realm First! Illustrious Medic
     O(a[5386], "Once");
-    a[5387] = b:New(5387, nil, nil, true); -- Realm First! Illustrious Angler
+    a[5387] = b:New(5387, nil, nil, nil, true); -- Realm First! Illustrious Angler
     O(a[5387], "Once");
-    a[5388] = b:New(5388, nil, nil, true); -- Realm First! Illustrious Herbalist
+    a[5388] = b:New(5388, nil, nil, nil, true); -- Realm First! Illustrious Herbalist
     O(a[5388], "Once");
-    a[5389] = b:New(5389, nil, nil, true); -- Realm First! Illustrious Scribe
+    a[5389] = b:New(5389, nil, nil, nil, true); -- Realm First! Illustrious Scribe
     O(a[5389], "Once");
-    a[5390] = b:New(5390, nil, nil, true); -- Realm First! Illustrious Jewelcrafter
+    a[5390] = b:New(5390, nil, nil, nil, true); -- Realm First! Illustrious Jewelcrafter
     O(a[5390], "Once");
-    a[5391] = b:New(5391, nil, nil, true); -- Realm First! Illustrious Leatherworker
+    a[5391] = b:New(5391, nil, nil, nil, true); -- Realm First! Illustrious Leatherworker
     O(a[5391], "Once");
-    a[5392] = b:New(5392, nil, nil, true); -- Realm First! Illustrious Miner
+    a[5392] = b:New(5392, nil, nil, nil, true); -- Realm First! Illustrious Miner
     O(a[5392], "Once");
-    a[5393] = b:New(5393, nil, nil, true); -- Realm First! Illustrious Skinner
+    a[5393] = b:New(5393, nil, nil, nil, true); -- Realm First! Illustrious Skinner
     O(a[5393], "Once");
-    a[5394] = b:New(5394, nil, nil, true); -- Realm First! Illustrious Tailor
+    a[5394] = b:New(5394, nil, nil, nil, true); -- Realm First! Illustrious Tailor
     O(a[5394], "Once");
-    a[5395] = b:New(5395, nil, nil, true); -- Realm First! Grand Master Archaeologist
+    a[5395] = b:New(5395, nil, nil, nil, true); -- Realm First! Grand Master Archaeologist
     O(a[5395], "Once");
-    a[5396] = b:New(5396, nil, nil, true); -- Realm First! Illustrious Archaeologist
+    a[5396] = b:New(5396, nil, nil, nil, true); -- Realm First! Illustrious Archaeologist
     O(a[5396], "Once");
-    a[5412] = b:New(5412); -- Tol Barad Victory
-    a[5415] = b:New(5415); -- Tower Plower
+    a[5412] = b:New(5412, nil, nil, true); -- Tol Barad Victory
+    a[5415] = b:New(5415, nil, nil, true); -- Tower Plower
     a[5416] = b:New(5416); -- Pit Lord Argaloth
-    a[5417] = b:New(5417, fac.Alliance, 5418); -- Tol Barad Veteran
-    a[5418] = b:New(5418, fac.Horde, 5417); -- Tol Barad Veteran
+    a[5417] = b:New(5417, fac.Alliance, 5418, true); -- Tol Barad Veteran
+    a[5418] = b:New(5418, fac.Horde, 5417, true); -- Tol Barad Veteran
     a[5442] = b:New(5442); -- Full Caravan
     a[5443] = b:New(5443); -- E'ko Madness
     a[5444] = b:New(5444); -- "Ready, Set, Goat!"
@@ -2003,11 +2003,11 @@ function exportedAchievements.Load(a, t)
     a[5481] = b:New(5481, fac.Alliance, 5482); -- Wildhammer Tour of Duty
     a[5482] = b:New(5482, fac.Horde, 5481); -- Dragonmaw Tour of Duty
     a[5483] = b:New(5483); -- Bounce
-    a[5486] = b:New(5486); -- Tol Barad All-Star
-    a[5487] = b:New(5487); -- Tol Barad Saboteur
-    a[5488] = b:New(5488); -- Towers of Power
-    a[5489] = b:New(5489, fac.Alliance, 5490); -- Master of Tol Barad
-    a[5490] = b:New(5490, fac.Horde, 5489); -- Master of Tol Barad
+    a[5486] = b:New(5486, nil, nil, true); -- Tol Barad All-Star
+    a[5487] = b:New(5487, nil, nil, true); -- Tol Barad Saboteur
+    a[5488] = b:New(5488, nil, nil, true); -- Towers of Power
+    a[5489] = b:New(5489, fac.Alliance, 5490, true); -- Master of Tol Barad
+    a[5490] = b:New(5490, fac.Horde, 5489, true); -- Master of Tol Barad
     a[5501] = b:New(5501, fac.Horde, 4873); -- Fading into Twilight
     a[5503] = b:New(5503); -- Pardon Denied
     a[5504] = b:New(5504); -- To the Ground!
@@ -2027,18 +2027,18 @@ function exportedAchievements.Load(a, t)
     O(a[5537], "From", "Version", "050005", "Before", "Version", "060002");
     a[5538] = b:New(5538); -- "50,000 Valor Points"
     O(a[5538], "From", "Version", "050005", "Before", "Version", "060002");
-    a[5539] = b:New(5539); -- "50,000 Conquest Points"
+    a[5539] = b:New(5539, nil, nil, true); -- "50,000 Conquest Points"
     O(a[5539], "From", "PvP Season", 5, "Until", "PvP Season", 18);
-    a[5540] = b:New(5540); -- "25,000 Conquest Points"
+    a[5540] = b:New(5540, nil, nil, true); -- "25,000 Conquest Points"
     O(a[5540], "From", "PvP Season", 5, "Until", "PvP Season", 18);
-    a[5541] = b:New(5541); -- 5000 Conquest Points
+    a[5541] = b:New(5541, nil, nil, true); -- 5000 Conquest Points
     O(a[5541], "From", "PvP Season", 5, "Until", "PvP Season", 18);
-    a[5542] = b:New(5542); -- 1000 Conquest Points
+    a[5542] = b:New(5542, nil, nil, true); -- 1000 Conquest Points
     O(a[5542], "From", "PvP Season", 5, "Until", "PvP Season", 18);
     a[5546] = b:New(5546); -- Glutton for Icy Punishment
     a[5547] = b:New(5547); -- Glutton for Shadowy Punishment
     a[5548] = b:New(5548); -- To All the Squirrels Who Cared for Me
-    a[5552] = b:New(5552, fac.Horde, 5231); -- Double Jeopardy
+    a[5552] = b:New(5552, fac.Horde, 5231, true); -- Double Jeopardy
     a[5718] = b:New(5718, fac.Alliance, 5719); -- Just Another Day in Tol Barad
     a[5719] = b:New(5719, fac.Horde, 5718); -- Just Another Day in Tol Barad
     a[5723] = b:New(5723); -- 50 Exalted Reputations
@@ -2075,8 +2075,8 @@ function exportedAchievements.Load(a, t)
     a[5810] = b:New(5810); -- Not an Ambi-Turner
     a[5813] = b:New(5813); -- Do a Barrel Roll!
     a[5821] = b:New(5821); -- Death from Above
-    a[5823] = b:New(5823, fac.Alliance, 5824); -- Veteran of the Alliance II
-    a[5824] = b:New(5824, fac.Horde, 5823); -- Veteran of the Horde II
+    a[5823] = b:New(5823, fac.Alliance, 5824, true); -- Veteran of the Alliance II
+    a[5824] = b:New(5824, fac.Horde, 5823, true); -- Veteran of the Horde II
     a[5827] = b:New(5827); -- Avengers of Hyjal
     a[5828] = b:New(5828); -- Glory of the Firelands Raider
     a[5829] = b:New(5829); -- Bucket List
@@ -2122,9 +2122,9 @@ function exportedAchievements.Load(a, t)
     a[5877] = b:New(5877); -- Menagerie
     a[5879] = b:New(5879); -- Veteran of the Molten Front
     a[5995] = b:New(5995); -- Moon Guard
-    a[6002] = b:New(6002); -- Vicious Gladiator
+    a[6002] = b:New(6002, nil, nil, true); -- Vicious Gladiator
     O(a[6002], "From", "PvP Season", 9, "Until", "PvP Season", 9);
-    a[6003] = b:New(6003); -- Vicious Gladiator's Twilight Drake
+    a[6003] = b:New(6003, nil, nil, true); -- Vicious Gladiator's Twilight Drake
     O(a[6003], "From", "PvP Season", 9, "Until", "PvP Season", 9);
     a[6006] = b:New(6006); -- Elders of Cataclysm
     a[6007] = b:New(6007, fac.Alliance, 6010); -- Extinguishing Northrend
@@ -2171,7 +2171,7 @@ function exportedAchievements.Load(a, t)
     a[6117] = b:New(6117); -- Heroic: End Time
     a[6118] = b:New(6118); -- Heroic: Well of Eternity
     a[6119] = b:New(6119); -- Heroic: Hour of Twilight
-    a[6124] = b:New(6124); -- Ruthless Gladiator
+    a[6124] = b:New(6124, nil, nil, true); -- Ruthless Gladiator
     O(a[6124], "From", "PvP Season", 10, "Until", "PvP Season", 10);
     a[6127] = b:New(6127); -- Lazy Eye
     a[6128] = b:New(6128); -- Ping Pong Champion
@@ -2192,11 +2192,11 @@ function exportedAchievements.Load(a, t)
     O(a[6193], "From", "Version", "050005", "Before", "Version", "090001");
     a[6300] = b:New(6300, fac.Alliance, 6534); -- Upjade Complete
     a[6301] = b:New(6301); -- Rally the Valley
-    a[6316] = b:New(6316, fac.Alliance, 6317); -- Hero of the Alliance: Ruthless
+    a[6316] = b:New(6316, fac.Alliance, 6317, true); -- Hero of the Alliance: Ruthless
     O(a[6316], "From", "PvP Season", 10, "Until", "PvP Season", 10);
-    a[6317] = b:New(6317, fac.Horde, 6316); -- Hero of the Horde: Ruthless
+    a[6317] = b:New(6317, fac.Horde, 6316, true); -- Hero of the Horde: Ruthless
     O(a[6317], "From", "PvP Season", 10, "Until", "PvP Season", 10);
-    a[6322] = b:New(6322); -- Ruthless Gladiator's Twilight Drake
+    a[6322] = b:New(6322, nil, nil, true); -- Ruthless Gladiator's Twilight Drake
     O(a[6322], "From", "PvP Season", 10, "Until", "PvP Season", 10);
     a[6332] = b:New(6332); -- That Rabbit's Dynamite!
     a[6348] = b:New(6348); -- Mystically Superior
@@ -2219,7 +2219,7 @@ function exportedAchievements.Load(a, t)
     a[6402] = b:New(6402); -- Ling-Ting's Herbal Journey
     a[6420] = b:New(6420); -- Hopocalypse Now!
     a[6427] = b:New(6427); -- Mosh Pit
-    a[6433] = b:New(6433, nil, nil, true); -- Realm First! Challenge Conqueror: Gold
+    a[6433] = b:New(6433, nil, nil, nil, true); -- Realm First! Challenge Conqueror: Gold
     O(a[6433], "Once");
     a[6455] = b:New(6455); -- Show Me Your Moves!
     a[6456] = b:New(6456); -- Heroic: Stormstout Brewery
@@ -2240,9 +2240,9 @@ function exportedAchievements.Load(a, t)
     a[6485] = b:New(6485); -- Return to Sender
     a[6517] = b:New(6517); -- Extinction Event
     a[6518] = b:New(6518); -- I Heard You Like Amber...
-    a[6523] = b:New(6523, nil, nil, true); -- Realm First! Level 90 Shaman
+    a[6523] = b:New(6523, nil, nil, nil, true); -- Realm First! Level 90 Shaman
     O(a[6523], "Once");
-    a[6524] = b:New(6524, nil, nil, true); -- Realm First! Level 90
+    a[6524] = b:New(6524, nil, nil, nil, true); -- Realm First! Level 90
     O(a[6524], "Once");
     a[6531] = b:New(6531); -- Attention to Detail
     a[6534] = b:New(6534, fac.Horde, 6300); -- Upjade Complete
@@ -2293,11 +2293,11 @@ function exportedAchievements.Load(a, t)
     a[6592] = b:New(6592); -- Legendary Pet Battler
     a[6593] = b:New(6593); -- Experienced Pet Battler
     a[6594] = b:New(6594); -- Cat Fight!
-    a[6595] = b:New(6595); -- Pet Brawler
-    a[6596] = b:New(6596); -- Experienced Pet Brawler
-    a[6597] = b:New(6597); -- Master Pet Brawler
-    a[6598] = b:New(6598); -- Grand Master Pet Brawler
-    a[6599] = b:New(6599); -- Legendary Pet Brawler
+    a[6595] = b:New(6595, nil, nil, true); -- Pet Brawler
+    a[6596] = b:New(6596, nil, nil, true); -- Experienced Pet Brawler
+    a[6597] = b:New(6597, nil, nil, true); -- Master Pet Brawler
+    a[6598] = b:New(6598, nil, nil, true); -- Grand Master Pet Brawler
+    a[6599] = b:New(6599, nil, nil, true); -- Legendary Pet Brawler
     a[6600] = b:New(6600); -- Ultimate Trainer
     a[6601] = b:New(6601); -- Taming the Wild
     a[6602] = b:New(6602, fac.Horde, 6603); -- Taming Kalimdor
@@ -2317,7 +2317,7 @@ function exportedAchievements.Load(a, t)
     a[6616] = b:New(6616); -- Pandaria Tamer
     a[6618] = b:New(6618); -- On A Roll
     a[6619] = b:New(6619); -- Win Streak
-    a[6620] = b:New(6620); -- No Time To Heal
+    a[6620] = b:New(6620, nil, nil, true); -- No Time To Heal
     a[6621] = b:New(6621); -- Big City Pet Brawlin' - Horde
     a[6622] = b:New(6622); -- Big City Pet Brawler
     a[6671] = b:New(6671); -- Seeds of Doubt
@@ -2350,30 +2350,30 @@ function exportedAchievements.Load(a, t)
     a[6733] = b:New(6733); -- Heroic: Lei Shi
     a[6734] = b:New(6734); -- Heroic: Sha of Fear
     a[6736] = b:New(6736); -- What Does This Button Do?
-    a[6739] = b:New(6739); -- Silvershard Mines Victory
-    a[6740] = b:New(6740); -- Temple of Kotmogu Victory
-    a[6741] = b:New(6741); -- Cataclysmic Gladiator's Twilight Drake
+    a[6739] = b:New(6739, nil, nil, true); -- Silvershard Mines Victory
+    a[6740] = b:New(6740, nil, nil, true); -- Temple of Kotmogu Victory
+    a[6741] = b:New(6741, nil, nil, true); -- Cataclysmic Gladiator's Twilight Drake
     O(a[6741], "From", "PvP Season", 11, "Until", "PvP Season", 11);
     a[6742] = b:New(6742); -- 60 Exalted Reputations
-    a[6743] = b:New(6743, nil, nil, true); -- Realm First! Level 90 Druid
+    a[6743] = b:New(6743, nil, nil, nil, true); -- Realm First! Level 90 Druid
     O(a[6743], "Once");
-    a[6744] = b:New(6744, nil, nil, true); -- Realm First! Level 90 Paladin
+    a[6744] = b:New(6744, nil, nil, nil, true); -- Realm First! Level 90 Paladin
     O(a[6744], "Once");
-    a[6745] = b:New(6745, nil, nil, true); -- Realm First! Level 90 Priest
+    a[6745] = b:New(6745, nil, nil, nil, true); -- Realm First! Level 90 Priest
     O(a[6745], "Once");
-    a[6746] = b:New(6746, nil, nil, true); -- Realm First! Level 90 Warlock
+    a[6746] = b:New(6746, nil, nil, nil, true); -- Realm First! Level 90 Warlock
     O(a[6746], "Once");
-    a[6747] = b:New(6747, nil, nil, true); -- Realm First! Level 90 Hunter
+    a[6747] = b:New(6747, nil, nil, nil, true); -- Realm First! Level 90 Hunter
     O(a[6747], "Once");
-    a[6748] = b:New(6748, nil, nil, true); -- Realm First! Level 90 Death Knight
+    a[6748] = b:New(6748, nil, nil, nil, true); -- Realm First! Level 90 Death Knight
     O(a[6748], "Once");
-    a[6749] = b:New(6749, nil, nil, true); -- Realm First! Level 90 Mage
+    a[6749] = b:New(6749, nil, nil, nil, true); -- Realm First! Level 90 Mage
     O(a[6749], "Once");
-    a[6750] = b:New(6750, nil, nil, true); -- Realm First! Level 90 Warrior
+    a[6750] = b:New(6750, nil, nil, nil, true); -- Realm First! Level 90 Warrior
     O(a[6750], "Once");
-    a[6751] = b:New(6751, nil, nil, true); -- Realm First! Level 90 Rogue
+    a[6751] = b:New(6751, nil, nil, nil, true); -- Realm First! Level 90 Rogue
     O(a[6751], "Once");
-    a[6752] = b:New(6752, nil, nil, true); -- Realm First! Level 90 Monk
+    a[6752] = b:New(6752, nil, nil, nil, true); -- Realm First! Level 90 Monk
     O(a[6752], "Once");
     a[6753] = b:New(6753); -- Got My Mind On My Money
     a[6754] = b:New(6754); -- The Dark Heart of the Mogu
@@ -2394,7 +2394,7 @@ function exportedAchievements.Load(a, t)
     a[6826] = b:New(6826); -- 55 Exalted Reputations
     a[6827] = b:New(6827, fac.Horde, 6828); -- Pandaren Ambassador
     a[6828] = b:New(6828, fac.Alliance, 6827); -- Pandaren Ambassador
-    a[6829] = b:New(6829, nil, nil, true); -- Realm First! Pandaren Ambassador
+    a[6829] = b:New(6829, nil, nil, nil, true); -- Realm First! Pandaren Ambassador
     O(a[6829], "Once");
     a[6830] = b:New(6830); -- Professional Zen Master
     a[6835] = b:New(6835); -- Working For a Living
@@ -2416,39 +2416,39 @@ function exportedAchievements.Load(a, t)
     a[6856] = b:New(6856); -- Ballad of Liu Lang
     a[6857] = b:New(6857); -- Heart of the Mantid Swarm
     a[6858] = b:New(6858); -- What Is Worth Fighting For
-    a[6859] = b:New(6859, nil, nil, true); -- Realm First! Zen Master Alchemist
+    a[6859] = b:New(6859, nil, nil, nil, true); -- Realm First! Zen Master Alchemist
     O(a[6859], "Once");
-    a[6860] = b:New(6860, nil, nil, true); -- Realm First! Zen Master Blacksmith
+    a[6860] = b:New(6860, nil, nil, nil, true); -- Realm First! Zen Master Blacksmith
     O(a[6860], "Once");
-    a[6861] = b:New(6861, nil, nil, true); -- Realm First! Zen Master Cook
+    a[6861] = b:New(6861, nil, nil, nil, true); -- Realm First! Zen Master Cook
     O(a[6861], "Once");
-    a[6862] = b:New(6862, nil, nil, true); -- Realm First! Zen Master Enchanter
+    a[6862] = b:New(6862, nil, nil, nil, true); -- Realm First! Zen Master Enchanter
     O(a[6862], "Once");
-    a[6863] = b:New(6863, nil, nil, true); -- Realm First! Zen Master Engineer
+    a[6863] = b:New(6863, nil, nil, nil, true); -- Realm First! Zen Master Engineer
     O(a[6863], "Once");
-    a[6864] = b:New(6864, nil, nil, true); -- Realm First! Zen Master Medic
+    a[6864] = b:New(6864, nil, nil, nil, true); -- Realm First! Zen Master Medic
     O(a[6864], "Once");
-    a[6865] = b:New(6865, nil, nil, true); -- Realm First! Zen Master Angler
+    a[6865] = b:New(6865, nil, nil, nil, true); -- Realm First! Zen Master Angler
     O(a[6865], "Once");
-    a[6866] = b:New(6866, nil, nil, true); -- Realm First! Zen Master Herbalist
+    a[6866] = b:New(6866, nil, nil, nil, true); -- Realm First! Zen Master Herbalist
     O(a[6866], "Once");
-    a[6867] = b:New(6867, nil, nil, true); -- Realm First! Zen Master Scribe
+    a[6867] = b:New(6867, nil, nil, nil, true); -- Realm First! Zen Master Scribe
     O(a[6867], "Once");
-    a[6868] = b:New(6868, nil, nil, true); -- Realm First! Zen Master Jewelcrafter
+    a[6868] = b:New(6868, nil, nil, nil, true); -- Realm First! Zen Master Jewelcrafter
     O(a[6868], "Once");
-    a[6869] = b:New(6869, nil, nil, true); -- Realm First! Zen Master Leatherworker
+    a[6869] = b:New(6869, nil, nil, nil, true); -- Realm First! Zen Master Leatherworker
     O(a[6869], "Once");
-    a[6870] = b:New(6870, nil, nil, true); -- Realm First! Zen Master Miner
+    a[6870] = b:New(6870, nil, nil, nil, true); -- Realm First! Zen Master Miner
     O(a[6870], "Once");
-    a[6871] = b:New(6871, nil, nil, true); -- Realm First! Zen Master Skinner
+    a[6871] = b:New(6871, nil, nil, nil, true); -- Realm First! Zen Master Skinner
     O(a[6871], "Once");
-    a[6872] = b:New(6872, nil, nil, true); -- Realm First! Zen Master Tailor
+    a[6872] = b:New(6872, nil, nil, nil, true); -- Realm First! Zen Master Tailor
     O(a[6872], "Once");
-    a[6873] = b:New(6873, nil, nil, true); -- Realm First! Zen Master Archaeologist
+    a[6873] = b:New(6873, nil, nil, nil, true); -- Realm First! Zen Master Archaeologist
     O(a[6873], "Once");
     a[6874] = b:New(6874, fac.Alliance, 7509); -- Scenaturday
-    a[6882] = b:New(6882); -- Temple of Kotmogu Veteran
-    a[6883] = b:New(6883); -- Silvershard Mines Veteran
+    a[6882] = b:New(6882, nil, nil, true); -- Temple of Kotmogu Veteran
+    a[6883] = b:New(6883, nil, nil, true); -- Silvershard Mines Veteran
     a[6884] = b:New(6884); -- Temple of the Jade Serpent Challenger
     O(a[6884], "From", "Version", "050005", "Before", "Version", "060002");
     a[6885] = b:New(6885); -- Temple of the Jade Serpent: Bronze
@@ -2538,44 +2538,44 @@ function exportedAchievements.Load(a, t)
     a[6933] = b:New(6933); -- Who's Got Two Green Thumbs?
     a[6936] = b:New(6936); -- Candle in the Wind
     a[6937] = b:New(6937); -- Overzealous
-    a[6938] = b:New(6938); -- Cataclysmic Gladiator
+    a[6938] = b:New(6938, nil, nil, true); -- Cataclysmic Gladiator
     O(a[6938], "From", "PvP Season", 11, "Until", "PvP Season", 11);
-    a[6939] = b:New(6939, fac.Alliance, 6940); -- Hero of the Alliance: Cataclysmic
+    a[6939] = b:New(6939, fac.Alliance, 6940, true); -- Hero of the Alliance: Cataclysmic
     O(a[6939], "From", "PvP Season", 11, "Until", "PvP Season", 11);
-    a[6940] = b:New(6940, fac.Horde, 6939); -- Hero of the Horde: Cataclysmic
+    a[6940] = b:New(6940, fac.Horde, 6939, true); -- Hero of the Horde: Cataclysmic
     O(a[6940], "From", "PvP Season", 11, "Until", "PvP Season", 11);
-    a[6941] = b:New(6941, fac.Horde, 6942); -- Hero of the Horde
-    a[6942] = b:New(6942, fac.Alliance, 6941); -- Hero of the Alliance
+    a[6941] = b:New(6941, fac.Horde, 6942, true); -- Hero of the Horde
+    a[6942] = b:New(6942, fac.Alliance, 6941, true); -- Hero of the Alliance
     a[6943] = b:New(6943); -- Queuing Spree
     a[6945] = b:New(6945); -- Mantid Swarm
     a[6946] = b:New(6946); -- Empowered Spiritualist
-    a[6947] = b:New(6947); -- Four Square
-    a[6950] = b:New(6950); -- Powerball
+    a[6947] = b:New(6947, nil, nil, true); -- Four Square
+    a[6950] = b:New(6950, nil, nil, true); -- Powerball
     a[6954] = b:New(6954); -- Ahead of the Curve: Will of the Emperor
     O(a[6954], "From", "Version", "050004", "Before", "Version", "050200");
     a[6969] = b:New(6969); -- Explore Valley of the Four Winds
-    a[6970] = b:New(6970); -- Blackout
-    a[6971] = b:New(6971); -- I've Got the Power
-    a[6972] = b:New(6972); -- What is Best in Life?
-    a[6973] = b:New(6973); -- Can't Stop Won't Stop
+    a[6970] = b:New(6970, nil, nil, true); -- Blackout
+    a[6971] = b:New(6971, nil, nil, true); -- I've Got the Power
+    a[6972] = b:New(6972, nil, nil, true); -- What is Best in Life?
+    a[6973] = b:New(6973, nil, nil, true); -- Can't Stop Won't Stop
     a[6974] = b:New(6974); -- Pandaria Explorer
     a[6975] = b:New(6975); -- Explore Krasarang Wilds
     a[6976] = b:New(6976); -- Explore Kun-Lai Summit
     a[6977] = b:New(6977); -- Explore Townlong Steppes
     a[6978] = b:New(6978); -- Explore Dread Wastes
     a[6979] = b:New(6979); -- Explore Vale of Eternal Blossoms
-    a[6980] = b:New(6980); -- Temple of Kotmogu All-Star
-    a[6981] = b:New(6981); -- Master of Temple of Kotmogu
-    a[7039] = b:New(7039); -- The Long Riders
-    a[7049] = b:New(7049); -- Mine Cart Courier
+    a[6980] = b:New(6980, nil, nil, true); -- Temple of Kotmogu All-Star
+    a[6981] = b:New(6981, nil, nil, true); -- Master of Temple of Kotmogu
+    a[7039] = b:New(7039, nil, nil, true); -- The Long Riders
+    a[7049] = b:New(7049, nil, nil, true); -- Mine Cart Courier
     a[7056] = b:New(7056); -- "Sorry, Were You Looking for This?"
-    a[7057] = b:New(7057); -- End of the Line
-    a[7062] = b:New(7062); -- Mine Mine Mine!
-    a[7099] = b:New(7099); -- Five for Five
-    a[7100] = b:New(7100); -- My Diamonds and Your Rust
-    a[7102] = b:New(7102); -- Escort Service
-    a[7103] = b:New(7103); -- Greed is Good
-    a[7106] = b:New(7106); -- Master of Silvershard Mines
+    a[7057] = b:New(7057, nil, nil, true); -- End of the Line
+    a[7062] = b:New(7062, nil, nil, true); -- Mine Mine Mine!
+    a[7099] = b:New(7099, nil, nil, true); -- Five for Five
+    a[7100] = b:New(7100, nil, nil, true); -- My Diamonds and Your Rust
+    a[7102] = b:New(7102, nil, nil, true); -- Escort Service
+    a[7103] = b:New(7103, nil, nil, true); -- Greed is Good
+    a[7106] = b:New(7106, nil, nil, true); -- Master of Silvershard Mines
     a[7230] = b:New(7230); -- Legend of the Brewfathers
     a[7231] = b:New(7231); -- Spill No Evil
     a[7232] = b:New(7232); -- The Keg Runner
@@ -2589,11 +2589,11 @@ function exportedAchievements.Load(a, t)
     a[7265] = b:New(7265); -- Greenstone Village
     a[7266] = b:New(7266); -- Save it for Later
     a[7267] = b:New(7267); -- Perfect Delivery
-    a[7268] = b:New(7268, nil, nil, nil, false); -- The Temple of Kotmogu
+    a[7268] = b:New(7268, nil, nil, nil, nil, false); -- The Temple of Kotmogu
     O(a[7268], "Never");
-    a[7269] = b:New(7269, nil, nil, nil, false); -- Stay Off the Grass
+    a[7269] = b:New(7269, nil, nil, nil, nil, false); -- Stay Off the Grass
     O(a[7269], "Never");
-    a[7270] = b:New(7270, nil, nil, nil, false); -- For Display Only
+    a[7270] = b:New(7270, nil, nil, nil, nil, false); -- For Display Only
     O(a[7270], "Never");
     a[7271] = b:New(7271); -- Arena of Annihilation
     a[7272] = b:New(7272); -- In the Eye of the Tiger
@@ -2845,8 +2845,8 @@ function exportedAchievements.Load(a, t)
     a[8049] = b:New(8049); -- The Zandalari Prophecy
     a[8050] = b:New(8050); -- Rumbles of Thunder
     a[8051] = b:New(8051); -- Gods and Monsters
-    a[8052] = b:New(8052, fac.Alliance, 8055); -- Khan
-    a[8055] = b:New(8055, fac.Horde, 8052); -- Khan
+    a[8052] = b:New(8052, fac.Alliance, 8055, true); -- Khan
+    a[8055] = b:New(8055, fac.Horde, 8052, true); -- Khan
     a[8056] = b:New(8056); -- Heroic: Jin'rokh the Breaker
     a[8057] = b:New(8057); -- Heroic: Horridon
     a[8058] = b:New(8058); -- Heroic: Council of Elders
@@ -2876,7 +2876,7 @@ function exportedAchievements.Load(a, t)
     O(a[8089], "From", "Version", "050200", "Before", "Version", "060002");
     a[8090] = b:New(8090); -- A Complete Circuit
     a[8092] = b:New(8092); -- I've Got 9999 Problems but a Bone-White Primal Raptor Ain't One
-    a[8093] = b:New(8093, fac.Horde, 8218); -- Tyrannical Conquest
+    a[8093] = b:New(8093, fac.Horde, 8218, true); -- Tyrannical Conquest
     O(a[8093], "From", "PvP Season", 13, "Until", "PvP Season", 13);
     a[8094] = b:New(8094); -- Lightning Overload
     a[8097] = b:New(8097); -- Soft Hands
@@ -2913,11 +2913,11 @@ function exportedAchievements.Load(a, t)
     a[8212] = b:New(8212); -- Zandalari Library Card
     a[8213] = b:New(8213); -- Friends In Places Higher Yet
     O(a[8213]);
-    a[8214] = b:New(8214); -- Malevolent Gladiator
+    a[8214] = b:New(8214, nil, nil, true); -- Malevolent Gladiator
     O(a[8214], "From", "PvP Season", 12, "Until", "PvP Season", 12);
-    a[8216] = b:New(8216); -- Malevolent Gladiator's Cloud Serpent
+    a[8216] = b:New(8216, nil, nil, true); -- Malevolent Gladiator's Cloud Serpent
     O(a[8216], "From", "PvP Season", 12, "Until", "PvP Season", 12);
-    a[8218] = b:New(8218, fac.Alliance, 8093); -- Tyrannical Conquest
+    a[8218] = b:New(8218, fac.Alliance, 8093, true); -- Tyrannical Conquest
     O(a[8218], "From", "PvP Season", 13, "Until", "PvP Season", 13);
     a[8219] = b:New(8219); -- History of the Mantid
     a[8220] = b:New(8220); -- Collector: Banners of the Mantid Empire
@@ -2938,9 +2938,9 @@ function exportedAchievements.Load(a, t)
     a[8235] = b:New(8235); -- Collector: Kypari Sap Containers
     a[8238] = b:New(8238); -- Cutting Edge: Lei Shen
     O(a[8238], "From", "Version", "050200", "Before", "Version", "050400");
-    a[8243] = b:New(8243, fac.Alliance, 8244); -- Hero of the Alliance: Malevolent
+    a[8243] = b:New(8243, fac.Alliance, 8244, true); -- Hero of the Alliance: Malevolent
     O(a[8243], "From", "PvP Season", 12, "Until", "PvP Season", 12);
-    a[8244] = b:New(8244, fac.Horde, 8243); -- Hero of the Horde: Malevolent
+    a[8244] = b:New(8244, fac.Horde, 8243, true); -- Hero of the Horde: Malevolent
     O(a[8244], "From", "PvP Season", 12, "Until", "PvP Season", 12);
     a[8246] = b:New(8246); -- Ahead of the Curve: Grand Empress Shek'zeer
     O(a[8246], "From", "Version", "050004", "Before", "Version", "050200");
@@ -2953,10 +2953,10 @@ function exportedAchievements.Load(a, t)
     a[8293] = b:New(8293); -- Raiding with Leashes II: Attunement Edition
     a[8294] = b:New(8294); -- The Secrets of Ragefire
     a[8295] = b:New(8295); -- "The Few, the Proud, the Gob Squad"
-    a[8297] = b:New(8297); -- Merciless Pet Brawler
-    a[8298] = b:New(8298); -- Vengeful Pet Brawler
-    a[8300] = b:New(8300); -- Brutal Pet Brawler
-    a[8301] = b:New(8301); -- Deadly Pet Brawler
+    a[8297] = b:New(8297, nil, nil, true); -- Merciless Pet Brawler
+    a[8298] = b:New(8298, nil, nil, true); -- Vengeful Pet Brawler
+    a[8300] = b:New(8300, nil, nil, true); -- Brutal Pet Brawler
+    a[8301] = b:New(8301, nil, nil, true); -- Deadly Pet Brawler
     a[8302] = b:New(8302, fac.Horde, 8304); -- Mount Parade
     a[8304] = b:New(8304, fac.Alliance, 8302); -- Mount Parade
     a[8306] = b:New(8306, fac.Alliance, 8307); -- Hordebreaker
@@ -2977,9 +2977,9 @@ function exportedAchievements.Load(a, t)
     a[8327] = b:New(8327); -- Heroic: The Secrets of Ragefire
     a[8329] = b:New(8329); -- Heed the Weed
     a[8330] = b:New(8330); -- Hekima's Heal-Halter
-    a[8331] = b:New(8331); -- Deepwind Gorge Victory
-    a[8332] = b:New(8332); -- Deepwind Gorge Veteran
-    a[8333] = b:New(8333); -- Deepwind Gorge Perfection
+    a[8331] = b:New(8331, nil, nil, true); -- Deepwind Gorge Victory
+    a[8332] = b:New(8332, nil, nil, true); -- Deepwind Gorge Veteran
+    a[8333] = b:New(8333, nil, nil, true); -- Deepwind Gorge Perfection
     a[8335] = b:New(8335, fac.Alliance, 8337); -- Having a Brawl (Season 1)
     O(a[8335], "From", "Version", "050100", "Before", "Version", "060002");
     a[8336] = b:New(8336, fac.Alliance, 8338); -- I've Got the Biggest Brawls of Them All (Season 1)
@@ -2999,30 +2999,30 @@ function exportedAchievements.Load(a, t)
     a[8345] = b:New(8345); -- Hearthstoned
     a[8347] = b:New(8347); -- Keep those Bombs Away! (From Me)
     a[8348] = b:New(8348); -- The Longest Day
-    a[8350] = b:New(8350); -- Mine! Mine! Mine!
+    a[8350] = b:New(8350, nil, nil, true); -- Mine! Mine! Mine!
     O(a[8350], "From", "Version", "050300", "Before", "Version", "080300");
-    a[8351] = b:New(8351); -- Other People's Property
+    a[8351] = b:New(8351, nil, nil, true); -- Other People's Property
     O(a[8351], "From", "Version", "050300", "Before", "Version", "080300");
-    a[8354] = b:New(8354); -- Puddle Jumper
+    a[8354] = b:New(8354, nil, nil, true); -- Puddle Jumper
     O(a[8354], "From", "Version", "050300", "Before", "Version", "080300");
-    a[8355] = b:New(8355); -- Weighed Down
+    a[8355] = b:New(8355, nil, nil, true); -- Weighed Down
     O(a[8355], "From", "Version", "050300", "Before", "Version", "080300");
-    a[8358] = b:New(8358); -- Deepwind Gorge All-Star
+    a[8358] = b:New(8358, nil, nil, true); -- Deepwind Gorge All-Star
     O(a[8358], "From", "Version", "050300", "Before", "Version", "080300");
-    a[8359] = b:New(8359); -- Capping Spree
+    a[8359] = b:New(8359, nil, nil, true); -- Capping Spree
     O(a[8359], "From", "Version", "050300", "Before", "Version", "080300");
-    a[8360] = b:New(8360); -- Master of Deepwind Gorge
+    a[8360] = b:New(8360, nil, nil, true); -- Master of Deepwind Gorge
     O(a[8360], "From", "Version", "050300", "Before", "Version", "080300");
     a[8364] = b:New(8364, fac.Alliance, 8366); -- Heroic: Battle on the High Seas
     a[8366] = b:New(8366, fac.Horde, 8364); -- Heroic: Battle on the High Seas
     a[8368] = b:New(8368); -- Fight Anger with Anger
-    a[8381] = b:New(8381, fac.Horde, 8382); -- Grievous Conquest
+    a[8381] = b:New(8381, fac.Horde, 8382, true); -- Grievous Conquest
     O(a[8381], "From", "PvP Season", 14, "Until", "PvP Season", 14);
-    a[8382] = b:New(8382, fac.Alliance, 8381); -- Grievous Conquest
+    a[8382] = b:New(8382, fac.Alliance, 8381, true); -- Grievous Conquest
     O(a[8382], "From", "PvP Season", 14, "Until", "PvP Season", 14);
-    a[8391] = b:New(8391); -- Tournament Participation 2013
+    a[8391] = b:New(8391, nil, nil, true); -- Tournament Participation 2013
     O(a[8391], "Never");
-    a[8392] = b:New(8392); -- Tournament Glory 2013
+    a[8392] = b:New(8392, nil, nil, true); -- Tournament Glory 2013
     O(a[8392], "Never");
     a[8397] = b:New(8397); -- Crazy for Cats
     a[8398] = b:New(8398); -- Ahead of the Curve: Garrosh Hellscream (10 player)
@@ -3053,9 +3053,9 @@ function exportedAchievements.Load(a, t)
     a[8439] = b:New(8439); -- Challenge Master: Siege of Niuzao Temple
     O(a[8439], "From", "Version", "050005", "Before", "Version", "060002");
     a[8448] = b:New(8448); -- Gamon Will Save Us!
-    a[8450] = b:New(8450, fac.Horde, 8451); -- Prideful Conquest
+    a[8450] = b:New(8450, fac.Horde, 8451, true); -- Prideful Conquest
     O(a[8450], "From", "PvP Season", 15, "Until", "PvP Season", 15);
-    a[8451] = b:New(8451, fac.Alliance, 8450); -- Prideful Conquest
+    a[8451] = b:New(8451, fac.Alliance, 8450, true); -- Prideful Conquest
     O(a[8451], "From", "PvP Season", 15, "Until", "PvP Season", 15);
     a[8453] = b:New(8453); -- Rescue Raiders
     a[8454] = b:New(8454); -- Glory of the Orgrimmar Raider
@@ -3077,9 +3077,9 @@ function exportedAchievements.Load(a, t)
     a[8480] = b:New(8480); -- Mythic: Siegecrafter Blackfuse
     a[8481] = b:New(8481); -- Mythic: Paragons of the Klaxxi
     a[8482] = b:New(8482); -- Mythic: Garrosh Hellscream
-    a[8484] = b:New(8484, fac.Horde, 8485); -- Grievous Combatant
+    a[8484] = b:New(8484, fac.Horde, 8485, true); -- Grievous Combatant
     O(a[8484], "From", "PvP Season", 14, "Until", "PvP Season", 14);
-    a[8485] = b:New(8485, fac.Alliance, 8484); -- Grievous Combatant
+    a[8485] = b:New(8485, fac.Alliance, 8484, true); -- Grievous Combatant
     O(a[8485], "From", "PvP Season", 14, "Until", "PvP Season", 14);
     a[8486] = b:New(8486); -- Proving Yourself: Bronze Damage (Level 90)
     O(a[8486], "From", "Version", "050400", "Before", "Version", "060002");
@@ -3134,44 +3134,44 @@ function exportedAchievements.Load(a, t)
     a[8537] = b:New(8537); -- Strike!
     a[8538] = b:New(8538); -- Unlimited Potential
     a[8543] = b:New(8543); -- Lasers and Magnets and Drills! Oh My!
-    a[8641] = b:New(8641, fac.Horde, 8642); -- Prideful Combatant
+    a[8641] = b:New(8641, fac.Horde, 8642, true); -- Prideful Combatant
     O(a[8641], "From", "PvP Season", 15, "Until", "PvP Season", 15);
-    a[8642] = b:New(8642, fac.Alliance, 8641); -- Prideful Combatant
+    a[8642] = b:New(8642, fac.Alliance, 8641, true); -- Prideful Combatant
     O(a[8642], "From", "PvP Season", 15, "Until", "PvP Season", 15);
-    a[8643] = b:New(8643); -- Grievous Gladiator: Season 14
+    a[8643] = b:New(8643, nil, nil, true); -- Grievous Gladiator: Season 14
     O(a[8643], "From", "PvP Season", 14, "Until", "PvP Season", 14);
-    a[8644] = b:New(8644); -- Gladiator: Season 14
+    a[8644] = b:New(8644, nil, nil, true); -- Gladiator: Season 14
     O(a[8644], "From", "PvP Season", 14, "Until", "PvP Season", 14);
-    a[8645] = b:New(8645); -- Duelist: Season 14
+    a[8645] = b:New(8645, nil, nil, true); -- Duelist: Season 14
     O(a[8645], "From", "PvP Season", 14, "Until", "PvP Season", 14);
-    a[8646] = b:New(8646); -- Rival: Season 14
+    a[8646] = b:New(8646, nil, nil, true); -- Rival: Season 14
     O(a[8646], "From", "PvP Season", 14, "Until", "PvP Season", 14);
-    a[8649] = b:New(8649); -- Challenger: Season 14
+    a[8649] = b:New(8649, nil, nil, true); -- Challenger: Season 14
     O(a[8649], "From", "PvP Season", 14, "Until", "PvP Season", 14);
-    a[8652] = b:New(8652, fac.Alliance, 8653); -- Hero of the Alliance: Tyrannical
+    a[8652] = b:New(8652, fac.Alliance, 8653, true); -- Hero of the Alliance: Tyrannical
     O(a[8652], "From", "PvP Season", 13, "Until", "PvP Season", 13);
-    a[8653] = b:New(8653, fac.Horde, 8652); -- Hero of the Horde: Tyrannical
+    a[8653] = b:New(8653, fac.Horde, 8652, true); -- Hero of the Horde: Tyrannical
     O(a[8653], "From", "PvP Season", 13, "Until", "PvP Season", 13);
-    a[8654] = b:New(8654, fac.Alliance, 8657); -- Hero of the Alliance: Grievous
+    a[8654] = b:New(8654, fac.Alliance, 8657, true); -- Hero of the Alliance: Grievous
     O(a[8654], "From", "PvP Season", 14, "Until", "PvP Season", 14);
-    a[8657] = b:New(8657, fac.Horde, 8654); -- Hero of the Horde: Grievous
+    a[8657] = b:New(8657, fac.Horde, 8654, true); -- Hero of the Horde: Grievous
     O(a[8657], "From", "PvP Season", 14, "Until", "PvP Season", 14);
-    a[8658] = b:New(8658, fac.Alliance, 8659); -- Hero of the Alliance: Prideful
+    a[8658] = b:New(8658, fac.Alliance, 8659, true); -- Hero of the Alliance: Prideful
     O(a[8658], "From", "PvP Season", 15, "Until", "PvP Season", 15);
-    a[8659] = b:New(8659, fac.Horde, 8658); -- Hero of the Horde: Prideful
+    a[8659] = b:New(8659, fac.Horde, 8658, true); -- Hero of the Horde: Prideful
     O(a[8659], "From", "PvP Season", 15, "Until", "PvP Season", 15);
-    a[8666] = b:New(8666); -- Prideful Gladiator: Season 15
+    a[8666] = b:New(8666, nil, nil, true); -- Prideful Gladiator: Season 15
     O(a[8666], "From", "PvP Season", 15, "Until", "PvP Season", 15);
-    a[8667] = b:New(8667); -- Gladiator: Season 15
+    a[8667] = b:New(8667, nil, nil, true); -- Gladiator: Season 15
     O(a[8667], "From", "PvP Season", 15, "Until", "PvP Season", 15);
-    a[8668] = b:New(8668); -- Duelist: Season 15
+    a[8668] = b:New(8668, nil, nil, true); -- Duelist: Season 15
     O(a[8668], "From", "PvP Season", 15, "Until", "PvP Season", 15);
-    a[8669] = b:New(8669); -- Rival: Season 15
+    a[8669] = b:New(8669, nil, nil, true); -- Rival: Season 15
     O(a[8669], "From", "PvP Season", 15, "Until", "PvP Season", 15);
-    a[8670] = b:New(8670); -- Challenger: Season 15
+    a[8670] = b:New(8670, nil, nil, true); -- Challenger: Season 15
     O(a[8670], "From", "PvP Season", 15, "Until", "PvP Season", 15);
     a[8671] = b:New(8671, fac.Horde, 8845); -- You'll Get Caught Up In The... Frostfire!
-    a[8678] = b:New(8678); -- Tyrannical Gladiator's Cloud Serpent
+    a[8678] = b:New(8678, nil, nil, true); -- Tyrannical Gladiator's Cloud Serpent
     O(a[8678], "From", "PvP Season", 13, "Until", "PvP Season", 13);
     a[8679] = b:New(8679, fac.Alliance, 8680); -- Conqueror of Orgrimmar
     a[8680] = b:New(8680, fac.Horde, 8679); -- Liberator of Orgrimmar
@@ -3179,19 +3179,19 @@ function exportedAchievements.Load(a, t)
     O(a[8697], "From", "Version", "050400", "Before", "Version", "060002");
     a[8698] = b:New(8698); -- Crashin' Thrashin' Flyer
     a[8699] = b:New(8699); -- The Danger Zone
-    a[8705] = b:New(8705); -- Grievous Gladiator's Cloud Serpent
+    a[8705] = b:New(8705, nil, nil, true); -- Grievous Gladiator's Cloud Serpent
     O(a[8705], "From", "PvP Season", 14, "Until", "PvP Season", 14);
-    a[8707] = b:New(8707); -- Prideful Gladiator's Cloud Serpent
+    a[8707] = b:New(8707, nil, nil, true); -- Prideful Gladiator's Cloud Serpent
     O(a[8707], "From", "PvP Season", 15, "Until", "PvP Season", 15);
     a[8712] = b:New(8712); -- Killing Time
     a[8714] = b:New(8714); -- Timeless Champion
     a[8715] = b:New(8715); -- Emperor Shaohao
     a[8716] = b:New(8716); -- Emissary of Ordos
-    a[8717] = b:New(8717); -- Candlekeeper
-    a[8718] = b:New(8718); -- Oathguard
-    a[8719] = b:New(8719); -- Blazebinder
-    a[8720] = b:New(8720); -- Kilnmaster
-    a[8721] = b:New(8721); -- Fire-Watcher
+    a[8717] = b:New(8717, nil, nil, true); -- Candlekeeper
+    a[8718] = b:New(8718, nil, nil, true); -- Oathguard
+    a[8719] = b:New(8719, nil, nil, true); -- Blazebinder
+    a[8720] = b:New(8720, nil, nil, true); -- Kilnmaster
+    a[8721] = b:New(8721, nil, nil, true); -- Fire-Watcher
     a[8722] = b:New(8722); -- Timeless Nutriment
     a[8723] = b:New(8723); -- Legend of the Past
     a[8724] = b:New(8724); -- Pilgrimage
@@ -3203,7 +3203,7 @@ function exportedAchievements.Load(a, t)
     a[8730] = b:New(8730); -- Rolo's Riddle
     a[8743] = b:New(8743); -- Zarhym Altogether
     a[8784] = b:New(8784); -- Timeless Legends
-    a[8791] = b:New(8791); -- Tyrannical Gladiator
+    a[8791] = b:New(8791, nil, nil, true); -- Tyrannical Gladiator
     O(a[8791], "From", "PvP Season", 13, "Until", "PvP Season", 13);
     a[8793] = b:New(8793); -- Murkalot
     a[8794] = b:New(8794); -- Friends In Places Even Higher Than That
@@ -3408,11 +3408,11 @@ function exportedAchievements.Load(a, t)
     a[9099] = b:New(9099); -- Time for an Upgrade
     a[9100] = b:New(9100, fac.Alliance, 9545); -- More Plots
     a[9101] = b:New(9101, fac.Alliance, 9546); -- Even More Plots
-    a[9102] = b:New(9102); -- Ashran Victory
-    a[9103] = b:New(9103, fac.Horde, 9104); -- Bounty Hunter
-    a[9104] = b:New(9104, fac.Alliance, 9103); -- Bounty Hunter
-    a[9105] = b:New(9105); -- Tour of Duty
-    a[9106] = b:New(9106); -- Just for Me
+    a[9102] = b:New(9102, nil, nil, true); -- Ashran Victory
+    a[9103] = b:New(9103, fac.Horde, 9104, true); -- Bounty Hunter
+    a[9104] = b:New(9104, fac.Alliance, 9103, true); -- Bounty Hunter
+    a[9105] = b:New(9105, nil, nil, true); -- Tour of Duty
+    a[9106] = b:New(9106, nil, nil, true); -- Just for Me
     a[9107] = b:New(9107); -- Follow the Leader
     a[9108] = b:New(9108); -- "Where You Go, They Will Follow"
     a[9109] = b:New(9109); -- Fearless Leader
@@ -3474,52 +3474,52 @@ function exportedAchievements.Load(a, t)
     a[9211] = b:New(9211); -- My Item Level Is Higher than Yours
     a[9212] = b:New(9212); -- My Item Level Is Way Higher than Yours
     a[9213] = b:New(9213); -- Item Level Army
-    a[9214] = b:New(9214, fac.Alliance, 9215); -- Hero of Stormshield
-    a[9215] = b:New(9215, fac.Horde, 9214); -- Hero of Warspear
-    a[9216] = b:New(9216); -- High-value Targets
-    a[9217] = b:New(9217, fac.Horde, 9408); -- Operation Counterattack
-    a[9218] = b:New(9218); -- "Grand Theft, 1st Degree"
-    a[9219] = b:New(9219); -- "Grand Theft, 2nd Degree"
-    a[9220] = b:New(9220); -- "Grand Theft, 3rd Degree"
-    a[9222] = b:New(9222); -- Divide and Conquer
+    a[9214] = b:New(9214, fac.Alliance, 9215, true); -- Hero of Stormshield
+    a[9215] = b:New(9215, fac.Horde, 9214, true); -- Hero of Warspear
+    a[9216] = b:New(9216, nil, nil, true); -- High-value Targets
+    a[9217] = b:New(9217, fac.Horde, 9408, true); -- Operation Counterattack
+    a[9218] = b:New(9218, nil, nil, true); -- "Grand Theft, 1st Degree"
+    a[9219] = b:New(9219, nil, nil, true); -- "Grand Theft, 2nd Degree"
+    a[9220] = b:New(9220, nil, nil, true); -- "Grand Theft, 3rd Degree"
+    a[9222] = b:New(9222, nil, nil, true); -- Divide and Conquer
     a[9223] = b:New(9223); -- Weed Whacker
-    a[9224] = b:New(9224, fac.Horde, 9225); -- Take Them Out
-    a[9225] = b:New(9225, fac.Alliance, 9224); -- Take Them Out
-    a[9228] = b:New(9228, fac.Alliance); -- Down Goes Van Rook
-    a[9229] = b:New(9229); -- Primal Gladiator's Felblood Gronnling
+    a[9224] = b:New(9224, fac.Horde, 9225, true); -- Take Them Out
+    a[9225] = b:New(9225, fac.Alliance, 9224, true); -- Take Them Out
+    a[9228] = b:New(9228, fac.Alliance, nil, true); -- Down Goes Van Rook
+    a[9229] = b:New(9229, nil, nil, true); -- Primal Gladiator's Felblood Gronnling
     O(a[9229], "From", "PvP Season", 16, "Until", "PvP Season", 16);
-    a[9230] = b:New(9230, fac.Alliance, 9231); -- Hero of the Alliance: Primal
+    a[9230] = b:New(9230, fac.Alliance, 9231, true); -- Hero of the Alliance: Primal
     O(a[9230], "From", "PvP Season", 16, "Until", "PvP Season", 16);
-    a[9231] = b:New(9231, fac.Horde, 9230); -- Hero of the Horde: Primal
+    a[9231] = b:New(9231, fac.Horde, 9230, true); -- Hero of the Horde: Primal
     O(a[9231], "From", "PvP Season", 16, "Until", "PvP Season", 16);
-    a[9232] = b:New(9232); -- Primal Gladiator: Warlords Season 1
+    a[9232] = b:New(9232, nil, nil, true); -- Primal Gladiator: Warlords Season 1
     O(a[9232], "From", "PvP Season", 16, "Until", "PvP Season", 16);
-    a[9233] = b:New(9233, fac.Horde, 9234); -- Primal Conquest
+    a[9233] = b:New(9233, fac.Horde, 9234, true); -- Primal Conquest
     O(a[9233], "From", "PvP Season", 16, "Until", "PvP Season", 16);
-    a[9234] = b:New(9234, fac.Alliance, 9233); -- Primal Conquest
+    a[9234] = b:New(9234, fac.Alliance, 9233, true); -- Primal Conquest
     O(a[9234], "From", "PvP Season", 16, "Until", "PvP Season", 16);
-    a[9236] = b:New(9236, fac.Horde, 9238); -- Primal Combatant
+    a[9236] = b:New(9236, fac.Horde, 9238, true); -- Primal Combatant
     O(a[9236], "From", "PvP Season", 16, "Until", "PvP Season", 16);
-    a[9238] = b:New(9238, fac.Alliance, 9236); -- Primal Combatant
+    a[9238] = b:New(9238, fac.Alliance, 9236, true); -- Primal Combatant
     O(a[9238], "From", "PvP Season", 16, "Until", "PvP Season", 16);
-    a[9239] = b:New(9239); -- Gladiator: Warlords Season 1
+    a[9239] = b:New(9239, nil, nil, true); -- Gladiator: Warlords Season 1
     O(a[9239], "From", "PvP Season", 16, "Until", "PvP Season", 16);
-    a[9240] = b:New(9240); -- Duelist: Warlords Season 1
+    a[9240] = b:New(9240, nil, nil, true); -- Duelist: Warlords Season 1
     O(a[9240], "From", "PvP Season", 16, "Until", "PvP Season", 16);
-    a[9241] = b:New(9241); -- Rival: Warlords Season 1
+    a[9241] = b:New(9241, nil, nil, true); -- Rival: Warlords Season 1
     O(a[9241], "From", "PvP Season", 16, "Until", "PvP Season", 16);
-    a[9242] = b:New(9242); -- Challenger: Warlords Season 1
+    a[9242] = b:New(9242, nil, nil, true); -- Challenger: Warlords Season 1
     O(a[9242], "From", "PvP Season", 16, "Until", "PvP Season", 16);
     a[9243] = b:New(9243); -- Item Level Force
     a[9244] = b:New(9244); -- Invasions Are Better with Friends
     a[9246] = b:New(9246); -- Master Draenor Crafter
-    a[9248] = b:New(9248, fac.Horde, 9630); -- Defender of Draenor
+    a[9248] = b:New(9248, fac.Horde, 9630, true); -- Defender of Draenor
     a[9250] = b:New(9250); -- Flying High
     a[9251] = b:New(9251); -- Ringmaster
     a[9252] = b:New(9252); -- Brood of Alysrazor
     a[9255] = b:New(9255, fac.Horde, 9631); -- Mythic Draenor Raider
-    a[9256] = b:New(9256, fac.Alliance, 9257); -- Rescue Operation
-    a[9257] = b:New(9257, fac.Horde, 9256); -- Rescue Operation
+    a[9256] = b:New(9256, fac.Alliance, 9257, true); -- Rescue Operation
+    a[9257] = b:New(9257, fac.Horde, 9256, true); -- Rescue Operation
     a[9264] = b:New(9264); -- Draenor Pet Brawler
     a[9265] = b:New(9265); -- Master of Apexis
     a[9389] = b:New(9389); -- It Might Just Save Your Life
@@ -3534,7 +3534,7 @@ function exportedAchievements.Load(a, t)
     a[9405] = b:New(9405); -- Working Some Orders
     a[9406] = b:New(9406); -- Working More Orders
     a[9407] = b:New(9407); -- Working Many Orders
-    a[9408] = b:New(9408, fac.Alliance, 9217); -- Operation Counterattack
+    a[9408] = b:New(9408, fac.Alliance, 9217, true); -- Operation Counterattack
     a[9409] = b:New(9409); -- Draenor Archaeologist
     a[9410] = b:New(9410); -- Unite the Clans
     a[9411] = b:New(9411); -- Highmaul Historian
@@ -3584,8 +3584,8 @@ function exportedAchievements.Load(a, t)
     a[9470] = b:New(9470, fac.Alliance, 9471); -- Council of Exarchs
     a[9471] = b:New(9471, fac.Horde, 9470); -- Frostwolf Orcs
     a[9472] = b:New(9472); -- Steamwheedle Preservation Society
-    a[9473] = b:New(9473, fac.Horde, 9474); -- Vol'jin's Spear
-    a[9474] = b:New(9474, fac.Alliance, 9473); -- Wrynn's Vanguard
+    a[9473] = b:New(9473, fac.Horde, 9474, true); -- Vol'jin's Spear
+    a[9474] = b:New(9474, fac.Alliance, 9473, true); -- Wrynn's Vanguard
     a[9475] = b:New(9475, fac.Horde, 9476); -- Laughing Skull Orcs
     a[9476] = b:New(9476, fac.Alliance, 9475); -- Sha'tari Defense
     a[9477] = b:New(9477, fac.Horde, 9478); -- Savage Friends
@@ -3599,7 +3599,7 @@ function exportedAchievements.Load(a, t)
     a[9492] = b:New(9492, fac.Horde, 9491); -- The Garrison Campaign
     a[9493] = b:New(9493); -- "They Burn, Burn, Burn"
     a[9494] = b:New(9494); -- Commander
-    a[9495] = b:New(9495); -- The Bone Collector
+    a[9495] = b:New(9495, nil, nil, true); -- The Bone Collector
     a[9496] = b:New(9496); -- Warlord's Deathwheel
     O(a[9496]);
     a[9497] = b:New(9497); -- Finding Your Waystones
@@ -3614,21 +3614,21 @@ function exportedAchievements.Load(a, t)
     a[9506] = b:New(9506); -- Savage Skills to Pay the Bills
     O(a[9506], "From", "Version", "060003", "Before", "Version", "080001");
     a[9507] = b:New(9507); -- Working in Draenor
-    a[9508] = b:New(9508, fac.Horde, 9738); -- Warlord of Draenor
-    a[9509] = b:New(9509, fac.Horde, 9516); -- Nemesis: Draenei Destroyer
-    a[9510] = b:New(9510, fac.Horde, 9522); -- Nemesis: Dwarfstalker
-    a[9511] = b:New(9511, fac.Horde, 9521); -- Nemesis: Gnomebane
-    a[9512] = b:New(9512, fac.Horde, 9519); -- Nemesis: Manslayer
-    a[9513] = b:New(9513, fac.Horde, 9517); -- Nemesis: Scourge of the Kaldorei
-    a[9514] = b:New(9514, fac.Horde, 9520); -- Nemesis: Terror of the Tushui
-    a[9515] = b:New(9515, fac.Horde, 9518); -- Nemesis: Worgen Hunter
-    a[9516] = b:New(9516, fac.Alliance, 9509); -- Nemesis: Slayer of Sin'dorei
-    a[9517] = b:New(9517, fac.Alliance, 9513); -- Nemesis: Death Stalker
-    a[9518] = b:New(9518, fac.Alliance, 9515); -- Nemesis: Killer of Kezan
-    a[9519] = b:New(9519, fac.Alliance, 9512); -- Nemesis: Orcslayer
-    a[9520] = b:New(9520, fac.Alliance, 9514); -- Nemesis: Huojin's Fall
-    a[9521] = b:New(9521, fac.Alliance, 9511); -- Nemesis: The Butcher
-    a[9522] = b:New(9522, fac.Alliance, 9510); -- Nemesis: Troll Hunter
+    a[9508] = b:New(9508, fac.Horde, 9738, true); -- Warlord of Draenor
+    a[9509] = b:New(9509, fac.Horde, 9516, true); -- Nemesis: Draenei Destroyer
+    a[9510] = b:New(9510, fac.Horde, 9522, true); -- Nemesis: Dwarfstalker
+    a[9511] = b:New(9511, fac.Horde, 9521, true); -- Nemesis: Gnomebane
+    a[9512] = b:New(9512, fac.Horde, 9519, true); -- Nemesis: Manslayer
+    a[9513] = b:New(9513, fac.Horde, 9517, true); -- Nemesis: Scourge of the Kaldorei
+    a[9514] = b:New(9514, fac.Horde, 9520, true); -- Nemesis: Terror of the Tushui
+    a[9515] = b:New(9515, fac.Horde, 9518, true); -- Nemesis: Worgen Hunter
+    a[9516] = b:New(9516, fac.Alliance, 9509, true); -- Nemesis: Slayer of Sin'dorei
+    a[9517] = b:New(9517, fac.Alliance, 9513, true); -- Nemesis: Death Stalker
+    a[9518] = b:New(9518, fac.Alliance, 9515, true); -- Nemesis: Killer of Kezan
+    a[9519] = b:New(9519, fac.Alliance, 9512, true); -- Nemesis: Orcslayer
+    a[9520] = b:New(9520, fac.Alliance, 9514, true); -- Nemesis: Huojin's Fall
+    a[9521] = b:New(9521, fac.Alliance, 9511, true); -- Nemesis: The Butcher
+    a[9522] = b:New(9522, fac.Alliance, 9510, true); -- Nemesis: Troll Hunter
     a[9523] = b:New(9523); -- Patrolling Draenor
     a[9524] = b:New(9524); -- Treasure Master
     a[9526] = b:New(9526); -- Master of Mounts
@@ -3657,7 +3657,7 @@ function exportedAchievements.Load(a, t)
     a[9562] = b:New(9562, fac.Horde, 9564); -- Securing Draenor
     a[9564] = b:New(9564, fac.Alliance, 9562); -- Securing Draenor
     a[9565] = b:New(9565); -- Master Trapper
-    a[9566] = b:New(9566, fac.Horde, 9729); -- Victory in Hillsbrad
+    a[9566] = b:New(9566, fac.Horde, 9729, true); -- Victory in Hillsbrad
     O(a[9566]);
     a[9571] = b:New(9571); -- Broke Back Precipice
     a[9572] = b:New(9572); -- Proving Yourself: Bronze Damage
@@ -3712,7 +3712,7 @@ function exportedAchievements.Load(a, t)
     O(a[9626], "From", "Version", "060003", "Before", "Version", "070003");
     a[9627] = b:New(9627); -- Challenge Master: Upper Blackrock Spire
     O(a[9627], "From", "Version", "060003", "Before", "Version", "070003");
-    a[9630] = b:New(9630, fac.Alliance, 9248); -- Defender of Draenor
+    a[9630] = b:New(9630, fac.Alliance, 9248, true); -- Defender of Draenor
     a[9631] = b:New(9631, fac.Alliance, 9255); -- Mythic Draenor Raider
     a[9632] = b:New(9632); -- The Power Is Yours
     a[9633] = b:New(9633); -- Cut off the Head
@@ -3721,7 +3721,7 @@ function exportedAchievements.Load(a, t)
     a[9636] = b:New(9636); -- United We Stand
     a[9637] = b:New(9637); -- Poor Communication
     a[9638] = b:New(9638); -- Heralds of the Legion
-    a[9639] = b:New(9639); -- "Fight, Kill, Salute!"
+    a[9639] = b:New(9639, nil, nil, true); -- "Fight, Kill, Salute!"
     a[9640] = b:New(9640); -- Chapter I: Call of the Archmage
     O(a[9640], "From", "Version", "060003", "Before", "Version", "070003");
     a[9641] = b:New(9641); -- Chapter II: Gul'dan Strikes Back
@@ -3767,16 +3767,16 @@ function exportedAchievements.Load(a, t)
     a[9711] = b:New(9711); -- Planned to Fail
     a[9712] = b:New(9712); -- Shiny Pet Charmer
     a[9713] = b:New(9713); -- Awake the Drakes
-    a[9714] = b:New(9714, fac.Alliance, 9715); -- Thy Kingdom Come
-    a[9715] = b:New(9715, fac.Horde, 9714); -- Thy Kingdom Come
+    a[9714] = b:New(9714, fac.Alliance, 9715, true); -- Thy Kingdom Come
+    a[9715] = b:New(9715, fac.Horde, 9714, true); -- Thy Kingdom Come
     a[9724] = b:New(9724); -- Taming Draenor
-    a[9725] = b:New(9725); -- The Last of Us
+    a[9725] = b:New(9725, nil, nil, true); -- The Last of Us
     a[9726] = b:New(9726); -- Treasure Hunter
     a[9727] = b:New(9727); -- Expert Treasure Hunter
     a[9728] = b:New(9728); -- Grand Treasure Hunter
-    a[9729] = b:New(9729, fac.Alliance, 9566); -- Victory in Hillsbrad
+    a[9729] = b:New(9729, fac.Alliance, 9566, true); -- Victory in Hillsbrad
     O(a[9729]);
-    a[9738] = b:New(9738, fac.Alliance, 9508); -- Warlord of Draenor
+    a[9738] = b:New(9738, fac.Alliance, 9508, true); -- Warlord of Draenor
     a[9755] = b:New(9755); -- Darkmoon Race Enthusiast
     a[9756] = b:New(9756); -- Darkmoon Racer Novice
     a[9759] = b:New(9759); -- Darkmoon Racer Jockey
@@ -3845,17 +3845,17 @@ function exportedAchievements.Load(a, t)
     a[9983] = b:New(9983); -- That's Whack!
     a[9988] = b:New(9988); -- Pro Toss
     a[9989] = b:New(9989); -- Non-Lethal Enforcer
-    a[9995] = b:New(9995, fac.Alliance, 9998); -- Soldier of the Alliance: Warlords Season 1
+    a[9995] = b:New(9995, fac.Alliance, 9998, true); -- Soldier of the Alliance: Warlords Season 1
     O(a[9995], "From", "PvP Season", 16, "Until", "PvP Season", 16);
-    a[9996] = b:New(9996, fac.Alliance, 10001); -- Defender of the Alliance: Warlords Season 1
+    a[9996] = b:New(9996, fac.Alliance, 10001, true); -- Defender of the Alliance: Warlords Season 1
     O(a[9996], "From", "PvP Season", 16, "Until", "PvP Season", 16);
-    a[9997] = b:New(9997, fac.Alliance, 10000); -- Guardian of the Alliance: Warlords Season 1
+    a[9997] = b:New(9997, fac.Alliance, 10000, true); -- Guardian of the Alliance: Warlords Season 1
     O(a[9997], "From", "PvP Season", 16, "Until", "PvP Season", 16);
-    a[9998] = b:New(9998, fac.Horde, 9995); -- Soldier of the Horde: Warlords Season 1
+    a[9998] = b:New(9998, fac.Horde, 9995, true); -- Soldier of the Horde: Warlords Season 1
     O(a[9998], "From", "PvP Season", 16, "Until", "PvP Season", 16);
-    a[10000] = b:New(10000, fac.Horde, 9997); -- Guardian of the Horde: Warlords Season 1
+    a[10000] = b:New(10000, fac.Horde, 9997, true); -- Guardian of the Horde: Warlords Season 1
     O(a[10000], "From", "PvP Season", 16, "Until", "PvP Season", 16);
-    a[10001] = b:New(10001, fac.Horde, 9996); -- Defender of the Horde: Warlords Season 1
+    a[10001] = b:New(10001, fac.Horde, 9996, true); -- Defender of the Horde: Warlords Season 1
     O(a[10001], "From", "PvP Season", 16, "Until", "PvP Season", 16);
     a[10010] = b:New(10010); -- Gate of the Setting Sun
     a[10011] = b:New(10011); -- Siege of Niuzao Temple
@@ -3918,77 +3918,77 @@ function exportedAchievements.Load(a, t)
     a[10085] = b:New(10085); -- Mythic: Upper Blackrock Spire
     a[10086] = b:New(10086); -- I'm a Soul Man
     a[10087] = b:New(10087); -- You Gotta Keep 'em Separated
-    a[10088] = b:New(10088, fac.Horde, 10089); -- Wild Conquest
+    a[10088] = b:New(10088, fac.Horde, 10089, true); -- Wild Conquest
     O(a[10088], "From", "PvP Season", 17, "Until", "PvP Season", 17);
-    a[10089] = b:New(10089, fac.Alliance, 10088); -- Wild Conquest
+    a[10089] = b:New(10089, fac.Alliance, 10088, true); -- Wild Conquest
     O(a[10089], "From", "PvP Season", 17, "Until", "PvP Season", 17);
-    a[10090] = b:New(10090, fac.Horde, 10091); -- Warmongering Conquest
+    a[10090] = b:New(10090, fac.Horde, 10091, true); -- Warmongering Conquest
     O(a[10090], "From", "PvP Season", 18, "Until", "PvP Season", 18);
-    a[10091] = b:New(10091, fac.Alliance, 10090); -- Warmongering Conquest
+    a[10091] = b:New(10091, fac.Alliance, 10090, true); -- Warmongering Conquest
     O(a[10091], "From", "PvP Season", 18, "Until", "PvP Season", 18);
-    a[10092] = b:New(10092, fac.Horde, 10093); -- Wild Combatant
+    a[10092] = b:New(10092, fac.Horde, 10093, true); -- Wild Combatant
     O(a[10092], "From", "PvP Season", 17, "Until", "PvP Season", 17);
-    a[10093] = b:New(10093, fac.Alliance, 10092); -- Wild Combatant
+    a[10093] = b:New(10093, fac.Alliance, 10092, true); -- Wild Combatant
     O(a[10093], "From", "PvP Season", 17, "Until", "PvP Season", 17);
-    a[10094] = b:New(10094, fac.Horde, 10095); -- Warmongering Combatant
+    a[10094] = b:New(10094, fac.Horde, 10095, true); -- Warmongering Combatant
     O(a[10094], "From", "PvP Season", 18, "Until", "PvP Season", 18);
-    a[10095] = b:New(10095, fac.Alliance, 10094); -- Warmongering Combatant
+    a[10095] = b:New(10095, fac.Alliance, 10094, true); -- Warmongering Combatant
     O(a[10095], "From", "PvP Season", 18, "Until", "PvP Season", 18);
-    a[10096] = b:New(10096); -- Wild Gladiator: Warlords Season 2
+    a[10096] = b:New(10096, nil, nil, true); -- Wild Gladiator: Warlords Season 2
     O(a[10096], "From", "PvP Season", 17, "Until", "PvP Season", 17);
-    a[10097] = b:New(10097); -- Warmongering Gladiator: Warlords Season 3
+    a[10097] = b:New(10097, nil, nil, true); -- Warmongering Gladiator: Warlords Season 3
     O(a[10097], "From", "PvP Season", 18, "Until", "PvP Season", 18);
-    a[10098] = b:New(10098); -- Gladiator: Warlords Season 2
+    a[10098] = b:New(10098, nil, nil, true); -- Gladiator: Warlords Season 2
     O(a[10098], "From", "PvP Season", 17, "Until", "PvP Season", 17);
-    a[10099] = b:New(10099); -- Duelist: Warlords Season 2
+    a[10099] = b:New(10099, nil, nil, true); -- Duelist: Warlords Season 2
     O(a[10099], "From", "PvP Season", 17, "Until", "PvP Season", 17);
-    a[10100] = b:New(10100); -- Rival: Warlords Season 2
+    a[10100] = b:New(10100, nil, nil, true); -- Rival: Warlords Season 2
     O(a[10100], "From", "PvP Season", 17, "Until", "PvP Season", 17);
-    a[10101] = b:New(10101); -- Challenger: Warlords Season 2
+    a[10101] = b:New(10101, nil, nil, true); -- Challenger: Warlords Season 2
     O(a[10101], "From", "PvP Season", 17, "Until", "PvP Season", 17);
-    a[10102] = b:New(10102, fac.Alliance, 10103); -- Hero of the Alliance: Wild
+    a[10102] = b:New(10102, fac.Alliance, 10103, true); -- Hero of the Alliance: Wild
     O(a[10102], "From", "PvP Season", 17, "Until", "PvP Season", 17);
-    a[10103] = b:New(10103, fac.Horde, 10102); -- Hero of the Horde: Wild
+    a[10103] = b:New(10103, fac.Horde, 10102, true); -- Hero of the Horde: Wild
     O(a[10103], "From", "PvP Season", 17, "Until", "PvP Season", 17);
-    a[10104] = b:New(10104, fac.Alliance, 10105); -- Soldier of the Alliance: Warlords Season 2
+    a[10104] = b:New(10104, fac.Alliance, 10105, true); -- Soldier of the Alliance: Warlords Season 2
     O(a[10104], "From", "PvP Season", 17, "Until", "PvP Season", 17);
-    a[10105] = b:New(10105, fac.Horde, 10104); -- Soldier of the Horde: Warlords Season 2
+    a[10105] = b:New(10105, fac.Horde, 10104, true); -- Soldier of the Horde: Warlords Season 2
     O(a[10105], "From", "PvP Season", 17, "Until", "PvP Season", 17);
-    a[10106] = b:New(10106, fac.Alliance, 10107); -- Defender of the Alliance: Warlords Season 2
+    a[10106] = b:New(10106, fac.Alliance, 10107, true); -- Defender of the Alliance: Warlords Season 2
     O(a[10106], "From", "PvP Season", 17, "Until", "PvP Season", 17);
-    a[10107] = b:New(10107, fac.Horde, 10106); -- Defender of the Horde: Warlords Season 2
+    a[10107] = b:New(10107, fac.Horde, 10106, true); -- Defender of the Horde: Warlords Season 2
     O(a[10107], "From", "PvP Season", 17, "Until", "PvP Season", 17);
-    a[10108] = b:New(10108, fac.Alliance, 10109); -- Guardian of the Alliance: Warlords Season 2
+    a[10108] = b:New(10108, fac.Alliance, 10109, true); -- Guardian of the Alliance: Warlords Season 2
     O(a[10108], "From", "PvP Season", 17, "Until", "PvP Season", 17);
-    a[10109] = b:New(10109, fac.Horde, 10108); -- Guardian of the Horde: Warlords Season 2
+    a[10109] = b:New(10109, fac.Horde, 10108, true); -- Guardian of the Horde: Warlords Season 2
     O(a[10109], "From", "PvP Season", 17, "Until", "PvP Season", 17);
-    a[10110] = b:New(10110); -- Gladiator: Warlords Season 3
+    a[10110] = b:New(10110, nil, nil, true); -- Gladiator: Warlords Season 3
     O(a[10110], "From", "PvP Season", 18, "Until", "PvP Season", 18);
-    a[10111] = b:New(10111); -- Duelist: Warlords Season 3
+    a[10111] = b:New(10111, nil, nil, true); -- Duelist: Warlords Season 3
     O(a[10111], "From", "PvP Season", 18, "Until", "PvP Season", 18);
-    a[10112] = b:New(10112); -- Rival: Warlords Season 3
+    a[10112] = b:New(10112, nil, nil, true); -- Rival: Warlords Season 3
     O(a[10112], "From", "PvP Season", 18, "Until", "PvP Season", 18);
-    a[10113] = b:New(10113); -- Challenger: Warlords Season 3
+    a[10113] = b:New(10113, nil, nil, true); -- Challenger: Warlords Season 3
     O(a[10113], "From", "PvP Season", 18, "Until", "PvP Season", 18);
-    a[10114] = b:New(10114, fac.Alliance, 10115); -- Hero of the Alliance: Warmongering
+    a[10114] = b:New(10114, fac.Alliance, 10115, true); -- Hero of the Alliance: Warmongering
     O(a[10114], "From", "PvP Season", 18, "Until", "PvP Season", 18);
-    a[10115] = b:New(10115, fac.Horde, 10114); -- Hero of the Horde: Warmongering
+    a[10115] = b:New(10115, fac.Horde, 10114, true); -- Hero of the Horde: Warmongering
     O(a[10115], "From", "PvP Season", 18, "Until", "PvP Season", 18);
-    a[10116] = b:New(10116, fac.Alliance, 10117); -- Guardian of the Alliance: Warlords Season 3
+    a[10116] = b:New(10116, fac.Alliance, 10117, true); -- Guardian of the Alliance: Warlords Season 3
     O(a[10116], "From", "PvP Season", 18, "Until", "PvP Season", 18);
-    a[10117] = b:New(10117, fac.Horde, 10116); -- Guardian of the Horde: Warlords Season 3
+    a[10117] = b:New(10117, fac.Horde, 10116, true); -- Guardian of the Horde: Warlords Season 3
     O(a[10117], "From", "PvP Season", 18, "Until", "PvP Season", 18);
-    a[10118] = b:New(10118, fac.Alliance, 10119); -- Defender of the Alliance: Warlords Season 3
+    a[10118] = b:New(10118, fac.Alliance, 10119, true); -- Defender of the Alliance: Warlords Season 3
     O(a[10118], "From", "PvP Season", 18, "Until", "PvP Season", 18);
-    a[10119] = b:New(10119, fac.Horde, 10118); -- Defender of the Horde: Warlords Season 3
+    a[10119] = b:New(10119, fac.Horde, 10118, true); -- Defender of the Horde: Warlords Season 3
     O(a[10119], "From", "PvP Season", 18, "Until", "PvP Season", 18);
-    a[10120] = b:New(10120, fac.Alliance, 10121); -- Soldier of the Alliance: Warlords Season 3
+    a[10120] = b:New(10120, fac.Alliance, 10121, true); -- Soldier of the Alliance: Warlords Season 3
     O(a[10120], "From", "PvP Season", 18, "Until", "PvP Season", 18);
-    a[10121] = b:New(10121, fac.Horde, 10120); -- Soldier of the Horde: Warlords Season 3
+    a[10121] = b:New(10121, fac.Horde, 10120, true); -- Soldier of the Horde: Warlords Season 3
     O(a[10121], "From", "PvP Season", 18, "Until", "PvP Season", 18);
-    a[10137] = b:New(10137); -- Wild Gladiator's Felblood Gronnling
+    a[10137] = b:New(10137, nil, nil, true); -- Wild Gladiator's Felblood Gronnling
     O(a[10137], "From", "PvP Season", 17, "Until", "PvP Season", 17);
-    a[10146] = b:New(10146); -- Warmongering Gladiator's Felblood Gronnling
+    a[10146] = b:New(10146, nil, nil, true); -- Warmongering Gladiator's Felblood Gronnling
     O(a[10146], "From", "PvP Season", 18, "Until", "PvP Season", 18);
     a[10148] = b:New(10148, fac.Horde, 10021); -- Chapter IV: Darkness Incarnate
     O(a[10148], "From", "Version", "060200", "Before", "Version", "070003");
@@ -4057,7 +4057,7 @@ function exportedAchievements.Load(a, t)
     a[10553] = b:New(10553); -- You're Just Making It WORSE!
     a[10554] = b:New(10554); -- I Made a Food!
     a[10555] = b:New(10555); -- Buggy Fight
-    a[10561] = b:New(10561); -- Honorable Medallion
+    a[10561] = b:New(10561, nil, nil, true); -- Honorable Medallion
     a[10575] = b:New(10575); -- Burning Bridges
     a[10580] = b:New(10580); -- Heroic Skills to Pay the Bills
     O(a[10580], "From", "Version", "070003", "Before", "Version", "080001");
@@ -4136,15 +4136,15 @@ function exportedAchievements.Load(a, t)
     a[10741] = b:New(10741); -- WoW's 12th Anniversary
     O(a[10741]);
     a[10742] = b:New(10742); -- Gluten Free
-    a[10743] = b:New(10743, fac.Alliance, 10745); -- The Prestige
+    a[10743] = b:New(10743, fac.Alliance, 10745, true); -- The Prestige
     O(a[10743], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[10745] = b:New(10745, fac.Horde, 10743); -- The Prestige
+    a[10745] = b:New(10745, fac.Horde, 10743, true); -- The Prestige
     O(a[10745], "From", "PvP Season", 19, "Until", "PvP Season", 25);
     a[10746] = b:New(10746); -- Forged for Battle
     a[10747] = b:New(10747); -- Fighting with Style: Upgraded
     O(a[10747], "From", "Version", "070003", "Before", "Version", "080001");
     a[10748] = b:New(10748); -- Fighting with Style: Valorous
-    a[10749] = b:New(10749, fac.Alliance, 11173); -- Fighting with Style: War-torn
+    a[10749] = b:New(10749, fac.Alliance, 11173, true); -- Fighting with Style: War-torn
     a[10750] = b:New(10750); -- Fighting with Style: Hidden
     a[10751] = b:New(10751); -- Brr... It's Cold in Here
     a[10753] = b:New(10753); -- Scare Bear
@@ -4230,143 +4230,143 @@ function exportedAchievements.Load(a, t)
     a[10875] = b:New(10875); -- Can't Eat Just One
     a[10876] = b:New(10876); -- Battle on the Broken Isles
     a[10877] = b:New(10877); -- Pillars of Creation
-    a[10991] = b:New(10991); -- First Step into a Larger World
+    a[10991] = b:New(10991, nil, nil, true); -- First Step into a Larger World
     O(a[10991], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[10992] = b:New(10992); -- Here We Go Again
+    a[10992] = b:New(10992, nil, nil, true); -- Here We Go Again
     O(a[10992], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[10993] = b:New(10993); -- Third Time's the Charm
+    a[10993] = b:New(10993, nil, nil, true); -- Third Time's the Charm
     O(a[10993], "From", "PvP Season", 19, "Until", "PvP Season", 25);
     a[10994] = b:New(10994); -- A Glorious Campaign
-    a[10995] = b:New(10995); -- For Prestige
+    a[10995] = b:New(10995, nil, nil, true); -- For Prestige
     O(a[10995], "From", "PvP Season", 19, "Until", "PvP Season", 25);
     a[10996] = b:New(10996); -- Got to Ketchum All
-    a[10997] = b:New(10997, fac.Horde, 10998); -- Vindictive Combatant
+    a[10997] = b:New(10997, fac.Horde, 10998, true); -- Vindictive Combatant
     O(a[10997], "From", "PvP Season", 19, "Until", "PvP Season", 19);
-    a[10998] = b:New(10998, fac.Alliance, 10997); -- Vindictive Combatant
+    a[10998] = b:New(10998, fac.Alliance, 10997, true); -- Vindictive Combatant
     O(a[10998], "From", "PvP Season", 19, "Until", "PvP Season", 19);
-    a[10999] = b:New(10999); -- Vindictive Gladiator's Storm Dragon
+    a[10999] = b:New(10999, nil, nil, true); -- Vindictive Gladiator's Storm Dragon
     O(a[10999], "From", "PvP Season", 19, "Until", "PvP Season", 19);
-    a[11000] = b:New(11000); -- Fearless Gladiator's Storm Dragon
+    a[11000] = b:New(11000, nil, nil, true); -- Fearless Gladiator's Storm Dragon
     O(a[11000], "From", "PvP Season", 20, "Until", "PvP Season", 20);
-    a[11001] = b:New(11001); -- Cruel Gladiator's Storm Dragon
+    a[11001] = b:New(11001, nil, nil, true); -- Cruel Gladiator's Storm Dragon
     O(a[11001], "From", "PvP Season", 21, "Until", "PvP Season", 21);
-    a[11002] = b:New(11002); -- Ferocious Gladiator's Storm Dragon
+    a[11002] = b:New(11002, nil, nil, true); -- Ferocious Gladiator's Storm Dragon
     O(a[11002], "From", "PvP Season", 22, "Until", "PvP Season", 22);
-    a[11003] = b:New(11003, fac.Horde, 11004); -- Fearless Combatant
+    a[11003] = b:New(11003, fac.Horde, 11004, true); -- Fearless Combatant
     O(a[11003], "From", "PvP Season", 20, "Until", "PvP Season", 20);
-    a[11004] = b:New(11004, fac.Alliance, 11003); -- Fearless Combatant
+    a[11004] = b:New(11004, fac.Alliance, 11003, true); -- Fearless Combatant
     O(a[11004], "From", "PvP Season", 20, "Until", "PvP Season", 20);
-    a[11005] = b:New(11005, fac.Horde, 11008); -- Cruel Combatant
+    a[11005] = b:New(11005, fac.Horde, 11008, true); -- Cruel Combatant
     O(a[11005], "From", "PvP Season", 21, "Until", "PvP Season", 21);
-    a[11008] = b:New(11008, fac.Alliance, 11005); -- Cruel Combatant
+    a[11008] = b:New(11008, fac.Alliance, 11005, true); -- Cruel Combatant
     O(a[11008], "From", "PvP Season", 21, "Until", "PvP Season", 21);
-    a[11009] = b:New(11009, fac.Horde, 11010); -- Ferocious Combatant
+    a[11009] = b:New(11009, fac.Horde, 11010, true); -- Ferocious Combatant
     O(a[11009], "From", "PvP Season", 22, "Until", "PvP Season", 22);
-    a[11010] = b:New(11010, fac.Alliance, 11009); -- Ferocious Combatant
+    a[11010] = b:New(11010, fac.Alliance, 11009, true); -- Ferocious Combatant
     O(a[11010], "From", "PvP Season", 22, "Until", "PvP Season", 22);
-    a[11011] = b:New(11011); -- Gladiator: Legion Season 1
+    a[11011] = b:New(11011, nil, nil, true); -- Gladiator: Legion Season 1
     O(a[11011], "From", "PvP Season", 19, "Until", "PvP Season", 19);
-    a[11012] = b:New(11012); -- Vindictive Gladiator: Legion Season 1
+    a[11012] = b:New(11012, nil, nil, true); -- Vindictive Gladiator: Legion Season 1
     O(a[11012], "From", "PvP Season", 19, "Until", "PvP Season", 19);
-    a[11013] = b:New(11013); -- Gladiator: Legion Season 2
+    a[11013] = b:New(11013, nil, nil, true); -- Gladiator: Legion Season 2
     O(a[11013], "From", "PvP Season", 20, "Until", "PvP Season", 20);
-    a[11014] = b:New(11014); -- Fearless Gladiator: Legion Season 2
+    a[11014] = b:New(11014, nil, nil, true); -- Fearless Gladiator: Legion Season 2
     O(a[11014], "From", "PvP Season", 20, "Until", "PvP Season", 20);
-    a[11015] = b:New(11015); -- Duelist: Legion Season 1
+    a[11015] = b:New(11015, nil, nil, true); -- Duelist: Legion Season 1
     O(a[11015], "From", "PvP Season", 19, "Until", "PvP Season", 19);
-    a[11016] = b:New(11016); -- Rival: Legion Season 1
+    a[11016] = b:New(11016, nil, nil, true); -- Rival: Legion Season 1
     O(a[11016], "From", "PvP Season", 19, "Until", "PvP Season", 19);
-    a[11017] = b:New(11017); -- Challenger: Legion Season 1
+    a[11017] = b:New(11017, nil, nil, true); -- Challenger: Legion Season 1
     O(a[11017], "From", "PvP Season", 19, "Until", "PvP Season", 19);
-    a[11018] = b:New(11018, fac.Alliance, 11019); -- Hero of the Alliance: Vindictive
+    a[11018] = b:New(11018, fac.Alliance, 11019, true); -- Hero of the Alliance: Vindictive
     O(a[11018], "From", "PvP Season", 19, "Until", "PvP Season", 19);
-    a[11019] = b:New(11019, fac.Horde, 11018); -- Hero of the Horde: Vindictive
+    a[11019] = b:New(11019, fac.Horde, 11018, true); -- Hero of the Horde: Vindictive
     O(a[11019], "From", "PvP Season", 19, "Until", "PvP Season", 19);
-    a[11020] = b:New(11020, fac.Alliance, 11021); -- Guardian of the Alliance: Legion Season 1
+    a[11020] = b:New(11020, fac.Alliance, 11021, true); -- Guardian of the Alliance: Legion Season 1
     O(a[11020], "From", "PvP Season", 19, "Until", "PvP Season", 19);
-    a[11021] = b:New(11021, fac.Horde, 11020); -- Guardian of the Horde: Legion Season 1
+    a[11021] = b:New(11021, fac.Horde, 11020, true); -- Guardian of the Horde: Legion Season 1
     O(a[11021], "From", "PvP Season", 19, "Until", "PvP Season", 19);
-    a[11022] = b:New(11022, fac.Alliance, 11023); -- Defender of the Alliance: Legion Season 1
+    a[11022] = b:New(11022, fac.Alliance, 11023, true); -- Defender of the Alliance: Legion Season 1
     O(a[11022], "From", "PvP Season", 19, "Until", "PvP Season", 19);
-    a[11023] = b:New(11023, fac.Horde, 11022); -- Defender of the Horde: Legion Season 1
+    a[11023] = b:New(11023, fac.Horde, 11022, true); -- Defender of the Horde: Legion Season 1
     O(a[11023], "From", "PvP Season", 19, "Until", "PvP Season", 19);
-    a[11024] = b:New(11024, fac.Alliance, 11025); -- Soldier of the Alliance: Legion Season 1
+    a[11024] = b:New(11024, fac.Alliance, 11025, true); -- Soldier of the Alliance: Legion Season 1
     O(a[11024], "From", "PvP Season", 19, "Until", "PvP Season", 19);
-    a[11025] = b:New(11025, fac.Horde, 11024); -- Soldier of the Horde: Legion Season 1
+    a[11025] = b:New(11025, fac.Horde, 11024, true); -- Soldier of the Horde: Legion Season 1
     O(a[11025], "From", "PvP Season", 19, "Until", "PvP Season", 19);
-    a[11026] = b:New(11026); -- Duelist: Legion Season 2
+    a[11026] = b:New(11026, nil, nil, true); -- Duelist: Legion Season 2
     O(a[11026], "From", "PvP Season", 20, "Until", "PvP Season", 20);
-    a[11027] = b:New(11027); -- Rival: Legion Season 2
+    a[11027] = b:New(11027, nil, nil, true); -- Rival: Legion Season 2
     O(a[11027], "From", "PvP Season", 20, "Until", "PvP Season", 20);
-    a[11028] = b:New(11028); -- Challenger: Legion Season 2
+    a[11028] = b:New(11028, nil, nil, true); -- Challenger: Legion Season 2
     O(a[11028], "From", "PvP Season", 20, "Until", "PvP Season", 20);
-    a[11029] = b:New(11029, fac.Horde, 11030); -- Hero of the Horde: Fearless
+    a[11029] = b:New(11029, fac.Horde, 11030, true); -- Hero of the Horde: Fearless
     O(a[11029], "From", "PvP Season", 20, "Until", "PvP Season", 20);
-    a[11030] = b:New(11030, fac.Alliance, 11029); -- Hero of the Alliance: Fearless
+    a[11030] = b:New(11030, fac.Alliance, 11029, true); -- Hero of the Alliance: Fearless
     O(a[11030], "From", "PvP Season", 20, "Until", "PvP Season", 20);
-    a[11031] = b:New(11031, fac.Horde, 11032); -- Guardian of the Horde: Legion Season 2
+    a[11031] = b:New(11031, fac.Horde, 11032, true); -- Guardian of the Horde: Legion Season 2
     O(a[11031], "From", "PvP Season", 20, "Until", "PvP Season", 20);
-    a[11032] = b:New(11032, fac.Alliance, 11031); -- Guardian of the Alliance: Legion Season 2
+    a[11032] = b:New(11032, fac.Alliance, 11031, true); -- Guardian of the Alliance: Legion Season 2
     O(a[11032], "From", "PvP Season", 20, "Until", "PvP Season", 20);
-    a[11033] = b:New(11033, fac.Horde, 11034); -- Defender of the Horde: Legion Season 2
+    a[11033] = b:New(11033, fac.Horde, 11034, true); -- Defender of the Horde: Legion Season 2
     O(a[11033], "From", "PvP Season", 20, "Until", "PvP Season", 20);
-    a[11034] = b:New(11034, fac.Alliance, 11033); -- Defender of the Alliance: Legion Season 2
+    a[11034] = b:New(11034, fac.Alliance, 11033, true); -- Defender of the Alliance: Legion Season 2
     O(a[11034], "From", "PvP Season", 20, "Until", "PvP Season", 20);
-    a[11035] = b:New(11035, fac.Horde, 11036); -- Soldier of the Horde: Legion Season 2
+    a[11035] = b:New(11035, fac.Horde, 11036, true); -- Soldier of the Horde: Legion Season 2
     O(a[11035], "From", "PvP Season", 20, "Until", "PvP Season", 20);
-    a[11036] = b:New(11036, fac.Alliance, 11035); -- Soldier of the Alliance: Legion Season 2
+    a[11036] = b:New(11036, fac.Alliance, 11035, true); -- Soldier of the Alliance: Legion Season 2
     O(a[11036], "From", "PvP Season", 20, "Until", "PvP Season", 20);
-    a[11037] = b:New(11037); -- Cruel Gladiator: Legion Season 3
+    a[11037] = b:New(11037, nil, nil, true); -- Cruel Gladiator: Legion Season 3
     O(a[11037], "From", "PvP Season", 21, "Until", "PvP Season", 21);
-    a[11038] = b:New(11038); -- Gladiator: Legion Season 3
+    a[11038] = b:New(11038, nil, nil, true); -- Gladiator: Legion Season 3
     O(a[11038], "From", "PvP Season", 21, "Until", "PvP Season", 21);
-    a[11039] = b:New(11039); -- Challenger: Legion Season 3
+    a[11039] = b:New(11039, nil, nil, true); -- Challenger: Legion Season 3
     O(a[11039], "From", "PvP Season", 21, "Until", "PvP Season", 21);
-    a[11040] = b:New(11040); -- Rival: Legion Season 3
+    a[11040] = b:New(11040, nil, nil, true); -- Rival: Legion Season 3
     O(a[11040], "From", "PvP Season", 21, "Until", "PvP Season", 21);
-    a[11041] = b:New(11041); -- Duelist: Legion Season 3
+    a[11041] = b:New(11041, nil, nil, true); -- Duelist: Legion Season 3
     O(a[11041], "From", "PvP Season", 21, "Until", "PvP Season", 21);
-    a[11042] = b:New(11042, fac.Horde, 11043); -- Hero of the Horde: Cruel
+    a[11042] = b:New(11042, fac.Horde, 11043, true); -- Hero of the Horde: Cruel
     O(a[11042], "From", "PvP Season", 21, "Until", "PvP Season", 21);
-    a[11043] = b:New(11043, fac.Alliance, 11042); -- Hero of the Alliance: Cruel
+    a[11043] = b:New(11043, fac.Alliance, 11042, true); -- Hero of the Alliance: Cruel
     O(a[11043], "From", "PvP Season", 21, "Until", "PvP Season", 21);
-    a[11044] = b:New(11044, fac.Horde, 11045); -- Defender of the Horde: Legion Season 3
+    a[11044] = b:New(11044, fac.Horde, 11045, true); -- Defender of the Horde: Legion Season 3
     O(a[11044], "From", "PvP Season", 21, "Until", "PvP Season", 21);
-    a[11045] = b:New(11045, fac.Alliance, 11044); -- Defender of the Alliance: Legion Season 3
+    a[11045] = b:New(11045, fac.Alliance, 11044, true); -- Defender of the Alliance: Legion Season 3
     O(a[11045], "From", "PvP Season", 21, "Until", "PvP Season", 21);
-    a[11046] = b:New(11046, fac.Horde, 11047); -- Guardian of the Horde: Legion Season 3
+    a[11046] = b:New(11046, fac.Horde, 11047, true); -- Guardian of the Horde: Legion Season 3
     O(a[11046], "From", "PvP Season", 21, "Until", "PvP Season", 21);
-    a[11047] = b:New(11047, fac.Alliance, 11046); -- Guardian of the Alliance: Legion Season 3
+    a[11047] = b:New(11047, fac.Alliance, 11046, true); -- Guardian of the Alliance: Legion Season 3
     O(a[11047], "From", "PvP Season", 21, "Until", "PvP Season", 21);
-    a[11048] = b:New(11048, fac.Horde, 11049); -- Soldier of the Horde: Legion Season 3
+    a[11048] = b:New(11048, fac.Horde, 11049, true); -- Soldier of the Horde: Legion Season 3
     O(a[11048], "From", "PvP Season", 21, "Until", "PvP Season", 21);
-    a[11049] = b:New(11049, fac.Alliance, 11048); -- Soldier of the Alliance: Legion Season 3
+    a[11049] = b:New(11049, fac.Alliance, 11048, true); -- Soldier of the Alliance: Legion Season 3
     O(a[11049], "From", "PvP Season", 21, "Until", "PvP Season", 21);
-    a[11050] = b:New(11050, fac.Alliance, 11051); -- Soldier of the Alliance: Legion Season 4
+    a[11050] = b:New(11050, fac.Alliance, 11051, true); -- Soldier of the Alliance: Legion Season 4
     O(a[11050], "From", "PvP Season", 22, "Until", "PvP Season", 22);
-    a[11051] = b:New(11051, fac.Horde, 11050); -- Soldier of the Horde: Legion Season 4
+    a[11051] = b:New(11051, fac.Horde, 11050, true); -- Soldier of the Horde: Legion Season 4
     O(a[11051], "From", "PvP Season", 22, "Until", "PvP Season", 22);
-    a[11052] = b:New(11052, fac.Alliance, 11053); -- Guardian of the Alliance: Legion Season 4
+    a[11052] = b:New(11052, fac.Alliance, 11053, true); -- Guardian of the Alliance: Legion Season 4
     O(a[11052], "From", "PvP Season", 22, "Until", "PvP Season", 22);
-    a[11053] = b:New(11053, fac.Horde, 11052); -- Guardian of the Horde: Legion Season 4
+    a[11053] = b:New(11053, fac.Horde, 11052, true); -- Guardian of the Horde: Legion Season 4
     O(a[11053], "From", "PvP Season", 22, "Until", "PvP Season", 22);
-    a[11054] = b:New(11054, fac.Alliance, 11055); -- Defender of the Alliance: Legion Season 4
+    a[11054] = b:New(11054, fac.Alliance, 11055, true); -- Defender of the Alliance: Legion Season 4
     O(a[11054], "From", "PvP Season", 22, "Until", "PvP Season", 22);
-    a[11055] = b:New(11055, fac.Horde, 11054); -- Defender of the Horde: Legion Season 4
+    a[11055] = b:New(11055, fac.Horde, 11054, true); -- Defender of the Horde: Legion Season 4
     O(a[11055], "From", "PvP Season", 22, "Until", "PvP Season", 22);
-    a[11056] = b:New(11056, fac.Alliance, 11057); -- Hero of the Alliance: Ferocious
+    a[11056] = b:New(11056, fac.Alliance, 11057, true); -- Hero of the Alliance: Ferocious
     O(a[11056], "From", "PvP Season", 22, "Until", "PvP Season", 22);
-    a[11057] = b:New(11057, fac.Horde, 11056); -- Hero of the Horde: Ferocious
+    a[11057] = b:New(11057, fac.Horde, 11056, true); -- Hero of the Horde: Ferocious
     O(a[11057], "From", "PvP Season", 22, "Until", "PvP Season", 22);
-    a[11058] = b:New(11058); -- Duelist: Legion Season 4
+    a[11058] = b:New(11058, nil, nil, true); -- Duelist: Legion Season 4
     O(a[11058], "From", "PvP Season", 22, "Until", "PvP Season", 22);
-    a[11059] = b:New(11059); -- Rival: Legion Season 4
+    a[11059] = b:New(11059, nil, nil, true); -- Rival: Legion Season 4
     O(a[11059], "From", "PvP Season", 22, "Until", "PvP Season", 22);
-    a[11060] = b:New(11060); -- Challenger: Legion Season 4
+    a[11060] = b:New(11060, nil, nil, true); -- Challenger: Legion Season 4
     O(a[11060], "From", "PvP Season", 22, "Until", "PvP Season", 22);
-    a[11061] = b:New(11061); -- Gladiator: Legion Season 4
+    a[11061] = b:New(11061, nil, nil, true); -- Gladiator: Legion Season 4
     O(a[11061], "From", "PvP Season", 22, "Until", "PvP Season", 22);
-    a[11062] = b:New(11062); -- Ferocious Gladiator: Legion Season 4
+    a[11062] = b:New(11062, nil, nil, true); -- Ferocious Gladiator: Legion Season 4
     O(a[11062], "From", "PvP Season", 22, "Until", "PvP Season", 22);
     a[11064] = b:New(11064); -- Collector's Edition: Baby Winston
     a[11065] = b:New(11065); -- It All Makes Sense Now
@@ -4397,17 +4397,17 @@ function exportedAchievements.Load(a, t)
     a[11162] = b:New(11162); -- Keystone Master
     a[11163] = b:New(11163); -- Glory of the Legion Hero
     a[11164] = b:New(11164); -- Legion Dungeon Hero
-    a[11165] = b:New(11165, fac.Alliance, 11166); -- Crest of Heroism
+    a[11165] = b:New(11165, fac.Alliance, 11166, true); -- Crest of Heroism
     O(a[11165], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[11166] = b:New(11166, fac.Horde, 11165); -- Crest of Heroism
+    a[11166] = b:New(11166, fac.Horde, 11165, true); -- Crest of Heroism
     O(a[11166], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[11167] = b:New(11167, fac.Alliance, 11168); -- Crest of Carnage
+    a[11167] = b:New(11167, fac.Alliance, 11168, true); -- Crest of Carnage
     O(a[11167], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[11168] = b:New(11168, fac.Horde, 11167); -- Crest of Carnage
+    a[11168] = b:New(11168, fac.Horde, 11167, true); -- Crest of Carnage
     O(a[11168], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[11169] = b:New(11169, fac.Alliance, 11170); -- Crest of Devastation
+    a[11169] = b:New(11169, fac.Alliance, 11170, true); -- Crest of Devastation
     O(a[11169], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[11170] = b:New(11170, fac.Horde, 11169); -- Crest of Devastation
+    a[11170] = b:New(11170, fac.Horde, 11169, true); -- Crest of Devastation
     O(a[11170], "From", "PvP Season", 19, "Until", "PvP Season", 25);
     a[11171] = b:New(11171); -- Arsenal of Power
     a[11173] = b:New(11173, fac.Horde, 10749); -- Fighting with Style: War-torn
@@ -4454,7 +4454,7 @@ function exportedAchievements.Load(a, t)
     a[11221] = b:New(11221); -- Champions Rise
     a[11222] = b:New(11222); -- Champions of Power
     a[11223] = b:New(11223); -- Legendary Research
-    a[11224] = b:New(11224, nil, nil, true); -- Realm First! Legion Keystone Master
+    a[11224] = b:New(11224, nil, nil, nil, true); -- Realm First! Legion Keystone Master
     O(a[11224], "Once");
     a[11232] = b:New(11232); -- "Lock, Stock and Two Smoking Goblins"
     a[11233] = b:New(11233); -- Broken Isles Safari
@@ -4508,17 +4508,17 @@ function exportedAchievements.Load(a, t)
     a[11432] = b:New(11432); -- Scared Straight
     a[11433] = b:New(11433); -- Burn After Reading
     a[11446] = b:New(11446); -- "Broken Isles Pathfinder, Part Two"
-    a[11468] = b:New(11468); -- Alive for Five
+    a[11468] = b:New(11468, nil, nil, true); -- Alive for Five
     O(a[11468], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[11469] = b:New(11469); -- The River Six
+    a[11469] = b:New(11469, nil, nil, true); -- The River Six
     O(a[11469], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[11470] = b:New(11470); -- Slayin' to Seven
+    a[11470] = b:New(11470, nil, nil, true); -- Slayin' to Seven
     O(a[11470], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[11471] = b:New(11471); -- "Don't Hate, Grind to Eight"
+    a[11471] = b:New(11471, nil, nil, true); -- "Don't Hate, Grind to Eight"
     O(a[11471], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[11472] = b:New(11472); -- "Hell, It's About Nine"
+    a[11472] = b:New(11472, nil, nil, true); -- "Hell, It's About Nine"
     O(a[11472], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[11474] = b:New(11474); -- "Free For All, More For Me"
+    a[11474] = b:New(11474, nil, nil, true); -- "Free For All, More For Me"
     a[11475] = b:New(11475); -- Mission Accomplished
     a[11476] = b:New(11476); -- Saddle Sore
     a[11477] = b:New(11477); -- Off the Top Rook
@@ -4551,9 +4551,9 @@ function exportedAchievements.Load(a, t)
     O(a[11572], "From", "Version", "070105", "Before", "Version", "080001");
     a[11573] = b:New(11573); -- Rumble Club
     O(a[11573], "From", "Version", "080105", "Before", "Version", "090001");
-    a[11578] = b:New(11578); -- Vindictive Elite
+    a[11578] = b:New(11578, nil, nil, true); -- Vindictive Elite
     O(a[11578], "From", "PvP Season", 19, "Until", "PvP Season", 19);
-    a[11579] = b:New(11579); -- Fearless Elite
+    a[11579] = b:New(11579, nil, nil, true); -- Fearless Elite
     O(a[11579], "From", "PvP Season", 20, "Until", "PvP Season", 20);
     a[11580] = b:New(11580); -- Cutting Edge: Helya
     O(a[11580], "From", "Version", "070100", "Before", "Version", "070205");
@@ -4800,30 +4800,30 @@ function exportedAchievements.Load(a, t)
     a[11676] = b:New(11676); -- Five Course Seafood Buffet
     a[11681] = b:New(11681); -- Crate Expectations
     a[11683] = b:New(11683); -- Bingo!
-    a[11685] = b:New(11685); -- Decade of Dominance
+    a[11685] = b:New(11685, nil, nil, true); -- Decade of Dominance
     O(a[11685], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[11686] = b:New(11686); -- These Go To Eleven
+    a[11686] = b:New(11686, nil, nil, true); -- These Go To Eleven
     O(a[11686], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[11687] = b:New(11687); -- Demonic Dozen
+    a[11687] = b:New(11687, nil, nil, true); -- Demonic Dozen
     O(a[11687], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[11688] = b:New(11688); -- Floor Thirteen
+    a[11688] = b:New(11688, nil, nil, true); -- Floor Thirteen
     O(a[11688], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[11689] = b:New(11689); -- Fourteen for the Team
+    a[11689] = b:New(11689, nil, nil, true); -- Fourteen for the Team
     O(a[11689], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[11690] = b:New(11690); -- When You're Fifteen
+    a[11690] = b:New(11690, nil, nil, true); -- When You're Fifteen
     O(a[11690], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[11691] = b:New(11691); -- You Are Sixteen
+    a[11691] = b:New(11691, nil, nil, true); -- You Are Sixteen
     O(a[11691], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[11692] = b:New(11692); -- Going On Seventeen
+    a[11692] = b:New(11692, nil, nil, true); -- Going On Seventeen
     O(a[11692], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[11693] = b:New(11693); -- Eighteen and Over
+    a[11693] = b:New(11693, nil, nil, true); -- Eighteen and Over
     O(a[11693], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[11694] = b:New(11694); -- "Hell, It's About Nineteen"
+    a[11694] = b:New(11694, nil, nil, true); -- "Hell, It's About Nineteen"
     O(a[11694], "From", "PvP Season", 19, "Until", "PvP Season", 25);
     a[11696] = b:New(11696); -- Grin and Bear It
-    a[11697] = b:New(11697); -- Cruel Elite
+    a[11697] = b:New(11697, nil, nil, true); -- Cruel Elite
     O(a[11697], "From", "PvP Season", 21, "Until", "PvP Season", 21);
-    a[11698] = b:New(11698); -- Ferocious Elite
+    a[11698] = b:New(11698, nil, nil, true); -- Ferocious Elite
     O(a[11698], "From", "PvP Season", 22, "Until", "PvP Season", 22);
     a[11699] = b:New(11699); -- Grand Fin-ale
     a[11700] = b:New(11700); -- Cathedral of Eternal Night
@@ -5925,7 +5925,7 @@ function exportedAchievements.Load(a, t)
     a[12007] = b:New(12007); -- Heroic: Seat of the Triumvirate
     a[12008] = b:New(12008); -- Mythic: Seat of the Triumvirate
     a[12009] = b:New(12009); -- Darker Side
-    a[12010] = b:New(12010); -- Fierce Gladiator: Legion Season 5
+    a[12010] = b:New(12010, nil, nil, true); -- Fierce Gladiator: Legion Season 5
     O(a[12010], "From", "PvP Season", 23, "Until", "PvP Season", 23);
     a[12020] = b:New(12020); -- Argussy Up
     T(a[12020], t[1519]); -- Juggernaut Battlegear (Raid Finder)
@@ -6052,33 +6052,33 @@ function exportedAchievements.Load(a, t)
     a[12026] = b:New(12026); -- Invasion Obliteration
     a[12028] = b:New(12028); -- Envision Invasion Eradication
     a[12030] = b:New(12030); -- The World Revolves Around Me
-    a[12031] = b:New(12031, fac.Horde, 12032); -- Fierce Combatant
+    a[12031] = b:New(12031, fac.Horde, 12032, true); -- Fierce Combatant
     O(a[12031], "From", "PvP Season", 23, "Until", "PvP Season", 23);
-    a[12032] = b:New(12032, fac.Alliance, 12031); -- Fierce Combatant
+    a[12032] = b:New(12032, fac.Alliance, 12031, true); -- Fierce Combatant
     O(a[12032], "From", "PvP Season", 23, "Until", "PvP Season", 23);
-    a[12034] = b:New(12034); -- Duelist: Legion Season 5
+    a[12034] = b:New(12034, nil, nil, true); -- Duelist: Legion Season 5
     O(a[12034], "From", "PvP Season", 23, "Until", "PvP Season", 23);
-    a[12035] = b:New(12035); -- Rival: Legion Season 5
+    a[12035] = b:New(12035, nil, nil, true); -- Rival: Legion Season 5
     O(a[12035], "From", "PvP Season", 23, "Until", "PvP Season", 23);
-    a[12036] = b:New(12036); -- Challenger: Legion Season 5
+    a[12036] = b:New(12036, nil, nil, true); -- Challenger: Legion Season 5
     O(a[12036], "From", "PvP Season", 23, "Until", "PvP Season", 23);
-    a[12037] = b:New(12037, fac.Alliance, 12041); -- Hero of the Alliance: Fierce
+    a[12037] = b:New(12037, fac.Alliance, 12041, true); -- Hero of the Alliance: Fierce
     O(a[12037], "From", "PvP Season", 23, "Until", "PvP Season", 23);
-    a[12038] = b:New(12038, fac.Alliance, 12042); -- Guardian of the Alliance: Legion Season 5
+    a[12038] = b:New(12038, fac.Alliance, 12042, true); -- Guardian of the Alliance: Legion Season 5
     O(a[12038], "From", "PvP Season", 23, "Until", "PvP Season", 23);
-    a[12039] = b:New(12039, fac.Alliance, 12043); -- Defender of the Alliance: Legion Season 5
+    a[12039] = b:New(12039, fac.Alliance, 12043, true); -- Defender of the Alliance: Legion Season 5
     O(a[12039], "From", "PvP Season", 23, "Until", "PvP Season", 23);
-    a[12040] = b:New(12040, fac.Alliance, 12044); -- Soldier of the Alliance: Legion Season 5
+    a[12040] = b:New(12040, fac.Alliance, 12044, true); -- Soldier of the Alliance: Legion Season 5
     O(a[12040], "From", "PvP Season", 23, "Until", "PvP Season", 23);
-    a[12041] = b:New(12041, fac.Horde, 12037); -- Hero of the Horde: Fierce
+    a[12041] = b:New(12041, fac.Horde, 12037, true); -- Hero of the Horde: Fierce
     O(a[12041], "From", "PvP Season", 23, "Until", "PvP Season", 23);
-    a[12042] = b:New(12042, fac.Horde, 12038); -- Guardian of the Horde: Legion Season 5
+    a[12042] = b:New(12042, fac.Horde, 12038, true); -- Guardian of the Horde: Legion Season 5
     O(a[12042], "From", "PvP Season", 23, "Until", "PvP Season", 23);
-    a[12043] = b:New(12043, fac.Horde, 12039); -- Defender of the Horde: Legion Season 5
+    a[12043] = b:New(12043, fac.Horde, 12039, true); -- Defender of the Horde: Legion Season 5
     O(a[12043], "From", "PvP Season", 23, "Until", "PvP Season", 23);
-    a[12044] = b:New(12044, fac.Horde, 12040); -- Soldier of the Horde: Legion Season 5
+    a[12044] = b:New(12044, fac.Horde, 12040, true); -- Soldier of the Horde: Legion Season 5
     O(a[12044], "From", "PvP Season", 23, "Until", "PvP Season", 23);
-    a[12045] = b:New(12045); -- Gladiator: Legion Season 5
+    a[12045] = b:New(12045, nil, nil, true); -- Gladiator: Legion Season 5
     O(a[12045], "From", "PvP Season", 23, "Until", "PvP Season", 23);
     a[12046] = b:New(12046); -- Remember the Titans
     a[12065] = b:New(12065); -- Hounds Good To Me
@@ -6101,7 +6101,7 @@ function exportedAchievements.Load(a, t)
     a[12087] = b:New(12087, fac.Alliance); -- The Reining Champion
     a[12088] = b:New(12088); -- Anomalous Animals of Argus
     a[12089] = b:New(12089); -- Aquatic Assault
-    a[12090] = b:New(12090); -- Fierce Elite
+    a[12090] = b:New(12090, nil, nil, true); -- Fierce Elite
     O(a[12090], "From", "PvP Season", 23, "Until", "PvP Season", 23);
     a[12091] = b:New(12091); -- Beast Blitz
     a[12092] = b:New(12092); -- Critical Critters
@@ -6117,90 +6117,90 @@ function exportedAchievements.Load(a, t)
     a[12102] = b:New(12102); -- To Kill Demons...
     a[12103] = b:New(12103); -- ...And Chew Mana Buns
     a[12104] = b:New(12104); -- And We're All Out of Mana Buns
-    a[12108] = b:New(12108); -- Double Decade of Dominance
+    a[12108] = b:New(12108, nil, nil, true); -- Double Decade of Dominance
     O(a[12108], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[12109] = b:New(12109); -- Twenty-One Arms Salute
+    a[12109] = b:New(12109, nil, nil, true); -- Twenty-One Arms Salute
     O(a[12109], "From", "PvP Season", 19, "Until", "PvP Season", 25);
     a[12110] = b:New(12110); -- Ahead of the Curve: Argus the Unmaker
     O(a[12110], "From", "Version", "070300", "Before", "Version", "080001");
     a[12111] = b:New(12111); -- Cutting Edge: Argus the Unmaker
     O(a[12111], "From", "Version", "070300", "Before", "Version", "080001");
     a[12129] = b:New(12129); -- This is the War Room!
-    a[12134] = b:New(12134); -- Dominant Gladiator: Legion Season 6
+    a[12134] = b:New(12134, nil, nil, true); -- Dominant Gladiator: Legion Season 6
     O(a[12134], "From", "PvP Season", 24, "Until", "PvP Season", 24);
-    a[12135] = b:New(12135); -- Dominant Elite
+    a[12135] = b:New(12135, nil, nil, true); -- Dominant Elite
     O(a[12135], "From", "PvP Season", 24, "Until", "PvP Season", 24);
-    a[12136] = b:New(12136, fac.Horde, 12137); -- Dominant Combatant
+    a[12136] = b:New(12136, fac.Horde, 12137, true); -- Dominant Combatant
     O(a[12136], "From", "PvP Season", 24, "Until", "PvP Season", 24);
-    a[12137] = b:New(12137, fac.Alliance, 12136); -- Dominant Combatant
+    a[12137] = b:New(12137, fac.Alliance, 12136, true); -- Dominant Combatant
     O(a[12137], "From", "PvP Season", 24, "Until", "PvP Season", 24);
-    a[12139] = b:New(12139); -- Dominant Gladiator's Storm Dragon
+    a[12139] = b:New(12139, nil, nil, true); -- Dominant Gladiator's Storm Dragon
     O(a[12139], "From", "PvP Season", 24, "Until", "PvP Season", 24);
-    a[12140] = b:New(12140); -- Demonic Gladiator's Storm Dragon
+    a[12140] = b:New(12140, nil, nil, true); -- Demonic Gladiator's Storm Dragon
     O(a[12140], "From", "PvP Season", 25, "Until", "PvP Season", 25);
-    a[12167] = b:New(12167); -- Gladiator: Legion Season 6
+    a[12167] = b:New(12167, nil, nil, true); -- Gladiator: Legion Season 6
     O(a[12167], "From", "PvP Season", 24, "Until", "PvP Season", 24);
-    a[12168] = b:New(12168); -- Gladiator: Legion Season 7
+    a[12168] = b:New(12168, nil, nil, true); -- Gladiator: Legion Season 7
     O(a[12168], "From", "PvP Season", 25, "Until", "PvP Season", 25);
-    a[12169] = b:New(12169); -- Challenger: Legion Season 6
+    a[12169] = b:New(12169, nil, nil, true); -- Challenger: Legion Season 6
     O(a[12169], "From", "PvP Season", 24, "Until", "PvP Season", 24);
-    a[12170] = b:New(12170); -- Rival: Legion Season 6
+    a[12170] = b:New(12170, nil, nil, true); -- Rival: Legion Season 6
     O(a[12170], "From", "PvP Season", 24, "Until", "PvP Season", 24);
-    a[12171] = b:New(12171); -- Duelist: Legion Season 6
+    a[12171] = b:New(12171, nil, nil, true); -- Duelist: Legion Season 6
     O(a[12171], "From", "PvP Season", 24, "Until", "PvP Season", 24);
-    a[12172] = b:New(12172, fac.Horde, 12173); -- Hero of the Horde: Dominant
+    a[12172] = b:New(12172, fac.Horde, 12173, true); -- Hero of the Horde: Dominant
     O(a[12172], "From", "PvP Season", 24, "Until", "PvP Season", 24);
-    a[12173] = b:New(12173, fac.Alliance, 12172); -- Hero of the Alliance: Dominant
+    a[12173] = b:New(12173, fac.Alliance, 12172, true); -- Hero of the Alliance: Dominant
     O(a[12173], "From", "PvP Season", 24, "Until", "PvP Season", 24);
-    a[12174] = b:New(12174, fac.Horde, 12175); -- Defender of the Horde: Legion Season 6
+    a[12174] = b:New(12174, fac.Horde, 12175, true); -- Defender of the Horde: Legion Season 6
     O(a[12174], "From", "PvP Season", 24, "Until", "PvP Season", 24);
-    a[12175] = b:New(12175, fac.Alliance, 12174); -- Defender of the Alliance: Legion Season 6
+    a[12175] = b:New(12175, fac.Alliance, 12174, true); -- Defender of the Alliance: Legion Season 6
     O(a[12175], "From", "PvP Season", 24, "Until", "PvP Season", 24);
-    a[12176] = b:New(12176, fac.Horde, 12177); -- Guardian of the Horde: Legion Season 6
+    a[12176] = b:New(12176, fac.Horde, 12177, true); -- Guardian of the Horde: Legion Season 6
     O(a[12176], "From", "PvP Season", 24, "Until", "PvP Season", 24);
-    a[12177] = b:New(12177, fac.Alliance, 12176); -- Guardian of the Alliance: Legion Season 6
+    a[12177] = b:New(12177, fac.Alliance, 12176, true); -- Guardian of the Alliance: Legion Season 6
     O(a[12177], "From", "PvP Season", 24, "Until", "PvP Season", 24);
-    a[12178] = b:New(12178, fac.Horde, 12179); -- Soldier of the Horde: Legion Season 6
+    a[12178] = b:New(12178, fac.Horde, 12179, true); -- Soldier of the Horde: Legion Season 6
     O(a[12178], "From", "PvP Season", 24, "Until", "PvP Season", 24);
-    a[12179] = b:New(12179, fac.Alliance, 12178); -- Soldier of the Alliance: Legion Season 6
+    a[12179] = b:New(12179, fac.Alliance, 12178, true); -- Soldier of the Alliance: Legion Season 6
     O(a[12179], "From", "PvP Season", 24, "Until", "PvP Season", 24);
-    a[12180] = b:New(12180); -- Catching Twenty-Two
+    a[12180] = b:New(12180, nil, nil, true); -- Catching Twenty-Two
     O(a[12180], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[12181] = b:New(12181); -- Protocol 2.3
+    a[12181] = b:New(12181, nil, nil, true); -- Protocol 2.3
     O(a[12181], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[12182] = b:New(12182); -- Demonic Double Dozen
+    a[12182] = b:New(12182, nil, nil, true); -- Demonic Double Dozen
     O(a[12182], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[12183] = b:New(12183); -- Prestige Quartermaster
+    a[12183] = b:New(12183, nil, nil, true); -- Prestige Quartermaster
     O(a[12183], "From", "PvP Season", 19, "Until", "PvP Season", 25);
-    a[12185] = b:New(12185); -- Demonic Gladiator: Legion Season 7
+    a[12185] = b:New(12185, nil, nil, true); -- Demonic Gladiator: Legion Season 7
     O(a[12185], "From", "PvP Season", 25, "Until", "PvP Season", 25);
-    a[12186] = b:New(12186); -- Duelist: Legion Season 7
+    a[12186] = b:New(12186, nil, nil, true); -- Duelist: Legion Season 7
     O(a[12186], "From", "PvP Season", 25, "Until", "PvP Season", 25);
-    a[12187] = b:New(12187); -- Challenger: Legion Season 7
+    a[12187] = b:New(12187, nil, nil, true); -- Challenger: Legion Season 7
     O(a[12187], "From", "PvP Season", 25, "Until", "PvP Season", 25);
-    a[12188] = b:New(12188); -- Rival: Legion Season 7
+    a[12188] = b:New(12188, nil, nil, true); -- Rival: Legion Season 7
     O(a[12188], "From", "PvP Season", 25, "Until", "PvP Season", 25);
-    a[12189] = b:New(12189, fac.Alliance, 12190); -- Soldier of the Alliance: Legion Season 7
+    a[12189] = b:New(12189, fac.Alliance, 12190, true); -- Soldier of the Alliance: Legion Season 7
     O(a[12189], "From", "PvP Season", 25, "Until", "PvP Season", 25);
-    a[12190] = b:New(12190, fac.Horde, 12189); -- Soldier of the Horde: Legion Season 7
+    a[12190] = b:New(12190, fac.Horde, 12189, true); -- Soldier of the Horde: Legion Season 7
     O(a[12190], "From", "PvP Season", 25, "Until", "PvP Season", 25);
-    a[12191] = b:New(12191, fac.Alliance, 12192); -- Guardian of the Alliance: Legion Season 7
+    a[12191] = b:New(12191, fac.Alliance, 12192, true); -- Guardian of the Alliance: Legion Season 7
     O(a[12191], "From", "PvP Season", 25, "Until", "PvP Season", 25);
-    a[12192] = b:New(12192, fac.Horde, 12191); -- Guardian of the Horde: Legion Season 7
+    a[12192] = b:New(12192, fac.Horde, 12191, true); -- Guardian of the Horde: Legion Season 7
     O(a[12192], "From", "PvP Season", 25, "Until", "PvP Season", 25);
-    a[12194] = b:New(12194, fac.Horde, 12195); -- Defender of the Horde: Legion Season 7
+    a[12194] = b:New(12194, fac.Horde, 12195, true); -- Defender of the Horde: Legion Season 7
     O(a[12194], "From", "PvP Season", 25, "Until", "PvP Season", 25);
-    a[12195] = b:New(12195, fac.Alliance, 12194); -- Defender of the Alliance: Legion Season 7
+    a[12195] = b:New(12195, fac.Alliance, 12194, true); -- Defender of the Alliance: Legion Season 7
     O(a[12195], "From", "PvP Season", 25, "Until", "PvP Season", 25);
-    a[12196] = b:New(12196, fac.Horde, 12197); -- Hero of the Horde: Demonic
+    a[12196] = b:New(12196, fac.Horde, 12197, true); -- Hero of the Horde: Demonic
     O(a[12196], "From", "PvP Season", 25, "Until", "PvP Season", 25);
-    a[12197] = b:New(12197, fac.Alliance, 12196); -- Hero of the Alliance: Demonic
+    a[12197] = b:New(12197, fac.Alliance, 12196, true); -- Hero of the Alliance: Demonic
     O(a[12197], "From", "PvP Season", 25, "Until", "PvP Season", 25);
-    a[12198] = b:New(12198); -- Demonic Elite
+    a[12198] = b:New(12198, nil, nil, true); -- Demonic Elite
     O(a[12198], "From", "PvP Season", 25, "Until", "PvP Season", 25);
-    a[12199] = b:New(12199, fac.Horde, 12200); -- Demonic Combatant
+    a[12199] = b:New(12199, fac.Horde, 12200, true); -- Demonic Combatant
     O(a[12199], "From", "PvP Season", 25, "Until", "PvP Season", 25);
-    a[12200] = b:New(12200, fac.Alliance, 12199); -- Demonic Combatant
+    a[12200] = b:New(12200, fac.Alliance, 12199, true); -- Demonic Combatant
     O(a[12200], "From", "PvP Season", 25, "Until", "PvP Season", 25);
     a[12229] = b:New(12229, fac.Alliance, 12230); -- Collector's Edition: Seabraid Stallion
     a[12230] = b:New(12230, fac.Horde, 12229); -- Collector's Edition: Gilded Ravasaur
@@ -6213,17 +6213,17 @@ function exportedAchievements.Load(a, t)
     a[12270] = b:New(12270); -- Bringing Hexy Back
     a[12272] = b:New(12272); -- Gold Fever
     a[12273] = b:New(12273); -- It's Lit!
-    a[12279] = b:New(12279); -- Mechanical Brawler
-    a[12280] = b:New(12280); -- Aquatic Brawler
-    a[12281] = b:New(12281); -- Beast Brawler
-    a[12282] = b:New(12282); -- Elemental Brawler
-    a[12283] = b:New(12283); -- Magic Brawler
-    a[12284] = b:New(12284); -- Critter Brawler
-    a[12285] = b:New(12285); -- Undead Brawler
-    a[12286] = b:New(12286); -- Flying Brawler
-    a[12287] = b:New(12287); -- Dragonkin Brawler
-    a[12289] = b:New(12289); -- Humanoid Brawler
-    a[12290] = b:New(12290); -- Family Brawler
+    a[12279] = b:New(12279, nil, nil, true); -- Mechanical Brawler
+    a[12280] = b:New(12280, nil, nil, true); -- Aquatic Brawler
+    a[12281] = b:New(12281, nil, nil, true); -- Beast Brawler
+    a[12282] = b:New(12282, nil, nil, true); -- Elemental Brawler
+    a[12283] = b:New(12283, nil, nil, true); -- Magic Brawler
+    a[12284] = b:New(12284, nil, nil, true); -- Critter Brawler
+    a[12285] = b:New(12285, nil, nil, true); -- Undead Brawler
+    a[12286] = b:New(12286, nil, nil, true); -- Flying Brawler
+    a[12287] = b:New(12287, nil, nil, true); -- Dragonkin Brawler
+    a[12289] = b:New(12289, nil, nil, true); -- Humanoid Brawler
+    a[12290] = b:New(12290, nil, nil, true); -- Family Brawler
     a[12291] = b:New(12291, fac.Alliance); -- Heritage of the Void
     a[12292] = b:New(12292); -- Highmountain Tribe
     a[12297] = b:New(12297); -- The Siege of Ulduar
@@ -6295,15 +6295,15 @@ function exportedAchievements.Load(a, t)
     a[12399] = b:New(12399); -- Observed
     a[12400] = b:New(12400); -- Supermassive
     a[12401] = b:New(12401); -- Glory of the Ulduar Raider
-    a[12404] = b:New(12404); -- Claim Jumper
-    a[12405] = b:New(12405); -- Death from Above
-    a[12406] = b:New(12406); -- A Good Start
-    a[12407] = b:New(12407); -- Seething Shore Perfection
-    a[12408] = b:New(12408); -- Seething Shore Domination
-    a[12409] = b:New(12409); -- Seething Shore Victory
-    a[12410] = b:New(12410); -- Seething Shore Veteran
-    a[12411] = b:New(12411); -- Blood and Sand
-    a[12412] = b:New(12412); -- Master of Seething Shore
+    a[12404] = b:New(12404, nil, nil, true); -- Claim Jumper
+    a[12405] = b:New(12405, nil, nil, true); -- Death from Above
+    a[12406] = b:New(12406, nil, nil, true); -- A Good Start
+    a[12407] = b:New(12407, nil, nil, true); -- Seething Shore Perfection
+    a[12408] = b:New(12408, nil, nil, true); -- Seething Shore Domination
+    a[12409] = b:New(12409, nil, nil, true); -- Seething Shore Victory
+    a[12410] = b:New(12410, nil, nil, true); -- Seething Shore Veteran
+    a[12411] = b:New(12411, nil, nil, true); -- Blood and Sand
+    a[12412] = b:New(12412, nil, nil, true); -- Master of Seething Shore
     a[12413] = b:New(12413, fac.Horde); -- Heritage of the Nightborne
     a[12414] = b:New(12414, fac.Alliance); -- Heritage of the Lightforged
     a[12415] = b:New(12415, fac.Horde); -- Heritage of Highmountain
@@ -6379,34 +6379,34 @@ function exportedAchievements.Load(a, t)
     a[12559] = b:New(12559); -- Explore Zuldazar
     a[12560] = b:New(12560); -- Explore Vol'dun
     a[12561] = b:New(12561); -- Explore Nazmir
-    a[12567] = b:New(12567, fac.Alliance, 12568); -- The Horde Slayer
-    a[12568] = b:New(12568, fac.Horde, 12567); -- The Alliance Slayer
-    a[12571] = b:New(12571); -- Bounty Hunting
-    a[12572] = b:New(12572); -- War Supplied
-    a[12573] = b:New(12573); -- Band of Brothers
-    a[12574] = b:New(12574); -- Tour of Duty: Nazmir
-    a[12575] = b:New(12575); -- Tour of Duty: Zuldazar
-    a[12576] = b:New(12576); -- Tour of Duty: Vol'dun
-    a[12577] = b:New(12577); -- Tour of Duty: Tiragarde Sound
-    a[12578] = b:New(12578); -- Tour of Duty: Stormsong Valley
-    a[12579] = b:New(12579); -- Tour of Duty: Drustvar
+    a[12567] = b:New(12567, fac.Alliance, 12568, true); -- The Horde Slayer
+    a[12568] = b:New(12568, fac.Horde, 12567, true); -- The Alliance Slayer
+    a[12571] = b:New(12571, nil, nil, true); -- Bounty Hunting
+    a[12572] = b:New(12572, nil, nil, true); -- War Supplied
+    a[12573] = b:New(12573, nil, nil, true); -- Band of Brothers
+    a[12574] = b:New(12574, nil, nil, true); -- Tour of Duty: Nazmir
+    a[12575] = b:New(12575, nil, nil, true); -- Tour of Duty: Zuldazar
+    a[12576] = b:New(12576, nil, nil, true); -- Tour of Duty: Vol'dun
+    a[12577] = b:New(12577, nil, nil, true); -- Tour of Duty: Tiragarde Sound
+    a[12578] = b:New(12578, nil, nil, true); -- Tour of Duty: Stormsong Valley
+    a[12579] = b:New(12579, nil, nil, true); -- Tour of Duty: Drustvar
     a[12582] = b:New(12582, fac.Alliance, 12555); -- Come Sail Away
     a[12587] = b:New(12587); -- Unbound Monstrosities
     a[12588] = b:New(12588); -- Eat Your Greens
     a[12589] = b:New(12589); -- Heroic: Un'gol Ruins
     a[12590] = b:New(12590); -- Un'gol Ruins
     a[12591] = b:New(12591); -- Mythic: Un'gol Ruins
-    a[12592] = b:New(12592); -- Ruined the Ruins
+    a[12592] = b:New(12592, nil, nil, true); -- Ruined the Ruins
     a[12593] = b:New(12593, fac.Alliance, 13294); -- Loremaster of Kul Tiras
     a[12594] = b:New(12594); -- Competent Captain
     a[12595] = b:New(12595); -- Expert Expeditioner
     a[12596] = b:New(12596); -- No Tourist
-    a[12597] = b:New(12597); -- Bayside Brawler
+    a[12597] = b:New(12597, nil, nil, true); -- Bayside Brawler
     a[12600] = b:New(12600); -- Breath of the Shrine
     a[12601] = b:New(12601); -- The Void Lies Sleeping
     a[12602] = b:New(12602); -- Trust No One
-    a[12604] = b:New(12604, fac.Horde, 12605); -- Conqueror of Azeroth
-    a[12605] = b:New(12605, fac.Alliance, 12604); -- Conqueror of Azeroth
+    a[12604] = b:New(12604, fac.Horde, 12605, true); -- Conqueror of Azeroth
+    a[12605] = b:New(12605, fac.Alliance, 12604, true); -- Conqueror of Azeroth
     a[12614] = b:New(12614, fac.Horde); -- Loa Expectations
     a[12719] = b:New(12719, fac.Horde); -- Spirits Be With You
     a[12721] = b:New(12721); -- Wrap God
@@ -6478,14 +6478,14 @@ function exportedAchievements.Load(a, t)
     a[12853] = b:New(12853); -- Treasures of Stormsong Valley
     a[12854] = b:New(12854); -- Ready for Raiding VI
     a[12855] = b:New(12855); -- Pitch Invasion
-    a[12856] = b:New(12856); -- The First Rule of Dueler's Guild
-    a[12857] = b:New(12857); -- Trial by Combat
-    a[12858] = b:New(12858); -- Slugfest
-    a[12859] = b:New(12859); -- Prize Fighter
-    a[12860] = b:New(12860); -- Contender
-    a[12861] = b:New(12861); -- Master of Duels
-    a[12862] = b:New(12862); -- Thirty Six and Two
-    a[12863] = b:New(12863); -- Dueling Master
+    a[12856] = b:New(12856, nil, nil, true); -- The First Rule of Dueler's Guild
+    a[12857] = b:New(12857, nil, nil, true); -- Trial by Combat
+    a[12858] = b:New(12858, nil, nil, true); -- Slugfest
+    a[12859] = b:New(12859, nil, nil, true); -- Prize Fighter
+    a[12860] = b:New(12860, nil, nil, true); -- Contender
+    a[12861] = b:New(12861, nil, nil, true); -- Master of Duels
+    a[12862] = b:New(12862, nil, nil, true); -- Thirty Six and Two
+    a[12863] = b:New(12863, nil, nil, true); -- Dueling Master
     a[12864] = b:New(12864); -- 80 Exalted Reputations
     a[12865] = b:New(12865); -- 90 Exalted Reputations
     a[12866] = b:New(12866); -- 100 Exalted Reputations
@@ -6505,30 +6505,30 @@ function exportedAchievements.Load(a, t)
     a[12888] = b:New(12888, fac.Alliance, 12877); -- Strike Hard
     a[12889] = b:New(12889, fac.Alliance, 12876); -- Strike Fast
     a[12891] = b:New(12891, fac.Alliance, 12479); -- A Nation United
-    a[12893] = b:New(12893); -- Honor Level 5
-    a[12894] = b:New(12894); -- Honor Level 10
-    a[12895] = b:New(12895); -- Honor Level 15
+    a[12893] = b:New(12893, nil, nil, true); -- Honor Level 5
+    a[12894] = b:New(12894, nil, nil, true); -- Honor Level 10
+    a[12895] = b:New(12895, nil, nil, true); -- Honor Level 15
     a[12896] = b:New(12896, fac.Alliance, 12867); -- Azeroth at War: The Barrens
     a[12898] = b:New(12898, fac.Alliance, 12869); -- Azeroth at War: After Lordaeron
     a[12899] = b:New(12899, fac.Alliance, 12870); -- Azeroth at War: Kalimdor on Fire
-    a[12900] = b:New(12900); -- Honor Level 20
-    a[12901] = b:New(12901); -- Honor Level 25
-    a[12902] = b:New(12902); -- Honor Level 30
-    a[12903] = b:New(12903); -- Honor Level 40
-    a[12904] = b:New(12904); -- Honor Level 50
-    a[12905] = b:New(12905); -- Honor Level 60
-    a[12906] = b:New(12906); -- Honor Level 70
-    a[12907] = b:New(12907); -- Honor Level 80
-    a[12908] = b:New(12908); -- Honor Level 90
-    a[12909] = b:New(12909); -- Honor Level 100
-    a[12910] = b:New(12910); -- Honor Level 125
-    a[12911] = b:New(12911); -- Honor Level 150
-    a[12912] = b:New(12912); -- Honor Level 175
-    a[12913] = b:New(12913); -- Honor Level 200
-    a[12914] = b:New(12914); -- Honor Level 250
-    a[12915] = b:New(12915); -- Honor Level 300
-    a[12916] = b:New(12916); -- Honor Level 400
-    a[12917] = b:New(12917); -- Honor Level 500
+    a[12900] = b:New(12900, nil, nil, true); -- Honor Level 20
+    a[12901] = b:New(12901, nil, nil, true); -- Honor Level 25
+    a[12902] = b:New(12902, nil, nil, true); -- Honor Level 30
+    a[12903] = b:New(12903, nil, nil, true); -- Honor Level 40
+    a[12904] = b:New(12904, nil, nil, true); -- Honor Level 50
+    a[12905] = b:New(12905, nil, nil, true); -- Honor Level 60
+    a[12906] = b:New(12906, nil, nil, true); -- Honor Level 70
+    a[12907] = b:New(12907, nil, nil, true); -- Honor Level 80
+    a[12908] = b:New(12908, nil, nil, true); -- Honor Level 90
+    a[12909] = b:New(12909, nil, nil, true); -- Honor Level 100
+    a[12910] = b:New(12910, nil, nil, true); -- Honor Level 125
+    a[12911] = b:New(12911, nil, nil, true); -- Honor Level 150
+    a[12912] = b:New(12912, nil, nil, true); -- Honor Level 175
+    a[12913] = b:New(12913, nil, nil, true); -- Honor Level 200
+    a[12914] = b:New(12914, nil, nil, true); -- Honor Level 250
+    a[12915] = b:New(12915, nil, nil, true); -- Honor Level 300
+    a[12916] = b:New(12916, nil, nil, true); -- Honor Level 400
+    a[12917] = b:New(12917, nil, nil, true); -- Honor Level 500
     a[12918] = b:New(12918); -- Have a Heart
     a[12927] = b:New(12927); -- Polished Pet Charmer
     a[12930] = b:New(12930); -- Battle Safari
@@ -6545,7 +6545,7 @@ function exportedAchievements.Load(a, t)
     a[12942] = b:New(12942); -- Adventurer of Nazmir
     a[12943] = b:New(12943); -- Adventurer of Vol'dun
     a[12944] = b:New(12944); -- Adventurer of Zuldazar
-    a[12945] = b:New(12945); -- Dread Gladiator: Battle for Azeroth Season 1
+    a[12945] = b:New(12945, nil, nil, true); -- Dread Gladiator: Battle for Azeroth Season 1
     O(a[12945], "From", "PvP Season", 26, "Until", "PvP Season", 26);
     a[12947] = b:New(12947); -- Azerothian Diplomat
     a[12948] = b:New(12948, fac.Horde, 12952); -- Talanji's Expedition
@@ -6559,17 +6559,17 @@ function exportedAchievements.Load(a, t)
     a[12956] = b:New(12956); -- Tortollan Seekers
     a[12957] = b:New(12957, fac.Horde, 12954); -- Champion of the Honorbound
     a[12958] = b:New(12958); -- Master of Minions
-    a[12959] = b:New(12959); -- Challenger: Battle for Azeroth Season 1
+    a[12959] = b:New(12959, nil, nil, true); -- Challenger: Battle for Azeroth Season 1
     O(a[12959], "From", "PvP Season", 26, "Until", "PvP Season", 26);
-    a[12960] = b:New(12960); -- Rival: Battle for Azeroth Season 1
+    a[12960] = b:New(12960, nil, nil, true); -- Rival: Battle for Azeroth Season 1
     O(a[12960], "From", "PvP Season", 26, "Until", "PvP Season", 26);
-    a[12961] = b:New(12961); -- Gladiator: Battle for Azeroth Season 1
+    a[12961] = b:New(12961, nil, nil, true); -- Gladiator: Battle for Azeroth Season 1
     O(a[12961], "From", "PvP Season", 26, "Until", "PvP Season", 26);
-    a[12962] = b:New(12962); -- Duelist: Battle for Azeroth Season 1
+    a[12962] = b:New(12962, nil, nil, true); -- Duelist: Battle for Azeroth Season 1
     O(a[12962], "From", "PvP Season", 26, "Until", "PvP Season", 26);
-    a[12963] = b:New(12963, fac.Alliance, 12964); -- Hero of the Alliance: Dread
+    a[12963] = b:New(12963, fac.Alliance, 12964, true); -- Hero of the Alliance: Dread
     O(a[12963], "From", "PvP Season", 26, "Until", "PvP Season", 26);
-    a[12964] = b:New(12964, fac.Horde, 12963); -- Hero of the Horde: Dread
+    a[12964] = b:New(12964, fac.Horde, 12963, true); -- Hero of the Horde: Dread
     O(a[12964], "From", "PvP Season", 26, "Until", "PvP Season", 26);
     a[12988] = b:New(12988); -- Battle for Azeroth Explorer
     a[12989] = b:New(12989); -- "Battle for Azeroth Pathfinder, Part One"
@@ -6672,7 +6672,7 @@ function exportedAchievements.Load(a, t)
     a[13075] = b:New(13075); -- Battle for Azeroth Keymaster
     a[13076] = b:New(13076, fac.Alliance); -- Heritage of the Dark Iron
     a[13077] = b:New(13077, fac.Horde); -- Heritage of the Mag'har
-    a[13078] = b:New(13078, nil, nil, true); -- Realm First! Battle for Azeroth Keystone Master
+    a[13078] = b:New(13078, nil, nil, nil, true); -- Realm First! Battle for Azeroth Keystone Master
     O(a[13078], "Once");
     a[13079] = b:New(13079); -- Battle for Azeroth Keystone Conqueror: Season One
     O(a[13079], "From", "Mythic+ Season", 1, "Until", "Mythic+ Season", 1);
@@ -6681,35 +6681,35 @@ function exportedAchievements.Load(a, t)
     a[13082] = b:New(13082, fac.Alliance); -- Everything Old Is New Again
     a[13083] = b:New(13083); -- "Better, Faster, Stronger"
     a[13087] = b:New(13087); -- Sausage Sampler
-    a[13093] = b:New(13093); -- Dread Gladiator's Proto-Drake
+    a[13093] = b:New(13093, nil, nil, true); -- Dread Gladiator's Proto-Drake
     O(a[13093], "From", "PvP Season", 26, "Until", "PvP Season", 26);
     a[13094] = b:New(13094); -- Cursed Game Hunter
     a[13095] = b:New(13095); -- Dread Chain
     a[13096] = b:New(13096); -- Heroic: Dread Chain
     a[13097] = b:New(13097); -- Mythic: Dread Chain
-    a[13098] = b:New(13098); -- Bane of the Chain
+    a[13098] = b:New(13098, nil, nil, true); -- Bane of the Chain
     a[13099] = b:New(13099); -- Molten Cay
     a[13100] = b:New(13100); -- Heroic: Molten Cay
     a[13101] = b:New(13101); -- Mythic: Molten Cay
-    a[13102] = b:New(13102); -- Clash at the Cay
+    a[13102] = b:New(13102, nil, nil, true); -- Clash at the Cay
     a[13103] = b:New(13103); -- Rotting Mire
     a[13104] = b:New(13104); -- Heroic: Rotting Mire
     a[13105] = b:New(13105); -- Mythic: Rotting Mire
-    a[13106] = b:New(13106); -- Mire Marauder
+    a[13106] = b:New(13106, nil, nil, true); -- Mire Marauder
     a[13107] = b:New(13107); -- Skittering Hollow
     a[13108] = b:New(13108); -- Heroic: Skittering Hollow
     a[13109] = b:New(13109); -- Mythic: Skittering Hollow
-    a[13110] = b:New(13110); -- Skittering Smashed
+    a[13110] = b:New(13110, nil, nil, true); -- Skittering Smashed
     a[13111] = b:New(13111); -- Verdant Wilds
     a[13112] = b:New(13112); -- Heroic: Verdant Wilds
     a[13113] = b:New(13113); -- Mythic: Verdant Wilds
-    a[13114] = b:New(13114); -- War for the Wilds
-    a[13115] = b:New(13115); -- Reef Madness
+    a[13114] = b:New(13114, nil, nil, true); -- War for the Wilds
+    a[13115] = b:New(13115, nil, nil, true); -- Reef Madness
     a[13116] = b:New(13116); -- Mythic: Whispering Reef
     a[13118] = b:New(13118); -- Heroic: Whispering Reef
     a[13119] = b:New(13119); -- Whispering Reef
-    a[13120] = b:New(13120); -- Blood in the Water
-    a[13121] = b:New(13121); -- Notorious
+    a[13120] = b:New(13120, nil, nil, true); -- Blood in the Water
+    a[13121] = b:New(13121, nil, nil, true); -- Notorious
     a[13122] = b:New(13122); -- Island Conqueror
     a[13123] = b:New(13123); -- My Dubs
     a[13124] = b:New(13124); -- Metal Detector
@@ -6717,13 +6717,13 @@ function exportedAchievements.Load(a, t)
     a[13126] = b:New(13126); -- Give Me The Energy
     a[13127] = b:New(13127); -- Tell Me A Tale
     a[13128] = b:New(13128); -- I'm Here for the Pets
-    a[13129] = b:New(13129); -- Sucker Punch
+    a[13129] = b:New(13129, nil, nil, true); -- Sucker Punch
     a[13132] = b:New(13132); -- Helping Hand
     a[13133] = b:New(13133, fac.Alliance, 13135); -- Team Deathmatch
-    a[13134] = b:New(13134); -- Expedition Leader
+    a[13134] = b:New(13134, nil, nil, true); -- Expedition Leader
     a[13135] = b:New(13135, fac.Horde, 13133); -- Team Deathmatch
     a[13138] = b:New(13138); -- Flying Colors
-    a[13141] = b:New(13141); -- Island Slayer
+    a[13141] = b:New(13141, nil, nil, true); -- Island Slayer
     a[13142] = b:New(13142); -- Archipelago Explorer
     a[13144] = b:New(13144); -- Wide World of Quests
     a[13161] = b:New(13161, fac.Horde); -- Allied Races: Zandalari Troll
@@ -6743,26 +6743,26 @@ function exportedAchievements.Load(a, t)
     a[13194] = b:New(13194); -- I Am Thrall's Complete Lack Of Surprise
     O(a[13194], "From", "Version", "080105", "Before", "Version", "090001");
     a[13196] = b:New(13196); -- Meat Marauder
-    a[13199] = b:New(13199); -- Combatant: Battle for Azeroth Season 1
+    a[13199] = b:New(13199, nil, nil, true); -- Combatant: Battle for Azeroth Season 1
     O(a[13199], "From", "PvP Season", 26, "Until", "PvP Season", 26);
-    a[13200] = b:New(13200); -- Sinister Gladiator: Battle for Azeroth Season 2
+    a[13200] = b:New(13200, nil, nil, true); -- Sinister Gladiator: Battle for Azeroth Season 2
     O(a[13200], "From", "PvP Season", 27, "Until", "PvP Season", 27);
-    a[13202] = b:New(13202); -- Sinister Gladiator's Proto-Drake
+    a[13202] = b:New(13202, nil, nil, true); -- Sinister Gladiator's Proto-Drake
     O(a[13202], "From", "PvP Season", 27, "Until", "PvP Season", 27);
-    a[13203] = b:New(13203); -- Challenger: Battle for Azeroth Season 2
+    a[13203] = b:New(13203, nil, nil, true); -- Challenger: Battle for Azeroth Season 2
     O(a[13203], "From", "PvP Season", 27, "Until", "PvP Season", 27);
-    a[13204] = b:New(13204); -- Combatant: Battle for Azeroth Season 2
+    a[13204] = b:New(13204, nil, nil, true); -- Combatant: Battle for Azeroth Season 2
     O(a[13204], "From", "PvP Season", 27, "Until", "PvP Season", 27);
-    a[13205] = b:New(13205); -- Rival: Battle for Azeroth Season 2
+    a[13205] = b:New(13205, nil, nil, true); -- Rival: Battle for Azeroth Season 2
     O(a[13205], "From", "PvP Season", 27, "Until", "PvP Season", 27);
     a[13206] = b:New(13206, fac.Horde); -- Allied Races: Vulpera
-    a[13209] = b:New(13209); -- Duelist: Battle for Azeroth Season 2
+    a[13209] = b:New(13209, nil, nil, true); -- Duelist: Battle for Azeroth Season 2
     O(a[13209], "From", "PvP Season", 27, "Until", "PvP Season", 27);
-    a[13210] = b:New(13210, fac.Alliance, 13211); -- Hero of the Alliance: Sinister
+    a[13210] = b:New(13210, fac.Alliance, 13211, true); -- Hero of the Alliance: Sinister
     O(a[13210], "From", "PvP Season", 27, "Until", "PvP Season", 27);
-    a[13211] = b:New(13211, fac.Horde, 13210); -- Hero of the Horde: Sinister
+    a[13211] = b:New(13211, fac.Horde, 13210, true); -- Hero of the Horde: Sinister
     O(a[13211], "From", "PvP Season", 27, "Until", "PvP Season", 27);
-    a[13212] = b:New(13212); -- Gladiator: Battle for Azeroth Season 2
+    a[13212] = b:New(13212, nil, nil, true); -- Gladiator: Battle for Azeroth Season 2
     O(a[13212], "From", "PvP Season", 27, "Until", "PvP Season", 27);
     a[13250] = b:New(13250); -- "Battle for Azeroth Pathfinder, Part Two"
     a[13251] = b:New(13251, fac.Alliance, 13263); -- In Teldrassil's Shadow
@@ -6811,7 +6811,7 @@ function exportedAchievements.Load(a, t)
     a[13314] = b:New(13314); -- Mythic: Lady Jaina Proudmoore
     a[13315] = b:New(13315); -- Glory of the Dazar'alor Raider
     a[13316] = b:New(13316); -- Can I Get a Hek Hek Hek Yeah?
-    a[13317] = b:New(13317); -- Supplied and Ready
+    a[13317] = b:New(13317, nil, nil, true); -- Supplied and Ready
     a[13322] = b:New(13322); -- Ahead of the Curve: Lady Jaina Proudmoore
     O(a[13322], "From", "Mythic+ Season", 2, "Until", "Mythic+ Season", 2);
     a[13323] = b:New(13323); -- Cutting Edge: Lady Jaina Proudmoore
@@ -6841,19 +6841,19 @@ function exportedAchievements.Load(a, t)
     T(a[13385], t[1810]); -- Boneblade Battlegear (Normal)
     T(a[13385], t[1812]); -- Boneblade Battlegear (Heroic)
     T(a[13385], t[1813]); -- Boneblade Battlegear (Mythic)
-    a[13387] = b:New(13387, fac.Alliance, 13388); -- Frontline Veteran
-    a[13388] = b:New(13388, fac.Horde, 13387); -- Frontline Veteran
+    a[13387] = b:New(13387, fac.Alliance, 13388, true); -- Frontline Veteran
+    a[13388] = b:New(13388, fac.Horde, 13387, true); -- Frontline Veteran
     a[13389] = b:New(13389); -- Jorundall
     a[13394] = b:New(13394); -- Heroic: Jorundall
     a[13395] = b:New(13395); -- Mythic: Jorundall
     a[13396] = b:New(13396); -- Havenswood
     a[13397] = b:New(13397); -- Heroic: Havenswood
     a[13398] = b:New(13398); -- Mythic: Havenswood
-    a[13399] = b:New(13399); -- Jorundall Justice
-    a[13400] = b:New(13400); -- Havenswood Hero
+    a[13399] = b:New(13399, nil, nil, true); -- Jorundall Justice
+    a[13400] = b:New(13400, nil, nil, true); -- Havenswood Hero
     a[13401] = b:New(13401); -- I Got Next!
-    a[13402] = b:New(13402, fac.Alliance, 13403); -- Frontline Slayer
-    a[13403] = b:New(13403, fac.Horde, 13402); -- Frontline Slayer
+    a[13402] = b:New(13402, fac.Alliance, 13403, true); -- Frontline Slayer
+    a[13403] = b:New(13403, fac.Horde, 13402, true); -- Frontline Slayer
     a[13410] = b:New(13410); -- Snow Fun Allowed
     a[13414] = b:New(13414); -- Crucible of Storms
     a[13416] = b:New(13416); -- Mythic: The Restless Cabal
@@ -6864,7 +6864,7 @@ function exportedAchievements.Load(a, t)
     O(a[13419], "From", "Mythic+ Season", 2, "Until", "Mythic+ Season", 2);
     a[13425] = b:New(13425); -- "We Got Spirit, How About You?"
     a[13426] = b:New(13426, fac.Alliance); -- Come On and Slam
-    a[13429] = b:New(13429); -- Azerfighter
+    a[13429] = b:New(13429, nil, nil, true); -- Azerfighter
     a[13430] = b:New(13430); -- De Lurker Be'loa
     a[13431] = b:New(13431); -- Hidden Dragon
     a[13433] = b:New(13433); -- "Tall, Dark, and Sinister"
@@ -6902,19 +6902,19 @@ function exportedAchievements.Load(a, t)
     T(a[13433], t[1764]); -- Sinister Gladiator's Leathers (Elite)
     a[13435] = b:New(13435, fac.Horde); -- Doomsoul Surprise
     a[13437] = b:New(13437, fac.Horde); -- Scavenge like a Vulpera
-    a[13438] = b:New(13438, fac.Horde, 13439); -- Boxing Match
-    a[13439] = b:New(13439, fac.Alliance, 13438); -- Boxing Match
+    a[13438] = b:New(13438, fac.Horde, 13439, true); -- Boxing Match
+    a[13439] = b:New(13439, fac.Alliance, 13438, true); -- Boxing Match
     a[13440] = b:New(13440, fac.Alliance, 13441); -- Pushing the Payload
     a[13441] = b:New(13441, fac.Horde, 13440); -- Pushing the Payload
     a[13448] = b:New(13448); -- Battle for Azeroth Keystone Conqueror: Season Two
     O(a[13448], "From", "Mythic+ Season", 2, "Until", "Mythic+ Season", 2);
     a[13449] = b:New(13449); -- Battle for Azeroth Keystone Master: Season Two
     O(a[13449], "From", "Mythic+ Season", 2, "Until", "Mythic+ Season", 2);
-    a[13450] = b:New(13450); -- Fierce Gladiator's Storm Dragon
+    a[13450] = b:New(13450, nil, nil, true); -- Fierce Gladiator's Storm Dragon
     O(a[13450], "From", "PvP Season", 23, "Until", "PvP Season", 23);
-    a[13451] = b:New(13451); -- Elite: Battle for Azeroth Season 2
+    a[13451] = b:New(13451, nil, nil, true); -- Elite: Battle for Azeroth Season 2
     O(a[13451], "From", "PvP Season", 27, "Until", "PvP Season", 27);
-    a[13465] = b:New(13465); -- Elite: Battle for Azeroth Season 1
+    a[13465] = b:New(13465, nil, nil, true); -- Elite: Battle for Azeroth Season 1
     O(a[13465], "From", "PvP Season", 26, "Until", "PvP Season", 26);
     a[13466] = b:New(13466, fac.Horde, 13467); -- Tides of Vengeance
     a[13467] = b:New(13467, fac.Alliance, 13466); -- Tides of Vengeance
@@ -6949,9 +6949,9 @@ function exportedAchievements.Load(a, t)
     a[13557] = b:New(13557); -- Rustbolt Rebellion
     a[13558] = b:New(13558, fac.Alliance); -- Waveblade Ankoan
     a[13559] = b:New(13559, fac.Horde); -- The Unshackled
-    a[13568] = b:New(13568); -- For Nazjatar!
-    a[13569] = b:New(13569); -- Tour of Duty: Nazjatar
-    a[13570] = b:New(13570); -- Tour of Duty: Mechagon
+    a[13568] = b:New(13568, nil, nil, true); -- For Nazjatar!
+    a[13569] = b:New(13569, nil, nil, true); -- Tour of Duty: Nazjatar
+    a[13570] = b:New(13570, nil, nil, true); -- Tour of Duty: Mechagon
     a[13571] = b:New(13571); -- Under the Seams
     T(a[13571], t[1842]); -- Naga Lord's Warplate (Raid Finder)
     T(a[13571], t[1830]); -- Naga Lord's Warplate (Normal)
@@ -6974,11 +6974,11 @@ function exportedAchievements.Load(a, t)
     a[13577] = b:New(13577); -- Crestfall
     a[13578] = b:New(13578); -- Heroic: Crestfall
     a[13579] = b:New(13579); -- Mythic: Crestfall
-    a[13580] = b:New(13580); -- Crestfallen
+    a[13580] = b:New(13580, nil, nil, true); -- Crestfallen
     a[13581] = b:New(13581); -- Snowblossom Village
     a[13582] = b:New(13582); -- Heroic: Snowblossom Village
     a[13583] = b:New(13583); -- Mythic: Snowblossom Village
-    a[13584] = b:New(13584); -- Snowblossom Scrapper
+    a[13584] = b:New(13584, nil, nil, true); -- Snowblossom Scrapper
     a[13585] = b:New(13585); -- "Never Lose, Never Choose To"
     T(a[13585], t[1869]); -- Notorious Aspirant's Plate (Aspirant)
     T(a[13585], t[1864]); -- Notorious Gladiator's Plate (Gladiator)
@@ -7004,36 +7004,36 @@ function exportedAchievements.Load(a, t)
     T(a[13585], t[1886]); -- Notorious Aspirant's Leathers (Aspirant)
     T(a[13585], t[1891]); -- Notorious Gladiator's Leathers (Gladiator)
     T(a[13585], t[1890]); -- Notorious Gladiator's Leathers (Elite)
-    a[13623] = b:New(13623); -- Fighting on Two Fronts
+    a[13623] = b:New(13623, nil, nil, true); -- Fighting on Two Fronts
     a[13624] = b:New(13624); -- Keep DPS-ing and Nobody Explodes
     a[13625] = b:New(13625); -- Mighty Minions of Mechagon
     a[13626] = b:New(13626); -- Nautical Nuisances of Nazjatar
     a[13627] = b:New(13627); -- Pet Battle Challenge: Stratholme
     a[13628] = b:New(13628); -- Intro to Marine Biology
     a[13629] = b:New(13629); -- Simple Geometry
-    a[13630] = b:New(13630); -- Notorious Gladiator: Battle for Azeroth Season 3
+    a[13630] = b:New(13630, nil, nil, true); -- Notorious Gladiator: Battle for Azeroth Season 3
     O(a[13630], "From", "PvP Season", 28, "Until", "PvP Season", 28);
-    a[13632] = b:New(13632); -- Notorious Gladiator's Proto-Drake
+    a[13632] = b:New(13632, nil, nil, true); -- Notorious Gladiator's Proto-Drake
     O(a[13632], "From", "PvP Season", 28, "Until", "PvP Season", 28);
     a[13633] = b:New(13633); -- If It Pleases the Court
-    a[13634] = b:New(13634); -- Challenger: Battle for Azeroth Season 3
+    a[13634] = b:New(13634, nil, nil, true); -- Challenger: Battle for Azeroth Season 3
     O(a[13634], "From", "PvP Season", 28, "Until", "PvP Season", 28);
     a[13635] = b:New(13635); -- Tour of the Depths
     a[13638] = b:New(13638); -- Undersea Usurper
-    a[13639] = b:New(13639); -- Combatant: Battle for Azeroth Season 3
+    a[13639] = b:New(13639, nil, nil, true); -- Combatant: Battle for Azeroth Season 3
     O(a[13639], "From", "PvP Season", 28, "Until", "PvP Season", 28);
-    a[13641] = b:New(13641); -- Rival: Battle for Azeroth Season 3
+    a[13641] = b:New(13641, nil, nil, true); -- Rival: Battle for Azeroth Season 3
     O(a[13641], "From", "PvP Season", 28, "Until", "PvP Season", 28);
-    a[13642] = b:New(13642); -- Duelist: Battle for Azeroth Season 3
+    a[13642] = b:New(13642, nil, nil, true); -- Duelist: Battle for Azeroth Season 3
     O(a[13642], "From", "PvP Season", 28, "Until", "PvP Season", 28);
-    a[13643] = b:New(13643, fac.Alliance, 13644); -- Hero of the Alliance: Notorious
+    a[13643] = b:New(13643, fac.Alliance, 13644, true); -- Hero of the Alliance: Notorious
     O(a[13643], "From", "PvP Season", 28, "Until", "PvP Season", 28);
-    a[13644] = b:New(13644, fac.Horde, 13643); -- Hero of the Horde: Notorious
+    a[13644] = b:New(13644, fac.Horde, 13643, true); -- Hero of the Horde: Notorious
     O(a[13644], "From", "PvP Season", 28, "Until", "PvP Season", 28);
     a[13645] = b:New(13645, fac.Horde, 13704); -- Nautical Battlefield Training
-    a[13647] = b:New(13647); -- Gladiator: Battle for Azeroth Season 3
+    a[13647] = b:New(13647, nil, nil, true); -- Gladiator: Battle for Azeroth Season 3
     O(a[13647], "From", "PvP Season", 28, "Until", "PvP Season", 28);
-    a[13676] = b:New(13676); -- Elite: Battle for Azeroth Season 3
+    a[13676] = b:New(13676, nil, nil, true); -- Elite: Battle for Azeroth Season 3
     O(a[13676], "From", "PvP Season", 28, "Until", "PvP Season", 28);
     a[13684] = b:New(13684); -- You and What Army?
     a[13686] = b:New(13686); -- Junkyard Melomaniac
@@ -7048,9 +7048,9 @@ function exportedAchievements.Load(a, t)
     a[13698] = b:New(13698); -- Clean Up On Aisle Mechagon
     a[13699] = b:New(13699); -- Periodic Destruction
     a[13700] = b:New(13700, fac.Horde); -- The Mechagonian Threat
-    a[13701] = b:New(13701); -- Battlefield Brawler
-    a[13702] = b:New(13702); -- Battlefield Tactician
-    a[13703] = b:New(13703); -- Battlefield Master
+    a[13701] = b:New(13701, nil, nil, true); -- Battlefield Brawler
+    a[13702] = b:New(13702, nil, nil, true); -- Battlefield Tactician
+    a[13703] = b:New(13703, nil, nil, true); -- Battlefield Master
     a[13704] = b:New(13704, fac.Alliance, 13645); -- Nautical Battlefield Training
     a[13706] = b:New(13706); -- Stay Positive
     a[13707] = b:New(13707); -- Mrrl's Secret Stash
@@ -7064,7 +7064,7 @@ function exportedAchievements.Load(a, t)
     a[13716] = b:New(13716); -- Lactose Intolerant
     a[13718] = b:New(13718); -- The Grand Reception
     a[13719] = b:New(13719); -- Depths of the Devoted
-    a[13720] = b:New(13720); -- Supplying the Assassins
+    a[13720] = b:New(13720, nil, nil, true); -- Supplying the Assassins
     a[13722] = b:New(13722); -- Terror of the Tadpoles
     a[13723] = b:New(13723); -- "M.C., Hammered"
     a[13724] = b:New(13724); -- A Smack of Jellyfish
@@ -7110,9 +7110,9 @@ function exportedAchievements.Load(a, t)
     a[13769] = b:New(13769); -- Power Up
     a[13770] = b:New(13770); -- Power Creep
     a[13771] = b:New(13771); -- Power Is Beautiful
-    a[13772] = b:New(13772); -- Essence Essentials
-    a[13773] = b:New(13773); -- Essence Gains
-    a[13775] = b:New(13775); -- Essence Overload
+    a[13772] = b:New(13772, nil, nil, true); -- Essence Essentials
+    a[13773] = b:New(13773, nil, nil, true); -- Essence Gains
+    a[13775] = b:New(13775, nil, nil, true); -- Essence Overload
     a[13776] = b:New(13776); -- Explore Mechagon
     a[13777] = b:New(13777); -- My Heart Container is Full
     a[13779] = b:New(13779); -- Phenomenal Cosmic Power
@@ -7136,29 +7136,29 @@ function exportedAchievements.Load(a, t)
     a[13924] = b:New(13924, fac.Horde, 13925); -- The Fourth War
     a[13925] = b:New(13925, fac.Alliance, 13924); -- The Fourth War
     a[13927] = b:New(13927); -- Crashin' Splashin'
-    a[13928] = b:New(13928, fac.Alliance, 13930); -- Alterac Valley of Olde
-    a[13930] = b:New(13930, fac.Horde, 13928); -- Alterac Valley of Olde
+    a[13928] = b:New(13928, fac.Alliance, 13930, true); -- Alterac Valley of Olde
+    a[13930] = b:New(13930, fac.Horde, 13928, true); -- Alterac Valley of Olde
     a[13931] = b:New(13931); -- "Memories of Fel, Frost and Fire"
     O(a[13931]);
-    a[13957] = b:New(13957); -- Corrupted Gladiator: Battle for Azeroth Season 4
+    a[13957] = b:New(13957, nil, nil, true); -- Corrupted Gladiator: Battle for Azeroth Season 4
     O(a[13957], "From", "PvP Season", 29, "Until", "PvP Season", 29);
-    a[13958] = b:New(13958); -- Corrupted Gladiator's Proto-Drake
+    a[13958] = b:New(13958, nil, nil, true); -- Corrupted Gladiator's Proto-Drake
     O(a[13958], "From", "PvP Season", 29, "Until", "PvP Season", 29);
-    a[13959] = b:New(13959); -- Challenger: Battle for Azeroth Season 4
+    a[13959] = b:New(13959, nil, nil, true); -- Challenger: Battle for Azeroth Season 4
     O(a[13959], "From", "PvP Season", 29, "Until", "PvP Season", 29);
-    a[13962] = b:New(13962); -- Combatant: Battle for Azeroth Season 4
+    a[13962] = b:New(13962, nil, nil, true); -- Combatant: Battle for Azeroth Season 4
     O(a[13962], "From", "PvP Season", 29, "Until", "PvP Season", 29);
-    a[13963] = b:New(13963); -- Rival: Battle for Azeroth Season 4
+    a[13963] = b:New(13963, nil, nil, true); -- Rival: Battle for Azeroth Season 4
     O(a[13963], "From", "PvP Season", 29, "Until", "PvP Season", 29);
-    a[13964] = b:New(13964); -- Duelist: Battle for Azeroth Season 4
+    a[13964] = b:New(13964, nil, nil, true); -- Duelist: Battle for Azeroth Season 4
     O(a[13964], "From", "PvP Season", 29, "Until", "PvP Season", 29);
-    a[13965] = b:New(13965, fac.Horde, 13966); -- Hero of the Horde: Corrupted
+    a[13965] = b:New(13965, fac.Horde, 13966, true); -- Hero of the Horde: Corrupted
     O(a[13965], "From", "PvP Season", 29, "Until", "PvP Season", 29);
-    a[13966] = b:New(13966, fac.Alliance, 13965); -- Hero of the Alliance: Corrupted
+    a[13966] = b:New(13966, fac.Alliance, 13965, true); -- Hero of the Alliance: Corrupted
     O(a[13966], "From", "PvP Season", 29, "Until", "PvP Season", 29);
-    a[13967] = b:New(13967); -- Gladiator: Battle for Azeroth Season 4
+    a[13967] = b:New(13967, nil, nil, true); -- Gladiator: Battle for Azeroth Season 4
     O(a[13967], "From", "PvP Season", 29, "Until", "PvP Season", 29);
-    a[13989] = b:New(13989); -- Elite: Battle for Azeroth Season 4
+    a[13989] = b:New(13989, nil, nil, true); -- Elite: Battle for Azeroth Season 4
     O(a[13989], "From", "PvP Season", 29, "Until", "PvP Season", 29);
     a[13990] = b:New(13990); -- "You Can Pet the Dog, But..."
     a[13994] = b:New(13994); -- Through the Depths of Visions
@@ -7264,13 +7264,13 @@ function exportedAchievements.Load(a, t)
     a[14171] = b:New(14171); -- Memento Mori
     a[14172] = b:New(14172); -- A Monumental Amount of Mementos
     a[14173] = b:New(14173); -- A Mountain of Mementos
-    a[14175] = b:New(14175); -- Master of Deepwind Gorge
+    a[14175] = b:New(14175, nil, nil, true); -- Master of Deepwind Gorge
     a[14183] = b:New(14183); -- Conspicuous Consumption
     O(a[14183], "From", "Version", "080300", "Before", "Version", "090001");
-    a[14186] = b:New(14186); -- Market Dominance
-    a[14187] = b:New(14187); -- Cruisin' for a Brewsin'
-    a[14188] = b:New(14188); -- Well Gorged
-    a[14191] = b:New(14191); -- Servant of N'Zoth
+    a[14186] = b:New(14186, nil, nil, true); -- Market Dominance
+    a[14187] = b:New(14187, nil, nil, true); -- Cruisin' for a Brewsin'
+    a[14188] = b:New(14188, nil, nil, true); -- Well Gorged
+    a[14191] = b:New(14191, nil, nil, true); -- Servant of N'Zoth
     a[14193] = b:New(14193); -- Vision of Destiny
     a[14194] = b:New(14194); -- Halls of Devotion
     a[14195] = b:New(14195); -- Gift of Flesh
@@ -7400,13 +7400,13 @@ function exportedAchievements.Load(a, t)
     a[14508] = b:New(14508); -- "Glimmerdust, As Jaina"
     a[14509] = b:New(14509); -- "Astra, As Azshara"
     a[14510] = b:New(14510); -- "Dreamweaver, As N'Zoth"
-    a[14511] = b:New(14511); -- Tour of Duty: Ardenweald
-    a[14512] = b:New(14512); -- Tour of Duty: Revendreth
-    a[14513] = b:New(14513); -- Tour of Duty: Maldraxxus
-    a[14514] = b:New(14514); -- Tour of Duty: Bastion
-    a[14515] = b:New(14515); -- Zo'Sorg's Bidding
-    a[14516] = b:New(14516); -- Impressing Zo'Sorg
-    a[14519] = b:New(14519); -- Covenant Combat
+    a[14511] = b:New(14511, nil, nil, true); -- Tour of Duty: Ardenweald
+    a[14512] = b:New(14512, nil, nil, true); -- Tour of Duty: Revendreth
+    a[14513] = b:New(14513, nil, nil, true); -- Tour of Duty: Maldraxxus
+    a[14514] = b:New(14514, nil, nil, true); -- Tour of Duty: Bastion
+    a[14515] = b:New(14515, nil, nil, true); -- Zo'Sorg's Bidding
+    a[14516] = b:New(14516, nil, nil, true); -- Impressing Zo'Sorg
+    a[14519] = b:New(14519, nil, nil, true); -- Covenant Combat
     a[14523] = b:New(14523); -- Taking Care of Business
     a[14524] = b:New(14524); -- I Don't Know What I Expected
     a[14525] = b:New(14525); -- "Feed Me, Seymour!"
@@ -7460,7 +7460,7 @@ function exportedAchievements.Load(a, t)
     a[14658] = b:New(14658); -- Soulkeeper's Burden
     a[14659] = b:New(14659); -- Handling His Henchmen
     a[14660] = b:New(14660); -- It's About Sending a Message
-    a[14662] = b:New(14662, nil, nil, true); -- Realm First! Shadowlands Keystone Master
+    a[14662] = b:New(14662, nil, nil, nil, true); -- Realm First! Shadowlands Keystone Master
     O(a[14662], "Once");
     a[14663] = b:New(14663); -- Explore The Maw
     a[14670] = b:New(14670); -- That's the Spirit
@@ -7476,23 +7476,23 @@ function exportedAchievements.Load(a, t)
     a[14682] = b:New(14682); -- The Party Herald
     a[14683] = b:New(14683); -- Dredger Style
     a[14684] = b:New(14684); -- Abominable Lives
-    a[14685] = b:New(14685); -- Combatant: Shadowlands Season 1
+    a[14685] = b:New(14685, nil, nil, true); -- Combatant: Shadowlands Season 1
     O(a[14685], "From", "PvP Season", 30, "Until", "PvP Season", 30);
-    a[14686] = b:New(14686); -- Challenger: Shadowlands Season 1
+    a[14686] = b:New(14686, nil, nil, true); -- Challenger: Shadowlands Season 1
     O(a[14686], "From", "PvP Season", 30, "Until", "PvP Season", 30);
-    a[14687] = b:New(14687); -- Rival: Shadowlands Season 1
+    a[14687] = b:New(14687, nil, nil, true); -- Rival: Shadowlands Season 1
     O(a[14687], "From", "PvP Season", 30, "Until", "PvP Season", 30);
-    a[14688] = b:New(14688); -- Duelist: Shadowlands Season 1
+    a[14688] = b:New(14688, nil, nil, true); -- Duelist: Shadowlands Season 1
     O(a[14688], "From", "PvP Season", 30, "Until", "PvP Season", 30);
-    a[14689] = b:New(14689); -- Gladiator: Shadowlands Season 1
+    a[14689] = b:New(14689, nil, nil, true); -- Gladiator: Shadowlands Season 1
     O(a[14689], "From", "PvP Season", 30, "Until", "PvP Season", 30);
-    a[14690] = b:New(14690); -- Sinful Gladiator: Shadowlands Season 1
+    a[14690] = b:New(14690, nil, nil, true); -- Sinful Gladiator: Shadowlands Season 1
     O(a[14690], "From", "PvP Season", 30, "Until", "PvP Season", 30);
-    a[14691] = b:New(14691); -- Elite: Shadowlands Season 1
+    a[14691] = b:New(14691, nil, nil, true); -- Elite: Shadowlands Season 1
     O(a[14691], "From", "PvP Season", 30, "Until", "PvP Season", 30);
-    a[14692] = b:New(14692, fac.Alliance, 14693); -- Hero of the Alliance: Sinful
+    a[14692] = b:New(14692, fac.Alliance, 14693, true); -- Hero of the Alliance: Sinful
     O(a[14692], "From", "PvP Season", 30, "Until", "PvP Season", 30);
-    a[14693] = b:New(14693, fac.Horde, 14692); -- Hero of the Horde: Sinful
+    a[14693] = b:New(14693, fac.Horde, 14692, true); -- Hero of the Horde: Sinful
     O(a[14693], "From", "PvP Season", 30, "Until", "PvP Season", 30);
     a[14715] = b:New(14715); -- Castle Nathria
     a[14717] = b:New(14717); -- Heroic: Castle Nathria
@@ -7568,12 +7568,12 @@ function exportedAchievements.Load(a, t)
     a[14808] = b:New(14808); -- Touring Torghast
     a[14809] = b:New(14809); -- Traversing Torghast
     a[14810] = b:New(14810); -- Terror of Torghast
-    a[14815] = b:New(14815, fac.Horde, 14817); -- Executing the Exarch
-    a[14816] = b:New(14816); -- Sinful Gladiator's Soul Eater
+    a[14815] = b:New(14815, fac.Horde, 14817, true); -- Executing the Exarch
+    a[14816] = b:New(14816, nil, nil, true); -- Sinful Gladiator's Soul Eater
     O(a[14816], "From", "PvP Season", 30, "Until", "PvP Season", 30);
-    a[14817] = b:New(14817, fac.Alliance, 14815); -- Opposing Orgrimmar
+    a[14817] = b:New(14817, fac.Alliance, 14815, true); -- Opposing Orgrimmar
     a[14825] = b:New(14825); -- Shadowlands Voyager
-    a[14831] = b:New(14831); -- "I Live, I Die, I Queue Again"
+    a[14831] = b:New(14831, nil, nil, true); -- "I Live, I Die, I Queue Again"
     T(a[14831], t[2177]); -- Sinful Aspirant's Plate (Aspirant)
     T(a[14831], t[2173]); -- Sinful Gladiator's Plate (Gladiator)
     T(a[14831], t[2169]); -- Sinful Gladiator's Plate (Elite)
@@ -7640,26 +7640,26 @@ function exportedAchievements.Load(a, t)
     O(a[14942]);
     a[14943] = b:New(14943); -- Guarmageddon
     a[14961] = b:New(14961); -- Chains of Domination
-    a[14968] = b:New(14968); -- Combatant I: Shadowlands Season 2
+    a[14968] = b:New(14968, nil, nil, true); -- Combatant I: Shadowlands Season 2
     O(a[14968], "From", "PvP Season", 31, "Until", "PvP Season", 31);
-    a[14969] = b:New(14969); -- Challenger I: Shadowlands Season 2
+    a[14969] = b:New(14969, nil, nil, true); -- Challenger I: Shadowlands Season 2
     O(a[14969], "From", "PvP Season", 31, "Until", "PvP Season", 31);
-    a[14970] = b:New(14970); -- Rival I: Shadowlands Season 2
+    a[14970] = b:New(14970, nil, nil, true); -- Rival I: Shadowlands Season 2
     O(a[14970], "From", "PvP Season", 31, "Until", "PvP Season", 31);
-    a[14971] = b:New(14971); -- Duelist: Shadowlands Season 2
+    a[14971] = b:New(14971, nil, nil, true); -- Duelist: Shadowlands Season 2
     O(a[14971], "From", "PvP Season", 31, "Until", "PvP Season", 31);
-    a[14972] = b:New(14972); -- Gladiator: Shadowlands Season 2
+    a[14972] = b:New(14972, nil, nil, true); -- Gladiator: Shadowlands Season 2
     O(a[14972], "From", "PvP Season", 31, "Until", "PvP Season", 31);
-    a[14973] = b:New(14973); -- Unchained Gladiator: Shadowlands Season 2
+    a[14973] = b:New(14973, nil, nil, true); -- Unchained Gladiator: Shadowlands Season 2
     O(a[14973], "From", "PvP Season", 31, "Until", "PvP Season", 31);
-    a[14974] = b:New(14974); -- Elite: Shadowlands Season 2
+    a[14974] = b:New(14974, nil, nil, true); -- Elite: Shadowlands Season 2
     O(a[14974], "From", "PvP Season", 31, "Until", "PvP Season", 31);
-    a[14975] = b:New(14975, fac.Alliance, 14976); -- Hero of the Alliance: Unchained
+    a[14975] = b:New(14975, fac.Alliance, 14976, true); -- Hero of the Alliance: Unchained
     O(a[14975], "From", "PvP Season", 31, "Until", "PvP Season", 31);
-    a[14976] = b:New(14976, fac.Horde, 14975); -- Hero of the Horde: Unchained
+    a[14976] = b:New(14976, fac.Horde, 14975, true); -- Hero of the Horde: Unchained
     O(a[14976], "From", "PvP Season", 31, "Until", "PvP Season", 31);
     a[14998] = b:New(14998); -- "Name A Better Duo, I'll Wait"
-    a[14999] = b:New(14999); -- Unchained Gladiator's Soul Eater
+    a[14999] = b:New(14999, nil, nil, true); -- Unchained Gladiator's Soul Eater
     O(a[14999], "From", "PvP Season", 31, "Until", "PvP Season", 31);
     a[15000] = b:New(15000); -- United Front
     a[15001] = b:New(15001); -- Jailer's Personal Stash
@@ -7732,7 +7732,7 @@ function exportedAchievements.Load(a, t)
     a[15095] = b:New(15095); -- No Doubt
     a[15096] = b:New(15096); -- Crowd Pleaser
     a[15099] = b:New(15099); -- Treasures of Korthia
-    a[15102] = b:New(15102); -- It's Off the Chain!
+    a[15102] = b:New(15102, nil, nil, true); -- It's Off the Chain!
     T(a[15102], t[2249]); -- Unchained Aspirant's Plate (Aspirant)
     T(a[15102], t[2227]); -- Unchained Gladiator's Plate (Gladiator)
     T(a[15102], t[2231]); -- Unchained Gladiator's Plate (Elite)
@@ -7812,11 +7812,11 @@ function exportedAchievements.Load(a, t)
     a[15223] = b:New(15223); -- Feeling It
     a[15224] = b:New(15224); -- Explore Zereth Mortis
     a[15229] = b:New(15229); -- Traversing the Spheres
-    a[15232] = b:New(15232); -- Combatant II: Shadowlands Season 2
+    a[15232] = b:New(15232, nil, nil, true); -- Combatant II: Shadowlands Season 2
     O(a[15232], "From", "PvP Season", 31, "Until", "PvP Season", 31);
-    a[15233] = b:New(15233); -- Challenger II: Shadowlands Season 2
+    a[15233] = b:New(15233, nil, nil, true); -- Challenger II: Shadowlands Season 2
     O(a[15233], "From", "PvP Season", 31, "Until", "PvP Season", 31);
-    a[15234] = b:New(15234); -- Rival II: Shadowlands Season 2
+    a[15234] = b:New(15234, nil, nil, true); -- Rival II: Shadowlands Season 2
     O(a[15234], "From", "PvP Season", 31, "Until", "PvP Season", 31);
     a[15241] = b:New(15241); -- Renowned
     a[15251] = b:New(15251); -- The Jailer's Gauntlet: Layer 1
@@ -7847,32 +7847,32 @@ function exportedAchievements.Load(a, t)
     O(a[15327], "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 6);
     a[15331] = b:New(15331); -- Treasures of Zereth Mortis
     a[15336] = b:New(15336); -- From A to Zereth
-    a[15348] = b:New(15348); -- Combatant I: Shadowlands Season 3
+    a[15348] = b:New(15348, nil, nil, true); -- Combatant I: Shadowlands Season 3
     O(a[15348], "From", "PvP Season", 32, "Until", "PvP Season", 32);
-    a[15349] = b:New(15349); -- Challenger I: Shadowlands Season 3
+    a[15349] = b:New(15349, nil, nil, true); -- Challenger I: Shadowlands Season 3
     O(a[15349], "From", "PvP Season", 32, "Until", "PvP Season", 32);
-    a[15350] = b:New(15350); -- Rival I: Shadowlands Season 3
+    a[15350] = b:New(15350, nil, nil, true); -- Rival I: Shadowlands Season 3
     O(a[15350], "From", "PvP Season", 32, "Until", "PvP Season", 32);
-    a[15351] = b:New(15351); -- Duelist: Shadowlands Season 3
+    a[15351] = b:New(15351, nil, nil, true); -- Duelist: Shadowlands Season 3
     O(a[15351], "From", "PvP Season", 32, "Until", "PvP Season", 32);
-    a[15352] = b:New(15352); -- Gladiator: Shadowlands Season 3
+    a[15352] = b:New(15352, nil, nil, true); -- Gladiator: Shadowlands Season 3
     O(a[15352], "From", "PvP Season", 32, "Until", "PvP Season", 32);
-    a[15353] = b:New(15353); -- Cosmic Gladiator: Shadowlands Season 3
+    a[15353] = b:New(15353, nil, nil, true); -- Cosmic Gladiator: Shadowlands Season 3
     O(a[15353], "From", "PvP Season", 32, "Until", "PvP Season", 32);
-    a[15354] = b:New(15354); -- Elite: Shadowlands Season 3
+    a[15354] = b:New(15354, nil, nil, true); -- Elite: Shadowlands Season 3
     O(a[15354], "From", "PvP Season", 32, "Until", "PvP Season", 32);
-    a[15355] = b:New(15355, fac.Alliance, 15356); -- Hero of the Alliance: Cosmic
+    a[15355] = b:New(15355, fac.Alliance, 15356, true); -- Hero of the Alliance: Cosmic
     O(a[15355], "From", "PvP Season", 32, "Until", "PvP Season", 32);
-    a[15356] = b:New(15356, fac.Horde, 15355); -- Hero of the Horde: Cosmic
+    a[15356] = b:New(15356, fac.Horde, 15355, true); -- Hero of the Horde: Cosmic
     O(a[15356], "From", "PvP Season", 32, "Until", "PvP Season", 32);
-    a[15378] = b:New(15378); -- Rival II: Shadowlands Season 3
+    a[15378] = b:New(15378, nil, nil, true); -- Rival II: Shadowlands Season 3
     O(a[15378], "From", "PvP Season", 32, "Until", "PvP Season", 32);
-    a[15379] = b:New(15379); -- Challenger II: Shadowlands Season 3
+    a[15379] = b:New(15379, nil, nil, true); -- Challenger II: Shadowlands Season 3
     O(a[15379], "From", "PvP Season", 32, "Until", "PvP Season", 32);
-    a[15380] = b:New(15380); -- Combatant II: Shadowlands Season 3
+    a[15380] = b:New(15380, nil, nil, true); -- Combatant II: Shadowlands Season 3
     O(a[15380], "From", "PvP Season", 32, "Until", "PvP Season", 32);
     a[15381] = b:New(15381); -- Power ON
-    a[15384] = b:New(15384); -- Cosmic Gladiator's Soul Eater
+    a[15384] = b:New(15384, nil, nil, true); -- Cosmic Gladiator's Soul Eater
     O(a[15384], "From", "PvP Season", 32, "Until", "PvP Season", 32);
     a[15386] = b:New(15386); -- Shimmering Secrets
     a[15388] = b:New(15388); -- Shadowlands Explorer
@@ -7889,7 +7889,7 @@ function exportedAchievements.Load(a, t)
     a[15404] = b:New(15404); -- Cosmic Empowerment
     a[15406] = b:New(15406); -- Synthesized!
     a[15407] = b:New(15407); -- Synthe-fived!
-    a[15408] = b:New(15408); -- Cosmic Chic
+    a[15408] = b:New(15408, nil, nil, true); -- Cosmic Chic
     T(a[15408], t[2319]); -- Cosmic Aspirant's Plate (Aspirant)
     T(a[15408], t[2318]); -- Cosmic Aspirant's Chain (Aspirant)
     T(a[15408], t[2316]); -- Cosmic Aspirant's Vestment (Aspirant)
@@ -8011,47 +8011,47 @@ function exportedAchievements.Load(a, t)
     O(a[15506], "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7);
     a[15508] = b:New(15508); -- Fashion of the First Ones
     a[15509] = b:New(15509); -- Tales of the Exile
-    a[15511] = b:New(15511); -- Solely Motivated
+    a[15511] = b:New(15511, nil, nil, true); -- Solely Motivated
     a[15512] = b:New(15512); -- Adventures in Zereth Mortis
     a[15513] = b:New(15513); -- Curious Collections
     a[15514] = b:New(15514); -- Unlocking the Secrets
     a[15515] = b:New(15515); -- Path to Enlightenment
     a[15518] = b:New(15518); -- A Means to an End
-    a[15539] = b:New(15539); -- Solo Aspirations
-    a[15540] = b:New(15540); -- Steadfast Soloist
-    a[15541] = b:New(15541); -- Sole Survivor
+    a[15539] = b:New(15539, nil, nil, true); -- Solo Aspirations
+    a[15540] = b:New(15540, nil, nil, true); -- Steadfast Soloist
+    a[15541] = b:New(15541, nil, nil, true); -- Sole Survivor
     a[15542] = b:New(15542); -- Apocopocolypse Now
-    a[15543] = b:New(15543); -- Successful Solos
-    a[15544] = b:New(15544); -- Supreme Soloist
+    a[15543] = b:New(15543, nil, nil, true); -- Successful Solos
+    a[15544] = b:New(15544, nil, nil, true); -- Supreme Soloist
     a[15579] = b:New(15579); -- Return to Lordaeron
     a[15594] = b:New(15594); -- Fearless Spectator
     O(a[15594]);
-    a[15600] = b:New(15600); -- Challenger I: Shadowlands Season 4
+    a[15600] = b:New(15600, nil, nil, true); -- Challenger I: Shadowlands Season 4
     O(a[15600], "From", "PvP Season", 33, "Until", "PvP Season", 33);
-    a[15601] = b:New(15601); -- Challenger II: Shadowlands Season 4
+    a[15601] = b:New(15601, nil, nil, true); -- Challenger II: Shadowlands Season 4
     O(a[15601], "From", "PvP Season", 33, "Until", "PvP Season", 33);
-    a[15602] = b:New(15602); -- Rival I: Shadowlands Season 4
+    a[15602] = b:New(15602, nil, nil, true); -- Rival I: Shadowlands Season 4
     O(a[15602], "From", "PvP Season", 33, "Until", "PvP Season", 33);
-    a[15603] = b:New(15603); -- Rival II: Shadowlands Season 4
+    a[15603] = b:New(15603, nil, nil, true); -- Rival II: Shadowlands Season 4
     O(a[15603], "From", "PvP Season", 33, "Until", "PvP Season", 33);
-    a[15604] = b:New(15604); -- Duelist: Shadowlands Season 4
+    a[15604] = b:New(15604, nil, nil, true); -- Duelist: Shadowlands Season 4
     O(a[15604], "From", "PvP Season", 33, "Until", "PvP Season", 33);
-    a[15605] = b:New(15605); -- Gladiator: Shadowlands Season 4
+    a[15605] = b:New(15605, nil, nil, true); -- Gladiator: Shadowlands Season 4
     O(a[15605], "From", "PvP Season", 33, "Until", "PvP Season", 33);
-    a[15606] = b:New(15606); -- Eternal Gladiator: Shadowlands Season 4
+    a[15606] = b:New(15606, nil, nil, true); -- Eternal Gladiator: Shadowlands Season 4
     O(a[15606], "From", "PvP Season", 33, "Until", "PvP Season", 33);
-    a[15607] = b:New(15607, fac.Horde, 15608); -- Hero of the Horde: Eternal
+    a[15607] = b:New(15607, fac.Horde, 15608, true); -- Hero of the Horde: Eternal
     O(a[15607], "From", "PvP Season", 33, "Until", "PvP Season", 33);
-    a[15608] = b:New(15608, fac.Alliance, 15607); -- Hero of the Alliance: Eternal
+    a[15608] = b:New(15608, fac.Alliance, 15607, true); -- Hero of the Alliance: Eternal
     O(a[15608], "From", "PvP Season", 33, "Until", "PvP Season", 33);
-    a[15609] = b:New(15609); -- Combatant I: Shadowlands Season 4
+    a[15609] = b:New(15609, nil, nil, true); -- Combatant I: Shadowlands Season 4
     O(a[15609], "From", "PvP Season", 33, "Until", "PvP Season", 33);
-    a[15610] = b:New(15610); -- Combatant II: Shadowlands Season 4
+    a[15610] = b:New(15610, nil, nil, true); -- Combatant II: Shadowlands Season 4
     O(a[15610], "From", "PvP Season", 33, "Until", "PvP Season", 33);
-    a[15612] = b:New(15612); -- Eternal Gladiator's Soul Eater
+    a[15612] = b:New(15612, nil, nil, true); -- Eternal Gladiator's Soul Eater
     O(a[15612], "From", "PvP Season", 33, "Until", "PvP Season", 33);
     a[15638] = b:New(15638, fac.Horde); -- "Dracthyr, Awaken"
-    a[15639] = b:New(15639); -- Elite: Shadowlands Season 4
+    a[15639] = b:New(15639, nil, nil, true); -- Elite: Shadowlands Season 4
     O(a[15639], "From", "PvP Season", 33, "Until", "PvP Season", 33);
     a[15640] = b:New(15640); -- Return to Darkness
     a[15641] = b:New(15641); -- Many More Mini Minions
@@ -8147,29 +8147,29 @@ function exportedAchievements.Load(a, t)
     a[15939] = b:New(15939); -- Dragon Racing Completionist
     a[15940] = b:New(15940); -- Dragon Racing Completionist: Silver
     a[15941] = b:New(15941); -- Dragon Racing Completionist: Gold
-    a[15951] = b:New(15951); -- Crimson Gladiator: Dragonflight Season 1
+    a[15951] = b:New(15951, nil, nil, true); -- Crimson Gladiator: Dragonflight Season 1
     O(a[15951], "From", "PvP Season", 34, "Until", "PvP Season", 34);
-    a[15952] = b:New(15952); -- Rival I: Dragonflight Season 1
+    a[15952] = b:New(15952, nil, nil, true); -- Rival I: Dragonflight Season 1
     O(a[15952], "From", "PvP Season", 34, "Until", "PvP Season", 34);
-    a[15953] = b:New(15953); -- Rival II: Dragonflight Season 1
+    a[15953] = b:New(15953, nil, nil, true); -- Rival II: Dragonflight Season 1
     O(a[15953], "From", "PvP Season", 34, "Until", "PvP Season", 34);
-    a[15954] = b:New(15954); -- Duelist: Dragonflight Season 1
+    a[15954] = b:New(15954, nil, nil, true); -- Duelist: Dragonflight Season 1
     O(a[15954], "From", "PvP Season", 34, "Until", "PvP Season", 34);
-    a[15955] = b:New(15955); -- Challenger I: Dragonflight Season 1
+    a[15955] = b:New(15955, nil, nil, true); -- Challenger I: Dragonflight Season 1
     O(a[15955], "From", "PvP Season", 34, "Until", "PvP Season", 34);
-    a[15956] = b:New(15956); -- Challenger II: Dragonflight Season 1
+    a[15956] = b:New(15956, nil, nil, true); -- Challenger II: Dragonflight Season 1
     O(a[15956], "From", "PvP Season", 34, "Until", "PvP Season", 34);
-    a[15957] = b:New(15957); -- Gladiator: Dragonflight Season 1
+    a[15957] = b:New(15957, nil, nil, true); -- Gladiator: Dragonflight Season 1
     O(a[15957], "From", "PvP Season", 34, "Until", "PvP Season", 34);
-    a[15958] = b:New(15958, fac.Horde); -- Hero of the Horde: Crimson
+    a[15958] = b:New(15958, fac.Horde, nil, true); -- Hero of the Horde: Crimson
     O(a[15958], "From", "PvP Season", 34, "Until", "PvP Season", 34);
-    a[15959] = b:New(15959, fac.Alliance); -- Hero of the Alliance: Crimson
+    a[15959] = b:New(15959, fac.Alliance, nil, true); -- Hero of the Alliance: Crimson
     O(a[15959], "From", "PvP Season", 34, "Until", "PvP Season", 34);
-    a[15960] = b:New(15960); -- Combatant I: Dragonflight Season 1
+    a[15960] = b:New(15960, nil, nil, true); -- Combatant I: Dragonflight Season 1
     O(a[15960], "From", "PvP Season", 34, "Until", "PvP Season", 34);
-    a[15961] = b:New(15961); -- Combatant II: Dragonflight Season 1
+    a[15961] = b:New(15961, nil, nil, true); -- Combatant II: Dragonflight Season 1
     O(a[15961], "From", "PvP Season", 34, "Until", "PvP Season", 34);
-    a[15984] = b:New(15984); -- Elite: Dragonflight Season 1
+    a[15984] = b:New(15984, nil, nil, true); -- Elite: Dragonflight Season 1
     O(a[15984], "From", "PvP Season", 34, "Until", "PvP Season", 34);
     a[15985] = b:New(15985); -- Dragon Glyphs: Skytop Observatory Tower
     a[15986] = b:New(15986); -- Dragon Glyphs: Wingrest Embassy
@@ -8472,24 +8472,24 @@ function exportedAchievements.Load(a, t)
     a[16585] = b:New(16585); -- Loremaster of the Dragon Isles
     a[16587] = b:New(16587); -- Lead Climber
     a[16588] = b:New(16588); -- How Did These Get Here?
-    a[16589] = b:New(16589); -- Malicia's Challenge
-    a[16590] = b:New(16590); -- A Champion's Tour: Dragon Isles
+    a[16589] = b:New(16589, nil, nil, true); -- Malicia's Challenge
+    a[16590] = b:New(16590, nil, nil, true); -- A Champion's Tour: Dragon Isles
     a[16591] = b:New(16591); -- The Gentleman Elemental
-    a[16592] = b:New(16592); -- Tour of Duty: The Waking Shores
-    a[16593] = b:New(16593); -- Tour of Duty: Thaldraszus
-    a[16594] = b:New(16594); -- Tour of Duty: The Azure Span
-    a[16595] = b:New(16595); -- Tour of Duty: Ohn'ahran Plains
-    a[16599] = b:New(16599); -- A Champion's Pursuit
+    a[16592] = b:New(16592, nil, nil, true); -- Tour of Duty: The Waking Shores
+    a[16593] = b:New(16593, nil, nil, true); -- Tour of Duty: Thaldraszus
+    a[16594] = b:New(16594, nil, nil, true); -- Tour of Duty: The Azure Span
+    a[16595] = b:New(16595, nil, nil, true); -- Tour of Duty: Ohn'ahran Plains
+    a[16599] = b:New(16599, nil, nil, true); -- A Champion's Pursuit
     a[16600] = b:New(16600); -- Isles Ascender
-    a[16601] = b:New(16601); -- Dragonfight Club
+    a[16601] = b:New(16601, nil, nil, true); -- Dragonfight Club
     a[16602] = b:New(16602); -- Nokhud Deed Goes Unnoticed
-    a[16603] = b:New(16603); -- Bounty Hunter
-    a[16611] = b:New(16611); -- Resource Scavanger
-    a[16612] = b:New(16612); -- Bounty Vigalante
-    a[16613] = b:New(16613); -- Finder's Keepers
-    a[16614] = b:New(16614); -- Bloodstained Bounty
-    a[16615] = b:New(16615); -- Blood Bank
-    a[16616] = b:New(16616); -- Prosperously Bloody
+    a[16603] = b:New(16603, nil, nil, true); -- Bounty Hunter
+    a[16611] = b:New(16611, nil, nil, true); -- Resource Scavanger
+    a[16612] = b:New(16612, nil, nil, true); -- Bounty Vigalante
+    a[16613] = b:New(16613, nil, nil, true); -- Finder's Keepers
+    a[16614] = b:New(16614, nil, nil, true); -- Bloodstained Bounty
+    a[16615] = b:New(16615, nil, nil, true); -- Blood Bank
+    a[16616] = b:New(16616, nil, nil, true); -- Prosperously Bloody
     a[16620] = b:New(16620); -- Ohuna Incubation
     a[16621] = b:New(16621); -- "One of Everything, Please"
     a[16622] = b:New(16622); -- Three Minutes or It's Free
@@ -8569,21 +8569,21 @@ function exportedAchievements.Load(a, t)
     a[16726] = b:New(16726); -- Cliffside Wylderdrake Back and Tail
     a[16727] = b:New(16727); -- Cliffside Wylderdrake Head Features
     a[16729] = b:New(16729); -- To All the Squirrels Hidden Til Now
-    a[16730] = b:New(16730); -- Crimson Gladiator's Drake
+    a[16730] = b:New(16730, nil, nil, true); -- Crimson Gladiator's Drake
     O(a[16730], "From", "PvP Season", 34, "Until", "PvP Season", 34);
-    a[16734] = b:New(16734); -- Crimson Legend: Dragonflight Season 1
+    a[16734] = b:New(16734, nil, nil, true); -- Crimson Legend: Dragonflight Season 1
     O(a[16734], "From", "PvP Season", 34, "Until", "PvP Season", 34);
     a[16736] = b:New(16736); -- Grand Theft Mammoth
     a[16758] = b:New(16758); -- "Ready, Aim, Catalog!"
     a[16760] = b:New(16760); -- The Obsidian Bloodline
     a[16761] = b:New(16761); -- Dragon Isles Explorer
     a[16762] = b:New(16762); -- The Vegetarian Diet
-    a[16764] = b:New(16764); -- Crimson Carpet Fashion
+    a[16764] = b:New(16764, nil, nil, true); -- Crimson Carpet Fashion
     a[16789] = b:New(16789); -- Lucky Penny
     a[16790] = b:New(16790); -- Curious Coin
     a[16791] = b:New(16791); -- Merchant Artisan
     a[16799] = b:New(16799); -- Personal Crafter
-    a[16801] = b:New(16801, nil, nil, true); -- Realm First! Dragonflight Keystone Hero
+    a[16801] = b:New(16801, nil, nil, nil, true); -- Realm First! Dragonflight Keystone Hero
     O(a[16801], "Once");
     a[16808] = b:New(16808); -- Friend of the Dragon Isles
     a[17107] = b:New(17107); -- Ahead of the Curve: Raszageth the Storm-Eater
@@ -8627,13 +8627,13 @@ function exportedAchievements.Load(a, t)
     a[17331] = b:New(17331); -- Reverse Racer: Silver
     a[17332] = b:New(17332); -- Reverse Racer: Gold
     a[17334] = b:New(17334); -- Trading Post Enthusiast
-    a[17335] = b:New(17335); -- Airborne Tumbler
-    a[17336] = b:New(17336); -- Airborne Tumbler
-    a[17339] = b:New(17339); -- Legend: Dragonflight Season 1
+    a[17335] = b:New(17335, nil, nil, true); -- Airborne Tumbler
+    a[17336] = b:New(17336, nil, nil, true); -- Airborne Tumbler
+    a[17339] = b:New(17339, nil, nil, true); -- Legend: Dragonflight Season 1
     O(a[17339], "From", "PvP Season", 34, "Until", "PvP Season", 34);
     a[17342] = b:New(17342); -- The Future We Make
     a[17343] = b:New(17343); -- Drop It Like It's Hot
-    a[17345] = b:New(17345); -- Airborne Tumbler
+    a[17345] = b:New(17345, nil, nil, true); -- Airborne Tumbler
     a[17366] = b:New(17366); -- Relics of a Fallen Empire
     a[17367] = b:New(17367); -- Deadliest Cache
     a[17397] = b:New(17397); -- Door To Door
@@ -8710,11 +8710,11 @@ function exportedAchievements.Load(a, t)
     a[17737] = b:New(17737, fac.Alliance); -- Flame Warden of the Dragon Isles
     a[17738] = b:New(17738, fac.Horde); -- Flame Keeper of the Dragon Isles
     a[17739] = b:New(17739); -- Embers of Neltharion
-    a[17740] = b:New(17740); -- Gladiator: Dragonflight Season 2
+    a[17740] = b:New(17740, nil, nil, true); -- Gladiator: Dragonflight Season 2
     O(a[17740], "From", "PvP Season", 35, "Until", "PvP Season", 35);
     a[17741] = b:New(17741); -- Slow and Steady Wins the Race
     a[17763] = b:New(17763); -- There's No Place Like Loamm
-    a[17764] = b:New(17764); -- Obsidian Gladiator: Dragonflight Season 2
+    a[17764] = b:New(17764, nil, nil, true); -- Obsidian Gladiator: Dragonflight Season 2
     O(a[17764], "From", "PvP Season", 35, "Until", "PvP Season", 35);
     a[17765] = b:New(17765); -- What We Wear In The Shadowflame
     T(a[17765], t[2900]); -- Irons of the Onyx Crucible (Raid Finder)
@@ -8770,37 +8770,37 @@ function exportedAchievements.Load(a, t)
     T(a[17765], t[2904]); -- Legacy of Obsidian Secrets (Heroic)
     T(a[17765], t[2905]); -- Legacy of Obsidian Secrets (Mythic)
     a[17766] = b:New(17766); -- Explore Zaralek Cavern
-    a[17767] = b:New(17767); -- Obsidian Legend: Dragonflight Season 2
+    a[17767] = b:New(17767, nil, nil, true); -- Obsidian Legend: Dragonflight Season 2
     O(a[17767], "From", "PvP Season", 35, "Until", "PvP Season", 35);
-    a[17768] = b:New(17768, fac.Alliance); -- Hero of the Alliance: Obsidian
+    a[17768] = b:New(17768, fac.Alliance, nil, true); -- Hero of the Alliance: Obsidian
     O(a[17768], "From", "PvP Season", 35, "Until", "PvP Season", 35);
-    a[17772] = b:New(17772, fac.Horde); -- Hero of the Horde: Obsidian
+    a[17772] = b:New(17772, fac.Horde, nil, true); -- Hero of the Horde: Obsidian
     O(a[17772], "From", "PvP Season", 35, "Until", "PvP Season", 35);
-    a[17778] = b:New(17778); -- Obsidian Gladiator's Slitherdrake
+    a[17778] = b:New(17778, nil, nil, true); -- Obsidian Gladiator's Slitherdrake
     O(a[17778], "From", "PvP Season", 35, "Until", "PvP Season", 35);
     a[17779] = b:New(17779); -- A Serpentine Discovery
     a[17781] = b:New(17781); -- The Smell of Money
     a[17783] = b:New(17783); -- Adventurer of Zaralek Cavern
     a[17785] = b:New(17785); -- "Que Zara(lek), Zara(lek)"
     a[17786] = b:New(17786); -- Treasures of Zaralek Cavern
-    a[17794] = b:New(17794); -- Duelist: Dragonflight Season 2
+    a[17794] = b:New(17794, nil, nil, true); -- Duelist: Dragonflight Season 2
     O(a[17794], "From", "PvP Season", 35, "Until", "PvP Season", 35);
-    a[17795] = b:New(17795); -- Rival I: Dragonflight Season 2
+    a[17795] = b:New(17795, nil, nil, true); -- Rival I: Dragonflight Season 2
     O(a[17795], "From", "PvP Season", 35, "Until", "PvP Season", 35);
-    a[17796] = b:New(17796); -- Rival II: Dragonflight Season 2
+    a[17796] = b:New(17796, nil, nil, true); -- Rival II: Dragonflight Season 2
     O(a[17796], "From", "PvP Season", 35, "Until", "PvP Season", 35);
-    a[17797] = b:New(17797); -- Challenger I: Dragonflight Season 2
+    a[17797] = b:New(17797, nil, nil, true); -- Challenger I: Dragonflight Season 2
     O(a[17797], "From", "PvP Season", 35, "Until", "PvP Season", 35);
-    a[17798] = b:New(17798); -- Challenger II: Dragonflight Season 2
+    a[17798] = b:New(17798, nil, nil, true); -- Challenger II: Dragonflight Season 2
     O(a[17798], "From", "PvP Season", 35, "Until", "PvP Season", 35);
-    a[17799] = b:New(17799); -- Combatant I: Dragonflight Season 2
+    a[17799] = b:New(17799, nil, nil, true); -- Combatant I: Dragonflight Season 2
     O(a[17799], "From", "PvP Season", 35, "Until", "PvP Season", 35);
-    a[17800] = b:New(17800); -- Combatant II: Dragonflight Season 2
+    a[17800] = b:New(17800, nil, nil, true); -- Combatant II: Dragonflight Season 2
     O(a[17800], "From", "PvP Season", 35, "Until", "PvP Season", 35);
-    a[17801] = b:New(17801); -- Legend: Dragonflight Season 2
+    a[17801] = b:New(17801, nil, nil, true); -- Legend: Dragonflight Season 2
     O(a[17801], "From", "PvP Season", 35, "Until", "PvP Season", 35);
     a[17830] = b:New(17830); -- Stones Can't Fly!
-    a[17831] = b:New(17831); -- Elite: Dragonflight Season 2
+    a[17831] = b:New(17831, nil, nil, true); -- Elite: Dragonflight Season 2
     O(a[17831], "From", "PvP Season", 35, "Until", "PvP Season", 35);
     a[17832] = b:New(17832); -- Sniffen Around
     a[17833] = b:New(17833); -- Sniffen Sage
@@ -8823,8 +8823,8 @@ function exportedAchievements.Load(a, t)
     O(a[17849], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
     a[17850] = b:New(17850); -- Keystone Hero: Neltharion's Lair
     O(a[17850], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
-    a[17851] = b:New(17851); -- Tour of Duty: Zaralek Cavern
-    a[17852] = b:New(17852); -- Elemental Conjuror
+    a[17851] = b:New(17851, nil, nil, true); -- Tour of Duty: Zaralek Cavern
+    a[17852] = b:New(17852, nil, nil, true); -- Elemental Conjuror
     a[17877] = b:New(17877); -- "We'll Never See That Again, Surely"
     a[17878] = b:New(17878); -- Me Want Bite
     a[17879] = b:New(17879); -- Zaralek Cavern Safari
@@ -8881,7 +8881,7 @@ function exportedAchievements.Load(a, t)
     a[18228] = b:New(18228); -- Are You Even Trying?
     a[18229] = b:New(18229); -- Cosplate
     a[18230] = b:New(18230); -- Whac-A-Swog
-    a[18249] = b:New(18249); -- Obsidian Tie Event
+    a[18249] = b:New(18249, nil, nil, true); -- Obsidian Tie Event
     a[18251] = b:New(18251); -- Glory of the Aberrus Raider
     a[18253] = b:New(18253); -- Ahead of the Curve: Scalecommander Sarkareth
     O(a[18253], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
@@ -8899,7 +8899,7 @@ function exportedAchievements.Load(a, t)
     O(a[18542], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
 
     local aIDs = {};
-    for i = 1, 18542 do
+    for i = 1, 18688 do
         if a[i] ~= nil then
             tinsert(aIDs, i);
         end

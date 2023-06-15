@@ -1,7 +1,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 56.5 - 2023-05-12
+## 57.1 - 2023-06-15
+### Fixed
+- Searching guild achievements should once again work in the Guild tab
+
+### Wrath Classic
+- Added Defense Protocol Beta achievements
+
+## 57.0 - 2023-06-07
+### Added
+- PvP filter
+
+### Wrath Classic
+- Fixed the character deletion confirmation
+
+## 56.5 - 2023-05-29
 ### Added
 - Tooltip data for Battle on the Dragon Isles II and Family Battler of Zaralek Cavern
 - Moved Expansions - Other to Expansions - Cross-Expansion

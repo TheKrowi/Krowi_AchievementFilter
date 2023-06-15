@@ -439,8 +439,13 @@ function addon.OverwriteFunctions()
 
     AchievementFrame_SetTabs = addon.GUI.ShowHideTabs;
 
+    local origAchievementFrame_SelectAchievement = AchievementFrame_SelectAchievement;
     AchievementFrame_SelectAchievement = function(id)
-        KrowiAF_SelectAchievementFromID(id);
+        if addon.Data.Achievements[id] then
+            KrowiAF_SelectAchievementFromID(id);
+            return;
+        end
+        origAchievementFrame_SelectAchievement(id);
     end
 end
 

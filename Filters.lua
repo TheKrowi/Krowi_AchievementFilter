@@ -20,7 +20,8 @@ local defaultAchievements = {
     },
     Special = {
         RealmFirst = false,
-        FeatsOfStrength = true
+        FeatsOfStrength = true,
+        PvP = true
     },
     CollapseSeries = true,
     Excluded = false,
@@ -179,6 +180,9 @@ local validations = {
     },
     {   -- 13
         Validate = function(_filters, achievement) return not _filters.Tracking and achievement.IsTracking; end
+    },
+    {   -- 14
+        Validate = function(_filters, achievement) return not _filters.Special.PvP and achievement.IsPvP; end
     }
 };
 
