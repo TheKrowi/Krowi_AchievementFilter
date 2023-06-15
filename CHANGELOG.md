@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 57.1 - 2023-06-15
+### Fixed
+- Searching guild achievements should once again work in the Guild tab
+
+### Wrath Classic
+- Added Defense Protocol Beta achievements
+
 ## 57.0 - 2023-06-07
 ### Added
 - PvP filter
