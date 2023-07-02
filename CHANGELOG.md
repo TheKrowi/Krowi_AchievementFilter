@@ -1,6 +1,24 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 58.0 - 2023-07-11
+### Added
+- Kalimdor Racing achievements
+- Dawn of the Infinite dungeon achievements
+- Tons of other achievements
+- Missing and new x Exalted Reputations achievements
+- Secrets of Azeroth event
+- Time Rift event
+- Kalimdor Cup (no event yet)
+- Reintroduced Widget Events (Community Feast and Time Rifts)
+
+### Changed
+- Updated Ace3 libraries
+- Mapped the new C_ContentTracking.IsTracking(Enum.ContentTrackingType.Achievement, id) to IsTrackedAchievement(id)
+
+### Removed
+- Community Feast events (not longer working as World Events)
+
 ## 57.1 - 2023-06-15
 ### Fixed
 - Searching guild achievements should once again work in the Guild tab

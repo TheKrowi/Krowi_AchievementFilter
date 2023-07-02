@@ -1,4 +1,4 @@
--- [[ Exported at 2023-06-15 19-15-59 ]] --
+-- [[ Exported at 2023-07-02 19-43-30 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -29,13 +29,13 @@ function exportedAchievements.Load(a, t)
     a[7] = b:New(7); -- Level 20
     a[8] = b:New(8); -- Level 30
     a[9] = b:New(9); -- Level 40
-    a[10] = b:New(10); -- Level 50
+    a[10] = b:New(10); -- Level 50 (Legacy)
     O(a[10], "From", "Version", "000304", "Before", "Version", "090001");
-    a[11] = b:New(11); -- Level 60
+    a[11] = b:New(11); -- Level 60 (Legacy)
     O(a[11], "From", "Version", "000304", "Before", "Version", "090001");
-    a[12] = b:New(12); -- Level 70
+    a[12] = b:New(12); -- Level 70 (Legacy)
     O(a[12], "From", "Version", "020003", "Before", "Version", "090001");
-    a[13] = b:New(13); -- Level 80
+    a[13] = b:New(13); -- Level 80 (Legacy)
     O(a[13], "From", "Version", "030003", "Before", "Version", "090001");
     a[15] = b:New(15); -- Plenty of Pets
     a[16] = b:New(16); -- Did Somebody Order a Knuckle Sandwich?
@@ -51,32 +51,32 @@ function exportedAchievements.Load(a, t)
     a[39] = b:New(39); -- Into the Basin
     a[40] = b:New(40); -- Icecrown: The Final Goal
     a[41] = b:New(41); -- Loremaster of Northrend
-    a[42] = b:New(42); -- Explore Eastern Kingdoms
-    a[43] = b:New(43); -- Explore Kalimdor
-    a[44] = b:New(44); -- Explore Outland
-    a[45] = b:New(45); -- Explore Northrend
-    a[46] = b:New(46); -- World Explorer
+    a[42] = b:New(42); -- Eastern Kingdoms Explorer
+    a[43] = b:New(43); -- Kalimdor Explorer
+    a[44] = b:New(44); -- Outland Explorer
+    a[45] = b:New(45); -- Northrend Explorer
+    a[46] = b:New(46); -- Universal Explorer
     a[73] = b:New(73, nil, nil, true); -- Disgracin' The Basin
     a[116] = b:New(116); -- Professional Journeyman
     a[121] = b:New(121); -- Journeyman Cook
     a[122] = b:New(122); -- Expert Cook
-    a[123] = b:New(123); -- Artisan Cook
-    a[124] = b:New(124); -- Master Cook
-    a[125] = b:New(125); -- Grand Master Cook
+    a[123] = b:New(123); -- Classic Cook
+    a[124] = b:New(124); -- Outland Cook
+    a[125] = b:New(125); -- Northrend Cook
     a[126] = b:New(126); -- Journeyman Fisherman
     a[127] = b:New(127); -- Expert Fisherman
     a[128] = b:New(128); -- Artisan Fisherman
-    a[129] = b:New(129); -- Master Fisherman
-    a[130] = b:New(130); -- Grand Master Fisherman
-    a[131] = b:New(131); -- Journeyman in First Aid
+    a[129] = b:New(129); -- Outland Fisherman
+    a[130] = b:New(130); -- Northrend Fisherman
+    a[131] = b:New(131); -- Journeyman Medic
     O(a[131], "From", "Version", "000304", "Before", "Version", "080001");
-    a[132] = b:New(132); -- Expert in First Aid
+    a[132] = b:New(132); -- Expert Medic
     O(a[132], "From", "Version", "000304", "Before", "Version", "080001");
-    a[133] = b:New(133); -- Artisan in First Aid
+    a[133] = b:New(133); -- Artisan Medic
     O(a[133], "From", "Version", "000304", "Before", "Version", "080001");
-    a[134] = b:New(134); -- Master in First Aid
+    a[134] = b:New(134); -- Master Medic
     O(a[134], "From", "Version", "020003", "Before", "Version", "080001");
-    a[135] = b:New(135); -- Grand Master in First Aid
+    a[135] = b:New(135); -- Grand Master Medic
     O(a[135], "From", "Version", "030003", "Before", "Version", "080001");
     a[137] = b:New(137); -- Stocking Up
     O(a[137], "From", "Version", "030003", "Before", "Version", "080001");
@@ -104,7 +104,7 @@ function exportedAchievements.Load(a, t)
     a[203] = b:New(203, fac.Alliance, 1251, true); -- Not In My House
     a[204] = b:New(204, nil, nil, true); -- Ironman
     a[206] = b:New(206, fac.Alliance, 1252, true); -- Supreme Defender
-    a[207] = b:New(207, nil, nil, true); -- Save The Day
+    a[207] = b:New(207, nil, nil, true); -- Save the Day
     a[208] = b:New(208, nil, nil, true); -- Eye of the Storm Victory
     a[209] = b:New(209, nil, nil, true); -- Eye of the Storm Veteran
     a[211] = b:New(211, nil, nil, true); -- Storm Glory
@@ -361,21 +361,21 @@ function exportedAchievements.Load(a, t)
     a[607] = b:New(607); -- 10 Coins of Ancestry
     a[608] = b:New(608); -- 25 Coins of Ancestry
     a[609] = b:New(609); -- 50 Coins of Ancestry
-    a[610] = b:New(610, fac.Alliance, 615, true); -- Death to the Warchief!
+    a[610] = b:New(610, fac.Alliance, 615, true); -- Orgrimmar Offensive
     O(a[610], "From", "Version", "030002", "Before", "Version", "080001");
     a[611] = b:New(611, fac.Alliance, 616, true); -- Bleeding Bloodhoof
     O(a[611], "From", "Version", "030002", "Before", "Version", "090001");
     a[612] = b:New(612, fac.Alliance, 617, true); -- Downing the Dark Lady
     O(a[612], "From", "Version", "030002", "Before", "Version", "090001");
     a[613] = b:New(613, fac.Alliance, 618, true); -- Killed in Quel'Thalas
-    a[614] = b:New(614, fac.Alliance, 619, true); -- For The Alliance!
+    a[614] = b:New(614, fac.Alliance, 619, true); -- For the Alliance!
     a[615] = b:New(615, fac.Horde, 610, true); -- Storming Stormwind
     O(a[615], "From", "Version", "030002", "Before", "Version", "090001");
-    a[616] = b:New(616, fac.Horde, 611, true); -- Death to the King!
+    a[616] = b:New(616, fac.Horde, 611, true); -- Overthrow the Council
     a[617] = b:New(617, fac.Horde, 612, true); -- Immortal No More
     O(a[617], "From", "Version", "030002", "Before", "Version", "080001");
     a[618] = b:New(618, fac.Horde, 613, true); -- Putting Out the Light
-    a[619] = b:New(619, fac.Horde, 614, true); -- For The Horde!
+    a[619] = b:New(619, fac.Horde, 614, true); -- For the Horde!
     a[621] = b:New(621); -- Represent
     a[622] = b:New(622); -- The Spellweaver's Downfall (10 player)
     a[623] = b:New(623); -- The Spellweaver's Downfall (25 player)
@@ -481,12 +481,12 @@ function exportedAchievements.Load(a, t)
     a[730] = b:New(730); -- Skills to Pay the Bills
     O(a[730], "From", "Version", "030003", "Before", "Version", "080001");
     a[731] = b:New(731); -- Professional Expert
-    a[732] = b:New(732); -- Professional Artisan
-    a[733] = b:New(733); -- Professional Master
-    a[734] = b:New(734); -- Professional Grand Master
-    a[735] = b:New(735); -- Working Day and Night
+    a[732] = b:New(732); -- Professional Classic Master
+    a[733] = b:New(733); -- Professional Outland Master
+    a[734] = b:New(734); -- Professional Northrend Master
+    a[735] = b:New(735); -- Working In the Cold
     a[736] = b:New(736); -- Explore Mulgore
-    a[750] = b:New(750); -- Explore The Barrens
+    a[750] = b:New(750); -- Explore Northern Barrens
     a[761] = b:New(761); -- Explore Arathi Highlands
     a[762] = b:New(762, fac.Horde, 948); -- Ambassador of the Horde
     a[763] = b:New(763, fac.Horde, 764); -- The Burning Crusader
@@ -506,7 +506,7 @@ function exportedAchievements.Load(a, t)
     a[778] = b:New(778); -- Explore Duskwood
     a[779] = b:New(779); -- Explore Loch Modan
     a[780] = b:New(780); -- Explore Redridge Mountains
-    a[781] = b:New(781); -- Explore Stranglethorn Vale
+    a[781] = b:New(781); -- Explore Northern Stranglethorn
     a[782] = b:New(782); -- Explore Swamp of Sorrows
     a[783] = b:New(783, nil, nil, true); -- The Perfect Storm
     a[784] = b:New(784, nil, nil, true); -- Eye of the Storm Domination
@@ -521,7 +521,7 @@ function exportedAchievements.Load(a, t)
     a[848] = b:New(848); -- Explore Desolace
     a[849] = b:New(849); -- Explore Feralas
     a[850] = b:New(850); -- Explore Dustwallow Marsh
-    a[851] = b:New(851); -- Explore Tanaris Desert
+    a[851] = b:New(851); -- Explore Tanaris
     a[852] = b:New(852); -- Explore Azshara
     a[853] = b:New(853); -- Explore Felwood
     a[854] = b:New(854); -- Explore Un'Goro Crater
@@ -565,7 +565,7 @@ function exportedAchievements.Load(a, t)
     a[888] = b:New(888, nil, nil, true); -- Vengeful Nether Drake
     O(a[888], "From", "PvP Season", 3, "Until", "PvP Season", 3);
     a[889] = b:New(889); -- Fast and Furious
-    a[890] = b:New(890); -- Into The Wild Blue Yonder
+    a[890] = b:New(890); -- Into the Wild Blue Yonder
     a[891] = b:New(891); -- Giddy Up!
     a[892] = b:New(892); -- The Right Stuff
     O(a[892], "From", "Version", "030002", "Before", "Version", "090001");
@@ -625,11 +625,11 @@ function exportedAchievements.Load(a, t)
     a[969] = b:New(969, fac.Alliance, 968); -- Tricks and Treats of Outland
     a[971] = b:New(971); -- Tricks and Treats of Azeroth
     a[972] = b:New(972); -- Trick or Treat!
-    a[973] = b:New(973); -- 5 Daily Quests Complete
-    a[974] = b:New(974); -- 50 Daily Quests Complete
-    a[975] = b:New(975); -- 200 Daily Quests Complete
-    a[976] = b:New(976); -- 500 Daily Quests Complete
-    a[977] = b:New(977); -- 1000 Daily Quests Complete
+    a[973] = b:New(973); -- 5 Daily Quests Completed
+    a[974] = b:New(974); -- 50 Daily Quests Completed
+    a[975] = b:New(975); -- 200 Daily Quests Completed
+    a[976] = b:New(976); -- 500 Daily Quests Completed
+    a[977] = b:New(977); -- 1000 Daily Quests Completed
     a[978] = b:New(978); -- 3000 Quests Completed
     a[979] = b:New(979); -- The Mask Task
     a[980] = b:New(980); -- The Horseman's Reins
@@ -720,7 +720,7 @@ function exportedAchievements.Load(a, t)
     a[1257] = b:New(1257); -- The Scavenger
     a[1258] = b:New(1258, nil, nil, true); -- Take a Chill Pill
     a[1259] = b:New(1259, nil, nil, true); -- Not So Fast
-    a[1260] = b:New(1260); -- Drunken Stupor
+    a[1260] = b:New(1260); -- Almost Blind Luck
     a[1261] = b:New(1261); -- G.N.E.R.D. Rage
     a[1262] = b:New(1262); -- Loremaster of Outland
     a[1263] = b:New(1263); -- Explore Howling Fjord
@@ -756,7 +756,7 @@ function exportedAchievements.Load(a, t)
     a[1295] = b:New(1295); -- Crashin' & Thrashin'
     a[1296] = b:New(1296); -- Watch Him Die
     a[1297] = b:New(1297); -- Hadronox Denied
-    a[1307] = b:New(1307); -- Upper Blackrock Spire
+    a[1307] = b:New(1307); -- Upper Blackrock Spire (Classic)
     O(a[1307], "From", "Version", "030002", "Before", "Version", "060002");
     a[1308] = b:New(1308, nil, nil, true); -- Strand of the Ancients Victory
     O(a[1308], "From", "Version", "030003", "Before", "Version", "080001");
@@ -799,13 +799,13 @@ function exportedAchievements.Load(a, t)
     O(a[1414], "Once");
     a[1415] = b:New(1415, nil, nil, nil, true); -- Realm First! Grand Master Alchemist
     O(a[1415], "Once");
-    a[1416] = b:New(1416, nil, nil, nil, true); -- Realm First! Cooking Grand Master
+    a[1416] = b:New(1416, nil, nil, nil, true); -- Realm First! Grand Master Cook
     O(a[1416], "Once");
     a[1417] = b:New(1417, nil, nil, nil, true); -- Realm First! Grand Master Enchanter
     O(a[1417], "Once");
     a[1418] = b:New(1418, nil, nil, nil, true); -- Realm First! Grand Master Engineer
     O(a[1418], "Once");
-    a[1419] = b:New(1419, nil, nil, nil, true); -- Realm First! First Aid Grand Master
+    a[1419] = b:New(1419, nil, nil, nil, true); -- Realm First! Grand Master Medic
     O(a[1419], "Once");
     a[1420] = b:New(1420, nil, nil, nil, true); -- Realm First! Grand Master Angler
     O(a[1420], "Once");
@@ -891,7 +891,7 @@ function exportedAchievements.Load(a, t)
     O(a[1762], "From", "Version", "030003", "Before", "Version", "080001");
     a[1763] = b:New(1763, nil, nil, true); -- Artillery Veteran
     O(a[1763], "From", "Version", "030003", "Before", "Version", "080001");
-    a[1764] = b:New(1764, nil, nil, true); -- Drop it!
+    a[1764] = b:New(1764, nil, nil, true); -- Drop It!
     O(a[1764], "From", "Version", "030003", "Before", "Version", "080001");
     a[1765] = b:New(1765, nil, nil, true); -- Steady Hands
     O(a[1765], "From", "Version", "030003", "Before", "Version", "080001");
@@ -911,7 +911,7 @@ function exportedAchievements.Load(a, t)
     a[1790] = b:New(1790); -- "Hail To The King, Baby"
     a[1791] = b:New(1791); -- Home Alone
     a[1792] = b:New(1792); -- "Aw, Isn't It Cute?"
-    a[1793] = b:New(1793); -- For The Children
+    a[1793] = b:New(1793); -- For the Children
     a[1795] = b:New(1795); -- Lunch Lady
     a[1796] = b:New(1796); -- Short Order Cook
     a[1797] = b:New(1797); -- Chef de Partie
@@ -926,8 +926,8 @@ function exportedAchievements.Load(a, t)
     a[1834] = b:New(1834); -- Lightning Struck
     a[1836] = b:New(1836); -- Old Crafty
     a[1837] = b:New(1837); -- Old Ironjaw
-    a[1856] = b:New(1856); -- Make Quick Werk Of Him (10 player)
-    a[1857] = b:New(1857); -- Make Quick Werk Of Him (25 player)
+    a[1856] = b:New(1856); -- Make Quick Werk of Him (10 player)
+    a[1857] = b:New(1857); -- Make Quick Werk of Him (25 player)
     a[1858] = b:New(1858); -- Arachnophobia (10 player)
     a[1859] = b:New(1859); -- Arachnophobia (25 player)
     a[1860] = b:New(1860); -- Gotta Go!
@@ -937,13 +937,13 @@ function exportedAchievements.Load(a, t)
     a[1866] = b:New(1866); -- Good Grief
     a[1867] = b:New(1867); -- Timely Death
     a[1868] = b:New(1868); -- Make It Count
-    a[1869] = b:New(1869); -- A Poke In The Eye (10 player)
-    a[1870] = b:New(1870); -- A Poke In The Eye (25 player)
+    a[1869] = b:New(1869); -- A Poke in the Eye (10 player)
+    a[1870] = b:New(1870); -- A Poke in the Eye (25 player)
     a[1871] = b:New(1871); -- Experienced Drake Rider
     a[1872] = b:New(1872); -- Zombiefest!
     a[1873] = b:New(1873); -- Lodi Dodi We Loves the Skadi
-    a[1874] = b:New(1874); -- You Don't Have An Eternity (10 player)
-    a[1875] = b:New(1875); -- You Don't Have An Eternity (25 player)
+    a[1874] = b:New(1874); -- You Don't Have an Eternity (10 player)
+    a[1875] = b:New(1875); -- You Don't Have an Eternity (25 player)
     a[1876] = b:New(1876); -- Besting the Black Dragonflight (10 player)
     a[1877] = b:New(1877); -- Less Is More (25 player)
     a[1919] = b:New(1919); -- On The Rocks
@@ -953,11 +953,11 @@ function exportedAchievements.Load(a, t)
     a[1958] = b:New(1958); -- I Smell A Giant Rat
     a[1996] = b:New(1996); -- The Safety Dance (10 player)
     a[1997] = b:New(1997); -- Momma Said Knock You Out (10 player)
-    a[1998] = b:New(1998); -- Dalaran Cooking Award
-    a[1999] = b:New(1999); -- 10 Dalaran Cooking Awards
-    a[2000] = b:New(2000); -- 25 Dalaran Cooking Awards
-    a[2001] = b:New(2001); -- 50 Dalaran Cooking Awards
-    a[2002] = b:New(2002); -- 100 Dalaran Cooking Awards
+    a[1998] = b:New(1998); -- Cooking Award
+    a[1999] = b:New(1999); -- 10 Cooking Awards
+    a[2000] = b:New(2000); -- 25 Cooking Awards
+    a[2001] = b:New(2001); -- 50 Cooking Awards
+    a[2002] = b:New(2002); -- 100 Cooking Awards
     a[2016] = b:New(2016, fac.Alliance, 2017, true); -- Grizzled Veteran
     a[2017] = b:New(2017, fac.Horde, 2016, true); -- Grizzled Veteran
     a[2018] = b:New(2018); -- Timear Foresees
@@ -1024,7 +1024,7 @@ function exportedAchievements.Load(a, t)
     a[2141] = b:New(2141); -- Stable Keeper
     a[2142] = b:New(2142); -- Filling Up The Barn
     a[2143] = b:New(2143); -- Leading the Cavalry
-    a[2144] = b:New(2144); -- "What A Long, Strange Trip It's Been"
+    a[2144] = b:New(2144); -- "What a Long, Strange Trip It's Been"
     a[2146] = b:New(2146); -- The Hundred Club (10 player)
     a[2147] = b:New(2147); -- The Hundred Club (25 player)
     a[2148] = b:New(2148); -- Denyin' the Scion (10 player)
@@ -1055,7 +1055,7 @@ function exportedAchievements.Load(a, t)
     O(a[2188], "From", "Version", "030002", "Before", "Version", "060002");
     a[2189] = b:New(2189, nil, nil, true); -- Artillery Expert
     O(a[2189], "From", "Version", "030003", "Before", "Version", "080001");
-    a[2190] = b:New(2190, nil, nil, true); -- Drop it now!
+    a[2190] = b:New(2190, nil, nil, true); -- Drop It Now!
     O(a[2190], "From", "Version", "030003", "Before", "Version", "080001");
     a[2191] = b:New(2191, nil, nil, true); -- Ancient Courtyard Protector
     O(a[2191], "From", "Version", "030003", "Before", "Version", "080001");
@@ -1367,7 +1367,7 @@ function exportedAchievements.Load(a, t)
     O(a[3076], "From", "Version", "030100", "Before", "Version", "070305");
     a[3077] = b:New(3077); -- Nine Lives (25 player)
     O(a[3077], "From", "Version", "030100", "Before", "Version", "070305");
-    a[3096] = b:New(3096, nil, nil, true); -- Deadly Gladiator's Frostwyrm
+    a[3096] = b:New(3096, nil, nil, true); -- Deadly Gladiator's Frost Wyrm
     O(a[3096], "From", "PvP Season", 5, "Until", "PvP Season", 5);
     a[3097] = b:New(3097); -- Dwarfageddon (10 player)
     O(a[3097], "From", "Version", "030100", "Before", "Version", "070305");
@@ -1465,9 +1465,9 @@ function exportedAchievements.Load(a, t)
     a[3676] = b:New(3676, fac.Alliance, 3677); -- A Silver Confidant
     a[3677] = b:New(3677, fac.Horde, 3676); -- The Sunreavers
     a[3736] = b:New(3736); -- Pony Up!
-    a[3756] = b:New(3756, nil, nil, true); -- Furious Gladiator's Frostwyrm
+    a[3756] = b:New(3756, nil, nil, true); -- Furious Gladiator's Frost Wyrm
     O(a[3756], "From", "PvP Season", 6, "Until", "PvP Season", 6);
-    a[3757] = b:New(3757, nil, nil, true); -- Relentless Gladiator's Frostwyrm
+    a[3757] = b:New(3757, nil, nil, true); -- Relentless Gladiator's Frost Wyrm
     O(a[3757], "From", "PvP Season", 7, "Until", "PvP Season", 7);
     a[3758] = b:New(3758, nil, nil, true); -- Relentless Gladiator
     O(a[3758], "From", "PvP Season", 7, "Until", "PvP Season", 7);
@@ -1598,7 +1598,7 @@ function exportedAchievements.Load(a, t)
     a[4598] = b:New(4598); -- The Ashen Verdict
     a[4599] = b:New(4599, nil, nil, true); -- Wrathful Gladiator
     O(a[4599], "From", "PvP Season", 8, "Until", "PvP Season", 8);
-    a[4600] = b:New(4600, nil, nil, true); -- Wrathful Gladiator's Frostwyrm
+    a[4600] = b:New(4600, nil, nil, true); -- Wrathful Gladiator's Frost Wyrm
     O(a[4600], "From", "PvP Season", 8, "Until", "PvP Season", 8);
     a[4601] = b:New(4601); -- Been Waiting a Long Time for This (10 player)
     a[4602] = b:New(4602); -- Glory of the Icecrown Raider (10 player)
@@ -7558,8 +7558,8 @@ function exportedAchievements.Load(a, t)
     a[14790] = b:New(14790); -- Covenant Campaign
     a[14791] = b:New(14791); -- Toss a Seed to Your Hunter...
     a[14795] = b:New(14795); -- Clearing the Fog
-    a[14796] = b:New(14796); -- Superior
-    a[14797] = b:New(14797); -- Epic
+    a[14796] = b:New(14796); -- Superior (Shadowlands)
+    a[14797] = b:New(14797); -- Epic (Shadowlands)
     a[14798] = b:New(14798); -- Sojourner of Revendreth
     a[14799] = b:New(14799); -- Sojourner of Maldraxxus
     a[14800] = b:New(14800); -- Sojourner of Ardenweald
@@ -8704,6 +8704,18 @@ function exportedAchievements.Load(a, t)
     a[17563] = b:New(17563); -- Ancient Stones of the Azure Span
     a[17564] = b:New(17564); -- Ancient Stones of Thaldraszus
     a[17567] = b:New(17567); -- Ancient Stones of Zaralek
+    a[17712] = b:New(17712); -- Kalimdor: Bronze
+    a[17713] = b:New(17713); -- Kalimdor: Silver
+    a[17714] = b:New(17714); -- Kalimdor: Gold
+    a[17715] = b:New(17715); -- Kalimdor Advanced: Bronze
+    a[17716] = b:New(17716); -- Kalimdor Advanced: Silver
+    a[17717] = b:New(17717); -- Kalimdor Advanced: Gold
+    a[17718] = b:New(17718); -- Kalimdor Reverse: Bronze
+    a[17719] = b:New(17719); -- Kalimdor Reverse: Silver
+    a[17720] = b:New(17720); -- Kalimdor Reverse: Gold
+    a[17721] = b:New(17721); -- Kalimdor Racing Completionist
+    a[17722] = b:New(17722); -- Kalimdor Racing Completionist: Silver
+    a[17723] = b:New(17723); -- Kalimdor Racing Completionist: Gold
     a[17734] = b:New(17734); -- Active Listening Skills
     a[17735] = b:New(17735); -- We Didn't Start the Fire
     a[17736] = b:New(17736); -- The Gift of Cheese
@@ -8780,6 +8792,7 @@ function exportedAchievements.Load(a, t)
     O(a[17778], "From", "PvP Season", 35, "Until", "PvP Season", 35);
     a[17779] = b:New(17779); -- A Serpentine Discovery
     a[17781] = b:New(17781); -- The Smell of Money
+    a[17782] = b:New(17782); -- Daycare Derby
     a[17783] = b:New(17783); -- Adventurer of Zaralek Cavern
     a[17785] = b:New(17785); -- "Que Zara(lek), Zara(lek)"
     a[17786] = b:New(17786); -- Treasures of Zaralek Cavern
@@ -8893,13 +8906,47 @@ function exportedAchievements.Load(a, t)
     a[18258] = b:New(18258); -- Little Lord of Lies
     a[18271] = b:New(18271); -- He'sSss All Mine
     a[18284] = b:New(18284); -- A Niffen's Best Buddy
+    a[18360] = b:New(18360); -- Tricks and Treats of the Dragon Isles
     a[18361] = b:New(18361); -- To All the Squirrels Burrowed Beneath
+    a[18365] = b:New(18365); -- Draconically Superior
+    a[18366] = b:New(18366); -- Draconically Epic
+    a[18368] = b:New(18368); -- Memory of Scholomance
+    a[18372] = b:New(18372); -- Wards of the Dread Citadel
     a[18380] = b:New(18380); -- Dragonflight Season 2 Hero
+    a[18383] = b:New(18383); -- Hey Nanny Nanny
+    a[18384] = b:New(18384); -- "Whelp, There It Is"
+    a[18471] = b:New(18471); -- 110 Exalted Reputations
+    a[18539] = b:New(18539); -- Back En-masse
     a[18542] = b:New(18542); -- Dragonflight Keystone Master: Season Two
     O(a[18542], "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10);
+    a[18554] = b:New(18554); -- Temporal Acquisitions Specialist
+    a[18556] = b:New(18556); -- Chaotic Time
+    a[18557] = b:New(18557); -- "Never Bothered, Anyway"
+    a[18558] = b:New(18558); -- Leaders of Scholomance
+    a[18559] = b:New(18559); -- "Many Boxes, Many Rockses"
+    a[18589] = b:New(18589); -- Crunch Time
+    a[18612] = b:New(18612); -- A Slime in Need
+    a[18615] = b:New(18615); -- Legend of the Multiverse
+    a[18616] = b:New(18616); -- Putting Wilhelm Out of Business
+    a[18635] = b:New(18635); -- Verified Rifter
+    a[18636] = b:New(18636); -- Just Following Chronological Orders
+    a[18637] = b:New(18637); -- Chronograde Connoisseur
+    a[18638] = b:New(18638); -- Minute Menagerie
+    a[18639] = b:New(18639); -- Collapsed Reality
+    a[18640] = b:New(18640); -- Lock and Load
+    a[18641] = b:New(18641); -- To All The Squirrels I've BEEN Before
+    a[18642] = b:New(18642); -- The Inquisitive
+    a[18643] = b:New(18643); -- Community Rumors
+    a[18644] = b:New(18644); -- Community Rumor Mill
+    a[18645] = b:New(18645); -- Tools of the Trade
+    a[18646] = b:New(18646); -- Whodunnit?
+    a[18703] = b:New(18703); -- Dawn of the Infinite: Galakrond's Fall
+    a[18704] = b:New(18704); -- Dawn of the Infinite: Murozond's Rise
+    a[18705] = b:New(18705); -- Defender of the Timeways
+    a[18706] = b:New(18706); -- Put That Thing Back Where It Came From
 
     local aIDs = {};
-    for i = 1, 18688 do
+    for i = 1, 18706 do
         if a[i] ~= nil then
             tinsert(aIDs, i);
         end

@@ -69,9 +69,9 @@ function eventData.LoadBlizzard_Calendar()
     end);
 end
 
-local function GetActiveWorldEvents()
-    for _, event in next, data.WorldEvents do
-        event.EventDetails = eventData.GetEventDetails(event);
+local function GetActiveWidgetEvents()
+    for _, event in next, data.WidgetEvents do
+        event.EventDetails = eventData.GetWidgetEventDetails(event);
         if event.EventDetails then
             -- addon.Diagnostics.Print("Event active", event.Id, event.EventDetails.Name, time(), event.EventDetails.EndTime);
             tinsert(activeEvents, event);
@@ -79,7 +79,36 @@ local function GetActiveWorldEvents()
     end
 end
 
-function eventData.GetEventDetails(event)
+function eventData.GetWidgetEventDetails(event)
+    if not addon.Options.db.EventReminders.WidgetEvents[event.Id] then
+        return;
+    end
+
+    local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(event.Id);
+    if not widgetInfo or widgetInfo.shownState == 0 then -- The event is not available or not active
+        return;
+    end
+
+    local secondsLeft = addon.Data.CustomWidgetTimers.GetSecondsLeft(event.Id);
+    local endTime;
+    if secondsLeft ~= nil and secondsLeft ~= 0 then
+        endTime = floor((GetServerTime() + secondsLeft) / 60 + 0.5) * 60; -- Round to 1 minute, 1 hour is not precise enough anymore
+    end
+
+    return {EndTime = endTime, Name = event.Name};
+end
+
+local function GetActiveWorldEvents()
+    for _, event in next, data.WorldEvents do
+        event.EventDetails = eventData.GetWorldEventDetails(event);
+        if event.EventDetails then
+            -- addon.Diagnostics.Print("Event active", event.Id, event.EventDetails.Name, time(), event.EventDetails.EndTime);
+            tinsert(activeEvents, event);
+        end
+    end
+end
+
+function eventData.GetWorldEventDetails(event)
     if not addon.Options.db.EventReminders.WorldEvents[event.Id] then
         return;
     end
@@ -106,6 +135,7 @@ function eventData.GetActiveEvents(refresh)
 
     activeEvents = {};
     GetActiveCalendarEvents();
+    GetActiveWidgetEvents();
     GetActiveWorldEvents();
 
     return activeEvents;

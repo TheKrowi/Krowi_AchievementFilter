@@ -1,4 +1,4 @@
--- [[ Exported at 2023-05-11 20-26-22 ]] --
+-- [[ Exported at 2023-07-02 22-27-34 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -40,9 +40,6 @@ function exportedWorldEvents.Load(e)
     e[6991] = event:New(6991, 3257748, addon.L["Kyrian Assault"], 1550); -- Kyrian Assault
     e[6992] = event:New(6992, 3257750, addon.L["Night Fae Assault"], 1550); -- Night Fae Assault
     e[7104] = event:New(7104, 1394891, addon.L["Siege on Dragonbane Keep: Active"], 2057); -- Siege on Dragonbane Keep: Active
-    e[7218] = event:New(7218, 4240492, addon.L["Community Feast: Cooking"], 2057); -- Community Feast: Cooking
-    e[7219] = event:New(7219, 4240492, addon.L["Community Feast: Soon"], 2057); -- Community Feast: Soon
-    e[7220] = event:New(7220, 4240492, addon.L["Community Feast: Ready"], 2057); -- Community Feast: Ready
     e[7221] = event:New(7221, 4554434, addon.L["Nokhudon Hold"], 2057); -- Nokhudon Hold
     e[7222] = event:New(7222, 4554437, addon.L["Nokhudon Hold"], 2057); -- Nokhudon Hold
     e[7223] = event:New(7223, 4554438, addon.L["Nokhudon Hold"], 2057); -- Nokhudon Hold
@@ -101,85 +98,82 @@ function exportedWorldEvents.LoadCategories(e)
         return;
     end
 
-    if e[5175] == nil or e[5177] == nil or e[5178] == nil or e[5210] == nil or e[5896] == nil or e[5964] == nil or e[5966] == nil or e[5969] == nil or e[5970] == nil or e[5973] == nil or e[6486] == nil or e[6487] == nil or e[6488] == nil or e[6489] == nil or e[6490] == nil or e[6491] == nil or e[6989] == nil or e[6990] == nil or e[6991] == nil or e[6992] == nil or e[7104] == nil or e[7218] == nil or e[7219] == nil or e[7220] == nil or e[7221] == nil or e[7222] == nil or e[7223] == nil or e[7224] == nil or e[7225] == nil or e[7226] == nil or e[7227] == nil or e[7228] == nil or e[7229] == nil or e[7230] == nil or e[7231] == nil or e[7232] == nil or e[7233] == nil or e[7234] == nil or e[7235] == nil or e[7236] == nil or e[7237] == nil or e[7238] == nil or e[7239] == nil or e[7240] == nil or e[7245] == nil or e[7246] == nil or e[7247] == nil or e[7248] == nil or e[7249] == nil or e[7250] == nil or e[7251] == nil or e[7252] == nil or e[7253] == nil or e[7254] == nil or e[7255] == nil or e[7256] == nil or e[7257] == nil or e[7258] == nil or e[7259] == nil or e[7260] == nil or e[7267] == nil or e[7298] == nil or e[7299] == nil or e[7300] == nil or e[7301] == nil or e[7342] == nil or e[7343] == nil or e[7344] == nil or e[7345] == nil or e[7429] == nil or e[7432] == nil or e[7459] == nil or e[7460] == nil or e[7461] == nil or e[7462] == nil then
+    if e[5175] == nil or e[5177] == nil or e[5178] == nil or e[5210] == nil or e[5896] == nil or e[5964] == nil or e[5966] == nil or e[5969] == nil or e[5970] == nil or e[5973] == nil or e[6486] == nil or e[6487] == nil or e[6488] == nil or e[6489] == nil or e[6490] == nil or e[6491] == nil or e[6989] == nil or e[6990] == nil or e[6991] == nil or e[6992] == nil or e[7104] == nil or e[7221] == nil or e[7222] == nil or e[7223] == nil or e[7224] == nil or e[7225] == nil or e[7226] == nil or e[7227] == nil or e[7228] == nil or e[7229] == nil or e[7230] == nil or e[7231] == nil or e[7232] == nil or e[7233] == nil or e[7234] == nil or e[7235] == nil or e[7236] == nil or e[7237] == nil or e[7238] == nil or e[7239] == nil or e[7240] == nil or e[7245] == nil or e[7246] == nil or e[7247] == nil or e[7248] == nil or e[7249] == nil or e[7250] == nil or e[7251] == nil or e[7252] == nil or e[7253] == nil or e[7254] == nil or e[7255] == nil or e[7256] == nil or e[7257] == nil or e[7258] == nil or e[7259] == nil or e[7260] == nil or e[7267] == nil or e[7298] == nil or e[7299] == nil or e[7300] == nil or e[7301] == nil or e[7342] == nil or e[7343] == nil or e[7344] == nil or e[7345] == nil or e[7429] == nil or e[7432] == nil or e[7459] == nil or e[7460] == nil or e[7461] == nil or e[7462] == nil then
         exportedWorldEvents.Load(e);
     end
 
-    e[5175].Category = addon.Tabs["Events"].Categories[10].Children[1]; -- Legion Assaults
-    e[5177].Category = addon.Tabs["Events"].Categories[10].Children[1]; -- Legion Assaults
-    e[5178].Category = addon.Tabs["Events"].Categories[10].Children[1]; -- Legion Assaults
-    e[5210].Category = addon.Tabs["Events"].Categories[10].Children[1]; -- Legion Assaults
-    e[5896].Category = addon.Tabs["Events"].Categories[11].Children[1].Children[1]; -- Assault on Tiragarde Sound
-    e[5964].Category = addon.Tabs["Events"].Categories[11].Children[1].Children[2]; -- Assault on Drustvar
-    e[5966].Category = addon.Tabs["Events"].Categories[11].Children[1].Children[3]; -- Assault on Stormsong Valley
-    e[5969].Category = addon.Tabs["Events"].Categories[11].Children[1].Children[5]; -- Assault on Nazmir
-    e[5970].Category = addon.Tabs["Events"].Categories[11].Children[1].Children[6]; -- Assault on Vol'dun
-    e[5973].Category = addon.Tabs["Events"].Categories[11].Children[1].Children[4]; -- Assault on Zuldazar
-    e[6486].Category = addon.Tabs["Events"].Categories[11].Children[2].Children[2]; -- Uldum
-    e[6487].Category = addon.Tabs["Events"].Categories[11].Children[2].Children[2]; -- Uldum
-    e[6488].Category = addon.Tabs["Events"].Categories[11].Children[2].Children[2]; -- Uldum
-    e[6489].Category = addon.Tabs["Events"].Categories[11].Children[2].Children[1]; -- Vale of Eternal Blossoms
-    e[6490].Category = addon.Tabs["Events"].Categories[11].Children[2].Children[1]; -- Vale of Eternal Blossoms
-    e[6491].Category = addon.Tabs["Events"].Categories[11].Children[2].Children[1]; -- Vale of Eternal Blossoms
-    e[6989].Category = addon.Tabs["Events"].Categories[12].Children[1].Children[2]; -- Necrolords Assault
-    e[6990].Category = addon.Tabs["Events"].Categories[12].Children[1].Children[4]; -- Venthyr Assault
-    e[6991].Category = addon.Tabs["Events"].Categories[12].Children[1].Children[1]; -- Kyrian Assault
-    e[6992].Category = addon.Tabs["Events"].Categories[12].Children[1].Children[3]; -- Night Fae Assault
-    e[7104].Category = addon.Tabs["Events"].Categories[13].Children[1]; -- Siege on Dragonbane Keep
-    e[7218].Category = addon.Tabs["Events"].Categories[13].Children[3]; -- Community Feast
-    e[7219].Category = addon.Tabs["Events"].Categories[13].Children[3]; -- Community Feast
-    e[7220].Category = addon.Tabs["Events"].Categories[13].Children[3]; -- Community Feast
-    e[7221].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[4].Children[7]; -- Primal Storms
-    e[7222].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[4].Children[7]; -- Primal Storms
-    e[7223].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[4].Children[7]; -- Primal Storms
-    e[7224].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[4].Children[7]; -- Primal Storms
-    e[7225].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[4].Children[7]; -- Primal Storms
-    e[7226].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[4].Children[7]; -- Primal Storms
-    e[7227].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[4].Children[7]; -- Primal Storms
-    e[7228].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[4].Children[7]; -- Primal Storms
-    e[7229].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[5].Children[7]; -- Primal Storms
-    e[7230].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[5].Children[7]; -- Primal Storms
-    e[7231].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[5].Children[7]; -- Primal Storms
-    e[7232].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[5].Children[7]; -- Primal Storms
-    e[7233].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[5].Children[7]; -- Primal Storms
-    e[7234].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[5].Children[7]; -- Primal Storms
-    e[7235].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[5].Children[7]; -- Primal Storms
-    e[7236].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[5].Children[7]; -- Primal Storms
-    e[7237].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[5].Children[7]; -- Primal Storms
-    e[7238].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[5].Children[7]; -- Primal Storms
-    e[7239].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[5].Children[7]; -- Primal Storms
-    e[7240].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[5].Children[7]; -- Primal Storms
-    e[7245].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[6].Children[7]; -- Primal Storms
-    e[7246].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[6].Children[7]; -- Primal Storms
-    e[7247].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[6].Children[7]; -- Primal Storms
-    e[7248].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[6].Children[7]; -- Primal Storms
-    e[7249].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[3].Children[7]; -- Primal Storms
-    e[7250].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[3].Children[7]; -- Primal Storms
-    e[7251].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[3].Children[7]; -- Primal Storms
-    e[7252].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[3].Children[7]; -- Primal Storms
-    e[7253].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[3].Children[7]; -- Primal Storms
-    e[7254].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[3].Children[7]; -- Primal Storms
-    e[7255].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[3].Children[7]; -- Primal Storms
-    e[7256].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[3].Children[7]; -- Primal Storms
-    e[7257].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[3].Children[7]; -- Primal Storms
-    e[7258].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[3].Children[7]; -- Primal Storms
-    e[7259].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[3].Children[7]; -- Primal Storms
-    e[7260].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[3].Children[7]; -- Primal Storms
-    e[7267].Category = addon.Tabs["Events"].Categories[13].Children[1]; -- Siege on Dragonbane Keep
-    e[7298].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[6].Children[7]; -- Primal Storms
-    e[7299].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[6].Children[7]; -- Primal Storms
-    e[7300].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[6].Children[7]; -- Primal Storms
-    e[7301].Category = addon.Tabs["Expansions"].Categories[15].Children[1].Children[6].Children[7]; -- Primal Storms
-    e[7342].Category = addon.Tabs["Events"].Categories[13].Children[2]; -- Grand Hunter
-    e[7343].Category = addon.Tabs["Events"].Categories[13].Children[2]; -- Grand Hunter
-    e[7344].Category = addon.Tabs["Events"].Categories[13].Children[2]; -- Grand Hunter
-    e[7345].Category = addon.Tabs["Events"].Categories[13].Children[2]; -- Grand Hunter
-    e[7429].Category = addon.Tabs["Events"].Categories[13].Children[4]; -- Fyrakk Assault
-    e[7432].Category = addon.Tabs["Events"].Categories[13].Children[4]; -- Fyrakk Assault
-    e[7459].Category = addon.Tabs["Events"].Categories[13].Children[5].Children[2]; -- Titan Lockdown
-    e[7460].Category = addon.Tabs["Events"].Categories[13].Children[5].Children[1]; -- Zaqali Ruin Investigation
-    e[7461].Category = addon.Tabs["Events"].Categories[13].Children[5].Children[2]; -- Titan Lockdown
-    e[7462].Category = addon.Tabs["Events"].Categories[13].Children[5].Children[1]; -- Zaqali Ruin Investigation
+    e[5175].Category = addon.Tabs["Events"].Categories[12].Children[1]; -- Legion Assaults
+    e[5177].Category = addon.Tabs["Events"].Categories[12].Children[1]; -- Legion Assaults
+    e[5178].Category = addon.Tabs["Events"].Categories[12].Children[1]; -- Legion Assaults
+    e[5210].Category = addon.Tabs["Events"].Categories[12].Children[1]; -- Legion Assaults
+    e[5896].Category = addon.Tabs["Events"].Categories[13].Children[1].Children[1]; -- Assault on Tiragarde Sound
+    e[5964].Category = addon.Tabs["Events"].Categories[13].Children[1].Children[2]; -- Assault on Drustvar
+    e[5966].Category = addon.Tabs["Events"].Categories[13].Children[1].Children[3]; -- Assault on Stormsong Valley
+    e[5969].Category = addon.Tabs["Events"].Categories[13].Children[1].Children[5]; -- Assault on Nazmir
+    e[5970].Category = addon.Tabs["Events"].Categories[13].Children[1].Children[6]; -- Assault on Vol'dun
+    e[5973].Category = addon.Tabs["Events"].Categories[13].Children[1].Children[4]; -- Assault on Zuldazar
+    e[6486].Category = addon.Tabs["Events"].Categories[13].Children[2].Children[2]; -- Uldum
+    e[6487].Category = addon.Tabs["Events"].Categories[13].Children[2].Children[2]; -- Uldum
+    e[6488].Category = addon.Tabs["Events"].Categories[13].Children[2].Children[2]; -- Uldum
+    e[6489].Category = addon.Tabs["Events"].Categories[13].Children[2].Children[1]; -- Vale of Eternal Blossoms
+    e[6490].Category = addon.Tabs["Events"].Categories[13].Children[2].Children[1]; -- Vale of Eternal Blossoms
+    e[6491].Category = addon.Tabs["Events"].Categories[13].Children[2].Children[1]; -- Vale of Eternal Blossoms
+    e[6989].Category = addon.Tabs["Events"].Categories[14].Children[1].Children[2]; -- Necrolords Assault
+    e[6990].Category = addon.Tabs["Events"].Categories[14].Children[1].Children[4]; -- Venthyr Assault
+    e[6991].Category = addon.Tabs["Events"].Categories[14].Children[1].Children[1]; -- Kyrian Assault
+    e[6992].Category = addon.Tabs["Events"].Categories[14].Children[1].Children[3]; -- Night Fae Assault
+    e[7104].Category = addon.Tabs["Events"].Categories[15].Children[1]; -- Siege on Dragonbane Keep
+    e[7221].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[4].Children[7]; -- Primal Storms
+    e[7222].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[4].Children[7]; -- Primal Storms
+    e[7223].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[4].Children[7]; -- Primal Storms
+    e[7224].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[4].Children[7]; -- Primal Storms
+    e[7225].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[4].Children[7]; -- Primal Storms
+    e[7226].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[4].Children[7]; -- Primal Storms
+    e[7227].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[4].Children[7]; -- Primal Storms
+    e[7228].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[4].Children[7]; -- Primal Storms
+    e[7229].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[5].Children[7]; -- Primal Storms
+    e[7230].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[5].Children[7]; -- Primal Storms
+    e[7231].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[5].Children[7]; -- Primal Storms
+    e[7232].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[5].Children[7]; -- Primal Storms
+    e[7233].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[5].Children[7]; -- Primal Storms
+    e[7234].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[5].Children[7]; -- Primal Storms
+    e[7235].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[5].Children[7]; -- Primal Storms
+    e[7236].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[5].Children[7]; -- Primal Storms
+    e[7237].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[5].Children[7]; -- Primal Storms
+    e[7238].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[5].Children[7]; -- Primal Storms
+    e[7239].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[5].Children[7]; -- Primal Storms
+    e[7240].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[5].Children[7]; -- Primal Storms
+    e[7245].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[6].Children[7]; -- Primal Storms
+    e[7246].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[6].Children[7]; -- Primal Storms
+    e[7247].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[6].Children[7]; -- Primal Storms
+    e[7248].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[6].Children[7]; -- Primal Storms
+    e[7249].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[3].Children[7]; -- Primal Storms
+    e[7250].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[3].Children[7]; -- Primal Storms
+    e[7251].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[3].Children[7]; -- Primal Storms
+    e[7252].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[3].Children[7]; -- Primal Storms
+    e[7253].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[3].Children[7]; -- Primal Storms
+    e[7254].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[3].Children[7]; -- Primal Storms
+    e[7255].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[3].Children[7]; -- Primal Storms
+    e[7256].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[3].Children[7]; -- Primal Storms
+    e[7257].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[3].Children[7]; -- Primal Storms
+    e[7258].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[3].Children[7]; -- Primal Storms
+    e[7259].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[3].Children[7]; -- Primal Storms
+    e[7260].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[3].Children[7]; -- Primal Storms
+    e[7267].Category = addon.Tabs["Events"].Categories[15].Children[1]; -- Siege on Dragonbane Keep
+    e[7298].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[6].Children[7]; -- Primal Storms
+    e[7299].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[6].Children[7]; -- Primal Storms
+    e[7300].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[6].Children[7]; -- Primal Storms
+    e[7301].Category = addon.Tabs["Expansions"].Categories[16].Children[1].Children[6].Children[7]; -- Primal Storms
+    e[7342].Category = addon.Tabs["Events"].Categories[15].Children[2]; -- Grand Hunter
+    e[7343].Category = addon.Tabs["Events"].Categories[15].Children[2]; -- Grand Hunter
+    e[7344].Category = addon.Tabs["Events"].Categories[15].Children[2]; -- Grand Hunter
+    e[7345].Category = addon.Tabs["Events"].Categories[15].Children[2]; -- Grand Hunter
+    e[7429].Category = addon.Tabs["Events"].Categories[15].Children[4]; -- Fyrakk Assault
+    e[7432].Category = addon.Tabs["Events"].Categories[15].Children[4]; -- Fyrakk Assault
+    e[7459].Category = addon.Tabs["Events"].Categories[15].Children[5].Children[2]; -- Titan Lockdown
+    e[7460].Category = addon.Tabs["Events"].Categories[15].Children[5].Children[1]; -- Zaqali Ruin Investigation
+    e[7461].Category = addon.Tabs["Events"].Categories[15].Children[5].Children[2]; -- Titan Lockdown
+    e[7462].Category = addon.Tabs["Events"].Categories[15].Children[5].Children[1]; -- Zaqali Ruin Investigation
 end
 
 function exportedWorldEvents.InjectDynamicOptions()
@@ -218,10 +212,6 @@ function exportedWorldEvents.InjectDynamicOptions()
     KrowiAF_RegisterEventOptions("World", "DF___Grand_Hunts", addon.L["DF - Grand Hunts"], 7344, addon.L["Grand Hunts: Thaldraszus"]);
     KrowiAF_RegisterEventOptions("World", "DF___Grand_Hunts", addon.L["DF - Grand Hunts"], 7345, addon.L["Grand Hunts: The Azure Span"]);
     KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Grand_Hunts", { 7342, 7343, 7344, 7345 });
-    KrowiAF_RegisterEventOptions("World", "DF___Community_Feast", addon.L["DF - Community Feast"], 7218, addon.L["Community Feast: Cooking"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Community_Feast", addon.L["DF - Community Feast"], 7219, addon.L["Community Feast: Soon"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Community_Feast", addon.L["DF - Community Feast"], 7220, addon.L["Community Feast: Ready"]);
-    KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Community_Feast", { 7218, 7219, 7220 });
     KrowiAF_RegisterEventOptions("World", "DF___Thunderstorms", addon.L["DF - Thunderstorms"], 7221, addon.L["Nokhudon Hold"]);
     KrowiAF_RegisterEventOptions("World", "DF___Thunderstorms", addon.L["DF - Thunderstorms"], 7225, addon.L["Ohn'iri Springs"]);
     KrowiAF_RegisterEventOptions("World", "DF___Thunderstorms", addon.L["DF - Thunderstorms"], 7229, addon.L["Brackenhide Hollow"]);
