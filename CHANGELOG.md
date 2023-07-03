@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - Kalimdor Cup (no event yet)
 - Reintroduced Widget Events (Community Feast and Time Rifts)
 - A bunch of new texts for French by Astiraïs
+- The tooltip opened by clicking an achievement link from chat for example will now close when pressing escape
 
 ### Changed
 - Updated Ace3 libraries
