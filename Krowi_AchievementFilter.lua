@@ -35,6 +35,9 @@ loadHelper:RegisterEvent("PLAYER_ENTERING_WORLD");
 loadHelper:RegisterEvent("ACHIEVEMENT_EARNED");
 
 local function LoadKrowi_AchievementFilter()
+    KrowiAF_InjectOptions:SetOptionsTable(addon.Options.OptionsTable);
+    KrowiAF_InjectOptions:SetOptions(addon.Options.Defaults.profile);
+
     addon.Diagnostics.Load();
 
     addon.Data.ExportedCategories.InjectDynamicOptions();

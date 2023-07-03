@@ -150,12 +150,17 @@ end
 
 do --[[ KrowiAF_InjectOptions ]]
 	KrowiAF_InjectOptions = {};
-	function KrowiAF_InjectOptions.AddTable(destTablePath, key, table)
+
+	function KrowiAF_InjectOptions:SetOptionsTable(optionsTable)
+        self.OptionsTable = optionsTable;
+    end
+
+	function KrowiAF_InjectOptions:AddTable(destTablePath, key, table)
 		local destTable;
 		if type(destTablePath) == "table" then
 			destTable = destTablePath;
 		elseif type(destTablePath) == "string" then
-			destTable = addon.Options.OptionsTable.args;
+			destTable = self.OptionsTable.args;
 			local pathParts = strsplittable(".", destTablePath);
 			for _, part in next, pathParts do
 				destTable = destTable[part];
@@ -165,8 +170,8 @@ do --[[ KrowiAF_InjectOptions ]]
 		return destTable[key];
 	end
 
-	function KrowiAF_InjectOptions.TableExists(destTablePath)
-		local destTable = addon.Options.OptionsTable.args;
+	function KrowiAF_InjectOptions:TableExists(destTablePath)
+		local destTable = self.OptionsTable.args;
 		local pathParts = strsplittable(".", destTablePath);
 		for _, part in next, pathParts do
 			destTable = destTable[part];
@@ -174,8 +179,12 @@ do --[[ KrowiAF_InjectOptions ]]
 		return destTable and true or false;
 	end
 
-	function KrowiAF_InjectOptions.AddDefaults(destTablePath, key, table)
-		local destTable = addon.Options.Defaults.profile;
+    function KrowiAF_InjectOptions:SetOptions(options)
+        self.Options = options;
+    end
+
+	function KrowiAF_InjectOptions:AddDefaults(destTablePath, key, table)
+		local destTable = self.Options;
 		local pathParts = strsplittable(".", destTablePath);
 		for _, part in next, pathParts do
 			destTable = destTable[part];
@@ -183,8 +192,8 @@ do --[[ KrowiAF_InjectOptions ]]
 		destTable[key] = table;
 	end
 
-	function KrowiAF_InjectOptions.DefaultsExists(destTablePath)
-		local destTable = addon.Options.Defaults.profile;
+	function KrowiAF_InjectOptions:DefaultsExists(destTablePath)
+		local destTable = self.Options;
 		local pathParts = strsplittable(".", destTablePath);
 		for _, part in next, pathParts do
 			destTable = destTable[part];
@@ -210,7 +219,7 @@ do --[[ KrowiAF_InjectOptions ]]
 
 	local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
 	function KrowiAF_InjectOptions.AddPluginTable(pluginName, pluginDisplayName, desc, loadedFunc)
-		return KrowiAF_InjectOptions.AddTable("Plugins.args", pluginName, {
+		return KrowiAF_InjectOptions:AddTable("Plugins.args", pluginName, {
 			type = "group",
 			name = pluginDisplayName,
 			args = {
@@ -256,10 +265,10 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 		if showByDefault == nil then
 			showByDefault = false;
 		end
-		if not KrowiAF_InjectOptions.DefaultsExists("Tabs." .. _addonName) then
-			KrowiAF_InjectOptions.AddDefaults("Tabs", _addonName, { });
+		if not KrowiAF_InjectOptions:DefaultsExists("Tabs." .. _addonName) then
+			KrowiAF_InjectOptions:AddDefaults("Tabs", _addonName, { });
 		end
-		KrowiAF_InjectOptions.AddDefaults("Tabs." .. _addonName, tabName, {
+		KrowiAF_InjectOptions:AddDefaults("Tabs." .. _addonName, tabName, {
 			Show = showByDefault
 		});
 	end
@@ -362,17 +371,17 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 			return;
 		end
 
-		if not KrowiAF_InjectOptions.TableExists("General.args.KeyBinding.args.Keybindings.args.Tabs.args." .. _addonName .. "Header") then
-			KrowiAF_InjectOptions.AddTable("General.args.KeyBinding.args.Keybindings.args.Tabs.args", _addonName .. "Header", {
+		if not KrowiAF_InjectOptions:TableExists("General.args.KeyBinding.args.Keybindings.args.Tabs.args." .. _addonName .. "Header") then
+			KrowiAF_InjectOptions:AddTable("General.args.KeyBinding.args.Keybindings.args.Tabs.args", _addonName .. "Header", {
 				order = OrderPP(), type = "header",
 				name = addonDisplayName
 			});
 		end
-		KrowiAF_InjectOptions.AddTable("General.args.KeyBinding.args.Keybindings.args.Tabs.args", "Binding" .. OrderPP() .. "Name", {
+		KrowiAF_InjectOptions:AddTable("General.args.KeyBinding.args.Keybindings.args.Tabs.args", "Binding" .. OrderPP() .. "Name", {
 			order = OrderPP(), type = "description", width = AdjustedWidth(0.93),
 			name = addon.L["Toggle"] .. " " .. tabDisplayName .. " "  .. addon.L["tab"]
 		});
-		KrowiAF_InjectOptions.AddTable("General.args.KeyBinding.args.Keybindings.args.Tabs.args", "Binding" .. OrderPP() .. "Key1", {
+		KrowiAF_InjectOptions:AddTable("General.args.KeyBinding.args.Keybindings.args.Tabs.args", "Binding" .. OrderPP() .. "Key1", {
 			order = OrderPP(), type = "keybinding", width = AdjustedWidth(0.93),
 			name = "", desc = "",
 			get = function() return GetBindingKey(bindingName); end,
@@ -380,7 +389,7 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 				SetKeybind(value, bindingName, 1);
 			end
 		});
-		KrowiAF_InjectOptions.AddTable("General.args.KeyBinding.args.Keybindings.args.Tabs.args", "Binding" .. OrderPP() .. "Key2", {
+		KrowiAF_InjectOptions:AddTable("General.args.KeyBinding.args.Keybindings.args.Tabs.args", "Binding" .. OrderPP() .. "Key2", {
 			order = OrderPP(), type = "keybinding", width = AdjustedWidth(0.93),
 			name = "", desc = "",
 			get = function() return select(2, GetBindingKey(bindingName)); end,
@@ -391,7 +400,7 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 	end
 
 	local function InjectTabsOrderOptionsTable(index)
-		KrowiAF_InjectOptions.AddTable("Layout.args.Tabs.args.Order.args.Order.args", tostring(OrderPP()), {
+		KrowiAF_InjectOptions:AddTable("Layout.args.Tabs.args.Order.args.Order.args", tostring(OrderPP()), {
 			order = OrderPP(), type = "select", width = AdjustedWidth(1.95),
 			name = "",
 			values = function() return addon.GUI.TabsOrderGetActiveKeys(); end,
@@ -403,13 +412,13 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 	end
 
 	local function InjectTabsShowOptionsTable(_addonName, tabName, addonDisplayName, tabDisplayName)
-		if not KrowiAF_InjectOptions.TableExists("Layout.args.Tabs.args.Show.args.Show.args." .. _addonName) then
-			KrowiAF_InjectOptions.AddTable("Layout.args.Tabs.args.Show.args.Show.args", _addonName, {
+		if not KrowiAF_InjectOptions:TableExists("Layout.args.Tabs.args.Show.args.Show.args." .. _addonName) then
+			KrowiAF_InjectOptions:AddTable("Layout.args.Tabs.args.Show.args.Show.args", _addonName, {
 				order = OrderPP(), type = "header",
 				name = addonDisplayName
 			});
 		end
-		KrowiAF_InjectOptions.AddTable("Layout.args.Tabs.args.Show.args.Show.args", _addonName .. tabName, {
+		KrowiAF_InjectOptions:AddTable("Layout.args.Tabs.args.Show.args.Show.args", _addonName .. tabName, {
 			order = OrderPP(), type = "toggle", width = AdjustedWidth(0.95),
 			name = tabDisplayName,
 			desc = (""):AddDefaultValueText_KAF("Tabs." .. _addonName .. "." .. tabName .. ".Show"),
@@ -450,23 +459,23 @@ do --[[ KrowiAF_RegisterEventOptions ]]
 		if hideByDefault == nil then
 			hideByDefault = false;
 		end
-		if not KrowiAF_InjectOptions.DefaultsExists("EventReminders." .. eventType .. "Events") then
-			KrowiAF_InjectOptions.AddDefaults("EventReminders", eventType .. "Events", { });
+		if not KrowiAF_InjectOptions:DefaultsExists("EventReminders." .. eventType .. "Events") then
+			KrowiAF_InjectOptions:AddDefaults("EventReminders", eventType .. "Events", { });
 		end
-		KrowiAF_InjectOptions.AddDefaults("EventReminders." .. eventType .. "Events", eventId, not hideByDefault);
+		KrowiAF_InjectOptions:AddDefaults("EventReminders." .. eventType .. "Events", eventId, not hideByDefault);
 	end
 
 	local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
 	local AdjustedWidth = KrowiAF_InjectOptions.AdjustedWidth;
 	local function InjectOptionsTable(eventType, groupName, groupDisplayName, eventId, eventDisplayName)
-		if not KrowiAF_InjectOptions.TableExists("EventReminders.args." .. eventType .. "Events.args." .. groupName) then
-			KrowiAF_InjectOptions.AddTable("EventReminders.args." .. eventType .. "Events.args", groupName, {
+		if not KrowiAF_InjectOptions:TableExists("EventReminders.args." .. eventType .. "Events.args." .. groupName) then
+			KrowiAF_InjectOptions:AddTable("EventReminders.args." .. eventType .. "Events.args", groupName, {
 				order = OrderPP(), type = "group",
 				name = groupDisplayName,
 				args = {}
 			});
 		end
-		KrowiAF_InjectOptions.AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", tostring(eventId), {
+		KrowiAF_InjectOptions:AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", tostring(eventId), {
 			order = OrderPP(), type = "toggle", width = AdjustedWidth(),
 			name = eventDisplayName,
 			get = function() return addon.Options.db.EventReminders[eventType .. "Events"][eventId]; end,
@@ -483,17 +492,17 @@ do --[[ KrowiAF_RegisterEventOptions ]]
 	end
 
 	function KrowiAF_RegisterDeSelectAllEventOptions(eventType, groupName, eventIds)
-		if KrowiAF_InjectOptions.TableExists("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args.SelectAll") then
+		if KrowiAF_InjectOptions:TableExists("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args.SelectAll") then
 			return;
 		end
 
-		KrowiAF_InjectOptions.AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", "Blank1", {
+		KrowiAF_InjectOptions:AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", "Blank1", {
 			order = OrderPP(), type = "description", width = "full", name = ""
 		});
-		KrowiAF_InjectOptions.AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", "Blank2", {
+		KrowiAF_InjectOptions:AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", "Blank2", {
 			order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""
 		});
-		KrowiAF_InjectOptions.AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", "SelectAll", {
+		KrowiAF_InjectOptions:AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", "SelectAll", {
 			order = OrderPP(), type = "execute", width = AdjustedWidth(),
 			name = addon.L["Select All"],
 			func = function()
@@ -502,7 +511,7 @@ do --[[ KrowiAF_RegisterEventOptions ]]
 				end
 			end
 		});
-		KrowiAF_InjectOptions.AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", "DeselectAll", {
+		KrowiAF_InjectOptions:AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", "DeselectAll", {
 			order = OrderPP(), type = "execute", width = AdjustedWidth(),
 			name = addon.L["Deselect All"],
 			func = function()

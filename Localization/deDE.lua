@@ -1,8 +1,8 @@
--- [[ Exported at 2023-05-02 19-23-44 ]] --
+-- [[ Exported at 2023-07-03 19-52-55 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2023-04-22 ]] --
+-- [[ German translation by Ta, 2023-06-09 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -56,7 +56,7 @@ L["Holidays"] = "Feiertage";
 L["Invasions"] = "Invasionen";
 L["Legion Assaults"] = "Angriffe der Legion";
 L["N'Zoth Assaults"] = "Angriffe von N'Zoth";
-L["Necrolords Assault"] = "Necrolord Paktangriff";
+L["Necrolords Assault"] = "Nekrolord Paktangriff";
 L["Other"] = "Andere";
 L["Other wings"] = "Weitere Flügel";
 L["Pirates' Day"] = "Piratentag";
@@ -630,4 +630,12 @@ L["Titan Lockdown: Soon"] = "Titanenabriegelung: Bald";
 L["Zaqali Ruin Investigation: Soon"] = "Zaqaliruinen: Bald";
 L["Titan Lockdown: Active"] = "Titanenabriegelung: Aktiv";
 L["Zaqali Ruin Investigation: Active"] = "Zaqaliruinen: Aktiv";
+L["Cross-Expansion"] = "Addon-Übergreifend";
+L["Pandaren"] = "Pandaren";
+L["Mogu"] = "Mogu";
+L["Mantid"] = "Mantis";
+L["Fyrakk Assault"] = "Angriffe von Fyrakk";
+L["Researchers Under Fire"] = "Forscher unter Feuer";
+L["Zaqali Ruin Investigation"] = "Zaqaliruinen";
+L["Titan Lockdown"] = "Titanenabriegelung";
 

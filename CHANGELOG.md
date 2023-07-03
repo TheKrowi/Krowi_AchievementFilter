@@ -11,10 +11,13 @@ All notable changes to this project will be documented in this file.
 - Time Rift event
 - Kalimdor Cup (no event yet)
 - Reintroduced Widget Events (Community Feast and Time Rifts)
+- A bunch of new texts for French by Astiraïs
 
 ### Changed
 - Updated Ace3 libraries
 - Mapped the new C_ContentTracking.IsTracking(Enum.ContentTrackingType.Achievement, id) to IsTrackedAchievement(id)
+- Credits are now handled per row and no longer per section (allows for mix of fonts)
+- Updated the API to handle adding things to the options post load
 
 ### Removed
 - Community Feast events (not longer working as World Events)

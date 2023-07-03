@@ -61,11 +61,11 @@ local function WatchListClearAllFunc()
 end
 
 local function InjectDynamicFixedWatchListOptions()
-    if KrowiAF_InjectOptions.TableExists("Layout.args.AdjustableCategories.args.WatchList.args.ShowWatchedSubCategories") then
+    if KrowiAF_InjectOptions:TableExists("Layout.args.AdjustableCategories.args.WatchList.args.ShowWatchedSubCategories") then
         return;
     end
 
-    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "ShowWatchedSubCategories", {
+    KrowiAF_InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "ShowWatchedSubCategories", {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(),
         name = addon.L["Show Sub Categories"],
         desc = addon.L["Show Sub Categories Desc"]:ReplaceVars(addon.L["Watch List"]):AddDefaultValueText_KAF("Categories.WatchList.ShowSubCategories"),
@@ -75,16 +75,16 @@ local function InjectDynamicFixedWatchListOptions()
             DrawSubCategories(addon.Data.WatchListCategories);
         end
     });
-    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "Blank1", {
+    KrowiAF_InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "Blank1", {
         order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""
     });
-    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "ClearAll", {
+    KrowiAF_InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "ClearAll", {
         order = OrderPP(), type = "execute", width = AdjustedWidth(),
         name = addon.L["Clear all"],
         desc = addon.L["Clear all Desc"],
         func = WatchListClearAllFunc
     });
-    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "IgnoreFilters", {
+    KrowiAF_InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "IgnoreFilters", {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(),
         name = addon.L["Ignore Filters"],
         desc = addon.L["Ignore Filters Desc"]:ReplaceVars(addon.L["Watch List"]):AddDefaultValueText_KAF("Categories.WatchList.IgnoreFilters"),
@@ -98,11 +98,11 @@ end
 
 -- [[ InjectMoreDynamicTrackingAchievementsOptions ]]
 local function InjectMoreDynamicTrackingAchievementsOptions()
-    if KrowiAF_InjectOptions.TableExists("Layout.args.AdjustableCategories.args.TrackingAchievements.args.LoadTrackingAchievements") then
+    if KrowiAF_InjectOptions:TableExists("Layout.args.AdjustableCategories.args.TrackingAchievements.args.LoadTrackingAchievements") then
         return;
     end
 
-    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args.TrackingAchievements.args", "LoadTrackingAchievements", {
+    KrowiAF_InjectOptions:AddTable("Layout.args.AdjustableCategories.args.TrackingAchievements.args", "LoadTrackingAchievements", {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(2),
         name = addon.L["Load Tracking Achievements"],
         desc = addon.L["Load Tracking Achievements Desc"]:AddDefaultValueText_KAF("Categories.TrackingAchievements.DoLoad"),
@@ -110,7 +110,7 @@ local function InjectMoreDynamicTrackingAchievementsOptions()
         set = function() addon.Options.db.Categories.TrackingAchievements.DoLoad = not addon.Options.db.Categories.TrackingAchievements.DoLoad; end
     });
 
-    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args.TrackingAchievements.args", "ShowTrackingSubCategories", {
+    KrowiAF_InjectOptions:AddTable("Layout.args.AdjustableCategories.args.TrackingAchievements.args", "ShowTrackingSubCategories", {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(),
         name = addon.L["Show Sub Categories"],
         desc = addon.L["Show Sub Categories Desc"]:ReplaceVars(addon.L["Tracking Achievements"]):AddDefaultValueText_KAF("Categories.TrackingAchievements.ShowSubCategories"),
@@ -163,11 +163,11 @@ local function ExcludedIncludeAllFunc()
 end
 
 local function InjectMoreDynamicExcludedOptions()
-    if KrowiAF_InjectOptions.TableExists("Layout.args.AdjustableCategories.args.Excluded.args.ShowExcludedSubCategories") then
+    if KrowiAF_InjectOptions:TableExists("Layout.args.AdjustableCategories.args.Excluded.args.ShowExcludedSubCategories") then
         return;
     end
 
-    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args.Excluded.args", "Show", {
+    KrowiAF_InjectOptions:AddTable("Layout.args.AdjustableCategories.args.Excluded.args", "Show", {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(),
         name = addon.L["Show Excluded Category"],
         desc = addon.L["Show Excluded Category Desc"]:ReplaceVars(addon.L["Excluded"]):AddDefaultValueText_KAF("Categories.Excluded.Show"),
@@ -177,16 +177,16 @@ local function InjectMoreDynamicExcludedOptions()
             ShowExcludedCategory();
         end
     });
-    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args.Excluded.args", "Blank1", {
+    KrowiAF_InjectOptions:AddTable("Layout.args.AdjustableCategories.args.Excluded.args", "Blank1", {
         order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""
     });
-    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args.Excluded.args", "IncludeAll", {
+    KrowiAF_InjectOptions:AddTable("Layout.args.AdjustableCategories.args.Excluded.args", "IncludeAll", {
         order = OrderPP(), type = "execute", width = AdjustedWidth(),
         name = addon.L["Include all"],
         desc = addon.L["Include all Desc"],
         func = ExcludedIncludeAllFunc
     });
-    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args.Excluded.args", "ShowExcludedSubCategories", {
+    KrowiAF_InjectOptions:AddTable("Layout.args.AdjustableCategories.args.Excluded.args", "ShowExcludedSubCategories", {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(),
         name = addon.L["Show Sub Categories"],
         desc = addon.L["Show Sub Categories Desc"]:ReplaceVars(addon.L["Excluded"]):AddDefaultValueText_KAF("Categories.Excluded.ShowSubCategories"),
@@ -211,14 +211,14 @@ local function InjectDynamicFixedAdjustableCategoriesOptions(category)
 end
 
 function layout.InjectDynamicAdjustableCategoryOptions(category, categoryDisplayName, tabIndex, tab, tabDisplayName, defaultValue)
-    if not KrowiAF_InjectOptions.DefaultsExists("AdjustableCategories." .. category) then
-        KrowiAF_InjectOptions.AddDefaults("AdjustableCategories", category, { });
+    if not KrowiAF_InjectOptions:DefaultsExists("AdjustableCategories." .. category) then
+        KrowiAF_InjectOptions:AddDefaults("AdjustableCategories", category, { });
     end
 
-    KrowiAF_InjectOptions.AddDefaults("AdjustableCategories." .. category, tabIndex, defaultValue);
+    KrowiAF_InjectOptions:AddDefaults("AdjustableCategories." .. category, tabIndex, defaultValue);
 
-    if not KrowiAF_InjectOptions.TableExists("Layout.args.AdjustableCategories.args." .. category) then
-        KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args", category, {
+    if not KrowiAF_InjectOptions:TableExists("Layout.args.AdjustableCategories.args." .. category) then
+        KrowiAF_InjectOptions:AddTable("Layout.args.AdjustableCategories.args", category, {
             order = OrderPP(), type = "group",
             name = categoryDisplayName,
             args = {}
@@ -227,14 +227,14 @@ function layout.InjectDynamicAdjustableCategoryOptions(category, categoryDisplay
 
     InjectDynamicFixedAdjustableCategoriesOptions(category);
 
-    if not KrowiAF_InjectOptions.TableExists("Layout.args.AdjustableCategories.args." .. category .. ".args.Tabs") then
-        KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args." .. category .. ".args", "Tabs", {
+    if not KrowiAF_InjectOptions:TableExists("Layout.args.AdjustableCategories.args." .. category .. ".args.Tabs") then
+        KrowiAF_InjectOptions:AddTable("Layout.args.AdjustableCategories.args." .. category .. ".args", "Tabs", {
             order = OrderPP(), type = "header",
             name = addon.L["Tabs"]
         });
     end
 
-    KrowiAF_InjectOptions.AddTable("Layout.args.AdjustableCategories.args." .. category .. ".args", tab, {
+    KrowiAF_InjectOptions:AddTable("Layout.args.AdjustableCategories.args." .. category .. ".args", tab, {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(),
         name = tabDisplayName,
         desc = addon.L["Requires a reload"]:AddDefaultValueText_KAF("AdjustableCategories." .. category .. "." .. tabIndex),
