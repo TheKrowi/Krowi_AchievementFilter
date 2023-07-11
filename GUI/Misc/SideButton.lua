@@ -9,6 +9,11 @@ local function OnEnter(self)
         self.shine:Show();
         self.shine.animIn:Play();
     end
+    self:ShowGameTooltip();
+end
+
+local function OnLeave(self)
+    self:HideGameTooltip();
 end
 
 local function SetEvent(self, event)
@@ -35,7 +40,7 @@ function sideButton:New(index)
     frame.SetEvent = SetEvent;
     frame.Reset = Reset;
     frame:SetScript("OnEnter", OnEnter);
-    frame:SetScript("OnLeave", nil);
+    frame:SetScript("OnLeave", OnLeave);
     frame:HookScript("OnClick", function()
         PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB);
     end);

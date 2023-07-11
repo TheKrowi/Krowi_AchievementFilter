@@ -12,7 +12,7 @@ local function GetRuntimeText(event, chat)
 
     if event.EventDetails == nil or event.EventDetails.EndTime == nil then
         if event.MapId then
-            event.EventDetails = addon.EventData.GetEventDetails(event);
+            event.EventDetails = addon.EventData.GetWorldEventDetails(event);
             if event.EventDetails == nil or event.EventDetails.EndTime == nil then
                 return addon.L["No time data available"], "";
             end

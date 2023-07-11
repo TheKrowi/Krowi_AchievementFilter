@@ -44,7 +44,7 @@ function data.Load()
     data.ExportedUiMaps.Load(data.Maps, data.Achievements);
 
     data.ExportedCalendarEvents.LoadCategories(data.CalendarEvents, data.Achievements);
-    -- data.ExportedWidgetEvents.LoadCategories(data.WidgetEvents, data.Achievements);
+    data.ExportedWidgetEvents.LoadCategories(data.WidgetEvents, data.Achievements);
     data.ExportedWorldEvents.LoadCategories(data.WorldEvents, data.Achievements);
 
     if addon.Tabs["Achievements"] then

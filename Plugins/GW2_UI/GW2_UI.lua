@@ -1266,7 +1266,7 @@ function gw2_ui.InjectOptions()
         return GW2_ADDON ~= nil and gw2_ui.IsLoaded();
     end);
 
-    KrowiAF_InjectOptions.AddTable(pluginTable, "Unsupported", {
+    KrowiAF_InjectOptions:AddTable(pluginTable, "Unsupported", {
         order = OrderPP(), type = "description", width = "full",
         name = (addon.L["Unsupported GW2_UI Desc"]:ReplaceVars(IsAddOnLoaded("GW2_UI") and GetAddOnMetadata("GW2_UI", "Version") or "") ..
         (addon.IsDragonflightRetail and (" " .. addon.L["At least version is required"]:ReplaceVars("6.6.1")) or "\n")):SetColorRed(),
@@ -1274,28 +1274,28 @@ function gw2_ui.InjectOptions()
         hidden = not (GW2_ADDON ~= nil and not gw2_ui.IsLoaded())
     });
 
-    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinsDescription", {
+    KrowiAF_InjectOptions:AddTable(pluginTable, "SkinsDescription", {
         order = OrderPP(), type = "description", width = "full",
         name = addon.L["GW2_UI Skins Desc"],
         fontSize = "medium"
     });
-    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinAchievement", AddInfo("Skin Achievements", function() return KrowiAF_SavedData.GW2_UISkin.Achievements; end));
-    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinDropDown", AddInfo("Skin DropDown", function() return KrowiAF_SavedData.GW2_UISkin.DropDown; end));
-    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinPopupNotifications", AddInfo("Skin Popup Notifications", function() return KrowiAF_SavedData.GW2_UISkin.PopUpNotifications; end));
-    -- KrowiAF_InjectOptions.AddTable(pluginTable, "SkinTutorials", AddInfo("Skin Tutorials", function() return KrowiAF_SavedData.ElvUISkin.Tutorials; end));
-    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinAlertFrames", AddInfo("Skin Alert Frames", function() return KrowiAF_SavedData.GW2_UISkin.AlertFrames; end));
-    -- KrowiAF_InjectOptions.AddTable(pluginTable, "SkinCalendar", AddInfo("Skin Calendar", function() return KrowiAF_SavedData.ElvUISkin.Calendar; end));
-    -- KrowiAF_InjectOptions.AddTable(pluginTable, "RemoveParchment", AddInfo("Remove Parchment", function() return KrowiAF_SavedData.ElvUISkin.NoParchment; end));
-    -- KrowiAF_InjectOptions.AddTable(pluginTable, "SkinDataManager", AddInfo("Skin Data Manager", function() return KrowiAF_SavedData.ElvUISkin.Achievements; end));
-    -- KrowiAF_InjectOptions.AddTable(pluginTable, "SkinAce3", AddInfo("Skin Ace3", function() return KrowiAF_SavedData.ElvUISkin.Options; end));
-    -- KrowiAF_InjectOptions.AddTable(pluginTable, "FixWorldMapButton", AddInfo("Fix World Map Button", function() return KrowiAF_SavedData.ElvUISkin.SmallerWorldMap; end));
+    KrowiAF_InjectOptions:AddTable(pluginTable, "SkinAchievement", AddInfo("Skin Achievements", function() return KrowiAF_SavedData.GW2_UISkin.Achievements; end));
+    KrowiAF_InjectOptions:AddTable(pluginTable, "SkinDropDown", AddInfo("Skin DropDown", function() return KrowiAF_SavedData.GW2_UISkin.DropDown; end));
+    KrowiAF_InjectOptions:AddTable(pluginTable, "SkinPopupNotifications", AddInfo("Skin Popup Notifications", function() return KrowiAF_SavedData.GW2_UISkin.PopUpNotifications; end));
+    -- KrowiAF_InjectOptions:AddTable(pluginTable, "SkinTutorials", AddInfo("Skin Tutorials", function() return KrowiAF_SavedData.ElvUISkin.Tutorials; end));
+    KrowiAF_InjectOptions:AddTable(pluginTable, "SkinAlertFrames", AddInfo("Skin Alert Frames", function() return KrowiAF_SavedData.GW2_UISkin.AlertFrames; end));
+    -- KrowiAF_InjectOptions:AddTable(pluginTable, "SkinCalendar", AddInfo("Skin Calendar", function() return KrowiAF_SavedData.ElvUISkin.Calendar; end));
+    -- KrowiAF_InjectOptions:AddTable(pluginTable, "RemoveParchment", AddInfo("Remove Parchment", function() return KrowiAF_SavedData.ElvUISkin.NoParchment; end));
+    -- KrowiAF_InjectOptions:AddTable(pluginTable, "SkinDataManager", AddInfo("Skin Data Manager", function() return KrowiAF_SavedData.ElvUISkin.Achievements; end));
+    -- KrowiAF_InjectOptions:AddTable(pluginTable, "SkinAce3", AddInfo("Skin Ace3", function() return KrowiAF_SavedData.ElvUISkin.Options; end));
+    -- KrowiAF_InjectOptions:AddTable(pluginTable, "FixWorldMapButton", AddInfo("Fix World Map Button", function() return KrowiAF_SavedData.ElvUISkin.SmallerWorldMap; end));
 
-    KrowiAF_InjectOptions.AddTable(pluginTable, "ModulesDescription", {
+    KrowiAF_InjectOptions:AddTable(pluginTable, "ModulesDescription", {
         order = OrderPP(), type = "description", width = "full",
         name = addon.L["GW2_UI Modules Desc"],
         fontSize = "medium"
     });
-    KrowiAF_InjectOptions.AddTable(pluginTable, "SkinTooltip", AddInfo("Skin Tooltip", function() return KrowiAF_SavedData.GW2_UISkin.Tooltip; end));
+    KrowiAF_InjectOptions:AddTable(pluginTable, "SkinTooltip", AddInfo("Skin Tooltip", function() return KrowiAF_SavedData.GW2_UISkin.Tooltip; end));
 end
 
 local function DisableOptions()
@@ -1308,7 +1308,7 @@ local function DisableOptions()
     KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.Spacing").disabled = true;
     KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.OffsetX").disabled = true;
     KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.OffsetY").disabled = true;
-    KrowiAF_InjectOptions.AddTable(KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args"), "ElvUIComment", {
+    KrowiAF_InjectOptions:AddTable(KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args"), "ElvUIComment", {
         order = OrderPP(), type = "description", width = "full",
         name = addon.L["Alert System Overwrite Desc"]:ReplaceVars(addon.L["GW2_UI"])
     });

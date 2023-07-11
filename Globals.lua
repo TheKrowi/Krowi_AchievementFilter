@@ -447,6 +447,12 @@ function addon.OverwriteFunctions()
         end
         origAchievementFrame_SelectAchievement(id);
     end
+
+    if not IsTrackedAchievement then
+        IsTrackedAchievement = function(achievementID)
+            return C_ContentTracking.IsTracking(Enum.ContentTrackingType.Achievement, achievementID);
+        end
+    end
 end
 
 function addon.HookFunctions()

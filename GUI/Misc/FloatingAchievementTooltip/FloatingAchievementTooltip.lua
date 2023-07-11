@@ -12,13 +12,13 @@ function floatingAchievementTooltip.Load()
         end
         local type = strsplit(":", link);
         if type ~= "achievement" then
-            -- tooltip:Hide();
-            HideUIPanel(tooltip);
+            tooltip:Hide();
+            -- HideUIPanel(tooltip);
             return;
         end
 		HideUIPanel(ItemRefTooltip);
-        -- tooltip:Show();
-        ShowUIPanel(tooltip);
+        tooltip:Show();
+        -- ShowUIPanel(tooltip);
         if not tooltip:IsShown() then
 			tooltip:SetOwner(UIParent, "ANCHOR_PRESERVE");
 		end
@@ -30,6 +30,17 @@ function floatingAchievementTooltip.Load()
         -- tooltip:SetWidth(max(tooltip:GetWidth(), tooltip.AchievementClick:GetFontString():GetWidth() + 24));
         tooltip:SetHeight(tooltip:GetHeight() + 29);
     end);
+end
+
+function KrowiAF_FloatingAchievementTooltip_CloseButton_OnKeyDown(self, key)
+    if key == GetBindingKey("TOGGLEGAMEMENU") then
+        if self:GetParent():IsShown() then
+            self:GetParent():Hide();
+            self:SetPropagateKeyboardInput(false);
+            return;
+        end
+    end
+    self:SetPropagateKeyboardInput(true);
 end
 
 function KrowiAF_FloatingAchievementTooltip_AchievementClick_OnClick(self)

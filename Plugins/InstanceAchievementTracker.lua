@@ -6,7 +6,7 @@ local iat = plugins.InstanceAchievementTracker;
 tinsert(plugins.Plugins, iat);
 
 function iat.InjectOptions()
-    KrowiAF_InjectOptions.AddDefaults("Plugins", "InstanceAchievementTracker", {
+    KrowiAF_InjectOptions:AddDefaults("Plugins", "InstanceAchievementTracker", {
         AddToRightClickMenu = true;
     });
 
@@ -15,7 +15,7 @@ function iat.InjectOptions()
     local pluginTable = KrowiAF_InjectOptions.AddPluginTable("InstanceAchievementTracker", addon.L["Instance Achievement Tracker"], desc, function()
         return iat.IsLoaded();
     end);
-    KrowiAF_InjectOptions.AddTable(pluginTable, "AddToRightClickMenu", {
+    KrowiAF_InjectOptions:AddTable(pluginTable, "AddToRightClickMenu", {
         order = OrderPP(), type = "toggle", width = "full",
         name = addon.L["Add To Right Click Menu"],
         desc = addon.L["Add To Right Click Menu Desc"]:ReplaceVars(addon.L["Instance Achievement Tracker"]):AddDefaultValueText_KAF("Plugins.InstanceAchievementTracker.AddToRightClickMenu"),

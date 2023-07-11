@@ -35,10 +35,14 @@ loadHelper:RegisterEvent("PLAYER_ENTERING_WORLD");
 loadHelper:RegisterEvent("ACHIEVEMENT_EARNED");
 
 local function LoadKrowi_AchievementFilter()
+    KrowiAF_InjectOptions:SetOptionsTable(addon.Options.OptionsTable);
+    KrowiAF_InjectOptions:SetOptions(addon.Options.Defaults.profile);
+
     addon.Diagnostics.Load();
 
     addon.Data.ExportedCategories.InjectDynamicOptions();
     addon.Data.ExportedCalendarEvents.InjectDynamicOptions();
+    addon.Data.ExportedWidgetEvents.InjectDynamicOptions();
     addon.Data.ExportedWorldEvents.InjectDynamicOptions();
 
     addon.GUI.PrepareTabsOrder();
@@ -82,6 +86,7 @@ end
 
 local function LoadPlayerLogin()
     addon.Data.ExportedCalendarEvents.Load(addon.Data.CalendarEvents);
+    addon.Data.ExportedWidgetEvents.Load(addon.Data.WidgetEvents);
     addon.Data.ExportedWorldEvents.Load(addon.Data.WorldEvents);
 
     if addon.Diagnostics.DebugEnabled() then
@@ -139,3 +144,9 @@ function loadHelper:OnEvent(event, arg1, arg2)
     end
 end
 loadHelper:SetScript("OnEvent", loadHelper.OnEvent);
+
+function KrowiAF_SaveWidgets()
+    KrowiAF_Test = {};
+    KrowiAF_Test[4487] = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(4487);
+    KrowiAF_Test[4488] = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(4488);
+end

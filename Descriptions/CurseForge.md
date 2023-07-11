@@ -39,7 +39,7 @@
 <li>A <strong><em>Right Click Menu</em></strong> for each achievement with a link to Wowhead, IAT (3.18.0+) (if tactics are available), Transmog sets (if linked to collecting it), Go to (related achievements) and wow-petguide.com (Xu-Fu's Pet Guides).</li>
 <li>A <strong><em>tutorial</em></strong> for first time users with an ingame explanation of the most important features.</li>
 <li>The option to <strong><em>keybind</em></strong> the new tabs so it opens in one go. (Game Menu -&gt; Key Bindings -&gt; Addons -&gt; Krowi's Achievement Filter)</li>
-<li><strong><em>ElvUI skin</em></strong>. (See the ingame options on how to enable each part.)</li>
+<li><strong><em>ElvUI and GW2 UI skin</em></strong>. (See the ingame options on how to enable each part.)</li>
 <li>Clicking achievements in meta achievements select the achievement.</li>
 <li>Hovering achievements in meta achievements shows more information about the achievement.</li>
 <li><strong><em>World Map Button</em></strong> with its own Selected Zone category to show achievements for the zone you're viewing.</li>

@@ -1,8 +1,8 @@
--- [[ Exported at 2023-05-02 19-23-44 ]] --
+-- [[ Exported at 2023-07-11 18-09-47 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2023-04-22 ]] --
+-- [[ German translation by Ta, 2023-07-04 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -56,7 +56,7 @@ L["Holidays"] = "Feiertage";
 L["Invasions"] = "Invasionen";
 L["Legion Assaults"] = "Angriffe der Legion";
 L["N'Zoth Assaults"] = "Angriffe von N'Zoth";
-L["Necrolords Assault"] = "Necrolord Paktangriff";
+L["Necrolords Assault"] = "Nekrolord Paktangriff";
 L["Other"] = "Andere";
 L["Other wings"] = "Weitere Flügel";
 L["Pirates' Day"] = "Piratentag";
@@ -549,7 +549,7 @@ L["Grand Hunts: Thaldraszus"] = "Große Jagd: Thaldraszus";
 L["Grand Hunts: The Azure Span"] = "Große Jagd: Das Azurblaue Gebirge";
 L["DF - Community Feast"] = "DF - Gemeinschaftliches Festmahl";
 L["Community Feast: Cooking"] = "Gemeinschaftliches Festmahl: Kochen";
-L["Community Feast: Soon"] = "Gemeinschaftliches Festmahl: Bald";
+L["Community Feast: Soon"] = "Gemeinschaftliches Festmahl: Startet Bald";
 L["Community Feast: Ready"] = "Gemeinschaftliches Festmahl: Fertig";
 L["DF - Siege on Dragonbane Keep"] = "DF - Belagerung der Drachenfluchfestung";
 L["Siege on Dragonbane Keep: Active"] = "Belagerung der Drachenfluchfestung: Aktiv";
@@ -630,4 +630,23 @@ L["Titan Lockdown: Soon"] = "Titanenabriegelung: Bald";
 L["Zaqali Ruin Investigation: Soon"] = "Zaqaliruinen: Bald";
 L["Titan Lockdown: Active"] = "Titanenabriegelung: Aktiv";
 L["Zaqali Ruin Investigation: Active"] = "Zaqaliruinen: Aktiv";
+L["Cross-Expansion"] = "Addon-Übergreifend";
+L["Pandaren"] = "Pandaren";
+L["Mogu"] = "Mogu";
+L["Mantid"] = "Mantis";
+L["Fyrakk Assault"] = "Angriffe von Fyrakk";
+L["Researchers Under Fire"] = "Forscher unter Feuer";
+L["Zaqali Ruin Investigation"] = "Zaqaliruinen";
+L["Titan Lockdown"] = "Titanenabriegelung";
+L["Kalimdor Cup"] = "Der Kalimdorpokal";
+L["Secrets of Azeroth (US)"] = "Geheimnisse von Azeroth (US)";
+L["Secrets of Azeroth (EU)"] = "Geheimnisse von Azeroth (EU)";
+L["Secrets of Azeroth (KR)"] = "Geheimnisse von Azeroth (KR)";
+L["Community Feast: Starting Soon"] = "Gemeinschaftliches Festmahl: Startet Bald";
+L["Community Feast: Active"] = "Gemeinschaftliches Festmahl: Aktiv";
+L["Time Rifts"] = "Zeitrisse";
+L["Time Rift: Active"] = "Zeitrisse: Aktiv";
+L["Time Rift: Starting Soon"] = "Zeitrisse: Starten Bald";
+L["Secrets of Azeroth"] = "Geheimnisse von Azeroth";
+L["Uncategorized"] = "Nicht kategorisiert";
 

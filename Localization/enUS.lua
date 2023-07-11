@@ -1,8 +1,8 @@
--- [[ Exported at 2023-05-02 19-23-44 ]] --
+-- [[ Exported at 2023-07-11 18-09-47 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ English texts by Krowi, 2023-01-20 ]] --
+-- [[ English texts by Krowi, 2023-07-03 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -630,4 +630,23 @@ L["Titan Lockdown: Soon"] = "Titan Lockdown: Soon";
 L["Zaqali Ruin Investigation: Soon"] = "Zaqali Ruin Investigation: Soon";
 L["Titan Lockdown: Active"] = "Titan Lockdown: Active";
 L["Zaqali Ruin Investigation: Active"] = "Zaqali Ruin Investigation: Active";
+L["Cross-Expansion"] = "Cross-Expansion";
+L["Pandaren"] = "Pandaren";
+L["Mogu"] = "Mogu";
+L["Mantid"] = "Mantid";
+L["Fyrakk Assault"] = "Fyrakk Assault";
+L["Researchers Under Fire"] = "Researchers Under Fire";
+L["Zaqali Ruin Investigation"] = "Zaqali Ruin Investigation";
+L["Titan Lockdown"] = "Titan Lockdown";
+L["Kalimdor Cup"] = "Kalimdor Cup";
+L["Secrets of Azeroth (US)"] = "Secrets of Azeroth (US)";
+L["Secrets of Azeroth (EU)"] = "Secrets of Azeroth (EU)";
+L["Secrets of Azeroth (KR)"] = "Secrets of Azeroth (KR)";
+L["Community Feast: Starting Soon"] = "Community Feast: Starting Soon";
+L["Community Feast: Active"] = "Community Feast: Active";
+L["Time Rifts"] = "Time Rifts";
+L["Time Rift: Active"] = "Time Rift: Active";
+L["Time Rift: Starting Soon"] = "Time Rift: Starting Soon";
+L["Secrets of Azeroth"] = "Secrets of Azeroth";
+L["Uncategorized"] = "Uncategorized";
 

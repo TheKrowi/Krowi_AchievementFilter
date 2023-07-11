@@ -28,6 +28,7 @@
                     <OnClick>
                         self:GetParent():Hide();
                     </OnClick>
+                    <OnKeyDown function="KrowiAF_FloatingAchievementTooltip_CloseButton_OnKeyDown"/>
                 </Scripts>
             </Button>
             <Button parentKey="AchievementClick">

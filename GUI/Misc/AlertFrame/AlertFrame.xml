@@ -132,6 +132,8 @@
 		<Scripts>
 			<OnClick function="KrowiAF_AlertFrame_OnClick"/>
 			<OnUpdate function="KrowiAF_AlertFrame_OnUpdate"/>
+			<OnEnter inherit="append" method="OnEnter"/>
+			<OnLeave inherit="append" method="OnLeave"/>
 		</Scripts>
 	</ContainedAlertFrame>
 </Ui>
