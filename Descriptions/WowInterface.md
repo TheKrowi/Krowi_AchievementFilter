@@ -1,8 +1,8 @@
 [B]See the images for a quick look at the ingame UI! This might give you a better idea of what is added to the default Blizzard UI.[/B]
 
-Achievement Filter completely replaces the default Achievements tab and adds several new tabs that order the achievements by expansion, pvp, events or other curated lists. Over 5900 achievements are added so far spread over 1200+ categories, linked to 1700+ zones and 80+ events.
+Achievement Filter completely replaces the default Achievements tab and adds several new tabs that order the achievements by expansion, pvp, events or other curated lists. Over 6400 achievements are added so far spread over 1200+ categories, linked to 1800+ zones and 120+ events.
 
-[B]Now also mostly available in German and Chinese (Simplified)![/B]
+[B]Now also mostly available in German, Chinese (Simplified) and French![/B]
 
 [B]Tabs[/B]
 [LIST]
