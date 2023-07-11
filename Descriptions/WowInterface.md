@@ -44,7 +44,7 @@ Achievement Filter completely replaces the default Achievements tab and adds sev
 [*]A [B][I]Right Click Menu[/I][/B] for each achievement with a link to Wowhead, IAT (3.18.0+) (if tactics are available), Transmog sets (if linked to collecting it), Go to (related achievements) and wow-petguide.com (Xu-Fu's Pet Guides).
 [*]A [B][I]tutorial[/I][/B] for first time users with an ingame explanation of the most important features.
 [*]The option to [B][I]keybind[/I][/B] the new tabs so it opens in one go. (Game Menu -> Key Bindings -> Addons -> Krowi's Achievement Filter)
-[*][B][I]ElvUI skin[/I][/B]. (See the ingame options on how to enable each part.)
+[*][B][I]ElvUI and GW2 UI skin[/I][/B]. (See the ingame options on how to enable each part.)
 [*]Clicking achievements in meta achievements select the achievement.
 [*]Hovering achievements in meta achievements shows more information about the achievement.
 [*][B][I]World Map Button[/I][/B] with its own Selected Zone category to show achievements for the zone you're viewing.

@@ -311,7 +311,6 @@ function gui.ShowStatusBarTooltip(self, anchor)
 	GameTooltip:SetMinimumWidth(128, true);
 	GameTooltip:SetText(self.Text, 1, 1, 1, nil, true);
 
-
     local text = "";
     local numOfNotObtAch = self.NumOfNotObtAch;
 	if numOfNotObtAch > 0 and addon.Options.db.Tooltip.Categories.ShowNotObtainable then

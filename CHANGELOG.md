@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - Reintroduced Widget Events (Community Feast and Time Rifts)
 - A bunch of new texts for French by Astiraïs
 - The tooltip opened by clicking an achievement link from chat for example will now close when pressing escape
+- Event Reminders with names that not fit the pop up or sidebar now show a tooltip when mousing over
 
 ### Changed
 - Updated Ace3 libraries
