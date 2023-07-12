@@ -448,9 +448,32 @@ function addon.OverwriteFunctions()
         origAchievementFrame_SelectAchievement(id);
     end
 
+    -- Bunch of API changes in 10.1.5
     if not IsTrackedAchievement then
-        IsTrackedAchievement = function(achievementID)
-            return C_ContentTracking.IsTracking(Enum.ContentTrackingType.Achievement, achievementID);
+        IsTrackedAchievement = function(achievementId)
+            return C_ContentTracking.IsTracking(Enum.ContentTrackingType.Achievement, achievementId);
+        end
+    end
+
+    if not RemoveTrackedAchievement then
+        RemoveTrackedAchievement = function(achievementId)
+            C_ContentTracking.StopTracking(Enum.ContentTrackingType.Achievement, achievementId);
+        end
+    end
+
+    if not GetNumTrackedAchievements then
+        GetNumTrackedAchievements = function()
+            return #C_ContentTracking.GetTrackedIDs(Enum.ContentTrackingType.Achievement);
+        end
+    end
+
+    if not MAX_TRACKED_ACHIEVEMENTS then
+        MAX_TRACKED_ACHIEVEMENTS = Constants.ContentTrackingConsts.MaxTrackedAchievements;
+    end
+
+    if not AddTrackedAchievement then
+        AddTrackedAchievement = function(achievementId)
+            return C_ContentTracking.StartTracking(Enum.ContentTrackingType.Achievement, achievementId);
         end
     end
 end

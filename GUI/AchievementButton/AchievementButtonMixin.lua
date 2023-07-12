@@ -526,7 +526,10 @@ function KrowiAF_AchievementButtonMixin:ToggleTracking()
 	end
 
 	self:SetAsTracked(true);
-	AddTrackedAchievement(id);
+	local trackingError = AddTrackedAchievement(id);
+	if trackingError then
+		ContentTrackingUtil.DisplayTrackingError(trackingError);
+	end
 
 	self:RegisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED");
 

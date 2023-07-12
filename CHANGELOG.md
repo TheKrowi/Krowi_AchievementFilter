@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 58.1 - 2023-07-12
+### Fixed
+- Tracking achievements should once again work
+
 ## 58.0 - 2023-07-11
 ### Added
 - Kalimdor Racing achievements

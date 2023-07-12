@@ -458,7 +458,9 @@
         "NO",
         "KrowiAF_SelectAchievementFromID",
         "GetCurrentRegionName",
-        "C_ContentTracking"
+        "C_ContentTracking",
+        "Constants",
+        "ContentTrackingUtil"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

@@ -25,3 +25,8 @@
 [LIST]
 [*]Community Feast events (not longer working as World Events)
 [/LIST]
+
+[B]Fixed (58.1)[/B]
+[LIST]
+[*]Tracking achievements should once again work
+[/LIST]
