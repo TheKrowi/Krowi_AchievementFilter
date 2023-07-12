@@ -19,3 +19,6 @@
 
 ### Removed
 - Community Feast events (not longer working as World Events)
+
+### Fixed (58.1)
+- Tracking achievements should once again work
