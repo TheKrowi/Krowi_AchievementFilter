@@ -4,23 +4,23 @@ data.CustomWidgetTimers = {};
 local customWidgetTimers = data.CustomWidgetTimers;
 local timers = {};
 
+local minutesAbbr = MINUTES_ABBR:gsub("%%d", "(%%d+)");
+local secondsAbbr = SECONDS_ABBR:gsub("%%d", "(%%d+)");
+
+local function GetSecondsLeft(text)
+    local minutes = string.match(text, minutesAbbr) or 0;
+    local seconds = string.match(text, secondsAbbr) or 0;
+    -- print(minutes, seconds, minutes * 60 + seconds)
+    return minutes * 60 + seconds;
+end
+
 timers[4729] = function()
     local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(4729);
     if not widgetInfo or not widgetInfo.text then
         return nil;
     end
 
-    local index = 1;
-    local minutes, seconds = 0, 0;
-    for match in string.gmatch(widgetInfo.text, "%d+") do
-        if index == 1 then
-            minutes = tonumber(match);
-        elseif index == 3 then
-            seconds = tonumber(match);
-        end
-        index = index + 1;
-    end
-    return minutes * 60 + seconds;
+    return GetSecondsLeft(widgetInfo.text);
 end
 
 timers[4731] = function()
@@ -29,17 +29,16 @@ timers[4731] = function()
         return nil;
     end
 
-    local index = 1;
-    local minutes, seconds = 0, 0;
-    for match in string.gmatch(widgetInfo.text, "%d+") do
-        if index == 1 then
-            minutes = tonumber(match);
-        elseif index == 3 then
-            seconds = tonumber(match);
-        end
-        index = index + 1;
+    return GetSecondsLeft(widgetInfo.text);
+end
+
+timers[4924] = function()
+    local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(4924);
+    if not widgetInfo or not widgetInfo.text then
+        return nil;
     end
-    return minutes * 60 + seconds;
+
+    return GetSecondsLeft(widgetInfo.text);
 end
 
 timers[4987] = function()
@@ -48,17 +47,7 @@ timers[4987] = function()
         return nil;
     end
 
-    local index = 1;
-    local minutes, seconds = 0, 0;
-    for match in string.gmatch(widgetInfo.text, "%d+") do
-        if index == 1 then
-            minutes = tonumber(match);
-        elseif index == 3 then
-            seconds = tonumber(match);
-        end
-        index = index + 1;
-    end
-    return minutes * 60 + seconds;
+    return GetSecondsLeft(widgetInfo.text);
 end
 
 timers[4992] = function()
@@ -67,17 +56,7 @@ timers[4992] = function()
         return nil;
     end
 
-    local index = 1;
-    local minutes, seconds = 0, 0;
-    for match in string.gmatch(widgetInfo.text, "%d+") do
-        if index == 1 then
-            minutes = tonumber(match);
-        elseif index == 3 then
-            seconds = tonumber(match);
-        end
-        index = index + 1;
-    end
-    return minutes * 60 + seconds;
+    return GetSecondsLeft(widgetInfo.text);
 end
 
 function customWidgetTimers.GetSecondsLeft(id)

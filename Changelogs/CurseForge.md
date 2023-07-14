@@ -1,29 +1,15 @@
 <p><h3>Added</h3></p>
 <ul>
-<li>Kalimdor Racing achievements</li>
-<li>Dawn of the Infinite dungeon achievements</li>
-<li>Tons of other achievements</li>
-<li>Missing and new x Exalted Reputations achievements</li>
-<li>Secrets of Azeroth event</li>
-<li>Time Rift event</li>
-<li>Kalimdor Cup (no event yet)</li>
-<li>Reintroduced Widget Events (Community Feast and Time Rifts)</li>
-<li>A bunch of new texts for French by Astiraïs</li>
-<li>The tooltip opened by clicking an achievement link from chat for example will now close when pressing escape</li>
-<li>Event Reminders with names that not fit the pop up or sidebar now show a tooltip when mousing over</li>
+<li>Map data to the Dawn of the Infinite dungeon and Time Rift event</li>
 </ul>
 <p><h3>Changed</h3></p>
 <ul>
-<li>Updated Ace3 libraries</li>
-<li>Mapped the new C_ContentTracking.IsTracking(Enum.ContentTrackingType.Achievement, id) to IsTrackedAchievement(id)</li>
-<li>Credits are now handled per row and no longer per section (allows for mix of fonts)</li>
-<li>Updated the API to handle adding things to the options post load</li>
+<li>Moved the Memory of Scholomance and Leaders of Scholomance achievements to Classic - Dungeons - Scholomance</li>
+<li>Moved Wards of the Dread Citadel, 'Never Bothered, Anyway' and Putting Wilhelm Out of Business to Classic - Raids - Naxxramas</li>
+<li>Moderately reduced the memory and Exported Map file sizes</li>
 </ul>
-<p><h3>Removed</h3></p>
+<p><h3>Fixed</h3></p>
 <ul>
-<li>Community Feast events (not longer working as World Events)</li>
-</ul>
-<p><h3>Fixed (58.1)</h3></p>
-<ul>
-<li>Tracking achievements should once again work</li>
+<li>Removed rounding on Event Reminder end times; end times should now better match the actual timers</li>
+<li>Community Feast and Time Rifts should no longer bug out when in the last minute of the count down</li>
 </ul>

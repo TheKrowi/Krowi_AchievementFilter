@@ -1,4 +1,4 @@
--- [[ Exported at 2023-07-03 19-36-52 ]] --
+-- [[ Exported at 2023-07-12 13-42-49 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -1015,6 +1015,10 @@ function exportedCategories.Load(a)
     C(t[2], t[23]);
     A(t[23], a[644]); -- King of Dire Maul
     A(t[23], a[5788]); -- Agent of the Shen'dralar
+    t[24] = c:New(k.GetInstanceInfoName(246) .. " (" .. k.GetCategoryInfoTitle(15234) .. ")"); -- Scholomance
+    C(t[2], t[24]);
+    A(t[24], a[18368]); -- Memory of Scholomance
+    A(t[24], a[18558]); -- Leaders of Scholomance
     t[25] = c:New(k.GetInstanceInfoName(236)); -- Stratholme
     C(t[2], t[25]);
     A(t[25], a[646]); -- Stratholme
@@ -1075,6 +1079,9 @@ function exportedCategories.Load(a)
     C(t[3], t[796]);
     A(t[796], a[11744]); -- "Drop Dead, Gorgeous"
     A(t[796], a[425]); -- "Atiesh, Greatstaff of the Guardian"
+    A(t[796], a[18372]); -- Wards of the Dread Citadel
+    A(t[796], a[18557]); -- "Never Bothered, Anyway"
+    A(t[796], a[18616]); -- Putting Wilhelm Out of Business
     t[1150] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
     C(t[1], t[1150]);
     A(t[1150], a[116]); -- Professional Journeyman
@@ -3043,7 +3050,6 @@ function exportedCategories.Load(a)
     A(t[201], a[6715]); -- Polyformic Acid Science
     A(t[201], a[6821]); -- School's Out Forever
     A(t[201], a[645]); -- Scholomance
-    A(t[201], a[18558]); -- Leaders of Scholomance
     A(t[201], a[6762]); -- Heroic: Scholomance
     A(t[201], a[6897]); -- Scholomance Challenger
     A(t[201], a[6914]); -- Scholomance: Bronze
@@ -8503,12 +8509,6 @@ function exportedCategories.Load(a)
     t[1396].HasFlexibleData = true;
     tinsert(searchResultsCategories, t[1396]);
     t[1396].IsSearchResults = true;
-    t[1451] = c:New(k.L["Uncategorized"]); -- Uncategorized
-    C(t[971], t[1451]);
-    A(t[1451], a[18368]); -- Memory of Scholomance
-    A(t[1451], a[18372]); -- Wards of the Dread Citadel
-    A(t[1451], a[18557]); -- "Never Bothered, Anyway"
-    A(t[1451], a[18616]); -- Putting Wilhelm Out of Business
     t[972] = c:New(k.L["Bur's Mount Collection"]); -- Bur's Mount Collection
     C(t[971], t[972]);
     A(t[972], a[3356]); -- Winterspring Frostsaber
