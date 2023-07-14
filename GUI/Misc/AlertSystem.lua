@@ -22,7 +22,7 @@ local function GetRuntimeText(event, chat)
     end
 
     if addon.Options.db.EventReminders.TimeDisplay.Line1 == 2 or addon.Options.db.EventReminders.TimeDisplay.Line2 == 3 or chat then -- Time Left
-        local secondsLeft = event.EventDetails.EndTime - time();
+        local secondsLeft = event.EventDetails.EndTime - GetServerTime();
         local days = floor(secondsLeft / 86400);
         local hours = floor(mod(secondsLeft, 86400) / 3600);
         local minutes = floor(mod(secondsLeft, 3600) / 60);

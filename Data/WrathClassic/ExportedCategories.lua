@@ -1,4 +1,4 @@
--- [[ Exported at 2023-07-03 19-36-53 ]] --
+-- [[ Exported at 2023-07-12 13-42-49 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -722,9 +722,9 @@ function exportedCategories.Load(a)
     t[23] = c:New(k.GetInstanceInfoName(230)); -- Dire Maul
     C(t[2], t[23]);
     A(t[23], a[644]); -- King of Dire Maul
-    t[24] = c:New(k.GetInstanceInfoName(246)); -- Scholomance
-    C(t[2], t[24]);
-    A(t[24], a[645]); -- Scholomance
+    t[1455] = c:New(k.GetInstanceInfoName(246)); -- Scholomance
+    C(t[2], t[1455]);
+    A(t[1455], a[645]); -- Scholomance
     t[25] = c:New(k.GetInstanceInfoName(236)); -- Stratholme
     C(t[2], t[25]);
     A(t[25], a[646]); -- Stratholme
@@ -2420,8 +2420,6 @@ function exportedCategories.Load(a)
     t[1396].HasFlexibleData = true;
     tinsert(searchResultsCategories, t[1396]);
     t[1396].IsSearchResults = true;
-    t[1451] = c:New(k.L["Uncategorized"]); -- Uncategorized
-    C(t[971], t[1451]);
     t[972] = c:New(k.L["Bur's Mount Collection"]); -- Bur's Mount Collection
     C(t[971], t[972]);
     A(t[972], a[3356]); -- Winterspring Frostsaber

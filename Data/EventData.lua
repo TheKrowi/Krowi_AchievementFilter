@@ -92,7 +92,7 @@ function eventData.GetWidgetEventDetails(event)
     local secondsLeft = addon.Data.CustomWidgetTimers.GetSecondsLeft(event.Id);
     local endTime;
     if secondsLeft ~= nil and secondsLeft ~= 0 then
-        endTime = floor((GetServerTime() + secondsLeft) / 60 + 0.5) * 60; -- Round to 1 minute, 1 hour is not precise enough anymore
+        endTime = GetServerTime() + secondsLeft;
     end
 
     return {EndTime = endTime, Name = event.Name};
@@ -121,7 +121,7 @@ function eventData.GetWorldEventDetails(event)
     local secondsLeft = C_AreaPoiInfo.GetAreaPOISecondsLeft(event.Id);
     local endTime;
     if secondsLeft ~= nil and secondsLeft ~= 0 then
-        endTime = floor((GetServerTime() + secondsLeft) / 60 + 0.5) * 60; -- Round to 1 minute, 1 hour is not precise enough anymore
+        endTime = GetServerTime() + secondsLeft;
     end
 
     return {EndTime = endTime, Name = event.Name};
