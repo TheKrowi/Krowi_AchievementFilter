@@ -15,3 +15,13 @@
 [*]Removed rounding on Event Reminder end times; end times should now better match the actual timers
 [*]Community Feast and Time Rifts should no longer bug out when in the last minute of the count down
 [/LIST]
+
+[B]Added (59.1)[/B]
+[LIST]
+[*]Option to select the window the Side Buttons will attach to on the right side
+[/LIST]
+
+[B]Fixed (59.1)[/B]
+[LIST]
+[*]Community Feast should once again have timers
+[/LIST]

@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 59.1 - 2023-07-15
+### Added
+- Option to select the window the Side Buttons will attach to on the right side
+
+### Fixed
+- Community Feast should once again have timers
+
 ## 59.0 - 2023-07-14
 ### Added
 - Map data to the Dawn of the Infinite dungeon and Time Rift event

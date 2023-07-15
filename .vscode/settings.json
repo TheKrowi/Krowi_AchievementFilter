@@ -462,7 +462,9 @@
         "Constants",
         "ContentTrackingUtil",
         "MINUTES_ABBR",
-        "SECONDS_ABBR"
+        "SECONDS_ABBR",
+        "D_MINUTES",
+        "D_SECONDS"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

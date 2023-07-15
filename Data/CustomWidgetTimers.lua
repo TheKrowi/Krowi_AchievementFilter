@@ -6,10 +6,12 @@ local timers = {};
 
 local minutesAbbr = MINUTES_ABBR:gsub("%%d", "(%%d+)");
 local secondsAbbr = SECONDS_ABBR:gsub("%%d", "(%%d+)");
+local dMinutes = D_MINUTES:gsub("%%d", "(%%d+)");
+local dSeconds = D_SECONDS:gsub("%%d", "(%%d+)");
 
-local function GetSecondsLeft(text)
-    local minutes = string.match(text, minutesAbbr) or 0;
-    local seconds = string.match(text, secondsAbbr) or 0;
+local function GetSecondsLeft(text, minutesPattern, secondsPattern)
+    local minutes = string.match(text, minutesPattern) or 0;
+    local seconds = string.match(text, secondsPattern) or 0;
     -- print(minutes, seconds, minutes * 60 + seconds)
     return minutes * 60 + seconds;
 end
@@ -20,7 +22,7 @@ timers[4729] = function()
         return nil;
     end
 
-    return GetSecondsLeft(widgetInfo.text);
+    return GetSecondsLeft(widgetInfo.text, dMinutes, dSeconds);
 end
 
 timers[4731] = function()
@@ -29,16 +31,7 @@ timers[4731] = function()
         return nil;
     end
 
-    return GetSecondsLeft(widgetInfo.text);
-end
-
-timers[4924] = function()
-    local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(4924);
-    if not widgetInfo or not widgetInfo.text then
-        return nil;
-    end
-
-    return GetSecondsLeft(widgetInfo.text);
+    return GetSecondsLeft(widgetInfo.text, dMinutes, dSeconds);
 end
 
 timers[4987] = function()
@@ -47,7 +40,7 @@ timers[4987] = function()
         return nil;
     end
 
-    return GetSecondsLeft(widgetInfo.text);
+    return GetSecondsLeft(widgetInfo.text, minutesAbbr, secondsAbbr);
 end
 
 timers[4992] = function()
@@ -56,7 +49,7 @@ timers[4992] = function()
         return nil;
     end
 
-    return GetSecondsLeft(widgetInfo.text);
+    return GetSecondsLeft(widgetInfo.text, minutesAbbr, secondsAbbr);
 end
 
 function customWidgetTimers.GetSecondsLeft(id)
