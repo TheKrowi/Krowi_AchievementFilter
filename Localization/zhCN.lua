@@ -1,4 +1,4 @@
--- [[ Exported at 2023-07-14 21-59-21 ]] --
+-- [[ Exported at 2023-07-15 23-41-51 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -18,6 +18,10 @@ addon.PluginStrings.zhCN.Load(L);
 addon.GlobalStrings.Load(L);
 addon.Plugins:LoadLocalization(L);
 
+L["Central Circuit"] = "霜土飞越";
+L["Passage Pathway"] = "提尔要塞试炼";
+L["Grow direction"] = "增长方向";
+L["Placeholder"] = "占位符";
 L["Achievement points earned by"] = "获得的成就点数";
 L["Achievements"] = "成就";
 L["Expansions"] = "扩展";
@@ -336,7 +340,6 @@ L["Ravine River Run"] = "河谷奔行";
 L["River Rapids Route"] = "湍流环线";
 L["Sundapple Copse Circuit"] = "阳斑灌木林巡回赛";
 L["Archive Ambit"] = "档案限界";
-L["Central Circuit"] = "霜土飞越";
 L["Iskaara Flyover"] = "伊斯卡拉锦标赛";
 L["The Azure Span Slalom"] = "碧蓝林海障碍赛";
 L["The Azure Span Sprint"] = "碧蓝林海冲刺";
@@ -345,7 +348,6 @@ L["Academy Ascent"] = "学院爬升赛";
 L["Caverns Criss-Cross"] = "交错洞窟";
 L["Cliffside Circuit"] = "山崖环道";
 L["Garden Gallivant"] = "花园休闲赛";
-L["Passage Pathway"] = "提尔要塞试炼";
 L["The Flowing Forest Flight"] = "起伏森林航线";
 L["Dragonriding"] = "驭龙术";
 L["This achievement"] = "该成就";
@@ -459,13 +461,11 @@ L["Default value"] = "默认值";
 L["Unchecked"] = "未勾选";
 L["Checked"] = "已勾选";
 L["Hide Date Completed"] = "隐藏完成时间";
-L["Delay"] = "延迟";
+L["Login Delay"] = "延迟";
 L["Up"] = "上";
 L["Down"] = "下";
 L["Location"] = "位置";
-L["Grow direction"] = "增长方向";
 L["XYZ offset"] = "{xyz} 偏移量";
-L["Placeholder"] = "占位符";
 L["Chat messages"] = "聊天消息";
 L["Diablo IV"] = "暗黑破坏神IV";
 

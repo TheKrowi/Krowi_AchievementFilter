@@ -7,6 +7,10 @@ local helperFrame;
 local buttons = {};
 local numButtons = 0;
 
+local function GetAnchor()
+    return addon.Options.db.EventReminders.SideButtonsAnchor == 1 and AchievementFrame or WorldMapFrame;
+end
+
 local function GetSideButton(index)
     if buttons[index] then
 		return buttons[index];
@@ -17,7 +21,7 @@ local function GetSideButton(index)
 end
 
 local function SetPoints()
-    local relativeFrame = AchievementFrame;
+    local relativeFrame = GetAnchor();
     local relativePoint = "TOPRIGHT";
     for _, button in next, buttons do
         button:ClearAllPoints();
@@ -61,7 +65,7 @@ local function OnUpdate(self, elapsed)
     self.TimeSinceLastUpdate = self.TimeSinceLastUpdate + elapsed;
     if self.TimeSinceLastUpdate > addon.Options.db.EventReminders.RefreshInterval then
         refreshIfShown = true;
-        if AchievementFrame:IsShown() then
+        if GetAnchor():IsShown() then
             sideButtonSystem.Refresh();
             refreshIfShown = false;
             self.TimeSinceLastUpdate = 0;
@@ -75,7 +79,7 @@ function sideButtonSystem.Load()
     helperFrame = CreateFrame("Frame");
     helperFrame.TimeSinceLastUpdate = 0;
     helperFrame:SetScript("OnUpdate", OnUpdate);
-    hooksecurefunc(AchievementFrame, "Show", function(self)
+    hooksecurefunc(GetAnchor(), "Show", function(self)
         if refreshIfShown then
             sideButtonSystem.Refresh();
             refreshIfShown = false;

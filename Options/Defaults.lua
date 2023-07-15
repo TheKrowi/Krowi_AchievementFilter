@@ -184,6 +184,7 @@ options.Defaults = {
             Compact = false,
             RefreshInterval = 60,
             OnLoginDelay = 5,
+            SideButtonsAnchor = 1
         },
         Filters = {
             ResetFactionFilters = true

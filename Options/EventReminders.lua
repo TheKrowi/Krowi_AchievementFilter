@@ -28,6 +28,11 @@ local timeDisplaysLine2 = {
     addon.L["Time Left"]
 };
 
+local sideButtonsAnchor = {
+    addon.L["Achievement Window"],
+    addon.L["World Map"]
+}
+
 local growDirection = {
     addon.L["Up"],
     addon.L["Down"]
@@ -114,6 +119,12 @@ local function TimeDisplayLine2Set(_, value)
     addon.GUI.SideButtonSystem.Refresh();
 end
 
+local function SideButtonsAnchorSet(_, value)
+    if addon.Options.db.EventReminders.SideButtonsAnchor == value then return; end;
+    addon.Options.db.EventReminders.SideButtonsAnchor = value;
+    addon.GUI.SideButtonSystem.Refresh();
+end
+
 local function StartTimeAndEndTimePresetsGet()
     for i, format in next, startTimeAndEndTimeDateTimeFormats do
         if format == addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime then
@@ -188,11 +199,19 @@ options.OptionsTable.args["EventReminders"] = {
                         },
                         ShowPopUpsOnLoginDelay = {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
-                            name = addon.L["Delay"],
+                            name = addon.L["Login Delay"],
                             desc = addon.L["Show pop ups on login delay Desc"]:AddDefaultValueText_KAF("EventReminders.OnLoginDelay"),
                             min = 1, max = 600, step = 1,
                             get = function() return addon.Options.db.EventReminders.OnLoginDelay; end,
                             set = function(_, value) addon.Options.db.EventReminders.OnLoginDelay = value; end
+                        },
+                        SideButtonsAnchor = {
+                            order = OrderPP(), type = "select", width = AdjustedWidth(1.45),
+                            name = addon.L["Side Button Anchor"],
+                            desc = addon.L["Side Button Anchor Desc"]:AddDefaultValueText_KAF("EventReminders.SideButtonsAnchor", sideButtonsAnchor),
+                            values = sideButtonsAnchor,
+                            get = function() return addon.Options.db.EventReminders.SideButtonsAnchor; end,
+                            set = SideButtonsAnchorSet,
                         }
                     }
                 }
