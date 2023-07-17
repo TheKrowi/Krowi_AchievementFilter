@@ -336,6 +336,28 @@ local function CompareId(a, b, reverse, default)
     return a.Id < b.Id;
 end
 
+local function ComparePoints(a, b, reverse, default)
+    local pointsA, pointsB = false, false;
+    if a then
+        pointsA = select(3, addon.GetAchievementInfo(a.Id));
+    end
+    if b then
+        pointsB = select(3, addon.GetAchievementInfo(b.Id));
+    end
+
+    if pointsA == pointsB then
+        if reverse then
+            return default[a] > default[b];
+        end
+        return default[a] < default[b];
+    end
+
+    if reverse then
+        return pointsA > pointsB;
+    end
+    return pointsA < pointsB;
+end
+
 function filters:Sort(achievements, defaultOrder)
 	local filters2 = self:GetFilters();
 	local criteria = filters2.SortBy.Criteria;
@@ -348,6 +370,8 @@ function filters:Sort(achievements, defaultOrder)
         sortFunc = CompareCompletion;
 	elseif criteria == addon.L["ID"] then
         sortFunc = CompareId;
+	elseif criteria == addon.L["Points"] then
+        sortFunc = ComparePoints;
 	else -- criteria == addon.L["Default"]
         if reverse then
 			local tmpTbl = {};
