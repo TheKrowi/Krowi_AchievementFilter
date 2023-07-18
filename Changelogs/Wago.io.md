@@ -15,3 +15,6 @@
 
 ### Fixed (59.1)
 - Community Feast should once again have timers
+
+### Added (59.2)
+- Sort achievements by points
