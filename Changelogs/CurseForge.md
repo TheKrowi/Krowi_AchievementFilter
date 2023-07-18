@@ -21,3 +21,7 @@
 <ul>
 <li>Community Feast should once again have timers</li>
 </ul>
+<p><h3>Added (59.2)</h3></p>
+<ul>
+<li>Sort achievements by points</li>
+</ul>
