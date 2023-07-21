@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 59.3 - 2023-07-21
+### Fixed
+- Zygor Guides Viewer should once again give a proper message when a guide is not found
+
 ## 59.2 - 2023-07-18
 ### Added
 - Sort achievements by points

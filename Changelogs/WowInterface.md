@@ -30,3 +30,8 @@
 [LIST]
 [*]Sort achievements by points
 [/LIST]
+
+[B]Fixed (59.3)[/B]
+[LIST]
+[*]Zygor Guides Viewer should once again give a proper message when a guide is not found
+[/LIST]
