@@ -18,3 +18,6 @@
 
 ### Added (59.2)
 - Sort achievements by points
+
+### Fixed (59.3)
+- Zygor Guides Viewer should once again give a proper message when a guide is not found

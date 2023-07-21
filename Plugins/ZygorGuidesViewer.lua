@@ -15,7 +15,7 @@ local function Icon_OnClick(self)
         end
 		return;
 	end
-	ZGV:Error("How odd. Achievement Zygor Button clicked, but we don't seem to have a guide for %s", button.label:GetText());
+	ZGV:Error("How odd. Achievement Zygor Button clicked, but we don't seem to have a guide for %s", button.Header:GetText());
 end
 
 local function UpdateIcons()
