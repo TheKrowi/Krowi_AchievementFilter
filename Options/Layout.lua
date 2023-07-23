@@ -10,7 +10,7 @@ local AdjustedWidth = KrowiAF_InjectOptions.AdjustedWidth;
 
 function layout.RegisterOptionsTable()
     LibStub("AceConfig-3.0"):RegisterOptionsTable("Layout", options.OptionsTable.args.Layout);
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Layout", "Layout", addon.MetaData.Title);
+    LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Layout", "Layout", addon.Metadata.Title);
 end
 
 function layout.PostLoad()

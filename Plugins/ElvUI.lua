@@ -723,7 +723,7 @@ local function AddInfo(localizationName, getFunction, hidden)
 end
 
 function elvUI.InjectOptions()
-    local pluginTable = KrowiAF_InjectOptions.AddPluginTable("ElvUI", addon.L["ElvUI"], addon.L["ElvUI Desc"], function()
+    local pluginTable = KrowiAF_InjectOptions:AddPluginTable("ElvUI", addon.L["ElvUI"], addon.L["ElvUI Desc"], function()
         return ElvUI ~= nil;
     end);
     KrowiAF_InjectOptions:AddTable(pluginTable, "SkinAchievement", AddInfo("Skin Achievements", function() return KrowiAF_SavedData.ElvUISkin.Achievements; end));

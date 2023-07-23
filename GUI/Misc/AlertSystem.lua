@@ -86,7 +86,7 @@ local function ShowActiveEventChatMessage(event, canShow, canShowWithTimeDataOnl
     end
     if not canShowWithTimeDataOnly or (canShowWithTimeDataOnly and event.EventDetails and event.EventDetails.EndTime) then
         if not printOnce then
-            print(addon.MetaData.Title, "-", addon.L["Active events"] .. ":");
+            print(addon.Metadata.Title, "-", addon.L["Active events"] .. ":");
             printOnce = true;
         end
         KrowiAF_SavedData.ActiveEventChatMessagesShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch;

@@ -11,7 +11,7 @@ function achievementsTabFixes.InjectOptions()
     });
 
     local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
-    local pluginTable = KrowiAF_InjectOptions.AddPluginTable("AchievementsTabFixes", addon.L["AchievementsTabFixes"], addon.L["AchievementsTabFixes Desc"], function()
+    local pluginTable = KrowiAF_InjectOptions:AddPluginTable("AchievementsTabFixes", addon.L["AchievementsTabFixes"], addon.L["AchievementsTabFixes Desc"], function()
         return true;
     end);
     KrowiAF_InjectOptions:AddTable(pluginTable, "RenameExplorationDragonIslesCategory", {

@@ -7,7 +7,7 @@ tinsert(options.OptionsTables, plugins);
 
 function plugins.RegisterOptionsTable()
     LibStub("AceConfig-3.0"):RegisterOptionsTable("Plugins", options.OptionsTable.args.Plugins);
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Plugins", "Plugins", addon.MetaData.Title);
+    LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Plugins", "Plugins", addon.Metadata.Title);
 end
 
 function plugins.PostLoad()

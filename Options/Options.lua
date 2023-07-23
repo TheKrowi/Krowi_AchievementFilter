@@ -12,14 +12,18 @@ else
 end
 
 options.OptionsTable = {
-    name = addon.MetaData.Title,
+    name = addon.Metadata.Title,
     type = "group",
     childGroups = "tab",
     args = {}
 };
 
+-- KrowiAF_InjectOptions:SetOptionsTable(options.OptionsTable);
+-- KrowiAF_InjectOptions:SetDefaultOptions(options.Defaults.profile);
+KrowiAF_InjectOptions:SetWidthMultiplier(options.WidthMultiplier);
+
 function options.SetMaxNumberOfSearchPreviews()
-    local numberOfSearchPreviews = KrowiAF_GetOptions.GetTable(addon.MetaData.Title, "args.Search.args.SearchPreview.args.NumberOfSearchPreviews");
+    local numberOfSearchPreviews = KrowiAF_GetOptions.GetTable(addon.Metadata.Title, "args.Search.args.SearchPreview.args.NumberOfSearchPreviews");
     numberOfSearchPreviews.max = 17 + math.floor(addon.Options.db.Window.AchievementFrameHeightOffset / 29);
     return numberOfSearchPreviews;
 end
@@ -27,9 +31,9 @@ end
 local function Open()
     if addon.IsWrathClassic then
         InterfaceAddOnsList_Update(); -- This way the correct category will be shown when calling InterfaceOptionsFrame_OpenToCategory
-        InterfaceOptionsFrame_OpenToCategory(addon.MetaData.Title);
+        InterfaceOptionsFrame_OpenToCategory(addon.Metadata.Title);
         for _, button in next, InterfaceOptionsFrameAddOns.buttons do
-            if button.element and button.element.name == addon.MetaData.Title and button.element.collapsed then
+            if button.element and button.element.name == addon.Metadata.Title and button.element.collapsed then
                 OptionsListButtonToggle_OnClick(button.toggle);
                 break;
             end
@@ -37,8 +41,8 @@ local function Open()
         return;
     end
 
-    Settings.GetCategory(addon.MetaData.Title).expanded = true;
-    Settings.OpenToCategory(addon.MetaData.Title, true);
+    Settings.GetCategory(addon.Metadata.Title).expanded = true;
+    Settings.OpenToCategory(addon.Metadata.Title, true);
 end
 
 -- Load the options
@@ -60,7 +64,7 @@ function options.Load()
 end
 
 string["InjectAddonName_KAF"] = function(str)
-    return str:ReplaceVars{addonName = addon.MetaData.Title};
+    return str:ReplaceVars{addonName = addon.Metadata.Title};
 end
 
 string["AddDefaultValueText_KAF"] = function(self, valuePath, values)

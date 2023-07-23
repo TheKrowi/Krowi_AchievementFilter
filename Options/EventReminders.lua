@@ -10,7 +10,7 @@ local AdjustedWidth = KrowiAF_InjectOptions.AdjustedWidth;
 
 function eventReminders.RegisterOptionsTable()
     LibStub("AceConfig-3.0"):RegisterOptionsTable("Event Reminders", options.OptionsTable.args.EventReminders);
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Event Reminders", "Event Reminders", addon.MetaData.Title);
+    LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Event Reminders", "Event Reminders", addon.Metadata.Title);
 end
 
 function eventReminders.PostLoad()

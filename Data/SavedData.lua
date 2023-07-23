@@ -37,13 +37,13 @@ function savedData.Load()
 
     local prevBuild = KrowiAF_SavedData["Build"];
     diagnostics.Debug("Previous Build: " .. tostring(prevBuild)); -- Can be nil
-    KrowiAF_SavedData["Build"] = addon.MetaData.Build;
+    KrowiAF_SavedData["Build"] = addon.Metadata.Build;
     local currBuild = KrowiAF_SavedData["Build"];
     diagnostics.Debug("Current Build: " .. KrowiAF_SavedData["Build"]);
 
     local prevVersion = KrowiAF_SavedData["Version"];
     diagnostics.Debug("Previous Version: " .. tostring(prevVersion)); -- Can be nil
-    KrowiAF_SavedData["Version"] = addon.MetaData.Version;
+    KrowiAF_SavedData["Version"] = addon.Metadata.Version;
     local currVersion = KrowiAF_SavedData["Version"];
     diagnostics.Debug("Current Version: " .. KrowiAF_SavedData["Version"]);
 

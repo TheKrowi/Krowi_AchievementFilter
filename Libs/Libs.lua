@@ -1,4 +1,4 @@
-local _, addon = ...; -- Global addon namespace
+local addonName, addon = ...; -- Global addon namespace
 addon.Libs = {}; -- Global library names table
 local libs = addon.Libs; -- Local library names table
 
@@ -8,4 +8,6 @@ libs.Krowi_Util = "Krowi_Util-1.0";
 
 -- [[ Personal libraries ]] --
 addon.Util = LibStub(addon.Libs.Krowi_Util);
-string.ReplaceVars = addon.Util.ReplaceVars;
+addon.Metadata = addon.Util.Metadata.GetAddOnMetadata(addonName);
+
+KrowiAF_InjectOptions = addon.Util.InjectOptions:New();

@@ -9,7 +9,7 @@ local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
 
 function credits.RegisterOptionsTable()
     LibStub("AceConfig-3.0"):RegisterOptionsTable("Credits", options.OptionsTable.args.Credits);
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Credits", "Credits", addon.MetaData.Title);
+    LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Credits", "Credits", addon.Metadata.Title);
 end
 
 function credits.PostLoad()

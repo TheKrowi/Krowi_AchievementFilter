@@ -15,7 +15,7 @@ local function ReplaceVarsWithMenu(str, vars)
     vars["gameMenu"] = addon.L["Game Menu"];
     vars["interface"] = addon.L["Interface"];
     vars["addOns"] = addon.L["AddOns"];
-    vars["addonName"] = addon.MetaData.Title;
+    vars["addonName"] = addon.Metadata.Title;
     return addon.Util.ReplaceVars(str, vars);
 end
 string.ReplaceVarsWithMenu = ReplaceVarsWithMenu;
@@ -56,7 +56,7 @@ function tutorials.Load()
             events = L["Events"]:SetColorYellow(),
             pvp = L["PvP"]:SetColorYellow(),
             specials = L["Specials"]:SetColorYellow(),
-            addonName_y = addon.MetaData.Title:SetColorYellow(),
+            addonName_y = addon.Metadata.Title:SetColorYellow(),
             layout = L["Layout"],
             tabs = L["Tabs"],
             pluginText = ""
@@ -388,7 +388,7 @@ function tutorials.Load()
     });
 
     tutorials.FeaturesTutorial = tutorials:New("FeaturesTutorial", KrowiAF_SavedData);
-    tutorials.FeaturesTutorial:SetFrameTitle(addon.MetaData.Title .. " - " .. addon.MetaData.BuildVersion);
+    tutorials.FeaturesTutorial:SetFrameTitle(addon.Metadata.Title .. " - " .. addon.Metadata.BuildVersion);
     tutorials.FeaturesTutorial:SetPages(pages);
     tutorials.FeaturesTutorial:SetImageMargin(10);
     tutorials.FeaturesTutorial:SetTextMargin({10, 0, 10, 20});

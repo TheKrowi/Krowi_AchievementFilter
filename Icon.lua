@@ -9,7 +9,7 @@ local icon = addon.Icon; -- Local icon object
 local function CreateIcon()
     icon.AchievementFilterLDB = LibStub("LibDataBroker-1.1"):NewDataObject("Krowi_AchievementFilterLDB", {
         type = "launcher",
-        label = addon.MetaData.Title,
+        label = addon.Metadata.Title,
         icon = "Interface/Icons/achievement_dungeon_heroic_gloryoftheraider",
         OnClick = function(self, button)
             -- diagnostics.Debug("Icon clicked with " .. button);
@@ -23,7 +23,7 @@ local function CreateIcon()
         end,
         OnTooltipShow = function(tt)
             tt:ClearLines();
-            tt:AddDoubleLine(addon.MetaData.Title, addon.MetaData.BuildVersion);
+            tt:AddDoubleLine(addon.Metadata.Title, addon.Metadata.BuildVersion);
             -- tt:AddLine(" "); -- Empty line
 		    GameTooltip_AddBlankLineToTooltip(tt);
             tt:AddLine(addon.L["Left click"] .. " " .. addon.L["Icon Left click"]:SetColorAddonBlue());

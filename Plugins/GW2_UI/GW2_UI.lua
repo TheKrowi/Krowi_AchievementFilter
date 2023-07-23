@@ -1262,7 +1262,7 @@ end
 
 local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
 function gw2_ui.InjectOptions()
-    local pluginTable = KrowiAF_InjectOptions.AddPluginTable("GW2_UI", addon.L["GW2_UI"], "", function()
+    local pluginTable = KrowiAF_InjectOptions:AddPluginTable("GW2_UI", addon.L["GW2_UI"], "", function()
         return GW2_ADDON ~= nil and gw2_ui.IsLoaded();
     end);
 

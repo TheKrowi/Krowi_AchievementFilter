@@ -12,7 +12,7 @@ function iat.InjectOptions()
 
     local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
     local desc = addon.L["Instance Achievement Tracker Desc"]:ReplaceVars(addon.L["Instance Achievement Tracker"]);
-    local pluginTable = KrowiAF_InjectOptions.AddPluginTable("InstanceAchievementTracker", addon.L["Instance Achievement Tracker"], desc, function()
+    local pluginTable = KrowiAF_InjectOptions:AddPluginTable("InstanceAchievementTracker", addon.L["Instance Achievement Tracker"], desc, function()
         return iat.IsLoaded();
     end);
     KrowiAF_InjectOptions:AddTable(pluginTable, "AddToRightClickMenu", {

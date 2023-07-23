@@ -19,7 +19,7 @@ LibStub(addon.Libs.AceEvent):Embed(addon.Event);
 addon.Tabs.Load();
 
 -- [[ Binding names ]] --
-BINDING_HEADER_KrowiAF = addon.MetaData.Title;
+BINDING_HEADER_KrowiAF = addon.Metadata.Title;
 
 -- [[ Faction data ]] --
 addon.Faction = {};
@@ -36,7 +36,8 @@ loadHelper:RegisterEvent("ACHIEVEMENT_EARNED");
 
 local function LoadKrowi_AchievementFilter()
     KrowiAF_InjectOptions:SetOptionsTable(addon.Options.OptionsTable);
-    KrowiAF_InjectOptions:SetOptions(addon.Options.Defaults.profile);
+    KrowiAF_InjectOptions:SetDefaultOptions(addon.Options.Defaults.profile);
+    -- KrowiAF_InjectOptions:SetWidthMultiplier(addon.Options.WidthMultiplier);
 
     addon.Diagnostics.Load();
 

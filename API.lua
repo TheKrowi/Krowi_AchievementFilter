@@ -149,100 +149,100 @@ do --[[ KrowiAF_GetOptions ]]
 end
 
 do --[[ KrowiAF_InjectOptions ]]
-	KrowiAF_InjectOptions = {};
+	-- KrowiAF_InjectOptions = {};
 
-	function KrowiAF_InjectOptions:SetOptionsTable(optionsTable)
-        self.OptionsTable = optionsTable;
-    end
+	-- function KrowiAF_InjectOptions:SetOptionsTable(optionsTable)
+    --     self.OptionsTable = optionsTable;
+    -- end
 
-	function KrowiAF_InjectOptions:AddTable(destTablePath, key, table)
-		local destTable;
-		if type(destTablePath) == "table" then
-			destTable = destTablePath;
-		elseif type(destTablePath) == "string" then
-			destTable = self.OptionsTable.args;
-			local pathParts = strsplittable(".", destTablePath);
-			for _, part in next, pathParts do
-				destTable = destTable[part];
-			end
-		end
-		destTable[key] = table;
-		return destTable[key];
-	end
+	-- function KrowiAF_InjectOptions:AddTable(destTablePath, key, table)
+	-- 	local destTable;
+	-- 	if type(destTablePath) == "table" then
+	-- 		destTable = destTablePath;
+	-- 	elseif type(destTablePath) == "string" then
+	-- 		destTable = self.OptionsTable.args;
+	-- 		local pathParts = strsplittable(".", destTablePath);
+	-- 		for _, part in next, pathParts do
+	-- 			destTable = destTable[part];
+	-- 		end
+	-- 	end
+	-- 	destTable[key] = table;
+	-- 	return destTable[key];
+	-- end
 
-	function KrowiAF_InjectOptions:TableExists(destTablePath)
-		local destTable = self.OptionsTable.args;
-		local pathParts = strsplittable(".", destTablePath);
-		for _, part in next, pathParts do
-			destTable = destTable[part];
-		end
-		return destTable and true or false;
-	end
+	-- function KrowiAF_InjectOptions:TableExists(destTablePath)
+	-- 	local destTable = self.OptionsTable.args;
+	-- 	local pathParts = strsplittable(".", destTablePath);
+	-- 	for _, part in next, pathParts do
+	-- 		destTable = destTable[part];
+	-- 	end
+	-- 	return destTable and true or false;
+	-- end
 
-    function KrowiAF_InjectOptions:SetOptions(options)
-        self.Options = options;
-    end
+    -- function KrowiAF_InjectOptions:SetOptions(options)
+    --     self.Options = options;
+    -- end
 
-	function KrowiAF_InjectOptions:AddDefaults(destTablePath, key, table)
-		local destTable = self.Options;
-		local pathParts = strsplittable(".", destTablePath);
-		for _, part in next, pathParts do
-			destTable = destTable[part];
-		end
-		destTable[key] = table;
-	end
+	-- function KrowiAF_InjectOptions:AddDefaults(destTablePath, key, table)
+	-- 	local destTable = self.Options;
+	-- 	local pathParts = strsplittable(".", destTablePath);
+	-- 	for _, part in next, pathParts do
+	-- 		destTable = destTable[part];
+	-- 	end
+	-- 	destTable[key] = table;
+	-- end
 
-	function KrowiAF_InjectOptions:DefaultsExists(destTablePath)
-		local destTable = self.Options;
-		local pathParts = strsplittable(".", destTablePath);
-		for _, part in next, pathParts do
-			destTable = destTable[part];
-		end
-		return destTable and true or false;
-	end
+	-- function KrowiAF_InjectOptions:DefaultsExists(destTablePath)
+	-- 	local destTable = self.Options;
+	-- 	local pathParts = strsplittable(".", destTablePath);
+	-- 	for _, part in next, pathParts do
+	-- 		destTable = destTable[part];
+	-- 	end
+	-- 	return destTable and true or false;
+	-- end
 
-	local autoOrder = 1;
-	function KrowiAF_InjectOptions.AutoOrderPlusPlus(amount)
-		local current = autoOrder;
-		autoOrder = autoOrder + (1 or amount);
-		return current;
-	end
+	-- local autoOrder = 1;
+	-- function KrowiAF_InjectOptions.AutoOrderPlusPlus(amount)
+	-- 	local current = autoOrder;
+	-- 	autoOrder = autoOrder + (1 or amount);
+	-- 	return current;
+	-- end
 
-	function KrowiAF_InjectOptions.PlusPlusAutoOrder(amount)
-		autoOrder = autoOrder + (1 or amount);
-		return autoOrder;
-	end
+	-- function KrowiAF_InjectOptions.PlusPlusAutoOrder(amount)
+	-- 	autoOrder = autoOrder + (1 or amount);
+	-- 	return autoOrder;
+	-- end
 
-	function KrowiAF_InjectOptions.AdjustedWidth(number)
-		return (number or 1) * addon.Options.WidthMultiplier;
-	end
+	-- function KrowiAF_InjectOptions.AdjustedWidth(number)
+	-- 	return (number or 1) * addon.Options.WidthMultiplier;
+	-- end
 
-	local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
-	function KrowiAF_InjectOptions.AddPluginTable(pluginName, pluginDisplayName, desc, loadedFunc)
-		return KrowiAF_InjectOptions:AddTable("Plugins.args", pluginName, {
-			type = "group",
-			name = pluginDisplayName,
-			args = {
-				Loaded = {
-					order = OrderPP(), type = "toggle", width = "full",
-					name = addon.L["Loaded"],
-					desc = addon.L["Loaded Desc"],
-					descStyle = "inline",
-					get = loadedFunc,
-					disabled = true
-				},
-				Line = {
-					order = OrderPP(), type = "header", width = "full",
-					name = ""
-				},
-				Description = {
-					order = OrderPP(), type = "description", width = "full",
-					name = desc,
-					fontSize = "medium"
-				}
-			}
-		}).args;
-	end
+	-- local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
+	-- function KrowiAF_InjectOptions.AddPluginTable(pluginName, pluginDisplayName, desc, loadedFunc)
+	-- 	return KrowiAF_InjectOptions:AddTable("Plugins.args", pluginName, {
+	-- 		type = "group",
+	-- 		name = pluginDisplayName,
+	-- 		args = {
+	-- 			Loaded = {
+	-- 				order = OrderPP(), type = "toggle", width = "full",
+	-- 				name = addon.L["Loaded"],
+	-- 				desc = addon.L["Loaded Desc"],
+	-- 				descStyle = "inline",
+	-- 				get = loadedFunc,
+	-- 				disabled = true
+	-- 			},
+	-- 			Line = {
+	-- 				order = OrderPP(), type = "header", width = "full",
+	-- 				name = ""
+	-- 			},
+	-- 			Description = {
+	-- 				order = OrderPP(), type = "description", width = "full",
+	-- 				name = desc,
+	-- 				fontSize = "medium"
+	-- 			}
+	-- 		}
+	-- 	}).args;
+	-- end
 end
 
 do --[[ KrowiAF_RegisterTabOptions ]]
@@ -327,7 +327,7 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 		-- and tName == "Guild"
 		-- and tab.Name == "Statistics" then
 		-- 	StaticPopupDialogs["KROWIAF_ERROR_TABSORDER"] = {
-		-- 		text = addon.MetaData.Title .. "\n\n" .. addon.L["Error Tabs Order"]:ReplaceVars
+		-- 		text = addon.Metadata.Title .. "\n\n" .. addon.L["Error Tabs Order"]:ReplaceVars
 		-- 		{
 		-- 			blizzard = addon.L["Blizzard"],
 		-- 			statistics = addon.L["Statistics"],
