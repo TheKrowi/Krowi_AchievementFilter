@@ -29,3 +29,7 @@
 <ul>
 <li>Zygor Guides Viewer should once again give a proper message when a guide is not found</li>
 </ul>
+<p><h3>Fixed (59.4)</h3></p>
+<ul>
+<li>GW2 UI plugin</li>
+</ul>

@@ -21,3 +21,6 @@
 
 ### Fixed (59.3)
 - Zygor Guides Viewer should once again give a proper message when a guide is not found
+
+### Fixed (59.4)
+- GW2 UI plugin

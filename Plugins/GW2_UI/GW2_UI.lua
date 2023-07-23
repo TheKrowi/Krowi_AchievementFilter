@@ -1357,8 +1357,30 @@ function gw2_ui.Load()
 end
 
 function gw2_ui.IsLoaded()
-    if addon.IsDragonflightRetail then
-        return IsAddOnLoaded("GW2_UI") and (GetAddOnMetadata("GW2_UI", "Version") >= "6.6.1" or GetAddOnMetadata("GW2_UI", "Version") == "@project-version@");
+    if not IsAddOnLoaded("GW2_UI") then
+        return false;
     end
-    return false; -- No Wrath Classic support for now
+    if not addon.IsDragonflightRetail then -- No Wrath Classic support for now
+        return false;
+    end
+    if GetAddOnMetadata("GW2_UI", "Version") == "@project-version@" then
+        return true;
+    end
+
+    local versionComponents = strsplittable(".", GetAddOnMetadata("GW2_UI", "Version"));
+    local referenceComponents = strsplittable(".", "6.6.1");
+
+    local i = 1;
+    while i <= #versionComponents and i <= #referenceComponents do
+        local versionComponent = tonumber(versionComponents[i]);
+        local referenceComponent = tonumber(referenceComponents[i]);
+
+        if versionComponent > referenceComponent then
+            return true;
+        elseif versionComponent < referenceComponent then
+            return false;
+        end
+
+        i = i + 1;
+    end
 end

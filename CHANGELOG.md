@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 59.4 - 2023-07-23
+### Fixed
+- GW2 UI plugin
+
 ## 59.3 - 2023-07-21
 ### Fixed
 - Zygor Guides Viewer should once again give a proper message when a guide is not found
