@@ -5,7 +5,7 @@ options.Credits = {};
 local credits = options.Credits;
 tinsert(options.OptionsTables, credits);
 
-local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
+local OrderPP = addon.InjectOptions.AutoOrderPlusPlus;
 
 function credits.RegisterOptionsTable()
     LibStub("AceConfig-3.0"):RegisterOptionsTable("Credits", options.OptionsTable.args.Credits);
@@ -15,7 +15,7 @@ end
 function credits.PostLoad()
     local specialThanks = addon.Credits.GetSpecialThanksAsTable();
     for i, specialTnx in next, specialThanks do
-        KrowiAF_InjectOptions:AddTable("Credits.args.SpecialThanks.args", "Name" .. i, {
+        addon.InjectOptions:AddTable("Credits.args.SpecialThanks.args", "Name" .. i, {
             order = OrderPP(), type = "description", width = "full",
             name = specialTnx,
             fontSize = "medium"
@@ -24,7 +24,7 @@ function credits.PostLoad()
 
     local donations = addon.Credits.GetDonationsAsTable();
     for i, donation in next, donations do
-        KrowiAF_InjectOptions:AddTable("Credits.args.Donations.args", "Name" .. i, {
+        addon.InjectOptions:AddTable("Credits.args.Donations.args", "Name" .. i, {
             order = OrderPP(), type = "description", width = "full",
             name = donation,
             fontSize = "medium"
@@ -33,7 +33,7 @@ function credits.PostLoad()
 
     local localizations = addon.Credits.GetLocalizationsAsTable();
     for i, localization in next, localizations do
-        KrowiAF_InjectOptions:AddTable("Credits.args.Localizations.args", "Name" .. i, {
+        addon.InjectOptions:AddTable("Credits.args.Localizations.args", "Name" .. i, {
             order = OrderPP(), type = "description", width = "full",
             name = localization,
             fontSize = "medium"

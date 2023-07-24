@@ -118,7 +118,7 @@ end
 function ShowWrathClassicDeleteCharacterConfirmation(self)
     -- GENERIC_CONFIRMATION
     StaticPopupDialogs["KrowiAF_ConfirmDeleteCharacter"] = {
-        text = addon.L["Are you sure you want to delete character?"]:ReplaceVars
+        text = addon.L["Are you sure you want to delete character?"]:K_ReplaceVars
             {
                 character = KrowiAF_SavedData.Characters[self.Guid].Name:SetColorYellow(),
                 ignore = addon.L["Ignore"]:SetColorYellow()
@@ -146,7 +146,7 @@ function KrowiAF_CharacterListEntryMixin:DeleteCharacterFunction()
     if not StaticPopup_IsCustomGenericConfirmationShown("KrowiAF_ConfirmDeleteCharacter") then
         StaticPopup_ShowCustomGenericConfirmation(
             {
-                text = addon.L["Are you sure you want to delete character?"]:ReplaceVars
+                text = addon.L["Are you sure you want to delete character?"]:K_ReplaceVars
                 {
                     character = KrowiAF_SavedData.Characters[self.Guid].Name:SetColorYellow(),
                     ignore = addon.L["Ignore"]:SetColorYellow()

@@ -57,13 +57,13 @@ local function AddTooltipLine(tooltip, tooltipLine)
         color = addon.Util.Colors.RedRGB;
     end
     if tooltipLine.CriteriaIndex ~= 0 then
-        text = text:ReplaceVars{
+        text = text:K_ReplaceVars{
             forAchievement = addon.Options.db.Tooltip.Criteria.ShowForAchievement and addon.L["for achievement"] or ""
         };
     else
         text = name;
     end
-    tooltip:AddLine(icon .. " |T" .. achievementIcon .. ":0|t " .. string.trim(text:ReplaceVars{
+    tooltip:AddLine(icon .. " |T" .. achievementIcon .. ":0|t " .. string.trim(text:K_ReplaceVars{
         achievement = name
     }), color.R, color.G, color.B);
     if addon.Diagnostics.DebugEnabled() then

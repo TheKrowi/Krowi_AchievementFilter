@@ -18,9 +18,7 @@ options.OptionsTable = {
     args = {}
 };
 
--- KrowiAF_InjectOptions:SetOptionsTable(options.OptionsTable);
--- KrowiAF_InjectOptions:SetDefaultOptions(options.Defaults.profile);
-KrowiAF_InjectOptions:SetWidthMultiplier(options.WidthMultiplier);
+addon.InjectOptions:SetWidthMultiplier(options.WidthMultiplier);
 
 function options.SetMaxNumberOfSearchPreviews()
     local numberOfSearchPreviews = KrowiAF_GetOptions.GetTable(addon.Metadata.Title, "args.Search.args.SearchPreview.args.NumberOfSearchPreviews");
@@ -64,7 +62,7 @@ function options.Load()
 end
 
 string["InjectAddonName_KAF"] = function(str)
-    return str:ReplaceVars{addonName = addon.Metadata.Title};
+    return str:K_ReplaceVars{addonName = addon.Metadata.Title};
 end
 
 string["AddDefaultValueText_KAF"] = function(self, valuePath, values)

@@ -9,5 +9,4 @@ libs.Krowi_Util = "Krowi_Util-1.0";
 -- [[ Personal libraries ]] --
 addon.Util = LibStub(addon.Libs.Krowi_Util);
 addon.Metadata = addon.Util.Metadata.GetAddOnMetadata(addonName);
-
-KrowiAF_InjectOptions = addon.Util.InjectOptions:New();
+addon.InjectOptions = addon.Util.InjectOptions:New();

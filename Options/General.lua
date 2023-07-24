@@ -5,8 +5,8 @@ options.General = {};
 local general = options.General;
 tinsert(options.OptionsTables, general);
 
-local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
-local AdjustedWidth = KrowiAF_InjectOptions.AdjustedWidth;
+local OrderPP = addon.InjectOptions.AutoOrderPlusPlus;
+local AdjustedWidth = addon.InjectOptions.AdjustedWidth;
 
 function general.RegisterOptionsTable()
     LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.Metadata.Title, options.OptionsTable.args.General);
@@ -166,7 +166,7 @@ options.OptionsTable.args["General"] = {
                         Discord = {
                             order = OrderPP(), type = "execute", width = AdjustedWidth(),
                             name = addon.L["Discord"],
-                            desc = addon.L["Discord Desc"]:ReplaceVars(addon.Metadata.DiscordServerName),
+                            desc = addon.L["Discord Desc"]:K_ReplaceVars(addon.Metadata.DiscordServerName),
                             func = function() LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(addon.Metadata.DiscordInviteLink); end
                         }
                     }
@@ -178,19 +178,19 @@ options.OptionsTable.args["General"] = {
                         CurseForge = {
                             order = OrderPP(), type = "execute", width = AdjustedWidth(),
                             name = addon.L["CurseForge"],
-                            desc = addon.L["CurseForge Desc"]:InjectAddonName_KAF():ReplaceVars(addon.L["CurseForge"]),
+                            desc = addon.L["CurseForge Desc"]:InjectAddonName_KAF():K_ReplaceVars(addon.L["CurseForge"]),
                             func = function() LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(addon.Metadata.CurseForge); end
                         },
                         Wago = {
                             order = OrderPP(), type = "execute", width = AdjustedWidth(),
                             name = addon.L["Wago"],
-                            desc = addon.L["Wago Desc"]:InjectAddonName_KAF():ReplaceVars(addon.L["Wago"]),
+                            desc = addon.L["Wago Desc"]:InjectAddonName_KAF():K_ReplaceVars(addon.L["Wago"]),
                             func = function() LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(addon.Metadata.Wago); end
                         },
                         WoWInterface = {
                             order = OrderPP(), type = "execute", width = AdjustedWidth(),
                             name = addon.L["WoWInterface"],
-                            desc = addon.L["WoWInterface Desc"]:InjectAddonName_KAF():ReplaceVars(addon.L["WoWInterface"]),
+                            desc = addon.L["WoWInterface Desc"]:InjectAddonName_KAF():K_ReplaceVars(addon.L["WoWInterface"]),
                             func = function() LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(addon.Metadata.WoWInterface); end
                         }
                     }
@@ -276,7 +276,7 @@ options.OptionsTable.args["General"] = {
                                 SetKeybind = {
                                     order = OrderPP(), type = "execute", width = AdjustedWidth(0.9),
                                     name = addon.L["Set Keybind"],
-                                    desc = addon.L["Set Keybind Desc"]:ReplaceVars(addon.L["Key Bindings"]),
+                                    desc = addon.L["Set Keybind Desc"]:K_ReplaceVars(addon.L["Key Bindings"]),
                                     func = MicroButtonSetKeybindFunc
                                 }
                             }
@@ -303,8 +303,8 @@ options.OptionsTable.args["General"] = {
                                 },
                                 ToggleWatchList = {
                                     order = OrderPP(), type = "select", width = AdjustedWidth(0.93),
-                                    name = addon.L["Add to / Remove from Watch List"]:ReplaceVars(addon.L["Watch List"]),
-                                    desc = addon.L["Add to / Remove from Watch List"]:ReplaceVars(addon.L["Watch List"]):AddDefaultValueText_KAF("Achievements.Modifiers.ToggleWatchList", addon.Modifiers),
+                                    name = addon.L["Add to / Remove from Watch List"]:K_ReplaceVars(addon.L["Watch List"]),
+                                    desc = addon.L["Add to / Remove from Watch List"]:K_ReplaceVars(addon.L["Watch List"]):AddDefaultValueText_KAF("Achievements.Modifiers.ToggleWatchList", addon.Modifiers),
                                     values = addon.Modifiers,
                                     get = function() return addon.Options.db.Achievements.Modifiers.ToggleWatchList; end,
                                     set = function(_, value) addon.Options.db.Achievements.Modifiers.ToggleWatchList = value; end
@@ -433,7 +433,7 @@ options.OptionsTable.args["General"] = {
                         ResetFactionFilter = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(),
                             name = addon.L["Reset Faction Filters"],
-                            desc = addon.L["Reset Faction Filters Desc"]:ReplaceVars{
+                            desc = addon.L["Reset Faction Filters Desc"]:K_ReplaceVars{
                                 neutral = addon.L["Neutral"],
                                 alliance = addon.L["Alliance"],
                                 horde = addon.L["Horde"]

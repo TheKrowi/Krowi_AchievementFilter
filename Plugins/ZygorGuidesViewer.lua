@@ -69,7 +69,7 @@ function zygorGuidesViewer:OnEvent(event, arg1, arg2)
 end
 
 function zygorGuidesViewer.InjectOptions()
-    KrowiAF_InjectOptions:AddPluginTable("ZygorGuidesViewer", addon.L["Zygor Guides Viewer"], addon.L["Zygor Guides Viewer Desc"], function()
+    addon.InjectOptions:AddPluginTable("ZygorGuidesViewer", addon.L["Zygor Guides Viewer"], addon.L["Zygor Guides Viewer Desc"], function()
         return IsAddOnLoaded("ZygorGuidesViewer");
     end);
 end

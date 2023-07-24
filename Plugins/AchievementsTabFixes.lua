@@ -6,15 +6,15 @@ local achievementsTabFixes = plugins.AchievementsTabFixes;
 tinsert(plugins.Plugins, achievementsTabFixes);
 
 function achievementsTabFixes.InjectOptions()
-    KrowiAF_InjectOptions:AddDefaults("Plugins", "AchievementsTabFixes", {
+    addon.InjectOptions:AddDefaults("Plugins", "AchievementsTabFixes", {
         RenameExplorationDragonIslesCategory = true;
     });
 
-    local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
-    local pluginTable = KrowiAF_InjectOptions:AddPluginTable("AchievementsTabFixes", addon.L["AchievementsTabFixes"], addon.L["AchievementsTabFixes Desc"], function()
+    local OrderPP = addon.InjectOptions.AutoOrderPlusPlus;
+    local pluginTable = addon.InjectOptions:AddPluginTable("AchievementsTabFixes", addon.L["AchievementsTabFixes"], addon.L["AchievementsTabFixes Desc"], function()
         return true;
     end);
-    KrowiAF_InjectOptions:AddTable(pluginTable, "RenameExplorationDragonIslesCategory", {
+    addon.InjectOptions:AddTable(pluginTable, "RenameExplorationDragonIslesCategory", {
         order = OrderPP(), type = "toggle", width = "full",
         name = addon.L["RenameExplorationDragonIslesCategory"],
         desc = addon.L["RenameExplorationDragonIslesCategory Desc"]:AddDefaultValueText_KAF("Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory"),

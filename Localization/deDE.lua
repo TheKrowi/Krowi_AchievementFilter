@@ -1,8 +1,8 @@
--- [[ Exported at 2023-07-18 18-35-31 ]] --
+-- [[ Exported at 2023-07-24 22-32-00 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
--- [[ German translation by Ta, 2023-07-04 ]] --
+-- [[ German translation by Ta, 2023-07-21 ]] --
 
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
@@ -17,38 +17,8 @@ addon.ExtraWrathStrings.deDE.Load(L);
 addon.PluginStrings.deDE.Load(L);
 addon.GlobalStrings.Load(L);
 addon.Plugins:LoadLocalization(L);
+addon.Util.Localization.deDE.Load(L);
 
-L["Central Circuit"] = "Zentralrundstrecke";
-L["Passage Pathway"] = "Weg durch die Passage";
-L["Hide Date Completed Desc"] = "Verbirgt das Datum, an dem der Erfolg abgeschlossen wurde.";
-L["Show pop ups on login delay Desc"] = "Verzögern Sie das Einblenden der ersten Ereignis-Popups beim Einloggen.";
-L["Grow direction"] = "Richtung";
-L["Grow direction Desc"] = "Die Richtung, in der neue Benachrichtigungs-Fenster hinzugefügt werden sollen.";
-L["Show placeholders Desc"] = "Zeigt eine Reihe von Platzhalter-Ereignissen an, um eine visuelle Anzeige der Wirkung der oben genannten Einstellungen zu ermöglichen. Sie können wieder geschlossen werden, indem Sie die Maus über sie bewegen oder mit der rechten Maustaste darauf klicken.";
-L["Placeholder"] = "Platzhalter";
-L["Only when time data is available"] = "Nur wenn Zeit-Daten verfügbar sind";
-L["Show alertSystem on login only when time data is available Desc"] = "Das Ereignis {alertSystem} beim Beitritt zum Spiel nur anzeigen/ausblenden, wenn noch eine Restzeit für das Ereignis vorhanden ist.";
-L["Show alertSystem on event start only when time data is available Desc"] = "Das Ereignis {alertSystem} für ein Ereignis das gerade beginnt nur anzeigen/ausblenden, wenn noch eine Restzeit für das Ereignis verfügbar ist";
-L["Needs to be completed for achievement"] = "Muss noch {forAchievement} abgeschlossen werden";
-L["Already completed for achievement"] = "Schon abgeschlossen {forAchievement}";
-L["Most progress"] = "Fortschritt";
-L["Number of Most progress characters"] = "Anzahl der Charaktere mit den größten Erfolgs-Fortschritten";
-L["Number of Most progress characters Desc"] = "Die Anzahl der Charaktere, die angezeigt werden, die schon einen Erfolgs-Fortschritt gemacht haben.\n\nWenn Sie den Wert 0 einstellen, wird diese Funktion deaktiviert.";
-L["Show alertSystem on reload Desc"] = "Ereignis {alertSystem} anzeigen/ausblenden, wenn das Spiel neu geladen wird.";
-L["Show alertSystem on reload in instances Desc"] = "Ereignis {alertSystem} anzeigen/ausblenden, wenn das Spiel innerhalb einer Instanz neu geladen wird.";
-L["Show alertSystem on reload only when time data is available Desc"] = "Das Ereignis {alertSystem} beim Neuladen des Spiels nur anzeigen/ausblenden, wenn noch Restzeit für das Ereignis vorhanden ist.";
-L["Active events"] = "Aktive Ereignisse";
-L["Ignore Filters"] = "Filter Ingorieren";
-L["Ignore Filters Desc"] = "Ignoriere jegliche Filter und zeige alle Erfolge in dieser {category}.";
-L["until the end of"] = "bis zum Ende von";
-L["Always Show Completed"] = "Erreichte Erfolge anzeigen";
-L["Show Faction Faction Icon"] = "Zeige {faction} Fraktions Symbol";
-L["Show Faction Faction Icon Desc"] = "Zeigt das {faction} Fraktionssymbol auf den Erfolgen an, wenn nur {faction} Spieler diese verdienen können.";
-L["Mouse Wheel Scroll Speed"] = "Maus Rad Scroll-Geschwindigkeit";
-L["Mouse Wheel Scroll Speed Desc"] = "Die Anzahl der {items}, die beim Klicken auf die Buttons nach oben/unten in der Scroll-Leiste oder beim Drehen des Mausrads neu angezeigt werden.";
-L["Side Window"] = "Scroll-Leiste";
-L["Click here to view in achievement window"] = "Hier klicken, um im Erfolgs-Fenster anzuzeigen";
-L["Click here to view in achievements"] = "Im Erfolgs-Fenster öffnen";
 L["Achievement points earned by"] = "Erfolgspunkte erzielt durch";
 L["Achievements"] = "Erfolge";
 L["Expansions"] = "Addons";
@@ -469,6 +439,7 @@ L["Ravine River Run"] = "Schluchtflusslauf";
 L["River Rapids Route"] = "Stromschnellenstrecke";
 L["Sundapple Copse Circuit"] = "Sonnentüpfelheinstrecke";
 L["Archive Ambit"] = "Archivring";
+L["Central Circuit"] = "Zentralrundstrecke";
 L["Iskaara Flyover"] = "Iskaara-Überflug";
 L["The Azure Span Slalom"] = "Slalom des Azurblauen Gebirges";
 L["The Azure Span Sprint"] = "Sprint des Azurblauen Gebirges";
@@ -477,6 +448,7 @@ L["Academy Ascent"] = "Akademieaufstieg";
 L["Caverns Criss-Cross"] = "Kreuz und quer durch die Höhlen";
 L["Cliffside Circuit"] = "Klippenrundstrecke";
 L["Garden Gallivant"] = "Gartenpromenade";
+L["Passage Pathway"] = "Weg durch die Passage";
 L["The Flowing Forest Flight"] = "Flug des Wallenden Walds";
 L["Dragonriding"] = "Drachenreiten";
 L["This achievement"] = "Dieser Erfolg";
@@ -610,18 +582,47 @@ L["Default value"] = "Vorgabewert (Standard)";
 L["Unchecked"] = "Nicht aktiviert";
 L["Checked"] = "Aktivert";
 L["Hide Date Completed"] = "Erfolgs Abschluss-Datum verbergen";
-L["Login Delay"] = "Verzögerung";
+L["Hide Date Completed Desc"] = "Verbirgt das Datum, an dem der Erfolg abgeschlossen wurde.";
+L["Login Delay"] = "Login Verzögerung";
+L["Show pop ups on login delay Desc"] = "Verzögern Sie das Einblenden der ersten Ereignis-Popups beim Einloggen.";
 L["Up"] = "Hoch";
 L["Down"] = "Runter";
 L["Location"] = "Ort";
+L["Grow direction"] = "Richtung";
+L["Grow direction Desc"] = "Die Richtung, in der neue Benachrichtigungs-Fenster hinzugefügt werden sollen.";
 L["XYZ offset"] = "{xyz} offset";
 L["X offset Desc"] = "Der horizontale Versatz von der Startposition.";
 L["Y offset Desc"] = "Der vertikale Versatz von der Startposition.";
+L["Show placeholders Desc"] = "Zeigt eine Reihe von Platzhalter-Ereignissen an, um eine visuelle Anzeige der Wirkung der oben genannten Einstellungen zu ermöglichen. Sie können wieder geschlossen werden, indem Sie die Maus über sie bewegen oder mit der rechten Maustaste darauf klicken.";
+L["Placeholder"] = "Platzhalter";
 L["Chat messages"] = "Chat-Mitteilungen";
 L["Diablo IV"] = "Diablo IV";
+L["Only when time data is available"] = "Nur wenn Zeit-Daten verfügbar sind";
+L["Show alertSystem on login only when time data is available Desc"] = "Das Ereignis {alertSystem} beim Beitritt zum Spiel nur anzeigen/ausblenden, wenn noch eine Restzeit für das Ereignis vorhanden ist.";
+L["Show alertSystem on event start only when time data is available Desc"] = "Das Ereignis {alertSystem} für ein Ereignis das gerade beginnt nur anzeigen/ausblenden, wenn noch eine Restzeit für das Ereignis verfügbar ist";
+L["Needs to be completed for achievement"] = "Muss noch {forAchievement} abgeschlossen werden";
+L["Already completed for achievement"] = "Schon abgeschlossen {forAchievement}";
+L["Most progress"] = "Fortschritt";
+L["Number of Most progress characters"] = "Anzahl der Charaktere mit den größten Erfolgs-Fortschritten";
+L["Number of Most progress characters Desc"] = "Die Anzahl der Charaktere, die angezeigt werden, die schon einen Erfolgs-Fortschritt gemacht haben.\n\nWenn Sie den Wert 0 einstellen, wird diese Funktion deaktiviert.";
 L["On Login"] = "Beim Login";
 L["On Reload"] = "Nach einem Reload";
+L["Show alertSystem on reload Desc"] = "Ereignis {alertSystem} anzeigen/ausblenden, wenn das Spiel neu geladen wird.";
+L["Show alertSystem on reload in instances Desc"] = "Ereignis {alertSystem} anzeigen/ausblenden, wenn das Spiel innerhalb einer Instanz neu geladen wird.";
+L["Show alertSystem on reload only when time data is available Desc"] = "Das Ereignis {alertSystem} beim Neuladen des Spiels nur anzeigen/ausblenden, wenn noch Restzeit für das Ereignis vorhanden ist.";
+L["Active events"] = "Aktive Ereignisse";
+L["Ignore Filters"] = "Filter Ingorieren";
+L["Ignore Filters Desc"] = "Ignoriere jegliche Filter und zeige alle Erfolge in dieser {category}.";
+L["until the end of"] = "bis zum Ende von";
+L["Always Show Completed"] = "Erreichte Erfolge anzeigen";
+L["Show Faction Faction Icon"] = "Zeige {faction} Fraktions Symbol";
+L["Show Faction Faction Icon Desc"] = "Zeigt das {faction} Fraktionssymbol auf den Erfolgen an, wenn nur {faction} Spieler diese verdienen können.";
+L["Mouse Wheel Scroll Speed"] = "Maus Rad Scroll-Geschwindigkeit";
+L["Mouse Wheel Scroll Speed Desc"] = "Die Anzahl der {items}, die beim Klicken auf die Buttons nach oben/unten in der Scroll-Leiste oder beim Drehen des Mausrads neu angezeigt werden.";
+L["Side Window"] = "Scroll-Leiste";
 L["Categories"] = "Kategorien";
+L["Click here to view in achievement window"] = "Hier klicken, um im Erfolgs-Fenster anzuzeigen";
+L["Click here to view in achievements"] = "Im Erfolgs-Fenster öffnen";
 L["DF - Fyrakk Assault"] = "DF - Angriffe von Fyrakk";
 L["Ohn'ahran Plains"] = "Ebenen von Ohn'ahra";
 L["Azure Span"] = "Das Azurblaue Gebirge";
@@ -649,4 +650,7 @@ L["Time Rift: Active"] = "Zeitrisse: Aktiv";
 L["Time Rift: Starting Soon"] = "Zeitrisse: Starten Bald";
 L["Secrets of Azeroth"] = "Geheimnisse von Azeroth";
 L["Uncategorized"] = "Nicht kategorisiert";
+L["Side Button Anchor"] = "Seitlicher Button-Anker";
+L["Side Button Anchor Desc"] = "Das Fenster, an dem die seitlichen Buttons auf der rechten Seite angebracht werden.";
+L["World Map"] = "Welt Karte";
 

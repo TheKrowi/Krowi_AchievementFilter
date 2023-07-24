@@ -1,4 +1,4 @@
--- [[ Exported at 2023-07-18 18-35-31 ]] --
+-- [[ Exported at 2023-07-24 22-32-00 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -17,23 +17,8 @@ addon.ExtraWrathStrings.frFR.Load(L);
 addon.PluginStrings.frFR.Load(L);
 addon.GlobalStrings.Load(L);
 addon.Plugins:LoadLocalization(L);
+addon.Util.Localization.frFR.Load(L);
 
-L["Hide Date Completed Desc"] = "Masquer la date à laquelle le Haut-fait a été terminé";
-L["Show pop ups on login delay Desc"] = "Retarder l'apparition initiale des fenêtres alerte d'événement lors de la connexion";
-L["Grow direction"] = "Sens de l'annimation des rappel";
-L["Grow direction Desc"] = "La direction dans laquelle les nouveaux rappels seront ajoutés";
-L["Show placeholders Desc"] = "Afficher un lot d'alerte d'évènement fictifs pour visualiser l'effet des paramètres ci-dessus. Les alertes peuvent être refermés en passant la souris dessus et en effectuant un clic droit";
-L["Placeholder"] = "Élément fictif";
-L["Only when time data is available"] = "Uniquement lorsque les données de temps sont disponibles";
-L["Show alertSystem on login only when time data is available Desc"] = "Afficher ou masquer l'événement {alertSystem} à la connexion au jeu uniquement lorsque le temps restant de l'événement est disponible.";
-L["Show alertSystem on event start only when time data is available Desc"] = "Afficher ou masquer l'événement {alertSystem} au démarrage d'un événement uniquement lorsque le temps restant de l'événement est disponible.";
-L["Needs to be completed for achievement"] = "Doit être terminé {forAchievement}";
-L["Already completed for achievement"] = "Déjà terminé(e) {forAchievement}";
-L["Most progress"] = "Le plus de progression";
-L["Number of Most progress characters"] = "Nombre de personnages ayant le plus de progression";
-L["Number of Most progress characters Desc"] = "Le nombre de personnages qui seront affichés et qui ont une progression sur le Haut-fait\n\nLe paramétrer à 0 désactivera cette fonctionnalité.";
-L["Show alertSystem on reload Desc"] = "Afficher ou masquer l'événement {alertSystem} lors du rechargement du jeu.";
-L["Show alertSystem on reload in instances Desc"] = "Afficher ou masquer l'événement {alertSystem} lors du rechargement du jeu alors que vous êtes à l'intérieur d'une instance.";
 L["Achievement points earned by"] = "Points de Hauts faits obtenus par";
 L["Achievements"] = "Hauts faits";
 L["Expansions"] = "Extensions";
@@ -595,16 +580,47 @@ L["Default value"] = "Valeur par défaut";
 L["Unchecked"] = "Non coché";
 L["Checked"] = "Coché";
 L["Hide Date Completed"] = "Masquer la date de réalisation";
+L["Hide Date Completed Desc"] = "Masquer la date à laquelle le Haut-fait a été terminé";
 L["Login Delay"] = "Délais";
+L["Show pop ups on login delay Desc"] = "Retarder l'apparition initiale des fenêtres alerte d'événement lors de la connexion";
 L["Up"] = "Haut";
 L["Down"] = "Bas";
 L["Location"] = "Lieu";
+L["Grow direction"] = "Sens de l'annimation des rappel";
+L["Grow direction Desc"] = "La direction dans laquelle les nouveaux rappels seront ajoutés";
 L["XYZ offset"] = "Décalage XYZ";
+L["X offset Desc"] = "Décalage horizontal à partir de la position de départ";
+L["Y offset Desc"] = "Décalage vertical à partir de la position de départ";
+L["Show placeholders Desc"] = "Afficher un lot d'alerte d'évènement fictifs pour visualiser l'effet des paramètres ci-dessus. Les alertes peuvent être refermés en passant la souris dessus et en effectuant un clic droit";
+L["Placeholder"] = "Élément fictif";
 L["Chat messages"] = "Message écrit";
 L["Diablo IV"] = "Diablo IV";
+L["Only when time data is available"] = "Uniquement lorsque les données de temps sont disponibles";
+L["Show alertSystem on login only when time data is available Desc"] = "Afficher ou masquer l'événement {alertSystem} à la connexion au jeu uniquement lorsque le temps restant de l'événement est disponible.";
+L["Show alertSystem on event start only when time data is available Desc"] = "Afficher ou masquer l'événement {alertSystem} au démarrage d'un événement uniquement lorsque le temps restant de l'événement est disponible.";
+L["Needs to be completed for achievement"] = "Doit être terminé {forAchievement}";
+L["Already completed for achievement"] = "Déjà terminé(e) {forAchievement}";
+L["Most progress"] = "Le plus de progression";
+L["Number of Most progress characters"] = "Nombre de personnages ayant le plus de progression";
+L["Number of Most progress characters Desc"] = "Le nombre de personnages qui seront affichés et qui ont une progression sur le Haut-fait\n\nLe paramétrer à 0 désactivera cette fonctionnalité.";
 L["On Login"] = "À la connection";
 L["On Reload"] = "À la recharge de l'interface";
+L["Show alertSystem on reload Desc"] = "Afficher ou masquer l'événement {alertSystem} lors du rechargement du jeu.";
+L["Show alertSystem on reload in instances Desc"] = "Afficher ou masquer l'événement {alertSystem} lors du rechargement du jeu alors que vous êtes à l'intérieur d'une instance.";
+L["Show alertSystem on reload only when time data is available Desc"] = "Afficher ou masquer l'événement {alertSystem} lors du rechargement du jeu uniquement lorsque le temps restant de l'événement est disponible";
+L["Active events"] = "Évènement en cours";
+L["Ignore Filters"] = "Ignorer le filtre";
+L["Ignore Filters Desc"] = "Ignorer tous les filtres et afficher toutes les Hauts-faits dans la catégorie {category}";
+L["until the end of"] = "Jusqu'à la fin de";
+L["Always Show Completed"] = "Toujours montrer les Hauts-faits terminés";
+L["Show Faction Faction Icon"] = "Afficher l'icône de la faction";
+L["Show Faction Faction Icon Desc"] = "Afficher l'icône de la faction {faction} sur le Haut-fait si seuls les joueurs de la faction {faction} peuvent l'obtenir.";
+L["Mouse Wheel Scroll Speed"] = "Vitesse de défilement de la souris avec la molette.";
+L["Mouse Wheel Scroll Speed Desc"] = "Définit le nombre d'{items} qui seront défilés lorsque vous cliquez sur les boutons haut et bas de la barre de défilement ou lors de l'utilisation de la molette de la souris";
+L["Side Window"] = "Fenêtre latérale";
 L["Categories"] = "Catégories";
+L["Click here to view in achievement window"] = "Cliquez ici pour afficher dans la fenêtre des Hauts-faits";
+L["Click here to view in achievements"] = "Cliquez ici pour afficher dans les Hauts-faits";
 L["DF - Fyrakk Assault"] = "Assaut de Fyrakka";
 L["Ohn'ahran Plains"] = "Assaut de Fyrakka : Ohn'ahran";
 L["Azure Span"] = "Assaut de Fyrakka : Travée d'Azur";
@@ -631,4 +647,8 @@ L["Time Rifts"] = "Faille temporelle";
 L["Time Rift: Active"] = "Faille temporelle : En cours";
 L["Time Rift: Starting Soon"] = "Faille temporelle : Bientôt";
 L["Secrets of Azeroth"] = "Les secrets d'Azeroth";
+L["Uncategorized"] = "Sans catégorie";
+L["Side Button Anchor"] = "Ancre d'affichage des alertes d'évènements";
+L["Side Button Anchor Desc"] = "Définit sur quelle fenêtre vous voulez voir les alertes dévènements";
+L["World Map"] = "Carte du monde";
 

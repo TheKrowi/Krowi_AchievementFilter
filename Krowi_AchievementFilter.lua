@@ -11,6 +11,7 @@ addon.IsDragonflightRetail = major == "10";
 
 -- [[ Ace ]] --
 addon.L = LibStub(addon.Libs.AceLocale):GetLocale(addonName);
+addon.InjectOptions:SetLocalization(addon.L);
 addon.Localization.SetColors(addon.L);
 addon.Event = {};
 LibStub(addon.Libs.AceEvent):Embed(addon.Event);
@@ -35,9 +36,8 @@ loadHelper:RegisterEvent("PLAYER_ENTERING_WORLD");
 loadHelper:RegisterEvent("ACHIEVEMENT_EARNED");
 
 local function LoadKrowi_AchievementFilter()
-    KrowiAF_InjectOptions:SetOptionsTable(addon.Options.OptionsTable);
-    KrowiAF_InjectOptions:SetDefaultOptions(addon.Options.Defaults.profile);
-    -- KrowiAF_InjectOptions:SetWidthMultiplier(addon.Options.WidthMultiplier);
+    addon.InjectOptions:SetOptionsTable(addon.Options.OptionsTable);
+    addon.InjectOptions:SetDefaultOptions(addon.Options.Defaults.profile);
 
     addon.Diagnostics.Load();
 

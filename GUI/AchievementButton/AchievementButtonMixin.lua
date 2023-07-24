@@ -173,7 +173,7 @@ function KrowiAF_AchievementButtonMixin:SetAchievementData(achievement, id, name
 		self.ExtraIcon:Show();
 	elseif achievement.IsWatched then
 		self.ExtraIcon.Texture:SetAtlas("groupfinder-eye-frame");
-		self.ExtraIcon.Text = addon.L["Achievement is watched"]:ReplaceVars
+		self.ExtraIcon.Text = addon.L["Achievement is watched"]:K_ReplaceVars
 		{
 			watchList = addon.L["Watch List"]
 		};

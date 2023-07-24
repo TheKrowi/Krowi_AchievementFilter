@@ -476,11 +476,11 @@ function FixTabs2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
     KrowiAF_SavedData.TabKeys = newTabKeys;
 
     local tabsOrderTable = KrowiAF_GetOptions.GetTable("Layout", "args.Tabs.args.Order.args");
-    KrowiAF_InjectOptions:AddTable(tabsOrderTable, "Locked", {
+    addon.InjectOptions:AddTable(tabsOrderTable, "Locked", {
         order = 1, type = "description", width = "full",
         name = "Tabs have been changed from your previous version and have been reset. This should be a one time thing. The addon should work properly without these settings changable. Please reload at any time to fix this section. Sorry for any inconvenience.\n\n- Krowi\n\n"
     });
-    KrowiAF_InjectOptions:AddTable(tabsOrderTable, "Reload", {
+    addon.InjectOptions:AddTable(tabsOrderTable, "Reload", {
         order = 2, type = "execute",
         name = "Reload",
         func = C_UI.Reload

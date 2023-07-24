@@ -127,7 +127,7 @@ function tutorials.Load()
             categories = addon.L["Categories"]
         },
         OnShow = function(self)
-            self.Text = self.Text:ReplaceVars
+            self.Text = self.Text:K_ReplaceVars
             {
                 mergeSmallCategoriesNumber = tostring(addon.Options.db.Window.MergeSmallCategoriesThreshold):SetColorYellow(),
                 resetFactionFiltersEnabled = GetText1Or2(addon.Options.db.Filters.ResetFactionFilters, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red)
@@ -149,7 +149,7 @@ function tutorials.Load()
         },
         TextSize = {358, 0},
         OnShow = function(self)
-            self.Text = self.Text:ReplaceVars
+            self.Text = self.Text:K_ReplaceVars
             {
                 clearOnRightClickEnabled = GetText1Or2(options.SearchBox.ClearOnRightClick, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
                 excludeExcludedAchievementsEnabled = GetText1Or2(options.SearchBox.ExcludeExcluded, L["Exclude"], true, colors.Yellow, L["Include"]),
@@ -164,7 +164,7 @@ function tutorials.Load()
         Image = media .. "FullSearch",
         ImageSize = {826, 512},
         SubTitle = L["Full Search"]:SetColorYellow(),
-        Text = L["Full Search Desc"]:ReplaceVars
+        Text = L["Full Search Desc"]:K_ReplaceVars
         {
             showAllResults = string.gsub(L["Show All %d Results"], "%%d", "X"),
             quickSearchTutorial = L["Quick Search"]:SetColorYellow()
@@ -194,7 +194,7 @@ function tutorials.Load()
             achievements = L["Achievements"]
         },
         OnShow = function(self)
-            self.Text = self.Text:ReplaceVars
+            self.Text = self.Text:K_ReplaceVars
             {
                 earnedByNumber = tostring(addon.Options.db.Tooltip.Achievements.EarnedBy.Characters):SetColorYellow(),
                 notEarnedByNumber = tostring(addon.Options.db.Tooltip.Achievements.EarnedBy.NotCharacters):SetColorYellow(),
@@ -212,7 +212,7 @@ function tutorials.Load()
             achievements = L["Achievements"]
         },
         OnShow = function(self)
-            self.Text = self.Text:ReplaceVars
+            self.Text = self.Text:K_ReplaceVars
             {
                 compactEnabled = GetText1Or2(options.Achievements.Compact, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red)
             };
@@ -233,7 +233,7 @@ function tutorials.Load()
             categories = L["Categories"]
         },
         OnShow = function(self)
-            self.Text = self.Text:ReplaceVars
+            self.Text = self.Text:K_ReplaceVars
             {
                 showNotObtainable = GetText1Or2(options.Tooltip.Categories.ShowNotObtainable, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red)
             };
@@ -267,7 +267,7 @@ function tutorials.Load()
             achievements = L["Achievements"]
         },
         OnShow = function(self)
-            self.Text = self.Text:ReplaceVars
+            self.Text = self.Text:K_ReplaceVars
             {
                 partOfAChainEnabled = GetText1Or2(options.Tooltip.Achievements.ShowPartOfAChain, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
                 requiredForEnabled = GetText1Or2(options.Tooltip.Achievements.ShowRequiredFor, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
@@ -281,7 +281,7 @@ function tutorials.Load()
         Image = media .. "WorldMapButton",
         ImageSize = {433, 392},
         SubTitle = L["World Map Button"]:SetColorYellow(),
-        Text = L["World Map Button Desc"]:ReplaceVars
+        Text = L["World Map Button Desc"]:K_ReplaceVars
         {
             enhancedTooltipCategories = (L["Enhanced tooltip"] .. " (" .. L["Categories"] .. ")"):SetColorYellow(),
             selectedZone = L["Selected Zone"]:SetColorYellow(),
@@ -303,11 +303,11 @@ function tutorials.Load()
             xuFuPetGuides = L["Xu-Fu's Pet Guides"]:SetColorYellow(),
             petBattles = (GetCategoryInfo(15117)),
             more = L["More"]:SetColorYellow(),
-            addToWatch = L["Add to Watch List"]:ReplaceVars
+            addToWatch = L["Add to Watch List"]:K_ReplaceVars
             {
                 watchList = addon.L["Watch List"]
             }:SetColorYellow(),
-            removeFromWatch = L["Remove from Watch List"]:ReplaceVars
+            removeFromWatch = L["Remove from Watch List"]:K_ReplaceVars
             {
                 watchList = addon.L["Watch List"]
             }:SetColorYellow(),
@@ -318,7 +318,7 @@ function tutorials.Load()
             pluginText = ""
         },
         OnShow = function(self)
-            self.Text = self.Text:ReplaceVars
+            self.Text = self.Text:K_ReplaceVars
             {
                 enabled = GetText1Or2(options.RightClickMenu.ShowButtonOnAchievement, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red)
             };
@@ -339,7 +339,7 @@ function tutorials.Load()
         },
         TextSize = {391, 0},
         OnShow = function(self)
-            self.Text = self.Text:ReplaceVars
+            self.Text = self.Text:K_ReplaceVars
             {
                 popUpEnabled = GetText1Or2(options.EventReminders.ShowPopUps, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
                 numPopUps = tostring(addon.Options.db.EventReminders.PopUps.MaxAlerts):SetColorYellow(),
@@ -362,7 +362,7 @@ function tutorials.Load()
     },
     TextSize = {366, 0},
     OnShow = function(self)
-        self.Text = self.Text:ReplaceVars
+        self.Text = self.Text:K_ReplaceVars
         {
             numAchievements = tostring(addon.Options.db.Summary.NumAchievements):SetColorYellow()
         };
@@ -378,7 +378,7 @@ function tutorials.Load()
             layout = L["Layout"]
         },
         OnShow = function(self)
-            self.Text = self.Text:ReplaceVars
+            self.Text = self.Text:K_ReplaceVars
             {
                 lockMonth = GetText1Or2(addon.Options.db.Calendar.LockMonth, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
                 lockAchievementMonth = GetText1Or2(addon.Options.db.Calendar.LockAchievementMonth, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
