@@ -17,7 +17,7 @@ addon.ExtraWrathStrings.deDE.Load(L);
 addon.PluginStrings.deDE.Load(L);
 addon.GlobalStrings.Load(L);
 addon.Plugins:LoadLocalization(L);
-addon.Util.Localization.deDE.Load(L);
+-- addon.Util.Localization.deDE.Load(L);
 
 L["Achievement points earned by"] = "Erfolgspunkte erzielt durch";
 L["Achievements"] = "Erfolge";

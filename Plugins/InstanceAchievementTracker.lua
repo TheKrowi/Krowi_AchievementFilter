@@ -18,7 +18,7 @@ function iat.InjectOptions()
     addon.InjectOptions:AddTable(pluginTable, "AddToRightClickMenu", {
         order = OrderPP(), type = "toggle", width = "full",
         name = addon.L["Add To Right Click Menu"],
-        desc = addon.L["Add To Right Click Menu Desc"]:K_ReplaceVars(addon.L["Instance Achievement Tracker"]):AddDefaultValueText_KAF("Plugins.InstanceAchievementTracker.AddToRightClickMenu"),
+        desc = addon.L["Add To Right Click Menu Desc"]:K_ReplaceVars(addon.L["Instance Achievement Tracker"]):KAF_AddDefaultValueText("Plugins.InstanceAchievementTracker.AddToRightClickMenu"),
         get = function() return addon.Options.db.Plugins.InstanceAchievementTracker.AddToRightClickMenu; end,
         set = function() addon.Options.db.Plugins.InstanceAchievementTracker.AddToRightClickMenu = not addon.Options.db.Plugins.InstanceAchievementTracker.AddToRightClickMenu; end,
         disabled = function() return not iat.IsLoaded(); end

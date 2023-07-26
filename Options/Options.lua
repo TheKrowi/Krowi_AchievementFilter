@@ -61,26 +61,10 @@ function options.Load()
     diagnostics.Debug("Options loaded");
 end
 
-string["InjectAddonName_KAF"] = function(str)
+string.KAF_InjectAddonName = function(str)
     return str:K_ReplaceVars{addonName = addon.Metadata.Title};
 end
 
-string["AddDefaultValueText_KAF"] = function(self, valuePath, values)
-    local value = options.Defaults.profile;
-    local pathParts = strsplittable(".", valuePath);
-    for _, part in next, pathParts do
-        part = tonumber(part) and tonumber(part) or part;
-        value = value[part];
-    end
-    if type(value) == "boolean" then
-        value = value and addon.L["Checked"] or addon.L["Unchecked"];
-    end
-    if values then
-        value = values[value];
-    end
-    return self .. "\n\n" .. addon.L["Default value"] .. ": " .. tostring(value);
-end
-
-string["AddReloadRequired_KAF"] = function(self)
-    return self .. "\n\n" .. addon.L["Requires a reload"];
+string.KAF_AddDefaultValueText = function(str, valuePath, values)
+    return str:K_AddDefaultValueText(options.Defaults.profile, valuePath, values);
 end

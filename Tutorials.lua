@@ -16,7 +16,7 @@ local function ReplaceVarsWithMenu(str, vars)
     vars["interface"] = addon.L["Interface"];
     vars["addOns"] = addon.L["AddOns"];
     vars["addonName"] = addon.Metadata.Title;
-    return addon.Util.ReplaceVars(str, vars);
+    return addon.Util.Strings.ReplaceVars(str, vars);
 end
 string.ReplaceVarsWithMenu = ReplaceVarsWithMenu;
 

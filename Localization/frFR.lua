@@ -17,7 +17,7 @@ addon.ExtraWrathStrings.frFR.Load(L);
 addon.PluginStrings.frFR.Load(L);
 addon.GlobalStrings.Load(L);
 addon.Plugins:LoadLocalization(L);
-addon.Util.Localization.frFR.Load(L);
+-- addon.Util.Localization.frFR.Load(L);
 
 L["Achievement points earned by"] = "Points de Hauts faits obtenus par";
 L["Achievements"] = "Hauts faits";

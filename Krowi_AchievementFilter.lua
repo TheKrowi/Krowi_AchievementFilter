@@ -11,7 +11,7 @@ addon.IsDragonflightRetail = major == "10";
 
 -- [[ Ace ]] --
 addon.L = LibStub(addon.Libs.AceLocale):GetLocale(addonName);
-addon.InjectOptions:SetLocalization(addon.L);
+-- addon.InjectOptions:SetLocalization(addon.L);
 addon.Localization.SetColors(addon.L);
 addon.Event = {};
 LibStub(addon.Libs.AceEvent):Embed(addon.Event);

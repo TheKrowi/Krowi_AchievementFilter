@@ -17,7 +17,7 @@ addon.ExtraWrathStrings.zhCN.Load(L);
 addon.PluginStrings.zhCN.Load(L);
 addon.GlobalStrings.Load(L);
 addon.Plugins:LoadLocalization(L);
-addon.Util.Localization.zhCN.Load(L);
+-- addon.Util.Localization.zhCN.Load(L);
 
 L["Achievement points earned by"] = "获得的成就点数";
 L["Achievements"] = "成就";
