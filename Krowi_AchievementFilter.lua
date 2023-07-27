@@ -50,7 +50,7 @@ local function LoadKrowi_AchievementFilter()
     addon.Tabs.InjectDynamicOptions();
     addon.GUI.AchievementFrameHeader.InjectDynamicOptions();
     addon.Plugins:InjectOptions();
-    addon.Options.Load();
+    addon.Options:Load(addon);
 
     addon.Plugins:Load();
 
