@@ -23,19 +23,19 @@ local headerSortPriorities = {
 }
 
 local function SetPriority(index, value)
-    local priorities = addon.Options.db.AchievementPoints.Tooltip.Sort.Priority;
+    local priorities = addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority;
     local otherIndex;
     for i, prio in next, priorities do
         if prio == value then
             otherIndex = i;
         end
     end
-    local currentValue = addon.Options.db.AchievementPoints.Tooltip.Sort.Priority[index];
-    addon.Options.db.AchievementPoints.Tooltip.Sort.Priority[index] = value;
-    addon.Options.db.AchievementPoints.Tooltip.Sort.Priority[otherIndex] = currentValue;
-    local currentReverse = addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[index]
-    addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[index] = addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[otherIndex];
-    addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[otherIndex] = currentReverse;
+    local currentValue = addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority[index];
+    addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority[index] = value;
+    addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority[otherIndex] = currentValue;
+    local currentReverse = addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[index]
+    addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[index] = addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[otherIndex];
+    addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[otherIndex] = currentReverse;
 end
 
 local OrderPP = addon.InjectOptions.AutoOrderPlusPlus;
@@ -47,7 +47,7 @@ function header.InjectDynamicOptions()
             name = "",
             -- desc = (""):KAF_AddDefaultValueText("AchievementPoints.Tooltip.Sort.Priority." .. i, headerSortPriorities), -- Does not show cause name is empty
             values = headerSortPriorities,
-            get = function() return addon.Options.db.AchievementPoints.Tooltip.Sort.Priority[i]; end,
+            get = function() return addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority[i]; end,
             set = function (_, value) SetPriority(i, value); end
         });
         addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Blank1" .. i, {
@@ -58,8 +58,8 @@ function header.InjectDynamicOptions()
             order = OrderPP(), type = "toggle", width = AdjustedWidth(0.95),
             name = addon.L["Reverse Sort"],
             desc = (""):KAF_AddDefaultValueText("AchievementPoints.Tooltip.Sort.Reverse." .. i),
-            get = function() return addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[i]; end,
-            set = function() addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[i] = not addon.Options.db.AchievementPoints.Tooltip.Sort.Reverse[i]; end
+            get = function() return addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[i]; end,
+            set = function() addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[i] = not addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[i]; end
         });
         addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Blank2" .. i, {
             order = OrderPP(), type = "description", width = AdjustedWidth(0.85),
@@ -78,10 +78,10 @@ function header.HookSetPointsText()
         if not addon.InGuildView() and processHook then
             local _, points = addon.BuildCache();
             processHook = false;
-            if addon.Options.db.AchievementPoints.Format == 1 then
-            elseif addon.Options.db.AchievementPoints.Format == 2 then
+            if addon.Options.db.profile.AchievementPoints.Format == 1 then
+            elseif addon.Options.db.profile.AchievementPoints.Format == 2 then
                 AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points) .. " / " .. BreakUpLargeNumbers(GetTotalAchievementPoints()));
-            elseif addon.Options.db.AchievementPoints.Format == 3 then
+            elseif addon.Options.db.profile.AchievementPoints.Format == 3 then
                 AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points));
             end
         end
@@ -111,7 +111,7 @@ local function GetSortedCharacters()
         });
     end
 
-    local sortOptions = addon.Options.db.AchievementPoints.Tooltip.Sort;
+    local sortOptions = addon.Options.db.profile.AchievementPoints.Tooltip.Sort;
     for index, sortFunc in next, sortOptions.Priority do
         sortFuncs[sortFunc].Reverse = sortOptions.Reverse[index];
     end
@@ -129,10 +129,10 @@ local function GetSortedCharacters()
 end
 
 local function LimitNumCharacters(characters)
-    local maxNumCharacters = addon.Options.db.AchievementPoints.Tooltip.MaxNumCharacters;
+    local maxNumCharacters = addon.Options.db.profile.AchievementPoints.Tooltip.MaxNumCharacters;
     local trimmedCharacters = {};
 
-    if not addon.Options.db.AchievementPoints.Tooltip.KeepCurrentCharacter then -- We can just take the 1st x characters and return
+    if not addon.Options.db.profile.AchievementPoints.Tooltip.KeepCurrentCharacter then -- We can just take the 1st x characters and return
         for i = 1, maxNumCharacters do
             tinsert(trimmedCharacters, characters[i]);
         end
@@ -159,7 +159,7 @@ local function LimitNumCharacters(characters)
 end
 
 local function AddFactionIcon(name, faction)
-    if addon.Options.db.AchievementPoints.Tooltip.ShowFaction then
+    if addon.Options.db.profile.AchievementPoints.Tooltip.ShowFaction then
         local icon;
         if faction == addon.Objects.Faction[addon.Objects.Faction.Alliance] then
             icon = "|A:worldquest-icon-alliance:15:16|a";
@@ -181,7 +181,7 @@ local function OnEnter(self)
     for _, character in next, characters do
         local r, g, b = GetClassColor(character.Class);
         local name = character.Name;
-        if addon.Options.db.AchievementPoints.Tooltip.AlwaysShowRealm or character.Realm ~= (select(2, UnitFullName("player"))) then
+        if addon.Options.db.profile.AchievementPoints.Tooltip.AlwaysShowRealm or character.Realm ~= (select(2, UnitFullName("player"))) then
             name = name .. " - " .. character.Realm;
         end
         name = AddFactionIcon(name, character.Faction);

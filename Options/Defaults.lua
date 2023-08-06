@@ -1,8 +1,6 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
-local options = addon.Options;
 
-options.Defaults = {
+addon.Options.Defaults = {
     profile = {
         ShowMinimapIcon = false,
         ShowWorldmapIcon = true,

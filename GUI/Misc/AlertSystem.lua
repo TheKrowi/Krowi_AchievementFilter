@@ -21,7 +21,7 @@ local function GetRuntimeText(event, chat)
         end
     end
 
-    if addon.Options.db.EventReminders.TimeDisplay.Line1 == 2 or addon.Options.db.EventReminders.TimeDisplay.Line2 == 3 or chat then -- Time Left
+    if addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == 2 or addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 3 or chat then -- Time Left
         local secondsLeft = event.EventDetails.EndTime - GetServerTime();
         local days = floor(secondsLeft / 86400);
         local hours = floor(mod(secondsLeft, 86400) / 3600);
@@ -37,17 +37,17 @@ local function GetRuntimeText(event, chat)
         return timeLeft;
     end
 
-    if addon.Options.db.EventReminders.TimeDisplay.Line1 == 1 then -- End Time
-        runtime = tostring(date(addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime, event.EventDetails.EndTime));
-    elseif addon.Options.db.EventReminders.TimeDisplay.Line1 == 2 then -- Time Left
+    if addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == 1 then -- End Time
+        runtime = tostring(date(addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime, event.EventDetails.EndTime));
+    elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == 2 then -- Time Left
         runtime = timeLeft;
     end
 
-    if addon.Options.db.EventReminders.TimeDisplay.Line2 == 1 or addon.Options.db.EventReminders.Compact then -- None
+    if addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 1 or addon.Options.db.profile.EventReminders.Compact then -- None
         return runtime;
-    elseif addon.Options.db.EventReminders.TimeDisplay.Line2 == 2 then -- End Time
-        return runtime .. "\n" .. tostring(date(addon.Options.db.EventReminders.DateTimeFormat.StartTimeAndEndTime, event.EventDetails.EndTime));
-    elseif addon.Options.db.EventReminders.TimeDisplay.Line2 == 3 then -- Time Left
+    elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 2 then -- End Time
+        return runtime .. "\n" .. tostring(date(addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime, event.EventDetails.EndTime));
+    elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 3 then -- Time Left
         return runtime .. "\n" .. timeLeft;
     end
 
@@ -67,7 +67,7 @@ local function ShowActiveEventPopUp(event, canShow, canShowWithTimeDataOnly, cur
     if not canShowWithTimeDataOnly or (canShowWithTimeDataOnly and event.EventDetails and event.EventDetails.EndTime) then
         KrowiAF_SavedData.ActiveEventPopUpsShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch;
         if KrowiAF_SavedData.ActiveEventPopUpsShown[event.Id] >= currentTime then
-            alertSystem:AddAlert(event, addon.Options.db.EventReminders.PopUps.FadeDelay);
+            alertSystem:AddAlert(event, addon.Options.db.profile.EventReminders.PopUps.FadeDelay);
             -- print(KrowiAF_SavedData.ActiveEventPopUpsShown[event.Id], event.EventDetails, event.EventDetails and event.EventDetails.EndTime);
         end
     end
@@ -120,13 +120,13 @@ end
 
 local function OnUpdate(self, elapsed)
     self.TimeSinceLastUpdate = self.TimeSinceLastUpdate + elapsed;
-    if self.TimeSinceLastUpdate <= addon.Options.db.EventReminders.RefreshInterval then
+    if self.TimeSinceLastUpdate <= addon.Options.db.profile.EventReminders.RefreshInterval then
         return;
     end
 
     self.TimeSinceLastUpdate = 0;
-    local popUpsOptions = addon.Options.db.EventReminders.PopUps.OnEventStart;
-    local chatMessagesOptions = addon.Options.db.EventReminders.ChatMessages.OnEventStart;
+    local popUpsOptions = addon.Options.db.profile.EventReminders.PopUps.OnEventStart;
+    local chatMessagesOptions = addon.Options.db.profile.EventReminders.ChatMessages.OnEventStart;
 
     local currentTime = time();
     if not ShowActiveEvents(popUpsOptions, chatMessagesOptions, currentTime) then
@@ -185,9 +185,9 @@ local function UpdateGrowDirection()
     -- Make sure the saved data is correct
     KrowiAF_SavedData.AlertSystem = KrowiAF_SavedData.AlertSystem or {};
     KrowiAF_SavedData.AlertSystem.GrowDirection = KrowiAF_SavedData.AlertSystem.GrowDirection or {};
-    KrowiAF_SavedData.AlertSystem.GrowDirection.Point = addon.Options.db.EventReminders.PopUps.GrowDirection == 1 and "BOTTOM" or "TOP";
-    KrowiAF_SavedData.AlertSystem.GrowDirection.RelativePoint = addon.Options.db.EventReminders.PopUps.GrowDirection == 1 and "TOP" or "BOTTOM";
-    KrowiAF_SavedData.AlertSystem.GrowDirection.Offset = addon.Options.db.EventReminders.PopUps.GrowDirection == 1 and addon.Options.db.EventReminders.PopUps.Spacing or -addon.Options.db.EventReminders.PopUps.Spacing;
+    KrowiAF_SavedData.AlertSystem.GrowDirection.Point = addon.Options.db.profile.EventReminders.PopUps.GrowDirection == 1 and "BOTTOM" or "TOP";
+    KrowiAF_SavedData.AlertSystem.GrowDirection.RelativePoint = addon.Options.db.profile.EventReminders.PopUps.GrowDirection == 1 and "TOP" or "BOTTOM";
+    KrowiAF_SavedData.AlertSystem.GrowDirection.Offset = addon.Options.db.profile.EventReminders.PopUps.GrowDirection == 1 and addon.Options.db.profile.EventReminders.PopUps.Spacing or -addon.Options.db.profile.EventReminders.PopUps.Spacing;
 end
 
 function alertSystem:Load()
@@ -195,12 +195,12 @@ function alertSystem:Load()
     helperFrame.TimeSinceLastUpdate = 0;
 
     alertSystem = AlertFrame:AddQueuedAlertFrameSubSystem(
-        "KrowiAF_AlertFrame_" .. (addon.Options.db.EventReminders.Compact and "Small" or "Normal") .. "_Template",
+        "KrowiAF_AlertFrame_" .. (addon.Options.db.profile.EventReminders.Compact and "Small" or "Normal") .. "_Template",
         SetUp,
-        addon.Options.db.EventReminders.PopUps.MaxAlerts,
+        addon.Options.db.profile.EventReminders.PopUps.MaxAlerts,
         100);
     AlertFrame:ClearAllPoints();
-    AlertFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", addon.Options.db.EventReminders.PopUps.OffsetX, addon.Options.db.EventReminders.PopUps.OffsetY);
+    AlertFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", addon.Options.db.profile.EventReminders.PopUps.OffsetX, addon.Options.db.profile.EventReminders.PopUps.OffsetY);
 
     UpdateGrowDirection();
 

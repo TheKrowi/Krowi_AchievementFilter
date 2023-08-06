@@ -138,8 +138,8 @@ function VerifySavedCharacterData()
 end
 
 function FixFeaturesTutorialProgress(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    -- In version 23.0 the tutorial was rewritten and moved from addon.Options.db.FeaturesTutorial to KrowiAF_SavedData.FeaturesTutorial
-    -- Here we clean up the old addon.Options.db.FeaturesTutorial for users pre 23.0
+    -- In version 23.0 the tutorial was rewritten and moved from addon.Options.db.profile.FeaturesTutorial to KrowiAF_SavedData.FeaturesTutorial
+    -- Here we clean up the old addon.Options.db.profile.FeaturesTutorial for users pre 23.0
     -- KrowiAF_SavedData.FeaturesTutorial is created by the Tutorial so we don't need to do this here
 
     if firstTime and currVersion > "23.0" then
@@ -151,14 +151,14 @@ function FixFeaturesTutorialProgress(prevBuild, currBuild, prevVersion, currVers
         return;
     end
 
-    addon.Options.db.FeaturesTutorial = nil;
+    addon.Options.db.profile.FeaturesTutorial = nil;
 
     diagnostics.Debug("Cleared Features Tutorial Progress from previous version");
 end
 
 function FixElvUISkin(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    -- In version 23.0 the ElvUI skin settings were moved from addon.Options.db.ElvUISkin to KrowiAF_SavedData.ElvUISkin
-    -- Here we clean up the old addon.Options.db.ElvUISkin for users pre 23.0
+    -- In version 23.0 the ElvUI skin settings were moved from addon.Options.db.profile.ElvUISkin to KrowiAF_SavedData.ElvUISkin
+    -- Here we clean up the old addon.Options.db.profile.ElvUISkin for users pre 23.0
     -- KrowiAF_SavedData.ElvUISkin is created by the ElvUI plugin so we don't need to do this here
 
     if firstTime and currVersion > "23.0" then
@@ -170,14 +170,14 @@ function FixElvUISkin(prevBuild, currBuild, prevVersion, currVersion, firstTime)
         return;
     end
 
-    addon.Options.db.ElvUISkin = nil;
+    addon.Options.db.profile.ElvUISkin = nil;
 
     diagnostics.Debug("Cleared ElvUISkin from previous version");
 end
 
 function FixFilters(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    -- In version 24.0 the filters were moved from addon.Options.db.Filters to Filters
-    -- Here we clean up the old addon.Options.db.Filters for users pre 24.0
+    -- In version 24.0 the filters were moved from addon.Options.db.profile.Filters to Filters
+    -- Here we clean up the old addon.Options.db.profile.Filters for users pre 24.0
     -- Filters is created by the Filters so we don't need to do this here
 
     if firstTime and currVersion > "24.0" then
@@ -189,7 +189,7 @@ function FixFilters(prevBuild, currBuild, prevVersion, currVersion, firstTime)
         return;
     end
 
-    addon.Options.db.Filters = nil;
+    addon.Options.db.profile.Filters = nil;
 
     diagnostics.Debug("Clear filter settings from previous location");
 end
@@ -216,21 +216,21 @@ function FixEventDetails(prevBuild, currBuild, prevVersion, currVersion, firstTi
 end
 
 function FixShowExcludedCategory(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    -- In version 29.0 addon.Options.db.Categories.ShowExcludedCategory was moved to addon.Options.db.Categories.Excluded.Show
-    -- Here we clean up the old addon.Options.db.Categories.ShowExcludedCategory for users pre 29.0
-    -- addon.Options.db.Categories.Excluded.Show is created by the Options so we don't need to do this here, just copy if previous existed
+    -- In version 29.0 addon.Options.db.profile.Categories.ShowExcludedCategory was moved to addon.Options.db.profile.Categories.Excluded.Show
+    -- Here we clean up the old addon.Options.db.profile.Categories.ShowExcludedCategory for users pre 29.0
+    -- addon.Options.db.profile.Categories.Excluded.Show is created by the Options so we don't need to do this here, just copy if previous existed
 
     if firstTime and currVersion > "29.0" then
         diagnostics.Debug("First time Show Excluded Category OK");
         return;
     end
-    if addon.Options.db.Categories.ShowExcludedCategory == nil then
+    if addon.Options.db.profile.Categories.ShowExcludedCategory == nil then
         diagnostics.Debug("Show Excluded Category already moved");
         return;
     end
 
-    addon.Options.db.Categories.Excluded.Show = addon.Options.db.Categories.ShowExcludedCategory;
-    addon.Options.db.Categories.ShowExcludedCategory = nil;
+    addon.Options.db.profile.Categories.Excluded.Show = addon.Options.db.profile.Categories.ShowExcludedCategory;
+    addon.Options.db.profile.Categories.ShowExcludedCategory = nil;
 
     diagnostics.Debug("Show Excluded Category moved");
 end
@@ -282,53 +282,53 @@ function FixEventAlert(prevBuild, currBuild, prevVersion, currVersion, firstTime
         diagnostics.Debug("First time EventAlerts OK");
         return;
     end
-    if addon.Options.db.EventAlert == nil then
+    if addon.Options.db.profile.EventAlert == nil then
         diagnostics.Debug("EventAlerts already copied and cleared from previous version");
         return;
     end
 
-    addon.Options.db.EventAlert.ShowPopUps = not addon.Options.db.EventAlert.NoPopUps;
-    addon.Options.db.EventAlert.NoPopUps = nil;
-    addon.Options.db.EventReminders = addon.Options.db.EventAlert;
-    addon.Options.db.EventAlert = nil;
+    addon.Options.db.profile.EventAlert.ShowPopUps = not addon.Options.db.profile.EventAlert.NoPopUps;
+    addon.Options.db.profile.EventAlert.NoPopUps = nil;
+    addon.Options.db.profile.EventReminders = addon.Options.db.profile.EventAlert;
+    addon.Options.db.profile.EventAlert = nil;
 
     diagnostics.Debug("Copied and cleared EventAlerts from previous version");
 end
 
 function FixMergeSmallCategoriesThresholdChanged(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    -- In version 34.0 addon.Options.db.Window.MergeSmallCategoriesThresholdChanged became obsolete
-    -- Here we clean up the old addon.Options.db.Window.MergeSmallCategoriesThresholdChanged for users pre 34.0
+    -- In version 34.0 addon.Options.db.profile.Window.MergeSmallCategoriesThresholdChanged became obsolete
+    -- Here we clean up the old addon.Options.db.profile.Window.MergeSmallCategoriesThresholdChanged for users pre 34.0
 
     if firstTime and currVersion > "34.0" then
         diagnostics.Debug("First time MergeSmallCategoriesThresholdChanged OK");
         return;
     end
-    if addon.Options.db.Window.MergeSmallCategoriesThresholdChanged == nil then
+    if addon.Options.db.profile.Window.MergeSmallCategoriesThresholdChanged == nil then
         diagnostics.Debug("MergeSmallCategoriesThresholdChanged already cleared from previous version");
         return;
     end
 
-    addon.Options.db.Window.MergeSmallCategoriesThresholdChanged = nil;
+    addon.Options.db.profile.Window.MergeSmallCategoriesThresholdChanged = nil;
 
     diagnostics.Debug("Cleared MergeSmallCategoriesThresholdChanged from previous version");
 end
 
 function FixShowCurrentCharacterIcons(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    -- In version 34.0 addon.Options.db.Tooltip.Achievements.ShowCurrentCharacterIcons got split into 2 parts
-    -- Here we copy the addon.Options.db.Tooltip.Achievements.ShowCurrentCharacterIcons to the 2 new parts
+    -- In version 34.0 addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIcons got split into 2 parts
+    -- Here we copy the addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIcons to the 2 new parts
 
     if firstTime and currVersion > "34.0" then
         diagnostics.Debug("First time ShowCurrentCharacterIcons OK");
         return;
     end
-    if addon.Options.db.Tooltip.Achievements.ShowCurrentCharacterIcons == nil then
+    if addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIcons == nil then
         diagnostics.Debug("ShowCurrentCharacterIcons already cleared from previous version");
         return;
     end
 
-    addon.Options.db.Tooltip.Achievements.ShowCurrentCharacterIconsPartOfAChain = addon.Options.db.Tooltip.Achievements.ShowCurrentCharacterIcons;
-    addon.Options.db.Tooltip.Achievements.ShowCurrentCharacterIconsRequiredFor = addon.Options.db.Tooltip.Achievements.ShowCurrentCharacterIcons;
-    addon.Options.db.Tooltip.Achievements.ShowCurrentCharacterIcons = nil;
+    addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIconsPartOfAChain = addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIcons;
+    addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIconsRequiredFor = addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIcons;
+    addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIcons = nil;
 
     diagnostics.Debug("Cleared ShowCurrentCharacterIcons from previous version");
 end
@@ -440,7 +440,7 @@ function FixTabs2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
     -- Porting from 35.0 - pre 37.0 is difficult because mixed data needs to be handled
     -- Lastly, data is handled based on KrowiAF_SavedData.Tabs and is new in 37.0 so cleanup is needed in KrowiAF_SavedData.TabKeys
     -- Choosing to reset data, cleanup and inform user
-    -- Remove bad tabs from addon.Options.db.Tabs, remove duplicate KrowiAF_SavedData.TabKeys value
+    -- Remove bad tabs from addon.Options.db.profile.Tabs, remove duplicate KrowiAF_SavedData.TabKeys value
 
     if firstTime and currVersion > "37.0" then
         KrowiAF_SavedData.Fixes.FixTabs2 = true;
@@ -452,9 +452,9 @@ function FixTabs2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
         return;
     end
 
-    for i, _ in next, addon.Options.db.Tabs do
+    for i, _ in next, addon.Options.db.profile.Tabs do
         if type(i) == "number" then
-            addon.Options.db.Tabs[i] = nil;
+            addon.Options.db.profile.Tabs[i] = nil;
         end
     end
 
@@ -470,7 +470,7 @@ function FixTabs2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
         if addonName2 == addonName and tabName == "Achievements" then
             order = 1;
         end
-        addon.Options.db.Tabs[addonName2][tabName].Order = order;
+        addon.Options.db.profile.Tabs[addonName2][tabName].Order = order;
         tinsert(newTabKeys, KrowiAF_SavedData.TabKeys[i]);
     end
     KrowiAF_SavedData.TabKeys = newTabKeys;
@@ -536,25 +536,25 @@ function FixEventDetails3(prevBuild, currBuild, prevVersion, currVersion, firstT
 end
 
 function FixTooltipCriteria(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    -- In version 46.4 addon.Options.db.Tooltip.Units was moved to addon.Options.db.Tooltip.Criteria
-    -- Here we clean up the old addon.Options.db.Tooltip.Units for users pre 46.4
-    -- addon.Options.db.Tooltip.Criteria is created by the Options so we don't need to do this here, just copy if previous existed
+    -- In version 46.4 addon.Options.db.profile.Tooltip.Units was moved to addon.Options.db.profile.Tooltip.Criteria
+    -- Here we clean up the old addon.Options.db.profile.Tooltip.Units for users pre 46.4
+    -- addon.Options.db.profile.Tooltip.Criteria is created by the Options so we don't need to do this here, just copy if previous existed
 
     if firstTime and currVersion > "46.4" then
         diagnostics.Debug("First time Tooltip Criteria OK");
         return;
     end
-    if addon.Options.db.Tooltip.Units == nil then
+    if addon.Options.db.profile.Tooltip.Units == nil then
         diagnostics.Debug("Tooltip Criteria already moved");
         return;
     end
 
-    addon.Options.db.Tooltip.Criteria = addon.Options.db.Tooltip.Units;
-    addon.Options.db.Tooltip.Criteria.Show = addon.Options.db.Tooltip.Criteria.ShowCriteria;
-    addon.Options.db.Tooltip.Criteria.ShowIf = addon.Options.db.Tooltip.Criteria.ShowCriteriaIf;
-    addon.Options.db.Tooltip.Units = nil;
-    addon.Options.db.Tooltip.Criteria.ShowCriteria = nil;
-    addon.Options.db.Tooltip.Criteria.ShowCriteriaIf = nil;
+    addon.Options.db.profile.Tooltip.Criteria = addon.Options.db.profile.Tooltip.Units;
+    addon.Options.db.profile.Tooltip.Criteria.Show = addon.Options.db.profile.Tooltip.Criteria.ShowCriteria;
+    addon.Options.db.profile.Tooltip.Criteria.ShowIf = addon.Options.db.profile.Tooltip.Criteria.ShowCriteriaIf;
+    addon.Options.db.profile.Tooltip.Units = nil;
+    addon.Options.db.profile.Tooltip.Criteria.ShowCriteria = nil;
+    addon.Options.db.profile.Tooltip.Criteria.ShowCriteriaIf = nil;
 
     diagnostics.Debug("Tooltip Criteria moved");
 end
@@ -580,21 +580,21 @@ function FixFocusedAchievements(prevBuild, currBuild, prevVersion, currVersion, 
 end
 
 function FixFocusedOptions(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    -- In version 48.0 addon.Options.db.Categories.Focused was moved to addon.Options.db.Categories.WatchList
-    -- Here we clean up the old addon.Options.db.Categories.Focused for users pre 48.0
-    -- addon.Options.db.Categories.WatchList is created by the Options so we don't need to do this here, just copy if previous existed
+    -- In version 48.0 addon.Options.db.profile.Categories.Focused was moved to addon.Options.db.profile.Categories.WatchList
+    -- Here we clean up the old addon.Options.db.profile.Categories.Focused for users pre 48.0
+    -- addon.Options.db.profile.Categories.WatchList is created by the Options so we don't need to do this here, just copy if previous existed
 
     if firstTime and currVersion > "48.0" then
         diagnostics.Debug("First time Focused Options OK");
         return;
     end
-    if addon.Options.db.Categories.Focused == nil then
+    if addon.Options.db.profile.Categories.Focused == nil then
         diagnostics.Debug("Focused Options already moved");
         return;
     end
 
-    addon.Options.db.Categories.WatchList = addon.Options.db.Categories.Focused;
-    addon.Options.db.Categories.Focused = nil;
+    addon.Options.db.profile.Categories.WatchList = addon.Options.db.profile.Categories.Focused;
+    addon.Options.db.profile.Categories.Focused = nil;
 
     diagnostics.Debug("Focused Options moved");
 end
@@ -613,13 +613,13 @@ function FixEventRemindersTimeDisplay(prevBuild, currBuild, prevVersion, currVer
         return;
     end
 
-    if addon.Options.db.EventReminders.TimeDisplay.Line1 > 1 then
-        addon.Options.db.EventReminders.TimeDisplay.Line1 = addon.Options.db.EventReminders.TimeDisplay.Line1 - 1;
+    if addon.Options.db.profile.EventReminders.TimeDisplay.Line1 > 1 then
+        addon.Options.db.profile.EventReminders.TimeDisplay.Line1 = addon.Options.db.profile.EventReminders.TimeDisplay.Line1 - 1;
     end
-    if addon.Options.db.EventReminders.TimeDisplay.Line2 == 2 then -- If Start Time is selected, fall back to the defaults
-        addon.Options.db.EventReminders.TimeDisplay.Line2 = 3;
-    elseif addon.Options.db.EventReminders.TimeDisplay.Line2 > 1 then
-        addon.Options.db.EventReminders.TimeDisplay.Line2 = addon.Options.db.EventReminders.TimeDisplay.Line2 - 1;
+    if addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 2 then -- If Start Time is selected, fall back to the defaults
+        addon.Options.db.profile.EventReminders.TimeDisplay.Line2 = 3;
+    elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line2 > 1 then
+        addon.Options.db.profile.EventReminders.TimeDisplay.Line2 = addon.Options.db.profile.EventReminders.TimeDisplay.Line2 - 1;
     end
 
     KrowiAF_SavedData.Fixes.FixEventRemindersTimeDisplay = true;
@@ -628,68 +628,68 @@ function FixEventRemindersTimeDisplay(prevBuild, currBuild, prevVersion, currVer
 end
 
 function FixEventRemindersOptions(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    -- In version 51.0 addon.Options.db.EventReminders.MaxAlerts and addon.Options.db.EventReminders.FadeDelay were
-    -- moved to addon.Options.db.EventReminders.PopUps.MaxAlerts and addon.Options.db.EventReminders.PopUps.FadeDelay
-    -- Here we clean up the old addon.Options.db.EventReminders.MaxAlerts and addon.Options.db.EventReminders.FadeDelay for users pre 51.0
-    -- addon.Options.db.EventReminders.PopUps.MaxAlerts and addon.Options.db.EventReminders.PopUps.FadeDelay are created by the Options
+    -- In version 51.0 addon.Options.db.profile.EventReminders.MaxAlerts and addon.Options.db.profile.EventReminders.FadeDelay were
+    -- moved to addon.Options.db.profile.EventReminders.PopUps.MaxAlerts and addon.Options.db.profile.EventReminders.PopUps.FadeDelay
+    -- Here we clean up the old addon.Options.db.profile.EventReminders.MaxAlerts and addon.Options.db.profile.EventReminders.FadeDelay for users pre 51.0
+    -- addon.Options.db.profile.EventReminders.PopUps.MaxAlerts and addon.Options.db.profile.EventReminders.PopUps.FadeDelay are created by the Options
     -- so we don't need to do this here, just copy if previous existed
 
     if firstTime and currVersion > "51.0" then
         diagnostics.Debug("EventReminders Options OK");
         return;
     end
-    if addon.Options.db.EventReminders.MaxAlerts == nil and addon.Options.db.EventReminders.FadeDelay == nil then
+    if addon.Options.db.profile.EventReminders.MaxAlerts == nil and addon.Options.db.profile.EventReminders.FadeDelay == nil then
         diagnostics.Debug("EventReminders Options already moved");
         return;
     end
 
-    addon.Options.db.EventReminders.PopUps.MaxAlerts = addon.Options.db.EventReminders.MaxAlerts;
-    addon.Options.db.EventReminders.PopUps.FadeDelay = addon.Options.db.EventReminders.FadeDelay;
-    addon.Options.db.EventReminders.MaxAlerts = nil;
-    addon.Options.db.EventReminders.FadeDelay = nil;
+    addon.Options.db.profile.EventReminders.PopUps.MaxAlerts = addon.Options.db.profile.EventReminders.MaxAlerts;
+    addon.Options.db.profile.EventReminders.PopUps.FadeDelay = addon.Options.db.profile.EventReminders.FadeDelay;
+    addon.Options.db.profile.EventReminders.MaxAlerts = nil;
+    addon.Options.db.profile.EventReminders.FadeDelay = nil;
 
     diagnostics.Debug("EventReminders Options moved");
 end
 
 function FixEventRemindersOptions2(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    -- In version 52.0 addon.Options.db.EventReminders.PopUps.Show and addon.Options.db.EventReminders.ChatMessages.Show were
-    -- moved and split to addon.Options.db.EventReminders.PopUps.OnLogin, addon.Options.db.EventReminders.PopUps.OnReload,
-    -- addon.Options.db.EventReminders.PopUps.OnEventStart, addon.Options.db.EventReminders.ChatMessages.OnLogin,
-    -- addon.Options.db.EventReminders.ChatMessages.OnReload and addon.Options.db.EventReminders.ChatMessages.OnEventStart
-    -- Here we clean up the old addon.Options.db.EventReminders.PopUps.Show and addon.Options.db.EventReminders.ChatMessages.Show for users pre 52.0
+    -- In version 52.0 addon.Options.db.profile.EventReminders.PopUps.Show and addon.Options.db.profile.EventReminders.ChatMessages.Show were
+    -- moved and split to addon.Options.db.profile.EventReminders.PopUps.OnLogin, addon.Options.db.profile.EventReminders.PopUps.OnReload,
+    -- addon.Options.db.profile.EventReminders.PopUps.OnEventStart, addon.Options.db.profile.EventReminders.ChatMessages.OnLogin,
+    -- addon.Options.db.profile.EventReminders.ChatMessages.OnReload and addon.Options.db.profile.EventReminders.ChatMessages.OnEventStart
+    -- Here we clean up the old addon.Options.db.profile.EventReminders.PopUps.Show and addon.Options.db.profile.EventReminders.ChatMessages.Show for users pre 52.0
     -- New options mentioned above are created by the Options so we don't need to do this here, just copy if previous existed
 
     if firstTime and currVersion > "51.4" then
         diagnostics.Debug("EventReminders Options2 OK");
         return;
     end
-    if addon.Options.db.EventReminders.PopUps.Show == nil and addon.Options.db.EventReminders.ChatMessages.Show == nil then
+    if addon.Options.db.profile.EventReminders.PopUps.Show == nil and addon.Options.db.profile.EventReminders.ChatMessages.Show == nil then
         diagnostics.Debug("EventReminders Options2 already moved");
         return;
     end
 
-    if addon.Options.db.EventReminders.PopUps.Show then
-    addon.Options.db.EventReminders.PopUps.OnLogin = {
-            Show = addon.Options.db.EventReminders.PopUps.Show.OnLogin,
-            ShowInInstances = addon.Options.db.EventReminders.PopUps.Show.OnLoginInInstances,
+    if addon.Options.db.profile.EventReminders.PopUps.Show then
+    addon.Options.db.profile.EventReminders.PopUps.OnLogin = {
+            Show = addon.Options.db.profile.EventReminders.PopUps.Show.OnLogin,
+            ShowInInstances = addon.Options.db.profile.EventReminders.PopUps.Show.OnLoginInInstances,
         };
-        addon.Options.db.EventReminders.PopUps.OnEventStart = {
-            Show = addon.Options.db.EventReminders.PopUps.Show.OnEventStart,
-            ShowInInstances = addon.Options.db.EventReminders.PopUps.Show.OnEventStartInInstances,
-        };
-    end
-    if addon.Options.db.EventReminders.ChatMessages.Show then
-        addon.Options.db.EventReminders.ChatMessages.OnLogin = {
-            Show = addon.Options.db.EventReminders.ChatMessages.Show.OnLogin,
-            ShowInInstances = addon.Options.db.EventReminders.ChatMessages.Show.OnLoginInInstances,
-        };
-        addon.Options.db.EventReminders.ChatMessages.OnEventStart = {
-            Show = addon.Options.db.EventReminders.ChatMessages.Show.OnEventStart,
-            ShowInInstances = addon.Options.db.EventReminders.ChatMessages.Show.OnEventStartInInstances,
+        addon.Options.db.profile.EventReminders.PopUps.OnEventStart = {
+            Show = addon.Options.db.profile.EventReminders.PopUps.Show.OnEventStart,
+            ShowInInstances = addon.Options.db.profile.EventReminders.PopUps.Show.OnEventStartInInstances,
         };
     end
-    addon.Options.db.EventReminders.PopUps.Show = nil;
-    addon.Options.db.EventReminders.ChatMessages.Show = nil;
+    if addon.Options.db.profile.EventReminders.ChatMessages.Show then
+        addon.Options.db.profile.EventReminders.ChatMessages.OnLogin = {
+            Show = addon.Options.db.profile.EventReminders.ChatMessages.Show.OnLogin,
+            ShowInInstances = addon.Options.db.profile.EventReminders.ChatMessages.Show.OnLoginInInstances,
+        };
+        addon.Options.db.profile.EventReminders.ChatMessages.OnEventStart = {
+            Show = addon.Options.db.profile.EventReminders.ChatMessages.Show.OnEventStart,
+            ShowInInstances = addon.Options.db.profile.EventReminders.ChatMessages.Show.OnEventStartInInstances,
+        };
+    end
+    addon.Options.db.profile.EventReminders.PopUps.Show = nil;
+    addon.Options.db.profile.EventReminders.ChatMessages.Show = nil;
 
     diagnostics.Debug("EventReminders Options2 moved");
 end
@@ -713,21 +713,21 @@ function FixActiveEvents(prevBuild, currBuild, prevVersion, currVersion, firstTi
 end
 
 function FixFocusedOptions(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    -- In version 56.0 addon.Options.db.Categories.Summary.NumAchievements was moved to addon.Options.db.Summary.NumAchievements
-    -- Here we clean up the old addon.Options.db.Categories.Summary.NumAchievements for users pre 56.0
-    -- addon.Options.db.Summary.NumAchievements is created by the Options so we don't need to do this here, just copy if previous existed
+    -- In version 56.0 addon.Options.db.profile.Categories.Summary.NumAchievements was moved to addon.Options.db.profile.Summary.NumAchievements
+    -- Here we clean up the old addon.Options.db.profile.Categories.Summary.NumAchievements for users pre 56.0
+    -- addon.Options.db.profile.Summary.NumAchievements is created by the Options so we don't need to do this here, just copy if previous existed
 
     if firstTime and currVersion > "56.0" then
         diagnostics.Debug("First time Summary Options OK");
         return;
     end
-    if addon.Options.db.Categories.Summary == nil then
+    if addon.Options.db.profile.Categories.Summary == nil then
         diagnostics.Debug("Summary Options already moved");
         return;
     end
 
-    addon.Options.db.Summary = addon.Options.db.Categories.Summary;
-    addon.Options.db.Categories.Summary = nil;
+    addon.Options.db.profile.Summary = addon.Options.db.profile.Categories.Summary;
+    addon.Options.db.profile.Categories.Summary = nil;
 
     diagnostics.Debug("Summary Options moved");
 end

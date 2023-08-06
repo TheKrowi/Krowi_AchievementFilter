@@ -1,9 +1,14 @@
 ## Interface: 100105
 ## Title: Krowi's |cFF1D92C2Achievement Filter|r
-## Version: 60.0-alpha6
+## X-Prefix: KrowiAF
+## Version: 60.0-alpha7
 ## Author: Krowi-Frostmane EU
 ## SavedVariables: Options, SavedData, Filters, DebugTable, KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters, KrowiAF_Test
 ## Notes: Filters your achievements.
+## AddonCompartmentFuncOnEnter: KrowiAF_OnAddonCompartmentEnter
+## AddonCompartmentFuncOnLeave: KrowiAF_OnAddonCompartmentLeave
+## AddonCompartmentFunc: KrowiAF_OnAddonCompartmentClick
+## IconTexture: interface/icons/achievement_dungeon_heroic_gloryoftheraider
 ## X-Discord-Invite-Link: https://discord.gg/mdBFQJYeQZ
 ## X-Discord-Server-Name: Krowi's Addons
 ## X-CurseForge: https://www.curseforge.com/wow/addons/krowi-achievement-filter

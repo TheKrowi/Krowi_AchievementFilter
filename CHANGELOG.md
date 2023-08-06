@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 60.0 - 2023-xx-xx
+### Added
+- KAF now uses the Addon compartment (minimap button is still available for those who use it)
+
 ## 59.4 - 2023-07-23
 ### Fixed
 - GW2 UI plugin

@@ -54,7 +54,7 @@ function KrowiAF_SearchBoxFrame_OnHide(self)
 end
 
 function KrowiAF_SearchBoxFrame_OnEnterPressed(self)
-	if strlen(self:GetText()) < addon.Options.db.SearchBox.MinimumCharactersToSearch and not string.match(self:GetText():lower(), "^#") then
+	if strlen(self:GetText()) < addon.Options.db.profile.SearchBox.MinimumCharactersToSearch and not string.match(self:GetText():lower(), "^#") then
 		return;
 	end
 
@@ -77,13 +77,13 @@ local function SearchAchievements(text, numAchievementIds, results, excludeExclu
 		achievement = addon.Data.Achievements[addon.Data.AchievementIds[i]];
 		local id, name, _, _, _, _, _, description, _, _, rewardText, _, _, _, _ = GetAchievementInfo(achievement.Id);
 		if id then
-			if (addon.SearchOptions.db.SearchIds and string.find(tostring(id), text, 1, true))
-			or (addon.SearchOptions.db.SearchNames and string.find(name:lower(), text, 1, true))
-			or (addon.SearchOptions.db.SearchDescriptions and string.find(description:lower(), text, 1, true))
-			or (addon.SearchOptions.db.SearchRewards and string.find(rewardText:lower(), text, 1, true)) then
+			if (addon.SearchOptions.db.profile.SearchIds and string.find(tostring(id), text, 1, true))
+			or (addon.SearchOptions.db.profile.SearchNames and string.find(name:lower(), text, 1, true))
+			or (addon.SearchOptions.db.profile.SearchDescriptions and string.find(description:lower(), text, 1, true))
+			or (addon.SearchOptions.db.profile.SearchRewards and string.find(rewardText:lower(), text, 1, true)) then
 				if not (excludeExcluded and achievement.Excluded) then
 					local value = 1;
-					if addon.Options.db.SearchBox.OnlySearchFiltered then
+					if addon.Options.db.profile.SearchBox.OnlySearchFiltered then
 						local category;
 						if addon.Filters.db.MergeSmallCategories then
 							category = achievement:GetMergedCategory(); -- This way we get the parent category
@@ -165,8 +165,8 @@ local function GetSearchResults(text)
 	local results = {};
 
 	local numAchievementIds = #addon.Data.AchievementIds;
-	local excludeExcluded = addon.Options.db.SearchBox.ExcludeExcluded;
-	local showPlaceholders = addon.Options.db.ShowPlaceholdersFilter and addon.Filters.db.ShowPlaceholders;
+	local excludeExcluded = addon.Options.db.profile.SearchBox.ExcludeExcluded;
+	local showPlaceholders = addon.Options.db.profile.ShowPlaceholdersFilter and addon.Filters.db.ShowPlaceholders;
 
 	if string.match(text, "^#") then
 		results = SearchAchievementIds(text, numAchievementIds, results, excludeExcluded, showPlaceholders);
@@ -174,7 +174,7 @@ local function GetSearchResults(text)
 		results = SearchCriteria(text, numAchievementIds, results, excludeExcluded);
 	else
 		results = SearchAchievements(text, numAchievementIds, results, excludeExcluded);
-		if addon.SearchOptions.db.SearchCriteria then
+		if addon.SearchOptions.db.profile.SearchCriteria then
 			results = SearchCriteria(text, numAchievementIds, results, excludeExcluded);
 		else
 			table.sort(results, function(a, b)
@@ -189,7 +189,7 @@ end
 function KrowiAF_SearchBoxFrame_OnTextChanged(self)
 	SearchBoxTemplate_OnTextChanged(self);
 
-	if strlen(self:GetText()) >= addon.Options.db.SearchBox.MinimumCharactersToSearch or string.match(self:GetText():lower(), "^#") then
+	if strlen(self:GetText()) >= addon.Options.db.profile.SearchBox.MinimumCharactersToSearch or string.match(self:GetText():lower(), "^#") then
 		self.Results = GetSearchResults(self:GetText());
 		self:ShowSearchPreviewResults();
 	else
@@ -206,7 +206,7 @@ function KrowiAF_SearchBoxFrame_OnFocusGained(self)
 	SearchBoxTemplate_OnEditFocusGained(self);
 	addon.GUI.Search.ResultsFrame:Hide();
 
-	if self:HasFocus() and strlen(self:GetText()) >= addon.Options.db.SearchBox.MinimumCharactersToSearch then
+	if self:HasFocus() and strlen(self:GetText()) >= addon.Options.db.profile.SearchBox.MinimumCharactersToSearch then
 		if addon.SearchOptions.Changed then
 			self.Results = GetSearchResults(self:GetText());
 		end
@@ -226,7 +226,7 @@ function KrowiAF_SearchBoxFrame_OnKeyDown(self, key)
 end
 
 function KrowiAF_SearchBoxFrame_OnMouseDown(self, button)
-	if addon.Options.db.SearchBox.ClearOnRightClick then
+	if addon.Options.db.profile.SearchBox.ClearOnRightClick then
 		if button == "RightButton" then
 			self:SetText("");
 			KrowiAF_SearchBoxFrame_OnTextChanged(self);

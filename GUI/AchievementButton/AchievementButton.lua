@@ -126,7 +126,7 @@ function KrowiAF_AchievementButton_Small_OnLoad(self)
 	self.CollapsedHeight = 48;
 	self.ObjectivesLeftAnchor = self.PlusMinus;
 
-	if addon.Options.db.RightClickMenu.ShowButtonOnAchievement then
+	if addon.Options.db.profile.RightClickMenu.ShowButtonOnAchievement then
 		AddRightClickMenuButton(self);
 	end
 end
@@ -136,7 +136,7 @@ function KrowiAF_AchievementButton_Normal_OnLoad(self)
 	self.CollapsedHeight = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT;
 	self.ObjectivesLeftAnchor = self.Icon.Border;
 
-	if addon.Options.db.RightClickMenu.ShowButtonOnAchievement then
+	if addon.Options.db.profile.RightClickMenu.ShowButtonOnAchievement then
 		AddRightClickMenuButton(self);
 	end
 end

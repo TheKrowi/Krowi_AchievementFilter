@@ -40,7 +40,7 @@ end
 
 local pages = {};
 function tutorials.Load()
-    local options = addon.Options.db;
+    local options = addon.Options.db.profile;
     local colors = addon.Util.Colors;
     local L = addon.L;
 
@@ -129,8 +129,8 @@ function tutorials.Load()
         OnShow = function(self)
             self.Text = self.Text:K_ReplaceVars
             {
-                mergeSmallCategoriesNumber = tostring(addon.Options.db.Window.MergeSmallCategoriesThreshold):SetColorYellow(),
-                resetFactionFiltersEnabled = GetText1Or2(addon.Options.db.Filters.ResetFactionFilters, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red)
+                mergeSmallCategoriesNumber = tostring(addon.Options.db.profile.Window.MergeSmallCategoriesThreshold):SetColorYellow(),
+                resetFactionFiltersEnabled = GetText1Or2(addon.Options.db.profile.Filters.ResetFactionFilters, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red)
             };
         end
     });
@@ -155,8 +155,8 @@ function tutorials.Load()
                 excludeExcludedAchievementsEnabled = GetText1Or2(options.SearchBox.ExcludeExcluded, L["Exclude"], true, colors.Yellow, L["Include"]),
                 excludeExcludedAchievementsFrom = GetText1Or2(options.SearchBox.ExcludeExcluded, L["from"], true, nil, L["in"]),
                 searchFilteredAchievementsEnabled = GetText1Or2(options.SearchBox.OnlySearchFiltered, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
-                minCharToSearchNumber = tostring(addon.Options.db.SearchBox.MinimumCharactersToSearch):SetColorYellow(),
-                numSearchPreviewsNumber = tostring(addon.Options.db.SearchBox.NumberOfSearchPreviews):SetColorYellow()
+                minCharToSearchNumber = tostring(addon.Options.db.profile.SearchBox.MinimumCharactersToSearch):SetColorYellow(),
+                numSearchPreviewsNumber = tostring(addon.Options.db.profile.SearchBox.NumberOfSearchPreviews):SetColorYellow()
             };
         end
     });
@@ -196,9 +196,9 @@ function tutorials.Load()
         OnShow = function(self)
             self.Text = self.Text:K_ReplaceVars
             {
-                earnedByNumber = tostring(addon.Options.db.Tooltip.Achievements.EarnedBy.Characters):SetColorYellow(),
-                notEarnedByNumber = tostring(addon.Options.db.Tooltip.Achievements.EarnedBy.NotCharacters):SetColorYellow(),
-                achievementPointsEarnedByFormat = string.format(addon.Util.Colors.Yellow, LibStub("AceConfigRegistry-3.0"):GetOptionsTable("Layout", "cmd", "KROWIAF-0.0").args.Header.args.AchievementPoints.args.Format.values[addon.Options.db.AchievementPoints.Format])
+                earnedByNumber = tostring(addon.Options.db.profile.Tooltip.Achievements.EarnedBy.Characters):SetColorYellow(),
+                notEarnedByNumber = tostring(addon.Options.db.profile.Tooltip.Achievements.EarnedBy.NotCharacters):SetColorYellow(),
+                achievementPointsEarnedByFormat = string.format(addon.Util.Colors.Yellow, LibStub("AceConfigRegistry-3.0"):GetOptionsTable("Layout", "cmd", "KROWIAF-0.0").args.Header.args.AchievementPoints.args.Format.values[addon.Options.db.profile.AchievementPoints.Format])
             };
         end
     });
@@ -342,9 +342,9 @@ function tutorials.Load()
             self.Text = self.Text:K_ReplaceVars
             {
                 popUpEnabled = GetText1Or2(options.EventReminders.ShowPopUps, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
-                numPopUps = tostring(addon.Options.db.EventReminders.PopUps.MaxAlerts):SetColorYellow(),
+                numPopUps = tostring(addon.Options.db.profile.EventReminders.PopUps.MaxAlerts):SetColorYellow(),
                 compactEnabled = GetText1Or2(options.EventReminders.Compact, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
-                eventAlertFadeDelay = tostring(addon.Options.db.EventReminders.PopUps.FadeDelay):SetColorYellow()
+                eventAlertFadeDelay = tostring(addon.Options.db.profile.EventReminders.PopUps.FadeDelay):SetColorYellow()
             };
         end
     });
@@ -364,7 +364,7 @@ function tutorials.Load()
     OnShow = function(self)
         self.Text = self.Text:K_ReplaceVars
         {
-            numAchievements = tostring(addon.Options.db.Summary.NumAchievements):SetColorYellow()
+            numAchievements = tostring(addon.Options.db.profile.Summary.NumAchievements):SetColorYellow()
         };
     end
     });
@@ -380,9 +380,9 @@ function tutorials.Load()
         OnShow = function(self)
             self.Text = self.Text:K_ReplaceVars
             {
-                lockMonth = GetText1Or2(addon.Options.db.Calendar.LockMonth, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
-                lockAchievementMonth = GetText1Or2(addon.Options.db.Calendar.LockAchievementMonth, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
-                firstWeekDay = string.format(addon.Util.Colors.Yellow, LibStub("AceConfigRegistry-3.0"):GetOptionsTable("Layout", "cmd", "KROWIAF-0.0").args.Calendar.args.Weekdays.args.FirstDayOfTheWeek.values[addon.Options.db.Calendar.FirstWeekDay]),
+                lockMonth = GetText1Or2(addon.Options.db.profile.Calendar.LockMonth, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
+                lockAchievementMonth = GetText1Or2(addon.Options.db.profile.Calendar.LockAchievementMonth, L["Enabled"], true, colors.Green, L["Disabled"], nil, colors.Red),
+                firstWeekDay = string.format(addon.Util.Colors.Yellow, LibStub("AceConfigRegistry-3.0"):GetOptionsTable("Layout", "cmd", "KROWIAF-0.0").args.Calendar.args.Weekdays.args.FirstDayOfTheWeek.values[addon.Options.db.profile.Calendar.FirstWeekDay]),
             };
         end
     });

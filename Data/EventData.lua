@@ -54,7 +54,7 @@ local function GetActiveCalendarEvents()
 
     for k = 1, numDayEvents, 1 do
         local dayEvent = C_Calendar.GetDayEvent(0, currentDate.monthDay, k);
-        if calendarEvents[dayEvent.eventID] and addon.Options.db.EventReminders.CalendarEvents[dayEvent.eventID] then
+        if calendarEvents[dayEvent.eventID] and addon.Options.db.profile.EventReminders.CalendarEvents[dayEvent.eventID] then
             ProcessDayEvent(dayEvent);
         end
     end
@@ -80,7 +80,7 @@ local function GetActiveWidgetEvents()
 end
 
 function eventData.GetWidgetEventDetails(event)
-    if not addon.Options.db.EventReminders.WidgetEvents[event.Id] then
+    if not addon.Options.db.profile.EventReminders.WidgetEvents[event.Id] then
         return;
     end
 
@@ -109,7 +109,7 @@ local function GetActiveWorldEvents()
 end
 
 function eventData.GetWorldEventDetails(event)
-    if not addon.Options.db.EventReminders.WorldEvents[event.Id] then
+    if not addon.Options.db.profile.EventReminders.WorldEvents[event.Id] then
         return;
     end
 

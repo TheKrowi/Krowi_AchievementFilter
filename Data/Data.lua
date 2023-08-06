@@ -94,7 +94,7 @@ function data.GetCurrentZoneAchievements()
         cachedZone = C_Map.GetBestMapForUnit("player");
         local achievements = addon.GetAchievementsInZone(cachedZone);
         for i = 1, #addon.Data.CurrentZoneCategories do
-            addon.Data.CurrentZoneCategories[i].Achievements = addon.Options.db.AdjustableCategories.CurrentZone[i] and achievements or nil;
+            addon.Data.CurrentZoneCategories[i].Achievements = addon.Options.db.profile.AdjustableCategories.CurrentZone[i] and achievements or nil;
         end
         return true; -- Output that the zone has changed
     end

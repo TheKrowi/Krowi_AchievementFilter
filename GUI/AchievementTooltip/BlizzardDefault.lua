@@ -21,19 +21,19 @@ local function AddName(achievement, thisRealm, numEarnedBy, earnedBy, numNotEarn
 	if achievement.OtherFactionAchievementId and character.Faction and character.Faction ~= addon.Objects.Faction[achievement.Faction] then
 		name = name .. " (" .. addon.L[character.Faction] .. ")";
 	end
-	if addon.Options.db.Tooltip.Achievements.EarnedBy.AlwaysShowRealm or character.Realm ~= thisRealm then
+	if addon.Options.db.profile.Tooltip.Achievements.EarnedBy.AlwaysShowRealm or character.Realm ~= thisRealm then
 		name = name .. " - " .. character.Realm;
 	end
 	name = name .. "|r";
 	if character.CompletedAchievements then
 		if character.CompletedAchievements[achievement.Id] or (achievement.OtherFactionAchievementId and character.CompletedAchievements[achievement.OtherFactionAchievementId]) then
-			if numEarnedBy < addon.Options.db.Tooltip.Achievements.EarnedBy.Characters then
+			if numEarnedBy < addon.Options.db.profile.Tooltip.Achievements.EarnedBy.Characters then
 				earnedBy = earnedBy == "" and name or earnedBy .. ", " .. name;
 				numEarnedBy = numEarnedBy + 1;
 			end
 		else
 			if addon.Objects.Faction[achievement.Faction] == character.Faction or achievement.Faction == nil or achievement.OtherFactionAchievementId ~= nil then
-				if numNotEarnedBy < addon.Options.db.Tooltip.Achievements.EarnedBy.NotCharacters then
+				if numNotEarnedBy < addon.Options.db.profile.Tooltip.Achievements.EarnedBy.NotCharacters then
 					notEarnedBy = notEarnedBy == "" and name or notEarnedBy .. ", " .. name;
 					numNotEarnedBy = numNotEarnedBy + 1;
 				end
@@ -49,8 +49,8 @@ local function EvaluateCharacters(achievement)
 	local thisGuid = UnitGUID("player");
 	local thisCharacter = KrowiAF_SavedData.Characters[thisGuid];
 	local thisRealm = thisCharacter.Realm;
-	local numEarnedByChar = addon.Options.db.Tooltip.Achievements.EarnedBy.Characters;
-	local numNotEarnedByChar = addon.Options.db.Tooltip.Achievements.EarnedBy.NotCharacters;
+	local numEarnedByChar = addon.Options.db.profile.Tooltip.Achievements.EarnedBy.Characters;
+	local numNotEarnedByChar = addon.Options.db.profile.Tooltip.Achievements.EarnedBy.NotCharacters;
 	numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy = AddName(achievement, thisRealm, numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy, thisCharacter);
 	for guid, character in next, KrowiAF_SavedData.Characters do
 		if guid ~= thisGuid and (numEarnedBy < numEarnedByChar or numNotEarnedBy < numNotEarnedByChar) then
@@ -74,7 +74,7 @@ function section.Add(achievement)
 	if earnedBy ~= "" then
 		GameTooltip:AddLine(format(ACHIEVEMENT_EARNED_BY, earnedBy), nil, nil, nil, true);
 	end
-	if notEarnedBy ~= "" and (addon.Options.db.Tooltip.Achievements.EarnedBy.HideNotEarnedByIfEarnedByCurrentCharacter ~= earnedByThisCharacter) then
+	if notEarnedBy ~= "" and (addon.Options.db.profile.Tooltip.Achievements.EarnedBy.HideNotEarnedByIfEarnedByCurrentCharacter ~= earnedByThisCharacter) then
 		GameTooltip:AddLine(format(addon.L["Not earned by:"], notEarnedBy), nil, nil, nil, true);
 	end
 end

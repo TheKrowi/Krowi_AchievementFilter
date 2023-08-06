@@ -120,7 +120,7 @@ function KrowiAF_AchievementFrameFilterButtonMixin:AddAchievementFilters(_menu, 
     self:AddCheckBox(tmpMenu, addon.GetCategoryInfoTitle(81), filters, {"Special", "FeatsOfStrength"}, true);
     self:AddCheckBox(tmpMenu, addon.GetCategoryInfoTitle(95), filters, {"Special", "PvP"}, true);
     self:AddCheckBox(tmpMenu, addon.L["Collapse Chain"], filters, {"CollapseSeries"}, true);
-    if addon.Options.db.Categories.TrackingAchievements.DoLoad then
+    if addon.Options.db.profile.Categories.TrackingAchievements.DoLoad then
         self:AddCheckBox(tmpMenu, addon.L["Tracking"], filters, {"Tracking"}, true);
     end
     self:AddCheckBox(tmpMenu, addon.L["Excluded"], filters, {"Excluded"}, true);

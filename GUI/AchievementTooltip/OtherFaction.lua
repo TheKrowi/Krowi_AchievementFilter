@@ -3,7 +3,7 @@ local _, addon = ...;
 local section = {};
 
 function section.CheckAdd(achievement)
-	if not addon.Options.db.Tooltip.Achievements.ShowOtherFaction then
+	if not addon.Options.db.profile.Tooltip.Achievements.ShowOtherFaction then
 		return;
 	end
 	return achievement.OtherFactionAchievementId ~= nil;
@@ -35,7 +35,7 @@ function section.Add(achievement)
 	GameTooltip:AddLine(addon.L["Other faction"] .. " (" .. faction .. ")"); -- Header
 
 	local otherFactionAchievementCompleted = IsOtherFactionAchievementCompleted(achievement);
-	addon.GUI.AchievementTooltip.AddAchievementLine(achievement, achievement.OtherFactionAchievementId, addon.Options.db.Tooltip.Achievements.ShowCurrentCharacterIconsRequiredFor, nil, otherFactionAchievementCompleted);
+	addon.GUI.AchievementTooltip.AddAchievementLine(achievement, achievement.OtherFactionAchievementId, addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIconsRequiredFor, nil, otherFactionAchievementCompleted);
 end
 
 tinsert(addon.GUI.AchievementTooltip.Sections, section);

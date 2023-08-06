@@ -162,7 +162,7 @@ end
 local firstTimeOpen = true;
 function KrowiAF_CalendarFrame_OnShow(self)
 	self:RegisterEvent("ACHIEVEMENT_EARNED");
-	if (not self.LockMonth and not addon.Options.db.Calendar.LockMonth) or firstTimeOpen then
+	if (not self.LockMonth and not addon.Options.db.profile.Calendar.LockMonth) or firstTimeOpen then
 		local currentCalendarTime = C_DateAndTime.GetCurrentCalendarTime();
 		C_CalendarSetAbsMonth(currentCalendarTime.month, currentCalendarTime.year);
 		self:Update();
@@ -256,7 +256,7 @@ end
 KrowiAF_CalendarFrameMixin = {};
 
 local function GetWeekdayIndex(index)
-	return mod(index - 2 + addon.Options.db.Calendar.FirstWeekDay, 7) + 1;
+	return mod(index - 2 + addon.Options.db.profile.Calendar.FirstWeekDay, 7) + 1;
 end
 
 local function GetDayOfWeek(index)
@@ -407,7 +407,7 @@ function KrowiAF_CalendarFrameMixin:SetLastDay(dayButton)
 end
 
 function KrowiAF_CalendarFrameMixin:SetPrevMonthDays(prevMonth, prevYear, prevNumDays, firstWeekday, selectedDay, selectedMonth, selectedYear, presentDay, presentMonth, presentYear, buttonIndex)
-	local viewablePrevMonthDays = mod(firstWeekday - addon.Options.db.Calendar.FirstWeekDay - 1 + 7, 7);
+	local viewablePrevMonthDays = mod(firstWeekday - addon.Options.db.profile.Calendar.FirstWeekDay - 1 + 7, 7);
 	local day = prevNumDays - viewablePrevMonthDays;
 	local isSelectedMonth = selectedMonth == prevMonth and selectedYear == prevYear;
 	local isThisMonth = presentMonth == prevMonth and presentYear == prevYear;

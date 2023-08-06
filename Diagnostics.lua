@@ -31,10 +31,10 @@ end
 
 function diagnostics.Load() -- Load the diagnostics
     diagnostics.DebugEnabled = function()
-        return addon.Options.db.EnableDebugInfo; -- Needs a function because these change during run time
+        return addon.Options.db.profile.EnableDebugInfo; -- Needs a function because these change during run time
     end;
     diagnostics.TraceEnabled = function()
-        return addon.Options.db.EnableTraceInfo; -- Needs a function because these change during run time
+        return addon.Options.db.profile.EnableTraceInfo; -- Needs a function because these change during run time
     end;
 end
 

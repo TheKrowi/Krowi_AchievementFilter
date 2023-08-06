@@ -5,7 +5,7 @@ gui.SideButton = {};
 local sideButton = gui.SideButton;
 
 local function GetAnchor()
-    return addon.Options.db.EventReminders.SideButtonsAnchor == 1 and AchievementFrame or WorldMapFrame;
+    return addon.Options.db.profile.EventReminders.SideButtonsAnchor == 1 and AchievementFrame or WorldMapFrame;
 end
 
 local function OnEnter(self)
@@ -38,7 +38,7 @@ local function Reset(self)
 end
 
 function sideButton:New(index)
-    local frame = CreateFrame("Button", "AchievementFrameSideButton" .. index, GetAnchor(), "KrowiAF_AlertFrame_" .. (addon.Options.db.EventReminders.Compact and "Small" or "Normal") .. "_Template"); -- Blizzard naming
+    local frame = CreateFrame("Button", "AchievementFrameSideButton" .. index, GetAnchor(), "KrowiAF_AlertFrame_" .. (addon.Options.db.profile.EventReminders.Compact and "Small" or "Normal") .. "_Template"); -- Blizzard naming
     frame:SetParent(GetAnchor()); -- Set parent to automatically hide when the AchievementFrame is hidden
     frame:RegisterForClicks("LeftButtonUp");
 

@@ -36,9 +36,6 @@ loadHelper:RegisterEvent("PLAYER_ENTERING_WORLD");
 loadHelper:RegisterEvent("ACHIEVEMENT_EARNED");
 
 local function LoadKrowi_AchievementFilter()
-    addon.InjectOptions:SetOptionsTable(addon.Options.OptionsTable);
-    addon.InjectOptions:SetDefaultOptions(addon.Options.Defaults.profile);
-
     addon.Diagnostics.Load();
 
     addon.Data.ExportedCategories.InjectDynamicOptions();
@@ -50,7 +47,7 @@ local function LoadKrowi_AchievementFilter()
     addon.Tabs.InjectDynamicOptions();
     addon.GUI.AchievementFrameHeader.InjectDynamicOptions();
     addon.Plugins:InjectOptions();
-    addon.Options:Load(addon);
+    addon.Options:Load();
 
     addon.Plugins:Load();
 
@@ -58,7 +55,7 @@ local function LoadKrowi_AchievementFilter()
 
     addon.GUI:LoadWithAddon();
 
-    addon.Icon.Load();
+    addon.Icon:Load(addon);
     addon.Tutorials.Load();
 
     addon.TooltipData.Load(); -- Might be moved to PLAYER_LOGIN event but easier for testing on every /reload
@@ -73,7 +70,7 @@ local function LoadBlizzard_AchievementUI()
     addon.Data.LoadTrackingAchievements();
     addon.Data.LoadExcludedAchievements();
 
-    if addon.Options.db.Window.Movable then
+    if addon.Options.db.profile.Window.Movable then
         addon.MakeWindowMovable();
     else
         addon.MakeWindowStatic();
@@ -127,15 +124,15 @@ function loadHelper:OnEvent(event, arg1, arg2)
          -- arg1 = isLogin, arg2 = isReload
         local popUpsOptions, chatMessagesOptions;
         if arg1 then
-            popUpsOptions = addon.Options.db.EventReminders.PopUps.OnLogin;
-            chatMessagesOptions = addon.Options.db.EventReminders.ChatMessages.OnLogin;
+            popUpsOptions = addon.Options.db.profile.EventReminders.PopUps.OnLogin;
+            chatMessagesOptions = addon.Options.db.profile.EventReminders.ChatMessages.OnLogin;
         elseif arg2 then
-            popUpsOptions = addon.Options.db.EventReminders.PopUps.OnReload;
-            chatMessagesOptions = addon.Options.db.EventReminders.ChatMessages.OnReload;
+            popUpsOptions = addon.Options.db.profile.EventReminders.PopUps.OnReload;
+            chatMessagesOptions = addon.Options.db.profile.EventReminders.ChatMessages.OnReload;
         end
         if arg1 or arg2 then -- Required cause event also is called when zoning in an instance for example
             C_Timer.After(0, function()
-                C_Timer.After(addon.Options.db.EventReminders.OnLoginDelay, function()
+                C_Timer.After(addon.Options.db.profile.EventReminders.OnLoginDelay, function()
                     addon.GUI.AlertSystem.ShowActiveEventsOnPlayerEnteringWorld(popUpsOptions, chatMessagesOptions);
                 end);
             end);
@@ -151,3 +148,4 @@ function KrowiAF_SaveWidgets()
     KrowiAF_Test[4487] = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(4487);
     KrowiAF_Test[4488] = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(4488);
 end
+

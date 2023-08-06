@@ -84,7 +84,7 @@ function tooltip.AddDoubleCriteriaLine(achievementId, criteriaIndex1, criteriaIn
 end
 
 function tooltip.AddCriteria(customObjectives)
-	if #customObjectives < addon.Options.db.Tooltip.Achievements.ObjectivesProgress.SecondColumnThreshold then
+	if #customObjectives < addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.SecondColumnThreshold then
 		for i = 1, #customObjectives do
 			tooltip.AddCriteriaLine(customObjectives, i);
 		end

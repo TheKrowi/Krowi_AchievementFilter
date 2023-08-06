@@ -120,7 +120,7 @@ function KrowiAF_OpenCurrentZone(collapsed)
     end
 
 	for i = 1, #addon.Data.CurrentZoneCategories do
-		if addon.Options.db.AdjustableCategories.CurrentZone[i] then
+		if addon.Options.db.profile.AdjustableCategories.CurrentZone[i] then
 			KrowiAF_SelectCategory(addon.Data.CurrentZoneCategories[i], collapsed);
 			return;
 		end
@@ -181,7 +181,7 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 		if addon.Options.Defaults then -- Pre options loaded
 			options = addon.Options.Defaults.profile.Tabs;
 		else -- Post options loaderdata
-			options = addon.Options.db.Tabs;
+			options = addon.Options.db.profile.Tabs;
 		end
 		options[_addonName] = options[_addonName] or {};
 		options[_addonName][tabName] = options[_addonName][tabName] or {};
@@ -190,7 +190,7 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 
 	local function GetOrder(index)
 		addon.GUI.TabsOrderGetActiveKeys(); -- Just to make sure the list is cleaned up
-		for addonName2, tabs in next, addon.Options.db.Tabs do
+		for addonName2, tabs in next, addon.Options.db.profile.Tabs do
 			for tabName, tab in next, tabs do
 				if tab.Order == index then
 					for i, tab2 in next, KrowiAF_SavedData.Tabs do
@@ -208,14 +208,14 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 
 		-- We get the addon name and tab name for the selected tab
 		local tab = KrowiAF_SavedData.Tabs[value];
-		-- print(value, tab.AddonName, tab.Name, addon.Options.db.Tabs[tab.AddonName][tab.Name].Order);
+		-- print(value, tab.AddonName, tab.Name, addon.Options.db.profile.Tabs[tab.AddonName][tab.Name].Order);
 
 		-- Get the current order
-		local order = addon.Options.db.Tabs[tab.AddonName][tab.Name].Order;
+		local order = addon.Options.db.profile.Tabs[tab.AddonName][tab.Name].Order;
 
 		-- This order is new order for old selection
 		local aName, tName;
-		for addonName2, tabs in next, addon.Options.db.Tabs do
+		for addonName2, tabs in next, addon.Options.db.profile.Tabs do
 			for tabName, tab2 in next, tabs do
 				if tab2.Order == index then
 					aName = addonName2;
@@ -246,15 +246,15 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 		-- end
 
 		-- local oldTab = KrowiAF_SavedData.Tabs[indexFound];
-		-- print(indexFound, aName, tName, addon.Options.db.Tabs[aName][tName].Order);
-		addon.Options.db.Tabs[aName][tName].Order = order;
-		-- print(aName, tName, addon.Options.db.Tabs[aName][tName].Order);
+		-- print(indexFound, aName, tName, addon.Options.db.profile.Tabs[aName][tName].Order);
+		addon.Options.db.profile.Tabs[aName][tName].Order = order;
+		-- print(aName, tName, addon.Options.db.profile.Tabs[aName][tName].Order);
 
 		-- Set current selection to index
 		-- local tab = KrowiAF_SavedData.Tabs[value];
-		addon.Options.db.Tabs[tab.AddonName][tab.Name].Order = index;
-		-- print(tab.AddonName, tab.Name, addon.Options.db.Tabs[tab.AddonName][tab.Name].Order);
-		-- print(aName, tName, addon.Options.db.Tabs[aName][tName].Order);
+		addon.Options.db.profile.Tabs[tab.AddonName][tab.Name].Order = index;
+		-- print(tab.AddonName, tab.Name, addon.Options.db.profile.Tabs[tab.AddonName][tab.Name].Order);
+		-- print(aName, tName, addon.Options.db.profile.Tabs[aName][tName].Order);
 		addon.GUI.ShowHideTabs();
 	end
 
@@ -267,6 +267,7 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 		SaveBindings(GetCurrentBindingSet());
 	end
 
+	print(2)
 	local OrderPP = addon.InjectOptions.AutoOrderPlusPlus;
 	local AdjustedWidth = addon.InjectOptions.AdjustedWidth;
 	local function InjectKeyBindingOptionsTable(_addonName, addonDisplayName, tabDisplayName, bindingName)
@@ -325,7 +326,7 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 			order = OrderPP(), type = "toggle", width = AdjustedWidth(0.95),
 			name = tabDisplayName,
 			desc = (""):KAF_AddDefaultValueText("Tabs." .. _addonName .. "." .. tabName .. ".Show"),
-			get = function() return addon.Options.db.Tabs[_addonName][tabName].Show; end,
+			get = function() return addon.Options.db.profile.Tabs[_addonName][tabName].Show; end,
 			set = function() addon.GUI.ShowHideTabs(_addonName, tabName); end
 		});
 	end
@@ -381,9 +382,9 @@ do --[[ KrowiAF_RegisterEventOptions ]]
 		addon.InjectOptions:AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", tostring(eventId), {
 			order = OrderPP(), type = "toggle", width = AdjustedWidth(),
 			name = eventDisplayName,
-			get = function() return addon.Options.db.EventReminders[eventType .. "Events"][eventId]; end,
+			get = function() return addon.Options.db.profile.EventReminders[eventType .. "Events"][eventId]; end,
 			set = function()
-				addon.Options.db.EventReminders[eventType .. "Events"][eventId] = not addon.Options.db.EventReminders[eventType .. "Events"][eventId];
+				addon.Options.db.profile.EventReminders[eventType .. "Events"][eventId] = not addon.Options.db.profile.EventReminders[eventType .. "Events"][eventId];
 				addon.GUI.SideButtonSystem.Refresh();
 			end
 		});
@@ -410,7 +411,7 @@ do --[[ KrowiAF_RegisterEventOptions ]]
 			name = addon.L["Select All"],
 			func = function()
 				for _, eventId in next, eventIds do
-					addon.Options.db.EventReminders[eventType .. "Events"][eventId] = true;
+					addon.Options.db.profile.EventReminders[eventType .. "Events"][eventId] = true;
 				end
 			end
 		});
@@ -419,7 +420,7 @@ do --[[ KrowiAF_RegisterEventOptions ]]
 			name = addon.L["Deselect All"],
 			func = function()
 				for _, eventId in next, eventIds do
-					addon.Options.db.EventReminders[eventType .. "Events"][eventId] = false;
+					addon.Options.db.profile.EventReminders[eventType .. "Events"][eventId] = false;
 				end
 			end
 		});

@@ -18,7 +18,7 @@ end
 
 function section.Add(menu, achievement)
 	local locale = "";
-	if addon.Options.db.RightClickMenu.WowheadLink.AddLocale then
+	if addon.Options.db.profile.RightClickMenu.WowheadLink.AddLocale then
 		locale = GetLocale();
 		locale = locale:sub(1, 2);
 		if locale == "zh" then
@@ -27,7 +27,7 @@ function section.Add(menu, achievement)
 		locale = locale .. ".";
 	end
 
-	local addRelatedTab = addon.Options.db.RightClickMenu.WowheadLink.AddRelatedTab;
+	local addRelatedTab = addon.Options.db.profile.RightClickMenu.WowheadLink.AddRelatedTab;
 	local relatedTab = relatedTabs[addRelatedTab];
 	local wotlk = addon.IsWrathClassic and "wotlk/" or "";
 

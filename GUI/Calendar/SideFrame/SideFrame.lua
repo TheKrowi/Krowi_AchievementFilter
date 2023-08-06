@@ -7,7 +7,7 @@ local function OnAchievementsFrameViewAcquiredFrame(self, frame, elementData, ne
     frame:HookScript("OnClick", function(self, button, down, ignoreModifiers)
         if button == "LeftButton" then
             local calendarFrame = addon.GUI.Calendar.Frame;
-            calendarFrame.LockMonth = addon.Options.db.Calendar.LockAchievementMonth;
+            calendarFrame.LockMonth = addon.Options.db.profile.Calendar.LockAchievementMonth;
             calendarFrame:Hide();
         end
     end);
@@ -19,8 +19,8 @@ function sideFrame:Load()
     frame:SetPoint("TOPLEFT", parent, "TOPRIGHT", 0, -24);
     frame:SetPoint("BOTTOM", parent, "BOTTOM", 0, 0); --320
 
-	frame.AchievementsFrame.ScrollBox.wheelPanScalar = addon.Options.db.Calendar.MouseWheelPanScalar;
-	frame.AchievementsFrame.ScrollBar.wheelPanScalar = addon.Options.db.Calendar.MouseWheelPanScalar;
+	frame.AchievementsFrame.ScrollBox.wheelPanScalar = addon.Options.db.profile.Calendar.MouseWheelPanScalar;
+	frame.AchievementsFrame.ScrollBar.wheelPanScalar = addon.Options.db.profile.Calendar.MouseWheelPanScalar;
     frame.AchievementsFrame:AlwaysHideBorder();
     frame.AchievementsFrame.ScrollView:RegisterCallback(ScrollBoxListViewMixin.Event.OnAcquiredFrame, OnAchievementsFrameViewAcquiredFrame, frame);
 

@@ -18,8 +18,8 @@ function achievementsTabFixes.InjectOptions()
         order = OrderPP(), type = "toggle", width = "full",
         name = addon.L["RenameExplorationDragonIslesCategory"],
         desc = addon.L["RenameExplorationDragonIslesCategory Desc"]:KAF_AddDefaultValueText("Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory"),
-        get = function() return addon.Options.db.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory; end,
-        set = function() addon.Options.db.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory = not addon.Options.db.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory; end,
+        get = function() return addon.Options.db.profile.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory; end,
+        set = function() addon.Options.db.profile.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory = not addon.Options.db.profile.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory; end,
         hidden = addon.IsWrathClassic
     });
 end
@@ -33,7 +33,7 @@ local function FindCategory(categories, name)
 end
 
 function achievementsTabFixes.Load()
-    if not addon.IsWrathClassic and addon.Options.db.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory then
+    if not addon.IsWrathClassic and addon.Options.db.profile.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory then
         local preHookFunction = addon.Data.LoadBlizzardTabAchievements;
         function addon.Data.LoadBlizzardTabAchievements(categories)
             local tabCategories = preHookFunction(categories);
