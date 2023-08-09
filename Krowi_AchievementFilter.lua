@@ -148,4 +148,3 @@ function KrowiAF_SaveWidgets()
     KrowiAF_Test[4487] = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(4487);
     KrowiAF_Test[4488] = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(4488);
 end
-

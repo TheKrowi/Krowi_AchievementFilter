@@ -267,7 +267,6 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 		SaveBindings(GetCurrentBindingSet());
 	end
 
-	print(2)
 	local OrderPP = addon.InjectOptions.AutoOrderPlusPlus;
 	local AdjustedWidth = addon.InjectOptions.AdjustedWidth;
 	local function InjectKeyBindingOptionsTable(_addonName, addonDisplayName, tabDisplayName, bindingName)

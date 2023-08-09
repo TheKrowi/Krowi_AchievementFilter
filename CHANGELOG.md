@@ -1,9 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 60.0 - 2023-xx-xx
+## 60.0 - 2023-08-09
 ### Added
-- KAF now uses the Addon compartment (minimap button is still available for those who use it)
+- Now uses the Addon compartment (minimap button is still available for those who use it)
+- Introduced Profiles
+
+### Changed
+- Lots of backend code is now shared between all my addons
 
 ## 59.4 - 2023-07-23
 ### Fixed
