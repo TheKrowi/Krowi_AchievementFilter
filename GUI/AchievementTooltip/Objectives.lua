@@ -9,10 +9,10 @@ function section.CheckAdd(achievement)
 		state = achievement.TemporaryObtainable.Obtainable();
 	end
 	local pastObtainable = state and (not state or state == "Past");
-	if not addon.Options.db.Tooltip.Achievements.ObjectivesProgress.Show or pastObtainable then
+	if not addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.Show or pastObtainable then
 		return;
 	end
-	if achievement.IsCompleted and not addon.Options.db.Tooltip.Achievements.ObjectivesProgress.ShowWhenAchievementCompleted then
+	if achievement.IsCompleted and not addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.ShowWhenAchievementCompleted then
 		return;
 	end
 	numCriteria = addon.GetAchievementNumCriteria(achievement.Id);
@@ -25,7 +25,7 @@ function section.Add(achievement)
 		achievement.CustomObjectives(GameTooltip);
 	elseif numCriteria > 0 then
 		local id = achievement.Id;
-		if numCriteria < addon.Options.db.Tooltip.Achievements.ObjectivesProgress.SecondColumnThreshold then
+		if numCriteria < addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.SecondColumnThreshold then
 			for i = 1, numCriteria do
 				addon.GUI.AchievementTooltip.AddCriteriaLine(id, i);
 			end

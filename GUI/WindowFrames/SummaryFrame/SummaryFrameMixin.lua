@@ -22,7 +22,7 @@ function KrowiAF_SummaryFrameMixin:CategoriesStatusBar_Update(event)
     local offset = 0;
     local totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch = 0, 0, 0;
     local categories = selectedTab.Categories;
-    local showNotObtainable = addon.Options.db.Tooltip.Categories.ShowNotObtainable;
+    local showNotObtainable = addon.Options.db.profile.Tooltip.Categories.ShowNotObtainable;
     local statusBars = self.StatusBars;
     for i = 1, #statusBars do
         local category = categories[i + offset];
@@ -80,7 +80,7 @@ function KrowiAF_SummaryFrameMixin:CategoriesStatusBar_Update(event)
 end
 
 local function BuildLastCompleted(event)
-    local numLastCompleted = addon.Options.db.Summary.NumAchievements or 25;
+    local numLastCompleted = addon.Options.db.profile.Summary.NumAchievements or 25;
     local lastCompleted = KrowiAF_SavedData.Characters[UnitGUID("player")].LastCompleted;
     if type(lastCompleted) == "table"
     and #lastCompleted == numLastCompleted

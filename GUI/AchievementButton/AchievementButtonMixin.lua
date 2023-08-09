@@ -116,7 +116,7 @@ function KrowiAF_AchievementButtonMixin:SetAchievementData(achievement, id, name
 		self.Completed = true;
 		achievement.IsCompleted = true;
 		self.DateCompleted:SetText(FormatShortDate(day, month, year));
-		if not addon.Options.db.Achievements.HideDateCompleted then
+		if not addon.Options.db.profile.Achievements.HideDateCompleted then
 			self.DateCompleted:Show();
 		end
 		if self.saturatedStyle ~= saturatedStyle then
@@ -126,7 +126,7 @@ function KrowiAF_AchievementButtonMixin:SetAchievementData(achievement, id, name
 		self.Completed = true;
 		achievement.IsCompleted = true;
 		self.DateCompleted:SetText(FormatShortDate(day, month, year));
-		if not addon.Options.db.Achievements.HideDateCompleted then
+		if not addon.Options.db.profile.Achievements.HideDateCompleted then
 			self.DateCompleted:Show();
 		end
 		self:SaturatePartial();
@@ -159,10 +159,10 @@ function KrowiAF_AchievementButtonMixin:SetAchievementData(achievement, id, name
 	end
 
 	self.Faction:Hide();
-	if achievement.Faction == addon.Objects.Faction.Alliance and addon.Options.db.Achievements.ShowAllianceFactionIcon then
+	if achievement.Faction == addon.Objects.Faction.Alliance and addon.Options.db.profile.Achievements.ShowAllianceFactionIcon then
 		self.Faction.Icon:SetAtlas("MountJournalIcons-Alliance");
 		self.Faction:Show();
-	elseif achievement.Faction == addon.Objects.Faction.Horde and addon.Options.db.Achievements.ShowHordeFactionIcon then
+	elseif achievement.Faction == addon.Objects.Faction.Horde and addon.Options.db.profile.Achievements.ShowHordeFactionIcon then
 		self.Faction.Icon:SetAtlas("MountJournalIcons-Horde");
 		self.Faction:Show();
 	end
@@ -173,7 +173,7 @@ function KrowiAF_AchievementButtonMixin:SetAchievementData(achievement, id, name
 		self.ExtraIcon:Show();
 	elseif achievement.IsWatched then
 		self.ExtraIcon.Texture:SetAtlas("groupfinder-eye-frame");
-		self.ExtraIcon.Text = addon.L["Achievement is watched"]:ReplaceVars
+		self.ExtraIcon.Text = addon.L["Achievement is watched"]:K_ReplaceVars
 		{
 			watchList = addon.L["Watch List"]
 		};
@@ -449,7 +449,7 @@ end
 function KrowiAF_AchievementButtonMixin:ProcessedModifiers(ignoreModifiers)
 	if IsModifierKeyDown() and not ignoreModifiers then
 		local handled = nil;
-		if addon.IsCustomModifierKeyDown(addon.Options.db.Achievements.Modifiers.PasteToChat) then
+		if addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.PasteToChat) then
 			local achievementLink = GetAchievementLink(self.Achievement.Id);
 			if achievementLink then
 				handled = ChatEdit_InsertLink(achievementLink);
@@ -459,7 +459,7 @@ function KrowiAF_AchievementButtonMixin:ProcessedModifiers(ignoreModifiers)
 				end
 			end
 		end
-		if not handled and addon.IsCustomModifierKeyDown(addon.Options.db.Achievements.Modifiers.ToggleTracking) then
+		if not handled and addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.ToggleTracking) then
 			if addon.IsWrathClassic then
 				AchievementButton_ToggleTracking(self.Achievement.Id);
 			else
@@ -467,14 +467,14 @@ function KrowiAF_AchievementButtonMixin:ProcessedModifiers(ignoreModifiers)
 			end
 			handled = true;
 		end
-		if not handled and addon.IsCustomModifierKeyDown(addon.Options.db.Achievements.Modifiers.ToggleWatchList) then
+		if not handled and addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.ToggleWatchList) then
 			if self.Achievement.IsWatched then
 				addon.ClearWatchAchievement(self.Achievement);
 			else
 				addon.WatchAchievement(self.Achievement);
 			end
 		end
-		if not handled and addon.IsCustomModifierKeyDown(addon.Options.db.Achievements.Modifiers.ToggleExcluded) then
+		if not handled and addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.ToggleExcluded) then
 			if self.Achievement.IsExcluded then
 				addon.IncludeAchievement(self.Achievement);
 			else

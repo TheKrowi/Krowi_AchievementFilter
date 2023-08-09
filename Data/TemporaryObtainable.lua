@@ -172,7 +172,7 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
     local isWillBeWas, neverOnceTempObt, startText, startDetail, endText, endDetail;
     local function FillText()
         local subString = string.sub(addon.L["Temporary Obtainable Text"], 2, -2);
-        local fields = addon.Util.SplitString(subString, "}{");
+        local fields = addon.Util.StringSplitTable("}{", subString);
         for i = 1, #fields do
             if fields[i] == "thisAchievement" then
                 fields[i] = addon.L["This achievement"];

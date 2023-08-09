@@ -712,7 +712,7 @@ end
 
 local function AddInfo(localizationName, getFunction, hidden)
     return {
-        order = KrowiAF_InjectOptions.AutoOrderPlusPlus(), type = "toggle", width = "full",
+        order = addon.InjectOptions.AutoOrderPlusPlus(), type = "toggle", width = "full",
         name = addon.L["ElvUI " .. localizationName],
         desc = addon.L["ElvUI " .. localizationName .. " Desc"],
         descStyle = "inline",
@@ -723,31 +723,31 @@ local function AddInfo(localizationName, getFunction, hidden)
 end
 
 function elvUI.InjectOptions()
-    local pluginTable = KrowiAF_InjectOptions.AddPluginTable("ElvUI", addon.L["ElvUI"], addon.L["ElvUI Desc"], function()
+    local pluginTable = addon.InjectOptions:AddPluginTable("ElvUI", addon.L["ElvUI"], addon.L["ElvUI Desc"], function()
         return ElvUI ~= nil;
     end);
-    KrowiAF_InjectOptions:AddTable(pluginTable, "SkinAchievement", AddInfo("Skin Achievements", function() return KrowiAF_SavedData.ElvUISkin.Achievements; end));
-    KrowiAF_InjectOptions:AddTable(pluginTable, "SkinMiscFrames", AddInfo("Skin Misc Frames", function() return KrowiAF_SavedData.ElvUISkin.MiscFrames; end));
-    KrowiAF_InjectOptions:AddTable(pluginTable, "SkinTooltip", AddInfo("Skin Tooltip", function() return KrowiAF_SavedData.ElvUISkin.Tooltip; end));
-    KrowiAF_InjectOptions:AddTable(pluginTable, "SkinTutorials", AddInfo("Skin Tutorials", function() return KrowiAF_SavedData.ElvUISkin.Tutorials; end));
-    KrowiAF_InjectOptions:AddTable(pluginTable, "SkinAlertFrames", AddInfo("Skin Alert Frames", function() return KrowiAF_SavedData.ElvUISkin.AlertFrames; end));
-    KrowiAF_InjectOptions:AddTable(pluginTable, "SkinCalendar", AddInfo("Skin Calendar", function() return KrowiAF_SavedData.ElvUISkin.Calendar; end));
-    KrowiAF_InjectOptions:AddTable(pluginTable, "RemoveParchment", AddInfo("Remove Parchment", function() return KrowiAF_SavedData.ElvUISkin.NoParchment; end));
-    KrowiAF_InjectOptions:AddTable(pluginTable, "SkinDataManager", AddInfo("Skin Data Manager", function() return KrowiAF_SavedData.ElvUISkin.Achievements; end));
-    KrowiAF_InjectOptions:AddTable(pluginTable, "SkinAce3", AddInfo("Skin Ace3", function() return KrowiAF_SavedData.ElvUISkin.Options; end));
-    KrowiAF_InjectOptions:AddTable(pluginTable, "FixWorldMapButton", AddInfo("Fix World Map Button", function() return KrowiAF_SavedData.ElvUISkin.SmallerWorldMap; end));
+    addon.InjectOptions:AddTable(pluginTable, "SkinAchievement", AddInfo("Skin Achievements", function() return KrowiAF_SavedData.ElvUISkin.Achievements; end));
+    addon.InjectOptions:AddTable(pluginTable, "SkinMiscFrames", AddInfo("Skin Misc Frames", function() return KrowiAF_SavedData.ElvUISkin.MiscFrames; end));
+    addon.InjectOptions:AddTable(pluginTable, "SkinTooltip", AddInfo("Skin Tooltip", function() return KrowiAF_SavedData.ElvUISkin.Tooltip; end));
+    addon.InjectOptions:AddTable(pluginTable, "SkinTutorials", AddInfo("Skin Tutorials", function() return KrowiAF_SavedData.ElvUISkin.Tutorials; end));
+    addon.InjectOptions:AddTable(pluginTable, "SkinAlertFrames", AddInfo("Skin Alert Frames", function() return KrowiAF_SavedData.ElvUISkin.AlertFrames; end));
+    addon.InjectOptions:AddTable(pluginTable, "SkinCalendar", AddInfo("Skin Calendar", function() return KrowiAF_SavedData.ElvUISkin.Calendar; end));
+    addon.InjectOptions:AddTable(pluginTable, "RemoveParchment", AddInfo("Remove Parchment", function() return KrowiAF_SavedData.ElvUISkin.NoParchment; end));
+    addon.InjectOptions:AddTable(pluginTable, "SkinDataManager", AddInfo("Skin Data Manager", function() return KrowiAF_SavedData.ElvUISkin.Achievements; end));
+    addon.InjectOptions:AddTable(pluginTable, "SkinAce3", AddInfo("Skin Ace3", function() return KrowiAF_SavedData.ElvUISkin.Options; end));
+    addon.InjectOptions:AddTable(pluginTable, "FixWorldMapButton", AddInfo("Fix World Map Button", function() return KrowiAF_SavedData.ElvUISkin.SmallerWorldMap; end));
 end
 
-local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
+local OrderPP = addon.InjectOptions.AutoOrderPlusPlus;
 local function DisableOptions()
     local appName = "Event Reminders";
     KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.GrowDirection").disabled = true;
     KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.Spacing").disabled = true;
     KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.OffsetX").disabled = true;
     KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.OffsetY").disabled = true;
-    KrowiAF_InjectOptions:AddTable(KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args"), "ElvUIComment", {
+    addon.InjectOptions:AddTable(KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args"), "ElvUIComment", {
         order = OrderPP(), type = "description", width = "full",
-        name = addon.L["Alert System Overwrite Desc"]:ReplaceVars(addon.L["ElvUI"])
+        name = addon.L["Alert System Overwrite Desc"]:K_ReplaceVars(addon.L["ElvUI"])
     });
 end
 

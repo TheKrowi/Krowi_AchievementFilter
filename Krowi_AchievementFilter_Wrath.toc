@@ -1,9 +1,12 @@
 ## Interface: 30401
 ## Title: Krowi's |cFF1D92C2Achievement Filter|r
-## Version: 59.3
+## X-Prefix: KrowiAF
+## X-Acronym: KAF
+## Version: 60.0
 ## Author: Krowi-Frostmane EU
 ## SavedVariables: Options, SavedData, Filters, DebugTable, KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters
 ## Notes: Filters your achievements.
+## IconTexture: interface/icons/achievement_dungeon_heroic_gloryoftheraider
 ## X-Discord-Invite-Link: https://discord.gg/mdBFQJYeQZ
 ## X-Discord-Server-Name: Krowi's Addons
 ## X-CurseForge: https://www.curseforge.com/wow/addons/krowi-achievement-filter
@@ -13,13 +16,12 @@
 ## X-WoWInterface: https://www.wowinterface.com/downloads/info26229-KrowisAchievementFilter
 ## X-WoWInterface-Project-ID: 26229
 
-API.lua
-
 Libs\Files.xml
+
+API.lua
 
 Plugins\Files.xml
 
-MetaData.lua
 Credits.lua
 
 Localization\Files.xml
@@ -31,6 +33,7 @@ Globals.lua
 
 Diagnostics.lua
 Options\Files.xml
+Libs\Krowi_Util\Icon.lua
 Icon.lua
 Tutorials.lua
 

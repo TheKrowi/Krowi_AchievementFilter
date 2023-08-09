@@ -24,11 +24,11 @@ local function AddTooltipLine(tooltip, tooltipLine)
     end
 
     local show = not achievementIsCompleted;
-    if not wasEarnedByMe and addon.Options.db.Tooltip.Criteria.ShowIf.AchievementWasNotEarnedByMe then
+    if not wasEarnedByMe and addon.Options.db.profile.Tooltip.Criteria.ShowIf.AchievementWasNotEarnedByMe then
         show = true;
     end
 
-    if achievementIsCompleted and addon.Options.db.Tooltip.Criteria.ShowIf.AchievementIsCompleted then
+    if achievementIsCompleted and addon.Options.db.profile.Tooltip.Criteria.ShowIf.AchievementIsCompleted then
         show = true;
     end
 
@@ -42,7 +42,7 @@ local function AddTooltipLine(tooltip, tooltipLine)
     else
         criteriaIsCompleted = achievementIsCompleted;
     end
-    if criteriaIsCompleted and not addon.Options.db.Tooltip.Criteria.ShowIf.CriteriaIsCompleted then
+    if criteriaIsCompleted and not addon.Options.db.profile.Tooltip.Criteria.ShowIf.CriteriaIsCompleted then
         return;
     end
 
@@ -57,13 +57,13 @@ local function AddTooltipLine(tooltip, tooltipLine)
         color = addon.Util.Colors.RedRGB;
     end
     if tooltipLine.CriteriaIndex ~= 0 then
-        text = text:ReplaceVars{
-            forAchievement = addon.Options.db.Tooltip.Criteria.ShowForAchievement and addon.L["for achievement"] or ""
+        text = text:K_ReplaceVars{
+            forAchievement = addon.Options.db.profile.Tooltip.Criteria.ShowForAchievement and addon.L["for achievement"] or ""
         };
     else
         text = name;
     end
-    tooltip:AddLine(icon .. " |T" .. achievementIcon .. ":0|t " .. string.trim(text:ReplaceVars{
+    tooltip:AddLine(icon .. " |T" .. achievementIcon .. ":0|t " .. string.trim(text:K_ReplaceVars{
         achievement = name
     }), color.R, color.G, color.B);
     if addon.Diagnostics.DebugEnabled() then
@@ -72,7 +72,7 @@ local function AddTooltipLine(tooltip, tooltipLine)
 end
 
 local function ProcessUnit(tooltip, guid)
-    if not addon.Options.db.Tooltip.Criteria.Show then
+    if not addon.Options.db.profile.Tooltip.Criteria.Show then
         return;
     end
 
@@ -102,7 +102,7 @@ local function ProcessUnit(tooltip, guid)
 end
 
 local function ProcessItem(tooltip, itemId)
-    if not addon.Options.db.Tooltip.Criteria.Show then
+    if not addon.Options.db.profile.Tooltip.Criteria.Show then
         return;
     end
 

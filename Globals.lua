@@ -95,7 +95,7 @@ local function AddCategoriesTree(category, achievement, extraFunc)
 end
 
 local function AddWatchListCategoriesTree(watchListCategory, achievement)
-    if not addon.Options.db.Categories.WatchList.ShowSubCategories then
+    if not addon.Options.db.profile.Categories.WatchList.ShowSubCategories then
         return watchListCategory;
     end
     return AddCategoriesTree(watchListCategory, achievement, function(newCategory)
@@ -104,7 +104,7 @@ local function AddWatchListCategoriesTree(watchListCategory, achievement)
 end
 
 local function AddTrackingAchievementsCategoriesTree(trackingAchievementsCategory, achievement)
-    if not addon.Options.db.Categories.TrackingAchievements.ShowSubCategories or achievement.Category == nil then
+    if not addon.Options.db.profile.Categories.TrackingAchievements.ShowSubCategories or achievement.Category == nil then
         return trackingAchievementsCategory;
     end
     return AddCategoriesTree(trackingAchievementsCategory, achievement, function(newCategory)
@@ -113,7 +113,7 @@ local function AddTrackingAchievementsCategoriesTree(trackingAchievementsCategor
 end
 
 local function AddExcludedCategoriesTree(excludedCategory, achievement)
-    if not addon.Options.db.Categories.Excluded.ShowSubCategories then
+    if not addon.Options.db.profile.Categories.Excluded.ShowSubCategories then
         return excludedCategory;
     end
     return AddCategoriesTree(excludedCategory, achievement, function(newCategory)
@@ -139,7 +139,7 @@ function addon.ClearWatchAchievement(achievement, update)
     for i = 1, numWatchListCategories do
         achievement.WatchListCategories[i]:RemoveWatchedAchievement(achievement);
     end
-    if addon.Options.db.Categories.WatchList.ShowSubCategories then
+    if addon.Options.db.profile.Categories.WatchList.ShowSubCategories then
         for i = 1, numWatchListCategories do
             ClearTree(achievement.WatchListCategories[i]:GetTree());
         end
@@ -160,7 +160,7 @@ end
 function addon.WatchAchievement(achievement, update)
     achievement:Watch();
     for i = 1, #addon.Data.WatchListCategories do
-        if addon.Options.db.AdjustableCategories.WatchList[i] then
+        if addon.Options.db.profile.AdjustableCategories.WatchList[i] then
             local watchListCategory = AddWatchListCategoriesTree(addon.Data.WatchListCategories[i], achievement);
             watchListCategory:AddWatchedAchievement(achievement);
         end
@@ -173,7 +173,7 @@ end
 
 function addon.AddToTrackingAchievementsCategories(achievement, update)
     for i = 1, #addon.Data.TrackingAchievementsCategories do
-        if addon.Options.db.AdjustableCategories.TrackingAchievements[i] then
+        if addon.Options.db.profile.AdjustableCategories.TrackingAchievements[i] then
             local trackingAchievementsCategory = AddTrackingAchievementsCategoriesTree(addon.Data.TrackingAchievementsCategories[i], achievement);
             trackingAchievementsCategory:AddAchievement(achievement);
         end
@@ -190,7 +190,7 @@ function addon.IncludeAchievement(achievement, update)
     for i = 1, numExcludedCategories do
         achievement.ExcludedCategories[i]:RemoveExcludedAchievement(achievement);
     end
-    if addon.Options.db.Categories.Excluded.ShowSubCategories then
+    if addon.Options.db.profile.Categories.Excluded.ShowSubCategories then
         for i = 1, numExcludedCategories do
             ClearTree(achievement.ExcludedCategories[i]:GetTree());
         end
@@ -209,9 +209,9 @@ end
 
 function addon.ExcludeAchievement(achievement, update)
     achievement:Exclude();
-    if addon.Options.db.Categories.Excluded.Show then
+    if addon.Options.db.profile.Categories.Excluded.Show then
         for i = 1, #addon.Data.ExcludedCategories do
-            if addon.Options.db.AdjustableCategories.Excluded[i] then
+            if addon.Options.db.profile.AdjustableCategories.Excluded[i] then
                 local excludedCategory = AddExcludedCategoriesTree(addon.Data.ExcludedCategories[i], achievement);
                 excludedCategory:AddExcludedAchievement(achievement);
             end
@@ -286,7 +286,7 @@ local function AddToCriteriaCache(playerGUID, id, points, flags, isGuild, wasEar
     if isStatistic or isGuild then
         return;
     end
-    if flags.IsTracking and not addon.Options.db.Categories.TrackingAchievements.DoLoad then
+    if flags.IsTracking and not addon.Options.db.profile.Categories.TrackingAchievements.DoLoad then
         return;
     end
     if exists then
@@ -539,7 +539,7 @@ local function MakeMovable(frame, rememberLastPositionOption, target)
     end);
     frame:SetScript("OnMouseUp", function(frame, button)
         target:StopMovingOrSizing();
-        if addon.Options.db.Window.RememberLastPosition[rememberLastPositionOption] then
+        if addon.Options.db.profile.Window.RememberLastPosition[rememberLastPositionOption] then
             KrowiAF_SavedData.RememberLastPosition = KrowiAF_SavedData.RememberLastPosition or {};
             KrowiAF_SavedData.RememberLastPosition[rememberLastPositionOption] = {
                 X = target:GetLeft(),
@@ -653,14 +653,14 @@ end
 
 function addon.ChangeAchievementMicroButtonOnClick()
     addon.GUI.TabsOrderGetActiveKeys(); -- Cleanup unused tabs
-    if addon.Options.db.MicroButtonTab > #KrowiAF_SavedData.Tabs then
+    if addon.Options.db.profile.MicroButtonTab > #KrowiAF_SavedData.Tabs then
         for i, _ in next, KrowiAF_SavedData.Tabs do
             if KrowiAF_SavedData.Tabs[i].AddonName == addonName and KrowiAF_SavedData.Tabs[i].Name == "Achievements" then
-                addon.Options.db.MicroButtonTab = i;
+                addon.Options.db.profile.MicroButtonTab = i;
             end
         end
     end
-    local tab = KrowiAF_SavedData.Tabs[addon.Options.db.MicroButtonTab];
+    local tab = KrowiAF_SavedData.Tabs[addon.Options.db.profile.MicroButtonTab];
     if tab.AddonName == "Blizzard_AchievementUI" then
         return;
     end

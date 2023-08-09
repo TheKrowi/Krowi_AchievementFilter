@@ -4,7 +4,7 @@ local section = {};
 
 local requiredForIds;
 function section.CheckAdd(achievement)
-    if not addon.Options.db.Tooltip.Achievements.ShowRequiredFor then
+    if not addon.Options.db.profile.Tooltip.Achievements.ShowRequiredFor then
 		return;
 	end
     requiredForIds = achievement:GetRequiredForIds();
@@ -14,7 +14,7 @@ end
 function section.Add(achievement)
 	GameTooltip:AddLine(addon.L["Required for"]); -- Header
 	for _, id in next, requiredForIds do
-		addon.GUI.AchievementTooltip.AddAchievementLine(achievement, id, addon.Options.db.Tooltip.Achievements.ShowCurrentCharacterIconsRequiredFor);
+		addon.GUI.AchievementTooltip.AddAchievementLine(achievement, id, addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIconsRequiredFor);
 	end
 end
 

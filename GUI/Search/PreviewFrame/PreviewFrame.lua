@@ -13,7 +13,7 @@ function previewFrame:Load()
     local button = CreateFrame("Button", "KrowiAF_SearchPreview1", frame, "KrowiAF_SearchPreviewButton_Template");
     button:SetPoint("TOPLEFT");
     tinsert(frame.Buttons, button);
-    for i = 2, addon.Options.db.SearchBox.NumberOfSearchPreviews do
+    for i = 2, addon.Options.db.profile.SearchBox.NumberOfSearchPreviews do
         button = CreateFrame("Button", "KrowiAF_SearchPreview" .. i, frame, "KrowiAF_SearchPreviewButton_Template");
         button:SetPoint("TOPLEFT", frame.Buttons[i - 1], "BOTTOMLEFT");
         tinsert(frame.Buttons, button);
@@ -29,11 +29,11 @@ end
 
 local function ShowSearchResultsAsCategory(query, results)
     for i = 1, #addon.Data.SearchResultsCategories do
-        addon.Data.SearchResultsCategories[i].Achievements = addon.Options.db.AdjustableCategories.SearchResults[i] and results or nil;
+        addon.Data.SearchResultsCategories[i].Achievements = addon.Options.db.profile.AdjustableCategories.SearchResults[i] and results or nil;
         addon.Data.SearchResultsCategories[i].Name = addon.L["Search Results"] .. " (" .. query .. ")";
     end
     for i = 1, #addon.Data.SearchResultsCategories do
-        if addon.Options.db.AdjustableCategories.SearchResults[i] then
+        if addon.Options.db.profile.AdjustableCategories.SearchResults[i] then
             KrowiAF_SelectCategory(addon.Data.SearchResultsCategories[i]);
             return;
         end
@@ -55,7 +55,7 @@ function KrowiAF_ShowFullSearchResultsButton_OnClick(self)
     local boxFrame = search.BoxFrame;
     local results = boxFrame.Results;
 
-    if addon.Options.db.SearchBox.ShowAllResultsInCategory then
+    if addon.Options.db.profile.SearchBox.ShowAllResultsInCategory then
         ShowSearchResultsAsCategory(boxFrame:GetText(), results);
     else
         ShowSearchResultsAsFrame(boxFrame:GetText(), results);

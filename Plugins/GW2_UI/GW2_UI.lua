@@ -976,7 +976,7 @@ end
 
 do -- [[ Header ]]
     local function UpdatePointsDisplay()
-        if not addon.InGuildView() and addon.Options.db.AchievementPoints.Format == 2 then
+        if not addon.InGuildView() and addon.Options.db.profile.AchievementPoints.Format == 2 then
             AchievementFrame.Header.Points:SetHeight(AchievementFrame.Header.Shield:GetHeight());
             AchievementFrame.Header.Points:SetPoint("TOP", AchievementFrame.Header.Shield);
             AchievementFrame.Header.Points:SetPoint("BOTTOM", AchievementFrame.Header.Shield);
@@ -1250,7 +1250,7 @@ end
 
 local function AddInfo(localizationName, getFunction, hidden)
     return {
-        order = KrowiAF_InjectOptions.AutoOrderPlusPlus(), type = "toggle", width = "full",
+        order = addon.InjectOptions.AutoOrderPlusPlus(), type = "toggle", width = "full",
         name = addon.L["GW2_UI " .. localizationName],
         desc = addon.L["GW2_UI " .. localizationName .. " Desc"],
         descStyle = "inline",
@@ -1260,42 +1260,42 @@ local function AddInfo(localizationName, getFunction, hidden)
     };
 end
 
-local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
+local OrderPP = addon.InjectOptions.AutoOrderPlusPlus;
 function gw2_ui.InjectOptions()
-    local pluginTable = KrowiAF_InjectOptions.AddPluginTable("GW2_UI", addon.L["GW2_UI"], "", function()
+    local pluginTable = addon.InjectOptions:AddPluginTable("GW2_UI", addon.L["GW2_UI"], "", function()
         return GW2_ADDON ~= nil and gw2_ui.IsLoaded();
     end);
 
-    KrowiAF_InjectOptions:AddTable(pluginTable, "Unsupported", {
+    addon.InjectOptions:AddTable(pluginTable, "Unsupported", {
         order = OrderPP(), type = "description", width = "full",
-        name = (addon.L["Unsupported GW2_UI Desc"]:ReplaceVars(IsAddOnLoaded("GW2_UI") and GetAddOnMetadata("GW2_UI", "Version") or "") ..
-        (addon.IsDragonflightRetail and (" " .. addon.L["At least version is required"]:ReplaceVars("6.6.1")) or "\n")):SetColorRed(),
+        name = (addon.L["Unsupported GW2_UI Desc"]:K_ReplaceVars(IsAddOnLoaded("GW2_UI") and GetAddOnMetadata("GW2_UI", "Version") or "") ..
+        (addon.IsDragonflightRetail and (" " .. addon.L["At least version is required"]:K_ReplaceVars("6.6.1")) or "\n")):SetColorRed(),
         fontSize = "medium",
         hidden = not (GW2_ADDON ~= nil and not gw2_ui.IsLoaded())
     });
 
-    KrowiAF_InjectOptions:AddTable(pluginTable, "SkinsDescription", {
+    addon.InjectOptions:AddTable(pluginTable, "SkinsDescription", {
         order = OrderPP(), type = "description", width = "full",
         name = addon.L["GW2_UI Skins Desc"],
         fontSize = "medium"
     });
-    KrowiAF_InjectOptions:AddTable(pluginTable, "SkinAchievement", AddInfo("Skin Achievements", function() return KrowiAF_SavedData.GW2_UISkin.Achievements; end));
-    KrowiAF_InjectOptions:AddTable(pluginTable, "SkinDropDown", AddInfo("Skin DropDown", function() return KrowiAF_SavedData.GW2_UISkin.DropDown; end));
-    KrowiAF_InjectOptions:AddTable(pluginTable, "SkinPopupNotifications", AddInfo("Skin Popup Notifications", function() return KrowiAF_SavedData.GW2_UISkin.PopUpNotifications; end));
-    -- KrowiAF_InjectOptions:AddTable(pluginTable, "SkinTutorials", AddInfo("Skin Tutorials", function() return KrowiAF_SavedData.ElvUISkin.Tutorials; end));
-    KrowiAF_InjectOptions:AddTable(pluginTable, "SkinAlertFrames", AddInfo("Skin Alert Frames", function() return KrowiAF_SavedData.GW2_UISkin.AlertFrames; end));
-    -- KrowiAF_InjectOptions:AddTable(pluginTable, "SkinCalendar", AddInfo("Skin Calendar", function() return KrowiAF_SavedData.ElvUISkin.Calendar; end));
-    -- KrowiAF_InjectOptions:AddTable(pluginTable, "RemoveParchment", AddInfo("Remove Parchment", function() return KrowiAF_SavedData.ElvUISkin.NoParchment; end));
-    -- KrowiAF_InjectOptions:AddTable(pluginTable, "SkinDataManager", AddInfo("Skin Data Manager", function() return KrowiAF_SavedData.ElvUISkin.Achievements; end));
-    -- KrowiAF_InjectOptions:AddTable(pluginTable, "SkinAce3", AddInfo("Skin Ace3", function() return KrowiAF_SavedData.ElvUISkin.Options; end));
-    -- KrowiAF_InjectOptions:AddTable(pluginTable, "FixWorldMapButton", AddInfo("Fix World Map Button", function() return KrowiAF_SavedData.ElvUISkin.SmallerWorldMap; end));
+    addon.InjectOptions:AddTable(pluginTable, "SkinAchievement", AddInfo("Skin Achievements", function() return KrowiAF_SavedData.GW2_UISkin.Achievements; end));
+    addon.InjectOptions:AddTable(pluginTable, "SkinDropDown", AddInfo("Skin DropDown", function() return KrowiAF_SavedData.GW2_UISkin.DropDown; end));
+    addon.InjectOptions:AddTable(pluginTable, "SkinPopupNotifications", AddInfo("Skin Popup Notifications", function() return KrowiAF_SavedData.GW2_UISkin.PopUpNotifications; end));
+    -- addon.InjectOptions:AddTable(pluginTable, "SkinTutorials", AddInfo("Skin Tutorials", function() return KrowiAF_SavedData.ElvUISkin.Tutorials; end));
+    addon.InjectOptions:AddTable(pluginTable, "SkinAlertFrames", AddInfo("Skin Alert Frames", function() return KrowiAF_SavedData.GW2_UISkin.AlertFrames; end));
+    -- addon.InjectOptions:AddTable(pluginTable, "SkinCalendar", AddInfo("Skin Calendar", function() return KrowiAF_SavedData.ElvUISkin.Calendar; end));
+    -- addon.InjectOptions:AddTable(pluginTable, "RemoveParchment", AddInfo("Remove Parchment", function() return KrowiAF_SavedData.ElvUISkin.NoParchment; end));
+    -- addon.InjectOptions:AddTable(pluginTable, "SkinDataManager", AddInfo("Skin Data Manager", function() return KrowiAF_SavedData.ElvUISkin.Achievements; end));
+    -- addon.InjectOptions:AddTable(pluginTable, "SkinAce3", AddInfo("Skin Ace3", function() return KrowiAF_SavedData.ElvUISkin.Options; end));
+    -- addon.InjectOptions:AddTable(pluginTable, "FixWorldMapButton", AddInfo("Fix World Map Button", function() return KrowiAF_SavedData.ElvUISkin.SmallerWorldMap; end));
 
-    KrowiAF_InjectOptions:AddTable(pluginTable, "ModulesDescription", {
+    addon.InjectOptions:AddTable(pluginTable, "ModulesDescription", {
         order = OrderPP(), type = "description", width = "full",
         name = addon.L["GW2_UI Modules Desc"],
         fontSize = "medium"
     });
-    KrowiAF_InjectOptions:AddTable(pluginTable, "SkinTooltip", AddInfo("Skin Tooltip", function() return KrowiAF_SavedData.GW2_UISkin.Tooltip; end));
+    addon.InjectOptions:AddTable(pluginTable, "SkinTooltip", AddInfo("Skin Tooltip", function() return KrowiAF_SavedData.GW2_UISkin.Tooltip; end));
 end
 
 local function DisableOptions()
@@ -1308,9 +1308,9 @@ local function DisableOptions()
     KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.Spacing").disabled = true;
     KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.OffsetX").disabled = true;
     KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.OffsetY").disabled = true;
-    KrowiAF_InjectOptions:AddTable(KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args"), "ElvUIComment", {
+    addon.InjectOptions:AddTable(KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args"), "ElvUIComment", {
         order = OrderPP(), type = "description", width = "full",
-        name = addon.L["Alert System Overwrite Desc"]:ReplaceVars(addon.L["GW2_UI"])
+        name = addon.L["Alert System Overwrite Desc"]:K_ReplaceVars(addon.L["GW2_UI"])
     });
 end
 
@@ -1357,8 +1357,30 @@ function gw2_ui.Load()
 end
 
 function gw2_ui.IsLoaded()
-    if addon.IsDragonflightRetail then
-        return IsAddOnLoaded("GW2_UI") and (GetAddOnMetadata("GW2_UI", "Version") >= "6.6.1" or GetAddOnMetadata("GW2_UI", "Version") == "@project-version@");
+    if not IsAddOnLoaded("GW2_UI") then
+        return false;
     end
-    return false; -- No Wrath Classic support for now
+    if not addon.IsDragonflightRetail then -- No Wrath Classic support for now
+        return false;
+    end
+    if GetAddOnMetadata("GW2_UI", "Version") == "@project-version@" then
+        return true;
+    end
+
+    local versionComponents = strsplittable(".", GetAddOnMetadata("GW2_UI", "Version"));
+    local referenceComponents = strsplittable(".", "6.6.1");
+
+    local i = 1;
+    while i <= #versionComponents and i <= #referenceComponents do
+        local versionComponent = tonumber(versionComponents[i]);
+        local referenceComponent = tonumber(referenceComponents[i]);
+
+        if versionComponent > referenceComponent then
+            return true;
+        elseif versionComponent < referenceComponent then
+            return false;
+        end
+
+        i = i + 1;
+    end
 end

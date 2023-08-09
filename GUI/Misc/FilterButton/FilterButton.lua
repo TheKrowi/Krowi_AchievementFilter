@@ -108,7 +108,7 @@ function KrowiAF_AchievementFrameFilterButton_OnMouseDown(self)
                     end
                 });
 
-    if addon.Options.db.ShowPlaceholdersFilter then
+    if addon.Options.db.profile.ShowPlaceholdersFilter then
         menu:AddSeparator();
         self:AddCheckBox(menu, addon.L["Show placeholders"], addon.Filters.db, {"ShowPlaceholders"});
     end

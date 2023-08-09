@@ -8,7 +8,7 @@ diagnostics.TraceEnabled = nil; -- Determines if printing trace messages is allo
 
 function diagnostics.Debug(value, forced) -- Print the value to the DEFAULT_CHAT_FRAME
     if diagnostics.DebugEnabled() or forced then
-        DEFAULT_CHAT_FRAME:AddMessage(addon.MetaData.Title .. " - " .. tostring(value));
+        DEFAULT_CHAT_FRAME:AddMessage(addon.Metadata.Title .. " - " .. tostring(value));
     end
 end
 
@@ -25,21 +25,21 @@ end
 
 function diagnostics.Trace(value) -- Print the value to the DEFAULT_CHAT_FRAME
     if diagnostics.TraceEnabled() then
-        DEFAULT_CHAT_FRAME:AddMessage(addon.MetaData.Title .. " - " .. tostring(value));
+        DEFAULT_CHAT_FRAME:AddMessage(addon.Metadata.Title .. " - " .. tostring(value));
     end
 end
 
 function diagnostics.Load() -- Load the diagnostics
     diagnostics.DebugEnabled = function()
-        return addon.Options.db.EnableDebugInfo; -- Needs a function because these change during run time
+        return addon.Options.db.profile.EnableDebugInfo; -- Needs a function because these change during run time
     end;
     diagnostics.TraceEnabled = function()
-        return addon.Options.db.EnableTraceInfo; -- Needs a function because these change during run time
+        return addon.Options.db.profile.EnableTraceInfo; -- Needs a function because these change during run time
     end;
 end
 
 function diagnostics.Print(...)
     if diagnostics.DebugEnabled() then
-        print(addon.MetaData.Title, ...)
+        print(addon.Metadata.Title, ...)
     end
 end

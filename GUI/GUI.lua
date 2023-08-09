@@ -128,7 +128,7 @@ end
 -- [[ AchievementFrame Width ]] --
 
 function gui.SetAchievementFrameWidth()
-    AchievementFrame:SetWidth(defaultAchievementFrameWidth + addon.Options.db.Window.CategoriesFrameWidthOffset);
+    AchievementFrame:SetWidth(defaultAchievementFrameWidth + addon.Options.db.profile.Window.CategoriesFrameWidthOffset);
     addon.GUI.CategoriesFrame:SetRightPoint();
 end
 
@@ -139,7 +139,7 @@ end
 -- [[ AchievementFrame Height ]] --
 
 function gui.SetAchievementFrameHeight()
-    local offset = addon.Options.db.Window.AchievementFrameHeightOffset;
+    local offset = addon.Options.db.profile.Window.AchievementFrameHeightOffset;
     AchievementFrame:SetHeight(defaultAchievementFrameHeight + offset);
     AchievementFrameMetalBorderLeft:SetHeight(defaultAchievementFrameMetalBorderHeight + offset);
     AchievementFrameMetalBorderRight:SetHeight(defaultAchievementFrameMetalBorderHeight + offset);
@@ -211,7 +211,7 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
         end
     end
 
-    if (AchievementFrame:IsShown() and ((not addon.Options.db.ResetViewOnOpen and addon.Options.db.ToggleWindow) or tabIsSelected)) and not resetView and not forceOpen then
+    if (AchievementFrame:IsShown() and ((not addon.Options.db.profile.ResetViewOnOpen and addon.Options.db.profile.ToggleWindow) or tabIsSelected)) and not resetView and not forceOpen then
         AchievementFrame:Hide();
         return;
     end
@@ -221,10 +221,10 @@ function gui.ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
     if not addon.IsWrathClassic then
         AchievementFrame_HideSearchPreview();
     end
-    if firstTimeLatch or not (not addon.Options.db.ResetViewOnOpen and addon.Options.db.ToggleWindow) or resetView or forceOpen then
+    if firstTimeLatch or not (not addon.Options.db.profile.ResetViewOnOpen and addon.Options.db.profile.ToggleWindow) or resetView or forceOpen then
         gui.SelectTab(_addonName, tabName);
     end
-    if addon.Options.db.ResetViewOnOpen or resetView then
+    if addon.Options.db.profile.ResetViewOnOpen or resetView then
         ResetView();
     end
     firstTimeLatch = nil;
@@ -238,7 +238,7 @@ function gui.UpdateTabsLayout(tabsOrder)
             if prevTab == nil then
                 btn:SetPoint("BOTTOMLEFT", AchievementFrame, 11, -30);
             else
-                btn:SetPoint("LEFT", prevTab, "RIGHT", -5 + addon.Options.db.TabsGeneral.Spacing, 0);
+                btn:SetPoint("LEFT", prevTab, "RIGHT", -5 + addon.Options.db.profile.TabsGeneral.Spacing, 0);
             end
             prevTab = btn;
         end
@@ -247,10 +247,10 @@ end
 
 function gui.ShowHideTabs(_addonName, tabName)
     if _addonName and tabName then
-        if not addon.Options.db.Tabs[_addonName] or not addon.Options.db.Tabs[_addonName][tabName] then
+        if not addon.Options.db.profile.Tabs[_addonName] or not addon.Options.db.profile.Tabs[_addonName][tabName] then
             return;
         end
-        addon.Options.db.Tabs[_addonName][tabName].Show = not addon.Options.db.Tabs[_addonName][tabName].Show;
+        addon.Options.db.profile.Tabs[_addonName][tabName].Show = not addon.Options.db.profile.Tabs[_addonName][tabName].Show;
         if not IsAddOnLoaded(_addonName) or not addon.GUI.Tabs[_addonName] or not addon.GUI.Tabs[_addonName][tabName] then
             return;
         end
@@ -260,7 +260,7 @@ function gui.ShowHideTabs(_addonName, tabName)
 
     local tabsOrder = {};
     local button;
-    for addonName2, tabs in next, addon.Options.db.Tabs do
+    for addonName2, tabs in next, addon.Options.db.profile.Tabs do
         for tabName2, tab in next, tabs do
             if addon.GUI.Tabs[addonName2] then
                 button = addon.GUI.Tabs[addonName2][tabName2];
@@ -313,7 +313,7 @@ function gui.ShowStatusBarTooltip(self, anchor)
 
     local text = "";
     local numOfNotObtAch = self.NumOfNotObtAch;
-	if numOfNotObtAch > 0 and addon.Options.db.Tooltip.Categories.ShowNotObtainable then
+	if numOfNotObtAch > 0 and addon.Options.db.profile.Tooltip.Categories.ShowNotObtainable then
 		text = " (+" .. numOfNotObtAch .. ")";
     else
         numOfNotObtAch = 0;
@@ -332,9 +332,9 @@ function gui.TabsOrderGetActiveKeys()
         return KrowiAF_SavedData.TabKeys;
     end
 
-    -- local numTabs = #addon.Options.db.Tabs;
+    -- local numTabs = #addon.Options.db.profile.Tabs;
     local tabsOrder = {};
-    for tabsAddonName, tabs in next, addon.Options.db.Tabs do
+    for tabsAddonName, tabs in next, addon.Options.db.profile.Tabs do
         if tabsAddonName == "Blizzard_AchievementUI" or IsAddOnLoaded(tabsAddonName) then
             for tabName, tab in next, tabs do
                 tinsert(tabsOrder, {
@@ -344,7 +344,7 @@ function gui.TabsOrderGetActiveKeys()
                 });
             end
         else
-            addon.Options.db.Tabs[tabsAddonName] = nil;
+            addon.Options.db.profile.Tabs[tabsAddonName] = nil;
             for i = #KrowiAF_SavedData.Tabs, 1, -1 do
                 if KrowiAF_SavedData.Tabs[i].AddonName == tabsAddonName then
                     tremove(KrowiAF_SavedData.Tabs, i);
@@ -363,8 +363,8 @@ function gui.TabsOrderGetActiveKeys()
 
     local properIndex = 1;
     for _, order in next, tabsOrder do
-        -- print(properIndex, order[1], order[2], addon.Options.db.Tabs[order[2]].Order)
-        addon.Options.db.Tabs[order[1]][order[2]].Order = properIndex;
+        -- print(properIndex, order[1], order[2], addon.Options.db.profile.Tabs[order[2]].Order)
+        addon.Options.db.profile.Tabs[order[1]][order[2]].Order = properIndex;
         properIndex = properIndex + 1;
     end
 
@@ -380,9 +380,9 @@ function gui.TabsOrderGetActiveKeys()
                 addonAchId = i;
             end
         end
-        addon.Options.db.Tabs["Blizzard_AchievementUI"]["Achievements"].Order = addonAchId;
-        addon.Options.db.Tabs[addonName]["Achievements"].Order = blizzAchId;
-        addon.Options.db.MicroButtonTab = addonAchId;
+        addon.Options.db.profile.Tabs["Blizzard_AchievementUI"]["Achievements"].Order = addonAchId;
+        addon.Options.db.profile.Tabs[addonName]["Achievements"].Order = blizzAchId;
+        addon.Options.db.profile.MicroButtonTab = addonAchId;
         local binding = GetBindingByKey("Y");
         if binding == KrowiAF_SavedData.Tabs[blizzAchId].BindingName then
             SetBinding("Y", KrowiAF_SavedData.Tabs[addonAchId].BindingName);

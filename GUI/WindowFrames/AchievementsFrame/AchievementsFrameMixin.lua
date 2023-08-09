@@ -4,7 +4,7 @@ local _, addon = ...;
 KrowiAF_AchievementsFrameMixin = {};
 
 local function CreateScrollView(self)
-	local template = "KrowiAF_AchievementButton_" .. (addon.Options.db.Achievements.Compact and "Small" or "Normal") .. "_Template";
+	local template = "KrowiAF_AchievementButton_" .. (addon.Options.db.profile.Achievements.Compact and "Small" or "Normal") .. "_Template";
     self.DummyFrame = CreateFrame("Button", nil, self, template);
 
 	self.ScrollView = CreateScrollBoxListLinearView();
@@ -92,8 +92,8 @@ local function AddSelectionBehavior(self)
 end
 
 function KrowiAF_AchievementsFrameMixin:OnLoad()
-	self.ScrollBox.wheelPanScalar = addon.Options.db.Achievements.MouseWheelPanScalar;
-	self.ScrollBar.wheelPanScalar = addon.Options.db.Achievements.MouseWheelPanScalar;
+	self.ScrollBox.wheelPanScalar = addon.Options.db.profile.Achievements.MouseWheelPanScalar;
+	self.ScrollBar.wheelPanScalar = addon.Options.db.profile.Achievements.MouseWheelPanScalar;
 
 	CreateScrollView(self);
 	AddManagedScrollBarVisibilityBehavior(self);

@@ -12,7 +12,7 @@ local function CreateScrollView(self)
 		if not category then
 			return 0;
 		end
-		return 2 + (category.Level - 1) * addon.Options.db.Categories.Indentation;
+		return 2 + (category.Level - 1) * addon.Options.db.profile.Categories.Indentation;
 	end);
 	ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView);
 end
@@ -32,15 +32,15 @@ local function AddManagedScrollBarVisibilityBehavior(self)
 end
 
 function KrowiAF_CategoriesFrameMixin:SetRightPoint()
-	self:SetPoint("RIGHT", AchievementFrameCategories, addon.Options.db.Window.CategoriesFrameWidthOffset, 0);
+	self:SetPoint("RIGHT", AchievementFrameCategories, addon.Options.db.profile.Window.CategoriesFrameWidthOffset, 0);
 	AchievementFrameCategoriesBG:SetWidth(self:GetWidth() - 4);
 end
 
 function KrowiAF_CategoriesFrameMixin:OnLoad()
 	self:SetRightPoint();
 
-	self.ScrollBox.wheelPanScalar = addon.Options.db.Categories.MouseWheelPanScalar;
-	self.ScrollBar.wheelPanScalar = addon.Options.db.Categories.MouseWheelPanScalar;
+	self.ScrollBox.wheelPanScalar = addon.Options.db.profile.Categories.MouseWheelPanScalar;
+	self.ScrollBar.wheelPanScalar = addon.Options.db.profile.Categories.MouseWheelPanScalar;
 
 	CreateScrollView(self);
 	AddManagedScrollBarVisibilityBehavior(self);

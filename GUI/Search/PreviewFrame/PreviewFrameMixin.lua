@@ -4,7 +4,7 @@ local _, addon = ...;
 KrowiAF_SearchPreviewFrameMixin = {};
 
 function KrowiAF_SearchPreviewFrameMixin:GetNumButtons()
-    return min(#self.Buttons, addon.Options.db.SearchBox.NumberOfSearchPreviews);
+    return min(#self.Buttons, addon.Options.db.profile.SearchBox.NumberOfSearchPreviews);
 end
 
 function KrowiAF_SearchPreviewFrameMixin:SelectNext(numResults)

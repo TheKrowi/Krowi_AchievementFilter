@@ -5,18 +5,18 @@ options.General = {};
 local general = options.General;
 tinsert(options.OptionsTables, general);
 
-local OrderPP = KrowiAF_InjectOptions.AutoOrderPlusPlus;
-local AdjustedWidth = KrowiAF_InjectOptions.AdjustedWidth;
+local OrderPP = addon.InjectOptions.AutoOrderPlusPlus;
+local AdjustedWidth = addon.InjectOptions.AdjustedWidth;
 
 function general.RegisterOptionsTable()
-    LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.MetaData.Title, options.OptionsTable.args.General);
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addon.MetaData.Title, addon.MetaData.Title, nil);
+    LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.Metadata.Title, options.OptionsTable.args.General);
+    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addon.Metadata.Title, addon.Metadata.Title, nil);
 end
 
 local openCurrentZoneCategoryName;
 function general.PostLoad()
-    local rebindMicroButton = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.MetaData.Title, "cmd", "KROWIAF-0.0").args.KeyBinding.args.General.args.MicroButton.args.Rebind;
-    rebindMicroButton.desc = rebindMicroButton.desc:AddDefaultValueText_KAF("MicroButtonTab", addon.GUI.TabsOrderGetActiveKeys());
+    local rebindMicroButton = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Title, "cmd", "KROWIAF-0.0").args.KeyBinding.args.General.args.MicroButton.args.Rebind;
+    rebindMicroButton.desc = rebindMicroButton.desc:KAF_AddDefaultValueText("MicroButtonTab", addon.GUI.TabsOrderGetActiveKeys());
 
     options.SetMaxNumberOfSearchPreviews();
 
@@ -49,22 +49,22 @@ local function GeneralTutorialFunc()
 end
 
 local function MinimapShowMinimapIconSet()
-    addon.Options.db.ShowMinimapIcon = not addon.Options.db.ShowMinimapIcon;
-    if addon.Options.db.ShowMinimapIcon then
-        addon.Icon:Show("Krowi_AchievementFilterLDB");
+    addon.Options.db.profile.ShowMinimapIcon = not addon.Options.db.profile.ShowMinimapIcon;
+    if addon.Options.db.profile.ShowMinimapIcon then
+        addon.Icon:Show();
     else
-        addon.Icon:Hide("Krowi_AchievementFilterLDB");
+        addon.Icon:Hide();
     end
 end
 
 local function WorldMapShowWorldMapIconSet()
-    addon.Options.db.ShowWorldmapIcon = not addon.Options.db.ShowWorldmapIcon;
+    addon.Options.db.profile.ShowWorldmapIcon = not addon.Options.db.profile.ShowWorldmapIcon;
     addon.GUI.WorldMapButton:Refresh();
     addon.WorldMapButtons.SetPoints();
 end
 
 local function MicroButtonSetKeybindFunc()
-    local tab = KrowiAF_SavedData.Tabs[addon.Options.db.MicroButtonTab];
+    local tab = KrowiAF_SavedData.Tabs[addon.Options.db.profile.MicroButtonTab];
     if tab.BindingName then
         SetBinding("Y", tab.BindingName);
         SaveBindings(GetCurrentBindingSet());
@@ -147,11 +147,11 @@ options.OptionsTable.args["General"] = {
                     args = {
                         Version = {
                             order = OrderPP(), type = "description", width = AdjustedWidth(), fontSize = "medium",
-                            name = (addon.L["Version"] .. ": "):SetColorYellow() .. addon.MetaData.Version,
+                            name = (addon.L["Version"] .. ": "):SetColorYellow() .. addon.Metadata.Version,
                         },
                         Build = {
                             order = OrderPP(), type = "description", width = AdjustedWidth(), fontSize = "medium",
-                            name = (addon.L["Build"] .. ": "):SetColorYellow() .. addon.MetaData.Build,
+                            name = (addon.L["Build"] .. ": "):SetColorYellow() .. addon.Metadata.Build,
                         },
                         Tutorial = {
                             order = OrderPP(), type = "execute", width = AdjustedWidth(),
@@ -161,13 +161,13 @@ options.OptionsTable.args["General"] = {
                         },
                         Author = {
                             order = OrderPP(), type = "description", width = AdjustedWidth(2), fontSize = "medium",
-                            name = (addon.L["Author"] .. ": "):SetColorYellow() .. addon.MetaData.Author,
+                            name = (addon.L["Author"] .. ": "):SetColorYellow() .. addon.Metadata.Author,
                         },
                         Discord = {
                             order = OrderPP(), type = "execute", width = AdjustedWidth(),
                             name = addon.L["Discord"],
-                            desc = addon.L["Discord Desc"]:ReplaceVars(addon.MetaData.DiscordServerName),
-                            func = function() LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(addon.MetaData.DiscordInviteLink); end
+                            desc = addon.L["Discord Desc"]:K_ReplaceVars(addon.Metadata.DiscordServerName),
+                            func = function() LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(addon.Metadata.DiscordInviteLink); end
                         }
                     }
                 },
@@ -178,20 +178,20 @@ options.OptionsTable.args["General"] = {
                         CurseForge = {
                             order = OrderPP(), type = "execute", width = AdjustedWidth(),
                             name = addon.L["CurseForge"],
-                            desc = addon.L["CurseForge Desc"]:InjectAddonName_KAF():ReplaceVars(addon.L["CurseForge"]),
-                            func = function() LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(addon.MetaData.CurseForge); end
+                            desc = addon.L["CurseForge Desc"]:KAF_InjectAddonName():K_ReplaceVars(addon.L["CurseForge"]),
+                            func = function() LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(addon.Metadata.CurseForge); end
                         },
                         Wago = {
                             order = OrderPP(), type = "execute", width = AdjustedWidth(),
                             name = addon.L["Wago"],
-                            desc = addon.L["Wago Desc"]:InjectAddonName_KAF():ReplaceVars(addon.L["Wago"]),
-                            func = function() LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(addon.MetaData.Wago); end
+                            desc = addon.L["Wago Desc"]:KAF_InjectAddonName():K_ReplaceVars(addon.L["Wago"]),
+                            func = function() LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(addon.Metadata.Wago); end
                         },
                         WoWInterface = {
                             order = OrderPP(), type = "execute", width = AdjustedWidth(),
                             name = addon.L["WoWInterface"],
-                            desc = addon.L["WoWInterface Desc"]:InjectAddonName_KAF():ReplaceVars(addon.L["WoWInterface"]),
-                            func = function() LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(addon.MetaData.WoWInterface); end
+                            desc = addon.L["WoWInterface Desc"]:KAF_InjectAddonName():K_ReplaceVars(addon.L["WoWInterface"]),
+                            func = function() LibStub("Krowi_PopopDialog-1.0").ShowExternalLink(addon.Metadata.WoWInterface); end
                         }
                     }
                 }
@@ -208,8 +208,8 @@ options.OptionsTable.args["General"] = {
                         ShowMinimapIcon = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(),
                             name = addon.L["Show minimap icon"],
-                            desc = addon.L["Show minimap icon Desc"]:AddDefaultValueText_KAF("ShowMinimapIcon"),
-                            get = function() return addon.Options.db.ShowMinimapIcon; end,
+                            desc = addon.L["Show minimap icon Desc"]:KAF_AddDefaultValueText("ShowMinimapIcon"),
+                            get = function() return addon.Options.db.profile.ShowMinimapIcon; end,
                             set = MinimapShowMinimapIconSet
                         }
                     }
@@ -221,8 +221,8 @@ options.OptionsTable.args["General"] = {
                         ShowWorldMapIcon = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(),
                             name = addon.L["Show world map icon"],
-                            desc = addon.L["Show world map icon Desc"]:AddDefaultValueText_KAF("ShowWorldmapIcon"),
-                            get = function() return addon.Options.db.ShowWorldmapIcon; end,
+                            desc = addon.L["Show world map icon Desc"]:KAF_AddDefaultValueText("ShowWorldmapIcon"),
+                            get = function() return addon.Options.db.profile.ShowWorldmapIcon; end,
                             set = WorldMapShowWorldMapIconSet
                         }
                     }
@@ -244,17 +244,17 @@ options.OptionsTable.args["General"] = {
                                 ResetViewOnOpen = {
                                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                                     name = addon.L["Reset view on open"],
-                                    desc = addon.L["Reset view on open Desc"]:AddDefaultValueText_KAF("ResetViewOnOpen"),
-                                    get = function() return addon.Options.db.ResetViewOnOpen; end,
-                                    set = function() addon.Options.db.ResetViewOnOpen = not addon.Options.db.ResetViewOnOpen; end
+                                    desc = addon.L["Reset view on open Desc"]:KAF_AddDefaultValueText("ResetViewOnOpen"),
+                                    get = function() return addon.Options.db.profile.ResetViewOnOpen; end,
+                                    set = function() addon.Options.db.profile.ResetViewOnOpen = not addon.Options.db.profile.ResetViewOnOpen; end
                                 },
                                 ToggleWindow = {
                                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                                     name = addon.L["Toggle window once opened"],
-                                    desc = addon.L["Toggle window once opened Desc"]:AddDefaultValueText_KAF("ToggleWindow"),
-                                    get = function() return addon.Options.db.ToggleWindow; end,
-                                    set = function() addon.Options.db.ToggleWindow = not addon.Options.db.ToggleWindow; end,
-                                    disabled = function() return addon.Options.db.ResetViewOnOpen; end
+                                    desc = addon.L["Toggle window once opened Desc"]:KAF_AddDefaultValueText("ToggleWindow"),
+                                    get = function() return addon.Options.db.profile.ToggleWindow; end,
+                                    set = function() addon.Options.db.profile.ToggleWindow = not addon.Options.db.profile.ToggleWindow; end,
+                                    disabled = function() return addon.Options.db.profile.ResetViewOnOpen; end
                                 }
                             }
                         },
@@ -265,18 +265,18 @@ options.OptionsTable.args["General"] = {
                                 Rebind = {
                                     order = OrderPP(), type = "select", width = AdjustedWidth(1.9),
                                     name = addon.L["Rebind Micro Button"],
-                                    desc = addon.L["Rebind Micro Button Desc"], -- AddDefaultValueText_KAFFromValues via PostLoad
+                                    desc = addon.L["Rebind Micro Button Desc"], -- KAF_AddDefaultValueTextFromValues via PostLoad
                                     values = function() return addon.GUI.TabsOrderGetActiveKeys(); end,
-                                    get = function() return addon.Options.db.MicroButtonTab; end,
+                                    get = function() return addon.Options.db.profile.MicroButtonTab; end,
                                     set = function(_, value)
-                                        addon.Options.db.MicroButtonTab = value;
+                                        addon.Options.db.profile.MicroButtonTab = value;
                                         addon.ChangeAchievementMicroButtonOnClick();
                                     end
                                 },
                                 SetKeybind = {
                                     order = OrderPP(), type = "execute", width = AdjustedWidth(0.9),
                                     name = addon.L["Set Keybind"],
-                                    desc = addon.L["Set Keybind Desc"]:ReplaceVars(addon.L["Key Bindings"]),
+                                    desc = addon.L["Set Keybind Desc"]:K_ReplaceVars(addon.L["Key Bindings"]),
                                     func = MicroButtonSetKeybindFunc
                                 }
                             }
@@ -288,34 +288,34 @@ options.OptionsTable.args["General"] = {
                                 PasteToChat = {
                                     order = OrderPP(), type = "select", width = AdjustedWidth(0.93),
                                     name = addon.L["Paste to Chat"],
-                                    desc = addon.L["Paste to Chat"]:AddDefaultValueText_KAF("Achievements.Modifiers.PasteToChat", addon.Modifiers),
+                                    desc = addon.L["Paste to Chat"]:KAF_AddDefaultValueText("Achievements.Modifiers.PasteToChat", addon.Modifiers),
                                     values = addon.Modifiers,
-                                    get = function() return addon.Options.db.Achievements.Modifiers.PasteToChat; end,
-                                    set = function(_, value) addon.Options.db.Achievements.Modifiers.PasteToChat = value; end
+                                    get = function() return addon.Options.db.profile.Achievements.Modifiers.PasteToChat; end,
+                                    set = function(_, value) addon.Options.db.profile.Achievements.Modifiers.PasteToChat = value; end
                                 },
                                 ToggleTracking = {
                                     order = OrderPP(), type = "select", width = AdjustedWidth(0.93),
                                     name = addon.L["Toggle Tracking"],
-                                    desc = addon.L["Toggle Tracking"]:AddDefaultValueText_KAF("Achievements.Modifiers.ToggleTracking", addon.Modifiers),
+                                    desc = addon.L["Toggle Tracking"]:KAF_AddDefaultValueText("Achievements.Modifiers.ToggleTracking", addon.Modifiers),
                                     values = addon.Modifiers,
-                                    get = function() return addon.Options.db.Achievements.Modifiers.ToggleTracking; end,
-                                    set = function(_, value) addon.Options.db.Achievements.Modifiers.ToggleTracking = value; end
+                                    get = function() return addon.Options.db.profile.Achievements.Modifiers.ToggleTracking; end,
+                                    set = function(_, value) addon.Options.db.profile.Achievements.Modifiers.ToggleTracking = value; end
                                 },
                                 ToggleWatchList = {
                                     order = OrderPP(), type = "select", width = AdjustedWidth(0.93),
-                                    name = addon.L["Add to / Remove from Watch List"]:ReplaceVars(addon.L["Watch List"]),
-                                    desc = addon.L["Add to / Remove from Watch List"]:ReplaceVars(addon.L["Watch List"]):AddDefaultValueText_KAF("Achievements.Modifiers.ToggleWatchList", addon.Modifiers),
+                                    name = addon.L["Add to / Remove from Watch List"]:K_ReplaceVars(addon.L["Watch List"]),
+                                    desc = addon.L["Add to / Remove from Watch List"]:K_ReplaceVars(addon.L["Watch List"]):KAF_AddDefaultValueText("Achievements.Modifiers.ToggleWatchList", addon.Modifiers),
                                     values = addon.Modifiers,
-                                    get = function() return addon.Options.db.Achievements.Modifiers.ToggleWatchList; end,
-                                    set = function(_, value) addon.Options.db.Achievements.Modifiers.ToggleWatchList = value; end
+                                    get = function() return addon.Options.db.profile.Achievements.Modifiers.ToggleWatchList; end,
+                                    set = function(_, value) addon.Options.db.profile.Achievements.Modifiers.ToggleWatchList = value; end
                                 },
                                 ToggleExcluded = {
                                     order = OrderPP(), type = "select", width = AdjustedWidth(0.93),
                                     name = addon.L["Include"] .. " / " .. addon.L["Exclude"],
-                                    desc = addon.L["Include"] .. " / " .. addon.L["Exclude"]:AddDefaultValueText_KAF("Achievements.Modifiers.ToggleExcluded", addon.Modifiers),
+                                    desc = addon.L["Include"] .. " / " .. addon.L["Exclude"]:KAF_AddDefaultValueText("Achievements.Modifiers.ToggleExcluded", addon.Modifiers),
                                     values = addon.Modifiers,
-                                    get = function() return addon.Options.db.Achievements.Modifiers.ToggleExcluded; end,
-                                    set = function(_, value) addon.Options.db.Achievements.Modifiers.ToggleExcluded = value; end
+                                    get = function() return addon.Options.db.profile.Achievements.Modifiers.ToggleExcluded; end,
+                                    set = function(_, value) addon.Options.db.profile.Achievements.Modifiers.ToggleExcluded = value; end
                                 }
                             }
                         }
@@ -367,34 +367,34 @@ options.OptionsTable.args["General"] = {
                         ClearOnRightClick = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
                             name = addon.L["Clear search field on Right Click"],
-                            desc = addon.L["Clear search field on Right Click Desc"]:AddDefaultValueText_KAF("SearchBox.ClearOnRightClick"),
-                            get = function() return addon.Options.db.SearchBox.ClearOnRightClick; end,
-                            set = function() addon.Options.db.SearchBox.ClearOnRightClick = not addon.Options.db.SearchBox.ClearOnRightClick; end
+                            desc = addon.L["Clear search field on Right Click Desc"]:KAF_AddDefaultValueText("SearchBox.ClearOnRightClick"),
+                            get = function() return addon.Options.db.profile.SearchBox.ClearOnRightClick; end,
+                            set = function() addon.Options.db.profile.SearchBox.ClearOnRightClick = not addon.Options.db.profile.SearchBox.ClearOnRightClick; end
                         },
                         ExcludeExcluded = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
                             name = addon.L["Exclude Excluded achievements"],
-                            desc = addon.L["Exclude Excluded achievements Desc"]:AddDefaultValueText_KAF("SearchBox.ExcludeExcluded"),
-                            get = function() return addon.Options.db.SearchBox.ExcludeExcluded; end,
-                            set = function() addon.Options.db.SearchBox.ExcludeExcluded = not addon.Options.db.SearchBox.ExcludeExcluded; end
+                            desc = addon.L["Exclude Excluded achievements Desc"]:KAF_AddDefaultValueText("SearchBox.ExcludeExcluded"),
+                            get = function() return addon.Options.db.profile.SearchBox.ExcludeExcluded; end,
+                            set = function() addon.Options.db.profile.SearchBox.ExcludeExcluded = not addon.Options.db.profile.SearchBox.ExcludeExcluded; end
                         },
                         OnlySearchFiltered = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
                             name = addon.L["Only search filtered achievements"],
-                            desc = addon.L["Only search filtered achievements Desc"]:AddDefaultValueText_KAF("SearchBox.OnlySearchFiltered"),
-                            get = function() return addon.Options.db.SearchBox.OnlySearchFiltered; end,
+                            desc = addon.L["Only search filtered achievements Desc"]:KAF_AddDefaultValueText("SearchBox.OnlySearchFiltered"),
+                            get = function() return addon.Options.db.profile.SearchBox.OnlySearchFiltered; end,
                             set = function()
-                                addon.Options.db.SearchBox.OnlySearchFiltered = not addon.Options.db.SearchBox.OnlySearchFiltered;
+                                addon.Options.db.profile.SearchBox.OnlySearchFiltered = not addon.Options.db.profile.SearchBox.OnlySearchFiltered;
                             end
                         },
                         Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
                         MinimumCharactersToSearch = {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                             name = addon.L["Minimum characters to search"],
-                            desc = addon.L["Minimum characters to search Desc"]:AddDefaultValueText_KAF("SearchBox.MinimumCharactersToSearch"),
+                            desc = addon.L["Minimum characters to search Desc"]:KAF_AddDefaultValueText("SearchBox.MinimumCharactersToSearch"),
                             min = 1, max = 10, step = 1,
-                            get = function() return addon.Options.db.SearchBox.MinimumCharactersToSearch; end,
-                            set = function(_, value) addon.Options.db.SearchBox.MinimumCharactersToSearch = value; end
+                            get = function() return addon.Options.db.profile.SearchBox.MinimumCharactersToSearch; end,
+                            set = function(_, value) addon.Options.db.profile.SearchBox.MinimumCharactersToSearch = value; end
                         }
                     }
                 },
@@ -405,18 +405,18 @@ options.OptionsTable.args["General"] = {
                         NumberOfSearchPreviews = {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                             name = addon.L["Number of search previews"],
-                            desc = addon.L["Number of search previews Desc"]:AddDefaultValueText_KAF("SearchBox.NumberOfSearchPreviews"):AddReloadRequired_KAF(),
+                            desc = addon.L["Number of search previews Desc"]:KAF_AddDefaultValueText("SearchBox.NumberOfSearchPreviews"):K_AddReloadRequired(),
                             min = 1, max = 1000, step = 1, -- max set via PostLoad
-                            get = function() return addon.Options.db.SearchBox.NumberOfSearchPreviews; end,
-                            set = function(_, value) addon.Options.db.SearchBox.NumberOfSearchPreviews = value; end
+                            get = function() return addon.Options.db.profile.SearchBox.NumberOfSearchPreviews; end,
+                            set = function(_, value) addon.Options.db.profile.SearchBox.NumberOfSearchPreviews = value; end
                         },
                         Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
                         ShowAllResultsInCategory = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
                             name = addon.L["Show All Results in Category"],
-                            desc = addon.L["Show All Results in Category Desc"]:AddDefaultValueText_KAF("SearchBox.ShowAllResultsInCategory"),
-                            get = function() return addon.Options.db.SearchBox.ShowAllResultsInCategory; end,
-                            set = function() addon.Options.db.SearchBox.ShowAllResultsInCategory = not addon.Options.db.SearchBox.ShowAllResultsInCategory; end
+                            desc = addon.L["Show All Results in Category Desc"]:KAF_AddDefaultValueText("SearchBox.ShowAllResultsInCategory"),
+                            get = function() return addon.Options.db.profile.SearchBox.ShowAllResultsInCategory; end,
+                            set = function() addon.Options.db.profile.SearchBox.ShowAllResultsInCategory = not addon.Options.db.profile.SearchBox.ShowAllResultsInCategory; end
                         },
                     }
                 }
@@ -433,13 +433,13 @@ options.OptionsTable.args["General"] = {
                         ResetFactionFilter = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(),
                             name = addon.L["Reset Faction Filters"],
-                            desc = addon.L["Reset Faction Filters Desc"]:ReplaceVars{
+                            desc = addon.L["Reset Faction Filters Desc"]:K_ReplaceVars{
                                 neutral = addon.L["Neutral"],
                                 alliance = addon.L["Alliance"],
                                 horde = addon.L["Horde"]
-                            }:AddDefaultValueText_KAF("Filters.ResetFactionFilters"),
-                            get = function() return addon.Options.db.Filters.ResetFactionFilters; end,
-                            set = function() addon.Options.db.Filters.ResetFactionFilters = not addon.Options.db.Filters.ResetFactionFilters; end
+                            }:KAF_AddDefaultValueText("Filters.ResetFactionFilters"),
+                            get = function() return addon.Options.db.profile.Filters.ResetFactionFilters; end,
+                            set = function() addon.Options.db.profile.Filters.ResetFactionFilters = not addon.Options.db.profile.Filters.ResetFactionFilters; end
                         }
                     }
                 }
@@ -460,9 +460,9 @@ options.OptionsTable.args["General"] = {
                         EnableDebugInfo = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(),
                             name = addon.L["Enable debug info"],
-                            desc = addon.L["Enable debug info Desc"]:AddDefaultValueText_KAF("EnableDebugInfo"),
-                            get = function() return addon.Options.db.EnableDebugInfo; end,
-                            set = function() addon.Options.db.EnableDebugInfo = not addon.Options.db.EnableDebugInfo; end
+                            desc = addon.L["Enable debug info Desc"]:KAF_AddDefaultValueText("EnableDebugInfo"),
+                            get = function() return addon.Options.db.profile.EnableDebugInfo; end,
+                            set = function() addon.Options.db.profile.EnableDebugInfo = not addon.Options.db.profile.EnableDebugInfo; end
                         },
                         Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
                         ScreenshotMode = {
@@ -474,9 +474,9 @@ options.OptionsTable.args["General"] = {
                         EnableTraceInfo = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(),
                             name = addon.L["Enable trace info"],
-                            desc = addon.L["Enable trace info Desc"]:AddDefaultValueText_KAF("EnableTraceInfo"),
-                            get = function() return addon.Options.db.EnableTraceInfo; end,
-                            set = function() addon.Options.db.EnableTraceInfo = not addon.Options.db.EnableTraceInfo; end
+                            desc = addon.L["Enable trace info Desc"]:KAF_AddDefaultValueText("EnableTraceInfo"),
+                            get = function() return addon.Options.db.profile.EnableTraceInfo; end,
+                            set = function() addon.Options.db.profile.EnableTraceInfo = not addon.Options.db.profile.EnableTraceInfo; end
                         },
                         Blank2 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
                         ExportCriteria = {
@@ -488,9 +488,9 @@ options.OptionsTable.args["General"] = {
                         ShowPlaceholdersFilter = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(),
                             name = addon.L["Show placeholders filter"],
-                            desc = addon.L["Show placeholders filter Desc"]:AddDefaultValueText_KAF("ShowPlaceholdersFilter"),
-                            get = function() return addon.Options.db.ShowPlaceholdersFilter; end,
-                            set = function() addon.Options.db.ShowPlaceholdersFilter = not addon.Options.db.ShowPlaceholdersFilter; end
+                            desc = addon.L["Show placeholders filter Desc"]:KAF_AddDefaultValueText("ShowPlaceholdersFilter"),
+                            get = function() return addon.Options.db.profile.ShowPlaceholdersFilter; end,
+                            set = function() addon.Options.db.profile.ShowPlaceholdersFilter = not addon.Options.db.profile.ShowPlaceholdersFilter; end
                         }
                     }
                 }

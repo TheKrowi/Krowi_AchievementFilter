@@ -24,11 +24,11 @@ function tabs.Load()
 end
 
 function tabs.InjectDynamicOptions()
-    KrowiAF_RegisterTabOptions(addonName, "Achievements", addon.MetaData.Title, addon.L["Achievements"], "KrowiAF_OPEN_TAB_Achievements", true);
-    KrowiAF_RegisterTabOptions(addonName, "Expansions", addon.MetaData.Title, addon.L["Expansions"], "KrowiAF_OPEN_TAB_Expansions", true);
-    KrowiAF_RegisterTabOptions(addonName, "Events", addon.MetaData.Title, addon.L["Events"], "KrowiAF_OPEN_TAB_Events", true);
-    KrowiAF_RegisterTabOptions(addonName, "PvP", addon.MetaData.Title, addon.L["PvP"], "KrowiAF_OPEN_TAB_PvP", true);
-    KrowiAF_RegisterTabOptions(addonName, "Specials", addon.MetaData.Title, addon.L["Specials"], "KrowiAF_OPEN_TAB_Specials", true);
+    KrowiAF_RegisterTabOptions(addonName, "Achievements", addon.Metadata.Title, addon.L["Achievements"], "KrowiAF_OPEN_TAB_Achievements", true);
+    KrowiAF_RegisterTabOptions(addonName, "Expansions", addon.Metadata.Title, addon.L["Expansions"], "KrowiAF_OPEN_TAB_Expansions", true);
+    KrowiAF_RegisterTabOptions(addonName, "Events", addon.Metadata.Title, addon.L["Events"], "KrowiAF_OPEN_TAB_Events", true);
+    KrowiAF_RegisterTabOptions(addonName, "PvP", addon.Metadata.Title, addon.L["PvP"], "KrowiAF_OPEN_TAB_PvP", true);
+    KrowiAF_RegisterTabOptions(addonName, "Specials", addon.Metadata.Title, addon.L["Specials"], "KrowiAF_OPEN_TAB_Specials", true);
 
     tabs.InjectDynamicOptions = nil;
 end

@@ -39,7 +39,7 @@ end
 local function AddClearWatch(menu, achievement)
 	if achievement.IsWatched then
 		menu:AddFull({
-			Text = addon.L["Remove from Watch List"]:ReplaceVars
+			Text = addon.L["Remove from Watch List"]:K_ReplaceVars
 			{
 				watchList = addon.L["Watch List"]
 			},
@@ -50,7 +50,7 @@ local function AddClearWatch(menu, achievement)
 		});
 	else
 		menu:AddFull({
-			Text = addon.L["Add to Watch List"]:ReplaceVars
+			Text = addon.L["Add to Watch List"]:K_ReplaceVars
 			{
 				watchList = addon.L["Watch List"]
 			},

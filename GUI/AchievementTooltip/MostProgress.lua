@@ -4,7 +4,7 @@ local section = {};
 
 local numCriteria;
 function section.CheckAdd(achievement)
-	if achievement.IsCompleted or achievement.IsAccountWide or addon.Options.db.Tooltip.Achievements.MostProgress.Characters <= 0 then
+	if achievement.IsCompleted or achievement.IsAccountWide or addon.Options.db.profile.Tooltip.Achievements.MostProgress.Characters <= 0 then
 		return;
 	end
 	numCriteria = GetAchievementNumCriteria(achievement.Id);
@@ -107,7 +107,7 @@ local function AddName(character, achievement, thisRealm, names, numberOfNames)
 	if achievement.OtherFactionAchievementId and character.Faction and character.Faction ~= addon.Objects.Faction[achievement.Faction] then
 		name = name .. " (" .. addon.L[character.Faction] .. ")";
 	end
-	if addon.Options.db.Tooltip.Achievements.MostProgress.AlwaysShowRealm or character.Realm ~= thisRealm then
+	if addon.Options.db.profile.Tooltip.Achievements.MostProgress.AlwaysShowRealm or character.Realm ~= thisRealm then
 		name = name .. " - " .. character.Realm;
 	end
 	name = name .. "|r";
@@ -129,7 +129,7 @@ function section.Add(achievement)
 	local names = "";
 	local numberOfNames = 0;
 	for _, character in next, characters do
-		if numberOfNames < addon.Options.db.Tooltip.Achievements.MostProgress.Characters then
+		if numberOfNames < addon.Options.db.profile.Tooltip.Achievements.MostProgress.Characters then
 			names, numberOfNames = AddName(character, achievement, thisRealm, names, numberOfNames);
 		end
 	end
@@ -142,7 +142,7 @@ function section.Add(achievement)
 		return;
 	end
 
-	if numCriteria < addon.Options.db.Tooltip.Achievements.ObjectivesProgress.SecondColumnThreshold then
+	if numCriteria < addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.SecondColumnThreshold then
 		for i = 1, numCriteria do
 			addon.GUI.AchievementTooltip.AddCriteriaLine(details, i);
 		end

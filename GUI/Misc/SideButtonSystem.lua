@@ -8,7 +8,7 @@ local buttons = {};
 local numButtons = 0;
 
 local function GetAnchor()
-    return addon.Options.db.EventReminders.SideButtonsAnchor == 1 and AchievementFrame or WorldMapFrame;
+    return addon.Options.db.profile.EventReminders.SideButtonsAnchor == 1 and AchievementFrame or WorldMapFrame;
 end
 
 local function GetSideButton(index)
@@ -63,7 +63,7 @@ end
 local refreshIfShown = false;
 local function OnUpdate(self, elapsed)
     self.TimeSinceLastUpdate = self.TimeSinceLastUpdate + elapsed;
-    if self.TimeSinceLastUpdate > addon.Options.db.EventReminders.RefreshInterval then
+    if self.TimeSinceLastUpdate > addon.Options.db.profile.EventReminders.RefreshInterval then
         refreshIfShown = true;
         if GetAnchor():IsShown() then
             sideButtonSystem.Refresh();
