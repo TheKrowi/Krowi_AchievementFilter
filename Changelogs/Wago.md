@@ -4,3 +4,6 @@
 
 ### Changed
 - Lots of backend code is now shared between all my addons
+
+### Fixed (60.1)
+- Searching achievements should no longer cause an error

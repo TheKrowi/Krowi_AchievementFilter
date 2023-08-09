@@ -77,10 +77,10 @@ local function SearchAchievements(text, numAchievementIds, results, excludeExclu
 		achievement = addon.Data.Achievements[addon.Data.AchievementIds[i]];
 		local id, name, _, _, _, _, _, description, _, _, rewardText, _, _, _, _ = GetAchievementInfo(achievement.Id);
 		if id then
-			if (addon.SearchOptions.db.profile.SearchIds and string.find(tostring(id), text, 1, true))
-			or (addon.SearchOptions.db.profile.SearchNames and string.find(name:lower(), text, 1, true))
-			or (addon.SearchOptions.db.profile.SearchDescriptions and string.find(description:lower(), text, 1, true))
-			or (addon.SearchOptions.db.profile.SearchRewards and string.find(rewardText:lower(), text, 1, true)) then
+			if (addon.SearchOptions.db.SearchIds and string.find(tostring(id), text, 1, true))
+			or (addon.SearchOptions.db.SearchNames and string.find(name:lower(), text, 1, true))
+			or (addon.SearchOptions.db.SearchDescriptions and string.find(description:lower(), text, 1, true))
+			or (addon.SearchOptions.db.SearchRewards and string.find(rewardText:lower(), text, 1, true)) then
 				if not (excludeExcluded and achievement.Excluded) then
 					local value = 1;
 					if addon.Options.db.profile.SearchBox.OnlySearchFiltered then
@@ -174,7 +174,7 @@ local function GetSearchResults(text)
 		results = SearchCriteria(text, numAchievementIds, results, excludeExcluded);
 	else
 		results = SearchAchievements(text, numAchievementIds, results, excludeExcluded);
-		if addon.SearchOptions.db.profile.SearchCriteria then
+		if addon.SearchOptions.db.SearchCriteria then
 			results = SearchCriteria(text, numAchievementIds, results, excludeExcluded);
 		else
 			table.sort(results, function(a, b)

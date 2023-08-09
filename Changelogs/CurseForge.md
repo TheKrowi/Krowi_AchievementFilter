@@ -7,3 +7,7 @@
 <ul>
 <li>Lots of backend code is now shared between all my addons</li>
 </ul>
+<p><h3>Fixed (60.1)</h3></p>
+<ul>
+<li>Searching achievements should no longer cause an error</li>
+</ul>
