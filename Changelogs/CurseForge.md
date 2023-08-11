@@ -11,3 +11,7 @@
 <ul>
 <li>Searching achievements should no longer cause an error</li>
 </ul>
+<p><h3>Changed (60.2)</h3></p>
+<ul>
+<li>Updated Util lib</li>
+</ul>

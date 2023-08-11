@@ -13,3 +13,8 @@
 [LIST]
 [*]Searching achievements should no longer cause an error
 [/LIST]
+
+[B]Changed (60.2)[/B]
+[LIST]
+[*]Updated Util lib
+[/LIST]
