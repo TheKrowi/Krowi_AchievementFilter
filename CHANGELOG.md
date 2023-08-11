@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 60.1 - 2023-08-11
+## 60.2 - 2023-08-11
 ### Changed
 - Updated Util lib
 
