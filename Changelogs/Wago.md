@@ -7,3 +7,6 @@
 
 ### Fixed (60.1)
 - Searching achievements should no longer cause an error
+
+### Changed (60.2)
+- Updated Util lib

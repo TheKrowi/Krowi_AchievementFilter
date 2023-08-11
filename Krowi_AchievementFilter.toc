@@ -2,7 +2,7 @@
 ## Title: Krowi's |cFF1D92C2Achievement Filter|r
 ## X-Prefix: KrowiAF
 ## X-Acronym: KAF
-## Version: 60.1
+## Version: 60.2
 ## Author: Krowi-Frostmane EU
 ## SavedVariables: Options, SavedData, Filters, DebugTable, KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters, KrowiAF_Test
 ## Notes: Filters your achievements.

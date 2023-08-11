@@ -55,7 +55,7 @@ local function LoadKrowi_AchievementFilter()
 
     addon.GUI:LoadWithAddon();
 
-    addon.Icon:Load(addon);
+    addon.Icon:Load();
     addon.Tutorials.Load();
 
     addon.TooltipData.Load(); -- Might be moved to PLAYER_LOGIN event but easier for testing on every /reload

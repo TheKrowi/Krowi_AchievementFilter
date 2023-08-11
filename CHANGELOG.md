@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 60.1 - 2023-08-11
+### Changed
+- Updated Util lib
+
 ## 60.1 - 2023-08-09
 ### Fixed
 - Searching achievements should no longer cause an error
