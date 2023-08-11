@@ -464,7 +464,8 @@
         "MINUTES_ABBR",
         "SECONDS_ABBR",
         "D_MINUTES",
-        "D_SECONDS"
+        "D_SECONDS",
+        "NORMAL_FONT_COLOR_CODE"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
