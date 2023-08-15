@@ -79,21 +79,30 @@ end
 
 function filters:ResetFilters()
     if addon.Options.db.profile.Filters.ResetFactionFilters then
-        ResetFactionFilters(self.db.Faction);
-        ResetFactionFilters(self.db.CurrentZone.Faction);
-        ResetFactionFilters(self.db.SelectedZone.Faction);
-        ResetFactionFilters(self.db.TrackingAchievements.Faction);
+        ResetFactionFilters(self.db.profile.Faction);
+        ResetFactionFilters(self.db.profile.CurrentZone.Faction);
+        ResetFactionFilters(self.db.profile.SelectedZone.Faction);
+        ResetFactionFilters(self.db.profile.TrackingAchievements.Faction);
         for t, _ in next, addon.Tabs do
-            ResetFactionFilters(self.db.Tabs[t].Faction);
+            ResetFactionFilters(self.db.profile.Tabs[t].Faction);
         end
     end
 end
 
-function filters:Load()
-    local filters2 = LibStub("AceDB-3.0"):New("KrowiAF_Filters", defaults, true);
-    self.db = filters2.profile;
+function filters:RefreshFilters()
     for t, _ in next, addon.Tabs do
-        addon.Tabs[t].Filters = filters2.profile.Tabs[t];
+        addon.Tabs[t].Filters = self.db.profile.Tabs[t];
+    end
+end
+
+function filters:Load()
+    self.db = LibStub("AceDB-3.0"):New("KrowiAF_Filters", defaults, true);
+    self.db.RegisterCallback(self, "OnProfileChanged", "RefreshFilters");
+    self.db.RegisterCallback(self, "OnProfileCopied", "RefreshFilters");
+    self.db.RegisterCallback(self, "OnProfileReset", "RefreshFilters");
+
+    for t, _ in next, addon.Tabs do
+        addon.Tabs[t].Filters = self.db.profile.Tabs[t];
     end
 
     self.Account = addon.L["Account"];
@@ -169,7 +178,7 @@ local validations = {
             if not addon.Options.db.profile.ShowPlaceholdersFilter and achievement.DoesNotExist then
                 return true;
             end
-            return not filters.db.ShowPlaceholders and achievement.DoesNotExist;
+            return not filters.db.profile.ShowPlaceholders and achievement.DoesNotExist;
         end
     },
     {   -- 11
@@ -195,7 +204,7 @@ function filters.Validate(_filters, achievement, ignoreCollapseSeries)
     end
     local _, _, points, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = addon.GetAchievementInfo(achievement.Id);
     pointsCache = points;
-    if addon.Filters.db.EarnedBy == addon.Filters.CharacterOnly then
+    if addon.Filters.db.profile.EarnedBy == addon.Filters.CharacterOnly then
         completedCache = wasEarnedByMe;
     else
         completedCache = completed;
@@ -217,14 +226,14 @@ function filters:AutoValidate(achievement, ignoreCollapseSeries)
 end
 
 function filters:GetFilters(category)
-    self.db.Ignore = nil;
+    self.db.profile.Ignore = nil;
 
     if addon.GUI.SelectedTab == nil then
         local categoriesTree = category:GetTree();
 
         local tab = addon.Tabs[categoriesTree[1].Name];
         if tab == nil then
-            return self.db;
+            return self.db.profile;
         end
 
         local filters2 = addon.Tabs[categoriesTree[1].Name].Filters;
@@ -232,7 +241,7 @@ function filters:GetFilters(category)
             return filters2;
         end
 
-        return self.db;
+        return self.db.profile;
     end
 
     if category == nil then
@@ -240,19 +249,19 @@ function filters:GetFilters(category)
     end
 
 	if category.IsCurrentZone then
-		return self.db.CurrentZone;
+		return self.db.profile.CurrentZone;
 	elseif category.IsSelectedZone then
-		return self.db.SelectedZone;
+		return self.db.profile.SelectedZone;
 	elseif category.IsWatchList then
-        self.db.Ignore = addon.Options.db.profile.Categories.WatchList.IgnoreFilters;
-        return self.db;
+        self.db.profile.Ignore = addon.Options.db.profile.Categories.WatchList.IgnoreFilters;
+        return self.db.profile;
     elseif category.IsTracking then
-        return self.db.TrackingAchievements;
+        return self.db.profile.TrackingAchievements;
     elseif addon.GUI.SelectedTab.Filters ~= nil then
         return addon.GUI.SelectedTab.Filters;
 	end
 
-    return self.db;
+    return self.db.profile;
 end
 
 function filters.GetHighestAchievementWhenCollapseSeries(_fliters, achievement)

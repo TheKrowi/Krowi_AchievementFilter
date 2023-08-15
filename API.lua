@@ -34,7 +34,7 @@ function KrowiAF_SelectAchievement(achievement)
 
 	-- Get category
 	local category;
-	if filters and filters.db.MergeSmallCategories then
+	if filters and filters.db.profile.MergeSmallCategories then
 		category = achievement:GetMergedCategory(); -- This way we get the parent category
 	else
 		category = achievement.Category;
@@ -224,37 +224,9 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 			end
 		end
 
-		-- print(aName, tName, tab.AddonName, tab.Name);
-		-- if aName == "Blizzard_AchievementUI"
-		-- and tab.AddonName == "Blizzard_AchievementUI"
-		-- and tName == "Guild"
-		-- and tab.Name == "Statistics" then
-		-- 	StaticPopupDialogs["KROWIAF_ERROR_TABSORDER"] = {
-		-- 		text = addon.Metadata.Title .. "\n\n" .. addon.L["Error Tabs Order"]:K_ReplaceVars
-		-- 		{
-		-- 			blizzard = addon.L["Blizzard"],
-		-- 			statistics = addon.L["Statistics"],
-		-- 			guild = addon.L["Guild"]
-		-- 		},
-		-- 		button1 = addon.L["Close"],
-		-- 		timeout = 0,
-		-- 		whileDead = true,
-		-- 		hideOnEscape = true
-		-- 	};
-		-- 	StaticPopup_Show("KROWIAF_ERROR_TABSORDER");
-		-- 	return;
-		-- end
-
-		-- local oldTab = KrowiAF_SavedData.Tabs[indexFound];
-		-- print(indexFound, aName, tName, addon.Options.db.profile.Tabs[aName][tName].Order);
 		addon.Options.db.profile.Tabs[aName][tName].Order = order;
-		-- print(aName, tName, addon.Options.db.profile.Tabs[aName][tName].Order);
-
-		-- Set current selection to index
-		-- local tab = KrowiAF_SavedData.Tabs[value];
 		addon.Options.db.profile.Tabs[tab.AddonName][tab.Name].Order = index;
-		-- print(tab.AddonName, tab.Name, addon.Options.db.profile.Tabs[tab.AddonName][tab.Name].Order);
-		-- print(aName, tName, addon.Options.db.profile.Tabs[aName][tName].Order);
+
 		addon.GUI.ShowHideTabs();
 	end
 
@@ -382,8 +354,8 @@ do --[[ KrowiAF_RegisterEventOptions ]]
 			order = OrderPP(), type = "toggle", width = AdjustedWidth(),
 			name = eventDisplayName,
 			get = function() return addon.Options.db.profile.EventReminders[eventType .. "Events"][eventId]; end,
-			set = function()
-				addon.Options.db.profile.EventReminders[eventType .. "Events"][eventId] = not addon.Options.db.profile.EventReminders[eventType .. "Events"][eventId];
+			set = function(_, value)
+				addon.Options.db.profile.EventReminders[eventType .. "Events"][eventId] = value;
 				addon.GUI.SideButtonSystem.Refresh();
 			end
 		});

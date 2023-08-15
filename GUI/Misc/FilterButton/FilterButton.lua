@@ -8,7 +8,7 @@ function filterButton:Load()
     local button = CreateFrame("DropDownToggleButton", "KrowiAF_AchievementFrameFilterButton", AchievementFrame, "KrowiAF_AchievementFrameFilterButton_Template");
 	button:SetFrameLevel(button:GetParent():GetFrameLevel() + 7);
 
-    addon.Filters:Load();
+    -- addon.Filters:Load();
     addon.Filters:ResetFilters();
 
 	tinsert(addon.GUI.SubFrames, button);
@@ -45,7 +45,7 @@ function KrowiAF_AchievementFrameFilterButton_OnMouseDown(self)
                     IsTitle = true
                 });
 
-    self:AddCheckBox(menu, addon.L["Merge Small Categories"], addon.Filters.db, {"MergeSmallCategories"});
+    self:AddCheckBox(menu, addon.L["Merge Small Categories"], addon.Filters.db.profile, {"MergeSmallCategories"});
 
     menu:AddSeparator();
 
@@ -54,7 +54,7 @@ function KrowiAF_AchievementFrameFilterButton_OnMouseDown(self)
                     IsTitle = true
                 });
 
-    self:AddAchievementFilters(menu, nil, addon.Filters.db);
+    self:AddAchievementFilters(menu, nil, addon.Filters.db.profile);
     local earnedBy = addon.Objects.MenuItem:New({Text = addon.L["Earned By"]});
     self:AddRadioButton(menu, earnedBy, addon.Filters.Account, addon.Filters.db, {"EarnedBy"}, false);
     self:AddRadioButton(menu, earnedBy, addon.Filters.CharacterAccount, addon.Filters.db, {"EarnedBy"}, false);
@@ -78,9 +78,9 @@ function KrowiAF_AchievementFrameFilterButton_OnMouseDown(self)
                     IsTitle = true
                 });
 
-    self:AddAchievementFilters(menu, addon.Objects.MenuItem:New({Text = addon.L["Current Zone"]}), addon.Filters.db.CurrentZone);
-    self:AddAchievementFilters(menu, addon.Objects.MenuItem:New({Text = addon.L["Selected Zone"]}), addon.Filters.db.SelectedZone);
-    self:AddAchievementFilters(menu, addon.Objects.MenuItem:New({Text = addon.L["Tracking Achievements"]}), addon.Filters.db.TrackingAchievements);
+    self:AddAchievementFilters(menu, addon.Objects.MenuItem:New({Text = addon.L["Current Zone"]}), addon.Filters.db.profile.CurrentZone);
+    self:AddAchievementFilters(menu, addon.Objects.MenuItem:New({Text = addon.L["Selected Zone"]}), addon.Filters.db.profile.SelectedZone);
+    self:AddAchievementFilters(menu, addon.Objects.MenuItem:New({Text = addon.L["Tracking Achievements"]}), addon.Filters.db.profile.TrackingAchievements);
 
     menu:AddSeparator();
 

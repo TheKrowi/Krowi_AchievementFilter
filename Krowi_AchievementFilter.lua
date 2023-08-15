@@ -46,8 +46,9 @@ local function LoadKrowi_AchievementFilter()
     addon.GUI.PrepareTabsOrder();
     addon.Tabs.InjectDynamicOptions();
     addon.GUI.AchievementFrameHeader.InjectDynamicOptions();
+    addon.Filters:InjectDefaults();
     addon.Plugins:InjectOptions();
-    addon.Options:Load();
+    addon.Options:Load(true);
 
     addon.Plugins:Load();
 
@@ -142,9 +143,3 @@ function loadHelper:OnEvent(event, arg1, arg2)
     end
 end
 loadHelper:SetScript("OnEvent", loadHelper.OnEvent);
-
-function KrowiAF_SaveWidgets()
-    KrowiAF_Test = {};
-    KrowiAF_Test[4487] = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(4487);
-    KrowiAF_Test[4488] = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(4488);
-end

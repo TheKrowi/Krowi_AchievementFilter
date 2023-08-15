@@ -66,7 +66,7 @@ function KrowiAF_WorldMapButtonMixin:Refresh()
     self.Achievements = addon.GetAchievementsInZone(mapID, true);
     local numOfAch, numOfCompAch, numOfNotObtAch = 0, 0, 0;
     for _, achievement in next, self.Achievements do
-        numOfAch, numOfCompAch, numOfNotObtAch = addon.GetAchievementNumbers(addon.Filters.db.SelectedZone, achievement, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
+        numOfAch, numOfCompAch, numOfNotObtAch = addon.GetAchievementNumbers(addon.Filters.db.profile.SelectedZone, achievement, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
     end
 
     self.Text = C_Map.GetMapInfo(mapID).name;

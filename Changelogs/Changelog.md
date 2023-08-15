@@ -1,12 +1,13 @@
 ### Added
-- Now uses the Addon compartment (minimap button is still available for those who use it)
-- Introduced Profiles
+- Implemented proper handling of profile change, copy and reset
+- Introduced Profiles for the Filters (these are not tied to the Options)
+
+### Fixed
+- Search Options are now saved to the correct Saved Variables
+- Options now have proper unique names
 
 ### Changed
-- Lots of backend code is now shared between all my addons
+- Cleaned up toggles in code
 
-### Fixed (60.1)
-- Searching achievements should no longer cause an error
-
-### Changed (60.2)
-- Updated Util lib
+### Removed
+- Kalimdor Cup World events (Calendar event still exists)

@@ -1303,7 +1303,7 @@ local function DisableOptions()
         return;
     end
 
-    local appName = "Event Reminders";
+    local appName = addon.Metadata.Prefix .. "_EventReminders";
     KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.GrowDirection").disabled = true;
     KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.Spacing").disabled = true;
     KrowiAF_GetOptions.GetTable(appName, "args.PopUps.args.Location.args.OffsetX").disabled = true;

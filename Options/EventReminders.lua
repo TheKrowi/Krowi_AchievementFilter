@@ -9,12 +9,21 @@ local OrderPP = addon.InjectOptions.AutoOrderPlusPlus;
 local AdjustedWidth = addon.InjectOptions.AdjustedWidth;
 
 function eventReminders.RegisterOptionsTable()
-    LibStub("AceConfig-3.0"):RegisterOptionsTable("Event Reminders", options.OptionsTable.args.EventReminders);
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Event Reminders", "Event Reminders", addon.Metadata.Title);
+    LibStub("AceConfig-3.0"):RegisterOptionsTable(addon.Metadata.Prefix .. "_EventReminders", options.OptionsTable.args.EventReminders);
+    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addon.Metadata.Prefix .. "_EventReminders", addon.L["Event Reminders"], addon.Metadata.Title);
 end
 
-function eventReminders.PostLoad()
+local RefreshOptions; -- Assigned at the end of the file
+function eventReminders.OnProfileChanged(db, newProfile)
+    RefreshOptions();
+end
 
+function eventReminders.OnProfileCopied(db, sourceProfile)
+    RefreshOptions();
+end
+
+function eventReminders.OnProfileReset(db)
+    RefreshOptions();
 end
 
 local timeDisplaysLine1 = {
@@ -59,6 +68,24 @@ AddStartTimeAndEndTimeFormat(addon.L["%c"]);
 tinsert(startTimeAndEndTimeDateTimeValues, "Custom");
 tinsert(startTimeAndEndTimeDateTimeFormats, addon.L["%m/%d/%Y %R"]);
 
+local function TimeDisplayLine1Set(_, value)
+    if addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == value then return; end;
+    addon.Options.db.profile.EventReminders.TimeDisplay.Line1 = value;
+    addon.GUI.SideButtonSystem.Refresh();
+end
+
+local function TimeDisplayLine2Set(_, value)
+    if addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == value then return; end;
+    addon.Options.db.profile.EventReminders.TimeDisplay.Line2 = value;
+    addon.GUI.SideButtonSystem.Refresh();
+end
+
+local function SideButtonsAnchorSet(_, value)
+    if addon.Options.db.profile.EventReminders.SideButtonsAnchor == value then return; end;
+    addon.Options.db.profile.EventReminders.SideButtonsAnchor = value;
+    addon.GUI.SideButtonSystem.Refresh();
+end
+
 local function PopUpsGrowDirectionSet(_, value)
     if addon.Options.db.profile.EventReminders.PopUps.GrowDirection == value then return; end;
     addon.Options.db.profile.EventReminders.PopUps.GrowDirection = value;
@@ -66,7 +93,7 @@ local function PopUpsGrowDirectionSet(_, value)
     AlertFrame:UpdateAnchors();
 end
 
-local function PopUpsSpavingSet(_, value)
+local function PopUpsSpacingSet(_, value)
     if addon.Options.db.profile.EventReminders.PopUps.Spacing == value then return; end;
     addon.Options.db.profile.EventReminders.PopUps.Spacing = value;
     addon.GUI.AlertSystem.UpdateGrowDirection();
@@ -105,24 +132,6 @@ local function PopUpsShowPlaceholderFunc()
             addon.GUI.AlertSystem:AddAlert(event, 60);
         end
     end
-end
-
-local function TimeDisplayLine1Set(_, value)
-    if addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == value then return; end;
-    addon.Options.db.profile.EventReminders.TimeDisplay.Line1 = value;
-    addon.GUI.SideButtonSystem.Refresh();
-end
-
-local function TimeDisplayLine2Set(_, value)
-    if addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == value then return; end;
-    addon.Options.db.profile.EventReminders.TimeDisplay.Line2 = value;
-    addon.GUI.SideButtonSystem.Refresh();
-end
-
-local function SideButtonsAnchorSet(_, value)
-    if addon.Options.db.profile.EventReminders.SideButtonsAnchor == value then return; end;
-    addon.Options.db.profile.EventReminders.SideButtonsAnchor = value;
-    addon.GUI.SideButtonSystem.Refresh();
 end
 
 local function StartTimeAndEndTimePresetsGet()
@@ -326,7 +335,7 @@ options.OptionsTable.args["EventReminders"] = {
                             desc = addon.L["Spacing Desc"]:KAF_AddDefaultValueText("EventReminders.PopUps.Spacing"),
                             min = 0, max = 100, step = 1,
                             get = function() return addon.Options.db.profile.EventReminders.PopUps.Spacing; end,
-                            set = PopUpsSpavingSet
+                            set = PopUpsSpacingSet
                         },
                         OffsetX = {
                             order = OrderPP(), type = "range", width = "full",
@@ -498,7 +507,7 @@ options.OptionsTable.args["EventReminders"] = {
                             values = startTimeAndEndTimeDateTimeValues,
                             get = StartTimeAndEndTimePresetsGet,
                             set = function(_, value)
-                                local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable("Event Reminders", "cmd", "KROWIAF-0.0").args.DateTimeFormat.args.StartTimeAndEndTime.args.Custom;
+                                local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_EventReminders", "cmd", "KROWIAF-0.0").args.DateTimeFormat.args.StartTimeAndEndTime.args.Custom;
                                 custom.set(nil, startTimeAndEndTimeDateTimeFormats[value]);
                             end
                         },
@@ -557,3 +566,16 @@ options.OptionsTable.args["EventReminders"] = {
         }
     }
 };
+
+function RefreshOptions()
+    local profile = addon.Options.db.profile;
+    TimeDisplayLine1Set(_, profile.EventReminders.TimeDisplay.Line1);
+    TimeDisplayLine2Set(_, profile.EventReminders.TimeDisplay.Line2);
+    SideButtonsAnchorSet(_, profile.EventReminders.SideButtonsAnchor);
+    PopUpsGrowDirectionSet(_, profile.EventReminders.PopUps.GrowDirection);
+    PopUpsSpacingSet(_, profile.EventReminders.PopUps.Spacing);
+    PopUpsOffsetXSet(_, profile.EventReminders.PopUps.OffsetX);
+    PopUpsOffsetYSet(_, profile.EventReminders.PopUps.OffsetY);
+    addon.GUI.SideButtonSystem.Refresh(); -- Dynamic stuff is handled by this one
+    StartTimeAndEndTimeCustomSet(_, profile.EventReminders.DateTimeFormat.StartTimeAndEndTime);
+end

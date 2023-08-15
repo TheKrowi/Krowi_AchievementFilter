@@ -57,4 +57,3 @@
 <p>More features are planned in the future and can be requested via the issues system or discord.</p>
 <p>Feel free to join discord and say hi: <a href="https://discord.gg/mdBFQJYeQZ">https://discord.gg/mdBFQJYeQZ</a>.</p>
 <p>Creating and maintaining addons takes a lot of time. If you can miss something, feel free to drop a donation!</p>
-

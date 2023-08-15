@@ -111,7 +111,7 @@ function KrowiAF_AchievementButtonMixin:SetAchievementData(achievement, id, name
 
 	self.Icon.Texture:SetTexture(icon);
 
-	local earnedByFilter = addon.Filters.db.EarnedBy;
+	local earnedByFilter = addon.Filters.db.profile.EarnedBy;
 	if (earnedByFilter == addon.Filters.Account and completed or wasEarnedByMe) or (earnedByFilter == addon.Filters.CharacterAccount and completed and wasEarnedByMe) then
 		self.Completed = true;
 		achievement.IsCompleted = true;
@@ -518,7 +518,7 @@ function KrowiAF_AchievementButtonMixin:ToggleTracking()
 	end
 
 	local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = GetAchievementInfo(id);
-	local earnedByFilter = addon.Filters.db.EarnedBy;
+	local earnedByFilter = addon.Filters.db.profile.EarnedBy;
 	if (earnedByFilter == addon.Filters.Account and completed or wasEarnedByMe) or (earnedByFilter == addon.Filters.CharacterAccount and completed and wasEarnedByMe) then
 		UIErrorsFrame:AddMessage(ERR_ACHIEVEMENT_WATCH_COMPLETED, 1.0, 0.1, 0.1, 1.0);
 		self:SetAsTracked(false);

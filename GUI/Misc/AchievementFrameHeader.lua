@@ -59,7 +59,7 @@ function header.InjectDynamicOptions()
             name = addon.L["Reverse Sort"],
             desc = (""):KAF_AddDefaultValueText("AchievementPoints.Tooltip.Sort.Reverse." .. i),
             get = function() return addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[i]; end,
-            set = function() addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[i] = not addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[i]; end
+            set = function(_, value) addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[i] = value; end
         });
         addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Blank2" .. i, {
             order = OrderPP(), type = "description", width = AdjustedWidth(0.85),

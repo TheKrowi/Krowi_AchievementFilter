@@ -19,7 +19,7 @@ function achievementsTabFixes.InjectOptions()
         name = addon.L["RenameExplorationDragonIslesCategory"],
         desc = addon.L["RenameExplorationDragonIslesCategory Desc"]:KAF_AddDefaultValueText("Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory"),
         get = function() return addon.Options.db.profile.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory; end,
-        set = function() addon.Options.db.profile.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory = not addon.Options.db.profile.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory; end,
+        set = function(_, value) addon.Options.db.profile.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory = value; end,
         hidden = addon.IsWrathClassic
     });
 end
