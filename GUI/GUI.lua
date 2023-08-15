@@ -12,7 +12,6 @@ function gui:LoadWithAddon()
     gui.GameTooltipProgressBar:Load();
     gui.WorldMapButton.Load();
     gui.AlertSystem:Load();
-    addon.Filters:InjectDefaults();
     gui.FloatingAchievementTooltip.Load();
 end
 

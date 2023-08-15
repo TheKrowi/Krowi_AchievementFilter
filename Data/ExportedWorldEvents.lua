@@ -1,4 +1,4 @@
--- [[ Exported at 2023-07-14 21-54-41 ]] --
+-- [[ Exported at 2023-08-15 13-37-13 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -91,22 +91,6 @@ function exportedWorldEvents.Load(e)
     e[7460] = event:New(7460, 4237659, addon.L["Zaqali Ruin Investigation: Soon"], 2133); -- Zaqali Ruin Investigation: Soon
     e[7461] = event:New(7461, 254117, addon.L["Titan Lockdown: Active"], 2133); -- Titan Lockdown: Active
     e[7462] = event:New(7462, 4237659, addon.L["Zaqali Ruin Investigation: Active"], 2133); -- Zaqali Ruin Investigation: Active
-    e[7494] = event:New(7494, 0, addon.L["Felwood Flyover"], -5); -- Felwood Flyover
-    e[7495] = event:New(7495, 0, addon.L["Winter Wander"], -5); -- Winter Wander
-    e[7496] = event:New(7496, 0, addon.L["Nordrassil Spiral"], -5); -- Nordrassil Spiral
-    e[7497] = event:New(7497, 0, addon.L["Hyjal Hotfoot"], -5); -- Hyjal Hotfoot
-    e[7498] = event:New(7498, 0, addon.L["Rocketway Ride"], -5); -- Rocketway Ride
-    e[7499] = event:New(7499, 0, addon.L["Ashenvale Ambit"], -5); -- Ashenvale Ambit
-    e[7500] = event:New(7500, 0, addon.L["Durotar Tour"], -5); -- Durotar Tour
-    e[7501] = event:New(7501, 0, addon.L["Webwinder Weave"], -5); -- Webwinder Weave
-    e[7502] = event:New(7502, 0, addon.L["Desolace Drift"], -5); -- Desolace Drift
-    e[7503] = event:New(7503, 0, addon.L["Great Divide Dive"], -5); -- Great Divide Dive
-    e[7504] = event:New(7504, 0, addon.L["Razorfen Roundabout"], -5); -- Razorfen Roundabout
-    e[7505] = event:New(7505, 0, addon.L["Thousand Needles Thread"], -5); -- Thousand Needles Thread
-    e[7506] = event:New(7506, 0, addon.L["Feralas Ruins Ramble"], -5); -- Feralas Ruins Ramble
-    e[7507] = event:New(7507, 0, addon.L["Ahn'Qiraj Circuit"], -5); -- Ahn'Qiraj Circuit
-    e[7508] = event:New(7508, 0, addon.L["Uldum Tour"], -5); -- Uldum Tour
-    e[7509] = event:New(7509, 0, addon.L["Un'Goro Crater Circuit"], -5); -- Un'Goro Crater Circuit
 end
 
 function exportedWorldEvents.LoadCategories(e)
@@ -114,7 +98,7 @@ function exportedWorldEvents.LoadCategories(e)
         return;
     end
 
-    if e[5175] == nil or e[5177] == nil or e[5178] == nil or e[5210] == nil or e[5896] == nil or e[5964] == nil or e[5966] == nil or e[5969] == nil or e[5970] == nil or e[5973] == nil or e[6486] == nil or e[6487] == nil or e[6488] == nil or e[6489] == nil or e[6490] == nil or e[6491] == nil or e[6989] == nil or e[6990] == nil or e[6991] == nil or e[6992] == nil or e[7104] == nil or e[7221] == nil or e[7222] == nil or e[7223] == nil or e[7224] == nil or e[7225] == nil or e[7226] == nil or e[7227] == nil or e[7228] == nil or e[7229] == nil or e[7230] == nil or e[7231] == nil or e[7232] == nil or e[7233] == nil or e[7234] == nil or e[7235] == nil or e[7236] == nil or e[7237] == nil or e[7238] == nil or e[7239] == nil or e[7240] == nil or e[7245] == nil or e[7246] == nil or e[7247] == nil or e[7248] == nil or e[7249] == nil or e[7250] == nil or e[7251] == nil or e[7252] == nil or e[7253] == nil or e[7254] == nil or e[7255] == nil or e[7256] == nil or e[7257] == nil or e[7258] == nil or e[7259] == nil or e[7260] == nil or e[7267] == nil or e[7298] == nil or e[7299] == nil or e[7300] == nil or e[7301] == nil or e[7342] == nil or e[7343] == nil or e[7344] == nil or e[7345] == nil or e[7429] == nil or e[7432] == nil or e[7459] == nil or e[7460] == nil or e[7461] == nil or e[7462] == nil or e[7494] == nil or e[7495] == nil or e[7496] == nil or e[7497] == nil or e[7498] == nil or e[7499] == nil or e[7500] == nil or e[7501] == nil or e[7502] == nil or e[7503] == nil or e[7504] == nil or e[7505] == nil or e[7506] == nil or e[7507] == nil or e[7508] == nil or e[7509] == nil then
+    if e[5175] == nil or e[5177] == nil or e[5178] == nil or e[5210] == nil or e[5896] == nil or e[5964] == nil or e[5966] == nil or e[5969] == nil or e[5970] == nil or e[5973] == nil or e[6486] == nil or e[6487] == nil or e[6488] == nil or e[6489] == nil or e[6490] == nil or e[6491] == nil or e[6989] == nil or e[6990] == nil or e[6991] == nil or e[6992] == nil or e[7104] == nil or e[7221] == nil or e[7222] == nil or e[7223] == nil or e[7224] == nil or e[7225] == nil or e[7226] == nil or e[7227] == nil or e[7228] == nil or e[7229] == nil or e[7230] == nil or e[7231] == nil or e[7232] == nil or e[7233] == nil or e[7234] == nil or e[7235] == nil or e[7236] == nil or e[7237] == nil or e[7238] == nil or e[7239] == nil or e[7240] == nil or e[7245] == nil or e[7246] == nil or e[7247] == nil or e[7248] == nil or e[7249] == nil or e[7250] == nil or e[7251] == nil or e[7252] == nil or e[7253] == nil or e[7254] == nil or e[7255] == nil or e[7256] == nil or e[7257] == nil or e[7258] == nil or e[7259] == nil or e[7260] == nil or e[7267] == nil or e[7298] == nil or e[7299] == nil or e[7300] == nil or e[7301] == nil or e[7342] == nil or e[7343] == nil or e[7344] == nil or e[7345] == nil or e[7429] == nil or e[7432] == nil or e[7459] == nil or e[7460] == nil or e[7461] == nil or e[7462] == nil then
         exportedWorldEvents.Load(e);
     end
 
@@ -190,22 +174,6 @@ function exportedWorldEvents.LoadCategories(e)
     e[7460].Category = addon.Tabs["Events"].Categories[15].Children[5].Children[1]; -- Zaqali Ruin Investigation
     e[7461].Category = addon.Tabs["Events"].Categories[15].Children[5].Children[2]; -- Titan Lockdown
     e[7462].Category = addon.Tabs["Events"].Categories[15].Children[5].Children[1]; -- Zaqali Ruin Investigation
-    e[7494].Category = addon.Tabs["Specials"].Categories[0]; -- PLACEHOLDER
-    e[7495].Category = addon.Tabs["Specials"].Categories[0]; -- PLACEHOLDER
-    e[7496].Category = addon.Tabs["Specials"].Categories[0]; -- PLACEHOLDER
-    e[7497].Category = addon.Tabs["Specials"].Categories[0]; -- PLACEHOLDER
-    e[7498].Category = addon.Tabs["Specials"].Categories[0]; -- PLACEHOLDER
-    e[7499].Category = addon.Tabs["Specials"].Categories[0]; -- PLACEHOLDER
-    e[7500].Category = addon.Tabs["Specials"].Categories[0]; -- PLACEHOLDER
-    e[7501].Category = addon.Tabs["Specials"].Categories[0]; -- PLACEHOLDER
-    e[7502].Category = addon.Tabs["Specials"].Categories[0]; -- PLACEHOLDER
-    e[7503].Category = addon.Tabs["Specials"].Categories[0]; -- PLACEHOLDER
-    e[7504].Category = addon.Tabs["Specials"].Categories[0]; -- PLACEHOLDER
-    e[7505].Category = addon.Tabs["Specials"].Categories[0]; -- PLACEHOLDER
-    e[7506].Category = addon.Tabs["Specials"].Categories[0]; -- PLACEHOLDER
-    e[7507].Category = addon.Tabs["Specials"].Categories[0]; -- PLACEHOLDER
-    e[7508].Category = addon.Tabs["Specials"].Categories[0]; -- PLACEHOLDER
-    e[7509].Category = addon.Tabs["Specials"].Categories[0]; -- PLACEHOLDER
 end
 
 function exportedWorldEvents.InjectDynamicOptions()
@@ -213,23 +181,6 @@ function exportedWorldEvents.InjectDynamicOptions()
         return;
     end
 
-    KrowiAF_RegisterEventOptions("World", "Kalimdor_Cup", addon.L["Kalimdor Cup"], 7494, addon.L["Felwood Flyover"]);
-    KrowiAF_RegisterEventOptions("World", "Kalimdor_Cup", addon.L["Kalimdor Cup"], 7495, addon.L["Winter Wander"]);
-    KrowiAF_RegisterEventOptions("World", "Kalimdor_Cup", addon.L["Kalimdor Cup"], 7496, addon.L["Nordrassil Spiral"]);
-    KrowiAF_RegisterEventOptions("World", "Kalimdor_Cup", addon.L["Kalimdor Cup"], 7497, addon.L["Hyjal Hotfoot"]);
-    KrowiAF_RegisterEventOptions("World", "Kalimdor_Cup", addon.L["Kalimdor Cup"], 7498, addon.L["Rocketway Ride"]);
-    KrowiAF_RegisterEventOptions("World", "Kalimdor_Cup", addon.L["Kalimdor Cup"], 7499, addon.L["Ashenvale Ambit"]);
-    KrowiAF_RegisterEventOptions("World", "Kalimdor_Cup", addon.L["Kalimdor Cup"], 7500, addon.L["Durotar Tour"]);
-    KrowiAF_RegisterEventOptions("World", "Kalimdor_Cup", addon.L["Kalimdor Cup"], 7501, addon.L["Webwinder Weave"]);
-    KrowiAF_RegisterEventOptions("World", "Kalimdor_Cup", addon.L["Kalimdor Cup"], 7502, addon.L["Desolace Drift"]);
-    KrowiAF_RegisterEventOptions("World", "Kalimdor_Cup", addon.L["Kalimdor Cup"], 7503, addon.L["Great Divide Dive"]);
-    KrowiAF_RegisterEventOptions("World", "Kalimdor_Cup", addon.L["Kalimdor Cup"], 7504, addon.L["Razorfen Roundabout"]);
-    KrowiAF_RegisterEventOptions("World", "Kalimdor_Cup", addon.L["Kalimdor Cup"], 7505, addon.L["Thousand Needles Thread"]);
-    KrowiAF_RegisterEventOptions("World", "Kalimdor_Cup", addon.L["Kalimdor Cup"], 7506, addon.L["Feralas Ruins Ramble"]);
-    KrowiAF_RegisterEventOptions("World", "Kalimdor_Cup", addon.L["Kalimdor Cup"], 7507, addon.L["Ahn'Qiraj Circuit"]);
-    KrowiAF_RegisterEventOptions("World", "Kalimdor_Cup", addon.L["Kalimdor Cup"], 7508, addon.L["Uldum Tour"]);
-    KrowiAF_RegisterEventOptions("World", "Kalimdor_Cup", addon.L["Kalimdor Cup"], 7509, addon.L["Un'Goro Crater Circuit"]);
-    KrowiAF_RegisterDeSelectAllEventOptions("World", "Kalimdor_Cup", { 7494, 7495, 7496, 7497, 7498, 7499, 7500, 7501, 7502, 7503, 7504, 7505, 7506, 7507, 7508, 7509 });
     KrowiAF_RegisterEventOptions("World", "Legion", addon.L["Legion"], 5175, addon.L["Assault on Azsuna"]);
     KrowiAF_RegisterEventOptions("World", "Legion", addon.L["Legion"], 5177, addon.L["Assault on Highmountain"]);
     KrowiAF_RegisterEventOptions("World", "Legion", addon.L["Legion"], 5178, addon.L["Assault on Stormheim"]);

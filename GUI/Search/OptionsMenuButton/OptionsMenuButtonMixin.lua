@@ -35,11 +35,12 @@ function KrowiAF_SearchOptionsMenuButtonMixin:OnMouseDown()
 					IsTitle = true
 				});
 
-	self:AddCheckBox(menu, addon.L["Search IDs"] .. " (#)", addon.SearchOptions.db, {"SearchIds"});
-	self:AddCheckBox(menu, addon.L["Search Names"], addon.SearchOptions.db, {"SearchNames"});
-	self:AddCheckBox(menu, addon.L["Search Descriptions"], addon.SearchOptions.db, {"SearchDescriptions"});
-	self:AddCheckBox(menu, addon.L["Search Criteria"] .. " (@)", addon.SearchOptions.db, {"SearchCriteria"});
-	self:AddCheckBox(menu, addon.L["Search Rewards"], addon.SearchOptions.db, {"SearchRewards"});
+	local profile = addon.SearchOptions.db.profile;
+	self:AddCheckBox(menu, addon.L["Search IDs"] .. " (#)", profile, {"SearchIds"});
+	self:AddCheckBox(menu, addon.L["Search Names"], profile, {"SearchNames"});
+	self:AddCheckBox(menu, addon.L["Search Descriptions"], profile, {"SearchDescriptions"});
+	self:AddCheckBox(menu, addon.L["Search Criteria"] .. " (@)", profile, {"SearchCriteria"});
+	self:AddCheckBox(menu, addon.L["Search Rewards"], profile, {"SearchRewards"});
 
 	menu:Toggle(self);
 end

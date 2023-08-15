@@ -40,7 +40,7 @@ local function SetCheckBoxValue(filters, keys, value, checkTabs, refresh)
         if addon.GUI.SelectedTab and filters ~= addon.GUI.SelectedTab.Filters then
             filters.Refresh = true;
         end
-        if filters == addon.Filters.db then
+        if filters == addon.Filters.db.profile then
             for t, _ in next, addon.Tabs do
                 addon.Util.WriteNestedKeys(addon.Tabs[t].Filters, keys, addon.Util.ReadNestedKeys(filters, keys));
                 addon.Tabs[t].Filters.Refresh = refresh;
@@ -50,7 +50,7 @@ local function SetCheckBoxValue(filters, keys, value, checkTabs, refresh)
 end
 
 function KrowiAF_AchievementFrameFilterButtonMixin:AddCheckBox(_menu, text, filters, keys, checkTabs, ignoreAsMenuSelection)
-    if filters == addon.Filters.db and StateIsUndecided(keys) then
+    if filters == addon.Filters.db.profile and StateIsUndecided(keys) then
         text = text .. " (*)";
     end
     _menu:AddFull({	Text = text,
@@ -79,7 +79,7 @@ function KrowiAF_AchievementFrameFilterButtonMixin:AddRadioButton(parentMenu, _m
                             if addon.GUI.SelectedTab and filters ~= addon.GUI.SelectedTab.Filters then
                                 filters.Refresh = true;
                             end
-                            if filters == addon.Filters.db then
+                            if filters == addon.Filters.db.profile then
                                 for t, _ in next, addon.Tabs do
                                     addon.Util.WriteNestedKeys(addon.Tabs[t].Filters, keys, addon.Util.ReadNestedKeys(filters, keys)); -- e.g.: addon.Tabs[t].Filters.SortBy.Criteria = filters.SortBy.Criteria
                                 end
@@ -129,7 +129,7 @@ function KrowiAF_AchievementFrameFilterButtonMixin:AddAchievementFilters(_menu, 
     tmpMenu:AddSeparator();
 
     local text = addon.L["Sort By"];
-    if filters == addon.Filters.db and ValueIsUndecided({"SortBy", "Criteria"}) then
+    if filters == addon.Filters.db.profile and ValueIsUndecided({"SortBy", "Criteria"}) then
         text = text .. " (*)";
     end
     local sortBy = addon.Objects.MenuItem:New({Text = text});

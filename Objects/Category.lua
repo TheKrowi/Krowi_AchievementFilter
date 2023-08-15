@@ -160,7 +160,7 @@ function category:GetAchievementNumbers()
 
 	local mergeSmallCategories = false;
 	if filters then
-		mergeSmallCategories = filters.db.MergeSmallCategories;
+		mergeSmallCategories = filters.db.profile.MergeSmallCategories;
 	end
 	if mergeSmallCategories then
 		local mergeSmallCategoriesThreshold = addon.Options.db.profile.Window.MergeSmallCategoriesThreshold;
@@ -191,7 +191,7 @@ end
 
 function category:GetMergedCategory()
 	local cat = self;
-	if addon.Filters.db.MergeSmallCategories then
+	if addon.Filters.db.profile.MergeSmallCategories then
 		while cat.Merged do
 			cat = cat.Parent;
 		end

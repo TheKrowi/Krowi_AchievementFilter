@@ -14,6 +14,5 @@ local defaults = {
 };
 
 function searchOptions:Load()
-    local options = LibStub("AceDB-3.0"):New("Filters", defaults, true);
-    self.db = options.profile;
+    self.db = LibStub("AceDB-3.0"):New("KrowiAF_SearchOptions", defaults, true);
 end

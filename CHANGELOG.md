@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 61.0 - 2023-xx-xx
+### Added
+- Implemented proper handling of profile change, copy and reset
+- Introduced Profiles for the Filters
+
+### Fixed
+- Search Options are now saved to the correct Saved Variables
+
+### Removed
+- Kalimdor Cup World events (Calendar event still exists)
+
 ## 60.2 - 2023-08-11
 ### Changed
 - Updated Util lib
