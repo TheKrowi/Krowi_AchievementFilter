@@ -250,7 +250,7 @@ function layout.InjectDynamicAdjustableCategoryOptions(category, categoryDisplay
     addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args." .. category .. ".args", tab, {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(),
         name = tabDisplayName,
-        desc = addon.L["Requires a reload"]:KAF_AddDefaultValueText("AdjustableCategories." .. category .. "." .. tabIndex),
+        desc = addon.Util.L["Requires a reload"]:KAF_AddDefaultValueText("AdjustableCategories." .. category .. "." .. tabIndex),
         get = function() return addon.Options.db.profile.AdjustableCategories[category][tabIndex]; end,
         set = function(_, value) addon.Options.db.profile.AdjustableCategories[category][tabIndex] = value; end
     });

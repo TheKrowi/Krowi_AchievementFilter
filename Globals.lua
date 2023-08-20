@@ -535,15 +535,6 @@ function addon.GetSecondsSince(date)
     return time(date);
 end
 
-function addon.ReplaceVarsWithReloadReq(str, vars)
-    if not vars then
-        vars = type(str) == "table" and str or {str};
-        str = vars[1];
-    end
-    vars["reloadRequired"] = addon.L["Requires a reload"];
-    return addon.Util.ReplaceVars(str, vars);
-end
-
 function addon.GetAchievementInfo(achievementId) -- Returns an additional bool indicating if the achievement is added to the game yet or not
     local id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy, isStatistic = GetAchievementInfo(achievementId);
     if not id then

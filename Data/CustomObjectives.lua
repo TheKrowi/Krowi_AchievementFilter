@@ -152,7 +152,7 @@ local function AddTransmogCriteria(tooltip, transmogSets)
                 icon = "|T136815:0|t";
                 color = addon.Util.Colors.Grey;
             end
-            text = icon .. addon.L["TAB"] .. string.format(color, _G[invType.EquipLoc] or invType.EquipLoc) .. ":" .. addon.L["TAB"] .. text;
+            text = icon .. "|T:1:8|t" .. string.format(color, _G[invType.EquipLoc] or invType.EquipLoc) .. ":" .. "|T:1:8|t" .. text;
             tooltip:AddLine(text);
         end
     else

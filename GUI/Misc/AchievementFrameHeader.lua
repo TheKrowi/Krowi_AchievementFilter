@@ -168,7 +168,7 @@ local function AddFactionIcon(name, faction)
         else -- Neutral
             icon = "|A:worldquest-questmarker-questionmark:15:16|a";
         end
-        name = icon .. addon.L["TAB"] .. name;
+        name = icon .. "|T:1:8|t" .. name;
     end
     return name;
 end
