@@ -185,7 +185,7 @@ function FixFilters(prevBuild, currBuild, prevVersion, currVersion, firstTime)
         diagnostics.Debug("First time Filter OK");
         return;
     end
-    if Filters then
+    if KrowiAF_Filters then
         diagnostics.Debug("Filter settings already cleared from previous location");
         return;
     end
