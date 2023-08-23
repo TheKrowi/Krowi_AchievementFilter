@@ -1,4 +1,4 @@
--- [[ Exported at 2023-07-03 19-36-38 ]] --
+-- [[ Exported at 2023-08-23 19-50-46 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -79,9 +79,7 @@ function exportedAchievements.Load(a, t)
     a[135] = b:New(135); -- Grand Master Medic
     O(a[135], "From", "Version", "030400", "Before", "Version", "080001");
     a[137] = b:New(137); -- Stocking Up
-    O(a[137], "From", "Version", "030400", "Before", "Version", "080001");
     a[141] = b:New(141); -- Ultimate Triage
-    O(a[141], "From", "Version", "030400", "Before", "Version", "080001");
     a[144] = b:New(144); -- The Lurker Above
     a[150] = b:New(150); -- The Fishing Diplomat
     a[153] = b:New(153); -- The Old Gnome and the Sea
@@ -1597,7 +1595,7 @@ function exportedAchievements.Load(a, t)
     a[18688] = b:New(18688, fac.Horde); -- Defense Protocol Beta: Terminated
 
     local aIDs = {};
-    for i = 1, 18706 do
+    for i = 1, 18688 do
         if a[i] ~= nil then
             tinsert(aIDs, i);
         end

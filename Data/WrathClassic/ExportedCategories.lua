@@ -1,4 +1,4 @@
--- [[ Exported at 2023-08-20 11-20-07 ]] --
+-- [[ Exported at 2023-08-23 19-51-00 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -807,25 +807,42 @@ function exportedCategories.Load(a)
     A(t[1150], a[116]); -- Professional Journeyman
     A(t[1150], a[731]); -- Professional Expert
     A(t[1150], a[732]); -- Professional Classic Master
-    A(t[1150], a[121]); -- Journeyman Cook
-    A(t[1150], a[122]); -- Expert Cook
-    A(t[1150], a[123]); -- Classic Cook
-    A(t[1150], a[126]); -- Journeyman Fisherman
-    A(t[1150], a[127]); -- Expert Fisherman
-    A(t[1150], a[128]); -- Artisan Fisherman
-    A(t[1150], a[1257]); -- The Scavenger
-    A(t[1150], a[150]); -- The Fishing Diplomat
-    A(t[1150], a[306]); -- Master Angler of Azeroth
-    A(t[1150], a[878]); -- One That Didn't Get Away
-    A(t[1150], a[1836]); -- Old Crafty
-    A(t[1150], a[1837]); -- Old Ironjaw
     A(t[1150], a[131]); -- Journeyman Medic
     A(t[1150], a[132]); -- Expert Medic
     A(t[1150], a[133]); -- Artisan Medic
+    t[1468] = c:New(k.GetCategoryInfoTitle(15071), true); -- Archaeology
+    C(t[1150], t[1468]);
+    t[1476] = c:New(k.GetCategoryInfoTitle(15490), true); -- Blacksmithing
+    C(t[1150], t[1476]);
+    t[1477] = c:New(k.GetCategoryInfoTitle(170), true); -- Cooking
+    C(t[1150], t[1477]);
+    A(t[1477], a[121]); -- Journeyman Cook
+    A(t[1477], a[122]); -- Expert Cook
+    A(t[1477], a[123]); -- Classic Cook
+    t[1500] = c:New(k.GetCategoryInfoTitle(171), true); -- Fishing
+    C(t[1150], t[1500]);
+    A(t[1500], a[126]); -- Journeyman Fisherman
+    A(t[1500], a[127]); -- Expert Fisherman
+    A(t[1500], a[128]); -- Artisan Fisherman
+    A(t[1500], a[150]); -- The Fishing Diplomat
+    A(t[1500], a[306]); -- Master Angler of Azeroth
+    A(t[1500], a[878]); -- One That Didn't Get Away
+    A(t[1500], a[1836]); -- Old Crafty
+    A(t[1500], a[1837]); -- Old Ironjaw
+    t[1513] = c:New(k.GetCategoryInfoTitle(15495), true); -- Leatherworking
+    C(t[1150], t[1513]);
+    t[1516] = c:New(k.GetCategoryInfoTitle(15497), true); -- Mining
+    C(t[1150], t[1516]);
+    t[1529] = c:New(k.GetCategoryInfoTitle(15496), true); -- Tailoring
+    C(t[1150], t[1529]);
     t[785] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[1], t[785]);
-    t[1449] = c:New(k.L["Dragon Racing"]); -- Dragon Racing
-    C(t[1], t[1449]);
+    t[1530] = c:New(k.L["Dragon Racing"]); -- Dragon Racing
+    C(t[1], t[1530]);
+    t[1449] = c:New(k.L["Kalimdor Cup"]); -- Kalimdor Cup
+    C(t[1530], t[1449]);
+    t[1533] = c:New(k.L["Eastern Kingdoms Cup"]); -- Eastern Kingdoms Cup
+    C(t[1530], t[1533]);
     t[55] = c:New(k.GetCategoryInfoTitle(14865)); -- The Burning Crusade
     C(t[883], t[55]);
     t[616] = c:New(k.L["Zones"]); -- Zones
@@ -1110,20 +1127,30 @@ function exportedCategories.Load(a)
     t[1151] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
     C(t[55], t[1151]);
     A(t[1151], a[733]); -- Professional Outland Master
-    A(t[1151], a[124]); -- Outland Cook
-    A(t[1151], a[877]); -- The Cake Is Not A Lie
-    A(t[1151], a[906]); -- Kickin' It Up a Notch
-    A(t[1151], a[1800]); -- The Outland Gourmet
-    A(t[1151], a[1801]); -- Captain Rumsey's Lager
-    A(t[1151], a[129]); -- Outland Fisherman
     A(t[1151], a[1257]); -- The Scavenger
-    A(t[1151], a[726]); -- Mr. Pinchy's Magical Crawdad Box
-    A(t[1151], a[144]); -- The Lurker Above
-    A(t[1151], a[905]); -- Old Man Barlowned
-    A(t[1151], a[1225]); -- Outland Angler
     A(t[1151], a[134]); -- Master Medic
+    t[1469] = c:New(k.GetCategoryInfoTitle(15071), true); -- Archaeology
+    C(t[1151], t[1469]);
+    t[1478] = c:New(k.GetCategoryInfoTitle(170), true); -- Cooking
+    C(t[1151], t[1478]);
+    A(t[1478], a[124]); -- Outland Cook
+    A(t[1478], a[877]); -- The Cake Is Not A Lie
+    A(t[1478], a[906]); -- Kickin' It Up a Notch
+    A(t[1478], a[1800]); -- The Outland Gourmet
+    A(t[1478], a[1801]); -- Captain Rumsey's Lager
+    t[1499] = c:New(k.GetCategoryInfoTitle(171), true); -- Fishing
+    C(t[1151], t[1499]);
+    A(t[1499], a[129]); -- Outland Fisherman
+    A(t[1499], a[726]); -- Mr. Pinchy's Magical Crawdad Box
+    A(t[1499], a[144]); -- The Lurker Above
+    A(t[1499], a[905]); -- Old Man Barlowned
+    A(t[1499], a[1225]); -- Outland Angler
+    t[1512] = c:New(k.GetCategoryInfoTitle(15495), true); -- Leatherworking
+    C(t[1151], t[1512]);
     t[786] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[55], t[786]);
+    t[1536] = c:New(k.L["Dragon Racing"]); -- Dragon Racing
+    C(t[55], t[1536]);
     t[83] = c:New(k.GetCategoryInfoTitle(14866)); -- Wrath of the Lich King
     C(t[883], t[83]);
     t[577] = c:New(k.L["Zones"]); -- Zones
@@ -1805,27 +1832,35 @@ function exportedCategories.Load(a)
     C(t[83], t[1152]);
     A(t[1152], a[734]); -- Professional Northrend Master
     A(t[1152], a[735]); -- Working In the Cold
-    A(t[1152], a[125]); -- Northrend Cook
-    A(t[1152], a[1777]); -- The Northrend Gourmet
-    A(t[1152], a[1778]); -- The Northrend Gourmet
-    A(t[1152], a[1779]); -- The Northrend Gourmet
-    A(t[1152], a[1780]); -- Second That Emotion
-    A(t[1152], a[1781]); -- Critter Gitter
-    A(t[1152], a[1785]); -- Dinner Impossible
-    A(t[1152], a[3296]); -- Cooking with Style
-    A(t[1152], a[1782]); -- Our Daily Bread
-    A(t[1152], a[1783]); -- Our Daily Bread
-    A(t[1152], a[130]); -- Northrend Fisherman
-    A(t[1152], a[1517]); -- Northrend Angler
-    A(t[1152], a[3217]); -- Chasing Marcia
-    A(t[1152], a[2094]); -- A Penny For Your Thoughts
-    A(t[1152], a[2095]); -- Silver in the City
-    A(t[1152], a[1957]); -- There's Gold In That There Fountain
-    A(t[1152], a[2096]); -- The Coin Master
-    A(t[1152], a[1958]); -- I Smell A Giant Rat
     A(t[1152], a[135]); -- Grand Master Medic
-    A(t[1152], a[137]); -- Stocking Up
     A(t[1152], a[730]); -- Skills to Pay the Bills
+    t[1470] = c:New(k.GetCategoryInfoTitle(15071), true); -- Archaeology
+    C(t[1152], t[1470]);
+    t[1479] = c:New(k.GetCategoryInfoTitle(170), true); -- Cooking
+    C(t[1152], t[1479]);
+    A(t[1479], a[125]); -- Northrend Cook
+    A(t[1479], a[1777]); -- The Northrend Gourmet
+    A(t[1479], a[1778]); -- The Northrend Gourmet
+    A(t[1479], a[1779]); -- The Northrend Gourmet
+    A(t[1479], a[1780]); -- Second That Emotion
+    A(t[1479], a[1781]); -- Critter Gitter
+    A(t[1479], a[1782]); -- Our Daily Bread
+    A(t[1479], a[1783]); -- Our Daily Bread
+    t[1498] = c:New(k.GetCategoryInfoTitle(171), true); -- Fishing
+    C(t[1152], t[1498]);
+    A(t[1498], a[130]); -- Northrend Fisherman
+    A(t[1498], a[1517]); -- Northrend Angler
+    A(t[1498], a[3217]); -- Chasing Marcia
+    A(t[1498], a[2094]); -- A Penny For Your Thoughts
+    A(t[1498], a[2095]); -- Silver in the City
+    A(t[1498], a[1957]); -- There's Gold In That There Fountain
+    A(t[1498], a[1958]); -- I Smell A Giant Rat
+    A(t[1498], a[2096]); -- The Coin Master
+    t[1506] = c:New(k.GetCategoryInfoTitle(15493), true); -- Inscription
+    C(t[1152], t[1506]);
+    t[1526] = c:New(k.GetCategoryInfoTitle(15496), true); -- Tailoring
+    C(t[1152], t[1526]);
+    A(t[1526], a[137]); -- Stocking Up
     t[787] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[83], t[787]);
     t[1138] = c:New(k.GetCategoryInfoTitle(14901)); -- Wintergrasp

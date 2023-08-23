@@ -1,4 +1,4 @@
--- [[ Exported at 2023-08-15 13-37-13 ]] --
+-- [[ Exported at 2023-08-23 19-51-31 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -91,6 +91,10 @@ function exportedWorldEvents.Load(e)
     e[7460] = event:New(7460, 4237659, addon.L["Zaqali Ruin Investigation: Soon"], 2133); -- Zaqali Ruin Investigation: Soon
     e[7461] = event:New(7461, 254117, addon.L["Titan Lockdown: Active"], 2133); -- Titan Lockdown: Active
     e[7462] = event:New(7462, 4237659, addon.L["Zaqali Ruin Investigation: Active"], 2133); -- Zaqali Ruin Investigation: Active
+    e[7554] = event:New(7554, 1394953, addon.L["Azure Span"], 1978); -- Azure Span
+    e[7555] = event:New(7555, 1394953, addon.L["Ohn'ahran Plains"], 1978); -- Ohn'ahran Plains
+    e[7556] = event:New(7556, 1394953, addon.L["Waking Shores"], 1978); -- Waking Shores
+    e[7602] = event:New(7602, 1394953, addon.L["Thaldraszus"], 1978); -- Thaldraszus
 end
 
 function exportedWorldEvents.LoadCategories(e)
@@ -98,7 +102,7 @@ function exportedWorldEvents.LoadCategories(e)
         return;
     end
 
-    if e[5175] == nil or e[5177] == nil or e[5178] == nil or e[5210] == nil or e[5896] == nil or e[5964] == nil or e[5966] == nil or e[5969] == nil or e[5970] == nil or e[5973] == nil or e[6486] == nil or e[6487] == nil or e[6488] == nil or e[6489] == nil or e[6490] == nil or e[6491] == nil or e[6989] == nil or e[6990] == nil or e[6991] == nil or e[6992] == nil or e[7104] == nil or e[7221] == nil or e[7222] == nil or e[7223] == nil or e[7224] == nil or e[7225] == nil or e[7226] == nil or e[7227] == nil or e[7228] == nil or e[7229] == nil or e[7230] == nil or e[7231] == nil or e[7232] == nil or e[7233] == nil or e[7234] == nil or e[7235] == nil or e[7236] == nil or e[7237] == nil or e[7238] == nil or e[7239] == nil or e[7240] == nil or e[7245] == nil or e[7246] == nil or e[7247] == nil or e[7248] == nil or e[7249] == nil or e[7250] == nil or e[7251] == nil or e[7252] == nil or e[7253] == nil or e[7254] == nil or e[7255] == nil or e[7256] == nil or e[7257] == nil or e[7258] == nil or e[7259] == nil or e[7260] == nil or e[7267] == nil or e[7298] == nil or e[7299] == nil or e[7300] == nil or e[7301] == nil or e[7342] == nil or e[7343] == nil or e[7344] == nil or e[7345] == nil or e[7429] == nil or e[7432] == nil or e[7459] == nil or e[7460] == nil or e[7461] == nil or e[7462] == nil then
+    if e[5175] == nil or e[5177] == nil or e[5178] == nil or e[5210] == nil or e[5896] == nil or e[5964] == nil or e[5966] == nil or e[5969] == nil or e[5970] == nil or e[5973] == nil or e[6486] == nil or e[6487] == nil or e[6488] == nil or e[6489] == nil or e[6490] == nil or e[6491] == nil or e[6989] == nil or e[6990] == nil or e[6991] == nil or e[6992] == nil or e[7104] == nil or e[7221] == nil or e[7222] == nil or e[7223] == nil or e[7224] == nil or e[7225] == nil or e[7226] == nil or e[7227] == nil or e[7228] == nil or e[7229] == nil or e[7230] == nil or e[7231] == nil or e[7232] == nil or e[7233] == nil or e[7234] == nil or e[7235] == nil or e[7236] == nil or e[7237] == nil or e[7238] == nil or e[7239] == nil or e[7240] == nil or e[7245] == nil or e[7246] == nil or e[7247] == nil or e[7248] == nil or e[7249] == nil or e[7250] == nil or e[7251] == nil or e[7252] == nil or e[7253] == nil or e[7254] == nil or e[7255] == nil or e[7256] == nil or e[7257] == nil or e[7258] == nil or e[7259] == nil or e[7260] == nil or e[7267] == nil or e[7298] == nil or e[7299] == nil or e[7300] == nil or e[7301] == nil or e[7342] == nil or e[7343] == nil or e[7344] == nil or e[7345] == nil or e[7429] == nil or e[7432] == nil or e[7459] == nil or e[7460] == nil or e[7461] == nil or e[7462] == nil or e[7554] == nil or e[7555] == nil or e[7556] == nil or e[7602] == nil then
         exportedWorldEvents.Load(e);
     end
 
@@ -174,6 +178,10 @@ function exportedWorldEvents.LoadCategories(e)
     e[7460].Category = addon.Tabs["Events"].Categories[15].Children[5].Children[1]; -- Zaqali Ruin Investigation
     e[7461].Category = addon.Tabs["Events"].Categories[15].Children[5].Children[2]; -- Titan Lockdown
     e[7462].Category = addon.Tabs["Events"].Categories[15].Children[5].Children[1]; -- Zaqali Ruin Investigation
+    e[7554].Category = addon.Tabs["Events"].Categories[15].Children[7]; -- Dreamsurge
+    e[7555].Category = addon.Tabs["Events"].Categories[15].Children[7]; -- Dreamsurge
+    e[7556].Category = addon.Tabs["Events"].Categories[15].Children[7]; -- Dreamsurge
+    e[7602].Category = addon.Tabs["Events"].Categories[15].Children[7]; -- Dreamsurge
 end
 
 function exportedWorldEvents.InjectDynamicOptions()
@@ -264,5 +272,10 @@ function exportedWorldEvents.InjectDynamicOptions()
     KrowiAF_RegisterEventOptions("World", "DF___Researchers_Under_Fire", addon.L["DF - Researchers Under Fire"], 7461, addon.L["Titan Lockdown: Active"]);
     KrowiAF_RegisterEventOptions("World", "DF___Researchers_Under_Fire", addon.L["DF - Researchers Under Fire"], 7462, addon.L["Zaqali Ruin Investigation: Active"]);
     KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Researchers_Under_Fire", { 7459, 7460, 7461, 7462 });
+    KrowiAF_RegisterEventOptions("World", "DF___Dreamsurge", addon.L["DF - Dreamsurge"], 7554, addon.L["Azure Span"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Dreamsurge", addon.L["DF - Dreamsurge"], 7555, addon.L["Ohn'ahran Plains"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Dreamsurge", addon.L["DF - Dreamsurge"], 7556, addon.L["Waking Shores"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Dreamsurge", addon.L["DF - Dreamsurge"], 7602, addon.L["Thaldraszus"]);
+    KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Dreamsurge", { 7554, 7555, 7556, 7602 });
 end
 

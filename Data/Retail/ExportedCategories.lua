@@ -1,4 +1,4 @@
--- [[ Exported at 2023-08-20 11-20-05 ]] --
+-- [[ Exported at 2023-08-23 19-50-59 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -152,8 +152,8 @@ function exportedCategories.Load(a)
     A(t[1432], a[12547]); -- Epic (Battle)
     A(t[1432], a[14796]); -- Superior (Shadowlands)
     A(t[1432], a[14797]); -- Epic (Shadowlands)
-    A(t[1432], a[18365]); -- Draconically Superior
-    A(t[1432], a[18366]); -- Draconically Epic
+    A(t[1432], a[18976]); -- Draconically Superior
+    A(t[1432], a[18977]); -- Draconically Epic
     A(t[1432], a[705]); -- Master of Arms
     A(t[1432], a[16]); -- Did Somebody Order a Knuckle Sandwich?
     A(t[1432], a[2716]); -- Dual Talent Specialization
@@ -204,39 +204,6 @@ function exportedCategories.Load(a)
     A(t[1169], a[4478]); -- Looking For Multitudes
     t[1149] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
     C(t[1431], t[1149]);
-    A(t[1149], a[1998]); -- Cooking Award
-    A(t[1149], a[1999]); -- 10 Cooking Awards
-    A(t[1149], a[2000]); -- 25 Cooking Awards
-    A(t[1149], a[2001]); -- 50 Cooking Awards
-    A(t[1149], a[2002]); -- 100 Cooking Awards
-    A(t[1149], a[1795]); -- Lunch Lady
-    A(t[1149], a[1796]); -- Short Order Cook
-    A(t[1149], a[1797]); -- Chef de Partie
-    A(t[1149], a[1798]); -- Sous Chef
-    A(t[1149], a[1799]); -- Chef de Cuisine
-    A(t[1149], a[5471]); -- Iron Chef
-    A(t[1149], a[7328]); -- Ironpaw Chef
-    A(t[1149], a[1563]); -- Hail to the Chef
-    A(t[1149], a[153]); -- The Old Gnome and the Sea
-    A(t[1149], a[5478]); -- The Limnologist
-    A(t[1149], a[5479]); -- The Oceanographer
-    A(t[1149], a[1243]); -- Fish Don't Leave Footprints
-    A(t[1149], a[3218]); -- Turtles All the Way Down
-    A(t[1149], a[1556]); -- 25 Fish
-    A(t[1149], a[1557]); -- 50 Fish
-    A(t[1149], a[1558]); -- 100 Fish
-    A(t[1149], a[1559]); -- 250 Fish
-    A(t[1149], a[1560]); -- 500 Fish
-    A(t[1149], a[1561]); -- 1000 Fish
-    A(t[1149], a[1516]); -- Accomplished Angler
-    A(t[1149], a[5315]); -- Digger
-    A(t[1149], a[5469]); -- Diggerer
-    A(t[1149], a[5470]); -- Diggerest
-    A(t[1149], a[4854]); -- I Had It in My Hand
-    A(t[1149], a[4855]); -- What was Briefly Yours is Now Mine
-    A(t[1149], a[4856]); -- It Belongs in a Museum!
-    A(t[1149], a[9422]); -- "The Search For Fact, Not Truth"
-    A(t[1149], a[141]); -- Ultimate Triage
     A(t[1149], a[16799]); -- Personal Crafter
     A(t[1149], a[16791]); -- Merchant Artisan
     A(t[1149], a[17410]); -- Craftsman of the Zandalar Tribe
@@ -542,8 +509,6 @@ function exportedCategories.Load(a)
     A(t[922], a[388]); -- City Defender
     A(t[922], a[11065]); -- It All Makes Sense Now
     A(t[922], a[603]); -- Wrath of the Horde
-    A(t[922], a[5474]); -- Let's Do Lunch: Stormwind
-    A(t[922], a[5476]); -- Fish or Cut Bait: Stormwind
     t[1033] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[922], t[1033]);
     A(t[1033], a[9924]); -- Field Photographer
@@ -555,14 +520,10 @@ function exportedCategories.Load(a)
     A(t[970], a[616]); -- Overthrow the Council
     A(t[970], a[619]); -- For the Horde!
     A(t[970], a[603]); -- Wrath of the Horde
-    A(t[970], a[5841]); -- Let's Do Lunch: Ironforge
-    A(t[970], a[5847]); -- Fish or Cut Bait: Ironforge
     t[974] = c:New(k.GetMapName(90)); -- Undercity
     C(t[687], t[974]);
     A(t[974], a[612]); -- Downing the Dark Lady
     A(t[974], a[604]); -- Wrath of the Alliance
-    A(t[974], a[5844]); -- Let's Do Lunch: Undercity
-    A(t[974], a[5850]); -- Fish or Cut Bait: Undercity
     t[721] = c:New(k.GetMapName(27)); -- Dun Morogh
     C(t[687], t[721]);
     A(t[721], a[11200]); -- Stand Against the Legion
@@ -837,8 +798,6 @@ function exportedCategories.Load(a)
     C(t[688], t[975]);
     A(t[975], a[617]); -- Immortal No More
     A(t[975], a[603]); -- Wrath of the Horde
-    A(t[975], a[5842]); -- Let's Do Lunch: Darnassus
-    A(t[975], a[5848]); -- Fish or Cut Bait: Darnassus
     t[921] = c:New(k.GetMapName(85)); -- Orgrimmar
     C(t[688], t[921]);
     A(t[921], a[610]); -- Orgrimmar Offensive
@@ -847,8 +806,6 @@ function exportedCategories.Load(a)
     A(t[921], a[1006]); -- City Defender
     A(t[921], a[11065]); -- It All Makes Sense Now
     A(t[921], a[604]); -- Wrath of the Alliance
-    A(t[921], a[5475]); -- Let's Do Lunch: Orgrimmar
-    A(t[921], a[5477]); -- Fish or Cut Bait: Orgrimmar
     t[1018] = c:New(k.GetCategoryInfoTitle(201), true); -- Reputation
     C(t[921], t[1018]);
     A(t[1018], a[762]); -- Ambassador of the Horde
@@ -856,8 +813,6 @@ function exportedCategories.Load(a)
     C(t[688], t[923]);
     A(t[923], a[611]); -- Bleeding Bloodhoof
     A(t[923], a[604]); -- Wrath of the Alliance
-    A(t[923], a[5843]); -- Let's Do Lunch: Thunder Bluff
-    A(t[923], a[5849]); -- Fish or Cut Bait: Thunder Bluff
     t[756] = c:New(k.GetMapName(57)); -- Teldrassil
     C(t[688], t[756]);
     t[757] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
@@ -1217,28 +1172,64 @@ function exportedCategories.Load(a)
     A(t[1150], a[116]); -- Professional Journeyman
     A(t[1150], a[731]); -- Professional Expert
     A(t[1150], a[732]); -- Professional Classic Master
-    A(t[1150], a[121]); -- Journeyman Cook
-    A(t[1150], a[122]); -- Expert Cook
-    A(t[1150], a[123]); -- Classic Cook
-    A(t[1150], a[5845]); -- A Bunch of Lunch
-    A(t[1150], a[5779]); -- You'll Feel Right as Rain
-    A(t[1150], a[126]); -- Journeyman Fisherman
-    A(t[1150], a[127]); -- Expert Fisherman
-    A(t[1150], a[128]); -- Artisan Fisherman
-    A(t[1150], a[1257]); -- The Scavenger
-    A(t[1150], a[150]); -- The Fishing Diplomat
-    A(t[1150], a[306]); -- Master Angler of Azeroth
-    A(t[1150], a[878]); -- One That Didn't Get Away
-    A(t[1150], a[1836]); -- Old Crafty
-    A(t[1150], a[1837]); -- Old Ironjaw
-    A(t[1150], a[5851]); -- Gone Fishin'
-    A(t[1150], a[4857]); -- Journeyman Archaeologist
-    A(t[1150], a[4919]); -- Expert Archaeologist
-    A(t[1150], a[4920]); -- Artisan Archaeologist
+    A(t[1150], a[18728]); -- Working from the Start
+    A(t[1150], a[18720]); -- Classic Master of All
     A(t[1150], a[131]); -- Journeyman Medic
     A(t[1150], a[132]); -- Expert Medic
     A(t[1150], a[133]); -- Artisan Medic
-    A(t[1150], a[17367]); -- Deadliest Cache
+    t[1468] = c:New(k.GetCategoryInfoTitle(15071), true); -- Archaeology
+    C(t[1150], t[1468]);
+    A(t[1468], a[4857]); -- Journeyman Archaeologist
+    A(t[1468], a[4919]); -- Expert Archaeologist
+    A(t[1468], a[4920]); -- Artisan Archaeologist
+    A(t[1468], a[4858]); -- Seven Scepters
+    A(t[1468], a[5191]); -- Tragedy in Three Acts
+    A(t[1468], a[5193]); -- Blue Streak
+    A(t[1468], a[4859]); -- Kings Under the Mountain
+    t[1476] = c:New(k.GetCategoryInfoTitle(15490), true); -- Blacksmithing
+    C(t[1150], t[1476]);
+    A(t[1476], a[18765]); -- Destined to be Legendary
+    A(t[1476], a[18853]); -- Seething Flames of Hatred
+    t[1477] = c:New(k.GetCategoryInfoTitle(170), true); -- Cooking
+    C(t[1150], t[1477]);
+    A(t[1477], a[121]); -- Journeyman Cook
+    A(t[1477], a[122]); -- Expert Cook
+    A(t[1477], a[123]); -- Classic Cook
+    A(t[1477], a[5842]); -- Let's Do Lunch: Darnassus
+    A(t[1477], a[5841]); -- Let's Do Lunch: Ironforge
+    A(t[1477], a[5474]); -- Let's Do Lunch: Stormwind
+    A(t[1477], a[5475]); -- Let's Do Lunch: Orgrimmar
+    A(t[1477], a[5843]); -- Let's Do Lunch: Thunder Bluff
+    A(t[1477], a[5844]); -- Let's Do Lunch: Undercity
+    A(t[1477], a[5845]); -- A Bunch of Lunch
+    A(t[1477], a[5779]); -- You'll Feel Right as Rain
+    t[1500] = c:New(k.GetCategoryInfoTitle(171), true); -- Fishing
+    C(t[1150], t[1500]);
+    A(t[1500], a[126]); -- Journeyman Fisherman
+    A(t[1500], a[127]); -- Expert Fisherman
+    A(t[1500], a[128]); -- Artisan Fisherman
+    A(t[1500], a[150]); -- The Fishing Diplomat
+    A(t[1500], a[306]); -- Master Angler of Azeroth
+    A(t[1500], a[878]); -- One That Didn't Get Away
+    A(t[1500], a[1836]); -- Old Crafty
+    A(t[1500], a[1837]); -- Old Ironjaw
+    A(t[1500], a[5848]); -- Fish or Cut Bait: Darnassus
+    A(t[1500], a[5847]); -- Fish or Cut Bait: Ironforge
+    A(t[1500], a[5476]); -- Fish or Cut Bait: Stormwind
+    A(t[1500], a[5477]); -- Fish or Cut Bait: Orgrimmar
+    A(t[1500], a[5849]); -- Fish or Cut Bait: Thunder Bluff
+    A(t[1500], a[5850]); -- Fish or Cut Bait: Undercity
+    A(t[1500], a[5851]); -- Gone Fishin'
+    A(t[1500], a[17367]); -- Deadliest Cache
+    t[1513] = c:New(k.GetCategoryInfoTitle(15495), true); -- Leatherworking
+    C(t[1150], t[1513]);
+    A(t[1513], a[18899]); -- You Saw Nothing
+    t[1516] = c:New(k.GetCategoryInfoTitle(15497), true); -- Mining
+    C(t[1150], t[1516]);
+    A(t[1516], a[18841]); -- Doing Your Share
+    t[1529] = c:New(k.GetCategoryInfoTitle(15496), true); -- Tailoring
+    C(t[1150], t[1529]);
+    A(t[1529], a[18903]); -- Ton of Tops
     t[785] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[1], t[785]);
     A(t[785], a[6586]); -- Eastern Kingdoms Safari
@@ -1261,8 +1252,10 @@ function exportedCategories.Load(a)
     A(t[785], a[6611]); -- Continental Tamer
     A(t[785], a[6590]); -- World Safari
     A(t[785], a[8348]); -- The Longest Day
-    t[1449] = c:New(k.L["Dragon Racing"]); -- Dragon Racing
-    C(t[1], t[1449]);
+    t[1530] = c:New(k.L["Dragon Racing"]); -- Dragon Racing
+    C(t[1], t[1530]);
+    t[1449] = c:New(k.L["Kalimdor Cup"]); -- Kalimdor Cup
+    C(t[1530], t[1449]);
     A(t[1449], a[17712]); -- Kalimdor: Bronze
     A(t[1449], a[17713]); -- Kalimdor: Silver
     A(t[1449], a[17714]); -- Kalimdor: Gold
@@ -1275,6 +1268,20 @@ function exportedCategories.Load(a)
     A(t[1449], a[17721]); -- Kalimdor Racing Completionist
     A(t[1449], a[17722]); -- Kalimdor Racing Completionist: Silver
     A(t[1449], a[17723]); -- Kalimdor Racing Completionist: Gold
+    t[1533] = c:New(k.L["Eastern Kingdoms Cup"]); -- Eastern Kingdoms Cup
+    C(t[1530], t[1533]);
+    A(t[1533], a[18566]); -- Eastern Kingdoms: Bronze
+    A(t[1533], a[18567]); -- Eastern Kingdoms: Silver
+    A(t[1533], a[18568]); -- Eastern Kingdoms: Gold
+    A(t[1533], a[18569]); -- Eastern Kingdoms Advanced: Bronze
+    A(t[1533], a[18570]); -- Eastern Kingdoms Advanced: Silver
+    A(t[1533], a[18571]); -- Eastern Kingdoms Advanced: Gold
+    A(t[1533], a[18572]); -- Eastern Kingdoms Reverse: Bronze
+    A(t[1533], a[18573]); -- Eastern Kingdoms Reverse: Silver
+    A(t[1533], a[18574]); -- Eastern Kingdoms Reverse: Gold
+    A(t[1533], a[18939]); -- Eastern Kingdoms Racing Completionist
+    A(t[1533], a[18940]); -- Eastern Kingdoms Racing Completionist: Silver
+    A(t[1533], a[18942]); -- Eastern Kingdoms Racing Completionist: Gold
     t[55] = c:New(k.GetCategoryInfoTitle(14865)); -- The Burning Crusade
     C(t[883], t[55]);
     t[616] = c:New(k.L["Zones"]); -- Zones
@@ -1578,19 +1585,31 @@ function exportedCategories.Load(a)
     t[1151] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
     C(t[55], t[1151]);
     A(t[1151], a[733]); -- Professional Outland Master
-    A(t[1151], a[124]); -- Outland Cook
-    A(t[1151], a[877]); -- The Cake Is Not A Lie
-    A(t[1151], a[906]); -- Kickin' It Up a Notch
-    A(t[1151], a[1800]); -- The Outland Gourmet
-    A(t[1151], a[1801]); -- Captain Rumsey's Lager
-    A(t[1151], a[129]); -- Outland Fisherman
+    A(t[1151], a[18729]); -- Working in Hellfire
+    A(t[1151], a[18721]); -- Outland Master of All
     A(t[1151], a[1257]); -- The Scavenger
-    A(t[1151], a[726]); -- Mr. Pinchy's Magical Crawdad Box
-    A(t[1151], a[144]); -- The Lurker Above
-    A(t[1151], a[905]); -- Old Man Barlowned
-    A(t[1151], a[1225]); -- Outland Angler
-    A(t[1151], a[4921]); -- Master Archaeologist
     A(t[1151], a[134]); -- Master Medic
+    t[1469] = c:New(k.GetCategoryInfoTitle(15071), true); -- Archaeology
+    C(t[1151], t[1469]);
+    A(t[1469], a[4921]); -- Master Archaeologist
+    A(t[1469], a[5192]); -- The Harder they Fall
+    t[1478] = c:New(k.GetCategoryInfoTitle(170), true); -- Cooking
+    C(t[1151], t[1478]);
+    A(t[1478], a[124]); -- Outland Cook
+    A(t[1478], a[877]); -- The Cake Is Not A Lie
+    A(t[1478], a[906]); -- Kickin' It Up a Notch
+    A(t[1478], a[1800]); -- The Outland Gourmet
+    A(t[1478], a[1801]); -- Captain Rumsey's Lager
+    t[1499] = c:New(k.GetCategoryInfoTitle(171), true); -- Fishing
+    C(t[1151], t[1499]);
+    A(t[1499], a[129]); -- Outland Fisherman
+    A(t[1499], a[726]); -- Mr. Pinchy's Magical Crawdad Box
+    A(t[1499], a[144]); -- The Lurker Above
+    A(t[1499], a[905]); -- Old Man Barlowned
+    A(t[1499], a[1225]); -- Outland Angler
+    t[1512] = c:New(k.GetCategoryInfoTitle(15495), true); -- Leatherworking
+    C(t[1151], t[1512]);
+    A(t[1512], a[18894]); -- Free Stylin'
     t[786] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[55], t[786]);
     A(t[786], a[6587]); -- Outland Safari
@@ -1609,6 +1628,20 @@ function exportedCategories.Load(a)
     A(t[786], a[6611]); -- Continental Tamer
     A(t[786], a[6590]); -- World Safari
     A(t[786], a[8348]); -- The Longest Day
+    t[1536] = c:New(k.L["Dragon Racing"]); -- Dragon Racing
+    C(t[55], t[1536]);
+    A(t[1536], a[19092]); -- Outland: Bronze
+    A(t[1536], a[19097]); -- Outland: Silver
+    A(t[1536], a[19098]); -- Outland: Gold
+    A(t[1536], a[19099]); -- Outland Advanced: Bronze
+    A(t[1536], a[19100]); -- Outland Advanced: Silver
+    A(t[1536], a[19101]); -- Outland Advanced: Gold
+    A(t[1536], a[19102]); -- Outland Reverse: Bronze
+    A(t[1536], a[19103]); -- Outland Reverse: Silver
+    A(t[1536], a[19104]); -- Outland Reverse: Gold
+    A(t[1536], a[19105]); -- Outland Racing Completionist
+    A(t[1536], a[19106]); -- Outland Racing Completionist: Silver
+    A(t[1536], a[19107]); -- Outland Racing Completionist: Gold
     t[83] = c:New(k.GetCategoryInfoTitle(14866)); -- Wrath of the Lich King
     C(t[883], t[83]);
     t[577] = c:New(k.L["Zones"]); -- Zones
@@ -2324,28 +2357,38 @@ function exportedCategories.Load(a)
     C(t[83], t[1152]);
     A(t[1152], a[734]); -- Professional Northrend Master
     A(t[1152], a[735]); -- Working In the Cold
-    A(t[1152], a[125]); -- Northrend Cook
-    A(t[1152], a[1777]); -- The Northrend Gourmet
-    A(t[1152], a[1778]); -- The Northrend Gourmet
-    A(t[1152], a[1779]); -- The Northrend Gourmet
-    A(t[1152], a[1780]); -- Second That Emotion
-    A(t[1152], a[1781]); -- Critter Gitter
-    A(t[1152], a[1785]); -- Dinner Impossible
-    A(t[1152], a[3296]); -- Cooking with Style
-    A(t[1152], a[1782]); -- Our Daily Bread
-    A(t[1152], a[1783]); -- Our Daily Bread
-    A(t[1152], a[130]); -- Northrend Fisherman
-    A(t[1152], a[1517]); -- Northrend Angler
-    A(t[1152], a[3217]); -- Chasing Marcia
-    A(t[1152], a[2094]); -- A Penny For Your Thoughts
-    A(t[1152], a[2095]); -- Silver in the City
-    A(t[1152], a[1957]); -- There's Gold In That There Fountain
-    A(t[1152], a[2096]); -- The Coin Master
-    A(t[1152], a[1958]); -- I Smell A Giant Rat
-    A(t[1152], a[4922]); -- Grand Master Archaeologist
+    A(t[1152], a[18722]); -- Northrend Master of All
     A(t[1152], a[135]); -- Grand Master Medic
-    A(t[1152], a[137]); -- Stocking Up
     A(t[1152], a[730]); -- Skills to Pay the Bills
+    t[1470] = c:New(k.GetCategoryInfoTitle(15071), true); -- Archaeology
+    C(t[1152], t[1470]);
+    A(t[1470], a[4922]); -- Grand Master Archaeologist
+    t[1479] = c:New(k.GetCategoryInfoTitle(170), true); -- Cooking
+    C(t[1152], t[1479]);
+    A(t[1479], a[125]); -- Northrend Cook
+    A(t[1479], a[1777]); -- The Northrend Gourmet
+    A(t[1479], a[1778]); -- The Northrend Gourmet
+    A(t[1479], a[1779]); -- The Northrend Gourmet
+    A(t[1479], a[1780]); -- Second That Emotion
+    A(t[1479], a[1781]); -- Critter Gitter
+    A(t[1479], a[1782]); -- Our Daily Bread
+    A(t[1479], a[1783]); -- Our Daily Bread
+    t[1498] = c:New(k.GetCategoryInfoTitle(171), true); -- Fishing
+    C(t[1152], t[1498]);
+    A(t[1498], a[130]); -- Northrend Fisherman
+    A(t[1498], a[1517]); -- Northrend Angler
+    A(t[1498], a[3217]); -- Chasing Marcia
+    A(t[1498], a[2094]); -- A Penny For Your Thoughts
+    A(t[1498], a[2095]); -- Silver in the City
+    A(t[1498], a[1957]); -- There's Gold In That There Fountain
+    A(t[1498], a[1958]); -- I Smell A Giant Rat
+    A(t[1498], a[2096]); -- The Coin Master
+    t[1506] = c:New(k.GetCategoryInfoTitle(15493), true); -- Inscription
+    C(t[1152], t[1506]);
+    A(t[1506], a[18725]); -- Best Stellar
+    t[1526] = c:New(k.GetCategoryInfoTitle(15496), true); -- Tailoring
+    C(t[1152], t[1526]);
+    A(t[1526], a[137]); -- Stocking Up
     t[787] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[83], t[787]);
     A(t[787], a[6588]); -- Northrend Safari
@@ -2748,21 +2791,25 @@ function exportedCategories.Load(a)
     C(t[129], t[1153]);
     A(t[1153], a[4924]); -- Professional Cataclysmic Master
     A(t[1153], a[4914]); -- Working In the Heat
-    A(t[1153], a[4916]); -- Cataclysmic Cook
-    A(t[1153], a[5472]); -- The Cataclysmic Gourmet
-    A(t[1153], a[5473]); -- The Cataclysmic Gourmet
-    A(t[1153], a[4917]); -- Cataclysmic Fisherman
-    A(t[1153], a[4923]); -- Illustrious Grand Master Archaeologist
-    A(t[1153], a[5511]); -- It's Always in the Last Place You Look
-    A(t[1153], a[4858]); -- Seven Scepters
-    A(t[1153], a[5191]); -- Tragedy in Three Acts
-    A(t[1153], a[5193]); -- Blue Streak
-    A(t[1153], a[5192]); -- The Harder they Fall
-    A(t[1153], a[4859]); -- Kings Under the Mountain
-    A(t[1153], a[5301]); -- The Boy Who Would be King
+    A(t[1153], a[18719]); -- Cataclysmic Master of All
     A(t[1153], a[4918]); -- Illustrious Grand Master Medic
-    A(t[1153], a[5480]); -- Preparing for Disaster
     A(t[1153], a[4915]); -- More Skills to Pay the Bills
+    t[1471] = c:New(k.GetCategoryInfoTitle(15071), true); -- Archaeology
+    C(t[1153], t[1471]);
+    A(t[1471], a[4923]); -- Illustrious Grand Master Archaeologist
+    A(t[1471], a[5301]); -- The Boy Who Would be King
+    t[1480] = c:New(k.GetCategoryInfoTitle(170), true); -- Cooking
+    C(t[1153], t[1480]);
+    A(t[1480], a[4916]); -- Cataclysmic Cook
+    A(t[1480], a[5472]); -- The Cataclysmic Gourmet
+    A(t[1480], a[5473]); -- The Cataclysmic Gourmet
+    t[1497] = c:New(k.GetCategoryInfoTitle(171), true); -- Fishing
+    C(t[1153], t[1497]);
+    A(t[1497], a[4917]); -- Cataclysmic Fisherman
+    t[1527] = c:New(k.GetCategoryInfoTitle(15496), true); -- Tailoring
+    C(t[1153], t[1527]);
+    A(t[1527], a[5480]); -- Preparing for Disaster
+    A(t[1527], a[18815]); -- Speed Dreamin'
     t[788] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[129], t[788]);
     A(t[788], a[7525]); -- Taming Cataclysm
@@ -2896,16 +2943,6 @@ function exportedCategories.Load(a)
     A(t[518], a[6544]); -- The Tillers
     A(t[518], a[6551]); -- Friend on the Farm
     A(t[518], a[6552]); -- Friends on the Farm
-    t[1436] = c:New(k.GetCategoryInfoTitle(169), true); -- Professions
-    C(t[493], t[1436]);
-    A(t[1436], a[7300]); -- Master of the Grill
-    A(t[1436], a[7301]); -- Master of the Wok
-    A(t[1436], a[7302]); -- Master of the Pot
-    A(t[1436], a[7303]); -- Master of the Steamer
-    A(t[1436], a[7304]); -- Master of the Oven
-    A(t[1436], a[7305]); -- Master of the Brew
-    A(t[1436], a[7306]); -- Master of Pandaren Cooking
-    A(t[1436], a[7325]); -- Now I Am the Master
     t[494] = c:New(k.GetMapName(418)); -- Krasarang Wilds
     C(t[491], t[494]);
     t[513] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
@@ -2915,7 +2952,6 @@ function exportedCategories.Load(a)
     A(t[513], a[7287]); -- Champion of Chi-Ji
     A(t[513], a[7928]); -- Operation: Shieldwall Campaign
     A(t[513], a[7929]); -- Dominance Offensive Campaign
-    A(t[513], a[7614]); -- Locking Down the Docks
     t[514] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[494], t[514]);
     A(t[514], a[6975]); -- Explore Krasarang Wilds
@@ -2926,7 +2962,6 @@ function exportedCategories.Load(a)
     C(t[494], t[543]);
     A(t[543], a[8205]); -- Operation: Shieldwall
     A(t[543], a[8206]); -- Dominance Offensive
-    A(t[543], a[7274]); -- Learning from the Best
     t[495] = c:New(k.GetMapName(379)); -- Kun-Lai Summit
     C(t[491], t[495]);
     A(t[495], a[6480]); -- "Settle Down, Bro"
@@ -3348,15 +3383,6 @@ function exportedCategories.Load(a)
     A(t[1437], a[7379]); -- Pandaren Master of All
     A(t[1437], a[6838]); -- Zen Master Medic
     A(t[1437], a[6836]); -- Serious Skills to Pay the Bills
-    t[1143] = c:New(k.GetCategoryInfoTitle(170), true); -- Cooking
-    C(t[1437], t[1143]);
-    A(t[1143], a[6365]); -- Zen Master Cook
-    A(t[1143], a[7326]); -- The Pandaren Gourmet
-    A(t[1143], a[7327]); -- The Pandaren Gourmet
-    t[1438] = c:New(k.GetCategoryInfoTitle(171), true); -- Fishing
-    C(t[1437], t[1438]);
-    A(t[1438], a[6839]); -- Zen Master Fisherman
-    A(t[1438], a[7611]); -- Pandarian Angler
     t[1440] = c:New(k.GetCategoryInfoTitle(15071)); -- Archaeology
     C(t[1437], t[1440]);
     A(t[1440], a[6837]); -- Zen Master Archaeologist
@@ -3431,6 +3457,25 @@ function exportedCategories.Load(a)
     A(t[1443], a[8233]); -- Collector: Pollen Collectors
     A(t[1443], a[8234]); -- Collector: Kypari Sap Containers
     A(t[1443], a[8235]); -- Collector: Kypari Sap Containers
+    t[1143] = c:New(k.GetCategoryInfoTitle(170), true); -- Cooking
+    C(t[1437], t[1143]);
+    A(t[1143], a[6365]); -- Zen Master Cook
+    A(t[1143], a[7300]); -- Master of the Grill
+    A(t[1143], a[7301]); -- Master of the Wok
+    A(t[1143], a[7302]); -- Master of the Pot
+    A(t[1143], a[7303]); -- Master of the Steamer
+    A(t[1143], a[7304]); -- Master of the Oven
+    A(t[1143], a[7305]); -- Master of the Brew
+    A(t[1143], a[7306]); -- Master of Pandaren Cooking
+    A(t[1143], a[7325]); -- Now I Am the Master
+    A(t[1143], a[7326]); -- The Pandaren Gourmet
+    A(t[1143], a[7327]); -- The Pandaren Gourmet
+    t[1438] = c:New(k.GetCategoryInfoTitle(171), true); -- Fishing
+    C(t[1437], t[1438]);
+    A(t[1438], a[6839]); -- Zen Master Fisherman
+    A(t[1438], a[7611]); -- Pandarian Angler
+    A(t[1438], a[7614]); -- Locking Down the Docks
+    A(t[1438], a[7274]); -- Learning from the Best
     t[549] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[189], t[549]);
     A(t[549], a[6616]); -- Pandaria Tamer
@@ -3661,9 +3706,6 @@ function exportedCategories.Load(a)
     A(t[489], a[9478]); -- Savage Friends
     t[450] = c:New(k.GetMapName(539)); -- Shadowmoon Valley
     C(t[449], t[450]);
-    A(t[450], a[9458]); -- Blind Lake Sturgeon Angler
-    A(t[450], a[9410]); -- Unite the Clans
-    A(t[450], a[9413]); -- Strength and Honor
     t[457] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
     C(t[450], t[457]);
     A(t[457], a[8845]); -- As I Walk Through the Valley of the Shadow of Moon
@@ -3687,9 +3729,6 @@ function exportedCategories.Load(a)
     A(t[460], a[9470]); -- Council of Exarchs
     t[451] = c:New(k.GetMapName(525)); -- Frostfire Ridge
     C(t[449], t[451]);
-    A(t[451], a[9455]); -- Fire Ammonite Angler
-    A(t[451], a[9410]); -- Unite the Clans
-    A(t[451], a[9413]); -- Strength and Honor
     t[461] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
     C(t[451], t[461]);
     A(t[461], a[8671]); -- You'll Get Caught Up In The... Frostfire!
@@ -3713,9 +3752,6 @@ function exportedCategories.Load(a)
     t[452] = c:New(k.GetMapName(543)); -- Gorgrond
     C(t[449], t[452]);
     A(t[452], a[9423]); -- Goliaths of Gorgrond
-    A(t[452], a[9460]); -- Jawless Skulker Angler
-    A(t[452], a[9411]); -- Highmaul Historian
-    A(t[452], a[9414]); -- Ogre Observer
     t[465] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
     C(t[452], t[465]);
     A(t[465], a[8923]); -- Putting the Gore in Gorgrond
@@ -3740,9 +3776,6 @@ function exportedCategories.Load(a)
     A(t[468], a[9475]); -- Laughing Skull Orcs
     t[453] = c:New(k.GetMapName(535)); -- Talador
     C(t[449], t[453]);
-    A(t[453], a[9457]); -- Blackwater Whiptail Angler
-    A(t[453], a[9411]); -- Highmaul Historian
-    A(t[453], a[9414]); -- Ogre Observer
     t[469] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
     C(t[453], t[469]);
     A(t[469], a[8920]); -- Don't Let the Tala-door Hit You on the Way Out
@@ -3765,9 +3798,6 @@ function exportedCategories.Load(a)
     t[454] = c:New(k.GetMapName(542)); -- Spires of Arak
     C(t[449], t[454]);
     A(t[454], a[9425]); -- So Grossly Incandescent
-    A(t[454], a[9456]); -- Abyssal Gulper Eel Angler
-    A(t[454], a[9415]); -- Secrets of Skettis
-    A(t[454], a[9412]); -- Arakkoa Archivist
     t[473] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
     C(t[454], t[473]);
     A(t[473], a[8925]); -- Between Arak and a Hard Place
@@ -3786,11 +3816,6 @@ function exportedCategories.Load(a)
     A(t[476], a[9072]); -- Mantle of the Talon King
     t[455] = c:New(k.GetMapName(550)); -- Nagrand
     C(t[449], t[455]);
-    A(t[455], a[9459]); -- Fat Sleeper Angler
-    A(t[455], a[9410]); -- Unite the Clans
-    A(t[455], a[9411]); -- Highmaul Historian
-    A(t[455], a[9413]); -- Strength and Honor
-    A(t[455], a[9414]); -- Ogre Observer
     t[477] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
     C(t[455], t[477]);
     A(t[477], a[8927]); -- Nagrandeur
@@ -4060,19 +4085,43 @@ function exportedCategories.Load(a)
     A(t[1155], a[9464]); -- Professional Draenor Master
     A(t[1155], a[9507]); -- Working in Draenor
     A(t[1155], a[9087]); -- Draenor Master of All
-    A(t[1155], a[9453]); -- Draenic Stone Collector
-    A(t[1155], a[9454]); -- Draenic Seed Collector
-    A(t[1155], a[9071]); -- Inspector Gadgetzan
-    A(t[1155], a[9500]); -- Draenor Cook
-    A(t[1155], a[9501]); -- The Draenor Gourmet
-    A(t[1155], a[9503]); -- Draenor Fisherman
-    A(t[1155], a[9461]); -- Sea Scorpion Angler
-    A(t[1155], a[9462]); -- Draenor Angler
-    A(t[1155], a[9547]); -- Everything Is Awesome!
-    A(t[1155], a[9409]); -- Draenor Archaeologist
-    A(t[1155], a[9419]); -- Draenor Curator
     A(t[1155], a[9505]); -- Draenor Medic
     A(t[1155], a[9506]); -- Savage Skills to Pay the Bills
+    t[1472] = c:New(k.GetCategoryInfoTitle(15071), true); -- Archaeology
+    C(t[1155], t[1472]);
+    A(t[1472], a[9409]); -- Draenor Archaeologist
+    A(t[1472], a[9413]); -- Strength and Honor
+    A(t[1472], a[9414]); -- Ogre Observer
+    A(t[1472], a[9415]); -- Secrets of Skettis
+    A(t[1472], a[9410]); -- Unite the Clans
+    A(t[1472], a[9411]); -- Highmaul Historian
+    A(t[1472], a[9412]); -- Arakkoa Archivist
+    A(t[1472], a[9419]); -- Draenor Curator
+    t[1481] = c:New(k.GetCategoryInfoTitle(170), true); -- Cooking
+    C(t[1155], t[1481]);
+    A(t[1481], a[9500]); -- Draenor Cook
+    A(t[1481], a[9501]); -- The Draenor Gourmet
+    t[1490] = c:New(k.GetCategoryInfoTitle(15492), true); -- Engineering
+    C(t[1155], t[1490]);
+    A(t[1490], a[9071]); -- Inspector Gadgetzan
+    t[1496] = c:New(k.GetCategoryInfoTitle(171), true); -- Fishing
+    C(t[1155], t[1496]);
+    A(t[1496], a[9503]); -- Draenor Fisherman
+    A(t[1496], a[9455]); -- Fire Ammonite Angler
+    A(t[1496], a[9456]); -- Abyssal Gulper Eel Angler
+    A(t[1496], a[9457]); -- Blackwater Whiptail Angler
+    A(t[1496], a[9458]); -- Blind Lake Sturgeon Angler
+    A(t[1496], a[9459]); -- Fat Sleeper Angler
+    A(t[1496], a[9460]); -- Jawless Skulker Angler
+    A(t[1496], a[9461]); -- Sea Scorpion Angler
+    A(t[1496], a[9462]); -- Draenor Angler
+    A(t[1496], a[9547]); -- Everything Is Awesome!
+    t[1501] = c:New(k.GetCategoryInfoTitle(15499), true); -- Herbalism
+    C(t[1155], t[1501]);
+    A(t[1501], a[9454]); -- Draenic Seed Collector
+    t[1515] = c:New(k.GetCategoryInfoTitle(15497), true); -- Mining
+    C(t[1155], t[1515]);
+    A(t[1515], a[9453]); -- Draenic Stone Collector
     t[548] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[223], t[548]);
     A(t[548], a[9685]); -- Draenor Safari
@@ -4312,10 +4361,6 @@ function exportedCategories.Load(a)
     A(t[405], a[11066]); -- Underbelly Tycoon
     t[1448] = c:New(k.GetCategoryInfoTitle(169), true); -- Professions
     C(t[382], t[1448]);
-    A(t[1448], a[10591]); -- All Grown Up
-    A(t[1448], a[10592]); -- Never A Day's Rest
-    A(t[1448], a[10593]); -- Everything Tastes Better
-    A(t[1448], a[10722]); -- The Wish Remover
     A(t[1448], a[10585]); -- Fel-Smelter
     A(t[1448], a[10586]); -- Mass Obliteration
     t[384] = c:New(k.GetMapName(630)); -- Azsuna
@@ -4704,30 +4749,53 @@ function exportedCategories.Load(a)
     A(t[1156], a[10581]); -- Working the Isles
     A(t[1156], a[10583]); -- Legion Master of All
     A(t[1156], a[10761]); -- Resourceful
-    A(t[1156], a[10587]); -- Hot Swapper
-    A(t[1156], a[10588]); -- The Shortest Distance
-    A(t[1156], a[10589]); -- Legion Cook
-    A(t[1156], a[10762]); -- The Legion Menu
-    A(t[1156], a[10594]); -- Legion Fisherman
-    A(t[1156], a[10597]); -- Legion Aquaculture
-    A(t[1156], a[10595]); -- A Cast Above the Rest
-    A(t[1156], a[10596]); -- Bigger Fish to Fry
-    A(t[1156], a[10598]); -- Fishing 'Round the Isles
-    A(t[1156], a[11725]); -- Fisherfriend of the Isles
-    A(t[1156], a[10600]); -- Legion Archaeologist
-    A(t[1156], a[10601]); -- Surveying the Land
-    A(t[1156], a[10602]); -- This Side Up
-    A(t[1156], a[10603]); -- A Keen Eye
-    A(t[1156], a[10604]); -- Legion Curator
-    A(t[1156], a[10605]); -- Handle With Care
-    A(t[1156], a[10606]); -- The Dwarven Dream
-    A(t[1156], a[10607]); -- Getting Your Hands Dirty
-    A(t[1156], a[10608]); -- Sifting Through the Sand
-    A(t[1156], a[10609]); -- No Stone Unturned
     A(t[1156], a[10599]); -- Legion Medic
     A(t[1156], a[10580]); -- Heroic Skills to Pay the Bills
     A(t[1156], a[11138]); -- Is There a Medic in the Zone?
     A(t[1156], a[11139]); -- Field Medic
+    t[1473] = c:New(k.GetCategoryInfoTitle(15071), true); -- Archaeology
+    C(t[1156], t[1473]);
+    A(t[1473], a[10600]); -- Legion Archaeologist
+    A(t[1473], a[10601]); -- Surveying the Land
+    A(t[1473], a[10602]); -- This Side Up
+    A(t[1473], a[10603]); -- A Keen Eye
+    A(t[1473], a[10604]); -- Legion Curator
+    A(t[1473], a[10605]); -- Handle With Care
+    A(t[1473], a[10606]); -- The Dwarven Dream
+    A(t[1473], a[10607]); -- Getting Your Hands Dirty
+    A(t[1473], a[10608]); -- Sifting Through the Sand
+    A(t[1473], a[10609]); -- No Stone Unturned
+    t[1482] = c:New(k.GetCategoryInfoTitle(170), true); -- Cooking
+    C(t[1156], t[1482]);
+    A(t[1482], a[10589]); -- Legion Cook
+    A(t[1482], a[10591]); -- All Grown Up
+    A(t[1482], a[10592]); -- Never A Day's Rest
+    A(t[1482], a[10762]); -- The Legion Menu
+    A(t[1482], a[10593]); -- Everything Tastes Better
+    t[1489] = c:New(k.GetCategoryInfoTitle(15492), true); -- Engineering
+    C(t[1156], t[1489]);
+    A(t[1489], a[10588]); -- The Shortest Distance
+    t[1495] = c:New(k.GetCategoryInfoTitle(171), true); -- Fishing
+    C(t[1156], t[1495]);
+    A(t[1495], a[10594]); -- Legion Fisherman
+    A(t[1495], a[10597]); -- Legion Aquaculture
+    A(t[1495], a[10595]); -- A Cast Above the Rest
+    A(t[1495], a[10596]); -- Bigger Fish to Fry
+    A(t[1495], a[10598]); -- Fishing 'Round the Isles
+    A(t[1495], a[10722]); -- The Wish Remover
+    A(t[1495], a[11725]); -- Fisherfriend of the Isles
+    t[1502] = c:New(k.GetCategoryInfoTitle(15499), true); -- Herbalism
+    C(t[1156], t[1502]);
+    A(t[1502], a[18837]); -- Broken Isles Herbalism Techniques
+    t[1508] = c:New(k.GetCategoryInfoTitle(15494), true); -- Jewelcrafting
+    C(t[1156], t[1508]);
+    A(t[1508], a[10587]); -- Hot Swapper
+    t[1517] = c:New(k.GetCategoryInfoTitle(15497), true); -- Mining
+    C(t[1156], t[1517]);
+    A(t[1517], a[18839]); -- Broken Isles Mining Techniques
+    t[1521] = c:New(k.GetCategoryInfoTitle(15498), true); -- Skinning
+    C(t[1156], t[1521]);
+    A(t[1521], a[18834]); -- Broken Isles Skinning Techniques
     t[430] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[237], t[430]);
     A(t[430], a[11233]); -- Broken Isles Safari
@@ -4869,8 +4937,6 @@ function exportedCategories.Load(a)
     A(t[1447], a[12738]); -- Holy Scrap!
     A(t[1447], a[12739]); -- Scraptastic!
     A(t[1447], a[12740]); -- Full of Scrap!
-    A(t[1447], a[12758]); -- Baiting the Enemy
-    A(t[1447], a[12759]); -- Baiting the Enemy
     t[276] = c:New(k.GetMapName(895)); -- Tiragarde Sound
     C(t[259], t[276]);
     t[281] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
@@ -5027,7 +5093,6 @@ function exportedCategories.Load(a)
     t[307] = c:New(k.GetMapName(1462)); -- Mechagon Island
     C(t[259], t[307]);
     A(t[307], a[13708]); -- Most Minis Wins
-    A(t[307], a[13489]); -- Secret Fish of Mechagon
     t[308] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
     C(t[307], t[308]);
     A(t[308], a[13553]); -- The Mechagonian Threat
@@ -5391,25 +5456,68 @@ function exportedCategories.Load(a)
     A(t[1157], a[12736]); -- Kul Tiran Master of All
     A(t[1157], a[12737]); -- Zandalari Master of All
     A(t[1157], a[13516]); -- Massive Tool
-    A(t[1157], a[12742]); -- Kul Tiran Cook
-    A(t[1157], a[12743]); -- Zandalari Cook
-    A(t[1157], a[12744]); -- The Kul Tiran Menu
-    A(t[1157], a[12746]); -- The Zandalari Menu
-    A(t[1157], a[12747]); -- Catering for Combat
-    A(t[1157], a[12753]); -- Kul Tiran Fisherman
-    A(t[1157], a[12754]); -- Zandalari Fisherman
-    A(t[1157], a[13502]); -- Secret Fish and Where to Find Them
-    A(t[1157], a[12757]); -- Angling for Battle
-    A(t[1157], a[12755]); -- Scent of the Sea
-    A(t[1157], a[12756]); -- Fish Me In the Moonlight
-    A(t[1157], a[12990]); -- Catchin' Some Rays
-    A(t[1157], a[12760]); -- Kul Tiran Archaeologist
-    A(t[1157], a[12761]); -- Zandalari Archaeologist
-    A(t[1157], a[12762]); -- Kul Tiran Curator
-    A(t[1157], a[12764]); -- Zandalari Curator
-    A(t[1157], a[12765]); -- Exotic Discoveries
-    A(t[1157], a[12769]); -- Light Travel
-    A(t[1157], a[12770]); -- Lengthy Legwork
+    A(t[1157], a[18778]); -- Massive Toolshed
+    t[1467] = c:New(k.GetCategoryInfoTitle(15489), true); -- Alchemy
+    C(t[1157], t[1467]);
+    A(t[1467], a[18770]); -- Silas' Sphere of Transmutation
+    t[1474] = c:New(k.GetCategoryInfoTitle(15071), true); -- Archaeology
+    C(t[1157], t[1474]);
+    A(t[1474], a[12760]); -- Kul Tiran Archaeologist
+    A(t[1474], a[12761]); -- Zandalari Archaeologist
+    A(t[1474], a[12762]); -- Kul Tiran Curator
+    A(t[1474], a[12764]); -- Zandalari Curator
+    A(t[1474], a[12765]); -- Exotic Discoveries
+    A(t[1474], a[12769]); -- Light Travel
+    A(t[1474], a[12770]); -- Lengthy Legwork
+    t[1475] = c:New(k.GetCategoryInfoTitle(15490), true); -- Blacksmithing
+    C(t[1157], t[1475]);
+    A(t[1475], a[18771]); -- Khaz'gorian Smithing Hammer
+    t[1483] = c:New(k.GetCategoryInfoTitle(170), true); -- Cooking
+    C(t[1157], t[1483]);
+    A(t[1483], a[12742]); -- Kul Tiran Cook
+    A(t[1483], a[12743]); -- Zandalari Cook
+    A(t[1483], a[12744]); -- The Kul Tiran Menu
+    A(t[1483], a[12746]); -- The Zandalari Menu
+    A(t[1483], a[12747]); -- Catering for Combat
+    t[1486] = c:New(k.GetCategoryInfoTitle(15491), true); -- Enchanting
+    C(t[1157], t[1486]);
+    A(t[1486], a[18775]); -- Iwen's Enchanting Rod
+    t[1488] = c:New(k.GetCategoryInfoTitle(15492), true); -- Engineering
+    C(t[1157], t[1488]);
+    A(t[1488], a[18776]); -- The Ub3r-Spanner
+    t[1494] = c:New(k.GetCategoryInfoTitle(171), true); -- Fishing
+    C(t[1157], t[1494]);
+    A(t[1494], a[12753]); -- Kul Tiran Fisherman
+    A(t[1494], a[12754]); -- Zandalari Fisherman
+    A(t[1494], a[12757]); -- Angling for Battle
+    A(t[1494], a[12755]); -- Scent of the Sea
+    A(t[1494], a[12756]); -- Fish Me In the Moonlight
+    A(t[1494], a[12758]); -- Baiting the Enemy
+    A(t[1494], a[12759]); -- Baiting the Enemy
+    A(t[1494], a[12990]); -- Catchin' Some Rays
+    A(t[1494], a[13489]); -- Secret Fish of Mechagon
+    t[1503] = c:New(k.GetCategoryInfoTitle(15499), true); -- Herbalism
+    C(t[1157], t[1503]);
+    A(t[1503], a[18838]); -- Fourth War Herbalism Techniques
+    t[1505] = c:New(k.GetCategoryInfoTitle(15493), true); -- Inscription
+    C(t[1157], t[1505]);
+    A(t[1505], a[18772]); -- Sanguine Feather Quill of Lana'thel
+    t[1507] = c:New(k.GetCategoryInfoTitle(15494), true); -- Jewelcrafting
+    C(t[1157], t[1507]);
+    A(t[1507], a[18773]); -- Jewelhammer's Focus
+    t[1511] = c:New(k.GetCategoryInfoTitle(15495), true); -- Leatherworking
+    C(t[1157], t[1511]);
+    A(t[1511], a[18777]); -- Mallet of Thunderous Skins
+    t[1518] = c:New(k.GetCategoryInfoTitle(15497), true); -- Mining
+    C(t[1157], t[1518]);
+    A(t[1518], a[18840]); -- Fourth War Mining Techniques
+    t[1522] = c:New(k.GetCategoryInfoTitle(15498), true); -- Skinning
+    C(t[1157], t[1522]);
+    A(t[1522], a[18835]); -- Fourth War Skinning Techniques
+    t[1525] = c:New(k.GetCategoryInfoTitle(15496), true); -- Tailoring
+    C(t[1157], t[1525]);
+    A(t[1525], a[18774]); -- Synchronous Thread
+    A(t[1525], a[18896]); -- United as Three
     t[343] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[258], t[343]);
     A(t[343], a[12930]); -- Battle Safari
@@ -6077,8 +6185,12 @@ function exportedCategories.Load(a)
     A(t[1158], a[14328]); -- Professional Shadowlands Master
     A(t[1158], a[14329]); -- Working the Afterlife
     A(t[1158], a[14330]); -- Shadowlands Master of All
-    A(t[1158], a[14332]); -- Shadowlands Cook
-    A(t[1158], a[14333]); -- Shadowlands Fisherman
+    t[1484] = c:New(k.GetCategoryInfoTitle(170), true); -- Cooking
+    C(t[1158], t[1484]);
+    A(t[1484], a[14332]); -- Shadowlands Cook
+    t[1493] = c:New(k.GetCategoryInfoTitle(171), true); -- Fishing
+    C(t[1158], t[1493]);
+    A(t[1493], a[14333]); -- Shadowlands Fisherman
     t[380] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[6], t[380]);
     A(t[380], a[14867]); -- Shadowlands Safari
@@ -6264,6 +6376,7 @@ function exportedCategories.Load(a)
     A(t[420], a[14763]); -- Crypt Couture
     t[1207] = c:New(k.GetCategoryInfoTitle(15466)); -- Dragonflight
     C(t[883], t[1207]);
+    A(t[1207], a[18804]); -- Neltharion's Legacy
     t[1228] = c:New(k.L["Zones"]); -- Zones
     C(t[1207], t[1228]);
     t[1341] = c:New(k.GetCategoryInfoTitle(15465)); -- Dragon Isles
@@ -6391,6 +6504,9 @@ function exportedCategories.Load(a)
     A(t[1310], a[17195]); -- Waking Shores Reverse: Bronze
     A(t[1310], a[17196]); -- Waking Shores Reverse: Silver
     A(t[1310], a[17197]); -- Waking Shores Reverse: Gold
+    A(t[1310], a[18748]); -- Waking Shores Challenge: Bronze
+    A(t[1310], a[18749]); -- Waking Shores Challenge: Silver
+    A(t[1310], a[18750]); -- Waking Shores Challenge: Gold
     t[1363] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1232], t[1363]);
     A(t[1363], a[16463]); -- Thunderstorms in The Waking Shores
@@ -6407,6 +6523,7 @@ function exportedCategories.Load(a)
     A(t[1238], a[16574]); -- Sleeping on the Job
     A(t[1238], a[17546]); -- A New Beginning
     A(t[1238], a[17735]); -- We Didn't Start the Fire
+    A(t[1238], a[18867]); -- Through the Ashes and Flames
     t[1243] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[1233], t[1243]);
     A(t[1243], a[16457]); -- Explore the Ohn'ahran Plains
@@ -6458,6 +6575,9 @@ function exportedCategories.Load(a)
     A(t[1311], a[17198]); -- Ohn'ahran Plains Reverse: Bronze
     A(t[1311], a[17199]); -- Ohn'ahran Plains Reverse: Silver
     A(t[1311], a[17200]); -- Ohn'ahran Plains Reverse: Gold
+    A(t[1311], a[18754]); -- Ohn'ahran Plains Challenge: Bronze
+    A(t[1311], a[18755]); -- Ohn'ahran Plains Challenge: Silver
+    A(t[1311], a[18756]); -- Ohn'ahran Plains Challenge: Gold
     t[1364] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1233], t[1364]);
     A(t[1364], a[16475]); -- Thunderstorms in the Ohn'ahran Plains
@@ -6473,6 +6593,8 @@ function exportedCategories.Load(a)
     A(t[1239], a[16428]); -- Sojourner of Azure Span
     A(t[1239], a[15889]); -- River Rapids Wrangler
     A(t[1239], a[16580]); -- Lend a Helping Span
+    A(t[1239], a[17735]); -- We Didn't Start the Fire
+    A(t[1239], a[18867]); -- Through the Ashes and Flames
     t[1245] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[1234], t[1245]);
     A(t[1245], a[16460]); -- Explore the Azure Span
@@ -6538,6 +6660,9 @@ function exportedCategories.Load(a)
     A(t[1312], a[17201]); -- Azure Span Reverse: Bronze
     A(t[1312], a[17202]); -- Azure Span Reverse: Silver
     A(t[1312], a[17203]); -- Azure Span Reverse: Gold
+    A(t[1312], a[18757]); -- Azure Span Challenge: Bronze
+    A(t[1312], a[18758]); -- Azure Span Challenge: Silver
+    A(t[1312], a[18759]); -- Azure Span Challenge: Gold
     t[1365] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1234], t[1365]);
     A(t[1365], a[16480]); -- Thunderstorms in The Azure Span
@@ -6590,6 +6715,9 @@ function exportedCategories.Load(a)
     A(t[1313], a[17204]); -- Thaldraszus Reverse: Bronze
     A(t[1313], a[17205]); -- Thaldraszus Reverse: Silver
     A(t[1313], a[17206]); -- Thaldraszus Reverse: Gold
+    A(t[1313], a[18760]); -- Thaldraszus Challenge: Bronze
+    A(t[1313], a[18761]); -- Thaldraszus Challenge: Silver
+    A(t[1313], a[18762]); -- Thaldraszus Challenge: Gold
     t[1366] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1235], t[1366]);
     A(t[1366], a[16485]); -- Thunderstorms in Thaldraszus
@@ -6646,6 +6774,9 @@ function exportedCategories.Load(a)
     A(t[1407], a[17294]); -- Forbidden Reach Racing Completionist
     A(t[1407], a[17296]); -- Forbidden Reach Racing Completionist: Silver
     A(t[1407], a[17298]); -- Forbidden Reach Racing Completionist: Gold
+    A(t[1407], a[18779]); -- Forbidden Reach Challenge: Bronze
+    A(t[1407], a[18780]); -- Forbidden Reach Challenge: Silver
+    A(t[1407], a[18781]); -- Forbidden Reach Challenge: Gold
     t[1410] = c:New(k.L["Primal Storms"], true); -- Primal Storms
     C(t[1236], t[1410]);
     A(t[1410], a[17540]); -- Under the Weather
@@ -6702,6 +6833,9 @@ function exportedCategories.Load(a)
     A(t[1424], a[17492]); -- Zaralek Cavern Racing Completionist
     A(t[1424], a[17493]); -- Zaralek Cavern Racing Completionist: Silver
     A(t[1424], a[17494]); -- Zaralek Cavern Racing Completionist: Gold
+    A(t[1424], a[18786]); -- Zaralek Cavern Challenge: Bronze
+    A(t[1424], a[18787]); -- Zaralek Cavern Challenge: Silver
+    A(t[1424], a[18788]); -- Zaralek Cavern Challenge: Gold
     t[1229] = c:New(k.GetCategoryInfoTitle(15272)); -- Dungeons
     C(t[1207], t[1229]);
     A(t[1229], a[16294]); -- Dragonflight Dungeon Hero
@@ -6890,9 +7024,49 @@ function exportedCategories.Load(a)
     A(t[1391], a[16627]); -- Professional Draconic Master
     A(t[1391], a[16626]); -- Working with Wyrms
     A(t[1391], a[16630]); -- Draconic Master of All
-    A(t[1391], a[16631]); -- Dragon Isles Cook
-    A(t[1391], a[16632]); -- Dragon Isles Fisherman
-    A(t[1391], a[17736]); -- The Gift of Cheese
+    t[1466] = c:New(k.GetCategoryInfoTitle(15489), true); -- Alchemy
+    C(t[1391], t[1466]);
+    A(t[1466], a[18805]); -- Draconic Phial Cabinet
+    t[1485] = c:New(k.GetCategoryInfoTitle(170), true); -- Cooking
+    C(t[1391], t[1485]);
+    A(t[1485], a[16631]); -- Dragon Isles Cook
+    t[1487] = c:New(k.GetCategoryInfoTitle(15491), true); -- Enchanting
+    C(t[1391], t[1487]);
+    A(t[1487], a[18763]); -- Spectre of Spectacles
+    A(t[1487], a[18764]); -- Break Upon Your Body
+    t[1491] = c:New(k.GetCategoryInfoTitle(15492), true); -- Engineering
+    C(t[1391], t[1491]);
+    A(t[1491], a[18856]); -- Just an Ordinary Gas Cloud
+    A(t[1491], a[18857]); -- That's No Ordinary Gas Cloud!
+    t[1492] = c:New(k.GetCategoryInfoTitle(171), true); -- Fishing
+    C(t[1391], t[1492]);
+    A(t[1492], a[16632]); -- Dragon Isles Fisherman
+    t[1504] = c:New(k.GetCategoryInfoTitle(15499), true); -- Herbalism
+    C(t[1391], t[1504]);
+    A(t[1504], a[18822]); -- Botanist's Log - Hochenblume
+    A(t[1504], a[18823]); -- Botanist's Log - Saxifrage
+    A(t[1504], a[18824]); -- Botanist's Log - Bubble Poppy
+    A(t[1504], a[18825]); -- Botanist's Log - Writhebark
+    A(t[1504], a[18829]); -- Botanist's Log - Overloaded Elements
+    A(t[1504], a[18828]); -- Botanist's Log: Dragon Isles
+    t[1509] = c:New(k.GetCategoryInfoTitle(15494), true); -- Jewelcrafting
+    C(t[1391], t[1509]);
+    A(t[1509], a[18727]); -- Rave Leader
+    A(t[1509], a[18941]); -- Dazzling Dragons
+    t[1519] = c:New(k.GetCategoryInfoTitle(15497), true); -- Mining
+    C(t[1391], t[1519]);
+    A(t[1519], a[18818]); -- Geologist's Ledger - Serevite
+    A(t[1519], a[18819]); -- Geologist's Ledger - Draconium
+    A(t[1519], a[18821]); -- Geologist's Ledger - Overloaded Elements
+    A(t[1519], a[18820]); -- Geologist's Ledger: Dragon Isles
+    t[1523] = c:New(k.GetCategoryInfoTitle(15498), true); -- Skinning
+    C(t[1391], t[1523]);
+    A(t[1523], a[18832]); -- Elusive Legend of the Dragon Isles
+    A(t[1523], a[18833]); -- Elusive Legends of the Dragon Isles
+    A(t[1523], a[18831]); -- Elusive Beasts of the Dragon Isles
+    t[1528] = c:New(k.GetCategoryInfoTitle(15496), true); -- Tailoring
+    C(t[1391], t[1528]);
+    A(t[1528], a[18902]); -- Uncertified Nurse
     t[1231] = c:New(k.GetCategoryInfoTitle(15117)); -- Pet Battles
     C(t[1207], t[1231]);
     A(t[1231], a[16519]); -- Dragon Isles Safari
@@ -7010,6 +7184,9 @@ function exportedCategories.Load(a)
     A(t[1269], a[17330]); -- Reverse Racer: Bronze
     A(t[1269], a[17331]); -- Reverse Racer: Silver
     A(t[1269], a[17332]); -- Reverse Racer: Gold
+    A(t[1269], a[18790]); -- Dragonriding Challenge: Dragon Isles: Bronze
+    A(t[1269], a[18791]); -- Dragonriding Challenge: Dragon Isles: Silver
+    A(t[1269], a[18792]); -- Dragonriding Challenge: Dragon Isles: Gold
     t[1293] = c:New(k.GetMapName(2022)); -- The Waking Shores
     C(t[1269], t[1293]);
     A(t[1293], a[15915]); -- Waking Shores: Bronze
@@ -7021,6 +7198,9 @@ function exportedCategories.Load(a)
     A(t[1293], a[17195]); -- Waking Shores Reverse: Bronze
     A(t[1293], a[17196]); -- Waking Shores Reverse: Silver
     A(t[1293], a[17197]); -- Waking Shores Reverse: Gold
+    A(t[1293], a[18748]); -- Waking Shores Challenge: Bronze
+    A(t[1293], a[18749]); -- Waking Shores Challenge: Silver
+    A(t[1293], a[18750]); -- Waking Shores Challenge: Gold
     t[1285] = c:New(k.GetMapName(2023)); -- Ohn'ahran Plains
     C(t[1269], t[1285]);
     A(t[1285], a[15918]); -- Ohn'ahran Plains: Bronze
@@ -7032,6 +7212,9 @@ function exportedCategories.Load(a)
     A(t[1285], a[17198]); -- Ohn'ahran Plains Reverse: Bronze
     A(t[1285], a[17199]); -- Ohn'ahran Plains Reverse: Silver
     A(t[1285], a[17200]); -- Ohn'ahran Plains Reverse: Gold
+    A(t[1285], a[18754]); -- Ohn'ahran Plains Challenge: Bronze
+    A(t[1285], a[18755]); -- Ohn'ahran Plains Challenge: Silver
+    A(t[1285], a[18756]); -- Ohn'ahran Plains Challenge: Gold
     t[1278] = c:New(k.GetMapName(2024)); -- The Azure Span
     C(t[1269], t[1278]);
     A(t[1278], a[15921]); -- Azure Span: Bronze
@@ -7043,6 +7226,9 @@ function exportedCategories.Load(a)
     A(t[1278], a[17201]); -- Azure Span Reverse: Bronze
     A(t[1278], a[17202]); -- Azure Span Reverse: Silver
     A(t[1278], a[17203]); -- Azure Span Reverse: Gold
+    A(t[1278], a[18757]); -- Azure Span Challenge: Bronze
+    A(t[1278], a[18758]); -- Azure Span Challenge: Silver
+    A(t[1278], a[18759]); -- Azure Span Challenge: Gold
     t[1276] = c:New(k.GetMapName(2025)); -- Thaldraszus
     C(t[1269], t[1276]);
     A(t[1276], a[15924]); -- Thaldraszus: Bronze
@@ -7054,6 +7240,9 @@ function exportedCategories.Load(a)
     A(t[1276], a[17204]); -- Thaldraszus Reverse: Bronze
     A(t[1276], a[17205]); -- Thaldraszus Reverse: Silver
     A(t[1276], a[17206]); -- Thaldraszus Reverse: Gold
+    A(t[1276], a[18760]); -- Thaldraszus Challenge: Bronze
+    A(t[1276], a[18761]); -- Thaldraszus Challenge: Silver
+    A(t[1276], a[18762]); -- Thaldraszus Challenge: Gold
     t[1411] = c:New(k.GetMapName(2107)); -- The Forbidden Reach
     C(t[1269], t[1411]);
     A(t[1411], a[17279]); -- Forbidden Reach: Bronze
@@ -7068,6 +7257,9 @@ function exportedCategories.Load(a)
     A(t[1411], a[17294]); -- Forbidden Reach Racing Completionist
     A(t[1411], a[17296]); -- Forbidden Reach Racing Completionist: Silver
     A(t[1411], a[17298]); -- Forbidden Reach Racing Completionist: Gold
+    A(t[1411], a[18779]); -- Forbidden Reach Challenge: Bronze
+    A(t[1411], a[18780]); -- Forbidden Reach Challenge: Silver
+    A(t[1411], a[18781]); -- Forbidden Reach Challenge: Gold
     t[1423] = c:New(k.GetMapName(2133)); -- Zaralek Cavern
     C(t[1269], t[1423]);
     A(t[1423], a[17483]); -- Zaralek Cavern: Bronze
@@ -7082,6 +7274,9 @@ function exportedCategories.Load(a)
     A(t[1423], a[17492]); -- Zaralek Cavern Racing Completionist
     A(t[1423], a[17493]); -- Zaralek Cavern Racing Completionist: Silver
     A(t[1423], a[17494]); -- Zaralek Cavern Racing Completionist: Gold
+    A(t[1423], a[18786]); -- Zaralek Cavern Challenge: Bronze
+    A(t[1423], a[18787]); -- Zaralek Cavern Challenge: Silver
+    A(t[1423], a[18788]); -- Zaralek Cavern Challenge: Gold
     t[1360] = c:New(k.L["Primal Storms"]); -- Primal Storms
     C(t[1207], t[1360]);
     A(t[1360], a[16492]); -- Into the Storm
@@ -7312,11 +7507,15 @@ function exportedCategories.Load(a)
     A(t[914], a[1293]); -- Blue Brewfest Stein
     A(t[914], a[4782]); -- Green Brewfest Stein
     A(t[914], a[1186]); -- Down With The Dark Iron
+    A(t[914], a[18579]); -- A Round on the House
     t[915] = c:New(k.GetCategoryInfoTitle(158)); -- Hallow's End
     C(t[918], t[915]);
     A(t[915], a[972]); -- Trick or Treat!
     A(t[915], a[288]); -- Out With It
     A(t[915], a[255]); -- Bring Me The Head of... Oh Wait
+    A(t[915], a[18962]); -- A Cleansing Fire
+    A(t[915], a[18959]); -- "Don't Lose Your Head, Man"
+    A(t[915], a[18960]); -- Kickin' With the Wick
     A(t[915], a[289]); -- The Savior of Hallow's End
     A(t[915], a[979]); -- The Mask Task
     A(t[915], a[284]); -- A Mask for All Occasions
@@ -7425,7 +7624,9 @@ function exportedCategories.Load(a)
     A(t[1173], a[14271]); -- WoW's 16th Anniversary
     A(t[1173], a[14942]); -- WoW's 17th Anniversary
     A(t[1173], a[15218]); -- WoW's 18th Anniversary
+    A(t[1173], a[18702]); -- WoW's 19th Anniversary
     A(t[1173], a[10335]); -- Did Someone Say...?
+    A(t[1173], a[19028]); -- Lil' Frostwing
     t[925] = c:New(k.GetCategoryInfoTitle(15101)); -- Darkmoon Faire
     C(t[884], t[925]);
     A(t[925], a[6019]); -- "Come One, Come All!"
@@ -7500,8 +7701,10 @@ function exportedCategories.Load(a)
     t[1030] = c:New(k.GetCategoryInfoTitle(201), true); -- Reputation
     C(t[925], t[1030]);
     A(t[1030], a[2336]); -- Insane in the Membrane
+    t[1534] = c:New(k.L["Dragon Racing"]); -- Dragon Racing
+    C(t[884], t[1534]);
     t[1453] = c:New(k.L["Kalimdor Cup"]); -- Kalimdor Cup
-    C(t[884], t[1453]);
+    C(t[1534], t[1453]);
     A(t[1453], a[17712]); -- Kalimdor: Bronze
     A(t[1453], a[17713]); -- Kalimdor: Silver
     A(t[1453], a[17714]); -- Kalimdor: Gold
@@ -7514,6 +7717,34 @@ function exportedCategories.Load(a)
     A(t[1453], a[17721]); -- Kalimdor Racing Completionist
     A(t[1453], a[17722]); -- Kalimdor Racing Completionist: Silver
     A(t[1453], a[17723]); -- Kalimdor Racing Completionist: Gold
+    t[1531] = c:New(k.L["Eastern Kingdoms Cup"]); -- Eastern Kingdoms Cup
+    C(t[1534], t[1531]);
+    A(t[1531], a[18566]); -- Eastern Kingdoms: Bronze
+    A(t[1531], a[18567]); -- Eastern Kingdoms: Silver
+    A(t[1531], a[18568]); -- Eastern Kingdoms: Gold
+    A(t[1531], a[18569]); -- Eastern Kingdoms Advanced: Bronze
+    A(t[1531], a[18570]); -- Eastern Kingdoms Advanced: Silver
+    A(t[1531], a[18571]); -- Eastern Kingdoms Advanced: Gold
+    A(t[1531], a[18572]); -- Eastern Kingdoms Reverse: Bronze
+    A(t[1531], a[18573]); -- Eastern Kingdoms Reverse: Silver
+    A(t[1531], a[18574]); -- Eastern Kingdoms Reverse: Gold
+    A(t[1531], a[18939]); -- Eastern Kingdoms Racing Completionist
+    A(t[1531], a[18940]); -- Eastern Kingdoms Racing Completionist: Silver
+    A(t[1531], a[18942]); -- Eastern Kingdoms Racing Completionist: Gold
+    t[1535] = c:New(k.L["Outland Cup"]); -- Outland Cup
+    C(t[1534], t[1535]);
+    A(t[1535], a[19092]); -- Outland: Bronze
+    A(t[1535], a[19097]); -- Outland: Silver
+    A(t[1535], a[19098]); -- Outland: Gold
+    A(t[1535], a[19099]); -- Outland Advanced: Bronze
+    A(t[1535], a[19100]); -- Outland Advanced: Silver
+    A(t[1535], a[19101]); -- Outland Advanced: Gold
+    A(t[1535], a[19102]); -- Outland Reverse: Bronze
+    A(t[1535], a[19103]); -- Outland Reverse: Silver
+    A(t[1535], a[19104]); -- Outland Reverse: Gold
+    A(t[1535], a[19105]); -- Outland Racing Completionist
+    A(t[1535], a[19106]); -- Outland Racing Completionist: Silver
+    A(t[1535], a[19107]); -- Outland Racing Completionist: Gold
     t[1452] = c:New(k.L["Secrets of Azeroth"]); -- Secrets of Azeroth
     C(t[884], t[1452]);
     A(t[1452], a[18642]); -- The Inquisitive
@@ -7531,6 +7762,9 @@ function exportedCategories.Load(a)
     A(t[954], a[15309]); -- A Towering Success
     A(t[954], a[15310]); -- A Tour of Towers
     A(t[954], a[15308]); -- Tower Overwhelming
+    t[1538] = c:New(k.L["Turbulent Timeways"]); -- Turbulent Timeways
+    C(t[951], t[1538]);
+    A(t[1538], a[19079]); -- Master of the Turbulent Timeways
     t[947] = c:New(k.GetCategoryInfoTitle(15258)); -- Legion
     C(t[884], t[947]);
     t[948] = c:New(k.L["Legion Assaults"]); -- Legion Assaults
@@ -7692,6 +7926,7 @@ function exportedCategories.Load(a)
     C(t[1358], t[1425]);
     A(t[1425], a[17506]); -- Still Standing in the Fire
     A(t[1425], a[17735]); -- We Didn't Start the Fire
+    A(t[1425], a[18867]); -- Through the Ashes and Flames
     t[1428] = c:New(k.L["Researchers Under Fire"]); -- Researchers Under Fire
     C(t[1358], t[1428]);
     t[1429] = c:New(k.L["Zaqali Ruin Investigation"]); -- Zaqali Ruin Investigation
@@ -7724,6 +7959,9 @@ function exportedCategories.Load(a)
     A(t[1454], a[18639]); -- Collapsed Reality
     A(t[1454], a[18640]); -- Lock and Load
     A(t[1454], a[18641]); -- To All The Squirrels I've BEEN Before
+    t[1537] = c:New(k.L["Dreamsurge"]); -- Dreamsurge
+    C(t[1358], t[1537]);
+    A(t[1537], a[19008]); -- Dream Shaper
     t[1174] = c:New(k.L["Miscellaneous"]); -- Miscellaneous
     C(t[884], t[1174]);
     A(t[1174], a[1636]); -- Competitor's Tabard
