@@ -17,13 +17,19 @@ data.Maps = {};
 
 data.CalendarEvents, data.WidgetEvents, data.WorldEvents = {}, {}, {};
 
+function data:LoadOnPlayerLogin()
+    self.TemporaryObtainable:Load();
+
+    self.ExportedCalendarEvents.Load(self.CalendarEvents);
+    self.ExportedWidgetEvents.Load(self.WidgetEvents);
+    self.ExportedWorldEvents.Load(self.WorldEvents);
+end
+
 local isLoaded;
 function data.Load()
     if isLoaded then
         return;
     end
-
-    data.TemporaryObtainable:Load();
 
     data.ExportedTransmogSets.Load(data.TransmogSets);
 

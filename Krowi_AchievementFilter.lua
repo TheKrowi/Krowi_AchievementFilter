@@ -85,9 +85,7 @@ local function LoadBlizzard_AchievementUI()
 end
 
 local function LoadPlayerLogin()
-    addon.Data.ExportedCalendarEvents.Load(addon.Data.CalendarEvents);
-    addon.Data.ExportedWidgetEvents.Load(addon.Data.WidgetEvents);
-    addon.Data.ExportedWorldEvents.Load(addon.Data.WorldEvents);
+    addon.Data:LoadOnPlayerLogin()
 
     if addon.Diagnostics.DebugEnabled() then
         hooksecurefunc(WorldMapFrame, "OnMapChanged", function()
