@@ -44,6 +44,7 @@ function achievementData.SetEarnedBy(characterGuid, achievementInfo)
     KrowiAF_Achievements.Completed[achievementId] = KrowiAF_Achievements.Completed[achievementId] or {};
     local dateTime = achievementInfo.DateTime;
     local epoch = DateTimeToEpoch(dateTime.Year, dateTime.Month, dateTime.Day);
+    print(characterGuid, epoch, achievementInfo.WasEarnedByMe, achievementInfo.Flags.IsAccountWide)
     SetFirstCompletedOn(achievementId, epoch);
     if achievementInfo.Flags.IsAccountWide then
         return;

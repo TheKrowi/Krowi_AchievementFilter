@@ -822,13 +822,10 @@ function MigrateCharactersAndAchievements(prevBuild, currBuild, prevVersion, cur
         end
 
         print("MigrateCompletedAchievements", characterGuid)
-        local counter = 0;
-        local completedAchievements, notCompletedAchievements = characterData.CompletedAchievements, characterData.NotCompletedAchievements
+        local completedAchievements, notCompletedAchievements = characterData.CompletedAchievements, characterData.NotCompletedAchievements;
         for achievementId, completedOnEpoch in next, completedAchievements do
             MigrateCompletedAchievement(characterGuid, notCompletedAchievements, achievementId, completedOnEpoch);
-            counter = counter + 1;
         end
-        print(counter)
     end
 
     addon.Data.SavedData.CharacterData.Load();
