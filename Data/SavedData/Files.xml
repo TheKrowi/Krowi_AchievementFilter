@@ -1,0 +1,5 @@
+<Ui>
+    <Script file="SavedData.lua" />
+    <Script file="CharacterData.lua" />
+    <Script file="AchievementData.lua" />
+</Ui>

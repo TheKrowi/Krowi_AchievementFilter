@@ -11,4 +11,5 @@
     <Script file="EventData.lua" />
     <Script file="TooltipData.lua" />
     <Script file="DataIntegrityManager.lua" />
+    <Include file="SavedData\Files.xml"/>
 </Ui>

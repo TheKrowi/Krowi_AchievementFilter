@@ -78,7 +78,7 @@ end
 local FixFeaturesTutorialProgress, FixElvUISkin, FixFilters, FixEventDetails, FixShowExcludedCategory, FixEventDetails2, FixCharacters, FixEventAlert;
 local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters, FixNewEarnedByFilter, FixTabs2, FixNewEarnedByFilter2;
 local FixEventDetails3, FixTooltipCriteria, FixFocusedAchievements, FixFocusedOptions, FixEventRemindersTimeDisplay, FixEventRemindersOptions, FixEventRemindersOptions2;
-local FixActiveEvents, FixSummaryOptions;
+local FixActiveEvents, FixSummaryOptions, MigrateCharactersAndAchievements;
 function LoadSolutions()
     local solutions = {
         FixFeaturesTutorialProgress, -- 1
@@ -105,6 +105,7 @@ function LoadSolutions()
         FixEventRemindersOptions2, -- 22
         FixActiveEvents, -- 23
         FixSummaryOptions, -- 24
+        MigrateCharactersAndAchievements, -- 25
     };
 
     return solutions;
@@ -730,4 +731,86 @@ function FixFocusedOptions(prevBuild, currBuild, prevVersion, currVersion, first
     addon.Options.db.profile.Categories.Summary = nil;
 
     diagnostics.Debug("Summary Options moved");
+end
+
+function MigrateCharactersAndAchievements(prevBuild, currBuild, prevVersion, currVersion, firstTime)
+    -- In version 62.0 KrowiAF_SavedData.Characters character data was moved to KrowiAF_SavedData.CharacterList
+    -- KrowiAF_SavedData.Characters[guid].CompletedAchievements is moved to KrowiAF_Achievements.Completed with a different format
+    -- KrowiAF_SavedData.Characters[guid].NotCompletedAchievements is moved to KrowiAF_Achievements.NotCompleted with a different format
+    -- KrowiAF_SavedData.Characters[guid].LastCompletedAchievements is moved to KrowiAF_Achievements.LastCompleted with a different format
+    -- Here we clean up the old stuff for users pre 62.0
+    -- The new structure is created by addon.Data.SavedData.CharacterData and addon.Data.SavedData.AchievementData
+    if firstTime and currVersion > "62.0" then
+        diagnostics.Debug("First time Character and Achievement migration OK");
+        return;
+    end
+    if KrowiAF_SavedData.Characters == nil then
+        diagnostics.Debug("Character and Achievement migration already moved");
+        return;
+    end
+    local function MigrateCharacter(guid, character)
+        KrowiAF_SavedData.CharacterList[guid] = {
+            Name = character.Name,
+            Realm = character.Realm,
+            Class = character.Class,
+            Faction = character.Faction,
+            Points = character.Points,
+            Ignore = character.Ignore,
+            ExcludeFromHeaderTooltip = character.ExcludeFromHeaderTooltip,
+            ExcludeFromEarnedByAchievementTooltip = character.ExcludeFromEarnedByAchievementTooltip,
+            ExcludeFromMostProgressAchievementTooltip = character.ExcludeFromMostProgressAchievementTooltip
+        };
+    end
+    local function MigrateNotCompletedAchievements(characterGuid, notCompletedAchievements)
+        for achievementId, criteriaProgress in next, notCompletedAchievements do
+            local achievementInfo = addon.GetAchievementInfoTable(achievementId);
+            local customAchievementInfo = {
+                Id = achievementId,
+                Flags = achievementInfo.Flags,
+                WasEarnedByMe = false
+            };
+            addon.Data.SavedData.AchievementData.SetNotEarnedBy(characterGuid, customAchievementInfo);
+            for criteriaIndex, criteriaValue in next, criteriaProgress do
+                addon.Data.SavedData.AchievementData.SetCriteriaProgress(characterGuid, customAchievementInfo, criteriaIndex, criteriaValue);
+            end
+        end
+    end
+    local function MigrateCompletedAchievements(characterGuid, completedAchievements, notCompletedAchievements)
+        for achievementId, completedOnEpoch in next, completedAchievements do
+            local achievementInfo = addon.GetAchievementInfoTable(achievementId);
+            local dateTable = date("*t", completedOnEpoch);
+            local customAchievementInfo = {
+                Id = achievementId,
+                DateTime = {
+                    Year = dateTable.year,
+                    Month = dateTable.month,
+                    Day = dateTable.day,
+                    Hour = dateTable.hour,
+                    Min = dateTable.min,
+                    Sec = dateTable.sec
+                },
+                Flags = achievementInfo.Flags,
+                WasEarnedByMe = notCompletedAchievements[achievementId] == nil
+            };
+            addon.Data.SavedData.AchievementData.SetEarnedBy(characterGuid, customAchievementInfo);
+        end
+    end
+    addon.Data.SavedData.CharacterData.Load();
+    addon.Data.SavedData.AchievementData.Load();
+    for characterGuid, characterData in next, KrowiAF_SavedData.Characters do
+        if characterData.CompletedAchievements and characterData.NotCompletedAchievements then
+            MigrateCharacter(characterGuid, characterData);
+        end
+    end
+    for characterGuid, characterData in next, KrowiAF_SavedData.Characters do
+        if characterData.CompletedAchievements and characterData.NotCompletedAchievements then
+            MigrateNotCompletedAchievements(characterGuid, characterData.NotCompletedAchievements);
+        end
+    end
+    for characterGuid, characterData in next, KrowiAF_SavedData.Characters do
+        if characterData.CompletedAchievements and characterData.NotCompletedAchievements then
+            MigrateCompletedAchievements(characterGuid, characterData.CompletedAchievements, characterData.NotCompletedAchievements);
+        end
+    end
+    KrowiAF_SavedData.Characters = nil;
 end
