@@ -81,19 +81,16 @@ end
 
 local function BuildLastCompleted(event)
     local numLastCompleted = addon.Options.db.profile.Summary.NumAchievements or 25;
-    local lastCompleted = KrowiAF_SavedData.Characters[UnitGUID("player")].LastCompleted;
+    local lastCompleted = KrowiAF_Achievements.LastCompleted[UnitGUID("player")];
     if type(lastCompleted) == "table"
     and #lastCompleted == numLastCompleted
     and not event == "ACHIEVEMENT_EARNED" then
         return;
     end
-    local res = {};
-    for achievementId, date in next, KrowiAF_SavedData.Characters[UnitGUID("player")].CompletedAchievements do
-        tinsert(res, {Id = achievementId, Date = date});
-    end
+    local res = addon.Data.SavedData.AchievementData.GetEarnedByCharacter(UnitGUID("player"));
     sort(res, function(a, b) return a.Date > b.Date; end);
-    KrowiAF_SavedData.Characters[UnitGUID("player")].LastCompleted = {};
-    lastCompleted = KrowiAF_SavedData.Characters[UnitGUID("player")].LastCompleted;
+    KrowiAF_Achievements.LastCompleted[UnitGUID("player")] = {};
+    lastCompleted = KrowiAF_Achievements.LastCompleted[UnitGUID("player")];
     for i = 1, numLastCompleted, 1 do
         if res[i] == nil then
             return;
@@ -105,7 +102,7 @@ end
 local updateAchievementsOnNextShow;
 function KrowiAF_SummaryFrameMixin:Achievements_Update(event)
     BuildLastCompleted(event);
-    self.AchievementsFrame:Update(KrowiAF_SavedData.Characters[UnitGUID("player")].LastCompleted, updateAchievementsOnNextShow);
+    self.AchievementsFrame:Update(KrowiAF_Achievements.LastCompleted[UnitGUID("player")], updateAchievementsOnNextShow);
 end
 
 function KrowiAF_SummaryFrameMixin:UpdateAchievementsOnNextShow()

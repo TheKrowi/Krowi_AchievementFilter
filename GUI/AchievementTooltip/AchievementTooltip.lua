@@ -35,10 +35,10 @@ function tooltip.AddAchievementLine(currentAchievement, otherAchievementId, show
 		else
 			currentCharacterIcon = "|T136815:0|t";
 		end
-		currentCharacterIcon = currentCharacterIcon .. addon.L["TAB"];
+		currentCharacterIcon = currentCharacterIcon .. "|T:1:8|t";
 	end
 
-	GameTooltip:AddLine(icon .. addon.L["TAB"] .. currentCharacterIcon .. name .. nameSuffix, color.R, color.G, color.B); -- Achievement name
+	GameTooltip:AddLine(icon .. "|T:1:8|t" .. currentCharacterIcon .. name .. nameSuffix, color.R, color.G, color.B); -- Achievement name
 end
 
 local function GetCriteriaTextAndColor(achievementId, criteriaIndex)
@@ -63,7 +63,7 @@ local function GetCriteriaTextAndColor(achievementId, criteriaIndex)
 		text = text .. (text ~= "" and " " or "") .. (text ~= "" and "(" or "") .. tostring(quantity) .. "/" .. tostring(reqQuantity) .. (text ~= "" and ")" or "");
 	end
 	if icon then
-		text = icon .. addon.L["TAB"] .. (text or "");
+		text = icon .. "|T:1:8|t" .. (text or "");
 	end
 
 	return text or "", color or addon.Util.Colors.WhiteRGB;

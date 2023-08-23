@@ -1,4 +1,4 @@
--- [[ Exported at 2023-07-12 13-42-49 ]] --
+-- [[ Exported at 2023-08-20 11-20-07 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -158,29 +158,54 @@ function exportedCategories.Load(a)
     A(t[1169], a[4478]); -- Looking For Multitudes
     t[1149] = c:New(k.GetCategoryInfoTitle(169)); -- Professions
     C(t[1431], t[1149]);
-    A(t[1149], a[1998]); -- Cooking Award
-    A(t[1149], a[1999]); -- 10 Cooking Awards
-    A(t[1149], a[2000]); -- 25 Cooking Awards
-    A(t[1149], a[2001]); -- 50 Cooking Awards
-    A(t[1149], a[2002]); -- 100 Cooking Awards
-    A(t[1149], a[1795]); -- Lunch Lady
-    A(t[1149], a[1796]); -- Short Order Cook
-    A(t[1149], a[1797]); -- Chef de Partie
-    A(t[1149], a[1798]); -- Sous Chef
-    A(t[1149], a[1799]); -- Chef de Cuisine
-    A(t[1149], a[1563]); -- Hail to the Chef
-    A(t[1149], a[1784]); -- Hail to the Chef
-    A(t[1149], a[153]); -- The Old Gnome and the Sea
-    A(t[1149], a[1243]); -- Fish Don't Leave Footprints
-    A(t[1149], a[3218]); -- Turtles All the Way Down
-    A(t[1149], a[1556]); -- 25 Fish
-    A(t[1149], a[1557]); -- 50 Fish
-    A(t[1149], a[1558]); -- 100 Fish
-    A(t[1149], a[1559]); -- 250 Fish
-    A(t[1149], a[1560]); -- 500 Fish
-    A(t[1149], a[1561]); -- 1000 Fish
-    A(t[1149], a[1516]); -- Accomplished Angler
-    A(t[1149], a[141]); -- Ultimate Triage
+    t[1456] = c:New(k.GetCategoryInfoTitle(15489)); -- Alchemy
+    C(t[1149], t[1456]);
+    t[1459] = c:New(k.GetCategoryInfoTitle(15071)); -- Archaeology
+    C(t[1149], t[1459]);
+    t[1457] = c:New(k.GetCategoryInfoTitle( 15490)); -- Blacksmithing
+    C(t[1149], t[1457]);
+    t[1458] = c:New(k.GetCategoryInfoTitle(170)); -- Cooking
+    C(t[1149], t[1458]);
+    A(t[1458], a[1998]); -- Cooking Award
+    A(t[1458], a[1999]); -- 10 Cooking Awards
+    A(t[1458], a[2000]); -- 25 Cooking Awards
+    A(t[1458], a[2001]); -- 50 Cooking Awards
+    A(t[1458], a[2002]); -- 100 Cooking Awards
+    A(t[1458], a[1785]); -- Dinner Impossible
+    A(t[1458], a[1795]); -- Lunch Lady
+    A(t[1458], a[1796]); -- Short Order Cook
+    A(t[1458], a[1797]); -- Chef de Partie
+    A(t[1458], a[1798]); -- Sous Chef
+    A(t[1458], a[1799]); -- Chef de Cuisine
+    A(t[1458], a[3296]); -- Cooking with Style
+    A(t[1458], a[1563]); -- Hail to the Chef
+    A(t[1458], a[1784]); -- Hail to the Chef
+    t[1460] = c:New(k.GetCategoryInfoTitle(15491)); -- Enchanting
+    C(t[1149], t[1460]);
+    t[1461] = c:New(k.GetCategoryInfoTitle(15492)); -- Engineering
+    C(t[1149], t[1461]);
+    t[1462] = c:New(k.GetCategoryInfoTitle(171)); -- Fishing
+    C(t[1149], t[1462]);
+    A(t[1462], a[153]); -- The Old Gnome and the Sea
+    A(t[1462], a[1257]); -- The Scavenger
+    A(t[1462], a[1243]); -- Fish Don't Leave Footprints
+    A(t[1462], a[3218]); -- Turtles All the Way Down
+    A(t[1462], a[1556]); -- 25 Fish
+    A(t[1462], a[1557]); -- 50 Fish
+    A(t[1462], a[1558]); -- 100 Fish
+    A(t[1462], a[1559]); -- 250 Fish
+    A(t[1462], a[1560]); -- 500 Fish
+    A(t[1462], a[1561]); -- 1000 Fish
+    A(t[1462], a[1516]); -- Accomplished Angler
+    t[1464] = c:New(k.GetCategoryInfoTitle(15493)); -- Inscription
+    C(t[1149], t[1464]);
+    t[1465] = c:New(k.GetCategoryInfoTitle(15494)); -- Jewelcrafting
+    C(t[1149], t[1465]);
+    t[1510] = c:New(k.GetCategoryInfoTitle(15495)); -- Leatherworking
+    C(t[1149], t[1510]);
+    t[1524] = c:New(k.GetCategoryInfoTitle(15496)); -- Tailoring
+    C(t[1149], t[1524]);
+    A(t[1524], a[141]); -- Ultimate Triage
     t[1163] = c:New(k.GetCategoryInfoTitle(201)); -- Reputation
     C(t[1431], t[1163]);
     A(t[1163], a[522]); -- Somebody Likes Me
@@ -1853,8 +1878,6 @@ function exportedCategories.Load(a)
     A(t[781], a[3676]); -- A Silver Confidant
     A(t[781], a[3677]); -- The Sunreavers
     A(t[781], a[4596]); -- The Sword in the Skull
-    t[952] = c:New(k.L["Other"]); -- Other
-    C(t[883], t[952]);
     t[1370] = c:New(k.L["Tracking Achievements"]); -- Tracking Achievements
     C(t[883], t[1370]);
     t[1370].HasFlexibleData = true;
@@ -2084,14 +2107,6 @@ function exportedCategories.Load(a)
     t[1030] = c:New(k.GetCategoryInfoTitle(201), true); -- Reputation
     C(t[925], t[1030]);
     A(t[1030], a[2336]); -- Insane in the Membrane
-    t[1453] = c:New(k.L["Kalimdor Cup"]); -- Kalimdor Cup
-    C(t[884], t[1453]);
-    t[1452] = c:New(k.L["Secrets of Azeroth"]); -- Secrets of Azeroth
-    C(t[884], t[1452]);
-    t[951] = c:New(k.GetCategoryInfoTitle(15454)); -- Timewalking
-    C(t[884], t[951]);
-    t[954] = c:New(k.GetCategoryInfoTitle(15258)); -- Legion
-    C(t[951], t[954]);
     t[1174] = c:New(k.L["Miscellaneous"]); -- Miscellaneous
     C(t[884], t[1174]);
     A(t[1174], a[1636]); -- Competitor's Tabard
@@ -2791,8 +2806,6 @@ function exportedCategories.Load(a)
     C(t[1346], t[1348]);
     t[1347] = c:New(k.GetCategoryInfoTitle(15439)); -- Shadowlands
     C(t[1346], t[1347]);
-    t[1372] = c:New(k.L["Going away with"]); -- Going away with
-    C(t[971], t[1372]);
     t[1367] = c:New(k.L["Tracking Achievements"]); -- Tracking Achievements
     C(t[971], t[1367]);
     t[1367].HasFlexibleData = true;

@@ -73,8 +73,8 @@ local sortFuncs = {
 
 local function GetSortedCharacters(column)
     local characters = {};
-    KrowiAF_SavedData.Characters = KrowiAF_SavedData.Characters or {};
-    for guid, character in next, KrowiAF_SavedData.Characters do
+    KrowiAF_SavedData.CharacterList = KrowiAF_SavedData.CharacterList or {};
+    for guid, character in next, KrowiAF_SavedData.CharacterList do
         tinsert(characters, {
             Name = character.Name,
             Realm = character.Realm,

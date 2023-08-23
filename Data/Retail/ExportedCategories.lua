@@ -1,4 +1,4 @@
--- [[ Exported at 2023-07-12 13-42-49 ]] --
+-- [[ Exported at 2023-08-20 11-20-05 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -241,11 +241,141 @@ function exportedCategories.Load(a)
     A(t[1149], a[16791]); -- Merchant Artisan
     A(t[1149], a[17410]); -- Craftsman of the Zandalar Tribe
     A(t[1149], a[17412]); -- Craftsman of the Argent Dawn
-    A(t[1149], a[17496]); -- Renowned Weaponsmith
-    A(t[1149], a[17497]); -- Renowned Armorsmith
-    A(t[1149], a[17498]); -- Renowned Leatherworking Specialist
-    A(t[1149], a[17499]); -- Renowned Tailoring Specialist
-    A(t[1149], a[17207]); -- Discombobberlated
+    t[1456] = c:New(k.GetCategoryInfoTitle(15489)); -- Alchemy
+    C(t[1149], t[1456]);
+    A(t[1456], a[18726]); -- A Cure for All Ails I
+    A(t[1456], a[18731]); -- A Cure for All Ails II
+    A(t[1456], a[18732]); -- A Cure for All Ails III
+    A(t[1456], a[18733]); -- A Cure for All Ails IV
+    A(t[1456], a[18734]); -- Powerful Concoctions I
+    A(t[1456], a[18735]); -- Powerful Concoctions II
+    A(t[1456], a[18736]); -- Powerful Concoctions III
+    A(t[1456], a[18737]); -- Powerful Concoctions IV
+    A(t[1456], a[18934]); -- Excessive Experimentation
+    A(t[1456], a[18723]); -- "Look, You're Specialized!"
+    A(t[1456], a[18904]); -- Iron to Vendor Gold
+    A(t[1456], a[18963]); -- Burst Damage
+    t[1459] = c:New(k.GetCategoryInfoTitle(15071)); -- Archaeology
+    C(t[1149], t[1459]);
+    A(t[1459], a[5315]); -- Digger
+    A(t[1459], a[5469]); -- Diggerer
+    A(t[1459], a[5470]); -- Diggerest
+    A(t[1459], a[4854]); -- I Had It in My Hand
+    A(t[1459], a[4855]); -- What was Briefly Yours is Now Mine
+    A(t[1459], a[4856]); -- It Belongs in a Museum!
+    A(t[1459], a[9422]); -- "The Search For Fact, Not Truth"
+    A(t[1459], a[5511]); -- It's Always in the Last Place You Look
+    t[1457] = c:New(k.GetCategoryInfoTitle( 15490)); -- Blacksmithing
+    C(t[1149], t[1457]);
+    A(t[1457], a[18862]); -- Anvil Mastery I
+    A(t[1457], a[18864]); -- Anvil Mastery II
+    A(t[1457], a[18865]); -- Anvil Mastery III
+    A(t[1457], a[18866]); -- Anvil Mastery IV
+    A(t[1457], a[18851]); -- Skeletons in the Lockbox
+    A(t[1457], a[18852]); -- "Weaponsmithing, Reborn"
+    A(t[1457], a[17496]); -- Renowned Weaponsmith
+    A(t[1457], a[17497]); -- Renowned Armorsmith
+    t[1458] = c:New(k.GetCategoryInfoTitle(170)); -- Cooking
+    C(t[1149], t[1458]);
+    A(t[1458], a[1998]); -- Cooking Award
+    A(t[1458], a[1999]); -- 10 Cooking Awards
+    A(t[1458], a[2000]); -- 25 Cooking Awards
+    A(t[1458], a[2001]); -- 50 Cooking Awards
+    A(t[1458], a[2002]); -- 100 Cooking Awards
+    A(t[1458], a[1785]); -- Dinner Impossible
+    A(t[1458], a[1795]); -- Lunch Lady
+    A(t[1458], a[1796]); -- Short Order Cook
+    A(t[1458], a[1797]); -- Chef de Partie
+    A(t[1458], a[1798]); -- Sous Chef
+    A(t[1458], a[1799]); -- Chef de Cuisine
+    A(t[1458], a[5471]); -- Iron Chef
+    A(t[1458], a[7328]); -- Ironpaw Chef
+    A(t[1458], a[18816]); -- Serious Chef
+    A(t[1458], a[18817]); -- Showoff Chef
+    A(t[1458], a[3296]); -- Cooking with Style
+    A(t[1458], a[1563]); -- Hail to the Chef
+    A(t[1458], a[17736]); -- The Gift of Cheese
+    t[1460] = c:New(k.GetCategoryInfoTitle(15491)); -- Enchanting
+    C(t[1149], t[1460]);
+    A(t[1460], a[18766]); -- Disenchantment I
+    A(t[1460], a[18767]); -- Disenchantment II
+    A(t[1460], a[18768]); -- Disenchantment III
+    A(t[1460], a[18769]); -- Disenchantment IV
+    A(t[1460], a[18868]); -- Enchantment I
+    A(t[1460], a[18869]); -- Enchantment II
+    A(t[1460], a[18870]); -- Enchantment III
+    A(t[1460], a[18871]); -- Enchantment IV
+    A(t[1460], a[18785]); -- Shattered Expectations
+    A(t[1460], a[18789]); -- Simply Enchanting
+    t[1461] = c:New(k.GetCategoryInfoTitle(15492)); -- Engineering
+    C(t[1149], t[1461]);
+    A(t[1461], a[18872]); -- Dangerous Devices I
+    A(t[1461], a[18873]); -- Dangerous Devices II
+    A(t[1461], a[18874]); -- Dangerous Devices III
+    A(t[1461], a[18875]); -- Dangerous Devices IV
+    A(t[1461], a[18730]); -- Goblins vs Gnomes
+    A(t[1461], a[18855]); -- Portal to Everywhere
+    A(t[1461], a[18895]); -- You Had it Coming
+    A(t[1461], a[18901]); -- Chromatic Calibration: Holo-Gogs
+    A(t[1461], a[18908]); -- Chromatic Calibration: Bio-Optic Killshades
+    A(t[1461], a[18905]); -- Chromatic Calibration: Retinal Armor
+    A(t[1461], a[18906]); -- Chromatic Calibration: Cranial Cannons
+    A(t[1461], a[18907]); -- Chromatic Calibration: Ectoplasmic Specs
+    t[1462] = c:New(k.GetCategoryInfoTitle(171)); -- Fishing
+    C(t[1149], t[1462]);
+    A(t[1462], a[153]); -- The Old Gnome and the Sea
+    A(t[1462], a[1257]); -- The Scavenger
+    A(t[1462], a[5478]); -- The Limnologist
+    A(t[1462], a[5479]); -- The Oceanographer
+    A(t[1462], a[1243]); -- Fish Don't Leave Footprints
+    A(t[1462], a[3218]); -- Turtles All the Way Down
+    A(t[1462], a[1556]); -- 25 Fish
+    A(t[1462], a[1557]); -- 50 Fish
+    A(t[1462], a[1558]); -- 100 Fish
+    A(t[1462], a[1559]); -- 250 Fish
+    A(t[1462], a[1560]); -- 500 Fish
+    A(t[1462], a[1561]); -- 1000 Fish
+    A(t[1462], a[1516]); -- Accomplished Angler
+    A(t[1462], a[13502]); -- Secret Fish and Where to Find Them
+    A(t[1462], a[17207]); -- Discombobberlated
+    t[1464] = c:New(k.GetCategoryInfoTitle(15493)); -- Inscription
+    C(t[1149], t[1464]);
+    A(t[1464], a[18876]); -- Ink and Quill I
+    A(t[1464], a[18877]); -- Ink and Quill II
+    A(t[1464], a[18878]); -- Ink and Quill III
+    A(t[1464], a[18879]); -- Ink and Quill IV
+    A(t[1464], a[18892]); -- Massive Mills
+    A(t[1464], a[18724]); -- Gaining an Advantus
+    A(t[1464], a[18738]); -- Population In-Crease
+    A(t[1464], a[18858]); -- Forge and Befuddle
+    A(t[1464], a[18859]); -- Forge and Befuddle
+    t[1465] = c:New(k.GetCategoryInfoTitle(15494)); -- Jewelcrafting
+    C(t[1149], t[1465]);
+    A(t[1465], a[18880]); -- Generations of Gemstones I
+    A(t[1465], a[18889]); -- Generations of Gemstones II
+    A(t[1465], a[18890]); -- Generations of Gemstones III
+    A(t[1465], a[18891]); -- Generations of Gemstones IV
+    A(t[1465], a[18893]); -- Plentiful Prospects
+    A(t[1465], a[18897]); -- Can't Crush These
+    A(t[1465], a[18909]); -- Fantastic Figurines
+    t[1510] = c:New(k.GetCategoryInfoTitle(15495)); -- Leatherworking
+    C(t[1149], t[1510]);
+    A(t[1510], a[18881]); -- A Test of Scale I
+    A(t[1510], a[18882]); -- A Test of Scale II
+    A(t[1510], a[18883]); -- A Test of Scale III
+    A(t[1510], a[18884]); -- A Test of Scale IV
+    A(t[1510], a[18793]); -- Always Be Camping
+    A(t[1510], a[18898]); -- That's Just Cruel
+    A(t[1510], a[18900]); -- Budget Bard
+    A(t[1510], a[17498]); -- Renowned Leatherworking Specialist
+    t[1524] = c:New(k.GetCategoryInfoTitle(15496)); -- Tailoring
+    C(t[1149], t[1524]);
+    A(t[1524], a[18885]); -- Quite the Quilt I
+    A(t[1524], a[18886]); -- Quite the Quilt II
+    A(t[1524], a[18887]); -- Quite the Quilt III
+    A(t[1524], a[18888]); -- Quite the Quilt IV
+    A(t[1524], a[141]); -- Ultimate Triage
+    A(t[1524], a[17499]); -- Renowned Tailoring Specialist
     t[1163] = c:New(k.GetCategoryInfoTitle(201)); -- Reputation
     C(t[1431], t[1163]);
     A(t[1163], a[522]); -- Somebody Likes Me
@@ -6434,8 +6564,6 @@ function exportedCategories.Load(a)
     t[1251] = c:New(k.GetCategoryInfoTitle(95), true); -- PvP
     C(t[1235], t[1251]);
     A(t[1251], a[16593]); -- Tour of Duty: Thaldraszus
-    t[1255] = c:New(k.GetCategoryInfoTitle(201), true); -- Reputation
-    C(t[1235], t[1255]);
     t[1309] = c:New(k.L["Dragon Glyphs"], true); -- Dragon Glyphs
     C(t[1235], t[1309]);
     A(t[1309], a[16104]); -- Dragon Glyphs: Algeth'ar Academy
@@ -6493,10 +6621,6 @@ function exportedCategories.Load(a)
     A(t[1244], a[17413]); -- Door Buster
     A(t[1244], a[17509]); -- "Every Door, Everywhere, All At Once"
     A(t[1244], a[17543]); -- You Know How to Reach Me
-    t[1252] = c:New(k.GetCategoryInfoTitle(95), true); -- PvP
-    C(t[1236], t[1252]);
-    t[1254] = c:New(k.GetCategoryInfoTitle(201), true); -- Reputation
-    C(t[1236], t[1254]);
     t[1408] = c:New(k.L["Dragon Glyphs"], true); -- Dragon Glyphs
     C(t[1236], t[1408]);
     A(t[1408], a[17398]); -- Dragon Glyphs: Winglord's Perch
@@ -6530,8 +6654,6 @@ function exportedCategories.Load(a)
     A(t[1414], a[17785]); -- "Que Zara(lek), Zara(lek)"
     A(t[1414], a[17841]); -- Pyramid Scheme
     A(t[1414], a[18271]); -- He'sSss All Mine
-    t[1415] = c:New(k.GetCategoryInfoTitle(96), true); -- Quests
-    C(t[1414], t[1415]);
     t[1416] = c:New(k.GetCategoryInfoTitle(97), true); -- Exploration
     C(t[1414], t[1416]);
     A(t[1416], a[17766]); -- Explore Zaralek Cavern
@@ -7011,8 +7133,6 @@ function exportedCategories.Load(a)
     A(t[1401], a[16725]); -- Cliffside Wylderdrake Horns and Manes
     A(t[1401], a[16726]); -- Cliffside Wylderdrake Back and Tail
     A(t[1401], a[16727]); -- Cliffside Wylderdrake Head Features
-    t[952] = c:New(k.L["Other"]); -- Other
-    C(t[883], t[952]);
     t[1370] = c:New(k.L["Tracking Achievements"]); -- Tracking Achievements
     C(t[883], t[1370]);
     t[1370].HasFlexibleData = true;
@@ -9398,8 +9518,6 @@ function exportedCategories.Load(a)
     A(t[1347], a[15004]); -- A Sly Fox
     A(t[1347], a[15079]); -- "Many, Many Things"
     A(t[1347], a[15251]); -- The Jailer's Gauntlet: Layer 1
-    t[1372] = c:New(k.L["Going away with"]); -- Going away with
-    C(t[971], t[1372]);
     t[1367] = c:New(k.L["Tracking Achievements"]); -- Tracking Achievements
     C(t[971], t[1367]);
     t[1367].HasFlexibleData = true;

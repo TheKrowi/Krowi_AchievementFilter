@@ -99,7 +99,7 @@ local sortFuncs = {
 
 local function GetSortedCharacters()
     local characters = {};
-    for guid, character in next, KrowiAF_SavedData.Characters do
+    for guid, character in next, KrowiAF_SavedData.CharacterList do
         tinsert(characters, {
             Name = character.Name,
             Realm = character.Realm,
@@ -168,7 +168,7 @@ local function AddFactionIcon(name, faction)
         else -- Neutral
             icon = "|A:worldquest-questmarker-questionmark:15:16|a";
         end
-        name = icon .. addon.L["TAB"] .. name;
+        name = icon .. "|T:1:8|t" .. name;
     end
     return name;
 end
@@ -185,7 +185,7 @@ local function OnEnter(self)
             name = name .. " - " .. character.Realm;
         end
         name = AddFactionIcon(name, character.Faction);
-        GameTooltip:AddDoubleLine(name, tostring(BreakUpLargeNumbers(character.Points)), r, g, b, 1, 1, 1);
+        GameTooltip:AddDoubleLine(name, tostring(BreakUpLargeNumbers(character.Points or -1)), r, g, b, 1, 1, 1);
     end
     GameTooltip:Show();
 end

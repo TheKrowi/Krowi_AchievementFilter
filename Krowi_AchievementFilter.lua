@@ -53,6 +53,7 @@ local function LoadKrowi_AchievementFilter()
     addon.Plugins:Load();
 
     addon.Data.DataIntegrityManager.Load();
+    addon.Data.SavedData.Load();
 
     addon.GUI:LoadWithAddon();
 
