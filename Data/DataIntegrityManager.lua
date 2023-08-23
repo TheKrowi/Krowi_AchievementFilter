@@ -762,6 +762,7 @@ function MigrateCharactersAndAchievements(prevBuild, currBuild, prevVersion, cur
             return;
         end
 
+        print("MigrateCharacter", characterGuid)
         KrowiAF_SavedData.CharacterList[characterGuid] = {
             Name = characterData.Name,
             Realm = characterData.Realm,
@@ -792,6 +793,7 @@ function MigrateCharactersAndAchievements(prevBuild, currBuild, prevVersion, cur
             return;
         end
 
+        print("MigrateNotCompletedAchievements", characterGuid)
         local notCompletedAchievements = characterData.NotCompletedAchievements
         for achievementId, criteriaProgress in next, notCompletedAchievements do
             MigrateNotCompletedAchievement(characterGuid, achievementId, criteriaProgress);
@@ -819,10 +821,14 @@ function MigrateCharactersAndAchievements(prevBuild, currBuild, prevVersion, cur
             return;
         end
 
+        print("MigrateCompletedAchievements", characterGuid)
+        local counter = 0;
         local completedAchievements, notCompletedAchievements = characterData.CompletedAchievements, characterData.NotCompletedAchievements
         for achievementId, completedOnEpoch in next, completedAchievements do
             MigrateCompletedAchievement(characterGuid, notCompletedAchievements, achievementId, completedOnEpoch);
+            counter = counter + 1;
         end
+        print(counter)
     end
 
     addon.Data.SavedData.CharacterData.Load();
@@ -840,5 +846,6 @@ function MigrateCharactersAndAchievements(prevBuild, currBuild, prevVersion, cur
         MigrateCompletedAchievements(characterGuid, characterData);
     end
 
+    print("Migration done")
     -- KrowiAF_SavedData.Characters = nil;
 end
