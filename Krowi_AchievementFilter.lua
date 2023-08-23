@@ -52,7 +52,7 @@ local function LoadKrowi_AchievementFilter()
 
     addon.Plugins:Load();
 
-    addon.Data.SavedData.Load();
+    addon.Data.DataIntegrityManager.Load();
 
     addon.GUI:LoadWithAddon();
 
@@ -104,7 +104,7 @@ end
 
 function loadHelper:OnEvent(event, arg1, arg2)
     if event == "ADDON_LOADED" then
-        addon.Data.SavedData.FixSavedVariables();
+        addon.Data.DataIntegrityManager.FixSavedVariables();
         if arg1 == "Krowi_AchievementFilter" then -- This always needs to load
             LoadKrowi_AchievementFilter();
         elseif arg1 == "Blizzard_AchievementUI" then -- This needs the Blizzard_AchievementUI addon available to load

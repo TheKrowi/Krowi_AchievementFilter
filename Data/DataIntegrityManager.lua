@@ -2,10 +2,10 @@
 local addonName, addon = ...;
 local diagnostics = addon.Diagnostics;
 local data = addon.Data;
-data.SavedData = {};
-local savedData = data.SavedData;
+data.DataIntegrityManager = {};
+local dataIntegrityManager = data.DataIntegrityManager;
 
-function savedData.FixSavedVariables()
+function dataIntegrityManager.FixSavedVariables()
     -- Special function that needs to be called before loading anything !!!
     -- In version 53.0 Options, SavedData, Filters are replaced by KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters
     -- Here we try to copy the data from the old to new location for users pre 53.0
@@ -31,7 +31,7 @@ function savedData.FixSavedVariables()
 end
 
 local LoadVerifications, Verify, LoadSolutions, Resolve;
-function savedData.Load()
+function dataIntegrityManager.Load()
     KrowiAF_SavedData = KrowiAF_SavedData or {}; -- Does not exist yet for new users
     KrowiAF_SavedData.Fixes = KrowiAF_SavedData.Fixes or {}; -- Does not exist yet for new users
 

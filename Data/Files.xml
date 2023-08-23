@@ -10,5 +10,5 @@
     <Script file="ExportedWidgetEvents.lua" />
     <Script file="EventData.lua" />
     <Script file="TooltipData.lua" />
-    <Script file="SavedData.lua" />
+    <Script file="DataIntegrityManager.lua" />
 </Ui>
