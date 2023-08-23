@@ -3,8 +3,6 @@ All notable changes to this project will be documented in this file.
 
 ## 62.0 - 2023-xx-xx
 ### Added
-- Achievements now also track the hour, minutes and seconds when it was obtained
-- Option to show the completion time on the achievements
 - New profession achievements (113)
 - Eastern Kingdoms Cup achievements (12) and event
 - Outland Cup achievements (no event yet) (12)

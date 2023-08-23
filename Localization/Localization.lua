@@ -1,5 +1,4 @@
--- [[ Namespaces ]] --
-local addonName, addon = ...;
+local _, addon = ...;
 addon.Localization = {};
 local localization = addon.Localization;
 

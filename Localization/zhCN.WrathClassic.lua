@@ -9,7 +9,7 @@ local L = addon.L;
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-08-20 16-29-22 ]] --
+-- [[ Exported at 2023-08-23 16-15-51 ]] --
 L["EJ_GetInstanceInfo1190"] = "納撒亞城"
 L["EJ_GetInstanceInfo1193"] = "統御聖所"
 L["EJ_GetInstanceInfo1195"] = "首創者聖塚"
