@@ -49,6 +49,7 @@ local function LoadKrowi_AchievementFilter()
     addon.Filters:InjectDefaults();
     addon.Plugins:InjectOptions();
     addon.Options:Load(true);
+    KrowiAF_DEBUGOPTIONS = addon.Options.db.profile;
 
     addon.Plugins:Load();
 
