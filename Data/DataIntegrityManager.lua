@@ -78,7 +78,7 @@ end
 local FixFeaturesTutorialProgress, FixElvUISkin, FixFilters, FixEventDetails, FixShowExcludedCategory, FixEventDetails2, FixCharacters, FixEventAlert;
 local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters, FixNewEarnedByFilter, FixTabs2, FixNewEarnedByFilter2;
 local FixEventDetails3, FixTooltipCriteria, FixFocusedAchievements, FixFocusedOptions, FixEventRemindersTimeDisplay, FixEventRemindersOptions, FixEventRemindersOptions2;
-local FixActiveEvents, FixSummaryOptions;
+local FixActiveEvents, FixSummaryOptions, MigrateCharactersAndAchievements;
 function LoadSolutions()
     local solutions = {
         FixFeaturesTutorialProgress, -- 1
@@ -105,6 +105,7 @@ function LoadSolutions()
         FixEventRemindersOptions2, -- 22
         FixActiveEvents, -- 23
         FixSummaryOptions, -- 24
+        MigrateCharactersAndAchievements, -- 25
     };
 
     return solutions;
@@ -123,16 +124,16 @@ function Resolve(solutions, prevBuild, currBuild, prevVersion, currVersion, firs
 end
 
 function VerifySavedCharacterData()
-    if not KrowiAF_SavedData.Characters then
+    if not KrowiAF_SavedData.CharacterList then
         return;
     end
-    for guid, character in next, KrowiAF_SavedData.Characters do
+    for guid, character in next, KrowiAF_SavedData.CharacterList do
         local _, realm, name = strsplit("-", guid);
         if character.Name == nil then
-            KrowiAF_SavedData.Characters[guid].Name = name;
+            KrowiAF_SavedData.CharacterList[guid].Name = name;
         end
         if character.Realm == nil then
-            KrowiAF_SavedData.Characters[guid].Realm = realm;
+            KrowiAF_SavedData.CharacterList[guid].Realm = realm;
         end
     end
 end
@@ -184,7 +185,7 @@ function FixFilters(prevBuild, currBuild, prevVersion, currVersion, firstTime)
         diagnostics.Debug("First time Filter OK");
         return;
     end
-    if Filters then
+    if KrowiAF_Filters then
         diagnostics.Debug("Filter settings already cleared from previous location");
         return;
     end
@@ -730,4 +731,113 @@ function FixFocusedOptions(prevBuild, currBuild, prevVersion, currVersion, first
     addon.Options.db.profile.Categories.Summary = nil;
 
     diagnostics.Debug("Summary Options moved");
+end
+
+function MigrateCharactersAndAchievements(prevBuild, currBuild, prevVersion, currVersion, firstTime)
+    -- In version 62.0 KrowiAF_SavedData.Characters character data was moved to KrowiAF_SavedData.CharacterList
+    -- KrowiAF_SavedData.Characters[guid].CompletedAchievements is moved to KrowiAF_Achievements.Completed with a different format
+    -- KrowiAF_SavedData.Characters[guid].NotCompletedAchievements is moved to KrowiAF_Achievements.NotCompleted with a different format
+    -- KrowiAF_SavedData.Characters[guid].LastCompletedAchievements is moved to KrowiAF_Achievements.LastCompleted with a different format
+    -- Here we clean up the old stuff for users pre 62.0
+    -- The new structure is created by addon.Data.SavedData.CharacterData and addon.Data.SavedData.AchievementData
+
+    if firstTime and currVersion > "62.0" then
+        diagnostics.Debug("First time Character and Achievement migration OK");
+        return;
+    end
+    if KrowiAF_SavedData.Characters == nil then
+        diagnostics.Debug("Character and Achievement migration already moved");
+        return;
+    end
+
+    local function DoMigrate(character)
+        if not character.CompletedAchievements or not character.NotCompletedAchievements then
+            return false;
+        end
+        return true;
+    end
+
+    local function MigrateCharacter(characterGuid, characterData)
+        if not DoMigrate(characterData) then
+            return;
+        end
+
+        KrowiAF_SavedData.CharacterList[characterGuid] = {
+            Name = characterData.Name,
+            Realm = characterData.Realm,
+            Class = characterData.Class,
+            Faction = characterData.Faction,
+            Points = characterData.Points,
+            Ignore = characterData.Ignore,
+            ExcludeFromHeaderTooltip = characterData.ExcludeFromHeaderTooltip,
+            ExcludeFromEarnedByAchievementTooltip = characterData.ExcludeFromEarnedByAchievementTooltip,
+            ExcludeFromMostProgressAchievementTooltip = characterData.ExcludeFromMostProgressAchievementTooltip
+        };
+    end
+
+    local function MigrateNotCompletedAchievement(characterGuid, achievementId, criteriaProgress)
+        local achievementInfo = addon.GetAchievementInfoTable(achievementId);
+        if addon.Data.SavedData.AchievementData.IgnoreAchievement(achievementInfo) or achievementInfo.Flags.IsTracking then
+            return;
+        end
+        achievementInfo.WasEarnedByMe = false;
+        addon.Data.SavedData.AchievementData.SetNotEarnedBy(characterGuid, achievementInfo);
+        for criteriaIndex, criteriaValue in next, criteriaProgress do
+            addon.Data.SavedData.AchievementData.SetCriteriaProgress(characterGuid, achievementInfo, criteriaIndex, criteriaValue);
+        end
+    end
+
+    local function MigrateNotCompletedAchievements(characterGuid, characterData)
+        if not DoMigrate(characterData) or KrowiAF_SavedData.CharacterList[characterGuid].Ignore then
+            return;
+        end
+
+        local notCompletedAchievements = characterData.NotCompletedAchievements
+        for achievementId, criteriaProgress in next, notCompletedAchievements do
+            MigrateNotCompletedAchievement(characterGuid, achievementId, criteriaProgress);
+        end
+    end
+
+    local function MigrateCompletedAchievement(characterGuid, notCompletedAchievements, achievementId, completedOnEpoch)
+        if not completedOnEpoch then -- index 1 - 5 might be nil due to data storage (nothing to do about)
+            return;
+        end
+        local achievementInfo = addon.GetAchievementInfoTable(achievementId);
+        local dateTable = date("*t", completedOnEpoch);
+        achievementInfo.DateTime = {
+            Year = dateTable.year - 2000,
+            Month = dateTable.month,
+            Day = dateTable.day
+        };
+        achievementInfo.WasEarnedByMe = notCompletedAchievements[achievementId] == nil;
+        addon.Data.SavedData.AchievementData.SetEarnedBy(characterGuid, achievementInfo);
+    end
+
+    local function MigrateCompletedAchievements(characterGuid, characterData)
+        if not DoMigrate(characterData) then
+            return;
+        end
+
+        local completedAchievements, notCompletedAchievements = characterData.CompletedAchievements, characterData.NotCompletedAchievements;
+        for achievementId, completedOnEpoch in next, completedAchievements do
+            MigrateCompletedAchievement(characterGuid, notCompletedAchievements, achievementId, completedOnEpoch);
+        end
+    end
+
+    addon.Data.SavedData.CharacterData.Load();
+    addon.Data.SavedData.AchievementData.Load();
+
+    for characterGuid, characterData in next, KrowiAF_SavedData.Characters do
+        MigrateCharacter(characterGuid, characterData);
+    end
+
+    for characterGuid, characterData in next, KrowiAF_SavedData.Characters do
+        MigrateNotCompletedAchievements(characterGuid, characterData);
+    end
+
+    for characterGuid, characterData in next, KrowiAF_SavedData.Characters do
+        MigrateCompletedAchievements(characterGuid, characterData);
+    end
+
+    -- KrowiAF_SavedData.Characters = nil;
 end
