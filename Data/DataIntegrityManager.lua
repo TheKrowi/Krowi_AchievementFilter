@@ -762,7 +762,6 @@ function MigrateCharactersAndAchievements(prevBuild, currBuild, prevVersion, cur
             return;
         end
 
-        print("MigrateCharacter", characterGuid)
         KrowiAF_SavedData.CharacterList[characterGuid] = {
             Name = characterData.Name,
             Realm = characterData.Realm,
@@ -793,7 +792,6 @@ function MigrateCharactersAndAchievements(prevBuild, currBuild, prevVersion, cur
             return;
         end
 
-        print("MigrateNotCompletedAchievements", characterGuid)
         local notCompletedAchievements = characterData.NotCompletedAchievements
         for achievementId, criteriaProgress in next, notCompletedAchievements do
             MigrateNotCompletedAchievement(characterGuid, achievementId, criteriaProgress);
@@ -802,13 +800,12 @@ function MigrateCharactersAndAchievements(prevBuild, currBuild, prevVersion, cur
 
     local function MigrateCompletedAchievement(characterGuid, notCompletedAchievements, achievementId, completedOnEpoch)
         if not completedOnEpoch then -- index 1 - 5 might be nil due to data storage (nothing to do about)
-            print(characterGuid, notCompletedAchievements[achievementId], achievementId)
             return;
         end
         local achievementInfo = addon.GetAchievementInfoTable(achievementId);
         local dateTable = date("*t", completedOnEpoch);
         achievementInfo.DateTime = {
-            Year = dateTable.year,
+            Year = dateTable.year - 2000,
             Month = dateTable.month,
             Day = dateTable.day
         };
@@ -821,7 +818,6 @@ function MigrateCharactersAndAchievements(prevBuild, currBuild, prevVersion, cur
             return;
         end
 
-        print("MigrateCompletedAchievements", characterGuid)
         local completedAchievements, notCompletedAchievements = characterData.CompletedAchievements, characterData.NotCompletedAchievements;
         for achievementId, completedOnEpoch in next, completedAchievements do
             MigrateCompletedAchievement(characterGuid, notCompletedAchievements, achievementId, completedOnEpoch);
@@ -843,6 +839,5 @@ function MigrateCharactersAndAchievements(prevBuild, currBuild, prevVersion, cur
         MigrateCompletedAchievements(characterGuid, characterData);
     end
 
-    print("Migration done")
     -- KrowiAF_SavedData.Characters = nil;
 end
