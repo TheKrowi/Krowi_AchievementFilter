@@ -800,21 +800,18 @@ function MigrateCharactersAndAchievements(prevBuild, currBuild, prevVersion, cur
 
     local function MigrateCompletedAchievement(characterGuid, notCompletedAchievements, achievementId, completedOnEpoch)
         if not completedOnEpoch then -- index 1 - 5 might be nil due to data storage (nothing to do about)
+            print(characterGuid, notCompletedAchievements[achievementId], achievementId)
             return;
         end
         local achievementInfo = addon.GetAchievementInfoTable(achievementId);
         local dateTable = date("*t", completedOnEpoch);
-        local customAchievementInfo = {
-            Id = achievementId,
-            DateTime = {
-                Year = dateTable.year,
-                Month = dateTable.month,
-                Day = dateTable.day
-            },
-            Flags = achievementInfo.Flags,
-            WasEarnedByMe = notCompletedAchievements[achievementId] == nil
+        achievementInfo.DateTime = {
+            Year = dateTable.year,
+            Month = dateTable.month,
+            Day = dateTable.day
         };
-        addon.Data.SavedData.AchievementData.SetEarnedBy(characterGuid, customAchievementInfo);
+        achievementInfo.WasEarnedByMe = notCompletedAchievements[achievementId] == nil;
+        addon.Data.SavedData.AchievementData.SetEarnedBy(characterGuid, achievementInfo);
     end
 
     local function MigrateCompletedAchievements(characterGuid, characterData)
