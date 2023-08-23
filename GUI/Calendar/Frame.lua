@@ -538,14 +538,7 @@ end
 function KrowiAF_CalendarFrameMixin:GetEarnedAchievementsInRange()
     local firstDate = GetSecondsSince(self.DayButtons[1]);
     local lastDate = GetSecondsSince(self.DayButtons[maxDaysPerMonth]);
-
-    local achievementIds = {};
-    for achievementId, date in next, KrowiAF_SavedData.Characters[UnitGUID("player")].CompletedAchievements do
-        if date >= firstDate and date <= lastDate then
-            tinsert(achievementIds, achievementId);
-        end
-    end
-    return achievementIds;
+	return addon.Data.SavedData.AchievementData.GetEarnedByCharacterWithinDateRange(UnitGUID("player"), firstDate, lastDate);
 end
 
 function KrowiAF_CalendarFrameMixin:SetAchievementsAndPoints(numAchievements, points)
@@ -553,17 +546,17 @@ function KrowiAF_CalendarFrameMixin:SetAchievementsAndPoints(numAchievements, po
 end
 
 function KrowiAF_CalendarFrameMixin:AddAchievementsToDays()
-    local achievementIds = self:GetEarnedAchievementsInRange();
+    local achievements = self:GetEarnedAchievementsInRange();
     local firstDate = GetSecondsSince(self.DayButtons[1]);
 	self.NumAchievements, self.TotalPoints = 0, 0;
 	local points, icon;
 	local date, dayButtonIndex, dayButton;
-    for _, achievementId in next, achievementIds do
-        _, _, points, _, _, _, _, _, _, icon = addon.GetAchievementInfo(achievementId);
-        date = KrowiAF_SavedData.Characters[UnitGUID("player")].CompletedAchievements[achievementId];
+    for _, achievement in next, achievements do
+        _, _, points, _, _, _, _, _, _, icon = addon.GetAchievementInfo(achievement.Id);
+        date = achievement.Date;
         dayButtonIndex = floor((date - firstDate) / 86400 + 1); -- 86400 seconds in a day, floor to take changes in DST which would result in x.xx
 		dayButton = self.DayButtons[dayButtonIndex];
-        AddAchievementToButton(dayButton, achievementId, icon, points);
+        AddAchievementToButton(dayButton, achievement.Id, icon, points);
 		if not dayButton.Dark then
 			self.NumAchievements = self.NumAchievements + 1;
 			self.TotalPoints = self.TotalPoints + points;

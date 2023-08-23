@@ -4,7 +4,7 @@
 ## X-Acronym: KAF
 ## Version: 62.0
 ## Author: Krowi-Frostmane EU
-## SavedVariables: Options, SavedData, Filters, DebugTable, KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters, KrowiAF_SearchOptions
+## SavedVariables: Options, SavedData, Filters, DebugTable, KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters, KrowiAF_SearchOptions, KrowiAF_Achievements
 ## Notes: Filters your achievements.
 ## IconTexture: interface/icons/achievement_dungeon_heroic_gloryoftheraider
 ## X-Discord-Invite-Link: https://discord.gg/mdBFQJYeQZ

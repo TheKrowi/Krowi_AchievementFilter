@@ -10,14 +10,14 @@ function achievementData.Load()
     KrowiAF_Achievements.LastCompleted = KrowiAF_Achievements.LastCompleted or {};
 end
 
-local function DateTimeToEpoch(year, month, day, hour, min, sec)
+local function DateTimeToEpoch(year, month, day)
     return time{
-        year = year,
+        year = 2000 + year,
         month = month,
         day = day,
-        hour = hour or 12,
-        min = min or 0,
-        sec = sec or 0
+        hour = 12,
+        min = 0,
+        sec = 0
     };
 end
 
@@ -43,15 +43,16 @@ function achievementData.SetEarnedBy(characterGuid, achievementInfo)
     local achievementId = achievementInfo.Id;
     KrowiAF_Achievements.Completed[achievementId] = KrowiAF_Achievements.Completed[achievementId] or {};
     local dateTime = achievementInfo.DateTime;
-    local epoch = DateTimeToEpoch(dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour, dateTime.Min, dateTime.Sec);
+    local epoch = DateTimeToEpoch(dateTime.Year, dateTime.Month, dateTime.Day);
     SetFirstCompletedOn(achievementId, epoch);
     if achievementInfo.Flags.IsAccountWide then
         return;
     end
     KrowiAF_Achievements.Completed[achievementId].EarnedBy = KrowiAF_Achievements.Completed[achievementId].EarnedBy or {};
-    if achievementInfo.WasEarnedByMe then
-        SetEarnedByCharacter(characterGuid, achievementId, epoch);
+    if not achievementInfo.WasEarnedByMe then
+        return;
     end
+    SetEarnedByCharacter(characterGuid, achievementId, epoch);
 end
 
 function achievementData.SetNotEarnedBy(characterGuid, achievementInfo)
@@ -71,13 +72,8 @@ function achievementData.SetCriteriaProgress(characterGuid, achievementInfo, cri
 end
 
 function achievementData.IgnoreAchievement(achievementInfo)
-    return achievementInfo.Points < 0 or achievementInfo.IsStatistic or achievementInfo.IsGuild or achievementInfo.Flags.IsTracking or not achievementInfo.Exists;
+    return achievementInfo.Points < 0 or achievementInfo.IsStatistic or achievementInfo.IsGuild or not achievementInfo.Exists;
 end
-
--- function achievementData.Prune(achievementId)
---     KrowiAF_Achievements.Completed[achievementId] = nil;
---     KrowiAF_Achievements.NotCompleted[achievementId] = nil;
--- end
 
 function achievementData.IsEarnedByCharacter(characterGuid, achievementId)
     local achievement = KrowiAF_Achievements.Completed[achievementId];
@@ -133,40 +129,4 @@ function achievementData.DeleteForCharacter(characterGuid)
     achievementData.ClearCompletedForCharacter(characterGuid);
     achievementData.ClearNotCompletedForCharacter(characterGuid);
     KrowiAF_Achievements.LastCompleted[characterGuid] = nil;
-end
-
-local function GetAdjustedDateTime(year, month, day)
-    local dateTable = date("*t", time());
-    local isToday = dateTable.year == 2000 + year and dateTable.month == month and dateTable.day == day;
-    return 2000 + year, month, day, isToday and dateTable.hour or 12, isToday and dateTable.min or 0, isToday and dateTable.sec or 0;
-end
-
-function achievementData.GetCompletionDateTime(id, completed, flags, wasEarnedByMe, characterGuid, year, month, day)
-    if not completed then
-        -- Not completed achievements return all nil
-        return nil, nil, nil, nil, nil, nil;
-    end
-
-    if not KrowiAF_Achievements.Completed[id] then
-        -- Achievement is completed but has no record yet so return the default
-        return GetAdjustedDateTime(year, month, day);
-    end
-
-    -- At this point we're sure the record exists
-    local secondsSince;
-    if flags.IsAccountWide then
-        -- If account wide, get FirstCompletedOn
-        secondsSince = KrowiAF_Achievements.Completed[id].FirstCompletedOn;
-    elseif wasEarnedByMe and KrowiAF_Achievements.Completed[id].EarnedBy then
-        -- If it was earned by the character, get the character's completion
-        secondsSince = KrowiAF_Achievements.Completed[id].EarnedBy[characterGuid];
-    end
-
-    -- When an achievement is earned and is not account wide, the first time the record does not exist yet, return the default
-    if not secondsSince then
-        return GetAdjustedDateTime(year, month, day);
-    end
-
-    local dateTable = date("*t", secondsSince);
-    return dateTable.year, dateTable.month, dateTable.day, dateTable.hour, dateTable.min, dateTable.sec;
 end

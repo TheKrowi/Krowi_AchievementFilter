@@ -11,14 +11,14 @@ function section.CheckAdd(achievement)
 	return numCriteria > 0;
 end
 
-local function GetProgressScore(character, achievementId)
+local function GetProgressScore(character, guid, achievementId)
 	if character.ExcludeFromMostProgressAchievementTooltip then
 		return;
 	end
-	if not character.NotCompletedAchievements then
+	if not KrowiAF_Achievements.NotCompleted[achievementId] or not KrowiAF_Achievements.NotCompleted[achievementId][guid] then
 		return;
 	end
-	local achievementProgress = character.NotCompletedAchievements[achievementId];
+	local achievementProgress = KrowiAF_Achievements.NotCompleted[achievementId][guid];
 	if not achievementProgress then
 		return;
 	end
@@ -34,11 +34,11 @@ local function GetProgressScore(character, achievementId)
 	return score;
 end
 
-local function GetDetails(character, achievementId)
-	if not character.NotCompletedAchievements then
+local function GetDetails(guid, achievementId)
+	if not KrowiAF_Achievements.NotCompleted[achievementId] or not KrowiAF_Achievements.NotCompleted[achievementId][guid] then
 		return;
 	end
-	local achievementProgress = character.NotCompletedAchievements[achievementId];
+	local achievementProgress = KrowiAF_Achievements.NotCompleted[achievementId][guid];
 	if not achievementProgress then
 		return;
 	end
@@ -82,10 +82,10 @@ local function Sort(characters)
     end);
 end
 
-local function BuildCharactersList(achievement)
+local function BuildCharacterList(achievement)
 	local characters = {};
-	for guid, character in next, KrowiAF_SavedData.Characters do
-		local score = GetProgressScore(character, achievement.Id);
+	for guid, character in next, KrowiAF_SavedData.CharacterList do
+		local score = GetProgressScore(character, guid, achievement.Id);
 		if score then
 			tinsert(characters, {
 				Name = character.Name,
@@ -118,13 +118,13 @@ local function AddName(character, achievement, thisRealm, names, numberOfNames)
 end
 
 function section.Add(achievement)
-	local characters = BuildCharactersList(achievement);
+	local characters = BuildCharacterList(achievement);
 	if not characters or #characters == 0 then
 		return;
 	end
 
 	local thisGuid = UnitGUID("player");
-	local thisCharacter = KrowiAF_SavedData.Characters[thisGuid];
+	local thisCharacter = KrowiAF_SavedData.CharacterList[thisGuid];
 	local thisRealm = thisCharacter.Realm;
 	local names = "";
 	local numberOfNames = 0;
@@ -133,7 +133,7 @@ function section.Add(achievement)
 			names, numberOfNames = AddName(character, achievement, thisRealm, names, numberOfNames);
 		end
 	end
-	local details = GetDetails(KrowiAF_SavedData.Characters[characters[1].Guid], achievement.Id);
+	local details = GetDetails(characters[1].Guid, achievement.Id);
 
 	GameTooltip:AddLine(addon.L["Most progress"]); -- Header
 	GameTooltip:AddLine(names);
