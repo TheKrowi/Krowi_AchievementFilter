@@ -465,7 +465,11 @@
         "SECONDS_ABBR",
         "D_MINUTES",
         "D_SECONDS",
-        "NORMAL_FONT_COLOR_CODE"
+        "NORMAL_FONT_COLOR_CODE",
+        "GetFrameRate",
+        "C_CVar",
+        "debugprofilestop",
+        "SlashCmdList"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

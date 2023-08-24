@@ -539,7 +539,7 @@ function addon.GetAchievementInfo(achievementId) -- Returns an additional bool i
     local id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy, isStatistic = GetAchievementInfo(achievementId);
     if not id then
         flags = addon.Objects.Flags:New(0);
-        return achievementId, " * Placeholder for " .. achievementId .. " * ", 0, false, nil, nil, nil, nil, nil, nil,
+        return achievementId, " * Placeholder for " .. achievementId .. " * ", 0, false, nil, nil, nil,
         " * This is the placeholder for " .. achievementId .. " until it's available next patch.", flags, 134400, "", false, false, "", false, false;
     end
     flags = addon.Objects.Flags:New(flags);
@@ -700,3 +700,78 @@ function addon.IsCustomModifierKeyDown(modifier)
         return IsLeftShiftKeyDown();
     end
 end
+
+--  Budgets 50% of target or current FPS to perform a workload. 
+--  finished = start(workload, onFinish, onDelay)
+--  Arguments:
+--      workload        table       Stack (last in, first out) of functions to call.
+--      onFinish        function?   Optional callback when the table is empty.
+--      onDelay         function?   Optional callback each time work delays to the next frame.
+--  Returns:
+--      finished        boolean     True when finished without any delay; false otherwise.
+function addon.StartWork(workload, onFinish, onDelay)
+    if type(onFinish) == "string" then
+        local onFinishPrint = onFinish;
+        onFinish = function()
+            addon.Diagnostics.Debug(onFinishPrint);
+        end;
+    end
+    if type(onFinish) ~= "function" then
+        onFinish = nil;
+    end
+    local overallStart = debugprofilestop();
+    if type(onDelay) == "boolean" then
+        onDelay = function()
+            addon.Diagnostics.Debug(#workload .. " remaining after " .. ("%.2d"):format(debugprofilestop() - overallStart) / 1000);
+        end;
+    end
+    if type(onDelay) ~= "function" then
+        onDelay = nil;
+    end
+
+    local maxDuration = 500 / (tonumber(C_CVar.GetCVar("targetFPS")) or GetFrameRate());
+    local function continue()
+        local startTime = debugprofilestop();
+        local task = tremove(workload);
+        while (task) do
+            task();
+            if (debugprofilestop() - startTime > maxDuration) then
+                C_Timer.After(0, continue);
+                if onDelay then
+                    onDelay();
+                end
+                return false;
+            end
+            task = tremove(workload);
+        end
+        if onFinish then
+            onFinish();
+        end
+        return true;
+    end
+    return continue();
+end
+
+-- function addon.WorkFinished(subject)
+--     addon.Diagnostics.Debug(subject);
+-- end
+
+-- local workload = {}
+
+-- local function sillyLoop()
+--     addon.Objects.TransmogSet:New(0, 0);
+-- end
+
+-- SlashCmdList["DEBUG_SILLYLOOP"] = function(msg)
+--     wipe(workload)
+--     for i=1, tonumber(msg) or 1 do
+--         workload[i] = sillyLoop
+--     end
+--     local overallStart = debugprofilestop()
+--     addon.StartWork(
+--         workload,
+--         function() print("done!") end,
+--         function() print(#workload.." remaining after "..("%.2d"):format(debugprofilestop()-overallStart)/1000) end
+--     )
+-- end
+-- SLASH_DEBUG_SILLYLOOP1 = "/sillyloop"
