@@ -10,19 +10,24 @@ local data = addon.Data;
 data.ExportedWidgetEvents = {};
 local exportedWidgetEvents = data.ExportedWidgetEvents;
 
-function exportedWidgetEvents.Load(e)
+local t;
+local workload = {
+    function() t[4729] = event:New(4729, 4240492, addon.L["Community Feast: Starting Soon"]); end, -- Community Feast: Starting Soon
+    function() t[4731] = event:New(4731, 4240492, addon.L["Community Feast: Active"]); end, -- Community Feast: Active
+    function() t[4987] = event:New(4987, 236387, addon.L["Time Rift: Active"]); end, -- Time Rift: Active
+    function() t[4992] = event:New(4992, 236387, addon.L["Time Rift: Starting Soon"]); end, -- Time Rift: Starting Soon
+};
+
+function exportedWidgetEvents.Load(tbl)
     if addon.IsWrathClassic then
         return;
     end
 
-    for i, _ in next, e do
-        e[i] = nil;
-    end
-
-    e[4729] = event:New(4729, 4240492, addon.L["Community Feast: Starting Soon"]); -- Community Feast: Starting Soon
-    e[4731] = event:New(4731, 4240492, addon.L["Community Feast: Active"]); -- Community Feast: Active
-    e[4987] = event:New(4987, 236387, addon.L["Time Rift: Active"]); -- Time Rift: Active
-    e[4992] = event:New(4992, 236387, addon.L["Time Rift: Starting Soon"]); -- Time Rift: Starting Soon
+    t = tbl;
+    wipe(t);
+    local name = "Widget Events";
+    addon.Diagnostics.Debug(name .. ": Start loading data");
+    addon.StartWork(name, workload, name .. ": Finished loading data", true);
 end
 
 function exportedWidgetEvents.LoadCategories(e)

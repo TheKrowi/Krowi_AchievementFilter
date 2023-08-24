@@ -10,31 +10,36 @@ local data = addon.Data;
 data.ExportedCalendarEvents = {};
 local exportedCalendarEvents = data.ExportedCalendarEvents;
 
-function exportedCalendarEvents.Load(e)
-    for i, _ in next, e do
-        e[i] = nil;
-    end
+local t;
+local workload = {
+    function() t[141] = event:New(141, 236705); end, -- Feast of Winter Veil
+    function() t[181] = event:New(181, 237000); end, -- Noblegarden
+    function() t[201] = event:New(201, 134508); end, -- Children's Week
+    function() t[324] = event:New(324, 236552); end, -- Hallow's End
+    function() t[327] = event:New(327, 236704); end, -- Lunar Festival
+    function() t[341] = event:New(341, 135268); end, -- Midsummer Fire Festival
+    function() t[372] = event:New(372, 236701); end, -- Brewfest
+    function() t[398] = event:New(398, 133168); end, -- Pirates' Day
+    function() t[404] = event:New(404, 250626); end, -- Pilgrim's Bounty
+    function() t[409] = event:New(409, 237272); end, -- Day of the Dead
+    function() t[423] = event:New(423, 236709); end, -- Love is in the Air
+    function() t[479] = event:New(479, 134481); end, -- Darkmoon Faire
+    function() t[1262] = event:New(1262, 133783); end, -- WoW's 18th Anniversary
+    function() t[1395] = event:New(1395, 1100022); end, -- Kalimdor Cup
+    function() t[1396] = event:New(1396, 4419345); end, -- Secrets of Azeroth (US)
+    function() t[1397] = event:New(1397, 133783); end, -- WoW's 19th Anniversary
+    function() t[1398] = event:New(1398, 4419345); end, -- Secrets of Azeroth (EU)
+    function() t[1399] = event:New(1399, 4419345); end, -- Secrets of Azeroth (KR)
+    function() t[1400] = event:New(1400, 1100022); end, -- Eastern Kingdoms Cup
+    function() t[1425] = event:New(1425, 4630413); end, -- Turbulent Timeways
+};
 
-    e[141] = event:New(141, 236705); -- Feast of Winter Veil
-    e[181] = event:New(181, 237000); -- Noblegarden
-    e[201] = event:New(201, 134508); -- Children's Week
-    e[324] = event:New(324, 236552); -- Hallow's End
-    e[327] = event:New(327, 236704); -- Lunar Festival
-    e[341] = event:New(341, 135268); -- Midsummer Fire Festival
-    e[372] = event:New(372, 236701); -- Brewfest
-    e[398] = event:New(398, 133168); -- Pirates' Day
-    e[404] = event:New(404, 250626); -- Pilgrim's Bounty
-    e[409] = event:New(409, 237272); -- Day of the Dead
-    e[423] = event:New(423, 236709); -- Love is in the Air
-    e[479] = event:New(479, 134481); -- Darkmoon Faire
-    e[1262] = event:New(1262, 133783); -- WoW's 18th Anniversary
-    e[1395] = event:New(1395, 1100022); -- Kalimdor Cup
-    e[1396] = event:New(1396, 4419345); -- Secrets of Azeroth (US)
-    e[1397] = event:New(1397, 133783); -- WoW's 19th Anniversary
-    e[1398] = event:New(1398, 4419345); -- Secrets of Azeroth (EU)
-    e[1399] = event:New(1399, 4419345); -- Secrets of Azeroth (KR)
-    e[1400] = event:New(1400, 1100022); -- Eastern Kingdoms Cup
-    e[1425] = event:New(1425, 4630413); -- Turbulent Timeways
+function exportedCalendarEvents.Load(tbl)
+    t = tbl;
+    wipe(t);
+    local name = "Calendar Events";
+    addon.Diagnostics.Debug(name .. ": Start loading data");
+    addon.StartWork(name, workload, name .. ": Finished loading data", true);
 end
 
 function exportedCalendarEvents.LoadCategories(e)

@@ -1853,6 +1853,7 @@ local workload = {
 function exportedTransmogSets.Load(tbl)
     t = tbl;
     wipe(t);
-    addon.Diagnostics.Debug("Transmog Sets: Start loading data");
-    addon.StartWork(workload, "Transmog Sets: Finished loading data", true);
+    local name = "Transmog Sets";
+    addon.Diagnostics.Debug(name .. ": Start loading data");
+    addon.StartWork(name, workload, name .. ": Finished loading data", true);
 end

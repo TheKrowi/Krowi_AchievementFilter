@@ -18,13 +18,20 @@ data.Maps = {};
 data.CalendarEvents, data.WidgetEvents, data.WorldEvents = {}, {}, {};
 
 function data:LoadOnPlayerLogin()
-    self.TemporaryObtainable:Load();
-
-    self.ExportedCalendarEvents.Load(self.CalendarEvents);
-    self.ExportedWidgetEvents.Load(self.WidgetEvents);
-    self.ExportedWorldEvents.Load(self.WorldEvents);
-
-    data.ExportedTransmogSets.Load(data.TransmogSets);
+    addon.Diagnostics.Debug("On Player Login: Start loading data");
+    addon.StartWork(
+        nil,
+        {
+            { self.ExportedWorldEvents.Load, self.WorldEvents },
+            { self.ExportedWidgetEvents.Load, self.WidgetEvents },
+            { self.ExportedCalendarEvents.Load, self.CalendarEvents },
+            { self.ExportedAchievements.Load, self.Achievements, self.TransmogSets, self.AchievementIds },
+            { self.ExportedTransmogSets.Load, self.TransmogSets },
+            { self.TemporaryObtainable.Load, self }
+        },
+        "On Player Login: Finished loading data",
+        true
+    );
 end
 
 local isLoaded;
