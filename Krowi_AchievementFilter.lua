@@ -142,3 +142,35 @@ function loadHelper:OnEvent(event, arg1, arg2)
     end
 end
 loadHelper:SetScript("OnEvent", loadHelper.OnEvent);
+
+-- function KrowiAF_TEST()
+--     local startTime = debugprofilestop();
+
+--     local t = {};
+--     for i = 1, 10000, 1 do
+--         t[i] = i;
+--     end
+
+--     print(t[5000], debugprofilestop() - startTime);
+--     local startTime = debugprofilestop();
+
+--     local u = {};
+--     for i = 1, 10000, 1 do
+--         u[i] = i;
+--     end
+
+--     print(u[5000], debugprofilestop() - startTime);
+--     local startTime = debugprofilestop();
+
+--     local v = {};
+--     for i = 1, 10000, 1 do
+--         v[i] = t[i];
+--     end
+--     for i = 1, 10000, 1 do
+--         v[10000 + i] = u[i];
+--     end
+
+--     print(v[5000], v[15000], debugprofilestop() - startTime);
+-- end
+
+-- KrowiAF_TEST()

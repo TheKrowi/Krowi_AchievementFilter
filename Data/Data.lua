@@ -4,6 +4,8 @@ local diagnostics = addon.Diagnostics;
 addon.Data = {};
 local data = addon.Data;
 
+data.Workload = {};
+
 data.TransmogSets = {};
 
 data.Achievements = {};
@@ -18,20 +20,30 @@ data.Maps = {};
 data.CalendarEvents, data.WidgetEvents, data.WorldEvents = {}, {}, {};
 
 function data:LoadOnPlayerLogin()
+    self.TemporaryObtainable:Load();
+    self.ExportedTransmogSets.RegisterWorkload(self.TransmogSets);
+    self.ExportedAchievements.RegisterWorkload(self.Achievements, self.TransmogSets);
+    local overallStart = debugprofilestop();
+    addon.StartWorkTable(
+        self.Workload,
+        function() print("Finished whoo"); end,
+        function(numOfWork)
+            print(numOfWork .. " remaining after " .. ("%.2d"):format(debugprofilestop() - overallStart) / 1000);
+        end
+    );
     addon.Diagnostics.Debug("On Player Login: Start loading data");
     addon.StartWork(
         nil,
         {
             { self.ExportedWorldEvents.Load, self.WorldEvents },
             { self.ExportedWidgetEvents.Load, self.WidgetEvents },
-            { self.ExportedCalendarEvents.Load, self.CalendarEvents },
-            { self.ExportedAchievements.Load, self.Achievements, self.TransmogSets, self.AchievementIds },
-            { self.ExportedTransmogSets.Load, self.TransmogSets },
-            { self.TemporaryObtainable.Load, self }
+            { self.ExportedCalendarEvents.Load, self.CalendarEvents }
         },
         "On Player Login: Finished loading data",
         true
     );
+
+    self.ExportedAchievements.Load(self.AchievementIds);
 end
 
 local isLoaded;
@@ -40,7 +52,7 @@ function data.Load()
         return;
     end
 
-    data.AchievementIds = data.ExportedAchievements.Load(data.Achievements, data.TransmogSets);
+    -- data.AchievementIds = data.ExportedAchievements.Load(data.Achievements, data.TransmogSets);
     local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_Layout", "cmd", "KROWIAF-0.0").args.Summary.args.Summary.args.NumAchievements; -- cmd and KROWIAF-0.0 are just to make the function work
     custom.max = #data.AchievementIds;
 
@@ -115,7 +127,7 @@ end
 
 function data.AddAchievementIfNil(id, points)
     if data.Achievements[id] == nil then
-        data.Achievements[id] = addon.Objects.Achievement:New(id, points);
+        addon.Objects.Achievement:New(id, points);
         tinsert(data.AchievementIds, id);
     end
 end
@@ -190,6 +202,15 @@ function data.LoadBlizzardTabAchievements(categories)
     addedOutOfOrder = nil;
 
     return tab.Children;
+end
+
+function data.InjectLoadingDebug(workload, name)
+    if not addon.Diagnostics.DebugEnabled() then
+        return;
+    end
+
+    tinsert(workload, function() print(name .. ": Start loading data"); end);
+    tinsert(workload, 1, function() print(name .. ": Finished loading data"); end);
 end
 
 -- function KrowiAF_PrintPetCriteria(achievementID, parentCriteriaID, criteriaNumber)

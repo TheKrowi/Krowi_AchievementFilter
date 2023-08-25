@@ -315,6 +315,7 @@ function addon.BuildCache()
     local character = addon.Data.SavedData.CharacterData.Upsert(characterGuid);
     character.Points = 0;
     local highestId = addon.Data.AchievementIds[#addon.Data.AchievementIds];
+    print(highestId, #addon.Data.AchievementIds)
     while gapSize < 500 or i < highestId do -- Biggest gap is 209 in 9.0.5 as of 2021-05-03
         local achievementInfo = addon.GetAchievementInfoTable(i);
         HandleAchievement(characterGuid, achievementInfo);
@@ -709,7 +710,8 @@ end
 --      onDelay         function?   Optional callback each time work delays to the next frame.
 --  Returns:
 --      finished        boolean     True when finished without any delay; false otherwise.
-function addon.StartWork(workload, onFinish, onDelay)
+function addon.StartWork(name, workload, onFinish, onDelay)
+    name = name and " " .. name or "";
     if type(onFinish) == "string" then
         local onFinishPrint = onFinish;
         onFinish = function()
@@ -722,7 +724,7 @@ function addon.StartWork(workload, onFinish, onDelay)
     local overallStart = debugprofilestop();
     if type(onDelay) == "boolean" then
         onDelay = function()
-            addon.Diagnostics.Debug(#workload .. " remaining after " .. ("%.2d"):format(debugprofilestop() - overallStart) / 1000);
+            addon.Diagnostics.Debug(#workload .. name .. " remaining after " .. ("%.2d"):format(debugprofilestop() - overallStart) / 1000);
         end;
     end
     if type(onDelay) ~= "function" then
@@ -733,8 +735,12 @@ function addon.StartWork(workload, onFinish, onDelay)
     local function continue()
         local startTime = debugprofilestop();
         local task = tremove(workload);
-        while (task) do
-            task();
+        while task do
+            if type(task) == "function" then
+                task();
+            elseif type(task) == "table" then
+                task[1](unpack(task, 2, #task));
+            end
             if (debugprofilestop() - startTime > maxDuration) then
                 C_Timer.After(0, continue);
                 if onDelay then
@@ -743,6 +749,46 @@ function addon.StartWork(workload, onFinish, onDelay)
                 return false;
             end
             task = tremove(workload);
+        end
+        if onFinish then
+            onFinish();
+        end
+        return true;
+    end
+    return continue();
+end
+
+function addon.StartWorkTable(workloadTables, onFinish, onDelay)
+    local maxDuration = 500 / (tonumber(C_CVar.GetCVar("targetFPS")) or GetFrameRate());
+    local workload = tremove(workloadTables);
+    local function continue()
+        local startTime = debugprofilestop();
+        local task = tremove(workload);
+        while task do
+            if type(task) == "function" then
+                task();
+            elseif type(task) == "table" then
+                task[1](unpack(task, 2, #task));
+            end
+            if (debugprofilestop() - startTime > maxDuration) then
+                C_Timer.After(0, continue);
+                if onDelay then
+                    local numOfWork = 0;
+                    for _, wl in next, workloadTables do
+                        numOfWork = numOfWork + #wl;
+                    end
+                    numOfWork = numOfWork + #workload;
+                    onDelay(numOfWork);
+                end
+                return false;
+            end
+            task = tremove(workload);
+            if not task then
+                workload = tremove(workloadTables);
+                if workload then
+                    task = tremove(workload);
+                end
+            end
         end
         if onFinish then
             onFinish();
