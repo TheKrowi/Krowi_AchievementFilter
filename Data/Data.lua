@@ -4,14 +4,24 @@ local diagnostics = addon.Diagnostics;
 addon.Data = {};
 local data = addon.Data;
 
-data.Workload = {};
+data.TasksGroups = {};
 
 data.TransmogSets = {};
 
 data.Achievements = {};
 data.AchievementIds = {};
 
-data.CategoriesExpansions, data.CategoriesEvents, data.CategoriesPvP, data.CategoriesSpecials, data.CategoriesAchievements = {}, {}, {}, {}, {};
+data.Categories = {};
+data.WatchListCategories, data.CurrentZoneCategories, data.SelectedZoneCategories = {}, {}, {};
+data.SearchResultsCategories, data.TrackingAchievementsCategories, data.ExcludedCategories = {}, {}, {};
+local adjustableCategories = {
+    WatchListCategories = data.WatchListCategories,
+    CurrentZoneCategories = data.CurrentZoneCategories,
+    SelectedZoneCategories = data.SelectedZoneCategories,
+    SearchResultsCategories = data.SearchResultsCategories,
+    TrackingAchievementsCategories = data.TrackingAchievementsCategories,
+    ExcludedCategories = data.ExcludedCategories
+};
 
 data.RCMenuExtras = {};
 
@@ -20,27 +30,23 @@ data.Maps = {};
 data.CalendarEvents, data.WidgetEvents, data.WorldEvents = {}, {}, {};
 
 function data:LoadOnPlayerLogin()
-    self.TemporaryObtainable:Load();
-    self.ExportedTransmogSets.RegisterWorkload(self.TransmogSets);
-    self.ExportedAchievements.RegisterWorkload(self.Achievements, self.TransmogSets);
-    local overallStart = debugprofilestop();
-    addon.StartWorkTable(
-        self.Workload,
-        function() print("Finished whoo"); end,
-        function(numOfWork)
-            print(numOfWork .. " remaining after " .. ("%.2d"):format(debugprofilestop() - overallStart) / 1000);
-        end
-    );
     addon.Diagnostics.Debug("On Player Login: Start loading data");
-    addon.StartWork(
-        nil,
-        {
-            { self.ExportedWorldEvents.Load, self.WorldEvents },
-            { self.ExportedWidgetEvents.Load, self.WidgetEvents },
-            { self.ExportedCalendarEvents.Load, self.CalendarEvents }
-        },
-        "On Player Login: Finished loading data",
-        true
+
+    self.TemporaryObtainable:Load();
+
+    self.ExportedTransmogSets.RegisterTasks(self.TransmogSets);
+    self.ExportedAchievements.RegisterTasks(self.Achievements, self.TransmogSets);
+    self.ExportedCategories.RegisterTasks(self.Categories, adjustableCategories, self.Achievements, addon.Tabs);
+    self.ExportedCalendarEvents.RegisterTasks(self.CalendarEvents);
+    self.ExportedWidgetEvents.RegisterTasks(self.WidgetEvents);
+    self.ExportedWorldEvents.RegisterTasks(self.WorldEvents);
+    local overallStart = debugprofilestop();
+    addon.StartTasksGroups(
+        self.TasksGroups,
+        function() addon.Diagnostics.Debug("On Player Login: Finished loading data in " .. floor(debugprofilestop() - overallStart + 0.5) .. " ms"); end,
+        function(numOfWork)
+            addon.Diagnostics.Debug(numOfWork .. " remaining after " .. ("%.2d"):format(debugprofilestop() - overallStart) / 1000);
+        end
     );
 
     self.ExportedAchievements.Load(self.AchievementIds);
@@ -52,29 +58,30 @@ function data.Load()
         return;
     end
 
-    -- data.AchievementIds = data.ExportedAchievements.Load(data.Achievements, data.TransmogSets);
+    local start = debugprofilestop();
     local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_Layout", "cmd", "KROWIAF-0.0").args.Summary.args.Summary.args.NumAchievements; -- cmd and KROWIAF-0.0 are just to make the function work
     custom.max = #data.AchievementIds;
+    addon.Diagnostics.Debug("Step 1 took " .. floor(debugprofilestop() - start + 0.5) .. " ms");
 
-    local tabsCategories;
-    tabsCategories, data.WatchListCategories, data.CurrentZoneCategories, data.SelectedZoneCategories, data.SearchResultsCategories, data.TrackingAchievementsCategories, data.ExcludedCategories = data.ExportedCategories.Load(data.Achievements);
-    for t, _ in next, addon.Tabs do
-        if tabsCategories[t] ~= nil then
-            addon.Tabs[t].Categories = tabsCategories[t];
-        end
-    end
-
+    start = debugprofilestop();
     data.ExportedPetBattles.Load(data.RCMenuExtras);
+    addon.Diagnostics.Debug("Step 2 took " .. floor(debugprofilestop() - start + 0.5) .. " ms");
 
+    start = debugprofilestop();
     data.ExportedUiMaps.Load(data.Maps, data.Achievements);
+    addon.Diagnostics.Debug("Step 3 took " .. floor(debugprofilestop() - start + 0.5) .. " ms");
 
+    start = debugprofilestop();
     data.ExportedCalendarEvents.LoadCategories(data.CalendarEvents, data.Achievements);
     data.ExportedWidgetEvents.LoadCategories(data.WidgetEvents, data.Achievements);
     data.ExportedWorldEvents.LoadCategories(data.WorldEvents, data.Achievements);
+    addon.Diagnostics.Debug("Step 4 took " .. floor(debugprofilestop() - start + 0.5) .. " ms");
 
+    start = debugprofilestop();
     if addon.Tabs["Achievements"] then
         addon.Tabs["Achievements"].Categories = data.LoadBlizzardTabAchievements(addon.Tabs["Achievements"].Categories);
     end
+    addon.Diagnostics.Debug("Step 5 took " .. floor(debugprofilestop() - start + 0.5) .. " ms");
 
     isLoaded = true;
     addon.Diagnostics.Debug("Expansion data loaded");
@@ -209,8 +216,9 @@ function data.InjectLoadingDebug(workload, name)
         return;
     end
 
-    tinsert(workload, function() print(name .. ": Start loading data"); end);
-    tinsert(workload, 1, function() print(name .. ": Finished loading data"); end);
+    -- Data is in reverse order in the tables so add 'Start' to the end and 'Finished' to the beginning
+    tinsert(workload, function() addon.Diagnostics.Debug(name .. ": Start loading data"); end);
+    tinsert(workload, 1, function() addon.Diagnostics.Debug(name .. ": Finished loading data"); end);
 end
 
 -- function KrowiAF_PrintPetCriteria(achievementID, parentCriteriaID, criteriaNumber)

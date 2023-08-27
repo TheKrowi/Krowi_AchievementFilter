@@ -315,7 +315,6 @@ function addon.BuildCache()
     local character = addon.Data.SavedData.CharacterData.Upsert(characterGuid);
     character.Points = 0;
     local highestId = addon.Data.AchievementIds[#addon.Data.AchievementIds];
-    print(highestId, #addon.Data.AchievementIds)
     while gapSize < 500 or i < highestId do -- Biggest gap is 209 in 9.0.5 as of 2021-05-03
         local achievementInfo = addon.GetAchievementInfoTable(i);
         HandleAchievement(characterGuid, achievementInfo);
@@ -758,37 +757,57 @@ function addon.StartWork(name, workload, onFinish, onDelay)
     return continue();
 end
 
-function addon.StartWorkTable(workloadTables, onFinish, onDelay)
+local function RunTask(task)
+    if type(task) == "function" then
+        task();
+    elseif type(task) == "table" then
+        task[1](unpack(task, 2, #task));
+    end
+end
+
+local function GetNumOfTasksLeft(workloadTables, tasks)
+    local numOfTasksLeft = tasks and #tasks or 0;
+    for _, wl in next, workloadTables do
+        numOfTasksLeft = numOfTasksLeft + #wl;
+    end
+    return numOfTasksLeft;
+end
+
+local function Delay(continue, startTime, maxDuration, onDelay, workloadTables, tasks)
+    if (debugprofilestop() - startTime <= maxDuration) then
+        return false;
+    end
+    C_Timer.After(0, continue);
+    if onDelay then
+        onDelay(GetNumOfTasksLeft(workloadTables, tasks));
+    end
+    return true;
+end
+
+local function GetNextTask(tasks, workloadTables)
+    local task = tremove(tasks);
+    if task then
+        return tasks, task;
+    end
+    tasks = tremove(workloadTables);
+    if tasks then
+        task = tremove(tasks);
+    end
+    return tasks, task;
+end
+
+function addon.StartTasksGroups(tasksGroups, onFinish, onDelay)
     local maxDuration = 500 / (tonumber(C_CVar.GetCVar("targetFPS")) or GetFrameRate());
-    local workload = tremove(workloadTables);
+    local tasks = tremove(tasksGroups);
     local function continue()
         local startTime = debugprofilestop();
-        local task = tremove(workload);
+        local task = tremove(tasks);
         while task do
-            if type(task) == "function" then
-                task();
-            elseif type(task) == "table" then
-                task[1](unpack(task, 2, #task));
-            end
-            if (debugprofilestop() - startTime > maxDuration) then
-                C_Timer.After(0, continue);
-                if onDelay then
-                    local numOfWork = 0;
-                    for _, wl in next, workloadTables do
-                        numOfWork = numOfWork + #wl;
-                    end
-                    numOfWork = numOfWork + #workload;
-                    onDelay(numOfWork);
-                end
+            RunTask(task);
+            if Delay(continue, startTime, maxDuration, onDelay, tasksGroups, tasks) then
                 return false;
             end
-            task = tremove(workload);
-            if not task then
-                workload = tremove(workloadTables);
-                if workload then
-                    task = tremove(workload);
-                end
-            end
+            tasks, task = GetNextTask(tasks, tasksGroups);
         end
         if onFinish then
             onFinish();
@@ -797,27 +816,3 @@ function addon.StartWorkTable(workloadTables, onFinish, onDelay)
     end
     return continue();
 end
-
--- function addon.WorkFinished(subject)
---     addon.Diagnostics.Debug(subject);
--- end
-
--- local workload = {}
-
--- local function sillyLoop()
---     addon.Objects.TransmogSet:New(0, 0);
--- end
-
--- SlashCmdList["DEBUG_SILLYLOOP"] = function(msg)
---     wipe(workload)
---     for i=1, tonumber(msg) or 1 do
---         workload[i] = sillyLoop
---     end
---     local overallStart = debugprofilestop()
---     addon.StartWork(
---         workload,
---         function() print("done!") end,
---         function() print(#workload.." remaining after "..("%.2d"):format(debugprofilestop()-overallStart)/1000) end
---     )
--- end
--- SLASH_DEBUG_SILLYLOOP1 = "/sillyloop"
