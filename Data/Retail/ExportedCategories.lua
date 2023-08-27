@@ -21,9 +21,6 @@ function exportedCategories.RegisterTasks(_categories, _adjustableCategories, _a
     tinsert(data.TasksGroups, 1, tasks);
 end
 
--- function exportedCategories.Load(a)
--- end
-
 local function N(id, ...)
     categories[id] = category:New(...);
 end

@@ -50,6 +50,9 @@ function data:LoadOnPlayerLogin()
     );
 
     self.ExportedAchievements.Load(self.AchievementIds);
+
+    local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_Layout", "cmd", "KROWIAF-0.0").args.Summary.args.Summary.args.NumAchievements; -- cmd and KROWIAF-0.0 are just to make the function work
+    custom.max = #data.AchievementIds;
 end
 
 local isLoaded;
@@ -59,11 +62,6 @@ function data.Load()
     end
 
     local start = debugprofilestop();
-    local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_Layout", "cmd", "KROWIAF-0.0").args.Summary.args.Summary.args.NumAchievements; -- cmd and KROWIAF-0.0 are just to make the function work
-    custom.max = #data.AchievementIds;
-    addon.Diagnostics.Debug("Step 1 took " .. floor(debugprofilestop() - start + 0.5) .. " ms");
-
-    start = debugprofilestop();
     data.ExportedPetBattles.Load(data.RCMenuExtras);
     addon.Diagnostics.Debug("Step 2 took " .. floor(debugprofilestop() - start + 0.5) .. " ms");
 
@@ -185,9 +183,6 @@ function data.LoadBlizzardTabAchievements(categories)
 
     for i = 1, #data.AchievementIds do
         local prevId = GetPreviousAchievement(data.AchievementIds[i]);
-        if prevId == 14884 then -- 14884 is a tracking achievement and is not earned by everyone
-            prevId = 9;
-        end
         if prevId and data.Achievements[prevId] then
             data.Achievements[prevId]:AddNext(data.Achievements[data.AchievementIds[i]]);
         end
