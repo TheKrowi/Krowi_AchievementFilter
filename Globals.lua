@@ -266,15 +266,22 @@ local function AddToCriteriaCache(characterGuid, achievementInfo)
     local achievementId = achievementInfo.Id;
     local numCriteria = GetAchievementNumCriteria(achievementId);
     if numCriteria <= 0 then
-        return;
+        return 0;
     end
-    addon.Data.SavedData.AchievementData.SetNotEarnedBy(characterGuid, achievementInfo);
-    for j = 1, numCriteria do
-        local _, criteriaType, criteriaIsCompleted, quantity, _, _, _, assetId, _, _, _, hasValueProgress = addon.GetAchievementCriteriaInfo(achievementId, j);
+    for i = 1, numCriteria do
+        local _, criteriaType, _, _, _, _, _, assetId, _, _, _, _ = addon.GetAchievementCriteriaInfo(achievementId, i);
         if criteriaType == 8 then -- See https://wowpedia.fandom.com/wiki/API_GetAchievementCriteriaInfo for all criteria types
             tinsert(criteriaCache, {AchievementId = assetId, RequiredForId = achievementId});
         end
-        addon.Data.SavedData.AchievementData.SetCriteriaProgress(characterGuid, achievementInfo, j, hasValueProgress and quantity or criteriaIsCompleted);
+    end
+    return numCriteria;
+end
+
+local function HandleNotCompletedAchievement(characterGuid, achievementInfo, numCriteria)
+    addon.Data.SavedData.AchievementData.SetNotEarnedBy(characterGuid, achievementInfo);
+    for i = 1, numCriteria do
+        local _, _, criteriaIsCompleted, quantity, _, _, _, _, _, _, _, hasValueProgress = addon.GetAchievementCriteriaInfo(achievementInfo.Id, i);
+        addon.Data.SavedData.AchievementData.SetCriteriaProgress(characterGuid, achievementInfo, i, hasValueProgress and quantity or criteriaIsCompleted);
     end
 end
 
@@ -296,11 +303,13 @@ local function HandleAchievement(characterGuid, achievementInfo)
         HandleCompletedAchievement(characterGuid, achievementInfo);
     end
 
+    local numCriteria = AddToCriteriaCache(characterGuid, achievementInfo);
+
     if achievementInfo.WasEarnedByMe or achievementInfo.Flags.IsAccountWide or KrowiAF_SavedData.CharacterList[characterGuid].Ignore then
         return;
     end
 
-    AddToCriteriaCache(characterGuid, achievementInfo);
+    HandleNotCompletedAchievement(characterGuid, achievementInfo, numCriteria);
 end
 
 local characterPoints;
