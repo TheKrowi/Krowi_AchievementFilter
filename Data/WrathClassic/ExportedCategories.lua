@@ -54,9 +54,8 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-08-27 16-36-03 ]] --
+-- [[ Exported at 2023-09-03 17-09-36 ]] --
 tasks = {
-
     {F, 857, "ExcludedCategories"},
     {C, 971, 857},
     {N, 857,k.L["Excluded"]}, -- Excluded

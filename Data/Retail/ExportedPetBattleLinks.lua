@@ -18,6 +18,10 @@ function exportedPetBattles.RegisterTasks(_rightClickMenuExtras)
     tinsert(data.TasksGroups, 1, tasks);
 end
 
+function exportedPetBattles.Load()
+    tmpObjects = nil;
+end
+
 local function N(id, ...)
     rightClickMenuExtras[id] = menItm:NewExtLink(...);
 end
