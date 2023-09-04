@@ -80,9 +80,9 @@ function header.HookSetPointsText()
             processHook = false;
             if addon.Options.db.profile.AchievementPoints.Format == 1 then
             elseif addon.Options.db.profile.AchievementPoints.Format == 2 then
-                AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points) .. " / " .. BreakUpLargeNumbers(GetTotalAchievementPoints()));
+                AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points or -1) .. " / " .. BreakUpLargeNumbers(GetTotalAchievementPoints() or -1));
             elseif addon.Options.db.profile.AchievementPoints.Format == 3 then
-                AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points));
+                AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points or -1));
             end
         end
         processHook = true;

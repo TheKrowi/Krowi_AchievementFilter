@@ -110,6 +110,24 @@ function KrowiAF_AchievementsFrameMixin:OnShow()
 		self:ForceUpdate();
 		addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = nil;
 	end
+
+	local selectedTab = addon.GUI.SelectedTab;
+	if not selectedTab then
+		return;
+	end
+
+	self.Text:Hide();
+
+	local selectedCategory = selectedTab.SelectedCategory;
+	if not selectedCategory then
+		if not selectedTab:GetCategories() then
+			self.Text:SetText(addon.L["Categories not loaded"]:KAF_InjectAddonName());
+		else
+			self.Text:SetText(addon.L["No category selected"]);
+		end
+		self.Text:Show();
+		return;
+	end
 end
 
 local function Validate(achievements, displayAchievements, defaultOrder)
@@ -160,6 +178,10 @@ function KrowiAF_AchievementsFrameMixin:Update(retainScrollPosition)
 	end
 
 	local selectedCategory = selectedTab.SelectedCategory;
+	if not selectedCategory then
+		return;
+	end
+
 	local updateAchievements = cachedCategory ~= selectedCategory or selectedCategory.HasFlexibleData;
 	cachedCategory = selectedCategory;
 	if cachedCategory.IsCurrentZone then
@@ -169,6 +191,11 @@ function KrowiAF_AchievementsFrameMixin:Update(retainScrollPosition)
 	UpdateDataProvider(self, updateAchievements, retainScrollPosition);
 
 	self.Text:Hide();
+	if cachedAchievements and #cachedAchievements == 0 then
+		self.Text:SetText(addon.L["This category has no achievements"]);
+		self.Text:Show();
+		return;
+	end
 
 	-- Make sure the correct tooltip is shown when scrolling
 	if highlightedButton then

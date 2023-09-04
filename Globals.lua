@@ -266,15 +266,22 @@ local function AddToCriteriaCache(characterGuid, achievementInfo)
     local achievementId = achievementInfo.Id;
     local numCriteria = GetAchievementNumCriteria(achievementId);
     if numCriteria <= 0 then
-        return;
+        return 0;
     end
-    addon.Data.SavedData.AchievementData.SetNotEarnedBy(characterGuid, achievementInfo);
-    for j = 1, numCriteria do
-        local _, criteriaType, criteriaIsCompleted, quantity, _, _, _, assetId, _, _, _, hasValueProgress = addon.GetAchievementCriteriaInfo(achievementId, j);
+    for i = 1, numCriteria do
+        local _, criteriaType, _, _, _, _, _, assetId, _, _, _, _ = addon.GetAchievementCriteriaInfo(achievementId, i);
         if criteriaType == 8 then -- See https://wowpedia.fandom.com/wiki/API_GetAchievementCriteriaInfo for all criteria types
             tinsert(criteriaCache, {AchievementId = assetId, RequiredForId = achievementId});
         end
-        addon.Data.SavedData.AchievementData.SetCriteriaProgress(characterGuid, achievementInfo, j, hasValueProgress and quantity or criteriaIsCompleted);
+    end
+    return numCriteria;
+end
+
+local function HandleNotCompletedAchievement(characterGuid, achievementInfo, numCriteria)
+    addon.Data.SavedData.AchievementData.SetNotEarnedBy(characterGuid, achievementInfo);
+    for i = 1, numCriteria do
+        local _, _, criteriaIsCompleted, quantity, _, _, _, _, _, _, _, hasValueProgress = addon.GetAchievementCriteriaInfo(achievementInfo.Id, i);
+        addon.Data.SavedData.AchievementData.SetCriteriaProgress(characterGuid, achievementInfo, i, hasValueProgress and quantity or criteriaIsCompleted);
     end
 end
 
@@ -296,11 +303,13 @@ local function HandleAchievement(characterGuid, achievementInfo)
         HandleCompletedAchievement(characterGuid, achievementInfo);
     end
 
+    local numCriteria = AddToCriteriaCache(characterGuid, achievementInfo);
+
     if achievementInfo.WasEarnedByMe or achievementInfo.Flags.IsAccountWide or KrowiAF_SavedData.CharacterList[characterGuid].Ignore then
         return;
     end
 
-    AddToCriteriaCache(characterGuid, achievementInfo);
+    HandleNotCompletedAchievement(characterGuid, achievementInfo, numCriteria);
 end
 
 local characterPoints;
@@ -314,7 +323,7 @@ function addon.BuildCache()
     local gapSize, i = 0, 1;
     local character = addon.Data.SavedData.CharacterData.Upsert(characterGuid);
     character.Points = 0;
-    local highestId = addon.Data.AchievementIds[#addon.Data.AchievementIds];
+    local highestId = addon.Data.HighestAchievementId;
     while gapSize < 500 or i < highestId do -- Biggest gap is 209 in 9.0.5 as of 2021-05-03
         local achievementInfo = addon.GetAchievementInfoTable(i);
         HandleAchievement(characterGuid, achievementInfo);
@@ -539,7 +548,7 @@ function addon.GetAchievementInfo(achievementId) -- Returns an additional bool i
     local id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy, isStatistic = GetAchievementInfo(achievementId);
     if not id then
         flags = addon.Objects.Flags:New(0);
-        return achievementId, " * Placeholder for " .. achievementId .. " * ", 0, false, nil, nil, nil, nil, nil, nil,
+        return achievementId, " * Placeholder for " .. achievementId .. " * ", 0, false, nil, nil, nil,
         " * This is the placeholder for " .. achievementId .. " until it's available next patch.", flags, 134400, "", false, false, "", false, false;
     end
     flags = addon.Objects.Flags:New(flags);
@@ -699,4 +708,120 @@ function addon.IsCustomModifierKeyDown(modifier)
     elseif modifier == 10 then
         return IsLeftShiftKeyDown();
     end
+end
+
+--  Budgets 50% of target or current FPS to perform a workload. 
+--  finished = start(workload, onFinish, onDelay)
+--  Arguments:
+--      workload        table       Stack (last in, first out) of functions to call.
+--      onFinish        function?   Optional callback when the table is empty.
+--      onDelay         function?   Optional callback each time work delays to the next frame.
+--  Returns:
+--      finished        boolean     True when finished without any delay; false otherwise.
+function addon.StartWork(name, workload, onFinish, onDelay)
+    name = name and " " .. name or "";
+    if type(onFinish) == "string" then
+        local onFinishPrint = onFinish;
+        onFinish = function()
+            addon.Diagnostics.Debug(onFinishPrint);
+        end;
+    end
+    if type(onFinish) ~= "function" then
+        onFinish = nil;
+    end
+    local overallStart = debugprofilestop();
+    if type(onDelay) == "boolean" then
+        onDelay = function()
+            addon.Diagnostics.Debug(#workload .. name .. " remaining after " .. ("%.2d"):format(debugprofilestop() - overallStart) / 1000);
+        end;
+    end
+    if type(onDelay) ~= "function" then
+        onDelay = nil;
+    end
+
+    local maxDuration = 500 / (tonumber(C_CVar.GetCVar("targetFPS")) or GetFrameRate());
+    local function continue()
+        local startTime = debugprofilestop();
+        local task = tremove(workload);
+        while task do
+            if type(task) == "function" then
+                task();
+            elseif type(task) == "table" then
+                task[1](unpack(task, 2, #task));
+            end
+            if (debugprofilestop() - startTime > maxDuration) then
+                C_Timer.After(0, continue);
+                if onDelay then
+                    onDelay();
+                end
+                return false;
+            end
+            task = tremove(workload);
+        end
+        if onFinish then
+            onFinish();
+        end
+        return true;
+    end
+    return continue();
+end
+
+local function RunTask(task)
+    if type(task) == "function" then
+        task();
+    elseif type(task) == "table" then
+        task[1](unpack(task, 2, #task));
+    end
+end
+
+local function GetNumOfTasksLeft(workloadTables, tasks)
+    local numOfTasksLeft = tasks and #tasks or 0;
+    for _, wl in next, workloadTables do
+        numOfTasksLeft = numOfTasksLeft + #wl;
+    end
+    return numOfTasksLeft;
+end
+
+local function Delay(continue, startTime, maxDuration, onDelay, workloadTables, tasks)
+    if (debugprofilestop() - startTime <= maxDuration) then
+        return false;
+    end
+    C_Timer.After(0, continue);
+    if onDelay then
+        onDelay(GetNumOfTasksLeft(workloadTables, tasks));
+    end
+    return true;
+end
+
+local function GetNextTask(tasks, workloadTables)
+    local task = tremove(tasks);
+    if task then
+        return tasks, task;
+    end
+    tasks = tremove(workloadTables);
+    if tasks then
+        task = tremove(tasks);
+    end
+    return tasks, task;
+end
+
+function addon.StartTasksGroups(tasksGroups, onFinish, onDelay)
+    local maxDuration = 500 / (tonumber(C_CVar.GetCVar("targetFPS")) or GetFrameRate());
+    local tasks = tremove(tasksGroups);
+    local function continue()
+        local startTime = debugprofilestop();
+        local task = tremove(tasks);
+        while task do
+            RunTask(task);
+            if Delay(continue, startTime, maxDuration, onDelay, tasksGroups, tasks) then
+                return false;
+            end
+            tasks, task = GetNextTask(tasks, tasksGroups);
+        end
+        if onFinish then
+            onFinish();
+        end
+        return true;
+    end
+    return continue();
 end

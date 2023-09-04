@@ -1,39 +1,45 @@
--- [[ Exported at 2023-08-15 13-37-13 ]] --
--- [[ This code is automatically generated as an export from ]] --
--- [[ an SQLite database and is not meant for manual edit. ]] --
-
--- [[ Namespaces ]] --
 local _, addon = ...;
-local objects = addon.Objects;
-local event = objects.Event;
 local data = addon.Data;
 data.ExportedCalendarEvents = {};
 local exportedCalendarEvents = data.ExportedCalendarEvents;
+local objects = addon.Objects;
+local event = objects.Event;
 
-function exportedCalendarEvents.Load(e)
-    for i, _ in next, e do
-        e[i] = nil;
-    end
+local tasks, calendarEvents;
+function exportedCalendarEvents.RegisterTasks(_calendarEvents)
+    calendarEvents = _calendarEvents;
+    wipe(calendarEvents);
 
-    e[141] = event:New(141, 236705); -- Feast of Winter Veil
-    e[181] = event:New(181, 237000); -- Noblegarden
-    e[201] = event:New(201, 134508); -- Children's Week
-    e[324] = event:New(324, 236552); -- Hallow's End
-    e[327] = event:New(327, 236704); -- Lunar Festival
-    e[341] = event:New(341, 135268); -- Midsummer Fire Festival
-    e[372] = event:New(372, 236701); -- Brewfest
-    e[374] = event:New(374, 134481); -- Darkmoon Faire
-    e[398] = event:New(398, 133168); -- Pirates' Day
-    e[404] = event:New(404, 250626); -- Pilgrim's Bounty
-    e[409] = event:New(409, 237272); -- Day of the Dead
-    e[423] = event:New(423, 236709); -- Love is in the Air
+    local name = "Calendar Events";
+    data.InjectLoadingDebug(tasks, name);
+
+    tinsert(data.TasksGroups, 1, tasks);
 end
 
-function exportedCalendarEvents.LoadCategories(e)
-    if e[141] == nil or e[181] == nil or e[201] == nil or e[324] == nil or e[327] == nil or e[341] == nil or e[372] == nil or e[374] == nil or e[398] == nil or e[404] == nil or e[409] == nil or e[423] == nil then
-        exportedCalendarEvents.Load(e);
-    end
+local function N(id, ...)
+    calendarEvents[id] = event:New(id, ...);
+end
 
+-- [[ Everything after these lines is automatically generated as an export from ]] --
+-- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
+
+-- [[ Exported at 2023-09-04 19-09-22 ]] --
+tasks = {
+    {N, 141, 236705}, -- Feast of Winter Veil
+    {N, 181, 237000}, -- Noblegarden
+    {N, 201, 134508}, -- Children's Week
+    {N, 324, 236552}, -- Hallow's End
+    {N, 327, 236704}, -- Lunar Festival
+    {N, 341, 135268}, -- Midsummer Fire Festival
+    {N, 372, 236701}, -- Brewfest
+    {N, 374, 134481}, -- Darkmoon Faire
+    {N, 398, 133168}, -- Pirates' Day
+    {N, 404, 250626}, -- Pilgrim's Bounty
+    {N, 409, 237272}, -- Day of the Dead
+    {N, 423, 236709}, -- Love is in the Air
+};
+
+function exportedCalendarEvents.LoadCategories(e)
     e[141].Category = addon.Tabs["Events"].Categories[6].Children[11]; -- Winter Veil
     e[181].Category = addon.Tabs["Events"].Categories[6].Children[3]; -- Noblegarden
     e[201].Category = addon.Tabs["Events"].Categories[6].Children[4]; -- Children's Week
@@ -64,4 +70,3 @@ function exportedCalendarEvents.InjectDynamicOptions()
     KrowiAF_RegisterEventOptions("Calendar", "Other", addon.L["Other"], 374, addon.L["Darkmoon Faire"]);
     KrowiAF_RegisterDeSelectAllEventOptions("Calendar", "Other", { 374 });
 end
-

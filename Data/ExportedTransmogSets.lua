@@ -1,1855 +1,1864 @@
--- [[ Exported at 2023-05-02 19-57-07 ]] --
--- [[ This code is automatically generated as an export from ]] --
--- [[ an SQLite database and is not meant for manual edit. ]] --
-
--- [[ Namespaces ]] --
 local _, addon = ...;
-local objects = addon.Objects;
-local tSet = objects.TransmogSet;
 local data = addon.Data;
 data.ExportedTransmogSets = {};
 local exportedTransmogSets = data.ExportedTransmogSets;
+local objects = addon.Objects;
+local transmogSet = objects.TransmogSet;
 
-function exportedTransmogSets.Load(t)
-    for i, _ in next, t do
-        t[i] = nil;
-    end
+local tasks, transmogSets;
+function exportedTransmogSets.RegisterTasks(_transmogSets)
+    transmogSets = _transmogSets;
+    wipe(transmogSets);
 
-    t[13] = tSet:New(13, 4); -- Wild Combatant's Chain Armor
-    t[14] = tSet:New(14, 4); -- Wild Combatant's Chain Armor
-    t[15] = tSet:New(15, 64); -- Wild Combatant's Ringmail Armor
-    t[16] = tSet:New(16, 64); -- Wild Combatant's Ringmail Armor
-    t[17] = tSet:New(17, 32); -- Wild Combatant's Dreadplate Armor
-    t[18] = tSet:New(18, 32); -- Wild Combatant's Dreadplate Armor
-    t[19] = tSet:New(19, 2); -- Wild Combatant's Scaled Armor
-    t[20] = tSet:New(20, 2); -- Wild Combatant's Scaled Armor
-    t[21] = tSet:New(21, 1); -- Wild Combatant's Plate Armor
-    t[22] = tSet:New(22, 1); -- Wild Combatant's Plate Armor
-    t[23] = tSet:New(23, 8); -- Wild Combatant's Leather Armor
-    t[24] = tSet:New(24, 8); -- Wild Combatant's Leather Armor
-    t[25] = tSet:New(25, 1024); -- Wild Combatant's Dragonhide Armor
-    t[26] = tSet:New(26, 1024); -- Wild Combatant's Dragonhide Armor
-    t[27] = tSet:New(27, 512); -- Wild Combatant's Ironskin Armor
-    t[28] = tSet:New(28, 512); -- Wild Combatant's Ironskin Armor
-    t[29] = tSet:New(29, 128); -- Wild Combatant's Silk Armor
-    t[30] = tSet:New(30, 128); -- Wild Combatant's Silk Armor
-    t[31] = tSet:New(31, 16); -- Wild Combatant's Satin Armor
-    t[32] = tSet:New(32, 16); -- Wild Combatant's Satin Armor
-    t[33] = tSet:New(33, 256); -- Wild Combatant's Felweave Armor
-    t[34] = tSet:New(34, 256); -- Wild Combatant's Felweave Armor
-    t[35] = tSet:New(35, 4); -- Warmongering Combatant's Chain Armor
-    t[36] = tSet:New(36, 4); -- Warmongering Combatant's Chain Armor
-    t[37] = tSet:New(37, 64); -- Warmongering Combatant's Ringmail Armor
-    t[38] = tSet:New(38, 64); -- Warmongering Combatant's Ringmail Armor
-    t[39] = tSet:New(39, 1024); -- Warmongering Combatant's Dragonhide Armor
-    t[40] = tSet:New(40, 1024); -- Warmongering Combatant's Dragonhide Armor
-    t[41] = tSet:New(41, 8); -- Warmongering Combatant's Leather Armor
-    t[42] = tSet:New(42, 8); -- Warmongering Combatant's Leather Armor
-    t[43] = tSet:New(43, 512); -- Warmongering Combatant's Ironskin Armor
-    t[44] = tSet:New(44, 512); -- Warmongering Combatant's Ironskin Armor
-    t[45] = tSet:New(45, 32); -- Warmongering Combatant's Dreadplate Armor
-    t[46] = tSet:New(46, 32); -- Warmongering Combatant's Dreadplate Armor
-    t[47] = tSet:New(47, 2); -- Warmongering Combatant's Scaled Armor
-    t[48] = tSet:New(48, 2); -- Warmongering Combatant's Scaled Armor
-    t[49] = tSet:New(49, 1); -- Warmongering Combatant's Plate Armor
-    t[50] = tSet:New(50, 1); -- Warmongering Combatant's Plate Armor
-    t[51] = tSet:New(51, 16); -- Warmongering Combatant's Satin Armor
-    t[52] = tSet:New(52, 16); -- Warmongering Combatant's Satin Armor
-    t[53] = tSet:New(53, 128); -- Warmongering Combatant's Silk Armor
-    t[54] = tSet:New(54, 128); -- Warmongering Combatant's Silk Armor
-    t[55] = tSet:New(55, 256); -- Warmongering Combatant's Felweave Armor
-    t[56] = tSet:New(56, 256); -- Warmongering Combatant's Felweave Armor
-    t[57] = tSet:New(57, 4); -- Primal Combatant's Chain Armor
-    t[58] = tSet:New(58, 4); -- Primal Combatant's Chain Armor
-    t[59] = tSet:New(59, 64); -- Primal Combatant's Ringmail Armor
-    t[60] = tSet:New(60, 64); -- Primal Combatant's Ringmail Armor
-    t[61] = tSet:New(61, 1024); -- Primal Combatant's Dragonhide Armor
-    t[62] = tSet:New(62, 1024); -- Primal Combatant's Dragonhide Armor
-    t[63] = tSet:New(63, 8); -- Primal Combatant's Leather Armor
-    t[64] = tSet:New(64, 8); -- Primal Combatant's Leather Armor
-    t[65] = tSet:New(65, 512); -- Primal Combatant's Ironskin Armor
-    t[66] = tSet:New(66, 512); -- Primal Combatant's Ironskin Armor
-    t[67] = tSet:New(67, 32); -- Primal Combatant's Dreadplate Armor
-    t[68] = tSet:New(68, 32); -- Primal Combatant's Dreadplate Armor
-    t[69] = tSet:New(69, 2); -- Primal Combatant's Scaled Armor
-    t[70] = tSet:New(70, 2); -- Primal Combatant's Scaled Armor
-    t[71] = tSet:New(71, 1); -- Primal Combatant's Plate Armor
-    t[72] = tSet:New(72, 1); -- Primal Combatant's Plate Armor
-    t[73] = tSet:New(73, 256); -- Primal Combatant's Felweave Armor
-    t[74] = tSet:New(74, 256); -- Primal Combatant's Felweave Armor
-    t[75] = tSet:New(75, 16); -- Primal Combatant's Satin Armor
-    t[76] = tSet:New(76, 16); -- Primal Combatant's Satin Armor
-    t[77] = tSet:New(77, 128); -- Primal Combatant's Silk Armor
-    t[78] = tSet:New(78, 128); -- Primal Combatant's Silk Armor
-    t[79] = tSet:New(79, 4); -- Wild Gladiator's Chain Armor
-    t[80] = tSet:New(80, 4); -- Wild Gladiator's Chain Armor
-    t[81] = tSet:New(81, 64); -- Wild Gladiator's Ringmail Armor
-    t[82] = tSet:New(82, 64); -- Wild Gladiator's Ringmail Armor
-    t[83] = tSet:New(83, 1024); -- Wild Gladiator's Dragonhide Armor
-    t[84] = tSet:New(84, 1024); -- Wild Gladiator's Dragonhide Armor
-    t[85] = tSet:New(85, 8); -- Wild Gladiator's Leather Armor
-    t[86] = tSet:New(86, 8); -- Wild Gladiator's Leather Armor
-    t[87] = tSet:New(87, 512); -- Wild Gladiator's Ironskin Armor
-    t[88] = tSet:New(88, 512); -- Wild Gladiator's Ironskin Armor
-    t[89] = tSet:New(89, 32); -- Wild Gladiator's Dreadplate Armor
-    t[90] = tSet:New(90, 32); -- Wild Gladiator's Dreadplate Armor
-    t[91] = tSet:New(91, 1); -- Wild Gladiator's Plate Armor
-    t[92] = tSet:New(92, 1); -- Wild Gladiator's Plate Armor
-    t[93] = tSet:New(93, 2); -- Wild Gladiator's Scaled Armor
-    t[94] = tSet:New(94, 2); -- Wild Gladiator's Scaled Paladin
-    t[95] = tSet:New(95, 256); -- Wild Gladiator's Felweave Armor
-    t[96] = tSet:New(96, 256); -- Wild Gladiator's Felweave Armor
-    t[97] = tSet:New(97, 16); -- Wild Gladiator's Satin Armor
-    t[98] = tSet:New(98, 16); -- Wild Gladiator's Satin Armor
-    t[99] = tSet:New(99, 128); -- Wild Gladiator's Silk Armor
-    t[100] = tSet:New(100, 128); -- Wild Gladiator's Silk Armor
-    t[101] = tSet:New(101, 4); -- Warmongering Gladiator's Chain Armor
-    t[102] = tSet:New(102, 4); -- Warmongering Gladiator's Chain Armor
-    t[103] = tSet:New(103, 64); -- Warmongering Gladiator's Ringmail Armor
-    t[104] = tSet:New(104, 64); -- Warmongering Gladiator's Ringmail Armor
-    t[105] = tSet:New(105, 1024); -- Warmongering Gladiator's Dragonhide Armor
-    t[106] = tSet:New(106, 1024); -- Warmongering Gladiator's Dragonhide Armor
-    t[107] = tSet:New(107, 32); -- Warmongering Gladiator's Dreadplate Armor
-    t[108] = tSet:New(108, 32); -- Warmongering Gladiator's Dreadplate Armor
-    t[109] = tSet:New(109, 256); -- Warmongering Gladiator's Felweave Armor
-    t[110] = tSet:New(110, 256); -- Warmongering Gladiator's Felweave Armor
-    t[111] = tSet:New(111, 512); -- Warmongering Gladiator's Ironskin Armor
-    t[112] = tSet:New(112, 512); -- Warmongering Gladiator's Ironskin Armor
-    t[113] = tSet:New(113, 8); -- Warmongering Gladiator's Leather Armor
-    t[114] = tSet:New(114, 8); -- Warmongering Gladiator's Leather Armor
-    t[115] = tSet:New(115, 1); -- Warmongering Gladiator's Plate Armor
-    t[116] = tSet:New(116, 1); -- Warmongering Gladiator's Plate Armor
-    t[117] = tSet:New(117, 16); -- Warmongering Gladiator's Satin Armor
-    t[118] = tSet:New(118, 16); -- Warmongering Gladiator's Satin Armor
-    t[119] = tSet:New(119, 2); -- Warmongering Gladiator's Scaled Armor
-    t[120] = tSet:New(120, 2); -- Warmongering Gladiator's Scaled Armor
-    t[121] = tSet:New(121, 128); -- Warmongering Gladiator's Silk Armor
-    t[122] = tSet:New(122, 128); -- Warmongering Gladiator's Silk Armor
-    t[123] = tSet:New(123, 4); -- Primal Gladiator's Chain Armor
-    t[124] = tSet:New(124, 4); -- Primal Gladiator's Chain Armor
-    t[125] = tSet:New(125, 1024); -- Primal Gladiator's Dragonhide Armor
-    t[126] = tSet:New(126, 1024); -- Primal Gladiator's Dragonhide Armor
-    t[127] = tSet:New(127, 32); -- Primal Gladiator's Dreadplate Armor
-    t[128] = tSet:New(128, 32); -- Primal Gladiator's Dreadplate Armor
-    t[129] = tSet:New(129, 256); -- Primal Gladiator's Felweave Armor
-    t[130] = tSet:New(130, 256); -- Primal Gladiator's Felweave Armor
-    t[131] = tSet:New(131, 512); -- Primal Gladiator's Ironskin Armor
-    t[132] = tSet:New(132, 512); -- Primal Gladiator's Ironskin Armor
-    t[133] = tSet:New(133, 8); -- Primal Gladiator's Leather Armor
-    t[134] = tSet:New(134, 8); -- Primal Gladiator's Leather Armor
-    t[135] = tSet:New(135, 1); -- Primal Gladiator's Plate Armor
-    t[136] = tSet:New(136, 1); -- Primal Gladiator's Plate Armor
-    t[137] = tSet:New(137, 64); -- Primal Gladiator's Ringmail Armor
-    t[138] = tSet:New(138, 64); -- Primal Gladiator's Ringmail Armor
-    t[139] = tSet:New(139, 16); -- Primal Gladiator's Satin Armor
-    t[140] = tSet:New(140, 16); -- Primal Gladiator's Satin Armor
-    t[141] = tSet:New(141, 2); -- Primal Gladiator's Scaled Armor
-    t[142] = tSet:New(142, 2); -- Primal Gladiator's Scaled Armor
-    t[143] = tSet:New(143, 128); -- Primal Gladiator's Silk Armor
-    t[144] = tSet:New(144, 128); -- Primal Gladiator's Silk Armor
-    t[171] = tSet:New(171, 400); -- Regalia of the Chosen Dead
-    t[172] = tSet:New(172, 400); -- Regalia of the Chosen Dead
-    t[173] = tSet:New(173, 400); -- Regalia of the Chosen Dead
-    t[174] = tSet:New(174, 400); -- Regalia of the Chosen Dead
-    t[175] = tSet:New(175, 3592); -- Garb of the Chosen Dead
-    t[176] = tSet:New(176, 3592); -- Garb of the Chosen Dead
-    t[177] = tSet:New(177, 3592); -- Garb of the Chosen Dead
-    t[178] = tSet:New(178, 3592); -- Garb of the Chosen Dead
-    t[179] = tSet:New(179, 68); -- Chains of the Chosen Dead
-    t[180] = tSet:New(180, 68); -- Chains of the Chosen Dead
-    t[181] = tSet:New(181, 68); -- Chains of the Chosen Dead
-    t[182] = tSet:New(182, 68); -- Chains of the Chosen Dead
-    t[183] = tSet:New(183, 35); -- Funerary Plate of the Chosen Dead
-    t[184] = tSet:New(184, 35); -- Funerary Plate of the Chosen Dead
-    t[185] = tSet:New(185, 35); -- Funerary Plate of the Chosen Dead
-    t[186] = tSet:New(186, 35); -- Funerary Plate of the Chosen Dead
-    t[187] = tSet:New(187, 4); -- Dreadful Gladiator's Chain Armor
-    t[188] = tSet:New(188, 1024); -- Dreadful Gladiator's Dragonhide Armor
-    t[189] = tSet:New(189, 32); -- Dreadful Gladiator's Dreadplate Armor
-    t[190] = tSet:New(190, 256); -- Dreadful Gladiator's Felweave Armor
-    t[191] = tSet:New(191, 512); -- Dreadful Gladiator's Ironskin Armor
-    t[192] = tSet:New(192, 8); -- Dreadful Gladiator's Leather Armor
-    t[193] = tSet:New(193, 1); -- Dreadful Gladiator's Plate
-    t[194] = tSet:New(194, 64); -- Dreadful Gladiator's Ringmail Armor
-    t[195] = tSet:New(195, 16); -- Dreadful Gladiator's Satin Armor
-    t[196] = tSet:New(196, 2); -- Dreadful Gladiator's Scaled Armor
-    t[197] = tSet:New(197, 128); -- Dreadful Gladiator's Silk Armor
-    t[198] = tSet:New(198, 4); -- Grievous Gladiator's Chain Armor
-    t[199] = tSet:New(199, 4); -- Grievous Gladiator's Chain Armor
-    t[200] = tSet:New(200, 1024); -- Grievous Gladiator's Dragonhide Armor
-    t[201] = tSet:New(201, 32); -- Grievous Gladiator's Dreadplate Armor
-    t[202] = tSet:New(202, 256); -- Grievous Gladiator's Felweave Armor
-    t[203] = tSet:New(203, 512); -- Grievous Gladiator's Ironskin Armor
-    t[204] = tSet:New(204, 8); -- Grievous Gladiator's Leather Armor
-    t[205] = tSet:New(205, 1); -- Grievous Gladiator's Plate Armor
-    t[206] = tSet:New(206, 64); -- Grievous Gladiator's Ringmail Armor
-    t[207] = tSet:New(207, 16); -- Grievous Gladiator's Satin Armor
-    t[208] = tSet:New(208, 2); -- Grievous Gladiator's Scaled Armor
-    t[209] = tSet:New(209, 128); -- Grievous Gladiator's Silk Armor
-    t[210] = tSet:New(210, 1024); -- Grievous Gladiator's Dragonhide Armor
-    t[211] = tSet:New(211, 32); -- Grievous Gladiator's Dreadplate Armor
-    t[212] = tSet:New(212, 256); -- Grievous Gladiator's Felweave Armor
-    t[213] = tSet:New(213, 512); -- Grievous Gladiator's Ironskin Armor
-    t[214] = tSet:New(214, 8); -- Grievous Gladiator's Leather Armor
-    t[215] = tSet:New(215, 1); -- Grievous Gladiator's Plate Armor
-    t[216] = tSet:New(216, 64); -- Grievous Gladiator's Ringmail Armor
-    t[217] = tSet:New(217, 16); -- Grievous Gladiator's Satin Armor
-    t[218] = tSet:New(218, 2); -- Grievous Gladiator's Scaled Armor
-    t[219] = tSet:New(219, 128); -- Grievous Gladiator's Silk Armor
-    t[232] = tSet:New(232, 4); -- Prideful Gladiator's Chain Armor
-    t[233] = tSet:New(233, 1024); -- Prideful Gladiator's Dragonhide Armor
-    t[234] = tSet:New(234, 32); -- Prideful Gladiator's Dreadplate Armor
-    t[235] = tSet:New(235, 256); -- Prideful Gladiator's Felweave Armor
-    t[236] = tSet:New(236, 512); -- Prideful Gladiator's Ironskin Armor
-    t[237] = tSet:New(237, 8); -- Prideful Gladiator's Leather Armor
-    t[238] = tSet:New(238, 1); -- Prideful Gladiator's Plate Armor
-    t[239] = tSet:New(239, 64); -- Prideful Gladiator's Ringmail Armor
-    t[240] = tSet:New(240, 16); -- Prideful Gladiator's Satin Armor
-    t[241] = tSet:New(241, 2); -- Prideful Gladiator's Scaled Armor
-    t[242] = tSet:New(242, 128); -- Prideful Gladiator's Silk Armor
-    t[243] = tSet:New(243, 4); -- Prideful Gladiator's Chain Armor
-    t[244] = tSet:New(244, 1024); -- Prideful Gladiator's Dragonhide Armor
-    t[245] = tSet:New(245, 32); -- Prideful Gladiator's Dreadplate Armor
-    t[246] = tSet:New(246, 256); -- Prideful Gladiator's Felweave Armor
-    t[247] = tSet:New(247, 512); -- Prideful Gladiator's Ironskin Armor
-    t[248] = tSet:New(248, 8); -- Prideful Gladiator's Leather Armor
-    t[249] = tSet:New(249, 1); -- Prideful Gladiator's Plate Armor
-    t[250] = tSet:New(250, 64); -- Prideful Gladiator's Ringmail Armor
-    t[251] = tSet:New(251, 16); -- Prideful Gladiator's Satin Armor
-    t[252] = tSet:New(252, 2); -- Prideful Gladiator's Scaled Armor
-    t[253] = tSet:New(253, 128); -- Prideful Gladiator's Silk Armor
-    t[254] = tSet:New(254, 4); -- Tyrannical Gladiator's Chain Armor
-    t[255] = tSet:New(255, 1024); -- Tyrannical Gladiator's Dragonhide Armor
-    t[256] = tSet:New(256, 32); -- Tyrannical Gladiator's Dreadplate Armor
-    t[257] = tSet:New(257, 256); -- Tyrannical Gladiator's Felweave Armor
-    t[258] = tSet:New(258, 16); -- Tyrannical Gladiator's Satin Armor
-    t[259] = tSet:New(259, 512); -- Tyrannical Gladiator's Ironskin Armor
-    t[260] = tSet:New(260, 8); -- Tyrannical Gladiator's Leather Armor
-    t[261] = tSet:New(261, 1); -- Tyrannical Gladiator's Plate Armor
-    t[262] = tSet:New(262, 64); -- Tyrannical Gladiator's Ringmail Shaman
-    t[263] = tSet:New(263, 2); -- Tyrannical Gladiator's Scaled Armor
-    t[264] = tSet:New(264, 128); -- Tyrannical Gladiator's Silk Armor
-    t[265] = tSet:New(265, 4); -- Tyrannical Gladiator's Chain Armor
-    t[266] = tSet:New(266, 1024); -- Tyrannical Gladiator's Dragonhide Armor
-    t[267] = tSet:New(267, 32); -- Tyrannical Gladiator's Dreadplate Armor
-    t[268] = tSet:New(268, 256); -- Tyrannical Gladiator's Felweave Armor
-    t[269] = tSet:New(269, 512); -- Tyrannical Gladiator's Ironskin Armor
-    t[270] = tSet:New(270, 8); -- Tyrannical Gladiator's Leather Armor
-    t[271] = tSet:New(271, 1); -- Tyrannical Gladiator's Plate Armor
-    t[272] = tSet:New(272, 64); -- Tyrannical Gladiator's Ringmail Armor
-    t[273] = tSet:New(273, 16); -- Tyrannical Gladiator's Satin Armor
-    t[274] = tSet:New(274, 2); -- Tyrannical Gladiator's Scaled Armor
-    t[275] = tSet:New(275, 128); -- Tyrannical Gladiator's Silk Armor
-    t[276] = tSet:New(276, 128); -- Malevolent Gladiator's Silk Armor
-    t[277] = tSet:New(277, 2); -- Malevolent Gladiator's Scaled Armor
-    t[278] = tSet:New(278, 1); -- Malevolent Gladiator's Plate Armor
-    t[279] = tSet:New(279, 512); -- Malevolent Gladiator's Ironskin Armor
-    t[280] = tSet:New(280, 8); -- Malevolent Gladiator's Leather Armor
-    t[281] = tSet:New(281, 1024); -- Malevolent Gladiator's Dragonhide Armor
-    t[282] = tSet:New(282, 16); -- Malevolent Gladiator's Satin Armor
-    t[283] = tSet:New(283, 256); -- Malevolent Gladiator's Felweave Armor
-    t[284] = tSet:New(284, 64); -- Malevolent Gladiator's Ringmail Armor
-    t[285] = tSet:New(285, 32); -- Malevolent Gladiator's Dreadplate Armor
-    t[286] = tSet:New(286, 4); -- Malevolent Gladiator's Chain Armor
-    t[298] = tSet:New(298, 1); -- Sanctified Ymirjar Lord's Battlegear
-    t[308] = tSet:New(308, 16); -- Vestments of the Purifier
-    t[309] = tSet:New(309, 16); -- Vestments of the Purifier
-    t[310] = tSet:New(310, 16); -- Regalia of the Exorcist
-    t[311] = tSet:New(311, 16); -- Vestments of the Purifier
-    t[315] = tSet:New(315, 256); -- Legacy of Azj'Aqir
-    t[316] = tSet:New(316, 256); -- Legacy of Azj'Aqir
-    t[321] = tSet:New(321, 256); -- Legacy of Azj'Aqir
-    t[322] = tSet:New(322, 16); -- Vestments of the Purifier
-    t[323] = tSet:New(323, 16); -- Attire of Piety
-    t[324] = tSet:New(324, 16); -- Attire of Piety
-    t[325] = tSet:New(325, 16); -- Attire of Piety
-    t[327] = tSet:New(327, 16); -- Soul Priest's Raiment
-    t[328] = tSet:New(328, 64); -- Windspeaker's Regalia
-    t[329] = tSet:New(329, 16); -- Soul Priest's Raiment
-    t[331] = tSet:New(331, 16); -- Regalia of Ternion Glory
-    t[332] = tSet:New(332, 16); -- Regalia of Ternion Glory
-    t[333] = tSet:New(333, 16); -- Regalia of Ternion Glory
-    t[334] = tSet:New(334, 16); -- Regalia of the Exorcist
-    t[335] = tSet:New(335, 16); -- Regalia of the Exorcist
-    t[336] = tSet:New(336, 16); -- Guardian Serpent Regalia
-    t[337] = tSet:New(337, 16); -- Guardian Serpent Regalia
-    t[338] = tSet:New(338, 64); -- Regalia of the Firebird
-    t[339] = tSet:New(339, 16); -- Regalia of Dying Light
-    t[340] = tSet:New(340, 16); -- Regalia of Dying Light
-    t[341] = tSet:New(341, 16); -- Regalia of Dying Light
-    t[342] = tSet:New(342, 16); -- Regalia of the Cleansing Flame
-    t[343] = tSet:New(343, 16); -- Regalia of the Cleansing Flame
-    t[344] = tSet:New(344, 16); -- Mercurial Regalia
-    t[345] = tSet:New(345, 16); -- Mercurial Regalia
-    t[346] = tSet:New(346, 16); -- Crimson Acolyte Regalia
-    t[347] = tSet:New(347, 16); -- Sanctified Crimson Acolyte Regalia
-    t[348] = tSet:New(348, 16); -- Sanctified Crimson Acolyte Regalia
-    t[349] = tSet:New(349, 16); -- Velen's Regalia
-    t[350] = tSet:New(350, 16); -- Zabra's Regalia
-    t[351] = tSet:New(351, 16); -- Absolution Regalia
-    t[352] = tSet:New(352, 16); -- Vestments of Absolution
-    t[353] = tSet:New(353, 16); -- Avatar Regalia
-    t[354] = tSet:New(354, 16); -- Incarnate Regalia
-    t[355] = tSet:New(355, 16); -- Vestments of Faith
-    t[356] = tSet:New(356, 16); -- Vestments of Transcendence
-    t[357] = tSet:New(357, 16); -- Vestments of Prophecy
-    t[358] = tSet:New(358, 16); -- Garments of the Oracle
-    t[361] = tSet:New(361, 16); -- Heroes' Regalia of Faith
-    t[362] = tSet:New(362, 16); -- Valorous Regalia of Faith
-    t[363] = tSet:New(363, 16); -- Valorous Sanctification Regalia
-    t[364] = tSet:New(364, 16); -- Conqueror's Sanctification Regalia
-    t[365] = tSet:New(365, 16); -- Cataclysmic Gladiator's Satin Armor
-    t[366] = tSet:New(366, 16); -- Cataclysmic Gladiator's Satin Armor
-    t[369] = tSet:New(369, 16); -- Vicious Gladiator's Satin Armor
-    t[370] = tSet:New(370, 16); -- Vicious Gladiator's Satin Armor
-    t[371] = tSet:New(371, 16); -- Bloodthirsty Gladiator's Satin Armor
-    t[372] = tSet:New(372, 16); -- Wrathful Gladiator's Satin Armor
-    t[373] = tSet:New(373, 16); -- Relentless Gladiator's Satin Armor
-    t[374] = tSet:New(374, 16); -- Furious Gladiator's Satin Armor
-    t[375] = tSet:New(375, 16); -- Deadly Gladiator's Satin Armor
-    t[376] = tSet:New(376, 16); -- Hateful Gladiator's Satin Armor
-    t[377] = tSet:New(377, 16); -- Savage Gladiator's Satin Armor
-    t[378] = tSet:New(378, 16); -- Brutal Gladiator's Satin Armor
-    t[379] = tSet:New(379, 16); -- Vengeful Gladiator's Satin Armor
-    t[380] = tSet:New(380, 16); -- Merciless Gladiator's Satin Armor
-    t[381] = tSet:New(381, 1); -- Gladiator's Plate Armor
-    t[382] = tSet:New(382, 16); -- Satin Battlegear
-    t[388] = tSet:New(388, 16); -- Vindictive Gladiator's Satin Armor
-    t[389] = tSet:New(389, 16); -- Cruel Gladiator's Satin Armor
-    t[390] = tSet:New(390, 16); -- Vindictive Gladiator's Satin Armor
-    t[391] = tSet:New(391, 16); -- Cruel Gladiator's Satin Armor
-    t[392] = tSet:New(392, 16); -- Vindictive Gladiator's Satin Armor
-    t[393] = tSet:New(393, 16); -- Vindictive Gladiator's Satin Armor
-    t[394] = tSet:New(394, 16); -- Cruel Gladiator's Satin Armor
-    t[395] = tSet:New(395, 16); -- Cruel Gladiator's Satin Armor
-    t[396] = tSet:New(396, 16); -- Malevolent Gladiator's Satin Armor
-    t[397] = tSet:New(397, 16); -- Tyrannical Gladiator's Satin Armor
-    t[398] = tSet:New(398, 16); -- Tyrannical Gladiator's Satin Armor
-    t[399] = tSet:New(399, 16); -- Prideful Gladiator's Satin Armor
-    t[400] = tSet:New(400, 16); -- Prideful Gladiator's Satin Armor
-    t[401] = tSet:New(401, 16); -- Grievous Gladiator's Satin Armor
-    t[402] = tSet:New(402, 16); -- Grievous Gladiator's Satin Armor
-    t[403] = tSet:New(403, 16); -- Primal Gladiator's Satin Armor
-    t[404] = tSet:New(404, 16); -- Primal Gladiator's Satin Armor
-    t[405] = tSet:New(405, 16); -- Wild Gladiator's Satin Armor
-    t[406] = tSet:New(406, 16); -- Wild Gladiator's Satin Armor
-    t[407] = tSet:New(407, 16); -- Warmongering Gladiator's Satin Armor
-    t[408] = tSet:New(408, 16); -- Warmongering Gladiator's Satin Armor
-    t[409] = tSet:New(409, 4); -- Vindictive Combatant's Chain Armor
-    t[410] = tSet:New(410, 4); -- Vindictive Combatant's Chain Armor
-    t[415] = tSet:New(415, 64); -- Embrace of the Living Mountain
-    t[416] = tSet:New(416, 64); -- Embrace of the Living Mountain
-    t[417] = tSet:New(417, 64); -- Embrace of the Living Mountain
-    t[418] = tSet:New(418, 64); -- Windspeaker's Regalia
-    t[419] = tSet:New(419, 16); -- Soul Priest's Raiment
-    t[420] = tSet:New(420, 64); -- Windspeaker's Regalia
-    t[421] = tSet:New(421, 64); -- Regalia of Celestial Harmony
-    t[422] = tSet:New(422, 64); -- Regalia of Celestial Harmony
-    t[423] = tSet:New(423, 64); -- Regalia of Celestial Harmony
-    t[424] = tSet:New(424, 64); -- Regalia of the Witch Doctor
-    t[425] = tSet:New(425, 64); -- Regalia of the Witch Doctor
-    t[426] = tSet:New(426, 64); -- Regalia of the Witch Doctor
-    t[427] = tSet:New(427, 64); -- Regalia of the Firebird
-    t[428] = tSet:New(428, 64); -- Regalia of the Firebird
-    t[429] = tSet:New(429, 16); -- Guardian Serpent Regalia
-    t[432] = tSet:New(432, 1); -- Battlegear of Iron Wrath
-    t[433] = tSet:New(433, 1); -- Battlegear of Iron Wrath
-    t[434] = tSet:New(434, 1); -- Battlegear of Iron Wrath
-    t[435] = tSet:New(435, 1); -- Blackhand's Battlegear
-    t[436] = tSet:New(436, 1); -- Blackhand's Battlegear
-    t[437] = tSet:New(437, 1); -- Blackhand's Battlegear
-    t[438] = tSet:New(438, 1); -- Battleplate of the Prehistoric Marauder
-    t[439] = tSet:New(439, 1); -- Battleplate of the Prehistoric Marauder
-    t[440] = tSet:New(440, 1); -- Battleplate of the Prehistoric Marauder
-    t[441] = tSet:New(441, 1); -- Battleplate of the Last Mogu
-    t[442] = tSet:New(442, 1); -- Battleplate of the Last Mogu
-    t[443] = tSet:New(443, 1); -- Battleplate of the Last Mogu
-    t[444] = tSet:New(444, 1); -- Battleplate of Resounding Rings
-    t[445] = tSet:New(445, 1); -- Battleplate of Resounding Rings
-    t[446] = tSet:New(446, 1); -- Battleplate of Resounding Rings
-    t[449] = tSet:New(449, 256); -- Deathrattle Regalia
-    t[450] = tSet:New(450, 256); -- Deathrattle Regalia
-    t[451] = tSet:New(451, 256); -- Deathrattle Regalia
-    t[452] = tSet:New(452, 256); -- Shadow Council's Garb
-    t[453] = tSet:New(453, 256); -- Shadow Council's Garb
-    t[454] = tSet:New(454, 256); -- Shadow Council's Garb
-    t[455] = tSet:New(455, 256); -- Regalia of the Horned Nightmare
-    t[456] = tSet:New(456, 256); -- Regalia of the Horned Nightmare
-    t[457] = tSet:New(457, 256); -- Regalia of the Horned Nightmare
-    t[458] = tSet:New(458, 256); -- Regalia of the Thousandfold Hells
-    t[459] = tSet:New(459, 256); -- Regalia of the Thousandfold Hells
-    t[460] = tSet:New(460, 256); -- Regalia of the Thousandfold Hells
-    t[461] = tSet:New(461, 256); -- Sha Skin Regalia
-    t[462] = tSet:New(462, 256); -- Sha Skin Regalia
-    t[463] = tSet:New(463, 256); -- Sha Skin Regalia
-    t[465] = tSet:New(465, 8); -- Felblade Armor
-    t[466] = tSet:New(466, 8); -- Felblade Armor
-    t[467] = tSet:New(467, 8); -- Felblade Armor
-    t[468] = tSet:New(468, 8); -- Poisoner's Battlegear
-    t[469] = tSet:New(469, 8); -- Poisoner's Battlegear
-    t[470] = tSet:New(470, 8); -- Poisoner's Battlegear
-    t[471] = tSet:New(471, 8); -- Barbed Assassin Battlegear
-    t[472] = tSet:New(472, 8); -- Barbed Assassin Battlegear
-    t[473] = tSet:New(473, 8); -- Barbed Assassin Battlegear
-    t[474] = tSet:New(474, 8); -- Nine-Tail Battlegear
-    t[475] = tSet:New(475, 8); -- Nine-Tail Battlegear
-    t[476] = tSet:New(476, 8); -- Nine-Tail Battlegear
-    t[477] = tSet:New(477, 8); -- Battlegear of the Thousandfold Blades
-    t[478] = tSet:New(478, 8); -- Battlegear of the Thousandfold Blades
-    t[479] = tSet:New(479, 8); -- Battlegear of the Thousandfold Blades
-    t[480] = tSet:New(480, 2); -- Watch of the Ceaseless Vigil
-    t[481] = tSet:New(481, 2); -- Watch of the Ceaseless Vigil
-    t[482] = tSet:New(482, 2); -- Watch of the Ceaseless Vigil
-    t[483] = tSet:New(483, 2); -- Battlegear of Guiding Light
-    t[484] = tSet:New(484, 2); -- Battlegear of Guiding Light
-    t[485] = tSet:New(485, 2); -- Battlegear of Guiding Light
-    t[487] = tSet:New(487, 2); -- Vestments of Winged Triumph
-    t[488] = tSet:New(488, 2); -- Vestments of Winged Triumph
-    t[489] = tSet:New(489, 2); -- Vestments of Winged Triumph
-    t[490] = tSet:New(490, 2); -- Battlegear of the Lightning Emperor
-    t[491] = tSet:New(491, 2); -- Battlegear of the Lightning Emperor
-    t[492] = tSet:New(492, 2); -- Battlegear of the Lightning Emperor
-    t[493] = tSet:New(493, 2); -- White Tiger Battlegear
-    t[494] = tSet:New(494, 2); -- White Tiger Battlegear
-    t[495] = tSet:New(495, 2); -- White Tiger Battlegear
-    t[498] = tSet:New(498, 512); -- Battlegear of the Somber Gaze
-    t[500] = tSet:New(500, 512); -- Battlegear of the Somber Gaze
-    t[501] = tSet:New(501, 512); -- Battlegear of the Somber Gaze
-    t[502] = tSet:New(502, 512); -- Battlewrap of the Hurricane's Eye
-    t[503] = tSet:New(503, 512); -- Battlewrap of the Hurricane's Eye
-    t[505] = tSet:New(505, 512); -- Battlewrap of the Hurricane's Eye
-    t[506] = tSet:New(506, 512); -- Vestments of the Seven Sacred Seals
-    t[507] = tSet:New(507, 512); -- Vestments of the Seven Sacred Seals
-    t[508] = tSet:New(508, 512); -- Vestments of the Seven Sacred Seals
-    t[510] = tSet:New(510, 512); -- Fire-Charm Vestments
-    t[511] = tSet:New(511, 512); -- Fire-Charm Vestments
-    t[512] = tSet:New(512, 512); -- Fire-Charm Vestments
-    t[513] = tSet:New(513, 512); -- Vestments of the Red Crane
-    t[514] = tSet:New(514, 512); -- Vestments of the Red Crane
-    t[515] = tSet:New(515, 512); -- Vestments of the Red Crane
-    t[517] = tSet:New(517, 128); -- Raiment of the Arcanic Conclave
-    t[518] = tSet:New(518, 128); -- Raiment of the Arcanic Conclave
-    t[519] = tSet:New(519, 128); -- Raiment of the Arcanic Conclave
-    t[520] = tSet:New(520, 128); -- Arcanoshatter Regalia
-    t[521] = tSet:New(521, 128); -- Arcanoshatter Regalia
-    t[522] = tSet:New(522, 128); -- Arcanoshatter Regalia
-    t[523] = tSet:New(523, 128); -- Chronomancer Regalia
-    t[524] = tSet:New(524, 128); -- Chronomancer Regalia
-    t[525] = tSet:New(525, 128); -- Chronomancer Regalia
-    t[526] = tSet:New(526, 128); -- Regalia of the Chromatic Hydra
-    t[527] = tSet:New(527, 128); -- Regalia of the Chromatic Hydra
-    t[528] = tSet:New(528, 128); -- Regalia of the Chromatic Hydra
-    t[529] = tSet:New(529, 128); -- Regalia of the Burning Scroll
-    t[530] = tSet:New(530, 128); -- Regalia of the Burning Scroll
-    t[531] = tSet:New(531, 128); -- Regalia of the Burning Scroll
-    t[533] = tSet:New(533, 4); -- Battlegear of the Savage Hunt
-    t[534] = tSet:New(534, 4); -- Battlegear of the Savage Hunt
-    t[535] = tSet:New(535, 4); -- Battlegear of the Savage Hunt
-    t[536] = tSet:New(536, 4); -- Rylakstalker's Battlegear
-    t[537] = tSet:New(537, 4); -- Rylakstalker's Battlegear
-    t[538] = tSet:New(538, 4); -- Rylakstalker's Battlegear
-    t[539] = tSet:New(539, 4); -- Battlegear of the Unblinking Vigil
-    t[540] = tSet:New(540, 4); -- Battlegear of the Unblinking Vigil
-    t[541] = tSet:New(541, 4); -- Battlegear of the Unblinking Vigil
-    t[542] = tSet:New(542, 4); -- Battlegear of the Saurok Stalker
-    t[543] = tSet:New(543, 4); -- Battlegear of the Saurok Stalker
-    t[544] = tSet:New(544, 4); -- Battlegear of the Saurok Stalker
-    t[545] = tSet:New(545, 4); -- Yaungol Slayer Battlegear
-    t[546] = tSet:New(546, 4); -- Yaungol Slayer Battlegear
-    t[547] = tSet:New(547, 4); -- Yaungol Slayer Battlegear
-    t[551] = tSet:New(551, 1024); -- Oathclaw Wargarb
-    t[552] = tSet:New(552, 1024); -- Oathclaw Wargarb
-    t[553] = tSet:New(553, 1024); -- Oathclaw Wargarb
-    t[554] = tSet:New(554, 1024); -- Living Wood Battlegear
-    t[555] = tSet:New(555, 1024); -- Living Wood Battlegear
-    t[556] = tSet:New(556, 1024); -- Living Wood Battlegear
-    t[557] = tSet:New(557, 1024); -- Vestments of the Shattered Vale
-    t[558] = tSet:New(558, 1024); -- Vestments of the Shattered Vale
-    t[559] = tSet:New(559, 1024); -- Vestments of the Shattered Vale
-    t[560] = tSet:New(560, 1024); -- Vestments of the Haunted Forest
-    t[561] = tSet:New(561, 1024); -- Vestments of the Haunted Forest
-    t[562] = tSet:New(562, 1024); -- Vestments of the Haunted Forest
-    t[563] = tSet:New(563, 1024); -- Vestments of the Eternal Blossom
-    t[564] = tSet:New(564, 1024); -- Vestments of the Eternal Blossom
-    t[565] = tSet:New(565, 1024); -- Vestments of the Eternal Blossom
-    t[566] = tSet:New(566, 32); -- Demongaze Armor
-    t[567] = tSet:New(567, 32); -- Demongaze Armor
-    t[568] = tSet:New(568, 32); -- Demongaze Armor
-    t[569] = tSet:New(569, 32); -- Ogreskull Boneplate Battlegear
-    t[570] = tSet:New(570, 32); -- Ogreskull Boneplate Battlegear
-    t[571] = tSet:New(571, 32); -- Ogreskull Boneplate Battlegear
-    t[572] = tSet:New(572, 32); -- Battleplate of Cyclopean Dread
-    t[573] = tSet:New(573, 32); -- Battleplate of Cyclopean Dread
-    t[574] = tSet:New(574, 32); -- Battleplate of Cyclopean Dread
-    t[575] = tSet:New(575, 32); -- Battleplate of the All-Consuming Maw
-    t[576] = tSet:New(576, 32); -- Battleplate of the All-Consuming Maw
-    t[577] = tSet:New(577, 32); -- Battleplate of the All-Consuming Maw
-    t[578] = tSet:New(578, 32); -- Plate of the Lost Catacomb
-    t[579] = tSet:New(579, 32); -- Plate of the Lost Catacomb
-    t[580] = tSet:New(580, 32); -- Plate of the Lost Catacomb
-    t[581] = tSet:New(581, 400); -- Felfume Raiment
-    t[582] = tSet:New(582, 3592); -- Ironpelt Garb
-    t[583] = tSet:New(583, 68); -- Rancorbite Armor
-    t[584] = tSet:New(584, 35); -- Demonbreaker Battleplate
-    t[588] = tSet:New(588, 1); -- Cataclysmic Gladiator's Plate Armor
-    t[589] = tSet:New(589, 1); -- Cataclysmic Gladiator's Plate Armor
-    t[590] = tSet:New(590, 256); -- Cataclysmic Gladiator's Felweave Armor
-    t[591] = tSet:New(591, 256); -- Cataclysmic Gladiator's Felweave Armor
-    t[592] = tSet:New(592, 64); -- Cataclysmic Gladiator's Ringmail Armor
-    t[593] = tSet:New(593, 64); -- Cataclysmic Gladiator's Ringmail Armor
-    t[594] = tSet:New(594, 8); -- Cataclysmic Gladiator's Leather Armor
-    t[595] = tSet:New(595, 8); -- Cataclysmic Gladiator's Leather Armor
-    t[596] = tSet:New(596, 2); -- Cataclysmic Gladiator's Scaled Armor
-    t[597] = tSet:New(597, 2); -- Cataclysmic Gladiator's Scaled Armor
-    t[598] = tSet:New(598, 128); -- Cataclysmic Gladiator's Silk Armor
-    t[599] = tSet:New(599, 128); -- Cataclysmic Gladiator's Silk Armor
-    t[600] = tSet:New(600, 4); -- Cataclysmic Gladiator's Chain Armor
-    t[601] = tSet:New(601, 4); -- Cataclysmic Gladiator's Chain Armor
-    t[602] = tSet:New(602, 1024); -- Cataclysmic Gladiator's Dragonhide Armor
-    t[603] = tSet:New(603, 1024); -- Cataclysmic Gladiator's Dragonhide Armor
-    t[604] = tSet:New(604, 32); -- Cataclysmic Gladiator's Dreadplate Armor
-    t[605] = tSet:New(605, 32); -- Cataclysmic Gladiator's Dreadplate Armor
-    t[606] = tSet:New(606, 1); -- Ruthless Gladiator's Plate Armor
-    t[607] = tSet:New(607, 1); -- Ruthless Gladiator's Plate Armor
-    t[608] = tSet:New(608, 256); -- Ruthless Gladiator's Felweave Armor
-    t[609] = tSet:New(609, 256); -- Ruthless Gladiator's Felweave Armor
-    t[610] = tSet:New(610, 64); -- Ruthless Gladiator's Ringmail Armor
-    t[611] = tSet:New(611, 64); -- Ruthless Gladiator's Ringmail Armor
-    t[612] = tSet:New(612, 16); -- Ruthless Gladiator's Satin Armor
-    t[613] = tSet:New(613, 8); -- Ruthless Gladiator's Leather Armor
-    t[614] = tSet:New(614, 16); -- Ruthless Gladiator's Satin Armor
-    t[615] = tSet:New(615, 8); -- Ruthless Gladiator's Leather Armor
-    t[616] = tSet:New(616, 2); -- Ruthless Gladiator's Scaled Armor
-    t[617] = tSet:New(617, 2); -- Ruthless Gladiator's Scaled Armor
-    t[618] = tSet:New(618, 128); -- Ruthless Gladiator's Silk Armor
-    t[619] = tSet:New(619, 128); -- Ruthless Gladiator's Silk Armor
-    t[620] = tSet:New(620, 4); -- Ruthless Gladiator's Chain Armor
-    t[621] = tSet:New(621, 4); -- Ruthless Gladiator's Chain Armor
-    t[622] = tSet:New(622, 1024); -- Ruthless Gladiator's Dragonhide Armor
-    t[623] = tSet:New(623, 1024); -- Ruthless Gladiator's Dragonhide Armor
-    t[624] = tSet:New(624, 32); -- Ruthless Gladiator's Dreadplate Armor
-    t[625] = tSet:New(625, 32); -- Ruthless Gladiator's Dreadplate Armor
-    t[626] = tSet:New(626, 1); -- Vicious Gladiator's Plate Armor
-    t[627] = tSet:New(627, 1); -- Vicious Gladiator's Plate Armor
-    t[628] = tSet:New(628, 256); -- Vicious Gladiator's Felweave Armor
-    t[629] = tSet:New(629, 256); -- Vicious Gladiator's Felweave Armor
-    t[630] = tSet:New(630, 64); -- Spiritwalker's Regalia
-    t[631] = tSet:New(631, 1); -- Colossal Dragonplate Battlegear
-    t[632] = tSet:New(632, 64); -- Spiritwalker's Regalia
-    t[633] = tSet:New(633, 64); -- Volcanic Regalia
-    t[634] = tSet:New(634, 64); -- Volcanic Regalia
-    t[635] = tSet:New(635, 64); -- Regalia of the Raging Elements
-    t[636] = tSet:New(636, 64); -- Regalia of the Raging Elements
-    t[637] = tSet:New(637, 64); -- Frost Witch's Regalia
-    t[638] = tSet:New(638, 64); -- Frost Witch's Regalia
-    t[639] = tSet:New(639, 64); -- Frost Witch's Regalia
-    t[640] = tSet:New(640, 64); -- Nobundo's Garb
-    t[641] = tSet:New(641, 64); -- Thrall's Garb
-    t[642] = tSet:New(642, 64); -- Valorous Worldbreaker Regalia
-    t[643] = tSet:New(643, 64); -- Conqueror's Worldbreaker Regalia
-    t[644] = tSet:New(644, 64); -- Heroes' Earthshatter Regalia
-    t[645] = tSet:New(645, 64); -- Valorous Earthshatter Regalia
-    t[649] = tSet:New(649, 1); -- Colossal Dragonplate Battlegear
-    t[650] = tSet:New(650, 1); -- Colossal Dragonplate Battlegear
-    t[651] = tSet:New(651, 1); -- Molten Giant Battleplate
-    t[652] = tSet:New(652, 1); -- Molten Giant Battleplate
-    t[653] = tSet:New(653, 1); -- Earthen Battleplate
-    t[654] = tSet:New(654, 1); -- Earthen Battleplate
-    t[655] = tSet:New(655, 1); -- Ymirjar Lord's Battlegear
-    t[656] = tSet:New(656, 1); -- Sanctified Ymirjar Lord's Battlegear
-    t[657] = tSet:New(657, 1); -- Hellscream's Battlegear
-    t[658] = tSet:New(658, 1); -- Wrynn's Battlegear
-    t[659] = tSet:New(659, 1); -- Valorous Siegebreaker Battlegear
-    t[660] = tSet:New(660, 1); -- Conqueror's Siegebreaker Battlegear
-    t[661] = tSet:New(661, 1); -- Heroes' Dreadnaught Battlegear
-    t[662] = tSet:New(662, 1); -- Valorous Dreadnaught Battlegear
-    t[663] = tSet:New(663, 64); -- Spiritwalker's Regalia
-    t[664] = tSet:New(664, 256); -- Vestments of the Faceless Shroud
-    t[665] = tSet:New(665, 256); -- Vestments of the Faceless Shroud
-    t[666] = tSet:New(666, 256); -- Vestments of the Faceless Shroud
-    t[667] = tSet:New(667, 256); -- Balespider's Burning Vestments
-    t[668] = tSet:New(668, 256); -- Balespider's Burning Vestments
-    t[669] = tSet:New(669, 256); -- Shadowflame Regalia
-    t[670] = tSet:New(670, 256); -- Shadowflame Regalia
-    t[671] = tSet:New(671, 256); -- Dark Coven's Regalia
-    t[672] = tSet:New(672, 256); -- Sanctified Dark Coven's Regalia
-    t[673] = tSet:New(673, 256); -- Sanctified Dark Coven's Regalia
-    t[674] = tSet:New(674, 256); -- Kel'Thuzad's Regalia
-    t[675] = tSet:New(675, 256); -- Gul'dan's Regalia
-    t[676] = tSet:New(676, 256); -- Valorous Deathbringer Garb
-    t[677] = tSet:New(677, 256); -- Conqueror's Deathbringer Garb
-    t[678] = tSet:New(678, 256); -- Heroes' Plagueheart Garb
-    t[679] = tSet:New(679, 256); -- Valorous Plagueheart Garb
-    t[680] = tSet:New(680, 8); -- Blackfang Battleweave
-    t[681] = tSet:New(681, 8); -- Blackfang Battleweave
-    t[682] = tSet:New(682, 8); -- Blackfang Battleweave
-    t[683] = tSet:New(683, 8); -- Vestments of the Dark Phoenix
-    t[684] = tSet:New(684, 8); -- Vestments of the Dark Phoenix
-    t[685] = tSet:New(685, 8); -- Wind Dancer's Regalia
-    t[686] = tSet:New(686, 8); -- Wind Dancer's Regalia
-    t[687] = tSet:New(687, 8); -- Shadowblade's Battlegear
-    t[688] = tSet:New(688, 8); -- Sanctified Shadowblade's Battlegear
-    t[689] = tSet:New(689, 8); -- Sanctified Shadowblade's Battlegear
-    t[690] = tSet:New(690, 8); -- VanCleef's Battlegear
-    t[691] = tSet:New(691, 8); -- Garona's Battlegear
-    t[692] = tSet:New(692, 8); -- Valorous Terrorblade Battlegear
-    t[693] = tSet:New(693, 8); -- Conqueror's Terrorblade Battlegear
-    t[694] = tSet:New(694, 8); -- Heroes' Bonescythe Battlegear
-    t[695] = tSet:New(695, 8); -- Valorous Bonescythe Battlegear
-    t[696] = tSet:New(696, 2); -- Battleplate of Radiant Glory
-    t[697] = tSet:New(697, 2); -- Battleplate of Radiant Glory
-    t[698] = tSet:New(698, 2); -- Battleplate of Radiant Glory
-    t[699] = tSet:New(699, 2); -- Battleplate of Immolation
-    t[700] = tSet:New(700, 2); -- Battleplate of Immolation
-    t[701] = tSet:New(701, 2); -- Reinforced Sapphirium Battleplate
-    t[702] = tSet:New(702, 2); -- Reinforced Sapphirium Battleplate
-    t[703] = tSet:New(703, 2); -- Lightsworn Plate
-    t[704] = tSet:New(704, 2); -- Sanctified Lightsworn Plate
-    t[705] = tSet:New(705, 2); -- Sanctified Lightsworn Plate
-    t[706] = tSet:New(706, 2); -- Turalyon's Plate
-    t[707] = tSet:New(707, 2); -- Liadrin's Plate
-    t[708] = tSet:New(708, 2); -- Valorous Aegis Plate
-    t[709] = tSet:New(709, 2); -- Conqueror's Aegis Plate
-    t[710] = tSet:New(710, 2); -- Heroes' Redemption Plate
-    t[711] = tSet:New(711, 2); -- Valorous Redemption Plate
-    t[712] = tSet:New(712, 128); -- Time Lord's Regalia
-    t[713] = tSet:New(713, 128); -- Time Lord's Regalia
-    t[714] = tSet:New(714, 128); -- Time Lord's Regalia
-    t[715] = tSet:New(715, 128); -- Firehawk Robes of Conflagration
-    t[716] = tSet:New(716, 128); -- Firehawk Robes of Conflagration
-    t[717] = tSet:New(717, 128); -- Firelord's Vestments
-    t[718] = tSet:New(718, 128); -- Firelord's Vestments
-    t[719] = tSet:New(719, 128); -- Bloodmage's Regalia
-    t[720] = tSet:New(720, 128); -- Sanctified Bloodmage's Regalia
-    t[721] = tSet:New(721, 128); -- Sanctified Bloodmage's Regalia
-    t[722] = tSet:New(722, 128); -- Khadgar's Regalia
-    t[723] = tSet:New(723, 128); -- Sunstrider's Regalia
-    t[724] = tSet:New(724, 128); -- Valorous Kirin Tor Garb
-    t[725] = tSet:New(725, 128); -- Conqueror's Kirin Tor Garb
-    t[726] = tSet:New(726, 128); -- Heroes' Frostfire Garb
-    t[727] = tSet:New(727, 128); -- Valorous Frostfire Garb
-    t[728] = tSet:New(728, 4); -- Wyrmstalker Battlegear
-    t[729] = tSet:New(729, 4); -- Wyrmstalker Battlegear
-    t[730] = tSet:New(730, 4); -- Wyrmstalker Battlegear
-    t[731] = tSet:New(731, 4); -- Flamewaker's Battlegear
-    t[732] = tSet:New(732, 4); -- Flamewaker's Battlegear
-    t[733] = tSet:New(733, 4); -- Lightning-Charged Battlegear
-    t[734] = tSet:New(734, 4); -- Lightning-Charged Battlegear
-    t[735] = tSet:New(735, 4); -- Ahn'Kahar Blood Hunter's Battlegear
-    t[736] = tSet:New(736, 4); -- Sanctified Ahn'Kahar Blood Hunter's Battlegear
-    t[737] = tSet:New(737, 4); -- Sanctified Ahn'Kahar Blood Hunter's Battlegear
-    t[738] = tSet:New(738, 4); -- Windrunner's Pursuit
-    t[739] = tSet:New(739, 4); -- Windrunner's Battlegear
-    t[740] = tSet:New(740, 4); -- Valorous Scourgestalker Battlegear
-    t[741] = tSet:New(741, 4); -- Conqueror's Scourgestalker Battlegear
-    t[742] = tSet:New(742, 4); -- Heroes' Cryptstalker Battlegear
-    t[743] = tSet:New(743, 4); -- Valorous Cryptstalker Battlegear
-    t[747] = tSet:New(747, 64); -- Vicious Gladiator's Ringmail Armor
-    t[748] = tSet:New(748, 64); -- Vicious Gladiator's Ringmail Armor
-    t[749] = tSet:New(749, 8); -- Vicious Gladiator's Leather Armor
-    t[750] = tSet:New(750, 8); -- Vicious Gladiator's Leather Armor
-    t[751] = tSet:New(751, 2); -- Vicious Gladiator's Scaled Armor
-    t[752] = tSet:New(752, 2); -- Vicious Gladiator's Scaled Armor
-    t[753] = tSet:New(753, 128); -- Vicious Gladiator's Silk Armor
-    t[754] = tSet:New(754, 128); -- Vicious Gladiator's Silk Armor
-    t[755] = tSet:New(755, 4); -- Vicious Gladiator's Chain Armor
-    t[756] = tSet:New(756, 4); -- Vicious Gladiator's Chain Armor
-    t[757] = tSet:New(757, 1024); -- Vicious Gladiator's Dragonhide Armor
-    t[758] = tSet:New(758, 1024); -- Vicious Gladiator's Dragonhide Armor
-    t[759] = tSet:New(759, 32); -- Vicious Gladiator's Dreadplate Armor
-    t[760] = tSet:New(760, 32); -- Vicious Gladiator's Dreadplate Armor
-    t[761] = tSet:New(761, 1); -- Wrathful Gladiator's Plate Armor
-    t[762] = tSet:New(762, 256); -- Wrathful Gladiator's Felweave Armor
-    t[763] = tSet:New(763, 64); -- Wrathful Gladiator's Ringmail Armor
-    t[764] = tSet:New(764, 8); -- Wrathful Gladiator's Leather Armor
-    t[765] = tSet:New(765, 2); -- Wrathful Gladiator's Scaled Armor
-    t[766] = tSet:New(766, 128); -- Wrathful Gladiator's Silk Armor
-    t[767] = tSet:New(767, 4); -- Wrathful Gladiator's Chain Armor
-    t[768] = tSet:New(768, 1024); -- Wrathful Gladiator's Dragonhide Armor
-    t[769] = tSet:New(769, 32); -- Wrathful Gladiator's Dreadplate Armor
-    t[770] = tSet:New(770, 1); -- Relentless Gladiator's Plate Armor
-    t[771] = tSet:New(771, 256); -- Relentless Gladiator's Felweave Armor
-    t[772] = tSet:New(772, 64); -- Relentless Gladiator's Ringmail Armor
-    t[773] = tSet:New(773, 8); -- Relentless Gladiator's Leather Armor
-    t[774] = tSet:New(774, 2); -- Relentless Gladiator's Scaled Armor
-    t[775] = tSet:New(775, 128); -- Relentless Gladiator's Silk Armor
-    t[776] = tSet:New(776, 4); -- Relentless Gladiator's Chain Armor
-    t[777] = tSet:New(777, 1024); -- Relentless Gladiator's Dragonhide Armor
-    t[778] = tSet:New(778, 32); -- Relentless Gladiator's Dreadplate Armor
-    t[779] = tSet:New(779, 1); -- Furious Gladiator's Plate Armor
-    t[780] = tSet:New(780, 256); -- Furious Gladiator's Felweave Armor
-    t[781] = tSet:New(781, 64); -- Furious Gladiator's Ringmail Armor
-    t[782] = tSet:New(782, 8); -- Furious Gladiator's Leather Armor
-    t[783] = tSet:New(783, 2); -- Furious Gladiator's Scaled Armor
-    t[784] = tSet:New(784, 128); -- Furious Gladiator's Silk Armor
-    t[785] = tSet:New(785, 4); -- Furious Gladiator's Chain Armor
-    t[786] = tSet:New(786, 1024); -- Furious Gladiator's Dragonhide Armor
-    t[787] = tSet:New(787, 32); -- Furious Gladiator's Dreadplate Armor
-    t[788] = tSet:New(788, 1); -- Deadly Gladiator's Plate Armor
-    t[789] = tSet:New(789, 256); -- Deadly Gladiator's Felweave Armor
-    t[790] = tSet:New(790, 64); -- Deadly Gladiator's Ringmail Armor
-    t[791] = tSet:New(791, 8); -- Deadly Gladiator's Leather Armor
-    t[792] = tSet:New(792, 2); -- Deadly Gladiator's Scaled Armor
-    t[793] = tSet:New(793, 128); -- Deadly Gladiator's Silk Armor
-    t[794] = tSet:New(794, 4); -- Deadly Gladiator's Chain Armor
-    t[795] = tSet:New(795, 1024); -- Deadly Gladiator's Dragonhide Armor
-    t[796] = tSet:New(796, 32); -- Deadly Gladiator's Dreadplate Armor
-    t[797] = tSet:New(797, 1); -- Hateful Gladiator's Plate Armor
-    t[798] = tSet:New(798, 256); -- Hateful Gladiator's Felweave Armor
-    t[799] = tSet:New(799, 64); -- Hateful Gladiator's Ringmail Armor
-    t[800] = tSet:New(800, 8); -- Hateful Gladiator's Leather Armor
-    t[801] = tSet:New(801, 2); -- Hateful Gladiator's Scaled Armor
-    t[802] = tSet:New(802, 128); -- Hateful Gladiator's Silk Armor
-    t[803] = tSet:New(803, 4); -- Hateful Gladiator's Chain Armor
-    t[804] = tSet:New(804, 1024); -- Hateful Gladiator's Dragonhide Armor
-    t[805] = tSet:New(805, 32); -- Hateful Gladiator's Dreadplate Armor
-    t[806] = tSet:New(806, 1); -- Savage Gladiator's Plate Armor
-    t[807] = tSet:New(807, 256); -- Savage Gladiator's Felweave Armor
-    t[808] = tSet:New(808, 64); -- Savage Gladiator's Ringmail Armor
-    t[809] = tSet:New(809, 8); -- Savage Gladiator's Leather Armor
-    t[810] = tSet:New(810, 2); -- Savage Gladiator's Scaled Armor
-    t[811] = tSet:New(811, 128); -- Savage Gladiator's Silk Armor
-    t[812] = tSet:New(812, 4); -- Savage Gladiator's Chain Armor
-    t[813] = tSet:New(813, 1024); -- Savage Gladiator's Dragonhide Armor
-    t[814] = tSet:New(814, 32); -- Savage Gladiator's Dreadplate Armor
-    t[815] = tSet:New(815, 1024); -- Deep Earth Vestments
-    t[816] = tSet:New(816, 1024); -- Deep Earth Vestments
-    t[817] = tSet:New(817, 1024); -- Deep Earth Vestments
-    t[818] = tSet:New(818, 1024); -- Obsidian Arborweave Vestments
-    t[819] = tSet:New(819, 1024); -- Obsidian Arborweave Vestments
-    t[820] = tSet:New(820, 1024); -- Stormrider's Vestments
-    t[821] = tSet:New(821, 1024); -- Stormrider's Vestments
-    t[822] = tSet:New(822, 1024); -- Lasherweave Battlegear
-    t[823] = tSet:New(823, 1024); -- Sanctified Lasherweave Battlegear
-    t[824] = tSet:New(824, 1024); -- Sanctified Lasherweave Battlegear
-    t[825] = tSet:New(825, 1024); -- Malfurion's Battlegear
-    t[826] = tSet:New(826, 1024); -- Runetotem's Battlegear
-    t[827] = tSet:New(827, 1024); -- Valorous Nightsong Battlegear
-    t[828] = tSet:New(828, 1024); -- Conqueror's Nightsong Battlegear
-    t[829] = tSet:New(829, 1024); -- Heroes' Dreamwalker Battlegear
-    t[830] = tSet:New(830, 1024); -- Valorous Dreamwalker Battlegear
-    t[831] = tSet:New(831, 32); -- Necrotic Boneplate Armor
-    t[832] = tSet:New(832, 32); -- Necrotic Boneplate Armor
-    t[833] = tSet:New(833, 32); -- Necrotic Boneplate Armor
-    t[834] = tSet:New(834, 32); -- Elementium Deathplate Battlearmor
-    t[835] = tSet:New(835, 32); -- Elementium Deathplate Battlearmor
-    t[836] = tSet:New(836, 32); -- Magma Plated Battlearmor
-    t[837] = tSet:New(837, 32); -- Magma Plated Battlearmor
-    t[838] = tSet:New(838, 32); -- Scourgelord's Plate
-    t[839] = tSet:New(839, 32); -- Sanctified Scourgelord's Plate
-    t[840] = tSet:New(840, 32); -- Sanctified Scourgelord's Plate
-    t[841] = tSet:New(841, 32); -- Koltira's Battlegear
-    t[842] = tSet:New(842, 32); -- Thassarian's Battlegear
-    t[843] = tSet:New(843, 32); -- Valorous Darkruned Plate
-    t[844] = tSet:New(844, 32); -- Conqueror's Darkruned Plate
-    t[845] = tSet:New(845, 32); -- Heroes' Scourgeborne Plate
-    t[846] = tSet:New(846, 32); -- Valorous Scourgeborne Plate
-    t[847] = tSet:New(847, 1); -- Onslaught Armor
-    t[848] = tSet:New(848, 1); -- Destroyer Armor
-    t[849] = tSet:New(849, 1); -- Warbringer Armor
-    t[850] = tSet:New(850, 1); -- Dreadnaught's Battlegear
-    t[851] = tSet:New(851, 1); -- Conqueror's Battlegear
-    t[852] = tSet:New(852, 1); -- Battlegear of Wrath
-    t[853] = tSet:New(853, 1); -- Battlegear of Might
-    t[862] = tSet:New(862, 256); -- Malefic Raiment
-    t[863] = tSet:New(863, 256); -- Corruptor Raiment
-    t[864] = tSet:New(864, 256); -- Voidheart Raiment
-    t[865] = tSet:New(865, 256); -- Plagueheart Raiment
-    t[866] = tSet:New(866, 256); -- Doomcaller's Attire
-    t[867] = tSet:New(867, 256); -- Nemesis Raiment
-    t[868] = tSet:New(868, 256); -- Felheart Raiment
-    t[869] = tSet:New(869, 64); -- Skyshatter Raiment
-    t[870] = tSet:New(870, 64); -- Skyshatter Regalia
-    t[871] = tSet:New(871, 64); -- Cataclysm Regalia
-    t[872] = tSet:New(872, 64); -- Cyclone Regalia
-    t[873] = tSet:New(873, 64); -- The Earthshatterer
-    t[874] = tSet:New(874, 64); -- Stormcaller's Garb
-    t[875] = tSet:New(875, 64); -- The Ten Storms
-    t[876] = tSet:New(876, 64); -- The Earthfury
-    t[887] = tSet:New(887, 8); -- Slayer's Battlegear
-    t[888] = tSet:New(888, 8); -- Slayer's Armor
-    t[889] = tSet:New(889, 8); -- Deathmantle
-    t[890] = tSet:New(890, 8); -- Netherblade
-    t[891] = tSet:New(891, 8); -- Bonescythe Armor
-    t[892] = tSet:New(892, 8); -- Deathdealer's Embrace
-    t[893] = tSet:New(893, 8); -- Bloodfang Armor
-    t[894] = tSet:New(894, 8); -- Nightslayer Armor
-    t[895] = tSet:New(895, 2); -- Lightbringer Battlegear
-    t[896] = tSet:New(896, 2); -- Lightbringer Armor
-    t[897] = tSet:New(897, 2); -- Crystalforge Armor
-    t[898] = tSet:New(898, 128); -- Aldor Regalia
-    t[899] = tSet:New(899, 2); -- Redemption Armor
-    t[900] = tSet:New(900, 2); -- Avenger's Battlegear
-    t[901] = tSet:New(901, 2); -- Judgment Armor
-    t[902] = tSet:New(902, 2); -- Lawbringer Armor
-    t[903] = tSet:New(903, 128); -- Tempest Garb
-    t[904] = tSet:New(904, 128); -- Tempest Regalia
-    t[905] = tSet:New(905, 128); -- Tirisfal Regalia
-    t[906] = tSet:New(906, 2); -- Justicar Armor
-    t[907] = tSet:New(907, 128); -- Frostfire Regalia
-    t[908] = tSet:New(908, 128); -- Enigma Vestments
-    t[909] = tSet:New(909, 128); -- Netherwind Regalia
-    t[910] = tSet:New(910, 128); -- Arcanist Regalia
-    t[911] = tSet:New(911, 4); -- Gronnstalker's Battlegear
-    t[912] = tSet:New(912, 4); -- Gronnstalker's Armor
-    t[913] = tSet:New(913, 4); -- Demon Stalker Armor
-    t[914] = tSet:New(914, 4); -- Cryptstalker Armor
-    t[915] = tSet:New(915, 4); -- Striker's Garb
-    t[916] = tSet:New(916, 4); -- Dragonstalker Armor
-    t[917] = tSet:New(917, 4); -- Giantstalker Armor
-    t[918] = tSet:New(918, 4); -- Rift Stalker Armor
-    t[919] = tSet:New(919, 1024); -- Thunderheart Regalia
-    t[920] = tSet:New(920, 1024); -- Thunderheart Raiment
-    t[921] = tSet:New(921, 1024); -- Nordrassil Raiment
-    t[922] = tSet:New(922, 1024); -- Malorne Raiment
-    t[924] = tSet:New(924, 1024); -- Dreamwalker Raiment
-    t[926] = tSet:New(926, 1024); -- Genesis Raiment
-    t[927] = tSet:New(927, 1024); -- Stormrage Raiment
-    t[928] = tSet:New(928, 1024); -- Cenarion Raiment
-    t[931] = tSet:New(931, 1); -- Onslaught Battlegear
-    t[932] = tSet:New(932, 256); -- Malefic Regalia
-    t[933] = tSet:New(933, 64); -- Regalia of Shackled Elements
-    t[934] = tSet:New(934, 64); -- Regalia of Shackled Elements
-    t[935] = tSet:New(935, 64); -- Regalia of Shackled Elements
-    t[936] = tSet:New(936, 64); -- Regalia of Shackled Elements
-    t[937] = tSet:New(937, 1); -- Warplate of the Obsidian Aspect
-    t[938] = tSet:New(938, 1); -- Warplate of the Obsidian Aspect
-    t[939] = tSet:New(939, 1); -- Warplate of the Obsidian Aspect
-    t[940] = tSet:New(940, 1); -- Warplate of the Obsidian Aspect
-    t[941] = tSet:New(941, 256); -- Legacy of Azj'aqir
-    t[942] = tSet:New(942, 8); -- Doomblade Battlegear
-    t[943] = tSet:New(943, 8); -- Doomblade Battlegear
-    t[944] = tSet:New(944, 8); -- Doomblade Battlegear
-    t[945] = tSet:New(945, 8); -- Doomblade Battlegear
-    t[946] = tSet:New(946, 1); -- Brutal Gladiator's Plate Armor
-    t[947] = tSet:New(947, 256); -- Brutal Gladiator's Felweave Armor
-    t[948] = tSet:New(948, 64); -- Brutal Gladiator's Ringmail Armor
-    t[949] = tSet:New(949, 8); -- Brutal Gladiator's Leather Armor
-    t[950] = tSet:New(950, 2); -- Brutal Gladiator's Scaled Armor
-    t[951] = tSet:New(951, 128); -- Brutal Gladiator's Silk Armor
-    t[952] = tSet:New(952, 4); -- Brutal Gladiator's Chain Armor
-    t[953] = tSet:New(953, 1024); -- Brutal Gladiator's Dragonhide Armor
-    t[954] = tSet:New(954, 1); -- Vengeful Gladiator's Plate Armor
-    t[955] = tSet:New(955, 256); -- Vengeful Gladiator's Felweave Armor
-    t[956] = tSet:New(956, 64); -- Vengeful Gladiator's Ringmail Armor
-    t[957] = tSet:New(957, 8); -- Vengeful Gladiator's Leather Armor
-    t[958] = tSet:New(958, 2); -- Vengeful Gladiator's Scaled Armor
-    t[959] = tSet:New(959, 128); -- Vengeful Gladiator's Silk Armor
-    t[960] = tSet:New(960, 4); -- Vengeful Gladiator's Chain Armor
-    t[961] = tSet:New(961, 1024); -- Vengeful Gladiator's Dragonhide Armor
-    t[962] = tSet:New(962, 1); -- Merciless Gladiator's Plate Armor
-    t[963] = tSet:New(963, 256); -- Merciless Gladiator's Felweave Armor
-    t[964] = tSet:New(964, 64); -- Merciless Gladiator's Ringmail Armor
-    t[965] = tSet:New(965, 8); -- Merciless Gladiator's Leather Armor
-    t[966] = tSet:New(966, 2); -- Merciless Gladiator's Scaled Armor
-    t[967] = tSet:New(967, 128); -- Merciless Gladiator's Silk Armor
-    t[968] = tSet:New(968, 4); -- Merciless Gladiator's Chain Armor
-    t[969] = tSet:New(969, 1024); -- Merciless Gladiator's Dragonhide Armor
-    t[970] = tSet:New(970, 256); -- Gladiator's Felweave Armor
-    t[971] = tSet:New(971, 64); -- Gladiator's Ringmail Armor
-    t[972] = tSet:New(972, 8); -- Gladiator's Leather Armor
-    t[973] = tSet:New(973, 16); -- Gladiator's Satin Armor
-    t[974] = tSet:New(974, 2); -- Gladiator's Scaled Armor
-    t[975] = tSet:New(975, 128); -- Gladiator's Silk Armor
-    t[976] = tSet:New(976, 4); -- Gladiator's Chain Armor
-    t[977] = tSet:New(977, 1024); -- Gladiator's Dragonhide Armor
-    t[978] = tSet:New(978, 2); -- Battleplate of the Highlord
-    t[979] = tSet:New(979, 2); -- Battleplate of the Highlord
-    t[980] = tSet:New(980, 2); -- Battleplate of the Highlord
-    t[981] = tSet:New(981, 2); -- Battleplate of the Highlord
-    t[982] = tSet:New(982, 512); -- Vestments of Enveloped Dissonance
-    t[983] = tSet:New(983, 512); -- Vestments of Enveloped Dissonance
-    t[984] = tSet:New(984, 512); -- Vestments of Enveloped Dissonance
-    t[985] = tSet:New(985, 512); -- Vestments of Enveloped Dissonance
-    t[986] = tSet:New(986, 128); -- Regalia of Everburning Knowledge
-    t[987] = tSet:New(987, 128); -- Regalia of Everburning Knowledge
-    t[988] = tSet:New(988, 128); -- Regalia of Everburning Knowledge
-    t[989] = tSet:New(989, 128); -- Regalia of Everburning Knowledge
-    t[990] = tSet:New(990, 4); -- Eagletalon Battlegear
-    t[991] = tSet:New(991, 4); -- Eagletalon Battlegear
-    t[992] = tSet:New(992, 4); -- Eagletalon Battlegear
-    t[993] = tSet:New(993, 4); -- Eagletalon Battlegear
-    t[994] = tSet:New(994, 1024); -- Garb of the Astral Warden
-    t[995] = tSet:New(995, 1024); -- Garb of the Astral Warden
-    t[996] = tSet:New(996, 1024); -- Garb of the Astral Warden
-    t[997] = tSet:New(997, 1024); -- Garb of the Astral Warden
-    t[998] = tSet:New(998, 2048); -- Vestment of Second Sight
-    t[999] = tSet:New(999, 2048); -- Vestment of Second Sight
-    t[1000] = tSet:New(1000, 2048); -- Vestment of Second Sight
-    t[1001] = tSet:New(1001, 2048); -- Vestment of Second Sight
-    t[1002] = tSet:New(1002, 32); -- Dreadwyrm Battleplate
-    t[1003] = tSet:New(1003, 32); -- Dreadwyrm Battleplate
-    t[1004] = tSet:New(1004, 32); -- Dreadwyrm Battleplate
-    t[1005] = tSet:New(1005, 32); -- Dreadwyrm Battleplate
-    t[1010] = tSet:New(1010, 32); -- Tyrannical Gladiator's Dreadplate Armor
-    t[1011] = tSet:New(1011, 32); -- Tyrannical Gladiator's Dreadplate Armor
-    t[1012] = tSet:New(1012, 1024); -- Tyrannical Gladiator's Dragonhide Armor
-    t[1013] = tSet:New(1013, 1024); -- Tyrannical Gladiator's Dragonhide Armor
-    t[1014] = tSet:New(1014, 4); -- Tyrannical Gladiator's Chain Armor
-    t[1015] = tSet:New(1015, 4); -- Tyrannical Gladiator's Chain Armor
-    t[1016] = tSet:New(1016, 128); -- Tyrannical Gladiator's Silk Armor
-    t[1017] = tSet:New(1017, 128); -- Tyrannical Gladiator's Silk Armor
-    t[1018] = tSet:New(1018, 512); -- Tyrannical Gladiator's Ironskin Armor
-    t[1019] = tSet:New(1019, 512); -- Tyrannical Gladiator's Ironskin Armor
-    t[1020] = tSet:New(1020, 2); -- Tyrannical Gladiator's Scaled Armor
-    t[1021] = tSet:New(1021, 2); -- Tyrannical Gladiator's Scaled Armor
-    t[1022] = tSet:New(1022, 8); -- Tyrannical Gladiator's Leather Armor
-    t[1023] = tSet:New(1023, 8); -- Tyrannical Gladiator's Leather Armor
-    t[1024] = tSet:New(1024, 64); -- Tyrannical Gladiator's Ringmail Armor
-    t[1025] = tSet:New(1025, 64); -- Tyrannical Gladiator's Ringmail Armor
-    t[1026] = tSet:New(1026, 256); -- Tyrannical Gladiator's Felweave Armor
-    t[1027] = tSet:New(1027, 256); -- Tyrannical Gladiator's Felweave Armor
-    t[1028] = tSet:New(1028, 1); -- Tyrannical Gladiator's Plate Armor
-    t[1029] = tSet:New(1029, 1); -- Tyrannical Gladiator's Plate Armor
-    t[1030] = tSet:New(1030, 32); -- Grievous Gladiator's Dreadplate Armor
-    t[1031] = tSet:New(1031, 32); -- Grievous Gladiator's Dreadplate Armor
-    t[1032] = tSet:New(1032, 1024); -- Grievous Gladiator's Dragonhide Armor
-    t[1033] = tSet:New(1033, 1024); -- Grievous Gladiator's Dragonhide Armor
-    t[1034] = tSet:New(1034, 4); -- Grievous Gladiator's Chain Armor
-    t[1035] = tSet:New(1035, 4); -- Grievous Gladiator's Chain Armor
-    t[1036] = tSet:New(1036, 128); -- Grievous Gladiator's Silk Armor
-    t[1037] = tSet:New(1037, 128); -- Grievous Gladiator's Silk Armor
-    t[1038] = tSet:New(1038, 512); -- Grievous Gladiator's Ironskin Armor
-    t[1039] = tSet:New(1039, 512); -- Grievous Gladiator's Ironskin Armor
-    t[1040] = tSet:New(1040, 2); -- Grievous Gladiator's Scaled Armor
-    t[1041] = tSet:New(1041, 2); -- Grievous Gladiator's Scaled Armor
-    t[1042] = tSet:New(1042, 8); -- Grievous Gladiator's Leather Armor
-    t[1043] = tSet:New(1043, 8); -- Grievous Gladiator's Leather Armor
-    t[1044] = tSet:New(1044, 64); -- Grievous Gladiator's Ringmail Armor
-    t[1045] = tSet:New(1045, 64); -- Grievous Gladiator's Ringmail Armor
-    t[1046] = tSet:New(1046, 256); -- Grievous Gladiator's Felweave Armor
-    t[1047] = tSet:New(1047, 256); -- Grievous Gladiator's Felweave Armor
-    t[1048] = tSet:New(1048, 1); -- Grievous Gladiator's Plate Armor
-    t[1049] = tSet:New(1049, 1); -- Grievous Gladiator's Plate Armor
-    t[1054] = tSet:New(1054, 32); -- Malevolent Gladiator's Dreadplate Armor
-    t[1055] = tSet:New(1055, 1024); -- Malevolent Gladiator's Dragonhide Armor
-    t[1056] = tSet:New(1056, 4); -- Malevolent Gladiator's Chain Armor
-    t[1057] = tSet:New(1057, 128); -- Malevolent Gladiator's Silk Armor
-    t[1059] = tSet:New(1059, 512); -- Malevolent Gladiator's Ironskin Armor
-    t[1060] = tSet:New(1060, 2); -- Malevolent Gladiator's Scaled Armor
-    t[1061] = tSet:New(1061, 8); -- Malevolent Gladiator's Leather Armor
-    t[1062] = tSet:New(1062, 64); -- Malevolent Gladiator's Ringmail Armor
-    t[1063] = tSet:New(1063, 256); -- Malevolent Gladiator's Felweave Armor
-    t[1064] = tSet:New(1064, 1); -- Malevolent Gladiator's Plate Armor
-    t[1067] = tSet:New(1067, 8); -- Vindictive Combatant's Leather Armor
-    t[1068] = tSet:New(1068, 8); -- Vindictive Combatant's Leather Armor
-    t[1069] = tSet:New(1069, 1); -- Vindictive Combatant's Plate Armor
-    t[1070] = tSet:New(1070, 1); -- Vindictive Combatant's Plate Armor
-    t[1071] = tSet:New(1071, 16); -- Vindictive Combatant's Satin Armor
-    t[1072] = tSet:New(1072, 16); -- Vindictive Combatant's Satin Armor
-    t[1073] = tSet:New(1073, 32); -- Prideful Gladiator's Dreadplate Armor
-    t[1074] = tSet:New(1074, 32); -- Prideful Gladiator's Dreadplate Armor
-    t[1075] = tSet:New(1075, 1024); -- Prideful Gladiator's Dragonhide Armor
-    t[1076] = tSet:New(1076, 1024); -- Prideful Gladiator's Dragonhide Armor
-    t[1077] = tSet:New(1077, 4); -- Prideful Gladiator's Chain Armor
-    t[1078] = tSet:New(1078, 4); -- Prideful Gladiator's Chain Armor
-    t[1079] = tSet:New(1079, 128); -- Prideful Gladiator's Silk Armor
-    t[1080] = tSet:New(1080, 128); -- Prideful Gladiator's Silk Armor
-    t[1081] = tSet:New(1081, 512); -- Prideful Gladiator's Ironskin Armor
-    t[1082] = tSet:New(1082, 512); -- Prideful Gladiator's Ironskin Armor
-    t[1083] = tSet:New(1083, 2); -- Prideful Gladiator's Scaled Armor
-    t[1084] = tSet:New(1084, 2); -- Prideful Gladiator's Scaled Armor
-    t[1085] = tSet:New(1085, 8); -- Prideful Gladiator's Leather Armor
-    t[1086] = tSet:New(1086, 8); -- Prideful Gladiator's Leather Armor
-    t[1087] = tSet:New(1087, 64); -- Prideful Gladiator's Ringmail Armor
-    t[1088] = tSet:New(1088, 64); -- Prideful Gladiator's Ringmail Armor
-    t[1089] = tSet:New(1089, 256); -- Prideful Gladiator's Felweave Armor
-    t[1090] = tSet:New(1090, 256); -- Prideful Gladiator's Felweave Armor
-    t[1091] = tSet:New(1091, 1); -- Prideful Gladiator's Plate Armor
-    t[1092] = tSet:New(1092, 1); -- Prideful Gladiator's Plate Armor
-    t[1093] = tSet:New(1093, 128); -- Vindictive Gladiator's Silk Armor
-    t[1094] = tSet:New(1094, 128); -- Vindictive Gladiator's Silk Armor
-    t[1095] = tSet:New(1095, 128); -- Vindictive Gladiator's Silk Armor
-    t[1096] = tSet:New(1096, 128); -- Vindictive Gladiator's Silk Armor
-    t[1097] = tSet:New(1097, 1024); -- Vindictive Gladiator's Dragonhide Armor
-    t[1098] = tSet:New(1098, 1024); -- Vindictive Gladiator's Dragonhide Armor
-    t[1099] = tSet:New(1099, 1024); -- Vindictive Gladiator's Dragonhide Armor
-    t[1100] = tSet:New(1100, 1024); -- Vindictive Gladiator's Dragonhide Armor
-    t[1101] = tSet:New(1101, 256); -- Vindictive Gladiator's Felweave Armor
-    t[1102] = tSet:New(1102, 256); -- Vindictive Gladiator's Felweave Armor
-    t[1103] = tSet:New(1103, 256); -- Vindictive Gladiator's Felweave Armor
-    t[1104] = tSet:New(1104, 256); -- Vindictive Gladiator's Felweave Armor
-    t[1105] = tSet:New(1105, 32); -- Vindictive Gladiator's Dreadplate Armor
-    t[1106] = tSet:New(1106, 32); -- Vindictive Gladiator's Dreadplate Armor
-    t[1107] = tSet:New(1107, 32); -- Vindictive Gladiator's Dreadplate Armor
-    t[1108] = tSet:New(1108, 32); -- Vindictive Gladiator's Dreadplate Armor
-    t[1109] = tSet:New(1109, 2048); -- Vindictive Gladiator's Felskin Armor
-    t[1110] = tSet:New(1110, 2048); -- Vindictive Gladiator's Felskin Armor
-    t[1111] = tSet:New(1111, 2048); -- Vindictive Gladiator's Felskin Armor
-    t[1112] = tSet:New(1112, 2048); -- Vindictive Gladiator's Felskin Armor
-    t[1113] = tSet:New(1113, 4); -- Vindictive Gladiator's Chain Armor
-    t[1114] = tSet:New(1114, 4); -- Vindictive Gladiator's Chain Armor
-    t[1115] = tSet:New(1115, 4); -- Vindictive Gladiator's Chain Armor
-    t[1116] = tSet:New(1116, 4); -- Vindictive Gladiator's Chain Armor
-    t[1117] = tSet:New(1117, 512); -- Vindictive Gladiator's Ironskin Armor
-    t[1118] = tSet:New(1118, 512); -- Vindictive Gladiator's Ironskin Armor
-    t[1119] = tSet:New(1119, 512); -- Vindictive Gladiator's Ironskin Armor
-    t[1120] = tSet:New(1120, 512); -- Vindictive Gladiator's Ironskin Armor
-    t[1121] = tSet:New(1121, 2); -- Vindictive Gladiator's Scaled Armor
-    t[1122] = tSet:New(1122, 2); -- Vindictive Gladiator's Scaled Armor
-    t[1123] = tSet:New(1123, 2); -- Vindictive Gladiator's Scaled Armor
-    t[1124] = tSet:New(1124, 2); -- Vindictive Gladiator's Scaled Armor
-    t[1125] = tSet:New(1125, 8); -- Vindictive Gladiator's Leather Armor
-    t[1126] = tSet:New(1126, 8); -- Vindictive Gladiator's Leather Armor
-    t[1127] = tSet:New(1127, 8); -- Vindictive Gladiator's Leather Armor
-    t[1128] = tSet:New(1128, 8); -- Vindictive Gladiator's Leather Armor
-    t[1129] = tSet:New(1129, 64); -- Vindictive Gladiator's Ringmail Armor
-    t[1130] = tSet:New(1130, 64); -- Vindictive Gladiator's Ringmail Armor
-    t[1131] = tSet:New(1131, 64); -- Vindictive Gladiator's Ringmail Armor
-    t[1132] = tSet:New(1132, 64); -- Vindictive Gladiator's Ringmail Armor
-    t[1133] = tSet:New(1133, 1); -- Vindictive Gladiator's Plate Armor
-    t[1134] = tSet:New(1134, 1); -- Vindictive Gladiator's Plate Armor
-    t[1135] = tSet:New(1135, 1); -- Vindictive Gladiator's Plate Armor
-    t[1136] = tSet:New(1136, 1); -- Vindictive Gladiator's Plate Armor
-    t[1137] = tSet:New(1137, 128); -- Vindictive Combatant's Silk Armor
-    t[1138] = tSet:New(1138, 32); -- Primal Gladiator's Dreadplate Armor
-    t[1139] = tSet:New(1139, 32); -- Primal Gladiator's Dreadplate Armor
-    t[1140] = tSet:New(1140, 1024); -- Primal Gladiator's Dragonhide Armor
-    t[1141] = tSet:New(1141, 1024); -- Primal Gladiator's Dragonhide Armor
-    t[1142] = tSet:New(1142, 4); -- Primal Gladiator's Chain Armor
-    t[1143] = tSet:New(1143, 4); -- Primal Gladiator's Chain Armor
-    t[1144] = tSet:New(1144, 128); -- Primal Gladiator's Silk Armor
-    t[1145] = tSet:New(1145, 128); -- Primal Gladiator's Silk Armor
-    t[1146] = tSet:New(1146, 512); -- Primal Gladiator's Ironskin Armor
-    t[1147] = tSet:New(1147, 512); -- Primal Gladiator's Ironskin Armor
-    t[1148] = tSet:New(1148, 2); -- Primal Gladiator's Scaled Armor
-    t[1149] = tSet:New(1149, 2); -- Primal Gladiator's Scaled Armor
-    t[1150] = tSet:New(1150, 8); -- Primal Gladiator's Leather Armor
-    t[1151] = tSet:New(1151, 8); -- Primal Gladiator's Leather Armor
-    t[1152] = tSet:New(1152, 64); -- Primal Gladiator's Ringmail Armor
-    t[1153] = tSet:New(1153, 64); -- Primal Gladiator's Ringmail Armor
-    t[1154] = tSet:New(1154, 256); -- Primal Gladiator's Felweave Armor
-    t[1155] = tSet:New(1155, 256); -- Primal Gladiator's Felweave Armor
-    t[1156] = tSet:New(1156, 1); -- Primal Gladiator's Plate Armor
-    t[1157] = tSet:New(1157, 1); -- Primal Gladiator's Plate Armor
-    t[1158] = tSet:New(1158, 256); -- Vindictive Combatant's Felweave Armor
-    t[1159] = tSet:New(1159, 128); -- Vindictive Combatant's Silk Armor
-    t[1160] = tSet:New(1160, 256); -- Vindictive Combatant's Felweave Armor
-    t[1161] = tSet:New(1161, 64); -- Vindictive Combatant's Ringmail Armor
-    t[1162] = tSet:New(1162, 64); -- Vindictive Combatant's Ringmail Armor
-    t[1163] = tSet:New(1163, 32); -- Vindictive Combatant's Dreadplate Armor
-    t[1164] = tSet:New(1164, 2); -- Vindictive Combatant's Scaled Armor
-    t[1165] = tSet:New(1165, 32); -- Vindictive Combatant's Dreadplate Armor
-    t[1166] = tSet:New(1166, 2); -- Vindictive Combatant's Scaled Armor
-    t[1167] = tSet:New(1167, 2048); -- Vindictive Combatant's Felskin Armor
-    t[1168] = tSet:New(1168, 1024); -- Vindictive Combatant's Dragonhide Armor
-    t[1169] = tSet:New(1169, 512); -- Vindictive Combatant's Ironskin Armor
-    t[1170] = tSet:New(1170, 2048); -- Vindictive Combatant's Felskin Armor
-    t[1171] = tSet:New(1171, 1024); -- Vindictive Combatant's Dragonhide Armor
-    t[1172] = tSet:New(1172, 512); -- Vindictive Combatant's Ironskin Armor
-    t[1173] = tSet:New(1173, 32); -- Wild Gladiator's Dreadplate Armor
-    t[1174] = tSet:New(1174, 32); -- Wild Gladiator's Dreadplate Armor
-    t[1175] = tSet:New(1175, 1024); -- Wild Gladiator's Dragonhide Armor
-    t[1176] = tSet:New(1176, 1024); -- Wild Gladiator's Dragonhide Armor
-    t[1177] = tSet:New(1177, 4); -- Wild Gladiator's Chain Armor
-    t[1178] = tSet:New(1178, 4); -- Wild Gladiator's Chain Armor
-    t[1179] = tSet:New(1179, 128); -- Wild Gladiator's Silk Armor
-    t[1180] = tSet:New(1180, 128); -- Wild Gladiator's Silk Armor
-    t[1181] = tSet:New(1181, 512); -- Wild Gladiator's Ironskin Armor
-    t[1182] = tSet:New(1182, 512); -- Wild Gladiator's Ironskin Armor
-    t[1183] = tSet:New(1183, 2); -- Wild Gladiator's Scaled Paladin
-    t[1184] = tSet:New(1184, 2); -- Wild Gladiator's Scaled Paladin
-    t[1185] = tSet:New(1185, 8); -- Wild Gladiator's Leather Armor
-    t[1186] = tSet:New(1186, 8); -- Wild Gladiator's Leather Armor
-    t[1187] = tSet:New(1187, 64); -- Wild Gladiator's Ringmail Armor
-    t[1188] = tSet:New(1188, 64); -- Wild Gladiator's Ringmail Armor
-    t[1189] = tSet:New(1189, 256); -- Wild Gladiator's Felweave Armor
-    t[1190] = tSet:New(1190, 256); -- Wild Gladiator's Felweave Armor
-    t[1191] = tSet:New(1191, 1); -- Wild Gladiator's Plate Armor
-    t[1192] = tSet:New(1192, 1); -- Wild Gladiator's Plate Armor
-    t[1193] = tSet:New(1193, 1); -- Bloodthirsty Gladiator's Plate Armor
-    t[1194] = tSet:New(1194, 256); -- Bloodthirsty Gladiator's Felweave Armor
-    t[1195] = tSet:New(1195, 64); -- Bloodthirsty Gladiator's Ringmail Armor
-    t[1196] = tSet:New(1196, 8); -- Bloodthirsty Gladiator's Leather Armor
-    t[1197] = tSet:New(1197, 2); -- Bloodthirsty Gladiator's Scaled Armor
-    t[1198] = tSet:New(1198, 128); -- Bloodthirsty Gladiator's Silk Armor
-    t[1199] = tSet:New(1199, 4); -- Bloodthirsty Gladiator's Chain Armor
-    t[1200] = tSet:New(1200, 1024); -- Bloodthirsty Gladiator's Dragonhide Armor
-    t[1201] = tSet:New(1201, 32); -- Bloodthirsty Gladiator's Dreadplate Armor
-    t[1202] = tSet:New(1202, 32); -- Brutal Gladiator's Dreadplate Armor
-    t[1204] = tSet:New(1204, 32); -- Warmongering Gladiator's Dreadplate Armor
-    t[1205] = tSet:New(1205, 32); -- Warmongering Gladiator's Dreadplate Armor
-    t[1206] = tSet:New(1206, 1024); -- Warmongering Gladiator's Dragonhide Armor
-    t[1207] = tSet:New(1207, 1024); -- Warmongering Gladiator's Dragonhide Armor
-    t[1208] = tSet:New(1208, 4); -- Warmongering Gladiator's Chain Armor
-    t[1209] = tSet:New(1209, 4); -- Warmongering Gladiator's Chain Armor
-    t[1210] = tSet:New(1210, 128); -- Warmongering Gladiator's Silk Armor
-    t[1211] = tSet:New(1211, 128); -- Warmongering Gladiator's Silk Armor
-    t[1212] = tSet:New(1212, 512); -- Warmongering Gladiator's Ironskin Armor
-    t[1213] = tSet:New(1213, 512); -- Warmongering Gladiator's Ironskin Armor
-    t[1214] = tSet:New(1214, 2); -- Warmongering Gladiator's Scaled Armor
-    t[1215] = tSet:New(1215, 2); -- Warmongering Gladiator's Scaled Armor
-    t[1216] = tSet:New(1216, 8); -- Warmongering Gladiator's Leather Armor
-    t[1217] = tSet:New(1217, 8); -- Warmongering Gladiator's Leather Armor
-    t[1218] = tSet:New(1218, 64); -- Warmongering Gladiator's Ringmail Armor
-    t[1219] = tSet:New(1219, 64); -- Warmongering Gladiator's Ringmail Armor
-    t[1220] = tSet:New(1220, 256); -- Warmongering Gladiator's Felweave Armor
-    t[1221] = tSet:New(1221, 256); -- Warmongering Gladiator's Felweave Armor
-    t[1222] = tSet:New(1222, 1); -- Warmongering Gladiator's Plate Armor
-    t[1223] = tSet:New(1223, 1); -- Warmongering Gladiator's Plate Armor
-    t[1225] = tSet:New(1225, 1); -- Cruel Gladiator's Plate Armor
-    t[1226] = tSet:New(1226, 1); -- Cruel Gladiator's Plate Armor
-    t[1227] = tSet:New(1227, 1); -- Cruel Gladiator's Plate Armor
-    t[1228] = tSet:New(1228, 1); -- Cruel Gladiator's Plate Armor
-    t[1229] = tSet:New(1229, 256); -- Cruel Gladiator's Felweave Armor
-    t[1230] = tSet:New(1230, 256); -- Cruel Gladiator's Felweave Armor
-    t[1231] = tSet:New(1231, 256); -- Cruel Gladiator's Felweave Armor
-    t[1232] = tSet:New(1232, 256); -- Cruel Gladiator's Felweave Armor
-    t[1233] = tSet:New(1233, 64); -- Cruel Gladiator's Ringmail Armor
-    t[1234] = tSet:New(1234, 64); -- Cruel Gladiator's Ringmail Armor
-    t[1235] = tSet:New(1235, 64); -- Cruel Gladiator's Ringmail Armor
-    t[1236] = tSet:New(1236, 64); -- Cruel Gladiator's Ringmail Armor
-    t[1237] = tSet:New(1237, 8); -- Cruel Gladiator's Leather Armor
-    t[1238] = tSet:New(1238, 8); -- Cruel Gladiator's Leather Armor
-    t[1239] = tSet:New(1239, 8); -- Cruel Gladiator's Leather Armor
-    t[1240] = tSet:New(1240, 8); -- Cruel Gladiator's Leather Armor
-    t[1241] = tSet:New(1241, 2); -- Cruel Gladiator's Scaled Armor
-    t[1242] = tSet:New(1242, 2); -- Cruel Gladiator's Scaled Armor
-    t[1243] = tSet:New(1243, 2); -- Cruel Gladiator's Scaled Armor
-    t[1244] = tSet:New(1244, 2); -- Cruel Gladiator's Scaled Armor
-    t[1245] = tSet:New(1245, 512); -- Cruel Gladiator's Ironskin Armor
-    t[1246] = tSet:New(1246, 512); -- Cruel Gladiator's Ironskin Armor
-    t[1247] = tSet:New(1247, 512); -- Cruel Gladiator's Ironskin Armor
-    t[1248] = tSet:New(1248, 512); -- Cruel Gladiator's Ironskin Armor
-    t[1249] = tSet:New(1249, 128); -- Cruel Gladiator's Silk Armor
-    t[1250] = tSet:New(1250, 128); -- Cruel Gladiator's Silk Armor
-    t[1251] = tSet:New(1251, 128); -- Cruel Gladiator's Silk Armor
-    t[1252] = tSet:New(1252, 128); -- Cruel Gladiator's Silk Armor
-    t[1253] = tSet:New(1253, 4); -- Cruel Gladiator's Chain Armor
-    t[1254] = tSet:New(1254, 4); -- Cruel Gladiator's Chain Armor
-    t[1255] = tSet:New(1255, 4); -- Cruel Gladiator's Chain Armor
-    t[1256] = tSet:New(1256, 4); -- Cruel Gladiator's Chain Armor
-    t[1257] = tSet:New(1257, 1024); -- Cruel Gladiator's Dragonhide Armor
-    t[1258] = tSet:New(1258, 1024); -- Cruel Gladiator's Dragonhide Armor
-    t[1259] = tSet:New(1259, 1024); -- Cruel Gladiator's Dragonhide Armor
-    t[1260] = tSet:New(1260, 1024); -- Cruel Gladiator's Dragonhide Armor
-    t[1261] = tSet:New(1261, 2048); -- Cruel Gladiator's Felskin Armor
-    t[1262] = tSet:New(1262, 2048); -- Cruel Gladiator's Felskin Armor
-    t[1263] = tSet:New(1263, 2048); -- Cruel Gladiator's Felskin Armor
-    t[1264] = tSet:New(1264, 2048); -- Cruel Gladiator's Felskin Armor
-    t[1265] = tSet:New(1265, 32); -- Cruel Gladiator's Dreadplate Armor
-    t[1266] = tSet:New(1266, 32); -- Cruel Gladiator's Dreadplate Armor
-    t[1267] = tSet:New(1267, 32); -- Cruel Gladiator's Dreadplate Armor
-    t[1268] = tSet:New(1268, 32); -- Cruel Gladiator's Dreadplate Armor
-    t[1269] = tSet:New(1269, 1); -- Cruel Combatant's Plate Armor
-    t[1270] = tSet:New(1270, 1); -- Cruel Combatant's Plate Armor
-    t[1271] = tSet:New(1271, 256); -- Cruel Combatant's Felweave Armor
-    t[1272] = tSet:New(1272, 256); -- Cruel Combatant's Felweave Armor
-    t[1273] = tSet:New(1273, 64); -- Cruel Combatant's Ringmail Armor
-    t[1274] = tSet:New(1274, 64); -- Cruel Combatant's Ringmail Armor
-    t[1275] = tSet:New(1275, 8); -- Cruel Combatant's Leather Armor
-    t[1276] = tSet:New(1276, 8); -- Cruel Combatant's Leather Armor
-    t[1277] = tSet:New(1277, 16); -- Cruel Combatant's Satin Armor
-    t[1278] = tSet:New(1278, 16); -- Cruel Combatant's Satin Armor
-    t[1279] = tSet:New(1279, 2); -- Cruel Combatant's Scaled Armor
-    t[1280] = tSet:New(1280, 2); -- Cruel Combatant's Scaled Armor
-    t[1281] = tSet:New(1281, 512); -- Cruel Combatant's Ironskin Armor
-    t[1282] = tSet:New(1282, 512); -- Cruel Combatant's Ironskin Armor
-    t[1283] = tSet:New(1283, 128); -- Cruel Combatant's Silk Armor
-    t[1284] = tSet:New(1284, 128); -- Cruel Combatant's Silk Armor
-    t[1285] = tSet:New(1285, 4); -- Cruel Combatant's Chain Armor
-    t[1286] = tSet:New(1286, 4); -- Cruel Combatant's Chain Armor
-    t[1287] = tSet:New(1287, 1024); -- Cruel Combatant's Dragonhide Armor
-    t[1288] = tSet:New(1288, 1024); -- Cruel Combatant's Dragonhide Armor
-    t[1289] = tSet:New(1289, 2048); -- Cruel Combatant's Felskin Armor
-    t[1290] = tSet:New(1290, 2048); -- Cruel Combatant's Felskin Armor
-    t[1291] = tSet:New(1291, 32); -- Cruel Combatant's Dreadplate Armor
-    t[1292] = tSet:New(1292, 32); -- Cruel Combatant's Dreadplate Armor
-    t[1293] = tSet:New(1293, 1); -- Titanic Onslaught Armor
-    t[1294] = tSet:New(1294, 1); -- Titanic Onslaught Armor
-    t[1295] = tSet:New(1295, 1); -- Titanic Onslaught Armor
-    t[1296] = tSet:New(1296, 1); -- Titanic Onslaught Armor
-    t[1297] = tSet:New(1297, 256); -- Diabolic Raiment
-    t[1298] = tSet:New(1298, 256); -- Diabolic Raiment
-    t[1299] = tSet:New(1299, 256); -- Diabolic Raiment
-    t[1300] = tSet:New(1300, 256); -- Diabolic Raiment
-    t[1301] = tSet:New(1301, 64); -- Regalia of the Skybreaker
-    t[1302] = tSet:New(1302, 64); -- Regalia of the Skybreaker
-    t[1303] = tSet:New(1303, 64); -- Regalia of the Skybreaker
-    t[1304] = tSet:New(1304, 64); -- Regalia of the Skybreaker
-    t[1305] = tSet:New(1305, 8); -- Fanged Slayer's Armor
-    t[1306] = tSet:New(1306, 8); -- Fanged Slayer's Armor
-    t[1307] = tSet:New(1307, 8); -- Fanged Slayer's Armor
-    t[1308] = tSet:New(1308, 8); -- Fanged Slayer's Armor
-    t[1309] = tSet:New(1309, 16); -- Vestments of Blind Absolution
-    t[1310] = tSet:New(1310, 16); -- Vestments of Blind Absolution
-    t[1312] = tSet:New(1312, 16); -- Vestments of Blind Absolution
-    t[1313] = tSet:New(1313, 2); -- Radiant Lightbringer Armor
-    t[1314] = tSet:New(1314, 2); -- Radiant Lightbringer Armor
-    t[1315] = tSet:New(1315, 2); -- Radiant Lightbringer Armor
-    t[1316] = tSet:New(1316, 2); -- Radiant Lightbringer Armor
-    t[1317] = tSet:New(1317, 512); -- Xuen's Battlegear
-    t[1318] = tSet:New(1318, 512); -- Xuen's Battlegear
-    t[1319] = tSet:New(1319, 512); -- Xuen's Battlegear
-    t[1320] = tSet:New(1320, 512); -- Xuen's Battlegear
-    t[1321] = tSet:New(1321, 128); -- Regalia of the Arcane Tempest
-    t[1322] = tSet:New(1322, 128); -- Regalia of the Arcane Tempest
-    t[1323] = tSet:New(1323, 128); -- Regalia of the Arcane Tempest
-    t[1324] = tSet:New(1324, 128); -- Regalia of the Arcane Tempest
-    t[1325] = tSet:New(1325, 4); -- Wildstalker Armor
-    t[1326] = tSet:New(1326, 4); -- Wildstalker Armor
-    t[1327] = tSet:New(1327, 4); -- Wildstalker Armor
-    t[1328] = tSet:New(1328, 4); -- Wildstalker Armor
-    t[1329] = tSet:New(1329, 1024); -- Stormheart Raiment
-    t[1330] = tSet:New(1330, 1024); -- Stormheart Raiment
-    t[1331] = tSet:New(1331, 1024); -- Stormheart Raiment
-    t[1332] = tSet:New(1332, 1024); -- Stormheart Raiment
-    t[1333] = tSet:New(1333, 2048); -- Demonbane Armor
-    t[1334] = tSet:New(1334, 2048); -- Demonbane Armor
-    t[1335] = tSet:New(1335, 2048); -- Demonbane Armor
-    t[1336] = tSet:New(1336, 2048); -- Demonbane Armor
-    t[1337] = tSet:New(1337, 32); -- Gravewarden Armaments
-    t[1338] = tSet:New(1338, 32); -- Gravewarden Armaments
-    t[1339] = tSet:New(1339, 32); -- Gravewarden Armaments
-    t[1340] = tSet:New(1340, 32); -- Gravewarden Armaments
-    t[1342] = tSet:New(1342, 16); -- Vestments of Blind Absolution
-    t[1343] = tSet:New(1343, 16); -- Warmongering Gladiator's Satin Armor Boogaloo
-    t[1348] = tSet:New(1348, 32); -- Fierce Combatant's Dreadplate Armor
-    t[1349] = tSet:New(1349, 32); -- Fierce Combatant's Dreadplate Armor
-    t[1352] = tSet:New(1352, 32); -- Fierce Gladiator's Dreadplate Armor
-    t[1353] = tSet:New(1353, 32); -- Fierce Gladiator's Dreadplate Armor
-    t[1354] = tSet:New(1354, 2048); -- Fierce Combatant's Felskin Armor
-    t[1355] = tSet:New(1355, 2048); -- Fierce Combatant's Felskin Armor
-    t[1358] = tSet:New(1358, 2048); -- Fierce Gladiator's Felskin Armor
-    t[1359] = tSet:New(1359, 2048); -- Fierce Gladiator's Felskin Armor
-    t[1360] = tSet:New(1360, 1024); -- Fierce Combatant's Dragonhide Armor
-    t[1361] = tSet:New(1361, 1024); -- Fierce Combatant's Dragonhide Armor
-    t[1362] = tSet:New(1362, 4); -- Fierce Combatant's Chain Armor
-    t[1363] = tSet:New(1363, 4); -- Fierce Combatant's Chain Armor
-    t[1364] = tSet:New(1364, 128); -- Fierce Combatant's Silk Armor
-    t[1365] = tSet:New(1365, 128); -- Fierce Combatant's Silk Armor
-    t[1366] = tSet:New(1366, 512); -- Fierce Combatant's Ironskin Armor
-    t[1367] = tSet:New(1367, 512); -- Fierce Combatant's Ironskin Armor
-    t[1368] = tSet:New(1368, 2); -- Fierce Combatant's Scaled Armor
-    t[1369] = tSet:New(1369, 2); -- Fierce Combatant's Scaled Armor
-    t[1370] = tSet:New(1370, 16); -- Fierce Combatant's Satin Armor
-    t[1371] = tSet:New(1371, 16); -- Fierce Combatant's Satin Armor
-    t[1372] = tSet:New(1372, 8); -- Fierce Combatant's Leather Armor
-    t[1373] = tSet:New(1373, 8); -- Fierce Combatant's Leather Armor
-    t[1374] = tSet:New(1374, 64); -- Fierce Combatant's Ringmail Armor
-    t[1375] = tSet:New(1375, 64); -- Fierce Combatant's Ringmail Armor
-    t[1376] = tSet:New(1376, 256); -- Fierce Combatant's Felweave Armor
-    t[1377] = tSet:New(1377, 256); -- Fierce Combatant's Felweave Armor
-    t[1378] = tSet:New(1378, 1); -- Fierce Combatant's Plate Armor
-    t[1379] = tSet:New(1379, 1); -- Fierce Combatant's Plate Armor
-    t[1380] = tSet:New(1380, 1024); -- Fierce Gladiator's Dragonhide Armor
-    t[1381] = tSet:New(1381, 1024); -- Fierce Gladiator's Dragonhide Armor
-    t[1382] = tSet:New(1382, 4); -- Fierce Gladiator's Chain Armor
-    t[1383] = tSet:New(1383, 4); -- Fierce Gladiator's Chain Armor
-    t[1384] = tSet:New(1384, 128); -- Fierce Gladiator's Silk Armor
-    t[1385] = tSet:New(1385, 128); -- Fierce Gladiator's Silk Armor
-    t[1386] = tSet:New(1386, 512); -- Fierce Gladiator's Ironskin Armor
-    t[1387] = tSet:New(1387, 512); -- Fierce Gladiator's Ironskin Armor
-    t[1388] = tSet:New(1388, 2); -- Fierce Gladiator's Scaled Armor
-    t[1389] = tSet:New(1389, 2); -- Fierce Gladiator's Scaled Armor
-    t[1390] = tSet:New(1390, 16); -- Fierce Gladiator's Satin Armor
-    t[1391] = tSet:New(1391, 16); -- Fierce Gladiator's Satin Armor
-    t[1392] = tSet:New(1392, 8); -- Fierce Gladiator's Leather Armor
-    t[1393] = tSet:New(1393, 8); -- Fierce Gladiator's Leather Armor
-    t[1394] = tSet:New(1394, 64); -- Fierce Gladiator's Ringmail Armor
-    t[1395] = tSet:New(1395, 64); -- Fierce Gladiator's Ringmail Armor
-    t[1396] = tSet:New(1396, 256); -- Fierce Gladiator's Felweave Armor
-    t[1397] = tSet:New(1397, 256); -- Fierce Gladiator's Felweave Armor
-    t[1398] = tSet:New(1398, 1); -- Fierce Gladiator's Plate Armor
-    t[1399] = tSet:New(1399, 1); -- Fierce Gladiator's Plate Armor
-    t[1400] = tSet:New(1400, 32); -- Fierce Gladiator's Dreadplate Armor
-    t[1401] = tSet:New(1401, 32); -- Fierce Gladiator's Dreadplate Armor
-    t[1402] = tSet:New(1402, 2048); -- Fierce Gladiator's Felskin Armor
-    t[1403] = tSet:New(1403, 2048); -- Fierce Gladiator's Felskin Armor
-    t[1404] = tSet:New(1404, 1024); -- Fierce Gladiator's Dragonhide Armor
-    t[1405] = tSet:New(1405, 1024); -- Fierce Gladiator's Dragonhide Armor
-    t[1406] = tSet:New(1406, 4); -- Fierce Gladiator's Chain Armor
-    t[1407] = tSet:New(1407, 4); -- Fierce Gladiator's Chain Armor
-    t[1408] = tSet:New(1408, 128); -- Fierce Gladiator's Silk Armor
-    t[1409] = tSet:New(1409, 128); -- Fierce Gladiator's Silk Armor
-    t[1410] = tSet:New(1410, 512); -- Fierce Gladiator's Ironskin Armor
-    t[1411] = tSet:New(1411, 512); -- Fierce Gladiator's Ironskin Armor
-    t[1412] = tSet:New(1412, 2); -- Fierce Gladiator's Scaled Armor
-    t[1413] = tSet:New(1413, 2); -- Fierce Gladiator's Scaled Armor
-    t[1414] = tSet:New(1414, 16); -- Fierce Gladiator's Satin Armor
-    t[1415] = tSet:New(1415, 16); -- Fierce Gladiator's Satin Armor
-    t[1416] = tSet:New(1416, 8); -- Fierce Gladiator's Leather Armor
-    t[1417] = tSet:New(1417, 8); -- Fierce Gladiator's Leather Armor
-    t[1418] = tSet:New(1418, 64); -- Fierce Gladiator's Ringmail Armor
-    t[1419] = tSet:New(1419, 64); -- Fierce Gladiator's Ringmail Armor
-    t[1420] = tSet:New(1420, 256); -- Fierce Gladiator's Felweave Armor
-    t[1421] = tSet:New(1421, 256); -- Fierce Gladiator's Felweave Armor
-    t[1422] = tSet:New(1422, 1); -- Fierce Gladiator's Plate Armor
-    t[1423] = tSet:New(1423, 1); -- Fierce Gladiator's Plate Armor
-    t[1472] = tSet:New(1472, 32); -- Dreadwake Armor
-    t[1473] = tSet:New(1473, 32); -- Dreadwake Armor
-    t[1474] = tSet:New(1474, 32); -- Dreadwake Armor
-    t[1475] = tSet:New(1475, 32); -- Dreadwake Armor
-    t[1476] = tSet:New(1476, 2048); -- Felreaper Vestments
-    t[1477] = tSet:New(1477, 2048); -- Felreaper Vestments
-    t[1478] = tSet:New(1478, 2048); -- Felreaper Vestments
-    t[1479] = tSet:New(1479, 2048); -- Felreaper Vestments
-    t[1480] = tSet:New(1480, 1024); -- Bearmantle Battlegear
-    t[1481] = tSet:New(1481, 1024); -- Bearmantle Battlegear
-    t[1482] = tSet:New(1482, 1024); -- Bearmantle Battlegear
-    t[1483] = tSet:New(1483, 1024); -- Bearmantle Battlegear
-    t[1484] = tSet:New(1484, 4); -- Serpentstalker Guise
-    t[1485] = tSet:New(1485, 4); -- Serpentstalker Guise
-    t[1486] = tSet:New(1486, 4); -- Serpentstalker Guise
-    t[1487] = tSet:New(1487, 4); -- Serpentstalker Guise
-    t[1488] = tSet:New(1488, 128); -- Runebound Regalia
-    t[1489] = tSet:New(1489, 128); -- Runebound Regalia
-    t[1490] = tSet:New(1490, 128); -- Runebound Regalia
-    t[1491] = tSet:New(1491, 128); -- Runebound Regalia
-    t[1492] = tSet:New(1492, 512); -- Chi-Ji's Battlegear
-    t[1493] = tSet:New(1493, 512); -- Chi-Ji's Battlegear
-    t[1494] = tSet:New(1494, 512); -- Chi-Ji's Battlegear
-    t[1495] = tSet:New(1495, 512); -- Chi-Ji's Battlegear
-    t[1496] = tSet:New(1496, 2); -- Light's Vanguard Battleplate
-    t[1497] = tSet:New(1497, 2); -- Light's Vanguard Battleplate
-    t[1498] = tSet:New(1498, 2); -- Light's Vanguard Battleplate
-    t[1499] = tSet:New(1499, 2); -- Light's Vanguard Battleplate
-    t[1500] = tSet:New(1500, 16); -- Gilded Seraph's Raiment
-    t[1501] = tSet:New(1501, 16); -- Gilded Seraph's Raiment
-    t[1502] = tSet:New(1502, 16); -- Gilded Seraph's Raiment
-    t[1503] = tSet:New(1503, 16); -- Gilded Seraph's Raiment
-    t[1504] = tSet:New(1504, 8); -- Regalia of the Dashing Scoundrel
-    t[1505] = tSet:New(1505, 8); -- Regalia of the Dashing Scoundrel
-    t[1506] = tSet:New(1506, 8); -- Regalia of the Dashing Scoundrel
-    t[1507] = tSet:New(1507, 8); -- Regalia of the Dashing Scoundrel
-    t[1508] = tSet:New(1508, 64); -- Garb of Venerated Spirits
-    t[1509] = tSet:New(1509, 64); -- Garb of Venerated Spirits
-    t[1510] = tSet:New(1510, 64); -- Garb of Venerated Spirits
-    t[1511] = tSet:New(1511, 64); -- Garb of Venerated Spirits
-    t[1512] = tSet:New(1512, 256); -- Grim Inquisitor's Regalia
-    t[1513] = tSet:New(1513, 256); -- Grim Inquisitor's Regalia
-    t[1514] = tSet:New(1514, 256); -- Grim Inquisitor's Regalia
-    t[1515] = tSet:New(1515, 256); -- Grim Inquisitor's Regalia
-    t[1516] = tSet:New(1516, 1); -- Juggernaut Battlegear
-    t[1517] = tSet:New(1517, 1); -- Juggernaut Battlegear
-    t[1518] = tSet:New(1518, 1); -- Juggernaut Battlegear
-    t[1519] = tSet:New(1519, 1); -- Juggernaut Battlegear
-    t[1638] = tSet:New(1638, 400); -- Eternal Curator's Vestment
-    t[1639] = tSet:New(1639, 400); -- Eternal Curator's Vestment
-    t[1640] = tSet:New(1640, 400); -- Eternal Curator's Vestment
-    t[1641] = tSet:New(1641, 400); -- Eternal Curator's Vestment
-    t[1642] = tSet:New(1642, 3592); -- Eternal Curator's Garb
-    t[1643] = tSet:New(1643, 3592); -- Eternal Curator's Garb
-    t[1644] = tSet:New(1644, 3592); -- Eternal Curator's Garb
-    t[1645] = tSet:New(1645, 3592); -- Eternal Curator's Garb
-    t[1646] = tSet:New(1646, 68); -- Eternal Curator's Chains
-    t[1647] = tSet:New(1647, 68); -- Eternal Curator's Chains
-    t[1648] = tSet:New(1648, 68); -- Eternal Curator's Chains
-    t[1649] = tSet:New(1649, 68); -- Eternal Curator's Chains
-    t[1650] = tSet:New(1650, 35); -- Eternal Curator's Protectorate
-    t[1651] = tSet:New(1651, 35); -- Eternal Curator's Protectorate
-    t[1652] = tSet:New(1652, 35); -- Eternal Curator's Protectorate
-    t[1653] = tSet:New(1653, 35); -- Eternal Curator's Protectorate
-    t[1654] = tSet:New(1654, 400); -- Dread Gladiator's Vestment
-    t[1655] = tSet:New(1655, 400); -- Dread Aspirant's Vestment
-    t[1656] = tSet:New(1656, 400); -- 7th Legionnaire's Vestment
-    t[1657] = tSet:New(1657, 3592); -- Dread Gladiator's Leathers
-    t[1658] = tSet:New(1658, 3592); -- Dread Aspirant's Leathers
-    t[1659] = tSet:New(1659, 3592); -- 7th Legionnaire's Leathers
-    t[1660] = tSet:New(1660, 68); -- Dread Gladiator's Chain
-    t[1661] = tSet:New(1661, 68); -- Dread Aspirant's Chain
-    t[1662] = tSet:New(1662, 68); -- 7th Legionnaire's Chain
-    t[1663] = tSet:New(1663, 35); -- Dread Gladiator's Plate
-    t[1664] = tSet:New(1664, 35); -- Dread Aspirant's Plate
-    t[1665] = tSet:New(1665, 35); -- 7th Legionnaire's Plate
-    t[1666] = tSet:New(1666, 400); -- Dread Gladiator's Vestment
-    t[1667] = tSet:New(1667, 400); -- Dread Aspirant's Vestment
-    t[1668] = tSet:New(1668, 400); -- Honorbound Artificer's Vestment
-    t[1669] = tSet:New(1669, 3592); -- Dread Gladiator's Leathers
-    t[1670] = tSet:New(1670, 3592); -- Dread Aspirant's Leathers
-    t[1671] = tSet:New(1671, 3592); -- Honorbound Outrider's Leathers
-    t[1672] = tSet:New(1672, 68); -- Dread Gladiator's Chain
-    t[1673] = tSet:New(1673, 68); -- Dread Aspirant's Chain
-    t[1674] = tSet:New(1674, 68); -- Honorbound Vanguard's Chain
-    t[1675] = tSet:New(1675, 35); -- Dread Gladiator's Plate
-    t[1676] = tSet:New(1676, 35); -- Dread Aspirant's Plate
-    t[1677] = tSet:New(1677, 35); -- Honorbound Centurion's Plate
-    t[1731] = tSet:New(1731, 35); -- Dread Gladiator's Plate
-    t[1732] = tSet:New(1732, 68); -- Dread Gladiator's Chain
-    t[1733] = tSet:New(1733, 3592); -- Dread Gladiator's Leathers
-    t[1734] = tSet:New(1734, 400); -- Dread Gladiator's Vestment
-    t[1735] = tSet:New(1735, 35); -- Dread Gladiator's Plate
-    t[1736] = tSet:New(1736, 68); -- Dread Gladiator's Chain
-    t[1737] = tSet:New(1737, 3592); -- Dread Gladiator's Leathers
-    t[1738] = tSet:New(1738, 400); -- Dread Gladiator's Vestment
-    t[1745] = tSet:New(1745, 35); -- Deathguard's Battleplate
-    t[1746] = tSet:New(1746, 35); -- Sinister Aspirant's Plate
-    t[1750] = tSet:New(1750, 35); -- Sinister Gladiator's Plate
-    t[1751] = tSet:New(1751, 35); -- Sinister Gladiator's Plate
-    t[1752] = tSet:New(1752, 68); -- Blightguard's Chains
-    t[1753] = tSet:New(1753, 68); -- Sinister Aspirant's Chain
-    t[1757] = tSet:New(1757, 68); -- Sinister Gladiator's Chain
-    t[1758] = tSet:New(1758, 68); -- Sinister Gladiator's Chain
-    t[1759] = tSet:New(1759, 3592); -- Deathstalker's Guise
-    t[1760] = tSet:New(1760, 3592); -- Sinister Aspirant's Leathers
-    t[1764] = tSet:New(1764, 3592); -- Sinister Gladiator's Leathers
-    t[1765] = tSet:New(1765, 3592); -- Sinister Gladiator's Leathers
-    t[1766] = tSet:New(1766, 400); -- Plaguebringer's Raiment
-    t[1767] = tSet:New(1767, 400); -- Sinister Aspirant's Vestment
-    t[1771] = tSet:New(1771, 400); -- Sinister Gladiator's Vestment
-    t[1772] = tSet:New(1772, 400); -- Sinister Gladiator's Vestment
-    t[1775] = tSet:New(1775, 35); -- Wardenguard's Battleplate
-    t[1776] = tSet:New(1776, 35); -- Sinister Aspirant's Plate
-    t[1780] = tSet:New(1780, 35); -- Sinister Gladiator's Plate
-    t[1781] = tSet:New(1781, 35); -- Sinister Gladiator's Plate
-    t[1782] = tSet:New(1782, 68); -- Kaldorei Archer's Chainmail
-    t[1783] = tSet:New(1783, 68); -- Sinister Aspirant's Chain
-    t[1787] = tSet:New(1787, 68); -- Sinister Gladiator's Chain
-    t[1788] = tSet:New(1788, 68); -- Sinister Gladiator's Chain
-    t[1789] = tSet:New(1789, 3592); -- Darkwood Sentinel's Guise
-    t[1790] = tSet:New(1790, 3592); -- Sinister Aspirant's Leathers
-    t[1794] = tSet:New(1794, 3592); -- Sinister Gladiator's Leathers
-    t[1795] = tSet:New(1795, 3592); -- Sinister Gladiator's Leathers
-    t[1796] = tSet:New(1796, 400); -- Moonpriest's Vestments
-    t[1797] = tSet:New(1797, 400); -- Sinister Aspirant's Vestment
-    t[1801] = tSet:New(1801, 400); -- Sinister Gladiator's Vestment
-    t[1802] = tSet:New(1802, 400); -- Sinister Gladiator's Vestment
-    t[1806] = tSet:New(1806, 400); -- Soul Reaper's Raiment
-    t[1807] = tSet:New(1807, 400); -- Soul Reaper's Raiment
-    t[1808] = tSet:New(1808, 400); -- Soul Reaper's Raiment
-    t[1809] = tSet:New(1809, 400); -- Soul Reaper's Raiment
-    t[1810] = tSet:New(1810, 3592); -- Boneblade Battlegear
-    t[1811] = tSet:New(1811, 3592); -- Boneblade Battlegear
-    t[1812] = tSet:New(1812, 3592); -- Boneblade Battlegear
-    t[1813] = tSet:New(1813, 3592); -- Boneblade Battlegear
-    t[1814] = tSet:New(1814, 68); -- Death-Devourer Vestments
-    t[1815] = tSet:New(1815, 68); -- Death-Devourer Vestments
-    t[1816] = tSet:New(1816, 68); -- Death-Devourer Vestments
-    t[1817] = tSet:New(1817, 68); -- Death-Devourer Vestments
-    t[1818] = tSet:New(1818, 35); -- Gravelord's Direplate
-    t[1819] = tSet:New(1819, 35); -- Gravelord's Direplate
-    t[1820] = tSet:New(1820, 35); -- Gravelord's Direplate
-    t[1821] = tSet:New(1821, 35); -- Gravelord's Direplate
-    t[1830] = tSet:New(1830, 35); -- Naga Lord's Warplate
-    t[1831] = tSet:New(1831, 68); -- Queen's Guard Scalemail
-    t[1832] = tSet:New(1832, 3592); -- Razorfin Regalia
-    t[1833] = tSet:New(1833, 400); -- Frilled Harbinger's Vestments
-    t[1834] = tSet:New(1834, 35); -- Naga Lord's Warplate
-    t[1835] = tSet:New(1835, 68); -- Queen's Guard Scalemail
-    t[1836] = tSet:New(1836, 3592); -- Razorfin Regalia
-    t[1837] = tSet:New(1837, 400); -- Frilled Harbinger's Vestments
-    t[1838] = tSet:New(1838, 35); -- Naga Lord's Warplate
-    t[1839] = tSet:New(1839, 68); -- Queen's Guard Scalemail
-    t[1840] = tSet:New(1840, 3592); -- Razorfin Regalia
-    t[1841] = tSet:New(1841, 400); -- Frilled Harbinger's Vestments
-    t[1842] = tSet:New(1842, 35); -- Naga Lord's Warplate
-    t[1843] = tSet:New(1843, 68); -- Queen's Guard Scalemail
-    t[1844] = tSet:New(1844, 3592); -- Razorfin Regalia
-    t[1845] = tSet:New(1845, 400); -- Frilled Harbinger's Vestments
-    t[1846] = tSet:New(1846, 400); -- Notorious Gladiator's Vestment
-    t[1847] = tSet:New(1847, 400); -- Notorious Gladiator's Vestment
-    t[1851] = tSet:New(1851, 400); -- Notorious Aspirant's Vestment
-    t[1852] = tSet:New(1852, 3592); -- Notorious Gladiator's Leathers
-    t[1853] = tSet:New(1853, 3592); -- Notorious Gladiator's Leathers
-    t[1857] = tSet:New(1857, 3592); -- Notorious Aspirant's Leathers
-    t[1858] = tSet:New(1858, 68); -- Notorious Gladiator's Chain
-    t[1859] = tSet:New(1859, 68); -- Notorious Gladiator's Chain
-    t[1863] = tSet:New(1863, 68); -- Notorious Aspirant's Chain
-    t[1864] = tSet:New(1864, 35); -- Notorious Gladiator's Plate
-    t[1865] = tSet:New(1865, 35); -- Notorious Gladiator's Plate
-    t[1869] = tSet:New(1869, 35); -- Notorious Aspirant's Plate
-    t[1874] = tSet:New(1874, 35); -- Notorious Aspirant's Plate
-    t[1878] = tSet:New(1878, 35); -- Notorious Gladiator's Plate
-    t[1879] = tSet:New(1879, 35); -- Notorious Gladiator's Plate
-    t[1880] = tSet:New(1880, 68); -- Notorious Aspirant's Chain
-    t[1884] = tSet:New(1884, 68); -- Notorious Gladiator's Chain
-    t[1885] = tSet:New(1885, 68); -- Notorious Gladiator's Chain
-    t[1886] = tSet:New(1886, 3592); -- Notorious Aspirant's Leathers
-    t[1890] = tSet:New(1890, 3592); -- Notorious Gladiator's Leathers
-    t[1891] = tSet:New(1891, 3592); -- Notorious Gladiator's Leathers
-    t[1892] = tSet:New(1892, 400); -- Notorious Aspirant's Vestment
-    t[1896] = tSet:New(1896, 400); -- Notorious Gladiator's Vestment
-    t[1897] = tSet:New(1897, 400); -- Notorious Gladiator's Vestment
-    t[1950] = tSet:New(1950, 35); -- Corrupted Gladiator's Plate
-    t[1951] = tSet:New(1951, 35); -- Corrupted Gladiator's Plate
-    t[1956] = tSet:New(1956, 68); -- Corrupted Gladiator's Chain
-    t[1957] = tSet:New(1957, 68); -- Corrupted Gladiator's Chain
-    t[1962] = tSet:New(1962, 3592); -- Corrupted Gladiator's Leathers
-    t[1963] = tSet:New(1963, 3592); -- Corrupted Gladiator's Leathers
-    t[1968] = tSet:New(1968, 400); -- Corrupted Gladiator's Vestment
-    t[1969] = tSet:New(1969, 400); -- Corrupted Gladiator's Vestment
-    t[1972] = tSet:New(1972, 35); -- Corrupted Gladiator's Plate
-    t[1973] = tSet:New(1973, 68); -- Corrupted Gladiator's Chain
-    t[1974] = tSet:New(1974, 3592); -- Corrupted Gladiator's Leathers
-    t[1975] = tSet:New(1975, 400); -- Corrupted Gladiator's Vestment
-    t[1982] = tSet:New(1982, 35); -- Cosmic Aberration's Plate
-    t[1983] = tSet:New(1983, 35); -- Cosmic Aberration's Plate
-    t[1984] = tSet:New(1984, 35); -- Cosmic Aberration's Plate
-    t[1985] = tSet:New(1985, 35); -- Cosmic Aberration's Plate
-    t[1986] = tSet:New(1986, 68); -- Lurking Defiler's Scalemail
-    t[1987] = tSet:New(1987, 68); -- Lurking Defiler's Scalemail
-    t[1988] = tSet:New(1988, 68); -- Lurking Defiler's Scalemail
-    t[1989] = tSet:New(1989, 68); -- Lurking Defiler's Scalemail
-    t[1990] = tSet:New(1990, 3592); -- Treacherous Schemer's Leathers
-    t[1991] = tSet:New(1991, 3592); -- Treacherous Schemer's Leathers
-    t[1992] = tSet:New(1992, 3592); -- Treacherous Schemer's Leathers
-    t[1993] = tSet:New(1993, 3592); -- Treacherous Schemer's Leathers
-    t[1994] = tSet:New(1994, 400); -- Oblivion Cultist's Robes
-    t[1995] = tSet:New(1995, 400); -- Oblivion Cultist's Robes
-    t[1996] = tSet:New(1996, 400); -- Oblivion Cultist's Robes
-    t[1997] = tSet:New(1997, 400); -- Oblivion Cultist's Robes
-    t[2150] = tSet:New(2150, 35); -- Grand Sentinel's Greatplate
-    t[2151] = tSet:New(2151, 35); -- Grand Sentinel's Greatplate
-    t[2152] = tSet:New(2152, 35); -- Grand Sentinel's Greatplate
-    t[2153] = tSet:New(2153, 35); -- Grand Sentinel's Greatplate
-    t[2154] = tSet:New(2154, 68); -- Inexorable Castigator's Guise
-    t[2155] = tSet:New(2155, 68); -- Inexorable Castigator's Guise
-    t[2156] = tSet:New(2156, 68); -- Inexorable Castigator's Guise
-    t[2157] = tSet:New(2157, 68); -- Inexorable Castigator's Guise
-    t[2158] = tSet:New(2158, 400); -- Depraved Beguiler's Visage
-    t[2159] = tSet:New(2159, 400); -- Depraved Beguiler's Visage
-    t[2160] = tSet:New(2160, 400); -- Depraved Beguiler's Visage
-    t[2161] = tSet:New(2161, 400); -- Depraved Beguiler's Visage
-    t[2162] = tSet:New(2162, 3592); -- Sin Slayer's Leathers
-    t[2163] = tSet:New(2163, 3592); -- Sin Slayer's Leathers
-    t[2164] = tSet:New(2164, 3592); -- Sin Slayer's Leathers
-    t[2165] = tSet:New(2165, 3592); -- Sin Slayer's Leathers
-    t[2166] = tSet:New(2166, 400); -- Sinful Gladiator's Vestment
-    t[2167] = tSet:New(2167, 3592); -- Sinful Gladiator's Leathers
-    t[2168] = tSet:New(2168, 68); -- Sinful Gladiator's Chain
-    t[2169] = tSet:New(2169, 35); -- Sinful Gladiator's Plate
-    t[2170] = tSet:New(2170, 400); -- Sinful Gladiator's Vestment
-    t[2171] = tSet:New(2171, 3592); -- Sinful Gladiator's Leathers
-    t[2172] = tSet:New(2172, 68); -- Sinful Gladiator's Chain
-    t[2173] = tSet:New(2173, 35); -- Sinful Gladiator's Plate
-    t[2174] = tSet:New(2174, 400); -- Sinful Aspirant's Vestment
-    t[2175] = tSet:New(2175, 3592); -- Sinful Aspirant's Leathers
-    t[2176] = tSet:New(2176, 68); -- Sinful Aspirant's Chain
-    t[2177] = tSet:New(2177, 35); -- Sinful Aspirant's Plate
-    t[2224] = tSet:New(2224, 400); -- Unchained Gladiator's Vestment
-    t[2225] = tSet:New(2225, 3592); -- Unchained Gladiator's Leathers
-    t[2226] = tSet:New(2226, 68); -- Unchained Gladiator's Chain
-    t[2227] = tSet:New(2227, 35); -- Unchained Gladiator's Plate
-    t[2228] = tSet:New(2228, 400); -- Unchained Gladiator's Vestment
-    t[2229] = tSet:New(2229, 3592); -- Unchained Gladiator's Leathers
-    t[2230] = tSet:New(2230, 68); -- Unchained Gladiator's Chain
-    t[2231] = tSet:New(2231, 35); -- Unchained Gladiator's Plate
-    t[2246] = tSet:New(2246, 400); -- Unchained Aspirant's Vestment
-    t[2247] = tSet:New(2247, 3592); -- Unchained Aspirant's Leathers
-    t[2248] = tSet:New(2248, 68); -- Unchained Aspirant's Chain
-    t[2249] = tSet:New(2249, 35); -- Unchained Aspirant's Plate
-    t[2250] = tSet:New(2250, 35); -- Soulforged Dreadplate
-    t[2251] = tSet:New(2251, 35); -- Soulforged Dreadplate
-    t[2252] = tSet:New(2252, 35); -- Soulforged Dreadplate
-    t[2253] = tSet:New(2253, 35); -- Soulforged Dreadplate
-    t[2254] = tSet:New(2254, 68); -- Tower Ascendant's Battlegear
-    t[2255] = tSet:New(2255, 68); -- Tower Ascendant's Battlegear
-    t[2256] = tSet:New(2256, 68); -- Tower Ascendant's Battlegear
-    t[2257] = tSet:New(2257, 68); -- Tower Ascendant's Battlegear
-    t[2258] = tSet:New(2258, 3592); -- Sanctum Assailant's Trappings
-    t[2259] = tSet:New(2259, 3592); -- Sanctum Assailant's Trappings
-    t[2260] = tSet:New(2260, 3592); -- Sanctum Assailant's Trappings
-    t[2261] = tSet:New(2261, 3592); -- Sanctum Assailant's Trappings
-    t[2262] = tSet:New(2262, 400); -- Dark Supplicant's Garb
-    t[2263] = tSet:New(2263, 400); -- Dark Supplicant's Garb
-    t[2264] = tSet:New(2264, 400); -- Dark Supplicant's Garb
-    t[2265] = tSet:New(2265, 400); -- Dark Supplicant's Garb
-    t[2294] = tSet:New(2294, 32); -- Gravewarden Armaments
-    t[2295] = tSet:New(2295, 2048); -- Demonbane Armor
-    t[2296] = tSet:New(2296, 1024); -- Stormheart Raiment
-    t[2297] = tSet:New(2297, 4); -- Wildstalker Armor
-    t[2298] = tSet:New(2298, 128); -- Regalia of the Arcane Tempest
-    t[2299] = tSet:New(2299, 512); -- Xuen's Battlegear
-    t[2300] = tSet:New(2300, 2); -- Radiant Lightbringer Armor
-    t[2301] = tSet:New(2301, 16); -- Vestments of Blind Absolution
-    t[2302] = tSet:New(2302, 8); -- Fanged Slayer's Armor
-    t[2303] = tSet:New(2303, 64); -- Regalia of the Skybreaker
-    t[2304] = tSet:New(2304, 256); -- Diabolic Raiment
-    t[2305] = tSet:New(2305, 1); -- Titanic Onslaught Armor
-    t[2316] = tSet:New(2316, 400); -- Cosmic Aspirant's Vestment
-    t[2317] = tSet:New(2317, 3592); -- Cosmic Aspirant's Leathers
-    t[2318] = tSet:New(2318, 68); -- Cosmic Aspirant's Chain
-    t[2319] = tSet:New(2319, 35); -- Cosmic Aspirant's Plate
-    t[2348] = tSet:New(2348, 32); -- The First Eidolon's Soulsteel
-    t[2349] = tSet:New(2349, 32); -- The First Eidolon's Soulsteel
-    t[2350] = tSet:New(2350, 32); -- The First Eidolon's Soulsteel
-    t[2351] = tSet:New(2351, 32); -- The First Eidolon's Soulsteel
-    t[2352] = tSet:New(2352, 32); -- Cosmic Gladiator's Dreadplate Armor
-    t[2353] = tSet:New(2353, 32); -- Cosmic Gladiator's Dreadplate Armor
-    t[2354] = tSet:New(2354, 2048); -- Mercurial Punisher's Painweave
-    t[2355] = tSet:New(2355, 2048); -- Mercurial Punisher's Painweave
-    t[2356] = tSet:New(2356, 2048); -- Mercurial Punisher's Painweave
-    t[2357] = tSet:New(2357, 2048); -- Mercurial Punisher's Painweave
-    t[2358] = tSet:New(2358, 2048); -- Cosmic Gladiator's Felskin Armor
-    t[2359] = tSet:New(2359, 2048); -- Cosmic Gladiator's Felskin Armor
-    t[2360] = tSet:New(2360, 1024); -- Tapestry of the Fixed Stars
-    t[2361] = tSet:New(2361, 1024); -- Tapestry of the Fixed Stars
-    t[2362] = tSet:New(2362, 1024); -- Tapestry of the Fixed Stars
-    t[2363] = tSet:New(2363, 1024); -- Tapestry of the Fixed Stars
-    t[2364] = tSet:New(2364, 1024); -- Cosmic Gladiator's Dragonhide Armor
-    t[2365] = tSet:New(2365, 1024); -- Cosmic Gladiator's Dragonhide Armor
-    t[2366] = tSet:New(2366, 4); -- Godstalker's Battlegear
-    t[2367] = tSet:New(2367, 4); -- Godstalker's Battlegear
-    t[2368] = tSet:New(2368, 4); -- Godstalker's Battlegear
-    t[2369] = tSet:New(2369, 4); -- Godstalker's Battlegear
-    t[2370] = tSet:New(2370, 4); -- Cosmic Gladiator's Chain Armor
-    t[2371] = tSet:New(2371, 4); -- Cosmic Gladiator's Chain Armor
-    t[2372] = tSet:New(2372, 128); -- Erudite Occultist's Vestments
-    t[2373] = tSet:New(2373, 128); -- Erudite Occultist's Vestments
-    t[2374] = tSet:New(2374, 128); -- Erudite Occultist's Vestments
-    t[2375] = tSet:New(2375, 128); -- Erudite Occultist's Vestments
-    t[2376] = tSet:New(2376, 128); -- Cosmic Gladiator's Silk Armor
-    t[2377] = tSet:New(2377, 128); -- Cosmic Gladiator's Silk Armor
-    t[2378] = tSet:New(2378, 512); -- Garb of the Grand Upwelling
-    t[2379] = tSet:New(2379, 512); -- Garb of the Grand Upwelling
-    t[2380] = tSet:New(2380, 512); -- Garb of the Grand Upwelling
-    t[2381] = tSet:New(2381, 512); -- Garb of the Grand Upwelling
-    t[2382] = tSet:New(2382, 512); -- Cosmic Gladiator's Ironskin Armor
-    t[2383] = tSet:New(2383, 512); -- Cosmic Gladiator's Ironskin Armor
-    t[2384] = tSet:New(2384, 2); -- Luminous Chevalier's Gallantry
-    t[2385] = tSet:New(2385, 2); -- Luminous Chevalier's Gallantry
-    t[2386] = tSet:New(2386, 2); -- Luminous Chevalier's Gallantry
-    t[2387] = tSet:New(2387, 2); -- Luminous Chevalier's Gallantry
-    t[2388] = tSet:New(2388, 2); -- Cosmic Gladiator's Scaled Armor
-    t[2389] = tSet:New(2389, 2); -- Cosmic Gladiator's Scaled Armor
-    t[2390] = tSet:New(2390, 16); -- Habiliments of the Empyrean
-    t[2391] = tSet:New(2391, 16); -- Habiliments of the Empyrean
-    t[2392] = tSet:New(2392, 16); -- Habiliments of the Empyrean
-    t[2393] = tSet:New(2393, 16); -- Habiliments of the Empyrean
-    t[2394] = tSet:New(2394, 16); -- Cosmic Gladiator's Satin Armor
-    t[2395] = tSet:New(2395, 16); -- Cosmic Gladiator's Satin Armor
-    t[2396] = tSet:New(2396, 8); -- Soulblade Shadowhide
-    t[2397] = tSet:New(2397, 8); -- Soulblade Shadowhide
-    t[2398] = tSet:New(2398, 8); -- Soulblade Shadowhide
-    t[2399] = tSet:New(2399, 8); -- Soulblade Shadowhide
-    t[2400] = tSet:New(2400, 8); -- Cosmic Gladiator's Leather Armor
-    t[2401] = tSet:New(2401, 8); -- Cosmic Gladiator's Leather Armor
-    t[2402] = tSet:New(2402, 64); -- Theurgic Starspeaker's Regalia
-    t[2403] = tSet:New(2403, 64); -- Theurgic Starspeaker's Regalia
-    t[2404] = tSet:New(2404, 64); -- Theurgic Starspeaker's Regalia
-    t[2405] = tSet:New(2405, 64); -- Theurgic Starspeaker's Regalia
-    t[2406] = tSet:New(2406, 64); -- Cosmic Gladiator's Ringmail Armor
-    t[2407] = tSet:New(2407, 64); -- Cosmic Gladiator's Ringmail Armor
-    t[2408] = tSet:New(2408, 256); -- Shroud of the Demon Star
-    t[2409] = tSet:New(2409, 256); -- Shroud of the Demon Star
-    t[2410] = tSet:New(2410, 256); -- Shroud of the Demon Star
-    t[2411] = tSet:New(2411, 256); -- Shroud of the Demon Star
-    t[2412] = tSet:New(2412, 256); -- Cosmic Gladiator's Felweave Armor
-    t[2413] = tSet:New(2413, 256); -- Cosmic Gladiator's Felweave Armor
-    t[2414] = tSet:New(2414, 1); -- Armaments of the Infinite Infantry
-    t[2415] = tSet:New(2415, 1); -- Armaments of the Infinite Infantry
-    t[2416] = tSet:New(2416, 1); -- Armaments of the Infinite Infantry
-    t[2417] = tSet:New(2417, 1); -- Armaments of the Infinite Infantry
-    t[2418] = tSet:New(2418, 1); -- Cosmic Gladiator's Plate Armor
-    t[2419] = tSet:New(2419, 1); -- Cosmic Gladiator's Plate Armor
-    t[2489] = tSet:New(2489, 400); -- Renowned Expeditioner's Cloth Armor
-    t[2490] = tSet:New(2490, 0); -- Renowned Expeditioner's Leather Armor
-    t[2491] = tSet:New(2491, 4164); -- Renowned Expeditioner's Mail Armor
-    t[2492] = tSet:New(2492, 35); -- Renowned Expeditioner's Plate Armor
-    t[2498] = tSet:New(2498, 32); -- Eternal Gladiator's Dreadplate Armor
-    t[2504] = tSet:New(2504, 2048); -- Eternal Gladiator's Felskin Armor
-    t[2510] = tSet:New(2510, 1024); -- Eternal Gladiator's Dragonhide Armor
-    t[2516] = tSet:New(2516, 4); -- Eternal Gladiator's Chain Armor
-    t[2522] = tSet:New(2522, 128); -- Eternal Gladiator's Silk Armor
-    t[2528] = tSet:New(2528, 512); -- Eternal Gladiator's Ironskin Armor
-    t[2534] = tSet:New(2534, 2); -- Eternal Gladiator's Scaled Armor
-    t[2540] = tSet:New(2540, 16); -- Eternal Gladiator's Satin Armor
-    t[2546] = tSet:New(2546, 8); -- Eternal Gladiator's Leather Armor
-    t[2552] = tSet:New(2552, 64); -- Eternal Gladiator's Ringmail Armor
-    t[2558] = tSet:New(2558, 256); -- Eternal Gladiator's Felweave Armor
-    t[2564] = tSet:New(2564, 1); -- Eternal Gladiator's Plate Armor
-    t[2565] = tSet:New(2565, 400); -- Eternal Aspirant's Vestment
-    t[2566] = tSet:New(2566, 3592); -- Eternal Aspirant's Leathers
-    t[2567] = tSet:New(2567, 4164); -- Eternal Aspirant's Chain
-    t[2568] = tSet:New(2568, 35); -- Eternal Aspirant's Plate
-    t[2569] = tSet:New(2569, 32); -- Eternal Gladiator's Dreadplate Armor
-    t[2570] = tSet:New(2570, 2048); -- Eternal Gladiator's Felskin Armor
-    t[2571] = tSet:New(2571, 1024); -- Eternal Gladiator's Dragonhide Armor
-    t[2572] = tSet:New(2572, 4); -- Eternal Gladiator's Chain Armor
-    t[2573] = tSet:New(2573, 128); -- Eternal Gladiator's Silk Armor
-    t[2574] = tSet:New(2574, 512); -- Eternal Gladiator's Ironskin Armor
-    t[2575] = tSet:New(2575, 2); -- Eternal Gladiator's Scaled Armor
-    t[2576] = tSet:New(2576, 16); -- Eternal Gladiator's Satin Armor
-    t[2577] = tSet:New(2577, 8); -- Eternal Gladiator's Leather Armor
-    t[2578] = tSet:New(2578, 64); -- Eternal Gladiator's Ringmail Armor
-    t[2579] = tSet:New(2579, 256); -- Eternal Gladiator's Felweave Armor
-    t[2580] = tSet:New(2580, 1); -- Eternal Gladiator's Plate Armor
-    t[2587] = tSet:New(2587, 3592); -- Tuskarr Trader's Garb
-    t[2601] = tSet:New(2601, 32); -- Haunted Frostbrood Remains
-    t[2602] = tSet:New(2602, 2048); -- Skybound Avenger's Flightwear
-    t[2603] = tSet:New(2603, 1024); -- Lost Landcaller's Vesture
-    t[2604] = tSet:New(2604, 4096); -- Scales of the Awakened
-    t[2605] = tSet:New(2605, 4); -- Stormwing Harrier's Camouflage
-    t[2606] = tSet:New(2606, 128); -- Bindings of the Crystal Scholar
-    t[2607] = tSet:New(2607, 512); -- Wrappings of the Waking Fist
-    t[2608] = tSet:New(2608, 2); -- Virtuous Silver Cataphract
-    t[2609] = tSet:New(2609, 16); -- Draconic Hierophant's Finery
-    t[2610] = tSet:New(2610, 8); -- Vault Delver's Toolkit
-    t[2611] = tSet:New(2611, 64); -- Elements of Infused Earth
-    t[2612] = tSet:New(2612, 256); -- Scalesworn Cultist's Habit
-    t[2613] = tSet:New(2613, 1); -- Stones of the Walking Mountain
-    t[2614] = tSet:New(2614, 32); -- Haunted Frostbrood Remains
-    t[2615] = tSet:New(2615, 32); -- Haunted Frostbrood Remains
-    t[2616] = tSet:New(2616, 32); -- Haunted Frostbrood Remains
-    t[2617] = tSet:New(2617, 2048); -- Skybound Avenger's Flightwear
-    t[2618] = tSet:New(2618, 2048); -- Skybound Avenger's Flightwear
-    t[2619] = tSet:New(2619, 2048); -- Skybound Avenger's Flightwear
-    t[2620] = tSet:New(2620, 1024); -- Lost Landcaller's Vesture
-    t[2621] = tSet:New(2621, 1024); -- Lost Landcaller's Vesture
-    t[2622] = tSet:New(2622, 1024); -- Lost Landcaller's Vesture
-    t[2623] = tSet:New(2623, 4096); -- Scales of the Awakened
-    t[2624] = tSet:New(2624, 4096); -- Scales of the Awakened
-    t[2625] = tSet:New(2625, 4096); -- Scales of the Awakened
-    t[2626] = tSet:New(2626, 4); -- Stormwing Harrier's Camouflage
-    t[2627] = tSet:New(2627, 4); -- Stormwing Harrier's Camouflage
-    t[2628] = tSet:New(2628, 4); -- Stormwing Harrier's Camouflage
-    t[2629] = tSet:New(2629, 128); -- Bindings of the Crystal Scholar
-    t[2630] = tSet:New(2630, 128); -- Bindings of the Crystal Scholar
-    t[2631] = tSet:New(2631, 128); -- Bindings of the Crystal Scholar
-    t[2632] = tSet:New(2632, 512); -- Wrappings of the Waking Fist
-    t[2633] = tSet:New(2633, 512); -- Wrappings of the Waking Fist
-    t[2634] = tSet:New(2634, 512); -- Wrappings of the Waking Fist
-    t[2635] = tSet:New(2635, 2); -- Virtuous Silver Cataphract
-    t[2636] = tSet:New(2636, 2); -- Virtuous Silver Cataphract
-    t[2637] = tSet:New(2637, 2); -- Virtuous Silver Cataphract
-    t[2638] = tSet:New(2638, 16); -- Draconic Hierophant's Finery
-    t[2639] = tSet:New(2639, 16); -- Draconic Hierophant's Finery
-    t[2640] = tSet:New(2640, 16); -- Draconic Hierophant's Finery
-    t[2641] = tSet:New(2641, 8); -- Vault Delver's Toolkit
-    t[2642] = tSet:New(2642, 8); -- Vault Delver's Toolkit
-    t[2643] = tSet:New(2643, 8); -- Vault Delver's Toolkit
-    t[2644] = tSet:New(2644, 64); -- Elements of Infused Earth
-    t[2645] = tSet:New(2645, 64); -- Elements of Infused Earth
-    t[2646] = tSet:New(2646, 64); -- Elements of Infused Earth
-    t[2647] = tSet:New(2647, 256); -- Scalesworn Cultist's Habit
-    t[2648] = tSet:New(2648, 256); -- Scalesworn Cultist's Habit
-    t[2649] = tSet:New(2649, 256); -- Scalesworn Cultist's Habit
-    t[2650] = tSet:New(2650, 1); -- Stones of the Walking Mountain
-    t[2651] = tSet:New(2651, 1); -- Stones of the Walking Mountain
-    t[2652] = tSet:New(2652, 1); -- Stones of the Walking Mountain
-    t[2661] = tSet:New(2661, 400); -- Raging Tempest
-    t[2662] = tSet:New(2662, 400); -- Drakebreaker
-    t[2663] = tSet:New(2663, 4164); -- Raging Tempest
-    t[2664] = tSet:New(2664, 4164); -- Drakebreaker
-    t[2665] = tSet:New(2665, 3592); -- Raging Tempest
-    t[2666] = tSet:New(2666, 3592); -- Drakebreaker
-    t[2667] = tSet:New(2667, 35); -- Raging Tempest
-    t[2668] = tSet:New(2668, 35); -- Drakebreaker
-    t[2670] = tSet:New(2670, 4164); -- Obsidian Dracthyr Battlegear
-    t[2672] = tSet:New(2672, 4164); -- Emerald Dracthyr Battlegear
-    t[2673] = tSet:New(2673, 4164); -- Crimson Dracthyr Battlegear
-    t[2674] = tSet:New(2674, 4164); -- Cobalt Dracthyr Battlegear
-    t[2675] = tSet:New(2675, 4164); -- Sandshaped Dracthyr Battlegear
-    t[2681] = tSet:New(2681, 3592); -- Ottuk Hide Armor
-    t[2682] = tSet:New(2682, 3592); -- Crimson Aspirant's Battlegarb
-    t[2683] = tSet:New(2683, 3592); -- Tuskarr Dungeoneer's Garb
-    t[2684] = tSet:New(2684, 3592); -- Tuskarr Field Garb
-    t[2685] = tSet:New(2685, 3592); -- Trailblazer's Leather Armor
-    t[2686] = tSet:New(2686, 3592); -- Isle Trapper's Gear
-    t[2687] = tSet:New(2687, 3592); -- Dust Devil Armor
-    t[2688] = tSet:New(2688, 3592); -- Crimson Combatant's Resilient Armor
-    t[2689] = tSet:New(2689, 400); -- Trailblazer's Cloth Armor
-    t[2690] = tSet:New(2690, 400); -- Cloudburst Regalia
-    t[2691] = tSet:New(2691, 400); -- Crimson Combatant's Wildercloth Regalia
-    t[2692] = tSet:New(2692, 4164); -- Trailblazer's Mail Armor
-    t[2693] = tSet:New(2693, 400); -- Drakewatcher's Armor
-    t[2694] = tSet:New(2694, 4164); -- Crimson Combatant's Adamant Battlegear
-    t[2695] = tSet:New(2695, 4164); -- Cyclonic Battlegear
-    t[2696] = tSet:New(2696, 4164); -- Hornstrider's Battlegear
-    t[2697] = tSet:New(2697, 35); -- Trailblazer's Plate Armor
-    t[2698] = tSet:New(2698, 35); -- Crimson Combatant's Draconium Armor
-    t[2699] = tSet:New(2699, 35); -- Firestorm Armor
-    t[2700] = tSet:New(2700, 35); -- Shorebreaker's Armor
-    t[2701] = tSet:New(2701, 400); -- Cobalt Watcher's Vestments
-    t[2702] = tSet:New(2702, 400); -- Crimson Aspirant's Silk Vestments
-    t[2703] = tSet:New(2703, 400); -- Titan Dungeonkeeper's Vestments
-    t[2704] = tSet:New(2704, 400); -- Tyr Hold Vestments
-    t[2705] = tSet:New(2705, 400); -- Lost Watcher's Vestments
-    t[2706] = tSet:New(2706, 4164); -- Ohn'ahran Falconer's Regalia
-    t[2707] = tSet:New(2707, 4164); -- Crimson Aspirant's Chain Armor
-    t[2708] = tSet:New(2708, 4164); -- Aylaag Nomad's Regalia
-    t[2709] = tSet:New(2709, 4164); -- Nokuhd Regalia
-    t[2710] = tSet:New(2710, 4164); -- Centaur Dungeon Harness
-    t[2711] = tSet:New(2711, 35); -- Wyrmforged Battlegear
-    t[2712] = tSet:New(2712, 35); -- Djaradin Dungeon Battlegear
-    t[2713] = tSet:New(2713, 35); -- Citadel Breaker's Battlegear
-    t[2714] = tSet:New(2714, 35); -- Drakeender's Battlegear
-    t[2715] = tSet:New(2715, 35); -- Crimson Aspirant's Plate Battlegear
-    t[2716] = tSet:New(2716, 128); -- Crimson Gladiator's Silk Armor
-    t[2717] = tSet:New(2717, 128); -- Crimson Gladiator's Silk Armor
-    t[2718] = tSet:New(2718, 16); -- Crimson Gladiator's Silk Armor
-    t[2719] = tSet:New(2719, 16); -- Crimson Gladiator's Silk Armor
-    t[2720] = tSet:New(2720, 256); -- Crimson Gladiator's Silk Armor
-    t[2721] = tSet:New(2721, 256); -- Crimson Gladiator's Silk Armor
-    t[2722] = tSet:New(2722, 1024); -- Crimson Gladiator's Leather Armor
-    t[2723] = tSet:New(2723, 1024); -- Crimson Gladiator's Leather Armor
-    t[2724] = tSet:New(2724, 2048); -- Crimson Gladiator's Leather Armor
-    t[2725] = tSet:New(2725, 2048); -- Crimson Gladiator's Leather Armor
-    t[2726] = tSet:New(2726, 512); -- Crimson Gladiator's Leather Armor
-    t[2727] = tSet:New(2727, 512); -- Crimson Gladiator's Leather Armor
-    t[2728] = tSet:New(2728, 8); -- Crimson Gladiator's Leather Armor
-    t[2729] = tSet:New(2729, 8); -- Crimson Gladiator's Leather Armor
-    t[2730] = tSet:New(2730, 4096); -- Crimson Gladiator's Chain Armor
-    t[2731] = tSet:New(2731, 4096); -- Crimson Gladiator's Chain Armor
-    t[2732] = tSet:New(2732, 4); -- Crimson Gladiator's Chain Armor
-    t[2733] = tSet:New(2733, 4); -- Crimson Gladiator's Chain Armor
-    t[2734] = tSet:New(2734, 64); -- Crimson Gladiator's Chain Armor
-    t[2735] = tSet:New(2735, 64); -- Crimson Gladiator's Chain Armor
-    t[2736] = tSet:New(2736, 32); -- Crimson Gladiator's Plate Armor
-    t[2737] = tSet:New(2737, 32); -- Crimson Gladiator's Plate Armor
-    t[2738] = tSet:New(2738, 2); -- Crimson Gladiator's Plate Armor
-    t[2739] = tSet:New(2739, 2); -- Crimson Gladiator's Plate Armor
-    t[2740] = tSet:New(2740, 1); -- Crimson Gladiator's Plate Armor
-    t[2741] = tSet:New(2741, 1); -- Crimson Gladiator's Plate Armor
-    t[2742] = tSet:New(2742, 400); -- Verdant Wing
-    t[2743] = tSet:New(2743, 400); -- Vibrant Wildercloth
-    t[2744] = tSet:New(2744, 4164); -- Emerald Scale
-    t[2745] = tSet:New(2745, 4164); -- Flame-Touched
-    t[2746] = tSet:New(2746, 3592); -- Green Draketracker
-    t[2747] = tSet:New(2747, 3592); -- Life-Bound
-    t[2748] = tSet:New(2748, 35); -- Dreamfire
-    t[2749] = tSet:New(2749, 35); -- Primal Molten
-    t[2858] = tSet:New(2858, 1); -- Irons of the Onyx Crucible
-    t[2859] = tSet:New(2859, 2); -- Heartfire Sentinel's Authority
-    t[2860] = tSet:New(2860, 256); -- Sinister Savant's Cursethreads
-    t[2861] = tSet:New(2861, 64); -- Runes of the Cinderwolf
-    t[2862] = tSet:New(2862, 8); -- Lurking Specter's Shadeweave
-    t[2863] = tSet:New(2863, 16); -- The Furnace Seraph's Verdict
-    t[2864] = tSet:New(2864, 512); -- Fangs of the Vermillion Forge
-    t[2865] = tSet:New(2865, 128); -- Underlight Conjurer's Brilliance
-    t[2866] = tSet:New(2866, 4); -- Ashen Predator's Scaleform
-    t[2867] = tSet:New(2867, 4096); -- Legacy of Obsidian Secrets
-    t[2868] = tSet:New(2868, 1024); -- Strands of the Autumn Blaze
-    t[2869] = tSet:New(2869, 2048); -- Kinslayer's Burdens
-    t[2870] = tSet:New(2870, 32); -- Lingering Phantom's Encasement
-    t[2871] = tSet:New(2871, 2); -- Heartfire Sentinel's Authority
-    t[2872] = tSet:New(2872, 2); -- Heartfire Sentinel's Authority
-    t[2873] = tSet:New(2873, 2); -- Heartfire Sentinel's Authority
-    t[2874] = tSet:New(2874, 256); -- Sinister Savant's Cursethreads
-    t[2875] = tSet:New(2875, 256); -- Sinister Savant's Cursethreads
-    t[2876] = tSet:New(2876, 256); -- Sinister Savant's Cursethreads
-    t[2877] = tSet:New(2877, 64); -- Runes of the Cinderwolf
-    t[2878] = tSet:New(2878, 64); -- Runes of the Cinderwolf
-    t[2879] = tSet:New(2879, 64); -- Runes of the Cinderwolf
-    t[2880] = tSet:New(2880, 8); -- Lurking Specter's Shadeweave
-    t[2881] = tSet:New(2881, 8); -- Lurking Specter's Shadeweave
-    t[2882] = tSet:New(2882, 8); -- Lurking Specter's Shadeweave
-    t[2883] = tSet:New(2883, 16); -- The Furnace Seraph's Verdict
-    t[2884] = tSet:New(2884, 16); -- The Furnace Seraph's Verdict
-    t[2885] = tSet:New(2885, 16); -- The Furnace Seraph's Verdict
-    t[2886] = tSet:New(2886, 512); -- Fangs of the Vermillion Forge
-    t[2887] = tSet:New(2887, 512); -- Fangs of the Vermillion Forge
-    t[2888] = tSet:New(2888, 512); -- Fangs of the Vermillion Forge
-    t[2889] = tSet:New(2889, 4); -- Ashen Predator's Scaleform
-    t[2890] = tSet:New(2890, 4); -- Ashen Predator's Scaleform
-    t[2891] = tSet:New(2891, 4); -- Ashen Predator's Scaleform
-    t[2892] = tSet:New(2892, 1024); -- Strands of the Autumn Blaze
-    t[2893] = tSet:New(2893, 1024); -- Strands of the Autumn Blaze
-    t[2894] = tSet:New(2894, 1024); -- Strands of the Autumn Blaze
-    t[2895] = tSet:New(2895, 32); -- Lingering Phantom's Encasement
-    t[2896] = tSet:New(2896, 32); -- Lingering Phantom's Encasement
-    t[2897] = tSet:New(2897, 32); -- Lingering Phantom's Encasement
-    t[2898] = tSet:New(2898, 1); -- Irons of the Onyx Crucible
-    t[2899] = tSet:New(2899, 1); -- Irons of the Onyx Crucible
-    t[2900] = tSet:New(2900, 1); -- Irons of the Onyx Crucible
-    t[2901] = tSet:New(2901, 2048); -- Kinslayer's Burdens
-    t[2902] = tSet:New(2902, 2048); -- Kinslayer's Burdens
-    t[2903] = tSet:New(2903, 2048); -- Kinslayer's Burdens
-    t[2904] = tSet:New(2904, 4096); -- Legacy of Obsidian Secrets
-    t[2905] = tSet:New(2905, 4096); -- Legacy of Obsidian Secrets
-    t[2906] = tSet:New(2906, 4096); -- Legacy of Obsidian Secrets
-    t[2907] = tSet:New(2907, 128); -- Underlight Conjurer's Brilliance
-    t[2908] = tSet:New(2908, 128); -- Underlight Conjurer's Brilliance
-    t[2909] = tSet:New(2909, 128); -- Underlight Conjurer's Brilliance
+    local name = "Transmog Sets";
+    data.InjectLoadingDebug(tasks, name);
+
+    tinsert(data.TasksGroups, 1, tasks);
 end
 
+local function N(id, ...)
+    transmogSets[id] = transmogSet:New(id, ...);
+end
+
+-- [[ Everything after these lines is automatically generated as an export from ]] --
+-- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
+
+-- [[ Exported at 2023-08-25 21-02-27 ]] --
+tasks = {
+    {N, 2909, 128}, -- Underlight Conjurer's Brilliance
+    {N, 2908, 128}, -- Underlight Conjurer's Brilliance
+    {N, 2907, 128}, -- Underlight Conjurer's Brilliance
+    {N, 2906, 4096}, -- Legacy of Obsidian Secrets
+    {N, 2905, 4096}, -- Legacy of Obsidian Secrets
+    {N, 2904, 4096}, -- Legacy of Obsidian Secrets
+    {N, 2903, 2048}, -- Kinslayer's Burdens
+    {N, 2902, 2048}, -- Kinslayer's Burdens
+    {N, 2901, 2048}, -- Kinslayer's Burdens
+    {N, 2900, 1}, -- Irons of the Onyx Crucible
+    {N, 2899, 1}, -- Irons of the Onyx Crucible
+    {N, 2898, 1}, -- Irons of the Onyx Crucible
+    {N, 2897, 32}, -- Lingering Phantom's Encasement
+    {N, 2896, 32}, -- Lingering Phantom's Encasement
+    {N, 2895, 32}, -- Lingering Phantom's Encasement
+    {N, 2894, 1024}, -- Strands of the Autumn Blaze
+    {N, 2893, 1024}, -- Strands of the Autumn Blaze
+    {N, 2892, 1024}, -- Strands of the Autumn Blaze
+    {N, 2891, 4}, -- Ashen Predator's Scaleform
+    {N, 2890, 4}, -- Ashen Predator's Scaleform
+    {N, 2889, 4}, -- Ashen Predator's Scaleform
+    {N, 2888, 512}, -- Fangs of the Vermillion Forge
+    {N, 2887, 512}, -- Fangs of the Vermillion Forge
+    {N, 2886, 512}, -- Fangs of the Vermillion Forge
+    {N, 2885, 16}, -- The Furnace Seraph's Verdict
+    {N, 2884, 16}, -- The Furnace Seraph's Verdict
+    {N, 2883, 16}, -- The Furnace Seraph's Verdict
+    {N, 2882, 8}, -- Lurking Specter's Shadeweave
+    {N, 2881, 8}, -- Lurking Specter's Shadeweave
+    {N, 2880, 8}, -- Lurking Specter's Shadeweave
+    {N, 2879, 64}, -- Runes of the Cinderwolf
+    {N, 2878, 64}, -- Runes of the Cinderwolf
+    {N, 2877, 64}, -- Runes of the Cinderwolf
+    {N, 2876, 256}, -- Sinister Savant's Cursethreads
+    {N, 2875, 256}, -- Sinister Savant's Cursethreads
+    {N, 2874, 256}, -- Sinister Savant's Cursethreads
+    {N, 2873, 2}, -- Heartfire Sentinel's Authority
+    {N, 2872, 2}, -- Heartfire Sentinel's Authority
+    {N, 2871, 2}, -- Heartfire Sentinel's Authority
+    {N, 2870, 32}, -- Lingering Phantom's Encasement
+    {N, 2869, 2048}, -- Kinslayer's Burdens
+    {N, 2868, 1024}, -- Strands of the Autumn Blaze
+    {N, 2867, 4096}, -- Legacy of Obsidian Secrets
+    {N, 2866, 4}, -- Ashen Predator's Scaleform
+    {N, 2865, 128}, -- Underlight Conjurer's Brilliance
+    {N, 2864, 512}, -- Fangs of the Vermillion Forge
+    {N, 2863, 16}, -- The Furnace Seraph's Verdict
+    {N, 2862, 8}, -- Lurking Specter's Shadeweave
+    {N, 2861, 64}, -- Runes of the Cinderwolf
+    {N, 2860, 256}, -- Sinister Savant's Cursethreads
+    {N, 2859, 2}, -- Heartfire Sentinel's Authority
+    {N, 2858, 1}, -- Irons of the Onyx Crucible
+    {N, 2749, 35}, -- Primal Molten
+    {N, 2748, 35}, -- Dreamfire
+    {N, 2747, 3592}, -- Life-Bound
+    {N, 2746, 3592}, -- Green Draketracker
+    {N, 2745, 4164}, -- Flame-Touched
+    {N, 2744, 4164}, -- Emerald Scale
+    {N, 2743, 400}, -- Vibrant Wildercloth
+    {N, 2742, 400}, -- Verdant Wing
+    {N, 2741, 1}, -- Crimson Gladiator's Plate Armor
+    {N, 2740, 1}, -- Crimson Gladiator's Plate Armor
+    {N, 2739, 2}, -- Crimson Gladiator's Plate Armor
+    {N, 2738, 2}, -- Crimson Gladiator's Plate Armor
+    {N, 2737, 32}, -- Crimson Gladiator's Plate Armor
+    {N, 2736, 32}, -- Crimson Gladiator's Plate Armor
+    {N, 2735, 64}, -- Crimson Gladiator's Chain Armor
+    {N, 2734, 64}, -- Crimson Gladiator's Chain Armor
+    {N, 2733, 4}, -- Crimson Gladiator's Chain Armor
+    {N, 2732, 4}, -- Crimson Gladiator's Chain Armor
+    {N, 2731, 4096}, -- Crimson Gladiator's Chain Armor
+    {N, 2730, 4096}, -- Crimson Gladiator's Chain Armor
+    {N, 2729, 8}, -- Crimson Gladiator's Leather Armor
+    {N, 2728, 8}, -- Crimson Gladiator's Leather Armor
+    {N, 2727, 512}, -- Crimson Gladiator's Leather Armor
+    {N, 2726, 512}, -- Crimson Gladiator's Leather Armor
+    {N, 2725, 2048}, -- Crimson Gladiator's Leather Armor
+    {N, 2724, 2048}, -- Crimson Gladiator's Leather Armor
+    {N, 2723, 1024}, -- Crimson Gladiator's Leather Armor
+    {N, 2722, 1024}, -- Crimson Gladiator's Leather Armor
+    {N, 2721, 256}, -- Crimson Gladiator's Silk Armor
+    {N, 2720, 256}, -- Crimson Gladiator's Silk Armor
+    {N, 2719, 16}, -- Crimson Gladiator's Silk Armor
+    {N, 2718, 16}, -- Crimson Gladiator's Silk Armor
+    {N, 2717, 128}, -- Crimson Gladiator's Silk Armor
+    {N, 2716, 128}, -- Crimson Gladiator's Silk Armor
+    {N, 2715, 35}, -- Crimson Aspirant's Plate Battlegear
+    {N, 2714, 35}, -- Drakeender's Battlegear
+    {N, 2713, 35}, -- Citadel Breaker's Battlegear
+    {N, 2712, 35}, -- Djaradin Dungeon Battlegear
+    {N, 2711, 35}, -- Wyrmforged Battlegear
+    {N, 2710, 4164}, -- Centaur Dungeon Harness
+    {N, 2709, 4164}, -- Nokuhd Regalia
+    {N, 2708, 4164}, -- Aylaag Nomad's Regalia
+    {N, 2707, 4164}, -- Crimson Aspirant's Chain Armor
+    {N, 2706, 4164}, -- Ohn'ahran Falconer's Regalia
+    {N, 2705, 400}, -- Lost Watcher's Vestments
+    {N, 2704, 400}, -- Tyr Hold Vestments
+    {N, 2703, 400}, -- Titan Dungeonkeeper's Vestments
+    {N, 2702, 400}, -- Crimson Aspirant's Silk Vestments
+    {N, 2701, 400}, -- Cobalt Watcher's Vestments
+    {N, 2700, 35}, -- Shorebreaker's Armor
+    {N, 2699, 35}, -- Firestorm Armor
+    {N, 2698, 35}, -- Crimson Combatant's Draconium Armor
+    {N, 2697, 35}, -- Trailblazer's Plate Armor
+    {N, 2696, 4164}, -- Hornstrider's Battlegear
+    {N, 2695, 4164}, -- Cyclonic Battlegear
+    {N, 2694, 4164}, -- Crimson Combatant's Adamant Battlegear
+    {N, 2693, 400}, -- Drakewatcher's Armor
+    {N, 2692, 4164}, -- Trailblazer's Mail Armor
+    {N, 2691, 400}, -- Crimson Combatant's Wildercloth Regalia
+    {N, 2690, 400}, -- Cloudburst Regalia
+    {N, 2689, 400}, -- Trailblazer's Cloth Armor
+    {N, 2688, 3592}, -- Crimson Combatant's Resilient Armor
+    {N, 2687, 3592}, -- Dust Devil Armor
+    {N, 2686, 3592}, -- Isle Trapper's Gear
+    {N, 2685, 3592}, -- Trailblazer's Leather Armor
+    {N, 2684, 3592}, -- Tuskarr Field Garb
+    {N, 2683, 3592}, -- Tuskarr Dungeoneer's Garb
+    {N, 2682, 3592}, -- Crimson Aspirant's Battlegarb
+    {N, 2681, 3592}, -- Ottuk Hide Armor
+    {N, 2675, 4164}, -- Sandshaped Dracthyr Battlegear
+    {N, 2674, 4164}, -- Cobalt Dracthyr Battlegear
+    {N, 2673, 4164}, -- Crimson Dracthyr Battlegear
+    {N, 2672, 4164}, -- Emerald Dracthyr Battlegear
+    {N, 2670, 4164}, -- Obsidian Dracthyr Battlegear
+    {N, 2668, 35}, -- Drakebreaker
+    {N, 2667, 35}, -- Raging Tempest
+    {N, 2666, 3592}, -- Drakebreaker
+    {N, 2665, 3592}, -- Raging Tempest
+    {N, 2664, 4164}, -- Drakebreaker
+    {N, 2663, 4164}, -- Raging Tempest
+    {N, 2662, 400}, -- Drakebreaker
+    {N, 2661, 400}, -- Raging Tempest
+    {N, 2652, 1}, -- Stones of the Walking Mountain
+    {N, 2651, 1}, -- Stones of the Walking Mountain
+    {N, 2650, 1}, -- Stones of the Walking Mountain
+    {N, 2649, 256}, -- Scalesworn Cultist's Habit
+    {N, 2648, 256}, -- Scalesworn Cultist's Habit
+    {N, 2647, 256}, -- Scalesworn Cultist's Habit
+    {N, 2646, 64}, -- Elements of Infused Earth
+    {N, 2645, 64}, -- Elements of Infused Earth
+    {N, 2644, 64}, -- Elements of Infused Earth
+    {N, 2643, 8}, -- Vault Delver's Toolkit
+    {N, 2642, 8}, -- Vault Delver's Toolkit
+    {N, 2641, 8}, -- Vault Delver's Toolkit
+    {N, 2640, 16}, -- Draconic Hierophant's Finery
+    {N, 2639, 16}, -- Draconic Hierophant's Finery
+    {N, 2638, 16}, -- Draconic Hierophant's Finery
+    {N, 2637, 2}, -- Virtuous Silver Cataphract
+    {N, 2636, 2}, -- Virtuous Silver Cataphract
+    {N, 2635, 2}, -- Virtuous Silver Cataphract
+    {N, 2634, 512}, -- Wrappings of the Waking Fist
+    {N, 2633, 512}, -- Wrappings of the Waking Fist
+    {N, 2632, 512}, -- Wrappings of the Waking Fist
+    {N, 2631, 128}, -- Bindings of the Crystal Scholar
+    {N, 2630, 128}, -- Bindings of the Crystal Scholar
+    {N, 2629, 128}, -- Bindings of the Crystal Scholar
+    {N, 2628, 4}, -- Stormwing Harrier's Camouflage
+    {N, 2627, 4}, -- Stormwing Harrier's Camouflage
+    {N, 2626, 4}, -- Stormwing Harrier's Camouflage
+    {N, 2625, 4096}, -- Scales of the Awakened
+    {N, 2624, 4096}, -- Scales of the Awakened
+    {N, 2623, 4096}, -- Scales of the Awakened
+    {N, 2622, 1024}, -- Lost Landcaller's Vesture
+    {N, 2621, 1024}, -- Lost Landcaller's Vesture
+    {N, 2620, 1024}, -- Lost Landcaller's Vesture
+    {N, 2619, 2048}, -- Skybound Avenger's Flightwear
+    {N, 2618, 2048}, -- Skybound Avenger's Flightwear
+    {N, 2617, 2048}, -- Skybound Avenger's Flightwear
+    {N, 2616, 32}, -- Haunted Frostbrood Remains
+    {N, 2615, 32}, -- Haunted Frostbrood Remains
+    {N, 2614, 32}, -- Haunted Frostbrood Remains
+    {N, 2613, 1}, -- Stones of the Walking Mountain
+    {N, 2612, 256}, -- Scalesworn Cultist's Habit
+    {N, 2611, 64}, -- Elements of Infused Earth
+    {N, 2610, 8}, -- Vault Delver's Toolkit
+    {N, 2609, 16}, -- Draconic Hierophant's Finery
+    {N, 2608, 2}, -- Virtuous Silver Cataphract
+    {N, 2607, 512}, -- Wrappings of the Waking Fist
+    {N, 2606, 128}, -- Bindings of the Crystal Scholar
+    {N, 2605, 4}, -- Stormwing Harrier's Camouflage
+    {N, 2604, 4096}, -- Scales of the Awakened
+    {N, 2603, 1024}, -- Lost Landcaller's Vesture
+    {N, 2602, 2048}, -- Skybound Avenger's Flightwear
+    {N, 2601, 32}, -- Haunted Frostbrood Remains
+    {N, 2587, 3592}, -- Tuskarr Trader's Garb
+    {N, 2580, 1}, -- Eternal Gladiator's Plate Armor
+    {N, 2579, 256}, -- Eternal Gladiator's Felweave Armor
+    {N, 2578, 64}, -- Eternal Gladiator's Ringmail Armor
+    {N, 2577, 8}, -- Eternal Gladiator's Leather Armor
+    {N, 2576, 16}, -- Eternal Gladiator's Satin Armor
+    {N, 2575, 2}, -- Eternal Gladiator's Scaled Armor
+    {N, 2574, 512}, -- Eternal Gladiator's Ironskin Armor
+    {N, 2573, 128}, -- Eternal Gladiator's Silk Armor
+    {N, 2572, 4}, -- Eternal Gladiator's Chain Armor
+    {N, 2571, 1024}, -- Eternal Gladiator's Dragonhide Armor
+    {N, 2570, 2048}, -- Eternal Gladiator's Felskin Armor
+    {N, 2569, 32}, -- Eternal Gladiator's Dreadplate Armor
+    {N, 2568, 35}, -- Eternal Aspirant's Plate
+    {N, 2567, 4164}, -- Eternal Aspirant's Chain
+    {N, 2566, 3592}, -- Eternal Aspirant's Leathers
+    {N, 2565, 400}, -- Eternal Aspirant's Vestment
+    {N, 2564, 1}, -- Eternal Gladiator's Plate Armor
+    {N, 2558, 256}, -- Eternal Gladiator's Felweave Armor
+    {N, 2552, 64}, -- Eternal Gladiator's Ringmail Armor
+    {N, 2546, 8}, -- Eternal Gladiator's Leather Armor
+    {N, 2540, 16}, -- Eternal Gladiator's Satin Armor
+    {N, 2534, 2}, -- Eternal Gladiator's Scaled Armor
+    {N, 2528, 512}, -- Eternal Gladiator's Ironskin Armor
+    {N, 2522, 128}, -- Eternal Gladiator's Silk Armor
+    {N, 2516, 4}, -- Eternal Gladiator's Chain Armor
+    {N, 2510, 1024}, -- Eternal Gladiator's Dragonhide Armor
+    {N, 2504, 2048}, -- Eternal Gladiator's Felskin Armor
+    {N, 2498, 32}, -- Eternal Gladiator's Dreadplate Armor
+    {N, 2492, 35}, -- Renowned Expeditioner's Plate Armor
+    {N, 2491, 4164}, -- Renowned Expeditioner's Mail Armor
+    {N, 2490, 0}, -- Renowned Expeditioner's Leather Armor
+    {N, 2489, 400}, -- Renowned Expeditioner's Cloth Armor
+    {N, 2419, 1}, -- Cosmic Gladiator's Plate Armor
+    {N, 2418, 1}, -- Cosmic Gladiator's Plate Armor
+    {N, 2417, 1}, -- Armaments of the Infinite Infantry
+    {N, 2416, 1}, -- Armaments of the Infinite Infantry
+    {N, 2415, 1}, -- Armaments of the Infinite Infantry
+    {N, 2414, 1}, -- Armaments of the Infinite Infantry
+    {N, 2413, 256}, -- Cosmic Gladiator's Felweave Armor
+    {N, 2412, 256}, -- Cosmic Gladiator's Felweave Armor
+    {N, 2411, 256}, -- Shroud of the Demon Star
+    {N, 2410, 256}, -- Shroud of the Demon Star
+    {N, 2409, 256}, -- Shroud of the Demon Star
+    {N, 2408, 256}, -- Shroud of the Demon Star
+    {N, 2407, 64}, -- Cosmic Gladiator's Ringmail Armor
+    {N, 2406, 64}, -- Cosmic Gladiator's Ringmail Armor
+    {N, 2405, 64}, -- Theurgic Starspeaker's Regalia
+    {N, 2404, 64}, -- Theurgic Starspeaker's Regalia
+    {N, 2403, 64}, -- Theurgic Starspeaker's Regalia
+    {N, 2402, 64}, -- Theurgic Starspeaker's Regalia
+    {N, 2401, 8}, -- Cosmic Gladiator's Leather Armor
+    {N, 2400, 8}, -- Cosmic Gladiator's Leather Armor
+    {N, 2399, 8}, -- Soulblade Shadowhide
+    {N, 2398, 8}, -- Soulblade Shadowhide
+    {N, 2397, 8}, -- Soulblade Shadowhide
+    {N, 2396, 8}, -- Soulblade Shadowhide
+    {N, 2395, 16}, -- Cosmic Gladiator's Satin Armor
+    {N, 2394, 16}, -- Cosmic Gladiator's Satin Armor
+    {N, 2393, 16}, -- Habiliments of the Empyrean
+    {N, 2392, 16}, -- Habiliments of the Empyrean
+    {N, 2391, 16}, -- Habiliments of the Empyrean
+    {N, 2390, 16}, -- Habiliments of the Empyrean
+    {N, 2389, 2}, -- Cosmic Gladiator's Scaled Armor
+    {N, 2388, 2}, -- Cosmic Gladiator's Scaled Armor
+    {N, 2387, 2}, -- Luminous Chevalier's Gallantry
+    {N, 2386, 2}, -- Luminous Chevalier's Gallantry
+    {N, 2385, 2}, -- Luminous Chevalier's Gallantry
+    {N, 2384, 2}, -- Luminous Chevalier's Gallantry
+    {N, 2383, 512}, -- Cosmic Gladiator's Ironskin Armor
+    {N, 2382, 512}, -- Cosmic Gladiator's Ironskin Armor
+    {N, 2381, 512}, -- Garb of the Grand Upwelling
+    {N, 2380, 512}, -- Garb of the Grand Upwelling
+    {N, 2379, 512}, -- Garb of the Grand Upwelling
+    {N, 2378, 512}, -- Garb of the Grand Upwelling
+    {N, 2377, 128}, -- Cosmic Gladiator's Silk Armor
+    {N, 2376, 128}, -- Cosmic Gladiator's Silk Armor
+    {N, 2375, 128}, -- Erudite Occultist's Vestments
+    {N, 2374, 128}, -- Erudite Occultist's Vestments
+    {N, 2373, 128}, -- Erudite Occultist's Vestments
+    {N, 2372, 128}, -- Erudite Occultist's Vestments
+    {N, 2371, 4}, -- Cosmic Gladiator's Chain Armor
+    {N, 2370, 4}, -- Cosmic Gladiator's Chain Armor
+    {N, 2369, 4}, -- Godstalker's Battlegear
+    {N, 2368, 4}, -- Godstalker's Battlegear
+    {N, 2367, 4}, -- Godstalker's Battlegear
+    {N, 2366, 4}, -- Godstalker's Battlegear
+    {N, 2365, 1024}, -- Cosmic Gladiator's Dragonhide Armor
+    {N, 2364, 1024}, -- Cosmic Gladiator's Dragonhide Armor
+    {N, 2363, 1024}, -- Tapestry of the Fixed Stars
+    {N, 2362, 1024}, -- Tapestry of the Fixed Stars
+    {N, 2361, 1024}, -- Tapestry of the Fixed Stars
+    {N, 2360, 1024}, -- Tapestry of the Fixed Stars
+    {N, 2359, 2048}, -- Cosmic Gladiator's Felskin Armor
+    {N, 2358, 2048}, -- Cosmic Gladiator's Felskin Armor
+    {N, 2357, 2048}, -- Mercurial Punisher's Painweave
+    {N, 2356, 2048}, -- Mercurial Punisher's Painweave
+    {N, 2355, 2048}, -- Mercurial Punisher's Painweave
+    {N, 2354, 2048}, -- Mercurial Punisher's Painweave
+    {N, 2353, 32}, -- Cosmic Gladiator's Dreadplate Armor
+    {N, 2352, 32}, -- Cosmic Gladiator's Dreadplate Armor
+    {N, 2351, 32}, -- The First Eidolon's Soulsteel
+    {N, 2350, 32}, -- The First Eidolon's Soulsteel
+    {N, 2349, 32}, -- The First Eidolon's Soulsteel
+    {N, 2348, 32}, -- The First Eidolon's Soulsteel
+    {N, 2319, 35}, -- Cosmic Aspirant's Plate
+    {N, 2318, 68}, -- Cosmic Aspirant's Chain
+    {N, 2317, 3592}, -- Cosmic Aspirant's Leathers
+    {N, 2316, 400}, -- Cosmic Aspirant's Vestment
+    {N, 2305, 1}, -- Titanic Onslaught Armor
+    {N, 2304, 256}, -- Diabolic Raiment
+    {N, 2303, 64}, -- Regalia of the Skybreaker
+    {N, 2302, 8}, -- Fanged Slayer's Armor
+    {N, 2301, 16}, -- Vestments of Blind Absolution
+    {N, 2300, 2}, -- Radiant Lightbringer Armor
+    {N, 2299, 512}, -- Xuen's Battlegear
+    {N, 2298, 128}, -- Regalia of the Arcane Tempest
+    {N, 2297, 4}, -- Wildstalker Armor
+    {N, 2296, 1024}, -- Stormheart Raiment
+    {N, 2295, 2048}, -- Demonbane Armor
+    {N, 2294, 32}, -- Gravewarden Armaments
+    {N, 2265, 400}, -- Dark Supplicant's Garb
+    {N, 2264, 400}, -- Dark Supplicant's Garb
+    {N, 2263, 400}, -- Dark Supplicant's Garb
+    {N, 2262, 400}, -- Dark Supplicant's Garb
+    {N, 2261, 3592}, -- Sanctum Assailant's Trappings
+    {N, 2260, 3592}, -- Sanctum Assailant's Trappings
+    {N, 2259, 3592}, -- Sanctum Assailant's Trappings
+    {N, 2258, 3592}, -- Sanctum Assailant's Trappings
+    {N, 2257, 68}, -- Tower Ascendant's Battlegear
+    {N, 2256, 68}, -- Tower Ascendant's Battlegear
+    {N, 2255, 68}, -- Tower Ascendant's Battlegear
+    {N, 2254, 68}, -- Tower Ascendant's Battlegear
+    {N, 2253, 35}, -- Soulforged Dreadplate
+    {N, 2252, 35}, -- Soulforged Dreadplate
+    {N, 2251, 35}, -- Soulforged Dreadplate
+    {N, 2250, 35}, -- Soulforged Dreadplate
+    {N, 2249, 35}, -- Unchained Aspirant's Plate
+    {N, 2248, 68}, -- Unchained Aspirant's Chain
+    {N, 2247, 3592}, -- Unchained Aspirant's Leathers
+    {N, 2246, 400}, -- Unchained Aspirant's Vestment
+    {N, 2231, 35}, -- Unchained Gladiator's Plate
+    {N, 2230, 68}, -- Unchained Gladiator's Chain
+    {N, 2229, 3592}, -- Unchained Gladiator's Leathers
+    {N, 2228, 400}, -- Unchained Gladiator's Vestment
+    {N, 2227, 35}, -- Unchained Gladiator's Plate
+    {N, 2226, 68}, -- Unchained Gladiator's Chain
+    {N, 2225, 3592}, -- Unchained Gladiator's Leathers
+    {N, 2224, 400}, -- Unchained Gladiator's Vestment
+    {N, 2177, 35}, -- Sinful Aspirant's Plate
+    {N, 2176, 68}, -- Sinful Aspirant's Chain
+    {N, 2175, 3592}, -- Sinful Aspirant's Leathers
+    {N, 2174, 400}, -- Sinful Aspirant's Vestment
+    {N, 2173, 35}, -- Sinful Gladiator's Plate
+    {N, 2172, 68}, -- Sinful Gladiator's Chain
+    {N, 2171, 3592}, -- Sinful Gladiator's Leathers
+    {N, 2170, 400}, -- Sinful Gladiator's Vestment
+    {N, 2169, 35}, -- Sinful Gladiator's Plate
+    {N, 2168, 68}, -- Sinful Gladiator's Chain
+    {N, 2167, 3592}, -- Sinful Gladiator's Leathers
+    {N, 2166, 400}, -- Sinful Gladiator's Vestment
+    {N, 2165, 3592}, -- Sin Slayer's Leathers
+    {N, 2164, 3592}, -- Sin Slayer's Leathers
+    {N, 2163, 3592}, -- Sin Slayer's Leathers
+    {N, 2162, 3592}, -- Sin Slayer's Leathers
+    {N, 2161, 400}, -- Depraved Beguiler's Visage
+    {N, 2160, 400}, -- Depraved Beguiler's Visage
+    {N, 2159, 400}, -- Depraved Beguiler's Visage
+    {N, 2158, 400}, -- Depraved Beguiler's Visage
+    {N, 2157, 68}, -- Inexorable Castigator's Guise
+    {N, 2156, 68}, -- Inexorable Castigator's Guise
+    {N, 2155, 68}, -- Inexorable Castigator's Guise
+    {N, 2154, 68}, -- Inexorable Castigator's Guise
+    {N, 2153, 35}, -- Grand Sentinel's Greatplate
+    {N, 2152, 35}, -- Grand Sentinel's Greatplate
+    {N, 2151, 35}, -- Grand Sentinel's Greatplate
+    {N, 2150, 35}, -- Grand Sentinel's Greatplate
+    {N, 1997, 400}, -- Oblivion Cultist's Robes
+    {N, 1996, 400}, -- Oblivion Cultist's Robes
+    {N, 1995, 400}, -- Oblivion Cultist's Robes
+    {N, 1994, 400}, -- Oblivion Cultist's Robes
+    {N, 1993, 3592}, -- Treacherous Schemer's Leathers
+    {N, 1992, 3592}, -- Treacherous Schemer's Leathers
+    {N, 1991, 3592}, -- Treacherous Schemer's Leathers
+    {N, 1990, 3592}, -- Treacherous Schemer's Leathers
+    {N, 1989, 68}, -- Lurking Defiler's Scalemail
+    {N, 1988, 68}, -- Lurking Defiler's Scalemail
+    {N, 1987, 68}, -- Lurking Defiler's Scalemail
+    {N, 1986, 68}, -- Lurking Defiler's Scalemail
+    {N, 1985, 35}, -- Cosmic Aberration's Plate
+    {N, 1984, 35}, -- Cosmic Aberration's Plate
+    {N, 1983, 35}, -- Cosmic Aberration's Plate
+    {N, 1982, 35}, -- Cosmic Aberration's Plate
+    {N, 1975, 400}, -- Corrupted Gladiator's Vestment
+    {N, 1974, 3592}, -- Corrupted Gladiator's Leathers
+    {N, 1973, 68}, -- Corrupted Gladiator's Chain
+    {N, 1972, 35}, -- Corrupted Gladiator's Plate
+    {N, 1969, 400}, -- Corrupted Gladiator's Vestment
+    {N, 1968, 400}, -- Corrupted Gladiator's Vestment
+    {N, 1963, 3592}, -- Corrupted Gladiator's Leathers
+    {N, 1962, 3592}, -- Corrupted Gladiator's Leathers
+    {N, 1957, 68}, -- Corrupted Gladiator's Chain
+    {N, 1956, 68}, -- Corrupted Gladiator's Chain
+    {N, 1951, 35}, -- Corrupted Gladiator's Plate
+    {N, 1950, 35}, -- Corrupted Gladiator's Plate
+    {N, 1897, 400}, -- Notorious Gladiator's Vestment
+    {N, 1896, 400}, -- Notorious Gladiator's Vestment
+    {N, 1892, 400}, -- Notorious Aspirant's Vestment
+    {N, 1891, 3592}, -- Notorious Gladiator's Leathers
+    {N, 1890, 3592}, -- Notorious Gladiator's Leathers
+    {N, 1886, 3592}, -- Notorious Aspirant's Leathers
+    {N, 1885, 68}, -- Notorious Gladiator's Chain
+    {N, 1884, 68}, -- Notorious Gladiator's Chain
+    {N, 1880, 68}, -- Notorious Aspirant's Chain
+    {N, 1879, 35}, -- Notorious Gladiator's Plate
+    {N, 1878, 35}, -- Notorious Gladiator's Plate
+    {N, 1874, 35}, -- Notorious Aspirant's Plate
+    {N, 1869, 35}, -- Notorious Aspirant's Plate
+    {N, 1865, 35}, -- Notorious Gladiator's Plate
+    {N, 1864, 35}, -- Notorious Gladiator's Plate
+    {N, 1863, 68}, -- Notorious Aspirant's Chain
+    {N, 1859, 68}, -- Notorious Gladiator's Chain
+    {N, 1858, 68}, -- Notorious Gladiator's Chain
+    {N, 1857, 3592}, -- Notorious Aspirant's Leathers
+    {N, 1853, 3592}, -- Notorious Gladiator's Leathers
+    {N, 1852, 3592}, -- Notorious Gladiator's Leathers
+    {N, 1851, 400}, -- Notorious Aspirant's Vestment
+    {N, 1847, 400}, -- Notorious Gladiator's Vestment
+    {N, 1846, 400}, -- Notorious Gladiator's Vestment
+    {N, 1845, 400}, -- Frilled Harbinger's Vestments
+    {N, 1844, 3592}, -- Razorfin Regalia
+    {N, 1843, 68}, -- Queen's Guard Scalemail
+    {N, 1842, 35}, -- Naga Lord's Warplate
+    {N, 1841, 400}, -- Frilled Harbinger's Vestments
+    {N, 1840, 3592}, -- Razorfin Regalia
+    {N, 1839, 68}, -- Queen's Guard Scalemail
+    {N, 1838, 35}, -- Naga Lord's Warplate
+    {N, 1837, 400}, -- Frilled Harbinger's Vestments
+    {N, 1836, 3592}, -- Razorfin Regalia
+    {N, 1835, 68}, -- Queen's Guard Scalemail
+    {N, 1834, 35}, -- Naga Lord's Warplate
+    {N, 1833, 400}, -- Frilled Harbinger's Vestments
+    {N, 1832, 3592}, -- Razorfin Regalia
+    {N, 1831, 68}, -- Queen's Guard Scalemail
+    {N, 1830, 35}, -- Naga Lord's Warplate
+    {N, 1821, 35}, -- Gravelord's Direplate
+    {N, 1820, 35}, -- Gravelord's Direplate
+    {N, 1819, 35}, -- Gravelord's Direplate
+    {N, 1818, 35}, -- Gravelord's Direplate
+    {N, 1817, 68}, -- Death-Devourer Vestments
+    {N, 1816, 68}, -- Death-Devourer Vestments
+    {N, 1815, 68}, -- Death-Devourer Vestments
+    {N, 1814, 68}, -- Death-Devourer Vestments
+    {N, 1813, 3592}, -- Boneblade Battlegear
+    {N, 1812, 3592}, -- Boneblade Battlegear
+    {N, 1811, 3592}, -- Boneblade Battlegear
+    {N, 1810, 3592}, -- Boneblade Battlegear
+    {N, 1809, 400}, -- Soul Reaper's Raiment
+    {N, 1808, 400}, -- Soul Reaper's Raiment
+    {N, 1807, 400}, -- Soul Reaper's Raiment
+    {N, 1806, 400}, -- Soul Reaper's Raiment
+    {N, 1802, 400}, -- Sinister Gladiator's Vestment
+    {N, 1801, 400}, -- Sinister Gladiator's Vestment
+    {N, 1797, 400}, -- Sinister Aspirant's Vestment
+    {N, 1796, 400}, -- Moonpriest's Vestments
+    {N, 1795, 3592}, -- Sinister Gladiator's Leathers
+    {N, 1794, 3592}, -- Sinister Gladiator's Leathers
+    {N, 1790, 3592}, -- Sinister Aspirant's Leathers
+    {N, 1789, 3592}, -- Darkwood Sentinel's Guise
+    {N, 1788, 68}, -- Sinister Gladiator's Chain
+    {N, 1787, 68}, -- Sinister Gladiator's Chain
+    {N, 1783, 68}, -- Sinister Aspirant's Chain
+    {N, 1782, 68}, -- Kaldorei Archer's Chainmail
+    {N, 1781, 35}, -- Sinister Gladiator's Plate
+    {N, 1780, 35}, -- Sinister Gladiator's Plate
+    {N, 1776, 35}, -- Sinister Aspirant's Plate
+    {N, 1775, 35}, -- Wardenguard's Battleplate
+    {N, 1772, 400}, -- Sinister Gladiator's Vestment
+    {N, 1771, 400}, -- Sinister Gladiator's Vestment
+    {N, 1767, 400}, -- Sinister Aspirant's Vestment
+    {N, 1766, 400}, -- Plaguebringer's Raiment
+    {N, 1765, 3592}, -- Sinister Gladiator's Leathers
+    {N, 1764, 3592}, -- Sinister Gladiator's Leathers
+    {N, 1760, 3592}, -- Sinister Aspirant's Leathers
+    {N, 1759, 3592}, -- Deathstalker's Guise
+    {N, 1758, 68}, -- Sinister Gladiator's Chain
+    {N, 1757, 68}, -- Sinister Gladiator's Chain
+    {N, 1753, 68}, -- Sinister Aspirant's Chain
+    {N, 1752, 68}, -- Blightguard's Chains
+    {N, 1751, 35}, -- Sinister Gladiator's Plate
+    {N, 1750, 35}, -- Sinister Gladiator's Plate
+    {N, 1746, 35}, -- Sinister Aspirant's Plate
+    {N, 1745, 35}, -- Deathguard's Battleplate
+    {N, 1738, 400}, -- Dread Gladiator's Vestment
+    {N, 1737, 3592}, -- Dread Gladiator's Leathers
+    {N, 1736, 68}, -- Dread Gladiator's Chain
+    {N, 1735, 35}, -- Dread Gladiator's Plate
+    {N, 1734, 400}, -- Dread Gladiator's Vestment
+    {N, 1733, 3592}, -- Dread Gladiator's Leathers
+    {N, 1732, 68}, -- Dread Gladiator's Chain
+    {N, 1731, 35}, -- Dread Gladiator's Plate
+    {N, 1677, 35}, -- Honorbound Centurion's Plate
+    {N, 1676, 35}, -- Dread Aspirant's Plate
+    {N, 1675, 35}, -- Dread Gladiator's Plate
+    {N, 1674, 68}, -- Honorbound Vanguard's Chain
+    {N, 1673, 68}, -- Dread Aspirant's Chain
+    {N, 1672, 68}, -- Dread Gladiator's Chain
+    {N, 1671, 3592}, -- Honorbound Outrider's Leathers
+    {N, 1670, 3592}, -- Dread Aspirant's Leathers
+    {N, 1669, 3592}, -- Dread Gladiator's Leathers
+    {N, 1668, 400}, -- Honorbound Artificer's Vestment
+    {N, 1667, 400}, -- Dread Aspirant's Vestment
+    {N, 1666, 400}, -- Dread Gladiator's Vestment
+    {N, 1665, 35}, -- 7th Legionnaire's Plate
+    {N, 1664, 35}, -- Dread Aspirant's Plate
+    {N, 1663, 35}, -- Dread Gladiator's Plate
+    {N, 1662, 68}, -- 7th Legionnaire's Chain
+    {N, 1661, 68}, -- Dread Aspirant's Chain
+    {N, 1660, 68}, -- Dread Gladiator's Chain
+    {N, 1659, 3592}, -- 7th Legionnaire's Leathers
+    {N, 1658, 3592}, -- Dread Aspirant's Leathers
+    {N, 1657, 3592}, -- Dread Gladiator's Leathers
+    {N, 1656, 400}, -- 7th Legionnaire's Vestment
+    {N, 1655, 400}, -- Dread Aspirant's Vestment
+    {N, 1654, 400}, -- Dread Gladiator's Vestment
+    {N, 1653, 35}, -- Eternal Curator's Protectorate
+    {N, 1652, 35}, -- Eternal Curator's Protectorate
+    {N, 1651, 35}, -- Eternal Curator's Protectorate
+    {N, 1650, 35}, -- Eternal Curator's Protectorate
+    {N, 1649, 68}, -- Eternal Curator's Chains
+    {N, 1648, 68}, -- Eternal Curator's Chains
+    {N, 1647, 68}, -- Eternal Curator's Chains
+    {N, 1646, 68}, -- Eternal Curator's Chains
+    {N, 1645, 3592}, -- Eternal Curator's Garb
+    {N, 1644, 3592}, -- Eternal Curator's Garb
+    {N, 1643, 3592}, -- Eternal Curator's Garb
+    {N, 1642, 3592}, -- Eternal Curator's Garb
+    {N, 1641, 400}, -- Eternal Curator's Vestment
+    {N, 1640, 400}, -- Eternal Curator's Vestment
+    {N, 1639, 400}, -- Eternal Curator's Vestment
+    {N, 1638, 400}, -- Eternal Curator's Vestment
+    {N, 1519, 1}, -- Juggernaut Battlegear
+    {N, 1518, 1}, -- Juggernaut Battlegear
+    {N, 1517, 1}, -- Juggernaut Battlegear
+    {N, 1516, 1}, -- Juggernaut Battlegear
+    {N, 1515, 256}, -- Grim Inquisitor's Regalia
+    {N, 1514, 256}, -- Grim Inquisitor's Regalia
+    {N, 1513, 256}, -- Grim Inquisitor's Regalia
+    {N, 1512, 256}, -- Grim Inquisitor's Regalia
+    {N, 1511, 64}, -- Garb of Venerated Spirits
+    {N, 1510, 64}, -- Garb of Venerated Spirits
+    {N, 1509, 64}, -- Garb of Venerated Spirits
+    {N, 1508, 64}, -- Garb of Venerated Spirits
+    {N, 1507, 8}, -- Regalia of the Dashing Scoundrel
+    {N, 1506, 8}, -- Regalia of the Dashing Scoundrel
+    {N, 1505, 8}, -- Regalia of the Dashing Scoundrel
+    {N, 1504, 8}, -- Regalia of the Dashing Scoundrel
+    {N, 1503, 16}, -- Gilded Seraph's Raiment
+    {N, 1502, 16}, -- Gilded Seraph's Raiment
+    {N, 1501, 16}, -- Gilded Seraph's Raiment
+    {N, 1500, 16}, -- Gilded Seraph's Raiment
+    {N, 1499, 2}, -- Light's Vanguard Battleplate
+    {N, 1498, 2}, -- Light's Vanguard Battleplate
+    {N, 1497, 2}, -- Light's Vanguard Battleplate
+    {N, 1496, 2}, -- Light's Vanguard Battleplate
+    {N, 1495, 512}, -- Chi-Ji's Battlegear
+    {N, 1494, 512}, -- Chi-Ji's Battlegear
+    {N, 1493, 512}, -- Chi-Ji's Battlegear
+    {N, 1492, 512}, -- Chi-Ji's Battlegear
+    {N, 1491, 128}, -- Runebound Regalia
+    {N, 1490, 128}, -- Runebound Regalia
+    {N, 1489, 128}, -- Runebound Regalia
+    {N, 1488, 128}, -- Runebound Regalia
+    {N, 1487, 4}, -- Serpentstalker Guise
+    {N, 1486, 4}, -- Serpentstalker Guise
+    {N, 1485, 4}, -- Serpentstalker Guise
+    {N, 1484, 4}, -- Serpentstalker Guise
+    {N, 1483, 1024}, -- Bearmantle Battlegear
+    {N, 1482, 1024}, -- Bearmantle Battlegear
+    {N, 1481, 1024}, -- Bearmantle Battlegear
+    {N, 1480, 1024}, -- Bearmantle Battlegear
+    {N, 1479, 2048}, -- Felreaper Vestments
+    {N, 1478, 2048}, -- Felreaper Vestments
+    {N, 1477, 2048}, -- Felreaper Vestments
+    {N, 1476, 2048}, -- Felreaper Vestments
+    {N, 1475, 32}, -- Dreadwake Armor
+    {N, 1474, 32}, -- Dreadwake Armor
+    {N, 1473, 32}, -- Dreadwake Armor
+    {N, 1472, 32}, -- Dreadwake Armor
+    {N, 1423, 1}, -- Fierce Gladiator's Plate Armor
+    {N, 1422, 1}, -- Fierce Gladiator's Plate Armor
+    {N, 1421, 256}, -- Fierce Gladiator's Felweave Armor
+    {N, 1420, 256}, -- Fierce Gladiator's Felweave Armor
+    {N, 1419, 64}, -- Fierce Gladiator's Ringmail Armor
+    {N, 1418, 64}, -- Fierce Gladiator's Ringmail Armor
+    {N, 1417, 8}, -- Fierce Gladiator's Leather Armor
+    {N, 1416, 8}, -- Fierce Gladiator's Leather Armor
+    {N, 1415, 16}, -- Fierce Gladiator's Satin Armor
+    {N, 1414, 16}, -- Fierce Gladiator's Satin Armor
+    {N, 1413, 2}, -- Fierce Gladiator's Scaled Armor
+    {N, 1412, 2}, -- Fierce Gladiator's Scaled Armor
+    {N, 1411, 512}, -- Fierce Gladiator's Ironskin Armor
+    {N, 1410, 512}, -- Fierce Gladiator's Ironskin Armor
+    {N, 1409, 128}, -- Fierce Gladiator's Silk Armor
+    {N, 1408, 128}, -- Fierce Gladiator's Silk Armor
+    {N, 1407, 4}, -- Fierce Gladiator's Chain Armor
+    {N, 1406, 4}, -- Fierce Gladiator's Chain Armor
+    {N, 1405, 1024}, -- Fierce Gladiator's Dragonhide Armor
+    {N, 1404, 1024}, -- Fierce Gladiator's Dragonhide Armor
+    {N, 1403, 2048}, -- Fierce Gladiator's Felskin Armor
+    {N, 1402, 2048}, -- Fierce Gladiator's Felskin Armor
+    {N, 1401, 32}, -- Fierce Gladiator's Dreadplate Armor
+    {N, 1400, 32}, -- Fierce Gladiator's Dreadplate Armor
+    {N, 1399, 1}, -- Fierce Gladiator's Plate Armor
+    {N, 1398, 1}, -- Fierce Gladiator's Plate Armor
+    {N, 1397, 256}, -- Fierce Gladiator's Felweave Armor
+    {N, 1396, 256}, -- Fierce Gladiator's Felweave Armor
+    {N, 1395, 64}, -- Fierce Gladiator's Ringmail Armor
+    {N, 1394, 64}, -- Fierce Gladiator's Ringmail Armor
+    {N, 1393, 8}, -- Fierce Gladiator's Leather Armor
+    {N, 1392, 8}, -- Fierce Gladiator's Leather Armor
+    {N, 1391, 16}, -- Fierce Gladiator's Satin Armor
+    {N, 1390, 16}, -- Fierce Gladiator's Satin Armor
+    {N, 1389, 2}, -- Fierce Gladiator's Scaled Armor
+    {N, 1388, 2}, -- Fierce Gladiator's Scaled Armor
+    {N, 1387, 512}, -- Fierce Gladiator's Ironskin Armor
+    {N, 1386, 512}, -- Fierce Gladiator's Ironskin Armor
+    {N, 1385, 128}, -- Fierce Gladiator's Silk Armor
+    {N, 1384, 128}, -- Fierce Gladiator's Silk Armor
+    {N, 1383, 4}, -- Fierce Gladiator's Chain Armor
+    {N, 1382, 4}, -- Fierce Gladiator's Chain Armor
+    {N, 1381, 1024}, -- Fierce Gladiator's Dragonhide Armor
+    {N, 1380, 1024}, -- Fierce Gladiator's Dragonhide Armor
+    {N, 1379, 1}, -- Fierce Combatant's Plate Armor
+    {N, 1378, 1}, -- Fierce Combatant's Plate Armor
+    {N, 1377, 256}, -- Fierce Combatant's Felweave Armor
+    {N, 1376, 256}, -- Fierce Combatant's Felweave Armor
+    {N, 1375, 64}, -- Fierce Combatant's Ringmail Armor
+    {N, 1374, 64}, -- Fierce Combatant's Ringmail Armor
+    {N, 1373, 8}, -- Fierce Combatant's Leather Armor
+    {N, 1372, 8}, -- Fierce Combatant's Leather Armor
+    {N, 1371, 16}, -- Fierce Combatant's Satin Armor
+    {N, 1370, 16}, -- Fierce Combatant's Satin Armor
+    {N, 1369, 2}, -- Fierce Combatant's Scaled Armor
+    {N, 1368, 2}, -- Fierce Combatant's Scaled Armor
+    {N, 1367, 512}, -- Fierce Combatant's Ironskin Armor
+    {N, 1366, 512}, -- Fierce Combatant's Ironskin Armor
+    {N, 1365, 128}, -- Fierce Combatant's Silk Armor
+    {N, 1364, 128}, -- Fierce Combatant's Silk Armor
+    {N, 1363, 4}, -- Fierce Combatant's Chain Armor
+    {N, 1362, 4}, -- Fierce Combatant's Chain Armor
+    {N, 1361, 1024}, -- Fierce Combatant's Dragonhide Armor
+    {N, 1360, 1024}, -- Fierce Combatant's Dragonhide Armor
+    {N, 1359, 2048}, -- Fierce Gladiator's Felskin Armor
+    {N, 1358, 2048}, -- Fierce Gladiator's Felskin Armor
+    {N, 1355, 2048}, -- Fierce Combatant's Felskin Armor
+    {N, 1354, 2048}, -- Fierce Combatant's Felskin Armor
+    {N, 1353, 32}, -- Fierce Gladiator's Dreadplate Armor
+    {N, 1352, 32}, -- Fierce Gladiator's Dreadplate Armor
+    {N, 1349, 32}, -- Fierce Combatant's Dreadplate Armor
+    {N, 1348, 32}, -- Fierce Combatant's Dreadplate Armor
+    {N, 1343, 16}, -- Warmongering Gladiator's Satin Armor Boogaloo
+    {N, 1342, 16}, -- Vestments of Blind Absolution
+    {N, 1340, 32}, -- Gravewarden Armaments
+    {N, 1339, 32}, -- Gravewarden Armaments
+    {N, 1338, 32}, -- Gravewarden Armaments
+    {N, 1337, 32}, -- Gravewarden Armaments
+    {N, 1336, 2048}, -- Demonbane Armor
+    {N, 1335, 2048}, -- Demonbane Armor
+    {N, 1334, 2048}, -- Demonbane Armor
+    {N, 1333, 2048}, -- Demonbane Armor
+    {N, 1332, 1024}, -- Stormheart Raiment
+    {N, 1331, 1024}, -- Stormheart Raiment
+    {N, 1330, 1024}, -- Stormheart Raiment
+    {N, 1329, 1024}, -- Stormheart Raiment
+    {N, 1328, 4}, -- Wildstalker Armor
+    {N, 1327, 4}, -- Wildstalker Armor
+    {N, 1326, 4}, -- Wildstalker Armor
+    {N, 1325, 4}, -- Wildstalker Armor
+    {N, 1324, 128}, -- Regalia of the Arcane Tempest
+    {N, 1323, 128}, -- Regalia of the Arcane Tempest
+    {N, 1322, 128}, -- Regalia of the Arcane Tempest
+    {N, 1321, 128}, -- Regalia of the Arcane Tempest
+    {N, 1320, 512}, -- Xuen's Battlegear
+    {N, 1319, 512}, -- Xuen's Battlegear
+    {N, 1318, 512}, -- Xuen's Battlegear
+    {N, 1317, 512}, -- Xuen's Battlegear
+    {N, 1316, 2}, -- Radiant Lightbringer Armor
+    {N, 1315, 2}, -- Radiant Lightbringer Armor
+    {N, 1314, 2}, -- Radiant Lightbringer Armor
+    {N, 1313, 2}, -- Radiant Lightbringer Armor
+    {N, 1312, 16}, -- Vestments of Blind Absolution
+    {N, 1310, 16}, -- Vestments of Blind Absolution
+    {N, 1309, 16}, -- Vestments of Blind Absolution
+    {N, 1308, 8}, -- Fanged Slayer's Armor
+    {N, 1307, 8}, -- Fanged Slayer's Armor
+    {N, 1306, 8}, -- Fanged Slayer's Armor
+    {N, 1305, 8}, -- Fanged Slayer's Armor
+    {N, 1304, 64}, -- Regalia of the Skybreaker
+    {N, 1303, 64}, -- Regalia of the Skybreaker
+    {N, 1302, 64}, -- Regalia of the Skybreaker
+    {N, 1301, 64}, -- Regalia of the Skybreaker
+    {N, 1300, 256}, -- Diabolic Raiment
+    {N, 1299, 256}, -- Diabolic Raiment
+    {N, 1298, 256}, -- Diabolic Raiment
+    {N, 1297, 256}, -- Diabolic Raiment
+    {N, 1296, 1}, -- Titanic Onslaught Armor
+    {N, 1295, 1}, -- Titanic Onslaught Armor
+    {N, 1294, 1}, -- Titanic Onslaught Armor
+    {N, 1293, 1}, -- Titanic Onslaught Armor
+    {N, 1292, 32}, -- Cruel Combatant's Dreadplate Armor
+    {N, 1291, 32}, -- Cruel Combatant's Dreadplate Armor
+    {N, 1290, 2048}, -- Cruel Combatant's Felskin Armor
+    {N, 1289, 2048}, -- Cruel Combatant's Felskin Armor
+    {N, 1288, 1024}, -- Cruel Combatant's Dragonhide Armor
+    {N, 1287, 1024}, -- Cruel Combatant's Dragonhide Armor
+    {N, 1286, 4}, -- Cruel Combatant's Chain Armor
+    {N, 1285, 4}, -- Cruel Combatant's Chain Armor
+    {N, 1284, 128}, -- Cruel Combatant's Silk Armor
+    {N, 1283, 128}, -- Cruel Combatant's Silk Armor
+    {N, 1282, 512}, -- Cruel Combatant's Ironskin Armor
+    {N, 1281, 512}, -- Cruel Combatant's Ironskin Armor
+    {N, 1280, 2}, -- Cruel Combatant's Scaled Armor
+    {N, 1279, 2}, -- Cruel Combatant's Scaled Armor
+    {N, 1278, 16}, -- Cruel Combatant's Satin Armor
+    {N, 1277, 16}, -- Cruel Combatant's Satin Armor
+    {N, 1276, 8}, -- Cruel Combatant's Leather Armor
+    {N, 1275, 8}, -- Cruel Combatant's Leather Armor
+    {N, 1274, 64}, -- Cruel Combatant's Ringmail Armor
+    {N, 1273, 64}, -- Cruel Combatant's Ringmail Armor
+    {N, 1272, 256}, -- Cruel Combatant's Felweave Armor
+    {N, 1271, 256}, -- Cruel Combatant's Felweave Armor
+    {N, 1270, 1}, -- Cruel Combatant's Plate Armor
+    {N, 1269, 1}, -- Cruel Combatant's Plate Armor
+    {N, 1268, 32}, -- Cruel Gladiator's Dreadplate Armor
+    {N, 1267, 32}, -- Cruel Gladiator's Dreadplate Armor
+    {N, 1266, 32}, -- Cruel Gladiator's Dreadplate Armor
+    {N, 1265, 32}, -- Cruel Gladiator's Dreadplate Armor
+    {N, 1264, 2048}, -- Cruel Gladiator's Felskin Armor
+    {N, 1263, 2048}, -- Cruel Gladiator's Felskin Armor
+    {N, 1262, 2048}, -- Cruel Gladiator's Felskin Armor
+    {N, 1261, 2048}, -- Cruel Gladiator's Felskin Armor
+    {N, 1260, 1024}, -- Cruel Gladiator's Dragonhide Armor
+    {N, 1259, 1024}, -- Cruel Gladiator's Dragonhide Armor
+    {N, 1258, 1024}, -- Cruel Gladiator's Dragonhide Armor
+    {N, 1257, 1024}, -- Cruel Gladiator's Dragonhide Armor
+    {N, 1256, 4}, -- Cruel Gladiator's Chain Armor
+    {N, 1255, 4}, -- Cruel Gladiator's Chain Armor
+    {N, 1254, 4}, -- Cruel Gladiator's Chain Armor
+    {N, 1253, 4}, -- Cruel Gladiator's Chain Armor
+    {N, 1252, 128}, -- Cruel Gladiator's Silk Armor
+    {N, 1251, 128}, -- Cruel Gladiator's Silk Armor
+    {N, 1250, 128}, -- Cruel Gladiator's Silk Armor
+    {N, 1249, 128}, -- Cruel Gladiator's Silk Armor
+    {N, 1248, 512}, -- Cruel Gladiator's Ironskin Armor
+    {N, 1247, 512}, -- Cruel Gladiator's Ironskin Armor
+    {N, 1246, 512}, -- Cruel Gladiator's Ironskin Armor
+    {N, 1245, 512}, -- Cruel Gladiator's Ironskin Armor
+    {N, 1244, 2}, -- Cruel Gladiator's Scaled Armor
+    {N, 1243, 2}, -- Cruel Gladiator's Scaled Armor
+    {N, 1242, 2}, -- Cruel Gladiator's Scaled Armor
+    {N, 1241, 2}, -- Cruel Gladiator's Scaled Armor
+    {N, 1240, 8}, -- Cruel Gladiator's Leather Armor
+    {N, 1239, 8}, -- Cruel Gladiator's Leather Armor
+    {N, 1238, 8}, -- Cruel Gladiator's Leather Armor
+    {N, 1237, 8}, -- Cruel Gladiator's Leather Armor
+    {N, 1236, 64}, -- Cruel Gladiator's Ringmail Armor
+    {N, 1235, 64}, -- Cruel Gladiator's Ringmail Armor
+    {N, 1234, 64}, -- Cruel Gladiator's Ringmail Armor
+    {N, 1233, 64}, -- Cruel Gladiator's Ringmail Armor
+    {N, 1232, 256}, -- Cruel Gladiator's Felweave Armor
+    {N, 1231, 256}, -- Cruel Gladiator's Felweave Armor
+    {N, 1230, 256}, -- Cruel Gladiator's Felweave Armor
+    {N, 1229, 256}, -- Cruel Gladiator's Felweave Armor
+    {N, 1228, 1}, -- Cruel Gladiator's Plate Armor
+    {N, 1227, 1}, -- Cruel Gladiator's Plate Armor
+    {N, 1226, 1}, -- Cruel Gladiator's Plate Armor
+    {N, 1225, 1}, -- Cruel Gladiator's Plate Armor
+    {N, 1223, 1}, -- Warmongering Gladiator's Plate Armor
+    {N, 1222, 1}, -- Warmongering Gladiator's Plate Armor
+    {N, 1221, 256}, -- Warmongering Gladiator's Felweave Armor
+    {N, 1220, 256}, -- Warmongering Gladiator's Felweave Armor
+    {N, 1219, 64}, -- Warmongering Gladiator's Ringmail Armor
+    {N, 1218, 64}, -- Warmongering Gladiator's Ringmail Armor
+    {N, 1217, 8}, -- Warmongering Gladiator's Leather Armor
+    {N, 1216, 8}, -- Warmongering Gladiator's Leather Armor
+    {N, 1215, 2}, -- Warmongering Gladiator's Scaled Armor
+    {N, 1214, 2}, -- Warmongering Gladiator's Scaled Armor
+    {N, 1213, 512}, -- Warmongering Gladiator's Ironskin Armor
+    {N, 1212, 512}, -- Warmongering Gladiator's Ironskin Armor
+    {N, 1211, 128}, -- Warmongering Gladiator's Silk Armor
+    {N, 1210, 128}, -- Warmongering Gladiator's Silk Armor
+    {N, 1209, 4}, -- Warmongering Gladiator's Chain Armor
+    {N, 1208, 4}, -- Warmongering Gladiator's Chain Armor
+    {N, 1207, 1024}, -- Warmongering Gladiator's Dragonhide Armor
+    {N, 1206, 1024}, -- Warmongering Gladiator's Dragonhide Armor
+    {N, 1205, 32}, -- Warmongering Gladiator's Dreadplate Armor
+    {N, 1204, 32}, -- Warmongering Gladiator's Dreadplate Armor
+    {N, 1202, 32}, -- Brutal Gladiator's Dreadplate Armor
+    {N, 1201, 32}, -- Bloodthirsty Gladiator's Dreadplate Armor
+    {N, 1200, 1024}, -- Bloodthirsty Gladiator's Dragonhide Armor
+    {N, 1199, 4}, -- Bloodthirsty Gladiator's Chain Armor
+    {N, 1198, 128}, -- Bloodthirsty Gladiator's Silk Armor
+    {N, 1197, 2}, -- Bloodthirsty Gladiator's Scaled Armor
+    {N, 1196, 8}, -- Bloodthirsty Gladiator's Leather Armor
+    {N, 1195, 64}, -- Bloodthirsty Gladiator's Ringmail Armor
+    {N, 1194, 256}, -- Bloodthirsty Gladiator's Felweave Armor
+    {N, 1193, 1}, -- Bloodthirsty Gladiator's Plate Armor
+    {N, 1192, 1}, -- Wild Gladiator's Plate Armor
+    {N, 1191, 1}, -- Wild Gladiator's Plate Armor
+    {N, 1190, 256}, -- Wild Gladiator's Felweave Armor
+    {N, 1189, 256}, -- Wild Gladiator's Felweave Armor
+    {N, 1188, 64}, -- Wild Gladiator's Ringmail Armor
+    {N, 1187, 64}, -- Wild Gladiator's Ringmail Armor
+    {N, 1186, 8}, -- Wild Gladiator's Leather Armor
+    {N, 1185, 8}, -- Wild Gladiator's Leather Armor
+    {N, 1184, 2}, -- Wild Gladiator's Scaled Paladin
+    {N, 1183, 2}, -- Wild Gladiator's Scaled Paladin
+    {N, 1182, 512}, -- Wild Gladiator's Ironskin Armor
+    {N, 1181, 512}, -- Wild Gladiator's Ironskin Armor
+    {N, 1180, 128}, -- Wild Gladiator's Silk Armor
+    {N, 1179, 128}, -- Wild Gladiator's Silk Armor
+    {N, 1178, 4}, -- Wild Gladiator's Chain Armor
+    {N, 1177, 4}, -- Wild Gladiator's Chain Armor
+    {N, 1176, 1024}, -- Wild Gladiator's Dragonhide Armor
+    {N, 1175, 1024}, -- Wild Gladiator's Dragonhide Armor
+    {N, 1174, 32}, -- Wild Gladiator's Dreadplate Armor
+    {N, 1173, 32}, -- Wild Gladiator's Dreadplate Armor
+    {N, 1172, 512}, -- Vindictive Combatant's Ironskin Armor
+    {N, 1171, 1024}, -- Vindictive Combatant's Dragonhide Armor
+    {N, 1170, 2048}, -- Vindictive Combatant's Felskin Armor
+    {N, 1169, 512}, -- Vindictive Combatant's Ironskin Armor
+    {N, 1168, 1024}, -- Vindictive Combatant's Dragonhide Armor
+    {N, 1167, 2048}, -- Vindictive Combatant's Felskin Armor
+    {N, 1166, 2}, -- Vindictive Combatant's Scaled Armor
+    {N, 1165, 32}, -- Vindictive Combatant's Dreadplate Armor
+    {N, 1164, 2}, -- Vindictive Combatant's Scaled Armor
+    {N, 1163, 32}, -- Vindictive Combatant's Dreadplate Armor
+    {N, 1162, 64}, -- Vindictive Combatant's Ringmail Armor
+    {N, 1161, 64}, -- Vindictive Combatant's Ringmail Armor
+    {N, 1160, 256}, -- Vindictive Combatant's Felweave Armor
+    {N, 1159, 128}, -- Vindictive Combatant's Silk Armor
+    {N, 1158, 256}, -- Vindictive Combatant's Felweave Armor
+    {N, 1157, 1}, -- Primal Gladiator's Plate Armor
+    {N, 1156, 1}, -- Primal Gladiator's Plate Armor
+    {N, 1155, 256}, -- Primal Gladiator's Felweave Armor
+    {N, 1154, 256}, -- Primal Gladiator's Felweave Armor
+    {N, 1153, 64}, -- Primal Gladiator's Ringmail Armor
+    {N, 1152, 64}, -- Primal Gladiator's Ringmail Armor
+    {N, 1151, 8}, -- Primal Gladiator's Leather Armor
+    {N, 1150, 8}, -- Primal Gladiator's Leather Armor
+    {N, 1149, 2}, -- Primal Gladiator's Scaled Armor
+    {N, 1148, 2}, -- Primal Gladiator's Scaled Armor
+    {N, 1147, 512}, -- Primal Gladiator's Ironskin Armor
+    {N, 1146, 512}, -- Primal Gladiator's Ironskin Armor
+    {N, 1145, 128}, -- Primal Gladiator's Silk Armor
+    {N, 1144, 128}, -- Primal Gladiator's Silk Armor
+    {N, 1143, 4}, -- Primal Gladiator's Chain Armor
+    {N, 1142, 4}, -- Primal Gladiator's Chain Armor
+    {N, 1141, 1024}, -- Primal Gladiator's Dragonhide Armor
+    {N, 1140, 1024}, -- Primal Gladiator's Dragonhide Armor
+    {N, 1139, 32}, -- Primal Gladiator's Dreadplate Armor
+    {N, 1138, 32}, -- Primal Gladiator's Dreadplate Armor
+    {N, 1137, 128}, -- Vindictive Combatant's Silk Armor
+    {N, 1136, 1}, -- Vindictive Gladiator's Plate Armor
+    {N, 1135, 1}, -- Vindictive Gladiator's Plate Armor
+    {N, 1134, 1}, -- Vindictive Gladiator's Plate Armor
+    {N, 1133, 1}, -- Vindictive Gladiator's Plate Armor
+    {N, 1132, 64}, -- Vindictive Gladiator's Ringmail Armor
+    {N, 1131, 64}, -- Vindictive Gladiator's Ringmail Armor
+    {N, 1130, 64}, -- Vindictive Gladiator's Ringmail Armor
+    {N, 1129, 64}, -- Vindictive Gladiator's Ringmail Armor
+    {N, 1128, 8}, -- Vindictive Gladiator's Leather Armor
+    {N, 1127, 8}, -- Vindictive Gladiator's Leather Armor
+    {N, 1126, 8}, -- Vindictive Gladiator's Leather Armor
+    {N, 1125, 8}, -- Vindictive Gladiator's Leather Armor
+    {N, 1124, 2}, -- Vindictive Gladiator's Scaled Armor
+    {N, 1123, 2}, -- Vindictive Gladiator's Scaled Armor
+    {N, 1122, 2}, -- Vindictive Gladiator's Scaled Armor
+    {N, 1121, 2}, -- Vindictive Gladiator's Scaled Armor
+    {N, 1120, 512}, -- Vindictive Gladiator's Ironskin Armor
+    {N, 1119, 512}, -- Vindictive Gladiator's Ironskin Armor
+    {N, 1118, 512}, -- Vindictive Gladiator's Ironskin Armor
+    {N, 1117, 512}, -- Vindictive Gladiator's Ironskin Armor
+    {N, 1116, 4}, -- Vindictive Gladiator's Chain Armor
+    {N, 1115, 4}, -- Vindictive Gladiator's Chain Armor
+    {N, 1114, 4}, -- Vindictive Gladiator's Chain Armor
+    {N, 1113, 4}, -- Vindictive Gladiator's Chain Armor
+    {N, 1112, 2048}, -- Vindictive Gladiator's Felskin Armor
+    {N, 1111, 2048}, -- Vindictive Gladiator's Felskin Armor
+    {N, 1110, 2048}, -- Vindictive Gladiator's Felskin Armor
+    {N, 1109, 2048}, -- Vindictive Gladiator's Felskin Armor
+    {N, 1108, 32}, -- Vindictive Gladiator's Dreadplate Armor
+    {N, 1107, 32}, -- Vindictive Gladiator's Dreadplate Armor
+    {N, 1106, 32}, -- Vindictive Gladiator's Dreadplate Armor
+    {N, 1105, 32}, -- Vindictive Gladiator's Dreadplate Armor
+    {N, 1104, 256}, -- Vindictive Gladiator's Felweave Armor
+    {N, 1103, 256}, -- Vindictive Gladiator's Felweave Armor
+    {N, 1102, 256}, -- Vindictive Gladiator's Felweave Armor
+    {N, 1101, 256}, -- Vindictive Gladiator's Felweave Armor
+    {N, 1100, 1024}, -- Vindictive Gladiator's Dragonhide Armor
+    {N, 1099, 1024}, -- Vindictive Gladiator's Dragonhide Armor
+    {N, 1098, 1024}, -- Vindictive Gladiator's Dragonhide Armor
+    {N, 1097, 1024}, -- Vindictive Gladiator's Dragonhide Armor
+    {N, 1096, 128}, -- Vindictive Gladiator's Silk Armor
+    {N, 1095, 128}, -- Vindictive Gladiator's Silk Armor
+    {N, 1094, 128}, -- Vindictive Gladiator's Silk Armor
+    {N, 1093, 128}, -- Vindictive Gladiator's Silk Armor
+    {N, 1092, 1}, -- Prideful Gladiator's Plate Armor
+    {N, 1091, 1}, -- Prideful Gladiator's Plate Armor
+    {N, 1090, 256}, -- Prideful Gladiator's Felweave Armor
+    {N, 1089, 256}, -- Prideful Gladiator's Felweave Armor
+    {N, 1088, 64}, -- Prideful Gladiator's Ringmail Armor
+    {N, 1087, 64}, -- Prideful Gladiator's Ringmail Armor
+    {N, 1086, 8}, -- Prideful Gladiator's Leather Armor
+    {N, 1085, 8}, -- Prideful Gladiator's Leather Armor
+    {N, 1084, 2}, -- Prideful Gladiator's Scaled Armor
+    {N, 1083, 2}, -- Prideful Gladiator's Scaled Armor
+    {N, 1082, 512}, -- Prideful Gladiator's Ironskin Armor
+    {N, 1081, 512}, -- Prideful Gladiator's Ironskin Armor
+    {N, 1080, 128}, -- Prideful Gladiator's Silk Armor
+    {N, 1079, 128}, -- Prideful Gladiator's Silk Armor
+    {N, 1078, 4}, -- Prideful Gladiator's Chain Armor
+    {N, 1077, 4}, -- Prideful Gladiator's Chain Armor
+    {N, 1076, 1024}, -- Prideful Gladiator's Dragonhide Armor
+    {N, 1075, 1024}, -- Prideful Gladiator's Dragonhide Armor
+    {N, 1074, 32}, -- Prideful Gladiator's Dreadplate Armor
+    {N, 1073, 32}, -- Prideful Gladiator's Dreadplate Armor
+    {N, 1072, 16}, -- Vindictive Combatant's Satin Armor
+    {N, 1071, 16}, -- Vindictive Combatant's Satin Armor
+    {N, 1070, 1}, -- Vindictive Combatant's Plate Armor
+    {N, 1069, 1}, -- Vindictive Combatant's Plate Armor
+    {N, 1068, 8}, -- Vindictive Combatant's Leather Armor
+    {N, 1067, 8}, -- Vindictive Combatant's Leather Armor
+    {N, 1064, 1}, -- Malevolent Gladiator's Plate Armor
+    {N, 1063, 256}, -- Malevolent Gladiator's Felweave Armor
+    {N, 1062, 64}, -- Malevolent Gladiator's Ringmail Armor
+    {N, 1061, 8}, -- Malevolent Gladiator's Leather Armor
+    {N, 1060, 2}, -- Malevolent Gladiator's Scaled Armor
+    {N, 1059, 512}, -- Malevolent Gladiator's Ironskin Armor
+    {N, 1057, 128}, -- Malevolent Gladiator's Silk Armor
+    {N, 1056, 4}, -- Malevolent Gladiator's Chain Armor
+    {N, 1055, 1024}, -- Malevolent Gladiator's Dragonhide Armor
+    {N, 1054, 32}, -- Malevolent Gladiator's Dreadplate Armor
+    {N, 1049, 1}, -- Grievous Gladiator's Plate Armor
+    {N, 1048, 1}, -- Grievous Gladiator's Plate Armor
+    {N, 1047, 256}, -- Grievous Gladiator's Felweave Armor
+    {N, 1046, 256}, -- Grievous Gladiator's Felweave Armor
+    {N, 1045, 64}, -- Grievous Gladiator's Ringmail Armor
+    {N, 1044, 64}, -- Grievous Gladiator's Ringmail Armor
+    {N, 1043, 8}, -- Grievous Gladiator's Leather Armor
+    {N, 1042, 8}, -- Grievous Gladiator's Leather Armor
+    {N, 1041, 2}, -- Grievous Gladiator's Scaled Armor
+    {N, 1040, 2}, -- Grievous Gladiator's Scaled Armor
+    {N, 1039, 512}, -- Grievous Gladiator's Ironskin Armor
+    {N, 1038, 512}, -- Grievous Gladiator's Ironskin Armor
+    {N, 1037, 128}, -- Grievous Gladiator's Silk Armor
+    {N, 1036, 128}, -- Grievous Gladiator's Silk Armor
+    {N, 1035, 4}, -- Grievous Gladiator's Chain Armor
+    {N, 1034, 4}, -- Grievous Gladiator's Chain Armor
+    {N, 1033, 1024}, -- Grievous Gladiator's Dragonhide Armor
+    {N, 1032, 1024}, -- Grievous Gladiator's Dragonhide Armor
+    {N, 1031, 32}, -- Grievous Gladiator's Dreadplate Armor
+    {N, 1030, 32}, -- Grievous Gladiator's Dreadplate Armor
+    {N, 1029, 1}, -- Tyrannical Gladiator's Plate Armor
+    {N, 1028, 1}, -- Tyrannical Gladiator's Plate Armor
+    {N, 1027, 256}, -- Tyrannical Gladiator's Felweave Armor
+    {N, 1026, 256}, -- Tyrannical Gladiator's Felweave Armor
+    {N, 1025, 64}, -- Tyrannical Gladiator's Ringmail Armor
+    {N, 1024, 64}, -- Tyrannical Gladiator's Ringmail Armor
+    {N, 1023, 8}, -- Tyrannical Gladiator's Leather Armor
+    {N, 1022, 8}, -- Tyrannical Gladiator's Leather Armor
+    {N, 1021, 2}, -- Tyrannical Gladiator's Scaled Armor
+    {N, 1020, 2}, -- Tyrannical Gladiator's Scaled Armor
+    {N, 1019, 512}, -- Tyrannical Gladiator's Ironskin Armor
+    {N, 1018, 512}, -- Tyrannical Gladiator's Ironskin Armor
+    {N, 1017, 128}, -- Tyrannical Gladiator's Silk Armor
+    {N, 1016, 128}, -- Tyrannical Gladiator's Silk Armor
+    {N, 1015, 4}, -- Tyrannical Gladiator's Chain Armor
+    {N, 1014, 4}, -- Tyrannical Gladiator's Chain Armor
+    {N, 1013, 1024}, -- Tyrannical Gladiator's Dragonhide Armor
+    {N, 1012, 1024}, -- Tyrannical Gladiator's Dragonhide Armor
+    {N, 1011, 32}, -- Tyrannical Gladiator's Dreadplate Armor
+    {N, 1010, 32}, -- Tyrannical Gladiator's Dreadplate Armor
+    {N, 1005, 32}, -- Dreadwyrm Battleplate
+    {N, 1004, 32}, -- Dreadwyrm Battleplate
+    {N, 1003, 32}, -- Dreadwyrm Battleplate
+    {N, 1002, 32}, -- Dreadwyrm Battleplate
+    {N, 1001, 2048}, -- Vestment of Second Sight
+    {N, 1000, 2048}, -- Vestment of Second Sight
+    {N, 999, 2048}, -- Vestment of Second Sight
+    {N, 998, 2048}, -- Vestment of Second Sight
+    {N, 997, 1024}, -- Garb of the Astral Warden
+    {N, 996, 1024}, -- Garb of the Astral Warden
+    {N, 995, 1024}, -- Garb of the Astral Warden
+    {N, 994, 1024}, -- Garb of the Astral Warden
+    {N, 993, 4}, -- Eagletalon Battlegear
+    {N, 992, 4}, -- Eagletalon Battlegear
+    {N, 991, 4}, -- Eagletalon Battlegear
+    {N, 990, 4}, -- Eagletalon Battlegear
+    {N, 989, 128}, -- Regalia of Everburning Knowledge
+    {N, 988, 128}, -- Regalia of Everburning Knowledge
+    {N, 987, 128}, -- Regalia of Everburning Knowledge
+    {N, 986, 128}, -- Regalia of Everburning Knowledge
+    {N, 985, 512}, -- Vestments of Enveloped Dissonance
+    {N, 984, 512}, -- Vestments of Enveloped Dissonance
+    {N, 983, 512}, -- Vestments of Enveloped Dissonance
+    {N, 982, 512}, -- Vestments of Enveloped Dissonance
+    {N, 981, 2}, -- Battleplate of the Highlord
+    {N, 980, 2}, -- Battleplate of the Highlord
+    {N, 979, 2}, -- Battleplate of the Highlord
+    {N, 978, 2}, -- Battleplate of the Highlord
+    {N, 977, 1024}, -- Gladiator's Dragonhide Armor
+    {N, 976, 4}, -- Gladiator's Chain Armor
+    {N, 975, 128}, -- Gladiator's Silk Armor
+    {N, 974, 2}, -- Gladiator's Scaled Armor
+    {N, 973, 16}, -- Gladiator's Satin Armor
+    {N, 972, 8}, -- Gladiator's Leather Armor
+    {N, 971, 64}, -- Gladiator's Ringmail Armor
+    {N, 970, 256}, -- Gladiator's Felweave Armor
+    {N, 969, 1024}, -- Merciless Gladiator's Dragonhide Armor
+    {N, 968, 4}, -- Merciless Gladiator's Chain Armor
+    {N, 967, 128}, -- Merciless Gladiator's Silk Armor
+    {N, 966, 2}, -- Merciless Gladiator's Scaled Armor
+    {N, 965, 8}, -- Merciless Gladiator's Leather Armor
+    {N, 964, 64}, -- Merciless Gladiator's Ringmail Armor
+    {N, 963, 256}, -- Merciless Gladiator's Felweave Armor
+    {N, 962, 1}, -- Merciless Gladiator's Plate Armor
+    {N, 961, 1024}, -- Vengeful Gladiator's Dragonhide Armor
+    {N, 960, 4}, -- Vengeful Gladiator's Chain Armor
+    {N, 959, 128}, -- Vengeful Gladiator's Silk Armor
+    {N, 958, 2}, -- Vengeful Gladiator's Scaled Armor
+    {N, 957, 8}, -- Vengeful Gladiator's Leather Armor
+    {N, 956, 64}, -- Vengeful Gladiator's Ringmail Armor
+    {N, 955, 256}, -- Vengeful Gladiator's Felweave Armor
+    {N, 954, 1}, -- Vengeful Gladiator's Plate Armor
+    {N, 953, 1024}, -- Brutal Gladiator's Dragonhide Armor
+    {N, 952, 4}, -- Brutal Gladiator's Chain Armor
+    {N, 951, 128}, -- Brutal Gladiator's Silk Armor
+    {N, 950, 2}, -- Brutal Gladiator's Scaled Armor
+    {N, 949, 8}, -- Brutal Gladiator's Leather Armor
+    {N, 948, 64}, -- Brutal Gladiator's Ringmail Armor
+    {N, 947, 256}, -- Brutal Gladiator's Felweave Armor
+    {N, 946, 1}, -- Brutal Gladiator's Plate Armor
+    {N, 945, 8}, -- Doomblade Battlegear
+    {N, 944, 8}, -- Doomblade Battlegear
+    {N, 943, 8}, -- Doomblade Battlegear
+    {N, 942, 8}, -- Doomblade Battlegear
+    {N, 941, 256}, -- Legacy of Azj'aqir
+    {N, 940, 1}, -- Warplate of the Obsidian Aspect
+    {N, 939, 1}, -- Warplate of the Obsidian Aspect
+    {N, 938, 1}, -- Warplate of the Obsidian Aspect
+    {N, 937, 1}, -- Warplate of the Obsidian Aspect
+    {N, 936, 64}, -- Regalia of Shackled Elements
+    {N, 935, 64}, -- Regalia of Shackled Elements
+    {N, 934, 64}, -- Regalia of Shackled Elements
+    {N, 933, 64}, -- Regalia of Shackled Elements
+    {N, 932, 256}, -- Malefic Regalia
+    {N, 931, 1}, -- Onslaught Battlegear
+    {N, 928, 1024}, -- Cenarion Raiment
+    {N, 927, 1024}, -- Stormrage Raiment
+    {N, 926, 1024}, -- Genesis Raiment
+    {N, 924, 1024}, -- Dreamwalker Raiment
+    {N, 922, 1024}, -- Malorne Raiment
+    {N, 921, 1024}, -- Nordrassil Raiment
+    {N, 920, 1024}, -- Thunderheart Raiment
+    {N, 919, 1024}, -- Thunderheart Regalia
+    {N, 918, 4}, -- Rift Stalker Armor
+    {N, 917, 4}, -- Giantstalker Armor
+    {N, 916, 4}, -- Dragonstalker Armor
+    {N, 915, 4}, -- Striker's Garb
+    {N, 914, 4}, -- Cryptstalker Armor
+    {N, 913, 4}, -- Demon Stalker Armor
+    {N, 912, 4}, -- Gronnstalker's Armor
+    {N, 911, 4}, -- Gronnstalker's Battlegear
+    {N, 910, 128}, -- Arcanist Regalia
+    {N, 909, 128}, -- Netherwind Regalia
+    {N, 908, 128}, -- Enigma Vestments
+    {N, 907, 128}, -- Frostfire Regalia
+    {N, 906, 2}, -- Justicar Armor
+    {N, 905, 128}, -- Tirisfal Regalia
+    {N, 904, 128}, -- Tempest Regalia
+    {N, 903, 128}, -- Tempest Garb
+    {N, 902, 2}, -- Lawbringer Armor
+    {N, 901, 2}, -- Judgment Armor
+    {N, 900, 2}, -- Avenger's Battlegear
+    {N, 899, 2}, -- Redemption Armor
+    {N, 898, 128}, -- Aldor Regalia
+    {N, 897, 2}, -- Crystalforge Armor
+    {N, 896, 2}, -- Lightbringer Armor
+    {N, 895, 2}, -- Lightbringer Battlegear
+    {N, 894, 8}, -- Nightslayer Armor
+    {N, 893, 8}, -- Bloodfang Armor
+    {N, 892, 8}, -- Deathdealer's Embrace
+    {N, 891, 8}, -- Bonescythe Armor
+    {N, 890, 8}, -- Netherblade
+    {N, 889, 8}, -- Deathmantle
+    {N, 888, 8}, -- Slayer's Armor
+    {N, 887, 8}, -- Slayer's Battlegear
+    {N, 876, 64}, -- The Earthfury
+    {N, 875, 64}, -- The Ten Storms
+    {N, 874, 64}, -- Stormcaller's Garb
+    {N, 873, 64}, -- The Earthshatterer
+    {N, 872, 64}, -- Cyclone Regalia
+    {N, 871, 64}, -- Cataclysm Regalia
+    {N, 870, 64}, -- Skyshatter Regalia
+    {N, 869, 64}, -- Skyshatter Raiment
+    {N, 868, 256}, -- Felheart Raiment
+    {N, 867, 256}, -- Nemesis Raiment
+    {N, 866, 256}, -- Doomcaller's Attire
+    {N, 865, 256}, -- Plagueheart Raiment
+    {N, 864, 256}, -- Voidheart Raiment
+    {N, 863, 256}, -- Corruptor Raiment
+    {N, 862, 256}, -- Malefic Raiment
+    {N, 853, 1}, -- Battlegear of Might
+    {N, 852, 1}, -- Battlegear of Wrath
+    {N, 851, 1}, -- Conqueror's Battlegear
+    {N, 850, 1}, -- Dreadnaught's Battlegear
+    {N, 849, 1}, -- Warbringer Armor
+    {N, 848, 1}, -- Destroyer Armor
+    {N, 847, 1}, -- Onslaught Armor
+    {N, 846, 32}, -- Valorous Scourgeborne Plate
+    {N, 845, 32}, -- Heroes' Scourgeborne Plate
+    {N, 844, 32}, -- Conqueror's Darkruned Plate
+    {N, 843, 32}, -- Valorous Darkruned Plate
+    {N, 842, 32}, -- Thassarian's Battlegear
+    {N, 841, 32}, -- Koltira's Battlegear
+    {N, 840, 32}, -- Sanctified Scourgelord's Plate
+    {N, 839, 32}, -- Sanctified Scourgelord's Plate
+    {N, 838, 32}, -- Scourgelord's Plate
+    {N, 837, 32}, -- Magma Plated Battlearmor
+    {N, 836, 32}, -- Magma Plated Battlearmor
+    {N, 835, 32}, -- Elementium Deathplate Battlearmor
+    {N, 834, 32}, -- Elementium Deathplate Battlearmor
+    {N, 833, 32}, -- Necrotic Boneplate Armor
+    {N, 832, 32}, -- Necrotic Boneplate Armor
+    {N, 831, 32}, -- Necrotic Boneplate Armor
+    {N, 830, 1024}, -- Valorous Dreamwalker Battlegear
+    {N, 829, 1024}, -- Heroes' Dreamwalker Battlegear
+    {N, 828, 1024}, -- Conqueror's Nightsong Battlegear
+    {N, 827, 1024}, -- Valorous Nightsong Battlegear
+    {N, 826, 1024}, -- Runetotem's Battlegear
+    {N, 825, 1024}, -- Malfurion's Battlegear
+    {N, 824, 1024}, -- Sanctified Lasherweave Battlegear
+    {N, 823, 1024}, -- Sanctified Lasherweave Battlegear
+    {N, 822, 1024}, -- Lasherweave Battlegear
+    {N, 821, 1024}, -- Stormrider's Vestments
+    {N, 820, 1024}, -- Stormrider's Vestments
+    {N, 819, 1024}, -- Obsidian Arborweave Vestments
+    {N, 818, 1024}, -- Obsidian Arborweave Vestments
+    {N, 817, 1024}, -- Deep Earth Vestments
+    {N, 816, 1024}, -- Deep Earth Vestments
+    {N, 815, 1024}, -- Deep Earth Vestments
+    {N, 814, 32}, -- Savage Gladiator's Dreadplate Armor
+    {N, 813, 1024}, -- Savage Gladiator's Dragonhide Armor
+    {N, 812, 4}, -- Savage Gladiator's Chain Armor
+    {N, 811, 128}, -- Savage Gladiator's Silk Armor
+    {N, 810, 2}, -- Savage Gladiator's Scaled Armor
+    {N, 809, 8}, -- Savage Gladiator's Leather Armor
+    {N, 808, 64}, -- Savage Gladiator's Ringmail Armor
+    {N, 807, 256}, -- Savage Gladiator's Felweave Armor
+    {N, 806, 1}, -- Savage Gladiator's Plate Armor
+    {N, 805, 32}, -- Hateful Gladiator's Dreadplate Armor
+    {N, 804, 1024}, -- Hateful Gladiator's Dragonhide Armor
+    {N, 803, 4}, -- Hateful Gladiator's Chain Armor
+    {N, 802, 128}, -- Hateful Gladiator's Silk Armor
+    {N, 801, 2}, -- Hateful Gladiator's Scaled Armor
+    {N, 800, 8}, -- Hateful Gladiator's Leather Armor
+    {N, 799, 64}, -- Hateful Gladiator's Ringmail Armor
+    {N, 798, 256}, -- Hateful Gladiator's Felweave Armor
+    {N, 797, 1}, -- Hateful Gladiator's Plate Armor
+    {N, 796, 32}, -- Deadly Gladiator's Dreadplate Armor
+    {N, 795, 1024}, -- Deadly Gladiator's Dragonhide Armor
+    {N, 794, 4}, -- Deadly Gladiator's Chain Armor
+    {N, 793, 128}, -- Deadly Gladiator's Silk Armor
+    {N, 792, 2}, -- Deadly Gladiator's Scaled Armor
+    {N, 791, 8}, -- Deadly Gladiator's Leather Armor
+    {N, 790, 64}, -- Deadly Gladiator's Ringmail Armor
+    {N, 789, 256}, -- Deadly Gladiator's Felweave Armor
+    {N, 788, 1}, -- Deadly Gladiator's Plate Armor
+    {N, 787, 32}, -- Furious Gladiator's Dreadplate Armor
+    {N, 786, 1024}, -- Furious Gladiator's Dragonhide Armor
+    {N, 785, 4}, -- Furious Gladiator's Chain Armor
+    {N, 784, 128}, -- Furious Gladiator's Silk Armor
+    {N, 783, 2}, -- Furious Gladiator's Scaled Armor
+    {N, 782, 8}, -- Furious Gladiator's Leather Armor
+    {N, 781, 64}, -- Furious Gladiator's Ringmail Armor
+    {N, 780, 256}, -- Furious Gladiator's Felweave Armor
+    {N, 779, 1}, -- Furious Gladiator's Plate Armor
+    {N, 778, 32}, -- Relentless Gladiator's Dreadplate Armor
+    {N, 777, 1024}, -- Relentless Gladiator's Dragonhide Armor
+    {N, 776, 4}, -- Relentless Gladiator's Chain Armor
+    {N, 775, 128}, -- Relentless Gladiator's Silk Armor
+    {N, 774, 2}, -- Relentless Gladiator's Scaled Armor
+    {N, 773, 8}, -- Relentless Gladiator's Leather Armor
+    {N, 772, 64}, -- Relentless Gladiator's Ringmail Armor
+    {N, 771, 256}, -- Relentless Gladiator's Felweave Armor
+    {N, 770, 1}, -- Relentless Gladiator's Plate Armor
+    {N, 769, 32}, -- Wrathful Gladiator's Dreadplate Armor
+    {N, 768, 1024}, -- Wrathful Gladiator's Dragonhide Armor
+    {N, 767, 4}, -- Wrathful Gladiator's Chain Armor
+    {N, 766, 128}, -- Wrathful Gladiator's Silk Armor
+    {N, 765, 2}, -- Wrathful Gladiator's Scaled Armor
+    {N, 764, 8}, -- Wrathful Gladiator's Leather Armor
+    {N, 763, 64}, -- Wrathful Gladiator's Ringmail Armor
+    {N, 762, 256}, -- Wrathful Gladiator's Felweave Armor
+    {N, 761, 1}, -- Wrathful Gladiator's Plate Armor
+    {N, 760, 32}, -- Vicious Gladiator's Dreadplate Armor
+    {N, 759, 32}, -- Vicious Gladiator's Dreadplate Armor
+    {N, 758, 1024}, -- Vicious Gladiator's Dragonhide Armor
+    {N, 757, 1024}, -- Vicious Gladiator's Dragonhide Armor
+    {N, 756, 4}, -- Vicious Gladiator's Chain Armor
+    {N, 755, 4}, -- Vicious Gladiator's Chain Armor
+    {N, 754, 128}, -- Vicious Gladiator's Silk Armor
+    {N, 753, 128}, -- Vicious Gladiator's Silk Armor
+    {N, 752, 2}, -- Vicious Gladiator's Scaled Armor
+    {N, 751, 2}, -- Vicious Gladiator's Scaled Armor
+    {N, 750, 8}, -- Vicious Gladiator's Leather Armor
+    {N, 749, 8}, -- Vicious Gladiator's Leather Armor
+    {N, 748, 64}, -- Vicious Gladiator's Ringmail Armor
+    {N, 747, 64}, -- Vicious Gladiator's Ringmail Armor
+    {N, 743, 4}, -- Valorous Cryptstalker Battlegear
+    {N, 742, 4}, -- Heroes' Cryptstalker Battlegear
+    {N, 741, 4}, -- Conqueror's Scourgestalker Battlegear
+    {N, 740, 4}, -- Valorous Scourgestalker Battlegear
+    {N, 739, 4}, -- Windrunner's Battlegear
+    {N, 738, 4}, -- Windrunner's Pursuit
+    {N, 737, 4}, -- Sanctified Ahn'Kahar Blood Hunter's Battlegear
+    {N, 736, 4}, -- Sanctified Ahn'Kahar Blood Hunter's Battlegear
+    {N, 735, 4}, -- Ahn'Kahar Blood Hunter's Battlegear
+    {N, 734, 4}, -- Lightning-Charged Battlegear
+    {N, 733, 4}, -- Lightning-Charged Battlegear
+    {N, 732, 4}, -- Flamewaker's Battlegear
+    {N, 731, 4}, -- Flamewaker's Battlegear
+    {N, 730, 4}, -- Wyrmstalker Battlegear
+    {N, 729, 4}, -- Wyrmstalker Battlegear
+    {N, 728, 4}, -- Wyrmstalker Battlegear
+    {N, 727, 128}, -- Valorous Frostfire Garb
+    {N, 726, 128}, -- Heroes' Frostfire Garb
+    {N, 725, 128}, -- Conqueror's Kirin Tor Garb
+    {N, 724, 128}, -- Valorous Kirin Tor Garb
+    {N, 723, 128}, -- Sunstrider's Regalia
+    {N, 722, 128}, -- Khadgar's Regalia
+    {N, 721, 128}, -- Sanctified Bloodmage's Regalia
+    {N, 720, 128}, -- Sanctified Bloodmage's Regalia
+    {N, 719, 128}, -- Bloodmage's Regalia
+    {N, 718, 128}, -- Firelord's Vestments
+    {N, 717, 128}, -- Firelord's Vestments
+    {N, 716, 128}, -- Firehawk Robes of Conflagration
+    {N, 715, 128}, -- Firehawk Robes of Conflagration
+    {N, 714, 128}, -- Time Lord's Regalia
+    {N, 713, 128}, -- Time Lord's Regalia
+    {N, 712, 128}, -- Time Lord's Regalia
+    {N, 711, 2}, -- Valorous Redemption Plate
+    {N, 710, 2}, -- Heroes' Redemption Plate
+    {N, 709, 2}, -- Conqueror's Aegis Plate
+    {N, 708, 2}, -- Valorous Aegis Plate
+    {N, 707, 2}, -- Liadrin's Plate
+    {N, 706, 2}, -- Turalyon's Plate
+    {N, 705, 2}, -- Sanctified Lightsworn Plate
+    {N, 704, 2}, -- Sanctified Lightsworn Plate
+    {N, 703, 2}, -- Lightsworn Plate
+    {N, 702, 2}, -- Reinforced Sapphirium Battleplate
+    {N, 701, 2}, -- Reinforced Sapphirium Battleplate
+    {N, 700, 2}, -- Battleplate of Immolation
+    {N, 699, 2}, -- Battleplate of Immolation
+    {N, 698, 2}, -- Battleplate of Radiant Glory
+    {N, 697, 2}, -- Battleplate of Radiant Glory
+    {N, 696, 2}, -- Battleplate of Radiant Glory
+    {N, 695, 8}, -- Valorous Bonescythe Battlegear
+    {N, 694, 8}, -- Heroes' Bonescythe Battlegear
+    {N, 693, 8}, -- Conqueror's Terrorblade Battlegear
+    {N, 692, 8}, -- Valorous Terrorblade Battlegear
+    {N, 691, 8}, -- Garona's Battlegear
+    {N, 690, 8}, -- VanCleef's Battlegear
+    {N, 689, 8}, -- Sanctified Shadowblade's Battlegear
+    {N, 688, 8}, -- Sanctified Shadowblade's Battlegear
+    {N, 687, 8}, -- Shadowblade's Battlegear
+    {N, 686, 8}, -- Wind Dancer's Regalia
+    {N, 685, 8}, -- Wind Dancer's Regalia
+    {N, 684, 8}, -- Vestments of the Dark Phoenix
+    {N, 683, 8}, -- Vestments of the Dark Phoenix
+    {N, 682, 8}, -- Blackfang Battleweave
+    {N, 681, 8}, -- Blackfang Battleweave
+    {N, 680, 8}, -- Blackfang Battleweave
+    {N, 679, 256}, -- Valorous Plagueheart Garb
+    {N, 678, 256}, -- Heroes' Plagueheart Garb
+    {N, 677, 256}, -- Conqueror's Deathbringer Garb
+    {N, 676, 256}, -- Valorous Deathbringer Garb
+    {N, 675, 256}, -- Gul'dan's Regalia
+    {N, 674, 256}, -- Kel'Thuzad's Regalia
+    {N, 673, 256}, -- Sanctified Dark Coven's Regalia
+    {N, 672, 256}, -- Sanctified Dark Coven's Regalia
+    {N, 671, 256}, -- Dark Coven's Regalia
+    {N, 670, 256}, -- Shadowflame Regalia
+    {N, 669, 256}, -- Shadowflame Regalia
+    {N, 668, 256}, -- Balespider's Burning Vestments
+    {N, 667, 256}, -- Balespider's Burning Vestments
+    {N, 666, 256}, -- Vestments of the Faceless Shroud
+    {N, 665, 256}, -- Vestments of the Faceless Shroud
+    {N, 664, 256}, -- Vestments of the Faceless Shroud
+    {N, 663, 64}, -- Spiritwalker's Regalia
+    {N, 662, 1}, -- Valorous Dreadnaught Battlegear
+    {N, 661, 1}, -- Heroes' Dreadnaught Battlegear
+    {N, 660, 1}, -- Conqueror's Siegebreaker Battlegear
+    {N, 659, 1}, -- Valorous Siegebreaker Battlegear
+    {N, 658, 1}, -- Wrynn's Battlegear
+    {N, 657, 1}, -- Hellscream's Battlegear
+    {N, 656, 1}, -- Sanctified Ymirjar Lord's Battlegear
+    {N, 655, 1}, -- Ymirjar Lord's Battlegear
+    {N, 654, 1}, -- Earthen Battleplate
+    {N, 653, 1}, -- Earthen Battleplate
+    {N, 652, 1}, -- Molten Giant Battleplate
+    {N, 651, 1}, -- Molten Giant Battleplate
+    {N, 650, 1}, -- Colossal Dragonplate Battlegear
+    {N, 649, 1}, -- Colossal Dragonplate Battlegear
+    {N, 645, 64}, -- Valorous Earthshatter Regalia
+    {N, 644, 64}, -- Heroes' Earthshatter Regalia
+    {N, 643, 64}, -- Conqueror's Worldbreaker Regalia
+    {N, 642, 64}, -- Valorous Worldbreaker Regalia
+    {N, 641, 64}, -- Thrall's Garb
+    {N, 640, 64}, -- Nobundo's Garb
+    {N, 639, 64}, -- Frost Witch's Regalia
+    {N, 638, 64}, -- Frost Witch's Regalia
+    {N, 637, 64}, -- Frost Witch's Regalia
+    {N, 636, 64}, -- Regalia of the Raging Elements
+    {N, 635, 64}, -- Regalia of the Raging Elements
+    {N, 634, 64}, -- Volcanic Regalia
+    {N, 633, 64}, -- Volcanic Regalia
+    {N, 632, 64}, -- Spiritwalker's Regalia
+    {N, 631, 1}, -- Colossal Dragonplate Battlegear
+    {N, 630, 64}, -- Spiritwalker's Regalia
+    {N, 629, 256}, -- Vicious Gladiator's Felweave Armor
+    {N, 628, 256}, -- Vicious Gladiator's Felweave Armor
+    {N, 627, 1}, -- Vicious Gladiator's Plate Armor
+    {N, 626, 1}, -- Vicious Gladiator's Plate Armor
+    {N, 625, 32}, -- Ruthless Gladiator's Dreadplate Armor
+    {N, 624, 32}, -- Ruthless Gladiator's Dreadplate Armor
+    {N, 623, 1024}, -- Ruthless Gladiator's Dragonhide Armor
+    {N, 622, 1024}, -- Ruthless Gladiator's Dragonhide Armor
+    {N, 621, 4}, -- Ruthless Gladiator's Chain Armor
+    {N, 620, 4}, -- Ruthless Gladiator's Chain Armor
+    {N, 619, 128}, -- Ruthless Gladiator's Silk Armor
+    {N, 618, 128}, -- Ruthless Gladiator's Silk Armor
+    {N, 617, 2}, -- Ruthless Gladiator's Scaled Armor
+    {N, 616, 2}, -- Ruthless Gladiator's Scaled Armor
+    {N, 615, 8}, -- Ruthless Gladiator's Leather Armor
+    {N, 614, 16}, -- Ruthless Gladiator's Satin Armor
+    {N, 613, 8}, -- Ruthless Gladiator's Leather Armor
+    {N, 612, 16}, -- Ruthless Gladiator's Satin Armor
+    {N, 611, 64}, -- Ruthless Gladiator's Ringmail Armor
+    {N, 610, 64}, -- Ruthless Gladiator's Ringmail Armor
+    {N, 609, 256}, -- Ruthless Gladiator's Felweave Armor
+    {N, 608, 256}, -- Ruthless Gladiator's Felweave Armor
+    {N, 607, 1}, -- Ruthless Gladiator's Plate Armor
+    {N, 606, 1}, -- Ruthless Gladiator's Plate Armor
+    {N, 605, 32}, -- Cataclysmic Gladiator's Dreadplate Armor
+    {N, 604, 32}, -- Cataclysmic Gladiator's Dreadplate Armor
+    {N, 603, 1024}, -- Cataclysmic Gladiator's Dragonhide Armor
+    {N, 602, 1024}, -- Cataclysmic Gladiator's Dragonhide Armor
+    {N, 601, 4}, -- Cataclysmic Gladiator's Chain Armor
+    {N, 600, 4}, -- Cataclysmic Gladiator's Chain Armor
+    {N, 599, 128}, -- Cataclysmic Gladiator's Silk Armor
+    {N, 598, 128}, -- Cataclysmic Gladiator's Silk Armor
+    {N, 597, 2}, -- Cataclysmic Gladiator's Scaled Armor
+    {N, 596, 2}, -- Cataclysmic Gladiator's Scaled Armor
+    {N, 595, 8}, -- Cataclysmic Gladiator's Leather Armor
+    {N, 594, 8}, -- Cataclysmic Gladiator's Leather Armor
+    {N, 593, 64}, -- Cataclysmic Gladiator's Ringmail Armor
+    {N, 592, 64}, -- Cataclysmic Gladiator's Ringmail Armor
+    {N, 591, 256}, -- Cataclysmic Gladiator's Felweave Armor
+    {N, 590, 256}, -- Cataclysmic Gladiator's Felweave Armor
+    {N, 589, 1}, -- Cataclysmic Gladiator's Plate Armor
+    {N, 588, 1}, -- Cataclysmic Gladiator's Plate Armor
+    {N, 584, 35}, -- Demonbreaker Battleplate
+    {N, 583, 68}, -- Rancorbite Armor
+    {N, 582, 3592}, -- Ironpelt Garb
+    {N, 581, 400}, -- Felfume Raiment
+    {N, 580, 32}, -- Plate of the Lost Catacomb
+    {N, 579, 32}, -- Plate of the Lost Catacomb
+    {N, 578, 32}, -- Plate of the Lost Catacomb
+    {N, 577, 32}, -- Battleplate of the All-Consuming Maw
+    {N, 576, 32}, -- Battleplate of the All-Consuming Maw
+    {N, 575, 32}, -- Battleplate of the All-Consuming Maw
+    {N, 574, 32}, -- Battleplate of Cyclopean Dread
+    {N, 573, 32}, -- Battleplate of Cyclopean Dread
+    {N, 572, 32}, -- Battleplate of Cyclopean Dread
+    {N, 571, 32}, -- Ogreskull Boneplate Battlegear
+    {N, 570, 32}, -- Ogreskull Boneplate Battlegear
+    {N, 569, 32}, -- Ogreskull Boneplate Battlegear
+    {N, 568, 32}, -- Demongaze Armor
+    {N, 567, 32}, -- Demongaze Armor
+    {N, 566, 32}, -- Demongaze Armor
+    {N, 565, 1024}, -- Vestments of the Eternal Blossom
+    {N, 564, 1024}, -- Vestments of the Eternal Blossom
+    {N, 563, 1024}, -- Vestments of the Eternal Blossom
+    {N, 562, 1024}, -- Vestments of the Haunted Forest
+    {N, 561, 1024}, -- Vestments of the Haunted Forest
+    {N, 560, 1024}, -- Vestments of the Haunted Forest
+    {N, 559, 1024}, -- Vestments of the Shattered Vale
+    {N, 558, 1024}, -- Vestments of the Shattered Vale
+    {N, 557, 1024}, -- Vestments of the Shattered Vale
+    {N, 556, 1024}, -- Living Wood Battlegear
+    {N, 555, 1024}, -- Living Wood Battlegear
+    {N, 554, 1024}, -- Living Wood Battlegear
+    {N, 553, 1024}, -- Oathclaw Wargarb
+    {N, 552, 1024}, -- Oathclaw Wargarb
+    {N, 551, 1024}, -- Oathclaw Wargarb
+    {N, 547, 4}, -- Yaungol Slayer Battlegear
+    {N, 546, 4}, -- Yaungol Slayer Battlegear
+    {N, 545, 4}, -- Yaungol Slayer Battlegear
+    {N, 544, 4}, -- Battlegear of the Saurok Stalker
+    {N, 543, 4}, -- Battlegear of the Saurok Stalker
+    {N, 542, 4}, -- Battlegear of the Saurok Stalker
+    {N, 541, 4}, -- Battlegear of the Unblinking Vigil
+    {N, 540, 4}, -- Battlegear of the Unblinking Vigil
+    {N, 539, 4}, -- Battlegear of the Unblinking Vigil
+    {N, 538, 4}, -- Rylakstalker's Battlegear
+    {N, 537, 4}, -- Rylakstalker's Battlegear
+    {N, 536, 4}, -- Rylakstalker's Battlegear
+    {N, 535, 4}, -- Battlegear of the Savage Hunt
+    {N, 534, 4}, -- Battlegear of the Savage Hunt
+    {N, 533, 4}, -- Battlegear of the Savage Hunt
+    {N, 531, 128}, -- Regalia of the Burning Scroll
+    {N, 530, 128}, -- Regalia of the Burning Scroll
+    {N, 529, 128}, -- Regalia of the Burning Scroll
+    {N, 528, 128}, -- Regalia of the Chromatic Hydra
+    {N, 527, 128}, -- Regalia of the Chromatic Hydra
+    {N, 526, 128}, -- Regalia of the Chromatic Hydra
+    {N, 525, 128}, -- Chronomancer Regalia
+    {N, 524, 128}, -- Chronomancer Regalia
+    {N, 523, 128}, -- Chronomancer Regalia
+    {N, 522, 128}, -- Arcanoshatter Regalia
+    {N, 521, 128}, -- Arcanoshatter Regalia
+    {N, 520, 128}, -- Arcanoshatter Regalia
+    {N, 519, 128}, -- Raiment of the Arcanic Conclave
+    {N, 518, 128}, -- Raiment of the Arcanic Conclave
+    {N, 517, 128}, -- Raiment of the Arcanic Conclave
+    {N, 515, 512}, -- Vestments of the Red Crane
+    {N, 514, 512}, -- Vestments of the Red Crane
+    {N, 513, 512}, -- Vestments of the Red Crane
+    {N, 512, 512}, -- Fire-Charm Vestments
+    {N, 511, 512}, -- Fire-Charm Vestments
+    {N, 510, 512}, -- Fire-Charm Vestments
+    {N, 508, 512}, -- Vestments of the Seven Sacred Seals
+    {N, 507, 512}, -- Vestments of the Seven Sacred Seals
+    {N, 506, 512}, -- Vestments of the Seven Sacred Seals
+    {N, 505, 512}, -- Battlewrap of the Hurricane's Eye
+    {N, 503, 512}, -- Battlewrap of the Hurricane's Eye
+    {N, 502, 512}, -- Battlewrap of the Hurricane's Eye
+    {N, 501, 512}, -- Battlegear of the Somber Gaze
+    {N, 500, 512}, -- Battlegear of the Somber Gaze
+    {N, 498, 512}, -- Battlegear of the Somber Gaze
+    {N, 495, 2}, -- White Tiger Battlegear
+    {N, 494, 2}, -- White Tiger Battlegear
+    {N, 493, 2}, -- White Tiger Battlegear
+    {N, 492, 2}, -- Battlegear of the Lightning Emperor
+    {N, 491, 2}, -- Battlegear of the Lightning Emperor
+    {N, 490, 2}, -- Battlegear of the Lightning Emperor
+    {N, 489, 2}, -- Vestments of Winged Triumph
+    {N, 488, 2}, -- Vestments of Winged Triumph
+    {N, 487, 2}, -- Vestments of Winged Triumph
+    {N, 485, 2}, -- Battlegear of Guiding Light
+    {N, 484, 2}, -- Battlegear of Guiding Light
+    {N, 483, 2}, -- Battlegear of Guiding Light
+    {N, 482, 2}, -- Watch of the Ceaseless Vigil
+    {N, 481, 2}, -- Watch of the Ceaseless Vigil
+    {N, 480, 2}, -- Watch of the Ceaseless Vigil
+    {N, 479, 8}, -- Battlegear of the Thousandfold Blades
+    {N, 478, 8}, -- Battlegear of the Thousandfold Blades
+    {N, 477, 8}, -- Battlegear of the Thousandfold Blades
+    {N, 476, 8}, -- Nine-Tail Battlegear
+    {N, 475, 8}, -- Nine-Tail Battlegear
+    {N, 474, 8}, -- Nine-Tail Battlegear
+    {N, 473, 8}, -- Barbed Assassin Battlegear
+    {N, 472, 8}, -- Barbed Assassin Battlegear
+    {N, 471, 8}, -- Barbed Assassin Battlegear
+    {N, 470, 8}, -- Poisoner's Battlegear
+    {N, 469, 8}, -- Poisoner's Battlegear
+    {N, 468, 8}, -- Poisoner's Battlegear
+    {N, 467, 8}, -- Felblade Armor
+    {N, 466, 8}, -- Felblade Armor
+    {N, 465, 8}, -- Felblade Armor
+    {N, 463, 256}, -- Sha Skin Regalia
+    {N, 462, 256}, -- Sha Skin Regalia
+    {N, 461, 256}, -- Sha Skin Regalia
+    {N, 460, 256}, -- Regalia of the Thousandfold Hells
+    {N, 459, 256}, -- Regalia of the Thousandfold Hells
+    {N, 458, 256}, -- Regalia of the Thousandfold Hells
+    {N, 457, 256}, -- Regalia of the Horned Nightmare
+    {N, 456, 256}, -- Regalia of the Horned Nightmare
+    {N, 455, 256}, -- Regalia of the Horned Nightmare
+    {N, 454, 256}, -- Shadow Council's Garb
+    {N, 453, 256}, -- Shadow Council's Garb
+    {N, 452, 256}, -- Shadow Council's Garb
+    {N, 451, 256}, -- Deathrattle Regalia
+    {N, 450, 256}, -- Deathrattle Regalia
+    {N, 449, 256}, -- Deathrattle Regalia
+    {N, 446, 1}, -- Battleplate of Resounding Rings
+    {N, 445, 1}, -- Battleplate of Resounding Rings
+    {N, 444, 1}, -- Battleplate of Resounding Rings
+    {N, 443, 1}, -- Battleplate of the Last Mogu
+    {N, 442, 1}, -- Battleplate of the Last Mogu
+    {N, 441, 1}, -- Battleplate of the Last Mogu
+    {N, 440, 1}, -- Battleplate of the Prehistoric Marauder
+    {N, 439, 1}, -- Battleplate of the Prehistoric Marauder
+    {N, 438, 1}, -- Battleplate of the Prehistoric Marauder
+    {N, 437, 1}, -- Blackhand's Battlegear
+    {N, 436, 1}, -- Blackhand's Battlegear
+    {N, 435, 1}, -- Blackhand's Battlegear
+    {N, 434, 1}, -- Battlegear of Iron Wrath
+    {N, 433, 1}, -- Battlegear of Iron Wrath
+    {N, 432, 1}, -- Battlegear of Iron Wrath
+    {N, 429, 16}, -- Guardian Serpent Regalia
+    {N, 428, 64}, -- Regalia of the Firebird
+    {N, 427, 64}, -- Regalia of the Firebird
+    {N, 426, 64}, -- Regalia of the Witch Doctor
+    {N, 425, 64}, -- Regalia of the Witch Doctor
+    {N, 424, 64}, -- Regalia of the Witch Doctor
+    {N, 423, 64}, -- Regalia of Celestial Harmony
+    {N, 422, 64}, -- Regalia of Celestial Harmony
+    {N, 421, 64}, -- Regalia of Celestial Harmony
+    {N, 420, 64}, -- Windspeaker's Regalia
+    {N, 419, 16}, -- Soul Priest's Raiment
+    {N, 418, 64}, -- Windspeaker's Regalia
+    {N, 417, 64}, -- Embrace of the Living Mountain
+    {N, 416, 64}, -- Embrace of the Living Mountain
+    {N, 415, 64}, -- Embrace of the Living Mountain
+    {N, 410, 4}, -- Vindictive Combatant's Chain Armor
+    {N, 409, 4}, -- Vindictive Combatant's Chain Armor
+    {N, 408, 16}, -- Warmongering Gladiator's Satin Armor
+    {N, 407, 16}, -- Warmongering Gladiator's Satin Armor
+    {N, 406, 16}, -- Wild Gladiator's Satin Armor
+    {N, 405, 16}, -- Wild Gladiator's Satin Armor
+    {N, 404, 16}, -- Primal Gladiator's Satin Armor
+    {N, 403, 16}, -- Primal Gladiator's Satin Armor
+    {N, 402, 16}, -- Grievous Gladiator's Satin Armor
+    {N, 401, 16}, -- Grievous Gladiator's Satin Armor
+    {N, 400, 16}, -- Prideful Gladiator's Satin Armor
+    {N, 399, 16}, -- Prideful Gladiator's Satin Armor
+    {N, 398, 16}, -- Tyrannical Gladiator's Satin Armor
+    {N, 397, 16}, -- Tyrannical Gladiator's Satin Armor
+    {N, 396, 16}, -- Malevolent Gladiator's Satin Armor
+    {N, 395, 16}, -- Cruel Gladiator's Satin Armor
+    {N, 394, 16}, -- Cruel Gladiator's Satin Armor
+    {N, 393, 16}, -- Vindictive Gladiator's Satin Armor
+    {N, 392, 16}, -- Vindictive Gladiator's Satin Armor
+    {N, 391, 16}, -- Cruel Gladiator's Satin Armor
+    {N, 390, 16}, -- Vindictive Gladiator's Satin Armor
+    {N, 389, 16}, -- Cruel Gladiator's Satin Armor
+    {N, 388, 16}, -- Vindictive Gladiator's Satin Armor
+    {N, 382, 16}, -- Satin Battlegear
+    {N, 381, 1}, -- Gladiator's Plate Armor
+    {N, 380, 16}, -- Merciless Gladiator's Satin Armor
+    {N, 379, 16}, -- Vengeful Gladiator's Satin Armor
+    {N, 378, 16}, -- Brutal Gladiator's Satin Armor
+    {N, 377, 16}, -- Savage Gladiator's Satin Armor
+    {N, 376, 16}, -- Hateful Gladiator's Satin Armor
+    {N, 375, 16}, -- Deadly Gladiator's Satin Armor
+    {N, 374, 16}, -- Furious Gladiator's Satin Armor
+    {N, 373, 16}, -- Relentless Gladiator's Satin Armor
+    {N, 372, 16}, -- Wrathful Gladiator's Satin Armor
+    {N, 371, 16}, -- Bloodthirsty Gladiator's Satin Armor
+    {N, 370, 16}, -- Vicious Gladiator's Satin Armor
+    {N, 369, 16}, -- Vicious Gladiator's Satin Armor
+    {N, 366, 16}, -- Cataclysmic Gladiator's Satin Armor
+    {N, 365, 16}, -- Cataclysmic Gladiator's Satin Armor
+    {N, 364, 16}, -- Conqueror's Sanctification Regalia
+    {N, 363, 16}, -- Valorous Sanctification Regalia
+    {N, 362, 16}, -- Valorous Regalia of Faith
+    {N, 361, 16}, -- Heroes' Regalia of Faith
+    {N, 358, 16}, -- Garments of the Oracle
+    {N, 357, 16}, -- Vestments of Prophecy
+    {N, 356, 16}, -- Vestments of Transcendence
+    {N, 355, 16}, -- Vestments of Faith
+    {N, 354, 16}, -- Incarnate Regalia
+    {N, 353, 16}, -- Avatar Regalia
+    {N, 352, 16}, -- Vestments of Absolution
+    {N, 351, 16}, -- Absolution Regalia
+    {N, 350, 16}, -- Zabra's Regalia
+    {N, 349, 16}, -- Velen's Regalia
+    {N, 348, 16}, -- Sanctified Crimson Acolyte Regalia
+    {N, 347, 16}, -- Sanctified Crimson Acolyte Regalia
+    {N, 346, 16}, -- Crimson Acolyte Regalia
+    {N, 345, 16}, -- Mercurial Regalia
+    {N, 344, 16}, -- Mercurial Regalia
+    {N, 343, 16}, -- Regalia of the Cleansing Flame
+    {N, 342, 16}, -- Regalia of the Cleansing Flame
+    {N, 341, 16}, -- Regalia of Dying Light
+    {N, 340, 16}, -- Regalia of Dying Light
+    {N, 339, 16}, -- Regalia of Dying Light
+    {N, 338, 64}, -- Regalia of the Firebird
+    {N, 337, 16}, -- Guardian Serpent Regalia
+    {N, 336, 16}, -- Guardian Serpent Regalia
+    {N, 335, 16}, -- Regalia of the Exorcist
+    {N, 334, 16}, -- Regalia of the Exorcist
+    {N, 333, 16}, -- Regalia of Ternion Glory
+    {N, 332, 16}, -- Regalia of Ternion Glory
+    {N, 331, 16}, -- Regalia of Ternion Glory
+    {N, 329, 16}, -- Soul Priest's Raiment
+    {N, 328, 64}, -- Windspeaker's Regalia
+    {N, 327, 16}, -- Soul Priest's Raiment
+    {N, 325, 16}, -- Attire of Piety
+    {N, 324, 16}, -- Attire of Piety
+    {N, 323, 16}, -- Attire of Piety
+    {N, 322, 16}, -- Vestments of the Purifier
+    {N, 321, 256}, -- Legacy of Azj'Aqir
+    {N, 316, 256}, -- Legacy of Azj'Aqir
+    {N, 315, 256}, -- Legacy of Azj'Aqir
+    {N, 311, 16}, -- Vestments of the Purifier
+    {N, 310, 16}, -- Regalia of the Exorcist
+    {N, 309, 16}, -- Vestments of the Purifier
+    {N, 308, 16}, -- Vestments of the Purifier
+    {N, 298, 1}, -- Sanctified Ymirjar Lord's Battlegear
+    {N, 286, 4}, -- Malevolent Gladiator's Chain Armor
+    {N, 285, 32}, -- Malevolent Gladiator's Dreadplate Armor
+    {N, 284, 64}, -- Malevolent Gladiator's Ringmail Armor
+    {N, 283, 256}, -- Malevolent Gladiator's Felweave Armor
+    {N, 282, 16}, -- Malevolent Gladiator's Satin Armor
+    {N, 281, 1024}, -- Malevolent Gladiator's Dragonhide Armor
+    {N, 280, 8}, -- Malevolent Gladiator's Leather Armor
+    {N, 279, 512}, -- Malevolent Gladiator's Ironskin Armor
+    {N, 278, 1}, -- Malevolent Gladiator's Plate Armor
+    {N, 277, 2}, -- Malevolent Gladiator's Scaled Armor
+    {N, 276, 128}, -- Malevolent Gladiator's Silk Armor
+    {N, 275, 128}, -- Tyrannical Gladiator's Silk Armor
+    {N, 274, 2}, -- Tyrannical Gladiator's Scaled Armor
+    {N, 273, 16}, -- Tyrannical Gladiator's Satin Armor
+    {N, 272, 64}, -- Tyrannical Gladiator's Ringmail Armor
+    {N, 271, 1}, -- Tyrannical Gladiator's Plate Armor
+    {N, 270, 8}, -- Tyrannical Gladiator's Leather Armor
+    {N, 269, 512}, -- Tyrannical Gladiator's Ironskin Armor
+    {N, 268, 256}, -- Tyrannical Gladiator's Felweave Armor
+    {N, 267, 32}, -- Tyrannical Gladiator's Dreadplate Armor
+    {N, 266, 1024}, -- Tyrannical Gladiator's Dragonhide Armor
+    {N, 265, 4}, -- Tyrannical Gladiator's Chain Armor
+    {N, 264, 128}, -- Tyrannical Gladiator's Silk Armor
+    {N, 263, 2}, -- Tyrannical Gladiator's Scaled Armor
+    {N, 262, 64}, -- Tyrannical Gladiator's Ringmail Shaman
+    {N, 261, 1}, -- Tyrannical Gladiator's Plate Armor
+    {N, 260, 8}, -- Tyrannical Gladiator's Leather Armor
+    {N, 259, 512}, -- Tyrannical Gladiator's Ironskin Armor
+    {N, 258, 16}, -- Tyrannical Gladiator's Satin Armor
+    {N, 257, 256}, -- Tyrannical Gladiator's Felweave Armor
+    {N, 256, 32}, -- Tyrannical Gladiator's Dreadplate Armor
+    {N, 255, 1024}, -- Tyrannical Gladiator's Dragonhide Armor
+    {N, 254, 4}, -- Tyrannical Gladiator's Chain Armor
+    {N, 253, 128}, -- Prideful Gladiator's Silk Armor
+    {N, 252, 2}, -- Prideful Gladiator's Scaled Armor
+    {N, 251, 16}, -- Prideful Gladiator's Satin Armor
+    {N, 250, 64}, -- Prideful Gladiator's Ringmail Armor
+    {N, 249, 1}, -- Prideful Gladiator's Plate Armor
+    {N, 248, 8}, -- Prideful Gladiator's Leather Armor
+    {N, 247, 512}, -- Prideful Gladiator's Ironskin Armor
+    {N, 246, 256}, -- Prideful Gladiator's Felweave Armor
+    {N, 245, 32}, -- Prideful Gladiator's Dreadplate Armor
+    {N, 244, 1024}, -- Prideful Gladiator's Dragonhide Armor
+    {N, 243, 4}, -- Prideful Gladiator's Chain Armor
+    {N, 242, 128}, -- Prideful Gladiator's Silk Armor
+    {N, 241, 2}, -- Prideful Gladiator's Scaled Armor
+    {N, 240, 16}, -- Prideful Gladiator's Satin Armor
+    {N, 239, 64}, -- Prideful Gladiator's Ringmail Armor
+    {N, 238, 1}, -- Prideful Gladiator's Plate Armor
+    {N, 237, 8}, -- Prideful Gladiator's Leather Armor
+    {N, 236, 512}, -- Prideful Gladiator's Ironskin Armor
+    {N, 235, 256}, -- Prideful Gladiator's Felweave Armor
+    {N, 234, 32}, -- Prideful Gladiator's Dreadplate Armor
+    {N, 233, 1024}, -- Prideful Gladiator's Dragonhide Armor
+    {N, 232, 4}, -- Prideful Gladiator's Chain Armor
+    {N, 219, 128}, -- Grievous Gladiator's Silk Armor
+    {N, 218, 2}, -- Grievous Gladiator's Scaled Armor
+    {N, 217, 16}, -- Grievous Gladiator's Satin Armor
+    {N, 216, 64}, -- Grievous Gladiator's Ringmail Armor
+    {N, 215, 1}, -- Grievous Gladiator's Plate Armor
+    {N, 214, 8}, -- Grievous Gladiator's Leather Armor
+    {N, 213, 512}, -- Grievous Gladiator's Ironskin Armor
+    {N, 212, 256}, -- Grievous Gladiator's Felweave Armor
+    {N, 211, 32}, -- Grievous Gladiator's Dreadplate Armor
+    {N, 210, 1024}, -- Grievous Gladiator's Dragonhide Armor
+    {N, 209, 128}, -- Grievous Gladiator's Silk Armor
+    {N, 208, 2}, -- Grievous Gladiator's Scaled Armor
+    {N, 207, 16}, -- Grievous Gladiator's Satin Armor
+    {N, 206, 64}, -- Grievous Gladiator's Ringmail Armor
+    {N, 205, 1}, -- Grievous Gladiator's Plate Armor
+    {N, 204, 8}, -- Grievous Gladiator's Leather Armor
+    {N, 203, 512}, -- Grievous Gladiator's Ironskin Armor
+    {N, 202, 256}, -- Grievous Gladiator's Felweave Armor
+    {N, 201, 32}, -- Grievous Gladiator's Dreadplate Armor
+    {N, 200, 1024}, -- Grievous Gladiator's Dragonhide Armor
+    {N, 199, 4}, -- Grievous Gladiator's Chain Armor
+    {N, 198, 4}, -- Grievous Gladiator's Chain Armor
+    {N, 197, 128}, -- Dreadful Gladiator's Silk Armor
+    {N, 196, 2}, -- Dreadful Gladiator's Scaled Armor
+    {N, 195, 16}, -- Dreadful Gladiator's Satin Armor
+    {N, 194, 64}, -- Dreadful Gladiator's Ringmail Armor
+    {N, 193, 1}, -- Dreadful Gladiator's Plate
+    {N, 192, 8}, -- Dreadful Gladiator's Leather Armor
+    {N, 191, 512}, -- Dreadful Gladiator's Ironskin Armor
+    {N, 190, 256}, -- Dreadful Gladiator's Felweave Armor
+    {N, 189, 32}, -- Dreadful Gladiator's Dreadplate Armor
+    {N, 188, 1024}, -- Dreadful Gladiator's Dragonhide Armor
+    {N, 187, 4}, -- Dreadful Gladiator's Chain Armor
+    {N, 186, 35}, -- Funerary Plate of the Chosen Dead
+    {N, 185, 35}, -- Funerary Plate of the Chosen Dead
+    {N, 184, 35}, -- Funerary Plate of the Chosen Dead
+    {N, 183, 35}, -- Funerary Plate of the Chosen Dead
+    {N, 182, 68}, -- Chains of the Chosen Dead
+    {N, 181, 68}, -- Chains of the Chosen Dead
+    {N, 180, 68}, -- Chains of the Chosen Dead
+    {N, 179, 68}, -- Chains of the Chosen Dead
+    {N, 178, 3592}, -- Garb of the Chosen Dead
+    {N, 177, 3592}, -- Garb of the Chosen Dead
+    {N, 176, 3592}, -- Garb of the Chosen Dead
+    {N, 175, 3592}, -- Garb of the Chosen Dead
+    {N, 174, 400}, -- Regalia of the Chosen Dead
+    {N, 173, 400}, -- Regalia of the Chosen Dead
+    {N, 172, 400}, -- Regalia of the Chosen Dead
+    {N, 171, 400}, -- Regalia of the Chosen Dead
+    {N, 144, 128}, -- Primal Gladiator's Silk Armor
+    {N, 143, 128}, -- Primal Gladiator's Silk Armor
+    {N, 142, 2}, -- Primal Gladiator's Scaled Armor
+    {N, 141, 2}, -- Primal Gladiator's Scaled Armor
+    {N, 140, 16}, -- Primal Gladiator's Satin Armor
+    {N, 139, 16}, -- Primal Gladiator's Satin Armor
+    {N, 138, 64}, -- Primal Gladiator's Ringmail Armor
+    {N, 137, 64}, -- Primal Gladiator's Ringmail Armor
+    {N, 136, 1}, -- Primal Gladiator's Plate Armor
+    {N, 135, 1}, -- Primal Gladiator's Plate Armor
+    {N, 134, 8}, -- Primal Gladiator's Leather Armor
+    {N, 133, 8}, -- Primal Gladiator's Leather Armor
+    {N, 132, 512}, -- Primal Gladiator's Ironskin Armor
+    {N, 131, 512}, -- Primal Gladiator's Ironskin Armor
+    {N, 130, 256}, -- Primal Gladiator's Felweave Armor
+    {N, 129, 256}, -- Primal Gladiator's Felweave Armor
+    {N, 128, 32}, -- Primal Gladiator's Dreadplate Armor
+    {N, 127, 32}, -- Primal Gladiator's Dreadplate Armor
+    {N, 126, 1024}, -- Primal Gladiator's Dragonhide Armor
+    {N, 125, 1024}, -- Primal Gladiator's Dragonhide Armor
+    {N, 124, 4}, -- Primal Gladiator's Chain Armor
+    {N, 123, 4}, -- Primal Gladiator's Chain Armor
+    {N, 122, 128}, -- Warmongering Gladiator's Silk Armor
+    {N, 121, 128}, -- Warmongering Gladiator's Silk Armor
+    {N, 120, 2}, -- Warmongering Gladiator's Scaled Armor
+    {N, 119, 2}, -- Warmongering Gladiator's Scaled Armor
+    {N, 118, 16}, -- Warmongering Gladiator's Satin Armor
+    {N, 117, 16}, -- Warmongering Gladiator's Satin Armor
+    {N, 116, 1}, -- Warmongering Gladiator's Plate Armor
+    {N, 115, 1}, -- Warmongering Gladiator's Plate Armor
+    {N, 114, 8}, -- Warmongering Gladiator's Leather Armor
+    {N, 113, 8}, -- Warmongering Gladiator's Leather Armor
+    {N, 112, 512}, -- Warmongering Gladiator's Ironskin Armor
+    {N, 111, 512}, -- Warmongering Gladiator's Ironskin Armor
+    {N, 110, 256}, -- Warmongering Gladiator's Felweave Armor
+    {N, 109, 256}, -- Warmongering Gladiator's Felweave Armor
+    {N, 108, 32}, -- Warmongering Gladiator's Dreadplate Armor
+    {N, 107, 32}, -- Warmongering Gladiator's Dreadplate Armor
+    {N, 106, 1024}, -- Warmongering Gladiator's Dragonhide Armor
+    {N, 105, 1024}, -- Warmongering Gladiator's Dragonhide Armor
+    {N, 104, 64}, -- Warmongering Gladiator's Ringmail Armor
+    {N, 103, 64}, -- Warmongering Gladiator's Ringmail Armor
+    {N, 102, 4}, -- Warmongering Gladiator's Chain Armor
+    {N, 101, 4}, -- Warmongering Gladiator's Chain Armor
+    {N, 100, 128}, -- Wild Gladiator's Silk Armor
+    {N, 99, 128}, -- Wild Gladiator's Silk Armor
+    {N, 98, 16}, -- Wild Gladiator's Satin Armor
+    {N, 97, 16}, -- Wild Gladiator's Satin Armor
+    {N, 96, 256}, -- Wild Gladiator's Felweave Armor
+    {N, 95, 256}, -- Wild Gladiator's Felweave Armor
+    {N, 94, 2}, -- Wild Gladiator's Scaled Paladin
+    {N, 93, 2}, -- Wild Gladiator's Scaled Armor
+    {N, 92, 1}, -- Wild Gladiator's Plate Armor
+    {N, 91, 1}, -- Wild Gladiator's Plate Armor
+    {N, 90, 32}, -- Wild Gladiator's Dreadplate Armor
+    {N, 89, 32}, -- Wild Gladiator's Dreadplate Armor
+    {N, 88, 512}, -- Wild Gladiator's Ironskin Armor
+    {N, 87, 512}, -- Wild Gladiator's Ironskin Armor
+    {N, 86, 8}, -- Wild Gladiator's Leather Armor
+    {N, 85, 8}, -- Wild Gladiator's Leather Armor
+    {N, 84, 1024}, -- Wild Gladiator's Dragonhide Armor
+    {N, 83, 1024}, -- Wild Gladiator's Dragonhide Armor
+    {N, 82, 64}, -- Wild Gladiator's Ringmail Armor
+    {N, 81, 64}, -- Wild Gladiator's Ringmail Armor
+    {N, 80, 4}, -- Wild Gladiator's Chain Armor
+    {N, 79, 4}, -- Wild Gladiator's Chain Armor
+    {N, 78, 128}, -- Primal Combatant's Silk Armor
+    {N, 77, 128}, -- Primal Combatant's Silk Armor
+    {N, 76, 16}, -- Primal Combatant's Satin Armor
+    {N, 75, 16}, -- Primal Combatant's Satin Armor
+    {N, 74, 256}, -- Primal Combatant's Felweave Armor
+    {N, 73, 256}, -- Primal Combatant's Felweave Armor
+    {N, 72, 1}, -- Primal Combatant's Plate Armor
+    {N, 71, 1}, -- Primal Combatant's Plate Armor
+    {N, 70, 2}, -- Primal Combatant's Scaled Armor
+    {N, 69, 2}, -- Primal Combatant's Scaled Armor
+    {N, 68, 32}, -- Primal Combatant's Dreadplate Armor
+    {N, 67, 32}, -- Primal Combatant's Dreadplate Armor
+    {N, 66, 512}, -- Primal Combatant's Ironskin Armor
+    {N, 65, 512}, -- Primal Combatant's Ironskin Armor
+    {N, 64, 8}, -- Primal Combatant's Leather Armor
+    {N, 63, 8}, -- Primal Combatant's Leather Armor
+    {N, 62, 1024}, -- Primal Combatant's Dragonhide Armor
+    {N, 61, 1024}, -- Primal Combatant's Dragonhide Armor
+    {N, 60, 64}, -- Primal Combatant's Ringmail Armor
+    {N, 59, 64}, -- Primal Combatant's Ringmail Armor
+    {N, 58, 4}, -- Primal Combatant's Chain Armor
+    {N, 57, 4}, -- Primal Combatant's Chain Armor
+    {N, 56, 256}, -- Warmongering Combatant's Felweave Armor
+    {N, 55, 256}, -- Warmongering Combatant's Felweave Armor
+    {N, 54, 128}, -- Warmongering Combatant's Silk Armor
+    {N, 53, 128}, -- Warmongering Combatant's Silk Armor
+    {N, 52, 16}, -- Warmongering Combatant's Satin Armor
+    {N, 51, 16}, -- Warmongering Combatant's Satin Armor
+    {N, 50, 1}, -- Warmongering Combatant's Plate Armor
+    {N, 49, 1}, -- Warmongering Combatant's Plate Armor
+    {N, 48, 2}, -- Warmongering Combatant's Scaled Armor
+    {N, 47, 2}, -- Warmongering Combatant's Scaled Armor
+    {N, 46, 32}, -- Warmongering Combatant's Dreadplate Armor
+    {N, 45, 32}, -- Warmongering Combatant's Dreadplate Armor
+    {N, 44, 512}, -- Warmongering Combatant's Ironskin Armor
+    {N, 43, 512}, -- Warmongering Combatant's Ironskin Armor
+    {N, 42, 8}, -- Warmongering Combatant's Leather Armor
+    {N, 41, 8}, -- Warmongering Combatant's Leather Armor
+    {N, 40, 1024}, -- Warmongering Combatant's Dragonhide Armor
+    {N, 39, 1024}, -- Warmongering Combatant's Dragonhide Armor
+    {N, 38, 64}, -- Warmongering Combatant's Ringmail Armor
+    {N, 37, 64}, -- Warmongering Combatant's Ringmail Armor
+    {N, 36, 4}, -- Warmongering Combatant's Chain Armor
+    {N, 35, 4}, -- Warmongering Combatant's Chain Armor
+    {N, 34, 256}, -- Wild Combatant's Felweave Armor
+    {N, 33, 256}, -- Wild Combatant's Felweave Armor
+    {N, 32, 16}, -- Wild Combatant's Satin Armor
+    {N, 31, 16}, -- Wild Combatant's Satin Armor
+    {N, 30, 128}, -- Wild Combatant's Silk Armor
+    {N, 29, 128}, -- Wild Combatant's Silk Armor
+    {N, 28, 512}, -- Wild Combatant's Ironskin Armor
+    {N, 27, 512}, -- Wild Combatant's Ironskin Armor
+    {N, 26, 1024}, -- Wild Combatant's Dragonhide Armor
+    {N, 25, 1024}, -- Wild Combatant's Dragonhide Armor
+    {N, 24, 8}, -- Wild Combatant's Leather Armor
+    {N, 23, 8}, -- Wild Combatant's Leather Armor
+    {N, 22, 1}, -- Wild Combatant's Plate Armor
+    {N, 21, 1}, -- Wild Combatant's Plate Armor
+    {N, 20, 2}, -- Wild Combatant's Scaled Armor
+    {N, 19, 2}, -- Wild Combatant's Scaled Armor
+    {N, 18, 32}, -- Wild Combatant's Dreadplate Armor
+    {N, 17, 32}, -- Wild Combatant's Dreadplate Armor
+    {N, 16, 64}, -- Wild Combatant's Ringmail Armor
+    {N, 15, 64}, -- Wild Combatant's Ringmail Armor
+    {N, 14, 4}, -- Wild Combatant's Chain Armor
+    {N, 13, 4}, -- Wild Combatant's Chain Armor
+};

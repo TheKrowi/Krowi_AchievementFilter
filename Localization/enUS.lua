@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-08-23 16-15-21 ]] --
+-- [[ Exported at 2023-09-04 20-56-28 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -106,6 +106,8 @@ Options (1)
 (1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {calendar}]=]
 L["Calendar Events"] = true
 L["Categories"] = true
+L["Categories not loaded"] = [=[{addonName} is not yet fully loaded.
+Close and open the Achievement Window again to refresh the categories.]=]
 L["Categories width offset"] = true
 L["Categories width offset Desc"] = [=[The width that will be added to or subtracted from the default categories width.
 
@@ -588,6 +590,7 @@ L["News"] = true
 L["Night Fae Assault"] = true
 L["Nitun"] = true
 L["No achievements are available with the current set of filters"] = true
+L["No category selected"] = true
 L["No time data available"] = true
 L["Noblegarden"] = true
 L["Nokhudon Hold"] = true
@@ -872,6 +875,7 @@ L["The Vakthros Ascent"] = true
 L["This achievement"] = true
 L["This achievement can't be earned by this character."] = true
 L["This achievement is no longer obtainable"] = "This achievement is no longer obtainable."
+L["This category has no achievements"] = true
 L["This character's class has no transmog set that meet the requirements."] = true
 L["Thundering Pandaren Spirit"] = true
 L["Time display"] = true

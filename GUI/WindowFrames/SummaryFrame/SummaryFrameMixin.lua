@@ -21,7 +21,10 @@ function KrowiAF_SummaryFrameMixin:CategoriesStatusBar_Update(event)
     local lastShown = totalStatusBar;
     local offset = 0;
     local totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch = 0, 0, 0;
-    local categories = selectedTab.Categories;
+    local categories = selectedTab:GetCategories();
+    if not categories then
+        return;
+    end
     local showNotObtainable = addon.Options.db.profile.Tooltip.Categories.ShowNotObtainable;
     local statusBars = self.StatusBars;
     for i = 1, #statusBars do
