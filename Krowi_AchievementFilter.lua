@@ -11,7 +11,6 @@ addon.IsDragonflightRetail = major == "10";
 
 -- [[ Ace ]] --
 addon.L = LibStub(addon.Libs.AceLocale):GetLocale(addonName);
--- addon.InjectOptions:SetLocalization(addon.L);
 addon.Localization.SetColors(addon.L);
 addon.Event = {};
 LibStub(addon.Libs.AceEvent):Embed(addon.Event);
@@ -64,8 +63,6 @@ local function LoadKrowi_AchievementFilter()
 end
 
 local function LoadBlizzard_AchievementUI()
-    addon.Data.Load();
-
     addon.GUI:LoadWithBlizzard_AchievementUI();
 
     addon.Data.LoadWatchedAchievements();
@@ -85,9 +82,7 @@ local function LoadBlizzard_AchievementUI()
 end
 
 local function LoadPlayerLogin()
-    addon.Data.ExportedCalendarEvents.Load(addon.Data.CalendarEvents);
-    addon.Data.ExportedWidgetEvents.Load(addon.Data.WidgetEvents);
-    addon.Data.ExportedWorldEvents.Load(addon.Data.WorldEvents);
+    addon.Data:LoadOnPlayerLogin()
 
     if addon.Diagnostics.DebugEnabled() then
         hooksecurefunc(WorldMapFrame, "OnMapChanged", function()
@@ -139,6 +134,9 @@ function loadHelper:OnEvent(event, arg1, arg2)
                 end);
             end);
         end
+
+        -- LoadAddOn("Blizzard_Calendar");
+        -- LoadAddOn("Blizzard_AchievementUI");
     elseif event == "ACHIEVEMENT_EARNED" then
         addon.OnAchievementEarned(arg1);
     end

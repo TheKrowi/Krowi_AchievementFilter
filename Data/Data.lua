@@ -4,55 +4,69 @@ local diagnostics = addon.Diagnostics;
 addon.Data = {};
 local data = addon.Data;
 
+data.TasksGroups = {};
+
 data.TransmogSets = {};
 
 data.Achievements = {};
 data.AchievementIds = {};
 
-data.CategoriesExpansions, data.CategoriesEvents, data.CategoriesPvP, data.CategoriesSpecials, data.CategoriesAchievements = {}, {}, {}, {}, {};
+data.Categories = {};
+data.WatchListCategories, data.CurrentZoneCategories, data.SelectedZoneCategories = {}, {}, {};
+data.SearchResultsCategories, data.TrackingAchievementsCategories, data.ExcludedCategories = {}, {}, {};
+local adjustableCategories = {
+    WatchListCategories = data.WatchListCategories,
+    CurrentZoneCategories = data.CurrentZoneCategories,
+    SelectedZoneCategories = data.SelectedZoneCategories,
+    SearchResultsCategories = data.SearchResultsCategories,
+    TrackingAchievementsCategories = data.TrackingAchievementsCategories,
+    ExcludedCategories = data.ExcludedCategories
+};
 
-data.RCMenuExtras = {};
+data.RightClickMenuExtras = {};
 
 data.Maps = {};
 
 data.CalendarEvents, data.WidgetEvents, data.WorldEvents = {}, {}, {};
 
-local isLoaded;
-function data.Load()
-    if isLoaded then
-        return;
-    end
+local function PostLoadOnPlayerLogin(self, start)
+    self.ExportedAchievements.Load(self.AchievementIds);
 
-    data.TemporaryObtainable:Load();
-
-    data.ExportedTransmogSets.Load(data.TransmogSets);
-
-    data.AchievementIds = data.ExportedAchievements.Load(data.Achievements, data.TransmogSets);
     local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_Layout", "cmd", "KROWIAF-0.0").args.Summary.args.Summary.args.NumAchievements; -- cmd and KROWIAF-0.0 are just to make the function work
-    custom.max = #data.AchievementIds;
+    custom.max = #self.AchievementIds;
 
-    local tabsCategories;
-    tabsCategories, data.WatchListCategories, data.CurrentZoneCategories, data.SelectedZoneCategories, data.SearchResultsCategories, data.TrackingAchievementsCategories, data.ExcludedCategories = data.ExportedCategories.Load(data.Achievements);
-    for t, _ in next, addon.Tabs do
-        if tabsCategories[t] ~= nil then
-            addon.Tabs[t].Categories = tabsCategories[t];
-        end
-    end
-
-    data.ExportedPetBattles.Load(data.RCMenuExtras);
-
-    data.ExportedUiMaps.Load(data.Maps, data.Achievements);
-
-    data.ExportedCalendarEvents.LoadCategories(data.CalendarEvents, data.Achievements);
-    data.ExportedWidgetEvents.LoadCategories(data.WidgetEvents, data.Achievements);
-    data.ExportedWorldEvents.LoadCategories(data.WorldEvents, data.Achievements);
+    self.ExportedCalendarEvents.LoadCategories(self.CalendarEvents, self.Achievements);
+    self.ExportedWidgetEvents.LoadCategories(self.WidgetEvents, self.Achievements);
+    self.ExportedWorldEvents.LoadCategories(self.WorldEvents, self.Achievements);
 
     if addon.Tabs["Achievements"] then
         addon.Tabs["Achievements"].Categories = data.LoadBlizzardTabAchievements(addon.Tabs["Achievements"].Categories);
     end
 
-    isLoaded = true;
-    addon.Diagnostics.Debug("Expansion data loaded");
+    addon.Diagnostics.Debug("On Player Login: Finished loading data in " .. floor(debugprofilestop() - start + 0.5) .. " ms");
+end
+
+function data:LoadOnPlayerLogin()
+    addon.Diagnostics.Debug("On Player Login: Start loading data");
+
+    self.TemporaryObtainable:Load();
+
+    self.ExportedTransmogSets.RegisterTasks(self.TransmogSets);
+    self.ExportedAchievements.RegisterTasks(self.Achievements, self.TransmogSets);
+    self.ExportedCategories.RegisterTasks(self.Categories, adjustableCategories, self.Achievements, addon.Tabs);
+    self.ExportedCalendarEvents.RegisterTasks(self.CalendarEvents);
+    self.ExportedWidgetEvents.RegisterTasks(self.WidgetEvents);
+    self.ExportedWorldEvents.RegisterTasks(self.WorldEvents);
+    self.ExportedPetBattles.RegisterTasks(self.RightClickMenuExtras);
+    self.ExportedUiMaps.RegisterTasks(self.Maps, self.Achievements);
+    local overallStart = debugprofilestop();
+    addon.StartTasksGroups(
+        self.TasksGroups,
+        function() PostLoadOnPlayerLogin(self, overallStart); end,
+        function(numOfWork)
+            addon.Diagnostics.Debug(numOfWork .. " remaining after " .. ("%.2d"):format(debugprofilestop() - overallStart) / 1000);
+        end
+    );
 end
 
 local function LoadAchievements(sourceTable, func)
@@ -102,7 +116,7 @@ end
 
 function data.AddAchievementIfNil(id, points)
     if data.Achievements[id] == nil then
-        data.Achievements[id] = addon.Objects.Achievement:New(id, points);
+        addon.Objects.Achievement:New(id, points);
         tinsert(data.AchievementIds, id);
     end
 end
@@ -127,14 +141,19 @@ local function AddAchievementsToCategory(categoryID, achID)
 end
 
 function data.LoadBlizzardTabAchievements(categories)
+    local start = debugprofilestop();
     addon.BuildCache();
+    addon.Diagnostics.Debug("Step 1 took " .. floor(debugprofilestop() - start + 0.5) .. " ms");
 
     -- local categories = addon.Objects.Category:New(addon.L["Achievements"]); -- TAB - Achievements;
     -- categories.TabName = "Achievements";
     local tab = categories[1].Parent;
 
+    start = debugprofilestop();
     local cats = GetCategoryList();
+    addon.Diagnostics.Debug("Step 2 took " .. floor(debugprofilestop() - start + 0.5) .. " ms");
 
+    start = debugprofilestop();
     for _, id in next, cats do -- Load all categories, this is done in a random order and is possible for a child to load before a parent
 		local name, parentID = GetCategoryInfo(id);
         tmpC[id] = addon.Objects.Category:New(name);
@@ -143,24 +162,27 @@ function data.LoadBlizzardTabAchievements(categories)
 			tab:InsertCategory(tmpC[id], #tab.Children - 2);
 		end
 	end
+    addon.Diagnostics.Debug("Step 3 took " .. floor(debugprofilestop() - start + 0.5) .. " ms");
 
+    start = debugprofilestop();
     for _, id in next, cats do -- When everything is loaded, we can link children and parents
 		local _, parentID = GetCategoryInfo(id);
 		if parentID ~= -1 then
             tmpC[parentID]:AddCategory(tmpC[id]);
 		end
 	end
+    addon.Diagnostics.Debug("Step 4 took " .. floor(debugprofilestop() - start + 0.5) .. " ms");
 
+    start = debugprofilestop();
     for i = 1, #data.AchievementIds do
         local prevId = GetPreviousAchievement(data.AchievementIds[i]);
-        if prevId == 14884 then -- 14884 is a tracking achievement and is not earned by everyone
-            prevId = 9;
-        end
         if prevId and data.Achievements[prevId] then
             data.Achievements[prevId]:AddNext(data.Achievements[data.AchievementIds[i]]);
         end
     end
+    addon.Diagnostics.Debug("Step 5 took " .. floor(debugprofilestop() - start + 0.5) .. " ms");
 
+    start = debugprofilestop();
     for i = 1, #data.AchievementIds do
         local achId = data.AchievementIds[i];
         if addedOutOfOrder[achId] == nil then -- Not yet added
@@ -171,12 +193,23 @@ function data.LoadBlizzardTabAchievements(categories)
             end
         end
     end
+    addon.Diagnostics.Debug("Step 6 took " .. floor(debugprofilestop() - start + 0.5) .. " ms");
 
     -- Clean up after ourselves
     tmpC = nil;
     addedOutOfOrder = nil;
 
     return tab.Children;
+end
+
+function data.InjectLoadingDebug(workload, name)
+    if not addon.Diagnostics.DebugEnabled() then
+        return;
+    end
+
+    -- Data is in reverse order in the tables so add 'Start' to the end and 'Finished' to the beginning
+    tinsert(workload, function() addon.Diagnostics.Debug(name .. ": Start loading data"); end);
+    tinsert(workload, 1, function() addon.Diagnostics.Debug(name .. ": Finished loading data"); end);
 end
 
 -- function KrowiAF_PrintPetCriteria(achievementID, parentCriteriaID, criteriaNumber)

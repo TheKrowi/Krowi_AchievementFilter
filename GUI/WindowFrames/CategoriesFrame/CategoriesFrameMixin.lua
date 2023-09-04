@@ -57,6 +57,13 @@ local function RestoreScrollPosition(frame)
 end
 
 function KrowiAF_CategoriesFrameMixin:OnShow()
+	local selectedTab = addon.GUI.SelectedTab;
+	local categories = selectedTab:GetCategories();
+    if categories and not selectedTab.SelectedCategory then
+		selectedTab.SelectedCategory = categories[1];
+		selectedTab:ShowSubFrames();
+    end
+
 	self:RegisterEvent("ACHIEVEMENT_EARNED");
 	self:SetRightPoint();
 	AchievementFrameCategories:Hide();
@@ -116,7 +123,10 @@ end
 
 local function UpdateDataProvider(self, getAchNums, retainScrollPosition)
 	local displayCategories = {};
-	local categories = addon.GUI.SelectedTab.Categories;
+	local categories = addon.GUI.SelectedTab:GetCategories();
+    if not categories then
+        return;
+    end
 	for _, category in next, categories do
 		GetDisplayCategories(displayCategories, category, getAchNums);
 	end
@@ -200,7 +210,10 @@ function KrowiAF_CategoriesFrameMixin:ExpandToCategory(category)
 	category = category:GetMergedCategory();
 	local categoriesTree = category:GetTree();
 
-	local categories = selectedTab.Categories;
+	local categories = selectedTab:GetCategories();
+    if not categories then
+        return;
+    end
 	for i = 1, #categoriesTree do
 		ExpandCategory(categories, categoriesTree[i])
 	end
@@ -228,7 +241,10 @@ function KrowiAF_CategoriesFrameMixin:SelectCategory(category)
 
 	local prevCategory = selectedTab.SelectedCategory;
 
-	local categories = selectedTab.Categories;
+	local categories = selectedTab:GetCategories();
+    if not categories then
+        return;
+    end
 	if category == selectedTab.SelectedCategory and category.NotCollapsed then
 		CollapseCategory(categories, category);
 	else

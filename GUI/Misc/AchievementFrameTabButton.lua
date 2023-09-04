@@ -8,7 +8,7 @@ local ourTabIDs = {};
 
 -- [[ Constructors ]] --
 achFrameTabBtn.__index = achFrameTabBtn; -- Used to support OOP like code
-function achFrameTabBtn:New(text, framesToShow, categories, filters, waterMark)
+function achFrameTabBtn:New(text, framesToShow, categories, filters, waterMark, index)
 	-- Increment id
     local tabId = AchievementFrame.numTabs + 1;
 
@@ -31,6 +31,8 @@ function achFrameTabBtn:New(text, framesToShow, categories, filters, waterMark)
 
     frame.Filters = filters;
     frame.WaterMark = waterMark or "Interface/AchievementFrame/UI-Achievement-AchievementWatermark";
+
+    frame.Index = index;
 
     frame:SetScript("OnClick", function(selfFunc)
         frame:OnClick(selfFunc:GetID());
@@ -58,24 +60,11 @@ function achFrameTabBtn:New(text, framesToShow, categories, filters, waterMark)
     return frame;
 end
 
-function achFrameTabBtn:Base_OnClick(id)
-    -- print("base click", id)
-    if addon.IsWrathClassic then
-        PanelTemplates_Tab_OnClick(_G["AchievementFrameTab" .. id], AchievementFrame);
-    else
-        if addon.InGuildView() then
-            AchievementFrameBaseTab_OnClick(1);
-            AchievementFrame_RefreshView();
-            AchievementFrameGuildEmblemLeft:Hide();
-            AchievementFrameGuildEmblemRight:Hide();
-        end
-	    AchievementFrame_UpdateTabs(id);
-    end
-
+function achFrameTabBtn:ShowSubFrames()
     AchievementFrame_ShowSubFrame(); -- Hide all frames
 
     AchievementFrame_ShowSubFrame(unpack(self.FramesToShow));
-    if self.SelectedCategory.IsSummary then
+    if self.SelectedCategory and self.SelectedCategory.IsSummary then
 		addon.GUI.SummaryFrame:Show();
 		addon.GUI.AchievementsFrame:Hide();
 	else
@@ -89,6 +78,29 @@ function achFrameTabBtn:Base_OnClick(id)
         end
 	end
     AchievementFrameWaterMark:SetTexture(self.WaterMark);
+end
+
+function achFrameTabBtn:Base_OnClick(id)
+    -- print("base click", id)
+
+    local categories = self:GetCategories();
+    if categories and not self.SelectedCategory then
+	    self.SelectedCategory = categories[1];
+    end
+
+    if addon.IsWrathClassic then
+        PanelTemplates_Tab_OnClick(_G["AchievementFrameTab" .. id], AchievementFrame);
+    else
+        if addon.InGuildView() then
+            AchievementFrameBaseTab_OnClick(1);
+            AchievementFrame_RefreshView();
+            AchievementFrameGuildEmblemLeft:Hide();
+            AchievementFrameGuildEmblemRight:Hide();
+        end
+	    AchievementFrame_UpdateTabs(id);
+    end
+
+    self:ShowSubFrames();
 end
 
 function achFrameTabBtn:Comparison_OnClick(id)
@@ -137,4 +149,8 @@ function achFrameTabBtn:Select()
     if gui.SelectedTab ~= self then
         self:OnClick(self.Id);
     end
+end
+
+function achFrameTabBtn:GetCategories()
+    return addon.Tabs[self.Index].Categories;
 end

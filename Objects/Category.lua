@@ -198,3 +198,20 @@ function category:GetMergedCategory()
 	end
 	return cat;
 end
+
+function category:SetTabName(tabName)
+	self.TabName = tabName;
+	self.Children = self.Children or {};
+end
+
+function category:SetAlwaysVisible(value)
+	self.AlwaysVisible = value;
+end
+
+function category:SetFlexibleData(value)
+	self.HasFlexibleData = value;
+end
+
+function category:SetAsSummary(value)
+	self.IsSummary = value;
+end
