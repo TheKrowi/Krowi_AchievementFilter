@@ -50,6 +50,7 @@ function data:LoadOnPlayerLogin()
     self.ExportedWidgetEvents.RegisterTasks(self.WidgetEvents);
     self.ExportedWorldEvents.RegisterTasks(self.WorldEvents);
     self.ExportedPetBattles.RegisterTasks(self.RightClickMenuExtras);
+    self.ExportedUiMaps.RegisterTasks(self.Maps, self.Achievements);
     local overallStart = debugprofilestop();
     addon.StartTasksGroups(
         self.TasksGroups,
@@ -67,10 +68,10 @@ function data.Load()
     end
 
     local start = debugprofilestop();
-    data.ExportedUiMaps.Load(data.Maps, data.Achievements);
-    addon.Diagnostics.Debug("Step 3 took " .. floor(debugprofilestop() - start + 0.5) .. " ms");
+    -- data.ExportedUiMaps.Load(data.Maps, data.Achievements);
+    -- addon.Diagnostics.Debug("Step 3 took " .. floor(debugprofilestop() - start + 0.5) .. " ms");
 
-    start = debugprofilestop();
+    -- start = debugprofilestop();
     data.ExportedCalendarEvents.LoadCategories(data.CalendarEvents, data.Achievements);
     data.ExportedWidgetEvents.LoadCategories(data.WidgetEvents, data.Achievements);
     data.ExportedWorldEvents.LoadCategories(data.WorldEvents, data.Achievements);
