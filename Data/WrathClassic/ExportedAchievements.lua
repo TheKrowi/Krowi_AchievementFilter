@@ -40,7 +40,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-03 17-10-09 ]] --
+-- [[ Exported at 2023-09-04 20-55-53 ]] --
 tasks = {
     {N, 18688, f.Horde}, -- Defense Protocol Beta: Terminated
     {N, 18678, f.Horde}, -- Defense Protocol Beta: Trial of the Champion
@@ -1611,4 +1611,4 @@ tasks = {
     {N, 7}, -- Level 20
     {N, 6}, -- Level 10
 };
-highestAchievementId = 18688;
+data.HighestAchievementId = 18688;

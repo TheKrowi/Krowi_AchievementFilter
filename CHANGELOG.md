@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 62.0 - 2023-xx-xx
+## 62.0 - 2023-09-04
 ### Added
 - New profession achievements (113)
 - Eastern Kingdoms Cup achievements (12) and event

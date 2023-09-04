@@ -6,7 +6,7 @@ local objects = addon.Objects;
 local achievement = objects.Achievement;
 local f = objects.Faction;
 
-local tasks, achievements, transmogSets, highestAchievementId;
+local tasks, achievements, transmogSets;
 function exportedAchievements.RegisterTasks(_achievements, _transmogSets)
     achievements, transmogSets = _achievements, _transmogSets;
     wipe(achievements);
@@ -18,7 +18,7 @@ function exportedAchievements.RegisterTasks(_achievements, _transmogSets)
 end
 
 function exportedAchievements.Load(achievementIds)
-    for i = 1, highestAchievementId do
+    for i = 1, data.HighestAchievementId do
         if achievements[i] ~= nil then
             tinsert(achievementIds, i);
         end
@@ -40,7 +40,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-03 17-09-45 ]] --
+-- [[ Exported at 2023-09-04 20-55-28 ]] --
 tasks = {
     {N, 19107}, -- Outland Racing Completionist: Gold
     {N, 19106}, -- Outland Racing Completionist: Silver
@@ -9135,4 +9135,4 @@ tasks = {
     {N, 7}, -- Level 20
     {N, 6}, -- Level 10
 };
-highestAchievementId = 19107;
+data.HighestAchievementId = 19107;

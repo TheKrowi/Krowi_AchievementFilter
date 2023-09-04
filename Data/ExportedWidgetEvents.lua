@@ -27,7 +27,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-08-25 21-06-46 ]] --
+-- [[ Exported at 2023-09-04 19-09-22 ]] --
 tasks = {
     {N, 4729, 4240492, addon.L["Community Feast: Starting Soon"]}, -- Community Feast: Starting Soon
     {N, 4731, 4240492, addon.L["Community Feast: Active"]}, -- Community Feast: Active
@@ -38,10 +38,6 @@ tasks = {
 function exportedWidgetEvents.LoadCategories(e)
     if addon.IsWrathClassic then
         return;
-    end
-
-    if e[4729] == nil or e[4731] == nil or e[4987] == nil or e[4992] == nil then
-        exportedWidgetEvents.Load(e);
     end
 
     e[4729].Category = addon.Tabs["Events"].Categories[15].Children[3]; -- Community Feast

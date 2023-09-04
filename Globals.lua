@@ -323,7 +323,7 @@ function addon.BuildCache()
     local gapSize, i = 0, 1;
     local character = addon.Data.SavedData.CharacterData.Upsert(characterGuid);
     character.Points = 0;
-    local highestId = addon.Data.AchievementIds[#addon.Data.AchievementIds];
+    local highestId = addon.Data.HighestAchievementId;
     while gapSize < 500 or i < highestId do -- Biggest gap is 209 in 9.0.5 as of 2021-05-03
         local achievementInfo = addon.GetAchievementInfoTable(i);
         HandleAchievement(characterGuid, achievementInfo);

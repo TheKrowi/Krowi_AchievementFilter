@@ -23,7 +23,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-08-25 21-06-46 ]] --
+-- [[ Exported at 2023-09-04 19-09-22 ]] --
 tasks = {
     {N, 141, 236705}, -- Feast of Winter Veil
     {N, 181, 237000}, -- Noblegarden
@@ -48,10 +48,6 @@ tasks = {
 };
 
 function exportedCalendarEvents.LoadCategories(e)
-    if e[141] == nil or e[181] == nil or e[201] == nil or e[324] == nil or e[327] == nil or e[341] == nil or e[372] == nil or e[398] == nil or e[404] == nil or e[409] == nil or e[423] == nil or e[479] == nil or e[1262] == nil or e[1395] == nil or e[1396] == nil or e[1397] == nil or e[1398] == nil or e[1399] == nil or e[1400] == nil or e[1425] == nil then
-        exportedCalendarEvents.Load(e);
-    end
-
     e[141].Category = addon.Tabs["Events"].Categories[6].Children[11]; -- Winter Veil
     e[181].Category = addon.Tabs["Events"].Categories[6].Children[3]; -- Noblegarden
     e[201].Category = addon.Tabs["Events"].Categories[6].Children[4]; -- Children's Week
