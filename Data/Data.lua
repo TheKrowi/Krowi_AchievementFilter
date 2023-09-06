@@ -57,7 +57,9 @@ function data:LoadOnPlayerLogin()
     self.ExportedCalendarEvents.RegisterTasks(self.CalendarEvents);
     self.ExportedWidgetEvents.RegisterTasks(self.WidgetEvents);
     self.ExportedWorldEvents.RegisterTasks(self.WorldEvents);
-    self.ExportedPetBattles.RegisterTasks(self.RightClickMenuExtras);
+    if not addon.Util.IsWrathClassic then
+        self.ExportedPetBattles.RegisterTasks(self.RightClickMenuExtras);
+    end
     self.ExportedUiMaps.RegisterTasks(self.Maps, self.Achievements);
     local overallStart = debugprofilestop();
     addon.StartTasksGroups(

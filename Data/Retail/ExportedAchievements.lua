@@ -40,7 +40,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-04 20-55-28 ]] --
+-- [[ Exported at 2023-09-06 07-35-51 ]] --
 tasks = {
     {N, 19107}, -- Outland Racing Completionist: Gold
     {N, 19106}, -- Outland Racing Completionist: Silver
