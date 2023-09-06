@@ -71,34 +71,41 @@ function KrowiAF_SearchBoxFrame_OnEnterPressed(self)
 	end
 end
 
+local function SearchAchievement(text, achievement, results, excludeExcluded)
+	local id, name, _, _, _, _, _, description, _, _, rewardText, _, _, _, _ = GetAchievementInfo(achievement.Id);
+	if not id then
+		return;
+	end
+	if (addon.SearchOptions.db.profile.SearchIds and string.find(tostring(id), text, 1, true))
+			or (addon.SearchOptions.db.profile.SearchNames and string.find(name:lower(), text, 1, true))
+			or (addon.SearchOptions.db.profile.SearchDescriptions and string.find(description:lower(), text, 1, true))
+			or (addon.SearchOptions.db.profile.SearchRewards and string.find(rewardText:lower(), text, 1, true)) then
+		if not (excludeExcluded and achievement.Excluded) then
+			local value = 1;
+			if addon.Options.db.profile.SearchBox.OnlySearchFiltered then
+				local category;
+				if addon.Filters.db.profile.MergeSmallCategories then
+					category = achievement:GetMergedCategory(); -- This way we get the parent category
+				else
+					category = achievement.Category;
+				end
+				local filters = addon.Tabs[category:GetTree()[1].TabName].Filters;
+				value = addon.Filters.Validate(filters, achievement);
+			end
+			if value > 0 then
+				achievement.Name = name;
+				tinsert(results, achievement);
+			end
+		end
+	end
+end
+
 local function SearchAchievements(text, numAchievementIds, results, excludeExcluded)
 	local achievement;
 	for i = 1, numAchievementIds do
 		achievement = addon.Data.Achievements[addon.Data.AchievementIds[i]];
-		local id, name, _, _, _, _, _, description, _, _, rewardText, _, _, _, _ = GetAchievementInfo(achievement.Id);
-		if id then
-			if (addon.SearchOptions.db.profile.SearchIds and string.find(tostring(id), text, 1, true))
-			or (addon.SearchOptions.db.profile.SearchNames and string.find(name:lower(), text, 1, true))
-			or (addon.SearchOptions.db.profile.SearchDescriptions and string.find(description:lower(), text, 1, true))
-			or (addon.SearchOptions.db.profile.SearchRewards and string.find(rewardText:lower(), text, 1, true)) then
-				if not (excludeExcluded and achievement.Excluded) then
-					local value = 1;
-					if addon.Options.db.profile.SearchBox.OnlySearchFiltered then
-						local category;
-						if addon.Filters.db.profile.MergeSmallCategories then
-							category = achievement:GetMergedCategory(); -- This way we get the parent category
-						else
-							category = achievement.Category;
-						end
-						local filters = addon.Tabs[category:GetTree()[1].TabName].Filters;
-						value = addon.Filters.Validate(filters, achievement);
-					end
-					if value > 0 then
-						achievement.Name = name;
-						tinsert(results, achievement);
-					end
-				end
-			end
+		if achievement then
+			SearchAchievement(text, achievement, results, excludeExcluded);
 		end
 	end
 	return results;

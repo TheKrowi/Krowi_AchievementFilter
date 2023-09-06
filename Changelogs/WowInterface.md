@@ -27,3 +27,14 @@
 [*]Optimized exports
 [*]Now using CurseForge for localization
 [/LIST]
+
+[B]Fixed (62.1)[/B]
+[LIST]
+[*]Searching achievements should once again work without errors
+[*]No more errors should occur on login/reload when Tracking achievements are enabled 
+[/LIST]
+
+[B]Wrath Classic (62.1)[/B]
+[LIST]
+[*]Loading Pet Battles is skipped
+[/LIST]

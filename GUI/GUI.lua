@@ -457,3 +457,12 @@ function gui.RefreshView()
     addon.GUI.AchievementsFrame:ForceUpdate();
     addon.GUI.SummaryFrame:UpdateAchievementsOnNextShow();
 end
+
+function gui.RefreshViewAfterPlayerLogin()
+    local selectedTab = addon.GUI.SelectedTab;
+	local categories = selectedTab:GetCategories();
+    if categories and not selectedTab.SelectedCategory then
+		selectedTab.SelectedCategory = categories[1];
+		selectedTab:ShowSubFrames();
+    end
+end

@@ -21,3 +21,10 @@
 - Subdivided most profession achievements per profession
 - Optimized exports
 - Now using CurseForge for localization
+
+### Fixed (62.1)
+- Searching achievements should once again work without errors
+- No more errors should occur on login/reload when Tracking achievements are enabled 
+
+### Wrath Classic (62.1)
+- Loading Pet Battles is skipped
