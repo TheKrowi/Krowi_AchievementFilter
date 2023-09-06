@@ -44,18 +44,17 @@ local function GetDetails(guid, achievementId)
 	end
 	local achievementNumCriteria = GetAchievementNumCriteria(achievementId);
 	local details = {};
-	for i, progress in next, achievementProgress do
-		if i <= achievementNumCriteria then
-			local criteriaString, _, completed, quantity, reqQuantity, _, _, _, _, _, _, hasValueProgress = addon.GetAchievementCriteriaInfo(achievementId, i);
-			if type(progress) == "boolean" and progress then
-				completed = true;
-				quantity = reqQuantity;
-			elseif type(progress) == "number" then
-				completed = progress >= reqQuantity;
-				quantity = progress;
-			end
-			tinsert(details, {criteriaString, completed, quantity, reqQuantity, hasValueProgress});
+	for i = 1, achievementNumCriteria do
+		local criteriaString, _, completed, quantity, reqQuantity, _, _, _, _, _, _, hasValueProgress = addon.GetAchievementCriteriaInfo(achievementId, i);
+		local progress = achievementProgress[i];
+		if type(progress) == "boolean" and progress then
+			completed = true;
+			quantity = reqQuantity;
+		elseif type(progress) == "number" then
+			completed = progress >= reqQuantity;
+			quantity = progress;
 		end
+		tinsert(details, {criteriaString, completed, quantity, reqQuantity, hasValueProgress});
 	end
 	return details;
 end

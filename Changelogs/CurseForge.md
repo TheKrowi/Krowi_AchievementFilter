@@ -34,3 +34,12 @@
 <ul>
 <li>Loading Pet Battles is skipped</li>
 </ul>
+<p><h3>Changed (62.2)</h3></p>
+<ul>
+<li>Updated German translations</li>
+</ul>
+<p><h3>Fixed (62.2)</h3></p>
+<ul>
+<li>Untracking achievements should once again work</li>
+<li>Certain achievements should no longer give errors when mousing over them</li>
+</ul>
