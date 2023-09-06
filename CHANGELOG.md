@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 ## 62.1 - 2023-09-04
+### Fixed
+- Searching achievements should once again work without errors
+- No more errors should occur on login/reload when Tracking achievements are enabled 
+
 ### Wrath Classic
 - Loading Pet Battles is skipped
 

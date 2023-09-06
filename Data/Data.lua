@@ -43,6 +43,8 @@ local function PostLoadOnPlayerLogin(self, start)
         addon.Tabs["Achievements"].Categories = data.LoadBlizzardTabAchievements(addon.Tabs["Achievements"].Categories);
     end
 
+    addon.BuildCache();
+
     if AchievementFrame and AchievementFrame:IsShown() then
         addon.GUI.RefreshViewAfterPlayerLogin();
     end
@@ -122,7 +124,7 @@ end
 
 function data.AddAchievementIfNil(id, points)
     if data.Achievements[id] == nil then
-        addon.Objects.Achievement:New(id, points);
+        data.Achievements[id] = addon.Objects.Achievement:New(id, points);
         tinsert(data.AchievementIds, id);
     end
 end
@@ -147,19 +149,9 @@ local function AddAchievementsToCategory(categoryID, achID)
 end
 
 function data.LoadBlizzardTabAchievements(categories)
-    local start = debugprofilestop();
-    addon.BuildCache();
-    addon.Diagnostics.Debug("Step 1 took " .. floor(debugprofilestop() - start + 0.5) .. " ms");
-
-    -- local categories = addon.Objects.Category:New(addon.L["Achievements"]); -- TAB - Achievements;
-    -- categories.TabName = "Achievements";
     local tab = categories[1].Parent;
-
-    start = debugprofilestop();
     local cats = GetCategoryList();
-    addon.Diagnostics.Debug("Step 2 took " .. floor(debugprofilestop() - start + 0.5) .. " ms");
 
-    start = debugprofilestop();
     for _, id in next, cats do -- Load all categories, this is done in a random order and is possible for a child to load before a parent
 		local name, parentID = GetCategoryInfo(id);
         tmpC[id] = addon.Objects.Category:New(name);
@@ -168,27 +160,21 @@ function data.LoadBlizzardTabAchievements(categories)
 			tab:InsertCategory(tmpC[id], #tab.Children - 2);
 		end
 	end
-    addon.Diagnostics.Debug("Step 3 took " .. floor(debugprofilestop() - start + 0.5) .. " ms");
 
-    start = debugprofilestop();
     for _, id in next, cats do -- When everything is loaded, we can link children and parents
 		local _, parentID = GetCategoryInfo(id);
 		if parentID ~= -1 then
             tmpC[parentID]:AddCategory(tmpC[id]);
 		end
 	end
-    addon.Diagnostics.Debug("Step 4 took " .. floor(debugprofilestop() - start + 0.5) .. " ms");
 
-    start = debugprofilestop();
     for i = 1, #data.AchievementIds do
         local prevId = GetPreviousAchievement(data.AchievementIds[i]);
         if prevId and data.Achievements[prevId] then
             data.Achievements[prevId]:AddNext(data.Achievements[data.AchievementIds[i]]);
         end
     end
-    addon.Diagnostics.Debug("Step 5 took " .. floor(debugprofilestop() - start + 0.5) .. " ms");
 
-    start = debugprofilestop();
     for i = 1, #data.AchievementIds do
         local achId = data.AchievementIds[i];
         if addedOutOfOrder[achId] == nil then -- Not yet added
@@ -199,7 +185,6 @@ function data.LoadBlizzardTabAchievements(categories)
             end
         end
     end
-    addon.Diagnostics.Debug("Step 6 took " .. floor(debugprofilestop() - start + 0.5) .. " ms");
 
     -- Clean up after ourselves
     tmpC = nil;
