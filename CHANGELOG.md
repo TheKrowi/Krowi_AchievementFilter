@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 62.1 - 2023-09-04
+### Wrath Classic
+- Loading Pet Battles is skipped
+
 ## 62.0 - 2023-09-04
 ### Added
 - New profession achievements (113)

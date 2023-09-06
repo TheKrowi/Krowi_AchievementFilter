@@ -57,13 +57,6 @@ local function RestoreScrollPosition(frame)
 end
 
 function KrowiAF_CategoriesFrameMixin:OnShow()
-	local selectedTab = addon.GUI.SelectedTab;
-	local categories = selectedTab:GetCategories();
-    if categories and not selectedTab.SelectedCategory then
-		selectedTab.SelectedCategory = categories[1];
-		selectedTab:ShowSubFrames();
-    end
-
 	self:RegisterEvent("ACHIEVEMENT_EARNED");
 	self:SetRightPoint();
 	AchievementFrameCategories:Hide();

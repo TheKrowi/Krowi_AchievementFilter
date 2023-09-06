@@ -43,6 +43,10 @@ local function PostLoadOnPlayerLogin(self, start)
         addon.Tabs["Achievements"].Categories = data.LoadBlizzardTabAchievements(addon.Tabs["Achievements"].Categories);
     end
 
+    if AchievementFrame and AchievementFrame:IsShown() then
+        addon.GUI.RefreshViewAfterPlayerLogin();
+    end
+
     addon.Diagnostics.Debug("On Player Login: Finished loading data in " .. floor(debugprofilestop() - start + 0.5) .. " ms");
 end
 
