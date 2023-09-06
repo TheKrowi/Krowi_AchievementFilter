@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-08-23 16-15-26 ]] --
+-- [[ Exported at 2023-09-06 16-56-14 ]] --
 L["%c"] = "%c "
 L["%d/%m/%Y %I:%M %p"] = "%d/%m/%Y %I:%M %p "
 L["%m/%d/%Y %I:%M %p"] = "%m/%d/%Y %I:%M %p "
@@ -104,6 +104,7 @@ Optionen (1)
 (1) Die Optionen befinden sich unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {calendar}.]=]
 L["Calendar Events"] = "Kalender Events "
 L["Categories"] = "Kategorien "
+L["Categories not loaded"] = "{addonName} ist noch nicht vollständig geladen. Schließ das Erfolgsfenster und öffne es erneut, um die angezeigten Kategorien zu aktualisieren."
 L["Categories width offset"] = "Kategorien Fenster Abstands-Breite "
 L["Categories width offset Desc"] = [=[Die Breite, die zur Standardkategorienbreite addiert oder von ihr subtrahiert wird.
 
@@ -580,6 +581,7 @@ L["News"] = "Neuigkeiten "
 L["Night Fae Assault"] = "Night Fae Paktangriff "
 L["Nitun"] = "Nitun "
 L["No achievements are available with the current set of filters"] = "Es können keine Erfolge mit den von dir gesetzten Filtern angezeigt werden. "
+L["No category selected"] = "Keine Kategorie ausgewählt"
 L["No time data available"] = "Keine Zeitdaten verfügbar "
 L["Noblegarden"] = "Nobelgarten "
 L["Nokhudon Hold"] = "Festung Nokhudon "
@@ -858,6 +860,7 @@ L["The Vakthros Ascent"] = "Vakthrosaufstieg "
 L["This achievement"] = "Dieser Erfolg "
 L["This achievement can't be earned by this character."] = "Der Erfolg kann nicht von diesem Charakter erzielt werden. "
 L["This achievement is no longer obtainable"] = "Dieser Erfolg kann nicht länger erzielt werden. "
+L["This category has no achievements"] = "Diese Kategorie hat keine Erfolge"
 L["This character's class has no transmog set that meet the requirements."] = "Die Klasse deines Charakters erfüllt nicht die Anforderungen für dieses Transmog-Set. "
 L["Thundering Pandaren Spirit"] = "Bebender Pandarengeist "
 L["Time display"] = "Zeit Anzeige "

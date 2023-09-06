@@ -432,7 +432,7 @@ function addon.OverwriteFunctions()
 
     if not RemoveTrackedAchievement then
         RemoveTrackedAchievement = function(achievementId)
-            C_ContentTracking.StopTracking(Enum.ContentTrackingType.Achievement, achievementId);
+            C_ContentTracking.StopTracking(Enum.ContentTrackingType.Achievement, achievementId, Enum.ContentTrackingStopType.Manual);
         end
     end
 

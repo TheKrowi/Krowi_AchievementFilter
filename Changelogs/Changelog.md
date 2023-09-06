@@ -28,3 +28,10 @@
 
 ### Wrath Classic (62.1)
 - Loading Pet Battles is skipped
+
+### Changed (62.2)
+- Updated German translations
+
+### Fixed (62.2)
+- Untracking achievements should once again work
+- Certain achievements should no longer give errors when mousing over them
