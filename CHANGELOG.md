@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 62.3 - 2023-09-07
+### Added
+- Lil' Frostwing (new), A Blue Dawn achievements
+
+### Fixed
+- Now able to handle existing achievements that are not yet added to KAF but that are in game already
+
+### Removed
+- Lil' Frostwing (old) achievement
+
 ## 62.2 - 2023-09-06
 ### Changed
 - Updated German translations

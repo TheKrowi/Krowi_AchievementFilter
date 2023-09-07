@@ -39,11 +39,11 @@ local function PostLoadOnPlayerLogin(self, start)
     self.ExportedWidgetEvents.LoadCategories(self.WidgetEvents, self.Achievements);
     self.ExportedWorldEvents.LoadCategories(self.WorldEvents, self.Achievements);
 
+    addon.BuildCache();
+
     if addon.Tabs["Achievements"] then
         addon.Tabs["Achievements"].Categories = data.LoadBlizzardTabAchievements(addon.Tabs["Achievements"].Categories);
     end
-
-    addon.BuildCache();
 
     if AchievementFrame and AchievementFrame:IsShown() then
         addon.GUI.RefreshViewAfterPlayerLogin();

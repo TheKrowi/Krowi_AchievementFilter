@@ -54,7 +54,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-03 17-09-34 ]] --
+-- [[ Exported at 2023-09-07 05-14-50 ]] --
 tasks = {
     {F, 857, "ExcludedCategories"},
     {C, 971, 857},
@@ -2178,7 +2178,7 @@ tasks = {
     {A, 925, 6019}, -- "Come One, Come All!"
     {C, 884, 925},
     {N, 925,k.GetCategoryInfoTitle(15101)}, -- Darkmoon Faire
-    {A, 1173, 19028}, -- Lil' Frostwing
+    {A, 1173, 19192}, -- Lil' Frostwing
     {A, 1173, 10335}, -- Did Someone Say...?
     {A, 1173, 18702}, -- WoW's 19th Anniversary
     {A, 1173, 15218}, -- WoW's 18th Anniversary
@@ -3203,6 +3203,7 @@ tasks = {
     {A, 1245, 16460}, -- Explore the Azure Span
     {C, 1234, 1245},
     {N, 1245,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {A, 1239, 17773}, -- A Blue Dawn
     {A, 1239, 18867}, -- Through the Ashes and Flames
     {A, 1239, 17735}, -- We Didn't Start the Fire
     {A, 1239, 16580}, -- Lend a Helping Span
