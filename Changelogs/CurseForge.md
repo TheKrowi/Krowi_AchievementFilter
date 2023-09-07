@@ -43,3 +43,15 @@
 <li>Untracking achievements should once again work</li>
 <li>Certain achievements should no longer give errors when mousing over them</li>
 </ul>
+<p><h3>Added (62.3)</h3></p>
+<ul>
+<li>Lil' Frostwing (new), A Blue Dawn achievements</li>
+</ul>
+<p><h3>Fixed (62.3)</h3></p>
+<ul>
+<li>Now able to handle existing achievements that are not yet added to KAF but that are in game already</li>
+</ul>
+<p><h3>Removed (62.3)</h3></p>
+<ul>
+<li>Lil' Frostwing (old) achievement</li>
+</ul>

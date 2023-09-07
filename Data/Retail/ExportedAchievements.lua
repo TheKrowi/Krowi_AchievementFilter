@@ -40,8 +40,9 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-06 07-35-51 ]] --
+-- [[ Exported at 2023-09-07 05-15-12 ]] --
 tasks = {
+    {N, 19192}, -- Lil' Frostwing
     {N, 19107}, -- Outland Racing Completionist: Gold
     {N, 19106}, -- Outland Racing Completionist: Silver
     {N, 19105}, -- Outland Racing Completionist
@@ -55,7 +56,6 @@ tasks = {
     {N, 19097}, -- Outland: Silver
     {N, 19092}, -- Outland: Bronze
     {N, 19079}, -- Master of the Turbulent Timeways
-    {N, 19028}, -- Lil' Frostwing
     {N, 19008}, -- Dream Shaper
     {N, 18977}, -- Draconically Epic
     {N, 18976}, -- Draconically Superior
@@ -373,6 +373,7 @@ tasks = {
     {N, 17779}, -- A Serpentine Discovery
     {O, 17778, "From", "PvP Season", 35, "Until", "PvP Season", 35},
     {N, 17778, nil, nil, true}, -- Obsidian Gladiator's Slitherdrake
+    {N, 17773}, -- A Blue Dawn
     {O, 17772, "From", "PvP Season", 35, "Until", "PvP Season", 35},
     {N, 17772, f.Horde, nil, true}, -- Hero of the Horde: Obsidian
     {O, 17768, "From", "PvP Season", 35, "Until", "PvP Season", 35},
@@ -9135,4 +9136,4 @@ tasks = {
     {N, 7}, -- Level 20
     {N, 6}, -- Level 10
 };
-data.HighestAchievementId = 19107;
+data.HighestAchievementId = 19192;
