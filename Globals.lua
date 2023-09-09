@@ -650,9 +650,6 @@ function addon.ChangeAchievementMicroButtonOnClick()
         end
     end
     local tab = KrowiAF_SavedData.Tabs[addon.Options.db.profile.MicroButtonTab];
-    if tab.AddonName == "Blizzard_AchievementUI" then
-        return;
-    end
     AchievementMicroButton:SetScript("OnClick", function(self)
         addon.GUI.ToggleAchievementFrame(tab.AddonName, tab.Name);
     end);

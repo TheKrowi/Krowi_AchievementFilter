@@ -4,6 +4,7 @@ addon.Options.Defaults = {
     profile = {
         ShowMinimapIcon = false,
         ShowWorldmapIcon = true,
+        AddAddonNameToWorldMapIcon = false,
         ResetViewOnOpen = false,
         ToggleWindow = true,
         MicroButtonTab = 1,

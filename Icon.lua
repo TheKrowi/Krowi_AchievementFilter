@@ -1,4 +1,4 @@
-local addonName, addon = ...;
+local _, addon = ...;
 local icon = addon.Icon;
 
 function icon.SetMoreTooltipContent(tooltip)
@@ -7,7 +7,8 @@ function icon.SetMoreTooltipContent(tooltip)
 end
 
 function icon.OnLeftClick()
-    addon.GUI.ToggleAchievementFrame(addonName, addon.L["Expansions"]);
+    local tab = KrowiAF_SavedData.Tabs[addon.Options.db.profile.MicroButtonTab];
+    addon.GUI.ToggleAchievementFrame(tab.AddonName, tab.Name);
 end
 
 function icon.OnRightClick()

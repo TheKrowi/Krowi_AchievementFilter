@@ -9,7 +9,7 @@ local L = addon.L;
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-06 16-56-15 ]] --
+-- [[ Exported at 2023-09-08 12-20-26 ]] --
 L["Completed"] = "Erledigt "
 L["EJ_GetInstanceInfo1190"] = "Schloss Nathria "
 L["EJ_GetInstanceInfo1193"] = "Sanktum der Herrschaft "

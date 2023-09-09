@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 62.4 - 2023-09-xx
+### Added
+- Option to add Krowi's Achievement Filter to the world map icon tooltip
+
+### Changed
+- Left clicking the minimap icon will now open the tab the micro button would
+
+### Fixed
+- Rebinding the Micro Button now also works for the default Blizzard tabs
+
 ## 62.3 - 2023-09-07
 ### Added
 - Lil' Frostwing (new), A Blue Dawn achievements

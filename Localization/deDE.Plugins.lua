@@ -4,7 +4,7 @@ local L = addon.L;
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-06 16-56-14 ]] --
+-- [[ Exported at 2023-09-08 12-20-26 ]] --
 L["AchievementsTabFixes"] = "\"Erfolge\" Tab Korrekturen"
 L["AchievementsTabFixes Desc"] = "Dieses Plugin bietet einige Korrekturen für den Tab \"Erfolge\", die unten umgeschaltet werden können."
 L["Add To Right Click Menu"] = "Zum Rechtsklick-Menü hinzufügen "
