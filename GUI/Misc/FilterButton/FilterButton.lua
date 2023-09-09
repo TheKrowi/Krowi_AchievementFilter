@@ -56,9 +56,9 @@ function KrowiAF_AchievementFrameFilterButton_OnMouseDown(self)
 
     self:AddAchievementFilters(menu, nil, addon.Filters.db.profile);
     local earnedBy = addon.Objects.MenuItem:New({Text = addon.L["Earned By"]});
-    self:AddRadioButton(menu, earnedBy, addon.Filters.Account, addon.Filters.db, {"EarnedBy"}, false);
-    self:AddRadioButton(menu, earnedBy, addon.Filters.CharacterAccount, addon.Filters.db, {"EarnedBy"}, false);
-    self:AddRadioButton(menu, earnedBy, addon.Filters.CharacterOnly, addon.Filters.db, {"EarnedBy"}, false);
+    self:AddRadioButton(menu, earnedBy, addon.Filters.Account, addon.Filters.db.profile, {"EarnedBy"}, false);
+    self:AddRadioButton(menu, earnedBy, addon.Filters.CharacterAccount, addon.Filters.db.profile, {"EarnedBy"}, false);
+    self:AddRadioButton(menu, earnedBy, addon.Filters.CharacterOnly, addon.Filters.db.profile, {"EarnedBy"}, false);
     menu:Add(earnedBy);
 
     menu:AddSeparator();

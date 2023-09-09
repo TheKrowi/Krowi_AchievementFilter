@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Rebinding the Micro Button now also works for the default Blizzard tabs
+- Earned By filter
 
 ## 62.3 - 2023-09-07
 ### Added
