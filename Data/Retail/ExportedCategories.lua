@@ -54,7 +54,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-07 05-14-50 ]] --
+-- [[ Exported at 2023-09-11 20-09-46 ]] --
 tasks = {
     {F, 857, "ExcludedCategories"},
     {C, 971, 857},
@@ -2053,6 +2053,7 @@ tasks = {
     {A, 951, 13931}, -- "Memories of Fel, Frost and Fire"
     {C, 884, 951},
     {N, 951,k.GetCategoryInfoTitle(15454)}, -- Timewalking
+    {A, 1452, 19080}, -- Arcane Influence
     {A, 1452, 18646}, -- Whodunnit?
     {A, 1452, 18645}, -- Tools of the Trade
     {A, 1452, 18644}, -- Community Rumor Mill

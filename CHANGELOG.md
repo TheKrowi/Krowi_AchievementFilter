@@ -1,9 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 62.4 - 2023-09-xx
+## 62.4 - 2023-09-11
 ### Added
 - Option to add Krowi's Achievement Filter to the world map icon tooltip
+- Arcane Influence to the Secrets of Azeroth event
 
 ### Changed
 - Left clicking the minimap icon will now open the tab the micro button would

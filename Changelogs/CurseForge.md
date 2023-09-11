@@ -55,3 +55,17 @@
 <ul>
 <li>Lil' Frostwing (old) achievement</li>
 </ul>
+<p><h3>Added (62.4)</h3></p>
+<ul>
+<li>Option to add Krowi's Achievement Filter to the world map icon tooltip</li>
+<li>Arcane Influence to the Secrets of Azeroth event</li>
+</ul>
+<p><h3>Changed (62.4)</h3></p>
+<ul>
+<li>Left clicking the minimap icon will now open the tab the micro button would</li>
+</ul>
+<p><h3>Fixed (62.4)</h3></p>
+<ul>
+<li>Rebinding the Micro Button now also works for the default Blizzard tabs</li>
+<li>Earned By filter</li>
+</ul>
