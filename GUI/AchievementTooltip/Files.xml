@@ -4,6 +4,7 @@
 
     <Script file="NotObtainable.lua" />
     <Script file="BlizzardDefault.lua" />
+    <Script file="AddedInVersion.lua" />
     <Script file="PartOfAChain.lua" />
     <Script file="RequiredFor.lua" />
     <Script file="OtherFaction.lua" />

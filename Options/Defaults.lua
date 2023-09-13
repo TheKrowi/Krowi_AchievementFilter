@@ -96,6 +96,7 @@ addon.Options.Defaults = {
                     AlwaysShowRealm = false,
                     HideNotEarnedByIfEarnedByCurrentCharacter = false
                 },
+                ShowAddedInVersion = true,
                 ShowPartOfAChain = true,
                 ShowRequiredFor = true,
                 ShowCurrentCharacterIconsPartOfAChain = false,

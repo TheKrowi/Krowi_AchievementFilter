@@ -9,4 +9,5 @@
     <Script file="Tab.lua" />
     <Script file="CompareFunc.lua" />
     <Script file="Flags.lua" />
+    <Script file="BuildVersion.lua" />
 </Ui>

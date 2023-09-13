@@ -7,6 +7,7 @@ local data = addon.Data;
 data.TasksGroups = {};
 
 data.TransmogSets = {};
+data.BuildVersions = {};
 
 data.Achievements = {};
 data.AchievementIds = {};
@@ -58,7 +59,8 @@ function data:LoadOnPlayerLogin()
     self.TemporaryObtainable:Load();
 
     self.ExportedTransmogSets.RegisterTasks(self.TransmogSets);
-    self.ExportedAchievements.RegisterTasks(self.Achievements, self.TransmogSets);
+    self.ExportedBuildVersions.RegisterTasks(self.BuildVersions);
+    self.ExportedAchievements.RegisterTasks(self.Achievements, self.BuildVersions, self.TransmogSets);
     self.ExportedCategories.RegisterTasks(self.Categories, adjustableCategories, self.Achievements, addon.Tabs);
     self.ExportedCalendarEvents.RegisterTasks(self.CalendarEvents);
     self.ExportedWidgetEvents.RegisterTasks(self.WidgetEvents);

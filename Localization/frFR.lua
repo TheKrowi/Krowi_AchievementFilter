@@ -789,8 +789,8 @@ L["Show Other faction"] = "Afficher les autres factions"
 L["Show Other faction Desc"] = [=[Affiche ou masque {otherFaction}.
 
 Si cette option est activée, le Haut-fait de l'autre faction sera affiché dans l'info-bulle si disponible. Cela peut expliquer plus clairement pourquoi votre nouveau personnage de la Horde a certaines réalisations si vous n'avez joué que l'Alliance auparavant.]=]
-L["Show Part of a Chain"] = "Afficher {partOfACain}"
-L["Show Part of a Chain Desc"] = [=[Affiche ou masque {partOfAChain}.
+L["Show Part of a chain"] = "Afficher {partOfACain}"
+L["Show Part of a chain Desc"] = [=[Affiche ou masque {partOfAChain}.
 
 Si cette option est activée, la suite de Hauts-faits à laquelle elle appartient sera affichée dans l'info-bulle.]=]
 L["Show placeholders"] = "Afficher un Haut-fait générique"

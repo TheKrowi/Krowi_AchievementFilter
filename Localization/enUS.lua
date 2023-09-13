@@ -1,5 +1,5 @@
 local addonName, addon = ...;
-local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true, true);
+local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true);
 
 addon.L = L;
 
@@ -804,8 +804,8 @@ L["Show Other faction"] = true
 L["Show Other faction Desc"] = [=[Show / hide {otherFaction}.
 
 When checked and if available, the other faction's achievement will be visible in the tooltip. This might make it more clear why your fresh Horde character has certain achievements if you only played Alliance before.]=]
-L["Show Part of a Chain"] = "Show {partOfAChain}"
-L["Show Part of a Chain Desc"] = [=[Show / hide {partOfAChain}.
+L["Show Part of a chain"] = "Show {partOfAChain}"
+L["Show Part of a chain Desc"] = [=[Show / hide {partOfAChain}.
 
 When checked, the chain the achievment is part of will be visible in the tooltip.]=]
 L["Show placeholders"] = true
@@ -956,3 +956,8 @@ L["Zaqali Ruin Investigation"] = true
 L["Zaqali Ruin Investigation: Active"] = true
 L["Zaqali Ruin Investigation: Soon"] = true
 L["Zones"] = true
+L["Added in version"]=true
+L["Show Added in version"] = "Show {addedInVersion}"
+L["Show Added in version Desc"] = [=[Show / hide {addedInVersion}.
+
+When checked, the version of the game the achievement was added in will be visible in the tooltip.]=]

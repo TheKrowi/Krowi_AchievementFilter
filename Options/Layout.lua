@@ -829,14 +829,25 @@ options.OptionsTable.args["Layout"] = {
                                     get = function() return addon.Options.db.profile.Tooltip.Achievements.EarnedBy.HideNotEarnedByIfEarnedByCurrentCharacter; end,
                                     set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.EarnedBy.HideNotEarnedByIfEarnedByCurrentCharacter = value; end
                                 },
+                                AddedInVersion = {
+                                    order = OrderPP(), type = "header",
+                                    name = addon.L["Added in version"]
+                                },
+                                ShowAddedInVersion = {
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
+                                    name = addon.L["Show Added in version"]:K_ReplaceVars(addon.L["Added in version"]),
+                                    desc = addon.L["Show Added in version Desc"]:K_ReplaceVars(addon.L["Added in version"]):KAF_AddDefaultValueText("Tooltip.Achievements.ShowAddedInVersion"),
+                                    get = function() return addon.Options.db.profile.Tooltip.Achievements.ShowAddedInVersion; end,
+                                    set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.ShowAddedInVersion = value; end
+                                },
                                 PartOfAChain = {
                                     order = OrderPP(), type = "header",
                                     name = addon.L["Part of a chain"]
                                 },
                                 ShowPartOfAChain = {
                                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
-                                    name = addon.L["Show Part of a Chain"]:K_ReplaceVars(addon.L["Part of a chain"]),
-                                    desc = addon.L["Show Part of a Chain Desc"]:K_ReplaceVars(addon.L["Part of a chain"]):KAF_AddDefaultValueText("Tooltip.Achievements.ShowPartOfAChain"),
+                                    name = addon.L["Show Part of a chain"]:K_ReplaceVars(addon.L["Part of a chain"]),
+                                    desc = addon.L["Show Part of a chain Desc"]:K_ReplaceVars(addon.L["Part of a chain"]):KAF_AddDefaultValueText("Tooltip.Achievements.ShowPartOfAChain"),
                                     get = function() return addon.Options.db.profile.Tooltip.Achievements.ShowPartOfAChain; end,
                                     set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.ShowPartOfAChain = value; end
                                 },

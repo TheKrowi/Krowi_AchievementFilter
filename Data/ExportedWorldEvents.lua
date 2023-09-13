@@ -13,7 +13,7 @@ function exportedWorldEvents.RegisterTasks(_worldEvents)
     if addon.IsWrathClassic then
         return;
     end
-    
+
     local name = "World Events";
     data.InjectLoadingDebug(tasks, name);
 

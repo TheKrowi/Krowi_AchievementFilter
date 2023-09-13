@@ -785,8 +785,8 @@ L["Show Other faction"] = "Zeige weitere Fraktionen "
 L["Show Other faction Desc"] = [=[Zeige / verstecke {otherFaction}.
 
 Wenn diese Option aktiviert ist, wird der Erfolg der anderen Fraktion im Tooltip angezeigt, sofern verfügbar. Dadurch wird es vielleicht klarer, warum euer neuer Horde-Charakter bestimmte Errungenschaften hat, wenn ihr vorher nur Allianz gespielt habt. ]=]
-L["Show Part of a Chain"] = "Zeige {partOfAChain} "
-L["Show Part of a Chain Desc"] = [=[Zeige / Verstecke {partOfAChain}.
+L["Show Part of a chain"] = "Zeige {partOfAChain} "
+L["Show Part of a chain Desc"] = [=[Zeige / Verstecke {partOfAChain}.
 
 Wenn diese Option aktiviert ist, wird der Serien-Erfolg, zu dem er gehört, im Tooltip angezeigt. ]=]
 L["Show placeholders"] = "Zeige Platzhalter "
