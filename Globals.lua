@@ -312,18 +312,18 @@ local function HandleAchievement(characterGuid, achievementInfo)
     HandleNotCompletedAchievement(characterGuid, achievementInfo, numCriteria);
 end
 
-local characterPoints;
-function addon.BuildCache()
-    if criteriaCache ~= nil then -- Build cache the first time
-        return criteriaCache, characterPoints;
+local co, coStart, maxDuration;
+local buildCacheHelper = CreateFrame("Frame");
+buildCacheHelper:SetScript("OnUpdate", function()
+    if co ~= nil then
+        coStart = debugprofilestop();
+        coroutine.resume(co);
     end
+end);
 
-    local characterGuid = UnitGUID("player");
-    criteriaCache = {};
+local characterPoints;
+local function HandleAchievements(highestId, characterGuid, onFinish, onDelay)
     local gapSize, i = 0, 1;
-    local character = addon.Data.SavedData.CharacterData.Upsert(characterGuid);
-    character.Points = 0;
-    local highestId = addon.Data.HighestAchievementId;
     while gapSize < 500 or i < highestId do -- Biggest gap is 209 in 9.0.5 as of 2021-05-03
         local achievementInfo = addon.GetAchievementInfoTable(i);
         HandleAchievement(characterGuid, achievementInfo);
@@ -333,7 +333,34 @@ function addon.BuildCache()
             gapSize = gapSize + 1;
         end
         i = i + 1;
+        if (debugprofilestop() - coStart > maxDuration) then
+            if onDelay then
+                onDelay();
+                addon.Diagnostics.Debug(i)
+            end
+            coroutine.yield();
+        end
     end
+    if onFinish then
+        onFinish();
+    end
+end
+
+function addon.BuildCache(onFinish, onDelay)
+    print("Starting Build Cache")
+    if criteriaCache ~= nil then -- Build cache the first time
+        return criteriaCache, characterPoints;
+    end
+
+    local characterGuid = UnitGUID("player");
+    criteriaCache = {};
+    local character = addon.Data.SavedData.CharacterData.Upsert(characterGuid);
+    character.Points = 0;
+    local highestId = addon.Data.HighestAchievementId;
+    maxDuration = 500 / (tonumber(C_CVar.GetCVar("targetFPS")) or GetFrameRate());
+    co = coroutine.create(HandleAchievements);
+    coStart = debugprofilestop();
+    coroutine.resume(co, highestId, characterGuid, onFinish, onDelay);
     addon.Data.SortAchievementIds(); -- Achievements are added to the back so we need to make sure the list is sorted again
     characterPoints = KrowiAF_SavedData.CharacterList[characterGuid].Points;
     return criteriaCache, characterPoints;
