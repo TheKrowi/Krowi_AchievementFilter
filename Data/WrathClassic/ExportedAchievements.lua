@@ -40,7 +40,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-13 21-35-07 ]] --
+-- [[ Exported at 2023-09-16 08-48-36 ]] --
 tasks = {
     {N, 18688, 203, f.Horde}, -- Defense Protocol Beta: Terminated
     {N, 18678, 203, f.Horde}, -- Defense Protocol Beta: Trial of the Champion
@@ -86,21 +86,21 @@ tasks = {
     {N, 15333, 194}, -- Survivor of the Shadow Flame (Season of Mastery)
     {O, 15330, "Never" },
     {N, 15330, 194}, -- Survivor of the Firelord (Season of Mastery)
-    {N, 4824, 194}, -- Collector's Edition: Mini Thor
-    {N, 4818, 194}, -- Heroic: The Twilight Destroyer (10 player)
-    {N, 4817, 194}, -- The Twilight Destroyer (10 player)
-    {N, 4816, 194}, -- Heroic: The Twilight Destroyer (25 player)
-    {N, 4815, 194}, -- The Twilight Destroyer (25 player)
+    {N, 4824, 106}, -- Collector's Edition: Mini Thor
+    {N, 4818, 106}, -- Heroic: The Twilight Destroyer (10 player)
+    {N, 4817, 106}, -- The Twilight Destroyer (10 player)
+    {N, 4816, 106}, -- Heroic: The Twilight Destroyer (25 player)
+    {N, 4815, 106}, -- The Twilight Destroyer (25 player)
     {O, 4790, "From", "Version", "030400", "Before", "Version", "040001"},
-    {N, 4790, 194, f.Horde}, -- Zalazane's Fall
+    {N, 4790, 104, f.Horde}, -- Zalazane's Fall
     {O, 4786, "From", "Version", "030400", "Before", "Version", "040001"},
-    {N, 4786, 194, f.Alliance}, -- Operation: Gnomeregan
+    {N, 4786, 104, f.Alliance}, -- Operation: Gnomeregan
     {O, 4785, "From", "Version", "030400", "Before", "Version", "040003a"},
     {N, 4785, 194, f.Horde}, -- Emblematic
     {O, 4784, "From", "Version", "030400", "Before", "Version", "040003a"},
     {N, 4784, 194, f.Alliance}, -- Emblematic
     {O, 4782 },
-    {N, 4782, 194}, -- Green Brewfest Stein
+    {N, 4782, 104}, -- Green Brewfest Stein
     {N, 4637, 194}, -- Heroic: Fall of the Lich King (25 player)
     {N, 4636, 194}, -- Heroic: Fall of the Lich King (10 player)
     {N, 4635, 194}, -- Heroic: The Frostwing Halls (25 player)
@@ -1090,7 +1090,7 @@ tasks = {
     {N, 879, 194}, -- Old School Ride
     {N, 878, 194}, -- One That Didn't Get Away
     {N, 877, 194}, -- The Cake Is Not A Lie
-    {N, 876, 194, nil, nil, true}, -- Brutally Dedicated
+    {N, 876, 86, nil, nil, true}, -- Brutally Dedicated
     {N, 875, 194, nil, nil, true}, -- Vengefully Dedicated
     {N, 873, 194, f.Horde, 220, true}, -- Frostwolf Perfection
     {N, 872, 194, nil, nil, true}, -- Frenzied Defender

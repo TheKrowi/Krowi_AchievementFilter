@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 63.0 - 2023-xx-xx
+### Added
+- Missing translation
+- "Added in version" to the tooltip with options to disable it 
+
 ## 62.4 - 2023-09-11
 ### Added
 - Option to add Krowi's Achievement Filter to the world map icon tooltip

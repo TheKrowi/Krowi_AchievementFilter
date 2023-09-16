@@ -40,7 +40,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-13 21-34-42 ]] --
+-- [[ Exported at 2023-09-16 08-48-11 ]] --
 tasks = {
     {N, 19192, 202}, -- Lil' Frostwing
     {N, 19107, 202}, -- Outland Racing Completionist: Gold
@@ -58,8 +58,8 @@ tasks = {
     {N, 19080, 202}, -- Arcane Influence
     {N, 19079, 202}, -- Master of the Turbulent Timeways
     {N, 19008, 202}, -- Dream Shaper
-    {N, 18977, 202}, -- Draconically Epic
-    {N, 18976, 202}, -- Draconically Superior
+    {N, 18977, 201}, -- Draconically Epic
+    {N, 18976, 201}, -- Draconically Superior
     {N, 18963, 202}, -- Burst Damage
     {N, 18962, 202}, -- A Cleansing Fire
     {N, 18960, 202}, -- Kickin' With the Wick
@@ -533,7 +533,7 @@ tasks = {
     {N, 17343, 198}, -- Drop It Like It's Hot
     {N, 17342, 198}, -- The Future We Make
     {O, 17339, "From", "PvP Season", 34, "Until", "PvP Season", 34},
-    {N, 17339, 198, nil, nil, true}, -- Legend: Dragonflight Season 1
+    {N, 17339, 195, nil, nil, true}, -- Legend: Dragonflight Season 1
     {N, 17336, 198, nil, nil, true}, -- Airborne Tumbler
     {N, 17335, 198, nil, nil, true}, -- Airborne Tumbler
     {N, 17334, 198}, -- Trading Post Enthusiast
@@ -542,7 +542,7 @@ tasks = {
     {N, 17330, 198}, -- Reverse Racer: Bronze
     {N, 17321, 198}, -- Elders of the Dragon Isles
     {N, 17315, 199}, -- While We Were Sleeping
-    {N, 17314, 198}, -- Heroic Edition: Tangled Dreamweaver
+    {N, 17314, 195}, -- Heroic Edition: Tangled Dreamweaver
     {N, 17305, 198}, -- Trading Post: Dragonflight
     {N, 17298, 199}, -- Forbidden Reach Racing Completionist: Gold
     {N, 17296, 199}, -- Forbidden Reach Racing Completionist: Silver
@@ -615,113 +615,113 @@ tasks = {
     {N, 16698, 198}, -- Renewed Proto-Drake Tail Features
     {N, 16697, 198}, -- Renewed Proto-Drake Head Features
     {N, 16696, 198}, -- Renewed Proto-Drake Armor
-    {N, 16683, 195}, -- In Tyr's Footsteps
-    {N, 16679, 195}, -- Adventurer of Thaldraszus
-    {N, 16678, 195}, -- Adventurer of The Azure Span
-    {N, 16677, 195}, -- Adventurer of the Ohn'ahran Plains
-    {N, 16676, 195}, -- Adventurer of The Waking Shores
-    {N, 16673, 195}, -- Dragon Glyphs: The Fallen Course
-    {N, 16672, 195}, -- Dragon Glyphs: Forkriver Crossing
-    {N, 16671, 195}, -- Dragon Glyphs: Mirewood Fen
-    {N, 16670, 195}, -- Dragon Glyphs: Rubyscale Outpost
-    {N, 16669, 195}, -- Dragon Glyphs: Flashfrost Enclave
-    {N, 16668, 195}, -- Dragon Glyphs: Skytop Observatory Rostrum
-    {N, 16667, 195}, -- Dragon Glyphs: Passage of Time
-    {N, 16666, 195}, -- Dragon Glyphs: Gelikyr Overlook
+    {N, 16683, 196}, -- In Tyr's Footsteps
+    {N, 16679, 196}, -- Adventurer of Thaldraszus
+    {N, 16678, 196}, -- Adventurer of The Azure Span
+    {N, 16677, 196}, -- Adventurer of the Ohn'ahran Plains
+    {N, 16676, 196}, -- Adventurer of The Waking Shores
+    {N, 16673, 196}, -- Dragon Glyphs: The Fallen Course
+    {N, 16672, 196}, -- Dragon Glyphs: Forkriver Crossing
+    {N, 16671, 196}, -- Dragon Glyphs: Mirewood Fen
+    {N, 16670, 196}, -- Dragon Glyphs: Rubyscale Outpost
+    {N, 16669, 196}, -- Dragon Glyphs: Flashfrost Enclave
+    {N, 16668, 196}, -- Dragon Glyphs: Skytop Observatory Rostrum
+    {N, 16667, 196}, -- Dragon Glyphs: Passage of Time
+    {N, 16666, 196}, -- Dragon Glyphs: Gelikyr Overlook
     {O, 16661, "From", "Mythic+ Season", 9, "Until", "Mythic+ Season", 9},
-    {N, 16661, 195}, -- Keystone Hero: Temple of the Jade Serpent
+    {N, 16661, 196}, -- Keystone Hero: Temple of the Jade Serpent
     {O, 16660, "From", "Mythic+ Season", 9, "Until", "Mythic+ Season", 9},
-    {N, 16660, 195}, -- Keystone Hero: Shadowmoon Burial Grounds
+    {N, 16660, 196}, -- Keystone Hero: Shadowmoon Burial Grounds
     {O, 16659, "From", "Mythic+ Season", 9, "Until", "Mythic+ Season", 9},
-    {N, 16659, 195}, -- Keystone Hero: Halls of Valor
+    {N, 16659, 196}, -- Keystone Hero: Halls of Valor
     {O, 16658, "From", "Mythic+ Season", 9, "Until", "Mythic+ Season", 9},
-    {N, 16658, 195}, -- Keystone Hero: Court of Stars
+    {N, 16658, 196}, -- Keystone Hero: Court of Stars
     {O, 16650, "From", "Mythic+ Season", 9, "Until", "Mythic+ Season", 9},
-    {N, 16650, 195}, -- Dragonflight Keystone Hero: Season One
+    {N, 16650, 196}, -- Dragonflight Keystone Hero: Season One
     {O, 16649, "From", "Mythic+ Season", 9, "Until", "Mythic+ Season", 9},
-    {N, 16649, 195}, -- Dragonflight Keystone Master: Season One
+    {N, 16649, 196}, -- Dragonflight Keystone Master: Season One
     {O, 16648, "From", "Mythic+ Season", 9, "Until", "Mythic+ Season", 9},
-    {N, 16648, 195}, -- Dragonflight Keystone Conqueror: Season One
+    {N, 16648, 196}, -- Dragonflight Keystone Conqueror: Season One
     {O, 16647, "From", "Mythic+ Season", 9, "Until", "Mythic+ Season", 9},
-    {N, 16647, 195}, -- Dragonflight Keystone Explorer: Season One
+    {N, 16647, 196}, -- Dragonflight Keystone Explorer: Season One
     {O, 16646, "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10},
-    {N, 16646, 195}, -- Keystone Hero: Halls of Infusion
+    {N, 16646, 196}, -- Keystone Hero: Halls of Infusion
     {O, 16645, "From", "Mythic+ Season", 9, "Until", "Mythic+ Season", 9},
-    {N, 16645, 195}, -- Keystone Hero: The Azure Vault
+    {N, 16645, 196}, -- Keystone Hero: The Azure Vault
     {O, 16644, "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10},
-    {N, 16644, 195}, -- Keystone Hero: Neltharus
+    {N, 16644, 196}, -- Keystone Hero: Neltharus
     {O, 16643, "From", "Mythic+ Season", 9, "Until", "Mythic+ Season", 9},
-    {N, 16643, 195}, -- Keystone Hero: Algeth'ar Academy
+    {N, 16643, 196}, -- Keystone Hero: Algeth'ar Academy
     {O, 16642, "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10},
-    {N, 16642, 195}, -- Keystone Hero: Brackenhide Hollow
+    {N, 16642, 196}, -- Keystone Hero: Brackenhide Hollow
     {O, 16641, "From", "Mythic+ Season", 9, "Until", "Mythic+ Season", 9},
-    {N, 16641, 195}, -- Keystone Hero: The Nokhud Offensive
+    {N, 16641, 196}, -- Keystone Hero: The Nokhud Offensive
     {O, 16640, "From", "Mythic+ Season", 9, "Until", "Mythic+ Season", 9},
-    {N, 16640, 195}, -- Keystone Hero: Ruby Life Pools
+    {N, 16640, 196}, -- Keystone Hero: Ruby Life Pools
     {O, 16639, "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10},
-    {N, 16639, 195}, -- Keystone Hero: Uldaman: Legacy of Tyr
-    {N, 16638, 195}, -- Ley Line in the Span
-    {N, 16634, 195}, -- Framing a New Perspective
-    {N, 16632, 195}, -- Dragon Isles Fisherman
-    {N, 16631, 195}, -- Dragon Isles Cook
-    {N, 16630, 195}, -- Draconic Master of All
-    {N, 16627, 195}, -- Professional Draconic Master
-    {N, 16626, 195}, -- Working with Wyrms
-    {N, 16625, 195}, -- Belay On!
-    {N, 16624, 195}, -- Which Knot Was It Again?
-    {N, 16623, 195}, -- Toe Tension
-    {N, 16622, 195}, -- Three Minutes or It's Free
-    {N, 16621, 195}, -- "One of Everything, Please"
-    {N, 16620, 195}, -- Ohuna Incubation
-    {N, 16616, 195, nil, nil, true}, -- Prosperously Bloody
-    {N, 16615, 195, nil, nil, true}, -- Blood Bank
-    {N, 16614, 195, nil, nil, true}, -- Bloodstained Bounty
-    {N, 16613, 195, nil, nil, true}, -- Finder's Keepers
-    {N, 16612, 195, nil, nil, true}, -- Bounty Vigalante
-    {N, 16611, 195, nil, nil, true}, -- Resource Scavanger
-    {N, 16603, 195, nil, nil, true}, -- Bounty Hunter
-    {N, 16602, 195}, -- Nokhud Deed Goes Unnoticed
-    {N, 16601, 195, nil, nil, true}, -- Dragonfight Club
-    {N, 16600, 195}, -- Isles Ascender
-    {N, 16599, 195, nil, nil, true}, -- A Champion's Pursuit
-    {N, 16595, 195, nil, nil, true}, -- Tour of Duty: Ohn'ahran Plains
-    {N, 16594, 195, nil, nil, true}, -- Tour of Duty: The Azure Span
-    {N, 16593, 195, nil, nil, true}, -- Tour of Duty: Thaldraszus
-    {N, 16592, 195, nil, nil, true}, -- Tour of Duty: The Waking Shores
-    {N, 16591, 195}, -- The Gentleman Elemental
-    {N, 16590, 195, nil, nil, true}, -- A Champion's Tour: Dragon Isles
-    {N, 16589, 195, nil, nil, true}, -- Malicia's Challenge
-    {N, 16588, 195}, -- How Did These Get Here?
-    {N, 16587, 195}, -- Lead Climber
-    {N, 16585, 195}, -- Loremaster of the Dragon Isles
-    {N, 16584, 195}, -- Symbols of Hope
-    {N, 16583, 195}, -- Knew You Nokhud Do It!
-    {N, 16581, 195}, -- Seeing Blue
-    {N, 16580, 195}, -- Lend a Helping Span
-    {N, 16578, 195}, -- Thaldraszus Glyph Hunter
-    {N, 16577, 195}, -- Azure Span Glyph Hunter
-    {N, 16576, 195}, -- Ohn'ahran Plains Glyph Hunter
-    {N, 16575, 195}, -- Waking Shores Glyph Hunter
-    {N, 16574, 195}, -- Sleeping on the Job
-    {N, 16573, 195}, -- Legendary Photographs
-    {N, 16572, 195}, -- Legendary Photograph
-    {N, 16571, 195}, -- Well Supplied
-    {N, 16570, 195}, -- A Legendary Album
-    {N, 16569, 195}, -- Cobalt Enthusiast
-    {N, 16568, 195}, -- Great Shots Galore!
-    {N, 16567, 195}, -- A Lot of Great Shots!
-    {N, 16566, 195}, -- Great Shot!
-    {N, 16565, 195}, -- It Takes a Tuskarr Village
-    {N, 16564, 195}, -- It Takes a Tuskarr Family
-    {N, 16563, 195}, -- We're Going to Need a Bigger Harpoon
-    {N, 16562, 195}, -- That's not a Fish...
-    {N, 16561, 195}, -- "Lunkers, Lunkers Everywhere"
-    {N, 16560, 195}, -- Wildlife Photographer
-    {N, 16556, 195}, -- Great Gourmand of The Ruby Feast
-    {N, 16553, 195}, -- Taking From Nature
-    {N, 16552, 195}, -- Giving Even More Back to Nature
-    {N, 16551, 195}, -- Giving More Back to Nature
-    {N, 16550, 195}, -- Giving Back to Nature
+    {N, 16639, 196}, -- Keystone Hero: Uldaman: Legacy of Tyr
+    {N, 16638, 196}, -- Ley Line in the Span
+    {N, 16634, 196}, -- Framing a New Perspective
+    {N, 16632, 196}, -- Dragon Isles Fisherman
+    {N, 16631, 196}, -- Dragon Isles Cook
+    {N, 16630, 196}, -- Draconic Master of All
+    {N, 16627, 196}, -- Professional Draconic Master
+    {N, 16626, 196}, -- Working with Wyrms
+    {N, 16625, 196}, -- Belay On!
+    {N, 16624, 196}, -- Which Knot Was It Again?
+    {N, 16623, 196}, -- Toe Tension
+    {N, 16622, 196}, -- Three Minutes or It's Free
+    {N, 16621, 196}, -- "One of Everything, Please"
+    {N, 16620, 196}, -- Ohuna Incubation
+    {N, 16616, 196, nil, nil, true}, -- Prosperously Bloody
+    {N, 16615, 196, nil, nil, true}, -- Blood Bank
+    {N, 16614, 196, nil, nil, true}, -- Bloodstained Bounty
+    {N, 16613, 196, nil, nil, true}, -- Finder's Keepers
+    {N, 16612, 196, nil, nil, true}, -- Bounty Vigalante
+    {N, 16611, 196, nil, nil, true}, -- Resource Scavanger
+    {N, 16603, 196, nil, nil, true}, -- Bounty Hunter
+    {N, 16602, 196}, -- Nokhud Deed Goes Unnoticed
+    {N, 16601, 196, nil, nil, true}, -- Dragonfight Club
+    {N, 16600, 196}, -- Isles Ascender
+    {N, 16599, 196, nil, nil, true}, -- A Champion's Pursuit
+    {N, 16595, 196, nil, nil, true}, -- Tour of Duty: Ohn'ahran Plains
+    {N, 16594, 196, nil, nil, true}, -- Tour of Duty: The Azure Span
+    {N, 16593, 196, nil, nil, true}, -- Tour of Duty: Thaldraszus
+    {N, 16592, 196, nil, nil, true}, -- Tour of Duty: The Waking Shores
+    {N, 16591, 196}, -- The Gentleman Elemental
+    {N, 16590, 196, nil, nil, true}, -- A Champion's Tour: Dragon Isles
+    {N, 16589, 196, nil, nil, true}, -- Malicia's Challenge
+    {N, 16588, 196}, -- How Did These Get Here?
+    {N, 16587, 196}, -- Lead Climber
+    {N, 16585, 196}, -- Loremaster of the Dragon Isles
+    {N, 16584, 196}, -- Symbols of Hope
+    {N, 16583, 196}, -- Knew You Nokhud Do It!
+    {N, 16581, 196}, -- Seeing Blue
+    {N, 16580, 196}, -- Lend a Helping Span
+    {N, 16578, 196}, -- Thaldraszus Glyph Hunter
+    {N, 16577, 196}, -- Azure Span Glyph Hunter
+    {N, 16576, 196}, -- Ohn'ahran Plains Glyph Hunter
+    {N, 16575, 196}, -- Waking Shores Glyph Hunter
+    {N, 16574, 196}, -- Sleeping on the Job
+    {N, 16573, 196}, -- Legendary Photographs
+    {N, 16572, 196}, -- Legendary Photograph
+    {N, 16571, 196}, -- Well Supplied
+    {N, 16570, 196}, -- A Legendary Album
+    {N, 16569, 196}, -- Cobalt Enthusiast
+    {N, 16568, 196}, -- Great Shots Galore!
+    {N, 16567, 196}, -- A Lot of Great Shots!
+    {N, 16566, 196}, -- Great Shot!
+    {N, 16565, 196}, -- It Takes a Tuskarr Village
+    {N, 16564, 196}, -- It Takes a Tuskarr Family
+    {N, 16563, 196}, -- We're Going to Need a Bigger Harpoon
+    {N, 16562, 196}, -- That's not a Fish...
+    {N, 16561, 196}, -- "Lunkers, Lunkers Everywhere"
+    {N, 16560, 196}, -- Wildlife Photographer
+    {N, 16556, 196}, -- Great Gourmand of The Ruby Feast
+    {N, 16553, 196}, -- Taking From Nature
+    {N, 16552, 196}, -- Giving Even More Back to Nature
+    {N, 16551, 196}, -- Giving More Back to Nature
+    {N, 16550, 196}, -- Giving Back to Nature
     {N, 16549, 196}, -- Popular Around the Isles
     {N, 16548, 196}, -- It Takes a Tuskarr Buddy
     {N, 16547, 196}, -- Pulled!
@@ -1109,7 +1109,7 @@ tasks = {
     {N, 15643, 196}, -- What Can I Say? They Love Me.
     {N, 15642, 196}, -- Proven Pet Parent
     {N, 15641, 196}, -- Many More Mini Minions
-    {N, 15640, 198}, -- Return to Darkness
+    {N, 15640, 195}, -- Return to Darkness
     {O, 15639, "From", "PvP Season", 33, "Until", "PvP Season", 33},
     {N, 15639, 192, nil, nil, true}, -- Elite: Shadowlands Season 4
     {N, 15638, 196, f.Horde}, -- "Dracthyr, Awaken"
@@ -1187,9 +1187,9 @@ tasks = {
     {O, 15470, "From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 7},
     {N, 15470, 191}, -- Ahead of the Curve: The Jailer
     {O, 15469, "From", "Mythic+ Season", 8, "Until", "Version", "100000"},
-    {N, 15469, 196}, -- We Are All Made of Stars (Mythic)
+    {N, 15469, 193}, -- We Are All Made of Stars (Mythic)
     {O, 15468, "From", "Mythic+ Season", 8, "Until", "Version", "100000"},
-    {N, 15468, 196}, -- We Are All Made of Stars (Heroic)
+    {N, 15468, 193}, -- We Are All Made of Stars (Heroic)
     {N, 15419, 191}, -- The Protoform Matrix
     {N, 15418, 191}, -- The Grand Design
     {N, 15417, 191}, -- Sepulcher of the First Ones
@@ -2848,273 +2848,273 @@ tasks = {
     {N, 12473, 179, f.Alliance, 11861}, -- A Sound Plan
     {N, 12462, 179}, -- Shot Through the Heart
     {N, 12457, 179}, -- Remix to Ignition
-    {N, 12456, 179, f.Alliance, 4908}, -- Loch Modan & Wetlands Quests
-    {N, 12455, 179, f.Alliance, 4894}, -- Westfall & Duskwood Quests
+    {N, 12456, 178, f.Alliance, 4908}, -- Loch Modan & Wetlands Quests
+    {N, 12455, 178, f.Alliance, 4894}, -- Westfall & Duskwood Quests
     {O, 12454 },
     {N, 12454, 179}, -- Salute to StarCraft
-    {N, 12439, 179}, -- Priority Mail
-    {N, 12431, 179}, -- Post Haste
-    {N, 12430, 179, f.Alliance}, -- Duskwood Quests
-    {N, 12429, 179, f.Alliance}, -- Wetlands Quests
-    {N, 12416, 179}, -- The Total Package
-    {N, 12415, 179, f.Horde}, -- Heritage of Highmountain
-    {N, 12414, 179, f.Alliance}, -- Heritage of the Lightforged
-    {N, 12413, 179, f.Horde}, -- Heritage of the Nightborne
-    {N, 12412, 179, nil, nil, true}, -- Master of Seething Shore
-    {N, 12411, 179, nil, nil, true}, -- Blood and Sand
-    {N, 12410, 179, nil, nil, true}, -- Seething Shore Veteran
-    {N, 12409, 179, nil, nil, true}, -- Seething Shore Victory
-    {N, 12408, 179, nil, nil, true}, -- Seething Shore Domination
-    {N, 12407, 179, nil, nil, true}, -- Seething Shore Perfection
-    {N, 12406, 179, nil, nil, true}, -- A Good Start
-    {N, 12405, 179, nil, nil, true}, -- Death from Above
-    {N, 12404, 179, nil, nil, true}, -- Claim Jumper
-    {N, 12401, 179}, -- Glory of the Ulduar Raider
-    {N, 12400, 179}, -- Supermassive
-    {N, 12399, 179}, -- Observed
-    {N, 12398, 179}, -- In His House He Waits Dreaming
-    {N, 12397, 179}, -- They're Coming Out of the Walls
-    {N, 12396, 179}, -- He's Not Getting Any Older
-    {N, 12395, 179}, -- Drive Me Crazy
-    {N, 12388, 179}, -- Alone in the Darkness
-    {N, 12387, 179}, -- One Light in the Darkness
-    {N, 12386, 179}, -- Two Lights in the Darkness
-    {N, 12385, 179}, -- Three Lights in the Darkness
-    {N, 12384, 179}, -- Kiss and Make Up
-    {N, 12373, 179}, -- I Love the Smell of Saronite in the Morning
-    {N, 12372, 179}, -- Shadowdodger
-    {N, 12369, 179}, -- Firefighter
-    {N, 12368, 179}, -- Not-So-Friendly Fire
-    {N, 12367, 179}, -- Set Up Us the Bomb
-    {N, 12366, 179}, -- "Knock, Knock, Knock on Wood"
-    {N, 12365, 179}, -- "Knock, Knock on Wood"
-    {N, 12364, 179}, -- Knock on Wood
-    {N, 12363, 179}, -- Getting Back to Nature
-    {N, 12362, 179}, -- Deforestation
-    {N, 12361, 179}, -- Con-speed-atory
-    {N, 12360, 179}, -- Lumberjacked
-    {N, 12352, 179}, -- Lose Your Illusion
-    {N, 12351, 179}, -- Siffed
-    {N, 12350, 179}, -- Who Needs Bloodlust?
-    {N, 12349, 179}, -- I'll Take You All On
-    {N, 12348, 179}, -- Don't Stand in the Lightning
-    {N, 12347, 179}, -- I Could Say That This Cache Was Rare
-    {N, 12346, 179}, -- Staying Buffed All Winter
-    {N, 12345, 179}, -- Getting Cold in Here
-    {N, 12344, 179}, -- I Have the Coolest Friends
-    {N, 12343, 179}, -- Cheese the Freeze
-    {N, 12342, 179}, -- Nine Lives
-    {N, 12341, 179}, -- Crazy Cat Lady
-    {N, 12340, 179}, -- Rubble and Roll
-    {N, 12339, 179}, -- If Looks Could Kill
-    {N, 12338, 179}, -- Disarmed
-    {N, 12337, 179}, -- With Open Arms
-    {N, 12336, 179}, -- Can't Do That While Stunned
-    {N, 12335, 179}, -- But I'm On Your Side
-    {N, 12334, 179}, -- "I Choose You, Steelbreaker"
-    {N, 12333, 179}, -- "I Choose You, Stormcaller Brundir"
-    {N, 12332, 179}, -- "I Choose You, Runemaster Molgeim"
-    {N, 12330, 179}, -- Heartbreaker
-    {N, 12329, 179}, -- Must Deconstruct Faster
-    {N, 12328, 179}, -- Nerf Gravity Bombs
-    {N, 12327, 179}, -- Nerf Scrapbots
-    {N, 12326, 179}, -- Nerf Engineering
-    {N, 12325, 179}, -- Stokin' the Furnace
-    {N, 12324, 179}, -- Hot Pocket
-    {N, 12323, 179}, -- Shattered
-    {N, 12322, 179}, -- "Iron Dwarf, Medium Rare"
-    {N, 12321, 179}, -- A Quick Shave
-    {N, 12320, 179}, -- Orbit-uary
-    {N, 12319, 179}, -- Nuked from Orbit
-    {N, 12318, 179}, -- Orbital Devastation
-    {N, 12317, 179}, -- Orbital Bombardment
-    {N, 12316, 179}, -- Shutout
-    {N, 12315, 179}, -- Take Out Those Turrets
-    {N, 12314, 179}, -- Three Car Garage
-    {N, 12313, 179}, -- Unbroken
-    {N, 12312, 179}, -- Dwarfageddon
-    {N, 12311, 179}, -- The Secrets of Ulduar
-    {N, 12310, 179}, -- The Descent into Madness
-    {N, 12309, 179}, -- The Keepers of Ulduar
-    {N, 12302, 179}, -- The Antechamber of Ulduar
-    {N, 12297, 179}, -- The Siege of Ulduar
-    {N, 12292, 179}, -- Highmountain Tribe
-    {N, 12291, 179, f.Alliance}, -- Heritage of the Void
-    {N, 12290, 179, nil, nil, true}, -- Family Brawler
-    {N, 12289, 179, nil, nil, true}, -- Humanoid Brawler
-    {N, 12287, 179, nil, nil, true}, -- Dragonkin Brawler
-    {N, 12286, 179, nil, nil, true}, -- Flying Brawler
-    {N, 12285, 179, nil, nil, true}, -- Undead Brawler
-    {N, 12284, 179, nil, nil, true}, -- Critter Brawler
-    {N, 12283, 179, nil, nil, true}, -- Magic Brawler
-    {N, 12282, 179, nil, nil, true}, -- Elemental Brawler
-    {N, 12281, 179, nil, nil, true}, -- Beast Brawler
-    {N, 12280, 179, nil, nil, true}, -- Aquatic Brawler
-    {N, 12279, 179, nil, nil, true}, -- Mechanical Brawler
+    {N, 12439, 178}, -- Priority Mail
+    {N, 12431, 178}, -- Post Haste
+    {N, 12430, 178, f.Alliance}, -- Duskwood Quests
+    {N, 12429, 178, f.Alliance}, -- Wetlands Quests
+    {N, 12416, 178}, -- The Total Package
+    {N, 12415, 178, f.Horde}, -- Heritage of Highmountain
+    {N, 12414, 178, f.Alliance}, -- Heritage of the Lightforged
+    {N, 12413, 178, f.Horde}, -- Heritage of the Nightborne
+    {N, 12412, 178, nil, nil, true}, -- Master of Seething Shore
+    {N, 12411, 178, nil, nil, true}, -- Blood and Sand
+    {N, 12410, 178, nil, nil, true}, -- Seething Shore Veteran
+    {N, 12409, 178, nil, nil, true}, -- Seething Shore Victory
+    {N, 12408, 178, nil, nil, true}, -- Seething Shore Domination
+    {N, 12407, 178, nil, nil, true}, -- Seething Shore Perfection
+    {N, 12406, 178, nil, nil, true}, -- A Good Start
+    {N, 12405, 178, nil, nil, true}, -- Death from Above
+    {N, 12404, 178, nil, nil, true}, -- Claim Jumper
+    {N, 12401, 178}, -- Glory of the Ulduar Raider
+    {N, 12400, 178}, -- Supermassive
+    {N, 12399, 178}, -- Observed
+    {N, 12398, 178}, -- In His House He Waits Dreaming
+    {N, 12397, 178}, -- They're Coming Out of the Walls
+    {N, 12396, 178}, -- He's Not Getting Any Older
+    {N, 12395, 178}, -- Drive Me Crazy
+    {N, 12388, 178}, -- Alone in the Darkness
+    {N, 12387, 178}, -- One Light in the Darkness
+    {N, 12386, 178}, -- Two Lights in the Darkness
+    {N, 12385, 178}, -- Three Lights in the Darkness
+    {N, 12384, 178}, -- Kiss and Make Up
+    {N, 12373, 178}, -- I Love the Smell of Saronite in the Morning
+    {N, 12372, 178}, -- Shadowdodger
+    {N, 12369, 178}, -- Firefighter
+    {N, 12368, 178}, -- Not-So-Friendly Fire
+    {N, 12367, 178}, -- Set Up Us the Bomb
+    {N, 12366, 178}, -- "Knock, Knock, Knock on Wood"
+    {N, 12365, 178}, -- "Knock, Knock on Wood"
+    {N, 12364, 178}, -- Knock on Wood
+    {N, 12363, 178}, -- Getting Back to Nature
+    {N, 12362, 178}, -- Deforestation
+    {N, 12361, 178}, -- Con-speed-atory
+    {N, 12360, 178}, -- Lumberjacked
+    {N, 12352, 178}, -- Lose Your Illusion
+    {N, 12351, 178}, -- Siffed
+    {N, 12350, 178}, -- Who Needs Bloodlust?
+    {N, 12349, 178}, -- I'll Take You All On
+    {N, 12348, 178}, -- Don't Stand in the Lightning
+    {N, 12347, 178}, -- I Could Say That This Cache Was Rare
+    {N, 12346, 178}, -- Staying Buffed All Winter
+    {N, 12345, 178}, -- Getting Cold in Here
+    {N, 12344, 178}, -- I Have the Coolest Friends
+    {N, 12343, 178}, -- Cheese the Freeze
+    {N, 12342, 178}, -- Nine Lives
+    {N, 12341, 178}, -- Crazy Cat Lady
+    {N, 12340, 178}, -- Rubble and Roll
+    {N, 12339, 178}, -- If Looks Could Kill
+    {N, 12338, 178}, -- Disarmed
+    {N, 12337, 178}, -- With Open Arms
+    {N, 12336, 178}, -- Can't Do That While Stunned
+    {N, 12335, 178}, -- But I'm On Your Side
+    {N, 12334, 178}, -- "I Choose You, Steelbreaker"
+    {N, 12333, 178}, -- "I Choose You, Stormcaller Brundir"
+    {N, 12332, 178}, -- "I Choose You, Runemaster Molgeim"
+    {N, 12330, 178}, -- Heartbreaker
+    {N, 12329, 178}, -- Must Deconstruct Faster
+    {N, 12328, 178}, -- Nerf Gravity Bombs
+    {N, 12327, 178}, -- Nerf Scrapbots
+    {N, 12326, 178}, -- Nerf Engineering
+    {N, 12325, 178}, -- Stokin' the Furnace
+    {N, 12324, 178}, -- Hot Pocket
+    {N, 12323, 178}, -- Shattered
+    {N, 12322, 178}, -- "Iron Dwarf, Medium Rare"
+    {N, 12321, 178}, -- A Quick Shave
+    {N, 12320, 178}, -- Orbit-uary
+    {N, 12319, 178}, -- Nuked from Orbit
+    {N, 12318, 178}, -- Orbital Devastation
+    {N, 12317, 178}, -- Orbital Bombardment
+    {N, 12316, 178}, -- Shutout
+    {N, 12315, 178}, -- Take Out Those Turrets
+    {N, 12314, 178}, -- Three Car Garage
+    {N, 12313, 178}, -- Unbroken
+    {N, 12312, 178}, -- Dwarfageddon
+    {N, 12311, 178}, -- The Secrets of Ulduar
+    {N, 12310, 178}, -- The Descent into Madness
+    {N, 12309, 178}, -- The Keepers of Ulduar
+    {N, 12302, 178}, -- The Antechamber of Ulduar
+    {N, 12297, 178}, -- The Siege of Ulduar
+    {N, 12292, 178}, -- Highmountain Tribe
+    {N, 12291, 178, f.Alliance}, -- Heritage of the Void
+    {N, 12290, 178, nil, nil, true}, -- Family Brawler
+    {N, 12289, 178, nil, nil, true}, -- Humanoid Brawler
+    {N, 12287, 178, nil, nil, true}, -- Dragonkin Brawler
+    {N, 12286, 178, nil, nil, true}, -- Flying Brawler
+    {N, 12285, 178, nil, nil, true}, -- Undead Brawler
+    {N, 12284, 178, nil, nil, true}, -- Critter Brawler
+    {N, 12283, 178, nil, nil, true}, -- Magic Brawler
+    {N, 12282, 178, nil, nil, true}, -- Elemental Brawler
+    {N, 12281, 178, nil, nil, true}, -- Beast Brawler
+    {N, 12280, 178, nil, nil, true}, -- Aquatic Brawler
+    {N, 12279, 178, nil, nil, true}, -- Mechanical Brawler
     {N, 12273, 179}, -- It's Lit!
     {N, 12272, 179}, -- Gold Fever
     {N, 12270, 179}, -- Bringing Hexy Back
-    {N, 12257, 179}, -- Stardust Crusaders
-    {N, 12245, 179, f.Horde}, -- Allied Races: Highmountain Tauren
-    {N, 12244, 179, f.Horde}, -- Allied Races: Nightborne
-    {N, 12243, 179, f.Alliance}, -- Allied Races: Lightforged Draenei
-    {N, 12242, 179, f.Alliance}, -- Allied Races: Void Elf
+    {N, 12257, 177}, -- Stardust Crusaders
+    {N, 12245, 178, f.Horde}, -- Allied Races: Highmountain Tauren
+    {N, 12244, 178, f.Horde}, -- Allied Races: Nightborne
+    {N, 12243, 178, f.Alliance}, -- Allied Races: Lightforged Draenei
+    {N, 12242, 178, f.Alliance}, -- Allied Races: Void Elf
     {N, 12232, 179}, -- Collector's Edition: Tottle
     {N, 12230, 179, f.Horde, 12229}, -- Collector's Edition: Gilded Ravasaur
     {N, 12229, 179, f.Alliance, 12230}, -- Collector's Edition: Seabraid Stallion
     {O, 12200, "From", "PvP Season", 25, "Until", "PvP Season", 25},
-    {N, 12200, 179, f.Alliance, 12199, true}, -- Demonic Combatant
+    {N, 12200, 178, f.Alliance, 12199, true}, -- Demonic Combatant
     {O, 12199, "From", "PvP Season", 25, "Until", "PvP Season", 25},
-    {N, 12199, 179, f.Horde, 12200, true}, -- Demonic Combatant
+    {N, 12199, 178, f.Horde, 12200, true}, -- Demonic Combatant
     {O, 12198, "From", "PvP Season", 25, "Until", "PvP Season", 25},
-    {N, 12198, 179, nil, nil, true}, -- Demonic Elite
+    {N, 12198, 178, nil, nil, true}, -- Demonic Elite
     {O, 12197, "From", "PvP Season", 25, "Until", "PvP Season", 25},
-    {N, 12197, 179, f.Alliance, 12196, true}, -- Hero of the Alliance: Demonic
+    {N, 12197, 178, f.Alliance, 12196, true}, -- Hero of the Alliance: Demonic
     {O, 12196, "From", "PvP Season", 25, "Until", "PvP Season", 25},
-    {N, 12196, 179, f.Horde, 12197, true}, -- Hero of the Horde: Demonic
+    {N, 12196, 178, f.Horde, 12197, true}, -- Hero of the Horde: Demonic
     {O, 12195, "From", "PvP Season", 25, "Until", "PvP Season", 25},
-    {N, 12195, 179, f.Alliance, 12194, true}, -- Defender of the Alliance: Legion Season 7
+    {N, 12195, 178, f.Alliance, 12194, true}, -- Defender of the Alliance: Legion Season 7
     {O, 12194, "From", "PvP Season", 25, "Until", "PvP Season", 25},
-    {N, 12194, 179, f.Horde, 12195, true}, -- Defender of the Horde: Legion Season 7
+    {N, 12194, 178, f.Horde, 12195, true}, -- Defender of the Horde: Legion Season 7
     {O, 12192, "From", "PvP Season", 25, "Until", "PvP Season", 25},
-    {N, 12192, 179, f.Horde, 12191, true}, -- Guardian of the Horde: Legion Season 7
+    {N, 12192, 178, f.Horde, 12191, true}, -- Guardian of the Horde: Legion Season 7
     {O, 12191, "From", "PvP Season", 25, "Until", "PvP Season", 25},
-    {N, 12191, 179, f.Alliance, 12192, true}, -- Guardian of the Alliance: Legion Season 7
+    {N, 12191, 178, f.Alliance, 12192, true}, -- Guardian of the Alliance: Legion Season 7
     {O, 12190, "From", "PvP Season", 25, "Until", "PvP Season", 25},
-    {N, 12190, 179, f.Horde, 12189, true}, -- Soldier of the Horde: Legion Season 7
+    {N, 12190, 178, f.Horde, 12189, true}, -- Soldier of the Horde: Legion Season 7
     {O, 12189, "From", "PvP Season", 25, "Until", "PvP Season", 25},
-    {N, 12189, 179, f.Alliance, 12190, true}, -- Soldier of the Alliance: Legion Season 7
+    {N, 12189, 178, f.Alliance, 12190, true}, -- Soldier of the Alliance: Legion Season 7
     {O, 12188, "From", "PvP Season", 25, "Until", "PvP Season", 25},
-    {N, 12188, 179, nil, nil, true}, -- Rival: Legion Season 7
+    {N, 12188, 178, nil, nil, true}, -- Rival: Legion Season 7
     {O, 12187, "From", "PvP Season", 25, "Until", "PvP Season", 25},
-    {N, 12187, 179, nil, nil, true}, -- Challenger: Legion Season 7
+    {N, 12187, 178, nil, nil, true}, -- Challenger: Legion Season 7
     {O, 12186, "From", "PvP Season", 25, "Until", "PvP Season", 25},
-    {N, 12186, 179, nil, nil, true}, -- Duelist: Legion Season 7
+    {N, 12186, 178, nil, nil, true}, -- Duelist: Legion Season 7
     {O, 12185, "From", "PvP Season", 25, "Until", "PvP Season", 25},
-    {N, 12185, 179, nil, nil, true}, -- Demonic Gladiator: Legion Season 7
+    {N, 12185, 178, nil, nil, true}, -- Demonic Gladiator: Legion Season 7
     {O, 12183, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 12183, 179, nil, nil, true}, -- Prestige Quartermaster
+    {N, 12183, 177, nil, nil, true}, -- Prestige Quartermaster
     {O, 12182, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 12182, 179, nil, nil, true}, -- Demonic Double Dozen
+    {N, 12182, 177, nil, nil, true}, -- Demonic Double Dozen
     {O, 12181, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 12181, 179, nil, nil, true}, -- Protocol 2.3
+    {N, 12181, 177, nil, nil, true}, -- Protocol 2.3
     {O, 12180, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 12180, 179, nil, nil, true}, -- Catching Twenty-Two
+    {N, 12180, 177, nil, nil, true}, -- Catching Twenty-Two
     {O, 12179, "From", "PvP Season", 24, "Until", "PvP Season", 24},
-    {N, 12179, 179, f.Alliance, 12178, true}, -- Soldier of the Alliance: Legion Season 6
+    {N, 12179, 177, f.Alliance, 12178, true}, -- Soldier of the Alliance: Legion Season 6
     {O, 12178, "From", "PvP Season", 24, "Until", "PvP Season", 24},
-    {N, 12178, 179, f.Horde, 12179, true}, -- Soldier of the Horde: Legion Season 6
+    {N, 12178, 177, f.Horde, 12179, true}, -- Soldier of the Horde: Legion Season 6
     {O, 12177, "From", "PvP Season", 24, "Until", "PvP Season", 24},
-    {N, 12177, 179, f.Alliance, 12176, true}, -- Guardian of the Alliance: Legion Season 6
+    {N, 12177, 177, f.Alliance, 12176, true}, -- Guardian of the Alliance: Legion Season 6
     {O, 12176, "From", "PvP Season", 24, "Until", "PvP Season", 24},
-    {N, 12176, 179, f.Horde, 12177, true}, -- Guardian of the Horde: Legion Season 6
+    {N, 12176, 177, f.Horde, 12177, true}, -- Guardian of the Horde: Legion Season 6
     {O, 12175, "From", "PvP Season", 24, "Until", "PvP Season", 24},
-    {N, 12175, 179, f.Alliance, 12174, true}, -- Defender of the Alliance: Legion Season 6
+    {N, 12175, 177, f.Alliance, 12174, true}, -- Defender of the Alliance: Legion Season 6
     {O, 12174, "From", "PvP Season", 24, "Until", "PvP Season", 24},
-    {N, 12174, 179, f.Horde, 12175, true}, -- Defender of the Horde: Legion Season 6
+    {N, 12174, 177, f.Horde, 12175, true}, -- Defender of the Horde: Legion Season 6
     {O, 12173, "From", "PvP Season", 24, "Until", "PvP Season", 24},
-    {N, 12173, 179, f.Alliance, 12172, true}, -- Hero of the Alliance: Dominant
+    {N, 12173, 177, f.Alliance, 12172, true}, -- Hero of the Alliance: Dominant
     {O, 12172, "From", "PvP Season", 24, "Until", "PvP Season", 24},
-    {N, 12172, 179, f.Horde, 12173, true}, -- Hero of the Horde: Dominant
+    {N, 12172, 177, f.Horde, 12173, true}, -- Hero of the Horde: Dominant
     {O, 12171, "From", "PvP Season", 24, "Until", "PvP Season", 24},
-    {N, 12171, 179, nil, nil, true}, -- Duelist: Legion Season 6
+    {N, 12171, 177, nil, nil, true}, -- Duelist: Legion Season 6
     {O, 12170, "From", "PvP Season", 24, "Until", "PvP Season", 24},
-    {N, 12170, 179, nil, nil, true}, -- Rival: Legion Season 6
+    {N, 12170, 177, nil, nil, true}, -- Rival: Legion Season 6
     {O, 12169, "From", "PvP Season", 24, "Until", "PvP Season", 24},
-    {N, 12169, 179, nil, nil, true}, -- Challenger: Legion Season 6
+    {N, 12169, 177, nil, nil, true}, -- Challenger: Legion Season 6
     {O, 12168, "From", "PvP Season", 25, "Until", "PvP Season", 25},
-    {N, 12168, 179, nil, nil, true}, -- Gladiator: Legion Season 7
+    {N, 12168, 177, nil, nil, true}, -- Gladiator: Legion Season 7
     {O, 12167, "From", "PvP Season", 24, "Until", "PvP Season", 24},
-    {N, 12167, 179, nil, nil, true}, -- Gladiator: Legion Season 6
+    {N, 12167, 177, nil, nil, true}, -- Gladiator: Legion Season 6
     {O, 12140, "From", "PvP Season", 25, "Until", "PvP Season", 25},
-    {N, 12140, 179, nil, nil, true}, -- Demonic Gladiator's Storm Dragon
+    {N, 12140, 177, nil, nil, true}, -- Demonic Gladiator's Storm Dragon
     {O, 12139, "From", "PvP Season", 24, "Until", "PvP Season", 24},
-    {N, 12139, 179, nil, nil, true}, -- Dominant Gladiator's Storm Dragon
+    {N, 12139, 177, nil, nil, true}, -- Dominant Gladiator's Storm Dragon
     {O, 12137, "From", "PvP Season", 24, "Until", "PvP Season", 24},
-    {N, 12137, 179, f.Alliance, 12136, true}, -- Dominant Combatant
+    {N, 12137, 177, f.Alliance, 12136, true}, -- Dominant Combatant
     {O, 12136, "From", "PvP Season", 24, "Until", "PvP Season", 24},
-    {N, 12136, 179, f.Horde, 12137, true}, -- Dominant Combatant
+    {N, 12136, 177, f.Horde, 12137, true}, -- Dominant Combatant
     {O, 12135, "From", "PvP Season", 24, "Until", "PvP Season", 24},
-    {N, 12135, 179, nil, nil, true}, -- Dominant Elite
+    {N, 12135, 177, nil, nil, true}, -- Dominant Elite
     {O, 12134, "From", "PvP Season", 24, "Until", "PvP Season", 24},
-    {N, 12134, 179, nil, nil, true}, -- Dominant Gladiator: Legion Season 6
-    {N, 12129, 179}, -- This is the War Room!
+    {N, 12134, 177, nil, nil, true}, -- Dominant Gladiator: Legion Season 6
+    {N, 12129, 176}, -- This is the War Room!
     {O, 12111, "From", "Version", "070300", "Before", "Version", "080001"},
-    {N, 12111, 179}, -- Cutting Edge: Argus the Unmaker
+    {N, 12111, 176}, -- Cutting Edge: Argus the Unmaker
     {O, 12110, "From", "Version", "070300", "Before", "Version", "080001"},
-    {N, 12110, 179}, -- Ahead of the Curve: Argus the Unmaker
+    {N, 12110, 176}, -- Ahead of the Curve: Argus the Unmaker
     {O, 12109, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 12109, 179, nil, nil, true}, -- Twenty-One Arms Salute
+    {N, 12109, 176, nil, nil, true}, -- Twenty-One Arms Salute
     {O, 12108, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 12108, 179, nil, nil, true}, -- Double Decade of Dominance
-    {N, 12104, 179}, -- And We're All Out of Mana Buns
-    {N, 12103, 179}, -- ...And Chew Mana Buns
-    {N, 12102, 179}, -- To Kill Demons...
-    {N, 12101, 179}, -- We Came Here For Two Reasons
-    {N, 12100, 179}, -- Family Fighter
-    {N, 12099, 179}, -- Unstoppable Undead
-    {N, 12098, 179}, -- Mechanical Melee
-    {N, 12097, 179}, -- Magical Mayhem
-    {N, 12096, 179}, -- Humanoid Havoc
-    {N, 12095, 179}, -- Fierce Fliers
-    {N, 12094, 179}, -- Elemental Escalation
-    {N, 12093, 179}, -- Draconic Destruction
-    {N, 12092, 179}, -- Critical Critters
-    {N, 12091, 179}, -- Beast Blitz
+    {N, 12108, 176, nil, nil, true}, -- Double Decade of Dominance
+    {N, 12104, 176}, -- And We're All Out of Mana Buns
+    {N, 12103, 176}, -- ...And Chew Mana Buns
+    {N, 12102, 176}, -- To Kill Demons...
+    {N, 12101, 176}, -- We Came Here For Two Reasons
+    {N, 12100, 176}, -- Family Fighter
+    {N, 12099, 176}, -- Unstoppable Undead
+    {N, 12098, 176}, -- Mechanical Melee
+    {N, 12097, 176}, -- Magical Mayhem
+    {N, 12096, 176}, -- Humanoid Havoc
+    {N, 12095, 176}, -- Fierce Fliers
+    {N, 12094, 176}, -- Elemental Escalation
+    {N, 12093, 176}, -- Draconic Destruction
+    {N, 12092, 176}, -- Critical Critters
+    {N, 12091, 176}, -- Beast Blitz
     {O, 12090, "From", "PvP Season", 23, "Until", "PvP Season", 23},
-    {N, 12090, 179, nil, nil, true}, -- Fierce Elite
-    {N, 12089, 179}, -- Aquatic Assault
-    {N, 12088, 179}, -- Anomalous Animals of Argus
+    {N, 12090, 176, nil, nil, true}, -- Fierce Elite
+    {N, 12089, 176}, -- Aquatic Assault
+    {N, 12088, 176}, -- Anomalous Animals of Argus
     {N, 12087, 179, f.Alliance}, -- The Reining Champion
-    {N, 12084, 179}, -- Infused and Abused
-    {N, 12083, 179}, -- Paragon of Argus
-    {N, 12081, 179}, -- Officer of the Light
-    {N, 12079, 179}, -- Raiding with Leashes V: Cuteaclysm
-    {N, 12078, 179}, -- Commander of Argus
-    {N, 12077, 179}, -- Adventurer of Argus
-    {N, 12076, 179}, -- Protector of the Argussian Reach
-    {N, 12074, 179}, -- "Shoot First, Loot Later"
-    {N, 12073, 179}, -- Locked and Loaded
+    {N, 12084, 176}, -- Infused and Abused
+    {N, 12083, 176}, -- Paragon of Argus
+    {N, 12081, 176}, -- Officer of the Light
+    {N, 12079, 176}, -- Raiding with Leashes V: Cuteaclysm
+    {N, 12078, 176}, -- Commander of Argus
+    {N, 12077, 176}, -- Adventurer of Argus
+    {N, 12076, 176}, -- Protector of the Argussian Reach
+    {N, 12074, 176}, -- "Shoot First, Loot Later"
+    {N, 12073, 176}, -- Locked and Loaded
     {O, 12072, "From", "Version", "070003", "Before", "Version", "080001"},
-    {N, 12072, 179}, -- Now You're Cooking with Netherlight
+    {N, 12072, 176}, -- Now You're Cooking with Netherlight
     {O, 12071, "From", "Version", "070003", "Before", "Version", "080001"},
-    {N, 12071, 179}, -- Crucible's Promise
-    {N, 12069, 179}, -- Explore Argus
-    {N, 12067, 179}, -- Spheres of Influence
-    {N, 12066, 179}, -- You Are Now Prepared!
-    {N, 12065, 179}, -- Hounds Good To Me
-    {N, 12046, 179}, -- Remember the Titans
+    {N, 12071, 176}, -- Crucible's Promise
+    {N, 12069, 176}, -- Explore Argus
+    {N, 12067, 176}, -- Spheres of Influence
+    {N, 12066, 176}, -- You Are Now Prepared!
+    {N, 12065, 176}, -- Hounds Good To Me
+    {N, 12046, 176}, -- Remember the Titans
     {O, 12045, "From", "PvP Season", 23, "Until", "PvP Season", 23},
-    {N, 12045, 179, nil, nil, true}, -- Gladiator: Legion Season 5
+    {N, 12045, 176, nil, nil, true}, -- Gladiator: Legion Season 5
     {O, 12044, "From", "PvP Season", 23, "Until", "PvP Season", 23},
-    {N, 12044, 179, f.Horde, 12040, true}, -- Soldier of the Horde: Legion Season 5
+    {N, 12044, 176, f.Horde, 12040, true}, -- Soldier of the Horde: Legion Season 5
     {O, 12043, "From", "PvP Season", 23, "Until", "PvP Season", 23},
-    {N, 12043, 179, f.Horde, 12039, true}, -- Defender of the Horde: Legion Season 5
+    {N, 12043, 176, f.Horde, 12039, true}, -- Defender of the Horde: Legion Season 5
     {O, 12042, "From", "PvP Season", 23, "Until", "PvP Season", 23},
-    {N, 12042, 179, f.Horde, 12038, true}, -- Guardian of the Horde: Legion Season 5
+    {N, 12042, 176, f.Horde, 12038, true}, -- Guardian of the Horde: Legion Season 5
     {O, 12041, "From", "PvP Season", 23, "Until", "PvP Season", 23},
-    {N, 12041, 179, f.Horde, 12037, true}, -- Hero of the Horde: Fierce
+    {N, 12041, 176, f.Horde, 12037, true}, -- Hero of the Horde: Fierce
     {O, 12040, "From", "PvP Season", 23, "Until", "PvP Season", 23},
-    {N, 12040, 179, f.Alliance, 12044, true}, -- Soldier of the Alliance: Legion Season 5
+    {N, 12040, 176, f.Alliance, 12044, true}, -- Soldier of the Alliance: Legion Season 5
     {O, 12039, "From", "PvP Season", 23, "Until", "PvP Season", 23},
-    {N, 12039, 179, f.Alliance, 12043, true}, -- Defender of the Alliance: Legion Season 5
+    {N, 12039, 176, f.Alliance, 12043, true}, -- Defender of the Alliance: Legion Season 5
     {O, 12038, "From", "PvP Season", 23, "Until", "PvP Season", 23},
-    {N, 12038, 179, f.Alliance, 12042, true}, -- Guardian of the Alliance: Legion Season 5
+    {N, 12038, 176, f.Alliance, 12042, true}, -- Guardian of the Alliance: Legion Season 5
     {O, 12037, "From", "PvP Season", 23, "Until", "PvP Season", 23},
-    {N, 12037, 179, f.Alliance, 12041, true}, -- Hero of the Alliance: Fierce
+    {N, 12037, 176, f.Alliance, 12041, true}, -- Hero of the Alliance: Fierce
     {O, 12036, "From", "PvP Season", 23, "Until", "PvP Season", 23},
-    {N, 12036, 179, nil, nil, true}, -- Challenger: Legion Season 5
+    {N, 12036, 176, nil, nil, true}, -- Challenger: Legion Season 5
     {O, 12035, "From", "PvP Season", 23, "Until", "PvP Season", 23},
-    {N, 12035, 179, nil, nil, true}, -- Rival: Legion Season 5
+    {N, 12035, 176, nil, nil, true}, -- Rival: Legion Season 5
     {O, 12034, "From", "PvP Season", 23, "Until", "PvP Season", 23},
-    {N, 12034, 179, nil, nil, true}, -- Duelist: Legion Season 5
+    {N, 12034, 176, nil, nil, true}, -- Duelist: Legion Season 5
     {O, 12032, "From", "PvP Season", 23, "Until", "PvP Season", 23},
-    {N, 12032, 179, f.Alliance, 12031, true}, -- Fierce Combatant
+    {N, 12032, 176, f.Alliance, 12031, true}, -- Fierce Combatant
     {O, 12031, "From", "PvP Season", 23, "Until", "PvP Season", 23},
-    {N, 12031, 179, f.Horde, 12032, true}, -- Fierce Combatant
-    {N, 12030, 179}, -- The World Revolves Around Me
-    {N, 12028, 179}, -- Envision Invasion Eradication
-    {N, 12026, 179}, -- Invasion Obliteration
+    {N, 12031, 176, f.Horde, 12032, true}, -- Fierce Combatant
+    {N, 12030, 176}, -- The World Revolves Around Me
+    {N, 12028, 176}, -- Envision Invasion Eradication
+    {N, 12026, 176}, -- Invasion Obliteration
     {T, 12021, 1359}, -- Fierce Gladiator's Felskin Armor (Elite)
     {T, 12021, 1403}, -- Fierce Gladiator's Felskin Armor (Gladiator)
     {T, 12021, 1355}, -- Fierce Combatant's Felskin Armor (Combatant I)
@@ -3187,7 +3187,7 @@ tasks = {
     {T, 12021, 1399}, -- Fierce Gladiator's Plate Armor (Elite)
     {T, 12021, 1422}, -- Fierce Gladiator's Plate Armor (Gladiator)
     {T, 12021, 1378}, -- Fierce Combatant's Plate Armor (Combatant I)
-    {N, 12021, 179}, -- Claws Out
+    {N, 12021, 176}, -- Claws Out
     {T, 12020, 1478}, -- Felreaper Vestments (Mythic)
     {T, 12020, 1477}, -- Felreaper Vestments (Heroic)
     {T, 12020, 1476}, -- Felreaper Vestments (Normal)
@@ -3236,79 +3236,79 @@ tasks = {
     {T, 12020, 1517}, -- Juggernaut Battlegear (Heroic)
     {T, 12020, 1516}, -- Juggernaut Battlegear (Normal)
     {T, 12020, 1519}, -- Juggernaut Battlegear (Raid Finder)
-    {N, 12020, 179}, -- Argussy Up
+    {N, 12020, 176}, -- Argussy Up
     {O, 12010, "From", "PvP Season", 23, "Until", "PvP Season", 23},
-    {N, 12010, 179, nil, nil, true}, -- Fierce Gladiator: Legion Season 5
-    {N, 12009, 179}, -- Darker Side
-    {N, 12008, 179}, -- Mythic: Seat of the Triumvirate
-    {N, 12007, 179}, -- Heroic: Seat of the Triumvirate
-    {N, 12005, 179}, -- Let it All Out
-    {N, 12004, 179}, -- Welcome the Void
-    {N, 12002, 179}, -- Mythic: Argus the Unmaker
-    {N, 12001, 179}, -- Mythic: Aggramar
-    {N, 12000, 179}, -- Mythic: The Coven of Shivarra
-    {N, 11999, 179}, -- Mythic: Varimathras
-    {N, 11998, 179}, -- Mythic: Kin'garoth
-    {N, 11997, 179}, -- Mythic: Imonar the Soulhunter
-    {N, 11996, 179}, -- Mythic: Eonar
-    {N, 11995, 179}, -- Mythic: Portal Keeper Hasabel
-    {N, 11994, 179}, -- Mythic: Antoran High Command
-    {N, 11993, 179}, -- Mythic: Hounds of Sargeras
-    {N, 11992, 179}, -- Mythic: Garothi Worldbreaker
-    {N, 11991, 179}, -- Seat of the Pantheon
-    {N, 11990, 179}, -- Hope's End
-    {N, 11989, 179}, -- Forbidden Descent
-    {N, 11988, 179}, -- Light's Breach
-    {N, 11987, 179}, -- Glory of the Argus Raider
-    {N, 11949, 179}, -- Hard to Kill
-    {N, 11948, 179}, -- Together We Stand
-    {N, 11941, 179}, -- Chromie Homie
-    {N, 11931, 179}, -- Rides of War
-    {N, 11930, 179}, -- Worm-monger
-    {N, 11929, 179}, -- Heroic: Return to Karazhan
-    {N, 11928, 179}, -- Portal Combat
-    {N, 11921, 179}, -- Mosh Pit
-    {N, 11920, 179}, -- Perfect Performance
-    {N, 11919, 179}, -- Taking this Show on the Road
-    {N, 11918, 179}, -- "Hey, You're a Rockstar!"
-    {N, 11915, 179}, -- Don't Sweat the Technique
-    {N, 11913, 179}, -- Don't Play With That In The House
+    {N, 12010, 176, nil, nil, true}, -- Fierce Gladiator: Legion Season 5
+    {N, 12009, 176}, -- Darker Side
+    {N, 12008, 176}, -- Mythic: Seat of the Triumvirate
+    {N, 12007, 176}, -- Heroic: Seat of the Triumvirate
+    {N, 12005, 176}, -- Let it All Out
+    {N, 12004, 176}, -- Welcome the Void
+    {N, 12002, 176}, -- Mythic: Argus the Unmaker
+    {N, 12001, 176}, -- Mythic: Aggramar
+    {N, 12000, 176}, -- Mythic: The Coven of Shivarra
+    {N, 11999, 176}, -- Mythic: Varimathras
+    {N, 11998, 176}, -- Mythic: Kin'garoth
+    {N, 11997, 176}, -- Mythic: Imonar the Soulhunter
+    {N, 11996, 176}, -- Mythic: Eonar
+    {N, 11995, 176}, -- Mythic: Portal Keeper Hasabel
+    {N, 11994, 176}, -- Mythic: Antoran High Command
+    {N, 11993, 176}, -- Mythic: Hounds of Sargeras
+    {N, 11992, 176}, -- Mythic: Garothi Worldbreaker
+    {N, 11991, 176}, -- Seat of the Pantheon
+    {N, 11990, 176}, -- Hope's End
+    {N, 11989, 176}, -- Forbidden Descent
+    {N, 11988, 176}, -- Light's Breach
+    {N, 11987, 176}, -- Glory of the Argus Raider
+    {N, 11949, 176}, -- Hard to Kill
+    {N, 11948, 176}, -- Together We Stand
+    {N, 11941, 175}, -- Chromie Homie
+    {N, 11931, 177}, -- Rides of War
+    {N, 11930, 176}, -- Worm-monger
+    {N, 11929, 175}, -- Heroic: Return to Karazhan
+    {N, 11928, 176}, -- Portal Combat
+    {N, 11921, 175}, -- Mosh Pit
+    {N, 11920, 175}, -- Perfect Performance
+    {N, 11919, 175}, -- Taking this Show on the Road
+    {N, 11918, 175}, -- "Hey, You're a Rockstar!"
+    {N, 11915, 176}, -- Don't Sweat the Technique
+    {N, 11913, 176}, -- Don't Play With That In The House
     {O, 11875, "From", "Version", "070205", "Before", "Version", "070300"},
-    {N, 11875, 179}, -- Cutting Edge: Kil'jaeden
+    {N, 11875, 175}, -- Cutting Edge: Kil'jaeden
     {O, 11874, "From", "Version", "070205", "Before", "Version", "070300"},
-    {N, 11874, 179}, -- Ahead of the Curve: Kil'jaeden
-    {N, 11869, 179}, -- I'll Hold These For You Until You Get Out
+    {N, 11874, 175}, -- Ahead of the Curve: Kil'jaeden
+    {N, 11869, 175}, -- I'll Hold These For You Until You Get Out
     {N, 11868, 179, f.Horde, 12497}, -- The Dark Heart of Nazmir
     {N, 11861, 179, f.Horde, 12473}, -- The Throne of Zuldazar
-    {N, 11856, 179}, -- Pet Battle Challenge: Deadmines
+    {N, 11856, 175}, -- Pet Battle Challenge: Deadmines
     {O, 11848 },
-    {N, 11848, 179}, -- WoW's 13th Anniversary
-    {N, 11846, 179}, -- Champions of Legionfall
-    {N, 11841, 179}, -- Naxt Victim
-    {N, 11802, 179}, -- Bringing Home the Beacon
-    {N, 11796, 179}, -- Armies of Legionfall
-    {N, 11790, 179}, -- Deceiver's Fall
-    {N, 11789, 179}, -- Chamber of the Avatar
-    {N, 11788, 179}, -- Wailing Halls
-    {N, 11787, 179}, -- The Gates of Hell
-    {N, 11786, 179}, -- Terrors of the Shore
-    {N, 11781, 179}, -- Mythic: Kil'jaeden
-    {N, 11780, 179}, -- Mythic: Fallen Avatar
-    {N, 11779, 179}, -- Mythic: Maiden of Vigilance
-    {N, 11778, 179}, -- Mythic: The Desolate Host
-    {N, 11777, 179}, -- Mythic: Sisters of the Moon
-    {N, 11776, 179}, -- Mythic: Mistress Sassz'ine
-    {N, 11775, 179}, -- Mythic: Harjatan
-    {N, 11774, 179}, -- Mythic: Demonic Inquisition
-    {N, 11773, 179}, -- "Wax On, Wax Off"
+    {N, 11848, 175}, -- WoW's 13th Anniversary
+    {N, 11846, 174}, -- Champions of Legionfall
+    {N, 11841, 174}, -- Naxt Victim
+    {N, 11802, 174}, -- Bringing Home the Beacon
+    {N, 11796, 174}, -- Armies of Legionfall
+    {N, 11790, 174}, -- Deceiver's Fall
+    {N, 11789, 174}, -- Chamber of the Avatar
+    {N, 11788, 174}, -- Wailing Halls
+    {N, 11787, 174}, -- The Gates of Hell
+    {N, 11786, 174}, -- Terrors of the Shore
+    {N, 11781, 174}, -- Mythic: Kil'jaeden
+    {N, 11780, 174}, -- Mythic: Fallen Avatar
+    {N, 11779, 174}, -- Mythic: Maiden of Vigilance
+    {N, 11778, 174}, -- Mythic: The Desolate Host
+    {N, 11777, 174}, -- Mythic: Sisters of the Moon
+    {N, 11776, 174}, -- Mythic: Mistress Sassz'ine
+    {N, 11775, 174}, -- Mythic: Harjatan
+    {N, 11774, 174}, -- Mythic: Demonic Inquisition
+    {N, 11773, 174}, -- "Wax On, Wax Off"
     {O, 11772, "From", "Version", "070003", "Before", "Version", "080001"},
-    {N, 11772, 179}, -- Power Ascended
-    {N, 11770, 179}, -- Dark Souls
-    {N, 11769, 179}, -- A Steamy Romance Saga
-    {N, 11768, 179}, -- Boom Bloom
-    {N, 11767, 179}, -- Mythic: Goroth
-    {N, 11765, 179}, -- Pet Battle Challenge: Wailing Caverns
-    {N, 11763, 179}, -- Glory of the Tomb Raider
+    {N, 11772, 174}, -- Power Ascended
+    {N, 11770, 174}, -- Dark Souls
+    {N, 11769, 174}, -- A Steamy Romance Saga
+    {N, 11768, 174}, -- Boom Bloom
+    {N, 11767, 174}, -- Mythic: Goroth
+    {N, 11765, 174}, -- Pet Battle Challenge: Wailing Caverns
+    {N, 11763, 174}, -- Glory of the Tomb Raider
     {T, 11762, 177}, -- Garb of the Chosen Dead (Mythic)
     {T, 11762, 176}, -- Garb of the Chosen Dead (Heroic)
     {T, 11762, 175}, -- Garb of the Chosen Dead (Normal)
@@ -3325,8 +3325,8 @@ tasks = {
     {T, 11762, 184}, -- Funerary Plate of the Chosen Dead (Heroic)
     {T, 11762, 183}, -- Funerary Plate of the Chosen Dead (Normal)
     {T, 11762, 186}, -- Funerary Plate of the Chosen Dead (Raid Finder)
-    {N, 11762, 179}, -- Can I Get A Helya
-    {N, 11761, 179}, -- Azeroth's Next Top Model
+    {N, 11762, 174}, -- Can I Get A Helya
+    {N, 11761, 174}, -- Azeroth's Next Top Model
     {T, 11760, 2295}, -- Demonbane Armor (Timewarped)
     {T, 11760, 1334}, -- Demonbane Armor (Mythic)
     {T, 11760, 1336}, -- Demonbane Armor (Heroic)
@@ -3387,7 +3387,7 @@ tasks = {
     {T, 11760, 1294}, -- Titanic Onslaught Armor (Heroic)
     {T, 11760, 1293}, -- Titanic Onslaught Armor (Normal)
     {T, 11760, 1296}, -- Titanic Onslaught Armor (Raid Finder)
-    {N, 11760, 179}, -- Retro Trend
+    {N, 11760, 174}, -- Retro Trend
     {T, 11759, 558}, -- Vestments of the Shattered Vale (Mythic)
     {T, 11759, 557}, -- Vestments of the Shattered Vale (Normal)
     {T, 11759, 559}, -- Vestments of the Shattered Vale (Raid Finder)
@@ -3421,7 +3421,7 @@ tasks = {
     {T, 11759, 439}, -- Battleplate of the Prehistoric Marauder (Mythic)
     {T, 11759, 438}, -- Battleplate of the Prehistoric Marauder (Normal)
     {T, 11759, 440}, -- Battleplate of the Prehistoric Marauder (Raid Finder)
-    {N, 11759, 179}, -- Yaass'shaarj
+    {N, 11759, 174}, -- Yaass'shaarj
     {T, 11758, 561}, -- Vestments of the Haunted Forest (Heroic)
     {T, 11758, 560}, -- Vestments of the Haunted Forest (Normal)
     {T, 11758, 562}, -- Vestments of the Haunted Forest (Raid Finder)
@@ -3455,7 +3455,7 @@ tasks = {
     {T, 11758, 443}, -- Battleplate of the Last Mogu (Heroic)
     {T, 11758, 441}, -- Battleplate of the Last Mogu (Normal)
     {T, 11758, 442}, -- Battleplate of the Last Mogu (Raid Finder)
-    {N, 11758, 179}, -- Thunderwear
+    {N, 11758, 174}, -- Thunderwear
     {T, 11757, 564}, -- Vestments of the Eternal Blossom (Heroic)
     {T, 11757, 563}, -- Vestments of the Eternal Blossom (Normal)
     {T, 11757, 565}, -- Vestments of the Eternal Blossom (Raid Finder)
@@ -3489,7 +3489,7 @@ tasks = {
     {T, 11757, 445}, -- Battleplate of Resounding Rings (Heroic)
     {T, 11757, 444}, -- Battleplate of Resounding Rings (Normal)
     {T, 11757, 446}, -- Battleplate of Resounding Rings (Raid Finder)
-    {N, 11757, 179}, -- Sha of Fabulous
+    {N, 11757, 174}, -- Sha of Fabulous
     {T, 11756, 817}, -- Deep Earth Vestments (Heroic)
     {T, 11756, 815}, -- Deep Earth Vestments (Normal)
     {T, 11756, 816}, -- Deep Earth Vestments (Raid Finder)
@@ -3520,7 +3520,7 @@ tasks = {
     {T, 11756, 631}, -- Colossal Dragonplate Battlegear (Heroic)
     {T, 11756, 649}, -- Colossal Dragonplate Battlegear (Normal)
     {T, 11756, 650}, -- Colossal Dragonplate Battlegear (Raid Finder)
-    {N, 11756, 179}, -- Wardrobe of the Old Gods
+    {N, 11756, 174}, -- Wardrobe of the Old Gods
     {T, 11755, 819}, -- Obsidian Arborweave Vestments (Heroic)
     {T, 11755, 818}, -- Obsidian Arborweave Vestments (Normal)
     {T, 11755, 668}, -- Balespider's Burning Vestments (Heroic)
@@ -3541,7 +3541,7 @@ tasks = {
     {T, 11755, 699}, -- Battleplate of Immolation (Normal)
     {T, 11755, 652}, -- Molten Giant Battleplate (Heroic)
     {T, 11755, 651}, -- Molten Giant Battleplate (Normal)
-    {N, 11755, 179}, -- Hot Couture
+    {N, 11755, 174}, -- Hot Couture
     {T, 11754, 821}, -- Stormrider's Vestments (Heroic)
     {T, 11754, 820}, -- Stormrider's Vestments (Normal)
     {T, 11754, 670}, -- Shadowflame Regalia (Heroic)
@@ -3562,7 +3562,7 @@ tasks = {
     {T, 11754, 701}, -- Reinforced Sapphirium Battleplate (Normal)
     {T, 11754, 654}, -- Earthen Battleplate (Heroic)
     {T, 11754, 653}, -- Earthen Battleplate (Normal)
-    {N, 11754, 179}, -- Glamour of Twilight
+    {N, 11754, 174}, -- Glamour of Twilight
     {T, 11753, 824}, -- Sanctified Lasherweave Battlegear (25 Player (Heroic))
     {T, 11753, 823}, -- Sanctified Lasherweave Battlegear (25 Player (Normal))
     {T, 11753, 822}, -- Lasherweave Battlegear (10 Player (Normal))
@@ -3593,7 +3593,7 @@ tasks = {
     {T, 11753, 298}, -- Sanctified Ymirjar Lord's Battlegear (25 Player (Heroic))
     {T, 11753, 656}, -- Sanctified Ymirjar Lord's Battlegear (25 Player (Normal))
     {T, 11753, 655}, -- Ymirjar Lord's Battlegear (10 Player (Normal))
-    {N, 11753, 179}, -- Winter Catalog
+    {N, 11753, 174}, -- Winter Catalog
     {T, 11752, 826}, -- Runetotem's Battlegear (10 Player (Normal))
     {T, 11752, 675}, -- Gul'dan's Regalia (10 Player (Normal))
     {T, 11752, 723}, -- Sunstrider's Regalia (10 Player (Normal))
@@ -3614,7 +3614,7 @@ tasks = {
     {T, 11752, 739}, -- Windrunner's Battlegear (10 Player (Normal))
     {T, 11752, 706}, -- Turalyon's Plate (10 Player (Normal))
     {T, 11752, 658}, -- Wrynn's Battlegear (10 Player (Normal))
-    {N, 11752, 179}, -- Style of the Crusader
+    {N, 11752, 174}, -- Style of the Crusader
     {T, 11751, 828}, -- Conqueror's Nightsong Battlegear (25 Player (Normal))
     {T, 11751, 827}, -- Valorous Nightsong Battlegear (10 Player (Normal))
     {T, 11751, 677}, -- Conqueror's Deathbringer Garb (25 Player (Normal))
@@ -3635,7 +3635,7 @@ tasks = {
     {T, 11751, 708}, -- Valorous Aegis Plate (10 Player (Normal))
     {T, 11751, 660}, -- Conqueror's Siegebreaker Battlegear (25 Player (Normal))
     {T, 11751, 659}, -- Valorous Siegebreaker Battlegear (10 Player (Normal))
-    {N, 11751, 179}, -- Mogg-Saron
+    {N, 11751, 174}, -- Mogg-Saron
     {T, 11750, 830}, -- Valorous Dreamwalker Battlegear (25 Player (Normal))
     {T, 11750, 829}, -- Heroes' Dreamwalker Battlegear (10 Player (Normal))
     {T, 11750, 679}, -- Valorous Plagueheart Garb (25 Player (Normal))
@@ -3656,7 +3656,7 @@ tasks = {
     {T, 11750, 710}, -- Heroes' Redemption Plate (10 Player (Normal))
     {T, 11750, 662}, -- Valorous Dreadnaught Battlegear (25 Player (Normal))
     {T, 11750, 661}, -- Heroes' Dreadnaught Battlegear (10 Player (Normal))
-    {N, 11750, 179}, -- Undying Aesthetic
+    {N, 11750, 174}, -- Undying Aesthetic
     {T, 11749, 919}, -- Thunderheart Regalia (Sunwell)
     {T, 11749, 932}, -- Malefic Regalia (Sunwell)
     {T, 11749, 903}, -- Tempest Garb (Sunwell)
@@ -3666,7 +3666,7 @@ tasks = {
     {T, 11749, 911}, -- Gronnstalker's Battlegear (Sunwell)
     {T, 11749, 895}, -- Lightbringer Battlegear (Sunwell)
     {T, 11749, 931}, -- Onslaught Battlegear (Sunwell)
-    {N, 11749, 179}, -- "Suns Out, Thori'dals Out"
+    {N, 11749, 174}, -- "Suns Out, Thori'dals Out"
     {T, 11748, 920}, -- Thunderheart Raiment (Normal)
     {T, 11748, 862}, -- Malefic Raiment (Normal)
     {T, 11748, 904}, -- Tempest Regalia (Normal)
@@ -3676,7 +3676,7 @@ tasks = {
     {T, 11748, 912}, -- Gronnstalker's Armor (Normal)
     {T, 11748, 896}, -- Lightbringer Armor (Normal)
     {T, 11748, 847}, -- Onslaught Armor (Normal)
-    {N, 11748, 179}, -- Black is the New Black
+    {N, 11748, 174}, -- Black is the New Black
     {T, 11747, 921}, -- Nordrassil Raiment (Normal)
     {T, 11747, 863}, -- Corruptor Raiment (Normal)
     {T, 11747, 905}, -- Tirisfal Regalia (Normal)
@@ -3686,7 +3686,7 @@ tasks = {
     {T, 11747, 918}, -- Rift Stalker Armor (Normal)
     {T, 11747, 897}, -- Crystalforge Armor (Normal)
     {T, 11747, 848}, -- Destroyer Armor (Normal)
-    {N, 11747, 179}, -- Merely a Set
+    {N, 11747, 174}, -- Merely a Set
     {T, 11746, 922}, -- Malorne Raiment (Normal)
     {T, 11746, 864}, -- Voidheart Raiment (Normal)
     {T, 11746, 898}, -- Aldor Regalia (Normal)
@@ -3696,7 +3696,7 @@ tasks = {
     {T, 11746, 913}, -- Demon Stalker Armor (Normal)
     {T, 11746, 906}, -- Justicar Armor (Normal)
     {T, 11746, 849}, -- Warbringer Armor (Normal)
-    {N, 11746, 179}, -- Outlandish Style
+    {N, 11746, 174}, -- Outlandish Style
     {T, 11744, 924}, -- Dreamwalker Raiment (Normal)
     {T, 11744, 865}, -- Plagueheart Raiment (Normal)
     {T, 11744, 907}, -- Frostfire Regalia (Normal)
@@ -3706,7 +3706,7 @@ tasks = {
     {T, 11744, 914}, -- Cryptstalker Armor (Normal)
     {T, 11744, 899}, -- Redemption Armor (Normal)
     {T, 11744, 850}, -- Dreadnaught's Battlegear (Normal)
-    {N, 11744, 179}, -- "Drop Dead, Gorgeous"
+    {N, 11744, 174}, -- "Drop Dead, Gorgeous"
     {T, 11743, 926}, -- Genesis Raiment (Normal)
     {T, 11743, 866}, -- Doomcaller's Attire (Normal)
     {T, 11743, 908}, -- Enigma Vestments (Normal)
@@ -3716,7 +3716,7 @@ tasks = {
     {T, 11743, 915}, -- Striker's Garb (Normal)
     {T, 11743, 900}, -- Avenger's Battlegear (Normal)
     {T, 11743, 851}, -- Conqueror's Battlegear (Normal)
-    {N, 11743, 179}, -- Accessor-Eyes
+    {N, 11743, 174}, -- Accessor-Eyes
     {T, 11742, 927}, -- Stormrage Raiment (Normal)
     {T, 11742, 867}, -- Nemesis Raiment (Normal)
     {T, 11742, 909}, -- Netherwind Regalia (Normal)
@@ -3726,7 +3726,7 @@ tasks = {
     {T, 11742, 916}, -- Dragonstalker Armor (Normal)
     {T, 11742, 901}, -- Judgment Armor (Normal)
     {T, 11742, 852}, -- Battlegear of Wrath (Normal)
-    {N, 11742, 179}, -- Dress in Lairs
+    {N, 11742, 174}, -- Dress in Lairs
     {T, 11741, 928}, -- Cenarion Raiment (Normal)
     {T, 11741, 868}, -- Felheart Raiment (Normal)
     {T, 11741, 910}, -- Arcanist Regalia (Normal)
@@ -3736,7 +3736,7 @@ tasks = {
     {T, 11741, 917}, -- Giantstalker Armor (Normal)
     {T, 11741, 902}, -- Lawbringer Armor (Normal)
     {T, 11741, 853}, -- Battlegear of Might (Normal)
-    {N, 11741, 179}, -- So Hot Right Now
+    {N, 11741, 174}, -- So Hot Right Now
     {T, 11740, 556}, -- Living Wood Battlegear (Mythic)
     {T, 11740, 555}, -- Living Wood Battlegear (Heroic)
     {T, 11740, 554}, -- Living Wood Battlegear (Normal)
@@ -3770,15 +3770,15 @@ tasks = {
     {T, 11740, 437}, -- Blackhand's Battlegear (Mythic)
     {T, 11740, 436}, -- Blackhand's Battlegear (Heroic)
     {T, 11740, 435}, -- Blackhand's Battlegear (Normal)
-    {N, 11740, 179}, -- Make it W-orc W-orc
-    {N, 11738, 179}, -- It'll Nether Happen
-    {N, 11737, 179}, -- Disrupting the Nether
-    {N, 11736, 179}, -- Assume Command
-    {N, 11735, 179}, -- Take Command
-    {N, 11732, 179}, -- A Magnificent Contribution
-    {N, 11731, 179}, -- A Magic Contribution
-    {N, 11725, 179}, -- Fisherfriend of the Isles
-    {N, 11724, 179}, -- Fel Turkey!
+    {N, 11740, 174}, -- Make it W-orc W-orc
+    {N, 11738, 174}, -- It'll Nether Happen
+    {N, 11737, 174}, -- Disrupting the Nether
+    {N, 11736, 174}, -- Assume Command
+    {N, 11735, 174}, -- Take Command
+    {N, 11732, 174}, -- A Magnificent Contribution
+    {N, 11731, 174}, -- A Magic Contribution
+    {N, 11725, 176}, -- Fisherfriend of the Isles
+    {N, 11724, 174}, -- Fel Turkey!
     {T, 11723, 1264}, -- Cruel Gladiator's Felskin Armor (Elite)
     {T, 11723, 1261}, -- Cruel Gladiator's Felskin Armor (Gladiator)
     {T, 11723, 1289}, -- Cruel Combatant's Felskin Armor (Combatant I)
@@ -3851,7 +3851,7 @@ tasks = {
     {T, 11723, 1227}, -- Cruel Gladiator's Plate Armor (Elite)
     {T, 11723, 1225}, -- Cruel Gladiator's Plate Armor (Gladiator)
     {T, 11723, 1270}, -- Cruel Combatant's Plate Armor (Combatant I)
-    {N, 11723, 179}, -- Cruel Intentions
+    {N, 11723, 174}, -- Cruel Intentions
     {T, 11722, 1207}, -- Warmongering Gladiator's Dragonhide Armor (Elite)
     {T, 11722, 105}, -- Warmongering Gladiator's Dragonhide Armor (Gladiator)
     {T, 11722, 40}, -- Warmongering Combatant's Dragonhide Armor (Combatant I)
@@ -3918,7 +3918,7 @@ tasks = {
     {T, 11722, 1222}, -- Warmongering Gladiator's Plate Armor (Elite)
     {T, 11722, 116}, -- Warmongering Gladiator's Plate Armor (Gladiator)
     {T, 11722, 50}, -- Warmongering Combatant's Plate Armor (Combatant I)
-    {N, 11722, 179}, -- War-Mog-ering
+    {N, 11722, 174}, -- War-Mog-ering
     {T, 11721, 1176}, -- Wild Gladiator's Dragonhide Armor (Elite)
     {T, 11721, 83}, -- Wild Gladiator's Dragonhide Armor (Gladiator)
     {T, 11721, 25}, -- Wild Combatant's Dragonhide Armor (Combatant I)
@@ -3985,7 +3985,7 @@ tasks = {
     {T, 11721, 1191}, -- Wild Gladiator's Plate Armor (Elite)
     {T, 11721, 92}, -- Wild Gladiator's Plate Armor (Gladiator)
     {T, 11721, 22}, -- Wild Combatant's Plate Armor (Combatant I)
-    {N, 11721, 179}, -- Wild Style
+    {N, 11721, 174}, -- Wild Style
     {T, 11720, 1076}, -- Prideful Gladiator's Dragonhide Armor (Elite)
     {T, 11720, 244}, -- Prideful Gladiator's Dragonhide Armor (Gladiator)
     {T, 11720, 1082}, -- Prideful Gladiator's Ironskin Armor (Elite)
@@ -4030,7 +4030,7 @@ tasks = {
     {T, 11720, 241}, -- Prideful Gladiator's Scaled Armor (Gladiator)
     {T, 11720, 1091}, -- Prideful Gladiator's Plate Armor (Elite)
     {T, 11720, 238}, -- Prideful Gladiator's Plate Armor (Gladiator)
-    {N, 11720, 179}, -- Wear It With Pride
+    {N, 11720, 174}, -- Wear It With Pride
     {T, 11719, 1033}, -- Grievous Gladiator's Dragonhide Armor (Elite)
     {T, 11719, 200}, -- Grievous Gladiator's Dragonhide Armor (Gladiator)
     {T, 11719, 1039}, -- Grievous Gladiator's Ironskin Armor (Elite)
@@ -4075,7 +4075,7 @@ tasks = {
     {T, 11719, 218}, -- Grievous Gladiator's Scaled Armor (Gladiator)
     {T, 11719, 1048}, -- Grievous Gladiator's Plate Armor (Elite)
     {T, 11719, 215}, -- Grievous Gladiator's Plate Armor (Gladiator)
-    {N, 11719, 179}, -- It's Not Fashion Unless It Hurts
+    {N, 11719, 174}, -- It's Not Fashion Unless It Hurts
     {T, 11718, 1013}, -- Tyrannical Gladiator's Dragonhide Armor (Elite)
     {T, 11718, 255}, -- Tyrannical Gladiator's Dragonhide Armor (Gladiator)
     {T, 11718, 1019}, -- Tyrannical Gladiator's Ironskin Armor (Elite)
@@ -4120,7 +4120,7 @@ tasks = {
     {T, 11718, 274}, -- Tyrannical Gladiator's Scaled Armor (Gladiator)
     {T, 11718, 1028}, -- Tyrannical Gladiator's Plate Armor (Elite)
     {T, 11718, 271}, -- Tyrannical Gladiator's Plate Armor (Gladiator)
-    {N, 11718, 179}, -- Dressed to Oppress
+    {N, 11718, 174}, -- Dressed to Oppress
     {T, 11717, 1055}, -- Malevolent Gladiator's Dragonhide Armor (Elite)
     {T, 11717, 281}, -- Malevolent Gladiator's Dragonhide Armor (Gladiator)
     {T, 11717, 188}, -- Dreadful Gladiator's Dragonhide Armor (Honor)
@@ -4154,7 +4154,7 @@ tasks = {
     {T, 11717, 1064}, -- Malevolent Gladiator's Plate Armor (Elite)
     {T, 11717, 278}, -- Malevolent Gladiator's Plate Armor (Gladiator)
     {T, 11717, 193}, -- Dreadful Gladiator's Plate (Honor)
-    {N, 11717, 179}, -- Why Male(volent) Models?
+    {N, 11717, 174}, -- Why Male(volent) Models?
     {T, 11716, 603}, -- Cataclysmic Gladiator's Dragonhide Armor (Elite)
     {T, 11716, 602}, -- Cataclysmic Gladiator's Dragonhide Armor (Gladiator)
     {T, 11716, 591}, -- Cataclysmic Gladiator's Felweave Armor (Elite)
@@ -4175,7 +4175,7 @@ tasks = {
     {T, 11716, 596}, -- Cataclysmic Gladiator's Scaled Armor (Gladiator)
     {T, 11716, 589}, -- Cataclysmic Gladiator's Plate Armor (Elite)
     {T, 11716, 588}, -- Cataclysmic Gladiator's Plate Armor (Gladiator)
-    {N, 11716, 179}, -- Cataclysmic Catwalk
+    {N, 11716, 174}, -- Cataclysmic Catwalk
     {T, 11715, 623}, -- Ruthless Gladiator's Dragonhide Armor (Elite)
     {T, 11715, 622}, -- Ruthless Gladiator's Dragonhide Armor (Gladiator)
     {T, 11715, 609}, -- Ruthless Gladiator's Felweave Armor (Elite)
@@ -4196,7 +4196,7 @@ tasks = {
     {T, 11715, 616}, -- Ruthless Gladiator's Scaled Armor (Gladiator)
     {T, 11715, 607}, -- Ruthless Gladiator's Plate Armor (Elite)
     {T, 11715, 606}, -- Ruthless Gladiator's Plate Armor (Gladiator)
-    {N, 11715, 179}, -- (Ruth)less is More
+    {N, 11715, 174}, -- (Ruth)less is More
     {T, 11714, 758}, -- Vicious Gladiator's Dragonhide Armor (Elite)
     {T, 11714, 757}, -- Vicious Gladiator's Dragonhide Armor (Gladiator)
     {T, 11714, 1200}, -- Bloodthirsty Gladiator's Dragonhide Armor (Honor)
@@ -4227,7 +4227,7 @@ tasks = {
     {T, 11714, 627}, -- Vicious Gladiator's Plate Armor (Elite)
     {T, 11714, 626}, -- Vicious Gladiator's Plate Armor (Gladiator)
     {T, 11714, 1193}, -- Bloodthirsty Gladiator's Plate Armor (Honor)
-    {N, 11714, 179}, -- Viciously Vintage
+    {N, 11714, 174}, -- Viciously Vintage
     {T, 11713, 768}, -- Wrathful Gladiator's Dragonhide Armor (Gladiator)
     {T, 11713, 762}, -- Wrathful Gladiator's Felweave Armor (Gladiator)
     {T, 11713, 766}, -- Wrathful Gladiator's Silk Armor (Gladiator)
@@ -4238,7 +4238,7 @@ tasks = {
     {T, 11713, 767}, -- Wrathful Gladiator's Chain Armor (Gladiator)
     {T, 11713, 765}, -- Wrathful Gladiator's Scaled Armor (Gladiator)
     {T, 11713, 761}, -- Wrathful Gladiator's Plate Armor (Gladiator)
-    {N, 11713, 179}, -- Wrath of the Stitch King
+    {N, 11713, 174}, -- Wrath of the Stitch King
     {T, 11712, 777}, -- Relentless Gladiator's Dragonhide Armor (Gladiator)
     {T, 11712, 771}, -- Relentless Gladiator's Felweave Armor (Gladiator)
     {T, 11712, 775}, -- Relentless Gladiator's Silk Armor (Gladiator)
@@ -4249,7 +4249,7 @@ tasks = {
     {T, 11712, 776}, -- Relentless Gladiator's Chain Armor (Gladiator)
     {T, 11712, 774}, -- Relentless Gladiator's Scaled Armor (Gladiator)
     {T, 11712, 770}, -- Relentless Gladiator's Plate Armor (Gladiator)
-    {N, 11712, 179}, -- Relentlessly Good Looking
+    {N, 11712, 174}, -- Relentlessly Good Looking
     {T, 11711, 786}, -- Furious Gladiator's Dragonhide Armor (Gladiator)
     {T, 11711, 780}, -- Furious Gladiator's Felweave Armor (Gladiator)
     {T, 11711, 784}, -- Furious Gladiator's Silk Armor (Gladiator)
@@ -4260,7 +4260,7 @@ tasks = {
     {T, 11711, 785}, -- Furious Gladiator's Chain Armor (Gladiator)
     {T, 11711, 783}, -- Furious Gladiator's Scaled Armor (Gladiator)
     {T, 11711, 779}, -- Furious Gladiator's Plate Armor (Gladiator)
-    {N, 11711, 179}, -- The Fierce and the Furious
+    {N, 11711, 174}, -- The Fierce and the Furious
     {T, 11710, 795}, -- Deadly Gladiator's Dragonhide Armor (Gladiator)
     {T, 11710, 813}, -- Savage Gladiator's Dragonhide Armor (PVP Rare)
     {T, 11710, 804}, -- Hateful Gladiator's Dragonhide Armor (Honor)
@@ -4291,7 +4291,7 @@ tasks = {
     {T, 11710, 788}, -- Deadly Gladiator's Plate Armor (Gladiator)
     {T, 11710, 806}, -- Savage Gladiator's Plate Armor (PVP Rare)
     {T, 11710, 797}, -- Hateful Gladiator's Plate Armor (Honor)
-    {N, 11710, 179}, -- Lethal Looks
+    {N, 11710, 174}, -- Lethal Looks
     {T, 11709, 953}, -- Brutal Gladiator's Dragonhide Armor (Gladiator)
     {T, 11709, 947}, -- Brutal Gladiator's Felweave Armor (Gladiator)
     {T, 11709, 951}, -- Brutal Gladiator's Silk Armor (Gladiator)
@@ -4302,7 +4302,7 @@ tasks = {
     {T, 11709, 952}, -- Brutal Gladiator's Chain Armor (Gladiator)
     {T, 11709, 950}, -- Brutal Gladiator's Scaled Armor (Gladiator)
     {T, 11709, 946}, -- Brutal Gladiator's Plate Armor (Gladiator)
-    {N, 11709, 179}, -- Tough Threads
+    {N, 11709, 174}, -- Tough Threads
     {T, 11708, 961}, -- Vengeful Gladiator's Dragonhide Armor (Gladiator)
     {T, 11708, 955}, -- Vengeful Gladiator's Felweave Armor (Gladiator)
     {T, 11708, 959}, -- Vengeful Gladiator's Silk Armor (Gladiator)
@@ -4312,7 +4312,7 @@ tasks = {
     {T, 11708, 960}, -- Vengeful Gladiator's Chain Armor (Gladiator)
     {T, 11708, 958}, -- Vengeful Gladiator's Scaled Armor (Gladiator)
     {T, 11708, 954}, -- Vengeful Gladiator's Plate Armor (Gladiator)
-    {N, 11708, 179}, -- With a Vengeance
+    {N, 11708, 174}, -- With a Vengeance
     {T, 11707, 969}, -- Merciless Gladiator's Dragonhide Armor (Gladiator)
     {T, 11707, 963}, -- Merciless Gladiator's Felweave Armor (Gladiator)
     {T, 11707, 967}, -- Merciless Gladiator's Silk Armor (Gladiator)
@@ -4322,7 +4322,7 @@ tasks = {
     {T, 11707, 968}, -- Merciless Gladiator's Chain Armor (Gladiator)
     {T, 11707, 966}, -- Merciless Gladiator's Scaled Armor (Gladiator)
     {T, 11707, 962}, -- Merciless Gladiator's Plate Armor (Gladiator)
-    {N, 11707, 179}, -- No Mercy
+    {N, 11707, 174}, -- No Mercy
     {T, 11706, 977}, -- Gladiator's Dragonhide Armor (Gladiator)
     {T, 11706, 970}, -- Gladiator's Felweave Armor (Gladiator)
     {T, 11706, 975}, -- Gladiator's Silk Armor (Gladiator)
@@ -4333,44 +4333,44 @@ tasks = {
     {T, 11706, 976}, -- Gladiator's Chain Armor (Gladiator)
     {T, 11706, 974}, -- Gladiator's Scaled Armor (Gladiator)
     {T, 11706, 381}, -- Gladiator's Plate Armor (Gladiator)
-    {N, 11706, 179}, -- The Original
-    {N, 11703, 179}, -- Master of Shadows
-    {N, 11702, 179}, -- Mythic: Cathedral of Eternal Night
-    {N, 11701, 179}, -- Heroic: Cathedral of Eternal Night
-    {N, 11700, 179}, -- Cathedral of Eternal Night
-    {N, 11699, 179}, -- Grand Fin-ale
+    {N, 11706, 174}, -- The Original
+    {N, 11703, 174}, -- Master of Shadows
+    {N, 11702, 174}, -- Mythic: Cathedral of Eternal Night
+    {N, 11701, 174}, -- Heroic: Cathedral of Eternal Night
+    {N, 11700, 174}, -- Cathedral of Eternal Night
+    {N, 11699, 174}, -- Grand Fin-ale
     {O, 11698, "From", "PvP Season", 22, "Until", "PvP Season", 22},
-    {N, 11698, 179, nil, nil, true}, -- Ferocious Elite
+    {N, 11698, 174, nil, nil, true}, -- Ferocious Elite
     {O, 11697, "From", "PvP Season", 21, "Until", "PvP Season", 21},
-    {N, 11697, 179, nil, nil, true}, -- Cruel Elite
-    {N, 11696, 179}, -- Grin and Bear It
+    {N, 11697, 174, nil, nil, true}, -- Cruel Elite
+    {N, 11696, 174}, -- Grin and Bear It
     {O, 11694, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 11694, 179, nil, nil, true}, -- "Hell, It's About Nineteen"
+    {N, 11694, 174, nil, nil, true}, -- "Hell, It's About Nineteen"
     {O, 11693, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 11693, 179, nil, nil, true}, -- Eighteen and Over
+    {N, 11693, 174, nil, nil, true}, -- Eighteen and Over
     {O, 11692, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 11692, 179, nil, nil, true}, -- Going On Seventeen
+    {N, 11692, 174, nil, nil, true}, -- Going On Seventeen
     {O, 11691, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 11691, 179, nil, nil, true}, -- You Are Sixteen
+    {N, 11691, 174, nil, nil, true}, -- You Are Sixteen
     {O, 11690, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 11690, 179, nil, nil, true}, -- When You're Fifteen
+    {N, 11690, 174, nil, nil, true}, -- When You're Fifteen
     {O, 11689, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 11689, 179, nil, nil, true}, -- Fourteen for the Team
+    {N, 11689, 174, nil, nil, true}, -- Fourteen for the Team
     {O, 11688, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 11688, 179, nil, nil, true}, -- Floor Thirteen
+    {N, 11688, 174, nil, nil, true}, -- Floor Thirteen
     {O, 11687, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 11687, 179, nil, nil, true}, -- Demonic Dozen
+    {N, 11687, 174, nil, nil, true}, -- Demonic Dozen
     {O, 11686, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 11686, 179, nil, nil, true}, -- These Go To Eleven
+    {N, 11686, 174, nil, nil, true}, -- These Go To Eleven
     {O, 11685, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 11685, 179, nil, nil, true}, -- Decade of Dominance
-    {N, 11683, 179}, -- Bingo!
-    {N, 11681, 179}, -- Crate Expectations
-    {N, 11676, 179}, -- Five Course Seafood Buffet
-    {N, 11675, 179}, -- Sky Walker
-    {N, 11674, 179}, -- "Great Soul, Great Purpose"
-    {N, 11653, 179}, -- Paragon of the Broken Isles
-    {N, 11652, 179}, -- The Reputable
+    {N, 11685, 174, nil, nil, true}, -- Decade of Dominance
+    {N, 11683, 174}, -- Bingo!
+    {N, 11681, 174}, -- Crate Expectations
+    {N, 11676, 174}, -- Five Course Seafood Buffet
+    {N, 11675, 174}, -- Sky Walker
+    {N, 11674, 174}, -- "Great Soul, Great Purpose"
+    {N, 11653, 174}, -- Paragon of the Broken Isles
+    {N, 11652, 174}, -- The Reputable
     {T, 11631, 553}, -- Oathclaw Wargarb (Mythic)
     {T, 11631, 552}, -- Oathclaw Wargarb (Heroic)
     {T, 11631, 551}, -- Oathclaw Wargarb (Normal)
@@ -4408,7 +4408,7 @@ tasks = {
     {T, 11631, 581}, -- Felfume Raiment (Raid Finder)
     {T, 11631, 583}, -- Rancorbite Armor (Raid Finder)
     {T, 11631, 584}, -- Demonbreaker Battleplate (Raid Finder)
-    {N, 11631, 179}, -- Extreme Makeover: Fel Edition
+    {N, 11631, 174}, -- Extreme Makeover: Fel Edition
     {T, 11630, 1111}, -- Vindictive Gladiator's Felskin Armor (Elite)
     {T, 11630, 1109}, -- Vindictive Gladiator's Felskin Armor (Gladiator)
     {T, 11630, 1170}, -- Vindictive Combatant's Felskin Armor (Combatant I)
@@ -4481,7 +4481,7 @@ tasks = {
     {T, 11630, 1135}, -- Vindictive Gladiator's Plate Armor (Elite)
     {T, 11630, 1133}, -- Vindictive Gladiator's Plate Armor (Gladiator)
     {T, 11630, 1070}, -- Vindictive Combatant's Plate Armor (Combatant I)
-    {N, 11630, 179}, -- More Like Win-dictive
+    {N, 11630, 174}, -- More Like Win-dictive
     {T, 11629, 1141}, -- Primal Gladiator's Dragonhide Armor (Elite)
     {T, 11629, 125}, -- Primal Gladiator's Dragonhide Armor (Gladiator)
     {T, 11629, 61}, -- Primal Combatant's Dragonhide Armor (Combatant I)
@@ -4548,7 +4548,7 @@ tasks = {
     {T, 11629, 1156}, -- Primal Gladiator's Plate Armor (Elite)
     {T, 11629, 136}, -- Primal Gladiator's Plate Armor (Gladiator)
     {T, 11629, 72}, -- Primal Combatant's Plate Armor (Combatant I)
-    {N, 11629, 179}, -- Untamed Beauty
+    {N, 11629, 174}, -- Untamed Beauty
     {T, 11628, 1000}, -- Vestment of Second Sight (Mythic)
     {T, 11628, 999}, -- Vestment of Second Sight (Heroic)
     {T, 11628, 998}, -- Vestment of Second Sight (Normal)
@@ -4597,2936 +4597,2936 @@ tasks = {
     {T, 11628, 938}, -- Warplate of the Obsidian Aspect (Heroic)
     {T, 11628, 937}, -- Warplate of the Obsidian Aspect (Normal)
     {T, 11628, 940}, -- Warplate of the Obsidian Aspect (Raid Finder)
-    {N, 11628, 179}, -- That's So Last Millennium
+    {N, 11628, 174}, -- That's So Last Millennium
     {O, 11612, "From", "Version", "070003", "Before", "Version", "080001"},
-    {N, 11612, 179}, -- Fighting with Style: Challenging
+    {N, 11612, 174}, -- Fighting with Style: Challenging
     {O, 11611, "From", "Version", "070003", "Before", "Version", "080001"},
-    {N, 11611, 179}, -- A Challenging Look
-    {N, 11610, 179}, -- Power Unleashed
-    {N, 11609, 179}, -- Power Unbound
-    {N, 11607, 179}, -- They See Me Rolling
+    {N, 11611, 174}, -- A Challenging Look
+    {N, 11610, 174}, -- Power Unleashed
+    {N, 11609, 174}, -- Power Unbound
+    {N, 11607, 174}, -- They See Me Rolling
     {O, 11581, "From", "Version", "070100", "Before", "Version", "070205"},
-    {N, 11581, 179}, -- Ahead of the Curve: Helya
+    {N, 11581, 174}, -- Ahead of the Curve: Helya
     {O, 11580, "From", "Version", "070100", "Before", "Version", "070205"},
-    {N, 11580, 179}, -- Cutting Edge: Helya
+    {N, 11580, 174}, -- Cutting Edge: Helya
     {O, 11579, "From", "PvP Season", 20, "Until", "PvP Season", 20},
-    {N, 11579, 179, nil, nil, true}, -- Fearless Elite
+    {N, 11579, 174, nil, nil, true}, -- Fearless Elite
     {O, 11578, "From", "PvP Season", 19, "Until", "PvP Season", 19},
-    {N, 11578, 179, nil, nil, true}, -- Vindictive Elite
+    {N, 11578, 174, nil, nil, true}, -- Vindictive Elite
     {O, 11573, "From", "Version", "080105", "Before", "Version", "090001"},
-    {N, 11573, 179}, -- Rumble Club
+    {N, 11573, 174}, -- Rumble Club
     {O, 11572, "From", "Version", "070105", "Before", "Version", "080001"},
-    {N, 11572, 179}, -- I Am Thrall's Complete Lack Of Surprise (Season 3)
+    {N, 11572, 174}, -- I Am Thrall's Complete Lack Of Surprise (Season 3)
     {O, 11570, "From", "Version", "080105", "Before", "Version", "090001"},
-    {N, 11570, 179}, -- Educated Guesser
+    {N, 11570, 174}, -- Educated Guesser
     {O, 11567, "From", "Version", "080105", "Before", "Version", "090001"},
-    {N, 11567, 179}, -- You Are Not The Contents Of Your Wallet
+    {N, 11567, 174}, -- You Are Not The Contents Of Your Wallet
     {O, 11566, "From", "Version", "070105", "Before", "Version", "080001"},
-    {N, 11566, 179, f.Horde, 11565}, -- King of the Guild (Season 3)
+    {N, 11566, 174, f.Horde, 11565}, -- King of the Guild (Season 3)
     {O, 11565, "From", "Version", "070105", "Before", "Version", "080001"},
-    {N, 11565, 179, f.Alliance, 11566}, -- King of the Guild (Season 3)
+    {N, 11565, 174, f.Alliance, 11566}, -- King of the Guild (Season 3)
     {O, 11564, "From", "Version", "070105", "Before", "Version", "080001"},
-    {N, 11564, 179, f.Horde, 11563}, -- The Second Rule of Brawler's Guild (Season 3)
+    {N, 11564, 174, f.Horde, 11563}, -- The Second Rule of Brawler's Guild (Season 3)
     {O, 11563, "From", "Version", "070105", "Before", "Version", "080001"},
-    {N, 11563, 179, f.Alliance, 11564}, -- The Second Rule of Brawler's Guild (Season 3)
+    {N, 11563, 174, f.Alliance, 11564}, -- The Second Rule of Brawler's Guild (Season 3)
     {O, 11561, "From", "Version", "070105", "Before", "Version", "080001"},
-    {N, 11561, 179, f.Horde, 11560}, -- You Are Not Your $#*@! Legplates (Season 3)
+    {N, 11561, 174, f.Horde, 11560}, -- You Are Not Your $#*@! Legplates (Season 3)
     {O, 11560, "From", "Version", "070105", "Before", "Version", "080001"},
-    {N, 11560, 179, f.Alliance, 11561}, -- You Are Not Your $#*@! Legplates (Season 3)
+    {N, 11560, 174, f.Alliance, 11561}, -- You Are Not Your $#*@! Legplates (Season 3)
     {O, 11559, "From", "Version", "080105", "Before", "Version", "090001"},
-    {N, 11559, 179, f.Horde, 11558}, -- The First Rule of Brawler's Guild
+    {N, 11559, 174, f.Horde, 11558}, -- The First Rule of Brawler's Guild
     {O, 11558, "From", "Version", "080105", "Before", "Version", "090001"},
-    {N, 11558, 179, f.Alliance, 11559}, -- The First Rule of Brawler's Guild
-    {N, 11546, 179}, -- Breaching the Tomb
-    {N, 11545, 179}, -- Legionfall Commander
-    {N, 11544, 179}, -- Defender of the Broken Isles
-    {N, 11543, 179}, -- Explore Broken Shore
-    {N, 11478, 179}, -- The Darkbrul-oh
-    {N, 11477, 179}, -- Off the Top Rook
-    {N, 11476, 179}, -- Saddle Sore
-    {N, 11475, 179}, -- Mission Accomplished
-    {N, 11474, 179, nil, nil, true}, -- "Free For All, More For Me"
+    {N, 11558, 174, f.Alliance, 11559}, -- The First Rule of Brawler's Guild
+    {N, 11546, 174}, -- Breaching the Tomb
+    {N, 11545, 174}, -- Legionfall Commander
+    {N, 11544, 174}, -- Defender of the Broken Isles
+    {N, 11543, 174}, -- Explore Broken Shore
+    {N, 11478, 174}, -- The Darkbrul-oh
+    {N, 11477, 174}, -- Off the Top Rook
+    {N, 11476, 174}, -- Saddle Sore
+    {N, 11475, 174}, -- Mission Accomplished
+    {N, 11474, 174, nil, nil, true}, -- "Free For All, More For Me"
     {O, 11472, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 11472, 179, nil, nil, true}, -- "Hell, It's About Nine"
+    {N, 11472, 174, nil, nil, true}, -- "Hell, It's About Nine"
     {O, 11471, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 11471, 179, nil, nil, true}, -- "Don't Hate, Grind to Eight"
+    {N, 11471, 174, nil, nil, true}, -- "Don't Hate, Grind to Eight"
     {O, 11470, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 11470, 179, nil, nil, true}, -- Slayin' to Seven
+    {N, 11470, 174, nil, nil, true}, -- Slayin' to Seven
     {O, 11469, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 11469, 179, nil, nil, true}, -- The River Six
+    {N, 11469, 174, nil, nil, true}, -- The River Six
     {O, 11468, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 11468, 179, nil, nil, true}, -- Alive for Five
-    {N, 11446, 179}, -- "Broken Isles Pathfinder, Part Two"
-    {N, 11433, 179}, -- Burn After Reading
-    {N, 11432, 179}, -- Scared Straight
-    {N, 11431, 179}, -- The Rat Pack
-    {N, 11430, 179}, -- One Night in Karazhan
-    {N, 11429, 179}, -- Mythic: Return to Karazhan
-    {N, 11427, 179}, -- No Shellfish Endeavor
-    {N, 11426, 179}, -- Heroic: Trial of Valor
+    {N, 11468, 174, nil, nil, true}, -- Alive for Five
+    {N, 11446, 174}, -- "Broken Isles Pathfinder, Part Two"
+    {N, 11433, 174}, -- Burn After Reading
+    {N, 11432, 174}, -- Scared Straight
+    {N, 11431, 174}, -- The Rat Pack
+    {N, 11430, 174}, -- One Night in Karazhan
+    {N, 11429, 174}, -- Mythic: Return to Karazhan
+    {N, 11427, 174}, -- No Shellfish Endeavor
+    {N, 11426, 174}, -- Heroic: Trial of Valor
     {O, 11425 },
-    {N, 11425, 179}, -- Herald of Flames
-    {N, 11398, 179}, -- Mythic: Helya
-    {N, 11397, 179}, -- Mythic: Guarm
-    {N, 11396, 179}, -- Mythic: Odyn
+    {N, 11425, 174}, -- Herald of Flames
+    {N, 11398, 174}, -- Mythic: Helya
+    {N, 11397, 174}, -- Mythic: Guarm
+    {N, 11396, 174}, -- Mythic: Odyn
     {O, 11395 },
-    {N, 11395, 179}, -- Diablo's 20th Anniversary
-    {N, 11394, 179}, -- Trial of Valor
+    {N, 11395, 174}, -- Diablo's 20th Anniversary
+    {N, 11394, 174}, -- Trial of Valor
     {O, 11387, "From", "Version", "070100", "Before", "Version", "080001"},
-    {N, 11387, 179}, -- The Chosen
-    {N, 11386, 179}, -- Boneafide Tri Tip
-    {N, 11377, 179}, -- Patient Zero
-    {N, 11340, 179}, -- Insurrection
-    {N, 11338, 179}, -- Dine and Bash
-    {N, 11337, 179}, -- You Runed Everything!
-    {N, 11335, 179}, -- Season Tickets
-    {N, 11320, 179}, -- Raiding with Leashes IV: Wrath of the Lick King
-    {N, 11298, 179}, -- A Classy Outfit
+    {N, 11387, 174}, -- The Chosen
+    {N, 11386, 174}, -- Boneafide Tri Tip
+    {N, 11377, 174}, -- Patient Zero
+    {N, 11340, 174}, -- Insurrection
+    {N, 11338, 174}, -- Dine and Bash
+    {N, 11337, 174}, -- You Runed Everything!
+    {N, 11335, 174}, -- Season Tickets
+    {N, 11320, 174}, -- Raiding with Leashes IV: Wrath of the Lick King
+    {N, 11298, 171}, -- A Classy Outfit
     {O, 11297, "From", "Version", "030002", "Before", "Version", "040003a"},
-    {N, 11297, 179}, -- The Balance of Light and Shadow
+    {N, 11297, 171}, -- The Balance of Light and Shadow
     {O, 11296, "From", "Version", "030002", "Before", "Version", "040003a"},
-    {N, 11296, 179}, -- The Ancient Keeper
-    {N, 11294, 179}, -- Murloc Battlemasters
-    {N, 11284, 179, f.Horde, 11283}, -- Flame Keeper of Draenor
-    {N, 11283, 179, f.Alliance, 11284}, -- Flame Warden of Draenor
-    {N, 11282, 179, f.Horde, 11280}, -- Flame Keeper of the Broken Isles
-    {N, 11280, 179, f.Alliance, 11282}, -- Flame Warden of the Broken Isles
-    {N, 11279, 179, f.Horde, 11278}, -- Extinguishing the Broken Isles
-    {N, 11278, 179, f.Alliance, 11279}, -- Extinguishing the Broken Isles
-    {N, 11277, 179, f.Horde, 11276}, -- Extinguishing Draenor
-    {N, 11276, 179, f.Alliance, 11277}, -- Extinguishing Draenor
-    {N, 11265, 179}, -- Adventurer of Suramar
-    {N, 11264, 179}, -- Adventurer of Highmountain
-    {N, 11263, 179}, -- Adventurer of Stormheim
-    {N, 11262, 179}, -- Adventurer of Val'sharah
-    {N, 11261, 179}, -- Adventurer of Azsuna
-    {N, 11260, 179}, -- Treasures of Suramar
-    {N, 11259, 179}, -- Treasures of Stormheim
-    {N, 11258, 179}, -- Treasures of Val'sharah
-    {N, 11257, 179}, -- Treasures of Highmountain
-    {N, 11256, 179}, -- Treasures of Azsuna
-    {N, 11240, 179}, -- Harbinger
-    {N, 11233, 179}, -- Broken Isles Safari
-    {N, 11232, 179}, -- "Lock, Stock and Two Smoking Goblins"
+    {N, 11296, 171}, -- The Ancient Keeper
+    {N, 11294, 174}, -- Murloc Battlemasters
+    {N, 11284, 174, f.Horde, 11283}, -- Flame Keeper of Draenor
+    {N, 11283, 174, f.Alliance, 11284}, -- Flame Warden of Draenor
+    {N, 11282, 174, f.Horde, 11280}, -- Flame Keeper of the Broken Isles
+    {N, 11280, 174, f.Alliance, 11282}, -- Flame Warden of the Broken Isles
+    {N, 11279, 174, f.Horde, 11278}, -- Extinguishing the Broken Isles
+    {N, 11278, 174, f.Alliance, 11279}, -- Extinguishing the Broken Isles
+    {N, 11277, 174, f.Horde, 11276}, -- Extinguishing Draenor
+    {N, 11276, 174, f.Alliance, 11277}, -- Extinguishing Draenor
+    {N, 11265, 171}, -- Adventurer of Suramar
+    {N, 11264, 171}, -- Adventurer of Highmountain
+    {N, 11263, 171}, -- Adventurer of Stormheim
+    {N, 11262, 171}, -- Adventurer of Val'sharah
+    {N, 11261, 171}, -- Adventurer of Azsuna
+    {N, 11260, 171}, -- Treasures of Suramar
+    {N, 11259, 171}, -- Treasures of Stormheim
+    {N, 11258, 171}, -- Treasures of Val'sharah
+    {N, 11257, 171}, -- Treasures of Highmountain
+    {N, 11256, 171}, -- Treasures of Azsuna
+    {N, 11240, 171}, -- Harbinger
+    {N, 11233, 171}, -- Broken Isles Safari
+    {N, 11232, 171}, -- "Lock, Stock and Two Smoking Goblins"
     {O, 11224, "Once" },
-    {N, 11224, 179, nil, nil, nil, true}, -- Realm First! Legion Keystone Master
-    {N, 11223, 179}, -- Legendary Research
-    {N, 11222, 179}, -- Champions of Power
-    {N, 11221, 179}, -- Champions Rise
-    {N, 11220, 179}, -- Roster of Champions
-    {N, 11219, 179}, -- Need Backup
+    {N, 11224, 171, nil, nil, nil, true}, -- Realm First! Legion Keystone Master
+    {N, 11223, 171}, -- Legendary Research
+    {N, 11222, 171}, -- Champions of Power
+    {N, 11221, 171}, -- Champions Rise
+    {N, 11220, 171}, -- Roster of Champions
+    {N, 11219, 171}, -- Need Backup
     {O, 11218, "From", "Version", "070003", "Before", "Version", "080001"},
-    {N, 11218, 179}, -- There's a Boss In There
-    {N, 11217, 179}, -- "Many Many Missions, Handle It!"
-    {N, 11216, 179}, -- So Many Missions
-    {N, 11215, 179}, -- Quite a Few Missions
-    {N, 11214, 179}, -- Many Missions
-    {N, 11213, 179}, -- Lead a Legion
-    {N, 11212, 179}, -- Raise an Army
+    {N, 11218, 171}, -- There's a Boss In There
+    {N, 11217, 171}, -- "Many Many Missions, Handle It!"
+    {N, 11216, 171}, -- So Many Missions
+    {N, 11215, 171}, -- Quite a Few Missions
+    {N, 11214, 171}, -- Many Missions
+    {N, 11213, 171}, -- Lead a Legion
+    {N, 11212, 171}, -- Raise an Army
     {O, 11211 },
-    {N, 11211, 179}, -- Fight for the Horde
+    {N, 11211, 171}, -- Fight for the Horde
     {O, 11210 },
-    {N, 11210, 179}, -- Fight for the Alliance
+    {N, 11210, 171}, -- Fight for the Alliance
     {O, 11201, "From", "Version", "070003", "Until", "Version", "070003"},
-    {N, 11201, 179}, -- Defender of Azeroth: Legion Invasions
+    {N, 11201, 171}, -- Defender of Azeroth: Legion Invasions
     {O, 11200, "From", "Version", "070003", "Until", "Version", "070003"},
-    {N, 11200, 179}, -- Stand Against the Legion
+    {N, 11200, 171}, -- Stand Against the Legion
     {O, 11195, "From", "Version", "070105", "Before", "Version", "070205"},
-    {N, 11195, 179}, -- Ahead of the Curve: Gul'dan
+    {N, 11195, 171}, -- Ahead of the Curve: Gul'dan
     {O, 11194, "From", "Version", "070003", "Before", "Version", "070105"},
-    {N, 11194, 179}, -- Ahead of the Curve: Xavius
+    {N, 11194, 171}, -- Ahead of the Curve: Xavius
     {O, 11192, "From", "Version", "070105", "Before", "Version", "070205"},
-    {N, 11192, 179}, -- Cutting Edge: Gul'dan
+    {N, 11192, 171}, -- Cutting Edge: Gul'dan
     {O, 11191, "From", "Version", "070003", "Before", "Version", "070105"},
-    {N, 11191, 179}, -- Cutting Edge: Xavius
-    {N, 11190, 179}, -- "Broken Isles Pathfinder, Part One"
-    {N, 11189, 179}, -- Variety is the Spice of Life
-    {N, 11188, 179}, -- Broken Isles Explorer
-    {N, 11186, 179}, -- Tehd & Marius' Excellent Adventure
-    {N, 11185, 179}, -- Keystone Conqueror
-    {N, 11184, 179}, -- Keystone Challenger
-    {N, 11183, 179}, -- Keystone Initiate
+    {N, 11191, 171}, -- Cutting Edge: Xavius
+    {N, 11190, 171}, -- "Broken Isles Pathfinder, Part One"
+    {N, 11189, 171}, -- Variety is the Spice of Life
+    {N, 11188, 171}, -- Broken Isles Explorer
+    {N, 11186, 171}, -- Tehd & Marius' Excellent Adventure
+    {N, 11185, 171}, -- Keystone Conqueror
+    {N, 11184, 171}, -- Keystone Challenger
+    {N, 11183, 171}, -- Keystone Initiate
     {O, 11181, "From", "Version", "070003", "Before", "Version", "080001"},
-    {N, 11181, 179}, -- Legion Keymaster
-    {N, 11180, 179}, -- Glory of the Legion Raider
-    {N, 11178, 179}, -- Wake the Dragon
-    {N, 11177, 179}, -- 70 Exalted Reputations
-    {N, 11176, 179}, -- Remember to Share
-    {N, 11175, 179}, -- Higher Dimensional Learning
-    {N, 11173, 179, f.Horde, 10749}, -- Fighting with Style: War-torn
-    {N, 11171, 179}, -- Arsenal of Power
+    {N, 11181, 171}, -- Legion Keymaster
+    {N, 11180, 171}, -- Glory of the Legion Raider
+    {N, 11178, 171}, -- Wake the Dragon
+    {N, 11177, 171}, -- 70 Exalted Reputations
+    {N, 11176, 171}, -- Remember to Share
+    {N, 11175, 171}, -- Higher Dimensional Learning
+    {N, 11173, 171, f.Horde, 10749}, -- Fighting with Style: War-torn
+    {N, 11171, 171}, -- Arsenal of Power
     {O, 11170, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 11170, 179, f.Horde, 11169, true}, -- Crest of Devastation
+    {N, 11170, 171, f.Horde, 11169, true}, -- Crest of Devastation
     {O, 11169, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 11169, 179, f.Alliance, 11170, true}, -- Crest of Devastation
+    {N, 11169, 171, f.Alliance, 11170, true}, -- Crest of Devastation
     {O, 11168, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 11168, 179, f.Horde, 11167, true}, -- Crest of Carnage
+    {N, 11168, 171, f.Horde, 11167, true}, -- Crest of Carnage
     {O, 11167, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 11167, 179, f.Alliance, 11168, true}, -- Crest of Carnage
+    {N, 11167, 171, f.Alliance, 11168, true}, -- Crest of Carnage
     {O, 11166, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 11166, 179, f.Horde, 11165, true}, -- Crest of Heroism
+    {N, 11166, 171, f.Horde, 11165, true}, -- Crest of Heroism
     {O, 11165, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 11165, 179, f.Alliance, 11166, true}, -- Crest of Heroism
-    {N, 11164, 179}, -- Legion Dungeon Hero
-    {N, 11163, 179}, -- Glory of the Legion Hero
-    {N, 11162, 179}, -- Keystone Master
-    {N, 11160, 179}, -- Unleashed Monstrosities
-    {N, 11159, 179}, -- Friends in a Broken Land
-    {N, 11157, 179}, -- Loremaster of Legion
+    {N, 11165, 171, f.Alliance, 11166, true}, -- Crest of Heroism
+    {N, 11164, 171}, -- Legion Dungeon Hero
+    {N, 11163, 171}, -- Glory of the Legion Hero
+    {N, 11162, 171}, -- Keystone Master
+    {N, 11160, 171}, -- Unleashed Monstrosities
+    {N, 11159, 171}, -- Friends in a Broken Land
+    {N, 11157, 171}, -- Loremaster of Legion
     {O, 11144, "From", "Version", "070003", "Before", "Version", "080001"},
-    {N, 11144, 179}, -- Power Realized
+    {N, 11144, 171}, -- Power Realized
     {O, 11139, "From", "Version", "070003", "Before", "Version", "080001"},
-    {N, 11139, 179}, -- Field Medic
+    {N, 11139, 171}, -- Field Medic
     {O, 11138, "From", "Version", "070003", "Before", "Version", "080001"},
-    {N, 11138, 179}, -- Is There a Medic in the Zone?
-    {N, 11137, 179}, -- A Legendary Campaign
-    {N, 11136, 179}, -- An Epic Campaign
-    {N, 11135, 179}, -- A Heroic Campaign
-    {N, 11133, 179}, -- Why Can't I Hold All This Mana?
-    {N, 11132, 179}, -- "10,000 World Quests Completed"
-    {N, 11131, 179}, -- 5000 World Quests Completed
-    {N, 11130, 179}, -- 2500 World Quests Completed
-    {N, 11129, 179}, -- 1000 World Quests Completed
-    {N, 11128, 179}, -- 500 World Quests Completed
-    {N, 11127, 179}, -- 200 World Quests Completed
-    {N, 11126, 179}, -- 50 World Quests Completed
-    {N, 11125, 179}, -- Now You're Thinking With Portals
-    {N, 11124, 179}, -- Good Suramaritan
-    {N, 11066, 179}, -- Underbelly Tycoon
+    {N, 11138, 171}, -- Is There a Medic in the Zone?
+    {N, 11137, 171}, -- A Legendary Campaign
+    {N, 11136, 171}, -- An Epic Campaign
+    {N, 11135, 171}, -- A Heroic Campaign
+    {N, 11133, 171}, -- Why Can't I Hold All This Mana?
+    {N, 11132, 171}, -- "10,000 World Quests Completed"
+    {N, 11131, 171}, -- 5000 World Quests Completed
+    {N, 11130, 171}, -- 2500 World Quests Completed
+    {N, 11129, 171}, -- 1000 World Quests Completed
+    {N, 11128, 171}, -- 500 World Quests Completed
+    {N, 11127, 171}, -- 200 World Quests Completed
+    {N, 11126, 171}, -- 50 World Quests Completed
+    {N, 11125, 171}, -- Now You're Thinking With Portals
+    {N, 11124, 171}, -- Good Suramaritan
+    {N, 11066, 171}, -- Underbelly Tycoon
     {O, 11065, "From", "Version", "070003", "Until", "Version", "070003"},
-    {N, 11065, 179}, -- It All Makes Sense Now
-    {N, 11064, 179}, -- Collector's Edition: Baby Winston
+    {N, 11065, 171}, -- It All Makes Sense Now
+    {N, 11064, 171}, -- Collector's Edition: Baby Winston
     {O, 11062, "From", "PvP Season", 22, "Until", "PvP Season", 22},
-    {N, 11062, 179, nil, nil, true}, -- Ferocious Gladiator: Legion Season 4
+    {N, 11062, 171, nil, nil, true}, -- Ferocious Gladiator: Legion Season 4
     {O, 11061, "From", "PvP Season", 22, "Until", "PvP Season", 22},
-    {N, 11061, 179, nil, nil, true}, -- Gladiator: Legion Season 4
+    {N, 11061, 171, nil, nil, true}, -- Gladiator: Legion Season 4
     {O, 11060, "From", "PvP Season", 22, "Until", "PvP Season", 22},
-    {N, 11060, 179, nil, nil, true}, -- Challenger: Legion Season 4
+    {N, 11060, 171, nil, nil, true}, -- Challenger: Legion Season 4
     {O, 11059, "From", "PvP Season", 22, "Until", "PvP Season", 22},
-    {N, 11059, 179, nil, nil, true}, -- Rival: Legion Season 4
+    {N, 11059, 171, nil, nil, true}, -- Rival: Legion Season 4
     {O, 11058, "From", "PvP Season", 22, "Until", "PvP Season", 22},
-    {N, 11058, 179, nil, nil, true}, -- Duelist: Legion Season 4
+    {N, 11058, 171, nil, nil, true}, -- Duelist: Legion Season 4
     {O, 11057, "From", "PvP Season", 22, "Until", "PvP Season", 22},
-    {N, 11057, 179, f.Horde, 11056, true}, -- Hero of the Horde: Ferocious
+    {N, 11057, 171, f.Horde, 11056, true}, -- Hero of the Horde: Ferocious
     {O, 11056, "From", "PvP Season", 22, "Until", "PvP Season", 22},
-    {N, 11056, 179, f.Alliance, 11057, true}, -- Hero of the Alliance: Ferocious
+    {N, 11056, 171, f.Alliance, 11057, true}, -- Hero of the Alliance: Ferocious
     {O, 11055, "From", "PvP Season", 22, "Until", "PvP Season", 22},
-    {N, 11055, 179, f.Horde, 11054, true}, -- Defender of the Horde: Legion Season 4
+    {N, 11055, 171, f.Horde, 11054, true}, -- Defender of the Horde: Legion Season 4
     {O, 11054, "From", "PvP Season", 22, "Until", "PvP Season", 22},
-    {N, 11054, 179, f.Alliance, 11055, true}, -- Defender of the Alliance: Legion Season 4
+    {N, 11054, 171, f.Alliance, 11055, true}, -- Defender of the Alliance: Legion Season 4
     {O, 11053, "From", "PvP Season", 22, "Until", "PvP Season", 22},
-    {N, 11053, 179, f.Horde, 11052, true}, -- Guardian of the Horde: Legion Season 4
+    {N, 11053, 171, f.Horde, 11052, true}, -- Guardian of the Horde: Legion Season 4
     {O, 11052, "From", "PvP Season", 22, "Until", "PvP Season", 22},
-    {N, 11052, 179, f.Alliance, 11053, true}, -- Guardian of the Alliance: Legion Season 4
+    {N, 11052, 171, f.Alliance, 11053, true}, -- Guardian of the Alliance: Legion Season 4
     {O, 11051, "From", "PvP Season", 22, "Until", "PvP Season", 22},
-    {N, 11051, 179, f.Horde, 11050, true}, -- Soldier of the Horde: Legion Season 4
+    {N, 11051, 171, f.Horde, 11050, true}, -- Soldier of the Horde: Legion Season 4
     {O, 11050, "From", "PvP Season", 22, "Until", "PvP Season", 22},
-    {N, 11050, 179, f.Alliance, 11051, true}, -- Soldier of the Alliance: Legion Season 4
+    {N, 11050, 171, f.Alliance, 11051, true}, -- Soldier of the Alliance: Legion Season 4
     {O, 11049, "From", "PvP Season", 21, "Until", "PvP Season", 21},
-    {N, 11049, 179, f.Alliance, 11048, true}, -- Soldier of the Alliance: Legion Season 3
+    {N, 11049, 171, f.Alliance, 11048, true}, -- Soldier of the Alliance: Legion Season 3
     {O, 11048, "From", "PvP Season", 21, "Until", "PvP Season", 21},
-    {N, 11048, 179, f.Horde, 11049, true}, -- Soldier of the Horde: Legion Season 3
+    {N, 11048, 171, f.Horde, 11049, true}, -- Soldier of the Horde: Legion Season 3
     {O, 11047, "From", "PvP Season", 21, "Until", "PvP Season", 21},
-    {N, 11047, 179, f.Alliance, 11046, true}, -- Guardian of the Alliance: Legion Season 3
+    {N, 11047, 171, f.Alliance, 11046, true}, -- Guardian of the Alliance: Legion Season 3
     {O, 11046, "From", "PvP Season", 21, "Until", "PvP Season", 21},
-    {N, 11046, 179, f.Horde, 11047, true}, -- Guardian of the Horde: Legion Season 3
+    {N, 11046, 171, f.Horde, 11047, true}, -- Guardian of the Horde: Legion Season 3
     {O, 11045, "From", "PvP Season", 21, "Until", "PvP Season", 21},
-    {N, 11045, 179, f.Alliance, 11044, true}, -- Defender of the Alliance: Legion Season 3
+    {N, 11045, 171, f.Alliance, 11044, true}, -- Defender of the Alliance: Legion Season 3
     {O, 11044, "From", "PvP Season", 21, "Until", "PvP Season", 21},
-    {N, 11044, 179, f.Horde, 11045, true}, -- Defender of the Horde: Legion Season 3
+    {N, 11044, 171, f.Horde, 11045, true}, -- Defender of the Horde: Legion Season 3
     {O, 11043, "From", "PvP Season", 21, "Until", "PvP Season", 21},
-    {N, 11043, 179, f.Alliance, 11042, true}, -- Hero of the Alliance: Cruel
+    {N, 11043, 171, f.Alliance, 11042, true}, -- Hero of the Alliance: Cruel
     {O, 11042, "From", "PvP Season", 21, "Until", "PvP Season", 21},
-    {N, 11042, 179, f.Horde, 11043, true}, -- Hero of the Horde: Cruel
+    {N, 11042, 171, f.Horde, 11043, true}, -- Hero of the Horde: Cruel
     {O, 11041, "From", "PvP Season", 21, "Until", "PvP Season", 21},
-    {N, 11041, 179, nil, nil, true}, -- Duelist: Legion Season 3
+    {N, 11041, 171, nil, nil, true}, -- Duelist: Legion Season 3
     {O, 11040, "From", "PvP Season", 21, "Until", "PvP Season", 21},
-    {N, 11040, 179, nil, nil, true}, -- Rival: Legion Season 3
+    {N, 11040, 171, nil, nil, true}, -- Rival: Legion Season 3
     {O, 11039, "From", "PvP Season", 21, "Until", "PvP Season", 21},
-    {N, 11039, 179, nil, nil, true}, -- Challenger: Legion Season 3
+    {N, 11039, 171, nil, nil, true}, -- Challenger: Legion Season 3
     {O, 11038, "From", "PvP Season", 21, "Until", "PvP Season", 21},
-    {N, 11038, 179, nil, nil, true}, -- Gladiator: Legion Season 3
+    {N, 11038, 171, nil, nil, true}, -- Gladiator: Legion Season 3
     {O, 11037, "From", "PvP Season", 21, "Until", "PvP Season", 21},
-    {N, 11037, 179, nil, nil, true}, -- Cruel Gladiator: Legion Season 3
+    {N, 11037, 171, nil, nil, true}, -- Cruel Gladiator: Legion Season 3
     {O, 11036, "From", "PvP Season", 20, "Until", "PvP Season", 20},
-    {N, 11036, 179, f.Alliance, 11035, true}, -- Soldier of the Alliance: Legion Season 2
+    {N, 11036, 171, f.Alliance, 11035, true}, -- Soldier of the Alliance: Legion Season 2
     {O, 11035, "From", "PvP Season", 20, "Until", "PvP Season", 20},
-    {N, 11035, 179, f.Horde, 11036, true}, -- Soldier of the Horde: Legion Season 2
+    {N, 11035, 171, f.Horde, 11036, true}, -- Soldier of the Horde: Legion Season 2
     {O, 11034, "From", "PvP Season", 20, "Until", "PvP Season", 20},
-    {N, 11034, 179, f.Alliance, 11033, true}, -- Defender of the Alliance: Legion Season 2
+    {N, 11034, 171, f.Alliance, 11033, true}, -- Defender of the Alliance: Legion Season 2
     {O, 11033, "From", "PvP Season", 20, "Until", "PvP Season", 20},
-    {N, 11033, 179, f.Horde, 11034, true}, -- Defender of the Horde: Legion Season 2
+    {N, 11033, 171, f.Horde, 11034, true}, -- Defender of the Horde: Legion Season 2
     {O, 11032, "From", "PvP Season", 20, "Until", "PvP Season", 20},
-    {N, 11032, 179, f.Alliance, 11031, true}, -- Guardian of the Alliance: Legion Season 2
+    {N, 11032, 171, f.Alliance, 11031, true}, -- Guardian of the Alliance: Legion Season 2
     {O, 11031, "From", "PvP Season", 20, "Until", "PvP Season", 20},
-    {N, 11031, 179, f.Horde, 11032, true}, -- Guardian of the Horde: Legion Season 2
+    {N, 11031, 171, f.Horde, 11032, true}, -- Guardian of the Horde: Legion Season 2
     {O, 11030, "From", "PvP Season", 20, "Until", "PvP Season", 20},
-    {N, 11030, 179, f.Alliance, 11029, true}, -- Hero of the Alliance: Fearless
+    {N, 11030, 171, f.Alliance, 11029, true}, -- Hero of the Alliance: Fearless
     {O, 11029, "From", "PvP Season", 20, "Until", "PvP Season", 20},
-    {N, 11029, 179, f.Horde, 11030, true}, -- Hero of the Horde: Fearless
+    {N, 11029, 171, f.Horde, 11030, true}, -- Hero of the Horde: Fearless
     {O, 11028, "From", "PvP Season", 20, "Until", "PvP Season", 20},
-    {N, 11028, 179, nil, nil, true}, -- Challenger: Legion Season 2
+    {N, 11028, 171, nil, nil, true}, -- Challenger: Legion Season 2
     {O, 11027, "From", "PvP Season", 20, "Until", "PvP Season", 20},
-    {N, 11027, 179, nil, nil, true}, -- Rival: Legion Season 2
+    {N, 11027, 171, nil, nil, true}, -- Rival: Legion Season 2
     {O, 11026, "From", "PvP Season", 20, "Until", "PvP Season", 20},
-    {N, 11026, 179, nil, nil, true}, -- Duelist: Legion Season 2
+    {N, 11026, 171, nil, nil, true}, -- Duelist: Legion Season 2
     {O, 11025, "From", "PvP Season", 19, "Until", "PvP Season", 19},
-    {N, 11025, 179, f.Horde, 11024, true}, -- Soldier of the Horde: Legion Season 1
+    {N, 11025, 171, f.Horde, 11024, true}, -- Soldier of the Horde: Legion Season 1
     {O, 11024, "From", "PvP Season", 19, "Until", "PvP Season", 19},
-    {N, 11024, 179, f.Alliance, 11025, true}, -- Soldier of the Alliance: Legion Season 1
+    {N, 11024, 171, f.Alliance, 11025, true}, -- Soldier of the Alliance: Legion Season 1
     {O, 11023, "From", "PvP Season", 19, "Until", "PvP Season", 19},
-    {N, 11023, 179, f.Horde, 11022, true}, -- Defender of the Horde: Legion Season 1
+    {N, 11023, 171, f.Horde, 11022, true}, -- Defender of the Horde: Legion Season 1
     {O, 11022, "From", "PvP Season", 19, "Until", "PvP Season", 19},
-    {N, 11022, 179, f.Alliance, 11023, true}, -- Defender of the Alliance: Legion Season 1
+    {N, 11022, 171, f.Alliance, 11023, true}, -- Defender of the Alliance: Legion Season 1
     {O, 11021, "From", "PvP Season", 19, "Until", "PvP Season", 19},
-    {N, 11021, 179, f.Horde, 11020, true}, -- Guardian of the Horde: Legion Season 1
+    {N, 11021, 171, f.Horde, 11020, true}, -- Guardian of the Horde: Legion Season 1
     {O, 11020, "From", "PvP Season", 19, "Until", "PvP Season", 19},
-    {N, 11020, 179, f.Alliance, 11021, true}, -- Guardian of the Alliance: Legion Season 1
+    {N, 11020, 171, f.Alliance, 11021, true}, -- Guardian of the Alliance: Legion Season 1
     {O, 11019, "From", "PvP Season", 19, "Until", "PvP Season", 19},
-    {N, 11019, 179, f.Horde, 11018, true}, -- Hero of the Horde: Vindictive
+    {N, 11019, 171, f.Horde, 11018, true}, -- Hero of the Horde: Vindictive
     {O, 11018, "From", "PvP Season", 19, "Until", "PvP Season", 19},
-    {N, 11018, 179, f.Alliance, 11019, true}, -- Hero of the Alliance: Vindictive
+    {N, 11018, 171, f.Alliance, 11019, true}, -- Hero of the Alliance: Vindictive
     {O, 11017, "From", "PvP Season", 19, "Until", "PvP Season", 19},
-    {N, 11017, 179, nil, nil, true}, -- Challenger: Legion Season 1
+    {N, 11017, 171, nil, nil, true}, -- Challenger: Legion Season 1
     {O, 11016, "From", "PvP Season", 19, "Until", "PvP Season", 19},
-    {N, 11016, 179, nil, nil, true}, -- Rival: Legion Season 1
+    {N, 11016, 171, nil, nil, true}, -- Rival: Legion Season 1
     {O, 11015, "From", "PvP Season", 19, "Until", "PvP Season", 19},
-    {N, 11015, 179, nil, nil, true}, -- Duelist: Legion Season 1
+    {N, 11015, 171, nil, nil, true}, -- Duelist: Legion Season 1
     {O, 11014, "From", "PvP Season", 20, "Until", "PvP Season", 20},
-    {N, 11014, 179, nil, nil, true}, -- Fearless Gladiator: Legion Season 2
+    {N, 11014, 171, nil, nil, true}, -- Fearless Gladiator: Legion Season 2
     {O, 11013, "From", "PvP Season", 20, "Until", "PvP Season", 20},
-    {N, 11013, 179, nil, nil, true}, -- Gladiator: Legion Season 2
+    {N, 11013, 171, nil, nil, true}, -- Gladiator: Legion Season 2
     {O, 11012, "From", "PvP Season", 19, "Until", "PvP Season", 19},
-    {N, 11012, 179, nil, nil, true}, -- Vindictive Gladiator: Legion Season 1
+    {N, 11012, 171, nil, nil, true}, -- Vindictive Gladiator: Legion Season 1
     {O, 11011, "From", "PvP Season", 19, "Until", "PvP Season", 19},
-    {N, 11011, 179, nil, nil, true}, -- Gladiator: Legion Season 1
+    {N, 11011, 171, nil, nil, true}, -- Gladiator: Legion Season 1
     {O, 11010, "From", "PvP Season", 22, "Until", "PvP Season", 22},
-    {N, 11010, 179, f.Alliance, 11009, true}, -- Ferocious Combatant
+    {N, 11010, 171, f.Alliance, 11009, true}, -- Ferocious Combatant
     {O, 11009, "From", "PvP Season", 22, "Until", "PvP Season", 22},
-    {N, 11009, 179, f.Horde, 11010, true}, -- Ferocious Combatant
+    {N, 11009, 171, f.Horde, 11010, true}, -- Ferocious Combatant
     {O, 11008, "From", "PvP Season", 21, "Until", "PvP Season", 21},
-    {N, 11008, 179, f.Alliance, 11005, true}, -- Cruel Combatant
+    {N, 11008, 171, f.Alliance, 11005, true}, -- Cruel Combatant
     {O, 11005, "From", "PvP Season", 21, "Until", "PvP Season", 21},
-    {N, 11005, 179, f.Horde, 11008, true}, -- Cruel Combatant
+    {N, 11005, 171, f.Horde, 11008, true}, -- Cruel Combatant
     {O, 11004, "From", "PvP Season", 20, "Until", "PvP Season", 20},
-    {N, 11004, 179, f.Alliance, 11003, true}, -- Fearless Combatant
+    {N, 11004, 171, f.Alliance, 11003, true}, -- Fearless Combatant
     {O, 11003, "From", "PvP Season", 20, "Until", "PvP Season", 20},
-    {N, 11003, 179, f.Horde, 11004, true}, -- Fearless Combatant
+    {N, 11003, 171, f.Horde, 11004, true}, -- Fearless Combatant
     {O, 11002, "From", "PvP Season", 22, "Until", "PvP Season", 22},
-    {N, 11002, 179, nil, nil, true}, -- Ferocious Gladiator's Storm Dragon
+    {N, 11002, 171, nil, nil, true}, -- Ferocious Gladiator's Storm Dragon
     {O, 11001, "From", "PvP Season", 21, "Until", "PvP Season", 21},
-    {N, 11001, 179, nil, nil, true}, -- Cruel Gladiator's Storm Dragon
+    {N, 11001, 171, nil, nil, true}, -- Cruel Gladiator's Storm Dragon
     {O, 11000, "From", "PvP Season", 20, "Until", "PvP Season", 20},
-    {N, 11000, 179, nil, nil, true}, -- Fearless Gladiator's Storm Dragon
+    {N, 11000, 171, nil, nil, true}, -- Fearless Gladiator's Storm Dragon
     {O, 10999, "From", "PvP Season", 19, "Until", "PvP Season", 19},
-    {N, 10999, 179, nil, nil, true}, -- Vindictive Gladiator's Storm Dragon
+    {N, 10999, 171, nil, nil, true}, -- Vindictive Gladiator's Storm Dragon
     {O, 10998, "From", "PvP Season", 19, "Until", "PvP Season", 19},
-    {N, 10998, 179, f.Alliance, 10997, true}, -- Vindictive Combatant
+    {N, 10998, 171, f.Alliance, 10997, true}, -- Vindictive Combatant
     {O, 10997, "From", "PvP Season", 19, "Until", "PvP Season", 19},
-    {N, 10997, 179, f.Horde, 10998, true}, -- Vindictive Combatant
-    {N, 10996, 179}, -- Got to Ketchum All
+    {N, 10997, 171, f.Horde, 10998, true}, -- Vindictive Combatant
+    {N, 10996, 171}, -- Got to Ketchum All
     {O, 10995, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 10995, 179, nil, nil, true}, -- For Prestige
-    {N, 10994, 179}, -- A Glorious Campaign
+    {N, 10995, 171, nil, nil, true}, -- For Prestige
+    {N, 10994, 171}, -- A Glorious Campaign
     {O, 10993, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 10993, 179, nil, nil, true}, -- Third Time's the Charm
+    {N, 10993, 171, nil, nil, true}, -- Third Time's the Charm
     {O, 10992, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 10992, 179, nil, nil, true}, -- Here We Go Again
+    {N, 10992, 171, nil, nil, true}, -- Here We Go Again
     {O, 10991, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 10991, 179, nil, nil, true}, -- First Step into a Larger World
-    {N, 10877, 179}, -- Pillars of Creation
-    {N, 10876, 179}, -- Battle on the Broken Isles
-    {N, 10875, 179}, -- Can't Eat Just One
+    {N, 10991, 171, nil, nil, true}, -- First Step into a Larger World
+    {N, 10877, 171}, -- Pillars of Creation
+    {N, 10876, 171}, -- Battle on the Broken Isles
+    {N, 10875, 171}, -- Can't Eat Just One
     {O, 10853, "From", "Version", "070003", "Before", "Version", "080001"},
-    {N, 10853, 179}, -- Part of History
+    {N, 10853, 171}, -- Part of History
     {O, 10852, "From", "Version", "070003", "Before", "Version", "080001"},
-    {N, 10852, 179}, -- Artifact or Artifiction
-    {N, 10851, 179}, -- Elementalry!
-    {N, 10850, 179}, -- Mythic: Gul'dan
-    {N, 10849, 179}, -- Mythic: Grand Magistrix Elisande
-    {N, 10848, 179}, -- Mythic: Krosus
-    {N, 10847, 179}, -- Mythic: Tichondrius
-    {N, 10846, 179}, -- Mythic: High Botanist Tel'arn
-    {N, 10845, 179}, -- Mythic: Star Augur Etraeus
-    {N, 10844, 179}, -- Mythic: Spellblade Aluriel
-    {N, 10843, 179}, -- Mythic: Trilliax
-    {N, 10842, 179}, -- Mythic: Chronomatic Anomaly
-    {N, 10840, 179}, -- Mythic: Skorpyron
-    {N, 10839, 179}, -- Betrayer's Rise
-    {N, 10838, 179}, -- Nightspire
-    {N, 10837, 179}, -- Royal Athenaeum
-    {N, 10830, 179}, -- Took the Red Eye Down
-    {N, 10829, 179}, -- Arcing Aqueducts
-    {N, 10827, 179}, -- Mythic: Xavius
-    {N, 10826, 179}, -- Mythic: Cenarius
-    {N, 10825, 179}, -- Mythic: Dragons of Nightmare
-    {N, 10824, 179}, -- Mythic: Ursoc
-    {N, 10823, 179}, -- Mythic: Il'gynoth
-    {N, 10822, 179}, -- Mythic: Elerethe Renferal
-    {N, 10821, 179}, -- Mythic: Nythendra
-    {N, 10820, 179}, -- Rift of Aln
-    {N, 10819, 179}, -- Tormented Guardians
-    {N, 10818, 179}, -- Darkbough
-    {N, 10817, 179}, -- A Change In Scenery
-    {N, 10816, 179}, -- Mythic: Court of Stars
-    {N, 10813, 179}, -- Mythic: The Arcway
-    {N, 10809, 179}, -- Mythic: Maw of Souls
-    {N, 10808, 179}, -- Heroic: Maw of Souls
-    {N, 10807, 179}, -- Maw of Souls
-    {N, 10806, 179}, -- Mythic: Black Rook Hold
-    {N, 10805, 179}, -- Heroic: Black Rook Hold
-    {N, 10804, 179}, -- Black Rook Hold
-    {N, 10803, 179}, -- Mythic: Vault of the Wardens
-    {N, 10802, 179}, -- Heroic: Vault of the Wardens
-    {N, 10801, 179}, -- Vault of the Wardens
-    {N, 10800, 179}, -- Mythic: Assault on Violet Hold
-    {N, 10799, 179}, -- Heroic: Assault on Violet Hold
-    {N, 10798, 179}, -- Assault on Violet Hold
-    {N, 10797, 179}, -- Mythic: Neltharion's Lair
-    {N, 10796, 179}, -- Heroic: Neltharion's Lair
-    {N, 10795, 179}, -- Neltharion's Lair
-    {N, 10793, 179}, -- What a Ripoff!
-    {N, 10790, 179}, -- "Vrykul Story, Bro"
-    {N, 10789, 179}, -- Mythic: Halls of Valor
-    {N, 10788, 179}, -- Heroic: Halls of Valor
-    {N, 10786, 179}, -- Halls of Valor
-    {N, 10785, 179}, -- Mythic: Darkheart Thicket
-    {N, 10784, 179}, -- Heroic: Darkheart Thicket
-    {N, 10783, 179}, -- Darkheart Thicket
-    {N, 10782, 179}, -- Mythic: Eye of Azshara
-    {N, 10781, 179}, -- Heroic: Eye of Azshara
-    {N, 10780, 179}, -- Eye of Azshara
-    {N, 10778, 179}, -- The Nightfallen
-    {N, 10776, 179}, -- No Time to Waste
-    {N, 10775, 179}, -- Clean House
-    {N, 10774, 179}, -- Hatchling of the Talon
-    {N, 10773, 179}, -- Arcanic Cling
-    {N, 10772, 179}, -- Use the Force(s)
-    {N, 10771, 179}, -- Webbing Crashers
-    {N, 10770, 179}, -- The Tangerine Traveler
-    {N, 10769, 179}, -- Burning Down the House
-    {N, 10766, 179}, -- Egg-cellent!
+    {N, 10852, 171}, -- Artifact or Artifiction
+    {N, 10851, 171}, -- Elementalry!
+    {N, 10850, 171}, -- Mythic: Gul'dan
+    {N, 10849, 171}, -- Mythic: Grand Magistrix Elisande
+    {N, 10848, 171}, -- Mythic: Krosus
+    {N, 10847, 171}, -- Mythic: Tichondrius
+    {N, 10846, 171}, -- Mythic: High Botanist Tel'arn
+    {N, 10845, 171}, -- Mythic: Star Augur Etraeus
+    {N, 10844, 171}, -- Mythic: Spellblade Aluriel
+    {N, 10843, 171}, -- Mythic: Trilliax
+    {N, 10842, 171}, -- Mythic: Chronomatic Anomaly
+    {N, 10840, 171}, -- Mythic: Skorpyron
+    {N, 10839, 171}, -- Betrayer's Rise
+    {N, 10838, 171}, -- Nightspire
+    {N, 10837, 171}, -- Royal Athenaeum
+    {N, 10830, 171}, -- Took the Red Eye Down
+    {N, 10829, 171}, -- Arcing Aqueducts
+    {N, 10827, 171}, -- Mythic: Xavius
+    {N, 10826, 171}, -- Mythic: Cenarius
+    {N, 10825, 171}, -- Mythic: Dragons of Nightmare
+    {N, 10824, 171}, -- Mythic: Ursoc
+    {N, 10823, 171}, -- Mythic: Il'gynoth
+    {N, 10822, 171}, -- Mythic: Elerethe Renferal
+    {N, 10821, 171}, -- Mythic: Nythendra
+    {N, 10820, 171}, -- Rift of Aln
+    {N, 10819, 171}, -- Tormented Guardians
+    {N, 10818, 171}, -- Darkbough
+    {N, 10817, 171}, -- A Change In Scenery
+    {N, 10816, 171}, -- Mythic: Court of Stars
+    {N, 10813, 171}, -- Mythic: The Arcway
+    {N, 10809, 171}, -- Mythic: Maw of Souls
+    {N, 10808, 171}, -- Heroic: Maw of Souls
+    {N, 10807, 171}, -- Maw of Souls
+    {N, 10806, 171}, -- Mythic: Black Rook Hold
+    {N, 10805, 171}, -- Heroic: Black Rook Hold
+    {N, 10804, 171}, -- Black Rook Hold
+    {N, 10803, 171}, -- Mythic: Vault of the Wardens
+    {N, 10802, 171}, -- Heroic: Vault of the Wardens
+    {N, 10801, 171}, -- Vault of the Wardens
+    {N, 10800, 171}, -- Mythic: Assault on Violet Hold
+    {N, 10799, 171}, -- Heroic: Assault on Violet Hold
+    {N, 10798, 171}, -- Assault on Violet Hold
+    {N, 10797, 171}, -- Mythic: Neltharion's Lair
+    {N, 10796, 171}, -- Heroic: Neltharion's Lair
+    {N, 10795, 171}, -- Neltharion's Lair
+    {N, 10793, 171}, -- What a Ripoff!
+    {N, 10790, 171}, -- "Vrykul Story, Bro"
+    {N, 10789, 171}, -- Mythic: Halls of Valor
+    {N, 10788, 171}, -- Heroic: Halls of Valor
+    {N, 10786, 171}, -- Halls of Valor
+    {N, 10785, 171}, -- Mythic: Darkheart Thicket
+    {N, 10784, 171}, -- Heroic: Darkheart Thicket
+    {N, 10783, 171}, -- Darkheart Thicket
+    {N, 10782, 171}, -- Mythic: Eye of Azshara
+    {N, 10781, 171}, -- Heroic: Eye of Azshara
+    {N, 10780, 171}, -- Eye of Azshara
+    {N, 10778, 171}, -- The Nightfallen
+    {N, 10776, 171}, -- No Time to Waste
+    {N, 10775, 171}, -- Clean House
+    {N, 10774, 171}, -- Hatchling of the Talon
+    {N, 10773, 171}, -- Arcanic Cling
+    {N, 10772, 171}, -- Use the Force(s)
+    {N, 10771, 171}, -- Webbing Crashers
+    {N, 10770, 171}, -- The Tangerine Traveler
+    {N, 10769, 171}, -- Burning Down the House
+    {N, 10766, 171}, -- Egg-cellent!
     {O, 10765, "From", "Version", "070003", "Before", "Version", "080001"},
-    {N, 10765, 179}, -- Brokenly Epic
+    {N, 10765, 171}, -- Brokenly Epic
     {O, 10764, "From", "Version", "070003", "Before", "Version", "080001"},
-    {N, 10764, 179}, -- Brokenly Superior
-    {N, 10763, 179}, -- Azsuna Matata
-    {N, 10762, 179}, -- The Legion Menu
-    {N, 10761, 179}, -- Resourceful
-    {N, 10756, 179}, -- Leyline Bling
-    {N, 10755, 179}, -- I Attack the Darkness
-    {N, 10754, 179}, -- Fruit of All Evil
-    {N, 10753, 179}, -- Scare Bear
-    {N, 10751, 179}, -- Brr... It's Cold in Here
-    {N, 10750, 179}, -- Fighting with Style: Hidden
-    {N, 10749, 179, f.Alliance, 11173, true}, -- Fighting with Style: War-torn
-    {N, 10748, 179}, -- Fighting with Style: Valorous
+    {N, 10764, 171}, -- Brokenly Superior
+    {N, 10763, 171}, -- Azsuna Matata
+    {N, 10762, 171}, -- The Legion Menu
+    {N, 10761, 171}, -- Resourceful
+    {N, 10756, 171}, -- Leyline Bling
+    {N, 10755, 171}, -- I Attack the Darkness
+    {N, 10754, 171}, -- Fruit of All Evil
+    {N, 10753, 171}, -- Scare Bear
+    {N, 10751, 171}, -- Brr... It's Cold in Here
+    {N, 10750, 171}, -- Fighting with Style: Hidden
+    {N, 10749, 171, f.Alliance, 11173, true}, -- Fighting with Style: War-torn
+    {N, 10748, 171}, -- Fighting with Style: Valorous
     {O, 10747, "From", "Version", "070003", "Before", "Version", "080001"},
-    {N, 10747, 179}, -- Fighting with Style: Upgraded
-    {N, 10746, 179}, -- Forged for Battle
+    {N, 10747, 171}, -- Fighting with Style: Upgraded
+    {N, 10746, 171}, -- Forged for Battle
     {O, 10745, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 10745, 179, f.Horde, 10743, true}, -- The Prestige
+    {N, 10745, 171, f.Horde, 10743, true}, -- The Prestige
     {O, 10743, "From", "PvP Season", 19, "Until", "PvP Season", 25},
-    {N, 10743, 179, f.Alliance, 10745, true}, -- The Prestige
-    {N, 10742, 179}, -- Gluten Free
+    {N, 10743, 171, f.Alliance, 10745, true}, -- The Prestige
+    {N, 10742, 171}, -- Gluten Free
     {O, 10741 },
-    {N, 10741, 179}, -- WoW's 12th Anniversary
-    {N, 10722, 179}, -- The Wish Remover
-    {N, 10711, 179}, -- Adds? More Like Bads
-    {N, 10710, 179}, -- Black Rook Moan
-    {N, 10709, 179}, -- You Used to Scrawl Me In Your Fel Tome
-    {N, 10707, 179}, -- "A Specter, Illuminated"
-    {N, 10706, 179}, -- Training the Troops
-    {N, 10704, 179}, -- Not For You
-    {N, 10699, 179}, -- Infinitesimal
-    {N, 10698, 179}, -- That's Val'sharah Folks!
-    {N, 10697, 179}, -- Grand Opening
-    {N, 10696, 179}, -- I've Got My Eyes On You
-    {N, 10694, 179}, -- Fabulous
-    {N, 10693, 179}, -- Fashionista: Hand
-    {N, 10692, 179}, -- Fashionista: Shoulder
-    {N, 10691, 179}, -- Fashionista: Shirt
-    {N, 10690, 179}, -- Fashionista: Tabard
-    {N, 10689, 179}, -- Fashionista: Weapon & Off-Hand
-    {N, 10688, 179}, -- Fashionista: Wrist
-    {N, 10687, 179}, -- Fashionista: Back
-    {N, 10686, 179}, -- Fashionista: Waist
-    {N, 10685, 179}, -- Fashionista: Feet
-    {N, 10684, 179}, -- Fashionista: Legs
-    {N, 10682, 179}, -- Fashionista: Chest
-    {N, 10681, 179}, -- Fashionista: Head
-    {N, 10680, 179}, -- Who's Afraid of the Dark?
-    {N, 10679, 179}, -- I Ain't Even Cold
-    {N, 10678, 179}, -- Cage Rematch
-    {N, 10672, 179}, -- Broken Isles Diplomat
+    {N, 10741, 171}, -- WoW's 12th Anniversary
+    {N, 10722, 171}, -- The Wish Remover
+    {N, 10711, 171}, -- Adds? More Like Bads
+    {N, 10710, 171}, -- Black Rook Moan
+    {N, 10709, 171}, -- You Used to Scrawl Me In Your Fel Tome
+    {N, 10707, 171}, -- "A Specter, Illuminated"
+    {N, 10706, 171}, -- Training the Troops
+    {N, 10704, 171}, -- Not For You
+    {N, 10699, 171}, -- Infinitesimal
+    {N, 10698, 171}, -- That's Val'sharah Folks!
+    {N, 10697, 171}, -- Grand Opening
+    {N, 10696, 171}, -- I've Got My Eyes On You
+    {N, 10694, 171}, -- Fabulous
+    {N, 10693, 171}, -- Fashionista: Hand
+    {N, 10692, 171}, -- Fashionista: Shoulder
+    {N, 10691, 171}, -- Fashionista: Shirt
+    {N, 10690, 171}, -- Fashionista: Tabard
+    {N, 10689, 171}, -- Fashionista: Weapon & Off-Hand
+    {N, 10688, 171}, -- Fashionista: Wrist
+    {N, 10687, 171}, -- Fashionista: Back
+    {N, 10686, 171}, -- Fashionista: Waist
+    {N, 10685, 171}, -- Fashionista: Feet
+    {N, 10684, 171}, -- Fashionista: Legs
+    {N, 10682, 171}, -- Fashionista: Chest
+    {N, 10681, 171}, -- Fashionista: Head
+    {N, 10680, 171}, -- Who's Afraid of the Dark?
+    {N, 10679, 171}, -- I Ain't Even Cold
+    {N, 10678, 171}, -- Cage Rematch
+    {N, 10672, 171}, -- Broken Isles Diplomat
     {O, 10671, "From", "Version", "070003", "Before", "Version", "090001"},
-    {N, 10671, 179}, -- Level 110 (Legacy)
-    {N, 10669, 179}, -- Explore Suramar
-    {N, 10668, 179}, -- Explore Stormheim
-    {N, 10667, 179}, -- Explore Highmountain
-    {N, 10666, 179}, -- Explore Val'sharah
-    {N, 10665, 179}, -- Explore Azsuna
-    {N, 10663, 179}, -- Imagined Dragons World Tour
-    {N, 10657, 179}, -- Fledgling Hero of Warcraft
-    {N, 10627, 179}, -- Going Up
-    {N, 10626, 179}, -- Zoom!
-    {N, 10617, 179}, -- Nightfallen But Not Forgotten
-    {N, 10611, 179}, -- Dropping Some Eaves
-    {N, 10610, 179}, -- Waiting for Gerdo
-    {N, 10609, 179}, -- No Stone Unturned
-    {N, 10608, 179}, -- Sifting Through the Sand
-    {N, 10607, 179}, -- Getting Your Hands Dirty
-    {N, 10606, 179}, -- The Dwarven Dream
-    {N, 10605, 179}, -- Handle With Care
-    {N, 10604, 179}, -- Legion Curator
-    {N, 10603, 179}, -- A Keen Eye
-    {N, 10602, 179}, -- This Side Up
-    {N, 10601, 179}, -- Surveying the Land
-    {N, 10600, 179}, -- Legion Archaeologist
+    {N, 10671, 171}, -- Level 110 (Legacy)
+    {N, 10669, 171}, -- Explore Suramar
+    {N, 10668, 171}, -- Explore Stormheim
+    {N, 10667, 171}, -- Explore Highmountain
+    {N, 10666, 171}, -- Explore Val'sharah
+    {N, 10665, 171}, -- Explore Azsuna
+    {N, 10663, 171}, -- Imagined Dragons World Tour
+    {N, 10657, 171}, -- Fledgling Hero of Warcraft
+    {N, 10627, 171}, -- Going Up
+    {N, 10626, 171}, -- Zoom!
+    {N, 10617, 171}, -- Nightfallen But Not Forgotten
+    {N, 10611, 171}, -- Dropping Some Eaves
+    {N, 10610, 171}, -- Waiting for Gerdo
+    {N, 10609, 171}, -- No Stone Unturned
+    {N, 10608, 171}, -- Sifting Through the Sand
+    {N, 10607, 171}, -- Getting Your Hands Dirty
+    {N, 10606, 171}, -- The Dwarven Dream
+    {N, 10605, 171}, -- Handle With Care
+    {N, 10604, 171}, -- Legion Curator
+    {N, 10603, 171}, -- A Keen Eye
+    {N, 10602, 171}, -- This Side Up
+    {N, 10601, 171}, -- Surveying the Land
+    {N, 10600, 171}, -- Legion Archaeologist
     {O, 10599, "From", "Version", "070003", "Before", "Version", "080001"},
-    {N, 10599, 179}, -- Legion Medic
-    {N, 10598, 179}, -- Fishing 'Round the Isles
-    {N, 10597, 179}, -- Legion Aquaculture
-    {N, 10596, 179}, -- Bigger Fish to Fry
-    {N, 10595, 179}, -- A Cast Above the Rest
-    {N, 10594, 179}, -- Legion Fisherman
-    {N, 10593, 179}, -- Everything Tastes Better
-    {N, 10592, 179}, -- Never A Day's Rest
-    {N, 10591, 179}, -- All Grown Up
-    {N, 10589, 179}, -- Legion Cook
-    {N, 10588, 179}, -- The Shortest Distance
-    {N, 10587, 179}, -- Hot Swapper
+    {N, 10599, 171}, -- Legion Medic
+    {N, 10598, 171}, -- Fishing 'Round the Isles
+    {N, 10597, 171}, -- Legion Aquaculture
+    {N, 10596, 171}, -- Bigger Fish to Fry
+    {N, 10595, 171}, -- A Cast Above the Rest
+    {N, 10594, 171}, -- Legion Fisherman
+    {N, 10593, 171}, -- Everything Tastes Better
+    {N, 10592, 171}, -- Never A Day's Rest
+    {N, 10591, 171}, -- All Grown Up
+    {N, 10589, 171}, -- Legion Cook
+    {N, 10588, 171}, -- The Shortest Distance
+    {N, 10587, 171}, -- Hot Swapper
     {O, 10586, "From", "Version", "070003", "Before", "Version", "090100"},
-    {N, 10586, 179}, -- Mass Obliteration
+    {N, 10586, 171}, -- Mass Obliteration
     {O, 10585, "From", "Version", "070003", "Before", "Version", "090100"},
-    {N, 10585, 179}, -- Fel-Smelter
-    {N, 10583, 179}, -- Legion Master of All
-    {N, 10582, 179}, -- Professional Legion Master
-    {N, 10581, 179}, -- Working the Isles
+    {N, 10585, 171}, -- Fel-Smelter
+    {N, 10583, 171}, -- Legion Master of All
+    {N, 10582, 171}, -- Professional Legion Master
+    {N, 10581, 171}, -- Working the Isles
     {O, 10580, "From", "Version", "070003", "Before", "Version", "080001"},
-    {N, 10580, 179}, -- Heroic Skills to Pay the Bills
-    {N, 10575, 179}, -- Burning Bridges
-    {N, 10561, 179, nil, nil, true}, -- Honorable Medallion
-    {N, 10555, 179}, -- Buggy Fight
-    {N, 10554, 179}, -- I Made a Food!
-    {N, 10553, 179}, -- You're Just Making It WORSE!
-    {N, 10544, 179}, -- Stag Party
-    {N, 10543, 179}, -- Surge Protector
-    {N, 10542, 179}, -- I Got What You Mead
+    {N, 10580, 171}, -- Heroic Skills to Pay the Bills
+    {N, 10575, 171}, -- Burning Bridges
+    {N, 10561, 171, nil, nil, true}, -- Honorable Medallion
+    {N, 10555, 171}, -- Buggy Fight
+    {N, 10554, 171}, -- I Made a Food!
+    {N, 10553, 171}, -- You're Just Making It WORSE!
+    {N, 10544, 171}, -- Stag Party
+    {N, 10543, 171}, -- Surge Protector
+    {N, 10542, 171}, -- I Got What You Mead
     {O, 10537 },
-    {N, 10537, 179}, -- Patron of War
-    {N, 10461, 179}, -- Fighting with Style: Classic
-    {N, 10460, 179}, -- Hidden Potential
-    {N, 10459, 179}, -- Improving on History
-    {N, 10458, 179}, -- Ready for Raiding V
-    {N, 10457, 179}, -- Stay Salty
-    {N, 10456, 179}, -- But You Say He's Just a Friend
-    {N, 10413, 179}, -- Instant Karma
-    {N, 10412, 179}, -- Poor Unfortunate Souls
-    {N, 10411, 179}, -- Helheim Hath No Fury
-    {N, 10398, 179}, -- Drum Circle
-    {N, 10365, 179}, -- A Frightening Friend
-    {N, 10356, 179, f.Alliance, 10355}, -- Lord of the Reins
-    {N, 10355, 179, f.Horde, 10356}, -- Lord of the Reins
-    {N, 10354, 179}, -- Crashin' Thrashin' Commander
-    {N, 10353, 179}, -- Iron Armada
-    {N, 10350, 179, f.Alliance, 10349}, -- Tanaan Diplomat
-    {N, 10349, 179, f.Horde, 10350}, -- Tanaan Diplomat
-    {N, 10348, 179}, -- Master Treasure Hunter
-    {N, 10337, 179}, -- Crashin' Thrashin' Flamer
-    {N, 10335, 179}, -- Did Someone Say...?
-    {N, 10334, 179}, -- Predator
-    {N, 10322, 179}, -- Murkidan
-    {N, 10321, 179}, -- Collector's Edition: Nibbles
-    {N, 10320, 179}, -- Collector's Edition: Illidari Felstalker
-    {N, 10309, 179}, -- Collector's Edition: Zeradar
-    {N, 10307, 179, f.Horde, 10167}, -- Exploring the High Seas
-    {N, 10276, 179, f.Horde, 10174}, -- Admiral
-    {N, 10275, 179, f.Horde, 10173}, -- Fleet Commander
-    {N, 10265, 179, f.Horde, 10072}, -- Rumble in the Jungle
-    {N, 10262, 179}, -- Jungle Treasure Master
-    {N, 10261, 179}, -- Jungle Treasure Hunter
-    {N, 10260, 179}, -- Explore Tanaan Jungle
-    {N, 10259, 179}, -- Jungle Hunter
-    {N, 10258, 179, f.Horde, 10256}, -- Charting a Course
-    {N, 10256, 179, f.Alliance, 10258}, -- Charting a Course
-    {N, 10255, 179, f.Horde, 10172}, -- Petty Officer
-    {N, 10253, 179}, -- Mythic: Gorefiend
-    {N, 10177, 179}, -- Set Sail!
-    {N, 10174, 179, f.Alliance, 10276}, -- Admiral
-    {N, 10173, 179, f.Alliance, 10275}, -- Fleet Commander
-    {N, 10172, 179, f.Alliance, 10255}, -- Petty Officer
-    {N, 10170, 179}, -- Seaman
-    {N, 10169, 179}, -- Naval Fleet
-    {N, 10168, 179}, -- Naval Armada
-    {N, 10167, 179, f.Alliance, 10307}, -- Exploring the High Seas
-    {N, 10166, 179}, -- Naval Mechanics
-    {N, 10165, 179}, -- Ironsides
-    {N, 10164, 179}, -- Master of the Seas
-    {N, 10163, 179}, -- Naval Training Expert
-    {N, 10162, 179}, -- Naval Training Specialist
-    {N, 10161, 179}, -- Naval Siege Specialist
-    {N, 10160, 179}, -- Naval Treasure Expert
-    {N, 10159, 179}, -- Naval Treasure Specialist
-    {N, 10156, 179}, -- Naval Combat Specialist
-    {N, 10155, 179}, -- Naval Siege Expert
-    {N, 10154, 179}, -- Naval Combat Expert
-    {N, 10149, 179}, -- Glory of the Hellfire Raider
+    {N, 10537, 174}, -- Patron of War
+    {N, 10461, 171}, -- Fighting with Style: Classic
+    {N, 10460, 171}, -- Hidden Potential
+    {N, 10459, 171}, -- Improving on History
+    {N, 10458, 171}, -- Ready for Raiding V
+    {N, 10457, 171}, -- Stay Salty
+    {N, 10456, 171}, -- But You Say He's Just a Friend
+    {N, 10413, 171}, -- Instant Karma
+    {N, 10412, 171}, -- Poor Unfortunate Souls
+    {N, 10411, 171}, -- Helheim Hath No Fury
+    {N, 10398, 171}, -- Drum Circle
+    {N, 10365, 167}, -- A Frightening Friend
+    {N, 10356, 167, f.Alliance, 10355}, -- Lord of the Reins
+    {N, 10355, 167, f.Horde, 10356}, -- Lord of the Reins
+    {N, 10354, 167}, -- Crashin' Thrashin' Commander
+    {N, 10353, 167}, -- Iron Armada
+    {N, 10350, 165, f.Alliance, 10349}, -- Tanaan Diplomat
+    {N, 10349, 165, f.Horde, 10350}, -- Tanaan Diplomat
+    {N, 10348, 165}, -- Master Treasure Hunter
+    {N, 10337, 167}, -- Crashin' Thrashin' Flamer
+    {N, 10335, 167}, -- Did Someone Say...?
+    {N, 10334, 165}, -- Predator
+    {N, 10322, 167}, -- Murkidan
+    {N, 10321, 167}, -- Collector's Edition: Nibbles
+    {N, 10320, 167}, -- Collector's Edition: Illidari Felstalker
+    {N, 10309, 167}, -- Collector's Edition: Zeradar
+    {N, 10307, 165, f.Horde, 10167}, -- Exploring the High Seas
+    {N, 10276, 165, f.Horde, 10174}, -- Admiral
+    {N, 10275, 165, f.Horde, 10173}, -- Fleet Commander
+    {N, 10265, 165, f.Horde, 10072}, -- Rumble in the Jungle
+    {N, 10262, 165}, -- Jungle Treasure Master
+    {N, 10261, 165}, -- Jungle Treasure Hunter
+    {N, 10260, 165}, -- Explore Tanaan Jungle
+    {N, 10259, 165}, -- Jungle Hunter
+    {N, 10258, 165, f.Horde, 10256}, -- Charting a Course
+    {N, 10256, 165, f.Alliance, 10258}, -- Charting a Course
+    {N, 10255, 165, f.Horde, 10172}, -- Petty Officer
+    {N, 10253, 165}, -- Mythic: Gorefiend
+    {N, 10177, 165}, -- Set Sail!
+    {N, 10174, 165, f.Alliance, 10276}, -- Admiral
+    {N, 10173, 165, f.Alliance, 10275}, -- Fleet Commander
+    {N, 10172, 165, f.Alliance, 10255}, -- Petty Officer
+    {N, 10170, 165}, -- Seaman
+    {N, 10169, 165}, -- Naval Fleet
+    {N, 10168, 165}, -- Naval Armada
+    {N, 10167, 165, f.Alliance, 10307}, -- Exploring the High Seas
+    {N, 10166, 165}, -- Naval Mechanics
+    {N, 10165, 165}, -- Ironsides
+    {N, 10164, 165}, -- Master of the Seas
+    {N, 10163, 165}, -- Naval Training Expert
+    {N, 10162, 165}, -- Naval Training Specialist
+    {N, 10161, 165}, -- Naval Siege Specialist
+    {N, 10160, 165}, -- Naval Treasure Expert
+    {N, 10159, 165}, -- Naval Treasure Specialist
+    {N, 10156, 165}, -- Naval Combat Specialist
+    {N, 10155, 165}, -- Naval Siege Expert
+    {N, 10154, 165}, -- Naval Combat Expert
+    {N, 10149, 165}, -- Glory of the Hellfire Raider
     {O, 10148, "From", "Version", "060200", "Before", "Version", "070003"},
-    {N, 10148, 179, f.Horde, 10021}, -- Chapter IV: Darkness Incarnate
+    {N, 10148, 165, f.Horde, 10021}, -- Chapter IV: Darkness Incarnate
     {O, 10146, "From", "PvP Season", 18, "Until", "PvP Season", 18},
-    {N, 10146, 179, nil, nil, true}, -- Warmongering Gladiator's Felblood Gronnling
+    {N, 10146, 165, nil, nil, true}, -- Warmongering Gladiator's Felblood Gronnling
     {O, 10137, "From", "PvP Season", 17, "Until", "PvP Season", 17},
-    {N, 10137, 179, nil, nil, true}, -- Wild Gladiator's Felblood Gronnling
+    {N, 10137, 165, nil, nil, true}, -- Wild Gladiator's Felblood Gronnling
     {O, 10121, "From", "PvP Season", 18, "Until", "PvP Season", 18},
-    {N, 10121, 179, f.Horde, 10120, true}, -- Soldier of the Horde: Warlords Season 3
+    {N, 10121, 165, f.Horde, 10120, true}, -- Soldier of the Horde: Warlords Season 3
     {O, 10120, "From", "PvP Season", 18, "Until", "PvP Season", 18},
-    {N, 10120, 179, f.Alliance, 10121, true}, -- Soldier of the Alliance: Warlords Season 3
+    {N, 10120, 165, f.Alliance, 10121, true}, -- Soldier of the Alliance: Warlords Season 3
     {O, 10119, "From", "PvP Season", 18, "Until", "PvP Season", 18},
-    {N, 10119, 179, f.Horde, 10118, true}, -- Defender of the Horde: Warlords Season 3
+    {N, 10119, 165, f.Horde, 10118, true}, -- Defender of the Horde: Warlords Season 3
     {O, 10118, "From", "PvP Season", 18, "Until", "PvP Season", 18},
-    {N, 10118, 179, f.Alliance, 10119, true}, -- Defender of the Alliance: Warlords Season 3
+    {N, 10118, 165, f.Alliance, 10119, true}, -- Defender of the Alliance: Warlords Season 3
     {O, 10117, "From", "PvP Season", 18, "Until", "PvP Season", 18},
-    {N, 10117, 179, f.Horde, 10116, true}, -- Guardian of the Horde: Warlords Season 3
+    {N, 10117, 165, f.Horde, 10116, true}, -- Guardian of the Horde: Warlords Season 3
     {O, 10116, "From", "PvP Season", 18, "Until", "PvP Season", 18},
-    {N, 10116, 179, f.Alliance, 10117, true}, -- Guardian of the Alliance: Warlords Season 3
+    {N, 10116, 165, f.Alliance, 10117, true}, -- Guardian of the Alliance: Warlords Season 3
     {O, 10115, "From", "PvP Season", 18, "Until", "PvP Season", 18},
-    {N, 10115, 179, f.Horde, 10114, true}, -- Hero of the Horde: Warmongering
+    {N, 10115, 165, f.Horde, 10114, true}, -- Hero of the Horde: Warmongering
     {O, 10114, "From", "PvP Season", 18, "Until", "PvP Season", 18},
-    {N, 10114, 179, f.Alliance, 10115, true}, -- Hero of the Alliance: Warmongering
+    {N, 10114, 165, f.Alliance, 10115, true}, -- Hero of the Alliance: Warmongering
     {O, 10113, "From", "PvP Season", 18, "Until", "PvP Season", 18},
-    {N, 10113, 179, nil, nil, true}, -- Challenger: Warlords Season 3
+    {N, 10113, 165, nil, nil, true}, -- Challenger: Warlords Season 3
     {O, 10112, "From", "PvP Season", 18, "Until", "PvP Season", 18},
-    {N, 10112, 179, nil, nil, true}, -- Rival: Warlords Season 3
+    {N, 10112, 165, nil, nil, true}, -- Rival: Warlords Season 3
     {O, 10111, "From", "PvP Season", 18, "Until", "PvP Season", 18},
-    {N, 10111, 179, nil, nil, true}, -- Duelist: Warlords Season 3
+    {N, 10111, 165, nil, nil, true}, -- Duelist: Warlords Season 3
     {O, 10110, "From", "PvP Season", 18, "Until", "PvP Season", 18},
-    {N, 10110, 179, nil, nil, true}, -- Gladiator: Warlords Season 3
+    {N, 10110, 165, nil, nil, true}, -- Gladiator: Warlords Season 3
     {O, 10109, "From", "PvP Season", 17, "Until", "PvP Season", 17},
-    {N, 10109, 179, f.Horde, 10108, true}, -- Guardian of the Horde: Warlords Season 2
+    {N, 10109, 165, f.Horde, 10108, true}, -- Guardian of the Horde: Warlords Season 2
     {O, 10108, "From", "PvP Season", 17, "Until", "PvP Season", 17},
-    {N, 10108, 179, f.Alliance, 10109, true}, -- Guardian of the Alliance: Warlords Season 2
+    {N, 10108, 165, f.Alliance, 10109, true}, -- Guardian of the Alliance: Warlords Season 2
     {O, 10107, "From", "PvP Season", 17, "Until", "PvP Season", 17},
-    {N, 10107, 179, f.Horde, 10106, true}, -- Defender of the Horde: Warlords Season 2
+    {N, 10107, 165, f.Horde, 10106, true}, -- Defender of the Horde: Warlords Season 2
     {O, 10106, "From", "PvP Season", 17, "Until", "PvP Season", 17},
-    {N, 10106, 179, f.Alliance, 10107, true}, -- Defender of the Alliance: Warlords Season 2
+    {N, 10106, 165, f.Alliance, 10107, true}, -- Defender of the Alliance: Warlords Season 2
     {O, 10105, "From", "PvP Season", 17, "Until", "PvP Season", 17},
-    {N, 10105, 179, f.Horde, 10104, true}, -- Soldier of the Horde: Warlords Season 2
+    {N, 10105, 165, f.Horde, 10104, true}, -- Soldier of the Horde: Warlords Season 2
     {O, 10104, "From", "PvP Season", 17, "Until", "PvP Season", 17},
-    {N, 10104, 179, f.Alliance, 10105, true}, -- Soldier of the Alliance: Warlords Season 2
+    {N, 10104, 165, f.Alliance, 10105, true}, -- Soldier of the Alliance: Warlords Season 2
     {O, 10103, "From", "PvP Season", 17, "Until", "PvP Season", 17},
-    {N, 10103, 179, f.Horde, 10102, true}, -- Hero of the Horde: Wild
+    {N, 10103, 165, f.Horde, 10102, true}, -- Hero of the Horde: Wild
     {O, 10102, "From", "PvP Season", 17, "Until", "PvP Season", 17},
-    {N, 10102, 179, f.Alliance, 10103, true}, -- Hero of the Alliance: Wild
+    {N, 10102, 165, f.Alliance, 10103, true}, -- Hero of the Alliance: Wild
     {O, 10101, "From", "PvP Season", 17, "Until", "PvP Season", 17},
-    {N, 10101, 179, nil, nil, true}, -- Challenger: Warlords Season 2
+    {N, 10101, 165, nil, nil, true}, -- Challenger: Warlords Season 2
     {O, 10100, "From", "PvP Season", 17, "Until", "PvP Season", 17},
-    {N, 10100, 179, nil, nil, true}, -- Rival: Warlords Season 2
+    {N, 10100, 165, nil, nil, true}, -- Rival: Warlords Season 2
     {O, 10099, "From", "PvP Season", 17, "Until", "PvP Season", 17},
-    {N, 10099, 179, nil, nil, true}, -- Duelist: Warlords Season 2
+    {N, 10099, 165, nil, nil, true}, -- Duelist: Warlords Season 2
     {O, 10098, "From", "PvP Season", 17, "Until", "PvP Season", 17},
-    {N, 10098, 179, nil, nil, true}, -- Gladiator: Warlords Season 2
+    {N, 10098, 165, nil, nil, true}, -- Gladiator: Warlords Season 2
     {O, 10097, "From", "PvP Season", 18, "Until", "PvP Season", 18},
-    {N, 10097, 179, nil, nil, true}, -- Warmongering Gladiator: Warlords Season 3
+    {N, 10097, 165, nil, nil, true}, -- Warmongering Gladiator: Warlords Season 3
     {O, 10096, "From", "PvP Season", 17, "Until", "PvP Season", 17},
-    {N, 10096, 179, nil, nil, true}, -- Wild Gladiator: Warlords Season 2
+    {N, 10096, 165, nil, nil, true}, -- Wild Gladiator: Warlords Season 2
     {O, 10095, "From", "PvP Season", 18, "Until", "PvP Season", 18},
-    {N, 10095, 179, f.Alliance, 10094, true}, -- Warmongering Combatant
+    {N, 10095, 165, f.Alliance, 10094, true}, -- Warmongering Combatant
     {O, 10094, "From", "PvP Season", 18, "Until", "PvP Season", 18},
-    {N, 10094, 179, f.Horde, 10095, true}, -- Warmongering Combatant
+    {N, 10094, 165, f.Horde, 10095, true}, -- Warmongering Combatant
     {O, 10093, "From", "PvP Season", 17, "Until", "PvP Season", 17},
-    {N, 10093, 179, f.Alliance, 10092, true}, -- Wild Combatant
+    {N, 10093, 165, f.Alliance, 10092, true}, -- Wild Combatant
     {O, 10092, "From", "PvP Season", 17, "Until", "PvP Season", 17},
-    {N, 10092, 179, f.Horde, 10093, true}, -- Wild Combatant
+    {N, 10092, 165, f.Horde, 10093, true}, -- Wild Combatant
     {O, 10091, "From", "PvP Season", 18, "Until", "PvP Season", 18},
-    {N, 10091, 179, f.Alliance, 10090, true}, -- Warmongering Conquest
+    {N, 10091, 165, f.Alliance, 10090, true}, -- Warmongering Conquest
     {O, 10090, "From", "PvP Season", 18, "Until", "PvP Season", 18},
-    {N, 10090, 179, f.Horde, 10091, true}, -- Warmongering Conquest
+    {N, 10090, 165, f.Horde, 10091, true}, -- Warmongering Conquest
     {O, 10089, "From", "PvP Season", 17, "Until", "PvP Season", 17},
-    {N, 10089, 179, f.Alliance, 10088, true}, -- Wild Conquest
+    {N, 10089, 165, f.Alliance, 10088, true}, -- Wild Conquest
     {O, 10088, "From", "PvP Season", 17, "Until", "PvP Season", 17},
-    {N, 10088, 179, f.Horde, 10089, true}, -- Wild Conquest
-    {N, 10087, 179}, -- You Gotta Keep 'em Separated
-    {N, 10086, 179}, -- I'm a Soul Man
-    {N, 10085, 179}, -- Mythic: Upper Blackrock Spire
-    {N, 10084, 179}, -- Mythic: Shadowmoon Burial Grounds
-    {N, 10083, 179}, -- Mythic: The Everbloom
-    {N, 10082, 179}, -- Mythic: Grimrail Depot
-    {N, 10081, 179}, -- Mythic: Skyreach
-    {N, 10080, 179}, -- Mythic: Auchindoun
-    {N, 10079, 179}, -- Mythic: Iron Docks
-    {N, 10076, 179}, -- Mythic: Bloodmaul Slag Mines
-    {N, 10075, 179, f.Horde, 10068}, -- Draenor's Last Stand
-    {N, 10074, 179, f.Horde, 10067}, -- In Pursuit of Gul'dan
-    {N, 10073, 179}, -- Echoes of Doomfire
-    {N, 10072, 179, f.Alliance, 10265}, -- Rumble in the Jungle
-    {N, 10071, 179}, -- The Legion Will NOT Conquer All
-    {N, 10070, 179}, -- Jungle Stalker
-    {N, 10069, 179}, -- "I Came, I Clawed, I Conquered"
-    {N, 10068, 179, f.Alliance, 10075}, -- Draenor's Last Stand
-    {N, 10067, 179, f.Alliance, 10074}, -- In Pursuit of Gul'dan
-    {N, 10061, 179}, -- Hellbane
-    {N, 10059, 179}, -- Ain't No Mountain High Enough
+    {N, 10088, 165, f.Horde, 10089, true}, -- Wild Conquest
+    {N, 10087, 165}, -- You Gotta Keep 'em Separated
+    {N, 10086, 165}, -- I'm a Soul Man
+    {N, 10085, 165}, -- Mythic: Upper Blackrock Spire
+    {N, 10084, 165}, -- Mythic: Shadowmoon Burial Grounds
+    {N, 10083, 165}, -- Mythic: The Everbloom
+    {N, 10082, 165}, -- Mythic: Grimrail Depot
+    {N, 10081, 165}, -- Mythic: Skyreach
+    {N, 10080, 165}, -- Mythic: Auchindoun
+    {N, 10079, 165}, -- Mythic: Iron Docks
+    {N, 10076, 165}, -- Mythic: Bloodmaul Slag Mines
+    {N, 10075, 165, f.Horde, 10068}, -- Draenor's Last Stand
+    {N, 10074, 165, f.Horde, 10067}, -- In Pursuit of Gul'dan
+    {N, 10073, 165}, -- Echoes of Doomfire
+    {N, 10072, 165, f.Alliance, 10265}, -- Rumble in the Jungle
+    {N, 10071, 165}, -- The Legion Will NOT Conquer All
+    {N, 10070, 165}, -- Jungle Stalker
+    {N, 10069, 165}, -- "I Came, I Clawed, I Conquered"
+    {N, 10068, 165, f.Alliance, 10075}, -- Draenor's Last Stand
+    {N, 10067, 165, f.Alliance, 10074}, -- In Pursuit of Gul'dan
+    {N, 10061, 165}, -- Hellbane
+    {N, 10059, 171}, -- Ain't No Mountain High Enough
     {O, 10058 },
-    {N, 10058, 179}, -- WoW's 11th Anniversary
-    {N, 10057, 179}, -- Turning the Tide
-    {N, 10054, 179}, -- Don't Fear the Reaper
-    {N, 10053, 179}, -- I Found Pepe!
-    {N, 10052, 179}, -- Tiny Terrors in Tanaan
+    {N, 10058, 165}, -- WoW's 11th Anniversary
+    {N, 10057, 165}, -- Turning the Tide
+    {N, 10054, 165}, -- Don't Fear the Reaper
+    {N, 10053, 165}, -- I Found Pepe!
+    {N, 10052, 165}, -- Tiny Terrors in Tanaan
     {O, 10045, "From", "Version", "060200", "Before", "Version", "070003"},
-    {N, 10045, 179}, -- Cutting Edge: The Black Gate
+    {N, 10045, 165}, -- Cutting Edge: The Black Gate
     {O, 10044, "From", "Version", "060200", "Before", "Version", "070003"},
-    {N, 10044, 179}, -- Ahead of the Curve: The Black Gate
-    {N, 10043, 179}, -- Mythic: Archimonde
-    {N, 10042, 179}, -- Mythic: Mannoroth
-    {N, 10041, 179}, -- Mythic: Tyrant Velhari
-    {N, 10040, 179}, -- Mythic: Socrethar the Eternal
-    {N, 10039, 179}, -- Mythic: Xhul'horac
-    {N, 10038, 179}, -- Mythic: Fel Lord Zakuun
-    {N, 10037, 179}, -- Mythic: Shadow-Lord Iskar
-    {N, 10036, 179}, -- Naval Bonus Expert
-    {N, 10035, 179}, -- Mythic: Kilrogg Deadeye
-    {N, 10034, 179}, -- Mythic: Hellfire High Council
-    {N, 10033, 179}, -- Mythic: Kormrok
-    {N, 10032, 179}, -- Mythic: Iron Reaver
-    {N, 10030, 179}, -- Bad Manner(oth)
-    {N, 10027, 179}, -- Mythic: Hellfire Assault
-    {N, 10026, 179}, -- Nearly Indestructible
-    {N, 10025, 179}, -- Bastion of Shadows
-    {N, 10024, 179}, -- Halls of Blood
-    {N, 10023, 179}, -- Hellbreach
+    {N, 10044, 165}, -- Ahead of the Curve: The Black Gate
+    {N, 10043, 165}, -- Mythic: Archimonde
+    {N, 10042, 165}, -- Mythic: Mannoroth
+    {N, 10041, 165}, -- Mythic: Tyrant Velhari
+    {N, 10040, 165}, -- Mythic: Socrethar the Eternal
+    {N, 10039, 165}, -- Mythic: Xhul'horac
+    {N, 10038, 165}, -- Mythic: Fel Lord Zakuun
+    {N, 10037, 165}, -- Mythic: Shadow-Lord Iskar
+    {N, 10036, 165}, -- Naval Bonus Expert
+    {N, 10035, 165}, -- Mythic: Kilrogg Deadeye
+    {N, 10034, 165}, -- Mythic: Hellfire High Council
+    {N, 10033, 165}, -- Mythic: Kormrok
+    {N, 10032, 165}, -- Mythic: Iron Reaver
+    {N, 10030, 165}, -- Bad Manner(oth)
+    {N, 10027, 165}, -- Mythic: Hellfire Assault
+    {N, 10026, 165}, -- Nearly Indestructible
+    {N, 10025, 165}, -- Bastion of Shadows
+    {N, 10024, 165}, -- Halls of Blood
+    {N, 10023, 165}, -- Hellbreach
     {O, 10021, "From", "Version", "060200", "Before", "Version", "070003"},
-    {N, 10021, 179, f.Alliance, 10148}, -- Chapter IV: Darkness Incarnate
-    {N, 10020, 179}, -- Destructor's Rise
-    {N, 10019, 179}, -- The Black Gate
-    {N, 10018, 179}, -- Draenor Pathfinder
-    {N, 10017, 179}, -- Naval Bonus Specialist
-    {N, 10016, 179, f.Horde, 10015}, -- Full Discography
-    {N, 10015, 179, f.Alliance, 10016}, -- Full Discography
-    {N, 10013, 179}, -- Waves Came Crashing Down All Around
-    {N, 10012, 179}, -- This Land Was Green and Good Until...
-    {N, 10011, 179}, -- Siege of Niuzao Temple
-    {N, 10010, 179}, -- Gate of the Setting Sun
+    {N, 10021, 165, f.Alliance, 10148}, -- Chapter IV: Darkness Incarnate
+    {N, 10020, 165}, -- Destructor's Rise
+    {N, 10019, 165}, -- The Black Gate
+    {N, 10018, 165}, -- Draenor Pathfinder
+    {N, 10017, 165}, -- Naval Bonus Specialist
+    {N, 10016, 165, f.Horde, 10015}, -- Full Discography
+    {N, 10015, 165, f.Alliance, 10016}, -- Full Discography
+    {N, 10013, 165}, -- Waves Came Crashing Down All Around
+    {N, 10012, 165}, -- This Land Was Green and Good Until...
+    {N, 10011, 165}, -- Siege of Niuzao Temple
+    {N, 10010, 165}, -- Gate of the Setting Sun
     {O, 10001, "From", "PvP Season", 16, "Until", "PvP Season", 16},
-    {N, 10001, 179, f.Horde, 9996, true}, -- Defender of the Horde: Warlords Season 1
+    {N, 10001, 165, f.Horde, 9996, true}, -- Defender of the Horde: Warlords Season 1
     {O, 10000, "From", "PvP Season", 16, "Until", "PvP Season", 16},
-    {N, 10000, 179, f.Horde, 9997, true}, -- Guardian of the Horde: Warlords Season 1
+    {N, 10000, 165, f.Horde, 9997, true}, -- Guardian of the Horde: Warlords Season 1
     {O, 9998, "From", "PvP Season", 16, "Until", "PvP Season", 16},
-    {N, 9998, 179, f.Horde, 9995, true}, -- Soldier of the Horde: Warlords Season 1
+    {N, 9998, 165, f.Horde, 9995, true}, -- Soldier of the Horde: Warlords Season 1
     {O, 9997, "From", "PvP Season", 16, "Until", "PvP Season", 16},
-    {N, 9997, 179, f.Alliance, 10000, true}, -- Guardian of the Alliance: Warlords Season 1
+    {N, 9997, 165, f.Alliance, 10000, true}, -- Guardian of the Alliance: Warlords Season 1
     {O, 9996, "From", "PvP Season", 16, "Until", "PvP Season", 16},
-    {N, 9996, 179, f.Alliance, 10001, true}, -- Defender of the Alliance: Warlords Season 1
+    {N, 9996, 165, f.Alliance, 10001, true}, -- Defender of the Alliance: Warlords Season 1
     {O, 9995, "From", "PvP Season", 16, "Until", "PvP Season", 16},
-    {N, 9995, 179, f.Alliance, 9998, true}, -- Soldier of the Alliance: Warlords Season 1
-    {N, 9989, 179}, -- Non-Lethal Enforcer
-    {N, 9988, 179}, -- Pro Toss
-    {N, 9983, 179}, -- That's Whack!
-    {N, 9979, 179}, -- Get In My Belly!
-    {N, 9972, 179}, -- A Race Against Slime
-    {N, 9928, 179, f.Alliance, 9901}, -- Don't Call Me Junior
-    {N, 9926, 179}, -- Hero of the Storm
+    {N, 9995, 165, f.Alliance, 9998, true}, -- Soldier of the Alliance: Warlords Season 1
+    {N, 9989, 165}, -- Non-Lethal Enforcer
+    {N, 9988, 165}, -- Pro Toss
+    {N, 9983, 165}, -- That's Whack!
+    {N, 9979, 165}, -- Get In My Belly!
+    {N, 9972, 165}, -- A Race Against Slime
+    {N, 9928, 163, f.Alliance, 9901}, -- Don't Call Me Junior
+    {N, 9926, 163}, -- Hero of the Storm
     {O, 9925 },
-    {N, 9925, 179}, -- Friends In Places Yet Even Higher Than That
-    {N, 9924, 179}, -- Field Photographer
-    {N, 9923, 179, f.Horde, 9833}, -- Loremaster of Draenor
-    {N, 9915, 179}, -- Crashin' Thrashin' Shredder
-    {N, 9914, 179, f.Horde, 9912}, -- Azeroth's Top Twenty Tunes
-    {N, 9912, 179, f.Alliance, 9914}, -- Azeroth's Top Twenty Tunes
-    {N, 9911, 179}, -- Where's the Mailbox?
-    {N, 9909, 179}, -- Heirloom Hoarder
-    {N, 9908, 179}, -- Ready for Powerleveling
-    {N, 9906, 179}, -- Alt-ernative Lifestyle
-    {N, 9901, 179, f.Horde, 9928}, -- Don't Call Me Junior
-    {N, 9900, 179}, -- Exploration Mission Master
-    {N, 9897, 179, f.Horde, 9828}, -- Ten Hit Tunes
-    {N, 9894, 179}, -- Triumphant Turtle Tossing
-    {N, 9885, 179}, -- Ace Tonk Commander
-    {N, 9858, 179}, -- Master and Commander
-    {N, 9838, 179}, -- "What A Strange, Interdimensional Trip It's Been"
-    {N, 9836, 179, f.Horde, 9825}, -- Master Relic Hunter
-    {N, 9833, 179, f.Alliance, 9923}, -- Loremaster of Draenor
-    {N, 9828, 179, f.Alliance, 9897}, -- Ten Hit Tunes
-    {N, 9827, 179}, -- Impervious Defender
-    {N, 9826, 179}, -- Platinum Defender
-    {N, 9825, 179, f.Alliance, 9836}, -- Master Relic Hunter
-    {N, 9824, 179}, -- Raiding with Leashes III: Drinkin' From the Sunwell
-    {N, 9819, 179}, -- Darkmoon Like the Wind
-    {N, 9817, 179}, -- Big Powermonger: Gold
-    {N, 9815, 179}, -- Big Powermonger: Silver
-    {N, 9813, 179}, -- Big Powermonger: Bronze
-    {N, 9812, 179}, -- Goal-Oriented
-    {N, 9811, 179}, -- Big Wanderluster: Gold
-    {N, 9809, 179}, -- Big Wanderluster: Silver
-    {N, 9807, 179}, -- Big Wanderluster: Bronze
-    {N, 9806, 179}, -- Vagabond
-    {N, 9805, 179}, -- Big Rocketeer: Gold
-    {N, 9803, 179}, -- Big Rocketeer: Silver
-    {N, 9801, 179}, -- Big Rocketeer: Bronze
-    {N, 9800, 179}, -- Rocket Man
-    {N, 9799, 179}, -- Big Race Roadhog
-    {N, 9797, 179}, -- Big Race Leadfoot
-    {N, 9795, 179}, -- Big Race Jockey
-    {N, 9794, 179}, -- Big Race Novice
-    {N, 9793, 179}, -- Big Race Enthusiast
-    {N, 9792, 179}, -- Wanderluster: Gold
-    {N, 9790, 179}, -- Wanderluster: Silver
-    {N, 9787, 179}, -- Wanderluster: Bronze
-    {N, 9786, 179}, -- Wayfarer
-    {N, 9785, 179}, -- Powermonger: Gold
-    {N, 9783, 179}, -- Powermonger: Silver
-    {N, 9781, 179}, -- Powermonger: Bronze
-    {N, 9780, 179}, -- Go-Getter
-    {N, 9770, 179}, -- Blast Off!
-    {N, 9769, 179}, -- Rocketeer: Bronze
-    {N, 9766, 179}, -- Rocketeer: Silver
-    {N, 9764, 179}, -- Rocketeer: Gold
-    {N, 9763, 179}, -- Grommloc
-    {N, 9761, 179}, -- Darkmoon Racer Roadhog
-    {N, 9760, 179}, -- Darkmoon Racer Leadfoot
-    {N, 9759, 179}, -- Darkmoon Racer Jockey
-    {N, 9756, 179}, -- Darkmoon Racer Novice
-    {N, 9755, 179}, -- Darkmoon Race Enthusiast
-    {N, 9738, 179, f.Alliance, 9508, true}, -- Warlord of Draenor
+    {N, 9925, 163}, -- Friends In Places Yet Even Higher Than That
+    {N, 9924, 163}, -- Field Photographer
+    {N, 9923, 163, f.Horde, 9833}, -- Loremaster of Draenor
+    {N, 9915, 163}, -- Crashin' Thrashin' Shredder
+    {N, 9914, 163, f.Horde, 9912}, -- Azeroth's Top Twenty Tunes
+    {N, 9912, 163, f.Alliance, 9914}, -- Azeroth's Top Twenty Tunes
+    {N, 9911, 163}, -- Where's the Mailbox?
+    {N, 9909, 163}, -- Heirloom Hoarder
+    {N, 9908, 163}, -- Ready for Powerleveling
+    {N, 9906, 163}, -- Alt-ernative Lifestyle
+    {N, 9901, 163, f.Horde, 9928}, -- Don't Call Me Junior
+    {N, 9900, 163}, -- Exploration Mission Master
+    {N, 9897, 163, f.Horde, 9828}, -- Ten Hit Tunes
+    {N, 9894, 163}, -- Triumphant Turtle Tossing
+    {N, 9885, 163}, -- Ace Tonk Commander
+    {N, 9858, 163}, -- Master and Commander
+    {N, 9838, 163}, -- "What A Strange, Interdimensional Trip It's Been"
+    {N, 9836, 163, f.Horde, 9825}, -- Master Relic Hunter
+    {N, 9833, 163, f.Alliance, 9923}, -- Loremaster of Draenor
+    {N, 9828, 163, f.Alliance, 9897}, -- Ten Hit Tunes
+    {N, 9827, 163}, -- Impervious Defender
+    {N, 9826, 163}, -- Platinum Defender
+    {N, 9825, 163, f.Alliance, 9836}, -- Master Relic Hunter
+    {N, 9824, 163}, -- Raiding with Leashes III: Drinkin' From the Sunwell
+    {N, 9819, 163}, -- Darkmoon Like the Wind
+    {N, 9817, 163}, -- Big Powermonger: Gold
+    {N, 9815, 163}, -- Big Powermonger: Silver
+    {N, 9813, 163}, -- Big Powermonger: Bronze
+    {N, 9812, 163}, -- Goal-Oriented
+    {N, 9811, 163}, -- Big Wanderluster: Gold
+    {N, 9809, 163}, -- Big Wanderluster: Silver
+    {N, 9807, 163}, -- Big Wanderluster: Bronze
+    {N, 9806, 163}, -- Vagabond
+    {N, 9805, 163}, -- Big Rocketeer: Gold
+    {N, 9803, 163}, -- Big Rocketeer: Silver
+    {N, 9801, 163}, -- Big Rocketeer: Bronze
+    {N, 9800, 163}, -- Rocket Man
+    {N, 9799, 163}, -- Big Race Roadhog
+    {N, 9797, 163}, -- Big Race Leadfoot
+    {N, 9795, 163}, -- Big Race Jockey
+    {N, 9794, 163}, -- Big Race Novice
+    {N, 9793, 163}, -- Big Race Enthusiast
+    {N, 9792, 163}, -- Wanderluster: Gold
+    {N, 9790, 163}, -- Wanderluster: Silver
+    {N, 9787, 163}, -- Wanderluster: Bronze
+    {N, 9786, 163}, -- Wayfarer
+    {N, 9785, 163}, -- Powermonger: Gold
+    {N, 9783, 163}, -- Powermonger: Silver
+    {N, 9781, 163}, -- Powermonger: Bronze
+    {N, 9780, 163}, -- Go-Getter
+    {N, 9770, 163}, -- Blast Off!
+    {N, 9769, 163}, -- Rocketeer: Bronze
+    {N, 9766, 163}, -- Rocketeer: Silver
+    {N, 9764, 163}, -- Rocketeer: Gold
+    {N, 9763, 163}, -- Grommloc
+    {N, 9761, 163}, -- Darkmoon Racer Roadhog
+    {N, 9760, 163}, -- Darkmoon Racer Leadfoot
+    {N, 9759, 163}, -- Darkmoon Racer Jockey
+    {N, 9756, 163}, -- Darkmoon Racer Novice
+    {N, 9755, 163}, -- Darkmoon Race Enthusiast
+    {N, 9738, 159, f.Alliance, 9508, true}, -- Warlord of Draenor
     {O, 9729 },
-    {N, 9729, 179, f.Alliance, 9566, true}, -- Victory in Hillsbrad
-    {N, 9728, 179}, -- Grand Treasure Hunter
-    {N, 9727, 179}, -- Expert Treasure Hunter
-    {N, 9726, 179}, -- Treasure Hunter
-    {N, 9725, 179, nil, nil, true}, -- The Last of Us
-    {N, 9724, 179}, -- Taming Draenor
-    {N, 9715, 179, f.Horde, 9714, true}, -- Thy Kingdom Come
-    {N, 9714, 179, f.Alliance, 9715, true}, -- Thy Kingdom Come
-    {N, 9713, 179}, -- Awake the Drakes
-    {N, 9712, 179}, -- Shiny Pet Charmer
-    {N, 9711, 179}, -- Planned to Fail
-    {N, 9710, 179}, -- Poisoning the Well
+    {N, 9729, 159, f.Alliance, 9566, true}, -- Victory in Hillsbrad
+    {N, 9728, 159}, -- Grand Treasure Hunter
+    {N, 9727, 159}, -- Expert Treasure Hunter
+    {N, 9726, 159}, -- Treasure Hunter
+    {N, 9725, 159, nil, nil, true}, -- The Last of Us
+    {N, 9724, 159}, -- Taming Draenor
+    {N, 9715, 159, f.Horde, 9714, true}, -- Thy Kingdom Come
+    {N, 9714, 159, f.Alliance, 9715, true}, -- Thy Kingdom Come
+    {N, 9713, 159}, -- Awake the Drakes
+    {N, 9712, 159}, -- Shiny Pet Charmer
+    {N, 9711, 159}, -- Planned to Fail
+    {N, 9710, 159}, -- Poisoning the Well
     {O, 9708, "From", "Version", "060003a", "Before", "Version", "080001"},
-    {N, 9708, 179}, -- Savagely Epic
+    {N, 9708, 159}, -- Savagely Epic
     {O, 9707, "From", "Version", "060003a", "Before", "Version", "080001"},
-    {N, 9707, 179}, -- Savagely Superior
-    {N, 9706, 179, f.Horde, 9540}, -- The Stable Master
-    {N, 9705, 179, f.Horde, 9539}, -- Advanced Husbandry
-    {N, 9703, 179}, -- Stay Awhile and Listen
-    {N, 9696, 179}, -- Family Familiar
-    {N, 9695, 179}, -- The Lil' Necromancer
-    {N, 9694, 179}, -- Roboteer
-    {N, 9693, 179}, -- Master of Magic
-    {N, 9692, 179}, -- "Murlocs, Harpies, and Wolvar, Oh My!"
-    {N, 9691, 179}, -- Flock Together
-    {N, 9690, 179}, -- "Ragnaros, Watch and Learn"
-    {N, 9689, 179}, -- Dragons!
-    {N, 9688, 179}, -- Mousing Around
-    {N, 9687, 179}, -- Best of the Beasts
-    {N, 9686, 179}, -- Aquatic Acquiescence
-    {N, 9685, 179}, -- Draenor Safari
+    {N, 9707, 159}, -- Savagely Superior
+    {N, 9706, 159, f.Horde, 9540}, -- The Stable Master
+    {N, 9705, 159, f.Horde, 9539}, -- Advanced Husbandry
+    {N, 9703, 159}, -- Stay Awhile and Listen
+    {N, 9696, 171}, -- Family Familiar
+    {N, 9695, 171}, -- The Lil' Necromancer
+    {N, 9694, 171}, -- Roboteer
+    {N, 9693, 171}, -- Master of Magic
+    {N, 9692, 171}, -- "Murlocs, Harpies, and Wolvar, Oh My!"
+    {N, 9691, 171}, -- Flock Together
+    {N, 9690, 171}, -- "Ragnaros, Watch and Learn"
+    {N, 9689, 171}, -- Dragons!
+    {N, 9688, 171}, -- Mousing Around
+    {N, 9687, 171}, -- Best of the Beasts
+    {N, 9686, 171}, -- Aquatic Acquiescence
+    {N, 9685, 159}, -- Draenor Safari
     {O, 9680, "From", "Version", "060200", "Before", "Version", "070003"},
-    {N, 9680, 179}, -- Time is a Flat Circle
-    {N, 9678, 179}, -- Ancient No More
-    {N, 9674, 179}, -- I Want More Talador
-    {N, 9673, 179}, -- The Toymaster
-    {N, 9672, 179}, -- Tons of Toys
-    {N, 9671, 179}, -- Having a Ball
-    {N, 9670, 179}, -- Toying Around
-    {N, 9667, 179}, -- Burn It to the Ground
-    {N, 9663, 179}, -- Picky Palate
-    {N, 9659, 179}, -- Iron Wings
-    {N, 9658, 179}, -- Pillars of Draenor
-    {N, 9656, 179}, -- In Plain Sight
-    {N, 9655, 179}, -- Fight the Power
-    {N, 9654, 179}, -- Mean and Green
-    {N, 9643, 179}, -- So. Many. Pets.
+    {N, 9680, 159}, -- Time is a Flat Circle
+    {N, 9678, 159}, -- Ancient No More
+    {N, 9674, 159}, -- I Want More Talador
+    {N, 9673, 159}, -- The Toymaster
+    {N, 9672, 159}, -- Tons of Toys
+    {N, 9671, 159}, -- Having a Ball
+    {N, 9670, 159}, -- Toying Around
+    {N, 9667, 159}, -- Burn It to the Ground
+    {N, 9663, 159}, -- Picky Palate
+    {N, 9659, 159}, -- Iron Wings
+    {N, 9658, 159}, -- Pillars of Draenor
+    {N, 9656, 159}, -- In Plain Sight
+    {N, 9655, 159}, -- Fight the Power
+    {N, 9654, 159}, -- Mean and Green
+    {N, 9643, 159}, -- So. Many. Pets.
     {O, 9642, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9642, 179}, -- Chapter III: The Foundry Falls
+    {N, 9642, 159}, -- Chapter III: The Foundry Falls
     {O, 9641, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9641, 179}, -- Chapter II: Gul'dan Strikes Back
+    {N, 9641, 159}, -- Chapter II: Gul'dan Strikes Back
     {O, 9640, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9640, 179}, -- Chapter I: Call of the Archmage
-    {N, 9639, 179, nil, nil, true}, -- "Fight, Kill, Salute!"
-    {N, 9638, 179}, -- Heralds of the Legion
-    {N, 9637, 179}, -- Poor Communication
-    {N, 9636, 179}, -- United We Stand
-    {N, 9635, 179}, -- Bobbing for Orcs
-    {N, 9634, 179}, -- Charged Up
-    {N, 9633, 179}, -- Cut off the Head
-    {N, 9632, 179}, -- The Power Is Yours
-    {N, 9631, 179, f.Alliance, 9255}, -- Mythic Draenor Raider
-    {N, 9630, 179, f.Alliance, 9248, true}, -- Defender of Draenor
+    {N, 9640, 159}, -- Chapter I: Call of the Archmage
+    {N, 9639, 159, nil, nil, true}, -- "Fight, Kill, Salute!"
+    {N, 9638, 159}, -- Heralds of the Legion
+    {N, 9637, 159}, -- Poor Communication
+    {N, 9636, 159}, -- United We Stand
+    {N, 9635, 159}, -- Bobbing for Orcs
+    {N, 9634, 159}, -- Charged Up
+    {N, 9633, 159}, -- Cut off the Head
+    {N, 9632, 159}, -- The Power Is Yours
+    {N, 9631, 159, f.Alliance, 9255}, -- Mythic Draenor Raider
+    {N, 9630, 159, f.Alliance, 9248, true}, -- Defender of Draenor
     {O, 9627, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9627, 179}, -- Challenge Master: Upper Blackrock Spire
+    {N, 9627, 159}, -- Challenge Master: Upper Blackrock Spire
     {O, 9626, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9626, 179}, -- Challenge Master: Shadowmoon Burial Grounds
+    {N, 9626, 159}, -- Challenge Master: Shadowmoon Burial Grounds
     {O, 9625, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9625, 179}, -- Challenge Master: Grimrail Depot
+    {N, 9625, 159}, -- Challenge Master: Grimrail Depot
     {O, 9624, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9624, 179}, -- Challenge Master: The Everbloom
+    {N, 9624, 159}, -- Challenge Master: The Everbloom
     {O, 9623, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9623, 179}, -- Challenge Master: Skyreach
+    {N, 9623, 159}, -- Challenge Master: Skyreach
     {O, 9622, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9622, 179}, -- Challenge Master: Auchindoun
+    {N, 9622, 159}, -- Challenge Master: Auchindoun
     {O, 9621, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9621, 179}, -- Challenge Master: Iron Docks
+    {N, 9621, 159}, -- Challenge Master: Iron Docks
     {O, 9620, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9620, 179}, -- Challenge Master: Bloodmaul Slag Mines
-    {N, 9619, 179}, -- Savage Hero
+    {N, 9620, 159}, -- Challenge Master: Bloodmaul Slag Mines
+    {N, 9619, 159}, -- Savage Hero
     {O, 9618, "From", "Version", "060002", "Until", "Version", "060002"},
-    {N, 9618, 179}, -- The Iron Invasion
-    {N, 9617, 179}, -- Making the Cut
-    {N, 9615, 179}, -- With a Nagrand Cherry On Top
-    {N, 9613, 179}, -- "Fish Gotta Swim, Birds Gotta Eat"
-    {N, 9612, 179}, -- Eggs in One Basket
-    {N, 9610, 179}, -- History of Violence
-    {N, 9607, 179}, -- Make It a Bonus
-    {N, 9606, 179, f.Horde, 9602}, -- Frostfire Fridge
-    {N, 9605, 179}, -- Arak Star
-    {N, 9602, 179, f.Alliance, 9606}, -- Shoot For the Moon
-    {N, 9601, 179}, -- King of the Monsters
-    {N, 9600, 179}, -- Monster Mash
-    {N, 9599, 179, f.Horde, 9598}, -- Mountacular
-    {N, 9598, 179, f.Alliance, 9599}, -- Mountacular
-    {N, 9597, 179}, -- You're Really Doing It Wrong
-    {N, 9590, 179}, -- You're Doing it Wrong
-    {N, 9589, 179}, -- Proving Yourself: Endless Healer (Wave 30)
-    {N, 9588, 179}, -- Proving Yourself: Endless Healer (Wave 20)
-    {N, 9587, 179}, -- Proving Yourself: Endless Healer (Wave 10)
-    {N, 9586, 179}, -- Proving Yourself: Gold Healer
-    {N, 9585, 179}, -- Proving Yourself: Silver Healer
-    {N, 9584, 179}, -- Proving Yourself: Bronze Healer
-    {N, 9583, 179}, -- Proving Yourself: Endless Tank (Wave 30)
-    {N, 9582, 179}, -- Proving Yourself: Endless Tank (Wave 20)
-    {N, 9581, 179}, -- Proving Yourself: Endless Tank (Wave 10)
-    {N, 9580, 179}, -- Proving Yourself: Gold Tank
-    {N, 9579, 179}, -- Proving Yourself: Silver Tank
-    {N, 9578, 179}, -- Proving Yourself: Bronze Tank
-    {N, 9577, 179}, -- Proving Yourself: Endless Damage (Wave 30)
-    {N, 9576, 179}, -- Proving Yourself: Endless Damage (Wave 20)
-    {N, 9575, 179}, -- Proving Yourself: Endless Damage (Wave 10)
-    {N, 9574, 179}, -- Proving Yourself: Gold Damage
-    {N, 9573, 179}, -- Proving Yourself: Silver Damage
-    {N, 9572, 179}, -- Proving Yourself: Bronze Damage
-    {N, 9571, 179}, -- Broke Back Precipice
+    {N, 9618, 159}, -- The Iron Invasion
+    {N, 9617, 159}, -- Making the Cut
+    {N, 9615, 159}, -- With a Nagrand Cherry On Top
+    {N, 9613, 159}, -- "Fish Gotta Swim, Birds Gotta Eat"
+    {N, 9612, 159}, -- Eggs in One Basket
+    {N, 9610, 159}, -- History of Violence
+    {N, 9607, 159}, -- Make It a Bonus
+    {N, 9606, 159, f.Horde, 9602}, -- Frostfire Fridge
+    {N, 9605, 159}, -- Arak Star
+    {N, 9602, 159, f.Alliance, 9606}, -- Shoot For the Moon
+    {N, 9601, 159}, -- King of the Monsters
+    {N, 9600, 159}, -- Monster Mash
+    {N, 9599, 159, f.Horde, 9598}, -- Mountacular
+    {N, 9598, 159, f.Alliance, 9599}, -- Mountacular
+    {N, 9597, 159}, -- You're Really Doing It Wrong
+    {N, 9590, 159}, -- You're Doing it Wrong
+    {N, 9589, 159}, -- Proving Yourself: Endless Healer (Wave 30)
+    {N, 9588, 159}, -- Proving Yourself: Endless Healer (Wave 20)
+    {N, 9587, 159}, -- Proving Yourself: Endless Healer (Wave 10)
+    {N, 9586, 159}, -- Proving Yourself: Gold Healer
+    {N, 9585, 159}, -- Proving Yourself: Silver Healer
+    {N, 9584, 159}, -- Proving Yourself: Bronze Healer
+    {N, 9583, 159}, -- Proving Yourself: Endless Tank (Wave 30)
+    {N, 9582, 159}, -- Proving Yourself: Endless Tank (Wave 20)
+    {N, 9581, 159}, -- Proving Yourself: Endless Tank (Wave 10)
+    {N, 9580, 159}, -- Proving Yourself: Gold Tank
+    {N, 9579, 159}, -- Proving Yourself: Silver Tank
+    {N, 9578, 159}, -- Proving Yourself: Bronze Tank
+    {N, 9577, 159}, -- Proving Yourself: Endless Damage (Wave 30)
+    {N, 9576, 159}, -- Proving Yourself: Endless Damage (Wave 20)
+    {N, 9575, 159}, -- Proving Yourself: Endless Damage (Wave 10)
+    {N, 9574, 159}, -- Proving Yourself: Gold Damage
+    {N, 9573, 159}, -- Proving Yourself: Silver Damage
+    {N, 9572, 159}, -- Proving Yourself: Bronze Damage
+    {N, 9571, 159}, -- Broke Back Precipice
     {O, 9566 },
-    {N, 9566, 179, f.Horde, 9729, true}, -- Victory in Hillsbrad
-    {N, 9565, 179}, -- Master Trapper
-    {N, 9564, 179, f.Alliance, 9562}, -- Securing Draenor
-    {N, 9562, 179, f.Horde, 9564}, -- Securing Draenor
-    {N, 9552, 179}, -- No Tag-backs!
-    {N, 9551, 179}, -- Demon's Souls
-    {N, 9550, 179}, -- "Boldly, You Sought the Power of Ragnaros"
-    {N, 9548, 179}, -- Buried Treasures
-    {N, 9547, 179}, -- Everything Is Awesome!
-    {N, 9546, 179, f.Horde, 9101}, -- Even More Plots
-    {N, 9545, 179, f.Horde, 9100}, -- More Plots
-    {N, 9543, 179}, -- Invasion? What Invasion?
-    {N, 9541, 179}, -- The Song of Silence
-    {N, 9540, 179, f.Alliance, 9706}, -- The Stable Master
-    {N, 9539, 179, f.Alliance, 9705}, -- Advanced Husbandry
-    {N, 9538, 179}, -- Intro to Husbandry
-    {N, 9537, 179}, -- By Fire Be... Merged?
-    {N, 9536, 179}, -- Slagnarok
-    {N, 9535, 179}, -- That Was Entirely Unnecessary
-    {N, 9534, 179}, -- Delectable Ogre Delicacies
-    {N, 9533, 179}, -- Breaker of Chains
-    {N, 9531, 179, f.Horde, 9530}, -- Writing in the Snow
-    {N, 9530, 179, f.Alliance, 9531}, -- Writing in the Snow
-    {N, 9529, 179, f.Horde, 9528}, -- On the Shadow's Trail
-    {N, 9528, 179, f.Alliance, 9529}, -- On the Shadow's Trail
-    {N, 9527, 179}, -- Terrific Technology
-    {N, 9526, 179}, -- Master of Mounts
-    {N, 9524, 179}, -- Treasure Master
-    {N, 9523, 179}, -- Patrolling Draenor
-    {N, 9522, 179, f.Alliance, 9510, true}, -- Nemesis: Troll Hunter
-    {N, 9521, 179, f.Alliance, 9511, true}, -- Nemesis: The Butcher
-    {N, 9520, 179, f.Alliance, 9514, true}, -- Nemesis: Huojin's Fall
-    {N, 9519, 179, f.Alliance, 9512, true}, -- Nemesis: Orcslayer
-    {N, 9518, 179, f.Alliance, 9515, true}, -- Nemesis: Killer of Kezan
-    {N, 9517, 179, f.Alliance, 9513, true}, -- Nemesis: Death Stalker
-    {N, 9516, 179, f.Alliance, 9509, true}, -- Nemesis: Slayer of Sin'dorei
-    {N, 9515, 179, f.Horde, 9518, true}, -- Nemesis: Worgen Hunter
-    {N, 9514, 179, f.Horde, 9520, true}, -- Nemesis: Terror of the Tushui
-    {N, 9513, 179, f.Horde, 9517, true}, -- Nemesis: Scourge of the Kaldorei
-    {N, 9512, 179, f.Horde, 9519, true}, -- Nemesis: Manslayer
-    {N, 9511, 179, f.Horde, 9521, true}, -- Nemesis: Gnomebane
-    {N, 9510, 179, f.Horde, 9522, true}, -- Nemesis: Dwarfstalker
-    {N, 9509, 179, f.Horde, 9516, true}, -- Nemesis: Draenei Destroyer
-    {N, 9508, 179, f.Horde, 9738, true}, -- Warlord of Draenor
-    {N, 9507, 179}, -- Working in Draenor
+    {N, 9566, 159, f.Horde, 9729, true}, -- Victory in Hillsbrad
+    {N, 9565, 159}, -- Master Trapper
+    {N, 9564, 159, f.Alliance, 9562}, -- Securing Draenor
+    {N, 9562, 159, f.Horde, 9564}, -- Securing Draenor
+    {N, 9552, 159}, -- No Tag-backs!
+    {N, 9551, 159}, -- Demon's Souls
+    {N, 9550, 159}, -- "Boldly, You Sought the Power of Ragnaros"
+    {N, 9548, 159}, -- Buried Treasures
+    {N, 9547, 159}, -- Everything Is Awesome!
+    {N, 9546, 159, f.Horde, 9101}, -- Even More Plots
+    {N, 9545, 159, f.Horde, 9100}, -- More Plots
+    {N, 9543, 159}, -- Invasion? What Invasion?
+    {N, 9541, 159}, -- The Song of Silence
+    {N, 9540, 159, f.Alliance, 9706}, -- The Stable Master
+    {N, 9539, 159, f.Alliance, 9705}, -- Advanced Husbandry
+    {N, 9538, 159}, -- Intro to Husbandry
+    {N, 9537, 159}, -- By Fire Be... Merged?
+    {N, 9536, 159}, -- Slagnarok
+    {N, 9535, 159}, -- That Was Entirely Unnecessary
+    {N, 9534, 159}, -- Delectable Ogre Delicacies
+    {N, 9533, 159}, -- Breaker of Chains
+    {N, 9531, 159, f.Horde, 9530}, -- Writing in the Snow
+    {N, 9530, 159, f.Alliance, 9531}, -- Writing in the Snow
+    {N, 9529, 159, f.Horde, 9528}, -- On the Shadow's Trail
+    {N, 9528, 159, f.Alliance, 9529}, -- On the Shadow's Trail
+    {N, 9527, 159}, -- Terrific Technology
+    {N, 9526, 159}, -- Master of Mounts
+    {N, 9524, 159}, -- Treasure Master
+    {N, 9523, 159}, -- Patrolling Draenor
+    {N, 9522, 159, f.Alliance, 9510, true}, -- Nemesis: Troll Hunter
+    {N, 9521, 159, f.Alliance, 9511, true}, -- Nemesis: The Butcher
+    {N, 9520, 159, f.Alliance, 9514, true}, -- Nemesis: Huojin's Fall
+    {N, 9519, 159, f.Alliance, 9512, true}, -- Nemesis: Orcslayer
+    {N, 9518, 159, f.Alliance, 9515, true}, -- Nemesis: Killer of Kezan
+    {N, 9517, 159, f.Alliance, 9513, true}, -- Nemesis: Death Stalker
+    {N, 9516, 159, f.Alliance, 9509, true}, -- Nemesis: Slayer of Sin'dorei
+    {N, 9515, 159, f.Horde, 9518, true}, -- Nemesis: Worgen Hunter
+    {N, 9514, 159, f.Horde, 9520, true}, -- Nemesis: Terror of the Tushui
+    {N, 9513, 159, f.Horde, 9517, true}, -- Nemesis: Scourge of the Kaldorei
+    {N, 9512, 159, f.Horde, 9519, true}, -- Nemesis: Manslayer
+    {N, 9511, 159, f.Horde, 9521, true}, -- Nemesis: Gnomebane
+    {N, 9510, 159, f.Horde, 9522, true}, -- Nemesis: Dwarfstalker
+    {N, 9509, 159, f.Horde, 9516, true}, -- Nemesis: Draenei Destroyer
+    {N, 9508, 159, f.Horde, 9738, true}, -- Warlord of Draenor
+    {N, 9507, 159}, -- Working in Draenor
     {O, 9506, "From", "Version", "060003", "Before", "Version", "080001"},
-    {N, 9506, 179}, -- Savage Skills to Pay the Bills
+    {N, 9506, 159}, -- Savage Skills to Pay the Bills
     {O, 9505, "From", "Version", "060003", "Before", "Version", "080001"},
-    {N, 9505, 179}, -- Draenor Medic
-    {N, 9503, 179}, -- Draenor Fisherman
-    {N, 9502, 179}, -- Draenor Cuisine
-    {N, 9501, 179}, -- The Draenor Gourmet
-    {N, 9500, 179}, -- Draenor Cook
-    {N, 9499, 179}, -- Wingmen
-    {N, 9498, 179}, -- Wingman
-    {N, 9497, 179}, -- Finding Your Waystones
+    {N, 9505, 159}, -- Draenor Medic
+    {N, 9503, 159}, -- Draenor Fisherman
+    {N, 9502, 159}, -- Draenor Cuisine
+    {N, 9501, 159}, -- The Draenor Gourmet
+    {N, 9500, 159}, -- Draenor Cook
+    {N, 9499, 159}, -- Wingmen
+    {N, 9498, 159}, -- Wingman
+    {N, 9497, 159}, -- Finding Your Waystones
     {O, 9496 },
-    {N, 9496, 179}, -- Warlord's Deathwheel
-    {N, 9495, 179, nil, nil, true}, -- The Bone Collector
-    {N, 9494, 179}, -- Commander
-    {N, 9493, 179}, -- "They Burn, Burn, Burn"
-    {N, 9492, 179, f.Horde, 9491}, -- The Garrison Campaign
-    {N, 9491, 179, f.Alliance, 9492}, -- The Garrison Campaign
-    {N, 9487, 179}, -- Got My Mind On My Draenor Money
-    {N, 9486, 179}, -- Goodness Gracious
-    {N, 9483, 179}, -- I Was Framed!
-    {N, 9481, 179}, -- You Have Been Rylakinated!
-    {N, 9479, 179}, -- You Can't Make a Giant Omelette...
-    {N, 9478, 179, f.Alliance, 9477}, -- Savage Friends
-    {N, 9477, 179, f.Horde, 9478}, -- Savage Friends
-    {N, 9476, 179, f.Alliance, 9475}, -- Sha'tari Defense
-    {N, 9475, 179, f.Horde, 9476}, -- Laughing Skull Orcs
-    {N, 9474, 179, f.Alliance, 9473, true}, -- Wrynn's Vanguard
-    {N, 9473, 179, f.Horde, 9474, true}, -- Vol'jin's Spear
-    {N, 9472, 179}, -- Steamwheedle Preservation Society
-    {N, 9471, 179, f.Horde, 9470}, -- Frostwolf Orcs
-    {N, 9470, 179, f.Alliance, 9471}, -- Council of Exarchs
-    {N, 9469, 179}, -- Arakkoa Outcasts
-    {N, 9468, 179}, -- Salvaging Pays Off
-    {N, 9464, 179}, -- Professional Draenor Master
-    {N, 9463, 179}, -- Draenic Pet Battler
-    {N, 9462, 179}, -- Draenor Angler
-    {N, 9461, 179}, -- Sea Scorpion Angler
-    {N, 9460, 179}, -- Jawless Skulker Angler
-    {N, 9459, 179}, -- Fat Sleeper Angler
-    {N, 9458, 179}, -- Blind Lake Sturgeon Angler
-    {N, 9457, 179}, -- Blackwater Whiptail Angler
-    {N, 9456, 179}, -- Abyssal Gulper Eel Angler
-    {N, 9455, 179}, -- Fire Ammonite Angler
-    {N, 9454, 179}, -- Draenic Seed Collector
-    {N, 9453, 179}, -- Draenic Stone Collector
-    {N, 9452, 179}, -- Trap Superstar
-    {N, 9451, 179}, -- Trapper's Delight
-    {N, 9450, 179}, -- The Trap Game
+    {N, 9496, 159}, -- Warlord's Deathwheel
+    {N, 9495, 159, nil, nil, true}, -- The Bone Collector
+    {N, 9494, 159}, -- Commander
+    {N, 9493, 159}, -- "They Burn, Burn, Burn"
+    {N, 9492, 159, f.Horde, 9491}, -- The Garrison Campaign
+    {N, 9491, 159, f.Alliance, 9492}, -- The Garrison Campaign
+    {N, 9487, 159}, -- Got My Mind On My Draenor Money
+    {N, 9486, 159}, -- Goodness Gracious
+    {N, 9483, 159}, -- I Was Framed!
+    {N, 9481, 159}, -- You Have Been Rylakinated!
+    {N, 9479, 159}, -- You Can't Make a Giant Omelette...
+    {N, 9478, 159, f.Alliance, 9477}, -- Savage Friends
+    {N, 9477, 159, f.Horde, 9478}, -- Savage Friends
+    {N, 9476, 159, f.Alliance, 9475}, -- Sha'tari Defense
+    {N, 9475, 159, f.Horde, 9476}, -- Laughing Skull Orcs
+    {N, 9474, 159, f.Alliance, 9473, true}, -- Wrynn's Vanguard
+    {N, 9473, 159, f.Horde, 9474, true}, -- Vol'jin's Spear
+    {N, 9472, 159}, -- Steamwheedle Preservation Society
+    {N, 9471, 159, f.Horde, 9470}, -- Frostwolf Orcs
+    {N, 9470, 159, f.Alliance, 9471}, -- Council of Exarchs
+    {N, 9469, 159}, -- Arakkoa Outcasts
+    {N, 9468, 159}, -- Salvaging Pays Off
+    {N, 9464, 159}, -- Professional Draenor Master
+    {N, 9463, 159}, -- Draenic Pet Battler
+    {N, 9462, 159}, -- Draenor Angler
+    {N, 9461, 159}, -- Sea Scorpion Angler
+    {N, 9460, 159}, -- Jawless Skulker Angler
+    {N, 9459, 159}, -- Fat Sleeper Angler
+    {N, 9458, 159}, -- Blind Lake Sturgeon Angler
+    {N, 9457, 159}, -- Blackwater Whiptail Angler
+    {N, 9456, 159}, -- Abyssal Gulper Eel Angler
+    {N, 9455, 159}, -- Fire Ammonite Angler
+    {N, 9454, 159}, -- Draenic Seed Collector
+    {N, 9453, 159}, -- Draenic Stone Collector
+    {N, 9452, 159}, -- Trap Superstar
+    {N, 9451, 159}, -- Trapper's Delight
+    {N, 9450, 159}, -- The Trap Game
     {O, 9444, "From", "Version", "060003", "Before", "Version", "060200"},
-    {N, 9444, 179}, -- Ahead of the Curve: Blackhand's Crucible
+    {N, 9444, 159}, -- Ahead of the Curve: Blackhand's Crucible
     {O, 9443, "From", "Version", "060003", "Before", "Version", "060200"},
-    {N, 9443, 179}, -- Cutting Edge: Blackhand's Crucible
+    {N, 9443, 159}, -- Cutting Edge: Blackhand's Crucible
     {O, 9442, "From", "Version", "060003", "Before", "Version", "060200"},
-    {N, 9442, 179}, -- Cutting Edge: Imperator's Fall
+    {N, 9442, 159}, -- Cutting Edge: Imperator's Fall
     {O, 9441, "From", "Version", "060003", "Before", "Version", "060200"},
-    {N, 9441, 179}, -- Ahead of the Curve: Imperator's Fall
-    {N, 9437, 179}, -- A Demidos of Reality
-    {N, 9436, 179}, -- It's the Stones!
-    {N, 9435, 179}, -- Take From Them Everything
-    {N, 9434, 179}, -- One of Us! One of Us!
-    {N, 9433, 179}, -- A-VOID-ance
-    {N, 9432, 179}, -- Would You Like a Pamphlet?
-    {N, 9429, 179}, -- Upgrading the Mill
-    {N, 9428, 179}, -- Calavera
-    {N, 9427, 179}, -- Vientos!
-    {N, 9426, 179}, -- To The Afterlife
-    {N, 9425, 179}, -- So Grossly Incandescent
-    {N, 9423, 179}, -- Goliaths of Gorgrond
-    {N, 9422, 179}, -- "The Search For Fact, Not Truth"
-    {N, 9419, 179}, -- Draenor Curator
-    {N, 9415, 179}, -- Secrets of Skettis
-    {N, 9414, 179}, -- Ogre Observer
-    {N, 9413, 179}, -- Strength and Honor
-    {N, 9412, 179}, -- Arakkoa Archivist
-    {N, 9411, 179}, -- Highmaul Historian
-    {N, 9410, 179}, -- Unite the Clans
-    {N, 9409, 179}, -- Draenor Archaeologist
-    {N, 9408, 179, f.Alliance, 9217, true}, -- Operation Counterattack
-    {N, 9407, 179}, -- Working Many Orders
-    {N, 9406, 179}, -- Working More Orders
-    {N, 9405, 179}, -- Working Some Orders
-    {N, 9402, 179}, -- Prove Your Strength
-    {N, 9401, 179}, -- Shredder Maniac
-    {N, 9400, 179}, -- Gorgrond Monster Hunter
-    {N, 9396, 179}, -- Glory of the Draenor Hero
-    {N, 9394, 179}, -- They Really Love Me!
-    {N, 9393, 179}, -- Beacon of Love
-    {N, 9392, 179}, -- Love Magnet
-    {N, 9391, 179}, -- Draenor Dungeon Hero
-    {N, 9389, 179}, -- It Might Just Save Your Life
-    {N, 9265, 179}, -- Master of Apexis
-    {N, 9264, 179}, -- Draenor Pet Brawler
-    {N, 9257, 179, f.Horde, 9256, true}, -- Rescue Operation
-    {N, 9256, 179, f.Alliance, 9257, true}, -- Rescue Operation
-    {N, 9255, 179, f.Horde, 9631}, -- Mythic Draenor Raider
-    {N, 9252, 179}, -- Brood of Alysrazor
-    {N, 9251, 179}, -- Ringmaster
-    {N, 9250, 179}, -- Flying High
-    {N, 9248, 179, f.Horde, 9630, true}, -- Defender of Draenor
-    {N, 9246, 179}, -- Master Draenor Crafter
-    {N, 9244, 179}, -- Invasions Are Better with Friends
-    {N, 9243, 179}, -- Item Level Force
+    {N, 9441, 159}, -- Ahead of the Curve: Imperator's Fall
+    {N, 9437, 159}, -- A Demidos of Reality
+    {N, 9436, 159}, -- It's the Stones!
+    {N, 9435, 159}, -- Take From Them Everything
+    {N, 9434, 159}, -- One of Us! One of Us!
+    {N, 9433, 159}, -- A-VOID-ance
+    {N, 9432, 159}, -- Would You Like a Pamphlet?
+    {N, 9429, 159}, -- Upgrading the Mill
+    {N, 9428, 159}, -- Calavera
+    {N, 9427, 159}, -- Vientos!
+    {N, 9426, 159}, -- To The Afterlife
+    {N, 9425, 159}, -- So Grossly Incandescent
+    {N, 9423, 159}, -- Goliaths of Gorgrond
+    {N, 9422, 159}, -- "The Search For Fact, Not Truth"
+    {N, 9419, 159}, -- Draenor Curator
+    {N, 9415, 159}, -- Secrets of Skettis
+    {N, 9414, 159}, -- Ogre Observer
+    {N, 9413, 159}, -- Strength and Honor
+    {N, 9412, 159}, -- Arakkoa Archivist
+    {N, 9411, 159}, -- Highmaul Historian
+    {N, 9410, 159}, -- Unite the Clans
+    {N, 9409, 159}, -- Draenor Archaeologist
+    {N, 9408, 159, f.Alliance, 9217, true}, -- Operation Counterattack
+    {N, 9407, 159}, -- Working Many Orders
+    {N, 9406, 159}, -- Working More Orders
+    {N, 9405, 159}, -- Working Some Orders
+    {N, 9402, 159}, -- Prove Your Strength
+    {N, 9401, 159}, -- Shredder Maniac
+    {N, 9400, 159}, -- Gorgrond Monster Hunter
+    {N, 9396, 159}, -- Glory of the Draenor Hero
+    {N, 9394, 159}, -- They Really Love Me!
+    {N, 9393, 159}, -- Beacon of Love
+    {N, 9392, 159}, -- Love Magnet
+    {N, 9391, 159}, -- Draenor Dungeon Hero
+    {N, 9389, 159}, -- It Might Just Save Your Life
+    {N, 9265, 159}, -- Master of Apexis
+    {N, 9264, 159}, -- Draenor Pet Brawler
+    {N, 9257, 159, f.Horde, 9256, true}, -- Rescue Operation
+    {N, 9256, 159, f.Alliance, 9257, true}, -- Rescue Operation
+    {N, 9255, 159, f.Horde, 9631}, -- Mythic Draenor Raider
+    {N, 9252, 159}, -- Brood of Alysrazor
+    {N, 9251, 159}, -- Ringmaster
+    {N, 9250, 159}, -- Flying High
+    {N, 9248, 159, f.Horde, 9630, true}, -- Defender of Draenor
+    {N, 9246, 159}, -- Master Draenor Crafter
+    {N, 9244, 159}, -- Invasions Are Better with Friends
+    {N, 9243, 159}, -- Item Level Force
     {O, 9242, "From", "PvP Season", 16, "Until", "PvP Season", 16},
-    {N, 9242, 179, nil, nil, true}, -- Challenger: Warlords Season 1
+    {N, 9242, 159, nil, nil, true}, -- Challenger: Warlords Season 1
     {O, 9241, "From", "PvP Season", 16, "Until", "PvP Season", 16},
-    {N, 9241, 179, nil, nil, true}, -- Rival: Warlords Season 1
+    {N, 9241, 159, nil, nil, true}, -- Rival: Warlords Season 1
     {O, 9240, "From", "PvP Season", 16, "Until", "PvP Season", 16},
-    {N, 9240, 179, nil, nil, true}, -- Duelist: Warlords Season 1
+    {N, 9240, 159, nil, nil, true}, -- Duelist: Warlords Season 1
     {O, 9239, "From", "PvP Season", 16, "Until", "PvP Season", 16},
-    {N, 9239, 179, nil, nil, true}, -- Gladiator: Warlords Season 1
+    {N, 9239, 159, nil, nil, true}, -- Gladiator: Warlords Season 1
     {O, 9238, "From", "PvP Season", 16, "Until", "PvP Season", 16},
-    {N, 9238, 179, f.Alliance, 9236, true}, -- Primal Combatant
+    {N, 9238, 159, f.Alliance, 9236, true}, -- Primal Combatant
     {O, 9236, "From", "PvP Season", 16, "Until", "PvP Season", 16},
-    {N, 9236, 179, f.Horde, 9238, true}, -- Primal Combatant
+    {N, 9236, 159, f.Horde, 9238, true}, -- Primal Combatant
     {O, 9234, "From", "PvP Season", 16, "Until", "PvP Season", 16},
-    {N, 9234, 179, f.Alliance, 9233, true}, -- Primal Conquest
+    {N, 9234, 159, f.Alliance, 9233, true}, -- Primal Conquest
     {O, 9233, "From", "PvP Season", 16, "Until", "PvP Season", 16},
-    {N, 9233, 179, f.Horde, 9234, true}, -- Primal Conquest
+    {N, 9233, 159, f.Horde, 9234, true}, -- Primal Conquest
     {O, 9232, "From", "PvP Season", 16, "Until", "PvP Season", 16},
-    {N, 9232, 179, nil, nil, true}, -- Primal Gladiator: Warlords Season 1
+    {N, 9232, 159, nil, nil, true}, -- Primal Gladiator: Warlords Season 1
     {O, 9231, "From", "PvP Season", 16, "Until", "PvP Season", 16},
-    {N, 9231, 179, f.Horde, 9230, true}, -- Hero of the Horde: Primal
+    {N, 9231, 159, f.Horde, 9230, true}, -- Hero of the Horde: Primal
     {O, 9230, "From", "PvP Season", 16, "Until", "PvP Season", 16},
-    {N, 9230, 179, f.Alliance, 9231, true}, -- Hero of the Alliance: Primal
+    {N, 9230, 159, f.Alliance, 9231, true}, -- Hero of the Alliance: Primal
     {O, 9229, "From", "PvP Season", 16, "Until", "PvP Season", 16},
-    {N, 9229, 179, nil, nil, true}, -- Primal Gladiator's Felblood Gronnling
-    {N, 9228, 179, f.Alliance, nil, true}, -- Down Goes Van Rook
-    {N, 9225, 179, f.Alliance, 9224, true}, -- Take Them Out
-    {N, 9224, 179, f.Horde, 9225, true}, -- Take Them Out
-    {N, 9223, 179}, -- Weed Whacker
-    {N, 9222, 179, nil, nil, true}, -- Divide and Conquer
-    {N, 9220, 179, nil, nil, true}, -- "Grand Theft, 3rd Degree"
-    {N, 9219, 179, nil, nil, true}, -- "Grand Theft, 2nd Degree"
-    {N, 9218, 179, nil, nil, true}, -- "Grand Theft, 1st Degree"
-    {N, 9217, 179, f.Horde, 9408, true}, -- Operation Counterattack
-    {N, 9216, 179, nil, nil, true}, -- High-value Targets
-    {N, 9215, 179, f.Horde, 9214, true}, -- Hero of Warspear
-    {N, 9214, 179, f.Alliance, 9215, true}, -- Hero of Stormshield
-    {N, 9213, 179}, -- Item Level Army
-    {N, 9212, 179}, -- My Item Level Is Way Higher than Yours
-    {N, 9211, 179}, -- My Item Level Is Higher than Yours
-    {N, 9210, 179, f.Alliance, 9132}, -- Garrison Buddies
-    {N, 9209, 179}, -- Master Defender
-    {N, 9208, 179}, -- Botani Invasion
-    {N, 9207, 179}, -- Goren Invasion
-    {N, 9206, 179}, -- Shadowmoon Clan Invasion
-    {N, 9205, 179}, -- Iron Horde Invasion
-    {N, 9204, 179}, -- Ogre Invasion
-    {N, 9203, 179}, -- Shadow Council Invasion
-    {N, 9181, 179}, -- Save Those Buildings!
+    {N, 9229, 159, nil, nil, true}, -- Primal Gladiator's Felblood Gronnling
+    {N, 9228, 159, f.Alliance, nil, true}, -- Down Goes Van Rook
+    {N, 9225, 159, f.Alliance, 9224, true}, -- Take Them Out
+    {N, 9224, 159, f.Horde, 9225, true}, -- Take Them Out
+    {N, 9223, 159}, -- Weed Whacker
+    {N, 9222, 159, nil, nil, true}, -- Divide and Conquer
+    {N, 9220, 159, nil, nil, true}, -- "Grand Theft, 3rd Degree"
+    {N, 9219, 159, nil, nil, true}, -- "Grand Theft, 2nd Degree"
+    {N, 9218, 159, nil, nil, true}, -- "Grand Theft, 1st Degree"
+    {N, 9217, 159, f.Horde, 9408, true}, -- Operation Counterattack
+    {N, 9216, 159, nil, nil, true}, -- High-value Targets
+    {N, 9215, 159, f.Horde, 9214, true}, -- Hero of Warspear
+    {N, 9214, 159, f.Alliance, 9215, true}, -- Hero of Stormshield
+    {N, 9213, 159}, -- Item Level Army
+    {N, 9212, 159}, -- My Item Level Is Way Higher than Yours
+    {N, 9211, 159}, -- My Item Level Is Higher than Yours
+    {N, 9210, 159, f.Alliance, 9132}, -- Garrison Buddies
+    {N, 9209, 159}, -- Master Defender
+    {N, 9208, 159}, -- Botani Invasion
+    {N, 9207, 159}, -- Goren Invasion
+    {N, 9206, 159}, -- Shadowmoon Clan Invasion
+    {N, 9205, 159}, -- Iron Horde Invasion
+    {N, 9204, 159}, -- Ogre Invasion
+    {N, 9203, 159}, -- Shadow Council Invasion
+    {N, 9181, 159}, -- Save Those Buildings!
     {O, 9177, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9177, 179, f.Horde, 9176}, -- Deck Your Collection (Season 2)
+    {N, 9177, 159, f.Horde, 9176}, -- Deck Your Collection (Season 2)
     {O, 9176, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9176, 179, f.Alliance, 9177}, -- Deck Your Collection (Season 2)
+    {N, 9176, 159, f.Alliance, 9177}, -- Deck Your Collection (Season 2)
     {O, 9175, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9175, 179, f.Horde, 9171}, -- Now You're Just Showing Off (Season 2)
+    {N, 9175, 159, f.Horde, 9171}, -- Now You're Just Showing Off (Season 2)
     {O, 9174, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9174, 179, f.Horde, 9170}, -- Brawlin' and Shot Callin' (Season 2)
+    {N, 9174, 159, f.Horde, 9170}, -- Brawlin' and Shot Callin' (Season 2)
     {O, 9173, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9173, 179, f.Horde, 9169}, -- The Second Rule of Brawler's Guild (Season 2)
+    {N, 9173, 159, f.Horde, 9169}, -- The Second Rule of Brawler's Guild (Season 2)
     {O, 9172, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9172, 179, f.Horde, 9168}, -- You Are Not Your $#*@! Legplates (Season 2)
+    {N, 9172, 159, f.Horde, 9168}, -- You Are Not Your $#*@! Legplates (Season 2)
     {O, 9171, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9171, 179, f.Alliance, 9175}, -- Now You're Just Showing Off (Season 2)
+    {N, 9171, 159, f.Alliance, 9175}, -- Now You're Just Showing Off (Season 2)
     {O, 9170, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9170, 179, f.Alliance, 9174}, -- Brawlin' and Shot Callin' (Season 2)
+    {N, 9170, 159, f.Alliance, 9174}, -- Brawlin' and Shot Callin' (Season 2)
     {O, 9169, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9169, 179, f.Alliance, 9173}, -- The Second Rule of Brawler's Guild (Season 2)
+    {N, 9169, 159, f.Alliance, 9173}, -- The Second Rule of Brawler's Guild (Season 2)
     {O, 9168, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9168, 179, f.Alliance, 9172}, -- You Are Not Your $#*@! Legplates (Season 2)
-    {N, 9167, 179}, -- Invasion Specialist
-    {N, 9165, 179}, -- Golden Defender
-    {N, 9164, 179}, -- Silver Defender
-    {N, 9162, 179}, -- Bronze Defender
-    {N, 9152, 179}, -- It's an Invasion!
-    {N, 9150, 179}, -- Exploration Mission Specialist
-    {N, 9147, 179}, -- Mission Specialist
-    {N, 9146, 179}, -- Patrol Mission Specialist
-    {N, 9145, 179}, -- Treasure Mission Specialist
-    {N, 9143, 179}, -- The Rarer the Better
-    {N, 9142, 179}, -- Keeping It Rare
-    {N, 9141, 179}, -- A Rare Mission
-    {N, 9140, 179}, -- On a Metric Ton of Missions
-    {N, 9139, 179}, -- On a Massive Number of Missions
-    {N, 9138, 179}, -- On a Lot of Missions
-    {N, 9134, 179}, -- On a Few Missions
-    {N, 9133, 179}, -- On a Mission
-    {N, 9132, 179, f.Horde, 9210}, -- Garrison Buddies
-    {N, 9131, 179}, -- An Epic Buddy
-    {N, 9130, 179}, -- A Rare Friend
-    {N, 9129, 179}, -- Filling the Ranks
-    {N, 9128, 179}, -- Grand Master Draftsman
-    {N, 9126, 179}, -- Master Draftsman
-    {N, 9125, 179}, -- Draftsman
-    {N, 9111, 179}, -- Raising the Bar
-    {N, 9110, 179}, -- Following Up
-    {N, 9109, 179}, -- Fearless Leader
-    {N, 9108, 179}, -- "Where You Go, They Will Follow"
-    {N, 9107, 179}, -- Follow the Leader
-    {N, 9106, 179, nil, nil, true}, -- Just for Me
-    {N, 9105, 179, nil, nil, true}, -- Tour of Duty
-    {N, 9104, 179, f.Alliance, 9103, true}, -- Bounty Hunter
-    {N, 9103, 179, f.Horde, 9104, true}, -- Bounty Hunter
-    {N, 9102, 179, nil, nil, true}, -- Ashran Victory
-    {N, 9101, 179, f.Alliance, 9546}, -- Even More Plots
-    {N, 9100, 179, f.Alliance, 9545}, -- More Plots
-    {N, 9099, 179}, -- Time for an Upgrade
-    {N, 9098, 179}, -- Movin' On Up
-    {N, 9097, 179}, -- Keepin' Busy
-    {N, 9096, 179}, -- Master Builder
-    {N, 9095, 179}, -- Builder
-    {N, 9094, 179}, -- Garrison Architect
-    {N, 9087, 179}, -- Draenor Master of All
-    {N, 9083, 179}, -- "Militaristic, Expansionist"
-    {N, 9082, 179}, -- Take Cover!
-    {N, 9081, 179}, -- Expert Timing
-    {N, 9080, 179, f.Horde, 9078}, -- Choppin' Even More Logs
-    {N, 9078, 179, f.Alliance, 9080}, -- Choppin' Even More Logs
-    {N, 9077, 179}, -- Choppin' Some More Logs
-    {N, 9076, 179}, -- Choppin' Some Logs
-    {N, 9072, 179}, -- Mantle of the Talon King
-    {N, 9071, 179}, -- Inspector Gadgetzan
-    {N, 9070, 179}, -- Overstuffed
-    {N, 9069, 179}, -- An Awfully Big Adventure
+    {N, 9168, 159, f.Alliance, 9172}, -- You Are Not Your $#*@! Legplates (Season 2)
+    {N, 9167, 159}, -- Invasion Specialist
+    {N, 9165, 159}, -- Golden Defender
+    {N, 9164, 159}, -- Silver Defender
+    {N, 9162, 159}, -- Bronze Defender
+    {N, 9152, 159}, -- It's an Invasion!
+    {N, 9150, 159}, -- Exploration Mission Specialist
+    {N, 9147, 159}, -- Mission Specialist
+    {N, 9146, 159}, -- Patrol Mission Specialist
+    {N, 9145, 159}, -- Treasure Mission Specialist
+    {N, 9143, 159}, -- The Rarer the Better
+    {N, 9142, 159}, -- Keeping It Rare
+    {N, 9141, 159}, -- A Rare Mission
+    {N, 9140, 159}, -- On a Metric Ton of Missions
+    {N, 9139, 159}, -- On a Massive Number of Missions
+    {N, 9138, 159}, -- On a Lot of Missions
+    {N, 9134, 159}, -- On a Few Missions
+    {N, 9133, 159}, -- On a Mission
+    {N, 9132, 159, f.Horde, 9210}, -- Garrison Buddies
+    {N, 9131, 159}, -- An Epic Buddy
+    {N, 9130, 159}, -- A Rare Friend
+    {N, 9129, 159}, -- Filling the Ranks
+    {N, 9128, 159}, -- Grand Master Draftsman
+    {N, 9126, 159}, -- Master Draftsman
+    {N, 9125, 159}, -- Draftsman
+    {N, 9111, 159}, -- Raising the Bar
+    {N, 9110, 159}, -- Following Up
+    {N, 9109, 159}, -- Fearless Leader
+    {N, 9108, 159}, -- "Where You Go, They Will Follow"
+    {N, 9107, 159}, -- Follow the Leader
+    {N, 9106, 159, nil, nil, true}, -- Just for Me
+    {N, 9105, 159, nil, nil, true}, -- Tour of Duty
+    {N, 9104, 159, f.Alliance, 9103, true}, -- Bounty Hunter
+    {N, 9103, 159, f.Horde, 9104, true}, -- Bounty Hunter
+    {N, 9102, 159, nil, nil, true}, -- Ashran Victory
+    {N, 9101, 159, f.Alliance, 9546}, -- Even More Plots
+    {N, 9100, 159, f.Alliance, 9545}, -- More Plots
+    {N, 9099, 159}, -- Time for an Upgrade
+    {N, 9098, 159}, -- Movin' On Up
+    {N, 9097, 159}, -- Keepin' Busy
+    {N, 9096, 159}, -- Master Builder
+    {N, 9095, 159}, -- Builder
+    {N, 9094, 159}, -- Garrison Architect
+    {N, 9087, 159}, -- Draenor Master of All
+    {N, 9083, 159}, -- "Militaristic, Expansionist"
+    {N, 9082, 159}, -- Take Cover!
+    {N, 9081, 159}, -- Expert Timing
+    {N, 9080, 159, f.Horde, 9078}, -- Choppin' Even More Logs
+    {N, 9078, 159, f.Alliance, 9080}, -- Choppin' Even More Logs
+    {N, 9077, 159}, -- Choppin' Some More Logs
+    {N, 9076, 159}, -- Choppin' Some Logs
+    {N, 9072, 159}, -- Mantle of the Talon King
+    {N, 9071, 159}, -- Inspector Gadgetzan
+    {N, 9070, 159}, -- Overstuffed
+    {N, 9069, 159}, -- An Awfully Big Adventure
     {O, 9060, "From", "Version", "060003", "Before", "Version", "090001"},
-    {N, 9060, 179}, -- Level 100 (Legacy)
-    {N, 9058, 179}, -- Leeeeeeeeeeeeeroy...?
-    {N, 9057, 179}, -- Dragonmaw? More Like Dragonfall!
-    {N, 9056, 179}, -- Bridge Over Troubled Fire
-    {N, 9055, 179}, -- Heroic: Upper Blackrock Spire
-    {N, 9054, 179}, -- Heroic: Shadowmoon Burial Grounds
-    {N, 9053, 179}, -- Heroic: The Everbloom
-    {N, 9052, 179}, -- Heroic: Grimrail Depot
-    {N, 9049, 179}, -- Heroic: Auchindoun
-    {N, 9047, 179}, -- Heroic: Iron Docks
-    {N, 9046, 179}, -- Heroic: Bloodmaul Slag Mines
-    {N, 9045, 179}, -- "Magnets, How Do They Work?"
-    {N, 9044, 179}, -- The Everbloom
-    {N, 9043, 179}, -- Grimrail Depot
-    {N, 9042, 179}, -- Upper Blackrock Spire
-    {N, 9041, 179}, -- Shadowmoon Burial Grounds
-    {N, 9039, 179}, -- Auchindoun
-    {N, 9038, 179}, -- Iron Docks
-    {N, 9037, 179}, -- Bloodmaul Slag Mines
-    {N, 9036, 179}, -- Monomania
-    {N, 9035, 179}, -- I Saw Solis
-    {N, 9034, 179}, -- Magnify... Enhance
-    {N, 9033, 179}, -- Ready for Raiding IV
-    {N, 9026, 179}, -- Souls of the Lost
-    {N, 9025, 179}, -- Icky Ichors
-    {N, 9024, 179}, -- This Is Why We Can't Have Nice Things
-    {N, 9023, 179}, -- ...They All Fall Down
-    {N, 9018, 179}, -- What's Your Sign?
-    {N, 9017, 179}, -- Water Management
+    {N, 9060, 159}, -- Level 100 (Legacy)
+    {N, 9058, 159}, -- Leeeeeeeeeeeeeroy...?
+    {N, 9057, 159}, -- Dragonmaw? More Like Dragonfall!
+    {N, 9056, 159}, -- Bridge Over Troubled Fire
+    {N, 9055, 159}, -- Heroic: Upper Blackrock Spire
+    {N, 9054, 159}, -- Heroic: Shadowmoon Burial Grounds
+    {N, 9053, 159}, -- Heroic: The Everbloom
+    {N, 9052, 159}, -- Heroic: Grimrail Depot
+    {N, 9049, 159}, -- Heroic: Auchindoun
+    {N, 9047, 159}, -- Heroic: Iron Docks
+    {N, 9046, 159}, -- Heroic: Bloodmaul Slag Mines
+    {N, 9045, 159}, -- "Magnets, How Do They Work?"
+    {N, 9044, 159}, -- The Everbloom
+    {N, 9043, 159}, -- Grimrail Depot
+    {N, 9042, 159}, -- Upper Blackrock Spire
+    {N, 9041, 159}, -- Shadowmoon Burial Grounds
+    {N, 9039, 159}, -- Auchindoun
+    {N, 9038, 159}, -- Iron Docks
+    {N, 9037, 159}, -- Bloodmaul Slag Mines
+    {N, 9036, 159}, -- Monomania
+    {N, 9035, 159}, -- I Saw Solis
+    {N, 9034, 159}, -- Magnify... Enhance
+    {N, 9033, 159}, -- Ready for Raiding IV
+    {N, 9026, 159}, -- Souls of the Lost
+    {N, 9025, 159}, -- Icky Ichors
+    {N, 9024, 159}, -- This Is Why We Can't Have Nice Things
+    {N, 9023, 159}, -- ...They All Fall Down
+    {N, 9018, 159}, -- What's Your Sign?
+    {N, 9017, 159}, -- Water Management
     {O, 9016, "From", "Version", "050200", "Before", "Version", "060002"},
-    {N, 9016, 179}, -- Breaker of the Black Harvest
-    {N, 9008, 179}, -- Is Draenor on Fire?
-    {N, 9007, 179}, -- No Ticket
-    {N, 9005, 179}, -- Come With Me If You Want to Live
+    {N, 9016, 159}, -- Breaker of the Black Harvest
+    {N, 9008, 159}, -- Is Draenor on Fire?
+    {N, 9007, 159}, -- No Ticket
+    {N, 9005, 159}, -- Come With Me If You Want to Live
     {O, 9004, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9004, 179}, -- The Everbloom: Gold
+    {N, 9004, 159}, -- The Everbloom: Gold
     {O, 9003, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9003, 179}, -- The Everbloom: Silver
+    {N, 9003, 159}, -- The Everbloom: Silver
     {O, 9002, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9002, 179}, -- The Everbloom: Bronze
+    {N, 9002, 159}, -- The Everbloom: Bronze
     {O, 9001, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9001, 179}, -- The Everbloom Challenger
+    {N, 9001, 159}, -- The Everbloom Challenger
     {O, 9000, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 9000, 179}, -- Iron Docks: Gold
+    {N, 9000, 159}, -- Iron Docks: Gold
     {O, 8999, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8999, 179}, -- Iron Docks: Silver
+    {N, 8999, 159}, -- Iron Docks: Silver
     {O, 8998, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8998, 179}, -- Iron Docks: Bronze
+    {N, 8998, 159}, -- Iron Docks: Bronze
     {O, 8997, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8997, 179}, -- Iron Docks Challenger
-    {N, 8993, 179}, -- A Gift of Earth and Fire
-    {N, 8992, 179}, -- Blackhand's Crucible
-    {N, 8991, 179}, -- Iron Assembly
-    {N, 8990, 179}, -- Black Forge
-    {N, 8989, 179}, -- Slagworks
-    {N, 8988, 179}, -- Imperator's Fall
-    {N, 8987, 179}, -- Arcane Sanctum
-    {N, 8986, 179}, -- The Walled City
-    {N, 8985, 179}, -- Glory of the Draenor Raider
-    {N, 8984, 179}, -- Be Quick or Be Dead
-    {N, 8983, 179}, -- Would You Give Me a Hand?
-    {N, 8982, 179}, -- There's Always a Bigger Train
-    {N, 8981, 179}, -- Fain Would Lie Down
-    {N, 8980, 179}, -- Stamp Stamp Revolution
-    {N, 8979, 179}, -- "He Shoots, He Ores"
-    {N, 8978, 179}, -- The Iron Price
-    {N, 8977, 179}, -- Lineage of Power
-    {N, 8976, 179}, -- Pair Annihilation
-    {N, 8975, 179}, -- A Fungus Among Us
-    {N, 8974, 179}, -- More Like Wrecked-us
-    {N, 8973, 179}, -- Mythic: Blackhand's Crucible
-    {N, 8972, 179}, -- Mythic: Iron Maidens
-    {N, 8971, 179}, -- Mythic: Kromog
-    {N, 8970, 179}, -- Mythic: Blast Furnace
-    {N, 8969, 179}, -- Mythic: Operator Thogar
-    {N, 8968, 179}, -- Mythic: Hans'gar and Franzok
-    {N, 8967, 179}, -- Mythic: Oregorger
-    {N, 8966, 179}, -- Mythic: Gruul
-    {N, 8965, 179}, -- Mythic: Imperator's Fall
-    {N, 8964, 179}, -- Mythic: Ko'ragh
-    {N, 8963, 179}, -- Mythic: Twin Ogron
-    {N, 8962, 179}, -- Mythic: Brackenspore
-    {N, 8961, 179}, -- Mythic: Tectus
-    {N, 8960, 179}, -- Mythic: The Butcher
-    {N, 8958, 179}, -- Brothers in Arms
-    {N, 8956, 179}, -- Mythic: Beastlord Darmac
-    {N, 8952, 179}, -- "Ashes, Ashes..."
-    {N, 8949, 179}, -- Mythic: Kargath Bladefist
-    {N, 8948, 179}, -- Flame On!
-    {N, 8947, 179}, -- "Hurry Up, Maggot!"
-    {N, 8942, 179}, -- Explore Nagrand
-    {N, 8941, 179}, -- Explore Spires of Arak
-    {N, 8940, 179}, -- Explore Talador
-    {N, 8939, 179}, -- Explore Gorgrond
-    {N, 8938, 179}, -- Explore Shadowmoon Valley
-    {N, 8937, 179}, -- Explore Frostfire Ridge
-    {N, 8935, 179}, -- Draenor Explorer
-    {N, 8933, 179}, -- Staying Regular
-    {N, 8932, 179}, -- Mythic: Flamebender Ka'graz
-    {N, 8930, 179}, -- "Ya, We've Got Time..."
-    {N, 8929, 179}, -- The Steel Has Been Brought
-    {N, 8928, 179, f.Horde, 8927}, -- Nagrandeur
-    {N, 8927, 179, f.Alliance, 8928}, -- Nagrandeur
-    {N, 8926, 179, f.Horde, 8925}, -- Between Arak and a Hard Place
-    {N, 8925, 179, f.Alliance, 8926}, -- Between Arak and a Hard Place
-    {N, 8924, 179, f.Horde, 8923}, -- Putting the Gore in Gorgrond
-    {N, 8923, 179, f.Alliance, 8924}, -- Putting the Gore in Gorgrond
-    {N, 8922, 179, f.Horde, 8921}, -- Welcome to Draenor
-    {N, 8921, 179, f.Alliance, 8922}, -- Welcome to Draenor
-    {N, 8920, 179, f.Alliance, 8919}, -- Don't Let the Tala-door Hit You on the Way Out
-    {N, 8919, 179, f.Horde, 8920}, -- Don't Let the Tala-door Hit You on the Way Out
-    {N, 8917, 179}, -- Collector's Edition: Dread Hatchling
-    {N, 8916, 179}, -- Collector's Edition: Dread Raven
+    {N, 8997, 159}, -- Iron Docks Challenger
+    {N, 8993, 159}, -- A Gift of Earth and Fire
+    {N, 8992, 159}, -- Blackhand's Crucible
+    {N, 8991, 159}, -- Iron Assembly
+    {N, 8990, 159}, -- Black Forge
+    {N, 8989, 159}, -- Slagworks
+    {N, 8988, 159}, -- Imperator's Fall
+    {N, 8987, 159}, -- Arcane Sanctum
+    {N, 8986, 159}, -- The Walled City
+    {N, 8985, 159}, -- Glory of the Draenor Raider
+    {N, 8984, 159}, -- Be Quick or Be Dead
+    {N, 8983, 159}, -- Would You Give Me a Hand?
+    {N, 8982, 159}, -- There's Always a Bigger Train
+    {N, 8981, 159}, -- Fain Would Lie Down
+    {N, 8980, 159}, -- Stamp Stamp Revolution
+    {N, 8979, 159}, -- "He Shoots, He Ores"
+    {N, 8978, 159}, -- The Iron Price
+    {N, 8977, 159}, -- Lineage of Power
+    {N, 8976, 159}, -- Pair Annihilation
+    {N, 8975, 159}, -- A Fungus Among Us
+    {N, 8974, 159}, -- More Like Wrecked-us
+    {N, 8973, 159}, -- Mythic: Blackhand's Crucible
+    {N, 8972, 159}, -- Mythic: Iron Maidens
+    {N, 8971, 159}, -- Mythic: Kromog
+    {N, 8970, 159}, -- Mythic: Blast Furnace
+    {N, 8969, 159}, -- Mythic: Operator Thogar
+    {N, 8968, 159}, -- Mythic: Hans'gar and Franzok
+    {N, 8967, 159}, -- Mythic: Oregorger
+    {N, 8966, 159}, -- Mythic: Gruul
+    {N, 8965, 159}, -- Mythic: Imperator's Fall
+    {N, 8964, 159}, -- Mythic: Ko'ragh
+    {N, 8963, 159}, -- Mythic: Twin Ogron
+    {N, 8962, 159}, -- Mythic: Brackenspore
+    {N, 8961, 159}, -- Mythic: Tectus
+    {N, 8960, 159}, -- Mythic: The Butcher
+    {N, 8958, 159}, -- Brothers in Arms
+    {N, 8956, 159}, -- Mythic: Beastlord Darmac
+    {N, 8952, 159}, -- "Ashes, Ashes..."
+    {N, 8949, 159}, -- Mythic: Kargath Bladefist
+    {N, 8948, 159}, -- Flame On!
+    {N, 8947, 159}, -- "Hurry Up, Maggot!"
+    {N, 8942, 159}, -- Explore Nagrand
+    {N, 8941, 159}, -- Explore Spires of Arak
+    {N, 8940, 159}, -- Explore Talador
+    {N, 8939, 159}, -- Explore Gorgrond
+    {N, 8938, 159}, -- Explore Shadowmoon Valley
+    {N, 8937, 159}, -- Explore Frostfire Ridge
+    {N, 8935, 159}, -- Draenor Explorer
+    {N, 8933, 159}, -- Staying Regular
+    {N, 8932, 159}, -- Mythic: Flamebender Ka'graz
+    {N, 8930, 159}, -- "Ya, We've Got Time..."
+    {N, 8929, 159}, -- The Steel Has Been Brought
+    {N, 8928, 159, f.Horde, 8927}, -- Nagrandeur
+    {N, 8927, 159, f.Alliance, 8928}, -- Nagrandeur
+    {N, 8926, 159, f.Horde, 8925}, -- Between Arak and a Hard Place
+    {N, 8925, 159, f.Alliance, 8926}, -- Between Arak and a Hard Place
+    {N, 8924, 159, f.Horde, 8923}, -- Putting the Gore in Gorgrond
+    {N, 8923, 159, f.Alliance, 8924}, -- Putting the Gore in Gorgrond
+    {N, 8922, 159, f.Horde, 8921}, -- Welcome to Draenor
+    {N, 8921, 159, f.Alliance, 8922}, -- Welcome to Draenor
+    {N, 8920, 159, f.Alliance, 8919}, -- Don't Let the Tala-door Hit You on the Way Out
+    {N, 8919, 159, f.Horde, 8920}, -- Don't Let the Tala-door Hit You on the Way Out
+    {N, 8917, 159}, -- Collector's Edition: Dread Hatchling
+    {N, 8916, 159}, -- Collector's Edition: Dread Raven
     {O, 8903, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 8903, 179}, -- Mistwalker
+    {N, 8903, 159}, -- Mistwalker
     {O, 8899, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8899, 179}, -- Challenge Warlord: Gold
+    {N, 8899, 159}, -- Challenge Warlord: Gold
     {O, 8898, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8898, 179}, -- Challenge Warlord: Silver
+    {N, 8898, 159}, -- Challenge Warlord: Silver
     {O, 8897, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8897, 179}, -- Challenge Warlord: Bronze
+    {N, 8897, 159}, -- Challenge Warlord: Bronze
     {O, 8895, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8895, 179}, -- Challenge Warlord
+    {N, 8895, 159}, -- Challenge Warlord
     {O, 8894, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8894, 179}, -- Upper Blackrock Spire: Gold
+    {N, 8894, 159}, -- Upper Blackrock Spire: Gold
     {O, 8893, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8893, 179}, -- Upper Blackrock Spire: Silver
+    {N, 8893, 159}, -- Upper Blackrock Spire: Silver
     {O, 8892, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8892, 179}, -- Upper Blackrock Spire: Bronze
+    {N, 8892, 159}, -- Upper Blackrock Spire: Bronze
     {O, 8891, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8891, 179}, -- Upper Blackrock Spire Challenger
+    {N, 8891, 159}, -- Upper Blackrock Spire Challenger
     {O, 8890, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8890, 179}, -- Grimrail Depot: Gold
+    {N, 8890, 159}, -- Grimrail Depot: Gold
     {O, 8889, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8889, 179}, -- Grimrail Depot: Silver
+    {N, 8889, 159}, -- Grimrail Depot: Silver
     {O, 8888, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8888, 179}, -- Grimrail Depot: Bronze
+    {N, 8888, 159}, -- Grimrail Depot: Bronze
     {O, 8887, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8887, 179}, -- Grimrail Depot Challenger
+    {N, 8887, 159}, -- Grimrail Depot Challenger
     {O, 8886, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8886, 179}, -- Shadowmoon Burial Grounds: Gold
+    {N, 8886, 159}, -- Shadowmoon Burial Grounds: Gold
     {O, 8885, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8885, 179}, -- Shadowmoon Burial Grounds: Silver
+    {N, 8885, 159}, -- Shadowmoon Burial Grounds: Silver
     {O, 8884, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8884, 179}, -- Shadowmoon Burial Grounds: Bronze
+    {N, 8884, 159}, -- Shadowmoon Burial Grounds: Bronze
     {O, 8883, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8883, 179}, -- Shadowmoon Burial Grounds Challenger
+    {N, 8883, 159}, -- Shadowmoon Burial Grounds Challenger
     {O, 8882, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8882, 179}, -- Auchindoun: Gold
+    {N, 8882, 159}, -- Auchindoun: Gold
     {O, 8881, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8881, 179}, -- Auchindoun: Silver
+    {N, 8881, 159}, -- Auchindoun: Silver
     {O, 8880, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8880, 179}, -- Auchindoun: Bronze
+    {N, 8880, 159}, -- Auchindoun: Bronze
     {O, 8879, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8879, 179}, -- Auchindoun Challenger
+    {N, 8879, 159}, -- Auchindoun Challenger
     {O, 8878, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8878, 179}, -- Bloodmaul Slag Mines: Gold
+    {N, 8878, 159}, -- Bloodmaul Slag Mines: Gold
     {O, 8877, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8877, 179}, -- Bloodmaul Slag Mines: Silver
+    {N, 8877, 159}, -- Bloodmaul Slag Mines: Silver
     {O, 8876, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8876, 179}, -- Bloodmaul Slag Mines: Bronze
+    {N, 8876, 159}, -- Bloodmaul Slag Mines: Bronze
     {O, 8875, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8875, 179}, -- Bloodmaul Slag Mines Challenger
+    {N, 8875, 159}, -- Bloodmaul Slag Mines Challenger
     {O, 8874, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8874, 179}, -- Skyreach: Gold
+    {N, 8874, 159}, -- Skyreach: Gold
     {O, 8873, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8873, 179}, -- Skyreach: Silver
+    {N, 8873, 159}, -- Skyreach: Silver
     {O, 8872, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8872, 179}, -- Skyreach: Bronze
+    {N, 8872, 159}, -- Skyreach: Bronze
     {O, 8871, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8871, 179}, -- Skyreach Challenger
-    {N, 8845, 179, f.Alliance, 8671}, -- As I Walk Through the Valley of the Shadow of Moon
-    {N, 8844, 179}, -- Heroic: Skyreach
-    {N, 8843, 179}, -- Skyreach
+    {N, 8871, 159}, -- Skyreach Challenger
+    {N, 8845, 159, f.Alliance, 8671}, -- As I Walk Through the Valley of the Shadow of Moon
+    {N, 8844, 159}, -- Heroic: Skyreach
+    {N, 8843, 159}, -- Skyreach
     {O, 8820 },
-    {N, 8820, 179}, -- WoW's 10th Anniversary
+    {N, 8820, 159}, -- WoW's 10th Anniversary
     {O, 8812, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8812, 179}, -- You're Really Doing It Wrong (Level 90)
-    {N, 8795, 179}, -- Collector's Edition: Treasure Goblin
+    {N, 8812, 159}, -- You're Really Doing It Wrong (Level 90)
+    {N, 8795, 152}, -- Collector's Edition: Treasure Goblin
     {O, 8794 },
-    {N, 8794, 179}, -- Friends In Places Even Higher Than That
-    {N, 8793, 179}, -- Murkalot
+    {N, 8794, 151}, -- Friends In Places Even Higher Than That
+    {N, 8793, 151}, -- Murkalot
     {O, 8791, "From", "PvP Season", 13, "Until", "PvP Season", 13},
-    {N, 8791, 179, nil, nil, true}, -- Tyrannical Gladiator
-    {N, 8784, 179}, -- Timeless Legends
-    {N, 8743, 179}, -- Zarhym Altogether
-    {N, 8730, 179}, -- Rolo's Riddle
-    {N, 8729, 179}, -- "Treasure, Treasure Everywhere"
-    {N, 8728, 179}, -- Going To Need A Bigger Bag
-    {N, 8727, 179}, -- "Where There's Pirates, There's Booty"
-    {N, 8726, 179}, -- Extreme Treasure Hunter
-    {N, 8725, 179}, -- Eyes On The Ground
-    {N, 8724, 179}, -- Pilgrimage
-    {N, 8723, 179}, -- Legend of the Past
-    {N, 8722, 179}, -- Timeless Nutriment
-    {N, 8721, 179, nil, nil, true}, -- Fire-Watcher
-    {N, 8720, 179, nil, nil, true}, -- Kilnmaster
-    {N, 8719, 179, nil, nil, true}, -- Blazebinder
-    {N, 8718, 179, nil, nil, true}, -- Oathguard
-    {N, 8717, 179, nil, nil, true}, -- Candlekeeper
-    {N, 8716, 179}, -- Emissary of Ordos
-    {N, 8715, 179}, -- Emperor Shaohao
-    {N, 8714, 179}, -- Timeless Champion
-    {N, 8712, 179}, -- Killing Time
+    {N, 8791, 148, nil, nil, true}, -- Tyrannical Gladiator
+    {N, 8784, 148}, -- Timeless Legends
+    {N, 8743, 148}, -- Zarhym Altogether
+    {N, 8730, 148}, -- Rolo's Riddle
+    {N, 8729, 148}, -- "Treasure, Treasure Everywhere"
+    {N, 8728, 148}, -- Going To Need A Bigger Bag
+    {N, 8727, 148}, -- "Where There's Pirates, There's Booty"
+    {N, 8726, 148}, -- Extreme Treasure Hunter
+    {N, 8725, 148}, -- Eyes On The Ground
+    {N, 8724, 148}, -- Pilgrimage
+    {N, 8723, 148}, -- Legend of the Past
+    {N, 8722, 148}, -- Timeless Nutriment
+    {N, 8721, 148, nil, nil, true}, -- Fire-Watcher
+    {N, 8720, 148, nil, nil, true}, -- Kilnmaster
+    {N, 8719, 148, nil, nil, true}, -- Blazebinder
+    {N, 8718, 148, nil, nil, true}, -- Oathguard
+    {N, 8717, 148, nil, nil, true}, -- Candlekeeper
+    {N, 8716, 148}, -- Emissary of Ordos
+    {N, 8715, 148}, -- Emperor Shaohao
+    {N, 8714, 148}, -- Timeless Champion
+    {N, 8712, 148}, -- Killing Time
     {O, 8707, "From", "PvP Season", 15, "Until", "PvP Season", 15},
-    {N, 8707, 179, nil, nil, true}, -- Prideful Gladiator's Cloud Serpent
+    {N, 8707, 148, nil, nil, true}, -- Prideful Gladiator's Cloud Serpent
     {O, 8705, "From", "PvP Season", 14, "Until", "PvP Season", 14},
-    {N, 8705, 179, nil, nil, true}, -- Grievous Gladiator's Cloud Serpent
-    {N, 8699, 179}, -- The Danger Zone
-    {N, 8698, 179}, -- Crashin' Thrashin' Flyer
+    {N, 8705, 148, nil, nil, true}, -- Grievous Gladiator's Cloud Serpent
+    {N, 8699, 148}, -- The Danger Zone
+    {N, 8698, 148}, -- Crashin' Thrashin' Flyer
     {O, 8697, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8697, 179}, -- You're Doing it Wrong (Level 90)
-    {N, 8680, 179, f.Horde, 8679}, -- Liberator of Orgrimmar
-    {N, 8679, 179, f.Alliance, 8680}, -- Conqueror of Orgrimmar
+    {N, 8697, 148}, -- You're Doing it Wrong (Level 90)
+    {N, 8680, 148, f.Horde, 8679}, -- Liberator of Orgrimmar
+    {N, 8679, 148, f.Alliance, 8680}, -- Conqueror of Orgrimmar
     {O, 8678, "From", "PvP Season", 13, "Until", "PvP Season", 13},
-    {N, 8678, 179, nil, nil, true}, -- Tyrannical Gladiator's Cloud Serpent
-    {N, 8671, 179, f.Horde, 8845}, -- You'll Get Caught Up In The... Frostfire!
+    {N, 8678, 148, nil, nil, true}, -- Tyrannical Gladiator's Cloud Serpent
+    {N, 8671, 159, f.Horde, 8845}, -- You'll Get Caught Up In The... Frostfire!
     {O, 8670, "From", "PvP Season", 15, "Until", "PvP Season", 15},
-    {N, 8670, 179, nil, nil, true}, -- Challenger: Season 15
+    {N, 8670, 148, nil, nil, true}, -- Challenger: Season 15
     {O, 8669, "From", "PvP Season", 15, "Until", "PvP Season", 15},
-    {N, 8669, 179, nil, nil, true}, -- Rival: Season 15
+    {N, 8669, 148, nil, nil, true}, -- Rival: Season 15
     {O, 8668, "From", "PvP Season", 15, "Until", "PvP Season", 15},
-    {N, 8668, 179, nil, nil, true}, -- Duelist: Season 15
+    {N, 8668, 148, nil, nil, true}, -- Duelist: Season 15
     {O, 8667, "From", "PvP Season", 15, "Until", "PvP Season", 15},
-    {N, 8667, 179, nil, nil, true}, -- Gladiator: Season 15
+    {N, 8667, 148, nil, nil, true}, -- Gladiator: Season 15
     {O, 8666, "From", "PvP Season", 15, "Until", "PvP Season", 15},
-    {N, 8666, 179, nil, nil, true}, -- Prideful Gladiator: Season 15
+    {N, 8666, 148, nil, nil, true}, -- Prideful Gladiator: Season 15
     {O, 8659, "From", "PvP Season", 15, "Until", "PvP Season", 15},
-    {N, 8659, 179, f.Horde, 8658, true}, -- Hero of the Horde: Prideful
+    {N, 8659, 148, f.Horde, 8658, true}, -- Hero of the Horde: Prideful
     {O, 8658, "From", "PvP Season", 15, "Until", "PvP Season", 15},
-    {N, 8658, 179, f.Alliance, 8659, true}, -- Hero of the Alliance: Prideful
+    {N, 8658, 148, f.Alliance, 8659, true}, -- Hero of the Alliance: Prideful
     {O, 8657, "From", "PvP Season", 14, "Until", "PvP Season", 14},
-    {N, 8657, 179, f.Horde, 8654, true}, -- Hero of the Horde: Grievous
+    {N, 8657, 148, f.Horde, 8654, true}, -- Hero of the Horde: Grievous
     {O, 8654, "From", "PvP Season", 14, "Until", "PvP Season", 14},
-    {N, 8654, 179, f.Alliance, 8657, true}, -- Hero of the Alliance: Grievous
+    {N, 8654, 148, f.Alliance, 8657, true}, -- Hero of the Alliance: Grievous
     {O, 8653, "From", "PvP Season", 13, "Until", "PvP Season", 13},
-    {N, 8653, 179, f.Horde, 8652, true}, -- Hero of the Horde: Tyrannical
+    {N, 8653, 148, f.Horde, 8652, true}, -- Hero of the Horde: Tyrannical
     {O, 8652, "From", "PvP Season", 13, "Until", "PvP Season", 13},
-    {N, 8652, 179, f.Alliance, 8653, true}, -- Hero of the Alliance: Tyrannical
+    {N, 8652, 148, f.Alliance, 8653, true}, -- Hero of the Alliance: Tyrannical
     {O, 8649, "From", "PvP Season", 14, "Until", "PvP Season", 14},
-    {N, 8649, 179, nil, nil, true}, -- Challenger: Season 14
+    {N, 8649, 148, nil, nil, true}, -- Challenger: Season 14
     {O, 8646, "From", "PvP Season", 14, "Until", "PvP Season", 14},
-    {N, 8646, 179, nil, nil, true}, -- Rival: Season 14
+    {N, 8646, 148, nil, nil, true}, -- Rival: Season 14
     {O, 8645, "From", "PvP Season", 14, "Until", "PvP Season", 14},
-    {N, 8645, 179, nil, nil, true}, -- Duelist: Season 14
+    {N, 8645, 148, nil, nil, true}, -- Duelist: Season 14
     {O, 8644, "From", "PvP Season", 14, "Until", "PvP Season", 14},
-    {N, 8644, 179, nil, nil, true}, -- Gladiator: Season 14
+    {N, 8644, 148, nil, nil, true}, -- Gladiator: Season 14
     {O, 8643, "From", "PvP Season", 14, "Until", "PvP Season", 14},
-    {N, 8643, 179, nil, nil, true}, -- Grievous Gladiator: Season 14
+    {N, 8643, 148, nil, nil, true}, -- Grievous Gladiator: Season 14
     {O, 8642, "From", "PvP Season", 15, "Until", "PvP Season", 15},
-    {N, 8642, 179, f.Alliance, 8641, true}, -- Prideful Combatant
+    {N, 8642, 148, f.Alliance, 8641, true}, -- Prideful Combatant
     {O, 8641, "From", "PvP Season", 15, "Until", "PvP Season", 15},
-    {N, 8641, 179, f.Horde, 8642, true}, -- Prideful Combatant
-    {N, 8543, 179}, -- Lasers and Magnets and Drills! Oh My!
-    {N, 8538, 179}, -- Unlimited Potential
-    {N, 8537, 179}, -- Strike!
-    {N, 8536, 179}, -- No More Tears
-    {N, 8535, 179}, -- Celestial Challenge
+    {N, 8641, 148, f.Horde, 8642, true}, -- Prideful Combatant
+    {N, 8543, 148}, -- Lasers and Magnets and Drills! Oh My!
+    {N, 8538, 148}, -- Unlimited Potential
+    {N, 8537, 148}, -- Strike!
+    {N, 8536, 148}, -- No More Tears
+    {N, 8535, 148}, -- Celestial Challenge
     {O, 8533 },
-    {N, 8533, 179}, -- Ordos
-    {N, 8532, 179}, -- None Shall Pass
-    {N, 8531, 179}, -- Now We are the Paragon
-    {N, 8530, 179}, -- The Immortal Vanguard
-    {N, 8529, 179}, -- Criss Cross
-    {N, 8528, 179}, -- Go Long
-    {N, 8527, 179}, -- Giant Dinosaur vs. Mega Snail
-    {N, 8521, 179}, -- Swallow Your Pride
-    {N, 8520, 179}, -- Fire in the Hole!
-    {N, 8519, 179}, -- Celestial Family
-    {N, 8518, 179}, -- Master of the Masters
+    {N, 8533, 148}, -- Ordos
+    {N, 8532, 148}, -- None Shall Pass
+    {N, 8531, 148}, -- Now We are the Paragon
+    {N, 8530, 148}, -- The Immortal Vanguard
+    {N, 8529, 148}, -- Criss Cross
+    {N, 8528, 148}, -- Go Long
+    {N, 8527, 148}, -- Giant Dinosaur vs. Mega Snail
+    {N, 8521, 148}, -- Swallow Your Pride
+    {N, 8520, 148}, -- Fire in the Hole!
+    {N, 8519, 148}, -- Celestial Family
+    {N, 8518, 148}, -- Master of the Masters
     {O, 8509, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8509, 179}, -- Proving Yourself: Endless Healer (Wave 30) (Level 90)
+    {N, 8509, 148}, -- Proving Yourself: Endless Healer (Wave 30) (Level 90)
     {O, 8508, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8508, 179}, -- Proving Yourself: Endless Tank (Wave 30) (Level 90)
+    {N, 8508, 148}, -- Proving Yourself: Endless Tank (Wave 30) (Level 90)
     {O, 8507, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8507, 179}, -- Proving Yourself: Endless Damage (Wave 30) (Level 90)
+    {N, 8507, 148}, -- Proving Yourself: Endless Damage (Wave 30) (Level 90)
     {O, 8506, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8506, 179}, -- Proving Yourself: Endless Healer (Wave 20) (Level 90)
+    {N, 8506, 148}, -- Proving Yourself: Endless Healer (Wave 20) (Level 90)
     {O, 8505, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8505, 179}, -- Proving Yourself: Endless Tank (Wave 20) (Level 90)
+    {N, 8505, 148}, -- Proving Yourself: Endless Tank (Wave 20) (Level 90)
     {O, 8504, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8504, 179}, -- Proving Yourself: Endless Damage (Wave 20) (Level 90)
+    {N, 8504, 148}, -- Proving Yourself: Endless Damage (Wave 20) (Level 90)
     {O, 8503, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8503, 179}, -- Proving Yourself: Endless Healer (Wave 10) (Level 90)
+    {N, 8503, 148}, -- Proving Yourself: Endless Healer (Wave 10) (Level 90)
     {O, 8502, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8502, 179}, -- Proving Yourself: Endless Tank (Wave 10) (Level 90)
+    {N, 8502, 148}, -- Proving Yourself: Endless Tank (Wave 10) (Level 90)
     {O, 8501, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8501, 179}, -- Proving Yourself: Endless Damage (Wave 10) (Level 90)
+    {N, 8501, 148}, -- Proving Yourself: Endless Damage (Wave 10) (Level 90)
     {O, 8498, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8498, 179}, -- Proving Yourself: Gold Healer (Level 90)
+    {N, 8498, 148}, -- Proving Yourself: Gold Healer (Level 90)
     {O, 8497, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8497, 179}, -- Proving Yourself: Gold Tank (Level 90)
+    {N, 8497, 148}, -- Proving Yourself: Gold Tank (Level 90)
     {O, 8496, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8496, 179}, -- Proving Yourself: Gold Damage (Level 90)
+    {N, 8496, 148}, -- Proving Yourself: Gold Damage (Level 90)
     {O, 8493, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8493, 179}, -- Proving Yourself: Silver Healer (Level 90)
+    {N, 8493, 148}, -- Proving Yourself: Silver Healer (Level 90)
     {O, 8492, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8492, 179}, -- Proving Yourself: Silver Tank (Level 90)
+    {N, 8492, 148}, -- Proving Yourself: Silver Tank (Level 90)
     {O, 8491, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8491, 179}, -- Proving Yourself: Silver Damage (Level 90)
+    {N, 8491, 148}, -- Proving Yourself: Silver Damage (Level 90)
     {O, 8488, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8488, 179}, -- Proving Yourself: Bronze Healer (Level 90)
+    {N, 8488, 148}, -- Proving Yourself: Bronze Healer (Level 90)
     {O, 8487, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8487, 179}, -- Proving Yourself: Bronze Tank (Level 90)
+    {N, 8487, 148}, -- Proving Yourself: Bronze Tank (Level 90)
     {O, 8486, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8486, 179}, -- Proving Yourself: Bronze Damage (Level 90)
+    {N, 8486, 148}, -- Proving Yourself: Bronze Damage (Level 90)
     {O, 8485, "From", "PvP Season", 14, "Until", "PvP Season", 14},
-    {N, 8485, 179, f.Alliance, 8484, true}, -- Grievous Combatant
+    {N, 8485, 148, f.Alliance, 8484, true}, -- Grievous Combatant
     {O, 8484, "From", "PvP Season", 14, "Until", "PvP Season", 14},
-    {N, 8484, 179, f.Horde, 8485, true}, -- Grievous Combatant
-    {N, 8482, 179}, -- Mythic: Garrosh Hellscream
-    {N, 8481, 179}, -- Mythic: Paragons of the Klaxxi
-    {N, 8480, 179}, -- Mythic: Siegecrafter Blackfuse
-    {N, 8479, 179}, -- Mythic: Thok the Bloodthirsty
-    {N, 8478, 179}, -- Mythic: Spoils of Pandaria
-    {N, 8472, 179}, -- Mythic: Malkorok
-    {N, 8471, 179}, -- Mythic: General Nazgrim
-    {N, 8470, 179}, -- Mythic: Kor'kron Dark Shaman
-    {N, 8469, 179}, -- Mythic: Iron Juggernaut
-    {N, 8468, 179}, -- Mythic: Galakras
-    {N, 8467, 179}, -- Mythic: Sha of Pride
-    {N, 8466, 179}, -- Mythic: Norushen
-    {N, 8465, 179}, -- Mythic: Fallen Protectors
-    {N, 8463, 179}, -- Mythic: Immerseus
-    {N, 8462, 179}, -- Downfall
-    {N, 8461, 179}, -- The Underhold
-    {N, 8459, 179}, -- Gates of Retribution
-    {N, 8458, 179}, -- Vale of Eternal Sorrows
-    {N, 8454, 179}, -- Glory of the Orgrimmar Raider
-    {N, 8453, 179}, -- Rescue Raiders
+    {N, 8484, 148, f.Horde, 8485, true}, -- Grievous Combatant
+    {N, 8482, 148}, -- Mythic: Garrosh Hellscream
+    {N, 8481, 148}, -- Mythic: Paragons of the Klaxxi
+    {N, 8480, 148}, -- Mythic: Siegecrafter Blackfuse
+    {N, 8479, 148}, -- Mythic: Thok the Bloodthirsty
+    {N, 8478, 148}, -- Mythic: Spoils of Pandaria
+    {N, 8472, 148}, -- Mythic: Malkorok
+    {N, 8471, 148}, -- Mythic: General Nazgrim
+    {N, 8470, 148}, -- Mythic: Kor'kron Dark Shaman
+    {N, 8469, 148}, -- Mythic: Iron Juggernaut
+    {N, 8468, 148}, -- Mythic: Galakras
+    {N, 8467, 148}, -- Mythic: Sha of Pride
+    {N, 8466, 148}, -- Mythic: Norushen
+    {N, 8465, 148}, -- Mythic: Fallen Protectors
+    {N, 8463, 148}, -- Mythic: Immerseus
+    {N, 8462, 148}, -- Downfall
+    {N, 8461, 148}, -- The Underhold
+    {N, 8459, 148}, -- Gates of Retribution
+    {N, 8458, 148}, -- Vale of Eternal Sorrows
+    {N, 8454, 148}, -- Glory of the Orgrimmar Raider
+    {N, 8453, 148}, -- Rescue Raiders
     {O, 8451, "From", "PvP Season", 15, "Until", "PvP Season", 15},
-    {N, 8451, 179, f.Alliance, 8450, true}, -- Prideful Conquest
+    {N, 8451, 148, f.Alliance, 8450, true}, -- Prideful Conquest
     {O, 8450, "From", "PvP Season", 15, "Until", "PvP Season", 15},
-    {N, 8450, 179, f.Horde, 8451, true}, -- Prideful Conquest
-    {N, 8448, 179}, -- Gamon Will Save Us!
+    {N, 8450, 148, f.Horde, 8451, true}, -- Prideful Conquest
+    {N, 8448, 148}, -- Gamon Will Save Us!
     {O, 8439, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 8439, 179}, -- Challenge Master: Siege of Niuzao Temple
+    {N, 8439, 148}, -- Challenge Master: Siege of Niuzao Temple
     {O, 8438, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 8438, 179}, -- Challenge Master: Scholomance
+    {N, 8438, 148}, -- Challenge Master: Scholomance
     {O, 8437, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 8437, 179}, -- Challenge Master: Scarlet Monastery
+    {N, 8437, 148}, -- Challenge Master: Scarlet Monastery
     {O, 8436, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 8436, 179}, -- Challenge Master: Scarlet Halls
+    {N, 8436, 148}, -- Challenge Master: Scarlet Halls
     {O, 8434, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 8434, 179}, -- Challenge Master: Gate of the Setting Sun
+    {N, 8434, 148}, -- Challenge Master: Gate of the Setting Sun
     {O, 8433, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 8433, 179}, -- Challenge Master: Mogu'shan Palace
+    {N, 8433, 148}, -- Challenge Master: Mogu'shan Palace
     {O, 8432, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 8432, 179}, -- Challenge Master: Shado-Pan Monastery
+    {N, 8432, 148}, -- Challenge Master: Shado-Pan Monastery
     {O, 8431, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 8431, 179}, -- Challenge Master: Stormstout Brewery
+    {N, 8431, 148}, -- Challenge Master: Stormstout Brewery
     {O, 8430, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 8430, 179}, -- Challenge Master: Temple of the Jade Serpent
-    {N, 8410, 179}, -- The Celestial Tournament
+    {N, 8430, 148}, -- Challenge Master: Temple of the Jade Serpent
+    {N, 8410, 148}, -- The Celestial Tournament
     {O, 8401, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8401, 179}, -- Cutting Edge: Garrosh Hellscream (25 player)
+    {N, 8401, 148}, -- Cutting Edge: Garrosh Hellscream (25 player)
     {O, 8400, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8400, 179}, -- Cutting Edge: Garrosh Hellscream (10 player)
+    {N, 8400, 148}, -- Cutting Edge: Garrosh Hellscream (10 player)
     {O, 8399, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8399, 179}, -- Ahead of the Curve: Garrosh Hellscream (25 player)
+    {N, 8399, 148}, -- Ahead of the Curve: Garrosh Hellscream (25 player)
     {O, 8398, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8398, 179}, -- Ahead of the Curve: Garrosh Hellscream (10 player)
-    {N, 8397, 179}, -- Crazy for Cats
+    {N, 8398, 148}, -- Ahead of the Curve: Garrosh Hellscream (10 player)
+    {N, 8397, 148}, -- Crazy for Cats
     {O, 8392, "Never" },
-    {N, 8392, 179, nil, nil, true}, -- Tournament Glory 2013
+    {N, 8392, 141, nil, nil, true}, -- Tournament Glory 2013
     {O, 8391, "Never" },
-    {N, 8391, 179, nil, nil, true}, -- Tournament Participation 2013
+    {N, 8391, 141, nil, nil, true}, -- Tournament Participation 2013
     {O, 8382, "From", "PvP Season", 14, "Until", "PvP Season", 14},
-    {N, 8382, 179, f.Alliance, 8381, true}, -- Grievous Conquest
+    {N, 8382, 148, f.Alliance, 8381, true}, -- Grievous Conquest
     {O, 8381, "From", "PvP Season", 14, "Until", "PvP Season", 14},
-    {N, 8381, 179, f.Horde, 8382, true}, -- Grievous Conquest
-    {N, 8368, 179}, -- Fight Anger with Anger
-    {N, 8366, 179, f.Horde, 8364}, -- Heroic: Battle on the High Seas
-    {N, 8364, 179, f.Alliance, 8366}, -- Heroic: Battle on the High Seas
+    {N, 8381, 148, f.Horde, 8382, true}, -- Grievous Conquest
+    {N, 8368, 141}, -- Fight Anger with Anger
+    {N, 8366, 141, f.Horde, 8364}, -- Heroic: Battle on the High Seas
+    {N, 8364, 141, f.Alliance, 8366}, -- Heroic: Battle on the High Seas
     {O, 8360, "From", "Version", "050300", "Before", "Version", "080300"},
-    {N, 8360, 179, nil, nil, true}, -- Master of Deepwind Gorge
+    {N, 8360, 141, nil, nil, true}, -- Master of Deepwind Gorge
     {O, 8359, "From", "Version", "050300", "Before", "Version", "080300"},
-    {N, 8359, 179, nil, nil, true}, -- Capping Spree
+    {N, 8359, 141, nil, nil, true}, -- Capping Spree
     {O, 8358, "From", "Version", "050300", "Before", "Version", "080300"},
-    {N, 8358, 179, nil, nil, true}, -- Deepwind Gorge All-Star
+    {N, 8358, 141, nil, nil, true}, -- Deepwind Gorge All-Star
     {O, 8355, "From", "Version", "050300", "Before", "Version", "080300"},
-    {N, 8355, 179, nil, nil, true}, -- Weighed Down
+    {N, 8355, 141, nil, nil, true}, -- Weighed Down
     {O, 8354, "From", "Version", "050300", "Before", "Version", "080300"},
-    {N, 8354, 179, nil, nil, true}, -- Puddle Jumper
+    {N, 8354, 141, nil, nil, true}, -- Puddle Jumper
     {O, 8351, "From", "Version", "050300", "Before", "Version", "080300"},
-    {N, 8351, 179, nil, nil, true}, -- Other People's Property
+    {N, 8351, 141, nil, nil, true}, -- Other People's Property
     {O, 8350, "From", "Version", "050300", "Before", "Version", "080300"},
-    {N, 8350, 179, nil, nil, true}, -- Mine! Mine! Mine!
-    {N, 8348, 179}, -- The Longest Day
-    {N, 8347, 179}, -- Keep those Bombs Away! (From Me)
-    {N, 8345, 179}, -- Hearthstoned
+    {N, 8350, 141, nil, nil, true}, -- Mine! Mine! Mine!
+    {N, 8348, 141}, -- The Longest Day
+    {N, 8347, 141}, -- Keep those Bombs Away! (From Me)
+    {N, 8345, 141}, -- Hearthstoned
     {O, 8343, "From", "Version", "050100", "Before", "Version", "060002"},
-    {N, 8343, 179, f.Horde, 8340}, -- Deck Your Collection (Season 1)
+    {N, 8343, 141, f.Horde, 8340}, -- Deck Your Collection (Season 1)
     {O, 8342, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8342, 179, f.Horde, 8339}, -- Collect Your Deck (Season 2)
+    {N, 8342, 141, f.Horde, 8339}, -- Collect Your Deck (Season 2)
     {O, 8340, "From", "Version", "050100", "Before", "Version", "060002"},
-    {N, 8340, 179, f.Alliance, 8343}, -- Deck Your Collection (Season 1)
+    {N, 8340, 141, f.Alliance, 8343}, -- Deck Your Collection (Season 1)
     {O, 8339, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 8339, 179, f.Alliance, 8342}, -- Collect Your Deck (Season 2)
+    {N, 8339, 141, f.Alliance, 8342}, -- Collect Your Deck (Season 2)
     {O, 8338, "From", "Version", "050100", "Before", "Version", "060002"},
-    {N, 8338, 179, f.Horde, 8336}, -- I've Got the Biggest Brawls of Them All (Season 1)
+    {N, 8338, 141, f.Horde, 8336}, -- I've Got the Biggest Brawls of Them All (Season 1)
     {O, 8337, "From", "Version", "050100", "Before", "Version", "060002"},
-    {N, 8337, 179, f.Horde, 8335}, -- Having a Brawl (Season 1)
+    {N, 8337, 141, f.Horde, 8335}, -- Having a Brawl (Season 1)
     {O, 8336, "From", "Version", "050100", "Before", "Version", "060002"},
-    {N, 8336, 179, f.Alliance, 8338}, -- I've Got the Biggest Brawls of Them All (Season 1)
+    {N, 8336, 141, f.Alliance, 8338}, -- I've Got the Biggest Brawls of Them All (Season 1)
     {O, 8335, "From", "Version", "050100", "Before", "Version", "060002"},
-    {N, 8335, 179, f.Alliance, 8337}, -- Having a Brawl (Season 1)
-    {N, 8333, 179, nil, nil, true}, -- Deepwind Gorge Perfection
-    {N, 8332, 179, nil, nil, true}, -- Deepwind Gorge Veteran
-    {N, 8331, 179, nil, nil, true}, -- Deepwind Gorge Victory
-    {N, 8330, 179}, -- Hekima's Heal-Halter
-    {N, 8329, 179}, -- Heed the Weed
-    {N, 8327, 179}, -- Heroic: The Secrets of Ragefire
+    {N, 8335, 141, f.Alliance, 8337}, -- Having a Brawl (Season 1)
+    {N, 8333, 141, nil, nil, true}, -- Deepwind Gorge Perfection
+    {N, 8332, 141, nil, nil, true}, -- Deepwind Gorge Veteran
+    {N, 8331, 141, nil, nil, true}, -- Deepwind Gorge Victory
+    {N, 8330, 141}, -- Hekima's Heal-Halter
+    {N, 8329, 141}, -- Heed the Weed
+    {N, 8327, 141}, -- Heroic: The Secrets of Ragefire
     {O, 8325, "From", "Version", "050400", "Before", "Version", "060002"},
-    {N, 8325, 179}, -- Chapter V: Judgment of the Black Prince
-    {N, 8319, 179}, -- Accelerated Archaeology
-    {N, 8318, 179}, -- Heroic: Dark Heart of Pandaria
-    {N, 8317, 179}, -- Dark Heart of Pandaria
-    {N, 8316, 179}, -- Blood in the Snow
-    {N, 8315, 179, f.Horde, 8314}, -- Battle on the High Seas
-    {N, 8314, 179, f.Alliance, 8315}, -- Battle on the High Seas
-    {N, 8312, 179}, -- Heroic: Blood in the Snow
-    {N, 8311, 179}, -- Heroic: Crypt of Forgotten Kings
-    {N, 8310, 179}, -- Heroic: A Brewing Storm
+    {N, 8325, 141}, -- Chapter V: Judgment of the Black Prince
+    {N, 8319, 141}, -- Accelerated Archaeology
+    {N, 8318, 141}, -- Heroic: Dark Heart of Pandaria
+    {N, 8317, 141}, -- Dark Heart of Pandaria
+    {N, 8316, 141}, -- Blood in the Snow
+    {N, 8315, 141, f.Horde, 8314}, -- Battle on the High Seas
+    {N, 8314, 141, f.Alliance, 8315}, -- Battle on the High Seas
+    {N, 8312, 141}, -- Heroic: Blood in the Snow
+    {N, 8311, 141}, -- Heroic: Crypt of Forgotten Kings
+    {N, 8310, 141}, -- Heroic: A Brewing Storm
     {O, 8307, "From", "Version", "050300", "Before", "Version", "050400"},
-    {N, 8307, 179, f.Horde, 8306}, -- Darkspear Revolutionary
+    {N, 8307, 141, f.Horde, 8306}, -- Darkspear Revolutionary
     {O, 8306, "From", "Version", "050300", "Before", "Version", "050400"},
-    {N, 8306, 179, f.Alliance, 8307}, -- Hordebreaker
-    {N, 8304, 179, f.Alliance, 8302}, -- Mount Parade
-    {N, 8302, 179, f.Horde, 8304}, -- Mount Parade
-    {N, 8301, 179, nil, nil, true}, -- Deadly Pet Brawler
-    {N, 8300, 179, nil, nil, true}, -- Brutal Pet Brawler
-    {N, 8298, 179, nil, nil, true}, -- Vengeful Pet Brawler
-    {N, 8297, 179, nil, nil, true}, -- Merciless Pet Brawler
-    {N, 8295, 179}, -- "The Few, the Proud, the Gob Squad"
-    {N, 8294, 179}, -- The Secrets of Ragefire
-    {N, 8293, 179}, -- Raiding with Leashes II: Attunement Edition
+    {N, 8306, 141, f.Alliance, 8307}, -- Hordebreaker
+    {N, 8304, 141, f.Alliance, 8302}, -- Mount Parade
+    {N, 8302, 141, f.Horde, 8304}, -- Mount Parade
+    {N, 8301, 141, nil, nil, true}, -- Deadly Pet Brawler
+    {N, 8300, 141, nil, nil, true}, -- Brutal Pet Brawler
+    {N, 8298, 141, nil, nil, true}, -- Vengeful Pet Brawler
+    {N, 8297, 141, nil, nil, true}, -- Merciless Pet Brawler
+    {N, 8295, 141}, -- "The Few, the Proud, the Gob Squad"
+    {N, 8294, 141}, -- The Secrets of Ragefire
+    {N, 8293, 141}, -- Raiding with Leashes II: Attunement Edition
     {O, 8260, "From", "Version", "050200", "Before", "Version", "050400"},
-    {N, 8260, 179}, -- Cutting Edge: Ra-den
+    {N, 8260, 130}, -- Cutting Edge: Ra-den
     {O, 8249, "From", "Version", "050200", "Before", "Version", "050400"},
-    {N, 8249, 179}, -- Ahead of the Curve: Lei Shen
+    {N, 8249, 130}, -- Ahead of the Curve: Lei Shen
     {O, 8248, "From", "Version", "050004", "Before", "Version", "050200"},
-    {N, 8248, 179}, -- Ahead of the Curve: Sha of Fear
+    {N, 8248, 130}, -- Ahead of the Curve: Sha of Fear
     {O, 8246, "From", "Version", "050004", "Before", "Version", "050200"},
-    {N, 8246, 179}, -- Ahead of the Curve: Grand Empress Shek'zeer
+    {N, 8246, 130}, -- Ahead of the Curve: Grand Empress Shek'zeer
     {O, 8244, "From", "PvP Season", 12, "Until", "PvP Season", 12},
-    {N, 8244, 179, f.Horde, 8243, true}, -- Hero of the Horde: Malevolent
+    {N, 8244, 130, f.Horde, 8243, true}, -- Hero of the Horde: Malevolent
     {O, 8243, "From", "PvP Season", 12, "Until", "PvP Season", 12},
-    {N, 8243, 179, f.Alliance, 8244, true}, -- Hero of the Alliance: Malevolent
+    {N, 8243, 130, f.Alliance, 8244, true}, -- Hero of the Alliance: Malevolent
     {O, 8238, "From", "Version", "050200", "Before", "Version", "050400"},
-    {N, 8238, 179}, -- Cutting Edge: Lei Shen
-    {N, 8235, 179}, -- Collector: Kypari Sap Containers
-    {N, 8234, 179}, -- Collector: Kypari Sap Containers
-    {N, 8233, 179}, -- Collector: Pollen Collectors
-    {N, 8232, 179}, -- Collector: Pollen Collectors
-    {N, 8231, 179}, -- Collector: Mantid Lamps
-    {N, 8230, 179}, -- Collector: Mantid Lamps
-    {N, 8229, 179}, -- Collector: Remains of Paragons
-    {N, 8228, 179}, -- Collector: Remains of Paragons
-    {N, 8227, 179}, -- Collector: Inert Sound Beacons
-    {N, 8226, 179}, -- Collector: Inert Sound Beacons
-    {N, 8225, 179}, -- Collector: Praying Mantids
-    {N, 8224, 179}, -- Collector: Praying Mantids
-    {N, 8223, 179}, -- Collector: Ancient Sap Feeders
-    {N, 8222, 179}, -- Collector: Ancient Sap Feeders
-    {N, 8221, 179}, -- Collector: Banners of the Mantid Empire
-    {N, 8220, 179}, -- Collector: Banners of the Mantid Empire
-    {N, 8219, 179}, -- History of the Mantid
+    {N, 8238, 130}, -- Cutting Edge: Lei Shen
+    {N, 8235, 130}, -- Collector: Kypari Sap Containers
+    {N, 8234, 130}, -- Collector: Kypari Sap Containers
+    {N, 8233, 130}, -- Collector: Pollen Collectors
+    {N, 8232, 130}, -- Collector: Pollen Collectors
+    {N, 8231, 130}, -- Collector: Mantid Lamps
+    {N, 8230, 130}, -- Collector: Mantid Lamps
+    {N, 8229, 130}, -- Collector: Remains of Paragons
+    {N, 8228, 130}, -- Collector: Remains of Paragons
+    {N, 8227, 130}, -- Collector: Inert Sound Beacons
+    {N, 8226, 130}, -- Collector: Inert Sound Beacons
+    {N, 8225, 130}, -- Collector: Praying Mantids
+    {N, 8224, 130}, -- Collector: Praying Mantids
+    {N, 8223, 130}, -- Collector: Ancient Sap Feeders
+    {N, 8222, 130}, -- Collector: Ancient Sap Feeders
+    {N, 8221, 130}, -- Collector: Banners of the Mantid Empire
+    {N, 8220, 130}, -- Collector: Banners of the Mantid Empire
+    {N, 8219, 130}, -- History of the Mantid
     {O, 8218, "From", "PvP Season", 13, "Until", "PvP Season", 13},
-    {N, 8218, 179, f.Alliance, 8093, true}, -- Tyrannical Conquest
+    {N, 8218, 130, f.Alliance, 8093, true}, -- Tyrannical Conquest
     {O, 8216, "From", "PvP Season", 12, "Until", "PvP Season", 12},
-    {N, 8216, 179, nil, nil, true}, -- Malevolent Gladiator's Cloud Serpent
+    {N, 8216, 130, nil, nil, true}, -- Malevolent Gladiator's Cloud Serpent
     {O, 8214, "From", "PvP Season", 12, "Until", "PvP Season", 12},
-    {N, 8214, 179, nil, nil, true}, -- Malevolent Gladiator
+    {N, 8214, 130, nil, nil, true}, -- Malevolent Gladiator
     {O, 8213 },
-    {N, 8213, 179}, -- Friends In Places Higher Yet
-    {N, 8212, 179}, -- Zandalari Library Card
-    {N, 8210, 179}, -- Shado-Pan Assault
-    {N, 8209, 179, f.Horde, 8208}, -- Sunreaver Onslaught
-    {N, 8208, 179, f.Alliance, 8209}, -- Kirin Tor Offensive
-    {N, 8206, 179, f.Horde, 8205}, -- Dominance Offensive
-    {N, 8205, 179, f.Alliance, 8206}, -- Operation: Shieldwall
-    {N, 8124, 179}, -- Glory of the Thundering Raider
-    {N, 8123, 179}, -- Millions of Years of Evolution vs. My Fist
-    {N, 8121, 179}, -- Stormbreaker
-    {N, 8120, 179}, -- Direhorn in a China Shop
-    {N, 8119, 179}, -- Our Powers Combined
-    {N, 8118, 179}, -- Boop
-    {N, 8117, 179}, -- For the Ward!
-    {N, 8116, 179}, -- You Made Me Bleed My Own Blood
-    {N, 8115, 179}, -- Speed Metal
-    {N, 8114, 179}, -- Platform Hero
-    {N, 8112, 179}, -- Blue Response
-    {N, 8111, 179}, -- This Isn't Even My Final Form
-    {N, 8110, 179}, -- These Mogu Have Gotta Go-gu
-    {N, 8109, 179}, -- The Mogu Below-gu
-    {N, 8108, 179}, -- "When in Ihgaluk, Do as the Skumblade Do"
-    {N, 8107, 179}, -- Ready for RAAAAIIIIDDD?!?ing
+    {N, 8213, 130}, -- Friends In Places Higher Yet
+    {N, 8212, 130}, -- Zandalari Library Card
+    {N, 8210, 130}, -- Shado-Pan Assault
+    {N, 8209, 130, f.Horde, 8208}, -- Sunreaver Onslaught
+    {N, 8208, 130, f.Alliance, 8209}, -- Kirin Tor Offensive
+    {N, 8206, 130, f.Horde, 8205}, -- Dominance Offensive
+    {N, 8205, 130, f.Alliance, 8206}, -- Operation: Shieldwall
+    {N, 8124, 130}, -- Glory of the Thundering Raider
+    {N, 8123, 130}, -- Millions of Years of Evolution vs. My Fist
+    {N, 8121, 130}, -- Stormbreaker
+    {N, 8120, 130}, -- Direhorn in a China Shop
+    {N, 8119, 130}, -- Our Powers Combined
+    {N, 8118, 130}, -- Boop
+    {N, 8117, 130}, -- For the Ward!
+    {N, 8116, 130}, -- You Made Me Bleed My Own Blood
+    {N, 8115, 130}, -- Speed Metal
+    {N, 8114, 130}, -- Platform Hero
+    {N, 8112, 130}, -- Blue Response
+    {N, 8111, 130}, -- This Isn't Even My Final Form
+    {N, 8110, 130}, -- These Mogu Have Gotta Go-gu
+    {N, 8109, 130}, -- The Mogu Below-gu
+    {N, 8108, 130}, -- "When in Ihgaluk, Do as the Skumblade Do"
+    {N, 8107, 130}, -- Ready for RAAAAIIIIDDD?!?ing
     {O, 8106 },
-    {N, 8106, 179}, -- In the Hall of the Thunder King
-    {N, 8105, 179}, -- The Crumble Bundle
-    {N, 8104, 179}, -- Thunder Plunder
-    {N, 8103, 179}, -- Champions of Lei Shen
-    {N, 8101, 179}, -- It Was Worth Every Ritual Stone
-    {N, 8100, 179}, -- Pay to Slay
-    {N, 8099, 179}, -- Isle of Thunder
-    {N, 8098, 179}, -- You Said Crossing the Streams Was Bad
-    {N, 8097, 179}, -- Soft Hands
-    {N, 8094, 179}, -- Lightning Overload
+    {N, 8106, 130}, -- In the Hall of the Thunder King
+    {N, 8105, 130}, -- The Crumble Bundle
+    {N, 8104, 130}, -- Thunder Plunder
+    {N, 8103, 130}, -- Champions of Lei Shen
+    {N, 8101, 130}, -- It Was Worth Every Ritual Stone
+    {N, 8100, 130}, -- Pay to Slay
+    {N, 8099, 130}, -- Isle of Thunder
+    {N, 8098, 130}, -- You Said Crossing the Streams Was Bad
+    {N, 8097, 130}, -- Soft Hands
+    {N, 8094, 130}, -- Lightning Overload
     {O, 8093, "From", "PvP Season", 13, "Until", "PvP Season", 13},
-    {N, 8093, 179, f.Horde, 8218, true}, -- Tyrannical Conquest
-    {N, 8092, 179}, -- I've Got 9999 Problems but a Bone-White Primal Raptor Ain't One
-    {N, 8090, 179}, -- A Complete Circuit
+    {N, 8093, 130, f.Horde, 8218, true}, -- Tyrannical Conquest
+    {N, 8092, 130}, -- I've Got 9999 Problems but a Bone-White Primal Raptor Ain't One
+    {N, 8090, 130}, -- A Complete Circuit
     {O, 8089, "From", "Version", "050200", "Before", "Version", "060002"},
-    {N, 8089, 179}, -- I Thought He Was Supposed to Be Hard?
-    {N, 8087, 179}, -- Can't Touch This
-    {N, 8086, 179}, -- From Dusk 'til Dawn
-    {N, 8082, 179}, -- Head Case
-    {N, 8081, 179}, -- Ritualist Who?
-    {N, 8080, 179}, -- Fabled Pandaren Tamer
-    {N, 8078, 179}, -- Zul'Again
-    {N, 8077, 179}, -- One-Up
-    {N, 8073, 179}, -- Cage Match
-    {N, 8072, 179}, -- Pinnacle of Storms
-    {N, 8071, 179}, -- Halls of Flesh-Shaping
-    {N, 8070, 179}, -- Forgotten Depths
-    {N, 8069, 179}, -- Last Stand of the Zandalari
-    {N, 8068, 179}, -- Heroic: Ra-den
-    {N, 8067, 179}, -- Heroic: Lei Shen
-    {N, 8066, 179}, -- Heroic: Twin Empyreans
-    {N, 8065, 179}, -- Heroic: Iron Qon
-    {N, 8064, 179}, -- Heroic: Dark Animus
-    {N, 8063, 179}, -- Heroic: Primordius
-    {N, 8062, 179}, -- Heroic: Durumu the Forgotten
-    {N, 8061, 179}, -- Heroic: Ji-Kun
-    {N, 8060, 179}, -- Heroic: Megaera
-    {N, 8059, 179}, -- Heroic: Tortos
-    {N, 8058, 179}, -- Heroic: Council of Elders
-    {N, 8057, 179}, -- Heroic: Horridon
-    {N, 8056, 179}, -- Heroic: Jin'rokh the Breaker
-    {N, 8055, 179, f.Horde, 8052, true}, -- Khan
-    {N, 8052, 179, f.Alliance, 8055, true}, -- Khan
-    {N, 8051, 179}, -- Gods and Monsters
-    {N, 8050, 179}, -- Rumbles of Thunder
-    {N, 8049, 179}, -- The Zandalari Prophecy
-    {N, 8045, 179, f.Alliance, 8044}, -- Flame Warden of Pandaria
-    {N, 8044, 179, f.Horde, 8045}, -- Flame Keeper of Pandaria
-    {N, 8043, 179, f.Horde, 8042}, -- Extinguishing Pandaria
-    {N, 8042, 179, f.Alliance, 8043}, -- Extinguishing Pandaria
-    {N, 8038, 179}, -- Cretaceous Collector
-    {N, 8037, 179}, -- Genetically Unmodified Organism
+    {N, 8089, 130}, -- I Thought He Was Supposed to Be Hard?
+    {N, 8087, 130}, -- Can't Touch This
+    {N, 8086, 130}, -- From Dusk 'til Dawn
+    {N, 8082, 130}, -- Head Case
+    {N, 8081, 130}, -- Ritualist Who?
+    {N, 8080, 130}, -- Fabled Pandaren Tamer
+    {N, 8078, 130}, -- Zul'Again
+    {N, 8077, 130}, -- One-Up
+    {N, 8073, 130}, -- Cage Match
+    {N, 8072, 130}, -- Pinnacle of Storms
+    {N, 8071, 130}, -- Halls of Flesh-Shaping
+    {N, 8070, 130}, -- Forgotten Depths
+    {N, 8069, 130}, -- Last Stand of the Zandalari
+    {N, 8068, 130}, -- Heroic: Ra-den
+    {N, 8067, 130}, -- Heroic: Lei Shen
+    {N, 8066, 130}, -- Heroic: Twin Empyreans
+    {N, 8065, 130}, -- Heroic: Iron Qon
+    {N, 8064, 130}, -- Heroic: Dark Animus
+    {N, 8063, 130}, -- Heroic: Primordius
+    {N, 8062, 130}, -- Heroic: Durumu the Forgotten
+    {N, 8061, 130}, -- Heroic: Ji-Kun
+    {N, 8060, 130}, -- Heroic: Megaera
+    {N, 8059, 130}, -- Heroic: Tortos
+    {N, 8058, 130}, -- Heroic: Council of Elders
+    {N, 8057, 130}, -- Heroic: Horridon
+    {N, 8056, 130}, -- Heroic: Jin'rokh the Breaker
+    {N, 8055, 130, f.Horde, 8052, true}, -- Khan
+    {N, 8052, 130, f.Alliance, 8055, true}, -- Khan
+    {N, 8051, 130}, -- Gods and Monsters
+    {N, 8050, 130}, -- Rumbles of Thunder
+    {N, 8049, 130}, -- The Zandalari Prophecy
+    {N, 8045, 130, f.Alliance, 8044}, -- Flame Warden of Pandaria
+    {N, 8044, 130, f.Horde, 8045}, -- Flame Keeper of Pandaria
+    {N, 8043, 130, f.Horde, 8042}, -- Extinguishing Pandaria
+    {N, 8042, 130, f.Alliance, 8043}, -- Extinguishing Pandaria
+    {N, 8038, 130}, -- Cretaceous Collector
+    {N, 8037, 130}, -- Genetically Unmodified Organism
     {O, 8031, "From", "Version", "050100", "Before", "Version", "060002"},
-    {N, 8031, 179, f.Horde, 8030}, -- A Test of Valor
+    {N, 8031, 128, f.Horde, 8030}, -- A Test of Valor
     {O, 8030, "From", "Version", "050100", "Before", "Version", "060002"},
-    {N, 8030, 179, f.Alliance, 8031}, -- A Test of Valor
-    {N, 8028, 179}, -- Praise the Sun!
-    {N, 8023, 179}, -- Wakener
+    {N, 8030, 128, f.Alliance, 8031}, -- A Test of Valor
+    {N, 8028, 130}, -- Praise the Sun!
+    {N, 8023, 128}, -- Wakener
     {O, 8022, "From", "Version", "050100", "Before", "Version", "060002"},
-    {N, 8022, 179, f.Horde, 7946}, -- Now You're Just Showing Off (Season 1)
+    {N, 8022, 128, f.Horde, 7946}, -- Now You're Just Showing Off (Season 1)
     {O, 8020, "From", "Version", "050100", "Before", "Version", "060002"},
-    {N, 8020, 179, f.Horde, 7937}, -- You Are Not Your $#*@! Legplates (Season 1)
-    {N, 8017, 179}, -- For the Swarm
-    {N, 8016, 179}, -- Assault on Zan'vess
-    {N, 8015, 179, f.Horde, 8012}, -- "Waste Not, Want Not"
-    {N, 8014, 179, f.Horde, 8011}, -- Number Five Is Alive
-    {N, 8013, 179, f.Horde, 8010}, -- Domination Point
-    {N, 8012, 179, f.Alliance, 8015}, -- "Waste Not, Want Not"
-    {N, 8011, 179, f.Alliance, 8014}, -- Number Five Is Alive
-    {N, 8010, 179, f.Alliance, 8013}, -- Lion's Landing
-    {N, 8009, 179}, -- Dagger in the Dark
+    {N, 8020, 128, f.Horde, 7937}, -- You Are Not Your $#*@! Legplates (Season 1)
+    {N, 8017, 128}, -- For the Swarm
+    {N, 8016, 128}, -- Assault on Zan'vess
+    {N, 8015, 128, f.Horde, 8012}, -- "Waste Not, Want Not"
+    {N, 8014, 128, f.Horde, 8011}, -- Number Five Is Alive
+    {N, 8013, 128, f.Horde, 8010}, -- Domination Point
+    {N, 8012, 128, f.Alliance, 8015}, -- "Waste Not, Want Not"
+    {N, 8011, 128, f.Alliance, 8014}, -- Number Five Is Alive
+    {N, 8010, 128, f.Alliance, 8013}, -- Lion's Landing
+    {N, 8009, 128}, -- Dagger in the Dark
     {O, 8008, "From", "Version", "050100", "Before", "Version", "060002"},
-    {N, 8008, 179, f.Horde, 7534}, -- Chapter II: Wrathion's War
-    {N, 7997, 179}, -- Riches of Pandaria
-    {N, 7996, 179}, -- Bounty of Pandaria
-    {N, 7995, 179}, -- Fortune of Pandaria
-    {N, 7994, 179}, -- Treasure of Pandaria
-    {N, 7993, 179}, -- We've Been Dancin'
-    {N, 7992, 179}, -- I Used To Love Them
-    {N, 7991, 179}, -- Which Came First?
-    {N, 7990, 179}, -- Cannonballer
-    {N, 7989, 179}, -- Bubbletrapped!
-    {N, 7988, 179}, -- A Little Patience
-    {N, 7987, 179}, -- No Egg Left Behind
-    {N, 7986, 179}, -- You Mean That Wasn't a Void Zone?
-    {N, 7984, 179}, -- Watery Grave
+    {N, 8008, 128, f.Horde, 7534}, -- Chapter II: Wrathion's War
+    {N, 7997, 128}, -- Riches of Pandaria
+    {N, 7996, 128}, -- Bounty of Pandaria
+    {N, 7995, 128}, -- Fortune of Pandaria
+    {N, 7994, 128}, -- Treasure of Pandaria
+    {N, 7993, 128}, -- We've Been Dancin'
+    {N, 7992, 128}, -- I Used To Love Them
+    {N, 7991, 128}, -- Which Came First?
+    {N, 7990, 128}, -- Cannonballer
+    {N, 7989, 128}, -- Bubbletrapped!
+    {N, 7988, 128}, -- A Little Patience
+    {N, 7987, 128}, -- No Egg Left Behind
+    {N, 7986, 128}, -- You Mean That Wasn't a Void Zone?
+    {N, 7984, 128}, -- Watery Grave
     {O, 7950, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 7950, 179, f.Horde, 7949}, -- Rabble Rabble Rabble (Season 2)
+    {N, 7950, 128, f.Horde, 7949}, -- Rabble Rabble Rabble (Season 2)
     {O, 7949, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 7949, 179, f.Alliance, 7950}, -- Rabble Rabble Rabble (Season 2)
+    {N, 7949, 128, f.Alliance, 7950}, -- Rabble Rabble Rabble (Season 2)
     {O, 7948, "From", "Version", "050100", "Before", "Version", "060002"},
-    {N, 7948, 179, f.Horde, 7947}, -- The First Rule of Brawler's Guild (Season 1 or 2)
+    {N, 7948, 128, f.Horde, 7947}, -- The First Rule of Brawler's Guild (Season 1 or 2)
     {O, 7947, "From", "Version", "050100", "Before", "Version", "060002"},
-    {N, 7947, 179, f.Alliance, 7948}, -- The First Rule of Brawler's Guild (Season 1 or 2)
+    {N, 7947, 128, f.Alliance, 7948}, -- The First Rule of Brawler's Guild (Season 1 or 2)
     {O, 7946, "From", "Version", "050100", "Before", "Version", "060002"},
-    {N, 7946, 179, f.Alliance, 8022}, -- Now You're Just Showing Off (Season 1)
+    {N, 7946, 128, f.Alliance, 8022}, -- Now You're Just Showing Off (Season 1)
     {O, 7945, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 7945, 179}, -- Haters Gonna Hate (Season 2)
+    {N, 7945, 128}, -- Haters Gonna Hate (Season 2)
     {O, 7944, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 7944, 179}, -- Bottle Service (Season 2)
+    {N, 7944, 128}, -- Bottle Service (Season 2)
     {O, 7943, "From", "Version", "060003", "Before", "Version", "070003"},
-    {N, 7943, 179}, -- I'm Your Number One Fan (Season 2)
+    {N, 7943, 128}, -- I'm Your Number One Fan (Season 2)
     {O, 7942, "From", "Version", "050100", "Before", "Version", "060002"},
-    {N, 7942, 179, f.Horde, 7941}, -- Brawlin' and Shot Callin' (Season 1)
+    {N, 7942, 128, f.Horde, 7941}, -- Brawlin' and Shot Callin' (Season 1)
     {O, 7941, "From", "Version", "050100", "Before", "Version", "060002"},
-    {N, 7941, 179, f.Alliance, 7942}, -- Brawlin' and Shot Callin' (Season 1)
+    {N, 7941, 128, f.Alliance, 7942}, -- Brawlin' and Shot Callin' (Season 1)
     {O, 7940, "From", "Version", "050100", "Before", "Version", "060002"},
-    {N, 7940, 179, f.Alliance, 7939}, -- The Second Rule of Brawler's Guild (Season 1)
+    {N, 7940, 128, f.Alliance, 7939}, -- The Second Rule of Brawler's Guild (Season 1)
     {O, 7939, "From", "Version", "050100", "Before", "Version", "060002"},
-    {N, 7939, 179, f.Horde, 7940}, -- The Second Rule of Brawler's Guild (Season 1)
+    {N, 7939, 128, f.Horde, 7940}, -- The Second Rule of Brawler's Guild (Season 1)
     {O, 7937, "From", "Version", "050100", "Before", "Version", "060002"},
-    {N, 7937, 179, f.Alliance, 8020}, -- You Are Not Your $#*@! Legplates (Season 1)
-    {N, 7936, 179}, -- Pandaren Spirit Tamer
-    {N, 7934, 179}, -- Raiding with Leashes
-    {N, 7933, 179}, -- And... It's Good!
-    {N, 7932, 179}, -- "I'm In Your Base, Killing Your Dudes"
-    {N, 7929, 179, f.Horde, 7928}, -- Dominance Offensive Campaign
-    {N, 7928, 179, f.Alliance, 7929}, -- Operation: Shieldwall Campaign
-    {N, 7908, 179}, -- I Choose You
-    {N, 7862, 179, f.Horde, 7860}, -- We're Going to Need More Saddles
-    {N, 7860, 179, f.Alliance, 7862}, -- We're Going to Need More Saddles
+    {N, 7937, 128, f.Alliance, 8020}, -- You Are Not Your $#*@! Legplates (Season 1)
+    {N, 7936, 128}, -- Pandaren Spirit Tamer
+    {N, 7934, 128}, -- Raiding with Leashes
+    {N, 7933, 128}, -- And... It's Good!
+    {N, 7932, 128}, -- "I'm In Your Base, Killing Your Dudes"
+    {N, 7929, 128, f.Horde, 7928}, -- Dominance Offensive Campaign
+    {N, 7928, 128, f.Alliance, 7929}, -- Operation: Shieldwall Campaign
+    {N, 7908, 128}, -- I Choose You
+    {N, 7862, 128, f.Horde, 7860}, -- We're Going to Need More Saddles
+    {N, 7860, 128, f.Alliance, 7862}, -- We're Going to Need More Saddles
     {O, 7853 },
-    {N, 7853, 179}, -- WoW's 9th Anniversary
-    {N, 7852, 179}, -- They're Both Footballs?
-    {N, 7842, 179}, -- Collector's Edition: Baneling
-    {N, 7614, 179}, -- Locking Down the Docks
-    {N, 7612, 179}, -- The Seat of Knowledge
-    {N, 7611, 179}, -- Pandarian Angler
-    {N, 7602, 179, f.Horde, 7601}, -- Tricks and Treats of Pandaria
-    {N, 7601, 179, f.Alliance, 7602}, -- Tricks and Treats of Pandaria
+    {N, 7853, 128}, -- WoW's 9th Anniversary
+    {N, 7852, 128}, -- They're Both Footballs?
+    {N, 7842, 124}, -- Collector's Edition: Baneling
+    {N, 7614, 124}, -- Locking Down the Docks
+    {N, 7612, 124}, -- The Seat of Knowledge
+    {N, 7611, 124}, -- Pandarian Angler
+    {N, 7602, 124, f.Horde, 7601}, -- Tricks and Treats of Pandaria
+    {N, 7601, 124, f.Alliance, 7602}, -- Tricks and Treats of Pandaria
     {O, 7536, "From", "Version", "050300", "Before", "Version", "060002"},
-    {N, 7536, 179}, -- Chapter IV: Celestial Blessings
+    {N, 7536, 124}, -- Chapter IV: Celestial Blessings
     {O, 7535, "From", "Version", "050200", "Before", "Version", "060002"},
-    {N, 7535, 179}, -- Chapter III: Two Princes
+    {N, 7535, 124}, -- Chapter III: Two Princes
     {O, 7534, "From", "Version", "050100", "Before", "Version", "060002"},
-    {N, 7534, 179, f.Alliance, 8008}, -- Chapter II: Wrathion's War
+    {N, 7534, 124, f.Alliance, 8008}, -- Chapter II: Wrathion's War
     {O, 7533, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 7533, 179}, -- Chapter I: Trial of the Black Prince
-    {N, 7530, 179, f.Horde, 7527}, -- No Tank You
-    {N, 7529, 179, f.Horde, 7526}, -- Kite Fight
-    {N, 7527, 179, f.Alliance, 7530}, -- No Tank You
-    {N, 7526, 179, f.Alliance, 7529}, -- Kite Fight
-    {N, 7525, 179}, -- Taming Cataclysm
-    {N, 7524, 179, f.Horde, 7523}, -- Theramore's Fall
-    {N, 7523, 179, f.Alliance, 7524}, -- Theramore's Fall
-    {N, 7522, 179}, -- Crypt of Forgotten Kings
-    {N, 7521, 179}, -- Time to Open a Pet Store
-    {N, 7520, 179}, -- The Loremaster
-    {N, 7518, 179}, -- "Wanderers, Dreamers, and You"
-    {N, 7509, 179, f.Horde, 6874}, -- Scenaturday
-    {N, 7502, 179}, -- Savior of Stoneplow
-    {N, 7501, 179}, -- That's a Lot of Pet Food
-    {N, 7500, 179}, -- Going to Need More Leashes
-    {N, 7499, 179}, -- Taming the World
-    {N, 7498, 179}, -- Taming the Great Outdoors
+    {N, 7533, 124}, -- Chapter I: Trial of the Black Prince
+    {N, 7530, 124, f.Horde, 7527}, -- No Tank You
+    {N, 7529, 124, f.Horde, 7526}, -- Kite Fight
+    {N, 7527, 124, f.Alliance, 7530}, -- No Tank You
+    {N, 7526, 124, f.Alliance, 7529}, -- Kite Fight
+    {N, 7525, 124}, -- Taming Cataclysm
+    {N, 7524, 124, f.Horde, 7523}, -- Theramore's Fall
+    {N, 7523, 124, f.Alliance, 7524}, -- Theramore's Fall
+    {N, 7522, 124}, -- Crypt of Forgotten Kings
+    {N, 7521, 124}, -- Time to Open a Pet Store
+    {N, 7520, 124}, -- The Loremaster
+    {N, 7518, 124}, -- "Wanderers, Dreamers, and You"
+    {N, 7509, 124, f.Horde, 6874}, -- Scenaturday
+    {N, 7502, 124}, -- Savior of Stoneplow
+    {N, 7501, 124}, -- That's a Lot of Pet Food
+    {N, 7500, 124}, -- Going to Need More Leashes
+    {N, 7499, 124}, -- Taming the World
+    {N, 7498, 124}, -- Taming the Great Outdoors
     {O, 7487, "From", "Version", "050004", "Before", "Version", "050200"},
-    {N, 7487, 179}, -- Cutting Edge: Sha of Fear
+    {N, 7487, 124}, -- Cutting Edge: Sha of Fear
     {O, 7486, "From", "Version", "050004", "Before", "Version", "050200"},
-    {N, 7486, 179}, -- Cutting Edge: Grand Empress Shek'zeer
+    {N, 7486, 124}, -- Cutting Edge: Grand Empress Shek'zeer
     {O, 7485, "From", "Version", "050004", "Before", "Version", "050200"},
-    {N, 7485, 179}, -- Cutting Edge: Will of the Emperor
-    {N, 7483, 179}, -- Battle Master
-    {N, 7482, 179}, -- Trainer Extraordinaire
-    {N, 7479, 179}, -- The Shado-Master
+    {N, 7485, 124}, -- Cutting Edge: Will of the Emperor
+    {N, 7483, 124}, -- Battle Master
+    {N, 7482, 124}, -- Trainer Extraordinaire
+    {N, 7479, 124}, -- The Shado-Master
     {O, 7468 },
-    {N, 7468, 179, f.Horde, 7467}, -- Theramore's Fall
+    {N, 7468, 124, f.Horde, 7467}, -- Theramore's Fall
     {O, 7467 },
-    {N, 7467, 179, f.Alliance, 7468}, -- Theramore's Fall
-    {N, 7465, 179}, -- An Uncommon Find
-    {N, 7464, 179}, -- Quality & Quantity
-    {N, 7463, 179}, -- Lots of Rarity
-    {N, 7462, 179}, -- A Rare Catch
-    {N, 7439, 179}, -- Glorious!
-    {N, 7438, 179}, -- Could We Find More Like That?
-    {N, 7437, 179}, -- A Worthy Opponent
-    {N, 7436, 179}, -- Zen Pet Hunter
-    {N, 7433, 179}, -- Newbie
-    {N, 7413, 179}, -- Scarlet Halls
-    {N, 7412, 179}, -- Collector's Edition: Fetish Shaman
-    {N, 7411, 179}, -- 10000 Daily Quests Completed
-    {N, 7410, 179}, -- 5000 Daily Quests Completed
-    {N, 7386, 179}, -- Grand Expedition Yak
-    {N, 7385, 179}, -- Pub Crawl
-    {N, 7384, 179}, -- Quintessential Quintet
-    {N, 7383, 179}, -- Terrific Trio
-    {N, 7382, 179}, -- Dynamic Duo
-    {N, 7381, 179}, -- Restore Balance
-    {N, 7380, 179}, -- Double Agent
-    {N, 7379, 179}, -- Pandaren Master of All
-    {N, 7378, 179}, -- Jack of All Trades
-    {N, 7377, 179}, -- Collector: Worn Monument Ledgers
-    {N, 7376, 179}, -- Collector: Mogu Coins
-    {N, 7375, 179}, -- Collector: Warlord's Branding Irons
-    {N, 7374, 179}, -- Collector: Iron Amulets
-    {N, 7373, 179}, -- Collector: Edicts of the Thunder King
-    {N, 7372, 179}, -- Collector: Thunder King Insignias
-    {N, 7371, 179}, -- Collector: Petrified Bone Whips
-    {N, 7370, 179}, -- Collector: Terracotta Arms
-    {N, 7369, 179}, -- Collector: Cracked Mogu Runestones
-    {N, 7368, 179}, -- Collector: Manacles of Rebellion
-    {N, 7367, 179}, -- Collector: Standards of Niuzao
-    {N, 7366, 179}, -- Collector: Pearls of Yu'lon
-    {N, 7365, 179}, -- Collector: Apothecary Tins
-    {N, 7364, 179}, -- Collector: Gold-Inlaid Porcelain Funerary Figurines
-    {N, 7363, 179}, -- Collector: Carved Bronze Mirrors
-    {N, 7362, 179}, -- Collector: Empty Kegs of Brewfather Xin Wo Yin
-    {N, 7361, 179}, -- Collector: Walking Canes of Brewfather Ren Yun
-    {N, 7360, 179}, -- Collector: Twin Stein Sets of Brewfather Quan Tou Kuo
-    {N, 7359, 179}, -- Collector: Pandaren Game Boards
-    {N, 7358, 179}, -- Collector: Pandaren Tea Sets
-    {N, 7357, 179}, -- Collector: Worn Monument Ledgers
-    {N, 7356, 179}, -- Collector: Mogu Coins
-    {N, 7355, 179}, -- Collector: Warlord's Branding Irons
-    {N, 7354, 179}, -- Collector: Iron Amulets
-    {N, 7353, 179}, -- Collector: Edicts of the Thunder King
-    {N, 7352, 179}, -- Collector: Thunder King Insignias
-    {N, 7351, 179}, -- Collector: Petrified Bone Whips
-    {N, 7350, 179}, -- Collector: Terracotta Arms
-    {N, 7349, 179}, -- Collector: Cracked Mogu Runestones
-    {N, 7348, 179}, -- Collector: Manacles of Rebellion
-    {N, 7347, 179}, -- Collector: Standards of Niuzao
-    {N, 7346, 179}, -- Collector: Pearls of Yu'lon
-    {N, 7345, 179}, -- Collector: Apothecary Tins
-    {N, 7344, 179}, -- Collector: Gold-Inlaid Porcelain Funerary Figurines
-    {N, 7343, 179}, -- Collector: Carved Bronze Mirrors
-    {N, 7342, 179}, -- Collector: Empty Kegs of Brewfather Xin Wo Yin
-    {N, 7341, 179}, -- Collector: Walking Canes of Brewfather Ren Yun
-    {N, 7340, 179}, -- Collector: Twin Stein Sets of Brewfather Quan Tou Kuo
-    {N, 7339, 179}, -- Collector: Pandaren Game Boards
-    {N, 7338, 179}, -- Collector: Pandaren Tea Sets
-    {N, 7337, 179}, -- Documents of a Dark History
-    {N, 7336, 179}, -- Stone Servants
-    {N, 7335, 179}, -- Symbols of Strength
-    {N, 7334, 179}, -- Instruments of Cruelty
-    {N, 7333, 179}, -- The Four Celestials
-    {N, 7332, 179}, -- The Broken Hearted
-    {N, 7331, 179}, -- The Three Brew Fathers
-    {N, 7330, 179}, -- Pandaren Delicacies
-    {N, 7329, 179}, -- Pandaren Cuisine
-    {N, 7328, 179}, -- Ironpaw Chef
-    {N, 7327, 179}, -- The Pandaren Gourmet
-    {N, 7326, 179}, -- The Pandaren Gourmet
-    {N, 7325, 179}, -- Now I Am the Master
-    {N, 7324, 179}, -- One Step at a Time
-    {N, 7323, 179}, -- Collateral Damage
-    {N, 7322, 179}, -- Roll Club
-    {N, 7321, 179}, -- Spreading the Warmth
-    {N, 7320, 179}, -- Dog Pile
-    {N, 7319, 179}, -- Ready for Raiding III
-    {N, 7318, 179}, -- A Taste of History
-    {N, 7317, 179}, -- One Many Army
-    {N, 7316, 179}, -- Over Their Heads
+    {N, 7467, 124, f.Alliance, 7468}, -- Theramore's Fall
+    {N, 7465, 124}, -- An Uncommon Find
+    {N, 7464, 124}, -- Quality & Quantity
+    {N, 7463, 124}, -- Lots of Rarity
+    {N, 7462, 124}, -- A Rare Catch
+    {N, 7439, 124}, -- Glorious!
+    {N, 7438, 124}, -- Could We Find More Like That?
+    {N, 7437, 124}, -- A Worthy Opponent
+    {N, 7436, 124}, -- Zen Pet Hunter
+    {N, 7433, 124}, -- Newbie
+    {N, 7413, 124}, -- Scarlet Halls
+    {N, 7412, 124}, -- Collector's Edition: Fetish Shaman
+    {N, 7411, 124}, -- 10000 Daily Quests Completed
+    {N, 7410, 124}, -- 5000 Daily Quests Completed
+    {N, 7386, 124}, -- Grand Expedition Yak
+    {N, 7385, 124}, -- Pub Crawl
+    {N, 7384, 124}, -- Quintessential Quintet
+    {N, 7383, 124}, -- Terrific Trio
+    {N, 7382, 124}, -- Dynamic Duo
+    {N, 7381, 124}, -- Restore Balance
+    {N, 7380, 124}, -- Double Agent
+    {N, 7379, 124}, -- Pandaren Master of All
+    {N, 7378, 124}, -- Jack of All Trades
+    {N, 7377, 124}, -- Collector: Worn Monument Ledgers
+    {N, 7376, 124}, -- Collector: Mogu Coins
+    {N, 7375, 124}, -- Collector: Warlord's Branding Irons
+    {N, 7374, 124}, -- Collector: Iron Amulets
+    {N, 7373, 124}, -- Collector: Edicts of the Thunder King
+    {N, 7372, 124}, -- Collector: Thunder King Insignias
+    {N, 7371, 124}, -- Collector: Petrified Bone Whips
+    {N, 7370, 124}, -- Collector: Terracotta Arms
+    {N, 7369, 124}, -- Collector: Cracked Mogu Runestones
+    {N, 7368, 124}, -- Collector: Manacles of Rebellion
+    {N, 7367, 124}, -- Collector: Standards of Niuzao
+    {N, 7366, 124}, -- Collector: Pearls of Yu'lon
+    {N, 7365, 124}, -- Collector: Apothecary Tins
+    {N, 7364, 124}, -- Collector: Gold-Inlaid Porcelain Funerary Figurines
+    {N, 7363, 124}, -- Collector: Carved Bronze Mirrors
+    {N, 7362, 124}, -- Collector: Empty Kegs of Brewfather Xin Wo Yin
+    {N, 7361, 124}, -- Collector: Walking Canes of Brewfather Ren Yun
+    {N, 7360, 124}, -- Collector: Twin Stein Sets of Brewfather Quan Tou Kuo
+    {N, 7359, 124}, -- Collector: Pandaren Game Boards
+    {N, 7358, 124}, -- Collector: Pandaren Tea Sets
+    {N, 7357, 124}, -- Collector: Worn Monument Ledgers
+    {N, 7356, 124}, -- Collector: Mogu Coins
+    {N, 7355, 124}, -- Collector: Warlord's Branding Irons
+    {N, 7354, 124}, -- Collector: Iron Amulets
+    {N, 7353, 124}, -- Collector: Edicts of the Thunder King
+    {N, 7352, 124}, -- Collector: Thunder King Insignias
+    {N, 7351, 124}, -- Collector: Petrified Bone Whips
+    {N, 7350, 124}, -- Collector: Terracotta Arms
+    {N, 7349, 124}, -- Collector: Cracked Mogu Runestones
+    {N, 7348, 124}, -- Collector: Manacles of Rebellion
+    {N, 7347, 124}, -- Collector: Standards of Niuzao
+    {N, 7346, 124}, -- Collector: Pearls of Yu'lon
+    {N, 7345, 124}, -- Collector: Apothecary Tins
+    {N, 7344, 124}, -- Collector: Gold-Inlaid Porcelain Funerary Figurines
+    {N, 7343, 124}, -- Collector: Carved Bronze Mirrors
+    {N, 7342, 124}, -- Collector: Empty Kegs of Brewfather Xin Wo Yin
+    {N, 7341, 124}, -- Collector: Walking Canes of Brewfather Ren Yun
+    {N, 7340, 124}, -- Collector: Twin Stein Sets of Brewfather Quan Tou Kuo
+    {N, 7339, 124}, -- Collector: Pandaren Game Boards
+    {N, 7338, 124}, -- Collector: Pandaren Tea Sets
+    {N, 7337, 124}, -- Documents of a Dark History
+    {N, 7336, 124}, -- Stone Servants
+    {N, 7335, 124}, -- Symbols of Strength
+    {N, 7334, 124}, -- Instruments of Cruelty
+    {N, 7333, 124}, -- The Four Celestials
+    {N, 7332, 124}, -- The Broken Hearted
+    {N, 7331, 124}, -- The Three Brew Fathers
+    {N, 7330, 124}, -- Pandaren Delicacies
+    {N, 7329, 124}, -- Pandaren Cuisine
+    {N, 7328, 124}, -- Ironpaw Chef
+    {N, 7327, 124}, -- The Pandaren Gourmet
+    {N, 7326, 124}, -- The Pandaren Gourmet
+    {N, 7325, 124}, -- Now I Am the Master
+    {N, 7324, 124}, -- One Step at a Time
+    {N, 7323, 124}, -- Collateral Damage
+    {N, 7322, 124}, -- Roll Club
+    {N, 7321, 124}, -- Spreading the Warmth
+    {N, 7320, 124}, -- Dog Pile
+    {N, 7319, 124}, -- Ready for Raiding III
+    {N, 7318, 124}, -- A Taste of History
+    {N, 7317, 124}, -- One Many Army
+    {N, 7316, 124}, -- Over Their Heads
     {O, 7315 },
-    {N, 7315, 179}, -- Eternally in the Vale
-    {N, 7314, 179}, -- Test Drive
-    {N, 7313, 179}, -- Stay Klaxxi
-    {N, 7312, 179}, -- Amber is the Color of My Energy
-    {N, 7310, 179}, -- Defender of Gods
-    {N, 7309, 179}, -- Fire in the Yaung-hole!
-    {N, 7308, 179}, -- Know Your Role
-    {N, 7307, 179}, -- Silent Assassin
-    {N, 7306, 179}, -- Master of Pandaren Cooking
-    {N, 7305, 179}, -- Master of the Brew
-    {N, 7304, 179}, -- Master of the Oven
-    {N, 7303, 179}, -- Master of the Steamer
-    {N, 7302, 179}, -- Master of the Pot
-    {N, 7301, 179}, -- Master of the Wok
-    {N, 7300, 179}, -- Master of the Grill
-    {N, 7299, 179}, -- Loner and a Rebel
-    {N, 7298, 179}, -- Getting Around with the Shado-Pan
-    {N, 7297, 179}, -- Proven Strength
-    {N, 7296, 179}, -- Ain't Lost No More
-    {N, 7295, 179}, -- Listen to the Drunk Fish
-    {N, 7294, 179}, -- A Taste of Things to Come
-    {N, 7293, 179}, -- Till the Break of Dawn
-    {N, 7292, 179}, -- Green Acres
-    {N, 7291, 179}, -- In a Trail of Smoke
-    {N, 7290, 179}, -- How To Strain Your Dragon
-    {N, 7289, 179}, -- Shadow Hopper
-    {N, 7288, 179}, -- Yak Attack
-    {N, 7287, 179}, -- Champion of Chi-Ji
-    {N, 7286, 179}, -- Finish Them!
-    {N, 7285, 179}, -- Every Day I'm Pand-a-ren
-    {N, 7284, 179}, -- Is Another Man's Treasure
-    {N, 7283, 179}, -- One Man's Trash...
-    {N, 7282, 179}, -- Finders Keepers
-    {N, 7281, 179}, -- Lost and Found
-    {N, 7276, 179}, -- Fancy Footwork
-    {N, 7275, 179}, -- It's a Trap!
-    {N, 7274, 179}, -- Learning from the Best
-    {N, 7273, 179}, -- Beat the Heat
-    {N, 7272, 179}, -- In the Eye of the Tiger
-    {N, 7271, 179}, -- Arena of Annihilation
+    {N, 7315, 124}, -- Eternally in the Vale
+    {N, 7314, 124}, -- Test Drive
+    {N, 7313, 124}, -- Stay Klaxxi
+    {N, 7312, 124}, -- Amber is the Color of My Energy
+    {N, 7310, 124}, -- Defender of Gods
+    {N, 7309, 124}, -- Fire in the Yaung-hole!
+    {N, 7308, 124}, -- Know Your Role
+    {N, 7307, 124}, -- Silent Assassin
+    {N, 7306, 124}, -- Master of Pandaren Cooking
+    {N, 7305, 124}, -- Master of the Brew
+    {N, 7304, 124}, -- Master of the Oven
+    {N, 7303, 124}, -- Master of the Steamer
+    {N, 7302, 124}, -- Master of the Pot
+    {N, 7301, 124}, -- Master of the Wok
+    {N, 7300, 124}, -- Master of the Grill
+    {N, 7299, 124}, -- Loner and a Rebel
+    {N, 7298, 124}, -- Getting Around with the Shado-Pan
+    {N, 7297, 124}, -- Proven Strength
+    {N, 7296, 124}, -- Ain't Lost No More
+    {N, 7295, 124}, -- Listen to the Drunk Fish
+    {N, 7294, 124}, -- A Taste of Things to Come
+    {N, 7293, 124}, -- Till the Break of Dawn
+    {N, 7292, 124}, -- Green Acres
+    {N, 7291, 124}, -- In a Trail of Smoke
+    {N, 7290, 124}, -- How To Strain Your Dragon
+    {N, 7289, 124}, -- Shadow Hopper
+    {N, 7288, 124}, -- Yak Attack
+    {N, 7287, 124}, -- Champion of Chi-Ji
+    {N, 7286, 124}, -- Finish Them!
+    {N, 7285, 124}, -- Every Day I'm Pand-a-ren
+    {N, 7284, 124}, -- Is Another Man's Treasure
+    {N, 7283, 124}, -- One Man's Trash...
+    {N, 7282, 124}, -- Finders Keepers
+    {N, 7281, 124}, -- Lost and Found
+    {N, 7276, 124}, -- Fancy Footwork
+    {N, 7275, 124}, -- It's a Trap!
+    {N, 7274, 124}, -- Learning from the Best
+    {N, 7273, 124}, -- Beat the Heat
+    {N, 7272, 124}, -- In the Eye of the Tiger
+    {N, 7271, 124}, -- Arena of Annihilation
     {O, 7270, "Never" },
     {N, 7270, 179, nil, nil, nil, nil, false}, -- For Display Only
     {O, 7269, "Never" },
     {N, 7269, 179, nil, nil, nil, nil, false}, -- Stay Off the Grass
     {O, 7268, "Never" },
     {N, 7268, 179, nil, nil, nil, nil, false}, -- The Temple of Kotmogu
-    {N, 7267, 179}, -- Perfect Delivery
-    {N, 7266, 179}, -- Save it for Later
-    {N, 7265, 179}, -- Greenstone Village
-    {N, 7261, 179}, -- The Perfect Pour
-    {N, 7258, 179}, -- Party of Six
-    {N, 7257, 179}, -- Don't Shake the Keg
-    {N, 7252, 179}, -- A Brewing Storm
-    {N, 7249, 179}, -- Unga Ingoo
-    {N, 7248, 179}, -- "Monkey See, Monkey Kill"
-    {N, 7239, 179}, -- Monkey in the Middle
-    {N, 7232, 179}, -- The Keg Runner
-    {N, 7231, 179}, -- Spill No Evil
-    {N, 7230, 179}, -- Legend of the Brewfathers
-    {N, 7106, 179, nil, nil, true}, -- Master of Silvershard Mines
-    {N, 7103, 179, nil, nil, true}, -- Greed is Good
-    {N, 7102, 179, nil, nil, true}, -- Escort Service
-    {N, 7100, 179, nil, nil, true}, -- My Diamonds and Your Rust
-    {N, 7099, 179, nil, nil, true}, -- Five for Five
-    {N, 7062, 179, nil, nil, true}, -- Mine Mine Mine!
-    {N, 7057, 179, nil, nil, true}, -- End of the Line
-    {N, 7056, 179}, -- "Sorry, Were You Looking for This?"
-    {N, 7049, 179, nil, nil, true}, -- Mine Cart Courier
-    {N, 7039, 179, nil, nil, true}, -- The Long Riders
-    {N, 6981, 179, nil, nil, true}, -- Master of Temple of Kotmogu
-    {N, 6980, 179, nil, nil, true}, -- Temple of Kotmogu All-Star
-    {N, 6979, 179}, -- Explore Vale of Eternal Blossoms
-    {N, 6978, 179}, -- Explore Dread Wastes
-    {N, 6977, 179}, -- Explore Townlong Steppes
-    {N, 6976, 179}, -- Explore Kun-Lai Summit
-    {N, 6975, 179}, -- Explore Krasarang Wilds
-    {N, 6974, 179}, -- Pandaria Explorer
-    {N, 6973, 179, nil, nil, true}, -- Can't Stop Won't Stop
-    {N, 6972, 179, nil, nil, true}, -- What is Best in Life?
-    {N, 6971, 179, nil, nil, true}, -- I've Got the Power
-    {N, 6970, 179, nil, nil, true}, -- Blackout
-    {N, 6969, 179}, -- Explore Valley of the Four Winds
+    {N, 7267, 124}, -- Perfect Delivery
+    {N, 7266, 124}, -- Save it for Later
+    {N, 7265, 124}, -- Greenstone Village
+    {N, 7261, 124}, -- The Perfect Pour
+    {N, 7258, 124}, -- Party of Six
+    {N, 7257, 124}, -- Don't Shake the Keg
+    {N, 7252, 124}, -- A Brewing Storm
+    {N, 7249, 124}, -- Unga Ingoo
+    {N, 7248, 124}, -- "Monkey See, Monkey Kill"
+    {N, 7239, 124}, -- Monkey in the Middle
+    {N, 7232, 124}, -- The Keg Runner
+    {N, 7231, 124}, -- Spill No Evil
+    {N, 7230, 124}, -- Legend of the Brewfathers
+    {N, 7106, 124, nil, nil, true}, -- Master of Silvershard Mines
+    {N, 7103, 124, nil, nil, true}, -- Greed is Good
+    {N, 7102, 124, nil, nil, true}, -- Escort Service
+    {N, 7100, 124, nil, nil, true}, -- My Diamonds and Your Rust
+    {N, 7099, 124, nil, nil, true}, -- Five for Five
+    {N, 7062, 124, nil, nil, true}, -- Mine Mine Mine!
+    {N, 7057, 124, nil, nil, true}, -- End of the Line
+    {N, 7056, 124}, -- "Sorry, Were You Looking for This?"
+    {N, 7049, 124, nil, nil, true}, -- Mine Cart Courier
+    {N, 7039, 124, nil, nil, true}, -- The Long Riders
+    {N, 6981, 124, nil, nil, true}, -- Master of Temple of Kotmogu
+    {N, 6980, 124, nil, nil, true}, -- Temple of Kotmogu All-Star
+    {N, 6979, 124}, -- Explore Vale of Eternal Blossoms
+    {N, 6978, 124}, -- Explore Dread Wastes
+    {N, 6977, 124}, -- Explore Townlong Steppes
+    {N, 6976, 124}, -- Explore Kun-Lai Summit
+    {N, 6975, 124}, -- Explore Krasarang Wilds
+    {N, 6974, 124}, -- Pandaria Explorer
+    {N, 6973, 124, nil, nil, true}, -- Can't Stop Won't Stop
+    {N, 6972, 124, nil, nil, true}, -- What is Best in Life?
+    {N, 6971, 124, nil, nil, true}, -- I've Got the Power
+    {N, 6970, 124, nil, nil, true}, -- Blackout
+    {N, 6969, 124}, -- Explore Valley of the Four Winds
     {O, 6954, "From", "Version", "050004", "Before", "Version", "050200"},
-    {N, 6954, 179}, -- Ahead of the Curve: Will of the Emperor
-    {N, 6950, 179, nil, nil, true}, -- Powerball
-    {N, 6947, 179, nil, nil, true}, -- Four Square
-    {N, 6946, 179}, -- Empowered Spiritualist
-    {N, 6945, 179}, -- Mantid Swarm
-    {N, 6943, 179}, -- Queuing Spree
-    {N, 6942, 179, f.Alliance, 6941, true}, -- Hero of the Alliance
-    {N, 6941, 179, f.Horde, 6942, true}, -- Hero of the Horde
+    {N, 6954, 130}, -- Ahead of the Curve: Will of the Emperor
+    {N, 6950, 124, nil, nil, true}, -- Powerball
+    {N, 6947, 124, nil, nil, true}, -- Four Square
+    {N, 6946, 124}, -- Empowered Spiritualist
+    {N, 6945, 124}, -- Mantid Swarm
+    {N, 6943, 124}, -- Queuing Spree
+    {N, 6942, 124, f.Alliance, 6941, true}, -- Hero of the Alliance
+    {N, 6941, 124, f.Horde, 6942, true}, -- Hero of the Horde
     {O, 6940, "From", "PvP Season", 11, "Until", "PvP Season", 11},
-    {N, 6940, 179, f.Horde, 6939, true}, -- Hero of the Horde: Cataclysmic
+    {N, 6940, 124, f.Horde, 6939, true}, -- Hero of the Horde: Cataclysmic
     {O, 6939, "From", "PvP Season", 11, "Until", "PvP Season", 11},
-    {N, 6939, 179, f.Alliance, 6940, true}, -- Hero of the Alliance: Cataclysmic
+    {N, 6939, 124, f.Alliance, 6940, true}, -- Hero of the Alliance: Cataclysmic
     {O, 6938, "From", "PvP Season", 11, "Until", "PvP Season", 11},
-    {N, 6938, 179, nil, nil, true}, -- Cataclysmic Gladiator
-    {N, 6937, 179}, -- Overzealous
-    {N, 6936, 179}, -- Candle in the Wind
-    {N, 6933, 179}, -- Who's Got Two Green Thumbs?
-    {N, 6932, 179}, -- Glory of the Pandaria Raider
-    {N, 6931, 179}, -- Binan Village All-Star
-    {N, 6930, 179}, -- Yaungolian Barbecue
-    {N, 6929, 179}, -- And Stay Dead!
-    {N, 6928, 179}, -- Burning Man
-    {N, 6927, 179}, -- Glory of the Pandaria Hero
-    {N, 6926, 179}, -- Tranquil Master
-    {N, 6925, 179}, -- Pandaria Dungeon Hero
+    {N, 6938, 124, nil, nil, true}, -- Cataclysmic Gladiator
+    {N, 6937, 124}, -- Overzealous
+    {N, 6936, 124}, -- Candle in the Wind
+    {N, 6933, 124}, -- Who's Got Two Green Thumbs?
+    {N, 6932, 124}, -- Glory of the Pandaria Raider
+    {N, 6931, 124}, -- Binan Village All-Star
+    {N, 6930, 124}, -- Yaungolian Barbecue
+    {N, 6929, 124}, -- And Stay Dead!
+    {N, 6928, 124}, -- Burning Man
+    {N, 6927, 124}, -- Glory of the Pandaria Hero
+    {N, 6926, 124}, -- Tranquil Master
+    {N, 6925, 124}, -- Pandaria Dungeon Hero
     {O, 6924, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6924, 179}, -- "100,000 Valor Points"
-    {N, 6923, 179}, -- Brewmoon Festival
-    {N, 6922, 179}, -- Timing is Everything
+    {N, 6924, 124}, -- "100,000 Valor Points"
+    {N, 6923, 124}, -- Brewmoon Festival
+    {N, 6922, 124}, -- Timing is Everything
     {O, 6920, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6920, 179}, -- Challenge Conqueror
+    {N, 6920, 124}, -- Challenge Conqueror
     {O, 6919, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6919, 179}, -- Siege of Niuzao Temple: Gold
+    {N, 6919, 124}, -- Siege of Niuzao Temple: Gold
     {O, 6918, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6918, 179}, -- Siege of Niuzao Temple: Silver
+    {N, 6918, 124}, -- Siege of Niuzao Temple: Silver
     {O, 6917, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6917, 179}, -- Siege of Niuzao Temple: Bronze
+    {N, 6917, 124}, -- Siege of Niuzao Temple: Bronze
     {O, 6916, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6916, 179}, -- Scholomance: Gold
+    {N, 6916, 124}, -- Scholomance: Gold
     {O, 6915, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6915, 179}, -- Scholomance: Silver
+    {N, 6915, 124}, -- Scholomance: Silver
     {O, 6914, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6914, 179}, -- Scholomance: Bronze
+    {N, 6914, 124}, -- Scholomance: Bronze
     {O, 6913, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6913, 179}, -- Scarlet Monastery: Gold
+    {N, 6913, 124}, -- Scarlet Monastery: Gold
     {O, 6912, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6912, 179}, -- Scarlet Monastery: Silver
+    {N, 6912, 124}, -- Scarlet Monastery: Silver
     {O, 6911, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6911, 179}, -- Scarlet Monastery: Bronze
+    {N, 6911, 124}, -- Scarlet Monastery: Bronze
     {O, 6910, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6910, 179}, -- Scarlet Halls: Gold
+    {N, 6910, 124}, -- Scarlet Halls: Gold
     {O, 6909, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6909, 179}, -- Scarlet Halls: Silver
+    {N, 6909, 124}, -- Scarlet Halls: Silver
     {O, 6908, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6908, 179}, -- Scarlet Halls: Bronze
+    {N, 6908, 124}, -- Scarlet Halls: Bronze
     {O, 6907, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6907, 179}, -- Gate of the Setting Sun: Gold
+    {N, 6907, 124}, -- Gate of the Setting Sun: Gold
     {O, 6906, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6906, 179}, -- Gate of the Setting Sun: Silver
+    {N, 6906, 124}, -- Gate of the Setting Sun: Silver
     {O, 6905, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6905, 179}, -- Gate of the Setting Sun: Bronze
+    {N, 6905, 124}, -- Gate of the Setting Sun: Bronze
     {O, 6904, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6904, 179}, -- Shado-Pan Monastery: Gold
+    {N, 6904, 124}, -- Shado-Pan Monastery: Gold
     {O, 6903, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6903, 179}, -- Shado-Pan Monastery: Silver
+    {N, 6903, 124}, -- Shado-Pan Monastery: Silver
     {O, 6902, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6902, 179}, -- Shado-Pan Monastery: Bronze
+    {N, 6902, 124}, -- Shado-Pan Monastery: Bronze
     {O, 6901, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6901, 179}, -- Mogu'shan Palace: Gold
+    {N, 6901, 124}, -- Mogu'shan Palace: Gold
     {O, 6900, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6900, 179}, -- Mogu'shan Palace: Silver
+    {N, 6900, 124}, -- Mogu'shan Palace: Silver
     {O, 6899, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6899, 179}, -- Mogu'shan Palace: Bronze
+    {N, 6899, 124}, -- Mogu'shan Palace: Bronze
     {O, 6898, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6898, 179}, -- Siege of Niuzao Temple Challenger
+    {N, 6898, 124}, -- Siege of Niuzao Temple Challenger
     {O, 6897, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6897, 179}, -- Scholomance Challenger
+    {N, 6897, 124}, -- Scholomance Challenger
     {O, 6896, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6896, 179}, -- Scarlet Monastery Challenger
+    {N, 6896, 124}, -- Scarlet Monastery Challenger
     {O, 6895, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6895, 179}, -- Scarlet Halls Challenger
+    {N, 6895, 124}, -- Scarlet Halls Challenger
     {O, 6894, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6894, 179}, -- Gate of the Setting Sun Challenger
+    {N, 6894, 124}, -- Gate of the Setting Sun Challenger
     {O, 6893, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6893, 179}, -- Shado-Pan Monastery Challenger
+    {N, 6893, 124}, -- Shado-Pan Monastery Challenger
     {O, 6892, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6892, 179}, -- Mogu'shan Palace Challenger
+    {N, 6892, 124}, -- Mogu'shan Palace Challenger
     {O, 6891, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6891, 179}, -- Stormstout Brewery: Gold
+    {N, 6891, 124}, -- Stormstout Brewery: Gold
     {O, 6890, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6890, 179}, -- Stormstout Brewery: Silver
+    {N, 6890, 124}, -- Stormstout Brewery: Silver
     {O, 6889, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6889, 179}, -- Stormstout Brewery: Bronze
+    {N, 6889, 124}, -- Stormstout Brewery: Bronze
     {O, 6888, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6888, 179}, -- Stormstout Brewery Challenger
+    {N, 6888, 124}, -- Stormstout Brewery Challenger
     {O, 6887, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6887, 179}, -- Temple of the Jade Serpent: Gold
+    {N, 6887, 124}, -- Temple of the Jade Serpent: Gold
     {O, 6886, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6886, 179}, -- Temple of the Jade Serpent: Silver
+    {N, 6886, 124}, -- Temple of the Jade Serpent: Silver
     {O, 6885, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6885, 179}, -- Temple of the Jade Serpent: Bronze
+    {N, 6885, 124}, -- Temple of the Jade Serpent: Bronze
     {O, 6884, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6884, 179}, -- Temple of the Jade Serpent Challenger
-    {N, 6883, 179, nil, nil, true}, -- Silvershard Mines Veteran
-    {N, 6882, 179, nil, nil, true}, -- Temple of Kotmogu Veteran
-    {N, 6874, 179, f.Alliance, 7509}, -- Scenaturday
+    {N, 6884, 124}, -- Temple of the Jade Serpent Challenger
+    {N, 6883, 124, nil, nil, true}, -- Silvershard Mines Veteran
+    {N, 6882, 124, nil, nil, true}, -- Temple of Kotmogu Veteran
+    {N, 6874, 124, f.Alliance, 7509}, -- Scenaturday
     {O, 6873, "Once" },
-    {N, 6873, 179, nil, nil, nil, true}, -- Realm First! Zen Master Archaeologist
+    {N, 6873, 124, nil, nil, nil, true}, -- Realm First! Zen Master Archaeologist
     {O, 6872, "Once" },
-    {N, 6872, 179, nil, nil, nil, true}, -- Realm First! Zen Master Tailor
+    {N, 6872, 124, nil, nil, nil, true}, -- Realm First! Zen Master Tailor
     {O, 6871, "Once" },
-    {N, 6871, 179, nil, nil, nil, true}, -- Realm First! Zen Master Skinner
+    {N, 6871, 124, nil, nil, nil, true}, -- Realm First! Zen Master Skinner
     {O, 6870, "Once" },
-    {N, 6870, 179, nil, nil, nil, true}, -- Realm First! Zen Master Miner
+    {N, 6870, 124, nil, nil, nil, true}, -- Realm First! Zen Master Miner
     {O, 6869, "Once" },
-    {N, 6869, 179, nil, nil, nil, true}, -- Realm First! Zen Master Leatherworker
+    {N, 6869, 124, nil, nil, nil, true}, -- Realm First! Zen Master Leatherworker
     {O, 6868, "Once" },
-    {N, 6868, 179, nil, nil, nil, true}, -- Realm First! Zen Master Jewelcrafter
+    {N, 6868, 124, nil, nil, nil, true}, -- Realm First! Zen Master Jewelcrafter
     {O, 6867, "Once" },
-    {N, 6867, 179, nil, nil, nil, true}, -- Realm First! Zen Master Scribe
+    {N, 6867, 124, nil, nil, nil, true}, -- Realm First! Zen Master Scribe
     {O, 6866, "Once" },
-    {N, 6866, 179, nil, nil, nil, true}, -- Realm First! Zen Master Herbalist
+    {N, 6866, 124, nil, nil, nil, true}, -- Realm First! Zen Master Herbalist
     {O, 6865, "Once" },
-    {N, 6865, 179, nil, nil, nil, true}, -- Realm First! Zen Master Angler
+    {N, 6865, 124, nil, nil, nil, true}, -- Realm First! Zen Master Angler
     {O, 6864, "Once" },
-    {N, 6864, 179, nil, nil, nil, true}, -- Realm First! Zen Master Medic
+    {N, 6864, 124, nil, nil, nil, true}, -- Realm First! Zen Master Medic
     {O, 6863, "Once" },
-    {N, 6863, 179, nil, nil, nil, true}, -- Realm First! Zen Master Engineer
+    {N, 6863, 124, nil, nil, nil, true}, -- Realm First! Zen Master Engineer
     {O, 6862, "Once" },
-    {N, 6862, 179, nil, nil, nil, true}, -- Realm First! Zen Master Enchanter
+    {N, 6862, 124, nil, nil, nil, true}, -- Realm First! Zen Master Enchanter
     {O, 6861, "Once" },
-    {N, 6861, 179, nil, nil, nil, true}, -- Realm First! Zen Master Cook
+    {N, 6861, 124, nil, nil, nil, true}, -- Realm First! Zen Master Cook
     {O, 6860, "Once" },
-    {N, 6860, 179, nil, nil, nil, true}, -- Realm First! Zen Master Blacksmith
+    {N, 6860, 124, nil, nil, nil, true}, -- Realm First! Zen Master Blacksmith
     {O, 6859, "Once" },
-    {N, 6859, 179, nil, nil, nil, true}, -- Realm First! Zen Master Alchemist
-    {N, 6858, 179}, -- What Is Worth Fighting For
-    {N, 6857, 179}, -- Heart of the Mantid Swarm
-    {N, 6856, 179}, -- Ballad of Liu Lang
-    {N, 6855, 179}, -- The Seven Burdens of Shaohao
-    {N, 6851, 179}, -- Take 'Em All On!
-    {N, 6850, 179}, -- Hozen in the Mist
-    {N, 6849, 179}, -- Collector's Edition: Imperial Quilen
-    {N, 6848, 179}, -- Collector's Edition: Lucky Quilen Cub
-    {N, 6847, 179}, -- The Song of the Yaungol
-    {N, 6846, 179}, -- Fish Tales
-    {N, 6845, 179}, -- Nightmare of Shek'zeer
-    {N, 6844, 179}, -- The Vault of Mysteries
-    {N, 6839, 179}, -- Zen Master Fisherman
+    {N, 6859, 124, nil, nil, nil, true}, -- Realm First! Zen Master Alchemist
+    {N, 6858, 124}, -- What Is Worth Fighting For
+    {N, 6857, 124}, -- Heart of the Mantid Swarm
+    {N, 6856, 124}, -- Ballad of Liu Lang
+    {N, 6855, 124}, -- The Seven Burdens of Shaohao
+    {N, 6851, 124}, -- Take 'Em All On!
+    {N, 6850, 124}, -- Hozen in the Mist
+    {N, 6849, 124}, -- Collector's Edition: Imperial Quilen
+    {N, 6848, 124}, -- Collector's Edition: Lucky Quilen Cub
+    {N, 6847, 124}, -- The Song of the Yaungol
+    {N, 6846, 124}, -- Fish Tales
+    {N, 6845, 124}, -- Nightmare of Shek'zeer
+    {N, 6844, 124}, -- The Vault of Mysteries
+    {N, 6839, 124}, -- Zen Master Fisherman
     {O, 6838, "From", "Version", "050005", "Before", "Version", "080001"},
-    {N, 6838, 179}, -- Zen Master Medic
-    {N, 6837, 179}, -- Zen Master Archaeologist
+    {N, 6838, 124}, -- Zen Master Medic
+    {N, 6837, 124}, -- Zen Master Archaeologist
     {O, 6836, "From", "Version", "050005", "Before", "Version", "080001"},
-    {N, 6836, 179}, -- Serious Skills to Pay the Bills
-    {N, 6835, 179}, -- Working For a Living
-    {N, 6830, 179}, -- Professional Zen Master
+    {N, 6836, 124}, -- Serious Skills to Pay the Bills
+    {N, 6835, 124}, -- Working For a Living
+    {N, 6830, 124}, -- Professional Zen Master
     {O, 6829, "Once" },
-    {N, 6829, 179, nil, nil, nil, true}, -- Realm First! Pandaren Ambassador
-    {N, 6828, 179, f.Alliance, 6827}, -- Pandaren Ambassador
-    {N, 6827, 179, f.Horde, 6828}, -- Pandaren Ambassador
-    {N, 6826, 179}, -- 55 Exalted Reputations
-    {N, 6825, 179}, -- The Mind-Killer
-    {N, 6824, 179}, -- Face Clutchers
-    {N, 6823, 179}, -- Must Love Dogs
-    {N, 6822, 179}, -- Run with the Wind
-    {N, 6821, 179}, -- School's Out Forever
-    {N, 6763, 179}, -- Heroic: Siege of Niuzao Temple
-    {N, 6762, 179}, -- Heroic: Scholomance
-    {N, 6761, 179}, -- Heroic: Scarlet Monastery
-    {N, 6760, 179}, -- Heroic: Scarlet Halls
-    {N, 6759, 179}, -- Heroic: Gate of the Setting Sun
-    {N, 6758, 179}, -- Heroic: Temple of the Jade Serpent
-    {N, 6757, 179}, -- Temple of the Jade Serpent
-    {N, 6756, 179}, -- Heroic: Mogu'shan Palace
-    {N, 6755, 179}, -- Mogu'shan Palace
-    {N, 6754, 179}, -- The Dark Heart of the Mogu
-    {N, 6753, 179}, -- Got My Mind On My Money
+    {N, 6829, 124, nil, nil, nil, true}, -- Realm First! Pandaren Ambassador
+    {N, 6828, 124, f.Alliance, 6827}, -- Pandaren Ambassador
+    {N, 6827, 124, f.Horde, 6828}, -- Pandaren Ambassador
+    {N, 6826, 124}, -- 55 Exalted Reputations
+    {N, 6825, 124}, -- The Mind-Killer
+    {N, 6824, 124}, -- Face Clutchers
+    {N, 6823, 124}, -- Must Love Dogs
+    {N, 6822, 124}, -- Run with the Wind
+    {N, 6821, 124}, -- School's Out Forever
+    {N, 6763, 124}, -- Heroic: Siege of Niuzao Temple
+    {N, 6762, 124}, -- Heroic: Scholomance
+    {N, 6761, 124}, -- Heroic: Scarlet Monastery
+    {N, 6760, 124}, -- Heroic: Scarlet Halls
+    {N, 6759, 124}, -- Heroic: Gate of the Setting Sun
+    {N, 6758, 124}, -- Heroic: Temple of the Jade Serpent
+    {N, 6757, 124}, -- Temple of the Jade Serpent
+    {N, 6756, 124}, -- Heroic: Mogu'shan Palace
+    {N, 6755, 124}, -- Mogu'shan Palace
+    {N, 6754, 124}, -- The Dark Heart of the Mogu
+    {N, 6753, 124}, -- Got My Mind On My Money
     {O, 6752, "Once" },
-    {N, 6752, 179, nil, nil, nil, true}, -- Realm First! Level 90 Monk
+    {N, 6752, 124, nil, nil, nil, true}, -- Realm First! Level 90 Monk
     {O, 6751, "Once" },
-    {N, 6751, 179, nil, nil, nil, true}, -- Realm First! Level 90 Rogue
+    {N, 6751, 124, nil, nil, nil, true}, -- Realm First! Level 90 Rogue
     {O, 6750, "Once" },
-    {N, 6750, 179, nil, nil, nil, true}, -- Realm First! Level 90 Warrior
+    {N, 6750, 124, nil, nil, nil, true}, -- Realm First! Level 90 Warrior
     {O, 6749, "Once" },
-    {N, 6749, 179, nil, nil, nil, true}, -- Realm First! Level 90 Mage
+    {N, 6749, 124, nil, nil, nil, true}, -- Realm First! Level 90 Mage
     {O, 6748, "Once" },
-    {N, 6748, 179, nil, nil, nil, true}, -- Realm First! Level 90 Death Knight
+    {N, 6748, 124, nil, nil, nil, true}, -- Realm First! Level 90 Death Knight
     {O, 6747, "Once" },
-    {N, 6747, 179, nil, nil, nil, true}, -- Realm First! Level 90 Hunter
+    {N, 6747, 124, nil, nil, nil, true}, -- Realm First! Level 90 Hunter
     {O, 6746, "Once" },
-    {N, 6746, 179, nil, nil, nil, true}, -- Realm First! Level 90 Warlock
+    {N, 6746, 124, nil, nil, nil, true}, -- Realm First! Level 90 Warlock
     {O, 6745, "Once" },
-    {N, 6745, 179, nil, nil, nil, true}, -- Realm First! Level 90 Priest
+    {N, 6745, 124, nil, nil, nil, true}, -- Realm First! Level 90 Priest
     {O, 6744, "Once" },
-    {N, 6744, 179, nil, nil, nil, true}, -- Realm First! Level 90 Paladin
+    {N, 6744, 124, nil, nil, nil, true}, -- Realm First! Level 90 Paladin
     {O, 6743, "Once" },
-    {N, 6743, 179, nil, nil, nil, true}, -- Realm First! Level 90 Druid
-    {N, 6742, 179}, -- 60 Exalted Reputations
+    {N, 6743, 124, nil, nil, nil, true}, -- Realm First! Level 90 Druid
+    {N, 6742, 124}, -- 60 Exalted Reputations
     {O, 6741, "From", "PvP Season", 11, "Until", "PvP Season", 11},
-    {N, 6741, 179, nil, nil, true}, -- Cataclysmic Gladiator's Twilight Drake
-    {N, 6740, 179, nil, nil, true}, -- Temple of Kotmogu Victory
-    {N, 6739, 179, nil, nil, true}, -- Silvershard Mines Victory
-    {N, 6736, 179}, -- What Does This Button Do?
-    {N, 6734, 179}, -- Heroic: Sha of Fear
-    {N, 6733, 179}, -- Heroic: Lei Shi
-    {N, 6732, 179}, -- Heroic: Tsulong
-    {N, 6731, 179}, -- Heroic: Protectors of the Endless
-    {N, 6730, 179}, -- Heroic: Grand Empress Shek'zeer
-    {N, 6729, 179}, -- Heroic: Amber-Shaper Un'sok
-    {N, 6728, 179}, -- Heroic: Wind Lord Mel'jarak
-    {N, 6727, 179}, -- Heroic: Garalon
-    {N, 6726, 179}, -- Heroic: Blade Lord Ta'yak
-    {N, 6725, 179}, -- Heroic: Imperial Vizier Zor'lok
-    {N, 6724, 179}, -- Heroic: Will of the Emperor
-    {N, 6723, 179}, -- Heroic: Elegon
-    {N, 6722, 179}, -- Heroic: Four Kings
-    {N, 6721, 179}, -- Heroic: Gara'jal the Spiritbinder
-    {N, 6720, 179}, -- Heroic: Feng the Accursed
-    {N, 6719, 179}, -- Heroic: Stone Guard
-    {N, 6718, 179}, -- The Dread Approach
-    {N, 6717, 179}, -- Power Overwhelming
-    {N, 6716, 179}, -- Between a Saurok and a Hard Place
-    {N, 6715, 179}, -- Polyformic Acid Science
-    {N, 6713, 179}, -- Quarrelsome Quilen Quintet
-    {N, 6689, 179}, -- Terrace of Endless Spring
-    {N, 6688, 179}, -- Where's My Air Support?
-    {N, 6687, 179}, -- Getting Hot In Here
-    {N, 6686, 179}, -- Straight Six
-    {N, 6684, 179}, -- Humane Society
-    {N, 6683, 179}, -- Less Than Three
-    {N, 6674, 179}, -- "Anything You Can Do, I Can Do Better..."
-    {N, 6671, 179}, -- Seeds of Doubt
-    {N, 6622, 179}, -- Big City Pet Brawler
-    {N, 6621, 179}, -- Big City Pet Brawlin' - Horde
-    {N, 6620, 179, nil, nil, true}, -- No Time To Heal
-    {N, 6619, 179}, -- Win Streak
-    {N, 6618, 179}, -- On A Roll
-    {N, 6616, 179}, -- Pandaria Tamer
-    {N, 6615, 179}, -- Northrend Tamer
-    {N, 6614, 179}, -- Outland Tamer
-    {N, 6613, 179}, -- Eastern Kingdoms Tamer
-    {N, 6612, 179}, -- Kalimdor Tamer
-    {N, 6611, 179}, -- Continental Tamer
-    {N, 6610, 179}, -- All Pets Allowed
-    {N, 6609, 179}, -- No Favorites
-    {N, 6608, 179}, -- Family Reunion
-    {N, 6607, 179}, -- Taming Azeroth
-    {N, 6606, 179}, -- Taming Pandaria
-    {N, 6605, 179}, -- Taming Northrend
-    {N, 6604, 179}, -- Taming Outland
-    {N, 6603, 179, f.Alliance, 6602}, -- Taming Eastern Kingdoms
-    {N, 6602, 179, f.Horde, 6603}, -- Taming Kalimdor
-    {N, 6601, 179}, -- Taming the Wild
-    {N, 6600, 179}, -- Ultimate Trainer
-    {N, 6599, 179, nil, nil, true}, -- Legendary Pet Brawler
-    {N, 6598, 179, nil, nil, true}, -- Grand Master Pet Brawler
-    {N, 6597, 179, nil, nil, true}, -- Master Pet Brawler
-    {N, 6596, 179, nil, nil, true}, -- Experienced Pet Brawler
-    {N, 6595, 179, nil, nil, true}, -- Pet Brawler
-    {N, 6594, 179}, -- Cat Fight!
-    {N, 6593, 179}, -- Experienced Pet Battler
-    {N, 6592, 179}, -- Legendary Pet Battler
-    {N, 6591, 179}, -- Grand Master Pet Battler
-    {N, 6590, 179}, -- World Safari
-    {N, 6589, 179}, -- Pandaria Safari
-    {N, 6588, 179}, -- Northrend Safari
-    {N, 6587, 179}, -- Outland Safari
-    {N, 6586, 179}, -- Eastern Kingdoms Safari
-    {N, 6585, 179}, -- Kalimdor Safari
-    {N, 6584, 179}, -- Big City Pet Brawlin' - Alliance
-    {N, 6583, 179}, -- Rookie Pet Mob
-    {N, 6582, 179}, -- Pro Pet Mob
-    {N, 6581, 179}, -- Pro Pet Crew
-    {N, 6580, 179}, -- Rookie Pet Crew
-    {N, 6579, 179}, -- Rookie Pet Group
-    {N, 6578, 179}, -- Pro Pet Group
-    {N, 6571, 179}, -- That Was Close!
-    {N, 6570, 179}, -- All Growns Up!
-    {N, 6569, 179}, -- Old Timer
-    {N, 6568, 179}, -- Time for a Leash
-    {N, 6567, 179}, -- Growing Up
-    {N, 6566, 179}, -- Just a Pup
-    {N, 6560, 179}, -- World Pet Mauler
-    {N, 6559, 179}, -- Traveling Pet Mauler
-    {N, 6558, 179}, -- Local Pet Mauler
-    {N, 6557, 179}, -- Master Pet Hunter
-    {N, 6556, 179}, -- Going to Need More Traps
-    {N, 6555, 179}, -- Building a Team
-    {N, 6554, 179}, -- He's Mine!
-    {N, 6553, 179}, -- Like an Arrow to the Face
-    {N, 6552, 179}, -- Friends on the Farm
-    {N, 6551, 179}, -- Friend on the Farm
-    {N, 6550, 179}, -- Order of the Cloud Serpent
-    {N, 6548, 179}, -- The Lorewalkers
-    {N, 6547, 179}, -- The Anglers
-    {N, 6546, 179}, -- The Golden Lotus
-    {N, 6545, 179}, -- Klaxxi
-    {N, 6544, 179}, -- The Tillers
-    {N, 6543, 179}, -- The August Celestials
-    {N, 6541, 179}, -- Loremaster of Pandaria
-    {N, 6540, 179}, -- Dread Haste Makes Dread Waste
-    {N, 6539, 179}, -- "One Steppe Forward, Two Steppes Back"
-    {N, 6538, 179, f.Horde, 6537}, -- Slum It in the Summit
-    {N, 6537, 179, f.Alliance, 6538}, -- Slum It in the Summit
-    {N, 6536, 179, f.Horde, 6535}, -- Mighty Roamin' Krasaranger
-    {N, 6535, 179, f.Alliance, 6536}, -- Mighty Roamin' Krasaranger
-    {N, 6534, 179, f.Horde, 6300}, -- Upjade Complete
-    {N, 6531, 179}, -- Attention to Detail
+    {N, 6741, 124, nil, nil, true}, -- Cataclysmic Gladiator's Twilight Drake
+    {N, 6740, 124, nil, nil, true}, -- Temple of Kotmogu Victory
+    {N, 6739, 124, nil, nil, true}, -- Silvershard Mines Victory
+    {N, 6736, 124}, -- What Does This Button Do?
+    {N, 6734, 124}, -- Heroic: Sha of Fear
+    {N, 6733, 124}, -- Heroic: Lei Shi
+    {N, 6732, 124}, -- Heroic: Tsulong
+    {N, 6731, 124}, -- Heroic: Protectors of the Endless
+    {N, 6730, 124}, -- Heroic: Grand Empress Shek'zeer
+    {N, 6729, 124}, -- Heroic: Amber-Shaper Un'sok
+    {N, 6728, 124}, -- Heroic: Wind Lord Mel'jarak
+    {N, 6727, 124}, -- Heroic: Garalon
+    {N, 6726, 124}, -- Heroic: Blade Lord Ta'yak
+    {N, 6725, 124}, -- Heroic: Imperial Vizier Zor'lok
+    {N, 6724, 124}, -- Heroic: Will of the Emperor
+    {N, 6723, 124}, -- Heroic: Elegon
+    {N, 6722, 124}, -- Heroic: Four Kings
+    {N, 6721, 124}, -- Heroic: Gara'jal the Spiritbinder
+    {N, 6720, 124}, -- Heroic: Feng the Accursed
+    {N, 6719, 124}, -- Heroic: Stone Guard
+    {N, 6718, 124}, -- The Dread Approach
+    {N, 6717, 124}, -- Power Overwhelming
+    {N, 6716, 124}, -- Between a Saurok and a Hard Place
+    {N, 6715, 124}, -- Polyformic Acid Science
+    {N, 6713, 124}, -- Quarrelsome Quilen Quintet
+    {N, 6689, 124}, -- Terrace of Endless Spring
+    {N, 6688, 124}, -- Where's My Air Support?
+    {N, 6687, 124}, -- Getting Hot In Here
+    {N, 6686, 124}, -- Straight Six
+    {N, 6684, 124}, -- Humane Society
+    {N, 6683, 124}, -- Less Than Three
+    {N, 6674, 124}, -- "Anything You Can Do, I Can Do Better..."
+    {N, 6671, 124}, -- Seeds of Doubt
+    {N, 6622, 124}, -- Big City Pet Brawler
+    {N, 6621, 124}, -- Big City Pet Brawlin' - Horde
+    {N, 6620, 124, nil, nil, true}, -- No Time To Heal
+    {N, 6619, 124}, -- Win Streak
+    {N, 6618, 124}, -- On A Roll
+    {N, 6616, 124}, -- Pandaria Tamer
+    {N, 6615, 124}, -- Northrend Tamer
+    {N, 6614, 124}, -- Outland Tamer
+    {N, 6613, 124}, -- Eastern Kingdoms Tamer
+    {N, 6612, 124}, -- Kalimdor Tamer
+    {N, 6611, 124}, -- Continental Tamer
+    {N, 6610, 124}, -- All Pets Allowed
+    {N, 6609, 124}, -- No Favorites
+    {N, 6608, 124}, -- Family Reunion
+    {N, 6607, 124}, -- Taming Azeroth
+    {N, 6606, 124}, -- Taming Pandaria
+    {N, 6605, 124}, -- Taming Northrend
+    {N, 6604, 124}, -- Taming Outland
+    {N, 6603, 124, f.Alliance, 6602}, -- Taming Eastern Kingdoms
+    {N, 6602, 124, f.Horde, 6603}, -- Taming Kalimdor
+    {N, 6601, 124}, -- Taming the Wild
+    {N, 6600, 124}, -- Ultimate Trainer
+    {N, 6599, 124, nil, nil, true}, -- Legendary Pet Brawler
+    {N, 6598, 124, nil, nil, true}, -- Grand Master Pet Brawler
+    {N, 6597, 124, nil, nil, true}, -- Master Pet Brawler
+    {N, 6596, 124, nil, nil, true}, -- Experienced Pet Brawler
+    {N, 6595, 124, nil, nil, true}, -- Pet Brawler
+    {N, 6594, 124}, -- Cat Fight!
+    {N, 6593, 124}, -- Experienced Pet Battler
+    {N, 6592, 124}, -- Legendary Pet Battler
+    {N, 6591, 124}, -- Grand Master Pet Battler
+    {N, 6590, 124}, -- World Safari
+    {N, 6589, 124}, -- Pandaria Safari
+    {N, 6588, 124}, -- Northrend Safari
+    {N, 6587, 124}, -- Outland Safari
+    {N, 6586, 124}, -- Eastern Kingdoms Safari
+    {N, 6585, 124}, -- Kalimdor Safari
+    {N, 6584, 124}, -- Big City Pet Brawlin' - Alliance
+    {N, 6583, 124}, -- Rookie Pet Mob
+    {N, 6582, 124}, -- Pro Pet Mob
+    {N, 6581, 124}, -- Pro Pet Crew
+    {N, 6580, 124}, -- Rookie Pet Crew
+    {N, 6579, 124}, -- Rookie Pet Group
+    {N, 6578, 124}, -- Pro Pet Group
+    {N, 6571, 124}, -- That Was Close!
+    {N, 6570, 124}, -- All Growns Up!
+    {N, 6569, 124}, -- Old Timer
+    {N, 6568, 124}, -- Time for a Leash
+    {N, 6567, 124}, -- Growing Up
+    {N, 6566, 124}, -- Just a Pup
+    {N, 6560, 124}, -- World Pet Mauler
+    {N, 6559, 124}, -- Traveling Pet Mauler
+    {N, 6558, 124}, -- Local Pet Mauler
+    {N, 6557, 124}, -- Master Pet Hunter
+    {N, 6556, 124}, -- Going to Need More Traps
+    {N, 6555, 124}, -- Building a Team
+    {N, 6554, 124}, -- He's Mine!
+    {N, 6553, 124}, -- Like an Arrow to the Face
+    {N, 6552, 124}, -- Friends on the Farm
+    {N, 6551, 124}, -- Friend on the Farm
+    {N, 6550, 124}, -- Order of the Cloud Serpent
+    {N, 6548, 124}, -- The Lorewalkers
+    {N, 6547, 124}, -- The Anglers
+    {N, 6546, 124}, -- The Golden Lotus
+    {N, 6545, 124}, -- Klaxxi
+    {N, 6544, 124}, -- The Tillers
+    {N, 6543, 124}, -- The August Celestials
+    {N, 6541, 124}, -- Loremaster of Pandaria
+    {N, 6540, 124}, -- Dread Haste Makes Dread Waste
+    {N, 6539, 124}, -- "One Steppe Forward, Two Steppes Back"
+    {N, 6538, 124, f.Horde, 6537}, -- Slum It in the Summit
+    {N, 6537, 124, f.Alliance, 6538}, -- Slum It in the Summit
+    {N, 6536, 124, f.Horde, 6535}, -- Mighty Roamin' Krasaranger
+    {N, 6535, 124, f.Alliance, 6536}, -- Mighty Roamin' Krasaranger
+    {N, 6534, 124, f.Horde, 6300}, -- Upjade Complete
+    {N, 6531, 124}, -- Attention to Detail
     {O, 6524, "Once" },
-    {N, 6524, 179, nil, nil, nil, true}, -- Realm First! Level 90
+    {N, 6524, 124, nil, nil, nil, true}, -- Realm First! Level 90
     {O, 6523, "Once" },
-    {N, 6523, 179, nil, nil, nil, true}, -- Realm First! Level 90 Shaman
-    {N, 6518, 179}, -- I Heard You Like Amber...
-    {N, 6517, 179}, -- Extinction Event
-    {N, 6485, 179}, -- Return to Sender
-    {N, 6480, 179}, -- "Settle Down, Bro"
-    {N, 6479, 179}, -- Bomberman
-    {N, 6478, 179}, -- Glintrok N' Roll
-    {N, 6477, 179}, -- Respect
-    {N, 6476, 179}, -- Conscriptinator
-    {N, 6475, 179}, -- Cleaning Up
-    {N, 6472, 179}, -- The Obvious Solution
-    {N, 6471, 179}, -- Hate Leads to Suffering
-    {N, 6470, 179}, -- Heroic: Shado-Pan Monastery
-    {N, 6469, 179}, -- Shado-Pan Monastery
-    {N, 6462, 179}, -- Master Pet Battler
-    {N, 6460, 179}, -- Hydrophobia
-    {N, 6458, 179}, -- Guardians of Mogu'shan
-    {N, 6457, 179}, -- Stormstout Brewery
-    {N, 6456, 179}, -- Heroic: Stormstout Brewery
-    {N, 6455, 179}, -- Show Me Your Moves!
+    {N, 6523, 124, nil, nil, nil, true}, -- Realm First! Level 90 Shaman
+    {N, 6518, 124}, -- I Heard You Like Amber...
+    {N, 6517, 124}, -- Extinction Event
+    {N, 6485, 124}, -- Return to Sender
+    {N, 6480, 124}, -- "Settle Down, Bro"
+    {N, 6479, 124}, -- Bomberman
+    {N, 6478, 124}, -- Glintrok N' Roll
+    {N, 6477, 124}, -- Respect
+    {N, 6476, 124}, -- Conscriptinator
+    {N, 6475, 124}, -- Cleaning Up
+    {N, 6472, 124}, -- The Obvious Solution
+    {N, 6471, 124}, -- Hate Leads to Suffering
+    {N, 6470, 124}, -- Heroic: Shado-Pan Monastery
+    {N, 6469, 124}, -- Shado-Pan Monastery
+    {N, 6462, 124}, -- Master Pet Battler
+    {N, 6460, 124}, -- Hydrophobia
+    {N, 6458, 124}, -- Guardians of Mogu'shan
+    {N, 6457, 124}, -- Stormstout Brewery
+    {N, 6456, 124}, -- Heroic: Stormstout Brewery
+    {N, 6455, 124}, -- Show Me Your Moves!
     {O, 6433, "Once" },
-    {N, 6433, 179, nil, nil, nil, true}, -- Realm First! Challenge Conqueror: Gold
-    {N, 6427, 179}, -- Mosh Pit
-    {N, 6420, 179}, -- Hopocalypse Now!
-    {N, 6402, 179}, -- Ling-Ting's Herbal Journey
-    {N, 6400, 179}, -- How Did He Get Up There?
-    {N, 6396, 179}, -- Sanguinarian
-    {N, 6394, 179}, -- Rattle No More
+    {N, 6433, 124, nil, nil, nil, true}, -- Realm First! Challenge Conqueror: Gold
+    {N, 6427, 124}, -- Mosh Pit
+    {N, 6420, 124}, -- Hopocalypse Now!
+    {N, 6402, 124}, -- Ling-Ting's Herbal Journey
+    {N, 6400, 124}, -- How Did He Get Up There?
+    {N, 6396, 124}, -- Sanguinarian
+    {N, 6394, 124}, -- Rattle No More
     {O, 6378, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6378, 179}, -- Challenge Conqueror: Gold
+    {N, 6378, 124}, -- Challenge Conqueror: Gold
     {O, 6375, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6375, 179}, -- Challenge Conqueror: Silver
+    {N, 6375, 124}, -- Challenge Conqueror: Silver
     {O, 6374, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 6374, 179}, -- Challenge Conqueror: Bronze
-    {N, 6366, 179}, -- Shado-Pan
-    {N, 6365, 179}, -- Zen Master Cook
-    {N, 6351, 179}, -- Explore Jade Forest
-    {N, 6350, 179}, -- To All the Squirrels I Once Caressed?
+    {N, 6374, 124}, -- Challenge Conqueror: Bronze
+    {N, 6366, 124}, -- Shado-Pan
+    {N, 6365, 124}, -- Zen Master Cook
+    {N, 6351, 124}, -- Explore Jade Forest
+    {N, 6350, 124}, -- To All the Squirrels I Once Caressed?
     {O, 6349, "From", "Version", "050005", "Before", "Version", "080001"},
-    {N, 6349, 179}, -- Mystically Epic
+    {N, 6349, 124}, -- Mystically Epic
     {O, 6348, "From", "Version", "050005", "Before", "Version", "080001"},
-    {N, 6348, 179}, -- Mystically Superior
-    {N, 6332, 179}, -- That Rabbit's Dynamite!
+    {N, 6348, 124}, -- Mystically Superior
+    {N, 6332, 124}, -- That Rabbit's Dynamite!
     {O, 6322, "From", "PvP Season", 10, "Until", "PvP Season", 10},
-    {N, 6322, 179, nil, nil, true}, -- Ruthless Gladiator's Twilight Drake
+    {N, 6322, 121, nil, nil, true}, -- Ruthless Gladiator's Twilight Drake
     {O, 6317, "From", "PvP Season", 10, "Until", "PvP Season", 10},
-    {N, 6317, 179, f.Horde, 6316, true}, -- Hero of the Horde: Ruthless
+    {N, 6317, 121, f.Horde, 6316, true}, -- Hero of the Horde: Ruthless
     {O, 6316, "From", "PvP Season", 10, "Until", "PvP Season", 10},
-    {N, 6316, 179, f.Alliance, 6317, true}, -- Hero of the Alliance: Ruthless
-    {N, 6301, 179}, -- Rally the Valley
-    {N, 6300, 179, f.Alliance, 6534}, -- Upjade Complete
+    {N, 6316, 121, f.Alliance, 6317, true}, -- Hero of the Alliance: Ruthless
+    {N, 6301, 124}, -- Rally the Valley
+    {N, 6300, 124, f.Alliance, 6534}, -- Upjade Complete
     {O, 6193, "From", "Version", "050005", "Before", "Version", "090001"},
-    {N, 6193, 179}, -- Level 90 (Legacy)
-    {N, 6185, 179}, -- Murkablo
-    {N, 6181, 179}, -- Fangs of the Father
-    {N, 6180, 179}, -- Chromatic Champion
-    {N, 6177, 179}, -- Destroyer's End
-    {N, 6175, 179}, -- Holding Hands
-    {N, 6174, 179}, -- Don't Stand So Close to Me
-    {N, 6169, 179}, -- Glory of the Dragon Soul Raider
-    {N, 6133, 179}, -- Maybe He'll Get Dizzy...
-    {N, 6132, 179}, -- Eclipse
+    {N, 6193, 124}, -- Level 90 (Legacy)
+    {N, 6185, 119}, -- Murkablo
+    {N, 6181, 119}, -- Fangs of the Father
+    {N, 6180, 119}, -- Chromatic Champion
+    {N, 6177, 119}, -- Destroyer's End
+    {N, 6175, 119}, -- Holding Hands
+    {N, 6174, 119}, -- Don't Stand So Close to Me
+    {N, 6169, 119}, -- Glory of the Dragon Soul Raider
+    {N, 6133, 119}, -- Maybe He'll Get Dizzy...
+    {N, 6132, 119}, -- Eclipse
     {O, 6131 },
-    {N, 6131, 179}, -- WoW's 8th Anniversary
-    {N, 6130, 179}, -- Severed Ties
-    {N, 6129, 179}, -- Taste the Rainbow!
-    {N, 6128, 179}, -- Ping Pong Champion
-    {N, 6127, 179}, -- Lazy Eye
+    {N, 6131, 119}, -- WoW's 8th Anniversary
+    {N, 6130, 119}, -- Severed Ties
+    {N, 6129, 119}, -- Taste the Rainbow!
+    {N, 6128, 119}, -- Ping Pong Champion
+    {N, 6127, 119}, -- Lazy Eye
     {O, 6124, "From", "PvP Season", 10, "Until", "PvP Season", 10},
-    {N, 6124, 179, nil, nil, true}, -- Ruthless Gladiator
-    {N, 6119, 179}, -- Heroic: Hour of Twilight
-    {N, 6118, 179}, -- Heroic: Well of Eternity
-    {N, 6117, 179}, -- Heroic: End Time
-    {N, 6116, 179}, -- Heroic: Madness of Deathwing
-    {N, 6115, 179}, -- Heroic: Spine of Deathwing
-    {N, 6114, 179}, -- Heroic: Warmaster Blackhorn
-    {N, 6113, 179}, -- Heroic: Ultraxion
-    {N, 6112, 179}, -- Heroic: Hagara the Stormbinder
-    {N, 6111, 179}, -- Heroic: Yor'sahj the Unsleeping
-    {N, 6110, 179}, -- Heroic: Warlord Zon'ozz
-    {N, 6109, 179}, -- Heroic: Morchok
-    {N, 6108, 179}, -- Alizabal
-    {N, 6107, 179}, -- Fall of Deathwing
-    {N, 6106, 179}, -- Siege of Wyrmrest Temple
-    {N, 6105, 179}, -- Deck Defender
-    {N, 6089, 179}, -- Keep Rollin' Rollin' Rollin'
-    {N, 6084, 179}, -- Minutes to Midnight
-    {N, 6070, 179}, -- That's Not Canon!
-    {N, 6061, 179}, -- Gaudy Winter Veil Sweater
-    {N, 6060, 179}, -- MiniZep Controller
-    {N, 6059, 179}, -- Red Rider Air Rifle
-    {N, 6045, 179}, -- Occu'thar
-    {N, 6032, 179}, -- Faire Favors
-    {N, 6031, 179, f.Horde, 6030}, -- Taking the Show on the Road
-    {N, 6030, 179, f.Alliance, 6031}, -- Taking the Show on the Road
-    {N, 6029, 179}, -- Darkmoon Despoiler
-    {N, 6028, 179}, -- Darkmoon Defender
-    {N, 6027, 179}, -- Darkmoon Dungeoneer
-    {N, 6026, 179}, -- Fairegoer's Feast
-    {N, 6025, 179}, -- I Was Promised a Pony
-    {N, 6024, 179}, -- Darkmoon Dominator
-    {N, 6023, 179}, -- Darkmoon Duelist
-    {N, 6022, 179}, -- Quick Shot
-    {N, 6021, 179}, -- Blastenheimer Bullseye
-    {N, 6020, 179}, -- Step Right Up
-    {N, 6019, 179}, -- "Come One, Come All!"
-    {N, 6014, 179, f.Horde, 6013}, -- Extinguishing the Cataclysm
-    {N, 6013, 179, f.Alliance, 6014}, -- Extinguishing the Cataclysm
-    {N, 6012, 179, f.Horde, 6011}, -- Flame Keeper of Cataclysm
-    {N, 6011, 179, f.Alliance, 6012}, -- Flame Warden of Cataclysm
-    {N, 6010, 179, f.Horde, 6007}, -- Extinguishing Northrend
-    {N, 6009, 179, f.Horde, 6008}, -- Flame Keeper of Northrend
-    {N, 6008, 179, f.Alliance, 6009}, -- Flame Warden of Northrend
-    {N, 6007, 179, f.Alliance, 6010}, -- Extinguishing Northrend
-    {N, 6006, 179}, -- Elders of Cataclysm
+    {N, 6124, 119, nil, nil, true}, -- Ruthless Gladiator
+    {N, 6119, 119}, -- Heroic: Hour of Twilight
+    {N, 6118, 119}, -- Heroic: Well of Eternity
+    {N, 6117, 119}, -- Heroic: End Time
+    {N, 6116, 119}, -- Heroic: Madness of Deathwing
+    {N, 6115, 119}, -- Heroic: Spine of Deathwing
+    {N, 6114, 119}, -- Heroic: Warmaster Blackhorn
+    {N, 6113, 119}, -- Heroic: Ultraxion
+    {N, 6112, 119}, -- Heroic: Hagara the Stormbinder
+    {N, 6111, 119}, -- Heroic: Yor'sahj the Unsleeping
+    {N, 6110, 119}, -- Heroic: Warlord Zon'ozz
+    {N, 6109, 119}, -- Heroic: Morchok
+    {N, 6108, 119}, -- Alizabal
+    {N, 6107, 119}, -- Fall of Deathwing
+    {N, 6106, 119}, -- Siege of Wyrmrest Temple
+    {N, 6105, 119}, -- Deck Defender
+    {N, 6089, 124}, -- Keep Rollin' Rollin' Rollin'
+    {N, 6084, 119}, -- Minutes to Midnight
+    {N, 6070, 119}, -- That's Not Canon!
+    {N, 6061, 119}, -- Gaudy Winter Veil Sweater
+    {N, 6060, 119}, -- MiniZep Controller
+    {N, 6059, 119}, -- Red Rider Air Rifle
+    {N, 6045, 118}, -- Occu'thar
+    {N, 6032, 119}, -- Faire Favors
+    {N, 6031, 119, f.Horde, 6030}, -- Taking the Show on the Road
+    {N, 6030, 119, f.Alliance, 6031}, -- Taking the Show on the Road
+    {N, 6029, 119}, -- Darkmoon Despoiler
+    {N, 6028, 119}, -- Darkmoon Defender
+    {N, 6027, 119}, -- Darkmoon Dungeoneer
+    {N, 6026, 119}, -- Fairegoer's Feast
+    {N, 6025, 119}, -- I Was Promised a Pony
+    {N, 6024, 119}, -- Darkmoon Dominator
+    {N, 6023, 119}, -- Darkmoon Duelist
+    {N, 6022, 119}, -- Quick Shot
+    {N, 6021, 119}, -- Blastenheimer Bullseye
+    {N, 6020, 119}, -- Step Right Up
+    {N, 6019, 119}, -- "Come One, Come All!"
+    {N, 6014, 119, f.Horde, 6013}, -- Extinguishing the Cataclysm
+    {N, 6013, 119, f.Alliance, 6014}, -- Extinguishing the Cataclysm
+    {N, 6012, 119, f.Horde, 6011}, -- Flame Keeper of Cataclysm
+    {N, 6011, 119, f.Alliance, 6012}, -- Flame Warden of Cataclysm
+    {N, 6010, 119, f.Horde, 6007}, -- Extinguishing Northrend
+    {N, 6009, 119, f.Horde, 6008}, -- Flame Keeper of Northrend
+    {N, 6008, 119, f.Alliance, 6009}, -- Flame Warden of Northrend
+    {N, 6007, 119, f.Alliance, 6010}, -- Extinguishing Northrend
+    {N, 6006, 119}, -- Elders of Cataclysm
     {O, 6003, "From", "PvP Season", 9, "Until", "PvP Season", 9},
-    {N, 6003, 179, nil, nil, true}, -- Vicious Gladiator's Twilight Drake
+    {N, 6003, 119, nil, nil, true}, -- Vicious Gladiator's Twilight Drake
     {O, 6002, "From", "PvP Season", 9, "Until", "PvP Season", 9},
-    {N, 6002, 179, nil, nil, true}, -- Vicious Gladiator
-    {N, 5995, 179}, -- Moon Guard
-    {N, 5879, 179}, -- Veteran of the Molten Front
-    {N, 5877, 179}, -- Menagerie
-    {N, 5876, 179}, -- Petting Zoo
-    {N, 5875, 179}, -- Littlest Pet Shop
-    {N, 5874, 179}, -- Death From Above
-    {N, 5873, 179}, -- Ready for Raiding II
-    {N, 5872, 179}, -- King of the Spider-Hill
-    {N, 5871, 179}, -- Master of the Molten Flow
-    {N, 5870, 179}, -- Fireside Chat
-    {N, 5869, 179}, -- Infernal Ambassadors
-    {N, 5868, 179}, -- And the Meek Shall Inherit Kalimdor
-    {N, 5867, 179}, -- Flawless Victory
-    {N, 5866, 179}, -- The Molten Front Offensive
-    {N, 5865, 179}, -- Have... Have We Met?
-    {N, 5864, 179}, -- Gang War
+    {N, 6002, 119, nil, nil, true}, -- Vicious Gladiator
+    {N, 5995, 119}, -- Moon Guard
+    {N, 5879, 116}, -- Veteran of the Molten Front
+    {N, 5877, 116}, -- Menagerie
+    {N, 5876, 116}, -- Petting Zoo
+    {N, 5875, 116}, -- Littlest Pet Shop
+    {N, 5874, 116}, -- Death From Above
+    {N, 5873, 116}, -- Ready for Raiding II
+    {N, 5872, 116}, -- King of the Spider-Hill
+    {N, 5871, 116}, -- Master of the Molten Flow
+    {N, 5870, 116}, -- Fireside Chat
+    {N, 5869, 116}, -- Infernal Ambassadors
+    {N, 5868, 116}, -- And the Meek Shall Inherit Kalimdor
+    {N, 5867, 116}, -- Flawless Victory
+    {N, 5866, 116}, -- The Molten Front Offensive
+    {N, 5865, 116}, -- Have... Have We Met?
+    {N, 5864, 116}, -- Gang War
     {O, 5863 },
-    {N, 5863, 179}, -- WoW's 7th Anniversary
-    {N, 5862, 179}, -- Ludicrous Speed
-    {N, 5861, 179}, -- The Fiery Lords of Sethria's Roost
-    {N, 5860, 179}, -- The 'Unbeatable?' Pterodactyl: BEATEN.
-    {N, 5859, 179}, -- Legacy of Leyara
-    {N, 5858, 179}, -- Bear-ly Made It
-    {N, 5855, 179}, -- Ragnar-O's
-    {N, 5854, 179, f.Horde, 5853}, -- A-Caroling We Will Go
-    {N, 5853, 179, f.Alliance, 5854}, -- A-Caroling We Will Go
-    {N, 5851, 179}, -- Gone Fishin'
-    {N, 5850, 179, f.Horde, 5848}, -- Fish or Cut Bait: Undercity
-    {N, 5849, 179, f.Horde, 5847}, -- Fish or Cut Bait: Thunder Bluff
-    {N, 5848, 179, f.Alliance, 5850}, -- Fish or Cut Bait: Darnassus
-    {N, 5847, 179, f.Alliance, 5849}, -- Fish or Cut Bait: Ironforge
-    {N, 5845, 179}, -- A Bunch of Lunch
-    {N, 5844, 179, f.Horde, 5842}, -- Let's Do Lunch: Undercity
-    {N, 5843, 179, f.Horde, 5841}, -- Let's Do Lunch: Thunder Bluff
-    {N, 5842, 179, f.Alliance, 5844}, -- Let's Do Lunch: Darnassus
-    {N, 5841, 179, f.Alliance, 5843}, -- Let's Do Lunch: Ironforge
-    {N, 5839, 179}, -- "Dragonwrath, Tarecgosa's Rest"
-    {N, 5838, 179, f.Horde, 5837}, -- Tricks and Treats of the Cataclysm
-    {N, 5837, 179, f.Alliance, 5838}, -- Tricks and Treats of the Cataclysm
-    {N, 5836, 179, f.Alliance, 5835}, -- Tricks and Treats of Northrend
-    {N, 5835, 179, f.Horde, 5836}, -- Tricks and Treats of Northrend
-    {N, 5830, 179}, -- Share the Pain
-    {N, 5829, 179}, -- Bucket List
-    {N, 5828, 179}, -- Glory of the Firelands Raider
-    {N, 5827, 179}, -- Avengers of Hyjal
-    {N, 5824, 179, f.Horde, 5823, true}, -- Veteran of the Horde II
-    {N, 5823, 179, f.Alliance, 5824, true}, -- Veteran of the Alliance II
-    {N, 5821, 179}, -- Death from Above
-    {N, 5813, 179}, -- Do a Barrel Roll!
-    {N, 5810, 179}, -- Not an Ambi-Turner
-    {N, 5809, 179}, -- Heroic: Alysrazor
-    {N, 5808, 179}, -- Heroic: Lord Rhyolith
-    {N, 5807, 179}, -- Heroic: Beth'tilac
-    {N, 5806, 179}, -- Heroic: Shannox
-    {N, 5805, 179}, -- Heroic: Baleroc
-    {N, 5804, 179}, -- Heroic: Majordomo Fandral Staghelm
-    {N, 5803, 179}, -- Heroic: Ragnaros
-    {N, 5802, 179}, -- Firelands
-    {N, 5799, 179}, -- Only the Penitent...
-    {N, 5794, 179}, -- Time Flies When You're Having Fun
+    {N, 5863, 116}, -- WoW's 7th Anniversary
+    {N, 5862, 116}, -- Ludicrous Speed
+    {N, 5861, 116}, -- The Fiery Lords of Sethria's Roost
+    {N, 5860, 116}, -- The 'Unbeatable?' Pterodactyl: BEATEN.
+    {N, 5859, 116}, -- Legacy of Leyara
+    {N, 5858, 116}, -- Bear-ly Made It
+    {N, 5855, 116}, -- Ragnar-O's
+    {N, 5854, 119, f.Horde, 5853}, -- A-Caroling We Will Go
+    {N, 5853, 119, f.Alliance, 5854}, -- A-Caroling We Will Go
+    {N, 5851, 116}, -- Gone Fishin'
+    {N, 5850, 116, f.Horde, 5848}, -- Fish or Cut Bait: Undercity
+    {N, 5849, 116, f.Horde, 5847}, -- Fish or Cut Bait: Thunder Bluff
+    {N, 5848, 116, f.Alliance, 5850}, -- Fish or Cut Bait: Darnassus
+    {N, 5847, 116, f.Alliance, 5849}, -- Fish or Cut Bait: Ironforge
+    {N, 5845, 116}, -- A Bunch of Lunch
+    {N, 5844, 116, f.Horde, 5842}, -- Let's Do Lunch: Undercity
+    {N, 5843, 116, f.Horde, 5841}, -- Let's Do Lunch: Thunder Bluff
+    {N, 5842, 116, f.Alliance, 5844}, -- Let's Do Lunch: Darnassus
+    {N, 5841, 116, f.Alliance, 5843}, -- Let's Do Lunch: Ironforge
+    {N, 5839, 116}, -- "Dragonwrath, Tarecgosa's Rest"
+    {N, 5838, 116, f.Horde, 5837}, -- Tricks and Treats of the Cataclysm
+    {N, 5837, 116, f.Alliance, 5838}, -- Tricks and Treats of the Cataclysm
+    {N, 5836, 116, f.Alliance, 5835}, -- Tricks and Treats of Northrend
+    {N, 5835, 116, f.Horde, 5836}, -- Tricks and Treats of Northrend
+    {N, 5830, 116}, -- Share the Pain
+    {N, 5829, 116}, -- Bucket List
+    {N, 5828, 116}, -- Glory of the Firelands Raider
+    {N, 5827, 116}, -- Avengers of Hyjal
+    {N, 5824, 116, f.Horde, 5823, true}, -- Veteran of the Horde II
+    {N, 5823, 116, f.Alliance, 5824, true}, -- Veteran of the Alliance II
+    {N, 5821, 116}, -- Death from Above
+    {N, 5813, 116}, -- Do a Barrel Roll!
+    {N, 5810, 116}, -- Not an Ambi-Turner
+    {N, 5809, 116}, -- Heroic: Alysrazor
+    {N, 5808, 116}, -- Heroic: Lord Rhyolith
+    {N, 5807, 116}, -- Heroic: Beth'tilac
+    {N, 5806, 116}, -- Heroic: Shannox
+    {N, 5805, 116}, -- Heroic: Baleroc
+    {N, 5804, 116}, -- Heroic: Majordomo Fandral Staghelm
+    {N, 5803, 116}, -- Heroic: Ragnaros
+    {N, 5802, 116}, -- Firelands
+    {N, 5799, 116}, -- Only the Penitent...
+    {N, 5794, 116}, -- Time Flies When You're Having Fun
     {O, 5788, "Never" },
-    {N, 5788, 179}, -- Agent of the Shen'dralar
-    {N, 5779, 179}, -- You'll Feel Right as Rain
-    {N, 5769, 179}, -- Heroic: Zul'Aman
-    {N, 5768, 179}, -- Heroic: Zul'Gurub
-    {N, 5767, 179}, -- Scourer of the Eternal Sands
-    {N, 5765, 179}, -- "Here, Kitty Kitty..."
-    {N, 5762, 179}, -- Ohganot So Fast!
-    {N, 5761, 179}, -- Hex Mix
-    {N, 5760, 179}, -- Ring Out!
-    {N, 5759, 179}, -- Spirit Twister
-    {N, 5755, 179}, -- Thirty Tabards
-    {N, 5754, 179}, -- Drown Your Sorrows
-    {N, 5753, 179}, -- Cataclysmically Delicious
-    {N, 5752, 179}, -- Justly Rewarded
-    {N, 5751, 179}, -- 2500 Daily Quests Completed
-    {N, 5750, 179}, -- Tunnel Vision
-    {N, 5749, 179}, -- Vial of the Sands
-    {N, 5744, 179}, -- Gurubashi Headhunter
-    {N, 5743, 179}, -- It's Not Easy Being Green
-    {N, 5723, 179}, -- 50 Exalted Reputations
-    {N, 5719, 179, f.Horde, 5718}, -- Just Another Day in Tol Barad
-    {N, 5718, 179, f.Alliance, 5719}, -- Just Another Day in Tol Barad
-    {N, 5552, 179, f.Horde, 5231, true}, -- Double Jeopardy
-    {N, 5548, 179}, -- To All the Squirrels Who Cared for Me
-    {N, 5547, 179}, -- Glutton for Shadowy Punishment
-    {N, 5546, 179}, -- Glutton for Icy Punishment
+    {N, 5788, 114}, -- Agent of the Shen'dralar
+    {N, 5779, 114}, -- You'll Feel Right as Rain
+    {N, 5769, 114}, -- Heroic: Zul'Aman
+    {N, 5768, 114}, -- Heroic: Zul'Gurub
+    {N, 5767, 114}, -- Scourer of the Eternal Sands
+    {N, 5765, 114}, -- "Here, Kitty Kitty..."
+    {N, 5762, 114}, -- Ohganot So Fast!
+    {N, 5761, 114}, -- Hex Mix
+    {N, 5760, 114}, -- Ring Out!
+    {N, 5759, 114}, -- Spirit Twister
+    {N, 5755, 114}, -- Thirty Tabards
+    {N, 5754, 114}, -- Drown Your Sorrows
+    {N, 5753, 114}, -- Cataclysmically Delicious
+    {N, 5752, 114}, -- Justly Rewarded
+    {N, 5751, 114}, -- 2500 Daily Quests Completed
+    {N, 5750, 114}, -- Tunnel Vision
+    {N, 5749, 114}, -- Vial of the Sands
+    {N, 5744, 114}, -- Gurubashi Headhunter
+    {N, 5743, 114}, -- It's Not Easy Being Green
+    {N, 5723, 112}, -- 50 Exalted Reputations
+    {N, 5719, 112, f.Horde, 5718}, -- Just Another Day in Tol Barad
+    {N, 5718, 112, f.Alliance, 5719}, -- Just Another Day in Tol Barad
+    {N, 5552, 110, f.Horde, 5231, true}, -- Double Jeopardy
+    {N, 5548, 110}, -- To All the Squirrels Who Cared for Me
+    {N, 5547, 110}, -- Glutton for Shadowy Punishment
+    {N, 5546, 110}, -- Glutton for Icy Punishment
     {O, 5542, "From", "PvP Season", 5, "Until", "PvP Season", 18},
-    {N, 5542, 179, nil, nil, true}, -- 1000 Conquest Points
+    {N, 5542, 110, nil, nil, true}, -- 1000 Conquest Points
     {O, 5541, "From", "PvP Season", 5, "Until", "PvP Season", 18},
-    {N, 5541, 179, nil, nil, true}, -- 5000 Conquest Points
+    {N, 5541, 110, nil, nil, true}, -- 5000 Conquest Points
     {O, 5540, "From", "PvP Season", 5, "Until", "PvP Season", 18},
-    {N, 5540, 179, nil, nil, true}, -- "25,000 Conquest Points"
+    {N, 5540, 110, nil, nil, true}, -- "25,000 Conquest Points"
     {O, 5539, "From", "PvP Season", 5, "Until", "PvP Season", 18},
-    {N, 5539, 179, nil, nil, true}, -- "50,000 Conquest Points"
+    {N, 5539, 110, nil, nil, true}, -- "50,000 Conquest Points"
     {O, 5538, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 5538, 179}, -- "50,000 Valor Points"
+    {N, 5538, 110}, -- "50,000 Valor Points"
     {O, 5537, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 5537, 179}, -- "25,000 Valor Points"
+    {N, 5537, 110}, -- "25,000 Valor Points"
     {O, 5536, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 5536, 179}, -- 5000 Valor Points
+    {N, 5536, 110}, -- 5000 Valor Points
     {O, 5535, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 5535, 179}, -- 1000 Valor Points
+    {N, 5535, 110}, -- 1000 Valor Points
     {O, 5533, "Never" },
-    {N, 5533, 179}, -- Veteran of the Shifting Sands
-    {N, 5518, 179}, -- Stood in the Fire
+    {N, 5533, 110}, -- Veteran of the Shifting Sands
+    {N, 5518, 110}, -- Stood in the Fire
     {O, 5512 },
-    {N, 5512, 179}, -- WoW's 6th Anniversary
-    {N, 5511, 179}, -- It's Always in the Last Place You Look
-    {N, 5506, 179}, -- Defender of a Shattered World
-    {N, 5505, 179}, -- Bullet Time
-    {N, 5504, 179}, -- To the Ground!
-    {N, 5503, 179}, -- Pardon Denied
-    {N, 5501, 179, f.Horde, 4873}, -- Fading into Twilight
-    {N, 5490, 179, f.Horde, 5489, true}, -- Master of Tol Barad
-    {N, 5489, 179, f.Alliance, 5490, true}, -- Master of Tol Barad
-    {N, 5488, 179, nil, nil, true}, -- Towers of Power
-    {N, 5487, 179, nil, nil, true}, -- Tol Barad Saboteur
-    {N, 5486, 179, nil, nil, true}, -- Tol Barad All-Star
-    {N, 5483, 179}, -- Bounce
-    {N, 5482, 179, f.Horde, 5481}, -- Dragonmaw Tour of Duty
-    {N, 5481, 179, f.Alliance, 5482}, -- Wildhammer Tour of Duty
-    {N, 5480, 179}, -- Preparing for Disaster
-    {N, 5479, 179}, -- The Oceanographer
-    {N, 5478, 179}, -- The Limnologist
-    {N, 5477, 179, f.Horde, 5476}, -- Fish or Cut Bait: Orgrimmar
-    {N, 5476, 179, f.Alliance, 5477}, -- Fish or Cut Bait: Stormwind
-    {N, 5475, 179, f.Horde, 5474}, -- Let's Do Lunch: Orgrimmar
-    {N, 5474, 179, f.Alliance, 5475}, -- Let's Do Lunch: Stormwind
-    {N, 5473, 179}, -- The Cataclysmic Gourmet
-    {N, 5472, 179}, -- The Cataclysmic Gourmet
-    {N, 5471, 179}, -- Iron Chef
-    {N, 5470, 179}, -- Diggerest
-    {N, 5469, 179}, -- Diggerer
-    {N, 5456, 179}, -- Got My Mind On My Money
-    {N, 5455, 179}, -- Got My Mind On My Money
-    {N, 5454, 179, f.Horde}, -- Joy Ride
-    {N, 5453, 179, f.Alliance}, -- Ghosts in the Dark
-    {N, 5452, 179}, -- Visions of Vashj'ir Past
-    {N, 5451, 179}, -- Consumed by Nightmare
-    {N, 5450, 179}, -- Fungal Frenzy
-    {N, 5449, 179}, -- Rock Lover
-    {N, 5448, 179}, -- Glutton for Fiery Punishment
-    {N, 5447, 179}, -- My Very Own Broodmother
-    {N, 5446, 179}, -- The Glop Family Line
-    {N, 5445, 179}, -- Fungalophobia
-    {N, 5444, 179}, -- "Ready, Set, Goat!"
-    {N, 5443, 179}, -- E'ko Madness
-    {N, 5442, 179}, -- Full Caravan
-    {N, 5418, 179, f.Horde, 5417, true}, -- Tol Barad Veteran
-    {N, 5417, 179, f.Alliance, 5418, true}, -- Tol Barad Veteran
-    {N, 5416, 179}, -- Pit Lord Argaloth
-    {N, 5415, 179, nil, nil, true}, -- Tower Plower
-    {N, 5412, 179, nil, nil, true}, -- Tol Barad Victory
+    {N, 5512, 108}, -- WoW's 6th Anniversary
+    {N, 5511, 110}, -- It's Always in the Last Place You Look
+    {N, 5506, 110}, -- Defender of a Shattered World
+    {N, 5505, 110}, -- Bullet Time
+    {N, 5504, 110}, -- To the Ground!
+    {N, 5503, 110}, -- Pardon Denied
+    {N, 5501, 110, f.Horde, 4873}, -- Fading into Twilight
+    {N, 5490, 110, f.Horde, 5489, true}, -- Master of Tol Barad
+    {N, 5489, 110, f.Alliance, 5490, true}, -- Master of Tol Barad
+    {N, 5488, 110, nil, nil, true}, -- Towers of Power
+    {N, 5487, 110, nil, nil, true}, -- Tol Barad Saboteur
+    {N, 5486, 110, nil, nil, true}, -- Tol Barad All-Star
+    {N, 5483, 110}, -- Bounce
+    {N, 5482, 110, f.Horde, 5481}, -- Dragonmaw Tour of Duty
+    {N, 5481, 110, f.Alliance, 5482}, -- Wildhammer Tour of Duty
+    {N, 5480, 110}, -- Preparing for Disaster
+    {N, 5479, 110}, -- The Oceanographer
+    {N, 5478, 110}, -- The Limnologist
+    {N, 5477, 110, f.Horde, 5476}, -- Fish or Cut Bait: Orgrimmar
+    {N, 5476, 110, f.Alliance, 5477}, -- Fish or Cut Bait: Stormwind
+    {N, 5475, 110, f.Horde, 5474}, -- Let's Do Lunch: Orgrimmar
+    {N, 5474, 110, f.Alliance, 5475}, -- Let's Do Lunch: Stormwind
+    {N, 5473, 110}, -- The Cataclysmic Gourmet
+    {N, 5472, 110}, -- The Cataclysmic Gourmet
+    {N, 5471, 110}, -- Iron Chef
+    {N, 5470, 110}, -- Diggerest
+    {N, 5469, 110}, -- Diggerer
+    {N, 5456, 110}, -- Got My Mind On My Money
+    {N, 5455, 110}, -- Got My Mind On My Money
+    {N, 5454, 110, f.Horde}, -- Joy Ride
+    {N, 5453, 110, f.Alliance}, -- Ghosts in the Dark
+    {N, 5452, 110}, -- Visions of Vashj'ir Past
+    {N, 5451, 110}, -- Consumed by Nightmare
+    {N, 5450, 110}, -- Fungal Frenzy
+    {N, 5449, 110}, -- Rock Lover
+    {N, 5448, 110}, -- Glutton for Fiery Punishment
+    {N, 5447, 110}, -- My Very Own Broodmother
+    {N, 5446, 110}, -- The Glop Family Line
+    {N, 5445, 110}, -- Fungalophobia
+    {N, 5444, 110}, -- "Ready, Set, Goat!"
+    {N, 5443, 110}, -- E'ko Madness
+    {N, 5442, 110}, -- Full Caravan
+    {N, 5418, 110, f.Horde, 5417, true}, -- Tol Barad Veteran
+    {N, 5417, 110, f.Alliance, 5418, true}, -- Tol Barad Veteran
+    {N, 5416, 110}, -- Pit Lord Argaloth
+    {N, 5415, 110, nil, nil, true}, -- Tower Plower
+    {N, 5412, 110, nil, nil, true}, -- Tol Barad Victory
     {O, 5396, "Once" },
-    {N, 5396, 179, nil, nil, nil, true}, -- Realm First! Illustrious Archaeologist
+    {N, 5396, 110, nil, nil, nil, true}, -- Realm First! Illustrious Archaeologist
     {O, 5395, "Once" },
-    {N, 5395, 179, nil, nil, nil, true}, -- Realm First! Grand Master Archaeologist
+    {N, 5395, 110, nil, nil, nil, true}, -- Realm First! Grand Master Archaeologist
     {O, 5394, "Once" },
-    {N, 5394, 179, nil, nil, nil, true}, -- Realm First! Illustrious Tailor
+    {N, 5394, 110, nil, nil, nil, true}, -- Realm First! Illustrious Tailor
     {O, 5393, "Once" },
-    {N, 5393, 179, nil, nil, nil, true}, -- Realm First! Illustrious Skinner
+    {N, 5393, 110, nil, nil, nil, true}, -- Realm First! Illustrious Skinner
     {O, 5392, "Once" },
-    {N, 5392, 179, nil, nil, nil, true}, -- Realm First! Illustrious Miner
+    {N, 5392, 110, nil, nil, nil, true}, -- Realm First! Illustrious Miner
     {O, 5391, "Once" },
-    {N, 5391, 179, nil, nil, nil, true}, -- Realm First! Illustrious Leatherworker
+    {N, 5391, 110, nil, nil, nil, true}, -- Realm First! Illustrious Leatherworker
     {O, 5390, "Once" },
-    {N, 5390, 179, nil, nil, nil, true}, -- Realm First! Illustrious Jewelcrafter
+    {N, 5390, 110, nil, nil, nil, true}, -- Realm First! Illustrious Jewelcrafter
     {O, 5389, "Once" },
-    {N, 5389, 179, nil, nil, nil, true}, -- Realm First! Illustrious Scribe
+    {N, 5389, 110, nil, nil, nil, true}, -- Realm First! Illustrious Scribe
     {O, 5388, "Once" },
-    {N, 5388, 179, nil, nil, nil, true}, -- Realm First! Illustrious Herbalist
+    {N, 5388, 110, nil, nil, nil, true}, -- Realm First! Illustrious Herbalist
     {O, 5387, "Once" },
-    {N, 5387, 179, nil, nil, nil, true}, -- Realm First! Illustrious Angler
+    {N, 5387, 110, nil, nil, nil, true}, -- Realm First! Illustrious Angler
     {O, 5386, "Once" },
-    {N, 5386, 179, nil, nil, nil, true}, -- Realm First! Illustrious Medic
+    {N, 5386, 110, nil, nil, nil, true}, -- Realm First! Illustrious Medic
     {O, 5385, "Once" },
-    {N, 5385, 179, nil, nil, nil, true}, -- Realm First! Illustrious Engineer
+    {N, 5385, 110, nil, nil, nil, true}, -- Realm First! Illustrious Engineer
     {O, 5384, "Once" },
-    {N, 5384, 179, nil, nil, nil, true}, -- Realm First! Illustrious Enchanter
+    {N, 5384, 110, nil, nil, nil, true}, -- Realm First! Illustrious Enchanter
     {O, 5383, "Once" },
-    {N, 5383, 179, nil, nil, nil, true}, -- Realm First! Illustrious Cook
+    {N, 5383, 110, nil, nil, nil, true}, -- Realm First! Illustrious Cook
     {O, 5382, "Once" },
-    {N, 5382, 179, nil, nil, nil, true}, -- Realm First! Illustrious Blacksmith
+    {N, 5382, 110, nil, nil, nil, true}, -- Realm First! Illustrious Blacksmith
     {O, 5381, "Once" },
-    {N, 5381, 179, nil, nil, nil, true}, -- Realm First! Illustrious Alchemist
-    {N, 5378, 179}, -- Deathy
-    {N, 5377, 179}, -- Collector's Edition: Lil' Deathwing
-    {N, 5376, 179, f.Horde, 5375}, -- Hellscream's Reach
-    {N, 5375, 179, f.Alliance, 5376}, -- Baradin's Wardens
-    {N, 5374, 179}, -- 45 Exalted Reputations
+    {N, 5381, 110, nil, nil, nil, true}, -- Realm First! Illustrious Alchemist
+    {N, 5378, 108}, -- Deathy
+    {N, 5377, 108}, -- Collector's Edition: Lil' Deathwing
+    {N, 5376, 110, f.Horde, 5375}, -- Hellscream's Reach
+    {N, 5375, 110, f.Alliance, 5376}, -- Baradin's Wardens
+    {N, 5374, 110}, -- 45 Exalted Reputations
     {O, 5373, "From", "Version", "040003a", "Before", "Version", "080001"},
-    {N, 5373, 179}, -- Cataclysmically Superior
+    {N, 5373, 110}, -- Cataclysmically Superior
     {O, 5372, "From", "Version", "040003a", "Before", "Version", "080001"},
-    {N, 5372, 179}, -- Cataclysmically Epic
-    {N, 5371, 179}, -- Vigorous VanCleef Vindicator
-    {N, 5370, 179}, -- I'm on a Diet
-    {N, 5369, 179}, -- It's Frost Damage
-    {N, 5368, 179}, -- Prototype Prodigy
-    {N, 5367, 179}, -- Rat Pack
-    {N, 5366, 179}, -- Ready for Raiding
-    {N, 5363, 179, nil, nil, true}, -- 250000 Honorable Kills
-    {N, 5359, 179, f.Alliance, 5338, true}, -- Knight-Champion
+    {N, 5372, 110}, -- Cataclysmically Epic
+    {N, 5371, 110}, -- Vigorous VanCleef Vindicator
+    {N, 5370, 110}, -- I'm on a Diet
+    {N, 5369, 110}, -- It's Frost Damage
+    {N, 5368, 110}, -- Prototype Prodigy
+    {N, 5367, 110}, -- Rat Pack
+    {N, 5366, 110}, -- Ready for Raiding
+    {N, 5363, 110, nil, nil, true}, -- 250000 Honorable Kills
+    {N, 5359, 110, f.Alliance, 5338, true}, -- Knight-Champion
     {O, 5358, "From", "PvP Season", 9, "Until", "PvP Season", 9},
-    {N, 5358, 179, f.Horde, 5344, true}, -- Hero of the Horde: Vicious
-    {N, 5357, 179, f.Alliance, 5342, true}, -- Field Marshal
-    {N, 5356, 179, f.Horde, 5343, true}, -- High Warlord
-    {N, 5355, 179, f.Horde, 5341, true}, -- General
-    {N, 5354, 179, f.Horde, 5340, true}, -- Lieutenant General
-    {N, 5353, 179, f.Horde, 5339, true}, -- Champion
-    {N, 5352, 179, f.Horde, 5337, true}, -- Legionnaire
-    {N, 5351, 179, f.Horde, 5336, true}, -- Blood Guard
-    {N, 5350, 179, f.Horde, 5335, true}, -- Stone Guard
-    {N, 5349, 179, f.Horde, 5334, true}, -- First Sergeant
-    {N, 5348, 179, f.Horde, 5333, true}, -- Senior Sergeant
-    {N, 5347, 179, f.Horde, 5332, true}, -- Sergeant
-    {N, 5346, 179, f.Horde, 5331, true}, -- Grunt
-    {N, 5345, 179, f.Horde, 5330, true}, -- Scout
+    {N, 5358, 110, f.Horde, 5344, true}, -- Hero of the Horde: Vicious
+    {N, 5357, 110, f.Alliance, 5342, true}, -- Field Marshal
+    {N, 5356, 110, f.Horde, 5343, true}, -- High Warlord
+    {N, 5355, 110, f.Horde, 5341, true}, -- General
+    {N, 5354, 110, f.Horde, 5340, true}, -- Lieutenant General
+    {N, 5353, 110, f.Horde, 5339, true}, -- Champion
+    {N, 5352, 110, f.Horde, 5337, true}, -- Legionnaire
+    {N, 5351, 110, f.Horde, 5336, true}, -- Blood Guard
+    {N, 5350, 110, f.Horde, 5335, true}, -- Stone Guard
+    {N, 5349, 110, f.Horde, 5334, true}, -- First Sergeant
+    {N, 5348, 110, f.Horde, 5333, true}, -- Senior Sergeant
+    {N, 5347, 110, f.Horde, 5332, true}, -- Sergeant
+    {N, 5346, 110, f.Horde, 5331, true}, -- Grunt
+    {N, 5345, 110, f.Horde, 5330, true}, -- Scout
     {O, 5344, "From", "PvP Season", 9, "Until", "PvP Season", 9},
-    {N, 5344, 179, f.Alliance, 5358, true}, -- Hero of the Alliance: Vicious
-    {N, 5343, 179, f.Alliance, 5356, true}, -- Grand Marshal
-    {N, 5342, 179, f.Horde, 5357, true}, -- Warlord
-    {N, 5341, 179, f.Alliance, 5355, true}, -- Marshal
-    {N, 5340, 179, f.Alliance, 5354, true}, -- Commander
-    {N, 5339, 179, f.Alliance, 5353, true}, -- Lieutenant Commander
-    {N, 5338, 179, f.Horde, 5359, true}, -- Centurion
-    {N, 5337, 179, f.Alliance, 5352, true}, -- Knight-Captain
-    {N, 5336, 179, f.Alliance, 5351, true}, -- Knight-Lieutenant
-    {N, 5335, 179, f.Alliance, 5350, true}, -- Knight
-    {N, 5334, 179, f.Alliance, 5349, true}, -- Sergeant Major
-    {N, 5333, 179, f.Alliance, 5348, true}, -- Master Sergeant
-    {N, 5332, 179, f.Alliance, 5347, true}, -- Sergeant
-    {N, 5331, 179, f.Alliance, 5346, true}, -- Corporal
-    {N, 5330, 179, f.Alliance, 5345, true}, -- Private
-    {N, 5329, 179, f.Alliance, 5326, true}, -- Warbound Veteran of the Alliance
-    {N, 5328, 179, f.Alliance, 5325, true}, -- Veteran of the Alliance
-    {N, 5327, 179, f.Alliance, 5324, true}, -- In Service of the Alliance
-    {N, 5326, 179, f.Horde, 5329, true}, -- Warbringer of the Horde
-    {N, 5325, 179, f.Horde, 5328, true}, -- Veteran of the Horde
-    {N, 5324, 179, f.Horde, 5327, true}, -- In Service of the Horde
-    {N, 5323, 179, f.Horde, 5322, true}, -- In Service of the Horde
-    {N, 5322, 179, f.Alliance, 5323, true}, -- In Service of the Alliance
-    {N, 5321, 179, f.Horde, 5320}, -- King of the Mountain
-    {N, 5320, 179, f.Alliance, 5321}, -- King of the Mountain
-    {N, 5319, 179, f.Horde, 5318}, -- "20,000 Leagues Under the Sea"
-    {N, 5318, 179, f.Alliance, 5319}, -- "20,000 Leagues Under the Sea"
-    {N, 5317, 179}, -- Help the Bombardier! I'm the Bombardier!
-    {N, 5315, 179}, -- Digger
+    {N, 5344, 110, f.Alliance, 5358, true}, -- Hero of the Alliance: Vicious
+    {N, 5343, 110, f.Alliance, 5356, true}, -- Grand Marshal
+    {N, 5342, 110, f.Horde, 5357, true}, -- Warlord
+    {N, 5341, 110, f.Alliance, 5355, true}, -- Marshal
+    {N, 5340, 110, f.Alliance, 5354, true}, -- Commander
+    {N, 5339, 110, f.Alliance, 5353, true}, -- Lieutenant Commander
+    {N, 5338, 110, f.Horde, 5359, true}, -- Centurion
+    {N, 5337, 110, f.Alliance, 5352, true}, -- Knight-Captain
+    {N, 5336, 110, f.Alliance, 5351, true}, -- Knight-Lieutenant
+    {N, 5335, 110, f.Alliance, 5350, true}, -- Knight
+    {N, 5334, 110, f.Alliance, 5349, true}, -- Sergeant Major
+    {N, 5333, 110, f.Alliance, 5348, true}, -- Master Sergeant
+    {N, 5332, 110, f.Alliance, 5347, true}, -- Sergeant
+    {N, 5331, 110, f.Alliance, 5346, true}, -- Corporal
+    {N, 5330, 110, f.Alliance, 5345, true}, -- Private
+    {N, 5329, 110, f.Alliance, 5326, true}, -- Warbound Veteran of the Alliance
+    {N, 5328, 110, f.Alliance, 5325, true}, -- Veteran of the Alliance
+    {N, 5327, 110, f.Alliance, 5324, true}, -- In Service of the Alliance
+    {N, 5326, 110, f.Horde, 5329, true}, -- Warbringer of the Horde
+    {N, 5325, 110, f.Horde, 5328, true}, -- Veteran of the Horde
+    {N, 5324, 110, f.Horde, 5327, true}, -- In Service of the Horde
+    {N, 5323, 110, f.Horde, 5322, true}, -- In Service of the Horde
+    {N, 5322, 110, f.Alliance, 5323, true}, -- In Service of the Alliance
+    {N, 5321, 110, f.Horde, 5320}, -- King of the Mountain
+    {N, 5320, 110, f.Alliance, 5321}, -- King of the Mountain
+    {N, 5319, 110, f.Horde, 5318}, -- "20,000 Leagues Under the Sea"
+    {N, 5318, 110, f.Alliance, 5319}, -- "20,000 Leagues Under the Sea"
+    {N, 5317, 110}, -- Help the Bombardier! I'm the Bombardier!
+    {N, 5315, 110}, -- Digger
     {O, 5313 },
-    {N, 5313, 179}, -- I Can't Hear You Over the Sound of How Awesome I Am
-    {N, 5312, 179}, -- The Abyss Will Gaze Back Into You
-    {N, 5311, 179}, -- Elementary
-    {N, 5310, 179}, -- Aberrant Behavior
-    {N, 5309, 179}, -- Full of Sound and Fury
-    {N, 5308, 179}, -- Silence is Golden
-    {N, 5307, 179}, -- Achieve-a-tron
-    {N, 5306, 179}, -- Parasite Evening
-    {N, 5305, 179}, -- Four Play
-    {N, 5304, 179}, -- Stay Chill
-    {N, 5301, 179}, -- The Boy Who Would be King
-    {N, 5300, 179}, -- The Only Escape
-    {N, 5298, 179}, -- Don't Need to Break Eggs to Make an Omelet
-    {N, 5297, 179}, -- Umbrage for Umbriss
-    {N, 5296, 179}, -- Faster Than the Speed of Light
-    {N, 5295, 179}, -- Sun of a....
-    {N, 5294, 179}, -- Straw That Broke the Camel's Back
-    {N, 5293, 179}, -- I Hate That Song
-    {N, 5292, 179}, -- Headed South
-    {N, 5291, 179}, -- Acrocalypse Now
-    {N, 5290, 179}, -- Kill It With Fire!
-    {N, 5289, 179}, -- Extra Credit Bonus Stage
-    {N, 5288, 179}, -- No Static at All
-    {N, 5287, 179}, -- Rotten to the Core
-    {N, 5286, 179}, -- Prince of Tides
-    {N, 5285, 179}, -- Old Faithful
-    {N, 5284, 179}, -- Ascendant Descending
-    {N, 5283, 179}, -- Too Hot to Handle
-    {N, 5282, 179}, -- Arrested Development
-    {N, 5281, 179}, -- Crushing Bones and Cracking Skulls
-    {N, 5269, 179, f.Horde, 5268, true}, -- In Service of the Horde
-    {N, 5268, 179, f.Alliance, 5269, true}, -- In Service of the Alliance
-    {N, 5267, 179, nil, nil, true}, -- Three's Company: 2700
-    {N, 5266, 179, nil, nil, true}, -- Three's Company: 2400
-    {N, 5262, 179, nil, nil, true}, -- Double Rainbow
-    {N, 5258, 179, nil, nil, true}, -- Master of the Battle for Gilneas
-    {N, 5257, 179, nil, nil, true}, -- Battle for Gilneas Assassin
-    {N, 5256, 179, nil, nil, true}, -- Battle for Gilneas All-Star
-    {N, 5255, 179, nil, nil, true}, -- Jugger Not
-    {N, 5254, 179, nil, nil, true}, -- Newbs to Plowshares
-    {N, 5253, 179, nil, nil, true}, -- Full Coverage
-    {N, 5252, 179, nil, nil, true}, -- Don't Get Cocky Kid
-    {N, 5251, 179, nil, nil, true}, -- Not Your Average PUG'er
-    {N, 5250, 179, nil, nil, true}, -- Out of the Fog
-    {N, 5249, 179, nil, nil, true}, -- One Two Three You Don't Know About Me
-    {N, 5248, 179, nil, nil, true}, -- Bustin' Caps to Make It Haps
-    {N, 5247, 179, nil, nil, true}, -- Battle for Gilneas Perfection
-    {N, 5246, 179, nil, nil, true}, -- Battle for Gilneas Veteran
-    {N, 5245, 179, nil, nil, true}, -- Battle for Gilneas Victory
-    {N, 5231, 179, f.Alliance, 5552, true}, -- Double Jeopardy
-    {N, 5230, 179, nil, nil, true}, -- Twin Peaks Mountaineer
-    {N, 5229, 179, f.Alliance, 5228, true}, -- Drag a Maw
-    {N, 5228, 179, f.Horde, 5229, true}, -- Wild Hammering
-    {N, 5227, 179, f.Horde, 5226, true}, -- Cloud Nine
-    {N, 5226, 179, f.Alliance, 5227, true}, -- Cloud Nine
-    {N, 5223, 179, nil, nil, true}, -- Master of Twin Peaks
-    {N, 5222, 179, f.Horde, 5221, true}, -- "Fire, Walk With Me"
-    {N, 5221, 179, f.Alliance, 5222, true}, -- "Fire, Walk With Me"
-    {N, 5220, 179, f.Horde, 5219, true}, -- I'm in the Black Lodge
-    {N, 5219, 179, f.Alliance, 5220, true}, -- I'm in the White Lodge
-    {N, 5216, 179, nil, nil, true}, -- Peak Speed
-    {N, 5215, 179, nil, nil, true}, -- Twin Peaks Perfection
-    {N, 5214, 179, f.Horde, 5213, true}, -- Soaring Spirits
-    {N, 5213, 179, f.Alliance, 5214, true}, -- Soaring Spirits
-    {N, 5211, 179, nil, nil, true}, -- Top Defender
-    {N, 5210, 179, nil, nil, true}, -- Two-Timer
-    {N, 5209, 179, nil, nil, true}, -- Twin Peaks Veteran
-    {N, 5208, 179, nil, nil, true}, -- Twin Peaking
-    {N, 5193, 179}, -- Blue Streak
-    {N, 5192, 179}, -- The Harder they Fall
-    {N, 5191, 179}, -- Tragedy in Three Acts
-    {N, 5180, 179}, -- Breaking the Sound Barrier
-    {N, 5123, 179}, -- Heroic: Al'Akir
-    {N, 5122, 179}, -- Heroic: Conclave of Wind
-    {N, 5121, 179}, -- Heroic: Sinestra
-    {N, 5120, 179}, -- Heroic: Cho'gall
-    {N, 5119, 179}, -- Heroic: Ascendant Council
-    {N, 5118, 179}, -- Heroic: Halfus Wyrmbreaker
-    {N, 5117, 179}, -- Heroic: Valiona and Theralion
-    {N, 5116, 179}, -- Heroic: Nefarian
-    {N, 5115, 179}, -- Heroic: Chimaeron
-    {N, 5109, 179}, -- Heroic: Atramedes
-    {N, 5108, 179}, -- Heroic: Maloriak
-    {N, 5107, 179}, -- Heroic: Omnotron Defense System
-    {N, 5094, 179}, -- Heroic: Magmaw
-    {N, 5093, 179}, -- Heroic: Shadowfang Keep
-    {N, 5083, 179}, -- Heroic: Deadmines
-    {N, 5066, 179}, -- Heroic: Lost City of the Tol'vir
-    {N, 5065, 179}, -- Heroic: Halls of Origination
-    {N, 5064, 179}, -- Heroic: The Vortex Pinnacle
-    {N, 5063, 179}, -- Heroic: The Stonecore
-    {N, 5062, 179}, -- Heroic: Grim Batol
-    {N, 5061, 179}, -- Heroic: Throne of the Tides
-    {N, 5060, 179}, -- Heroic: Blackrock Caverns
+    {N, 5313, 110}, -- I Can't Hear You Over the Sound of How Awesome I Am
+    {N, 5312, 110}, -- The Abyss Will Gaze Back Into You
+    {N, 5311, 110}, -- Elementary
+    {N, 5310, 110}, -- Aberrant Behavior
+    {N, 5309, 110}, -- Full of Sound and Fury
+    {N, 5308, 110}, -- Silence is Golden
+    {N, 5307, 110}, -- Achieve-a-tron
+    {N, 5306, 110}, -- Parasite Evening
+    {N, 5305, 110}, -- Four Play
+    {N, 5304, 110}, -- Stay Chill
+    {N, 5301, 110}, -- The Boy Who Would be King
+    {N, 5300, 110}, -- The Only Escape
+    {N, 5298, 110}, -- Don't Need to Break Eggs to Make an Omelet
+    {N, 5297, 110}, -- Umbrage for Umbriss
+    {N, 5296, 110}, -- Faster Than the Speed of Light
+    {N, 5295, 110}, -- Sun of a....
+    {N, 5294, 110}, -- Straw That Broke the Camel's Back
+    {N, 5293, 110}, -- I Hate That Song
+    {N, 5292, 110}, -- Headed South
+    {N, 5291, 110}, -- Acrocalypse Now
+    {N, 5290, 110}, -- Kill It With Fire!
+    {N, 5289, 110}, -- Extra Credit Bonus Stage
+    {N, 5288, 110}, -- No Static at All
+    {N, 5287, 110}, -- Rotten to the Core
+    {N, 5286, 110}, -- Prince of Tides
+    {N, 5285, 110}, -- Old Faithful
+    {N, 5284, 110}, -- Ascendant Descending
+    {N, 5283, 110}, -- Too Hot to Handle
+    {N, 5282, 110}, -- Arrested Development
+    {N, 5281, 110}, -- Crushing Bones and Cracking Skulls
+    {N, 5269, 110, f.Horde, 5268, true}, -- In Service of the Horde
+    {N, 5268, 110, f.Alliance, 5269, true}, -- In Service of the Alliance
+    {N, 5267, 110, nil, nil, true}, -- Three's Company: 2700
+    {N, 5266, 110, nil, nil, true}, -- Three's Company: 2400
+    {N, 5262, 110, nil, nil, true}, -- Double Rainbow
+    {N, 5258, 110, nil, nil, true}, -- Master of the Battle for Gilneas
+    {N, 5257, 110, nil, nil, true}, -- Battle for Gilneas Assassin
+    {N, 5256, 110, nil, nil, true}, -- Battle for Gilneas All-Star
+    {N, 5255, 110, nil, nil, true}, -- Jugger Not
+    {N, 5254, 110, nil, nil, true}, -- Newbs to Plowshares
+    {N, 5253, 110, nil, nil, true}, -- Full Coverage
+    {N, 5252, 110, nil, nil, true}, -- Don't Get Cocky Kid
+    {N, 5251, 110, nil, nil, true}, -- Not Your Average PUG'er
+    {N, 5250, 110, nil, nil, true}, -- Out of the Fog
+    {N, 5249, 110, nil, nil, true}, -- One Two Three You Don't Know About Me
+    {N, 5248, 110, nil, nil, true}, -- Bustin' Caps to Make It Haps
+    {N, 5247, 110, nil, nil, true}, -- Battle for Gilneas Perfection
+    {N, 5246, 110, nil, nil, true}, -- Battle for Gilneas Veteran
+    {N, 5245, 110, nil, nil, true}, -- Battle for Gilneas Victory
+    {N, 5231, 110, f.Alliance, 5552, true}, -- Double Jeopardy
+    {N, 5230, 110, nil, nil, true}, -- Twin Peaks Mountaineer
+    {N, 5229, 110, f.Alliance, 5228, true}, -- Drag a Maw
+    {N, 5228, 110, f.Horde, 5229, true}, -- Wild Hammering
+    {N, 5227, 110, f.Horde, 5226, true}, -- Cloud Nine
+    {N, 5226, 110, f.Alliance, 5227, true}, -- Cloud Nine
+    {N, 5223, 110, nil, nil, true}, -- Master of Twin Peaks
+    {N, 5222, 110, f.Horde, 5221, true}, -- "Fire, Walk With Me"
+    {N, 5221, 110, f.Alliance, 5222, true}, -- "Fire, Walk With Me"
+    {N, 5220, 110, f.Horde, 5219, true}, -- I'm in the Black Lodge
+    {N, 5219, 110, f.Alliance, 5220, true}, -- I'm in the White Lodge
+    {N, 5216, 110, nil, nil, true}, -- Peak Speed
+    {N, 5215, 110, nil, nil, true}, -- Twin Peaks Perfection
+    {N, 5214, 110, f.Horde, 5213, true}, -- Soaring Spirits
+    {N, 5213, 110, f.Alliance, 5214, true}, -- Soaring Spirits
+    {N, 5211, 110, nil, nil, true}, -- Top Defender
+    {N, 5210, 110, nil, nil, true}, -- Two-Timer
+    {N, 5209, 110, nil, nil, true}, -- Twin Peaks Veteran
+    {N, 5208, 110, nil, nil, true}, -- Twin Peaking
+    {N, 5193, 110}, -- Blue Streak
+    {N, 5192, 110}, -- The Harder they Fall
+    {N, 5191, 110}, -- Tragedy in Three Acts
+    {N, 5180, 110}, -- Breaking the Sound Barrier
+    {N, 5123, 110}, -- Heroic: Al'Akir
+    {N, 5122, 110}, -- Heroic: Conclave of Wind
+    {N, 5121, 110}, -- Heroic: Sinestra
+    {N, 5120, 110}, -- Heroic: Cho'gall
+    {N, 5119, 110}, -- Heroic: Ascendant Council
+    {N, 5118, 110}, -- Heroic: Halfus Wyrmbreaker
+    {N, 5117, 110}, -- Heroic: Valiona and Theralion
+    {N, 5116, 110}, -- Heroic: Nefarian
+    {N, 5115, 110}, -- Heroic: Chimaeron
+    {N, 5109, 110}, -- Heroic: Atramedes
+    {N, 5108, 110}, -- Heroic: Maloriak
+    {N, 5107, 110}, -- Heroic: Omnotron Defense System
+    {N, 5094, 110}, -- Heroic: Magmaw
+    {N, 5093, 110}, -- Heroic: Shadowfang Keep
+    {N, 5083, 110}, -- Heroic: Deadmines
+    {N, 5066, 110}, -- Heroic: Lost City of the Tol'vir
+    {N, 5065, 110}, -- Heroic: Halls of Origination
+    {N, 5064, 110}, -- Heroic: The Vortex Pinnacle
+    {N, 5063, 110}, -- Heroic: The Stonecore
+    {N, 5062, 110}, -- Heroic: Grim Batol
+    {N, 5061, 110}, -- Heroic: Throne of the Tides
+    {N, 5060, 110}, -- Heroic: Blackrock Caverns
     {O, 5008, "Once" },
-    {N, 5008, 179, nil, nil, nil, true}, -- Realm First! Level 85 Rogue
+    {N, 5008, 110, nil, nil, nil, true}, -- Realm First! Level 85 Rogue
     {O, 5007, "Once" },
-    {N, 5007, 179, nil, nil, nil, true}, -- Realm First! Level 85 Warrior
+    {N, 5007, 110, nil, nil, nil, true}, -- Realm First! Level 85 Warrior
     {O, 5006, "Once" },
-    {N, 5006, 179, nil, nil, nil, true}, -- Realm First! Level 85 Mage
+    {N, 5006, 110, nil, nil, nil, true}, -- Realm First! Level 85 Mage
     {O, 5005, "Once" },
-    {N, 5005, 179, nil, nil, nil, true}, -- Realm First! Level 85 Death Knight
+    {N, 5005, 110, nil, nil, nil, true}, -- Realm First! Level 85 Death Knight
     {O, 5004, "Once" },
-    {N, 5004, 179, nil, nil, nil, true}, -- Realm First! Level 85 Hunter
+    {N, 5004, 110, nil, nil, nil, true}, -- Realm First! Level 85 Hunter
     {O, 5003, "Once" },
-    {N, 5003, 179, nil, nil, nil, true}, -- Realm First! Level 85 Warlock
+    {N, 5003, 110, nil, nil, nil, true}, -- Realm First! Level 85 Warlock
     {O, 5002, "Once" },
-    {N, 5002, 179, nil, nil, nil, true}, -- Realm First! Level 85 Priest
+    {N, 5002, 110, nil, nil, nil, true}, -- Realm First! Level 85 Priest
     {O, 5001, "Once" },
-    {N, 5001, 179, nil, nil, nil, true}, -- Realm First! Level 85 Paladin
+    {N, 5001, 110, nil, nil, nil, true}, -- Realm First! Level 85 Paladin
     {O, 5000, "Once" },
-    {N, 5000, 179, nil, nil, nil, true}, -- Realm First! Level 85 Druid
+    {N, 5000, 110, nil, nil, nil, true}, -- Realm First! Level 85 Druid
     {O, 4999, "Once" },
-    {N, 4999, 179, nil, nil, nil, true}, -- Realm First! Level 85
+    {N, 4999, 110, nil, nil, nil, true}, -- Realm First! Level 85
     {O, 4998, "Once" },
-    {N, 4998, 179, nil, nil, nil, true}, -- Realm First! Level 85 Shaman
-    {N, 4996, 179}, -- Explore Southern Barrens
-    {N, 4995, 179}, -- Explore the Cape of Stranglethorn
-    {N, 4982, 179, f.Horde, 4869}, -- Sinking into Vashj'ir
-    {N, 4981, 179, f.Horde, 4937}, -- Southern Barrens Quests
-    {N, 4980, 179, f.Horde, 4936}, -- Stonetalon Mountains Quests
-    {N, 4979, 179, f.Horde, 4932}, -- Feralas Quests
-    {N, 4978, 179, f.Horde, 4929}, -- Dustwallow Marsh Quests
-    {N, 4976, 179, f.Horde, 4925}, -- Ashenvale Quests
-    {N, 4975, 179}, -- From Hell's Heart I Stab at Thee
-    {N, 4961, 179}, -- In a Thousand Years Even You Might be Worth Something
-    {N, 4960, 179}, -- Round Three. Fight!
-    {N, 4959, 179}, -- Beware of the 'Unbeatable?' Pterodactyl
-    {N, 4958, 179}, -- The First Rule of Ring of Blood is You Don't Talk About Ring of Blood
-    {N, 4957, 179}, -- 20 Dungeon Quests Completed
-    {N, 4956, 179}, -- 5 Dungeon Quests Completed
-    {N, 4940, 179}, -- Winterspring Quests
-    {N, 4939, 179}, -- Un'Goro Crater Quests
-    {N, 4938, 179}, -- Thousand Needles Quests
-    {N, 4937, 179, f.Alliance, 4981}, -- Southern Barrens Quests
-    {N, 4936, 179, f.Alliance, 4980}, -- Stonetalon Mountains Quests
-    {N, 4935, 179}, -- Tanaris Quests
-    {N, 4934, 179}, -- Silithus Quests
-    {N, 4933, 179, f.Horde, 4926}, -- Northern Barrens Quests
-    {N, 4932, 179, f.Alliance, 4979}, -- Feralas Quests
-    {N, 4931, 179}, -- Felwood Quests
-    {N, 4930, 179}, -- Desolace Quests
-    {N, 4929, 179, f.Alliance, 4978}, -- Dustwallow Marsh Quests
-    {N, 4928, 179, f.Alliance, 4927}, -- Darkshore Quests
-    {N, 4927, 179, f.Horde, 4928}, -- Azshara Quests
-    {N, 4926, 179, f.Alliance, 4933}, -- Bloodmyst Isle Quests
-    {N, 4925, 179, f.Alliance, 4976}, -- Ashenvale Quests
-    {N, 4924, 179}, -- Professional Cataclysmic Master
-    {N, 4923, 179}, -- Illustrious Grand Master Archaeologist
-    {N, 4922, 179}, -- Grand Master Archaeologist
-    {N, 4921, 179}, -- Master Archaeologist
-    {N, 4920, 179}, -- Artisan Archaeologist
-    {N, 4919, 179}, -- Expert Archaeologist
+    {N, 4998, 110, nil, nil, nil, true}, -- Realm First! Level 85 Shaman
+    {N, 4996, 110}, -- Explore Southern Barrens
+    {N, 4995, 110}, -- Explore the Cape of Stranglethorn
+    {N, 4982, 110, f.Horde, 4869}, -- Sinking into Vashj'ir
+    {N, 4981, 110, f.Horde, 4937}, -- Southern Barrens Quests
+    {N, 4980, 110, f.Horde, 4936}, -- Stonetalon Mountains Quests
+    {N, 4979, 110, f.Horde, 4932}, -- Feralas Quests
+    {N, 4978, 110, f.Horde, 4929}, -- Dustwallow Marsh Quests
+    {N, 4976, 110, f.Horde, 4925}, -- Ashenvale Quests
+    {N, 4975, 110}, -- From Hell's Heart I Stab at Thee
+    {N, 4961, 110}, -- In a Thousand Years Even You Might be Worth Something
+    {N, 4960, 110}, -- Round Three. Fight!
+    {N, 4959, 110}, -- Beware of the 'Unbeatable?' Pterodactyl
+    {N, 4958, 110}, -- The First Rule of Ring of Blood is You Don't Talk About Ring of Blood
+    {N, 4957, 110}, -- 20 Dungeon Quests Completed
+    {N, 4956, 110}, -- 5 Dungeon Quests Completed
+    {N, 4940, 110}, -- Winterspring Quests
+    {N, 4939, 110}, -- Un'Goro Crater Quests
+    {N, 4938, 110}, -- Thousand Needles Quests
+    {N, 4937, 110, f.Alliance, 4981}, -- Southern Barrens Quests
+    {N, 4936, 110, f.Alliance, 4980}, -- Stonetalon Mountains Quests
+    {N, 4935, 110}, -- Tanaris Quests
+    {N, 4934, 110}, -- Silithus Quests
+    {N, 4933, 110, f.Horde, 4926}, -- Northern Barrens Quests
+    {N, 4932, 110, f.Alliance, 4979}, -- Feralas Quests
+    {N, 4931, 110}, -- Felwood Quests
+    {N, 4930, 110}, -- Desolace Quests
+    {N, 4929, 110, f.Alliance, 4978}, -- Dustwallow Marsh Quests
+    {N, 4928, 110, f.Alliance, 4927}, -- Darkshore Quests
+    {N, 4927, 110, f.Horde, 4928}, -- Azshara Quests
+    {N, 4926, 110, f.Alliance, 4933}, -- Bloodmyst Isle Quests
+    {N, 4925, 110, f.Alliance, 4976}, -- Ashenvale Quests
+    {N, 4924, 110}, -- Professional Cataclysmic Master
+    {N, 4923, 110}, -- Illustrious Grand Master Archaeologist
+    {N, 4922, 110}, -- Grand Master Archaeologist
+    {N, 4921, 110}, -- Master Archaeologist
+    {N, 4920, 110}, -- Artisan Archaeologist
+    {N, 4919, 110}, -- Expert Archaeologist
     {O, 4918, "From", "Version", "040003a", "Before", "Version", "080001"},
-    {N, 4918, 179}, -- Illustrious Grand Master Medic
-    {N, 4917, 179}, -- Cataclysmic Fisherman
-    {N, 4916, 179}, -- Cataclysmic Cook
+    {N, 4918, 110}, -- Illustrious Grand Master Medic
+    {N, 4917, 110}, -- Cataclysmic Fisherman
+    {N, 4916, 110}, -- Cataclysmic Cook
     {O, 4915, "From", "Version", "040003a", "Before", "Version", "080001"},
-    {N, 4915, 179}, -- More Skills to Pay the Bills
-    {N, 4914, 179}, -- Working In the Heat
-    {N, 4910, 179}, -- Searing Gorge Quests
-    {N, 4909, 179}, -- Blasted Lands Quests
-    {N, 4908, 179, f.Horde, 12456}, -- Ghostlands Quests
-    {N, 4906, 179}, -- Northern Stranglethorn Quests
-    {N, 4905, 179}, -- Cape of Stranglethorn Quests
-    {N, 4904, 179}, -- Swamp of Sorrows Quests
-    {N, 4903, 179, f.Alliance}, -- Westfall Quests
-    {N, 4902, 179, f.Alliance, 4895}, -- Redridge Mountains Quests
-    {N, 4901, 179}, -- Burning Steppes Quests
-    {N, 4900, 179}, -- Badlands Quests
-    {N, 4899, 179, f.Alliance}, -- Loch Modan Quests
-    {N, 4897, 179}, -- Hinterlands Quests
-    {N, 4896, 179}, -- Arathi Highlands Quests
-    {N, 4895, 179, f.Horde, 4902}, -- Hillsbrad Foothills Quests
-    {N, 4894, 179, f.Horde, 12455}, -- Silverpine Forest Quests
-    {N, 4893, 179}, -- Western Plaguelands Quests
-    {N, 4892, 179}, -- Eastern Plaguelands Quests
-    {N, 4888, 179}, -- One Hump or Two?
+    {N, 4915, 110}, -- More Skills to Pay the Bills
+    {N, 4914, 110}, -- Working In the Heat
+    {N, 4910, 110}, -- Searing Gorge Quests
+    {N, 4909, 110}, -- Blasted Lands Quests
+    {N, 4908, 110, f.Horde, 12456}, -- Ghostlands Quests
+    {N, 4906, 110}, -- Northern Stranglethorn Quests
+    {N, 4905, 110}, -- Cape of Stranglethorn Quests
+    {N, 4904, 110}, -- Swamp of Sorrows Quests
+    {N, 4903, 110, f.Alliance}, -- Westfall Quests
+    {N, 4902, 110, f.Alliance, 4895}, -- Redridge Mountains Quests
+    {N, 4901, 110}, -- Burning Steppes Quests
+    {N, 4900, 110}, -- Badlands Quests
+    {N, 4899, 110, f.Alliance}, -- Loch Modan Quests
+    {N, 4897, 110}, -- Hinterlands Quests
+    {N, 4896, 110}, -- Arathi Highlands Quests
+    {N, 4895, 110, f.Horde, 4902}, -- Hillsbrad Foothills Quests
+    {N, 4894, 110, f.Horde, 12455}, -- Silverpine Forest Quests
+    {N, 4893, 110}, -- Western Plaguelands Quests
+    {N, 4892, 110}, -- Eastern Plaguelands Quests
+    {N, 4888, 110}, -- One Hump or Two?
     {O, 4887 },
-    {N, 4887, 179}, -- Tripping the Rifts
-    {N, 4886, 179, f.Horde, 4885}, -- Dragonmaw Clan
-    {N, 4885, 179, f.Alliance, 4886}, -- Wildhammer Clan
-    {N, 4884, 179}, -- Ramkahen
-    {N, 4883, 179}, -- Therazane
-    {N, 4882, 179}, -- The Guardians of Hyjal
-    {N, 4881, 179}, -- The Earthen Ring
-    {N, 4875, 179}, -- Loremaster of Cataclysm
-    {N, 4874, 179}, -- Breaking Out of Tol Barad
-    {N, 4873, 179, f.Alliance, 5501}, -- Fading into Twilight
-    {N, 4872, 179}, -- Unearthing Uldum
-    {N, 4871, 179}, -- Deep into Deepholm
-    {N, 4870, 179}, -- Coming Down the Mountain
-    {N, 4869, 179, f.Alliance, 4982}, -- Sinking into Vashj'ir
-    {N, 4868, 179}, -- Cataclysm Explorer
-    {N, 4866, 179}, -- Explore Twilight Highlands
-    {N, 4865, 179}, -- Explore Uldum
-    {N, 4864, 179}, -- Explore Deepholm
-    {N, 4863, 179}, -- Explore Hyjal
-    {N, 4859, 179}, -- Kings Under the Mountain
-    {N, 4858, 179}, -- Seven Scepters
-    {N, 4857, 179}, -- Journeyman Archaeologist
-    {N, 4856, 179}, -- It Belongs in a Museum!
-    {N, 4855, 179}, -- What was Briefly Yours is Now Mine
-    {N, 4854, 179}, -- I Had It in My Hand
-    {N, 4853, 179}, -- Glory of the Cataclysm Raider
-    {N, 4852, 179}, -- Double Dragon
-    {N, 4851, 179}, -- Throne of the Four Winds
-    {N, 4850, 179}, -- The Bastion of Twilight
-    {N, 4849, 179}, -- Keeping it in the Family
-    {N, 4848, 179}, -- Lost City of the Tol'vir
-    {N, 4847, 179}, -- The Vortex Pinnacle
-    {N, 4846, 179}, -- The Stonecore
-    {N, 4845, 179}, -- Glory of the Cataclysm Hero
-    {N, 4844, 179}, -- Cataclysm Dungeon Hero
-    {N, 4842, 179}, -- Blackwing Descent
-    {N, 4841, 179}, -- Halls of Origination
-    {N, 4840, 179}, -- Grim Batol
-    {N, 4839, 179}, -- Throne of the Tides
-    {N, 4833, 179}, -- Blackrock Caverns
+    {N, 4887, 108}, -- Tripping the Rifts
+    {N, 4886, 110, f.Horde, 4885}, -- Dragonmaw Clan
+    {N, 4885, 110, f.Alliance, 4886}, -- Wildhammer Clan
+    {N, 4884, 110}, -- Ramkahen
+    {N, 4883, 110}, -- Therazane
+    {N, 4882, 110}, -- The Guardians of Hyjal
+    {N, 4881, 110}, -- The Earthen Ring
+    {N, 4875, 110}, -- Loremaster of Cataclysm
+    {N, 4874, 110}, -- Breaking Out of Tol Barad
+    {N, 4873, 110, f.Alliance, 5501}, -- Fading into Twilight
+    {N, 4872, 110}, -- Unearthing Uldum
+    {N, 4871, 110}, -- Deep into Deepholm
+    {N, 4870, 110}, -- Coming Down the Mountain
+    {N, 4869, 110, f.Alliance, 4982}, -- Sinking into Vashj'ir
+    {N, 4868, 110}, -- Cataclysm Explorer
+    {N, 4866, 110}, -- Explore Twilight Highlands
+    {N, 4865, 110}, -- Explore Uldum
+    {N, 4864, 110}, -- Explore Deepholm
+    {N, 4863, 110}, -- Explore Hyjal
+    {N, 4859, 110}, -- Kings Under the Mountain
+    {N, 4858, 110}, -- Seven Scepters
+    {N, 4857, 110}, -- Journeyman Archaeologist
+    {N, 4856, 110}, -- It Belongs in a Museum!
+    {N, 4855, 110}, -- What was Briefly Yours is Now Mine
+    {N, 4854, 110}, -- I Had It in My Hand
+    {N, 4853, 110}, -- Glory of the Cataclysm Raider
+    {N, 4852, 110}, -- Double Dragon
+    {N, 4851, 110}, -- Throne of the Four Winds
+    {N, 4850, 110}, -- The Bastion of Twilight
+    {N, 4849, 110}, -- Keeping it in the Family
+    {N, 4848, 110}, -- Lost City of the Tol'vir
+    {N, 4847, 110}, -- The Vortex Pinnacle
+    {N, 4846, 110}, -- The Stonecore
+    {N, 4845, 110}, -- Glory of the Cataclysm Hero
+    {N, 4844, 110}, -- Cataclysm Dungeon Hero
+    {N, 4842, 110}, -- Blackwing Descent
+    {N, 4841, 110}, -- Halls of Origination
+    {N, 4840, 110}, -- Grim Batol
+    {N, 4839, 110}, -- Throne of the Tides
+    {N, 4833, 110}, -- Blackrock Caverns
     {O, 4832 },
-    {N, 4832, 179}, -- Friends In Even Higher Places
-    {N, 4827, 179}, -- Surveying the Damage
+    {N, 4832, 108}, -- Friends In Even Higher Places
+    {N, 4827, 110}, -- Surveying the Damage
     {O, 4826, "From", "Version", "040003a", "Before", "Version", "090001"},
-    {N, 4826, 179}, -- Level 85 (Legacy)
-    {N, 4825, 179}, -- Explore Vashj'ir
-    {N, 4824, 194}, -- Collector's Edition: Mini Thor
-    {N, 4818, 194}, -- Heroic: The Twilight Destroyer (10 player)
-    {N, 4817, 194}, -- The Twilight Destroyer (10 player)
-    {N, 4816, 194}, -- Heroic: The Twilight Destroyer (25 player)
-    {N, 4815, 194}, -- The Twilight Destroyer (25 player)
+    {N, 4826, 110}, -- Level 85 (Legacy)
+    {N, 4825, 110}, -- Explore Vashj'ir
+    {N, 4824, 106}, -- Collector's Edition: Mini Thor
+    {N, 4818, 106}, -- Heroic: The Twilight Destroyer (10 player)
+    {N, 4817, 106}, -- The Twilight Destroyer (10 player)
+    {N, 4816, 106}, -- Heroic: The Twilight Destroyer (25 player)
+    {N, 4815, 106}, -- The Twilight Destroyer (25 player)
     {O, 4790, "From", "Version", "030305a", "Before", "Version", "040001"},
-    {N, 4790, 194, f.Horde}, -- Zalazane's Fall
+    {N, 4790, 104, f.Horde}, -- Zalazane's Fall
     {O, 4786, "From", "Version", "030305a", "Before", "Version", "040001"},
-    {N, 4786, 194, f.Alliance}, -- Operation: Gnomeregan
+    {N, 4786, 104, f.Alliance}, -- Operation: Gnomeregan
     {O, 4782 },
-    {N, 4782, 194}, -- Green Brewfest Stein
+    {N, 4782, 104}, -- Green Brewfest Stein
     {N, 4637, 194}, -- Heroic: Fall of the Lich King (25 player)
     {N, 4636, 194}, -- Heroic: Fall of the Lich King (10 player)
     {N, 4635, 194}, -- Heroic: The Frostwing Halls (25 player)
@@ -8617,7 +8617,7 @@ tasks = {
     {N, 879, 194}, -- Old School Ride
     {N, 878, 194}, -- One That Didn't Get Away
     {N, 877, 194}, -- The Cake Is Not A Lie
-    {N, 876, 194, nil, nil, true}, -- Brutally Dedicated
+    {N, 876, 86, nil, nil, true}, -- Brutally Dedicated
     {N, 875, 194, nil, nil, true}, -- Vengefully Dedicated
     {N, 873, 194, f.Horde, 220, true}, -- Frostwolf Perfection
     {N, 872, 194, nil, nil, true}, -- Frenzied Defender
