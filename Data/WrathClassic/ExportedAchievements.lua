@@ -6,9 +6,9 @@ local objects = addon.Objects;
 local achievement = objects.Achievement;
 local f = objects.Faction;
 
-local tasks, achievements, transmogSets;
-function exportedAchievements.RegisterTasks(_achievements, _transmogSets)
-    achievements, transmogSets = _achievements, _transmogSets;
+local tasks, achievements, buildVersions, transmogSets;
+function exportedAchievements.RegisterTasks(_achievements, _buildVersions, _transmogSets)
+    achievements, buildVersions, transmogSets = _achievements, _buildVersions, _transmogSets;
     wipe(achievements);
 
     local name = "Achievements";
@@ -25,8 +25,8 @@ function exportedAchievements.Load(achievementIds)
     end
 end
 
-local function N(id, ...)
-    achievements[id] = achievement:New(id, ...);
+local function N(id, bId, ...)
+    achievements[id] = achievement:New(id, buildVersions[bId], ...);
 end
 
 local function T(aId, tId)
