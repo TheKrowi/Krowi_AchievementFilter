@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 - Missing translation
 - "Added in version" to the tooltip with options to disable it 
 
+### Changed
+- Loading cache data is now more efficient and should not cause any frame drops
+
 ## 62.4 - 2023-09-11
 ### Added
 - Option to add Krowi's Achievement Filter to the world map icon tooltip
