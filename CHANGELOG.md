@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Loading cache data is now more efficient and should not cause any frame drops
+- Updated German translations
 
 ## 62.4 - 2023-09-11
 ### Added
