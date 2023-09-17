@@ -39,7 +39,10 @@ function achievement:GetMergedCategory()
 end
 
 function achievement:GetRequiredForIds()
-    local criteriaCache = addon.BuildCache();
+    local criteriaCache = {};
+    addon.BuildCacheAsync(function(_criteriaCache)
+        criteriaCache = _criteriaCache;
+    end);
     if self.RequiredForIds then -- Return cached list
         return self.RequiredForIds;
     end

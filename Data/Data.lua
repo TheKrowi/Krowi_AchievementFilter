@@ -31,48 +31,30 @@ data.Maps = {};
 data.CalendarEvents, data.WidgetEvents, data.WorldEvents = {}, {}, {};
 
 local function PostLoadOnPlayerLogin(self, start)
-    local overallStart = debugprofilestop();
-
     self.ExportedAchievements.Load(self.AchievementIds);
-
-    addon.Diagnostics.Debug("1 - " .. floor(debugprofilestop() - overallStart + 0.5) .. " ms")
-    overallStart = debugprofilestop();
 
     local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_Layout", "cmd", "KROWIAF-0.0").args.Summary.args.Summary.args.NumAchievements; -- cmd and KROWIAF-0.0 are just to make the function work
     custom.max = #self.AchievementIds;
-
-    addon.Diagnostics.Debug("2 - " .. floor(debugprofilestop() - overallStart + 0.5) .. " ms")
-    overallStart = debugprofilestop();
 
     self.ExportedCalendarEvents.LoadCategories(self.CalendarEvents, self.Achievements);
     self.ExportedWidgetEvents.LoadCategories(self.WidgetEvents, self.Achievements);
     self.ExportedWorldEvents.LoadCategories(self.WorldEvents, self.Achievements);
 
-    addon.Diagnostics.Debug("3 - " .. floor(debugprofilestop() - overallStart + 0.5) .. " ms")
-    overallStart = debugprofilestop();
-
     local function PostBuildCache()
-        overallStart = debugprofilestop();
-
         if addon.Tabs["Achievements"] then
             addon.Tabs["Achievements"].Categories = data.LoadBlizzardTabAchievements(addon.Tabs["Achievements"].Categories);
         end
-    
-        addon.Diagnostics.Debug("5 - " .. floor(debugprofilestop() - overallStart + 0.5) .. " ms")
-        overallStart = debugprofilestop();
-    
+
         if AchievementFrame and AchievementFrame:IsShown() then
             addon.GUI.RefreshViewAfterPlayerLogin();
         end
-    
-        addon.Diagnostics.Debug("6 - " .. floor(debugprofilestop() - overallStart + 0.5) .. " ms")
-        
+
         addon.Diagnostics.Debug("On Player Login: Finished loading data in " .. floor(debugprofilestop() - start + 0.5) .. " ms");
     end
 
-    addon.BuildCache(PostBuildCache, function()end);
-
-    addon.Diagnostics.Debug("4 - " .. floor(debugprofilestop() - overallStart + 0.5) .. " ms")
+    addon.BuildCacheAsync(PostBuildCache, function(numOfWork)
+        addon.Diagnostics.Debug(numOfWork .. " remaining after " .. ("%.2d"):format(debugprofilestop() - start) / 1000);
+    end);
 end
 
 function data:LoadOnPlayerLogin()

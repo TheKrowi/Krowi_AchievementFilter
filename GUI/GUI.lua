@@ -465,6 +465,7 @@ function gui.RefreshView()
 end
 
 function gui.RefreshViewAfterPlayerLogin()
+    AchievementFrame.Header.Points:SetText();
     local selectedTab = addon.GUI.SelectedTab;
 	local categories = selectedTab:GetCategories();
     if categories and not selectedTab.SelectedCategory then

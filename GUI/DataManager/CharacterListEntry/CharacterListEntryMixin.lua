@@ -94,8 +94,9 @@ function KrowiAF_CharacterListEntryMixin:ToggleIgnoreCharacter()
         KrowiAF_SavedData.CharacterList[self.Guid].ExcludeFromMostProgressAchievementTooltip = nil;
         if self.Guid == UnitGUID("player") then
             addon.ResetCache();
-            addon.BuildCache();
-            self.Points:SetText(KrowiAF_SavedData.CharacterList[self.Guid].Points or "-1");
+            addon.BuildCacheAsync(function()
+                self.Points:SetText(KrowiAF_SavedData.CharacterList[self.Guid].Points or "-1");
+            end);
         end
 
         self.HeaderTooltip:SetChecked(true);
