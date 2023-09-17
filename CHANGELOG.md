@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Loading cache data is now more efficient and should not cause any frame drops
 - Updated German translations
+- Flagged Arcane Influence as Unobtainable (Never for now as I have no other way to flag event related achievements)
 
 ## 62.4 - 2023-09-11
 ### Added

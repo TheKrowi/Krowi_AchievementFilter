@@ -40,7 +40,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-16 08-48-11 ]] --
+-- [[ Exported at 2023-09-17 12-16-06 ]] --
 tasks = {
     {N, 19192, 202}, -- Lil' Frostwing
     {N, 19107, 202}, -- Outland Racing Completionist: Gold
@@ -55,6 +55,7 @@ tasks = {
     {N, 19098, 202}, -- Outland: Gold
     {N, 19097, 202}, -- Outland: Silver
     {N, 19092, 202}, -- Outland: Bronze
+    {O, 19080, "Never" },
     {N, 19080, 202}, -- Arcane Influence
     {N, 19079, 202}, -- Master of the Turbulent Timeways
     {N, 19008, 202}, -- Dream Shaper
