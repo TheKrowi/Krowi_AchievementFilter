@@ -1,10 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 63.0 - 2023-xx-xx
+## 63.0 - 2023-09-17
 ### Added
 - Missing translation
-- "Added in version" to the tooltip with options to disable it 
+- "Added in version" to the tooltip with options to disable it (filters coming later)
 
 ### Changed
 - Loading cache data is now more efficient and should not cause any frame drops
