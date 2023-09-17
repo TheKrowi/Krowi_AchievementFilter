@@ -239,6 +239,14 @@ options.OptionsTable.args["General"] = {
                             desc = addon.L["Show world map icon Desc"]:KAF_AddDefaultValueText("ShowWorldmapIcon"),
                             get = function() return addon.Options.db.profile.ShowWorldmapIcon; end,
                             set = WorldMapShowWorldMapIconSet
+                        },
+                        -- Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
+                        AddAddonNameToWorldMapIcon = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                            name = addon.L["Add addon name to world map icon"],
+                            desc = addon.L["Add addon name to world map icon Desc"]:KAF_InjectAddonName():KAF_AddDefaultValueText("AddAddonNameToWorldMapIcon"),
+                            get = function() return addon.Options.db.profile.AddAddonNameToWorldMapIcon; end,
+                            set = function(_, value) addon.Options.db.profile.AddAddonNameToWorldMapIcon = value; end
                         }
                     }
                 }

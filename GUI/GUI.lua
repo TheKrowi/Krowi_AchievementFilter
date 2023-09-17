@@ -302,13 +302,14 @@ function gui.PrepareTabsOrder()
     KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Statistics", addon.L["Blizzard"], addon.L["Statistics"], "TOGGLESTATISTICS", true);
 end
 
-function gui.ShowStatusBarTooltip(self, anchor)
+function gui.ShowStatusBarTooltip(self, anchor, extraText)
 	GameTooltip:SetOwner(self, anchor or "ANCHOR_NONE");
     if anchor == nil then
 	    GameTooltip:SetPoint("TOPLEFT", self, "TOPRIGHT", -3, -3);
     end
 	GameTooltip:SetMinimumWidth(128, true);
-	GameTooltip:SetText(self.Text, 1, 1, 1, nil, true);
+	-- GameTooltip:SetText(self.Text, 1, 1, 1, nil, true);
+    GameTooltip_SetTitle(GameTooltip, self.Text);
 
     local text = "";
     local numOfNotObtAch = self.NumOfNotObtAch;
@@ -320,6 +321,11 @@ function gui.ShowStatusBarTooltip(self, anchor)
 	text = self.NumOfCompAch .. text .. " / " .. self.NumOfAch;
 
 	gui.GameTooltipProgressBar:Show(GameTooltip, 0, self.NumOfAch, self.NumOfCompAch, numOfNotObtAch, 0, 0, addon.Util.Colors.GreenRGB, addon.Util.Colors.RedRGB, nil, nil, text);
+
+    if extraText then
+        GameTooltip_AddBlankLineToTooltip(GameTooltip);
+        GameTooltip_AddNormalLine(GameTooltip, extraText);
+    end
 
 	GameTooltip:SetMinimumWidth(140);
     GameTooltip:Show();
@@ -459,6 +465,7 @@ function gui.RefreshView()
 end
 
 function gui.RefreshViewAfterPlayerLogin()
+    AchievementFrame.Header.Points:SetText();
     local selectedTab = addon.GUI.SelectedTab;
 	local categories = selectedTab:GetCategories();
     if categories and not selectedTab.SelectedCategory then

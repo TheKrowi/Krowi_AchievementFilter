@@ -5,9 +5,10 @@ objects.Achievement = {};
 local achievement = objects.Achievement;
 
 achievement.__index = achievement;
-function achievement:New(id, faction, otherFactionAchievementId, isPvP, isRealmFirst, hasWowheadLink)
+function achievement:New(id, buildVersion, faction, otherFactionAchievementId, isPvP, isRealmFirst, hasWowheadLink)
     local instance = setmetatable({}, achievement);
     instance.Id = id or 0;
+    instance.BuildVersion = buildVersion;
     instance.Faction = faction;
     instance.OtherFactionAchievementId = otherFactionAchievementId;
     instance.IsPvP = isPvP;
@@ -38,7 +39,10 @@ function achievement:GetMergedCategory()
 end
 
 function achievement:GetRequiredForIds()
-    local criteriaCache = addon.BuildCache();
+    local criteriaCache = {};
+    addon.BuildCacheAsync(function(_criteriaCache)
+        criteriaCache = _criteriaCache;
+    end);
     if self.RequiredForIds then -- Return cached list
         return self.RequiredForIds;
     end

@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-06 16-56-14 ]] --
+-- [[ Exported at 2023-09-17 08-51-05 ]] --
 L["%c"] = "%c "
 L["%d/%m/%Y %I:%M %p"] = "%d/%m/%Y %I:%M %p "
 L["%m/%d/%Y %I:%M %p"] = "%m/%d/%Y %I:%M %p "
@@ -39,10 +39,13 @@ Dieser Wert kann geändert werden, während das Erfolg-Fenster geöffnet ist und
 (1) FPS-Einbrüche und Stottern während der Anpassung des Wertes, NICHT während der normalen Addon-Nutzung.]=]
 L["Achievements"] = "Erfolge "
 L["Active events"] = "Aktive Ereignisse "
+L["Add addon name to world map icon"] = "Addon-Namen zum Weltkarten-Icon hinzufügen"
+L["Add addon name to world map icon Desc"] = "Fügt '{addonName}' am Ende des Tooltips hinzu, wenn man mit der Maus über das Icon fährt."
 L["Add Locale"] = "Installationspfad hinzufügen "
 L["Add Locale Desc"] = "Fügt den Installationspfad des aktuellen Spiels zum {wowheadLink} hinzu. "
 L["Add to / Remove from Watch List"] = "Hinzufügen zur / Löschen von der Beobachtungsliste "
 L["Add to Watch List"] = "Zu {watchList} hinzufügen "
+L["Added in version"] = "Hinzugefügt mit Version"
 L["Adjustable Categories"] = "Anpassbare Kategorien "
 L["Aki the Chosen"] = "Aki die Auserwählte "
 L["Already /loved for achievement"] = "Hat deine Liebe {forAchievement} schon erhalten "
@@ -240,6 +243,7 @@ L["Dragonflight pre-patch - Sandstorms"] = "Dragonflight Pre-patch: Sandstürme 
 L["Dragonflight pre-patch - Snowstorms"] = "Dragonflight Pre-patch: Schneestürme "
 L["Dragonflight pre-patch - Thunderstorms"] = "Dragonflight Pre-patch: Gewitterstürme "
 L["Dragonriding"] = "Drachenreiten "
+L["Dreamsurge"] = "Traumsprünge"
 L["Drops"] = "Beute "
 L["Dueler's Guild"] = "Duellantengilde "
 L["during"] = "während "
@@ -482,7 +486,7 @@ L["Invasions"] = "Invasionen "
 L["is"] = "ist "
 L["Iskaara Flyover"] = "Iskaara-Überflug "
 L["Kafi"] = "Kafi "
-L["Kalimdor Cup"] = "Der Kalimdorpokal "
+L["Kalimdor Cup"] = "Der Kalimdorpokal"
 L["Ka'wi the Gorger"] = "Ka'wi der Schlinger "
 L["Keep current character"] = "Aktuellen Charakter beibehalten "
 L["Keep current character Desc"] = "Behalte den aktuellen Charakter im Tooltip der Charaktere, unabhängig davon, ob der Charakter von der Liste durch die {maxNumChar} abgeschnitten werden würde oder nicht. "
@@ -630,6 +634,7 @@ L["Other"] = "Andere "
 L["Other faction"] = "Andere Fraktion "
 L["Other locations"] = "Weitere... "
 L["Other wings"] = "Weitere Flügel "
+L["Outland Cup"] = "Scherbenwelt Pokal"
 L["Overflow"] = "Überlauf "
 L["Overwatch"] = "Overwatch "
 L["Pandaren"] = "Pandaren "
@@ -741,6 +746,8 @@ L["Set Keybind Desc"] = "Setzen Sie die Tastaturbelegung für den ausgewählten 
 L["Shift"] = "Shift "
 L["Shipyard"] = "Werft "
 L["Show"] = "Zeige "
+L["Show Added in version"] = "Zeige {addedInVersion}"
+L["Show Added in version Desc"] = "{addedInVersion} anzeigen/ausblenden. Wenn diese Option aktiviert ist wird beim jedem Erfolg die Version des Spiels, im Tooltip angezeigt, mit der dieser dem Spiel hinzugefügt wurde."
 L["Show alertSystem on event start Desc"] = "Ein-/Ausblenden des {alertSystem} für ein Ereignis, sobald es beginnt. "
 L["Show alertSystem on event start in instances Desc"] = "Ein-/Ausblenden des {alertSystem} für ein Ereignis, sobald es beginnt, während man sich in einer Instanz befindet. "
 L["Show alertSystem on event start only when time data is available Desc"] = "Das Ereignis {alertSystem} für ein Ereignis das gerade beginnt nur anzeigen/ausblenden, wenn noch eine Restzeit für das Ereignis verfügbar ist."
@@ -785,9 +792,8 @@ L["Show Other faction"] = "Zeige weitere Fraktionen "
 L["Show Other faction Desc"] = [=[Zeige / verstecke {otherFaction}.
 
 Wenn diese Option aktiviert ist, wird der Erfolg der anderen Fraktion im Tooltip angezeigt, sofern verfügbar. Dadurch wird es vielleicht klarer, warum euer neuer Horde-Charakter bestimmte Errungenschaften hat, wenn ihr vorher nur Allianz gespielt habt. ]=]
-L["Show Part of a Chain"] = "Zeige {partOfAChain} "
-L["Show Part of a Chain Desc"] = [=[Zeige / Verstecke {partOfAChain}.
-
+L["Show Part of a chain"] = "Zeige {partOfAChan} "
+L["Show Part of a chain Desc"] = [=[Zeige / Verstecke {partOfAChain}.
 Wenn diese Option aktiviert ist, wird der Serien-Erfolg, zu dem er gehört, im Tooltip angezeigt. ]=]
 L["Show placeholders"] = "Zeige Platzhalter "
 L["Show placeholders Desc"] = "Zeigt eine Reihe von Platzhalter-Ereignissen an, um eine visuelle Anzeige der Wirkung der oben genannten Einstellungen zu ermöglichen. Sie können wieder geschlossen werden, indem Sie die Maus über sie bewegen oder mit der rechten Maustaste darauf klicken. "

@@ -1,5 +1,5 @@
 local addonName, addon = ...;
-local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true, true);
+local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true);
 
 addon.L = L;
 
@@ -8,7 +8,8 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-06 16-56-11 ]] --
+-- [[ Exported at 2023-09-09 15-54-56 ]] --
+L["Tracking"] = true
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -39,6 +40,8 @@ This value can be changed while the achievement window is open and having one of
 (1) FPS drops and stuttering while adjusting the value, NOT during normal addon use]=]
 L["Achievements"] = true
 L["Active events"] = true
+L["Add addon name to world map icon"] = true
+L["Add addon name to world map icon Desc"] = "Add '{addonName}' to the bottom of the tooltip when mousing over the icon."
 L["Add Locale"] = true
 L["Add Locale Desc"] = "Add the current game's locale to the {wowheadLink}."
 L["Add to / Remove from Watch List"] = true
@@ -241,6 +244,7 @@ L["Dragonflight pre-patch - Sandstorms"] = true
 L["Dragonflight pre-patch - Snowstorms"] = true
 L["Dragonflight pre-patch - Thunderstorms"] = true
 L["Dragonriding"] = true
+L["Dreamsurge"] = true
 L["Drops"] = true
 L["Dueler's Guild"] = true
 L["during"] = true
@@ -639,6 +643,7 @@ L["Other"] = true
 L["Other faction"] = true
 L["Other locations"] = true
 L["Other wings"] = true
+L["Outland Cup"] = true
 L["Overflow"] = true
 L["Overwatch"] = true
 L["Pandaren"] = true
@@ -800,8 +805,8 @@ L["Show Other faction"] = true
 L["Show Other faction Desc"] = [=[Show / hide {otherFaction}.
 
 When checked and if available, the other faction's achievement will be visible in the tooltip. This might make it more clear why your fresh Horde character has certain achievements if you only played Alliance before.]=]
-L["Show Part of a Chain"] = "Show {partOfAChain}"
-L["Show Part of a Chain Desc"] = [=[Show / hide {partOfAChain}.
+L["Show Part of a chain"] = "Show {partOfAChain}"
+L["Show Part of a chain Desc"] = [=[Show / hide {partOfAChain}.
 
 When checked, the chain the achievment is part of will be visible in the tooltip.]=]
 L["Show placeholders"] = true
@@ -952,3 +957,8 @@ L["Zaqali Ruin Investigation"] = true
 L["Zaqali Ruin Investigation: Active"] = true
 L["Zaqali Ruin Investigation: Soon"] = true
 L["Zones"] = true
+L["Added in version"]=true
+L["Show Added in version"] = "Show {addedInVersion}"
+L["Show Added in version Desc"] = [=[Show / hide {addedInVersion}.
+
+When checked, the version of the game the achievement was added in will be visible in the tooltip.]=]

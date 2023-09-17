@@ -74,16 +74,17 @@ function header.HookSetPointsText()
     AchievementFrame.Header.PointBorder:SetWidth(175);
 
     hooksecurefunc(AchievementFrame.Header.Points, "SetText", function()
-        -- print("hooked function", addon.InGuildView(), processHook)
-        if not addon.InGuildView() and processHook then
-            local _, points = addon.BuildCache();
-            processHook = false;
-            if addon.Options.db.profile.AchievementPoints.Format == 1 then
-            elseif addon.Options.db.profile.AchievementPoints.Format == 2 then
-                AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points or -1) .. " / " .. BreakUpLargeNumbers(GetTotalAchievementPoints() or -1));
-            elseif addon.Options.db.profile.AchievementPoints.Format == 3 then
-                AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points or -1));
-            end
+        if addon.InGuildView() or not processHook then
+            return;
+        end
+
+        processHook = false;
+        local points = KrowiAF_SavedData.CharacterList[UnitGUID("player")].Points;
+        if addon.Options.db.profile.AchievementPoints.Format == 1 then
+        elseif addon.Options.db.profile.AchievementPoints.Format == 2 then
+            AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points or -1) .. " / " .. BreakUpLargeNumbers(GetTotalAchievementPoints() or -1));
+        elseif addon.Options.db.profile.AchievementPoints.Format == 3 then
+            AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points or -1));
         end
         processHook = true;
     end);

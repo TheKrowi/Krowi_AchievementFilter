@@ -4,6 +4,7 @@ addon.Options.Defaults = {
     profile = {
         ShowMinimapIcon = false,
         ShowWorldmapIcon = true,
+        AddAddonNameToWorldMapIcon = false,
         ResetViewOnOpen = false,
         ToggleWindow = true,
         MicroButtonTab = 1,
@@ -95,6 +96,7 @@ addon.Options.Defaults = {
                     AlwaysShowRealm = false,
                     HideNotEarnedByIfEarnedByCurrentCharacter = false
                 },
+                ShowAddedInVersion = true,
                 ShowPartOfAChain = true,
                 ShowRequiredFor = true,
                 ShowCurrentCharacterIconsPartOfAChain = false,

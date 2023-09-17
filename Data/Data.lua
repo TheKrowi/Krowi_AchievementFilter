@@ -7,6 +7,7 @@ local data = addon.Data;
 data.TasksGroups = {};
 
 data.TransmogSets = {};
+data.BuildVersions = {};
 
 data.Achievements = {};
 data.AchievementIds = {};
@@ -39,17 +40,21 @@ local function PostLoadOnPlayerLogin(self, start)
     self.ExportedWidgetEvents.LoadCategories(self.WidgetEvents, self.Achievements);
     self.ExportedWorldEvents.LoadCategories(self.WorldEvents, self.Achievements);
 
-    addon.BuildCache();
+    local function PostBuildCache()
+        if addon.Tabs["Achievements"] then
+            addon.Tabs["Achievements"].Categories = data.LoadBlizzardTabAchievements(addon.Tabs["Achievements"].Categories);
+        end
 
-    if addon.Tabs["Achievements"] then
-        addon.Tabs["Achievements"].Categories = data.LoadBlizzardTabAchievements(addon.Tabs["Achievements"].Categories);
+        if AchievementFrame and AchievementFrame:IsShown() then
+            addon.GUI.RefreshViewAfterPlayerLogin();
+        end
+
+        addon.Diagnostics.Debug("On Player Login: Finished loading data in " .. floor(debugprofilestop() - start + 0.5) .. " ms");
     end
 
-    if AchievementFrame and AchievementFrame:IsShown() then
-        addon.GUI.RefreshViewAfterPlayerLogin();
-    end
-
-    addon.Diagnostics.Debug("On Player Login: Finished loading data in " .. floor(debugprofilestop() - start + 0.5) .. " ms");
+    addon.BuildCacheAsync(PostBuildCache, function(numOfWork)
+        addon.Diagnostics.Debug(numOfWork .. " remaining after " .. ("%.2d"):format(debugprofilestop() - start) / 1000);
+    end);
 end
 
 function data:LoadOnPlayerLogin()
@@ -58,7 +63,8 @@ function data:LoadOnPlayerLogin()
     self.TemporaryObtainable:Load();
 
     self.ExportedTransmogSets.RegisterTasks(self.TransmogSets);
-    self.ExportedAchievements.RegisterTasks(self.Achievements, self.TransmogSets);
+    self.ExportedBuildVersions.RegisterTasks(self.BuildVersions);
+    self.ExportedAchievements.RegisterTasks(self.Achievements, self.BuildVersions, self.TransmogSets);
     self.ExportedCategories.RegisterTasks(self.Categories, adjustableCategories, self.Achievements, addon.Tabs);
     self.ExportedCalendarEvents.RegisterTasks(self.CalendarEvents);
     self.ExportedWidgetEvents.RegisterTasks(self.WidgetEvents);
