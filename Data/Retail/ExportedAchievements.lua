@@ -40,7 +40,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-17 12-16-06 ]] --
+-- [[ Exported at 2023-09-20 20-35-10 ]] --
 tasks = {
     {N, 19192, 202}, -- Lil' Frostwing
     {N, 19107, 202}, -- Outland Racing Completionist: Gold
@@ -122,6 +122,7 @@ tasks = {
     {N, 18857, 202}, -- That's No Ordinary Gas Cloud!
     {N, 18856, 202}, -- Just an Ordinary Gas Cloud
     {N, 18855, 202}, -- Portal to Everywhere
+    {N, 18854, 202}, -- Seeing Red
     {N, 18853, 202}, -- Seething Flames of Hatred
     {N, 18852, 202}, -- "Weaponsmithing, Reborn"
     {N, 18851, 202}, -- Skeletons in the Lockbox

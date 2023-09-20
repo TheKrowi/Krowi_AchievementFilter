@@ -231,7 +231,7 @@ end
 local function HandleAchievementExistence(achievementInfo)
     local achievementId = achievementInfo.Id;
     if achievementInfo.Exists then
-        addon.Data.AddAchievementIfNil(achievementId, achievementInfo.Points);
+        addon.Data.AddAchievementIfNil(achievementId);
         return true;
     elseif addon.Data.Achievements[achievementId] then
         addon.Data.Achievements[achievementId].DoesNotExist = true;

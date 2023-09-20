@@ -9,3 +9,11 @@
 <li>Updated German translations</li>
 <li>Flagged Arcane Influence as Unobtainable (Never for now as I have no other way to flag event related achievements)</li>
 </ul>
+<p><h3>Added (63.1)</h3></p>
+<ul>
+<li>Seeing Red</li>
+</ul>
+<p><h3>Fixed (63.1)</h3></p>
+<ul>
+<li>Achievements with no "Added in version" should no longer cause errors</li>
+</ul>

@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 63.1 - 2023-09-20
+### Added
+- Seeing Red
+
+### Fixed
+- Achievements with no "Added in version" should no longer cause errors
+
 ## 63.0 - 2023-09-17
 ### Added
 - Missing translation
