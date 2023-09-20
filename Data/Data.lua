@@ -128,9 +128,9 @@ function data.GetCurrentZoneAchievements()
     end
 end
 
-function data.AddAchievementIfNil(id, points)
+function data.AddAchievementIfNil(id)
     if data.Achievements[id] == nil then
-        data.Achievements[id] = addon.Objects.Achievement:New(id, points);
+        data.Achievements[id] = addon.Objects.Achievement:New(id);
         tinsert(data.AchievementIds, id);
     end
 end

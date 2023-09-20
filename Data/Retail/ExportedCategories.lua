@@ -54,7 +54,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-11 20-09-46 ]] --
+-- [[ Exported at 2023-09-20 20-35-40 ]] --
 tasks = {
     {F, 857, "ExcludedCategories"},
     {C, 971, 857},
@@ -5324,6 +5324,7 @@ tasks = {
     {A, 408, 12074}, -- "Shoot First, Loot Later"
     {C, 406, 408},
     {N, 408,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {A, 407, 18854}, -- Seeing Red
     {A, 407, 12073}, -- Locked and Loaded
     {A, 407, 12066}, -- You Are Now Prepared!
     {C, 406, 407},
