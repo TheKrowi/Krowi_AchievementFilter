@@ -17,3 +17,7 @@
 <ul>
 <li>Achievements with no "Added in version" should no longer cause errors</li>
 </ul>
+<p><h3>Fixed (63.2)</h3></p>
+<ul>
+<li>Earned By and Not Earned By in the achievement tooltip should once again work correctly</li>
+</ul>

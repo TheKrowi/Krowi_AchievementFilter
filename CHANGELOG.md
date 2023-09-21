@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 63.2 - 2023-09-21
+### Fixed
+- Earned By and Not Earned By in the achievement tooltip should once again work correctly
+
 ## 63.1 - 2023-09-20
 ### Added
 - Seeing Red

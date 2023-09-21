@@ -75,12 +75,17 @@ function achievementData.IgnoreAchievement(achievementInfo)
     return achievementInfo.Points < 0 or achievementInfo.IsStatistic or achievementInfo.IsGuild or not achievementInfo.Exists;
 end
 
-function achievementData.IsEarnedByCharacter(characterGuid, achievementId)
-    local achievement = KrowiAF_Achievements.Completed[achievementId];
+function achievementData.IsEarnedByCharacter(characterGuid, achievement)
+    local achievement = KrowiAF_Achievements.Completed[achievement.Id];
     if not achievement then
         return false;
     end
-    return (achievement.EarnedBy and achievement.EarnedBy[characterGuid]) or achievement.FirstCompletedOn;
+
+    if achievement.IsAccountWide then
+        return achievement.FirstCompletedOn;
+    end
+
+    return achievement.EarnedBy and achievement.EarnedBy[characterGuid] or false;
 end
 
 function achievementData.GetEarnedByCharacter(characterGuid)

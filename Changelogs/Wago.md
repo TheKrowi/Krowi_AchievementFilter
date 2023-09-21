@@ -12,3 +12,6 @@
 
 ### Fixed (63.1)
 - Achievements with no "Added in version" should no longer cause errors
+
+### Fixed (63.2)
+- Earned By and Not Earned By in the achievement tooltip should once again work correctly
