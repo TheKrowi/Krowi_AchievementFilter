@@ -37,8 +37,12 @@ local function PostLoadOnPlayerLogin(self, start)
     custom.max = #self.AchievementIds;
 
     self.ExportedCalendarEvents.LoadCategories(self.CalendarEvents, self.Achievements);
-    self.ExportedWidgetEvents.LoadCategories(self.WidgetEvents, self.Achievements);
-    self.ExportedWorldEvents.LoadCategories(self.WorldEvents, self.Achievements);
+    if self.ExportedWidgetEvents then
+        self.ExportedWidgetEvents.LoadCategories(self.WidgetEvents, self.Achievements);
+    end
+    if self.ExportedWorldEvents then
+        self.ExportedWorldEvents.LoadCategories(self.WorldEvents, self.Achievements);
+    end
 
     local function PostBuildCache()
         if addon.Tabs["Achievements"] then
@@ -67,8 +71,12 @@ function data:LoadOnPlayerLogin()
     self.ExportedAchievements.RegisterTasks(self.Achievements, self.BuildVersions, self.TransmogSets);
     self.ExportedCategories.RegisterTasks(self.Categories, adjustableCategories, self.Achievements, addon.Tabs);
     self.ExportedCalendarEvents.RegisterTasks(self.CalendarEvents);
-    self.ExportedWidgetEvents.RegisterTasks(self.WidgetEvents);
-    self.ExportedWorldEvents.RegisterTasks(self.WorldEvents);
+    if self.ExportedWidgetEvents then
+        self.ExportedWidgetEvents.RegisterTasks(self.WidgetEvents);
+    end
+    if self.ExportedWorldEvents then
+        self.ExportedWorldEvents.RegisterTasks(self.WorldEvents);
+    end
     if not addon.Util.IsWrathClassic then
         self.ExportedPetBattles.RegisterTasks(self.RightClickMenuExtras);
     end

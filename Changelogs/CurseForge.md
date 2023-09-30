@@ -1,19 +1,14 @@
-<p><h3>Added</h3></p>
-<ul>
-<li>Missing translation</li>
-<li>"Added in version" to the tooltip with options to disable it (filters coming later)</li>
-</ul>
 <p><h3>Changed</h3></p>
 <ul>
-<li>Loading cache data is now more efficient and should not cause any frame drops</li>
-<li>Updated German translations</li>
-<li>Flagged Arcane Influence as Unobtainable (Never for now as I have no other way to flag event related achievements)</li>
+<li>Certain events that are different per region (EU, US, ...) are now handled as one</li>
+<li>Data structure for events</li>
 </ul>
-<p><h3>Added (63.1)</h3></p>
+<p><h3>Fixed</h3></p>
 <ul>
-<li>Seeing Red</li>
+<li>Turbulent Timeways event is now working for all regions</li>
+<li>Pre-emptive fix for GW2 UI plugin in 10.2</li>
 </ul>
-<p><h3>Fixed (63.1)</h3></p>
+<p><h3>Wrath Classic</h3></p>
 <ul>
-<li>Achievements with no "Added in version" should no longer cause errors</li>
+<li>Defense Protocol Gamma achievements (16)</li>
 </ul>

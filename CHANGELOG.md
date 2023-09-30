@@ -1,6 +1,22 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 64.0 - 2023-09-30
+### Changed
+- Certain events that are different per region (EU, US, ...) are now handled as one
+- Data structure for events
+
+### Fixed
+- Turbulent Timeways event is now working for all regions
+- Pre-emptive fix for GW2 UI plugin in 10.2
+
+### Wrath Classic
+- Defense Protocol Gamma achievements (16)
+
+## 63.2 - 2023-09-21
+### Fixed
+- Earned By and Not Earned By in the achievement tooltip should once again work correctly
+
 ## 63.1 - 2023-09-20
 ### Added
 - Seeing Red

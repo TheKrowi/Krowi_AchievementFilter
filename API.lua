@@ -330,19 +330,21 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 end
 
 do --[[ KrowiAF_RegisterEventOptions ]]
-	local function InjectOptionsDefaults(eventType, eventId, hideByDefault)
+	local function InjectOptionsDefaults(eventType, eventIds, hideByDefault)
 		if hideByDefault == nil then
 			hideByDefault = false;
 		end
 		if not addon.InjectOptions:DefaultsExists("EventReminders." .. eventType .. "Events") then
 			addon.InjectOptions:AddDefaults("EventReminders", eventType .. "Events", { });
 		end
-		addon.InjectOptions:AddDefaults("EventReminders." .. eventType .. "Events", eventId, not hideByDefault);
+		for _, eventId in next, eventIds do
+			addon.InjectOptions:AddDefaults("EventReminders." .. eventType .. "Events", eventId, not hideByDefault);
+		end
 	end
 
 	local OrderPP = addon.InjectOptions.AutoOrderPlusPlus;
 	local AdjustedWidth = addon.InjectOptions.AdjustedWidth;
-	local function InjectOptionsTable(eventType, groupName, groupDisplayName, eventId, eventDisplayName)
+	local function InjectOptionsTable(eventType, groupName, groupDisplayName, eventIds, eventDisplayName)
 		if not addon.InjectOptions:TableExists("EventReminders.args." .. eventType .. "Events.args." .. groupName) then
 			addon.InjectOptions:AddTable("EventReminders.args." .. eventType .. "Events.args", groupName, {
 				order = OrderPP(), type = "group",
@@ -350,20 +352,22 @@ do --[[ KrowiAF_RegisterEventOptions ]]
 				args = {}
 			});
 		end
-		addon.InjectOptions:AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", tostring(eventId), {
+		addon.InjectOptions:AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", tostring(eventIds[1]), {
 			order = OrderPP(), type = "toggle", width = AdjustedWidth(),
 			name = eventDisplayName,
-			get = function() return addon.Options.db.profile.EventReminders[eventType .. "Events"][eventId]; end,
+			get = function() return addon.Options.db.profile.EventReminders[eventType .. "Events"][eventIds[1]]; end,
 			set = function(_, value)
-				addon.Options.db.profile.EventReminders[eventType .. "Events"][eventId] = value;
+				for _, eventId in next, eventIds do
+					addon.Options.db.profile.EventReminders[eventType .. "Events"][eventId] = value;
+				end
 				addon.GUI.SideButtonSystem.Refresh();
 			end
 		});
 	end
 
-	function KrowiAF_RegisterEventOptions(eventType, groupName, groupDisplayName, eventId, eventDisplayName, hideByDefault)
-		InjectOptionsDefaults(eventType, eventId, hideByDefault);
-		InjectOptionsTable(eventType, groupName, groupDisplayName, eventId, eventDisplayName);
+	function KrowiAF_RegisterEventOptions(eventType, groupName, groupDisplayName, eventIds, eventDisplayName, hideByDefault)
+		InjectOptionsDefaults(eventType, eventIds, hideByDefault);
+		InjectOptionsTable(eventType, groupName, groupDisplayName, eventIds, eventDisplayName);
 	end
 
 	function KrowiAF_RegisterDeSelectAllEventOptions(eventType, groupName, eventIds)

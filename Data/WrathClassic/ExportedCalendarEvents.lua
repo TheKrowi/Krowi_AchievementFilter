@@ -23,7 +23,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-04 19-09-22 ]] --
+-- [[ Exported at 2023-09-30 11-18-51 ]] --
 tasks = {
     {N, 141, 236705}, -- Feast of Winter Veil
     {N, 181, 237000}, -- Noblegarden
@@ -55,18 +55,18 @@ function exportedCalendarEvents.LoadCategories(e)
 end
 
 function exportedCalendarEvents.InjectDynamicOptions()
-    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], 141, addon.L["Feast of Winter Veil"]);
-    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], 181, addon.L["Noblegarden"]);
-    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], 201, addon.L["Children's Week"]);
-    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], 324, addon.L["Hallow's End"]);
-    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], 327, addon.L["Lunar Festival"]);
-    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], 341, addon.L["Midsummer Fire Festival"]);
-    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], 372, addon.L["Brewfest"]);
-    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], 398, addon.L["Pirates' Day"]);
-    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], 404, addon.L["Pilgrim's Bounty"]);
-    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], 409, addon.L["Day of the Dead"]);
-    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], 423, addon.L["Love is in the Air"]);
+    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], {141}, addon.L["Feast of Winter Veil"]);
+    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], {181}, addon.L["Noblegarden"]);
+    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], {201}, addon.L["Children's Week"]);
+    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], {324}, addon.L["Hallow's End"]);
+    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], {327}, addon.L["Lunar Festival"]);
+    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], {341}, addon.L["Midsummer Fire Festival"]);
+    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], {372}, addon.L["Brewfest"]);
+    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], {398}, addon.L["Pirates' Day"]);
+    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], {404}, addon.L["Pilgrim's Bounty"]);
+    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], {409}, addon.L["Day of the Dead"]);
+    KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], {423}, addon.L["Love is in the Air"]);
     KrowiAF_RegisterDeSelectAllEventOptions("Calendar", "Holidays", { 141, 181, 201, 324, 327, 341, 372, 398, 404, 409, 423 });
-    KrowiAF_RegisterEventOptions("Calendar", "Other", addon.L["Other"], 374, addon.L["Darkmoon Faire"]);
+    KrowiAF_RegisterEventOptions("Calendar", "Other", addon.L["Other"], {374}, addon.L["Darkmoon Faire"]);
     KrowiAF_RegisterDeSelectAllEventOptions("Calendar", "Other", { 374 });
 end

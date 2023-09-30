@@ -10,10 +10,6 @@ function exportedWidgetEvents.RegisterTasks(_widgetEvents)
     widgetEvents = _widgetEvents;
     wipe(widgetEvents);
 
-    if addon.IsWrathClassic then
-        return;
-    end
-
     local name = "Widget Events";
     data.InjectLoadingDebug(tasks, name);
 
@@ -27,7 +23,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-04 19-09-22 ]] --
+-- [[ Exported at 2023-09-30 11-18-51 ]] --
 tasks = {
     {N, 4729, 4240492, addon.L["Community Feast: Starting Soon"]}, -- Community Feast: Starting Soon
     {N, 4731, 4240492, addon.L["Community Feast: Active"]}, -- Community Feast: Active
@@ -36,10 +32,6 @@ tasks = {
 };
 
 function exportedWidgetEvents.LoadCategories(e)
-    if addon.IsWrathClassic then
-        return;
-    end
-
     e[4729].Category = addon.Tabs["Events"].Categories[15].Children[3]; -- Community Feast
     e[4731].Category = addon.Tabs["Events"].Categories[15].Children[3]; -- Community Feast
     e[4987].Category = addon.Tabs["Events"].Categories[15].Children[6]; -- Time Rifts
@@ -47,14 +39,10 @@ function exportedWidgetEvents.LoadCategories(e)
 end
 
 function exportedWidgetEvents.InjectDynamicOptions()
-    if addon.IsWrathClassic then
-        return;
-    end
-
-    KrowiAF_RegisterEventOptions("Widget", "Community_Feast", addon.L["Community Feast"], 4729, addon.L["Community Feast: Starting Soon"]);
-    KrowiAF_RegisterEventOptions("Widget", "Community_Feast", addon.L["Community Feast"], 4731, addon.L["Community Feast: Active"]);
+    KrowiAF_RegisterEventOptions("Widget", "Community_Feast", addon.L["Community Feast"], {4729}, addon.L["Community Feast: Starting Soon"]);
+    KrowiAF_RegisterEventOptions("Widget", "Community_Feast", addon.L["Community Feast"], {4731}, addon.L["Community Feast: Active"]);
     KrowiAF_RegisterDeSelectAllEventOptions("Widget", "Community_Feast", { 4729, 4731 });
-    KrowiAF_RegisterEventOptions("Widget", "Time_Rifts", addon.L["Time Rifts"], 4987, addon.L["Time Rift: Active"]);
-    KrowiAF_RegisterEventOptions("Widget", "Time_Rifts", addon.L["Time Rifts"], 4992, addon.L["Time Rift: Starting Soon"]);
+    KrowiAF_RegisterEventOptions("Widget", "Time_Rifts", addon.L["Time Rifts"], {4987}, addon.L["Time Rift: Active"]);
+    KrowiAF_RegisterEventOptions("Widget", "Time_Rifts", addon.L["Time Rifts"], {4992}, addon.L["Time Rift: Starting Soon"]);
     KrowiAF_RegisterDeSelectAllEventOptions("Widget", "Time_Rifts", { 4987, 4992 });
 end

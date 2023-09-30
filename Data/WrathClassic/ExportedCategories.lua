@@ -54,7 +54,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-20 20-35-41 ]] --
+-- [[ Exported at 2023-09-30 12-03-21 ]] --
 tasks = {
     {F, 857, "ExcludedCategories"},
     {C, 971, 857},
@@ -1452,6 +1452,8 @@ tasks = {
     {A, 99, 4522}, -- Soul Power
     {C, 84, 99},
     {N, 99,k.GetInstanceInfoName(280)}, -- The Forge of Souls
+    {A, 98, 19425}, -- Defense Protocol Gamma: Trial of the Champion
+    {A, 98, 19426}, -- Defense Protocol Gamma: Trial of the Champion
     {A, 98, 18678}, -- Defense Protocol Beta: Trial of the Champion
     {A, 98, 18677}, -- Defense Protocol Beta: Trial of the Champion
     {A, 98, 4297}, -- Heroic: Trial of the Champion
@@ -1463,6 +1465,7 @@ tasks = {
     {A, 98, 3803}, -- The Faceroller
     {C, 84, 98},
     {N, 98,k.GetInstanceInfoName(284)}, -- Trial of the Champion
+    {A, 96, 19438}, -- Defense Protocol Gamma: The Culling of Stratholme
     {A, 96, 18601}, -- Defense Protocol Beta: The Culling of Stratholme
     {A, 96, 17302}, -- Defense Protocol Alpha: The Culling of Stratholme
     {A, 96, 500}, -- Heroic: The Culling of Stratholme
@@ -1471,6 +1474,7 @@ tasks = {
     {A, 96, 1872}, -- Zombiefest!
     {C, 84, 96},
     {N, 96,k.GetInstanceInfoName(279)}, -- The Culling of Stratholme
+    {A, 97, 19437}, -- Defense Protocol Gamma: Utgarde Pinnacle
     {A, 97, 18600}, -- Defense Protocol Beta: Utgarde Pinnacle
     {A, 97, 17301}, -- Defense Protocol Alpha: Utgarde Pinnacle
     {A, 97, 499}, -- Heroic: Utgarde Pinnacle
@@ -1481,6 +1485,7 @@ tasks = {
     {A, 97, 2043}, -- The Incredible Hulk
     {C, 84, 97},
     {N, 97,k.GetInstanceInfoName(286)}, -- Utgarde Pinnacle
+    {A, 95, 19436}, -- Defense Protocol Gamma: The Oculus
     {A, 95, 18599}, -- Defense Protocol Beta: The Oculus
     {A, 95, 17300}, -- Defense Protocol Alpha: The Oculus
     {A, 95, 498}, -- Heroic: The Oculus
@@ -1492,6 +1497,7 @@ tasks = {
     {A, 95, 1868}, -- Make It Count
     {C, 84, 95},
     {N, 95,k.GetInstanceInfoName(282)}, -- The Oculus
+    {A, 94, 19435}, -- Defense Protocol Gamma: Halls of Lightning
     {A, 94, 18598}, -- Defense Protocol Beta: Halls of Lightning
     {A, 94, 17299}, -- Defense Protocol Alpha: Halls of Lightning
     {A, 94, 497}, -- Heroic: Halls of Lightning
@@ -1501,6 +1507,7 @@ tasks = {
     {A, 94, 1834}, -- Lightning Struck
     {C, 84, 94},
     {N, 94,k.GetInstanceInfoName(275)}, -- Halls of Lightning
+    {A, 93, 19434}, -- Defense Protocol Gamma: Halls of Stone
     {A, 93, 18597}, -- Defense Protocol Beta: Halls of Stone
     {A, 93, 17297}, -- Defense Protocol Alpha: Halls of Stone
     {A, 93, 496}, -- Heroic: Halls of Stone
@@ -1510,6 +1517,7 @@ tasks = {
     {A, 93, 1866}, -- Good Grief
     {C, 84, 93},
     {N, 93,k.GetInstanceInfoName(277)}, -- Halls of Stone
+    {A, 92, 19433}, -- Defense Protocol Gamma: Gundrak
     {A, 92, 18596}, -- Defense Protocol Beta: Gundrak
     {A, 92, 17295}, -- Defense Protocol Alpha: Gundrak
     {A, 92, 495}, -- Heroic: Gundrak
@@ -1520,6 +1528,7 @@ tasks = {
     {A, 92, 2058}, -- Snakes. Why'd It Have To Be Snakes?
     {C, 84, 92},
     {N, 92,k.GetInstanceInfoName(274)}, -- Gundrak
+    {A, 91, 19432}, -- Defense Protocol Gamma: The Violet Hold
     {A, 91, 18595}, -- Defense Protocol Beta: The Violet Hold
     {A, 91, 17293}, -- Defense Protocol Alpha: The Violet Hold
     {A, 91, 494}, -- Heroic: The Violet Hold
@@ -1530,6 +1539,7 @@ tasks = {
     {A, 91, 1865}, -- Lockdown!
     {C, 84, 91},
     {N, 91,k.GetInstanceInfoName(283)}, -- The Violet Hold
+    {A, 90, 19431}, -- Defense Protocol Gamma: Drak'Tharon Keep
     {A, 90, 18594}, -- Defense Protocol Beta: Drak'Tharon Keep
     {A, 90, 17292}, -- Defense Protocol Alpha: Drak'Tharon Keep
     {A, 90, 493}, -- Heroic: Drak'Tharon Keep
@@ -1539,6 +1549,7 @@ tasks = {
     {A, 90, 2151}, -- Consumption Junction
     {C, 84, 90},
     {N, 90,k.GetInstanceInfoName(273)}, -- Drak'Tharon Keep
+    {A, 89, 19430}, -- Defense Protocol Gamma: Ahn'kahet: The Old Kingdom
     {A, 89, 18593}, -- Defense Protocol Beta: Ahn'kahet: The Old Kingdom
     {A, 89, 17291}, -- Defense Protocol Alpha: Ahn'kahet: The Old Kingdom
     {A, 89, 492}, -- Heroic: Ahn'kahet: The Old Kingdom
@@ -1548,6 +1559,7 @@ tasks = {
     {A, 89, 2038}, -- Respect Your Elders
     {C, 84, 89},
     {N, 89,k.GetInstanceInfoName(271)}, -- Ahn'kahet: The Old Kingdom
+    {A, 88, 19429}, -- Defense Protocol Gamma: Azjol-Nerub
     {A, 88, 18592}, -- Defense Protocol Beta: Azjol-Nerub
     {A, 88, 17285}, -- Defense Protocol Alpha: Azjol-Nerub
     {A, 88, 491}, -- Heroic: Azjol-Nerub
@@ -1557,6 +1569,7 @@ tasks = {
     {A, 88, 1296}, -- Watch Him Die
     {C, 84, 88},
     {N, 88,k.GetInstanceInfoName(272)}, -- Azjol-Nerub
+    {A, 87, 19428}, -- Defense Protocol Gamma: The Nexus
     {A, 87, 18591}, -- Defense Protocol Beta: The Nexus
     {A, 87, 17283}, -- Defense Protocol Alpha: The Nexus
     {A, 87, 490}, -- Heroic: The Nexus
@@ -1566,6 +1579,7 @@ tasks = {
     {A, 87, 2150}, -- Split Personality
     {C, 84, 87},
     {N, 87,k.GetInstanceInfoName(281)}, -- The Nexus
+    {A, 86, 19427}, -- Defense Protocol Gamma: Utgarde Keep
     {A, 86, 18590}, -- Defense Protocol Beta: Utgarde Keep
     {A, 86, 17213}, -- Defense Protocol Alpha: Utgarde Keep
     {A, 86, 489}, -- Heroic: Utgarde Keep
@@ -1593,6 +1607,8 @@ tasks = {
     {A, 84, 2018}, -- Timear Foresees
     {A, 84, 2136}, -- Glory of the Hero
     {A, 84, 1658}, -- Champion of the Frozen Wastes
+    {A, 84, 19440}, -- Defense Protocol Gamma: Terminated
+    {A, 84, 19439}, -- Defense Protocol Gamma: Terminated
     {A, 84, 18688}, -- Defense Protocol Beta: Terminated
     {A, 84, 18614}, -- Defense Protocol Beta: Terminated
     {A, 84, 17304}, -- Defense Protocol Alpha: Terminated

@@ -32,10 +32,12 @@ do -- [[ Shared ]]
         track:SetPoint("TOPLEFT", self.Back, "BOTTOMLEFT", 0, 0);
         track:SetPoint("BOTTOMRIGHT", self.Forward, "TOPRIGHT", 0, 0);
         local backdrop = self.Track.Thumb.backdrop;
-        backdrop:ClearAllPoints();
-        backdrop:SetPoint("TOP", 0, -1);
-        backdrop:SetPoint("BOTTOM", 0, 1);
-        backdrop:SetWidth(12);
+        if backdrop then
+            backdrop:ClearAllPoints();
+            backdrop:SetPoint("TOP", 0, -1);
+            backdrop:SetPoint("BOTTOM", 0, 1);
+            backdrop:SetWidth(12);
+        end
 
         local bgTrack = track:CreateTexture(nil, "BACKGROUND", nil, 0);
         bgTrack:ClearAllPoints();
