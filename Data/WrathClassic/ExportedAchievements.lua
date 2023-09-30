@@ -40,8 +40,24 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-20 20-35-35 ]] --
+-- [[ Exported at 2023-09-30 12-02-04 ]] --
 tasks = {
+    {N, 19440, 204, f.Horde}, -- Defense Protocol Gamma: Terminated
+    {N, 19439, 204, f.Alliance}, -- Defense Protocol Gamma: Terminated
+    {N, 19438, 204}, -- Defense Protocol Gamma: The Culling of Stratholme
+    {N, 19437, 204}, -- Defense Protocol Gamma: Utgarde Pinnacle
+    {N, 19436, 204}, -- Defense Protocol Gamma: The Oculus
+    {N, 19435, 204}, -- Defense Protocol Gamma: Halls of Lightning
+    {N, 19434, 204}, -- Defense Protocol Gamma: Halls of Stone
+    {N, 19433, 204}, -- Defense Protocol Gamma: Gundrak
+    {N, 19432, 204}, -- Defense Protocol Gamma: The Violet Hold
+    {N, 19431, 204}, -- Defense Protocol Gamma: Drak'Tharon Keep
+    {N, 19430, 204}, -- Defense Protocol Gamma: Ahn'kahet: The Old Kingdom
+    {N, 19429, 204}, -- Defense Protocol Gamma: Azjol-Nerub
+    {N, 19428, 204}, -- Defense Protocol Gamma: The Nexus
+    {N, 19427, 204}, -- Defense Protocol Gamma: Utgarde Keep
+    {N, 19426, 204, f.Alliance}, -- Defense Protocol Gamma: Trial of the Champion
+    {N, 19425, 204, f.Horde}, -- Defense Protocol Gamma: Trial of the Champion
     {N, 18688, 203, f.Horde}, -- Defense Protocol Beta: Terminated
     {N, 18678, 203, f.Horde}, -- Defense Protocol Beta: Trial of the Champion
     {N, 18677, 203, f.Alliance}, -- Defense Protocol Beta: Trial of the Champion
@@ -1611,4 +1627,4 @@ tasks = {
     {N, 7, 194}, -- Level 20
     {N, 6, 194}, -- Level 10
 };
-data.HighestAchievementId = 18688;
+data.HighestAchievementId = 19440;
