@@ -14,3 +14,13 @@
 [LIST]
 [*]Defense Protocol Gamma achievements (16)
 [/LIST]
+
+[B]Added (64.1)[/B]
+[LIST]
+[*]Warcraft Rumble promotion achievements (17)
+[/LIST]
+
+[B]Wrath Classic (64.1)[/B]
+[LIST]
+[*]German language problems should be resolved
+[/LIST]

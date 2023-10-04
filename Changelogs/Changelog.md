@@ -8,3 +8,9 @@
 
 ### Wrath Classic
 - Defense Protocol Gamma achievements (16)
+
+### Added (64.1)
+- Warcraft Rumble promotion achievements (17)
+
+### Wrath Classic (64.1)
+- German language problems should be resolved

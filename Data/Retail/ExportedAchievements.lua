@@ -40,7 +40,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-30 12-01-40 ]] --
+-- [[ Exported at 2023-10-04 18-09-12 ]] --
 tasks = {
     {N, 19192, 202}, -- Lil' Frostwing
     {N, 19107, 202}, -- Outland Racing Completionist: Gold
@@ -55,8 +55,6 @@ tasks = {
     {N, 19098, 202}, -- Outland: Gold
     {N, 19097, 202}, -- Outland: Silver
     {N, 19092, 202}, -- Outland: Bronze
-    {O, 19080, "Never" },
-    {N, 19080, 202}, -- Arcane Influence
     {N, 19079, 202}, -- Master of the Turbulent Timeways
     {N, 19008, 202}, -- Dream Shaper
     {N, 18977, 201}, -- Draconically Epic
@@ -531,7 +529,24 @@ tasks = {
     {N, 17397, 199}, -- Door To Door
     {N, 17367, 199}, -- Deadliest Cache
     {N, 17366, 199}, -- Relics of a Fallen Empire
+    {N, 17361, 202}, -- "Rumble Minis, All the Looks!"
+    {N, 17360, 202}, -- "Warcraft Rumble Minis, New Looks!"
+    {N, 17359, 202}, -- "Warcraft Rumble Minis, Whelp Egg's Newer Look"
+    {N, 17358, 202}, -- "Warcraft Rumble Minis, Murloc's Newer Look"
+    {N, 17357, 202}, -- "Warcraft Rumble Minis, Ghoul's Newer Look"
+    {N, 17356, 202}, -- "Warcraft Rumble Minis, Tauren's Newer Look"
+    {N, 17355, 202}, -- "Warcraft Rumble Minis, Huntress' Newer Look"
+    {N, 17354, 202}, -- "Warcraft Rumble Minis, Sneed's Newer Look"
+    {N, 17353, 202}, -- "Warcraft Rumble Minis, Maiev's Newer Look"
+    {N, 17352, 202}, -- "Warcraft Rumble Minis, Whelp Egg's New Look"
+    {N, 17351, 202}, -- "Warcraft Rumble Minis, Murloc's  New Look"
+    {N, 17350, 202}, -- "Warcraft Rumble Minis, Ghoul's New Look"
+    {N, 17349, 202}, -- "Warcraft Rumble Minis, Tauren's  New Look"
+    {N, 17348, 202}, -- "Warcraft Rumble Minis, Huntress' New Look"
+    {N, 17347, 202}, -- "Warcraft Rumble Minis, Sneed's New Look"
+    {N, 17346, 202}, -- "Warcraft Rumble Minis, Maiev's New Look"
     {N, 17345, 198, nil, nil, true}, -- Airborne Tumbler
+    {N, 17344, 202}, -- "Warcraft Rumble Minis, Get 'Em All!"
     {N, 17343, 198}, -- Drop It Like It's Hot
     {N, 17342, 198}, -- The Future We Make
     {O, 17339, "From", "PvP Season", 34, "Until", "PvP Season", 34},

@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 64.1 - 2023-10-05
+### Added
+- Warcraft Rumble promotion achievements (17)
+
+### Wrath Classic
+- German language problems should be resolved
+
 ## 64.0 - 2023-09-30
 ### Changed
 - Certain events that are different per region (EU, US, ...) are now handled as one

@@ -54,7 +54,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-30 12-03-21 ]] --
+-- [[ Exported at 2023-10-04 18-10-01 ]] --
 tasks = {
     {F, 857, "ExcludedCategories"},
     {C, 971, 857},
@@ -93,6 +93,8 @@ tasks = {
     {A, 1346, 3478}, -- Pilgrim
     {C, 971, 1346},
     {N, 1346,k.L["Ta's Pet Collection"]}, -- Ta's Pet Collection
+    {C, 1117, 1539},
+    {N, 1539,k.L["Warcraft Rumble"], true}, -- Warcraft Rumble
     {C, 1117, 1125},
     {N, 1125,k.L["Warcraft III: Reforged"], true}, -- Warcraft III: Reforged
     {C, 1117, 1124},
