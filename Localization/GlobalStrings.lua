@@ -38,8 +38,10 @@ function addon.GetMapName(uiMapID)
     return mapInfo and mapInfo.name or uiMapID;
 end
 
--- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
--- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
+if not addon.Util.IsWrathClassic then -- Wrath Classic does not have these and no fallback exists
+    L["Completed"] = CRITERIA_COMPLETED;
+    L["Not Completed"] = CRITERIA_NOT_COMPLETED;
+end
 
 L["Expansion"] = EXPANSION_FILTER_TEXT;
 L["Classic"] = EXPANSION_NAME0;
@@ -56,8 +58,6 @@ L["Garrison"] = GARRISON_LOCATION_TOOLTIP;
 L["Cities"] = BUG_CATEGORY4;
 L["Mythic"] = PLAYER_DIFFICULTY6;
 L["Heroic"] = PLAYER_DIFFICULTY2;
-L["Completed"] = CRITERIA_COMPLETED;
-L["Not Completed"] = CRITERIA_NOT_COMPLETED;
 L["Faction"] = FACTION;
 L["Neutral"] = FACTION_NEUTRAL or FACTION_STANDING_LABEL4; -- Wrath Classic fallback FACTION_STANDING_LABEL4
 L["Alliance"] = FACTION_ALLIANCE;

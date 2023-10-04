@@ -54,7 +54,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-30 12-03-20 ]] --
+-- [[ Exported at 2023-10-04 18-10-00 ]] --
 tasks = {
     {F, 857, "ExcludedCategories"},
     {C, 971, 857},
@@ -145,6 +145,25 @@ tasks = {
     {A, 1346, 8820}, -- WoW's 10th Anniversary
     {C, 971, 1346},
     {N, 1346,k.L["Ta's Pet Collection"]}, -- Ta's Pet Collection
+    {A, 1539, 17361}, -- "Rumble Minis, All the Looks!"
+    {A, 1539, 17360}, -- "Warcraft Rumble Minis, New Looks!"
+    {A, 1539, 17344}, -- "Warcraft Rumble Minis, Get 'Em All!"
+    {A, 1539, 17359}, -- "Warcraft Rumble Minis, Whelp Egg's Newer Look"
+    {A, 1539, 17352}, -- "Warcraft Rumble Minis, Whelp Egg's New Look"
+    {A, 1539, 17358}, -- "Warcraft Rumble Minis, Murloc's Newer Look"
+    {A, 1539, 17351}, -- "Warcraft Rumble Minis, Murloc's  New Look"
+    {A, 1539, 17357}, -- "Warcraft Rumble Minis, Ghoul's Newer Look"
+    {A, 1539, 17350}, -- "Warcraft Rumble Minis, Ghoul's New Look"
+    {A, 1539, 17356}, -- "Warcraft Rumble Minis, Tauren's Newer Look"
+    {A, 1539, 17349}, -- "Warcraft Rumble Minis, Tauren's  New Look"
+    {A, 1539, 17355}, -- "Warcraft Rumble Minis, Huntress' Newer Look"
+    {A, 1539, 17348}, -- "Warcraft Rumble Minis, Huntress' New Look"
+    {A, 1539, 17354}, -- "Warcraft Rumble Minis, Sneed's Newer Look"
+    {A, 1539, 17347}, -- "Warcraft Rumble Minis, Sneed's New Look"
+    {A, 1539, 17353}, -- "Warcraft Rumble Minis, Maiev's Newer Look"
+    {A, 1539, 17346}, -- "Warcraft Rumble Minis, Maiev's New Look"
+    {C, 1117, 1539},
+    {N, 1539,k.L["Warcraft Rumble"], true}, -- Warcraft Rumble
     {A, 1125, 13196}, -- Meat Marauder
     {C, 1117, 1125},
     {N, 1125,k.L["Warcraft III: Reforged"], true}, -- Warcraft III: Reforged
@@ -2053,7 +2072,6 @@ tasks = {
     {A, 951, 13931}, -- "Memories of Fel, Frost and Fire"
     {C, 884, 951},
     {N, 951,k.GetCategoryInfoTitle(15454)}, -- Timewalking
-    {A, 1452, 19080}, -- Arcane Influence
     {A, 1452, 18646}, -- Whodunnit?
     {A, 1452, 18645}, -- Tools of the Trade
     {A, 1452, 18644}, -- Community Rumor Mill

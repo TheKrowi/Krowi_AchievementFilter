@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-17 08-51-05 ]] --
+-- [[ Exported at 2023-10-01 17-52-39 ]] --
 L["%c"] = "%c "
 L["%d/%m/%Y %I:%M %p"] = "%d/%m/%Y %I:%M %p "
 L["%m/%d/%Y %I:%M %p"] = "%m/%d/%Y %I:%M %p "
@@ -93,7 +93,7 @@ L["Burning Pandaren Spirit"] = "Brennender Pandarengeist "
 L["Bur's Mount Collection"] = "Bur's Reittier Collection "
 L["Button"] = "Button "
 L["Calendar"] = "Kalender "
-L["Calendar Desc"] = [=[Erscheinungsbild des {Kalenders}.
+L["Calendar Desc"] = [=[Erscheinungsbild des {calendar}.
 
 |T:1:8|t- Die Anzahl der Erfolge und Punkte oben sind die verdienten Erfolge und Punkte für den aktuellen sichtbaren Monat und nicht für alle sichtbaren Tage.
 |T:1:8|t- Navigieren Sie zum vorherigen und nächsten Monat, indem Sie auf die Schaltflächen oben neben dem Monat klicken oder das Scrollrad verwenden.
@@ -251,11 +251,14 @@ L["Earned By"] = "Erzielt durch "
 L["Earned By Desc"] = [=[Header
 |T:1:8|t- {achievementPointsEarnedBy}: Zeigt {achievementPointsEarnedBy_wc} Ihren aktuellen Charakter und/oder {achievementPointsEarnedBy_wc} Ihren Account an ({achievementPointsEarnedByFormat}) (1).
 |T:1:8|t- {tooltip}: Übersicht darüber, welcher Charakter wie viele Erfolgspunkte verdient hat. Jeder Charakter muss mindestens einmal eingeloggt sein, um in diese Liste aufgenommen zu werden. Zeigt den Realm des Charakters an, wenn er unterschiedlich ist. Kann in den Optionen (1) so eingestellt werden, dass er immer angezeigt wird: Erfolge werden berücksichtigt, wenn sie mit einem beliebigen Charakter Ihres Kontos erzielt wurden (Standard).
-|T:1:8|t- {Charakter}: Erfolge werden gesättigt, wenn sie mit dem aktuellen Charakter erzielt wurden, und teilweise gesättigt, wenn sie mit einem anderen Charakter auf dem Konto, aber nicht mit dem aktuellen Charakter erzielt wurden.
+
+|T:1:8|t- {character}: Erfolge werden gesättigt, wenn sie mit dem aktuellen Charakter erzielt wurden, und teilweise gesättigt, wenn sie mit einem anderen Charakter auf dem Konto, aber nicht mit dem aktuellen Charakter erzielt wurden.
 
 Tooltip
-|T:1:8|t- {earnedBy}: Zeigt {earnedByNumber} Charaktere an, die den Erfolg verdient haben (2). Fraktions-exklusive Errungenschaften mit einem verknüpften Gegenstück werden berücksichtigt. D.h. Allianz-Charaktere können für Horden-Erfolge auftauchen. Zeigt den Realm des Charakters an, wenn er unterschiedlich ist. Kann über die Optionen (2) erzwungen werden, immer anzuzeigen: Zeigt {notEarnedByNumber} Charaktere an, die diese Errungenschaft noch nicht verdient haben (2). Fraktions-exklusive Errungenschaften mit einem verknüpften Gegenstück werden berücksichtigt. D.h. Allianz-Charaktere können für Horden-Errungenschaften auftauchen.  Zeigt den Realm des Charakters an, wenn er sich unterscheidet. Die Anzeige kann in den Optionen (2) erzwungen werden.(1) Die Optionen befinden sich unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {header}
-(2) Optionen finden Sie unter {gameMenu} {Pfeil} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements} ]=]
+|T:1:8|t- {earnedBy}: Zeigt {earnedByNumber} Charaktere an, die den Erfolg verdient haben (2). Fraktions-exklusive Errungenschaften mit einem verknüpften Gegenstück werden berücksichtigt. D.h. Allianz-Charaktere können für Horden-Erfolge auftauchen. Zeigt den Realm des Charakters an, wenn er unterschiedlich ist. Kann über die Optionen (2) erzwungen werden, immer anzuzeigen: Zeigt {notEarnedByNumber} Charaktere an, die diese Errungenschaft noch nicht verdient haben (2). Fraktions-exklusive Errungenschaften mit einem verknüpften Gegenstück werden berücksichtigt. D.h. Allianz-Charaktere können für Horden-Errungenschaften auftauchen.  Zeigt den Realm des Charakters an, wenn er sich unterscheidet. Die Anzeige kann in den Optionen (2) erzwungen werden.
+
+(1) Die Optionen befinden sich unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {header}
+(2) Optionen finden Sie unter {gameMenu} {Pfeil} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}]=]
 L["Eastern Kingdoms Cup"] = "Östliche Königreiche Pokal"
 L["Emberflow Flight"] = "Glutstrom-Flug "
 L["Emerald Garden Ascent"] = "Smaragdgartenaufstieg "
@@ -275,7 +278,7 @@ Kategorien:
 Filterung (mehrere Filter können gleichzeitig ausgewählt werden):
 |T:1:8|t- {completed}: Erreichte Erfolge anzeigen.
 |T:1:8|t- {notCompleted}: Nicht abgeschlossene Erfolge anzeigen.
-|T:1:8|t- {erreichbar}: Erreichbare Erfolge anzeigen.
+|T:1:8|t- {obtainable}: Erreichbare Erfolge anzeigen.
 |T:1:8|t- {notObtainable}: Nicht erreichbare Erfolge anzeigen.
 |T:1:8|t- {faction} ({resetFactionFilters} {resetFactionFiltersEnabled}) (2)
 |T:1:8|t- {neutral}: Zeigt Erfolge an, die von {alliance_wc} wie auch von {horde_wc} erworben werden können.
@@ -291,12 +294,12 @@ Sorting:
 |T:1:8|t- {sortByID}: Sortiert die Erfolge nach ihrer ID.
 |T:1:8|t- {reverseSort}: Wenn dies ausgewählt ist, wird die Reihenfolge der sortierten Leistungen umgekehrt.
 
-{Registerkarten}:
-|T:1:8|t- Diese haben alle oben genannten Filter- und Sortierfunktionen, können aber unabhängig von den anderen geändert werden.
-|T:1:8|t- Wenn Sie einen der oben genannten Filter ändern, werden die Filter- und Sortierfunktionen der einzelnen Registerkarten überschrieben. 
+{tabs}:
+|T:1:8|t- Diese haben alle oben genannten Filter und Sortierfunktionen, können aber unabhängig von den anderen geändert werden.
+|T:1:8|t- Wenn Sie einen der oben genannten Filter ändern, werden die Filter und Sortierfunktionen der einzelnen Registerkarten überschrieben. 
 
 {specialCategories}:
-|T:1:8|t- Diese haben alle oben erwähnten Filter- und Sortierfunktionen, können aber unabhängig von den anderen geändert werden.
+|T:1:8|t- Diese haben alle oben erwähnten Filter und Sortierfunktionen, können aber unabhängig von den anderen geändert werden.
 
 {earnedBy} (siehe {earnedByTutorial} für weitere Details)
 |T:1:8|t- {account}: Erfolge werden berücksichtigt, wenn sie mit einem beliebigen Charakter Ihres Kontos erzielt wurden: Erfolge werden gewertet, wenn sie mit dem aktuellen Charakter erzielt wurden, und teilweise gewertet, wenn sie mit einem anderen Charakter auf dem Konto erzielt wurden, aber nicht mit dem aktuellen Charakter.
@@ -304,11 +307,11 @@ Sorting:
 Sonstiges:
 |T:1:8|t- {help}: Startet das Tutorial von Anfang an und setzt das Gesehene zurück.
 |T:1:8|t- Zeigt die spezielle Tutorial-Seite an, ohne das Gesehene zurückzusetzen.
-|T:1:8|t- {Optionen}: Öffnet die Optionen des Addons (2).
+|T:1:8|t- {options}: Öffnet die Optionen des Addons (2).
 
 Mehr Filter und Sortieroptionen können auf {discord} oder {curseForge} (Links in den Optionen) abgerufen werden.
 
-(1) Die Optionen befinden sich unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {Layout} {arrow} {Kategorien}
+(1) Die Optionen befinden sich unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {categories}
 (2) Optionen finden Sie unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName}.]=]
 L["Enhanced tooltip"] = "Erweiteter Tooltip "
 L["Enhanced tooltip Achievements Desc"] = [=[Jeder Tooltip enthält zusätzliche Informationen darüber, wie Erfolge miteinander in Beziehung stehen (falls sie es tun). Es wurden mehrere neue Bereiche hinzugefügt.
@@ -329,8 +332,8 @@ Icons:
 
 Farben:
 |T:1:8|t- {green}: Der Erfolg/das Ziel ist abgeschlossen.
-|T:1:8|t- {gray}: Der Erfolg/das Ziel ist nicht abgeschlossen.
-|T:1:8|t- {rot}: Der Erfolg kann nicht mehr erreicht werden.
+|T:1:8|t- {grey}: Der Erfolg/das Ziel ist nicht abgeschlossen.
+|T:1:8|t- {red}: Der Erfolg kann nicht mehr erreicht werden.
 |T:1:8|t- Hell {lightGreen}, {lightGrey} oder {lightRed}: Der Erfolg ist in ein Serien-Erfolg.
 
 Weitere benutzerdefinierte  Informationen können auf {discord} oder {curseForge} (Links in den Optionen) angefordert werden.
@@ -347,10 +350,10 @@ Die Zahlen im Fortschrittsbalken haben das folgende Format:
 
 Colors:
 |T:1:8|t- {green}: Die (nicht) erreichbaren abgeschlossenen Erfolge.
-|T:1:8|t- {rot}: Die nicht erhältlichen, nicht abgeschlossenen Erfolge (1).
+|T:1:8|t- {red}: Die nicht erhältlichen, nicht abgeschlossenen Erfolge (1).
 |T:1:8|t- Empty: Die erreichbaren nicht abgeschlossenen Erfolge.
 
-Der {rote} Teil des Fortschrittsbalkens und die Zahl in Klammern können entweder in den Optionen deaktiviert werden ({showNotObtainable}) (1) oder durch Deaktivieren des Filters {notObtainable}.
+Der {red} Teil des Fortschrittsbalkens und die Zahl in Klammern können entweder in den Optionen deaktiviert werden ({showNotObtainable}) (1) oder durch Deaktivieren des Filters {notObtainable}.
 
 (1) Die Optionen findest Du unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {categories}.]=]
 L["Error Tabs Order"] = "{blizzard} Tab {statistics} kann nicht vor {guild} stehen. "
@@ -371,7 +374,7 @@ Ereignistypen:
 |T:1:8|t- WidgetEreignisse (z.B.: Torghast).
 |T:1:8|t- Weltereignisse (z.B.: Angriffe).
 
-(1) Optionen findest Du unter {gameMenu} {arrow} {Interface} {arrow} {addOns} {arrow} {addonName} {arrow} {eventReminders}.]=]
+(1) Optionen findest Du unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {eventReminders}.]=]
 L["Event Reminders"] = "Event Erinnerung "
 L["Events"] = "Events "
 L["Exclude"] = "Ausblenden "
@@ -572,7 +575,7 @@ L["New achievement window tabs Desc"] = [=[Dem Erfolg-Fenster werden neue Regist
 Dies bietet eine neue Möglichkeit, Erfolge auf vertraute Weise anzuzeigen, ohne die Standard-Tabs zu beeinträchtigen.
 
 Tabs:
-|T:1:8|t- {Errungenschaften}: Eine Kopie der Standard-Registerkarte {achievements}, aber mit allen neuen Funktionen, die von {AddonName_y} hinzugefügt wurden.
+|T:1:8|t- {achievements}: Eine Kopie der Standard-Registerkarte {achievements}, aber mit allen neuen Funktionen, die von {addonName_y} hinzugefügt wurden.
 |T:1:8|t- {expansions}: Erfolge sind in Kategorien pro Erweiterung mit einer logischeren Hierarchie gruppiert. Siehe das {expansionsTabTutorial}-Tutorial für weitere Details.
 |T:1:8|t- {events}: Erfolge sind in Kategorien pro Ereignis gruppiert. Dies reicht von Feiertagen bis hin zu Weltereignissen wie Angriffen.
 |T:1:8|t- {pvp}: Erfolge sind in Kategorien pro Schlachtfeld gruppiert.
@@ -667,7 +670,7 @@ Optionen (1):
 |T:1:8|t- {minCharToSearch} ({minCharToSearchNumber})
 |T:1:8|t- {numSearchPreviews} ({numSearchPreviewsNumber})
 
-(1) Die Optionen findest du unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {AddonName}.]=]
+(1) Die Optionen findest du unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName}.]=]
 L["Rated"] = "Gewertet "
 L["Ravine River Run"] = "Schluchtflusslauf "
 L["Realm"] = "Realm "
@@ -714,7 +717,7 @@ Features:
 |T:1:8|t|T:1:8|t- {exclude}: Schließt den Erfolg aus der normalen Ansicht aus. (Nur bei eingeschlossenen Erfolgen verfügbar).
 
 Optionen:
-|T:1:8|t- Bei jedem Erfolg kann eine Schaltfläche angezeigt werden, die das {rightClickMenu} öffnet. ({aktiviert}) (1)
+|T:1:8|t- Bei jedem Erfolg kann eine Schaltfläche angezeigt werden, die das {rightClickMenu} öffnet. ({enabled}) (1)
 
 (1) Die Optionen befinden sich unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {rightClickMenu}.]=]
 L["Right Ctrl"] = "Rechts Ctrl "

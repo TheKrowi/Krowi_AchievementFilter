@@ -1,5 +1,5 @@
 local addonName, addon = ...;
-local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true);
+local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true, true);
 
 addon.L = L;
 
@@ -8,8 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-09 15-54-56 ]] --
-L["Tracking"] = true
+-- [[ Exported at 2023-10-04 21-50-20 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -46,6 +45,7 @@ L["Add Locale"] = true
 L["Add Locale Desc"] = "Add the current game's locale to the {wowheadLink}."
 L["Add to / Remove from Watch List"] = true
 L["Add to Watch List"] = "Add to {watchList}"
+L["Added in version"] = true
 L["Adjustable Categories"] = true
 L["Aki the Chosen"] = true
 L["Already /loved for achievement"] = "Already /loved {forAchievement}"
@@ -259,7 +259,7 @@ Filters
 
 Tooltip
 |T:1:8|t- {earnedBy}: Shows {earnedByNumber} characters that have earned this achievement (2). Faction exclusive achievements with a linked counterpart are taken into account. I.e. alliance characters might show up for horde achievements. Will show the character's realm if it's different. Can be forced to always show from the options (2).
-|T:1:8|t- {notEarnedBy}: Shows {notEarnedByNumber} characters that have not yet earned this achievement (2). Faction exclusive achievements with a linked counterpart are taken into account. I.e. alliance characters might show up for horde achievements.  Will show the character's realm if it's different. Can be forced to always show from the options (2).
+|T:1:8|t- {notEarnedBy}: Shows {notEarnedByNumber} characters that have not yet earned this achievement (2). Faction exclusive achievements with a linked counterpart are taken into account. I.e. alliance characters might show up for horde achievements. Will show the character's realm if it's different. Can be forced to always show from the options (2).
 
 (1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {header}
 (2) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}]=]
@@ -759,6 +759,10 @@ L["Set Keybind Desc"] = "Set the keybind for the selected tab to 'Y'. This will 
 L["Shift"] = true
 L["Shipyard"] = true
 L["Show"] = true
+L["Show Added in version"] = "Show {addedInVersion}"
+L["Show Added in version Desc"] = [=[Show / hide {addedInVersion}.
+
+When checked, the version of the game the achievement was added in will be visible in the tooltip.]=]
 L["Show alertSystem on event start Desc"] = "Show / hide event {alertSystem} for an event when it starts."
 L["Show alertSystem on event start in instances Desc"] = "Show / hide event {alertSystem} for an event when it starts while inside an instance."
 L["Show alertSystem on event start only when time data is available Desc"] = "Show / hide event {alertSystem} for an event when it starts only when the remaining event time is available."
@@ -898,6 +902,7 @@ L["Toggle window once opened"] = true
 L["Toggle window once opened Desc"] = "When the achievement window is opened the first time, open the window to the correct tab and select the summary. From the second time onwards, regardless of the keybind used, open the last view."
 L["Tooltip"] = true
 L["Torghast"] = true
+L["Tracking"] = true
 L["Tracking Achievements"] = true
 L["Transmog Sets"] = true
 L["Truncate"] = true
@@ -919,6 +924,7 @@ L["Wago"] = true
 L["Wago Desc"] = "Open a popup dialog with a link to the {addonName} {wago} page."
 L["Waking Shores"] = true
 L["Warcraft III: Reforged"] = true
+L["Warcraft Rumble"] = true
 L["was"] = true
 L["Watch List"] = true
 L["When achievement completed"] = true
@@ -957,8 +963,3 @@ L["Zaqali Ruin Investigation"] = true
 L["Zaqali Ruin Investigation: Active"] = true
 L["Zaqali Ruin Investigation: Soon"] = true
 L["Zones"] = true
-L["Added in version"]=true
-L["Show Added in version"] = "Show {addedInVersion}"
-L["Show Added in version Desc"] = [=[Show / hide {addedInVersion}.
-
-When checked, the version of the game the achievement was added in will be visible in the tooltip.]=]
