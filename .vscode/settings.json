@@ -469,7 +469,8 @@
         "GetFrameRate",
         "C_CVar",
         "debugprofilestop",
-        "SlashCmdList"
+        "SlashCmdList",
+        "KrowiAF_AchievementCalendarSideFrame"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

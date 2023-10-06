@@ -6,6 +6,6 @@
     <Include file="WindowFrames\Files.xml"/>
     <Include file="RightClickMenu\Files.xml"/>
     <Include file="Search\Files.xml"/>
-    <Include file="Calendar\Files.xml"/>
+    <Include file="AchievementCalendar\Files.xml"/>
     <Include file="DataManager\Files.xml"/>
 </Ui>

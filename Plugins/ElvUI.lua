@@ -678,7 +678,7 @@ local function SkinAll()
     end
     if KrowiAF_SavedData.ElvUISkin.Calendar then
         elvUI.SkinCalendarFrame(addon.GUI.Calendar.Frame, engine, skins);
-        elvUI.SkinCalendarSideFrame(addon.GUI.Calendar.SideFrame, engine, skins);
+        elvUI.SkinCalendarSideFrame(KrowiAF_AchievementCalendarFrame.SideFrame, engine, skins);
     end
 end
 

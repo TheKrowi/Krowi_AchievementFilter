@@ -1202,7 +1202,7 @@ local function SkinAll()
     end
     -- if KrowiAF_SavedData.ElvUISkin.Calendar then
     --     gw2_ui.SkinCalendarFrame(addon.GUI.Calendar.Frame);
-    --     gw2_ui.SkinCalendarSideFrame(addon.GUI.Calendar.SideFrame);
+    --     gw2_ui.SkinCalendarSideFrame(KrowiAF_AchievementCalendarFrame.SideFrame);
     -- end
 end
 

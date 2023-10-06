@@ -2,6 +2,7 @@
 local addonName, addon = ...;
 local diagnostics = addon.Diagnostics;
 addon.GUI = {};
+addon.Gui = addon.GUI;
 local gui = addon.GUI;
 -- gui.SideButtons = {};
 -- local sideButtons = gui.SideButtons;

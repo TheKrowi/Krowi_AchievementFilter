@@ -1,7 +1,7 @@
 <Ui>
-    <Script file="SideFrame.lua" />
+    <Script file="SideFrameMixin.lua"/>
 
-	<Frame name="KrowiAF_CalendarSideFrame_Template" toplevel="true" enableMouse="true" frameStrata="HIGH" virtual="true" hidden="true">
+	<Frame name="KrowiAF_AchievementCalendarSideFrame_Template" mixin="KrowiAF_AchievementCalendarSideFrameMixin" toplevel="true" enableMouse="true" frameStrata="HIGH" virtual="true" hidden="true">
 		<Size x="504" y="320"/>
 		<Layers>
 			<Layer level="BORDER">
@@ -22,30 +22,23 @@
 					<Anchor point="BOTTOMRIGHT" x="-9" y="9"/>
 				</Anchors>
 			</Frame>	
-			<Button name="$parentCloseButton" parentKey="CloseButton" inherits="UIPanelCloseButton">
+			<Button name="$parentCloseButton" parentKey="CloseButton" mixin="KrowiAF_AchievementCalendarSideFrameCloseButtonMixin" inherits="UIPanelCloseButton">
 				<Anchors>
-					<Anchor point="TOPRIGHT" x="-3" y="-3"/>
+					<Anchor point="TOPRIGHT" x="-7" y="-7"/>
 				</Anchors>
-				<Layers>
-					<Layer level="BACKGROUND">
-						<Texture file="Interface\DialogFrame\UI-DialogBox-Corner">
-							<Anchors>
-								<Anchor point="TOPRIGHT" x="-4" y="-4"/>
-							</Anchors>
-						</Texture>
-					</Layer>
-				</Layers>
 				<Scripts>
 					<OnLoad>
 						self:SetFrameLevel(self:GetParent():GetFrameLevel() + 6);
 					</OnLoad>
-					<OnClick function="KrowiAF_CalendarSideFrameCloseButton_OnClick"/>
-					<OnKeyDown function="KrowiAF_CalendarSideFrameCloseButton_OnKeyDown"/>
+					<OnClick method="OnClick"/>
+					<OnKeyDown method="OnKeyDown"/>
 				</Scripts>
 			</Button>
 		</Frames>
 		<Scripts>
-			<OnShow function="KrowiAF_CalendarSideFrame_OnShow"/>
+			<OnLoad method="OnLoad"/>
+			<OnShow method="OnShow"/>
+			<OnHide method="OnHide"/>
 		</Scripts>
 	</Frame>
 </Ui>

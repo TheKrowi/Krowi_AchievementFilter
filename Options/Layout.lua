@@ -386,11 +386,11 @@ end
 local function SetCalendarMouseWheelPanScalar(_, value)
     if addon.Options.db.profile.Calendar.MouseWheelPanScalar == value then return; end
     addon.Options.db.profile.Calendar.MouseWheelPanScalar = value;
-    if addon.GUI.Calendar.SideFrame.AchievementsFrame.ScrollBox then
-        addon.GUI.Calendar.SideFrame.AchievementsFrame.ScrollBox.wheelPanScalar = value;
+    if KrowiAF_AchievementCalendarFrame.SideFrame.AchievementsFrame.ScrollBox then
+        KrowiAF_AchievementCalendarFrame.SideFrame.AchievementsFrame.ScrollBox.wheelPanScalar = value;
     end
-    if addon.GUI.Calendar.SideFrame.AchievementsFrame.ScrollBar then
-        addon.GUI.Calendar.SideFrame.AchievementsFrame.ScrollBar.wheelPanScalar = value;
+    if KrowiAF_AchievementCalendarFrame.SideFrame.AchievementsFrame.ScrollBar then
+        KrowiAF_AchievementCalendarFrame.SideFrame.AchievementsFrame.ScrollBar.wheelPanScalar = value;
     end
 end
 

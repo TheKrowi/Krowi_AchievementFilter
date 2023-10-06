@@ -1,8 +1,17 @@
 <Ui>
-    <Script file="DayButton.lua" />
     <Script file="DayButtonMixin.lua" />
 	
-	<Button name="KrowiAF_CalendarDayButton_Template" mixin="KrowiAF_CalendarDayButtonMixin" registerForClicks="LeftButtonUp" virtual="true">
+	<Frame name="KrowiAF_CalendarDayButtonAchievement_Template" virtual="true">
+		<Size x="41" y="41"/>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentTexture" parentKey="Texture" file="Interface\Icons\Inv_Misc_QuestionMark" setAllPoints="true">
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+	
+	<Button name="KrowiAF_AchievementCalendarDayButton_Template" mixin="KrowiAF_AchievementCalendarDayButtonMixin" registerForClicks="LeftButtonUp" virtual="true">
 		<Size x="91" y="91"/>
 		<Anchors>
 			<Anchor point="TOPLEFT"/>
@@ -95,9 +104,9 @@
 			</Frame>
 		</Frames>
 		<Scripts>
-			<OnEnter function="KrowiAF_CalendarDayButton_OnEnter"/>
-			<OnLeave function="KrowiAF_CalendarDayButton_OnLeave"/>
-			<OnClick function="KrowiAF_CalendarDayButton_OnClick"/>
+			<OnLoad method="OnLoad"/>
+			<OnEnter method="OnEnter"/>
+			<OnClick method="OnClick"/>
 		</Scripts>
 		<NormalTexture file="Interface\Calendar\CalendarBackground"/>
 		<HighlightTexture file="Interface\Calendar\Highlights" alphaMode="ADD">
@@ -108,14 +117,4 @@
 			<TexCoords left="0.0" right="0.34375" top="0.0" bottom="0.6875"/>
 		</HighlightTexture>
 	</Button>
-
-	<Frame name="KrowiAF_CalendarDayButtonAchievement_Template" virtual="true">
-		<Size x="41" y="41"/>
-		<Layers>
-			<Layer level="ARTWORK">
-				<Texture name="$parentTexture" parentKey="Texture" file="Interface\Icons\Inv_Misc_QuestionMark" setAllPoints="true">
-				</Texture>
-			</Layer>
-		</Layers>
-	</Frame>
 </Ui>

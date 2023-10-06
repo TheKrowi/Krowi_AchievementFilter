@@ -7,7 +7,6 @@ function calendar:Load()
 	self:CreateCalendarButton();
 
     self.Frame:Load();
-    self.SideFrame:Load();
 end
 
 function calendar:CreateCalendarButton()

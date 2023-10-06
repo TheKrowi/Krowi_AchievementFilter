@@ -1,7 +1,8 @@
 <Ui>
     <Script file="Frame.lua" />
+    <Script file="FrameMixin.lua"/>
 
-	<Frame name="KrowiAF_CalendarFrame_Template" mixin="KrowiAF_CalendarFrameMixin" toplevel="true" enableMouse="true" enableKeyboard="true" frameStrata="HIGH" virtual="true" hidden="true">
+	<Frame name="KrowiAF_AchievementCalendarFrame_Template" mixin="KrowiAF_AchievementCalendarFrameMixin" toplevel="true" enableMouse="true" enableKeyboard="true" frameStrata="HIGH" virtual="true" hidden="true">
 		<Size x="659" y="624"/>
 		<!-- <Anchors>
 			<Anchor point="TOPLEFT" x="15" y="-80"/>
@@ -374,12 +375,13 @@
 					<Anchor point="TOPRIGHT" x="5" y="-13"/>
 				</Anchors>
 				<Scripts>
+      				<!-- <OnClick function="KrowiAF_CalendarFrameCloseButton_OnClick"/> -->
 					<OnKeyDown function="KrowiAF_CalendarFrameCloseButton_OnKeyDown"/>
 				</Scripts>
 			</Button>
 		</Frames>
 		<Scripts>
-			<OnLoad function="KrowiAF_CalendarFrame_OnLoad"/>
+			<OnLoad method="OnLoad"/>
 			<OnEvent function="KrowiAF_CalendarFrame_OnEvent"/>
 			<OnShow function="KrowiAF_CalendarFrame_OnShow"/>
 			<OnHide function="KrowiAF_CalendarFrame_OnHide"/>
