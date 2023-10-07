@@ -44,4 +44,4 @@ Data\WrathClassic\Files.xml
 
 Filters.lua
 SearchOptions.lua
-GUI\Files.xml
+Gui\Files.xml

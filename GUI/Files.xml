@@ -1,5 +1,5 @@
 <Ui>
-    <Script file="GUI.lua"/>
+    <Script file="Gui.lua"/>
     <Include file="AchievementButton\Files.xml"/>
     <Include file="Misc\Files.xml"/>
     <Include file="AchievementTooltip\Files.xml"/>
