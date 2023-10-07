@@ -534,7 +534,7 @@ function addon.MakeWindowStatic()
     end
     MakeStatic(AchievementFrame, "AchievementWindow");
     MakeStatic(AchievementFrame.Header, "AchievementWindow", AchievementFrame);
-    MakeStatic(addon.GUI.Calendar.Frame, "Calendar");
+    MakeStatic(KrowiAF_AchievementCalendarFrame, "Calendar");
     MakeStatic(addon.GUI.DataManagerFrame, "DataManager");
 end
 
@@ -574,7 +574,7 @@ function addon.MakeWindowMovable()
     end
     MakeMovable(AchievementFrame, "AchievementWindow");
     MakeMovable(AchievementFrame.Header, "AchievementWindow", AchievementFrame);
-    MakeMovable(addon.GUI.Calendar.Frame, "Calendar");
+    MakeMovable(KrowiAF_AchievementCalendarFrame, "Calendar");
     MakeMovable(addon.GUI.DataManagerFrame, "DataManager");
 end
 

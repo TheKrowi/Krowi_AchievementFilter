@@ -1,6 +1,6 @@
 local _, addon = ...;
 
--- Data taken from Blizzard_Calendar.lua and changed the names, line 156
+-- Data taken from Blizzard_Calendar.lua and changed the names, line 160
 local darkFlagPrevMonth = 0x0001;
 local darkFlagNextMonth = 0x0002;
 local darkFlagCorner = 0x0004;
@@ -77,9 +77,114 @@ local monthNames = {
     addon.L["December"]
 };
 
+KrowiAF_AchievementCalendarFrameTodayFrameMixin = {};
+
+function KrowiAF_AchievementCalendarFrameTodayFrameMixin:OnUpdate(elapsed)
+	self.Timer = self.Timer - elapsed;
+	if self.Timer < 0 then
+		self.Timer = self.FadeTime;
+		if self.FadeIn then
+			self.FadeIn = false;
+		else
+			self.FadeIn = true;
+		end
+	else
+		if self.FadeIn then
+			self.Glow:SetAlpha(1 - (self.Timer / self.FadeTime));
+		else
+			self.Glow:SetAlpha(self.Timer / self.FadeTime);
+		end
+	end
+end
+
+KrowiAF_AchievementCalendarFramePrevNextMonthButtonMixin = {};
+
+function KrowiAF_AchievementCalendarFramePrevNextMonthButtonMixin:Click()
+	PlaySound(SOUNDKIT.IG_ABILITY_PAGE_TURN);
+	C_CalendarSetMonth(self.MonthOffset);
+	self:GetParent():Update();
+end
+
+function KrowiAF_AchievementCalendarFramePrevNextMonthButtonMixin:OnClick()
+	self:Click();
+end
+
+KrowiAF_AchievementCalendarFrameCloseButtonMixin = {};
+
+function KrowiAF_AchievementCalendarFrameCloseButtonMixin:OnClick()
+    self:GetParent():Hide();
+end
+
+function KrowiAF_AchievementCalendarFrameCloseButtonMixin:OnKeyDown(key)
+    if key == GetBindingKey("TOGGLEGAMEMENU") then
+        local parent = self:GetParent();
+		if parent:IsShown() and not parent.SideFrame:IsShown() then
+            parent:Hide();
+			self:SetPropagateKeyboardInput(false);
+			return;
+		end
+	end
+	self:SetPropagateKeyboardInput(true);
+end
+
 KrowiAF_AchievementCalendarFrameMixin = {
 	MaxDaysPerMonth = 42 -- 6 weeks
 };
+
+function KrowiAF_AchievementCalendarFrameMixin:OnLoad()
+	C_CalendarResetAbsMonth();
+
+	self:LoadDayButtons();
+	self:LoadSideFrame();
+
+	self.selectedMonth = nil;
+	self.selectedDay = nil;
+	self.selectedYear = nil;
+	self.ViewedMonth = nil;
+	self.ViewedYear = nil;
+end
+
+function KrowiAF_AchievementCalendarFrameMixin:OnEvent(event)
+	if event ~= "ACHIEVEMENT_EARNED" then
+		return;
+	end
+	addon.DelayFunction("KrowiAF_AchievementCalendarFrame_OnEvent", 1, function()
+		self:Update();
+		if self.SelectedDayButton then
+			self:SetSelectedDay(self.SelectedDayButton, true, true);
+		end
+	end);
+end
+
+local firstTimeOpen = true;
+function KrowiAF_AchievementCalendarFrameMixin:OnShow()
+	self:RegisterEvent("ACHIEVEMENT_EARNED");
+	if (not self.LockMonth and not addon.Options.db.profile.Calendar.LockMonth) or firstTimeOpen then
+		local currentCalendarTime = C_DateAndTime.GetCurrentCalendarTime();
+		C_CalendarSetAbsMonth(currentCalendarTime.month, currentCalendarTime.year);
+		self:Update();
+		firstTimeOpen = nil;
+	end
+	self.LockMonth = nil;
+	PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN);
+end
+
+function KrowiAF_AchievementCalendarFrameMixin:OnHide()
+	self:UnregisterEvent("ACHIEVEMENT_EARNED");
+	PlaySound(SOUNDKIT.IG_SPELLBOOK_CLOSE);
+end
+
+function KrowiAF_AchievementCalendarFrameMixin:OnMouseWheel(value)
+	if value > 0 then
+		if self.PrevMonthButton:IsEnabled() then
+			self.PrevMonthButton:Click();
+		end
+	else
+		if self.NextMonthButton:IsEnabled() then
+			self.NextMonthButton:Click();
+		end
+	end
+end
 
 function KrowiAF_AchievementCalendarFrameMixin:DayButtonPostLoad(buttonIndex)
 	local buttons = self.DayButtons;
@@ -127,19 +232,6 @@ function KrowiAF_AchievementCalendarFrameMixin:LoadSideFrame()
 			self:HandleDayButtonSelection(self.SelectedDayButton);
 		end
 	end);
-end
-
-function KrowiAF_AchievementCalendarFrameMixin:OnLoad()
-	C_CalendarResetAbsMonth();
-
-	self:LoadDayButtons();
-	self:LoadSideFrame();
-
-	self.selectedMonth = nil;
-	self.selectedDay = nil;
-	self.selectedYear = nil;
-	self.ViewedMonth = nil;
-	self.ViewedYear = nil;
 end
 
 function KrowiAF_AchievementCalendarFrameMixin:ResetPosition()
@@ -278,7 +370,9 @@ function KrowiAF_AchievementCalendarFrameMixin:UpdateDay(index, day, month, year
 	button.Month = month;
 	button.Year = year;
 
-	button:SetDarkFrame(darkDayTopTexCoords, darkTopFlags, darkDayBottomTexCoords, darkBottomFlags);
+	if darkTopFlags and darkBottomFlags then
+		button:SetDarkFrameCoords(darkDayTopTexCoords[darkTopFlags], darkDayBottomTexCoords[darkBottomFlags]);
+	end
 
 	if isSelected then
 		button:Select();

@@ -1,12 +1,8 @@
 <Ui>
-    <Script file="Frame.lua" />
     <Script file="FrameMixin.lua"/>
 
 	<Frame name="KrowiAF_AchievementCalendarFrame_Template" mixin="KrowiAF_AchievementCalendarFrameMixin" toplevel="true" enableMouse="true" enableKeyboard="true" frameStrata="HIGH" virtual="true" hidden="true">
 		<Size x="659" y="624"/>
-		<!-- <Anchors>
-			<Anchor point="TOPLEFT" x="15" y="-80"/>
-		</Anchors> -->
 		<Layers>
 			<Layer level="BORDER">
 				<!-- top textures -->
@@ -235,7 +231,7 @@
 			</Layer>
 		</Layers>
 		<Frames>
-			<Frame name="$parentTodayFrame" parentKey="TodayFrame" hidden="true">
+			<Frame name="$parentTodayFrame" parentKey="TodayFrame" mixin="KrowiAF_AchievementCalendarFrameTodayFrameMixin" hidden="true">
 				<Size x="145" y="140"/>
 				<Anchors>
 					<Anchor point="CENTER"/>
@@ -257,135 +253,64 @@
 						</Texture>
 					</Layer>
 				</Layers>
+				<KeyValues>
+					<KeyValue key="Timer" value="0" type="number"/>
+					<KeyValue key="FadeTime" value="1.5" type="number"/>
+					<KeyValue key="FadeIn" value="true" type="boolean"/>
+				</KeyValues>
 				<Scripts>
-					<OnLoad>
-						self.timer = 0;
-						self.fadeTime = 1.5;
-						self.fadein = true;
-					</OnLoad>
-					<OnUpdate function="KrowiAF_CalendarFrameTodayFrame_OnUpdate"/>
+					<OnUpdate method="OnUpdate"/>
 				</Scripts>
 			</Frame>
-			<Button name="$parentPrevMonthButton" parentKey="PrevMonthButton">
+			<Button name="$parentPrevMonthButton" parentKey="PrevMonthButton" mixin="KrowiAF_AchievementCalendarFramePrevNextMonthButtonMixin">
 				<Size x="32" y="32"/>
 				<Anchors>
 					<Anchor point="RIGHT" relativeTo="$parentMonthBackground" relativePoint="LEFT" x="0" y="-1"/>
 				</Anchors>
+				<KeyValues>
+					<KeyValue key="MonthOffset" value="-1" type="number"/>
+				</KeyValues>
 				<Scripts>
-					<OnClick function="KrowiAF_CalendarFramePrevMonthButton_OnClick"/>
+					<OnClick method="OnClick"/>
 				</Scripts>
 				<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up"/>
 				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down"/>
 				<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Disabled"/>
 				<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
 			</Button>
-			<Button name="$parentNextMonthButton" parentKey="NextMonthButton">
+			<Button name="$parentNextMonthButton" parentKey="NextMonthButton" mixin="KrowiAF_AchievementCalendarFramePrevNextMonthButtonMixin">
 				<Size x="32" y="32"/>
 				<Anchors>
 					<Anchor point="LEFT" relativeTo="$parentMonthBackground" relativePoint="RIGHT" x="0" y="-1"/>
 				</Anchors>
+				<KeyValues>
+					<KeyValue key="MonthOffset" value="1" type="number"/>
+				</KeyValues>
 				<Scripts>
-					<OnClick function="KrowiAF_CalendarFrameNextMonthButton_OnClick"/>
+					<OnClick method="OnClick"/>
 				</Scripts>
 				<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up"/>
 				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down"/>
 				<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Disabled"/>
 				<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
-			</Button>
-			<!-- <Frame name="CalendarFilterFrame">
-				<Size x="106" y="20"/>
-				<Anchors>
-					<Anchor point="TOPRIGHT" relativeTo="CalendarFrame" relativePoint="TOPRIGHT" x="-44" y="-21"/>
-				</Anchors>
-				<Layers>
-					<Layer level="BACKGROUND">
-						<Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
-							<Size x="8" y="16"/>
-							<Anchors>
-								<Anchor point="LEFT" x="-5" y="0"/>
-							</Anchors>
-							<TexCoords left="0" right="0.0625" top="0" bottom="0.625"/>
-						</Texture>
-						<Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
-							<Size x="8" y="16"/>
-							<Anchors>
-								<Anchor point="RIGHT" x="0" y="0"/>
-							</Anchors>
-							<TexCoords left="0.9375" right="1.0" top="0" bottom="0.625"/>
-						</Texture>
-						<Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
-							<Size x="10" y="16"/>
-							<Anchors>
-								<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
-								<Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT"/>
-							</Anchors>
-							<TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625"/>
-						</Texture>
-						<FontString name="$parentText" inherits="GameFontHighlightSmall" text="CALENDAR_FILTERS" justifyH="RIGHT">
-							<Anchors>
-								<Anchor point="RIGHT" x="-24" y="0"/>
-							</Anchors>
-						</FontString>
-					</Layer>
-				</Layers>
-				<Frames>
-					<DropDownToggleButton name="CalendarFilterButton">
-						<Size x="20" y="20"/>
-						<Anchors>
-							<Anchor point="RIGHT"/>
-						</Anchors>
-						<Scripts>
-							<OnMouseDown function="CalendarFilterButton_OnMouseDown"/>
-						</Scripts>
-						<NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
-							<Size x="20" y="20"/>
-							<Anchors>
-								<Anchor point="RIGHT" x="3" y="0"/>
-							</Anchors>
-						</NormalTexture>
-						<PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
-							<Size x="20" y="20"/>
-							<Anchors>
-								<Anchor point="RIGHT" x="3" y="0"/>
-							</Anchors>
-						</PushedTexture>
-						<DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
-							<Size x="20" y="20"/>
-							<Anchors>
-								<Anchor point="RIGHT" x="3" y="0"/>
-							</Anchors>
-						</DisabledTexture>
-						<HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
-							<Size x="20" y="20"/>
-							<Anchors>
-								<Anchor point="RIGHT" x="3" y="0"/>
-							</Anchors>
-						</HighlightTexture>
-					</DropDownToggleButton>
-				</Frames>
-			</Frame> -->
-			<!-- <Frame name="CalendarFilterDropDown" inherits="UIDropDownMenuTemplate" hidden="true">
-				<Scripts>
-					<OnLoad function="CalendarFilterDropDown_OnLoad"/>
-				</Scripts>
-			</Frame> -->
-			<Button name="$parentCloseButton" parentKey="CloseButton" inherits="UIPanelCloseButton">
+			</Button>			
+			<Button name="$parentCloseButton" parentKey="CloseButton" mixin="KrowiAF_AchievementCalendarFrameCloseButtonMixin" inherits="UIPanelCloseButton">
 				<Size x="32" y="34"/>
 				<Anchors>
 					<Anchor point="TOPRIGHT" x="5" y="-13"/>
 				</Anchors>
 				<Scripts>
-      				<!-- <OnClick function="KrowiAF_CalendarFrameCloseButton_OnClick"/> -->
-					<OnKeyDown function="KrowiAF_CalendarFrameCloseButton_OnKeyDown"/>
+      				<OnClick method="OnClick"/>
+					<OnKeyDown method="OnKeyDown"/>
 				</Scripts>
 			</Button>
 		</Frames>
 		<Scripts>
 			<OnLoad method="OnLoad"/>
-			<OnEvent function="KrowiAF_CalendarFrame_OnEvent"/>
-			<OnShow function="KrowiAF_CalendarFrame_OnShow"/>
-			<OnHide function="KrowiAF_CalendarFrame_OnHide"/>
-			<OnMouseWheel function="KrowiAF_CalendarFrame_OnMouseWheel"/>
+			<OnEvent method="OnEvent"/>
+			<OnShow method="OnShow"/>
+			<OnHide method="OnHide"/>
+			<OnMouseWheel method="OnMouseWheel"/>
 		</Scripts>
 	</Frame>
 </Ui>

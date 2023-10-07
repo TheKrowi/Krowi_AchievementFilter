@@ -300,7 +300,7 @@ local function MovableCalendarRememberLastPositionSet(_, value)
     if addon.Options.db.profile.Window.RememberLastPosition.Calendar == value then return; end
     addon.Options.db.profile.Window.RememberLastPosition.Calendar = value;
     if not addon.Options.db.profile.Window.RememberLastPosition.Calendar then
-        addon.GUI.Calendar.Frame:ResetPosition();
+        KrowiAF_AchievementCalendarFrame:ResetPosition();
     end
 end
 
@@ -438,7 +438,7 @@ options.OptionsTable.args["Layout"] = {
                             order = OrderPP(), type = "execute", width = AdjustedWidth(),
                             name = addon.L["Reset position"],
                             desc = addon.L["Reset position Desc"]:K_ReplaceVars(addon.L["Achievement Calendar"]),
-                            func = function() addon.GUI.Calendar.Frame:ResetPosition(); end
+                            func = function() KrowiAF_AchievementCalendarFrame:ResetPosition(); end
                         },
                         DataManagerRememberLastPosition = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(2),
@@ -1027,7 +1027,7 @@ options.OptionsTable.args["Layout"] = {
                             get = function() return addon.Options.db.profile.Calendar.FirstWeekDay; end,
                             set = function (_, value)
                                 addon.Options.db.profile.Calendar.FirstWeekDay = value;
-                                addon.GUI.Calendar.Frame:Update();
+                                KrowiAF_AchievementCalendarFrame:Update();
                             end
                         }
                     }

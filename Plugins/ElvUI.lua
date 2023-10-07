@@ -673,11 +673,11 @@ local function SkinAll()
         elvUI.SkinSearchResultsFrame(addon.GUI.Search.ResultsFrame, skins);
         SkinHeader();
         ReskinBlizzard(skins);
-        elvUI.SkinCalendarButton(addon.GUI.Calendar.Button, skins);
+        elvUI.SkinCalendarButton(KrowiAF_AchievementCalendarButton, skins);
         SkinDataManager(addon.GUI.DataManagerFrame, skins);
     end
     if KrowiAF_SavedData.ElvUISkin.Calendar then
-        elvUI.SkinCalendarFrame(addon.GUI.Calendar.Frame, engine, skins);
+        elvUI.SkinCalendarFrame(KrowiAF_AchievementCalendarFrame, engine, skins);
         elvUI.SkinCalendarSideFrame(KrowiAF_AchievementCalendarFrame.SideFrame, engine, skins);
     end
 end

@@ -56,14 +56,12 @@ function KrowiAF_AchievementCalendarDayButtonMixin:Clear()
 	self.More:Hide();
 end
 
-function KrowiAF_AchievementCalendarDayButtonMixin:SetDarkFrame(darkDayTopTexCoords, darkTopFlags, darkDayBottomTexCoords, darkBottomFlags)
-	self.Dark = darkTopFlags and darkBottomFlags;
+function KrowiAF_AchievementCalendarDayButtonMixin:SetDarkFrameCoords(topTexCoords, bottomTexCoords)
+	self.Dark = topTexCoords and bottomTexCoords;
 	if self.Dark then
 		local darkFrame = self.DarkFrame;
-		local tcoords = darkDayTopTexCoords[darkTopFlags];
-		darkFrame.Top:SetTexCoord(tcoords.left, tcoords.right, tcoords.top, tcoords.bottom);
-		tcoords = darkDayBottomTexCoords[darkBottomFlags];
-		darkFrame.Bottom:SetTexCoord(tcoords.left, tcoords.right, tcoords.top, tcoords.bottom);
+		darkFrame.Top:SetTexCoord(topTexCoords.left, topTexCoords.right, topTexCoords.top, topTexCoords.bottom);
+		darkFrame.Bottom:SetTexCoord(bottomTexCoords.left, bottomTexCoords.right, bottomTexCoords.top, bottomTexCoords.bottom);
 		darkFrame:Show();
 		return;
 	end

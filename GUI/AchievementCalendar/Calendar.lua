@@ -1,15 +1,8 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
-addon.GUI.Calendar = {};
-local calendar = addon.GUI.Calendar;
+addon.Gui.Calendar = {};
+local calendar = addon.Gui.Calendar;
 
-function calendar:Load()
-	self:CreateCalendarButton();
-
-    self.Frame:Load();
-end
-
-function calendar:CreateCalendarButton()
+local function CreateCalendarButton(frame)
     local button = CreateFrame("Button", "KrowiAF_AchievementCalendarButton", AchievementFrame.Header);
     button:SetPoint("LEFT", AchievementFrame.Header.PointBorder, "RIGHT");
     button:SetSize(40, 40);
@@ -40,7 +33,12 @@ function calendar:CreateCalendarButton()
 	button:SetText(currentCalendarTime.monthDay);
 
     button:SetScript("OnClick", function()
-		self.Frame:Show();
+		frame:Show();
 	end);
-    self.Button = button;
+end
+
+function calendar:Load()
+    local frame = CreateFrame("Frame", "KrowiAF_AchievementCalendarFrame", UIParent, "KrowiAF_AchievementCalendarFrame_Template");
+	addon.GUI.SetFrameToLastPosition(frame, "Calendar");
+	CreateCalendarButton(frame);
 end

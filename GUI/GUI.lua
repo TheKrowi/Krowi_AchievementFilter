@@ -39,7 +39,7 @@ function gui:LoadWithBlizzard_AchievementUI()
     -- print("ach loading")
 
     gui.Search:Load();
-    addon.GUI.Calendar:Load();
+    addon.Gui.Calendar:Load();
     addon.GUI.DataManagerFrame:Load();
     AchievementFrame.ResetPosition = addon.GUI.ResetAchievementWindowPosition;
 	addon.GUI.SetFrameToLastPosition(AchievementFrame, "AchievementWindow");

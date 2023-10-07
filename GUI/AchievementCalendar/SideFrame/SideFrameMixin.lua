@@ -1,5 +1,23 @@
 local _, addon = ...;
 
+KrowiAF_AchievementCalendarSideFrameCloseButtonMixin = {};
+
+function KrowiAF_AchievementCalendarSideFrameCloseButtonMixin:OnClick()
+    self:GetParent():Hide();
+end
+
+function KrowiAF_AchievementCalendarSideFrameCloseButtonMixin:OnKeyDown(key)
+    if key == GetBindingKey("TOGGLEGAMEMENU") then
+        local parent = self:GetParent();
+		if parent:IsShown() then
+            parent:Hide();
+			self:SetPropagateKeyboardInput(false);
+			return;
+		end
+	end
+	self:SetPropagateKeyboardInput(true);
+end
+
 KrowiAF_AchievementCalendarSideFrameMixin = {};
 
 local function OnAchievementsFrameViewAcquiredFrame(sideFrame, frame)
@@ -33,22 +51,4 @@ function KrowiAF_AchievementCalendarSideFrameMixin:Update()
     local day, month, year = parent.HighlightedDay, parent.HighlightedMonth, parent.HighlightedYear;
     self.AchievementsFrame:Update(parent.HighlightedAchievements);
     self.Header:Setup(FormatShortDate(day, month, year) .. " (" .. #parent.HighlightedAchievements .. " " .. addon.L["Achievements"] .. " - " .. parent.HighlightedPoints .. " " .. addon.L["Points"] .. ")");
-end
-
-KrowiAF_AchievementCalendarSideFrameCloseButtonMixin = {};
-
-function KrowiAF_AchievementCalendarSideFrameCloseButtonMixin:OnClick()
-    self:GetParent():Hide();
-end
-
-function KrowiAF_AchievementCalendarSideFrameCloseButtonMixin:OnKeyDown(key)
-    if key == GetBindingKey("TOGGLEGAMEMENU") then
-        local parent = self:GetParent();
-		if parent:IsShown() then
-            parent:Hide();
-			self:SetPropagateKeyboardInput(false);
-			return;
-		end
-	end
-	self:SetPropagateKeyboardInput(true);
 end

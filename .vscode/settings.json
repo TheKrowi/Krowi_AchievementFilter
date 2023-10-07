@@ -470,7 +470,8 @@
         "C_CVar",
         "debugprofilestop",
         "SlashCmdList",
-        "KrowiAF_AchievementCalendarSideFrame"
+        "KrowiAF_AchievementCalendarSideFrame",
+        "KrowiAF_AchievementCalendarButton"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
