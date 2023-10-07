@@ -1,4 +1,3 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
 addon.GUI.AchievementsObjectives = {};
 local achievementsObjectives = addon.GUI.AchievementsObjectives;

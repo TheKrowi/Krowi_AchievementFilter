@@ -1,4 +1,3 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
 
 function KrowiAF_AchievementButton_OnLoad(self)
