@@ -1,0 +1,16 @@
+<Ui>
+    <!-- The order of these items is important !!! -->
+    <Script file="RightClickMenu.lua" />
+    <Script file="AchievementMenu.lua" />
+
+    <Script file="WowheadLink.lua" />
+
+    <Script file="GoTo.lua" />
+    <Script file="PartOfAChain.lua" />
+    <Script file="RequiredFor.lua" />
+    <Script file="OtherFaction.lua" />
+    <Script file="OtherLocations.lua" />
+    <Script file="FirstCategory.lua" />
+
+    <Script file="TransmogSets.lua" />
+</Ui>
