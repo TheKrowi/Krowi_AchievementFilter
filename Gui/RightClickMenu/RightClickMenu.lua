@@ -1,3 +1,2 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
-addon.GUI.RightClickMenu = {};
+addon.Gui.RightClickMenu = {};

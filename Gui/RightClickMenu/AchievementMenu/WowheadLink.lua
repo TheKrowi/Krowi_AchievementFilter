@@ -1,4 +1,3 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
 local section = {};
 
@@ -35,4 +34,4 @@ function section.Add(menu, achievement)
 	menu:AddFull({Text = addon.L["Wowhead"], Func = function() popupDialog.ShowExternalLink(externalLink); end});
 end
 
-tinsert(addon.GUI.RightClickMenu.AchievementMenu.Sections, section);
+tinsert(addon.Gui.RightClickMenu.AchievementMenu.Sections, section);

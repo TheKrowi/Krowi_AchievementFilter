@@ -1,7 +1,7 @@
 -- [[ Namespaces ]] --
 local _, addon = ...;
-addon.GUI.RightClickMenu.AchievementMenu = {};
-local achievementMenu = addon.GUI.RightClickMenu.AchievementMenu;
+addon.Gui.RightClickMenu.AchievementMenu = {};
+local achievementMenu = addon.Gui.RightClickMenu.AchievementMenu;
 achievementMenu.Sections = {};
 local sections = achievementMenu.Sections;
 
@@ -109,4 +109,8 @@ function achievementMenu:Open(achievement, anchor, offsetX, offsetY)
 	AddMore(achievement);
 
 	rightClickMenu:Open(anchor, offsetX, offsetY);
+end
+
+function achievementMenu:GetLastSection()
+	return sections[#sections];
 end

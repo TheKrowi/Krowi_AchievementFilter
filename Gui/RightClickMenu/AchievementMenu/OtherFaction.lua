@@ -1,4 +1,3 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
 local section = {};
 
@@ -14,8 +13,7 @@ function section.Add(menu, achievement)
 		faction = addon.L["Alliance"];
 	end
 	menu:AddFull({Text = addon.L["Other faction"] .. " (" .. faction .. ")", IsTitle = true});
-	addon.GUI.RightClickMenu.AchievementMenu.AddGoToAchievementLine(menu, achievement.OtherFactionAchievementId);
+	addon.Gui.RightClickMenu.AchievementMenu.AddGoToAchievementLine(menu, achievement.OtherFactionAchievementId);
 end
 
-local numSections = #addon.GUI.RightClickMenu.AchievementMenu.Sections;
-tinsert(addon.GUI.RightClickMenu.AchievementMenu.Sections[numSections].Sections, section);
+tinsert(addon.Gui.RightClickMenu.AchievementMenu:GetLastSection().Sections, section);

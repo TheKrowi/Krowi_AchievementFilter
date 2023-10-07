@@ -1,4 +1,3 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
 local section = {};
 
@@ -10,7 +9,7 @@ function section.CheckAdd(achievement)
 end
 
 local function AddPartOfAChainAchievement(menu, id, nameSuffix)
-	addon.GUI.RightClickMenu.AchievementMenu.AddGoToAchievementLine(menu, id, nameSuffix);
+	addon.Gui.RightClickMenu.AchievementMenu.AddGoToAchievementLine(menu, id, nameSuffix);
 	local achievement = addon.Data.Achievements[id];
 	local nextAchievements = achievement.NextAchievements;
 	if nextAchievements == nil then
@@ -35,5 +34,4 @@ function section.Add(menu, achievement)
     AddPartOfAChainAchievement(menu, firstAchievement.Id);
 end
 
-local numSections = #addon.GUI.RightClickMenu.AchievementMenu.Sections;
-tinsert(addon.GUI.RightClickMenu.AchievementMenu.Sections[numSections].Sections, section);
+tinsert(addon.Gui.RightClickMenu.AchievementMenu:GetLastSection().Sections, section);

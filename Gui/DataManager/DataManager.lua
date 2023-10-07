@@ -13,4 +13,5 @@ function dataManager:Load()
 	frame.Inset:ClearAllPoints();
 	frame.Inset:SetPoint("TOPLEFT", 4, -57);
 	frame.Inset:SetPoint("BOTTOMRIGHT", -4, 0);
+	addon.Gui.DataManager = nil;
 end

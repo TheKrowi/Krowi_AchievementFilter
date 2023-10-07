@@ -1,4 +1,3 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
 local section = {};
 
@@ -31,4 +30,4 @@ function section.Add(menu, achievement)
 	menu:Add(transmogSets);
 end
 
-tinsert(addon.GUI.RightClickMenu.AchievementMenu.Sections, section);
+tinsert(addon.Gui.RightClickMenu.AchievementMenu.Sections, section);
