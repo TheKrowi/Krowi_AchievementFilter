@@ -548,7 +548,7 @@ do -- [[ Achievements]]
     end
 
     local function SetAchievementsObjectivesAnchors()
-        local objectivesFrame = addon.GUI.AchievementsObjectives;
+        local objectivesFrame = KrowiAF_AchievementsObjectives;
         local parent = objectivesFrame:GetParent();
         if not parent then
             return;
@@ -559,7 +559,7 @@ do -- [[ Achievements]]
     end
 
     local function SkinAchievementsObjectives()
-        local objectivesFrame = addon.GUI.AchievementsObjectives;
+        local objectivesFrame = KrowiAF_AchievementsObjectives;
         local parent = objectivesFrame:GetParent();
         if not parent then
             return;
@@ -603,28 +603,28 @@ do -- [[ Achievements]]
         frame.ScrollView:RegisterCallback(ScrollBoxListViewMixin.Event.OnInitializedFrame, OnAchievementsFrameViewInitializedFrame, frame);
 
         -- Objectives
-        hooksecurefunc(addon.GUI.AchievementsObjectives, "GetTextCriteria", function(self, index)
+        hooksecurefunc(KrowiAF_AchievementsObjectives, "GetTextCriteria", function(self, index)
             GW2_ADDON.AchievementFrameSkinFunction.SetSmallText(_G["KrowiAF_AchievementsObjectivesTextCriteria" .. index].Label);
         end);
 
-        hooksecurefunc(addon.GUI.AchievementsObjectives, "GetProgressBar", function(self, index)
+        hooksecurefunc(KrowiAF_AchievementsObjectives, "GetProgressBar", function(self, index)
             SkinCriteriaStatusbar(self, _G["KrowiAF_AchievementsObjectivesProgressBar" .. index]);
         end);
 
-        hooksecurefunc(addon.GUI.AchievementsObjectives, "GetMeta", function(self, index)
+        hooksecurefunc(KrowiAF_AchievementsObjectives, "GetMeta", function(self, index)
             GW2_ADDON.AchievementFrameSkinFunction.SetSmallText(_G["KrowiAF_AchievementsObjectivesMeta" .. index].Label);
         end);
 
-        local preHookDisplayCriteria = addon.GUI.AchievementsObjectives.DisplayCriteria;
-        function addon.GUI.AchievementsObjectives:DisplayCriteria(id)
+        local preHookDisplayCriteria = KrowiAF_AchievementsObjectives.DisplayCriteria;
+        function KrowiAF_AchievementsObjectives:DisplayCriteria(id)
             SetAchievementsObjectivesAnchors()
             preHookDisplayCriteria(self, id);
             SkinAchievementsObjectives();
             self:SetHeight(self:GetHeight() + 10);
         end
 
-        local preHookDisplayProgressiveAchievement = addon.GUI.AchievementsObjectives.DisplayProgressiveAchievement;
-        function addon.GUI.AchievementsObjectives:DisplayProgressiveAchievement(id)
+        local preHookDisplayProgressiveAchievement = KrowiAF_AchievementsObjectives.DisplayProgressiveAchievement;
+        function KrowiAF_AchievementsObjectives:DisplayProgressiveAchievement(id)
             SetAchievementsObjectivesAnchors()
             preHookDisplayProgressiveAchievement(self, id);
             SkinAchievementsObjectives();
@@ -1197,7 +1197,7 @@ local function SkinAll()
         gw2_ui.SkinHeader();
         ReskinBlizzard();
         gw2_ui.SkinCalendarButton(KrowiAF_AchievementCalendarButton);
-    --     SkinDataManager(addon.GUI.DataManagerFrame);
+    --     SkinDataManager(KrowiAF_DataManagerFrame);
         ReskinGw2Ui();
     end
     -- if KrowiAF_SavedData.ElvUISkin.Calendar then

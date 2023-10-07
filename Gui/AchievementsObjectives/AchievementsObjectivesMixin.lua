@@ -1,5 +1,31 @@
 local _, addon = ...;
 
+KrowiAF_AchievementsObjectivesOtherAchievementMixin = {};
+
+function KrowiAF_AchievementsObjectivesOtherAchievementMixin:OnEnter()
+	GameTooltip:SetOwner(self, "ANCHOR_NONE");
+	GameTooltip:SetPoint("TOPLEFT", self, "BOTTOMLEFT");
+	local link = GetAchievementLink(self.Id);
+	GameTooltip:SetHyperlink(link);
+	GameTooltip:Show();
+	if GameTooltip:GetTop() > self:GetBottom() then
+		GameTooltip:ClearAllPoints();
+		GameTooltip:SetPoint("BOTTOMLEFT", self, "TOPLEFT");
+	end
+end
+
+function KrowiAF_AchievementsObjectivesOtherAchievementMixin:OnLeave()
+	GameTooltip:Hide();
+end
+
+function KrowiAF_AchievementsObjectivesOtherAchievementMixin:OnClick(button)
+	if button == "LeftButton" then
+		KrowiAF_SelectAchievementFromID(self.Id);
+	elseif button == "RightButton" then
+		addon.Gui.RightClickMenu.AchievementMenu:Open(addon.Data.Achievements[self.Id]);
+	end
+end
+
 KrowiAF_AchievementsObjectivesMixin = {};
 
 function KrowiAF_AchievementsObjectivesMixin:OnLoad()
@@ -12,7 +38,7 @@ function KrowiAF_AchievementsObjectivesMixin:OnEvent(event)
 		return;
 	end
 
-	local selectedTab = addon.GUI.SelectedTab;
+	local selectedTab = addon.Gui.SelectedTab;
 	if selectedTab and selectedTab.SelectedAchievement then
 		local button = self:GetParent();
 		self.Id = nil;

@@ -308,7 +308,7 @@ local function MovableDataManagerRememberLastPositionSet(_, value)
     if addon.Options.db.profile.Window.RememberLastPosition.DataManager == value then return; end
     addon.Options.db.profile.Window.RememberLastPosition.DataManager = value;
     if not addon.Options.db.profile.Window.RememberLastPosition.DataManager then
-        addon.GUI.DataManagerFrame:ResetPosition();
+        KrowiAF_DataManagerFrame:ResetPosition();
     end
 end
 
@@ -451,7 +451,7 @@ options.OptionsTable.args["Layout"] = {
                             order = OrderPP(), type = "execute", width = AdjustedWidth(),
                             name = addon.L["Reset position"],
                             desc = addon.L["Reset position Desc"]:K_ReplaceVars(addon.L["Data Manager"]),
-                            func = function() addon.GUI.DataManagerFrame:ResetPosition(); end
+                            func = function() KrowiAF_DataManagerFrame:ResetPosition(); end
                         }
                     }
                 },

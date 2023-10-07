@@ -1,4 +1,3 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
 local section = {};
 
@@ -15,4 +14,4 @@ function section.Add(achievement)
 	"place to do this?", 1, 1, 1);
 end
 
-tinsert(addon.GUI.AchievementTooltip.Sections, section);
+tinsert(addon.Gui.AchievementTooltip.Sections, section);

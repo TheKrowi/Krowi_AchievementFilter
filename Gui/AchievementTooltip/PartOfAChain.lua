@@ -1,4 +1,3 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
 local section = {};
 
@@ -13,7 +12,7 @@ function section.CheckAdd(achievement)
 end
 
 local function AddPartOfAChainAchievement(currentAchievement, id, nameSuffix)
-	addon.GUI.AchievementTooltip.AddAchievementLine(currentAchievement, id, addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIconsPartOfAChain, nameSuffix);
+	addon.Gui.AchievementTooltip.AddAchievementLine(currentAchievement, id, addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIconsPartOfAChain, nameSuffix);
 	local achievement = addon.Data.Achievements[id];
 	local nextAchievements = achievement.NextAchievements;
 	if nextAchievements == nil then
@@ -37,4 +36,4 @@ function section.Add(achievement)
 	AddPartOfAChainAchievement(achievement, firstAchievement.Id);
 end
 
-tinsert(addon.GUI.AchievementTooltip.Sections, section);
+tinsert(addon.Gui.AchievementTooltip.Sections, section);

@@ -116,15 +116,7 @@ function KrowiAF_AchievementCalendarFrameCloseButtonMixin:OnClick()
 end
 
 function KrowiAF_AchievementCalendarFrameCloseButtonMixin:OnKeyDown(key)
-    if key == GetBindingKey("TOGGLEGAMEMENU") then
-        local parent = self:GetParent();
-		if parent:IsShown() and not parent.SideFrame:IsShown() then
-            parent:Hide();
-			self:SetPropagateKeyboardInput(false);
-			return;
-		end
-	end
-	self:SetPropagateKeyboardInput(true);
+    addon.Gui.HandleCloseButtonOnKeyDown(self, key, not self:GetParent().SideFrame:IsShown());
 end
 
 KrowiAF_AchievementCalendarFrameMixin = {
@@ -240,7 +232,7 @@ function KrowiAF_AchievementCalendarFrameMixin:ResetPosition()
         X = 150,
         Y = -80
     };
-	addon.GUI.SetFrameToLastPosition(self, "Calendar");
+	addon.Gui.SetFrameToLastPosition(self, "Calendar");
 end
 
 function KrowiAF_AchievementCalendarFrameMixin:UpdateTitle()

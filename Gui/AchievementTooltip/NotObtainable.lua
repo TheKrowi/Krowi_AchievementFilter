@@ -1,4 +1,3 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
 local section = {};
 
@@ -11,4 +10,4 @@ function section.Add(achievement)
 	GameTooltip:AddLine(text, color.R, color.G, color.B);
 end
 
-tinsert(addon.GUI.AchievementTooltip.Sections, section);
+tinsert(addon.Gui.AchievementTooltip.Sections, section);

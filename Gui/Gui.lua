@@ -29,7 +29,7 @@ function gui:LoadWithBlizzard_AchievementUI()
     defaultAchievementFrameMetalBorderHeight = AchievementFrameMetalBorderLeft:GetHeight();
     self.SetAchievementFrameHeight(); -- Do this in order to create the correct amount of buttons based on our settings
 
-    addon.GUI.AchievementsObjectives:Load();
+    gui.AchievementsObjectives:Load();
     gui.CategoriesFrame:Load();
     gui.AchievementsFrame:Load();
     addon.GUI.SummaryFrame:Load();
@@ -39,7 +39,7 @@ function gui:LoadWithBlizzard_AchievementUI()
 
     gui.Search:Load();
     addon.Gui.Calendar:Load();
-    addon.GUI.DataManagerFrame:Load();
+    addon.GUI.DataManager:Load();
     AchievementFrame.ResetPosition = addon.GUI.ResetAchievementWindowPosition;
 	addon.GUI.SetFrameToLastPosition(AchievementFrame, "AchievementWindow");
 
@@ -472,4 +472,19 @@ function gui.RefreshViewAfterPlayerLogin()
 		selectedTab.SelectedCategory = categories[1];
 		selectedTab:ShowSubFrames();
     end
+end
+
+function gui.HandleCloseButtonOnKeyDown(self, key, extraHideCondition)
+    if key == GetBindingKey("TOGGLEGAMEMENU") then
+        local parent = self:GetParent();
+        if extraHideCondition == nil then
+            extraHideCondition = true;
+        end
+		if parent:IsShown() and extraHideCondition then
+            parent:Hide();
+			self:SetPropagateKeyboardInput(false);
+			return;
+		end
+	end
+	self:SetPropagateKeyboardInput(true);
 end

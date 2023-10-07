@@ -535,7 +535,7 @@ function addon.MakeWindowStatic()
     MakeStatic(AchievementFrame, "AchievementWindow");
     MakeStatic(AchievementFrame.Header, "AchievementWindow", AchievementFrame);
     MakeStatic(KrowiAF_AchievementCalendarFrame, "Calendar");
-    MakeStatic(addon.GUI.DataManagerFrame, "DataManager");
+    MakeStatic(KrowiAF_DataManagerFrame, "DataManager");
 end
 
 local function MakeMovable(frame, rememberLastPositionOption, target)
@@ -575,7 +575,7 @@ function addon.MakeWindowMovable()
     MakeMovable(AchievementFrame, "AchievementWindow");
     MakeMovable(AchievementFrame.Header, "AchievementWindow", AchievementFrame);
     MakeMovable(KrowiAF_AchievementCalendarFrame, "Calendar");
-    MakeMovable(addon.GUI.DataManagerFrame, "DataManager");
+    MakeMovable(KrowiAF_DataManagerFrame, "DataManager");
 end
 
 function addon.GetSecondsSince(date)

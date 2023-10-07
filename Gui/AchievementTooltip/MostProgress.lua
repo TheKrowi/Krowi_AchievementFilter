@@ -1,4 +1,3 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
 local section = {};
 
@@ -143,13 +142,13 @@ function section.Add(achievement)
 
 	if numCriteria < addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.SecondColumnThreshold then
 		for i = 1, numCriteria do
-			addon.GUI.AchievementTooltip.AddCriteriaLine(details, i);
+			addon.Gui.AchievementTooltip.AddCriteriaLine(details, i);
 		end
 	else
 		for i = 1, numCriteria, 2 do
-			addon.GUI.AchievementTooltip.AddDoubleCriteriaLine(details, i, i + 1 <= numCriteria and i + 1 or nil);
+			addon.Gui.AchievementTooltip.AddDoubleCriteriaLine(details, i, i + 1 <= numCriteria and i + 1 or nil);
 		end
 	end
 end
 
-tinsert(addon.GUI.AchievementTooltip.Sections, section);
+tinsert(addon.Gui.AchievementTooltip.Sections, section);

@@ -1,7 +1,4 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
-
-KrowiAF_CharacterListFrameMixin = {};
 
 local CharacterColumns = {
 	{
@@ -57,8 +54,6 @@ local CharacterColumns = {
 	}
 };
 
-local cachedCharacters;
-
 local sortFuncs = {
     addon.Objects.CompareFunc:New("number", "Points");
     addon.Objects.CompareFunc:New("string", "Name");
@@ -70,6 +65,8 @@ local sortFuncs = {
     addon.Objects.CompareFunc:New("bool", "ExcludeFromMostProgressAchievementTooltip");
     addon.Objects.CompareFunc:New("bool", "IgnoreCharacter");
 };
+
+KrowiAF_CharacterListFrameMixin = {};
 
 local function GetSortedCharacters(column)
     local characters = {};
@@ -165,6 +162,7 @@ local function GetSortedCharacters(column)
     return characters;
 end
 
+local cachedCharacters;
 function KrowiAF_CharacterListFrameMixin:OnLoad()
     self.ColumnDisplay:LayoutColumns(CharacterColumns);
     self.ColumnDisplay.sortingFunction = self.Sort;
@@ -182,7 +180,6 @@ function KrowiAF_CharacterListFrameMixin:OnLoad()
         self:SetPoint("BOTTOMRIGHT", 0, 3);
         scrollBarHide(selfFunc);
     end
-    -- scrollBar.doNotHide = true;
 
 	scrollFrame.update = function()
 		self:Update(cachedCharacters);

@@ -201,6 +201,6 @@ function header.CreateTooltip()
         GameTooltip:Hide();
     end);
     frame:SetScript("OnClick", function()
-        addon.GUI.DataManagerFrame:Show();
+        KrowiAF_DataManagerFrame:Show();
     end);
 end

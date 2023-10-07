@@ -185,8 +185,8 @@ do -- [[ Achievements ]]
             end
         end);
 
-        local preHookFunction = addon.GUI.AchievementsObjectives.DisplayCriteria;
-        function addon.GUI.AchievementsObjectives:DisplayCriteria(id)
+        local preHookFunction = KrowiAF_AchievementsObjectives.DisplayCriteria;
+        function KrowiAF_AchievementsObjectives:DisplayCriteria(id)
             preHookFunction(self, id);
             local numCriteria = GetAchievementNumCriteria(id);
             local textStrings, metas = 0, 0;
@@ -674,7 +674,7 @@ local function SkinAll()
         SkinHeader();
         ReskinBlizzard(skins);
         elvUI.SkinCalendarButton(KrowiAF_AchievementCalendarButton, skins);
-        SkinDataManager(addon.GUI.DataManagerFrame, skins);
+        SkinDataManager(KrowiAF_DataManagerFrame, skins);
     end
     if KrowiAF_SavedData.ElvUISkin.Calendar then
         elvUI.SkinCalendarFrame(KrowiAF_AchievementCalendarFrame, engine, skins);

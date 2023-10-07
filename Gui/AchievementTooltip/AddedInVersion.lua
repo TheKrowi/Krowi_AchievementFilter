@@ -1,4 +1,3 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
 local section = {};
 
@@ -14,4 +13,4 @@ function section.Add(achievement)
 	GameTooltip:AddLine(achievement.BuildVersion and achievement.BuildVersion.Name or addon.Metadata.Build, 1, 1, 1);
 end
 
-tinsert(addon.GUI.AchievementTooltip.Sections, section);
+tinsert(addon.Gui.AchievementTooltip.Sections, section);

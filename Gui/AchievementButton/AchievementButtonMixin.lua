@@ -1,16 +1,158 @@
 local _, addon = ...;
 
+KrowiAF_AchievementButtonTrackedMixin = {};
+
+function KrowiAF_AchievementButtonTrackedMixin:OnShow()
+	if self:GetParent().Achievement then
+		self:SetChecked(IsTrackedAchievement(self:GetParent().Achievement.Id));
+	end
+end
+
+function KrowiAF_AchievementButtonTrackedMixin:OnEnter()
+	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+	if self:GetChecked() then
+		GameTooltip:SetText(UNTRACK_ACHIEVEMENT_TOOLTIP, nil, nil, nil, nil, true);
+	else
+		GameTooltip:SetText(TRACK_ACHIEVEMENT_TOOLTIP, nil, nil, nil, nil, true);
+	end
+end
+
+function KrowiAF_AchievementButtonTrackedMixin:OnLeave()
+	GameTooltip:Hide();
+end
+
+function KrowiAF_AchievementButtonTrackedMixin:OnClick()
+	if self:GetChecked() then
+		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+	else
+		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF);
+	end
+	local tracked;
+	if addon.IsWrathClassic then
+		tracked = AchievementButton_ToggleTracking(self:GetParent().Achievement.Id);
+	else
+		tracked = self:GetParent():ToggleTracking();
+	end
+	if not tracked then
+		self:SetChecked(false);
+	end
+end
+
+KrowiAF_AchievementButtonExtraIconMixin = {};
+
+function KrowiAF_AchievementButtonExtraIconMixin:OnEnter()
+	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+	GameTooltip:SetText(self.Text, nil, nil, nil, nil, true);
+end
+
+function KrowiAF_AchievementButtonExtraIconMixin:OnLeave()
+	GameTooltip:Hide();
+end
+
+KrowiAF_AchievementButtonLightMixin = {};
+
+function KrowiAF_AchievementButtonLightMixin:OnEnter()
+	self.Highlight:Show();
+    if self.Achievement == nil then
+        return;
+    end
+    GameTooltip:SetOwner(self, "ANCHOR_NONE");
+    GameTooltip:SetPoint("TOPLEFT", self, "TOPRIGHT");
+    local link = GetAchievementLink(self.Achievement.Id);
+    GameTooltip:SetHyperlink(link);
+    GameTooltip:Show();
+    if GameTooltip:GetTop() > self:GetTop() then
+        GameTooltip:ClearAllPoints();
+        GameTooltip:SetPoint("BOTTOMLEFT", self, "BOTTOMRIGHT");
+    end
+end
+
+function KrowiAF_AchievementButtonLightMixin:OnLeave()
+	self.Highlight:Hide();
+	GameTooltip:Hide();
+end
+
+function KrowiAF_AchievementButtonLightMixin:OnClick(button, _, ignoreModifiers)
+	if button == "LeftButton" then
+		if self:ProcessedModifiers(ignoreModifiers) then
+			return;
+		end
+
+    	KrowiAF_SelectAchievementFromID(self.Achievement.Id);
+	else
+		self:Click(button, ignoreModifiers);
+	end
+end
+
 KrowiAF_AchievementButtonMixin = {};
 
-function KrowiAF_AchievementButtonMixin:OnSizeChanged(width, height)
-	local selectedTab = addon.GUI.SelectedTab;
+function KrowiAF_AchievementButtonMixin:OnEnter()
+	KrowiAF_AchievementsFrame.SetHighlightedButton(self);
+	self:ShowTooltip();
+	self.Highlight:Show();
+end
+
+function KrowiAF_AchievementButtonMixin:OnLeave()
+	KrowiAF_AchievementsFrame.ClearHighlightedButton();
+	AchievementMeta_OnLeave(self);
+	local selectedTab = addon.Gui.SelectedTab;
+	if selectedTab and self.Achievement ~= selectedTab.SelectedAchievement then
+		self.Highlight:Hide();
+	end
+end
+
+function KrowiAF_AchievementButtonMixin:Click(button, ignoreModifiers)
+	if button == "LeftButton" then
+		self:Select(ignoreModifiers);
+	elseif button == "RightButton" then
+		addon.Gui.RightClickMenu.AchievementMenu:Open(self.Achievement);
+	end
+end
+
+function KrowiAF_AchievementButtonMixin:OnClick(button, _, ignoreModifiers)
+	self:Click(button, ignoreModifiers);
+end
+
+function KrowiAF_AchievementButtonMixin:OnShow()
+	self:RegisterEvent("ACHIEVEMENT_EARNED");
+	self:RegisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED");
+end
+
+function KrowiAF_AchievementButtonMixin:OnHide()
+	self:UnregisterEvent("ACHIEVEMENT_EARNED");
+	self:UnregisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED");
+end
+
+function KrowiAF_AchievementButtonMixin:OnEvent(event, ...)
+	if event ~= "ACHIEVEMENT_EARNED" and event ~= "TRACKED_ACHIEVEMENT_LIST_CHANGED" then
+		return;
+	end
+	if not self.Achievement then
+		return;
+	end
+	local achievementId = ...;
+	if achievementId ~= self.Achievement.Id then
+		return;
+	end
+
+	local achievement = self.Achievement;
+	if event ~= "ACHIEVEMENT_EARNED" then
+		self.Achievement = nil;
+		self:Update(achievement);
+	elseif event ~= "TRACKED_ACHIEVEMENT_LIST_CHANGED" then
+		self:SetAsTracked(IsTrackedAchievement(achievement.Id));
+	end
+end
+
+function KrowiAF_AchievementButtonMixin:OnSizeChanged(width)
+	local selectedTab = addon.Gui.SelectedTab;
 	if selectedTab and self.Achievement and selectedTab.SelectedAchievement == self.Achievement then
 		if self.CachedWidthOnSizeChanged and self.CachedWidthOnSizeChanged ~= width then
 			-- Delay here to give the previous OnSizeChanged to finish
 			addon.DelayFunction("KrowiAF_AchievementButtonMixin_OnSizeChanged", 0.01, function()
 				self.ForceDisplayObjectives = true;
-				addon.GUI.AchievementsFrame.SelectionBehavior:TriggerEvent(SelectionBehaviorMixin.Event.OnSelectionChanged, self.Achievement, true);
-				addon.GUI.AchievementsFrame:ScrollToNearest(self.Achievement);
+				KrowiAF_AchievementsFrame.SelectionBehavior:TriggerEvent(SelectionBehaviorMixin.Event.OnSelectionChanged, self.Achievement, true);
+				KrowiAF_AchievementsFrame:ScrollToNearest(self.Achievement);
 				self.ForceDisplayObjectives = nil;
 			end);
 		end
@@ -20,7 +162,7 @@ end
 
 local cachedWidthDisplayObjectives;
 function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
-	local objectives = addon.GUI.AchievementsObjectives;
+	local objectives = KrowiAF_AchievementsObjectives;
 
 	objectives:SetParent(self);
 	objectives:SetPoint("TOP", self.HiddenDescription, "BOTTOM", 0, -8);
@@ -206,8 +348,8 @@ function KrowiAF_AchievementButtonMixin:Update(achievement, refresh, notSelectab
 	local _, _, _, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = addon.GetAchievementInfo(achievement.Id);
 	self:SetAchievement(achievement, refresh);
 
-	local selectedTab = addon.GUI.SelectedTab;
-	local objectives = addon.GUI.AchievementsObjectives;
+	local selectedTab = addon.Gui.SelectedTab;
+	local objectives = KrowiAF_AchievementsObjectives;
 	local objectivesParent = objectives:GetParent();
 	if (objectivesParent and objectivesParent.Achievement and objectivesParent.Achievement.Id ~= objectives.Id) or (selectedTab and selectedTab.SelectedAchievement == nil) then
 		objectives:Hide();
@@ -489,14 +631,13 @@ function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
 		return;
 	end
 
-	local achievementsFrame = addon.GUI.AchievementsFrame;
-	achievementsFrame.SelectionBehavior:ToggleSelect(self);
-	achievementsFrame:ScrollToNearest(self.Achievement);
+	KrowiAF_AchievementsFrame.SelectionBehavior:ToggleSelect(self);
+	KrowiAF_AchievementsFrame:ScrollToNearest(self.Achievement);
 end
 
 function KrowiAF_AchievementButtonMixin:ShowTooltip()
 	if self.Achievement then
-		addon.GUI.AchievementTooltip.ShowTooltip(self, self.Achievement);
+		addon.Gui.AchievementTooltip.ShowTooltip(self, self.Achievement);
 	end
 end
 
@@ -543,7 +684,7 @@ function KrowiAF_AchievementButtonMixin:SetAsTracked(isTracked)
 	if isTracked and not self.Compact then
 		self.Tracked:Show();
 	else
-		local selectedTab = addon.GUI.SelectedTab;
+		local selectedTab = addon.Gui.SelectedTab;
 		if selectedTab and selectedTab.SelectedAchievement ~= self.Achievement then
 			self.Tracked:Hide();
 		end

@@ -230,7 +230,7 @@ function KrowiAF_AchievementsFrameMixin:ScrollToNearest(achievement)
 end
 
 function KrowiAF_AchievementsFrameMixin:ClearFullSelection()
-	addon.GUI.AchievementsObjectives:Hide();
+	KrowiAF_AchievementsObjectives:Hide();
 	addon.GUI.SelectedTab.SelectedAchievement = nil;
 	self.SelectionBehavior:ClearSelections();
 end

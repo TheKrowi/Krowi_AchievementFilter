@@ -1,4 +1,3 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
 
 KrowiAF_CharacterListEntryMixin = {};
@@ -112,7 +111,7 @@ end
 local function DeleteCharacterCallback(self)
     addon.Data.SavedData.CharacterData.Delete(self.Guid);
     addon.Data.SavedData.AchievementData.DeleteForCharacter(self.Guid);
-    addon.GUI.DataManagerFrame.CharacterList:Refresh();
+    KrowiAF_DataManagerFrame.CharacterList:Refresh();
 end
 
 function ShowWrathClassicDeleteCharacterConfirmation(self)

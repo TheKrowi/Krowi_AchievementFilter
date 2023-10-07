@@ -147,12 +147,12 @@
 		</Layers>
 		<Scripts>
 			<OnLoad inherit="prepend" function="KrowiAF_AchievementButton_OnLoad"/>
-			<OnEnter function="KrowiAF_AchievementButton_OnEnter"/>
-			<OnLeave function="KrowiAF_AchievementButton_OnLeave"/>
-			<OnClick function="KrowiAF_AchievementButton_OnClick"/>
-			<OnShow function="KrowiAF_AchievementButton_OnShow"/>
-			<OnHide function="KrowiAF_AchievementButton_OnHide"/>
-			<OnEvent function="KrowiAF_AchievementButton_OnEvent"/>
+			<OnEnter method="OnEnter"/>
+			<OnLeave method="OnLeave"/>
+			<OnClick method="OnClick"/>
+			<OnShow method="OnShow"/>
+			<OnHide method="OnHide"/>
+			<OnEvent method="OnEvent"/>
 			<OnSizeChanged method="OnSizeChanged"/>
 		</Scripts>
 		<Frames>
@@ -279,7 +279,7 @@
 					</Layer>
 				</Layers>
 			</Frame>
-			<CheckButton name="$parentTracked" parentKey="Tracked" hidden="true">
+			<CheckButton name="$parentTracked" parentKey="Tracked" mixin="KrowiAF_AchievementButtonTrackedMixin" hidden="true">
 				<Size>
 					<AbsDimension x="15" y="15"/>
 				</Size>
@@ -300,23 +300,10 @@
 					<AbsInset left="0" right="-100" top="0" bottom="0"/>
 				</HitRectInsets>
 				<Scripts>
-					<OnClick function="KrowiAF_AchievementButtonTracked_OnClick"/>
-					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-						if self:GetChecked() then
-							GameTooltip:SetText(UNTRACK_ACHIEVEMENT_TOOLTIP, nil, nil, nil, nil, true);
-						else
-							GameTooltip:SetText(TRACK_ACHIEVEMENT_TOOLTIP, nil, nil, nil, nil, true);
-						end
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
-					<OnShow>
-						if self:GetParent().Achievement then
-							self:SetChecked(IsTrackedAchievement(self:GetParent().Achievement.Id));
-						end
-					</OnShow>
+					<OnShow method="OnShow"/>
+					<OnEnter method="OnEnter"/>
+					<OnLeave method="OnLeave"/>
+					<OnClick method="OnClick"/>
 				</Scripts>
 				<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
 				<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
@@ -324,7 +311,7 @@
 				<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
 				<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
 			</CheckButton>
-			<Frame hidden="true" name="$parentExtraIcon" parentKey="ExtraIcon">
+			<Frame hidden="true" name="$parentExtraIcon" parentKey="ExtraIcon" mixin="KrowiAF_AchievementButtonExtraIconMixin">
 				<Size x="15" y="15"/>
 				<Anchors>
 					<Anchor point="TOP" relativeKey="$parent.PlusMinus" relativePoint="BOTTOM" x="-1" y="-5"/>
@@ -335,10 +322,8 @@
 					</Layer>
 				</Layers>
 				<Scripts>
-					<OnEnter function="KrowiAF_AchievementButtonExtraIcon_OnEnter"/>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter method="OnEnter"/>
+					<OnLeave method="OnLeave"/>
 				</Scripts>
 			</Frame>
 		</Frames>
@@ -358,12 +343,12 @@
 		</Scripts>
 	</EventButton>
 
-	<EventButton name="KrowiAF_AchievementButton_Light_Template" inherits="KrowiAF_AchievementButton_Small_Template" virtual="true">
+	<EventButton name="KrowiAF_AchievementButton_Light_Template" mixin="KrowiAF_AchievementButtonLightMixin" inherits="KrowiAF_AchievementButton_Small_Template" virtual="true">
 		<Scripts>
 			<OnLoad inherit="append" function="KrowiAF_AchievementButton_Light_OnLoad"/>
-			<OnEnter function="KrowiAF_AchievementButton_Light_OnEnter"/>
-			<OnLeave function="KrowiAF_AchievementButton_Light_OnLeave"/>
-			<OnClick function="KrowiAF_AchievementButton_Light_OnClick"/>
+			<OnEnter method="OnEnter"/>
+			<OnLeave method="OnLeave"/>
+			<OnClick method="OnClick"/>
 		</Scripts>
 	</EventButton>
 
