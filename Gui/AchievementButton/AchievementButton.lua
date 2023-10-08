@@ -68,7 +68,7 @@ function KrowiAF_AchievementButton_Light_OnLoad(self)
 	self.Background:SetTexCoord(0, 1, 0, 0.25);
 	self.HeaderBackground:SetVertexColor(1, 1, 1, 0.75); -- maybe
 	self.Glow:SetPoint("BOTTOM", 0, 2);
-	hooksecurefunc(self, "SetAchievement", function(selfFunc)
+	hooksecurefunc(self, "SetAchievement", function()
 		self.Description:Show();
 		self.Reward:Hide();
 		self.RewardBackground:Hide();

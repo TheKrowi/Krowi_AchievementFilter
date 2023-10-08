@@ -1,19 +1,18 @@
 <Ui>
-    <Script file="BoxFrame.lua"/>
     <Script file="BoxFrameMixin.lua"/>
 
     <!-- Originally from Blizzard_AchievementUI.xml line 2487 at time of writing -->
 	<Frame name="KrowiAF_SearchBoxFrame_Template" mixin="KrowiAF_SearchBoxFrameMixin" inherits="SearchBoxTemplate" virtual="true" hidden="true">
 		<Scripts>
 			<OnLoad method="OnLoad"/>
-			<OnShow function="KrowiAF_SearchBoxFrame_OnShow"/>
-			<OnHide function="KrowiAF_SearchBoxFrame_OnHide"/>
-			<OnEnterPressed function="KrowiAF_SearchBoxFrame_OnEnterPressed"/>
-			<OnTextChanged function="KrowiAF_SearchBoxFrame_OnTextChanged"/>
-			<OnEditFocusLost function="KrowiAF_SearchBoxFrame_OnFocusLost"/>
-			<OnEditFocusGained function="KrowiAF_SearchBoxFrame_OnFocusGained"/>
-			<OnKeyDown function="KrowiAF_SearchBoxFrame_OnKeyDown"/>
-			<OnMouseDown function="KrowiAF_SearchBoxFrame_OnMouseDown"/>
+			<OnShow method="OnShow"/>
+			<OnHide method="OnHide"/>
+			<OnEnterPressed method="OnEnterPressed"/>
+			<OnTextChanged method="OnTextChanged"/>
+			<OnEditFocusGained method="OnEditFocusGained"/>
+			<OnEditFocusLost method="OnEditFocusLost"/>
+			<OnKeyDown method="OnKeyDown"/>
+			<OnMouseDown method="OnMouseDown"/>
 		</Scripts>
 	</Frame>
 </Ui>

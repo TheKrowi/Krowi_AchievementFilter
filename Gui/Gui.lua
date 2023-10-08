@@ -396,18 +396,10 @@ function gui.TabsOrderGetActiveKeys()
 end
 
 function gui.LoadWrathClassicAchievementFrameChanges()
-    if not addon.IsWrathClassic then
+    if not addon.Util.IsWrathClassic then
         return;
     end
-    -- if AchievementFrame_SetTabs == nil then
-    --     AchievementFrame_SetTabs = function() end;
-    -- end
-    if AchievementMeta_OnLeave == nil then
-        AchievementMeta_OnLeave = function(self)
-            GameTooltip:Hide();
-            -- guildMemberRequestFrame = nil;
-        end
-    end
+
 end
 
 function gui.LoadOldAchievementFrameCompatibility()
@@ -429,7 +421,7 @@ function gui.LoadOldAchievementFrameTabsCompatibility()
         return;
     end
 
-    for i, t in next, addon.TabsOrder do
+    for _, t in next, addon.TabsOrder do
         addon.Tabs[t].Button.Text = addon.Tabs[t].Button.text;
     end
 end

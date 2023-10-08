@@ -8,7 +8,7 @@ function KrowiAF_SearchPreviewButtonMixin:OnClick()
     if self.Achievement then
         KrowiAF_SelectAchievement(self.Achievement);
         self:GetParent():Hide();
-        self:GetParent():GetParent():ClearFocus();
+        KrowiAF_SearchBoxFrame:ClearFocus();
 	end
 end
 

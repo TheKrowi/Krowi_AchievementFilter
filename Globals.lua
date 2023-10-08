@@ -466,7 +466,9 @@ function addon.OverwriteFunctions()
         end
         origAchievementFrame_SelectAchievement(id);
     end
+end
 
+function addon.LoadBlizzardApiChanges()
     -- Bunch of API changes in 10.1.5
     if not IsTrackedAchievement then
         IsTrackedAchievement = function(achievementId)
@@ -493,6 +495,11 @@ function addon.OverwriteFunctions()
     if not AddTrackedAchievement then
         AddTrackedAchievement = function(achievementId)
             return C_ContentTracking.StartTracking(Enum.ContentTrackingType.Achievement, achievementId);
+        end
+    end
+
+    if not WatchFrame_Update then
+        WatchFrame_Update = function()
         end
     end
 end

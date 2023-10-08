@@ -10,11 +10,7 @@ end
 
 function KrowiAF_AchievementButtonTrackedMixin:OnEnter()
 	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-	if self:GetChecked() then
-		GameTooltip:SetText(UNTRACK_ACHIEVEMENT_TOOLTIP, nil, nil, nil, nil, true);
-	else
-		GameTooltip:SetText(TRACK_ACHIEVEMENT_TOOLTIP, nil, nil, nil, nil, true);
-	end
+	GameTooltip:SetText(self:GetChecked() and UNTRACK_ACHIEVEMENT_TOOLTIP or TRACK_ACHIEVEMENT_TOOLTIP, nil, nil, nil, nil, true);
 end
 
 function KrowiAF_AchievementButtonTrackedMixin:OnLeave()
@@ -22,17 +18,8 @@ function KrowiAF_AchievementButtonTrackedMixin:OnLeave()
 end
 
 function KrowiAF_AchievementButtonTrackedMixin:OnClick()
-	if self:GetChecked() then
-		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
-	else
-		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF);
-	end
-	local tracked;
-	if addon.IsWrathClassic then
-		tracked = AchievementButton_ToggleTracking(self:GetParent().Achievement.Id);
-	else
-		tracked = self:GetParent():ToggleTracking();
-	end
+	PlaySound(self:GetChecked() and SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON or SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF);
+	local tracked = self:GetParent():ToggleTracking();
 	if not tracked then
 		self:SetChecked(false);
 	end
@@ -73,15 +60,14 @@ function KrowiAF_AchievementButtonLightMixin:OnLeave()
 end
 
 function KrowiAF_AchievementButtonLightMixin:OnClick(button, _, ignoreModifiers)
-	if button == "LeftButton" then
-		if self:ProcessedModifiers(ignoreModifiers) then
-			return;
-		end
-
-    	KrowiAF_SelectAchievementFromID(self.Achievement.Id);
-	else
+	if button ~= "LeftButton" then
 		self:Click(button, ignoreModifiers);
+		return;
 	end
+	if self:ProcessedModifiers(ignoreModifiers) then
+		return;
+	end
+	KrowiAF_SelectAchievementFromID(self.Achievement.Id);
 end
 
 KrowiAF_AchievementButtonMixin = {};
@@ -94,7 +80,7 @@ end
 
 function KrowiAF_AchievementButtonMixin:OnLeave()
 	KrowiAF_AchievementsFrame.ClearHighlightedButton();
-	AchievementMeta_OnLeave(self);
+	GameTooltip:Hide();
 	local selectedTab = addon.Gui.SelectedTab;
 	if selectedTab and self.Achievement ~= selectedTab.SelectedAchievement then
 		self.Highlight:Hide();
@@ -136,28 +122,29 @@ function KrowiAF_AchievementButtonMixin:OnEvent(event, ...)
 	end
 
 	local achievement = self.Achievement;
-	if event ~= "ACHIEVEMENT_EARNED" then
+	if event == "ACHIEVEMENT_EARNED" then
 		self.Achievement = nil;
 		self:Update(achievement);
-	elseif event ~= "TRACKED_ACHIEVEMENT_LIST_CHANGED" then
+	elseif event == "TRACKED_ACHIEVEMENT_LIST_CHANGED" then
 		self:SetAsTracked(IsTrackedAchievement(achievement.Id));
 	end
 end
 
 function KrowiAF_AchievementButtonMixin:OnSizeChanged(width)
 	local selectedTab = addon.Gui.SelectedTab;
-	if selectedTab and self.Achievement and selectedTab.SelectedAchievement == self.Achievement then
-		if self.CachedWidthOnSizeChanged and self.CachedWidthOnSizeChanged ~= width then
-			-- Delay here to give the previous OnSizeChanged to finish
-			addon.DelayFunction("KrowiAF_AchievementButtonMixin_OnSizeChanged", 0.01, function()
-				self.ForceDisplayObjectives = true;
-				KrowiAF_AchievementsFrame.SelectionBehavior:TriggerEvent(SelectionBehaviorMixin.Event.OnSelectionChanged, self.Achievement, true);
-				KrowiAF_AchievementsFrame:ScrollToNearest(self.Achievement);
-				self.ForceDisplayObjectives = nil;
-			end);
-		end
-		self.CachedWidthOnSizeChanged = width;
+	if not selectedTab or not self.Achievement or selectedTab.SelectedAchievement ~= self.Achievement then
+		return;
 	end
+	if self.CachedWidthOnSizeChanged and self.CachedWidthOnSizeChanged ~= width then
+		-- Delay here to give the previous OnSizeChanged to finish
+		addon.DelayFunction("KrowiAF_AchievementButtonMixin_OnSizeChanged", 0.01, function()
+			self.ForceDisplayObjectives = true;
+			KrowiAF_AchievementsFrame.SelectionBehavior:TriggerEvent(SelectionBehaviorMixin.Event.OnSelectionChanged, self.Achievement, true);
+			KrowiAF_AchievementsFrame:ScrollToNearest(self.Achievement);
+			self.ForceDisplayObjectives = nil;
+		end);
+	end
+	self.CachedWidthOnSizeChanged = width;
 end
 
 local cachedWidthDisplayObjectives;
@@ -198,17 +185,14 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
 	return height;
 end
 
-function KrowiAF_AchievementButtonMixin:SetAchievementData(achievement, id, name, points, completed, month, day, year, description, flags, icon, rewardText, wasEarnedByMe)
-	self.Achievement = achievement;
-
-	local saturatedStyle;
+function KrowiAF_AchievementButtonMixin:SetSaturatedStyle(achievement, flags)
 	local state;
 	if achievement.TemporaryObtainable then
 		state = achievement.TemporaryObtainable.Obtainable();
 	end
 
 	if state and (state == false or state == "Past") then
-		saturatedStyle = "NotObtainable";
+		return "NotObtainable";
 	elseif state and state == "Current" then
 		self.saturatedStyle = "TempObtainable";
 	elseif state and state == "Future" then
@@ -216,42 +200,27 @@ function KrowiAF_AchievementButtonMixin:SetAchievementData(achievement, id, name
 	else
 		if flags.IsAccountWide then
 			self.accountWide = true;
-			saturatedStyle = "account";
+			return "account";
 		else
 			self.accountWide = nil;
-			saturatedStyle = "normal";
+			return "normal";
 		end
 	end
+end
 
-	if flags.IsAccountWide then
-		achievement.IsAccountWide = true;
-	else
-		achievement.IsAccountWide = nil;
+function KrowiAF_AchievementButtonMixin:SetShield(id, points)
+	if GetPreviousAchievement(id) and points > 0 then
+		points = AchievementButton_GetProgressivePoints(id);
 	end
-
-	self.Header:SetText(name);
-
 	local normalFont = self.Compact and GameFontHighlight or AchievementPointsFontHighlight;
 	local smallFont = self.Compact and GameFontHighlightSmall or AchievementPointsFontHighlightSmall;
-	if GetPreviousAchievement(id) and points > 0 then
-		AchievementShield_SetPoints(AchievementButton_GetProgressivePoints(id), self.Shield.Points, normalFont, smallFont);
-	else
-		AchievementShield_SetPoints(points, self.Shield.Points, normalFont, smallFont);
-	end
+	AchievementShield_SetPoints(points, self.Shield.Points, normalFont, smallFont);
 
 	local texture = points > 0 and "Interface/AchievementFrame/UI-Achievement-Shields" or "Interface/AchievementFrame/UI-Achievement-Shields-NoPoints";
 	self.Shield.Icon:SetTexture(texture);
+end
 
-	-- self.Shield.wasEarnedByMe = not (completed and not wasEarnedByMe);
-	-- self.Shield.earnedBy = earnedBy;
-	-- self.Shield.id = id;
-
-	self.Description:SetText(description);
-	self.HiddenDescription:SetText(description);
-	self.numLines = ceil(self.HiddenDescription:GetHeight() / self.FontHeight);
-
-	self.Icon.Texture:SetTexture(icon);
-
+function KrowiAF_AchievementButtonMixin:SetCompletionState(achievement, completed, month, day, year, wasEarnedByMe, saturatedStyle)
 	local earnedByFilter = addon.Filters.db.profile.EarnedBy;
 	if (earnedByFilter == addon.Filters.Account and completed or wasEarnedByMe) or (earnedByFilter == addon.Filters.CharacterAccount and completed and wasEarnedByMe) then
 		self.Completed = true;
@@ -263,7 +232,9 @@ function KrowiAF_AchievementButtonMixin:SetAchievementData(achievement, id, name
 		if self.saturatedStyle ~= saturatedStyle then
 			self:Saturate();
 		end
-	elseif (earnedByFilter == addon.Filters.CharacterAccount and completed and not wasEarnedByMe) then
+		return;
+	end
+	if (earnedByFilter == addon.Filters.CharacterAccount and completed and not wasEarnedByMe) then
 		self.Completed = true;
 		achievement.IsCompleted = true;
 		self.DateCompleted:SetText(FormatShortDate(day, month, year));
@@ -271,13 +242,15 @@ function KrowiAF_AchievementButtonMixin:SetAchievementData(achievement, id, name
 			self.DateCompleted:Show();
 		end
 		self:SaturatePartial();
-	else
-		self.Completed = nil;
-		achievement.IsCompleted = nil;
-		self.DateCompleted:Hide();
-		self:Desaturate();
+		return;
 	end
+	self.Completed = nil;
+	achievement.IsCompleted = nil;
+	self.DateCompleted:Hide();
+	self:Desaturate();
+end
 
+function KrowiAF_AchievementButtonMixin:SetRewardText(rewardText)
 	if rewardText == "" then
 		if self.Compact then
 			self.Reward:SetText(nil);
@@ -285,51 +258,82 @@ function KrowiAF_AchievementButtonMixin:SetAchievementData(achievement, id, name
 		end
 		self.Reward:Hide();
 		self.RewardBackground:Hide();
-	else
-		self.Reward:SetText(rewardText);
-		self.Reward:Show();
-		self.RewardBackground:Show();
-		if self.Completed then
-			self.RewardBackground:SetVertexColor(1, 1, 1);
-		else
-			self.RewardBackground:SetVertexColor(0.35, 0.35, 0.35);
-		end
-		if self.Compact then
-			self.Description:Hide();
-		end
+		return;
 	end
 
-	self.Faction:Hide();
+	self.Reward:SetText(rewardText);
+	self.Reward:Show();
+	self.RewardBackground:Show();
+	if self.Completed then
+		self.RewardBackground:SetVertexColor(1, 1, 1);
+	else
+		self.RewardBackground:SetVertexColor(0.35, 0.35, 0.35);
+	end
+	if self.Compact then
+		self.Description:Hide();
+	end
+end
+
+function KrowiAF_AchievementButtonMixin:SetFaction(achievement)
 	if achievement.Faction == addon.Objects.Faction.Alliance and addon.Options.db.profile.Achievements.ShowAllianceFactionIcon then
 		self.Faction.Icon:SetAtlas("MountJournalIcons-Alliance");
 		self.Faction:Show();
-	elseif achievement.Faction == addon.Objects.Faction.Horde and addon.Options.db.profile.Achievements.ShowHordeFactionIcon then
+		return;
+	end
+	if achievement.Faction == addon.Objects.Faction.Horde and addon.Options.db.profile.Achievements.ShowHordeFactionIcon then
 		self.Faction.Icon:SetAtlas("MountJournalIcons-Horde");
 		self.Faction:Show();
+		return;
 	end
+	self.Faction:Hide();
+end
 
+function KrowiAF_AchievementButtonMixin:SetExtraIcon(achievement)
 	if achievement.AlwaysVisible then
 		self.ExtraIcon.Texture:SetAtlas("flightpath");
 		self.ExtraIcon.Text = addon.L["Achievement shown temporarily"];
 		self.ExtraIcon:Show();
-	elseif achievement.IsWatched then
+		return;
+	end
+	if achievement.IsWatched then
 		self.ExtraIcon.Texture:SetAtlas("groupfinder-eye-frame");
-		self.ExtraIcon.Text = addon.L["Achievement is watched"]:K_ReplaceVars
-		{
-			watchList = addon.L["Watch List"]
-		};
+		self.ExtraIcon.Text = addon.L["Achievement is watched"]:K_ReplaceVars(addon.L["Watch List"]);
 		self.ExtraIcon:Show();
-	elseif achievement.IsExcluded then
+		return;
+	end
+	if achievement.IsExcluded then
 		self.ExtraIcon.Texture:SetAtlas("XMarksTheSpot");
 		self.ExtraIcon.Text = addon.L["Achievement is excluded"];
 		self.ExtraIcon:Show();
-	else
-		self.ExtraIcon:Hide();
+		return;
 	end
+	self.ExtraIcon:Hide();
+end
+
+function KrowiAF_AchievementButtonMixin:SetAchievementData(achievement, id, name, points, completed, month, day, year, description, flags, icon, rewardText, wasEarnedByMe)
+	self.Achievement = achievement;
+
+	local saturatedStyle = self:SetSaturatedStyle(achievement, flags);
+
+	if flags.IsAccountWide then
+		achievement.IsAccountWide = true;
+	else
+		achievement.IsAccountWide = nil;
+	end
+
+	self.Header:SetText(name);
+	self.Icon.Texture:SetTexture(icon);
+	self.Description:SetText(description);
+	self.HiddenDescription:SetText(description);
+	self.numLines = ceil(self.HiddenDescription:GetHeight() / self.FontHeight);
+	self:SetShield(id, points);
+	self:SetCompletionState(achievement, completed, month, day, year, wasEarnedByMe, saturatedStyle);
+	self:SetRewardText(rewardText);
+	self:SetFaction(achievement);
+	self:SetExtraIcon(achievement);
 end
 
 function KrowiAF_AchievementButtonMixin:SetAchievement(achievement, refresh)
-	-- print("SetAchievement")
 	if not achievement then
 		self.Achievement = nil;
 		return;
@@ -366,19 +370,21 @@ function KrowiAF_AchievementButtonMixin:Update(achievement, refresh, notSelectab
 		self:Collapse();
 	end
 
-	if self.Compact then
-		if not self.collapsed then
-			self.Glow:Show();
-			self.Glow:SetHeight(64);
-			self.Glow:SetTexCoord(0, 1, 1 / 256, (self.Glow:GetHeight() + 1) / 256); -- Add 1 to height since top starts at 1
+	if not self.Compact then
+		return;
+	end
+
+	if not self.collapsed then
+		self.Glow:Show();
+		self.Glow:SetHeight(64);
+		self.Glow:SetTexCoord(0, 1, 1 / 256, (self.Glow:GetHeight() + 1) / 256); -- Add 1 to height since top starts at 1
+	else
+		if self.Reward:GetText() ~= nil then
+			self.Glow:Hide();
 		else
-			if self.Reward:GetText() ~= nil then
-				self.Glow:Hide();
-			else
-				self.Glow:Show();
-				self.Glow:SetHeight(24);
-				self.Glow:SetTexCoord(0, 1, 1 / 256, (self.Glow:GetHeight() + 1) / 256); -- Add 1 to height since top starts at 1
-			end
+			self.Glow:Show();
+			self.Glow:SetHeight(24);
+			self.Glow:SetTexCoord(0, 1, 1 / 256, (self.Glow:GetHeight() + 1) / 256); -- Add 1 to height since top starts at 1
 		end
 	end
 end
@@ -389,17 +395,7 @@ function KrowiAF_AchievementButtonMixin:UpdatePlusMinusTexture()
 	end
 
 	local id = self.Achievement.Id;
-	local display = false;
-	if self.Compact then
-		display = true;
-	elseif GetAchievementNumCriteria(id) ~= 0 then
-		display = true;
-	elseif self.Completed and GetPreviousAchievement(id) then
-		display = true;
-	-- elseif not self.Completed and GetAchievementGuildRep(id) then -- Not sure what this one does
-	-- 	display = true;
-	end
-
+	local display = self.Compact or GetAchievementNumCriteria(id) ~= 0 or (self.Completed and GetPreviousAchievement(id));
 	if not display then
 		self.PlusMinus:Hide();
 		return;
@@ -588,42 +584,43 @@ function KrowiAF_AchievementButtonMixin:SaturatePartial()
 end
 
 function KrowiAF_AchievementButtonMixin:ProcessedModifiers(ignoreModifiers)
-	if IsModifierKeyDown() and not ignoreModifiers then
-		local handled = nil;
-		if addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.PasteToChat) then
-			local achievementLink = GetAchievementLink(self.Achievement.Id);
-			if achievementLink then
-				handled = ChatEdit_InsertLink(achievementLink);
-				if not handled and SocialPostFrame and Social_IsShown() then
-					Social_InsertLink(achievementLink);
-					handled = true;
-				end
+	if not IsModifierKeyDown() or ignoreModifiers then
+		return;
+	end
+
+	if addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.PasteToChat) then
+		local achievementLink = GetAchievementLink(self.Achievement.Id);
+		if achievementLink then
+			if ChatEdit_InsertLink(achievementLink) then
+				return true;
+			end
+			if SocialPostFrame and Social_IsShown() then
+				Social_InsertLink(achievementLink);
+				return true;
 			end
 		end
-		if not handled and addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.ToggleTracking) then
-			if addon.IsWrathClassic then
-				AchievementButton_ToggleTracking(self.Achievement.Id);
-			else
-				self:ToggleTracking();
-			end
-			handled = true;
-		end
-		if not handled and addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.ToggleWatchList) then
-			if self.Achievement.IsWatched then
-				addon.ClearWatchAchievement(self.Achievement);
-			else
-				addon.WatchAchievement(self.Achievement);
-			end
-		end
-		if not handled and addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.ToggleExcluded) then
-			if self.Achievement.IsExcluded then
-				addon.IncludeAchievement(self.Achievement);
-			else
-				addon.ExcludeAchievement(self.Achievement);
-			end
+	end
+	if addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.ToggleTracking) then
+		self:ToggleTracking();
+		return true;
+	end
+	if addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.ToggleWatchList) then
+		if self.Achievement.IsWatched then
+			addon.ClearWatchAchievement(self.Achievement);
+		else
+			addon.WatchAchievement(self.Achievement);
 		end
 		return true;
 	end
+	if addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.ToggleExcluded) then
+		if self.Achievement.IsExcluded then
+			addon.IncludeAchievement(self.Achievement);
+		else
+			addon.ExcludeAchievement(self.Achievement);
+		end
+		return true;
+	end
+	return true;
 end
 
 function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
@@ -636,9 +633,10 @@ function KrowiAF_AchievementButtonMixin:Select(ignoreModifiers)
 end
 
 function KrowiAF_AchievementButtonMixin:ShowTooltip()
-	if self.Achievement then
-		addon.Gui.AchievementTooltip.ShowTooltip(self, self.Achievement);
+	if not self.Achievement then
+		return;
 	end
+	addon.Gui.AchievementTooltip.ShowTooltip(self, self.Achievement);
 end
 
 function KrowiAF_AchievementButtonMixin:ToggleTracking()
@@ -665,8 +663,8 @@ function KrowiAF_AchievementButtonMixin:ToggleTracking()
 		return;
 	end
 
-	self:SetAsTracked(true);
 	local trackingError = AddTrackedAchievement(id);
+	self:SetAsTracked(true);
 	if trackingError then
 		ContentTrackingUtil.DisplayTrackingError(trackingError);
 	end
@@ -693,4 +691,5 @@ function KrowiAF_AchievementButtonMixin:SetAsTracked(isTracked)
 	self.Tracked:SetChecked(isTracked);
 	-- This +4 here is to fudge around any string width issues that arize from resizing a string set to its string width. See bug 144418 for an example.
 	self.Header:SetWidth(isTracked and self.Header:GetStringWidth() + 4 or ACHIEVEMENTBUTTON_LABELWIDTH);
+	WatchFrame_Update(); -- Needed for Wrath Classic, does nothing for Retail
 end

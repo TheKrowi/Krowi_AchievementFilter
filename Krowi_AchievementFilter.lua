@@ -37,6 +37,7 @@ loadHelper:RegisterEvent("ACHIEVEMENT_EARNED");
 local function LoadKrowi_AchievementFilter()
     addon.Diagnostics.Load();
 
+
     addon.Data.ExportedCategories.InjectDynamicOptions();
     addon.Data.ExportedCalendarEvents.InjectDynamicOptions();
     if addon.Data.ExportedWidgetEvents then
@@ -80,6 +81,7 @@ local function LoadBlizzard_AchievementUI()
     end
     addon.GUI.AchievementFrameHeader.HookSetPointsText();
     addon.OverwriteFunctions();
+    addon.LoadBlizzardApiChanges();
     addon.HookFunctions();
 
     LoadBlizzard_AchievementUI = function() end
