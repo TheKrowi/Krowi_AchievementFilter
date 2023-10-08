@@ -216,9 +216,10 @@ end
 
 function KrowiAF_AchievementCalendarFrameMixin:LoadSideFrame()
 	self.SideFrame = CreateFrame("Frame", self:GetName() .. "SideFrame", self, "KrowiAF_AchievementCalendarSideFrame_Template");
-	self.SideFrame:SetPoint("TOPLEFT", self, "TOPRIGHT", 0, -24);
-    self.SideFrame:SetPoint("BOTTOM", self, "BOTTOM", 0, 0); --320
-	self.SideFrame:HookScript("OnHide", function()
+	local sideFrame = self.SideFrame;
+	sideFrame:SetPoint("TOPLEFT", self, "TOPRIGHT", 0, -24);
+    sideFrame:SetPoint("BOTTOM", self, "BOTTOM", 0, 0); --320
+	sideFrame:HookScript("OnHide", function()
 		if self.SelectedDayButton and not self.LockMonth then
 			self.SelectedDayButton:Deselect();
 			self:HandleDayButtonSelection(self.SelectedDayButton);

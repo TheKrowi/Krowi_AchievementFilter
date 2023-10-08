@@ -1,12 +1,8 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
-local gui = addon.GUI;
-gui.Search = {};
-local search = gui.Search;
+addon.Gui.Search = {};
+local search = addon.Gui.Search;
 
 function search:Load()
     self.BoxFrame:Load();
-    self.OptionsMenuButton:Load();
-    self.PreviewFrame:Load();
-    self.ResultsFrame:Load();
+    -- addon.Gui.Search = nil;
 end

@@ -1,7 +1,7 @@
 <Ui>
-    <Script file="ResultsButton.lua"/>
+    <Script file="ResultsButtonMixin.lua"/>
 
-	<Button name="KrowiAF_SearchResultsButton_Template" virtual="true">
+	<Button name="KrowiAF_SearchResultsButton_Template" mixin="KrowiAF_SearchResultsButtonMixin" virtual="true">
 		<Size x="575" y="49"/>
 		<Layers>
 			<Layer level="OVERLAY" textureSubLevel="2">
@@ -49,7 +49,7 @@
 		<HighlightTexture atlas="search-highlight-large">
 		</HighlightTexture>
 		<Scripts>
-			<OnClick function="KrowiAF_SearchResultsButton_OnClick"/>
+			<OnClick method="OnClick"/>
 		</Scripts>
 	</Button>
 </Ui>

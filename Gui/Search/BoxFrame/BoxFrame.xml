@@ -5,7 +5,7 @@
     <!-- Originally from Blizzard_AchievementUI.xml line 2487 at time of writing -->
 	<Frame name="KrowiAF_SearchBoxFrame_Template" mixin="KrowiAF_SearchBoxFrameMixin" inherits="SearchBoxTemplate" virtual="true" hidden="true">
 		<Scripts>
-			<OnLoad function="KrowiAF_SearchBoxFrame_OnLoad"/>
+			<OnLoad method="OnLoad"/>
 			<OnShow function="KrowiAF_SearchBoxFrame_OnShow"/>
 			<OnHide function="KrowiAF_SearchBoxFrame_OnHide"/>
 			<OnEnterPressed function="KrowiAF_SearchBoxFrame_OnEnterPressed"/>

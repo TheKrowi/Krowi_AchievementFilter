@@ -791,8 +791,8 @@ local function SkinFilterButton(button)
     button:SetFrameLevel(button:GetFrameLevel() + 2);
 
     button:ClearAllPoints();
-    button:SetPoint('BOTTOMLEFT', addon.GUI.Search.BoxFrame, 'TOPLEFT', 0, 10);
-    button:SetPoint('BOTTOMRIGHT', addon.GUI.Search.BoxFrame, 'TOPRIGHT', 0, 10);
+    button:SetPoint('BOTTOMLEFT', KrowiAF_SearchBoxFrame, 'TOPLEFT', 0, 10);
+    button:SetPoint('BOTTOMRIGHT', KrowiAF_SearchBoxFrame, 'TOPRIGHT', 0, 10);
 
     button.backdrop:ClearAllPoints()
     button.backdrop:SetPoint('TOPLEFT', button, 'TOPLEFT', 0, 0);
@@ -982,7 +982,7 @@ do -- [[ Header ]]
             AchievementFrame.Header.Points:SetHeight(AchievementFrame.Header.Shield:GetHeight());
             AchievementFrame.Header.Points:SetPoint("TOP", AchievementFrame.Header.Shield);
             AchievementFrame.Header.Points:SetPoint("BOTTOM", AchievementFrame.Header.Shield);
-            AchievementFrame.Header.Points:SetPoint("RIGHT", addon.GUI.Search.BoxFrame);
+            AchievementFrame.Header.Points:SetPoint("RIGHT", KrowiAF_SearchBoxFrame);
         end
     end
 
@@ -1190,10 +1190,10 @@ local function SkinAll()
         gw2_ui.SkinAchievementsFrame(addon.GUI.AchievementsFrame, addon.GUI.CategoriesFrame);
         gw2_ui.SkinAchievementSummary(addon.GUI.SummaryFrame, addon.GUI.CategoriesFrame);
         SkinFilterButton(addon.GUI.FilterButton);
-        gw2_ui.SkinSearchOptionsButton(addon.GUI.Search.OptionsMenuButton, addon.GUI.Search.BoxFrame);
-        gw2_ui.SkinSearchBoxFrame(addon.GUI.Search.BoxFrame, addon.GUI.CategoriesFrame);
-        gw2_ui.SkinSearchPreviewFrame(addon.GUI.Search.PreviewFrame, addon.GUI.Search.BoxFrame);
-    --     gw2_ui.SkinSearchResultsFrame(addon.GUI.Search.ResultsFrame);
+        gw2_ui.SkinSearchOptionsButton(KrowiAF_SearchBoxFrame.OptionsMenuButton, KrowiAF_SearchBoxFrame);
+        gw2_ui.SkinSearchBoxFrame(KrowiAF_SearchBoxFrame, addon.GUI.CategoriesFrame);
+        gw2_ui.SkinSearchPreviewFrame(KrowiAF_SearchBoxFrame.PreviewContainer, KrowiAF_SearchBoxFrame);
+    --     gw2_ui.SkinSearchResultsFrame(KrowiAF_SearchBoxFrame.ResultsFrame);
         gw2_ui.SkinHeader();
         ReskinBlizzard();
         gw2_ui.SkinCalendarButton(KrowiAF_AchievementCalendarButton);

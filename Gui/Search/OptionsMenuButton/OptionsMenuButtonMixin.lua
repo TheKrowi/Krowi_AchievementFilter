@@ -1,4 +1,3 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
 
 KrowiAF_SearchOptionsMenuButtonMixin = {};
@@ -12,7 +11,7 @@ function KrowiAF_SearchOptionsMenuButtonMixin:AddCheckBox(_menu, text, options, 
 						addon.Util.WriteNestedKeys(options, keys, not addon.Util.ReadNestedKeys(options, keys));
                         addon.SearchOptions.Changed = true;
 						if addon.IsWrathClassic then
-							KrowiAF_SearchBoxFrame_OnFocusGained(addon.GUI.Search.BoxFrame);
+							KrowiAF_SearchBoxFrame_OnFocusGained(KrowiAF_SearchBoxFrame);
 						end
                     end,
                     IsNotRadio = true,

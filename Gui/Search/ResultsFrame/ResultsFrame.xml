@@ -1,5 +1,4 @@
 <Ui>
-    <Script file="ResultsFrame.lua" />
     <Script file="ResultsFrameMixin.lua" />
 
 	<Frame name="KrowiAF_SearchResultsFrame_Template" mixin="KrowiAF_SearchResultsFrameMixin" virtual="true" hidden="true">

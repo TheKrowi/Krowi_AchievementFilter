@@ -13,44 +13,31 @@ function boxFrame:Load()
 	else
 		frame:SetPoint("TOPLEFT", AchievementFrame.SearchBox);
 		frame:SetPoint("BOTTOMRIGHT", AchievementFrame.SearchBox);
-		-- frame:SetPoint("BOTTOMRIGHT", addon.GUI.Search.OptionsMenuButton, "BOTTOMLEFT");
 	end
 
     frame:SetMaxLetters(40);
 
 	tinsert(addon.GUI.SubFrames, frame);
-
-	addon.GUI.Search.BoxFrame = frame;
-end
-
-function KrowiAF_SearchBoxFrame_OnLoad(self)
-	SearchBoxTemplate_OnLoad(self);
-	self.HasStickyFocus = function()
-		local ancestry = search.PreviewFrame;
-		return DoesAncestryInclude(ancestry, GetMouseFocus());
-    end
-	self.searchIcon:Hide();
 end
 
 function KrowiAF_SearchBoxFrame_OnShow(self)
 	self:SetFrameLevel(self:GetParent():GetFrameLevel() + 7);
-	KrowiAF_SearchPreviewButton_OnEnter(search.PreviewFrame.Buttons[1]);
 	if addon.IsWrathClassic then
 		AchievementFrame.Header.RightDDLInset:Show();
 	end
-	addon.GUI.Search.OptionsMenuButton:Show();
+	self.OptionsMenuButton:Show();
 end
 
 function KrowiAF_SearchBoxFrame_OnHide(self)
 	if not AchievementFrame:IsShown() then
 		self:SetText("");
 	end
-	search.PreviewFrame:Hide();
-	search.ResultsFrame:Hide();
+	self.PreviewContainer:Hide();
+	self.ResultsFrame:Hide();
 	if addon.IsWrathClassic and not AchievementFrameFilterDropDown:IsShown() then
 		AchievementFrame.Header.RightDDLInset:Hide();
 	end
-	addon.GUI.Search.OptionsMenuButton:Hide();
+	self.OptionsMenuButton:Hide();
 end
 
 function KrowiAF_SearchBoxFrame_OnEnterPressed(self)
@@ -58,11 +45,11 @@ function KrowiAF_SearchBoxFrame_OnEnterPressed(self)
 		return;
 	end
 
-	local showFullSearchResultsButton = search.PreviewFrame.ShowFullSearchResultsButton;
+	local showFullSearchResultsButton = self.PreviewContainer.ShowFullSearchResultsButton;
 	if showFullSearchResultsButton.IsSelected and showFullSearchResultsButton:IsShown() then
 		showFullSearchResultsButton:Click();
 	else
-		local buttons = search.PreviewFrame.Buttons;
+		local buttons = self.PreviewContainer.Buttons;
 		for _, button in next, buttons do
 			if button.IsSelected and button:IsShown() then
 				button:Click();
@@ -200,18 +187,18 @@ function KrowiAF_SearchBoxFrame_OnTextChanged(self)
 		self.Results = GetSearchResults(self:GetText());
 		self:ShowSearchPreviewResults();
 	else
-		addon.GUI.Search.PreviewFrame:Hide();
+		self.PreviewContainer:Hide();
 	end
 end
 
 function KrowiAF_SearchBoxFrame_OnFocusLost(self)
 	SearchBoxTemplate_OnEditFocusLost(self);
-	addon.GUI.Search.PreviewFrame:Hide();
+	self.PreviewContainer:Hide();
 end
 
 function KrowiAF_SearchBoxFrame_OnFocusGained(self)
 	SearchBoxTemplate_OnEditFocusGained(self);
-	addon.GUI.Search.ResultsFrame:Hide();
+	self.ResultsFrame:Hide();
 
 	if self:HasFocus() and strlen(self:GetText()) >= addon.Options.db.profile.SearchBox.MinimumCharactersToSearch then
 		if addon.SearchOptions.Changed then
@@ -219,12 +206,12 @@ function KrowiAF_SearchBoxFrame_OnFocusGained(self)
 		end
 		self:ShowSearchPreviewResults();
 	else
-		addon.GUI.Search.PreviewFrame:Hide();
+		self.PreviewContainer:Hide();
 	end
 end
 
 function KrowiAF_SearchBoxFrame_OnKeyDown(self, key)
-	local previewFrame = addon.GUI.Search.PreviewFrame;
+	local previewFrame = self.PreviewContainer;
 	if key == "UP" then
 		previewFrame:SelectPrevious(#self.Results);
 	elseif key == "DOWN" then

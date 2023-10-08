@@ -1,5 +1,4 @@
 <Ui>
-    <Script file="OptionsMenuButton.lua"/>
     <Script file="OptionsMenuButtonMixin.lua"/>
 
 	<DropDownToggleButton name="KrowiAF_SearchOptionsMenuButton_Template" mixin="KrowiAF_SearchOptionsMenuButtonMixin" inherits="UIMenuButtonStretchTemplate" virtual="true" hidden="true">

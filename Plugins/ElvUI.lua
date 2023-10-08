@@ -488,7 +488,7 @@ local function SkinHeader()
     hooksecurefunc(AchievementFrame.Header.Points, "SetText", function()
         AchievementFrame.Header.PointBorder:ClearAllPoints();
         AchievementFrame.Header.PointBorder:Point('TOPLEFT', addon.GUI.FilterButton, 'TOPRIGHT', 70, 0);
-        AchievementFrame.Header.PointBorder:Point('BOTTOMRIGHT', addon.GUI.Search.BoxFrame.backdrop, 'BOTTOMLEFT', -80, 0);
+        AchievementFrame.Header.PointBorder:Point('BOTTOMRIGHT', KrowiAF_SearchBoxFrame.backdrop, 'BOTTOMLEFT', -80, 0);
         AchievementFrame.Header.Points:ClearAllPoints();
         AchievementFrame.Header.Points:Point('CENTER', AchievementFrame.Header.PointBorder, 'CENTER', -10, 0);
     end);
@@ -517,7 +517,7 @@ do -- [[ Calendar ]]
     local function SkinCalendarButton(button, skins)
         skins:HandleButton(button);
         button:ClearAllPoints();
-        button:Point("TOPRIGHT", addon.GUI.Search.BoxFrame, "TOPLEFT", -6, -3);
+        button:Point("TOPRIGHT", KrowiAF_SearchBoxFrame, "TOPLEFT", -6, -3);
         button:Size(22, 22);
         local fs = button:CreateFontString(nil, nil, "GameFontHighlightSmall");
         fs:SetPoint("CENTER", 0, 0);
@@ -667,10 +667,10 @@ local function SkinAll()
         elvUI.SkinAchievementsFrame(addon.GUI.AchievementsFrame, engine, skins);
         elvUI.SkinAchievementSummary(addon.GUI.SummaryFrame, engine, skins);
         SkinFilterButton(addon.GUI.FilterButton, addon.GUI.AchievementsFrame, skins);
-        elvUI.SkinSearchOptionsButton(addon.GUI.Search.OptionsMenuButton, addon.GUI.Search.BoxFrame, skins);
-        elvUI.SkinSearchBoxFrame(addon.GUI.Search.BoxFrame, skins);
-        elvUI.SkinSearchPreviewFrame(addon.GUI.Search.PreviewFrame, addon.GUI.AchievementsFrame, engine, skins);
-        elvUI.SkinSearchResultsFrame(addon.GUI.Search.ResultsFrame, skins);
+        elvUI.SkinSearchOptionsButton(KrowiAF_SearchBoxFrame.OptionsMenuButton, KrowiAF_SearchBoxFrame, skins);
+        elvUI.SkinSearchBoxFrame(KrowiAF_SearchBoxFrame, skins);
+        elvUI.SkinSearchPreviewFrame(KrowiAF_SearchBoxFrame.PreviewContainer, addon.GUI.AchievementsFrame, engine, skins);
+        elvUI.SkinSearchResultsFrame(KrowiAF_SearchBoxFrame.ResultsFrame, skins);
         SkinHeader();
         ReskinBlizzard(skins);
         elvUI.SkinCalendarButton(KrowiAF_AchievementCalendarButton, skins);

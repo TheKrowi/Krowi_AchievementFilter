@@ -476,7 +476,10 @@
         "UNTRACK_ACHIEVEMENT_TOOLTIP",
         "TRACK_ACHIEVEMENT_TOOLTIP",
         "KrowiAF_AchievementsFrame",
-        "KrowiAF_DataManagerFrame"
+        "KrowiAF_DataManagerFrame",
+        "KrowiAF_SearchResultsFrame",
+        "KrowiAF_SearchBoxFrame",
+        "CreateFromMixins"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

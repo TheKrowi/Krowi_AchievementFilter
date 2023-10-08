@@ -54,7 +54,7 @@ function gui:LoadWithBlizzard_AchievementUI()
         media .. "kaf_special"
     };
     for i, t in next, addon.TabsOrder do
-        addon.Tabs[t].Button = gui.AchievementFrameTabButton:New(addon.Tabs[t].Text, {gui.FilterButton, gui.Search.BoxFrame, gui.CategoriesFrame}, addon.Tabs[t].Categories, addon.Tabs[t].Filters, waterMarks[i], t);
+        addon.Tabs[t].Button = gui.AchievementFrameTabButton:New(addon.Tabs[t].Text, {gui.FilterButton, KrowiAF_SearchBoxFrame, gui.CategoriesFrame}, addon.Tabs[t].Categories, addon.Tabs[t].Filters, waterMarks[i], t);
         KrowiAF_RegisterTabButton(addonName, addon.Tabs[t].Name, addon.Tabs[t].Button);
     end
     self.LoadOldAchievementFrameTabsCompatibility();
@@ -167,13 +167,8 @@ local function ResetView()
         KrowiAF_SelectCategory(category, true);
     end
 
-    local search = addon.GUI.Search;
-    if search.BoxFrame and search.BoxFrame.SearchPreviewFrame then
-        search.BoxFrame:SetText("");
-    end
-
-    if search.ResultsFrame and search.ResultsFrame.Update and search.ResultsFrame.Hide then
-        search.ResultsFrame:Hide();
+    if KrowiAF_SearchBoxFrame then
+        KrowiAF_SearchBoxFrame:SetText("");
     end
 
     resetViewLock = nil;
