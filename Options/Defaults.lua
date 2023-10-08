@@ -131,7 +131,8 @@ addon.Options.Defaults = {
             ClearOnRightClick = true,
             ExcludeExcluded = true,
             OnlySearchFiltered = false,
-            ShowAllResultsInCategory = true
+            ShowAllResultsInCategory = true,
+            MouseWheelPanScalar = 5
         },
         EventReminders = {
             PopUps = {

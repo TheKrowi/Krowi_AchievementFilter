@@ -5,7 +5,7 @@
 		<Size x="575" y="49"/>
 		<Layers>
 			<Layer level="OVERLAY" textureSubLevel="2">
-				<Texture parentKey="iconFrame" atlas="search-iconframe-large">
+				<Texture parentKey="IconFrame" atlas="search-iconframe-large">
 					<Size x="38" y="38"/>
 					<Anchors>
 						<Anchor point="LEFT" x="10" y="0"/>
@@ -13,27 +13,27 @@
 				</Texture>
 			</Layer>
 			<Layer level="OVERLAY">
-				<Texture file="Interface\Icons\Ability_ThunderClap" parentKey="icon">
+				<Texture file="Interface\Icons\Ability_ThunderClap" parentKey="Icon">
 					<Anchors>
-						<Anchor point="TOPLEFT" relativeKey="$parent.iconFrame" x="1" y="-2"/>
-						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.iconFrame" x="-1" y="1"/>
+						<Anchor point="TOPLEFT" relativeKey="$parent.IconFrame" x="1" y="-2"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.IconFrame" x="-1" y="1"/>
 					</Anchors>
 				</Texture>
-				<FontString inherits="GameFontNormalLarge" justifyH="LEFT" parentKey="name" text="ACHIEVEMENT">
+				<FontString inherits="GameFontNormalLarge" justifyH="LEFT" parentKey="Name" text="ACHIEVEMENT">
 					<Size x="400" y="12"/>
 					<Anchors>
-						<Anchor point="TOPLEFT" relativeKey="$parent.icon" relativePoint="TOPRIGHT" x="10" y="0"/>
+						<Anchor point="TOPLEFT" relativeKey="$parent.Icon" relativePoint="TOPRIGHT" x="10" y="0"/>
 					</Anchors>
 					<Color r="0.96875" g="0.8984375" b="0.578125" a="1"/>
 				</FontString>
-				<FontString inherits="GameFontNormal" justifyH="LEFT" parentKey="path" text="ACHIEVEMENT" wordwrap="false">
+				<FontString inherits="GameFontNormal" justifyH="LEFT" parentKey="Path" text="ACHIEVEMENT" wordwrap="false">
 					<Size x="500" y="0"/>
 					<Anchors>
-						<Anchor point="TOPLEFT" relativeKey="$parent.name" relativePoint="BOTTOMLEFT" x="0" y="-7"/>
+						<Anchor point="TOPLEFT" relativeKey="$parent.Name" relativePoint="BOTTOMLEFT" x="0" y="-7"/>
 					</Anchors>
 					<Color r="0.66796875" g="0.51171875" b="0.3359375" a="1"/>
 				</FontString>
-				<FontString inherits="GameFontNormal" justifyH="RIGHT" parentKey="resultType" text="ACHIEVEMENT">
+				<FontString inherits="GameFontNormal" justifyH="RIGHT" parentKey="ResultType" text="ACHIEVEMENT">
 					<Size x="140" y="0"/>
 					<Anchors>
 						<Anchor point="TOPRIGHT" x="-10" y="-7"/>

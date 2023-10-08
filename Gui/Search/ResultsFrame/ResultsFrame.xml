@@ -14,7 +14,7 @@
 				</Texture>
 			</Layer>
 			<Layer level="BORDER">
-				<FontString inherits="GameFontNormal" text="" parentKey="titleText">
+				<FontString inherits="GameFontNormal" text="" parentKey="TitleText">
 					<Anchors>
 						<Anchor point="TOP" x="0" y="-7"/>
 						<Anchor point="LEFT" x="60"/>
@@ -104,36 +104,18 @@
 					</OnClick>
 				</Scripts>
 			</Button>
-			<ScrollFrame name="$parentContainer" parentKey="Container" inherits="HybridScrollFrameTemplate">
+			<Frame parentKey="ScrollBox" inherits="WowScrollBoxList"/>
+			<EventFrame parentKey="ScrollBar" inherits="WowTrimScrollBar">
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeKey="$parent.topLeftCorner2" x="9" y="-8"/> <!-- Changed x value to align properly compared to Blizzard, originally 4 -->
-					<Anchor point="BOTTOMRIGHT" relativeKey="$parent.bottomRightCorner" x="-24" y="8"/>
+					<Anchor point="TOPRIGHT" x="1" y="-27"/>
+					<Anchor point="BOTTOMRIGHT" x="1" y="11"/>
 				</Anchors>
-				<Frames>
-					<Slider name="$parentScrollBar" parentKey="ScrollBar" inherits="HybridScrollBarTrimTemplate">
-						<Anchors>
-							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="0" y="-16"/>
-							<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="0" y="14"/>
-						</Anchors>
-						<Scripts>
-							<OnLoad>
-								self.trackBG:Show();
-								self.trackBG:SetVertexColor(0, 0, 0, 1);
-							</OnLoad>
-						</Scripts>
-					</Slider>
-				</Frames>
-			</ScrollFrame>
+			</EventFrame>
 		</Frames>
 		<Scripts>
-			<OnShow>
-				--always on top
-				self:SetFrameLevel(self:GetParent():GetFrameLevel()+10);
-				PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN);
-			</OnShow>
-			<OnHide>
-				PlaySound(SOUNDKIT.IG_SPELLBOOK_CLOSE);
-			</OnHide>
+			<OnLoad method="OnLoad"/>
+			<OnShow method="OnShow"/>
+			<OnHide method="OnHide"/>
 		</Scripts>
 	</Frame>
 </Ui>

@@ -20,6 +20,8 @@ function layout.PostLoad()
         end
         addon.Options.db.profile.Calendar.FirstWeekDay = CALENDAR_FIRST_WEEKDAY;
     end
+
+    options.SetMaxNumberOfSearchPreviews();
 end
 
 local RefreshOptions; -- Assigned at the end of the file
@@ -336,6 +338,17 @@ local function OffsetsAchievementFrameHeightSet(_, value)
     end
 end
 
+local function SetSearchBoxMouseWheelPanScalar(_, value)
+    if addon.Options.db.profile.SearchBox.MouseWheelPanScalar == value then return; end
+    addon.Options.db.profile.SearchBox.MouseWheelPanScalar = value;
+    if KrowiAF_SearchBoxFrame.ResultsFrame.ScrollBox then
+        KrowiAF_SearchBoxFrame.ResultsFrame.ScrollBox.wheelPanScalar = value;
+    end
+    if KrowiAF_SearchBoxFrame.ResultsFrame.ScrollBar then
+        KrowiAF_SearchBoxFrame.ResultsFrame.ScrollBar.wheelPanScalar = value;
+    end
+end
+
 local function SetSummaryMouseWheelPanScalar(_, value)
     if addon.Options.db.profile.Summary.MouseWheelPanScalar == value then return; end
     addon.Options.db.profile.Summary.MouseWheelPanScalar = value;
@@ -589,6 +602,84 @@ options.OptionsTable.args["Layout"] = {
                         }
                     }
                 }
+            }
+        },
+        Search = {
+            order = OrderPP(), type = "group",
+            name = addon.L["Search"],
+            args = {
+                SearchField = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["Search field"],
+                    args = {
+                        ClearOnRightClick = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                            name = addon.L["Clear search field on Right Click"],
+                            desc = addon.L["Clear search field on Right Click Desc"]:KAF_AddDefaultValueText("SearchBox.ClearOnRightClick"),
+                            get = function() return addon.Options.db.profile.SearchBox.ClearOnRightClick; end,
+                            set = function(_, value) addon.Options.db.profile.SearchBox.ClearOnRightClick = value; end
+                        },
+                        ExcludeExcluded = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                            name = addon.L["Exclude Excluded achievements"],
+                            desc = addon.L["Exclude Excluded achievements Desc"]:KAF_AddDefaultValueText("SearchBox.ExcludeExcluded"),
+                            get = function() return addon.Options.db.profile.SearchBox.ExcludeExcluded; end,
+                            set = function(_, value) addon.Options.db.profile.SearchBox.ExcludeExcluded = value; end
+                        },
+                        OnlySearchFiltered = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                            name = addon.L["Only search filtered achievements"],
+                            desc = addon.L["Only search filtered achievements Desc"]:KAF_AddDefaultValueText("SearchBox.OnlySearchFiltered"),
+                            get = function() return addon.Options.db.profile.SearchBox.OnlySearchFiltered; end,
+                            set = function(_, value) addon.Options.db.profile.SearchBox.OnlySearchFiltered = value; end
+                        },
+                        Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
+                        MinimumCharactersToSearch = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
+                            name = addon.L["Minimum characters to search"],
+                            desc = addon.L["Minimum characters to search Desc"]:KAF_AddDefaultValueText("SearchBox.MinimumCharactersToSearch"),
+                            min = 1, max = 10, step = 1,
+                            get = function() return addon.Options.db.profile.SearchBox.MinimumCharactersToSearch; end,
+                            set = function(_, value) addon.Options.db.profile.SearchBox.MinimumCharactersToSearch = value; end
+                        }
+                    }
+                },
+                SearchPreview = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["Search preview"],
+                    args = {
+                        NumberOfSearchPreviews = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
+                            name = addon.L["Number of search previews"],
+                            desc = addon.L["Number of search previews Desc"]:KAF_AddDefaultValueText("SearchBox.NumberOfSearchPreviews"):K_AddReloadRequired(),
+                            min = 1, max = 1000, step = 1, -- max set via PostLoad
+                            get = function() return addon.Options.db.profile.SearchBox.NumberOfSearchPreviews; end,
+                            set = function(_, value) addon.Options.db.profile.SearchBox.NumberOfSearchPreviews = value; end
+                        },
+                        Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
+                        ShowAllResultsInCategory = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                            name = addon.L["Show All Results in Category"],
+                            desc = addon.L["Show All Results in Category Desc"]:KAF_AddDefaultValueText("SearchBox.ShowAllResultsInCategory"),
+                            get = function() return addon.Options.db.profile.SearchBox.ShowAllResultsInCategory; end,
+                            set = function(_, value) addon.Options.db.profile.SearchBox.ShowAllResultsInCategory = value; end
+                        },
+                    }
+                },
+                MouseWheelPanScalar = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["Mouse Wheel Scroll Speed"],
+                    args = {
+                        MouseWheelPanScalar = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
+                            name = addon.L["Mouse Wheel Scroll Speed"],
+                            desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Achievements"]):KAF_AddDefaultValueText("SearchBox.MouseWheelPanScalar"),
+                            min = 1, max = 50, step = 1,
+                            get = function() return addon.Options.db.profile.SearchBox.MouseWheelPanScalar; end,
+                            set = SetSearchBoxMouseWheelPanScalar
+                        }
+                    }
+                },
             }
         },
         Summary = {

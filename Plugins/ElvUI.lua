@@ -390,21 +390,26 @@ do -- [[ Search ]]
     end
     elvUI.SkinSearchPreviewFrame = SkinSearchPreviewFrame;
 
+    local function OnSearchResultsFrameViewAcquiredFrame(frame)
+        frame:SetNormalTexture('');
+        frame:SetPushedTexture('');
+        frame:GetRegions():Hide();
+
+        frame.ResultType:SetTextColor(1, 1, 1);
+        frame.Path:SetTextColor(1, 1, 1);
+    end
+
     local function SkinSearchResultsFrame(frame, skins)
         frame:StripTextures();
         frame:CreateBackdrop('Transparent');
 
-        for _, button in next, frame.Container.buttons do
-            button:SetNormalTexture('');
-            button:SetPushedTexture('');
-            button:GetRegions():Hide();
-
-            button.resultType:SetTextColor(1, 1, 1);
-            button.path:SetTextColor(1, 1, 1);
-        end
+        -- Buttons
+        frame.ScrollView:RegisterCallback(ScrollBoxListViewMixin.Event.OnAcquiredFrame, function(self, _frame, elementData, new)
+            OnSearchResultsFrameViewAcquiredFrame(_frame);
+        end, frame);
 
         skins:HandleCloseButton(frame.closeButton);
-        skins:HandleScrollBar(frame.Container.ScrollBar);
+        skins:HandleTrimScrollBar(frame.ScrollBar);
     end
     elvUI.SkinSearchResultsFrame = SkinSearchResultsFrame;
 end
