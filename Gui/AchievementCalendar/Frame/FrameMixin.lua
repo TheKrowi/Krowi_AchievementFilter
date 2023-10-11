@@ -83,18 +83,11 @@ function KrowiAF_AchievementCalendarFrameTodayFrameMixin:OnUpdate(elapsed)
 	self.Timer = self.Timer - elapsed;
 	if self.Timer < 0 then
 		self.Timer = self.FadeTime;
-		if self.FadeIn then
-			self.FadeIn = false;
-		else
-			self.FadeIn = true;
-		end
-	else
-		if self.FadeIn then
-			self.Glow:SetAlpha(1 - (self.Timer / self.FadeTime));
-		else
-			self.Glow:SetAlpha(self.Timer / self.FadeTime);
-		end
+		self.FadeIn = not self.FadeIn;
+		return;
 	end
+	local fadeTime = self.Timer / self.FadeTime;
+	self.Glow:SetAlpha(self.FadeIn and (1 - fadeTime) or fadeTime);
 end
 
 KrowiAF_AchievementCalendarFramePrevNextMonthButtonMixin = {};
@@ -111,12 +104,18 @@ end
 
 KrowiAF_AchievementCalendarFrameCloseButtonMixin = {};
 
+function KrowiAF_AchievementCalendarFrameCloseButtonMixin:OnLoad()
+	addon.Gui.RegisterSafeCloseButtonDuringCombat(self, function()
+		return not self:GetParent().SideFrame:IsShown();
+	end);
+end
+
 function KrowiAF_AchievementCalendarFrameCloseButtonMixin:OnClick()
     self:GetParent():Hide();
 end
 
 function KrowiAF_AchievementCalendarFrameCloseButtonMixin:OnKeyDown(key)
-    addon.Gui.HandleCloseButtonOnKeyDown(self, key, not self:GetParent().SideFrame:IsShown());
+    addon.Gui.HandleCloseButtonOnKeyDown(self, key);
 end
 
 KrowiAF_AchievementCalendarFrameMixin = {
@@ -171,14 +170,18 @@ function KrowiAF_AchievementCalendarFrameMixin:OnMouseWheel(value)
 		if self.PrevMonthButton:IsEnabled() then
 			self.PrevMonthButton:Click();
 		end
-	else
+		return;
+	end
+	if value < 0 then
 		if self.NextMonthButton:IsEnabled() then
 			self.NextMonthButton:Click();
 		end
+		return;
 	end
 end
 
-function KrowiAF_AchievementCalendarFrameMixin:DayButtonPostLoad(buttonIndex)
+function KrowiAF_AchievementCalendarFrameMixin:LoadDayButton(buttonIndex)
+	self.DayButtons[buttonIndex] = CreateFrame("Button", self:GetName() .. "DayButton" .. buttonIndex, self, "KrowiAF_AchievementCalendarDayButton_Template");
 	local buttons = self.DayButtons;
 	local button = buttons[buttonIndex];
 	button:SetID(buttonIndex);
@@ -209,8 +212,7 @@ function KrowiAF_AchievementCalendarFrameMixin:LoadDayButtons()
 	self.DayButtons = {};
 
 	for i = 1, self.MaxDaysPerMonth do
-		self.DayButtons[i] = CreateFrame("Button", self:GetName() .. "DayButton" .. i, self, "KrowiAF_AchievementCalendarDayButton_Template");
-		self:DayButtonPostLoad(i);
+		self:LoadDayButton(i);
 	end
 end
 
@@ -331,15 +333,15 @@ function KrowiAF_AchievementCalendarFrameMixin:SetHighlightedDay(dayButton, over
 	self.HighlightedYear = dayButton and dayButton.Year;
 	self.HighlightedAchievements = dayButton and dayButton.Achievements;
 	self.HighlightedPoints = dayButton and dayButton.Points;
-	if self.HighlightedAchievements then
-		if not self.SideFrame:IsShown() then
-			self.SideFrame:Show();
-			return;
-		end
-		self.SideFrame:Update();
+	if not self.HighlightedAchievements then
+		self.SideFrame:Hide();
 		return;
 	end
-	self.SideFrame:Hide();
+	if not self.SideFrame:IsShown() then
+		self.SideFrame:Show();
+		return;
+	end
+	self.SideFrame:Update();
 end
 
 function KrowiAF_AchievementCalendarFrameMixin:SetToday(dayButton)
@@ -547,13 +549,13 @@ local function AddAchievementToButton(dayButton, achievementId, icon, points)
 	local achievementButtons = dayButton.AchievementButtons;
 	local numAchievements = #dayButton.Achievements;
 	local achievementButton;
-	if numAchievements <= 4 then
-		achievementButton = achievementButtons[numAchievements];
-		achievementButton.Texture:SetTexture(icon);
-		achievementButton:Show();
-	else
+	if numAchievements > 4 then
 		dayButton.More:Show();
+		return;
 	end
+	achievementButton = achievementButtons[numAchievements];
+	achievementButton.Texture:SetTexture(icon);
+	achievementButton:Show();
 end
 
 function KrowiAF_AchievementCalendarFrameMixin:AddAchievementsToDays()

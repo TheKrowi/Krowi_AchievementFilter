@@ -112,16 +112,8 @@ function gui.ResetAchievementWindowPosition()
 end
 
 function gui.SetCloseButtonOnKeyDown()
-    AchievementFrameCloseButton:SetScript("OnKeyDown", function(selfFunc, key)
-        if key == GetBindingKey("TOGGLEGAMEMENU") then
-            if selfFunc:GetParent():IsShown() then
-                selfFunc:GetParent():Hide();
-                selfFunc:SetPropagateKeyboardInput(false);
-                return;
-            end
-        end
-        selfFunc:SetPropagateKeyboardInput(true);
-    end);
+    gui.RegisterSafeCloseButtonDuringCombat(AchievementFrameCloseButton);
+    AchievementFrameCloseButton:SetScript("OnKeyDown", addon.Gui.HandleCloseButtonOnKeyDown);
 end
 
 -- [[ AchievementFrame Width ]] --
@@ -461,11 +453,27 @@ function gui.RefreshViewAfterPlayerLogin()
     end
 end
 
-function gui.HandleCloseButtonOnKeyDown(self, key, extraHideCondition)
+function gui.RegisterSafeCloseButtonDuringCombat(self, extraHideCondition)
+    self.ExtraHideCondition = extraHideCondition;
+    self:RegisterEvent("PLAYER_REGEN_DISABLED");
+    self:RegisterEvent("PLAYER_REGEN_ENABLED");
+    self:HookScript("OnEvent", function(_, event, ...)
+        if event == "PLAYER_REGEN_DISABLED" then
+            self:SetScript("OnKeyDown", nil);
+            tinsert(UISpecialFrames, self:GetParent():GetName());
+        elseif event == "PLAYER_REGEN_ENABLED" then
+            self:SetScript("OnKeyDown", addon.Gui.HandleCloseButtonOnKeyDown);
+            addon.Util.TableRemoveByValue(UISpecialFrames, self:GetParent():GetName());
+        end
+    end);
+end
+
+function gui.HandleCloseButtonOnKeyDown(self, key)
     if key == GetBindingKey("TOGGLEGAMEMENU") then
         local parent = self:GetParent();
-        if extraHideCondition == nil then
-            extraHideCondition = true;
+        local extraHideCondition = true;
+        if self.ExtraHideCondition then
+            extraHideCondition = self.ExtraHideCondition();
         end
 		if parent:IsShown() and extraHideCondition then
             parent:Hide();

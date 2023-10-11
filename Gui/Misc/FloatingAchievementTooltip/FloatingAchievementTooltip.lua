@@ -1,8 +1,6 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
-local gui = addon.GUI;
-gui.FloatingAchievementTooltip = {};
-local floatingAchievementTooltip = gui.FloatingAchievementTooltip;
+addon.Gui.FloatingAchievementTooltip = {};
+local floatingAchievementTooltip = addon.Gui.FloatingAchievementTooltip;
 
 function floatingAchievementTooltip.Load()
     local tooltip = KrowiAF_FloatingAchievementTooltip;
@@ -13,47 +11,18 @@ function floatingAchievementTooltip.Load()
         local type = strsplit(":", link);
         if type ~= "achievement" then
             tooltip:Hide();
-            -- HideUIPanel(tooltip);
             return;
         end
 		HideUIPanel(ItemRefTooltip);
         tooltip:Show();
-        -- ShowUIPanel(tooltip);
         if not tooltip:IsShown() then
 			tooltip:SetOwner(UIParent, "ANCHOR_PRESERVE");
 		end
         tooltip:ItemRefSetHyperlink(link);
-        tooltip.AchievementClick:SetText("[" .. addon.L["Click here to view in achievement window"] .. "]");
-        if tooltip:GetWidth() < tooltip.AchievementClick:GetFontString():GetWidth() + 24 then
-            tooltip.AchievementClick:SetText("[" .. addon.L["Click here to view in achievements"] .. "]");
+        tooltip.AchievementLink:SetText("[" .. addon.L["Click here to view in achievement window"] .. "]");
+        if tooltip:GetWidth() < tooltip.AchievementLink:GetFontString():GetWidth() + 24 then
+            tooltip.AchievementLink:SetText("[" .. addon.L["Click here to view in achievements"] .. "]");
         end
-        -- tooltip:SetWidth(max(tooltip:GetWidth(), tooltip.AchievementClick:GetFontString():GetWidth() + 24));
         tooltip:SetHeight(tooltip:GetHeight() + 29);
     end);
-end
-
-function KrowiAF_FloatingAchievementTooltip_CloseButton_OnKeyDown(self, key)
-    if key == GetBindingKey("TOGGLEGAMEMENU") then
-        if self:GetParent():IsShown() then
-            self:GetParent():Hide();
-            self:SetPropagateKeyboardInput(false);
-            return;
-        end
-    end
-    self:SetPropagateKeyboardInput(true);
-end
-
-function KrowiAF_FloatingAchievementTooltip_AchievementClick_OnClick(self)
-    local parent = self:GetParent();
-    if not parent then
-        return;
-    end
-
-    local info = parent:GetPrimaryTooltipInfo();
-    local id = info and info.tooltipData and info.tooltipData.id;
-    if not id then
-        return;
-    end
-
-    KrowiAF_SelectAchievementFromID(id);
 end

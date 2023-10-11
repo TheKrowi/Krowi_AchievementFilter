@@ -147,12 +147,12 @@
 		</Layers>
 		<Scripts>
 			<OnLoad inherit="prepend" function="KrowiAF_AchievementButton_OnLoad"/>
+			<OnEvent method="OnEvent"/>
+			<OnShow method="OnShow"/>
+			<OnHide method="OnHide"/>
 			<OnEnter method="OnEnter"/>
 			<OnLeave method="OnLeave"/>
 			<OnClick method="OnClick"/>
-			<OnShow method="OnShow"/>
-			<OnHide method="OnHide"/>
-			<OnEvent method="OnEvent"/>
 			<OnSizeChanged method="OnSizeChanged"/>
 		</Scripts>
 		<Frames>

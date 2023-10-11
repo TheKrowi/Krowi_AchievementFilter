@@ -300,6 +300,7 @@
 					<Anchor point="TOPRIGHT" x="5" y="-13"/>
 				</Anchors>
 				<Scripts>
+      				<OnLoad method="OnLoad"/>
       				<OnClick method="OnClick"/>
 					<OnKeyDown method="OnKeyDown"/>
 				</Scripts>

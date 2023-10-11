@@ -2,20 +2,17 @@ local _, addon = ...;
 
 KrowiAF_AchievementCalendarSideFrameCloseButtonMixin = {};
 
+function KrowiAF_AchievementCalendarSideFrameCloseButtonMixin:OnLoad()
+    self:SetFrameLevel(self:GetParent():GetFrameLevel() + 6);
+    addon.Gui.RegisterSafeCloseButtonDuringCombat(self);
+end
+
 function KrowiAF_AchievementCalendarSideFrameCloseButtonMixin:OnClick()
     self:GetParent():Hide();
 end
 
 function KrowiAF_AchievementCalendarSideFrameCloseButtonMixin:OnKeyDown(key)
-    if key == GetBindingKey("TOGGLEGAMEMENU") then
-        local parent = self:GetParent();
-		if parent:IsShown() then
-            parent:Hide();
-			self:SetPropagateKeyboardInput(false);
-			return;
-		end
-	end
-	self:SetPropagateKeyboardInput(true);
+    addon.Gui.HandleCloseButtonOnKeyDown(self, key);
 end
 
 KrowiAF_AchievementCalendarSideFrameMixin = {};

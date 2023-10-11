@@ -479,7 +479,8 @@
         "KrowiAF_DataManagerFrame",
         "KrowiAF_SearchResultsFrame",
         "KrowiAF_SearchBoxFrame",
-        "CreateFromMixins"
+        "CreateFromMixins",
+        "InCombatLockdown"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

@@ -1,5 +1,35 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
+
+KrowiAF_FloatingAchievementTooltipCloseButtonMixin = {};
+
+function KrowiAF_FloatingAchievementTooltipCloseButtonMixin:OnLoad()
+	addon.Gui.RegisterSafeCloseButtonDuringCombat(self);
+end
+
+function KrowiAF_FloatingAchievementTooltipCloseButtonMixin:OnClick()
+	self:GetParent():Hide();
+end
+
+function KrowiAF_FloatingAchievementTooltipCloseButtonMixin:OnKeyDown(key)
+	addon.Gui.HandleCloseButtonOnKeyDown(self, key);
+end
+
+KrowiAF_FloatingAchievementTooltipAchievementLinkMixin = {};
+
+function KrowiAF_FloatingAchievementTooltipAchievementLinkMixin:OnClick()
+	local parent = self:GetParent();
+    if not parent then
+        return;
+    end
+
+    local info = parent:GetPrimaryTooltipInfo();
+    local id = info and info.tooltipData and info.tooltipData.id;
+    if not id then
+        return;
+    end
+
+    KrowiAF_SelectAchievementFromID(id);
+end
 
 KrowiAF_FloatingAchievementTooltipMixin = {};
 
@@ -20,7 +50,7 @@ end
 function KrowiAF_FloatingAchievementTooltipMixin:ItemRefSetHyperlink(link)
 	self:SetPadding(0, 0);
 	self:SetHyperlink(link);
-	if addon.IsWrathClassic then
+	if addon.Util.IsWrathClassic then
 		local _, id = strsplit(":", link);
 		self.info = {
 			tooltipData = {
@@ -35,7 +65,7 @@ function KrowiAF_FloatingAchievementTooltipMixin:ItemRefSetHyperlink(link)
 	end
 end
 
-if not addon.IsWrathClassic then
+if not addon.Util.IsWrathClassic then
 	function KrowiAF_FloatingAchievementTooltipMixin:SetHyperlink(...)
 		-- it's the same hyperlink as current data, close instead
 		local info = self:GetPrimaryTooltipInfo();

@@ -9,6 +9,7 @@ function dataManager:Load()
 		self:GetParent():Hide();
 	end);
 	KrowiAF_DataManagerFrameCloseButton:SetScript("OnKeyDown", addon.Gui.HandleCloseButtonOnKeyDown);
+	addon.Gui.RegisterSafeCloseButtonDuringCombat(KrowiAF_DataManagerFrameCloseButton);
 
 	frame.Inset:ClearAllPoints();
 	frame.Inset:SetPoint("TOPLEFT", 4, -57);

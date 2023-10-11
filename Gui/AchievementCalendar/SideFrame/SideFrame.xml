@@ -27,9 +27,7 @@
 					<Anchor point="TOPRIGHT" x="-7" y="-7"/>
 				</Anchors>
 				<Scripts>
-					<OnLoad>
-						self:SetFrameLevel(self:GetParent():GetFrameLevel() + 6);
-					</OnLoad>
+					<OnLoad method="OnLoad"/>
 					<OnClick method="OnClick"/>
 					<OnKeyDown method="OnKeyDown"/>
 				</Scripts>

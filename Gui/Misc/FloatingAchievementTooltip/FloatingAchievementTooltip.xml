@@ -20,25 +20,24 @@
             </Layer>
         </Layers>
         <Frames>
-            <Button parentKey="CloseButton" inherits="UIPanelCloseButtonNoScripts">
+            <Button parentKey="CloseButton" mixin="KrowiAF_FloatingAchievementTooltipCloseButtonMixin" inherits="UIPanelCloseButtonNoScripts">
                 <Anchors>
                     <Anchor point="TOPRIGHT" x="2" y="2"/>
                 </Anchors>
                 <Scripts>
-                    <OnClick>
-                        self:GetParent():Hide();
-                    </OnClick>
-                    <OnKeyDown function="KrowiAF_FloatingAchievementTooltip_CloseButton_OnKeyDown"/>
+                    <OnLoad method="OnLoad"/>
+                    <OnClick method="OnClick"/>
+                    <OnKeyDown method="OnKeyDown"/>
                 </Scripts>
             </Button>
-            <Button parentKey="AchievementClick">
+            <Button parentKey="AchievementLink" mixin="KrowiAF_FloatingAchievementTooltipAchievementLinkMixin">
                 <Size x="238" y="20"/>
                 <Anchors>
                     <Anchor point="TOPLEFT" relativeKey="$parent.Delimiter" relativePoint="BOTTOMLEFT" x="6" y="-3"/>
                 </Anchors>
                 <NormalFont style="GameFontNormalLeft"/>
                 <Scripts>
-                    <OnClick function="KrowiAF_FloatingAchievementTooltip_AchievementClick_OnClick"/>
+                    <OnClick method="OnClick"/>
                 </Scripts>
             </Button>
         </Frames>
