@@ -170,13 +170,10 @@ function KrowiAF_AchievementCalendarFrameMixin:OnMouseWheel(value)
 		if self.PrevMonthButton:IsEnabled() then
 			self.PrevMonthButton:Click();
 		end
-		return;
-	end
-	if value < 0 then
+	elseif value < 0 then
 		if self.NextMonthButton:IsEnabled() then
 			self.NextMonthButton:Click();
 		end
-		return;
 	end
 end
 

@@ -1,79 +1,126 @@
 local _, addon = ...;
+local saturationStyle = addon.Objects.SaturationStyle;
 
-do -- KrowiAF_AchievementButtonTrackedMixin
-	KrowiAF_AchievementButtonTrackedMixin = {};
+local media = "Interface/AddOns/Krowi_AchievementFilter/Media/";
+local notObtainableSaturationStyle = saturationStyle:New(
+	function(state) return state and (state == false or state == "Past"); end,
+	"NotObtainable",
+	media .. "NotObtainableAchievementBorders",
+	nil,
+	nil,
+	function() return ACHIEVEMENT_RED_BORDER_COLOR; end
+);
+local tempObtainableSaturationStyle = saturationStyle:New(
+	function(state) return state and state == "Current"; end,
+	"TempObtainable",
+	media .. "TempObtainableAchievementBorders",
+	nil,
+	nil,
+	function() return CreateColor(0, 0.67, 0); end -- Green
+);
+local tempObtainableFutureSaturationStyle = saturationStyle:New(
+	function(state) return state and state == "Future"; end,
+	"TempObtainableFuture",
+	media .. "TempObtainableFutureAchievementBorders",
+	nil,
+	nil,
+	function() return ACHIEVEMENT_RED_BORDER_COLOR; end
+);
+local accountSaturationStyle = saturationStyle:New(
+	function(_, isAccountWide) return isAccountWide; end,
+	"account",
+	nil,
+	"Interface/AchievementFrame/AccountLevel-AchievementHeader",
+	{
+		Saturated = {0, 1, 0, 0.375},
+		Desaturated = {0, 1, 0.40625, 0.78125}
+	},
+	function() return ACHIEVEMENT_BLUE_BORDER_COLOR; end
+);
+local saturationStyles = {
+	notObtainableSaturationStyle,
+	tempObtainableSaturationStyle,
+	tempObtainableFutureSaturationStyle,
+	accountSaturationStyle,
+	saturationStyle:New()
+};
 
-	function KrowiAF_AchievementButtonTrackedMixin:OnShow()
-		if self:GetParent().Achievement then
-			self:SetChecked(IsTrackedAchievement(self:GetParent().Achievement.Id));
-		end
-	end
-
-	function KrowiAF_AchievementButtonTrackedMixin:OnEnter()
-		GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-		GameTooltip:SetText(self:GetChecked() and UNTRACK_ACHIEVEMENT_TOOLTIP or TRACK_ACHIEVEMENT_TOOLTIP, nil, nil, nil, nil, true);
-	end
-
-	function KrowiAF_AchievementButtonTrackedMixin:OnLeave()
-		GameTooltip:Hide();
-	end
-
-	function KrowiAF_AchievementButtonTrackedMixin:OnClick()
-		PlaySound(self:GetChecked() and SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON or SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF);
-		local tracked = self:GetParent():ToggleTracking();
-		if not tracked then
-			self:SetChecked(false);
+local function GetSaturationStyle(state, isAccountWide)
+	for _, _saturationStyle in next, saturationStyles do
+		if _saturationStyle.UseThis(state, isAccountWide) then
+			return _saturationStyle;
 		end
 	end
 end
 
-do -- KrowiAF_AchievementButtonExtraIconMixin
-	KrowiAF_AchievementButtonExtraIconMixin = {};
+KrowiAF_AchievementButtonTrackedMixin = {};
 
-	function KrowiAF_AchievementButtonExtraIconMixin:OnEnter()
-		GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-		GameTooltip:SetText(self.Text, nil, nil, nil, nil, true);
-	end
-
-	function KrowiAF_AchievementButtonExtraIconMixin:OnLeave()
-		GameTooltip:Hide();
+function KrowiAF_AchievementButtonTrackedMixin:OnShow()
+	if self:GetParent().Achievement then
+		self:SetChecked(IsTrackedAchievement(self:GetParent().Achievement.Id));
 	end
 end
 
-do -- KrowiAF_AchievementButtonLightMixin
-	KrowiAF_AchievementButtonLightMixin = {};
+function KrowiAF_AchievementButtonTrackedMixin:OnEnter()
+	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+	GameTooltip:SetText(self:GetChecked() and UNTRACK_ACHIEVEMENT_TOOLTIP or TRACK_ACHIEVEMENT_TOOLTIP, nil, nil, nil, nil, true);
+end
 
-	function KrowiAF_AchievementButtonLightMixin:OnEnter()
-		self.Highlight:Show();
-		if self.Achievement == nil then
-			return;
-		end
-		GameTooltip:SetOwner(self, "ANCHOR_NONE");
-		GameTooltip:SetPoint("TOPLEFT", self, "TOPRIGHT");
-		local link = GetAchievementLink(self.Achievement.Id);
-		GameTooltip:SetHyperlink(link);
-		GameTooltip:Show();
-		if GameTooltip:GetTop() > self:GetTop() then
-			GameTooltip:ClearAllPoints();
-			GameTooltip:SetPoint("BOTTOMLEFT", self, "BOTTOMRIGHT");
-		end
-	end
+function KrowiAF_AchievementButtonTrackedMixin:OnLeave()
+	GameTooltip:Hide();
+end
 
-	function KrowiAF_AchievementButtonLightMixin:OnLeave()
-		self.Highlight:Hide();
-		GameTooltip:Hide();
+function KrowiAF_AchievementButtonTrackedMixin:OnClick()
+	PlaySound(self:GetChecked() and SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON or SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF);
+	local tracked = self:GetParent():ToggleTracking();
+	if not tracked then
+		self:SetChecked(false);
 	end
+end
 
-	function KrowiAF_AchievementButtonLightMixin:OnClick(button, _, ignoreModifiers)
-		if button ~= "LeftButton" then
-			self:Click(button, ignoreModifiers);
-			return;
-		end
-		if self:ProcessedModifiers(ignoreModifiers) then
-			return;
-		end
-		KrowiAF_SelectAchievementFromID(self.Achievement.Id);
+KrowiAF_AchievementButtonExtraIconMixin = {};
+
+function KrowiAF_AchievementButtonExtraIconMixin:OnEnter()
+	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+	GameTooltip:SetText(self.Text, nil, nil, nil, nil, true);
+end
+
+function KrowiAF_AchievementButtonExtraIconMixin:OnLeave()
+	GameTooltip:Hide();
+end
+
+KrowiAF_AchievementButtonLightMixin = {};
+
+function KrowiAF_AchievementButtonLightMixin:OnEnter()
+	self.Highlight:Show();
+	if self.Achievement == nil then
+		return;
 	end
+	GameTooltip:SetOwner(self, "ANCHOR_NONE");
+	GameTooltip:SetPoint("TOPLEFT", self, "TOPRIGHT");
+	local link = GetAchievementLink(self.Achievement.Id);
+	GameTooltip:SetHyperlink(link);
+	GameTooltip:Show();
+	if GameTooltip:GetTop() > self:GetTop() then
+		GameTooltip:ClearAllPoints();
+		GameTooltip:SetPoint("BOTTOMLEFT", self, "BOTTOMRIGHT");
+	end
+end
+
+function KrowiAF_AchievementButtonLightMixin:OnLeave()
+	self.Highlight:Hide();
+	GameTooltip:Hide();
+end
+
+function KrowiAF_AchievementButtonLightMixin:OnClick(button, _, ignoreModifiers)
+	if button ~= "LeftButton" then
+		self:Click(button, ignoreModifiers);
+		return;
+	end
+	if self:ProcessedModifiers(ignoreModifiers) then
+		return;
+	end
+	KrowiAF_SelectAchievementFromID(self.Achievement.Id);
 end
 
 KrowiAF_AchievementButtonMixin = {};
@@ -156,7 +203,6 @@ end
 local cachedWidthDisplayObjectives;
 function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
 	local objectives = KrowiAF_AchievementsObjectives;
-
 	objectives:SetParent(self);
 	objectives:SetPoint("TOP", self.HiddenDescription, "BOTTOM", 0, -8);
 	objectives:SetPoint("LEFT", self.ObjectivesLeftAnchor, "RIGHT", 0, 0);
@@ -191,27 +237,18 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
 	return height;
 end
 
-function KrowiAF_AchievementButtonMixin:SetSaturatedStyle(achievement, flags)
+function KrowiAF_AchievementButtonMixin:GetSaturatedStyle(achievement, flags)
 	local state;
 	if achievement.TemporaryObtainable then
 		state = achievement.TemporaryObtainable.Obtainable();
 	end
 
-	if state and (state == false or state == "Past") then
-		return "NotObtainable";
-	elseif state and state == "Current" then
-		self.saturatedStyle = "TempObtainable";
-	elseif state and state == "Future" then
-		self.saturatedStyle = "TempObtainableFuture";
-	else
-		if flags.IsAccountWide then
-			self.accountWide = true;
-			return "account";
-		else
-			self.accountWide = nil;
-			return "normal";
-		end
+	self.accountWide = nil;
+	if flags.IsAccountWide then
+		self.accountWide = true;
 	end
+	local _saturationStyle = GetSaturationStyle(state, self.accountWide);
+	return _saturationStyle.Style;
 end
 
 function KrowiAF_AchievementButtonMixin:SetShield(id, points)
@@ -319,7 +356,7 @@ end
 function KrowiAF_AchievementButtonMixin:SetAchievementData(achievement, id, name, points, completed, month, day, year, description, flags, icon, rewardText, wasEarnedByMe)
 	self.Achievement = achievement;
 
-	local saturatedStyle = self:SetSaturatedStyle(achievement, flags);
+	local saturatedStyle = self:GetSaturatedStyle(achievement, flags);
 
 	if flags.IsAccountWide then
 		achievement.IsAccountWide = true;
@@ -457,7 +494,6 @@ function KrowiAF_AchievementButtonMixin:Expand(height)
 	self.Description:Hide();
 end
 
-local media = "Interface/AddOns/Krowi_AchievementFilter/Media/";
 function KrowiAF_AchievementButtonMixin:SetTsunamis()
 	if self.Compact then
 		return;
@@ -468,16 +504,8 @@ function KrowiAF_AchievementButtonMixin:SetTsunamis()
 		state = achievement.TemporaryObtainable.Obtainable();
 	end
 
-	local texture;
-	if state and (state == false or state == "Past") then
-		texture = media .. "NotObtainableAchievementBorders";
-	elseif state and state == "Current" then
-		texture = media .. "TempObtainableAchievementBorders";
-	elseif state and state == "Future" then
-		texture = media .. "TempObtainableFutureAchievementBorders";
-	else
-		texture = "Interface/AchievementFrame/UI-Achievement-Borders";
-	end
+	local _saturationStyle = GetSaturationStyle(state);
+	local texture = _saturationStyle.BordersTexture;
 
 	self.BottomTsunami:SetTexture(texture);
 	self.BottomTsunami:SetAlpha(0.35);
@@ -490,45 +518,23 @@ end
 ACHIEVEMENT_GREEN_BORDER_COLOR = CreateColor(0, 0.67, 0);
 
 function KrowiAF_AchievementButtonMixin:Saturate()
-	self.Background:SetTexture("Interface/AchievementFrame/UI-Achievement-Parchment-Horizontal");
 	local achievement = self.Achievement;
 	local state;
 	if achievement.TemporaryObtainable then
 		state = achievement.TemporaryObtainable.Obtainable();
 	end
-	if state and (state == false or state == "Past") then
-		self.HeaderBackground:SetTexture(media .. "NotObtainableAchievementBorders");
-		self.HeaderBackground:SetTexCoord(0, 1, 0.66015625, 0.73828125);
-		self:SetBackdropBorderColor(ACHIEVEMENT_RED_BORDER_COLOR:GetRGB());
-		self.saturatedStyle = "NotObtainable";
-	elseif state and state == "Current" then
-		self.HeaderBackground:SetTexture(media .. "TempObtainableAchievementBorders");
-		self.HeaderBackground:SetTexCoord(0, 1, 0.66015625, 0.73828125);
-		self:SetBackdropBorderColor(ACHIEVEMENT_GREEN_BORDER_COLOR:GetRGB());
-		self.saturatedStyle = "TempObtainable";
-	elseif state and state == "Future" then
-		self.HeaderBackground:SetTexture(media .. "TempObtainableFutureAchievementBorders");
-		self.HeaderBackground:SetTexCoord(0, 1, 0.66015625, 0.73828125);
-		self:SetBackdropBorderColor(ACHIEVEMENT_RED_BORDER_COLOR:GetRGB());
-		self.saturatedStyle = "TempObtainableFuture";
-	else
-		if self.accountWide then
-			self.HeaderBackground:SetTexture("Interface/AchievementFrame/AccountLevel-AchievementHeader");
-			self.HeaderBackground:SetTexCoord(0, 1, 0, 0.375);
-			self:SetBackdropBorderColor(ACHIEVEMENT_BLUE_BORDER_COLOR:GetRGB());
-			self.saturatedStyle = "account";
-		else
-			self.HeaderBackground:SetTexture("Interface/AchievementFrame/UI-Achievement-Borders");
-			self.HeaderBackground:SetTexCoord(0, 1, 0.66015625, 0.73828125);
-			self:SetBackdropBorderColor(ACHIEVEMENT_GOLD_BORDER_COLOR:GetRGB());
-			self.saturatedStyle = "normal";
-		end
-		self.Shield.Points:SetVertexColor(1, 1, 1);
-	end
+	local _saturationStyle = GetSaturationStyle(state, self.accountWide);
+	self.saturatedStyle = _saturationStyle.Style;
+	self.HeaderBackground:SetTexture(_saturationStyle.HeaderBackgroundTexture);
+	self.HeaderBackground:SetTexCoord(unpack(_saturationStyle.HeaderBackgroundCoords.Saturated));
+	local backdropBorderColor =_saturationStyle.GetBackdropBorderColor();
+	self:SetBackdropBorderColor(backdropBorderColor:GetRGB());
+	self.Background:SetTexture("Interface/AchievementFrame/UI-Achievement-Parchment-Horizontal");
 	self.Glow:SetVertexColor(1, 1, 1);
 	self.Icon.Texture:SetVertexColor(1, 1, 1, 1);
 	self.Icon.Border:SetVertexColor(1, 1, 1, 1);
 	self.Shield.Icon:SetTexCoord(0, 0.5, 0, addon.IsWrathClassic and 1 or 0.5);
+	self.Shield.Points:SetVertexColor(1, 1, 1);
 	self.Reward:SetVertexColor(1, 0.82, 0);
 	self.Header:SetVertexColor(1, 1, 1);
 	self.Description:SetTextColor(0, 0, 0, 1);
@@ -538,31 +544,17 @@ function KrowiAF_AchievementButtonMixin:Saturate()
 end
 
 function KrowiAF_AchievementButtonMixin:Desaturate()
-	self.saturatedStyle = nil;
-	self.Background:SetTexture("Interface/AchievementFrame/UI-Achievement-Parchment-Horizontal-Desaturated");
 	local achievement = self.Achievement;
 	local state;
 	if achievement.TemporaryObtainable then
 		state = achievement.TemporaryObtainable.Obtainable();
 	end
-	if state and (state == false or state == "Past") then
-		self.HeaderBackground:SetTexture(media .. "NotObtainableAchievementBorders");
-		self.HeaderBackground:SetTexCoord(0, 1, 0.91796875, 0.99609375);
-	elseif state and state == "Current" then
-		self.HeaderBackground:SetTexture(media .. "TempObtainableAchievementBorders");
-		self.HeaderBackground:SetTexCoord(0, 1, 0.91796875, 0.99609375);
-	elseif state and state == "Future" then
-		self.HeaderBackground:SetTexture(media .. "TempObtainableFutureAchievementBorders");
-		self.HeaderBackground:SetTexCoord(0, 1, 0.91796875, 0.99609375);
-	else
-		if self.accountWide then
-			self.HeaderBackground:SetTexture("Interface/AchievementFrame/AccountLevel-AchievementHeader");
-			self.HeaderBackground:SetTexCoord(0, 1, 0.40625, 0.78125);
-		else
-			self.HeaderBackground:SetTexture("Interface/AchievementFrame/UI-Achievement-Borders");
-			self.HeaderBackground:SetTexCoord(0, 1, 0.91796875, 0.99609375);
-		end
-	end
+	local _saturationStyle = GetSaturationStyle(state, self.accountWide);
+	self.saturatedStyle = nil;
+	self.HeaderBackground:SetTexture(_saturationStyle.HeaderBackgroundTexture);
+	self.HeaderBackground:SetTexCoord(unpack(_saturationStyle.HeaderBackgroundCoords.Desaturated));
+	self:SetBackdropBorderColor(0.5, 0.5, 0.5);
+	self.Background:SetTexture("Interface/AchievementFrame/UI-Achievement-Parchment-Horizontal-Desaturated");
 	self.Glow:SetVertexColor(0.22, 0.17, 0.13);
 	self.Icon.Texture:SetVertexColor(0.55, 0.55, 0.55, 1);
 	self.Icon.Border:SetVertexColor(0.75, 0.75, 0.75, 1);
@@ -573,7 +565,6 @@ function KrowiAF_AchievementButtonMixin:Desaturate()
 	self.Description:SetTextColor(1, 1, 1, 1);
 	self.Description:SetShadowOffset(1, -1);
 	self:UpdatePlusMinusTexture();
-	self:SetBackdropBorderColor(0.5, 0.5, 0.5);
 	self:SetTsunamis();
 end
 
