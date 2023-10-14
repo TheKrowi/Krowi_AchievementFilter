@@ -1,5 +1,6 @@
 local _, addon = ...;
 local section = {};
+tinsert(addon.Gui.AchievementTooltip.Sections, section);
 
 local numCriteria;
 function section.CheckAdd(achievement)
@@ -19,21 +20,10 @@ function section.CheckAdd(achievement)
 end
 
 function section.Add(achievement)
-	GameTooltip:AddLine(addon.L["Objectives progress"]); -- Header
+	GameTooltip:AddLine(addon.L["Objectives progress"]);
 	if type(achievement.CustomObjectives) == "function" then
 		achievement.CustomObjectives(GameTooltip);
 	elseif numCriteria > 0 then
-		local id = achievement.Id;
-		if numCriteria < addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.SecondColumnThreshold then
-			for i = 1, numCriteria do
-				addon.Gui.AchievementTooltip.AddCriteriaLine(id, i);
-			end
-		else
-			for i = 1, numCriteria, 2 do
-				addon.Gui.AchievementTooltip.AddDoubleCriteriaLine(id, i, i + 1 <= numCriteria and i + 1 or nil);
-			end
-		end
+		addon.Gui.AchievementTooltip:AddCriteria(numCriteria, achievement.Id);
 	end
 end
-
-tinsert(addon.Gui.AchievementTooltip.Sections, section);

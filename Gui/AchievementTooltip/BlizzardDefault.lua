@@ -1,7 +1,8 @@
 local _, addon = ...;
 local section = {};
+tinsert(addon.Gui.AchievementTooltip.Sections, section);
 
-function section.CheckAdd(achievement)
+function section.CheckAdd()
     return true;
 end
 
@@ -20,15 +21,13 @@ local function AddName(achievement, thisRealm, numEarnedBy, earnedBy, numNotEarn
 	name = name .. "|r";
 	if addon.Data.SavedData.AchievementData.IsEarnedByCharacter(guid, achievement) or (achievement.OtherFactionAchievementId and addon.Data.SavedData.AchievementData.IsEarnedByCharacter(guid, addon.Data.Achievements[achievement.OtherFactionAchievementId])) then
 		if numEarnedBy < addon.Options.db.profile.Tooltip.Achievements.EarnedBy.Characters then
-				earnedBy = earnedBy == "" and name or earnedBy .. ", " .. name;
-				numEarnedBy = numEarnedBy + 1;
-			end
-	else
-		if addon.Objects.Faction[achievement.Faction] == character.Faction or achievement.Faction == nil or achievement.OtherFactionAchievementId ~= nil then
-			if numNotEarnedBy < addon.Options.db.profile.Tooltip.Achievements.EarnedBy.NotCharacters then
-				notEarnedBy = notEarnedBy == "" and name or notEarnedBy .. ", " .. name;
-				numNotEarnedBy = numNotEarnedBy + 1;
-			end
+			earnedBy = earnedBy == "" and name or earnedBy .. ", " .. name;
+			numEarnedBy = numEarnedBy + 1;
+		end
+	elseif addon.Objects.Faction[achievement.Faction] == character.Faction or achievement.Faction == nil or achievement.OtherFactionAchievementId ~= nil then
+		if numNotEarnedBy < addon.Options.db.profile.Tooltip.Achievements.EarnedBy.NotCharacters then
+			notEarnedBy = notEarnedBy == "" and name or notEarnedBy .. ", " .. name;
+			numNotEarnedBy = numNotEarnedBy + 1;
 		end
 	end
 	return numEarnedBy, earnedBy, numNotEarnedBy, notEarnedBy;
@@ -55,11 +54,12 @@ function section.Add(achievement)
 	if achievement.IsAccountWide then
 		if achievement.IsCompleted then
 			GameTooltip:AddLine(ACCOUNT_WIDE_ACHIEVEMENT_COMPLETED);
-		else
-			GameTooltip:AddLine(ACCOUNT_WIDE_ACHIEVEMENT);
+			return;
 		end
+		GameTooltip:AddLine(ACCOUNT_WIDE_ACHIEVEMENT);
 		return;
 	end
+
 	local earnedByThisCharacter = addon.Data.SavedData.AchievementData.IsEarnedByCharacter(UnitGUID("player"), achievement);
 	local earnedBy, notEarnedBy = EvaluateCharacters(achievement);
 	if earnedBy ~= "" then
@@ -69,5 +69,3 @@ function section.Add(achievement)
 		GameTooltip:AddLine(format(addon.L["Not earned by:"], notEarnedBy), nil, nil, nil, true);
 	end
 end
-
-tinsert(addon.Gui.AchievementTooltip.Sections, section);

@@ -1,5 +1,6 @@
 local _, addon = ...;
 local section = {};
+tinsert(addon.Gui.AchievementTooltip.Sections, section);
 
 local numCriteria;
 function section.CheckAdd(achievement)
@@ -115,40 +116,34 @@ local function AddName(character, achievement, thisRealm, names, numberOfNames)
 	return names, numberOfNames;
 end
 
-function section.Add(achievement)
-	local characters = BuildCharacterList(achievement);
-	if not characters or #characters == 0 then
-		return;
-	end
-
+local function GetNames(characters, achievement)
 	local thisGuid = UnitGUID("player");
 	local thisCharacter = KrowiAF_SavedData.CharacterList[thisGuid];
 	local thisRealm = thisCharacter.Realm;
 	local names = "";
 	local numberOfNames = 0;
 	for _, character in next, characters do
-		if numberOfNames < addon.Options.db.profile.Tooltip.Achievements.MostProgress.Characters then
-			names, numberOfNames = AddName(character, achievement, thisRealm, names, numberOfNames);
+		if numberOfNames >= addon.Options.db.profile.Tooltip.Achievements.MostProgress.Characters then
+			return names;
 		end
+		names, numberOfNames = AddName(character, achievement, thisRealm, names, numberOfNames);
 	end
-	local details = GetDetails(characters[1].Guid, achievement.Id);
+	return names;
+end
 
-	GameTooltip:AddLine(addon.L["Most progress"]); -- Header
-	GameTooltip:AddLine(names);
-
-	if type(achievement.CustomObjectives) == "function" or numCriteria <= 0 or not details then
+function section.Add(achievement)
+	local characters = BuildCharacterList(achievement);
+	if not characters or #characters == 0 then
 		return;
 	end
 
-	if numCriteria < addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.SecondColumnThreshold then
-		for i = 1, numCriteria do
-			addon.Gui.AchievementTooltip.AddCriteriaLine(details, i);
-		end
-	else
-		for i = 1, numCriteria, 2 do
-			addon.Gui.AchievementTooltip.AddDoubleCriteriaLine(details, i, i + 1 <= numCriteria and i + 1 or nil);
-		end
-	end
-end
+	local names = GetNames(characters, achievement);
+	local details = GetDetails(characters[1].Guid, achievement.Id);
 
-tinsert(addon.Gui.AchievementTooltip.Sections, section);
+	GameTooltip:AddLine(addon.L["Most progress"]);
+	GameTooltip:AddLine(names);
+	if type(achievement.CustomObjectives) == "function" or numCriteria <= 0 or not details then
+		return;
+	end
+	addon.Gui.AchievementTooltip:AddCriteria(numCriteria, details);
+end

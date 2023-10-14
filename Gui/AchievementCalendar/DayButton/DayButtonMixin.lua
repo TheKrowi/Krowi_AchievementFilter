@@ -67,3 +67,31 @@ function KrowiAF_AchievementCalendarDayButtonMixin:SetDarkFrameCoords(topTexCoor
 	darkFrame.Bottom:SetTexCoord(bottomTexCoords.left, bottomTexCoords.right, bottomTexCoords.top, bottomTexCoords.bottom);
 	darkFrame:Show();
 end
+
+function KrowiAF_AchievementCalendarDayButtonMixin:SetDate(year, month, day)
+	self.Year = year;
+	self.Month = month;
+	self.Day = day;
+	self.DateFrame.Date:SetText(day);
+end
+
+function KrowiAF_AchievementCalendarDayButtonMixin:GetSecondsSince()
+	return time{year = self.Year, month = self.Month, day = self.Day};
+end
+
+function KrowiAF_AchievementCalendarDayButtonMixin:AddAchievement(achievementId, icon, points)
+	self.Achievements = self.Achievements or {};
+	self.Points = self.Points + points;
+	tinsert(self.Achievements, achievementId);
+	local achievementButtons = self.AchievementButtons;
+	local numAchievements = #self.Achievements;
+	local achievementButton;
+	if numAchievements > 4 then
+		self.More:Show();
+		return;
+	end
+	achievementButton = achievementButtons[numAchievements];
+	achievementButton.Texture:SetTexture(icon);
+	achievementButton:Show();
+end
+

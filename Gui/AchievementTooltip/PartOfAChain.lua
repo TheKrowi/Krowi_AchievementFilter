@@ -1,5 +1,6 @@
 local _, addon = ...;
 local section = {};
+tinsert(addon.Gui.AchievementTooltip.Sections, section);
 
 local firstAchievement;
 function section.CheckAdd(achievement)
@@ -12,7 +13,7 @@ function section.CheckAdd(achievement)
 end
 
 local function AddPartOfAChainAchievement(currentAchievement, id, nameSuffix)
-	addon.Gui.AchievementTooltip.AddAchievementLine(currentAchievement, id, addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIconsPartOfAChain, nameSuffix);
+	addon.Gui.AchievementTooltip:AddAchievementLine(currentAchievement, id, addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIconsPartOfAChain, nameSuffix);
 	local achievement = addon.Data.Achievements[id];
 	local nextAchievements = achievement.NextAchievements;
 	if nextAchievements == nil then
@@ -21,7 +22,6 @@ local function AddPartOfAChainAchievement(currentAchievement, id, nameSuffix)
 	for nextId, _ in next, nextAchievements do
 		if achievement.NumNextAchievements > 1 then
 			if addon.Data.Achievements[nextId].Faction then
-				-- print(nextId, addon.Data.Achievements[nextId].Faction, addon.Objects.Faction[addon.Data.Achievements[nextId].Faction])
 				nameSuffix = " (";
 				nameSuffix = nameSuffix .. addon.L[addon.Objects.Faction[addon.Data.Achievements[nextId].Faction]];
 				nameSuffix = nameSuffix .. ")";
@@ -32,8 +32,6 @@ local function AddPartOfAChainAchievement(currentAchievement, id, nameSuffix)
 end
 
 function section.Add(achievement)
-	GameTooltip:AddLine(addon.L["Part of a chain"]); -- Header
+	GameTooltip:AddLine(addon.L["Part of a chain"]);
 	AddPartOfAChainAchievement(achievement, firstAchievement.Id);
 end
-
-tinsert(addon.Gui.AchievementTooltip.Sections, section);

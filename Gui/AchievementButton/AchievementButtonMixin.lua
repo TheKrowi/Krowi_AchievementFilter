@@ -515,8 +515,6 @@ function KrowiAF_AchievementButtonMixin:SetTsunamis()
 	self.TopTsunami:SetTexCoord(0.72265, 0, 0.58203125, 0.51953125);
 end
 
-ACHIEVEMENT_GREEN_BORDER_COLOR = CreateColor(0, 0.67, 0);
-
 function KrowiAF_AchievementButtonMixin:Saturate()
 	local achievement = self.Achievement;
 	local state;
@@ -633,7 +631,7 @@ function KrowiAF_AchievementButtonMixin:ShowTooltip()
 	if not self.Achievement then
 		return;
 	end
-	addon.Gui.AchievementTooltip.ShowTooltip(self, self.Achievement);
+	addon.Gui.AchievementTooltip:ShowTooltip(self, self.Achievement);
 end
 
 function KrowiAF_AchievementButtonMixin:ToggleTracking()

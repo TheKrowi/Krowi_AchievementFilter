@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Tons of back end changes
 
+### Fixed
+- Whenever the tooltip refreshes when mousing over achievements with transmog data is loaded, all lines will remember their color
+
 ## 64.1 - 2023-10-05
 ### Added
 - Warcraft Rumble promotion achievements (17)

@@ -26,12 +26,25 @@ local function Max(t, fn)
 end
 
 local function GetTooltipText()
+    local r, g, b;
     local linesLeft, linesRight = {}, {};
     for i = 1, GameTooltip:NumLines() do
-        tinsert(linesLeft, _G["GameTooltipTextLeft"..i]:GetText() or "");
+        r, g, b = _G["GameTooltipTextLeft"..i]:GetTextColor();
+        tinsert(linesLeft, {
+            Text = _G["GameTooltipTextLeft"..i]:GetText() or "",
+            R = r,
+            G = g,
+            B = b
+        });
     end
     for i = 1, GameTooltip:NumLines() do
-        tinsert(linesRight, _G["GameTooltipTextRight"..i]:GetText() or "");
+        r, g, b = _G["GameTooltipTextRight"..i]:GetTextColor();
+        tinsert(linesRight, {
+            Text = _G["GameTooltipTextRight"..i]:GetText() or "",
+            R = r,
+            G = g,
+            B = b
+        });
     end
     return linesLeft, linesRight;
 end
@@ -115,17 +128,18 @@ local function AddTransmogCriteria(tooltip, transmogSets)
     invTypes = res;
     sort(invTypes, function(a, b) return a.InvType < b.InvType; end);
 
-    -- addon.Diagnostics.DebugTable(numCollectedPerSet);
     local headerSetCollected = Max(numCollectedPerSet, function(a,b) return a < b end);
 
     local linesLeft, linesRight = GetTooltipText();
     tooltip:SetOwner(originalOwner, "ANCHOR_NONE");
 	tooltip:SetPoint("TOPLEFT", originalOwner, "TOPRIGHT");
+    local lineLeft, lineRight;
     for i = 1, #linesLeft - 1, 1 do
-        if linesRight[i] == "" then
-            tooltip:AddLine(linesLeft[i]);
+        lineLeft, lineRight = linesLeft[i], linesRight[i];
+        if lineRight == "" then
+            tooltip:AddLine(lineLeft.Text, lineLeft.R, lineLeft.G, lineLeft.B);
         else
-            tooltip:AddDoubleLine(linesLeft[i], linesRight[i]);
+            tooltip:AddDoubleLine(lineLeft.Text, lineRight.Text, lineLeft.R, lineLeft.G, lineLeft.B, lineRight.R, lineRight.G, lineRight.B);
         end
     end
 

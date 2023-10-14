@@ -1,5 +1,6 @@
 local _, addon = ...;
 local section = {};
+tinsert(addon.Gui.AchievementTooltip.Sections, section);
 
 function section.CheckAdd(achievement)
     return true;
@@ -13,5 +14,3 @@ function section.Add(achievement)
 	"feedback if this should be added here or if there could be another\n" ..
 	"place to do this?", 1, 1, 1);
 end
-
-tinsert(addon.Gui.AchievementTooltip.Sections, section);
