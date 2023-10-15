@@ -3,7 +3,7 @@ local section = {};
 tinsert(addon.Gui.AchievementTooltip.Sections, section);
 
 local numCriteria;
-function section.CheckAdd(achievement)
+function section:CheckAdd(achievement)
 	local state;
 	if achievement.TemporaryObtainable then
 		state = achievement.TemporaryObtainable.Obtainable();
@@ -19,7 +19,7 @@ function section.CheckAdd(achievement)
 	return numCriteria > 0 or type(achievement.CustomObjectives) == "function";
 end
 
-function section.Add(achievement)
+function section:Add(achievement)
 	GameTooltip:AddLine(addon.L["Objectives progress"]);
 	if type(achievement.CustomObjectives) == "function" then
 		achievement.CustomObjectives(GameTooltip);

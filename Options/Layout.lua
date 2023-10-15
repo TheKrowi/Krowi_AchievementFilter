@@ -48,8 +48,8 @@ local function DrawSubCategories(categories)
         categories[i].Achievements = nil;
         categories[i].Children = nil;
     end
-    addon.GUI.CategoriesFrame:Update(true);
-    addon.GUI.AchievementsFrame:ForceUpdate();
+    KrowiAF_CategoriesFrame:Update(true);
+    KrowiAF_AchievementsFrame:ForceUpdate();
 
     -- Draw again
     addon.Data.LoadWatchedAchievements();
@@ -69,8 +69,8 @@ local function WatchListClearAllFunc()
                 addon.Data.Achievements[id]:ClearWatch();
             end
         end
-        addon.GUI.CategoriesFrame:Update(true);
-        addon.GUI.AchievementsFrame:ForceUpdate();
+        KrowiAF_CategoriesFrame:Update(true);
+        KrowiAF_AchievementsFrame:ForceUpdate();
     end
     KrowiAF_SavedData.WatchedAchievements = nil;
 end
@@ -149,8 +149,8 @@ local function ShowExcludedCategory()
             addon.Data.ExcludedCategories[i].Achievements = nil;
             addon.Data.ExcludedCategories[i].Children = nil;
         end
-        addon.GUI.CategoriesFrame:Update(true);
-        addon.GUI.AchievementsFrame:ForceUpdate();
+        KrowiAF_CategoriesFrame:Update(true);
+        KrowiAF_AchievementsFrame:ForceUpdate();
     end
 end
 
@@ -172,8 +172,8 @@ local function ExcludedIncludeAllFunc()
             addon.Data.Achievements[id]:Include();
         end
     end
-    addon.GUI.CategoriesFrame:Update(true);
-    addon.GUI.AchievementsFrame:ForceUpdate();
+    KrowiAF_CategoriesFrame:Update(true);
+    KrowiAF_AchievementsFrame:ForceUpdate();
     KrowiAF_SavedData.ExcludedAchievements = nil;
 end
 
@@ -352,47 +352,47 @@ end
 local function SetSummaryMouseWheelPanScalar(_, value)
     if addon.Options.db.profile.Summary.MouseWheelPanScalar == value then return; end
     addon.Options.db.profile.Summary.MouseWheelPanScalar = value;
-    if addon.GUI.SummaryFrame.AchievementsFrame.ScrollBox then
-        addon.GUI.SummaryFrame.AchievementsFrame.ScrollBox.wheelPanScalar = value;
+    if KrowiAF_SummaryFrame.AchievementsFrame.ScrollBox then
+        KrowiAF_SummaryFrame.AchievementsFrame.ScrollBox.wheelPanScalar = value;
     end
-    if addon.GUI.SummaryFrame.AchievementsFrame.ScrollBar then
-        addon.GUI.SummaryFrame.AchievementsFrame.ScrollBar.wheelPanScalar = value;
+    if KrowiAF_SummaryFrame.AchievementsFrame.ScrollBar then
+        KrowiAF_SummaryFrame.AchievementsFrame.ScrollBar.wheelPanScalar = value;
     end
 end
 
 local function SetCategoryIndentation(_, value)
     if addon.Options.db.profile.Categories.Indentation == value then return; end
     addon.Options.db.profile.Categories.Indentation = value;
-    if addon.GUI.CategoriesFrame.ScrollView then
-        addon.GUI.CategoriesFrame.ScrollView:Layout();
+    if KrowiAF_CategoriesFrame.ScrollView then
+        KrowiAF_CategoriesFrame.ScrollView:Layout();
     end
 end
 
 local function SetCategoriesMouseWheelPanScalar(_, value)
     if addon.Options.db.profile.Categories.MouseWheelPanScalar == value then return; end
     addon.Options.db.profile.Categories.MouseWheelPanScalar = value;
-    if addon.GUI.CategoriesFrame.ScrollBox then
-        addon.GUI.CategoriesFrame.ScrollBox.wheelPanScalar = value;
+    if KrowiAF_CategoriesFrame.ScrollBox then
+        KrowiAF_CategoriesFrame.ScrollBox.wheelPanScalar = value;
     end
-    if addon.GUI.CategoriesFrame.ScrollBar then
-        addon.GUI.CategoriesFrame.ScrollBar.wheelPanScalar = value;
+    if KrowiAF_CategoriesFrame.ScrollBar then
+        KrowiAF_CategoriesFrame.ScrollBar.wheelPanScalar = value;
     end
 end
 
 local function MergeMergeSmallCategoriesThresholdSet(_, value)
     if addon.Options.db.profile.Window.MergeSmallCategoriesThreshold == value then return; end
     addon.Options.db.profile.Window.MergeSmallCategoriesThreshold = value;
-    addon.GUI.CategoriesFrame:Update(true);
+    KrowiAF_CategoriesFrame:Update(true);
 end
 
 local function SetAchievementsMouseWheelPanScalar(_, value)
     if addon.Options.db.profile.Achievements.MouseWheelPanScalar == value then return; end
     addon.Options.db.profile.Achievements.MouseWheelPanScalar = value;
-    if addon.GUI.AchievementsFrame.ScrollBox then
-        addon.GUI.AchievementsFrame.ScrollBox.wheelPanScalar = value;
+    if KrowiAF_AchievementsFrame.ScrollBox then
+        KrowiAF_AchievementsFrame.ScrollBox.wheelPanScalar = value;
     end
-    if addon.GUI.AchievementsFrame.ScrollBar then
-        addon.GUI.AchievementsFrame.ScrollBar.wheelPanScalar = value;
+    if KrowiAF_AchievementsFrame.ScrollBar then
+        KrowiAF_AchievementsFrame.ScrollBar.wheelPanScalar = value;
     end
 end
 

@@ -2,11 +2,11 @@ local _, addon = ...;
 local section = {};
 tinsert(addon.Gui.AchievementTooltip.Sections, section);
 
-function section.CheckAdd(achievement)
+function section:CheckAdd(achievement)
     return true;
 end
 
-function section.Add(achievement)
+function section:Add(achievement)
 	GameTooltip:AddLine("Comment"); -- Header
 	GameTooltip:AddLine("This could be a lot of extra text that could explain\n" ..
 	"how to get this achievement in maybe less or more words.\n" ..

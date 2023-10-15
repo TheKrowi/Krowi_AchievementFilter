@@ -1,5 +1,9 @@
 KrowiAF_SearchPreviewButtonMixin = {};
 
+function KrowiAF_SearchPreviewButtonMixin:OnShow()
+    self:SetFrameLevel(self:GetParent():GetFrameLevel() + 10);
+end
+
 function KrowiAF_SearchPreviewButtonMixin:OnEnter()
     self:Highlight();
 end

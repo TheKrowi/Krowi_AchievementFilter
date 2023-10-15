@@ -17,8 +17,8 @@ function KrowiAF_AlertFrame_OnClick(self, button, down)
 
     local category = KrowiAF_SelectCategory(self.Event.Category);
     if category.NumOfAch == 0 then
-        addon.GUI.AchievementsFrame.Text:Show();
-        addon.GUI.AchievementsFrame.Text:SetText(addon.L["Category shown temporarily"]:K_ReplaceVars(self.Event.EventDetails.Name));
+        KrowiAF_AchievementsFrame.Text:Show();
+        KrowiAF_AchievementsFrame.Text:SetText(addon.L["Category shown temporarily"]:K_ReplaceVars(self.Event.EventDetails.Name));
     end
 end
 

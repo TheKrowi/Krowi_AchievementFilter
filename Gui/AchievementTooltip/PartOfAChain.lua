@@ -3,7 +3,7 @@ local section = {};
 tinsert(addon.Gui.AchievementTooltip.Sections, section);
 
 local firstAchievement;
-function section.CheckAdd(achievement)
+function section:CheckAdd(achievement)
 	if not addon.Options.db.profile.Tooltip.Achievements.ShowPartOfAChain then
 		return;
 	end
@@ -31,7 +31,7 @@ local function AddPartOfAChainAchievement(currentAchievement, id, nameSuffix)
 	end
 end
 
-function section.Add(achievement)
+function section:Add(achievement)
 	GameTooltip:AddLine(addon.L["Part of a chain"]);
 	AddPartOfAChainAchievement(achievement, firstAchievement.Id);
 end

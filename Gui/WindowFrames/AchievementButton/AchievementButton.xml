@@ -279,7 +279,7 @@
 					</Layer>
 				</Layers>
 			</Frame>
-			<CheckButton name="$parentTracked" parentKey="Tracked" mixin="KrowiAF_AchievementButtonTrackedMixin" hidden="true">
+			<CheckButton name="$parentTracked" parentKey="Tracked" mixin="KrowiAF_AchievementButtonTrackedMixin" inherits="KrowiAF_CheckButton_Template" hidden="true">
 				<Size>
 					<AbsDimension x="15" y="15"/>
 				</Size>
@@ -305,11 +305,6 @@
 					<OnLeave method="OnLeave"/>
 					<OnClick method="OnClick"/>
 				</Scripts>
-				<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
-				<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
-				<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
-				<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
-				<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
 			</CheckButton>
 			<Frame hidden="true" name="$parentExtraIcon" parentKey="ExtraIcon" mixin="KrowiAF_AchievementButtonExtraIconMixin">
 				<Size x="15" y="15"/>

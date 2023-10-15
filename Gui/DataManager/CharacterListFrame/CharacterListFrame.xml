@@ -9,9 +9,6 @@
                     <Anchor point="TOPLEFT" x="0" y="40"/>
                     <Anchor point="TOPRIGHT" x="0" y="40"/>
                 </Anchors>
-                <!-- <KeyValues>
-                    <KeyValue key="sortingFunction" value="CommunitiesMemberListColumnDisplay_OnClick" type="global"/>
-                </KeyValues> -->
                 <Layers>
                     <Layer level="BORDER">
                         <Texture parentKey="InsetBorderTopLeft" inherits="UI-Frame-InnerTopLeft">
@@ -44,44 +41,26 @@
                     </Layer>
                 </Layers>
             </Frame>
-            <ScrollFrame parentKey="ScrollFrame" inherits="HybridScrollFrameTemplate">
-                <Anchors>
-                    <Anchor point="TOPLEFT"/>
-                    <Anchor point="BOTTOMRIGHT"/>
-                </Anchors>
-                <Frames>
-                    <Slider parentKey="ScrollBar" inherits="HybridScrollBarTemplate">
-                        <Anchors>
-                            <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="0" y="-14"/>
-                            <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="0" y="16"/>
-                        </Anchors>
-                        <Layers>
-                            <Layer level="BACKGROUND">
-                                <Texture parentKey="Background" file="Interface\FrameGeneral\UI-Background-Marble" horizTile="true" vertTile="true" setAllPoints="true"/>
-                            </Layer>
-                        </Layers>
-                    </Slider>
-                </Frames>
-            </ScrollFrame>
-            <Frame parentKey="InsetFrame" useParentLevel="false" inherits="InsetFrameTemplate">
+            <Frame parentKey="ScrollBox" inherits="WowScrollBoxList"/>
+			<EventFrame parentKey="ScrollBar" inherits="WowTrimScrollBar">
+				<Anchors>
+					<Anchor point="TOPRIGHT" x="-3"/>
+					<Anchor point="BOTTOMRIGHT" x="-3"/>
+				</Anchors>
+			</EventFrame>
+            <Frame parentKey="InsetFrame" mixin="KrowiAF_CharacterListFrameInsetFrameMixin" useParentLevel="false" inherits="InsetFrameTemplate">
                 <Anchors>
                     <Anchor point="TOPLEFT" x="-3" y="3"/>
                     <Anchor point="BOTTOMRIGHT" x="-2" y="2"/>
                 </Anchors>
                 <Scripts>
-                    <OnLoad>
-                        self.Bg:Hide();
-                        self:SetFrameLevel(100);
-                    </OnLoad>
+                    <OnLoad method="OnLoad"/>
                 </Scripts>
             </Frame>
         </Frames>
         <Scripts>
             <OnLoad method="OnLoad"/>
             <OnShow method="Update"/>
-            <!-- <OnEvent method="OnEvent"/> -->
-            <!-- <OnHide method="OnHide"/> -->
-            <!-- <OnUpdate method="OnUpdate"/> -->
         </Scripts>
     </Frame>
 </Ui>

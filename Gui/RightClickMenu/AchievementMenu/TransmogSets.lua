@@ -1,11 +1,12 @@
 local _, addon = ...;
 local section = {};
+tinsert(addon.Gui.RightClickMenu.AchievementMenu.Sections, section);
 
-function section.CheckAdd(achievement)
+function section:CheckAdd(achievement)
     return achievement.TransmogSets ~= nil;
 end
 
-function section.Add(menu, achievement)
+function section:Add(menu, achievement)
 	local transmogSets = addon.Objects.MenuItem:New({Text = addon.L["Transmog Sets"]});
 
 	local tSets = addon.GetUsableSets(achievement.TransmogSets);
@@ -29,5 +30,3 @@ function section.Add(menu, achievement)
 
 	menu:Add(transmogSets);
 end
-
-tinsert(addon.Gui.RightClickMenu.AchievementMenu.Sections, section);

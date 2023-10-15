@@ -66,6 +66,13 @@ local sortFuncs = {
     addon.Objects.CompareFunc:New("bool", "IgnoreCharacter");
 };
 
+KrowiAF_CharacterListFrameInsetFrameMixin = {};
+
+function KrowiAF_CharacterListFrameInsetFrameMixin:OnLoad()
+    self.Bg:Hide();
+    self:SetFrameLevel(100);
+end
+
 KrowiAF_CharacterListFrameMixin = {};
 
 local function GetSortedCharacters(column)
@@ -162,62 +169,53 @@ local function GetSortedCharacters(column)
     return characters;
 end
 
+local function CreateScrollView(self)
+	self.ScrollView = CreateScrollBoxListLinearView();
+	self.ScrollView:SetElementInitializer("KrowiAF_CharacterListEntry_Template", function(button, character)
+		button:SetCharacter(character);
+	end);
+	ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView);
+end
+
+local function AddManagedScrollBarVisibilityBehavior(self)
+	local anchorsWithBar = {
+        CreateAnchor("TOPLEFT", self, "TOPLEFT", 0, 0),
+        CreateAnchor("BOTTOMRIGHT", self.ScrollBar, "BOTTOMLEFT", 0, 5)
+    };
+
+    local anchorsWithoutBar = {
+        CreateAnchor("TOPLEFT", self, "TOPLEFT", 0, 0),
+        CreateAnchor("BOTTOMRIGHT", self, "BOTTOMRIGHT", 0, 5)
+    };
+
+    ScrollUtil.AddManagedScrollBarVisibilityBehavior(self.ScrollBox, self.ScrollBar, anchorsWithBar, anchorsWithoutBar);
+end
+
 local cachedCharacters;
 function KrowiAF_CharacterListFrameMixin:OnLoad()
     self.ColumnDisplay:LayoutColumns(CharacterColumns);
     self.ColumnDisplay.sortingFunction = self.Sort;
     self.ColumnDisplay:Show();
 
-    local scrollFrame = self.ScrollFrame;
-	local scrollBar = scrollFrame.ScrollBar;
-    local scrollBarShow = getmetatable(scrollBar).__index.Show;
-    scrollBar.Show = function(selfFunc)
-        self:SetPoint("BOTTOMRIGHT", -24, 3);
-        scrollBarShow(selfFunc);
-    end
-    local scrollBarHide = getmetatable(scrollBar).__index.Hide;
-    scrollBar.Hide = function(selfFunc)
-        self:SetPoint("BOTTOMRIGHT", 0, 3);
-        scrollBarHide(selfFunc);
-    end
+	-- self.ScrollBox.wheelPanScalar = addon.Options.db.profile.SearchBox.MouseWheelPanScalar;
+	-- self.ScrollBar.wheelPanScalar = addon.Options.db.profile.SearchBox.MouseWheelPanScalar;
 
-	scrollFrame.update = function()
-		self:Update(cachedCharacters);
-	end
-
-	HybridScrollFrame_CreateButtons(scrollFrame, "KrowiAF_CharacterListEntry_Template", 0, 0);
-    local buttons = scrollFrame.buttons;
-    for _, button in next, buttons do
-		button:PostLoad(scrollFrame);
-	end
-
+    CreateScrollView(self);
+	AddManagedScrollBarVisibilityBehavior(self);
     cachedCharacters = GetSortedCharacters();
+end
+
+function KrowiAF_CharacterListFrameMixin:UpdateDataProvider(characters)
+	local newDataProvider = CreateDataProvider();
+	for _, character in next, characters do
+		newDataProvider:Insert(character);
+	end
+	self.ScrollBox:SetDataProvider(newDataProvider);
 end
 
 function KrowiAF_CharacterListFrameMixin:Update(characters)
     characters = characters or cachedCharacters;
-    local scrollFrame = self.ScrollFrame;
-    local buttons = scrollFrame.buttons;
-	local offset = HybridScrollFrame_GetOffset(scrollFrame);
-    local button, character;
-
-	local displayedHeight = 0;
-    for i = 1, #buttons do
-        button = buttons[i];
-        character = characters[i + offset];
-        if character then
-            button:SetCharacter(character);
-			displayedHeight = displayedHeight + button:GetHeight();
-            button:Show();
-        else
-            button:SetCharacter();
-            button:Hide();
-        end
-    end
-
-    local totalHeight = #cachedCharacters * button:GetHeight();
-
-	HybridScrollFrame_Update(scrollFrame, totalHeight, displayedHeight);
+    self:UpdateDataProvider(characters);
 end
 
 function KrowiAF_CharacterListFrameMixin:Sort(columnIndex)

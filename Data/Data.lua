@@ -104,7 +104,7 @@ local function LoadAchievements(sourceTable, func)
         end
     end
 
-    addon.GUI.CategoriesFrame:Update(true);
+    KrowiAF_CategoriesFrame:Update(true);
 end
 
 function data.LoadWatchedAchievements()

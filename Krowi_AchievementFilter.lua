@@ -49,7 +49,7 @@ local function LoadKrowi_AchievementFilter()
 
     addon.GUI.PrepareTabsOrder();
     addon.Tabs.InjectDynamicOptions();
-    addon.GUI.AchievementFrameHeader.InjectDynamicOptions();
+    addon.GUI.AchievementFrameHeader:InjectDynamicOptions();
     addon.Filters:InjectDefaults();
     addon.Plugins:InjectOptions();
     addon.Options:Load(true);
@@ -79,7 +79,7 @@ local function LoadBlizzard_AchievementUI()
     else
         addon.MakeWindowStatic();
     end
-    addon.GUI.AchievementFrameHeader.HookSetPointsText();
+    addon.GUI.AchievementFrameHeader:HookSetPointsText();
     addon.OverwriteFunctions();
     addon.LoadBlizzardApiChanges();
     addon.HookFunctions();

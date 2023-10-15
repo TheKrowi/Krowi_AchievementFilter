@@ -4,9 +4,9 @@ local _, addon = ...;
 KrowiAF_AchievementFrameFilterButtonMixin = {};
 
 function KrowiAF_AchievementFrameFilterButtonMixin.UpdateAchievementFrame()
-    addon.GUI.CategoriesFrame:Update(true);
-    addon.GUI.AchievementsFrame:ForceUpdate(); -- Issue #27: Fix
-    addon.GUI.SummaryFrame:Update();
+    KrowiAF_CategoriesFrame:Update(true);
+    KrowiAF_AchievementsFrame:ForceUpdate(); -- Issue #27: Fix
+    KrowiAF_SummaryFrame:Update();
 end
 
 local function StateIsUndecided(keys)
@@ -86,7 +86,7 @@ function KrowiAF_AchievementFrameFilterButtonMixin:AddRadioButton(parentMenu, _m
                             end
                         end
                         parentMenu:SetSelectedName(text);
-                        addon.GUI.AchievementsFrame:ForceUpdate();
+                        KrowiAF_AchievementsFrame:ForceUpdate();
                     end,
                     NotCheckable = false,
                     KeepShownOnClick = true

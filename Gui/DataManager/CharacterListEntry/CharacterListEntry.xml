@@ -1,7 +1,7 @@
 <Ui>
     <Script file="CharacterListEntryMixin.lua"/>
 
-    <Button name="KrowiAF_CharacterListEntry_Template" registerForClicks="LeftButtonUp, RightButtonUp" virtual="true" mixin="KrowiAF_CharacterListEntryMixin">
+    <Button name="KrowiAF_CharacterListEntry_Template" mixin="KrowiAF_CharacterListEntryMixin" registerForClicks="LeftButtonUp, RightButtonUp" virtual="true">
         <Size x="540" y="20"/>
         <Layers>
             <Layer level="OVERLAY">
@@ -38,92 +38,57 @@
             </Layer>
         </Layers>
         <Frames>
-            <CheckButton parentKey="HeaderTooltip">
+            <CheckButton parentKey="HeaderTooltip" mixin="KrowiAF_CharacterListEntryHeaderTooltipMixin" inherits="KrowiAF_CheckButton_Template">
                 <Size x="29" y="29"/>
                 <Anchors>
                     <Anchor point="LEFT" relativeKey="$parent.Points" relativePoint="RIGHT" x="17" y="0"/>
                 </Anchors>
                 <Scripts>
-                    <OnClick>
-                        PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
-                        self:GetParent():ToggleHeaderTooltip();
-                    </OnClick>
+                    <OnClick method="OnClick"/>
                 </Scripts>
-                <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
-                <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
-                <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
-                <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
-                <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
             </CheckButton>
         </Frames>
         <Frames>
-            <CheckButton parentKey="EarnedByAchievementTooltip">
+            <CheckButton parentKey="EarnedByAchievementTooltip" mixin="KrowiAF_CharacterListEntryEarnedByAchievementTooltipMixin" inherits="KrowiAF_CheckButton_Template">
                 <Size x="29" y="29"/>
                 <Anchors>
                     <Anchor point="LEFT" relativeKey="$parent.HeaderTooltip" relativePoint="RIGHT" x="69" y="0"/>
                 </Anchors>
                 <Scripts>
-                    <OnClick>
-                        PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
-                        self:GetParent():ToggleEarnedByAchievementTooltip();
-                    </OnClick>
+                    <OnClick method="OnClick"/>
                 </Scripts>
-                <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
-                <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
-                <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
-                <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
-                <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
             </CheckButton>
         </Frames>
         <Frames>
-            <CheckButton parentKey="MostProgressAchievementTooltip">
+            <CheckButton parentKey="MostProgressAchievementTooltip" mixin="KrowiAF_CharacterListEntryMostProgressAchievementTooltipMixin" inherits="KrowiAF_CheckButton_Template">
                 <Size x="29" y="29"/>
                 <Anchors>
                     <Anchor point="LEFT" relativeKey="$parent.EarnedByAchievementTooltip" relativePoint="RIGHT" x="69" y="0"/>
                 </Anchors>
                 <Scripts>
-                    <OnClick>
-                        PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
-                        self:GetParent():ToggleMostProgressAchievementTooltip();
-                    </OnClick>
+                    <OnClick method="OnClick"/>
                 </Scripts>
-                <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
-                <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
-                <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
-                <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
-                <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
             </CheckButton>
         </Frames>
         <Frames>
-            <CheckButton parentKey="IgnoreCharacter">
+            <CheckButton parentKey="IgnoreCharacter" mixin="KrowiAF_CharacterListEntryIgnoreCharacterMixin" inherits="KrowiAF_CheckButton_Template">
                 <Size x="29" y="29"/>
                 <Anchors>
                     <Anchor point="LEFT" relativeKey="$parent.MostProgressAchievementTooltip" relativePoint="RIGHT" x="69" y="0"/>
                 </Anchors>
                 <Scripts>
-                    <OnClick>
-                        PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
-                        self:GetParent():ToggleIgnoreCharacter();
-                    </OnClick>
+                    <OnClick method="OnClick"/>
                 </Scripts>
-                <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
-                <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
-                <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
-                <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
-                <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
             </CheckButton>
         </Frames>
         <Frames>
-            <Button parentKey="DeleteCharacter">
+            <Button parentKey="DeleteCharacter" mixin="KrowiAF_CharacterListEntryDeleteCharacterMixin">
                 <Size x="20" y="20"/>
                 <Anchors>
                     <Anchor point="LEFT" relativeKey="$parent.IgnoreCharacter" relativePoint="RIGHT" x="73" y="0"/>
                 </Anchors>
                 <Scripts>
-                    <OnClick>
-                        PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
-                        self:GetParent():DeleteCharacterFunction();
-                    </OnClick>
+                    <OnClick method="OnClick"/>
                 </Scripts>
                 <NormalTexture atlas="communities-icon-redx"/>
                 <HighlightTexture atlas="communities-icon-redx" alphaMode="ADD" alpha="0.4"/>

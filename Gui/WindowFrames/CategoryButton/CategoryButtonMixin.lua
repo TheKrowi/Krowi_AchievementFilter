@@ -1,4 +1,3 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
 
 KrowiAF_CategoryButtonMixin = {};
@@ -15,7 +14,45 @@ function KrowiAF_CategoryButtonMixin:OnLeave()
 end
 
 function KrowiAF_CategoryButtonMixin:OnClick()
-    addon.GUI.CategoriesFrame:SelectCategory(self.Category);
+    KrowiAF_CategoriesFrame:SelectCategory(self.Category);
+end
+
+function KrowiAF_CategoryButtonMixin:SetType(category)
+	if category.Parent.TabName ~= nil then
+		self.Label:SetFontObject("GameFontNormal");
+		self.BackgroundLeft:SetVertexColor(1, 1, 1);
+		self.BackgroundMid:SetVertexColor(1, 1, 1);
+		self.BackgroundRight:SetVertexColor(1, 1, 1);
+		return;
+	end
+	-- Not top level category
+	self.Label:SetFontObject("GameFontHighlight");
+	self.BackgroundLeft:SetVertexColor(0.6, 0.6, 0.6);
+	self.BackgroundMid:SetVertexColor(0.6, 0.6, 0.6);
+	self.BackgroundRight:SetVertexColor(0.6, 0.6, 0.6);
+end
+
+function KrowiAF_CategoryButtonMixin:SetLabel(category)
+	local children = category.Children;
+	local name = category.Name;
+	if children and #children > 0 and category.ShowCollapseIcon then
+		if category.NotCollapsed then
+			name = "- " .. name;
+		else
+			name = "+ " .. name;
+		end
+	end
+	self.Label:SetText(name);
+end
+
+function KrowiAF_CategoryButtonMixin:SetTooltipData(category)
+	self.Text = category.Name;
+	self.NumOfAch, self.NumOfCompAch, self.NumOfNotObtAch = category.NumOfAch, category.NumOfCompAch, category.NumOfNotObtAch;
+	if category.IsSummary then
+		self.showTooltipFunc = nil;
+	else
+		self.showTooltipFunc = addon.GUI.ShowStatusBarTooltip;
+	end
 end
 
 function KrowiAF_CategoryButtonMixin:SetCategory(category)
@@ -25,38 +62,9 @@ function KrowiAF_CategoryButtonMixin:SetCategory(category)
 	end
 
 	self.Category = category;
-
-	local parent = category.Parent;
-	if parent.TabName == nil then -- Not top level category
-		self.Label:SetFontObject("GameFontHighlight");
-		self.BackgroundLeft:SetVertexColor(0.6, 0.6, 0.6);
-		self.BackgroundMid:SetVertexColor(0.6, 0.6, 0.6);
-		self.BackgroundRight:SetVertexColor(0.6, 0.6, 0.6);
-	else -- Top level category
-		self.Label:SetFontObject("GameFontNormal");
-		self.BackgroundLeft:SetVertexColor(1, 1, 1);
-		self.BackgroundMid:SetVertexColor(1, 1, 1);
-		self.BackgroundRight:SetVertexColor(1, 1, 1);
-	end
-
-	local children = category.Children;
-	self.Label:SetText(category.Name);
-	if children and #children > 0 and category.ShowCollapseIcon then
-		if category.NotCollapsed then
-			self.Label:SetText("- " .. category.Name);
-		else
-			self.Label:SetText("+ " .. category.Name);
-		end
-	end
-
-	-- For the tooltip
-	self.Text = category.Name;
-	self.NumOfAch, self.NumOfCompAch, self.NumOfNotObtAch = category.NumOfAch, category.NumOfCompAch, category.NumOfNotObtAch;
-	if category.IsSummary then
-		self.showTooltipFunc = nil;
-	else
-		self.showTooltipFunc = addon.GUI.ShowStatusBarTooltip;
-	end
+	self:SetType(category);
+	self:SetLabel(category);
+	self:SetTooltipData(category);
 
 	local selectedTab = addon.GUI.SelectedTab;
 	if not selectedTab then

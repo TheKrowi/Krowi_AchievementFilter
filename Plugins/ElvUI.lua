@@ -667,14 +667,14 @@ local engine, skins, tooltip;
 local function SkinAll()
     if KrowiAF_SavedData.ElvUISkin.Achievements then
         SkinTabs(skins);
-        elvUI.SkinCategoriesFrame(addon.GUI.CategoriesFrame, engine, skins);
+        elvUI.SkinCategoriesFrame(KrowiAF_CategoriesFrame, engine, skins);
         SkinGameTooltipProgressBar(addon.GUI.GameTooltipProgressBar, engine);
-        elvUI.SkinAchievementsFrame(addon.GUI.AchievementsFrame, engine, skins);
-        elvUI.SkinAchievementSummary(addon.GUI.SummaryFrame, engine, skins);
-        SkinFilterButton(addon.GUI.FilterButton, addon.GUI.AchievementsFrame, skins);
+        elvUI.SkinAchievementsFrame(KrowiAF_AchievementsFrame, engine, skins);
+        elvUI.SkinAchievementSummary(KrowiAF_SummaryFrame, engine, skins);
+        SkinFilterButton(addon.GUI.FilterButton, KrowiAF_AchievementsFrame, skins);
         elvUI.SkinSearchOptionsButton(KrowiAF_SearchBoxFrame.OptionsMenuButton, KrowiAF_SearchBoxFrame, skins);
         elvUI.SkinSearchBoxFrame(KrowiAF_SearchBoxFrame, skins);
-        elvUI.SkinSearchPreviewFrame(KrowiAF_SearchBoxFrame.PreviewContainer, addon.GUI.AchievementsFrame, engine, skins);
+        elvUI.SkinSearchPreviewFrame(KrowiAF_SearchBoxFrame.PreviewContainer, KrowiAF_AchievementsFrame, engine, skins);
         elvUI.SkinSearchResultsFrame(KrowiAF_SearchBoxFrame.ResultsFrame, skins);
         SkinHeader();
         ReskinBlizzard(skins);

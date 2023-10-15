@@ -3,10 +3,6 @@
     <Script file="AchievementsFrameMixin.lua"/>
 	
 	<Frame name="KrowiAF_AchievementsFrame_Template" mixin="KrowiAF_AchievementsFrameMixin" virtual="true" hidden="true">
-		<Anchors>
-			<Anchor point="BOTTOM" y="20"/>
-			<Anchor point="RIGHT" x="-20"/>
-		</Anchors>
 		<Frames>
 			<Frame parentKey="ScrollBox" inherits="WowScrollBoxList"/>
 			<EventFrame parentKey="ScrollBar" inherits="WowTrimScrollBar">

@@ -1,5 +1,6 @@
 local _, addon = ...;
 local section = {};
+tinsert(addon.Gui.RightClickMenu.AchievementMenu.Sections, section);
 
 local popupDialog = LibStub("Krowi_PopopDialog-1.0");
 local relatedTabs = {
@@ -11,11 +12,11 @@ local relatedTabs = {
 	"#screenshots"
 };
 
-function section.CheckAdd(achievement)
+function section:CheckAdd(achievement)
     return not achievement.HasNoWowheadLink;
 end
 
-function section.Add(menu, achievement)
+function section:Add(menu, achievement)
 	local locale = "";
 	if addon.Options.db.profile.RightClickMenu.WowheadLink.AddLocale then
 		locale = GetLocale();
@@ -31,7 +32,10 @@ function section.Add(menu, achievement)
 	local wotlk = addon.IsWrathClassic and "wotlk/" or "";
 
 	local externalLink = "https://" .. locale .. "wowhead.com/" .. wotlk .. "achievement=" .. achievement.Id .. relatedTab;
-	menu:AddFull({Text = addon.L["Wowhead"], Func = function() popupDialog.ShowExternalLink(externalLink); end});
+	menu:AddFull({
+		Text = addon.L["Wowhead"],
+		Func = function()
+			popupDialog.ShowExternalLink(externalLink);
+		end
+	});
 end
-
-tinsert(addon.Gui.RightClickMenu.AchievementMenu.Sections, section);

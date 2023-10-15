@@ -1,5 +1,11 @@
 local _, addon = ...;
 
+KrowiAF_SearchResultsFrameCloseButtonMixin = {};
+
+function KrowiAF_SearchResultsFrameCloseButtonMixin:OnClick()
+    self:GetParent():Hide();
+end
+
 KrowiAF_SearchResultsFrameMixin = {};
 
 local function CreateScrollView(self)
@@ -41,22 +47,21 @@ function KrowiAF_SearchResultsFrameMixin:OnHide()
 	PlaySound(SOUNDKIT.IG_SPELLBOOK_CLOSE);
 end
 
-local savedQuery, savedResults;
-local function UpdateDataProvider(self, query, results)
-	savedQuery = query or savedQuery;
-	savedResults = results or savedResults;
-
+function KrowiAF_SearchResultsFrameMixin:UpdateDataProvider(results)
 	local newDataProvider = CreateDataProvider();
-	for _, achievement in next, savedResults do
+	for _, achievement in next, results do
 		newDataProvider:Insert(achievement);
 	end
 	self.ScrollBox:SetDataProvider(newDataProvider);
 end
 
+local savedQuery, savedResults;
 function KrowiAF_SearchResultsFrameMixin:Update(query, results)
 	self:SetPoint("TOP", 0, -112); -- Need to reset the frame before we can adjust again
 
-	UpdateDataProvider(self, query, results);
+	savedQuery = query or savedQuery;
+	savedResults = results or savedResults;
+	self:UpdateDataProvider(savedResults);
 
 	local numScrollBoxButtons = self.ScrollBox:GetHeight() / 49;
 	local numFullScrollBoxButtons = floor(numScrollBoxButtons + 0.5);

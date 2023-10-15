@@ -3,7 +3,7 @@ local section = {};
 tinsert(addon.Gui.AchievementTooltip.Sections, section);
 
 local numCriteria;
-function section.CheckAdd(achievement)
+function section:CheckAdd(achievement)
 	if achievement.IsCompleted or achievement.IsAccountWide or addon.Options.db.profile.Tooltip.Achievements.MostProgress.Characters <= 0 then
 		return;
 	end
@@ -131,7 +131,7 @@ local function GetNames(characters, achievement)
 	return names;
 end
 
-function section.Add(achievement)
+function section:Add(achievement)
 	local characters = BuildCharacterList(achievement);
 	if not characters or #characters == 0 then
 		return;

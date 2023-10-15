@@ -296,7 +296,7 @@
         "ACHIEVEMENT_BUTTON",
         "AchievementMicroButtonMixin",
         "KrowiAF_AchievementFrameAchievementsFrame",
-        "KrowiAF_AchievementFrameSummaryFrame",
+        "KrowiAF_SummaryFrame",
         "UISpecialFrames",
         "CalendarViewHolidayFrame",
         "KrowiAF_CalendarViewHolidayFrame",
@@ -480,7 +480,8 @@
         "KrowiAF_SearchResultsFrame",
         "KrowiAF_SearchBoxFrame",
         "CreateFromMixins",
-        "InCombatLockdown"
+        "InCombatLockdown",
+        "KrowiAF_AchievementFrameHeaderButton"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

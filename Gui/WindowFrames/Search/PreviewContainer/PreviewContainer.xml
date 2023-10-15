@@ -77,9 +77,7 @@
 				<PushedTexture atlas="_search-rowbg">
 				</PushedTexture>
 				<Scripts>
-					<OnShow>
-						self:SetFrameLevel(self:GetParent():GetFrameLevel() + 10);
-					</OnShow>
+					<OnShow method="OnShow"/>
 					<OnEnter method="OnEnter"/>
 					<OnClick method="OnClick"/>
 				</Scripts>

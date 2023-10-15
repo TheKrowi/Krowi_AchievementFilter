@@ -21,7 +21,7 @@ end
 local function UpdateIcons()
 	ZGV.SearchIconPool:ReleaseAll();
 
-    for _, button in ipairs(addon.GUI.AchievementsFrame.ScrollView.frames) do
+    for _, button in ipairs(KrowiAF_AchievementsFrame.ScrollView.frames) do
 		local icon = ZGV.SearchIconPool:Acquire();
 		icon:SetParent(button);
 		icon:SetPoint("TOPRIGHT", button, "TOPRIGHT", -5, -5);
@@ -59,7 +59,7 @@ function zygorGuidesViewer:OnEvent(event, arg1, arg2)
                     return;
                 end
                 ZGV.SearchIconPool = ZGV.SearchIconPool or CreateFramePool("BUTTON", nil, "ZygorSearchButton");
-                hooksecurefunc(addon.GUI.AchievementsFrame, "Update", function()
+                hooksecurefunc(KrowiAF_AchievementsFrame, "Update", function()
                     ScheduleUpdate();
                 end);
                 ZGV.Achievement.KrowiAF_Loaded = true;

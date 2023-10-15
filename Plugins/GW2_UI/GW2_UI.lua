@@ -995,9 +995,9 @@ do -- [[ Header ]]
 end
 
 local function ReskinBlizzard()
-    addon.GUI.AchievementFrameHeader.Button:ClearAllPoints();
-    addon.GUI.AchievementFrameHeader.Button:SetPoint("TOPLEFT", AchievementFrame.Header.Shield);
-    addon.GUI.AchievementFrameHeader.Button:SetPoint("BOTTOMRIGHT", AchievementFrame.Header.Points);
+    KrowiAF_AchievementFrameHeaderButton:ClearAllPoints();
+    KrowiAF_AchievementFrameHeaderButton:SetPoint("TOPLEFT", AchievementFrame.Header.Shield);
+    KrowiAF_AchievementFrameHeaderButton:SetPoint("BOTTOMRIGHT", AchievementFrame.Header.Points);
 end
 
 do -- [[ Calendar ]]
@@ -1185,13 +1185,13 @@ end
 local function SkinAll()
     if KrowiAF_SavedData.GW2_UISkin.Achievements then
         gw2_ui.SkinTabs();
-        gw2_ui.SkinCategoriesFrame(addon.GUI.CategoriesFrame);
+        gw2_ui.SkinCategoriesFrame(KrowiAF_CategoriesFrame);
         SkinGameTooltipProgressBar(addon.GUI.GameTooltipProgressBar);
-        gw2_ui.SkinAchievementsFrame(addon.GUI.AchievementsFrame, addon.GUI.CategoriesFrame);
-        gw2_ui.SkinAchievementSummary(addon.GUI.SummaryFrame, addon.GUI.CategoriesFrame);
+        gw2_ui.SkinAchievementsFrame(KrowiAF_AchievementsFrame, KrowiAF_CategoriesFrame);
+        gw2_ui.SkinAchievementSummary(KrowiAF_SummaryFrame, KrowiAF_CategoriesFrame);
         SkinFilterButton(addon.GUI.FilterButton);
         gw2_ui.SkinSearchOptionsButton(KrowiAF_SearchBoxFrame.OptionsMenuButton, KrowiAF_SearchBoxFrame);
-        gw2_ui.SkinSearchBoxFrame(KrowiAF_SearchBoxFrame, addon.GUI.CategoriesFrame);
+        gw2_ui.SkinSearchBoxFrame(KrowiAF_SearchBoxFrame, KrowiAF_CategoriesFrame);
         gw2_ui.SkinSearchPreviewFrame(KrowiAF_SearchBoxFrame.PreviewContainer, KrowiAF_SearchBoxFrame);
     --     gw2_ui.SkinSearchResultsFrame(KrowiAF_SearchBoxFrame.ResultsFrame);
         gw2_ui.SkinHeader();

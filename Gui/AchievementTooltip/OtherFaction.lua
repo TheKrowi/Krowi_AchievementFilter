@@ -2,7 +2,7 @@ local _, addon = ...;
 local section = {};
 tinsert(addon.Gui.AchievementTooltip.Sections, section);
 
-function section.CheckAdd(achievement)
+function section:CheckAdd(achievement)
 	if not addon.Options.db.profile.Tooltip.Achievements.ShowOtherFaction then
 		return;
 	end
@@ -18,7 +18,7 @@ local function IsOtherFactionAchievementCompleted(achievement)
 	end
 end
 
-function section.Add(achievement)
+function section:Add(achievement)
 	local faction = addon.L["Neutral"];
 	if addon.Faction.IsAlliance then
 		faction = addon.L["Horde"];

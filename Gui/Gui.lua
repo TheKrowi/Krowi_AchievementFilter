@@ -32,7 +32,7 @@ function gui:LoadWithBlizzard_AchievementUI()
     gui.AchievementsObjectives:Load();
     gui.CategoriesFrame:Load();
     gui.AchievementsFrame:Load();
-    addon.GUI.SummaryFrame:Load();
+    gui.SummaryFrame:Load();
     gui.FilterButton:Load();
     gui.SideButtonSystem.Load();
     -- print("ach loading")
@@ -54,14 +54,14 @@ function gui:LoadWithBlizzard_AchievementUI()
         media .. "kaf_special"
     };
     for i, t in next, addon.TabsOrder do
-        addon.Tabs[t].Button = gui.AchievementFrameTabButton:New(addon.Tabs[t].Text, {gui.FilterButton, KrowiAF_SearchBoxFrame, gui.CategoriesFrame}, addon.Tabs[t].Categories, addon.Tabs[t].Filters, waterMarks[i], t);
+        addon.Tabs[t].Button = gui.AchievementFrameTabButtonFactory:GetNew(t, addon.Tabs[t].Text, {gui.FilterButton, KrowiAF_SearchBoxFrame, KrowiAF_CategoriesFrame}, addon.Tabs[t].Categories, addon.Tabs[t].Filters, waterMarks[i]);
         KrowiAF_RegisterTabButton(addonName, addon.Tabs[t].Name, addon.Tabs[t].Button);
     end
     self.LoadOldAchievementFrameTabsCompatibility();
 
     self.ResetAchievementFrameHeight();
 
-    gui.AchievementFrameHeader.CreateTooltip();
+    gui.AchievementFrameHeader:CreateTooltip();
 
     self.SetCloseButtonOnKeyDown();
     self:HookShowSubFrame();
@@ -120,7 +120,7 @@ end
 
 function gui.SetAchievementFrameWidth()
     AchievementFrame:SetWidth(defaultAchievementFrameWidth + addon.Options.db.profile.Window.CategoriesFrameWidthOffset);
-    addon.GUI.CategoriesFrame:SetRightPoint();
+    KrowiAF_CategoriesFrame:SetRightPoint();
 end
 
 function gui.ResetAchievementFrameWidth()
@@ -438,9 +438,9 @@ function gui.RefreshView()
     for t, _ in next, addon.Tabs do
         addon.Tabs[t].Filters.Refresh = true;
     end
-    addon.GUI.CategoriesFrame:Update();
-    addon.GUI.AchievementsFrame:ForceUpdate();
-    addon.GUI.SummaryFrame:UpdateAchievementsOnNextShow();
+    KrowiAF_CategoriesFrame:Update();
+    KrowiAF_AchievementsFrame:ForceUpdate();
+    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
 end
 
 function gui.RefreshViewAfterPlayerLogin()

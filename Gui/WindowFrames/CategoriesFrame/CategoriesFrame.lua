@@ -1,10 +1,9 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
-addon.GUI.CategoriesFrame = {};
-local categoriesFrame = addon.GUI.CategoriesFrame;
+addon.Gui.CategoriesFrame = {};
+local categoriesFrame = addon.Gui.CategoriesFrame;
 
 function categoriesFrame:Load()
 	local frame = CreateFrame("Frame", "KrowiAF_CategoriesFrame", AchievementFrame, "KrowiAF_CategoriesFrame_Template");
-	tinsert(addon.GUI.SubFrames, frame);
-	addon.GUI.CategoriesFrame = frame;
+	tinsert(addon.Gui.SubFrames, frame);
+	addon.Gui.CategoriesFrame = nil;
 end

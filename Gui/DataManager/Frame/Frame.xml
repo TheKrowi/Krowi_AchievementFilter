@@ -10,7 +10,7 @@
             <Frame parentKey="CharacterList" inherits="KrowiAF_CharacterListFrame_Template">
                 <Anchors>
                     <Anchor point="TOPLEFT" x="8" y="-60"/>
-                    <Anchor point="BOTTOMRIGHT" x="-24" y="3"/>
+                    <Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
                 </Anchors>
             </Frame>
         </Frames>

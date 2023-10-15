@@ -1,4 +1,3 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
 
 KrowiAF_AchievementsFrameMixin = {};
@@ -15,7 +14,7 @@ local function CreateScrollView(self)
 		local selectedTab = addon.GUI.SelectedTab;
 		local base = self.DummyFrame.CollapsedHeight;
 		if selectedTab and SelectionBehaviorMixin.IsElementDataIntrusiveSelected(achievement) then
-			base = base + selectedTab.Extend;
+			base = base + (selectedTab.Extend or 0);
 		end
 		return base;
 	end);
@@ -49,7 +48,6 @@ local function ScrollBoxSelectionChanged(self, achievement, selected)
 	elseif achievement == selectedTab.SelectedAchievement then
 		selectedTab.SelectedAchievement = nil;
 	end
-	-- selectedTab.SelectedAchievement = selected and achievement or nil;
 	local button = self.ScrollBox:FindFrame(achievement);
 	if not button then
 		return;
@@ -63,32 +61,6 @@ end
 local function AddSelectionBehavior(self)
 	self.SelectionBehavior = ScrollUtil.AddSelectionBehavior(self.ScrollBox, SelectionBehaviorFlags.Deselectable, SelectionBehaviorFlags.Intrusive);
 	self.SelectionBehavior:RegisterCallback(SelectionBehaviorMixin.Event.OnSelectionChanged, ScrollBoxSelectionChanged, self);
-
-	-- function self.SelectionBehavior:SetElementDataSelected_Internal(elementData, newSelected)
-	-- 	local deselected = nil;
-	-- 	if newSelected then
-	-- 		-- Works under the current single selection policy. When multi-select is added,
-	-- 		-- change this.
-	-- 		deselected = self:DeselectByPredicate(function(data)
-	-- 			return data ~= elementData and self:IsElementDataSelected(data);
-	-- 		end);
-	-- 	end
-	-- 	local changed = self:IsElementDataSelected(elementData) ~= newSelected;
-	-- 	if self.selectionFlags:IsSet(SelectionBehaviorFlags.Intrusive) then
-	-- 		elementData.selected = newSelected;
-	-- 	else
-	-- 		self.selections[elementData] = newSelected;
-	-- 	end
-	-- 	print("deselected", deselected, "changed", changed)
-	-- 	if deselected then
-	-- 		for index, data in ipairs(deselected) do
-	-- 			self:TriggerEvent(SelectionBehaviorMixin.Event.OnSelectionChanged, data, false);
-	-- 		end
-	-- 	end
-	-- 	if changed then
-	-- 		self:TriggerEvent(SelectionBehaviorMixin.Event.OnSelectionChanged, elementData, newSelected);
-	-- 	end
-	-- end
 end
 
 function KrowiAF_AchievementsFrameMixin:OnLoad()
@@ -157,20 +129,16 @@ local function GetFilteredAchievements(category)
 	return addon.Filters:Sort(displayAchievements, defaultOrder);
 end
 
-local cachedCategory, cachedAchievements; -- Caching this speeds up the scrolling of achievements when the selected category isn't changed
-local function UpdateDataProvider(self, updateAchievements, retainScrollPosition)
-	if updateAchievements then
-		cachedAchievements = GetFilteredAchievements(cachedCategory);
-	end
-
+function KrowiAF_AchievementsFrameMixin:UpdateDataProvider(achievements, retainScrollPosition)
 	local newDataProvider = CreateDataProvider();
-	for _, achievement in next, cachedAchievements do
+	for _, achievement in next, achievements do
 		newDataProvider:Insert(achievement);
 	end
 	self.ScrollBox:SetDataProvider(newDataProvider, retainScrollPosition);
 end
 
 local highlightedButton;
+local cachedCategory, cachedAchievements; -- Caching this speeds up the scrolling of achievements when the selected category isn't changed
 function KrowiAF_AchievementsFrameMixin:Update(retainScrollPosition)
 	local selectedTab = addon.GUI.SelectedTab;
 	if not selectedTab then
@@ -187,8 +155,10 @@ function KrowiAF_AchievementsFrameMixin:Update(retainScrollPosition)
 	if cachedCategory.IsCurrentZone then
 		updateAchievements = addon.Data.GetCurrentZoneAchievements() or updateAchievements;
 	end
-
-	UpdateDataProvider(self, updateAchievements, retainScrollPosition);
+	if updateAchievements then
+		cachedAchievements = GetFilteredAchievements(cachedCategory);
+	end
+	self:UpdateDataProvider(cachedAchievements, retainScrollPosition);
 
 	self.Text:Hide();
 	if cachedAchievements and #cachedAchievements == 0 then
@@ -203,11 +173,11 @@ function KrowiAF_AchievementsFrameMixin:Update(retainScrollPosition)
 	end
 end
 
-function KrowiAF_AchievementsFrameMixin.SetHighlightedButton(button)
+function KrowiAF_AchievementsFrameMixin:SetHighlightedButton(button)
 	highlightedButton = button;
 end
 
-function KrowiAF_AchievementsFrameMixin.ClearHighlightedButton()
+function KrowiAF_AchievementsFrameMixin:ClearHighlightedButton()
 	highlightedButton = nil;
 end
 

@@ -1,12 +1,9 @@
 <Ui>
-    <Script file="GameTooltipProgressBar.lua" />
+    <Script file="GameTooltipProgressBar.lua"/>
     <Include file="AlertFrame\AlertFrame.xml"/>
     <Script file="AlertSystem.lua"/>
     <Script file="SideButton.lua" />
-    <Script file="SideButtonSystem.lua" />
-    <Include file="WorldMapButton\WorldMapButton.xml" />
-    <Include file="FilterButton\FilterButton.xml" />
-    <Script file="AchievementFrameHeader.lua" />
-    <Script file="AchievementFrameTabButton.lua" />
-    <Include file="FloatingAchievementTooltip\FloatingAchievementTooltip.xml" />
+    <Script file="SideButtonSystem.lua"/>
+    <Include file="WorldMapButton\WorldMapButton.xml"/>
+    <Include file="FloatingAchievementTooltip\FloatingAchievementTooltip.xml"/>
 </Ui>

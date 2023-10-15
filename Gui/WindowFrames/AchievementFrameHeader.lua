@@ -1,4 +1,3 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
 addon.GUI.AchievementFrameHeader = {};
 local header = addon.GUI.AchievementFrameHeader;
@@ -20,7 +19,7 @@ local headerSortPriorities = {
     addon.L["Realm"],
     addon.L["Faction"],
     addon.L["Class"]
-}
+};
 
 local function SetPriority(index, value)
     local priorities = addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority;
@@ -40,12 +39,11 @@ end
 
 local OrderPP = addon.InjectOptions.AutoOrderPlusPlus;
 local AdjustedWidth = addon.InjectOptions.AdjustedWidth;
-function header.InjectDynamicOptions()
+function header:InjectDynamicOptions()
     for i = 1, #headerSortPriorities do
         addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Priority" .. i, {
             order = OrderPP(), type = "select", width = AdjustedWidth(0.95),
             name = "",
-            -- desc = (""):KAF_AddDefaultValueText("AchievementPoints.Tooltip.Sort.Priority." .. i, headerSortPriorities), -- Does not show cause name is empty
             values = headerSortPriorities,
             get = function() return addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority[i]; end,
             set = function (_, value) SetPriority(i, value); end
@@ -69,7 +67,7 @@ function header.InjectDynamicOptions()
 end
 
 local processHook = true;
-function header.HookSetPointsText()
+function header:HookSetPointsText()
     AchievementFrame.Header.Points:SetPoint("TOP", AchievementFrame.Header.PointBorder, "TOP", -10, -13);
     AchievementFrame.Header.PointBorder:SetWidth(175);
 
@@ -191,9 +189,8 @@ local function OnEnter(self)
     GameTooltip:Show();
 end
 
-function header.CreateTooltip()
-    local frame = CreateFrame("Button", nil, AchievementFrame.Header);
-    addon.GUI.AchievementFrameHeader.Button = frame;
+function header:CreateTooltip()
+    local frame = CreateFrame("Button", "KrowiAF_AchievementFrameHeaderButton", AchievementFrame.Header);
     frame:SetPoint("TOPLEFT", AchievementFrame.Header.PointBorder);
     frame:SetPoint("BOTTOMRIGHT", AchievementFrame.Header.PointBorder);
     frame:SetScript("OnEnter", OnEnter);

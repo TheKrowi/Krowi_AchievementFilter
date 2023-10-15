@@ -121,11 +121,11 @@ function tooltip:ShowTooltip(anchor, achievement)
 	GameTooltip:SetPoint("TOPLEFT", anchor, "TOPRIGHT");
 
 	for _, sect in next, sections do
-		if sect.CheckAdd(achievement) then
+		if sect:CheckAdd(achievement) then
 			if GameTooltip:NumLines() > 0 then
 				GameTooltip_AddBlankLineToTooltip(GameTooltip);
 			end
-			sect.Add(achievement);
+			sect:Add(achievement);
 		end
 	end
 

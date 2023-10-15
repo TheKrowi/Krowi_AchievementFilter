@@ -2,18 +2,17 @@
 local addonName, addon = ...;
 
 local function SelectAchievement(achievement)
-	local achievementsFrame = addon.GUI.AchievementsFrame;
-	local scrollBox = achievementsFrame.ScrollBox;
+	local scrollBox = KrowiAF_AchievementsFrame.ScrollBox;
 	local dataProvider = scrollBox:GetDataProvider();
 	if not dataProvider then
 		return;
 	end
 
-	achievementsFrame:ForceUpdate();
+	KrowiAF_AchievementsFrame:ForceUpdate();
 	scrollBox:ScrollToElementData(achievement, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
 	-- print("api select")
-	achievementsFrame.SelectionBehavior:SelectElementData(achievement);
-	achievementsFrame:ScrollToNearest(achievement);
+	KrowiAF_AchievementsFrame.SelectionBehavior:SelectElementData(achievement);
+	KrowiAF_AchievementsFrame:ScrollToNearest(achievement);
 end
 
 function KrowiAF_SelectAchievementWithCategory(achievement, category)
@@ -59,11 +58,10 @@ function KrowiAF_SelectAchievementFromID(id)
 end
 
 local function SelectCategory(category, collapsed, quick)
-	local categoriesFrame = addon.GUI.CategoriesFrame;
-	categoriesFrame:ExpandToCategory(category);
-	categoriesFrame:Update();
+	KrowiAF_CategoriesFrame:ExpandToCategory(category);
+	KrowiAF_CategoriesFrame:Update();
 
-	local scrollBox = categoriesFrame.ScrollBox;
+	local scrollBox = KrowiAF_CategoriesFrame.ScrollBox;
 	local dataProvider = scrollBox:GetDataProvider();
 	if not dataProvider then
 		return;
@@ -71,7 +69,7 @@ local function SelectCategory(category, collapsed, quick)
 
 	scrollBox:ScrollToElementData(category, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
 
-	categoriesFrame:ShowSubFrame(category);
+	KrowiAF_CategoriesFrame:ShowSubFrame(category);
 end
 
 function KrowiAF_SelectCategory(category, collapsed)
@@ -94,7 +92,7 @@ function KrowiAF_SelectCategory(category, collapsed)
             alwaysVisibleCache[i] = categoriesTree[i].AlwaysVisible;
             categoriesTree[i].AlwaysVisible = true; -- We set this here to show an empty category
         end
-        addon.GUI.CategoriesFrame:Update(true); -- Force an update to handle the new AlwaysVisible states
+        KrowiAF_CategoriesFrame:Update(true); -- Force an update to handle the new AlwaysVisible states
     end
 
 	-- Select category

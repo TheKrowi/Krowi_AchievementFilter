@@ -94,14 +94,12 @@
 			</Layer>
 		</Layers>
 		<Frames>
-			<Button parentKey="closeButton" inherits="UIPanelCloseButton">
+			<Button parentKey="closeButton" mixin="KrowiAF_SearchResultsFrameCloseButtonMixin" inherits="UIPanelCloseButton">
 				<Anchors>
 					<Anchor point="TOPRIGHT" relativeKey="$parent.topRightCorner" x="0" y="-2"/>
 				</Anchors>
 				<Scripts>
-					<OnClick>
-						self:GetParent():Hide();
-					</OnClick>
+      				<OnClick method="OnClick"/>
 				</Scripts>
 			</Button>
 			<Frame parentKey="ScrollBox" inherits="WowScrollBoxList"/>

@@ -2,7 +2,7 @@ local _, addon = ...;
 local section = {};
 tinsert(addon.Gui.AchievementTooltip.Sections, section);
 
-function section.CheckAdd()
+function section:CheckAdd()
     return true;
 end
 
@@ -50,7 +50,7 @@ local function EvaluateCharacters(achievement)
 	return earnedBy, notEarnedBy;
 end
 
-function section.Add(achievement)
+function section:Add(achievement)
 	if achievement.IsAccountWide then
 		if achievement.IsCompleted then
 			GameTooltip:AddLine(ACCOUNT_WIDE_ACHIEVEMENT_COMPLETED);

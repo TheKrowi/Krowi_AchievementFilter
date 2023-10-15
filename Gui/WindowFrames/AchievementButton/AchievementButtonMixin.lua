@@ -157,13 +157,13 @@ function KrowiAF_AchievementButtonMixin:OnHide()
 end
 
 function KrowiAF_AchievementButtonMixin:OnEnter()
-	KrowiAF_AchievementsFrame.SetHighlightedButton(self);
+	KrowiAF_AchievementsFrame:SetHighlightedButton(self);
 	self:ShowTooltip();
 	self.Highlight:Show();
 end
 
 function KrowiAF_AchievementButtonMixin:OnLeave()
-	KrowiAF_AchievementsFrame.ClearHighlightedButton();
+	KrowiAF_AchievementsFrame:ClearHighlightedButton();
 	GameTooltip:Hide();
 	local selectedTab = addon.Gui.SelectedTab;
 	if selectedTab and self.Achievement ~= selectedTab.SelectedAchievement then

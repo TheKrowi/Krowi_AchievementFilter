@@ -147,7 +147,6 @@ function addon.ClearWatchAchievement(achievement, update)
     achievement.WatchListCategories = nil;
     if update ~= false then
         addon.GUI.RefreshView();
-        -- addon.GUI.SummaryFrame:Achievements_Update("KROWIAF_FORCE_UPDATE");
     end
     for i = 1, #addon.Data.WatchListCategories do
         if (addon.Data.WatchListCategories[i].Achievements and #addon.Data.WatchListCategories[i].Achievements == 0) or (addon.Data.WatchListCategories[i].Children and #addon.Data.WatchListCategories[i].Children == 0) then
@@ -167,7 +166,6 @@ function addon.WatchAchievement(achievement, update)
 	end
     if update ~= false then
         addon.GUI.RefreshView();
-        -- addon.GUI.SummaryFrame:Achievements_Update("KROWIAF_FORCE_UPDATE");
     end
 end
 
@@ -179,8 +177,8 @@ function addon.AddToTrackingAchievementsCategories(achievement, update)
         end
     end
     if update ~= false then
-        addon.GUI.CategoriesFrame:Update(true);
-        addon.GUI.AchievementsFrame:ForceUpdate();
+        KrowiAF_CategoriesFrame:Update(true);
+        KrowiAF_AchievementsFrame:ForceUpdate();
     end
 end
 

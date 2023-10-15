@@ -1,10 +1,44 @@
 local _, addon = ...;
 
-KrowiAF_CharacterListEntryMixin = {};
-
-function KrowiAF_CharacterListEntryMixin:PostLoad(scrollFrame)
-	self:SetPoint("RIGHT", scrollFrame, -5, 0);
+local function PlayCheckButtonSoundOnClick(self)
+    PlaySound(self:GetChecked() and SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON or SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF);
 end
+
+KrowiAF_CharacterListEntryHeaderTooltipMixin = {};
+
+function KrowiAF_CharacterListEntryHeaderTooltipMixin:OnClick()
+    PlayCheckButtonSoundOnClick(self);
+    self:GetParent():ToggleHeaderTooltip();
+end
+
+KrowiAF_CharacterListEntryEarnedByAchievementTooltipMixin = {};
+
+function KrowiAF_CharacterListEntryEarnedByAchievementTooltipMixin:OnClick()
+    PlayCheckButtonSoundOnClick(self);
+    self:GetParent():ToggleEarnedByAchievementTooltip();
+end
+
+KrowiAF_CharacterListEntryMostProgressAchievementTooltipMixin = {};
+
+function KrowiAF_CharacterListEntryMostProgressAchievementTooltipMixin:OnClick()
+    PlayCheckButtonSoundOnClick(self);
+    self:GetParent():ToggleMostProgressAchievementTooltip();
+end
+
+KrowiAF_CharacterListEntryIgnoreCharacterMixin = {};
+
+function KrowiAF_CharacterListEntryIgnoreCharacterMixin:OnClick()
+    PlayCheckButtonSoundOnClick(self);
+    self:GetParent():ToggleIgnoreCharacter();
+end
+
+KrowiAF_CharacterListEntryDeleteCharacterMixin = {};
+
+function KrowiAF_CharacterListEntryDeleteCharacterMixin:OnClick()
+    self:GetParent():DeleteCharacterFunction();
+end
+
+KrowiAF_CharacterListEntryMixin = {};
 
 local function GetFactionIcon(faction)
     if faction == addon.Objects.Faction[addon.Objects.Faction.Alliance] then

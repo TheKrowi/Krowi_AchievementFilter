@@ -1,4 +1,3 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
 
 KrowiAF_CategoriesFrameMixin = {};
@@ -114,18 +113,9 @@ local function GetDisplayCategories(displayCategories, category, getAchNums)
 	end
 end
 
-local function UpdateDataProvider(self, getAchNums, retainScrollPosition)
-	local displayCategories = {};
-	local categories = addon.GUI.SelectedTab:GetCategories();
-    if not categories then
-        return;
-    end
-	for _, category in next, categories do
-		GetDisplayCategories(displayCategories, category, getAchNums);
-	end
-
+function KrowiAF_CategoriesFrameMixin:UpdateDataProvider(categories, retainScrollPosition)
 	local newDataProvider = CreateDataProvider();
-	for _, category in next, displayCategories do
+	for _, category in next, categories do
 		newDataProvider:Insert(category);
 	end
 	self.ScrollBox:SetDataProvider(newDataProvider, retainScrollPosition);
@@ -143,7 +133,15 @@ function KrowiAF_CategoriesFrameMixin:Update(getAchNums, retainScrollPosition)
 		getAchNums = true;
 	end
 
-	UpdateDataProvider(self, getAchNums, retainScrollPosition);
+	local displayCategories = {};
+	local categories = addon.GUI.SelectedTab:GetCategories();
+    if not categories then
+        return;
+    end
+	for _, category in next, categories do
+		GetDisplayCategories(displayCategories, category, getAchNums);
+	end
+	self:UpdateDataProvider(displayCategories, retainScrollPosition);
 end
 
 local function OpenCloseCategory(targetCategory, category)
@@ -215,14 +213,13 @@ end
 
 function KrowiAF_CategoriesFrameMixin:ShowSubFrame(category)
 	if category.IsSummary then
-		addon.GUI.AchievementsFrame:Hide();
-		addon.GUI.SummaryFrame:Show();
+		KrowiAF_AchievementsFrame:Hide();
+		KrowiAF_SummaryFrame:Show();
 	else
-		addon.GUI.SummaryFrame:Hide();
-		local achievementsFrame = addon.GUI.AchievementsFrame;
-		achievementsFrame:Show();
-		achievementsFrame:ClearFullSelection();
-		achievementsFrame:Update();
+		KrowiAF_SummaryFrame:Hide();
+		KrowiAF_AchievementsFrame:Show();
+		KrowiAF_AchievementsFrame:ClearFullSelection();
+		KrowiAF_AchievementsFrame:Update();
 	end
 end
 

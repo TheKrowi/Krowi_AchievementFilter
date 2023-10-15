@@ -1,4 +1,3 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
 addon.Gui.RightClickMenu.AchievementMenu = {};
 local achievementMenu = addon.Gui.RightClickMenu.AchievementMenu;
@@ -7,7 +6,7 @@ local sections = achievementMenu.Sections;
 
 local rightClickMenu = LibStub("Krowi_Menu-1.0");
 
-function achievementMenu.AddGoToAchievementLine(menu, id, nameSuffix)
+function achievementMenu:AddGoToAchievementLine(menu, id, nameSuffix)
 	nameSuffix = nameSuffix or "";
 	local _, name = addon.GetAchievementInfo(id);
 	local disabled;
@@ -25,14 +24,13 @@ function achievementMenu.AddGoToAchievementLine(menu, id, nameSuffix)
 	});
 end
 
-function achievementMenu.AddGoToAchievementWithCategoryLine(menu, achievement, category)
+function achievementMenu:AddGoToAchievementWithCategoryLine(menu, achievement, category)
 	menu:AddFull({
 		Text = category:GetPath(),
 		Func = function()
 			KrowiAF_SelectAchievementWithCategory(achievement, category);
 			rightClickMenu:Close();
-		end,
-		-- Disabled = disabled
+		end
 	});
 end
 
@@ -91,11 +89,11 @@ function achievementMenu:Open(achievement, anchor, offsetX, offsetY)
 
 	-- Always add header
 	local _, name = addon.GetAchievementInfo(achievement.Id);
-	rightClickMenu:AddFull({Text = name, IsTitle = true});
+	rightClickMenu:AddTitle(name);
 
 	for _, section in next, sections do
-		if section.CheckAdd(achievement) then
-			section.Add(rightClickMenu, achievement);
+		if section:CheckAdd(achievement) then
+			section:Add(rightClickMenu, achievement);
 		end
 	end
 
