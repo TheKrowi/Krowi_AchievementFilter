@@ -18,7 +18,10 @@
 			</Layer>
 		</Layers>
 		<Scripts>
-			<OnMouseDown inherit="append" function="KrowiAF_AchievementFrameFilterButton_OnMouseDown"/>
+			<OnLoad method="OnLoad"/>
+			<OnShow method="OnShow"/>
+			<OnHide method="OnHide"/>
+			<OnMouseDown method="OnMouseDown"/>
 		</Scripts>
 	</DropDownToggleButton>
 </Ui>

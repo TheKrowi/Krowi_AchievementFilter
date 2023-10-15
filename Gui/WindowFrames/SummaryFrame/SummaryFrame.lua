@@ -7,11 +7,6 @@ function summaryFrame:Load()
 	frame:SetPoint("TOPLEFT", KrowiAF_CategoriesFrame, "TOPRIGHT", 0, 0);
 	frame:SetPoint("BOTTOM", 0, 20);
 	frame:SetPoint("RIGHT", -20, 0);
-    for i, subFrame in next, addon.Gui.SubFrames do
-		if subFrame == KrowiAF_AchievementsFrame then
-			tinsert(addon.Gui.SubFrames, i, frame);
-			break;
-		end
-	end
+	tinsert(addon.Gui.SubFrames, frame);
     addon.Gui.SummaryFrame = nil;
 end

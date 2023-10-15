@@ -7,7 +7,7 @@ function section:CheckAdd(achievement)
 end
 
 function section:Add(menu, achievement)
-	local transmogSets = addon.Objects.MenuItem:New({Text = addon.L["Transmog Sets"]});
+	local transmogSets = addon.Objects.MenuItem:New(addon.L["Transmog Sets"]);
 
 	local tSets = addon.GetUsableSets(achievement.TransmogSets);
 	for _, set in next, tSets do

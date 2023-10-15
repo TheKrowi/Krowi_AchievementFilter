@@ -481,7 +481,8 @@
         "KrowiAF_SearchBoxFrame",
         "CreateFromMixins",
         "InCombatLockdown",
-        "KrowiAF_AchievementFrameHeaderButton"
+        "KrowiAF_AchievementFrameHeaderButton",
+        "KrowiAF_AchievementFrameFilterButton"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

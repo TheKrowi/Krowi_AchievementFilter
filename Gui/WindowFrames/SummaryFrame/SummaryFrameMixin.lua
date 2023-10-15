@@ -179,7 +179,7 @@ function KrowiAF_SummaryFrameMixin:ResetStatusBars()
 end
 
 function KrowiAF_SummaryFrameMixin:GetNewStatusBar()
-    local statusBar = LibStub("Krowi_ProgressBar-1.1"):New(self);
+    local statusBar = LibStub("Krowi_ProgressBar-2.0"):GetNew(self);
     OverRideTextures(statusBar);
     statusBar:SetWidth(270);
     statusBar:SetHeight(49);

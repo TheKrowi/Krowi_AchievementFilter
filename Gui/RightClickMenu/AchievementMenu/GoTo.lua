@@ -15,9 +15,7 @@ function section:CheckAdd(achievement)
 end
 
 function section:Add(menu, achievement)
-	local childMenu = addon.Objects.MenuItem:New({
-		Text = addon.L["Go to"]}
-	);
+	local childMenu = addon.Objects.MenuItem:New(addon.L["Go to"]);
 	local addSeparator = nil;
 
 	for _, sect in next, sections do

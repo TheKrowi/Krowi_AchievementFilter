@@ -75,7 +75,7 @@ local function AddIncludeExclude(menu, achievement)
 end
 
 local function AddMore(achievement)
-	local more = addon.Objects.MenuItem:New({Text = addon.L["More"]});
+	local more = addon.Objects.MenuItem:New(addon.L["More"]);
 
 	AddClearWatch(more, achievement);
 	AddIncludeExclude(more, achievement);

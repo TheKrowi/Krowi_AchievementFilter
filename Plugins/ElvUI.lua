@@ -492,7 +492,7 @@ end
 local function SkinHeader()
     hooksecurefunc(AchievementFrame.Header.Points, "SetText", function()
         AchievementFrame.Header.PointBorder:ClearAllPoints();
-        AchievementFrame.Header.PointBorder:Point('TOPLEFT', addon.GUI.FilterButton, 'TOPRIGHT', 70, 0);
+        AchievementFrame.Header.PointBorder:Point('TOPLEFT', KrowiAF_AchievementFrameFilterButton, 'TOPRIGHT', 70, 0);
         AchievementFrame.Header.PointBorder:Point('BOTTOMRIGHT', KrowiAF_SearchBoxFrame.backdrop, 'BOTTOMLEFT', -80, 0);
         AchievementFrame.Header.Points:ClearAllPoints();
         AchievementFrame.Header.Points:Point('CENTER', AchievementFrame.Header.PointBorder, 'CENTER', -10, 0);
@@ -668,10 +668,10 @@ local function SkinAll()
     if KrowiAF_SavedData.ElvUISkin.Achievements then
         SkinTabs(skins);
         elvUI.SkinCategoriesFrame(KrowiAF_CategoriesFrame, engine, skins);
-        SkinGameTooltipProgressBar(addon.GUI.GameTooltipProgressBar, engine);
+        SkinGameTooltipProgressBar(LibStub("Krowi_GameTooltipWithProgressBar-2.0").ProgressBar, engine);
         elvUI.SkinAchievementsFrame(KrowiAF_AchievementsFrame, engine, skins);
         elvUI.SkinAchievementSummary(KrowiAF_SummaryFrame, engine, skins);
-        SkinFilterButton(addon.GUI.FilterButton, KrowiAF_AchievementsFrame, skins);
+        SkinFilterButton(KrowiAF_AchievementFrameFilterButton, KrowiAF_AchievementsFrame, skins);
         elvUI.SkinSearchOptionsButton(KrowiAF_SearchBoxFrame.OptionsMenuButton, KrowiAF_SearchBoxFrame, skins);
         elvUI.SkinSearchBoxFrame(KrowiAF_SearchBoxFrame, skins);
         elvUI.SkinSearchPreviewFrame(KrowiAF_SearchBoxFrame.PreviewContainer, KrowiAF_AchievementsFrame, engine, skins);

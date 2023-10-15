@@ -1,5 +1,4 @@
 <Ui>
-    <Script file="GameTooltipProgressBar.lua"/>
     <Include file="AlertFrame\AlertFrame.xml"/>
     <Script file="AlertSystem.lua"/>
     <Script file="SideButton.lua" />

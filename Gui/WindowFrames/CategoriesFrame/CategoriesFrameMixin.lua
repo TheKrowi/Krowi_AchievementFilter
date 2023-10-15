@@ -59,16 +59,9 @@ function KrowiAF_CategoriesFrameMixin:OnShow()
 	self:RegisterEvent("ACHIEVEMENT_EARNED");
 	self:SetRightPoint();
 	AchievementFrameCategories:Hide();
-	AchievementFrame.Header.LeftDDLInset:Show();
-	AchievementFrameFilterDropDown:Hide();
-	if not addon.IsWrathClassic then
-		AchievementFrame.SearchBox:Hide();
-	end
 	AchievementFrameWaterMark:SetTexture(addon.GUI.SelectedTab and addon.GUI.SelectedTab.WaterMark or "Interface/AchievementFrame/UI-Achievement-AchievementWatermark");
-
 	self:Update(addon.AchievementEarnedUpdateCategoriesFrameOnNextShow);
 	addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = nil;
-
 	RestoreScrollPosition(self);
 end
 
@@ -76,13 +69,6 @@ function KrowiAF_CategoriesFrameMixin:OnHide()
 	self:UnregisterEvent("ACHIEVEMENT_EARNED");
 	AchievementFrameCategories:Show();
 	AchievementFrameCategoriesBG:SetWidth(195);
-	if not AchievementFrameAchievements:IsShown() then
-		AchievementFrame.Header.LeftDDLInset:Hide();
-		AchievementFrameFilterDropDown:Hide();
-	end
-	if not addon.IsWrathClassic then
-		AchievementFrame.SearchBox:Show();
-	end
 end
 
 function KrowiAF_CategoriesFrameMixin:OnEvent(event)

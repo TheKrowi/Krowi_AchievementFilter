@@ -514,6 +514,25 @@ function addon.HookFunctions()
     if addon.IsDragonflightRetail then
         hooksecurefunc("AchievementFrame_SetComparisonTabs", addon.GUI.ShowHideTabs);
     end
+
+    AchievementFrameFilterDropDown:HookScript("OnShow", function()
+        if addon.Util.IsWrathClassic then
+            AchievementFrame.Header.RightDDLInset:Show();
+        else
+            AchievementFrame.Header.LeftDDLInset:Show();
+        end
+    end);
+    AchievementFrameFilterDropDown:HookScript("OnHide", function()
+        if addon.Util.IsWrathClassic then
+            if not KrowiAF_SearchBoxFrame:IsShown() then
+                AchievementFrame.Header.RightDDLInset:Hide();
+            end
+        else
+            if not KrowiAF_AchievementFrameFilterButton:IsShown() then
+                AchievementFrame.Header.LeftDDLInset:Hide();
+            end
+        end
+    end);
 end
 
 local function MakeStatic(frame, rememberLastPositionOption, target)

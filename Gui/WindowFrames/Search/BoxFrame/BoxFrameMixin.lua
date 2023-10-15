@@ -4,6 +4,7 @@ KrowiAF_SearchBoxFrameMixin = {};
 
 function KrowiAF_SearchBoxFrameMixin:OnLoad()
 	SearchBoxTemplate_OnLoad(self);
+	self:SetFrameLevel(self:GetParent():GetFrameLevel() + 7);
 	self.searchIcon:Hide();
 
 	self:LoadOptionsMenuButton();
@@ -12,22 +13,26 @@ function KrowiAF_SearchBoxFrameMixin:OnLoad()
 end
 
 function KrowiAF_SearchBoxFrameMixin:OnShow()
-	self:SetFrameLevel(self:GetParent():GetFrameLevel() + 7);
-	if addon.IsWrathClassic then
-		AchievementFrame.Header.RightDDLInset:Show();
+	AchievementFrame.Header.RightDDLInset:Show();
+	if not addon.Util.IsWrathClassic then
+		AchievementFrame.SearchBox:Hide();
 	end
 	self.OptionsMenuButton:Show();
 end
 
 function KrowiAF_SearchBoxFrameMixin:OnHide()
+	if addon.Util.IsWrathClassic and not AchievementFrameFilterDropDown:IsShown() then
+		AchievementFrame.Header.RightDDLInset:Hide();
+	end
+	if not addon.Util.IsWrathClassic then
+		AchievementFrame.SearchBox:Show();
+		AchievementFrame.Header.RightDDLInset:Show();
+	end
 	if not AchievementFrame:IsShown() then
 		self:SetText("");
 	end
 	self.PreviewContainer:Hide();
 	self.ResultsFrame:Hide();
-	if addon.IsWrathClassic and not AchievementFrameFilterDropDown:IsShown() then
-		AchievementFrame.Header.RightDDLInset:Hide();
-	end
 	self.OptionsMenuButton:Hide();
 end
 

@@ -1,7 +1,7 @@
 <Ui>
     <Script file="AchievementFrameHeader.lua"/>
-    <Include file="FilterButton\FilterButton.xml"/>
     <Include file="Search\Files.xml"/>
+    <Include file="FilterButton\FilterButton.xml"/>
     <Include file="AchievementFrameTabButtonFactory\Files.xml"/>
     <Include file="AchievementsObjectives\AchievementsObjectives.xml"/>
     <Include file="AchievementButton\AchievementButton.xml"/>

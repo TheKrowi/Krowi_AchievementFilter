@@ -1186,10 +1186,10 @@ local function SkinAll()
     if KrowiAF_SavedData.GW2_UISkin.Achievements then
         gw2_ui.SkinTabs();
         gw2_ui.SkinCategoriesFrame(KrowiAF_CategoriesFrame);
-        SkinGameTooltipProgressBar(addon.GUI.GameTooltipProgressBar);
+        SkinGameTooltipProgressBar(LibStub("Krowi_GameTooltipWithProgressBar-2.0").ProgressBar);
         gw2_ui.SkinAchievementsFrame(KrowiAF_AchievementsFrame, KrowiAF_CategoriesFrame);
         gw2_ui.SkinAchievementSummary(KrowiAF_SummaryFrame, KrowiAF_CategoriesFrame);
-        SkinFilterButton(addon.GUI.FilterButton);
+        SkinFilterButton(KrowiAF_AchievementFrameFilterButton);
         gw2_ui.SkinSearchOptionsButton(KrowiAF_SearchBoxFrame.OptionsMenuButton, KrowiAF_SearchBoxFrame);
         gw2_ui.SkinSearchBoxFrame(KrowiAF_SearchBoxFrame, KrowiAF_CategoriesFrame);
         gw2_ui.SkinSearchPreviewFrame(KrowiAF_SearchBoxFrame.PreviewContainer, KrowiAF_SearchBoxFrame);

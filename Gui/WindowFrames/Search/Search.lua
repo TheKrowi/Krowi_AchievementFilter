@@ -14,6 +14,6 @@ function search:Load()
 
     frame:SetMaxLetters(40);
 
-	tinsert(addon.GUI.SubFrames, frame);
+	tinsert(addon.Gui.SubFrames, frame);
     addon.Gui.Search = nil;
 end

@@ -9,7 +9,7 @@ local gui = addon.Gui;
 gui.Tabs = {};
 
 function gui:LoadWithAddon()
-    gui.GameTooltipProgressBar:Load();
+    -- gui.GameTooltipProgressBar:Load();
     gui.WorldMapButton.Load();
     gui.AlertSystem:Load();
     gui.FloatingAchievementTooltip.Load();
@@ -54,7 +54,7 @@ function gui:LoadWithBlizzard_AchievementUI()
         media .. "kaf_special"
     };
     for i, t in next, addon.TabsOrder do
-        addon.Tabs[t].Button = gui.AchievementFrameTabButtonFactory:GetNew(t, addon.Tabs[t].Text, {gui.FilterButton, KrowiAF_SearchBoxFrame, KrowiAF_CategoriesFrame}, addon.Tabs[t].Categories, addon.Tabs[t].Filters, waterMarks[i]);
+        addon.Tabs[t].Button = gui.AchievementFrameTabButtonFactory:GetNew(t, addon.Tabs[t].Text, {KrowiAF_AchievementFrameFilterButton, KrowiAF_SearchBoxFrame, KrowiAF_CategoriesFrame}, addon.Tabs[t].Categories, addon.Tabs[t].Filters, waterMarks[i]);
         KrowiAF_RegisterTabButton(addonName, addon.Tabs[t].Name, addon.Tabs[t].Button);
     end
     self.LoadOldAchievementFrameTabsCompatibility();
@@ -307,7 +307,7 @@ function gui.ShowStatusBarTooltip(self, anchor, extraText)
 	end
 	text = self.NumOfCompAch .. text .. " / " .. self.NumOfAch;
 
-	gui.GameTooltipProgressBar:Show(GameTooltip, 0, self.NumOfAch, self.NumOfCompAch, numOfNotObtAch, 0, 0, addon.Util.Colors.GreenRGB, addon.Util.Colors.RedRGB, nil, nil, text);
+	LibStub("Krowi_GameTooltipWithProgressBar-2.0"):Show(GameTooltip, 0, self.NumOfAch, self.NumOfCompAch, numOfNotObtAch, 0, 0, addon.Util.Colors.GreenRGB, addon.Util.Colors.RedRGB, nil, nil, text);
 
     if extraText then
         GameTooltip_AddBlankLineToTooltip(GameTooltip);
