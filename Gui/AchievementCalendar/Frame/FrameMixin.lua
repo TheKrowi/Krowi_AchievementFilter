@@ -139,7 +139,7 @@ function KrowiAF_AchievementCalendarFrameMixin:OnEvent(event)
 	if event ~= "ACHIEVEMENT_EARNED" then
 		return;
 	end
-	addon.DelayFunction("KrowiAF_AchievementCalendarFrame_OnEvent", 1, function()
+	addon.Util.DelayFunction("KrowiAF_AchievementCalendarFrame_OnEvent", 1, function()
 		self:Update();
 		if self.SelectedDayButton then
 			self:SetSelectedDay(self.SelectedDayButton, true, true);

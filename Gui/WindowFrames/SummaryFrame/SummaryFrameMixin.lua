@@ -9,7 +9,7 @@ function KrowiAF_SummaryFrameMixin:OnLoad()
 end
 
 function KrowiAF_SummaryFrameMixin:OnEvent(event)
-    addon.DelayFunction("KrowiAF_SummaryFrameMixin_OnEvent", 1, self.Update, self, event);
+    addon.Util.DelayFunction("KrowiAF_SummaryFrame_OnEvent", 1, self.Update, self, event);
 end
 
 function KrowiAF_SummaryFrameMixin:OnShow()

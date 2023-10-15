@@ -75,7 +75,7 @@ function KrowiAF_CategoriesFrameMixin:OnEvent(event)
 	if event ~= "ACHIEVEMENT_EARNED" then
 		return;
 	end
-	addon.DelayFunction("KrowiAF_CategoriesFrame_OnEvent", 1, self.Update, self, true);
+	addon.Util.DelayFunction("KrowiAF_CategoriesFrame_OnEvent", 1, self.Update, self, true);
 end
 
 local function GetDisplayCategories(displayCategories, category, getAchNums)

@@ -723,21 +723,6 @@ function addon.ChangeAchievementMicroButtonOnClick()
     end);
 end
 
-addon.DelayObjects = {};
-function addon.DelayFunction(delayObjectName, delayTime, func, ...)
-    if addon.DelayObjects[delayObjectName] ~= nil then
-        -- print("skipping")
-        return;
-    end
-    -- print("start timer")
-    local args = {...};
-    addon.DelayObjects[delayObjectName] = C_Timer.NewTimer(delayTime, function()
-        -- print("run func")
-        func(unpack(args));
-        addon.DelayObjects[delayObjectName] = nil;
-    end);
-end
-
 addon.Modifiers = {
     addon.L["None"],
     addon.L["Alt"],

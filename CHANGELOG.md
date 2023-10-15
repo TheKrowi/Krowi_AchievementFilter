@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Whenever the tooltip refreshes when mousing over achievements with transmog data is loaded, all lines will remember their color
+- When mousing over categories, the progress bar should now fill properly
 
 ### Wrath Classic
 - Bumped version

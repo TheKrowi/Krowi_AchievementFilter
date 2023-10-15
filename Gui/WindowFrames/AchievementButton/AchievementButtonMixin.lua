@@ -190,7 +190,7 @@ function KrowiAF_AchievementButtonMixin:OnSizeChanged(width)
 	end
 	if self.CachedWidthOnSizeChanged and self.CachedWidthOnSizeChanged ~= width then
 		-- Delay here to give the previous OnSizeChanged to finish
-		addon.DelayFunction("KrowiAF_AchievementButtonMixin_OnSizeChanged", 0.01, function()
+		addon.Util.DelayFunction("KrowiAF_AchievementButton_OnSizeChanged", 0.01, function()
 			self.ForceDisplayObjectives = true;
 			KrowiAF_AchievementsFrame.SelectionBehavior:TriggerEvent(SelectionBehaviorMixin.Event.OnSelectionChanged, self.Achievement, true);
 			KrowiAF_AchievementsFrame:ScrollToNearest(self.Achievement);
