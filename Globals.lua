@@ -146,7 +146,7 @@ function addon.ClearWatchAchievement(achievement, update)
     end
     achievement.WatchListCategories = nil;
     if update ~= false then
-        addon.GUI.RefreshView();
+        addon.Gui:RefreshView();
     end
     for i = 1, #addon.Data.WatchListCategories do
         if (addon.Data.WatchListCategories[i].Achievements and #addon.Data.WatchListCategories[i].Achievements == 0) or (addon.Data.WatchListCategories[i].Children and #addon.Data.WatchListCategories[i].Children == 0) then
@@ -165,7 +165,7 @@ function addon.WatchAchievement(achievement, update)
         end
 	end
     if update ~= false then
-        addon.GUI.RefreshView();
+        addon.Gui:RefreshView();
     end
 end
 
@@ -195,7 +195,7 @@ function addon.IncludeAchievement(achievement, update)
     end
     achievement.ExcludedCategories = nil;
     if update ~= false then
-        addon.GUI.RefreshView();
+        addon.Gui:RefreshView();
     end
     for i = 1, #addon.Data.ExcludedCategories do
         if (addon.Data.ExcludedCategories[i].Achievements and #addon.Data.ExcludedCategories[i].Achievements == 0) or (addon.Data.ExcludedCategories[i].Children and #addon.Data.ExcludedCategories[i].Children == 0) then
@@ -215,10 +215,10 @@ function addon.ExcludeAchievement(achievement, update)
             end
         end
         if update ~= false then
-            addon.GUI.RefreshView();
+            addon.Gui:RefreshView();
         end
     else
-        addon.GUI.RefreshView();
+        addon.Gui:RefreshView();
     end
 end
 
@@ -403,10 +403,6 @@ end
 
 function addon.OverwriteFunctions()
     AchievementFrame_ToggleAchievementFrame = function(toggleStatFrame, toggleGuildView)
-        -- if addon.IsDragonflightRetail then
-        --     ClearSelectedCategories();
-        -- end
-
         AchievementFrameComparison:Hide();
         AchievementFrameTab_OnClick = AchievementFrameBaseTab_OnClick;
 
@@ -434,9 +430,6 @@ function addon.OverwriteFunctions()
     end
 
     AchievementFrame_DisplayComparison = function(unit)
-        -- if addon.IsDragonflightRetail then
-            -- ClearSelectedCategories();
-        -- else
         if not addon.IsDragonflightRetail then
             AchievementFrame.wasShown = nil;
         end
@@ -454,7 +447,9 @@ function addon.OverwriteFunctions()
         AchievementFrameComparison_ForceUpdate();
     end
 
-    AchievementFrame_SetTabs = addon.GUI.ShowHideTabs;
+    AchievementFrame_SetTabs = function()
+        addon.Gui:ShowHideTabs();
+    end;
 
     local origAchievementFrame_SelectAchievement = AchievementFrame_SelectAchievement;
     AchievementFrame_SelectAchievement = function(id)
@@ -500,6 +495,11 @@ function addon.LoadBlizzardApiChanges()
         WatchFrame_Update = function()
         end
     end
+
+    if not SetFocusedAchievement then
+        SetFocusedAchievement = function()
+        end
+    end
 end
 
 function addon.HookFunctions()
@@ -512,7 +512,9 @@ function addon.HookFunctions()
     end
 
     if addon.IsDragonflightRetail then
-        hooksecurefunc("AchievementFrame_SetComparisonTabs", addon.GUI.ShowHideTabs);
+        hooksecurefunc("AchievementFrame_SetComparisonTabs", function()
+            addon.Gui:ShowHideTabs();
+        end);
     end
 
     AchievementFrameFilterDropDown:HookScript("OnShow", function()
@@ -541,7 +543,7 @@ local function MakeStatic(frame, rememberLastPositionOption, target)
     end
 
     if rememberLastPositionOption then
-        addon.GUI.SetFrameToLastPosition(target or frame, rememberLastPositionOption);
+        addon.Gui:SetFrameToLastPosition(target or frame, rememberLastPositionOption);
     end
 
     frame:SetMovable(false);
@@ -568,7 +570,7 @@ local function MakeMovable(frame, rememberLastPositionOption, target)
     end
 
     if not target then
-        addon.GUI.SetFrameToLastPosition(frame, rememberLastPositionOption);
+        addon.Gui:SetFrameToLastPosition(frame, rememberLastPositionOption);
     end
 
     target = target or frame;
@@ -709,7 +711,7 @@ function addon.GetVariantSetIDs(baseSetIds)
 end
 
 function addon.ChangeAchievementMicroButtonOnClick()
-    addon.GUI.TabsOrderGetActiveKeys(); -- Cleanup unused tabs
+    addon.Gui:TabsOrderGetActiveKeys(); -- Cleanup unused tabs
     if addon.Options.db.profile.MicroButtonTab > #KrowiAF_SavedData.Tabs then
         for i, _ in next, KrowiAF_SavedData.Tabs do
             if KrowiAF_SavedData.Tabs[i].AddonName == addonName and KrowiAF_SavedData.Tabs[i].Name == "Achievements" then
@@ -719,7 +721,7 @@ function addon.ChangeAchievementMicroButtonOnClick()
     end
     local tab = KrowiAF_SavedData.Tabs[addon.Options.db.profile.MicroButtonTab];
     AchievementMicroButton:SetScript("OnClick", function(self)
-        addon.GUI.ToggleAchievementFrame(tab.AddonName, tab.Name);
+        addon.Gui:ToggleAchievementFrame(tab.AddonName, tab.Name);
     end);
 end
 

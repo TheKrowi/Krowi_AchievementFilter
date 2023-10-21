@@ -296,7 +296,7 @@ function KrowiAF_SummaryFrameMixin:AlignCategoriesHeader(lastShown)
 end
 
 function KrowiAF_SummaryFrameMixin:UpdateCategories(event)
-    local selectedTab = addon.GUI.SelectedTab;
+    local selectedTab = addon.Gui.SelectedTab;
     if not selectedTab then
         return;
     end

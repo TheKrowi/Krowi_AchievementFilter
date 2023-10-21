@@ -1,13 +1,28 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
-local gui = addon.GUI;
-gui.AlertSystem = {};
-local alertSystem = gui.AlertSystem;
-local helperFrame;
+addon.Gui.EventReminderAlertSystem = {};
+local eventReminderAlertSystem = addon.Gui.EventReminderAlertSystem;
 
-local placeholderEpoch = 9999999999;
+local function SetUp(frame, event, duration)
+    frame:SetEvent(event);
+    frame.duration = duration;
+end
 
-local function GetRuntimeText(event, chat)
+function eventReminderAlertSystem:Load()
+    local template = "KrowiAF_EventReminderAlertFrame_" .. (addon.Options.db.profile.EventReminders.Compact and "Small" or "Normal") .. "_Template";
+    self.SubSystem = AlertFrame:AddQueuedAlertFrameSubSystem(template, SetUp, addon.Options.db.profile.EventReminders.PopUps.MaxAlerts, 100);
+    AlertFrame:ClearAllPoints();
+    AlertFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", addon.Options.db.profile.EventReminders.PopUps.OffsetX, addon.Options.db.profile.EventReminders.PopUps.OffsetY);
+
+    self:UpdateGrowDirection();
+
+    KrowiAF_SavedData.ActiveEvents = KrowiAF_SavedData.ActiveEvents or {};
+end
+
+function eventReminderAlertSystem:AddAlert(event, duration)
+    self.SubSystem:AddAlert(event, duration);
+end
+
+function eventReminderAlertSystem:GetRuntimeText(event, chat)
     local runtime, timeLeft;
 
     if event.EventDetails == nil or event.EventDetails.EndTime == nil then
@@ -54,7 +69,17 @@ local function GetRuntimeText(event, chat)
     return runtime;
 end
 
-local function ShowActiveEventPopUp(event, canShow, canShowWithTimeDataOnly, currentTime)
+function eventReminderAlertSystem:UpdateGrowDirection()
+    -- Make sure the saved data is correct
+    KrowiAF_SavedData.AlertSystem = KrowiAF_SavedData.AlertSystem or {};
+    KrowiAF_SavedData.AlertSystem.GrowDirection = KrowiAF_SavedData.AlertSystem.GrowDirection or {};
+    KrowiAF_SavedData.AlertSystem.GrowDirection.Point = addon.Options.db.profile.EventReminders.PopUps.GrowDirection == 1 and "BOTTOM" or "TOP";
+    KrowiAF_SavedData.AlertSystem.GrowDirection.RelativePoint = addon.Options.db.profile.EventReminders.PopUps.GrowDirection == 1 and "TOP" or "BOTTOM";
+    KrowiAF_SavedData.AlertSystem.GrowDirection.Offset = addon.Options.db.profile.EventReminders.PopUps.GrowDirection == 1 and addon.Options.db.profile.EventReminders.PopUps.Spacing or -addon.Options.db.profile.EventReminders.PopUps.Spacing;
+end
+
+local placeholderEpoch = 9999999999;
+function eventReminderAlertSystem:ShowActiveEventPopUp(event, canShow, canShowWithTimeDataOnly, currentTime)
     if not canShow then
         return;
     end
@@ -67,14 +92,13 @@ local function ShowActiveEventPopUp(event, canShow, canShowWithTimeDataOnly, cur
     if not canShowWithTimeDataOnly or (canShowWithTimeDataOnly and event.EventDetails and event.EventDetails.EndTime) then
         KrowiAF_SavedData.ActiveEventPopUpsShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch;
         if KrowiAF_SavedData.ActiveEventPopUpsShown[event.Id] >= currentTime then
-            alertSystem:AddAlert(event, addon.Options.db.profile.EventReminders.PopUps.FadeDelay);
-            -- print(KrowiAF_SavedData.ActiveEventPopUpsShown[event.Id], event.EventDetails, event.EventDetails and event.EventDetails.EndTime);
+            self:AddAlert(event, addon.Options.db.profile.EventReminders.PopUps.FadeDelay);
         end
     end
 end
 
 local printOnce;
-local function ShowActiveEventChatMessage(event, canShow, canShowWithTimeDataOnly, currentTime)
+function eventReminderAlertSystem:ShowActiveEventChatMessage(event, canShow, canShowWithTimeDataOnly, currentTime)
     if not canShow then
         return;
     end
@@ -91,13 +115,12 @@ local function ShowActiveEventChatMessage(event, canShow, canShowWithTimeDataOnl
         end
         KrowiAF_SavedData.ActiveEventChatMessagesShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch;
         if KrowiAF_SavedData.ActiveEventChatMessagesShown[event.Id] >= currentTime then
-            print("    -", event.EventDetails and event.EventDetails.Name or addon.L["Collecting data"], "(" .. GetRuntimeText(event, true) .. ")"); --,
-            -- KrowiAF_SavedData.ActiveEventPopUpsShown[event.Id], event.EventDetails, event.EventDetails and event.EventDetails.EndTime);
+            print("    -", event.EventDetails and event.EventDetails.Name or addon.L["Collecting data"], "(" .. eventReminderAlertSystem:GetRuntimeText(event, true) .. ")"); --,
         end
     end
 end
 
-local function ShowActiveEvents(popUpsOptions, chatMessagesOptions, currentTime)
+function eventReminderAlertSystem:ShowActiveEvents(popUpsOptions, chatMessagesOptions, currentTime)
     local isInInstance = (select(3, GetInstanceInfo())) ~= 0;
     local canShowPopUps = popUpsOptions.Show and (not isInInstance or (popUpsOptions.ShowInInstances and isInInstance));
     local canShowChatMessages = chatMessagesOptions.Show and (not isInInstance or (chatMessagesOptions.ShowInInstances and isInInstance));
@@ -110,26 +133,23 @@ local function ShowActiveEvents(popUpsOptions, chatMessagesOptions, currentTime)
 
     local activeEvents = addon.EventData.GetActiveEvents(true);
     for _, event in next, activeEvents do
-        ShowActiveEventPopUp(event, canShowPopUps, canShowPopUpsWithTimeDataOnly, currentTime);
-        ShowActiveEventChatMessage(event, canShowChatMessages, canShowChatMessagesWithTimeDataOnly, currentTime);
+        self:ShowActiveEventPopUp(event, canShowPopUps, canShowPopUpsWithTimeDataOnly, currentTime);
+        self:ShowActiveEventChatMessage(event, canShowChatMessages, canShowChatMessagesWithTimeDataOnly, currentTime);
     end
     printOnce = nil;
 
     return true;
 end
 
-local function OnUpdate(self, elapsed)
-    self.TimeSinceLastUpdate = self.TimeSinceLastUpdate + elapsed;
-    if self.TimeSinceLastUpdate <= addon.Options.db.profile.EventReminders.RefreshInterval then
-        return;
-    end
+local timer = LibStub("AceTimer-3.0");
+function eventReminderAlertSystem:Refresh()
+    timer:ScheduleTimer(self.Refresh, addon.Options.db.profile.EventReminders.RefreshInterval, self);
 
-    self.TimeSinceLastUpdate = 0;
     local popUpsOptions = addon.Options.db.profile.EventReminders.PopUps.OnEventStart;
     local chatMessagesOptions = addon.Options.db.profile.EventReminders.ChatMessages.OnEventStart;
 
     local currentTime = time();
-    if not ShowActiveEvents(popUpsOptions, chatMessagesOptions, currentTime) then
+    if not self:ShowActiveEvents(popUpsOptions, chatMessagesOptions, currentTime) then
         return;
     end
 
@@ -145,82 +165,13 @@ local function OnUpdate(self, elapsed)
     end
 end
 
-local function ShowActiveEventsOnPlayerEnteringWorld(popUpsOptions, chatMessagesOptions)
+function eventReminderAlertSystem:ShowActiveEventsOnPlayerEnteringWorld(popUpsOptions, chatMessagesOptions)
     KrowiAF_SavedData.ActiveEventPopUpsShown = {};
     KrowiAF_SavedData.ActiveEventChatMessagesShown = {};
 
-    if not ShowActiveEvents(popUpsOptions, chatMessagesOptions, time()) then
+    if not self:ShowActiveEvents(popUpsOptions, chatMessagesOptions, time()) then
         return;
     end
 
-    helperFrame:SetScript("OnUpdate", OnUpdate); -- Set OnUpdate here to prevent OnUpdate and ShowActiveEvents to run at the same time
-end
-
-local function SetUp(frame, event, duration)
-	frame.Event = event;
-	frame.Name:SetText(event.EventDetails and event.EventDetails.Name or addon.L["Collecting data"]);
-    frame:UpdateEventRuntime();
-	frame.Icon.Texture:SetTexture(event.Icon);
-    frame.duration = duration;
-    frame.TimeSinceLastUpdate = 0;
-end
-
-local function AdjustQueuedAnchors(self, relativeAlert)
-	for alertFrame in self.alertFramePool:EnumerateActive() do
-		alertFrame:ClearAllPoints()
-		alertFrame:SetPoint(KrowiAF_SavedData.AlertSystem.GrowDirection.Point, relativeAlert, KrowiAF_SavedData.AlertSystem.GrowDirection.RelativePoint, 0, KrowiAF_SavedData.AlertSystem.GrowDirection.Offset)
-		relativeAlert = alertFrame
-	end
-	return relativeAlert
-end
-
--- Credits to ElvUI
-local function OverwriteAdjustAnchors(alertFrameSubSystem)
-	if alertFrameSubSystem.alertFramePool then -- Queued alert system
-		alertFrameSubSystem.AdjustAnchors = AdjustQueuedAnchors;
-	end
-end
-
-local function UpdateGrowDirection()
-    -- Make sure the saved data is correct
-    KrowiAF_SavedData.AlertSystem = KrowiAF_SavedData.AlertSystem or {};
-    KrowiAF_SavedData.AlertSystem.GrowDirection = KrowiAF_SavedData.AlertSystem.GrowDirection or {};
-    KrowiAF_SavedData.AlertSystem.GrowDirection.Point = addon.Options.db.profile.EventReminders.PopUps.GrowDirection == 1 and "BOTTOM" or "TOP";
-    KrowiAF_SavedData.AlertSystem.GrowDirection.RelativePoint = addon.Options.db.profile.EventReminders.PopUps.GrowDirection == 1 and "TOP" or "BOTTOM";
-    KrowiAF_SavedData.AlertSystem.GrowDirection.Offset = addon.Options.db.profile.EventReminders.PopUps.GrowDirection == 1 and addon.Options.db.profile.EventReminders.PopUps.Spacing or -addon.Options.db.profile.EventReminders.PopUps.Spacing;
-end
-
-function alertSystem:Load()
-    helperFrame = CreateFrame("Frame");
-    helperFrame.TimeSinceLastUpdate = 0;
-
-    alertSystem = AlertFrame:AddQueuedAlertFrameSubSystem(
-        "KrowiAF_AlertFrame_" .. (addon.Options.db.profile.EventReminders.Compact and "Small" or "Normal") .. "_Template",
-        SetUp,
-        addon.Options.db.profile.EventReminders.PopUps.MaxAlerts,
-        100);
-    AlertFrame:ClearAllPoints();
-    AlertFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", addon.Options.db.profile.EventReminders.PopUps.OffsetX, addon.Options.db.profile.EventReminders.PopUps.OffsetY);
-
-    UpdateGrowDirection();
-
-    -- Credits to ElvUI for this for loop
-    -- Overwrites AdjustAnchors functions to allow alerts to grow down if needed.
-	for _, alertFrameSubSystem in ipairs(AlertFrame.alertFrameSubSystems) do
-		OverwriteAdjustAnchors(alertFrameSubSystem)
-	end
-
-    -- Credits to ElvUI for this hook
-	-- This should catch any alert systems that are created by other addons.
-	hooksecurefunc(AlertFrame, 'AddAlertFrameSubSystem', function(_, alertFrameSubSystem)
-		OverwriteAdjustAnchors(alertFrameSubSystem)
-	end)
-
-    alertSystem.ShowActiveEventsOnPlayerEnteringWorld = ShowActiveEventsOnPlayerEnteringWorld;
-    alertSystem.UpdateGrowDirection = UpdateGrowDirection;
-    alertSystem.GetRuntimeText = GetRuntimeText;
-
-    KrowiAF_SavedData.ActiveEvents = KrowiAF_SavedData.ActiveEvents or {};
-
-	addon.GUI.AlertSystem = alertSystem; -- Overwrite with the actual frame since all functions are injected to it
+    timer:ScheduleTimer(self.Refresh, addon.Options.db.profile.EventReminders.RefreshInterval, self);
 end

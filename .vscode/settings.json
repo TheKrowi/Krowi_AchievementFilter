@@ -482,7 +482,8 @@
         "CreateFromMixins",
         "InCombatLockdown",
         "KrowiAF_AchievementFrameHeaderButton",
-        "KrowiAF_AchievementFrameFilterButton"
+        "KrowiAF_AchievementFrameFilterButton",
+        "GetTime"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

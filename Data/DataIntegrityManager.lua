@@ -78,7 +78,7 @@ end
 local FixFeaturesTutorialProgress, FixElvUISkin, FixFilters, FixEventDetails, FixShowExcludedCategory, FixEventDetails2, FixCharacters, FixEventAlert;
 local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters, FixNewEarnedByFilter, FixTabs2, FixNewEarnedByFilter2;
 local FixEventDetails3, FixTooltipCriteria, FixFocusedAchievements, FixFocusedOptions, FixEventRemindersTimeDisplay, FixEventRemindersOptions, FixEventRemindersOptions2;
-local FixActiveEvents, FixSummaryOptions, MigrateCharactersAndAchievements;
+local FixActiveEvents, MigrateCharactersAndAchievements, FixFirstTimeSetUpSwitchAchievementTabs;
 function LoadSolutions()
     local solutions = {
         FixFeaturesTutorialProgress, -- 1
@@ -104,8 +104,8 @@ function LoadSolutions()
         FixEventRemindersOptions, -- 21
         FixEventRemindersOptions2, -- 22
         FixActiveEvents, -- 23
-        FixSummaryOptions, -- 24
         MigrateCharactersAndAchievements, -- 25
+        FixFirstTimeSetUpSwitchAchievementTabs, --26
     };
 
     return solutions;
@@ -840,4 +840,24 @@ function MigrateCharactersAndAchievements(prevBuild, currBuild, prevVersion, cur
     end
 
     -- KrowiAF_SavedData.Characters = nil;
+end
+
+function FixFirstTimeSetUpSwitchAchievementTabs(prevBuild, currBuild, prevVersion, currVersion, firstTime)
+    -- In version 65.0 KrowiAF_SavedData.FirstTimeSetUp.SwitchAchievementTabs moved to KrowiAF_SavedData.FirstTimeSetUp.AchievementTabsSwitched
+    -- Here we clean up the old KrowiAF_SavedData.FirstTimeSetUp.SwitchAchievementTabs for users pre 65.0
+
+    if firstTime and currVersion > "65.0" then
+        diagnostics.Debug("KrowiAF_SavedData.FirstTimeSetUp.SwitchAchievementTabs OK");
+        return;
+    end
+    if KrowiAF_SavedData.FirstTimeSetUp and KrowiAF_SavedData.FirstTimeSetUp.SwitchAchievementTabs == nil then
+        diagnostics.Debug("KrowiAF_SavedData.FirstTimeSetUp.SwitchAchievementTabs already moved");
+        return;
+    end
+
+    KrowiAF_SavedData.FirstTimeSetUp = KrowiAF_SavedData.FirstTimeSetUp or {};
+    KrowiAF_SavedData.FirstTimeSetUp.AchievementTabsSwitched = KrowiAF_SavedData.FirstTimeSetUp.SwitchAchievementTabs;
+    KrowiAF_SavedData.FirstTimeSetUp.SwitchAchievementTabs = nil;
+
+    diagnostics.Debug("KrowiAF_SavedData.FirstTimeSetUp.SwitchAchievementTabs moved");
 end

@@ -23,7 +23,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-30 11-18-51 ]] --
+-- [[ Exported at 2023-10-21 20-02-56 ]] --
 tasks = {
     {N, 4729, 4240492, addon.L["Community Feast: Starting Soon"]}, -- Community Feast: Starting Soon
     {N, 4731, 4240492, addon.L["Community Feast: Active"]}, -- Community Feast: Active

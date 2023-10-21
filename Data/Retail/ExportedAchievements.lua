@@ -40,7 +40,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-04 18-09-12 ]] --
+-- [[ Exported at 2023-10-19 18-56-13 ]] --
 tasks = {
     {N, 19192, 202}, -- Lil' Frostwing
     {N, 19107, 202}, -- Outland Racing Completionist: Gold
@@ -56,6 +56,7 @@ tasks = {
     {N, 19097, 202}, -- Outland: Silver
     {N, 19092, 202}, -- Outland: Bronze
     {N, 19079, 202}, -- Master of the Turbulent Timeways
+    {N, 19029, 202}, -- Lil' Maggz
     {N, 19008, 202}, -- Dream Shaper
     {N, 18977, 201}, -- Draconically Epic
     {N, 18976, 201}, -- Draconically Superior
@@ -115,8 +116,8 @@ tasks = {
     {N, 18865, 202}, -- Anvil Mastery III
     {N, 18864, 202}, -- Anvil Mastery II
     {N, 18862, 202}, -- Anvil Mastery I
-    {N, 18859, 202}, -- Forge and Befuddle
-    {N, 18858, 202}, -- Forge and Befuddle
+    {N, 18859, 202, f.Alliance}, -- Forge and Befuddle
+    {N, 18858, 202, f.Horde}, -- Forge and Befuddle
     {N, 18857, 202}, -- That's No Ordinary Gas Cloud!
     {N, 18856, 202}, -- Just an Ordinary Gas Cloud
     {N, 18855, 202}, -- Portal to Everywhere
@@ -267,6 +268,7 @@ tasks = {
     {O, 18253, "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10},
     {N, 18253, 200}, -- Ahead of the Curve: Scalecommander Sarkareth
     {N, 18251, 200}, -- Glory of the Aberrus Raider
+    {N, 18250, 202}, -- Ysergle The Dreamurk
     {N, 18249, 200, nil, nil, true}, -- Obsidian Tie Event
     {N, 18230, 200}, -- Whac-A-Swog
     {N, 18229, 200}, -- Cosplate
@@ -465,6 +467,7 @@ tasks = {
     {N, 17562, 200}, -- Ancient Stones of the Ohn'ahran Plains
     {N, 17561, 200}, -- Ancient Stones of the Waking Shores
     {N, 17560, 200}, -- Ancient Stones of the Dragon Isles
+    {N, 17547, 202}, -- The Lick King
     {N, 17546, 199}, -- A New Beginning
     {N, 17543, 199}, -- You Know How to Reach Me
     {N, 17541, 199}, -- Global Swarming

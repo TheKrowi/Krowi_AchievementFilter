@@ -105,7 +105,7 @@ end
 KrowiAF_AchievementCalendarFrameCloseButtonMixin = {};
 
 function KrowiAF_AchievementCalendarFrameCloseButtonMixin:OnLoad()
-	addon.Gui.RegisterSafeCloseButtonDuringCombat(self, function()
+	addon.Gui:RegisterSafeCloseButtonDuringCombat(self, function()
 		return not self:GetParent().SideFrame:IsShown();
 	end);
 end
@@ -232,7 +232,7 @@ function KrowiAF_AchievementCalendarFrameMixin:ResetPosition()
         X = 150,
         Y = -80
     };
-	addon.Gui.SetFrameToLastPosition(self, "Calendar");
+	addon.Gui:SetFrameToLastPosition(self, "Calendar");
 end
 
 function KrowiAF_AchievementCalendarFrameMixin:UpdateTitle()

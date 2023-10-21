@@ -4,7 +4,7 @@ KrowiAF_AchievementCalendarSideFrameCloseButtonMixin = {};
 
 function KrowiAF_AchievementCalendarSideFrameCloseButtonMixin:OnLoad()
     self:SetFrameLevel(self:GetParent():GetFrameLevel() + 6);
-    addon.Gui.RegisterSafeCloseButtonDuringCombat(self);
+    addon.Gui:RegisterSafeCloseButtonDuringCombat(self);
 end
 
 function KrowiAF_AchievementCalendarSideFrameCloseButtonMixin:OnClick()

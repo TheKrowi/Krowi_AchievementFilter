@@ -51,7 +51,7 @@ function KrowiAF_CategoryButtonMixin:SetTooltipData(category)
 	if category.IsSummary then
 		self.showTooltipFunc = nil;
 	else
-		self.showTooltipFunc = addon.GUI.ShowStatusBarTooltip;
+		self.showTooltipFunc = addon.Gui.ShowStatusBarTooltip;
 	end
 end
 
@@ -66,7 +66,7 @@ function KrowiAF_CategoryButtonMixin:SetCategory(category)
 	self:SetLabel(category);
 	self:SetTooltipData(category);
 
-	local selectedTab = addon.GUI.SelectedTab;
+	local selectedTab = addon.Gui.SelectedTab;
 	if not selectedTab then
 		return;
 	end

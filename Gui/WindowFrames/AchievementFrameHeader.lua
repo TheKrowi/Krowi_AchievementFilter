@@ -1,16 +1,30 @@
 local _, addon = ...;
-addon.GUI.AchievementFrameHeader = {};
-local header = addon.GUI.AchievementFrameHeader;
+addon.Gui.AchievementFrameHeader = {};
+local header = addon.Gui.AchievementFrameHeader;
+
+local function LoadIfWrathClassic()
+    if not addon.Util.IsWrathClassic then
+        return;
+    end
+
+    local tex = AchievementFrameHeader:CreateTexture();
+    tex:SetTexture("Interface/AchievementFrame/UI-Achievement-RightDDLInset");
+    tex:SetSize(128, 32);
+    tex:SetPoint("TOPLEFT", 112, -56);
+    tex:Hide();
+    AchievementFrameHeaderLeftDDLInset = tex;
+
+    AchievementFrame.Header = AchievementFrameHeader;
+    AchievementFrame.Header.RightDDLInset = AchievementFrameHeaderRightDDLInset;
+    AchievementFrame.Header.PointBorder = AchievementFrameHeaderPointBorder;
+    AchievementFrame.Header.Points = AchievementFrameHeaderPoints;
+    AchievementFrame.Header.Title = AchievementFrameHeaderTitle;
+    AchievementFrame.Header.LeftDDLInset = AchievementFrameHeaderLeftDDLInset;
+end
 
 function header:Load()
-    if addon.IsWrathClassic then
-        local tex = AchievementFrameHeader:CreateTexture();
-        tex:SetTexture("Interface/AchievementFrame/UI-Achievement-RightDDLInset");
-        tex:SetSize(128, 32);
-        tex:SetPoint("TOPLEFT", 112, -56);
-        tex:Hide();
-        AchievementFrameHeaderLeftDDLInset = tex;
-    end
+    LoadIfWrathClassic();
+    self:CreateTooltip();
 end
 
 local headerSortPriorities = {

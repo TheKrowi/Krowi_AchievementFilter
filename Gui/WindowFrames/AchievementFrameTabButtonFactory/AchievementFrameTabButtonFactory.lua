@@ -28,13 +28,18 @@ function achievementFrameTabButtonFactory:GetNew(index, text, framesToShow, cate
         hooksecurefunc("AchievementFrame_DisplayComparison", function()
             onClick = self.Comparison_OnClick;
         end);
-        if addon.IsWrathClassic then
+        if addon.Util.IsWrathClassic then
             hooksecurefunc("PanelTemplates_SetTab", function(_, clickedTabId) -- Issue #1: Broken
                 self:AchievementFrame_UpdateTabs(clickedTabId);
             end);
         else
             hooksecurefunc("AchievementFrame_UpdateTabs", function(clickedTabId) -- Issue #1: Broken
                 self:AchievementFrame_UpdateTabs(clickedTabId);
+            end);
+            hooksecurefunc("AchievementFrameBaseTab_OnClick", function(tabIndex)
+                if tabIndex == 3 then -- Statistics tab does not refresh the guild/personal look
+                    AchievementFrame_RefreshView();
+                end
             end);
         end
     end

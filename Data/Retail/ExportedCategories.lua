@@ -54,7 +54,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-04 18-10-00 ]] --
+-- [[ Exported at 2023-10-19 07-06-12 ]] --
 tasks = {
     {F, 857, "ExcludedCategories"},
     {C, 971, 857},
@@ -211,6 +211,7 @@ tasks = {
     {A, 1119, 662}, -- Collector's Edition: Mini-Diablo
     {C, 1117, 1119},
     {N, 1119,k.L["Collector's Edition"], true}, -- Collector's Edition
+    {A, 1118, 18250}, -- Ysergle The Dreamurk
     {A, 1118, 14904}, -- Netherwhelp Online
     {A, 1118, 14027}, -- Battle for Mrrglroth
     {A, 1118, 13138}, -- Flying Colors
@@ -227,6 +228,7 @@ tasks = {
     {A, 1118, 411}, -- Murky
     {C, 1117, 1118},
     {N, 1118,k.L["BlizzCon"], true}, -- BlizzCon
+    {A, 1117, 19029}, -- Lil' Maggz
     {A, 1117, 15594}, -- Fearless Spectator
     {A, 1117, 11211}, -- Fight for the Horde
     {A, 1117, 11210}, -- Fight for the Alliance
@@ -2282,6 +2284,8 @@ tasks = {
     {A, 920, 3456}, -- Dead Man's Party
     {C, 918, 920},
     {N, 920,k.L["Day of the Dead"]}, -- Day of the Dead
+    {A, 915, 17547}, -- The Lick King
+    {A, 915, 980}, -- The Horseman's Reins
     {A, 915, 1656}, -- Hallowed Be Thy Name
     {A, 915, 10365}, -- A Frightening Friend
     {A, 915, 18360}, -- Tricks and Treats of the Dragon Isles
@@ -6612,7 +6616,6 @@ tasks = {
     {A, 201, 6531}, -- Attention to Detail
     {C, 190, 201},
     {N, 201,k.GetInstanceInfoName(246)}, -- Scholomance
-    {A, 200, 980}, -- The Horseman's Reins
     {A, 200, 8437}, -- Challenge Master: Scarlet Monastery
     {A, 200, 6913}, -- Scarlet Monastery: Gold
     {A, 200, 6912}, -- Scarlet Monastery: Silver

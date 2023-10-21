@@ -1,7 +1,9 @@
 <Ui>
     <Script file="Gui.lua"/>
     <Include file="Gui.xml"/>
-    <Include file="Misc\Files.xml"/>
+    <Include file="WorldMapButton\WorldMapButton.xml"/>
+    <Include file="FloatingAchievementTooltip\FloatingAchievementTooltip.xml"/>
+    <Include file="EventReminder\Files.xml"/>
     <Include file="AchievementTooltip\Files.xml"/>
     <Include file="WindowFrames\Files.xml"/>
     <Include file="RightClickMenu\Files.xml"/>

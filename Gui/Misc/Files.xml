@@ -1,8 +1,0 @@
-<Ui>
-    <Include file="AlertFrame\AlertFrame.xml"/>
-    <Script file="AlertSystem.lua"/>
-    <Script file="SideButton.lua" />
-    <Script file="SideButtonSystem.lua"/>
-    <Include file="WorldMapButton\WorldMapButton.xml"/>
-    <Include file="FloatingAchievementTooltip\FloatingAchievementTooltip.xml"/>
-</Ui>

@@ -84,10 +84,7 @@ function KrowiAF_AchievementsObjectivesMixin:ResetMiniAchievements()
 end
 
 function KrowiAF_AchievementsObjectivesMixin:ResetMetas()
-	for _, metaCriteria in next, metaCriteriaTable do
-		metaCriteria.Id = nil;
-		metaCriteria:Hide();
-	end
+	AchievementButton_ResetTable(metaCriteriaTable);
 end
 
 function KrowiAF_AchievementsObjectivesMixin:ResetAll()

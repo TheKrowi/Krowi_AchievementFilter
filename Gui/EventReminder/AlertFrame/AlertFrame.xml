@@ -2,21 +2,7 @@
     <Script file="AlertFrame.lua"/>
     <Script file="AlertFrameMixin.lua"/>
 
-	<ContainedAlertFrame name="KrowiAF_AlertFrame_Normal_Template" virtual="true" inherits="KrowiAF_AlertFrame_Template">
-		<Size x="256" y="84"/>
-		<Scripts>
-			<OnLoad function="KrowiAF_AlertFrame_Normal_OnLoad"/>
-		</Scripts>
-	</ContainedAlertFrame>
-	
-	<ContainedAlertFrame name="KrowiAF_AlertFrame_Small_Template" virtual="true" inherits="KrowiAF_AlertFrame_Template">
-		<Size x="256" y="64"/>
-		<Scripts>
-			<OnLoad function="KrowiAF_AlertFrame_Small_OnLoad"/>
-		</Scripts>
-	</ContainedAlertFrame>
-
-	<ContainedAlertFrame name="KrowiAF_AlertFrame_Template" mixin="KrowiAF_AlertFrameMixin" parent="UIParent" hidden="true" frameStrata="DIALOG" virtual="true" inherits="AlertFrameTemplate">
+	<ContainedAlertFrame name="KrowiAF_EventReminderAlertFrame_Template" mixin="KrowiAF_EventReminderAlertFrameMixin" inherits="AlertFrameTemplate" parent="UIParent" hidden="true" frameStrata="DIALOG" virtual="true">
 		<Anchors>
 			<Anchor point="BOTTOM" x="0" y="0"/>
 		</Anchors>
@@ -102,13 +88,6 @@
 					<Anchor point="LEFT" x="-18" y="-1"/>
 				</Anchors>
 				<Layers>
-					<!-- <Layer level="BORDER">
-						<Texture parentKey="BlingRetail" atlas="ui-achievement-bling" useAtlasSize="true" hidden="true">
-							<Anchors>
-								<Anchor point="CENTER" x="-1" y="1"/>
-							</Anchors>
-						</Texture>
-					</Layer> -->
 					<Layer level="ARTWORK">
 						<Texture parentKey="Texture">
 							<Anchors>
@@ -130,10 +109,24 @@
 			</Frame>
 		</Frames>
 		<Scripts>
-			<OnClick function="KrowiAF_AlertFrame_OnClick"/>
-			<OnUpdate function="KrowiAF_AlertFrame_OnUpdate"/>
+			<OnUpdate method="OnUpdate"/>
 			<OnEnter inherit="append" method="OnEnter"/>
 			<OnLeave inherit="append" method="OnLeave"/>
+			<OnClick method="OnClick"/>
+		</Scripts>
+	</ContainedAlertFrame>
+	
+	<ContainedAlertFrame name="KrowiAF_EventReminderAlertFrame_Normal_Template" inherits="KrowiAF_EventReminderAlertFrame_Template" virtual="true">
+		<Size x="256" y="84"/>
+		<Scripts>
+			<OnLoad function="KrowiAF_EventReminderAlertFrame_Normal_OnLoad"/>
+		</Scripts>
+	</ContainedAlertFrame>
+	
+	<ContainedAlertFrame name="KrowiAF_EventReminderAlertFrame_Small_Template" inherits="KrowiAF_EventReminderAlertFrame_Template" virtual="true">
+		<Size x="256" y="64"/>
+		<Scripts>
+			<OnLoad function="KrowiAF_EventReminderAlertFrame_Small_OnLoad"/>
 		</Scripts>
 	</ContainedAlertFrame>
 </Ui>

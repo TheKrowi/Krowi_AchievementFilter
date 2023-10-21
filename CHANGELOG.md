@@ -2,8 +2,13 @@
 All notable changes to this project will be documented in this file.
 
 ## 65.0 - 2023-10-05
+### Added
+- The Lick King, Lil' Maggz and Ysergle The Dreamurk
+
 ### Changed
 - Tons of back end changes
+- Moved The Horseman's Reins achievement to Events - Holidays - Hallow's End
+- Forge and Befuddle now has a faction linked to it
 
 ### Fixed
 - Whenever the tooltip refreshes when mousing over achievements with transmog data is loaded, all lines will remember their color

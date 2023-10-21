@@ -46,7 +46,7 @@ function KrowiAF_CategoriesFrameMixin:OnLoad()
 end
 
 local function RestoreScrollPosition(frame)
-	local selectedTab = addon.GUI.SelectedTab;
+	local selectedTab = addon.Gui.SelectedTab;
 	if selectedTab == nil then
 		return;
 	end
@@ -59,7 +59,7 @@ function KrowiAF_CategoriesFrameMixin:OnShow()
 	self:RegisterEvent("ACHIEVEMENT_EARNED");
 	self:SetRightPoint();
 	AchievementFrameCategories:Hide();
-	AchievementFrameWaterMark:SetTexture(addon.GUI.SelectedTab and addon.GUI.SelectedTab.WaterMark or "Interface/AchievementFrame/UI-Achievement-AchievementWatermark");
+	AchievementFrameWaterMark:SetTexture(addon.Gui.SelectedTab and addon.Gui.SelectedTab.WaterMark or "Interface/AchievementFrame/UI-Achievement-AchievementWatermark");
 	self:Update(addon.AchievementEarnedUpdateCategoriesFrameOnNextShow);
 	addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = nil;
 	RestoreScrollPosition(self);
@@ -108,7 +108,7 @@ function KrowiAF_CategoriesFrameMixin:UpdateDataProvider(categories, retainScrol
 end
 
 function KrowiAF_CategoriesFrameMixin:Update(getAchNums, retainScrollPosition)
-	local selectedTab = addon.GUI.SelectedTab;
+	local selectedTab = addon.Gui.SelectedTab;
 	if selectedTab == nil then
 		return;
 	end
@@ -120,7 +120,7 @@ function KrowiAF_CategoriesFrameMixin:Update(getAchNums, retainScrollPosition)
 	end
 
 	local displayCategories = {};
-	local categories = addon.GUI.SelectedTab:GetCategories();
+	local categories = addon.Gui.SelectedTab:GetCategories();
     if not categories then
         return;
     end
@@ -179,7 +179,7 @@ local function CollapseCategory(categories, targetCategory)
 end
 
 function KrowiAF_CategoriesFrameMixin:ExpandToCategory(category)
-	local selectedTab = addon.GUI.SelectedTab;
+	local selectedTab = addon.Gui.SelectedTab;
 	if selectedTab == nil then
 		return;
 	end
@@ -210,7 +210,7 @@ function KrowiAF_CategoriesFrameMixin:ShowSubFrame(category)
 end
 
 function KrowiAF_CategoriesFrameMixin:SelectCategory(category)
-	local selectedTab = addon.GUI.SelectedTab;
+	local selectedTab = addon.Gui.SelectedTab;
 	if not selectedTab then
 		return;
 	end

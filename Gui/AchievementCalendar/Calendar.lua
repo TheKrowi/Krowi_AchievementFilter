@@ -39,7 +39,7 @@ end
 
 function calendar:Load()
     local frame = CreateFrame("Frame", "KrowiAF_AchievementCalendarFrame", UIParent, "KrowiAF_AchievementCalendarFrame_Template");
-	addon.Gui.SetFrameToLastPosition(frame, "Calendar");
+	addon.Gui:SetFrameToLastPosition(frame, "Calendar");
 	CreateCalendarButton(frame);
 	addon.Gui.Calendar = nil;
 end

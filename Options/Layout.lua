@@ -39,7 +39,7 @@ end
 
 -- [[ InjectDynamicFixedWatchListOptions ]]
 local function DrawSubCategories(categories)
-    if addon.GUI.SelectedTab == nil then
+    if addon.Gui.SelectedTab == nil then
         return;
     end
 
@@ -63,7 +63,7 @@ local function WatchListClearAllFunc()
         addon.Data.WatchListCategories[i].Achievements = nil;
         addon.Data.WatchListCategories[i].Children = nil;
     end
-    if addon.GUI.SelectedTab ~= nil then -- If nil, not yet loaded
+    if addon.Gui.SelectedTab ~= nil then -- If nil, not yet loaded
         if KrowiAF_SavedData.WatchedAchievements then
             for id, _ in next, KrowiAF_SavedData.WatchedAchievements do
                 addon.Data.Achievements[id]:ClearWatch();
@@ -139,7 +139,7 @@ end
 
 -- [[ InjectMoreDynamicExcludedOptions ]]
 local function ShowExcludedCategory()
-    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
+    if addon.Gui.SelectedTab == nil then -- If nil, not yet loaded
         return;
     end
     if addon.Options.db.profile.Categories.Excluded.Show then
@@ -163,7 +163,7 @@ local function ExcludedIncludeAllFunc()
         addon.Data.ExcludedCategories[i].Achievements = nil;
         addon.Data.ExcludedCategories[i].Children = nil;
     end
-    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
+    if addon.Gui.SelectedTab == nil then -- If nil, not yet loaded
         KrowiAF_SavedData.ExcludedAchievements = nil;
         return;
     end
@@ -294,7 +294,7 @@ local function MovableAchievementWindowRememberLastPositionSet(_, value)
     if addon.Options.db.profile.Window.RememberLastPosition.AchievementWindow == value then return; end
     addon.Options.db.profile.Window.RememberLastPosition.AchievementWindow = value;
     if not addon.Options.db.profile.Window.RememberLastPosition.AchievementWindow then
-        addon.GUI.ResetAchievementWindowPosition();
+        addon.Gui.ResetAchievementWindowPosition();
     end
 end
 
@@ -317,8 +317,8 @@ end
 local function OffsetsCategoriesFrameWidthSet(_, value)
     if addon.Options.db.profile.Window.CategoriesFrameWidthOffset == value then return; end
     addon.Options.db.profile.Window.CategoriesFrameWidthOffset = value;
-    if addon.GUI.SelectedTab then
-        addon.GUI.SetAchievementFrameWidth();
+    if addon.Gui.SelectedTab then
+        addon.Gui.SetAchievementFrameWidth();
     end
 end
 
@@ -333,8 +333,8 @@ local function OffsetsAchievementFrameHeightSet(_, value)
     if addon.Options.db.profile.Window.AchievementFrameHeightOffset == value then return; end
     addon.Options.db.profile.Window.AchievementFrameHeightOffset = value;
     SetMaxNumberOfSearchPreviews();
-    if addon.GUI.SelectedTab then
-        addon.GUI.SetAchievementFrameHeight();
+    if addon.Gui.SelectedTab then
+        addon.Gui.SetAchievementFrameHeight();
     end
 end
 
@@ -438,7 +438,7 @@ options.OptionsTable.args["Layout"] = {
                             order = OrderPP(), type = "execute", width = AdjustedWidth(),
                             name = addon.L["Reset position"],
                             desc = addon.L["Reset position Desc"]:K_ReplaceVars(addon.L["Achievement Window"]),
-                            func = function() addon.GUI.ResetAchievementWindowPosition(); end
+                            func = function() addon.Gui.ResetAchievementWindowPosition(); end
                         },
                         CalendarRememberLastPosition = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(2),
@@ -513,7 +513,7 @@ options.OptionsTable.args["Layout"] = {
                                     get = function() return addon.Options.db.profile.TabsGeneral.Spacing; end,
                                     set = function (_, value)
                                         addon.Options.db.profile.TabsGeneral.Spacing = value;
-                                        addon.GUI.ShowHideTabs();
+                                        addon.Gui:ShowHideTabs();
                                     end
                                 }
                             }
@@ -598,7 +598,7 @@ options.OptionsTable.args["Layout"] = {
                         SortPriority = {
                             order = OrderPP(), type = "group", inline = true,
                             name = addon.L["Sort priority"],
-                            args = { --[[ Dynamically build via addon.GUI.AchievementFrameHeader.InjectDynamicOptions ]] }
+                            args = { --[[ Dynamically build via addon.Gui.AchievementFrameHeader.InjectDynamicOptions ]] }
                         }
                     }
                 }
@@ -1208,7 +1208,7 @@ function RefreshOptions()
     MovableDataManagerRememberLastPositionSet(nil, profile.Window.RememberLastPosition.DataManager);
     OffsetsCategoriesFrameWidthSet(nil, profile.Window.CategoriesFrameWidthOffset);
     OffsetsAchievementFrameHeightSet(nil, profile.Window.AchievementFrameHeightOffset);
-    addon.GUI.ShowHideTabs(); -- Dynamic Tab Order and Visibility is handled by this one
+    addon.Gui:ShowHideTabs(); -- Dynamic Tab Order and Visibility is handled by this one
     SetSummaryMouseWheelPanScalar(_, profile.Summary.MouseWheelPanScalar);
     SetCategoryIndentation(nil, profile.Categories.Indentation);
     SetCategoriesMouseWheelPanScalar(nil, profile.Categories.MouseWheelPanScalar);

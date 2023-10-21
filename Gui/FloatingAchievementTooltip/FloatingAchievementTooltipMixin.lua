@@ -3,7 +3,7 @@ local _, addon = ...;
 KrowiAF_FloatingAchievementTooltipCloseButtonMixin = {};
 
 function KrowiAF_FloatingAchievementTooltipCloseButtonMixin:OnLoad()
-	addon.Gui.RegisterSafeCloseButtonDuringCombat(self);
+	addon.Gui:RegisterSafeCloseButtonDuringCombat(self);
 end
 
 function KrowiAF_FloatingAchievementTooltipCloseButtonMixin:OnClick()

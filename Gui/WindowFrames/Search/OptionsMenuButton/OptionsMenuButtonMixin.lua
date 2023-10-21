@@ -5,7 +5,7 @@ KrowiAF_SearchOptionsMenuButtonMixin = {};
 function KrowiAF_SearchOptionsMenuButtonMixin:AddCheckBox(_menu, text, options, keys, ignoreAsMenuSelection)
     _menu:AddFull({
 		Text = text,
-		Checked = function() -- Using function here, we force the GUI to get the value again instead of only once (caused visual bugs)
+		Checked = function() -- Using function here, we force the Gui to get the value again instead of only once (caused visual bugs)
 			return addon.Util.ReadNestedKeys(options, keys); -- e.g.: return filters.Completion.Completed;
 		end,
 		Func = function()

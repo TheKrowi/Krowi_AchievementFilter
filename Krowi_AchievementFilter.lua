@@ -47,9 +47,9 @@ local function LoadKrowi_AchievementFilter()
         addon.Data.ExportedWorldEvents.InjectDynamicOptions();
     end
 
-    addon.GUI.PrepareTabsOrder();
+    addon.Gui.PrepareTabsOrder();
     addon.Tabs.InjectDynamicOptions();
-    addon.GUI.AchievementFrameHeader:InjectDynamicOptions();
+    addon.Gui.AchievementFrameHeader:InjectDynamicOptions();
     addon.Filters:InjectDefaults();
     addon.Plugins:InjectOptions();
     addon.Options:Load(true);
@@ -59,7 +59,7 @@ local function LoadKrowi_AchievementFilter()
     addon.Data.DataIntegrityManager.Load();
     addon.Data.SavedData.Load();
 
-    addon.GUI:LoadWithAddon();
+    addon.Gui:LoadWithAddon();
 
     addon.Icon:Load();
     addon.Tutorials.Load();
@@ -68,7 +68,7 @@ local function LoadKrowi_AchievementFilter()
 end
 
 local function LoadBlizzard_AchievementUI()
-    addon.GUI:LoadWithBlizzard_AchievementUI();
+    addon.Gui:LoadWithBlizzard_AchievementUI();
 
     addon.Data.LoadWatchedAchievements();
     addon.Data.LoadTrackingAchievements();
@@ -79,7 +79,7 @@ local function LoadBlizzard_AchievementUI()
     else
         addon.MakeWindowStatic();
     end
-    addon.GUI.AchievementFrameHeader:HookSetPointsText();
+    addon.Gui.AchievementFrameHeader:HookSetPointsText();
     addon.OverwriteFunctions();
     addon.LoadBlizzardApiChanges();
     addon.HookFunctions();
@@ -136,7 +136,7 @@ function loadHelper:OnEvent(event, arg1, arg2)
         if arg1 or arg2 then -- Required cause event also is called when zoning in an instance for example
             C_Timer.After(0, function()
                 C_Timer.After(addon.Options.db.profile.EventReminders.OnLoginDelay, function()
-                    addon.GUI.AlertSystem.ShowActiveEventsOnPlayerEnteringWorld(popUpsOptions, chatMessagesOptions);
+                    addon.Gui.EventReminderAlertSystem:ShowActiveEventsOnPlayerEnteringWorld(popUpsOptions, chatMessagesOptions);
                 end);
             end);
         end

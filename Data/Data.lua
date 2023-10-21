@@ -50,7 +50,7 @@ local function PostLoadOnPlayerLogin(self, start)
         end
 
         if AchievementFrame and AchievementFrame:IsShown() then
-            addon.GUI.RefreshViewAfterPlayerLogin();
+            addon.Gui:RefreshViewAfterPlayerLogin();
         end
 
         addon.Diagnostics.Debug("On Player Login: Finished loading data in " .. floor(debugprofilestop() - start + 0.5) .. " ms");

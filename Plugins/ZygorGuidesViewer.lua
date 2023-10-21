@@ -52,7 +52,7 @@ plugins.LoadHelper:RegisterEvent("ADDON_LOADED");
 function zygorGuidesViewer:OnEvent(event, arg1, arg2)
     if event == "ADDON_LOADED" then
         if arg1 == "ZygorGuidesViewer" then
-            hooksecurefunc(addon.GUI, "ToggleAchievementFrame", function(_addonName, tabName, resetView, forceOpen)
+            hooksecurefunc(addon.Gui, "ToggleAchievementFrame", function()
                 ZGV.Achievement:IconSetup();
 
                 if ZGV.Achievement.KrowiAF_Loaded then

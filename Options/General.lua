@@ -16,7 +16,7 @@ end
 local openCurrentZoneCategoryName;
 function general.PostLoad()
     local rebindMicroButton = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Title, "cmd", "KROWIAF-0.0").args.KeyBinding.args.General.args.MicroButton.args.Rebind;
-    rebindMicroButton.desc = rebindMicroButton.desc:KAF_AddDefaultValueText("MicroButtonTab", addon.GUI.TabsOrderGetActiveKeys());
+    rebindMicroButton.desc = rebindMicroButton.desc:KAF_AddDefaultValueText("MicroButtonTab", addon.Gui:TabsOrderGetActiveKeys());
 
     openCurrentZoneCategoryName = addon.L["Open"] .. " " .. addon.L["Current Zone"] .. " "  .. addon.L["Category"];
     _G["BINDING_NAME_" .. "KrowiAF_OPEN_CAT_Current_Zone"] = openCurrentZoneCategoryName;
@@ -72,8 +72,8 @@ end
 local function WorldMapShowWorldMapIconSet(_, value)
     if addon.Options.db.profile.ShowWorldmapIcon == value then return; end
     addon.Options.db.profile.ShowWorldmapIcon = value;
-    addon.GUI.WorldMapButton:Refresh();
-    addon.WorldMapButtons.SetPoints();
+    addon.Gui.WorldMapButton:Refresh();
+    LibStub("Krowi_WorldMapButtons-1.4").SetPoints();
 end
 
 local function MicroButtonSetKeybindFunc()
@@ -287,7 +287,7 @@ options.OptionsTable.args["General"] = {
                                     order = OrderPP(), type = "select", width = AdjustedWidth(1.9),
                                     name = addon.L["Rebind Micro Button"],
                                     desc = addon.L["Rebind Micro Button Desc"], -- KAF_AddDefaultValueTextFromValues via PostLoad
-                                    values = function() return addon.GUI.TabsOrderGetActiveKeys(); end,
+                                    values = function() return addon.Gui:TabsOrderGetActiveKeys(); end,
                                     get = function() return addon.Options.db.profile.MicroButtonTab; end,
                                     set = function(_, value)
                                         addon.Options.db.profile.MicroButtonTab = value;

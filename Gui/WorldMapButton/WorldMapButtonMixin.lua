@@ -1,5 +1,4 @@
--- [[ Namespaces ]] --
-local addonName, addon = ...;
+local _, addon = ...;
 
 KrowiAF_WorldMapButtonMixin = {};
 
@@ -7,7 +6,7 @@ function KrowiAF_WorldMapButtonMixin:OnLoad()
 
 end
 
-function KrowiAF_WorldMapButtonMixin:OnMouseDown(button)
+function KrowiAF_WorldMapButtonMixin:OnMouseDown()
     if self:IsEnabled() then
 		self.Icon:SetPoint("TOPLEFT", 8, -8);
 		self.IconOverlay:Show();
@@ -38,7 +37,7 @@ end
 
 function KrowiAF_WorldMapButtonMixin:OnEnter()
     if self.NumOfAch > 0 then
-        addon.GUI.ShowStatusBarTooltip(self, "ANCHOR_RIGHT", addon.Options.db.profile.AddAddonNameToWorldMapIcon and addon.Metadata.Title);
+        addon.Gui.ShowStatusBarTooltip(self, "ANCHOR_RIGHT", addon.Options.db.profile.AddAddonNameToWorldMapIcon and addon.Metadata.Title);
     else
         GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
 	    GameTooltip_SetTitle(GameTooltip, self.Text);
@@ -82,5 +81,4 @@ function KrowiAF_WorldMapButtonMixin:Refresh()
 		self:Disable();
 		self:DesaturateHierarchy(1);
     end
-    -- print(self.Text, self.NumOfAch, self.NumOfCompAch, self.NumOfNotObtAch)
 end

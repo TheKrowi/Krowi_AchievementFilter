@@ -26,5 +26,5 @@ function KrowiAF_DataManagerFrameMixin:ResetPosition()
         X = 150,
         Y = -80
     };
-	addon.Gui.SetFrameToLastPosition(self, "DataManager");
+	addon.Gui:SetFrameToLastPosition(self, "DataManager");
 end

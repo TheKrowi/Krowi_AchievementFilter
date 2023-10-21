@@ -228,7 +228,7 @@ end
 function filters:GetFilters(category)
     self.db.profile.Ignore = nil;
 
-    if addon.GUI.SelectedTab == nil then
+    if addon.Gui.SelectedTab == nil then
         local categoriesTree = category:GetTree();
 
         local tab = addon.Tabs[categoriesTree[1].Name];
@@ -245,7 +245,7 @@ function filters:GetFilters(category)
     end
 
     if category == nil then
-        category = addon.GUI.SelectedTab.SelectedCategory;
+        category = addon.Gui.SelectedTab.SelectedCategory;
     end
 
 	if category.IsCurrentZone then
@@ -257,8 +257,8 @@ function filters:GetFilters(category)
         return self.db.profile;
     elseif category.IsTracking then
         return self.db.profile.TrackingAchievements;
-    elseif addon.GUI.SelectedTab.Filters ~= nil then
-        return addon.GUI.SelectedTab.Filters;
+    elseif addon.Gui.SelectedTab.Filters ~= nil then
+        return addon.Gui.SelectedTab.Filters;
 	end
 
     return self.db.profile;

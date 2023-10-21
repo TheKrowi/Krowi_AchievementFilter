@@ -11,7 +11,7 @@ local function CreateScrollView(self)
 		button:Update(achievement);
 	end);
 	self.ScrollView:SetElementExtentCalculator(function(_, achievement) -- This fires before setting the elements
-		local selectedTab = addon.GUI.SelectedTab;
+		local selectedTab = addon.Gui.SelectedTab;
 		local base = self.DummyFrame.CollapsedHeight;
 		if selectedTab and SelectionBehaviorMixin.IsElementDataIntrusiveSelected(achievement) then
 			base = base + (selectedTab.Extend or 0);
@@ -38,7 +38,7 @@ local function AddManagedScrollBarVisibilityBehavior(self)
 end
 
 local function ScrollBoxSelectionChanged(self, achievement, selected)
-	local selectedTab = addon.GUI.SelectedTab;
+	local selectedTab = addon.Gui.SelectedTab;
 	if not selectedTab then
 		return;
 	end
@@ -83,7 +83,7 @@ function KrowiAF_AchievementsFrameMixin:OnShow()
 		addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = nil;
 	end
 
-	local selectedTab = addon.GUI.SelectedTab;
+	local selectedTab = addon.Gui.SelectedTab;
 	if not selectedTab then
 		return;
 	end
@@ -140,7 +140,7 @@ end
 local highlightedButton;
 local cachedCategory, cachedAchievements; -- Caching this speeds up the scrolling of achievements when the selected category isn't changed
 function KrowiAF_AchievementsFrameMixin:Update(retainScrollPosition)
-	local selectedTab = addon.GUI.SelectedTab;
+	local selectedTab = addon.Gui.SelectedTab;
 	if not selectedTab then
 		return;
 	end
@@ -201,7 +201,7 @@ end
 
 function KrowiAF_AchievementsFrameMixin:ClearFullSelection()
 	KrowiAF_AchievementsObjectives:Hide();
-	addon.GUI.SelectedTab.SelectedAchievement = nil;
+	addon.Gui.SelectedTab.SelectedAchievement = nil;
 	self.SelectionBehavior:ClearSelections();
 end
 
@@ -226,7 +226,7 @@ function KrowiAF_AchievementsFrameMixin:ForceUpdate()
 		return;
 	end
 
-	local selectedTab = addon.GUI.SelectedTab;
+	local selectedTab = addon.Gui.SelectedTab;
 	if not selectedTab then
 		return;
 	end
