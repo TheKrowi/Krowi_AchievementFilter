@@ -11,34 +11,34 @@ function eventReminderSideButtonSystem:GetAnchor()
 end
 
 local sideButtons = {};
-function eventReminderSideButtonSystem:GetNewSideButton(index)
+local function GetNewSideButton(index)
     local template = "KrowiAF_EventReminderSideButton_" .. (addon.Options.db.profile.EventReminders.Compact and "Small" or "Normal") .. "_Template";
     local sideButton = CreateFrame("Button", "KrowiAF_AchievementFrameSideButton" .. index, nil, template);
     return sideButton;
 end
 
-function eventReminderSideButtonSystem:GetSideButton(index)
+local function GetSideButton(index)
     if sideButtons[index] then
 		return sideButtons[index];
 	end
-	local sideButton = self:GetNewSideButton(index);
+	local sideButton = GetNewSideButton(index);
 	sideButtons[index] = sideButton;
 	return sideButton;
 end
 
-function eventReminderSideButtonSystem:ResetButtons()
+local function ResetButtons()
     for _, button in next, sideButtons do
 		button:Reset();
 	end
 end
 
-function eventReminderSideButtonSystem:AddEvent(index, event)
-    local button = self:GetSideButton(index);
+local function AddEvent(index, event)
+    local button = GetSideButton(index);
     button:SetEvent(event);
     button:Show();
 end
 
-function eventReminderSideButtonSystem:SetPoints()
+local function SetPoints(self)
     local relativeFrame = self:GetAnchor();
     local relativePoint = "TOPRIGHT";
     for _, button in next, sideButtons do
@@ -56,12 +56,12 @@ function eventReminderSideButtonSystem:Refresh()
     end
     timer:ScheduleTimer(self.Refresh, addon.Options.db.profile.EventReminders.RefreshInterval, self);
 
-    self:ResetButtons();
+    ResetButtons();
     local activeEvents = addon.EventData.GetActiveEvents(); -- Alert system does the refreshing
     for index, activeEvent in next, activeEvents do
-        self:AddEvent(index, activeEvent);
+        AddEvent(index, activeEvent);
     end
-    self:SetPoints();
+    SetPoints(self);
 end
 
 function eventReminderSideButtonSystem:Load()
@@ -76,5 +76,5 @@ end
 
 function eventReminderSideButtonSystem:Reload()
     self:Load();
-    self:ResetButtons();
+    ResetButtons();
 end

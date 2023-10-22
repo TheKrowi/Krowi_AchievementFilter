@@ -79,7 +79,7 @@ function eventReminderAlertSystem:UpdateGrowDirection()
 end
 
 local placeholderEpoch = 9999999999;
-function eventReminderAlertSystem:ShowActiveEventPopUp(event, canShow, canShowWithTimeDataOnly, currentTime)
+local function ShowActiveEventPopUp(self, event, canShow, canShowWithTimeDataOnly, currentTime)
     if not canShow then
         return;
     end
@@ -98,7 +98,7 @@ function eventReminderAlertSystem:ShowActiveEventPopUp(event, canShow, canShowWi
 end
 
 local printOnce;
-function eventReminderAlertSystem:ShowActiveEventChatMessage(event, canShow, canShowWithTimeDataOnly, currentTime)
+local function ShowActiveEventChatMessage(self, event, canShow, canShowWithTimeDataOnly, currentTime)
     if not canShow then
         return;
     end
@@ -115,7 +115,7 @@ function eventReminderAlertSystem:ShowActiveEventChatMessage(event, canShow, can
         end
         KrowiAF_SavedData.ActiveEventChatMessagesShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch;
         if KrowiAF_SavedData.ActiveEventChatMessagesShown[event.Id] >= currentTime then
-            print("    -", event.EventDetails and event.EventDetails.Name or addon.L["Collecting data"], "(" .. eventReminderAlertSystem:GetRuntimeText(event, true) .. ")"); --,
+            print("    -", event.EventDetails and event.EventDetails.Name or addon.L["Collecting data"], "(" .. self:GetRuntimeText(event, true) .. ")"); --,
         end
     end
 end
@@ -133,8 +133,8 @@ function eventReminderAlertSystem:ShowActiveEvents(popUpsOptions, chatMessagesOp
 
     local activeEvents = addon.EventData.GetActiveEvents(true);
     for _, event in next, activeEvents do
-        self:ShowActiveEventPopUp(event, canShowPopUps, canShowPopUpsWithTimeDataOnly, currentTime);
-        self:ShowActiveEventChatMessage(event, canShowChatMessages, canShowChatMessagesWithTimeDataOnly, currentTime);
+        ShowActiveEventPopUp(self, event, canShowPopUps, canShowPopUpsWithTimeDataOnly, currentTime);
+        ShowActiveEventChatMessage(self, event, canShowChatMessages, canShowChatMessagesWithTimeDataOnly, currentTime);
     end
     printOnce = nil;
 
@@ -142,8 +142,8 @@ function eventReminderAlertSystem:ShowActiveEvents(popUpsOptions, chatMessagesOp
 end
 
 local timer = LibStub("AceTimer-3.0");
-function eventReminderAlertSystem:Refresh()
-    timer:ScheduleTimer(self.Refresh, addon.Options.db.profile.EventReminders.RefreshInterval, self);
+local function Refresh(self)
+    timer:ScheduleTimer(Refresh, addon.Options.db.profile.EventReminders.RefreshInterval, self);
 
     local popUpsOptions = addon.Options.db.profile.EventReminders.PopUps.OnEventStart;
     local chatMessagesOptions = addon.Options.db.profile.EventReminders.ChatMessages.OnEventStart;
@@ -173,5 +173,5 @@ function eventReminderAlertSystem:ShowActiveEventsOnPlayerEnteringWorld(popUpsOp
         return;
     end
 
-    timer:ScheduleTimer(self.Refresh, addon.Options.db.profile.EventReminders.RefreshInterval, self);
+    timer:ScheduleTimer(Refresh, addon.Options.db.profile.EventReminders.RefreshInterval, self);
 end
