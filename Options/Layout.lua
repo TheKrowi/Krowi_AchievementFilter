@@ -407,6 +407,17 @@ local function SetCalendarMouseWheelPanScalar(_, value)
     end
 end
 
+local function SetDataManagerMouseWheelPanScalar(_, value)
+    if addon.Options.db.profile.DataManager.MouseWheelPanScalar == value then return; end
+    addon.Options.db.profile.DataManager.MouseWheelPanScalar = value;
+    if KrowiAF_DataManagerFrame.CharacterList.ScrollBox then
+        KrowiAF_DataManagerFrame.CharacterList.ScrollBox.wheelPanScalar = value;
+    end
+    if KrowiAF_DataManagerFrame.CharacterList.ScrollBar then
+        KrowiAF_DataManagerFrame.CharacterList.ScrollBar.wheelPanScalar = value;
+    end
+end
+
 options.OptionsTable.args["Layout"] = {
     type = "group", childGroups = "tab",
     name = addon.L["Layout"],
@@ -1196,6 +1207,26 @@ options.OptionsTable.args["Layout"] = {
                     }
                 }
             }
+        },
+        DataManager = {
+            order = OrderPP(), type = "group",
+            name = addon.L["Data Manager"],
+            args = {
+                MouseWheelPanScalar = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["Mouse Wheel Scroll Speed"],
+                    args = {
+                        MouseWheelPanScalar = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
+                            name = addon.L["Mouse Wheel Scroll Speed"],
+                            desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Characters"]):KAF_AddDefaultValueText("DataManager.MouseWheelPanScalar"),
+                            min = 1, max = 50, step = 1,
+                            get = function() return addon.Options.db.profile.DataManager.MouseWheelPanScalar; end,
+                            set = SetDataManagerMouseWheelPanScalar
+                        }
+                    }
+                }
+            }
         }
     }
 };
@@ -1209,7 +1240,8 @@ function RefreshOptions()
     OffsetsCategoriesFrameWidthSet(nil, profile.Window.CategoriesFrameWidthOffset);
     OffsetsAchievementFrameHeightSet(nil, profile.Window.AchievementFrameHeightOffset);
     addon.Gui:ShowHideTabs(); -- Dynamic Tab Order and Visibility is handled by this one
-    SetSummaryMouseWheelPanScalar(_, profile.Summary.MouseWheelPanScalar);
+    SetSearchBoxMouseWheelPanScalar(nil, profile.SearchBox.MouseWheelPanScalar);
+    SetSummaryMouseWheelPanScalar(nil, profile.Summary.MouseWheelPanScalar);
     SetCategoryIndentation(nil, profile.Categories.Indentation);
     SetCategoriesMouseWheelPanScalar(nil, profile.Categories.MouseWheelPanScalar);
     MergeMergeSmallCategoriesThresholdSet(nil, profile.Window.MergeSmallCategoriesThreshold);
@@ -1219,4 +1251,5 @@ function RefreshOptions()
     DrawSubCategories(addon.Data.ExcludedCategories);
     SetAchievementsMouseWheelPanScalar(nil, profile.Achievements.MouseWheelPanScalar);
     SetCalendarMouseWheelPanScalar(nil, profile.Calendar.MouseWheelPanScalar);
+    SetDataManagerMouseWheelPanScalar(nil, profile.DataManager.MouseWheelPanScalar);
 end

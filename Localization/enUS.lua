@@ -963,3 +963,4 @@ L["Zaqali Ruin Investigation"] = true
 L["Zaqali Ruin Investigation: Active"] = true
 L["Zaqali Ruin Investigation: Soon"] = true
 L["Zones"] = true
+L["Characters"] = true

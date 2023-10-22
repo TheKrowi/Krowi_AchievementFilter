@@ -196,6 +196,9 @@ addon.Options.Defaults = {
             LockMonth = false,
             MouseWheelPanScalar = 1
         },
+        DataManager = {
+            MouseWheelPanScalar = 1
+        },
         Plugins = {}
     }
 };

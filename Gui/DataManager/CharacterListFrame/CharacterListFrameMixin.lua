@@ -191,21 +191,25 @@ local function AddManagedScrollBarVisibilityBehavior(self)
     ScrollUtil.AddManagedScrollBarVisibilityBehavior(self.ScrollBox, self.ScrollBar, anchorsWithBar, anchorsWithoutBar);
 end
 
+local function SortingFunction(self, columnIndex)
+    self:GetParent():Update(GetSortedCharacters(CharacterColumns[columnIndex]));
+end
+
 local cachedCharacters;
 function KrowiAF_CharacterListFrameMixin:OnLoad()
     self.ColumnDisplay:LayoutColumns(CharacterColumns);
-    self.ColumnDisplay.sortingFunction = self.Sort;
+    self.ColumnDisplay.sortingFunction = SortingFunction;
     self.ColumnDisplay:Show();
 
-	-- self.ScrollBox.wheelPanScalar = addon.Options.db.profile.SearchBox.MouseWheelPanScalar;
-	-- self.ScrollBar.wheelPanScalar = addon.Options.db.profile.SearchBox.MouseWheelPanScalar;
+	self.ScrollBox.wheelPanScalar = addon.Options.db.profile.DataManager.MouseWheelPanScalar;
+	self.ScrollBar.wheelPanScalar = addon.Options.db.profile.DataManager.MouseWheelPanScalar;
 
     CreateScrollView(self);
 	AddManagedScrollBarVisibilityBehavior(self);
     cachedCharacters = GetSortedCharacters();
 end
 
-function KrowiAF_CharacterListFrameMixin:UpdateDataProvider(characters)
+local function UpdateDataProvider(self, characters)
 	local newDataProvider = CreateDataProvider();
 	for _, character in next, characters do
 		newDataProvider:Insert(character);
@@ -215,11 +219,7 @@ end
 
 function KrowiAF_CharacterListFrameMixin:Update(characters)
     characters = characters or cachedCharacters;
-    self:UpdateDataProvider(characters);
-end
-
-function KrowiAF_CharacterListFrameMixin:Sort(columnIndex)
-    self:GetParent():Update(GetSortedCharacters(CharacterColumns[columnIndex]));
+    UpdateDataProvider(self, characters);
 end
 
 function KrowiAF_CharacterListFrameMixin:Refresh()
