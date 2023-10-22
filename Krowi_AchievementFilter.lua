@@ -37,7 +37,6 @@ loadHelper:RegisterEvent("ACHIEVEMENT_EARNED");
 local function LoadKrowi_AchievementFilter()
     addon.Diagnostics.Load();
 
-
     addon.Data.ExportedCategories.InjectDynamicOptions();
     addon.Data.ExportedCalendarEvents.InjectDynamicOptions();
     if addon.Data.ExportedWidgetEvents then

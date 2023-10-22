@@ -1,8 +1,9 @@
 local addonName, addon = ...;
-addon.Gui = {};
+addon.Gui = {
+    Tabs = {},
+    SubFrames = {}
+};
 local gui = addon.Gui;
-
-gui.Tabs = {};
 
 local eventReminderSideButtonSystemIsLoaded;
 function gui:LoadWithAddon()
@@ -51,7 +52,6 @@ local function SetCloseButtonOnKeyDown(self)
     AchievementFrameCloseButton:SetScript("OnKeyDown", self.HandleCloseButtonOnKeyDown);
 end
 
-gui.SubFrames = {};
 local function ShowSubFrame(self, ...)
     local show;
 	for _, subFrame in ipairs(self.SubFrames) do

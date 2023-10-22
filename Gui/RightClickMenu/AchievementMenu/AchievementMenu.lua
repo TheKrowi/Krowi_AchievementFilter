@@ -1,11 +1,10 @@
 local _, addon = ...;
-addon.Gui.RightClickMenu.AchievementMenu = {};
+addon.Gui.RightClickMenu.AchievementMenu = {
+	Sections = {}
+};
 local achievementMenu = addon.Gui.RightClickMenu.AchievementMenu;
-achievementMenu.Sections = {};
-local sections = achievementMenu.Sections;
 
 local rightClickMenu = LibStub("Krowi_Menu-1.0");
-
 function achievementMenu:AddGoToAchievementLine(menu, id, nameSuffix)
 	nameSuffix = nameSuffix or "";
 	local _, name = addon.GetAchievementInfo(id);
@@ -91,7 +90,7 @@ function achievementMenu:Open(achievement, anchor, offsetX, offsetY, point, rela
 	local _, name = addon.GetAchievementInfo(achievement.Id);
 	rightClickMenu:AddTitle(name);
 
-	for _, section in next, sections do
+	for _, section in next, self.Sections do
 		if section:CheckAdd(achievement) then
 			section:Add(rightClickMenu, achievement);
 		end
@@ -110,5 +109,6 @@ function achievementMenu:Open(achievement, anchor, offsetX, offsetY, point, rela
 end
 
 function achievementMenu:GetLastSection()
+	local sections = self.Sections;
 	return sections[#sections];
 end

@@ -1,5 +1,6 @@
 <Ui>
     <Script file="ExportedAchievements.lua" />
+    <Script file="ExportedBuildVersions.lua" />
     <Script file="ExportedCalendarEvents.lua" />
     <Script file="ExportedCategories.lua" />
     <Script file="ExportedTooltipData.lua" />

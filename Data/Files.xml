@@ -6,7 +6,6 @@
     <Script file="CustomWidgetTimers.lua" />
     <Script file="ExportedTransmogSets.lua" />
     <Script file="ExportedUiMaps.lua" />
-    <Script file="ExportedBuildVersions.lua" />
     <Script file="EventData.lua" />
     <Script file="TooltipData.lua" />
     <Script file="DataIntegrityManager.lua" />

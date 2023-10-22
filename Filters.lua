@@ -29,7 +29,8 @@ local defaultAchievements = {
     SortBy = {
         Criteria = addon.L["Default"],
         ReverseSort = false
-    }
+    },
+    BuildVersion = { --[[ Dynamically build via addon.Data.ExportedBuildVersions.InjectDynamicFilters ]] }
 };
 
 local defaults = {
@@ -66,6 +67,7 @@ local function InjectTabDefaults()
 end
 
 function filters:InjectDefaults()
+    addon.Data.ExportedBuildVersions:InjectDynamicFilters(defaultAchievements.BuildVersion, addon.Data.BuildVersionIds);
     InjectAchievementDefaults();
     InjectCategoryDefaults();
     InjectTabDefaults();
@@ -192,6 +194,14 @@ local validations = {
     },
     {   -- 14
         Validate = function(_filters, achievement) return not _filters.Special.PvP and achievement.IsPvP; end
+    },
+    {   -- 15
+    Validate = function(_filters, achievement)
+        if not achievement.BuildVersion then
+            return false;
+        end
+        return not _filters.BuildVersion[achievement.BuildVersion.Id];
+    end
     }
 };
 

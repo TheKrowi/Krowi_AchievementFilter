@@ -7,7 +7,9 @@ local data = addon.Data;
 data.TasksGroups = {};
 
 data.TransmogSets = {};
+
 data.BuildVersions = {};
+data.BuildVersionIds = {};
 
 data.Achievements = {};
 data.AchievementIds = {};

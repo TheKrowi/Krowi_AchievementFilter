@@ -110,6 +110,32 @@ local function AddAchievementFilters(_menu, childMenu, filters)
     AddCheckBox(tmpMenu, addon.L["Obtainable"], filters, {"Obtainability", "Obtainable"}, true);
     AddCheckBox(tmpMenu, addon.L["Not Obtainable"], filters, {"Obtainability", "NotObtainable"}, true);
 
+    local version = addon.Objects.MenuItem:New(addon.L["Version"]);
+    for _, buildVersionId in next, addon.Data.BuildVersionIds do
+        local buildVersion = addon.Data.BuildVersions[buildVersionId];
+        AddCheckBox(version, buildVersion.Name, filters, {"BuildVersion", buildVersion.Id}, true);
+    end
+    version:AddSeparator();
+    version:AddFull({
+        Text = addon.L["Select All"],
+        Func = function()
+            for buildVersion, _ in next, filters.BuildVersion do
+                SetSelected(filters, {"BuildVersion", buildVersion}, true, true, true);
+            end
+            UpdateAchievementFrame();
+        end
+    });
+    version:AddFull({
+        Text = addon.L["Deselect All"],
+        Func = function()
+            for buildVersion, _ in next, filters.BuildVersion do
+                SetSelected(filters, {"BuildVersion", buildVersion}, false, true, true);
+            end
+            UpdateAchievementFrame();
+        end
+    });
+    tmpMenu:Add(version);
+
     local faction = addon.Objects.MenuItem:New(addon.L["Faction"]);
     AddCheckBox(faction, addon.L["Neutral"], filters, {"Faction", "Neutral"}, true);
     AddCheckBox(faction, addon.L["Alliance"], filters, {"Faction", "Alliance"}, true);
@@ -176,6 +202,13 @@ function KrowiAF_AchievementFrameFilterButtonMixin:OnMouseDown()
     menu:AddTitle(addon.L["Achievements"]);
 
     AddAchievementFilters(menu, nil, addon.Filters.db.profile);
+
+    -- local version = addon.Objects.MenuItem:New(addon.L["Version"]);
+    -- for _, buildVersion in next, addon.Data.BuildVersions do
+    --     AddCheckBox(version, buildVersion.Name, addon.Filters.db.profile, {"BuildVersion", buildVersion.Id});
+    -- end
+    -- menu:Add(version);
+
     local earnedBy = addon.Objects.MenuItem:New(addon.L["Earned By"]);
     AddRadioButton(menu, earnedBy, addon.Filters.Account, addon.Filters.db.profile, {"EarnedBy"}, false);
     AddRadioButton(menu, earnedBy, addon.Filters.CharacterAccount, addon.Filters.db.profile, {"EarnedBy"}, false);

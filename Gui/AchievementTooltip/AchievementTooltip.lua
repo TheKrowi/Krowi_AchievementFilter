@@ -1,8 +1,8 @@
 local _, addon = ...;
-addon.Gui.AchievementTooltip = {};
+addon.Gui.AchievementTooltip = {
+	Sections = {}
+};
 local tooltip = addon.Gui.AchievementTooltip;
-tooltip.Sections = {};
-local sections = tooltip.Sections;
 
 local function GetAchievementIconAndColor(completed, state, sameAchievement)
 	local icon, color;
@@ -120,7 +120,7 @@ function tooltip:ShowTooltip(anchor, achievement)
 	GameTooltip:SetOwner(anchor, "ANCHOR_NONE");
 	GameTooltip:SetPoint("TOPLEFT", anchor, "TOPRIGHT");
 
-	for _, sect in next, sections do
+	for _, sect in next, self.Sections do
 		if sect:CheckAdd(achievement) then
 			if GameTooltip:NumLines() > 0 then
 				GameTooltip_AddBlankLineToTooltip(GameTooltip);

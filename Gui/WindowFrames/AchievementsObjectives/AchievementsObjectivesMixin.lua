@@ -69,7 +69,7 @@ function KrowiAF_AchievementsObjectivesMixin:OnShow()
 	refreshOnNextShow = nil;
 end
 
-local criteriaTable, progressBarTable, miniTable, metaCriteriaTable = {}, {}, {}, {}
+local criteriaTable, progressBarTable, miniTable, metaCriteriaTable = {}, {}, {}, {};
 
 local function ResetTextCriteria()
 	AchievementButton_ResetTable(criteriaTable);

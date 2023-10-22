@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - The Lick King, Lil' Maggz and Ysergle The Dreamurk
 - The tooltip opened by clicking an achievement link from chat for example now also reacts to right clicks
+- Filter on "Added in version"
 
 ### Changed
 - Tons of back end changes
@@ -14,6 +15,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Whenever the tooltip refreshes when mousing over achievements with transmog data is loaded, all lines will remember their color
 - When mousing over categories, the progress bar should now fill properly
+- When in combat, closing the windows by pressing Escape (button to toggle the game menu) should no longer result in errors
 
 ### Wrath Classic
 - Bumped version
