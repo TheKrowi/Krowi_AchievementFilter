@@ -17,7 +17,7 @@ function KrowiAF_CategoryButtonMixin:OnClick()
     KrowiAF_CategoriesFrame:SelectCategory(self.Category);
 end
 
-function KrowiAF_CategoryButtonMixin:SetType(category)
+local function SetType(self, category)
 	if category.Parent.TabName ~= nil then
 		self.Label:SetFontObject("GameFontNormal");
 		self.BackgroundLeft:SetVertexColor(1, 1, 1);
@@ -32,7 +32,7 @@ function KrowiAF_CategoryButtonMixin:SetType(category)
 	self.BackgroundRight:SetVertexColor(0.6, 0.6, 0.6);
 end
 
-function KrowiAF_CategoryButtonMixin:SetLabel(category)
+local function SetLabel(self, category)
 	local children = category.Children;
 	local name = category.Name;
 	if children and #children > 0 and category.ShowCollapseIcon then
@@ -45,7 +45,7 @@ function KrowiAF_CategoryButtonMixin:SetLabel(category)
 	self.Label:SetText(name);
 end
 
-function KrowiAF_CategoryButtonMixin:SetTooltipData(category)
+local function SetTooltipData(self, category)
 	self.Text = category.Name;
 	self.NumOfAch, self.NumOfCompAch, self.NumOfNotObtAch = category.NumOfAch, category.NumOfCompAch, category.NumOfNotObtAch;
 	if category.IsSummary then
@@ -62,9 +62,9 @@ function KrowiAF_CategoryButtonMixin:SetCategory(category)
 	end
 
 	self.Category = category;
-	self:SetType(category);
-	self:SetLabel(category);
-	self:SetTooltipData(category);
+	SetType(self, category);
+	SetLabel(self, category);
+	SetTooltipData(self, category);
 
 	local selectedTab = addon.Gui.SelectedTab;
 	if not selectedTab then

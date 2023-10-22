@@ -129,7 +129,7 @@ local function GetFilteredAchievements(category)
 	return addon.Filters:Sort(displayAchievements, defaultOrder);
 end
 
-function KrowiAF_AchievementsFrameMixin:UpdateDataProvider(achievements, retainScrollPosition)
+local function UpdateDataProvider(self, achievements, retainScrollPosition)
 	local newDataProvider = CreateDataProvider();
 	for _, achievement in next, achievements do
 		newDataProvider:Insert(achievement);
@@ -158,7 +158,7 @@ function KrowiAF_AchievementsFrameMixin:Update(retainScrollPosition)
 	if updateAchievements then
 		cachedAchievements = GetFilteredAchievements(cachedCategory);
 	end
-	self:UpdateDataProvider(cachedAchievements, retainScrollPosition);
+	UpdateDataProvider(self, cachedAchievements, retainScrollPosition);
 
 	self.Text:Hide();
 	if cachedAchievements and #cachedAchievements == 0 then

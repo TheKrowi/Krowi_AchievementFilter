@@ -5,53 +5,7 @@ local achievementFrameTabButtonFactory = addon.Gui.AchievementFrameTabButtonFact
 local ourTabs = {};
 local onClick;
 
-function achievementFrameTabButtonFactory:GetNew(index, text, framesToShow, categories, filters, waterMark)
-    local tabId = AchievementFrame.numTabs + 1;
-    local button = CreateFrame("Button", "AchievementFrameTab" .. tabId, AchievementFrame, "KrowiAF_AchievementFrameTab_Template"); -- Blizzard naming
-    button:SetID(tabId);
-    button:SetText(text);
-    button.FramesToShow = framesToShow;
-    button.SelectedAchievement = nil; -- Issue #6: Fix
-	button.Categories = categories;
-    if button.Categories then
-	    button.SelectedCategory = button.Categories[1];
-    end
-    button.Filters = filters;
-    button.WaterMark = waterMark or "Interface/AchievementFrame/UI-Achievement-AchievementWatermark";
-    button.Index = index;
-    ourTabs[tabId] = button;
-
-    PanelTemplates_SetNumTabs(AchievementFrame, tabId);
-
-    if #ourTabs == 0 then
-        onClick = self.Base_OnClick;
-        hooksecurefunc("AchievementFrame_DisplayComparison", function()
-            onClick = self.Comparison_OnClick;
-        end);
-        if addon.Util.IsWrathClassic then
-            hooksecurefunc("PanelTemplates_SetTab", function(_, clickedTabId) -- Issue #1: Broken
-                self:AchievementFrame_UpdateTabs(clickedTabId);
-            end);
-        else
-            hooksecurefunc("AchievementFrame_UpdateTabs", function(clickedTabId) -- Issue #1: Broken
-                self:AchievementFrame_UpdateTabs(clickedTabId);
-            end);
-            hooksecurefunc("AchievementFrameBaseTab_OnClick", function(tabIndex)
-                if tabIndex == 3 then -- Statistics tab does not refresh the guild/personal look
-                    AchievementFrame_RefreshView();
-                end
-            end);
-        end
-    end
-
-    return button;
-end
-
-function achievementFrameTabButtonFactory:Call_OnClick(tabId)
-    onClick(self, tabId);
-end
-
-function achievementFrameTabButtonFactory:Base_OnClick(tabId)
+local function Base_OnClick(tabId)
     local tab = ourTabs[tabId];
     if not tab then
         return;
@@ -77,14 +31,60 @@ function achievementFrameTabButtonFactory:Base_OnClick(tabId)
     tab:ShowSubFrames();
 end
 
-function achievementFrameTabButtonFactory:Comparison_OnClick(tabId)
+local function Comparison_OnClick(tabId)
     -- No comparison support. Just open up the non-comparison achievement tab.
 	AchievementFrameTab_OnClick = AchievementFrameBaseTab_OnClick; -- Also set the other tabs back to their default OnClick like Blizzard does
-    onClick = self.Base_OnClick;
+    onClick = Base_OnClick;
     onClick(tabId);
 end
 
-function achievementFrameTabButtonFactory:AchievementFrame_UpdateTabs(clickedTabId)
+function achievementFrameTabButtonFactory:GetNew(index, text, framesToShow, categories, filters, waterMark)
+    local tabId = AchievementFrame.numTabs + 1;
+    local button = CreateFrame("Button", "AchievementFrameTab" .. tabId, AchievementFrame, "KrowiAF_AchievementFrameTab_Template"); -- Blizzard naming
+    button:SetID(tabId);
+    button:SetText(text);
+    button.FramesToShow = framesToShow;
+    button.SelectedAchievement = nil; -- Issue #6: Fix
+	button.Categories = categories;
+    if button.Categories then
+	    button.SelectedCategory = button.Categories[1];
+    end
+    button.Filters = filters;
+    button.WaterMark = waterMark or "Interface/AchievementFrame/UI-Achievement-AchievementWatermark";
+    button.Index = index;
+    ourTabs[tabId] = button;
+
+    PanelTemplates_SetNumTabs(AchievementFrame, tabId);
+
+    if #ourTabs == 0 then
+        onClick = Base_OnClick;
+        hooksecurefunc("AchievementFrame_DisplayComparison", function()
+            onClick = Comparison_OnClick;
+        end);
+        if addon.Util.IsWrathClassic then
+            hooksecurefunc("PanelTemplates_SetTab", function(_, clickedTabId) -- Issue #1: Broken
+                self:AchievementFrame_UpdateTabs(clickedTabId);
+            end);
+        else
+            hooksecurefunc("AchievementFrame_UpdateTabs", function(clickedTabId) -- Issue #1: Broken
+                self:AchievementFrame_UpdateTabs(clickedTabId);
+            end);
+            hooksecurefunc("AchievementFrameBaseTab_OnClick", function(tabIndex)
+                if tabIndex == 3 then -- Statistics tab does not refresh the guild/personal look
+                    AchievementFrame_RefreshView();
+                end
+            end);
+        end
+    end
+
+    return button;
+end
+
+function achievementFrameTabButtonFactory:Call_OnClick(tabId)
+    onClick(tabId);
+end
+
+function achievementFrameTabButtonFactory:AchievementFrame_UpdateTabs(clickedTabId) -- Public for skinning
     local gui = addon.Gui;
     local ourTabClicked = ourTabs[clickedTabId] ~= nil;
     if ourTabClicked then -- One of our tabs was clicked
@@ -108,4 +108,8 @@ function achievementFrameTabButtonFactory:AchievementFrame_UpdateTabs(clickedTab
         AchievementFrameTab1.text:SetPoint("CENTER", AchievementFrameTab1, "CENTER", 0, -3);
         AchievementFrameTab2.text:SetPoint("CENTER", AchievementFrameTab2, "CENTER", 0, -3);
     end
+end
+
+function achievementFrameTabButtonFactory:GetTabs() -- Needed for skinning
+    return ourTabs;
 end

@@ -22,85 +22,6 @@ local function LoadIfWrathClassic()
     AchievementFrame.Header.LeftDDLInset = AchievementFrameHeaderLeftDDLInset;
 end
 
-function header:Load()
-    LoadIfWrathClassic();
-    self:CreateTooltip();
-end
-
-local headerSortPriorities = {
-    addon.L["Points"],
-    addon.L["Name"],
-    addon.L["Realm"],
-    addon.L["Faction"],
-    addon.L["Class"]
-};
-
-local function SetPriority(index, value)
-    local priorities = addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority;
-    local otherIndex;
-    for i, prio in next, priorities do
-        if prio == value then
-            otherIndex = i;
-        end
-    end
-    local currentValue = addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority[index];
-    addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority[index] = value;
-    addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority[otherIndex] = currentValue;
-    local currentReverse = addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[index]
-    addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[index] = addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[otherIndex];
-    addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[otherIndex] = currentReverse;
-end
-
-local OrderPP = addon.InjectOptions.AutoOrderPlusPlus;
-local AdjustedWidth = addon.InjectOptions.AdjustedWidth;
-function header:InjectDynamicOptions()
-    for i = 1, #headerSortPriorities do
-        addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Priority" .. i, {
-            order = OrderPP(), type = "select", width = AdjustedWidth(0.95),
-            name = "",
-            values = headerSortPriorities,
-            get = function() return addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority[i]; end,
-            set = function (_, value) SetPriority(i, value); end
-        });
-        addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Blank1" .. i, {
-            order = OrderPP(), type = "description", width = AdjustedWidth(0.1),
-            name = ""
-        });
-        addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Reverse" .. i, {
-            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.95),
-            name = addon.L["Reverse Sort"],
-            desc = (""):KAF_AddDefaultValueText("AchievementPoints.Tooltip.Sort.Reverse." .. i),
-            get = function() return addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[i]; end,
-            set = function(_, value) addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[i] = value; end
-        });
-        addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Blank2" .. i, {
-            order = OrderPP(), type = "description", width = AdjustedWidth(0.85),
-            name = ""
-        });
-    end
-end
-
-local processHook = true;
-function header:HookSetPointsText()
-    AchievementFrame.Header.Points:SetPoint("TOP", AchievementFrame.Header.PointBorder, "TOP", -10, -13);
-    AchievementFrame.Header.PointBorder:SetWidth(175);
-
-    hooksecurefunc(AchievementFrame.Header.Points, "SetText", function()
-        if addon.InGuildView() or not processHook then
-            return;
-        end
-
-        processHook = false;
-        local points = KrowiAF_SavedData.CharacterList[UnitGUID("player")].Points;
-        if addon.Options.db.profile.AchievementPoints.Format == 1 then
-        elseif addon.Options.db.profile.AchievementPoints.Format == 2 then
-            AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points or -1) .. " / " .. BreakUpLargeNumbers(GetTotalAchievementPoints() or -1));
-        elseif addon.Options.db.profile.AchievementPoints.Format == 3 then
-            AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points or -1));
-        end
-        processHook = true;
-    end);
-end
 
 local sortFuncs = {
     addon.Objects.CompareFunc:New("number", "Points");
@@ -186,8 +107,8 @@ local function AddFactionIcon(name, faction)
     return name;
 end
 
-local function OnEnter(self)
-    GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT");
+local function OnEnter(frame)
+    GameTooltip:SetOwner(frame, "ANCHOR_TOPLEFT");
     GameTooltip:SetText(addon.L["Achievement points earned by"]);
     local characters = GetSortedCharacters();
     characters = LimitNumCharacters(characters);
@@ -203,7 +124,7 @@ local function OnEnter(self)
     GameTooltip:Show();
 end
 
-function header:CreateTooltip()
+local function CreateTooltip()
     local frame = CreateFrame("Button", "KrowiAF_AchievementFrameHeaderButton", AchievementFrame.Header);
     frame:SetPoint("TOPLEFT", AchievementFrame.Header.PointBorder);
     frame:SetPoint("BOTTOMRIGHT", AchievementFrame.Header.PointBorder);
@@ -213,5 +134,85 @@ function header:CreateTooltip()
     end);
     frame:SetScript("OnClick", function()
         KrowiAF_DataManagerFrame:Show();
+    end);
+end
+
+function header:Load()
+    LoadIfWrathClassic();
+    CreateTooltip();
+end
+
+local headerSortPriorities = {
+    addon.L["Points"],
+    addon.L["Name"],
+    addon.L["Realm"],
+    addon.L["Faction"],
+    addon.L["Class"]
+};
+
+local function SetPriority(index, value)
+    local priorities = addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority;
+    local otherIndex;
+    for i, prio in next, priorities do
+        if prio == value then
+            otherIndex = i;
+        end
+    end
+    local currentValue = addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority[index];
+    addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority[index] = value;
+    addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority[otherIndex] = currentValue;
+    local currentReverse = addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[index]
+    addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[index] = addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[otherIndex];
+    addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[otherIndex] = currentReverse;
+end
+
+local OrderPP = addon.InjectOptions.AutoOrderPlusPlus;
+local AdjustedWidth = addon.InjectOptions.AdjustedWidth;
+function header:InjectDynamicOptions()
+    for i = 1, #headerSortPriorities do
+        addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Priority" .. i, {
+            order = OrderPP(), type = "select", width = AdjustedWidth(0.95),
+            name = "",
+            values = headerSortPriorities,
+            get = function() return addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority[i]; end,
+            set = function (_, value) SetPriority(i, value); end
+        });
+        addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Blank1" .. i, {
+            order = OrderPP(), type = "description", width = AdjustedWidth(0.1),
+            name = ""
+        });
+        addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Reverse" .. i, {
+            order = OrderPP(), type = "toggle", width = AdjustedWidth(0.95),
+            name = addon.L["Reverse Sort"],
+            desc = (""):KAF_AddDefaultValueText("AchievementPoints.Tooltip.Sort.Reverse." .. i),
+            get = function() return addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[i]; end,
+            set = function(_, value) addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[i] = value; end
+        });
+        addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Blank2" .. i, {
+            order = OrderPP(), type = "description", width = AdjustedWidth(0.85),
+            name = ""
+        });
+    end
+end
+
+local processHook = true;
+function header:HookSetPointsText()
+    AchievementFrame.Header.Points:SetPoint("TOP", AchievementFrame.Header.PointBorder, "TOP", -10, -13);
+    AchievementFrame.Header.PointBorder:SetWidth(175);
+
+    hooksecurefunc(AchievementFrame.Header.Points, "SetText", function()
+        if addon.InGuildView() or not processHook then
+            return;
+        end
+
+        processHook = false;
+        local points = KrowiAF_SavedData.CharacterList[UnitGUID("player")].Points;
+        if addon.Options.db.profile.AchievementPoints.Format == 1 then
+        elseif addon.Options.db.profile.AchievementPoints.Format == 2 then
+            AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points or -1) .. " / " .. BreakUpLargeNumbers(GetTotalAchievementPoints() or -1));
+        elseif addon.Options.db.profile.AchievementPoints.Format == 3 then
+            AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points or -1));
+        end
+        processHook = true;
     end);
 end

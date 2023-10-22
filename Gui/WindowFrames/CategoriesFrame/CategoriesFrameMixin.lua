@@ -99,7 +99,7 @@ local function GetDisplayCategories(displayCategories, category, getAchNums)
 	end
 end
 
-function KrowiAF_CategoriesFrameMixin:UpdateDataProvider(categories, retainScrollPosition)
+local function UpdateDataProvider(self, categories, retainScrollPosition)
 	local newDataProvider = CreateDataProvider();
 	for _, category in next, categories do
 		newDataProvider:Insert(category);
@@ -127,7 +127,7 @@ function KrowiAF_CategoriesFrameMixin:Update(getAchNums, retainScrollPosition)
 	for _, category in next, categories do
 		GetDisplayCategories(displayCategories, category, getAchNums);
 	end
-	self:UpdateDataProvider(displayCategories, retainScrollPosition);
+	UpdateDataProvider(self, displayCategories, retainScrollPosition);
 end
 
 local function OpenCloseCategory(targetCategory, category)

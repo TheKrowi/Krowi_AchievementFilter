@@ -48,7 +48,7 @@ do -- [[ Shared ]]
 end
 
 do -- [[ Tabs ]]
-    local function UpdateTabsLayout(tabsOrder)
+    local function UpdateTabsLayout(self, tabsOrder)
         local x = 0;
         for _, btn in next, tabsOrder do
             if btn and btn:IsShown() then
@@ -77,15 +77,25 @@ do -- [[ Tabs ]]
                 tab:SetScript("OnShow", function(self)
                 end);
 
-                local originalAchievementFrame_UpdateTabs = tab.AchievementFrame_UpdateTabs
-                tab.AchievementFrame_UpdateTabs = function(self, thisTab, thisTabID, clickedTab)
-                    originalAchievementFrame_UpdateTabs(self, thisTab, thisTabID, clickedTab);
-                    if thisTabID == clickedTab then
-                        self.icon:SetTexCoord(0, 0.5, 0, 0.625);
-                    else
-                        self.icon:SetTexCoord(0.5, 1, 0, 0.625);
+                hooksecurefunc(addon.Gui.AchievementFrameTabButtonFactory, "AchievementFrame_UpdateTabs", function(selfFunc, clickedTabId)
+                    for id, tab2 in next, selfFunc:GetTabs() do
+                        if clickedTabId == id then
+                            tab2.icon:SetTexCoord(0, 0.5, 0, 0.625);
+                        else
+                            tab2.icon:SetTexCoord(0.5, 1, 0, 0.625);
+                        end
                     end
-                end
+                end);
+                -- local originalAchievementFrame_UpdateTabs = tab.AchievementFrame_UpdateTabs
+                -- print(originalAchievementFrame_UpdateTabs)
+                -- tab.AchievementFrame_UpdateTabs = function(self, thisTab, thisTabID, clickedTab)
+                --     originalAchievementFrame_UpdateTabs(self, thisTab, thisTabID, clickedTab);
+                --     if thisTabID == clickedTab then
+                --         self.icon:SetTexCoord(0, 0.5, 0, 0.625);
+                --     else
+                --         self.icon:SetTexCoord(0.5, 1, 0, 0.625);
+                --     end
+                -- end
             end
         end
 

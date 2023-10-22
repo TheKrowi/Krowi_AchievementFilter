@@ -47,7 +47,7 @@ function KrowiAF_SearchResultsFrameMixin:OnHide()
 	PlaySound(SOUNDKIT.IG_SPELLBOOK_CLOSE);
 end
 
-function KrowiAF_SearchResultsFrameMixin:UpdateDataProvider(results)
+local function UpdateDataProvider(self, results)
 	local newDataProvider = CreateDataProvider();
 	for _, achievement in next, results do
 		newDataProvider:Insert(achievement);
@@ -61,7 +61,7 @@ function KrowiAF_SearchResultsFrameMixin:Update(query, results)
 
 	savedQuery = query or savedQuery;
 	savedResults = results or savedResults;
-	self:UpdateDataProvider(savedResults);
+	UpdateDataProvider(self, savedResults);
 
 	local numScrollBoxButtons = self.ScrollBox:GetHeight() / 49;
 	local numFullScrollBoxButtons = floor(numScrollBoxButtons + 0.5);

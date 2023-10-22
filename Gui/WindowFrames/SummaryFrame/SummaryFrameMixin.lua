@@ -2,25 +2,6 @@ local _, addon = ...;
 
 KrowiAF_SummaryFrameMixin = {};
 
-function KrowiAF_SummaryFrameMixin:OnLoad()
-    self:LoadTotalStatusBar();
-    self.AchievementsFrame.ScrollBox.wheelPanScalar = addon.Options.db.profile.Summary.MouseWheelPanScalar;
-	self.AchievementsFrame.ScrollBar.wheelPanScalar = addon.Options.db.profile.Summary.MouseWheelPanScalar;
-end
-
-function KrowiAF_SummaryFrameMixin:OnEvent(event)
-    addon.Util.DelayFunction("KrowiAF_SummaryFrame_OnEvent", 1, self.Update, self, event);
-end
-
-function KrowiAF_SummaryFrameMixin:OnShow()
-    self:RegisterEvent("ACHIEVEMENT_EARNED");
-    self:Update();
-end
-
-function KrowiAF_SummaryFrameMixin:OnHide()
-    self:UnregisterEvent("ACHIEVEMENT_EARNED");
-end
-
 local function OverRideTextures(statusBar)
     local texture = "Interface/AchievementFrame/UI-Achievement-Header";
 
@@ -65,6 +46,46 @@ local function OverRideTextures(statusBar)
     end
 
     statusBar:AdjustOffsets(5, 5);
+end
+
+local function GetNewStatusBar(self)
+    local statusBar = LibStub("Krowi_ProgressBar-2.0"):GetNew(self);
+    OverRideTextures(statusBar);
+    statusBar:SetWidth(270);
+    statusBar:SetHeight(49);
+    statusBar:Reset();
+    statusBar:SetColors({R = 0, G = 1, B = 0}, {R = 1, G = 0, B = 0});
+    statusBar.TextRight:SetFontObject(GameFontHighlight);
+    statusBar.TextLeft:SetFontObject(GameFontNormal);
+    statusBar.TextLeft:SetWordWrap(false);
+    return statusBar;
+end
+
+local function LoadTotalStatusBar(self)
+    self.TotalStatusBar = GetNewStatusBar(self);
+    local totalStatusBar = self.TotalStatusBar;
+    totalStatusBar:SetWidth(524);
+    totalStatusBar.TextLeft:SetText(addon.L["Achievements Earned"]);
+    totalStatusBar:SetPoint("TOP", self.Categories.Header, "BOTTOM", 0, 5);
+end
+
+function KrowiAF_SummaryFrameMixin:OnLoad()
+    LoadTotalStatusBar(self);
+    self.AchievementsFrame.ScrollBox.wheelPanScalar = addon.Options.db.profile.Summary.MouseWheelPanScalar;
+	self.AchievementsFrame.ScrollBar.wheelPanScalar = addon.Options.db.profile.Summary.MouseWheelPanScalar;
+end
+
+function KrowiAF_SummaryFrameMixin:OnEvent(event)
+    addon.Util.DelayFunction("KrowiAF_SummaryFrame_OnEvent", 1, self.Update, self, event);
+end
+
+function KrowiAF_SummaryFrameMixin:OnShow()
+    self:RegisterEvent("ACHIEVEMENT_EARNED");
+    self:Update();
+end
+
+function KrowiAF_SummaryFrameMixin:OnHide()
+    self:UnregisterEvent("ACHIEVEMENT_EARNED");
 end
 
 local function AddButton(statusBar)
@@ -172,36 +193,17 @@ local function AddButton(statusBar)
 end
 
 local statusBars = {};
-function KrowiAF_SummaryFrameMixin:ResetStatusBars()
-    for _, statusBar in next, statusBars do
-		statusBar:Hide();
-	end
-end
-
-function KrowiAF_SummaryFrameMixin:GetNewStatusBar()
-    local statusBar = LibStub("Krowi_ProgressBar-2.0"):GetNew(self);
-    OverRideTextures(statusBar);
-    statusBar:SetWidth(270);
-    statusBar:SetHeight(49);
-    statusBar:Reset();
-    statusBar:SetColors({R = 0, G = 1, B = 0}, {R = 1, G = 0, B = 0});
-    statusBar.TextRight:SetFontObject(GameFontHighlight);
-    statusBar.TextLeft:SetFontObject(GameFontNormal);
-    statusBar.TextLeft:SetWordWrap(false);
-    return statusBar;
-end
-
-function KrowiAF_SummaryFrameMixin:GetStatusBar(index)
+function KrowiAF_SummaryFrameMixin:GetStatusBar(index) -- Public for skinning
     if statusBars[index] then
         return statusBars[index];
     end
-    local statusBar = self:GetNewStatusBar();
+    local statusBar = GetNewStatusBar(self);
     AddButton(statusBar);
     statusBars[index] = statusBar;
     return statusBar;
 end
 
-function KrowiAF_SummaryFrameMixin:GetAndAlignStatusBar(index)
+function KrowiAF_SummaryFrameMixin:GetAndAlignStatusBar(index) -- Public for skinning
     local yOffset = 15;
     local point, relativePoint, relativeTo;
     if index % 2 == 0 then -- Even
@@ -220,24 +222,18 @@ function KrowiAF_SummaryFrameMixin:GetAndAlignStatusBar(index)
     return statusBar;
 end
 
-function KrowiAF_SummaryFrameMixin:LoadTotalStatusBar()
-    self.TotalStatusBar = self:GetNewStatusBar();
-    local totalStatusBar = self.TotalStatusBar;
-    totalStatusBar:SetWidth(524);
-    totalStatusBar.TextLeft:SetText(addon.L["Achievements Earned"]);
-    totalStatusBar:SetPoint("TOP", self.Categories.Header, "BOTTOM", 0, 5);
-end
-
-function KrowiAF_SummaryFrameMixin:Update(event)
-    self:UpdateAchievements(event);
-    self:UpdateCategories(event);
-end
-
-local categories, categoryIndex;
+local categoryIndex;
 local function StartFromFirstCategory()
     categoryIndex = 0;
 end
 
+local function ResetStatusBars()
+    for _, statusBar in next, statusBars do
+		statusBar:Hide();
+	end
+end
+
+local categories;
 local function GetNextCategory()
     local category;
     repeat
@@ -247,7 +243,7 @@ local function GetNextCategory()
     return category;
 end
 
-function KrowiAF_SummaryFrameMixin:AddStatusBar(index, category, showNotObtainable, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch)
+local function AddStatusBar(self, index, category, showNotObtainable, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch)
     local statusBar = self:GetAndAlignStatusBar(index);
     statusBar.TextLeft:SetText(category.Name);
     statusBar.Button.Category = category;
@@ -274,7 +270,7 @@ function KrowiAF_SummaryFrameMixin:AddStatusBar(index, category, showNotObtainab
     return statusBar, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch;
 end
 
-function KrowiAF_SummaryFrameMixin:UpdateTotalStatusBar(showNotObtainable, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch)
+local function UpdateTotalStatusBar(self, showNotObtainable, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch)
     local totalNumOfNotObtAchText = "";
     if totalNumOfNotObtAch > 0 and showNotObtainable then
         totalNumOfNotObtAchText = " (+" .. totalNumOfNotObtAch .. ")";
@@ -286,7 +282,7 @@ function KrowiAF_SummaryFrameMixin:UpdateTotalStatusBar(showNotObtainable, total
     totalStatusBar:UpdateTextures();
 end
 
-function KrowiAF_SummaryFrameMixin:AlignCategoriesHeader(lastShown)
+local function AlignCategoriesHeader(self, lastShown)
     local header = self.Categories.Header;
     header:ClearPoint("TOP");
     header:ClearPoint("BOTTOM");
@@ -295,7 +291,7 @@ function KrowiAF_SummaryFrameMixin:AlignCategoriesHeader(lastShown)
     header:SetPoint("TOP", self, "BOTTOM", 0, offset);
 end
 
-function KrowiAF_SummaryFrameMixin:UpdateCategories(event)
+local function UpdateCategories(self, event)
     local selectedTab = addon.Gui.SelectedTab;
     if not selectedTab then
         return;
@@ -311,7 +307,7 @@ function KrowiAF_SummaryFrameMixin:UpdateCategories(event)
     end
 
     StartFromFirstCategory();
-    self:ResetStatusBars();
+    ResetStatusBars();
     local numStatusBars = 0;
     local lastShown = self.TotalStatusBar;
     local totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch = 0, 0, 0;
@@ -320,11 +316,11 @@ function KrowiAF_SummaryFrameMixin:UpdateCategories(event)
         local category = GetNextCategory();
         if category then
             numStatusBars = numStatusBars + 1;
-            lastShown, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch = self:AddStatusBar(numStatusBars, category, showNotObtainable, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch);
+            lastShown, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch = AddStatusBar(self, numStatusBars, category, showNotObtainable, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch);
         end
 	until not category;
-    self:UpdateTotalStatusBar(showNotObtainable, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch);
-    self:AlignCategoriesHeader(lastShown);
+    UpdateTotalStatusBar(self, showNotObtainable, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch);
+    AlignCategoriesHeader(self, lastShown);
 end
 
 local function BuildLastCompleted(event)
@@ -348,14 +344,19 @@ local function BuildLastCompleted(event)
 end
 
 local updateAchievementsOnNextShow;
-function KrowiAF_SummaryFrameMixin:UpdateAchievements(event)
+local function UpdateAchievements(self, event)
     BuildLastCompleted(event);
     self.AchievementsFrame:Update(KrowiAF_Achievements.LastCompleted[UnitGUID("player")], updateAchievementsOnNextShow);
+end
+
+function KrowiAF_SummaryFrameMixin:Update(event)
+    UpdateAchievements(self, event);
+    UpdateCategories(self, event);
 end
 
 function KrowiAF_SummaryFrameMixin:UpdateAchievementsOnNextShow()
     updateAchievementsOnNextShow = true;
     if self:IsShown() then
-        self:UpdateAchievements();
+        UpdateAchievements(self);
     end
 end

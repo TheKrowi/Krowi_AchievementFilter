@@ -16,12 +16,6 @@ function KrowiAF_AchievementFrameFilterButtonMixin:OnHide()
     end
 end
 
-function KrowiAF_AchievementFrameFilterButtonMixin:UpdateAchievementFrame()
-    KrowiAF_CategoriesFrame:Update(true);
-    KrowiAF_AchievementsFrame:ForceUpdate(); -- Issue #27: Fix
-    KrowiAF_SummaryFrame:Update();
-end
-
 local function StateIsUndecided(keys)
     local numChecked, numUnchecked = 0, 0;
     for t, _ in next, addon.Tabs do
@@ -32,19 +26,6 @@ local function StateIsUndecided(keys)
         end
     end
     return numChecked > 0 and numUnchecked > 0;
-end
-
-local function ValueIsUndecided(keys)
-    local values = {};
-    local counter = 0;
-    for t, _ in next, addon.Tabs do
-        local value = addon.Util.ReadNestedKeys(addon.Tabs[t].Filters, keys);
-        if values[value] == nil then
-            values[value] = true;
-            counter = counter + 1;
-        end
-    end
-    return counter > 1;
 end
 
 local function SetSelected(filters, keys, value, checkTabs, refresh)
@@ -66,7 +47,13 @@ local function SetSelected(filters, keys, value, checkTabs, refresh)
     end
 end
 
-function KrowiAF_AchievementFrameFilterButtonMixin:AddCheckBox(_menu, text, filters, keys, checkTabs, ignoreAsMenuSelection)
+local function UpdateAchievementFrame()
+    KrowiAF_CategoriesFrame:Update(true);
+    KrowiAF_AchievementsFrame:ForceUpdate(); -- Issue #27: Fix
+    KrowiAF_SummaryFrame:Update();
+end
+
+local function AddCheckBox(_menu, text, filters, keys, checkTabs, ignoreAsMenuSelection)
     if filters == addon.Filters.db.profile and StateIsUndecided(keys) then
         text = text .. " (*)";
     end
@@ -77,7 +64,7 @@ function KrowiAF_AchievementFrameFilterButtonMixin:AddCheckBox(_menu, text, filt
         end,
         Func = function()
             SetSelected(filters, keys, not addon.Util.ReadNestedKeys(filters, keys), checkTabs, true);
-            self:UpdateAchievementFrame();
+            UpdateAchievementFrame();
         end,
         IsNotRadio = true,
         NotCheckable = false,
@@ -86,7 +73,7 @@ function KrowiAF_AchievementFrameFilterButtonMixin:AddCheckBox(_menu, text, filt
     });
 end
 
-function KrowiAF_AchievementFrameFilterButtonMixin:AddRadioButton(parentMenu, _menu, text, filters, keys, checkTabs)
+local function AddRadioButton(parentMenu, _menu, text, filters, keys, checkTabs)
     _menu:AddFull({
         Text = text,
         Checked = function()
@@ -102,18 +89,31 @@ function KrowiAF_AchievementFrameFilterButtonMixin:AddRadioButton(parentMenu, _m
     });
 end
 
-function KrowiAF_AchievementFrameFilterButtonMixin:AddAchievementFilters(_menu, childMenu, filters)
+local function ValueIsUndecided(keys)
+    local values = {};
+    local counter = 0;
+    for t, _ in next, addon.Tabs do
+        local value = addon.Util.ReadNestedKeys(addon.Tabs[t].Filters, keys);
+        if values[value] == nil then
+            values[value] = true;
+            counter = counter + 1;
+        end
+    end
+    return counter > 1;
+end
+
+local function AddAchievementFilters(_menu, childMenu, filters)
     local tmpMenu = childMenu or _menu;
 
-    self:AddCheckBox(tmpMenu, addon.L["Completed"], filters, {"Completion", "Completed"}, true);
-    self:AddCheckBox(tmpMenu, addon.L["Not Completed"], filters, {"Completion", "NotCompleted"}, true);
-    self:AddCheckBox(tmpMenu, addon.L["Obtainable"], filters, {"Obtainability", "Obtainable"}, true);
-    self:AddCheckBox(tmpMenu, addon.L["Not Obtainable"], filters, {"Obtainability", "NotObtainable"}, true);
+    AddCheckBox(tmpMenu, addon.L["Completed"], filters, {"Completion", "Completed"}, true);
+    AddCheckBox(tmpMenu, addon.L["Not Completed"], filters, {"Completion", "NotCompleted"}, true);
+    AddCheckBox(tmpMenu, addon.L["Obtainable"], filters, {"Obtainability", "Obtainable"}, true);
+    AddCheckBox(tmpMenu, addon.L["Not Obtainable"], filters, {"Obtainability", "NotObtainable"}, true);
 
     local faction = addon.Objects.MenuItem:New(addon.L["Faction"]);
-    self:AddCheckBox(faction, addon.L["Neutral"], filters, {"Faction", "Neutral"}, true);
-    self:AddCheckBox(faction, addon.L["Alliance"], filters, {"Faction", "Alliance"}, true);
-    self:AddCheckBox(faction, addon.L["Horde"], filters, {"Faction", "Horde"}, true);
+    AddCheckBox(faction, addon.L["Neutral"], filters, {"Faction", "Neutral"}, true);
+    AddCheckBox(faction, addon.L["Alliance"], filters, {"Faction", "Alliance"}, true);
+    AddCheckBox(faction, addon.L["Horde"], filters, {"Faction", "Horde"}, true);
     faction:AddSeparator();
     faction:AddFull({
         Text = addon.L["Select All"],
@@ -121,20 +121,20 @@ function KrowiAF_AchievementFrameFilterButtonMixin:AddAchievementFilters(_menu, 
             for _faction, _ in next, filters.Faction do
                 SetSelected(filters, {"Faction", _faction}, true, true, true);
             end
-            self:UpdateAchievementFrame();
+            UpdateAchievementFrame();
         end
     });
     tmpMenu:Add(faction);
 
-    self:AddCheckBox(tmpMenu, addon.L["Realm First!"], filters, {"Special", "RealmFirst"}, true);
-    self:AddCheckBox(tmpMenu, addon.GetCategoryInfoTitle(81), filters, {"Special", "FeatsOfStrength"}, true);
-    self:AddCheckBox(tmpMenu, addon.GetCategoryInfoTitle(95), filters, {"Special", "PvP"}, true);
-    self:AddCheckBox(tmpMenu, addon.L["Collapse Chain"], filters, {"CollapseSeries"}, true);
+    AddCheckBox(tmpMenu, addon.L["Realm First!"], filters, {"Special", "RealmFirst"}, true);
+    AddCheckBox(tmpMenu, addon.GetCategoryInfoTitle(81), filters, {"Special", "FeatsOfStrength"}, true);
+    AddCheckBox(tmpMenu, addon.GetCategoryInfoTitle(95), filters, {"Special", "PvP"}, true);
+    AddCheckBox(tmpMenu, addon.L["Collapse Chain"], filters, {"CollapseSeries"}, true);
     if addon.Options.db.profile.Categories.TrackingAchievements.DoLoad then
-        self:AddCheckBox(tmpMenu, addon.L["Tracking"], filters, {"Tracking"}, true);
+        AddCheckBox(tmpMenu, addon.L["Tracking"], filters, {"Tracking"}, true);
     end
-    self:AddCheckBox(tmpMenu, addon.L["Excluded"], filters, {"Excluded"}, true);
-    self:AddCheckBox(tmpMenu, addon.L["Always Show Completed"], filters, {"Completion", "AlwaysShowCompleted"}, true);
+    AddCheckBox(tmpMenu, addon.L["Excluded"], filters, {"Excluded"}, true);
+    AddCheckBox(tmpMenu, addon.L["Always Show Completed"], filters, {"Completion", "AlwaysShowCompleted"}, true);
 
     tmpMenu:AddSeparator();
 
@@ -143,13 +143,13 @@ function KrowiAF_AchievementFrameFilterButtonMixin:AddAchievementFilters(_menu, 
         text = text .. " (*)";
     end
     local sortBy = addon.Objects.MenuItem:New(text);
-    self:AddRadioButton(_menu, sortBy, addon.L["Default"], filters, {"SortBy", "Criteria"}, true);
-    self:AddRadioButton(_menu, sortBy, addon.L["Name"], filters, {"SortBy", "Criteria"}, true);
-    self:AddRadioButton(_menu, sortBy, addon.L["Completion"], filters, {"SortBy", "Criteria"}, true);
-    self:AddRadioButton(_menu, sortBy, addon.L["ID"], filters, {"SortBy", "Criteria"}, true);
-    self:AddRadioButton(_menu, sortBy, addon.L["Points"], filters, {"SortBy", "Criteria"}, true);
+    AddRadioButton(_menu, sortBy, addon.L["Default"], filters, {"SortBy", "Criteria"}, true);
+    AddRadioButton(_menu, sortBy, addon.L["Name"], filters, {"SortBy", "Criteria"}, true);
+    AddRadioButton(_menu, sortBy, addon.L["Completion"], filters, {"SortBy", "Criteria"}, true);
+    AddRadioButton(_menu, sortBy, addon.L["ID"], filters, {"SortBy", "Criteria"}, true);
+    AddRadioButton(_menu, sortBy, addon.L["Points"], filters, {"SortBy", "Criteria"}, true);
     sortBy:AddSeparator();
-    self:AddCheckBox(sortBy, addon.L["Reverse Sort"], filters, {"SortBy", "ReverseSort"}, true, true);
+    AddCheckBox(sortBy, addon.L["Reverse Sort"], filters, {"SortBy", "ReverseSort"}, true, true);
     tmpMenu:Add(sortBy);
 
     if childMenu then
@@ -168,18 +168,18 @@ function KrowiAF_AchievementFrameFilterButtonMixin:OnMouseDown()
     -- Category Filters
     menu:AddTitle(addon.L["Categories"]);
 
-    self:AddCheckBox(menu, addon.L["Merge Small Categories"], addon.Filters.db.profile, {"MergeSmallCategories"});
+    AddCheckBox(menu, addon.L["Merge Small Categories"], addon.Filters.db.profile, {"MergeSmallCategories"});
 
     menu:AddSeparator();
 
     -- Achievement Filters
     menu:AddTitle(addon.L["Achievements"]);
 
-    self:AddAchievementFilters(menu, nil, addon.Filters.db.profile);
+    AddAchievementFilters(menu, nil, addon.Filters.db.profile);
     local earnedBy = addon.Objects.MenuItem:New(addon.L["Earned By"]);
-    self:AddRadioButton(menu, earnedBy, addon.Filters.Account, addon.Filters.db.profile, {"EarnedBy"}, false);
-    self:AddRadioButton(menu, earnedBy, addon.Filters.CharacterAccount, addon.Filters.db.profile, {"EarnedBy"}, false);
-    self:AddRadioButton(menu, earnedBy, addon.Filters.CharacterOnly, addon.Filters.db.profile, {"EarnedBy"}, false);
+    AddRadioButton(menu, earnedBy, addon.Filters.Account, addon.Filters.db.profile, {"EarnedBy"}, false);
+    AddRadioButton(menu, earnedBy, addon.Filters.CharacterAccount, addon.Filters.db.profile, {"EarnedBy"}, false);
+    AddRadioButton(menu, earnedBy, addon.Filters.CharacterOnly, addon.Filters.db.profile, {"EarnedBy"}, false);
     menu:Add(earnedBy);
 
     menu:AddSeparator();
@@ -188,16 +188,16 @@ function KrowiAF_AchievementFrameFilterButtonMixin:OnMouseDown()
     menu:AddTitle(addon.L["Tabs"]);
 
     for _, t in next, addon.TabsOrder do
-        self:AddAchievementFilters(menu, addon.Objects.MenuItem:New(addon.Tabs[t].Text), addon.Tabs[t].Filters);
+        AddAchievementFilters(menu, addon.Objects.MenuItem:New(addon.Tabs[t].Text), addon.Tabs[t].Filters);
     end
     menu:AddSeparator();
 
     -- Special Categories Filters
     menu:AddTitle(addon.L["Special Categories"]);
 
-    self:AddAchievementFilters(menu, addon.Objects.MenuItem:New(addon.L["Current Zone"]), addon.Filters.db.profile.CurrentZone);
-    self:AddAchievementFilters(menu, addon.Objects.MenuItem:New(addon.L["Selected Zone"]), addon.Filters.db.profile.SelectedZone);
-    self:AddAchievementFilters(menu, addon.Objects.MenuItem:New(addon.L["Tracking Achievements"]), addon.Filters.db.profile.TrackingAchievements);
+    AddAchievementFilters(menu, addon.Objects.MenuItem:New(addon.L["Current Zone"]), addon.Filters.db.profile.CurrentZone);
+    AddAchievementFilters(menu, addon.Objects.MenuItem:New(addon.L["Selected Zone"]), addon.Filters.db.profile.SelectedZone);
+    AddAchievementFilters(menu, addon.Objects.MenuItem:New(addon.L["Tracking Achievements"]), addon.Filters.db.profile.TrackingAchievements);
 
     menu:AddSeparator();
 
@@ -227,7 +227,7 @@ function KrowiAF_AchievementFrameFilterButtonMixin:OnMouseDown()
 
     if addon.Options.db.profile.ShowPlaceholdersFilter then
         menu:AddSeparator();
-        self:AddCheckBox(menu, addon.L["Show placeholders"], addon.Filters.db, {"ShowPlaceholders"});
+        AddCheckBox(menu, addon.L["Show placeholders"], addon.Filters.db, {"ShowPlaceholders"});
     end
 
 	menu:Toggle(self, 96, 15);

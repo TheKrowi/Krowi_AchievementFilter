@@ -2,7 +2,7 @@ local _, addon = ...;
 
 KrowiAF_SearchOptionsMenuButtonMixin = {};
 
-function KrowiAF_SearchOptionsMenuButtonMixin:AddCheckBox(_menu, text, options, keys, ignoreAsMenuSelection)
+local function AddCheckBox(_menu, text, options, keys, ignoreAsMenuSelection)
     _menu:AddFull({
 		Text = text,
 		Checked = function() -- Using function here, we force the Gui to get the value again instead of only once (caused visual bugs)
@@ -37,11 +37,11 @@ function KrowiAF_SearchOptionsMenuButtonMixin:OnMouseDown()
 	});
 
 	local profile = addon.SearchOptions.db.profile;
-	self:AddCheckBox(menu, addon.L["Search IDs"] .. " (#)", profile, {"SearchIds"});
-	self:AddCheckBox(menu, addon.L["Search Names"], profile, {"SearchNames"});
-	self:AddCheckBox(menu, addon.L["Search Descriptions"], profile, {"SearchDescriptions"});
-	self:AddCheckBox(menu, addon.L["Search Criteria"] .. " (@)", profile, {"SearchCriteria"});
-	self:AddCheckBox(menu, addon.L["Search Rewards"], profile, {"SearchRewards"});
+	AddCheckBox(menu, addon.L["Search IDs"] .. " (#)", profile, {"SearchIds"});
+	AddCheckBox(menu, addon.L["Search Names"], profile, {"SearchNames"});
+	AddCheckBox(menu, addon.L["Search Descriptions"], profile, {"SearchDescriptions"});
+	AddCheckBox(menu, addon.L["Search Criteria"] .. " (@)", profile, {"SearchCriteria"});
+	AddCheckBox(menu, addon.L["Search Rewards"], profile, {"SearchRewards"});
 
 	menu:Toggle(self);
 end

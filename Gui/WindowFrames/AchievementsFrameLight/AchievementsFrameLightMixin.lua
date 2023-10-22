@@ -54,7 +54,7 @@ local function HideEmptyText(self)
     end
 end
 
-function KrowiAF_AchievementsFrameLightMixin:UpdateDataProvider(achievementIds)
+local function UpdateDataProvider(self, achievementIds)
 	local newDataProvider = CreateDataProvider();
 	for _, achievementId in next, achievementIds do
 		newDataProvider:Insert(addon.Data.Achievements[achievementId]);
@@ -71,5 +71,5 @@ function KrowiAF_AchievementsFrameLightMixin:Update(achievementIds, _refreshAchi
     end
 
     refreshAchievements = _refreshAchievements;
-    self:UpdateDataProvider(achievementIds);
+    UpdateDataProvider(self, achievementIds);
 end
