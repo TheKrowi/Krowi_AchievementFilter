@@ -1216,8 +1216,8 @@ end
 local function ReskinGw2Ui()
     hooksecurefunc(addon.Gui, "ToggleAchievementFrame", function()
         if addon.Gui.SelectedTab then
-            addon.Gui.SetAchievementFrameWidth();
-            addon.Gui.SetAchievementFrameHeight();
+            addon.Gui:SetAchievementFrameWidth();
+            addon.Gui:SetAchievementFrameHeight();
         end
     end);
 

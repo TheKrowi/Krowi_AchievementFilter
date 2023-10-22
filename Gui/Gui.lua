@@ -13,6 +13,65 @@ function gui:LoadWithAddon()
     self.FloatingAchievementTooltip:Load();
 end
 
+local function ResetAchievementWindowPosition()
+    KrowiAF_SavedData.RememberLastPosition = KrowiAF_SavedData.RememberLastPosition or {};
+    KrowiAF_SavedData.RememberLastPosition["AchievementWindow"] = {
+        X = 96,
+        Y = -116
+    };
+	addon.Gui:SetFrameToLastPosition(AchievementFrame, "AchievementWindow");
+end
+
+local function AddDataToBlizzardTabs()
+    KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Achievements", AchievementFrameTab1, function()
+        AchievementFrameTab_OnClick(1);
+    end);
+    if not addon.IsWrathClassic then
+        KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Guild", AchievementFrameTab2, function()
+            AchievementFrameTab_OnClick(2);
+        end);
+    end
+    KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Statistics", addon.IsWrathClassic and AchievementFrameTab2 or AchievementFrameTab3, function()
+        AchievementFrameTab_OnClick(addon.IsWrathClassic and 2 or 3);
+    end);
+end
+
+local function LoadOldAchievementFrameTabsCompatibility()
+    if not addon.Util.IsWrathClassic then
+        return;
+    end
+
+    for _, t in next, addon.TabsOrder do
+        addon.Tabs[t].Button.Text = addon.Tabs[t].Button.text;
+    end
+end
+
+local function SetCloseButtonOnKeyDown(self)
+    self:RegisterSafeCloseButtonDuringCombat(AchievementFrameCloseButton);
+    AchievementFrameCloseButton:SetScript("OnKeyDown", self.HandleCloseButtonOnKeyDown);
+end
+
+gui.SubFrames = {};
+local function ShowSubFrame(self, ...)
+    local show;
+	for _, subFrame in ipairs(self.SubFrames) do
+		show = false;
+		for i = 1, select("#", ...) do
+			if subFrame == select(i, ...) then
+				show = true;
+				break;
+			end
+		end
+		subFrame:SetShown(show);
+	end
+end
+
+local function HookShowSubFrame(self)
+    hooksecurefunc("AchievementFrame_ShowSubFrame", function(...)
+        ShowSubFrame(self, ...);
+    end);
+end
+
 local defaultAchievementFrameWidth;
 local defaultAchievementFrameHeight;
 local defaultAchievementFrameMetalBorderHeight;
@@ -20,7 +79,7 @@ function gui:LoadWithBlizzard_AchievementUI()
     defaultAchievementFrameWidth = AchievementFrame:GetWidth();
     defaultAchievementFrameHeight = AchievementFrame:GetHeight();
     defaultAchievementFrameMetalBorderHeight = AchievementFrameMetalBorderLeft:GetHeight();
-    self.SetAchievementFrameHeight(); -- Do this in order to create the correct amount of buttons based on our settings
+    self:SetAchievementFrameHeight(); -- Do this in order to create the correct amount of buttons based on our settings
 
     self.AchievementFrameHeader:Load();
     self.AchievementsObjectives:Load();
@@ -35,10 +94,10 @@ function gui:LoadWithBlizzard_AchievementUI()
     self.Search:Load();
     self.Calendar:Load();
     self.DataManager:Load();
-    AchievementFrame.ResetPosition = self.ResetAchievementWindowPosition;
+    AchievementFrame.ResetPosition = ResetAchievementWindowPosition;
 	self:SetFrameToLastPosition(AchievementFrame, "AchievementWindow");
 
-    self.AddDataToBlizzardTabs();
+    AddDataToBlizzardTabs();
 
     local media = "Interface/AddOns/Krowi_AchievementFilter/Media/";
     local waterMarks = {
@@ -52,51 +111,37 @@ function gui:LoadWithBlizzard_AchievementUI()
         addon.Tabs[t].Button = self.AchievementFrameTabButtonFactory:GetNew(t, addon.Tabs[t].Text, {KrowiAF_AchievementFrameFilterButton, KrowiAF_SearchBoxFrame, KrowiAF_CategoriesFrame}, addon.Tabs[t].Categories, addon.Tabs[t].Filters, waterMarks[i]);
         KrowiAF_RegisterTabButton(addonName, addon.Tabs[t].Name, addon.Tabs[t].Button);
     end
-    self.LoadOldAchievementFrameTabsCompatibility();
+    LoadOldAchievementFrameTabsCompatibility();
 
-    self.ResetAchievementFrameHeight();
+    self:ResetAchievementFrameHeight();
 
-    self:SetCloseButtonOnKeyDown();
-    self:HookShowSubFrame();
+    SetCloseButtonOnKeyDown(self);
+    HookShowSubFrame(self);
 end
 
-function gui.SetAchievementFrameWidth()
+function gui:SetAchievementFrameWidth()
     AchievementFrame:SetWidth(defaultAchievementFrameWidth + addon.Options.db.profile.Window.CategoriesFrameWidthOffset);
     KrowiAF_CategoriesFrame:SetRightPoint();
 end
 
-function gui.ResetAchievementFrameWidth()
+function gui:ResetAchievementFrameWidth()
     AchievementFrame:SetWidth(defaultAchievementFrameWidth);
 end
 
-function gui.SetAchievementFrameHeight()
+function gui:SetAchievementFrameHeight()
     local offset = addon.Options.db.profile.Window.AchievementFrameHeightOffset;
     AchievementFrame:SetHeight(defaultAchievementFrameHeight + offset);
     AchievementFrameMetalBorderLeft:SetHeight(defaultAchievementFrameMetalBorderHeight + offset);
     AchievementFrameMetalBorderRight:SetHeight(defaultAchievementFrameMetalBorderHeight + offset);
 end
 
-function gui.ResetAchievementFrameHeight()
+function gui:ResetAchievementFrameHeight()
     AchievementFrame:SetHeight(defaultAchievementFrameHeight);
     AchievementFrameMetalBorderLeft:SetHeight(defaultAchievementFrameMetalBorderHeight);
     AchievementFrameMetalBorderRight:SetHeight(defaultAchievementFrameMetalBorderHeight);
 end
 
-function gui.AddDataToBlizzardTabs()
-    KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Achievements", AchievementFrameTab1, function()
-        AchievementFrameTab_OnClick(1);
-    end);
-    if not addon.IsWrathClassic then
-        KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Guild", AchievementFrameTab2, function()
-            AchievementFrameTab_OnClick(2);
-        end);
-    end
-    KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Statistics", addon.IsWrathClassic and AchievementFrameTab2 or AchievementFrameTab3, function()
-        AchievementFrameTab_OnClick(addon.IsWrathClassic and 2 or 3);
-    end);
-end
-
-function gui.PrepareTabsOrder()
+function gui:PrepareTabsOrder()
     KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Achievements", addon.L["Blizzard"], addon.L["Achievements"], "TOGGLEACHIEVEMENT", false);
     if not addon.IsWrathClassic then
         KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Guild", addon.L["Blizzard"], addon.L["Guild"], nil, true);
@@ -106,55 +151,15 @@ function gui.PrepareTabsOrder()
     KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Statistics", addon.L["Blizzard"], addon.L["Statistics"], "TOGGLESTATISTICS", true);
 end
 
-function gui.LoadOldAchievementFrameTabsCompatibility()
-    if not addon.Util.IsWrathClassic then
-        return;
+local function SelectTab(self, _addonName, tabName)
+    local button = self.Tabs[_addonName][tabName];
+    if button then
+        if button.Select then
+            button:Select(); -- Addon tabs
+        else
+            button:Click(); -- Other tabs
+        end
     end
-
-    for _, t in next, addon.TabsOrder do
-        addon.Tabs[t].Button.Text = addon.Tabs[t].Button.text;
-    end
-end
-
-function gui:SetCloseButtonOnKeyDown()
-    self:RegisterSafeCloseButtonDuringCombat(AchievementFrameCloseButton);
-    AchievementFrameCloseButton:SetScript("OnKeyDown", self.HandleCloseButtonOnKeyDown);
-end
-
-gui.SubFrames = {};
-function gui:ShowSubFrame(...)
-    local show;
-	for _, subFrame in ipairs(self.SubFrames) do
-		show = false;
-		for i = 1, select("#", ...) do
-			if subFrame == select(i, ...) then
-				show = true;
-				break;
-			end
-		end
-		subFrame:SetShown(show);
-	end
-end
-
-function gui:HookShowSubFrame()
-    hooksecurefunc("AchievementFrame_ShowSubFrame", function(...)
-        self:ShowSubFrame(...);
-    end);
-end
-
-function gui.ResetAchievementWindowPosition()
-    KrowiAF_SavedData.RememberLastPosition = KrowiAF_SavedData.RememberLastPosition or {};
-    KrowiAF_SavedData.RememberLastPosition["AchievementWindow"] = {
-        X = 96,
-        Y = -116
-    };
-	addon.Gui:SetFrameToLastPosition(AchievementFrame, "AchievementWindow");
-end
-
-
--- [[ Other ]] --
-function gui.GetSafeScrollChildBottom(scrollChild)
-	return scrollChild:GetBottom() or 0;
 end
 
 local resetViewLock;
@@ -174,17 +179,6 @@ local function ResetView()
     end
 
     resetViewLock = nil;
-end
-
-function gui:SelectTab(_addonName, tabName)
-    local button = self.Tabs[_addonName][tabName];
-    if button then
-        if button.Select then
-            button:Select(); -- Addon tabs
-        else
-            button:Click(); -- Other tabs
-        end
-    end
 end
 
 local firstTimeLatch = true;
@@ -214,7 +208,7 @@ function gui:ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
         AchievementFrame_HideSearchPreview();
     end
     if firstTimeLatch or not (not addon.Options.db.profile.ResetViewOnOpen and addon.Options.db.profile.ToggleWindow) or resetView or forceOpen then
-        self:SelectTab(_addonName, tabName);
+        SelectTab(self, _addonName, tabName);
     end
     if addon.Options.db.profile.ResetViewOnOpen or resetView then
         ResetView();
@@ -271,7 +265,7 @@ function gui:ShowHideTabs(_addonName, tabName)
     self:UpdateTabsLayout(tabsOrder);
 end
 
-function gui.ShowStatusBarTooltip(frame, anchor, extraText)
+function gui.ShowStatusBarTooltip(frame, anchor, extraText) -- . instead of : because it needs to work for the frame
 	GameTooltip:SetOwner(frame, anchor or "ANCHOR_NONE");
     if anchor == nil then
 	    GameTooltip:SetPoint("TOPLEFT", frame, "TOPRIGHT", -3, -3);
@@ -423,7 +417,7 @@ function gui:RegisterSafeCloseButtonDuringCombat(frame, extraHideCondition)
     end);
 end
 
-function gui.HandleCloseButtonOnKeyDown(frame, key)
+function gui.HandleCloseButtonOnKeyDown(frame, key) -- . instead of : because it needs to work for the frame
     if key == GetBindingKey("TOGGLEGAMEMENU") then
         local parent = frame:GetParent();
         local extraHideCondition = true;

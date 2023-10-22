@@ -294,7 +294,10 @@ local function MovableAchievementWindowRememberLastPositionSet(_, value)
     if addon.Options.db.profile.Window.RememberLastPosition.AchievementWindow == value then return; end
     addon.Options.db.profile.Window.RememberLastPosition.AchievementWindow = value;
     if not addon.Options.db.profile.Window.RememberLastPosition.AchievementWindow then
-        addon.Gui.ResetAchievementWindowPosition();
+        if not IsAddOnLoaded("Blizzard_AchievementUI") then
+            LoadAddOn("Blizzard_AchievementUI");
+        end
+        AchievementFrame:ResetPosition();
     end
 end
 
@@ -302,6 +305,9 @@ local function MovableCalendarRememberLastPositionSet(_, value)
     if addon.Options.db.profile.Window.RememberLastPosition.Calendar == value then return; end
     addon.Options.db.profile.Window.RememberLastPosition.Calendar = value;
     if not addon.Options.db.profile.Window.RememberLastPosition.Calendar then
+        if not IsAddOnLoaded("Blizzard_AchievementUI") then
+            LoadAddOn("Blizzard_AchievementUI");
+        end
         KrowiAF_AchievementCalendarFrame:ResetPosition();
     end
 end
@@ -310,6 +316,9 @@ local function MovableDataManagerRememberLastPositionSet(_, value)
     if addon.Options.db.profile.Window.RememberLastPosition.DataManager == value then return; end
     addon.Options.db.profile.Window.RememberLastPosition.DataManager = value;
     if not addon.Options.db.profile.Window.RememberLastPosition.DataManager then
+        if not IsAddOnLoaded("Blizzard_AchievementUI") then
+            LoadAddOn("Blizzard_AchievementUI");
+        end
         KrowiAF_DataManagerFrame:ResetPosition();
     end
 end
@@ -318,7 +327,7 @@ local function OffsetsCategoriesFrameWidthSet(_, value)
     if addon.Options.db.profile.Window.CategoriesFrameWidthOffset == value then return; end
     addon.Options.db.profile.Window.CategoriesFrameWidthOffset = value;
     if addon.Gui.SelectedTab then
-        addon.Gui.SetAchievementFrameWidth();
+        addon.Gui:SetAchievementFrameWidth();
     end
 end
 
@@ -334,7 +343,7 @@ local function OffsetsAchievementFrameHeightSet(_, value)
     addon.Options.db.profile.Window.AchievementFrameHeightOffset = value;
     SetMaxNumberOfSearchPreviews();
     if addon.Gui.SelectedTab then
-        addon.Gui.SetAchievementFrameHeight();
+        addon.Gui:SetAchievementFrameHeight();
     end
 end
 
@@ -449,7 +458,12 @@ options.OptionsTable.args["Layout"] = {
                             order = OrderPP(), type = "execute", width = AdjustedWidth(),
                             name = addon.L["Reset position"],
                             desc = addon.L["Reset position Desc"]:K_ReplaceVars(addon.L["Achievement Window"]),
-                            func = function() addon.Gui.ResetAchievementWindowPosition(); end
+                            func = function()
+                                if not IsAddOnLoaded("Blizzard_AchievementUI") then
+                                    LoadAddOn("Blizzard_AchievementUI");
+                                end
+                                AchievementFrame:ResetPosition();
+                            end
                         },
                         CalendarRememberLastPosition = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(2),
@@ -462,7 +476,12 @@ options.OptionsTable.args["Layout"] = {
                             order = OrderPP(), type = "execute", width = AdjustedWidth(),
                             name = addon.L["Reset position"],
                             desc = addon.L["Reset position Desc"]:K_ReplaceVars(addon.L["Achievement Calendar"]),
-                            func = function() KrowiAF_AchievementCalendarFrame:ResetPosition(); end
+                            func = function()
+                                if not IsAddOnLoaded("Blizzard_AchievementUI") then
+                                    LoadAddOn("Blizzard_AchievementUI");
+                                end
+                                KrowiAF_AchievementCalendarFrame:ResetPosition();
+                            end
                         },
                         DataManagerRememberLastPosition = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(2),
@@ -475,7 +494,12 @@ options.OptionsTable.args["Layout"] = {
                             order = OrderPP(), type = "execute", width = AdjustedWidth(),
                             name = addon.L["Reset position"],
                             desc = addon.L["Reset position Desc"]:K_ReplaceVars(addon.L["Data Manager"]),
-                            func = function() KrowiAF_DataManagerFrame:ResetPosition(); end
+                            func = function()
+                                if not IsAddOnLoaded("Blizzard_AchievementUI") then
+                                    LoadAddOn("Blizzard_AchievementUI");
+                                end
+                                KrowiAF_DataManagerFrame:ResetPosition();
+                            end
                         }
                     }
                 },

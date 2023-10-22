@@ -47,7 +47,7 @@ local function LoadKrowi_AchievementFilter()
         addon.Data.ExportedWorldEvents.InjectDynamicOptions();
     end
 
-    addon.Gui.PrepareTabsOrder();
+    addon.Gui:PrepareTabsOrder();
     addon.Tabs.InjectDynamicOptions();
     addon.Gui.AchievementFrameHeader:InjectDynamicOptions();
     addon.Filters:InjectDefaults();

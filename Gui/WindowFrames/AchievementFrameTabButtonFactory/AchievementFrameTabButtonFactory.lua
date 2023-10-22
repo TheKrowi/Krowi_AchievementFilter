@@ -88,11 +88,11 @@ function achievementFrameTabButtonFactory:AchievementFrame_UpdateTabs(clickedTab
     local gui = addon.Gui;
     local ourTabClicked = ourTabs[clickedTabId] ~= nil;
     if ourTabClicked then -- One of our tabs was clicked
-        gui.SetAchievementFrameWidth();
-        gui.SetAchievementFrameHeight();
+        gui:SetAchievementFrameWidth();
+        gui:SetAchievementFrameHeight();
     else -- Not one of our tabs was clicked and size is not yet reset
-        gui.ResetAchievementFrameWidth();
-        gui.ResetAchievementFrameHeight();
+        gui:ResetAchievementFrameWidth();
+        gui:ResetAchievementFrameHeight();
         gui.SelectedTab = nil;
     end
 
