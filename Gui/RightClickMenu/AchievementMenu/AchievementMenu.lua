@@ -83,7 +83,7 @@ local function AddMore(achievement)
 	rightClickMenu:Add(more);
 end
 
-function achievementMenu:Open(achievement, anchor, offsetX, offsetY)
+function achievementMenu:Open(achievement, anchor, offsetX, offsetY, point, relativePoint, frameStrata, frameLevel)
 	-- Reset menu
 	rightClickMenu:Clear();
 
@@ -106,7 +106,7 @@ function achievementMenu:Open(achievement, anchor, offsetX, offsetY)
 
 	AddMore(achievement);
 
-	rightClickMenu:Open(anchor, offsetX, offsetY);
+	rightClickMenu:Open(anchor, offsetX, offsetY, point, relativePoint, frameStrata, frameLevel);
 end
 
 function achievementMenu:GetLastSection()

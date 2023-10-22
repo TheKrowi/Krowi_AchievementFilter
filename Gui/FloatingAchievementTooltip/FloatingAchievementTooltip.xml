@@ -43,6 +43,7 @@
         </Frames>
         <Scripts>
             <OnLoad method="OnLoad"/>
+            <OnMouseUp method="OnMouseUp"/>
             <OnDragStart method="OnDragStart"/>
             <OnDragStop method="OnDragStop"/>
         </Scripts>

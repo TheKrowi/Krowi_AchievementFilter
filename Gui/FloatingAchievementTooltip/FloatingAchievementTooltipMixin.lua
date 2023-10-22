@@ -38,6 +38,20 @@ function KrowiAF_FloatingAchievementTooltipMixin:OnLoad()
 	self:RegisterForDrag("LeftButton");
 end
 
+function KrowiAF_FloatingAchievementTooltipMixin:OnMouseUp(button)
+	if button ~= "RightButton" then
+		return;
+	end
+
+	local info = self:GetPrimaryTooltipInfo();
+	local id = info and info.tooltipData and info.tooltipData.id;
+	if not id then
+		return;
+	end
+
+	addon.Gui.RightClickMenu.AchievementMenu:Open(addon.Data.Achievements[id], nil, nil, nil, nil, nil, "TOOLTIP");
+end
+
 function KrowiAF_FloatingAchievementTooltipMixin:OnDragStart()
 	self:StartMoving();
 end

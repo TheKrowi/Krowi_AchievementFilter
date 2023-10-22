@@ -483,7 +483,8 @@
         "InCombatLockdown",
         "KrowiAF_AchievementFrameHeaderButton",
         "KrowiAF_AchievementFrameFilterButton",
-        "GetTime"
+        "GetTime",
+        "UIDropDownMenu_SetFrameStrata"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
