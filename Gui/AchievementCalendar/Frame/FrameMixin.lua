@@ -122,11 +122,126 @@ KrowiAF_AchievementCalendarFrameMixin = {
 	MaxDaysPerMonth = 42 -- 6 weeks
 };
 
+local function SetHighlightedDay(self, dayButton, overRuleLock)
+	if self.SelectedDayButton and not overRuleLock then -- Acts as a lock to keep the side frame open when a day is selected
+		return;
+	end
+	self.HighlightedDayButton = dayButton;
+	self.HighlightedDay = dayButton and dayButton.Day;
+	self.HighlightedMonth = dayButton and dayButton.Month;
+	self.HighlightedYear = dayButton and dayButton.Year;
+	self.HighlightedAchievements = dayButton and dayButton.Achievements;
+	self.HighlightedPoints = dayButton and dayButton.Points;
+	if not self.HighlightedAchievements then
+		self.SideFrame:Hide();
+		return;
+	end
+	if not self.SideFrame:IsShown() then
+		self.SideFrame:Show();
+		return;
+	end
+	self.SideFrame:Update();
+end
+
+local function HandlePrevSelectedDay(prevSelectedDayButton, dayButton, keepSelected)
+	if prevSelectedDayButton and prevSelectedDayButton ~= dayButton and not keepSelected then
+		prevSelectedDayButton:Deselect();
+	end
+end
+
+local function GetDayOfWeek(index)
+	return mod(index - 1, 7) + 1;
+end
+
+local function SelectDay(self, dayButton, keepSelected, forceReloadAchievements)
+	self.SelectedDayButton = dayButton;
+	self.SelectedDay = dayButton.Day;
+	self.SelectedMonth = dayButton.Month;
+	self.SelectedYear = dayButton.Year;
+	local weekdayBackground = self.WeekDayBackgrounds[GetDayOfWeek(dayButton:GetID())];
+	local weekdaySelectedTexture = self.WeekdaySelectedTexture;
+	weekdaySelectedTexture:ClearAllPoints();
+	weekdaySelectedTexture:SetPoint("CENTER", weekdayBackground, "CENTER");
+	weekdaySelectedTexture:Show();
+	SetHighlightedDay(self, dayButton, not keepSelected or forceReloadAchievements);
+end
+
+local function DeselectDay(self)
+	self.SelectedDayButton = nil;
+	self.SelectedDay = nil;
+	self.SelectedMonth = nil;
+	self.SelectedYear = nil;
+	self.WeekdaySelectedTexture:Hide();
+	if self.SideFrame:IsShown() then
+		self.SideFrame:Hide();
+	end
+end
+
+local function HandleDayButtonSelection(self, dayButton, keepSelected, forceReloadAchievements)
+	HandlePrevSelectedDay(self.SelectedDayButton, dayButton, keepSelected);
+
+	if dayButton.IsSelected or keepSelected then
+		SelectDay(self, dayButton, keepSelected, forceReloadAchievements);
+		return;
+	end
+
+	DeselectDay(self);
+end
+
+local function LoadDayButton(self, buttonIndex)
+	self.DayButtons[buttonIndex] = CreateFrame("Button", self:GetName() .. "DayButton" .. buttonIndex, self, "KrowiAF_AchievementCalendarDayButton_Template");
+	local buttons = self.DayButtons;
+	local button = buttons[buttonIndex];
+	button:SetID(buttonIndex);
+
+	button:HookScript("OnEnter", function(selfFunc)
+		SetHighlightedDay(self, selfFunc);
+	end);
+	button:HookScript("OnLeave", function()
+		SetHighlightedDay(self);
+	end);
+	button:HookScript("OnClick", function(selfFunc)
+		HandleDayButtonSelection(self, selfFunc);
+	end);
+
+	button:ClearAllPoints();
+	if buttonIndex == 1 then -- First button
+		button:SetPoint("TOPLEFT", self.WeekDayBackgrounds[1], "BOTTOMLEFT", 0, 0);
+		return;
+	end
+	if mod(buttonIndex, 7) == 1 then -- First button on next row
+		button:SetPoint("TOPLEFT", buttons[buttonIndex - 7], "BOTTOMLEFT", 0, 0);
+		return;
+	end
+	button:SetPoint("TOPLEFT", buttons[buttonIndex - 1], "TOPRIGHT", 0, 0);
+end
+
+local function LoadDayButtons(self)
+	self.DayButtons = {};
+
+	for i = 1, self.MaxDaysPerMonth do
+		LoadDayButton(self, i);
+	end
+end
+
+local function LoadSideFrame(self)
+	self.SideFrame = CreateFrame("Frame", self:GetName() .. "SideFrame", self, "KrowiAF_AchievementCalendarSideFrame_Template");
+	local sideFrame = self.SideFrame;
+	sideFrame:SetPoint("TOPLEFT", self, "TOPRIGHT", 0, -24);
+    sideFrame:SetPoint("BOTTOM", self, "BOTTOM", 0, 0); --320
+	sideFrame:HookScript("OnHide", function()
+		if self.SelectedDayButton and not self.LockMonth then
+			self.SelectedDayButton:Deselect();
+			HandleDayButtonSelection(self, self.SelectedDayButton);
+		end
+	end);
+end
+
 function KrowiAF_AchievementCalendarFrameMixin:OnLoad()
 	C_CalendarResetAbsMonth();
 
-	self:LoadDayButtons();
-	self:LoadSideFrame();
+	LoadDayButtons(self);
+	LoadSideFrame(self);
 
 	self.selectedMonth = nil;
 	self.selectedDay = nil;
@@ -177,55 +292,6 @@ function KrowiAF_AchievementCalendarFrameMixin:OnMouseWheel(value)
 	end
 end
 
-function KrowiAF_AchievementCalendarFrameMixin:LoadDayButton(buttonIndex)
-	self.DayButtons[buttonIndex] = CreateFrame("Button", self:GetName() .. "DayButton" .. buttonIndex, self, "KrowiAF_AchievementCalendarDayButton_Template");
-	local buttons = self.DayButtons;
-	local button = buttons[buttonIndex];
-	button:SetID(buttonIndex);
-
-	button:HookScript("OnEnter", function(selfFunc)
-		self:SetHighlightedDay(selfFunc);
-	end);
-	button:HookScript("OnLeave", function()
-		self:SetHighlightedDay();
-	end);
-	button:HookScript("OnClick", function(selfFunc)
-		self:HandleDayButtonSelection(selfFunc);
-	end);
-
-	button:ClearAllPoints();
-	if buttonIndex == 1 then -- First button
-		button:SetPoint("TOPLEFT", self.WeekDayBackgrounds[1], "BOTTOMLEFT", 0, 0);
-		return;
-	end
-	if mod(buttonIndex, 7) == 1 then -- First button on next row
-		button:SetPoint("TOPLEFT", buttons[buttonIndex - 7], "BOTTOMLEFT", 0, 0);
-		return;
-	end
-	button:SetPoint("TOPLEFT", buttons[buttonIndex - 1], "TOPRIGHT", 0, 0);
-end
-
-function KrowiAF_AchievementCalendarFrameMixin:LoadDayButtons()
-	self.DayButtons = {};
-
-	for i = 1, self.MaxDaysPerMonth do
-		self:LoadDayButton(i);
-	end
-end
-
-function KrowiAF_AchievementCalendarFrameMixin:LoadSideFrame()
-	self.SideFrame = CreateFrame("Frame", self:GetName() .. "SideFrame", self, "KrowiAF_AchievementCalendarSideFrame_Template");
-	local sideFrame = self.SideFrame;
-	sideFrame:SetPoint("TOPLEFT", self, "TOPRIGHT", 0, -24);
-    sideFrame:SetPoint("BOTTOM", self, "BOTTOM", 0, 0); --320
-	sideFrame:HookScript("OnHide", function()
-		if self.SelectedDayButton and not self.LockMonth then
-			self.SelectedDayButton:Deselect();
-			self:HandleDayButtonSelection(self.SelectedDayButton);
-		end
-	end);
-end
-
 function KrowiAF_AchievementCalendarFrameMixin:ResetPosition()
     KrowiAF_SavedData.RememberLastPosition = KrowiAF_SavedData.RememberLastPosition or {};
     KrowiAF_SavedData.RememberLastPosition["Calendar"] = {
@@ -235,12 +301,17 @@ function KrowiAF_AchievementCalendarFrameMixin:ResetPosition()
 	addon.Gui:SetFrameToLastPosition(self, "Calendar");
 end
 
-function KrowiAF_AchievementCalendarFrameMixin:UpdateTitle()
+local function GetMonthInfo(offset)
+	local monthInfo = C_CalendarGetMonthInfo(offset);
+	return monthInfo.year, monthInfo.month, monthInfo.numDays, monthInfo.firstWeekday;
+end
+
+local function UpdateTitle(self)
 	self.MonthName:SetText(monthNames[self.ViewedMonth]);
 	self.YearName:SetText(self.ViewedYear);
 end
 
-function KrowiAF_AchievementCalendarFrameMixin:UpdatePrevMonthButtons()
+local function UpdatePrevMonthButtons(self)
 	local date = C_Calendar.GetMinDate();
 	if self.ViewedYear <= date.year and self.ViewedMonth <= date.month then
 		self.PrevMonthButton:Disable();
@@ -249,7 +320,7 @@ function KrowiAF_AchievementCalendarFrameMixin:UpdatePrevMonthButtons()
 	self.PrevMonthButton:Enable();
 end
 
-function KrowiAF_AchievementCalendarFrameMixin:UpdateNextMonthButtons()
+local function UpdateNextMonthButtons(self)
 	local date = C_Calendar.GetMaxCreateDate();
 	if self.ViewedYear >= date.year and self.ViewedMonth >= date.month then
 		self.NextMonthButton:Disable();
@@ -262,86 +333,20 @@ local function GetWeekdayIndex(index)
 	return mod(index - 2 + addon.Options.db.profile.Calendar.FirstWeekDay, 7) + 1;
 end
 
-function KrowiAF_AchievementCalendarFrameMixin:UpdateWeekDays()
+local function UpdateWeekDays(self)
 	for i = 1, 7 do
 		local weekday = GetWeekdayIndex(i);
 		self.WeekDayNames[i]:SetText(CALENDAR_WEEKDAY_NAMES[weekday]);
 	end
 end
 
-function KrowiAF_AchievementCalendarFrameMixin:HideAttributes()
+local function HideAttributes(self)
 	self.TodayFrame:Hide();
 	self.WeekdaySelectedTexture:Hide();
 	self.LastDayDarkTexture:Hide();
 end
 
-local function HandlePrevSelectedDay(prevSelectedDayButton, dayButton, keepSelected)
-	if prevSelectedDayButton and prevSelectedDayButton ~= dayButton and not keepSelected then
-		prevSelectedDayButton:Deselect();
-	end
-end
-
-local function GetDayOfWeek(index)
-	return mod(index - 1, 7) + 1;
-end
-
-function KrowiAF_AchievementCalendarFrameMixin:SelectDay(dayButton, keepSelected, forceReloadAchievements)
-	self.SelectedDayButton = dayButton;
-	self.SelectedDay = dayButton.Day;
-	self.SelectedMonth = dayButton.Month;
-	self.SelectedYear = dayButton.Year;
-	local weekdayBackground = self.WeekDayBackgrounds[GetDayOfWeek(dayButton:GetID())];
-	local weekdaySelectedTexture = self.WeekdaySelectedTexture;
-	weekdaySelectedTexture:ClearAllPoints();
-	weekdaySelectedTexture:SetPoint("CENTER", weekdayBackground, "CENTER");
-	weekdaySelectedTexture:Show();
-	self:SetHighlightedDay(dayButton, not keepSelected or forceReloadAchievements);
-end
-
-function KrowiAF_AchievementCalendarFrameMixin:DeselectDay()
-	self.SelectedDayButton = nil;
-	self.SelectedDay = nil;
-	self.SelectedMonth = nil;
-	self.SelectedYear = nil;
-	self.WeekdaySelectedTexture:Hide();
-	if self.SideFrame:IsShown() then
-		self.SideFrame:Hide();
-	end
-end
-
-function KrowiAF_AchievementCalendarFrameMixin:HandleDayButtonSelection(dayButton, keepSelected, forceReloadAchievements)
-	HandlePrevSelectedDay(self.SelectedDayButton, dayButton, keepSelected);
-
-	if dayButton.IsSelected or keepSelected then
-		self:SelectDay(dayButton, keepSelected, forceReloadAchievements);
-		return;
-	end
-
-	self:DeselectDay();
-end
-
-function KrowiAF_AchievementCalendarFrameMixin:SetHighlightedDay(dayButton, overRuleLock)
-	if self.SelectedDayButton and not overRuleLock then -- Acts as a lock to keep the side frame open when a day is selected
-		return;
-	end
-	self.HighlightedDayButton = dayButton;
-	self.HighlightedDay = dayButton and dayButton.Day;
-	self.HighlightedMonth = dayButton and dayButton.Month;
-	self.HighlightedYear = dayButton and dayButton.Year;
-	self.HighlightedAchievements = dayButton and dayButton.Achievements;
-	self.HighlightedPoints = dayButton and dayButton.Points;
-	if not self.HighlightedAchievements then
-		self.SideFrame:Hide();
-		return;
-	end
-	if not self.SideFrame:IsShown() then
-		self.SideFrame:Show();
-		return;
-	end
-	self.SideFrame:Update();
-end
-
-function KrowiAF_AchievementCalendarFrameMixin:SetToday(dayButton)
+function KrowiAF_AchievementCalendarFrameMixin:SetToday(dayButton) -- Public for skinning
 	local todayFrame = self.TodayFrame;
 	todayFrame:SetParent(dayButton);
 	todayFrame:ClearAllPoints();
@@ -351,7 +356,7 @@ function KrowiAF_AchievementCalendarFrameMixin:SetToday(dayButton)
 	todayFrame:SetFrameLevel(darkFrame:GetFrameLevel() + 1);
 end
 
-function KrowiAF_AchievementCalendarFrameMixin:UpdateDay(index, day, month, year, isSelected, isToday, darkTopFlags, darkBottomFlags)
+local function UpdateDay(self, index, day, month, year, isSelected, isToday, darkTopFlags, darkBottomFlags)
 	local button = self.DayButtons[index];
 	button:Clear();
 	button:SetDate(year, month, day);
@@ -359,7 +364,7 @@ function KrowiAF_AchievementCalendarFrameMixin:UpdateDay(index, day, month, year
 
 	if isSelected then
 		button:Select();
-		self:HandleDayButtonSelection(button, true);
+		HandleDayButtonSelection(self, button, true);
 	end
 
 	if isToday then
@@ -367,14 +372,7 @@ function KrowiAF_AchievementCalendarFrameMixin:UpdateDay(index, day, month, year
 	end
 end
 
-function KrowiAF_AchievementCalendarFrameMixin:SetLastDay(dayButton)
-	self.LastDayDarkTexture:SetParent(dayButton);
-	self.LastDayDarkTexture:ClearAllPoints();
-	self.LastDayDarkTexture:SetPoint("BOTTOMRIGHT", dayButton, "BOTTOMRIGHT");
-	self.LastDayDarkTexture:Show();
-end
-
-function KrowiAF_AchievementCalendarFrameMixin:GetPrevMonthDarkFlags(firstWeekday, buttonIndex)
+local function GetPrevMonthDarkFlags(firstWeekday, buttonIndex)
 	local darkTopFlags, darkBottomFlags;
 	darkTopFlags = darkFlagPrevMonth + darkFlagSideTop;
 	darkBottomFlags = darkFlagPrevMonth + darkFlagSideBottom;
@@ -387,7 +385,7 @@ function KrowiAF_AchievementCalendarFrameMixin:GetPrevMonthDarkFlags(firstWeekda
 	return darkTopFlags, darkBottomFlags;
 end
 
-function KrowiAF_AchievementCalendarFrameMixin:SetPrevMonthDays(year, month, numDays, firstWeekday, selectedYear, selectedMonth, selectedDay, presentYear, presentMonth, presentDay, buttonIndex)
+local function SetPrevMonthDays(self, year, month, numDays, firstWeekday, selectedYear, selectedMonth, selectedDay, presentYear, presentMonth, presentDay, buttonIndex)
 	local viewablePrevMonthDays = mod(firstWeekday - addon.Options.db.profile.Calendar.FirstWeekDay - 1 + 7, 7);
 	local day = numDays - viewablePrevMonthDays;
 	local isSelectedMonth = selectedMonth == month and selectedYear == year;
@@ -397,8 +395,8 @@ function KrowiAF_AchievementCalendarFrameMixin:SetPrevMonthDays(year, month, num
 	while GetWeekdayIndex(buttonIndex) ~= firstWeekday do
 		isSelectedDay = isSelectedMonth and selectedDay == day;
 		isToday = isThisMonth and presentDay == day;
-		darkTopFlags, darkBottomFlags = self:GetPrevMonthDarkFlags(firstWeekday, buttonIndex);
-		self:UpdateDay(buttonIndex, day, month, year, isSelectedDay, isToday, darkTopFlags, darkBottomFlags);
+		darkTopFlags, darkBottomFlags = GetPrevMonthDarkFlags(firstWeekday, buttonIndex);
+		UpdateDay(self, buttonIndex, day, month, year, isSelectedDay, isToday, darkTopFlags, darkBottomFlags);
 		day = day + 1;
 		buttonIndex = buttonIndex + 1;
 	end
@@ -406,7 +404,14 @@ function KrowiAF_AchievementCalendarFrameMixin:SetPrevMonthDays(year, month, num
 	return buttonIndex;
 end
 
-function KrowiAF_AchievementCalendarFrameMixin:SetMonthDays(year, month, numDays, selectedYear, selectedMonth, selectedDay, presentYear, presentMonth, presentDay, buttonIndex)
+local function SetLastDay(self, dayButton)
+	self.LastDayDarkTexture:SetParent(dayButton);
+	self.LastDayDarkTexture:ClearAllPoints();
+	self.LastDayDarkTexture:SetPoint("BOTTOMRIGHT", dayButton, "BOTTOMRIGHT");
+	self.LastDayDarkTexture:Show();
+end
+
+local function SetMonthDays(self, year, month, numDays, selectedYear, selectedMonth, selectedDay, presentYear, presentMonth, presentDay, buttonIndex)
 	local day = 1;
 	local isSelectedMonth = selectedMonth == month and selectedYear == year;
 	local isThisMonth = presentMonth == month and presentYear == year;
@@ -414,18 +419,18 @@ function KrowiAF_AchievementCalendarFrameMixin:SetMonthDays(year, month, numDays
 	while day <= numDays do
 		isSelectedDay = isSelectedMonth and selectedDay == day;
 		isToday = isThisMonth and presentDay == day;
-		self:UpdateDay(buttonIndex, day, month, year, isSelectedDay, isToday);
+		UpdateDay(self, buttonIndex, day, month, year, isSelectedDay, isToday);
 		day = day + 1;
 		buttonIndex = buttonIndex + 1;
 	end
 	if buttonIndex < 36 and mod(buttonIndex - 1, 7) ~= 0 then
-		self:SetLastDay(self.DayButtons[buttonIndex - 1]);
+		SetLastDay(self, self.DayButtons[buttonIndex - 1]);
 	end
 
 	return buttonIndex;
 end
 
-function KrowiAF_AchievementCalendarFrameMixin:GetNextMonthDarkFlags(day, buttonIndex, checkCorners)
+local function GetNextMonthDarkFlags(self, day, buttonIndex, checkCorners)
 	local darkTopFlags, darkBottomFlags;
 	darkTopFlags = darkFlagNextMonth;
 	darkBottomFlags = darkFlagNextMonth;
@@ -457,7 +462,7 @@ function KrowiAF_AchievementCalendarFrameMixin:GetNextMonthDarkFlags(day, button
 	return darkTopFlags, darkBottomFlags;
 end
 
-function KrowiAF_AchievementCalendarFrameMixin:SetNextMonthDays(year, month, selectedYear, selectedMonth, selectedDay, presentYear, presentMonth, presentDay, buttonIndex)
+local function SetNextMonthDays(self, year, month, selectedYear, selectedMonth, selectedDay, presentYear, presentMonth, presentDay, buttonIndex)
 	local day = 1;
 	local isSelectedMonth = selectedMonth == month and selectedYear == year;
 	local isThisMonth = presentMonth == month and presentYear == year;
@@ -467,16 +472,41 @@ function KrowiAF_AchievementCalendarFrameMixin:SetNextMonthDays(year, month, sel
 	while buttonIndex <= self.MaxDaysPerMonth do
 		isSelectedDay = isSelectedMonth and selectedDay == day;
 		isToday = isThisMonth and presentDay == day;
-		darkTopFlags, darkBottomFlags = self:GetNextMonthDarkFlags(day, buttonIndex, checkCorners);
-		self:UpdateDay(buttonIndex, day, month, year, isSelectedDay, isToday, darkTopFlags, darkBottomFlags);
+		darkTopFlags, darkBottomFlags = GetNextMonthDarkFlags(self, day, buttonIndex, checkCorners);
+		UpdateDay(self, buttonIndex, day, month, year, isSelectedDay, isToday, darkTopFlags, darkBottomFlags);
 		day = day + 1;
 		buttonIndex = buttonIndex + 1;
 	end
 end
 
-local function GetMonthInfo(offset)
-	local monthInfo = C_CalendarGetMonthInfo(offset);
-	return monthInfo.year, monthInfo.month, monthInfo.numDays, monthInfo.firstWeekday;
+local function GetEarnedAchievementsInRange(self)
+    local firstDate = self.DayButtons[1]:GetSecondsSince();
+    local lastDate = self.DayButtons[self.MaxDaysPerMonth]:GetSecondsSince();
+	return addon.Data.SavedData.AchievementData.GetEarnedByCharacterWithinDateRange(UnitGUID("player"), firstDate, lastDate);
+end
+
+local function SetAchievementsAndPoints(self, numAchievements, points)
+	self.MonthAchievementsAndPoints:SetText(tostring(numAchievements) .. " " .. addon.L["Achievements"] .. " (" .. tostring(points) .. " " .. addon.L["Points"] .. ")");
+end
+
+local function AddAchievementsToDays(self)
+    local achievements = GetEarnedAchievementsInRange(self);
+    local firstDate = self.DayButtons[1]:GetSecondsSince();
+	self.NumAchievements, self.TotalPoints = 0, 0;
+	local points, icon;
+	local date, dayButtonIndex, dayButton;
+    for _, achievement in next, achievements do
+        _, _, points, _, _, _, _, _, _, icon = addon.GetAchievementInfo(achievement.Id);
+        date = achievement.Date;
+        dayButtonIndex = floor((date - firstDate) / 86400 + 1); -- 86400 seconds in a day, floor to take changes in DST which would result in x.xx
+		dayButton = self.DayButtons[dayButtonIndex];
+        dayButton:AddAchievement(achievement.Id, icon, points);
+		if not dayButton.Dark then
+			self.NumAchievements = self.NumAchievements + 1;
+			self.TotalPoints = self.TotalPoints + points;
+		end
+    end
+	SetAchievementsAndPoints(self, self.NumAchievements, self.TotalPoints);
 end
 
 function KrowiAF_AchievementCalendarFrameMixin:Update()
@@ -496,46 +526,16 @@ function KrowiAF_AchievementCalendarFrameMixin:Update()
 	local selectedMonth = self.SelectedMonth;
 	local selectedYear = self.SelectedYear;
 
-	self:UpdateTitle();
-	self:UpdatePrevMonthButtons();
-	self:UpdateNextMonthButtons();
-	self:UpdateWeekDays();
-	self:HideAttributes();
+	UpdateTitle(self);
+	UpdatePrevMonthButtons(self);
+	UpdateNextMonthButtons(self);
+	UpdateWeekDays(self);
+	HideAttributes(self);
 
 	local buttonIndex = 1;
-	buttonIndex = self:SetPrevMonthDays(prevYear, prevMonth, prevNumDays, firstWeekday, selectedYear, selectedMonth, selectedDay, presentYear, presentMonth, presentDay, buttonIndex);
-	buttonIndex = self:SetMonthDays(year, month, numDays, selectedYear, selectedMonth, selectedDay, presentYear, presentMonth, presentDay, buttonIndex);
-	self:SetNextMonthDays(nextYear, nextMonth, selectedYear, selectedMonth, selectedDay, presentYear, presentMonth, presentDay, buttonIndex);
+	buttonIndex = SetPrevMonthDays(self, prevYear, prevMonth, prevNumDays, firstWeekday, selectedYear, selectedMonth, selectedDay, presentYear, presentMonth, presentDay, buttonIndex);
+	buttonIndex = SetMonthDays(self, year, month, numDays, selectedYear, selectedMonth, selectedDay, presentYear, presentMonth, presentDay, buttonIndex);
+	SetNextMonthDays(self, nextYear, nextMonth, selectedYear, selectedMonth, selectedDay, presentYear, presentMonth, presentDay, buttonIndex);
 
-    self:AddAchievementsToDays();
-end
-
-function KrowiAF_AchievementCalendarFrameMixin:GetEarnedAchievementsInRange()
-    local firstDate = self.DayButtons[1]:GetSecondsSince();
-    local lastDate = self.DayButtons[self.MaxDaysPerMonth]:GetSecondsSince();
-	return addon.Data.SavedData.AchievementData.GetEarnedByCharacterWithinDateRange(UnitGUID("player"), firstDate, lastDate);
-end
-
-function KrowiAF_AchievementCalendarFrameMixin:SetAchievementsAndPoints(numAchievements, points)
-	self.MonthAchievementsAndPoints:SetText(tostring(numAchievements) .. " " .. addon.L["Achievements"] .. " (" .. tostring(points) .. " " .. addon.L["Points"] .. ")");
-end
-
-function KrowiAF_AchievementCalendarFrameMixin:AddAchievementsToDays()
-    local achievements = self:GetEarnedAchievementsInRange();
-    local firstDate = self.DayButtons[1]:GetSecondsSince();
-	self.NumAchievements, self.TotalPoints = 0, 0;
-	local points, icon;
-	local date, dayButtonIndex, dayButton;
-    for _, achievement in next, achievements do
-        _, _, points, _, _, _, _, _, _, icon = addon.GetAchievementInfo(achievement.Id);
-        date = achievement.Date;
-        dayButtonIndex = floor((date - firstDate) / 86400 + 1); -- 86400 seconds in a day, floor to take changes in DST which would result in x.xx
-		dayButton = self.DayButtons[dayButtonIndex];
-        dayButton:AddAchievement(achievement.Id, icon, points);
-		if not dayButton.Dark then
-			self.NumAchievements = self.NumAchievements + 1;
-			self.TotalPoints = self.TotalPoints + points;
-		end
-    end
-	self:SetAchievementsAndPoints(self.NumAchievements, self.TotalPoints);
+    AddAchievementsToDays(self);
 end
