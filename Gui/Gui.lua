@@ -10,7 +10,7 @@ function gui:LoadWithAddon()
     self.WorldMapButton:Load();
     self.EventReminderAlertSystem:Load();
     eventReminderSideButtonSystemIsLoaded = self.EventReminderSideButtonSystem:Load();
-    self.FloatingAchievementTooltip.Load();
+    self.FloatingAchievementTooltip:Load();
 end
 
 local defaultAchievementFrameWidth;
