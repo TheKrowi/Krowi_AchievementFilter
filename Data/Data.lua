@@ -9,8 +9,7 @@ data.TasksGroups = {};
 data.TransmogSets = {};
 
 data.BuildVersions = {};
-data.BuildVersionIds = {};
-data.BuildVersionGroups = {};
+data.BuildVersionsGrouped = {};
 
 data.Achievements = {};
 data.AchievementIds = {};
