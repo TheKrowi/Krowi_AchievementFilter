@@ -484,7 +484,9 @@
         "KrowiAF_AchievementFrameHeaderButton",
         "KrowiAF_AchievementFrameFilterButton",
         "GetTime",
-        "UIDropDownMenu_SetFrameStrata"
+        "UIDropDownMenu_SetFrameStrata",
+        "UIDropDownMenu_RefreshAll",
+        "UIDROPDOWNMENU_OPEN_MENU"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

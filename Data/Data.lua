@@ -10,6 +10,7 @@ data.TransmogSets = {};
 
 data.BuildVersions = {};
 data.BuildVersionIds = {};
+data.BuildVersionGroups = {};
 
 data.Achievements = {};
 data.AchievementIds = {};

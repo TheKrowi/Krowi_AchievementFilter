@@ -28,16 +28,15 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-22 18-18-18 ]] --
+-- [[ Exported at 2023-10-23 19-34-22 ]] --
 tasks = {
     {N, 202, "10.1.7", "100107"},
     {N, 201, "10.1.5", "100105"},
     {N, 200, "10.1.0", "100100"},
     {N, 199, "10.0.7", "100007"},
     {N, 198, "10.0.5", "100005"},
-    {N, 196, "10.0.0", "100000"},
     {N, 195, "10.0.2", "100002"},
-    {N, 194, "3.4.0", "030400"},
+    {N, 196, "10.0.0", "100000"},
     {N, 193, "9.2.7", "090207"},
     {N, 192, "9.2.5", "090205"},
     {N, 191, "9.2.0", "090200"},
@@ -77,6 +76,7 @@ tasks = {
     {N, 112, "4.0.6", "040006"},
     {N, 110, "4.0.3", "040003"},
     {N, 108, "4.0.1", "040001"},
+    {N, 194, "3.4.0", "030400"},
     {N, 106, "3.3.5", "030305"},
     {N, 104, "3.3.3", "030303"},
     {N, 86, "3.0.2", "030002"},
@@ -133,4 +133,382 @@ function exportedBuildVersions:InjectDynamicFilters(filters, buildVersionIds)
     self:InjectDynamicFilter(filters, buildVersionIds, 200);
     self:InjectDynamicFilter(filters, buildVersionIds, 201);
     self:InjectDynamicFilter(filters, buildVersionIds, 202);
+
+    return {
+        { -- 3
+            Major = 3,
+            Minors = {
+                { -- 0
+                    Minor = 0,
+                    Patches = {
+                        { -- 2
+                            Patch = 2,
+                            BuildVersionId = 86
+                        },
+                    }
+                },
+                { -- 3
+                    Minor = 3,
+                    Patches = {
+                        { -- 3
+                            Patch = 3,
+                            BuildVersionId = 104
+                        },
+                        { -- 5
+                            Patch = 5,
+                            BuildVersionId = 106
+                        },
+                    }
+                },
+                { -- 4
+                    Minor = 4,
+                    Patches = {
+                        { -- 0
+                            Patch = 0,
+                            BuildVersionId = 194
+                        },
+                    },
+                },
+            },
+        },
+        { -- 4
+            Major = 4,
+            Minors = {
+                { -- 0
+                    Minor = 0,
+                    Patches = {
+                        { -- 1
+                            Patch = 1,
+                            BuildVersionId = 108
+                        },
+                        { -- 3
+                            Patch = 3,
+                            BuildVersionId = 110
+                        },
+                        { -- 6
+                            Patch = 6,
+                            BuildVersionId = 112
+                        },
+                    }
+                },
+                { -- 1
+                    Minor = 1,
+                    Patches = {
+                        { -- 0
+                            Patch = 0,
+                            BuildVersionId = 114
+                        },
+                    }
+                },
+                { -- 2
+                    Minor = 2,
+                    Patches = {
+                        { -- 0
+                            Patch = 0,
+                            BuildVersionId = 116
+                        },
+                        { -- 2
+                            Patch = 2,
+                            BuildVersionId = 118
+                        },
+                    }
+                },
+                { -- 3
+                    Minor = 3,
+                    Patches = {
+                        { -- 0
+                            Patch = 0,
+                            BuildVersionId = 119
+                        },
+                        { -- 2
+                            Patch = 2,
+                            BuildVersionId = 121
+                        },
+                    },
+                },
+            },
+        },
+        { -- 5
+            Major = 5,
+            Minors = {
+                { -- 0
+                    Minor = 0,
+                    Patches = {
+                        { -- 4
+                            Patch = 4,
+                            BuildVersionId = 124
+                        },
+                    }
+                },
+                { -- 1
+                    Minor = 1,
+                    Patches = {
+                        { -- 0
+                            Patch = 0,
+                            BuildVersionId = 128
+                        },
+                    }
+                },
+                { -- 2
+                    Minor = 2,
+                    Patches = {
+                        { -- 0
+                            Patch = 0,
+                            BuildVersionId = 130
+                        },
+                    }
+                },
+                { -- 3
+                    Minor = 3,
+                    Patches = {
+                        { -- 0
+                            Patch = 0,
+                            BuildVersionId = 141
+                        },
+                    }
+                },
+                { -- 4
+                    Minor = 4,
+                    Patches = {
+                        { -- 0
+                            Patch = 0,
+                            BuildVersionId = 148
+                        },
+                        { -- 1
+                            Patch = 1,
+                            BuildVersionId = 151
+                        },
+                        { -- 2
+                            Patch = 2,
+                            BuildVersionId = 152
+                        },
+                    },
+                },
+            },
+        },
+        { -- 6
+            Major = 6,
+            Minors = {
+                { -- 0
+                    Minor = 0,
+                    Patches = {
+                        { -- 2
+                            Patch = 2,
+                            BuildVersionId = 159
+                        },
+                    }
+                },
+                { -- 1
+                    Minor = 1,
+                    Patches = {
+                        { -- 0
+                            Patch = 0,
+                            BuildVersionId = 163
+                        },
+                    }
+                },
+                { -- 2
+                    Minor = 2,
+                    Patches = {
+                        { -- 0
+                            Patch = 0,
+                            BuildVersionId = 165
+                        },
+                        { -- 2
+                            Patch = 2,
+                            BuildVersionId = 167
+                        },
+                    },
+                },
+            },
+        },
+        { -- 7
+            Major = 7,
+            Minors = {
+                { -- 0
+                    Minor = 0,
+                    Patches = {
+                        { -- 3
+                            Patch = 3,
+                            BuildVersionId = 171
+                        },
+                    }
+                },
+                { -- 2
+                    Minor = 2,
+                    Patches = {
+                        { -- 0
+                            Patch = 0,
+                            BuildVersionId = 174
+                        },
+                        { -- 5
+                            Patch = 5,
+                            BuildVersionId = 175
+                        },
+                    }
+                },
+                { -- 3
+                    Minor = 3,
+                    Patches = {
+                        { -- 0
+                            Patch = 0,
+                            BuildVersionId = 176
+                        },
+                        { -- 2
+                            Patch = 2,
+                            BuildVersionId = 177
+                        },
+                        { -- 5
+                            Patch = 5,
+                            BuildVersionId = 178
+                        },
+                    },
+                },
+            },
+        },
+        { -- 8
+            Major = 8,
+            Minors = {
+                { -- 0
+                    Minor = 0,
+                    Patches = {
+                        { -- 1
+                            Patch = 1,
+                            BuildVersionId = 179
+                        },
+                    }
+                },
+                { -- 1
+                    Minor = 1,
+                    Patches = {
+                        { -- 0
+                            Patch = 0,
+                            BuildVersionId = 180
+                        },
+                        { -- 5
+                            Patch = 5,
+                            BuildVersionId = 181
+                        },
+                    }
+                },
+                { -- 2
+                    Minor = 2,
+                    Patches = {
+                        { -- 0
+                            Patch = 0,
+                            BuildVersionId = 182
+                        },
+                        { -- 5
+                            Patch = 5,
+                            BuildVersionId = 183
+                        },
+                    }
+                },
+                { -- 3
+                    Minor = 3,
+                    Patches = {
+                        { -- 0
+                            Patch = 0,
+                            BuildVersionId = 184
+                        },
+                    },
+                },
+            },
+        },
+        { -- 9
+            Major = 9,
+            Minors = {
+                { -- 0
+                    Minor = 0,
+                    Patches = {
+                        { -- 1
+                            Patch = 1,
+                            BuildVersionId = 186
+                        },
+                        { -- 2
+                            Patch = 2,
+                            BuildVersionId = 187
+                        },
+                        { -- 5
+                            Patch = 5,
+                            BuildVersionId = 188
+                        },
+                    }
+                },
+                { -- 1
+                    Minor = 1,
+                    Patches = {
+                        { -- 0
+                            Patch = 0,
+                            BuildVersionId = 189
+                        },
+                        { -- 5
+                            Patch = 5,
+                            BuildVersionId = 190
+                        },
+                    }
+                },
+                { -- 2
+                    Minor = 2,
+                    Patches = {
+                        { -- 0
+                            Patch = 0,
+                            BuildVersionId = 191
+                        },
+                        { -- 5
+                            Patch = 5,
+                            BuildVersionId = 192
+                        },
+                        { -- 7
+                            Patch = 7,
+                            BuildVersionId = 193
+                        },
+                    },
+                },
+            },
+        },
+        { -- 10
+            Major = 10,
+            Minors = {
+                { -- 0
+                    Minor = 0,
+                    Patches = {
+                        { -- 0
+                            Patch = 0,
+                            BuildVersionId = 196
+                        },
+                        { -- 2
+                            Patch = 2,
+                            BuildVersionId = 195
+                        },
+                        { -- 5
+                            Patch = 5,
+                            BuildVersionId = 198
+                        },
+                        { -- 7
+                            Patch = 7,
+                            BuildVersionId = 199
+                        },
+                    }
+                },
+                { -- 1
+                    Minor = 1,
+                    Patches = {
+                        { -- 0
+                            Patch = 0,
+                            BuildVersionId = 200
+                        },
+                        { -- 5
+                            Patch = 5,
+                            BuildVersionId = 201
+                        },
+                        { -- 7
+                            Patch = 7,
+                            BuildVersionId = 202
+                        },
+                    },
+                },
+            },
+        },
+    };
 end

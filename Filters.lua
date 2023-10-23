@@ -67,7 +67,8 @@ local function InjectTabDefaults()
 end
 
 function filters:InjectDefaults()
-    addon.Data.ExportedBuildVersions:InjectDynamicFilters(defaultAchievements.BuildVersion, addon.Data.BuildVersionIds);
+    addon.Data.BuildVersionGroups = addon.Data.ExportedBuildVersions:InjectDynamicFilters(defaultAchievements.BuildVersion, addon.Data.BuildVersionIds);
+    KAF_BVG = addon.Data.BuildVersionGroups;
     InjectAchievementDefaults();
     InjectCategoryDefaults();
     InjectTabDefaults();

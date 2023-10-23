@@ -110,30 +110,96 @@ local function AddAchievementFilters(_menu, childMenu, filters)
     AddCheckBox(tmpMenu, addon.L["Obtainable"], filters, {"Obtainability", "Obtainable"}, true);
     AddCheckBox(tmpMenu, addon.L["Not Obtainable"], filters, {"Obtainability", "NotObtainable"}, true);
 
+    -- local version = addon.Objects.MenuItem:New(addon.L["Version"]);
+    -- for _, buildVersionId in next, addon.Data.BuildVersionIds do
+    --     local buildVersion = addon.Data.BuildVersions[buildVersionId];
+    --     AddCheckBox(version, buildVersion.Name, filters, {"BuildVersion", buildVersion.Id}, true);
+    -- end
+    -- version:AddSeparator();
+    -- version:AddFull({
+    --     Text = addon.L["Select All"],
+    --     Func = function()
+    --         for buildVersion, _ in next, filters.BuildVersion do
+    --             SetSelected(filters, {"BuildVersion", buildVersion}, true, true, true);
+    --         end
+    --         UIDropDownMenu_RefreshAll(UIDROPDOWNMENU_OPEN_MENU);
+    --         UpdateAchievementFrame();
+    --     end,
+    --     KeepShownOnClick = true
+    -- });
+    -- version:AddFull({
+    --     Text = addon.L["Deselect All"],
+    --     Func = function()
+    --         for buildVersion, _ in next, filters.BuildVersion do
+    --             SetSelected(filters, {"BuildVersion", buildVersion}, false, true, true);
+    --         end
+    --         UIDropDownMenu_RefreshAll(UIDROPDOWNMENU_OPEN_MENU);
+    --         UpdateAchievementFrame();
+    --     end,
+    --     KeepShownOnClick = true
+    -- });
+    -- tmpMenu:Add(version);
+
     local version = addon.Objects.MenuItem:New(addon.L["Version"]);
-    for _, buildVersionId in next, addon.Data.BuildVersionIds do
-        local buildVersion = addon.Data.BuildVersions[buildVersionId];
-        AddCheckBox(version, buildVersion.Name, filters, {"BuildVersion", buildVersion.Id}, true);
+    for _, major in next, addon.Data.BuildVersionGroups do
+        local majorGroup = version:AddFull({
+            Text = major.Major .. ".x",
+            Checked = function()
+                local isChecked = true;
+                for _, minor in next, major.Minors do
+                    for _, patch in next, minor.Patches do
+                        isChecked = isChecked and addon.Util.ReadNestedKeys(filters, {"BuildVersion", patch.BuildVersionId});
+                    end
+                end
+                return isChecked;
+            end,
+            Func = function(self)
+                local checked = self.checked;
+                if type(checked) == "function" then
+                    checked = checked(self);
+                end
+                for _, minor in next, major.Minors do
+                    for _, patch in next, minor.Patches do
+                        SetSelected(filters, {"BuildVersion", patch.BuildVersionId}, not checked, true, true);
+                    end
+                end
+                UIDropDownMenu_RefreshAll(UIDROPDOWNMENU_OPEN_MENU);
+                UpdateAchievementFrame();
+            end,
+            IsNotRadio = true,
+            NotCheckable = false,
+            KeepShownOnClick = true
+        });
+        for _, minor in next, major.Minors do
+            local minorGroup = majorGroup:AddFull({
+                Text = major.Major .. "." .. minor.Minor .. ".x",
+                Checked = function()
+                    local isChecked = true;
+                    for _, patch in next, minor.Patches do
+                        isChecked = isChecked and addon.Util.ReadNestedKeys(filters, {"BuildVersion", patch.BuildVersionId});
+                    end
+                    return isChecked;
+                end,
+                Func = function(self)
+                    local checked = self.checked;
+                    if type(checked) == "function" then
+                        checked = checked(self);
+                    end
+                    for _, patch in next, minor.Patches do
+                        SetSelected(filters, {"BuildVersion", patch.BuildVersionId}, not checked, true, true);
+                    end
+                    UIDropDownMenu_RefreshAll(UIDROPDOWNMENU_OPEN_MENU);
+                    UpdateAchievementFrame();
+                end,
+                IsNotRadio = true,
+                NotCheckable = false,
+                KeepShownOnClick = true
+            });
+            for _, patch in next, minor.Patches do
+                AddCheckBox(minorGroup, major.Major .. "." .. minor.Minor .. "." .. patch.Patch, filters, {"BuildVersion", patch.BuildVersionId}, true);
+            end
+        end
     end
-    version:AddSeparator();
-    version:AddFull({
-        Text = addon.L["Select All"],
-        Func = function()
-            for buildVersion, _ in next, filters.BuildVersion do
-                SetSelected(filters, {"BuildVersion", buildVersion}, true, true, true);
-            end
-            UpdateAchievementFrame();
-        end
-    });
-    version:AddFull({
-        Text = addon.L["Deselect All"],
-        Func = function()
-            for buildVersion, _ in next, filters.BuildVersion do
-                SetSelected(filters, {"BuildVersion", buildVersion}, false, true, true);
-            end
-            UpdateAchievementFrame();
-        end
-    });
     tmpMenu:Add(version);
 
     local faction = addon.Objects.MenuItem:New(addon.L["Faction"]);
@@ -147,6 +213,7 @@ local function AddAchievementFilters(_menu, childMenu, filters)
             for _faction, _ in next, filters.Faction do
                 SetSelected(filters, {"Faction", _faction}, true, true, true);
             end
+            UIDropDownMenu_RefreshAll(UIDROPDOWNMENU_OPEN_MENU);
             UpdateAchievementFrame();
         end
     });
