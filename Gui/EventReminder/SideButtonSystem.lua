@@ -14,6 +14,7 @@ local sideButtons = {};
 local function GetNewSideButton(index)
     local template = "KrowiAF_EventReminderSideButton_" .. (addon.Options.db.profile.EventReminders.Compact and "Small" or "Normal") .. "_Template";
     local sideButton = CreateFrame("Button", "KrowiAF_AchievementFrameSideButton" .. index, nil, template);
+    sideButton:Reset();
     return sideButton;
 end
 

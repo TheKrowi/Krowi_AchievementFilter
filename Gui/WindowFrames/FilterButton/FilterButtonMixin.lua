@@ -64,6 +64,7 @@ local function AddCheckBox(_menu, text, filters, keys, checkTabs, ignoreAsMenuSe
         end,
         Func = function()
             SetSelected(filters, keys, not addon.Util.ReadNestedKeys(filters, keys), checkTabs, true);
+            UIDropDownMenu_RefreshAll(UIDROPDOWNMENU_OPEN_MENU);
             UpdateAchievementFrame();
         end,
         IsNotRadio = true,
@@ -106,7 +107,7 @@ local function AddBuildVersionFilter(_menu, filters)
     local version = addon.Objects.MenuItem:New(addon.L["Version"]);
     for _, major in next, addon.Data.BuildVersionsGrouped do
         local majorGroup = version:AddFull({
-            Text = major.Major .. ".x",
+            Text = major.Major .. ".x.x",
             Checked = function()
                 local isChecked = true;
                 for _, minor in next, major.Minors do
@@ -167,6 +168,37 @@ local function AddBuildVersionFilter(_menu, filters)
             end
         end
     end
+    version:AddSeparator();
+    version:AddFull({
+        Text = addon.L["Select All"],
+        Func = function()
+            for _, major in next, addon.Data.BuildVersionsGrouped do
+                for _, minor in next, major.Minors do
+                    for _, patch in next, minor.Patches do
+                        SetSelected(filters, {"BuildVersion", patch.BuildVersionId}, true, true, true);
+                    end
+                end
+            end
+            UIDropDownMenu_RefreshAll(UIDROPDOWNMENU_OPEN_MENU);
+            UpdateAchievementFrame();
+        end,
+        KeepShownOnClick = true
+    });
+    version:AddFull({
+        Text = addon.L["Deselect All"],
+        Func = function()
+            for _, major in next, addon.Data.BuildVersionsGrouped do
+                for _, minor in next, major.Minors do
+                    for _, patch in next, minor.Patches do
+                        SetSelected(filters, {"BuildVersion", patch.BuildVersionId}, false, true, true);
+                    end
+                end
+            end
+            UIDropDownMenu_RefreshAll(UIDROPDOWNMENU_OPEN_MENU);
+            UpdateAchievementFrame();
+        end,
+        KeepShownOnClick = true
+    });
     _menu:Add(version);
 end
 
@@ -190,6 +222,16 @@ local function AddAchievementFilters(_menu, childMenu, filters)
         Func = function()
             for _faction, _ in next, filters.Faction do
                 SetSelected(filters, {"Faction", _faction}, true, true, true);
+            end
+            UIDropDownMenu_RefreshAll(UIDROPDOWNMENU_OPEN_MENU);
+            UpdateAchievementFrame();
+        end
+    });
+    faction:AddFull({
+        Text = addon.L["Deselect All"],
+        Func = function()
+            for _faction, _ in next, filters.Faction do
+                SetSelected(filters, {"Faction", _faction}, false, true, true);
             end
             UIDropDownMenu_RefreshAll(UIDROPDOWNMENU_OPEN_MENU);
             UpdateAchievementFrame();

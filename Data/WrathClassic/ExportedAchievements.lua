@@ -40,7 +40,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-19 18-56-41 ]] --
+-- [[ Exported at 2023-10-24 20-39-23 ]] --
 tasks = {
     {N, 19440, 204, f.Horde}, -- Defense Protocol Gamma: Terminated
     {N, 19439, 204, f.Alliance}, -- Defense Protocol Gamma: Terminated
@@ -731,7 +731,7 @@ tasks = {
     {N, 1788, 194}, -- Bad Example
     {N, 1786, 194}, -- School of Hard Knocks
     {N, 1785, 194}, -- Dinner Impossible
-    {N, 1784, 194, f.Horde}, -- Hail to the Chef
+    {N, 1784, 194, f.Horde, 1563}, -- Hail to the Chef
     {N, 1783, 194, f.Horde, 1782}, -- Our Daily Bread
     {N, 1782, 194, f.Alliance, 1783}, -- Our Daily Bread
     {N, 1781, 194}, -- Critter Gitter
@@ -804,7 +804,7 @@ tasks = {
     {N, 1636, 194}, -- Competitor's Tabard
     {N, 1596, 194}, -- Guru of Drakuru
     {N, 1576, 194}, -- Of Blood and Anguish
-    {N, 1563, 194, f.Alliance}, -- Hail to the Chef
+    {N, 1563, 194, f.Alliance, 1784}, -- Hail to the Chef
     {N, 1561, 194}, -- 1000 Fish
     {N, 1560, 194}, -- 500 Fish
     {N, 1559, 194}, -- 250 Fish

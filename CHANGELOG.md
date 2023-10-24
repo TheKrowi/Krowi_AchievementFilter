@@ -10,15 +10,18 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Tons of back end changes
 - Moved The Horseman's Reins achievement to Events - Holidays - Hallow's End
-- Forge and Befuddle now has a faction linked to it
 
 ### Fixed
 - Whenever the tooltip refreshes when mousing over achievements with transmog data is loaded, all lines will remember their color
 - When mousing over categories, the progress bar should now fill properly
 - When in combat, closing the windows by pressing Escape (button to toggle the game menu) should no longer result in errors
+- Forge and Befuddle now has a faction linked to it
+- Linked Forge and Befuddle
 
 ### Wrath Classic
 - Bumped version
+- Translations should once again be in the correct language
+- Linked Hail to the Chef
 
 ## 64.1 - 2023-10-05
 ### Added

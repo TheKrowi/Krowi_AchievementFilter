@@ -40,7 +40,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-19 18-56-13 ]] --
+-- [[ Exported at 2023-10-24 20-39-15 ]] --
 tasks = {
     {N, 19192, 202}, -- Lil' Frostwing
     {N, 19107, 202}, -- Outland Racing Completionist: Gold
@@ -116,8 +116,8 @@ tasks = {
     {N, 18865, 202}, -- Anvil Mastery III
     {N, 18864, 202}, -- Anvil Mastery II
     {N, 18862, 202}, -- Anvil Mastery I
-    {N, 18859, 202, f.Alliance}, -- Forge and Befuddle
-    {N, 18858, 202, f.Horde}, -- Forge and Befuddle
+    {N, 18859, 202, f.Alliance, 18858}, -- Forge and Befuddle
+    {N, 18858, 202, f.Horde, 18859}, -- Forge and Befuddle
     {N, 18857, 202}, -- That's No Ordinary Gas Cloud!
     {N, 18856, 202}, -- Just an Ordinary Gas Cloud
     {N, 18855, 202}, -- Portal to Everywhere
