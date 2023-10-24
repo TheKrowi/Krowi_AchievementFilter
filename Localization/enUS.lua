@@ -1,6 +1,5 @@
 local addonName, addon = ...;
 local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true, true);
-
 addon.L = L;
 
 addon.Plugins:LoadLocalization(L);
