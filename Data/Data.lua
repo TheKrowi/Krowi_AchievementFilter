@@ -7,7 +7,9 @@ local data = addon.Data;
 data.TasksGroups = {};
 
 data.TransmogSets = {};
+
 data.BuildVersions = {};
+data.BuildVersionsGrouped = {};
 
 data.Achievements = {};
 data.AchievementIds = {};
@@ -50,7 +52,7 @@ local function PostLoadOnPlayerLogin(self, start)
         end
 
         if AchievementFrame and AchievementFrame:IsShown() then
-            addon.GUI.RefreshViewAfterPlayerLogin();
+            addon.Gui:RefreshViewAfterPlayerLogin();
         end
 
         addon.Diagnostics.Debug("On Player Login: Finished loading data in " .. floor(debugprofilestop() - start + 0.5) .. " ms");
@@ -104,7 +106,7 @@ local function LoadAchievements(sourceTable, func)
         end
     end
 
-    addon.GUI.CategoriesFrame:Update(true);
+    KrowiAF_CategoriesFrame:Update(true);
 end
 
 function data.LoadWatchedAchievements()

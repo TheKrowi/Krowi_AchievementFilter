@@ -146,8 +146,7 @@ function addon.ClearWatchAchievement(achievement, update)
     end
     achievement.WatchListCategories = nil;
     if update ~= false then
-        addon.GUI.RefreshView();
-        -- addon.GUI.SummaryFrame:Achievements_Update("KROWIAF_FORCE_UPDATE");
+        addon.Gui:RefreshView();
     end
     for i = 1, #addon.Data.WatchListCategories do
         if (addon.Data.WatchListCategories[i].Achievements and #addon.Data.WatchListCategories[i].Achievements == 0) or (addon.Data.WatchListCategories[i].Children and #addon.Data.WatchListCategories[i].Children == 0) then
@@ -166,8 +165,7 @@ function addon.WatchAchievement(achievement, update)
         end
 	end
     if update ~= false then
-        addon.GUI.RefreshView();
-        -- addon.GUI.SummaryFrame:Achievements_Update("KROWIAF_FORCE_UPDATE");
+        addon.Gui:RefreshView();
     end
 end
 
@@ -179,8 +177,8 @@ function addon.AddToTrackingAchievementsCategories(achievement, update)
         end
     end
     if update ~= false then
-        addon.GUI.CategoriesFrame:Update(true);
-        addon.GUI.AchievementsFrame:ForceUpdate();
+        KrowiAF_CategoriesFrame:Update(true);
+        KrowiAF_AchievementsFrame:ForceUpdate();
     end
 end
 
@@ -197,7 +195,7 @@ function addon.IncludeAchievement(achievement, update)
     end
     achievement.ExcludedCategories = nil;
     if update ~= false then
-        addon.GUI.RefreshView();
+        addon.Gui:RefreshView();
     end
     for i = 1, #addon.Data.ExcludedCategories do
         if (addon.Data.ExcludedCategories[i].Achievements and #addon.Data.ExcludedCategories[i].Achievements == 0) or (addon.Data.ExcludedCategories[i].Children and #addon.Data.ExcludedCategories[i].Children == 0) then
@@ -217,10 +215,10 @@ function addon.ExcludeAchievement(achievement, update)
             end
         end
         if update ~= false then
-            addon.GUI.RefreshView();
+            addon.Gui:RefreshView();
         end
     else
-        addon.GUI.RefreshView();
+        addon.Gui:RefreshView();
     end
 end
 
@@ -405,10 +403,6 @@ end
 
 function addon.OverwriteFunctions()
     AchievementFrame_ToggleAchievementFrame = function(toggleStatFrame, toggleGuildView)
-        -- if addon.IsDragonflightRetail then
-        --     ClearSelectedCategories();
-        -- end
-
         AchievementFrameComparison:Hide();
         AchievementFrameTab_OnClick = AchievementFrameBaseTab_OnClick;
 
@@ -436,9 +430,6 @@ function addon.OverwriteFunctions()
     end
 
     AchievementFrame_DisplayComparison = function(unit)
-        -- if addon.IsDragonflightRetail then
-            -- ClearSelectedCategories();
-        -- else
         if not addon.IsDragonflightRetail then
             AchievementFrame.wasShown = nil;
         end
@@ -456,7 +447,9 @@ function addon.OverwriteFunctions()
         AchievementFrameComparison_ForceUpdate();
     end
 
-    AchievementFrame_SetTabs = addon.GUI.ShowHideTabs;
+    AchievementFrame_SetTabs = function()
+        addon.Gui:ShowHideTabs();
+    end;
 
     local origAchievementFrame_SelectAchievement = AchievementFrame_SelectAchievement;
     AchievementFrame_SelectAchievement = function(id)
@@ -466,7 +459,9 @@ function addon.OverwriteFunctions()
         end
         origAchievementFrame_SelectAchievement(id);
     end
+end
 
+function addon.LoadBlizzardApiChanges()
     -- Bunch of API changes in 10.1.5
     if not IsTrackedAchievement then
         IsTrackedAchievement = function(achievementId)
@@ -495,6 +490,16 @@ function addon.OverwriteFunctions()
             return C_ContentTracking.StartTracking(Enum.ContentTrackingType.Achievement, achievementId);
         end
     end
+
+    if not WatchFrame_Update then
+        WatchFrame_Update = function()
+        end
+    end
+
+    if not SetFocusedAchievement then
+        SetFocusedAchievement = function()
+        end
+    end
 end
 
 function addon.HookFunctions()
@@ -507,8 +512,29 @@ function addon.HookFunctions()
     end
 
     if addon.IsDragonflightRetail then
-        hooksecurefunc("AchievementFrame_SetComparisonTabs", addon.GUI.ShowHideTabs);
+        hooksecurefunc("AchievementFrame_SetComparisonTabs", function()
+            addon.Gui:ShowHideTabs();
+        end);
     end
+
+    AchievementFrameFilterDropDown:HookScript("OnShow", function()
+        if addon.Util.IsWrathClassic then
+            AchievementFrame.Header.RightDDLInset:Show();
+        else
+            AchievementFrame.Header.LeftDDLInset:Show();
+        end
+    end);
+    AchievementFrameFilterDropDown:HookScript("OnHide", function()
+        if addon.Util.IsWrathClassic then
+            if not KrowiAF_SearchBoxFrame:IsShown() then
+                AchievementFrame.Header.RightDDLInset:Hide();
+            end
+        else
+            if not KrowiAF_AchievementFrameFilterButton:IsShown() then
+                AchievementFrame.Header.LeftDDLInset:Hide();
+            end
+        end
+    end);
 end
 
 local function MakeStatic(frame, rememberLastPositionOption, target)
@@ -517,7 +543,7 @@ local function MakeStatic(frame, rememberLastPositionOption, target)
     end
 
     if rememberLastPositionOption then
-        addon.GUI.SetFrameToLastPosition(target or frame, rememberLastPositionOption);
+        addon.Gui:SetFrameToLastPosition(target or frame, rememberLastPositionOption);
     end
 
     frame:SetMovable(false);
@@ -534,8 +560,8 @@ function addon.MakeWindowStatic()
     end
     MakeStatic(AchievementFrame, "AchievementWindow");
     MakeStatic(AchievementFrame.Header, "AchievementWindow", AchievementFrame);
-    MakeStatic(addon.GUI.Calendar.Frame, "Calendar");
-    MakeStatic(addon.GUI.DataManagerFrame, "DataManager");
+    MakeStatic(KrowiAF_AchievementCalendarFrame, "Calendar");
+    MakeStatic(KrowiAF_DataManagerFrame, "DataManager");
 end
 
 local function MakeMovable(frame, rememberLastPositionOption, target)
@@ -544,7 +570,7 @@ local function MakeMovable(frame, rememberLastPositionOption, target)
     end
 
     if not target then
-        addon.GUI.SetFrameToLastPosition(frame, rememberLastPositionOption);
+        addon.Gui:SetFrameToLastPosition(frame, rememberLastPositionOption);
     end
 
     target = target or frame;
@@ -574,8 +600,8 @@ function addon.MakeWindowMovable()
     end
     MakeMovable(AchievementFrame, "AchievementWindow");
     MakeMovable(AchievementFrame.Header, "AchievementWindow", AchievementFrame);
-    MakeMovable(addon.GUI.Calendar.Frame, "Calendar");
-    MakeMovable(addon.GUI.DataManagerFrame, "DataManager");
+    MakeMovable(KrowiAF_AchievementCalendarFrame, "Calendar");
+    MakeMovable(KrowiAF_DataManagerFrame, "DataManager");
 end
 
 function addon.GetSecondsSince(date)
@@ -685,7 +711,7 @@ function addon.GetVariantSetIDs(baseSetIds)
 end
 
 function addon.ChangeAchievementMicroButtonOnClick()
-    addon.GUI.TabsOrderGetActiveKeys(); -- Cleanup unused tabs
+    addon.Gui:TabsOrderGetActiveKeys(); -- Cleanup unused tabs
     if addon.Options.db.profile.MicroButtonTab > #KrowiAF_SavedData.Tabs then
         for i, _ in next, KrowiAF_SavedData.Tabs do
             if KrowiAF_SavedData.Tabs[i].AddonName == addonName and KrowiAF_SavedData.Tabs[i].Name == "Achievements" then
@@ -695,22 +721,7 @@ function addon.ChangeAchievementMicroButtonOnClick()
     end
     local tab = KrowiAF_SavedData.Tabs[addon.Options.db.profile.MicroButtonTab];
     AchievementMicroButton:SetScript("OnClick", function(self)
-        addon.GUI.ToggleAchievementFrame(tab.AddonName, tab.Name);
-    end);
-end
-
-addon.DelayObjects = {};
-function addon.DelayFunction(delayObjectName, delayTime, func, ...)
-    if addon.DelayObjects[delayObjectName] ~= nil then
-        -- print("skipping")
-        return;
-    end
-    -- print("start timer")
-    local args = {...};
-    addon.DelayObjects[delayObjectName] = C_Timer.NewTimer(delayTime, function()
-        -- print("run func")
-        func(unpack(args));
-        addon.DelayObjects[delayObjectName] = nil;
+        addon.Gui:ToggleAchievementFrame(tab.AddonName, tab.Name);
     end);
 end
 

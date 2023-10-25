@@ -1,0 +1,6 @@
+<Ui>
+    <Include file="AlertFrame\AlertFrame.xml"/>
+    <Script file="AlertSystem.lua"/>
+    <Include file="SideButton\SideButton.xml" />
+    <Script file="SideButtonSystem.lua"/>
+</Ui>

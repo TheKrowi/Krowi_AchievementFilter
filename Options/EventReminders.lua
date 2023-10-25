@@ -71,32 +71,32 @@ tinsert(startTimeAndEndTimeDateTimeFormats, addon.L["%m/%d/%Y %R"]);
 local function TimeDisplayLine1Set(_, value)
     if addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == value then return; end;
     addon.Options.db.profile.EventReminders.TimeDisplay.Line1 = value;
-    addon.GUI.SideButtonSystem.Refresh();
+    addon.Gui.EventReminderSideButtonSystem:Refresh();
 end
 
 local function TimeDisplayLine2Set(_, value)
     if addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == value then return; end;
     addon.Options.db.profile.EventReminders.TimeDisplay.Line2 = value;
-    addon.GUI.SideButtonSystem.Refresh();
+    addon.Gui.EventReminderSideButtonSystem:Refresh();
 end
 
 local function SideButtonsAnchorSet(_, value)
     if addon.Options.db.profile.EventReminders.SideButtonsAnchor == value then return; end;
     addon.Options.db.profile.EventReminders.SideButtonsAnchor = value;
-    addon.GUI.SideButtonSystem.Refresh();
+    addon.Gui.EventReminderSideButtonSystem:Reload();
 end
 
 local function PopUpsGrowDirectionSet(_, value)
     if addon.Options.db.profile.EventReminders.PopUps.GrowDirection == value then return; end;
     addon.Options.db.profile.EventReminders.PopUps.GrowDirection = value;
-    addon.GUI.AlertSystem.UpdateGrowDirection();
+    addon.Gui.EventReminderAlertSystem:UpdateGrowDirection();
     AlertFrame:UpdateAnchors();
 end
 
 local function PopUpsSpacingSet(_, value)
     if addon.Options.db.profile.EventReminders.PopUps.Spacing == value then return; end;
     addon.Options.db.profile.EventReminders.PopUps.Spacing = value;
-    addon.GUI.AlertSystem.UpdateGrowDirection();
+    addon.Gui.EventReminderAlertSystem:UpdateGrowDirection();
     AlertFrame:UpdateAnchors();
 end
 
@@ -120,16 +120,16 @@ local function PopUpsShowPlaceholderFunc()
     for i, event in next, calendarEvents do
         if i == 141 then -- Fake not active event
             if not showPopUpsWithTimeDataOnly or (showPopUpsWithTimeDataOnly and event.EventDetails and event.EventDetails.EndTime) then
-                addon.GUI.AlertSystem:AddAlert(event, 60);
+                addon.Gui.EventReminderAlertSystem:AddAlert(event, 60);
             end
         elseif i == 181 then -- Fake not active event
             event.EventDetails = {EndTime = nil, Name = i .. " - " .. addon.L["Placeholder"]};
             if not showPopUpsWithTimeDataOnly or (showPopUpsWithTimeDataOnly and event.EventDetails and event.EventDetails.EndTime) then
-                addon.GUI.AlertSystem:AddAlert(event, 60);
+                addon.Gui.EventReminderAlertSystem:AddAlert(event, 60);
             end
         else
             event.EventDetails = {EndTime = time() + 600010, Name = i .. " - " .. addon.L["Placeholder"]};
-            addon.GUI.AlertSystem:AddAlert(event, 60);
+            addon.Gui.EventReminderAlertSystem:AddAlert(event, 60);
         end
     end
 end
@@ -146,7 +146,7 @@ end
 local function StartTimeAndEndTimeCustomSet(_, value)
     if addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime == value then return; end;
     addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime = value;
-    addon.GUI.SideButtonSystem.Refresh();
+    addon.Gui.EventReminderSideButtonSystem:Refresh();
 end
 
 options.OptionsTable.args["EventReminders"] = {
@@ -576,6 +576,6 @@ function RefreshOptions()
     PopUpsSpacingSet(_, profile.EventReminders.PopUps.Spacing);
     PopUpsOffsetXSet(_, profile.EventReminders.PopUps.OffsetX);
     PopUpsOffsetYSet(_, profile.EventReminders.PopUps.OffsetY);
-    addon.GUI.SideButtonSystem.Refresh(); -- Dynamic stuff is handled by this one
+    addon.Gui.EventReminderSideButtonSystem:Refresh(); -- Dynamic stuff is handled by this one
     StartTimeAndEndTimeCustomSet(_, profile.EventReminders.DateTimeFormat.StartTimeAndEndTime);
 end

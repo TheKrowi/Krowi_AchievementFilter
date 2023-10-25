@@ -1,6 +1,6 @@
 --- **AceGUI-3.0** provides access to numerous widgets which can be used to create GUIs.
 -- AceGUI is used by AceConfigDialog to create the option GUIs, but you can use it by itself
--- to create any custom GUI. There are more extensive examples in the test suite in the Ace3
+-- to create any custom Gui. There are more extensive examples in the test suite in the Ace3
 -- stand-alone distribution.
 --
 -- **Note**: When using AceGUI-3.0 directly, please do not modify the frames of the widgets directly,

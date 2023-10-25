@@ -8,7 +8,7 @@ end
 
 function icon.OnLeftClick()
     local tab = KrowiAF_SavedData.Tabs[addon.Options.db.profile.MicroButtonTab];
-    addon.GUI.ToggleAchievementFrame(tab.AddonName, tab.Name);
+    addon.Gui:ToggleAchievementFrame(tab.AddonName, tab.Name);
 end
 
 function icon.OnRightClick()

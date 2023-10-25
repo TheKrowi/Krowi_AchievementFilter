@@ -1,0 +1,9 @@
+<Ui>
+    <Script file="AchievementFrameTabButtonMixin.lua"/>
+
+    <Button name="KrowiAF_AchievementFrameTab_Template" mixin="KrowiAF_AchievementFrameTabMixin" inherits="AchievementFrameTabButtonTemplate" virtual="true">
+        <Scripts>
+            <OnClick method="OnClick"/>
+        </Scripts>
+    </Button>
+</Ui>

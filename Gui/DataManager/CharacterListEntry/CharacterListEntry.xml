@@ -1,0 +1,102 @@
+<Ui>
+    <Script file="CharacterListEntryMixin.lua"/>
+
+    <Button name="KrowiAF_CharacterListEntry_Template" mixin="KrowiAF_CharacterListEntryMixin" registerForClicks="LeftButtonUp, RightButtonUp" virtual="true">
+        <Size x="540" y="20"/>
+        <Layers>
+            <Layer level="OVERLAY">
+                <FontString parentKey="Name" inherits="GameFontHighlightSmall" justifyH="LEFT" wordwrap="false">
+                    <Size x="134" y="0"/> <!-- 150 - 8 left - 8 right -->
+                    <Anchors>
+                        <Anchor point="LEFT" x="10" y="0"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="Realm" inherits="GameFontHighlightSmall" justifyH="LEFT" wordwrap="false">
+                    <Size x="134" y="0"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Name" relativePoint="RIGHT" x="13" y="0"/>
+                    </Anchors>
+                </FontString>
+                <Texture parentKey="Class" file="Interface\Glues\CharacterCreate\UI-CharacterCreate-Classes">
+                    <Size x="16" y="16"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Realm" relativePoint="RIGHT" x="24" y="0"/>
+                    </Anchors>
+                </Texture>
+                <Texture parentKey="Faction" atlas="worldquest-questmarker-questionmark">
+                    <Size x="16" y="15"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Class" relativePoint="RIGHT" x="37" y="0"/>
+                    </Anchors>
+                </Texture>
+                <FontString parentKey="Points" inherits="GameFontHighlightSmall" justifyH="LEFT" wordwrap="false">
+                    <Size x="84" y="0"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Faction" relativePoint="RIGHT" x="28" y="0"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <CheckButton parentKey="HeaderTooltip" mixin="KrowiAF_CharacterListEntryHeaderTooltipMixin" inherits="KrowiAF_CheckButton_Template">
+                <Size x="29" y="29"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.Points" relativePoint="RIGHT" x="17" y="0"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick method="OnClick"/>
+                </Scripts>
+            </CheckButton>
+        </Frames>
+        <Frames>
+            <CheckButton parentKey="EarnedByAchievementTooltip" mixin="KrowiAF_CharacterListEntryEarnedByAchievementTooltipMixin" inherits="KrowiAF_CheckButton_Template">
+                <Size x="29" y="29"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.HeaderTooltip" relativePoint="RIGHT" x="69" y="0"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick method="OnClick"/>
+                </Scripts>
+            </CheckButton>
+        </Frames>
+        <Frames>
+            <CheckButton parentKey="MostProgressAchievementTooltip" mixin="KrowiAF_CharacterListEntryMostProgressAchievementTooltipMixin" inherits="KrowiAF_CheckButton_Template">
+                <Size x="29" y="29"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.EarnedByAchievementTooltip" relativePoint="RIGHT" x="69" y="0"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick method="OnClick"/>
+                </Scripts>
+            </CheckButton>
+        </Frames>
+        <Frames>
+            <CheckButton parentKey="IgnoreCharacter" mixin="KrowiAF_CharacterListEntryIgnoreCharacterMixin" inherits="KrowiAF_CheckButton_Template">
+                <Size x="29" y="29"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.MostProgressAchievementTooltip" relativePoint="RIGHT" x="69" y="0"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick method="OnClick"/>
+                </Scripts>
+            </CheckButton>
+        </Frames>
+        <Frames>
+            <Button parentKey="DeleteCharacter" mixin="KrowiAF_CharacterListEntryDeleteCharacterMixin">
+                <Size x="20" y="20"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.IgnoreCharacter" relativePoint="RIGHT" x="73" y="0"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick method="OnClick"/>
+                </Scripts>
+                <NormalTexture atlas="communities-icon-redx"/>
+                <HighlightTexture atlas="communities-icon-redx" alphaMode="ADD" alpha="0.4"/>
+            </Button>
+        </Frames>
+        <NormalTexture setAllPoints="true" file="Interface\GuildFrame\GuildFrame">
+            <TexCoords left="0.36230469" right="0.38183594" top="0.95898438" bottom="0.99804688"/>
+        </NormalTexture>
+        <HighlightTexture file="Interface\FriendsFrame\UI-FriendsFrame-HighlightBar" alphaMode="ADD" setAllPoints="true"/>
+    </Button>
+</Ui>

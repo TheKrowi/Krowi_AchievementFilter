@@ -9,7 +9,7 @@ local elvUI = plugins.ElvUI;
 tinsert(plugins.Plugins, elvUI);
 
 local function SkinTabs(skins)
-    for _, addonTabs in next, addon.GUI.Tabs do
+    for _, addonTabs in next, addon.Gui.Tabs do
         for _, tab in next, addonTabs do
             skins:HandleTab(tab)
             tab:SetFrameLevel(tab:GetFrameLevel() + 2);
@@ -108,7 +108,11 @@ do -- [[ Achievements ]]
         end
 
         if button.Tracked then
-            button.Tracked:GetRegions():SetTextColor(1, 1, 1);
+            for _, region in next, {button.Tracked:GetRegions()} do
+                if region.SetTextColor then
+                    region:SetTextColor(1, 1, 1);
+                end
+            end
             skins:HandleCheckBox(button.Tracked);
             button.Tracked:Size(18);
             button.Tracked:ClearAllPoints();
@@ -172,7 +176,7 @@ do -- [[ Achievements ]]
     local function SkinAchievementsFrame(frame, engine, skins)
         -- Buttons
         hooksecurefunc(frame.ScrollBox, "Update", function()
-            for _, button in next, { frame.ScrollBox.ScrollTarget:GetChildren() } do
+            for _, button in next, {frame.ScrollBox.ScrollTarget:GetChildren()} do
                 if button then
                     if button:IsShown() then
                         SetAchievementButtonColor(button, engine);
@@ -185,8 +189,8 @@ do -- [[ Achievements ]]
             end
         end);
 
-        local preHookFunction = addon.GUI.AchievementsObjectives.DisplayCriteria;
-        function addon.GUI.AchievementsObjectives:DisplayCriteria(id)
+        local preHookFunction = KrowiAF_AchievementsObjectives.DisplayCriteria;
+        function KrowiAF_AchievementsObjectives:DisplayCriteria(id)
             preHookFunction(self, id);
             local numCriteria = GetAchievementNumCriteria(id);
             local textStrings, metas = 0, 0;
@@ -306,10 +310,19 @@ do -- [[ Summary ]]
         elvUI.SkinAchievementsFrameLight(frame.AchievementsFrame, engine, skins);
 
         SkinStatusBar(frame.TotalStatusBar, engine);
-        local statusBars = frame.StatusBars;
-        for _, statusBar in next, statusBars do
-            SkinStatusBar(statusBar, engine);
+        local preHookFunction = KrowiAF_SummaryFrame.GetStatusBar;
+        KrowiAF_SummaryFrame.GetStatusBar = function(self, index)
+            local statusBar = preHookFunction(self, index);
+            if not statusBar.IsSkinned then
+                SkinStatusBar(statusBar, engine);
+                statusBar.IsSkinned = true;
+            end
+            return statusBar;
         end
+        -- local statusBars = frame.StatusBars;
+        -- for _, statusBar in next, statusBars do
+        --     SkinStatusBar(statusBar, engine);
+        -- end
 
         if not KrowiAF_SavedData.ElvUISkin.NoParchment then
             return;
@@ -390,21 +403,26 @@ do -- [[ Search ]]
     end
     elvUI.SkinSearchPreviewFrame = SkinSearchPreviewFrame;
 
+    local function OnSearchResultsFrameViewAcquiredFrame(frame)
+        frame:SetNormalTexture('');
+        frame:SetPushedTexture('');
+        frame:GetRegions():Hide();
+
+        frame.ResultType:SetTextColor(1, 1, 1);
+        frame.Path:SetTextColor(1, 1, 1);
+    end
+
     local function SkinSearchResultsFrame(frame, skins)
         frame:StripTextures();
         frame:CreateBackdrop('Transparent');
 
-        for _, button in next, frame.Container.buttons do
-            button:SetNormalTexture('');
-            button:SetPushedTexture('');
-            button:GetRegions():Hide();
-
-            button.resultType:SetTextColor(1, 1, 1);
-            button.path:SetTextColor(1, 1, 1);
-        end
+        -- Buttons
+        frame.ScrollView:RegisterCallback(ScrollBoxListViewMixin.Event.OnAcquiredFrame, function(self, _frame, elementData, new)
+            OnSearchResultsFrameViewAcquiredFrame(_frame);
+        end, frame);
 
         skins:HandleCloseButton(frame.closeButton);
-        skins:HandleScrollBar(frame.Container.ScrollBar);
+        skins:HandleTrimScrollBar(frame.ScrollBar);
     end
     elvUI.SkinSearchResultsFrame = SkinSearchResultsFrame;
 end
@@ -487,8 +505,8 @@ end
 local function SkinHeader()
     hooksecurefunc(AchievementFrame.Header.Points, "SetText", function()
         AchievementFrame.Header.PointBorder:ClearAllPoints();
-        AchievementFrame.Header.PointBorder:Point('TOPLEFT', addon.GUI.FilterButton, 'TOPRIGHT', 70, 0);
-        AchievementFrame.Header.PointBorder:Point('BOTTOMRIGHT', addon.GUI.Search.BoxFrame.backdrop, 'BOTTOMLEFT', -80, 0);
+        AchievementFrame.Header.PointBorder:Point('TOPLEFT', KrowiAF_AchievementFrameFilterButton, 'TOPRIGHT', 70, 0);
+        AchievementFrame.Header.PointBorder:Point('BOTTOMRIGHT', KrowiAF_SearchBoxFrame.backdrop, 'BOTTOMLEFT', -80, 0);
         AchievementFrame.Header.Points:ClearAllPoints();
         AchievementFrame.Header.Points:Point('CENTER', AchievementFrame.Header.PointBorder, 'CENTER', -10, 0);
     end);
@@ -517,7 +535,7 @@ do -- [[ Calendar ]]
     local function SkinCalendarButton(button, skins)
         skins:HandleButton(button);
         button:ClearAllPoints();
-        button:Point("TOPRIGHT", addon.GUI.Search.BoxFrame, "TOPLEFT", -6, -3);
+        button:Point("TOPRIGHT", KrowiAF_SearchBoxFrame, "TOPLEFT", -6, -3);
         button:Size(22, 22);
         local fs = button:CreateFontString(nil, nil, "GameFontHighlightSmall");
         fs:SetPoint("CENTER", 0, 0);
@@ -619,7 +637,7 @@ local function SkinDataManager(frame, skins)
     
     frame.CharacterList.InsetFrame:StripTextures();
     skins:HandleInsetFrame(frame.CharacterList.InsetFrame);
-    skins:HandleScrollBar(frame.CharacterList.ScrollFrame.ScrollBar)
+    skins:HandleTrimScrollBar(frame.CharacterList.ScrollBar)
     
 	local columnDisplay = frame.CharacterList.ColumnDisplay;
 	columnDisplay:StripTextures();
@@ -636,49 +654,55 @@ local function SkinDataManager(frame, skins)
     -- frame.CharacterList.ScrollFrame:ClearAllPoints();
     -- frame.CharacterList.ScrollFrame:Point("TOPLEFT", frame.CharacterList, "TOPLEFT", 3, 5);
     -- frame.CharacterList.ScrollFrame:Point("BOTTOMRIGHT", frame.CharacterList, "BOTTOMRIGHT", 0, 0);
-    for _, button in ipairs(frame.CharacterList.ScrollFrame.buttons or {}) do
-        skins:HandleCheckBox(button.HeaderTooltip);
-        button.HeaderTooltip:Size(25, 25);
-        button.HeaderTooltip:ClearAllPoints();
-        button.HeaderTooltip:Point("LEFT", button.Points, "RIGHT", 19, 0);
-        skins:HandleCheckBox(button.EarnedByAchievementTooltip);
-        button.EarnedByAchievementTooltip:Size(25, 25);
-        button.EarnedByAchievementTooltip:ClearAllPoints();
-        button.EarnedByAchievementTooltip:Point("LEFT", button.HeaderTooltip, "RIGHT", 74, 0);
+    -- for _, button in ipairs(frame.CharacterList.ScrollFrame.buttons or {}) do
+    hooksecurefunc(frame.CharacterList.ScrollBox, "Update", function()
+        for _, button in next, {frame.CharacterList.ScrollBox.ScrollTarget:GetChildren()} do
+            if button and not button.IsSkinned then
+                skins:HandleCheckBox(button.HeaderTooltip);
+                button.HeaderTooltip:Size(25, 25);
+                button.HeaderTooltip:ClearAllPoints();
+                button.HeaderTooltip:Point("LEFT", button.Points, "RIGHT", 19, 0);
+                skins:HandleCheckBox(button.EarnedByAchievementTooltip);
+                button.EarnedByAchievementTooltip:Size(25, 25);
+                button.EarnedByAchievementTooltip:ClearAllPoints();
+                button.EarnedByAchievementTooltip:Point("LEFT", button.HeaderTooltip, "RIGHT", 74, 0);
 
-        skins:HandleCheckBox(button.MostProgressAchievementTooltip);
-        button.MostProgressAchievementTooltip:Size(25, 25);
-        button.MostProgressAchievementTooltip:ClearAllPoints();
-        button.MostProgressAchievementTooltip:Point("LEFT", button.EarnedByAchievementTooltip, "RIGHT", 74, 0);
+                skins:HandleCheckBox(button.MostProgressAchievementTooltip);
+                button.MostProgressAchievementTooltip:Size(25, 25);
+                button.MostProgressAchievementTooltip:ClearAllPoints();
+                button.MostProgressAchievementTooltip:Point("LEFT", button.EarnedByAchievementTooltip, "RIGHT", 74, 0);
 
-        skins:HandleCheckBox(button.IgnoreCharacter);
-        button.IgnoreCharacter:Size(25, 25);
-        button.IgnoreCharacter:ClearAllPoints();
-        button.IgnoreCharacter:Point("LEFT", button.MostProgressAchievementTooltip, "RIGHT", 73, 0);
-    end
+                skins:HandleCheckBox(button.IgnoreCharacter);
+                button.IgnoreCharacter:Size(25, 25);
+                button.IgnoreCharacter:ClearAllPoints();
+                button.IgnoreCharacter:Point("LEFT", button.MostProgressAchievementTooltip, "RIGHT", 73, 0);
+                button.IsSkinned = true;
+            end
+        end
+    end);
 end
 
 local engine, skins, tooltip;
 local function SkinAll()
     if KrowiAF_SavedData.ElvUISkin.Achievements then
         SkinTabs(skins);
-        elvUI.SkinCategoriesFrame(addon.GUI.CategoriesFrame, engine, skins);
-        SkinGameTooltipProgressBar(addon.GUI.GameTooltipProgressBar, engine);
-        elvUI.SkinAchievementsFrame(addon.GUI.AchievementsFrame, engine, skins);
-        elvUI.SkinAchievementSummary(addon.GUI.SummaryFrame, engine, skins);
-        SkinFilterButton(addon.GUI.FilterButton, addon.GUI.AchievementsFrame, skins);
-        elvUI.SkinSearchOptionsButton(addon.GUI.Search.OptionsMenuButton, addon.GUI.Search.BoxFrame, skins);
-        elvUI.SkinSearchBoxFrame(addon.GUI.Search.BoxFrame, skins);
-        elvUI.SkinSearchPreviewFrame(addon.GUI.Search.PreviewFrame, addon.GUI.AchievementsFrame, engine, skins);
-        elvUI.SkinSearchResultsFrame(addon.GUI.Search.ResultsFrame, skins);
+        elvUI.SkinCategoriesFrame(KrowiAF_CategoriesFrame, engine, skins);
+        SkinGameTooltipProgressBar(LibStub("Krowi_GameTooltipWithProgressBar-2.0").ProgressBar, engine);
+        elvUI.SkinAchievementsFrame(KrowiAF_AchievementsFrame, engine, skins);
+        elvUI.SkinAchievementSummary(KrowiAF_SummaryFrame, engine, skins);
+        SkinFilterButton(KrowiAF_AchievementFrameFilterButton, KrowiAF_AchievementsFrame, skins);
+        elvUI.SkinSearchOptionsButton(KrowiAF_SearchBoxFrame.OptionsMenuButton, KrowiAF_SearchBoxFrame, skins);
+        elvUI.SkinSearchBoxFrame(KrowiAF_SearchBoxFrame, skins);
+        elvUI.SkinSearchPreviewFrame(KrowiAF_SearchBoxFrame.PreviewContainer, KrowiAF_AchievementsFrame, engine, skins);
+        elvUI.SkinSearchResultsFrame(KrowiAF_SearchBoxFrame.ResultsFrame, skins);
         SkinHeader();
         ReskinBlizzard(skins);
-        elvUI.SkinCalendarButton(addon.GUI.Calendar.Button, skins);
-        SkinDataManager(addon.GUI.DataManagerFrame, skins);
+        elvUI.SkinCalendarButton(KrowiAF_AchievementCalendarButton, skins);
+        SkinDataManager(KrowiAF_DataManagerFrame, skins);
     end
     if KrowiAF_SavedData.ElvUISkin.Calendar then
-        elvUI.SkinCalendarFrame(addon.GUI.Calendar.Frame, engine, skins);
-        elvUI.SkinCalendarSideFrame(addon.GUI.Calendar.SideFrame, engine, skins);
+        elvUI.SkinCalendarFrame(KrowiAF_AchievementCalendarFrame, engine, skins);
+        elvUI.SkinCalendarSideFrame(KrowiAF_AchievementCalendarFrame.SideFrame, engine, skins);
     end
 end
 
@@ -687,7 +711,7 @@ local function SkinAlertFrames()
         return;
     end
 
-    hooksecurefunc(addon.GUI.AlertSystem, "setUpFunction", function(frame)
+    hooksecurefunc(addon.Gui.EventReminderAlertSystem.SubSystem, "setUpFunction", function(frame)
         elvUI.SkinAlertFrameTemplate(frame, engine);
     end);
 end
@@ -775,15 +799,15 @@ function elvUI.Load()
     KrowiAF_SavedData.ElvUISkin.Options = privateSkins.ace3Enable;
     KrowiAF_SavedData.ElvUISkin.SmallerWorldMap = addon.IsWrathClassic and engine.global.general.smallerWorldMap;
 
-    hooksecurefunc(addon.GUI, "LoadWithBlizzard_AchievementUI", function()
+    hooksecurefunc(addon.Gui, "LoadWithBlizzard_AchievementUI", function()
         SkinAll();
     end);
 
-    hooksecurefunc(addon.GUI.SideButtonSystem, "Load", function()
+    hooksecurefunc(addon.Gui.EventReminderSideButtonSystem, "Load", function()
         if KrowiAF_SavedData.ElvUISkin.Achievements then
             elvUI.SkinSideButtons(engine);
         end
-        hooksecurefunc(addon.GUI.SideButtonSystem, "Refresh", function()
+        hooksecurefunc(addon.Gui.EventReminderSideButtonSystem, "Refresh", function()
             if KrowiAF_SavedData.ElvUISkin.Achievements then
                 elvUI.SkinSideButtons(engine);
             end
@@ -793,7 +817,7 @@ function elvUI.Load()
     if addon.IsWrathClassic then
         local worldMapModule = engine:GetModule("WorldMap");
         hooksecurefunc(worldMapModule, "SetSmallWorldMap", function()
-            addon.GUI.WorldMapButton:SetFrameStrata("TOOLTIP");
+            addon.Gui.WorldMapButton:SetFrameStrata("TOOLTIP");
         end);
     end
 

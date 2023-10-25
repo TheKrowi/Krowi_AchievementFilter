@@ -1,0 +1,9 @@
+<Ui>
+    <CheckButton name="KrowiAF_CheckButton_Template" virtual="true">
+        <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+        <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+        <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+        <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+        <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+    </CheckButton>
+</Ui>

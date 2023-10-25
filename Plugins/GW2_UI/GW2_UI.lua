@@ -48,7 +48,7 @@ do -- [[ Shared ]]
 end
 
 do -- [[ Tabs ]]
-    local function UpdateTabsLayout(tabsOrder)
+    local function UpdateTabsLayout(self, tabsOrder)
         local x = 0;
         for _, btn in next, tabsOrder do
             if btn and btn:IsShown() then
@@ -61,7 +61,7 @@ do -- [[ Tabs ]]
     end
 
     local function SkinTabs()
-        for _addonName, addonTabs in next, addon.GUI.Tabs do
+        for _addonName, addonTabs in next, addon.Gui.Tabs do
             for _, tab in next, addonTabs do
                 if _addonName == addonName then
                     tab.skinned = true;
@@ -77,25 +77,41 @@ do -- [[ Tabs ]]
                 tab:SetScript("OnShow", function(self)
                 end);
 
-                local originalAchievementFrame_UpdateTabs = tab.AchievementFrame_UpdateTabs
-                tab.AchievementFrame_UpdateTabs = function(self, thisTab, thisTabID, clickedTab)
-                    originalAchievementFrame_UpdateTabs(self, thisTab, thisTabID, clickedTab);
-                    if thisTabID == clickedTab then
-                        self.icon:SetTexCoord(0, 0.5, 0, 0.625);
-                    else
-                        self.icon:SetTexCoord(0.5, 1, 0, 0.625);
+                hooksecurefunc(addon.Gui.AchievementFrameTabButtonFactory, "AchievementFrame_UpdateTabs", function(selfFunc, clickedTabId)
+                    for id, tab2 in next, selfFunc:GetTabs() do
+                        if clickedTabId == id then
+                            tab2.icon:SetTexCoord(0, 0.5, 0, 0.625);
+                        else
+                            tab2.icon:SetTexCoord(0.5, 1, 0, 0.625);
+                        end
                     end
-                end
+                end);
+                -- local originalAchievementFrame_UpdateTabs = tab.AchievementFrame_UpdateTabs
+                -- print(originalAchievementFrame_UpdateTabs)
+                -- tab.AchievementFrame_UpdateTabs = function(self, thisTab, thisTabID, clickedTab)
+                --     originalAchievementFrame_UpdateTabs(self, thisTab, thisTabID, clickedTab);
+                --     if thisTabID == clickedTab then
+                --         self.icon:SetTexCoord(0, 0.5, 0, 0.625);
+                --     else
+                --         self.icon:SetTexCoord(0.5, 1, 0, 0.625);
+                --     end
+                -- end
             end
         end
 
-        addon.GUI.UpdateTabsLayout = UpdateTabsLayout;
+        addon.Gui.UpdateTabsLayout = UpdateTabsLayout;
 
-        hooksecurefunc("PanelTemplates_UpdateTabs", addon.GUI.ShowHideTabs);
-        hooksecurefunc("AchievementFrame_DisplayComparison", addon.GUI.ShowHideTabs);
-        hooksecurefunc("AchievementFrame_ToggleAchievementFrame", addon.GUI.ShowHideTabs);
+        hooksecurefunc("PanelTemplates_UpdateTabs", function()
+            addon.Gui:ShowHideTabs();
+        end);
+        hooksecurefunc("AchievementFrame_DisplayComparison", function()
+            addon.Gui:ShowHideTabs();
+        end);
+        hooksecurefunc("AchievementFrame_ToggleAchievementFrame", function()
+            addon.Gui:ShowHideTabs();
+        end);
         AchievementFrame:HookScript("OnShow", function()
-            addon.GUI.ShowHideTabs();
+            addon.Gui:ShowHideTabs();
         end);
     end
     gw2_ui.SkinTabs = SkinTabs;
@@ -548,7 +564,7 @@ do -- [[ Achievements]]
     end
 
     local function SetAchievementsObjectivesAnchors()
-        local objectivesFrame = addon.GUI.AchievementsObjectives;
+        local objectivesFrame = KrowiAF_AchievementsObjectives;
         local parent = objectivesFrame:GetParent();
         if not parent then
             return;
@@ -559,7 +575,7 @@ do -- [[ Achievements]]
     end
 
     local function SkinAchievementsObjectives()
-        local objectivesFrame = addon.GUI.AchievementsObjectives;
+        local objectivesFrame = KrowiAF_AchievementsObjectives;
         local parent = objectivesFrame:GetParent();
         if not parent then
             return;
@@ -603,28 +619,28 @@ do -- [[ Achievements]]
         frame.ScrollView:RegisterCallback(ScrollBoxListViewMixin.Event.OnInitializedFrame, OnAchievementsFrameViewInitializedFrame, frame);
 
         -- Objectives
-        hooksecurefunc(addon.GUI.AchievementsObjectives, "GetTextCriteria", function(self, index)
+        hooksecurefunc(KrowiAF_AchievementsObjectives, "GetTextCriteria", function(self, index)
             GW2_ADDON.AchievementFrameSkinFunction.SetSmallText(_G["KrowiAF_AchievementsObjectivesTextCriteria" .. index].Label);
         end);
 
-        hooksecurefunc(addon.GUI.AchievementsObjectives, "GetProgressBar", function(self, index)
+        hooksecurefunc(KrowiAF_AchievementsObjectives, "GetProgressBar", function(self, index)
             SkinCriteriaStatusbar(self, _G["KrowiAF_AchievementsObjectivesProgressBar" .. index]);
         end);
 
-        hooksecurefunc(addon.GUI.AchievementsObjectives, "GetMeta", function(self, index)
+        hooksecurefunc(KrowiAF_AchievementsObjectives, "GetMeta", function(self, index)
             GW2_ADDON.AchievementFrameSkinFunction.SetSmallText(_G["KrowiAF_AchievementsObjectivesMeta" .. index].Label);
         end);
 
-        local preHookDisplayCriteria = addon.GUI.AchievementsObjectives.DisplayCriteria;
-        function addon.GUI.AchievementsObjectives:DisplayCriteria(id)
+        local preHookDisplayCriteria = KrowiAF_AchievementsObjectives.DisplayCriteria;
+        function KrowiAF_AchievementsObjectives:DisplayCriteria(id)
             SetAchievementsObjectivesAnchors()
             preHookDisplayCriteria(self, id);
             SkinAchievementsObjectives();
             self:SetHeight(self:GetHeight() + 10);
         end
 
-        local preHookDisplayProgressiveAchievement = addon.GUI.AchievementsObjectives.DisplayProgressiveAchievement;
-        function addon.GUI.AchievementsObjectives:DisplayProgressiveAchievement(id)
+        local preHookDisplayProgressiveAchievement = KrowiAF_AchievementsObjectives.DisplayProgressiveAchievement;
+        function KrowiAF_AchievementsObjectives:DisplayProgressiveAchievement(id)
             SetAchievementsObjectivesAnchors()
             preHookDisplayProgressiveAchievement(self, id);
             SkinAchievementsObjectives();
@@ -689,7 +705,9 @@ do -- [[ Summary ]]
             statusBar.spark = statusBar:CreateTexture(fname .. "Spark", "OVERLAY", nil, 7);
             statusBar.spark:ClearAllPoints();
             statusBar.spark:SetPoint("RIGHT", fills[#fills], "RIGHT", 0, 0);
-            statusBar.spark:SetSize(10, fills[#fills]:GetHeight());
+            statusBar.spark:SetPoint("TOP", fills[#fills], "TOP", 0, 0);
+            statusBar.spark:SetPoint("BOTTOM", fills[#fills], "BOTTOM", 0, 0);
+            statusBar.spark:SetWidth(10);
             statusBar.spark:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/statusbar-spark-white");
         end
 
@@ -743,30 +761,54 @@ do -- [[ Summary ]]
 
         SkinStatusBar(frame.TotalStatusBar);
         frame.TotalStatusBar:SetWidth(574);
-        local statusBars = frame.StatusBars;
-        for _, statusBar in next, statusBars do
-            SkinStatusBar(statusBar);
-            statusBar:SetWidth(295);
+        frame.TotalStatusBar:SetPoint("TOP", frame.Categories.Header, "BOTTOM", 0, -15);
+        local preHookFunction = KrowiAF_SummaryFrame.GetAndAlignStatusBar;
+        KrowiAF_SummaryFrame.GetAndAlignStatusBar = function(self, index)
+            local yOffset = 0;
+            local point, relativePoint, relativeTo;
+            if index % 2 == 0 then -- Even
+                point, relativePoint = "TOPRIGHT", "BOTTOMRIGHT";
+            else -- Odd
+                point, relativePoint = "TOPLEFT", "BOTTOMLEFT";
+            end
+            if index == 1 or index == 2 then
+                relativeTo = self.TotalStatusBar;
+            else
+                relativeTo = self:GetStatusBar(index - 2);
+            end
+            local statusBar = preHookFunction(self, index);
+            if not statusBar.IsSkinned then
+                SkinStatusBar(statusBar);
+                statusBar:SetWidth(295);
+                statusBar.IsSkinned = true;
+            end
+            statusBar:ClearAllPoints();
+            statusBar:SetPoint(point, relativeTo, relativePoint, 0, yOffset);
+            return statusBar;
         end
+        -- local statusBars = frame.StatusBars;
+        -- for _, statusBar in next, statusBars do
+        --     SkinStatusBar(statusBar);
+        --     statusBar:SetWidth(295);
+        -- end
 
         -- Re-anchor status bars
-        local yOffset = 0;
+        -- local yOffset = 0;
 
-        frame.TotalStatusBar:SetPoint("TOP", frame.Categories.Header, "BOTTOM", 0, -15);
-        statusBars[1]:SetPoint("TOPLEFT", frame.TotalStatusBar, "BOTTOMLEFT", 0, yOffset);
-        statusBars[2]:SetPoint("TOPRIGHT", frame.TotalStatusBar, "BOTTOMRIGHT", 0, yOffset);
-        statusBars[3]:SetPoint("TOPLEFT", statusBars[1], "BOTTOMLEFT", 0, yOffset);
-        statusBars[4]:SetPoint("TOPRIGHT", statusBars[2], "BOTTOMRIGHT", 0, yOffset);
-        statusBars[5]:SetPoint("TOPLEFT", statusBars[3], "BOTTOMLEFT", 0, yOffset);
-        statusBars[6]:SetPoint("TOPRIGHT", statusBars[4], "BOTTOMRIGHT", 0, yOffset);
-        statusBars[7]:SetPoint("TOPLEFT", statusBars[5], "BOTTOMLEFT", 0, yOffset);
-        statusBars[8]:SetPoint("TOPRIGHT", statusBars[6], "BOTTOMRIGHT", 0, yOffset);
-        statusBars[9]:SetPoint("TOPLEFT", statusBars[7], "BOTTOMLEFT", 0, yOffset);
-        statusBars[10]:SetPoint("TOPRIGHT", statusBars[8], "BOTTOMRIGHT", 0, yOffset);
-        statusBars[11]:SetPoint("TOPLEFT", statusBars[9], "BOTTOMLEFT", 0, yOffset);
-        statusBars[12]:SetPoint("TOPRIGHT", statusBars[10], "BOTTOMRIGHT", 0, yOffset);
-        statusBars[13]:SetPoint("TOPLEFT", statusBars[11], "BOTTOMLEFT", 0, yOffset);
-        statusBars[14]:SetPoint("TOPRIGHT", statusBars[12], "BOTTOMRIGHT", 0, yOffset);
+        -- statusBars[1]:SetPoint("TOPLEFT", frame.TotalStatusBar, "BOTTOMLEFT", 0, yOffset);
+        -- statusBars[2]:SetPoint("TOPRIGHT", frame.TotalStatusBar, "BOTTOMRIGHT", 0, yOffset);
+        -- statusBars[3]:SetPoint("TOPLEFT", statusBars[1], "BOTTOMLEFT", 0, yOffset);
+        -- statusBars[4]:SetPoint("TOPRIGHT", statusBars[2], "BOTTOMRIGHT", 0, yOffset);
+        -- statusBars[5]:SetPoint("TOPLEFT", statusBars[3], "BOTTOMLEFT", 0, yOffset);
+        -- statusBars[6]:SetPoint("TOPRIGHT", statusBars[4], "BOTTOMRIGHT", 0, yOffset);
+        -- statusBars[7]:SetPoint("TOPLEFT", statusBars[5], "BOTTOMLEFT", 0, yOffset);
+        -- statusBars[8]:SetPoint("TOPRIGHT", statusBars[6], "BOTTOMRIGHT", 0, yOffset);
+        -- statusBars[9]:SetPoint("TOPLEFT", statusBars[7], "BOTTOMLEFT", 0, yOffset);
+        -- statusBars[10]:SetPoint("TOPRIGHT", statusBars[8], "BOTTOMRIGHT", 0, yOffset);
+        -- statusBars[11]:SetPoint("TOPLEFT", statusBars[9], "BOTTOMLEFT", 0, yOffset);
+        -- statusBars[12]:SetPoint("TOPRIGHT", statusBars[10], "BOTTOMRIGHT", 0, yOffset);
+        -- statusBars[13]:SetPoint("TOPLEFT", statusBars[11], "BOTTOMLEFT", 0, yOffset);
+        -- statusBars[14]:SetPoint("TOPRIGHT", statusBars[12], "BOTTOMRIGHT", 0, yOffset);
     end
     gw2_ui.SkinAchievementSummary = SkinAchievementSummary;
 end
@@ -791,8 +833,8 @@ local function SkinFilterButton(button)
     button:SetFrameLevel(button:GetFrameLevel() + 2);
 
     button:ClearAllPoints();
-    button:SetPoint('BOTTOMLEFT', addon.GUI.Search.BoxFrame, 'TOPLEFT', 0, 10);
-    button:SetPoint('BOTTOMRIGHT', addon.GUI.Search.BoxFrame, 'TOPRIGHT', 0, 10);
+    button:SetPoint('BOTTOMLEFT', KrowiAF_SearchBoxFrame, 'TOPLEFT', 0, 10);
+    button:SetPoint('BOTTOMRIGHT', KrowiAF_SearchBoxFrame, 'TOPRIGHT', 0, 10);
 
     button.backdrop:ClearAllPoints()
     button.backdrop:SetPoint('TOPLEFT', button, 'TOPLEFT', 0, 0);
@@ -982,7 +1024,7 @@ do -- [[ Header ]]
             AchievementFrame.Header.Points:SetHeight(AchievementFrame.Header.Shield:GetHeight());
             AchievementFrame.Header.Points:SetPoint("TOP", AchievementFrame.Header.Shield);
             AchievementFrame.Header.Points:SetPoint("BOTTOM", AchievementFrame.Header.Shield);
-            AchievementFrame.Header.Points:SetPoint("RIGHT", addon.GUI.Search.BoxFrame);
+            AchievementFrame.Header.Points:SetPoint("RIGHT", KrowiAF_SearchBoxFrame);
         end
     end
 
@@ -995,9 +1037,9 @@ do -- [[ Header ]]
 end
 
 local function ReskinBlizzard()
-    addon.GUI.AchievementFrameHeader.Button:ClearAllPoints();
-    addon.GUI.AchievementFrameHeader.Button:SetPoint("TOPLEFT", AchievementFrame.Header.Shield);
-    addon.GUI.AchievementFrameHeader.Button:SetPoint("BOTTOMRIGHT", AchievementFrame.Header.Points);
+    KrowiAF_AchievementFrameHeaderButton:ClearAllPoints();
+    KrowiAF_AchievementFrameHeaderButton:SetPoint("TOPLEFT", AchievementFrame.Header.Shield);
+    KrowiAF_AchievementFrameHeaderButton:SetPoint("BOTTOMRIGHT", AchievementFrame.Header.Points);
 end
 
 do -- [[ Calendar ]]
@@ -1172,10 +1214,10 @@ local function SkinDataManager(frame)
 end
 
 local function ReskinGw2Ui()
-    hooksecurefunc(addon.GUI, "ToggleAchievementFrame", function()
-        if addon.GUI.SelectedTab then
-            addon.GUI.SetAchievementFrameWidth();
-            addon.GUI.SetAchievementFrameHeight();
+    hooksecurefunc(addon.Gui, "ToggleAchievementFrame", function()
+        if addon.Gui.SelectedTab then
+            addon.Gui:SetAchievementFrameWidth();
+            addon.Gui:SetAchievementFrameHeight();
         end
     end);
 
@@ -1185,24 +1227,24 @@ end
 local function SkinAll()
     if KrowiAF_SavedData.GW2_UISkin.Achievements then
         gw2_ui.SkinTabs();
-        gw2_ui.SkinCategoriesFrame(addon.GUI.CategoriesFrame);
-        SkinGameTooltipProgressBar(addon.GUI.GameTooltipProgressBar);
-        gw2_ui.SkinAchievementsFrame(addon.GUI.AchievementsFrame, addon.GUI.CategoriesFrame);
-        gw2_ui.SkinAchievementSummary(addon.GUI.SummaryFrame, addon.GUI.CategoriesFrame);
-        SkinFilterButton(addon.GUI.FilterButton);
-        gw2_ui.SkinSearchOptionsButton(addon.GUI.Search.OptionsMenuButton, addon.GUI.Search.BoxFrame);
-        gw2_ui.SkinSearchBoxFrame(addon.GUI.Search.BoxFrame, addon.GUI.CategoriesFrame);
-        gw2_ui.SkinSearchPreviewFrame(addon.GUI.Search.PreviewFrame, addon.GUI.Search.BoxFrame);
-    --     gw2_ui.SkinSearchResultsFrame(addon.GUI.Search.ResultsFrame);
+        gw2_ui.SkinCategoriesFrame(KrowiAF_CategoriesFrame);
+        SkinGameTooltipProgressBar(LibStub("Krowi_GameTooltipWithProgressBar-2.0").ProgressBar);
+        gw2_ui.SkinAchievementsFrame(KrowiAF_AchievementsFrame, KrowiAF_CategoriesFrame);
+        gw2_ui.SkinAchievementSummary(KrowiAF_SummaryFrame, KrowiAF_CategoriesFrame);
+        SkinFilterButton(KrowiAF_AchievementFrameFilterButton);
+        gw2_ui.SkinSearchOptionsButton(KrowiAF_SearchBoxFrame.OptionsMenuButton, KrowiAF_SearchBoxFrame);
+        gw2_ui.SkinSearchBoxFrame(KrowiAF_SearchBoxFrame, KrowiAF_CategoriesFrame);
+        gw2_ui.SkinSearchPreviewFrame(KrowiAF_SearchBoxFrame.PreviewContainer, KrowiAF_SearchBoxFrame);
+    --     gw2_ui.SkinSearchResultsFrame(KrowiAF_SearchBoxFrame.ResultsFrame);
         gw2_ui.SkinHeader();
         ReskinBlizzard();
-        gw2_ui.SkinCalendarButton(addon.GUI.Calendar.Button);
-    --     SkinDataManager(addon.GUI.DataManagerFrame);
+        gw2_ui.SkinCalendarButton(KrowiAF_AchievementCalendarButton);
+    --     SkinDataManager(KrowiAF_DataManagerFrame);
         ReskinGw2Ui();
     end
     -- if KrowiAF_SavedData.ElvUISkin.Calendar then
-    --     gw2_ui.SkinCalendarFrame(addon.GUI.Calendar.Frame);
-    --     gw2_ui.SkinCalendarSideFrame(addon.GUI.Calendar.SideFrame);
+    --     gw2_ui.SkinCalendarFrame(KrowiAF_AchievementCalendarFrame);
+    --     gw2_ui.SkinCalendarSideFrame(KrowiAF_AchievementCalendarFrame.SideFrame);
     -- end
 end
 
@@ -1211,7 +1253,7 @@ local function SkinAlertFrames()
         return;
     end
 
-    hooksecurefunc(addon.GUI.AlertSystem, "setUpFunction", function(frame)
+    hooksecurefunc(addon.Gui.EventReminderAlertSystem.SubSystem, "setUpFunction", function(frame)
         gw2_ui.SkinAlertFrameTemplate(frame);
     end);
 end
@@ -1333,15 +1375,15 @@ function gw2_ui.Load()
     -- KrowiAF_SavedData.ElvUISkin.Options = privateSkins.ace3Enable;
     -- KrowiAF_SavedData.ElvUISkin.SmallerWorldMap = addon.IsWrathClassic and engine.global.general.smallerWorldMap;
 
-    hooksecurefunc(addon.GUI, "LoadWithBlizzard_AchievementUI", function()
+    hooksecurefunc(addon.Gui, "LoadWithBlizzard_AchievementUI", function()
         SkinAll();
     end);
 
-    hooksecurefunc(addon.GUI.SideButtonSystem, "Load", function()
+    hooksecurefunc(addon.Gui.EventReminderSideButtonSystem, "Load", function()
         if KrowiAF_SavedData.GW2_UISkin.Achievements then
             gw2_ui.SkinSideButtons();
         end
-        hooksecurefunc(addon.GUI.SideButtonSystem, "Refresh", function()
+        hooksecurefunc(addon.Gui.EventReminderSideButtonSystem, "Refresh", function()
             if KrowiAF_SavedData.GW2_UISkin.Achievements then
                 gw2_ui.SkinSideButtons();
             end
@@ -1351,7 +1393,7 @@ function gw2_ui.Load()
     -- if addon.IsWrathClassic then
     --     local worldMapModule = engine:GetModule("WorldMap");
     --     hooksecurefunc(worldMapModule, "SetSmallWorldMap", function()
-    --         addon.GUI.WorldMapButton:SetFrameStrata("TOOLTIP");
+    --         addon.Gui.WorldMapButton:SetFrameStrata("TOOLTIP");
     --     end);
     -- end
 

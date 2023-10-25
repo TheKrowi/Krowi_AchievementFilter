@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-08 12-20-29 ]] --
+-- [[ Exported at 2023-10-25 20-33-45 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -873,6 +873,7 @@ L["Time Rifts"] = "Faille temporelle"
 L["Titan Lockdown"] = "Confinement des Titans"
 L["Titan Lockdown: Active"] = "Confinement des Titans : En cours"
 L["Titan Lockdown: Soon"] = "Confinement des Titans : Bientôt"
+L["Titan Lockdown: Starting Soon"] = "Confinement des Titans : Bientôt"
 L["Ti'un the Wanderer"] = "Ti'un l'Explorateur"
 L["Toggle"] = "Basculer"
 L["Toggle Tracking"] = "Activer ou désactiver le suivi"
@@ -935,4 +936,5 @@ L["Y offset Desc"] = "Décalage vertical à partir de la position de départ"
 L["Zaqali Ruin Investigation"] = "Investigations dans les ruines Zaqalis"
 L["Zaqali Ruin Investigation: Active"] = "Investigations dans les ruines Zaqalis : En cours"
 L["Zaqali Ruin Investigation: Soon"] = "Investigations dans les ruines Zaqalis : Bientôt"
+L["Zaqali Ruin Investigation: Starting Soon"] = "Investigations dans les ruines Zaqalis : Bientôt"
 L["Zones"] = true

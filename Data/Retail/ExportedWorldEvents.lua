@@ -23,7 +23,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-30 11-18-51 ]] --
+-- [[ Exported at 2023-10-25 21-25-09 ]] --
 tasks = {
     {N, 5175, 1408998, addon.L["Assault on Azsuna"], 619}, -- Assault on Azsuna
     {N, 5177, 1409000, addon.L["Assault on Highmountain"], 619}, -- Assault on Highmountain
@@ -93,8 +93,8 @@ tasks = {
     {N, 7345, 4622465, addon.L["Grand Hunts: The Azure Span"], 1978}, -- Grand Hunts: The Azure Span
     {N, 7429, 4914672, addon.L["Ohn'ahran Plains"], 1978}, -- Ohn'ahran Plains
     {N, 7432, 4914672, addon.L["Azure Span"], 1978}, -- Azure Span
-    {N, 7459, 254117, addon.L["Titan Lockdown: Soon"], 2133}, -- Titan Lockdown: Soon
-    {N, 7460, 4237659, addon.L["Zaqali Ruin Investigation: Soon"], 2133}, -- Zaqali Ruin Investigation: Soon
+    {N, 7459, 254117, addon.L["Titan Lockdown: Starting Soon"], 2133}, -- Titan Lockdown: Starting Soon
+    {N, 7460, 4237659, addon.L["Zaqali Ruin Investigation: Starting Soon"], 2133}, -- Zaqali Ruin Investigation: Starting Soon
     {N, 7461, 254117, addon.L["Titan Lockdown: Active"], 2133}, -- Titan Lockdown: Active
     {N, 7462, 4237659, addon.L["Zaqali Ruin Investigation: Active"], 2133}, -- Zaqali Ruin Investigation: Active
     {N, 7554, 1394953, addon.L["Azure Span"], 1978}, -- Azure Span
@@ -261,8 +261,8 @@ function exportedWorldEvents.InjectDynamicOptions()
     KrowiAF_RegisterEventOptions("World", "DF___Fyrakk_Assault", addon.L["DF - Fyrakk Assault"], {7429}, addon.L["Ohn'ahran Plains"]);
     KrowiAF_RegisterEventOptions("World", "DF___Fyrakk_Assault", addon.L["DF - Fyrakk Assault"], {7432}, addon.L["Azure Span"]);
     KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Fyrakk_Assault", { 7429, 7432 });
-    KrowiAF_RegisterEventOptions("World", "DF___Researchers_Under_Fire", addon.L["DF - Researchers Under Fire"], {7459}, addon.L["Titan Lockdown: Soon"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Researchers_Under_Fire", addon.L["DF - Researchers Under Fire"], {7460}, addon.L["Zaqali Ruin Investigation: Soon"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Researchers_Under_Fire", addon.L["DF - Researchers Under Fire"], {7459}, addon.L["Titan Lockdown: Starting Soon"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Researchers_Under_Fire", addon.L["DF - Researchers Under Fire"], {7460}, addon.L["Zaqali Ruin Investigation: Starting Soon"]);
     KrowiAF_RegisterEventOptions("World", "DF___Researchers_Under_Fire", addon.L["DF - Researchers Under Fire"], {7461}, addon.L["Titan Lockdown: Active"]);
     KrowiAF_RegisterEventOptions("World", "DF___Researchers_Under_Fire", addon.L["DF - Researchers Under Fire"], {7462}, addon.L["Zaqali Ruin Investigation: Active"]);
     KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Researchers_Under_Fire", { 7459, 7460, 7461, 7462 });

@@ -714,7 +714,7 @@ local function handle(info, inputpos, tab, depth, retfalse)
 
 	elseif tab.type=="description" then
 		------------ description --------------------
-		-- ignore description, GUI config only
+		-- ignore description, Gui config only
 	else
 		err(info, inputpos, "unknown options table item type '"..tostring(tab.type).."'")
 	end
@@ -731,7 +731,7 @@ end
 -- -- Use AceConsole-3.0 to register a Chat Command
 -- MyAddon:RegisterChatCommand("mychat", "ChatCommand")
 --
--- -- Show the GUI if no input is supplied, otherwise handle the chat input.
+-- -- Show the Gui if no input is supplied, otherwise handle the chat input.
 -- function MyAddon:ChatCommand(input)
 --   -- Assuming "MyOptions" is the appName of a valid options table
 --   if not input or input:trim() == "" then

@@ -2,18 +2,17 @@
 local addonName, addon = ...;
 
 local function SelectAchievement(achievement)
-	local achievementsFrame = addon.GUI.AchievementsFrame;
-	local scrollBox = achievementsFrame.ScrollBox;
+	local scrollBox = KrowiAF_AchievementsFrame.ScrollBox;
 	local dataProvider = scrollBox:GetDataProvider();
 	if not dataProvider then
 		return;
 	end
 
-	achievementsFrame:ForceUpdate();
+	KrowiAF_AchievementsFrame:ForceUpdate();
 	scrollBox:ScrollToElementData(achievement, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
 	-- print("api select")
-	achievementsFrame.SelectionBehavior:SelectElementData(achievement);
-	achievementsFrame:ScrollToNearest(achievement);
+	KrowiAF_AchievementsFrame.SelectionBehavior:SelectElementData(achievement);
+	KrowiAF_AchievementsFrame:ScrollToNearest(achievement);
 end
 
 function KrowiAF_SelectAchievementWithCategory(achievement, category)
@@ -59,11 +58,10 @@ function KrowiAF_SelectAchievementFromID(id)
 end
 
 local function SelectCategory(category, collapsed, quick)
-	local categoriesFrame = addon.GUI.CategoriesFrame;
-	categoriesFrame:ExpandToCategory(category);
-	categoriesFrame:Update();
+	KrowiAF_CategoriesFrame:ExpandToCategory(category);
+	KrowiAF_CategoriesFrame:Update();
 
-	local scrollBox = categoriesFrame.ScrollBox;
+	local scrollBox = KrowiAF_CategoriesFrame.ScrollBox;
 	local dataProvider = scrollBox:GetDataProvider();
 	if not dataProvider then
 		return;
@@ -71,13 +69,13 @@ local function SelectCategory(category, collapsed, quick)
 
 	scrollBox:ScrollToElementData(category, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
 
-	categoriesFrame:ShowSubFrame(category);
+	KrowiAF_CategoriesFrame:ShowSubFrame(category);
 end
 
 function KrowiAF_SelectCategory(category, collapsed)
 	-- Select tab
 	local categoriesTree = category:GetTree();
-	addon.GUI.ToggleAchievementFrame(addonName, categoriesTree[1].TabName, nil, true); -- This will call both category and achievement update
+	addon.Gui:ToggleAchievementFrame(addonName, categoriesTree[1].TabName, nil, true); -- This will call both category and achievement update
 
 	-- Get the merged category now we're sure it's loaded
 	category = category:GetMergedCategory();
@@ -94,7 +92,7 @@ function KrowiAF_SelectCategory(category, collapsed)
             alwaysVisibleCache[i] = categoriesTree[i].AlwaysVisible;
             categoriesTree[i].AlwaysVisible = true; -- We set this here to show an empty category
         end
-        addon.GUI.CategoriesFrame:Update(true); -- Force an update to handle the new AlwaysVisible states
+        KrowiAF_CategoriesFrame:Update(true); -- Force an update to handle the new AlwaysVisible states
     end
 
 	-- Select category
@@ -111,7 +109,7 @@ function KrowiAF_SelectCategory(category, collapsed)
 end
 
 function KrowiAF_ToggleAchievementFrame(_addonName, tabName)
-    addon.GUI.ToggleAchievementFrame(_addonName, tabName);
+    addon.Gui:ToggleAchievementFrame(_addonName, tabName);
 end
 
 function KrowiAF_OpenCurrentZone(collapsed)
@@ -128,8 +126,8 @@ function KrowiAF_OpenCurrentZone(collapsed)
 end
 
 function KrowiAF_RegisterTabButton(_addonName, tabName, button, selectFunc)
-	addon.GUI.Tabs[_addonName] = addon.GUI.Tabs[_addonName] or {};
-    addon.GUI.Tabs[_addonName][tabName] = button;
+	addon.Gui.Tabs[_addonName] = addon.Gui.Tabs[_addonName] or {};
+    addon.Gui.Tabs[_addonName][tabName] = button;
 	if selectFunc then
 		button.Select = selectFunc;
 	end
@@ -189,7 +187,7 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 	end
 
 	local function GetOrder(index)
-		addon.GUI.TabsOrderGetActiveKeys(); -- Just to make sure the list is cleaned up
+		addon.Gui:TabsOrderGetActiveKeys(); -- Just to make sure the list is cleaned up
 		for addonName2, tabs in next, addon.Options.db.profile.Tabs do
 			for tabName, tab in next, tabs do
 				if tab.Order == index then
@@ -204,7 +202,7 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 	end
 
 	local function SetOrder(index, value)
-		addon.GUI.TabsOrderGetActiveKeys(); -- Just to make sure the list is cleaned up
+		addon.Gui:TabsOrderGetActiveKeys(); -- Just to make sure the list is cleaned up
 
 		-- We get the addon name and tab name for the selected tab
 		local tab = KrowiAF_SavedData.Tabs[value];
@@ -227,7 +225,7 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 		addon.Options.db.profile.Tabs[aName][tName].Order = order;
 		addon.Options.db.profile.Tabs[tab.AddonName][tab.Name].Order = index;
 
-		addon.GUI.ShowHideTabs();
+		addon.Gui:ShowHideTabs();
 	end
 
 	local function SetKeybind(value, command, index)
@@ -278,7 +276,7 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 		addon.InjectOptions:AddTable("Layout.args.Tabs.args.Order.args.Order.args", tostring(OrderPP()), {
 			order = OrderPP(), type = "select", width = AdjustedWidth(1.95),
 			name = "",
-			values = function() return addon.GUI.TabsOrderGetActiveKeys(); end,
+			values = function() return addon.Gui:TabsOrderGetActiveKeys(); end,
 			get = function() return GetOrder(index); end,
 			set = function (_, value)
 				SetOrder(index, value);
@@ -298,7 +296,7 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 			name = tabDisplayName,
 			desc = (""):KAF_AddDefaultValueText("Tabs." .. _addonName .. "." .. tabName .. ".Show"),
 			get = function() return addon.Options.db.profile.Tabs[_addonName][tabName].Show; end,
-			set = function() addon.GUI.ShowHideTabs(_addonName, tabName); end
+			set = function() addon.Gui:ShowHideTabs(_addonName, tabName); end
 		});
 	end
 
@@ -360,7 +358,7 @@ do --[[ KrowiAF_RegisterEventOptions ]]
 				for _, eventId in next, eventIds do
 					addon.Options.db.profile.EventReminders[eventType .. "Events"][eventId] = value;
 				end
-				addon.GUI.SideButtonSystem.Refresh();
+				addon.Gui.EventReminderSideButtonSystem:Refresh();
 			end
 		});
 	end

@@ -296,7 +296,7 @@
         "ACHIEVEMENT_BUTTON",
         "AchievementMicroButtonMixin",
         "KrowiAF_AchievementFrameAchievementsFrame",
-        "KrowiAF_AchievementFrameSummaryFrame",
+        "KrowiAF_SummaryFrame",
         "UISpecialFrames",
         "CalendarViewHolidayFrame",
         "KrowiAF_CalendarViewHolidayFrame",
@@ -469,7 +469,24 @@
         "GetFrameRate",
         "C_CVar",
         "debugprofilestop",
-        "SlashCmdList"
+        "SlashCmdList",
+        "KrowiAF_AchievementCalendarSideFrame",
+        "KrowiAF_AchievementCalendarButton",
+        "KrowiAF_AchievementsObjectives",
+        "UNTRACK_ACHIEVEMENT_TOOLTIP",
+        "TRACK_ACHIEVEMENT_TOOLTIP",
+        "KrowiAF_AchievementsFrame",
+        "KrowiAF_DataManagerFrame",
+        "KrowiAF_SearchResultsFrame",
+        "KrowiAF_SearchBoxFrame",
+        "CreateFromMixins",
+        "InCombatLockdown",
+        "KrowiAF_AchievementFrameHeaderButton",
+        "KrowiAF_AchievementFrameFilterButton",
+        "GetTime",
+        "UIDropDownMenu_SetFrameStrata",
+        "UIDropDownMenu_RefreshAll",
+        "UIDROPDOWNMENU_OPEN_MENU"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
@@ -499,20 +516,20 @@
             "exclude":"**/{.git,.vscode,Changelogs,Descriptions}/**",
             "deleteTargetOnDeploy": true
         },
-        // {
-        //     "source":"C:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
-        //     "target":"F:\\World of Warcraft\\_ptr_\\Interface\\AddOns\\Krowi_AchievementFilter",
-        //     "include":"**/*.{lua,toc,blp,tga,xml,md}",
-        //     "exclude":"**/{.git,.github,.vscode,Changelogs,Descriptions}/**",
-        //     "deleteTargetOnDeploy": true
-        // },
         {
             "source":"C:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
-            "target":"F:\\World of Warcraft\\_classic_ptr_\\Interface\\AddOns\\Krowi_AchievementFilter",
+            "target":"F:\\World of Warcraft\\_xptr_\\Interface\\AddOns\\Krowi_AchievementFilter",
             "include":"**/*.{lua,toc,blp,tga,xml,md}",
             "exclude":"**/{.git,.github,.vscode,Changelogs,Descriptions}/**",
             "deleteTargetOnDeploy": true
         },
+        // {
+        //     "source":"C:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
+        //     "target":"F:\\World of Warcraft\\_classic_ptr_\\Interface\\AddOns\\Krowi_AchievementFilter",
+        //     "include":"**/*.{lua,toc,blp,tga,xml,md}",
+        //     "exclude":"**/{.git,.github,.vscode,Changelogs,Descriptions}/**",
+        //     "deleteTargetOnDeploy": true
+        // },
     ],
     "fsdeploy.deployWorkspaceOnSave": true,
 }

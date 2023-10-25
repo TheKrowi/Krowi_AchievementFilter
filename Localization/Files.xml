@@ -1,4 +1,5 @@
 <Ui>
+    <Script file="Localization.lua" />
     <Script file="enUS.lua" />
     <Script file="enUS.WrathClassic.lua" />
     <Script file="enUS.Plugins.lua" />
@@ -12,5 +13,4 @@
     <Script file="zhCN.WrathClassic.lua" />
     <Script file="zhCN.Plugins.lua" />
     <Script file="GlobalStrings.lua" />
-    <Script file="Localization.lua" />
 </Ui>

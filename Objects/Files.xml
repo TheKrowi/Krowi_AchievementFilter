@@ -10,4 +10,5 @@
     <Script file="CompareFunc.lua" />
     <Script file="Flags.lua" />
     <Script file="BuildVersion.lua" />
+    <Script file="SaturationStyle.lua" />
 </Ui>

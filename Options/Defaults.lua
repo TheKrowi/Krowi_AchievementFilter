@@ -131,7 +131,8 @@ addon.Options.Defaults = {
             ClearOnRightClick = true,
             ExcludeExcluded = true,
             OnlySearchFiltered = false,
-            ShowAllResultsInCategory = true
+            ShowAllResultsInCategory = true,
+            MouseWheelPanScalar = 5
         },
         EventReminders = {
             PopUps = {
@@ -193,6 +194,9 @@ addon.Options.Defaults = {
             FirstWeekDay = -1,
             LockAchievementMonth = true,
             LockMonth = false,
+            MouseWheelPanScalar = 1
+        },
+        DataManager = {
             MouseWheelPanScalar = 1
         },
         Plugins = {}

@@ -40,9 +40,129 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-04 18-09-12 ]] --
+-- [[ Exported at 2023-10-25 21-19-09 ]] --
 tasks = {
+    {N, 19461, 205}, -- Kissed by the Wind
+    {O, 19449, "From", "PvP Season", 36, "Until", "PvP Season", 36},
+    {N, 19449, 205, nil, nil, true}, -- Dreaming Hero: Dragonflight Season 3
+    {O, 19443, "From", "PvP Season", 36, "Until", "PvP Season", 36},
+    {N, 19443, 205, nil, nil, true}, -- Battle Mender: Dragonflight Season 3
+    {N, 19442, 205}, -- Fire Catwalk With Me
+    {N, 19420, 205}, -- Dragonflight Season 3 Hero
+    {N, 19418, 205, nil, nil, true}, -- Battle-scarred Battler
+    {N, 19417, 205, nil, nil, true}, -- Brawlroom Blitzer
+    {N, 19416, 205, nil, nil, true}, -- Learning the Ropes
+    {N, 19413, 205, nil, nil, true}, -- Battleground Blitz Veteran
+    {N, 19412, 205, nil, nil, true}, -- Battleground Blitz Apprentice
+    {N, 19411, 205, nil, nil, true}, -- Battleground Blitz Novice
+    {N, 19401, 205}, -- Emerald Dream Safari
+    {N, 19398, 205}, -- Dreaming of the Aspects
+    {N, 19397, 205}, -- Dreaming of Wyrms
+    {N, 19396, 205}, -- Dragonflight Season 3 Master
+    {N, 19394, 205}, -- A Dream Within a Dream
+    {N, 19393, 205}, -- "Whelp, I'm Lost"
+    {N, 19390, 205}, -- Memories of Teldrassil
+    {N, 19351, 205}, -- Cutting Edge: Fyrakk the Blazing
+    {N, 19350, 205}, -- Ahead of the Curve: Fyrakk the Blazing
+    {N, 19349, 205}, -- Glory of the Dream Raider
+    {N, 19347, 205}, -- Fate of Amirdrassil
+    {N, 19346, 205}, -- The Viridian Weave
+    {N, 19345, 205}, -- Molten Incursion
+    {N, 19344, 205}, -- Incarnate's Wake
+    {N, 19343, 205}, -- Mythic: Fyrakk the Blazing
+    {N, 19342, 205}, -- "Mythic: Tindral Sageswift, Seer of the Flame"
+    {N, 19341, 205}, -- Mythic: Smolderon
+    {N, 19340, 205}, -- "Mythic: Nymue, Weaver of the Cycle"
+    {N, 19339, 205}, -- "Mythic: Larodar, Keeper of the Flame"
+    {N, 19338, 205}, -- Mythic: Council of Dreams
+    {N, 19337, 205}, -- Mythic: Volcoross
+    {N, 19336, 205}, -- Mythic: Igira the Cruel
+    {N, 19335, 205}, -- Mythic: Gnarlroot
+    {N, 19334, 205}, -- "Mythic: Amirdrassil, the Dream's Hope"
+    {N, 19333, 205}, -- "Heroic: Amirdrassil, the Dream's Hope"
+    {N, 19331, 205}, -- "Amirdrassil, the Dream's Hope"
+    {N, 19326, 205}, -- Dreaming of Drakes
+    {N, 19322, 205}, -- Meaner Pastures
+    {N, 19321, 205}, -- Swog Champion
+    {N, 19320, 205}, -- Cruelty Free
+    {N, 19319, 205}, -- Haven't We Done This Before?
+    {N, 19318, 205}, -- Dream On
+    {N, 19317, 205}, -- Treasures of the Emerald Dream
+    {N, 19316, 205}, -- Adventurer of the Emerald Dream
+    {N, 19315, 205}, -- Dream Chaser
+    {N, 19313, 205}, -- Bloom Man Group
+    {N, 19312, 205}, -- Super Duper Bloom
+    {N, 19310, 205}, -- Fruit of the Bloom
+    {N, 19309, 205}, -- Explore the Emerald Dream
+    {N, 19308, 205}, -- Freshscales Fifteen
+    {N, 19307, 205}, -- Dragon Isles Pathfinder
+    {N, 19306, 205}, -- Emerald Dream Glyph Hunter
+    {O, 19304, "From", "PvP Season", 36, "Until", "PvP Season", 36},
+    {N, 19304, 205, nil, nil, true}, -- Legend: Dragonflight Season 3
+    {N, 19303, 205}, -- Dragon Glyphs: Wakeful Vista
+    {N, 19302, 205}, -- Dragon Glyphs: Whorlwing Basin
+    {N, 19301, 205}, -- Dragon Glyphs: Amirdrassil
+    {N, 19300, 205}, -- Dragon Glyphs: Dreamsurge Basin
+    {N, 19299, 205}, -- Dragon Glyphs: Cinder Summit
+    {N, 19298, 205}, -- Dragon Glyphs: Smoldering Copse
+    {N, 19297, 205}, -- Dragon Glyphs: Furnace Coil
+    {N, 19296, 205}, -- Dragon Glyphs: Eye of Ysera
+    {O, 19295, "From", "PvP Season", 36, "Until", "PvP Season", 36},
+    {N, 19295, 205, nil, nil, true}, -- Verdant Gladiator's Slitherdrake
+    {N, 19294, 205}, -- Tour of Duty: Emerald Dream
+    {N, 19293, 205}, -- Friends In Feathers
+    {N, 19276, 205, nil, nil, true}, -- Verdant Vogue
+    {N, 19235, 205}, -- Warden of the Dream
+    {N, 19230, 205}, -- Friends in the Dream
+    {N, 19198, 205}, -- The Seeds I Sow
+    {N, 19196, 205}, -- Sowing the Seeds
+    {N, 19194, 205}, -- The Emerald Bounty
+    {N, 19193, 205}, -- Ducks In A Row
     {N, 19192, 202}, -- Lil' Frostwing
+    {O, 19162, "From", "PvP Season", 36, "Until", "PvP Season", 36},
+    {N, 19162, 205, f.Alliance, 19161, true}, -- Hero of the Alliance: Verdant
+    {O, 19161, "From", "PvP Season", 36, "Until", "PvP Season", 36},
+    {N, 19161, 205, f.Horde, 19162, true}, -- Hero of the Horde: Verdant
+    {O, 19160, "From", "PvP Season", 36, "Until", "PvP Season", 36},
+    {N, 19160, 205, nil, nil, true}, -- Challenger II: Dragonflight Season 3
+    {O, 19159, "From", "PvP Season", 36, "Until", "PvP Season", 36},
+    {N, 19159, 205, nil, nil, true}, -- Challenger I: Dragonflight Season 3
+    {O, 19158, "From", "PvP Season", 36, "Until", "PvP Season", 36},
+    {N, 19158, 205, nil, nil, true}, -- Combatant II: Dragonflight Season 3
+    {O, 19157, "From", "PvP Season", 36, "Until", "PvP Season", 36},
+    {N, 19157, 205, nil, nil, true}, -- Combatant I: Dragonflight Season 3
+    {O, 19156, "From", "PvP Season", 36, "Until", "PvP Season", 36},
+    {N, 19156, 205, nil, nil, true}, -- Duelist: Dragonflight Season 3
+    {O, 19155, "From", "PvP Season", 36, "Until", "PvP Season", 36},
+    {N, 19155, 205, nil, nil, true}, -- Rival II: Dragonflight Season 3
+    {O, 19133, "From", "PvP Season", 36, "Until", "PvP Season", 36},
+    {N, 19133, 205, nil, nil, true}, -- Rival I: Dragonflight Season 3
+    {O, 19132, "From", "PvP Season", 36, "Until", "PvP Season", 36},
+    {N, 19132, 205, nil, nil, true}, -- Verdant Gladiator: Dragonflight Season 3
+    {O, 19131, "From", "PvP Season", 36, "Until", "PvP Season", 36},
+    {N, 19131, 205, nil, nil, true}, -- Verdant Legend: Dragonflight Season 3
+    {N, 19130, 205}, -- Junior Racing Champion
+    {N, 19129, 205}, -- Emerald Dream Challenge Racing Completionist: Gold
+    {N, 19128, 205}, -- Emerald Dream Challenge Racing Completionist: Silver
+    {N, 19127, 205}, -- Emerald Dream Challenge Racing Completionist
+    {N, 19126, 205}, -- Emerald Dream Reverse Challenge: Gold
+    {N, 19125, 205}, -- Emerald Dream Reverse Challenge: Silver
+    {N, 19124, 205}, -- Emerald Dream Reverse Challenge: Bronze
+    {N, 19123, 205}, -- Emerald Dream Challenge: Gold
+    {N, 19122, 205}, -- Emerald Dream Challenge: Silver
+    {N, 19121, 205}, -- Emerald Dream Challenge: Bronze
+    {N, 19120, 205}, -- Emerald Dream Racing Completionist: Gold
+    {N, 19119, 205}, -- Emerald Dream Racing Completionist: Silver
+    {N, 19118, 205}, -- Emerald Dream Racing Completionist
+    {N, 19117, 205}, -- Emerald Dream Reverse: Gold
+    {N, 19116, 205}, -- Emerald Dream Reverse: Silver
+    {N, 19115, 205}, -- Emerald Dream Reverse: Bronze
+    {N, 19114, 205}, -- Emerald Dream Advanced: Gold
+    {N, 19113, 205}, -- Emerald Dream Advanced: Silver
+    {N, 19112, 205}, -- Emerald Dream Advanced: Bronze
+    {N, 19111, 205}, -- Emerald Dream: Gold
+    {N, 19110, 205}, -- Emerald Dream: Silver
+    {N, 19109, 205}, -- Emerald Dream: Bronze
     {N, 19107, 202}, -- Outland Racing Completionist: Gold
     {N, 19106, 202}, -- Outland Racing Completionist: Silver
     {N, 19105, 202}, -- Outland Racing Completionist
@@ -55,7 +175,40 @@ tasks = {
     {N, 19098, 202}, -- Outland: Gold
     {N, 19097, 202}, -- Outland: Silver
     {N, 19092, 202}, -- Outland: Bronze
+    {O, 19091, "From", "PvP Season", 36, "Until", "PvP Season", 36},
+    {N, 19091, 205, nil, nil, true}, -- Gladiator: Dragonflight Season 3
+    {O, 19090, "From", "PvP Season", 36, "Until", "PvP Season", 36},
+    {N, 19090, 205, nil, nil, true}, -- Elite: Dragonflight Season 3
+    {N, 19089, 205}, -- Don't Let the Doe Hit You On The Way Out
+    {O, 19088, "From", "Mythic+ Season", 11, "Until", "Mythic+ Season", 11},
+    {N, 19088, 205}, -- Keystone Hero: Dawn of the Infinite
+    {O, 19087, "From", "Mythic+ Season", 11, "Until", "Mythic+ Season", 11},
+    {N, 19087, 205}, -- Keystone Hero: Atal'Dazar
+    {O, 19086, "From", "Mythic+ Season", 11, "Until", "Mythic+ Season", 11},
+    {N, 19086, 205}, -- Keystone Hero: Waycrest Manor
+    {O, 19085, "From", "Mythic+ Season", 11, "Until", "Mythic+ Season", 11},
+    {N, 19085, 205}, -- Keystone Hero: Darkheart Thicket
+    {O, 19084, "From", "Mythic+ Season", 11, "Until", "Mythic+ Season", 11},
+    {N, 19084, 205}, -- Keystone Hero: Black Rook Hold
+    {O, 19083, "From", "Mythic+ Season", 11, "Until", "Mythic+ Season", 11},
+    {N, 19083, 205}, -- Keystone Hero: The Everbloom
+    {O, 19082, "From", "Mythic+ Season", 11, "Until", "Mythic+ Season", 11},
+    {N, 19082, 205}, -- Keystone Hero: Throne of the Tides
+    {O, 19080, "Never" },
+    {N, 19080, 202}, -- Arcane Influence
     {N, 19079, 202}, -- Master of the Turbulent Timeways
+    {N, 19077, 205}, -- Catch Me If You Can!
+    {N, 19029, 202}, -- Lil' Maggz
+    {N, 19026, 205}, -- Defenders of the Dream
+    {N, 19013, 205}, -- I Dream of Seeds
+    {O, 19012, "From", "Mythic+ Season", 11, "Until", "Mythic+ Season", 11},
+    {N, 19012, 205}, -- Dragonflight Keystone Hero: Season Three
+    {O, 19011, "From", "Mythic+ Season", 11, "Until", "Mythic+ Season", 11},
+    {N, 19011, 205}, -- Dragonflight Keystone Master: Season Three
+    {O, 19010, "From", "Mythic+ Season", 11, "Until", "Mythic+ Season", 11},
+    {N, 19010, 205}, -- Dragonflight Keystone Conqueror: Season Three
+    {O, 19009, "From", "Mythic+ Season", 11, "Until", "Mythic+ Season", 11},
+    {N, 19009, 205}, -- Dragonflight Keystone Explorer: Season Three
     {N, 19008, 202}, -- Dream Shaper
     {N, 18977, 201}, -- Draconically Epic
     {N, 18976, 201}, -- Draconically Superior
@@ -115,8 +268,8 @@ tasks = {
     {N, 18865, 202}, -- Anvil Mastery III
     {N, 18864, 202}, -- Anvil Mastery II
     {N, 18862, 202}, -- Anvil Mastery I
-    {N, 18859, 202}, -- Forge and Befuddle
-    {N, 18858, 202}, -- Forge and Befuddle
+    {N, 18859, 202, f.Alliance, 18858}, -- Forge and Befuddle
+    {N, 18858, 202, f.Horde, 18859}, -- Forge and Befuddle
     {N, 18857, 202}, -- That's No Ordinary Gas Cloud!
     {N, 18856, 202}, -- Just an Ordinary Gas Cloud
     {N, 18855, 202}, -- Portal to Everywhere
@@ -267,6 +420,7 @@ tasks = {
     {O, 18253, "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10},
     {N, 18253, 200}, -- Ahead of the Curve: Scalecommander Sarkareth
     {N, 18251, 200}, -- Glory of the Aberrus Raider
+    {N, 18250, 202}, -- Ysergle The Dreamurk
     {N, 18249, 200, nil, nil, true}, -- Obsidian Tie Event
     {N, 18230, 200}, -- Whac-A-Swog
     {N, 18229, 200}, -- Cosplate
@@ -376,9 +530,9 @@ tasks = {
     {N, 17778, 200, nil, nil, true}, -- Obsidian Gladiator's Slitherdrake
     {N, 17773, 202}, -- A Blue Dawn
     {O, 17772, "From", "PvP Season", 35, "Until", "PvP Season", 35},
-    {N, 17772, 200, f.Horde, nil, true}, -- Hero of the Horde: Obsidian
+    {N, 17772, 200, f.Horde, 17768, true}, -- Hero of the Horde: Obsidian
     {O, 17768, "From", "PvP Season", 35, "Until", "PvP Season", 35},
-    {N, 17768, 200, f.Alliance, nil, true}, -- Hero of the Alliance: Obsidian
+    {N, 17768, 200, f.Alliance, 17772, true}, -- Hero of the Alliance: Obsidian
     {O, 17767, "From", "PvP Season", 35, "Until", "PvP Season", 35},
     {N, 17767, 200, nil, nil, true}, -- Obsidian Legend: Dragonflight Season 2
     {N, 17766, 200}, -- Explore Zaralek Cavern
@@ -438,6 +592,7 @@ tasks = {
     {O, 17764, "From", "PvP Season", 35, "Until", "PvP Season", 35},
     {N, 17764, 200, nil, nil, true}, -- Obsidian Gladiator: Dragonflight Season 2
     {N, 17763, 200}, -- There's No Place Like Loamm
+    {N, 17756, 200}, -- Friends in Loamm Places
     {N, 17741, 200}, -- Slow and Steady Wins the Race
     {O, 17740, "From", "PvP Season", 35, "Until", "PvP Season", 35},
     {N, 17740, 200, nil, nil, true}, -- Gladiator: Dragonflight Season 2
@@ -465,6 +620,7 @@ tasks = {
     {N, 17562, 200}, -- Ancient Stones of the Ohn'ahran Plains
     {N, 17561, 200}, -- Ancient Stones of the Waking Shores
     {N, 17560, 200}, -- Ancient Stones of the Dragon Isles
+    {N, 17547, 202}, -- The Lick King
     {N, 17546, 199}, -- A New Beginning
     {N, 17543, 199}, -- You Know How to Reach Me
     {N, 17541, 199}, -- Global Swarming
@@ -594,6 +750,10 @@ tasks = {
     {N, 17108, 195}, -- Cutting Edge: Raszageth the Storm-Eater
     {O, 17107, "From", "Mythic+ Season", 9, "Until", "Mythic+ Season", 9},
     {N, 17107, 195}, -- Ahead of the Curve: Raszageth the Storm-Eater
+    {N, 17064, 195}, -- Friends in the Plains
+    {N, 16994, 195}, -- Friends in the Accord
+    {N, 16944, 195}, -- Friend of the Family
+    {N, 16884, 195}, -- Friends in the Field
     {N, 16808, 195}, -- Friend of the Dragon Isles
     {O, 16801, "Once" },
     {N, 16801, 195, nil, nil, nil, true}, -- Realm First! Dragonflight Keystone Hero
@@ -1016,9 +1176,9 @@ tasks = {
     {O, 15960, "From", "PvP Season", 34, "Until", "PvP Season", 34},
     {N, 15960, 196, nil, nil, true}, -- Combatant I: Dragonflight Season 1
     {O, 15959, "From", "PvP Season", 34, "Until", "PvP Season", 34},
-    {N, 15959, 196, f.Alliance, nil, true}, -- Hero of the Alliance: Crimson
+    {N, 15959, 196, f.Alliance, 15958, true}, -- Hero of the Alliance: Crimson
     {O, 15958, "From", "PvP Season", 34, "Until", "PvP Season", 34},
-    {N, 15958, 196, f.Horde, nil, true}, -- Hero of the Horde: Crimson
+    {N, 15958, 196, f.Horde, 15959, true}, -- Hero of the Horde: Crimson
     {O, 15957, "From", "PvP Season", 34, "Until", "PvP Season", 34},
     {N, 15957, 196, nil, nil, true}, -- Gladiator: Dragonflight Season 1
     {O, 15956, "From", "PvP Season", 34, "Until", "PvP Season", 34},
@@ -9154,4 +9314,4 @@ tasks = {
     {N, 7, 194}, -- Level 20
     {N, 6, 194}, -- Level 10
 };
-data.HighestAchievementId = 19192;
+data.HighestAchievementId = 19461;

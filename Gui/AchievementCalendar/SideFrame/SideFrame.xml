@@ -1,0 +1,42 @@
+<Ui>
+    <Script file="SideFrameMixin.lua"/>
+
+	<Frame name="KrowiAF_AchievementCalendarSideFrame_Template" mixin="KrowiAF_AchievementCalendarSideFrameMixin" toplevel="true" enableMouse="true" frameStrata="HIGH" virtual="true" hidden="true">
+		<Size x="504" y="320"/>
+		<Layers>
+			<Layer level="BORDER">
+				<Texture name="CalendarViewHolidayInfoTexture" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="12" y="-13"/>
+						<Anchor point="BOTTOMRIGHT" x="-11" y="11"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame parentKey="Border" inherits="DialogBorderDarkTemplate"/>
+			<Frame parentKey="Header" inherits="DialogHeaderTemplate"/>
+			<Frame name="$parentAchievementsFrame" parentKey="AchievementsFrame" inherits="KrowiAF_AchievementsFrameLight_Template">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="9" y="-27"/>
+					<Anchor point="BOTTOMRIGHT" x="-9" y="9"/>
+				</Anchors>
+			</Frame>	
+			<Button name="$parentCloseButton" parentKey="CloseButton" mixin="KrowiAF_AchievementCalendarSideFrameCloseButtonMixin" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT" x="-7" y="-7"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad method="OnLoad"/>
+					<OnClick method="OnClick"/>
+					<OnKeyDown method="OnKeyDown"/>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad method="OnLoad"/>
+			<OnShow method="OnShow"/>
+			<OnHide method="OnHide"/>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-01 17-52-39 ]] --
+-- [[ Exported at 2023-10-25 20-33-43 ]] --
 L["%c"] = "%c "
 L["%d/%m/%Y %I:%M %p"] = "%d/%m/%Y %I:%M %p "
 L["%m/%d/%Y %I:%M %p"] = "%m/%d/%Y %I:%M %p "
@@ -880,6 +880,7 @@ L["Time Rifts"] = "Zeitrisse "
 L["Titan Lockdown"] = "Titanenabriegelung "
 L["Titan Lockdown: Active"] = "Titanenabriegelung: Aktiv "
 L["Titan Lockdown: Soon"] = "Titanenabriegelung: Bald "
+L["Titan Lockdown: Starting Soon"] = "Titanenabriegelung: Starten Bald "
 L["Ti'un the Wanderer"] = "Ti'un der Wanderer "
 L["Toggle"] = "Auswählen "
 L["Toggle Tracking"] = "Erfolgs-Verfolgung umschalten "
@@ -887,6 +888,7 @@ L["Toggle window once opened"] = "Fenster nach dem Öffnen umschalten "
 L["Toggle window once opened Desc"] = "Wenn das Erfolgsfenster das erste Mal geöffnet wird, öffnet sich ein Tab und wählt die Zusammenfassung. Ab dem zweiten Mal, unabhängig von der verwendeten Tastenkombination, öffnet sich die letzte Ansicht. "
 L["Tooltip"] = "Tooltip "
 L["Torghast"] = "Torghast "
+L["Tracking"] = true
 L["Tracking Achievements"] = "Erfassung von Erfolgen "
 L["Transmog Sets"] = "Transmog-Sets "
 L["Truncate"] = "Abschneiden "
@@ -945,4 +947,5 @@ L["Y offset Desc"] = "Der vertikale Versatz von der Startposition. "
 L["Zaqali Ruin Investigation"] = "Zaqaliruinen "
 L["Zaqali Ruin Investigation: Active"] = "Zaqaliruinen: Aktiv "
 L["Zaqali Ruin Investigation: Soon"] = "Zaqaliruinen: Bald "
+L["Zaqali Ruin Investigation: Starting Soon"] = "Zaqaliruinen: Starten Bald "
 L["Zones"] = "Zonen "

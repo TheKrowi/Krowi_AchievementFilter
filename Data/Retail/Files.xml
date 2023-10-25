@@ -1,9 +1,10 @@
 <Ui>
     <Script file="ExportedAchievements.lua" />
+    <Script file="ExportedBuildVersions.lua" />
     <Script file="ExportedCalendarEvents.lua" />
-    <Script file="ExportedWorldEvents.lua" />
-    <Script file="ExportedWidgetEvents.lua" />
     <Script file="ExportedCategories.lua" />
     <Script file="ExportedPetBattleLinks.lua" />
+    <Script file="ExportedWidgetEvents.lua" />
+    <Script file="ExportedWorldEvents.lua" />
     <Script file="ExportedTooltipData.lua" />
 </Ui>

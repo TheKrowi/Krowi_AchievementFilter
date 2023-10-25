@@ -20,6 +20,8 @@ function layout.PostLoad()
         end
         addon.Options.db.profile.Calendar.FirstWeekDay = CALENDAR_FIRST_WEEKDAY;
     end
+
+    options.SetMaxNumberOfSearchPreviews();
 end
 
 local RefreshOptions; -- Assigned at the end of the file
@@ -37,7 +39,7 @@ end
 
 -- [[ InjectDynamicFixedWatchListOptions ]]
 local function DrawSubCategories(categories)
-    if addon.GUI.SelectedTab == nil then
+    if addon.Gui.SelectedTab == nil then
         return;
     end
 
@@ -46,8 +48,8 @@ local function DrawSubCategories(categories)
         categories[i].Achievements = nil;
         categories[i].Children = nil;
     end
-    addon.GUI.CategoriesFrame:Update(true);
-    addon.GUI.AchievementsFrame:ForceUpdate();
+    KrowiAF_CategoriesFrame:Update(true);
+    KrowiAF_AchievementsFrame:ForceUpdate();
 
     -- Draw again
     addon.Data.LoadWatchedAchievements();
@@ -61,14 +63,14 @@ local function WatchListClearAllFunc()
         addon.Data.WatchListCategories[i].Achievements = nil;
         addon.Data.WatchListCategories[i].Children = nil;
     end
-    if addon.GUI.SelectedTab ~= nil then -- If nil, not yet loaded
+    if addon.Gui.SelectedTab ~= nil then -- If nil, not yet loaded
         if KrowiAF_SavedData.WatchedAchievements then
             for id, _ in next, KrowiAF_SavedData.WatchedAchievements do
                 addon.Data.Achievements[id]:ClearWatch();
             end
         end
-        addon.GUI.CategoriesFrame:Update(true);
-        addon.GUI.AchievementsFrame:ForceUpdate();
+        KrowiAF_CategoriesFrame:Update(true);
+        KrowiAF_AchievementsFrame:ForceUpdate();
     end
     KrowiAF_SavedData.WatchedAchievements = nil;
 end
@@ -137,7 +139,7 @@ end
 
 -- [[ InjectMoreDynamicExcludedOptions ]]
 local function ShowExcludedCategory()
-    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
+    if addon.Gui.SelectedTab == nil then -- If nil, not yet loaded
         return;
     end
     if addon.Options.db.profile.Categories.Excluded.Show then
@@ -147,8 +149,8 @@ local function ShowExcludedCategory()
             addon.Data.ExcludedCategories[i].Achievements = nil;
             addon.Data.ExcludedCategories[i].Children = nil;
         end
-        addon.GUI.CategoriesFrame:Update(true);
-        addon.GUI.AchievementsFrame:ForceUpdate();
+        KrowiAF_CategoriesFrame:Update(true);
+        KrowiAF_AchievementsFrame:ForceUpdate();
     end
 end
 
@@ -161,7 +163,7 @@ local function ExcludedIncludeAllFunc()
         addon.Data.ExcludedCategories[i].Achievements = nil;
         addon.Data.ExcludedCategories[i].Children = nil;
     end
-    if addon.GUI.SelectedTab == nil then -- If nil, not yet loaded
+    if addon.Gui.SelectedTab == nil then -- If nil, not yet loaded
         KrowiAF_SavedData.ExcludedAchievements = nil;
         return;
     end
@@ -170,8 +172,8 @@ local function ExcludedIncludeAllFunc()
             addon.Data.Achievements[id]:Include();
         end
     end
-    addon.GUI.CategoriesFrame:Update(true);
-    addon.GUI.AchievementsFrame:ForceUpdate();
+    KrowiAF_CategoriesFrame:Update(true);
+    KrowiAF_AchievementsFrame:ForceUpdate();
     KrowiAF_SavedData.ExcludedAchievements = nil;
 end
 
@@ -292,7 +294,10 @@ local function MovableAchievementWindowRememberLastPositionSet(_, value)
     if addon.Options.db.profile.Window.RememberLastPosition.AchievementWindow == value then return; end
     addon.Options.db.profile.Window.RememberLastPosition.AchievementWindow = value;
     if not addon.Options.db.profile.Window.RememberLastPosition.AchievementWindow then
-        addon.GUI.ResetAchievementWindowPosition();
+        if not IsAddOnLoaded("Blizzard_AchievementUI") then
+            LoadAddOn("Blizzard_AchievementUI");
+        end
+        AchievementFrame:ResetPosition();
     end
 end
 
@@ -300,7 +305,10 @@ local function MovableCalendarRememberLastPositionSet(_, value)
     if addon.Options.db.profile.Window.RememberLastPosition.Calendar == value then return; end
     addon.Options.db.profile.Window.RememberLastPosition.Calendar = value;
     if not addon.Options.db.profile.Window.RememberLastPosition.Calendar then
-        addon.GUI.Calendar.Frame:ResetPosition();
+        if not IsAddOnLoaded("Blizzard_AchievementUI") then
+            LoadAddOn("Blizzard_AchievementUI");
+        end
+        KrowiAF_AchievementCalendarFrame:ResetPosition();
     end
 end
 
@@ -308,15 +316,18 @@ local function MovableDataManagerRememberLastPositionSet(_, value)
     if addon.Options.db.profile.Window.RememberLastPosition.DataManager == value then return; end
     addon.Options.db.profile.Window.RememberLastPosition.DataManager = value;
     if not addon.Options.db.profile.Window.RememberLastPosition.DataManager then
-        addon.GUI.DataManagerFrame:ResetPosition();
+        if not IsAddOnLoaded("Blizzard_AchievementUI") then
+            LoadAddOn("Blizzard_AchievementUI");
+        end
+        KrowiAF_DataManagerFrame:ResetPosition();
     end
 end
 
 local function OffsetsCategoriesFrameWidthSet(_, value)
     if addon.Options.db.profile.Window.CategoriesFrameWidthOffset == value then return; end
     addon.Options.db.profile.Window.CategoriesFrameWidthOffset = value;
-    if addon.GUI.SelectedTab then
-        addon.GUI.SetAchievementFrameWidth();
+    if addon.Gui.SelectedTab then
+        addon.Gui:SetAchievementFrameWidth();
     end
 end
 
@@ -331,66 +342,88 @@ local function OffsetsAchievementFrameHeightSet(_, value)
     if addon.Options.db.profile.Window.AchievementFrameHeightOffset == value then return; end
     addon.Options.db.profile.Window.AchievementFrameHeightOffset = value;
     SetMaxNumberOfSearchPreviews();
-    if addon.GUI.SelectedTab then
-        addon.GUI.SetAchievementFrameHeight();
+    if addon.Gui.SelectedTab then
+        addon.Gui:SetAchievementFrameHeight();
+    end
+end
+
+local function SetSearchBoxMouseWheelPanScalar(_, value)
+    if addon.Options.db.profile.SearchBox.MouseWheelPanScalar == value then return; end
+    addon.Options.db.profile.SearchBox.MouseWheelPanScalar = value;
+    if KrowiAF_SearchBoxFrame.ResultsFrame.ScrollBox then
+        KrowiAF_SearchBoxFrame.ResultsFrame.ScrollBox.wheelPanScalar = value;
+    end
+    if KrowiAF_SearchBoxFrame.ResultsFrame.ScrollBar then
+        KrowiAF_SearchBoxFrame.ResultsFrame.ScrollBar.wheelPanScalar = value;
     end
 end
 
 local function SetSummaryMouseWheelPanScalar(_, value)
     if addon.Options.db.profile.Summary.MouseWheelPanScalar == value then return; end
     addon.Options.db.profile.Summary.MouseWheelPanScalar = value;
-    if addon.GUI.SummaryFrame.AchievementsFrame.ScrollBox then
-        addon.GUI.SummaryFrame.AchievementsFrame.ScrollBox.wheelPanScalar = value;
+    if KrowiAF_SummaryFrame.AchievementsFrame.ScrollBox then
+        KrowiAF_SummaryFrame.AchievementsFrame.ScrollBox.wheelPanScalar = value;
     end
-    if addon.GUI.SummaryFrame.AchievementsFrame.ScrollBar then
-        addon.GUI.SummaryFrame.AchievementsFrame.ScrollBar.wheelPanScalar = value;
+    if KrowiAF_SummaryFrame.AchievementsFrame.ScrollBar then
+        KrowiAF_SummaryFrame.AchievementsFrame.ScrollBar.wheelPanScalar = value;
     end
 end
 
 local function SetCategoryIndentation(_, value)
     if addon.Options.db.profile.Categories.Indentation == value then return; end
     addon.Options.db.profile.Categories.Indentation = value;
-    if addon.GUI.CategoriesFrame.ScrollView then
-        addon.GUI.CategoriesFrame.ScrollView:Layout();
+    if KrowiAF_CategoriesFrame.ScrollView then
+        KrowiAF_CategoriesFrame.ScrollView:Layout();
     end
 end
 
 local function SetCategoriesMouseWheelPanScalar(_, value)
     if addon.Options.db.profile.Categories.MouseWheelPanScalar == value then return; end
     addon.Options.db.profile.Categories.MouseWheelPanScalar = value;
-    if addon.GUI.CategoriesFrame.ScrollBox then
-        addon.GUI.CategoriesFrame.ScrollBox.wheelPanScalar = value;
+    if KrowiAF_CategoriesFrame.ScrollBox then
+        KrowiAF_CategoriesFrame.ScrollBox.wheelPanScalar = value;
     end
-    if addon.GUI.CategoriesFrame.ScrollBar then
-        addon.GUI.CategoriesFrame.ScrollBar.wheelPanScalar = value;
+    if KrowiAF_CategoriesFrame.ScrollBar then
+        KrowiAF_CategoriesFrame.ScrollBar.wheelPanScalar = value;
     end
 end
 
 local function MergeMergeSmallCategoriesThresholdSet(_, value)
     if addon.Options.db.profile.Window.MergeSmallCategoriesThreshold == value then return; end
     addon.Options.db.profile.Window.MergeSmallCategoriesThreshold = value;
-    addon.GUI.CategoriesFrame:Update(true);
+    KrowiAF_CategoriesFrame:Update(true);
 end
 
 local function SetAchievementsMouseWheelPanScalar(_, value)
     if addon.Options.db.profile.Achievements.MouseWheelPanScalar == value then return; end
     addon.Options.db.profile.Achievements.MouseWheelPanScalar = value;
-    if addon.GUI.AchievementsFrame.ScrollBox then
-        addon.GUI.AchievementsFrame.ScrollBox.wheelPanScalar = value;
+    if KrowiAF_AchievementsFrame.ScrollBox then
+        KrowiAF_AchievementsFrame.ScrollBox.wheelPanScalar = value;
     end
-    if addon.GUI.AchievementsFrame.ScrollBar then
-        addon.GUI.AchievementsFrame.ScrollBar.wheelPanScalar = value;
+    if KrowiAF_AchievementsFrame.ScrollBar then
+        KrowiAF_AchievementsFrame.ScrollBar.wheelPanScalar = value;
     end
 end
 
 local function SetCalendarMouseWheelPanScalar(_, value)
     if addon.Options.db.profile.Calendar.MouseWheelPanScalar == value then return; end
     addon.Options.db.profile.Calendar.MouseWheelPanScalar = value;
-    if addon.GUI.Calendar.SideFrame.AchievementsFrame.ScrollBox then
-        addon.GUI.Calendar.SideFrame.AchievementsFrame.ScrollBox.wheelPanScalar = value;
+    if KrowiAF_AchievementCalendarFrame.SideFrame.AchievementsFrame.ScrollBox then
+        KrowiAF_AchievementCalendarFrame.SideFrame.AchievementsFrame.ScrollBox.wheelPanScalar = value;
     end
-    if addon.GUI.Calendar.SideFrame.AchievementsFrame.ScrollBar then
-        addon.GUI.Calendar.SideFrame.AchievementsFrame.ScrollBar.wheelPanScalar = value;
+    if KrowiAF_AchievementCalendarFrame.SideFrame.AchievementsFrame.ScrollBar then
+        KrowiAF_AchievementCalendarFrame.SideFrame.AchievementsFrame.ScrollBar.wheelPanScalar = value;
+    end
+end
+
+local function SetDataManagerMouseWheelPanScalar(_, value)
+    if addon.Options.db.profile.DataManager.MouseWheelPanScalar == value then return; end
+    addon.Options.db.profile.DataManager.MouseWheelPanScalar = value;
+    if KrowiAF_DataManagerFrame.CharacterList.ScrollBox then
+        KrowiAF_DataManagerFrame.CharacterList.ScrollBox.wheelPanScalar = value;
+    end
+    if KrowiAF_DataManagerFrame.CharacterList.ScrollBar then
+        KrowiAF_DataManagerFrame.CharacterList.ScrollBar.wheelPanScalar = value;
     end
 end
 
@@ -425,7 +458,12 @@ options.OptionsTable.args["Layout"] = {
                             order = OrderPP(), type = "execute", width = AdjustedWidth(),
                             name = addon.L["Reset position"],
                             desc = addon.L["Reset position Desc"]:K_ReplaceVars(addon.L["Achievement Window"]),
-                            func = function() addon.GUI.ResetAchievementWindowPosition(); end
+                            func = function()
+                                if not IsAddOnLoaded("Blizzard_AchievementUI") then
+                                    LoadAddOn("Blizzard_AchievementUI");
+                                end
+                                AchievementFrame:ResetPosition();
+                            end
                         },
                         CalendarRememberLastPosition = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(2),
@@ -438,7 +476,12 @@ options.OptionsTable.args["Layout"] = {
                             order = OrderPP(), type = "execute", width = AdjustedWidth(),
                             name = addon.L["Reset position"],
                             desc = addon.L["Reset position Desc"]:K_ReplaceVars(addon.L["Achievement Calendar"]),
-                            func = function() addon.GUI.Calendar.Frame:ResetPosition(); end
+                            func = function()
+                                if not IsAddOnLoaded("Blizzard_AchievementUI") then
+                                    LoadAddOn("Blizzard_AchievementUI");
+                                end
+                                KrowiAF_AchievementCalendarFrame:ResetPosition();
+                            end
                         },
                         DataManagerRememberLastPosition = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(2),
@@ -451,7 +494,12 @@ options.OptionsTable.args["Layout"] = {
                             order = OrderPP(), type = "execute", width = AdjustedWidth(),
                             name = addon.L["Reset position"],
                             desc = addon.L["Reset position Desc"]:K_ReplaceVars(addon.L["Data Manager"]),
-                            func = function() addon.GUI.DataManagerFrame:ResetPosition(); end
+                            func = function()
+                                if not IsAddOnLoaded("Blizzard_AchievementUI") then
+                                    LoadAddOn("Blizzard_AchievementUI");
+                                end
+                                KrowiAF_DataManagerFrame:ResetPosition();
+                            end
                         }
                     }
                 },
@@ -500,7 +548,7 @@ options.OptionsTable.args["Layout"] = {
                                     get = function() return addon.Options.db.profile.TabsGeneral.Spacing; end,
                                     set = function (_, value)
                                         addon.Options.db.profile.TabsGeneral.Spacing = value;
-                                        addon.GUI.ShowHideTabs();
+                                        addon.Gui:ShowHideTabs();
                                     end
                                 }
                             }
@@ -585,10 +633,88 @@ options.OptionsTable.args["Layout"] = {
                         SortPriority = {
                             order = OrderPP(), type = "group", inline = true,
                             name = addon.L["Sort priority"],
-                            args = { --[[ Dynamically build via addon.GUI.AchievementFrameHeader.InjectDynamicOptions ]] }
+                            args = { --[[ Dynamically build via addon.Gui.AchievementFrameHeader.InjectDynamicOptions ]] }
                         }
                     }
                 }
+            }
+        },
+        Search = {
+            order = OrderPP(), type = "group",
+            name = addon.L["Search"],
+            args = {
+                SearchField = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["Search field"],
+                    args = {
+                        ClearOnRightClick = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                            name = addon.L["Clear search field on Right Click"],
+                            desc = addon.L["Clear search field on Right Click Desc"]:KAF_AddDefaultValueText("SearchBox.ClearOnRightClick"),
+                            get = function() return addon.Options.db.profile.SearchBox.ClearOnRightClick; end,
+                            set = function(_, value) addon.Options.db.profile.SearchBox.ClearOnRightClick = value; end
+                        },
+                        ExcludeExcluded = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                            name = addon.L["Exclude Excluded achievements"],
+                            desc = addon.L["Exclude Excluded achievements Desc"]:KAF_AddDefaultValueText("SearchBox.ExcludeExcluded"),
+                            get = function() return addon.Options.db.profile.SearchBox.ExcludeExcluded; end,
+                            set = function(_, value) addon.Options.db.profile.SearchBox.ExcludeExcluded = value; end
+                        },
+                        OnlySearchFiltered = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                            name = addon.L["Only search filtered achievements"],
+                            desc = addon.L["Only search filtered achievements Desc"]:KAF_AddDefaultValueText("SearchBox.OnlySearchFiltered"),
+                            get = function() return addon.Options.db.profile.SearchBox.OnlySearchFiltered; end,
+                            set = function(_, value) addon.Options.db.profile.SearchBox.OnlySearchFiltered = value; end
+                        },
+                        Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
+                        MinimumCharactersToSearch = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
+                            name = addon.L["Minimum characters to search"],
+                            desc = addon.L["Minimum characters to search Desc"]:KAF_AddDefaultValueText("SearchBox.MinimumCharactersToSearch"),
+                            min = 1, max = 10, step = 1,
+                            get = function() return addon.Options.db.profile.SearchBox.MinimumCharactersToSearch; end,
+                            set = function(_, value) addon.Options.db.profile.SearchBox.MinimumCharactersToSearch = value; end
+                        }
+                    }
+                },
+                SearchPreview = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["Search preview"],
+                    args = {
+                        NumberOfSearchPreviews = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
+                            name = addon.L["Number of search previews"],
+                            desc = addon.L["Number of search previews Desc"]:KAF_AddDefaultValueText("SearchBox.NumberOfSearchPreviews"):K_AddReloadRequired(),
+                            min = 1, max = 1000, step = 1, -- max set via PostLoad
+                            get = function() return addon.Options.db.profile.SearchBox.NumberOfSearchPreviews; end,
+                            set = function(_, value) addon.Options.db.profile.SearchBox.NumberOfSearchPreviews = value; end
+                        },
+                        Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
+                        ShowAllResultsInCategory = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                            name = addon.L["Show All Results in Category"],
+                            desc = addon.L["Show All Results in Category Desc"]:KAF_AddDefaultValueText("SearchBox.ShowAllResultsInCategory"),
+                            get = function() return addon.Options.db.profile.SearchBox.ShowAllResultsInCategory; end,
+                            set = function(_, value) addon.Options.db.profile.SearchBox.ShowAllResultsInCategory = value; end
+                        },
+                    }
+                },
+                MouseWheelPanScalar = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["Mouse Wheel Scroll Speed"],
+                    args = {
+                        MouseWheelPanScalar = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
+                            name = addon.L["Mouse Wheel Scroll Speed"],
+                            desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Achievements"]):KAF_AddDefaultValueText("SearchBox.MouseWheelPanScalar"),
+                            min = 1, max = 50, step = 1,
+                            get = function() return addon.Options.db.profile.SearchBox.MouseWheelPanScalar; end,
+                            set = SetSearchBoxMouseWheelPanScalar
+                        }
+                    }
+                },
             }
         },
         Summary = {
@@ -1027,7 +1153,7 @@ options.OptionsTable.args["Layout"] = {
                             get = function() return addon.Options.db.profile.Calendar.FirstWeekDay; end,
                             set = function (_, value)
                                 addon.Options.db.profile.Calendar.FirstWeekDay = value;
-                                addon.GUI.Calendar.Frame:Update();
+                                KrowiAF_AchievementCalendarFrame:Update();
                             end
                         }
                     }
@@ -1105,6 +1231,26 @@ options.OptionsTable.args["Layout"] = {
                     }
                 }
             }
+        },
+        DataManager = {
+            order = OrderPP(), type = "group",
+            name = addon.L["Data Manager"],
+            args = {
+                MouseWheelPanScalar = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["Mouse Wheel Scroll Speed"],
+                    args = {
+                        MouseWheelPanScalar = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
+                            name = addon.L["Mouse Wheel Scroll Speed"],
+                            desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Characters"]):KAF_AddDefaultValueText("DataManager.MouseWheelPanScalar"),
+                            min = 1, max = 50, step = 1,
+                            get = function() return addon.Options.db.profile.DataManager.MouseWheelPanScalar; end,
+                            set = SetDataManagerMouseWheelPanScalar
+                        }
+                    }
+                }
+            }
         }
     }
 };
@@ -1117,8 +1263,9 @@ function RefreshOptions()
     MovableDataManagerRememberLastPositionSet(nil, profile.Window.RememberLastPosition.DataManager);
     OffsetsCategoriesFrameWidthSet(nil, profile.Window.CategoriesFrameWidthOffset);
     OffsetsAchievementFrameHeightSet(nil, profile.Window.AchievementFrameHeightOffset);
-    addon.GUI.ShowHideTabs(); -- Dynamic Tab Order and Visibility is handled by this one
-    SetSummaryMouseWheelPanScalar(_, profile.Summary.MouseWheelPanScalar);
+    addon.Gui:ShowHideTabs(); -- Dynamic Tab Order and Visibility is handled by this one
+    SetSearchBoxMouseWheelPanScalar(nil, profile.SearchBox.MouseWheelPanScalar);
+    SetSummaryMouseWheelPanScalar(nil, profile.Summary.MouseWheelPanScalar);
     SetCategoryIndentation(nil, profile.Categories.Indentation);
     SetCategoriesMouseWheelPanScalar(nil, profile.Categories.MouseWheelPanScalar);
     MergeMergeSmallCategoriesThresholdSet(nil, profile.Window.MergeSmallCategoriesThreshold);
@@ -1128,4 +1275,5 @@ function RefreshOptions()
     DrawSubCategories(addon.Data.ExcludedCategories);
     SetAchievementsMouseWheelPanScalar(nil, profile.Achievements.MouseWheelPanScalar);
     SetCalendarMouseWheelPanScalar(nil, profile.Calendar.MouseWheelPanScalar);
+    SetDataManagerMouseWheelPanScalar(nil, profile.DataManager.MouseWheelPanScalar);
 end

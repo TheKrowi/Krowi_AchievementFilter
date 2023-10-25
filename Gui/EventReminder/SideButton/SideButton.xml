@@ -1,0 +1,30 @@
+<Ui>
+    <Script file="SideButtonMixin.lua"/>
+
+    <Button name="KrowiAF_EventReminderSideButton_Template" mixin="KrowiAF_EventReminderSideButtonMixin" inherits="KrowiAF_EventReminderAlertFrame_Template" virtual="true">
+        <Scripts>
+            <OnShow method="OnShow"/>
+            <OnEnter method="OnEnter"/>
+            <OnLeave method="OnLeave"/>
+            <OnClick method="OnClick"/>
+        </Scripts>
+    </Button>
+
+    <Button name="KrowiAF_EventReminderSideButton_Normal_Template" mixin="KrowiAF_EventReminderSideButtonMixin" inherits="KrowiAF_EventReminderAlertFrame_Normal_Template" virtual="true">
+        <Scripts>
+            <OnShow method="OnShow"/>
+            <OnEnter method="OnEnter"/>
+            <OnLeave method="OnLeave"/>
+            <OnClick method="OnClick"/>
+        </Scripts>
+    </Button>
+
+    <Button name="KrowiAF_EventReminderSideButton_Small_Template" mixin="KrowiAF_EventReminderSideButtonMixin" inherits="KrowiAF_EventReminderAlertFrame_Small_Template" virtual="true">
+        <Scripts>
+            <OnShow method="OnShow"/>
+            <OnEnter method="OnEnter"/>
+            <OnLeave method="OnLeave"/>
+            <OnClick method="OnClick"/>
+        </Scripts>
+    </Button>
+</Ui>

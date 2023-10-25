@@ -54,7 +54,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-04 18-10-01 ]] --
+-- [[ Exported at 2023-10-25 21-24-55 ]] --
 tasks = {
     {F, 857, "ExcludedCategories"},
     {C, 971, 857},
@@ -803,6 +803,7 @@ tasks = {
     {A, 920, 3456}, -- Dead Man's Party
     {C, 918, 920},
     {N, 920,k.L["Day of the Dead"]}, -- Day of the Dead
+    {A, 915, 980}, -- The Horseman's Reins
     {A, 915, 1657}, -- Hallowed Be Thy Name
     {A, 915, 1656}, -- Hallowed Be Thy Name
     {A, 915, 971}, -- Tricks and Treats of Azeroth
