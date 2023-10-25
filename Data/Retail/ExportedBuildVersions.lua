@@ -23,8 +23,9 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-23 22-17-19 ]] --
+-- [[ Exported at 2023-10-25 19-51-01 ]] --
 tasks = {
+    {N, 205, "10.2.0", "100200"},
     {N, 202, "10.1.7", "100107"},
     {N, 201, "10.1.5", "100105"},
     {N, 200, "10.1.0", "100100"},
@@ -128,6 +129,7 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
     filters[200] = true;
     filters[201] = true;
     filters[202] = true;
+    filters[205] = true;
 
     return {
         { -- 3
@@ -500,6 +502,15 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                         { -- 10.1.7
                             Patch = 7,
                             BuildVersionId = 202
+                        },
+                    }
+                },
+                { -- 10.2
+                    Minor = 2,
+                    Patches = {
+                        { -- 10.2.0
+                            Patch = 0,
+                            BuildVersionId = 205
                         },
                     },
                 },

@@ -1,4 +1,4 @@
-local _, addon = ...;
+local addonName, addon = ...;
 addon.Localization = {};
 local localization = addon.Localization;
 
@@ -12,4 +12,8 @@ if gameLocale == "enGB" then
 end
 function localization.GetLocale()
     return gameLocale;
+end
+
+function localization.GetDefaultLocale()
+    return LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true);
 end

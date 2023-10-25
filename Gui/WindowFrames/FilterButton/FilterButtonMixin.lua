@@ -103,71 +103,75 @@ local function ValueIsUndecided(keys)
     return counter > 1;
 end
 
-local function AddBuildVersionFilter(_menu, filters)
-    local version = addon.Objects.MenuItem:New(addon.L["Version"]);
-    for _, major in next, addon.Data.BuildVersionsGrouped do
-        local majorGroup = version:AddFull({
-            Text = major.Major .. ".x.x",
-            Checked = function()
-                local isChecked = true;
-                for _, minor in next, major.Minors do
-                    for _, patch in next, minor.Patches do
-                        isChecked = isChecked and addon.Util.ReadNestedKeys(filters, {"BuildVersion", patch.BuildVersionId});
-                    end
-                end
-                return isChecked;
-            end,
-            Func = function(self)
-                local checked = self.checked;
-                if type(checked) == "function" then
-                    checked = checked(self);
-                end
-                for _, minor in next, major.Minors do
-                    for _, patch in next, minor.Patches do
-                        SetSelected(filters, {"BuildVersion", patch.BuildVersionId}, not checked, true, true);
-                    end
-                end
-                UIDropDownMenu_RefreshAll(UIDROPDOWNMENU_OPEN_MENU);
-                UpdateAchievementFrame();
-            end,
-            IsNotRadio = true,
-            NotCheckable = false,
-            KeepShownOnClick = true
-        });
-        for _, minor in next, major.Minors do
-            if #minor.Patches > 1 then
-                local minorGroup = majorGroup:AddFull({
-                    Text = major.Major .. "." .. minor.Minor .. ".x",
-                    Checked = function()
-                        local isChecked = true;
-                        for _, patch in next, minor.Patches do
-                            isChecked = isChecked and addon.Util.ReadNestedKeys(filters, {"BuildVersion", patch.BuildVersionId});
-                        end
-                        return isChecked;
-                    end,
-                    Func = function(self)
-                        local checked = self.checked;
-                        if type(checked) == "function" then
-                            checked = checked(self);
-                        end
-                        for _, patch in next, minor.Patches do
-                            SetSelected(filters, {"BuildVersion", patch.BuildVersionId}, not checked, true, true);
-                        end
-                        UIDropDownMenu_RefreshAll(UIDROPDOWNMENU_OPEN_MENU);
-                        UpdateAchievementFrame();
-                    end,
-                    IsNotRadio = true,
-                    NotCheckable = false,
-                    KeepShownOnClick = true
-                });
-                for _, patch in next, minor.Patches do
-                    AddCheckBox(minorGroup, major.Major .. "." .. minor.Minor .. "." .. patch.Patch, filters, {"BuildVersion", patch.BuildVersionId}, true);
-                end
-            else
-                AddCheckBox(majorGroup, major.Major .. "." .. minor.Minor .. "." .. minor.Patches[1].Patch, filters, {"BuildVersion", minor.Patches[1].BuildVersionId}, true);
-            end
-        end
+local function AddMinorVersion(majorGroup, filters, major, minor)
+    if #minor.Patches <= 1 then
+        AddCheckBox(majorGroup, major.Major .. "." .. minor.Minor .. "." .. minor.Patches[1].Patch, filters, {"BuildVersion", minor.Patches[1].BuildVersionId}, true);
+        return;
     end
+    local minorGroup = majorGroup:AddFull({
+        Text = major.Major .. "." .. minor.Minor .. ".x",
+        Checked = function()
+            local isChecked = true;
+            for _, patch in next, minor.Patches do
+                isChecked = isChecked and addon.Util.ReadNestedKeys(filters, {"BuildVersion", patch.BuildVersionId});
+            end
+            return isChecked;
+        end,
+        Func = function(self)
+            local checked = self.checked;
+            if type(checked) == "function" then
+                checked = checked(self);
+            end
+            for _, patch in next, minor.Patches do
+                SetSelected(filters, {"BuildVersion", patch.BuildVersionId}, not checked, true, true);
+            end
+            UIDropDownMenu_RefreshAll(UIDROPDOWNMENU_OPEN_MENU);
+            UpdateAchievementFrame();
+        end,
+        IsNotRadio = true,
+        NotCheckable = false,
+        KeepShownOnClick = true
+    });
+    for _, patch in next, minor.Patches do
+        AddCheckBox(minorGroup, major.Major .. "." .. minor.Minor .. "." .. patch.Patch, filters, {"BuildVersion", patch.BuildVersionId}, true);
+    end
+end
+
+local function AddMajorVersion(version, filters, major)
+    local majorGroup = version:AddFull({
+        Text = major.Major .. ".x.x",
+        Checked = function()
+            local isChecked = true;
+            for _, minor in next, major.Minors do
+                for _, patch in next, minor.Patches do
+                    isChecked = isChecked and addon.Util.ReadNestedKeys(filters, {"BuildVersion", patch.BuildVersionId});
+                end
+            end
+            return isChecked;
+        end,
+        Func = function(self)
+            local checked = self.checked;
+            if type(checked) == "function" then
+                checked = checked(self);
+            end
+            for _, minor in next, major.Minors do
+                for _, patch in next, minor.Patches do
+                    SetSelected(filters, {"BuildVersion", patch.BuildVersionId}, not checked, true, true);
+                end
+            end
+            UIDropDownMenu_RefreshAll(UIDROPDOWNMENU_OPEN_MENU);
+            UpdateAchievementFrame();
+        end,
+        IsNotRadio = true,
+        NotCheckable = false,
+        KeepShownOnClick = true
+    });
+    for _, minor in next, major.Minors do
+        AddMinorVersion(majorGroup, filters, major, minor);
+    end
+end
+
+local function AddSelectDeselectAllVersions(version, filters)
     version:AddSeparator();
     version:AddFull({
         Text = addon.L["Select All"],
@@ -199,6 +203,21 @@ local function AddBuildVersionFilter(_menu, filters)
         end,
         KeepShownOnClick = true
     });
+end
+
+local function AddBuildVersionFilter(_menu, filters)
+    local version = addon.Objects.MenuItem:New(addon.L["Version"]);
+    if #addon.Data.BuildVersionsGrouped > 1 then
+        for _, major in next, addon.Data.BuildVersionsGrouped do
+            AddMajorVersion(version, filters, major)
+        end
+    else
+        local major = addon.Data.BuildVersionsGrouped[1];
+        for _, minor in next, major.Minors do
+            AddMinorVersion(version, filters, major, minor);
+        end
+    end
+    AddSelectDeselectAllVersions(version, filters);
     _menu:Add(version);
 end
 

@@ -6,6 +6,14 @@ All notable changes to this project will be documented in this file.
 - The Lick King, Lil' Maggz and Ysergle The Dreamurk
 - The tooltip opened by clicking an achievement link from chat for example now also reacts to right clicks
 - Filter on "Added in version"
+- PvP Dragonflight Season 3 achievements (19)
+- Mythic Plus Dragonflight Season 3 achievements (11)
+- Amirdrassil, the Dream's Hope raid achievements (30)
+- Emerald Dream zone achievements (38)
+- Superbloom event achievements (4)
+- More PvP achievements (6)
+- Pet Battle achievements (1)
+- Misc achievements (7)
 
 ### Changed
 - Tons of back end changes

@@ -1,5 +1,5 @@
-local addonName, addon = ...;
-local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true, true);
+local _, addon = ...;
+local L = addon.Localization.GetDefaultLocale();
 addon.L = L;
 
 addon.Plugins:LoadLocalization(L);
@@ -7,7 +7,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-04 21-50-20 ]] --
+-- [[ Exported at 2023-10-25 20-33-41 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -121,6 +121,7 @@ L["Caverns Criss-Cross"] = true
 L["Central Circuit"] = true
 L["Character / Account wide"] = true
 L["Character only"] = true
+L["Characters"] = true
 L["Chat messages"] = true
 L["Checked"] = true
 L["Children's Week"] = true
@@ -868,6 +869,8 @@ L["Summary Desc"] = [=[{achievementsHeader}:
 
 (1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {categories} {arrow} {summary}]=]
 L["Sundapple Copse Circuit"] = true
+L["Superbloom"] = true
+L["Superbloom: Active"] = true
 L["Tab"] = true
 L["tab"] = true
 L["Tabs"] = true
@@ -894,6 +897,7 @@ L["Time Rifts"] = true
 L["Titan Lockdown"] = true
 L["Titan Lockdown: Active"] = true
 L["Titan Lockdown: Soon"] = true
+L["Titan Lockdown: Starting Soon"] = true
 L["Ti'un the Wanderer"] = true
 L["Toggle"] = true
 L["Toggle Tracking"] = true
@@ -961,5 +965,5 @@ L["Y offset Desc"] = "The vertical offset from the start position."
 L["Zaqali Ruin Investigation"] = true
 L["Zaqali Ruin Investigation: Active"] = true
 L["Zaqali Ruin Investigation: Soon"] = true
+L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
-L["Characters"] = true

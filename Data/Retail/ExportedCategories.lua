@@ -54,7 +54,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-19 07-06-12 ]] --
+-- [[ Exported at 2023-10-25 21-24-54 ]] --
 tasks = {
     {F, 857, "ExcludedCategories"},
     {C, 971, 857},
@@ -364,6 +364,7 @@ tasks = {
     {N, 1106,k.L["Leveling"]}, -- Leveling
     {C, 971, 1105},
     {N, 1105,k.L["Realm First!"]}, -- Realm First!
+    {A, 1104, 19276}, -- Verdant Vogue
     {A, 1104, 18249}, -- Obsidian Tie Event
     {A, 1104, 16764}, -- Crimson Carpet Fashion
     {A, 1104, 15408}, -- Cosmic Chic
@@ -396,6 +397,9 @@ tasks = {
     {A, 1104, 11706}, -- The Original
     {C, 1101, 1104},
     {N, 1104,k.GetCategoryInfoTitle(95)}, -- Player vs. Player
+    {A, 1103, 19442}, -- Fire Catwalk With Me
+    {A, 1103, 17765}, -- What We Wear In The Shadowflame
+    {A, 1103, 16395}, -- Vaulternative Fashion
     {A, 1103, 15409}, -- First Wonders
     {A, 1103, 15110}, -- Dominating the Catwalk
     {A, 1103, 14614}, -- Castle Vain
@@ -783,6 +787,8 @@ tasks = {
     {A, 988, 1436}, -- Friends In High Places
     {C, 972, 988},
     {N, 988,k.L["Recruit-a-Friend"] .. " (" .. k.GetCategoryInfoTitle(15234) .. ")"}, -- Recruit-a-Friend
+    {A, 978, 19295}, -- Verdant Gladiator's Slitherdrake
+    {A, 978, 19091}, -- Gladiator: Dragonflight Season 3
     {A, 978, 17778}, -- Obsidian Gladiator's Slitherdrake
     {A, 978, 17740}, -- Gladiator: Dragonflight Season 2
     {A, 978, 16730}, -- Crimson Gladiator's Drake
@@ -1002,6 +1008,25 @@ tasks = {
     {F, 1368, "TrackingAchievementsCategories"},
     {C, 955, 1368},
     {N, 1368,k.L["Tracking Achievements"]}, -- Tracking Achievements
+    {A, 1540, 19420}, -- Dragonflight Season 3 Hero
+    {A, 1540, 19396}, -- Dragonflight Season 3 Master
+    {A, 1540, 19449}, -- Dreaming Hero: Dragonflight Season 3
+    {A, 1540, 19443}, -- Battle Mender: Dragonflight Season 3
+    {A, 1540, 19131}, -- Verdant Legend: Dragonflight Season 3
+    {A, 1540, 19304}, -- Legend: Dragonflight Season 3
+    {A, 1540, 19161}, -- Hero of the Horde: Verdant
+    {A, 1540, 19162}, -- Hero of the Alliance: Verdant
+    {A, 1540, 19132}, -- Verdant Gladiator: Dragonflight Season 3
+    {A, 1540, 19090}, -- Elite: Dragonflight Season 3
+    {A, 1540, 19156}, -- Duelist: Dragonflight Season 3
+    {A, 1540, 19155}, -- Rival II: Dragonflight Season 3
+    {A, 1540, 19133}, -- Rival I: Dragonflight Season 3
+    {A, 1540, 19160}, -- Challenger II: Dragonflight Season 3
+    {A, 1540, 19159}, -- Challenger I: Dragonflight Season 3
+    {A, 1540, 19158}, -- Combatant II: Dragonflight Season 3
+    {A, 1540, 19157}, -- Combatant I: Dragonflight Season 3
+    {C, 1344, 1540},
+    {N, 1540,k.L["Season"] .. " " .. 3}, -- Season 3
     {A, 1413, 18380}, -- Dragonflight Season 2 Hero
     {A, 1413, 18027}, -- Dragonflight Season 2 Master
     {A, 1413, 17767}, -- Obsidian Legend: Dragonflight Season 2
@@ -1717,6 +1742,12 @@ tasks = {
     {A, 960, 218}, -- Alterac Valley Victory
     {C, 1165, 960},
     {N, 960,k.GetCategoryInfoTitle(14801)}, -- Alterac Valley
+    {A, 1165, 19418}, -- Battle-scarred Battler
+    {A, 1165, 19417}, -- Brawlroom Blitzer
+    {A, 1165, 19416}, -- Learning the Ropes
+    {A, 1165, 19413}, -- Battleground Blitz Veteran
+    {A, 1165, 19412}, -- Battleground Blitz Apprentice
+    {A, 1165, 19411}, -- Battleground Blitz Novice
     {A, 1165, 6941}, -- Hero of the Horde
     {A, 1165, 6942}, -- Hero of the Alliance
     {A, 1165, 5356}, -- High Warlord
@@ -1864,6 +1895,12 @@ tasks = {
     {A, 1174, 1636}, -- Competitor's Tabard
     {C, 884, 1174},
     {N, 1174,k.L["Miscellaneous"]}, -- Miscellaneous
+    {A, 1552, 19315}, -- Dream Chaser
+    {A, 1552, 19313}, -- Bloom Man Group
+    {A, 1552, 19312}, -- Super Duper Bloom
+    {A, 1552, 19310}, -- Fruit of the Bloom
+    {C, 1358, 1552},
+    {N, 1552,k.L["Superbloom"]}, -- Superbloom
     {A, 1537, 19008}, -- Dream Shaper
     {C, 1358, 1537},
     {N, 1537,k.L["Dreamsurge"]}, -- Dreamsurge
@@ -2074,6 +2111,7 @@ tasks = {
     {A, 951, 13931}, -- "Memories of Fel, Frost and Fire"
     {C, 884, 951},
     {N, 951,k.GetCategoryInfoTitle(15454)}, -- Timewalking
+    {A, 1452, 19080}, -- Arcane Influence
     {A, 1452, 18646}, -- Whodunnit?
     {A, 1452, 18645}, -- Tools of the Trade
     {A, 1452, 18644}, -- Community Rumor Mill
@@ -2219,6 +2257,7 @@ tasks = {
     {A, 1173, 2398}, -- WoW's 4th Anniversary
     {C, 884, 1173},
     {N, 1173,k.L["WoW's Anniversary"]}, -- WoW's Anniversary
+    {A, 950, 19077}, -- Catch Me If You Can!
     {A, 950, 15645}, -- To Catch Falling Stars
     {A, 950, 15313}, -- Rockin' Rollin' Racer
     {A, 950, 14931}, -- Flying Festivities
@@ -2237,6 +2276,7 @@ tasks = {
     {A, 950, 1705}, -- Clockwork Rocket Bot
     {C, 917, 950},
     {N, 950,k.L["Gifts"], true}, -- Gifts
+    {A, 917, 19130}, -- Junior Racing Champion
     {A, 917, 15653}, -- The More You Know*
     {A, 917, 1691}, -- Merrymaker
     {A, 917, 10353}, -- Iron Armada
@@ -2645,6 +2685,17 @@ tasks = {
     {A, 1269, 15939}, -- Dragon Racing Completionist
     {C, 1207, 1269},
     {N, 1269,k.L["Dragon Racing"]}, -- Dragon Racing
+    {A, 1550, 19306}, -- Emerald Dream Glyph Hunter
+    {A, 1550, 19303}, -- Dragon Glyphs: Wakeful Vista
+    {A, 1550, 19302}, -- Dragon Glyphs: Whorlwing Basin
+    {A, 1550, 19301}, -- Dragon Glyphs: Amirdrassil
+    {A, 1550, 19300}, -- Dragon Glyphs: Dreamsurge Basin
+    {A, 1550, 19299}, -- Dragon Glyphs: Cinder Summit
+    {A, 1550, 19298}, -- Dragon Glyphs: Smoldering Copse
+    {A, 1550, 19297}, -- Dragon Glyphs: Furnace Coil
+    {A, 1550, 19296}, -- Dragon Glyphs: Eye of Ysera
+    {C, 1268, 1550},
+    {N, 1550,k.GetMapName(2200), true}, -- Emerald Dream
     {A, 1426, 18150}, -- Zaralek Cavern Glyph Hunter
     {A, 1426, 17517}, -- Dragon Glyphs: Aberrus Approach
     {A, 1426, 17516}, -- Dragon Glyphs: Acidbite Ravine
@@ -2723,6 +2774,7 @@ tasks = {
     {A, 1268, 15794}, -- A New Friend
     {C, 1207, 1268},
     {N, 1268,k.L["Dragonriding"]}, -- Dragonriding
+    {A, 1231, 19401}, -- Emerald Dream Safari
     {A, 1231, 17934}, -- Family Battler of Zaralek Cavern
     {A, 1231, 17918}, -- Undead Battler of Zaralek Caverm
     {A, 1231, 17917}, -- Mechanical Battler of Zaralek Cavern
@@ -2802,6 +2854,42 @@ tasks = {
     {A, 1391, 16627}, -- Professional Draconic Master
     {C, 1207, 1391},
     {N, 1391,k.GetCategoryInfoTitle(169)}, -- Professions
+    {A, 1545, 19343}, -- Mythic: Fyrakk the Blazing
+    {A, 1545, 19342}, -- "Mythic: Tindral Sageswift, Seer of the Flame"
+    {A, 1545, 19341}, -- Mythic: Smolderon
+    {A, 1545, 19340}, -- "Mythic: Nymue, Weaver of the Cycle"
+    {A, 1545, 19339}, -- "Mythic: Larodar, Keeper of the Flame"
+    {A, 1545, 19338}, -- Mythic: Council of Dreams
+    {A, 1545, 19337}, -- Mythic: Volcoross
+    {A, 1545, 19336}, -- Mythic: Igira the Cruel
+    {A, 1545, 19335}, -- Mythic: Gnarlroot
+    {C, 1543, 1545},
+    {N, 1545,k.L["Mythic"]}, -- Mythic
+    {A, 1544, 19390}, -- Memories of Teldrassil
+    {A, 1544, 19393}, -- "Whelp, I'm Lost"
+    {A, 1544, 19319}, -- Haven't We Done This Before?
+    {A, 1544, 19394}, -- A Dream Within a Dream
+    {A, 1544, 19089}, -- Don't Let the Doe Hit You On The Way Out
+    {A, 1544, 19193}, -- Ducks In A Row
+    {A, 1544, 19321}, -- Swog Champion
+    {A, 1544, 19320}, -- Cruelty Free
+    {A, 1544, 19322}, -- Meaner Pastures
+    {C, 1543, 1544},
+    {N, 1544,k.L["Glory"]}, -- Glory
+    {A, 1543, 19420}, -- Dragonflight Season 3 Hero
+    {A, 1543, 19396}, -- Dragonflight Season 3 Master
+    {A, 1543, 19442}, -- Fire Catwalk With Me
+    {A, 1543, 19351}, -- Cutting Edge: Fyrakk the Blazing
+    {A, 1543, 19350}, -- Ahead of the Curve: Fyrakk the Blazing
+    {A, 1543, 19334}, -- "Mythic: Amirdrassil, the Dream's Hope"
+    {A, 1543, 19333}, -- "Heroic: Amirdrassil, the Dream's Hope"
+    {A, 1543, 19331}, -- "Amirdrassil, the Dream's Hope"
+    {A, 1543, 19347}, -- Fate of Amirdrassil
+    {A, 1543, 19346}, -- The Viridian Weave
+    {A, 1543, 19345}, -- Molten Incursion
+    {A, 1543, 19344}, -- Incarnate's Wake
+    {C, 1230, 1543},
+    {N, 1543,k.GetInstanceInfoName(1207)}, -- Amirdrassil, the Dream's Hope
     {A, 1422, 18159}, -- Mythic: Scalecommander Sarkareth
     {A, 1422, 18158}, -- Mythic: Echo of Neltharion
     {A, 1422, 18157}, -- Mythic: Magmorax
@@ -2871,6 +2959,7 @@ tasks = {
     {A, 1265, 17110}, -- The Primal Bulwark
     {C, 1230, 1265},
     {N, 1265,k.GetInstanceInfoName(1200)}, -- Vault of the Incarnates
+    {A, 1230, 19349}, -- Glory of the Dream Raider
     {A, 1230, 17978}, -- Stones Can Fly!
     {A, 1230, 17977}, -- Stones Can Try To Fly!
     {A, 1230, 17830}, -- Stones Can't Fly!
@@ -2878,6 +2967,7 @@ tasks = {
     {A, 1230, 16355}, -- Glory of the Vault Raider
     {C, 1207, 1230},
     {N, 1230,k.GetCategoryInfoTitle(15271)}, -- Raids
+    {A, 1450, 19088}, -- Keystone Hero: Dawn of the Infinite
     {A, 1450, 18706}, -- Put That Thing Back Where It Came From
     {A, 1450, 18705}, -- Defender of the Timeways
     {A, 1450, 18704}, -- Dawn of the Infinite: Murozond's Rise
@@ -2963,6 +3053,12 @@ tasks = {
     {A, 1257, 16434}, -- See Me After Class
     {C, 1229, 1257},
     {N, 1257,k.GetInstanceInfoName(1201)}, -- Algeth'ar Academy
+    {A, 1229, 19420}, -- Dragonflight Season 3 Hero
+    {A, 1229, 19396}, -- Dragonflight Season 3 Master
+    {A, 1229, 19012}, -- Dragonflight Keystone Hero: Season Three
+    {A, 1229, 19011}, -- Dragonflight Keystone Master: Season Three
+    {A, 1229, 19010}, -- Dragonflight Keystone Conqueror: Season Three
+    {A, 1229, 19009}, -- Dragonflight Keystone Explorer: Season Three
     {A, 1229, 17978}, -- Stones Can Fly!
     {A, 1229, 17977}, -- Stones Can Try To Fly!
     {A, 1229, 17830}, -- Stones Can't Fly!
@@ -2985,6 +3081,64 @@ tasks = {
     {A, 1229, 16294}, -- Dragonflight Dungeon Hero
     {C, 1207, 1229},
     {N, 1229,k.GetCategoryInfoTitle(15272)}, -- Dungeons
+    {A, 1542, 19129}, -- Emerald Dream Challenge Racing Completionist: Gold
+    {A, 1542, 19128}, -- Emerald Dream Challenge Racing Completionist: Silver
+    {A, 1542, 19127}, -- Emerald Dream Challenge Racing Completionist
+    {A, 1542, 19126}, -- Emerald Dream Reverse Challenge: Gold
+    {A, 1542, 19125}, -- Emerald Dream Reverse Challenge: Silver
+    {A, 1542, 19124}, -- Emerald Dream Reverse Challenge: Bronze
+    {A, 1542, 19123}, -- Emerald Dream Challenge: Gold
+    {A, 1542, 19122}, -- Emerald Dream Challenge: Silver
+    {A, 1542, 19121}, -- Emerald Dream Challenge: Bronze
+    {A, 1542, 19120}, -- Emerald Dream Racing Completionist: Gold
+    {A, 1542, 19119}, -- Emerald Dream Racing Completionist: Silver
+    {A, 1542, 19118}, -- Emerald Dream Racing Completionist
+    {A, 1542, 19117}, -- Emerald Dream Reverse: Gold
+    {A, 1542, 19116}, -- Emerald Dream Reverse: Silver
+    {A, 1542, 19115}, -- Emerald Dream Reverse: Bronze
+    {A, 1542, 19114}, -- Emerald Dream Advanced: Gold
+    {A, 1542, 19113}, -- Emerald Dream Advanced: Silver
+    {A, 1542, 19112}, -- Emerald Dream Advanced: Bronze
+    {A, 1542, 19111}, -- Emerald Dream: Gold
+    {A, 1542, 19110}, -- Emerald Dream: Silver
+    {A, 1542, 19109}, -- Emerald Dream: Bronze
+    {C, 1541, 1542},
+    {N, 1542,k.L["Dragon Racing"], true}, -- Dragon Racing
+    {A, 1551, 19306}, -- Emerald Dream Glyph Hunter
+    {A, 1551, 19303}, -- Dragon Glyphs: Wakeful Vista
+    {A, 1551, 19302}, -- Dragon Glyphs: Whorlwing Basin
+    {A, 1551, 19301}, -- Dragon Glyphs: Amirdrassil
+    {A, 1551, 19300}, -- Dragon Glyphs: Dreamsurge Basin
+    {A, 1551, 19299}, -- Dragon Glyphs: Cinder Summit
+    {A, 1551, 19298}, -- Dragon Glyphs: Smoldering Copse
+    {A, 1551, 19297}, -- Dragon Glyphs: Furnace Coil
+    {A, 1551, 19296}, -- Dragon Glyphs: Eye of Ysera
+    {C, 1541, 1551},
+    {N, 1551,k.L["Dragon Glyphs"], true}, -- Dragon Glyphs
+    {A, 1547, 19235}, -- Warden of the Dream
+    {A, 1547, 19230}, -- Friends in the Dream
+    {C, 1541, 1547},
+    {N, 1547,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {A, 1546, 19294}, -- Tour of Duty: Emerald Dream
+    {C, 1541, 1546},
+    {N, 1546,k.GetCategoryInfoTitle(95), true}, -- Player vs. Player
+    {A, 1549, 19461}, -- Kissed by the Wind
+    {A, 1549, 19198}, -- The Seeds I Sow
+    {A, 1549, 19196}, -- Sowing the Seeds
+    {A, 1549, 19194}, -- The Emerald Bounty
+    {A, 1549, 19013}, -- I Dream of Seeds
+    {A, 1549, 19317}, -- Treasures of the Emerald Dream
+    {A, 1549, 19316}, -- Adventurer of the Emerald Dream
+    {A, 1549, 19309}, -- Explore the Emerald Dream
+    {C, 1541, 1549},
+    {N, 1549,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {A, 1548, 19293}, -- Friends In Feathers
+    {A, 1548, 19026}, -- Defenders of the Dream
+    {C, 1541, 1548},
+    {N, 1548,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {A, 1541, 19318}, -- Dream On
+    {C, 1228, 1541},
+    {N, 1541,k.GetMapName(2200)}, -- Emerald Dream
     {A, 1424, 18788}, -- Zaralek Cavern Challenge: Gold
     {A, 1424, 18787}, -- Zaralek Cavern Challenge: Silver
     {A, 1424, 18786}, -- Zaralek Cavern Challenge: Bronze
@@ -3014,6 +3168,7 @@ tasks = {
     {C, 1414, 1427},
     {N, 1427,k.L["Dragon Glyphs"], true}, -- Dragon Glyphs
     {A, 1418, 17763}, -- There's No Place Like Loamm
+    {A, 1418, 17756}, -- Friends in Loamm Places
     {C, 1414, 1418},
     {N, 1418,k.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1417, 17852}, -- Elemental Conjuror
@@ -3209,6 +3364,7 @@ tasks = {
     {A, 1256, 16531}, -- A Whole Heap of Lunkers
     {A, 1256, 16533}, -- Lots of Lunkers
     {A, 1256, 16529}, -- Joining the Community
+    {A, 1256, 16944}, -- Friend of the Family
     {C, 1234, 1256},
     {N, 1256,k.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1250, 16594}, -- Tour of Duty: The Azure Span
@@ -3280,6 +3436,7 @@ tasks = {
     {A, 1253, 16540}, -- Hunt Master
     {A, 1253, 16544}, -- Grand Hunter
     {A, 1253, 16528}, -- Joining the Khansguard
+    {A, 1253, 17064}, -- Friends in the Plains
     {C, 1233, 1253},
     {N, 1253,k.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1249, 16595}, -- Tour of Duty: Ohn'ahran Plains
@@ -3382,6 +3539,7 @@ tasks = {
     {A, 1362, 16556}, -- Great Gourmand of The Ruby Feast
     {C, 1228, 1362},
     {N, 1362,k.GetMapName(2112)}, -- Valdrakken
+    {A, 1361, 19308}, -- Freshscales Fifteen
     {A, 1361, 16758}, -- "Ready, Aim, Catalog!"
     {A, 1361, 16625}, -- Belay On!
     {A, 1361, 16624}, -- Which Knot Was It Again?
@@ -3400,7 +3558,9 @@ tasks = {
     {A, 1361, 16571}, -- Well Supplied
     {A, 1361, 16549}, -- Popular Around the Isles
     {A, 1361, 16530}, -- Ally of the Flights
+    {A, 1361, 16994}, -- Friends in the Accord
     {A, 1361, 16522}, -- A True Explorer
+    {A, 1361, 16884}, -- Friends in the Field
     {C, 1341, 1361},
     {N, 1361,k.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1390, 17345}, -- Airborne Tumbler
@@ -3445,6 +3605,7 @@ tasks = {
     {N, 1341,k.GetCategoryInfoTitle(15465)}, -- Dragon Isles
     {C, 1207, 1228},
     {N, 1228,k.L["Zones"]}, -- Zones
+    {A, 1207, 19307}, -- Dragon Isles Pathfinder
     {A, 1207, 18804}, -- Neltharion's Legacy
     {C, 883, 1207},
     {N, 1207,k.GetCategoryInfoTitle(15466)}, -- Dragonflight
@@ -4569,6 +4730,7 @@ tasks = {
     {A, 331, 12498}, -- Taint Nobody Got Time For That
     {C, 325, 331},
     {N, 331,k.GetInstanceInfoName(1022)}, -- The Underrot
+    {A, 330, 19087}, -- Keystone Hero: Atal'Dazar
     {A, 330, 12826}, -- Mythic: Atal'Dazar
     {A, 330, 12825}, -- Heroic: Atal'Dazar
     {A, 330, 12824}, -- Atal'Dazar
@@ -4585,6 +4747,7 @@ tasks = {
     {A, 329, 12600}, -- Breath of the Shrine
     {C, 325, 329},
     {N, 329,k.GetInstanceInfoName(1036)}, -- Shrine of the Storm
+    {A, 328, 19086}, -- Keystone Hero: Waycrest Manor
     {A, 328, 12488}, -- Mythic: Waycrest Manor
     {A, 328, 12484}, -- Heroic: Waycrest Manor
     {A, 328, 12483}, -- Waycrest Manor
@@ -4912,8 +5075,6 @@ tasks = {
     {A, 273, 13036}, -- A Loa of a Tale
     {A, 273, 12482}, -- Get Hek'd
     {A, 273, 13061}, -- Three Sheets to the Wind
-    {A, 273, 13250}, -- "Battle for Azeroth Pathfinder, Part Two"
-    {A, 273, 12989}, -- "Battle for Azeroth Pathfinder, Part One"
     {C, 271, 273},
     {N, 273,k.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 272, 7520}, -- The Loremaster
@@ -4946,6 +5107,8 @@ tasks = {
     {A, 259, 46}, -- Universal Explorer
     {C, 258, 259},
     {N, 259,k.L["Zones"]}, -- Zones
+    {A, 258, 13250}, -- "Battle for Azeroth Pathfinder, Part Two"
+    {A, 258, 12989}, -- "Battle for Azeroth Pathfinder, Part One"
     {C, 883, 258},
     {N, 258,k.GetCategoryInfoTitle(15305)}, -- Battle for Azeroth
     {A, 429, 11218}, -- There's a Boss In There
@@ -5268,6 +5431,7 @@ tasks = {
     {A, 247, 10413}, -- Instant Karma
     {C, 238, 247},
     {N, 247,k.GetInstanceInfoName(727)}, -- Maw of Souls
+    {A, 246, 19084}, -- Keystone Hero: Black Rook Hold
     {A, 246, 10806}, -- Mythic: Black Rook Hold
     {A, 246, 10805}, -- Heroic: Black Rook Hold
     {A, 246, 10804}, -- Black Rook Hold
@@ -5308,6 +5472,7 @@ tasks = {
     {A, 242, 10544}, -- Stag Party
     {C, 238, 242},
     {N, 242,k.GetInstanceInfoName(721)}, -- Halls of Valor
+    {A, 241, 19085}, -- Keystone Hero: Darkheart Thicket
     {A, 241, 10785}, -- Mythic: Darkheart Thicket
     {A, 241, 10784}, -- Heroic: Darkheart Thicket
     {A, 241, 10783}, -- Darkheart Thicket
@@ -5487,8 +5652,6 @@ tasks = {
     {N, 413,k.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 398, 11188}, -- Broken Isles Explorer
     {A, 398, 14729}, -- To All the Squirrels I Love Despite Their Scars
-    {A, 398, 11446}, -- "Broken Isles Pathfinder, Part Two"
-    {A, 398, 11190}, -- "Broken Isles Pathfinder, Part One"
     {C, 396, 398},
     {N, 398,k.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 397, 7520}, -- The Loremaster
@@ -5506,6 +5669,8 @@ tasks = {
     {N, 396,k.GetMapName(619)}, -- Broken Isles
     {C, 237, 381},
     {N, 381,k.L["Zones"]}, -- Zones
+    {A, 237, 11446}, -- "Broken Isles Pathfinder, Part Two"
+    {A, 237, 11190}, -- "Broken Isles Pathfinder, Part One"
     {C, 883, 237},
     {N, 237,k.GetCategoryInfoTitle(15258)}, -- Legion
     {A, 855, 9858}, -- Master and Commander
@@ -5875,6 +6040,7 @@ tasks = {
     {A, 232, 9018}, -- What's Your Sign?
     {C, 224, 232},
     {N, 232,k.GetInstanceInfoName(537)}, -- Shadowmoon Burial Grounds
+    {A, 231, 19083}, -- Keystone Hero: The Everbloom
     {A, 231, 9624}, -- Challenge Master: The Everbloom
     {A, 231, 9004}, -- The Everbloom: Gold
     {A, 231, 9003}, -- The Everbloom: Silver
@@ -6130,7 +6296,6 @@ tasks = {
     {A, 488, 10348}, -- Master Treasure Hunter
     {A, 488, 9727}, -- Expert Treasure Hunter
     {A, 488, 9726}, -- Treasure Hunter
-    {A, 488, 10018}, -- Draenor Pathfinder
     {C, 486, 488},
     {N, 488,k.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 487, 7520}, -- The Loremaster
@@ -6149,6 +6314,7 @@ tasks = {
     {N, 486,k.GetMapName(572)}, -- Draenor
     {C, 223, 449},
     {N, 449,k.L["Zones"]}, -- Zones
+    {A, 223, 10018}, -- Draenor Pathfinder
     {A, 223, 10148}, -- Chapter IV: Darkness Incarnate
     {A, 223, 10021}, -- Chapter IV: Darkness Incarnate
     {A, 223, 9642}, -- Chapter III: The Foundry Falls
@@ -7233,6 +7399,7 @@ tasks = {
     {A, 134, 5287}, -- Rotten to the Core
     {C, 130, 134},
     {N, 134,k.GetInstanceInfoName(67)}, -- The Stonecore
+    {A, 133, 19082}, -- Keystone Hero: Throne of the Tides
     {A, 133, 5061}, -- Heroic: Throne of the Tides
     {A, 133, 4839}, -- Throne of the Tides
     {A, 133, 5286}, -- Prince of Tides
@@ -9663,6 +9830,9 @@ tasks = {
     {A, 1159, 503}, -- 50 Quests Completed
     {C, 1431, 1159},
     {N, 1159,k.GetCategoryInfoTitle(96)}, -- Quests
+    {A, 1432, 19398}, -- Dreaming of the Aspects
+    {A, 1432, 19397}, -- Dreaming of Wyrms
+    {A, 1432, 19326}, -- Dreaming of Drakes
     {A, 1432, 17334}, -- Trading Post Enthusiast
     {A, 1432, 17305}, -- Trading Post: Dragonflight
     {A, 1432, 2716}, -- Dual Talent Specialization

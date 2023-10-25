@@ -278,7 +278,7 @@ function KrowiAF_SearchBoxFrameMixin:Focus()
 		if addon.SearchOptions.Changed then
 			self.Results = GetSearchResults(self:GetText());
 		end
-		self:ShowSearchPreviewResults();
+		ShowSearchPreviewResults(self);
 	else
 		self.PreviewContainer:Hide();
 	end
