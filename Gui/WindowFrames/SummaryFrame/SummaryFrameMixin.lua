@@ -282,15 +282,16 @@ local function UpdateTotalStatusBar(self, showNotObtainable, totalNumOfAch, tota
     totalStatusBar:UpdateTextures();
 end
 
-local function AlignCategoriesHeader(self, lastShown)
+local function AlignCategoriesHeader(self, lastShown, offset)
     local header = self.Categories.Header;
     header:ClearPoint("TOP");
     header:ClearPoint("BOTTOM");
     header:SetPoint("TOP", self, "BOTTOM", 0, 0);
-    local offset = self:GetBottom() - lastShown:GetBottom();
+    offset = (offset or 0) + self:GetBottom() - lastShown:GetBottom();
     header:SetPoint("TOP", self, "BOTTOM", 0, offset);
 end
 
+local lastShown;
 local function UpdateCategories(self, event)
     local selectedTab = addon.Gui.SelectedTab;
     if not selectedTab then
@@ -309,7 +310,7 @@ local function UpdateCategories(self, event)
     StartFromFirstCategory();
     ResetStatusBars();
     local numStatusBars = 0;
-    local lastShown = self.TotalStatusBar;
+    lastShown = self.TotalStatusBar;
     local totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch = 0, 0, 0;
     local showNotObtainable = addon.Options.db.profile.Tooltip.Categories.ShowNotObtainable;
     repeat
@@ -346,12 +347,16 @@ end
 local updateAchievementsOnNextShow;
 local function UpdateAchievements(self, event)
     BuildLastCompleted(event);
-    self.AchievementsFrame:Update(KrowiAF_Achievements.LastCompleted[UnitGUID("player")], updateAchievementsOnNextShow);
+    return self.AchievementsFrame:Update(KrowiAF_Achievements.LastCompleted[UnitGUID("player")], updateAchievementsOnNextShow);
 end
 
 function KrowiAF_SummaryFrameMixin:Update(event)
-    UpdateAchievements(self, event);
     UpdateCategories(self, event);
+    local emptyAchievementsSpace = UpdateAchievements(self, event);
+
+    if addon.Options.db.profile.Summary.AutoNumAchievements then
+        AlignCategoriesHeader(self, lastShown, emptyAchievementsSpace);
+    end
 end
 
 function KrowiAF_SummaryFrameMixin:UpdateAchievementsOnNextShow()

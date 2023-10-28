@@ -54,22 +54,29 @@ local function HideEmptyText(self)
     end
 end
 
-local function UpdateDataProvider(self, achievementIds)
+local function UpdateDataProvider(self, achievementIds, numAchievements)
 	local newDataProvider = CreateDataProvider();
-	for _, achievementId in next, achievementIds do
-		newDataProvider:Insert(addon.Data.Achievements[achievementId]);
-	end
+    for i = 1, numAchievements do
+        newDataProvider:Insert(addon.Data.Achievements[achievementIds[i]]);
+    end
 	self.ScrollBox:SetDataProvider(newDataProvider);
 end
 
-function KrowiAF_AchievementsFrameLightMixin:Update(achievementIds, _refreshAchievements)
-    local numAchievements = achievementIds and #achievementIds or 0;
-    HideEmptyText(self);
+local function ShowHideEmptyText(self, numAchievements)
     if numAchievements <= 0 then
         ShowEmptyText(self);
         return;
     end
+    HideEmptyText(self);
+end
 
+function KrowiAF_AchievementsFrameLightMixin:Update(achievementIds, _refreshAchievements)
+    local numAchievements = achievementIds and #achievementIds or 0;
+    if addon.Options.db.profile.Summary.AutoNumAchievements then
+        numAchievements = floor(self:GetHeight() / self.DummyFrame.CollapsedHeight);
+    end
     refreshAchievements = _refreshAchievements;
-    UpdateDataProvider(self, achievementIds);
+    ShowHideEmptyText(self, numAchievements);
+    UpdateDataProvider(self, achievementIds, numAchievements);
+    return max(0, (self:GetHeight() / self.DummyFrame.CollapsedHeight - numAchievements) * self.DummyFrame.CollapsedHeight - 10);
 end
