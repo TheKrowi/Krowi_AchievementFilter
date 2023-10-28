@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 65.0 - 2023-11-xx
+## 65.0 - 2023-10-29
 ### Added
 - The Lick King, Lil' Maggz and Ysergle The Dreamurk
 - The tooltip opened by clicking an achievement link from chat for example now also reacts to right clicks
