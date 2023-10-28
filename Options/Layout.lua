@@ -725,13 +725,21 @@ options.OptionsTable.args["Layout"] = {
                     order = OrderPP(), type = "group", inline = true,
                     name = addon.L["Summary"],
                     args = {
+                        AutoNumAchievements = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                            name = addon.L["Auto number of summary achievements"],
+                            desc = addon.L["Auto number of summary achievements Desc"]:KAF_AddDefaultValueText("Summary.AutoNumAchievements"),
+                            get = function() return addon.Options.db.profile.Summary.AutoNumAchievements; end,
+                            set = function(_, value) addon.Options.db.profile.Summary.AutoNumAchievements = value; end
+                        },
                         NumAchievements = {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                             name = addon.L["Number of summary achievements"],
                             desc = addon.L["Number of summary achievements Desc"]:KAF_AddDefaultValueText("Summary.NumAchievements"),
                             min = 1, max = 25, step = 1,
                             get = function() return addon.Options.db.profile.Summary.NumAchievements; end,
-                            set = function(_, value) addon.Options.db.profile.Summary.NumAchievements = value; end
+                            set = function(_, value) addon.Options.db.profile.Summary.NumAchievements = value; end,
+                            disabled = function() return addon.Options.db.profile.Summary.AutoNumAchievements end
                         }
                     }
                 },

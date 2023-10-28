@@ -57,7 +57,8 @@ addon.Options.Defaults = {
         },
         Summary = {
             NumAchievements = 25,
-            MouseWheelPanScalar = 1
+            MouseWheelPanScalar = 1,
+            AutoNumAchievements = false
         },
         AdjustableCategories = { --[[ Dynamically build via ExportedCategories ]] },
         Achievements = {

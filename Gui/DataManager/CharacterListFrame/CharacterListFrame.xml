@@ -60,7 +60,9 @@
         </Frames>
         <Scripts>
             <OnLoad method="OnLoad"/>
-            <OnShow method="Update"/>
+            <OnEvent method="OnEvent"/>
+            <OnShow method="OnShow"/>
+            <OnHide method="OnHide"/>
         </Scripts>
     </Frame>
 </Ui>

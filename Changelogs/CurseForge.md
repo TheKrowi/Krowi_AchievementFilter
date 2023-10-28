@@ -11,6 +11,7 @@
 <li>More PvP achievements (6)</li>
 <li>Pet Battle achievements (1)</li>
 <li>Misc achievements (7)</li>
+<li>Option to automatically adjust the summary achievements list to fit the space without showing a scroll bar</li>
 </ul>
 <p><h3>Changed</h3></p>
 <ul>

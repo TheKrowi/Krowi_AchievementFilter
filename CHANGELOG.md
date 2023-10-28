@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 65.0 - 2023-11-xx
+## 65.0 - 2023-10-29
 ### Added
 - The Lick King, Lil' Maggz and Ysergle The Dreamurk
 - The tooltip opened by clicking an achievement link from chat for example now also reacts to right clicks
@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - More PvP achievements (6)
 - Pet Battle achievements (1)
 - Misc achievements (7)
+- Option to automatically adjust the summary achievements list to fit the space without showing a scroll bar
 
 ### Changed
 - Tons of back end changes

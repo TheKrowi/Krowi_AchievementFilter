@@ -75,7 +75,10 @@ end
 
 KrowiAF_CharacterListFrameMixin = {};
 
+local cachedColumn;
 local function GetSortedCharacters(column)
+    cachedColumn = column or cachedColumn;
+
     local characters = {};
     KrowiAF_SavedData.CharacterList = KrowiAF_SavedData.CharacterList or {};
     for guid, character in next, KrowiAF_SavedData.CharacterList do
@@ -94,71 +97,71 @@ local function GetSortedCharacters(column)
     end
 
     local sortFunc;
-    if not column then
+    if not cachedColumn then
         sortFunc = sortFuncs[1];
         sortFuncs[1].Fallback = sortFuncs[2];
         sortFuncs[1].Reverse = true;
         sortFuncs[2].Fallback = sortFuncs[3];
         sortFuncs[3]:SetDefaultFallback();
-    elseif column.attribute == "Points" then
-        column.reverse = not column.reverse;
+    elseif cachedColumn.attribute == "Points" then
+        cachedColumn.reverse = not cachedColumn.reverse;
         sortFunc = sortFuncs[1];
         sortFuncs[1].Fallback = sortFuncs[2];
-        sortFuncs[1].Reverse = column.reverse;
+        sortFuncs[1].Reverse = cachedColumn.reverse;
         sortFuncs[2].Fallback = sortFuncs[3];
         sortFuncs[3]:SetDefaultFallback();
-    elseif column.attribute == "Name" then
-        column.reverse = not column.reverse;
+    elseif cachedColumn.attribute == "Name" then
+        cachedColumn.reverse = not cachedColumn.reverse;
         sortFunc = sortFuncs[2];
         sortFuncs[2].Fallback = sortFuncs[3];
-        sortFuncs[2].Reverse = column.reverse;
+        sortFuncs[2].Reverse = cachedColumn.reverse;
         sortFuncs[3]:SetDefaultFallback();
-    elseif column.attribute == "Realm" then
-        column.reverse = not column.reverse;
+    elseif cachedColumn.attribute == "Realm" then
+        cachedColumn.reverse = not cachedColumn.reverse;
         sortFunc = sortFuncs[3];
         sortFuncs[3].Fallback = sortFuncs[2];
-        sortFuncs[3].Reverse = column.reverse;
+        sortFuncs[3].Reverse = cachedColumn.reverse;
         sortFuncs[2]:SetDefaultFallback();
-    elseif column.attribute == "Faction" then
-        column.reverse = not column.reverse;
+    elseif cachedColumn.attribute == "Faction" then
+        cachedColumn.reverse = not cachedColumn.reverse;
         sortFunc = sortFuncs[4];
         sortFuncs[4].Fallback = sortFuncs[2];
-        sortFuncs[4].Reverse = column.reverse;
+        sortFuncs[4].Reverse = cachedColumn.reverse;
         sortFuncs[2].Fallback = sortFuncs[3];
         sortFuncs[3]:SetDefaultFallback();
-    elseif column.attribute == "Class" then
-        column.reverse = not column.reverse;
+    elseif cachedColumn.attribute == "Class" then
+        cachedColumn.reverse = not cachedColumn.reverse;
         sortFunc = sortFuncs[5];
         sortFuncs[5].Fallback = sortFuncs[2];
-        sortFuncs[5].Reverse = column.reverse;
+        sortFuncs[5].Reverse = cachedColumn.reverse;
         sortFuncs[2].Fallback = sortFuncs[3];
         sortFuncs[3]:SetDefaultFallback();
-    elseif column.attribute == "ExcludeFromHeaderTooltip" then
-        column.reverse = not column.reverse;
+    elseif cachedColumn.attribute == "ExcludeFromHeaderTooltip" then
+        cachedColumn.reverse = not cachedColumn.reverse;
         sortFunc = sortFuncs[6];
         sortFuncs[6].Fallback = sortFuncs[2];
-        sortFuncs[6].Reverse = column.reverse;
+        sortFuncs[6].Reverse = cachedColumn.reverse;
         sortFuncs[2].Fallback = sortFuncs[3];
         sortFuncs[3]:SetDefaultFallback();
-    elseif column.attribute == "ExcludeFromEarnedByAchievementTooltip" then
-        column.reverse = not column.reverse;
+    elseif cachedColumn.attribute == "ExcludeFromEarnedByAchievementTooltip" then
+        cachedColumn.reverse = not cachedColumn.reverse;
         sortFunc = sortFuncs[7];
         sortFuncs[7].Fallback = sortFuncs[2];
-        sortFuncs[7].Reverse = column.reverse;
+        sortFuncs[7].Reverse = cachedColumn.reverse;
         sortFuncs[2].Fallback = sortFuncs[3];
         sortFuncs[3]:SetDefaultFallback();
-    elseif column.attribute == "ExcludeFromMostProgressAchievementTooltip" then
-        column.reverse = not column.reverse;
+    elseif cachedColumn.attribute == "ExcludeFromMostProgressAchievementTooltip" then
+        cachedColumn.reverse = not cachedColumn.reverse;
         sortFunc = sortFuncs[8];
         sortFuncs[8].Fallback = sortFuncs[2];
-        sortFuncs[8].Reverse = column.reverse;
+        sortFuncs[8].Reverse = cachedColumn.reverse;
         sortFuncs[2].Fallback = sortFuncs[3];
         sortFuncs[3]:SetDefaultFallback();
-    elseif column.attribute == "IgnoreCharacter" then
-        column.reverse = not column.reverse;
+    elseif cachedColumn.attribute == "IgnoreCharacter" then
+        cachedColumn.reverse = not cachedColumn.reverse;
         sortFunc = sortFuncs[9];
         sortFuncs[9].Fallback = sortFuncs[2];
-        sortFuncs[9].Reverse = column.reverse;
+        sortFuncs[9].Reverse = cachedColumn.reverse;
         sortFuncs[2].Fallback = sortFuncs[3];
         sortFuncs[3]:SetDefaultFallback();
     end
@@ -167,6 +170,11 @@ local function GetSortedCharacters(column)
         return sortFunc:Compare(a, b);
     end);
     return characters;
+end
+
+local cachedCharacters;
+local function RefreshCachedCharacters(column)
+    cachedCharacters = GetSortedCharacters(column);
 end
 
 local function CreateScrollView(self)
@@ -192,10 +200,10 @@ local function AddManagedScrollBarVisibilityBehavior(self)
 end
 
 local function SortingFunction(self, columnIndex)
-    self:GetParent():Update(GetSortedCharacters(CharacterColumns[columnIndex]));
+    RefreshCachedCharacters(CharacterColumns[columnIndex]);
+    self:GetParent():Update();
 end
 
-local cachedCharacters;
 function KrowiAF_CharacterListFrameMixin:OnLoad()
     self.ColumnDisplay:LayoutColumns(CharacterColumns);
     self.ColumnDisplay.sortingFunction = SortingFunction;
@@ -206,7 +214,25 @@ function KrowiAF_CharacterListFrameMixin:OnLoad()
 
     CreateScrollView(self);
 	AddManagedScrollBarVisibilityBehavior(self);
-    cachedCharacters = GetSortedCharacters();
+end
+
+function KrowiAF_CharacterListFrameMixin:OnEvent(event)
+    if event ~= "ACHIEVEMENT_EARNED" then
+		return;
+	end
+    addon.Util.DelayFunction("KrowiAF_CharacterListFrame_OnEvent", 1, function()
+		self:Refresh();
+	end);
+end
+
+function KrowiAF_CharacterListFrameMixin:OnShow()
+    self:RegisterEvent("ACHIEVEMENT_EARNED");
+    self:Refresh();
+end
+
+function KrowiAF_CharacterListFrameMixin:OnHide()
+    self:UnregisterEvent("ACHIEVEMENT_EARNED");
+    self:Refresh();
 end
 
 local function UpdateDataProvider(self, characters)
@@ -217,11 +243,11 @@ local function UpdateDataProvider(self, characters)
 	self.ScrollBox:SetDataProvider(newDataProvider);
 end
 
-function KrowiAF_CharacterListFrameMixin:Update(characters)
-    characters = characters or cachedCharacters;
-    UpdateDataProvider(self, characters);
+function KrowiAF_CharacterListFrameMixin:Update()
+    UpdateDataProvider(self, cachedCharacters);
 end
 
 function KrowiAF_CharacterListFrameMixin:Refresh()
-    self:Update(GetSortedCharacters());
+    RefreshCachedCharacters();
+    self:Update();
 end

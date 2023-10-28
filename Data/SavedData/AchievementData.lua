@@ -1,4 +1,4 @@
-local addonName, addon = ...;
+local _, addon = ...;
 local savedData = addon.Data.SavedData;
 savedData.AchievementData = {};
 local achievementData = savedData.AchievementData;
