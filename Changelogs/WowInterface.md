@@ -28,6 +28,8 @@
 [*]When in combat, closing the windows by pressing Escape (button to toggle the game menu) should no longer result in errors
 [*]Forge and Befuddle now has a faction linked to it
 [*]Linked Forge and Befuddle
+[*]Event Reminder localization of time left should now be working correctly
+[*]Event Reminder localization of end time when using a custom format containing %a, %A, %b or %B should now be working correctly
 [/LIST]
 
 [B]Wrath Classic[/B]

@@ -877,3 +877,28 @@ function addon.StartTasksGroups(tasksGroups, onFinish, onDelay)
     end
     return continue();
 end
+
+addon.MonthNames = {
+    addon.L["January"],
+    addon.L["February"],
+    addon.L["March"],
+    addon.L["April"],
+    addon.L["May"],
+    addon.L["June"],
+    addon.L["July"],
+    addon.L["August"],
+    addon.L["September"],
+    addon.L["October"],
+    addon.L["November"],
+    addon.L["December"]
+};
+
+addon.WeekdayNames = {
+	addon.L["Sunday"],
+    addon.L["Monday"],
+    addon.L["Tuesday"],
+    addon.L["Wednesday"],
+    addon.L["Thursday"],
+    addon.L["Friday"],
+    addon.L["Saturday"]
+};

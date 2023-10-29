@@ -22,6 +22,38 @@ function eventReminderAlertSystem:AddAlert(event, duration)
     self.SubSystem:AddAlert(event, duration);
 end
 
+local gameLocale = GetLocale();
+if gameLocale == "enGB" then
+	gameLocale = "enUS";
+end
+local LocalizeDateFormat;
+if gameLocale == "enUS" then
+    function LocalizeDateFormat()
+        return addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime;
+    end
+else
+    function LocalizeDateFormat(event)
+        local dateFormat = addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime;
+        if string.match(dateFormat, "%%B") then
+            local dateTable = date("*t", event.EventDetails.EndTime);
+            dateFormat = dateFormat:gsub("%%B", addon.MonthNames[dateTable.month]);
+        end
+        if string.match(dateFormat, "%%b") then
+            local dateTable = date("*t", event.EventDetails.EndTime);
+            dateFormat = dateFormat:gsub("%%b", string.sub(addon.MonthNames[dateTable.month], 1, 3));
+        end
+        if string.match(dateFormat, "%%A") then
+            local dateTable = date("*t", event.EventDetails.EndTime);
+            dateFormat = dateFormat:gsub("%%A", addon.WeekdayNames[dateTable.wday]);
+        end
+        if string.match(dateFormat, "%%a") then
+            local dateTable = date("*t", event.EventDetails.EndTime);
+            dateFormat = dateFormat:gsub("%%a", string.sub(addon.WeekdayNames[dateTable.wday], 1, 3));
+        end
+        return dateFormat;
+    end
+end
+
 function eventReminderAlertSystem:GetRuntimeText(event, chat)
     local runtime, timeLeft;
 
@@ -42,18 +74,20 @@ function eventReminderAlertSystem:GetRuntimeText(event, chat)
         local hours = floor(mod(secondsLeft, 86400) / 3600);
         local minutes = floor(mod(secondsLeft, 3600) / 60);
         local seconds = floor(mod(secondsLeft, 60));
-        timeLeft = days > 0 and days .. " Days" or "";
-        timeLeft = timeLeft .. (days > 0 and " " or "") .. (hours > 0 and hours .. " Hr" or "");
-        timeLeft = timeLeft .. (hours > 0 and " " or "") .. (minutes > 0 and minutes .. " Min" or "");
-        timeLeft = timeLeft .. (minutes > 0 and " " or "") .. (seconds > 0 and seconds .. " Sec" or "");
+        timeLeft = days > 0 and format(DAYS_ABBR, days) or "";
+        timeLeft = timeLeft .. (days > 0 and " " or "") .. (hours > 0 and format(HOURS_ABBR, hours) or "");
+        timeLeft = timeLeft .. (hours > 0 and " " or "") .. (minutes > 0 and format(MINUTES_ABBR, minutes) or "");
+        timeLeft = timeLeft .. (minutes > 0 and " " or "") .. (seconds > 0 and format(SECONDS_ABBR, seconds) or "");
     end
 
     if chat then
         return timeLeft;
     end
 
+    local dateFormat = LocalizeDateFormat(event);
+
     if addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == 1 then -- End Time
-        runtime = tostring(date(addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime, event.EventDetails.EndTime));
+        runtime = tostring(date(dateFormat, event.EventDetails.EndTime));
     elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == 2 then -- Time Left
         runtime = timeLeft;
     end
@@ -61,7 +95,7 @@ function eventReminderAlertSystem:GetRuntimeText(event, chat)
     if addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 1 or addon.Options.db.profile.EventReminders.Compact then -- None
         return runtime;
     elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 2 then -- End Time
-        return runtime .. "\n" .. tostring(date(addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime, event.EventDetails.EndTime));
+        return runtime .. "\n" .. tostring(date(dateFormat, event.EventDetails.EndTime));
     elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 3 then -- Time Left
         return runtime .. "\n" .. timeLeft;
     end
