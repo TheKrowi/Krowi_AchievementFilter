@@ -488,7 +488,14 @@
         "UIDropDownMenu_RefreshAll",
         "UIDROPDOWNMENU_OPEN_MENU",
         "DAYS_ABBR",
-        "HOURS_ABBR"
+        "HOURS_ABBR",
+        "WEEKDAY_SUNDAY",
+        "WEEKDAY_MONDAY",
+        "WEEKDAY_TUESDAY",
+        "WEEKDAY_WEDNESDAY",
+        "WEEKDAY_THURSDAY",
+        "WEEKDAY_FRIDAY",
+        "WEEKDAY_SATURDAY"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

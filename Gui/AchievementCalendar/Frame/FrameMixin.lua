@@ -62,20 +62,6 @@ local darkDayBottomTexCoords = {
 	[darkFlagNextMonthBottomLeftRight] = {left = 0.0, right = 90 / 512, top = 225 / 256, bottom = 180 / 256},
 	[darkFlagNextMonthLeftRight] = {left = 180 / 512, right = 270 / 512 - 0.001, top = 0.0, bottom = 45 / 256}
 };
-local monthNames = {
-    addon.L["January"],
-    addon.L["February"],
-    addon.L["March"],
-    addon.L["April"],
-    addon.L["May"],
-    addon.L["June"],
-    addon.L["July"],
-    addon.L["August"],
-    addon.L["September"],
-    addon.L["October"],
-    addon.L["November"],
-    addon.L["December"]
-};
 
 KrowiAF_AchievementCalendarFrameTodayFrameMixin = {};
 
@@ -307,7 +293,7 @@ local function GetMonthInfo(offset)
 end
 
 local function UpdateTitle(self)
-	self.MonthName:SetText(monthNames[self.ViewedMonth]);
+	self.MonthName:SetText(addon.MonthNames[self.ViewedMonth]);
 	self.YearName:SetText(self.ViewedYear);
 end
 
