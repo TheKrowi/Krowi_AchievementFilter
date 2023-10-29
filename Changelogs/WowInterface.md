@@ -3,6 +3,8 @@
 [*]The Lick King, Lil' Maggz and Ysergle The Dreamurk
 [*]The tooltip opened by clicking an achievement link from chat for example now also reacts to right clicks
 [*]Filter on "Added in version"
+[*]Option to automatically adjust the summary achievements list to fit the space without showing a scroll bar
+[*]Right clicking an event reminder on the side of the Achievement Window or the World Map will show a menu with the option to stop tracking that specific event
 [*]PvP Dragonflight Season 3 achievements (19)
 [*]Mythic Plus Dragonflight Season 3 achievements (11)
 [*]Amirdrassil, the Dream's Hope raid achievements (30)
@@ -11,7 +13,6 @@
 [*]More PvP achievements (6)
 [*]Pet Battle achievements (1)
 [*]Misc achievements (7)
-[*]Option to automatically adjust the summary achievements list to fit the space without showing a scroll bar
 [/LIST]
 
 [B]Changed[/B]

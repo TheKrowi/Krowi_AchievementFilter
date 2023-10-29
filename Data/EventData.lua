@@ -33,11 +33,9 @@ local function ProcessDayEvent(dayEvent)
     local eventHasStarted = startTime <= time();
     local eventHasEnded = endTime <= time();
     if eventHasStarted and not eventHasEnded then
-        -- addon.Diagnostics.Print("Event active", calendarEvent.Id, dayEvent.title, startTime, time(), endTime, eventHasStarted, eventHasEnded);
         calendarEvent.EventDetails = {EndTime = endTime, Name = dayEvent.title};
         tinsert(activeEvents, calendarEvent);
     else
-        -- addon.Diagnostics.Print("Event not active", calendarEvent.Id, startTime, time(), endTime, eventHasStarted, eventHasEnded);
     end
 end
 
@@ -73,7 +71,6 @@ local function GetActiveWidgetEvents()
     for _, event in next, data.WidgetEvents do
         event.EventDetails = eventData.GetWidgetEventDetails(event);
         if event.EventDetails then
-            -- addon.Diagnostics.Print("Event active", event.Id, event.EventDetails.Name, time(), event.EventDetails.EndTime);
             tinsert(activeEvents, event);
         end
     end
@@ -102,7 +99,6 @@ local function GetActiveWorldEvents()
     for _, event in next, data.WorldEvents do
         event.EventDetails = eventData.GetWorldEventDetails(event);
         if event.EventDetails then
-            -- addon.Diagnostics.Print("Event active", event.Id, event.EventDetails.Name, time(), event.EventDetails.EndTime);
             tinsert(activeEvents, event);
         end
     end

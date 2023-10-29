@@ -52,7 +52,7 @@ end
 
 local timer = LibStub("AceTimer-3.0");
 function eventReminderSideButtonSystem:Refresh()
-    if not self:GetAnchor():IsShown() then
+    if not self:GetAnchor() or not self:GetAnchor():IsShown() then
         return;
     end
     timer:ScheduleTimer(self.Refresh, addon.Options.db.profile.EventReminders.RefreshInterval, self);

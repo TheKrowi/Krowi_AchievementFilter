@@ -1,4 +1,5 @@
 <Ui>
     <Script file="RightClickMenu.lua" />
     <Include file="AchievementMenu\Files.xml"/>
+    <Include file="EventReminderMenu\Files.xml"/>
 </Ui>

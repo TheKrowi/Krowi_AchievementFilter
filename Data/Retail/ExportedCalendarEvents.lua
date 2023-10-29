@@ -3,6 +3,7 @@ local data = addon.Data;
 data.ExportedCalendarEvents = {};
 local exportedCalendarEvents = data.ExportedCalendarEvents;
 local objects = addon.Objects;
+local eventType = objects.EventType;
 local event = objects.Event;
 
 local tasks, calendarEvents;
@@ -17,37 +18,37 @@ function exportedCalendarEvents.RegisterTasks(_calendarEvents)
 end
 
 local function N(id, ...)
-    calendarEvents[id] = event:New(id, ...);
+    calendarEvents[id] = event:New(id, eventType.Calendar, ...);
 end
 
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-25 21-25-09 ]] --
+-- [[ Exported at 2023-10-29 15-19-48 ]] --
 tasks = {
-    {N, 141, 236705}, -- Feast of Winter Veil
-    {N, 181, 237000}, -- Noblegarden
-    {N, 201, 134508}, -- Children's Week
-    {N, 324, 236552}, -- Hallow's End
-    {N, 327, 236704}, -- Lunar Festival
-    {N, 341, 135268}, -- Midsummer Fire Festival
-    {N, 372, 236701}, -- Brewfest
-    {N, 398, 133168}, -- Pirates' Day
-    {N, 404, 250626}, -- Pilgrim's Bounty
-    {N, 409, 237272}, -- Day of the Dead
-    {N, 423, 236709}, -- Love is in the Air
-    {N, 479, 134481}, -- Darkmoon Faire
-    {N, 1262, 133783}, -- WoW's 18th Anniversary
-    {N, 1395, 1100022}, -- Kalimdor Cup
-    {N, 1396, 4419345}, -- Secrets of Azeroth
-    {N, 1398, 4419345}, -- Secrets of Azeroth
-    {N, 1399, 4419345}, -- Secrets of Azeroth
-    {N, 1397, 133783}, -- WoW's 19th Anniversary
-    {N, 1400, 1100022}, -- Eastern Kingdoms Cup
-    {N, 1425, 4630413}, -- Turbulent Timeways
-    {N, 1458, 4630413}, -- Turbulent Timeways
-    {N, 1459, 4630413}, -- Turbulent Timeways
-    {N, 1460, 4630413}, -- Turbulent Timeways
+    {N, 141, 236705, addon.L["Feast of Winter Veil"]}, -- Feast of Winter Veil
+    {N, 181, 237000, addon.L["Noblegarden"]}, -- Noblegarden
+    {N, 201, 134508, addon.L["Children's Week"]}, -- Children's Week
+    {N, 324, 236552, addon.L["Hallow's End"]}, -- Hallow's End
+    {N, 327, 236704, addon.L["Lunar Festival"]}, -- Lunar Festival
+    {N, 341, 135268, addon.L["Midsummer Fire Festival"]}, -- Midsummer Fire Festival
+    {N, 372, 236701, addon.L["Brewfest"]}, -- Brewfest
+    {N, 398, 133168, addon.L["Pirates' Day"]}, -- Pirates' Day
+    {N, 404, 250626, addon.L["Pilgrim's Bounty"]}, -- Pilgrim's Bounty
+    {N, 409, 237272, addon.L["Day of the Dead"]}, -- Day of the Dead
+    {N, 423, 236709, addon.L["Love is in the Air"]}, -- Love is in the Air
+    {N, 479, 134481, addon.L["Darkmoon Faire"]}, -- Darkmoon Faire
+    {N, 1262, 133783, addon.L["WoW's 18th Anniversary"]}, -- WoW's 18th Anniversary
+    {N, 1395, 1100022, addon.L["Kalimdor Cup"]}, -- Kalimdor Cup
+    {N, 1396, 4419345, addon.L["Secrets of Azeroth"], {1398, 1399}}, -- Secrets of Azeroth
+    {N, 1398, 4419345, addon.L["Secrets of Azeroth"], {1396, 1399}}, -- Secrets of Azeroth
+    {N, 1399, 4419345, addon.L["Secrets of Azeroth"], {1396, 1398}}, -- Secrets of Azeroth
+    {N, 1397, 133783, addon.L["WoW's 19th Anniversary"]}, -- WoW's 19th Anniversary
+    {N, 1400, 1100022, addon.L["Eastern Kingdoms Cup"]}, -- Eastern Kingdoms Cup
+    {N, 1425, 4630413, addon.L["Turbulent Timeways"], {1458, 1459, 1460}}, -- Turbulent Timeways
+    {N, 1458, 4630413, addon.L["Turbulent Timeways"], {1425, 1459, 1460}}, -- Turbulent Timeways
+    {N, 1459, 4630413, addon.L["Turbulent Timeways"], {1425, 1458, 1460}}, -- Turbulent Timeways
+    {N, 1460, 4630413, addon.L["Turbulent Timeways"], {1425, 1458, 1459}}, -- Turbulent Timeways
 };
 
 function exportedCalendarEvents.LoadCategories(e)

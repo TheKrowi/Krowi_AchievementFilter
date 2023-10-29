@@ -3,6 +3,7 @@ local data = addon.Data;
 data.ExportedWidgetEvents = {};
 local exportedWidgetEvents = data.ExportedWidgetEvents;
 local objects = addon.Objects;
+local eventType = objects.EventType;
 local event = objects.Event;
 
 local tasks, widgetEvents;
@@ -17,13 +18,13 @@ function exportedWidgetEvents.RegisterTasks(_widgetEvents)
 end
 
 local function N(id, ...)
-    widgetEvents[id] = event:New(id, ...);
+    widgetEvents[id] = event:New(id, eventType.Widget, ...);
 end
 
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-25 21-25-09 ]] --
+-- [[ Exported at 2023-10-29 15-19-49 ]] --
 tasks = {
     {N, 4729, 4240492, addon.L["Community Feast: Starting Soon"]}, -- Community Feast: Starting Soon
     {N, 4731, 4240492, addon.L["Community Feast: Active"]}, -- Community Feast: Active

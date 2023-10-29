@@ -3,6 +3,7 @@ local data = addon.Data;
 data.ExportedCalendarEvents = {};
 local exportedCalendarEvents = data.ExportedCalendarEvents;
 local objects = addon.Objects;
+local eventType = objects.EventType;
 local event = objects.Event;
 
 local tasks, calendarEvents;
@@ -17,26 +18,26 @@ function exportedCalendarEvents.RegisterTasks(_calendarEvents)
 end
 
 local function N(id, ...)
-    calendarEvents[id] = event:New(id, ...);
+    calendarEvents[id] = event:New(id, eventType.Calendar, ...);
 end
 
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-25 21-25-09 ]] --
+-- [[ Exported at 2023-10-29 15-19-49 ]] --
 tasks = {
-    {N, 141, 236705}, -- Feast of Winter Veil
-    {N, 181, 237000}, -- Noblegarden
-    {N, 201, 134508}, -- Children's Week
-    {N, 324, 236552}, -- Hallow's End
-    {N, 327, 236704}, -- Lunar Festival
-    {N, 341, 135268}, -- Midsummer Fire Festival
-    {N, 372, 236701}, -- Brewfest
-    {N, 374, 134481}, -- Darkmoon Faire
-    {N, 398, 133168}, -- Pirates' Day
-    {N, 404, 250626}, -- Pilgrim's Bounty
-    {N, 409, 237272}, -- Day of the Dead
-    {N, 423, 236709}, -- Love is in the Air
+    {N, 141, 236705, addon.L["Feast of Winter Veil"]}, -- Feast of Winter Veil
+    {N, 181, 237000, addon.L["Noblegarden"]}, -- Noblegarden
+    {N, 201, 134508, addon.L["Children's Week"]}, -- Children's Week
+    {N, 324, 236552, addon.L["Hallow's End"]}, -- Hallow's End
+    {N, 327, 236704, addon.L["Lunar Festival"]}, -- Lunar Festival
+    {N, 341, 135268, addon.L["Midsummer Fire Festival"]}, -- Midsummer Fire Festival
+    {N, 372, 236701, addon.L["Brewfest"]}, -- Brewfest
+    {N, 374, 134481, addon.L["Darkmoon Faire"]}, -- Darkmoon Faire
+    {N, 398, 133168, addon.L["Pirates' Day"]}, -- Pirates' Day
+    {N, 404, 250626, addon.L["Pilgrim's Bounty"]}, -- Pilgrim's Bounty
+    {N, 409, 237272, addon.L["Day of the Dead"]}, -- Day of the Dead
+    {N, 423, 236709, addon.L["Love is in the Air"]}, -- Love is in the Air
 };
 
 function exportedCalendarEvents.LoadCategories(e)
