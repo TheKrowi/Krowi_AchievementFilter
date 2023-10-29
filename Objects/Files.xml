@@ -5,6 +5,7 @@
     <Script file="TransmogSet.lua" />
     <Script file="Achievement.lua" />
     <Script file="Category.lua" />
+    <Script file="EventType.lua" />
     <Script file="Event.lua" />
     <Script file="Tab.lua" />
     <Script file="CompareFunc.lua" />

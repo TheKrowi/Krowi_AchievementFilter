@@ -21,6 +21,8 @@ end
 function KrowiAF_EventReminderSideButtonMixin:OnClick(button)
     if button == "LeftButton" then
         self:HandleLeftClick();
+    elseif button == "RightButton" then
+		addon.Gui.RightClickMenu.EventReminderMenu:Open(self.Event);
     end
 end
 

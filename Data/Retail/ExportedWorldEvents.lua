@@ -3,6 +3,7 @@ local data = addon.Data;
 data.ExportedWorldEvents = {};
 local exportedWorldEvents = data.ExportedWorldEvents;
 local objects = addon.Objects;
+local eventType = objects.EventType;
 local event = objects.Event;
 
 local tasks, worldEvents;
@@ -17,90 +18,90 @@ function exportedWorldEvents.RegisterTasks(_worldEvents)
 end
 
 local function N(id, ...)
-    worldEvents[id] = event:New(id, ...);
+    worldEvents[id] = event:New(id, eventType.World, ...);
 end
 
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-25 21-25-09 ]] --
+-- [[ Exported at 2023-10-29 15-19-49 ]] --
 tasks = {
-    {N, 5175, 1408998, addon.L["Assault on Azsuna"], 619}, -- Assault on Azsuna
-    {N, 5177, 1409000, addon.L["Assault on Highmountain"], 619}, -- Assault on Highmountain
-    {N, 5178, 1409001, addon.L["Assault on Stormheim"], 619}, -- Assault on Stormheim
-    {N, 5210, 1409010, addon.L["Assault on Val'sharah"], 619}, -- Assault on Val'sharah
-    {N, 5896, 2065630, addon.L["Assault on Tiragarde Sound"], 876}, -- Assault on Tiragarde Sound
-    {N, 5964, 2065567, addon.L["Assault on Drustvar"], 876}, -- Assault on Drustvar
-    {N, 5966, 2065627, addon.L["Assault on Stormsong Valley"], 876}, -- Assault on Stormsong Valley
-    {N, 5969, 2032229, addon.L["Assault on Nazmir"], 875}, -- Assault on Nazmir
-    {N, 5970, 2065632, addon.L["Assault on Vol'dun"], 875}, -- Assault on Vol'dun
-    {N, 5973, 2065640, addon.L["Assault on Zuldazar"], 875}, -- Assault on Zuldazar
-    {N, 6486, 3196264, addon.L["Assault: N'Zoth (Uldum)"], 12}, -- Assault: N'Zoth (Uldum)
-    {N, 6487, 415054, addon.L["Assault: Amathet"], 12}, -- Assault: Amathet
-    {N, 6488, 458247, addon.L["Assault: Aqir"], 12}, -- Assault: Aqir
-    {N, 6489, 3196265, addon.L["Assault: N'Zoth (Vale of Eternal Blossoms)"], 424}, -- Assault: N'Zoth (Vale of Eternal Blossoms)
-    {N, 6490, 801016, addon.L["Assault: Mogu"], 424}, -- Assault: Mogu
-    {N, 6491, 615301, addon.L["Assault: Mantid"], 424}, -- Assault: Mantid
-    {N, 6989, 3257749, addon.L["Necrolord Assault"], 1550}, -- Necrolord Assault
-    {N, 6990, 3257751, addon.L["Venthyr Assault"], 1550}, -- Venthyr Assault
-    {N, 6991, 3257748, addon.L["Kyrian Assault"], 1550}, -- Kyrian Assault
-    {N, 6992, 3257750, addon.L["Night Fae Assault"], 1550}, -- Night Fae Assault
-    {N, 7104, 1394891, addon.L["Siege on Dragonbane Keep: Active"], 2057}, -- Siege on Dragonbane Keep: Active
-    {N, 7221, 4554434, addon.L["Nokhudon Hold"], 2057}, -- Nokhudon Hold
-    {N, 7222, 4554437, addon.L["Nokhudon Hold"], 2057}, -- Nokhudon Hold
-    {N, 7223, 4554438, addon.L["Nokhudon Hold"], 2057}, -- Nokhudon Hold
-    {N, 7224, 4554439, addon.L["Nokhudon Hold"], 2057}, -- Nokhudon Hold
-    {N, 7225, 4554434, addon.L["Ohn'iri Springs"], 2057}, -- Ohn'iri Springs
-    {N, 7226, 4554437, addon.L["Ohn'iri Springs"], 2057}, -- Ohn'iri Springs
-    {N, 7227, 4554438, addon.L["Ohn'iri Springs"], 2057}, -- Ohn'iri Springs
-    {N, 7228, 4554439, addon.L["Ohn'iri Springs"], 2057}, -- Ohn'iri Springs
-    {N, 7229, 4554434, addon.L["Brackenhide Hollow"], 2057}, -- Brackenhide Hollow
-    {N, 7230, 4554437, addon.L["Brackenhide Hollow"], 2057}, -- Brackenhide Hollow
-    {N, 7231, 4554438, addon.L["Brackenhide Hollow"], 2057}, -- Brackenhide Hollow
-    {N, 7232, 4554439, addon.L["Brackenhide Hollow"], 2057}, -- Brackenhide Hollow
-    {N, 7233, 4554434, addon.L["Cobalt Assembly"], 2057}, -- Cobalt Assembly
-    {N, 7234, 4554437, addon.L["Cobalt Assembly"], 2057}, -- Cobalt Assembly
-    {N, 7235, 4554438, addon.L["Cobalt Assembly"], 2057}, -- Cobalt Assembly
-    {N, 7236, 4554439, addon.L["Cobalt Assembly"], 2057}, -- Cobalt Assembly
-    {N, 7237, 4554434, addon.L["Imbu"], 2057}, -- Imbu
-    {N, 7238, 4554437, addon.L["Imbu"], 2057}, -- Imbu
-    {N, 7239, 4554438, addon.L["Imbu"], 2057}, -- Imbu
-    {N, 7240, 4554439, addon.L["Imbu"], 2057}, -- Imbu
-    {N, 7245, 4554434, addon.L["Tyrhold"], 2057}, -- Tyrhold
-    {N, 7246, 4554437, addon.L["Tyrhold"], 2057}, -- Tyrhold
-    {N, 7247, 4554438, addon.L["Tyrhold"], 2057}, -- Tyrhold
-    {N, 7248, 4554439, addon.L["Tyrhold"], 2057}, -- Tyrhold
-    {N, 7249, 4554434, addon.L["Dragonbane Keep"], 2057}, -- Dragonbane Keep
-    {N, 7250, 4554437, addon.L["Dragonbane Keep"], 2057}, -- Dragonbane Keep
-    {N, 7251, 4554438, addon.L["Dragonbane Keep"], 2057}, -- Dragonbane Keep
-    {N, 7252, 4554439, addon.L["Dragonbane Keep"], 2057}, -- Dragonbane Keep
-    {N, 7253, 4554434, addon.L["Slagmire"], 2057}, -- Slagmire
-    {N, 7254, 4554437, addon.L["Slagmire"], 2057}, -- Slagmire
-    {N, 7255, 4554438, addon.L["Slagmire"], 2057}, -- Slagmire
-    {N, 7256, 4554439, addon.L["Slagmire"], 2057}, -- Slagmire
-    {N, 7257, 4554434, addon.L["Scalecracker Keep"], 2057}, -- Scalecracker Keep
-    {N, 7258, 4554437, addon.L["Scalecracker Keep"], 2057}, -- Scalecracker Keep
-    {N, 7259, 4554438, addon.L["Scalecracker Keep"], 2057}, -- Scalecracker Keep
-    {N, 7260, 4554439, addon.L["Scalecracker Keep"], 2057}, -- Scalecracker Keep
-    {N, 7267, 1394891, addon.L["Siege on Dragonbane Keep: Gathering"], 2057}, -- Siege on Dragonbane Keep: Gathering
-    {N, 7298, 4554434, addon.L["Primalist Tomorrow"], 2057}, -- Primalist Tomorrow
-    {N, 7299, 4554437, addon.L["Primalist Tomorrow"], 2057}, -- Primalist Tomorrow
-    {N, 7300, 4554438, addon.L["Primalist Tomorrow"], 2057}, -- Primalist Tomorrow
-    {N, 7301, 4554439, addon.L["Primalist Tomorrow"], 2057}, -- Primalist Tomorrow
-    {N, 7342, 4622465, addon.L["Grand Hunts: Ohn'ahran Plains"], 1978}, -- Grand Hunts: Ohn'ahran Plains
-    {N, 7343, 4622465, addon.L["Grand Hunts: The Waking Shore"], 1978}, -- Grand Hunts: The Waking Shore
-    {N, 7344, 4622465, addon.L["Grand Hunts: Thaldraszus"], 1978}, -- Grand Hunts: Thaldraszus
-    {N, 7345, 4622465, addon.L["Grand Hunts: The Azure Span"], 1978}, -- Grand Hunts: The Azure Span
-    {N, 7429, 4914672, addon.L["Ohn'ahran Plains"], 1978}, -- Ohn'ahran Plains
-    {N, 7432, 4914672, addon.L["Azure Span"], 1978}, -- Azure Span
-    {N, 7459, 254117, addon.L["Titan Lockdown: Starting Soon"], 2133}, -- Titan Lockdown: Starting Soon
-    {N, 7460, 4237659, addon.L["Zaqali Ruin Investigation: Starting Soon"], 2133}, -- Zaqali Ruin Investigation: Starting Soon
-    {N, 7461, 254117, addon.L["Titan Lockdown: Active"], 2133}, -- Titan Lockdown: Active
-    {N, 7462, 4237659, addon.L["Zaqali Ruin Investigation: Active"], 2133}, -- Zaqali Ruin Investigation: Active
-    {N, 7554, 1394953, addon.L["Azure Span"], 1978}, -- Azure Span
-    {N, 7555, 1394953, addon.L["Ohn'ahran Plains"], 1978}, -- Ohn'ahran Plains
-    {N, 7556, 1394953, addon.L["Waking Shores"], 1978}, -- Waking Shores
-    {N, 7602, 1394953, addon.L["Thaldraszus"], 1978}, -- Thaldraszus
+    {N, 5175, 1408998, addon.L["Assault on Azsuna"], nil, 619}, -- Assault on Azsuna
+    {N, 5177, 1409000, addon.L["Assault on Highmountain"], nil, 619}, -- Assault on Highmountain
+    {N, 5178, 1409001, addon.L["Assault on Stormheim"], nil, 619}, -- Assault on Stormheim
+    {N, 5210, 1409010, addon.L["Assault on Val'sharah"], nil, 619}, -- Assault on Val'sharah
+    {N, 5896, 2065630, addon.L["Assault on Tiragarde Sound"], nil, 876}, -- Assault on Tiragarde Sound
+    {N, 5964, 2065567, addon.L["Assault on Drustvar"], nil, 876}, -- Assault on Drustvar
+    {N, 5966, 2065627, addon.L["Assault on Stormsong Valley"], nil, 876}, -- Assault on Stormsong Valley
+    {N, 5969, 2032229, addon.L["Assault on Nazmir"], nil, 875}, -- Assault on Nazmir
+    {N, 5970, 2065632, addon.L["Assault on Vol'dun"], nil, 875}, -- Assault on Vol'dun
+    {N, 5973, 2065640, addon.L["Assault on Zuldazar"], nil, 875}, -- Assault on Zuldazar
+    {N, 6486, 3196264, addon.L["Assault: N'Zoth (Uldum)"], nil, 12}, -- Assault: N'Zoth (Uldum)
+    {N, 6487, 415054, addon.L["Assault: Amathet"], nil, 12}, -- Assault: Amathet
+    {N, 6488, 458247, addon.L["Assault: Aqir"], nil, 12}, -- Assault: Aqir
+    {N, 6489, 3196265, addon.L["Assault: N'Zoth (Vale of Eternal Blossoms)"], nil, 424}, -- Assault: N'Zoth (Vale of Eternal Blossoms)
+    {N, 6490, 801016, addon.L["Assault: Mogu"], nil, 424}, -- Assault: Mogu
+    {N, 6491, 615301, addon.L["Assault: Mantid"], nil, 424}, -- Assault: Mantid
+    {N, 6989, 3257749, addon.L["Necrolord Assault"], nil, 1550}, -- Necrolord Assault
+    {N, 6990, 3257751, addon.L["Venthyr Assault"], nil, 1550}, -- Venthyr Assault
+    {N, 6991, 3257748, addon.L["Kyrian Assault"], nil, 1550}, -- Kyrian Assault
+    {N, 6992, 3257750, addon.L["Night Fae Assault"], nil, 1550}, -- Night Fae Assault
+    {N, 7104, 1394891, addon.L["Siege on Dragonbane Keep: Active"], nil, 2057}, -- Siege on Dragonbane Keep: Active
+    {N, 7221, 4554434, addon.L["Nokhudon Hold"], nil, 2057}, -- Nokhudon Hold
+    {N, 7222, 4554437, addon.L["Nokhudon Hold"], nil, 2057}, -- Nokhudon Hold
+    {N, 7223, 4554438, addon.L["Nokhudon Hold"], nil, 2057}, -- Nokhudon Hold
+    {N, 7224, 4554439, addon.L["Nokhudon Hold"], nil, 2057}, -- Nokhudon Hold
+    {N, 7225, 4554434, addon.L["Ohn'iri Springs"], nil, 2057}, -- Ohn'iri Springs
+    {N, 7226, 4554437, addon.L["Ohn'iri Springs"], nil, 2057}, -- Ohn'iri Springs
+    {N, 7227, 4554438, addon.L["Ohn'iri Springs"], nil, 2057}, -- Ohn'iri Springs
+    {N, 7228, 4554439, addon.L["Ohn'iri Springs"], nil, 2057}, -- Ohn'iri Springs
+    {N, 7229, 4554434, addon.L["Brackenhide Hollow"], nil, 2057}, -- Brackenhide Hollow
+    {N, 7230, 4554437, addon.L["Brackenhide Hollow"], nil, 2057}, -- Brackenhide Hollow
+    {N, 7231, 4554438, addon.L["Brackenhide Hollow"], nil, 2057}, -- Brackenhide Hollow
+    {N, 7232, 4554439, addon.L["Brackenhide Hollow"], nil, 2057}, -- Brackenhide Hollow
+    {N, 7233, 4554434, addon.L["Cobalt Assembly"], nil, 2057}, -- Cobalt Assembly
+    {N, 7234, 4554437, addon.L["Cobalt Assembly"], nil, 2057}, -- Cobalt Assembly
+    {N, 7235, 4554438, addon.L["Cobalt Assembly"], nil, 2057}, -- Cobalt Assembly
+    {N, 7236, 4554439, addon.L["Cobalt Assembly"], nil, 2057}, -- Cobalt Assembly
+    {N, 7237, 4554434, addon.L["Imbu"], nil, 2057}, -- Imbu
+    {N, 7238, 4554437, addon.L["Imbu"], nil, 2057}, -- Imbu
+    {N, 7239, 4554438, addon.L["Imbu"], nil, 2057}, -- Imbu
+    {N, 7240, 4554439, addon.L["Imbu"], nil, 2057}, -- Imbu
+    {N, 7245, 4554434, addon.L["Tyrhold"], nil, 2057}, -- Tyrhold
+    {N, 7246, 4554437, addon.L["Tyrhold"], nil, 2057}, -- Tyrhold
+    {N, 7247, 4554438, addon.L["Tyrhold"], nil, 2057}, -- Tyrhold
+    {N, 7248, 4554439, addon.L["Tyrhold"], nil, 2057}, -- Tyrhold
+    {N, 7249, 4554434, addon.L["Dragonbane Keep"], nil, 2057}, -- Dragonbane Keep
+    {N, 7250, 4554437, addon.L["Dragonbane Keep"], nil, 2057}, -- Dragonbane Keep
+    {N, 7251, 4554438, addon.L["Dragonbane Keep"], nil, 2057}, -- Dragonbane Keep
+    {N, 7252, 4554439, addon.L["Dragonbane Keep"], nil, 2057}, -- Dragonbane Keep
+    {N, 7253, 4554434, addon.L["Slagmire"], nil, 2057}, -- Slagmire
+    {N, 7254, 4554437, addon.L["Slagmire"], nil, 2057}, -- Slagmire
+    {N, 7255, 4554438, addon.L["Slagmire"], nil, 2057}, -- Slagmire
+    {N, 7256, 4554439, addon.L["Slagmire"], nil, 2057}, -- Slagmire
+    {N, 7257, 4554434, addon.L["Scalecracker Keep"], nil, 2057}, -- Scalecracker Keep
+    {N, 7258, 4554437, addon.L["Scalecracker Keep"], nil, 2057}, -- Scalecracker Keep
+    {N, 7259, 4554438, addon.L["Scalecracker Keep"], nil, 2057}, -- Scalecracker Keep
+    {N, 7260, 4554439, addon.L["Scalecracker Keep"], nil, 2057}, -- Scalecracker Keep
+    {N, 7267, 1394891, addon.L["Siege on Dragonbane Keep: Gathering"], nil, 2057}, -- Siege on Dragonbane Keep: Gathering
+    {N, 7298, 4554434, addon.L["Primalist Tomorrow"], nil, 2057}, -- Primalist Tomorrow
+    {N, 7299, 4554437, addon.L["Primalist Tomorrow"], nil, 2057}, -- Primalist Tomorrow
+    {N, 7300, 4554438, addon.L["Primalist Tomorrow"], nil, 2057}, -- Primalist Tomorrow
+    {N, 7301, 4554439, addon.L["Primalist Tomorrow"], nil, 2057}, -- Primalist Tomorrow
+    {N, 7342, 4622465, addon.L["Grand Hunts: Ohn'ahran Plains"], nil, 1978}, -- Grand Hunts: Ohn'ahran Plains
+    {N, 7343, 4622465, addon.L["Grand Hunts: The Waking Shore"], nil, 1978}, -- Grand Hunts: The Waking Shore
+    {N, 7344, 4622465, addon.L["Grand Hunts: Thaldraszus"], nil, 1978}, -- Grand Hunts: Thaldraszus
+    {N, 7345, 4622465, addon.L["Grand Hunts: The Azure Span"], nil, 1978}, -- Grand Hunts: The Azure Span
+    {N, 7429, 4914672, addon.L["Ohn'ahran Plains"], nil, 1978}, -- Ohn'ahran Plains
+    {N, 7432, 4914672, addon.L["Azure Span"], nil, 1978}, -- Azure Span
+    {N, 7459, 254117, addon.L["Titan Lockdown: Starting Soon"], nil, 2133}, -- Titan Lockdown: Starting Soon
+    {N, 7460, 4237659, addon.L["Zaqali Ruin Investigation: Starting Soon"], nil, 2133}, -- Zaqali Ruin Investigation: Starting Soon
+    {N, 7461, 254117, addon.L["Titan Lockdown: Active"], nil, 2133}, -- Titan Lockdown: Active
+    {N, 7462, 4237659, addon.L["Zaqali Ruin Investigation: Active"], nil, 2133}, -- Zaqali Ruin Investigation: Active
+    {N, 7554, 1394953, addon.L["Azure Span"], nil, 1978}, -- Azure Span
+    {N, 7555, 1394953, addon.L["Ohn'ahran Plains"], nil, 1978}, -- Ohn'ahran Plains
+    {N, 7556, 1394953, addon.L["Waking Shores"], nil, 1978}, -- Waking Shores
+    {N, 7602, 1394953, addon.L["Thaldraszus"], nil, 1978}, -- Thaldraszus
 };
 
 function exportedWorldEvents.LoadCategories(e)
