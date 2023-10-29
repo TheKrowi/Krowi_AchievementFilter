@@ -486,7 +486,9 @@
         "GetTime",
         "UIDropDownMenu_SetFrameStrata",
         "UIDropDownMenu_RefreshAll",
-        "UIDROPDOWNMENU_OPEN_MENU"
+        "UIDROPDOWNMENU_OPEN_MENU",
+        "DAYS_ABBR",
+        "HOURS_ABBR"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

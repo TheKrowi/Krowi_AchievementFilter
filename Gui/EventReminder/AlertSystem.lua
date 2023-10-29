@@ -42,10 +42,10 @@ function eventReminderAlertSystem:GetRuntimeText(event, chat)
         local hours = floor(mod(secondsLeft, 86400) / 3600);
         local minutes = floor(mod(secondsLeft, 3600) / 60);
         local seconds = floor(mod(secondsLeft, 60));
-        timeLeft = days > 0 and days .. " Days" or "";
-        timeLeft = timeLeft .. (days > 0 and " " or "") .. (hours > 0 and hours .. " Hr" or "");
-        timeLeft = timeLeft .. (hours > 0 and " " or "") .. (minutes > 0 and minutes .. " Min" or "");
-        timeLeft = timeLeft .. (minutes > 0 and " " or "") .. (seconds > 0 and seconds .. " Sec" or "");
+        timeLeft = days > 0 and format(DAYS_ABBR, days) or "";
+        timeLeft = timeLeft .. (days > 0 and " " or "") .. (hours > 0 and format(HOURS_ABBR, hours) or "");
+        timeLeft = timeLeft .. (hours > 0 and " " or "") .. (minutes > 0 and format(MINUTES_ABBR, minutes) or "");
+        timeLeft = timeLeft .. (minutes > 0 and " " or "") .. (seconds > 0 and format(SECONDS_ABBR, seconds) or "");
     end
 
     if chat then
