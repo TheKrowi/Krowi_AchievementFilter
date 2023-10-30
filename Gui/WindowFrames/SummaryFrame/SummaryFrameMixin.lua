@@ -327,10 +327,8 @@ end
 local function BuildLastCompleted(event)
     local numLastCompleted = addon.Options.db.profile.Summary.NumAchievements or 25;
     local lastCompleted = KrowiAF_Achievements.LastCompleted[UnitGUID("player")];
-    if type(lastCompleted) == "table"
-    and #lastCompleted == numLastCompleted
-    and not event == "ACHIEVEMENT_EARNED" then
-        return;
+    if type(lastCompleted) == "table" and #lastCompleted == numLastCompleted and event ~= "ACHIEVEMENT_EARNED" then
+        return; -- Doesn't require an update
     end
     local res = addon.Data.SavedData.AchievementData.GetEarnedByCharacter(UnitGUID("player"));
     sort(res, function(a, b) return a.Date > b.Date; end);
