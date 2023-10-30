@@ -7,7 +7,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-29 00-23-52 ]] --
+-- [[ Exported at 2023-10-30 16-54-38 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -744,9 +744,15 @@ L["Screenshot Mode Desc"] = [=[Adds a black frame above everything. Only newly o
 A reload is required to remove the black frame!]=]
 L["Screenshots"] = true
 L["Search"] = true
+L["Search Criteria"] = true
+L["Search Descriptions"] = true
 L["Search field"] = true
+L["Search Ids"] = true
+L["Search Names"] = true
+L["Search options"] = true
 L["Search preview"] = true
 L["Search Results"] = true
+L["Search Rewards"] = true
 L["Season"] = true
 L["Second column threshold"] = true
 L["Second column threshold Desc"] = "Achievements with more objectives than this number will be visible in two columns instead of one."

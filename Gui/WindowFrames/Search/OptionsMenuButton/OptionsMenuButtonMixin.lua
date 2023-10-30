@@ -37,7 +37,7 @@ function KrowiAF_SearchOptionsMenuButtonMixin:OnMouseDown()
 	});
 
 	local profile = addon.SearchOptions.db.profile;
-	AddCheckBox(menu, addon.L["Search IDs"] .. " (#)", profile, {"SearchIds"});
+	AddCheckBox(menu, addon.L["Search Ids"] .. " (#)", profile, {"SearchIds"});
 	AddCheckBox(menu, addon.L["Search Names"], profile, {"SearchNames"});
 	AddCheckBox(menu, addon.L["Search Descriptions"], profile, {"SearchDescriptions"});
 	AddCheckBox(menu, addon.L["Search Criteria"] .. " (@)", profile, {"SearchCriteria"});
