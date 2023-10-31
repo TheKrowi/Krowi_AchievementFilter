@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 65.0 - 2023-10-29
+## 65.0 - 2023-10-31
 ### Added
 - The Lick King, Lil' Maggz and Ysergle The Dreamurk
 - The tooltip opened by clicking an achievement link from chat for example now also reacts to right clicks
@@ -29,6 +29,8 @@ All notable changes to this project will be documented in this file.
 - Linked Forge and Befuddle
 - Event Reminder localization of time left should now be working correctly
 - Event Reminder localization of end time when using a custom format containing %a, %A, %b or %B should now be working correctly
+- Event Reminders should now always have a category linked and no longer cause errors
+- Event Reminders should now more reliably register a mouse click
 
 ### Wrath Classic
 - Bumped version

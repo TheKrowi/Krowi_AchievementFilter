@@ -28,6 +28,8 @@
 <li>Linked Forge and Befuddle</li>
 <li>Event Reminder localization of time left should now be working correctly</li>
 <li>Event Reminder localization of end time when using a custom format containing %a, %A, %b or %B should now be working correctly</li>
+<li>Event Reminders should now always have a category linked and no longer cause errors</li>
+<li>Event Reminders should now more reliably register a mouse click</li>
 </ul>
 <p><h3>Wrath Classic</h3></p>
 <ul>
