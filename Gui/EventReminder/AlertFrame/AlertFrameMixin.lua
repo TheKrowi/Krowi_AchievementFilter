@@ -24,11 +24,6 @@ function KrowiAF_EventReminderAlertFrameMixin:HandleLeftClick()
         LoadAddOn("Blizzard_AchievementUI");
     end
 
-    if not self.Event.Category then -- It's possible data is still not loaded correctly, GW2UI is one case
-        addon.Data.ExportedCalendarEvents.LoadCategories(addon.Data.CalendarEvents, addon.Data.Achievements);
-        addon.Data.ExportedWorldEvents.LoadCategories(addon.Data.WorldEvents, addon.Data.Achievements);
-    end
-
     local category = KrowiAF_SelectCategory(self.Event.Category);
     if category.NumOfAch == 0 then
         KrowiAF_AchievementsFrame.Text:Show();

@@ -3,9 +3,10 @@ addon.Objects.Event = {};
 local event = addon.Objects.Event;
 
 event.__index = event;
-function event:New(id, type, icon, name, linkedEventIds, mapID)
+function event:New(id, category, type, icon, name, linkedEventIds, mapID)
     local instance = setmetatable({}, event);
     instance.Id = id or 0;
+    instance.Category = category;
     instance.Type = type;
     instance.Icon = icon or 0;
     instance.Name = name;
