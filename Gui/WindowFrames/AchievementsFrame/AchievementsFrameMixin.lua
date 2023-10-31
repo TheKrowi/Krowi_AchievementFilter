@@ -115,9 +115,10 @@ local function Validate(achievements, displayAchievements, defaultOrder)
 	end
 end
 
+local defaultOrder;
 local function GetFilteredAchievements(category)
 	local displayAchievements = {};
-	local defaultOrder = {};
+	defaultOrder = {};
 
 	Validate(category.Achievements, displayAchievements, defaultOrder);
 	Validate(category.MergedAchievements, displayAchievements, defaultOrder);
@@ -127,6 +128,12 @@ local function GetFilteredAchievements(category)
 	end
 
 	return addon.Filters:Sort(displayAchievements, defaultOrder);
+end
+
+function KAF_TEST()
+	for key, value in pairs(defaultOrder) do
+		print(key, value)
+	end
 end
 
 local function UpdateDataProvider(self, achievements, retainScrollPosition)

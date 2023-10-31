@@ -97,6 +97,7 @@ function filters:RefreshFilters()
     end
 end
 
+local LoadSortFuncs;
 function filters:Load()
     self.db = LibStub("AceDB-3.0"):New("KrowiAF_Filters", defaults, true);
     self.db.RegisterCallback(self, "OnProfileChanged", "RefreshFilters");
@@ -110,6 +111,8 @@ function filters:Load()
     self.Account = addon.L["Account"];
     self.CharacterAccount = (GetCategoryInfo(92)) .. " / " .. self.Account;
     self.CharacterOnly = addon.L["Character only"];
+
+    LoadSortFuncs();
 end
 
 -- [[ Validation ]] --
@@ -294,6 +297,22 @@ function filters.GetHighestAchievementWhenCollapseSeries(_fliters, achievement)
 	end
 
     return achievement;
+end
+
+local sortFuncs = {
+    addon.Objects.CompareFunc:New("string", "Name");
+    -- addon.Objects.CompareFunc:New("number", "Points");
+    -- addon.Objects.CompareFunc:New("string", "Realm");
+    -- addon.Objects.CompareFunc:New("string", "Faction");
+    -- addon.Objects.CompareFunc:New("string", "Class");
+    -- addon.Objects.CompareFunc:New("bool", "ExcludeFromHeaderTooltip");
+    -- addon.Objects.CompareFunc:New("bool", "ExcludeFromEarnedByAchievementTooltip");
+    -- addon.Objects.CompareFunc:New("bool", "ExcludeFromMostProgressAchievementTooltip");
+    -- addon.Objects.CompareFunc:New("bool", "IgnoreCharacter");
+};
+
+function LoadSortFuncs()
+    sortFuncs[1].Fallback = function() return nil; end;
 end
 
 local function CompareName(a, b, reverse, default)
