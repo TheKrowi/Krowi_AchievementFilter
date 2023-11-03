@@ -24,7 +24,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-31 20-52-17 ]] --
+-- [[ Exported at 2023-11-03 10-57-23 ]] --
 tasks = {
     {N, 5175, 948, 1408998, addon.L["Assault on Azsuna"], nil, 619}, -- Assault on Azsuna
     {N, 5177, 948, 1409000, addon.L["Assault on Highmountain"], nil, 619}, -- Assault on Highmountain

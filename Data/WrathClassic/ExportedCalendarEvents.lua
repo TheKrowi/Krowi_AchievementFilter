@@ -24,7 +24,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-31 20-52-17 ]] --
+-- [[ Exported at 2023-11-03 10-57-23 ]] --
 tasks = {
     {N, 141, 917, 236705, addon.L["Feast of Winter Veil"]}, -- Feast of Winter Veil
     {N, 181, 911, 237000, addon.L["Noblegarden"]}, -- Noblegarden

@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 - Mythic Plus Dragonflight Season 3 achievements (11)
 - Amirdrassil, the Dream's Hope raid achievements (30)
 - Emerald Dream zone achievements (38)
-- Superbloom event achievements (4)
+- Superbloom event achievements (4) and event reminders
 - More PvP achievements (6)
 - Pet Battle achievements (1)
 - Misc achievements (7)
