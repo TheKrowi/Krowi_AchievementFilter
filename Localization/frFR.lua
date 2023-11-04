@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-25 20-33-45 ]] --
+-- [[ Exported at 2023-10-30 16-56-52 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -201,7 +201,7 @@ L["Date and Time formatting guide Desc"] = [=[{a} - Nom abrégé du jour de la s
 {s} - Nombre de secondes depuis Epoch, c'est-à-dire depuis 1970- 01-01 00:00:00 UTC (1177323641)
 {S} - Seconde sous forme de nombre décimal (00 - 59)
 {u} - Jour de la semaine sous forme de nombre décimal (1 - 7 ; le lundi est 1)
-{U } - Semaine de l'année sous forme de nombre décimal, avec dimanche comme premier jour de la semaine 1 (00 - 53)
+{U} - Semaine de l'année sous forme de nombre décimal, avec dimanche comme premier jour de la semaine 1 (00 - 53)
 {w} - Jour de la semaine sous forme de nombre décimal (0 - 6 ; le dimanche est 0)
 {W} - Semaine de l'année sous forme de nombre décimal, avec lundi comme premier jour de la semaine 1 (00 - 53)
 {x} - Représentation de la date pour les paramètres régionaux actuels (chaîne de date standard)

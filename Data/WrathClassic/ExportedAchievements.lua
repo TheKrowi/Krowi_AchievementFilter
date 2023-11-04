@@ -40,7 +40,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-25 21-19-35 ]] --
+-- [[ Exported at 2023-11-04 19-37-19 ]] --
 tasks = {
     {N, 19440, 204, f.Horde}, -- Defense Protocol Gamma: Terminated
     {N, 19439, 204, f.Alliance}, -- Defense Protocol Gamma: Terminated

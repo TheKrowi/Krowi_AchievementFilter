@@ -59,15 +59,15 @@ timers[4992] = function()
     return GetSecondsLeft(widgetInfo.text, minutesAbbr, secondsAbbr);
 end
 
-timers[5323] = function()
-    -- local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(5157);
-    -- if not widgetInfo or not widgetInfo.text then
-    --     return nil;
-    -- end
+timers[5157] = function()
+    local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(5157);
+    if not widgetInfo or not widgetInfo.text then
+        return nil;
+    end
 
-    -- return GetSecondsLeft(widgetInfo.text, minutesAbbr, secondsAbbr);
-    return 0; -- 17-22 minutes but ends when the boss is killed, do not track this time by now and show no time data available
+    return GetSecondsLeft(widgetInfo.text, minutesAbbr, secondsAbbr);
 end
 
--- 5323 superbloom active (can be not shown)
--- 5157 time till next
+timers[5323] = function()
+    return 0; -- 17-22 minutes but ends when the boss is killed, do not track this time for now and show no time data available
+end

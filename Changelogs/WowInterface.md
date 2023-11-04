@@ -5,20 +5,23 @@
 [*]Filter on "Added in version"
 [*]Option to automatically adjust the summary achievements list to fit the space without showing a scroll bar
 [*]Right clicking an event reminder on the side of the Achievement Window or the World Map will show a menu with the option to stop tracking that specific event
+[*]Uncategorized category as an adjustable category which shows achievements not added to KAF yet
 [*]PvP Dragonflight Season 3 achievements (19)
 [*]Mythic Plus Dragonflight Season 3 achievements (11)
 [*]Amirdrassil, the Dream's Hope raid achievements (30)
 [*]Emerald Dream zone achievements (38)
-[*]Superbloom event achievements (4)
+[*]Superbloom event achievements (4) and event reminders
 [*]More PvP achievements (6)
 [*]Pet Battle achievements (1)
 [*]Misc achievements (7)
+[*]Collector's Edition achievements (5)
 [/LIST]
 
 [B]Changed[/B]
 [LIST]
 [*]Tons of back end changes
 [*]Moved The Horseman's Reins achievement to Events - Holidays - Hallow's End
+[*]Last completed achievements in the summary view should now be more accurate for the 5 last earned achievements
 [/LIST]
 
 [B]Fixed[/B]
@@ -30,6 +33,8 @@
 [*]Linked Forge and Befuddle
 [*]Event Reminder localization of time left should now be working correctly
 [*]Event Reminder localization of end time when using a custom format containing %a, %A, %b or %B should now be working correctly
+[*]Event Reminders should now always have a category linked and no longer cause errors
+[*]Event Reminders should now more reliably register a mouse click
 [/LIST]
 
 [B]Wrath Classic[/B]

@@ -17,13 +17,15 @@ data.AchievementIds = {};
 data.Categories = {};
 data.WatchListCategories, data.CurrentZoneCategories, data.SelectedZoneCategories = {}, {}, {};
 data.SearchResultsCategories, data.TrackingAchievementsCategories, data.ExcludedCategories = {}, {}, {};
+data.UncategorizedCategories = {};
 local adjustableCategories = {
     WatchListCategories = data.WatchListCategories,
     CurrentZoneCategories = data.CurrentZoneCategories,
     SelectedZoneCategories = data.SelectedZoneCategories,
     SearchResultsCategories = data.SearchResultsCategories,
     TrackingAchievementsCategories = data.TrackingAchievementsCategories,
-    ExcludedCategories = data.ExcludedCategories
+    ExcludedCategories = data.ExcludedCategories,
+    UncategorizedCategories = data.UncategorizedCategories
 };
 
 data.RightClickMenuExtras = {};
@@ -37,14 +39,6 @@ local function PostLoadOnPlayerLogin(self, start)
 
     local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_Layout", "cmd", "KROWIAF-0.0").args.Summary.args.Summary.args.NumAchievements; -- cmd and KROWIAF-0.0 are just to make the function work
     custom.max = #self.AchievementIds;
-
-    self.ExportedCalendarEvents.LoadCategories(self.CalendarEvents, self.Achievements);
-    if self.ExportedWidgetEvents then
-        self.ExportedWidgetEvents.LoadCategories(self.WidgetEvents, self.Achievements);
-    end
-    if self.ExportedWorldEvents then
-        self.ExportedWorldEvents.LoadCategories(self.WorldEvents, self.Achievements);
-    end
 
     local function PostBuildCache()
         if addon.Tabs["Achievements"] then
@@ -72,12 +66,12 @@ function data:LoadOnPlayerLogin()
     self.ExportedBuildVersions.RegisterTasks(self.BuildVersions);
     self.ExportedAchievements.RegisterTasks(self.Achievements, self.BuildVersions, self.TransmogSets);
     self.ExportedCategories.RegisterTasks(self.Categories, adjustableCategories, self.Achievements, addon.Tabs);
-    self.ExportedCalendarEvents.RegisterTasks(self.CalendarEvents);
+    self.ExportedCalendarEvents.RegisterTasks(self.CalendarEvents, self.Categories);
     if self.ExportedWidgetEvents then
-        self.ExportedWidgetEvents.RegisterTasks(self.WidgetEvents);
+        self.ExportedWidgetEvents.RegisterTasks(self.WidgetEvents, self.Categories);
     end
     if self.ExportedWorldEvents then
-        self.ExportedWorldEvents.RegisterTasks(self.WorldEvents);
+        self.ExportedWorldEvents.RegisterTasks(self.WorldEvents, self.Categories);
     end
     if not addon.Util.IsWrathClassic then
         self.ExportedPetBattles.RegisterTasks(self.RightClickMenuExtras);
@@ -142,6 +136,7 @@ function data.AddAchievementIfNil(id)
     if data.Achievements[id] == nil then
         data.Achievements[id] = addon.Objects.Achievement:New(id);
         tinsert(data.AchievementIds, id);
+        return data.Achievements[id];
     end
 end
 

@@ -40,7 +40,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-25 21-19-09 ]] --
+-- [[ Exported at 2023-11-04 19-36-52 ]] --
 tasks = {
     {N, 19461, 205}, -- Kissed by the Wind
     {O, 19449, "From", "PvP Season", 36, "Until", "PvP Season", 36},
@@ -198,7 +198,9 @@ tasks = {
     {N, 19080, 202}, -- Arcane Influence
     {N, 19079, 202}, -- Master of the Turbulent Timeways
     {N, 19077, 205}, -- Catch Me If You Can!
+    {N, 19030, 202}, -- Squally
     {N, 19029, 202}, -- Lil' Maggz
+    {N, 19027, 202}, -- Heroic Edition: Algarian Stormrider
     {N, 19026, 205}, -- Defenders of the Dream
     {N, 19013, 205}, -- I Dream of Seeds
     {O, 19012, "From", "Mythic+ Season", 11, "Until", "Mythic+ Season", 11},
@@ -221,6 +223,9 @@ tasks = {
     {N, 18940, 202}, -- Eastern Kingdoms Racing Completionist: Silver
     {N, 18939, 202}, -- Eastern Kingdoms Racing Completionist
     {N, 18934, 202}, -- Excessive Experimentation
+    {N, 18931, 202}, -- Storm Rider: Gold
+    {N, 18929, 202}, -- Storm Rider: Silver
+    {N, 18928, 202}, -- Storm Rider: Bronze
     {N, 18909, 202}, -- Fantastic Figurines
     {N, 18908, 202}, -- Chromatic Calibration: Bio-Optic Killshades
     {N, 18907, 202}, -- Chromatic Calibration: Ectoplasmic Specs
@@ -1493,6 +1498,7 @@ tasks = {
     {N, 15349, 191, nil, nil, true}, -- Challenger I: Shadowlands Season 3
     {O, 15348, "From", "PvP Season", 32, "Until", "PvP Season", 32},
     {N, 15348, 191, nil, nil, true}, -- Combatant I: Shadowlands Season 3
+    {N, 15344, 202}, -- """S.A.F.E"" Pilot"
     {N, 15336, 191}, -- From A to Zereth
     {N, 15331, 191}, -- Treasures of Zereth Mortis
     {O, 15327, "From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 6},

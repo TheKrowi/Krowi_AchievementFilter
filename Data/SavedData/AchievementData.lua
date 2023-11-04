@@ -135,3 +135,51 @@ function achievementData.DeleteForCharacter(characterGuid)
     achievementData.ClearNotCompletedForCharacter(characterGuid);
     KrowiAF_Achievements.LastCompleted[characterGuid] = nil;
 end
+
+local function InitLastCompleted()
+    local lastCompleted = {GetLatestCompletedAchievements()};
+    for i = addon.Options.db.profile.Summary.NumAchievements + 1, #lastCompleted do
+        lastCompleted[i] = nil;
+    end
+    return lastCompleted;
+end
+
+local newAchievementsEarned = {};
+local function AddNewAchievementsEarned(lastCompleted)
+    local lastCompletedEnum = addon.Util.Enum2(lastCompleted);
+    for _, achievementId in next, newAchievementsEarned do
+        if not lastCompletedEnum[achievementId] then
+            tinsert(lastCompleted, achievementId);
+            if #lastCompleted >= addon.Options.db.profile.Summary.NumAchievements then
+                break;
+            end
+        end
+    end
+    return lastCompleted;
+end
+
+local function AddFromEarnedByCharacter(characterGuid, lastCompleted)
+    local lastCompletedEnum = addon.Util.Enum2(lastCompleted);
+    local earnedByCharacter = achievementData.GetEarnedByCharacter(characterGuid);
+    sort(earnedByCharacter, function(a, b) return a.Date > b.Date; end);
+    for i = 1, addon.Options.db.profile.Summary.NumAchievements do
+        if not lastCompletedEnum[earnedByCharacter[i].Id] then
+            tinsert(lastCompleted, earnedByCharacter[i].Id);
+        end
+    end
+    return lastCompleted;
+end
+
+function achievementData.RefreshLastCompleted(characterGuid)
+    local lastCompleted = InitLastCompleted();
+    -- for key, value in pairs(lastCompleted) do
+    --     print(key, value, (select(2, GetAchievementInfo(value))));
+    -- end
+    lastCompleted = AddNewAchievementsEarned(lastCompleted);
+    lastCompleted = AddFromEarnedByCharacter(characterGuid, lastCompleted);
+    KrowiAF_Achievements.LastCompleted[characterGuid] = lastCompleted;
+end
+
+function achievementData.RegisterNewAchievementEarned(achievementId)
+    tinsert(newAchievementsEarned, 1, achievementId);
+end

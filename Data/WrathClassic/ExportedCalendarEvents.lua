@@ -6,9 +6,9 @@ local objects = addon.Objects;
 local eventType = objects.EventType;
 local event = objects.Event;
 
-local tasks, calendarEvents;
-function exportedCalendarEvents.RegisterTasks(_calendarEvents)
-    calendarEvents = _calendarEvents;
+local tasks, calendarEvents, categories;
+function exportedCalendarEvents.RegisterTasks(_calendarEvents, _categories)
+    calendarEvents, categories = _calendarEvents, _categories;
     wipe(calendarEvents);
 
     local name = "Calendar Events";
@@ -17,43 +17,28 @@ function exportedCalendarEvents.RegisterTasks(_calendarEvents)
     tinsert(data.TasksGroups, 1, tasks);
 end
 
-local function N(id, ...)
-    calendarEvents[id] = event:New(id, eventType.Calendar, ...);
+local function N(id, cId, ...)
+    calendarEvents[id] = event:New(id, categories[cId], eventType.Calendar, ...);
 end
 
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-29 15-19-49 ]] --
+-- [[ Exported at 2023-11-03 10-57-23 ]] --
 tasks = {
-    {N, 141, 236705, addon.L["Feast of Winter Veil"]}, -- Feast of Winter Veil
-    {N, 181, 237000, addon.L["Noblegarden"]}, -- Noblegarden
-    {N, 201, 134508, addon.L["Children's Week"]}, -- Children's Week
-    {N, 324, 236552, addon.L["Hallow's End"]}, -- Hallow's End
-    {N, 327, 236704, addon.L["Lunar Festival"]}, -- Lunar Festival
-    {N, 341, 135268, addon.L["Midsummer Fire Festival"]}, -- Midsummer Fire Festival
-    {N, 372, 236701, addon.L["Brewfest"]}, -- Brewfest
-    {N, 374, 134481, addon.L["Darkmoon Faire"]}, -- Darkmoon Faire
-    {N, 398, 133168, addon.L["Pirates' Day"]}, -- Pirates' Day
-    {N, 404, 250626, addon.L["Pilgrim's Bounty"]}, -- Pilgrim's Bounty
-    {N, 409, 237272, addon.L["Day of the Dead"]}, -- Day of the Dead
-    {N, 423, 236709, addon.L["Love is in the Air"]}, -- Love is in the Air
+    {N, 141, 917, 236705, addon.L["Feast of Winter Veil"]}, -- Feast of Winter Veil
+    {N, 181, 911, 237000, addon.L["Noblegarden"]}, -- Noblegarden
+    {N, 201, 912, 134508, addon.L["Children's Week"]}, -- Children's Week
+    {N, 324, 915, 236552, addon.L["Hallow's End"]}, -- Hallow's End
+    {N, 327, 885, 236704, addon.L["Lunar Festival"]}, -- Lunar Festival
+    {N, 341, 913, 135268, addon.L["Midsummer Fire Festival"]}, -- Midsummer Fire Festival
+    {N, 372, 914, 236701, addon.L["Brewfest"]}, -- Brewfest
+    {N, 374, 925, 134481, addon.L["Darkmoon Faire"]}, -- Darkmoon Faire
+    {N, 398, 919, 133168, addon.L["Pirates' Day"]}, -- Pirates' Day
+    {N, 404, 916, 250626, addon.L["Pilgrim's Bounty"]}, -- Pilgrim's Bounty
+    {N, 409, 920, 237272, addon.L["Day of the Dead"]}, -- Day of the Dead
+    {N, 423, 910, 236709, addon.L["Love is in the Air"]}, -- Love is in the Air
 };
-
-function exportedCalendarEvents.LoadCategories(e)
-    e[141].Category = addon.Tabs["Events"].Categories[6].Children[11]; -- Winter Veil
-    e[181].Category = addon.Tabs["Events"].Categories[6].Children[3]; -- Noblegarden
-    e[201].Category = addon.Tabs["Events"].Categories[6].Children[4]; -- Children's Week
-    e[324].Category = addon.Tabs["Events"].Categories[6].Children[8]; -- Hallow's End
-    e[327].Category = addon.Tabs["Events"].Categories[6].Children[1]; -- Lunar Festival
-    e[341].Category = addon.Tabs["Events"].Categories[6].Children[5]; -- Midsummer
-    e[372].Category = addon.Tabs["Events"].Categories[6].Children[7]; -- Brewfest
-    e[374].Category = addon.Tabs["Events"].Categories[8]; -- Darkmoon Faire
-    e[398].Category = addon.Tabs["Events"].Categories[6].Children[6]; -- Pirates' Day
-    e[404].Category = addon.Tabs["Events"].Categories[6].Children[10]; -- Pilgrim's Bounty
-    e[409].Category = addon.Tabs["Events"].Categories[6].Children[9]; -- Day of the Dead
-    e[423].Category = addon.Tabs["Events"].Categories[6].Children[2]; -- Love is in the Air
-end
 
 function exportedCalendarEvents.InjectDynamicOptions()
     KrowiAF_RegisterEventOptions("Calendar", "Holidays", addon.L["Holidays"], {141}, addon.L["Feast of Winter Veil"]);

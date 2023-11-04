@@ -29,5 +29,4 @@ end
 function KrowiAF_EventReminderSideButtonMixin:Reset()
     self:SetParent(addon.Gui.EventReminderSideButtonSystem:GetAnchor());
     self.Event = nil;
-    self:Hide();
 end

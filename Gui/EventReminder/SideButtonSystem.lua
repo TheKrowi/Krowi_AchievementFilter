@@ -39,14 +39,24 @@ local function AddEvent(index, event)
     button:Show();
 end
 
+local function HideButtonsWithoutEvent()
+    for _, button in next, sideButtons do
+		if not button.Event then
+            button:Hide();
+        end
+	end
+end
+
 local function SetPoints(self)
     local relativeFrame = self:GetAnchor();
     local relativePoint = "TOPRIGHT";
     for _, button in next, sideButtons do
-        button:ClearAllPoints();
-        button:SetPoint("TOPLEFT", relativeFrame, relativePoint, 0, 0);
-        relativeFrame = button;
-        relativePoint = "BOTTOMLEFT";
+        if button:IsShown() then
+            button:ClearAllPoints();
+            button:SetPoint("TOPLEFT", relativeFrame, relativePoint, 0, 0);
+            relativeFrame = button;
+            relativePoint = "BOTTOMLEFT";
+        end
     end
 end
 
@@ -62,6 +72,7 @@ function eventReminderSideButtonSystem:Refresh()
     for index, activeEvent in next, activeEvents do
         AddEvent(index, activeEvent);
     end
+    HideButtonsWithoutEvent();
     SetPoints(self);
 end
 
