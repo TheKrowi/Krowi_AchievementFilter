@@ -172,6 +172,9 @@ end
 
 function achievementData.RefreshLastCompleted(characterGuid)
     local lastCompleted = InitLastCompleted();
+    -- for key, value in pairs(lastCompleted) do
+    --     print(key, value, (select(2, GetAchievementInfo(value))));
+    -- end
     lastCompleted = AddNewAchievementsEarned(lastCompleted);
     lastCompleted = AddFromEarnedByCharacter(characterGuid, lastCompleted);
     KrowiAF_Achievements.LastCompleted[characterGuid] = lastCompleted;

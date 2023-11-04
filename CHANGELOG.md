@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Filter on "Added in version"
 - Option to automatically adjust the summary achievements list to fit the space without showing a scroll bar
 - Right clicking an event reminder on the side of the Achievement Window or the World Map will show a menu with the option to stop tracking that specific event
+- Uncategorized category as an adjustable category which shows achievements not added to KAF yet
 - PvP Dragonflight Season 3 achievements (19)
 - Mythic Plus Dragonflight Season 3 achievements (11)
 - Amirdrassil, the Dream's Hope raid achievements (30)
@@ -16,6 +17,7 @@ All notable changes to this project will be documented in this file.
 - More PvP achievements (6)
 - Pet Battle achievements (1)
 - Misc achievements (7)
+- Collector's Edition achievements (5)
 
 ### Changed
 - Tons of back end changes

@@ -400,6 +400,7 @@ function gui:RefreshViewAfterPlayerLogin()
 		selectedTab.SelectedCategory = categories[1];
 		selectedTab:ShowSubFrames();
     end
+    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
 end
 
 function gui:RegisterSafeCloseButtonDuringCombat(frame, extraHideCondition)

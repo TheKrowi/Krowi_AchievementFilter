@@ -54,8 +54,11 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-25 21-24-54 ]] --
+-- [[ Exported at 2023-11-04 19-39-46 ]] --
 tasks = {
+    {F, 1557, "UncategorizedCategories"},
+    {C, 971, 1557},
+    {N, 1557,k.L["Uncategorized"]}, -- Uncategorized
     {F, 857, "ExcludedCategories"},
     {C, 971, 857},
     {N, 857,k.L["Excluded"]}, -- Excluded
@@ -145,6 +148,7 @@ tasks = {
     {A, 1346, 8820}, -- WoW's 10th Anniversary
     {C, 971, 1346},
     {N, 1346,k.L["Ta's Pet Collection"]}, -- Ta's Pet Collection
+    {A, 1539, 15344}, -- """S.A.F.E"" Pilot"
     {A, 1539, 17361}, -- "Rumble Minis, All the Looks!"
     {A, 1539, 17360}, -- "Warcraft Rumble Minis, New Looks!"
     {A, 1539, 17344}, -- "Warcraft Rumble Minis, Get 'Em All!"
@@ -192,6 +196,11 @@ tasks = {
     {A, 1120, 7412}, -- Collector's Edition: Fetish Shaman
     {C, 1117, 1120},
     {N, 1120,k.L["Diablo III"], true}, -- Diablo III
+    {A, 1119, 19030}, -- Squally
+    {A, 1119, 18931}, -- Storm Rider: Gold
+    {A, 1119, 18929}, -- Storm Rider: Silver
+    {A, 1119, 18928}, -- Storm Rider: Bronze
+    {A, 1119, 19027}, -- Heroic Edition: Algarian Stormrider
     {A, 1119, 17314}, -- Heroic Edition: Tangled Dreamweaver
     {A, 1119, 14283}, -- Heroic Edition: Ensorcelled Everwyrm
     {A, 1119, 12232}, -- Collector's Edition: Tottle
@@ -979,7 +988,6 @@ tasks = {
     {A, 972, 3356}, -- Winterspring Frostsaber
     {C, 971, 972},
     {N, 972,k.L["Bur's Mount Collection"]}, -- Bur's Mount Collection
-    function() categories[1396].IsSearchResults = true; end,
     {F, 1396, "SearchResultsCategories"},
     {C, 971, 1396},
     {N, 1396,k.L["Search Results"]}, -- Search Results
@@ -1001,6 +1009,9 @@ tasks = {
     {N, 1204,k.L["Summary"]}, -- Summary
     {T, 971, "Specials"},
     {N, 971,k.L["Specials"]}, -- TAB - Specials
+    {F, 1556, "UncategorizedCategories"},
+    {C, 955, 1556},
+    {N, 1556,k.L["Uncategorized"]}, -- Uncategorized
     {F, 1227, "ExcludedCategories"},
     {C, 955, 1227},
     {N, 1227,k.L["Excluded"]}, -- Excluded
@@ -1859,7 +1870,6 @@ tasks = {
     {A, 1162, 10561}, -- Honorable Medallion
     {C, 955, 1162},
     {N, 1162,k.GetCategoryInfoTitle(95)}, -- Player vs. Player
-    function() categories[1397].IsSearchResults = true; end,
     {F, 1397, "SearchResultsCategories"},
     {C, 955, 1397},
     {N, 1397,k.L["Search Results"]}, -- Search Results
@@ -1881,6 +1891,9 @@ tasks = {
     {N, 1205,k.L["Summary"]}, -- Summary
     {T, 955, "PvP"},
     {N, 955,k.GetCategoryInfoTitle(95)}, -- TAB - PvP
+    {F, 1555, "UncategorizedCategories"},
+    {C, 884, 1555},
+    {N, 1555,k.L["Uncategorized"]}, -- Uncategorized
     {F, 1226, "ExcludedCategories"},
     {C, 884, 1226},
     {N, 1226,k.L["Excluded"]}, -- Excluded
@@ -2504,7 +2517,6 @@ tasks = {
     {A, 918, 2144}, -- "What a Long, Strange Trip It's Been"
     {C, 884, 918},
     {N, 918,k.L["Holidays"]}, -- Holidays
-    function() categories[1398].IsSearchResults = true; end,
     {F, 1398, "SearchResultsCategories"},
     {C, 884, 1398},
     {N, 1398,k.L["Search Results"]}, -- Search Results
@@ -2526,6 +2538,9 @@ tasks = {
     {N, 1206,k.L["Summary"]}, -- Summary
     {T, 884, "Events"},
     {N, 884,k.L["Events"]}, -- TAB - Events
+    {F, 1554, "UncategorizedCategories"},
+    {C, 883, 1554},
+    {N, 1554,k.L["Uncategorized"]}, -- Uncategorized
     {F, 1225, "ExcludedCategories"},
     {C, 883, 1225},
     {N, 1225,k.L["Excluded"]}, -- Excluded
@@ -9903,7 +9918,6 @@ tasks = {
     {N, 1160,k.L["Zones"]}, -- Zones
     {C, 883, 1431},
     {N, 1431,k.L["Cross-Expansion"]}, -- Cross-Expansion
-    function() categories[1399].IsSearchResults = true; end,
     {F, 1399, "SearchResultsCategories"},
     {C, 883, 1399},
     {N, 1399,k.L["Search Results"]}, -- Search Results
@@ -9925,6 +9939,9 @@ tasks = {
     {N, 1203,k.L["Summary"]}, -- Summary
     {T, 883, "Expansions"},
     {N, 883,k.L["Expansions"]}, -- TAB - Expansions
+    {F, 1553, "UncategorizedCategories"},
+    {C, 1100, 1553},
+    {N, 1553,k.L["Uncategorized"]}, -- Uncategorized
     {F, 1224, "ExcludedCategories"},
     {C, 1100, 1224},
     {N, 1224,k.L["Excluded"]}, -- Excluded
@@ -9932,7 +9949,6 @@ tasks = {
     {F, 1371, "TrackingAchievementsCategories"},
     {C, 1100, 1371},
     {N, 1371,k.L["Tracking Achievements"]}, -- Tracking Achievements
-    function() categories[1395].IsSearchResults = true; end,
     {F, 1395, "SearchResultsCategories"},
     {C, 1100, 1395},
     {N, 1395,k.L["Search Results"]}, -- Search Results
@@ -9994,4 +10010,10 @@ function exportedCategories.InjectDynamicOptions()
     o("Excluded", k.L["Excluded"], 3, "Events", k.L["Events"], false);
     o("Excluded", k.L["Excluded"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
     o("Excluded", k.L["Excluded"], 5, "Specials", k.L["Specials"], true);
+
+    o("Uncategorized", k.L["Uncategorized"], 1, "Achievements", k.L["Achievements"], false);
+    o("Uncategorized", k.L["Uncategorized"], 2, "Expansions", k.L["Expansions"], false);
+    o("Uncategorized", k.L["Uncategorized"], 3, "Events", k.L["Events"], false);
+    o("Uncategorized", k.L["Uncategorized"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
+    o("Uncategorized", k.L["Uncategorized"], 5, "Specials", k.L["Specials"], true);
 end

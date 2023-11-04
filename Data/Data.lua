@@ -17,13 +17,15 @@ data.AchievementIds = {};
 data.Categories = {};
 data.WatchListCategories, data.CurrentZoneCategories, data.SelectedZoneCategories = {}, {}, {};
 data.SearchResultsCategories, data.TrackingAchievementsCategories, data.ExcludedCategories = {}, {}, {};
+data.UncategorizedCategories = {};
 local adjustableCategories = {
     WatchListCategories = data.WatchListCategories,
     CurrentZoneCategories = data.CurrentZoneCategories,
     SelectedZoneCategories = data.SelectedZoneCategories,
     SearchResultsCategories = data.SearchResultsCategories,
     TrackingAchievementsCategories = data.TrackingAchievementsCategories,
-    ExcludedCategories = data.ExcludedCategories
+    ExcludedCategories = data.ExcludedCategories,
+    UncategorizedCategories = data.UncategorizedCategories
 };
 
 data.RightClickMenuExtras = {};
@@ -134,6 +136,7 @@ function data.AddAchievementIfNil(id)
     if data.Achievements[id] == nil then
         data.Achievements[id] = addon.Objects.Achievement:New(id);
         tinsert(data.AchievementIds, id);
+        return data.Achievements[id];
     end
 end
 

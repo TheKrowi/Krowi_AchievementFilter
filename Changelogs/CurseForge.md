@@ -5,19 +5,22 @@
 <li>Filter on "Added in version"</li>
 <li>Option to automatically adjust the summary achievements list to fit the space without showing a scroll bar</li>
 <li>Right clicking an event reminder on the side of the Achievement Window or the World Map will show a menu with the option to stop tracking that specific event</li>
+<li>Uncategorized category as an adjustable category which shows achievements not added to KAF yet</li>
 <li>PvP Dragonflight Season 3 achievements (19)</li>
 <li>Mythic Plus Dragonflight Season 3 achievements (11)</li>
 <li>Amirdrassil, the Dream's Hope raid achievements (30)</li>
 <li>Emerald Dream zone achievements (38)</li>
-<li>Superbloom event achievements (4)</li>
+<li>Superbloom event achievements (4) and event reminders</li>
 <li>More PvP achievements (6)</li>
 <li>Pet Battle achievements (1)</li>
 <li>Misc achievements (7)</li>
+<li>Collector's Edition achievements (5)</li>
 </ul>
 <p><h3>Changed</h3></p>
 <ul>
 <li>Tons of back end changes</li>
 <li>Moved The Horseman's Reins achievement to Events - Holidays - Hallow's End</li>
+<li>Last completed achievements in the summary view should now be more accurate for the 5 last earned achievements</li>
 </ul>
 <p><h3>Fixed</h3></p>
 <ul>

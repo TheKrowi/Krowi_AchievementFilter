@@ -226,10 +226,21 @@ local function CheckDecFlags(flags, flag)
     return (flags / flag) % 2 >= 1;
 end
 
+local function AddToUncategorizedCategories(achievement)
+    for i = 1, #addon.Data.UncategorizedCategories do
+        if addon.Options.db.profile.AdjustableCategories.Uncategorized[i] then
+            addon.Data.UncategorizedCategories[i]:AddAchievement(achievement);
+        end
+	end
+end
+
 local function HandleAchievementExistence(achievementInfo)
     local achievementId = achievementInfo.Id;
     if achievementInfo.Exists then
-        addon.Data.AddAchievementIfNil(achievementId);
+        local achievement = addon.Data.AddAchievementIfNil(achievementId);
+        if achievement and not achievementInfo.Flags.IsTracking then
+            AddToUncategorizedCategories(achievement);
+        end
         return true;
     elseif addon.Data.Achievements[achievementId] then
         addon.Data.Achievements[achievementId].DoesNotExist = true;
@@ -623,6 +634,9 @@ function addon.GetAchievementInfo(achievementId) -- Returns an additional bool i
         " * This is the placeholder for " .. achievementId .. " until it's available next patch.", flags, 134400, "", false, false, "", false, false;
     end
     flags = addon.Objects.Flags:New(flags);
+    if id == 18849 or id == 18850 then
+        flags.IsTracking = true;
+    end
     return id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy, isStatistic, true;
 end
 
