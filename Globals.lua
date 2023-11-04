@@ -399,6 +399,7 @@ function addon.OnAchievementEarned(achievementId)
     if achievement then
         achievement.IsTracked = nil;
     end
+    addon.Data.SavedData.AchievementData.RegisterNewAchievementEarned(achievementId);
 end
 
 function addon.OverwriteFunctions()

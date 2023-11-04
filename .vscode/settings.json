@@ -495,7 +495,8 @@
         "WEEKDAY_WEDNESDAY",
         "WEEKDAY_THURSDAY",
         "WEEKDAY_FRIDAY",
-        "WEEKDAY_SATURDAY"
+        "WEEKDAY_SATURDAY",
+        "GetLatestCompletedAchievements"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

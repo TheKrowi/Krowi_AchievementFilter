@@ -738,7 +738,10 @@ options.OptionsTable.args["Layout"] = {
                             desc = addon.L["Number of summary achievements Desc"]:KAF_AddDefaultValueText("Summary.NumAchievements"),
                             min = 1, max = 25, step = 1,
                             get = function() return addon.Options.db.profile.Summary.NumAchievements; end,
-                            set = function(_, value) addon.Options.db.profile.Summary.NumAchievements = value; end,
+                            set = function(_, value)
+                                addon.Options.db.profile.Summary.NumAchievements = value;
+                                KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
+                            end,
                             disabled = function() return addon.Options.db.profile.Summary.AutoNumAchievements end
                         }
                     }

@@ -324,22 +324,15 @@ local function UpdateCategories(self, event)
     AlignCategoriesHeader(self, lastShown);
 end
 
+local buildAtLeastOnce;
 local function BuildLastCompleted(event)
     local numLastCompleted = addon.Options.db.profile.Summary.NumAchievements or 25;
     local lastCompleted = KrowiAF_Achievements.LastCompleted[UnitGUID("player")];
-    if type(lastCompleted) == "table" and #lastCompleted == numLastCompleted and event ~= "ACHIEVEMENT_EARNED" then
+    if type(lastCompleted) == "table" and #lastCompleted == numLastCompleted and event ~= "ACHIEVEMENT_EARNED" and buildAtLeastOnce then
         return; -- Doesn't require an update
     end
-    local res = addon.Data.SavedData.AchievementData.GetEarnedByCharacter(UnitGUID("player"));
-    sort(res, function(a, b) return a.Date > b.Date; end);
-    KrowiAF_Achievements.LastCompleted[UnitGUID("player")] = {};
-    lastCompleted = KrowiAF_Achievements.LastCompleted[UnitGUID("player")];
-    for i = 1, numLastCompleted, 1 do
-        if res[i] == nil then
-            return;
-        end
-        tinsert(lastCompleted, res[i].Id);
-    end
+    addon.Data.SavedData.AchievementData.RefreshLastCompleted(UnitGUID("player"));
+    buildAtLeastOnce = true;
 end
 
 local updateAchievementsOnNextShow;

@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Tons of back end changes
 - Moved The Horseman's Reins achievement to Events - Holidays - Hallow's End
+- Last completed achievements in the summary view should now be more accurate for the 5 last earned achievements
 
 ### Fixed
 - Whenever the tooltip refreshes when mousing over achievements with transmog data is loaded, all lines will remember their color
