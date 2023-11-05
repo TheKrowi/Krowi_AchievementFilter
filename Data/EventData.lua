@@ -1,4 +1,3 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
 local data = addon.Data;
 addon.EventData = {};
@@ -124,7 +123,6 @@ function eventData.GetWorldEventDetails(event)
 end
 
 function eventData.GetActiveEvents(refresh)
-    -- addon.Diagnostics.Print("GetActiveEvents", activeEvents ~= nil, refresh, activeEvents ~= nil and not refresh);
     if activeEvents ~= nil and not refresh then
         return activeEvents;
     end

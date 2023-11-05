@@ -1,9 +1,6 @@
 local _, addon = ...;
-local data = addon.Data;
-data.ExportedBuildVersions = {};
-local exportedBuildVersions = data.ExportedBuildVersions;
-local objects = addon.Objects;
-local buildVersion = objects.BuildVersion;
+addon.Data.ExportedBuildVersions = {};
+local exportedBuildVersions = addon.Data.ExportedBuildVersions;
 
 local tasks, buildVersions;
 function exportedBuildVersions.RegisterTasks(_buildVersions)
@@ -11,11 +8,12 @@ function exportedBuildVersions.RegisterTasks(_buildVersions)
     wipe(buildVersions);
 
     local name = "Build Versions";
-    data.InjectLoadingDebug(tasks, name);
+    addon.Data.InjectLoadingDebug(tasks, name);
 
-    tinsert(data.TasksGroups, 1, tasks);
+    tinsert(addon.Data.TasksGroups, 1, tasks);
 end
 
+local buildVersion = addon.Objects.BuildVersion;
 local function N(id, ...)
     buildVersions[id] = buildVersion:New(id, ...);
 end

@@ -1,7 +1,6 @@
 local _, addon = ...;
-local data = addon.Data;
-data.CustomObjectives = {};
-local customObjectives = data.CustomObjectives;
+addon.Data.CustomObjectives = {};
+local customObjectives = addon.Data.CustomObjectives;
 
 local co;
 local transmogCriteriaHelper = CreateFrame("Frame");

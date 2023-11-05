@@ -1,9 +1,6 @@
 local _, addon = ...;
-local data = addon.Data;
-data.ExportedTransmogSets = {};
-local exportedTransmogSets = data.ExportedTransmogSets;
-local objects = addon.Objects;
-local transmogSet = objects.TransmogSet;
+addon.Data.ExportedTransmogSets = {};
+local exportedTransmogSets = addon.Data.ExportedTransmogSets;
 
 local tasks, transmogSets;
 function exportedTransmogSets.RegisterTasks(_transmogSets)
@@ -11,11 +8,12 @@ function exportedTransmogSets.RegisterTasks(_transmogSets)
     wipe(transmogSets);
 
     local name = "Transmog Sets";
-    data.InjectLoadingDebug(tasks, name);
+    addon.Data.InjectLoadingDebug(tasks, name);
 
-    tinsert(data.TasksGroups, 1, tasks);
+    tinsert(addon.Data.TasksGroups, 1, tasks);
 end
 
+local transmogSet = addon.Objects.TransmogSet;
 local function N(id, ...)
     transmogSets[id] = transmogSet:New(id, ...);
 end

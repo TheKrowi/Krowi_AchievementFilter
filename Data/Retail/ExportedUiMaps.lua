@@ -1,7 +1,6 @@
 local _, addon = ...;
-local data = addon.Data;
-data.ExportedUiMaps = {};
-local exportedUiMaps = data.ExportedUiMaps;
+addon.Data.ExportedUiMaps = {};
+local exportedUiMaps = addon.Data.ExportedUiMaps;
 
 local tasks, maps, achievements;
 function exportedUiMaps.RegisterTasks(_maps, _achievements)
@@ -9,9 +8,9 @@ function exportedUiMaps.RegisterTasks(_maps, _achievements)
     wipe(maps);
 
     local name = "Ui Maps";
-    data.InjectLoadingDebug(tasks, name);
+    addon.Data.InjectLoadingDebug(tasks, name);
 
-    tinsert(data.TasksGroups, 1, tasks);
+    tinsert(addon.Data.TasksGroups, 1, tasks);
 end
 
 local function N(id, postFix, achievementIds)
