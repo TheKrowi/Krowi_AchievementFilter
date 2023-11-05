@@ -405,6 +405,7 @@ function addon.OnAchievementEarned(achievementId)
     local achievementInfo = addon.GetAchievementInfoTable(achievementId);
     HandleAchievement(characterGuid, achievementInfo);
     addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = true;
+    addon.AchievementEarnedUpdateSummaryFrameOnNextShow = true;
     addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = true;
     local achievement = addon.Data.Achievements[achievementId];
     if achievement then
@@ -515,10 +516,6 @@ function addon.LoadBlizzardApiChanges()
 end
 
 function addon.HookFunctions()
-    hooksecurefunc(AchievementFrame, "Show", function()
-        addon.Data.GetCurrentZoneAchievements();
-    end);
-
     if addon.IsWrathClassic then
         hooksecurefunc("PanelTemplates_SetTab", AchievementFrame_SetTabs);
     end

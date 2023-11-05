@@ -45,6 +45,13 @@ function KrowiAF_CategoriesFrameMixin:OnLoad()
 	AddManagedScrollBarVisibilityBehavior(self);
 end
 
+function KrowiAF_CategoriesFrameMixin:OnEvent(event)
+	if event ~= "ACHIEVEMENT_EARNED" then
+		return;
+	end
+	addon.Util.DelayFunction("KrowiAF_CategoriesFrame_OnEvent", 1, self.Update, self, true);
+end
+
 local function RestoreScrollPosition(frame)
 	local selectedTab = addon.Gui.SelectedTab;
 	if selectedTab == nil then
@@ -69,13 +76,6 @@ function KrowiAF_CategoriesFrameMixin:OnHide()
 	self:UnregisterEvent("ACHIEVEMENT_EARNED");
 	AchievementFrameCategories:Show();
 	AchievementFrameCategoriesBG:SetWidth(195);
-end
-
-function KrowiAF_CategoriesFrameMixin:OnEvent(event)
-	if event ~= "ACHIEVEMENT_EARNED" then
-		return;
-	end
-	addon.Util.DelayFunction("KrowiAF_CategoriesFrame_OnEvent", 1, self.Update, self, true);
 end
 
 local function GetDisplayCategories(displayCategories, category, getAchNums)

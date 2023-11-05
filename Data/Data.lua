@@ -122,14 +122,18 @@ local cachedZone;
 function data.GetCurrentZoneAchievements()
 	diagnostics.Trace("data.GetCurrentZoneAchievements");
 
-    if cachedZone ~= C_Map.GetBestMapForUnit("player") then
-        cachedZone = C_Map.GetBestMapForUnit("player");
-        local achievements = addon.GetAchievementsInZone(cachedZone);
-        for i = 1, #addon.Data.CurrentZoneCategories do
-            addon.Data.CurrentZoneCategories[i].Achievements = addon.Options.db.profile.AdjustableCategories.CurrentZone[i] and achievements or nil;
-        end
-        return true; -- Output that the zone has changed
+    if #addon.Data.CurrentZoneCategories == 0 then
+        return;
     end
+    if cachedZone == C_Map.GetBestMapForUnit("player") then
+        return;
+    end
+    cachedZone = C_Map.GetBestMapForUnit("player");
+    local achievements = addon.GetAchievementsInZone(cachedZone);
+    for i = 1, #addon.Data.CurrentZoneCategories do
+        addon.Data.CurrentZoneCategories[i].Achievements = addon.Options.db.profile.AdjustableCategories.CurrentZone[i] and achievements or nil;
+    end
+    return true; -- Output that the zone has changed
 end
 
 function data.AddAchievementIfNil(id)
