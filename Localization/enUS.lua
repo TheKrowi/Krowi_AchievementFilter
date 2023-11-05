@@ -7,7 +7,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-04 19-45-07 ]] --
+-- [[ Exported at 2023-11-05 22-58-03 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -597,6 +597,8 @@ L["Night Fae Assault"] = true
 L["Nitun"] = true
 L["No achievements are available with the current set of filters"] = true
 L["No category selected"] = true
+L["No characters found"] = true
+L["No data found"] = true
 L["No time data available"] = true
 L["Noblegarden"] = true
 L["Nokhudon Hold"] = true
