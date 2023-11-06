@@ -4,7 +4,7 @@ tinsert(addon.Gui.AchievementTooltip.Sections, section);
 
 local numCriteria;
 function section:CheckAdd(achievement)
-	if achievement.IsCompleted or achievement.IsAccountWide or type(achievement.CustomObjectives) == "function" or addon.Options.db.profile.Tooltip.Achievements.MostProgress.Characters <= 0 then
+	if achievement.IsCompleted or achievement.IsAccountWide or achievement.TransmogSets or addon.Options.db.profile.Tooltip.Achievements.MostProgress.Characters <= 0 then
 		return;
 	end
 	numCriteria = GetAchievementNumCriteria(achievement.Id);
@@ -34,7 +34,7 @@ local function GetProgressScore(character, guid, achievementId)
 	return score;
 end
 
-local function GetDetails(guid, achievementId)
+local function GetAchievementData(guid, achievementId)
 	if not KrowiAF_Achievements.NotCompleted[achievementId] or not KrowiAF_Achievements.NotCompleted[achievementId][guid] then
 		return;
 	end
@@ -140,13 +140,13 @@ function section:Add(achievement)
 		return;
 	end
 
-	local details = GetDetails(characters[1].Guid, achievement.Id);
-	if not details then
+	local achievementData = GetAchievementData(characters[1].Guid, achievement.Id);
+	if not achievementData then
 		GameTooltip:AddLine(addon.L["No data found"]:SetColorRed());
 		return;
 	end
 
 	local names = GetNames(characters, achievement);
 	GameTooltip:AddLine(names);
-	addon.Gui.AchievementTooltip:AddCriteria(numCriteria, details);
+	addon.Gui.AchievementTooltip:AddCriteria(achievementData, numCriteria);
 end

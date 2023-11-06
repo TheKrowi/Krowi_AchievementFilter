@@ -23,6 +23,7 @@ All notable changes to this project will be documented in this file.
 - Tons of back end changes
 - Moved The Horseman's Reins achievement to Events - Holidays - Hallow's End
 - Last completed achievements in the summary view should now be more accurate for the 5 last earned achievements
+- Transmog set data handling is now more streamlined
 
 ### Fixed
 - Whenever the tooltip refreshes when mousing over achievements with transmog data is loaded, all lines will remember their color
@@ -35,6 +36,7 @@ All notable changes to this project will be documented in this file.
 - Event Reminders should now always have a category linked and no longer cause errors
 - Event Reminders should now more reliably register a mouse click
 - Current Zone category should now show more reliably
+- Cosmic Chic should no longer cause errors when mousing over is
 
 ### Wrath Classic
 - Bumped version

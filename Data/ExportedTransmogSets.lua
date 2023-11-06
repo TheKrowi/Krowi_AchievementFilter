@@ -21,7 +21,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-08-25 21-02-27 ]] --
+-- [[ Exported at 2023-11-06 22-45-28 ]] --
 tasks = {
     {N, 2909, 128}, -- Underlight Conjurer's Brilliance
     {N, 2908, 128}, -- Underlight Conjurer's Brilliance

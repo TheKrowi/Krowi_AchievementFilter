@@ -151,7 +151,6 @@ function achievement:AddNext(ach, addBack)
 end
 
 function achievement:AddTransmogSet(transmogSet)
-    self.CustomObjectives = addon.Data.CustomObjectives.AddTransmogCriteriaAsync;
     self.TransmogSets = self.TransmogSets or {};
     tinsert(self.TransmogSets, transmogSet);
     return transmogSet;

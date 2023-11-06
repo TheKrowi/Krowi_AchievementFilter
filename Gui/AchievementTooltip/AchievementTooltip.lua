@@ -51,12 +51,12 @@ function tooltip:AddAchievementLine(currentAchievement, otherAchievementId, show
 	GameTooltip:AddLine(icon .. "|T:1:8|t" .. currentCharacterIcon .. name .. nameSuffix, color.R, color.G, color.B); -- Achievement name
 end
 
-local function GetCriteriaElements(achievementId, criteriaIndex)
+local function GetCriteriaElements(achievementData, criteriaIndex)
 	local criteriaString, completed, quantity, reqQuantity, hasValueProgress;
-	if type(achievementId) == "table" then
-		criteriaString, completed, quantity, reqQuantity, hasValueProgress = unpack(achievementId[criteriaIndex]);
+	if type(achievementData) == "table" then
+		criteriaString, completed, quantity, reqQuantity, hasValueProgress = unpack(achievementData[criteriaIndex]);
 	else
-		criteriaString, _, completed, quantity, reqQuantity, _, _, _, _, _, _, hasValueProgress = addon.GetAchievementCriteriaInfo(achievementId, criteriaIndex);
+		criteriaString, _, completed, quantity, reqQuantity, _, _, _, _, _, _, hasValueProgress = addon.GetAchievementCriteriaInfo(achievementData, criteriaIndex);
 	end
 	return criteriaString, completed, quantity, reqQuantity, hasValueProgress;
 end
@@ -76,8 +76,8 @@ local function GetCriteriaIconAndColor(criteriaString, hasValueProgress, complet
 	return icon, color;
 end
 
-local function GetCriteriaTextAndColor(achievementId, criteriaIndex)
-	local criteriaString, completed, quantity, reqQuantity, hasValueProgress = GetCriteriaElements(achievementId, criteriaIndex);
+local function GetCriteriaTextAndColor(achievementData, criteriaIndex)
+	local criteriaString, completed, quantity, reqQuantity, hasValueProgress = GetCriteriaElements(achievementData, criteriaIndex);
 	local icon, color = GetCriteriaIconAndColor(criteriaString, hasValueProgress, completed);
 	local text = criteriaString;
 	if not completed and hasValueProgress then
@@ -90,29 +90,29 @@ local function GetCriteriaTextAndColor(achievementId, criteriaIndex)
 	return text or "", color or addon.Util.Colors.WhiteRGB;
 end
 
-local function AddCriteriaLine(achievementId, criteriaIndex)
-	local text, color = GetCriteriaTextAndColor(achievementId, criteriaIndex);
+local function AddCriteriaLine(achievementData, criteriaIndex)
+	local text, color = GetCriteriaTextAndColor(achievementData, criteriaIndex);
 	GameTooltip:AddLine(text, color.R, color.G, color.B);
 end
 
-local function AddDoubleCriteriaLine(achievementId, criteriaIndex1, criteriaIndex2)
+local function AddDoubleCriteriaLine(achievementData, criteriaIndex1, criteriaIndex2)
 	local texts = {"", ""};
 	local colors = {addon.Util.Colors.WhiteRGB, addon.Util.Colors.WhiteRGB};
 	for i, criteriaIndex in next, {criteriaIndex1, criteriaIndex2} do
-		texts[i], colors[i] = GetCriteriaTextAndColor(achievementId, criteriaIndex);
+		texts[i], colors[i] = GetCriteriaTextAndColor(achievementData, criteriaIndex);
 	end
 	GameTooltip:AddDoubleLine(texts[1], texts[2], colors[1].R, colors[1].G, colors[1].B, colors[2].R, colors[2].G, colors[2].B);
 end
 
-function tooltip:AddCriteria(numCriteria, achievementId)
+function tooltip:AddCriteria(achievementData, numCriteria)
 	if numCriteria < addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.SecondColumnThreshold then
 		for i = 1, numCriteria do
-			AddCriteriaLine(achievementId, i);
+			AddCriteriaLine(achievementData, i);
 		end
 		return;
 	end
 	for i = 1, numCriteria, 2 do
-		AddDoubleCriteriaLine(achievementId, i, i + 1 <= numCriteria and i + 1 or nil);
+		AddDoubleCriteriaLine(achievementData, i, i + 1 <= numCriteria and i + 1 or nil);
 	end
 end
 

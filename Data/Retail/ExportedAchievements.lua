@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-04 19-36-52 ]] --
+-- [[ Exported at 2023-11-06 22-47-28 ]] --
 tasks = {
     {N, 19461, 205}, -- Kissed by the Wind
     {O, 19449, "From", "PvP Season", 36, "Until", "PvP Season", 36},
@@ -1426,6 +1426,34 @@ tasks = {
     {T, 15409, 2414}, -- Armaments of the Infinite Infantry (Normal)
     {T, 15409, 2415}, -- Armaments of the Infinite Infantry (Raid Finder)
     {N, 15409, 191}, -- First Wonders
+    {T, 15408, 2570}, -- Eternal Gladiator's Felskin Armor (Elite)
+    {T, 15408, 2504}, -- Eternal Gladiator's Felskin Armor (Gladiator)
+    {T, 15408, 2571}, -- Eternal Gladiator's Dragonhide Armor (Elite)
+    {T, 15408, 2510}, -- Eternal Gladiator's Dragonhide Armor (Gladiator)
+    {T, 15408, 2574}, -- Eternal Gladiator's Ironskin Armor (Elite)
+    {T, 15408, 2528}, -- Eternal Gladiator's Ironskin Armor (Gladiator)
+    {T, 15408, 2579}, -- Eternal Gladiator's Felweave Armor (Elite)
+    {T, 15408, 2558}, -- Eternal Gladiator's Felweave Armor (Gladiator)
+    {T, 15408, 2573}, -- Eternal Gladiator's Silk Armor (Elite)
+    {T, 15408, 2522}, -- Eternal Gladiator's Silk Armor (Gladiator)
+    {T, 15408, 2578}, -- Eternal Gladiator's Ringmail Armor (Elite)
+    {T, 15408, 2552}, -- Eternal Gladiator's Ringmail Armor (Gladiator)
+    {T, 15408, 2569}, -- Eternal Gladiator's Dreadplate Armor (Elite)
+    {T, 15408, 2498}, -- Eternal Gladiator's Dreadplate Armor (Gladiator)
+    {T, 15408, 2576}, -- Eternal Gladiator's Satin Armor (Elite)
+    {T, 15408, 2540}, -- Eternal Gladiator's Satin Armor (Gladiator)
+    {T, 15408, 2577}, -- Eternal Gladiator's Leather Armor (Elite)
+    {T, 15408, 2546}, -- Eternal Gladiator's Leather Armor (Gladiator)
+    {T, 15408, 2572}, -- Eternal Gladiator's Chain Armor (Elite)
+    {T, 15408, 2516}, -- Eternal Gladiator's Chain Armor (Gladiator)
+    {T, 15408, 2575}, -- Eternal Gladiator's Scaled Armor (Elite)
+    {T, 15408, 2534}, -- Eternal Gladiator's Scaled Armor (Gladiator)
+    {T, 15408, 2580}, -- Eternal Gladiator's Plate Armor (Elite)
+    {T, 15408, 2564}, -- Eternal Gladiator's Plate Armor (Gladiator)
+    {T, 15408, 2566}, -- Eternal Aspirant's Leathers (Aspirant)
+    {T, 15408, 2565}, -- Eternal Aspirant's Vestment (Aspirant)
+    {T, 15408, 2567}, -- Eternal Aspirant's Chain (Aspirant)
+    {T, 15408, 2568}, -- Eternal Aspirant's Plate (Aspirant)
     {T, 15408, 2359}, -- Cosmic Gladiator's Felskin Armor (Elite)
     {T, 15408, 2358}, -- Cosmic Gladiator's Felskin Armor (Gladiator)
     {T, 15408, 2365}, -- Cosmic Gladiator's Dragonhide Armor (Elite)

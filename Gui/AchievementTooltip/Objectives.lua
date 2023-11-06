@@ -4,6 +4,9 @@ tinsert(addon.Gui.AchievementTooltip.Sections, section);
 
 local numCriteria;
 function section:CheckAdd(achievement)
+	if achievement.TransmogSets then
+		return;
+	end
 	local state;
 	if achievement.TemporaryObtainable then
 		state = achievement.TemporaryObtainable.Obtainable();
@@ -16,14 +19,10 @@ function section:CheckAdd(achievement)
 		return;
 	end
 	numCriteria = addon.GetAchievementNumCriteria(achievement.Id);
-	return numCriteria > 0 or type(achievement.CustomObjectives) == "function";
+	return numCriteria > 0;
 end
 
 function section:Add(achievement)
 	GameTooltip:AddLine(addon.L["Objectives progress"]);
-	if type(achievement.CustomObjectives) == "function" then
-		achievement.CustomObjectives(GameTooltip);
-	elseif numCriteria > 0 then
-		addon.Gui.AchievementTooltip:AddCriteria(numCriteria, achievement.Id);
-	end
+	addon.Gui.AchievementTooltip:AddCriteria(achievement.Id, numCriteria);
 end
