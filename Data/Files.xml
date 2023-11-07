@@ -3,7 +3,6 @@
     <Script file="TemporaryObtainable.lua" />
     <Script file="CustomCriteria.lua" />
     <Script file="CustomWidgetTimers.lua" />
-    <Script file="ExportedTransmogSets.lua" />
     <Script file="EventData.lua" />
     <Script file="TooltipData.lua" />
     <Script file="DataIntegrityManager.lua" />

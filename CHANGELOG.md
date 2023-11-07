@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 65.0 - 2023-10-31
+## 65.0 - 2023-11-07
 ### Added
 - The Lick King, Lil' Maggz and Ysergle The Dreamurk
 - The tooltip opened by clicking an achievement link from chat for example now also reacts to right clicks
@@ -18,6 +18,8 @@ All notable changes to this project will be documented in this file.
 - Pet Battle achievements (1)
 - Misc achievements (7)
 - Collector's Edition achievements (5)
+- Transmog sets to the 3 dragonflight pvp season achievements and the new raid
+- More French and German translations
 
 ### Changed
 - Tons of back end changes

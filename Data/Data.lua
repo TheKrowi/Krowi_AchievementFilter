@@ -62,7 +62,9 @@ function data:LoadOnPlayerLogin()
 
     self.TemporaryObtainable:Load();
 
-    self.ExportedTransmogSets.RegisterTasks(self.TransmogSets);
+    if self.ExportedTransmogSets then
+        self.ExportedTransmogSets.RegisterTasks(self.TransmogSets);
+    end
     self.ExportedBuildVersions.RegisterTasks(self.BuildVersions);
     self.ExportedAchievements.RegisterTasks(self.Achievements, self.BuildVersions, self.TransmogSets);
     self.ExportedCategories.RegisterTasks(self.Categories, adjustableCategories, self.Achievements, addon.Tabs);

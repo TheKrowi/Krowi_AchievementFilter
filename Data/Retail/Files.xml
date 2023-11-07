@@ -5,6 +5,7 @@
     <Script file="ExportedCategories.lua" />
     <Script file="ExportedPetBattleLinks.lua" />
     <Script file="ExportedTooltipData.lua" />
+    <Script file="ExportedTransmogSets.lua" />
     <Script file="ExportedUiMaps.lua" />
     <Script file="ExportedWidgetEvents.lua" />
     <Script file="ExportedWorldEvents.lua" />

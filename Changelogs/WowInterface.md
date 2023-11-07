@@ -15,6 +15,8 @@
 [*]Pet Battle achievements (1)
 [*]Misc achievements (7)
 [*]Collector's Edition achievements (5)
+[*]Transmog sets to the 3 dragonflight pvp season achievements and the new raid
+[*]More French and German translations
 [/LIST]
 
 [B]Changed[/B]
@@ -22,6 +24,7 @@
 [*]Tons of back end changes
 [*]Moved The Horseman's Reins achievement to Events - Holidays - Hallow's End
 [*]Last completed achievements in the summary view should now be more accurate for the 5 last earned achievements
+[*]Transmog set data handling is now more streamlined
 [/LIST]
 
 [B]Fixed[/B]
@@ -35,6 +38,8 @@
 [*]Event Reminder localization of end time when using a custom format containing %a, %A, %b or %B should now be working correctly
 [*]Event Reminders should now always have a category linked and no longer cause errors
 [*]Event Reminders should now more reliably register a mouse click
+[*]Current Zone category should now show more reliably
+[*]Cosmic Chic should no longer cause errors when mousing over is
 [/LIST]
 
 [B]Wrath Classic[/B]

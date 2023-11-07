@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-31 15-02-06 ]] --
+-- [[ Exported at 2023-11-07 19-43-26 ]] --
 L["%c"] = "%c "
 L["%d/%m/%Y %I:%M %p"] = "%d/%m/%Y %I:%M %p "
 L["%m/%d/%Y %I:%M %p"] = "%m/%d/%Y %I:%M %p "
@@ -98,8 +98,8 @@ L["Calendar"] = "Kalender "
 L["Calendar Desc"] = [=[Erscheinungsbild des {calendar}.
 
 |T:1:8|t- Die Anzahl der Erfolge und Punkte oben sind die verdienten Erfolge und Punkte für den aktuellen sichtbaren Monat und nicht für alle sichtbaren Tage.
-|T:1:8|t- Navigieren Sie zum vorherigen und nächsten Monat, indem Sie auf die Schaltflächen oben neben dem Monat klicken oder das Scrollrad verwenden.
-|T:1:8|t- Wenn Sie mit der Maus über einen Tag fahren, wird er hervorgehoben (Tag 11) und die an diesem Tag verdienten Erfolge (falls vorhanden) werden im Fenster an der Seite angezeigt. Wenn Sie die Maus von dem hervorgehobenen Tag entfernen, wird das Fenster an der Seite entweder geschlossen oder zeigt die Erfolge des neuen Tages an, über dem sich die Maus befindet.
+|T:1:8|t- Navigieren Sie zum vorherigen oder nächsten Monat, indem Sie auf die Schaltflächen oben neben dem Monat klicken oder das Scrollrad der Maus verwenden.
+|T:1:8|t- Wenn Sie mit der Maus über einen Tag fahren, wird dieser hervorgehoben (Tag 11) und die an diesem Tag verdienten Erfolge (falls vorhanden) werden im Fenster an der Seite angezeigt. Wenn Sie die Maus von dem hervorgehobenen Tag entfernen, wird das Fenster an der Seite entweder geschlossen oder zeigt die Erfolge des neuen Tages an, über dem sich die Maus befindet.
 |T:1:8|t- Wenn Sie auf einen Tag klicken (ihn auswählen), wird er noch deutlicher hervorgehoben (Tag 18) und das Fenster an der Seite bleibt offen (gesperrt). So kannst Du durch die Erfolge blättern, mit der Maus über sie fahren, um den Tooltip zu sehen, oder sie anklicken, um sie im Erfolgsfenster zu finden (der Kalender wird geschlossen). Das Auswählen eines Tages funktioniert nur, wenn an diesem Tag Erfolge erzielt wurden. Wenn Du auf einen ausgewählten Tag klickst, wird er abgewählt und das Fenster an der Seite wird entsperrt, sodass er sich wieder wie ein markierter Tag verhält. Ein Pfeil auf dem Tag zeigt an, dass an diesem Tag mehr als 4 Errungenschaften erworben wurden. 
 
 Optionen (1)
@@ -255,7 +255,7 @@ L["Earned By Desc"] = [=[Header
 |T:1:8|t- {achievementPointsEarnedBy}: Zeigt {achievementPointsEarnedBy_wc} Ihren aktuellen Charakter und/oder {achievementPointsEarnedBy_wc} Ihren Account an ({achievementPointsEarnedByFormat}) (1).
 |T:1:8|t- {tooltip}: Übersicht darüber, welcher Charakter wie viele Erfolgspunkte verdient hat. Jeder Charakter muss mindestens einmal eingeloggt sein, um in diese Liste aufgenommen zu werden. Zeigt den Realm des Charakters an, wenn er unterschiedlich ist. Kann in den Optionen (1) so eingestellt werden, dass er immer angezeigt wird: Erfolge werden berücksichtigt, wenn sie mit einem beliebigen Charakter Ihres Kontos erzielt wurden (Standard).
 
-|T:1:8|t- {character}: Erfolge werden gesättigt, wenn sie mit dem aktuellen Charakter erzielt wurden, und teilweise gesättigt, wenn sie mit einem anderen Charakter auf dem Konto, aber nicht mit dem aktuellen Charakter erzielt wurden.
+|T:1:8|t- {character}: Erfolge werden nur dann als erworben markiert wenn sie mit dem aktuellen Charakter erzielt wurden und als teilweise erworben, wenn nicht mit dem aktuellen Charakter erworben wurden.
 
 Tooltip
 |T:1:8|t- {earnedBy}: Zeigt {earnedByNumber} Charaktere an, die den Erfolg verdient haben (2). Fraktions-exklusive Errungenschaften mit einem verknüpften Gegenstück werden berücksichtigt. D.h. Allianz-Charaktere können für Horden-Erfolge auftauchen. Zeigt den Realm des Charakters an, wenn er unterschiedlich ist. Kann über die Optionen (2) erzwungen werden, immer anzuzeigen: Zeigt {notEarnedByNumber} Charaktere an, die diese Errungenschaft noch nicht verdient haben (2). Fraktions-exklusive Errungenschaften mit einem verknüpften Gegenstück werden berücksichtigt. D.h. Allianz-Charaktere können für Horden-Errungenschaften auftauchen.  Zeigt den Realm des Charakters an, wenn er sich unterscheidet. Die Anzeige kann in den Optionen (2) erzwungen werden.
@@ -273,7 +273,7 @@ L["Enable trace info"] = "Trace-Informationen einschalten "
 L["Enable trace info Desc"] = "Trace-Informationen einschalten/ausschalten "
 L["End Time"] = "Ende (Zeit) "
 L["Enhanced filtering and sorting"] = "Erweitertes Filtern und Sortieren "
-L["Enhanced filtering and sorting Desc"] = [=[Das Filtern und Sortieren von Leistungen wurde um folgende Funktionen erweitert.
+L["Enhanced filtering and sorting Desc"] = [=[Das Filtern und Sortieren von Erfolgen wurde um folgende Funktionen erweitert.
 
 Kategorien:
 |T:1:8|t- {mergeSmallCategories}: Kategorien zusammenführen, wenn dies bei weniger als {mergeSmallCategoriesNumber} Erfolgen (1) möglich ist.
@@ -285,17 +285,17 @@ Filterung (mehrere Filter können gleichzeitig ausgewählt werden):
 |T:1:8|t- {notObtainable}: Nicht erreichbare Erfolge anzeigen.
 |T:1:8|t- {faction} ({resetFactionFilters} {resetFactionFiltersEnabled}) (2)
 |T:1:8|t- {neutral}: Zeigt Erfolge an, die von {alliance_wc} wie auch von {horde_wc} erworben werden können.
-|T:1:8|t|T:1:8|t- {alliance}: Zeigt Leistungen an, die nur von {alliance_wc} erworben werden können.
+|T:1:8|t|T:1:8|t- {alliance}: Zeigt Erfolge an, die nur von {alliance_wc} erworben werden können.
 |T:1:8|t|T:1:8|t- {horde}: Zeige Erfolge, die nur von {horde_wc} verdient werden können.
 |T:1:8|t- {excluded}: Ausgeschlossene Erfolge anzeigen.
 |T:1:8|t- {collapseChain}: Nur den letzten abgeschlossenen und den ersten nicht abgeschlossenen Erfolg in einer Serie anzeigen.
 
-Sorting:
+Sortierung:
 |T:1:8|t- {noSorting}: Keine Sortierung angewandt.
 |T:1:8|t- {sortByName}: Sortieren von Erfolgen basierend auf ihren Namen.
 |T:1:8|t- {sortByCompletion}: Sortiert Erfolge danach, ob sie abgeschlossen sind oder nicht.
 |T:1:8|t- {sortByID}: Sortiert die Erfolge nach ihrer ID.
-|T:1:8|t- {reverseSort}: Wenn dies ausgewählt ist, wird die Reihenfolge der sortierten Leistungen umgekehrt.
+|T:1:8|t- {reverseSort}: Wenn dies ausgewählt ist, wird die Reihenfolge der sortierten Erfolge umgekehrt.
 
 {tabs}:
 |T:1:8|t- Diese haben alle oben genannten Filter und Sortierfunktionen, können aber unabhängig von den anderen geändert werden.
@@ -308,7 +308,7 @@ Sorting:
 |T:1:8|t- {account}: Erfolge werden berücksichtigt, wenn sie mit einem beliebigen Charakter Ihres Kontos erzielt wurden: Erfolge werden gewertet, wenn sie mit dem aktuellen Charakter erzielt wurden, und teilweise gewertet, wenn sie mit einem anderen Charakter auf dem Konto erzielt wurden, aber nicht mit dem aktuellen Charakter.
 
 Sonstiges:
-|T:1:8|t- {help}: Startet das Tutorial von Anfang an und setzt das Gesehene zurück.
+|T:1:8|t- {help}: Startet das Tutorial von Anfang an.
 |T:1:8|t- Zeigt die spezielle Tutorial-Seite an, ohne das Gesehene zurückzusetzen.
 |T:1:8|t- {options}: Öffnet die Optionen des Addons (2).
 
@@ -320,12 +320,12 @@ L["Enhanced tooltip"] = "Erweiteter Tooltip "
 L["Enhanced tooltip Achievements Desc"] = [=[Jeder Tooltip enthält zusätzliche Informationen darüber, wie Erfolge miteinander in Beziehung stehen (falls sie es tun). Es wurden mehrere neue Bereiche hinzugefügt.
 
 Features:
-|T:1:8|t- {notObtainable}: Zeigt den Text '{noLongerObtainable}' an, wenn der Erfolg nicht mehr erreichbar ist.
+|T:1:8|t- {notObtainable}: Zeigt einen Hinweis '{noLongerObtainable}', wenn der Erfolg nicht mehr erreichbar ist.
 |T:1:8|t- {earnedBy}: Siehe {earnedBy} für weitere Informationen.
 |T:1:8|t- {partOfAChain}: Zeigt die Liste der Erfolge an, zu denen der Serien-Erfolg gehört (1) ({partOfAChainEnabled}) (2).
-|T:1:8|t- {requiredFor}: Zeigt eine Liste der Errungenschaften an, für die der Serien-Erfolg abgeschlossen werden muss, um ihn zu erhalten (1) ({requiredForEnabled}) (2).
+|T:1:8|t- {requiredFor}: Zeigt eine Liste der Erfolge an, für die der Serien-Erfolg abgeschlossen werden muss, um ihn zu erhalten (1) ({requiredForEnabled}) (2).
 |T:1:8|t- {otherFaction}: Zeigt den zugehörigen Erfolg der anderen Fraktion ({otherFactionEnabled}) (2).
-|T:1:8|t- {objectivesProgress}: Zeigt die Liste der Ziele mit Fortschritt an ({objectivesProgressEnabled}) (2).
+|T:1:8|t- {objectivesProgress}: Zeigt eine Liste der Ziele mit Fortschritt an ({objectivesProgressEnabled}) (2).
 |T:1:8|t- Benutzerdefinierte Ziele: Einige Errungenschaften haben benutzerdefinierte Ziele, wie z.B. die Transmog-Errungenschaften, die den Fortschritt bei den entsprechenden Transmog-Sets anzeigen.
 
 Icons:
@@ -339,7 +339,7 @@ Farben:
 |T:1:8|t- {red}: Der Erfolg kann nicht mehr erreicht werden.
 |T:1:8|t- Hell {lightGreen}, {lightGrey} oder {lightRed}: Der Erfolg ist in ein Serien-Erfolg.
 
-Weitere benutzerdefinierte  Informationen können auf {discord} oder {curseForge} (Links in den Optionen) angefordert werden.
+Weitere benutzerdefinierte Informationen können auf {discord} oder {curseForge} (Links in den Optionen) angefordert werden.
 
 (1) Optional können zwei Icons pro Zeile angezeigt werden. Das erste Icon ist das Standard-Icon, das zweite ist für den aktuellen Charakter ({currentCharacterIconEnabled}) (2).
 (2) Die Optionen finden sich unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}.]=]
@@ -592,6 +592,8 @@ L["Night Fae Assault"] = "Night Fae Paktangriff "
 L["Nitun"] = "Nitun "
 L["No achievements are available with the current set of filters"] = "Es können keine Erfolge mit den von dir gesetzten Filtern angezeigt werden. "
 L["No category selected"] = "Keine Kategorie ausgewählt"
+L["No characters found"] = "Keine Charaktere gefunden"
+L["No data found"] = "Keine Inhalte gefunden"
 L["No time data available"] = "Keine Zeitdaten verfügbar "
 L["Noblegarden"] = "Nobelgarten "
 L["Nokhudon Hold"] = "Festung Nokhudon "
@@ -865,6 +867,7 @@ L["Summary Desc"] = [=[{achievementsHeader}:
 L["Sundapple Copse Circuit"] = "Sonnentüpfelheinstrecke "
 L["Superbloom"] = "Superblüte"
 L["Superbloom: Active"] = "Superblüte: Aktiv "
+L["Superbloom: Next"] = "Superblüte: Startet Bald"
 L["Tab"] = "Tab "
 L["tab"] = "Tab "
 L["Tabs"] = "Tabs "

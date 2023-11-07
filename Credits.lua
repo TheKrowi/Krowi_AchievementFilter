@@ -50,6 +50,7 @@ local localizations = {
     {Name = "Ta", Realm = "Der Rat von Dalaran EU", Class = "SHAMAN", Language = "German"},
     {Name = "牛奶斩", Realm = "格瑞姆巴托 CN", Class = "DRUID", Language = "Chinese (Simplified)"},
     {Name = "Astiraïs", Realm = "Elune EU", Class = "MAGE", Language = "French"},
+    {Name = "Griboo", Realm = "Hyjal EU", Class = "HUNTER", Language = "French"},
 }
 
 function credits.GetLocalizationsAsTable()
