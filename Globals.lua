@@ -405,6 +405,7 @@ function addon.OnAchievementEarned(achievementId)
     local achievementInfo = addon.GetAchievementInfoTable(achievementId);
     HandleAchievement(characterGuid, achievementInfo);
     addon.AchievementEarnedUpdateCategoriesFrameOnNextShow = true;
+    addon.AchievementEarnedUpdateSummaryFrameOnNextShow = true;
     addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = true;
     local achievement = addon.Data.Achievements[achievementId];
     if achievement then
@@ -515,10 +516,6 @@ function addon.LoadBlizzardApiChanges()
 end
 
 function addon.HookFunctions()
-    hooksecurefunc(AchievementFrame, "Show", function()
-        addon.Data.GetCurrentZoneAchievements();
-    end);
-
     if addon.IsWrathClassic then
         hooksecurefunc("PanelTemplates_SetTab", AchievementFrame_SetTabs);
     end
@@ -695,13 +692,22 @@ function addon.GetAchievementNumCriteria(achievementId)
     end
 end
 
+local function ClassCanUseSet(transmogSet, classId)
+    return CheckDecFlags(transmogSet.ClassMask, math.pow(2, classId - 1));
+end
+
+local function FactionCanUseSet(transmogSet, faction)
+    local setInfo = C_TransmogSets.GetSetInfo(transmogSet.Id);
+    return setInfo and (setInfo.requiredFaction == nil or setInfo.requiredFaction == faction);
+end
+
 function addon.GetUsableSets(transmogSets)
     local usableTransmogSets = {};
     local _, _, classId = UnitClass("player");
+    local faction = UnitFactionGroup("player");
     for _, transmogSet in next, transmogSets do
-        if CheckDecFlags(transmogSet.ClassMask, math.pow(2, classId - 1)) then
+        if ClassCanUseSet(transmogSet, classId) and FactionCanUseSet(transmogSet, faction) then
             tinsert(usableTransmogSets, transmogSet);
-            -- addon.Diagnostics.Debug("Usable set " .. tostring(transmogSet.Id) .. " added");
         end
     end
     return usableTransmogSets;

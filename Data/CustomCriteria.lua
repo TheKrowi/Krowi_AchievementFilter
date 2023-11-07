@@ -1,7 +1,6 @@
 local _, addon = ...;
-local data = addon.Data;
-data.CustomCriteria = {};
-local customCriteria = data.CustomCriteria;
+addon.Data.CustomCriteria = {};
+local customCriteria = addon.Data.CustomCriteria;
 
 customCriteria[11474] = function(criteriaIndex)
     local achievementId = 11474;

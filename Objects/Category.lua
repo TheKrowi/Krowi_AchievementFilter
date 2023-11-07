@@ -133,6 +133,11 @@ function category:GetAchievementNumbers()
 		return numOfAch, numOfCompAch, numOfNotObtAch;
 	end
 
+	if self.IsCurrentZone then
+		-- Refresh the current zone achievements here, otherwise category:GetAchievementNumbers might return 0
+		addon.Data.GetCurrentZoneAchievements();
+	end
+
 	self:UnMergeAchievements();
 	self.Merged = nil;
 

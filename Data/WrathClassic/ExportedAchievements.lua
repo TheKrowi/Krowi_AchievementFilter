@@ -1,10 +1,6 @@
 local _, addon = ...;
-local data = addon.Data;
-data.ExportedAchievements = {};
-local exportedAchievements = data.ExportedAchievements;
-local objects = addon.Objects;
-local achievement = objects.Achievement;
-local f = objects.Faction;
+addon.Data.ExportedAchievements = {};
+local exportedAchievements = addon.Data.ExportedAchievements;
 
 local tasks, achievements, buildVersions, transmogSets;
 function exportedAchievements.RegisterTasks(_achievements, _buildVersions, _transmogSets)
@@ -12,19 +8,20 @@ function exportedAchievements.RegisterTasks(_achievements, _buildVersions, _tran
     wipe(achievements);
 
     local name = "Achievements";
-    data.InjectLoadingDebug(tasks, name);
+    addon.Data.InjectLoadingDebug(tasks, name);
 
-    tinsert(data.TasksGroups, 1, tasks);
+    tinsert(addon.Data.TasksGroups, 1, tasks);
 end
 
 function exportedAchievements.Load(achievementIds)
-    for i = 1, data.HighestAchievementId do
+    for i = 1, addon.Data.HighestAchievementId do
         if achievements[i] ~= nil then
             tinsert(achievementIds, i);
         end
     end
 end
 
+local achievement = addon.Objects.Achievement;
 local function N(id, bId, ...)
     achievements[id] = achievement:New(id, buildVersions[bId], ...);
 end
@@ -37,10 +34,12 @@ local function O(aId, ...)
     achievements[aId]:SetTemporaryObtainable(...);
 end
 
+local f = addon.Objects.Faction; -- Saves some characters and file size as we use this a lot in the tasks
+
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-04 19-37-19 ]] --
+-- [[ Exported at 2023-11-07 19-17-24 ]] --
 tasks = {
     {N, 19440, 204, f.Horde}, -- Defense Protocol Gamma: Terminated
     {N, 19439, 204, f.Alliance}, -- Defense Protocol Gamma: Terminated
@@ -1627,4 +1626,4 @@ tasks = {
     {N, 7, 194}, -- Level 20
     {N, 6, 194}, -- Level 10
 };
-data.HighestAchievementId = 19440;
+addon.Data.HighestAchievementId = 19440;

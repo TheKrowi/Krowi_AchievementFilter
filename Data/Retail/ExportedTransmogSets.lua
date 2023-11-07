@@ -1,9 +1,6 @@
 local _, addon = ...;
-local data = addon.Data;
-data.ExportedTransmogSets = {};
-local exportedTransmogSets = data.ExportedTransmogSets;
-local objects = addon.Objects;
-local transmogSet = objects.TransmogSet;
+addon.Data.ExportedTransmogSets = {};
+local exportedTransmogSets = addon.Data.ExportedTransmogSets;
 
 local tasks, transmogSets;
 function exportedTransmogSets.RegisterTasks(_transmogSets)
@@ -11,11 +8,12 @@ function exportedTransmogSets.RegisterTasks(_transmogSets)
     wipe(transmogSets);
 
     local name = "Transmog Sets";
-    data.InjectLoadingDebug(tasks, name);
+    addon.Data.InjectLoadingDebug(tasks, name);
 
-    tinsert(data.TasksGroups, 1, tasks);
+    tinsert(addon.Data.TasksGroups, 1, tasks);
 end
 
+local transmogSet = addon.Objects.TransmogSet;
 local function N(id, ...)
     transmogSets[id] = transmogSet:New(id, ...);
 end
@@ -23,8 +21,120 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-08-25 21-02-27 ]] --
+-- [[ Exported at 2023-11-07 19-31-47 ]] --
 tasks = {
+    {N, 3292, 35}, -- Verdant Aspirant's Plate Battlegear
+    {N, 3291, 4164}, -- Verdant Aspirant's Chain Armor
+    {N, 3290, 3592}, -- Verdant Aspirant's Battlegarb
+    {N, 3289, 400}, -- Verdant Aspirant's Silk Vestments
+    {N, 3220, 1}, -- Verdant Gladiator's Plate Armor
+    {N, 3219, 1}, -- Verdant Gladiator's Plate Armor
+    {N, 3218, 2}, -- Verdant Gladiator's Plate Armor
+    {N, 3217, 2}, -- Verdant Gladiator's Plate Armor
+    {N, 3216, 32}, -- Verdant Gladiator's Plate Armor
+    {N, 3215, 32}, -- Verdant Gladiator's Plate Armor
+    {N, 3214, 64}, -- Verdant Gladiator's Chain Armor
+    {N, 3213, 64}, -- Verdant Gladiator's Chain Armor
+    {N, 3212, 4}, -- Verdant Gladiator's Chain Armor
+    {N, 3211, 4}, -- Verdant Gladiator's Chain Armor
+    {N, 3210, 4096}, -- Verdant Gladiator's Chain Armor
+    {N, 3209, 4096}, -- Verdant Gladiator's Chain Armor
+    {N, 3208, 8}, -- Verdant Gladiator's Leather Armor
+    {N, 3207, 8}, -- Verdant Gladiator's Leather Armor
+    {N, 3206, 512}, -- Verdant Gladiator's Leather Armor
+    {N, 3205, 512}, -- Verdant Gladiator's Leather Armor
+    {N, 3204, 2048}, -- Verdant Gladiator's Leather Armor
+    {N, 3203, 2048}, -- Verdant Gladiator's Leather Armor
+    {N, 3202, 1024}, -- Verdant Gladiator's Leather Armor
+    {N, 3201, 1024}, -- Verdant Gladiator's Leather Armor
+    {N, 3200, 256}, -- Verdant Gladiator's Silk Armor
+    {N, 3199, 256}, -- Verdant Gladiator's Silk Armor
+    {N, 3198, 16}, -- Verdant Gladiator's Silk Armor
+    {N, 3197, 16}, -- Verdant Gladiator's Silk Armor
+    {N, 3196, 128}, -- Verdant Gladiator's Silk Armor
+    {N, 3195, 128}, -- Verdant Gladiator's Silk Armor
+    {N, 3188, 128}, -- Wayward Chronomancer's Clockwork
+    {N, 3187, 128}, -- Wayward Chronomancer's Clockwork
+    {N, 3186, 128}, -- Wayward Chronomancer's Clockwork
+    {N, 3185, 128}, -- Wayward Chronomancer's Clockwork
+    {N, 3184, 16}, -- Blessings of Lunar Communion
+    {N, 3183, 16}, -- Blessings of Lunar Communion
+    {N, 3182, 16}, -- Blessings of Lunar Communion
+    {N, 3181, 16}, -- Blessings of Lunar Communion
+    {N, 3180, 1024}, -- Benevolent Embersage's Guidance
+    {N, 3179, 1024}, -- Benevolent Embersage's Guidance
+    {N, 3178, 1024}, -- Benevolent Embersage's Guidance
+    {N, 3177, 1024}, -- Benevolent Embersage's Guidance
+    {N, 3176, 256}, -- Devout Ashdevil's Pactweave
+    {N, 3175, 256}, -- Devout Ashdevil's Pactweave
+    {N, 3174, 256}, -- Devout Ashdevil's Pactweave
+    {N, 3173, 256}, -- Devout Ashdevil's Pactweave
+    {N, 3172, 64}, -- Vision of the Greatwolf Outcast
+    {N, 3171, 64}, -- Vision of the Greatwolf Outcast
+    {N, 3170, 64}, -- Vision of the Greatwolf Outcast
+    {N, 3169, 64}, -- Vision of the Greatwolf Outcast
+    {N, 3168, 8}, -- Lucid Shadewalker's Silence
+    {N, 3167, 8}, -- Lucid Shadewalker's Silence
+    {N, 3166, 8}, -- Lucid Shadewalker's Silence
+    {N, 3165, 8}, -- Lucid Shadewalker's Silence
+    {N, 3164, 32}, -- Risen Nightmare's Gravemantle
+    {N, 3163, 32}, -- Risen Nightmare's Gravemantle
+    {N, 3162, 32}, -- Risen Nightmare's Gravemantle
+    {N, 3161, 32}, -- Risen Nightmare's Gravemantle
+    {N, 3160, 4096}, -- Werynkeeper's Timeless Vigil
+    {N, 3159, 4096}, -- Werynkeeper's Timeless Vigil
+    {N, 3158, 4096}, -- Werynkeeper's Timeless Vigil
+    {N, 3157, 4096}, -- Werynkeeper's Timeless Vigil
+    {N, 3156, 2048}, -- Screaming Torchfiend's Brutality
+    {N, 3155, 2048}, -- Screaming Torchfiend's Brutality
+    {N, 3154, 2048}, -- Screaming Torchfiend's Brutality
+    {N, 3153, 2048}, -- Screaming Torchfiend's Brutality
+    {N, 3152, 1}, -- Molten Vanguard's Mortarplate
+    {N, 3151, 1}, -- Molten Vanguard's Mortarplate
+    {N, 3150, 1}, -- Molten Vanguard's Mortarplate
+    {N, 3149, 1}, -- Molten Vanguard's Mortarplate
+    {N, 3148, 2}, -- Zealous Pyreknight's Ardor
+    {N, 3147, 2}, -- Zealous Pyreknight's Ardor
+    {N, 3146, 2}, -- Zealous Pyreknight's Ardor
+    {N, 3145, 2}, -- Zealous Pyreknight's Ardor
+    {N, 3144, 512}, -- Mystic Heron's Discipline
+    {N, 3143, 512}, -- Mystic Heron's Discipline
+    {N, 3142, 512}, -- Mystic Heron's Discipline
+    {N, 3141, 512}, -- Mystic Heron's Discipline
+    {N, 3140, 4}, -- Blazing Dreamstalker's Trophies
+    {N, 3139, 4}, -- Blazing Dreamstalker's Trophies
+    {N, 3138, 4}, -- Blazing Dreamstalker's Trophies
+    {N, 3137, 4}, -- Blazing Dreamstalker's Trophies
+    {N, 3010, 35}, -- Obsidian Aspirant's Plate Battlegear
+    {N, 3009, 4164}, -- Obsidian Aspirant's Chain Armor
+    {N, 3008, 3592}, -- Obsidian Aspirant's Battlegarb
+    {N, 3007, 400}, -- Obsidian Aspirant's Silk Vestments
+    {N, 2936, 128}, -- Obsidian Gladiator's Silk Armor
+    {N, 2935, 128}, -- Obsidian Gladiator's Silk Armor
+    {N, 2934, 1}, -- Obsidian Gladiator's Plate Armor
+    {N, 2933, 1}, -- Obsidian Gladiator's Plate Armor
+    {N, 2932, 2}, -- Obsidian Gladiator's Plate Armor
+    {N, 2931, 2}, -- Obsidian Gladiator's Plate Armor
+    {N, 2930, 64}, -- Obsidian Gladiator's Chain Armor
+    {N, 2929, 64}, -- Obsidian Gladiator's Chain Armor
+    {N, 2928, 4}, -- Obsidian Gladiator's Chain Armor
+    {N, 2927, 4}, -- Obsidian Gladiator's Chain Armor
+    {N, 2926, 8}, -- Obsidian Gladiator's Leather Armor
+    {N, 2925, 8}, -- Obsidian Gladiator's Leather Armor
+    {N, 2924, 512}, -- Obsidian Gladiator's Leather Armor
+    {N, 2923, 512}, -- Obsidian Gladiator's Leather Armor
+    {N, 2922, 1024}, -- Obsidian Gladiator's Leather Armor
+    {N, 2921, 1024}, -- Obsidian Gladiator's Leather Armor
+    {N, 2920, 2048}, -- Obsidian Gladiator's Leather Armor
+    {N, 2919, 2048}, -- Obsidian Gladiator's Leather Armor
+    {N, 2918, 256}, -- Obsidian Gladiator's Silk Armor
+    {N, 2917, 256}, -- Obsidian Gladiator's Silk Armor
+    {N, 2916, 16}, -- Obsidian Gladiator's Silk Armor
+    {N, 2915, 16}, -- Obsidian Gladiator's Silk Armor
+    {N, 2914, 32}, -- Obsidian Gladiator's Plate Armor
+    {N, 2913, 32}, -- Obsidian Gladiator's Plate Armor
+    {N, 2911, 4096}, -- Obsidian Gladiator's Chain Armor
+    {N, 2910, 4096}, -- Obsidian Gladiator's Chain Armor
     {N, 2909, 128}, -- Underlight Conjurer's Brilliance
     {N, 2908, 128}, -- Underlight Conjurer's Brilliance
     {N, 2907, 128}, -- Underlight Conjurer's Brilliance
@@ -77,14 +187,6 @@ tasks = {
     {N, 2860, 256}, -- Sinister Savant's Cursethreads
     {N, 2859, 2}, -- Heartfire Sentinel's Authority
     {N, 2858, 1}, -- Irons of the Onyx Crucible
-    {N, 2749, 35}, -- Primal Molten
-    {N, 2748, 35}, -- Dreamfire
-    {N, 2747, 3592}, -- Life-Bound
-    {N, 2746, 3592}, -- Green Draketracker
-    {N, 2745, 4164}, -- Flame-Touched
-    {N, 2744, 4164}, -- Emerald Scale
-    {N, 2743, 400}, -- Vibrant Wildercloth
-    {N, 2742, 400}, -- Verdant Wing
     {N, 2741, 1}, -- Crimson Gladiator's Plate Armor
     {N, 2740, 1}, -- Crimson Gladiator's Plate Armor
     {N, 2739, 2}, -- Crimson Gladiator's Plate Armor
@@ -112,53 +214,9 @@ tasks = {
     {N, 2717, 128}, -- Crimson Gladiator's Silk Armor
     {N, 2716, 128}, -- Crimson Gladiator's Silk Armor
     {N, 2715, 35}, -- Crimson Aspirant's Plate Battlegear
-    {N, 2714, 35}, -- Drakeender's Battlegear
-    {N, 2713, 35}, -- Citadel Breaker's Battlegear
-    {N, 2712, 35}, -- Djaradin Dungeon Battlegear
-    {N, 2711, 35}, -- Wyrmforged Battlegear
-    {N, 2710, 4164}, -- Centaur Dungeon Harness
-    {N, 2709, 4164}, -- Nokuhd Regalia
-    {N, 2708, 4164}, -- Aylaag Nomad's Regalia
     {N, 2707, 4164}, -- Crimson Aspirant's Chain Armor
-    {N, 2706, 4164}, -- Ohn'ahran Falconer's Regalia
-    {N, 2705, 400}, -- Lost Watcher's Vestments
-    {N, 2704, 400}, -- Tyr Hold Vestments
-    {N, 2703, 400}, -- Titan Dungeonkeeper's Vestments
     {N, 2702, 400}, -- Crimson Aspirant's Silk Vestments
-    {N, 2701, 400}, -- Cobalt Watcher's Vestments
-    {N, 2700, 35}, -- Shorebreaker's Armor
-    {N, 2699, 35}, -- Firestorm Armor
-    {N, 2698, 35}, -- Crimson Combatant's Draconium Armor
-    {N, 2697, 35}, -- Trailblazer's Plate Armor
-    {N, 2696, 4164}, -- Hornstrider's Battlegear
-    {N, 2695, 4164}, -- Cyclonic Battlegear
-    {N, 2694, 4164}, -- Crimson Combatant's Adamant Battlegear
-    {N, 2693, 400}, -- Drakewatcher's Armor
-    {N, 2692, 4164}, -- Trailblazer's Mail Armor
-    {N, 2691, 400}, -- Crimson Combatant's Wildercloth Regalia
-    {N, 2690, 400}, -- Cloudburst Regalia
-    {N, 2689, 400}, -- Trailblazer's Cloth Armor
-    {N, 2688, 3592}, -- Crimson Combatant's Resilient Armor
-    {N, 2687, 3592}, -- Dust Devil Armor
-    {N, 2686, 3592}, -- Isle Trapper's Gear
-    {N, 2685, 3592}, -- Trailblazer's Leather Armor
-    {N, 2684, 3592}, -- Tuskarr Field Garb
-    {N, 2683, 3592}, -- Tuskarr Dungeoneer's Garb
     {N, 2682, 3592}, -- Crimson Aspirant's Battlegarb
-    {N, 2681, 3592}, -- Ottuk Hide Armor
-    {N, 2675, 4164}, -- Sandshaped Dracthyr Battlegear
-    {N, 2674, 4164}, -- Cobalt Dracthyr Battlegear
-    {N, 2673, 4164}, -- Crimson Dracthyr Battlegear
-    {N, 2672, 4164}, -- Emerald Dracthyr Battlegear
-    {N, 2670, 4164}, -- Obsidian Dracthyr Battlegear
-    {N, 2668, 35}, -- Drakebreaker
-    {N, 2667, 35}, -- Raging Tempest
-    {N, 2666, 3592}, -- Drakebreaker
-    {N, 2665, 3592}, -- Raging Tempest
-    {N, 2664, 4164}, -- Drakebreaker
-    {N, 2663, 4164}, -- Raging Tempest
-    {N, 2662, 400}, -- Drakebreaker
-    {N, 2661, 400}, -- Raging Tempest
     {N, 2652, 1}, -- Stones of the Walking Mountain
     {N, 2651, 1}, -- Stones of the Walking Mountain
     {N, 2650, 1}, -- Stones of the Walking Mountain
@@ -211,7 +269,6 @@ tasks = {
     {N, 2603, 1024}, -- Lost Landcaller's Vesture
     {N, 2602, 2048}, -- Skybound Avenger's Flightwear
     {N, 2601, 32}, -- Haunted Frostbrood Remains
-    {N, 2587, 3592}, -- Tuskarr Trader's Garb
     {N, 2580, 1}, -- Eternal Gladiator's Plate Armor
     {N, 2579, 256}, -- Eternal Gladiator's Felweave Armor
     {N, 2578, 64}, -- Eternal Gladiator's Ringmail Armor
@@ -240,10 +297,6 @@ tasks = {
     {N, 2510, 1024}, -- Eternal Gladiator's Dragonhide Armor
     {N, 2504, 2048}, -- Eternal Gladiator's Felskin Armor
     {N, 2498, 32}, -- Eternal Gladiator's Dreadplate Armor
-    {N, 2492, 35}, -- Renowned Expeditioner's Plate Armor
-    {N, 2491, 4164}, -- Renowned Expeditioner's Mail Armor
-    {N, 2490, 0}, -- Renowned Expeditioner's Leather Armor
-    {N, 2489, 400}, -- Renowned Expeditioner's Cloth Armor
     {N, 2419, 1}, -- Cosmic Gladiator's Plate Armor
     {N, 2418, 1}, -- Cosmic Gladiator's Plate Armor
     {N, 2417, 1}, -- Armaments of the Infinite Infantry
@@ -672,7 +725,6 @@ tasks = {
     {N, 1352, 32}, -- Fierce Gladiator's Dreadplate Armor
     {N, 1349, 32}, -- Fierce Combatant's Dreadplate Armor
     {N, 1348, 32}, -- Fierce Combatant's Dreadplate Armor
-    {N, 1343, 16}, -- Warmongering Gladiator's Satin Armor Boogaloo
     {N, 1342, 16}, -- Vestments of Blind Absolution
     {N, 1340, 32}, -- Gravewarden Armaments
     {N, 1339, 32}, -- Gravewarden Armaments

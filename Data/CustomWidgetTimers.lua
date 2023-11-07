@@ -1,7 +1,6 @@
 local _, addon = ...;
-local data = addon.Data;
-data.CustomWidgetTimers = {};
-local customWidgetTimers = data.CustomWidgetTimers;
+addon.Data.CustomWidgetTimers = {};
+local customWidgetTimers = addon.Data.CustomWidgetTimers;
 local timers = {};
 
 local minutesAbbr = MINUTES_ABBR:gsub("%%d", "(%%d+)");

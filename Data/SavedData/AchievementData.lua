@@ -162,7 +162,8 @@ local function AddFromEarnedByCharacter(characterGuid, lastCompleted)
     local lastCompletedEnum = addon.Util.Enum2(lastCompleted);
     local earnedByCharacter = achievementData.GetEarnedByCharacter(characterGuid);
     sort(earnedByCharacter, function(a, b) return a.Date > b.Date; end);
-    for i = 1, addon.Options.db.profile.Summary.NumAchievements do
+    local max = min(addon.Options.db.profile.Summary.NumAchievements, #earnedByCharacter);
+    for i = 1, max do
         if not lastCompletedEnum[earnedByCharacter[i].Id] then
             tinsert(lastCompleted, earnedByCharacter[i].Id);
         end

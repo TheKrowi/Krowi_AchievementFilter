@@ -62,7 +62,9 @@ function data:LoadOnPlayerLogin()
 
     self.TemporaryObtainable:Load();
 
-    self.ExportedTransmogSets.RegisterTasks(self.TransmogSets);
+    if self.ExportedTransmogSets then
+        self.ExportedTransmogSets.RegisterTasks(self.TransmogSets);
+    end
     self.ExportedBuildVersions.RegisterTasks(self.BuildVersions);
     self.ExportedAchievements.RegisterTasks(self.Achievements, self.BuildVersions, self.TransmogSets);
     self.ExportedCategories.RegisterTasks(self.Categories, adjustableCategories, self.Achievements, addon.Tabs);
@@ -122,14 +124,18 @@ local cachedZone;
 function data.GetCurrentZoneAchievements()
 	diagnostics.Trace("data.GetCurrentZoneAchievements");
 
-    if cachedZone ~= C_Map.GetBestMapForUnit("player") then
-        cachedZone = C_Map.GetBestMapForUnit("player");
-        local achievements = addon.GetAchievementsInZone(cachedZone);
-        for i = 1, #addon.Data.CurrentZoneCategories do
-            addon.Data.CurrentZoneCategories[i].Achievements = addon.Options.db.profile.AdjustableCategories.CurrentZone[i] and achievements or nil;
-        end
-        return true; -- Output that the zone has changed
+    if #addon.Data.CurrentZoneCategories == 0 then
+        return;
     end
+    if cachedZone == C_Map.GetBestMapForUnit("player") then
+        return;
+    end
+    cachedZone = C_Map.GetBestMapForUnit("player");
+    local achievements = addon.GetAchievementsInZone(cachedZone);
+    for i = 1, #addon.Data.CurrentZoneCategories do
+        addon.Data.CurrentZoneCategories[i].Achievements = addon.Options.db.profile.AdjustableCategories.CurrentZone[i] and achievements or nil;
+    end
+    return true; -- Output that the zone has changed
 end
 
 function data.AddAchievementIfNil(id)
@@ -145,15 +151,57 @@ function data.SortAchievementIds()
 end
 
 local tmpC = {};
+local function LoadAllCategories(tab, cats)
+    for _, id in next, cats do
+		local name, parentID = GetCategoryInfo(id);
+        tmpC[id] = addon.Objects.Category:New(name);
+		if parentID == -1 then
+			-- categories:AddCategory(tmpC[id]);
+			tab:InsertCategory(tmpC[id], #tab.Children - 2);
+		end
+	end
+end
+
+local function LinkParentAndChildren(cats)
+    for _, id in next, cats do
+		local _, parentID = GetCategoryInfo(id);
+		if parentID ~= -1 then
+            tmpC[parentID]:AddCategory(tmpC[id]);
+		end
+	end
+end
+
+local function LinkChainAchievements()
+    for i = 1, #data.AchievementIds do
+        local prevId = GetPreviousAchievement(data.AchievementIds[i]);
+        if prevId and data.Achievements[prevId] then
+            data.Achievements[prevId]:AddNext(data.Achievements[data.AchievementIds[i]]);
+        end
+    end
+end
+
 local addedOutOfOrder = {};
-local function AddAchievementsToCategory(categoryID, achID)
+local function AddAchievementToCategory(categoryID, achID)
     if data.Achievements[achID] ~= nil then
         tmpC[categoryID]:AddAchievement(data.Achievements[achID]);
         addedOutOfOrder[achID] = true;
 
         if data.Achievements[achID].NextAchievements then
             for id, _ in next, data.Achievements[achID].NextAchievements do
-                AddAchievementsToCategory(categoryID, id);
+                AddAchievementToCategory(categoryID, id);
+            end
+        end
+    end
+end
+
+local function AddAchievementsToCategory()
+    for i = 1, #data.AchievementIds do
+        local achId = data.AchievementIds[i];
+        if addedOutOfOrder[achId] == nil then -- Not yet added
+            local categoryID = GetAchievementCategory(achId);
+            if tmpC[categoryID] ~= nil then
+                achId = addon.GetFirstAchievementId(achId);
+                AddAchievementToCategory(categoryID, achId);
             end
         end
     end
@@ -163,39 +211,10 @@ function data.LoadBlizzardTabAchievements(categories)
     local tab = categories[1].Parent;
     local cats = GetCategoryList();
 
-    for _, id in next, cats do -- Load all categories, this is done in a random order and is possible for a child to load before a parent
-		local name, parentID = GetCategoryInfo(id);
-        tmpC[id] = addon.Objects.Category:New(name);
-		if parentID == -1 then
-			-- categories:AddCategory(tmpC[id]);
-			tab:InsertCategory(tmpC[id], #tab.Children - 2);
-		end
-	end
-
-    for _, id in next, cats do -- When everything is loaded, we can link children and parents
-		local _, parentID = GetCategoryInfo(id);
-		if parentID ~= -1 then
-            tmpC[parentID]:AddCategory(tmpC[id]);
-		end
-	end
-
-    for i = 1, #data.AchievementIds do
-        local prevId = GetPreviousAchievement(data.AchievementIds[i]);
-        if prevId and data.Achievements[prevId] then
-            data.Achievements[prevId]:AddNext(data.Achievements[data.AchievementIds[i]]);
-        end
-    end
-
-    for i = 1, #data.AchievementIds do
-        local achId = data.AchievementIds[i];
-        if addedOutOfOrder[achId] == nil then -- Not yet added
-            local categoryID = GetAchievementCategory(achId);
-            if tmpC[categoryID] ~= nil then
-                achId = addon.GetFirstAchievementId(achId);
-                AddAchievementsToCategory(categoryID, achId);
-            end
-        end
-    end
+    LoadAllCategories(tab, cats); -- Load all categories, this is done in a random order and is possible for a child to load before a parent
+    LinkParentAndChildren(cats); -- When everything is loaded, we can link children and parents
+    LinkChainAchievements();
+    AddAchievementsToCategory();
 
     -- Clean up after ourselves
     tmpC = nil;

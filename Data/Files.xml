@@ -1,11 +1,8 @@
 <Ui>
     <Script file="Data.lua" />
     <Script file="TemporaryObtainable.lua" />
-    <Script file="CustomObjectives.lua" />
     <Script file="CustomCriteria.lua" />
     <Script file="CustomWidgetTimers.lua" />
-    <Script file="ExportedTransmogSets.lua" />
-    <Script file="ExportedUiMaps.lua" />
     <Script file="EventData.lua" />
     <Script file="TooltipData.lua" />
     <Script file="DataIntegrityManager.lua" />

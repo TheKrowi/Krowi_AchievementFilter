@@ -76,8 +76,16 @@ function KrowiAF_AchievementsFrameMixin:OnLoad()
 	end);
 end
 
+function KrowiAF_AchievementsFrameMixin:OnEvent(event)
+	if event == "ACHIEVEMENT_EARNED" then
+		addon.Util.DelayFunction("KrowiAF_AchievementsFrame_OnEvent", 1, self.ForceUpdate, self);
+		return;
+	end
+end
+
 local updateOnNextShow;
 function KrowiAF_AchievementsFrameMixin:OnShow()
+    self:RegisterEvent("ACHIEVEMENT_EARNED");
 	if addon.AchievementEarnedUpdateAchievementsFrameOnNextShow or updateOnNextShow then
 		self:ForceUpdate();
 		addon.AchievementEarnedUpdateAchievementsFrameOnNextShow = nil;
@@ -100,6 +108,14 @@ function KrowiAF_AchievementsFrameMixin:OnShow()
 		self.Text:Show();
 		return;
 	end
+
+	if selectedTab.SelectedCategory and selectedTab.SelectedCategory.IsCurrentZone then
+		self:ForceUpdate();
+	end
+end
+
+function KrowiAF_AchievementsFrameMixin:OnHide()
+    self:UnregisterEvent("ACHIEVEMENT_EARNED");
 end
 
 local function Validate(achievements, displayAchievements, defaultOrder)
@@ -152,9 +168,6 @@ function KrowiAF_AchievementsFrameMixin:Update(retainScrollPosition)
 
 	local updateAchievements = cachedCategory ~= selectedCategory or selectedCategory.HasFlexibleData;
 	cachedCategory = selectedCategory;
-	if cachedCategory.IsCurrentZone then
-		updateAchievements = addon.Data.GetCurrentZoneAchievements() or updateAchievements;
-	end
 	if updateAchievements then
 		cachedAchievements = GetFilteredAchievements(cachedCategory);
 	end

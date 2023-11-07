@@ -81,7 +81,8 @@ end
 
 function KrowiAF_SummaryFrameMixin:OnShow()
     self:RegisterEvent("ACHIEVEMENT_EARNED");
-    self:Update();
+    self:Update(addon.AchievementEarnedUpdateSummaryFrameOnNextShow and "ACHIEVEMENT_EARNED" or nil);
+    addon.AchievementEarnedUpdateSummaryFrameOnNextShow = nil;
 end
 
 function KrowiAF_SummaryFrameMixin:OnHide()

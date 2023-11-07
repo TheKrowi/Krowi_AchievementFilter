@@ -1,10 +1,6 @@
 local _, addon = ...;
-local data = addon.Data;
-data.ExportedAchievements = {};
-local exportedAchievements = data.ExportedAchievements;
-local objects = addon.Objects;
-local achievement = objects.Achievement;
-local f = objects.Faction;
+addon.Data.ExportedAchievements = {};
+local exportedAchievements = addon.Data.ExportedAchievements;
 
 local tasks, achievements, buildVersions, transmogSets;
 function exportedAchievements.RegisterTasks(_achievements, _buildVersions, _transmogSets)
@@ -12,19 +8,20 @@ function exportedAchievements.RegisterTasks(_achievements, _buildVersions, _tran
     wipe(achievements);
 
     local name = "Achievements";
-    data.InjectLoadingDebug(tasks, name);
+    addon.Data.InjectLoadingDebug(tasks, name);
 
-    tinsert(data.TasksGroups, 1, tasks);
+    tinsert(addon.Data.TasksGroups, 1, tasks);
 end
 
 function exportedAchievements.Load(achievementIds)
-    for i = 1, data.HighestAchievementId do
+    for i = 1, addon.Data.HighestAchievementId do
         if achievements[i] ~= nil then
             tinsert(achievementIds, i);
         end
     end
 end
 
+local achievement = addon.Objects.Achievement;
 local function N(id, bId, ...)
     achievements[id] = achievement:New(id, buildVersions[bId], ...);
 end
@@ -37,16 +34,70 @@ local function O(aId, ...)
     achievements[aId]:SetTemporaryObtainable(...);
 end
 
+local f = addon.Objects.Faction; -- Saves some characters and file size as we use this a lot in the tasks
+
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-04 19-36-52 ]] --
+-- [[ Exported at 2023-11-07 19-16-57 ]] --
 tasks = {
     {N, 19461, 205}, -- Kissed by the Wind
     {O, 19449, "From", "PvP Season", 36, "Until", "PvP Season", 36},
     {N, 19449, 205, nil, nil, true}, -- Dreaming Hero: Dragonflight Season 3
     {O, 19443, "From", "PvP Season", 36, "Until", "PvP Season", 36},
     {N, 19443, 205, nil, nil, true}, -- Battle Mender: Dragonflight Season 3
+    {T, 19442, 3159}, -- Werynkeeper's Timeless Vigil (Mythic)
+    {T, 19442, 3158}, -- Werynkeeper's Timeless Vigil (Heroic)
+    {T, 19442, 3157}, -- Werynkeeper's Timeless Vigil (Normal)
+    {T, 19442, 3160}, -- Werynkeeper's Timeless Vigil (Raid Finder)
+    {T, 19442, 3156}, -- Screaming Torchfiend's Brutality (Mythic)
+    {T, 19442, 3155}, -- Screaming Torchfiend's Brutality (Heroic)
+    {T, 19442, 3153}, -- Screaming Torchfiend's Brutality (Normal)
+    {T, 19442, 3154}, -- Screaming Torchfiend's Brutality (Raid Finder)
+    {T, 19442, 3180}, -- Benevolent Embersage's Guidance (Mythic)
+    {T, 19442, 3178}, -- Benevolent Embersage's Guidance (Heroic)
+    {T, 19442, 3177}, -- Benevolent Embersage's Guidance (Normal)
+    {T, 19442, 3179}, -- Benevolent Embersage's Guidance (Raid Finder)
+    {T, 19442, 3141}, -- Mystic Heron's Discipline (Mythic)
+    {T, 19442, 3143}, -- Mystic Heron's Discipline (Heroic)
+    {T, 19442, 3144}, -- Mystic Heron's Discipline (Normal)
+    {T, 19442, 3142}, -- Mystic Heron's Discipline (Raid Finder)
+    {T, 19442, 3173}, -- Devout Ashdevil's Pactweave (Mythic)
+    {T, 19442, 3174}, -- Devout Ashdevil's Pactweave (Heroic)
+    {T, 19442, 3175}, -- Devout Ashdevil's Pactweave (Normal)
+    {T, 19442, 3176}, -- Devout Ashdevil's Pactweave (Raid Finder)
+    {T, 19442, 3188}, -- Wayward Chronomancer's Clockwork (Mythic)
+    {T, 19442, 3187}, -- Wayward Chronomancer's Clockwork (Heroic)
+    {T, 19442, 3186}, -- Wayward Chronomancer's Clockwork (Normal)
+    {T, 19442, 3185}, -- Wayward Chronomancer's Clockwork (Raid Finder)
+    {T, 19442, 3172}, -- Vision of the Greatwolf Outcast (Mythic)
+    {T, 19442, 3170}, -- Vision of the Greatwolf Outcast (Heroic)
+    {T, 19442, 3169}, -- Vision of the Greatwolf Outcast (Normal)
+    {T, 19442, 3171}, -- Vision of the Greatwolf Outcast (Raid Finder)
+    {T, 19442, 3164}, -- Risen Nightmare's Gravemantle (Mythic)
+    {T, 19442, 3161}, -- Risen Nightmare's Gravemantle (Heroic)
+    {T, 19442, 3163}, -- Risen Nightmare's Gravemantle (Normal)
+    {T, 19442, 3162}, -- Risen Nightmare's Gravemantle (Raid Finder)
+    {T, 19442, 3182}, -- Blessings of Lunar Communion (Mythic)
+    {T, 19442, 3183}, -- Blessings of Lunar Communion (Heroic)
+    {T, 19442, 3184}, -- Blessings of Lunar Communion (Normal)
+    {T, 19442, 3181}, -- Blessings of Lunar Communion (Raid Finder)
+    {T, 19442, 3166}, -- Lucid Shadewalker's Silence (Mythic)
+    {T, 19442, 3168}, -- Lucid Shadewalker's Silence (Heroic)
+    {T, 19442, 3165}, -- Lucid Shadewalker's Silence (Normal)
+    {T, 19442, 3167}, -- Lucid Shadewalker's Silence (Raid Finder)
+    {T, 19442, 3139}, -- Blazing Dreamstalker's Trophies (Mythic)
+    {T, 19442, 3140}, -- Blazing Dreamstalker's Trophies (Heroic)
+    {T, 19442, 3137}, -- Blazing Dreamstalker's Trophies (Normal)
+    {T, 19442, 3138}, -- Blazing Dreamstalker's Trophies (Raid Finder)
+    {T, 19442, 3145}, -- Zealous Pyreknight's Ardor (Mythic)
+    {T, 19442, 3146}, -- Zealous Pyreknight's Ardor (Heroic)
+    {T, 19442, 3148}, -- Zealous Pyreknight's Ardor (Normal)
+    {T, 19442, 3147}, -- Zealous Pyreknight's Ardor (Raid Finder)
+    {T, 19442, 3151}, -- Molten Vanguard's Mortarplate (Mythic)
+    {T, 19442, 3149}, -- Molten Vanguard's Mortarplate (Heroic)
+    {T, 19442, 3150}, -- Molten Vanguard's Mortarplate (Normal)
+    {T, 19442, 3152}, -- Molten Vanguard's Mortarplate (Raid Finder)
     {N, 19442, 205}, -- Fire Catwalk With Me
     {N, 19420, 205}, -- Dragonflight Season 3 Hero
     {N, 19418, 205, nil, nil, true}, -- Battle-scarred Battler
@@ -111,6 +162,36 @@ tasks = {
     {N, 19295, 205, nil, nil, true}, -- Verdant Gladiator's Slitherdrake
     {N, 19294, 205}, -- Tour of Duty: Emerald Dream
     {N, 19293, 205}, -- Friends In Feathers
+    {T, 19276, 3210}, -- Verdant Gladiator's Chain Armor (Elite)
+    {T, 19276, 3209}, -- Verdant Gladiator's Chain Armor (Gladiator)
+    {T, 19276, 3204}, -- Verdant Gladiator's Leather Armor (Elite)
+    {T, 19276, 3203}, -- Verdant Gladiator's Leather Armor (Gladiator)
+    {T, 19276, 3202}, -- Verdant Gladiator's Leather Armor (Elite)
+    {T, 19276, 3201}, -- Verdant Gladiator's Leather Armor (Gladiator)
+    {T, 19276, 3206}, -- Verdant Gladiator's Leather Armor (Elite)
+    {T, 19276, 3205}, -- Verdant Gladiator's Leather Armor (Gladiator)
+    {T, 19276, 3200}, -- Verdant Gladiator's Silk Armor (Elite)
+    {T, 19276, 3199}, -- Verdant Gladiator's Silk Armor (Gladiator)
+    {T, 19276, 3196}, -- Verdant Gladiator's Silk Armor (Elite)
+    {T, 19276, 3195}, -- Verdant Gladiator's Silk Armor (Gladiator)
+    {T, 19276, 3214}, -- Verdant Gladiator's Chain Armor (Elite)
+    {T, 19276, 3213}, -- Verdant Gladiator's Chain Armor (Gladiator)
+    {T, 19276, 3216}, -- Verdant Gladiator's Plate Armor (Elite)
+    {T, 19276, 3215}, -- Verdant Gladiator's Plate Armor (Gladiator)
+    {T, 19276, 3198}, -- Verdant Gladiator's Silk Armor (Elite)
+    {T, 19276, 3197}, -- Verdant Gladiator's Silk Armor (Gladiator)
+    {T, 19276, 3208}, -- Verdant Gladiator's Leather Armor (Elite)
+    {T, 19276, 3207}, -- Verdant Gladiator's Leather Armor (Gladiator)
+    {T, 19276, 3212}, -- Verdant Gladiator's Chain Armor (Elite)
+    {T, 19276, 3211}, -- Verdant Gladiator's Chain Armor (Gladiator)
+    {T, 19276, 3218}, -- Verdant Gladiator's Plate Armor (Elite)
+    {T, 19276, 3217}, -- Verdant Gladiator's Plate Armor (Gladiator)
+    {T, 19276, 3220}, -- Verdant Gladiator's Plate Armor (Elite)
+    {T, 19276, 3219}, -- Verdant Gladiator's Plate Armor (Gladiator)
+    {T, 19276, 3290}, -- Verdant Aspirant's Battlegarb (Aspirant)
+    {T, 19276, 3289}, -- Verdant Aspirant's Silk Vestments (Aspirant)
+    {T, 19276, 3291}, -- Verdant Aspirant's Chain Armor (Aspirant)
+    {T, 19276, 3292}, -- Verdant Aspirant's Plate Battlegear (Aspirant)
     {N, 19276, 205, nil, nil, true}, -- Verdant Vogue
     {N, 19235, 205}, -- Warden of the Dream
     {N, 19230, 205}, -- Friends in the Dream
@@ -426,6 +507,36 @@ tasks = {
     {N, 18253, 200}, -- Ahead of the Curve: Scalecommander Sarkareth
     {N, 18251, 200}, -- Glory of the Aberrus Raider
     {N, 18250, 202}, -- Ysergle The Dreamurk
+    {T, 18249, 2911}, -- Obsidian Gladiator's Chain Armor (Elite)
+    {T, 18249, 2910}, -- Obsidian Gladiator's Chain Armor (Gladiator)
+    {T, 18249, 2920}, -- Obsidian Gladiator's Leather Armor (Elite)
+    {T, 18249, 2919}, -- Obsidian Gladiator's Leather Armor (Gladiator)
+    {T, 18249, 2922}, -- Obsidian Gladiator's Leather Armor (Elite)
+    {T, 18249, 2921}, -- Obsidian Gladiator's Leather Armor (Gladiator)
+    {T, 18249, 2924}, -- Obsidian Gladiator's Leather Armor (Elite)
+    {T, 18249, 2923}, -- Obsidian Gladiator's Leather Armor (Gladiator)
+    {T, 18249, 2918}, -- Obsidian Gladiator's Silk Armor (Elite)
+    {T, 18249, 2917}, -- Obsidian Gladiator's Silk Armor (Gladiator)
+    {T, 18249, 2936}, -- Obsidian Gladiator's Silk Armor (Elite)
+    {T, 18249, 2935}, -- Obsidian Gladiator's Silk Armor (Gladiator)
+    {T, 18249, 2930}, -- Obsidian Gladiator's Chain Armor (Elite)
+    {T, 18249, 2929}, -- Obsidian Gladiator's Chain Armor (Gladiator)
+    {T, 18249, 2914}, -- Obsidian Gladiator's Plate Armor (Elite)
+    {T, 18249, 2913}, -- Obsidian Gladiator's Plate Armor (Gladiator)
+    {T, 18249, 2916}, -- Obsidian Gladiator's Silk Armor (Elite)
+    {T, 18249, 2915}, -- Obsidian Gladiator's Silk Armor (Gladiator)
+    {T, 18249, 2926}, -- Obsidian Gladiator's Leather Armor (Elite)
+    {T, 18249, 2925}, -- Obsidian Gladiator's Leather Armor (Gladiator)
+    {T, 18249, 2928}, -- Obsidian Gladiator's Chain Armor (Elite)
+    {T, 18249, 2927}, -- Obsidian Gladiator's Chain Armor (Gladiator)
+    {T, 18249, 2932}, -- Obsidian Gladiator's Plate Armor (Elite)
+    {T, 18249, 2931}, -- Obsidian Gladiator's Plate Armor (Gladiator)
+    {T, 18249, 2934}, -- Obsidian Gladiator's Plate Armor (Elite)
+    {T, 18249, 2933}, -- Obsidian Gladiator's Plate Armor (Gladiator)
+    {T, 18249, 3008}, -- Obsidian Aspirant's Battlegarb (Aspirant)
+    {T, 18249, 3007}, -- Obsidian Aspirant's Silk Vestments (Aspirant)
+    {T, 18249, 3009}, -- Obsidian Aspirant's Chain Armor (Aspirant)
+    {T, 18249, 3010}, -- Obsidian Aspirant's Plate Battlegear (Aspirant)
     {N, 18249, 200, nil, nil, true}, -- Obsidian Tie Event
     {N, 18230, 200}, -- Whac-A-Swog
     {N, 18229, 200}, -- Cosplate
@@ -766,6 +877,36 @@ tasks = {
     {N, 16791, 195}, -- Merchant Artisan
     {N, 16790, 195}, -- Curious Coin
     {N, 16789, 195}, -- Lucky Penny
+    {T, 16764, 2731}, -- Crimson Gladiator's Chain Armor (Elite)
+    {T, 16764, 2730}, -- Crimson Gladiator's Chain Armor (Gladiator)
+    {T, 16764, 2725}, -- Crimson Gladiator's Leather Armor (Elite)
+    {T, 16764, 2724}, -- Crimson Gladiator's Leather Armor (Gladiator)
+    {T, 16764, 2723}, -- Crimson Gladiator's Leather Armor (Elite)
+    {T, 16764, 2722}, -- Crimson Gladiator's Leather Armor (Gladiator)
+    {T, 16764, 2727}, -- Crimson Gladiator's Leather Armor (Elite)
+    {T, 16764, 2726}, -- Crimson Gladiator's Leather Armor (Gladiator)
+    {T, 16764, 2721}, -- Crimson Gladiator's Silk Armor (Elite)
+    {T, 16764, 2720}, -- Crimson Gladiator's Silk Armor (Gladiator)
+    {T, 16764, 2717}, -- Crimson Gladiator's Silk Armor (Elite)
+    {T, 16764, 2716}, -- Crimson Gladiator's Silk Armor (Gladiator)
+    {T, 16764, 2735}, -- Crimson Gladiator's Chain Armor (Elite)
+    {T, 16764, 2734}, -- Crimson Gladiator's Chain Armor (Gladiator)
+    {T, 16764, 2737}, -- Crimson Gladiator's Plate Armor (Elite)
+    {T, 16764, 2736}, -- Crimson Gladiator's Plate Armor (Gladiator)
+    {T, 16764, 2719}, -- Crimson Gladiator's Silk Armor (Elite)
+    {T, 16764, 2718}, -- Crimson Gladiator's Silk Armor (Gladiator)
+    {T, 16764, 2729}, -- Crimson Gladiator's Leather Armor (Elite)
+    {T, 16764, 2728}, -- Crimson Gladiator's Leather Armor (Gladiator)
+    {T, 16764, 2733}, -- Crimson Gladiator's Chain Armor (Elite)
+    {T, 16764, 2732}, -- Crimson Gladiator's Chain Armor (Gladiator)
+    {T, 16764, 2739}, -- Crimson Gladiator's Plate Armor (Elite)
+    {T, 16764, 2738}, -- Crimson Gladiator's Plate Armor (Gladiator)
+    {T, 16764, 2741}, -- Crimson Gladiator's Plate Armor (Elite)
+    {T, 16764, 2740}, -- Crimson Gladiator's Plate Armor (Gladiator)
+    {T, 16764, 2682}, -- Crimson Aspirant's Battlegarb (Aspirant)
+    {T, 16764, 2702}, -- Crimson Aspirant's Silk Vestments (Aspirant)
+    {T, 16764, 2707}, -- Crimson Aspirant's Chain Armor (Aspirant)
+    {T, 16764, 2715}, -- Crimson Aspirant's Plate Battlegear (Aspirant)
     {N, 16764, 195, nil, nil, true}, -- Crimson Carpet Fashion
     {N, 16762, 195}, -- The Vegetarian Diet
     {N, 16761, 195}, -- Dragon Isles Explorer
@@ -1427,6 +1568,34 @@ tasks = {
     {T, 15409, 2414}, -- Armaments of the Infinite Infantry (Normal)
     {T, 15409, 2415}, -- Armaments of the Infinite Infantry (Raid Finder)
     {N, 15409, 191}, -- First Wonders
+    {T, 15408, 2570}, -- Eternal Gladiator's Felskin Armor (Elite)
+    {T, 15408, 2504}, -- Eternal Gladiator's Felskin Armor (Gladiator)
+    {T, 15408, 2571}, -- Eternal Gladiator's Dragonhide Armor (Elite)
+    {T, 15408, 2510}, -- Eternal Gladiator's Dragonhide Armor (Gladiator)
+    {T, 15408, 2574}, -- Eternal Gladiator's Ironskin Armor (Elite)
+    {T, 15408, 2528}, -- Eternal Gladiator's Ironskin Armor (Gladiator)
+    {T, 15408, 2579}, -- Eternal Gladiator's Felweave Armor (Elite)
+    {T, 15408, 2558}, -- Eternal Gladiator's Felweave Armor (Gladiator)
+    {T, 15408, 2573}, -- Eternal Gladiator's Silk Armor (Elite)
+    {T, 15408, 2522}, -- Eternal Gladiator's Silk Armor (Gladiator)
+    {T, 15408, 2578}, -- Eternal Gladiator's Ringmail Armor (Elite)
+    {T, 15408, 2552}, -- Eternal Gladiator's Ringmail Armor (Gladiator)
+    {T, 15408, 2569}, -- Eternal Gladiator's Dreadplate Armor (Elite)
+    {T, 15408, 2498}, -- Eternal Gladiator's Dreadplate Armor (Gladiator)
+    {T, 15408, 2576}, -- Eternal Gladiator's Satin Armor (Elite)
+    {T, 15408, 2540}, -- Eternal Gladiator's Satin Armor (Gladiator)
+    {T, 15408, 2577}, -- Eternal Gladiator's Leather Armor (Elite)
+    {T, 15408, 2546}, -- Eternal Gladiator's Leather Armor (Gladiator)
+    {T, 15408, 2572}, -- Eternal Gladiator's Chain Armor (Elite)
+    {T, 15408, 2516}, -- Eternal Gladiator's Chain Armor (Gladiator)
+    {T, 15408, 2575}, -- Eternal Gladiator's Scaled Armor (Elite)
+    {T, 15408, 2534}, -- Eternal Gladiator's Scaled Armor (Gladiator)
+    {T, 15408, 2580}, -- Eternal Gladiator's Plate Armor (Elite)
+    {T, 15408, 2564}, -- Eternal Gladiator's Plate Armor (Gladiator)
+    {T, 15408, 2566}, -- Eternal Aspirant's Leathers (Aspirant)
+    {T, 15408, 2565}, -- Eternal Aspirant's Vestment (Aspirant)
+    {T, 15408, 2567}, -- Eternal Aspirant's Chain (Aspirant)
+    {T, 15408, 2568}, -- Eternal Aspirant's Plate (Aspirant)
     {T, 15408, 2359}, -- Cosmic Gladiator's Felskin Armor (Elite)
     {T, 15408, 2358}, -- Cosmic Gladiator's Felskin Armor (Gladiator)
     {T, 15408, 2365}, -- Cosmic Gladiator's Dragonhide Armor (Elite)
@@ -9320,4 +9489,4 @@ tasks = {
     {N, 7, 194}, -- Level 20
     {N, 6, 194}, -- Level 10
 };
-data.HighestAchievementId = 19461;
+addon.Data.HighestAchievementId = 19461;

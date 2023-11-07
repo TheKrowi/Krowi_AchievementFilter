@@ -1,9 +1,6 @@
-local _, k = ...;
-local data = k.Data;
-data.ExportedCategories = {};
-local exportedCategories = data.ExportedCategories;
-local objects = k.Objects;
-local category = objects.Category;
+local _, addon = ...;
+addon.Data.ExportedCategories = {};
+local exportedCategories = addon.Data.ExportedCategories;
 
 local tasks, categories, adjustableCategories, achievements, tabs;
 function exportedCategories.RegisterTasks(_categories, _adjustableCategories, _achievements, _tabs)
@@ -16,11 +13,12 @@ function exportedCategories.RegisterTasks(_categories, _adjustableCategories, _a
     wipe(adjustableCategories.ExcludedCategories);
 
     local name = "Categories";
-    data.InjectLoadingDebug(tasks, name);
+    addon.Data.InjectLoadingDebug(tasks, name);
 
-    tinsert(data.TasksGroups, 1, tasks);
+    tinsert(addon.Data.TasksGroups, 1, tasks);
 end
 
+local category = addon.Objects.Category;
 local function N(id, ...)
     categories[id] = category:New(...);
 end
@@ -51,21 +49,24 @@ local function S(cId)
     categories[cId]:SetAsSummary(true);
 end
 
+-- Saves some characters and file size as we use this a lot in the tasks
+local a = addon;
+
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-04 19-39-46 ]] --
+-- [[ Exported at 2023-11-05 22-20-41 ]] --
 tasks = {
     {F, 1557, "UncategorizedCategories"},
     {C, 971, 1557},
-    {N, 1557,k.L["Uncategorized"]}, -- Uncategorized
+    {N, 1557, a.L["Uncategorized"]}, -- Uncategorized
     {F, 857, "ExcludedCategories"},
     {C, 971, 857},
-    {N, 857,k.L["Excluded"]}, -- Excluded
+    {N, 857, a.L["Excluded"]}, -- Excluded
     function() categories[1367].IsTracking = true; end,
     {F, 1367, "TrackingAchievementsCategories"},
     {C, 971, 1367},
-    {N, 1367,k.L["Tracking Achievements"]}, -- Tracking Achievements
+    {N, 1367, a.L["Tracking Achievements"]}, -- Tracking Achievements
     {A, 1347, 15251}, -- The Jailer's Gauntlet: Layer 1
     {A, 1347, 15079}, -- "Many, Many Things"
     {A, 1347, 15004}, -- A Sly Fox
@@ -73,7 +74,7 @@ tasks = {
     {A, 1347, 14879}, -- Family Exorcist
     {A, 1347, 14469}, -- Twisting Corridors: Layer 2
     {C, 1346, 1347},
-    {N, 1347,k.GetCategoryInfoTitle(15439)}, -- Shadowlands
+    {N, 1347, a.GetCategoryInfoTitle(15439)}, -- Shadowlands
     {A, 1348, 14143}, -- Reeking of Visions
     {A, 1348, 13695}, -- Team Aquashock
     {A, 1348, 13766}, -- Malowned
@@ -83,7 +84,7 @@ tasks = {
     {A, 1348, 12482}, -- Get Hek'd
     {A, 1348, 12930}, -- Battle Safari
     {C, 1346, 1348},
-    {N, 1348,k.GetCategoryInfoTitle(15305)}, -- Battle for Azeroth
+    {N, 1348, a.GetCategoryInfoTitle(15305)}, -- Battle for Azeroth
     {A, 1349, 12439}, -- Priority Mail
     {A, 1349, 11763}, -- Glory of the Tomb Raider
     {A, 1349, 10626}, -- Zoom!
@@ -92,29 +93,29 @@ tasks = {
     {A, 1349, 9696}, -- Family Familiar
     {A, 1349, 10412}, -- Poor Unfortunate Souls
     {C, 1346, 1349},
-    {N, 1349,k.GetCategoryInfoTitle(15258)}, -- Legion
+    {N, 1349, a.GetCategoryInfoTitle(15258)}, -- Legion
     {A, 1350, 9685}, -- Draenor Safari
     {C, 1346, 1350},
-    {N, 1350,k.GetCategoryInfoTitle(15233)}, -- Warlords of Dreanor
+    {N, 1350, a.GetCategoryInfoTitle(15233)}, -- Warlords of Dreanor
     {A, 1351, 6402}, -- Ling-Ting's Herbal Journey
     {C, 1346, 1351},
-    {N, 1351,k.GetCategoryInfoTitle(15164)}, -- Mists of Pandaria
+    {N, 1351, a.GetCategoryInfoTitle(15164)}, -- Mists of Pandaria
     {A, 1352, 5449}, -- Rock Lover
     {C, 1346, 1352},
-    {N, 1352,k.GetCategoryInfoTitle(15072)}, -- Cataclysm
+    {N, 1352, a.GetCategoryInfoTitle(15072)}, -- Cataclysm
     {A, 1378, 1956}, -- Higher Learning
     {C, 1346, 1378},
-    {N, 1378,k.GetCategoryInfoTitle(14866)}, -- Wrath of the Lich King
+    {N, 1378, a.GetCategoryInfoTitle(14866)}, -- Wrath of the Lich King
     {A, 1356, 9983}, -- That's Whack!
     {A, 1356, 9805}, -- Big Rocketeer: Gold
     {C, 1346, 1356},
-    {N, 1356,k.GetCategoryInfoTitle(15101)}, -- Darkmoon Faire
+    {N, 1356, a.GetCategoryInfoTitle(15101)}, -- Darkmoon Faire
     {A, 1357, 13627}, -- Pet Battle Challenge: Stratholme
     {A, 1357, 13269}, -- Pet Battle Challenge: Gnomeregan
     {A, 1357, 11856}, -- Pet Battle Challenge: Deadmines
     {A, 1357, 11765}, -- Pet Battle Challenge: Wailing Caverns
     {C, 1355, 1357},
-    {N, 1357,k.GetCategoryInfoTitle(15117) .. " " .. k.GetCategoryInfoTitle(15272)}, -- Pet Battles Dungeons
+    {N, 1357, a.GetCategoryInfoTitle(15117) .. " " .. a.GetCategoryInfoTitle(15272)}, -- Pet Battles Dungeons
     {A, 1355, 13469}, -- Raiding with Leashes VI: Pets of Pandaria
     {A, 1355, 12079}, -- Raiding with Leashes V: Cuteaclysm
     {A, 1355, 11320}, -- Raiding with Leashes IV: Wrath of the Lick King
@@ -122,7 +123,7 @@ tasks = {
     {A, 1355, 8293}, -- Raiding with Leashes II: Attunement Edition
     {A, 1355, 7934}, -- Raiding with Leashes
     {C, 1346, 1355},
-    {N, 1355,k.GetCategoryInfoTitle(168)}, -- Dungeons & Raids
+    {N, 1355, a.GetCategoryInfoTitle(168)}, -- Dungeons & Raids
     {A, 1354, 12996}, -- Toybox Tycoon
     {A, 1354, 12958}, -- Master of Minions
     {A, 1354, 12992}, -- Pet Emporium
@@ -130,7 +131,7 @@ tasks = {
     {A, 1354, 7501}, -- That's a Lot of Pet Food
     {A, 1354, 7500}, -- Going to Need More Leashes
     {C, 1346, 1354},
-    {N, 1354,k.GetCategoryInfoTitle(15246)}, -- Collections
+    {N, 1354, a.GetCategoryInfoTitle(15246)}, -- Collections
     {A, 1353, 8300}, -- Brutal Pet Brawler
     {A, 1353, 8298}, -- Vengeful Pet Brawler
     {A, 1353, 8297}, -- Merciless Pet Brawler
@@ -143,11 +144,11 @@ tasks = {
     {A, 1353, 2516}, -- Lil' Game Hunter
     {A, 1353, 1250}, -- "Shop Smart, Shop Pet...Smart"
     {C, 1346, 1353},
-    {N, 1353,k.GetCategoryInfoTitle(15117)}, -- Pet Battles
+    {N, 1353, a.GetCategoryInfoTitle(15117)}, -- Pet Battles
     {A, 1346, 3478}, -- Pilgrim
     {A, 1346, 8820}, -- WoW's 10th Anniversary
     {C, 971, 1346},
-    {N, 1346,k.L["Ta's Pet Collection"]}, -- Ta's Pet Collection
+    {N, 1346, a.L["Ta's Pet Collection"]}, -- Ta's Pet Collection
     {A, 1539, 15344}, -- """S.A.F.E"" Pilot"
     {A, 1539, 17361}, -- "Rumble Minis, All the Looks!"
     {A, 1539, 17360}, -- "Warcraft Rumble Minis, New Looks!"
@@ -167,35 +168,35 @@ tasks = {
     {A, 1539, 17353}, -- "Warcraft Rumble Minis, Maiev's Newer Look"
     {A, 1539, 17346}, -- "Warcraft Rumble Minis, Maiev's New Look"
     {C, 1117, 1539},
-    {N, 1539,k.L["Warcraft Rumble"], true}, -- Warcraft Rumble
+    {N, 1539, a.L["Warcraft Rumble"], true}, -- Warcraft Rumble
     {A, 1125, 13196}, -- Meat Marauder
     {C, 1117, 1125},
-    {N, 1125,k.L["Warcraft III: Reforged"], true}, -- Warcraft III: Reforged
+    {N, 1125, a.L["Warcraft III: Reforged"], true}, -- Warcraft III: Reforged
     {A, 1124, 11425}, -- Herald of Flames
     {A, 1124, 9926}, -- Hero of the Storm
     {C, 1117, 1124},
-    {N, 1124,k.L["Heroes of the Storm"], true}, -- Heroes of the Storm
+    {N, 1124, a.L["Heroes of the Storm"], true}, -- Heroes of the Storm
     {A, 1123, 15323}, -- Sarge's Tale
     {A, 1123, 8345}, -- Hearthstoned
     {C, 1117, 1123},
-    {N, 1123,k.L["Hearthstone"], true}, -- Hearthstone
+    {N, 1123, a.L["Hearthstone"], true}, -- Hearthstone
     {A, 1122, 12454}, -- Salute to StarCraft
     {A, 1122, 10309}, -- Collector's Edition: Zeradar
     {A, 1122, 7842}, -- Collector's Edition: Baneling
     {A, 1122, 4824}, -- Collector's Edition: Mini Thor
     {C, 1117, 1122},
-    {N, 1122,k.L["StarCraft II"], true}, -- StarCraft II
+    {N, 1122, a.L["StarCraft II"], true}, -- StarCraft II
     {A, 1121, 11064}, -- Collector's Edition: Baby Winston
     {C, 1117, 1121},
-    {N, 1121,k.L["Overwatch"], true}, -- Overwatch
+    {N, 1121, a.L["Overwatch"], true}, -- Overwatch
     {A, 1400, 18258}, -- Little Lord of Lies
     {A, 1400, 15640}, -- Return to Darkness
     {C, 1117, 1400},
-    {N, 1400,k.L["Diablo IV"], true}, -- Diablo IV
+    {N, 1400, a.L["Diablo IV"], true}, -- Diablo IV
     {A, 1120, 8795}, -- Collector's Edition: Treasure Goblin
     {A, 1120, 7412}, -- Collector's Edition: Fetish Shaman
     {C, 1117, 1120},
-    {N, 1120,k.L["Diablo III"], true}, -- Diablo III
+    {N, 1120, a.L["Diablo III"], true}, -- Diablo III
     {A, 1119, 19030}, -- Squally
     {A, 1119, 18931}, -- Storm Rider: Gold
     {A, 1119, 18929}, -- Storm Rider: Silver
@@ -219,7 +220,7 @@ tasks = {
     {A, 1119, 663}, -- Collector's Edition: Panda
     {A, 1119, 662}, -- Collector's Edition: Mini-Diablo
     {C, 1117, 1119},
-    {N, 1119,k.L["Collector's Edition"], true}, -- Collector's Edition
+    {N, 1119, a.L["Collector's Edition"], true}, -- Collector's Edition
     {A, 1118, 18250}, -- Ysergle The Dreamurk
     {A, 1118, 14904}, -- Netherwhelp Online
     {A, 1118, 14027}, -- Battle for Mrrglroth
@@ -236,7 +237,7 @@ tasks = {
     {A, 1118, 412}, -- Murloc Costume
     {A, 1118, 411}, -- Murky
     {C, 1117, 1118},
-    {N, 1118,k.L["BlizzCon"], true}, -- BlizzCon
+    {N, 1118, a.L["BlizzCon"], true}, -- BlizzCon
     {A, 1117, 19029}, -- Lil' Maggz
     {A, 1117, 15594}, -- Fearless Spectator
     {A, 1117, 11211}, -- Fight for the Horde
@@ -245,7 +246,7 @@ tasks = {
     {A, 1117, 10537}, -- Patron of War
     {A, 1117, 414}, -- Tyrael's Hilt
     {C, 971, 1117},
-    {N, 1117,k.GetCategoryInfoTitle(15268)}, -- Promotions
+    {N, 1117, a.GetCategoryInfoTitle(15268)}, -- Promotions
     {A, 1115, 4576}, -- Realm First! Fall of the Lich King
     {A, 1115, 4078}, -- Realm First! Grand Crusader
     {A, 1115, 3259}, -- Realm First! Celestial Defender
@@ -254,18 +255,18 @@ tasks = {
     {A, 1115, 456}, -- Realm First! Obsidian Slayer
     {A, 1115, 1402}, -- Realm First! Conqueror of Naxxramas
     {C, 1105, 1115},
-    {N, 1115,k.GetCategoryInfoTitle(15271), true}, -- Raids
+    {N, 1115, a.GetCategoryInfoTitle(15271), true}, -- Raids
     {A, 1114, 16801}, -- Realm First! Dragonflight Keystone Hero
     {A, 1114, 14662}, -- Realm First! Shadowlands Keystone Master
     {A, 1114, 13078}, -- Realm First! Battle for Azeroth Keystone Master
     {A, 1114, 11224}, -- Realm First! Legion Keystone Master
     {A, 1114, 6433}, -- Realm First! Challenge Conqueror: Gold
     {C, 1105, 1114},
-    {N, 1114,k.GetCategoryInfoTitle(15272), true}, -- Dungeons
+    {N, 1114, a.GetCategoryInfoTitle(15272), true}, -- Dungeons
     {A, 1116, 6829}, -- Realm First! Pandaren Ambassador
     {A, 1116, 1463}, -- Realm First! Northrend Vanguard
     {C, 1105, 1116},
-    {N, 1116,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1116, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1113, 6872}, -- Realm First! Zen Master Tailor
     {A, 1113, 6871}, -- Realm First! Zen Master Skinner
     {A, 1113, 6867}, -- Realm First! Zen Master Scribe
@@ -282,7 +283,7 @@ tasks = {
     {A, 1113, 6865}, -- Realm First! Zen Master Angler
     {A, 1113, 6859}, -- Realm First! Zen Master Alchemist
     {C, 1110, 1113},
-    {N, 1113,k.L["600 skill"], true}, -- 600 skill
+    {N, 1113, a.L["600 skill"], true}, -- 600 skill
     {A, 1112, 5394}, -- Realm First! Illustrious Tailor
     {A, 1112, 5393}, -- Realm First! Illustrious Skinner
     {A, 1112, 5389}, -- Realm First! Illustrious Scribe
@@ -299,7 +300,7 @@ tasks = {
     {A, 1112, 5387}, -- Realm First! Illustrious Angler
     {A, 1112, 5381}, -- Realm First! Illustrious Alchemist
     {C, 1110, 1112},
-    {N, 1112,k.L["525 skill"], true}, -- 525 skill
+    {N, 1112, a.L["525 skill"], true}, -- 525 skill
     {A, 1111, 1427}, -- Realm First! Grand Master Tailor
     {A, 1111, 1426}, -- Realm First! Grand Master Skinner
     {A, 1111, 1422}, -- Realm First! Grand Master Scribe
@@ -316,9 +317,9 @@ tasks = {
     {A, 1111, 1420}, -- Realm First! Grand Master Angler
     {A, 1111, 1415}, -- Realm First! Grand Master Alchemist
     {C, 1110, 1111},
-    {N, 1111,k.L["450 skill"], true}, -- 450 skill
+    {N, 1111, a.L["450 skill"], true}, -- 450 skill
     {C, 1105, 1110},
-    {N, 1110,k.GetCategoryInfoTitle(169)}, -- Professions
+    {N, 1110, a.GetCategoryInfoTitle(169)}, -- Professions
     {A, 1109, 6743}, -- Realm First! Level 90 Druid
     {A, 1109, 6752}, -- Realm First! Level 90 Monk
     {A, 1109, 6746}, -- Realm First! Level 90 Warlock
@@ -332,7 +333,7 @@ tasks = {
     {A, 1109, 6750}, -- Realm First! Level 90 Warrior
     {A, 1109, 6524}, -- Realm First! Level 90
     {C, 1106, 1109},
-    {N, 1109,k.L["Level 90"], true}, -- Level 90
+    {N, 1109, a.L["Level 90"], true}, -- Level 90
     {A, 1108, 5000}, -- Realm First! Level 85 Druid
     {A, 1108, 5003}, -- Realm First! Level 85 Warlock
     {A, 1108, 5006}, -- Realm First! Level 85 Mage
@@ -345,7 +346,7 @@ tasks = {
     {A, 1108, 5007}, -- Realm First! Level 85 Warrior
     {A, 1108, 4999}, -- Realm First! Level 85
     {C, 1106, 1108},
-    {N, 1108,k.L["Level 85"], true}, -- Level 85
+    {N, 1108, a.L["Level 85"], true}, -- Level 85
     {A, 1107, 1406}, -- Realm First! Level 80 Draenei
     {A, 1107, 1405}, -- Realm First! Level 80 Blood Elf
     {A, 1107, 1412}, -- Realm First! Level 80 Troll
@@ -368,11 +369,11 @@ tasks = {
     {A, 1107, 459}, -- Realm First! Level 80 Warrior
     {A, 1107, 457}, -- Realm First! Level 80
     {C, 1106, 1107},
-    {N, 1107,k.L["Level 80"], true}, -- Level 80
+    {N, 1107, a.L["Level 80"], true}, -- Level 80
     {C, 1105, 1106},
-    {N, 1106,k.L["Leveling"]}, -- Leveling
+    {N, 1106, a.L["Leveling"]}, -- Leveling
     {C, 971, 1105},
-    {N, 1105,k.L["Realm First!"]}, -- Realm First!
+    {N, 1105, a.L["Realm First!"]}, -- Realm First!
     {A, 1104, 19276}, -- Verdant Vogue
     {A, 1104, 18249}, -- Obsidian Tie Event
     {A, 1104, 16764}, -- Crimson Carpet Fashion
@@ -405,7 +406,7 @@ tasks = {
     {A, 1104, 11707}, -- No Mercy
     {A, 1104, 11706}, -- The Original
     {C, 1101, 1104},
-    {N, 1104,k.GetCategoryInfoTitle(95)}, -- Player vs. Player
+    {N, 1104, a.GetCategoryInfoTitle(95)}, -- Player vs. Player
     {A, 1103, 19442}, -- Fire Catwalk With Me
     {A, 1103, 17765}, -- What We Wear In The Shadowflame
     {A, 1103, 16395}, -- Vaulternative Fashion
@@ -441,7 +442,7 @@ tasks = {
     {A, 1103, 11742}, -- Dress in Lairs
     {A, 1103, 11741}, -- So Hot Right Now
     {C, 1101, 1103},
-    {N, 1103,k.GetCategoryInfoTitle(15271)}, -- Raids
+    {N, 1103, a.GetCategoryInfoTitle(15271)}, -- Raids
     {A, 1102, 16502}, -- Storming the Runway
     {A, 1102, 10694}, -- Fabulous
     {A, 1102, 10689}, -- Fashionista: Weapon & Off-Hand
@@ -457,12 +458,12 @@ tasks = {
     {A, 1102, 10682}, -- Fashionista: Chest
     {A, 1102, 10681}, -- Fashionista: Head
     {C, 1101, 1102},
-    {N, 1102,k.GetCategoryInfoTitle(15246)}, -- Collections
+    {N, 1102, a.GetCategoryInfoTitle(15246)}, -- Collections
     {A, 1101, 18380}, -- Dragonflight Season 2 Hero
     {A, 1101, 17119}, -- Deep Cuts From the Vault
     {A, 1101, 11761}, -- Azeroth's Next Top Model
     {C, 971, 1101},
-    {N, 1101,(UnitName("player")) .. " " .. (GetTitleName(334))}, -- Player the Fabulous
+    {N, 1101, (UnitName("player")) .. " " .. (GetTitleName(334))}, -- Player the Fabulous
     {A, 1099, 5356}, -- High Warlord
     {A, 1099, 5343}, -- Grand Marshal
     {A, 1099, 5342}, -- Warlord
@@ -496,7 +497,7 @@ tasks = {
     {A, 1099, 5325}, -- Veteran of the Horde
     {A, 1099, 5328}, -- Veteran of the Alliance
     {C, 1093, 1099},
-    {N, 1099,k.L["Rated"], true}, -- Rated
+    {N, 1099, a.L["Rated"], true}, -- Rated
     {A, 1098, 8055}, -- Khan
     {A, 1098, 8052}, -- Khan
     {A, 1098, 1175}, -- Battlemaster
@@ -506,16 +507,16 @@ tasks = {
     {A, 1098, 714}, -- The Conqueror
     {A, 1098, 907}, -- The Justicar
     {C, 1093, 1098},
-    {N, 1098,k.GetCategoryInfoTitle(153), true}, -- Battlegrounds
+    {N, 1098, a.GetCategoryInfoTitle(153), true}, -- Battlegrounds
     {A, 1097, 12861}, -- Master of Duels
     {C, 1093, 1097},
-    {N, 1097,k.L["Dueler's Guild"], true}, -- Dueler's Guild
+    {N, 1097, a.L["Dueler's Guild"], true}, -- Dueler's Guild
     {A, 1095, 12604}, -- Conqueror of Azeroth
     {A, 1095, 12605}, -- Conqueror of Azeroth
     {A, 1095, 14191}, -- Servant of N'Zoth
     {A, 1095, 8721}, -- Fire-Watcher
     {C, 1093, 1095},
-    {N, 1095,k.GetCategoryInfoTitle(15283), true}, -- World
+    {N, 1095, a.GetCategoryInfoTitle(15283), true}, -- World
     {A, 1096, 5363}, -- 250000 Honorable Kills
     {A, 1096, 870}, -- 100000 Honorable Kills
     {A, 1096, 12915}, -- Honor Level 300
@@ -525,9 +526,9 @@ tasks = {
     {A, 1096, 12904}, -- Honor Level 50
     {A, 1096, 12901}, -- Honor Level 25
     {C, 1093, 1096},
-    {N, 1096,k.GetCategoryInfoTitle(15266), true}, -- Honor
+    {N, 1096, a.GetCategoryInfoTitle(15266), true}, -- Honor
     {C, 1084, 1093},
-    {N, 1093,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 1093, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 1094, 1691}, -- Merrymaker
     {A, 1094, 3478}, -- Pilgrim
     {A, 1094, 1656}, -- Hallowed Be Thy Name
@@ -539,7 +540,7 @@ tasks = {
     {A, 1094, 1693}, -- Fool For Love
     {A, 1094, 913}, -- To Honor One's Elders
     {C, 1084, 1094},
-    {N, 1094,k.L["Events"], true}, -- Events
+    {N, 1094, a.L["Events"], true}, -- Events
     {A, 1092, 1563}, -- Hail to the Chef
     {A, 1092, 4856}, -- It Belongs in a Museum!
     {A, 1092, 4855}, -- What was Briefly Yours is Now Mine
@@ -547,7 +548,7 @@ tasks = {
     {A, 1092, 7306}, -- Master of Pandaren Cooking
     {A, 1092, 1516}, -- Accomplished Angler
     {C, 1084, 1092},
-    {N, 1092,k.GetCategoryInfoTitle(169), true}, -- Professions
+    {N, 1092, a.GetCategoryInfoTitle(169), true}, -- Professions
     {A, 1091, 11761}, -- Azeroth's Next Top Model
     {A, 1091, 10694}, -- Fabulous
     {A, 1091, 10354}, -- Crashin' Thrashin' Commander
@@ -556,76 +557,76 @@ tasks = {
     {A, 1091, 8397}, -- Crazy for Cats
     {A, 1091, 6590}, -- World Safari
     {C, 1084, 1091},
-    {N, 1091,k.GetCategoryInfoTitle(15246), true}, -- Collections
+    {N, 1091, a.GetCategoryInfoTitle(15246), true}, -- Collections
     {A, 1090, 13191}, -- Brawler for Azeroth
     {C, 1084, 1090},
-    {N, 1090,k.L["Brawler's Guild"] .. " (" .. k.GetCategoryInfoTitle(15234) .. ")", true}, -- Brawler's Guild
+    {N, 1090, a.L["Brawler's Guild"] .. " (" .. a.GetCategoryInfoTitle(15234) .. ")", true}, -- Brawler's Guild
     {A, 1089, 8301}, -- Deadly Pet Brawler
     {A, 1089, 14020}, -- Pet Battle Challenge: Blackrock Depths
     {A, 1089, 6607}, -- Taming Azeroth
     {C, 1084, 1089},
-    {N, 1089,k.GetCategoryInfoTitle(15117), true}, -- Pet Battles
+    {N, 1089, a.GetCategoryInfoTitle(15117), true}, -- Pet Battles
     {A, 1087, 4477}, -- Looking For Many
     {C, 1084, 1087},
-    {N, 1087,k.GetCategoryInfoTitle(15272), true}, -- Dungeons
+    {N, 1087, a.GetCategoryInfoTitle(15272), true}, -- Dungeons
     {A, 1088, 12866}, -- 100 Exalted Reputations
     {A, 1088, 12864}, -- 80 Exalted Reputations
     {A, 1088, 6742}, -- 60 Exalted Reputations
     {A, 1088, 1015}, -- 40 Exalted Reputations
     {C, 1084, 1088},
-    {N, 1088,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1088, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1086, 12439}, -- Priority Mail
     {A, 1086, 9924}, -- Field Photographer
     {A, 1086, 46}, -- Universal Explorer
     {C, 1084, 1086},
-    {N, 1086,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 1086, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 1085, 7520}, -- The Loremaster
     {A, 1085, 978}, -- 3000 Quests Completed
     {C, 1084, 1085},
-    {N, 1085,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 1085, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 1043, 1084},
-    {N, 1084,k.L["Other"]}, -- Other
+    {N, 1084, a.L["Other"]}, -- Other
     {A, 1083, 14682}, -- The Party Herald
     {A, 1083, 14752}, -- Things To Do When You're Dead
     {C, 1053, 1083},
-    {N, 1083,k.GetCategoryInfoTitle(15441), true}, -- Covenant Sanctums
+    {N, 1083, a.GetCategoryInfoTitle(15441), true}, -- Covenant Sanctums
     {A, 1082, 14568}, -- Twisting Corridors: Layer 6
     {C, 1053, 1082},
-    {N, 1082,k.GetCategoryInfoTitle(15440), true}, -- Torghast
+    {N, 1082, a.GetCategoryInfoTitle(15440), true}, -- Torghast
     {A, 1081, 15489}, -- Mythic: The Jailer
     {A, 1081, 15121}, -- Mythic: Sylvanas Windrunner
     {A, 1081, 14365}, -- Mythic: Sire Denathrius
     {C, 1053, 1081},
-    {N, 1081,k.GetCategoryInfoTitle(15271), true}, -- Raids
+    {N, 1081, a.GetCategoryInfoTitle(15271), true}, -- Raids
     {A, 1080, 14277}, -- The Accuser's Avowed
     {C, 1053, 1080},
-    {N, 1080,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 1080, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {C, 1043, 1053},
-    {N, 1053,k.GetCategoryInfoTitle(15439)}, -- Shadowlands
+    {N, 1053, a.GetCategoryInfoTitle(15439)}, -- Shadowlands
     {A, 1079, 14140}, -- Mad World
     {C, 1052, 1079},
-    {N, 1079,k.GetCategoryInfoTitle(15426), true}, -- Visions of N'Zoth
+    {N, 1079, a.GetCategoryInfoTitle(15426), true}, -- Visions of N'Zoth
     {A, 1078, 13779}, -- Phenomenal Cosmic Power
     {C, 1052, 1078},
-    {N, 1078,k.GetCategoryInfoTitle(15417), true}, -- Heart of Azeroth
+    {N, 1078, a.GetCategoryInfoTitle(15417), true}, -- Heart of Azeroth
     {A, 1077, 14055}, -- Mythic: N'Zoth the Corruptor
     {A, 1077, 13733}, -- Mythic: Queen Azshara
     {A, 1077, 13314}, -- Mythic: Lady Jaina Proudmoore
     {A, 1077, 12533}, -- Mythic: G'huun
     {C, 1052, 1077},
-    {N, 1077,k.GetCategoryInfoTitle(15271), true}, -- Raids
+    {N, 1077, a.GetCategoryInfoTitle(15271), true}, -- Raids
     {A, 1076, 13555}, -- Junkyard Tinkmaster
     {A, 1076, 13638}, -- Undersea Usurper
     {A, 1076, 13134}, -- Expedition Leader
     {C, 1052, 1076},
-    {N, 1076,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 1076, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 1075, 12497}, -- Drust Do It.
     {A, 1075, 13924}, -- The Fourth War
     {A, 1075, 13925}, -- The Fourth War
     {C, 1052, 1075},
-    {N, 1075,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 1075, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 1043, 1052},
-    {N, 1052,k.GetCategoryInfoTitle(15305)}, -- Battle for Azeroth
+    {N, 1052, a.GetCategoryInfoTitle(15305)}, -- Battle for Azeroth
     {A, 1072, 11387}, -- The Chosen
     {A, 1072, 11763}, -- Glory of the Tomb Raider
     {A, 1072, 12002}, -- Mythic: Argus the Unmaker
@@ -633,19 +634,19 @@ tasks = {
     {A, 1072, 10850}, -- Mythic: Gul'dan
     {A, 1072, 10827}, -- Mythic: Xavius
     {C, 1051, 1072},
-    {N, 1072,k.GetCategoryInfoTitle(15271), true}, -- Raids
+    {N, 1072, a.GetCategoryInfoTitle(15271), true}, -- Raids
     {A, 1071, 11941}, -- Chromie Homie
     {C, 1051, 1071},
-    {N, 1071,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1071, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1070, 12083}, -- Paragon of Argus
     {A, 1070, 12104}, -- And We're All Out of Mana Buns
     {C, 1051, 1070},
-    {N, 1070,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 1070, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 1074, 11232}, -- "Lock, Stock and Two Smoking Goblins"
     {C, 1051, 1074},
-    {N, 1074,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 1074, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 1043, 1051},
-    {N, 1051,k.GetCategoryInfoTitle(15258)}, -- Legion
+    {N, 1051, a.GetCategoryInfoTitle(15258)}, -- Legion
     {A, 1069, 9508}, -- Warlord of Draenor
     {A, 1069, 9738}, -- Warlord of Draenor
     {A, 1069, 9514}, -- Nemesis: Terror of the Tushui
@@ -671,13 +672,13 @@ tasks = {
     {A, 1069, 9706}, -- The Stable Master
     {A, 1069, 9540}, -- The Stable Master
     {C, 1050, 1069},
-    {N, 1069,k.L["Garrison"], true}, -- Garrison
+    {N, 1069, a.L["Garrison"], true}, -- Garrison
     {A, 1068, 10043}, -- Mythic: Archimonde
     {A, 1068, 8973}, -- Mythic: Blackhand's Crucible
     {A, 1068, 8965}, -- Mythic: Imperator's Fall
     {A, 1068, 9619}, -- Savage Hero
     {C, 1050, 1068},
-    {N, 1068,k.GetCategoryInfoTitle(15271), true}, -- Raids
+    {N, 1068, a.GetCategoryInfoTitle(15271), true}, -- Raids
     {A, 1067, 9472}, -- Steamwheedle Preservation Society
     {A, 1067, 9473}, -- Vol'jin's Spear
     {A, 1067, 9474}, -- Wrynn's Vanguard
@@ -687,21 +688,21 @@ tasks = {
     {A, 1067, 9471}, -- Frostwolf Orcs
     {A, 1067, 9470}, -- Council of Exarchs
     {C, 1050, 1067},
-    {N, 1067,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1067, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1066, 10334}, -- Predator
     {A, 1066, 10265}, -- Rumble in the Jungle
     {A, 1066, 10072}, -- Rumble in the Jungle
     {C, 1050, 1066},
-    {N, 1066,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 1066, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {C, 1043, 1050},
-    {N, 1050,k.GetCategoryInfoTitle(15233)}, -- Warlords of Dreanor
+    {N, 1050, a.GetCategoryInfoTitle(15233)}, -- Warlords of Dreanor
     {A, 1064, 9589}, -- Proving Yourself: Endless Healer (Wave 30)
     {A, 1064, 9583}, -- Proving Yourself: Endless Tank (Wave 30)
     {A, 1064, 9577}, -- Proving Yourself: Endless Damage (Wave 30)
     {A, 1064, 7509}, -- Scenaturday
     {A, 1064, 6874}, -- Scenaturday
     {C, 1049, 1064},
-    {N, 1064,k.L["Scenarios"], true}, -- Scenarios
+    {N, 1064, a.L["Scenarios"], true}, -- Scenarios
     {A, 1063, 8482}, -- Mythic: Garrosh Hellscream
     {A, 1063, 8680}, -- Liberator of Orgrimmar
     {A, 1063, 8679}, -- Conqueror of Orgrimmar
@@ -710,18 +711,18 @@ tasks = {
     {A, 1063, 6724}, -- Heroic: Will of the Emperor
     {A, 1063, 6926}, -- Tranquil Master
     {C, 1049, 1063},
-    {N, 1063,k.GetCategoryInfoTitle(15271), true}, -- Raids
+    {N, 1063, a.GetCategoryInfoTitle(15271), true}, -- Raids
     {A, 1062, 8023}, -- Wakener
     {A, 1062, 6544}, -- The Tillers
     {C, 1049, 1062},
-    {N, 1062,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1062, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1061, 8121}, -- Stormbreaker
     {A, 1061, 7479}, -- The Shado-Master
     {A, 1061, 7284}, -- Is Another Man's Treasure
     {C, 1049, 1061},
-    {N, 1061,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 1061, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {C, 1043, 1049},
-    {N, 1049,k.GetCategoryInfoTitle(15164)}, -- Mists of Pandaria
+    {N, 1049, a.GetCategoryInfoTitle(15164)}, -- Mists of Pandaria
     {A, 1060, 6116}, -- Heroic: Madness of Deathwing
     {A, 1060, 6177}, -- Destroyer's End
     {A, 1060, 5803}, -- Heroic: Ragnaros
@@ -730,16 +731,16 @@ tasks = {
     {A, 1060, 5121}, -- Heroic: Sinestra
     {A, 1060, 5116}, -- Heroic: Nefarian
     {C, 1048, 1060},
-    {N, 1060,k.GetCategoryInfoTitle(15271), true}, -- Raids
+    {N, 1060, a.GetCategoryInfoTitle(15271), true}, -- Raids
     {A, 1059, 5827}, -- Avengers of Hyjal
     {C, 1048, 1059},
-    {N, 1059,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1059, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1058, 5879}, -- Veteran of the Molten Front
     {C, 1048, 1058},
-    {N, 1058,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 1058, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 1048, 5767}, -- Scourer of the Eternal Sands
     {C, 1043, 1048},
-    {N, 1048,k.GetCategoryInfoTitle(15072)}, -- Cataclysm
+    {N, 1048, a.GetCategoryInfoTitle(15072)}, -- Cataclysm
     {A, 1056, 4584}, -- The Light of Dawn
     {A, 1056, 4597}, -- The Frozen Throne (25 player)
     {A, 1056, 4583}, -- Bane of the Fallen King
@@ -750,10 +751,10 @@ tasks = {
     {A, 1056, 2054}, -- The Twilight Zone (25 player)
     {A, 1056, 2051}, -- The Twilight Zone (10 player)
     {C, 1047, 1056},
-    {N, 1056,k.GetCategoryInfoTitle(15271), true}, -- Raids
+    {N, 1056, a.GetCategoryInfoTitle(15271), true}, -- Raids
     {A, 1057, 9058}, -- Leeeeeeeeeeeeeroy...?
     {C, 1047, 1057},
-    {N, 1057,k.GetCategoryInfoTitle(15272), true}, -- Dungeons
+    {N, 1057, a.GetCategoryInfoTitle(15272), true}, -- Dungeons
     {A, 1054, 2816}, -- Exalted Argent Champion of the Horde
     {A, 1054, 2817}, -- Exalted Argent Champion of the Alliance
     {A, 1054, 2766}, -- Exalted Champion of Sen'jin
@@ -772,30 +773,30 @@ tasks = {
     {A, 1054, 943}, -- The Diplomat
     {A, 1054, 942}, -- The Diplomat
     {C, 1047, 1054},
-    {N, 1054,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1054, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {C, 1043, 1047},
-    {N, 1047,k.GetCategoryInfoTitle(14866)}, -- Wrath of the Lich King
+    {N, 1047, a.GetCategoryInfoTitle(14866)}, -- Wrath of the Lich King
     {A, 1065, 2336}, -- Insane in the Membrane
     {A, 1065, 871}, -- "Avast Ye, Admiral!"
     {A, 1065, 762}, -- Ambassador of the Horde
     {A, 1065, 948}, -- Ambassador of the Alliance
     {C, 1045, 1065},
-    {N, 1065,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1065, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1045, 15579}, -- Return to Lordaeron
     {C, 1043, 1045},
-    {N, 1045,k.GetCategoryInfoTitle(14864)}, -- Classic
+    {N, 1045, a.GetCategoryInfoTitle(14864)}, -- Classic
     {C, 971, 1043},
-    {N, 1043,k.L["The Entitled"] .. " " .. (UnitName("player"))}, -- The Entitled Player
+    {N, 1043, a.L["The Entitled"] .. " " .. (UnitName("player"))}, -- The Entitled Player
     {A, 1409, 17426}, -- Toolbox Trouble
     {C, 972, 1409},
-    {N, 1409,k.L["Recruit-a-Friend"]}, -- Recruit-a-Friend
+    {N, 1409, a.L["Recruit-a-Friend"]}, -- Recruit-a-Friend
     {A, 988, 9925}, -- Friends In Places Yet Even Higher Than That
     {A, 988, 8794}, -- Friends In Places Even Higher Than That
     {A, 988, 8213}, -- Friends In Places Higher Yet
     {A, 988, 4832}, -- Friends In Even Higher Places
     {A, 988, 1436}, -- Friends In High Places
     {C, 972, 988},
-    {N, 988,k.L["Recruit-a-Friend"] .. " (" .. k.GetCategoryInfoTitle(15234) .. ")"}, -- Recruit-a-Friend
+    {N, 988, a.L["Recruit-a-Friend"] .. " (" .. a.GetCategoryInfoTitle(15234) .. ")"}, -- Recruit-a-Friend
     {A, 978, 19295}, -- Verdant Gladiator's Slitherdrake
     {A, 978, 19091}, -- Gladiator: Dragonflight Season 3
     {A, 978, 17778}, -- Obsidian Gladiator's Slitherdrake
@@ -844,7 +845,7 @@ tasks = {
     {A, 978, 887}, -- Merciless Nether Drake
     {A, 978, 886}, -- Swift Nether Drake
     {C, 977, 978},
-    {N, 978,(select(2, k.GetAchievementInfo(2091))), true}, -- Gladiator
+    {N, 978, (select(2, a.GetAchievementInfo(2091))), true}, -- Gladiator
     {A, 977, 11474}, -- "Free For All, More For Me"
     {A, 977, 9236}, -- Primal Combatant
     {A, 977, 9238}, -- Primal Combatant
@@ -856,7 +857,7 @@ tasks = {
     {A, 977, 12903}, -- Honor Level 40
     {A, 977, 12895}, -- Honor Level 15
     {C, 972, 977},
-    {N, 977,k.GetCategoryInfoTitle(95)}, -- PvP
+    {N, 977, a.GetCategoryInfoTitle(95)}, -- PvP
     {A, 981, 15491}, -- Glory of the Sepulcher Raider
     {A, 981, 15130}, -- Glory of the Dominant Raider
     {A, 981, 14355}, -- Glory of the Nathria Raider
@@ -880,7 +881,7 @@ tasks = {
     {A, 981, 2957}, -- Glory of the Ulduar Raider (10 player)
     {A, 981, 12401}, -- Glory of the Ulduar Raider
     {C, 982, 981},
-    {N, 981,k.L["Glory"], true}, -- Glory
+    {N, 981, a.L["Glory"], true}, -- Glory
     {A, 984, 4625}, -- Invincible's Reins
     {A, 984, 4626}, -- And I'll Form the Head!
     {A, 984, 2081}, -- Grand Black War Mammoth
@@ -891,12 +892,12 @@ tasks = {
     {A, 984, 881}, -- Swift Razzashi Raptor
     {A, 984, 880}, -- Swift Zulian Tiger
     {C, 982, 984},
-    {N, 984,k.L["Drops"], true}, -- Drops
+    {N, 984, a.L["Drops"], true}, -- Drops
     {A, 982, 15684}, -- Fates of the Shadowlands Raids
     {A, 982, 8399}, -- Ahead of the Curve: Garrosh Hellscream (25 player)
     {A, 982, 8398}, -- Ahead of the Curve: Garrosh Hellscream (10 player)
     {C, 972, 982},
-    {N, 982,k.GetCategoryInfoTitle(15271)}, -- Raids
+    {N, 982, a.GetCategoryInfoTitle(15271)}, -- Raids
     {A, 980, 14322}, -- Glory of the Shadowlands Hero
     {A, 980, 12812}, -- Glory of the Wartorn Hero
     {A, 980, 11163}, -- Glory of the Legion Hero
@@ -905,12 +906,12 @@ tasks = {
     {A, 980, 4845}, -- Glory of the Cataclysm Hero
     {A, 980, 2136}, -- Glory of the Hero
     {C, 979, 980},
-    {N, 980,k.L["Glory"], true}, -- Glory
+    {N, 980, a.L["Glory"], true}, -- Glory
     {A, 983, 884}, -- Swift White Hawkstrider
     {A, 983, 883}, -- Reins of the Raven Lord
     {A, 983, 729}, -- Deathcharger's Reins
     {C, 979, 983},
-    {N, 983,k.L["Drops"], true}, -- Drops
+    {N, 983, a.L["Drops"], true}, -- Drops
     {A, 979, 15178}, -- Fake It 'Til You Make It
     {A, 979, 15499}, -- Shadowlands Keystone Master: Season Three
     {A, 979, 15078}, -- Shadowlands Keystone Master: Season Two
@@ -919,7 +920,7 @@ tasks = {
     {A, 979, 8898}, -- Challenge Warlord: Silver
     {A, 979, 6375}, -- Challenge Conqueror: Silver
     {C, 972, 979},
-    {N, 979,k.GetCategoryInfoTitle(15272)}, -- Dungeons
+    {N, 979, a.GetCategoryInfoTitle(15272)}, -- Dungeons
     {A, 989, 15336}, -- From A to Zereth
     {A, 989, 15402}, -- Cyphers of the First Ones
     {A, 989, 15064}, -- Breaking the Chains
@@ -936,7 +937,7 @@ tasks = {
     {A, 989, 5767}, -- Scourer of the Eternal Sands
     {A, 989, 879}, -- Old School Ride
     {C, 972, 989},
-    {N, 989,k.L["Achievements"]}, -- Achievements
+    {N, 989, a.L["Achievements"]}, -- Achievements
     {A, 987, 13931}, -- "Memories of Fel, Frost and Fire"
     {A, 987, 9550}, -- "Boldly, You Sought the Power of Ragnaros"
     {A, 987, 9496}, -- Warlord's Deathwheel
@@ -946,11 +947,11 @@ tasks = {
     {A, 987, 980}, -- The Horseman's Reins
     {A, 987, 416}, -- Scarab Lord
     {C, 972, 987},
-    {N, 987,k.L["Events"]}, -- Events
+    {N, 987, a.L["Events"]}, -- Events
     {A, 986, 5749}, -- Vial of the Sands
     {A, 986, 2097}, -- Get to the Choppa!
     {C, 972, 986},
-    {N, 986,k.GetCategoryInfoTitle(169)}, -- Professions
+    {N, 986, a.GetCategoryInfoTitle(169)}, -- Professions
     {A, 985, 14183}, -- Conspicuous Consumption
     {A, 985, 9909}, -- Heirloom Hoarder
     {A, 985, 8092}, -- I've Got 9999 Problems but a Bone-White Primal Raptor Ain't One
@@ -960,7 +961,7 @@ tasks = {
     {A, 985, 2077}, -- Wooly Mammoth
     {A, 985, 2076}, -- Armored Brown Bear
     {C, 972, 985},
-    {N, 985,k.L["Vendor"]}, -- Vendor
+    {N, 985, a.L["Vendor"]}, -- Vendor
     {A, 976, 9713}, -- Awake the Drakes
     {A, 976, 15833}, -- Thanks for the Carry!
     {A, 976, 15834}, -- Thanks for the Carry!
@@ -982,43 +983,43 @@ tasks = {
     {A, 976, 2142}, -- Filling Up The Barn
     {A, 976, 2141}, -- Stable Keeper
     {C, 972, 976},
-    {N, 976,k.GetCategoryInfoTitle(15246)}, -- Collections
+    {N, 976, a.GetCategoryInfoTitle(15246)}, -- Collections
     {A, 972, 12866}, -- 100 Exalted Reputations
     {A, 972, 3357}, -- Venomhide Ravasaur
     {A, 972, 3356}, -- Winterspring Frostsaber
     {C, 971, 972},
-    {N, 972,k.L["Bur's Mount Collection"]}, -- Bur's Mount Collection
+    {N, 972, a.L["Bur's Mount Collection"]}, -- Bur's Mount Collection
     {F, 1396, "SearchResultsCategories"},
     {C, 971, 1396},
-    {N, 1396,k.L["Search Results"]}, -- Search Results
+    {N, 1396, a.L["Search Results"]}, -- Search Results
     function() categories[850].IsSelectedZone = true; end,
     {F, 850, "SelectedZoneCategories"},
     {C, 971, 850},
-    {N, 850,k.L["Selected Zone"]}, -- Selected Zone
+    {N, 850, a.L["Selected Zone"]}, -- Selected Zone
     function() categories[433].IsCurrentZone = true; end,
     {F, 433, "CurrentZoneCategories"},
     {C, 971, 433},
-    {N, 433,k.L["Current Zone"]}, -- Current Zone
+    {N, 433, a.L["Current Zone"]}, -- Current Zone
     function() categories[949].IsWatchList = true; end,
     {F, 949, "WatchListCategories"},
     {C, 971, 949},
-    {N, 949,k.L["Watch List"]}, -- Watch List
+    {N, 949, a.L["Watch List"]}, -- Watch List
     {S, 1204},
     {V, 1204},
     {C, 971, 1204},
-    {N, 1204,k.L["Summary"]}, -- Summary
+    {N, 1204, a.L["Summary"]}, -- Summary
     {T, 971, "Specials"},
-    {N, 971,k.L["Specials"]}, -- TAB - Specials
+    {N, 971, a.L["Specials"]}, -- TAB - Specials
     {F, 1556, "UncategorizedCategories"},
     {C, 955, 1556},
-    {N, 1556,k.L["Uncategorized"]}, -- Uncategorized
+    {N, 1556, a.L["Uncategorized"]}, -- Uncategorized
     {F, 1227, "ExcludedCategories"},
     {C, 955, 1227},
-    {N, 1227,k.L["Excluded"]}, -- Excluded
+    {N, 1227, a.L["Excluded"]}, -- Excluded
     function() categories[1368].IsTracking = true; end,
     {F, 1368, "TrackingAchievementsCategories"},
     {C, 955, 1368},
-    {N, 1368,k.L["Tracking Achievements"]}, -- Tracking Achievements
+    {N, 1368, a.L["Tracking Achievements"]}, -- Tracking Achievements
     {A, 1540, 19420}, -- Dragonflight Season 3 Hero
     {A, 1540, 19396}, -- Dragonflight Season 3 Master
     {A, 1540, 19449}, -- Dreaming Hero: Dragonflight Season 3
@@ -1037,7 +1038,7 @@ tasks = {
     {A, 1540, 19158}, -- Combatant II: Dragonflight Season 3
     {A, 1540, 19157}, -- Combatant I: Dragonflight Season 3
     {C, 1344, 1540},
-    {N, 1540,k.L["Season"] .. " " .. 3}, -- Season 3
+    {N, 1540, a.L["Season"] .. " " .. 3}, -- Season 3
     {A, 1413, 18380}, -- Dragonflight Season 2 Hero
     {A, 1413, 18027}, -- Dragonflight Season 2 Master
     {A, 1413, 17767}, -- Obsidian Legend: Dragonflight Season 2
@@ -1054,7 +1055,7 @@ tasks = {
     {A, 1413, 17800}, -- Combatant II: Dragonflight Season 2
     {A, 1413, 17799}, -- Combatant I: Dragonflight Season 2
     {C, 1344, 1413},
-    {N, 1413,k.L["Season"] .. " " .. 2}, -- Season 2
+    {N, 1413, a.L["Season"] .. " " .. 2}, -- Season 2
     {A, 1345, 17119}, -- Deep Cuts From the Vault
     {A, 1345, 16734}, -- Crimson Legend: Dragonflight Season 1
     {A, 1345, 17339}, -- Legend: Dragonflight Season 1
@@ -1070,9 +1071,9 @@ tasks = {
     {A, 1345, 15961}, -- Combatant II: Dragonflight Season 1
     {A, 1345, 15960}, -- Combatant I: Dragonflight Season 1
     {C, 1344, 1345},
-    {N, 1345,k.L["Season"] .. " " .. 1}, -- Season 1
+    {N, 1345, a.L["Season"] .. " " .. 1}, -- Season 1
     {C, 955, 1344},
-    {N, 1344,k.GetCategoryInfoTitle(15466)}, -- Dragonflight
+    {N, 1344, a.GetCategoryInfoTitle(15466)}, -- Dragonflight
     {A, 1191, 15607}, -- Hero of the Horde: Eternal
     {A, 1191, 15608}, -- Hero of the Alliance: Eternal
     {A, 1191, 15606}, -- Eternal Gladiator: Shadowlands Season 4
@@ -1085,7 +1086,7 @@ tasks = {
     {A, 1191, 15610}, -- Combatant II: Shadowlands Season 4
     {A, 1191, 15609}, -- Combatant I: Shadowlands Season 4
     {C, 1187, 1191},
-    {N, 1191,k.L["Season"] .. " " .. 4}, -- Season 4
+    {N, 1191, a.L["Season"] .. " " .. 4}, -- Season 4
     {A, 1190, 15356}, -- Hero of the Horde: Cosmic
     {A, 1190, 15355}, -- Hero of the Alliance: Cosmic
     {A, 1190, 15353}, -- Cosmic Gladiator: Shadowlands Season 3
@@ -1098,7 +1099,7 @@ tasks = {
     {A, 1190, 15380}, -- Combatant II: Shadowlands Season 3
     {A, 1190, 15348}, -- Combatant I: Shadowlands Season 3
     {C, 1187, 1190},
-    {N, 1190,k.L["Season"] .. " " .. 3}, -- Season 3
+    {N, 1190, a.L["Season"] .. " " .. 3}, -- Season 3
     {A, 1189, 14975}, -- Hero of the Alliance: Unchained
     {A, 1189, 14976}, -- Hero of the Horde: Unchained
     {A, 1189, 14973}, -- Unchained Gladiator: Shadowlands Season 2
@@ -1111,7 +1112,7 @@ tasks = {
     {A, 1189, 15232}, -- Combatant II: Shadowlands Season 2
     {A, 1189, 14968}, -- Combatant I: Shadowlands Season 2
     {C, 1187, 1189},
-    {N, 1189,k.L["Season"] .. " " .. 2}, -- Season 2
+    {N, 1189, a.L["Season"] .. " " .. 2}, -- Season 2
     {A, 1188, 14693}, -- Hero of the Horde: Sinful
     {A, 1188, 14692}, -- Hero of the Alliance: Sinful
     {A, 1188, 14690}, -- Sinful Gladiator: Shadowlands Season 1
@@ -1121,9 +1122,9 @@ tasks = {
     {A, 1188, 14686}, -- Challenger: Shadowlands Season 1
     {A, 1188, 14685}, -- Combatant: Shadowlands Season 1
     {C, 1187, 1188},
-    {N, 1188,k.L["Season"] .. " " .. 1}, -- Season 1
+    {N, 1188, a.L["Season"] .. " " .. 1}, -- Season 1
     {C, 955, 1187},
-    {N, 1187,k.GetCategoryInfoTitle(15439)}, -- Shadowlands
+    {N, 1187, a.GetCategoryInfoTitle(15439)}, -- Shadowlands
     {A, 1196, 13965}, -- Hero of the Horde: Corrupted
     {A, 1196, 13966}, -- Hero of the Alliance: Corrupted
     {A, 1196, 13957}, -- Corrupted Gladiator: Battle for Azeroth Season 4
@@ -1133,7 +1134,7 @@ tasks = {
     {A, 1196, 13959}, -- Challenger: Battle for Azeroth Season 4
     {A, 1196, 13962}, -- Combatant: Battle for Azeroth Season 4
     {C, 1192, 1196},
-    {N, 1196,k.L["Season"] .. " " .. 4}, -- Season 4
+    {N, 1196, a.L["Season"] .. " " .. 4}, -- Season 4
     {A, 1195, 13644}, -- Hero of the Horde: Notorious
     {A, 1195, 13643}, -- Hero of the Alliance: Notorious
     {A, 1195, 13630}, -- Notorious Gladiator: Battle for Azeroth Season 3
@@ -1143,7 +1144,7 @@ tasks = {
     {A, 1195, 13634}, -- Challenger: Battle for Azeroth Season 3
     {A, 1195, 13639}, -- Combatant: Battle for Azeroth Season 3
     {C, 1192, 1195},
-    {N, 1195,k.L["Season"] .. " " .. 3}, -- Season 3
+    {N, 1195, a.L["Season"] .. " " .. 3}, -- Season 3
     {A, 1194, 13211}, -- Hero of the Horde: Sinister
     {A, 1194, 13210}, -- Hero of the Alliance: Sinister
     {A, 1194, 13200}, -- Sinister Gladiator: Battle for Azeroth Season 2
@@ -1153,7 +1154,7 @@ tasks = {
     {A, 1194, 13203}, -- Challenger: Battle for Azeroth Season 2
     {A, 1194, 13204}, -- Combatant: Battle for Azeroth Season 2
     {C, 1192, 1194},
-    {N, 1194,k.L["Season"] .. " " .. 2}, -- Season 2
+    {N, 1194, a.L["Season"] .. " " .. 2}, -- Season 2
     {A, 1193, 12964}, -- Hero of the Horde: Dread
     {A, 1193, 12963}, -- Hero of the Alliance: Dread
     {A, 1193, 12945}, -- Dread Gladiator: Battle for Azeroth Season 1
@@ -1163,9 +1164,9 @@ tasks = {
     {A, 1193, 12959}, -- Challenger: Battle for Azeroth Season 1
     {A, 1193, 13199}, -- Combatant: Battle for Azeroth Season 1
     {C, 1192, 1193},
-    {N, 1193,k.L["Season"] .. " " .. 1}, -- Season 1
+    {N, 1193, a.L["Season"] .. " " .. 1}, -- Season 1
     {C, 955, 1192},
-    {N, 1192,k.GetCategoryInfoTitle(15305)}, -- Battle for Azeroth
+    {N, 1192, a.GetCategoryInfoTitle(15305)}, -- Battle for Azeroth
     {A, 1186, 12198}, -- Demonic Elite
     {A, 1186, 12199}, -- Demonic Combatant
     {A, 1186, 12200}, -- Demonic Combatant
@@ -1183,7 +1184,7 @@ tasks = {
     {A, 1186, 12188}, -- Rival: Legion Season 7
     {A, 1186, 12187}, -- Challenger: Legion Season 7
     {C, 1180, 1186},
-    {N, 1186,k.L["Season"] .. " " .. 7}, -- Season 7
+    {N, 1186, a.L["Season"] .. " " .. 7}, -- Season 7
     {A, 1185, 12135}, -- Dominant Elite
     {A, 1185, 12136}, -- Dominant Combatant
     {A, 1185, 12137}, -- Dominant Combatant
@@ -1201,7 +1202,7 @@ tasks = {
     {A, 1185, 12170}, -- Rival: Legion Season 6
     {A, 1185, 12169}, -- Challenger: Legion Season 6
     {C, 1180, 1185},
-    {N, 1185,k.L["Season"] .. " " .. 6}, -- Season 6
+    {N, 1185, a.L["Season"] .. " " .. 6}, -- Season 6
     {A, 1184, 12090}, -- Fierce Elite
     {A, 1184, 12031}, -- Fierce Combatant
     {A, 1184, 12032}, -- Fierce Combatant
@@ -1219,7 +1220,7 @@ tasks = {
     {A, 1184, 12035}, -- Rival: Legion Season 5
     {A, 1184, 12036}, -- Challenger: Legion Season 5
     {C, 1180, 1184},
-    {N, 1184,k.L["Season"] .. " " .. 5}, -- Season 5
+    {N, 1184, a.L["Season"] .. " " .. 5}, -- Season 5
     {A, 1183, 11698}, -- Ferocious Elite
     {A, 1183, 11009}, -- Ferocious Combatant
     {A, 1183, 11010}, -- Ferocious Combatant
@@ -1237,7 +1238,7 @@ tasks = {
     {A, 1183, 11059}, -- Rival: Legion Season 4
     {A, 1183, 11060}, -- Challenger: Legion Season 4
     {C, 1180, 1183},
-    {N, 1183,k.L["Season"] .. " " .. 4}, -- Season 4
+    {N, 1183, a.L["Season"] .. " " .. 4}, -- Season 4
     {A, 1182, 11697}, -- Cruel Elite
     {A, 1182, 11005}, -- Cruel Combatant
     {A, 1182, 11008}, -- Cruel Combatant
@@ -1255,7 +1256,7 @@ tasks = {
     {A, 1182, 11040}, -- Rival: Legion Season 3
     {A, 1182, 11039}, -- Challenger: Legion Season 3
     {C, 1180, 1182},
-    {N, 1182,k.L["Season"] .. " " .. 3}, -- Season 3
+    {N, 1182, a.L["Season"] .. " " .. 3}, -- Season 3
     {A, 1181, 11579}, -- Fearless Elite
     {A, 1181, 11003}, -- Fearless Combatant
     {A, 1181, 11004}, -- Fearless Combatant
@@ -1273,7 +1274,7 @@ tasks = {
     {A, 1181, 11027}, -- Rival: Legion Season 2
     {A, 1181, 11028}, -- Challenger: Legion Season 2
     {C, 1180, 1181},
-    {N, 1181,k.L["Season"] .. " " .. 2}, -- Season 2
+    {N, 1181, a.L["Season"] .. " " .. 2}, -- Season 2
     {A, 1176, 11578}, -- Vindictive Elite
     {A, 1176, 10997}, -- Vindictive Combatant
     {A, 1176, 10998}, -- Vindictive Combatant
@@ -1291,7 +1292,7 @@ tasks = {
     {A, 1176, 11016}, -- Rival: Legion Season 1
     {A, 1176, 11017}, -- Challenger: Legion Season 1
     {C, 1180, 1176},
-    {N, 1176,k.L["Season"] .. " " .. 1}, -- Season 1
+    {N, 1176, a.L["Season"] .. " " .. 1}, -- Season 1
     {A, 1180, 11170}, -- Crest of Devastation
     {A, 1180, 11169}, -- Crest of Devastation
     {A, 1180, 11168}, -- Crest of Carnage
@@ -1326,7 +1327,7 @@ tasks = {
     {A, 1180, 10992}, -- Here We Go Again
     {A, 1180, 10991}, -- First Step into a Larger World
     {C, 955, 1180},
-    {N, 1180,k.GetCategoryInfoTitle(15258)}, -- Legion
+    {N, 1180, a.GetCategoryInfoTitle(15258)}, -- Legion
     {A, 1179, 10090}, -- Warmongering Conquest
     {A, 1179, 10091}, -- Warmongering Conquest
     {A, 1179, 10094}, -- Warmongering Combatant
@@ -1345,7 +1346,7 @@ tasks = {
     {A, 1179, 10112}, -- Rival: Warlords Season 3
     {A, 1179, 10113}, -- Challenger: Warlords Season 3
     {C, 1175, 1179},
-    {N, 1179,k.L["Season"] .. " " .. 3}, -- Season 3
+    {N, 1179, a.L["Season"] .. " " .. 3}, -- Season 3
     {A, 1178, 10088}, -- Wild Conquest
     {A, 1178, 10089}, -- Wild Conquest
     {A, 1178, 10092}, -- Wild Combatant
@@ -1364,7 +1365,7 @@ tasks = {
     {A, 1178, 10100}, -- Rival: Warlords Season 2
     {A, 1178, 10101}, -- Challenger: Warlords Season 2
     {C, 1175, 1178},
-    {N, 1178,k.L["Season"] .. " " .. 2}, -- Season 2
+    {N, 1178, a.L["Season"] .. " " .. 2}, -- Season 2
     {A, 1177, 9233}, -- Primal Conquest
     {A, 1177, 9234}, -- Primal Conquest
     {A, 1177, 9236}, -- Primal Combatant
@@ -1383,9 +1384,9 @@ tasks = {
     {A, 1177, 9241}, -- Rival: Warlords Season 1
     {A, 1177, 9242}, -- Challenger: Warlords Season 1
     {C, 1175, 1177},
-    {N, 1177,k.L["Season"] .. " " .. 1}, -- Season 1
+    {N, 1177, a.L["Season"] .. " " .. 1}, -- Season 1
     {C, 955, 1175},
-    {N, 1175,k.GetCategoryInfoTitle(15233)}, -- Warlords of Dreanor
+    {N, 1175, a.GetCategoryInfoTitle(15233)}, -- Warlords of Dreanor
     {A, 1198, 8450}, -- Prideful Conquest
     {A, 1198, 8451}, -- Prideful Conquest
     {A, 1198, 8641}, -- Prideful Combatant
@@ -1417,7 +1418,7 @@ tasks = {
     {A, 1198, 8243}, -- Hero of the Alliance: Malevolent
     {A, 1198, 8214}, -- Malevolent Gladiator
     {C, 955, 1198},
-    {N, 1198,k.GetCategoryInfoTitle(15164)}, -- Mists of Pandaria
+    {N, 1198, a.GetCategoryInfoTitle(15164)}, -- Mists of Pandaria
     {A, 1197, 6940}, -- Hero of the Horde: Cataclysmic
     {A, 1197, 6939}, -- Hero of the Alliance: Cataclysmic
     {A, 1197, 6938}, -- Cataclysmic Gladiator
@@ -1428,18 +1429,18 @@ tasks = {
     {A, 1197, 5344}, -- Hero of the Alliance: Vicious
     {A, 1197, 6002}, -- Vicious Gladiator
     {C, 955, 1197},
-    {N, 1197,k.GetCategoryInfoTitle(15072)}, -- Cataclysm
+    {N, 1197, a.GetCategoryInfoTitle(15072)}, -- Cataclysm
     {A, 1200, 4599}, -- Wrathful Gladiator
     {A, 1200, 3758}, -- Relentless Gladiator
     {A, 1200, 3436}, -- Furious Gladiator
     {A, 1200, 3336}, -- Deadly Gladiator
     {C, 955, 1200},
-    {N, 1200,k.GetCategoryInfoTitle(14866)}, -- Wrath of the Lich King
+    {N, 1200, a.GetCategoryInfoTitle(14866)}, -- Wrath of the Lich King
     {A, 1199, 420}, -- Brutal Gladiator
     {A, 1199, 419}, -- Vengeful Gladiator
     {A, 1199, 418}, -- Merciless Gladiator
     {C, 955, 1199},
-    {N, 1199,k.GetCategoryInfoTitle(14865)}, -- The Burning Crusade
+    {N, 1199, a.GetCategoryInfoTitle(14865)}, -- The Burning Crusade
     {A, 1131, 443}, -- High Warlord
     {A, 1131, 433}, -- Grand Marshal
     {A, 1131, 445}, -- Warlord
@@ -1469,7 +1470,7 @@ tasks = {
     {A, 1131, 454}, -- Scout
     {A, 1131, 442}, -- Private
     {C, 955, 1131},
-    {N, 1131,k.GetCategoryInfoTitle(14864)}, -- Classic
+    {N, 1131, a.GetCategoryInfoTitle(14864)}, -- Classic
     {A, 1166, 1174}, -- The Arena Master
     {A, 1166, 409}, -- Last Man Standing
     {A, 1166, 15544}, -- Supreme Soloist
@@ -1504,11 +1505,11 @@ tasks = {
     {A, 1166, 398}, -- Mercilessly Dedicated
     {A, 1166, 397}, -- Step Into The Arena
     {C, 955, 1166},
-    {N, 1166,k.GetCategoryInfoTitle(165)}, -- Arena
+    {N, 1166, a.GetCategoryInfoTitle(165)}, -- Arena
     {A, 1032, 9566}, -- Victory in Hillsbrad
     {A, 1032, 9729}, -- Victory in Hillsbrad
     {C, 1165, 1032},
-    {N, 1032,k.L["Southshore vs. Tarren Mill"] .. " (" .. k.GetCategoryInfoTitle(15234) .. ")"}, -- Southshore vs. Tarren Mill
+    {N, 1032, a.L["Southshore vs. Tarren Mill"] .. " (" .. a.GetCategoryInfoTitle(15234) .. ")"}, -- Southshore vs. Tarren Mill
     {A, 963, 1752}, -- Master of Wintergrasp
     {A, 963, 1751}, -- Didn't Stand a Chance
     {A, 963, 1727}, -- Leaning Tower
@@ -1521,7 +1522,7 @@ tasks = {
     {A, 963, 1718}, -- Wintergrasp Veteran
     {A, 963, 1717}, -- Wintergrasp Victory
     {C, 1165, 963},
-    {N, 963,k.GetCategoryInfoTitle(14901)}, -- Wintergrasp
+    {N, 963, a.GetCategoryInfoTitle(14901)}, -- Wintergrasp
     {A, 958, 712}, -- Warsong Outrider
     {A, 958, 713}, -- Silverwing Sentinel
     {A, 958, 1259}, -- Not So Fast
@@ -1542,7 +1543,7 @@ tasks = {
     {A, 958, 167}, -- Warsong Gulch Veteran
     {A, 958, 166}, -- Warsong Gulch Victory
     {C, 1165, 958},
-    {N, 958,k.GetCategoryInfoTitle(14804)}, -- Warsong Gulch
+    {N, 958, a.GetCategoryInfoTitle(14804)}, -- Warsong Gulch
     {A, 965, 5223}, -- Master of Twin Peaks
     {A, 965, 5552}, -- Double Jeopardy
     {A, 965, 5231}, -- Double Jeopardy
@@ -1564,7 +1565,7 @@ tasks = {
     {A, 965, 5209}, -- Twin Peaks Veteran
     {A, 965, 5208}, -- Twin Peaking
     {C, 1165, 965},
-    {N, 965,k.GetCategoryInfoTitle(15074)}, -- Twin Peaks
+    {N, 965, a.GetCategoryInfoTitle(15074)}, -- Twin Peaks
     {A, 967, 6981}, -- Master of Temple of Kotmogu
     {A, 967, 6980}, -- Temple of Kotmogu All-Star
     {A, 967, 6972}, -- What is Best in Life?
@@ -1576,7 +1577,7 @@ tasks = {
     {A, 967, 6882}, -- Temple of Kotmogu Veteran
     {A, 967, 6740}, -- Temple of Kotmogu Victory
     {C, 1165, 967},
-    {N, 967,k.GetCategoryInfoTitle(15163)}, -- Temple of Kotmogu
+    {N, 967, a.GetCategoryInfoTitle(15163)}, -- Temple of Kotmogu
     {A, 973, 2194}, -- Master of Strand of the Ancients
     {A, 973, 2200}, -- Defense of the Ancients
     {A, 973, 1757}, -- Defense of the Ancients
@@ -1595,7 +1596,7 @@ tasks = {
     {A, 973, 1309}, -- Strand of the Ancients Veteran
     {A, 973, 1308}, -- Strand of the Ancients Victory
     {C, 1165, 973},
-    {N, 973,k.L["Strand of the Ancients"] .. " (" .. k.GetCategoryInfoTitle(15234) .. ")"}, -- Strand of the Ancients
+    {N, 973, a.L["Strand of the Ancients"] .. " (" .. a.GetCategoryInfoTitle(15234) .. ")"}, -- Strand of the Ancients
     {A, 966, 7106}, -- Master of Silvershard Mines
     {A, 966, 7103}, -- Greed is Good
     {A, 966, 7102}, -- Escort Service
@@ -1608,7 +1609,7 @@ tasks = {
     {A, 966, 6883}, -- Silvershard Mines Veteran
     {A, 966, 6739}, -- Silvershard Mines Victory
     {C, 1165, 966},
-    {N, 966,k.GetCategoryInfoTitle(15162)}, -- Silvershard Mines
+    {N, 966, a.GetCategoryInfoTitle(15162)}, -- Silvershard Mines
     {A, 968, 12412}, -- Master of Seething Shore
     {A, 968, 12411}, -- Blood and Sand
     {A, 968, 12408}, -- Seething Shore Domination
@@ -1619,7 +1620,7 @@ tasks = {
     {A, 968, 12410}, -- Seething Shore Veteran
     {A, 968, 12409}, -- Seething Shore Victory
     {C, 1165, 968},
-    {N, 968,k.GetCategoryInfoTitle(15292)}, -- Seething Shore
+    {N, 968, a.GetCategoryInfoTitle(15292)}, -- Seething Shore
     {A, 962, 4176}, -- Resource Glut
     {A, 962, 3846}, -- Resource Glut
     {A, 962, 3845}, -- Isle of Conquest All-Star
@@ -1640,7 +1641,7 @@ tasks = {
     {A, 962, 3777}, -- Isle of Conquest Veteran
     {A, 962, 3776}, -- Isle of Conquest Victory
     {C, 1165, 962},
-    {N, 962,k.GetCategoryInfoTitle(15003)}, -- Isle of Conquest
+    {N, 962, a.GetCategoryInfoTitle(15003)}, -- Isle of Conquest
     {A, 959, 211}, -- Storm Glory
     {A, 959, 1258}, -- Take a Chill Pill
     {A, 959, 587}, -- Stormy Assassin
@@ -1655,7 +1656,7 @@ tasks = {
     {A, 959, 209}, -- Eye of the Storm Veteran
     {A, 959, 208}, -- Eye of the Storm Victory
     {C, 1165, 959},
-    {N, 959,k.GetCategoryInfoTitle(14803)}, -- Eye of the Storm
+    {N, 959, a.GetCategoryInfoTitle(14803)}, -- Eye of the Storm
     {A, 957, 8360}, -- Master of Deepwind Gorge
     {A, 957, 8358}, -- Deepwind Gorge All-Star
     {A, 957, 8359}, -- Capping Spree
@@ -1671,7 +1672,7 @@ tasks = {
     {A, 957, 8332}, -- Deepwind Gorge Veteran
     {A, 957, 8331}, -- Deepwind Gorge Victory
     {C, 1165, 957},
-    {N, 957,k.GetCategoryInfoTitle(15218)}, -- Deepwind Gorge
+    {N, 957, a.GetCategoryInfoTitle(15218)}, -- Deepwind Gorge
     {A, 964, 5258}, -- Master of the Battle for Gilneas
     {A, 964, 5262}, -- Double Rainbow
     {A, 964, 5257}, -- Battle for Gilneas Assassin
@@ -1688,7 +1689,7 @@ tasks = {
     {A, 964, 5246}, -- Battle for Gilneas Veteran
     {A, 964, 5245}, -- Battle for Gilneas Victory
     {C, 1165, 964},
-    {N, 964,k.GetCategoryInfoTitle(15073)}, -- Battle for Gilneas
+    {N, 964, a.GetCategoryInfoTitle(15073)}, -- Battle for Gilneas
     {A, 961, 9215}, -- Hero of Warspear
     {A, 961, 9214}, -- Hero of Stormshield
     {A, 961, 9473}, -- Vol'jin's Spear
@@ -1713,7 +1714,7 @@ tasks = {
     {A, 961, 9218}, -- "Grand Theft, 1st Degree"
     {A, 961, 9102}, -- Ashran Victory
     {C, 1165, 961},
-    {N, 961,k.GetCategoryInfoTitle(15414)}, -- Ashran
+    {N, 961, a.GetCategoryInfoTitle(15414)}, -- Ashran
     {A, 956, 710}, -- The Defiler
     {A, 956, 711}, -- Knight of Arathor
     {A, 956, 1169}, -- Master of Arathi Basin
@@ -1731,7 +1732,7 @@ tasks = {
     {A, 956, 155}, -- Arathi Basin Veteran
     {A, 956, 154}, -- Arathi Basin Victory
     {C, 1165, 956},
-    {N, 956,k.GetCategoryInfoTitle(14802)}, -- Arathi Basin
+    {N, 956, a.GetCategoryInfoTitle(14802)}, -- Arathi Basin
     {A, 960, 708}, -- Hero of the Frostwolf Clan
     {A, 960, 709}, -- Hero of the Stormpike Guard
     {A, 960, 226}, -- The Alterac Blitz
@@ -1752,7 +1753,7 @@ tasks = {
     {A, 960, 219}, -- Alterac Valley Veteran
     {A, 960, 218}, -- Alterac Valley Victory
     {C, 1165, 960},
-    {N, 960,k.GetCategoryInfoTitle(14801)}, -- Alterac Valley
+    {N, 960, a.GetCategoryInfoTitle(14801)}, -- Alterac Valley
     {A, 1165, 19418}, -- Battle-scarred Battler
     {A, 1165, 19417}, -- Brawlroom Blitzer
     {A, 1165, 19416}, -- Learning the Ropes
@@ -1813,7 +1814,7 @@ tasks = {
     {A, 1165, 907}, -- The Justicar
     {A, 1165, 229}, -- The Grim Reaper
     {C, 955, 1165},
-    {N, 1165,k.GetCategoryInfoTitle(153)}, -- Battlegrounds
+    {N, 1165, a.GetCategoryInfoTitle(153)}, -- Battlegrounds
     {A, 1167, 13703}, -- Battlefield Master
     {A, 1167, 13702}, -- Battlefield Tactician
     {A, 1167, 13701}, -- Battlefield Brawler
@@ -1839,7 +1840,7 @@ tasks = {
     {A, 1167, 12894}, -- Honor Level 10
     {A, 1167, 12893}, -- Honor Level 5
     {C, 955, 1167},
-    {N, 1167,k.GetCategoryInfoTitle(15266)}, -- Honor
+    {N, 1167, a.GetCategoryInfoTitle(15266)}, -- Honor
     {A, 1162, 700}, -- Freedom of the Horde
     {A, 1162, 701}, -- Freedom of the Alliance
     {A, 1162, 5539}, -- "50,000 Conquest Points"
@@ -1869,54 +1870,54 @@ tasks = {
     {A, 1162, 238}, -- An Honorable Kill
     {A, 1162, 10561}, -- Honorable Medallion
     {C, 955, 1162},
-    {N, 1162,k.GetCategoryInfoTitle(95)}, -- Player vs. Player
+    {N, 1162, a.GetCategoryInfoTitle(95)}, -- Player vs. Player
     {F, 1397, "SearchResultsCategories"},
     {C, 955, 1397},
-    {N, 1397,k.L["Search Results"]}, -- Search Results
+    {N, 1397, a.L["Search Results"]}, -- Search Results
     function() categories[1222].IsSelectedZone = true; end,
     {F, 1222, "SelectedZoneCategories"},
     {C, 955, 1222},
-    {N, 1222,k.L["Selected Zone"]}, -- Selected Zone
+    {N, 1222, a.L["Selected Zone"]}, -- Selected Zone
     function() categories[1215].IsCurrentZone = true; end,
     {F, 1215, "CurrentZoneCategories"},
     {C, 955, 1215},
-    {N, 1215,k.L["Current Zone"]}, -- Current Zone
+    {N, 1215, a.L["Current Zone"]}, -- Current Zone
     function() categories[1219].IsWatchList = true; end,
     {F, 1219, "WatchListCategories"},
     {C, 955, 1219},
-    {N, 1219,k.L["Watch List"]}, -- Watch List
+    {N, 1219, a.L["Watch List"]}, -- Watch List
     {S, 1205},
     {V, 1205},
     {C, 955, 1205},
-    {N, 1205,k.L["Summary"]}, -- Summary
+    {N, 1205, a.L["Summary"]}, -- Summary
     {T, 955, "PvP"},
-    {N, 955,k.GetCategoryInfoTitle(95)}, -- TAB - PvP
+    {N, 955, a.GetCategoryInfoTitle(95)}, -- TAB - PvP
     {F, 1555, "UncategorizedCategories"},
     {C, 884, 1555},
-    {N, 1555,k.L["Uncategorized"]}, -- Uncategorized
+    {N, 1555, a.L["Uncategorized"]}, -- Uncategorized
     {F, 1226, "ExcludedCategories"},
     {C, 884, 1226},
-    {N, 1226,k.L["Excluded"]}, -- Excluded
+    {N, 1226, a.L["Excluded"]}, -- Excluded
     function() categories[1369].IsTracking = true; end,
     {F, 1369, "TrackingAchievementsCategories"},
     {C, 884, 1369},
-    {N, 1369,k.L["Tracking Achievements"]}, -- Tracking Achievements
+    {N, 1369, a.L["Tracking Achievements"]}, -- Tracking Achievements
     {A, 1174, 11395}, -- Diablo's 20th Anniversary
     {A, 1174, 2116}, -- Tabard of the Argent Dawn
     {A, 1174, 2079}, -- Tabard of the Protector
     {A, 1174, 1637}, -- Spirit of Competition
     {A, 1174, 1636}, -- Competitor's Tabard
     {C, 884, 1174},
-    {N, 1174,k.L["Miscellaneous"]}, -- Miscellaneous
+    {N, 1174, a.L["Miscellaneous"]}, -- Miscellaneous
     {A, 1552, 19315}, -- Dream Chaser
     {A, 1552, 19313}, -- Bloom Man Group
     {A, 1552, 19312}, -- Super Duper Bloom
     {A, 1552, 19310}, -- Fruit of the Bloom
     {C, 1358, 1552},
-    {N, 1552,k.L["Superbloom"]}, -- Superbloom
+    {N, 1552, a.L["Superbloom"]}, -- Superbloom
     {A, 1537, 19008}, -- Dream Shaper
     {C, 1358, 1537},
-    {N, 1537,k.L["Dreamsurge"]}, -- Dreamsurge
+    {N, 1537, a.L["Dreamsurge"]}, -- Dreamsurge
     {A, 1454, 18641}, -- To All The Squirrels I've BEEN Before
     {A, 1454, 18640}, -- Lock and Load
     {A, 1454, 18639}, -- Collapsed Reality
@@ -1927,7 +1928,7 @@ tasks = {
     {A, 1454, 18615}, -- Legend of the Multiverse
     {A, 1454, 18554}, -- Temporal Acquisitions Specialist
     {C, 1358, 1454},
-    {N, 1454,k.L["Time Rifts"]}, -- Time Rifts
+    {N, 1454, a.L["Time Rifts"]}, -- Time Rifts
     {A, 1430, 18202}, -- Rockin Research
     {A, 1430, 18201}, -- Lockdown Mystery
     {A, 1430, 18174}, -- Contaminant Cleaner
@@ -1936,7 +1937,7 @@ tasks = {
     {A, 1430, 18207}, -- Hot Research Zone
     {A, 1430, 18200}, -- Cooling the Research Field
     {C, 1428, 1430},
-    {N, 1430,k.L["Titan Lockdown"]}, -- Titan Lockdown
+    {N, 1430, a.L["Titan Lockdown"]}, -- Titan Lockdown
     {A, 1429, 18199}, -- Zaqali Ritual Buster
     {A, 1429, 18208}, -- The Small Disruptions
     {A, 1429, 18204}, -- Research Mishap
@@ -1946,18 +1947,18 @@ tasks = {
     {A, 1429, 18207}, -- Hot Research Zone
     {A, 1429, 18200}, -- Cooling the Research Field
     {C, 1428, 1429},
-    {N, 1429,k.L["Zaqali Ruin Investigation"]}, -- Zaqali Ruin Investigation
+    {N, 1429, a.L["Zaqali Ruin Investigation"]}, -- Zaqali Ruin Investigation
     {C, 1358, 1428},
-    {N, 1428,k.L["Researchers Under Fire"]}, -- Researchers Under Fire
+    {N, 1428, a.L["Researchers Under Fire"]}, -- Researchers Under Fire
     {A, 1425, 18867}, -- Through the Ashes and Flames
     {A, 1425, 17735}, -- We Didn't Start the Fire
     {A, 1425, 17506}, -- Still Standing in the Fire
     {C, 1358, 1425},
-    {N, 1425,k.L["Fyrakk Assault"]}, -- Fyrakk Assault
+    {N, 1425, a.L["Fyrakk Assault"]}, -- Fyrakk Assault
     {A, 1393, 16443}, -- Soupervisor
     {A, 1393, 16444}, -- Leftovers' Revenge
     {C, 1358, 1393},
-    {N, 1393,k.L["Community Feast"]}, -- Community Feast
+    {N, 1393, a.L["Community Feast"]}, -- Community Feast
     {A, 1392, 16543}, -- Tetrachromancer
     {A, 1392, 16542}, -- The Disgruntled Hunter
     {A, 1392, 16541}, -- Longhunter
@@ -1965,14 +1966,14 @@ tasks = {
     {A, 1392, 16540}, -- Hunt Master
     {A, 1392, 16544}, -- Grand Hunter
     {C, 1358, 1392},
-    {N, 1392,(select(2, k.GetAchievementInfo(16544)))}, -- Grand Hunter
+    {N, 1392, (select(2, a.GetAchievementInfo(16544)))}, -- Grand Hunter
     {A, 1394, 16410}, -- Siege on Dragonbane Keep: Snack Attack
     {A, 1394, 16412}, -- Siege on Dragonbane Keep: Chiseled Record
     {A, 1394, 16411}, -- Siege on Dragonbane Keep: Home Sweet Home
     {C, 1358, 1394},
-    {N, 1394,k.L["Siege on Dragonbane Keep"]}, -- Siege on Dragonbane Keep
+    {N, 1394, a.L["Siege on Dragonbane Keep"]}, -- Siege on Dragonbane Keep
     {C, 884, 1358},
-    {N, 1358,k.GetCategoryInfoTitle(15466)}, -- Dragonflight
+    {N, 1358, a.GetCategoryInfoTitle(15466)}, -- Dragonflight
     {A, 1211, 15687}, -- Mythic: Fates of the Shadowlands Raids
     {A, 1211, 15685}, -- Heroic: Fates of the Shadowlands Raids
     {A, 1211, 15684}, -- Fates of the Shadowlands Raids
@@ -1980,7 +1981,7 @@ tasks = {
     {A, 1211, 15682}, -- Heroic: Fate of the Sepulcher
     {A, 1211, 15681}, -- Fate of the Sepulcher
     {C, 1208, 1211},
-    {N, 1211,k.GetInstanceInfoName(1195)}, -- Sepulcher of the First Ones
+    {N, 1211, a.GetInstanceInfoName(1195)}, -- Sepulcher of the First Ones
     {A, 1210, 15687}, -- Mythic: Fates of the Shadowlands Raids
     {A, 1210, 15685}, -- Heroic: Fates of the Shadowlands Raids
     {A, 1210, 15684}, -- Fates of the Shadowlands Raids
@@ -1988,7 +1989,7 @@ tasks = {
     {A, 1210, 15668}, -- Heroic: Fate of Domination
     {A, 1210, 15667}, -- Fate of Domination
     {C, 1208, 1210},
-    {N, 1210,k.GetInstanceInfoName(1193)}, -- Sanctum of Domination
+    {N, 1210, a.GetInstanceInfoName(1193)}, -- Sanctum of Domination
     {A, 1209, 15687}, -- Mythic: Fates of the Shadowlands Raids
     {A, 1209, 15685}, -- Heroic: Fates of the Shadowlands Raids
     {A, 1209, 15684}, -- Fates of the Shadowlands Raids
@@ -1996,33 +1997,33 @@ tasks = {
     {A, 1209, 15664}, -- Heroic: Fate of Nathria
     {A, 1209, 15663}, -- Fate of Nathria
     {C, 1208, 1209},
-    {N, 1209,k.GetInstanceInfoName(1190)}, -- Castle Nathria
+    {N, 1209, a.GetInstanceInfoName(1190)}, -- Castle Nathria
     {C, 926, 1208},
-    {N, 1208,k.L["Fated Raids"]}, -- Fated Raids
+    {N, 1208, a.L["Fated Raids"]}, -- Fated Raids
     {A, 931, 15033}, -- Taking the Tremaculum
     {A, 931, 15042}, -- Tea for the Troubled
     {A, 931, 15043}, -- Hoarder of Torghast
     {C, 927, 931},
-    {N, 931,k.L["Venthyr Assault"]}, -- Venthyr Assault
+    {N, 931, a.L["Venthyr Assault"]}, -- Venthyr Assault
     {A, 930, 15036}, -- Rooting Out the Evil
     {A, 930, 15044}, -- Krrprripripkraak's Heroes
     {A, 930, 15001}, -- Jailer's Personal Stash
     {C, 927, 930},
-    {N, 930,k.L["Night Fae Assault"]}, -- Night Fae Assault
+    {N, 930, a.L["Night Fae Assault"]}, -- Night Fae Assault
     {A, 929, 15032}, -- Breaking Their Hold
     {A, 929, 15039}, -- Up For Grabs
     {A, 929, 15037}, -- This Army
     {C, 927, 929},
-    {N, 929,k.L["Necrolords Assault"]}, -- Necrolords Assault
+    {N, 929, a.L["Necrolords Assault"]}, -- Necrolords Assault
     {A, 928, 15004}, -- A Sly Fox
     {A, 928, 15034}, -- Wings Against the Flames
     {A, 928, 15041}, -- The Zovaal Shuffle
     {C, 927, 928},
-    {N, 928,k.L["Kyrian Assault"]}, -- Kyrian Assault
+    {N, 928, a.L["Kyrian Assault"]}, -- Kyrian Assault
     {C, 926, 927},
-    {N, 927,k.L["Covenant Assaults"]}, -- Covenant Assaults
+    {N, 927, a.L["Covenant Assaults"]}, -- Covenant Assaults
     {C, 884, 926},
-    {N, 926,k.GetCategoryInfoTitle(15439)}, -- Shadowlands
+    {N, 926, a.GetCategoryInfoTitle(15439)}, -- Shadowlands
     {A, 942, 14155}, -- Uldum Accord
     {A, 942, 14158}, -- It's Not A Tumor!
     {A, 942, 14159}, -- Combating the Corruption
@@ -2030,7 +2031,7 @@ tasks = {
     {A, 942, 14161}, -- All Consuming
     {A, 942, 14153}, -- Uldum Under Assault
     {C, 940, 942},
-    {N, 942,k.GetMapName(1527)}, -- Uldum
+    {N, 942, a.GetMapName(1527)}, -- Uldum
     {A, 941, 14156}, -- The Rajani
     {A, 941, 14158}, -- It's Not A Tumor!
     {A, 941, 14159}, -- Combating the Corruption
@@ -2038,9 +2039,9 @@ tasks = {
     {A, 941, 14161}, -- All Consuming
     {A, 941, 14154}, -- Defend the Vale
     {C, 940, 941},
-    {N, 941,k.GetMapName(1530)}, -- Vale of Eternal Blossoms
+    {N, 941, a.GetMapName(1530)}, -- Vale of Eternal Blossoms
     {C, 932, 940},
-    {N, 940,k.L["N'Zoth Assaults"]}, -- N'Zoth Assaults
+    {N, 940, a.L["N'Zoth Assaults"]}, -- N'Zoth Assaults
     {A, 939, 13403}, -- Frontline Slayer
     {A, 939, 13402}, -- Frontline Slayer
     {A, 939, 13388}, -- Frontline Veteran
@@ -2050,7 +2051,7 @@ tasks = {
     {A, 939, 13317}, -- Supplied and Ready
     {A, 939, 13437}, -- Scavenge like a Vulpera
     {C, 933, 939},
-    {N, 939,k.L["Assault on Vol'dun"]}, -- Assault on Vol'dun
+    {N, 939, a.L["Assault on Vol'dun"]}, -- Assault on Vol'dun
     {A, 938, 13403}, -- Frontline Slayer
     {A, 938, 13402}, -- Frontline Slayer
     {A, 938, 13388}, -- Frontline Veteran
@@ -2060,7 +2061,7 @@ tasks = {
     {A, 938, 13317}, -- Supplied and Ready
     {A, 938, 13426}, -- Come On and Slam
     {C, 933, 938},
-    {N, 938,k.L["Assault on Nazmir"]}, -- Assault on Nazmir
+    {N, 938, a.L["Assault on Nazmir"]}, -- Assault on Nazmir
     {A, 934, 13403}, -- Frontline Slayer
     {A, 934, 13402}, -- Frontline Slayer
     {A, 934, 13388}, -- Frontline Veteran
@@ -2072,7 +2073,7 @@ tasks = {
     {A, 934, 13441}, -- Pushing the Payload
     {A, 934, 13440}, -- Pushing the Payload
     {C, 933, 934},
-    {N, 934,k.L["Assault on Zuldazar"]}, -- Assault on Zuldazar
+    {N, 934, a.L["Assault on Zuldazar"]}, -- Assault on Zuldazar
     {A, 937, 13403}, -- Frontline Slayer
     {A, 937, 13402}, -- Frontline Slayer
     {A, 937, 13388}, -- Frontline Veteran
@@ -2081,7 +2082,7 @@ tasks = {
     {A, 937, 13283}, -- Frontline Warrior
     {A, 937, 13317}, -- Supplied and Ready
     {C, 933, 937},
-    {N, 937,k.L["Assault on Stormsong Valley"]}, -- Assault on Stormsong Valley
+    {N, 937, a.L["Assault on Stormsong Valley"]}, -- Assault on Stormsong Valley
     {A, 936, 13403}, -- Frontline Slayer
     {A, 936, 13402}, -- Frontline Slayer
     {A, 936, 13388}, -- Frontline Veteran
@@ -2091,7 +2092,7 @@ tasks = {
     {A, 936, 13317}, -- Supplied and Ready
     {A, 936, 13435}, -- Doomsoul Surprise
     {C, 933, 936},
-    {N, 936,k.L["Assault on Drustvar"]}, -- Assault on Drustvar
+    {N, 936, a.L["Assault on Drustvar"]}, -- Assault on Drustvar
     {A, 935, 13403}, -- Frontline Slayer
     {A, 935, 13402}, -- Frontline Slayer
     {A, 935, 13388}, -- Frontline Veteran
@@ -2101,29 +2102,29 @@ tasks = {
     {A, 935, 13317}, -- Supplied and Ready
     {A, 935, 13285}, -- Upright Citizens
     {C, 933, 935},
-    {N, 935,k.L["Assault on Tiragarde Sound"]}, -- Assault on Tiragarde Sound
+    {N, 935, a.L["Assault on Tiragarde Sound"]}, -- Assault on Tiragarde Sound
     {C, 932, 933},
-    {N, 933,k.L["Faction Assaults"]}, -- Faction Assaults
+    {N, 933, a.L["Faction Assaults"]}, -- Faction Assaults
     {C, 884, 932},
-    {N, 932,k.GetCategoryInfoTitle(15305)}, -- Battle for Azeroth
+    {N, 932, a.GetCategoryInfoTitle(15305)}, -- Battle for Azeroth
     {A, 948, 11544}, -- Defender of the Broken Isles
     {C, 947, 948},
-    {N, 948,k.L["Legion Assaults"]}, -- Legion Assaults
+    {N, 948, a.L["Legion Assaults"]}, -- Legion Assaults
     {C, 884, 947},
-    {N, 947,k.GetCategoryInfoTitle(15258)}, -- Legion
+    {N, 947, a.GetCategoryInfoTitle(15258)}, -- Legion
     {A, 1538, 19079}, -- Master of the Turbulent Timeways
     {C, 951, 1538},
-    {N, 1538,k.L["Turbulent Timeways"]}, -- Turbulent Timeways
+    {N, 1538, a.L["Turbulent Timeways"]}, -- Turbulent Timeways
     {A, 954, 15308}, -- Tower Overwhelming
     {A, 954, 15310}, -- A Tour of Towers
     {A, 954, 15309}, -- A Towering Success
     {C, 951, 954},
-    {N, 954,k.GetCategoryInfoTitle(15258)}, -- Legion
+    {N, 954, a.GetCategoryInfoTitle(15258)}, -- Legion
     {A, 951, 13930}, -- Alterac Valley of Olde
     {A, 951, 13928}, -- Alterac Valley of Olde
     {A, 951, 13931}, -- "Memories of Fel, Frost and Fire"
     {C, 884, 951},
-    {N, 951,k.GetCategoryInfoTitle(15454)}, -- Timewalking
+    {N, 951, a.GetCategoryInfoTitle(15454)}, -- Timewalking
     {A, 1452, 19080}, -- Arcane Influence
     {A, 1452, 18646}, -- Whodunnit?
     {A, 1452, 18645}, -- Tools of the Trade
@@ -2131,7 +2132,7 @@ tasks = {
     {A, 1452, 18643}, -- Community Rumors
     {A, 1452, 18642}, -- The Inquisitive
     {C, 884, 1452},
-    {N, 1452,k.L["Secrets of Azeroth"]}, -- Secrets of Azeroth
+    {N, 1452, a.L["Secrets of Azeroth"]}, -- Secrets of Azeroth
     {A, 1535, 19107}, -- Outland Racing Completionist: Gold
     {A, 1535, 19106}, -- Outland Racing Completionist: Silver
     {A, 1535, 19105}, -- Outland Racing Completionist
@@ -2145,7 +2146,7 @@ tasks = {
     {A, 1535, 19097}, -- Outland: Silver
     {A, 1535, 19092}, -- Outland: Bronze
     {C, 1534, 1535},
-    {N, 1535,k.L["Outland Cup"]}, -- Outland Cup
+    {N, 1535, a.L["Outland Cup"]}, -- Outland Cup
     {A, 1531, 18942}, -- Eastern Kingdoms Racing Completionist: Gold
     {A, 1531, 18940}, -- Eastern Kingdoms Racing Completionist: Silver
     {A, 1531, 18939}, -- Eastern Kingdoms Racing Completionist
@@ -2159,7 +2160,7 @@ tasks = {
     {A, 1531, 18567}, -- Eastern Kingdoms: Silver
     {A, 1531, 18566}, -- Eastern Kingdoms: Bronze
     {C, 1534, 1531},
-    {N, 1531,k.L["Eastern Kingdoms Cup"]}, -- Eastern Kingdoms Cup
+    {N, 1531, a.L["Eastern Kingdoms Cup"]}, -- Eastern Kingdoms Cup
     {A, 1453, 17723}, -- Kalimdor Racing Completionist: Gold
     {A, 1453, 17722}, -- Kalimdor Racing Completionist: Silver
     {A, 1453, 17721}, -- Kalimdor Racing Completionist
@@ -2173,12 +2174,12 @@ tasks = {
     {A, 1453, 17713}, -- Kalimdor: Silver
     {A, 1453, 17712}, -- Kalimdor: Bronze
     {C, 1534, 1453},
-    {N, 1453,k.L["Kalimdor Cup"]}, -- Kalimdor Cup
+    {N, 1453, a.L["Kalimdor Cup"]}, -- Kalimdor Cup
     {C, 884, 1534},
-    {N, 1534,k.L["Dragon Racing"]}, -- Dragon Racing
+    {N, 1534, a.L["Dragon Racing"]}, -- Dragon Racing
     {A, 1030, 2336}, -- Insane in the Membrane
     {C, 925, 1030},
-    {N, 1030,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1030, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 925, 15221}, -- Dancing Machine
     {A, 925, 15217}, -- Maniac on the Dance Floor
     {A, 925, 15216}, -- Make You Sweat
@@ -2249,7 +2250,7 @@ tasks = {
     {A, 925, 6021}, -- Blastenheimer Bullseye
     {A, 925, 6019}, -- "Come One, Come All!"
     {C, 884, 925},
-    {N, 925,k.GetCategoryInfoTitle(15101)}, -- Darkmoon Faire
+    {N, 925, a.GetCategoryInfoTitle(15101)}, -- Darkmoon Faire
     {A, 1173, 19192}, -- Lil' Frostwing
     {A, 1173, 10335}, -- Did Someone Say...?
     {A, 1173, 18702}, -- WoW's 19th Anniversary
@@ -2269,7 +2270,7 @@ tasks = {
     {A, 1173, 4400}, -- WoW's 5th Anniversary
     {A, 1173, 2398}, -- WoW's 4th Anniversary
     {C, 884, 1173},
-    {N, 1173,k.L["WoW's Anniversary"]}, -- WoW's Anniversary
+    {N, 1173, a.L["WoW's Anniversary"]}, -- WoW's Anniversary
     {A, 950, 19077}, -- Catch Me If You Can!
     {A, 950, 15645}, -- To Catch Falling Stars
     {A, 950, 15313}, -- Rockin' Rollin' Racer
@@ -2288,7 +2289,7 @@ tasks = {
     {A, 950, 1706}, -- Crashin' Thrashin' Racer
     {A, 950, 1705}, -- Clockwork Rocket Bot
     {C, 917, 950},
-    {N, 950,k.L["Gifts"], true}, -- Gifts
+    {N, 950, a.L["Gifts"], true}, -- Gifts
     {A, 917, 19130}, -- Junior Racing Champion
     {A, 917, 15653}, -- The More You Know*
     {A, 917, 1691}, -- Merrymaker
@@ -2314,7 +2315,7 @@ tasks = {
     {A, 917, 252}, -- With a Little Helper from My Friends
     {A, 917, 273}, -- On Metzen!
     {C, 918, 917},
-    {N, 917,k.GetCategoryInfoTitle(156)}, -- Winter Veil
+    {N, 917, a.GetCategoryInfoTitle(156)}, -- Winter Veil
     {A, 916, 3478}, -- Pilgrim
     {A, 916, 3559}, -- Turkey Lurkey
     {A, 916, 3578}, -- The Turkinator
@@ -2330,13 +2331,13 @@ tasks = {
     {A, 916, 3576}, -- Now We're Cookin'
     {A, 916, 3579}, -- """FOOD FIGHT!"""
     {C, 918, 916},
-    {N, 916,k.GetCategoryInfoTitle(14981)}, -- Pilgrim's Bounty
+    {N, 916, a.GetCategoryInfoTitle(14981)}, -- Pilgrim's Bounty
     {A, 920, 9428}, -- Calavera
     {A, 920, 9427}, -- Vientos!
     {A, 920, 9426}, -- To The Afterlife
     {A, 920, 3456}, -- Dead Man's Party
     {C, 918, 920},
-    {N, 920,k.L["Day of the Dead"]}, -- Day of the Dead
+    {N, 920, a.L["Day of the Dead"]}, -- Day of the Dead
     {A, 915, 17547}, -- The Lick King
     {A, 915, 980}, -- The Horseman's Reins
     {A, 915, 1656}, -- Hallowed Be Thy Name
@@ -2372,7 +2373,7 @@ tasks = {
     {A, 915, 288}, -- Out With It
     {A, 915, 972}, -- Trick or Treat!
     {C, 918, 915},
-    {N, 915,k.GetCategoryInfoTitle(158)}, -- Hallow's End
+    {N, 915, a.GetCategoryInfoTitle(158)}, -- Hallow's End
     {A, 914, 18579}, -- A Round on the House
     {A, 914, 1186}, -- Down With The Dark Iron
     {A, 914, 4782}, -- Green Brewfest Stein
@@ -2390,10 +2391,10 @@ tasks = {
     {A, 914, 1203}, -- Strange Brew
     {A, 914, 1184}, -- Strange Brew
     {C, 918, 914},
-    {N, 914,k.GetCategoryInfoTitle(162)}, -- Brewfest
+    {N, 914, a.GetCategoryInfoTitle(162)}, -- Brewfest
     {A, 919, 3457}, -- The Captain's Booty
     {C, 918, 919},
-    {N, 919,k.L["Pirates' Day"]}, -- Pirates' Day
+    {N, 919, a.L["Pirates' Day"]}, -- Pirates' Day
     {A, 913, 17738}, -- Flame Keeper of the Dragon Isles
     {A, 913, 17737}, -- Flame Warden of the Dragon Isles
     {A, 913, 1039}, -- The Flame Keeper
@@ -2443,7 +2444,7 @@ tasks = {
     {A, 913, 271}, -- Burning Hot Pole Dance
     {A, 913, 263}, -- Ice the Frost Lord
     {C, 918, 913},
-    {N, 913,k.GetCategoryInfoTitle( 161)}, -- Midsummer
+    {N, 913, a.GetCategoryInfoTitle( 161)}, -- Midsummer
     {A, 912, 1793}, -- For the Children
     {A, 912, 275}, -- Veteran Nanny
     {A, 912, 1790}, -- "Hail To The King, Baby"
@@ -2453,7 +2454,7 @@ tasks = {
     {A, 912, 1788}, -- Bad Example
     {A, 912, 1791}, -- Home Alone
     {C, 918, 912},
-    {N, 912,k.GetCategoryInfoTitle(163)}, -- Children's Week
+    {N, 912, a.GetCategoryInfoTitle(163)}, -- Children's Week
     {A, 911, 2798}, -- Noble Gardener
     {A, 911, 2576}, -- Blushing Bride
     {A, 911, 2436}, -- Desert Rose
@@ -2469,7 +2470,7 @@ tasks = {
     {A, 911, 2417}, -- Chocolate Lover
     {A, 911, 2676}, -- I Found One!
     {C, 918, 911},
-    {N, 911,k.GetCategoryInfoTitle(159)}, -- Noblegarden
+    {N, 911, a.GetCategoryInfoTitle(159)}, -- Noblegarden
     {A, 910, 1693}, -- Fool For Love
     {A, 910, 9394}, -- They Really Love Me!
     {A, 910, 9393}, -- Beacon of Love
@@ -2493,7 +2494,7 @@ tasks = {
     {A, 910, 260}, -- Charming
     {A, 910, 1701}, -- Be Mine!
     {C, 918, 910},
-    {N, 910,k.GetCategoryInfoTitle(187)}, -- Love is in the Air
+    {N, 910, a.GetCategoryInfoTitle(187)}, -- Love is in the Air
     {A, 885, 913}, -- To Honor One's Elders
     {A, 885, 910}, -- Elders of the Dungeons
     {A, 885, 17321}, -- Elders of the Dragon Isles
@@ -2513,41 +2514,41 @@ tasks = {
     {A, 885, 606}, -- 5 Coins of Ancestry
     {A, 885, 605}, -- A Coin of Ancestry
     {C, 918, 885},
-    {N, 885,k.GetCategoryInfoTitle(160)}, -- Lunar Festival
+    {N, 885, a.GetCategoryInfoTitle(160)}, -- Lunar Festival
     {A, 918, 2144}, -- "What a Long, Strange Trip It's Been"
     {C, 884, 918},
-    {N, 918,k.L["Holidays"]}, -- Holidays
+    {N, 918, a.L["Holidays"]}, -- Holidays
     {F, 1398, "SearchResultsCategories"},
     {C, 884, 1398},
-    {N, 1398,k.L["Search Results"]}, -- Search Results
+    {N, 1398, a.L["Search Results"]}, -- Search Results
     function() categories[1221].IsSelectedZone = true; end,
     {F, 1221, "SelectedZoneCategories"},
     {C, 884, 1221},
-    {N, 1221,k.L["Selected Zone"]}, -- Selected Zone
+    {N, 1221, a.L["Selected Zone"]}, -- Selected Zone
     function() categories[1214].IsCurrentZone = true; end,
     {F, 1214, "CurrentZoneCategories"},
     {C, 884, 1214},
-    {N, 1214,k.L["Current Zone"]}, -- Current Zone
+    {N, 1214, a.L["Current Zone"]}, -- Current Zone
     function() categories[1218].IsWatchList = true; end,
     {F, 1218, "WatchListCategories"},
     {C, 884, 1218},
-    {N, 1218,k.L["Watch List"]}, -- Watch List
+    {N, 1218, a.L["Watch List"]}, -- Watch List
     {S, 1206},
     {V, 1206},
     {C, 884, 1206},
-    {N, 1206,k.L["Summary"]}, -- Summary
+    {N, 1206, a.L["Summary"]}, -- Summary
     {T, 884, "Events"},
-    {N, 884,k.L["Events"]}, -- TAB - Events
+    {N, 884, a.L["Events"]}, -- TAB - Events
     {F, 1554, "UncategorizedCategories"},
     {C, 883, 1554},
-    {N, 1554,k.L["Uncategorized"]}, -- Uncategorized
+    {N, 1554, a.L["Uncategorized"]}, -- Uncategorized
     {F, 1225, "ExcludedCategories"},
     {C, 883, 1225},
-    {N, 1225,k.L["Excluded"]}, -- Excluded
+    {N, 1225, a.L["Excluded"]}, -- Excluded
     function() categories[1370].IsTracking = true; end,
     {F, 1370, "TrackingAchievementsCategories"},
     {C, 883, 1370},
-    {N, 1370,k.L["Tracking Achievements"]}, -- Tracking Achievements
+    {N, 1370, a.L["Tracking Achievements"]}, -- Tracking Achievements
     {A, 1401, 16727}, -- Cliffside Wylderdrake Head Features
     {A, 1401, 16726}, -- Cliffside Wylderdrake Back and Tail
     {A, 1401, 16725}, -- Cliffside Wylderdrake Horns and Manes
@@ -2569,7 +2570,7 @@ tasks = {
     {A, 1401, 16697}, -- Renewed Proto-Drake Head Features
     {A, 1401, 16696}, -- Renewed Proto-Drake Armor
     {C, 1207, 1401},
-    {N, 1401,k.GetCategoryInfoTitle(15478)}, -- Dragon Isle Drake Cosmetics
+    {N, 1401, a.GetCategoryInfoTitle(15478)}, -- Dragon Isle Drake Cosmetics
     {A, 1360, 16502}, -- Storming the Runway
     {A, 1360, 16488}, -- Snowstorms in Thaldraszus
     {A, 1360, 16487}, -- Firestorms in Thaldraszus
@@ -2598,7 +2599,7 @@ tasks = {
     {A, 1360, 16498}, -- Elemental Overflow
     {A, 1360, 16492}, -- Into the Storm
     {C, 1207, 1360},
-    {N, 1360,k.L["Primal Storms"]}, -- Primal Storms
+    {N, 1360, a.L["Primal Storms"]}, -- Primal Storms
     {A, 1423, 18788}, -- Zaralek Cavern Challenge: Gold
     {A, 1423, 18787}, -- Zaralek Cavern Challenge: Silver
     {A, 1423, 18786}, -- Zaralek Cavern Challenge: Bronze
@@ -2615,7 +2616,7 @@ tasks = {
     {A, 1423, 17484}, -- Zaralek Cavern: Silver
     {A, 1423, 17483}, -- Zaralek Cavern: Bronze
     {C, 1269, 1423},
-    {N, 1423,k.GetMapName(2133)}, -- Zaralek Cavern
+    {N, 1423, a.GetMapName(2133)}, -- Zaralek Cavern
     {A, 1411, 18781}, -- Forbidden Reach Challenge: Gold
     {A, 1411, 18780}, -- Forbidden Reach Challenge: Silver
     {A, 1411, 18779}, -- Forbidden Reach Challenge: Bronze
@@ -2632,7 +2633,7 @@ tasks = {
     {A, 1411, 17280}, -- Forbidden Reach: Silver
     {A, 1411, 17279}, -- Forbidden Reach: Bronze
     {C, 1269, 1411},
-    {N, 1411,k.GetMapName(2107)}, -- The Forbidden Reach
+    {N, 1411, a.GetMapName(2107)}, -- The Forbidden Reach
     {A, 1276, 18762}, -- Thaldraszus Challenge: Gold
     {A, 1276, 18761}, -- Thaldraszus Challenge: Silver
     {A, 1276, 18760}, -- Thaldraszus Challenge: Bronze
@@ -2646,7 +2647,7 @@ tasks = {
     {A, 1276, 15925}, -- Thaldraszus: Silver
     {A, 1276, 15924}, -- Thaldraszus: Bronze
     {C, 1269, 1276},
-    {N, 1276,k.GetMapName(2025)}, -- Thaldraszus
+    {N, 1276, a.GetMapName(2025)}, -- Thaldraszus
     {A, 1278, 18759}, -- Azure Span Challenge: Gold
     {A, 1278, 18758}, -- Azure Span Challenge: Silver
     {A, 1278, 18757}, -- Azure Span Challenge: Bronze
@@ -2660,7 +2661,7 @@ tasks = {
     {A, 1278, 15922}, -- Azure Span: Silver
     {A, 1278, 15921}, -- Azure Span: Bronze
     {C, 1269, 1278},
-    {N, 1278,k.GetMapName(2024)}, -- The Azure Span
+    {N, 1278, a.GetMapName(2024)}, -- The Azure Span
     {A, 1285, 18756}, -- Ohn'ahran Plains Challenge: Gold
     {A, 1285, 18755}, -- Ohn'ahran Plains Challenge: Silver
     {A, 1285, 18754}, -- Ohn'ahran Plains Challenge: Bronze
@@ -2674,7 +2675,7 @@ tasks = {
     {A, 1285, 15919}, -- Ohn'ahran Plains: Silver
     {A, 1285, 15918}, -- Ohn'ahran Plains: Bronze
     {C, 1269, 1285},
-    {N, 1285,k.GetMapName(2023)}, -- Ohn'ahran Plains
+    {N, 1285, a.GetMapName(2023)}, -- Ohn'ahran Plains
     {A, 1293, 18750}, -- Waking Shores Challenge: Gold
     {A, 1293, 18749}, -- Waking Shores Challenge: Silver
     {A, 1293, 18748}, -- Waking Shores Challenge: Bronze
@@ -2688,7 +2689,7 @@ tasks = {
     {A, 1293, 15916}, -- Waking Shores: Silver
     {A, 1293, 15915}, -- Waking Shores: Bronze
     {C, 1269, 1293},
-    {N, 1293,k.GetMapName(2022)}, -- The Waking Shores
+    {N, 1293, a.GetMapName(2022)}, -- The Waking Shores
     {A, 1269, 18792}, -- Dragonriding Challenge: Dragon Isles: Gold
     {A, 1269, 18791}, -- Dragonriding Challenge: Dragon Isles: Silver
     {A, 1269, 18790}, -- Dragonriding Challenge: Dragon Isles: Bronze
@@ -2699,7 +2700,7 @@ tasks = {
     {A, 1269, 15940}, -- Dragon Racing Completionist: Silver
     {A, 1269, 15939}, -- Dragon Racing Completionist
     {C, 1207, 1269},
-    {N, 1269,k.L["Dragon Racing"]}, -- Dragon Racing
+    {N, 1269, a.L["Dragon Racing"]}, -- Dragon Racing
     {A, 1550, 19306}, -- Emerald Dream Glyph Hunter
     {A, 1550, 19303}, -- Dragon Glyphs: Wakeful Vista
     {A, 1550, 19302}, -- Dragon Glyphs: Whorlwing Basin
@@ -2710,7 +2711,7 @@ tasks = {
     {A, 1550, 19297}, -- Dragon Glyphs: Furnace Coil
     {A, 1550, 19296}, -- Dragon Glyphs: Eye of Ysera
     {C, 1268, 1550},
-    {N, 1550,k.GetMapName(2200), true}, -- Emerald Dream
+    {N, 1550, a.GetMapName(2200), true}, -- Emerald Dream
     {A, 1426, 18150}, -- Zaralek Cavern Glyph Hunter
     {A, 1426, 17517}, -- Dragon Glyphs: Aberrus Approach
     {A, 1426, 17516}, -- Dragon Glyphs: Acidbite Ravine
@@ -2721,7 +2722,7 @@ tasks = {
     {A, 1426, 17511}, -- Dragon Glyphs: Nal ks'kol
     {A, 1426, 17510}, -- Dragon Glyphs: Glimmerogg
     {C, 1268, 1426},
-    {N, 1426,k.GetMapName(2133), true}, -- Zaralek Cavern
+    {N, 1426, a.GetMapName(2133), true}, -- Zaralek Cavern
     {A, 1305, 16578}, -- Thaldraszus Glyph Hunter
     {A, 1305, 16105}, -- Dragon Glyphs: Veiled Ossuary
     {A, 1305, 16106}, -- Dragon Glyphs: Vault of the Incarnates
@@ -2736,7 +2737,7 @@ tasks = {
     {A, 1305, 16102}, -- Dragon Glyphs: Algeth'era
     {A, 1305, 16104}, -- Dragon Glyphs: Algeth'ar Academy
     {C, 1268, 1305},
-    {N, 1305,k.GetMapName(2025), true}, -- Thaldraszus
+    {N, 1305, a.GetMapName(2025), true}, -- Thaldraszus
     {A, 1304, 16577}, -- Azure Span Glyph Hunter
     {A, 1304, 16071}, -- Dragon Glyphs: Zelthrak Outpost
     {A, 1304, 16673}, -- Dragon Glyphs: The Fallen Course
@@ -2751,7 +2752,7 @@ tasks = {
     {A, 1304, 16068}, -- Dragon Glyphs: Brackenhide Hollow
     {A, 1304, 16065}, -- Dragon Glyphs: Azure Archives
     {C, 1268, 1304},
-    {N, 1304,k.GetMapName(2024), true}, -- The Azure Span
+    {N, 1304, a.GetMapName(2024), true}, -- The Azure Span
     {A, 1303, 16576}, -- Ohn'ahran Plains Glyph Hunter
     {A, 1303, 16063}, -- Dragon Glyphs: Windsong Rise
     {A, 1303, 16057}, -- Dragon Glyphs: The Eternal Kurgans
@@ -2766,7 +2767,7 @@ tasks = {
     {A, 1303, 16056}, -- Dragon Glyphs: Emerald Gardens
     {A, 1303, 16061}, -- Dragon Glyphs: Dragonsprings Summit
     {C, 1268, 1303},
-    {N, 1303,k.GetMapName(2023), true}, -- Ohn'ahran Plains
+    {N, 1303, a.GetMapName(2023), true}, -- Ohn'ahran Plains
     {A, 1302, 16575}, -- Waking Shores Glyph Hunter
     {A, 1302, 15986}, -- Dragon Glyphs: Wingrest Embassy
     {A, 1302, 15989}, -- Dragon Glyphs: The Overflowing Spring
@@ -2781,14 +2782,14 @@ tasks = {
     {A, 1302, 16051}, -- Dragon Glyphs: Dragonheart Outpost
     {A, 1302, 15991}, -- Dragon Glyphs: Crumbling Life Archway
     {C, 1268, 1302},
-    {N, 1302,k.GetMapName(2022), true}, -- The Waking Shores
+    {N, 1302, a.GetMapName(2022), true}, -- The Waking Shores
     {A, 1268, 17779}, -- A Serpentine Discovery
     {A, 1268, 15796}, -- Cliffside Companion
     {A, 1268, 15797}, -- An Azure Ally
     {A, 1268, 15795}, -- Together in the Skies
     {A, 1268, 15794}, -- A New Friend
     {C, 1207, 1268},
-    {N, 1268,k.L["Dragonriding"]}, -- Dragonriding
+    {N, 1268, a.L["Dragonriding"]}, -- Dragonriding
     {A, 1231, 19401}, -- Emerald Dream Safari
     {A, 1231, 17934}, -- Family Battler of Zaralek Cavern
     {A, 1231, 17918}, -- Undead Battler of Zaralek Caverm
@@ -2820,25 +2821,25 @@ tasks = {
     {A, 1231, 16464}, -- Battle on the Dragon Isles
     {A, 1231, 16519}, -- Dragon Isles Safari
     {C, 1207, 1231},
-    {N, 1231,k.GetCategoryInfoTitle(15117)}, -- Pet Battles
+    {N, 1231, a.GetCategoryInfoTitle(15117)}, -- Pet Battles
     {A, 1528, 18902}, -- Uncertified Nurse
     {C, 1391, 1528},
-    {N, 1528,k.GetCategoryInfoTitle(15496), true}, -- Tailoring
+    {N, 1528, a.GetCategoryInfoTitle(15496), true}, -- Tailoring
     {A, 1523, 18831}, -- Elusive Beasts of the Dragon Isles
     {A, 1523, 18833}, -- Elusive Legends of the Dragon Isles
     {A, 1523, 18832}, -- Elusive Legend of the Dragon Isles
     {C, 1391, 1523},
-    {N, 1523,k.GetCategoryInfoTitle(15498), true}, -- Skinning
+    {N, 1523, a.GetCategoryInfoTitle(15498), true}, -- Skinning
     {A, 1519, 18820}, -- Geologist's Ledger: Dragon Isles
     {A, 1519, 18821}, -- Geologist's Ledger - Overloaded Elements
     {A, 1519, 18819}, -- Geologist's Ledger - Draconium
     {A, 1519, 18818}, -- Geologist's Ledger - Serevite
     {C, 1391, 1519},
-    {N, 1519,k.GetCategoryInfoTitle(15497), true}, -- Mining
+    {N, 1519, a.GetCategoryInfoTitle(15497), true}, -- Mining
     {A, 1509, 18941}, -- Dazzling Dragons
     {A, 1509, 18727}, -- Rave Leader
     {C, 1391, 1509},
-    {N, 1509,k.GetCategoryInfoTitle(15494), true}, -- Jewelcrafting
+    {N, 1509, a.GetCategoryInfoTitle(15494), true}, -- Jewelcrafting
     {A, 1504, 18828}, -- Botanist's Log: Dragon Isles
     {A, 1504, 18829}, -- Botanist's Log - Overloaded Elements
     {A, 1504, 18825}, -- Botanist's Log - Writhebark
@@ -2846,29 +2847,29 @@ tasks = {
     {A, 1504, 18823}, -- Botanist's Log - Saxifrage
     {A, 1504, 18822}, -- Botanist's Log - Hochenblume
     {C, 1391, 1504},
-    {N, 1504,k.GetCategoryInfoTitle(15499), true}, -- Herbalism
+    {N, 1504, a.GetCategoryInfoTitle(15499), true}, -- Herbalism
     {A, 1492, 16632}, -- Dragon Isles Fisherman
     {C, 1391, 1492},
-    {N, 1492,k.GetCategoryInfoTitle(171), true}, -- Fishing
+    {N, 1492, a.GetCategoryInfoTitle(171), true}, -- Fishing
     {A, 1491, 18857}, -- That's No Ordinary Gas Cloud!
     {A, 1491, 18856}, -- Just an Ordinary Gas Cloud
     {C, 1391, 1491},
-    {N, 1491,k.GetCategoryInfoTitle(15492), true}, -- Engineering
+    {N, 1491, a.GetCategoryInfoTitle(15492), true}, -- Engineering
     {A, 1487, 18764}, -- Break Upon Your Body
     {A, 1487, 18763}, -- Spectre of Spectacles
     {C, 1391, 1487},
-    {N, 1487,k.GetCategoryInfoTitle(15491), true}, -- Enchanting
+    {N, 1487, a.GetCategoryInfoTitle(15491), true}, -- Enchanting
     {A, 1485, 16631}, -- Dragon Isles Cook
     {C, 1391, 1485},
-    {N, 1485,k.GetCategoryInfoTitle(170), true}, -- Cooking
+    {N, 1485, a.GetCategoryInfoTitle(170), true}, -- Cooking
     {A, 1466, 18805}, -- Draconic Phial Cabinet
     {C, 1391, 1466},
-    {N, 1466,k.GetCategoryInfoTitle(15489), true}, -- Alchemy
+    {N, 1466, a.GetCategoryInfoTitle(15489), true}, -- Alchemy
     {A, 1391, 16630}, -- Draconic Master of All
     {A, 1391, 16626}, -- Working with Wyrms
     {A, 1391, 16627}, -- Professional Draconic Master
     {C, 1207, 1391},
-    {N, 1391,k.GetCategoryInfoTitle(169)}, -- Professions
+    {N, 1391, a.GetCategoryInfoTitle(169)}, -- Professions
     {A, 1545, 19343}, -- Mythic: Fyrakk the Blazing
     {A, 1545, 19342}, -- "Mythic: Tindral Sageswift, Seer of the Flame"
     {A, 1545, 19341}, -- Mythic: Smolderon
@@ -2879,7 +2880,7 @@ tasks = {
     {A, 1545, 19336}, -- Mythic: Igira the Cruel
     {A, 1545, 19335}, -- Mythic: Gnarlroot
     {C, 1543, 1545},
-    {N, 1545,k.L["Mythic"]}, -- Mythic
+    {N, 1545, a.L["Mythic"]}, -- Mythic
     {A, 1544, 19390}, -- Memories of Teldrassil
     {A, 1544, 19393}, -- "Whelp, I'm Lost"
     {A, 1544, 19319}, -- Haven't We Done This Before?
@@ -2890,7 +2891,7 @@ tasks = {
     {A, 1544, 19320}, -- Cruelty Free
     {A, 1544, 19322}, -- Meaner Pastures
     {C, 1543, 1544},
-    {N, 1544,k.L["Glory"]}, -- Glory
+    {N, 1544, a.L["Glory"]}, -- Glory
     {A, 1543, 19420}, -- Dragonflight Season 3 Hero
     {A, 1543, 19396}, -- Dragonflight Season 3 Master
     {A, 1543, 19442}, -- Fire Catwalk With Me
@@ -2904,7 +2905,7 @@ tasks = {
     {A, 1543, 19345}, -- Molten Incursion
     {A, 1543, 19344}, -- Incarnate's Wake
     {C, 1230, 1543},
-    {N, 1543,k.GetInstanceInfoName(1207)}, -- Amirdrassil, the Dream's Hope
+    {N, 1543, a.GetInstanceInfoName(1207)}, -- Amirdrassil, the Dream's Hope
     {A, 1422, 18159}, -- Mythic: Scalecommander Sarkareth
     {A, 1422, 18158}, -- Mythic: Echo of Neltharion
     {A, 1422, 18157}, -- Mythic: Magmorax
@@ -2915,7 +2916,7 @@ tasks = {
     {A, 1422, 18152}, -- Mythic: The Amalgamation Chamber
     {A, 1422, 18151}, -- "Mythic: Kazzara, the Hellforged"
     {C, 1420, 1422},
-    {N, 1422,k.L["Mythic"]}, -- Mythic
+    {N, 1422, a.L["Mythic"]}, -- Mythic
     {A, 1421, 17877}, -- "We'll Never See That Again, Surely"
     {A, 1421, 18149}, -- Objects in Transit May Shatter
     {A, 1421, 18172}, -- Escar-Go-Go-Go
@@ -2926,7 +2927,7 @@ tasks = {
     {A, 1421, 18168}, -- I'll Make My Own Shadowflame
     {A, 1421, 18229}, -- Cosplate
     {C, 1420, 1421},
-    {N, 1421,k.L["Glory"]}, -- Glory
+    {N, 1421, a.L["Glory"]}, -- Glory
     {A, 1420, 18380}, -- Dragonflight Season 2 Hero
     {A, 1420, 18027}, -- Dragonflight Season 2 Master
     {A, 1420, 18256}, -- "Nasz'uro, the Unbound Legacy"
@@ -2941,7 +2942,7 @@ tasks = {
     {A, 1420, 18164}, -- Fury of Giants
     {A, 1420, 18163}, -- Discarded Works
     {C, 1230, 1420},
-    {N, 1420,k.GetInstanceInfoName(1208)}, -- Aberrus, the Shadowed Crucible
+    {N, 1420, a.GetInstanceInfoName(1208)}, -- Aberrus, the Shadowed Crucible
     {A, 1267, 16353}, -- Mythic: Raszageth the Storm-Eater
     {A, 1267, 16352}, -- Mythic: Broodkeeper Diurna
     {A, 1267, 16351}, -- Mythic: Kurog Grimtotem
@@ -2951,7 +2952,7 @@ tasks = {
     {A, 1267, 16347}, -- Mythic: Terros
     {A, 1267, 16346}, -- Mythic: Eranog
     {C, 1265, 1267},
-    {N, 1267,k.L["Mythic"]}, -- Mythic
+    {N, 1267, a.L["Mythic"]}, -- Mythic
     {A, 1266, 16451}, -- The Ol Raszle Daszle
     {A, 1266, 16442}, -- Incubation Extermination
     {A, 1266, 16450}, -- The Power is MINE!
@@ -2961,7 +2962,7 @@ tasks = {
     {A, 1266, 16365}, -- Little Friends
     {A, 1266, 16335}, -- What Frozen Things Do
     {C, 1265, 1266},
-    {N, 1266,k.L["Glory"]}, -- Glory
+    {N, 1266, a.L["Glory"]}, -- Glory
     {A, 1265, 17119}, -- Deep Cuts From the Vault
     {A, 1265, 16395}, -- Vaulternative Fashion
     {A, 1265, 17108}, -- Cutting Edge: Raszageth the Storm-Eater
@@ -2973,7 +2974,7 @@ tasks = {
     {A, 1265, 17111}, -- Caverns of Infusion
     {A, 1265, 17110}, -- The Primal Bulwark
     {C, 1230, 1265},
-    {N, 1265,k.GetInstanceInfoName(1200)}, -- Vault of the Incarnates
+    {N, 1265, a.GetInstanceInfoName(1200)}, -- Vault of the Incarnates
     {A, 1230, 19349}, -- Glory of the Dream Raider
     {A, 1230, 17978}, -- Stones Can Fly!
     {A, 1230, 17977}, -- Stones Can Try To Fly!
@@ -2981,7 +2982,7 @@ tasks = {
     {A, 1230, 18251}, -- Glory of the Aberrus Raider
     {A, 1230, 16355}, -- Glory of the Vault Raider
     {C, 1207, 1230},
-    {N, 1230,k.GetCategoryInfoTitle(15271)}, -- Raids
+    {N, 1230, a.GetCategoryInfoTitle(15271)}, -- Raids
     {A, 1450, 19088}, -- Keystone Hero: Dawn of the Infinite
     {A, 1450, 18706}, -- Put That Thing Back Where It Came From
     {A, 1450, 18705}, -- Defender of the Timeways
@@ -2992,7 +2993,7 @@ tasks = {
     {A, 1450, 18556}, -- Chaotic Time
     {A, 1450, 18589}, -- Crunch Time
     {C, 1229, 1450},
-    {N, 1450,k.GetInstanceInfoName(1209)}, -- Dawn of the Infinite
+    {N, 1450, a.GetInstanceInfoName(1209)}, -- Dawn of the Infinite
     {A, 1264, 16639}, -- Keystone Hero: Uldaman: Legacy of Tyr
     {A, 1264, 16280}, -- Mythic: Uldaman: Legacy of Tyr
     {A, 1264, 16279}, -- Heroic: Uldaman: Legacy of Tyr
@@ -3001,7 +3002,7 @@ tasks = {
     {A, 1264, 16282}, -- "No, You're Stunning!"
     {A, 1264, 16337}, -- It's a Trogg Eat Trogg World
     {C, 1229, 1264},
-    {N, 1264,k.GetInstanceInfoName(1197)}, -- Uldaman: Legacy of Tyr
+    {N, 1264, a.GetInstanceInfoName(1197)}, -- Uldaman: Legacy of Tyr
     {A, 1263, 16641}, -- Keystone Hero: The Nokhud Offensive
     {A, 1263, 16277}, -- Mythic: The Nokhud Offensive
     {A, 1263, 16276}, -- Heroic: The Nokhud Offensive
@@ -3011,7 +3012,7 @@ tasks = {
     {A, 1263, 16456}, -- Weapons of the Maruukai
     {A, 1263, 16447}, -- What Are The Chances...
     {C, 1229, 1263},
-    {N, 1263,k.GetInstanceInfoName(1198)}, -- The Nokhud Offensive
+    {N, 1263, a.GetInstanceInfoName(1198)}, -- The Nokhud Offensive
     {A, 1262, 16645}, -- Keystone Hero: The Azure Vault
     {A, 1262, 16274}, -- Mythic: The Azure Vault
     {A, 1262, 16273}, -- Heroic: The Azure Vault
@@ -3020,7 +3021,7 @@ tasks = {
     {A, 1262, 16331}, -- The Cracked Crystal
     {A, 1262, 16445}, -- Icy What You Did There
     {C, 1229, 1262},
-    {N, 1262,k.GetInstanceInfoName(1203)}, -- The Azure Vault
+    {N, 1262, a.GetInstanceInfoName(1203)}, -- The Azure Vault
     {A, 1261, 16640}, -- Keystone Hero: Ruby Life Pools
     {A, 1261, 16268}, -- Mythic: Ruby Life Pools
     {A, 1261, 16267}, -- Heroic: Ruby Life Pools
@@ -3029,7 +3030,7 @@ tasks = {
     {A, 1261, 16320}, -- Does Steam Do Fire Damage?
     {A, 1261, 16402}, -- Dragon Kill Points
     {C, 1229, 1261},
-    {N, 1261,k.GetInstanceInfoName(1202)}, -- Ruby Life Pools
+    {N, 1261, a.GetInstanceInfoName(1202)}, -- Ruby Life Pools
     {A, 1260, 16644}, -- Keystone Hero: Neltharus
     {A, 1260, 16265}, -- Mythic: Neltharus
     {A, 1260, 16264}, -- Heroic: Neltharus
@@ -3038,7 +3039,7 @@ tasks = {
     {A, 1260, 16432}, -- Ready for Raiding VIII
     {A, 1260, 16438}, -- Knowledge is... Preserved?
     {C, 1229, 1260},
-    {N, 1260,k.GetInstanceInfoName(1199)}, -- Neltharus
+    {N, 1260, a.GetInstanceInfoName(1199)}, -- Neltharus
     {A, 1259, 16646}, -- Keystone Hero: Halls of Infusion
     {A, 1259, 16262}, -- Mythic: Halls of Infusion
     {A, 1259, 16261}, -- Heroic: Halls of Infusion
@@ -3047,7 +3048,7 @@ tasks = {
     {A, 1259, 16427}, -- Go With the Flow
     {A, 1259, 16426}, -- Hungry Hungry Hornswog
     {C, 1229, 1259},
-    {N, 1259,k.GetInstanceInfoName(1204)}, -- Halls of Infusion
+    {N, 1259, a.GetInstanceInfoName(1204)}, -- Halls of Infusion
     {A, 1258, 16642}, -- Keystone Hero: Brackenhide Hollow
     {A, 1258, 16257}, -- Mythic: Brackenhide Hollow
     {A, 1258, 16256}, -- Heroic: Brackenhide Hollow
@@ -3058,7 +3059,7 @@ tasks = {
     {A, 1258, 16296}, -- Growlbossify
     {A, 1258, 16110}, -- Subscribed to Hyena Facts
     {C, 1229, 1258},
-    {N, 1258,k.GetInstanceInfoName(1196)}, -- Brackenhide Hollow
+    {N, 1258, a.GetInstanceInfoName(1196)}, -- Brackenhide Hollow
     {A, 1257, 16643}, -- Keystone Hero: Algeth'ar Academy
     {A, 1257, 16271}, -- Mythic: Algeth'ar Academy
     {A, 1257, 16270}, -- Heroic: Algeth'ar Academy
@@ -3067,7 +3068,7 @@ tasks = {
     {A, 1257, 16329}, -- "Duck, Duck, Spruce!"
     {A, 1257, 16434}, -- See Me After Class
     {C, 1229, 1257},
-    {N, 1257,k.GetInstanceInfoName(1201)}, -- Algeth'ar Academy
+    {N, 1257, a.GetInstanceInfoName(1201)}, -- Algeth'ar Academy
     {A, 1229, 19420}, -- Dragonflight Season 3 Hero
     {A, 1229, 19396}, -- Dragonflight Season 3 Master
     {A, 1229, 19012}, -- Dragonflight Keystone Hero: Season Three
@@ -3095,7 +3096,7 @@ tasks = {
     {A, 1229, 16339}, -- Myths of the Dragonflight Dungeons
     {A, 1229, 16294}, -- Dragonflight Dungeon Hero
     {C, 1207, 1229},
-    {N, 1229,k.GetCategoryInfoTitle(15272)}, -- Dungeons
+    {N, 1229, a.GetCategoryInfoTitle(15272)}, -- Dungeons
     {A, 1542, 19129}, -- Emerald Dream Challenge Racing Completionist: Gold
     {A, 1542, 19128}, -- Emerald Dream Challenge Racing Completionist: Silver
     {A, 1542, 19127}, -- Emerald Dream Challenge Racing Completionist
@@ -3118,7 +3119,7 @@ tasks = {
     {A, 1542, 19110}, -- Emerald Dream: Silver
     {A, 1542, 19109}, -- Emerald Dream: Bronze
     {C, 1541, 1542},
-    {N, 1542,k.L["Dragon Racing"], true}, -- Dragon Racing
+    {N, 1542, a.L["Dragon Racing"], true}, -- Dragon Racing
     {A, 1551, 19306}, -- Emerald Dream Glyph Hunter
     {A, 1551, 19303}, -- Dragon Glyphs: Wakeful Vista
     {A, 1551, 19302}, -- Dragon Glyphs: Whorlwing Basin
@@ -3129,14 +3130,14 @@ tasks = {
     {A, 1551, 19297}, -- Dragon Glyphs: Furnace Coil
     {A, 1551, 19296}, -- Dragon Glyphs: Eye of Ysera
     {C, 1541, 1551},
-    {N, 1551,k.L["Dragon Glyphs"], true}, -- Dragon Glyphs
+    {N, 1551, a.L["Dragon Glyphs"], true}, -- Dragon Glyphs
     {A, 1547, 19235}, -- Warden of the Dream
     {A, 1547, 19230}, -- Friends in the Dream
     {C, 1541, 1547},
-    {N, 1547,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1547, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1546, 19294}, -- Tour of Duty: Emerald Dream
     {C, 1541, 1546},
-    {N, 1546,k.GetCategoryInfoTitle(95), true}, -- Player vs. Player
+    {N, 1546, a.GetCategoryInfoTitle(95), true}, -- Player vs. Player
     {A, 1549, 19461}, -- Kissed by the Wind
     {A, 1549, 19198}, -- The Seeds I Sow
     {A, 1549, 19196}, -- Sowing the Seeds
@@ -3146,14 +3147,14 @@ tasks = {
     {A, 1549, 19316}, -- Adventurer of the Emerald Dream
     {A, 1549, 19309}, -- Explore the Emerald Dream
     {C, 1541, 1549},
-    {N, 1549,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 1549, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 1548, 19293}, -- Friends In Feathers
     {A, 1548, 19026}, -- Defenders of the Dream
     {C, 1541, 1548},
-    {N, 1548,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 1548, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 1541, 19318}, -- Dream On
     {C, 1228, 1541},
-    {N, 1541,k.GetMapName(2200)}, -- Emerald Dream
+    {N, 1541, a.GetMapName(2200)}, -- Emerald Dream
     {A, 1424, 18788}, -- Zaralek Cavern Challenge: Gold
     {A, 1424, 18787}, -- Zaralek Cavern Challenge: Silver
     {A, 1424, 18786}, -- Zaralek Cavern Challenge: Bronze
@@ -3170,7 +3171,7 @@ tasks = {
     {A, 1424, 17484}, -- Zaralek Cavern: Silver
     {A, 1424, 17483}, -- Zaralek Cavern: Bronze
     {C, 1414, 1424},
-    {N, 1424,k.L["Dragon Racing"], true}, -- Dragon Racing
+    {N, 1424, a.L["Dragon Racing"], true}, -- Dragon Racing
     {A, 1427, 18150}, -- Zaralek Cavern Glyph Hunter
     {A, 1427, 17517}, -- Dragon Glyphs: Aberrus Approach
     {A, 1427, 17516}, -- Dragon Glyphs: Acidbite Ravine
@@ -3181,15 +3182,15 @@ tasks = {
     {A, 1427, 17511}, -- Dragon Glyphs: Nal ks'kol
     {A, 1427, 17510}, -- Dragon Glyphs: Glimmerogg
     {C, 1414, 1427},
-    {N, 1427,k.L["Dragon Glyphs"], true}, -- Dragon Glyphs
+    {N, 1427, a.L["Dragon Glyphs"], true}, -- Dragon Glyphs
     {A, 1418, 17763}, -- There's No Place Like Loamm
     {A, 1418, 17756}, -- Friends in Loamm Places
     {C, 1414, 1418},
-    {N, 1418,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1418, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1417, 17852}, -- Elemental Conjuror
     {A, 1417, 17851}, -- Tour of Duty: Zaralek Cavern
     {C, 1414, 1417},
-    {N, 1417,k.GetCategoryInfoTitle(95), true}, -- Player vs. Player
+    {N, 1417, a.GetCategoryInfoTitle(95), true}, -- Player vs. Player
     {A, 1416, 18361}, -- To All the Squirrels Burrowed Beneath
     {A, 1416, 18284}, -- A Niffen's Best Buddy
     {A, 1416, 18257}, -- Can You Dig It?
@@ -3205,15 +3206,15 @@ tasks = {
     {A, 1416, 17783}, -- Adventurer of Zaralek Cavern
     {A, 1416, 17766}, -- Explore Zaralek Cavern
     {C, 1414, 1416},
-    {N, 1416,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 1416, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 1414, 18271}, -- He'sSss All Mine
     {A, 1414, 17841}, -- Pyramid Scheme
     {A, 1414, 17785}, -- "Que Zara(lek), Zara(lek)"
     {C, 1228, 1414},
-    {N, 1414,k.GetMapName(2133)}, -- Zaralek Cavern
+    {N, 1414, a.GetMapName(2133)}, -- Zaralek Cavern
     {A, 1410, 17540}, -- Under the Weather
     {C, 1236, 1410},
-    {N, 1410,k.L["Primal Storms"], true}, -- Primal Storms
+    {N, 1410, a.L["Primal Storms"], true}, -- Primal Storms
     {A, 1407, 18781}, -- Forbidden Reach Challenge: Gold
     {A, 1407, 18780}, -- Forbidden Reach Challenge: Silver
     {A, 1407, 18779}, -- Forbidden Reach Challenge: Bronze
@@ -3230,7 +3231,7 @@ tasks = {
     {A, 1407, 17280}, -- Forbidden Reach: Silver
     {A, 1407, 17279}, -- Forbidden Reach: Bronze
     {C, 1236, 1407},
-    {N, 1407,k.L["Dragon Racing"], true}, -- Dragon Racing
+    {N, 1407, a.L["Dragon Racing"], true}, -- Dragon Racing
     {A, 1408, 17411}, -- Forbidden Reach Glyph Hunter
     {A, 1408, 17405}, -- Dragon Glyphs: Caldera of the Menders
     {A, 1408, 17404}, -- Dragon Glyphs: Talonlords' Perch
@@ -3241,7 +3242,7 @@ tasks = {
     {A, 1408, 17399}, -- Dragon Glyphs: Talon's Watch
     {A, 1408, 17398}, -- Dragon Glyphs: Winglord's Perch
     {C, 1236, 1408},
-    {N, 1408,k.L["Dragon Glyphs"], true}, -- Dragon Glyphs
+    {N, 1408, a.L["Dragon Glyphs"], true}, -- Dragon Glyphs
     {A, 1244, 17543}, -- You Know How to Reach Me
     {A, 1244, 17509}, -- "Every Door, Everywhere, All At Once"
     {A, 1244, 17413}, -- Door Buster
@@ -3259,20 +3260,20 @@ tasks = {
     {A, 1244, 17534}, -- Explore the Forbidden Reach
     {A, 1244, 16452}, -- Famliar Skies
     {C, 1236, 1244},
-    {N, 1244,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 1244, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 1241, 15638}, -- "Dracthyr, Awaken"
     {A, 1241, 15325}, -- "Dracthyr, Awaken"
     {C, 1236, 1241},
-    {N, 1241,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 1241, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 1228, 1236},
-    {N, 1236,k.GetMapName(2107)}, -- The Forbidden Reach
+    {N, 1236, a.GetMapName(2107)}, -- The Forbidden Reach
     {A, 1366, 16489}, -- Chasing Storms in Thaldraszus
     {A, 1366, 16488}, -- Snowstorms in Thaldraszus
     {A, 1366, 16487}, -- Firestorms in Thaldraszus
     {A, 1366, 16486}, -- Sandstorms in Thaldraszus
     {A, 1366, 16485}, -- Thunderstorms in Thaldraszus
     {C, 1235, 1366},
-    {N, 1366,k.L["Primal Storms"], true}, -- Primal Storms
+    {N, 1366, a.L["Primal Storms"], true}, -- Primal Storms
     {A, 1313, 18762}, -- Thaldraszus Challenge: Gold
     {A, 1313, 18761}, -- Thaldraszus Challenge: Silver
     {A, 1313, 18760}, -- Thaldraszus Challenge: Bronze
@@ -3286,7 +3287,7 @@ tasks = {
     {A, 1313, 15925}, -- Thaldraszus: Silver
     {A, 1313, 15924}, -- Thaldraszus: Bronze
     {C, 1235, 1313},
-    {N, 1313,k.L["Dragon Racing"], true}, -- Dragon Racing
+    {N, 1313, a.L["Dragon Racing"], true}, -- Dragon Racing
     {A, 1309, 16578}, -- Thaldraszus Glyph Hunter
     {A, 1309, 16105}, -- Dragon Glyphs: Veiled Ossuary
     {A, 1309, 16106}, -- Dragon Glyphs: Vault of the Incarnates
@@ -3301,10 +3302,10 @@ tasks = {
     {A, 1309, 16102}, -- Dragon Glyphs: Algeth'era
     {A, 1309, 16104}, -- Dragon Glyphs: Algeth'ar Academy
     {C, 1235, 1309},
-    {N, 1309,k.L["Dragon Glyphs"], true}, -- Dragon Glyphs
+    {N, 1309, a.L["Dragon Glyphs"], true}, -- Dragon Glyphs
     {A, 1251, 16593}, -- Tour of Duty: Thaldraszus
     {C, 1235, 1251},
-    {N, 1251,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 1251, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 1246, 17564}, -- Ancient Stones of Thaldraszus
     {A, 1246, 16621}, -- "One of Everything, Please"
     {A, 1246, 16634}, -- Framing a New Perspective
@@ -3312,22 +3313,22 @@ tasks = {
     {A, 1246, 16679}, -- Adventurer of Thaldraszus
     {A, 1246, 16518}, -- Explore Thaldraszus
     {C, 1235, 1246},
-    {N, 1246,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 1246, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 1240, 17343}, -- Drop It Like It's Hot
     {A, 1240, 17342}, -- The Future We Make
     {A, 1240, 16398}, -- Sojourner of Thaldraszus
     {A, 1240, 16363}, -- Just Don't Ask Me to Spell It
     {C, 1235, 1240},
-    {N, 1240,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 1240, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 1228, 1235},
-    {N, 1235,k.GetMapName(2025)}, -- Thaldraszus
+    {N, 1235, a.GetMapName(2025)}, -- Thaldraszus
     {A, 1365, 16484}, -- Chasing Storms in The Azure Span
     {A, 1365, 16483}, -- Snowstorms in The Azure Span
     {A, 1365, 16482}, -- Firestorms in The Azure Span
     {A, 1365, 16481}, -- Sandstorms in The Azure Span
     {A, 1365, 16480}, -- Thunderstorms in The Azure Span
     {C, 1234, 1365},
-    {N, 1365,k.L["Primal Storms"], true}, -- Primal Storms
+    {N, 1365, a.L["Primal Storms"], true}, -- Primal Storms
     {A, 1312, 18759}, -- Azure Span Challenge: Gold
     {A, 1312, 18758}, -- Azure Span Challenge: Silver
     {A, 1312, 18757}, -- Azure Span Challenge: Bronze
@@ -3341,7 +3342,7 @@ tasks = {
     {A, 1312, 15922}, -- Azure Span: Silver
     {A, 1312, 15921}, -- Azure Span: Bronze
     {C, 1234, 1312},
-    {N, 1312,k.L["Dragon Racing"], true}, -- Dragon Racing
+    {N, 1312, a.L["Dragon Racing"], true}, -- Dragon Racing
     {A, 1308, 16577}, -- Azure Span Glyph Hunter
     {A, 1308, 16071}, -- Dragon Glyphs: Zelthrak Outpost
     {A, 1308, 16073}, -- Dragon Glyphs: Vakthros Range
@@ -3356,7 +3357,7 @@ tasks = {
     {A, 1308, 16068}, -- Dragon Glyphs: Brackenhide Hollow
     {A, 1308, 16065}, -- Dragon Glyphs: Azure Archives
     {C, 1234, 1308},
-    {N, 1308,k.L["Dragon Glyphs"], true}, -- Dragon Glyphs
+    {N, 1308, a.L["Dragon Glyphs"], true}, -- Dragon Glyphs
     {A, 1256, 17427}, -- Winterpelt Conversationalist
     {A, 1256, 16443}, -- Soupervisor
     {A, 1256, 16444}, -- Leftovers' Revenge
@@ -3381,10 +3382,10 @@ tasks = {
     {A, 1256, 16529}, -- Joining the Community
     {A, 1256, 16944}, -- Friend of the Family
     {C, 1234, 1256},
-    {N, 1256,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1256, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1250, 16594}, -- Tour of Duty: The Azure Span
     {C, 1234, 1250},
-    {N, 1250,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 1250, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 1245, 17563}, -- Ancient Stones of the Azure Span
     {A, 1245, 17506}, -- Still Standing in the Fire
     {A, 1245, 16581}, -- Seeing Blue
@@ -3396,7 +3397,7 @@ tasks = {
     {A, 1245, 16678}, -- Adventurer of The Azure Span
     {A, 1245, 16460}, -- Explore the Azure Span
     {C, 1234, 1245},
-    {N, 1245,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 1245, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 1239, 17773}, -- A Blue Dawn
     {A, 1239, 18867}, -- Through the Ashes and Flames
     {A, 1239, 17735}, -- We Didn't Start the Fire
@@ -3405,16 +3406,16 @@ tasks = {
     {A, 1239, 16428}, -- Sojourner of Azure Span
     {A, 1239, 16336}, -- Azure Spanner
     {C, 1234, 1239},
-    {N, 1239,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 1239, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 1228, 1234},
-    {N, 1234,k.GetMapName(2024)}, -- The Azure Span
+    {N, 1234, a.GetMapName(2024)}, -- The Azure Span
     {A, 1364, 16476}, -- Chasing Storms in the Ohn'ahran Plains
     {A, 1364, 16479}, -- Snowstorms in the Ohn'ahran Plains
     {A, 1364, 16478}, -- Firestorms in the Ohn'ahran Plains
     {A, 1364, 16477}, -- Sandstorms in the Ohn'ahran Plains
     {A, 1364, 16475}, -- Thunderstorms in the Ohn'ahran Plains
     {C, 1233, 1364},
-    {N, 1364,k.L["Primal Storms"], true}, -- Primal Storms
+    {N, 1364, a.L["Primal Storms"], true}, -- Primal Storms
     {A, 1311, 18756}, -- Ohn'ahran Plains Challenge: Gold
     {A, 1311, 18755}, -- Ohn'ahran Plains Challenge: Silver
     {A, 1311, 18754}, -- Ohn'ahran Plains Challenge: Bronze
@@ -3428,7 +3429,7 @@ tasks = {
     {A, 1311, 15919}, -- Ohn'ahran Plains: Silver
     {A, 1311, 15918}, -- Ohn'ahran Plains: Bronze
     {C, 1233, 1311},
-    {N, 1311,k.L["Dragon Racing"], true}, -- Dragon Racing
+    {N, 1311, a.L["Dragon Racing"], true}, -- Dragon Racing
     {A, 1307, 16576}, -- Ohn'ahran Plains Glyph Hunter
     {A, 1307, 16063}, -- Dragon Glyphs: Windsong Rise
     {A, 1307, 16057}, -- Dragon Glyphs: The Eternal Kurgans
@@ -3443,7 +3444,7 @@ tasks = {
     {A, 1307, 16056}, -- Dragon Glyphs: Emerald Gardens
     {A, 1307, 16061}, -- Dragon Glyphs: Dragonsprings Summit
     {C, 1233, 1307},
-    {N, 1307,k.L["Dragon Glyphs"], true}, -- Dragon Glyphs
+    {N, 1307, a.L["Dragon Glyphs"], true}, -- Dragon Glyphs
     {A, 1253, 16543}, -- Tetrachromancer
     {A, 1253, 16542}, -- The Disgruntled Hunter
     {A, 1253, 16541}, -- Longhunter
@@ -3453,10 +3454,10 @@ tasks = {
     {A, 1253, 16528}, -- Joining the Khansguard
     {A, 1253, 17064}, -- Friends in the Plains
     {C, 1233, 1253},
-    {N, 1253,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1253, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1249, 16595}, -- Tour of Duty: Ohn'ahran Plains
     {C, 1233, 1249},
-    {N, 1249,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 1249, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 1243, 17562}, -- Ancient Stones of the Ohn'ahran Plains
     {A, 1243, 17506}, -- Still Standing in the Fire
     {A, 1243, 16583}, -- Knew You Nokhud Do It!
@@ -3469,7 +3470,7 @@ tasks = {
     {A, 1243, 16677}, -- Adventurer of the Ohn'ahran Plains
     {A, 1243, 16457}, -- Explore the Ohn'ahran Plains
     {C, 1233, 1243},
-    {N, 1243,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 1243, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 1238, 18867}, -- Through the Ashes and Flames
     {A, 1238, 17735}, -- We Didn't Start the Fire
     {A, 1238, 17546}, -- A New Beginning
@@ -3477,16 +3478,16 @@ tasks = {
     {A, 1238, 16405}, -- Sojourner of Ohn'ahran Plains
     {A, 1238, 15394}, -- Ohn'a'Roll
     {C, 1233, 1238},
-    {N, 1238,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 1238, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 1228, 1233},
-    {N, 1233,k.GetMapName(2023)}, -- Ohn'ahran Plains
+    {N, 1233, a.GetMapName(2023)}, -- Ohn'ahran Plains
     {A, 1363, 16468}, -- Chasing Storms in The Waking Shores
     {A, 1363, 16467}, -- Snowstorms in The Waking Shores
     {A, 1363, 16466}, -- Firestorms in The Waking Shores
     {A, 1363, 16465}, -- Sandstorms in The Waking Shores
     {A, 1363, 16463}, -- Thunderstorms in The Waking Shores
     {C, 1232, 1363},
-    {N, 1363,k.L["Primal Storms"], true}, -- Primal Storms
+    {N, 1363, a.L["Primal Storms"], true}, -- Primal Storms
     {A, 1310, 18750}, -- Waking Shores Challenge: Gold
     {A, 1310, 18749}, -- Waking Shores Challenge: Silver
     {A, 1310, 18748}, -- Waking Shores Challenge: Bronze
@@ -3500,7 +3501,7 @@ tasks = {
     {A, 1310, 15916}, -- Waking Shores: Silver
     {A, 1310, 15915}, -- Waking Shores: Bronze
     {C, 1232, 1310},
-    {N, 1310,k.L["Dragon Racing"], true}, -- Dragon Racing
+    {N, 1310, a.L["Dragon Racing"], true}, -- Dragon Racing
     {A, 1306, 16575}, -- Waking Shores Glyph Hunter
     {A, 1306, 15986}, -- Dragon Glyphs: Wingrest Embassy
     {A, 1306, 15989}, -- Dragon Glyphs: The Overflowing Spring
@@ -3515,16 +3516,16 @@ tasks = {
     {A, 1306, 16051}, -- Dragon Glyphs: Dragonheart Outpost
     {A, 1306, 15991}, -- Dragon Glyphs: Crumbling Life Archway
     {C, 1232, 1306},
-    {N, 1306,k.L["Dragon Glyphs"], true}, -- Dragon Glyphs
+    {N, 1306, a.L["Dragon Glyphs"], true}, -- Dragon Glyphs
     {A, 1248, 16760}, -- The Obsidian Bloodline
     {A, 1248, 16536}, -- True Friends with Wrathion
     {A, 1248, 16532}, -- True Friends with Sabellian
     {A, 1248, 16539}, -- In High Esteem
     {C, 1232, 1248},
-    {N, 1248,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1248, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1247, 16592}, -- Tour of Duty: The Waking Shores
     {C, 1232, 1247},
-    {N, 1247,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 1247, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 1242, 17561}, -- Ancient Stones of the Waking Shores
     {A, 1242, 16584}, -- Symbols of Hope
     {A, 1242, 16497}, -- I'm Playing All Sides
@@ -3540,20 +3541,20 @@ tasks = {
     {A, 1242, 16676}, -- Adventurer of The Waking Shores
     {A, 1242, 16400}, -- Explore the Waking Shores
     {C, 1232, 1242},
-    {N, 1242,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 1242, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 1237, 16401}, -- Sojourner of the Waking Shores
     {A, 1237, 16334}, -- Waking Hope
     {C, 1232, 1237},
-    {N, 1237,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 1237, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 1228, 1232},
-    {N, 1232,k.GetMapName(2022)}, -- The Waking Shores
+    {N, 1232, a.GetMapName(2022)}, -- The Waking Shores
     {A, 1362, 17782}, -- Daycare Derby
     {A, 1362, 18384}, -- "Whelp, There It Is"
     {A, 1362, 18383}, -- Hey Nanny Nanny
     {A, 1362, 17734}, -- Active Listening Skills
     {A, 1362, 16556}, -- Great Gourmand of The Ruby Feast
     {C, 1228, 1362},
-    {N, 1362,k.GetMapName(2112)}, -- Valdrakken
+    {N, 1362, a.GetMapName(2112)}, -- Valdrakken
     {A, 1361, 19308}, -- Freshscales Fifteen
     {A, 1361, 16758}, -- "Ready, Aim, Catalog!"
     {A, 1361, 16625}, -- Belay On!
@@ -3577,7 +3578,7 @@ tasks = {
     {A, 1361, 16522}, -- A True Explorer
     {A, 1361, 16884}, -- Friends in the Field
     {C, 1341, 1361},
-    {N, 1361,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1361, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1390, 17345}, -- Airborne Tumbler
     {A, 1390, 17336}, -- Airborne Tumbler
     {A, 1390, 17335}, -- Airborne Tumbler
@@ -3593,7 +3594,7 @@ tasks = {
     {A, 1390, 16590}, -- A Champion's Tour: Dragon Isles
     {A, 1390, 16589}, -- Malicia's Challenge
     {C, 1341, 1390},
-    {N, 1390,k.GetCategoryInfoTitle(95), true}, -- Player vs. Player
+    {N, 1390, a.GetCategoryInfoTitle(95), true}, -- Player vs. Player
     {A, 1343, 18559}, -- "Many Boxes, Many Rockses"
     {A, 1343, 17560}, -- Ancient Stones of the Dragon Isles
     {A, 1343, 17978}, -- Stones Can Fly!
@@ -3607,7 +3608,7 @@ tasks = {
     {A, 1343, 16446}, -- That's Pretty Neat!
     {A, 1343, 16761}, -- Dragon Isles Explorer
     {C, 1341, 1343},
-    {N, 1343,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 1343, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 1342, 16683}, -- In Tyr's Footsteps
     {A, 1342, 17739}, -- Embers of Neltharion
     {A, 1342, 16808}, -- Friend of the Dragon Isles
@@ -3615,15 +3616,15 @@ tasks = {
     {A, 1342, 16291}, -- An Ancient Awakening
     {A, 1342, 16585}, -- Loremaster of the Dragon Isles
     {C, 1341, 1342},
-    {N, 1342,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 1342, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 1228, 1341},
-    {N, 1341,k.GetCategoryInfoTitle(15465)}, -- Dragon Isles
+    {N, 1341, a.GetCategoryInfoTitle(15465)}, -- Dragon Isles
     {C, 1207, 1228},
-    {N, 1228,k.L["Zones"]}, -- Zones
+    {N, 1228, a.L["Zones"]}, -- Zones
     {A, 1207, 19307}, -- Dragon Isles Pathfinder
     {A, 1207, 18804}, -- Neltharion's Legacy
     {C, 883, 1207},
-    {N, 1207,k.GetCategoryInfoTitle(15466)}, -- Dragonflight
+    {N, 1207, a.GetCategoryInfoTitle(15466)}, -- Dragonflight
     {A, 420, 14763}, -- Crypt Couture
     {A, 420, 14833}, -- Fashion Abomination
     {A, 420, 14764}, -- The Great Luckydo
@@ -3633,7 +3634,7 @@ tasks = {
     {A, 420, 14748}, -- Wardrobe Makeover
     {A, 420, 14684}, -- Abominable Lives
     {C, 419, 420},
-    {N, 420,k.GetCovenantName(4)}, -- Necrolord
+    {N, 420, a.GetCovenantName(4)}, -- Necrolord
     {A, 422, 14789}, -- All Spirits Great and Small
     {A, 422, 14780}, -- Meditation Master
     {A, 422, 14775}, -- Mush Appreciated
@@ -3642,7 +3643,7 @@ tasks = {
     {A, 422, 14675}, -- Spirit Talker
     {A, 422, 14670}, -- That's the Spirit
     {C, 419, 422},
-    {N, 422,k.GetCovenantName(3)}, -- Night Fae
+    {N, 422, a.GetCovenantName(3)}, -- Night Fae
     {A, 421, 14749}, -- Rendle's Big Day
     {A, 421, 14727}, -- Master of Ceremonies
     {A, 421, 14726}, -- It's Certainly Never Boring
@@ -3656,7 +3657,7 @@ tasks = {
     {A, 421, 14679}, -- Party Palace
     {A, 421, 14678}, -- Court Favors
     {C, 419, 421},
-    {N, 421,k.GetCovenantName(2)}, -- Venthyr
+    {N, 421, a.GetCovenantName(2)}, -- Venthyr
     {A, 423, 14887}, -- To the Moon
     {A, 423, 14866}, -- Master of the Path
     {A, 423, 14865}, -- Disciple of Humility
@@ -3675,7 +3676,7 @@ tasks = {
     {A, 423, 14852}, -- The Hoot of the Issue
     {A, 423, 14851}, -- Bastion of Protection
     {C, 419, 423},
-    {N, 423,k.GetCovenantName(1)}, -- Kyrian
+    {N, 423, a.GetCovenantName(1)}, -- Kyrian
     {A, 419, 15649}, -- Shadowlands Dilettante
     {A, 419, 15025}, -- Sanctum Superior
     {A, 419, 15024}, -- Denying the Drought
@@ -3710,7 +3711,7 @@ tasks = {
     {A, 419, 14790}, -- Covenant Campaign
     {A, 419, 14627}, -- Choosing Your Purpose
     {C, 6, 419},
-    {N, 419,k.GetCategoryInfoTitle(15441)}, -- Covenant Sanctums
+    {N, 419, a.GetCategoryInfoTitle(15441)}, -- Covenant Sanctums
     {A, 1039, 15258}, -- The Jailer's Gauntlet: Layer 8
     {A, 1039, 15257}, -- The Jailer's Gauntlet: Layer 7
     {A, 1039, 15256}, -- The Jailer's Gauntlet: Layer 6
@@ -3728,37 +3729,37 @@ tasks = {
     {A, 1039, 14469}, -- Twisting Corridors: Layer 2
     {A, 1039, 14468}, -- Twisting Corridors: Layer 1
     {C, 424, 1039},
-    {N, 1039,k.L["Other wings"]}, -- Other wings
+    {N, 1039, a.L["Other wings"]}, -- Other wings
     {A, 848, 15320}, -- Flawless: The Upper Reaches (Layer 16)
     {A, 848, 15088}, -- Flawless: The Upper Reaches (Layer 12)
     {A, 848, 14493}, -- The Upper Reaches
     {C, 424, 848},
-    {N, 848,(select(2, k.GetAchievementInfo(14493))), true}, -- The Upper Reaches
+    {N, 848, (select(2, a.GetAchievementInfo(14493))), true}, -- The Upper Reaches
     {A, 847, 15319}, -- Flawless: Mort'regar (Layer 16)
     {A, 847, 15087}, -- Flawless: Mort'regar (Layer 12)
     {A, 847, 14488}, -- Mort'regar
     {C, 424, 847},
-    {N, 847,(select(2, k.GetAchievementInfo(14488))), true}, -- Mort'regar
+    {N, 847, (select(2, a.GetAchievementInfo(14488))), true}, -- Mort'regar
     {A, 846, 15318}, -- Flawless: Coldheart Interstitia (Layer 16)
     {A, 846, 15083}, -- Flawless: Coldheart Interstitia (Layer 12)
     {A, 846, 14483}, -- Coldheart Interstitia
     {C, 424, 846},
-    {N, 846,(select(2, k.GetAchievementInfo(14483))), true}, -- Coldheart Interstitia
+    {N, 846, (select(2, a.GetAchievementInfo(14483))), true}, -- Coldheart Interstitia
     {A, 845, 15317}, -- Flawless: The Soulforges (Layer 16)
     {A, 845, 15084}, -- Flawless: The Soulforges (Layer 12)
     {A, 845, 14478}, -- The Soulforges
     {C, 424, 845},
-    {N, 845,(select(2, k.GetAchievementInfo(14478))), true}, -- The Soulforges
+    {N, 845, (select(2, a.GetAchievementInfo(14478))), true}, -- The Soulforges
     {A, 844, 15316}, -- Flawless: Fracture Chambers (Layer 16)
     {A, 844, 15082}, -- Flawless: Fracture Chambers (Layer 12)
     {A, 844, 14473}, -- Fracture Chambers
     {C, 424, 844},
-    {N, 844,(select(2, k.GetAchievementInfo(14473))), true}, -- Fracture Chambers
+    {N, 844, (select(2, a.GetAchievementInfo(14473))), true}, -- Fracture Chambers
     {A, 843, 15314}, -- Flawless: Skoldus Hall (Layer 16)
     {A, 843, 15081}, -- Flawless: Skoldus Hall (Layer 12)
     {A, 843, 14463}, -- Skoldus Hall
     {C, 424, 843},
-    {N, 843,(select(2, k.GetAchievementInfo(14463))), true}, -- Skoldus Hall
+    {N, 843, (select(2, a.GetAchievementInfo(14463))), true}, -- Skoldus Hall
     {A, 424, 15324}, -- Tower Ranger
     {A, 424, 15092}, -- Master of Torment
     {A, 424, 15096}, -- Crowd Pleaser
@@ -3789,7 +3790,7 @@ tasks = {
     {A, 424, 14809}, -- Traversing Torghast
     {A, 424, 14808}, -- Touring Torghast
     {C, 6, 424},
-    {N, 424,k.GetCategoryInfoTitle(15440)}, -- Torghast
+    {N, 424, a.GetCategoryInfoTitle(15440)}, -- Torghast
     {A, 380, 15004}, -- A Sly Fox
     {A, 380, 14881}, -- Abhorrent Adversaries of the Afterlife
     {A, 380, 14879}, -- Family Exorcist
@@ -3806,18 +3807,18 @@ tasks = {
     {A, 380, 14625}, -- Battle in the Shadowlands
     {A, 380, 14867}, -- Shadowlands Safari
     {C, 6, 380},
-    {N, 380,k.GetCategoryInfoTitle(15117)}, -- Pet Battles
+    {N, 380, a.GetCategoryInfoTitle(15117)}, -- Pet Battles
     {A, 1493, 14333}, -- Shadowlands Fisherman
     {C, 1158, 1493},
-    {N, 1493,k.GetCategoryInfoTitle(171), true}, -- Fishing
+    {N, 1493, a.GetCategoryInfoTitle(171), true}, -- Fishing
     {A, 1484, 14332}, -- Shadowlands Cook
     {C, 1158, 1484},
-    {N, 1484,k.GetCategoryInfoTitle(170), true}, -- Cooking
+    {N, 1484, a.GetCategoryInfoTitle(170), true}, -- Cooking
     {A, 1158, 14330}, -- Shadowlands Master of All
     {A, 1158, 14329}, -- Working the Afterlife
     {A, 1158, 14328}, -- Professional Shadowlands Master
     {C, 6, 1158},
-    {N, 1158,k.GetCategoryInfoTitle(169)}, -- Professions
+    {N, 1158, a.GetCategoryInfoTitle(169)}, -- Professions
     {A, 1042, 15489}, -- Mythic: The Jailer
     {A, 1042, 15488}, -- Mythic: Rygelon
     {A, 1042, 15487}, -- Mythic: Lords of Dread
@@ -3830,7 +3831,7 @@ tasks = {
     {A, 1042, 15480}, -- Mythic: Skolex
     {A, 1042, 15479}, -- Mythic: Vigilant Guardian
     {C, 1040, 1042},
-    {N, 1042,k.L["Mythic"]}, -- Mythic
+    {N, 1042, a.L["Mythic"]}, -- Mythic
     {A, 1041, 15494}, -- Damnation Aviation
     {A, 1041, 15396}, -- We Are All Made of Stars
     {A, 1041, 15315}, -- Amidst Ourselves
@@ -3843,7 +3844,7 @@ tasks = {
     {A, 1041, 15401}, -- Wisdom Comes From the Desert
     {A, 1041, 15381}, -- Power ON
     {C, 1040, 1041},
-    {N, 1041,k.L["Glory"]}, -- Glory
+    {N, 1041, a.L["Glory"]}, -- Glory
     {A, 1040, 15409}, -- First Wonders
     {A, 1040, 15471}, -- Cutting Edge: The Jailer
     {A, 1040, 15470}, -- Ahead of the Curve: The Jailer
@@ -3861,7 +3862,7 @@ tasks = {
     {A, 1040, 15493}, -- Ephemeral Plains
     {A, 1040, 15492}, -- Cornerstone of Creation
     {C, 370, 1040},
-    {N, 1040,k.GetInstanceInfoName(1195)}, -- Sepulcher of the First Ones
+    {N, 1040, a.GetInstanceInfoName(1195)}, -- Sepulcher of the First Ones
     {A, 859, 15121}, -- Mythic: Sylvanas Windrunner
     {A, 859, 15120}, -- Mythic: Kel'Thuzad
     {A, 859, 15119}, -- Mythic: Fatescribe Roh-Kalo
@@ -3873,7 +3874,7 @@ tasks = {
     {A, 859, 15113}, -- Mythic: The Eye of the Jailer
     {A, 859, 15112}, -- Mythic: The Tarragrue
     {C, 821, 859},
-    {N, 859,k.L["Mythic"]}, -- Mythic
+    {N, 859, a.L["Mythic"]}, -- Mythic
     {A, 858, 15133}, -- This World is a Prism
     {A, 858, 15108}, -- Together Forever
     {A, 858, 15040}, -- Flawless Fate
@@ -3885,7 +3886,7 @@ tasks = {
     {A, 858, 15065}, -- Eye Wish You Were Here
     {A, 858, 14998}, -- "Name A Better Duo, I'll Wait"
     {C, 821, 858},
-    {N, 858,k.L["Glory"]}, -- Glory
+    {N, 858, a.L["Glory"]}, -- Glory
     {A, 821, 15191}, -- "Rae'shalare, Death's Whisper"
     {A, 821, 15110}, -- Dominating the Catwalk
     {A, 821, 15135}, -- Cutting Edge: Sylvanas Windrunner
@@ -3901,7 +3902,7 @@ tasks = {
     {A, 821, 15123}, -- The Dark Bastille
     {A, 821, 15122}, -- The Jailer's Vanguard
     {C, 370, 821},
-    {N, 821,k.GetInstanceInfoName(1193)}, -- Sanctum of Domination
+    {N, 821, a.GetInstanceInfoName(1193)}, -- Sanctum of Domination
     {A, 861, 14365}, -- Mythic: Sire Denathrius
     {A, 861, 14364}, -- Mythic: Stone Legion Generals
     {A, 861, 14363}, -- Mythic: Sludgefist
@@ -3913,7 +3914,7 @@ tasks = {
     {A, 861, 14357}, -- Mythic: Huntsman Altimor
     {A, 861, 14356}, -- Mythic: Shriekwing
     {C, 379, 861},
-    {N, 861,k.L["Mythic"]}, -- Mythic
+    {N, 861, a.L["Mythic"]}, -- Mythic
     {A, 860, 14610}, -- Clear Conscience
     {A, 860, 14525}, -- "Feed Me, Seymour!"
     {A, 860, 14294}, -- Dirtflap's Revenge
@@ -3925,7 +3926,7 @@ tasks = {
     {A, 860, 14523}, -- Taking Care of Business
     {A, 860, 14293}, -- Blind as a Bat
     {C, 379, 860},
-    {N, 860,k.L["Glory"]}, -- Glory
+    {N, 860, a.L["Glory"]}, -- Glory
     {A, 379, 14614}, -- Castle Vain
     {A, 379, 14461}, -- Cutting Edge: Sire Denathrius
     {A, 379, 14460}, -- Ahead of the Curve: Sire Denathrius
@@ -3936,7 +3937,7 @@ tasks = {
     {A, 379, 14717}, -- Heroic: Castle Nathria
     {A, 379, 14715}, -- Castle Nathria
     {C, 370, 379},
-    {N, 379,k.GetInstanceInfoName(1190)}, -- Castle Nathria
+    {N, 379, a.GetInstanceInfoName(1190)}, -- Castle Nathria
     {A, 370, 15687}, -- Mythic: Fates of the Shadowlands Raids
     {A, 370, 15685}, -- Heroic: Fates of the Shadowlands Raids
     {A, 370, 15684}, -- Fates of the Shadowlands Raids
@@ -3944,7 +3945,7 @@ tasks = {
     {A, 370, 15130}, -- Glory of the Dominant Raider
     {A, 370, 14355}, -- Glory of the Nathria Raider
     {C, 6, 370},
-    {N, 370,k.GetCategoryInfoTitle(15271)}, -- Raids
+    {N, 370, a.GetCategoryInfoTitle(15271)}, -- Raids
     {A, 823, 15500}, -- "Keystone Hero: Tazavesh, the Veiled Market"
     {A, 823, 15652}, -- Mythic: So'leah's Gambit
     {A, 823, 15650}, -- Mythic: Streets of Wonder
@@ -3955,7 +3956,7 @@ tasks = {
     {A, 823, 15106}, -- Quality Control
     {A, 823, 15109}, -- Will it Blend?
     {C, 369, 823},
-    {N, 823,k.GetInstanceInfoName(1194)}, -- Tazavesh, the Veiled Market
+    {N, 823, a.GetInstanceInfoName(1194)}, -- Tazavesh, the Veiled Market
     {A, 378, 15052}, -- Keystone Hero: Sanguine Depths
     {A, 378, 14199}, -- Mythic: Sanguine Depths
     {A, 378, 14198}, -- Heroic: Sanguine Depths
@@ -3964,7 +3965,7 @@ tasks = {
     {A, 378, 14290}, -- I Only Have Eyes For You
     {A, 378, 14286}, -- Residue Evil
     {C, 369, 378},
-    {N, 378,k.GetInstanceInfoName(1189)}, -- Sanguine Depths
+    {N, 378, a.GetInstanceInfoName(1189)}, -- Sanguine Depths
     {A, 377, 15051}, -- Keystone Hero: De Other Side
     {A, 377, 14409}, -- Mythic: De Other Side
     {A, 377, 14408}, -- Heroic: De Other Side
@@ -3973,7 +3974,7 @@ tasks = {
     {A, 377, 14374}, -- Couple's Therapy
     {A, 377, 14354}, -- Highly Communicable
     {C, 369, 377},
-    {N, 377,k.GetInstanceInfoName(1188)}, -- De Other Side
+    {N, 377, a.GetInstanceInfoName(1188)}, -- De Other Side
     {A, 376, 15050}, -- Keystone Hero: Theater of Pain
     {A, 376, 14417}, -- Mythic: Theater of Pain
     {A, 376, 14416}, -- Heroic: Theater of Pain
@@ -3982,7 +3983,7 @@ tasks = {
     {A, 376, 14607}, -- Fresh Meat!
     {A, 376, 14297}, -- Three Choose One
     {C, 369, 376},
-    {N, 376,k.GetInstanceInfoName(1187)}, -- Theater of Pain
+    {N, 376, a.GetInstanceInfoName(1187)}, -- Theater of Pain
     {A, 375, 15049}, -- Keystone Hero: Spires of Ascension
     {A, 375, 14325}, -- Mythic: Spires of Ascension
     {A, 375, 14324}, -- Heroic: Spires of Ascension
@@ -3991,7 +3992,7 @@ tasks = {
     {A, 375, 14323}, -- ExSPEARiential
     {A, 375, 14331}, -- Goliath Offline
     {C, 369, 375},
-    {N, 375,k.GetInstanceInfoName(1186)}, -- Spires of Ascension
+    {N, 375, a.GetInstanceInfoName(1186)}, -- Spires of Ascension
     {A, 374, 15048}, -- Keystone Hero: Halls of Atonement
     {A, 374, 14411}, -- Mythic: Halls of Atonement
     {A, 374, 14410}, -- Heroic: Halls of Atonement
@@ -4000,7 +4001,7 @@ tasks = {
     {A, 374, 14284}, -- Breaking Bad
     {A, 374, 14567}, -- Picking Up the Pieces
     {C, 369, 374},
-    {N, 374,k.GetInstanceInfoName(1185)}, -- Halls of Atonement
+    {N, 374, a.GetInstanceInfoName(1185)}, -- Halls of Atonement
     {A, 373, 15047}, -- Keystone Hero: Mists of Tirna Scithe
     {A, 373, 14413}, -- Mythic: Mists of Tirna Scithe
     {A, 373, 14412}, -- Heroic: Mists of Tirna Scithe
@@ -4009,7 +4010,7 @@ tasks = {
     {A, 373, 14291}, -- Someone Could Trip on These!
     {A, 373, 14503}, -- Hooked On Hydroponics
     {C, 369, 373},
-    {N, 373,k.GetInstanceInfoName(1184)}, -- Mists of Tirna Scithe
+    {N, 373, a.GetInstanceInfoName(1184)}, -- Mists of Tirna Scithe
     {A, 372, 15046}, -- Keystone Hero: Plaguefall
     {A, 372, 14415}, -- Mythic: Plaguefall
     {A, 372, 14414}, -- Heroic: Plaguefall
@@ -4018,7 +4019,7 @@ tasks = {
     {A, 372, 14347}, -- Full Gores Meal
     {A, 372, 14292}, -- Riding with my Slimes
     {C, 369, 372},
-    {N, 372,k.GetInstanceInfoName(1183)}, -- Plaguefall
+    {N, 372, a.GetInstanceInfoName(1183)}, -- Plaguefall
     {A, 371, 15045}, -- Keystone Hero: The Necrotic Wake
     {A, 371, 14368}, -- Mythic: The Necrotic Wake
     {A, 371, 14367}, -- Heroic: The Necrotic Wake
@@ -4027,7 +4028,7 @@ tasks = {
     {A, 371, 14320}, -- Surgeon's Supplies
     {A, 371, 14295}, -- Bountiful Harvest
     {C, 369, 371},
-    {N, 371,k.GetInstanceInfoName(1182)}, -- The Necrotic Wake
+    {N, 371, a.GetInstanceInfoName(1182)}, -- The Necrotic Wake
     {A, 369, 15756}, -- Shrouded Hero: Shadowlands Season 4
     {A, 369, 15690}, -- Shadowlands Keystone Master: Season Four
     {A, 369, 15689}, -- Shadowlands Keystone Conqueror: Season Four
@@ -4052,10 +4053,10 @@ tasks = {
     {A, 369, 15651}, -- Myths of the Shadowlands Dungeons
     {A, 369, 14418}, -- Shadowlands Dungeon Hero
     {C, 6, 369},
-    {N, 369,k.GetCategoryInfoTitle(15272)}, -- Dungeons
+    {N, 369, a.GetCategoryInfoTitle(15272)}, -- Dungeons
     {A, 1038, 15220}, -- The Enlightened
     {C, 1035, 1038},
-    {N, 1038,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1038, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1037, 15542}, -- Apocopocolypse Now
     {A, 1037, 15514}, -- Unlocking the Secrets
     {A, 1037, 15513}, -- Curious Collections
@@ -4075,36 +4076,36 @@ tasks = {
     {A, 1037, 15391}, -- Adventurer of Zereth Mortis
     {A, 1037, 15224}, -- Explore Zereth Mortis
     {C, 1035, 1037},
-    {N, 1037,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 1037, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 1036, 15518}, -- A Means to an End
     {A, 1036, 15515}, -- Path to Enlightenment
     {A, 1036, 15259}, -- Secrets of the First Ones
     {A, 1036, 15336}, -- From A to Zereth
     {A, 1036, 15229}, -- Traversing the Spheres
     {C, 1035, 1036},
-    {N, 1036,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 1036, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 344, 1035},
-    {N, 1035,k.GetMapName(1970)}, -- Zereth Mortis
+    {N, 1035, a.GetMapName(1970)}, -- Zereth Mortis
     {A, 813, 15069}, -- The Archivists' Codex
     {A, 813, 15059}, -- Death's Advance
     {C, 812, 813},
-    {N, 813,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 813, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 818, 15099}, -- Treasures of Korthia
     {A, 818, 15107}, -- Conquering Korthia
     {A, 818, 15053}, -- Explore Korthia
     {C, 812, 818},
-    {N, 818,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 818, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 817, 15057}, -- Friend of Plaguey
     {A, 817, 15056}, -- Friend of Bloop
     {A, 817, 15055}, -- Friend of Ooz
     {A, 817, 15066}, -- Reliquary Restoration
     {C, 812, 817},
-    {N, 817,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 817, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 344, 812},
-    {N, 812,k.GetMapName(1961)}, -- Korthia
+    {N, 812, a.GetMapName(1961)}, -- Korthia
     {A, 368, 14656}, -- Trading Partners
     {C, 365, 368},
-    {N, 368,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 368, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 367, 14943}, -- Guarmageddon
     {A, 367, 15107}, -- Conquering Korthia
     {A, 367, 15054}, -- Minions of the Cold Dark
@@ -4123,7 +4124,7 @@ tasks = {
     {A, 367, 14658}, -- Soulkeeper's Burden
     {A, 367, 14663}, -- Explore The Maw
     {C, 365, 367},
-    {N, 367,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 367, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 366, 15032}, -- Breaking Their Hold
     {A, 366, 15033}, -- Taking the Tremaculum
     {A, 366, 15034}, -- Wings Against the Flames
@@ -4140,16 +4141,16 @@ tasks = {
     {A, 366, 14961}, -- Chains of Domination
     {A, 366, 14334}, -- Into the Maw
     {C, 365, 366},
-    {N, 366,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 366, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 365, 15648}, -- Walking in Maw-mphis
     {C, 344, 365},
-    {N, 365,k.GetMapName(1543)}, -- The Maw
+    {N, 365, a.GetMapName(1543)}, -- The Maw
     {A, 364, 14338}, -- Court of Harvesters
     {C, 360, 364},
-    {N, 364,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 364, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 363, 14512}, -- Tour of Duty: Revendreth
     {C, 360, 363},
-    {N, 363,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 363, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 362, 14273}, -- Crypt Kicker
     {A, 362, 14770}, -- What We Ride in the Shadows
     {A, 362, 14771}, -- The Afterlife Express
@@ -4162,7 +4163,7 @@ tasks = {
     {A, 362, 14310}, -- Adventurer of Revendreth
     {A, 362, 14306}, -- Explore Revendreth
     {C, 360, 362},
-    {N, 362,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 362, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 361, 14772}, -- Caught in a Bat Romance
     {A, 361, 14766}, -- Parasoling
     {A, 361, 14765}, -- Ramparts Racer
@@ -4170,15 +4171,15 @@ tasks = {
     {A, 361, 14798}, -- Sojourner of Revendreth
     {A, 361, 13878}, -- The Master of Revendreth
     {C, 360, 361},
-    {N, 361,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 361, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 344, 360},
-    {N, 360,k.GetMapName(1525)}, -- Revendreth
+    {N, 360, a.GetMapName(1525)}, -- Revendreth
     {A, 359, 14337}, -- The Wild Hunt
     {C, 355, 359},
-    {N, 359,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 359, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 358, 14511}, -- Tour of Duty: Ardenweald
     {C, 355, 358},
-    {N, 358,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 358, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 357, 14510}, -- "Dreamweaver, As N'Zoth"
     {A, 357, 14509}, -- "Astra, As Azshara"
     {A, 357, 14508}, -- "Glimmerdust, As Jaina"
@@ -4195,21 +4196,21 @@ tasks = {
     {A, 357, 14309}, -- Adventurer of Ardenweald
     {A, 357, 14304}, -- Explore Ardenweald
     {C, 355, 357},
-    {N, 357,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 357, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 356, 14672}, -- "A Bit of This, A Bit of That"
     {A, 356, 14671}, -- Something's Not Quite Right....
     {A, 356, 14800}, -- Sojourner of Ardenweald
     {A, 356, 14164}, -- "Awaken, Ardenweald"
     {C, 355, 356},
-    {N, 356,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 356, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 344, 355},
-    {N, 355,k.GetMapName(1565)}, -- Ardenweald
+    {N, 355, a.GetMapName(1565)}, -- Ardenweald
     {A, 354, 14336}, -- Undying Army
     {C, 350, 354},
-    {N, 354,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 354, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 353, 14513}, -- Tour of Duty: Maldraxxus
     {C, 350, 353},
-    {N, 353,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 353, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 352, 14634}, -- Nine Afterlives
     {A, 352, 14721}, -- It's In The Mix
     {A, 352, 14802}, -- Bloodsport
@@ -4218,19 +4219,19 @@ tasks = {
     {A, 352, 14308}, -- Adventurer of Maldraxxus
     {A, 352, 14305}, -- Explore Maldraxxus
     {C, 350, 352},
-    {N, 352,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 352, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 351, 14799}, -- Sojourner of Maldraxxus
     {A, 351, 14206}, -- Blade of the Primus
     {C, 350, 351},
-    {N, 351,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 351, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 344, 350},
-    {N, 350,k.GetMapName(1536)}, -- Maldraxxus
+    {N, 350, a.GetMapName(1536)}, -- Maldraxxus
     {A, 349, 14335}, -- The Ascended
     {C, 345, 349},
-    {N, 349,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 349, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 348, 14514}, -- Tour of Duty: Bastion
     {C, 345, 348},
-    {N, 348,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 348, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 347, 14733}, -- In the Hot Seat
     {A, 347, 14768}, -- What is that Melody?
     {A, 347, 14767}, -- Count Your Blessings
@@ -4240,7 +4241,7 @@ tasks = {
     {A, 347, 14307}, -- Adventurer of Bastion
     {A, 347, 14303}, -- Explore Bastion
     {C, 345, 347},
-    {N, 347,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 347, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 346, 14762}, -- Breaking the Stratus Fear
     {A, 346, 14741}, -- Aerial Ace
     {A, 346, 14735}, -- Flight School Graduate
@@ -4248,9 +4249,9 @@ tasks = {
     {A, 346, 14801}, -- Sojourner of Bastion
     {A, 346, 14281}, -- The Path to Ascension
     {C, 345, 346},
-    {N, 346,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 346, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 344, 345},
-    {N, 345,k.GetMapName(1533)}, -- Bastion
+    {N, 345, a.GetMapName(1533)}, -- Bastion
     {A, 344, 7520}, -- The Loremaster
     {A, 344, 15064}, -- Breaking the Chains
     {A, 344, 14315}, -- Shadowlands Diplomat
@@ -4263,10 +4264,10 @@ tasks = {
     {A, 344, 14758}, -- The World Beyond
     {A, 344, 14280}, -- Loremaster of Shadowlands
     {C, 6, 344},
-    {N, 344,k.L["Zones"]}, -- Zones
+    {N, 344, a.L["Zones"]}, -- Zones
     {A, 6, 15654}, -- Back from the Beyond
     {C, 883, 6},
-    {N, 6,k.GetCategoryInfoTitle(15439)}, -- Shadowlands
+    {N, 6, a.GetCategoryInfoTitle(15439)}, -- Shadowlands
     {A, 428, 14140}, -- Mad World
     {A, 428, 14173}, -- A Mountain of Mementos
     {A, 428, 14172}, -- A Monumental Amount of Mementos
@@ -4289,7 +4290,7 @@ tasks = {
     {A, 428, 13994}, -- Through the Depths of Visions
     {A, 428, 14143}, -- Reeking of Visions
     {C, 258, 428},
-    {N, 428,k.GetCategoryInfoTitle(15426)}, -- Visions of N'Zoth
+    {N, 428, a.GetCategoryInfoTitle(15426)}, -- Visions of N'Zoth
     {A, 427, 13779}, -- Phenomenal Cosmic Power
     {A, 427, 13777}, -- My Heart Container is Full
     {A, 427, 13775}, -- Essence Overload
@@ -4302,7 +4303,7 @@ tasks = {
     {A, 427, 13998}, -- Pure of Heart
     {A, 427, 12918}, -- Have a Heart
     {C, 258, 427},
-    {N, 427,k.GetCategoryInfoTitle(15417)}, -- Heart of Azeroth
+    {N, 427, a.GetCategoryInfoTitle(15417)}, -- Heart of Azeroth
     {A, 435, 13309}, -- Deforester
     {A, 435, 13310}, -- By Nature's Call
     {A, 435, 13307}, -- Recruitment Officer
@@ -4316,7 +4317,7 @@ tasks = {
     {A, 435, 13296}, -- War for the Shore
     {A, 435, 13297}, -- War for the Shore
     {C, 426, 435},
-    {N, 435,(k.GetLFGDungeonInfo(1901))}, -- The Battle for Darkshore
+    {N, 435, (a.GetLFGDungeonInfo(1901))}, -- The Battle for Darkshore
     {A, 434, 12874}, -- An Eventful Battle
     {A, 434, 13738}, -- Heroic: Tour of War
     {A, 434, 13739}, -- Heroic: Tour of War
@@ -4333,7 +4334,7 @@ tasks = {
     {A, 434, 12873}, -- War is Hell
     {A, 434, 12881}, -- War is Hell
     {C, 426, 434},
-    {N, 434,(k.GetLFGDungeonInfo(1615))}, -- Battle for Stromgarde
+    {N, 434, (a.GetLFGDungeonInfo(1615))}, -- Battle for Stromgarde
     {A, 426, 12872}, -- The Dirty Five
     {A, 426, 12899}, -- Azeroth at War: Kalimdor on Fire
     {A, 426, 12870}, -- Azeroth at War: Kalimdor on Fire
@@ -4342,73 +4343,73 @@ tasks = {
     {A, 426, 12896}, -- Azeroth at War: The Barrens
     {A, 426, 12867}, -- Azeroth at War: The Barrens
     {C, 258, 426},
-    {N, 426,k.GetCategoryInfoTitle(15308)}, -- War Effort
+    {N, 426, a.GetCategoryInfoTitle(15308)}, -- War Effort
     {A, 446, 13584}, -- Snowblossom Scrapper
     {A, 446, 13583}, -- Mythic: Snowblossom Village
     {A, 446, 13582}, -- Heroic: Snowblossom Village
     {A, 446, 13581}, -- Snowblossom Village
     {C, 425, 446},
-    {N, 446,(k.GetLFGDungeonInfo(1983))}, -- Snowblossom Village
+    {N, 446, (a.GetLFGDungeonInfo(1983))}, -- Snowblossom Village
     {A, 445, 13580}, -- Crestfallen
     {A, 445, 13579}, -- Mythic: Crestfall
     {A, 445, 13578}, -- Heroic: Crestfall
     {A, 445, 13577}, -- Crestfall
     {C, 425, 445},
-    {N, 445,(k.GetLFGDungeonInfo(1984))}, -- Crestfall
+    {N, 445, (a.GetLFGDungeonInfo(1984))}, -- Crestfall
     {A, 444, 13400}, -- Havenswood Hero
     {A, 444, 13398}, -- Mythic: Havenswood
     {A, 444, 13397}, -- Heroic: Havenswood
     {A, 444, 13396}, -- Havenswood
     {C, 425, 444},
-    {N, 444,(k.GetLFGDungeonInfo(1928))}, -- Havenswood
+    {N, 444, (a.GetLFGDungeonInfo(1928))}, -- Havenswood
     {A, 443, 13399}, -- Jorundall Justice
     {A, 443, 13395}, -- Mythic: Jorundall
     {A, 443, 13394}, -- Heroic: Jorundall
     {A, 443, 13389}, -- Jorundall
     {C, 425, 443},
-    {N, 443,(k.GetLFGDungeonInfo(1932))}, -- Jorundall
+    {N, 443, (a.GetLFGDungeonInfo(1932))}, -- Jorundall
     {A, 442, 13115}, -- Reef Madness
     {A, 442, 13116}, -- Mythic: Whispering Reef
     {A, 442, 13118}, -- Heroic: Whispering Reef
     {A, 442, 13119}, -- Whispering Reef
     {C, 425, 442},
-    {N, 442,(k.GetLFGDungeonInfo(1735))}, -- The Whispering Reef
+    {N, 442, (a.GetLFGDungeonInfo(1735))}, -- The Whispering Reef
     {A, 441, 13110}, -- Skittering Smashed
     {A, 441, 13109}, -- Mythic: Skittering Hollow
     {A, 441, 13108}, -- Heroic: Skittering Hollow
     {A, 441, 13107}, -- Skittering Hollow
     {C, 425, 441},
-    {N, 441,(k.GetLFGDungeonInfo(1725))}, -- Skittering Hollow
+    {N, 441, (a.GetLFGDungeonInfo(1725))}, -- Skittering Hollow
     {A, 440, 13114}, -- War for the Wilds
     {A, 440, 13113}, -- Mythic: Verdant Wilds
     {A, 440, 13112}, -- Heroic: Verdant Wilds
     {A, 440, 13111}, -- Verdant Wilds
     {C, 425, 440},
-    {N, 440,(k.GetLFGDungeonInfo(1724))}, -- Verdant Wilds
+    {N, 440, (a.GetLFGDungeonInfo(1724))}, -- Verdant Wilds
     {A, 439, 13102}, -- Clash at the Cay
     {A, 439, 13101}, -- Mythic: Molten Cay
     {A, 439, 13100}, -- Heroic: Molten Cay
     {A, 439, 13099}, -- Molten Cay
     {C, 425, 439},
-    {N, 439,(k.GetLFGDungeonInfo(1750))}, -- The Molten Cay
+    {N, 439, (a.GetLFGDungeonInfo(1750))}, -- The Molten Cay
     {A, 438, 13106}, -- Mire Marauder
     {A, 438, 13105}, -- Mythic: Rotting Mire
     {A, 438, 13104}, -- Heroic: Rotting Mire
     {A, 438, 13103}, -- Rotting Mire
     {C, 425, 438},
-    {N, 438,(k.GetLFGDungeonInfo(1723))}, -- The Rotting Mire
+    {N, 438, (a.GetLFGDungeonInfo(1723))}, -- The Rotting Mire
     {A, 437, 13098}, -- Bane of the Chain
     {A, 437, 13097}, -- Mythic: Dread Chain
     {A, 437, 13096}, -- Heroic: Dread Chain
     {A, 437, 13095}, -- Dread Chain
     {C, 425, 437},
-    {N, 437,(k.GetLFGDungeonInfo(1734))}, -- The Dread Chain
+    {N, 437, (a.GetLFGDungeonInfo(1734))}, -- The Dread Chain
     {A, 436, 12592}, -- Ruined the Ruins
     {A, 436, 12591}, -- Mythic: Un'gol Ruins
     {A, 436, 12589}, -- Heroic: Un'gol Ruins
     {A, 436, 12590}, -- Un'gol Ruins
     {C, 425, 436},
-    {N, 436,(k.GetLFGDungeonInfo(1687))}, -- Un'gol Ruins
+    {N, 436, (a.GetLFGDungeonInfo(1687))}, -- Un'gol Ruins
     {A, 425, 13703}, -- Battlefield Master
     {A, 425, 13702}, -- Battlefield Tactician
     {A, 425, 13701}, -- Battlefield Brawler
@@ -4433,7 +4434,7 @@ tasks = {
     {A, 425, 13122}, -- Island Conqueror
     {A, 425, 13142}, -- Archipelago Explorer
     {C, 258, 425},
-    {N, 425,k.GetCategoryInfoTitle(15307)}, -- Island Expeditions
+    {N, 425, a.GetCategoryInfoTitle(15307)}, -- Island Expeditions
     {A, 851, 13623}, -- Fighting on Two Fronts
     {A, 851, 12862}, -- Thirty Six and Two
     {A, 851, 12861}, -- Master of Duels
@@ -4444,7 +4445,7 @@ tasks = {
     {A, 851, 12857}, -- Trial by Combat
     {A, 851, 12856}, -- The First Rule of Dueler's Guild
     {C, 258, 851},
-    {N, 851,k.L["Dueler's Guild"]}, -- Dueler's Guild
+    {N, 851, a.L["Dueler's Guild"]}, -- Dueler's Guild
     {A, 793, 11573}, -- Rumble Club
     {A, 793, 13194}, -- I Am Thrall's Complete Lack Of Surprise
     {A, 793, 11570}, -- Educated Guesser
@@ -4458,7 +4459,7 @@ tasks = {
     {A, 793, 11559}, -- The First Rule of Brawler's Guild
     {A, 793, 11558}, -- The First Rule of Brawler's Guild
     {C, 258, 793},
-    {N, 793,k.L["Brawler's Guild"] .. " (" .. k.GetCategoryInfoTitle(15234) .. ")"}, -- Brawler's Guild
+    {N, 793, a.L["Brawler's Guild"] .. " (" .. a.GetCategoryInfoTitle(15234) .. ")"}, -- Brawler's Guild
     {A, 343, 13695}, -- Team Aquashock
     {A, 343, 13626}, -- Nautical Nuisances of Nazjatar
     {A, 343, 13625}, -- Mighty Minions of Mechagon
@@ -4479,29 +4480,29 @@ tasks = {
     {A, 343, 13693}, -- Mecha-Safari
     {A, 343, 12930}, -- Battle Safari
     {C, 258, 343},
-    {N, 343,k.GetCategoryInfoTitle(15117)}, -- Pet Battles
+    {N, 343, a.GetCategoryInfoTitle(15117)}, -- Pet Battles
     {A, 1525, 18896}, -- United as Three
     {A, 1525, 18774}, -- Synchronous Thread
     {C, 1157, 1525},
-    {N, 1525,k.GetCategoryInfoTitle(15496), true}, -- Tailoring
+    {N, 1525, a.GetCategoryInfoTitle(15496), true}, -- Tailoring
     {A, 1522, 18835}, -- Fourth War Skinning Techniques
     {C, 1157, 1522},
-    {N, 1522,k.GetCategoryInfoTitle(15498), true}, -- Skinning
+    {N, 1522, a.GetCategoryInfoTitle(15498), true}, -- Skinning
     {A, 1518, 18840}, -- Fourth War Mining Techniques
     {C, 1157, 1518},
-    {N, 1518,k.GetCategoryInfoTitle(15497), true}, -- Mining
+    {N, 1518, a.GetCategoryInfoTitle(15497), true}, -- Mining
     {A, 1511, 18777}, -- Mallet of Thunderous Skins
     {C, 1157, 1511},
-    {N, 1511,k.GetCategoryInfoTitle(15495), true}, -- Leatherworking
+    {N, 1511, a.GetCategoryInfoTitle(15495), true}, -- Leatherworking
     {A, 1507, 18773}, -- Jewelhammer's Focus
     {C, 1157, 1507},
-    {N, 1507,k.GetCategoryInfoTitle(15494), true}, -- Jewelcrafting
+    {N, 1507, a.GetCategoryInfoTitle(15494), true}, -- Jewelcrafting
     {A, 1505, 18772}, -- Sanguine Feather Quill of Lana'thel
     {C, 1157, 1505},
-    {N, 1505,k.GetCategoryInfoTitle(15493), true}, -- Inscription
+    {N, 1505, a.GetCategoryInfoTitle(15493), true}, -- Inscription
     {A, 1503, 18838}, -- Fourth War Herbalism Techniques
     {C, 1157, 1503},
-    {N, 1503,k.GetCategoryInfoTitle(15499), true}, -- Herbalism
+    {N, 1503, a.GetCategoryInfoTitle(15499), true}, -- Herbalism
     {A, 1494, 13489}, -- Secret Fish of Mechagon
     {A, 1494, 12990}, -- Catchin' Some Rays
     {A, 1494, 12759}, -- Baiting the Enemy
@@ -4512,23 +4513,23 @@ tasks = {
     {A, 1494, 12754}, -- Zandalari Fisherman
     {A, 1494, 12753}, -- Kul Tiran Fisherman
     {C, 1157, 1494},
-    {N, 1494,k.GetCategoryInfoTitle(171), true}, -- Fishing
+    {N, 1494, a.GetCategoryInfoTitle(171), true}, -- Fishing
     {A, 1488, 18776}, -- The Ub3r-Spanner
     {C, 1157, 1488},
-    {N, 1488,k.GetCategoryInfoTitle(15492), true}, -- Engineering
+    {N, 1488, a.GetCategoryInfoTitle(15492), true}, -- Engineering
     {A, 1486, 18775}, -- Iwen's Enchanting Rod
     {C, 1157, 1486},
-    {N, 1486,k.GetCategoryInfoTitle(15491), true}, -- Enchanting
+    {N, 1486, a.GetCategoryInfoTitle(15491), true}, -- Enchanting
     {A, 1483, 12747}, -- Catering for Combat
     {A, 1483, 12746}, -- The Zandalari Menu
     {A, 1483, 12744}, -- The Kul Tiran Menu
     {A, 1483, 12743}, -- Zandalari Cook
     {A, 1483, 12742}, -- Kul Tiran Cook
     {C, 1157, 1483},
-    {N, 1483,k.GetCategoryInfoTitle(170), true}, -- Cooking
+    {N, 1483, a.GetCategoryInfoTitle(170), true}, -- Cooking
     {A, 1475, 18771}, -- Khaz'gorian Smithing Hammer
     {C, 1157, 1475},
-    {N, 1475,k.GetCategoryInfoTitle(15490), true}, -- Blacksmithing
+    {N, 1475, a.GetCategoryInfoTitle(15490), true}, -- Blacksmithing
     {A, 1474, 12770}, -- Lengthy Legwork
     {A, 1474, 12769}, -- Light Travel
     {A, 1474, 12765}, -- Exotic Discoveries
@@ -4537,10 +4538,10 @@ tasks = {
     {A, 1474, 12761}, -- Zandalari Archaeologist
     {A, 1474, 12760}, -- Kul Tiran Archaeologist
     {C, 1157, 1474},
-    {N, 1474,k.GetCategoryInfoTitle(15071), true}, -- Archaeology
+    {N, 1474, a.GetCategoryInfoTitle(15071), true}, -- Archaeology
     {A, 1467, 18770}, -- Silas' Sphere of Transmutation
     {C, 1157, 1467},
-    {N, 1467,k.GetCategoryInfoTitle(15489), true}, -- Alchemy
+    {N, 1467, a.GetCategoryInfoTitle(15489), true}, -- Alchemy
     {A, 1157, 18778}, -- Massive Toolshed
     {A, 1157, 13516}, -- Massive Tool
     {A, 1157, 12737}, -- Zandalari Master of All
@@ -4550,7 +4551,7 @@ tasks = {
     {A, 1157, 12733}, -- Professional Zandalari Master
     {A, 1157, 12731}, -- Professional Kul Tiran Master
     {C, 258, 1157},
-    {N, 1157,k.GetCategoryInfoTitle(169)}, -- Professions
+    {N, 1157, a.GetCategoryInfoTitle(169)}, -- Professions
     {A, 872, 14055}, -- Mythic: N'Zoth the Corruptor
     {A, 872, 14054}, -- Mythic: Carapace of N'Zoth
     {A, 872, 14052}, -- "Mythic: Il'gynoth, Corruption Reborn"
@@ -4564,7 +4565,7 @@ tasks = {
     {A, 872, 14043}, -- Mythic: Maut
     {A, 872, 14041}, -- "Mythic: Wrathion, the Black Emperor"
     {C, 342, 872},
-    {N, 872,k.L["Mythic"]}, -- Mythic
+    {N, 872, a.L["Mythic"]}, -- Mythic
     {A, 871, 14148}, -- It's Not A Cult
     {A, 871, 14147}, -- Cleansing Treatment
     {A, 871, 14038}, -- Bloody Mess
@@ -4578,7 +4579,7 @@ tasks = {
     {A, 871, 14008}, -- Mana Sponge
     {A, 871, 14019}, -- Smoke Test
     {C, 342, 871},
-    {N, 871,k.L["Glory"]}, -- Glory
+    {N, 871, a.L["Glory"]}, -- Glory
     {A, 342, 14058}, -- All Eyes On Me
     {A, 342, 14069}, -- Cutting Edge: N'Zoth the Corruptor
     {A, 342, 14068}, -- Ahead of the Curve: N'Zoth the Corruptor
@@ -4587,7 +4588,7 @@ tasks = {
     {A, 342, 14194}, -- Halls of Devotion
     {A, 342, 14193}, -- Vision of Destiny
     {C, 326, 342},
-    {N, 342,k.GetInstanceInfoName(1180)}, -- Ny'alotha, the Waking City
+    {N, 342, a.GetInstanceInfoName(1180)}, -- Ny'alotha, the Waking City
     {A, 870, 13733}, -- Mythic: Queen Azshara
     {A, 870, 13732}, -- Mythic: Za'qul
     {A, 870, 13731}, -- Mythic: The Queen's Court
@@ -4597,7 +4598,7 @@ tasks = {
     {A, 870, 13728}, -- Mythic: Blackwater Behemoth
     {A, 870, 13726}, -- Mythic: Abyssal Commander Sivara
     {C, 341, 870},
-    {N, 870,k.L["Mythic"]}, -- Mythic
+    {N, 870, a.L["Mythic"]}, -- Mythic
     {A, 869, 13768}, -- The Best of Us
     {A, 869, 13716}, -- Lactose Intolerant
     {A, 869, 13633}, -- If It Pleases the Court
@@ -4607,7 +4608,7 @@ tasks = {
     {A, 869, 13628}, -- Intro to Marine Biology
     {A, 869, 13684}, -- You and What Army?
     {C, 341, 869},
-    {N, 869,k.L["Glory"]}, -- Glory
+    {N, 869, a.L["Glory"]}, -- Glory
     {A, 341, 13571}, -- Under the Seams
     {A, 341, 13785}, -- Cutting Edge: Queen Azshara
     {A, 341, 13784}, -- Ahead of the Curve: Queen Azshara
@@ -4615,7 +4616,7 @@ tasks = {
     {A, 341, 13719}, -- Depths of the Devoted
     {A, 341, 13718}, -- The Grand Reception
     {C, 326, 341},
-    {N, 341,k.GetInstanceInfoName(1179)}, -- The Eternal Palace
+    {N, 341, a.GetInstanceInfoName(1179)}, -- The Eternal Palace
     {A, 340, 13419}, -- "Cutting Edge: Uu'nat, Harbinger of the Void"
     {A, 340, 13418}, -- "Ahead of the Curve: Uu'nat, Harbinger of the Void"
     {A, 340, 13417}, -- "Mythic: Uu'nat, Harbinger of the Void"
@@ -4624,7 +4625,7 @@ tasks = {
     {A, 340, 13506}, -- A Good Eye-dea
     {A, 340, 13501}, -- Gotta Bounce
     {C, 326, 340},
-    {N, 340,k.GetInstanceInfoName(1177)}, -- Crucible of Storms
+    {N, 340, a.GetInstanceInfoName(1177)}, -- Crucible of Storms
     {A, 866, 13314}, -- Mythic: Lady Jaina Proudmoore
     {A, 866, 13313}, -- Mythic: Stormwall Blockade
     {A, 866, 13312}, -- Mythic: Mekkatorque
@@ -4636,7 +4637,7 @@ tasks = {
     {A, 866, 13298}, -- Mythic: Jadefire Masters
     {A, 866, 13292}, -- Mythic: Champion of the Light
     {C, 339, 866},
-    {N, 866,k.L["Mythic"]}, -- Mythic
+    {N, 866, a.L["Mythic"]}, -- Mythic
     {A, 865, 13410}, -- Snow Fun Allowed
     {A, 865, 13430}, -- De Lurker Be'loa
     {A, 865, 13401}, -- I Got Next!
@@ -4647,7 +4648,7 @@ tasks = {
     {A, 865, 13431}, -- Hidden Dragon
     {A, 865, 13316}, -- Can I Get a Hek Hek Hek Yeah?
     {C, 339, 865},
-    {N, 865,k.L["Glory"]}, -- Glory
+    {N, 865, a.L["Glory"]}, -- Glory
     {A, 339, 13385}, -- Daz'aling Attire
     {A, 339, 13323}, -- Cutting Edge: Lady Jaina Proudmoore
     {A, 339, 13322}, -- Ahead of the Curve: Lady Jaina Proudmoore
@@ -4658,7 +4659,7 @@ tasks = {
     {A, 339, 13289}, -- Defense of Dazar'alor
     {A, 339, 13286}, -- Siege of Dazar'alor
     {C, 326, 339},
-    {N, 339,k.GetInstanceInfoName(1176)}, -- Battle of Dazar'alor
+    {N, 339, a.GetInstanceInfoName(1176)}, -- Battle of Dazar'alor
     {A, 864, 12533}, -- Mythic: G'huun
     {A, 864, 12532}, -- Mythic: Mythrax the Unraveler
     {A, 864, 12531}, -- Mythic: Zul
@@ -4668,7 +4669,7 @@ tasks = {
     {A, 864, 12526}, -- Mythic: MOTHER
     {A, 864, 12524}, -- Mythic: Taloc
     {C, 338, 864},
-    {N, 864,k.L["Mythic"]}, -- Mythic
+    {N, 864, a.L["Mythic"]}, -- Mythic
     {A, 862, 12551}, -- Double Dribble
     {A, 862, 12836}, -- Existential Crisis
     {A, 862, 12830}, -- Edgelords
@@ -4678,7 +4679,7 @@ tasks = {
     {A, 862, 12938}, -- Parental Controls
     {A, 862, 12937}, -- Elevator Music
     {C, 338, 862},
-    {N, 862,k.L["Glory"]}, -- Glory
+    {N, 862, a.L["Glory"]}, -- Glory
     {A, 338, 12991}, -- "New Mog, G'huun This?"
     {A, 338, 12535}, -- Cutting Edge: G'huun
     {A, 338, 12536}, -- Ahead of the Curve: G'huun
@@ -4686,13 +4687,13 @@ tasks = {
     {A, 338, 12522}, -- Crimson Descent
     {A, 338, 12521}, -- Halls of Containment
     {C, 326, 338},
-    {N, 338,k.GetInstanceInfoName(1031)}, -- Uldir
+    {N, 338, a.GetInstanceInfoName(1031)}, -- Uldir
     {A, 326, 14146}, -- Glory of the Ny'alotha Raider
     {A, 326, 13687}, -- Glory of the Eternal Raider
     {A, 326, 13315}, -- Glory of the Dazar'alor Raider
     {A, 326, 12806}, -- Glory of the Uldir Raider
     {C, 258, 326},
-    {N, 326,k.GetCategoryInfoTitle(15271)}, -- Raids
+    {N, 326, a.GetCategoryInfoTitle(15271)}, -- Raids
     {A, 337, 15693}, -- Keystone Hero: Operation: Mechagon
     {A, 337, 13789}, -- Hertz Locker
     {A, 337, 13624}, -- Keep DPS-ing and Nobody Explodes
@@ -4701,33 +4702,33 @@ tasks = {
     {A, 337, 13698}, -- Clean Up On Aisle Mechagon
     {A, 337, 13706}, -- Stay Positive
     {C, 325, 337},
-    {N, 337,k.GetInstanceInfoName(1178)}, -- Operation: Mechagon
+    {N, 337, a.GetInstanceInfoName(1178)}, -- Operation: Mechagon
     {A, 336, 12848}, -- Kings' Rest
     {A, 336, 12723}, -- How to Keep a Mummy
     {A, 336, 12721}, -- Wrap God
     {A, 336, 12722}, -- It Belongs in a Mausoleum!
     {C, 325, 336},
-    {N, 336,k.GetInstanceInfoName(1041)}, -- Kings' Rest
+    {N, 336, a.GetInstanceInfoName(1041)}, -- Kings' Rest
     {A, 335, 12847}, -- Siege of Boralus
     {A, 335, 12489}, -- Losing My Profession
     {A, 335, 12726}, -- A Fish Out of Water
     {A, 335, 12727}, -- Stand by Me
     {C, 325, 335},
-    {N, 335,k.GetInstanceInfoName(1023)}, -- Siege of Boralus
+    {N, 335, a.GetInstanceInfoName(1023)}, -- Siege of Boralus
     {A, 334, 12846}, -- Mythic: The MOTHERLODE!!
     {A, 334, 12845}, -- Heroic: The MOTHERLODE!!
     {A, 334, 12844}, -- The MOTHERLODE!!
     {A, 334, 12854}, -- Ready for Raiding VI
     {A, 334, 12855}, -- Pitch Invasion
     {C, 325, 334},
-    {N, 334,k.GetInstanceInfoName(1012)}, -- The MOTHERLODE!!
+    {N, 334, a.GetInstanceInfoName(1012)}, -- The MOTHERLODE!!
     {A, 333, 12842}, -- Mythic: Tol Dagor
     {A, 333, 12841}, -- Heroic: Tol Dagor
     {A, 333, 12840}, -- Tol Dagor
     {A, 333, 12462}, -- Shot Through the Heart
     {A, 333, 12457}, -- Remix to Ignition
     {C, 325, 333},
-    {N, 333,k.GetInstanceInfoName(1002)}, -- Tol Dagor
+    {N, 333, a.GetInstanceInfoName(1002)}, -- Tol Dagor
     {A, 332, 12506}, -- Mythic: The Temple of Sethraliss
     {A, 332, 12505}, -- Heroic: The Temple of Sethraliss
     {A, 332, 12504}, -- The Temple of Sethraliss
@@ -4735,7 +4736,7 @@ tasks = {
     {A, 332, 12503}, -- Snake Eyes
     {A, 332, 12507}, -- Snake Eater
     {C, 325, 332},
-    {N, 332,k.GetInstanceInfoName(1030)}, -- Temple of Sethraliss
+    {N, 332, a.GetInstanceInfoName(1030)}, -- Temple of Sethraliss
     {A, 331, 17849}, -- Keystone Hero: The Underrot
     {A, 331, 12502}, -- Mythic: Underrot
     {A, 331, 12501}, -- Heroic: Underrot
@@ -4744,7 +4745,7 @@ tasks = {
     {A, 331, 12549}, -- Not a Fun Guy
     {A, 331, 12498}, -- Taint Nobody Got Time For That
     {C, 325, 331},
-    {N, 331,k.GetInstanceInfoName(1022)}, -- The Underrot
+    {N, 331, a.GetInstanceInfoName(1022)}, -- The Underrot
     {A, 330, 19087}, -- Keystone Hero: Atal'Dazar
     {A, 330, 12826}, -- Mythic: Atal'Dazar
     {A, 330, 12825}, -- Heroic: Atal'Dazar
@@ -4753,7 +4754,7 @@ tasks = {
     {A, 330, 12272}, -- Gold Fever
     {A, 330, 12270}, -- Bringing Hexy Back
     {C, 325, 330},
-    {N, 330,k.GetInstanceInfoName(968)}, -- Atal'Dazar
+    {N, 330, a.GetInstanceInfoName(968)}, -- Atal'Dazar
     {A, 329, 12838}, -- Mythic: Shrine of the Storm
     {A, 329, 12837}, -- Heroic: Shrine of the Storm
     {A, 329, 12835}, -- Shrine of the Storm
@@ -4761,7 +4762,7 @@ tasks = {
     {A, 329, 12601}, -- The Void Lies Sleeping
     {A, 329, 12600}, -- Breath of the Shrine
     {C, 325, 329},
-    {N, 329,k.GetInstanceInfoName(1036)}, -- Shrine of the Storm
+    {N, 329, a.GetInstanceInfoName(1036)}, -- Shrine of the Storm
     {A, 328, 19086}, -- Keystone Hero: Waycrest Manor
     {A, 328, 12488}, -- Mythic: Waycrest Manor
     {A, 328, 12484}, -- Heroic: Waycrest Manor
@@ -4770,7 +4771,7 @@ tasks = {
     {A, 328, 12490}, -- Alchemical Romance
     {A, 328, 12495}, -- Run Wild Like a Man On Fire
     {C, 325, 328},
-    {N, 328,k.GetInstanceInfoName(1021)}, -- Waycrest Manor
+    {N, 328, a.GetInstanceInfoName(1021)}, -- Waycrest Manor
     {A, 327, 17848}, -- Keystone Hero: Freehold
     {A, 327, 12833}, -- Mythic: Freehold
     {A, 327, 12832}, -- Heroic: Freehold
@@ -4779,7 +4780,7 @@ tasks = {
     {A, 327, 12548}, -- I'm in Charge Now!
     {A, 327, 12550}, -- Pecking Order
     {C, 325, 327},
-    {N, 327,k.GetInstanceInfoName(1001)}, -- Freelhold
+    {N, 327, a.GetInstanceInfoName(1001)}, -- Freelhold
     {A, 325, 14145}, -- Battle for Azeroth Keystone Master: Season Four
     {A, 325, 14144}, -- Battle for Azeroth Keystone Conqueror: Season Four
     {A, 325, 13781}, -- Battle for Azeroth Keystone Master: Season Three
@@ -4792,44 +4793,44 @@ tasks = {
     {A, 325, 12812}, -- Glory of the Wartorn Hero
     {A, 325, 12807}, -- Battle for Azeroth Dungeon Hero
     {C, 258, 325},
-    {N, 325,k.GetCategoryInfoTitle(15272)}, -- Dungeons
+    {N, 325, a.GetCategoryInfoTitle(15272)}, -- Dungeons
     {A, 324, 14155}, -- Uldum Accord
     {C, 322, 324},
-    {N, 324,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 324, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 448, 14158}, -- It's Not A Tumor!
     {A, 448, 14159}, -- Combating the Corruption
     {A, 448, 14160}, -- Rare to Well Done
     {C, 322, 448},
-    {N, 448,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 448, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 323, 14161}, -- All Consuming
     {A, 323, 14153}, -- Uldum Under Assault
     {C, 322, 323},
-    {N, 323,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 323, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 259, 322},
-    {N, 322,k.GetMapName(1527)}, -- Uldum
+    {N, 322, a.GetMapName(1527)}, -- Uldum
     {A, 321, 14156}, -- The Rajani
     {C, 317, 321},
-    {N, 321,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 321, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 447, 14158}, -- It's Not A Tumor!
     {A, 447, 14159}, -- Combating the Corruption
     {A, 447, 14160}, -- Rare to Well Done
     {C, 317, 447},
-    {N, 447,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 447, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 318, 14161}, -- All Consuming
     {A, 318, 14154}, -- Defend the Vale
     {C, 317, 318},
-    {N, 318,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 318, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 259, 317},
-    {N, 317,k.GetMapName(1530)}, -- Vale of Eternal Blossoms
+    {N, 317, a.GetMapName(1530)}, -- Vale of Eternal Blossoms
     {A, 316, 13559}, -- The Unshackled
     {A, 316, 13558}, -- Waveblade Ankoan
     {C, 312, 316},
-    {N, 316,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 316, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 315, 13720}, -- Supplying the Assassins
     {A, 315, 13568}, -- For Nazjatar!
     {A, 315, 13569}, -- Tour of Duty: Nazjatar
     {C, 312, 315},
-    {N, 315,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 315, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 314, 13638}, -- Undersea Usurper
     {A, 314, 13836}, -- Feline Figurines Found
     {A, 314, 13764}, -- Puzzle Performer
@@ -4869,19 +4870,19 @@ tasks = {
     {A, 314, 13635}, -- Tour of the Depths
     {A, 314, 13712}, -- Explore Nazjatar
     {C, 312, 314},
-    {N, 314,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 314, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 313, 13709}, -- Unfathomable
     {A, 313, 13710}, -- Sunken Ambitions
     {C, 312, 313},
-    {N, 313,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 313, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 259, 312},
-    {N, 312,k.GetMapName(1355)}, -- Nazjatar
+    {N, 312, a.GetMapName(1355)}, -- Nazjatar
     {A, 311, 13557}, -- Rustbolt Rebellion
     {C, 307, 311},
-    {N, 311,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 311, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 310, 13570}, -- Tour of Duty: Mechagon
     {C, 307, 310},
-    {N, 310,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 310, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 309, 13541}, -- Mecha-Done
     {A, 309, 13513}, -- Available in Eight Colors
     {A, 309, 13556}, -- Outside Influences
@@ -4900,29 +4901,29 @@ tasks = {
     {A, 309, 13470}, -- Rest In Pistons
     {A, 309, 13776}, -- Explore Mechagon
     {C, 307, 309},
-    {N, 309,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 309, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 308, 13791}, -- Making the Mount
     {A, 308, 13790}, -- Armed for Action
     {A, 308, 13700}, -- The Mechagonian Threat
     {A, 308, 13553}, -- The Mechagonian Threat
     {C, 307, 308},
-    {N, 308,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 308, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 307, 13708}, -- Most Minis Wins
     {C, 259, 307},
-    {N, 307,k.GetMapName(1462)}, -- Mechagon Island
+    {N, 307, a.GetMapName(1462)}, -- Mechagon Island
     {A, 306, 12949}, -- The Voldunai
     {C, 302, 306},
-    {N, 306,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 306, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 305, 12576}, -- Tour of Duty: Vol'dun
     {C, 302, 305},
-    {N, 305,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 305, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 304, 13018}, -- Dune Rider
     {A, 304, 13016}, -- Scavenger of the Sands
     {A, 304, 12849}, -- Treasures of Vol'dun
     {A, 304, 12943}, -- Adventurer of Vol'dun
     {A, 304, 12560}, -- Explore Vol'dun
     {C, 302, 304},
-    {N, 304,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 304, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 303, 13437}, -- Scavenge like a Vulpera
     {A, 303, 13017}, -- Champion of the Vulpera
     {A, 303, 13041}, -- "Hungry, Hungry Ranishu"
@@ -4931,15 +4932,15 @@ tasks = {
     {A, 303, 13009}, -- Adept Sandfisher
     {A, 303, 12478}, -- Secrets in the Sands
     {C, 302, 303},
-    {N, 303,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 303, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 259, 302},
-    {N, 302,k.GetMapName(864)}, -- Vol'dun
+    {N, 302, a.GetMapName(864)}, -- Vol'dun
     {A, 301, 12948}, -- Talanji's Expedition
     {C, 297, 301},
-    {N, 301,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 301, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 300, 12574}, -- Tour of Duty: Nazmir
     {C, 297, 300},
-    {N, 300,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 300, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 299, 13028}, -- Hoppin' Sad
     {A, 299, 13024}, -- "Carved in Stone, Written in Blood"
     {A, 299, 12588}, -- Eat Your Greens
@@ -4947,7 +4948,7 @@ tasks = {
     {A, 299, 12942}, -- Adventurer of Nazmir
     {A, 299, 12561}, -- Explore Nazmir
     {C, 297, 299},
-    {N, 299,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 299, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 298, 13426}, -- Come On and Slam
     {A, 298, 13021}, -- A Most Efficient Apocalypse
     {A, 298, 13022}, -- Revenge is Best Served Speedily
@@ -4957,23 +4958,23 @@ tasks = {
     {A, 298, 13025}, -- Zandalari Spycatcher
     {A, 298, 13026}, -- 7th Legion Spycatcher
     {C, 297, 298},
-    {N, 298,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 298, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 259, 297},
-    {N, 297,k.GetMapName(863)}, -- Nazmir
+    {N, 297, a.GetMapName(863)}, -- Nazmir
     {A, 296, 12957}, -- Champion of the Honorbound
     {A, 296, 12950}, -- Zandalari Empire
     {C, 292, 296},
-    {N, 296,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 296, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 295, 13438}, -- Boxing Match
     {A, 295, 13439}, -- Boxing Match
     {A, 295, 12575}, -- Tour of Duty: Zuldazar
     {C, 292, 295},
-    {N, 295,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 295, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 294, 12851}, -- Treasures of Zuldazar
     {A, 294, 12944}, -- Adventurer of Zuldazar
     {A, 294, 12559}, -- Explore Zuldazar
     {C, 292, 294},
-    {N, 294,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 294, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 293, 13440}, -- Pushing the Payload
     {A, 293, 13035}, -- By de Power of de Loa!
     {A, 293, 13542}, -- How to Train Your Direhorn
@@ -4990,21 +4991,21 @@ tasks = {
     {A, 293, 12480}, -- A Bargain of Blood
     {A, 293, 11861}, -- The Throne of Zuldazar
     {C, 292, 293},
-    {N, 293,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 293, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 259, 292},
-    {N, 292,k.GetMapName(862)}, -- Zuldazar
+    {N, 292, a.GetMapName(862)}, -- Zuldazar
     {A, 291, 12953}, -- Storm's Wake
     {C, 287, 291},
-    {N, 291,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 291, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 290, 12578}, -- Tour of Duty: Stormsong Valley
     {C, 287, 290},
-    {N, 290,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 290, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 289, 13051}, -- Legends of the Tidesages
     {A, 289, 12853}, -- Treasures of Stormsong Valley
     {A, 289, 12940}, -- Adventurer of Stormsong Valley
     {A, 289, 12558}, -- Explore Stormsong Valley
     {C, 287, 289},
-    {N, 289,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 289, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 288, 13062}, -- Let's Bee Friends
     {A, 288, 13042}, -- About To Break
     {A, 288, 13045}, -- Every Day I'm Truffling
@@ -5014,15 +5015,15 @@ tasks = {
     {A, 288, 13054}, -- Sabertron Assemble
     {A, 288, 12496}, -- Stormsong and Dance
     {C, 287, 288},
-    {N, 288,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 288, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 259, 287},
-    {N, 287,k.GetMapName(942)}, -- Stormsong Valley
+    {N, 287, a.GetMapName(942)}, -- Stormsong Valley
     {A, 286, 12952}, -- Order of Embers
     {C, 282, 286},
-    {N, 286,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 286, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 285, 12579}, -- Tour of Duty: Drustvar
     {C, 282, 285},
-    {N, 285,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 285, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 284, 13094}, -- Cursed Game Hunter
     {A, 284, 13064}, -- "Drust the Facts, Ma'am"
     {A, 284, 13082}, -- Everything Old Is New Again
@@ -5032,26 +5033,26 @@ tasks = {
     {A, 284, 12941}, -- Adventurer of Drustvar
     {A, 284, 12557}, -- Explore Drustvar
     {C, 282, 284},
-    {N, 284,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 284, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 283, 12497}, -- Drust Do It.
     {C, 282, 283},
-    {N, 283,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 283, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 259, 282},
-    {N, 282,k.GetMapName(896)}, -- Drustvar
+    {N, 282, a.GetMapName(896)}, -- Drustvar
     {A, 280, 12954}, -- Champion of the 7th Legion
     {A, 280, 12951}, -- Proudmoore Admiralty
     {C, 276, 280},
-    {N, 280,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 280, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 279, 12577}, -- Tour of Duty: Tiragarde Sound
     {C, 276, 279},
-    {N, 279,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 279, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 278, 13058}, -- Kul Tiran Up the Dance Floor
     {A, 278, 13057}, -- Shanty Raid
     {A, 278, 12852}, -- Treasures of Tiragarde Sound
     {A, 278, 12939}, -- Adventurer of Tiragarde Sound
     {A, 278, 12556}, -- Explore Tiragarde Sound
     {C, 276, 278},
-    {N, 278,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 278, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 281, 13285}, -- Upright Citizens
     {A, 281, 12087}, -- The Reining Champion
     {A, 281, 13049}, -- The Long Con
@@ -5060,21 +5061,21 @@ tasks = {
     {A, 281, 13060}, -- Kul Runnings
     {A, 281, 12473}, -- A Sound Plan
     {C, 276, 281},
-    {N, 281,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 281, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 259, 276},
-    {N, 276,k.GetMapName(895)}, -- Tiragarde Sound
+    {N, 276, a.GetMapName(895)}, -- Tiragarde Sound
     {A, 1447, 12740}, -- Full of Scrap!
     {A, 1447, 12739}, -- Scraptastic!
     {A, 1447, 12738}, -- Holy Scrap!
     {A, 1447, 13056}, -- Giving a Scrap
     {A, 1447, 12741}, -- Giving a Scrap
     {C, 259, 1447},
-    {N, 1447,k.GetMapName(1161) .. " & " .. k.GetMapName(1165)}, -- Boralus & Dazar'alor
+    {N, 1447, a.GetMapName(1161) .. " & " .. a.GetMapName(1165)}, -- Boralus & Dazar'alor
     {A, 275, 12956}, -- Tortollan Seekers
     {A, 275, 12955}, -- Champions of Azeroth
     {A, 275, 12947}, -- Azerothian Diplomat
     {C, 271, 275},
-    {N, 275,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 275, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 274, 12604}, -- Conqueror of Azeroth
     {A, 274, 12605}, -- Conqueror of Azeroth
     {A, 274, 12573}, -- Band of Brothers
@@ -5082,7 +5083,7 @@ tasks = {
     {A, 274, 12572}, -- War Supplied
     {A, 274, 13429}, -- Azerfighter
     {C, 271, 274},
-    {N, 274,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 274, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 273, 12988}, -- Battle for Azeroth Explorer
     {A, 273, 14730}, -- To All the Squirrels I Set Sail to See
     {A, 273, 13027}, -- Mushroom Harvest
@@ -5091,7 +5092,7 @@ tasks = {
     {A, 273, 12482}, -- Get Hek'd
     {A, 273, 13061}, -- Three Sheets to the Wind
     {C, 271, 273},
-    {N, 273,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 273, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 272, 7520}, -- The Loremaster
     {A, 272, 14157}, -- The Corruptor's End
     {A, 272, 13263}, -- The Shadow Hunter
@@ -5114,18 +5115,18 @@ tasks = {
     {A, 272, 12555}, -- Welcome to Zandalar
     {A, 272, 12582}, -- Come Sail Away
     {C, 271, 272},
-    {N, 272,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 272, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 271, 12587}, -- Unbound Monstrosities
     {A, 271, 14183}, -- Conspicuous Consumption
     {C, 259, 271},
-    {N, 271,k.GetMapName(876) .. " & " .. k.GetMapName(875)}, -- Kul Tiras & Zandalar
+    {N, 271, a.GetMapName(876) .. " & " .. a.GetMapName(875)}, -- Kul Tiras & Zandalar
     {A, 259, 46}, -- Universal Explorer
     {C, 258, 259},
-    {N, 259,k.L["Zones"]}, -- Zones
+    {N, 259, a.L["Zones"]}, -- Zones
     {A, 258, 13250}, -- "Battle for Azeroth Pathfinder, Part Two"
     {A, 258, 12989}, -- "Battle for Azeroth Pathfinder, Part One"
     {C, 883, 258},
-    {N, 258,k.GetCategoryInfoTitle(15305)}, -- Battle for Azeroth
+    {N, 258, a.GetCategoryInfoTitle(15305)}, -- Battle for Azeroth
     {A, 429, 11218}, -- There's a Boss In There
     {A, 429, 12072}, -- Now You're Cooking with Netherlight
     {A, 429, 12071}, -- Crucible's Promise
@@ -5167,7 +5168,7 @@ tasks = {
     {A, 429, 11135}, -- A Heroic Campaign
     {A, 429, 10994}, -- A Glorious Campaign
     {C, 237, 429},
-    {N, 429,k.L["Class Hall"]}, -- Class Hall
+    {N, 429, a.L["Class Hall"]}, -- Class Hall
     {A, 792, 11572}, -- I Am Thrall's Complete Lack Of Surprise (Season 3)
     {A, 792, 11566}, -- King of the Guild (Season 3)
     {A, 792, 11565}, -- King of the Guild (Season 3)
@@ -5176,7 +5177,7 @@ tasks = {
     {A, 792, 11561}, -- You Are Not Your $#*@! Legplates (Season 3)
     {A, 792, 11560}, -- You Are Not Your $#*@! Legplates (Season 3)
     {C, 237, 792},
-    {N, 792,k.L["Brawler's Guild"] .. " (" .. k.GetCategoryInfoTitle(15234) .. ")"}, -- Brawler's Guild
+    {N, 792, a.L["Brawler's Guild"] .. " (" .. a.GetCategoryInfoTitle(15234) .. ")"}, -- Brawler's Guild
     {A, 430, 12100}, -- Family Fighter
     {A, 430, 12099}, -- Unstoppable Undead
     {A, 430, 12098}, -- Mechanical Melee
@@ -5203,19 +5204,19 @@ tasks = {
     {A, 430, 10876}, -- Battle on the Broken Isles
     {A, 430, 11233}, -- Broken Isles Safari
     {C, 237, 430},
-    {N, 430,k.GetCategoryInfoTitle(15117)}, -- Pet Battles
+    {N, 430, a.GetCategoryInfoTitle(15117)}, -- Pet Battles
     {A, 1521, 18834}, -- Broken Isles Skinning Techniques
     {C, 1156, 1521},
-    {N, 1521,k.GetCategoryInfoTitle(15498), true}, -- Skinning
+    {N, 1521, a.GetCategoryInfoTitle(15498), true}, -- Skinning
     {A, 1517, 18839}, -- Broken Isles Mining Techniques
     {C, 1156, 1517},
-    {N, 1517,k.GetCategoryInfoTitle(15497), true}, -- Mining
+    {N, 1517, a.GetCategoryInfoTitle(15497), true}, -- Mining
     {A, 1508, 10587}, -- Hot Swapper
     {C, 1156, 1508},
-    {N, 1508,k.GetCategoryInfoTitle(15494), true}, -- Jewelcrafting
+    {N, 1508, a.GetCategoryInfoTitle(15494), true}, -- Jewelcrafting
     {A, 1502, 18837}, -- Broken Isles Herbalism Techniques
     {C, 1156, 1502},
-    {N, 1502,k.GetCategoryInfoTitle(15499), true}, -- Herbalism
+    {N, 1502, a.GetCategoryInfoTitle(15499), true}, -- Herbalism
     {A, 1495, 11725}, -- Fisherfriend of the Isles
     {A, 1495, 10722}, -- The Wish Remover
     {A, 1495, 10598}, -- Fishing 'Round the Isles
@@ -5224,17 +5225,17 @@ tasks = {
     {A, 1495, 10597}, -- Legion Aquaculture
     {A, 1495, 10594}, -- Legion Fisherman
     {C, 1156, 1495},
-    {N, 1495,k.GetCategoryInfoTitle(171), true}, -- Fishing
+    {N, 1495, a.GetCategoryInfoTitle(171), true}, -- Fishing
     {A, 1489, 10588}, -- The Shortest Distance
     {C, 1156, 1489},
-    {N, 1489,k.GetCategoryInfoTitle(15492), true}, -- Engineering
+    {N, 1489, a.GetCategoryInfoTitle(15492), true}, -- Engineering
     {A, 1482, 10593}, -- Everything Tastes Better
     {A, 1482, 10762}, -- The Legion Menu
     {A, 1482, 10592}, -- Never A Day's Rest
     {A, 1482, 10591}, -- All Grown Up
     {A, 1482, 10589}, -- Legion Cook
     {C, 1156, 1482},
-    {N, 1482,k.GetCategoryInfoTitle(170), true}, -- Cooking
+    {N, 1482, a.GetCategoryInfoTitle(170), true}, -- Cooking
     {A, 1473, 10609}, -- No Stone Unturned
     {A, 1473, 10608}, -- Sifting Through the Sand
     {A, 1473, 10607}, -- Getting Your Hands Dirty
@@ -5246,7 +5247,7 @@ tasks = {
     {A, 1473, 10601}, -- Surveying the Land
     {A, 1473, 10600}, -- Legion Archaeologist
     {C, 1156, 1473},
-    {N, 1473,k.GetCategoryInfoTitle(15071), true}, -- Archaeology
+    {N, 1473, a.GetCategoryInfoTitle(15071), true}, -- Archaeology
     {A, 1156, 11139}, -- Field Medic
     {A, 1156, 11138}, -- Is There a Medic in the Zone?
     {A, 1156, 10580}, -- Heroic Skills to Pay the Bills
@@ -5256,7 +5257,7 @@ tasks = {
     {A, 1156, 10581}, -- Working the Isles
     {A, 1156, 10582}, -- Professional Legion Master
     {C, 237, 1156},
-    {N, 1156,k.GetCategoryInfoTitle(169)}, -- Professions
+    {N, 1156, a.GetCategoryInfoTitle(169)}, -- Professions
     {A, 882, 12002}, -- Mythic: Argus the Unmaker
     {A, 882, 12001}, -- Mythic: Aggramar
     {A, 882, 12000}, -- Mythic: The Coven of Shivarra
@@ -5269,7 +5270,7 @@ tasks = {
     {A, 882, 11993}, -- Mythic: Hounds of Sargeras
     {A, 882, 11992}, -- Mythic: Garothi Worldbreaker
     {C, 257, 882},
-    {N, 882,k.L["Mythic"]}, -- Mythic
+    {N, 882, a.L["Mythic"]}, -- Mythic
     {A, 881, 12257}, -- Stardust Crusaders
     {A, 881, 11915}, -- Don't Sweat the Technique
     {A, 881, 12046}, -- Remember the Titans
@@ -5282,7 +5283,7 @@ tasks = {
     {A, 881, 12065}, -- Hounds Good To Me
     {A, 881, 11930}, -- Worm-monger
     {C, 257, 881},
-    {N, 881,k.L["Glory"]}, -- Glory
+    {N, 881, a.L["Glory"]}, -- Glory
     {A, 257, 12020}, -- Argussy Up
     {A, 257, 12111}, -- Cutting Edge: Argus the Unmaker
     {A, 257, 12110}, -- Ahead of the Curve: Argus the Unmaker
@@ -5291,7 +5292,7 @@ tasks = {
     {A, 257, 11990}, -- Hope's End
     {A, 257, 11988}, -- Light's Breach
     {C, 239, 257},
-    {N, 257,k.GetInstanceInfoName(946)}, -- Antorus, the Burning Throne
+    {N, 257, a.GetInstanceInfoName(946)}, -- Antorus, the Burning Throne
     {A, 880, 11781}, -- Mythic: Kil'jaeden
     {A, 880, 11780}, -- Mythic: Fallen Avatar
     {A, 880, 11779}, -- Mythic: Maiden of Vigilance
@@ -5302,7 +5303,7 @@ tasks = {
     {A, 880, 11775}, -- Mythic: Harjatan
     {A, 880, 11767}, -- Mythic: Goroth
     {C, 256, 880},
-    {N, 880,k.L["Mythic"]}, -- Mythic
+    {N, 880, a.L["Mythic"]}, -- Mythic
     {A, 879, 11770}, -- Dark Souls
     {A, 879, 11683}, -- Bingo!
     {A, 879, 11675}, -- Sky Walker
@@ -5313,7 +5314,7 @@ tasks = {
     {A, 879, 11699}, -- Grand Fin-ale
     {A, 879, 11724}, -- Fel Turkey!
     {C, 256, 879},
-    {N, 879,k.L["Glory"]}, -- Glory
+    {N, 879, a.L["Glory"]}, -- Glory
     {A, 256, 11760}, -- Retro Trend
     {A, 256, 11875}, -- Cutting Edge: Kil'jaeden
     {A, 256, 11874}, -- Ahead of the Curve: Kil'jaeden
@@ -5322,7 +5323,7 @@ tasks = {
     {A, 256, 11788}, -- Wailing Halls
     {A, 256, 11787}, -- The Gates of Hell
     {C, 239, 256},
-    {N, 256,k.GetInstanceInfoName(875)}, -- Tomb of Sargeras
+    {N, 256, a.GetInstanceInfoName(875)}, -- Tomb of Sargeras
     {A, 255, 11762}, -- Can I Get A Helya
     {A, 255, 11580}, -- Cutting Edge: Helya
     {A, 255, 11581}, -- Ahead of the Curve: Helya
@@ -5336,7 +5337,7 @@ tasks = {
     {A, 255, 11386}, -- Boneafide Tri Tip
     {A, 255, 11337}, -- You Runed Everything!
     {C, 239, 255},
-    {N, 255,k.GetInstanceInfoName(861)}, -- Trial of Valor
+    {N, 255, a.GetInstanceInfoName(861)}, -- Trial of Valor
     {A, 876, 10850}, -- Mythic: Gul'dan
     {A, 876, 10849}, -- Mythic: Grand Magistrix Elisande
     {A, 876, 10847}, -- Mythic: Tichondrius
@@ -5348,7 +5349,7 @@ tasks = {
     {A, 876, 10842}, -- Mythic: Chronomatic Anomaly
     {A, 876, 10840}, -- Mythic: Skorpyron
     {C, 254, 876},
-    {N, 876,k.L["Mythic"]}, -- Mythic
+    {N, 876, a.L["Mythic"]}, -- Mythic
     {A, 875, 10696}, -- I've Got My Eyes On You
     {A, 875, 10699}, -- Infinitesimal
     {A, 875, 10704}, -- Not For You
@@ -5360,7 +5361,7 @@ tasks = {
     {A, 875, 10697}, -- Grand Opening
     {A, 875, 10678}, -- Cage Rematch
     {C, 254, 875},
-    {N, 875,k.L["Glory"]}, -- Glory
+    {N, 875, a.L["Glory"]}, -- Glory
     {A, 254, 11628}, -- That's So Last Millennium
     {A, 254, 11192}, -- Cutting Edge: Gul'dan
     {A, 254, 11195}, -- Ahead of the Curve: Gul'dan
@@ -5369,7 +5370,7 @@ tasks = {
     {A, 254, 10837}, -- Royal Athenaeum
     {A, 254, 10829}, -- Arcing Aqueducts
     {C, 239, 254},
-    {N, 254,k.GetInstanceInfoName(786)}, -- The Nighthold
+    {N, 254, a.GetInstanceInfoName(786)}, -- The Nighthold
     {A, 874, 10827}, -- Mythic: Xavius
     {A, 874, 10826}, -- Mythic: Cenarius
     {A, 874, 10825}, -- Mythic: Dragons of Nightmare
@@ -5378,7 +5379,7 @@ tasks = {
     {A, 874, 10823}, -- Mythic: Il'gynoth
     {A, 874, 10821}, -- Mythic: Nythendra
     {C, 253, 874},
-    {N, 874,k.L["Mythic"]}, -- Mythic
+    {N, 874, a.L["Mythic"]}, -- Mythic
     {A, 873, 10755}, -- I Attack the Darkness
     {A, 873, 10772}, -- Use the Force(s)
     {A, 873, 10663}, -- Imagined Dragons World Tour
@@ -5387,26 +5388,26 @@ tasks = {
     {A, 873, 10830}, -- Took the Red Eye Down
     {A, 873, 10555}, -- Buggy Fight
     {C, 253, 873},
-    {N, 873,k.L["Glory"]}, -- Glory
+    {N, 873, a.L["Glory"]}, -- Glory
     {A, 253, 11191}, -- Cutting Edge: Xavius
     {A, 253, 11194}, -- Ahead of the Curve: Xavius
     {A, 253, 10820}, -- Rift of Aln
     {A, 253, 10819}, -- Tormented Guardians
     {A, 253, 10818}, -- Darkbough
     {C, 239, 253},
-    {N, 253,k.GetInstanceInfoName(768)}, -- The Emerald Nightmare
+    {N, 253, a.GetInstanceInfoName(768)}, -- The Emerald Nightmare
     {A, 239, 11987}, -- Glory of the Argus Raider
     {A, 239, 11763}, -- Glory of the Tomb Raider
     {A, 239, 11180}, -- Glory of the Legion Raider
     {C, 237, 239},
-    {N, 239,k.GetCategoryInfoTitle(15271)}, -- Raids
+    {N, 239, a.GetCategoryInfoTitle(15271)}, -- Raids
     {A, 252, 12008}, -- Mythic: Seat of the Triumvirate
     {A, 252, 12007}, -- Heroic: Seat of the Triumvirate
     {A, 252, 12009}, -- Darker Side
     {A, 252, 12005}, -- Let it All Out
     {A, 252, 12004}, -- Welcome the Void
     {C, 238, 252},
-    {N, 252,k.GetInstanceInfoName(945)}, -- Seat of the Triumvirate
+    {N, 252, a.GetInstanceInfoName(945)}, -- Seat of the Triumvirate
     {A, 251, 11702}, -- Mythic: Cathedral of Eternal Night
     {A, 251, 11701}, -- Heroic: Cathedral of Eternal Night
     {A, 251, 11700}, -- Cathedral of Eternal Night
@@ -5414,7 +5415,7 @@ tasks = {
     {A, 251, 11769}, -- A Steamy Romance Saga
     {A, 251, 11768}, -- Boom Bloom
     {C, 238, 251},
-    {N, 251,k.GetInstanceInfoName(900)}, -- Cathedral of Eternal Night
+    {N, 251, a.GetInstanceInfoName(900)}, -- Cathedral of Eternal Night
     {A, 250, 15692}, -- Keystone Hero: Return to Karazhan
     {A, 250, 11429}, -- Mythic: Return to Karazhan
     {A, 250, 11929}, -- Heroic: Return to Karazhan
@@ -5425,19 +5426,19 @@ tasks = {
     {A, 250, 11335}, -- Season Tickets
     {A, 250, 11430}, -- One Night in Karazhan
     {C, 238, 250},
-    {N, 250,k.GetInstanceInfoName(860)}, -- Return to Karazhan
+    {N, 250, a.GetInstanceInfoName(860)}, -- Return to Karazhan
     {A, 249, 16658}, -- Keystone Hero: Court of Stars
     {A, 249, 10816}, -- Mythic: Court of Stars
     {A, 249, 10611}, -- Dropping Some Eaves
     {A, 249, 10610}, -- Waiting for Gerdo
     {C, 238, 249},
-    {N, 249,k.GetInstanceInfoName(800)}, -- Court of Stars
+    {N, 249, a.GetInstanceInfoName(800)}, -- Court of Stars
     {A, 248, 10813}, -- Mythic: The Arcway
     {A, 248, 10776}, -- No Time to Waste
     {A, 248, 10775}, -- Clean House
     {A, 248, 10773}, -- Arcanic Cling
     {C, 238, 248},
-    {N, 248,k.GetInstanceInfoName(726)}, -- The Arcway
+    {N, 248, a.GetInstanceInfoName(726)}, -- The Arcway
     {A, 247, 10809}, -- Mythic: Maw of Souls
     {A, 247, 10808}, -- Heroic: Maw of Souls
     {A, 247, 10807}, -- Maw of Souls
@@ -5445,7 +5446,7 @@ tasks = {
     {A, 247, 10411}, -- Helheim Hath No Fury
     {A, 247, 10413}, -- Instant Karma
     {C, 238, 247},
-    {N, 247,k.GetInstanceInfoName(727)}, -- Maw of Souls
+    {N, 247, a.GetInstanceInfoName(727)}, -- Maw of Souls
     {A, 246, 19084}, -- Keystone Hero: Black Rook Hold
     {A, 246, 10806}, -- Mythic: Black Rook Hold
     {A, 246, 10805}, -- Heroic: Black Rook Hold
@@ -5454,7 +5455,7 @@ tasks = {
     {A, 246, 10709}, -- You Used to Scrawl Me In Your Fel Tome
     {A, 246, 10710}, -- Black Rook Moan
     {C, 238, 246},
-    {N, 246,k.GetInstanceInfoName(740)}, -- Black Rook Hold
+    {N, 246, a.GetInstanceInfoName(740)}, -- Black Rook Hold
     {A, 245, 10803}, -- Mythic: Vault of the Wardens
     {A, 245, 10802}, -- Heroic: Vault of the Wardens
     {A, 245, 10801}, -- Vault of the Wardens
@@ -5462,14 +5463,14 @@ tasks = {
     {A, 245, 10680}, -- Who's Afraid of the Dark?
     {A, 245, 10679}, -- I Ain't Even Cold
     {C, 238, 245},
-    {N, 245,k.GetInstanceInfoName(707)}, -- Vault of the Wardens
+    {N, 245, a.GetInstanceInfoName(707)}, -- Vault of the Wardens
     {A, 244, 10800}, -- Mythic: Assault on Violet Hold
     {A, 244, 10799}, -- Heroic: Assault on Violet Hold
     {A, 244, 10798}, -- Assault on Violet Hold
     {A, 244, 10553}, -- You're Just Making It WORSE!
     {A, 244, 10554}, -- I Made a Food!
     {C, 238, 244},
-    {N, 244,k.GetInstanceInfoName(777)}, -- Assault on Violet Hold
+    {N, 244, a.GetInstanceInfoName(777)}, -- Assault on Violet Hold
     {A, 243, 17850}, -- Keystone Hero: Neltharion's Lair
     {A, 243, 10797}, -- Mythic: Neltharion's Lair
     {A, 243, 10796}, -- Heroic: Neltharion's Lair
@@ -5477,7 +5478,7 @@ tasks = {
     {A, 243, 10875}, -- Can't Eat Just One
     {A, 243, 10996}, -- Got to Ketchum All
     {C, 238, 243},
-    {N, 243,k.GetInstanceInfoName(767)}, -- Neltharions Lair
+    {N, 243, a.GetInstanceInfoName(767)}, -- Neltharions Lair
     {A, 242, 16659}, -- Keystone Hero: Halls of Valor
     {A, 242, 10789}, -- Mythic: Halls of Valor
     {A, 242, 10788}, -- Heroic: Halls of Valor
@@ -5486,7 +5487,7 @@ tasks = {
     {A, 242, 10542}, -- I Got What You Mead
     {A, 242, 10544}, -- Stag Party
     {C, 238, 242},
-    {N, 242,k.GetInstanceInfoName(721)}, -- Halls of Valor
+    {N, 242, a.GetInstanceInfoName(721)}, -- Halls of Valor
     {A, 241, 19085}, -- Keystone Hero: Darkheart Thicket
     {A, 241, 10785}, -- Mythic: Darkheart Thicket
     {A, 241, 10784}, -- Heroic: Darkheart Thicket
@@ -5494,7 +5495,7 @@ tasks = {
     {A, 241, 10769}, -- Burning Down the House
     {A, 241, 10766}, -- Egg-cellent!
     {C, 238, 241},
-    {N, 241,k.GetInstanceInfoName(762)}, -- Darkheart Thicket
+    {N, 241, a.GetInstanceInfoName(762)}, -- Darkheart Thicket
     {A, 240, 10782}, -- Mythic: Eye of Azshara
     {A, 240, 10781}, -- Heroic: Eye of Azshara
     {A, 240, 10780}, -- Eye of Azshara
@@ -5502,16 +5503,16 @@ tasks = {
     {A, 240, 10457}, -- Stay Salty
     {A, 240, 10456}, -- But You Say He's Just a Friend
     {C, 238, 240},
-    {N, 240,k.GetInstanceInfoName(716)}, -- Eye of Azshara
+    {N, 240, a.GetInstanceInfoName(716)}, -- Eye of Azshara
     {A, 238, 11181}, -- Legion Keymaster
     {A, 238, 11163}, -- Glory of the Legion Hero
     {A, 238, 11164}, -- Legion Dungeon Hero
     {C, 237, 238},
-    {N, 238,k.GetCategoryInfoTitle(15272)}, -- Dungeons
+    {N, 238, a.GetCategoryInfoTitle(15272)}, -- Dungeons
     {A, 418, 12081}, -- Officer of the Light
     {A, 418, 12076}, -- Protector of the Argussian Reach
     {C, 406, 418},
-    {N, 418,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 418, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 408, 12104}, -- And We're All Out of Mana Buns
     {A, 408, 12103}, -- ...And Chew Mana Buns
     {A, 408, 12102}, -- To Kill Demons...
@@ -5525,23 +5526,23 @@ tasks = {
     {A, 408, 12084}, -- Infused and Abused
     {A, 408, 12074}, -- "Shoot First, Loot Later"
     {C, 406, 408},
-    {N, 408,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 408, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 407, 18854}, -- Seeing Red
     {A, 407, 12073}, -- Locked and Loaded
     {A, 407, 12066}, -- You Are Now Prepared!
     {C, 406, 407},
-    {N, 407,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 407, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 381, 406},
-    {N, 406,k.GetMapName(905)}, -- Argus
+    {N, 406, a.GetMapName(905)}, -- Argus
     {A, 417, 11796}, -- Armies of Legionfall
     {A, 417, 11545}, -- Legionfall Commander
     {C, 394, 417},
-    {N, 417,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 417, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 404, 11841}, -- Naxt Victim
     {A, 404, 11802}, -- Bringing Home the Beacon
     {A, 404, 11543}, -- Explore Broken Shore
     {C, 394, 404},
-    {N, 404,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 404, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 395, 11738}, -- It'll Nether Happen
     {A, 395, 11737}, -- Disrupting the Nether
     {A, 395, 11736}, -- Assume Command
@@ -5552,18 +5553,18 @@ tasks = {
     {A, 395, 11546}, -- Breaching the Tomb
     {A, 395, 11607}, -- They See Me Rolling
     {C, 394, 395},
-    {N, 395,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 395, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 394, 11786}, -- Terrors of the Shore
     {C, 381, 394},
-    {N, 394,k.GetMapName(646)}, -- Broken Shore
+    {N, 394, a.GetMapName(646)}, -- Broken Shore
     {A, 415, 10778}, -- The Nightfallen
     {C, 389, 415},
-    {N, 415,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 415, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 403, 11265}, -- Adventurer of Suramar
     {A, 403, 11260}, -- Treasures of Suramar
     {A, 403, 10669}, -- Explore Suramar
     {C, 389, 403},
-    {N, 403,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 403, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 393, 11427}, -- No Shellfish Endeavor
     {A, 393, 11340}, -- Insurrection
     {A, 393, 11133}, -- Why Can't I Hold All This Mana?
@@ -5572,103 +5573,103 @@ tasks = {
     {A, 393, 11124}, -- Good Suramaritan
     {A, 393, 10617}, -- Nightfallen But Not Forgotten
     {C, 389, 393},
-    {N, 393,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 393, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 381, 389},
-    {N, 389,k.GetMapName(680)}, -- Suramar
+    {N, 389, a.GetMapName(680)}, -- Suramar
     {A, 409, 11476}, -- Saddle Sore
     {C, 386, 409},
-    {N, 409,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 409, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 402, 11178}, -- Wake the Dragon
     {A, 402, 11263}, -- Adventurer of Stormheim
     {A, 402, 11259}, -- Treasures of Stormheim
     {A, 402, 10627}, -- Going Up
     {A, 402, 10668}, -- Explore Stormheim
     {C, 386, 402},
-    {N, 402,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 402, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 390, 11427}, -- No Shellfish Endeavor
     {A, 390, 11232}, -- "Lock, Stock and Two Smoking Goblins"
     {A, 390, 10793}, -- What a Ripoff!
     {A, 390, 10790}, -- "Vrykul Story, Bro"
     {C, 386, 390},
-    {N, 390,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 390, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 381, 386},
-    {N, 386,k.GetMapName(634)}, -- Stormheim
+    {N, 386, a.GetMapName(634)}, -- Stormheim
     {A, 416, 12292}, -- Highmountain Tribe
     {C, 388, 416},
-    {N, 416,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 416, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 410, 11478}, -- The Darkbrul-oh
     {C, 388, 410},
-    {N, 410,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 410, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 401, 11264}, -- Adventurer of Highmountain
     {A, 401, 11257}, -- Treasures of Highmountain
     {A, 401, 10667}, -- Explore Highmountain
     {C, 388, 401},
-    {N, 401,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 401, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 392, 11427}, -- No Shellfish Endeavor
     {A, 392, 10398}, -- Drum Circle
     {A, 392, 10626}, -- Zoom!
     {A, 392, 10774}, -- Hatchling of the Talon
     {A, 392, 10059}, -- Ain't No Mountain High Enough
     {C, 388, 392},
-    {N, 392,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 392, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 381, 388},
-    {N, 388,k.GetMapName(650)}, -- Highmountain
+    {N, 388, a.GetMapName(650)}, -- Highmountain
     {A, 411, 11477}, -- Off the Top Rook
     {C, 387, 411},
-    {N, 411,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 411, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 400, 11262}, -- Adventurer of Val'sharah
     {A, 400, 11258}, -- Treasures of Val'sharah
     {A, 400, 10666}, -- Explore Val'sharah
     {C, 387, 400},
-    {N, 400,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 400, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 391, 10698}, -- That's Val'sharah Folks!
     {C, 387, 391},
-    {N, 391,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 391, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 381, 387},
-    {N, 387,k.GetMapName(641)}, -- Val'sharah
+    {N, 387, a.GetMapName(641)}, -- Val'sharah
     {A, 412, 11475}, -- Mission Accomplished
     {C, 384, 412},
-    {N, 412,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 412, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 399, 11261}, -- Adventurer of Azsuna
     {A, 399, 11256}, -- Treasures of Azsuna
     {A, 399, 11175}, -- Higher Dimensional Learning
     {A, 399, 10665}, -- Explore Azsuna
     {C, 384, 399},
-    {N, 399,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 399, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 385, 10763}, -- Azsuna Matata
     {C, 384, 385},
-    {N, 385,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 385, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 381, 384},
-    {N, 384,k.GetMapName(630)}, -- Azsuna
+    {N, 384, a.GetMapName(630)}, -- Azsuna
     {A, 1448, 10586}, -- Mass Obliteration
     {A, 1448, 10585}, -- Fel-Smelter
     {C, 382, 1448},
-    {N, 1448,k.GetCategoryInfoTitle(169), true}, -- Professions
+    {N, 1448, a.GetCategoryInfoTitle(169), true}, -- Professions
     {A, 405, 11066}, -- Underbelly Tycoon
     {C, 382, 405},
-    {N, 405,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 405, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 383, 12439}, -- Priority Mail
     {A, 383, 12431}, -- Post Haste
     {A, 383, 12416}, -- The Total Package
     {C, 382, 383},
-    {N, 383,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 383, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 382, 10770}, -- The Tangerine Traveler
     {C, 381, 382},
-    {N, 382,k.GetMapName(626)}, -- Dalaran
+    {N, 382, a.GetMapName(626)}, -- Dalaran
     {A, 414, 11941}, -- Chromie Homie
     {A, 414, 11653}, -- Paragon of the Broken Isles
     {A, 414, 11652}, -- The Reputable
     {A, 414, 11159}, -- Friends in a Broken Land
     {A, 414, 10672}, -- Broken Isles Diplomat
     {C, 396, 414},
-    {N, 414,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 414, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 413, 11474}, -- "Free For All, More For Me"
     {C, 396, 413},
-    {N, 413,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 413, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 398, 11188}, -- Broken Isles Explorer
     {A, 398, 14729}, -- To All the Squirrels I Love Despite Their Scars
     {C, 396, 398},
-    {N, 398,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 398, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 397, 7520}, -- The Loremaster
     {A, 397, 11846}, -- Champions of Legionfall
     {A, 397, 11544}, -- Defender of the Broken Isles
@@ -5678,16 +5679,16 @@ tasks = {
     {A, 397, 10877}, -- Pillars of Creation
     {A, 397, 11157}, -- Loremaster of Legion
     {C, 396, 397},
-    {N, 397,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 397, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 396, 11160}, -- Unleashed Monstrosities
     {C, 381, 396},
-    {N, 396,k.GetMapName(619)}, -- Broken Isles
+    {N, 396, a.GetMapName(619)}, -- Broken Isles
     {C, 237, 381},
-    {N, 381,k.L["Zones"]}, -- Zones
+    {N, 381, a.L["Zones"]}, -- Zones
     {A, 237, 11446}, -- "Broken Isles Pathfinder, Part Two"
     {A, 237, 11190}, -- "Broken Isles Pathfinder, Part One"
     {C, 883, 237},
-    {N, 237,k.GetCategoryInfoTitle(15258)}, -- Legion
+    {N, 237, a.GetCategoryInfoTitle(15258)}, -- Legion
     {A, 855, 9858}, -- Master and Commander
     {A, 855, 9181}, -- Save Those Buildings!
     {A, 855, 9827}, -- Impervious Defender
@@ -5706,7 +5707,7 @@ tasks = {
     {A, 855, 9543}, -- Invasion? What Invasion?
     {A, 855, 9167}, -- Invasion Specialist
     {C, 432, 855},
-    {N, 855,k.L["Invasions"], true}, -- Invasions
+    {N, 855, a.L["Invasions"], true}, -- Invasions
     {A, 856, 10307}, -- Exploring the High Seas
     {A, 856, 10167}, -- Exploring the High Seas
     {A, 856, 10258}, -- Charting a Course
@@ -5735,7 +5736,7 @@ tasks = {
     {A, 856, 10169}, -- Naval Fleet
     {A, 856, 10177}, -- Set Sail!
     {C, 852, 856},
-    {N, 856,k.L["Shipyard"], true}, -- Shipyard
+    {N, 856, a.L["Shipyard"], true}, -- Shipyard
     {A, 853, 9738}, -- Warlord of Draenor
     {A, 853, 9508}, -- Warlord of Draenor
     {A, 853, 9639}, -- "Fight, Kill, Salute!"
@@ -5754,14 +5755,14 @@ tasks = {
     {A, 853, 9513}, -- Nemesis: Scourge of the Kaldorei
     {A, 853, 9517}, -- Nemesis: Death Stalker
     {C, 852, 853},
-    {N, 853,k.L["Gladiator's Sanctum"], true}, -- Gladiator's Sanctum
+    {N, 853, a.L["Gladiator's Sanctum"], true}, -- Gladiator's Sanctum
     {A, 854, 9706}, -- The Stable Master
     {A, 854, 9540}, -- The Stable Master
     {A, 854, 9705}, -- Advanced Husbandry
     {A, 854, 9539}, -- Advanced Husbandry
     {A, 854, 9526}, -- Master of Mounts
     {C, 852, 854},
-    {N, 854,k.L["Stables"], true}, -- Stables
+    {N, 854, a.L["Stables"], true}, -- Stables
     {A, 852, 9454}, -- Draenic Seed Collector
     {A, 852, 9453}, -- Draenic Stone Collector
     {A, 852, 9703}, -- Stay Awhile and Listen
@@ -5795,11 +5796,11 @@ tasks = {
     {A, 852, 9126}, -- Master Draftsman
     {A, 852, 9125}, -- Draftsman
     {C, 432, 852},
-    {N, 852,k.L["Buildings"]}, -- Buildings
+    {N, 852, a.L["Buildings"]}, -- Buildings
     {A, 485, 9836}, -- Master Relic Hunter
     {A, 485, 9825}, -- Master Relic Hunter
     {C, 432, 485},
-    {N, 485,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 485, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 432, 9265}, -- Master of Apexis
     {A, 432, 9264}, -- Draenor Pet Brawler
     {A, 432, 9631}, -- Mythic Draenor Raider
@@ -5852,7 +5853,7 @@ tasks = {
     {A, 432, 9545}, -- More Plots
     {A, 432, 9100}, -- More Plots
     {C, 223, 432},
-    {N, 432,k.L["Garrison"]}, -- Garrison
+    {N, 432, a.L["Garrison"]}, -- Garrison
     {A, 791, 7948}, -- The First Rule of Brawler's Guild (Season 1 or 2)
     {A, 791, 7947}, -- The First Rule of Brawler's Guild (Season 1 or 2)
     {A, 791, 7944}, -- Bottle Service (Season 2)
@@ -5873,20 +5874,20 @@ tasks = {
     {A, 791, 9172}, -- You Are Not Your $#*@! Legplates (Season 2)
     {A, 791, 9168}, -- You Are Not Your $#*@! Legplates (Season 2)
     {C, 223, 791},
-    {N, 791,k.L["Brawler's Guild"] .. " (" .. k.GetCategoryInfoTitle(15234) .. ")"}, -- Brawler's Guild
+    {N, 791, a.L["Brawler's Guild"] .. " (" .. a.GetCategoryInfoTitle(15234) .. ")"}, -- Brawler's Guild
     {A, 548, 10052}, -- Tiny Terrors in Tanaan
     {A, 548, 9724}, -- Taming Draenor
     {A, 548, 9463}, -- Draenic Pet Battler
     {A, 548, 9069}, -- An Awfully Big Adventure
     {A, 548, 9685}, -- Draenor Safari
     {C, 223, 548},
-    {N, 548,k.GetCategoryInfoTitle(15117)}, -- Pet Battles
+    {N, 548, a.GetCategoryInfoTitle(15117)}, -- Pet Battles
     {A, 1515, 9453}, -- Draenic Stone Collector
     {C, 1155, 1515},
-    {N, 1515,k.GetCategoryInfoTitle(15497), true}, -- Mining
+    {N, 1515, a.GetCategoryInfoTitle(15497), true}, -- Mining
     {A, 1501, 9454}, -- Draenic Seed Collector
     {C, 1155, 1501},
-    {N, 1501,k.GetCategoryInfoTitle(15499), true}, -- Herbalism
+    {N, 1501, a.GetCategoryInfoTitle(15499), true}, -- Herbalism
     {A, 1496, 9547}, -- Everything Is Awesome!
     {A, 1496, 9462}, -- Draenor Angler
     {A, 1496, 9461}, -- Sea Scorpion Angler
@@ -5898,14 +5899,14 @@ tasks = {
     {A, 1496, 9455}, -- Fire Ammonite Angler
     {A, 1496, 9503}, -- Draenor Fisherman
     {C, 1155, 1496},
-    {N, 1496,k.GetCategoryInfoTitle(171), true}, -- Fishing
+    {N, 1496, a.GetCategoryInfoTitle(171), true}, -- Fishing
     {A, 1490, 9071}, -- Inspector Gadgetzan
     {C, 1155, 1490},
-    {N, 1490,k.GetCategoryInfoTitle(15492), true}, -- Engineering
+    {N, 1490, a.GetCategoryInfoTitle(15492), true}, -- Engineering
     {A, 1481, 9501}, -- The Draenor Gourmet
     {A, 1481, 9500}, -- Draenor Cook
     {C, 1155, 1481},
-    {N, 1481,k.GetCategoryInfoTitle(170), true}, -- Cooking
+    {N, 1481, a.GetCategoryInfoTitle(170), true}, -- Cooking
     {A, 1472, 9419}, -- Draenor Curator
     {A, 1472, 9412}, -- Arakkoa Archivist
     {A, 1472, 9411}, -- Highmaul Historian
@@ -5915,14 +5916,14 @@ tasks = {
     {A, 1472, 9413}, -- Strength and Honor
     {A, 1472, 9409}, -- Draenor Archaeologist
     {C, 1155, 1472},
-    {N, 1472,k.GetCategoryInfoTitle(15071), true}, -- Archaeology
+    {N, 1472, a.GetCategoryInfoTitle(15071), true}, -- Archaeology
     {A, 1155, 9506}, -- Savage Skills to Pay the Bills
     {A, 1155, 9505}, -- Draenor Medic
     {A, 1155, 9087}, -- Draenor Master of All
     {A, 1155, 9507}, -- Working in Draenor
     {A, 1155, 9464}, -- Professional Draenor Master
     {C, 223, 1155},
-    {N, 1155,k.GetCategoryInfoTitle(169)}, -- Professions
+    {N, 1155, a.GetCategoryInfoTitle(169)}, -- Professions
     {A, 891, 10043}, -- Mythic: Archimonde
     {A, 891, 10042}, -- Mythic: Mannoroth
     {A, 891, 10039}, -- Mythic: Xhul'horac
@@ -5937,7 +5938,7 @@ tasks = {
     {A, 891, 10032}, -- Mythic: Iron Reaver
     {A, 891, 10027}, -- Mythic: Hellfire Assault
     {C, 236, 891},
-    {N, 891,k.L["Mythic"]}, -- Mythic
+    {N, 891, a.L["Mythic"]}, -- Mythic
     {A, 890, 10073}, -- Echoes of Doomfire
     {A, 890, 10030}, -- Bad Manner(oth)
     {A, 890, 10087}, -- You Gotta Keep 'em Separated
@@ -5952,7 +5953,7 @@ tasks = {
     {A, 890, 10057}, -- Turning the Tide
     {A, 890, 10026}, -- Nearly Indestructible
     {C, 236, 890},
-    {N, 890,k.L["Glory"]}, -- Glory
+    {N, 890, a.L["Glory"]}, -- Glory
     {A, 236, 11631}, -- Extreme Makeover: Fel Edition
     {A, 236, 10045}, -- Cutting Edge: The Black Gate
     {A, 236, 10044}, -- Ahead of the Curve: The Black Gate
@@ -5963,7 +5964,7 @@ tasks = {
     {A, 236, 10024}, -- Halls of Blood
     {A, 236, 10023}, -- Hellbreach
     {C, 225, 236},
-    {N, 236,k.GetInstanceInfoName(669)}, -- Hellfire Citadel
+    {N, 236, a.GetInstanceInfoName(669)}, -- Hellfire Citadel
     {A, 889, 8973}, -- Mythic: Blackhand's Crucible
     {A, 889, 8972}, -- Mythic: Iron Maidens
     {A, 889, 8969}, -- Mythic: Operator Thogar
@@ -5975,7 +5976,7 @@ tasks = {
     {A, 889, 8966}, -- Mythic: Gruul
     {A, 889, 8967}, -- Mythic: Oregorger
     {C, 235, 889},
-    {N, 889,k.L["Mythic"]}, -- Mythic
+    {N, 889, a.L["Mythic"]}, -- Mythic
     {A, 888, 8952}, -- "Ashes, Ashes..."
     {A, 888, 8984}, -- Be Quick or Be Dead
     {A, 888, 8982}, -- There's Always a Bigger Train
@@ -5987,7 +5988,7 @@ tasks = {
     {A, 888, 8978}, -- The Iron Price
     {A, 888, 8979}, -- "He Shoots, He Ores"
     {C, 235, 888},
-    {N, 888,k.L["Glory"]}, -- Glory
+    {N, 888, a.L["Glory"]}, -- Glory
     {A, 235, 11740}, -- Make it W-orc W-orc
     {A, 235, 9443}, -- Cutting Edge: Blackhand's Crucible
     {A, 235, 9444}, -- Ahead of the Curve: Blackhand's Crucible
@@ -5996,7 +5997,7 @@ tasks = {
     {A, 235, 8990}, -- Black Forge
     {A, 235, 8989}, -- Slagworks
     {C, 225, 235},
-    {N, 235,k.GetInstanceInfoName(457)}, -- Blackrock Foundry
+    {N, 235, a.GetInstanceInfoName(457)}, -- Blackrock Foundry
     {A, 887, 8965}, -- Mythic: Imperator's Fall
     {A, 887, 8964}, -- Mythic: Ko'ragh
     {A, 887, 8963}, -- Mythic: Twin Ogron
@@ -6005,7 +6006,7 @@ tasks = {
     {A, 887, 8960}, -- Mythic: The Butcher
     {A, 887, 8949}, -- Mythic: Kargath Bladefist
     {C, 234, 887},
-    {N, 887,k.L["Mythic"]}, -- Mythic
+    {N, 887, a.L["Mythic"]}, -- Mythic
     {A, 886, 8977}, -- Lineage of Power
     {A, 886, 8976}, -- Pair Annihilation
     {A, 886, 8958}, -- Brothers in Arms
@@ -6014,19 +6015,19 @@ tasks = {
     {A, 886, 8947}, -- "Hurry Up, Maggot!"
     {A, 886, 8948}, -- Flame On!
     {C, 234, 886},
-    {N, 886,k.L["Glory"]}, -- Glory
+    {N, 886, a.L["Glory"]}, -- Glory
     {A, 234, 9442}, -- Cutting Edge: Imperator's Fall
     {A, 234, 9441}, -- Ahead of the Curve: Imperator's Fall
     {A, 234, 8988}, -- Imperator's Fall
     {A, 234, 8987}, -- Arcane Sanctum
     {A, 234, 8986}, -- The Walled City
     {C, 225, 234},
-    {N, 234,k.GetInstanceInfoName(477)}, -- Highmaul
+    {N, 234, a.GetInstanceInfoName(477)}, -- Highmaul
     {A, 225, 10149}, -- Glory of the Hellfire Raider
     {A, 225, 8985}, -- Glory of the Draenor Raider
     {A, 225, 9619}, -- Savage Hero
     {C, 223, 225},
-    {N, 225,k.GetCategoryInfoTitle(15271)}, -- Raids
+    {N, 225, a.GetCategoryInfoTitle(15271)}, -- Raids
     {A, 233, 9627}, -- Challenge Master: Upper Blackrock Spire
     {A, 233, 8894}, -- Upper Blackrock Spire: Gold
     {A, 233, 8893}, -- Upper Blackrock Spire: Silver
@@ -6040,7 +6041,7 @@ tasks = {
     {A, 233, 9058}, -- Leeeeeeeeeeeeeroy...?
     {A, 233, 9045}, -- "Magnets, How Do They Work?"
     {C, 224, 233},
-    {N, 233,k.GetInstanceInfoName(559)}, -- Upper Blackrock Spire
+    {N, 233, a.GetInstanceInfoName(559)}, -- Upper Blackrock Spire
     {A, 232, 16660}, -- Keystone Hero: Shadowmoon Burial Grounds
     {A, 232, 9626}, -- Challenge Master: Shadowmoon Burial Grounds
     {A, 232, 8886}, -- Shadowmoon Burial Grounds: Gold
@@ -6054,7 +6055,7 @@ tasks = {
     {A, 232, 9025}, -- Icky Ichors
     {A, 232, 9018}, -- What's Your Sign?
     {C, 224, 232},
-    {N, 232,k.GetInstanceInfoName(537)}, -- Shadowmoon Burial Grounds
+    {N, 232, a.GetInstanceInfoName(537)}, -- Shadowmoon Burial Grounds
     {A, 231, 19083}, -- Keystone Hero: The Everbloom
     {A, 231, 9624}, -- Challenge Master: The Everbloom
     {A, 231, 9004}, -- The Everbloom: Gold
@@ -6068,7 +6069,7 @@ tasks = {
     {A, 231, 9493}, -- "They Burn, Burn, Burn"
     {A, 231, 9017}, -- Water Management
     {C, 224, 231},
-    {N, 231,k.GetInstanceInfoName(556)}, -- The Everbloom
+    {N, 231, a.GetInstanceInfoName(556)}, -- The Everbloom
     {A, 230, 15695}, -- Keystone Hero: Grimrail Depot
     {A, 230, 9625}, -- Challenge Master: Grimrail Depot
     {A, 230, 8890}, -- Grimrail Depot: Gold
@@ -6081,7 +6082,7 @@ tasks = {
     {A, 230, 9007}, -- No Ticket
     {A, 230, 9024}, -- This Is Why We Can't Have Nice Things
     {C, 224, 230},
-    {N, 230,k.GetInstanceInfoName(536)}, -- Grimrail Depot
+    {N, 230, a.GetInstanceInfoName(536)}, -- Grimrail Depot
     {A, 229, 9623}, -- Challenge Master: Skyreach
     {A, 229, 8874}, -- Skyreach: Gold
     {A, 229, 8873}, -- Skyreach: Silver
@@ -6095,7 +6096,7 @@ tasks = {
     {A, 229, 9035}, -- I Saw Solis
     {A, 229, 9033}, -- Ready for Raiding IV
     {C, 224, 229},
-    {N, 229,k.GetInstanceInfoName(476)}, -- Skyreach
+    {N, 229, a.GetInstanceInfoName(476)}, -- Skyreach
     {A, 228, 9924}, -- Field Photographer
     {A, 228, 9622}, -- Challenge Master: Auchindoun
     {A, 228, 8882}, -- Auchindoun: Gold
@@ -6109,7 +6110,7 @@ tasks = {
     {A, 228, 9551}, -- Demon's Souls
     {A, 228, 9023}, -- ...They All Fall Down
     {C, 224, 228},
-    {N, 228,k.GetInstanceInfoName(547)}, -- Auchindoun
+    {N, 228, a.GetInstanceInfoName(547)}, -- Auchindoun
     {A, 227, 15694}, -- Keystone Hero: Iron Docks
     {A, 227, 9621}, -- Challenge Master: Iron Docks
     {A, 227, 9000}, -- Iron Docks: Gold
@@ -6123,7 +6124,7 @@ tasks = {
     {A, 227, 9083}, -- "Militaristic, Expansionist"
     {A, 227, 9081}, -- Expert Timing
     {C, 224, 227},
-    {N, 227,k.GetInstanceInfoName(558)}, -- Iron Docks
+    {N, 227, a.GetInstanceInfoName(558)}, -- Iron Docks
     {A, 226, 9620}, -- Challenge Master: Bloodmaul Slag Mines
     {A, 226, 8878}, -- Bloodmaul Slag Mines: Gold
     {A, 226, 8877}, -- Bloodmaul Slag Mines: Silver
@@ -6136,7 +6137,7 @@ tasks = {
     {A, 226, 8993}, -- A Gift of Earth and Fire
     {A, 226, 9005}, -- Come With Me If You Want to Live
     {C, 224, 226},
-    {N, 226,k.GetInstanceInfoName(385)}, -- Bloodmaul Slag Mines
+    {N, 226, a.GetInstanceInfoName(385)}, -- Bloodmaul Slag Mines
     {A, 224, 8899}, -- Challenge Warlord: Gold
     {A, 224, 8898}, -- Challenge Warlord: Silver
     {A, 224, 8897}, -- Challenge Warlord: Bronze
@@ -6145,11 +6146,11 @@ tasks = {
     {A, 224, 9619}, -- Savage Hero
     {A, 224, 9391}, -- Draenor Dungeon Hero
     {C, 223, 224},
-    {N, 224,k.GetCategoryInfoTitle(15272)}, -- Dungeons
+    {N, 224, a.GetCategoryInfoTitle(15272)}, -- Dungeons
     {A, 484, 10350}, -- Tanaan Diplomat
     {A, 484, 10349}, -- Tanaan Diplomat
     {C, 456, 484},
-    {N, 484,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 484, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 482, 10334}, -- Predator
     {A, 482, 10070}, -- Jungle Stalker
     {A, 482, 10259}, -- Jungle Hunter
@@ -6159,7 +6160,7 @@ tasks = {
     {A, 482, 10262}, -- Jungle Treasure Master
     {A, 482, 10261}, -- Jungle Treasure Hunter
     {C, 456, 482},
-    {N, 482,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 482, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 481, 10265}, -- Rumble in the Jungle
     {A, 481, 10072}, -- Rumble in the Jungle
     {A, 481, 10075}, -- Draenor's Last Stand
@@ -6167,17 +6168,17 @@ tasks = {
     {A, 481, 10074}, -- In Pursuit of Gul'dan
     {A, 481, 10067}, -- In Pursuit of Gul'dan
     {C, 456, 481},
-    {N, 481,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 481, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 456, 10071}, -- The Legion Will NOT Conquer All
     {C, 449, 456},
-    {N, 456,k.GetMapName(534)}, -- Tanaan Jungle
+    {N, 456, a.GetMapName(534)}, -- Tanaan Jungle
     {A, 480, 9472}, -- Steamwheedle Preservation Society
     {C, 455, 480},
-    {N, 480,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 480, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 478, 9924}, -- Field Photographer
     {A, 478, 8942}, -- Explore Nagrand
     {C, 455, 478},
-    {N, 478,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 478, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 477, 9617}, -- Making the Cut
     {A, 477, 9541}, -- The Song of Silence
     {A, 477, 9548}, -- Buried Treasures
@@ -6187,16 +6188,16 @@ tasks = {
     {A, 477, 8928}, -- Nagrandeur
     {A, 477, 8927}, -- Nagrandeur
     {C, 455, 477},
-    {N, 477,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 477, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 449, 455},
-    {N, 455,k.GetMapName(550)}, -- Nagrand
+    {N, 455, a.GetMapName(550)}, -- Nagrand
     {A, 476, 9072}, -- Mantle of the Talon King
     {A, 476, 9469}, -- Arakkoa Outcasts
     {C, 454, 476},
-    {N, 476,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 476, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 474, 8941}, -- Explore Spires of Arak
     {C, 454, 474},
-    {N, 474,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 474, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 473, 9600}, -- Monster Mash
     {A, 473, 9601}, -- King of the Monsters
     {A, 473, 9613}, -- "Fish Gotta Swim, Birds Gotta Eat"
@@ -6205,16 +6206,16 @@ tasks = {
     {A, 473, 8926}, -- Between Arak and a Hard Place
     {A, 473, 8925}, -- Between Arak and a Hard Place
     {C, 454, 473},
-    {N, 473,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 473, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 454, 9425}, -- So Grossly Incandescent
     {C, 449, 454},
-    {N, 454,k.GetMapName(542)}, -- Spires of Arak
+    {N, 454, a.GetMapName(542)}, -- Spires of Arak
     {A, 472, 9476}, -- Sha'tari Defense
     {C, 453, 472},
-    {N, 472,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 472, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 470, 8940}, -- Explore Talador
     {C, 453, 470},
-    {N, 470,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 470, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 469, 9486}, -- Goodness Gracious
     {A, 469, 9637}, -- Poor Communication
     {A, 469, 9632}, -- The Power Is Yours
@@ -6227,18 +6228,18 @@ tasks = {
     {A, 469, 8919}, -- Don't Let the Tala-door Hit You on the Way Out
     {A, 469, 8920}, -- Don't Let the Tala-door Hit You on the Way Out
     {C, 453, 469},
-    {N, 469,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 469, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 449, 453},
-    {N, 453,k.GetMapName(535)}, -- Talador
+    {N, 453, a.GetMapName(535)}, -- Talador
     {A, 468, 9475}, -- Laughing Skull Orcs
     {C, 452, 468},
-    {N, 468,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 468, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 466, 9402}, -- Prove Your Strength
     {A, 466, 9401}, -- Shredder Maniac
     {A, 466, 9400}, -- Gorgrond Monster Hunter
     {A, 466, 8939}, -- Explore Gorgrond
     {C, 452, 466},
-    {N, 466,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 466, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 465, 9663}, -- Picky Palate
     {A, 465, 9658}, -- Pillars of Draenor
     {A, 465, 9654}, -- Mean and Green
@@ -6251,16 +6252,16 @@ tasks = {
     {A, 465, 8924}, -- Putting the Gore in Gorgrond
     {A, 465, 8923}, -- Putting the Gore in Gorgrond
     {C, 452, 465},
-    {N, 465,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 465, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 452, 9423}, -- Goliaths of Gorgrond
     {C, 449, 452},
-    {N, 452,k.GetMapName(543)}, -- Gorgrond
+    {N, 452, a.GetMapName(543)}, -- Gorgrond
     {A, 464, 9471}, -- Frostwolf Orcs
     {C, 451, 464},
-    {N, 464,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 464, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 462, 8937}, -- Explore Frostfire Ridge
     {C, 451, 462},
-    {N, 462,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 462, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 461, 9711}, -- Planned to Fail
     {A, 461, 9710}, -- Poisoning the Well
     {A, 461, 9535}, -- That Was Entirely Unnecessary
@@ -6274,16 +6275,16 @@ tasks = {
     {A, 461, 9606}, -- Frostfire Fridge
     {A, 461, 8671}, -- You'll Get Caught Up In The... Frostfire!
     {C, 451, 461},
-    {N, 461,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 461, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 449, 451},
-    {N, 451,k.GetMapName(525)}, -- Frostfire Ridge
+    {N, 451, a.GetMapName(525)}, -- Frostfire Ridge
     {A, 460, 9470}, -- Council of Exarchs
     {C, 450, 460},
-    {N, 460,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 460, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 458, 9924}, -- Field Photographer
     {A, 458, 8938}, -- Explore Shadowmoon Valley
     {C, 450, 458},
-    {N, 458,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 458, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 457, 9481}, -- You Have Been Rylakinated!
     {A, 457, 9479}, -- You Can't Make a Giant Omelette...
     {A, 457, 9483}, -- I Was Framed!
@@ -6297,13 +6298,13 @@ tasks = {
     {A, 457, 9602}, -- Shoot For the Moon
     {A, 457, 8845}, -- As I Walk Through the Valley of the Shadow of Moon
     {C, 450, 457},
-    {N, 457,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 457, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 449, 450},
-    {N, 450,k.GetMapName(539)}, -- Shadowmoon Valley
+    {N, 450, a.GetMapName(539)}, -- Shadowmoon Valley
     {A, 489, 9478}, -- Savage Friends
     {A, 489, 9477}, -- Savage Friends
     {C, 486, 489},
-    {N, 489,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 489, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 488, 8935}, -- Draenor Explorer
     {A, 488, 14728}, -- To All the Squirrels Through Time and Space
     {A, 488, 9502}, -- Draenor Cuisine
@@ -6312,7 +6313,7 @@ tasks = {
     {A, 488, 9727}, -- Expert Treasure Hunter
     {A, 488, 9726}, -- Treasure Hunter
     {C, 486, 488},
-    {N, 488,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 488, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 487, 7520}, -- The Loremaster
     {A, 487, 9923}, -- Loremaster of Draenor
     {A, 487, 9833}, -- Loremaster of Draenor
@@ -6323,12 +6324,12 @@ tasks = {
     {A, 487, 8922}, -- Welcome to Draenor
     {A, 487, 8921}, -- Welcome to Draenor
     {C, 486, 487},
-    {N, 487,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 487, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 486, 10053}, -- I Found Pepe!
     {C, 449, 486},
-    {N, 486,k.GetMapName(572)}, -- Draenor
+    {N, 486, a.GetMapName(572)}, -- Draenor
     {C, 223, 449},
-    {N, 449,k.L["Zones"]}, -- Zones
+    {N, 449, a.L["Zones"]}, -- Zones
     {A, 223, 10018}, -- Draenor Pathfinder
     {A, 223, 10148}, -- Chapter IV: Darkness Incarnate
     {A, 223, 10021}, -- Chapter IV: Darkness Incarnate
@@ -6337,7 +6338,7 @@ tasks = {
     {A, 223, 9640}, -- Chapter I: Call of the Archmage
     {A, 223, 9838}, -- "What A Strange, Interdimensional Trip It's Been"
     {C, 883, 223},
-    {N, 223,k.GetCategoryInfoTitle(15233)}, -- Warlords of Dreanor
+    {N, 223, a.GetCategoryInfoTitle(15233)}, -- Warlords of Dreanor
     {A, 490, 8812}, -- You're Really Doing It Wrong (Level 90)
     {A, 490, 8697}, -- You're Doing it Wrong (Level 90)
     {A, 490, 8509}, -- Proving Yourself: Endless Healer (Wave 30) (Level 90)
@@ -6379,21 +6380,21 @@ tasks = {
     {A, 490, 9573}, -- Proving Yourself: Silver Damage
     {A, 490, 9572}, -- Proving Yourself: Bronze Damage
     {C, 189, 490},
-    {N, 490,k.GetCategoryInfoTitle(15222)}, -- Proving Grounds
+    {N, 490, a.GetCategoryInfoTitle(15222)}, -- Proving Grounds
     {A, 219, 8347}, -- Keep those Bombs Away! (From Me)
     {A, 219, 8366}, -- Heroic: Battle on the High Seas
     {A, 219, 8364}, -- Heroic: Battle on the High Seas
     {A, 219, 8315}, -- Battle on the High Seas
     {A, 219, 8314}, -- Battle on the High Seas
     {C, 192, 219},
-    {N, 219,(k.GetLFGDungeonInfo(655))}, -- Battle on the High Seas
+    {N, 219, (a.GetLFGDungeonInfo(655))}, -- Battle on the High Seas
     {A, 213, 7231}, -- Spill No Evil
     {A, 213, 7248}, -- "Monkey See, Monkey Kill"
     {A, 213, 7239}, -- Monkey in the Middle
     {A, 213, 7232}, -- The Keg Runner
     {A, 213, 7249}, -- Unga Ingoo
     {C, 192, 213},
-    {N, 213,(k.GetLFGDungeonInfo(499))}, -- Unga Ingoo
+    {N, 213, (a.GetLFGDungeonInfo(499))}, -- Unga Ingoo
     {A, 212, 7468}, -- Theramore's Fall
     {A, 212, 7467}, -- Theramore's Fall
     {A, 212, 7530}, -- No Tank You
@@ -6403,70 +6404,70 @@ tasks = {
     {A, 212, 7524}, -- Theramore's Fall
     {A, 212, 7523}, -- Theramore's Fall
     {C, 192, 212},
-    {N, 212,(k.GetLFGDungeonInfo(566))}, -- Theramore's Fall
+    {N, 212, (a.GetLFGDungeonInfo(566))}, -- Theramore's Fall
     {A, 222, 8295}, -- "The Few, the Proud, the Gob Squad"
     {A, 222, 8327}, -- Heroic: The Secrets of Ragefire
     {A, 222, 8294}, -- The Secrets of Ragefire
     {C, 192, 222},
-    {N, 222,(k.GetLFGDungeonInfo(649))}, -- The Secrets of Ragefire
+    {N, 222, (a.GetLFGDungeonInfo(649))}, -- The Secrets of Ragefire
     {A, 500, 7269}, -- Stay Off the Grass
     {A, 500, 7270}, -- For Display Only
     {A, 500, 7268}, -- The Temple of Kotmogu
     {C, 192, 500},
-    {N, 500,k.GetMapName(417) .. " (" .. k.GetCategoryInfoTitle(15234) .. ")"}, -- Temple of Kotmogu
+    {N, 500, a.GetMapName(417) .. " (" .. a.GetCategoryInfoTitle(15234) .. ")"}, -- Temple of Kotmogu
     {A, 216, 8012}, -- "Waste Not, Want Not"
     {A, 216, 8011}, -- Number Five Is Alive
     {A, 216, 8010}, -- Lion's Landing
     {C, 192, 216},
-    {N, 216,(k.GetLFGDungeonInfo(590))}, -- Lion's Landing
+    {N, 216, (a.GetLFGDungeonInfo(590))}, -- Lion's Landing
     {A, 211, 7266}, -- Save it for Later
     {A, 211, 7267}, -- Perfect Delivery
     {A, 211, 7265}, -- Greenstone Village
     {C, 192, 211},
-    {N, 211,(k.GetLFGDungeonInfo(492))}, -- Greenstone Village
+    {N, 211, (a.GetLFGDungeonInfo(492))}, -- Greenstone Village
     {A, 218, 8015}, -- "Waste Not, Want Not"
     {A, 218, 8014}, -- Number Five Is Alive
     {A, 218, 8013}, -- Domination Point
     {C, 192, 218},
-    {N, 218,(k.GetLFGDungeonInfo(595))}, -- Domination Point
+    {N, 218, (a.GetLFGDungeonInfo(595))}, -- Domination Point
     {A, 221, 8319}, -- Accelerated Archaeology
     {A, 221, 8318}, -- Heroic: Dark Heart of Pandaria
     {A, 221, 8317}, -- Dark Heart of Pandaria
     {C, 192, 221},
-    {N, 221,(k.GetLFGDungeonInfo(647))}, -- Dark Heart of Pandaria
+    {N, 221, (a.GetLFGDungeonInfo(647))}, -- Dark Heart of Pandaria
     {A, 215, 7986}, -- You Mean That Wasn't a Void Zone?
     {A, 215, 7984}, -- Watery Grave
     {A, 215, 7987}, -- No Egg Left Behind
     {A, 215, 8009}, -- Dagger in the Dark
     {C, 192, 215},
-    {N, 215,(k.GetLFGDungeonInfo(616))}, -- Dagger in the Dark
+    {N, 215, (a.GetLFGDungeonInfo(616))}, -- Dagger in the Dark
     {A, 210, 8368}, -- Fight Anger with Anger
     {A, 210, 7275}, -- It's a Trap!
     {A, 210, 7276}, -- Fancy Footwork
     {A, 210, 8311}, -- Heroic: Crypt of Forgotten Kings
     {A, 210, 7522}, -- Crypt of Forgotten Kings
     {C, 192, 210},
-    {N, 210,(k.GetLFGDungeonInfo(504))}, -- Crypt of Forgotten Kings
+    {N, 210, (a.GetLFGDungeonInfo(504))}, -- Crypt of Forgotten Kings
     {A, 209, 6930}, -- Yaungolian Barbecue
     {A, 209, 6931}, -- Binan Village All-Star
     {A, 209, 6923}, -- Brewmoon Festival
     {C, 192, 209},
-    {N, 209,(k.GetLFGDungeonInfo(539))}, -- Brewmoon Festival
+    {N, 209, (a.GetLFGDungeonInfo(539))}, -- Brewmoon Festival
     {A, 220, 8330}, -- Hekima's Heal-Halter
     {A, 220, 8329}, -- Heed the Weed
     {A, 220, 8312}, -- Heroic: Blood in the Snow
     {A, 220, 8316}, -- Blood in the Snow
     {C, 192, 220},
-    {N, 220,(k.GetLFGDungeonInfo(646))}, -- Blood in the Snow
+    {N, 220, (a.GetLFGDungeonInfo(646))}, -- Blood in the Snow
     {A, 214, 8017}, -- For the Swarm
     {A, 214, 8016}, -- Assault on Zan'vess
     {C, 192, 214},
-    {N, 214,(k.GetLFGDungeonInfo(593))}, -- Assault on Zan'vess
+    {N, 214, (a.GetLFGDungeonInfo(593))}, -- Assault on Zan'vess
     {A, 208, 7272}, -- In the Eye of the Tiger
     {A, 208, 7273}, -- Beat the Heat
     {A, 208, 7271}, -- Arena of Annihilation
     {C, 192, 208},
-    {N, 208,(k.GetLFGDungeonInfo(511))}, -- Arena of Annihilation
+    {N, 208, (a.GetLFGDungeonInfo(511))}, -- Arena of Annihilation
     {A, 499, 7991}, -- Which Came First?
     {A, 499, 7993}, -- We've Been Dancin'
     {A, 499, 7992}, -- I Used To Love Them
@@ -6474,20 +6475,20 @@ tasks = {
     {A, 499, 7989}, -- Bubbletrapped!
     {A, 499, 7988}, -- A Little Patience
     {C, 192, 499},
-    {N, 499,(k.GetLFGDungeonInfo(589))}, -- A Little Patience
+    {N, 499, (a.GetLFGDungeonInfo(589))}, -- A Little Patience
     {A, 207, 7258}, -- Party of Six
     {A, 207, 7261}, -- The Perfect Pour
     {A, 207, 7257}, -- Don't Shake the Keg
     {A, 207, 8310}, -- Heroic: A Brewing Storm
     {A, 207, 7252}, -- A Brewing Storm
     {C, 192, 207},
-    {N, 207,(k.GetLFGDungeonInfo(517))}, -- A Brewing Storm
+    {N, 207, (a.GetLFGDungeonInfo(517))}, -- A Brewing Storm
     {A, 192, 7509}, -- Scenaturday
     {A, 192, 6874}, -- Scenaturday
     {A, 192, 7385}, -- Pub Crawl
     {A, 192, 6943}, -- Queuing Spree
     {C, 189, 192},
-    {N, 192,k.L["Scenarios"]}, -- Scenarios
+    {N, 192, a.L["Scenarios"]}, -- Scenarios
     {A, 790, 7948}, -- The First Rule of Brawler's Guild (Season 1 or 2)
     {A, 790, 7947}, -- The First Rule of Brawler's Guild (Season 1 or 2)
     {A, 790, 8343}, -- Deck Your Collection (Season 1)
@@ -6505,7 +6506,7 @@ tasks = {
     {A, 790, 8020}, -- You Are Not Your $#*@! Legplates (Season 1)
     {A, 790, 7937}, -- You Are Not Your $#*@! Legplates (Season 1)
     {C, 189, 790},
-    {N, 790,k.L["Brawler's Guild"] .. " (" .. k.GetCategoryInfoTitle(15234) .. ")"}, -- Brawler's Guild
+    {N, 790, a.L["Brawler's Guild"] .. " (" .. a.GetCategoryInfoTitle(15234) .. ")"}, -- Brawler's Guild
     {A, 549, 8348}, -- The Longest Day
     {A, 549, 6590}, -- World Safari
     {A, 549, 6611}, -- Continental Tamer
@@ -6527,13 +6528,13 @@ tasks = {
     {A, 549, 6589}, -- Pandaria Safari
     {A, 549, 6616}, -- Pandaria Tamer
     {C, 189, 549},
-    {N, 549,k.GetCategoryInfoTitle(15117)}, -- Pet Battles
+    {N, 549, a.GetCategoryInfoTitle(15117)}, -- Pet Battles
     {A, 1438, 7274}, -- Learning from the Best
     {A, 1438, 7614}, -- Locking Down the Docks
     {A, 1438, 7611}, -- Pandarian Angler
     {A, 1438, 6839}, -- Zen Master Fisherman
     {C, 1437, 1438},
-    {N, 1438,k.GetCategoryInfoTitle(171), true}, -- Fishing
+    {N, 1438, a.GetCategoryInfoTitle(171), true}, -- Fishing
     {A, 1143, 7327}, -- The Pandaren Gourmet
     {A, 1143, 7326}, -- The Pandaren Gourmet
     {A, 1143, 7325}, -- Now I Am the Master
@@ -6546,7 +6547,7 @@ tasks = {
     {A, 1143, 7300}, -- Master of the Grill
     {A, 1143, 6365}, -- Zen Master Cook
     {C, 1437, 1143},
-    {N, 1143,k.GetCategoryInfoTitle(170), true}, -- Cooking
+    {N, 1143, a.GetCategoryInfoTitle(170), true}, -- Cooking
     {A, 1443, 8235}, -- Collector: Kypari Sap Containers
     {A, 1443, 8234}, -- Collector: Kypari Sap Containers
     {A, 1443, 8233}, -- Collector: Pollen Collectors
@@ -6564,7 +6565,7 @@ tasks = {
     {A, 1443, 8221}, -- Collector: Banners of the Mantid Empire
     {A, 1443, 8220}, -- Collector: Banners of the Mantid Empire
     {C, 1440, 1443},
-    {N, 1443,k.L["Mantid"], true}, -- Mantid
+    {N, 1443, a.L["Mantid"], true}, -- Mantid
     {A, 1442, 7377}, -- Collector: Worn Monument Ledgers
     {A, 1442, 7357}, -- Collector: Worn Monument Ledgers
     {A, 1442, 7376}, -- Collector: Mogu Coins
@@ -6590,7 +6591,7 @@ tasks = {
     {A, 1442, 7335}, -- Symbols of Strength
     {A, 1442, 7334}, -- Instruments of Cruelty
     {C, 1440, 1442},
-    {N, 1442,k.L["Mogu"], true}, -- Mogu
+    {N, 1442, a.L["Mogu"], true}, -- Mogu
     {A, 1441, 7367}, -- Collector: Standards of Niuzao
     {A, 1441, 7347}, -- Collector: Standards of Niuzao
     {A, 1441, 7366}, -- Collector: Pearls of Yu'lon
@@ -6615,12 +6616,12 @@ tasks = {
     {A, 1441, 7332}, -- The Broken Hearted
     {A, 1441, 7331}, -- The Three Brew Fathers
     {C, 1440, 1441},
-    {N, 1441,k.L["Pandaren"], true}, -- Pandaren
+    {N, 1441, a.L["Pandaren"], true}, -- Pandaren
     {A, 1440, 8219}, -- History of the Mantid
     {A, 1440, 7612}, -- The Seat of Knowledge
     {A, 1440, 6837}, -- Zen Master Archaeologist
     {C, 1437, 1440},
-    {N, 1440,k.GetCategoryInfoTitle(15071)}, -- Archaeology
+    {N, 1440, a.GetCategoryInfoTitle(15071)}, -- Archaeology
     {A, 1437, 6836}, -- Serious Skills to Pay the Bills
     {A, 1437, 6838}, -- Zen Master Medic
     {A, 1437, 7379}, -- Pandaren Master of All
@@ -6628,7 +6629,7 @@ tasks = {
     {A, 1437, 6835}, -- Working For a Living
     {A, 1437, 6830}, -- Professional Zen Master
     {C, 189, 1437},
-    {N, 1437,k.GetCategoryInfoTitle(169)}, -- Professions
+    {N, 1437, a.GetCategoryInfoTitle(169)}, -- Professions
     {A, 901, 8482}, -- Mythic: Garrosh Hellscream
     {A, 901, 8481}, -- Mythic: Paragons of the Klaxxi
     {A, 901, 8480}, -- Mythic: Siegecrafter Blackfuse
@@ -6644,7 +6645,7 @@ tasks = {
     {A, 901, 8465}, -- Mythic: Fallen Protectors
     {A, 901, 8463}, -- Mythic: Immerseus
     {C, 206, 901},
-    {N, 901,k.L["Mythic"]}, -- Mythic
+    {N, 901, a.L["Mythic"]}, -- Mythic
     {A, 900, 8537}, -- Strike!
     {A, 900, 8531}, -- Now We are the Paragon
     {A, 900, 8543}, -- Lasers and Magnets and Drills! Oh My!
@@ -6660,7 +6661,7 @@ tasks = {
     {A, 900, 8528}, -- Go Long
     {A, 900, 8536}, -- No More Tears
     {C, 206, 900},
-    {N, 900,k.L["Glory"]}, -- Glory
+    {N, 900, a.L["Glory"]}, -- Glory
     {A, 206, 11759}, -- Yaass'shaarj
     {A, 206, 8401}, -- Cutting Edge: Garrosh Hellscream (25 player)
     {A, 206, 8399}, -- Ahead of the Curve: Garrosh Hellscream (25 player)
@@ -6673,7 +6674,7 @@ tasks = {
     {A, 206, 8459}, -- Gates of Retribution
     {A, 206, 8458}, -- Vale of Eternal Sorrows
     {C, 191, 206},
-    {N, 206,k.GetInstanceInfoName(369)}, -- Siege of Orgrimmar
+    {N, 206, a.GetInstanceInfoName(369)}, -- Siege of Orgrimmar
     {A, 899, 8068}, -- Heroic: Ra-den
     {A, 899, 8067}, -- Heroic: Lei Shen
     {A, 899, 8066}, -- Heroic: Twin Empyreans
@@ -6688,7 +6689,7 @@ tasks = {
     {A, 899, 8057}, -- Heroic: Horridon
     {A, 899, 8056}, -- Heroic: Jin'rokh the Breaker
     {C, 205, 899},
-    {N, 899,k.L["Heroic"]}, -- Heroic
+    {N, 899, a.L["Heroic"]}, -- Heroic
     {A, 898, 8090}, -- A Complete Circuit
     {A, 898, 8086}, -- From Dusk 'til Dawn
     {A, 898, 8087}, -- Can't Touch This
@@ -6702,7 +6703,7 @@ tasks = {
     {A, 898, 8038}, -- Cretaceous Collector
     {A, 898, 8094}, -- Lightning Overload
     {C, 205, 898},
-    {N, 898,k.L["Glory"]}, -- Glory
+    {N, 898, a.L["Glory"]}, -- Glory
     {A, 205, 11758}, -- Thunderwear
     {A, 205, 8260}, -- Cutting Edge: Ra-den
     {A, 205, 8238}, -- Cutting Edge: Lei Shen
@@ -6713,25 +6714,25 @@ tasks = {
     {A, 205, 8070}, -- Forgotten Depths
     {A, 205, 8069}, -- Last Stand of the Zandalari
     {C, 191, 205},
-    {N, 205,k.GetInstanceInfoName(362)}, -- Throne of Thunder
+    {N, 205, a.GetInstanceInfoName(362)}, -- Throne of Thunder
     {A, 897, 6734}, -- Heroic: Sha of Fear
     {A, 897, 6733}, -- Heroic: Lei Shi
     {A, 897, 6732}, -- Heroic: Tsulong
     {A, 897, 6731}, -- Heroic: Protectors of the Endless
     {C, 204, 897},
-    {N, 897,k.L["Heroic"]}, -- Heroic
+    {N, 897, a.L["Heroic"]}, -- Heroic
     {A, 896, 6825}, -- The Mind-Killer
     {A, 896, 6824}, -- Face Clutchers
     {A, 896, 6933}, -- Who's Got Two Green Thumbs?
     {A, 896, 6717}, -- Power Overwhelming
     {C, 204, 896},
-    {N, 896,k.L["Glory"]}, -- Glory
+    {N, 896, a.L["Glory"]}, -- Glory
     {A, 204, 11757}, -- Sha of Fabulous
     {A, 204, 7487}, -- Cutting Edge: Sha of Fear
     {A, 204, 8248}, -- Ahead of the Curve: Sha of Fear
     {A, 204, 6689}, -- Terrace of Endless Spring
     {C, 191, 204},
-    {N, 204,k.GetInstanceInfoName(320)}, -- Terrace of Endless Spring
+    {N, 204, a.GetInstanceInfoName(320)}, -- Terrace of Endless Spring
     {A, 895, 6730}, -- Heroic: Grand Empress Shek'zeer
     {A, 895, 6729}, -- Heroic: Amber-Shaper Un'sok
     {A, 895, 6728}, -- Heroic: Wind Lord Mel'jarak
@@ -6739,7 +6740,7 @@ tasks = {
     {A, 895, 6726}, -- Heroic: Blade Lord Ta'yak
     {A, 895, 6725}, -- Heroic: Imperial Vizier Zor'lok
     {C, 203, 895},
-    {N, 895,k.L["Heroic"]}, -- Heroic
+    {N, 895, a.L["Heroic"]}, -- Heroic
     {A, 894, 6922}, -- Timing is Everything
     {A, 894, 6518}, -- I Heard You Like Amber...
     {A, 894, 6683}, -- Less Than Three
@@ -6747,14 +6748,14 @@ tasks = {
     {A, 894, 6936}, -- Candle in the Wind
     {A, 894, 6937}, -- Overzealous
     {C, 203, 894},
-    {N, 894,k.L["Glory"]}, -- Glory
+    {N, 894, a.L["Glory"]}, -- Glory
     {A, 203, 11757}, -- Sha of Fabulous
     {A, 203, 7486}, -- Cutting Edge: Grand Empress Shek'zeer
     {A, 203, 8246}, -- Ahead of the Curve: Grand Empress Shek'zeer
     {A, 203, 6845}, -- Nightmare of Shek'zeer
     {A, 203, 6718}, -- The Dread Approach
     {C, 191, 203},
-    {N, 203,k.GetInstanceInfoName(330)}, -- Heart of Fear
+    {N, 203, a.GetInstanceInfoName(330)}, -- Heart of Fear
     {A, 893, 6724}, -- Heroic: Will of the Emperor
     {A, 893, 6723}, -- Heroic: Elegon
     {A, 893, 6722}, -- Heroic: Four Kings
@@ -6762,13 +6763,13 @@ tasks = {
     {A, 893, 6720}, -- Heroic: Feng the Accursed
     {A, 893, 6719}, -- Heroic: Stone Guard
     {C, 202, 893},
-    {N, 893,k.L["Heroic"]}, -- Heroic
+    {N, 893, a.L["Heroic"]}, -- Heroic
     {A, 892, 6686}, -- Straight Six
     {A, 892, 7056}, -- "Sorry, Were You Looking for This?"
     {A, 892, 6674}, -- "Anything You Can Do, I Can Do Better..."
     {A, 892, 6823}, -- Must Love Dogs
     {C, 202, 892},
-    {N, 892,k.L["Glory"]}, -- Glory
+    {N, 892, a.L["Glory"]}, -- Glory
     {A, 202, 7485}, -- Cutting Edge: Will of the Emperor
     {A, 202, 6954}, -- Ahead of the Curve: Will of the Emperor
     {A, 202, 6844}, -- The Vault of Mysteries
@@ -6777,12 +6778,12 @@ tasks = {
     {A, 202, 6687}, -- Getting Hot In Here
     {A, 202, 7933}, -- And... It's Good!
     {C, 191, 202},
-    {N, 202,k.GetInstanceInfoName(317)}, -- Mogu'shan Vaults
+    {N, 202, a.GetInstanceInfoName(317)}, -- Mogu'shan Vaults
     {A, 191, 8454}, -- Glory of the Orgrimmar Raider
     {A, 191, 8124}, -- Glory of the Thundering Raider
     {A, 191, 6932}, -- Glory of the Pandaria Raider
     {C, 189, 191},
-    {N, 191,k.GetCategoryInfoTitle(15271)}, -- Raids
+    {N, 191, a.GetCategoryInfoTitle(15271)}, -- Raids
     {A, 201, 8438}, -- Challenge Master: Scholomance
     {A, 201, 6916}, -- Scholomance: Gold
     {A, 201, 6915}, -- Scholomance: Silver
@@ -6796,7 +6797,7 @@ tasks = {
     {A, 201, 6394}, -- Rattle No More
     {A, 201, 6531}, -- Attention to Detail
     {C, 190, 201},
-    {N, 201,k.GetInstanceInfoName(246)}, -- Scholomance
+    {N, 201, a.GetInstanceInfoName(246)}, -- Scholomance
     {A, 200, 8437}, -- Challenge Master: Scarlet Monastery
     {A, 200, 6913}, -- Scarlet Monastery: Gold
     {A, 200, 6912}, -- Scarlet Monastery: Silver
@@ -6808,7 +6809,7 @@ tasks = {
     {A, 200, 6928}, -- Burning Man
     {A, 200, 6946}, -- Empowered Spiritualist
     {C, 190, 200},
-    {N, 200,k.GetInstanceInfoName(316)}, -- Scarlet Monastery
+    {N, 200, a.GetInstanceInfoName(316)}, -- Scarlet Monastery
     {A, 199, 8436}, -- Challenge Master: Scarlet Halls
     {A, 199, 6910}, -- Scarlet Halls: Gold
     {A, 199, 6909}, -- Scarlet Halls: Silver
@@ -6819,7 +6820,7 @@ tasks = {
     {A, 199, 6427}, -- Mosh Pit
     {A, 199, 6684}, -- Humane Society
     {C, 190, 199},
-    {N, 199,k.GetInstanceInfoName(311)}, -- Scarlet Halls
+    {N, 199, a.GetInstanceInfoName(311)}, -- Scarlet Halls
     {A, 198, 8439}, -- Challenge Master: Siege of Niuzao Temple
     {A, 198, 6919}, -- Siege of Niuzao Temple: Gold
     {A, 198, 6918}, -- Siege of Niuzao Temple: Silver
@@ -6831,7 +6832,7 @@ tasks = {
     {A, 198, 6485}, -- Return to Sender
     {A, 198, 6688}, -- Where's My Air Support?
     {C, 190, 198},
-    {N, 198,k.GetInstanceInfoName(324)}, -- Siege of Niuzao Temple
+    {N, 198, a.GetInstanceInfoName(324)}, -- Siege of Niuzao Temple
     {A, 197, 8434}, -- Challenge Master: Gate of the Setting Sun
     {A, 197, 6907}, -- Gate of the Setting Sun: Gold
     {A, 197, 6906}, -- Gate of the Setting Sun: Silver
@@ -6843,7 +6844,7 @@ tasks = {
     {A, 197, 6476}, -- Conscriptinator
     {A, 197, 6479}, -- Bomberman
     {C, 190, 197},
-    {N, 197,k.GetInstanceInfoName(303)}, -- Gate of the Setting Sun
+    {N, 197, a.GetInstanceInfoName(303)}, -- Gate of the Setting Sun
     {A, 196, 8432}, -- Challenge Master: Shado-Pan Monastery
     {A, 196, 6904}, -- Shado-Pan Monastery: Gold
     {A, 196, 6903}, -- Shado-Pan Monastery: Silver
@@ -6855,7 +6856,7 @@ tasks = {
     {A, 196, 6472}, -- The Obvious Solution
     {A, 196, 6477}, -- Respect
     {C, 190, 196},
-    {N, 196,k.GetInstanceInfoName(312)}, -- Shado-Pan Monastery
+    {N, 196, a.GetInstanceInfoName(312)}, -- Shado-Pan Monastery
     {A, 195, 8433}, -- Challenge Master: Mogu'shan Palace
     {A, 195, 6901}, -- Mogu'shan Palace: Gold
     {A, 195, 6900}, -- Mogu'shan Palace: Silver
@@ -6867,7 +6868,7 @@ tasks = {
     {A, 195, 6478}, -- Glintrok N' Roll
     {A, 195, 6713}, -- Quarrelsome Quilen Quintet
     {C, 190, 195},
-    {N, 195,k.GetInstanceInfoName(321)}, -- Mogu'shan Palace
+    {N, 195, a.GetInstanceInfoName(321)}, -- Mogu'shan Palace
     {A, 194, 8431}, -- Challenge Master: Stormstout Brewery
     {A, 194, 6891}, -- Stormstout Brewery: Gold
     {A, 194, 6890}, -- Stormstout Brewery: Silver
@@ -6880,7 +6881,7 @@ tasks = {
     {A, 194, 6089}, -- Keep Rollin' Rollin' Rollin'
     {A, 194, 6402}, -- Ling-Ting's Herbal Journey
     {C, 190, 194},
-    {N, 194,k.GetInstanceInfoName(302)}, -- Stormstout Brewery
+    {N, 194, a.GetInstanceInfoName(302)}, -- Stormstout Brewery
     {A, 193, 16661}, -- Keystone Hero: Temple of the Jade Serpent
     {A, 193, 8430}, -- Challenge Master: Temple of the Jade Serpent
     {A, 193, 6887}, -- Temple of the Jade Serpent: Gold
@@ -6893,7 +6894,7 @@ tasks = {
     {A, 193, 6460}, -- Hydrophobia
     {A, 193, 6475}, -- Cleaning Up
     {C, 190, 193},
-    {N, 193,k.GetInstanceInfoName(313)}, -- Temple of the Jade Serpent
+    {N, 193, a.GetInstanceInfoName(313)}, -- Temple of the Jade Serpent
     {A, 190, 6378}, -- Challenge Conqueror: Gold
     {A, 190, 6375}, -- Challenge Conqueror: Silver
     {A, 190, 6374}, -- Challenge Conqueror: Bronze
@@ -6902,10 +6903,10 @@ tasks = {
     {A, 190, 6927}, -- Glory of the Pandaria Hero
     {A, 190, 6925}, -- Pandaria Dungeon Hero
     {C, 189, 190},
-    {N, 190,k.GetCategoryInfoTitle(15272)}, -- Dungeons
+    {N, 190, a.GetCategoryInfoTitle(15272)}, -- Dungeons
     {A, 535, 8715}, -- Emperor Shaohao
     {C, 530, 535},
-    {N, 535,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 535, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 531, 8728}, -- Going To Need A Bigger Bag
     {A, 531, 8721}, -- Fire-Watcher
     {A, 531, 8720}, -- Kilnmaster
@@ -6926,22 +6927,22 @@ tasks = {
     {A, 531, 8714}, -- Timeless Champion
     {A, 531, 8712}, -- Killing Time
     {C, 530, 531},
-    {N, 531,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 531, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 530, 8533}, -- Ordos
     {A, 530, 8535}, -- Celestial Challenge
     {C, 491, 530},
-    {N, 530,k.GetMapName(554)}, -- Timeless Isle
+    {N, 530, a.GetMapName(554)}, -- Timeless Isle
     {A, 525, 8210}, -- Shado-Pan Assault
     {A, 525, 8209}, -- Sunreaver Onslaught
     {A, 525, 8208}, -- Kirin Tor Offensive
     {C, 522, 525},
-    {N, 525,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 525, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 524, 8051}, -- Gods and Monsters
     {A, 524, 8050}, -- Rumbles of Thunder
     {A, 524, 8049}, -- The Zandalari Prophecy
     {A, 524, 8103}, -- Champions of Lei Shen
     {C, 522, 524},
-    {N, 524,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 524, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 523, 8106}, -- In the Hall of the Thunder King
     {A, 523, 8121}, -- Stormbreaker
     {A, 523, 8212}, -- Zandalari Library Card
@@ -6964,21 +6965,21 @@ tasks = {
     {A, 523, 8100}, -- Pay to Slay
     {A, 523, 8099}, -- Isle of Thunder
     {C, 522, 523},
-    {N, 523,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 523, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 522, 8028}, -- Praise the Sun!
     {C, 491, 522},
-    {N, 522,k.GetMapName(504)}, -- Isle of Thunder
+    {N, 522, a.GetMapName(504)}, -- Isle of Thunder
     {A, 534, 8092}, -- I've Got 9999 Problems but a Bone-White Primal Raptor Ain't One
     {A, 534, 8123}, -- Millions of Years of Evolution vs. My Fist
     {C, 491, 534},
-    {N, 534,k.GetMapName(507)}, -- Isle of Giants
+    {N, 534, a.GetMapName(507)}, -- Isle of Giants
     {A, 537, 6546}, -- The Golden Lotus
     {C, 498, 537},
-    {N, 537,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 537, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 536, 9924}, -- Field Photographer
     {A, 536, 6979}, -- Explore Vale of Eternal Blossoms
     {C, 498, 536},
-    {N, 536,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 536, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 501, 7315}, -- Eternally in the Vale
     {A, 501, 7324}, -- One Step at a Time
     {A, 501, 7323}, -- Collateral Damage
@@ -6989,32 +6990,32 @@ tasks = {
     {A, 501, 7318}, -- A Taste of History
     {A, 501, 7317}, -- One Many Army
     {C, 498, 501},
-    {N, 501,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 501, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 491, 498},
-    {N, 498,k.GetMapName(390)}, -- Vale of Eternal Blossoms
+    {N, 498, a.GetMapName(390)}, -- Vale of Eternal Blossoms
     {A, 539, 8023}, -- Wakener
     {A, 539, 6545}, -- Klaxxi
     {C, 497, 539},
-    {N, 539,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 539, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 538, 6857}, -- Heart of the Mantid Swarm
     {A, 538, 6978}, -- Explore Dread Wastes
     {C, 497, 538},
-    {N, 538,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 538, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 504, 7316}, -- Over Their Heads
     {A, 504, 7314}, -- Test Drive
     {A, 504, 7313}, -- Stay Klaxxi
     {A, 504, 7312}, -- Amber is the Color of My Energy
     {A, 504, 6540}, -- Dread Haste Makes Dread Waste
     {C, 497, 504},
-    {N, 504,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 504, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 491, 497},
-    {N, 497,k.GetMapName(422)}, -- Dread Wastes
+    {N, 497, a.GetMapName(422)}, -- Dread Wastes
     {A, 541, 6366}, -- Shado-Pan
     {C, 496, 541},
-    {N, 541,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 541, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 540, 6977}, -- Explore Townlong Steppes
     {C, 496, 540},
-    {N, 540,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 540, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 507, 7310}, -- Defender of Gods
     {A, 507, 7309}, -- Fire in the Yaung-hole!
     {A, 507, 7308}, -- Know Your Role
@@ -7025,50 +7026,50 @@ tasks = {
     {A, 507, 7288}, -- Yak Attack
     {A, 507, 6539}, -- "One Steppe Forward, Two Steppes Back"
     {C, 496, 507},
-    {N, 507,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 507, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 491, 496},
-    {N, 496,k.GetMapName(388)}, -- Townlong Steppes
+    {N, 496, a.GetMapName(388)}, -- Townlong Steppes
     {A, 542, 9924}, -- Field Photographer
     {A, 542, 6976}, -- Explore Kun-Lai Summit
     {C, 495, 542},
-    {N, 542,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 542, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 510, 7286}, -- Finish Them!
     {A, 510, 6538}, -- Slum It in the Summit
     {A, 510, 6537}, -- Slum It in the Summit
     {C, 495, 510},
-    {N, 510,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 510, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 495, 7386}, -- Grand Expedition Yak
     {A, 495, 6480}, -- "Settle Down, Bro"
     {C, 491, 495},
-    {N, 495,k.GetMapName(379)}, -- Kun-Lai Summit
+    {N, 495, a.GetMapName(379)}, -- Kun-Lai Summit
     {A, 543, 8206}, -- Dominance Offensive
     {A, 543, 8205}, -- Operation: Shieldwall
     {C, 494, 543},
-    {N, 543,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 543, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 514, 9924}, -- Field Photographer
     {A, 514, 7932}, -- "I'm In Your Base, Killing Your Dudes"
     {A, 514, 7518}, -- "Wanderers, Dreamers, and You"
     {A, 514, 6975}, -- Explore Krasarang Wilds
     {C, 494, 514},
-    {N, 514,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 514, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 513, 7929}, -- Dominance Offensive Campaign
     {A, 513, 7928}, -- Operation: Shieldwall Campaign
     {A, 513, 7287}, -- Champion of Chi-Ji
     {A, 513, 6536}, -- Mighty Roamin' Krasaranger
     {A, 513, 6535}, -- Mighty Roamin' Krasaranger
     {C, 494, 513},
-    {N, 513,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 513, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 491, 494},
-    {N, 494,k.GetMapName(418)}, -- Krasarang Wilds
+    {N, 494, a.GetMapName(418)}, -- Krasarang Wilds
     {A, 518, 6552}, -- Friends on the Farm
     {A, 518, 6551}, -- Friend on the Farm
     {A, 518, 6544}, -- The Tillers
     {C, 493, 518},
-    {N, 518,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 518, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 544, 9924}, -- Field Photographer
     {A, 544, 6969}, -- Explore Valley of the Four Winds
     {C, 493, 544},
-    {N, 544,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 544, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 516, 7502}, -- Savior of Stoneplow
     {A, 516, 7296}, -- Ain't Lost No More
     {A, 516, 7295}, -- Listen to the Drunk Fish
@@ -7077,26 +7078,26 @@ tasks = {
     {A, 516, 7292}, -- Green Acres
     {A, 516, 6301}, -- Rally the Valley
     {C, 493, 516},
-    {N, 516,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 516, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 493, 6517}, -- Extinction Event
     {C, 491, 493},
-    {N, 493,k.GetMapName(376)}, -- Valley of the Four Winds
+    {N, 493, a.GetMapName(376)}, -- Valley of the Four Winds
     {A, 546, 6550}, -- Order of the Cloud Serpent
     {C, 492, 546},
-    {N, 546,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 546, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 545, 7381}, -- Restore Balance
     {A, 545, 6351}, -- Explore Jade Forest
     {C, 492, 545},
-    {N, 545,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 545, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 519, 7291}, -- In a Trail of Smoke
     {A, 519, 7290}, -- How To Strain Your Dragon
     {A, 519, 7289}, -- Shadow Hopper
     {A, 519, 6534}, -- Upjade Complete
     {A, 519, 6300}, -- Upjade Complete
     {C, 492, 519},
-    {N, 519,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 519, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 491, 492},
-    {N, 492,k.GetMapName(371)}, -- The Jade Forest
+    {N, 492, a.GetMapName(371)}, -- The Jade Forest
     {A, 529, 6828}, -- Pandaren Ambassador
     {A, 529, 6827}, -- Pandaren Ambassador
     {A, 529, 6548}, -- The Lorewalkers
@@ -7104,7 +7105,7 @@ tasks = {
     {A, 529, 6543}, -- The August Celestials
     {A, 529, 7479}, -- The Shado-Master
     {C, 526, 529},
-    {N, 529,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 529, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 528, 6974}, -- Pandaria Explorer
     {A, 528, 7330}, -- Pandaren Delicacies
     {A, 528, 7329}, -- Pandaren Cuisine
@@ -7131,16 +7132,16 @@ tasks = {
     {A, 528, 6754}, -- The Dark Heart of the Mogu
     {A, 528, 6716}, -- Between a Saurok and a Hard Place
     {C, 526, 528},
-    {N, 528,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 528, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 527, 7520}, -- The Loremaster
     {A, 527, 7285}, -- Every Day I'm Pand-a-ren
     {A, 527, 6541}, -- Loremaster of Pandaria
     {C, 526, 527},
-    {N, 527,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 527, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 491, 526},
-    {N, 526,k.GetMapName(424)}, -- Pandaria
+    {N, 526, a.GetMapName(424)}, -- Pandaria
     {C, 189, 491},
-    {N, 491,k.L["Zones"]}, -- Zones
+    {N, 491, a.L["Zones"]}, -- Zones
     {A, 189, 6924}, -- "100,000 Valor Points"
     {A, 189, 5538}, -- "50,000 Valor Points"
     {A, 189, 5537}, -- "25,000 Valor Points"
@@ -7158,11 +7159,11 @@ tasks = {
     {A, 189, 7533}, -- Chapter I: Trial of the Black Prince
     {A, 189, 6926}, -- Tranquil Master
     {C, 883, 189},
-    {N, 189,k.GetCategoryInfoTitle(15164)}, -- Mists of Pandaria
+    {N, 189, a.GetCategoryInfoTitle(15164)}, -- Mists of Pandaria
     {A, 575, 5376}, -- Hellscream's Reach
     {A, 575, 5375}, -- Baradin's Wardens
     {C, 547, 575},
-    {N, 575,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 575, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 569, 5486}, -- Tol Barad All-Star
     {A, 569, 5487}, -- Tol Barad Saboteur
     {A, 569, 5488}, -- Towers of Power
@@ -7171,16 +7172,16 @@ tasks = {
     {A, 569, 5418}, -- Tol Barad Veteran
     {A, 569, 5412}, -- Tol Barad Victory
     {C, 547, 569},
-    {N, 569,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 569, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 563, 5719}, -- Just Another Day in Tol Barad
     {A, 563, 5718}, -- Just Another Day in Tol Barad
     {A, 563, 4874}, -- Breaking Out of Tol Barad
     {C, 547, 563},
-    {N, 563,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 563, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 547, 5490}, -- Master of Tol Barad
     {A, 547, 5489}, -- Master of Tol Barad
     {C, 129, 547},
-    {N, 547,k.GetCategoryInfoTitle(15075)}, -- Tol Barad
+    {N, 547, a.GetCategoryInfoTitle(15075)}, -- Tol Barad
     {A, 788, 8348}, -- The Longest Day
     {A, 788, 14021}, -- The Shadows Revealed
     {A, 788, 7499}, -- Taming the World
@@ -7192,30 +7193,30 @@ tasks = {
     {A, 788, 6558}, -- Local Pet Mauler
     {A, 788, 7525}, -- Taming Cataclysm
     {C, 129, 788},
-    {N, 788,k.GetCategoryInfoTitle(15117)}, -- Pet Battles
+    {N, 788, a.GetCategoryInfoTitle(15117)}, -- Pet Battles
     {A, 1527, 18815}, -- Speed Dreamin'
     {A, 1527, 5480}, -- Preparing for Disaster
     {C, 1153, 1527},
-    {N, 1527,k.GetCategoryInfoTitle(15496), true}, -- Tailoring
+    {N, 1527, a.GetCategoryInfoTitle(15496), true}, -- Tailoring
     {A, 1497, 4917}, -- Cataclysmic Fisherman
     {C, 1153, 1497},
-    {N, 1497,k.GetCategoryInfoTitle(171), true}, -- Fishing
+    {N, 1497, a.GetCategoryInfoTitle(171), true}, -- Fishing
     {A, 1480, 5473}, -- The Cataclysmic Gourmet
     {A, 1480, 5472}, -- The Cataclysmic Gourmet
     {A, 1480, 4916}, -- Cataclysmic Cook
     {C, 1153, 1480},
-    {N, 1480,k.GetCategoryInfoTitle(170), true}, -- Cooking
+    {N, 1480, a.GetCategoryInfoTitle(170), true}, -- Cooking
     {A, 1471, 5301}, -- The Boy Who Would be King
     {A, 1471, 4923}, -- Illustrious Grand Master Archaeologist
     {C, 1153, 1471},
-    {N, 1471,k.GetCategoryInfoTitle(15071), true}, -- Archaeology
+    {N, 1471, a.GetCategoryInfoTitle(15071), true}, -- Archaeology
     {A, 1153, 4915}, -- More Skills to Pay the Bills
     {A, 1153, 4918}, -- Illustrious Grand Master Medic
     {A, 1153, 18719}, -- Cataclysmic Master of All
     {A, 1153, 4914}, -- Working In the Heat
     {A, 1153, 4924}, -- Professional Cataclysmic Master
     {C, 129, 1153},
-    {N, 1153,k.GetCategoryInfoTitle(169)}, -- Professions
+    {N, 1153, a.GetCategoryInfoTitle(169)}, -- Professions
     {A, 909, 6116}, -- Heroic: Madness of Deathwing
     {A, 909, 6115}, -- Heroic: Spine of Deathwing
     {A, 909, 6114}, -- Heroic: Warmaster Blackhorn
@@ -7225,7 +7226,7 @@ tasks = {
     {A, 909, 6110}, -- Heroic: Warlord Zon'ozz
     {A, 909, 6109}, -- Heroic: Morchok
     {C, 151, 909},
-    {N, 909,k.L["Heroic"]}, -- Heroic
+    {N, 909, a.L["Heroic"]}, -- Heroic
     {A, 908, 6180}, -- Chromatic Champion
     {A, 908, 6133}, -- Maybe He'll Get Dizzy...
     {A, 908, 6105}, -- Deck Defender
@@ -7234,7 +7235,7 @@ tasks = {
     {A, 908, 6128}, -- Ping Pong Champion
     {A, 908, 6174}, -- Don't Stand So Close to Me
     {C, 151, 908},
-    {N, 908,k.L["Glory"]}, -- Glory
+    {N, 908, a.L["Glory"]}, -- Glory
     {A, 151, 12079}, -- Raiding with Leashes V: Cuteaclysm
     {A, 151, 6181}, -- Fangs of the Father
     {A, 151, 11756}, -- Wardrobe of the Old Gods
@@ -7244,10 +7245,10 @@ tasks = {
     {A, 151, 5518}, -- Stood in the Fire
     {A, 151, 6175}, -- Holding Hands
     {C, 131, 151},
-    {N, 151,k.GetInstanceInfoName(187)}, -- Dragon Soul
+    {N, 151, a.GetInstanceInfoName(187)}, -- Dragon Soul
     {A, 576, 5827}, -- Avengers of Hyjal
     {C, 150, 576},
-    {N, 576,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 576, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 907, 5803}, -- Heroic: Ragnaros
     {A, 907, 5804}, -- Heroic: Majordomo Fandral Staghelm
     {A, 907, 5805}, -- Heroic: Baleroc
@@ -7256,7 +7257,7 @@ tasks = {
     {A, 907, 5809}, -- Heroic: Alysrazor
     {A, 907, 5807}, -- Heroic: Beth'tilac
     {C, 150, 907},
-    {N, 907,k.L["Heroic"]}, -- Heroic
+    {N, 907, a.L["Heroic"]}, -- Heroic
     {A, 906, 5799}, -- Only the Penitent...
     {A, 906, 5830}, -- Share the Pain
     {A, 906, 5829}, -- Bucket List
@@ -7264,14 +7265,14 @@ tasks = {
     {A, 906, 5813}, -- Do a Barrel Roll!
     {A, 906, 5821}, -- Death from Above
     {C, 150, 906},
-    {N, 906,k.L["Glory"]}, -- Glory
+    {N, 906, a.L["Glory"]}, -- Glory
     {A, 150, 12079}, -- Raiding with Leashes V: Cuteaclysm
     {A, 150, 5839}, -- "Dragonwrath, Tarecgosa's Rest"
     {A, 150, 11755}, -- Hot Couture
     {A, 150, 5802}, -- Firelands
     {A, 150, 5855}, -- Ragnar-O's
     {C, 131, 150},
-    {N, 150,k.GetInstanceInfoName(78)}, -- Firelands
+    {N, 150, a.GetInstanceInfoName(78)}, -- Firelands
     {A, 149, 12079}, -- Raiding with Leashes V: Cuteaclysm
     {A, 149, 4851}, -- Throne of the Four Winds
     {A, 149, 5123}, -- Heroic: Al'Akir
@@ -7279,26 +7280,26 @@ tasks = {
     {A, 149, 5305}, -- Four Play
     {A, 149, 5304}, -- Stay Chill
     {C, 131, 149},
-    {N, 149,k.GetInstanceInfoName(74)}, -- Throne of the Four Winds
+    {N, 149, a.GetInstanceInfoName(74)}, -- Throne of the Four Winds
     {A, 905, 5121}, -- Heroic: Sinestra
     {A, 905, 5120}, -- Heroic: Cho'gall
     {A, 905, 5119}, -- Heroic: Ascendant Council
     {A, 905, 5117}, -- Heroic: Valiona and Theralion
     {A, 905, 5118}, -- Heroic: Halfus Wyrmbreaker
     {C, 148, 905},
-    {N, 905,k.L["Heroic"]}, -- Heroic
+    {N, 905, a.L["Heroic"]}, -- Heroic
     {A, 904, 5312}, -- The Abyss Will Gaze Back Into You
     {A, 904, 5311}, -- Elementary
     {A, 904, 4852}, -- Double Dragon
     {A, 904, 5300}, -- The Only Escape
     {C, 148, 904},
-    {N, 904,k.L["Glory"]}, -- Glory
+    {N, 904, a.L["Glory"]}, -- Glory
     {A, 148, 12079}, -- Raiding with Leashes V: Cuteaclysm
     {A, 148, 11754}, -- Glamour of Twilight
     {A, 148, 5313}, -- I Can't Hear You Over the Sound of How Awesome I Am
     {A, 148, 4850}, -- The Bastion of Twilight
     {C, 131, 148},
-    {N, 148,k.GetInstanceInfoName(72)}, -- The Bastion of Twilight
+    {N, 148, a.GetInstanceInfoName(72)}, -- The Bastion of Twilight
     {A, 903, 5116}, -- Heroic: Nefarian
     {A, 903, 5108}, -- Heroic: Maloriak
     {A, 903, 5109}, -- Heroic: Atramedes
@@ -7306,7 +7307,7 @@ tasks = {
     {A, 903, 5107}, -- Heroic: Omnotron Defense System
     {A, 903, 5094}, -- Heroic: Magmaw
     {C, 147, 903},
-    {N, 903,k.L["Heroic"]}, -- Heroic
+    {N, 903, a.L["Heroic"]}, -- Heroic
     {A, 902, 4849}, -- Keeping it in the Family
     {A, 902, 5310}, -- Aberrant Behavior
     {A, 902, 5308}, -- Silence is Golden
@@ -7314,44 +7315,44 @@ tasks = {
     {A, 902, 5307}, -- Achieve-a-tron
     {A, 902, 5306}, -- Parasite Evening
     {C, 147, 902},
-    {N, 902,k.L["Glory"]}, -- Glory
+    {N, 902, a.L["Glory"]}, -- Glory
     {A, 147, 12079}, -- Raiding with Leashes V: Cuteaclysm
     {A, 147, 11754}, -- Glamour of Twilight
     {A, 147, 4842}, -- Blackwing Descent
     {C, 131, 147},
-    {N, 147,k.GetInstanceInfoName(73)}, -- Blackwing Descent
+    {N, 147, a.GetInstanceInfoName(73)}, -- Blackwing Descent
     {A, 146, 6108}, -- Alizabal
     {A, 146, 6045}, -- Occu'thar
     {A, 146, 5416}, -- Pit Lord Argaloth
     {C, 131, 146},
-    {N, 146,k.GetInstanceInfoName(75)}, -- Baradin Hold
+    {N, 146, a.GetInstanceInfoName(75)}, -- Baradin Hold
     {A, 131, 6169}, -- Glory of the Dragon Soul Raider
     {A, 131, 5828}, -- Glory of the Firelands Raider
     {A, 131, 4853}, -- Glory of the Cataclysm Raider
     {A, 131, 5506}, -- Defender of a Shattered World
     {C, 129, 131},
-    {N, 131,k.GetCategoryInfoTitle(15271)}, -- Raids
+    {N, 131, a.GetCategoryInfoTitle(15271)}, -- Raids
     {A, 145, 6119}, -- Heroic: Hour of Twilight
     {A, 145, 6132}, -- Eclipse
     {C, 130, 145},
-    {N, 145,k.GetInstanceInfoName(186)}, -- Hour of Twilight
+    {N, 145, a.GetInstanceInfoName(186)}, -- Hour of Twilight
     {A, 144, 6118}, -- Heroic: Well of Eternity
     {A, 144, 6070}, -- That's Not Canon!
     {A, 144, 6127}, -- Lazy Eye
     {C, 130, 144},
-    {N, 144,k.GetInstanceInfoName(185)}, -- Well of Eternity
+    {N, 144, a.GetInstanceInfoName(185)}, -- Well of Eternity
     {A, 143, 6117}, -- Heroic: End Time
     {A, 143, 6130}, -- Severed Ties
     {A, 143, 5995}, -- Moon Guard
     {C, 130, 143},
-    {N, 143,k.GetInstanceInfoName(184)}, -- End Time
+    {N, 143, a.GetInstanceInfoName(184)}, -- End Time
     {A, 142, 5769}, -- Heroic: Zul'Aman
     {A, 142, 5760}, -- Ring Out!
     {A, 142, 5761}, -- Hex Mix
     {A, 142, 5750}, -- Tunnel Vision
     {A, 142, 5858}, -- Bear-ly Made It
     {C, 130, 142},
-    {N, 142,k.GetInstanceInfoName(77)}, -- Zul'Aman
+    {N, 142, a.GetInstanceInfoName(77)}, -- Zul'Aman
     {A, 141, 5768}, -- Heroic: Zul'Gurub
     {A, 141, 5744}, -- Gurubashi Headhunter
     {A, 141, 5759}, -- Spirit Twister
@@ -7359,7 +7360,7 @@ tasks = {
     {A, 141, 5762}, -- Ohganot So Fast!
     {A, 141, 5743}, -- It's Not Easy Being Green
     {C, 130, 141},
-    {N, 141,k.GetInstanceInfoName(76)}, -- Zul'Gurub
+    {N, 141, a.GetInstanceInfoName(76)}, -- Zul'Gurub
     {A, 140, 4627}, -- X-45 Heartbreaker
     {A, 140, 5093}, -- Heroic: Shadowfang Keep
     {A, 140, 631}, -- Shadowfang Keep
@@ -7367,7 +7368,7 @@ tasks = {
     {A, 140, 5504}, -- To the Ground!
     {A, 140, 5503}, -- Pardon Denied
     {C, 130, 140},
-    {N, 140,k.GetInstanceInfoName(64)}, -- Shadowfang Keep
+    {N, 140, a.GetInstanceInfoName(64)}, -- Shadowfang Keep
     {A, 139, 9924}, -- Field Photographer
     {A, 139, 11856}, -- Pet Battle Challenge: Deadmines
     {A, 139, 5083}, -- Heroic: Deadmines
@@ -7379,14 +7380,14 @@ tasks = {
     {A, 139, 5367}, -- Rat Pack
     {A, 139, 5366}, -- Ready for Raiding
     {C, 130, 139},
-    {N, 139,k.GetInstanceInfoName(63)}, -- Deadmines
+    {N, 139, a.GetInstanceInfoName(63)}, -- Deadmines
     {A, 138, 5066}, -- Heroic: Lost City of the Tol'vir
     {A, 138, 4848}, -- Lost City of the Tol'vir
     {A, 138, 5292}, -- Headed South
     {A, 138, 5290}, -- Kill It With Fire!
     {A, 138, 5291}, -- Acrocalypse Now
     {C, 130, 138},
-    {N, 138,k.GetInstanceInfoName(69)}, -- Lost City of the Tol'vir
+    {N, 138, a.GetInstanceInfoName(69)}, -- Lost City of the Tol'vir
     {A, 137, 9924}, -- Field Photographer
     {A, 137, 5065}, -- Heroic: Halls of Origination
     {A, 137, 4841}, -- Halls of Origination
@@ -7395,32 +7396,32 @@ tasks = {
     {A, 137, 5294}, -- Straw That Broke the Camel's Back
     {A, 137, 5293}, -- I Hate That Song
     {C, 130, 137},
-    {N, 137,k.GetInstanceInfoName(70)}, -- Halls of Origination
+    {N, 137, a.GetInstanceInfoName(70)}, -- Halls of Origination
     {A, 136, 5062}, -- Heroic: Grim Batol
     {A, 136, 4840}, -- Grim Batol
     {A, 136, 5298}, -- Don't Need to Break Eggs to Make an Omelet
     {A, 136, 5297}, -- Umbrage for Umbriss
     {C, 130, 136},
-    {N, 136,k.GetInstanceInfoName(71)}, -- Grim Batol
+    {N, 136, a.GetInstanceInfoName(71)}, -- Grim Batol
     {A, 135, 17847}, -- Keystone Hero: The Vortex Pinnacle
     {A, 135, 5064}, -- Heroic: The Vortex Pinnacle
     {A, 135, 4847}, -- The Vortex Pinnacle
     {A, 135, 5288}, -- No Static at All
     {A, 135, 5289}, -- Extra Credit Bonus Stage
     {C, 130, 135},
-    {N, 135,k.GetInstanceInfoName(68)}, -- The Vortex Pinnacle
+    {N, 135, a.GetInstanceInfoName(68)}, -- The Vortex Pinnacle
     {A, 134, 5063}, -- Heroic: The Stonecore
     {A, 134, 4846}, -- The Stonecore
     {A, 134, 5287}, -- Rotten to the Core
     {C, 130, 134},
-    {N, 134,k.GetInstanceInfoName(67)}, -- The Stonecore
+    {N, 134, a.GetInstanceInfoName(67)}, -- The Stonecore
     {A, 133, 19082}, -- Keystone Hero: Throne of the Tides
     {A, 133, 5061}, -- Heroic: Throne of the Tides
     {A, 133, 4839}, -- Throne of the Tides
     {A, 133, 5286}, -- Prince of Tides
     {A, 133, 5285}, -- Old Faithful
     {C, 130, 133},
-    {N, 133,k.GetInstanceInfoName(65)}, -- Throne of the Tides
+    {N, 133, a.GetInstanceInfoName(65)}, -- Throne of the Tides
     {A, 132, 5060}, -- Heroic: Blackrock Caverns
     {A, 132, 4833}, -- Blackrock Caverns
     {A, 132, 5284}, -- Ascendant Descending
@@ -7428,12 +7429,12 @@ tasks = {
     {A, 132, 5282}, -- Arrested Development
     {A, 132, 5281}, -- Crushing Bones and Cracking Skulls
     {C, 130, 132},
-    {N, 132,k.GetInstanceInfoName(66)}, -- Blackrock Caverns
+    {N, 132, a.GetInstanceInfoName(66)}, -- Blackrock Caverns
     {A, 130, 4845}, -- Glory of the Cataclysm Hero
     {A, 130, 5506}, -- Defender of a Shattered World
     {A, 130, 4844}, -- Cataclysm Dungeon Hero
     {C, 129, 130},
-    {N, 130,k.GetCategoryInfoTitle(15272)}, -- Dungeons
+    {N, 130, a.GetCategoryInfoTitle(15272)}, -- Dungeons
     {A, 556, 5879}, -- Veteran of the Molten Front
     {A, 556, 5873}, -- Ready for Raiding II
     {A, 556, 5874}, -- Death From Above
@@ -7443,16 +7444,16 @@ tasks = {
     {A, 556, 5866}, -- The Molten Front Offensive
     {A, 556, 5859}, -- Legacy of Leyara
     {C, 550, 556},
-    {N, 556,k.GetMapName(338)}, -- Molten Front
+    {N, 556, a.GetMapName(338)}, -- Molten Front
     {A, 573, 4886}, -- Dragonmaw Clan
     {A, 573, 4885}, -- Wildhammer Clan
     {A, 573, 762}, -- Ambassador of the Horde
     {A, 573, 948}, -- Ambassador of the Alliance
     {C, 555, 573},
-    {N, 573,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 573, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 568, 4866}, -- Explore Twilight Highlands
     {C, 555, 568},
-    {N, 568,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 568, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 561, 4958}, -- The First Rule of Ring of Blood is You Don't Talk About Ring of Blood
     {A, 561, 5451}, -- Consumed by Nightmare
     {A, 561, 5321}, -- King of the Mountain
@@ -7463,31 +7464,31 @@ tasks = {
     {A, 561, 5501}, -- Fading into Twilight
     {A, 561, 4873}, -- Fading into Twilight
     {C, 555, 561},
-    {N, 561,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 561, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 550, 555},
-    {N, 555,k.GetMapName(241)}, -- Twilight Highlands
+    {N, 555, a.GetMapName(241)}, -- Twilight Highlands
     {A, 574, 4884}, -- Ramkahen
     {C, 554, 574},
-    {N, 574,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 574, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 567, 4865}, -- Explore Uldum
     {C, 554, 567},
-    {N, 567,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 567, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 560, 5317}, -- Help the Bombardier! I'm the Bombardier!
     {A, 560, 4961}, -- In a Thousand Years Even You Might be Worth Something
     {A, 560, 4872}, -- Unearthing Uldum
     {C, 554, 560},
-    {N, 560,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 560, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 554, 4888}, -- One Hump or Two?
     {A, 554, 5767}, -- Scourer of the Eternal Sands
     {C, 550, 554},
-    {N, 554,k.GetMapName(249)}, -- Uldum
+    {N, 554, a.GetMapName(249)}, -- Uldum
     {A, 572, 4883}, -- Therazane
     {C, 553, 572},
-    {N, 572,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 572, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 566, 9924}, -- Field Photographer
     {A, 566, 4864}, -- Explore Deepholm
     {C, 553, 566},
-    {N, 566,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 566, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 559, 5447}, -- My Very Own Broodmother
     {A, 559, 5450}, -- Fungal Frenzy
     {A, 559, 5449}, -- Rock Lover
@@ -7495,16 +7496,16 @@ tasks = {
     {A, 559, 5445}, -- Fungalophobia
     {A, 559, 4871}, -- Deep into Deepholm
     {C, 553, 559},
-    {N, 559,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 559, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 550, 553},
-    {N, 553,k.GetMapName(207)}, -- Deepholm
+    {N, 553, a.GetMapName(207)}, -- Deepholm
     {A, 571, 4882}, -- The Guardians of Hyjal
     {C, 552, 571},
-    {N, 571,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 571, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 565, 9924}, -- Field Photographer
     {A, 565, 4863}, -- Explore Hyjal
     {C, 552, 565},
-    {N, 565,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 565, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 558, 5879}, -- Veteran of the Molten Front
     {A, 558, 5869}, -- Infernal Ambassadors
     {A, 558, 5865}, -- Have... Have We Met?
@@ -7520,23 +7521,23 @@ tasks = {
     {A, 558, 4959}, -- Beware of the 'Unbeatable?' Pterodactyl
     {A, 558, 4870}, -- Coming Down the Mountain
     {C, 552, 558},
-    {N, 558,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 558, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 550, 552},
-    {N, 552,k.GetMapName(198)}, -- Mount Hyjal
+    {N, 552, a.GetMapName(198)}, -- Mount Hyjal
     {A, 564, 9924}, -- Field Photographer
     {A, 564, 4975}, -- From Hell's Heart I Stab at Thee
     {A, 564, 4825}, -- Explore Vashj'ir
     {C, 551, 564},
-    {N, 564,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 564, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 557, 5319}, -- "20,000 Leagues Under the Sea"
     {A, 557, 5318}, -- "20,000 Leagues Under the Sea"
     {A, 557, 5452}, -- Visions of Vashj'ir Past
     {A, 557, 4982}, -- Sinking into Vashj'ir
     {A, 557, 4869}, -- Sinking into Vashj'ir
     {C, 551, 557},
-    {N, 557,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 557, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 550, 551},
-    {N, 551,k.GetMapName(203)}, -- Vashj'ir
+    {N, 551, a.GetMapName(203)}, -- Vashj'ir
     {A, 550, 7520}, -- The Loremaster
     {A, 550, 4881}, -- The Earthen Ring
     {A, 550, 4868}, -- Cataclysm Explorer
@@ -7546,10 +7547,10 @@ tasks = {
     {A, 550, 4827}, -- Surveying the Damage
     {A, 550, 4875}, -- Loremaster of Cataclysm
     {C, 129, 550},
-    {N, 550,k.L["Zones"]}, -- Zones
+    {N, 550, a.L["Zones"]}, -- Zones
     {A, 129, 4887}, -- Tripping the Rifts
     {C, 883, 129},
-    {N, 129,k.GetCategoryInfoTitle(15072)}, -- Cataclysm
+    {N, 129, a.GetCategoryInfoTitle(15072)}, -- Cataclysm
     {A, 781, 4596}, -- The Sword in the Skull
     {A, 781, 3677}, -- The Sunreavers
     {A, 781, 3676}, -- A Silver Confidant
@@ -7586,7 +7587,7 @@ tasks = {
     {A, 781, 2758}, -- Argent Valor
     {A, 781, 2756}, -- Argent Aspiration
     {C, 83, 781},
-    {N, 781,k.GetCategoryInfoTitle(14941)}, -- Argent Tournament
+    {N, 781, a.GetCategoryInfoTitle(14941)}, -- Argent Tournament
     {A, 1138, 1752}, -- Master of Wintergrasp
     {A, 1138, 1751}, -- Didn't Stand a Chance
     {A, 1138, 1727}, -- Leaning Tower
@@ -7599,7 +7600,7 @@ tasks = {
     {A, 1138, 1718}, -- Wintergrasp Veteran
     {A, 1138, 1717}, -- Wintergrasp Victory
     {C, 83, 1138},
-    {N, 1138,k.GetCategoryInfoTitle(14901)}, -- Wintergrasp
+    {N, 1138, a.GetCategoryInfoTitle(14901)}, -- Wintergrasp
     {A, 787, 8348}, -- The Longest Day
     {A, 787, 6590}, -- World Safari
     {A, 787, 6611}, -- Continental Tamer
@@ -7614,13 +7615,13 @@ tasks = {
     {A, 787, 6615}, -- Northrend Tamer
     {A, 787, 6588}, -- Northrend Safari
     {C, 83, 787},
-    {N, 787,k.GetCategoryInfoTitle(15117)}, -- Pet Battles
+    {N, 787, a.GetCategoryInfoTitle(15117)}, -- Pet Battles
     {A, 1526, 137}, -- Stocking Up
     {C, 1152, 1526},
-    {N, 1526,k.GetCategoryInfoTitle(15496), true}, -- Tailoring
+    {N, 1526, a.GetCategoryInfoTitle(15496), true}, -- Tailoring
     {A, 1506, 18725}, -- Best Stellar
     {C, 1152, 1506},
-    {N, 1506,k.GetCategoryInfoTitle(15493), true}, -- Inscription
+    {N, 1506, a.GetCategoryInfoTitle(15493), true}, -- Inscription
     {A, 1498, 2096}, -- The Coin Master
     {A, 1498, 1958}, -- I Smell A Giant Rat
     {A, 1498, 1957}, -- There's Gold In That There Fountain
@@ -7630,7 +7631,7 @@ tasks = {
     {A, 1498, 1517}, -- Northrend Angler
     {A, 1498, 130}, -- Northrend Fisherman
     {C, 1152, 1498},
-    {N, 1498,k.GetCategoryInfoTitle(171), true}, -- Fishing
+    {N, 1498, a.GetCategoryInfoTitle(171), true}, -- Fishing
     {A, 1479, 1783}, -- Our Daily Bread
     {A, 1479, 1782}, -- Our Daily Bread
     {A, 1479, 1781}, -- Critter Gitter
@@ -7640,30 +7641,30 @@ tasks = {
     {A, 1479, 1777}, -- The Northrend Gourmet
     {A, 1479, 125}, -- Northrend Cook
     {C, 1152, 1479},
-    {N, 1479,k.GetCategoryInfoTitle(170), true}, -- Cooking
+    {N, 1479, a.GetCategoryInfoTitle(170), true}, -- Cooking
     {A, 1470, 4922}, -- Grand Master Archaeologist
     {C, 1152, 1470},
-    {N, 1470,k.GetCategoryInfoTitle(15071), true}, -- Archaeology
+    {N, 1470, a.GetCategoryInfoTitle(15071), true}, -- Archaeology
     {A, 1152, 730}, -- Skills to Pay the Bills
     {A, 1152, 135}, -- Grand Master Medic
     {A, 1152, 18722}, -- Northrend Master of All
     {A, 1152, 735}, -- Working In the Cold
     {A, 1152, 734}, -- Professional Northrend Master
     {C, 83, 1152},
-    {N, 1152,k.GetCategoryInfoTitle(169)}, -- Professions
+    {N, 1152, a.GetCategoryInfoTitle(169)}, -- Professions
     {A, 128, 4816}, -- Heroic: The Twilight Destroyer (25 player)
     {A, 128, 4815}, -- The Twilight Destroyer (25 player)
     {C, 126, 128},
-    {N, 128,(GetDifficultyInfo(4))}, -- The Ruby Sanctum 25
+    {N, 128, (GetDifficultyInfo(4))}, -- The Ruby Sanctum 25
     {A, 127, 4818}, -- Heroic: The Twilight Destroyer (10 player)
     {A, 127, 4817}, -- The Twilight Destroyer (10 player)
     {C, 126, 127},
-    {N, 127,(GetDifficultyInfo(3))}, -- The Ruby Sanctum 10
+    {N, 127, (GetDifficultyInfo(3))}, -- The Ruby Sanctum 10
     {C, 85, 126},
-    {N, 126,k.GetInstanceInfoName(761)}, -- The Ruby Sanctum
+    {N, 126, a.GetInstanceInfoName(761)}, -- The Ruby Sanctum
     {A, 615, 4598}, -- The Ashen Verdict
     {C, 123, 615},
-    {N, 615,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 615, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 125, 4637}, -- Heroic: Fall of the Lich King (25 player)
     {A, 125, 4584}, -- The Light of Dawn
     {A, 125, 4635}, -- Heroic: The Frostwing Halls (25 player)
@@ -7690,7 +7691,7 @@ tasks = {
     {A, 125, 4611}, -- Full House (25 player)
     {A, 125, 4610}, -- Boned (25 player)
     {C, 123, 125},
-    {N, 125,(GetDifficultyInfo(4))}, -- Icecrown Citadel 25
+    {N, 125, (GetDifficultyInfo(4))}, -- Icecrown Citadel 25
     {A, 124, 4636}, -- Heroic: Fall of the Lich King (10 player)
     {A, 124, 4583}, -- Bane of the Fallen King
     {A, 124, 4631}, -- Heroic: The Frostwing Halls (10 player)
@@ -7717,29 +7718,29 @@ tasks = {
     {A, 124, 4535}, -- Full House (10 player)
     {A, 124, 4534}, -- Boned (10 player)
     {C, 123, 124},
-    {N, 124,(GetDifficultyInfo(3))}, -- Icecrown Citadel 10
+    {N, 124, (GetDifficultyInfo(3))}, -- Icecrown Citadel 10
     {A, 123, 9924}, -- Field Photographer
     {A, 123, 11320}, -- Raiding with Leashes IV: Wrath of the Lick King
     {A, 123, 4623}, -- Shadowmourne
     {A, 123, 4625}, -- Invincible's Reins
     {A, 123, 11753}, -- Winter Catalog
     {C, 85, 123},
-    {N, 123,k.GetInstanceInfoName(758)}, -- Icecrown Citadel
+    {N, 123, a.GetInstanceInfoName(758)}, -- Icecrown Citadel
     {A, 122, 4397}, -- Onyxia's Lair (25 player)
     {A, 122, 4407}, -- She Deep Breaths More (25 player)
     {A, 122, 4406}, -- Many Whelps! Handle It! (25 player)
     {A, 122, 4405}, -- More Dots! (25 player)
     {C, 120, 122},
-    {N, 122,(GetDifficultyInfo(4))}, -- Onyxia's Lair 25
+    {N, 122, (GetDifficultyInfo(4))}, -- Onyxia's Lair 25
     {A, 121, 4396}, -- Onyxia's Lair (10 player)
     {A, 121, 4404}, -- She Deep Breaths More (10 player)
     {A, 121, 4403}, -- Many Whelps! Handle It! (10 player)
     {A, 121, 4402}, -- More Dots! (10 player)
     {C, 120, 121},
-    {N, 121,(GetDifficultyInfo(3))}, -- Onyxia's Lair 10
+    {N, 121, (GetDifficultyInfo(3))}, -- Onyxia's Lair 10
     {A, 120, 9924}, -- Field Photographer
     {C, 85, 120},
-    {N, 120,k.GetInstanceInfoName(760)}, -- Onyxia's Lair
+    {N, 120, a.GetInstanceInfoName(760)}, -- Onyxia's Lair
     {A, 119, 4079}, -- A Tribute to Immortality
     {A, 119, 4156}, -- A Tribute to Immortality
     {A, 119, 3819}, -- A Tribute to Insanity (25 player)
@@ -7753,7 +7754,7 @@ tasks = {
     {A, 119, 3937}, -- "Not One, But Two Jormungars (25 player)"
     {A, 119, 3813}, -- Upper Back Pain (25 player)
     {C, 117, 119},
-    {N, 119,(GetDifficultyInfo(4))}, -- Trial of the Crusader 25
+    {N, 119, (GetDifficultyInfo(4))}, -- Trial of the Crusader 25
     {A, 118, 4080}, -- A Tribute to Dedicated Insanity
     {A, 118, 3810}, -- A Tribute to Insanity (10 player)
     {A, 118, 3809}, -- A Tribute to Mad Skill (10 player)
@@ -7767,11 +7768,11 @@ tasks = {
     {A, 118, 3936}, -- "Not One, But Two Jormungars (10 player)"
     {A, 118, 3797}, -- Upper Back Pain (10 player)
     {C, 117, 118},
-    {N, 118,(GetDifficultyInfo(3))}, -- Trial of the Crusader 10
+    {N, 118, (GetDifficultyInfo(3))}, -- Trial of the Crusader 10
     {A, 117, 11320}, -- Raiding with Leashes IV: Wrath of the Lick King
     {A, 117, 11752}, -- Style of the Crusader
     {C, 85, 117},
-    {N, 117,k.GetInstanceInfoName(757)}, -- Trial of the Crusader
+    {N, 117, a.GetInstanceInfoName(757)}, -- Trial of the Crusader
     {A, 116, 2904}, -- Conqueror of Ulduar
     {A, 116, 3005}, -- He Feeds On Your Tears (25 player)
     {A, 116, 3037}, -- Observed (25 player)
@@ -7843,7 +7844,7 @@ tasks = {
     {A, 116, 2908}, -- Three Car Garage (25 player)
     {A, 116, 3098}, -- Dwarfageddon (25 player)
     {C, 114, 116},
-    {N, 116,(GetDifficultyInfo(4)) .. " (" .. k.GetCategoryInfoTitle(15234) .. ")"}, -- Ulduar 25
+    {N, 116, (GetDifficultyInfo(4)) .. " (" .. a.GetCategoryInfoTitle(15234) .. ")"}, -- Ulduar 25
     {A, 115, 2903}, -- Champion of Ulduar
     {A, 115, 3004}, -- He Feeds On Your Tears (10 player)
     {A, 115, 3036}, -- Observed (10 player)
@@ -7915,7 +7916,7 @@ tasks = {
     {A, 115, 2907}, -- Three Car Garage (10 player)
     {A, 115, 3097}, -- Dwarfageddon (10 player)
     {C, 114, 115},
-    {N, 115,(GetDifficultyInfo(3)) .. " (" .. k.GetCategoryInfoTitle(15234) .. ")"}, -- Ulduar 10
+    {N, 115, (GetDifficultyInfo(3)) .. " (" .. a.GetCategoryInfoTitle(15234) .. ")"}, -- Ulduar 10
     {A, 114, 11320}, -- Raiding with Leashes IV: Wrath of the Lick King
     {A, 114, 3316}, -- Herald of the Titans
     {A, 114, 3142}, -- "Val'anyr, Hammer of Ancient Kings"
@@ -7990,21 +7991,21 @@ tasks = {
     {A, 114, 12314}, -- Three Car Garage
     {A, 114, 12312}, -- Dwarfageddon
     {C, 85, 114},
-    {N, 114,k.GetInstanceInfoName(759)}, -- Ulduar
+    {N, 114, a.GetInstanceInfoName(759)}, -- Ulduar
     {A, 113, 623}, -- The Spellweaver's Downfall (25 player)
     {A, 113, 1870}, -- A Poke in the Eye (25 player)
     {A, 113, 1875}, -- You Don't Have an Eternity (25 player)
     {A, 113, 2149}, -- Denyin' the Scion (25 player)
     {C, 111, 113},
-    {N, 113,(GetDifficultyInfo(4))}, -- The Eye of Eternity 25
+    {N, 113, (GetDifficultyInfo(4))}, -- The Eye of Eternity 25
     {A, 112, 622}, -- The Spellweaver's Downfall (10 player)
     {A, 112, 1869}, -- A Poke in the Eye (10 player)
     {A, 112, 1874}, -- You Don't Have an Eternity (10 player)
     {A, 112, 2148}, -- Denyin' the Scion (10 player)
     {C, 111, 112},
-    {N, 112,(GetDifficultyInfo(3))}, -- The Eye of Eternity 10
+    {N, 112, (GetDifficultyInfo(3))}, -- The Eye of Eternity 10
     {C, 85, 111},
-    {N, 111,k.GetInstanceInfoName(756)}, -- The Eye of Eternity
+    {N, 111, a.GetInstanceInfoName(756)}, -- The Eye of Eternity
     {A, 110, 625}, -- Besting the Black Dragonflight (25 player)
     {A, 110, 1877}, -- Less Is More (25 player)
     {A, 110, 2054}, -- The Twilight Zone (25 player)
@@ -8012,7 +8013,7 @@ tasks = {
     {A, 110, 2052}, -- Twilight Assist (25 player)
     {A, 110, 2048}, -- Gonna Go When the Volcano Blows (25 player)
     {C, 108, 110},
-    {N, 110,(GetDifficultyInfo(4))}, -- The Obsidian Sanctum 25
+    {N, 110, (GetDifficultyInfo(4))}, -- The Obsidian Sanctum 25
     {A, 109, 1876}, -- Besting the Black Dragonflight (10 player)
     {A, 109, 624}, -- Less Is More (10 player)
     {A, 109, 2051}, -- The Twilight Zone (10 player)
@@ -8020,9 +8021,9 @@ tasks = {
     {A, 109, 2049}, -- Twilight Assist (10 player)
     {A, 109, 2047}, -- Gonna Go When the Volcano Blows (10 player)
     {C, 108, 109},
-    {N, 109,(GetDifficultyInfo(3))}, -- The Obsidian Sanctum 10
+    {N, 109, (GetDifficultyInfo(3))}, -- The Obsidian Sanctum 10
     {C, 85, 108},
-    {N, 108,k.GetInstanceInfoName(755)}, -- The Obsidian Sanctum
+    {N, 108, a.GetInstanceInfoName(755)}, -- The Obsidian Sanctum
     {A, 107, 2186}, -- The Immortal
     {A, 107, 577}, -- The Fall of Naxxramas (25 player)
     {A, 107, 575}, -- Kel'Thuzad's Defeat (25 player)
@@ -8043,7 +8044,7 @@ tasks = {
     {A, 107, 1859}, -- Arachnophobia (25 player)
     {A, 107, 2140}, -- Momma Said Knock You Out (25 player)
     {C, 105, 107},
-    {N, 107,(GetDifficultyInfo(4))}, -- Naxxramas 25
+    {N, 107, (GetDifficultyInfo(4))}, -- Naxxramas 25
     {A, 106, 2187}, -- The Undying
     {A, 106, 576}, -- The Fall of Naxxramas (10 player)
     {A, 106, 574}, -- Kel'Thuzad's Defeat (10 player)
@@ -8064,29 +8065,29 @@ tasks = {
     {A, 106, 1858}, -- Arachnophobia (10 player)
     {A, 106, 1997}, -- Momma Said Knock You Out (10 player)
     {C, 105, 106},
-    {N, 106,(GetDifficultyInfo(3))}, -- Naxxramas 10
+    {N, 106, (GetDifficultyInfo(3))}, -- Naxxramas 10
     {A, 105, 9924}, -- Field Photographer
     {A, 105, 7934}, -- Raiding with Leashes
     {A, 105, 11750}, -- Undying Aesthetic
     {C, 85, 105},
-    {N, 105,k.GetInstanceInfoName(754)}, -- Naxxramas
+    {N, 105, a.GetInstanceInfoName(754)}, -- Naxxramas
     {A, 104, 4586}, -- Toravon the Ice Watcher (25 player)
     {A, 104, 3837}, -- Koralon the Flame Watcher (25 player)
     {A, 104, 3137}, -- Emalon the Storm Watcher (25 player)
     {A, 104, 1721}, -- Archavon the Stone Watcher (25 player)
     {A, 104, 4017}, -- "Earth, Wind & Fire (25 player)"
     {C, 102, 104},
-    {N, 104,(GetDifficultyInfo(4))}, -- Vault of Archavon 25
+    {N, 104, (GetDifficultyInfo(4))}, -- Vault of Archavon 25
     {A, 103, 4585}, -- Toravon the Ice Watcher (10 player)
     {A, 103, 3836}, -- Koralon the Flame Watcher (10 player)
     {A, 103, 3136}, -- Emalon the Storm Watcher (10 player)
     {A, 103, 1722}, -- Archavon the Stone Watcher (10 player)
     {A, 103, 4016}, -- "Earth, Wind & Fire (10 player)"
     {C, 102, 103},
-    {N, 103,(GetDifficultyInfo(3))}, -- Vault of Archavon 10
+    {N, 103, (GetDifficultyInfo(3))}, -- Vault of Archavon 10
     {A, 102, 2081}, -- Grand Black War Mammoth
     {C, 85, 102},
-    {N, 102,k.GetInstanceInfoName(753)}, -- Vault of Archavon
+    {N, 102, a.GetInstanceInfoName(753)}, -- Vault of Archavon
     {A, 85, 4316}, -- 2500 Dungeon & Raid Emblems
     {A, 85, 3844}, -- 1000 Dungeon & Raid Emblems
     {A, 85, 2958}, -- Glory of the Ulduar Raider (25 player)
@@ -8098,24 +8099,24 @@ tasks = {
     {A, 85, 2137}, -- Glory of the Raider (10 player)
     {A, 85, 1658}, -- Champion of the Frozen Wastes
     {C, 83, 85},
-    {N, 85,k.GetCategoryInfoTitle(15271)}, -- Raids
+    {N, 85, a.GetCategoryInfoTitle(15271)}, -- Raids
     {A, 101, 4521}, -- Heroic: The Halls of Reflection
     {A, 101, 4518}, -- The Halls of Reflection
     {A, 101, 4526}, -- We're Not Retreating; We're Advancing in a Different Direction.
     {C, 84, 101},
-    {N, 101,k.GetInstanceInfoName(276)}, -- Halls of Reflection
+    {N, 101, a.GetInstanceInfoName(276)}, -- Halls of Reflection
     {A, 100, 4520}, -- Heroic: The Pit of Saron
     {A, 100, 4517}, -- The Pit of Saron
     {A, 100, 4525}, -- Don't Look Up
     {A, 100, 4524}, -- Doesn't Go to Eleven
     {C, 84, 100},
-    {N, 100,k.GetInstanceInfoName(278)}, -- Pit of Saron
+    {N, 100, a.GetInstanceInfoName(278)}, -- Pit of Saron
     {A, 99, 4519}, -- Heroic: The Forge of Souls
     {A, 99, 4516}, -- The Forge of Souls
     {A, 99, 4523}, -- Three Faced
     {A, 99, 4522}, -- Soul Power
     {C, 84, 99},
-    {N, 99,k.GetInstanceInfoName(280)}, -- The Forge of Souls
+    {N, 99, a.GetInstanceInfoName(280)}, -- The Forge of Souls
     {A, 98, 4297}, -- Heroic: Trial of the Champion
     {A, 98, 4298}, -- Heroic: Trial of the Champion
     {A, 98, 3778}, -- Trial of the Champion
@@ -8124,13 +8125,13 @@ tasks = {
     {A, 98, 3802}, -- Argent Confessor
     {A, 98, 3803}, -- The Faceroller
     {C, 84, 98},
-    {N, 98,k.GetInstanceInfoName(284)}, -- Trial of the Champion
+    {N, 98, a.GetInstanceInfoName(284)}, -- Trial of the Champion
     {A, 96, 500}, -- Heroic: The Culling of Stratholme
     {A, 96, 479}, -- The Culling of Stratholme
     {A, 96, 1817}, -- The Culling of Time
     {A, 96, 1872}, -- Zombiefest!
     {C, 84, 96},
-    {N, 96,k.GetInstanceInfoName(279)}, -- The Culling of Stratholme
+    {N, 96, a.GetInstanceInfoName(279)}, -- The Culling of Stratholme
     {A, 97, 499}, -- Heroic: Utgarde Pinnacle
     {A, 97, 488}, -- Utgarde Pinnacle
     {A, 97, 2157}, -- King's Bane
@@ -8138,7 +8139,7 @@ tasks = {
     {A, 97, 1873}, -- Lodi Dodi We Loves the Skadi
     {A, 97, 2043}, -- The Incredible Hulk
     {C, 84, 97},
-    {N, 97,k.GetInstanceInfoName(286)}, -- Utgarde Pinnacle
+    {N, 97, a.GetInstanceInfoName(286)}, -- Utgarde Pinnacle
     {A, 95, 498}, -- Heroic: The Oculus
     {A, 95, 487}, -- The Oculus
     {A, 95, 1871}, -- Experienced Drake Rider
@@ -8147,21 +8148,21 @@ tasks = {
     {A, 95, 2046}, -- Amber Void
     {A, 95, 1868}, -- Make It Count
     {C, 84, 95},
-    {N, 95,k.GetInstanceInfoName(282)}, -- The Oculus
+    {N, 95, a.GetInstanceInfoName(282)}, -- The Oculus
     {A, 94, 497}, -- Heroic: Halls of Lightning
     {A, 94, 486}, -- Halls of Lightning
     {A, 94, 1867}, -- Timely Death
     {A, 94, 2042}, -- Shatter Resistant
     {A, 94, 1834}, -- Lightning Struck
     {C, 84, 94},
-    {N, 94,k.GetInstanceInfoName(275)}, -- Halls of Lightning
+    {N, 94, a.GetInstanceInfoName(275)}, -- Halls of Lightning
     {A, 93, 496}, -- Heroic: Halls of Stone
     {A, 93, 485}, -- Halls of Stone
     {A, 93, 2155}, -- Abuse the Ooze
     {A, 93, 2154}, -- Brann Spankin' New
     {A, 93, 1866}, -- Good Grief
     {C, 84, 93},
-    {N, 93,k.GetInstanceInfoName(277)}, -- Halls of Stone
+    {N, 93, a.GetInstanceInfoName(277)}, -- Halls of Stone
     {A, 92, 495}, -- Heroic: Gundrak
     {A, 92, 484}, -- Gundrak
     {A, 92, 2152}, -- Share The Love
@@ -8169,7 +8170,7 @@ tasks = {
     {A, 92, 2040}, -- Less-rabi
     {A, 92, 2058}, -- Snakes. Why'd It Have To Be Snakes?
     {C, 84, 92},
-    {N, 92,k.GetInstanceInfoName(274)}, -- Gundrak
+    {N, 92, a.GetInstanceInfoName(274)}, -- Gundrak
     {A, 91, 494}, -- Heroic: The Violet Hold
     {A, 91, 483}, -- The Violet Hold
     {A, 91, 1816}, -- Defenseless
@@ -8177,40 +8178,40 @@ tasks = {
     {A, 91, 2041}, -- Dehydration
     {A, 91, 1865}, -- Lockdown!
     {C, 84, 91},
-    {N, 91,k.GetInstanceInfoName(283)}, -- The Violet Hold
+    {N, 91, a.GetInstanceInfoName(283)}, -- The Violet Hold
     {A, 90, 493}, -- Heroic: Drak'Tharon Keep
     {A, 90, 482}, -- Drak'Tharon Keep
     {A, 90, 2039}, -- Better Off Dred
     {A, 90, 2057}, -- Oh Novos!
     {A, 90, 2151}, -- Consumption Junction
     {C, 84, 90},
-    {N, 90,k.GetInstanceInfoName(273)}, -- Drak'Tharon Keep
+    {N, 90, a.GetInstanceInfoName(273)}, -- Drak'Tharon Keep
     {A, 89, 492}, -- Heroic: Ahn'kahet: The Old Kingdom
     {A, 89, 481}, -- Ahn'kahet: The Old Kingdom
     {A, 89, 1862}, -- Volazj's Quick Demise
     {A, 89, 2056}, -- Volunteer Work
     {A, 89, 2038}, -- Respect Your Elders
     {C, 84, 89},
-    {N, 89,k.GetInstanceInfoName(271)}, -- Ahn'kahet: The Old Kingdom
+    {N, 89, a.GetInstanceInfoName(271)}, -- Ahn'kahet: The Old Kingdom
     {A, 88, 491}, -- Heroic: Azjol-Nerub
     {A, 88, 480}, -- Azjol-Nerub
     {A, 88, 1860}, -- Gotta Go!
     {A, 88, 1297}, -- Hadronox Denied
     {A, 88, 1296}, -- Watch Him Die
     {C, 84, 88},
-    {N, 88,k.GetInstanceInfoName(272)}, -- Azjol-Nerub
+    {N, 88, a.GetInstanceInfoName(272)}, -- Azjol-Nerub
     {A, 87, 490}, -- Heroic: The Nexus
     {A, 87, 478}, -- The Nexus
     {A, 87, 2036}, -- Intense Cold
     {A, 87, 2037}, -- Chaos Theory
     {A, 87, 2150}, -- Split Personality
     {C, 84, 87},
-    {N, 87,k.GetInstanceInfoName(281)}, -- The Nexus
+    {N, 87, a.GetInstanceInfoName(281)}, -- The Nexus
     {A, 86, 489}, -- Heroic: Utgarde Keep
     {A, 86, 477}, -- Utgarde Keep
     {A, 86, 1919}, -- On The Rocks
     {C, 84, 86},
-    {N, 86,k.GetInstanceInfoName(285)}, -- Utgarde Keep
+    {N, 86, a.GetInstanceInfoName(285)}, -- Utgarde Keep
     {A, 84, 4316}, -- 2500 Dungeon & Raid Emblems
     {A, 84, 3844}, -- 1000 Dungeon & Raid Emblems
     {A, 84, 2089}, -- 1000 Stone Keeper's Shards
@@ -8225,127 +8226,127 @@ tasks = {
     {A, 84, 1289}, -- Northrend Dungeon Hero
     {A, 84, 1288}, -- Northrend Dungeonmaster
     {C, 83, 84},
-    {N, 84,k.GetCategoryInfoTitle(15272)}, -- Dungeons
+    {N, 84, a.GetCategoryInfoTitle(15272)}, -- Dungeons
     {A, 1034, 9924}, -- Field Photographer
     {C, 577, 1034},
-    {N, 1034,k.GetMapName(123)}, -- Wintergrasp
+    {N, 1034, a.GetMapName(123)}, -- Wintergrasp
     {A, 609, 945}, -- The Argent Champion
     {A, 609, 947}, -- The Argent Crusade
     {C, 585, 609},
-    {N, 609,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 609, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 608, 1270}, -- Explore Icecrown
     {C, 585, 608},
-    {N, 608,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 608, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 607, 40}, -- Icecrown: The Final Goal
     {C, 585, 607},
-    {N, 607,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 607, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 585, 14750}, -- Death Rising
     {C, 577, 585},
-    {N, 585,k.GetMapName(118)}, -- Icecrown
+    {N, 585, a.GetMapName(118)}, -- Icecrown
     {A, 606, 2083}, -- Grand Ice Mammoth
     {A, 606, 2082}, -- Ice Mammoth
     {C, 584, 606},
-    {N, 606,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 606, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 612, 1269}, -- Explore Storm Peaks
     {C, 584, 612},
-    {N, 612,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 612, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 604, 1428}, -- Mine Sweeper
     {A, 604, 38}, -- The Summit of Storm Peaks
     {C, 584, 604},
-    {N, 604,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 604, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 577, 584},
-    {N, 584,k.GetMapName(120)}, -- Storm Peaks
+    {N, 584, a.GetMapName(120)}, -- Storm Peaks
     {A, 610, 9924}, -- Field Photographer
     {A, 610, 1457}, -- Explore Crystalsong Forest
     {C, 577, 610},
-    {N, 610,k.GetMapName(127)}, -- Crystalsong Forest
+    {N, 610, a.GetMapName(127)}, -- Crystalsong Forest
     {A, 603, 952}, -- Mercenary of Sholazar
     {A, 603, 951}, -- The Oracles
     {A, 603, 950}, -- Frenzyheart Tribe
     {C, 583, 603},
-    {N, 603,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 603, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 602, 1268}, -- Explore Sholazar Basin
     {C, 583, 602},
-    {N, 602,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 602, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 601, 941}, -- Hemet Nesingwary: The Collected Quests
     {A, 601, 938}, -- The Snows of Northrend
     {A, 601, 962}, -- Savior of the Oracles
     {A, 601, 961}, -- Honorary Frenzyheart
     {A, 601, 39}, -- Into the Basin
     {C, 583, 601},
-    {N, 601,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 601, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 577, 583},
-    {N, 583,k.GetMapName(119)}, -- Sholazar Basin
+    {N, 583, a.GetMapName(119)}, -- Sholazar Basin
     {A, 599, 1267}, -- Explore Zul'Drak
     {C, 582, 599},
-    {N, 599,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 599, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 598, 4958}, -- The First Rule of Ring of Blood is You Don't Talk About Ring of Blood
     {A, 598, 1576}, -- Of Blood and Anguish
     {A, 598, 1596}, -- Guru of Drakuru
     {A, 598, 36}, -- The Empire of Zul'Drak
     {C, 582, 598},
-    {N, 598,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 598, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 577, 582},
-    {N, 582,k.GetMapName(121)}, -- Zul'Drak
+    {N, 582, a.GetMapName(121)}, -- Zul'Drak
     {A, 782, 2017}, -- Grizzled Veteran
     {A, 782, 2016}, -- Grizzled Veteran
     {C, 581, 782},
-    {N, 782,k.GetCategoryInfoTitle(95), true}, -- PvP
+    {N, 782, a.GetCategoryInfoTitle(95), true}, -- PvP
     {A, 596, 1266}, -- Explore Grizzly Hills
     {C, 581, 596},
-    {N, 596,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 596, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 595, 1357}, -- Fo' Grizzle My Shizzle
     {A, 595, 37}, -- Fo' Grizzle My Shizzle
     {C, 581, 595},
-    {N, 595,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 595, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 577, 581},
-    {N, 581,k.GetMapName(116)}, -- Grizzly Hills
+    {N, 581, a.GetMapName(116)}, -- Grizzly Hills
     {A, 594, 1007}, -- The Wyrmrest Accord
     {C, 580, 594},
-    {N, 594,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 594, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 593, 9924}, -- Field Photographer
     {A, 593, 1265}, -- Explore Dragonblight
     {C, 580, 593},
-    {N, 593,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 593, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 592, 1277}, -- Rapid Defense
     {A, 592, 547}, -- Veteran of the Wrathgate
     {A, 592, 1359}, -- Might of Dragonblight
     {A, 592, 35}, -- Might of Dragonblight
     {C, 580, 592},
-    {N, 592,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 592, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 577, 580},
-    {N, 580,k.GetMapName(115)}, -- Dragonblight
+    {N, 580, a.GetMapName(115)}, -- Dragonblight
     {A, 590, 9924}, -- Field Photographer
     {A, 590, 1254}, -- Friend or Fowl?
     {A, 590, 1263}, -- Explore Howling Fjord
     {C, 579, 590},
-    {N, 590,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 590, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 589, 1356}, -- I've Toured the Fjord
     {A, 589, 34}, -- I've Toured the Fjord
     {C, 579, 589},
-    {N, 589,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 589, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 577, 579},
-    {N, 579,k.GetMapName(117)}, -- Howling Fjord
+    {N, 579, a.GetMapName(117)}, -- Howling Fjord
     {A, 588, 949}, -- Tuskarrmageddon
     {C, 578, 588},
-    {N, 588,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 588, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 587, 1264}, -- Explore Borean Tundra
     {C, 578, 587},
-    {N, 587,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 587, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 586, 561}, -- D.E.H.T.A's Little P.I.T.A.
     {A, 586, 1358}, -- Nothing Boring About Borean
     {A, 586, 33}, -- Nothing Boring About Borean
     {C, 578, 586},
-    {N, 586,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 586, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 577, 578},
-    {N, 578,k.GetMapName(114)}, -- Borean Tundra
+    {N, 578, a.GetMapName(114)}, -- Borean Tundra
     {A, 614, 2078}, -- Traveler's Tundra Mammoth
     {A, 614, 2077}, -- Wooly Mammoth
     {A, 614, 2076}, -- Armored Brown Bear
     {A, 614, 2084}, -- Ring of the Kirin Tor
     {A, 614, 1956}, -- Higher Learning
     {C, 577, 614},
-    {N, 614,k.GetMapName(125)}, -- Dalaran
+    {N, 614, a.GetMapName(125)}, -- Dalaran
     {A, 577, 7520}, -- The Loremaster
     {A, 577, 2556}, -- Pest Control
     {A, 577, 1012}, -- The Winds of the North
@@ -8359,9 +8360,9 @@ tasks = {
     {A, 577, 2256}, -- Northern Exposure
     {A, 577, 41}, -- Loremaster of Northrend
     {C, 83, 577},
-    {N, 577,k.L["Zones"]}, -- Zones
+    {N, 577, a.L["Zones"]}, -- Zones
     {C, 883, 83},
-    {N, 83,k.GetCategoryInfoTitle(14866)}, -- Wrath of the Lich King
+    {N, 83, a.GetCategoryInfoTitle(14866)}, -- Wrath of the Lich King
     {A, 1536, 19107}, -- Outland Racing Completionist: Gold
     {A, 1536, 19106}, -- Outland Racing Completionist: Silver
     {A, 1536, 19105}, -- Outland Racing Completionist
@@ -8375,7 +8376,7 @@ tasks = {
     {A, 1536, 19097}, -- Outland: Silver
     {A, 1536, 19092}, -- Outland: Bronze
     {C, 55, 1536},
-    {N, 1536,k.L["Dragon Racing"]}, -- Dragon Racing
+    {N, 1536, a.L["Dragon Racing"]}, -- Dragon Racing
     {A, 786, 8348}, -- The Longest Day
     {A, 786, 6590}, -- World Safari
     {A, 786, 6611}, -- Continental Tamer
@@ -8393,48 +8394,48 @@ tasks = {
     {A, 786, 6614}, -- Outland Tamer
     {A, 786, 6587}, -- Outland Safari
     {C, 55, 786},
-    {N, 786,k.GetCategoryInfoTitle(15117)}, -- Pet Battles
+    {N, 786, a.GetCategoryInfoTitle(15117)}, -- Pet Battles
     {A, 1512, 18894}, -- Free Stylin'
     {C, 1151, 1512},
-    {N, 1512,k.GetCategoryInfoTitle(15495), true}, -- Leatherworking
+    {N, 1512, a.GetCategoryInfoTitle(15495), true}, -- Leatherworking
     {A, 1499, 1225}, -- Outland Angler
     {A, 1499, 905}, -- Old Man Barlowned
     {A, 1499, 144}, -- The Lurker Above
     {A, 1499, 726}, -- Mr. Pinchy's Magical Crawdad Box
     {A, 1499, 129}, -- Outland Fisherman
     {C, 1151, 1499},
-    {N, 1499,k.GetCategoryInfoTitle(171), true}, -- Fishing
+    {N, 1499, a.GetCategoryInfoTitle(171), true}, -- Fishing
     {A, 1478, 1801}, -- Captain Rumsey's Lager
     {A, 1478, 1800}, -- The Outland Gourmet
     {A, 1478, 906}, -- Kickin' It Up a Notch
     {A, 1478, 877}, -- The Cake Is Not A Lie
     {A, 1478, 124}, -- Outland Cook
     {C, 1151, 1478},
-    {N, 1478,k.GetCategoryInfoTitle(170), true}, -- Cooking
+    {N, 1478, a.GetCategoryInfoTitle(170), true}, -- Cooking
     {A, 1469, 5192}, -- The Harder they Fall
     {A, 1469, 4921}, -- Master Archaeologist
     {C, 1151, 1469},
-    {N, 1469,k.GetCategoryInfoTitle(15071), true}, -- Archaeology
+    {N, 1469, a.GetCategoryInfoTitle(15071), true}, -- Archaeology
     {A, 1151, 134}, -- Master Medic
     {A, 1151, 1257}, -- The Scavenger
     {A, 1151, 18721}, -- Outland Master of All
     {A, 1151, 18729}, -- Working in Hellfire
     {A, 1151, 733}, -- Professional Outland Master
     {C, 55, 1151},
-    {N, 1151,k.GetCategoryInfoTitle(169)}, -- Professions
+    {N, 1151, a.GetCategoryInfoTitle(169)}, -- Professions
     {A, 82, 9824}, -- Raiding with Leashes III: Drinkin' From the Sunwell
     {A, 82, 725}, -- "Thori'dal, the Stars' Fury"
     {A, 82, 11749}, -- "Suns Out, Thori'dals Out"
     {A, 82, 698}, -- Sunwell Plateau
     {C, 73, 82},
-    {N, 82,k.GetInstanceInfoName(752)}, -- Sunwell Plateau
+    {N, 82, a.GetInstanceInfoName(752)}, -- Sunwell Plateau
     {A, 81, 430}, -- Amani War Bear
     {A, 81, 691}, -- Zul'Aman
     {C, 73, 81},
-    {N, 81,k.GetInstanceInfoName(77) .. " (" .. k.GetCategoryInfoTitle(15234) .. ")"}, -- Zul'Aman
+    {N, 81, a.GetInstanceInfoName(77) .. " (" .. a.GetCategoryInfoTitle(15234) .. ")"}, -- Zul'Aman
     {A, 645, 958}, -- Sworn to the Deathsworn
     {C, 80, 645},
-    {N, 645,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 645, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 80, 9824}, -- Raiding with Leashes III: Drinkin' From the Sunwell
     {A, 80, 11869}, -- I'll Hold These For You Until You Get Out
     {A, 80, 426}, -- Warglaives of Azzinoth
@@ -8442,35 +8443,35 @@ tasks = {
     {A, 80, 11748}, -- Black is the New Black
     {A, 80, 697}, -- The Black Temple
     {C, 73, 80},
-    {N, 80,k.GetInstanceInfoName(751)}, -- Black Temple
+    {N, 80, a.GetInstanceInfoName(751)}, -- Black Temple
     {A, 646, 959}, -- The Scale of the Sands
     {C, 79, 646},
-    {N, 646,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 646, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 79, 9824}, -- Raiding with Leashes III: Drinkin' From the Sunwell
     {A, 79, 695}, -- The Battle for Mount Hyjal
     {C, 73, 79},
-    {N, 79,k.GetInstanceInfoName(750)}, -- The Battle for Mount Hyjal
+    {N, 79, a.GetInstanceInfoName(750)}, -- The Battle for Mount Hyjal
     {A, 78, 8293}, -- Raiding with Leashes II: Attunement Edition
     {A, 78, 885}, -- Ashes of Al'ar
     {A, 78, 696}, -- Tempest Keep
     {C, 73, 78},
-    {N, 78,k.GetInstanceInfoName(749)}, -- The Eye
+    {N, 78, a.GetInstanceInfoName(749)}, -- The Eye
     {A, 77, 8293}, -- Raiding with Leashes II: Attunement Edition
     {A, 77, 11747}, -- Merely a Set
     {A, 77, 694}, -- Serpentshrine Cavern
     {C, 73, 77},
-    {N, 77,k.GetInstanceInfoName(748)}, -- Serpentshrine Cavern
+    {N, 77, a.GetInstanceInfoName(748)}, -- Serpentshrine Cavern
     {A, 76, 11746}, -- Outlandish Style
     {A, 76, 693}, -- Magtheridon's Lair
     {C, 73, 76},
-    {N, 76,k.GetInstanceInfoName(747)}, -- Magtheridon's Lair
+    {N, 76, a.GetInstanceInfoName(747)}, -- Magtheridon's Lair
     {A, 75, 11746}, -- Outlandish Style
     {A, 75, 692}, -- Gruul's Lair
     {C, 73, 75},
-    {N, 75,k.GetInstanceInfoName(746)}, -- Gruul's Lair
+    {N, 75, a.GetInstanceInfoName(746)}, -- Gruul's Lair
     {A, 647, 960}, -- The Violet Eye
     {C, 74, 647},
-    {N, 647,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 647, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 74, 9924}, -- Field Photographer
     {A, 74, 8293}, -- Raiding with Leashes II: Attunement Edition
     {A, 74, 2456}, -- Vampire Hunter
@@ -8478,129 +8479,129 @@ tasks = {
     {A, 74, 882}, -- Fiery Warhorse's Reins
     {A, 74, 690}, -- Karazhan
     {C, 73, 74},
-    {N, 74,k.GetInstanceInfoName(745)}, -- Karazhan
+    {N, 74, a.GetInstanceInfoName(745)}, -- Karazhan
     {A, 73, 431}, -- Hand of A'dal
     {A, 73, 432}, -- Champion of the Naaru
     {A, 73, 1286}, -- Outland Raider
     {C, 55, 73},
-    {N, 73,k.GetCategoryInfoTitle(15271)}, -- Raids
+    {N, 73, a.GetCategoryInfoTitle(15271)}, -- Raids
     {A, 72, 884}, -- Swift White Hawkstrider
     {A, 72, 682}, -- Heroic: Magister's Terrace
     {A, 72, 661}, -- Magister's Terrace
     {C, 56, 72},
-    {N, 72,k.GetInstanceInfoName(249)}, -- Magisters Terrace
+    {N, 72, a.GetInstanceInfoName(249)}, -- Magisters Terrace
     {A, 71, 681}, -- Heroic: The Arcatraz
     {A, 71, 660}, -- The Arcatraz
     {C, 56, 71},
-    {N, 71,k.GetInstanceInfoName(254)}, -- The Arcatraz
+    {N, 71, a.GetInstanceInfoName(254)}, -- The Arcatraz
     {A, 70, 680}, -- Heroic: The Botanica
     {A, 70, 659}, -- The Botanica
     {C, 56, 70},
-    {N, 70,k.GetInstanceInfoName(257)}, -- The Botanica
+    {N, 70, a.GetInstanceInfoName(257)}, -- The Botanica
     {A, 69, 679}, -- Heroic: The Mechanar
     {A, 69, 658}, -- The Mechanar
     {C, 56, 69},
-    {N, 69,k.GetInstanceInfoName(258)}, -- The Mechanar
+    {N, 69, a.GetInstanceInfoName(258)}, -- The Mechanar
     {A, 68, 676}, -- Heroic: Opening of the Dark Portal
     {A, 68, 655}, -- Opening of the Dark Portal
     {C, 56, 68},
-    {N, 68,k.GetInstanceInfoName(255)}, -- The Black Morass
+    {N, 68, a.GetInstanceInfoName(255)}, -- The Black Morass
     {A, 67, 673}, -- Heroic: The Escape From Durnholde
     {A, 67, 652}, -- The Escape From Durnholde
     {C, 56, 67},
-    {N, 67,k.GetInstanceInfoName(251)}, -- Old Hillsbrad Foothills
+    {N, 67, a.GetInstanceInfoName(251)}, -- Old Hillsbrad Foothills
     {A, 66, 675}, -- Heroic: Shadow Labyrinth
     {A, 66, 654}, -- Shadow Labyrinth
     {C, 56, 66},
-    {N, 66,k.GetInstanceInfoName(253)}, -- Shadow Labyrinth
+    {N, 66, a.GetInstanceInfoName(253)}, -- Shadow Labyrinth
     {A, 65, 883}, -- Reins of the Raven Lord
     {A, 65, 674}, -- Heroic: Sethekk Halls
     {A, 65, 653}, -- Sethekk Halls
     {C, 56, 65},
-    {N, 65,k.GetInstanceInfoName(252)}, -- Sethekk Halls
+    {N, 65, a.GetInstanceInfoName(252)}, -- Sethekk Halls
     {A, 64, 672}, -- Heroic: Auchenai Crypts
     {A, 64, 666}, -- Auchenai Crypts
     {C, 56, 64},
-    {N, 64,k.GetInstanceInfoName(247)}, -- Auchenai Crypts
+    {N, 64, a.GetInstanceInfoName(247)}, -- Auchenai Crypts
     {A, 63, 671}, -- Heroic: Mana-Tombs
     {A, 63, 651}, -- Mana-Tombs
     {C, 56, 63},
-    {N, 63,k.GetInstanceInfoName(250)}, -- Mana-Tombs
+    {N, 63, a.GetInstanceInfoName(250)}, -- Mana-Tombs
     {A, 62, 677}, -- Heroic: The Steamvault
     {A, 62, 656}, -- The Steamvault
     {C, 56, 62},
-    {N, 62,k.GetInstanceInfoName(261)}, -- The Steamvault
+    {N, 62, a.GetInstanceInfoName(261)}, -- The Steamvault
     {A, 61, 670}, -- Heroic: Underbog
     {A, 61, 650}, -- Underbog
     {C, 56, 61},
-    {N, 61,k.GetInstanceInfoName(262)}, -- The Underbog
+    {N, 61, a.GetInstanceInfoName(262)}, -- The Underbog
     {A, 60, 669}, -- Heroic: The Slave Pens
     {A, 60, 649}, -- The Slave Pens
     {C, 56, 60},
-    {N, 60,k.GetInstanceInfoName(260)}, -- The Slave Pens
+    {N, 60, a.GetInstanceInfoName(260)}, -- The Slave Pens
     {A, 59, 678}, -- Heroic: The Shattered Halls
     {A, 59, 657}, -- The Shattered Halls
     {C, 56, 59},
-    {N, 59,k.GetInstanceInfoName(259)}, -- The Shattered Halls
+    {N, 59, a.GetInstanceInfoName(259)}, -- The Shattered Halls
     {A, 58, 668}, -- Heroic: The Blood Furnace
     {A, 58, 648}, -- The Blood Furnace
     {C, 56, 58},
-    {N, 58,k.GetInstanceInfoName(256)}, -- The Blood Furnace
+    {N, 58, a.GetInstanceInfoName(256)}, -- The Blood Furnace
     {A, 57, 667}, -- Heroic: Hellfire Ramparts
     {A, 57, 647}, -- Hellfire Ramparts
     {C, 56, 57},
-    {N, 57,k.GetInstanceInfoName(248)}, -- Hellfire Ramparts
+    {N, 57, a.GetInstanceInfoName(248)}, -- Hellfire Ramparts
     {A, 56, 1287}, -- Outland Dungeon Hero
     {A, 56, 1284}, -- Outland Dungeonmaster
     {C, 55, 56},
-    {N, 56,k.GetCategoryInfoTitle(15272)}, -- Dungeons
+    {N, 56, a.GetCategoryInfoTitle(15272)}, -- Dungeons
     {A, 751, 868}, -- Explore Isle of Quel'Danas
     {C, 750, 751},
-    {N, 751,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 751, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {C, 616, 750},
-    {N, 750,k.GetMapName(122)}, -- Isle of Quel'Danas
+    {N, 750, a.GetMapName(122)}, -- Isle of Quel'Danas
     {A, 638, 1638}, -- Skyshattered
     {A, 638, 898}, -- On Wings of Nether
     {C, 623, 638},
-    {N, 638,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 638, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 637, 864}, -- Explore Shadowmoon Valley
     {C, 623, 637},
-    {N, 637,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 637, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 630, 1195}, -- Shadow of the Betrayer
     {C, 623, 630},
-    {N, 630,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 630, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 616, 623},
-    {N, 623,k.GetMapName(104)}, -- Shadowmoon Valley
+    {N, 623, a.GetMapName(104)}, -- Shadowmoon Valley
     {A, 636, 9924}, -- Field Photographer
     {A, 636, 843}, -- Explore Netherstorm
     {C, 622, 636},
-    {N, 636,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 636, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 629, 1194}, -- Into the Nether
     {C, 622, 629},
-    {N, 629,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 629, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 616, 622},
-    {N, 622,k.GetMapName(109)}, -- Netherstorm
+    {N, 622, a.GetMapName(109)}, -- Netherstorm
     {A, 640, 896}, -- A Quest a Day Keeps the Ogres at Bay
     {C, 621, 640},
-    {N, 640,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 640, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 635, 865}, -- Explore Blade's Edge Mountains
     {C, 621, 635},
-    {N, 635,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 635, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 628, 1276}, -- Blade's Edge Bomberman
     {A, 628, 1193}, -- On the Blade's Edge
     {C, 621, 628},
-    {N, 628,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 628, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 616, 621},
-    {N, 621,k.GetMapName(105)}, -- Blade's Edge Mountains
+    {N, 621, a.GetMapName(105)}, -- Blade's Edge Mountains
     {A, 641, 943}, -- The Diplomat
     {A, 641, 942}, -- The Diplomat
     {A, 641, 901}, -- Mag'har of Draenor
     {A, 641, 899}, -- "Oh My, Kurenai"
     {C, 620, 641},
-    {N, 641,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 641, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 634, 866}, -- Explore Nagrand
     {C, 620, 634},
-    {N, 634,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 634, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 627, 4958}, -- The First Rule of Ring of Blood is You Don't Talk About Ring of Blood
     {A, 627, 1576}, -- Of Blood and Anguish
     {A, 627, 941}, -- Hemet Nesingwary: The Collected Quests
@@ -8608,23 +8609,23 @@ tasks = {
     {A, 627, 1273}, -- Nagrand Slam
     {A, 627, 1192}, -- Nagrand Slam
     {C, 620, 627},
-    {N, 627,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 627, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 616, 620},
-    {N, 620,k.GetMapName(107)}, -- Nagrand
+    {N, 620, a.GetMapName(107)}, -- Nagrand
     {A, 642, 1205}, -- Hero of Shattrath
     {A, 642, 903}, -- Shattrath Divided
     {C, 619, 642},
-    {N, 642,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 642, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 633, 867}, -- Explore Terokkar Forest
     {C, 619, 633},
-    {N, 633,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 633, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 626, 1275}, -- Bombs Away
     {A, 626, 1272}, -- Terror of Terokkar
     {A, 626, 1191}, -- Terror of Terokkar
     {C, 619, 626},
-    {N, 626,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 626, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 616, 619},
-    {N, 619,k.GetMapName(108)}, -- Terokkar Forest
+    {N, 619, a.GetMapName(108)}, -- Terokkar Forest
     {A, 643, 943}, -- The Diplomat
     {A, 643, 942}, -- The Diplomat
     {A, 643, 900}, -- The Czar of Sporeggar
@@ -8633,81 +8634,81 @@ tasks = {
     {A, 643, 762}, -- Ambassador of the Horde
     {A, 643, 948}, -- Ambassador of the Alliance
     {C, 618, 643},
-    {N, 643,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 643, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 632, 863}, -- Explore Zangarmarsh
     {C, 618, 632},
-    {N, 632,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 632, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 625, 1190}, -- Mysteries of the Marsh
     {C, 618, 625},
-    {N, 625,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 625, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 616, 618},
-    {N, 618,k.GetMapName(102)}, -- Zangarmarsh
+    {N, 618, a.GetMapName(102)}, -- Zangarmarsh
     {A, 1011, 762}, -- Ambassador of the Horde
     {A, 1011, 948}, -- Ambassador of the Alliance
     {C, 617, 1011},
-    {N, 1011,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1011, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 631, 9924}, -- Field Photographer
     {A, 631, 862}, -- Explore Hellfire Peninsula
     {C, 617, 631},
-    {N, 631,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 631, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 624, 1271}, -- To Hellfire and Back
     {A, 624, 1189}, -- To Hellfire and Back
     {C, 617, 624},
-    {N, 624,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 624, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 616, 617},
-    {N, 617,k.GetMapName(100)}, -- Hellfire Peninsula
+    {N, 617, a.GetMapName(100)}, -- Hellfire Peninsula
     {A, 1010, 762}, -- Ambassador of the Horde
     {C, 669, 1010},
-    {N, 1010,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1010, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 733, 858}, -- Explore Ghostlands
     {C, 669, 733},
-    {N, 733,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 733, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 670, 4908}, -- Ghostlands Quests
     {C, 669, 670},
-    {N, 670,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 670, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 616, 669},
-    {N, 669,k.GetMapName(95)}, -- Ghostlands
+    {N, 669, a.GetMapName(95)}, -- Ghostlands
     {A, 1008, 762}, -- Ambassador of the Horde
     {C, 727, 1008},
-    {N, 1008,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1008, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 728, 859}, -- Explore Eversong Woods
     {C, 727, 728},
-    {N, 728,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 728, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {C, 616, 727},
-    {N, 727,k.GetMapName(94)}, -- Eversong Woods
+    {N, 727, a.GetMapName(94)}, -- Eversong Woods
     {A, 1000, 948}, -- Ambassador of the Alliance
     {C, 693, 1000},
-    {N, 1000,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1000, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 763, 861}, -- Explore Bloodmyst Isle
     {C, 693, 763},
-    {N, 763,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 763, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 694, 4926}, -- Bloodmyst Isle Quests
     {C, 693, 694},
-    {N, 694,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 694, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 616, 693},
-    {N, 693,k.GetMapName(106)}, -- Bloodmyst Isle
+    {N, 693, a.GetMapName(106)}, -- Bloodmyst Isle
     {A, 998, 948}, -- Ambassador of the Alliance
     {C, 758, 998},
-    {N, 998,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 998, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 759, 860}, -- Explore Azuremyst Isle
     {C, 758, 759},
-    {N, 759,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 759, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {C, 616, 758},
-    {N, 758,k.GetMapName(97)}, -- Azuremyst Isle
+    {N, 758, a.GetMapName(97)}, -- Azuremyst Isle
     {A, 969, 603}, -- Wrath of the Horde
     {A, 969, 619}, -- For the Horde!
     {A, 969, 618}, -- Putting Out the Light
     {C, 616, 969},
-    {N, 969,k.GetMapName(103)}, -- The Exodar
+    {N, 969, a.GetMapName(103)}, -- The Exodar
     {A, 924, 604}, -- Wrath of the Alliance
     {A, 924, 614}, -- For the Alliance!
     {A, 924, 613}, -- Killed in Quel'Thalas
     {C, 616, 924},
-    {N, 924,k.GetMapName(110)}, -- Silvermoon City
+    {N, 924, a.GetMapName(110)}, -- Silvermoon City
     {A, 794, 9924}, -- Field Photographer
     {A, 794, 1165}, -- "My Storage is ""Gigantique"""
     {C, 616, 794},
-    {N, 794,k.GetMapName(111)}, -- Shattrath City
+    {N, 794, a.GetMapName(111)}, -- Shattrath City
     {A, 616, 7520}, -- The Loremaster
     {A, 616, 902}, -- Chief Exalted Officer
     {A, 616, 897}, -- You're So Offensive
@@ -8719,9 +8720,9 @@ tasks = {
     {A, 616, 1311}, -- Medium Rare
     {A, 616, 1262}, -- Loremaster of Outland
     {C, 55, 616},
-    {N, 616,k.L["Zones"]}, -- Zones
+    {N, 616, a.L["Zones"]}, -- Zones
     {C, 883, 55},
-    {N, 55,k.GetCategoryInfoTitle(14865)}, -- The Burning Crusade
+    {N, 55, a.GetCategoryInfoTitle(14865)}, -- The Burning Crusade
     {A, 1533, 18942}, -- Eastern Kingdoms Racing Completionist: Gold
     {A, 1533, 18940}, -- Eastern Kingdoms Racing Completionist: Silver
     {A, 1533, 18939}, -- Eastern Kingdoms Racing Completionist
@@ -8735,7 +8736,7 @@ tasks = {
     {A, 1533, 18567}, -- Eastern Kingdoms: Silver
     {A, 1533, 18566}, -- Eastern Kingdoms: Bronze
     {C, 1530, 1533},
-    {N, 1533,k.L["Eastern Kingdoms Cup"]}, -- Eastern Kingdoms Cup
+    {N, 1533, a.L["Eastern Kingdoms Cup"]}, -- Eastern Kingdoms Cup
     {A, 1449, 17723}, -- Kalimdor Racing Completionist: Gold
     {A, 1449, 17722}, -- Kalimdor Racing Completionist: Silver
     {A, 1449, 17721}, -- Kalimdor Racing Completionist
@@ -8749,9 +8750,9 @@ tasks = {
     {A, 1449, 17713}, -- Kalimdor: Silver
     {A, 1449, 17712}, -- Kalimdor: Bronze
     {C, 1530, 1449},
-    {N, 1449,k.L["Kalimdor Cup"]}, -- Kalimdor Cup
+    {N, 1449, a.L["Kalimdor Cup"]}, -- Kalimdor Cup
     {C, 1, 1530},
-    {N, 1530,k.L["Dragon Racing"]}, -- Dragon Racing
+    {N, 1530, a.L["Dragon Racing"]}, -- Dragon Racing
     {A, 785, 8348}, -- The Longest Day
     {A, 785, 6590}, -- World Safari
     {A, 785, 6611}, -- Continental Tamer
@@ -8773,16 +8774,16 @@ tasks = {
     {A, 785, 6585}, -- Kalimdor Safari
     {A, 785, 6586}, -- Eastern Kingdoms Safari
     {C, 1, 785},
-    {N, 785,k.GetCategoryInfoTitle(15117)}, -- Pet Battles
+    {N, 785, a.GetCategoryInfoTitle(15117)}, -- Pet Battles
     {A, 1529, 18903}, -- Ton of Tops
     {C, 1150, 1529},
-    {N, 1529,k.GetCategoryInfoTitle(15496), true}, -- Tailoring
+    {N, 1529, a.GetCategoryInfoTitle(15496), true}, -- Tailoring
     {A, 1516, 18841}, -- Doing Your Share
     {C, 1150, 1516},
-    {N, 1516,k.GetCategoryInfoTitle(15497), true}, -- Mining
+    {N, 1516, a.GetCategoryInfoTitle(15497), true}, -- Mining
     {A, 1513, 18899}, -- You Saw Nothing
     {C, 1150, 1513},
-    {N, 1513,k.GetCategoryInfoTitle(15495), true}, -- Leatherworking
+    {N, 1513, a.GetCategoryInfoTitle(15495), true}, -- Leatherworking
     {A, 1500, 17367}, -- Deadliest Cache
     {A, 1500, 5851}, -- Gone Fishin'
     {A, 1500, 5850}, -- Fish or Cut Bait: Undercity
@@ -8800,7 +8801,7 @@ tasks = {
     {A, 1500, 127}, -- Expert Fisherman
     {A, 1500, 126}, -- Journeyman Fisherman
     {C, 1150, 1500},
-    {N, 1500,k.GetCategoryInfoTitle(171), true}, -- Fishing
+    {N, 1500, a.GetCategoryInfoTitle(171), true}, -- Fishing
     {A, 1477, 5779}, -- You'll Feel Right as Rain
     {A, 1477, 5845}, -- A Bunch of Lunch
     {A, 1477, 5844}, -- Let's Do Lunch: Undercity
@@ -8813,11 +8814,11 @@ tasks = {
     {A, 1477, 122}, -- Expert Cook
     {A, 1477, 121}, -- Journeyman Cook
     {C, 1150, 1477},
-    {N, 1477,k.GetCategoryInfoTitle(170), true}, -- Cooking
+    {N, 1477, a.GetCategoryInfoTitle(170), true}, -- Cooking
     {A, 1476, 18853}, -- Seething Flames of Hatred
     {A, 1476, 18765}, -- Destined to be Legendary
     {C, 1150, 1476},
-    {N, 1476,k.GetCategoryInfoTitle(15490), true}, -- Blacksmithing
+    {N, 1476, a.GetCategoryInfoTitle(15490), true}, -- Blacksmithing
     {A, 1468, 4859}, -- Kings Under the Mountain
     {A, 1468, 5193}, -- Blue Streak
     {A, 1468, 5191}, -- Tragedy in Three Acts
@@ -8826,7 +8827,7 @@ tasks = {
     {A, 1468, 4919}, -- Expert Archaeologist
     {A, 1468, 4857}, -- Journeyman Archaeologist
     {C, 1150, 1468},
-    {N, 1468,k.GetCategoryInfoTitle(15071), true}, -- Archaeology
+    {N, 1468, a.GetCategoryInfoTitle(15071), true}, -- Archaeology
     {A, 1150, 133}, -- Artisan Medic
     {A, 1150, 132}, -- Expert Medic
     {A, 1150, 131}, -- Journeyman Medic
@@ -8836,51 +8837,51 @@ tasks = {
     {A, 1150, 731}, -- Professional Expert
     {A, 1150, 116}, -- Professional Journeyman
     {C, 1, 1150},
-    {N, 1150,k.GetCategoryInfoTitle(169)}, -- Professions
+    {N, 1150, a.GetCategoryInfoTitle(169)}, -- Professions
     {A, 796, 18616}, -- Putting Wilhelm Out of Business
     {A, 796, 18557}, -- "Never Bothered, Anyway"
     {A, 796, 18372}, -- Wards of the Dread Citadel
     {A, 796, 425}, -- "Atiesh, Greatstaff of the Guardian"
     {A, 796, 11744}, -- "Drop Dead, Gorgeous"
     {C, 3, 796},
-    {N, 796,k.GetInstanceInfoName(754) .. " (" .. k.GetCategoryInfoTitle(15234) .. ")"}, -- Naxxramas
+    {N, 796, a.GetInstanceInfoName(754) .. " (" .. a.GetCategoryInfoTitle(15234) .. ")"}, -- Naxxramas
     {A, 780, 956}, -- Brood of Nozdormu
     {C, 30, 780},
-    {N, 780,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 780, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 30, 7934}, -- Raiding with Leashes
     {A, 30, 11743}, -- Accessor-Eyes
     {A, 30, 424}, -- Why? Because It's Red
     {A, 30, 687}, -- Temple of Ahn'Qiraj
     {C, 3, 30},
-    {N, 30,k.GetInstanceInfoName(744)}, -- Temple of Ahn'Qiraj
+    {N, 30, a.GetInstanceInfoName(744)}, -- Temple of Ahn'Qiraj
     {A, 784, 953}, -- Guardian of Cenarius
     {C, 29, 784},
-    {N, 784,k.GetCategoryInfoTitle(201)}, -- Reputation
+    {N, 784, a.GetCategoryInfoTitle(201)}, -- Reputation
     {A, 29, 689}, -- Ruins of Ahn'Qiraj
     {C, 3, 29},
-    {N, 29,k.GetInstanceInfoName(743)}, -- Ruins of Ahn'Qiraj
+    {N, 29, a.GetInstanceInfoName(743)}, -- Ruins of Ahn'Qiraj
     {A, 789, 957}, -- Hero of the Zandalar Tribe
     {C, 28, 789},
-    {N, 789,k.GetCategoryInfoTitle(201)}, -- Reputation
+    {N, 789, a.GetCategoryInfoTitle(201)}, -- Reputation
     {A, 28, 881}, -- Swift Razzashi Raptor
     {A, 28, 880}, -- Swift Zulian Tiger
     {A, 28, 688}, -- Zul'Gurub
     {A, 28, 560}, -- Deadliest Catch
     {C, 3, 28},
-    {N, 28,k.GetInstanceInfoName(76) .. " (" .. k.GetCategoryInfoTitle(15234) .. ")"}, -- Zul'Gurub
+    {N, 28, a.GetInstanceInfoName(76) .. " (" .. a.GetCategoryInfoTitle(15234) .. ")"}, -- Zul'Gurub
     {A, 27, 7934}, -- Raiding with Leashes
     {A, 27, 11742}, -- Dress in Lairs
     {A, 27, 685}, -- Blackwing Lair
     {C, 3, 27},
-    {N, 27,k.GetInstanceInfoName(742)}, -- Blackwing Lair
+    {N, 27, a.GetInstanceInfoName(742)}, -- Blackwing Lair
     {A, 26, 11296}, -- The Ancient Keeper
     {A, 26, 684}, -- Onyxia's Lair (Level 60)
     {C, 3, 26},
-    {N, 26,k.GetInstanceInfoName(760) .. " (" .. k.GetCategoryInfoTitle(15234) .. ")"}, -- Onyxia's Lair
+    {N, 26, a.GetInstanceInfoName(760) .. " (" .. a.GetCategoryInfoTitle(15234) .. ")"}, -- Onyxia's Lair
     {A, 779, 2496}, -- The Fifth Element
     {A, 779, 955}, -- Hydraxian Waterlords
     {C, 7, 779},
-    {N, 779,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 779, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 7, 11297}, -- The Balance of Light and Shadow
     {A, 7, 11296}, -- The Ancient Keeper
     {A, 7, 7934}, -- Raiding with Leashes
@@ -8890,314 +8891,314 @@ tasks = {
     {A, 7, 11741}, -- So Hot Right Now
     {A, 7, 686}, -- Molten Core
     {C, 3, 7},
-    {N, 7,k.GetInstanceInfoName(741)}, -- Molten Core
+    {N, 7, a.GetInstanceInfoName(741)}, -- Molten Core
     {A, 3, 1285}, -- Classic Raider
     {C, 1, 3},
-    {N, 3,k.GetCategoryInfoTitle(15271)}, -- Raids
+    {N, 3, a.GetCategoryInfoTitle(15271)}, -- Raids
     {A, 25, 13766}, -- Malowned
     {A, 25, 13627}, -- Pet Battle Challenge: Stratholme
     {A, 25, 729}, -- Deathcharger's Reins
     {A, 25, 646}, -- Stratholme
     {C, 2, 25},
-    {N, 25,k.GetInstanceInfoName(236)}, -- Stratholme
+    {N, 25, a.GetInstanceInfoName(236)}, -- Stratholme
     {A, 24, 18558}, -- Leaders of Scholomance
     {A, 24, 18368}, -- Memory of Scholomance
     {C, 2, 24},
-    {N, 24,k.GetInstanceInfoName(246) .. " (" .. k.GetCategoryInfoTitle(15234) .. ")"}, -- Scholomance
+    {N, 24, a.GetInstanceInfoName(246) .. " (" .. a.GetCategoryInfoTitle(15234) .. ")"}, -- Scholomance
     {A, 23, 5788}, -- Agent of the Shen'dralar
     {A, 23, 644}, -- King of Dire Maul
     {C, 2, 23},
-    {N, 23,k.GetInstanceInfoName(230)}, -- Dire Maul
+    {N, 23, a.GetInstanceInfoName(230)}, -- Dire Maul
     {A, 797, 2188}, -- Leeeeeeeeeeeeeroy!
     {A, 797, 1307}, -- Upper Blackrock Spire (Classic)
     {C, 2, 797},
-    {N, 797,k.GetInstanceInfoName(559) .. " (" .. k.GetCategoryInfoTitle(15234) .. ")"}, -- Upper Blackrock Spire
+    {N, 797, a.GetInstanceInfoName(559) .. " (" .. a.GetCategoryInfoTitle(15234) .. ")"}, -- Upper Blackrock Spire
     {A, 22, 643}, -- Lower Blackrock Spire
     {C, 2, 22},
-    {N, 22,k.GetInstanceInfoName(229)}, -- Lower Blackrock Spire
+    {N, 22, a.GetInstanceInfoName(229)}, -- Lower Blackrock Spire
     {A, 21, 14020}, -- Pet Battle Challenge: Blackrock Depths
     {A, 21, 3496}, -- A Brew-FAST Mount
     {A, 21, 642}, -- Blackrock Depths
     {C, 2, 21},
-    {N, 21,k.GetInstanceInfoName(228)}, -- Blackrock Depths
+    {N, 21, a.GetInstanceInfoName(228)}, -- Blackrock Depths
     {A, 20, 641}, -- Sunken Temple
     {C, 2, 20},
-    {N, 20,k.GetInstanceInfoName(237)}, -- The Temple Of Atal'hakkar
+    {N, 20, a.GetInstanceInfoName(237)}, -- The Temple Of Atal'hakkar
     {A, 19, 640}, -- Maraudon
     {C, 2, 19},
-    {N, 19,k.GetInstanceInfoName(232)}, -- Maraudon
+    {N, 19, a.GetInstanceInfoName(232)}, -- Maraudon
     {A, 18, 639}, -- Zul'Farrak
     {C, 2, 18},
-    {N, 18,k.GetInstanceInfoName(241)}, -- Zul'Farrak
+    {N, 18, a.GetInstanceInfoName(241)}, -- Zul'Farrak
     {A, 17, 638}, -- Uldaman
     {C, 2, 17},
-    {N, 17,k.GetInstanceInfoName(239)}, -- Uldaman
+    {N, 17, a.GetInstanceInfoName(239)}, -- Uldaman
     {A, 14, 636}, -- Razorfen Downs
     {C, 2, 14},
-    {N, 14,k.GetInstanceInfoName(234)}, -- Razorfen Downs
+    {N, 14, a.GetInstanceInfoName(234)}, -- Razorfen Downs
     {A, 13, 635}, -- Razorfen Kraul
     {C, 2, 13},
-    {N, 13,k.GetInstanceInfoName(233)}, -- Razorfen Kraul
+    {N, 13, a.GetInstanceInfoName(233)}, -- Razorfen Kraul
     {A, 12, 13269}, -- Pet Battle Challenge: Gnomeregan
     {A, 12, 634}, -- Gnomeregan
     {C, 2, 12},
-    {N, 12,k.GetInstanceInfoName(231)}, -- Gnomeregan
+    {N, 12, a.GetInstanceInfoName(231)}, -- Gnomeregan
     {A, 11, 633}, -- Stormwind Stockade
     {C, 2, 11},
-    {N, 11,k.GetInstanceInfoName(238)}, -- The Stockade
+    {N, 11, a.GetInstanceInfoName(238)}, -- The Stockade
     {A, 10, 632}, -- Blackfathom Deeps
     {C, 2, 10},
-    {N, 10,k.GetInstanceInfoName(227)}, -- Blackfathom Deeps
+    {N, 10, a.GetInstanceInfoName(227)}, -- Blackfathom Deeps
     {A, 8, 11765}, -- Pet Battle Challenge: Wailing Caverns
     {A, 8, 630}, -- Wailing Caverns
     {C, 2, 8},
-    {N, 8,k.GetInstanceInfoName(240)}, -- Wailing Caverns
+    {N, 8, a.GetInstanceInfoName(240)}, -- Wailing Caverns
     {A, 5, 629}, -- Ragefire Chasm
     {C, 2, 5},
-    {N, 5,k.GetInstanceInfoName(226)}, -- Ragefire Chasm
+    {N, 5, a.GetInstanceInfoName(226)}, -- Ragefire Chasm
     {A, 2, 1283}, -- Classic Dungeonmaster
     {C, 1, 2},
-    {N, 2,k.GetCategoryInfoTitle(15272)}, -- Dungeons
+    {N, 2, a.GetCategoryInfoTitle(15272)}, -- Dungeons
     {A, 1031, 2336}, -- Insane in the Membrane
     {C, 719, 1031},
-    {N, 1031,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1031, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 777, 857}, -- Explore Winterspring
     {C, 719, 777},
-    {N, 777,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 777, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 720, 5443}, -- E'ko Madness
     {A, 720, 4940}, -- Winterspring Quests
     {C, 719, 720},
-    {N, 720,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 720, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 719, 11296}, -- The Ancient Keeper
     {A, 719, 3356}, -- Winterspring Frostsaber
     {C, 688, 719},
-    {N, 719,k.GetMapName(83)}, -- Winterspring
+    {N, 719, a.GetMapName(83)}, -- Winterspring
     {A, 783, 953}, -- Guardian of Cenarius
     {C, 707, 783},
-    {N, 783,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 783, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 776, 9924}, -- Field Photographer
     {A, 776, 856}, -- Explore Silithus
     {C, 707, 776},
-    {N, 776,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 776, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 708, 4934}, -- Silithus Quests
     {C, 707, 708},
-    {N, 708,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 708, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 707, 11296}, -- The Ancient Keeper
     {A, 707, 5533}, -- Veteran of the Shifting Sands
     {A, 707, 416}, -- Scarab Lord
     {C, 688, 707},
-    {N, 707,k.GetMapName(81)}, -- Silithus
+    {N, 707, a.GetMapName(81)}, -- Silithus
     {A, 773, 9924}, -- Field Photographer
     {A, 773, 854}, -- Explore Un'Goro Crater
     {C, 717, 773},
-    {N, 773,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 773, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 718, 4939}, -- Un'Goro Crater Quests
     {C, 717, 718},
-    {N, 718,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 718, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 717, 16431}, -- Against the Elements
     {A, 717, 11296}, -- The Ancient Keeper
     {A, 717, 3357}, -- Venomhide Ravasaur
     {C, 688, 717},
-    {N, 717,k.GetMapName(78)}, -- Un'Goro Crater
+    {N, 717, a.GetMapName(78)}, -- Un'Goro Crater
     {A, 991, 762}, -- Ambassador of the Horde
     {A, 991, 948}, -- Ambassador of the Alliance
     {C, 701, 991},
-    {N, 991,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 991, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 772, 853}, -- Explore Felwood
     {C, 701, 772},
-    {N, 772,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 772, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 702, 4931}, -- Felwood Quests
     {C, 701, 702},
-    {N, 702,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 702, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 701, 11296}, -- The Ancient Keeper
     {C, 688, 701},
-    {N, 701,k.GetMapName(77)}, -- Felwood
+    {N, 701, a.GetMapName(77)}, -- Felwood
     {A, 992, 2336}, -- Insane in the Membrane
     {A, 992, 762}, -- Ambassador of the Horde
     {A, 992, 948}, -- Ambassador of the Alliance
     {C, 713, 992},
-    {N, 992,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 992, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 770, 9924}, -- Field Photographer
     {A, 770, 851}, -- Explore Tanaris
     {C, 713, 770},
-    {N, 770,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 770, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 714, 4935}, -- Tanaris Quests
     {C, 713, 714},
-    {N, 714,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 714, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 713, 11201}, -- Defender of Azeroth: Legion Invasions
     {A, 713, 11200}, -- Stand Against the Legion
     {C, 688, 713},
-    {N, 713,k.GetMapName(71)}, -- Tanaris
+    {N, 713, a.GetMapName(71)}, -- Tanaris
     {A, 994, 762}, -- Ambassador of the Horde
     {A, 994, 948}, -- Ambassador of the Alliance
     {C, 715, 994},
-    {N, 994,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 994, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 765, 846}, -- Explore Thousand Needles
     {C, 715, 765},
-    {N, 765,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 765, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 716, 4938}, -- Thousand Needles Quests
     {C, 715, 716},
-    {N, 716,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 716, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 688, 715},
-    {N, 715,k.GetMapName(64)}, -- Thousand Needles
+    {N, 715, a.GetMapName(64)}, -- Thousand Needles
     {A, 1004, 948}, -- Ambassador of the Alliance
     {C, 699, 1004},
-    {N, 1004,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1004, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 768, 850}, -- Explore Dustwallow Marsh
     {C, 699, 768},
-    {N, 768,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 768, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 700, 4978}, -- Dustwallow Marsh Quests
     {A, 700, 4929}, -- Dustwallow Marsh Quests
     {C, 699, 700},
-    {N, 700,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 700, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 688, 699},
-    {N, 699,k.GetMapName(70)}, -- Dustwallow Marsh
+    {N, 699, a.GetMapName(70)}, -- Dustwallow Marsh
     {A, 1009, 762}, -- Ambassador of the Horde
     {A, 1009, 948}, -- Ambassador of the Alliance
     {C, 703, 1009},
-    {N, 1009,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1009, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 769, 9924}, -- Field Photographer
     {A, 769, 849}, -- Explore Feralas
     {C, 703, 769},
-    {N, 769,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 769, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 704, 4979}, -- Feralas Quests
     {A, 704, 4932}, -- Feralas Quests
     {C, 703, 704},
-    {N, 704,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 704, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 688, 703},
-    {N, 703,k.GetMapName(69)}, -- Feralas
+    {N, 703, a.GetMapName(69)}, -- Feralas
     {A, 1019, 762}, -- Ambassador of the Horde
     {A, 1019, 948}, -- Ambassador of the Alliance
     {C, 711, 1019},
-    {N, 1019,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1019, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 761, 4996}, -- Explore Southern Barrens
     {C, 711, 761},
-    {N, 761,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 761, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 712, 4981}, -- Southern Barrens Quests
     {A, 712, 4937}, -- Southern Barrens Quests
     {C, 711, 712},
-    {N, 712,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 712, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 688, 711},
-    {N, 711,k.GetMapName(199)}, -- Southern Barrens
+    {N, 711, a.GetMapName(199)}, -- Southern Barrens
     {A, 1002, 762}, -- Ambassador of the Horde
     {C, 697, 1002},
-    {N, 1002,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1002, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 767, 848}, -- Explore Desolace
     {C, 697, 767},
-    {N, 767,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 767, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 698, 4930}, -- Desolace Quests
     {C, 697, 698},
-    {N, 698,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 698, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 688, 697},
-    {N, 697,k.GetMapName(66)}, -- Desolace
+    {N, 697, a.GetMapName(66)}, -- Desolace
     {A, 1021, 762}, -- Ambassador of the Horde
     {A, 1021, 948}, -- Ambassador of the Alliance
     {C, 709, 1021},
-    {N, 1021,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1021, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 766, 847}, -- Explore Stonetalon Mountains
     {C, 709, 766},
-    {N, 766,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 766, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 710, 4980}, -- Stonetalon Mountains Quests
     {A, 710, 4936}, -- Stonetalon Mountains Quests
     {C, 709, 710},
-    {N, 710,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 710, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 688, 709},
-    {N, 709,k.GetMapName(65)}, -- Stonetalon Mountains
+    {N, 709, a.GetMapName(65)}, -- Stonetalon Mountains
     {A, 997, 948}, -- Ambassador of the Alliance
     {C, 689, 997},
-    {N, 997,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 997, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 764, 845}, -- Explore Ashenvale
     {C, 689, 764},
-    {N, 764,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 764, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 690, 4976}, -- Ashenvale Quests
     {A, 690, 4925}, -- Ashenvale Quests
     {C, 689, 690},
-    {N, 690,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 690, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 688, 689},
-    {N, 689,k.GetMapName(63)}, -- Ashenvale
+    {N, 689, a.GetMapName(63)}, -- Ashenvale
     {A, 990, 762}, -- Ambassador of the Horde
     {C, 691, 990},
-    {N, 990,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 990, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 771, 852}, -- Explore Azshara
     {C, 691, 771},
-    {N, 771,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 771, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 692, 5547}, -- Glutton for Shadowy Punishment
     {A, 692, 5546}, -- Glutton for Icy Punishment
     {A, 692, 5448}, -- Glutton for Fiery Punishment
     {A, 692, 5454}, -- Joy Ride
     {A, 692, 4927}, -- Azshara Quests
     {C, 691, 692},
-    {N, 692,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 692, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 691, 11201}, -- Defender of Azeroth: Legion Invasions
     {A, 691, 11200}, -- Stand Against the Legion
     {C, 688, 691},
-    {N, 691,k.GetMapName(76)}, -- Azshara
+    {N, 691, a.GetMapName(76)}, -- Azshara
     {A, 1001, 948}, -- Ambassador of the Alliance
     {C, 695, 1001},
-    {N, 1001,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1001, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 762, 844}, -- Explore Darkshore
     {C, 695, 762},
-    {N, 762,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 762, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 696, 5453}, -- Ghosts in the Dark
     {A, 696, 4928}, -- Darkshore Quests
     {C, 695, 696},
-    {N, 696,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 696, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 688, 695},
-    {N, 695,k.GetMapName(62)}, -- Darkshore
+    {N, 695, a.GetMapName(62)}, -- Darkshore
     {A, 1015, 2336}, -- Insane in the Membrane
     {A, 1015, 762}, -- Ambassador of the Horde
     {C, 705, 1015},
-    {N, 1015,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1015, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 760, 750}, -- Explore Northern Barrens
     {C, 705, 760},
-    {N, 760,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 760, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 706, 4933}, -- Northern Barrens Quests
     {C, 705, 706},
-    {N, 706,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 706, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 705, 16431}, -- Against the Elements
     {A, 705, 11201}, -- Defender of Azeroth: Legion Invasions
     {A, 705, 11200}, -- Stand Against the Legion
     {C, 688, 705},
-    {N, 705,k.GetMapName(10)}, -- Northern Barrens
+    {N, 705, a.GetMapName(10)}, -- Northern Barrens
     {A, 775, 9924}, -- Field Photographer
     {A, 775, 855}, -- Explore Moonglade
     {C, 774, 775},
-    {N, 775,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 775, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {C, 688, 774},
-    {N, 774,k.GetMapName(80)}, -- Moonglade
+    {N, 774, a.GetMapName(80)}, -- Moonglade
     {A, 1014, 762}, -- Ambassador of the Horde
     {C, 754, 1014},
-    {N, 1014,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1014, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 755, 736}, -- Explore Mulgore
     {C, 754, 755},
-    {N, 755,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 755, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {C, 688, 754},
-    {N, 754,k.GetMapName(7)}, -- Mulgore
+    {N, 754, a.GetMapName(7)}, -- Mulgore
     {A, 1003, 762}, -- Ambassador of the Horde
     {C, 752, 1003},
-    {N, 1003,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1003, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 753, 9924}, -- Field Photographer
     {A, 753, 728}, -- Explore Durotar
     {C, 752, 753},
-    {N, 753,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 753, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 752, 4790}, -- Zalazane's Fall
     {C, 688, 752},
-    {N, 752,k.GetMapName(1)}, -- Durotar
+    {N, 752, a.GetMapName(1)}, -- Durotar
     {A, 1025, 948}, -- Ambassador of the Alliance
     {C, 756, 1025},
-    {N, 1025,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1025, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 757, 842}, -- Explore Teldrassil
     {C, 756, 757},
-    {N, 757,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 757, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {C, 688, 756},
-    {N, 756,k.GetMapName(57)}, -- Teldrassil
+    {N, 756, a.GetMapName(57)}, -- Teldrassil
     {A, 923, 604}, -- Wrath of the Alliance
     {A, 923, 611}, -- Bleeding Bloodhoof
     {C, 688, 923},
-    {N, 923,k.GetMapName(88)}, -- Thunder Bluff
+    {N, 923, a.GetMapName(88)}, -- Thunder Bluff
     {A, 1018, 762}, -- Ambassador of the Horde
     {C, 921, 1018},
-    {N, 1018,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1018, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 921, 604}, -- Wrath of the Alliance
     {A, 921, 11065}, -- It All Makes Sense Now
     {A, 921, 1006}, -- City Defender
@@ -9205,321 +9206,321 @@ tasks = {
     {A, 921, 14817}, -- Opposing Orgrimmar
     {A, 921, 610}, -- Orgrimmar Offensive
     {C, 688, 921},
-    {N, 921,k.GetMapName(85)}, -- Orgrimmar
+    {N, 921, a.GetMapName(85)}, -- Orgrimmar
     {A, 975, 603}, -- Wrath of the Horde
     {A, 975, 617}, -- Immortal No More
     {C, 688, 975},
-    {N, 975,k.GetMapName(89)}, -- Darnassus
+    {N, 975, a.GetMapName(89)}, -- Darnassus
     {A, 688, 7520}, -- The Loremaster
     {A, 688, 43}, -- Kalimdor Explorer
     {A, 688, 1678}, -- Loremaster of Kalimdor
     {C, 648, 688},
-    {N, 688,k.GetMapName(12)}, -- Kalimdor
+    {N, 688, a.GetMapName(12)}, -- Kalimdor
     {A, 749, 777}, -- Explore Deadwind Pass
     {C, 748, 749},
-    {N, 749,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 749, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {C, 687, 748},
-    {N, 748,k.GetMapName(42)}, -- Deadwind Pass
+    {N, 748, a.GetMapName(42)}, -- Deadwind Pass
     {A, 999, 762}, -- Ambassador of the Horde
     {A, 999, 948}, -- Ambassador of the Alliance
     {C, 660, 999},
-    {N, 999,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 999, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 744, 9924}, -- Field Photographer
     {A, 744, 766}, -- Explore Blasted Lands
     {C, 660, 744},
-    {N, 744,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 744, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 662, 4909}, -- Blasted Lands Quests
     {C, 660, 662},
-    {N, 662,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 662, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 660, 11297}, -- The Balance of Light and Shadow
     {A, 660, 9618}, -- The Iron Invasion
     {C, 687, 660},
-    {N, 660,k.GetMapName(17)}, -- Blasted Lands
+    {N, 660, a.GetMapName(17)}, -- Blasted Lands
     {A, 745, 9924}, -- Field Photographer
     {A, 745, 775}, -- Explore Burning Steppes
     {C, 663, 745},
-    {N, 745,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 745, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 664, 4901}, -- Burning Steppes Quests
     {C, 663, 664},
-    {N, 664,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 664, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 663, 11296}, -- The Ancient Keeper
     {C, 687, 663},
-    {N, 663,k.GetMapName(36)}, -- Burning Steppes
+    {N, 663, a.GetMapName(36)}, -- Burning Steppes
     {A, 1023, 948}, -- Ambassador of the Alliance
     {C, 683, 1023},
-    {N, 1023,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1023, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 737, 782}, -- Explore Swamp of Sorrows
     {C, 683, 737},
-    {N, 737,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 737, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 684, 4904}, -- Swamp of Sorrows Quests
     {C, 683, 684},
-    {N, 684,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 684, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 687, 683},
-    {N, 683,k.GetMapName(51)}, -- Swamp of Sorrows
+    {N, 683, a.GetMapName(51)}, -- Swamp of Sorrows
     {A, 743, 774}, -- Explore Searing Gorge
     {C, 679, 743},
-    {N, 743,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 743, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 680, 4910}, -- Searing Gorge Quests
     {C, 679, 680},
-    {N, 680,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 680, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 687, 679},
-    {N, 679,k.GetMapName(32)}, -- Searing Gorge
+    {N, 679, a.GetMapName(32)}, -- Searing Gorge
     {A, 738, 765}, -- Explore Badlands
     {C, 659, 738},
-    {N, 738,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 738, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 661, 5444}, -- "Ready, Set, Goat!"
     {A, 661, 4900}, -- Badlands Quests
     {C, 659, 661},
-    {N, 661,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 661, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 659, 16431}, -- Against the Elements
     {C, 687, 659},
-    {N, 659,k.GetMapName(15)}, -- Badlands
+    {N, 659, a.GetMapName(15)}, -- Badlands
     {A, 778, 945}, -- The Argent Champion
     {A, 778, 946}, -- The Argent Dawn
     {C, 667, 778},
-    {N, 778,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 778, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 747, 9924}, -- Field Photographer
     {A, 747, 771}, -- Explore Eastern Plaguelands
     {C, 667, 747},
-    {N, 747,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 747, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 668, 5442}, -- Full Caravan
     {A, 668, 4892}, -- Eastern Plaguelands Quests
     {C, 667, 668},
-    {N, 668,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 668, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 667, 11297}, -- The Balance of Light and Shadow
     {C, 687, 667},
-    {N, 667,k.GetMapName(23)}, -- Eastern Plaguelands
+    {N, 667, a.GetMapName(23)}, -- Eastern Plaguelands
     {A, 1024, 762}, -- Ambassador of the Horde
     {C, 673, 1024},
-    {N, 1024,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1024, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 742, 773}, -- Explore The Hinterlands
     {C, 673, 742},
-    {N, 742,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 742, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 674, 4897}, -- Hinterlands Quests
     {C, 673, 674},
-    {N, 674,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 674, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 687, 673},
-    {N, 673,k.GetMapName(26)}, -- The Hinterlands
+    {N, 673, a.GetMapName(26)}, -- The Hinterlands
     {A, 1027, 762}, -- Ambassador of the Horde
     {A, 1027, 948}, -- Ambassador of the Alliance
     {C, 685, 1027},
-    {N, 1027,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1027, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 746, 9924}, -- Field Photographer
     {A, 746, 770}, -- Explore Western Plaguelands
     {C, 685, 746},
-    {N, 746,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 746, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 686, 4893}, -- Western Plaguelands Quests
     {C, 685, 686},
-    {N, 686,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 686, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 687, 685},
-    {N, 685,k.GetMapName(22)}, -- Western Plaguelands
+    {N, 685, a.GetMapName(22)}, -- Western Plaguelands
     {A, 993, 2336}, -- Insane in the Membrane
     {A, 993, 871}, -- "Avast Ye, Admiral!"
     {A, 993, 762}, -- Ambassador of the Horde
     {C, 665, 993},
-    {N, 993,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 993, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1164, 396}, -- Gurubashi Arena Grand Master
     {A, 1164, 389}, -- Gurubashi Arena Master
     {C, 665, 1164},
-    {N, 1164,k.GetCategoryInfoTitle(95)}, -- Player vs. Player
+    {N, 1164, a.GetCategoryInfoTitle(95)}, -- Player vs. Player
     {A, 740, 9924}, -- Field Photographer
     {A, 740, 4995}, -- Explore the Cape of Stranglethorn
     {C, 665, 740},
-    {N, 740,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 740, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 666, 4905}, -- Cape of Stranglethorn Quests
     {C, 665, 666},
-    {N, 666,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 666, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 687, 665},
-    {N, 665,k.GetMapName(210)}, -- The Cape of Stranglethorn
+    {N, 665, a.GetMapName(210)}, -- The Cape of Stranglethorn
     {A, 1016, 762}, -- Ambassador of the Horde
     {A, 1016, 948}, -- Ambassador of the Alliance
     {C, 675, 1016},
-    {N, 1016,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1016, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 739, 17366}, -- Relics of a Fallen Empire
     {A, 739, 781}, -- Explore Northern Stranglethorn
     {C, 675, 739},
-    {N, 739,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 739, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 676, 941}, -- Hemet Nesingwary: The Collected Quests
     {A, 676, 940}, -- The Green Hills of Stranglethorn
     {A, 676, 4906}, -- Northern Stranglethorn Quests
     {C, 675, 676},
-    {N, 676,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 676, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 687, 675},
-    {N, 675,k.GetMapName(50)}, -- Northern Stranglethorn
+    {N, 675, a.GetMapName(50)}, -- Northern Stranglethorn
     {A, 996, 762}, -- Ambassador of the Horde
     {A, 996, 948}, -- Ambassador of the Alliance
     {C, 649, 996},
-    {N, 996,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 996, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 741, 761}, -- Explore Arathi Highlands
     {C, 649, 741},
-    {N, 741,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 741, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 650, 4896}, -- Arathi Highlands Quests
     {C, 649, 650},
-    {N, 650,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 650, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 687, 649},
-    {N, 649,k.GetMapName(14)}, -- Arathi Highlands
+    {N, 649, a.GetMapName(14)}, -- Arathi Highlands
     {A, 1012, 2336}, -- Insane in the Membrane
     {A, 1012, 762}, -- Ambassador of the Horde
     {C, 671, 1012},
-    {N, 1012,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1012, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 736, 9924}, -- Field Photographer
     {A, 736, 772}, -- Explore Hillsbrad Foothills
     {C, 671, 736},
-    {N, 736,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 736, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 672, 4895}, -- Hillsbrad Foothills Quests
     {C, 671, 672},
-    {N, 672,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 672, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 671, 11201}, -- Defender of Azeroth: Legion Invasions
     {A, 671, 11200}, -- Stand Against the Legion
     {C, 687, 671},
-    {N, 671,k.GetMapName(25)}, -- Hillsbrad Foothills
+    {N, 671, a.GetMapName(25)}, -- Hillsbrad Foothills
     {A, 1029, 948}, -- Ambassador of the Alliance
     {C, 656, 1029},
-    {N, 1029,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1029, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 731, 9924}, -- Field Photographer
     {A, 731, 841}, -- Explore Wetlands
     {C, 656, 731},
-    {N, 731,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 731, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 658, 12456}, -- Loch Modan & Wetlands Quests
     {A, 658, 12429}, -- Wetlands Quests
     {C, 656, 658},
-    {N, 658,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 658, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 687, 656},
-    {N, 656,k.GetMapName(56)}, -- Wetlands
+    {N, 656, a.GetMapName(56)}, -- Wetlands
     {A, 1007, 948}, -- Ambassador of the Alliance
     {C, 652, 1007},
-    {N, 1007,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1007, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 735, 9924}, -- Field Photographer
     {A, 735, 778}, -- Explore Duskwood
     {C, 652, 735},
-    {N, 735,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 735, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 654, 12455}, -- Westfall & Duskwood Quests
     {A, 654, 12430}, -- Duskwood Quests
     {C, 652, 654},
-    {N, 654,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 654, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 687, 652},
-    {N, 652,k.GetMapName(47)}, -- Duskwood
+    {N, 652, a.GetMapName(47)}, -- Duskwood
     {A, 1017, 948}, -- Ambassador of the Alliance
     {C, 678, 1017},
-    {N, 1017,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1017, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 734, 780}, -- Explore Redridge Mountains
     {C, 678, 734},
-    {N, 734,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 734, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 677, 4902}, -- Redridge Mountains Quests
     {C, 678, 677},
-    {N, 677,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 677, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 687, 678},
-    {N, 678,k.GetMapName(49)}, -- Redridge Mountains
+    {N, 678, a.GetMapName(49)}, -- Redridge Mountains
     {A, 1020, 762}, -- Ambassador of the Horde
     {C, 681, 1020},
-    {N, 1020,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1020, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 732, 769}, -- Explore Silverpine Forest
     {C, 681, 732},
-    {N, 732,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 732, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 682, 4894}, -- Silverpine Forest Quests
     {C, 681, 682},
-    {N, 682,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 682, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 687, 681},
-    {N, 681,k.GetMapName(21)}, -- Silverpine Forest
+    {N, 681, a.GetMapName(21)}, -- Silverpine Forest
     {A, 1013, 948}, -- Ambassador of the Alliance
     {C, 655, 1013},
-    {N, 1013,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1013, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 729, 9924}, -- Field Photographer
     {A, 729, 779}, -- Explore Loch Modan
     {C, 655, 729},
-    {N, 729,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 729, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 657, 12456}, -- Loch Modan & Wetlands Quests
     {A, 657, 4899}, -- Loch Modan Quests
     {C, 655, 657},
-    {N, 657,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 657, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 687, 655},
-    {N, 655,k.GetMapName(48)}, -- Loch Modan
+    {N, 655, a.GetMapName(48)}, -- Loch Modan
     {A, 1028, 948}, -- Ambassador of the Alliance
     {C, 651, 1028},
-    {N, 1028,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1028, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 730, 9924}, -- Field Photographer
     {A, 730, 802}, -- Explore Westfall
     {C, 651, 730},
-    {N, 730,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 730, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 653, 12455}, -- Westfall & Duskwood Quests
     {A, 653, 4903}, -- Westfall Quests
     {C, 651, 653},
-    {N, 653,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 653, a.GetCategoryInfoTitle(96), true}, -- Quests
     {A, 651, 11201}, -- Defender of Azeroth: Legion Invasions
     {A, 651, 11200}, -- Stand Against the Legion
     {C, 687, 651},
-    {N, 651,k.GetMapName(52)}, -- Westfall
+    {N, 651, a.GetMapName(52)}, -- Westfall
     {A, 1026, 762}, -- Ambassador of the Horde
     {C, 725, 1026},
-    {N, 1026,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1026, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 726, 768}, -- Explore Tirisfal Glades
     {C, 725, 726},
-    {N, 726,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 726, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 1201, 15579}, -- Return to Lordaeron
     {C, 725, 1201},
-    {N, 1201,k.GetCategoryInfoTitle(96), true}, -- Quests
+    {N, 1201, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 687, 725},
-    {N, 725,k.GetMapName(18)}, -- Tirisfal Glades
+    {N, 725, a.GetMapName(18)}, -- Tirisfal Glades
     {A, 1006, 948}, -- Ambassador of the Alliance
     {C, 722, 1006},
-    {N, 1006,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1006, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 724, 9924}, -- Field Photographer
     {A, 724, 776}, -- Explore Elwynn Forest
     {C, 722, 724},
-    {N, 724,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 724, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {C, 687, 722},
-    {N, 722,k.GetMapName(37)}, -- Elwynn Forest
+    {N, 722, a.GetMapName(37)}, -- Elwynn Forest
     {A, 1005, 948}, -- Ambassador of the Alliance
     {C, 721, 1005},
-    {N, 1005,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1005, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 723, 627}, -- Explore Dun Morogh
     {C, 721, 723},
-    {N, 723,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 723, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 721, 4786}, -- Operation: Gnomeregan
     {A, 721, 11201}, -- Defender of Azeroth: Legion Invasions
     {A, 721, 11200}, -- Stand Against the Legion
     {C, 687, 721},
-    {N, 721,k.GetMapName(27)}, -- Dun Morogh
+    {N, 721, a.GetMapName(27)}, -- Dun Morogh
     {A, 974, 604}, -- Wrath of the Alliance
     {A, 974, 612}, -- Downing the Dark Lady
     {C, 687, 974},
-    {N, 974,k.GetMapName(90)}, -- Undercity
+    {N, 974, a.GetMapName(90)}, -- Undercity
     {A, 970, 603}, -- Wrath of the Horde
     {A, 970, 619}, -- For the Horde!
     {A, 970, 616}, -- Overthrow the Council
     {C, 687, 970},
-    {N, 970,k.GetMapName(87)}, -- Ironforge
+    {N, 970, a.GetMapName(87)}, -- Ironforge
     {A, 1022, 948}, -- Ambassador of the Alliance
     {C, 922, 1022},
-    {N, 1022,k.GetCategoryInfoTitle(201), true}, -- Reputation
+    {N, 1022, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1033, 9924}, -- Field Photographer
     {C, 922, 1033},
-    {N, 1033,k.GetCategoryInfoTitle(97), true}, -- Exploration
+    {N, 1033, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 922, 603}, -- Wrath of the Horde
     {A, 922, 11065}, -- It All Makes Sense Now
     {A, 922, 388}, -- City Defender
     {A, 922, 14815}, -- Executing the Exarch
     {A, 922, 615}, -- Storming Stormwind
     {C, 687, 922},
-    {N, 922,k.GetMapName(84)}, -- Stormwind City
+    {N, 922, a.GetMapName(84)}, -- Stormwind City
     {A, 687, 7520}, -- The Loremaster
     {A, 687, 42}, -- Eastern Kingdoms Explorer
     {A, 687, 1676}, -- Loremaster of Eastern Kingdoms
     {C, 648, 687},
-    {N, 687,k.GetMapName(13)}, -- Eastern Kingdoms
+    {N, 687, a.GetMapName(13)}, -- Eastern Kingdoms
     {A, 648, 943}, -- The Diplomat
     {A, 648, 942}, -- The Diplomat
     {A, 648, 944}, -- They Love Me In That Tunnel
     {A, 648, 1206}, -- To All The Squirrels I've Loved Before
     {C, 1, 648},
-    {N, 648,k.L["Zones"]}, -- Zones
+    {N, 648, a.L["Zones"]}, -- Zones
     {C, 883, 1},
-    {N, 1,k.GetCategoryInfoTitle(14864)}, -- Classic
+    {N, 1, a.GetCategoryInfoTitle(14864)}, -- Classic
     {A, 1172, 3896}, -- Onyx Panther
     {A, 1172, 3636}, -- Jade Tiger
     {A, 1172, 4496}, -- It's Over Nine Thousand!
     {C, 1431, 1172},
-    {N, 1172,k.GetCategoryInfoTitle(81)}, -- Feats of Strength
+    {N, 1172, a.GetCategoryInfoTitle(81)}, -- Feats of Strength
     {A, 1171, 15781}, -- The Joy of Toy
     {A, 1171, 12996}, -- Toybox Tycoon
     {A, 1171, 11176}, -- Remember to Share
@@ -9535,7 +9536,7 @@ tasks = {
     {A, 1171, 1020}, -- Ten Tabards
     {A, 1171, 621}, -- Represent
     {C, 1431, 1171},
-    {N, 1171,k.GetCategoryInfoTitle(15246)}, -- Collections
+    {N, 1171, a.GetCategoryInfoTitle(15246)}, -- Collections
     {A, 1435, 9070}, -- Overstuffed
     {A, 1435, 6610}, -- All Pets Allowed
     {A, 1435, 6609}, -- No Favorites
@@ -9552,7 +9553,7 @@ tasks = {
     {A, 1435, 6566}, -- Just a Pup
     {A, 1435, 7433}, -- Newbie
     {C, 1170, 1435},
-    {N, 1435,k.GetCategoryInfoTitle(15120), true}, -- Level
+    {N, 1435, a.GetCategoryInfoTitle(15120), true}, -- Level
     {A, 1434, 6620}, -- No Time To Heal
     {A, 1434, 6619}, -- Win Streak
     {A, 1434, 6618}, -- On A Roll
@@ -9583,7 +9584,7 @@ tasks = {
     {A, 1434, 6593}, -- Experienced Pet Battler
     {A, 1434, 6594}, -- Cat Fight!
     {C, 1170, 1434},
-    {N, 1434,k.GetCategoryInfoTitle(15119), true}, -- Battle
+    {N, 1434, a.GetCategoryInfoTitle(15119), true}, -- Battle
     {A, 1433, 6571}, -- That Was Close!
     {A, 1433, 6608}, -- Family Reunion
     {A, 1433, 7464}, -- Quality & Quantity
@@ -9618,9 +9619,9 @@ tasks = {
     {A, 1433, 7483}, -- Battle Master
     {A, 1433, 7482}, -- Trainer Extraordinaire
     {C, 1170, 1433},
-    {N, 1433,k.GetCategoryInfoTitle(15118), true}, -- Collect
+    {N, 1433, a.GetCategoryInfoTitle(15118), true}, -- Collect
     {C, 1431, 1170},
-    {N, 1170,k.GetCategoryInfoTitle(15117)}, -- Pet Battles
+    {N, 1170, a.GetCategoryInfoTitle(15117)}, -- Pet Battles
     {A, 1163, 14002}, -- Heritage of the Vulpera
     {A, 1163, 13206}, -- Allied Races: Vulpera
     {A, 1163, 13503}, -- Heritage of the Zandalari
@@ -9660,7 +9661,7 @@ tasks = {
     {A, 1163, 523}, -- 5 Exalted Reputations
     {A, 1163, 522}, -- Somebody Likes Me
     {C, 1431, 1163},
-    {N, 1163,k.GetCategoryInfoTitle(201)}, -- Reputation
+    {N, 1163, a.GetCategoryInfoTitle(201)}, -- Reputation
     {A, 1524, 17499}, -- Renowned Tailoring Specialist
     {A, 1524, 141}, -- Ultimate Triage
     {A, 1524, 18888}, -- Quite the Quilt IV
@@ -9668,7 +9669,7 @@ tasks = {
     {A, 1524, 18886}, -- Quite the Quilt II
     {A, 1524, 18885}, -- Quite the Quilt I
     {C, 1149, 1524},
-    {N, 1524,k.GetCategoryInfoTitle(15496)}, -- Tailoring
+    {N, 1524, a.GetCategoryInfoTitle(15496)}, -- Tailoring
     {A, 1510, 17498}, -- Renowned Leatherworking Specialist
     {A, 1510, 18900}, -- Budget Bard
     {A, 1510, 18898}, -- That's Just Cruel
@@ -9678,7 +9679,7 @@ tasks = {
     {A, 1510, 18882}, -- A Test of Scale II
     {A, 1510, 18881}, -- A Test of Scale I
     {C, 1149, 1510},
-    {N, 1510,k.GetCategoryInfoTitle(15495)}, -- Leatherworking
+    {N, 1510, a.GetCategoryInfoTitle(15495)}, -- Leatherworking
     {A, 1465, 18909}, -- Fantastic Figurines
     {A, 1465, 18897}, -- Can't Crush These
     {A, 1465, 18893}, -- Plentiful Prospects
@@ -9687,7 +9688,7 @@ tasks = {
     {A, 1465, 18889}, -- Generations of Gemstones II
     {A, 1465, 18880}, -- Generations of Gemstones I
     {C, 1149, 1465},
-    {N, 1465,k.GetCategoryInfoTitle(15494)}, -- Jewelcrafting
+    {N, 1465, a.GetCategoryInfoTitle(15494)}, -- Jewelcrafting
     {A, 1464, 18859}, -- Forge and Befuddle
     {A, 1464, 18858}, -- Forge and Befuddle
     {A, 1464, 18738}, -- Population In-Crease
@@ -9698,7 +9699,7 @@ tasks = {
     {A, 1464, 18877}, -- Ink and Quill II
     {A, 1464, 18876}, -- Ink and Quill I
     {C, 1149, 1464},
-    {N, 1464,k.GetCategoryInfoTitle(15493)}, -- Inscription
+    {N, 1464, a.GetCategoryInfoTitle(15493)}, -- Inscription
     {A, 1462, 17207}, -- Discombobberlated
     {A, 1462, 13502}, -- Secret Fish and Where to Find Them
     {A, 1462, 1516}, -- Accomplished Angler
@@ -9715,7 +9716,7 @@ tasks = {
     {A, 1462, 1257}, -- The Scavenger
     {A, 1462, 153}, -- The Old Gnome and the Sea
     {C, 1149, 1462},
-    {N, 1462,k.GetCategoryInfoTitle(171)}, -- Fishing
+    {N, 1462, a.GetCategoryInfoTitle(171)}, -- Fishing
     {A, 1461, 18907}, -- Chromatic Calibration: Ectoplasmic Specs
     {A, 1461, 18906}, -- Chromatic Calibration: Cranial Cannons
     {A, 1461, 18905}, -- Chromatic Calibration: Retinal Armor
@@ -9729,7 +9730,7 @@ tasks = {
     {A, 1461, 18873}, -- Dangerous Devices II
     {A, 1461, 18872}, -- Dangerous Devices I
     {C, 1149, 1461},
-    {N, 1461,k.GetCategoryInfoTitle(15492)}, -- Engineering
+    {N, 1461, a.GetCategoryInfoTitle(15492)}, -- Engineering
     {A, 1460, 18789}, -- Simply Enchanting
     {A, 1460, 18785}, -- Shattered Expectations
     {A, 1460, 18871}, -- Enchantment IV
@@ -9741,7 +9742,7 @@ tasks = {
     {A, 1460, 18767}, -- Disenchantment II
     {A, 1460, 18766}, -- Disenchantment I
     {C, 1149, 1460},
-    {N, 1460,k.GetCategoryInfoTitle(15491)}, -- Enchanting
+    {N, 1460, a.GetCategoryInfoTitle(15491)}, -- Enchanting
     {A, 1458, 17736}, -- The Gift of Cheese
     {A, 1458, 1563}, -- Hail to the Chef
     {A, 1458, 3296}, -- Cooking with Style
@@ -9761,7 +9762,7 @@ tasks = {
     {A, 1458, 1999}, -- 10 Cooking Awards
     {A, 1458, 1998}, -- Cooking Award
     {C, 1149, 1458},
-    {N, 1458,k.GetCategoryInfoTitle(170)}, -- Cooking
+    {N, 1458, a.GetCategoryInfoTitle(170)}, -- Cooking
     {A, 1457, 17497}, -- Renowned Armorsmith
     {A, 1457, 17496}, -- Renowned Weaponsmith
     {A, 1457, 18852}, -- "Weaponsmithing, Reborn"
@@ -9771,7 +9772,7 @@ tasks = {
     {A, 1457, 18864}, -- Anvil Mastery II
     {A, 1457, 18862}, -- Anvil Mastery I
     {C, 1149, 1457},
-    {N, 1457,k.GetCategoryInfoTitle( 15490)}, -- Blacksmithing
+    {N, 1457, a.GetCategoryInfoTitle( 15490)}, -- Blacksmithing
     {A, 1459, 5511}, -- It's Always in the Last Place You Look
     {A, 1459, 9422}, -- "The Search For Fact, Not Truth"
     {A, 1459, 4856}, -- It Belongs in a Museum!
@@ -9781,7 +9782,7 @@ tasks = {
     {A, 1459, 5469}, -- Diggerer
     {A, 1459, 5315}, -- Digger
     {C, 1149, 1459},
-    {N, 1459,k.GetCategoryInfoTitle(15071)}, -- Archaeology
+    {N, 1459, a.GetCategoryInfoTitle(15071)}, -- Archaeology
     {A, 1456, 18963}, -- Burst Damage
     {A, 1456, 18904}, -- Iron to Vendor Gold
     {A, 1456, 18723}, -- "Look, You're Specialized!"
@@ -9795,18 +9796,18 @@ tasks = {
     {A, 1456, 18731}, -- A Cure for All Ails II
     {A, 1456, 18726}, -- A Cure for All Ails I
     {C, 1149, 1456},
-    {N, 1456,k.GetCategoryInfoTitle(15489)}, -- Alchemy
+    {N, 1456, a.GetCategoryInfoTitle(15489)}, -- Alchemy
     {A, 1149, 17412}, -- Craftsman of the Argent Dawn
     {A, 1149, 17410}, -- Craftsman of the Zandalar Tribe
     {A, 1149, 16791}, -- Merchant Artisan
     {A, 1149, 16799}, -- Personal Crafter
     {C, 1431, 1149},
-    {N, 1149,k.GetCategoryInfoTitle(169)}, -- Professions
+    {N, 1149, a.GetCategoryInfoTitle(169)}, -- Professions
     {A, 1169, 4478}, -- Looking For Multitudes
     {A, 1169, 4477}, -- Looking For Many
     {A, 1169, 4476}, -- Looking For More
     {C, 1431, 1169},
-    {N, 1169,k.GetCategoryInfoTitle(168)}, -- Dungeons & Raids
+    {N, 1169, a.GetCategoryInfoTitle(168)}, -- Dungeons & Raids
     {A, 1161, 16790}, -- Curious Coin
     {A, 1161, 16789}, -- Lucky Penny
     {A, 1161, 1833}, -- It's Happy Hour Somewhere
@@ -9814,7 +9815,7 @@ tasks = {
     {A, 1161, 1244}, -- Well Read
     {A, 1161, 964}, -- Going Down?
     {C, 1431, 1161},
-    {N, 1161,k.GetCategoryInfoTitle(97)}, -- Exploration
+    {N, 1161, a.GetCategoryInfoTitle(97)}, -- Exploration
     {A, 1159, 5752}, -- Justly Rewarded
     {A, 1159, 1182}, -- The Bread Winner
     {A, 1159, 4957}, -- 20 Dungeon Quests Completed
@@ -9844,7 +9845,7 @@ tasks = {
     {A, 1159, 504}, -- 100 Quests Completed
     {A, 1159, 503}, -- 50 Quests Completed
     {C, 1431, 1159},
-    {N, 1159,k.GetCategoryInfoTitle(96)}, -- Quests
+    {N, 1159, a.GetCategoryInfoTitle(96)}, -- Quests
     {A, 1432, 19398}, -- Dreaming of the Aspects
     {A, 1432, 19397}, -- Dreaming of Wyrms
     {A, 1432, 19326}, -- Dreaming of Drakes
@@ -9910,110 +9911,110 @@ tasks = {
     {A, 1432, 7}, -- Level 20
     {A, 1432, 6}, -- Level 10
     {C, 1431, 1432},
-    {N, 1432,k.GetCategoryInfoTitle(92)}, -- Character
+    {N, 1432, a.GetCategoryInfoTitle(92)}, -- Character
     {A, 953, 14222}, -- Exile's Reach
     {C, 1160, 953},
-    {N, 953,(select(2, k.GetAchievementInfo(14222)))}, -- Exile's Reach
+    {N, 953, (select(2, a.GetAchievementInfo(14222)))}, -- Exile's Reach
     {C, 1431, 1160},
-    {N, 1160,k.L["Zones"]}, -- Zones
+    {N, 1160, a.L["Zones"]}, -- Zones
     {C, 883, 1431},
-    {N, 1431,k.L["Cross-Expansion"]}, -- Cross-Expansion
+    {N, 1431, a.L["Cross-Expansion"]}, -- Cross-Expansion
     {F, 1399, "SearchResultsCategories"},
     {C, 883, 1399},
-    {N, 1399,k.L["Search Results"]}, -- Search Results
+    {N, 1399, a.L["Search Results"]}, -- Search Results
     function() categories[1223].IsSelectedZone = true; end,
     {F, 1223, "SelectedZoneCategories"},
     {C, 883, 1223},
-    {N, 1223,k.L["Selected Zone"]}, -- Selected Zone
+    {N, 1223, a.L["Selected Zone"]}, -- Selected Zone
     function() categories[1213].IsCurrentZone = true; end,
     {F, 1213, "CurrentZoneCategories"},
     {C, 883, 1213},
-    {N, 1213,k.L["Current Zone"]}, -- Current Zone
+    {N, 1213, a.L["Current Zone"]}, -- Current Zone
     function() categories[1217].IsWatchList = true; end,
     {F, 1217, "WatchListCategories"},
     {C, 883, 1217},
-    {N, 1217,k.L["Watch List"]}, -- Watch List
+    {N, 1217, a.L["Watch List"]}, -- Watch List
     {S, 1203},
     {V, 1203},
     {C, 883, 1203},
-    {N, 1203,k.L["Summary"]}, -- Summary
+    {N, 1203, a.L["Summary"]}, -- Summary
     {T, 883, "Expansions"},
-    {N, 883,k.L["Expansions"]}, -- TAB - Expansions
+    {N, 883, a.L["Expansions"]}, -- TAB - Expansions
     {F, 1553, "UncategorizedCategories"},
     {C, 1100, 1553},
-    {N, 1553,k.L["Uncategorized"]}, -- Uncategorized
+    {N, 1553, a.L["Uncategorized"]}, -- Uncategorized
     {F, 1224, "ExcludedCategories"},
     {C, 1100, 1224},
-    {N, 1224,k.L["Excluded"]}, -- Excluded
+    {N, 1224, a.L["Excluded"]}, -- Excluded
     function() categories[1371].IsTracking = true; end,
     {F, 1371, "TrackingAchievementsCategories"},
     {C, 1100, 1371},
-    {N, 1371,k.L["Tracking Achievements"]}, -- Tracking Achievements
+    {N, 1371, a.L["Tracking Achievements"]}, -- Tracking Achievements
     {F, 1395, "SearchResultsCategories"},
     {C, 1100, 1395},
-    {N, 1395,k.L["Search Results"]}, -- Search Results
+    {N, 1395, a.L["Search Results"]}, -- Search Results
     function() categories[1220].IsSelectedZone = true; end,
     {F, 1220, "SelectedZoneCategories"},
     {C, 1100, 1220},
-    {N, 1220,k.L["Selected Zone"]}, -- Selected Zone
+    {N, 1220, a.L["Selected Zone"]}, -- Selected Zone
     function() categories[1212].IsCurrentZone = true; end,
     {F, 1212, "CurrentZoneCategories"},
     {C, 1100, 1212},
-    {N, 1212,k.L["Current Zone"]}, -- Current Zone
+    {N, 1212, a.L["Current Zone"]}, -- Current Zone
     function() categories[1216].IsWatchList = true; end,
     {F, 1216, "WatchListCategories"},
     {C, 1100, 1216},
-    {N, 1216,k.L["Watch List"]}, -- Watch List
+    {N, 1216, a.L["Watch List"]}, -- Watch List
     {S, 1202},
     {V, 1202},
     {C, 1100, 1202},
-    {N, 1202,k.L["Summary"]}, -- Summary
+    {N, 1202, a.L["Summary"]}, -- Summary
     {T, 1100, "Achievements"},
-    {N, 1100,k.L["Achievements"]}, -- TAB - Achievements
+    {N, 1100, a.L["Achievements"]}, -- TAB - Achievements
 };
 
 function exportedCategories.InjectDynamicOptions()
-    local o = k.Options.Layout.InjectDynamicAdjustableCategoryOptions;
+    local o = a.Options.Layout.InjectDynamicAdjustableCategoryOptions;
 
-    o("WatchList", k.L["Watch List"], 1, "Achievements", k.L["Achievements"], false);
-    o("WatchList", k.L["Watch List"], 2, "Expansions", k.L["Expansions"], false);
-    o("WatchList", k.L["Watch List"], 3, "Events", k.L["Events"], false);
-    o("WatchList", k.L["Watch List"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
-    o("WatchList", k.L["Watch List"], 5, "Specials", k.L["Specials"], true);
+    o("WatchList", a.L["Watch List"], 1, "Achievements", a.L["Achievements"], false);
+    o("WatchList", a.L["Watch List"], 2, "Expansions", a.L["Expansions"], false);
+    o("WatchList", a.L["Watch List"], 3, "Events", a.L["Events"], false);
+    o("WatchList", a.L["Watch List"], 4, "PvP", a.GetCategoryInfoTitle(95), false);
+    o("WatchList", a.L["Watch List"], 5, "Specials", a.L["Specials"], true);
 
-    o("CurrentZone", k.L["Current Zone"], 1, "Achievements", k.L["Achievements"], false);
-    o("CurrentZone", k.L["Current Zone"], 2, "Expansions", k.L["Expansions"], false);
-    o("CurrentZone", k.L["Current Zone"], 3, "Events", k.L["Events"], false);
-    o("CurrentZone", k.L["Current Zone"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
-    o("CurrentZone", k.L["Current Zone"], 5, "Specials", k.L["Specials"], true);
+    o("CurrentZone", a.L["Current Zone"], 1, "Achievements", a.L["Achievements"], false);
+    o("CurrentZone", a.L["Current Zone"], 2, "Expansions", a.L["Expansions"], false);
+    o("CurrentZone", a.L["Current Zone"], 3, "Events", a.L["Events"], false);
+    o("CurrentZone", a.L["Current Zone"], 4, "PvP", a.GetCategoryInfoTitle(95), false);
+    o("CurrentZone", a.L["Current Zone"], 5, "Specials", a.L["Specials"], true);
 
-    o("SelectedZone", k.L["Selected Zone"], 1, "Achievements", k.L["Achievements"], false);
-    o("SelectedZone", k.L["Selected Zone"], 2, "Expansions", k.L["Expansions"], false);
-    o("SelectedZone", k.L["Selected Zone"], 3, "Events", k.L["Events"], false);
-    o("SelectedZone", k.L["Selected Zone"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
-    o("SelectedZone", k.L["Selected Zone"], 5, "Specials", k.L["Specials"], true);
+    o("SelectedZone", a.L["Selected Zone"], 1, "Achievements", a.L["Achievements"], false);
+    o("SelectedZone", a.L["Selected Zone"], 2, "Expansions", a.L["Expansions"], false);
+    o("SelectedZone", a.L["Selected Zone"], 3, "Events", a.L["Events"], false);
+    o("SelectedZone", a.L["Selected Zone"], 4, "PvP", a.GetCategoryInfoTitle(95), false);
+    o("SelectedZone", a.L["Selected Zone"], 5, "Specials", a.L["Specials"], true);
 
-    o("SearchResults", k.L["Search Results"], 1, "Achievements", k.L["Achievements"], false);
-    o("SearchResults", k.L["Search Results"], 2, "Expansions", k.L["Expansions"], false);
-    o("SearchResults", k.L["Search Results"], 3, "Events", k.L["Events"], false);
-    o("SearchResults", k.L["Search Results"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
-    o("SearchResults", k.L["Search Results"], 5, "Specials", k.L["Specials"], true);
+    o("SearchResults", a.L["Search Results"], 1, "Achievements", a.L["Achievements"], false);
+    o("SearchResults", a.L["Search Results"], 2, "Expansions", a.L["Expansions"], false);
+    o("SearchResults", a.L["Search Results"], 3, "Events", a.L["Events"], false);
+    o("SearchResults", a.L["Search Results"], 4, "PvP", a.GetCategoryInfoTitle(95), false);
+    o("SearchResults", a.L["Search Results"], 5, "Specials", a.L["Specials"], true);
 
-    o("TrackingAchievements", k.L["Tracking Achievements"], 1, "Achievements", k.L["Achievements"], false);
-    o("TrackingAchievements", k.L["Tracking Achievements"], 2, "Expansions", k.L["Expansions"], false);
-    o("TrackingAchievements", k.L["Tracking Achievements"], 3, "Events", k.L["Events"], false);
-    o("TrackingAchievements", k.L["Tracking Achievements"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
-    o("TrackingAchievements", k.L["Tracking Achievements"], 5, "Specials", k.L["Specials"], true);
+    o("TrackingAchievements", a.L["Tracking Achievements"], 1, "Achievements", a.L["Achievements"], false);
+    o("TrackingAchievements", a.L["Tracking Achievements"], 2, "Expansions", a.L["Expansions"], false);
+    o("TrackingAchievements", a.L["Tracking Achievements"], 3, "Events", a.L["Events"], false);
+    o("TrackingAchievements", a.L["Tracking Achievements"], 4, "PvP", a.GetCategoryInfoTitle(95), false);
+    o("TrackingAchievements", a.L["Tracking Achievements"], 5, "Specials", a.L["Specials"], true);
 
-    o("Excluded", k.L["Excluded"], 1, "Achievements", k.L["Achievements"], false);
-    o("Excluded", k.L["Excluded"], 2, "Expansions", k.L["Expansions"], false);
-    o("Excluded", k.L["Excluded"], 3, "Events", k.L["Events"], false);
-    o("Excluded", k.L["Excluded"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
-    o("Excluded", k.L["Excluded"], 5, "Specials", k.L["Specials"], true);
+    o("Excluded", a.L["Excluded"], 1, "Achievements", a.L["Achievements"], false);
+    o("Excluded", a.L["Excluded"], 2, "Expansions", a.L["Expansions"], false);
+    o("Excluded", a.L["Excluded"], 3, "Events", a.L["Events"], false);
+    o("Excluded", a.L["Excluded"], 4, "PvP", a.GetCategoryInfoTitle(95), false);
+    o("Excluded", a.L["Excluded"], 5, "Specials", a.L["Specials"], true);
 
-    o("Uncategorized", k.L["Uncategorized"], 1, "Achievements", k.L["Achievements"], false);
-    o("Uncategorized", k.L["Uncategorized"], 2, "Expansions", k.L["Expansions"], false);
-    o("Uncategorized", k.L["Uncategorized"], 3, "Events", k.L["Events"], false);
-    o("Uncategorized", k.L["Uncategorized"], 4, "PvP", k.GetCategoryInfoTitle(95), false);
-    o("Uncategorized", k.L["Uncategorized"], 5, "Specials", k.L["Specials"], true);
+    o("Uncategorized", a.L["Uncategorized"], 1, "Achievements", a.L["Achievements"], false);
+    o("Uncategorized", a.L["Uncategorized"], 2, "Expansions", a.L["Expansions"], false);
+    o("Uncategorized", a.L["Uncategorized"], 3, "Events", a.L["Events"], false);
+    o("Uncategorized", a.L["Uncategorized"], 4, "PvP", a.GetCategoryInfoTitle(95), false);
+    o("Uncategorized", a.L["Uncategorized"], 5, "Specials", a.L["Specials"], true);
 end
