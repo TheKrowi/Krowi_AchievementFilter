@@ -1,6 +1,6 @@
 local _, addon = ...;
-addon.Data.CustomWidgetTimers = {};
-local customWidgetTimers = addon.Data.CustomWidgetTimers;
+addon.Data.CustomWidgetEventTimers = {};
+local customWidgetEventTimers = addon.Data.CustomWidgetEventTimers;
 local timers = {};
 
 local minutesAbbr = MINUTES_ABBR:gsub("%%d", "(%%d+)");
@@ -8,7 +8,7 @@ local secondsAbbr = SECONDS_ABBR:gsub("%%d", "(%%d+)");
 local dMinutes = D_MINUTES:gsub("%%d", "(%%d+)");
 local dSeconds = D_SECONDS:gsub("%%d", "(%%d+)");
 
-function customWidgetTimers.GetSecondsLeft(id)
+function customWidgetEventTimers.GetSecondsLeft(id)
     if not timers[id] then
         return nil;
     end
@@ -70,3 +70,16 @@ end
 timers[5323] = function()
     return 0; -- 17-22 minutes but ends when the boss is killed, do not track this time for now and show no time data available
 end
+
+-- 4814 = Zaqali Ruin Investigation areapoi 7460 - use this timer for the event
+-- 4826 = Zaqali Ruin Investigation areapoi 7462
+-- 4869 ??
+-- 4870 ??
+-- 4871 ??
+-- 4872 ??
+-- 4873 ??
+-- 4874 not yet earned reward for this week
+-- 4884 ??
+-- 4885 ??
+-- 4886 ??
+-- 4887 ??
