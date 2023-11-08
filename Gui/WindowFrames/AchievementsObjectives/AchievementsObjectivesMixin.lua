@@ -34,13 +34,11 @@ KrowiAF_AchievementsObjectivesMixin = {
 	}
 };
 
-local defaultMetaWidth, defaultMetaLabelWidth;
+local defaultMetaWidth;
 function KrowiAF_AchievementsObjectivesMixin:OnLoad()
 	self:RegisterEvent("CRITERIA_UPDATE");
 	local meta = self:GetMeta(1);
 	defaultMetaWidth = meta:GetWidth();
-	defaultMetaLabelWidth = meta.Label:GetWidth();
-	print(defaultMetaWidth, defaultMetaLabelWidth)
 end
 
 local refreshOnNextShow;
@@ -196,33 +194,6 @@ end
 
 local function AddMeta(self, index, completed, assetId)
 	local metaCriteria = self:GetMeta(index);
-	metaCriteria:ClearAllPoints();
-	-- if index == 1 then
-	-- 	-- Anchor once all criteria are processed
-	-- 	metaCriteria:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 0);
-	-- 	metaCriteria:SetPoint("RIGHT", self, "LEFT", self:GetWidth() / 2, 0);
-	-- elseif math.fmod(index, 2) == 0 then
-	-- 	local anchorMeta = self:GetMeta(index - 1);
-	-- 	metaCriteria:SetPoint("LEFT", anchorMeta, "RIGHT", 0, 0);
-	-- 	metaCriteria:SetPoint("RIGHT", self, "RIGHT", 0, 0);
-	-- else
-	-- 	local anchorMeta = self:GetMeta(index - 2);
-	-- 	metaCriteria:SetPoint("TOPLEFT", anchorMeta, "BOTTOMLEFT", 0, 2);
-	-- 	metaCriteria:SetPoint("RIGHT", self, "LEFT", self:GetWidth() / 2, 0);
-	-- end
-	if index == 1 then
-		-- Anchor once all criteria are processed
-		metaCriteria:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 0);
-		-- metaCriteria:SetPoint("RIGHT", self, "LEFT", self:GetWidth() / 2, 0);
-	-- elseif math.fmod(index, 2) == 0 then
-	-- 	local anchorMeta = self:GetMeta(index - 1);
-	-- 	metaCriteria:SetPoint("LEFT", anchorMeta, "RIGHT", 0, 0);
-	-- 	metaCriteria:SetPoint("RIGHT", self, "RIGHT", 0, 0);
-	else
-		local anchorMeta = self:GetMeta(index - 1);
-		metaCriteria:SetPoint("TOPLEFT", anchorMeta, "BOTTOMLEFT", 0, 2);
-		-- metaCriteria:SetPoint("RIGHT", self, "LEFT", self:GetWidth() / 2, 0);
-	end
 	local id, name, _, _, _, _, _, _, _, icon = GetAchievementInfo(assetId);
 	metaCriteria:Show();
 	metaCriteria.Id = id;
@@ -249,10 +220,6 @@ local function AddMeta(self, index, completed, assetId)
 		metaCriteria.Label:SetShadowOffset(1, -1)
 		metaCriteria.Label:SetTextColor(0.6, 0.6, 0.6, 1);
 	end
-	-- local minWidth = 200;
-	-- metaCriteria:SetWidth(200);
-	-- metaCriteria:SetWidth(max(minWidth, metaCriteria.Icon:GetWidth() + metaCriteria.Label:GetStringWidth() / 2));
-	-- print(metaCriteria.Label:GetStringWidth() / 2, metaCriteria.Label:IsTruncated())
 end
 
 local progressBarOffset = 10;
@@ -410,6 +377,7 @@ local function FindNumColumns(self, numMetas, numColumns)
 end
 
 local function SetMetaPoints(self, numMetas, offset)
+	offset = offset or 0;
 	local numColumns = max(2, floor(self:GetWidth() / defaultMetaWidth));
 	numColumns = FindNumColumns(self, numMetas, numColumns);
 
@@ -479,34 +447,11 @@ function KrowiAF_AchievementsObjectivesMixin:DisplayCriteria(id)
 		height = totalTextCriteriaHeight;
 		height = SetTextPoints(self, numTextCriteria, maxTextCriteriaWidth);
 		if numMetas > 0 then
-			height = SetMetaPoints(self, numMetas, height);
-			-- self:GetMeta(1):ClearAllPoints();
-			-- self:GetMeta(1):SetPoint("TOP", self:GetTextCriteria(numTextCriteria), "BOTTOM", 0, 0);
-			-- self:GetMeta(1):SetPoint("LEFT", self, "LEFT", 0, 0);
-			-- self:GetMeta(1):SetPoint("RIGHT", self, "LEFT", self:GetWidth() / 2, 0);
-			-- height = height + ceil(numMetas / 2) * ACHIEVEMENTBUTTON_METAROWHEIGHT;
+			height = height + SetMetaPoints(self, numMetas, height);
 		end
 	else
 		height = SetMetaPoints(self, numMetas);
 	end
 	self:SetHeight(height + 1);
 	self.Mode = self.Modes.Criteria;
-end
-
-function KrowiAF_TestCrit()
-	for _, achievementId in next, addon.Data.AchievementIds do
-		local numCriteria = addon.GetAchievementNumCriteria(achievementId);
-		local text, meta;
-		for i = 1, numCriteria do
-			local criteriaString, criteriaType, completed, quantity, reqQuantity, _, flags, assetID, quantityString = addon.GetAchievementCriteriaInfo(achievementId, i);
-			if criteriaType == CRITERIA_TYPE_ACHIEVEMENT and assetID then
-				meta = true;
-			else
-				text = true;
-			end
-		end
-		if meta and text then
-			print(achievementId)
-		end
-	end
 end
