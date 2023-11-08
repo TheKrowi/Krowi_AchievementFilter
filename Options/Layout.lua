@@ -331,6 +331,14 @@ local function OffsetsCategoriesFrameWidthSet(_, value)
     end
 end
 
+local function OffsetsAchievementsFrameWidthSet(_, value)
+    if addon.Options.db.profile.Window.AchievementsFrameWidthOffset == value then return; end
+    addon.Options.db.profile.Window.AchievementsFrameWidthOffset = value;
+    if addon.Gui.SelectedTab then
+        addon.Gui:SetAchievementFrameWidth();
+    end
+end
+
 local function SetMaxNumberOfSearchPreviews()
     local numberOfSearchPreviews = options.SetMaxNumberOfSearchPreviews()
     if numberOfSearchPreviews.get() > numberOfSearchPreviews.max then
@@ -515,6 +523,14 @@ options.OptionsTable.args["Layout"] = {
                             min = -125, max = 250, step = 1,
                             get = function() return addon.Options.db.profile.Window.CategoriesFrameWidthOffset; end,
                             set = OffsetsCategoriesFrameWidthSet
+                        },
+                        AchievementsFrameWidth = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
+                            name = addon.L["Achievements width offset"],
+                            desc = addon.L["Achievements width offset Desc"]:KAF_InjectAddonName():K_ReplaceVars(string.format(addon.Util.Colors.Yellow, addon.L["Expansions"])):KAF_AddDefaultValueText("Window.AchievementsFrameWidthOffset"),
+                            min = 0, max = 500, step = 1,
+                            get = function() return addon.Options.db.profile.Window.AchievementsFrameWidthOffset; end,
+                            set = OffsetsAchievementsFrameWidthSet
                         },
                         AchievementFrameHeight = {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
@@ -1273,6 +1289,7 @@ function RefreshOptions()
     MovableCalendarRememberLastPositionSet(nil, profile.Window.RememberLastPosition.Calendar);
     MovableDataManagerRememberLastPositionSet(nil, profile.Window.RememberLastPosition.DataManager);
     OffsetsCategoriesFrameWidthSet(nil, profile.Window.CategoriesFrameWidthOffset);
+    OffsetsAchievementsFrameWidthSet(nil, profile.Window.AchievementsFrameWidthOffset);
     OffsetsAchievementFrameHeightSet(nil, profile.Window.AchievementFrameHeightOffset);
     addon.Gui:ShowHideTabs(); -- Dynamic Tab Order and Visibility is handled by this one
     SetSearchBoxMouseWheelPanScalar(nil, profile.SearchBox.MouseWheelPanScalar);

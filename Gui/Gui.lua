@@ -120,7 +120,7 @@ function gui:LoadWithBlizzard_AchievementUI()
 end
 
 function gui:SetAchievementFrameWidth()
-    AchievementFrame:SetWidth(defaultAchievementFrameWidth + addon.Options.db.profile.Window.CategoriesFrameWidthOffset);
+    AchievementFrame:SetWidth(defaultAchievementFrameWidth + addon.Options.db.profile.Window.CategoriesFrameWidthOffset + addon.Options.db.profile.Window.AchievementsFrameWidthOffset);
     KrowiAF_CategoriesFrame:SetRightPoint();
 end
 

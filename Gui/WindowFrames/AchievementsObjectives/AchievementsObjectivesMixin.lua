@@ -34,8 +34,13 @@ KrowiAF_AchievementsObjectivesMixin = {
 	}
 };
 
+local defaultMetaWidth, defaultMetaLabelWidth;
 function KrowiAF_AchievementsObjectivesMixin:OnLoad()
 	self:RegisterEvent("CRITERIA_UPDATE");
+	local meta = self:GetMeta(1);
+	defaultMetaWidth = meta:GetWidth();
+	defaultMetaLabelWidth = meta.Label:GetWidth();
+	print(defaultMetaWidth, defaultMetaLabelWidth)
 end
 
 local refreshOnNextShow;
@@ -192,18 +197,31 @@ end
 local function AddMeta(self, index, completed, assetId)
 	local metaCriteria = self:GetMeta(index);
 	metaCriteria:ClearAllPoints();
+	-- if index == 1 then
+	-- 	-- Anchor once all criteria are processed
+	-- 	metaCriteria:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 0);
+	-- 	metaCriteria:SetPoint("RIGHT", self, "LEFT", self:GetWidth() / 2, 0);
+	-- elseif math.fmod(index, 2) == 0 then
+	-- 	local anchorMeta = self:GetMeta(index - 1);
+	-- 	metaCriteria:SetPoint("LEFT", anchorMeta, "RIGHT", 0, 0);
+	-- 	metaCriteria:SetPoint("RIGHT", self, "RIGHT", 0, 0);
+	-- else
+	-- 	local anchorMeta = self:GetMeta(index - 2);
+	-- 	metaCriteria:SetPoint("TOPLEFT", anchorMeta, "BOTTOMLEFT", 0, 2);
+	-- 	metaCriteria:SetPoint("RIGHT", self, "LEFT", self:GetWidth() / 2, 0);
+	-- end
 	if index == 1 then
 		-- Anchor once all criteria are processed
 		metaCriteria:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 0);
-		metaCriteria:SetPoint("RIGHT", self, "LEFT", self:GetWidth() / 2, 0);
-	elseif math.fmod(index, 2) == 0 then
-		local anchorMeta = self:GetMeta(index - 1);
-		metaCriteria:SetPoint("LEFT", anchorMeta, "RIGHT", 0, 0);
-		metaCriteria:SetPoint("RIGHT", self, "RIGHT", 0, 0);
+		-- metaCriteria:SetPoint("RIGHT", self, "LEFT", self:GetWidth() / 2, 0);
+	-- elseif math.fmod(index, 2) == 0 then
+	-- 	local anchorMeta = self:GetMeta(index - 1);
+	-- 	metaCriteria:SetPoint("LEFT", anchorMeta, "RIGHT", 0, 0);
+	-- 	metaCriteria:SetPoint("RIGHT", self, "RIGHT", 0, 0);
 	else
-		local anchorMeta = self:GetMeta(index - 2);
+		local anchorMeta = self:GetMeta(index - 1);
 		metaCriteria:SetPoint("TOPLEFT", anchorMeta, "BOTTOMLEFT", 0, 2);
-		metaCriteria:SetPoint("RIGHT", self, "LEFT", self:GetWidth() / 2, 0);
+		-- metaCriteria:SetPoint("RIGHT", self, "LEFT", self:GetWidth() / 2, 0);
 	end
 	local id, name, _, _, _, _, _, _, _, icon = GetAchievementInfo(assetId);
 	metaCriteria:Show();
@@ -231,6 +249,10 @@ local function AddMeta(self, index, completed, assetId)
 		metaCriteria.Label:SetShadowOffset(1, -1)
 		metaCriteria.Label:SetTextColor(0.6, 0.6, 0.6, 1);
 	end
+	-- local minWidth = 200;
+	-- metaCriteria:SetWidth(200);
+	-- metaCriteria:SetWidth(max(minWidth, metaCriteria.Icon:GetWidth() + metaCriteria.Label:GetStringWidth() / 2));
+	-- print(metaCriteria.Label:GetStringWidth() / 2, metaCriteria.Label:IsTruncated())
 end
 
 local progressBarOffset = 10;
@@ -371,6 +393,46 @@ local function SetTextPoints(self, numTextCriteria, maxCriteriaWidth)
 	return top - bottom;
 end
 
+local function FindNumColumns(self, numMetas, numColumns)
+	local width = self:GetWidth() / numColumns;
+	local meta;
+	for i = 1, numMetas do
+		meta = self:GetMeta(i);
+		meta:SetWidth(width);
+		if self:GetMeta(i).Label:IsTruncated() then
+			if numColumns <= 3 then
+				return 2;
+			end
+			return FindNumColumns(self, numMetas, numColumns - 1);
+		end
+	end
+	return numColumns;
+end
+
+local function SetMetaPoints(self, numMetas, offset)
+	local numColumns = max(2, floor(self:GetWidth() / defaultMetaWidth));
+	numColumns = FindNumColumns(self, numMetas, numColumns);
+
+	local width = self:GetWidth() / numColumns;
+	local numRows = 1;
+	local position = 0;
+	local meta;
+	for i = 1, numMetas do
+		position = position + 1;
+		if position > numColumns then
+			position = position - numColumns;
+			numRows = numRows + 1;
+		end
+		meta = self:GetMeta(i);
+		meta:SetWidth(width);
+		meta:ClearAllPoints();
+		meta:SetPoint("TOPLEFT", self, "TOPLEFT", (position - 1) * width, -(numRows - 1) * ACHIEVEMENTBUTTON_METAROWHEIGHT - offset);
+	end
+	local top = self:GetMeta(1):GetTop();
+	local bottom = self:GetMeta(numMetas):GetBottom();
+	return top - bottom;
+end
+
 function KrowiAF_AchievementsObjectivesMixin:DisplayCriteria(id)
 	if not id then
 		return;
@@ -389,13 +451,13 @@ function KrowiAF_AchievementsObjectivesMixin:DisplayCriteria(id)
 	local numCriteriaRows = 0;
 
 	local numTextCriteria, numProgressBars, numMetas = 0, 0, 0;
-	local maxCriteriaWidth = 0;
+	local maxTextCriteriaWidth = 0;
 	for i = 1, numCriteria do
 		local criteriaString, criteriaType, completed, quantity, reqQuantity, _, flags, assetID, quantityString = addon.GetAchievementCriteriaInfo(id, i);
 		flags = addon.Objects.Flags:New(flags);
 		if criteriaType == CRITERIA_TYPE_ACHIEVEMENT and assetID then
 			numMetas = numMetas + 1;
-			AddMeta(self, numMetas, completed, assetID)
+			AddMeta(self, numMetas, completed, assetID);
 		elseif flags.IsCriteriaProgressBar then
 			numProgressBars = numProgressBars + 1;
 			_, progressBarHeight = AddProgressBar(self, numProgressBars, quantity, reqQuantity, quantityString);
@@ -404,7 +466,7 @@ function KrowiAF_AchievementsObjectivesMixin:DisplayCriteria(id)
 		else
 			numTextCriteria = numTextCriteria + 1;
 			textCriteriaWidth, textCriteriaHeight = AddTextCriteria(self, numTextCriteria, numCriteria, criteriaString, completed);
-			maxCriteriaWidth = max(maxCriteriaWidth, textCriteriaWidth);
+			maxTextCriteriaWidth = max(maxTextCriteriaWidth, textCriteriaWidth);
 			totalTextCriteriaHeight = totalTextCriteriaHeight + textCriteriaHeight;
 			numCriteriaRows = numCriteriaRows + 1;
 		end
@@ -415,17 +477,36 @@ function KrowiAF_AchievementsObjectivesMixin:DisplayCriteria(id)
 		height = totalProgressBarHeight + totalTextCriteriaHeight;
 	elseif numTextCriteria > 0 then
 		height = totalTextCriteriaHeight;
-		height = SetTextPoints(self, numTextCriteria, maxCriteriaWidth);
+		height = SetTextPoints(self, numTextCriteria, maxTextCriteriaWidth);
 		if numMetas > 0 then
-			self:GetMeta(1):ClearAllPoints();
-			self:GetMeta(1):SetPoint("TOP", self:GetTextCriteria(numTextCriteria), "BOTTOM", 0, 0);
-			self:GetMeta(1):SetPoint("LEFT", self, "LEFT", 0, 0);
-			self:GetMeta(1):SetPoint("RIGHT", self, "LEFT", self:GetWidth() / 2, 0);
-			height = height + ceil(numMetas / 2) * ACHIEVEMENTBUTTON_METAROWHEIGHT;
+			height = SetMetaPoints(self, numMetas, height);
+			-- self:GetMeta(1):ClearAllPoints();
+			-- self:GetMeta(1):SetPoint("TOP", self:GetTextCriteria(numTextCriteria), "BOTTOM", 0, 0);
+			-- self:GetMeta(1):SetPoint("LEFT", self, "LEFT", 0, 0);
+			-- self:GetMeta(1):SetPoint("RIGHT", self, "LEFT", self:GetWidth() / 2, 0);
+			-- height = height + ceil(numMetas / 2) * ACHIEVEMENTBUTTON_METAROWHEIGHT;
 		end
 	else
-		height = ceil(numMetas / 2) * ACHIEVEMENTBUTTON_METAROWHEIGHT;
+		height = SetMetaPoints(self, numMetas);
 	end
 	self:SetHeight(height + 1);
 	self.Mode = self.Modes.Criteria;
+end
+
+function KrowiAF_TestCrit()
+	for _, achievementId in next, addon.Data.AchievementIds do
+		local numCriteria = addon.GetAchievementNumCriteria(achievementId);
+		local text, meta;
+		for i = 1, numCriteria do
+			local criteriaString, criteriaType, completed, quantity, reqQuantity, _, flags, assetID, quantityString = addon.GetAchievementCriteriaInfo(achievementId, i);
+			if criteriaType == CRITERIA_TYPE_ACHIEVEMENT and assetID then
+				meta = true;
+			else
+				text = true;
+			end
+		end
+		if meta and text then
+			print(achievementId)
+		end
+	end
 end
