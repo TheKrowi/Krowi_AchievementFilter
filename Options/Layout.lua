@@ -859,28 +859,35 @@ options.OptionsTable.args["Layout"] = {
                             name = addon.L["Style"],
                             args = {
                                 CompactAchievements = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                                     name = addon.L["Compact Achievements"],
                                     desc = addon.L["Compact Achievements Desc"]:KAF_AddDefaultValueText("Achievements.Compact"):K_AddReloadRequired(),
                                     get = function() return addon.Options.db.profile.Achievements.Compact; end,
                                     set = function(_, value) addon.Options.db.profile.Achievements.Compact = value; end,
                                 },
+                                CenterHeader = {
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
+                                    name = addon.L["Center Header"],
+                                    desc = addon.L["Center Header Desc"]:KAF_AddDefaultValueText("Achievements.CenterHeader"):K_AddReloadRequired(),
+                                    get = function() return addon.Options.db.profile.Achievements.CenterHeader; end,
+                                    set = function(_, value) addon.Options.db.profile.Achievements.CenterHeader = value; end,
+                                },
                                 HideDateCompleted = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                                     name = addon.L["Hide Date Completed"],
                                     desc = addon.L["Hide Date Completed Desc"]:KAF_AddDefaultValueText("Achievements.HideDateCompleted"):K_AddReloadRequired(),
                                     get = function() return addon.Options.db.profile.Achievements.HideDateCompleted; end,
                                     set = function(_, value) addon.Options.db.profile.Achievements.HideDateCompleted = value; end,
                                 },
                                 ShowAllianceFactionIcon = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                                     name = addon.L["Show Faction Faction Icon"]:K_ReplaceVars(addon.L["Alliance"]),
                                     desc = addon.L["Show Faction Faction Icon Desc"]:K_ReplaceVars(addon.L["Alliance"]):KAF_AddDefaultValueText("Achievements.ShowAllianceFactionIcon"),
                                     get = function() return addon.Options.db.profile.Achievements.ShowAllianceFactionIcon; end,
                                     set = function(_, value) addon.Options.db.profile.Achievements.ShowAllianceFactionIcon = value; end,
                                 },
                                 ShowHordeFactionIcon = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                                     name = addon.L["Show Faction Faction Icon"]:K_ReplaceVars(addon.L["Horde"]),
                                     desc = addon.L["Show Faction Faction Icon Desc"]:K_ReplaceVars(addon.L["Horde"]):KAF_AddDefaultValueText("Achievements.ShowHordeFactionIcon"),
                                     get = function() return addon.Options.db.profile.Achievements.ShowHordeFactionIcon; end,
@@ -891,14 +898,14 @@ options.OptionsTable.args["Layout"] = {
                                     name = addon.L["Objectives"]
                                 },
                                 ForceTwoColumns = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                                     name = addon.L["Force two columns"],
                                     desc = addon.L["Force two columns Desc"]:KAF_AddDefaultValueText("Achievements.Objectives.ForceTwoColumns"),
                                     get = function() return addon.Options.db.profile.Achievements.Objectives.ForceTwoColumns; end,
                                     set = function(_, value) addon.Options.db.profile.Achievements.Objectives.ForceTwoColumns = value; end
                                 },
                                 ForceTwoColumnsThreshold = {
-                                    order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
+                                    order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
                                     name = addon.L["Force two columns threshold"],
                                     desc = addon.L["Force two columns threshold Desc"]:KAF_AddDefaultValueText("Achievements.Objectives.ForceTwoColumnsThreshold"),
                                     min = 0, max = 50, step = 1,

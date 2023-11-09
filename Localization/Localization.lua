@@ -7,5 +7,5 @@ function localization.SetColors(L)
 end
 
 function localization.GetDefaultLocale()
-    return LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true, true);
+    return LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true);
 end

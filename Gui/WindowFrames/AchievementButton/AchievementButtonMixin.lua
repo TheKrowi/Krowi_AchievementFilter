@@ -182,7 +182,6 @@ end
 
 KrowiAF_AchievementButtonMixin = {};
 
-
 local function SetAsTracked(self, isTracked)
 	self.Achievement.IsTracked = nil;
 	if isTracked then

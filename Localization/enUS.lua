@@ -8,6 +8,19 @@ addon.Plugins:LoadLocalization(L);
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2023-11-07 19-43-23 ]] --
+
+L["Achievements width offset"] = true
+L["Achievements width offset Desc"] = [=[The width that will be added to the default achievements width.
+
+This value can be changed while the achievement window is open and having one of the tabs selected added by {addonName}. This might have an impact (1) on the game.
+
+(1) FPS drops and stuttering while adjusting the value, NOT during normal addon use]=]
+L["Center Header"] = true
+L["Center Header Desc"] = "Center the achievement's name on the achievement button."
+L["Ohn'ahran Plains: Next"] = true
+L["Thaldraszus: Next"] = true
+L["Azure Span: Next"] = true
+L["Waking Shores: Next"] = true
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -143,10 +156,7 @@ L["Collector's Edition"] = true
 L["Comments"] = true
 L["Community Feast"] = true
 L["Community Feast: Active"] = true
-L["Community Feast: Cooking"] = true
-L["Community Feast: Ready"] = true
-L["Community Feast: Soon"] = true
-L["Community Feast: Starting Soon"] = true
+L["Community Feast: Next"] = true
 L["Compact"] = true
 L["Compact Achievements"] = true
 L["Compact Achievements Desc"] = "Achievements are 2/3rd the size, similar to the summary achievements."
@@ -903,12 +913,12 @@ L["Thundering Pandaren Spirit"] = true
 L["Time display"] = true
 L["Time Left"] = true
 L["Time Rift: Active"] = true
-L["Time Rift: Starting Soon"] = true
+L["Time Rift: Next"] = true
 L["Time Rifts"] = true
 L["Titan Lockdown"] = true
 L["Titan Lockdown: Active"] = true
 L["Titan Lockdown: Soon"] = true
-L["Titan Lockdown: Starting Soon"] = true
+L["Titan Lockdown: Next"] = true
 L["Ti'un the Wanderer"] = true
 L["Toggle"] = true
 L["Toggle Tracking"] = true
@@ -975,6 +985,5 @@ L["XYZ offset"] = "{xyz} offset"
 L["Y offset Desc"] = "The vertical offset from the start position."
 L["Zaqali Ruin Investigation"] = true
 L["Zaqali Ruin Investigation: Active"] = true
-L["Zaqali Ruin Investigation: Soon"] = true
-L["Zaqali Ruin Investigation: Starting Soon"] = true
+L["Zaqali Ruin Investigation: Next"] = true
 L["Zones"] = true

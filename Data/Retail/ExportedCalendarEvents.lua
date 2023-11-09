@@ -24,7 +24,7 @@ local a = addon; -- Saves some characters and file size as we use this a lot in 
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-05 19-29-28 ]] --
+-- [[ Exported at 2023-11-09 21-46-29 ]] --
 tasks = {
     {N, 141, 917, 236705, a.L["Feast of Winter Veil"]}, -- Feast of Winter Veil
     {N, 181, 911, 237000, a.L["Noblegarden"]}, -- Noblegarden
@@ -45,6 +45,7 @@ tasks = {
     {N, 1399, 1452, 4419345, a.L["Secrets of Azeroth"], {1396, 1398}}, -- Secrets of Azeroth
     {N, 1397, 1173, 133783, a.L["WoW's 19th Anniversary"]}, -- WoW's 19th Anniversary
     {N, 1400, 1531, 1100022, a.L["Eastern Kingdoms Cup"]}, -- Eastern Kingdoms Cup
+    {N, 1407, 1535, 1100022, a.L["Outland Cup"]}, -- Outland Cup
     {N, 1425, 1538, 4630413, a.L["Turbulent Timeways"], {1458, 1459, 1460}}, -- Turbulent Timeways
     {N, 1458, 1538, 4630413, a.L["Turbulent Timeways"], {1425, 1459, 1460}}, -- Turbulent Timeways
     {N, 1459, 1538, 4630413, a.L["Turbulent Timeways"], {1425, 1458, 1460}}, -- Turbulent Timeways
@@ -70,6 +71,7 @@ function exportedCalendarEvents.InjectDynamicOptions()
     KrowiAF_RegisterEventOptions("Calendar", "Other", a.L["Other"], {1396, 1398, 1399}, a.L["Secrets of Azeroth"]);
     KrowiAF_RegisterEventOptions("Calendar", "Other", a.L["Other"], {1397}, a.L["WoW's 19th Anniversary"]);
     KrowiAF_RegisterEventOptions("Calendar", "Other", a.L["Other"], {1400}, a.L["Eastern Kingdoms Cup"]);
+    KrowiAF_RegisterEventOptions("Calendar", "Other", a.L["Other"], {1407}, a.L["Outland Cup"]);
     KrowiAF_RegisterEventOptions("Calendar", "Other", a.L["Other"], {1425, 1458, 1459, 1460}, a.L["Turbulent Timeways"]);
-    KrowiAF_RegisterDeSelectAllEventOptions("Calendar", "Other", { 479, 1262, 1395, 1396, 1398, 1399, 1397, 1400, 1425, 1458, 1459, 1460 });
+    KrowiAF_RegisterDeSelectAllEventOptions("Calendar", "Other", { 479, 1262, 1395, 1396, 1398, 1399, 1397, 1400, 1407, 1425, 1458, 1459, 1460 });
 end

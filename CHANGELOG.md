@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 65.1 - 2023-11-07
+### Added
+- Outland Cup event
+- Adjustable width for the achievements
+
+### Changed
+- Both Researchers Under Fire events are now showing the 'Next' and 'Active' timers instead of the entire week when in Zaralek Cavern (outside will show that no time data is available)
+- Dreamsurges are now showing the 'Next' timer for the next portal instead of the entire week
+
+### Fixed
+- Dreamsurges are now properly tracked (new Ids so settings might need to be reapplyed)
+- Fyrakk Assaults should once again properly track
+
 ## 65.0 - 2023-11-07
 ### Added
 - The Lick King, Lil' Maggz and Ysergle The Dreamurk

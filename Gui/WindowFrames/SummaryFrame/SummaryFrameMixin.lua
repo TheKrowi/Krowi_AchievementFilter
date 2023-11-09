@@ -51,7 +51,6 @@ end
 local function GetNewStatusBar(self)
     local statusBar = LibStub("Krowi_ProgressBar-2.0"):GetNew(self);
     OverRideTextures(statusBar);
-    statusBar:SetWidth(270);
     statusBar:SetHeight(49);
     statusBar:Reset();
     statusBar:SetColors({R = 0, G = 1, B = 0}, {R = 1, G = 0, B = 0});
@@ -64,9 +63,10 @@ end
 local function LoadTotalStatusBar(self)
     self.TotalStatusBar = GetNewStatusBar(self);
     local totalStatusBar = self.TotalStatusBar;
-    totalStatusBar:SetWidth(524);
     totalStatusBar.TextLeft:SetText(addon.L["Achievements Earned"]);
     totalStatusBar:SetPoint("TOP", self.Categories.Header, "BOTTOM", 0, 5);
+    totalStatusBar:SetPoint("LEFT", self, 14, 0);
+    totalStatusBar:SetPoint("RIGHT", self, -14, 0);
 end
 
 function KrowiAF_SummaryFrameMixin:OnLoad()
@@ -206,11 +206,11 @@ end
 
 function KrowiAF_SummaryFrameMixin:GetAndAlignStatusBar(index) -- Public for skinning
     local yOffset = 15;
-    local point, relativePoint, relativeTo;
+    local point, relativePoint, relativeTo, centerPoint, xOffset;
     if index % 2 == 0 then -- Even
-        point, relativePoint = "TOPRIGHT", "BOTTOMRIGHT";
+        point, relativePoint, centerPoint, xOffset = "TOPRIGHT", "BOTTOMRIGHT", "LEFT", -8;
     else -- Odd
-        point, relativePoint = "TOPLEFT", "BOTTOMLEFT";
+        point, relativePoint, centerPoint, xOffset = "TOPLEFT", "BOTTOMLEFT", "RIGHT", 8;
     end
     if index == 1 or index == 2 then
         relativeTo = self.TotalStatusBar;
@@ -220,6 +220,7 @@ function KrowiAF_SummaryFrameMixin:GetAndAlignStatusBar(index) -- Public for ski
     local statusBar = self:GetStatusBar(index);
     statusBar:ClearAllPoints();
     statusBar:SetPoint(point, relativeTo, relativePoint, 0, yOffset);
+    statusBar:SetPoint(centerPoint, self.TotalStatusBar, "CENTER", xOffset, 0);
     return statusBar;
 end
 

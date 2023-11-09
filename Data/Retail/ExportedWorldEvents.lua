@@ -24,7 +24,7 @@ local a = addon; -- Saves some characters and file size as we use this a lot in 
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-05 19-29-28 ]] --
+-- [[ Exported at 2023-11-09 21-46-29 ]] --
 tasks = {
     {N, 5175, 948, 1408998, a.L["Assault on Azsuna"], nil, 619}, -- Assault on Azsuna
     {N, 5177, 948, 1409000, a.L["Assault on Highmountain"], nil, 619}, -- Assault on Highmountain
@@ -92,16 +92,20 @@ tasks = {
     {N, 7343, 1392, 4622465, a.L["Grand Hunts: The Waking Shore"], nil, 1978}, -- Grand Hunts: The Waking Shore
     {N, 7344, 1392, 4622465, a.L["Grand Hunts: Thaldraszus"], nil, 1978}, -- Grand Hunts: Thaldraszus
     {N, 7345, 1392, 4622465, a.L["Grand Hunts: The Azure Span"], nil, 1978}, -- Grand Hunts: The Azure Span
-    {N, 7429, 1425, 4914672, a.L["Ohn'ahran Plains"], nil, 1978}, -- Ohn'ahran Plains
-    {N, 7432, 1425, 4914672, a.L["Azure Span"], nil, 1978}, -- Azure Span
-    {N, 7459, 1430, 254117, a.L["Titan Lockdown: Starting Soon"], nil, 2133}, -- Titan Lockdown: Starting Soon
-    {N, 7460, 1429, 4237659, a.L["Zaqali Ruin Investigation: Starting Soon"], nil, 2133}, -- Zaqali Ruin Investigation: Starting Soon
+    {N, 7433, 1425, 4914672, a.L["Azure Span"], nil, 2024}, -- Azure Span
+    {N, 7459, 1430, 254117, a.L["Titan Lockdown: Next"], nil, 2133}, -- Titan Lockdown: Next
+    {N, 7460, 1429, 4237659, a.L["Zaqali Ruin Investigation: Next"], nil, 2133}, -- Zaqali Ruin Investigation: Next
     {N, 7461, 1430, 254117, a.L["Titan Lockdown: Active"], nil, 2133}, -- Titan Lockdown: Active
     {N, 7462, 1429, 4237659, a.L["Zaqali Ruin Investigation: Active"], nil, 2133}, -- Zaqali Ruin Investigation: Active
-    {N, 7554, 1537, 1394953, a.L["Azure Span"], nil, 1978}, -- Azure Span
-    {N, 7555, 1537, 1394953, a.L["Ohn'ahran Plains"], nil, 1978}, -- Ohn'ahran Plains
-    {N, 7556, 1537, 1394953, a.L["Waking Shores"], nil, 1978}, -- Waking Shores
-    {N, 7602, 1537, 1394953, a.L["Thaldraszus"], nil, 1978}, -- Thaldraszus
+    {N, 7471, 1425, 4914672, a.L["Ohn'ahran Plains"], nil, 2023}, -- Ohn'ahran Plains
+    {N, 7553, 1537, 1394953, a.L["Thaldraszus: Next"], {7602}, 1978}, -- Thaldraszus: Next
+    {N, 7602, 1537, 1394953, a.L["Thaldraszus: Next"], {7553}, 1978}, -- Thaldraszus: Next
+    {N, 7554, 1537, 1394953, a.L["Azure Span: Next"], {7605}, 1978}, -- Azure Span: Next
+    {N, 7605, 1537, 1394953, a.L["Azure Span: Next"], {7554}, 1978}, -- Azure Span: Next
+    {N, 7555, 1537, 1394953, a.L["Ohn'ahran Plains: Next"], {7604}, 1978}, -- Ohn'ahran Plains: Next
+    {N, 7604, 1537, 1394953, a.L["Ohn'ahran Plains: Next"], {7555}, 1978}, -- Ohn'ahran Plains: Next
+    {N, 7556, 1537, 1394953, a.L["Waking Shores: Next"], {7603}, 1978}, -- Waking Shores: Next
+    {N, 7603, 1537, 1394953, a.L["Waking Shores: Next"], {7556}, 1978}, -- Waking Shores: Next
 };
 
 function exportedWorldEvents.InjectDynamicOptions()
@@ -180,17 +184,17 @@ function exportedWorldEvents.InjectDynamicOptions()
     KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", a.L["DF - Snowstorms"], {7260}, a.L["Scalecracker Keep"]);
     KrowiAF_RegisterEventOptions("World", "DF___Snowstorms", a.L["DF - Snowstorms"], {7301}, a.L["Primalist Tomorrow"]);
     KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Snowstorms", { 7224, 7228, 7232, 7236, 7240, 7248, 7252, 7256, 7260, 7301 });
-    KrowiAF_RegisterEventOptions("World", "DF___Fyrakk_Assault", a.L["DF - Fyrakk Assault"], {7429}, a.L["Ohn'ahran Plains"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Fyrakk_Assault", a.L["DF - Fyrakk Assault"], {7432}, a.L["Azure Span"]);
-    KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Fyrakk_Assault", { 7429, 7432 });
-    KrowiAF_RegisterEventOptions("World", "DF___Researchers_Under_Fire", a.L["DF - Researchers Under Fire"], {7459}, a.L["Titan Lockdown: Starting Soon"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Researchers_Under_Fire", a.L["DF - Researchers Under Fire"], {7460}, a.L["Zaqali Ruin Investigation: Starting Soon"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Fyrakk_Assault", a.L["DF - Fyrakk Assault"], {7433}, a.L["Azure Span"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Fyrakk_Assault", a.L["DF - Fyrakk Assault"], {7471}, a.L["Ohn'ahran Plains"]);
+    KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Fyrakk_Assault", { 7433, 7471 });
+    KrowiAF_RegisterEventOptions("World", "DF___Researchers_Under_Fire", a.L["DF - Researchers Under Fire"], {7459}, a.L["Titan Lockdown: Next"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Researchers_Under_Fire", a.L["DF - Researchers Under Fire"], {7460}, a.L["Zaqali Ruin Investigation: Next"]);
     KrowiAF_RegisterEventOptions("World", "DF___Researchers_Under_Fire", a.L["DF - Researchers Under Fire"], {7461}, a.L["Titan Lockdown: Active"]);
     KrowiAF_RegisterEventOptions("World", "DF___Researchers_Under_Fire", a.L["DF - Researchers Under Fire"], {7462}, a.L["Zaqali Ruin Investigation: Active"]);
     KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Researchers_Under_Fire", { 7459, 7460, 7461, 7462 });
-    KrowiAF_RegisterEventOptions("World", "DF___Dreamsurge", a.L["DF - Dreamsurge"], {7554}, a.L["Azure Span"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Dreamsurge", a.L["DF - Dreamsurge"], {7555}, a.L["Ohn'ahran Plains"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Dreamsurge", a.L["DF - Dreamsurge"], {7556}, a.L["Waking Shores"]);
-    KrowiAF_RegisterEventOptions("World", "DF___Dreamsurge", a.L["DF - Dreamsurge"], {7602}, a.L["Thaldraszus"]);
-    KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Dreamsurge", { 7554, 7555, 7556, 7602 });
+    KrowiAF_RegisterEventOptions("World", "DF___Dreamsurge", a.L["DF - Dreamsurge"], {7553, 7602}, a.L["Thaldraszus: Next"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Dreamsurge", a.L["DF - Dreamsurge"], {7554, 7605}, a.L["Azure Span: Next"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Dreamsurge", a.L["DF - Dreamsurge"], {7555, 7604}, a.L["Ohn'ahran Plains: Next"]);
+    KrowiAF_RegisterEventOptions("World", "DF___Dreamsurge", a.L["DF - Dreamsurge"], {7556, 7603}, a.L["Waking Shores: Next"]);
+    KrowiAF_RegisterDeSelectAllEventOptions("World", "DF___Dreamsurge", { 7553, 7602, 7554, 7605, 7555, 7604, 7556, 7603 });
 end

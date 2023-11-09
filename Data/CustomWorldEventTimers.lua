@@ -39,3 +39,37 @@ timers[7462] = function()
 
     return GetSecondsLeft(widgetInfo.text, minutesAbbr, secondsAbbr);
 end
+
+timers[7459] = function()
+    local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(4814);
+    if not widgetInfo or not widgetInfo.text then
+        return nil;
+    end
+
+    return GetSecondsLeft(widgetInfo.text, minutesAbbr, secondsAbbr);
+end
+
+timers[7461] = function()
+    local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(4826);
+    if not widgetInfo or not widgetInfo.text then
+        return nil;
+    end
+
+    return GetSecondsLeft(widgetInfo.text, minutesAbbr, secondsAbbr);
+end
+
+timers[7553] = function()
+    local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(4993);
+    if not widgetInfo or not widgetInfo.text then
+        return nil;
+    end
+
+    return GetSecondsLeft(widgetInfo.text, minutesAbbr, secondsAbbr);
+end
+timers[7554] = timers[7553];
+timers[7555] = timers[7553];
+timers[7556] = timers[7553];
+timers[7602] = timers[7553];
+timers[7603] = timers[7553];
+timers[7604] = timers[7553];
+timers[7605] = timers[7553];

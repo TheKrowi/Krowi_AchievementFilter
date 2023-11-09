@@ -11,9 +11,15 @@ local function AddRightClickMenuButton(button)
 end
 
 function KrowiAF_AchievementButton_OnLoad(self)
+	if not addon.Options.db.profile.Achievements.CenterHeader then
+		self.Header:SetPoint("LEFT", self.HeaderLeftAnchor or self.PlusMinus, "RIGHT", 10, 0);
+		self.Header:SetPoint("RIGHT", self.DateCompleted, "LEFT", -10, 0);
+		self.Header:SetJustifyH("LEFT");
+	end
 	_, self.FontHeight = self.Description:GetFont();
-	self.MaxDescriptionLinesCollapsed = min(max(1, floor(30 / self.FontHeight)), self.MaxDescriptionLinesCollapsed);
+	self.MaxDescriptionLinesCollapsed = min(max(1, floor(30 / (self.FontHeight - 0.001))), self.MaxDescriptionLinesCollapsed);
 	self.Description:SetHeight(10 * self.MaxDescriptionLinesCollapsed);
+	self.Description:SetPoint("RIGHT", self.Shield, "LEFT", -10, 0);
 	self.MinExpandedHeight = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT;
 	self:Collapse();
 end
@@ -26,8 +32,10 @@ function KrowiAF_AchievementButton_Small_OnLoad(self)
 	self.BottomTsunami:Hide();
 	self.TopTsunami:Hide();
 	self.HeaderBackground:SetHeight(20);
-	self.Description:SetWidth(370);
+	self.Header:SetPoint("LEFT", 110, 0);
+	self.Header:SetPoint("RIGHT", -110, 0);
 	self.Description:SetPoint("TOP", 0, -27);
+	self.DateCompleted:ClearAllPoints();
 	self.DateCompleted:SetPoint("TOPLEFT", self, "TOPRIGHT", -101, -8);
 	self.DateCompleted:SetJustifyH("LEFT");
 	self.PlusMinus:SetSize(13, 13);
@@ -77,4 +85,6 @@ function KrowiAF_AchievementButton_Light_OnLoad(self)
 	self:SetScript("OnShow", nil);
 	self:SetScript("OnHide", nil);
 	self:SetScript("OnEvent", nil);
+
+	self.HeaderLeftAnchor = self.Icon;
 end
