@@ -336,6 +336,9 @@ local function OffsetsAchievementsFrameWidthSet(_, value)
     addon.Options.db.profile.Window.AchievementsFrameWidthOffset = value;
     if addon.Gui.SelectedTab then
         addon.Gui:SetAchievementFrameWidth();
+        if addon.Gui.SelectedTab.SelectedCategory.IsSummary then
+            KrowiAF_SummaryFrame:Update();
+        end
     end
 end
 
