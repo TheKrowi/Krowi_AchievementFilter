@@ -310,12 +310,12 @@ local function SetProgressBarAndTextPoints(self, numProgressBars, numTextCriteri
 end
 
 local function SetTextPoints(self, numTextCriteria, maxCriteriaWidth)
-	local columns = max(1, floor(self:GetWidth() / maxCriteriaWidth));
+	local numColumns = max(1, floor(self:GetWidth() / maxCriteriaWidth));
 
 	local truncate, flex;
 	if addon.Options.db.profile.Achievements.Objectives.ForceTwoColumns then
-		if columns < 2 and numTextCriteria >= addon.Options.db.profile.Achievements.Objectives.ForceTwoColumnsThreshold then
-			columns = 2;
+		if numColumns < 2 and numTextCriteria >= addon.Options.db.profile.Achievements.Objectives.ForceTwoColumnsThreshold then
+			numColumns = 2;
 			-- addon.Options.db.profile.Achievements.Objectives.CriteriaBehaviour == 1 needs no additional code to overflow
 			if addon.Options.db.profile.Achievements.Objectives.CriteriaBehaviour == 2 then -- Truncate
 				truncate = self:GetWidth() / 2;
@@ -325,15 +325,15 @@ local function SetTextPoints(self, numTextCriteria, maxCriteriaWidth)
 		end
 	end
 
-	if columns == 1 then -- They're already in the correct positions
+	if numColumns == 1 then -- They're already in the correct positions
 		local top = self:GetTextCriteria(1):GetTop();
 		local bottom = self:GetTextCriteria(numTextCriteria):GetBottom();
 		return top - bottom;
 	end
 
-	local columnWidth = self:GetWidth() / columns;
+	local columnWidth = self:GetWidth() / numColumns;
 
-	local rows = 1;
+	local numRows = 1;
 	local position = 0;
 	local textCriteria;
 	for i = 1, numTextCriteria do -- The 1st one is already at its correct position
@@ -342,15 +342,15 @@ local function SetTextPoints(self, numTextCriteria, maxCriteriaWidth)
 		if flex and position == 2 and textCriteria:GetWidth() > columnWidth then
 			position = position + 1;
 		end
-		if position > columns then
-			position = position - columns;
-			rows = rows + 1;
+		if position > numColumns then
+			position = position - numColumns;
+			numRows = numRows + 1;
 		end
 		if truncate then
 			textCriteria:SetWidth(truncate);
 		end
 		textCriteria:ClearAllPoints();
-		textCriteria:SetPoint("TOPLEFT", self, "TOPLEFT", (position - 1) * columnWidth, -(rows - 1) * textCriteria:GetHeight());
+		textCriteria:SetPoint("TOPLEFT", self, "TOPLEFT", (position - 1) * columnWidth, -(numRows - 1) * textCriteria:GetHeight());
 		if flex and textCriteria:GetWidth() > columnWidth then
 			position = position + 1;
 		end

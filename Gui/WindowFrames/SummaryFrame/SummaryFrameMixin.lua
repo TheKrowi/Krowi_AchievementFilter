@@ -205,22 +205,19 @@ function KrowiAF_SummaryFrameMixin:GetStatusBar(index) -- Public for skinning
 end
 
 function KrowiAF_SummaryFrameMixin:GetAndAlignStatusBar(index) -- Public for skinning
-    local yOffset = 15;
-    local point, relativePoint, relativeTo, centerPoint, xOffset;
-    if index % 2 == 0 then -- Even
-        point, relativePoint, centerPoint, xOffset = "TOPRIGHT", "BOTTOMRIGHT", "LEFT", -8;
-    else -- Odd
-        point, relativePoint, centerPoint, xOffset = "TOPLEFT", "BOTTOMLEFT", "RIGHT", 8;
+    local numColumns = floor((self:GetWidth() - 28) / 254);
+    local width = (self:GetWidth() - 44) / numColumns; -- 44 = 2*14 + 16, 14 is offsets on the side, 16 in between 2 columns
+    local numRows = 1;
+	local position = index;
+    while position > numColumns do
+        position = position - numColumns;
+		numRows = numRows + 1;
     end
-    if index == 1 or index == 2 then
-        relativeTo = self.TotalStatusBar;
-    else
-        relativeTo = self:GetStatusBar(index - 2);
-    end
+
     local statusBar = self:GetStatusBar(index);
+    statusBar:SetWidth(width + 16);
     statusBar:ClearAllPoints();
-    statusBar:SetPoint(point, relativeTo, relativePoint, 0, yOffset);
-    statusBar:SetPoint(centerPoint, self.TotalStatusBar, "CENTER", xOffset, 0);
+    statusBar:SetPoint("TOPLEFT", self.TotalStatusBar, "TOPLEFT", (position - 1) * width, -numRows * 34);
     return statusBar;
 end
 
