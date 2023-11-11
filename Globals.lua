@@ -239,10 +239,7 @@ end
 local function HandleAchievementExistence(achievementInfo)
     local achievementId = achievementInfo.Id;
     if achievementInfo.Exists then
-        local achievement = addon.Data.AddAchievementIfNil(achievementId);
-        if achievement and not achievementInfo.Flags.IsTracking then
-            AddToUncategorizedCategories(achievement);
-        end
+        addon.Data.AddAchievementIfNil(achievementId);
         return true;
     elseif addon.Data.Achievements[achievementId] then
         addon.Data.Achievements[achievementId].DoesNotExist = true;
@@ -255,14 +252,14 @@ end
 addon.TrackingAchievements = {};
 local function HandleTrackingAchievement(achievementInfo)
     local achievementId = achievementInfo.Id;
-    if not addon.Options.db.profile.Categories.TrackingAchievements.DoLoad then
-        return;
-    end
     if not HandleAchievementExistence(achievementInfo) then
         return;
     end
-    addon.TrackingAchievements[achievementId] = true;
     addon.Data.Achievements[achievementId].IsTracking = true;
+    if not addon.Options.db.profile.Categories.TrackingAchievements.DoLoad then
+        return;
+    end
+    addon.TrackingAchievements[achievementId] = true;
 end
 
 local function HandleCompletedAchievement(characterGuid, achievementInfo)
@@ -273,7 +270,7 @@ local function HandleCompletedAchievement(characterGuid, achievementInfo)
 end
 
 local criteriaCache;
-local function AddToCriteriaCache(characterGuid, achievementInfo)
+local function AddToCriteriaCache(achievementInfo)
     local achievementId = achievementInfo.Id;
     local numCriteria = GetAchievementNumCriteria(achievementId);
     if numCriteria <= 0 then
@@ -310,11 +307,16 @@ local function HandleAchievement(characterGuid, achievementInfo)
         return;
     end
 
+    local achievement = addon.Data.Achievements[achievementInfo.Id];
+    if achievement then
+        AddToUncategorizedCategories(achievement);
+    end
+
     if achievementInfo.IsCompleted then
         HandleCompletedAchievement(characterGuid, achievementInfo);
     end
 
-    local numCriteria = AddToCriteriaCache(characterGuid, achievementInfo);
+    local numCriteria = AddToCriteriaCache(achievementInfo);
 
     if achievementInfo.WasEarnedByMe or achievementInfo.Flags.IsAccountWide or KrowiAF_SavedData.CharacterList[characterGuid].Ignore then
         return;

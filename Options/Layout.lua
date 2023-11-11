@@ -120,7 +120,7 @@ local function InjectMoreDynamicTrackingAchievementsOptions()
     addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.TrackingAchievements.args", "LoadTrackingAchievements", {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(2),
         name = addon.L["Load Tracking Achievements"],
-        desc = addon.L["Load Tracking Achievements Desc"]:KAF_AddDefaultValueText("Categories.TrackingAchievements.DoLoad"),
+        desc = addon.L["Load Tracking Achievements Desc"]:KAF_AddDefaultValueText("Categories.TrackingAchievements.DoLoad"):K_AddReloadRequired(),
         get = function() return addon.Options.db.profile.Categories.TrackingAchievements.DoLoad; end,
         set = function(_, value) addon.Options.db.profile.Categories.TrackingAchievements.DoLoad = value; end
     });

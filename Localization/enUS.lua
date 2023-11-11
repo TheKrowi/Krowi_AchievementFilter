@@ -7,7 +7,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-11 01-20-47 ]] --
+-- [[ Exported at 2023-11-11 17-51-34 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -517,7 +517,7 @@ L["Level 90"] = true
 L["Leveling"] = true
 L["Line"] = true
 L["Load Tracking Achievements"] = true
-L["Load Tracking Achievements Desc"] = true
+L["Load Tracking Achievements Desc"] = "Load achievements marked as tracking achievements normally not visible to the player. This also enables the searching and viewing of them in the achievements window."
 L["Loaded"] = true
 L["Loaded Desc"] = "Indicates if the addon related to the plugin is loaded or not."
 L["Localizations"] = true

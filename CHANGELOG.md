@@ -16,6 +16,9 @@ All notable changes to this project will be documented in this file.
 - Dreamsurges are now properly tracked (new Ids so settings might need to be reapplyed)
 - Fyrakk Assaults should once again properly track
 - Potential fix for Excluded achievements resetting
+- Tracking achievements that show as meta achievements should no longer throw an error when tracking achievements are not loaded
+- Linked Hail to the Chef (again)
+- ElvUI skin should now once again apply to event reminders
 
 ## 65.0 - 2023-11-07
 ### Added

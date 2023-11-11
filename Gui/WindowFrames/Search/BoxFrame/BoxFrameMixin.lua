@@ -96,7 +96,7 @@ function KrowiAF_SearchBoxFrameMixin:OnEnterPressed()
 	end
 end
 
-local function SearchAchievement(text, achievement, results, excludeExcluded)
+local function SearchAchievement(text, achievement, results, excludeExcluded, excludeTracking)
 	local id, name, _, _, _, _, _, description, _, _, rewardText, _, _, _, _ = GetAchievementInfo(achievement.Id);
 	if not id then
 		return;
@@ -105,7 +105,7 @@ local function SearchAchievement(text, achievement, results, excludeExcluded)
 			or (addon.SearchOptions.db.profile.SearchNames and string.find(name:lower(), text, 1, true))
 			or (addon.SearchOptions.db.profile.SearchDescriptions and string.find(description:lower(), text, 1, true))
 			or (addon.SearchOptions.db.profile.SearchRewards and string.find(rewardText:lower(), text, 1, true)) then
-		if not (excludeExcluded and achievement.Excluded) then
+		if not (excludeExcluded and achievement.Excluded) and not (excludeTracking and achievement.IsTracking) then
 			local value = 1;
 			if addon.Options.db.profile.SearchBox.OnlySearchFiltered then
 				local category;
@@ -125,23 +125,23 @@ local function SearchAchievement(text, achievement, results, excludeExcluded)
 	end
 end
 
-local function SearchAchievements(text, numAchievementIds, results, excludeExcluded)
+local function SearchAchievements(text, numAchievementIds, results, excludeExcluded, excludeTracking)
 	local achievement;
 	for i = 1, numAchievementIds do
 		achievement = addon.Data.Achievements[addon.Data.AchievementIds[i]];
 		if achievement then
-			SearchAchievement(text, achievement, results, excludeExcluded);
+			SearchAchievement(text, achievement, results, excludeExcluded, excludeTracking);
 		end
 	end
 	return results;
 end
 
-local function SearchAchievementIds(text, numAchievementIds, results, excludeExcluded, showPlaceholders)
+local function SearchAchievementIds(text, numAchievementIds, results, excludeExcluded, excludeTracking, showPlaceholders)
 	local achievement;
 	for i = 1, numAchievementIds do
 		achievement = addon.Data.Achievements[addon.Data.AchievementIds[i]];
 		if string.find(tostring(achievement.Id):lower(), string.sub(text, 2), 1, true) then
-			if not (excludeExcluded and achievement.Excluded) then
+			if not (excludeExcluded and achievement.Excluded) and not (excludeTracking and achievement.IsTracking) then
 				if achievement.DoesNotExist == nil or (showPlaceholders and achievement.DoesNotExist) then
 					tinsert(results, achievement);
 				end
@@ -165,7 +165,7 @@ local function DistinctTable(tbl)
 end
 
 local criteriaCache;
-local function SearchCriteria(text, numAchievementIds, results, excludeExcluded)
+local function SearchCriteria(text, numAchievementIds, results, excludeExcluded, excludeTracking)
 	local achievement;
 	if criteriaCache == nil then
 		criteriaCache = {};
@@ -184,7 +184,7 @@ local function SearchCriteria(text, numAchievementIds, results, excludeExcluded)
 	for _, criteria in next, criteriaCache do
 		achievement, criteriaString = criteria.Achievement, criteria.CriteriaString;
 		if string.find(criteriaString:lower(), string.sub(text, 2), 1, true) then
-			if not (excludeExcluded and achievement.Excluded) then
+			if not (excludeExcluded and achievement.Excluded) and not (excludeTracking and achievement.IsTracking) then
 				tinsert(results, achievement);
 			end
 		end
@@ -198,16 +198,17 @@ local function GetSearchResults(text)
 
 	local numAchievementIds = #addon.Data.AchievementIds;
 	local excludeExcluded = addon.Options.db.profile.SearchBox.ExcludeExcluded;
+	local excludeTracking = not addon.Options.db.profile.Categories.TrackingAchievements.DoLoad;
 	local showPlaceholders = addon.Options.db.profile.ShowPlaceholdersFilter and addon.Filters.db.profile.ShowPlaceholders;
 
 	if string.match(text, "^#") then
-		results = SearchAchievementIds(text, numAchievementIds, results, excludeExcluded, showPlaceholders);
+		results = SearchAchievementIds(text, numAchievementIds, results, excludeExcluded, excludeTracking, showPlaceholders);
 	elseif string.match(text, "^@") then
-		results = SearchCriteria(text, numAchievementIds, results, excludeExcluded);
+		results = SearchCriteria(text, numAchievementIds, results, excludeExcluded, excludeTracking);
 	else
-		results = SearchAchievements(text, numAchievementIds, results, excludeExcluded);
+		results = SearchAchievements(text, numAchievementIds, results, excludeExcluded, excludeTracking);
 		if addon.SearchOptions.db.profile.SearchCriteria then
-			results = SearchCriteria(text, numAchievementIds, results, excludeExcluded);
+			results = SearchCriteria(text, numAchievementIds, results, excludeExcluded, excludeTracking);
 		else
 			table.sort(results, function(a, b)
 				return a.Name < b.Name;

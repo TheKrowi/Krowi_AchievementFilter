@@ -39,6 +39,10 @@ function KrowiAF_SelectAchievement(achievement)
 		category = achievement.Category;
 	end
 
+	if not category and achievement.IsTracking then
+		return;
+	end
+
 	local tabFilters = addon.Tabs[category:GetTree()[1].TabName].Filters;
 	achievement = filters.GetHighestAchievementWhenCollapseSeries(tabFilters, achievement);
 	if filters.Validate(tabFilters, achievement) < 0 then

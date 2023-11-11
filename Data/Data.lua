@@ -181,13 +181,14 @@ local function LinkChainAchievements()
 end
 
 local addedOutOfOrder = {};
-local function AddAchievementToCategory(categoryID, achID)
-    if data.Achievements[achID] ~= nil then
-        tmpC[categoryID]:AddAchievement(data.Achievements[achID]);
-        addedOutOfOrder[achID] = true;
+local function AddAchievementToCategory(categoryID, achId, excludeTracking)
+    local achievement = data.Achievements[achId];
+    if achievement ~= nil and not (excludeTracking and achievement.IsTracking) then
+        tmpC[categoryID]:AddAchievement(achievement);
+        addedOutOfOrder[achId] = true;
 
-        if data.Achievements[achID].NextAchievements then
-            for id, _ in next, data.Achievements[achID].NextAchievements do
+        if achievement.NextAchievements then
+            for id, _ in next, achievement.NextAchievements do
                 AddAchievementToCategory(categoryID, id);
             end
         end
@@ -195,13 +196,14 @@ local function AddAchievementToCategory(categoryID, achID)
 end
 
 local function AddAchievementsToCategory()
+    local excludeTracking = not addon.Options.db.profile.Categories.TrackingAchievements.DoLoad;
     for i = 1, #data.AchievementIds do
         local achId = data.AchievementIds[i];
         if addedOutOfOrder[achId] == nil then -- Not yet added
             local categoryID = GetAchievementCategory(achId);
             if tmpC[categoryID] ~= nil then
                 achId = addon.GetFirstAchievementId(achId);
-                AddAchievementToCategory(categoryID, achId);
+                AddAchievementToCategory(categoryID, achId, excludeTracking);
             end
         end
     end
