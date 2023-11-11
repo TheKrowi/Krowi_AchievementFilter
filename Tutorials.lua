@@ -166,7 +166,7 @@ function tutorials.Load()
         SubTitle = L["Full Search"]:SetColorYellow(),
         Text = L["Full Search Desc"]:K_ReplaceVars
         {
-            showAllResults = string.gsub(L["Show All %d Results"], "%%d", "X"),
+            showAllResults = L["Show All %d Results"]:gsub("%%d", "X"),
             quickSearchTutorial = L["Quick Search"]:SetColorYellow()
         }
     });

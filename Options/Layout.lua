@@ -120,7 +120,7 @@ local function InjectMoreDynamicTrackingAchievementsOptions()
     addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.TrackingAchievements.args", "LoadTrackingAchievements", {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(2),
         name = addon.L["Load Tracking Achievements"],
-        desc = addon.L["Load Tracking Achievements Desc"]:KAF_AddDefaultValueText("Categories.TrackingAchievements.DoLoad"),
+        desc = addon.L["Load Tracking Achievements Desc"]:KAF_AddDefaultValueText("Categories.TrackingAchievements.DoLoad"):K_AddReloadRequired(),
         get = function() return addon.Options.db.profile.Categories.TrackingAchievements.DoLoad; end,
         set = function(_, value) addon.Options.db.profile.Categories.TrackingAchievements.DoLoad = value; end
     });
@@ -331,6 +331,17 @@ local function OffsetsCategoriesFrameWidthSet(_, value)
     end
 end
 
+local function OffsetsAchievementsFrameWidthSet(_, value)
+    if addon.Options.db.profile.Window.AchievementsFrameWidthOffset == value then return; end
+    addon.Options.db.profile.Window.AchievementsFrameWidthOffset = value;
+    if addon.Gui.SelectedTab then
+        addon.Gui:SetAchievementFrameWidth();
+        if addon.Gui.SelectedTab.SelectedCategory.IsSummary then
+            KrowiAF_SummaryFrame:Update();
+        end
+    end
+end
+
 local function SetMaxNumberOfSearchPreviews()
     local numberOfSearchPreviews = options.SetMaxNumberOfSearchPreviews()
     if numberOfSearchPreviews.get() > numberOfSearchPreviews.max then
@@ -515,6 +526,14 @@ options.OptionsTable.args["Layout"] = {
                             min = -125, max = 250, step = 1,
                             get = function() return addon.Options.db.profile.Window.CategoriesFrameWidthOffset; end,
                             set = OffsetsCategoriesFrameWidthSet
+                        },
+                        AchievementsFrameWidth = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
+                            name = addon.L["Achievements width offset"],
+                            desc = addon.L["Achievements width offset Desc"]:KAF_InjectAddonName():K_ReplaceVars(string.format(addon.Util.Colors.Yellow, addon.L["Expansions"])):KAF_AddDefaultValueText("Window.AchievementsFrameWidthOffset"),
+                            min = 0, max = 500, step = 1,
+                            get = function() return addon.Options.db.profile.Window.AchievementsFrameWidthOffset; end,
+                            set = OffsetsAchievementsFrameWidthSet
                         },
                         AchievementFrameHeight = {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
@@ -843,28 +862,35 @@ options.OptionsTable.args["Layout"] = {
                             name = addon.L["Style"],
                             args = {
                                 CompactAchievements = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                                     name = addon.L["Compact Achievements"],
                                     desc = addon.L["Compact Achievements Desc"]:KAF_AddDefaultValueText("Achievements.Compact"):K_AddReloadRequired(),
                                     get = function() return addon.Options.db.profile.Achievements.Compact; end,
                                     set = function(_, value) addon.Options.db.profile.Achievements.Compact = value; end,
                                 },
+                                CenterHeader = {
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
+                                    name = addon.L["Center Header"],
+                                    desc = addon.L["Center Header Desc"]:KAF_AddDefaultValueText("Achievements.CenterHeader"):K_AddReloadRequired(),
+                                    get = function() return addon.Options.db.profile.Achievements.CenterHeader; end,
+                                    set = function(_, value) addon.Options.db.profile.Achievements.CenterHeader = value; end,
+                                },
                                 HideDateCompleted = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                                     name = addon.L["Hide Date Completed"],
                                     desc = addon.L["Hide Date Completed Desc"]:KAF_AddDefaultValueText("Achievements.HideDateCompleted"):K_AddReloadRequired(),
                                     get = function() return addon.Options.db.profile.Achievements.HideDateCompleted; end,
                                     set = function(_, value) addon.Options.db.profile.Achievements.HideDateCompleted = value; end,
                                 },
                                 ShowAllianceFactionIcon = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                                     name = addon.L["Show Faction Faction Icon"]:K_ReplaceVars(addon.L["Alliance"]),
                                     desc = addon.L["Show Faction Faction Icon Desc"]:K_ReplaceVars(addon.L["Alliance"]):KAF_AddDefaultValueText("Achievements.ShowAllianceFactionIcon"),
                                     get = function() return addon.Options.db.profile.Achievements.ShowAllianceFactionIcon; end,
                                     set = function(_, value) addon.Options.db.profile.Achievements.ShowAllianceFactionIcon = value; end,
                                 },
                                 ShowHordeFactionIcon = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                                     name = addon.L["Show Faction Faction Icon"]:K_ReplaceVars(addon.L["Horde"]),
                                     desc = addon.L["Show Faction Faction Icon Desc"]:K_ReplaceVars(addon.L["Horde"]):KAF_AddDefaultValueText("Achievements.ShowHordeFactionIcon"),
                                     get = function() return addon.Options.db.profile.Achievements.ShowHordeFactionIcon; end,
@@ -875,14 +901,14 @@ options.OptionsTable.args["Layout"] = {
                                     name = addon.L["Objectives"]
                                 },
                                 ForceTwoColumns = {
-                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                                     name = addon.L["Force two columns"],
                                     desc = addon.L["Force two columns Desc"]:KAF_AddDefaultValueText("Achievements.Objectives.ForceTwoColumns"),
                                     get = function() return addon.Options.db.profile.Achievements.Objectives.ForceTwoColumns; end,
                                     set = function(_, value) addon.Options.db.profile.Achievements.Objectives.ForceTwoColumns = value; end
                                 },
                                 ForceTwoColumnsThreshold = {
-                                    order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
+                                    order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
                                     name = addon.L["Force two columns threshold"],
                                     desc = addon.L["Force two columns threshold Desc"]:KAF_AddDefaultValueText("Achievements.Objectives.ForceTwoColumnsThreshold"),
                                     min = 0, max = 50, step = 1,
@@ -1273,6 +1299,7 @@ function RefreshOptions()
     MovableCalendarRememberLastPositionSet(nil, profile.Window.RememberLastPosition.Calendar);
     MovableDataManagerRememberLastPositionSet(nil, profile.Window.RememberLastPosition.DataManager);
     OffsetsCategoriesFrameWidthSet(nil, profile.Window.CategoriesFrameWidthOffset);
+    OffsetsAchievementsFrameWidthSet(nil, profile.Window.AchievementsFrameWidthOffset);
     OffsetsAchievementFrameHeightSet(nil, profile.Window.AchievementFrameHeightOffset);
     addon.Gui:ShowHideTabs(); -- Dynamic Tab Order and Visibility is handled by this one
     SetSearchBoxMouseWheelPanScalar(nil, profile.SearchBox.MouseWheelPanScalar);

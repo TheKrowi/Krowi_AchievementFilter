@@ -100,9 +100,11 @@
 			</Layer>
 			<Layer level="OVERLAY">
 				<FontString name="$parentHeader" parentKey="Header" inherits="GameFontHighlightMedium" text="For the Alliance!">
-					<Size x="320" y="20"/>
+					<Size y="20"/>
 					<Anchors>
 						<Anchor point="TOP" relativeKey="$parent.HeaderBackground" relativePoint="TOP" x="0" y="0"/>
+						<Anchor point="LEFT" x="95" y="0"/>
+						<Anchor point="RIGHT" x="-95" y="0"/>
 					</Anchors>
 				</FontString>
 				<FontString name="$parentReward" parentKey="Reward" inherits="GameFontNormalSmall" hidden="true">
@@ -111,22 +113,10 @@
 						<Anchor point="TOP" relativeKey="$parent.RewardBackground" relativePoint="TOP" x="0" y="1"/>
 					</Anchors>
 				</FontString>
-				<FontString name="$parentDescription" parentKey="Description" inherits="AchievementDescriptionFont">
-					<Size x="330" y="30"/>
-					<Anchors>
-						<Anchor point="TOP" x="0" y="-30"/>
-					</Anchors>
-				</FontString>
-				<FontString name="$parentHiddenDescription" parentKey="HiddenDescription" inherits="AchievementDescriptionFont" hidden="true">
-					<Anchors>
-						<Anchor point="TOPLEFT" relativeKey="$parent.Description" x="0" y="0"/>
-						<Anchor point="TOPRIGHT" relativeKey="$parent.Description" x="0" y="0"/>
-					</Anchors>
-				</FontString>
 				<FontString name="$parentDateCompleted" parentKey="DateCompleted" inherits="AchievementDateFont" text="5/16/08" justifyH="CENTER" hidden="true">
-					<Size x="100" y="14"/>
+					<Size x="64" y="14"/>
 					<Anchors>
-						<Anchor point="TOPRIGHT" x="10" y="-58"/>
+						<Anchor point="TOPRIGHT" x="-8" y="-58"/>
 					</Anchors>
 				</FontString>
 				<Texture name="$parentCheck" parentKey="Check" file="Interface\Buttons\UI-CheckBox-Check" hidden="true">
@@ -143,6 +133,20 @@
 					</Anchors>
 					<TexCoords left="0" right="0.5" top="0" bottom="0.25"/>
 				</Texture>
+				<FontString name="$parentDescription" parentKey="Description" inherits="AchievementDescriptionFont">
+					<Size y="30"/>
+					<Anchors>
+						<Anchor point="TOP" x="0" y="-30"/>
+						<Anchor point="LEFT" relativeKey="$parent.PlusMinus" relativePoint="RIGHT" x="10" y="0"/>
+						<Anchor point="RIGHT" relativeKey="$parent.Shield" relativePoint="LEFT" x="-10" y="0"/>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentHiddenDescription" parentKey="HiddenDescription" inherits="AchievementDescriptionFont" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.Description" x="0" y="0"/>
+						<Anchor point="TOPRIGHT" relativeKey="$parent.Description" x="0" y="0"/>
+					</Anchors>
+				</FontString>
 			</Layer>
 		</Layers>
 		<Scripts>

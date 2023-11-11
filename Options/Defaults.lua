@@ -19,6 +19,7 @@ addon.Options.Defaults = {
                 DataManager = false
             },
             CategoriesFrameWidthOffset = 50,
+            AchievementsFrameWidthOffset = 0,
             AchievementFrameHeightOffset = 250,
             MergeSmallCategoriesThreshold = 10
         },
@@ -63,6 +64,7 @@ addon.Options.Defaults = {
         AdjustableCategories = { --[[ Dynamically build via ExportedCategories ]] },
         Achievements = {
             Compact = false,
+            CenterHeader = true,
             HideDateCompleted = false,
             ShowAllianceFactionIcon = false,
             ShowHordeFactionIcon = false,

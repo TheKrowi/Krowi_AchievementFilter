@@ -34,8 +34,11 @@ KrowiAF_AchievementsObjectivesMixin = {
 	}
 };
 
+local defaultMetaWidth;
 function KrowiAF_AchievementsObjectivesMixin:OnLoad()
 	self:RegisterEvent("CRITERIA_UPDATE");
+	local meta = self:GetMeta(1);
+	defaultMetaWidth = meta:GetWidth();
 end
 
 local refreshOnNextShow;
@@ -191,20 +194,6 @@ end
 
 local function AddMeta(self, index, completed, assetId)
 	local metaCriteria = self:GetMeta(index);
-	metaCriteria:ClearAllPoints();
-	if index == 1 then
-		-- Anchor once all criteria are processed
-		metaCriteria:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 0);
-		metaCriteria:SetPoint("RIGHT", self, "LEFT", self:GetWidth() / 2, 0);
-	elseif math.fmod(index, 2) == 0 then
-		local anchorMeta = self:GetMeta(index - 1);
-		metaCriteria:SetPoint("LEFT", anchorMeta, "RIGHT", 0, 0);
-		metaCriteria:SetPoint("RIGHT", self, "RIGHT", 0, 0);
-	else
-		local anchorMeta = self:GetMeta(index - 2);
-		metaCriteria:SetPoint("TOPLEFT", anchorMeta, "BOTTOMLEFT", 0, 2);
-		metaCriteria:SetPoint("RIGHT", self, "LEFT", self:GetWidth() / 2, 0);
-	end
 	local id, name, _, _, _, _, _, _, _, icon = GetAchievementInfo(assetId);
 	metaCriteria:Show();
 	metaCriteria.Id = id;
@@ -321,12 +310,12 @@ local function SetProgressBarAndTextPoints(self, numProgressBars, numTextCriteri
 end
 
 local function SetTextPoints(self, numTextCriteria, maxCriteriaWidth)
-	local columns = max(1, floor(self:GetWidth() / maxCriteriaWidth));
+	local numColumns = max(1, floor(self:GetWidth() / maxCriteriaWidth));
 
 	local truncate, flex;
 	if addon.Options.db.profile.Achievements.Objectives.ForceTwoColumns then
-		if columns < 2 and numTextCriteria >= addon.Options.db.profile.Achievements.Objectives.ForceTwoColumnsThreshold then
-			columns = 2;
+		if numColumns < 2 and numTextCriteria >= addon.Options.db.profile.Achievements.Objectives.ForceTwoColumnsThreshold then
+			numColumns = 2;
 			-- addon.Options.db.profile.Achievements.Objectives.CriteriaBehaviour == 1 needs no additional code to overflow
 			if addon.Options.db.profile.Achievements.Objectives.CriteriaBehaviour == 2 then -- Truncate
 				truncate = self:GetWidth() / 2;
@@ -336,15 +325,15 @@ local function SetTextPoints(self, numTextCriteria, maxCriteriaWidth)
 		end
 	end
 
-	if columns == 1 then -- They're already in the correct positions
+	if numColumns == 1 then -- They're already in the correct positions
 		local top = self:GetTextCriteria(1):GetTop();
 		local bottom = self:GetTextCriteria(numTextCriteria):GetBottom();
 		return top - bottom;
 	end
 
-	local columnWidth = self:GetWidth() / columns;
+	local columnWidth = self:GetWidth() / numColumns;
 
-	local rows = 1;
+	local numRows = 1;
 	local position = 0;
 	local textCriteria;
 	for i = 1, numTextCriteria do -- The 1st one is already at its correct position
@@ -353,21 +342,62 @@ local function SetTextPoints(self, numTextCriteria, maxCriteriaWidth)
 		if flex and position == 2 and textCriteria:GetWidth() > columnWidth then
 			position = position + 1;
 		end
-		if position > columns then
-			position = position - columns;
-			rows = rows + 1;
+		if position > numColumns then
+			position = position - numColumns;
+			numRows = numRows + 1;
 		end
 		if truncate then
 			textCriteria:SetWidth(truncate);
 		end
 		textCriteria:ClearAllPoints();
-		textCriteria:SetPoint("TOPLEFT", self, "TOPLEFT", (position - 1) * columnWidth, -(rows - 1) * textCriteria:GetHeight());
+		textCriteria:SetPoint("TOPLEFT", self, "TOPLEFT", (position - 1) * columnWidth, -(numRows - 1) * textCriteria:GetHeight());
 		if flex and textCriteria:GetWidth() > columnWidth then
 			position = position + 1;
 		end
 	end
 	local top = self:GetTextCriteria(1):GetTop();
 	local bottom = self:GetTextCriteria(numTextCriteria):GetBottom();
+	return top - bottom;
+end
+
+local function FindNumColumns(self, numMetas, numColumns)
+	local width = self:GetWidth() / numColumns;
+	local meta;
+	for i = 1, numMetas do
+		meta = self:GetMeta(i);
+		meta:SetWidth(width);
+		if self:GetMeta(i).Label:IsTruncated() then
+			if numColumns <= 3 then
+				return 2;
+			end
+			return FindNumColumns(self, numMetas, numColumns - 1);
+		end
+	end
+	return numColumns;
+end
+
+local function SetMetaPoints(self, numMetas, offset)
+	offset = offset or 0;
+	local numColumns = max(2, floor(self:GetWidth() / defaultMetaWidth));
+	numColumns = FindNumColumns(self, numMetas, numColumns);
+
+	local width = self:GetWidth() / numColumns;
+	local numRows = 1;
+	local position = 0;
+	local meta;
+	for i = 1, numMetas do
+		position = position + 1;
+		if position > numColumns then
+			position = position - numColumns;
+			numRows = numRows + 1;
+		end
+		meta = self:GetMeta(i);
+		meta:SetWidth(width);
+		meta:ClearAllPoints();
+		meta:SetPoint("TOPLEFT", self, "TOPLEFT", (position - 1) * width, -(numRows - 1) * ACHIEVEMENTBUTTON_METAROWHEIGHT - offset);
+	end
+	local top = self:GetMeta(1):GetTop();
+	local bottom = self:GetMeta(numMetas):GetBottom();
 	return top - bottom;
 end
 
@@ -389,13 +419,13 @@ function KrowiAF_AchievementsObjectivesMixin:DisplayCriteria(id)
 	local numCriteriaRows = 0;
 
 	local numTextCriteria, numProgressBars, numMetas = 0, 0, 0;
-	local maxCriteriaWidth = 0;
+	local maxTextCriteriaWidth = 0;
 	for i = 1, numCriteria do
 		local criteriaString, criteriaType, completed, quantity, reqQuantity, _, flags, assetID, quantityString = addon.GetAchievementCriteriaInfo(id, i);
 		flags = addon.Objects.Flags:New(flags);
 		if criteriaType == CRITERIA_TYPE_ACHIEVEMENT and assetID then
 			numMetas = numMetas + 1;
-			AddMeta(self, numMetas, completed, assetID)
+			AddMeta(self, numMetas, completed, assetID);
 		elseif flags.IsCriteriaProgressBar then
 			numProgressBars = numProgressBars + 1;
 			_, progressBarHeight = AddProgressBar(self, numProgressBars, quantity, reqQuantity, quantityString);
@@ -404,7 +434,7 @@ function KrowiAF_AchievementsObjectivesMixin:DisplayCriteria(id)
 		else
 			numTextCriteria = numTextCriteria + 1;
 			textCriteriaWidth, textCriteriaHeight = AddTextCriteria(self, numTextCriteria, numCriteria, criteriaString, completed);
-			maxCriteriaWidth = max(maxCriteriaWidth, textCriteriaWidth);
+			maxTextCriteriaWidth = max(maxTextCriteriaWidth, textCriteriaWidth);
 			totalTextCriteriaHeight = totalTextCriteriaHeight + textCriteriaHeight;
 			numCriteriaRows = numCriteriaRows + 1;
 		end
@@ -415,16 +445,12 @@ function KrowiAF_AchievementsObjectivesMixin:DisplayCriteria(id)
 		height = totalProgressBarHeight + totalTextCriteriaHeight;
 	elseif numTextCriteria > 0 then
 		height = totalTextCriteriaHeight;
-		height = SetTextPoints(self, numTextCriteria, maxCriteriaWidth);
+		height = SetTextPoints(self, numTextCriteria, maxTextCriteriaWidth);
 		if numMetas > 0 then
-			self:GetMeta(1):ClearAllPoints();
-			self:GetMeta(1):SetPoint("TOP", self:GetTextCriteria(numTextCriteria), "BOTTOM", 0, 0);
-			self:GetMeta(1):SetPoint("LEFT", self, "LEFT", 0, 0);
-			self:GetMeta(1):SetPoint("RIGHT", self, "LEFT", self:GetWidth() / 2, 0);
-			height = height + ceil(numMetas / 2) * ACHIEVEMENTBUTTON_METAROWHEIGHT;
+			height = height + SetMetaPoints(self, numMetas, height);
 		end
 	else
-		height = ceil(numMetas / 2) * ACHIEVEMENTBUTTON_METAROWHEIGHT;
+		height = SetMetaPoints(self, numMetas);
 	end
 	self:SetHeight(height + 1);
 	self.Mode = self.Modes.Criteria;

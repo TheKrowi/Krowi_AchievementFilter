@@ -490,13 +490,13 @@ do -- [[ Alerts and Side Buttons ]]
 
     local function SkinSideButtons(engine)
         local i = 1;
-        local button = _G["AchievementFrameSideButton" .. i];
+        local button = _G["KrowiAF_AchievementFrameSideButton" .. i];
         local prevButton;
         while button do
             SkinSideButton(button, prevButton, engine);
             prevButton = button;
             i = i + 1;
-            button = _G["AchievementFrameSideButton" .. i];
+            button = _G["KrowiAF_AchievementFrameSideButton" .. i];
         end
     end
     elvUI.SkinSideButtons = SkinSideButtons;

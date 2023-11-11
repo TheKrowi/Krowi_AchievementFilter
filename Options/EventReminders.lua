@@ -488,11 +488,6 @@ options.OptionsTable.args["EventReminders"] = {
             name = addon.L["World Events"],
             args = { --[[ Automatically generated ]] }
         },
-        WidgetEvents = {
-            order = OrderPP(), type = "group", childGroups = "tab",
-            name = addon.L["Widget Events"],
-            args = { --[[ Automatically generated ]] }
-        },
         DateTimeFormat = {
             order = OrderPP(), type = "group",
             name = addon.L["Date and Time format"],

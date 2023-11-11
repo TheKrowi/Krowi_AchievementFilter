@@ -36,8 +36,6 @@ function KrowiAF_CategoriesFrameMixin:SetRightPoint()
 end
 
 function KrowiAF_CategoriesFrameMixin:OnLoad()
-	self:SetRightPoint();
-
 	self.ScrollBox.wheelPanScalar = addon.Options.db.profile.Categories.MouseWheelPanScalar;
 	self.ScrollBar.wheelPanScalar = addon.Options.db.profile.Categories.MouseWheelPanScalar;
 

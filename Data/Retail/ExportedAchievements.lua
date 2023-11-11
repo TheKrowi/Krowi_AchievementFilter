@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-07 19-16-57 ]] --
+-- [[ Exported at 2023-11-11 18-33-28 ]] --
 tasks = {
     {N, 19461, 205}, -- Kissed by the Wind
     {O, 19449, "From", "PvP Season", 36, "Until", "PvP Season", 36},

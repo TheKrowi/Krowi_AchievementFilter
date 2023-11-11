@@ -1,50 +1,23 @@
 [B]Added[/B]
 [LIST]
-[*]The Lick King, Lil' Maggz and Ysergle The Dreamurk
-[*]The tooltip opened by clicking an achievement link from chat for example now also reacts to right clicks
-[*]Filter on "Added in version"
-[*]Option to automatically adjust the summary achievements list to fit the space without showing a scroll bar
-[*]Right clicking an event reminder on the side of the Achievement Window or the World Map will show a menu with the option to stop tracking that specific event
-[*]Uncategorized category as an adjustable category which shows achievements not added to KAF yet
-[*]PvP Dragonflight Season 3 achievements (19)
-[*]Mythic Plus Dragonflight Season 3 achievements (11)
-[*]Amirdrassil, the Dream's Hope raid achievements (30)
-[*]Emerald Dream zone achievements (38)
-[*]Superbloom event achievements (4) and event reminders
-[*]More PvP achievements (6)
-[*]Pet Battle achievements (1)
-[*]Misc achievements (7)
-[*]Collector's Edition achievements (5)
-[*]Transmog sets to the 3 dragonflight pvp season achievements and the new raid
-[*]More French and German translations
+[*]Outland Cup event
+[*]Adjustable width for the achievements and summary
 [/LIST]
 
 [B]Changed[/B]
 [LIST]
-[*]Tons of back end changes
-[*]Moved The Horseman's Reins achievement to Events - Holidays - Hallow's End
-[*]Last completed achievements in the summary view should now be more accurate for the 5 last earned achievements
-[*]Transmog set data handling is now more streamlined
+[*]Both Researchers Under Fire events are now showing the 'Next' and 'Active' timers instead of the entire week when in Zaralek Cavern (outside will show that no time data is available)
+[*]Dreamsurges are now showing the 'Next' timer for the next portal instead of the entire week
+[*]Widget events are now also grouped under the world events as this makes more sense for the end user
+[*]Events are now grouped per expansion instead of having a prefix
 [/LIST]
 
 [B]Fixed[/B]
 [LIST]
-[*]Whenever the tooltip refreshes when mousing over achievements with transmog data is loaded, all lines will remember their color
-[*]When mousing over categories, the progress bar should now fill properly
-[*]When in combat, closing the windows by pressing Escape (button to toggle the game menu) should no longer result in errors
-[*]Forge and Befuddle now has a faction linked to it
-[*]Linked Forge and Befuddle
-[*]Event Reminder localization of time left should now be working correctly
-[*]Event Reminder localization of end time when using a custom format containing %a, %A, %b or %B should now be working correctly
-[*]Event Reminders should now always have a category linked and no longer cause errors
-[*]Event Reminders should now more reliably register a mouse click
-[*]Current Zone category should now show more reliably
-[*]Cosmic Chic should no longer cause errors when mousing over is
-[/LIST]
-
-[B]Wrath Classic[/B]
-[LIST]
-[*]Bumped version
-[*]Translations should once again be in the correct language
-[*]Linked Hail to the Chef
+[*]Dreamsurges are now properly tracked (new Ids so settings might need to be reapplyed)
+[*]Fyrakk Assaults should once again properly track
+[*]Potential fix for Excluded achievements resetting
+[*]Tracking achievements that show as meta achievements should no longer throw an error when tracking achievements are not loaded
+[*]Linked Hail to the Chef (again)
+[*]ElvUI skin should now once again apply to event reminders
 [/LIST]

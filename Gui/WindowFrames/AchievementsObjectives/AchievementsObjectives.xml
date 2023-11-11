@@ -116,7 +116,7 @@
                     </Anchors>
                     <TexCoords left="0" right="0.65625" top="0" bottom="1"/>
                 </Texture>
-                    <FontString name="$parentLabel" inherits="AchievementCriteriaFont" text="Fake criteria!" parentKey="Label">
+                <FontString name="$parentLabel" inherits="AchievementCriteriaFont" text="Fake criteria! And I need to be long enough to trigger the full width" parentKey="Label">
                     <Anchors>
                         <Anchor point="LEFT" relativeTo="$parentBorder" relativePoint="RIGHT" x="0" y="0"/>
                         <Anchor point="RIGHT" x="-10" y="0"/>

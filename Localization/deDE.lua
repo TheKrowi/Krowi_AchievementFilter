@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-07 19-43-26 ]] --
+-- [[ Exported at 2023-11-11 01-20-49 ]] --
 L["%c"] = "%c "
 L["%d/%m/%Y %I:%M %p"] = "%d/%m/%Y %I:%M %p "
 L["%m/%d/%Y %I:%M %p"] = "%m/%d/%Y %I:%M %p "
@@ -219,16 +219,6 @@ L["Debug"] = "Debug "
 L["Debug Desc"] = "Jede der unten aufgeführten Optionen ist für Debugging- und Testzwecke verfügbar. Verwendung auf eigene Gefahr! "
 L["Default value"] = "Vorgabewert (Standard) "
 L["Deselect All"] = "Alle abwählen "
-L["DF - Community Feast"] = "DF - Gemeinschaftliches Festmahl "
-L["DF - Dreamsurge"] = "DF - Traumsprünge"
-L["DF - Firestorms"] = "DF - Feuerstürme "
-L["DF - Fyrakk Assault"] = "DF - Angriffe von Fyrakk "
-L["DF - Grand Hunts"] = "DF - Große Jagd "
-L["DF - Researchers Under Fire"] = "DF - Forscher unter Feuer "
-L["DF - Sandstorms"] = "DF - Sandstürme "
-L["DF - Siege on Dragonbane Keep"] = "DF - Belagerung der Drachenfluchfestung "
-L["DF - Snowstorms"] = "DF - Schneestürme "
-L["DF - Thunderstorms"] = "DF - Gewitterstürme "
 L["Diablo III"] = "Diablo 3"
 L["Diablo IV"] = "Diablo 4"
 L["Discord"] = "Discord "

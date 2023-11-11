@@ -51,7 +51,6 @@ end
 local function GetNewStatusBar(self)
     local statusBar = LibStub("Krowi_ProgressBar-2.0"):GetNew(self);
     OverRideTextures(statusBar);
-    statusBar:SetWidth(270);
     statusBar:SetHeight(49);
     statusBar:Reset();
     statusBar:SetColors({R = 0, G = 1, B = 0}, {R = 1, G = 0, B = 0});
@@ -64,9 +63,10 @@ end
 local function LoadTotalStatusBar(self)
     self.TotalStatusBar = GetNewStatusBar(self);
     local totalStatusBar = self.TotalStatusBar;
-    totalStatusBar:SetWidth(524);
     totalStatusBar.TextLeft:SetText(addon.L["Achievements Earned"]);
     totalStatusBar:SetPoint("TOP", self.Categories.Header, "BOTTOM", 0, 5);
+    totalStatusBar:SetPoint("LEFT", self, 14, 0);
+    totalStatusBar:SetPoint("RIGHT", self, -14, 0);
 end
 
 function KrowiAF_SummaryFrameMixin:OnLoad()
@@ -205,21 +205,19 @@ function KrowiAF_SummaryFrameMixin:GetStatusBar(index) -- Public for skinning
 end
 
 function KrowiAF_SummaryFrameMixin:GetAndAlignStatusBar(index) -- Public for skinning
-    local yOffset = 15;
-    local point, relativePoint, relativeTo;
-    if index % 2 == 0 then -- Even
-        point, relativePoint = "TOPRIGHT", "BOTTOMRIGHT";
-    else -- Odd
-        point, relativePoint = "TOPLEFT", "BOTTOMLEFT";
+    local numColumns = floor((self:GetWidth() - 28) / 254);
+    local width = (self:GetWidth() - 44) / numColumns; -- 44 = 2*14 + 16, 14 is offsets on the side, 16 in between 2 columns
+    local numRows = 1;
+	local position = index;
+    while position > numColumns do
+        position = position - numColumns;
+		numRows = numRows + 1;
     end
-    if index == 1 or index == 2 then
-        relativeTo = self.TotalStatusBar;
-    else
-        relativeTo = self:GetStatusBar(index - 2);
-    end
+
     local statusBar = self:GetStatusBar(index);
+    statusBar:SetWidth(width + 16);
     statusBar:ClearAllPoints();
-    statusBar:SetPoint(point, relativeTo, relativePoint, 0, yOffset);
+    statusBar:SetPoint("TOPLEFT", self.TotalStatusBar, "TOPLEFT", (position - 1) * width, -numRows * 34);
     return statusBar;
 end
 

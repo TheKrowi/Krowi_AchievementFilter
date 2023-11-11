@@ -3,10 +3,6 @@
     <Script file="CategoriesFrameMixin.lua"/>
 	
 	<Frame name="KrowiAF_CategoriesFrame_Template" mixin="KrowiAF_CategoriesFrameMixin" virtual="true" hidden="true">
-		<Anchors>
-			<Anchor point="TOPLEFT" relativeTo="AchievementFrameCategories"/>
-			<Anchor point="BOTTOM" y="20"/>
-		</Anchors>
 		<Frames>
 			<Frame parentKey="ScrollBox" inherits="WowScrollBoxList"/>
 			<EventFrame parentKey="ScrollBar" inherits="WowTrimScrollBar">
