@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-07 19-43-29 ]] --
+-- [[ Exported at 2023-11-11 01-20-53 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -218,16 +218,6 @@ L["Debug"] = "Débug"
 L["Debug Desc"] = "Chacune des options répertoriées ci-dessous est disponible à des fins de débogage et de test. À utiliser à vos risques et périls !"
 L["Default value"] = "Valeur par défaut"
 L["Deselect All"] = "Tout désélectionner"
-L["DF - Community Feast"] = "DF - Festin tribal"
-L["DF - Dreamsurge"] = "DF - Poussée onirique"
-L["DF - Firestorms"] = "DF - Tempête élémentaire de feu"
-L["DF - Fyrakk Assault"] = "DF - Assaut de Fyrakka"
-L["DF - Grand Hunts"] = "DF - Grandes chasses"
-L["DF - Researchers Under Fire"] = "DF - Des chercheurs sous le feu"
-L["DF - Sandstorms"] = "DF - Tempête élémentaire de sable"
-L["DF - Siege on Dragonbane Keep"] = "DF - Siège du donjon du Fléau-des-Dragons"
-L["DF - Snowstorms"] = "DF - Tempête élémentaire de neige"
-L["DF - Thunderstorms"] = "DF - Tempête élémentaire de foudre"
 L["Diablo III"] = true
 L["Diablo IV"] = true
 L["Discord"] = true

@@ -342,15 +342,29 @@ do --[[ KrowiAF_RegisterEventOptions ]]
 
 	local OrderPP = addon.InjectOptions.AutoOrderPlusPlus;
 	local AdjustedWidth = addon.InjectOptions.AdjustedWidth;
-	local function InjectOptionsTable(eventType, groupName, groupDisplayName, eventIds, eventDisplayName)
-		if not addon.InjectOptions:TableExists("EventReminders.args." .. eventType .. "Events.args." .. groupName) then
-			addon.InjectOptions:AddTable("EventReminders.args." .. eventType .. "Events.args", groupName, {
-				order = OrderPP(), type = "group",
+	local function InjectOptionsTable(eventType, eventIds, eventDisplayName, groupDisplayName, order, expansionDisplayName)
+		local path = "EventReminders.args." .. (eventType == "Widget" and "World" or eventType) .. "Events.args";
+		local expansionName = expansionDisplayName and expansionDisplayName:gsub("[%p%c%s]", "_");
+		if expansionName then
+			if not addon.InjectOptions:TableExists(path .. "." .. expansionName) then
+				addon.InjectOptions:AddTable(path, expansionName, {
+					order = order, type = "group",
+					name = expansionDisplayName,
+					args = {}
+				});
+			end
+			path = path .. "." .. expansionName .. ".args";
+		end
+		local groupName = groupDisplayName:gsub("[%p%c%s]", "_");
+		if not addon.InjectOptions:TableExists(path .. "." .. groupName) then
+			addon.InjectOptions:AddTable(path, groupName, {
+				order = order, type = "group",
 				name = groupDisplayName,
 				args = {}
 			});
 		end
-		addon.InjectOptions:AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", tostring(eventIds[1]), {
+		path = path .. "." .. groupName .. ".args";
+		addon.InjectOptions:AddTable(path, tostring(eventIds[1]), {
 			order = OrderPP(), type = "toggle", width = AdjustedWidth(),
 			name = eventDisplayName,
 			get = function() return addon.Options.db.profile.EventReminders[eventType .. "Events"][eventIds[1]]; end,
@@ -363,23 +377,27 @@ do --[[ KrowiAF_RegisterEventOptions ]]
 		});
 	end
 
-	function KrowiAF_RegisterEventOptions(eventType, groupName, groupDisplayName, eventIds, eventDisplayName, hideByDefault)
+	function KrowiAF_RegisterEventOptions(eventType, eventIds, eventDisplayName, groupDisplayName, order, expansionDisplayName, hideByDefault)
 		InjectOptionsDefaults(eventType, eventIds, hideByDefault);
-		InjectOptionsTable(eventType, groupName, groupDisplayName, eventIds, eventDisplayName);
+		InjectOptionsTable(eventType, eventIds, eventDisplayName, groupDisplayName, order, expansionDisplayName);
 	end
 
-	function KrowiAF_RegisterDeSelectAllEventOptions(eventType, groupName, eventIds)
-		if addon.InjectOptions:TableExists("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args.SelectAll") then
+	function KrowiAF_RegisterDeSelectAllEventOptions(eventType, eventIds, groupDisplayName, expansionName)
+		local groupName = groupDisplayName:gsub("[%p%c%s]", "_");
+		local path = "EventReminders.args." .. (eventType == "Widget" and "World" or eventType) .. "Events.args." .. (expansionName and (expansionName .. ".args.") or "") .. groupName .. ".args";
+		if addon.InjectOptions:TableExists(path .. ".SelectAll") then
 			return;
 		end
 
-		addon.InjectOptions:AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", "Blank1", {
+		addon.InjectOptions:AddTable(path, "Blank1", {
 			order = OrderPP(), type = "description", width = "full", name = ""
 		});
-		addon.InjectOptions:AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", "Blank2", {
-			order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""
-		});
-		addon.InjectOptions:AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", "SelectAll", {
+		if not expansionName then
+			addon.InjectOptions:AddTable(path, "Blank2", {
+				order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""
+			});
+		end
+		addon.InjectOptions:AddTable(path, "SelectAll", {
 			order = OrderPP(), type = "execute", width = AdjustedWidth(),
 			name = addon.L["Select All"],
 			func = function()
@@ -388,7 +406,7 @@ do --[[ KrowiAF_RegisterEventOptions ]]
 				end
 			end
 		});
-		addon.InjectOptions:AddTable("EventReminders.args." .. eventType .. "Events.args." .. groupName .. ".args", "DeselectAll", {
+		addon.InjectOptions:AddTable(path, "DeselectAll", {
 			order = OrderPP(), type = "execute", width = AdjustedWidth(),
 			name = addon.L["Deselect All"],
 			func = function()

@@ -7,20 +7,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-07 19-43-23 ]] --
-
-L["Achievements width offset"] = true
-L["Achievements width offset Desc"] = [=[The width that will be added to the default achievements width.
-
-This value can be changed while the achievement window is open and having one of the tabs selected added by {addonName}. This might have an impact (1) on the game.
-
-(1) FPS drops and stuttering while adjusting the value, NOT during normal addon use]=]
-L["Center Header"] = true
-L["Center Header Desc"] = "Center the achievement's name on the achievement button."
-L["Ohn'ahran Plains: Next"] = true
-L["Thaldraszus: Next"] = true
-L["Azure Span: Next"] = true
-L["Waking Shores: Next"] = true
+-- [[ Exported at 2023-11-11 01-20-47 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -50,6 +37,12 @@ This value can be changed while the achievement window is open and having one of
 
 (1) FPS drops and stuttering while adjusting the value, NOT during normal addon use]=]
 L["Achievements"] = true
+L["Achievements width offset"] = true
+L["Achievements width offset Desc"] = [=[The width that will be added to the default achievements width.
+
+This value can be changed while the achievement window is open and having one of the tabs selected added by {addonName}. This might have an impact (1) on the game.
+
+(1) FPS drops and stuttering while adjusting the value, NOT during normal addon use]=]
 L["Active events"] = true
 L["Add addon name to world map icon"] = true
 L["Add addon name to world map icon Desc"] = "Add '{addonName}' to the bottom of the tooltip when mousing over the icon."
@@ -96,6 +89,7 @@ L["Author"] = true
 L["Auto number of summary achievements"] = true
 L["Auto number of summary achievements Desc"] = "Automatically adjust the number of achievements shown so no scroll bar is shown."
 L["Azure Span"] = true
+L["Azure Span: Next"] = true
 L["Blizzard"] = true
 L["BlizzCon"] = true
 L["Brackenhide Hollow"] = true
@@ -133,6 +127,8 @@ This value can be changed while the achievement window is open and having one of
 (1) FPS drops and stuttering while adjusting the value, NOT during normal addon use]=]
 L["Category shown temporarily"] = "This category was selected by clicking on the {eventName} event reminder and is shown temporarily because it has no achievements that match the set filters."
 L["Caverns Criss-Cross"] = true
+L["Center Header"] = true
+L["Center Header Desc"] = "Center the achievement's name on the achievement button."
 L["Central Circuit"] = true
 L["Character / Account wide"] = true
 L["Character only"] = true
@@ -156,7 +152,11 @@ L["Collector's Edition"] = true
 L["Comments"] = true
 L["Community Feast"] = true
 L["Community Feast: Active"] = true
+L["Community Feast: Cooking"] = true
 L["Community Feast: Next"] = true
+L["Community Feast: Ready"] = true
+L["Community Feast: Soon"] = true
+L["Community Feast: Starting Soon"] = true
 L["Compact"] = true
 L["Compact Achievements"] = true
 L["Compact Achievements Desc"] = "Achievements are 2/3rd the size, similar to the summary achievements."
@@ -229,16 +229,6 @@ L["Debug"] = true
 L["Debug Desc"] = "Each of the options below are available for debugging and testing purposes. Use at your own risk!"
 L["Default value"] = true
 L["Deselect All"] = true
-L["DF - Community Feast"] = true
-L["DF - Dreamsurge"] = true
-L["DF - Firestorms"] = true
-L["DF - Fyrakk Assault"] = true
-L["DF - Grand Hunts"] = true
-L["DF - Researchers Under Fire"] = true
-L["DF - Sandstorms"] = true
-L["DF - Siege on Dragonbane Keep"] = true
-L["DF - Snowstorms"] = true
-L["DF - Thunderstorms"] = true
 L["Diablo III"] = true
 L["Diablo IV"] = true
 L["Discord"] = true
@@ -442,6 +432,7 @@ L["Fated Raids: Sepulcher of the First Ones (US)"] = true
 L["Feast of Winter Veil"] = true
 L["Fen Flythrough"] = true
 L["Filters"] = true
+L["Firestorms"] = true
 L["First day of the week"] = true
 L["First day of the week Desc"] = "The first day of the week the calendar should use."
 L["FixTabs"] = [=[All tabs are shown again. This was necessary to introduce the new tabs ordering feature.
@@ -468,6 +459,7 @@ L["Glory"] = true
 L["Go to"] = true
 L["Going away with"] = true
 L["Gorespine"] = true
+L["Grand Hunts"] = true
 L["Grand Hunts: Ohn'ahran Plains"] = true
 L["Grand Hunts: Thaldraszus"] = true
 L["Grand Hunts: The Azure Span"] = true
@@ -643,6 +635,7 @@ L["Obtainable"] = true
 L["OC"] = true
 L["Offsets"] = true
 L["Ohn'ahran Plains"] = true
+L["Ohn'ahran Plains: Next"] = true
 L["Ohn'iri Springs"] = true
 L["On Event Start"] = true
 L["On Login"] = true
@@ -749,6 +742,7 @@ L["Right Shift"] = true
 L["River Rapids Route"] = true
 L["Ruby Lifeshrine Loop"] = true
 L["Rydyr"] = true
+L["Sandstorms"] = true
 L["Scalecracker Keep"] = true
 L["Screenshot Mode"] = true
 L["Screenshot Mode Desc"] = [=[Adds a black frame above everything. Only newly opened windows are visible. This is used for taking screenshots.
@@ -867,6 +861,7 @@ L["Siege on Dragonbane Keep: Gathering"] = true
 L["Skitterer Xi'a"] = true
 L["Skoldus Hall"] = true
 L["Slagmire"] = true
+L["Snowstorms"] = true
 L["Sort priority"] = true
 L["Soulforges"] = true
 L["Sources"] = true
@@ -899,6 +894,7 @@ L["Ta's Pet Collection"] = true
 L["temporary obtainable"] = true
 L["Temporary Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}"
 L["Thaldraszus"] = true
+L["Thaldraszus: Next"] = true
 L["The Azure Span Slalom"] = true
 L["The Azure Span Sprint"] = true
 L["The Entitled"] = true
@@ -910,15 +906,18 @@ L["This achievement is no longer obtainable"] = "This achievement is no longer o
 L["This category has no achievements"] = true
 L["This character's class has no transmog set that meet the requirements."] = true
 L["Thundering Pandaren Spirit"] = true
+L["Thunderstorms"] = true
 L["Time display"] = true
 L["Time Left"] = true
 L["Time Rift: Active"] = true
 L["Time Rift: Next"] = true
+L["Time Rift: Starting Soon"] = true
 L["Time Rifts"] = true
 L["Titan Lockdown"] = true
 L["Titan Lockdown: Active"] = true
-L["Titan Lockdown: Soon"] = true
 L["Titan Lockdown: Next"] = true
+L["Titan Lockdown: Soon"] = true
+L["Titan Lockdown: Starting Soon"] = true
 L["Ti'un the Wanderer"] = true
 L["Toggle"] = true
 L["Toggle Tracking"] = true
@@ -947,6 +946,7 @@ L["View Tutorial"] = true
 L["Wago"] = true
 L["Wago Desc"] = "Open a popup dialog with a link to the {addonName} {wago} page."
 L["Waking Shores"] = true
+L["Waking Shores: Next"] = true
 L["Warcraft III: Reforged"] = true
 L["Warcraft Rumble"] = true
 L["was"] = true
@@ -986,4 +986,6 @@ L["Y offset Desc"] = "The vertical offset from the start position."
 L["Zaqali Ruin Investigation"] = true
 L["Zaqali Ruin Investigation: Active"] = true
 L["Zaqali Ruin Investigation: Next"] = true
+L["Zaqali Ruin Investigation: Soon"] = true
+L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true

@@ -762,53 +762,31 @@ do -- [[ Summary ]]
         SkinStatusBar(frame.TotalStatusBar);
         frame.TotalStatusBar:SetWidth(574);
         frame.TotalStatusBar:SetPoint("TOP", frame.Categories.Header, "BOTTOM", 0, -15);
-        local preHookFunction = KrowiAF_SummaryFrame.GetAndAlignStatusBar;
-        KrowiAF_SummaryFrame.GetAndAlignStatusBar = function(self, index)
-            local yOffset = 0;
-            local point, relativePoint, relativeTo;
-            if index % 2 == 0 then -- Even
-                point, relativePoint = "TOPRIGHT", "BOTTOMRIGHT";
-            else -- Odd
-                point, relativePoint = "TOPLEFT", "BOTTOMLEFT";
-            end
-            if index == 1 or index == 2 then
-                relativeTo = self.TotalStatusBar;
-            else
-                relativeTo = self:GetStatusBar(index - 2);
-            end
+        local preHookFunction = KrowiAF_SummaryFrame.GetStatusBar;
+        KrowiAF_SummaryFrame.GetStatusBar = function(self, index)
             local statusBar = preHookFunction(self, index);
             if not statusBar.IsSkinned then
                 SkinStatusBar(statusBar);
-                statusBar:SetWidth(295);
                 statusBar.IsSkinned = true;
             end
-            statusBar:ClearAllPoints();
-            statusBar:SetPoint(point, relativeTo, relativePoint, 0, yOffset);
             return statusBar;
         end
-        -- local statusBars = frame.StatusBars;
-        -- for _, statusBar in next, statusBars do
-        --     SkinStatusBar(statusBar);
-        --     statusBar:SetWidth(295);
-        -- end
+        KrowiAF_SummaryFrame.GetAndAlignStatusBar = function(self, index)
+            local numColumns = floor((self:GetWidth() - 28) / 254);
+            local width = (self:GetWidth() - 44) / numColumns; -- 44 = 2*14 + 16, 14 is offsets on the side, 16 in between 2 columns
+            local numRows = 1;
+            local position = index;
+            while position > numColumns do
+                position = position - numColumns;
+                numRows = numRows + 1;
+            end
 
-        -- Re-anchor status bars
-        -- local yOffset = 0;
-
-        -- statusBars[1]:SetPoint("TOPLEFT", frame.TotalStatusBar, "BOTTOMLEFT", 0, yOffset);
-        -- statusBars[2]:SetPoint("TOPRIGHT", frame.TotalStatusBar, "BOTTOMRIGHT", 0, yOffset);
-        -- statusBars[3]:SetPoint("TOPLEFT", statusBars[1], "BOTTOMLEFT", 0, yOffset);
-        -- statusBars[4]:SetPoint("TOPRIGHT", statusBars[2], "BOTTOMRIGHT", 0, yOffset);
-        -- statusBars[5]:SetPoint("TOPLEFT", statusBars[3], "BOTTOMLEFT", 0, yOffset);
-        -- statusBars[6]:SetPoint("TOPRIGHT", statusBars[4], "BOTTOMRIGHT", 0, yOffset);
-        -- statusBars[7]:SetPoint("TOPLEFT", statusBars[5], "BOTTOMLEFT", 0, yOffset);
-        -- statusBars[8]:SetPoint("TOPRIGHT", statusBars[6], "BOTTOMRIGHT", 0, yOffset);
-        -- statusBars[9]:SetPoint("TOPLEFT", statusBars[7], "BOTTOMLEFT", 0, yOffset);
-        -- statusBars[10]:SetPoint("TOPRIGHT", statusBars[8], "BOTTOMRIGHT", 0, yOffset);
-        -- statusBars[11]:SetPoint("TOPLEFT", statusBars[9], "BOTTOMLEFT", 0, yOffset);
-        -- statusBars[12]:SetPoint("TOPRIGHT", statusBars[10], "BOTTOMRIGHT", 0, yOffset);
-        -- statusBars[13]:SetPoint("TOPLEFT", statusBars[11], "BOTTOMLEFT", 0, yOffset);
-        -- statusBars[14]:SetPoint("TOPRIGHT", statusBars[12], "BOTTOMRIGHT", 0, yOffset);
+            local statusBar = self:GetStatusBar(index);
+            statusBar:SetWidth(width + 16);
+            statusBar:ClearAllPoints();
+            statusBar:SetPoint("TOPLEFT", self.TotalStatusBar, "TOPLEFT", (position - 1) * width, -numRows * 49);
+            return statusBar;
+        end
     end
     gw2_ui.SkinAchievementSummary = SkinAchievementSummary;
 end
