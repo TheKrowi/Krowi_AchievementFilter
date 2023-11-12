@@ -1,7 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 66.0 - 2023-11-12
+## 66.1 - 2023-11-12
+### Changed
+- Wrath of the Lich King achievements Added in version should now more reflect the actual version they were added in and not all 3.4.0 Wrath Classic
+
+### Fixed
+- Not English clients should once again work
+
+## 66.0 - 2023-11-11
 ### Added
 - Outland Cup event
 - Adjustable width for the achievements and summary
@@ -13,7 +20,7 @@ All notable changes to this project will be documented in this file.
 - Events are now grouped per expansion instead of having a prefix
 
 ### Fixed
-- Dreamsurges are now properly tracked (new Ids so settings might need to be reapplyed)
+- Dreamsurges are now properly tracked (new Ids so settings might need to be reapplied)
 - Fyrakk Assaults should once again properly track
 - Potential fix for Excluded achievements resetting
 - Tracking achievements that show as meta achievements should no longer throw an error when tracking achievements are not loaded

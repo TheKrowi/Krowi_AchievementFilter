@@ -12,10 +12,18 @@
 </ul>
 <p><h3>Fixed</h3></p>
 <ul>
-<li>Dreamsurges are now properly tracked (new Ids so settings might need to be reapplyed)</li>
+<li>Dreamsurges are now properly tracked (new Ids so settings might need to be reapplied)</li>
 <li>Fyrakk Assaults should once again properly track</li>
 <li>Potential fix for Excluded achievements resetting</li>
 <li>Tracking achievements that show as meta achievements should no longer throw an error when tracking achievements are not loaded</li>
 <li>Linked Hail to the Chef (again)</li>
 <li>ElvUI skin should now once again apply to event reminders</li>
+</ul>
+<p><h3>Changed (66.1)</h3></p>
+<ul>
+<li>Wrath of the Lich King achievements Added in version should now more reflect the actual version they were added in and not all 3.4.0 Wrath Classic</li>
+</ul>
+<p><h3>Fixed (66.1)</h3></p>
+<ul>
+<li>Not English clients should once again work</li>
 </ul>
