@@ -21,7 +21,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-25 19-51-01 ]] --
+-- [[ Exported at 2023-11-11 22-37-15 ]] --
 tasks = {
     {N, 205, "10.2.0", "100200"},
     {N, 202, "10.1.7", "100107"},
@@ -70,17 +70,23 @@ tasks = {
     {N, 112, "4.0.6", "040006"},
     {N, 110, "4.0.3", "040003"},
     {N, 108, "4.0.1", "040001"},
-    {N, 194, "3.4.0", "030400"},
     {N, 106, "3.3.5", "030305"},
     {N, 104, "3.3.3", "030303"},
+    {N, 101, "3.3.0", "030300"},
+    {N, 99, "3.2.2", "030202"},
+    {N, 97, "3.2.0", "030200"},
+    {N, 92, "3.1.0", "030100"},
     {N, 86, "3.0.2", "030002"},
 };
 
 function exportedBuildVersions:InjectDynamicFilters(filters)
     filters[86] = true;
+    filters[92] = true;
+    filters[97] = true;
+    filters[99] = true;
+    filters[101] = true;
     filters[104] = true;
     filters[106] = true;
-    filters[194] = true;
     filters[108] = true;
     filters[110] = true;
     filters[112] = true;
@@ -142,9 +148,35 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                         },
                     }
                 },
+                { -- 3.1
+                    Minor = 1,
+                    Patches = {
+                        { -- 3.1.0
+                            Patch = 0,
+                            BuildVersionId = 92
+                        },
+                    }
+                },
+                { -- 3.2
+                    Minor = 2,
+                    Patches = {
+                        { -- 3.2.0
+                            Patch = 0,
+                            BuildVersionId = 97
+                        },
+                        { -- 3.2.2
+                            Patch = 2,
+                            BuildVersionId = 99
+                        },
+                    }
+                },
                 { -- 3.3
                     Minor = 3,
                     Patches = {
+                        { -- 3.3.0
+                            Patch = 0,
+                            BuildVersionId = 101
+                        },
                         { -- 3.3.3
                             Patch = 3,
                             BuildVersionId = 104
@@ -152,15 +184,6 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                         { -- 3.3.5
                             Patch = 5,
                             BuildVersionId = 106
-                        },
-                    }
-                },
-                { -- 3.4
-                    Minor = 4,
-                    Patches = {
-                        { -- 3.4.0
-                            Patch = 0,
-                            BuildVersionId = 194
                         },
                     },
                 },

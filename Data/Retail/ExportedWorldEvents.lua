@@ -24,7 +24,7 @@ local a = addon; -- Saves some characters and file size as we use this a lot in 
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-11 01-05-01 ]] --
+-- [[ Exported at 2023-11-12 08-22-26 ]] --
 tasks = {
     {N, 5175, 948, 1408998, a.L["Assault on Azsuna"], nil, 619}, -- Assault on Azsuna
     {N, 5177, 948, 1409000, a.L["Assault on Highmountain"], nil, 619}, -- Assault on Highmountain
@@ -134,12 +134,12 @@ function exportedWorldEvents.InjectDynamicOptions()
     KrowiAF_RegisterDeSelectAllEventOptions("World", {6989, 6990, 6991, 6992}, a.L["Shadowlands"]);
     KrowiAF_RegisterEventOptions("World", {7104}, a.L["Siege on Dragonbane Keep: Active"], a.L["Siege on Dragonbane Keep"], 4, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7267}, a.L["Siege on Dragonbane Keep: Gathering"], a.L["Siege on Dragonbane Keep"], 4, a.L["Dragonflight"]);
-    KrowiAF_RegisterDeSelectAllEventOptions("World", {7104, 7267}, a.L["Siege on Dragonbane Keep"], "Dragonflight");
+    KrowiAF_RegisterDeSelectAllEventOptions("World", {7104, 7267}, a.L["Siege on Dragonbane Keep"], a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7342}, a.L["Grand Hunts: Ohn'ahran Plains"], a.L["Grand Hunts"], 6, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7343}, a.L["Grand Hunts: The Waking Shore"], a.L["Grand Hunts"], 6, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7344}, a.L["Grand Hunts: Thaldraszus"], a.L["Grand Hunts"], 6, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7345}, a.L["Grand Hunts: The Azure Span"], a.L["Grand Hunts"], 6, a.L["Dragonflight"]);
-    KrowiAF_RegisterDeSelectAllEventOptions("World", {7342, 7343, 7344, 7345}, a.L["Grand Hunts"], "Dragonflight");
+    KrowiAF_RegisterDeSelectAllEventOptions("World", {7342, 7343, 7344, 7345}, a.L["Grand Hunts"], a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7221}, a.L["Nokhudon Hold"], a.L["Thunderstorms"], 7, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7225}, a.L["Ohn'iri Springs"], a.L["Thunderstorms"], 7, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7229}, a.L["Brackenhide Hollow"], a.L["Thunderstorms"], 7, a.L["Dragonflight"]);
@@ -150,7 +150,7 @@ function exportedWorldEvents.InjectDynamicOptions()
     KrowiAF_RegisterEventOptions("World", {7253}, a.L["Slagmire"], a.L["Thunderstorms"], 7, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7257}, a.L["Scalecracker Keep"], a.L["Thunderstorms"], 7, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7298}, a.L["Primalist Tomorrow"], a.L["Thunderstorms"], 7, a.L["Dragonflight"]);
-    KrowiAF_RegisterDeSelectAllEventOptions("World", {7221, 7225, 7229, 7233, 7237, 7245, 7249, 7253, 7257, 7298}, a.L["Thunderstorms"], "Dragonflight");
+    KrowiAF_RegisterDeSelectAllEventOptions("World", {7221, 7225, 7229, 7233, 7237, 7245, 7249, 7253, 7257, 7298}, a.L["Thunderstorms"], a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7222}, a.L["Nokhudon Hold"], a.L["Sandstorms"], 8, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7226}, a.L["Ohn'iri Springs"], a.L["Sandstorms"], 8, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7230}, a.L["Brackenhide Hollow"], a.L["Sandstorms"], 8, a.L["Dragonflight"]);
@@ -161,7 +161,7 @@ function exportedWorldEvents.InjectDynamicOptions()
     KrowiAF_RegisterEventOptions("World", {7254}, a.L["Slagmire"], a.L["Sandstorms"], 8, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7258}, a.L["Scalecracker Keep"], a.L["Sandstorms"], 8, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7299}, a.L["Primalist Tomorrow"], a.L["Sandstorms"], 8, a.L["Dragonflight"]);
-    KrowiAF_RegisterDeSelectAllEventOptions("World", {7222, 7226, 7230, 7234, 7238, 7246, 7250, 7254, 7258, 7299}, a.L["Sandstorms"], "Dragonflight");
+    KrowiAF_RegisterDeSelectAllEventOptions("World", {7222, 7226, 7230, 7234, 7238, 7246, 7250, 7254, 7258, 7299}, a.L["Sandstorms"], a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7223}, a.L["Nokhudon Hold"], a.L["Firestorms"], 9, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7227}, a.L["Ohn'iri Springs"], a.L["Firestorms"], 9, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7231}, a.L["Brackenhide Hollow"], a.L["Firestorms"], 9, a.L["Dragonflight"]);
@@ -172,7 +172,7 @@ function exportedWorldEvents.InjectDynamicOptions()
     KrowiAF_RegisterEventOptions("World", {7255}, a.L["Slagmire"], a.L["Firestorms"], 9, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7259}, a.L["Scalecracker Keep"], a.L["Firestorms"], 9, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7300}, a.L["Primalist Tomorrow"], a.L["Firestorms"], 9, a.L["Dragonflight"]);
-    KrowiAF_RegisterDeSelectAllEventOptions("World", {7223, 7227, 7231, 7235, 7239, 7247, 7251, 7255, 7259, 7300}, a.L["Firestorms"], "Dragonflight");
+    KrowiAF_RegisterDeSelectAllEventOptions("World", {7223, 7227, 7231, 7235, 7239, 7247, 7251, 7255, 7259, 7300}, a.L["Firestorms"], a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7224}, a.L["Nokhudon Hold"], a.L["Snowstorms"], 10, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7228}, a.L["Ohn'iri Springs"], a.L["Snowstorms"], 10, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7232}, a.L["Brackenhide Hollow"], a.L["Snowstorms"], 10, a.L["Dragonflight"]);
@@ -183,18 +183,18 @@ function exportedWorldEvents.InjectDynamicOptions()
     KrowiAF_RegisterEventOptions("World", {7256}, a.L["Slagmire"], a.L["Snowstorms"], 10, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7260}, a.L["Scalecracker Keep"], a.L["Snowstorms"], 10, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7301}, a.L["Primalist Tomorrow"], a.L["Snowstorms"], 10, a.L["Dragonflight"]);
-    KrowiAF_RegisterDeSelectAllEventOptions("World", {7224, 7228, 7232, 7236, 7240, 7248, 7252, 7256, 7260, 7301}, a.L["Snowstorms"], "Dragonflight");
+    KrowiAF_RegisterDeSelectAllEventOptions("World", {7224, 7228, 7232, 7236, 7240, 7248, 7252, 7256, 7260, 7301}, a.L["Snowstorms"], a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7433}, a.L["Azure Span"], a.L["Fyrakk Assault"], 11, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7471}, a.L["Ohn'ahran Plains"], a.L["Fyrakk Assault"], 11, a.L["Dragonflight"]);
-    KrowiAF_RegisterDeSelectAllEventOptions("World", {7433, 7471}, a.L["Fyrakk Assault"], "Dragonflight");
+    KrowiAF_RegisterDeSelectAllEventOptions("World", {7433, 7471}, a.L["Fyrakk Assault"], a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7459}, a.L["Titan Lockdown: Next"], a.L["Researchers Under Fire"], 12, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7460}, a.L["Zaqali Ruin Investigation: Next"], a.L["Researchers Under Fire"], 12, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7461}, a.L["Titan Lockdown: Active"], a.L["Researchers Under Fire"], 12, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7462}, a.L["Zaqali Ruin Investigation: Active"], a.L["Researchers Under Fire"], 12, a.L["Dragonflight"]);
-    KrowiAF_RegisterDeSelectAllEventOptions("World", {7459, 7460, 7461, 7462}, a.L["Researchers Under Fire"], "Dragonflight");
+    KrowiAF_RegisterDeSelectAllEventOptions("World", {7459, 7460, 7461, 7462}, a.L["Researchers Under Fire"], a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7553, 7602}, a.L["Thaldraszus: Next"], a.L["Dreamsurge"], 14, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7554, 7605}, a.L["Azure Span: Next"], a.L["Dreamsurge"], 14, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7555, 7604}, a.L["Ohn'ahran Plains: Next"], a.L["Dreamsurge"], 14, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("World", {7556, 7603}, a.L["Waking Shores: Next"], a.L["Dreamsurge"], 14, a.L["Dragonflight"]);
-    KrowiAF_RegisterDeSelectAllEventOptions("World", {7553, 7602, 7554, 7605, 7555, 7604, 7556, 7603}, a.L["Dreamsurge"], "Dragonflight");
+    KrowiAF_RegisterDeSelectAllEventOptions("World", {7553, 7602, 7554, 7605, 7555, 7604, 7556, 7603}, a.L["Dreamsurge"], a.L["Dragonflight"]);
 end

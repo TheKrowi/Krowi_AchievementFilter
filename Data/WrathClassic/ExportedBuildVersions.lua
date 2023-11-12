@@ -21,7 +21,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-10-25 19-51-02 ]] --
+-- [[ Exported at 2023-11-11 22-37-20 ]] --
 tasks = {
     {N, 204, "3.4.3", "030403"},
     {N, 203, "3.4.2", "030402"},
@@ -29,11 +29,19 @@ tasks = {
     {N, 194, "3.4.0", "030400"},
     {N, 106, "3.3.5", "030305"},
     {N, 104, "3.3.3", "030303"},
+    {N, 101, "3.3.0", "030300"},
+    {N, 99, "3.2.2", "030202"},
+    {N, 97, "3.2.0", "030200"},
+    {N, 92, "3.1.0", "030100"},
     {N, 86, "3.0.2", "030002"},
 };
 
 function exportedBuildVersions:InjectDynamicFilters(filters)
     filters[86] = true;
+    filters[92] = true;
+    filters[97] = true;
+    filters[99] = true;
+    filters[101] = true;
     filters[104] = true;
     filters[106] = true;
     filters[194] = true;
@@ -54,9 +62,35 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                         },
                     }
                 },
+                { -- 3.1
+                    Minor = 1,
+                    Patches = {
+                        { -- 3.1.0
+                            Patch = 0,
+                            BuildVersionId = 92
+                        },
+                    }
+                },
+                { -- 3.2
+                    Minor = 2,
+                    Patches = {
+                        { -- 3.2.0
+                            Patch = 0,
+                            BuildVersionId = 97
+                        },
+                        { -- 3.2.2
+                            Patch = 2,
+                            BuildVersionId = 99
+                        },
+                    }
+                },
                 { -- 3.3
                     Minor = 3,
                     Patches = {
+                        { -- 3.3.0
+                            Patch = 0,
+                            BuildVersionId = 101
+                        },
                         { -- 3.3.3
                             Patch = 3,
                             BuildVersionId = 104

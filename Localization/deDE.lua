@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-11 01-20-49 ]] --
+-- [[ Exported at 2023-11-12 08-37-53 ]] --
 L["%c"] = "%c "
 L["%d/%m/%Y %I:%M %p"] = "%d/%m/%Y %I:%M %p "
 L["%m/%d/%Y %I:%M %p"] = "%m/%d/%Y %I:%M %p "
@@ -229,12 +229,6 @@ L["Down"] = "Runter "
 L["Dragon Glyphs"] = "Drachenglyphen "
 L["Dragon Racing"] = "Drachenrennen "
 L["Dragonbane Keep"] = "Drachenfluchfestung "
-L["Dragonflight"] = "Dragonflight "
-L["Dragonflight Pre-patch"] = "Dragonflight Pre-patch "
-L["Dragonflight pre-patch - Firestorms"] = "Dragonflight Pre-patch: Feuerstürme "
-L["Dragonflight pre-patch - Sandstorms"] = "Dragonflight Pre-patch: Sandstürme "
-L["Dragonflight pre-patch - Snowstorms"] = "Dragonflight Pre-patch: Schneestürme "
-L["Dragonflight pre-patch - Thunderstorms"] = "Dragonflight Pre-patch: Gewitterstürme "
 L["Dragonriding"] = "Drachenreiten "
 L["Dreamsurge"] = "Traumsprünge"
 L["Drops"] = "Beute "
