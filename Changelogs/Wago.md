@@ -21,3 +21,6 @@
 
 ### Fixed (66.1)
 - Not English clients should once again work
+
+### Wrath Classic (66.2)
+- Summary categories should once again group by 2 if the achievements and summary width is not changed

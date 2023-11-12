@@ -205,7 +205,7 @@ function KrowiAF_SummaryFrameMixin:GetStatusBar(index) -- Public for skinning
 end
 
 function KrowiAF_SummaryFrameMixin:GetAndAlignStatusBar(index) -- Public for skinning
-    local numColumns = floor((self:GetWidth() - 28) / 254);
+    local numColumns = floor(self.TotalStatusBar:GetWidth() / 250);
     local width = (self:GetWidth() - 44) / numColumns; -- 44 = 2*14 + 16, 14 is offsets on the side, 16 in between 2 columns
     local numRows = 1;
 	local position = index;
