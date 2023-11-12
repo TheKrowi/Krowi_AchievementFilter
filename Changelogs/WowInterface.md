@@ -31,3 +31,8 @@
 [LIST]
 [*]Not English clients should once again work
 [/LIST]
+
+[B]Wrath Classic (66.2)[/B]
+[LIST]
+[*]Summary categories should once again group by 2 if the achievements and summary width is not changed
+[/LIST]
