@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 66.2 - 2023-11-12
+### Wrath Classic
+- Summary categories should once again group by 2 if the achievements and summary width is not changed
+
 ## 66.1 - 2023-11-12
 ### Changed
 - Wrath of the Lich King achievements Added in version should now more reflect the actual version they were added in and not all 3.4.0 Wrath Classic
