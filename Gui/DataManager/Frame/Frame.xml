@@ -2,7 +2,7 @@
     <Script file="FrameMixin.lua"/>
 
     <Frame name="KrowiAF_DataManagerFrame_Template" toplevel="true" parent="UIParent" enableMouse="true" inherits="ButtonFrameTemplate" mixin="KrowiAF_DataManagerFrameMixin" virtual="true" hidden="true">
-        <Size x="1014" y="426"/>
+        <Size x="1114" y="426"/>
         <Anchors>
 			<Anchor point="CENTER" x="0" y="0"/>
         </Anchors>
@@ -18,6 +18,27 @@
             <OnLoad method="OnLoad"/>
             <OnShow method="OnShow"/>
             <OnHide method="OnHide"/>
+        </Scripts>
+    </Frame>
+
+    <Frame name="KrowiAF_Export" toplevel="true" parent="UIParent" enableMouse="true" inherits="ButtonFrameTemplate" hidden="true">
+        <Size x="1114" y="426"/>
+        <Anchors>
+			<Anchor point="CENTER" x="0" y="0"/>
+        </Anchors>
+        <Scripts>
+            <OnLoad>
+                ButtonFrameTemplate_HidePortrait(self);
+                ButtonFrameTemplate_HideButtonBar(self);
+                local input = LibStub("AceGUI-3.0"):Create("MultiLineEditBox");
+                input.frame:SetParent(self);
+                input:DisableButton(true)
+                input:SetLabel("")
+                input:SetPoint("TOPLEFT", self ,"TOPLEFT", 8, -60)
+                input:SetPoint("BOTTOMRIGHT", self ,"BOTTOMRIGHT", -8, 3)
+                input.frame:Show()
+                self.Input = input;
+            </OnLoad>
         </Scripts>
     </Frame>
 </Ui>

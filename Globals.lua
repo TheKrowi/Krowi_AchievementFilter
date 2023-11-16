@@ -202,7 +202,10 @@ function addon.IncludeAchievement(achievement, update)
             addon.Data.ExcludedCategories[i].Achievements = nil;
         end
     end
-    if KrowiAF_SavedData.ExcludedAchievements and #KrowiAF_SavedData.ExcludedAchievements == 0 then
+    if KrowiAF_SavedData.ExcludedAchievements then
+        for _, _ in next, KrowiAF_SavedData.ExcludedAchievements do
+            return;
+        end
         KrowiAF_SavedData.ExcludedAchievements = nil;
     end
 end

@@ -510,7 +510,8 @@
         "ambiguity-1",
         "missing-return",
         "duplicate-set-field",
-        "cast-local-type"
+        "cast-local-type",
+        "inject-field"
     ],
     "fsdeploy.nodes": [
         {

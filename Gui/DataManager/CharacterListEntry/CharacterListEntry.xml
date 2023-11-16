@@ -94,6 +94,19 @@
                 <HighlightTexture atlas="communities-icon-redx" alphaMode="ADD" alpha="0.4"/>
             </Button>
         </Frames>
+        <Frames>
+            <Button parentKey="CopyCharacter" mixin="KrowiAF_CharacterListEntryCopyCharacterMixin">
+                <Size x="20" y="20"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.DeleteCharacter" relativePoint="RIGHT" x="73" y="0"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick method="OnClick"/>
+                </Scripts>
+                <NormalTexture atlas="UI-HUD-MicroMenu-StreamDLYellow-Up"/>
+                <HighlightTexture atlas="UI-HUD-MicroMenu-StreamDLYellow-Up" alphaMode="ADD" alpha="0.4"/>
+            </Button>
+        </Frames>
         <NormalTexture setAllPoints="true" file="Interface\GuildFrame\GuildFrame">
             <TexCoords left="0.36230469" right="0.38183594" top="0.95898438" bottom="0.99804688"/>
         </NormalTexture>

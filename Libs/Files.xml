@@ -22,4 +22,8 @@
     
     <Script file="Krowi_Util\Options\InjectOptions.lua" />
     <Script file="Libs.lua" />
+    
+    <Include file="AceSerializer-3.0\AceSerializer-3.0.xml" />
+    <Include file="LibSerialize\lib.xml" />
+    <Include file="LibDeflate\lib.xml" />
 </Ui>

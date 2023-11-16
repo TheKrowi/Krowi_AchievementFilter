@@ -51,6 +51,11 @@ local CharacterColumns = {
 		title = addon.L["Delete"],
 		width = 100,
 		attribute = "DeleteCharacter"
+	},
+	{
+		title = addon.L["Copy"],
+		width = 100,
+		attribute = "CopyCharacter"
 	}
 };
 
