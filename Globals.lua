@@ -580,7 +580,7 @@ function addon.MakeWindowStatic()
     MakeStatic(KrowiAF_DataManagerFrame, "DataManager");
 end
 
-local function MakeMovable(frame, rememberLastPositionOption, target)
+function addon.MakeMovable(frame, rememberLastPositionOption, target, point)
     if not frame or not frame.ClearAllPoints or frame:IsMovable() then -- Do not make it movable multiple times if another addon already did it
         return;
     end
@@ -593,18 +593,19 @@ local function MakeMovable(frame, rememberLastPositionOption, target)
 
     frame:SetMovable(true);
     frame:EnableMouse(true);
-    frame:SetScript("OnMouseDown", function(frame, button)
+    frame:SetScript("OnMouseDown", function(_, button)
         if button == "LeftButton" then
             target:StartMoving();
         end
     end);
-    frame:SetScript("OnMouseUp", function(frame, button)
+    frame:SetScript("OnMouseUp", function()
         target:StopMovingOrSizing();
         if addon.Options.db.profile.Window.RememberLastPosition[rememberLastPositionOption] then
             KrowiAF_SavedData.RememberLastPosition = KrowiAF_SavedData.RememberLastPosition or {};
             KrowiAF_SavedData.RememberLastPosition[rememberLastPositionOption] = {
                 X = target:GetLeft(),
-                Y = target:GetTop() - UIParent:GetTop()
+                Y = target:GetTop() - UIParent:GetTop(),
+                Point = point
             };
         end
     end);
@@ -614,10 +615,10 @@ function addon.MakeWindowMovable()
     if not IsAddOnLoaded("Blizzard_AchievementUI") then
         return;
     end
-    MakeMovable(AchievementFrame, "AchievementWindow");
-    MakeMovable(AchievementFrame.Header, "AchievementWindow", AchievementFrame);
-    MakeMovable(KrowiAF_AchievementCalendarFrame, "Calendar");
-    MakeMovable(KrowiAF_DataManagerFrame, "DataManager");
+    addon.MakeMovable(AchievementFrame, "AchievementWindow");
+    addon.MakeMovable(AchievementFrame.Header, "AchievementWindow", AchievementFrame);
+    addon.MakeMovable(KrowiAF_AchievementCalendarFrame, "Calendar");
+    addon.MakeMovable(KrowiAF_DataManagerFrame, "DataManager");
 end
 
 function addon.GetSecondsSince(date)

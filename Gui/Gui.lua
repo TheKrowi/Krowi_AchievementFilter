@@ -380,7 +380,7 @@ function gui:SetFrameToLastPosition(frame, rememberLastPositionOption)
 
     local pos = KrowiAF_SavedData.RememberLastPosition[rememberLastPositionOption];
 	frame:ClearAllPoints();
-	frame:SetPoint("TOPLEFT", pos.X, pos.Y);
+	frame:SetPoint(pos.Point or "TOPLEFT", pos.X, pos.Y);
 end
 
 function gui:RefreshView()

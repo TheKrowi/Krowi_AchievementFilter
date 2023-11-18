@@ -44,18 +44,18 @@ local CharacterColumns = {
 	},
 	{
 		title = addon.L["Ignore"],
-		width = 100,
+		width = 75,
 		attribute = "IgnoreCharacter"
 	},
 	{
 		title = addon.L["Delete"],
-		width = 100,
+		width = 75,
 		attribute = "DeleteCharacter"
 	},
 	{
-		title = addon.L["Copy"],
-		width = 100,
-		attribute = "CopyCharacter"
+		title = addon.L["Export"],
+		width = 75,
+		attribute = "ExportCharacter"
 	}
 };
 
@@ -80,9 +80,13 @@ end
 
 KrowiAF_CharacterListFrameMixin = {};
 
-local cachedColumn;
+local cachedColumn, cachedCharacters;
 local function GetSortedCharacters(column)
     cachedColumn = column or cachedColumn;
+
+    if cachedColumn and (cachedColumn.attribute == "DeleteCharacter" or cachedColumn.attribute == "ExportCharacter") then
+        return cachedCharacters;
+    end
 
     local characters = {};
     KrowiAF_SavedData.CharacterList = KrowiAF_SavedData.CharacterList or {};
@@ -177,7 +181,6 @@ local function GetSortedCharacters(column)
     return characters;
 end
 
-local cachedCharacters;
 local function RefreshCachedCharacters(column)
     cachedCharacters = GetSortedCharacters(column);
 end
@@ -193,12 +196,12 @@ end
 local function AddManagedScrollBarVisibilityBehavior(self)
 	local anchorsWithBar = {
         CreateAnchor("TOPLEFT", self, "TOPLEFT", 0, 0),
-        CreateAnchor("BOTTOMRIGHT", self.ScrollBar, "BOTTOMLEFT", 0, 5)
+        CreateAnchor("BOTTOMRIGHT", self.ScrollBar, "BOTTOMLEFT", 0, 0)
     };
 
     local anchorsWithoutBar = {
         CreateAnchor("TOPLEFT", self, "TOPLEFT", 0, 0),
-        CreateAnchor("BOTTOMRIGHT", self, "BOTTOMRIGHT", 0, 5)
+        CreateAnchor("BOTTOMRIGHT", self, "BOTTOMRIGHT", -4, 1)
     };
 
     ScrollUtil.AddManagedScrollBarVisibilityBehavior(self.ScrollBox, self.ScrollBar, anchorsWithBar, anchorsWithoutBar);

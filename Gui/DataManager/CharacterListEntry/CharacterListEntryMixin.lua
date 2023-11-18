@@ -38,47 +38,14 @@ function KrowiAF_CharacterListEntryDeleteCharacterMixin:OnClick()
     self:GetParent():DeleteCharacterFunction();
 end
 
-KrowiAF_CharacterListEntryCopyCharacterMixin = {};
+KrowiAF_CharacterListEntryExportCharacterMixin = {};
 
-function KrowiAF_Import()
+function KrowiAF_CharacterListEntryExportCharacterMixin:OnClick()
     local LibSerialize = LibStub("LibSerialize");
     local LibDeflate = LibStub("LibDeflate");
 
-    local text = KrowiAF_Export.Input:GetText()
-
-    local decoded = LibDeflate:DecodeForPrint(text)
-    if not decoded then return end
-    local decompressed = LibDeflate:DecompressDeflate(decoded)
-    if not decompressed then return end
-    local success, data = LibSerialize:Deserialize(decompressed)
-    if not success then return end
-
-    KrowiAF_SavedData.CharacterList[data.Guid] = data.Character;
-    for _, achievement in next, data.Completed do
-        local achievementInfo = addon.GetAchievementInfoTable(achievement.Id);
-        local dateTable = date("*t", achievement.Date);
-        achievementInfo.DateTime = {
-            Year = dateTable.year - 2000,
-            Month = dateTable.month,
-            Day = dateTable.day
-        };
-        addon.Data.SavedData.AchievementData.SetEarnedBy(data.Guid, achievementInfo);
-    end
-    for _, achievement in next, data.NotCompleted do
-        local achievementInfo = addon.GetAchievementInfoTable(achievement.Id);
-        achievementInfo.WasEarnedByMe = false;
-        addon.Data.SavedData.AchievementData.SetNotEarnedBy(data.Guid, achievementInfo);
-        for criteriaIndex, criteriaValue in next, achievement.Progress do
-            addon.Data.SavedData.AchievementData.SetCriteriaProgress(data.Guid, achievementInfo, criteriaIndex, criteriaValue);
-        end
-    end
-end
-
-function KrowiAF_CharacterListEntryCopyCharacterMixin:OnClick()
-    local LibSerialize = LibStub("LibSerialize");
-    local LibDeflate = LibStub("LibDeflate");
-
-    local guid = self:GetParent().Guid;
+    local character = self:GetParent().Character;
+    local guid = character.Guid;
 
     local completed = {};
     for achievementId, achievement in next, KrowiAF_Achievements.Completed do
@@ -107,13 +74,13 @@ function KrowiAF_CharacterListEntryCopyCharacterMixin:OnClick()
         NotCompleted = notCompleted
     };
 
-    local serialized = LibSerialize:Serialize(data)
-    local compressed = LibDeflate:CompressDeflate(serialized)
-    local encoded = LibDeflate:EncodeForPrint(compressed)
-    DebugTable = {Serialized = serialized, Compressed = compressed, Encoded = encoded};
+    local serialized = LibSerialize:Serialize(data);
+    local compressed = LibDeflate:CompressDeflate(serialized);
+    local encoded = LibDeflate:EncodeForPrint(compressed);
 
-    KrowiAF_Export:Show();
-    KrowiAF_Export.Input:SetText(encoded)
+    local frame = addon.Gui.DataManager:GetTextFrame(addon.L["Export"] .. " " .. character.Name .. " - " .. character.Realm);
+    frame.Input:SetText(encoded);
+    frame:Show();
 end
 
 KrowiAF_CharacterListEntryMixin = {};

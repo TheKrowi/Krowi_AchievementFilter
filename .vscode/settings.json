@@ -497,7 +497,9 @@
         "WEEKDAY_FRIDAY",
         "WEEKDAY_SATURDAY",
         "GetLatestCompletedAchievements",
-        "EXPANSION_NAME9"
+        "EXPANSION_NAME9",
+        "KrowiAF_TextFrame",
+        "KrowiAF_TextFrameCloseButton"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
@@ -521,13 +523,13 @@
             "exclude":"**/{.git,.vscode,Changelogs,Descriptions}/**",
             "deleteTargetOnDeploy": true
         },
-        {
-            "source":"C:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
-            "target":"F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\Krowi_AchievementFilter",
-            "include":"**/*.{lua,toc,blp,tga,xml,md}",
-            "exclude":"**/{.git,.vscode,Changelogs,Descriptions}/**",
-            "deleteTargetOnDeploy": true
-        },
+        // {
+        //     "source":"C:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
+        //     "target":"F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\Krowi_AchievementFilter",
+        //     "include":"**/*.{lua,toc,blp,tga,xml,md}",
+        //     "exclude":"**/{.git,.vscode,Changelogs,Descriptions}/**",
+        //     "deleteTargetOnDeploy": true
+        // },
         // {
         //     "source":"C:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
         //     "target":"F:\\World of Warcraft\\_xptr_\\Interface\\AddOns\\Krowi_AchievementFilter",
