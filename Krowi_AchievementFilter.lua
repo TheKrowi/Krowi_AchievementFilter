@@ -69,10 +69,6 @@ end
 local function LoadBlizzard_AchievementUI()
     addon.Gui:LoadWithBlizzard_AchievementUI();
 
-    addon.Data.LoadWatchedAchievements();
-    addon.Data.LoadTrackingAchievements();
-    addon.Data.LoadExcludedAchievements();
-
     if addon.Options.db.profile.Window.Movable then
         addon.MakeWindowMovable();
     else

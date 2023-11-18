@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 67.0 - 2023-11-18
+### Added
+- Import and export character data from the data manager
+
+### Fixed
+- Watched and Excluded achievements should no longer reset unexpectedly
+- Uncategorized category should once again only have uncategorized achievements
+
 ## 66.2 - 2023-11-12
 ### Wrath Classic
 - Summary categories should once again group by 2 if the achievements and summary width is not changed

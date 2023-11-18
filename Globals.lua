@@ -242,8 +242,8 @@ end
 local function HandleAchievementExistence(achievementInfo)
     local achievementId = achievementInfo.Id;
     if achievementInfo.Exists then
-        addon.Data.AddAchievementIfNil(achievementId);
-        return true;
+        local wasAdded, achievement = addon.Data.AddAchievementIfNil(achievementId);
+        return true, wasAdded, achievement;
     elseif addon.Data.Achievements[achievementId] then
         addon.Data.Achievements[achievementId].DoesNotExist = true;
         return;
@@ -306,12 +306,11 @@ local function HandleAchievement(characterGuid, achievementInfo)
         return;
     end
 
-    if not HandleAchievementExistence(achievementInfo) then
+    local exists, wasAdded, achievement = HandleAchievementExistence(achievementInfo);
+    if not exists then
         return;
     end
-
-    local achievement = addon.Data.Achievements[achievementInfo.Id];
-    if achievement then
+    if wasAdded and achievement then
         AddToUncategorizedCategories(achievement);
     end
 
@@ -719,24 +718,6 @@ function addon.GetUsableSets(transmogSets)
         end
     end
     return usableTransmogSets;
-end
-
-function addon.GetVariantSetIDs(baseSetIds)
-    if not IsAddOnLoaded("Blizzard_Collections") then
-        LoadAddOn("Blizzard_Collections");
-    end
-    local setIDs = {};
-    for _, baseSetId in next, baseSetIds do
-        local variantSets = WardrobeSetsDataProviderMixin:GetVariantSets(baseSetId);
-        if #variantSets ~= 0 then
-            for _, set in next, variantSets do
-                tinsert(setIDs, set.setID);
-            end
-        else
-            tinsert(setIDs, baseSetId);
-        end
-    end
-    return setIDs;
 end
 
 function addon.ChangeAchievementMicroButtonOnClick()
