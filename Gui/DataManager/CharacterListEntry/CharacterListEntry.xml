@@ -103,8 +103,8 @@
                 <Scripts>
                     <OnClick method="OnClick"/>
                 </Scripts>
-                <NormalTexture atlas="UI-HUD-MicroMenu-StreamDLYellow-Up"/>
-                <HighlightTexture atlas="UI-HUD-MicroMenu-StreamDLYellow-Up" alphaMode="ADD" alpha="0.4"/>
+                <NormalTexture atlas="poi-door-arrow-down"/>
+                <HighlightTexture atlas="poi-door-arrow-down" alphaMode="ADD" alpha="0.4"/>
             </Button>
         </Frames>
         <NormalTexture setAllPoints="true" file="Interface\GuildFrame\GuildFrame">

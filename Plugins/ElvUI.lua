@@ -635,16 +635,16 @@ local function SkinDataManager(frame, skins)
     frame.CloseButton:Point("TOPRIGHT", 0, 2);
     skins:HandleFrame(frame, true, nil, -5, 0, -1, 0);
     
-    frame.CharacterList.InsetFrame:StripTextures();
-    skins:HandleInsetFrame(frame.CharacterList.InsetFrame);
+    -- frame.CharacterList.InsetFrame:StripTextures();
+    -- skins:HandleInsetFrame(frame.CharacterList.InsetFrame);
     skins:HandleTrimScrollBar(frame.CharacterList.ScrollBar)
     
 	local columnDisplay = frame.CharacterList.ColumnDisplay;
 	columnDisplay:StripTextures();
-	columnDisplay.InsetBorderLeft:Hide();
-	columnDisplay.InsetBorderBottomLeft:Hide();
-	columnDisplay.InsetBorderTopLeft:Hide();
-	columnDisplay.InsetBorderTop:Hide();
+	-- columnDisplay.InsetBorderLeft:Hide();
+	-- columnDisplay.InsetBorderBottomLeft:Hide();
+	-- columnDisplay.InsetBorderTopLeft:Hide();
+	-- columnDisplay.InsetBorderTop:Hide();
     for i = 1, columnDisplay:GetNumChildren() do
         local child = select(i, columnDisplay:GetChildren())
         child:StripTextures();
@@ -680,6 +680,24 @@ local function SkinDataManager(frame, skins)
             end
         end
     end);
+
+    skins:HandleButton(frame.Import);
+end
+
+local function SkinTextFrame(skins)
+    hooksecurefunc(addon.Gui.DataManager, "GetTextFrame", function(...)
+        if KrowiAF_TextFrame.IsSkinned then
+            return;
+        end
+
+        local frame = KrowiAF_TextFrame;
+        frame:StripTextures();
+        frame.Inset:StripTextures();
+        frame.CloseButton:Point("TOPRIGHT", 0, 2);
+        skins:HandleFrame(frame, true, nil, -5, 0, -1, 0);
+        frame.Input.frame:SetPoint("BOTTOMRIGHT", frame.Inset ,"BOTTOMRIGHT", -3, 0);
+        skins:HandleButton(frame.Button1);
+    end);
 end
 
 local engine, skins, tooltip;
@@ -699,6 +717,7 @@ local function SkinAll()
         ReskinBlizzard(skins);
         elvUI.SkinCalendarButton(KrowiAF_AchievementCalendarButton, skins);
         SkinDataManager(KrowiAF_DataManagerFrame, skins);
+        SkinTextFrame(skins);
     end
     if KrowiAF_SavedData.ElvUISkin.Calendar then
         elvUI.SkinCalendarFrame(KrowiAF_AchievementCalendarFrame, engine, skins);

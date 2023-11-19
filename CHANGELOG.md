@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 67.1 - 2023-11-19
+### Fixed
+- ElvUI skin bug
+
+### Wrath Classic
+- Fixed a an error that occured when opening the data manager
+
 ## 67.0 - 2023-11-18
 ### Added
 - Import and export character data from the data manager

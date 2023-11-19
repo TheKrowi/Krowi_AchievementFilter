@@ -17,14 +17,16 @@ function KrowiAF_TextFrameMixin:OnLoad()
 	addon.Gui:RegisterSafeCloseButtonDuringCombat(self.CloseButton);
 	self.CloseButton:SetScript("OnKeyDown", addon.Gui.HandleCloseButtonOnKeyDown);
 
+    ButtonFrameTemplate_HideAttic(self);
     ButtonFrameTemplate_HidePortrait(self);
+
     local input = LibStub("AceGUI-3.0"):Create("MultiLineEditBox");
     input.frame:SetParent(self);
-    input:DisableButton(true)
-    input:SetLabel("")
-    input.frame:SetPoint("TOPLEFT", self.Inset ,"TOPLEFT", 0, 4)
-    input.frame:SetPoint("BOTTOMRIGHT", self.Inset ,"BOTTOMRIGHT", -3, -5)
-    input.frame:Show()
+    input:DisableButton(true);
+    input:SetLabel("");
+    input.frame:SetPoint("TOPLEFT", self.Inset ,"TOPLEFT", 0, 4);
+    input.frame:SetPoint("BOTTOMRIGHT", self.Inset ,"BOTTOMRIGHT", -3, -5);
+    input.frame:Show();
     self.Input = input;
 end
 
