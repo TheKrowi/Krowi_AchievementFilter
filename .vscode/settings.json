@@ -497,7 +497,10 @@
         "WEEKDAY_FRIDAY",
         "WEEKDAY_SATURDAY",
         "GetLatestCompletedAchievements",
-        "EXPANSION_NAME9"
+        "EXPANSION_NAME9",
+        "KrowiAF_TextFrame",
+        "KrowiAF_TextFrameCloseButton",
+        "ButtonFrameTemplate_HideAttic"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
@@ -510,7 +513,8 @@
         "ambiguity-1",
         "missing-return",
         "duplicate-set-field",
-        "cast-local-type"
+        "cast-local-type",
+        "inject-field"
     ],
     "fsdeploy.nodes": [
         {

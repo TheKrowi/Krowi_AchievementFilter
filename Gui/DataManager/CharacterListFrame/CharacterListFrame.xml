@@ -6,57 +6,17 @@
             <Frame parentKey="ColumnDisplay" inherits="ColumnDisplayTemplate" hidden="true">
                 <Size x="0" y="40"/>
                 <Anchors>
-                    <Anchor point="TOPLEFT" x="0" y="40"/>
+                    <Anchor point="TOPLEFT" x="-5" y="40"/>
                     <Anchor point="TOPRIGHT" x="0" y="40"/>
                 </Anchors>
-                <Layers>
-                    <Layer level="BORDER">
-                        <Texture parentKey="InsetBorderTopLeft" inherits="UI-Frame-InnerTopLeft">
-                            <Anchors>
-                                <Anchor point="TOPLEFT" relativeKey="$parent.Background" relativePoint="BOTTOMLEFT" x="0" y="3"/>
-                            </Anchors>
-                        </Texture>
-                        <Texture parentKey="InsetBorderTopRight" inherits="UI-Frame-InnerTopRight">
-                            <Anchors>
-                                <Anchor point="TOPRIGHT" relativeKey="$parent.Background" relativePoint="BOTTOMRIGHT" x="0" y="3"/>
-                            </Anchors>
-                        </Texture>
-                        <Texture parentKey="InsetBorderBottomLeft" inherits="UI-Frame-InnerBotLeftCorner">
-                            <Anchors>
-                                <Anchor point="BOTTOMLEFT" relativeKey="$parent.$parent" x="-3" y="-3"/>
-                            </Anchors>
-                        </Texture>
-                        <Texture parentKey="InsetBorderTop" inherits="_UI-Frame-InnerTopTile">
-                            <Anchors>
-                                <Anchor point="TOPLEFT" relativeKey="$parent.InsetBorderTopLeft" relativePoint="TOPRIGHT"/>
-                                <Anchor point="TOPRIGHT" relativeKey="$parent.InsetBorderTopRight" relativePoint="TOPLEFT"/>
-                            </Anchors>
-                        </Texture>
-                        <Texture parentKey="InsetBorderLeft" inherits="!UI-Frame-InnerLeftTile">
-                            <Anchors>
-                                <Anchor point="TOPLEFT" relativeKey="$parent.InsetBorderTopLeft" relativePoint="BOTTOMLEFT" x="0" y="0"/>
-                                <Anchor point="BOTTOMLEFT" relativeKey="$parent.InsetBorderBottomLeft" relativePoint="TOPLEFT"/>
-                            </Anchors>
-                        </Texture>
-                    </Layer>
-                </Layers>
             </Frame>
             <Frame parentKey="ScrollBox" inherits="WowScrollBoxList"/>
 			<EventFrame parentKey="ScrollBar" inherits="WowTrimScrollBar">
 				<Anchors>
-					<Anchor point="TOPRIGHT" x="-3"/>
-					<Anchor point="BOTTOMRIGHT" x="-3"/>
+					<Anchor point="TOPRIGHT" x="0"/>
+					<Anchor point="BOTTOMRIGHT" x="0" y="5"/>
 				</Anchors>
 			</EventFrame>
-            <Frame parentKey="InsetFrame" mixin="KrowiAF_CharacterListFrameInsetFrameMixin" useParentLevel="false" inherits="InsetFrameTemplate">
-                <Anchors>
-                    <Anchor point="TOPLEFT" x="-3" y="3"/>
-                    <Anchor point="BOTTOMRIGHT" x="-2" y="2"/>
-                </Anchors>
-                <Scripts>
-                    <OnLoad method="OnLoad"/>
-                </Scripts>
-            </Frame>
         </Frames>
         <Scripts>
             <OnLoad method="OnLoad"/>

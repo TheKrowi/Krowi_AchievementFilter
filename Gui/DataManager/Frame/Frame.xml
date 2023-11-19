@@ -1,18 +1,27 @@
 <Ui>
     <Script file="FrameMixin.lua"/>
 
-    <Frame name="KrowiAF_DataManagerFrame_Template" toplevel="true" parent="UIParent" enableMouse="true" inherits="ButtonFrameTemplate" mixin="KrowiAF_DataManagerFrameMixin" virtual="true" hidden="true">
-        <Size x="1014" y="426"/>
+    <Frame name="KrowiAF_DataManagerFrame_Template" mixin="KrowiAF_DataManagerFrameMixin" toplevel="true" parent="UIParent" enableMouse="true" inherits="ButtonFrameTemplate" virtual="true" hidden="true">
+        <Size x="1034" y="426"/>
         <Anchors>
 			<Anchor point="CENTER" x="0" y="0"/>
         </Anchors>
         <Frames>
             <Frame parentKey="CharacterList" inherits="KrowiAF_CharacterListFrame_Template">
                 <Anchors>
-                    <Anchor point="TOPLEFT" x="8" y="-60"/>
-                    <Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.Inset" x="3" y="-3"/>
+                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Inset" y="-3"/>
                 </Anchors>
             </Frame>
+            <Button parentKey="Import" mixin="KrowiAF_DataManagerFrameImportMixin" motionScriptsWhileDisabled="true" inherits="MagicButtonTemplate">
+				<Size x="100" y="22"/>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT"/>
+				</Anchors>
+                <Scripts>
+                    <OnClick method="OnClick"/>
+                </Scripts>
+			</Button>
         </Frames>
         <Scripts>
             <OnLoad method="OnLoad"/>

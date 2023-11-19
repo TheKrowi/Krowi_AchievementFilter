@@ -4,4 +4,5 @@
     <Include file="CharacterListEntry\CharacterListEntry.xml"/>
     <Include file="CharacterListFrame\CharacterListFrame.xml"/>
     <Include file="Frame\Frame.xml"/>
+    <Include file="TextFrame\TextFrame.xml"/>
 </Ui>

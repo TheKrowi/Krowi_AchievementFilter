@@ -45,6 +45,10 @@ local function PostLoadOnPlayerLogin(self, start)
             addon.Tabs["Achievements"].Categories = data.LoadBlizzardTabAchievements(addon.Tabs["Achievements"].Categories);
         end
 
+        self.LoadWatchedAchievements();
+        self.LoadTrackingAchievements();
+        self.LoadExcludedAchievements();
+
         if AchievementFrame and AchievementFrame:IsShown() then
             addon.Gui:RefreshViewAfterPlayerLogin();
         end
@@ -101,8 +105,6 @@ local function LoadAchievements(sourceTable, func)
             sourceTable[achievementId] = nil;
         end
     end
-
-    KrowiAF_CategoriesFrame:Update(true);
 end
 
 function data.LoadWatchedAchievements()
@@ -142,8 +144,9 @@ function data.AddAchievementIfNil(id)
     if data.Achievements[id] == nil then
         data.Achievements[id] = addon.Objects.Achievement:New(id);
         tinsert(data.AchievementIds, id);
-        return data.Achievements[id];
+        return true, data.Achievements[id];
     end
+    return false, data.Achievements[id];
 end
 
 function data.SortAchievementIds()

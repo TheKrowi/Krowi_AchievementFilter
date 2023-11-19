@@ -8,7 +8,7 @@
                 <FontString parentKey="Name" inherits="GameFontHighlightSmall" justifyH="LEFT" wordwrap="false">
                     <Size x="134" y="0"/> <!-- 150 - 8 left - 8 right -->
                     <Anchors>
-                        <Anchor point="LEFT" x="10" y="0"/>
+                        <Anchor point="LEFT" x="5" y="0"/>
                     </Anchors>
                 </FontString>
                 <FontString parentKey="Realm" inherits="GameFontHighlightSmall" justifyH="LEFT" wordwrap="false">
@@ -74,7 +74,7 @@
             <CheckButton parentKey="IgnoreCharacter" mixin="KrowiAF_CharacterListEntryIgnoreCharacterMixin" inherits="KrowiAF_CheckButton_Template">
                 <Size x="29" y="29"/>
                 <Anchors>
-                    <Anchor point="LEFT" relativeKey="$parent.MostProgressAchievementTooltip" relativePoint="RIGHT" x="69" y="0"/>
+                    <Anchor point="LEFT" relativeKey="$parent.MostProgressAchievementTooltip" relativePoint="RIGHT" x="57" y="0"/>
                 </Anchors>
                 <Scripts>
                     <OnClick method="OnClick"/>
@@ -85,13 +85,26 @@
             <Button parentKey="DeleteCharacter" mixin="KrowiAF_CharacterListEntryDeleteCharacterMixin">
                 <Size x="20" y="20"/>
                 <Anchors>
-                    <Anchor point="LEFT" relativeKey="$parent.IgnoreCharacter" relativePoint="RIGHT" x="73" y="0"/>
+                    <Anchor point="LEFT" relativeKey="$parent.IgnoreCharacter" relativePoint="RIGHT" x="48" y="0"/>
                 </Anchors>
                 <Scripts>
                     <OnClick method="OnClick"/>
                 </Scripts>
                 <NormalTexture atlas="communities-icon-redx"/>
                 <HighlightTexture atlas="communities-icon-redx" alphaMode="ADD" alpha="0.4"/>
+            </Button>
+        </Frames>
+        <Frames>
+            <Button parentKey="ExportCharacter" mixin="KrowiAF_CharacterListEntryExportCharacterMixin">
+                <Size x="20" y="20"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.DeleteCharacter" relativePoint="RIGHT" x="48" y="0"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick method="OnClick"/>
+                </Scripts>
+                <NormalTexture atlas="poi-door-arrow-down"/>
+                <HighlightTexture atlas="poi-door-arrow-down" alphaMode="ADD" alpha="0.4"/>
             </Button>
         </Frames>
         <NormalTexture setAllPoints="true" file="Interface\GuildFrame\GuildFrame">

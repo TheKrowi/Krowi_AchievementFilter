@@ -4,14 +4,11 @@ local dataManager = addon.Gui.DataManager;
 
 function dataManager:Load()
 	local frame = CreateFrame("Frame", "KrowiAF_DataManagerFrame", UIParent, "KrowiAF_DataManagerFrame_Template");
-	frame.Inset:ClearAllPoints();
-	frame.Inset:SetPoint("TOPLEFT", 4, -57);
-	frame.Inset:SetPoint("BOTTOMRIGHT", -4, 0);
 	addon.Gui:SetFrameToLastPosition(frame, "DataManager");
-	KrowiAF_DataManagerFrameCloseButton:SetScript("OnClick", function(selfFunc)
-		selfFunc:GetParent():Hide();
-	end);
-	addon.Gui:RegisterSafeCloseButtonDuringCombat(KrowiAF_DataManagerFrameCloseButton);
-	KrowiAF_DataManagerFrameCloseButton:SetScript("OnKeyDown", addon.Gui.HandleCloseButtonOnKeyDown);
-	addon.Gui.DataManager = nil;
+end
+
+function dataManager:GetTextFrame(...)
+	local frame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template");
+	frame:Init(...);
+	return frame;
 end

@@ -202,7 +202,10 @@ function addon.IncludeAchievement(achievement, update)
             addon.Data.ExcludedCategories[i].Achievements = nil;
         end
     end
-    if KrowiAF_SavedData.ExcludedAchievements and #KrowiAF_SavedData.ExcludedAchievements == 0 then
+    if KrowiAF_SavedData.ExcludedAchievements then
+        for _, _ in next, KrowiAF_SavedData.ExcludedAchievements do
+            return;
+        end
         KrowiAF_SavedData.ExcludedAchievements = nil;
     end
 end
@@ -239,8 +242,8 @@ end
 local function HandleAchievementExistence(achievementInfo)
     local achievementId = achievementInfo.Id;
     if achievementInfo.Exists then
-        addon.Data.AddAchievementIfNil(achievementId);
-        return true;
+        local wasAdded, achievement = addon.Data.AddAchievementIfNil(achievementId);
+        return true, wasAdded, achievement;
     elseif addon.Data.Achievements[achievementId] then
         addon.Data.Achievements[achievementId].DoesNotExist = true;
         return;
@@ -303,12 +306,11 @@ local function HandleAchievement(characterGuid, achievementInfo)
         return;
     end
 
-    if not HandleAchievementExistence(achievementInfo) then
+    local exists, wasAdded, achievement = HandleAchievementExistence(achievementInfo);
+    if not exists then
         return;
     end
-
-    local achievement = addon.Data.Achievements[achievementInfo.Id];
-    if achievement then
+    if wasAdded and achievement then
         AddToUncategorizedCategories(achievement);
     end
 
@@ -577,7 +579,7 @@ function addon.MakeWindowStatic()
     MakeStatic(KrowiAF_DataManagerFrame, "DataManager");
 end
 
-local function MakeMovable(frame, rememberLastPositionOption, target)
+function addon.MakeMovable(frame, rememberLastPositionOption, target, point)
     if not frame or not frame.ClearAllPoints or frame:IsMovable() then -- Do not make it movable multiple times if another addon already did it
         return;
     end
@@ -590,18 +592,19 @@ local function MakeMovable(frame, rememberLastPositionOption, target)
 
     frame:SetMovable(true);
     frame:EnableMouse(true);
-    frame:SetScript("OnMouseDown", function(frame, button)
+    frame:SetScript("OnMouseDown", function(_, button)
         if button == "LeftButton" then
             target:StartMoving();
         end
     end);
-    frame:SetScript("OnMouseUp", function(frame, button)
+    frame:SetScript("OnMouseUp", function()
         target:StopMovingOrSizing();
         if addon.Options.db.profile.Window.RememberLastPosition[rememberLastPositionOption] then
             KrowiAF_SavedData.RememberLastPosition = KrowiAF_SavedData.RememberLastPosition or {};
             KrowiAF_SavedData.RememberLastPosition[rememberLastPositionOption] = {
                 X = target:GetLeft(),
-                Y = target:GetTop() - UIParent:GetTop()
+                Y = target:GetTop() - UIParent:GetTop(),
+                Point = point
             };
         end
     end);
@@ -611,10 +614,10 @@ function addon.MakeWindowMovable()
     if not IsAddOnLoaded("Blizzard_AchievementUI") then
         return;
     end
-    MakeMovable(AchievementFrame, "AchievementWindow");
-    MakeMovable(AchievementFrame.Header, "AchievementWindow", AchievementFrame);
-    MakeMovable(KrowiAF_AchievementCalendarFrame, "Calendar");
-    MakeMovable(KrowiAF_DataManagerFrame, "DataManager");
+    addon.MakeMovable(AchievementFrame, "AchievementWindow");
+    addon.MakeMovable(AchievementFrame.Header, "AchievementWindow", AchievementFrame);
+    addon.MakeMovable(KrowiAF_AchievementCalendarFrame, "Calendar");
+    addon.MakeMovable(KrowiAF_DataManagerFrame, "DataManager");
 end
 
 function addon.GetSecondsSince(date)
@@ -715,24 +718,6 @@ function addon.GetUsableSets(transmogSets)
         end
     end
     return usableTransmogSets;
-end
-
-function addon.GetVariantSetIDs(baseSetIds)
-    if not IsAddOnLoaded("Blizzard_Collections") then
-        LoadAddOn("Blizzard_Collections");
-    end
-    local setIDs = {};
-    for _, baseSetId in next, baseSetIds do
-        local variantSets = WardrobeSetsDataProviderMixin:GetVariantSets(baseSetId);
-        if #variantSets ~= 0 then
-            for _, set in next, variantSets do
-                tinsert(setIDs, set.setID);
-            end
-        else
-            tinsert(setIDs, baseSetId);
-        end
-    end
-    return setIDs;
 end
 
 function addon.ChangeAchievementMicroButtonOnClick()

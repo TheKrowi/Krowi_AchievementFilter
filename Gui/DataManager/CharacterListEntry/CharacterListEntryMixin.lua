@@ -38,6 +38,51 @@ function KrowiAF_CharacterListEntryDeleteCharacterMixin:OnClick()
     self:GetParent():DeleteCharacterFunction();
 end
 
+KrowiAF_CharacterListEntryExportCharacterMixin = {};
+
+function KrowiAF_CharacterListEntryExportCharacterMixin:OnClick()
+    local LibSerialize = LibStub("LibSerialize");
+    local LibDeflate = LibStub("LibDeflate");
+
+    local character = self:GetParent().Character;
+    local guid = character.Guid;
+
+    local completed = {};
+    for achievementId, achievement in next, KrowiAF_Achievements.Completed do
+        if achievement.EarnedBy and achievement.EarnedBy[guid] then
+            tinsert(completed, {
+                Id = achievementId,
+                Date = achievement.EarnedBy[guid]
+            });
+        end
+    end
+
+    local notCompleted = {};
+    for achievementId, achievement in next, KrowiAF_Achievements.NotCompleted do
+        if achievement[guid] then
+            tinsert(notCompleted, {
+                Id = achievementId,
+                Progress = achievement[guid]
+            });
+        end
+    end
+
+    local data = {
+        Guid = self:GetParent().Guid,
+        Character = KrowiAF_SavedData.CharacterList[self:GetParent().Guid],
+        Completed = completed,
+        NotCompleted = notCompleted
+    };
+
+    local serialized = LibSerialize:Serialize(data);
+    local compressed = LibDeflate:CompressDeflate(serialized);
+    local encoded = LibDeflate:EncodeForPrint(compressed);
+
+    local frame = addon.Gui.DataManager:GetTextFrame(addon.L["Export"] .. " " .. character.Name .. " - " .. character.Realm);
+    frame.Input:SetText(encoded);
+    frame:Show();
+end
+
 KrowiAF_CharacterListEntryMixin = {};
 
 local function GetFactionIcon(faction)
