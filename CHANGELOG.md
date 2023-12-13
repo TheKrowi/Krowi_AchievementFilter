@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 67.2 - 2023-12-13
+### Fixed
+- When the option to automatically limit the number of summary achievements is enabled, the calendar side window should not be affected
+
 ## 67.1 - 2023-11-19
 ### Fixed
 - ElvUI skin bug

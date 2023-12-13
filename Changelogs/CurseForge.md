@@ -15,3 +15,7 @@
 <ul>
 <li>Fixed a an error that occured when opening the data manager</li>
 </ul>
+<p><h3>Fixed (67.2)</h3></p>
+<ul>
+<li>When the option to automatically limit the number of summary achievements is enabled, the calendar side window should not be affected</li>
+</ul>

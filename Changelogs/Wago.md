@@ -10,3 +10,6 @@
 
 ### Wrath Classic (67.1)
 - Fixed a an error that occured when opening the data manager
+
+### Fixed (67.2)
+- When the option to automatically limit the number of summary achievements is enabled, the calendar side window should not be affected

@@ -337,7 +337,7 @@ end
 local updateAchievementsOnNextShow;
 local function UpdateAchievements(self, event)
     BuildLastCompleted(event);
-    return self.AchievementsFrame:Update(KrowiAF_Achievements.LastCompleted[UnitGUID("player")], updateAchievementsOnNextShow);
+    return self.AchievementsFrame:Update(KrowiAF_Achievements.LastCompleted[UnitGUID("player")], updateAchievementsOnNextShow, addon.Options.db.profile.Summary.AutoNumAchievements);
 end
 
 function KrowiAF_SummaryFrameMixin:Update(event)
