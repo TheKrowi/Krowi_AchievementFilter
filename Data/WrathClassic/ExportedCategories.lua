@@ -56,7 +56,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-05 22-20-41 ]] --
+-- [[ Exported at 2023-12-25 15-48-30 ]] --
 tasks = {
     {F, 1557, "UncategorizedCategories"},
     {C, 971, 1557},
@@ -104,17 +104,21 @@ tasks = {
     {N, 1125, a.L["Warcraft III: Reforged"], true}, -- Warcraft III: Reforged
     {C, 1117, 1124},
     {N, 1124, a.L["Heroes of the Storm"], true}, -- Heroes of the Storm
+    {C, 1123, 1563},
+    {N, 1563, a.L["10th Anniversary"], true}, -- 10th Anniversary
     {C, 1117, 1123},
-    {N, 1123, a.L["Hearthstone"], true}, -- Hearthstone
+    {N, 1123, a.L["Hearthstone"]}, -- Hearthstone
     {A, 1122, 4824}, -- Collector's Edition: Mini Thor
     {C, 1117, 1122},
     {N, 1122, a.L["StarCraft II"], true}, -- StarCraft II
     {C, 1117, 1121},
     {N, 1121, a.L["Overwatch"], true}, -- Overwatch
-    {C, 1117, 1400},
+    {C, 1562, 1400},
     {N, 1400, a.L["Diablo IV"], true}, -- Diablo IV
-    {C, 1117, 1120},
+    {C, 1562, 1120},
     {N, 1120, a.L["Diablo III"], true}, -- Diablo III
+    {C, 1117, 1562},
+    {N, 1562, a.L["Diablo"]}, -- Diablo
     {A, 1119, 16332}, -- The Perfect Pebble
     {A, 1119, 683}, -- Collector's Edition: Frost Wyrm Whelp
     {A, 1119, 665}, -- Collector's Edition: Netherwhelp
@@ -1762,8 +1766,6 @@ tasks = {
     {N, 577, a.L["Zones"]}, -- Zones
     {C, 883, 83},
     {N, 83, a.GetCategoryInfoTitle(14866)}, -- Wrath of the Lich King
-    {C, 55, 1536},
-    {N, 1536, a.L["Dragon Racing"]}, -- Dragon Racing
     {C, 55, 786},
     {N, 786, a.GetCategoryInfoTitle(15117)}, -- Pet Battles
     {C, 1151, 1512},
@@ -2070,12 +2072,6 @@ tasks = {
     {N, 616, a.L["Zones"]}, -- Zones
     {C, 883, 55},
     {N, 55, a.GetCategoryInfoTitle(14865)}, -- The Burning Crusade
-    {C, 1530, 1533},
-    {N, 1533, a.L["Eastern Kingdoms Cup"]}, -- Eastern Kingdoms Cup
-    {C, 1530, 1449},
-    {N, 1449, a.L["Kalimdor Cup"]}, -- Kalimdor Cup
-    {C, 1, 1530},
-    {N, 1530, a.L["Dragon Racing"]}, -- Dragon Racing
     {C, 1, 785},
     {N, 785, a.GetCategoryInfoTitle(15117)}, -- Pet Battles
     {C, 1150, 1529},
@@ -2196,8 +2192,6 @@ tasks = {
     {A, 16, 637}, -- Scarlet Monastery
     {C, 2, 16},
     {N, 16, a.GetInstanceInfoName(316)}, -- Scarlet Monastery
-    {C, 2, 15},
-    {N, 15, a.GetInstanceInfoName(311)}, -- Scarlet Halls
     {A, 14, 636}, -- Razorfen Downs
     {C, 2, 14},
     {N, 14, a.GetInstanceInfoName(234)}, -- Razorfen Downs

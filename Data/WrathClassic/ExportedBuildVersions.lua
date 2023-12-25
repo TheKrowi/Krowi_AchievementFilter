@@ -21,19 +21,19 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-11 22-37-20 ]] --
+-- [[ Exported at 2023-12-25 16-19-25 ]] --
 tasks = {
-    {N, 204, "3.4.3", "030403"},
-    {N, 203, "3.4.2", "030402"},
-    {N, 197, "3.4.1", "030401"},
-    {N, 194, "3.4.0", "030400"},
-    {N, 106, "3.3.5", "030305"},
-    {N, 104, "3.3.3", "030303"},
-    {N, 101, "3.3.0", "030300"},
-    {N, 99, "3.2.2", "030202"},
-    {N, 97, "3.2.0", "030200"},
-    {N, 92, "3.1.0", "030100"},
-    {N, 86, "3.0.2", "030002"},
+    {N, 204, "3.4.3", "030403", addon.L["Fall of the Lich King"]},
+    {N, 203, "3.4.2", "030402", addon.L["Call of the Crusade"]},
+    {N, 197, "3.4.1", "030401", addon.L["Secrets of Ulduar"]},
+    {N, 194, "3.4.0", "030400", addon.L["Wrath of the Lich King"]},
+    {N, 106, "3.3.5", "030305", addon.L["Defending the Ruby Sanctum"]},
+    {N, 104, "3.3.3", "030303", addon.L["Fall of the Lich King"]},
+    {N, 101, "3.3.0", "030300", addon.L["Fall of the Lich King"]},
+    {N, 99, "3.2.2", "030202", addon.L["Call of the Crusade"]},
+    {N, 97, "3.2.0", "030200", addon.L["Call of the Crusade"]},
+    {N, 92, "3.1.0", "030100", addon.L["Secrets of Ulduar"]},
+    {N, 86, "3.0.2", "030002", addon.L["Echoes of Doom"]},
 };
 
 function exportedBuildVersions:InjectDynamicFilters(filters)

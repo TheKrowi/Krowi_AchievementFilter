@@ -55,7 +55,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-05 22-20-41 ]] --
+-- [[ Exported at 2023-12-25 15-48-29 ]] --
 tasks = {
     {F, 1557, "UncategorizedCategories"},
     {C, 971, 1557},
@@ -156,11 +156,11 @@ tasks = {
     {A, 1539, 17359}, -- "Warcraft Rumble Minis, Whelp Egg's Newer Look"
     {A, 1539, 17352}, -- "Warcraft Rumble Minis, Whelp Egg's New Look"
     {A, 1539, 17358}, -- "Warcraft Rumble Minis, Murloc's Newer Look"
-    {A, 1539, 17351}, -- "Warcraft Rumble Minis, Murloc's  New Look"
+    {A, 1539, 17351}, -- "Warcraft Rumble Minis, Murloc's New Look"
     {A, 1539, 17357}, -- "Warcraft Rumble Minis, Ghoul's Newer Look"
     {A, 1539, 17350}, -- "Warcraft Rumble Minis, Ghoul's New Look"
     {A, 1539, 17356}, -- "Warcraft Rumble Minis, Tauren's Newer Look"
-    {A, 1539, 17349}, -- "Warcraft Rumble Minis, Tauren's  New Look"
+    {A, 1539, 17349}, -- "Warcraft Rumble Minis, Tauren's New Look"
     {A, 1539, 17355}, -- "Warcraft Rumble Minis, Huntress' Newer Look"
     {A, 1539, 17348}, -- "Warcraft Rumble Minis, Huntress' New Look"
     {A, 1539, 17354}, -- "Warcraft Rumble Minis, Sneed's Newer Look"
@@ -176,10 +176,15 @@ tasks = {
     {A, 1124, 9926}, -- Hero of the Storm
     {C, 1117, 1124},
     {N, 1124, a.L["Heroes of the Storm"], true}, -- Heroes of the Storm
+    {A, 1563, 19866}, -- Hearthstoned: Fiery Edition
+    {A, 1563, 19724}, -- Hearthstone Card Collection
+    {A, 1563, 20033}, -- Hearthstone Beginner
+    {C, 1123, 1563},
+    {N, 1563, a.L["10th Anniversary"], true}, -- 10th Anniversary
     {A, 1123, 15323}, -- Sarge's Tale
     {A, 1123, 8345}, -- Hearthstoned
     {C, 1117, 1123},
-    {N, 1123, a.L["Hearthstone"], true}, -- Hearthstone
+    {N, 1123, a.L["Hearthstone"]}, -- Hearthstone
     {A, 1122, 12454}, -- Salute to StarCraft
     {A, 1122, 10309}, -- Collector's Edition: Zeradar
     {A, 1122, 7842}, -- Collector's Edition: Baneling
@@ -191,12 +196,15 @@ tasks = {
     {N, 1121, a.L["Overwatch"], true}, -- Overwatch
     {A, 1400, 18258}, -- Little Lord of Lies
     {A, 1400, 15640}, -- Return to Darkness
-    {C, 1117, 1400},
+    {C, 1562, 1400},
     {N, 1400, a.L["Diablo IV"], true}, -- Diablo IV
     {A, 1120, 8795}, -- Collector's Edition: Treasure Goblin
     {A, 1120, 7412}, -- Collector's Edition: Fetish Shaman
-    {C, 1117, 1120},
+    {C, 1562, 1120},
     {N, 1120, a.L["Diablo III"], true}, -- Diablo III
+    {A, 1562, 11395}, -- Diablo's 20th Anniversary
+    {C, 1117, 1562},
+    {N, 1562, a.L["Diablo"]}, -- Diablo
     {A, 1119, 19030}, -- Squally
     {A, 1119, 18931}, -- Storm Rider: Gold
     {A, 1119, 18929}, -- Storm Rider: Silver
@@ -1902,13 +1910,23 @@ tasks = {
     {F, 1369, "TrackingAchievementsCategories"},
     {C, 884, 1369},
     {N, 1369, a.L["Tracking Achievements"]}, -- Tracking Achievements
-    {A, 1174, 11395}, -- Diablo's 20th Anniversary
     {A, 1174, 2116}, -- Tabard of the Argent Dawn
     {A, 1174, 2079}, -- Tabard of the Protector
     {A, 1174, 1637}, -- Spirit of Competition
     {A, 1174, 1636}, -- Competitor's Tabard
     {C, 884, 1174},
     {N, 1174, a.L["Miscellaneous"]}, -- Miscellaneous
+    {A, 1564, 19790}, -- "The Archives Called, You Answered"
+    {A, 1564, 19792}, -- Just One More Thing
+    {A, 1564, 19793}, -- Finally At Rest
+    {A, 1564, 19788}, -- Tome Comber
+    {A, 1564, 19789}, -- Relic Rescuer
+    {A, 1564, 19787}, -- Clued In
+    {A, 1564, 19791}, -- Goggle Wobble
+    {A, 1564, 19786}, -- When a Rock is Just a Rock
+    {A, 1564, 19685}, -- Tenured Archivist
+    {C, 1358, 1564},
+    {N, 1564, a.L["Azerothian Archives"]}, -- Azerothian Archives
     {A, 1552, 19315}, -- Dream Chaser
     {A, 1552, 19313}, -- Bloom Man Group
     {A, 1552, 19312}, -- Super Duper Bloom
@@ -2133,6 +2151,20 @@ tasks = {
     {A, 1452, 18642}, -- The Inquisitive
     {C, 884, 1452},
     {N, 1452, a.L["Secrets of Azeroth"]}, -- Secrets of Azeroth
+    {A, 1559, 19723}, -- Northrend Racing Completionist: Gold
+    {A, 1559, 19722}, -- Northrend Racing Completionist: Silver
+    {A, 1559, 19721}, -- Northrend Racing Completionist
+    {A, 1559, 19684}, -- Northrend Reverse: Gold
+    {A, 1559, 19683}, -- Northrend Reverse: Silver
+    {A, 1559, 19682}, -- Northrend Reverse: Bronze
+    {A, 1559, 19681}, -- Northrend Advanced: Gold
+    {A, 1559, 19679}, -- Northrend Advanced: Silver
+    {A, 1559, 19677}, -- Northrend Advanced: Bronze
+    {A, 1559, 19676}, -- Northrend: Gold
+    {A, 1559, 19675}, -- Northrend: Silver
+    {A, 1559, 19674}, -- Northrend: Bronze
+    {C, 1534, 1559},
+    {N, 1559, a.L["Northrend Cup"]}, -- Northrend Cup
     {A, 1535, 19107}, -- Outland Racing Completionist: Gold
     {A, 1535, 19106}, -- Outland Racing Completionist: Silver
     {A, 1535, 19105}, -- Outland Racing Completionist
@@ -2471,6 +2503,8 @@ tasks = {
     {A, 911, 2676}, -- I Found One!
     {C, 918, 911},
     {N, 911, a.GetCategoryInfoTitle(159)}, -- Noblegarden
+    {A, 910, 19508}, -- Love Language Expert
+    {A, 910, 19400}, -- Support Your Local Artisans
     {A, 910, 1693}, -- Fool For Love
     {A, 910, 9394}, -- They Really Love Me!
     {A, 910, 9393}, -- Beacon of Love
@@ -2894,6 +2928,7 @@ tasks = {
     {N, 1544, a.L["Glory"]}, -- Glory
     {A, 1543, 19420}, -- Dragonflight Season 3 Hero
     {A, 1543, 19396}, -- Dragonflight Season 3 Master
+    {A, 1543, 19450}, -- Fyr'alath the Dreamrender
     {A, 1543, 19442}, -- Fire Catwalk With Me
     {A, 1543, 19351}, -- Cutting Edge: Fyrakk the Blazing
     {A, 1543, 19350}, -- Ahead of the Curve: Fyrakk the Blazing
@@ -3609,6 +3644,7 @@ tasks = {
     {A, 1343, 16761}, -- Dragon Isles Explorer
     {C, 1341, 1343},
     {N, 1343, a.GetCategoryInfoTitle(97), true}, -- Exploration
+    {A, 1342, 18958}, -- Of the Tyr's Guard
     {A, 1342, 16683}, -- In Tyr's Footsteps
     {A, 1342, 17739}, -- Embers of Neltharion
     {A, 1342, 16808}, -- Friend of the Dragon Isles
@@ -6798,6 +6834,7 @@ tasks = {
     {A, 201, 6531}, -- Attention to Detail
     {C, 190, 201},
     {N, 201, a.GetInstanceInfoName(246)}, -- Scholomance
+    {A, 200, 980}, -- The Horseman's Reins
     {A, 200, 8437}, -- Challenge Master: Scarlet Monastery
     {A, 200, 6913}, -- Scarlet Monastery: Gold
     {A, 200, 6912}, -- Scarlet Monastery: Silver
@@ -7551,6 +7588,20 @@ tasks = {
     {A, 129, 4887}, -- Tripping the Rifts
     {C, 883, 129},
     {N, 129, a.GetCategoryInfoTitle(15072)}, -- Cataclysm
+    {A, 1558, 19723}, -- Northrend Racing Completionist: Gold
+    {A, 1558, 19722}, -- Northrend Racing Completionist: Silver
+    {A, 1558, 19721}, -- Northrend Racing Completionist
+    {A, 1558, 19684}, -- Northrend Reverse: Gold
+    {A, 1558, 19683}, -- Northrend Reverse: Silver
+    {A, 1558, 19682}, -- Northrend Reverse: Bronze
+    {A, 1558, 19681}, -- Northrend Advanced: Gold
+    {A, 1558, 19679}, -- Northrend Advanced: Silver
+    {A, 1558, 19677}, -- Northrend Advanced: Bronze
+    {A, 1558, 19676}, -- Northrend: Gold
+    {A, 1558, 19675}, -- Northrend: Silver
+    {A, 1558, 19674}, -- Northrend: Bronze
+    {C, 83, 1558},
+    {N, 1558, a.L["Dragon Racing"]}, -- Dragon Racing
     {A, 781, 4596}, -- The Sword in the Skull
     {A, 781, 3677}, -- The Sunreavers
     {A, 781, 3676}, -- A Silver Confidant

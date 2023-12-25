@@ -1,15 +1,9 @@
 ### Added
-- Import and export character data from the data manager
+- Added in version now shows the name of the patch if it's known
+- Fyr'alath the Dreamrender and Of the Tyr's Guard
+- 10.2.5 Northrend Cup achievements (12) and event
+- New 10.2.5 Love is in the Air achievements (2)
+- 10.2.5 Hearthstone's 10th Anniversary achievements (3)
 
 ### Fixed
-- Watched and Excluded achievements should no longer reset unexpectedly
-- Uncategorized category should once again only have uncategorized achievements
-
-### Fixed (67.1)
-- ElvUI skin bug
-
-### Wrath Classic (67.1)
-- Fixed a an error that occured when opening the data manager
-
-### Fixed (67.2)
-- When the option to automatically limit the number of summary achievements is enabled, the calendar side window should not be affected
+- Primal Storm events should once again show when tracked

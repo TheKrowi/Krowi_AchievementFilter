@@ -39,9 +39,35 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-11 22-37-25 ]] --
+-- [[ Exported at 2023-12-25 15-48-32 ]] --
 tasks = {
+    {N, 20033, 206}, -- Hearthstone Beginner
+    {N, 19866, 206}, -- Hearthstoned: Fiery Edition
+    {N, 19793, 206}, -- Finally At Rest
+    {N, 19792, 206}, -- Just One More Thing
+    {N, 19791, 206}, -- Goggle Wobble
+    {N, 19790, 206}, -- "The Archives Called, You Answered"
+    {N, 19789, 206}, -- Relic Rescuer
+    {N, 19788, 206}, -- Tome Comber
+    {N, 19787, 206}, -- Clued In
+    {N, 19786, 206}, -- When a Rock is Just a Rock
+    {N, 19724, 206}, -- Hearthstone Card Collection
+    {N, 19723, 206}, -- Northrend Racing Completionist: Gold
+    {N, 19722, 206}, -- Northrend Racing Completionist: Silver
+    {N, 19721, 206}, -- Northrend Racing Completionist
+    {N, 19685, 206}, -- Tenured Archivist
+    {N, 19684, 206}, -- Northrend Reverse: Gold
+    {N, 19683, 206}, -- Northrend Reverse: Silver
+    {N, 19682, 206}, -- Northrend Reverse: Bronze
+    {N, 19681, 206}, -- Northrend Advanced: Gold
+    {N, 19679, 206}, -- Northrend Advanced: Silver
+    {N, 19677, 206}, -- Northrend Advanced: Bronze
+    {N, 19676, 206}, -- Northrend: Gold
+    {N, 19675, 206}, -- Northrend: Silver
+    {N, 19674, 206}, -- Northrend: Bronze
+    {N, 19508, 206}, -- Love Language Expert
     {N, 19461, 205}, -- Kissed by the Wind
+    {N, 19450, 205}, -- Fyr'alath the Dreamrender
     {O, 19449, "From", "PvP Season", 36, "Until", "PvP Season", 36},
     {N, 19449, 205, nil, nil, true}, -- Dreaming Hero: Dragonflight Season 3
     {O, 19443, "From", "PvP Season", 36, "Until", "PvP Season", 36},
@@ -107,6 +133,7 @@ tasks = {
     {N, 19412, 205, nil, nil, true}, -- Battleground Blitz Apprentice
     {N, 19411, 205, nil, nil, true}, -- Battleground Blitz Novice
     {N, 19401, 205}, -- Emerald Dream Safari
+    {N, 19400, 206}, -- Support Your Local Artisans
     {N, 19398, 205}, -- Dreaming of the Aspects
     {N, 19397, 205}, -- Dreaming of Wyrms
     {N, 19396, 205}, -- Dragonflight Season 3 Master
@@ -299,6 +326,7 @@ tasks = {
     {N, 18962, 202}, -- A Cleansing Fire
     {N, 18960, 202}, -- Kickin' With the Wick
     {N, 18959, 202}, -- "Don't Lose Your Head, Man"
+    {N, 18958, 205}, -- Of the Tyr's Guard
     {N, 18942, 202}, -- Eastern Kingdoms Racing Completionist: Gold
     {N, 18941, 202}, -- Dazzling Dragons
     {N, 18940, 202}, -- Eastern Kingdoms Racing Completionist: Silver
@@ -811,9 +839,9 @@ tasks = {
     {N, 17354, 202}, -- "Warcraft Rumble Minis, Sneed's Newer Look"
     {N, 17353, 202}, -- "Warcraft Rumble Minis, Maiev's Newer Look"
     {N, 17352, 202}, -- "Warcraft Rumble Minis, Whelp Egg's New Look"
-    {N, 17351, 202}, -- "Warcraft Rumble Minis, Murloc's  New Look"
+    {N, 17351, 202}, -- "Warcraft Rumble Minis, Murloc's New Look"
     {N, 17350, 202}, -- "Warcraft Rumble Minis, Ghoul's New Look"
-    {N, 17349, 202}, -- "Warcraft Rumble Minis, Tauren's  New Look"
+    {N, 17349, 202}, -- "Warcraft Rumble Minis, Tauren's New Look"
     {N, 17348, 202}, -- "Warcraft Rumble Minis, Huntress' New Look"
     {N, 17347, 202}, -- "Warcraft Rumble Minis, Sneed's New Look"
     {N, 17346, 202}, -- "Warcraft Rumble Minis, Maiev's New Look"
@@ -9489,4 +9517,4 @@ tasks = {
     {N, 7, 86}, -- Level 20
     {N, 6, 86}, -- Level 10
 };
-addon.Data.HighestAchievementId = 19461;
+addon.Data.HighestAchievementId = 20033;

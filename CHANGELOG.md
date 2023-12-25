@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 68.0 - 2023-12-25
+### Added
+- Added in version now shows the name of the patch if it's known
+- Fyr'alath the Dreamrender and Of the Tyr's Guard
+- 10.2.5 Northrend Cup achievements (12) and event
+- New 10.2.5 Love is in the Air achievements (2)
+- 10.2.5 Hearthstone's 10th Anniversary achievements (3)
+
+### Fixed
+- Primal Storm events should once again show when tracked
+
 ## 67.2 - 2023-12-13
 ### Fixed
 - When the option to automatically limit the number of summary achievements is enabled, the calendar side window should not be affected
