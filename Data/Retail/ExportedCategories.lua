@@ -55,7 +55,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-12-25 15-48-29 ]] --
+-- [[ Exported at 2023-12-29 10-33-21 ]] --
 tasks = {
     {F, 1557, "UncategorizedCategories"},
     {C, 971, 1557},
@@ -149,6 +149,59 @@ tasks = {
     {A, 1346, 8820}, -- WoW's 10th Anniversary
     {C, 971, 1346},
     {N, 1346, a.L["Ta's Pet Collection"]}, -- Ta's Pet Collection
+    {A, 1569, 19420}, -- Dragonflight Season 3 Hero
+    {A, 1569, 19396}, -- Dragonflight Season 3 Master
+    {A, 1569, 19012}, -- Dragonflight Keystone Hero: Season Three
+    {A, 1569, 19011}, -- Dragonflight Keystone Master: Season Three
+    {A, 1569, 19010}, -- Dragonflight Keystone Conqueror: Season Three
+    {A, 1569, 19009}, -- Dragonflight Keystone Explorer: Season Three
+    {A, 1569, 19088}, -- Keystone Hero: Dawn of the Infinite
+    {A, 1569, 19087}, -- Keystone Hero: Atal'Dazar
+    {A, 1569, 19086}, -- Keystone Hero: Waycrest Manor
+    {A, 1569, 19084}, -- Keystone Hero: Black Rook Hold
+    {A, 1569, 19085}, -- Keystone Hero: Darkheart Thicket
+    {A, 1569, 19083}, -- Keystone Hero: The Everbloom
+    {A, 1569, 19082}, -- Keystone Hero: Throne of the Tides
+    {C, 1566, 1569},
+    {N, 1569, a.L["Season"] .. " " .. 3, true}, -- Season 3
+    {A, 1568, 18380}, -- Dragonflight Season 2 Hero
+    {A, 1568, 18027}, -- Dragonflight Season 2 Master
+    {A, 1568, 17846}, -- Smoldering Hero: Dragonflight Season 2
+    {A, 1568, 18542}, -- Dragonflight Keystone Master: Season Two
+    {A, 1568, 17845}, -- Dragonflight Keystone Hero: Season Two
+    {A, 1568, 17844}, -- Dragonflight Keystone Master: Season Two
+    {A, 1568, 17843}, -- Dragonflight Keystone Conqueror: Season Two
+    {A, 1568, 17842}, -- Dragonflight Keystone Explorer: Season Two
+    {A, 1568, 16639}, -- Keystone Hero: Uldaman: Legacy of Tyr
+    {A, 1568, 16644}, -- Keystone Hero: Neltharus
+    {A, 1568, 16646}, -- Keystone Hero: Halls of Infusion
+    {A, 1568, 16642}, -- Keystone Hero: Brackenhide Hollow
+    {A, 1568, 17849}, -- Keystone Hero: The Underrot
+    {A, 1568, 17848}, -- Keystone Hero: Freehold
+    {A, 1568, 17850}, -- Keystone Hero: Neltharion's Lair
+    {A, 1568, 17847}, -- Keystone Hero: The Vortex Pinnacle
+    {C, 1566, 1568},
+    {N, 1568, a.L["Season"] .. " " .. 2, true}, -- Season 2
+    {A, 1567, 17119}, -- Deep Cuts From the Vault
+    {A, 1567, 16429}, -- Thundering Hero: Dragonflight Season 1
+    {A, 1567, 16650}, -- Dragonflight Keystone Hero: Season One
+    {A, 1567, 16649}, -- Dragonflight Keystone Master: Season One
+    {A, 1567, 16648}, -- Dragonflight Keystone Conqueror: Season One
+    {A, 1567, 16647}, -- Dragonflight Keystone Explorer: Season One
+    {A, 1567, 16641}, -- Keystone Hero: The Nokhud Offensive
+    {A, 1567, 16645}, -- Keystone Hero: The Azure Vault
+    {A, 1567, 16640}, -- Keystone Hero: Ruby Life Pools
+    {A, 1567, 16643}, -- Keystone Hero: Algeth'ar Academy
+    {A, 1567, 16658}, -- Keystone Hero: Court of Stars
+    {A, 1567, 16659}, -- Keystone Hero: Halls of Valor
+    {A, 1567, 16660}, -- Keystone Hero: Shadowmoon Burial Grounds
+    {A, 1567, 16661}, -- Keystone Hero: Temple of the Jade Serpent
+    {C, 1566, 1567},
+    {N, 1567, a.L["Season"] .. " " .. 1, true}, -- Season 1
+    {C, 1565, 1566},
+    {N, 1566, a.GetCategoryInfoTitle(15466)}, -- Dragonflight
+    {C, 971, 1565},
+    {N, 1565, a.L["Mythic+"]}, -- Mythic+
     {A, 1539, 15344}, -- """S.A.F.E"" Pilot"
     {A, 1539, 17361}, -- "Rumble Minis, All the Looks!"
     {A, 1539, 17360}, -- "Warcraft Rumble Minis, New Looks!"
@@ -3496,8 +3549,6 @@ tasks = {
     {A, 1243, 17562}, -- Ancient Stones of the Ohn'ahran Plains
     {A, 1243, 17506}, -- Still Standing in the Fire
     {A, 1243, 16583}, -- Knew You Nokhud Do It!
-    {A, 1243, 16736}, -- Grand Theft Mammoth
-    {A, 1243, 16493}, -- Petty Theft Mammoth
     {A, 1243, 16462}, -- The Ohn'ahran Trail
     {A, 1243, 16424}, -- Who's a Good Bakar?
     {A, 1243, 16423}, -- Honor Our Ancestors
@@ -3561,6 +3612,8 @@ tasks = {
     {A, 1247, 16592}, -- Tour of Duty: The Waking Shores
     {C, 1232, 1247},
     {N, 1247, a.GetCategoryInfoTitle(95), true}, -- PvP
+    {A, 1242, 16736}, -- Grand Theft Mammoth
+    {A, 1242, 16493}, -- Petty Theft Mammoth
     {A, 1242, 17561}, -- Ancient Stones of the Waking Shores
     {A, 1242, 16584}, -- Symbols of Hope
     {A, 1242, 16497}, -- I'm Playing All Sides

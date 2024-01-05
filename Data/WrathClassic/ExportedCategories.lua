@@ -56,7 +56,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-12-25 15-48-30 ]] --
+-- [[ Exported at 2023-12-29 10-33-21 ]] --
 tasks = {
     {F, 1557, "UncategorizedCategories"},
     {C, 971, 1557},
@@ -98,6 +98,16 @@ tasks = {
     {A, 1346, 3478}, -- Pilgrim
     {C, 971, 1346},
     {N, 1346, a.L["Ta's Pet Collection"]}, -- Ta's Pet Collection
+    {C, 1566, 1569},
+    {N, 1569, a.L["Season"] .. " " .. 3, true}, -- Season 3
+    {C, 1566, 1568},
+    {N, 1568, a.L["Season"] .. " " .. 2, true}, -- Season 2
+    {C, 1566, 1567},
+    {N, 1567, a.L["Season"] .. " " .. 1, true}, -- Season 1
+    {C, 1565, 1566},
+    {N, 1566, a.GetCategoryInfoTitle(15466)}, -- Dragonflight
+    {C, 971, 1565},
+    {N, 1565, a.L["Mythic+"]}, -- Mythic+
     {C, 1117, 1539},
     {N, 1539, a.L["Warcraft Rumble"], true}, -- Warcraft Rumble
     {C, 1117, 1125},

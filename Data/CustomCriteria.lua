@@ -18,12 +18,12 @@ customCriteria[15406] = function(criteriaIndex)
     if criteriaIndex == nil then
         return 1;
     elseif criteriaIndex == 1 then
-        local quantity = (GetStatistic(15406));
+        local quantity = tonumber((GetStatistic(15406)));
         local reqQuantity = 1;
         return
         "", -- criteriaString
         nil, -- criteriaType
-        tonumber(quantity) >= tonumber(reqQuantity), -- completed
+        quantity >= reqQuantity, -- completed
         quantity, -- quantity
         reqQuantity, -- reqQuantity
         nil, -- charName
@@ -39,12 +39,12 @@ customCriteria[15407] = function(criteriaIndex)
     if criteriaIndex == nil then
         return 1;
     elseif criteriaIndex == 1 then
-        local quantity = (GetStatistic(15407));
+        local quantity = tonumber((GetStatistic(15407)));
         local reqQuantity = 5;
         return
         "", -- criteriaString
         nil, -- criteriaType
-        tonumber(quantity) >= tonumber(reqQuantity), -- completed
+        quantity >= reqQuantity, -- completed
         quantity, -- quantity
         reqQuantity, -- reqQuantity
         nil, -- charName
@@ -60,12 +60,12 @@ customCriteria[15410] = function(criteriaIndex)
     if criteriaIndex == nil then
         return 1;
     elseif criteriaIndex == 1 then
-        local quantity = (GetStatistic(15410));
+        local quantity = tonumber((GetStatistic(15410)));
         local reqQuantity = 25;
         return
         "", -- criteriaString
         nil, -- criteriaType
-        tonumber(quantity) >= tonumber(reqQuantity), -- completed
+        quantity >= reqQuantity, -- completed
         quantity, -- quantity
         reqQuantity, -- reqQuantity
         nil, -- charName
@@ -81,12 +81,12 @@ customCriteria[15411] = function(criteriaIndex)
     if criteriaIndex == nil then
         return 1;
     elseif criteriaIndex == 1 then
-        local quantity = (GetStatistic(15411));
+        local quantity = tonumber((GetStatistic(15411)));
         local reqQuantity = 50;
         return
         "", -- criteriaString
         nil, -- criteriaType
-        tonumber(quantity) >= tonumber(reqQuantity), -- completed
+        quantity >= reqQuantity, -- completed
         quantity, -- quantity
         reqQuantity, -- reqQuantity
         nil, -- charName

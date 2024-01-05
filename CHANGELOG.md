@@ -11,6 +11,9 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Primal Storm events should once again show when tracked
+- Moved Petty Theft Mammoth and Grand Theft Mammoth from Ohn'ahran Plains to The Waking Shores
+- Amirdrassil raid achievements should now correctly be linked to the raid zone
+- ElvUI compatibility
 
 ## 67.2 - 2023-12-13
 ### Fixed

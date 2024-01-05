@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-12 08-37-55 ]] --
+-- [[ Exported at 2023-12-25 17-57-09 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -743,7 +743,7 @@ L["Set Keybind"] = "Définir le raccourci clavier"
 L["Set Keybind Desc"] = "Définissez le raccourci clavier pour l'onglet sélectionné sur \"Y\". Cela dissocie toutes les autres actions liées à 'Y'. D'autres raccourcis clavier peuvent être spécifiés dans les {keyBindings} normaux."
 L["Shift"] = "MAJ"
 L["Shipyard"] = "Chantier naval"
-L["Show"] = "Afficher les pop-ups d'évènements"
+L["Show"] = "Affichage"
 L["Show Added in version"] = "Afficher {addedInVersion}"
 L["Show alertSystem on event start Desc"] = "Afficher ou masquer l'événement {alertSystem} quand il débute."
 L["Show alertSystem on event start in instances Desc"] = "Afficher ou masquer l'événement {alertSystem} lorsqu'il débute alors que vous êtes à l'intérieur d'une instance."

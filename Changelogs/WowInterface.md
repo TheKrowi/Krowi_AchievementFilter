@@ -10,4 +10,6 @@
 [B]Fixed[/B]
 [LIST]
 [*]Primal Storm events should once again show when tracked
+[*]Moved Petty Theft Mammoth and Grand Theft Mammoth from Ohn'ahran Plains to The Waking Shores
+[*]Amirdrassil raid achievements should now correctly be linked to the raid zone
 [/LIST]
