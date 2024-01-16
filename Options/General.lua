@@ -146,6 +146,19 @@ local function ExportCriteria()
     DebugTable = criteriaCache;
 end
 
+local function PrintMapInfoWithoutReload()
+    if addon.Diagnostics.DebugEnabled() then
+        return;
+    end
+
+    hooksecurefunc(WorldMapFrame, "OnMapChanged", function()
+        local mapID = WorldMapFrame.mapID;
+        print(mapID, addon.GetMapName(mapID));
+    end);
+
+    addon.Options.db.profile.PrintMapInfo = true;
+end
+
 options.OptionsTable.args["General"] = {
     type = "group", childGroups = "tab",
     name = addon.L["General"],
@@ -446,6 +459,21 @@ options.OptionsTable.args["General"] = {
                             desc = addon.L["Show placeholders filter Desc"]:KAF_AddDefaultValueText("ShowPlaceholdersFilter"),
                             get = function() return addon.Options.db.profile.ShowPlaceholdersFilter; end,
                             set = function(_, value) addon.Options.db.profile.ShowPlaceholdersFilter = value; end
+                        },
+                        Blank3 = {order = OrderPP(), type = "description", width = AdjustedWidth(2), name = ""},
+                        PrintMapInfo = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(),
+                            name = addon.L["Print map info"],
+                            desc = addon.L["Print map info Desc"]:KAF_AddDefaultValueText("PrintMapInfo"),
+                            get = function() return addon.Options.db.profile.PrintMapInfo; end,
+                            set = function(_, value) addon.Options.db.profile.PrintMapInfo = value; end
+                        },
+                        Blank4 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
+                        PrintMapInfoWithoutReload = {
+                            order = OrderPP(), type = "execute",
+                            name = addon.L["Print map info w/o reload"],
+                            desc = addon.L["Print map info w/o reload Desc"],
+                            func = PrintMapInfoWithoutReload
                         }
                     }
                 }

@@ -5,10 +5,13 @@
 <li>10.2.5 Northrend Cup achievements (12) and event</li>
 <li>New 10.2.5 Love is in the Air achievements (2)</li>
 <li>10.2.5 Hearthstone's 10th Anniversary achievements (3)</li>
+<li>Other Promotional achievements (1)</li>
 </ul>
 <p><h3>Fixed</h3></p>
 <ul>
 <li>Primal Storm events should once again show when tracked</li>
 <li>Moved Petty Theft Mammoth and Grand Theft Mammoth from Ohn'ahran Plains to The Waking Shores</li>
 <li>Amirdrassil raid achievements should now correctly be linked to the raid zone</li>
+<li>ElvUI compatibility</li>
+<li>An error could occur when you click an achievement in the tracker to show it in the achievement window</li>
 </ul>

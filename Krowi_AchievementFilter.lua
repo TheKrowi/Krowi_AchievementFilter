@@ -85,7 +85,7 @@ end
 local function LoadPlayerLogin()
     addon.Data:LoadOnPlayerLogin()
 
-    if addon.Diagnostics.DebugEnabled() then
+    if addon.Diagnostics.DebugEnabled() or addon.Options.db.profile.PrintMapInfo then
         hooksecurefunc(WorldMapFrame, "OnMapChanged", function()
             local mapID = WorldMapFrame.mapID;
             print(mapID, addon.GetMapName(mapID));

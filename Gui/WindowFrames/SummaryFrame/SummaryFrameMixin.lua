@@ -238,7 +238,7 @@ local function GetNextCategory()
     repeat
         categoryIndex = categoryIndex + 1;
         category = categories[categoryIndex];
-    until not category or (category and not category.IsSummary and not category.HasFlexibleData and category.NumOfAch > 0);
+    until not category or (category and not category.IsSummary and not category.HasFlexibleData and category.NumOfAch and category.NumOfAch > 0);
     return category;
 end
 

@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-12-29 10-16-58 ]] --
+-- [[ Exported at 2024-01-16 17-54-46 ]] --
 tasks = {
     {N, 20033, 206}, -- Hearthstone Beginner
     {N, 19866, 206}, -- Hearthstoned: Fiery Edition
@@ -306,6 +306,7 @@ tasks = {
     {N, 19080, 202}, -- Arcane Influence
     {N, 19079, 202}, -- Master of the Turbulent Timeways
     {N, 19077, 205}, -- Catch Me If You Can!
+    {N, 19031, 205}, -- Fyrn
     {N, 19030, 202}, -- Squally
     {N, 19029, 202}, -- Lil' Maggz
     {N, 19027, 202}, -- Heroic Edition: Algarian Stormrider
