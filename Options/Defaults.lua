@@ -11,6 +11,7 @@ addon.Options.Defaults = {
         EnableDebugInfo = false,
         EnableTraceInfo = false,
         ShowPlaceholdersFilter = false,
+        PrintMapInfo = false,
         Window = {
             Movable = true,
             RememberLastPosition = {

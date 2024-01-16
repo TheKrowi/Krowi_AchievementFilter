@@ -24,7 +24,7 @@ local a = addon; -- Saves some characters and file size as we use this a lot in 
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-12 08-22-26 ]] --
+-- [[ Exported at 2023-12-25 15-48-20 ]] --
 tasks = {
     {N, 141, 917, 236705, a.L["Feast of Winter Veil"]}, -- Feast of Winter Veil
     {N, 181, 911, 237000, a.L["Noblegarden"]}, -- Noblegarden
@@ -38,18 +38,20 @@ tasks = {
     {N, 409, 920, 237272, a.L["Day of the Dead"]}, -- Day of the Dead
     {N, 423, 910, 236709, a.L["Love is in the Air"]}, -- Love is in the Air
     {N, 479, 925, 134481, a.L["Darkmoon Faire"]}, -- Darkmoon Faire
-    {N, 1262, 1173, 133783, a.L["WoW's 18th Anniversary"]}, -- WoW's 18th Anniversary
     {N, 1395, 1453, 1100022, a.L["Kalimdor Cup"]}, -- Kalimdor Cup
     {N, 1396, 1452, 4419345, a.L["Secrets of Azeroth"], {1398, 1399}}, -- Secrets of Azeroth
     {N, 1398, 1452, 4419345, a.L["Secrets of Azeroth"], {1396, 1399}}, -- Secrets of Azeroth
     {N, 1399, 1452, 4419345, a.L["Secrets of Azeroth"], {1396, 1398}}, -- Secrets of Azeroth
-    {N, 1397, 1173, 133783, a.L["WoW's 19th Anniversary"]}, -- WoW's 19th Anniversary
     {N, 1400, 1531, 1100022, a.L["Eastern Kingdoms Cup"]}, -- Eastern Kingdoms Cup
     {N, 1407, 1535, 1100022, a.L["Outland Cup"]}, -- Outland Cup
     {N, 1425, 1538, 4630413, a.L["Turbulent Timeways"], {1458, 1459, 1460}}, -- Turbulent Timeways
     {N, 1458, 1538, 4630413, a.L["Turbulent Timeways"], {1425, 1459, 1460}}, -- Turbulent Timeways
     {N, 1459, 1538, 4630413, a.L["Turbulent Timeways"], {1425, 1458, 1460}}, -- Turbulent Timeways
     {N, 1460, 1538, 4630413, a.L["Turbulent Timeways"], {1425, 1458, 1459}}, -- Turbulent Timeways
+    {N, 1429, 1559, 1100022, a.L["Northrend Cup"]}, -- Northrend Cup
+    {N, 1430, 1560, 1100022, a.L["Pandaria Cup"]}, -- Pandaria Cup
+    {N, 1431, 1561, 1100022, a.L["Broken Isles Cup"]}, -- Broken Isles Cup
+    {N, 1462, 1563, 1061040, a.L["Hearthstone's 10th Anniversary"]}, -- Hearthstone's 10th Anniversary
 };
 
 function exportedCalendarEvents.InjectDynamicOptions()
@@ -66,12 +68,14 @@ function exportedCalendarEvents.InjectDynamicOptions()
     KrowiAF_RegisterEventOptions("Calendar", {423}, a.L["Love is in the Air"], a.L["Holidays"], 1);
     KrowiAF_RegisterDeSelectAllEventOptions("Calendar", {141, 181, 201, 324, 327, 341, 372, 398, 404, 409, 423}, a.L["Holidays"]);
     KrowiAF_RegisterEventOptions("Calendar", {479}, a.L["Darkmoon Faire"], a.L["Other"], 2);
-    KrowiAF_RegisterEventOptions("Calendar", {1262}, a.L["WoW's 18th Anniversary"], a.L["Other"], 2, nil, true);
     KrowiAF_RegisterEventOptions("Calendar", {1395}, a.L["Kalimdor Cup"], a.L["Other"], 2);
     KrowiAF_RegisterEventOptions("Calendar", {1396, 1398, 1399}, a.L["Secrets of Azeroth"], a.L["Other"], 2);
-    KrowiAF_RegisterEventOptions("Calendar", {1397}, a.L["WoW's 19th Anniversary"], a.L["Other"], 2);
     KrowiAF_RegisterEventOptions("Calendar", {1400}, a.L["Eastern Kingdoms Cup"], a.L["Other"], 2);
     KrowiAF_RegisterEventOptions("Calendar", {1407}, a.L["Outland Cup"], a.L["Other"], 2);
     KrowiAF_RegisterEventOptions("Calendar", {1425, 1458, 1459, 1460}, a.L["Turbulent Timeways"], a.L["Other"], 2);
-    KrowiAF_RegisterDeSelectAllEventOptions("Calendar", {479, 1262, 1395, 1396, 1398, 1399, 1397, 1400, 1407, 1425, 1458, 1459, 1460}, a.L["Other"]);
+    KrowiAF_RegisterEventOptions("Calendar", {1429}, a.L["Northrend Cup"], a.L["Other"], 2);
+    KrowiAF_RegisterEventOptions("Calendar", {1430}, a.L["Pandaria Cup"], a.L["Other"], 2);
+    KrowiAF_RegisterEventOptions("Calendar", {1431}, a.L["Broken Isles Cup"], a.L["Other"], 2);
+    KrowiAF_RegisterEventOptions("Calendar", {1462}, a.L["Hearthstone's 10th Anniversary"], a.L["Other"], 2);
+    KrowiAF_RegisterDeSelectAllEventOptions("Calendar", {479, 1395, 1396, 1398, 1399, 1400, 1407, 1425, 1458, 1459, 1460, 1429, 1430, 1431, 1462}, a.L["Other"]);
 end

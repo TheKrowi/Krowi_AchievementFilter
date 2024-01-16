@@ -24,7 +24,7 @@ local a = addon; -- Saves some characters and file size as we use this a lot in 
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-12 08-22-26 ]] --
+-- [[ Exported at 2023-12-25 15-48-20 ]] --
 tasks = {
     {N, 4729, 1393, 4240492, a.L["Community Feast: Next"]}, -- Community Feast: Next
     {N, 4731, 1393, 4240492, a.L["Community Feast: Active"]}, -- Community Feast: Active
@@ -32,6 +32,9 @@ tasks = {
     {N, 4992, 1454, 236387, a.L["Time Rift: Next"]}, -- Time Rift: Next
     {N, 5157, 1552, 3939983, a.L["Superbloom: Next"]}, -- Superbloom: Next
     {N, 5323, 1552, 3939983, a.L["Superbloom: Active"]}, -- Superbloom: Active
+    {N, 5584, 1564, 5341597, a.L["The Big Dig: Next"]}, -- The Big Dig: Next
+    {N, 5585, 1564, 5341597, a.L["The Big Dig: Soon"]}, -- The Big Dig: Soon
+    {N, 5592, 1564, 5341597, a.L["The Big Dig: Active"]}, -- The Big Dig: Active
 };
 
 function exportedWidgetEvents.InjectDynamicOptions()
@@ -44,4 +47,8 @@ function exportedWidgetEvents.InjectDynamicOptions()
     KrowiAF_RegisterEventOptions("Widget", {5157}, a.L["Superbloom: Next"], a.L["Superbloom"], 15, a.L["Dragonflight"]);
     KrowiAF_RegisterEventOptions("Widget", {5323}, a.L["Superbloom: Active"], a.L["Superbloom"], 15, a.L["Dragonflight"]);
     KrowiAF_RegisterDeSelectAllEventOptions("Widget", {5157, 5323}, a.L["Superbloom"], a.L["Dragonflight"]);
+    KrowiAF_RegisterEventOptions("Widget", {5584}, a.L["The Big Dig: Next"], a.L["Azerothian Archives"], 16, a.L["Dragonflight"]);
+    KrowiAF_RegisterEventOptions("Widget", {5585}, a.L["The Big Dig: Soon"], a.L["Azerothian Archives"], 16, a.L["Dragonflight"]);
+    KrowiAF_RegisterEventOptions("Widget", {5592}, a.L["The Big Dig: Active"], a.L["Azerothian Archives"], 16, a.L["Dragonflight"]);
+    KrowiAF_RegisterDeSelectAllEventOptions("Widget", {5584, 5585, 5592}, a.L["Azerothian Archives"], a.L["Dragonflight"]);
 end

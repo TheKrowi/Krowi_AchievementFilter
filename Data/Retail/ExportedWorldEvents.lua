@@ -24,7 +24,7 @@ local a = addon; -- Saves some characters and file size as we use this a lot in 
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-11-12 08-22-26 ]] --
+-- [[ Exported at 2023-12-25 15-48-20 ]] --
 tasks = {
     {N, 5175, 948, 1408998, a.L["Assault on Azsuna"], nil, 619}, -- Assault on Azsuna
     {N, 5177, 948, 1409000, a.L["Assault on Highmountain"], nil, 619}, -- Assault on Highmountain
@@ -47,47 +47,47 @@ tasks = {
     {N, 6991, 928, 3257748, a.L["Kyrian Assault"], nil, 1550}, -- Kyrian Assault
     {N, 6992, 930, 3257750, a.L["Night Fae Assault"], nil, 1550}, -- Night Fae Assault
     {N, 7104, 1394, 1394891, a.L["Siege on Dragonbane Keep: Active"], nil, 2057}, -- Siege on Dragonbane Keep: Active
-    {N, 7221, 1364, 4554434, a.L["Nokhudon Hold"], nil, 2057}, -- Nokhudon Hold
-    {N, 7222, 1364, 4554437, a.L["Nokhudon Hold"], nil, 2057}, -- Nokhudon Hold
-    {N, 7223, 1364, 4554438, a.L["Nokhudon Hold"], nil, 2057}, -- Nokhudon Hold
-    {N, 7224, 1364, 4554439, a.L["Nokhudon Hold"], nil, 2057}, -- Nokhudon Hold
-    {N, 7225, 1364, 4554434, a.L["Ohn'iri Springs"], nil, 2057}, -- Ohn'iri Springs
-    {N, 7226, 1364, 4554437, a.L["Ohn'iri Springs"], nil, 2057}, -- Ohn'iri Springs
-    {N, 7227, 1364, 4554438, a.L["Ohn'iri Springs"], nil, 2057}, -- Ohn'iri Springs
-    {N, 7228, 1364, 4554439, a.L["Ohn'iri Springs"], nil, 2057}, -- Ohn'iri Springs
-    {N, 7229, 1365, 4554434, a.L["Brackenhide Hollow"], nil, 2057}, -- Brackenhide Hollow
-    {N, 7230, 1365, 4554437, a.L["Brackenhide Hollow"], nil, 2057}, -- Brackenhide Hollow
-    {N, 7231, 1365, 4554438, a.L["Brackenhide Hollow"], nil, 2057}, -- Brackenhide Hollow
-    {N, 7232, 1365, 4554439, a.L["Brackenhide Hollow"], nil, 2057}, -- Brackenhide Hollow
-    {N, 7233, 1365, 4554434, a.L["Cobalt Assembly"], nil, 2057}, -- Cobalt Assembly
-    {N, 7234, 1365, 4554437, a.L["Cobalt Assembly"], nil, 2057}, -- Cobalt Assembly
-    {N, 7235, 1365, 4554438, a.L["Cobalt Assembly"], nil, 2057}, -- Cobalt Assembly
-    {N, 7236, 1365, 4554439, a.L["Cobalt Assembly"], nil, 2057}, -- Cobalt Assembly
-    {N, 7237, 1365, 4554434, a.L["Imbu"], nil, 2057}, -- Imbu
-    {N, 7238, 1365, 4554437, a.L["Imbu"], nil, 2057}, -- Imbu
-    {N, 7239, 1365, 4554438, a.L["Imbu"], nil, 2057}, -- Imbu
-    {N, 7240, 1365, 4554439, a.L["Imbu"], nil, 2057}, -- Imbu
-    {N, 7245, 1366, 4554434, a.L["Tyrhold"], nil, 2057}, -- Tyrhold
-    {N, 7246, 1366, 4554437, a.L["Tyrhold"], nil, 2057}, -- Tyrhold
-    {N, 7247, 1366, 4554438, a.L["Tyrhold"], nil, 2057}, -- Tyrhold
-    {N, 7248, 1366, 4554439, a.L["Tyrhold"], nil, 2057}, -- Tyrhold
-    {N, 7249, 1363, 4554434, a.L["Dragonbane Keep"], nil, 2057}, -- Dragonbane Keep
-    {N, 7250, 1363, 4554437, a.L["Dragonbane Keep"], nil, 2057}, -- Dragonbane Keep
-    {N, 7251, 1363, 4554438, a.L["Dragonbane Keep"], nil, 2057}, -- Dragonbane Keep
-    {N, 7252, 1363, 4554439, a.L["Dragonbane Keep"], nil, 2057}, -- Dragonbane Keep
-    {N, 7253, 1363, 4554434, a.L["Slagmire"], nil, 2057}, -- Slagmire
-    {N, 7254, 1363, 4554437, a.L["Slagmire"], nil, 2057}, -- Slagmire
-    {N, 7255, 1363, 4554438, a.L["Slagmire"], nil, 2057}, -- Slagmire
-    {N, 7256, 1363, 4554439, a.L["Slagmire"], nil, 2057}, -- Slagmire
-    {N, 7257, 1363, 4554434, a.L["Scalecracker Keep"], nil, 2057}, -- Scalecracker Keep
-    {N, 7258, 1363, 4554437, a.L["Scalecracker Keep"], nil, 2057}, -- Scalecracker Keep
-    {N, 7259, 1363, 4554438, a.L["Scalecracker Keep"], nil, 2057}, -- Scalecracker Keep
-    {N, 7260, 1363, 4554439, a.L["Scalecracker Keep"], nil, 2057}, -- Scalecracker Keep
+    {N, 7221, 1364, 4554434, a.L["Nokhudon Hold"], nil, 2023}, -- Nokhudon Hold
+    {N, 7222, 1364, 4554437, a.L["Nokhudon Hold"], nil, 2023}, -- Nokhudon Hold
+    {N, 7223, 1364, 4554438, a.L["Nokhudon Hold"], nil, 2023}, -- Nokhudon Hold
+    {N, 7224, 1364, 4554439, a.L["Nokhudon Hold"], nil, 2023}, -- Nokhudon Hold
+    {N, 7225, 1364, 4554434, a.L["Ohn'iri Springs"], nil, 2023}, -- Ohn'iri Springs
+    {N, 7226, 1364, 4554437, a.L["Ohn'iri Springs"], nil, 2023}, -- Ohn'iri Springs
+    {N, 7227, 1364, 4554438, a.L["Ohn'iri Springs"], nil, 2023}, -- Ohn'iri Springs
+    {N, 7228, 1364, 4554439, a.L["Ohn'iri Springs"], nil, 2023}, -- Ohn'iri Springs
+    {N, 7229, 1365, 4554434, a.L["Brackenhide Hollow"], nil, 2024}, -- Brackenhide Hollow
+    {N, 7230, 1365, 4554437, a.L["Brackenhide Hollow"], nil, 2024}, -- Brackenhide Hollow
+    {N, 7231, 1365, 4554438, a.L["Brackenhide Hollow"], nil, 2024}, -- Brackenhide Hollow
+    {N, 7232, 1365, 4554439, a.L["Brackenhide Hollow"], nil, 2024}, -- Brackenhide Hollow
+    {N, 7233, 1365, 4554434, a.L["Cobalt Assembly"], nil, 2024}, -- Cobalt Assembly
+    {N, 7234, 1365, 4554437, a.L["Cobalt Assembly"], nil, 2024}, -- Cobalt Assembly
+    {N, 7235, 1365, 4554438, a.L["Cobalt Assembly"], nil, 2024}, -- Cobalt Assembly
+    {N, 7236, 1365, 4554439, a.L["Cobalt Assembly"], nil, 2024}, -- Cobalt Assembly
+    {N, 7237, 1365, 4554434, a.L["Imbu"], nil, 2024}, -- Imbu
+    {N, 7238, 1365, 4554437, a.L["Imbu"], nil, 2024}, -- Imbu
+    {N, 7239, 1365, 4554438, a.L["Imbu"], nil, 2024}, -- Imbu
+    {N, 7240, 1365, 4554439, a.L["Imbu"], nil, 2024}, -- Imbu
+    {N, 7245, 1366, 4554434, a.L["Tyrhold"], nil, 2025}, -- Tyrhold
+    {N, 7246, 1366, 4554437, a.L["Tyrhold"], nil, 2025}, -- Tyrhold
+    {N, 7247, 1366, 4554438, a.L["Tyrhold"], nil, 2025}, -- Tyrhold
+    {N, 7248, 1366, 4554439, a.L["Tyrhold"], nil, 2025}, -- Tyrhold
+    {N, 7249, 1363, 4554434, a.L["Dragonbane Keep"], nil, 2022}, -- Dragonbane Keep
+    {N, 7250, 1363, 4554437, a.L["Dragonbane Keep"], nil, 2022}, -- Dragonbane Keep
+    {N, 7251, 1363, 4554438, a.L["Dragonbane Keep"], nil, 2022}, -- Dragonbane Keep
+    {N, 7252, 1363, 4554439, a.L["Dragonbane Keep"], nil, 2022}, -- Dragonbane Keep
+    {N, 7253, 1363, 4554434, a.L["Slagmire"], nil, 2022}, -- Slagmire
+    {N, 7254, 1363, 4554437, a.L["Slagmire"], nil, 2022}, -- Slagmire
+    {N, 7255, 1363, 4554438, a.L["Slagmire"], nil, 2022}, -- Slagmire
+    {N, 7256, 1363, 4554439, a.L["Slagmire"], nil, 2022}, -- Slagmire
+    {N, 7257, 1363, 4554434, a.L["Scalecracker Keep"], nil, 2022}, -- Scalecracker Keep
+    {N, 7258, 1363, 4554437, a.L["Scalecracker Keep"], nil, 2022}, -- Scalecracker Keep
+    {N, 7259, 1363, 4554438, a.L["Scalecracker Keep"], nil, 2022}, -- Scalecracker Keep
+    {N, 7260, 1363, 4554439, a.L["Scalecracker Keep"], nil, 2022}, -- Scalecracker Keep
     {N, 7267, 1394, 1394891, a.L["Siege on Dragonbane Keep: Gathering"], nil, 2057}, -- Siege on Dragonbane Keep: Gathering
-    {N, 7298, 1366, 4554434, a.L["Primalist Tomorrow"], nil, 2057}, -- Primalist Tomorrow
-    {N, 7299, 1366, 4554437, a.L["Primalist Tomorrow"], nil, 2057}, -- Primalist Tomorrow
-    {N, 7300, 1366, 4554438, a.L["Primalist Tomorrow"], nil, 2057}, -- Primalist Tomorrow
-    {N, 7301, 1366, 4554439, a.L["Primalist Tomorrow"], nil, 2057}, -- Primalist Tomorrow
+    {N, 7298, 1366, 4554434, a.L["Primalist Tomorrow"], nil, 2025}, -- Primalist Tomorrow
+    {N, 7299, 1366, 4554437, a.L["Primalist Tomorrow"], nil, 2025}, -- Primalist Tomorrow
+    {N, 7300, 1366, 4554438, a.L["Primalist Tomorrow"], nil, 2025}, -- Primalist Tomorrow
+    {N, 7301, 1366, 4554439, a.L["Primalist Tomorrow"], nil, 2025}, -- Primalist Tomorrow
     {N, 7342, 1392, 4622465, a.L["Grand Hunts: Ohn'ahran Plains"], nil, 1978}, -- Grand Hunts: Ohn'ahran Plains
     {N, 7343, 1392, 4622465, a.L["Grand Hunts: The Waking Shore"], nil, 1978}, -- Grand Hunts: The Waking Shore
     {N, 7344, 1392, 4622465, a.L["Grand Hunts: Thaldraszus"], nil, 1978}, -- Grand Hunts: Thaldraszus

@@ -1,17 +1,17 @@
 <p><h3>Added</h3></p>
 <ul>
-<li>Import and export character data from the data manager</li>
+<li>Added in version now shows the name of the patch if it's known</li>
+<li>Fyr'alath the Dreamrender and Of the Tyr's Guard</li>
+<li>10.2.5 Northrend Cup achievements (12) and event</li>
+<li>New 10.2.5 Love is in the Air achievements (2)</li>
+<li>10.2.5 Hearthstone's 10th Anniversary achievements (3)</li>
+<li>Other Promotional achievements (1)</li>
 </ul>
 <p><h3>Fixed</h3></p>
 <ul>
-<li>Watched and Excluded achievements should no longer reset unexpectedly</li>
-<li>Uncategorized category should once again only have uncategorized achievements</li>
-</ul>
-<p><h3>Fixed (67.1)</h3></p>
-<ul>
-<li>ElvUI skin bug</li>
-</ul>
-<p><h3>Wrath Classic (67.1)</h3></p>
-<ul>
-<li>Fixed a an error that occured when opening the data manager</li>
+<li>Primal Storm events should once again show when tracked</li>
+<li>Moved Petty Theft Mammoth and Grand Theft Mammoth from Ohn'ahran Plains to The Waking Shores</li>
+<li>Amirdrassil raid achievements should now correctly be linked to the raid zone</li>
+<li>ElvUI compatibility</li>
+<li>An error could occur when you click an achievement in the tracker to show it in the achievement window</li>
 </ul>

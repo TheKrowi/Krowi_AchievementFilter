@@ -71,15 +71,29 @@ timers[5323] = function()
     return 0; -- 17-22 minutes but ends when the boss is killed, do not track this time for now and show no time data available
 end
 
--- 4814 = Zaqali Ruin Investigation areapoi 7460 - use this timer for the event
--- 4826 = Zaqali Ruin Investigation areapoi 7462
--- 4869 ??
--- 4870 ??
--- 4871 ??
--- 4872 ??
--- 4873 ??
--- 4874 not yet earned reward for this week
--- 4884 ??
--- 4885 ??
--- 4886 ??
--- 4887 ??
+timers[5584] = function()
+    local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(5584);
+    if not widgetInfo or not widgetInfo.text then
+        return nil;
+    end
+
+    return GetSecondsLeft(widgetInfo.text, minutesAbbr, secondsAbbr);
+end
+
+timers[5585] = function()
+    local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(5585);
+    if not widgetInfo or not widgetInfo.text then
+        return nil;
+    end
+
+    return GetSecondsLeft(widgetInfo.text, minutesAbbr, secondsAbbr);
+end
+
+timers[5592] = function()
+    local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(5587);
+    if not widgetInfo or not widgetInfo.text then
+        return nil;
+    end
+
+    return GetSecondsLeft(widgetInfo.text, minutesAbbr, secondsAbbr);
+end

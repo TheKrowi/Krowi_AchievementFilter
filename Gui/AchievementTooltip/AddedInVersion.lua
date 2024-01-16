@@ -11,5 +11,10 @@ end
 
 function section:Add(achievement)
 	GameTooltip:AddLine(addon.L["Added in version"]); -- Header
-	GameTooltip:AddLine(achievement.BuildVersion and achievement.BuildVersion.Name or addon.Metadata.Build, 1, 1, 1);
+	if not achievement.BuildVersion then
+		GameTooltip:AddLine(addon.Metadata.Build, 1, 1, 1);
+		return;
+	end
+	local description = achievement.BuildVersion.Description and " (" .. achievement.BuildVersion.Description .. ")" or "";
+	GameTooltip:AddLine(achievement.BuildVersion.Name .. description, 1, 1, 1);
 end

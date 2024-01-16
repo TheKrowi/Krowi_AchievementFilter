@@ -238,7 +238,7 @@ local function GetNextCategory()
     repeat
         categoryIndex = categoryIndex + 1;
         category = categories[categoryIndex];
-    until not category or (category and not category.IsSummary and not category.HasFlexibleData and category.NumOfAch > 0);
+    until not category or (category and not category.IsSummary and not category.HasFlexibleData and category.NumOfAch and category.NumOfAch > 0);
     return category;
 end
 
@@ -337,7 +337,7 @@ end
 local updateAchievementsOnNextShow;
 local function UpdateAchievements(self, event)
     BuildLastCompleted(event);
-    return self.AchievementsFrame:Update(KrowiAF_Achievements.LastCompleted[UnitGUID("player")], updateAchievementsOnNextShow);
+    return self.AchievementsFrame:Update(KrowiAF_Achievements.LastCompleted[UnitGUID("player")], updateAchievementsOnNextShow, addon.Options.db.profile.Summary.AutoNumAchievements);
 end
 
 function KrowiAF_SummaryFrameMixin:Update(event)

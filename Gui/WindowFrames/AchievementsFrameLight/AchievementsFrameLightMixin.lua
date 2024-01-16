@@ -70,9 +70,9 @@ local function ShowHideEmptyText(self, numAchievements)
     HideEmptyText(self);
 end
 
-function KrowiAF_AchievementsFrameLightMixin:Update(achievementIds, _refreshAchievements)
+function KrowiAF_AchievementsFrameLightMixin:Update(achievementIds, _refreshAchievements, autoNumAchievements)
     local numAchievements = achievementIds and #achievementIds or 0;
-    if addon.Options.db.profile.Summary.AutoNumAchievements then
+    if autoNumAchievements then
         numAchievements = floor(self:GetHeight() / self.DummyFrame.CollapsedHeight);
     end
     refreshAchievements = _refreshAchievements;
