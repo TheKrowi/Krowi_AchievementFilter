@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 68.1 - 2024-01-17
+### Fixed
+- Intarface bumped to 10.2.5
+
 ## 68.0 - 2024-01-16
 ### Added
 - Added in version now shows the name of the patch if it's known

@@ -16,3 +16,8 @@
 [*]ElvUI compatibility
 [*]An error could occur when you click an achievement in the tracker to show it in the achievement window
 [/LIST]
+
+[B]Fixed (68.1)[/B]
+[LIST]
+[*]Intarface bumped to 10.2.5
+[/LIST]

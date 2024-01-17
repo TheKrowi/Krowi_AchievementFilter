@@ -12,3 +12,6 @@
 - Amirdrassil raid achievements should now correctly be linked to the raid zone
 - ElvUI compatibility
 - An error could occur when you click an achievement in the tracker to show it in the achievement window
+
+### Fixed (68.1)
+- Intarface bumped to 10.2.5
