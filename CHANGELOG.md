@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 68.2 - 2024-01-31
+### Added
+- Russian localization
+
 ## 68.1 - 2024-01-17
 ### Fixed
 - Intarface bumped to 10.2.5

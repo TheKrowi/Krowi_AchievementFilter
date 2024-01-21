@@ -19,3 +19,7 @@
 <ul>
 <li>Intarface bumped to 10.2.5</li>
 </ul>
+<p><h3>Added (68.2)</h3></p>
+<ul>
+<li>Russian localization</li>
+</ul>

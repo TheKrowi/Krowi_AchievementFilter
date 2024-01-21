@@ -15,3 +15,6 @@
 
 ### Fixed (68.1)
 - Intarface bumped to 10.2.5
+
+### Added (68.2)
+- Russian localization

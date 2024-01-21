@@ -21,3 +21,8 @@
 [LIST]
 [*]Intarface bumped to 10.2.5
 [/LIST]
+
+[B]Added (68.2)[/B]
+[LIST]
+[*]Russian localization
+[/LIST]

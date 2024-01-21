@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-01-16 17-56-30 ]] --
+-- [[ Exported at 2024-01-21 12-58-49 ]] --
 L["%c"] = "%c "
 L["%d/%m/%Y %I:%M %p"] = "%d/%m/%Y %I:%M %p "
 L["%m/%d/%Y %I:%M %p"] = "%m/%d/%Y %I:%M %p "
@@ -912,9 +912,9 @@ L["Thaldraszus"] = true
 L["Thaldraszus: Next"] = "Thaldraszus: Nächstes Event"
 L["The Azure Span Slalom"] = "Slalom des Azurblauen Gebirges "
 L["The Azure Span Sprint"] = "Sprint des Azurblauen Gebirges "
-L["The Big Dig: Active"] = "The Big Dig: Aktiv"
-L["The Big Dig: Next"] = "The Big Dig: Nächstes Event"
-L["The Big Dig: Soon"] = "The Big Dig: Bald"
+L["The Big Dig: Active"] = "Das große Buddeln: Aktiv"
+L["The Big Dig: Next"] = "Das große Buddeln: Nächstes Event"
+L["The Big Dig: Soon"] = "Das große Buddeln: Bald"
 L["The Entitled"] = "Hochverehrter "
 L["The Flowing Forest Flight"] = "Flug des Wallenden Walds "
 L["The Iron Tide"] = "Die Eiserne Flut"
