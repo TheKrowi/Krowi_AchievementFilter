@@ -39,8 +39,9 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-01-16 17-54-46 ]] --
+-- [[ Exported at 2024-02-07 20-33-21 ]] --
 tasks = {
+    {N, 20206, 206}, -- Champion of the Dragonflights
     {N, 20033, 206}, -- Hearthstone Beginner
     {N, 19866, 206}, -- Hearthstoned: Fiery Edition
     {N, 19793, 206}, -- Finally At Rest
@@ -55,6 +56,7 @@ tasks = {
     {N, 19723, 206}, -- Northrend Racing Completionist: Gold
     {N, 19722, 206}, -- Northrend Racing Completionist: Silver
     {N, 19721, 206}, -- Northrend Racing Completionist
+    {N, 19719, 206}, -- Reclamation of Gilneas
     {N, 19685, 206}, -- Tenured Archivist
     {N, 19684, 206}, -- Northrend Reverse: Gold
     {N, 19683, 206}, -- Northrend Reverse: Silver
@@ -6656,7 +6658,6 @@ tasks = {
     {N, 8109, 130}, -- The Mogu Below-gu
     {N, 8108, 130}, -- "When in Ihgaluk, Do as the Skumblade Do"
     {N, 8107, 130}, -- Ready for RAAAAIIIIDDD?!?ing
-    {O, 8106 },
     {N, 8106, 130}, -- In the Hall of the Thunder King
     {N, 8105, 130}, -- The Crumble Bundle
     {N, 8104, 130}, -- Thunder Plunder
@@ -8679,7 +8680,9 @@ tasks = {
     {N, 1701, 86}, -- Be Mine!
     {N, 1700, 86}, -- Perma-Peddle
     {N, 1699, 86}, -- Fistful of Love
+    {O, 1698, "From", "Version", "030002", "Until", "Version", "100205"},
     {N, 1698, 86, f.Horde, 1697}, -- Nation of Adoration
+    {O, 1697, "From", "Version", "030002", "Until", "Version", "100205"},
     {N, 1697, 86, f.Alliance, 1698}, -- Nation of Adoration
     {N, 1696, 86}, -- The Rocket's Pink Glare
     {N, 1695, 86}, -- Dangerous Love
@@ -8805,7 +8808,9 @@ tasks = {
     {N, 1283, 86}, -- Classic Dungeonmaster
     {N, 1282, 86}, -- Fa-la-la-la-Ogri'la
     {N, 1281, 86}, -- The Rocket's Red Glare
+    {O, 1280, "From", "Version", "030002", "Until", "Version", "100205"},
     {N, 1280, 86, f.Horde, 1279}, -- Flirt With Disaster
+    {O, 1279, "From", "Version", "030002", "Until", "Version", "100205"},
     {N, 1279, 86, f.Alliance, 1280}, -- Flirt With Disaster
     {N, 1277, 86}, -- Rapid Defense
     {N, 1276, 86}, -- Blade's Edge Bomberman
@@ -9407,6 +9412,7 @@ tasks = {
     {N, 272, 86}, -- Torch Juggler
     {N, 271, 86}, -- Burning Hot Pole Dance
     {N, 263, 86}, -- Ice the Frost Lord
+    {O, 260, "From", "Version", "030002", "Until", "Version", "100205"},
     {N, 260, 86}, -- Charming
     {N, 259, 86, f.Horde, 1255}, -- Scrooge
     {N, 255, 86}, -- Bring Me The Head of... Oh Wait
@@ -9518,4 +9524,4 @@ tasks = {
     {N, 7, 86}, -- Level 20
     {N, 6, 86}, -- Level 10
 };
-addon.Data.HighestAchievementId = 20033;
+addon.Data.HighestAchievementId = 20206;

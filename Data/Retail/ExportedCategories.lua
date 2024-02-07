@@ -55,7 +55,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-01-16 17-55-13 ]] --
+-- [[ Exported at 2024-02-07 20-33-48 ]] --
 tasks = {
     {F, 1557, "UncategorizedCategories"},
     {C, 971, 1557},
@@ -3698,6 +3698,7 @@ tasks = {
     {A, 1343, 16761}, -- Dragon Isles Explorer
     {C, 1341, 1343},
     {N, 1343, a.GetCategoryInfoTitle(97), true}, -- Exploration
+    {A, 1342, 20206}, -- Champion of the Dragonflights
     {A, 1342, 18958}, -- Of the Tyr's Guard
     {A, 1342, 16683}, -- In Tyr's Footsteps
     {A, 1342, 17739}, -- Embers of Neltharion
@@ -9608,6 +9609,7 @@ tasks = {
     {A, 922, 615}, -- Storming Stormwind
     {C, 687, 922},
     {N, 922, a.GetMapName(84)}, -- Stormwind City
+    {A, 687, 19719}, -- Reclamation of Gilneas
     {A, 687, 7520}, -- The Loremaster
     {A, 687, 42}, -- Eastern Kingdoms Explorer
     {A, 687, 1676}, -- Loremaster of Eastern Kingdoms

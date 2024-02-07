@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-01-21 12-58-53 ]] --
+-- [[ Exported at 2024-02-07 20-36-18 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -41,6 +41,12 @@ Les FPS chutent pendant l'ajustement de la valeur non PAS pendant l'utilisation 
 
 {reloadRequired}]=]
 L["Achievements"] = "Hauts faits"
+L["Achievements width offset"] = "Décalage largeur de la fenêtre des Hauts-fait"
+L["Achievements width offset Desc"] = [=[La largeur qui sera ajoutée à la largeur par défaut des Hauts-fait.
+
+Cette valeur peut être modifiée lorsque la fenêtre des Hauts-fait est ouverte et qu'un des onglets ajoutés par {addonName} est sélectionné. Cela peut avoir un impact (1) sur le jeu.
+
+(1) Des baisses de FPS et des saccades lors du réglage de la valeur, mais PAS lors de l'utilisation normale de l'addon.]=]
 L["Active events"] = "Évènements en cours"
 L["Add addon name to world map icon"] = "Ajouter le nom de l'addon à l'icône de la carte du monde"
 L["Add addon name to world map icon Desc"] = "Ajoute '{addonName}' en bas de l'infobulle quand la souris passe sur l'icône."
@@ -84,6 +90,8 @@ L["Assault: Mogu"] = "Assaut : La guerre des clans"
 L["Assault: N'Zoth (Uldum)"] = "Assaut : L'Empire noir (Uldum)"
 L["Assault: N'Zoth (Vale of Eternal Blossoms)"] = "Assaut : L'Empire noir (Val de l'Éternel printemps)"
 L["Author"] = "Auteur"
+L["Auto number of summary achievements"] = "Affiche un nombre de Hauts-fait automatique dans le résumé"
+L["Auto number of summary achievements Desc"] = "Ajuster automatiquement le nombre de réalisations affichées pour qu'aucune barre de défilement ne soit visible."
 L["Azerothian Archives"] = "Archives d'Azeroth"
 L["Azure Span"] = "Assaut de Fyrakka : Travée d'Azur"
 L["Azure Span: Next"] = "Travée d'Azur : Prochaine"
@@ -137,7 +145,7 @@ L["Checked"] = "Coché"
 L["Children's Week"] = "Semaine des enfants"
 L["Class Hall"] = "Domaine de classe"
 L["Clear all"] = "Tout effacer"
-L["Clear all Desc"] = "Efface tous les hauts faits de la liste surveillée."
+L["Clear all Desc"] = "Efface tous les Hauts-fait de la liste surveillée."
 L["Clear search field on Right Click"] = "Effacer le champ de recherche avec le clic droit"
 L["Clear search field on Right Click Desc"] = "Activer ou désactiver l'effacement de la zone de recherche lors d'un clic droit dessus."
 L["Click here to view in achievement window"] = "Cliquez ici pour afficher dans la fenêtre des Hauts-faits"
@@ -226,6 +234,7 @@ L["Day of the Dead"] = "Jour des morts"
 L["Debug"] = "Débug"
 L["Debug Desc"] = "Chacune des options répertoriées ci-dessous est disponible à des fins de débogage et de test. À utiliser à vos risques et périls !"
 L["Default value"] = "Valeur par défaut"
+L["Defending the Ruby Sanctum"] = "Défendre le Sanctum Rubis"
 L["Deselect All"] = "Tout désélectionner"
 L["Diablo"] = true
 L["Diablo III"] = true
@@ -608,6 +617,7 @@ L["Night Fae Assault"] = "L'assaut des Faë nocturnes"
 L["Nitun"] = true
 L["No achievements are available with the current set of filters"] = "Aucune Haut-fait n'est disponible avec l'ensemble de filtres actuel"
 L["No category selected"] = "Aucune catégorie sélectionnée"
+L["No characters found"] = "Aucun personnage trouvé•e"
 L["No data found"] = "Aucune donnée trouvée"
 L["No time data available"] = "Aucune donnée de temps disponible"
 L["Noblegarden"] = "Jardin des nobles"
@@ -789,7 +799,7 @@ L["Show Added in version"] = "Afficher {addedInVersion}"
 L["Show alertSystem on event start Desc"] = "Afficher ou masquer l'événement {alertSystem} quand il débute."
 L["Show alertSystem on event start in instances Desc"] = "Afficher ou masquer l'événement {alertSystem} lorsqu'il débute alors que vous êtes à l'intérieur d'une instance."
 L["Show alertSystem on event start only when time data is available Desc"] = "Afficher ou masquer l'événement {alertSystem} au démarrage d'un événement uniquement lorsque le temps restant de l'événement est disponible."
-L["Show alertSystem on login Desc"] = "Affiche ou masque l'événement {alertSystem} lors du /reload ou de la connexion."
+L["Show alertSystem on login Desc"] = "Affiche ou masque l'événement {alertSystem} lors du /reload ou de la connexion. "
 L["Show alertSystem on login in instances Desc"] = "Afficher ou masquer l'événement {alertSystem} lors de la connexion au jeu alors que vous êtes à l'intérieur d'une instance."
 L["Show alertSystem on login only when time data is available Desc"] = "Afficher ou masquer l'événement {alertSystem} à la connexion au jeu uniquement lorsque le temps restant de l'événement est disponible."
 L["Show alertSystem on reload Desc"] = "Afficher ou masquer l'événement {alertSystem} lors du rechargement du jeu."
@@ -876,7 +886,7 @@ L["Spacing"] = "Espace"
 L["Spacing Desc"] = "Ajoute ou retire des espace à l'espace de base entre les onglets."
 L["Special Categories"] = "Catégories spéciales"
 L["Special thanks"] = "Remerciements spéciaux"
-L["Specials"] = "Spécifique "
+L["Specials"] = "Spécifique"
 L["Stables"] = "Écuries"
 L["StarCraft II"] = true
 L["Start Time"] = "Heure de début"

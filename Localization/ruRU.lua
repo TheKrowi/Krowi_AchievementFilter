@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-01-21 12-59-36 ]] --
+-- [[ Exported at 2024-02-07 20-36-21 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -221,7 +221,7 @@ L["Exclude"] = "Исключить"
 L["Exclude Excluded achievements"] = "Исключить исключенные достижения"
 L["Exclude Excluded achievements Desc"] = "Исключить / Включить Исключенные достижения  из / в поиск результатов."
 L["Excluded"] = "Исключено"
-L["Expansions"] = "Дополенения"
+L["Expansions"] = "Дополнения"
 L["Expansions tab"] = "Вкладка Дополнений"
 L["Expansions tab Desc"] = "Достижения сгруппированы по категориям для каждого дополнения с более логичной иерархией. Иерархия выглядит следующим образом: |T:1:8|t - {expansion} |T:1:8|t|T:1:8|t -  {zones} T:1:8|t|T:1:8|t|T:1:8|t- {quests} |T:1:8|t|T:1:8/t/T:1:8/t - {exploration} |T:1:8|t|T:1:8|t|T:1:8|t - {pvp} |T:1:8/t|T:1:8|t|T:1:8|t - {reputation}  |T:1:8|t|T:1:8|t - {dungeons}  |T:1:8|t|T:1:8|t - {raids}  |T:1:8|t|T:1:8|t - {petBattles}  |T:1:8|t|T:1:8|t - {expansionFeatures} Специальные категории:  |T:1:8|t - {currentZone}: Показывает достижения, связанные с текущей зоной, в которой вы находитесь.  |T:1:8|t - {selectedZone}: Показывает достижения, связанные с выбранной зоной на карте мира.  |T:1:8|t- {watchListCategory}: Показывает просмотренные достижения. Достижения могут отображаться как с подкатегориями, так и без них (1).  |T:1:8|t - {excludedCategory}: Показывает исключенные достижения. Достижения могут отображаться как с подкатегориями, так и без них (1). Могут быть постоянно скрыты из параметров (1). (1) Параметры можно найти в разделе {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {categories}"
 L["Export"] = "Экспорт"
@@ -329,10 +329,10 @@ L["Kyrian Assault"] = "Атака кирий"
 L["Landfall"] = "Оползень"
 L["Layout"] = "Слои"
 L["Left"] = "Лево"
-L["Left Alt"] = "Левый Альт"
+L["Left Alt"] = true
 L["Left click"] = "Левый Щелчок"
-L["Left Ctrl"] = "Левый Контрл"
-L["Left Shift"] = "Левый Шифт"
+L["Left Ctrl"] = true
+L["Left Shift"] = true
 L["Legion Assaults"] = "Атаки Легиона"
 L["Level 80"] = "Уровень 80"
 L["Level 85"] = "Уровень 85"
@@ -497,12 +497,12 @@ L["Reset view on open Desc"] = "Скинуть все категории и вы
 L["Return to the Forbidden Reach"] = "Возвращение в Запретный край"
 L["Reverse Sort"] = "Обратная сортировка"
 L["Right"] = "Право"
-L["Right Alt"] = "Правый Альт"
+L["Right Alt"] = true
 L["Right click"] = "Правый щелчок"
 L["Right Click Menu"] = "Меню по Правому щелчку"
 L["Right Click Menu Desc"] = "Каждое достижение на новых вкладках имеет {rightClickMenu}. Особенности:  |T:1:8|t - Ссылка на {wowhead}.  |T:1:8|t - {goTo} ярлык для достижений, которые являются {partOfAChain}, которые {require}завершения этого достижения или также находятся в других категориях. Достижения в категории {currentZone} имеют ярлык для их правильного расположения в дереве категорий.  |T:1:8|t - Ссылка на {xuFuPetGuides}, если достижение связано с {petBattles} и {xuFuPetGuides} содержит соответствующую информацию о нем.  |T:1:8|t - Ссылка на наборы трансмог, если целью достижения является их получение. {pluginText}  |T:1:8|t - {more}:: Группирует разные пункты, чтобы не загромождать главное меню.  |T:1:8|t |T:1:8|t - {addToWatch}: Добавляет достижение в категорию {watchList}. (Доступно только для не просмотренных достижений). | |T:1:8|t |T:1:8|t - {removeFromWatch}: Удаляет достижение из категории {watchList}. (Доступно только для просмотренных достижений).  |T:1:8|t |T:1:8|t - {include}: Возвращает достижение в обычный вид. (Доступно только для исключенных достижений).  |T:1:8|t |T:1:8|t - {exclude}: Исключает достижение из обычного просмотра. (Доступно только для включенных достижений). Опции:  |T:1:8|t - На каждом достижении может быть отображена кнопка, которая открывает {rightClickMenu}. ({enabled}) (1) (1) Параметры можно найти в разделе {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {rightClickMenu}"
-L["Right Ctrl"] = "Правый Контрл"
-L["Right Shift"] = "Правый Шифт"
+L["Right Ctrl"] = true
+L["Right Shift"] = true
 L["Rise of Azshara"] = "Возвращение Азшары"
 L["Rise of the Zandalari"] = "Возвращение Зандаларов"
 L["River Rapids Route"] = "Маршрут над речными стремнинами"
@@ -538,7 +538,7 @@ L["Set Keybind"] = "привязка клавиши"
 L["Set Keybind Desc"] = "Привязать клавишу в выбранной вкладке на 'Y' . Это отвяжет все други действия привязанные на клавишу 'Y'. Остальные можно изменить в {keyBindings}"
 L["Shadowlands (pre-patch)"] = "Shadowlands (пре-патч)"
 L["Shadows of Argus"] = "Тени Аргуса"
-L["Shift"] = "Шифт"
+L["Shift"] = true
 L["Shipyard"] = "Верфь"
 L["Show"] = "Показать"
 L["Show Added in version"] = "Показать {addedInVersion}"
@@ -625,7 +625,7 @@ L["Superbloom"] = "Цветочный бум"
 L["Superbloom: Active"] = "Цветочный бум: Активно"
 L["Superbloom: Next"] = "Цветочный бум: Следущее"
 L["Tab"] = "Вкладка"
-L["tab"] = "таб"
+L["tab"] = "исп"
 L["Tabs"] = "Вкладки"
 L["Ta's Pet Collection"] = "Коллекция питомцев Тая"
 L["temporary obtainable"] = "временно доступно"

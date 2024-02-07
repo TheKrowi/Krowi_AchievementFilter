@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-01-16 17-55-10 ]] --
+-- [[ Exported at 2024-02-07 20-33-44 ]] --
 tasks = {
     {N, 19440, 204, f.Horde}, -- Defense Protocol Gamma: Terminated
     {N, 19439, 204, f.Alliance}, -- Defense Protocol Gamma: Terminated
@@ -771,7 +771,9 @@ tasks = {
     {N, 1701, 86}, -- Be Mine!
     {N, 1700, 86}, -- Perma-Peddle
     {N, 1699, 86}, -- Fistful of Love
+    {O, 1698, "From", "Version", "030002", "Until", "Version", "100205"},
     {N, 1698, 86, f.Horde, 1697}, -- Nation of Adoration
+    {O, 1697, "From", "Version", "030002", "Until", "Version", "100205"},
     {N, 1697, 86, f.Alliance, 1698}, -- Nation of Adoration
     {N, 1696, 86}, -- The Rocket's Pink Glare
     {N, 1695, 86}, -- Dangerous Love
@@ -905,7 +907,9 @@ tasks = {
     {N, 1283, 86}, -- Classic Dungeonmaster
     {N, 1282, 86}, -- Fa-la-la-la-Ogri'la
     {N, 1281, 86}, -- The Rocket's Red Glare
+    {O, 1280, "From", "Version", "030002", "Until", "Version", "100205"},
     {N, 1280, 86, f.Horde, 1279}, -- Flirt With Disaster
+    {O, 1279, "From", "Version", "030002", "Until", "Version", "100205"},
     {N, 1279, 86, f.Alliance, 1280}, -- Flirt With Disaster
     {N, 1277, 86}, -- Rapid Defense
     {N, 1276, 86}, -- Blade's Edge Bomberman
@@ -1515,6 +1519,7 @@ tasks = {
     {N, 272, 86}, -- Torch Juggler
     {N, 271, 86}, -- Burning Hot Pole Dance
     {N, 263, 86}, -- Ice the Frost Lord
+    {O, 260, "From", "Version", "030002", "Until", "Version", "100205"},
     {N, 260, 86}, -- Charming
     {N, 259, 86, f.Horde, 1255}, -- Scrooge
     {N, 255, 86}, -- Bring Me The Head of... Oh Wait
