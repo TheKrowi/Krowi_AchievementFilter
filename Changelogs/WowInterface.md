@@ -25,4 +25,15 @@
 [B]Added (68.2)[/B]
 [LIST]
 [*]Russian localization
+[*]10.2.5 Reclamation of Gilneas and Champion of the Dragonflights
+[/LIST]
+
+[B]Fixed (68.2)[/B]
+[LIST]
+[*]In the Hall of the Thunder King is once again obtainable
+[/LIST]
+
+[B]Changed (68.2)[/B]
+[LIST]
+[*]Nation of Adoration, Flirt With Disaster and Charming are no longer obtainable
 [/LIST]
