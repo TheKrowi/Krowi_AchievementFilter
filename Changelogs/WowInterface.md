@@ -37,3 +37,8 @@
 [LIST]
 [*]Nation of Adoration, Flirt With Disaster and Charming are no longer obtainable
 [/LIST]
+
+[B]Fixed (68.3)[/B]
+[LIST]
+[*]Nation of Adoration, Flirt With Disaster and Charming are now realy no longer obtainable
+[/LIST]
