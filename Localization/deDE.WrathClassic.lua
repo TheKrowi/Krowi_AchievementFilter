@@ -8,8 +8,8 @@ if not L then return end
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-09-17 08-51-07 ]] --
-L["Completed"] = "Abgeschlossen"
+-- [[ Exported at 2024-01-21 12-58-50 ]] --
+L["Completed"] = "Abgeschlossen "
 L["EJ_GetInstanceInfo1190"] = "Schloss Nathria "
 L["EJ_GetInstanceInfo1193"] = "Sanktum der Herrschaft "
 L["EJ_GetInstanceInfo1195"] = "Mausoleum der Ersten "
@@ -129,4 +129,4 @@ L["GetCategoryInfo15494"] = "Juwelierskunst"
 L["GetCategoryInfo15495"] = "Lederverarbeitung"
 L["GetCategoryInfo15496"] = "Schneiderei"
 L["GetCategoryInfo15497"] = "Bergbau"
-L["Not Completed"] = "Nicht abgeschlossen"
+L["Not Completed"] = "Nicht abgeschlossen "

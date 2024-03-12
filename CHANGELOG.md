@@ -1,6 +1,29 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 68.4 - 2024-03-12
+### Fixed
+- Moved Just an Ordinary Gas Cloud from Dragonflight - Profession - Engineering to The Burning Crusade - Profession - Engineering
+
+## 68.3 - 2024-02-08
+### Fixed
+- Nation of Adoration, Flirt With Disaster and Charming are now realy no longer obtainable
+
+## 68.2 - 2024-02-07
+### Added
+- Russian localization
+- 10.2.5 Reclamation of Gilneas and Champion of the Dragonflights
+
+### Fixed
+- In the Hall of the Thunder King is once again obtainable
+
+### Changed
+- Nation of Adoration, Flirt With Disaster and Charming are no longer obtainable
+
+## 68.1 - 2024-01-17
+### Fixed
+- Intarface bumped to 10.2.5
+
 ## 68.0 - 2024-01-16
 ### Added
 - Added in version now shows the name of the patch if it's known

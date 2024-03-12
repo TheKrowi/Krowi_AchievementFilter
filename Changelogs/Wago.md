@@ -12,3 +12,22 @@
 - Amirdrassil raid achievements should now correctly be linked to the raid zone
 - ElvUI compatibility
 - An error could occur when you click an achievement in the tracker to show it in the achievement window
+
+### Fixed (68.1)
+- Intarface bumped to 10.2.5
+
+### Added (68.2)
+- Russian localization
+- 10.2.5 Reclamation of Gilneas and Champion of the Dragonflights
+
+### Fixed (68.2)
+- In the Hall of the Thunder King is once again obtainable
+
+### Changed (68.2)
+- Nation of Adoration, Flirt With Disaster and Charming are no longer obtainable
+
+### Fixed (68.3)
+- Nation of Adoration, Flirt With Disaster and Charming are now realy no longer obtainable
+
+### Fixed (68.4)
+- Moved Just an Ordinary Gas Cloud from Dragonflight - Profession - Engineering to The Burning Crusade - Profession - Engineering

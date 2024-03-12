@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-08-23 16-15-50 ]] --
+-- [[ Exported at 2024-02-07 20-36-23 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -121,13 +121,6 @@ L["Date and Time formatting guide"] = "日期和时间格式指导"
 L["Day of the Dead"] = "悼念日"
 L["Default value"] = "默认值"
 L["Deselect All"] = "取消全选"
-L["DF - Community Feast"] = "DF - 社区盛宴"
-L["DF - Firestorms"] = "巨龙时代-火焰风暴"
-L["DF - Grand Hunts"] = "DF - 洪荒狩猎"
-L["DF - Sandstorms"] = "巨龙时代-沙暴"
-L["DF - Siege on Dragonbane Keep"] = "DF - 围攻灭龙要塞"
-L["DF - Snowstorms"] = "巨龙时代-雪暴"
-L["DF - Thunderstorms"] = "巨龙时代-雷暴"
 L["Diablo III"] = "暗黑破坏神III"
 L["Diablo IV"] = "暗黑破坏神IV"
 L["Discord"] = true
@@ -137,12 +130,6 @@ L["Down"] = "下"
 L["Dragon Glyphs"] = "巨龙魔符"
 L["Dragon Racing"] = "巨龙竞速"
 L["Dragonbane Keep"] = "凿刻记录"
-L["Dragonflight"] = "巨龙时代"
-L["Dragonflight Pre-patch"] = "巨龙时代 前夕"
-L["Dragonflight pre-patch - Firestorms"] = "巨龙时代前夕-火焰风暴"
-L["Dragonflight pre-patch - Sandstorms"] = "巨龙时代前夕-沙暴"
-L["Dragonflight pre-patch - Snowstorms"] = "巨龙时代前夕-雪暴"
-L["Dragonflight pre-patch - Thunderstorms"] = "巨龙时代前夕-雷暴"
 L["Dragonriding"] = "驭龙术"
 L["Drops"] = "掉落"
 L["Dueler's Guild"] = "决斗俱乐部"

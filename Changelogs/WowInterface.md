@@ -16,3 +16,34 @@
 [*]ElvUI compatibility
 [*]An error could occur when you click an achievement in the tracker to show it in the achievement window
 [/LIST]
+
+[B]Fixed (68.1)[/B]
+[LIST]
+[*]Intarface bumped to 10.2.5
+[/LIST]
+
+[B]Added (68.2)[/B]
+[LIST]
+[*]Russian localization
+[*]10.2.5 Reclamation of Gilneas and Champion of the Dragonflights
+[/LIST]
+
+[B]Fixed (68.2)[/B]
+[LIST]
+[*]In the Hall of the Thunder King is once again obtainable
+[/LIST]
+
+[B]Changed (68.2)[/B]
+[LIST]
+[*]Nation of Adoration, Flirt With Disaster and Charming are no longer obtainable
+[/LIST]
+
+[B]Fixed (68.3)[/B]
+[LIST]
+[*]Nation of Adoration, Flirt With Disaster and Charming are now realy no longer obtainable
+[/LIST]
+
+[B]Fixed (68.4)[/B]
+[LIST]
+[*]Moved Just an Ordinary Gas Cloud from Dragonflight - Profession - Engineering to The Burning Crusade - Profession - Engineering
+[/LIST]

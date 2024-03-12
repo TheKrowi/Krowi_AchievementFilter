@@ -55,7 +55,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-01-16 17-55-13 ]] --
+-- [[ Exported at 2024-03-12 19-17-09 ]] --
 tasks = {
     {F, 1557, "UncategorizedCategories"},
     {C, 971, 1557},
@@ -2940,7 +2940,6 @@ tasks = {
     {C, 1391, 1492},
     {N, 1492, a.GetCategoryInfoTitle(171), true}, -- Fishing
     {A, 1491, 18857}, -- That's No Ordinary Gas Cloud!
-    {A, 1491, 18856}, -- Just an Ordinary Gas Cloud
     {C, 1391, 1491},
     {N, 1491, a.GetCategoryInfoTitle(15492), true}, -- Engineering
     {A, 1487, 18764}, -- Break Upon Your Body
@@ -3698,6 +3697,7 @@ tasks = {
     {A, 1343, 16761}, -- Dragon Isles Explorer
     {C, 1341, 1343},
     {N, 1343, a.GetCategoryInfoTitle(97), true}, -- Exploration
+    {A, 1342, 20206}, -- Champion of the Dragonflights
     {A, 1342, 18958}, -- Of the Tyr's Guard
     {A, 1342, 16683}, -- In Tyr's Footsteps
     {A, 1342, 17739}, -- Embers of Neltharion
@@ -8510,6 +8510,9 @@ tasks = {
     {A, 1499, 129}, -- Outland Fisherman
     {C, 1151, 1499},
     {N, 1499, a.GetCategoryInfoTitle(171), true}, -- Fishing
+    {A, 1570, 18856}, -- Just an Ordinary Gas Cloud
+    {C, 1151, 1570},
+    {N, 1570, a.GetCategoryInfoTitle(15492), true}, -- Engineering
     {A, 1478, 1801}, -- Captain Rumsey's Lager
     {A, 1478, 1800}, -- The Outland Gourmet
     {A, 1478, 906}, -- Kickin' It Up a Notch
@@ -9608,6 +9611,7 @@ tasks = {
     {A, 922, 615}, -- Storming Stormwind
     {C, 687, 922},
     {N, 922, a.GetMapName(84)}, -- Stormwind City
+    {A, 687, 19719}, -- Reclamation of Gilneas
     {A, 687, 7520}, -- The Loremaster
     {A, 687, 42}, -- Eastern Kingdoms Explorer
     {A, 687, 1676}, -- Loremaster of Eastern Kingdoms
