@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 68.4 - 2024-03-12
+### Fixed
+- Moved Just an Ordinary Gas Cloud from Dragonflight - Profession - Engineering to The Burning Crusade - Profession - Engineering
+
 ## 68.3 - 2024-02-08
 ### Fixed
 - Nation of Adoration, Flirt With Disaster and Charming are now realy no longer obtainable

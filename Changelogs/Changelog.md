@@ -28,3 +28,6 @@
 
 ### Fixed (68.3)
 - Nation of Adoration, Flirt With Disaster and Charming are now realy no longer obtainable
+
+### Fixed (68.4)
+- Moved Just an Ordinary Gas Cloud from Dragonflight - Profession - Engineering to The Burning Crusade - Profession - Engineering

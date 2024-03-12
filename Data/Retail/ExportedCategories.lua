@@ -55,7 +55,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-02-07 20-33-48 ]] --
+-- [[ Exported at 2024-03-12 19-17-09 ]] --
 tasks = {
     {F, 1557, "UncategorizedCategories"},
     {C, 971, 1557},
@@ -2940,7 +2940,6 @@ tasks = {
     {C, 1391, 1492},
     {N, 1492, a.GetCategoryInfoTitle(171), true}, -- Fishing
     {A, 1491, 18857}, -- That's No Ordinary Gas Cloud!
-    {A, 1491, 18856}, -- Just an Ordinary Gas Cloud
     {C, 1391, 1491},
     {N, 1491, a.GetCategoryInfoTitle(15492), true}, -- Engineering
     {A, 1487, 18764}, -- Break Upon Your Body
@@ -8511,6 +8510,9 @@ tasks = {
     {A, 1499, 129}, -- Outland Fisherman
     {C, 1151, 1499},
     {N, 1499, a.GetCategoryInfoTitle(171), true}, -- Fishing
+    {A, 1570, 18856}, -- Just an Ordinary Gas Cloud
+    {C, 1151, 1570},
+    {N, 1570, a.GetCategoryInfoTitle(15492), true}, -- Engineering
     {A, 1478, 1801}, -- Captain Rumsey's Lager
     {A, 1478, 1800}, -- The Outland Gourmet
     {A, 1478, 906}, -- Kickin' It Up a Notch

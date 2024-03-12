@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-02-08 09-01-37 ]] --
+-- [[ Exported at 2024-03-12 19-05-28 ]] --
 tasks = {
     {N, 20206, 206}, -- Champion of the Dragonflights
     {N, 20033, 206}, -- Hearthstone Beginner
