@@ -10,3 +10,6 @@
 
 ### Changed
 - Back from the Beyond is now a legacy achievement
+
+### Fixed (69.1)
+- Localization

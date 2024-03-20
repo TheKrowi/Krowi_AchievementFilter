@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 69.1 - 2024-03-20
+### Fixed
+- Localization
+
 ## 69.0 - 2024-03-20
 ### Added
 - New Back from the Beyond achievement

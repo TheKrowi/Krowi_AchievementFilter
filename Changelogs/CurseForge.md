@@ -13,3 +13,7 @@
 <ul>
 <li>Back from the Beyond is now a legacy achievement</li>
 </ul>
+<p><h3>Fixed (69.1)</h3></p>
+<ul>
+<li>Localization</li>
+</ul>

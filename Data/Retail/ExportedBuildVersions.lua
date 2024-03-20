@@ -21,8 +21,9 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2023-12-25 16-19-19 ]] --
+-- [[ Exported at 2024-03-20 19-51-38 ]] --
 tasks = {
+    {N, 207, "10.2.6", "100206", addon.L["Plunderstorm"]},
     {N, 206, "10.2.5", "100205", addon.L["Seeds of Renewal"]},
     {N, 205, "10.2.0", "100200", addon.L["Guardians of the Dream"]},
     {N, 202, "10.1.7", "100107", addon.L["Fury Incarnate"]},
@@ -55,7 +56,7 @@ tasks = {
     {N, 167, "6.2.2", "060202", addon.L["Fury of Hellfire"]},
     {N, 165, "6.2.0", "060200", addon.L["Fury of Hellfire"]},
     {N, 163, "6.1.0", "060100", addon.L["Garrisons Update"]},
-    {N, 159, "6.0.2", "060002", addon.L["The Iron Tide"]},
+    {N, 159, "6.0.2", "060002", addon.L["Warlords of Draenor"]},
     {N, 152, "5.4.2", "050402", addon.L["Siege of Orgrimmar"]},
     {N, 151, "5.4.1", "050401", addon.L["Siege of Orgrimmar"]},
     {N, 148, "5.4.0", "050400", addon.L["Siege of Orgrimmar"]},
@@ -68,7 +69,7 @@ tasks = {
     {N, 118, "4.2.2", "040202", addon.L["Rage of the Firelands"]},
     {N, 116, "4.2.0", "040200", addon.L["Rage of the Firelands"]},
     {N, 114, "4.1.0", "040100", addon.L["Rise of the Zandalari"]},
-    {N, 112, "4.0.6", "040006", addon.L["The Shattering"]},
+    {N, 112, "4.0.6", "040006", addon.L["Cataclysm"]},
     {N, 110, "4.0.3", "040003", addon.L["Cataclysm (pre-patch)"]},
     {N, 108, "4.0.1", "040001", addon.L["Cataclysm (pre-patch)"]},
     {N, 106, "3.3.5", "030305", addon.L["Defending the Ruby Sanctum"]},
@@ -77,7 +78,7 @@ tasks = {
     {N, 99, "3.2.2", "030202", addon.L["Call of the Crusade"]},
     {N, 97, "3.2.0", "030200", addon.L["Call of the Crusade"]},
     {N, 92, "3.1.0", "030100", addon.L["Secrets of Ulduar"]},
-    {N, 86, "3.0.2", "030002", addon.L["Echoes of Doom"]},
+    {N, 86, "3.0.2", "030002", addon.L["Wrath of the Lich King"]},
 };
 
 function exportedBuildVersions:InjectDynamicFilters(filters)
@@ -136,6 +137,7 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
     filters[202] = true;
     filters[205] = true;
     filters[206] = true;
+    filters[207] = true;
 
     return {
         { -- 3
@@ -538,6 +540,10 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                         { -- 10.2.5
                             Patch = 5,
                             BuildVersionId = 206
+                        },
+                        { -- 10.2.6
+                            Patch = 6,
+                            BuildVersionId = 207
                         },
                     },
                 },
