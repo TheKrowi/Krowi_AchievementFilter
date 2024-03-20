@@ -55,7 +55,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-03-12 19-17-09 ]] --
+-- [[ Exported at 2024-03-20 19-45-42 ]] --
 tasks = {
     {F, 1557, "UncategorizedCategories"},
     {C, 971, 1557},
@@ -149,6 +149,21 @@ tasks = {
     {A, 1346, 8820}, -- WoW's 10th Anniversary
     {C, 971, 1346},
     {N, 1346, a.L["Ta's Pet Collection"]}, -- Ta's Pet Collection
+    {A, 1572, 20481}, -- Dragonflight Season 4 Master
+    {A, 1572, 19783}, -- Dragonflight Keystone Hero: Season Four
+    {A, 1572, 19782}, -- Dragonflight Keystone Master: Season Four
+    {A, 1572, 19781}, -- Dragonflight Keystone Conqueror: Season Four
+    {A, 1572, 19780}, -- Dragonflight Keystone Explorer: Season Four
+    {A, 1572, 16639}, -- Keystone Hero: Uldaman: Legacy of Tyr
+    {A, 1572, 16641}, -- Keystone Hero: The Nokhud Offensive
+    {A, 1572, 16645}, -- Keystone Hero: The Azure Vault
+    {A, 1572, 16640}, -- Keystone Hero: Ruby Life Pools
+    {A, 1572, 16644}, -- Keystone Hero: Neltharus
+    {A, 1572, 16646}, -- Keystone Hero: Halls of Infusion
+    {A, 1572, 16642}, -- Keystone Hero: Brackenhide Hollow
+    {A, 1572, 16643}, -- Keystone Hero: Algeth'ar Academy
+    {C, 1566, 1572},
+    {N, 1572, a.L["Season"] .. " " .. 4, true}, -- Season 4
     {A, 1569, 19420}, -- Dragonflight Season 3 Hero
     {A, 1569, 19396}, -- Dragonflight Season 3 Master
     {A, 1569, 19012}, -- Dragonflight Keystone Hero: Season Three
@@ -859,6 +874,8 @@ tasks = {
     {A, 988, 1436}, -- Friends In High Places
     {C, 972, 988},
     {N, 988, a.L["Recruit-a-Friend"] .. " (" .. a.GetCategoryInfoTitle(15234) .. ")"}, -- Recruit-a-Friend
+    {A, 978, 19503}, -- Draconic Gladiator's Drake
+    {A, 978, 19490}, -- Gladiator: Dragonflight Season 4
     {A, 978, 19295}, -- Verdant Gladiator's Slitherdrake
     {A, 978, 19091}, -- Gladiator: Dragonflight Season 3
     {A, 978, 17778}, -- Obsidian Gladiator's Slitherdrake
@@ -1082,6 +1099,24 @@ tasks = {
     {F, 1368, "TrackingAchievementsCategories"},
     {C, 955, 1368},
     {N, 1368, a.L["Tracking Achievements"]}, -- Tracking Achievements
+    {A, 1571, 20481}, -- Dragonflight Season 4 Master
+    {A, 1571, 19785}, -- Draconic Hero: Dragonflight Season 4
+    {A, 1571, 19513}, -- Battle Mender: Dragonflight Season 4
+    {A, 1571, 19453}, -- Draconic Legend: Dragonflight Season 4
+    {A, 1571, 19500}, -- Legend: Dragonflight Season 4
+    {A, 1571, 19456}, -- Hero of the Horde: Draconic
+    {A, 1571, 19455}, -- Hero of the Alliance: Draconic
+    {A, 1571, 19454}, -- Draconic Gladiator: Dragonflight Season 4
+    {A, 1571, 19509}, -- Elite: Dragonflight Season 4
+    {A, 1571, 19492}, -- Duelist: Dragonflight Season 4
+    {A, 1571, 19498}, -- Rival II: Dragonflight Season 4
+    {A, 1571, 19493}, -- Rival I: Dragonflight Season 4
+    {A, 1571, 19499}, -- Challenger II: Dragonflight Season 4
+    {A, 1571, 19497}, -- Challenger I: Dragonflight Season 4
+    {A, 1571, 19495}, -- Combatant II: Dragonflight Season 4
+    {A, 1571, 19494}, -- Combatant I: Dragonflight Season 4
+    {C, 1344, 1571},
+    {N, 1571, a.L["Season"] .. " " .. 4}, -- Season 4
     {A, 1540, 19420}, -- Dragonflight Season 3 Hero
     {A, 1540, 19396}, -- Dragonflight Season 3 Master
     {A, 1540, 19449}, -- Dreaming Hero: Dragonflight Season 3
@@ -1964,12 +1999,34 @@ tasks = {
     {F, 1369, "TrackingAchievementsCategories"},
     {C, 884, 1369},
     {N, 1369, a.L["Tracking Achievements"]}, -- Tracking Achievements
+    {A, 1174, 20509}, -- Plunderkind
+    {A, 1174, 20508}, -- Plunder Wonder
     {A, 1174, 2116}, -- Tabard of the Argent Dawn
     {A, 1174, 2079}, -- Tabard of the Protector
     {A, 1174, 1637}, -- Spirit of Competition
     {A, 1174, 1636}, -- Competitor's Tabard
     {C, 884, 1174},
     {N, 1174, a.L["Miscellaneous"]}, -- Miscellaneous
+    {A, 1576, 19572}, -- Mythic: Awakened Flames
+    {A, 1576, 19571}, -- Heroic: Awakened Flames
+    {A, 1576, 19570}, -- Awakened Flames
+    {C, 1573, 1576},
+    {N, 1576, a.GetInstanceInfoName(1207)}, -- Amirdrassil, the Dream's Hope
+    {A, 1575, 19569}, -- Mythic: Awakened Shadows
+    {A, 1575, 19568}, -- Heroic: Awakened Shadows
+    {A, 1575, 19567}, -- Awakened Shadows
+    {C, 1573, 1575},
+    {N, 1575, a.GetInstanceInfoName(1208)}, -- Aberrus, the Shadowed Crucible
+    {A, 1574, 19566}, -- Mythic: Awakened Storms
+    {A, 1574, 19565}, -- Heroic: Awakened Storms
+    {A, 1574, 19564}, -- Awakened Storms
+    {C, 1573, 1574},
+    {N, 1574, a.GetInstanceInfoName(1200)}, -- Vault of the Incarnates
+    {A, 1573, 19576}, -- Mythic: Awakening the Dragonflight Raids
+    {A, 1573, 19575}, -- Heroic: Awakening the Dragonflight Raids
+    {A, 1573, 19574}, -- Awakening the Dragonflight Raids
+    {C, 1358, 1573},
+    {N, 1573, a.L["Awakened Raids"]}, -- Awakened Raids
     {A, 1564, 19790}, -- "The Archives Called, You Answered"
     {A, 1564, 19792}, -- Just One More Thing
     {A, 1564, 19793}, -- Finally At Rest
@@ -1990,6 +2047,7 @@ tasks = {
     {A, 1537, 19008}, -- Dream Shaper
     {C, 1358, 1537},
     {N, 1537, a.L["Dreamsurge"]}, -- Dreamsurge
+    {A, 1454, 19485}, -- Closing Time
     {A, 1454, 18641}, -- To All The Squirrels I've BEEN Before
     {A, 1454, 18640}, -- Lock and Load
     {A, 1454, 18639}, -- Collapsed Reality
@@ -2046,30 +2104,24 @@ tasks = {
     {N, 1394, a.L["Siege on Dragonbane Keep"]}, -- Siege on Dragonbane Keep
     {C, 884, 1358},
     {N, 1358, a.GetCategoryInfoTitle(15466)}, -- Dragonflight
-    {A, 1211, 15687}, -- Mythic: Fates of the Shadowlands Raids
-    {A, 1211, 15685}, -- Heroic: Fates of the Shadowlands Raids
-    {A, 1211, 15684}, -- Fates of the Shadowlands Raids
     {A, 1211, 15683}, -- Mythic: Fate of the Sepulcher
     {A, 1211, 15682}, -- Heroic: Fate of the Sepulcher
     {A, 1211, 15681}, -- Fate of the Sepulcher
     {C, 1208, 1211},
     {N, 1211, a.GetInstanceInfoName(1195)}, -- Sepulcher of the First Ones
-    {A, 1210, 15687}, -- Mythic: Fates of the Shadowlands Raids
-    {A, 1210, 15685}, -- Heroic: Fates of the Shadowlands Raids
-    {A, 1210, 15684}, -- Fates of the Shadowlands Raids
     {A, 1210, 15669}, -- Mythic: Fate of Domination
     {A, 1210, 15668}, -- Heroic: Fate of Domination
     {A, 1210, 15667}, -- Fate of Domination
     {C, 1208, 1210},
     {N, 1210, a.GetInstanceInfoName(1193)}, -- Sanctum of Domination
-    {A, 1209, 15687}, -- Mythic: Fates of the Shadowlands Raids
-    {A, 1209, 15685}, -- Heroic: Fates of the Shadowlands Raids
-    {A, 1209, 15684}, -- Fates of the Shadowlands Raids
     {A, 1209, 15665}, -- Mythic: Fate of Nathria
     {A, 1209, 15664}, -- Heroic: Fate of Nathria
     {A, 1209, 15663}, -- Fate of Nathria
     {C, 1208, 1209},
     {N, 1209, a.GetInstanceInfoName(1190)}, -- Castle Nathria
+    {A, 1208, 15687}, -- Mythic: Fates of the Shadowlands Raids
+    {A, 1208, 15685}, -- Heroic: Fates of the Shadowlands Raids
+    {A, 1208, 15684}, -- Fates of the Shadowlands Raids
     {C, 926, 1208},
     {N, 1208, a.L["Fated Raids"]}, -- Fated Raids
     {A, 931, 15033}, -- Taking the Tremaculum
@@ -2541,6 +2593,7 @@ tasks = {
     {A, 912, 1791}, -- Home Alone
     {C, 918, 912},
     {N, 912, a.GetCategoryInfoTitle(163)}, -- Children's Week
+    {A, 911, 20209}, -- Quacked Killer
     {A, 911, 2798}, -- Noble Gardener
     {A, 911, 2576}, -- Blushing Bride
     {A, 911, 2436}, -- Desert Rose
@@ -2778,6 +2831,7 @@ tasks = {
     {A, 1293, 15915}, -- Waking Shores: Bronze
     {C, 1269, 1293},
     {N, 1293, a.GetMapName(2022)}, -- The Waking Shores
+    {A, 1269, 19478}, -- Now THIS is Dragon Racing!
     {A, 1269, 18792}, -- Dragonriding Challenge: Dragon Isles: Gold
     {A, 1269, 18791}, -- Dragonriding Challenge: Dragon Isles: Silver
     {A, 1269, 18790}, -- Dragonriding Challenge: Dragon Isles: Bronze
@@ -2786,7 +2840,7 @@ tasks = {
     {A, 1269, 17330}, -- Reverse Racer: Bronze
     {A, 1269, 15941}, -- Dragon Racing Completionist: Gold
     {A, 1269, 15940}, -- Dragon Racing Completionist: Silver
-    {A, 1269, 15939}, -- Dragon Racing Completionist
+    {A, 1269, 15939}, -- Dragon Racing Completionist: Bronze
     {C, 1207, 1269},
     {N, 1269, a.L["Dragon Racing"]}, -- Dragon Racing
     {A, 1550, 19306}, -- Emerald Dream Glyph Hunter
@@ -3157,6 +3211,11 @@ tasks = {
     {A, 1257, 16434}, -- See Me After Class
     {C, 1229, 1257},
     {N, 1257, a.GetInstanceInfoName(1201)}, -- Algeth'ar Academy
+    {A, 1229, 20481}, -- Dragonflight Season 4 Master
+    {A, 1229, 19783}, -- Dragonflight Keystone Hero: Season Four
+    {A, 1229, 19782}, -- Dragonflight Keystone Master: Season Four
+    {A, 1229, 19781}, -- Dragonflight Keystone Conqueror: Season Four
+    {A, 1229, 19780}, -- Dragonflight Keystone Explorer: Season Four
     {A, 1229, 19420}, -- Dragonflight Season 3 Hero
     {A, 1229, 19396}, -- Dragonflight Season 3 Master
     {A, 1229, 19012}, -- Dragonflight Keystone Hero: Season Three
@@ -3402,6 +3461,7 @@ tasks = {
     {A, 1246, 16518}, -- Explore Thaldraszus
     {C, 1235, 1246},
     {N, 1246, a.GetCategoryInfoTitle(97), true}, -- Exploration
+    {A, 1240, 19507}, -- Fringe Benefits
     {A, 1240, 17343}, -- Drop It Like It's Hot
     {A, 1240, 17342}, -- The Future We Make
     {A, 1240, 16398}, -- Sojourner of Thaldraszus
@@ -3446,6 +3506,7 @@ tasks = {
     {A, 1308, 16065}, -- Dragon Glyphs: Azure Archives
     {C, 1234, 1308},
     {N, 1308, a.L["Dragon Glyphs"], true}, -- Dragon Glyphs
+    {A, 1256, 19482}, -- Army of the Fed
     {A, 1256, 17427}, -- Winterpelt Conversationalist
     {A, 1256, 16443}, -- Soupervisor
     {A, 1256, 16444}, -- Leftovers' Revenge
@@ -3533,6 +3594,7 @@ tasks = {
     {A, 1307, 16061}, -- Dragon Glyphs: Dragonsprings Summit
     {C, 1233, 1307},
     {N, 1307, a.L["Dragon Glyphs"], true}, -- Dragon Glyphs
+    {A, 1253, 19481}, -- Centaur of Attention
     {A, 1253, 16543}, -- Tetrachromancer
     {A, 1253, 16542}, -- The Disgruntled Hunter
     {A, 1253, 16541}, -- Longhunter
@@ -3603,6 +3665,7 @@ tasks = {
     {A, 1306, 15991}, -- Dragon Glyphs: Crumbling Life Archway
     {C, 1232, 1306},
     {N, 1306, a.L["Dragon Glyphs"], true}, -- Dragon Glyphs
+    {A, 1248, 19479}, -- Wake Me Up
     {A, 1248, 16760}, -- The Obsidian Bloodline
     {A, 1248, 16536}, -- True Friends with Wrathion
     {A, 1248, 16532}, -- True Friends with Sabellian
@@ -3643,6 +3706,12 @@ tasks = {
     {A, 1362, 16556}, -- Great Gourmand of The Ruby Feast
     {C, 1228, 1362},
     {N, 1362, a.GetMapName(2112)}, -- Valdrakken
+    {A, 1577, 19478}, -- Now THIS is Dragon Racing!
+    {C, 1341, 1577},
+    {N, 1577, a.L["Dragon Racing"], true}, -- Dragon Racing
+    {A, 1361, 19486}, -- Across the Isles
+    {A, 1361, 19483}, -- Flight Club
+    {A, 1361, 19466}, -- "Oh My God, They Were Clutchmates"
     {A, 1361, 19308}, -- Freshscales Fifteen
     {A, 1361, 16758}, -- "Ready, Aim, Catalog!"
     {A, 1361, 16625}, -- Belay On!
@@ -3697,6 +3766,7 @@ tasks = {
     {A, 1343, 16761}, -- Dragon Isles Explorer
     {C, 1341, 1343},
     {N, 1343, a.GetCategoryInfoTitle(97), true}, -- Exploration
+    {A, 1342, 19463}, -- Dragon Quests
     {A, 1342, 20206}, -- Champion of the Dragonflights
     {A, 1342, 18958}, -- Of the Tyr's Guard
     {A, 1342, 16683}, -- In Tyr's Footsteps
@@ -3711,6 +3781,7 @@ tasks = {
     {N, 1341, a.GetCategoryInfoTitle(15465)}, -- Dragon Isles
     {C, 1207, 1228},
     {N, 1228, a.L["Zones"]}, -- Zones
+    {A, 1207, 19458}, -- A World Awoken
     {A, 1207, 19307}, -- Dragon Isles Pathfinder
     {A, 1207, 18804}, -- Neltharion's Legacy
     {C, 883, 1207},
@@ -4355,7 +4426,8 @@ tasks = {
     {A, 344, 14280}, -- Loremaster of Shadowlands
     {C, 6, 344},
     {N, 344, a.L["Zones"]}, -- Zones
-    {A, 6, 15654}, -- Back from the Beyond
+    {A, 6, 20501}, -- Back from the Beyond
+    {A, 6, 15654}, -- Back from the Beyond (Legacy)
     {C, 883, 6},
     {N, 6, a.GetCategoryInfoTitle(15439)}, -- Shadowlands
     {A, 428, 14140}, -- Mad World
