@@ -39,8 +39,13 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-03-12 19-05-28 ]] --
+-- [[ Exported at 2024-03-20 19-39-46 ]] --
 tasks = {
+    {N, 20509, 207}, -- Plunderkind
+    {N, 20508, 207}, -- Plunder Wonder
+    {N, 20501, 207}, -- Back from the Beyond
+    {N, 20481, 207}, -- Dragonflight Season 4 Master
+    {N, 20209, 207}, -- Quacked Killer
     {N, 20206, 206}, -- Champion of the Dragonflights
     {N, 20033, 206}, -- Hearthstone Beginner
     {N, 19866, 206}, -- Hearthstoned: Fiery Edition
@@ -52,6 +57,16 @@ tasks = {
     {N, 19788, 206}, -- Tome Comber
     {N, 19787, 206}, -- Clued In
     {N, 19786, 206}, -- When a Rock is Just a Rock
+    {O, 19785, "From", "PvP Season", 37, "Until", "PvP Season", 37},
+    {N, 19785, 207}, -- Draconic Hero: Dragonflight Season 4
+    {O, 19783, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
+    {N, 19783, 207}, -- Dragonflight Keystone Hero: Season Four
+    {O, 19782, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
+    {N, 19782, 207}, -- Dragonflight Keystone Master: Season Four
+    {O, 19781, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
+    {N, 19781, 207}, -- Dragonflight Keystone Conqueror: Season Four
+    {O, 19780, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
+    {N, 19780, 207}, -- Dragonflight Keystone Explorer: Season Four
     {N, 19724, 206}, -- Hearthstone Card Collection
     {N, 19723, 206}, -- Northrend Racing Completionist: Gold
     {N, 19722, 206}, -- Northrend Racing Completionist: Silver
@@ -67,8 +82,75 @@ tasks = {
     {N, 19676, 206}, -- Northrend: Gold
     {N, 19675, 206}, -- Northrend: Silver
     {N, 19674, 206}, -- Northrend: Bronze
+    {O, 19576, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
+    {N, 19576, 207}, -- Mythic: Awakening the Dragonflight Raids
+    {O, 19575, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
+    {N, 19575, 207}, -- Heroic: Awakening the Dragonflight Raids
+    {O, 19574, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
+    {N, 19574, 207}, -- Awakening the Dragonflight Raids
+    {O, 19572, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
+    {N, 19572, 207}, -- Mythic: Awakened Flames
+    {O, 19571, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
+    {N, 19571, 207}, -- Heroic: Awakened Flames
+    {O, 19570, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
+    {N, 19570, 207}, -- Awakened Flames
+    {O, 19569, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
+    {N, 19569, 207}, -- Mythic: Awakened Shadows
+    {O, 19568, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
+    {N, 19568, 207}, -- Heroic: Awakened Shadows
+    {O, 19567, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
+    {N, 19567, 207}, -- Awakened Shadows
+    {O, 19566, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
+    {N, 19566, 207}, -- Mythic: Awakened Storms
+    {O, 19565, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
+    {N, 19565, 207}, -- Heroic: Awakened Storms
+    {O, 19564, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
+    {N, 19564, 207}, -- Awakened Storms
+    {O, 19513, "From", "PvP Season", 37, "Until", "PvP Season", 37},
+    {N, 19513, 207}, -- Battle Mender: Dragonflight Season 4
+    {O, 19509, "From", "PvP Season", 37, "Until", "PvP Season", 37},
+    {N, 19509, 207}, -- Elite: Dragonflight Season 4
     {N, 19508, 206}, -- Love Language Expert
+    {N, 19507, 207}, -- Fringe Benefits
+    {O, 19503, "From", "PvP Season", 37, "Until", "PvP Season", 37},
+    {N, 19503, 207}, -- Draconic Gladiator's Drake
+    {O, 19500, "From", "PvP Season", 37, "Until", "PvP Season", 37},
+    {N, 19500, 207}, -- Legend: Dragonflight Season 4
+    {O, 19499, "From", "PvP Season", 37, "Until", "PvP Season", 37},
+    {N, 19499, 207}, -- Challenger II: Dragonflight Season 4
+    {O, 19498, "From", "PvP Season", 37, "Until", "PvP Season", 37},
+    {N, 19498, 207}, -- Rival II: Dragonflight Season 4
+    {O, 19497, "From", "PvP Season", 37, "Until", "PvP Season", 37},
+    {N, 19497, 207}, -- Challenger I: Dragonflight Season 4
+    {O, 19495, "From", "PvP Season", 37, "Until", "PvP Season", 37},
+    {N, 19495, 207}, -- Combatant II: Dragonflight Season 4
+    {O, 19494, "From", "PvP Season", 37, "Until", "PvP Season", 37},
+    {N, 19494, 207}, -- Combatant I: Dragonflight Season 4
+    {O, 19493, "From", "PvP Season", 37, "Until", "PvP Season", 37},
+    {N, 19493, 207}, -- Rival I: Dragonflight Season 4
+    {O, 19492, "From", "PvP Season", 37, "Until", "PvP Season", 37},
+    {N, 19492, 207}, -- Duelist: Dragonflight Season 4
+    {O, 19490, "From", "PvP Season", 37, "Until", "PvP Season", 37},
+    {N, 19490, 207}, -- Gladiator: Dragonflight Season 4
+    {N, 19486, 207}, -- Across the Isles
+    {N, 19485, 207}, -- Closing Time
+    {N, 19483, 207}, -- Flight Club
+    {N, 19482, 207}, -- Army of the Fed
+    {N, 19481, 207}, -- Centaur of Attention
+    {N, 19479, 207}, -- Wake Me Up
+    {N, 19478, 207}, -- Now THIS is Dragon Racing!
+    {N, 19466, 207}, -- "Oh My God, They Were Clutchmates"
+    {N, 19463, 207}, -- Dragon Quests
     {N, 19461, 205}, -- Kissed by the Wind
+    {N, 19458, 207}, -- A World Awoken
+    {O, 19456, "From", "PvP Season", 37, "Until", "PvP Season", 37},
+    {N, 19456, 207, f.Horde}, -- Hero of the Horde: Draconic
+    {O, 19455, "From", "PvP Season", 37, "Until", "PvP Season", 37},
+    {N, 19455, 207, f.Alliance}, -- Hero of the Alliance: Draconic
+    {O, 19454, "From", "PvP Season", 37, "Until", "PvP Season", 37},
+    {N, 19454, 207}, -- Draconic Gladiator: Dragonflight Season 4
+    {O, 19453, "From", "PvP Season", 37, "Until", "PvP Season", 37},
+    {N, 19453, 207}, -- Draconic Legend: Dragonflight Season 4
     {N, 19450, 205}, -- Fyr'alath the Dreamrender
     {O, 19449, "From", "PvP Season", 36, "Until", "PvP Season", 36},
     {N, 19449, 205, nil, nil, true}, -- Dreaming Hero: Dragonflight Season 3
@@ -998,21 +1080,21 @@ tasks = {
     {N, 16648, 196}, -- Dragonflight Keystone Conqueror: Season One
     {O, 16647, "From", "Mythic+ Season", 9, "Until", "Mythic+ Season", 9},
     {N, 16647, 196}, -- Dragonflight Keystone Explorer: Season One
-    {O, 16646, "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10},
+    {O, 16646, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
     {N, 16646, 196}, -- Keystone Hero: Halls of Infusion
-    {O, 16645, "From", "Mythic+ Season", 9, "Until", "Mythic+ Season", 9},
+    {O, 16645, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
     {N, 16645, 196}, -- Keystone Hero: The Azure Vault
-    {O, 16644, "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10},
+    {O, 16644, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
     {N, 16644, 196}, -- Keystone Hero: Neltharus
-    {O, 16643, "From", "Mythic+ Season", 9, "Until", "Mythic+ Season", 9},
+    {O, 16643, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
     {N, 16643, 196}, -- Keystone Hero: Algeth'ar Academy
-    {O, 16642, "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10},
+    {O, 16642, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
     {N, 16642, 196}, -- Keystone Hero: Brackenhide Hollow
-    {O, 16641, "From", "Mythic+ Season", 9, "Until", "Mythic+ Season", 9},
+    {O, 16641, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
     {N, 16641, 196}, -- Keystone Hero: The Nokhud Offensive
-    {O, 16640, "From", "Mythic+ Season", 9, "Until", "Mythic+ Season", 9},
+    {O, 16640, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
     {N, 16640, 196}, -- Keystone Hero: Ruby Life Pools
-    {O, 16639, "From", "Mythic+ Season", 10, "Until", "Mythic+ Season", 10},
+    {O, 16639, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
     {N, 16639, 196}, -- Keystone Hero: Uldaman: Legacy of Tyr
     {N, 16638, 196}, -- Ley Line in the Span
     {N, 16634, 196}, -- Framing a New Perspective
@@ -1372,7 +1454,7 @@ tasks = {
     {N, 15951, 196, nil, nil, true}, -- Crimson Gladiator: Dragonflight Season 1
     {N, 15941, 196}, -- Dragon Racing Completionist: Gold
     {N, 15940, 196}, -- Dragon Racing Completionist: Silver
-    {N, 15939, 196}, -- Dragon Racing Completionist
+    {N, 15939, 196}, -- Dragon Racing Completionist: Bronze
     {N, 15938, 196}, -- Thaldraszus Advanced: Gold
     {N, 15937, 196}, -- Thaldraszus Advanced: Silver
     {N, 15936, 196}, -- Thaldraszus Advanced: Bronze
@@ -1450,7 +1532,7 @@ tasks = {
     {O, 15663, "From", "Mythic+ Season", 8, "Until", "Version", "100000"},
     {N, 15663, 192}, -- Fate of Nathria
     {O, 15654, "From", "Version", "090205", "Before", "Version", "100002"},
-    {N, 15654, 192}, -- Back from the Beyond
+    {N, 15654, 192}, -- Back from the Beyond (Legacy)
     {N, 15653, 192}, -- The More You Know*
     {N, 15652, 192}, -- Mythic: So'leah's Gambit
     {N, 15651, 192}, -- Myths of the Shadowlands Dungeons
@@ -9524,4 +9606,4 @@ tasks = {
     {N, 7, 86}, -- Level 20
     {N, 6, 86}, -- Level 10
 };
-addon.Data.HighestAchievementId = 20206;
+addon.Data.HighestAchievementId = 20509;
