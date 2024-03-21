@@ -19,3 +19,8 @@
 [LIST]
 [*]Localization
 [/LIST]
+
+[B]Changed (69.2)[/B]
+[LIST]
+[*]Bumped toc to 10.2.6 for Dragonflight
+[/LIST]

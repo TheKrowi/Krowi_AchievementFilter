@@ -13,3 +13,6 @@
 
 ### Fixed (69.1)
 - Localization
+
+### Changed (69.2)
+- Bumped toc to 10.2.6 for Dragonflight
