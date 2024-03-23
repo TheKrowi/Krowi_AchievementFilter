@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-03-20 19-54-16 ]] --
+-- [[ Exported at 2024-03-23 05-58-00 ]] --
 L["%c"] = "%c "
 L["%d/%m/%Y %I:%M %p"] = "%d/%m/%Y %I:%M %p "
 L["%m/%d/%Y %I:%M %p"] = "%m/%d/%Y %I:%M %p "
@@ -677,6 +677,7 @@ L["Pilgrim's Bounty"] = "Die Pilgerfreuden "
 L["Pirates' Day"] = "Piratentag "
 L["Placeholder"] = "Platzhalter "
 L["Plugins"] = "Plugins "
+L["Plunderstorm"] = true
 L["Points"] = "Punkte "
 L["Pop ups"] = "Popup-Fenster "
 L["Presets"] = "Voreinstellungen "

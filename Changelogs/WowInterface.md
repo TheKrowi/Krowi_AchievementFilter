@@ -19,3 +19,13 @@
 [LIST]
 [*]Localization
 [/LIST]
+
+[B]Changed (69.2)[/B]
+[LIST]
+[*]Bumped toc to 10.2.6 for Dragonflight
+[/LIST]
+
+[B]Added (69.3)[/B]
+[LIST]
+[*]Progress on Events -> Miscellaneous -> Plunderkind
+[/LIST]

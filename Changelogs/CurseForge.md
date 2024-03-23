@@ -17,3 +17,11 @@
 <ul>
 <li>Localization</li>
 </ul>
+<p><h3>Changed (69.2)</h3></p>
+<ul>
+<li>Bumped toc to 10.2.6 for Dragonflight</li>
+</ul>
+<p><h3>Added (69.3)</h3></p>
+<ul>
+<li>Progress on Events -&gt; Miscellaneous -&gt; Plunderkind</li>
+</ul>

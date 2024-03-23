@@ -97,3 +97,24 @@ customCriteria[15411] = function(criteriaIndex)
         nil; -- eligible
     end
 end
+
+customCriteria[20509] = function(criteriaIndex)
+    if criteriaIndex == nil then
+        return 1;
+    elseif criteriaIndex == 1 then
+        local quantity = tonumber(C_CurrencyInfo.GetCurrencyInfo(2922).quantity);
+        local reqQuantity = 1000000;
+        return
+        "", -- criteriaString
+        nil, -- criteriaType
+        quantity >= reqQuantity, -- completed
+        quantity, -- quantity
+        reqQuantity, -- reqQuantity
+        nil, -- charName
+        0x00000001, -- flags
+        nil, -- assetId
+        quantity .. " / " .. reqQuantity, -- quantityString
+        nil, -- criteriaId
+        nil; -- eligible
+    end
+end
