@@ -500,7 +500,8 @@
         "EXPANSION_NAME9",
         "KrowiAF_TextFrame",
         "KrowiAF_TextFrameCloseButton",
-        "ButtonFrameTemplate_HideAttic"
+        "ButtonFrameTemplate_HideAttic",
+        "C_CurrencyInfo"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 69.3 - 2024-03-23
+### Added
+- Progress on Events -> Miscellaneous -> Plunderkind
+
 ## 69.2 - 2024-03-21
 ### Changed
 - Bumped toc to 10.2.6 for Dragonflight
