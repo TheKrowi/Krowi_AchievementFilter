@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 69.4 - 2024-03-25
+### Changed
+- Primal Storm event icons now match the achievement icons
+
 ## 69.3 - 2024-03-23
 ### Added
 - Progress on Events -> Miscellaneous -> Plunderkind

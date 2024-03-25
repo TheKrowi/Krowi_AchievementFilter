@@ -25,3 +25,7 @@
 <ul>
 <li>Progress on Events -&gt; Miscellaneous -&gt; Plunderkind</li>
 </ul>
+<p><h3>Changed (69.4)</h3></p>
+<ul>
+<li>Primal Storm event icons now match the achievement icons</li>
+</ul>

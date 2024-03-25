@@ -19,3 +19,6 @@
 
 ### Added (69.3)
 - Progress on Events -> Miscellaneous -> Plunderkind
+
+### Changed (69.4)
+- Primal Storm event icons now match the achievement icons
