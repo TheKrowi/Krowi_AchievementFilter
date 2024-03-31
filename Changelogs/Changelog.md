@@ -22,3 +22,6 @@
 
 ### Changed (69.4)
 - Primal Storm event icons now match the achievement icons
+
+### Fixed (69.5)
+- Removed end spaces of all German translations

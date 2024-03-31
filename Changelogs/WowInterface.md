@@ -34,3 +34,8 @@
 [LIST]
 [*]Primal Storm event icons now match the achievement icons
 [/LIST]
+
+[B]Fixed (69.5)[/B]
+[LIST]
+[*]Removed end spaces of all German translations
+[/LIST]

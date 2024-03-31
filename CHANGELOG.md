@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 69.5 - 2024-03-31
+### Fixed
+- Removed end spaces of all German translations
+
 ## 69.4 - 2024-03-25
 ### Changed
 - Primal Storm event icons now match the achievement icons
