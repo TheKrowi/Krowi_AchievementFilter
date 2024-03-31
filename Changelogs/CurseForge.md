@@ -33,3 +33,7 @@
 <ul>
 <li>Removed end spaces of all German translations</li>
 </ul>
+<p><h3>Fixed (69.6)</h3></p>
+<ul>
+<li>The calendar should show achievements on the correct date when DST changes</li>
+</ul>

@@ -25,3 +25,6 @@
 
 ### Fixed (69.5)
 - Removed end spaces of all German translations
+
+### Fixed (69.6)
+- The calendar should show achievements on the correct date when DST changes

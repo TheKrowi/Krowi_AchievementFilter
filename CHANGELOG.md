@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 69.6 - 2024-03-31
+### Fixed
+- The calendar should show achievements on the correct date when DST changes
+
 ## 69.5 - 2024-03-31
 ### Fixed
 - Removed end spaces of all German translations
