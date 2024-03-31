@@ -468,7 +468,6 @@ end
 local function GetEarnedAchievementsInRange(self)
     local firstDate = self.DayButtons[1]:GetSecondsSince();
     local lastDate = self.DayButtons[self.MaxDaysPerMonth]:GetSecondsSince();
-	print(firstDate, lastDate)
 	return addon.Data.SavedData.AchievementData.GetEarnedByCharacterWithinDateRange(UnitGUID("player"), firstDate, lastDate);
 end
 
