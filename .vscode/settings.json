@@ -501,7 +501,8 @@
         "KrowiAF_TextFrame",
         "KrowiAF_TextFrameCloseButton",
         "ButtonFrameTemplate_HideAttic",
-        "C_CurrencyInfo"
+        "C_CurrencyInfo",
+        "AchievementFrameFilterDropDownButton"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

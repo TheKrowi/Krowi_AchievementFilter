@@ -28,3 +28,6 @@
 
 ### Fixed (69.6)
 - The calendar should show achievements on the correct date when DST changes
+
+### Added (69.7)
+- Option to center the achievements window header

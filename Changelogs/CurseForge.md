@@ -37,3 +37,7 @@
 <ul>
 <li>The calendar should show achievements on the correct date when DST changes</li>
 </ul>
+<p><h3>Added (69.7)</h3></p>
+<ul>
+<li>Option to center the achievements window header</li>
+</ul>

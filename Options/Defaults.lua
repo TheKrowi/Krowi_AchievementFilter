@@ -12,6 +12,7 @@ addon.Options.Defaults = {
         EnableTraceInfo = false,
         ShowPlaceholdersFilter = false,
         PrintMapInfo = false,
+        CenterHeader = true,
         Window = {
             Movable = true,
             RememberLastPosition = {

@@ -44,3 +44,8 @@
 [LIST]
 [*]The calendar should show achievements on the correct date when DST changes
 [/LIST]
+
+[B]Added (69.7)[/B]
+[LIST]
+[*]Option to center the achievements window header
+[/LIST]
