@@ -7,7 +7,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-03-20 19-53-19 ]] --
+-- [[ Exported at 2024-04-03 08-10-45 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -133,6 +133,8 @@ This value can be changed while the achievement window is open and having one of
 L["Category shown temporarily"] = "This category was selected by clicking on the {eventName} event reminder and is shown temporarily because it has no achievements that match the set filters."
 L["Caverns Criss-Cross"] = true
 L["Center Header"] = true
+L["Center header"] = true
+L["Center header Desc"] = "Keep the header centered on the achievements window."
 L["Center Header Desc"] = "Center the achievement's name on the achievement button."
 L["Central Circuit"] = true
 L["Chains of Domination"] = true
@@ -1029,5 +1031,3 @@ L["Zaqali Ruin Investigation: Next"] = true
 L["Zaqali Ruin Investigation: Soon"] = true
 L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
-L["Center header"] = true
-L["Center header Desc"] = "Keep the header centered on the achievements window."
