@@ -1,6 +1,22 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 69.7 - 2024-04-03
+### Added
+- Option to center the achievements window header
+
+## 69.6 - 2024-03-31
+### Fixed
+- The calendar should show achievements on the correct date when DST changes
+
+## 69.5 - 2024-03-31
+### Fixed
+- Removed end spaces of all German translations
+
+## 69.4 - 2024-03-25
+### Changed
+- Primal Storm event icons now match the achievement icons
+
 ## 69.3 - 2024-03-23
 ### Added
 - Progress on Events -> Miscellaneous -> Plunderkind

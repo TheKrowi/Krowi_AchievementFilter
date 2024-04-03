@@ -137,9 +137,22 @@ local function CreateTooltip()
     end);
 end
 
+function header:AnchorHeader()
+    AchievementFrameFilterDropDown:ClearAllPoints();
+    AchievementFrameFilterDropDown:SetPoint("BOTTOMLEFT", AchievementFrame.Header, "BOTTOMLEFT", 123, 17);
+
+    AchievementFrame.Header:ClearAllPoints();
+    if addon.Options.db.profile.CenterHeader then
+        AchievementFrame.Header:SetPoint("BOTTOM", AchievementFrame, "TOP", 0, -38);
+    else
+        AchievementFrame.Header:SetPoint("BOTTOMLEFT", AchievementFrame, "TOPLEFT", 26, -38);
+    end
+end
+
 function header:Load()
     LoadIfWrathClassic();
     CreateTooltip();
+    self:AnchorHeader();
 end
 
 local headerSortPriorities = {

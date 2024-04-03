@@ -358,6 +358,11 @@ local function OffsetsAchievementFrameHeightSet(_, value)
     end
 end
 
+local function CenterHeaderSet(_, value)
+    addon.Options.db.profile.CenterHeader = value;
+    addon.Gui.AchievementFrameHeader:AnchorHeader();
+end
+
 local function SetSearchBoxMouseWheelPanScalar(_, value)
     if addon.Options.db.profile.SearchBox.MouseWheelPanScalar == value then return; end
     addon.Options.db.profile.SearchBox.MouseWheelPanScalar = value;
@@ -602,6 +607,19 @@ options.OptionsTable.args["Layout"] = {
             order = OrderPP(), type = "group",
             name = addon.L["Header"],
             args = {
+                CenterHeader = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["Center header"],
+                    args = {
+                        CenterHeader = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
+                            name = addon.L["Center header"],
+                            desc = addon.L["Center header Desc"]:KAF_AddDefaultValueText("CenterHeader"),
+                            get = function() return addon.Options.db.profile.CenterHeader; end,
+                            set = CenterHeaderSet
+                        }
+                    }
+                },
                 AchievementPoints = {
                     order = OrderPP(), type = "group", inline = true,
                     name = addon.L["Achievement Points"],

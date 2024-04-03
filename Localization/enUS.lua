@@ -1029,3 +1029,5 @@ L["Zaqali Ruin Investigation: Next"] = true
 L["Zaqali Ruin Investigation: Soon"] = true
 L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
+L["Center header"] = true
+L["Center header Desc"] = "Keep the header centered on the achievements window."

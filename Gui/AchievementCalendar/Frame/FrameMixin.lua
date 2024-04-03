@@ -484,7 +484,7 @@ local function AddAchievementsToDays(self)
     for _, achievement in next, achievements do
         _, _, points, _, _, _, _, _, _, icon = addon.GetAchievementInfo(achievement.Id);
         date = achievement.Date;
-        dayButtonIndex = floor((date - firstDate) / 86400 + 1); -- 86400 seconds in a day, floor to take changes in DST which would result in x.xx
+        dayButtonIndex = floor((date - firstDate) / 86400 + 0.5) + 1; -- 86400 seconds in a day, floor to take changes in DST which would result in x.xx
 		dayButton = self.DayButtons[dayButtonIndex];
         dayButton:AddAchievement(achievement.Id, icon, points);
 		if not dayButton.Dark then

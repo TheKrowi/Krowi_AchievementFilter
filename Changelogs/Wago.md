@@ -19,3 +19,15 @@
 
 ### Added (69.3)
 - Progress on Events -> Miscellaneous -> Plunderkind
+
+### Changed (69.4)
+- Primal Storm event icons now match the achievement icons
+
+### Fixed (69.5)
+- Removed end spaces of all German translations
+
+### Fixed (69.6)
+- The calendar should show achievements on the correct date when DST changes
+
+### Added (69.7)
+- Option to center the achievements window header
