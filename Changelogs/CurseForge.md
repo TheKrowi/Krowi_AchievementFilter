@@ -43,5 +43,12 @@
 </ul>
 <p><h3>Changed (69.8)</h3></p>
 <ul>
-<li>Dreaming of Drakes, Dreaming of Wyrms and Dreaming of the Aspects are now flagged obtainable only during Dragonflight Season 3 </li>
+<li>Dreaming of Drakes, Dreaming of Wyrms and Dreaming of the Aspects are now flagged obtainable only during Dragonflight Season 3</li>
+</ul>
+<p><h3>Fixed (69.9)</h3></p>
+<ul>
+<li>Dreaming Hero: Dragonflight Season 3 is now in the correct category and is no longer flagged as PvP</li>
+<li>Draconic Hero: Dragonflight Season 4 is now in the correct category</li>
+<li>Dragonflight Season 4 PvP achievements are now correctly flagged as PvP</li>
+<li>Ahead of the Curve: Fyrakk the Blazing and Cutting Edge: Fyrakk the Blazing are now correctly flagged obtainable only during Dragonflight Season 3</li>
 </ul>

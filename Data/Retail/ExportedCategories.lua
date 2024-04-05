@@ -55,7 +55,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-03-20 19-45-42 ]] --
+-- [[ Exported at 2024-04-05 09-42-31 ]] --
 tasks = {
     {F, 1557, "UncategorizedCategories"},
     {C, 971, 1557},
@@ -1100,7 +1100,6 @@ tasks = {
     {C, 955, 1368},
     {N, 1368, a.L["Tracking Achievements"]}, -- Tracking Achievements
     {A, 1571, 20481}, -- Dragonflight Season 4 Master
-    {A, 1571, 19785}, -- Draconic Hero: Dragonflight Season 4
     {A, 1571, 19513}, -- Battle Mender: Dragonflight Season 4
     {A, 1571, 19453}, -- Draconic Legend: Dragonflight Season 4
     {A, 1571, 19500}, -- Legend: Dragonflight Season 4
@@ -1119,7 +1118,6 @@ tasks = {
     {N, 1571, a.L["Season"] .. " " .. 4}, -- Season 4
     {A, 1540, 19420}, -- Dragonflight Season 3 Hero
     {A, 1540, 19396}, -- Dragonflight Season 3 Master
-    {A, 1540, 19449}, -- Dreaming Hero: Dragonflight Season 3
     {A, 1540, 19443}, -- Battle Mender: Dragonflight Season 3
     {A, 1540, 19131}, -- Verdant Legend: Dragonflight Season 3
     {A, 1540, 19304}, -- Legend: Dragonflight Season 3
@@ -3212,12 +3210,14 @@ tasks = {
     {C, 1229, 1257},
     {N, 1257, a.GetInstanceInfoName(1201)}, -- Algeth'ar Academy
     {A, 1229, 20481}, -- Dragonflight Season 4 Master
+    {A, 1229, 19785}, -- Draconic Hero: Dragonflight Season 4
     {A, 1229, 19783}, -- Dragonflight Keystone Hero: Season Four
     {A, 1229, 19782}, -- Dragonflight Keystone Master: Season Four
     {A, 1229, 19781}, -- Dragonflight Keystone Conqueror: Season Four
     {A, 1229, 19780}, -- Dragonflight Keystone Explorer: Season Four
     {A, 1229, 19420}, -- Dragonflight Season 3 Hero
     {A, 1229, 19396}, -- Dragonflight Season 3 Master
+    {A, 1229, 19449}, -- Dreaming Hero: Dragonflight Season 3
     {A, 1229, 19012}, -- Dragonflight Keystone Hero: Season Three
     {A, 1229, 19011}, -- Dragonflight Keystone Master: Season Three
     {A, 1229, 19010}, -- Dragonflight Keystone Conqueror: Season Three

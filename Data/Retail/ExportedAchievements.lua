@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-04-05 09-25-26 ]] --
+-- [[ Exported at 2024-04-05 09-41-32 ]] --
 tasks = {
     {N, 20509, 207}, -- Plunderkind
     {N, 20508, 207}, -- Plunder Wonder
@@ -57,7 +57,7 @@ tasks = {
     {N, 19788, 206}, -- Tome Comber
     {N, 19787, 206}, -- Clued In
     {N, 19786, 206}, -- When a Rock is Just a Rock
-    {O, 19785, "From", "PvP Season", 37, "Until", "PvP Season", 37},
+    {O, 19785, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
     {N, 19785, 207}, -- Draconic Hero: Dragonflight Season 4
     {O, 19783, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
     {N, 19783, 207}, -- Dragonflight Keystone Hero: Season Four
@@ -107,29 +107,29 @@ tasks = {
     {O, 19564, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
     {N, 19564, 207}, -- Awakened Storms
     {O, 19513, "From", "PvP Season", 37, "Until", "PvP Season", 37},
-    {N, 19513, 207}, -- Battle Mender: Dragonflight Season 4
+    {N, 19513, 207, nil, nil, true}, -- Battle Mender: Dragonflight Season 4
     {O, 19509, "From", "PvP Season", 37, "Until", "PvP Season", 37},
-    {N, 19509, 207}, -- Elite: Dragonflight Season 4
+    {N, 19509, 207, nil, nil, true}, -- Elite: Dragonflight Season 4
     {N, 19508, 206}, -- Love Language Expert
     {N, 19507, 207}, -- Fringe Benefits
     {O, 19503, "From", "PvP Season", 37, "Until", "PvP Season", 37},
     {N, 19503, 207}, -- Draconic Gladiator's Drake
     {O, 19500, "From", "PvP Season", 37, "Until", "PvP Season", 37},
-    {N, 19500, 207}, -- Legend: Dragonflight Season 4
+    {N, 19500, 207, nil, nil, true}, -- Legend: Dragonflight Season 4
     {O, 19499, "From", "PvP Season", 37, "Until", "PvP Season", 37},
-    {N, 19499, 207}, -- Challenger II: Dragonflight Season 4
+    {N, 19499, 207, nil, nil, true}, -- Challenger II: Dragonflight Season 4
     {O, 19498, "From", "PvP Season", 37, "Until", "PvP Season", 37},
-    {N, 19498, 207}, -- Rival II: Dragonflight Season 4
+    {N, 19498, 207, nil, nil, true}, -- Rival II: Dragonflight Season 4
     {O, 19497, "From", "PvP Season", 37, "Until", "PvP Season", 37},
-    {N, 19497, 207}, -- Challenger I: Dragonflight Season 4
+    {N, 19497, 207, nil, nil, true}, -- Challenger I: Dragonflight Season 4
     {O, 19495, "From", "PvP Season", 37, "Until", "PvP Season", 37},
-    {N, 19495, 207}, -- Combatant II: Dragonflight Season 4
+    {N, 19495, 207, nil, nil, true}, -- Combatant II: Dragonflight Season 4
     {O, 19494, "From", "PvP Season", 37, "Until", "PvP Season", 37},
-    {N, 19494, 207}, -- Combatant I: Dragonflight Season 4
+    {N, 19494, 207, nil, nil, true}, -- Combatant I: Dragonflight Season 4
     {O, 19493, "From", "PvP Season", 37, "Until", "PvP Season", 37},
-    {N, 19493, 207}, -- Rival I: Dragonflight Season 4
+    {N, 19493, 207, nil, nil, true}, -- Rival I: Dragonflight Season 4
     {O, 19492, "From", "PvP Season", 37, "Until", "PvP Season", 37},
-    {N, 19492, 207}, -- Duelist: Dragonflight Season 4
+    {N, 19492, 207, nil, nil, true}, -- Duelist: Dragonflight Season 4
     {O, 19490, "From", "PvP Season", 37, "Until", "PvP Season", 37},
     {N, 19490, 207}, -- Gladiator: Dragonflight Season 4
     {N, 19486, 207}, -- Across the Isles
@@ -144,16 +144,16 @@ tasks = {
     {N, 19461, 205}, -- Kissed by the Wind
     {N, 19458, 207}, -- A World Awoken
     {O, 19456, "From", "PvP Season", 37, "Until", "PvP Season", 37},
-    {N, 19456, 207, f.Horde}, -- Hero of the Horde: Draconic
+    {N, 19456, 207, f.Horde, nil, true}, -- Hero of the Horde: Draconic
     {O, 19455, "From", "PvP Season", 37, "Until", "PvP Season", 37},
-    {N, 19455, 207, f.Alliance}, -- Hero of the Alliance: Draconic
+    {N, 19455, 207, f.Alliance, nil, true}, -- Hero of the Alliance: Draconic
     {O, 19454, "From", "PvP Season", 37, "Until", "PvP Season", 37},
-    {N, 19454, 207}, -- Draconic Gladiator: Dragonflight Season 4
+    {N, 19454, 207, nil, nil, true}, -- Draconic Gladiator: Dragonflight Season 4
     {O, 19453, "From", "PvP Season", 37, "Until", "PvP Season", 37},
-    {N, 19453, 207}, -- Draconic Legend: Dragonflight Season 4
+    {N, 19453, 207, nil, nil, true}, -- Draconic Legend: Dragonflight Season 4
     {N, 19450, 205}, -- Fyr'alath the Dreamrender
-    {O, 19449, "From", "PvP Season", 36, "Until", "PvP Season", 36},
-    {N, 19449, 205, nil, nil, true}, -- Dreaming Hero: Dragonflight Season 3
+    {O, 19449, "From", "Mythic+ Season", 11, "Until", "Mythic+ Season", 11},
+    {N, 19449, 205}, -- Dreaming Hero: Dragonflight Season 3
     {O, 19443, "From", "PvP Season", 36, "Until", "PvP Season", 36},
     {N, 19443, 205, nil, nil, true}, -- Battle Mender: Dragonflight Season 3
     {T, 19442, 3159}, -- Werynkeeper's Timeless Vigil (Mythic)
@@ -226,7 +226,9 @@ tasks = {
     {N, 19394, 205}, -- A Dream Within a Dream
     {N, 19393, 205}, -- "Whelp, I'm Lost"
     {N, 19390, 205}, -- Memories of Teldrassil
+    {O, 19351, "From", "Mythic+ Season", 11, "Until", "Mythic+ Season", 11},
     {N, 19351, 205}, -- Cutting Edge: Fyrakk the Blazing
+    {O, 19350, "From", "Mythic+ Season", 11, "Until", "Mythic+ Season", 11},
     {N, 19350, 205}, -- Ahead of the Curve: Fyrakk the Blazing
     {N, 19349, 205}, -- Glory of the Dream Raider
     {N, 19347, 205}, -- Fate of Amirdrassil
