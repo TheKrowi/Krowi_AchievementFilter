@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 69.8 - 2024-04-05
+### Changed
+- Dreaming of Drakes, Dreaming of Wyrms and Dreaming of the Aspects are now flagged obtainable only during Dragonflight Season 3 
+
 ## 69.7 - 2024-04-03
 ### Added
 - Option to center the achievements window header

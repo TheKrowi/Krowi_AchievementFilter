@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-03-20 19-39-46 ]] --
+-- [[ Exported at 2024-04-05 09-25-26 ]] --
 tasks = {
     {N, 20509, 207}, -- Plunderkind
     {N, 20508, 207}, -- Plunder Wonder
@@ -218,7 +218,9 @@ tasks = {
     {N, 19411, 205, nil, nil, true}, -- Battleground Blitz Novice
     {N, 19401, 205}, -- Emerald Dream Safari
     {N, 19400, 206}, -- Support Your Local Artisans
+    {O, 19398, "From", "Mythic+ Season", 11, "Until", "Mythic+ Season", 11},
     {N, 19398, 205}, -- Dreaming of the Aspects
+    {O, 19397, "From", "Mythic+ Season", 11, "Until", "Mythic+ Season", 11},
     {N, 19397, 205}, -- Dreaming of Wyrms
     {N, 19396, 205}, -- Dragonflight Season 3 Master
     {N, 19394, 205}, -- A Dream Within a Dream
@@ -243,6 +245,7 @@ tasks = {
     {N, 19334, 205}, -- "Mythic: Amirdrassil, the Dream's Hope"
     {N, 19333, 205}, -- "Heroic: Amirdrassil, the Dream's Hope"
     {N, 19331, 205}, -- "Amirdrassil, the Dream's Hope"
+    {O, 19326, "From", "Mythic+ Season", 11, "Until", "Mythic+ Season", 11},
     {N, 19326, 205}, -- Dreaming of Drakes
     {N, 19322, 205}, -- Meaner Pastures
     {N, 19321, 205}, -- Swog Champion

@@ -31,3 +31,6 @@
 
 ### Added (69.7)
 - Option to center the achievements window header
+
+### Changed (69.8)
+- Dreaming of Drakes, Dreaming of Wyrms and Dreaming of the Aspects are now flagged obtainable only during Dragonflight Season 3 
