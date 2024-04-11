@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 70.0 - 2024-04-11
+### Added
+- Pandaria: Remix achievements (157)
+
 ## 69.9 - 2024-04-05
 ### Fixed
 - Dreaming Hero: Dragonflight Season 3 is now in the correct category and is no longer flagged as PvP

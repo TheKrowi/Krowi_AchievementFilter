@@ -24,7 +24,7 @@ local a = addon; -- Saves some characters and file size as we use this a lot in 
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-03-25 05-55-12 ]] --
+-- [[ Exported at 2024-04-11 21-43-35 ]] --
 tasks = {
     {N, 141, 917, 236705, a.L["Feast of Winter Veil"]}, -- Feast of Winter Veil
     {N, 181, 911, 237000, a.L["Noblegarden"]}, -- Noblegarden
@@ -52,6 +52,10 @@ tasks = {
     {N, 1430, 1560, 1100022, a.L["Pandaria Cup"]}, -- Pandaria Cup
     {N, 1431, 1561, 1100022, a.L["Broken Isles Cup"]}, -- Broken Isles Cup
     {N, 1462, 1563, 1061040, a.L["Hearthstone's 10th Anniversary"]}, -- Hearthstone's 10th Anniversary
+    {N, 1495, 1578, 5754532, a.L["Pandaria: Remix"], {1502, 1503, 1507}}, -- Pandaria: Remix
+    {N, 1502, 1578, 5754532, a.L["Pandaria: Remix"], {1495, 1503, 1507}}, -- Pandaria: Remix
+    {N, 1503, 1578, 5754532, a.L["Pandaria: Remix"], {1495, 1502, 1507}}, -- Pandaria: Remix
+    {N, 1507, 1578, 5754532, a.L["Pandaria: Remix"], {1495, 1502, 1503}}, -- Pandaria: Remix
 };
 
 function exportedCalendarEvents.InjectDynamicOptions()
@@ -77,5 +81,6 @@ function exportedCalendarEvents.InjectDynamicOptions()
     KrowiAF_RegisterEventOptions("Calendar", {1430}, a.L["Pandaria Cup"], a.L["Other"], 2);
     KrowiAF_RegisterEventOptions("Calendar", {1431}, a.L["Broken Isles Cup"], a.L["Other"], 2);
     KrowiAF_RegisterEventOptions("Calendar", {1462}, a.L["Hearthstone's 10th Anniversary"], a.L["Other"], 2);
-    KrowiAF_RegisterDeSelectAllEventOptions("Calendar", {479, 1395, 1396, 1398, 1399, 1400, 1407, 1425, 1458, 1459, 1460, 1429, 1430, 1431, 1462}, a.L["Other"]);
+    KrowiAF_RegisterEventOptions("Calendar", {1495, 1502, 1503, 1507}, a.L["Pandaria: Remix"], a.L["Other"], 2);
+    KrowiAF_RegisterDeSelectAllEventOptions("Calendar", {479, 1395, 1396, 1398, 1399, 1400, 1407, 1425, 1458, 1459, 1460, 1429, 1430, 1431, 1462, 1495, 1502, 1503, 1507}, a.L["Other"]);
 end

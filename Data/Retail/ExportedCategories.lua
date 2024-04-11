@@ -55,7 +55,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-04-05 09-42-31 ]] --
+-- [[ Exported at 2024-04-11 21-43-37 ]] --
 tasks = {
     {F, 1557, "UncategorizedCategories"},
     {C, 971, 1557},
@@ -2247,6 +2247,203 @@ tasks = {
     {A, 951, 13931}, -- "Memories of Fel, Frost and Fire"
     {C, 884, 951},
     {N, 951, a.GetCategoryInfoTitle(15454)}, -- Timewalking
+    {A, 1597, 19961}, -- Mythic: Siege of Orgrimmar
+    {A, 1597, 19960}, -- Heroic: Siege of Orgrimmar
+    {A, 1597, 19959}, -- Siege of Orgrimmar
+    {A, 1597, 19958}, -- Raid Finder: Siege of Orgrimmar
+    {C, 1581, 1597},
+    {N, 1597, a.GetInstanceInfoName(369)}, -- Siege of Orgrimmar
+    {A, 1596, 19957}, -- Heroic: Throne of Thunder
+    {A, 1596, 19956}, -- Throne of Thunder
+    {A, 1596, 19955}, -- Raid Finder: Throne of Thunder
+    {C, 1581, 1596},
+    {N, 1596, a.GetInstanceInfoName(362)}, -- Throne of Thunder
+    {A, 1595, 19954}, -- Heroic: Terrace of Endless Spring
+    {A, 1595, 19953}, -- Terrace of Endless Spring
+    {A, 1595, 19952}, -- Raid Finder: Terrace of Endless Spring
+    {C, 1581, 1595},
+    {N, 1595, a.GetInstanceInfoName(320)}, -- Terrace of Endless Spring
+    {A, 1594, 19951}, -- Heroic: Heart of Fear
+    {A, 1594, 19950}, -- Heart of Fear
+    {A, 1594, 19949}, -- Raid Finder: Heart of Fear
+    {C, 1581, 1594},
+    {N, 1594, a.GetInstanceInfoName(330)}, -- Heart of Fear
+    {A, 1593, 19948}, -- Heroic: Mogu'shan Vaults
+    {A, 1593, 19947}, -- Mogu'shan Vaults
+    {A, 1593, 19946}, -- Raid Finder: Mogu'shan Vaults
+    {C, 1581, 1593},
+    {N, 1593, a.GetInstanceInfoName(317)}, -- Mogu'shan Vaults
+    {A, 1581, 20007}, -- Heroic: Pandaria Raids
+    {A, 1581, 20006}, -- Pandaria Raids
+    {C, 1578, 1581},
+    {N, 1581, a.GetCategoryInfoTitle(15271)}, -- Raids
+    {A, 1580, 20005}, -- Heroic: Pandaria Dungeons
+    {A, 1580, 19911}, -- Heroic: Scholomance
+    {A, 1580, 19910}, -- Scholomance
+    {A, 1580, 19909}, -- Heroic: Scarlet Monastery
+    {A, 1580, 19908}, -- Scarlet Monastery
+    {A, 1580, 19907}, -- Heroic: Scarlet Halls
+    {A, 1580, 19906}, -- Scarlet Halls
+    {A, 1580, 19905}, -- Heroic: Mogu'shan Palace
+    {A, 1580, 19904}, -- Mogu'shan Palace
+    {A, 1580, 19903}, -- Heroic: Gate of the Setting Sun
+    {A, 1580, 19902}, -- Gate of the Setting Sun
+    {A, 1580, 19901}, -- Heroic: Siege of Niuzao Temple
+    {A, 1580, 19900}, -- Siege of Niuzao Temple
+    {A, 1580, 19899}, -- Heroic: Shado-Pan Monastery
+    {A, 1580, 19898}, -- Shado-Pan Monastery
+    {A, 1580, 19897}, -- Heroic: Stormstout Brewery
+    {A, 1580, 19896}, -- Stormstout Brewery
+    {A, 1580, 19895}, -- Heroic: Temple of the Jade Serpent
+    {A, 1580, 19894}, -- Temple of the Jade Serpent
+    {C, 1578, 1580},
+    {N, 1580, a.GetCategoryInfoTitle(15272)}, -- Dungeons
+    {A, 1592, 20004}, -- Heroic: Pandaria Scenarios
+    {A, 1592, 19945}, -- Heroic: Secrets of Ragefire
+    {A, 1592, 19944}, -- Secrets of Ragefire
+    {A, 1592, 19943}, -- Heroic: Dark Heart of Pandaria
+    {A, 1592, 19942}, -- Dark Heart of Pandaria
+    {A, 1592, 19941}, -- Heroic: Blood in the Snow
+    {A, 1592, 19940}, -- Blood in the Snow
+    {A, 1592, 19939}, -- Theramore's Fall
+    {A, 1592, 19938}, -- Theramore's Fall
+    {A, 1592, 19937}, -- Heroic: Battle on the High Seas
+    {A, 1592, 19936}, -- Battle on the High Seas
+    {A, 1592, 19935}, -- Heroic: Battle on the High Seas
+    {A, 1592, 19934}, -- Battle on the High Seas
+    {A, 1592, 19933}, -- Dagger in the Dark
+    {A, 1592, 19932}, -- Domination Point
+    {A, 1592, 20500}, -- Lion's Landing
+    {A, 1592, 19931}, -- A Little Patience
+    {A, 1592, 19930}, -- Assault on Zan'vess
+    {A, 1592, 19929}, -- Heroic: Crypt of Forgotten Kings
+    {A, 1592, 19928}, -- Crypt of Forgotten Kings
+    {A, 1592, 19927}, -- Arena of Annihilation
+    {A, 1592, 19926}, -- Brewmoon Festival
+    {A, 1592, 19925}, -- Unga Ingoo
+    {A, 1592, 19923}, -- Greenstone Village
+    {A, 1592, 19924}, -- Heroic: A Brewing Storm
+    {A, 1592, 19893}, -- A Brewing Storm
+    {C, 1578, 1592},
+    {N, 1592, a.L["Scenarios"]}, -- Scenarios
+    {A, 1591, 20003}, -- Timeless Isle
+    {A, 1591, 20016}, -- Looking For Group: Timeless Isle
+    {A, 1591, 20025}, -- Ordos
+    {A, 1591, 20024}, -- "Xuen, the White Tiger"
+    {A, 1591, 20023}, -- "Niuzao, the Black Ox"
+    {A, 1591, 20022}, -- "Yu'lon, the Jade Serpent"
+    {A, 1591, 20021}, -- "Chi-ji, the Red Crane"
+    {A, 1591, 19970}, -- Tour Timeless Isle
+    {A, 1591, 20002}, -- Powerful Enemies: Timeless Isle
+    {A, 1591, 19982}, -- Hidden Treasures: Timeless Isle
+    {A, 1591, 20001}, -- Elusive Foes: Timeless Isle
+    {A, 1591, 19922}, -- Emperor Shaohao
+    {C, 1579, 1591},
+    {N, 1591, a.GetMapName(554)}, -- Timeless Isle
+    {A, 1590, 19880}, -- Isle of Thunder
+    {A, 1590, 20015}, -- Looking For Group: Isle of Thunder
+    {A, 1590, 20019}, -- "Nalak, the Storm Lord"
+    {A, 1590, 20000}, -- Elusive Foes: Isle of Thunder
+    {A, 1590, 19921}, -- Shado-Pan Assault
+    {A, 1590, 19920}, -- Sunreaver Onslaught
+    {A, 1590, 19919}, -- Kirin Tor Offensive
+    {A, 1590, 19892}, -- Campaign: Isle of Thunder
+    {C, 1579, 1590},
+    {N, 1590, a.GetMapName(504)}, -- Isle of Thunder
+    {A, 1589, 20020}, -- Oondasta
+    {C, 1579, 1589},
+    {N, 1589, a.GetMapName(507)}, -- Isle of Giants
+    {A, 1588, 19876}, -- Vale of Eternal Blossoms
+    {A, 1588, 20014}, -- Looking For Group: Vale of Eternal Blossoms
+    {A, 1588, 20069}, -- Elusive Foes: Vale of Eternal Blossoms
+    {A, 1588, 19916}, -- Golden Lotus
+    {A, 1588, 19913}, -- The August Celestials
+    {C, 1579, 1588},
+    {N, 1588, a.GetMapName(390)}, -- Vale of Eternal Blossoms
+    {A, 1587, 19878}, -- Dread Wastes
+    {A, 1587, 19967}, -- Tour Dread Wastes
+    {A, 1587, 19998}, -- Elusive Foes: Dread Wastes
+    {A, 1587, 20031}, -- Explore Dread Wastes
+    {A, 1587, 19915}, -- The Klaxxi
+    {A, 1587, 19890}, -- Campaign: Dread Wastes
+    {C, 1579, 1587},
+    {N, 1587, a.GetMapName(422)}, -- Dread Wastes
+    {A, 1586, 19877}, -- Townlong Steppes
+    {A, 1586, 20012}, -- Looking For Group: Townlong Steppes
+    {A, 1586, 19966}, -- Tour Townlong Steppes
+    {A, 1586, 19981}, -- Hidden Treasures: Townlong Steppes
+    {A, 1586, 19997}, -- Elusive Foes: Townlong Steppes
+    {A, 1586, 20030}, -- Explore Townlong Steppes
+    {A, 1586, 19914}, -- Shado-Pan
+    {A, 1586, 19889}, -- Campaign: Townlong Steppes
+    {C, 1579, 1586},
+    {N, 1586, a.GetMapName(388)}, -- Townlong Steppes
+    {A, 1585, 19875}, -- Kun-Lai Summit
+    {A, 1585, 20011}, -- Looking For Group: Kun-Lai Summit
+    {A, 1585, 20018}, -- Sha of Anger
+    {A, 1585, 19965}, -- Tour Kun-Lai Summit
+    {A, 1585, 19980}, -- Hidden Treasures: Kun-Lai Summit
+    {A, 1585, 19996}, -- Elusive Foes: Kun-Lai Summit
+    {A, 1585, 20029}, -- Explore Kun-Lai Summit
+    {A, 1585, 19888}, -- Campaign: Kun-Lai Summit
+    {A, 1585, 19887}, -- Campaign: Kun-Lai Summit
+    {C, 1579, 1585},
+    {N, 1585, a.GetMapName(379)}, -- Kun-Lai Summit
+    {A, 1584, 19879}, -- Landfall
+    {A, 1584, 19999}, -- Elusive Foes: Landfall
+    {A, 1584, 19918}, -- Dominance Offensive
+    {A, 1584, 19917}, -- Operation: Shieldwall
+    {A, 1584, 19891}, -- Campaign: Landfall
+    {A, 1584, 19874}, -- Krasarang Wilds
+    {A, 1584, 19964}, -- Tour Krasarang Wilds
+    {A, 1584, 19979}, -- Hidden Treasures: Krasarang Wilds
+    {A, 1584, 19995}, -- Elusive Foes: Krasarang Wilds
+    {A, 1584, 20028}, -- Explore Krasarang Wilds
+    {A, 1584, 19886}, -- Campaign: Krasarang Wilds
+    {A, 1584, 19885}, -- Campaign: Krasarang Wilds
+    {C, 1579, 1584},
+    {N, 1584, a.GetMapName(418)}, -- Krasarang Wilds
+    {A, 1583, 19873}, -- Valley of the Four Winds
+    {A, 1583, 20009}, -- Looking For Group: Valley of the Four Winds
+    {A, 1583, 20017}, -- Salyis's Warband
+    {A, 1583, 19963}, -- Tour Valley of the Four Winds
+    {A, 1583, 19978}, -- Hidden Treasures: Valley of the Four Winds
+    {A, 1583, 19994}, -- Elusive Foes: Valley of the Four Winds
+    {A, 1583, 20027}, -- Explore Valley of the Four Winds
+    {A, 1583, 19884}, -- Campaign: Valley of the Four Winds
+    {C, 1579, 1583},
+    {N, 1583, a.GetMapName(376)}, -- Valley of the Four Winds
+    {A, 1582, 19872}, -- The Jade Forest
+    {A, 1582, 20008}, -- Looking For Group: The Jade Forest
+    {A, 1582, 19962}, -- Tour The Jade Forest
+    {A, 1582, 19977}, -- Hidden Treasures: The Jade Forest
+    {A, 1582, 19993}, -- Elusive Foes: The Jade Forest
+    {A, 1582, 20026}, -- Explore Jade Forest
+    {A, 1582, 19912}, -- Order of the Cloud Serpent
+    {A, 1582, 19883}, -- Campaign: The Jade Forest
+    {A, 1582, 19882}, -- Campaign: The Jade Forest
+    {C, 1579, 1582},
+    {N, 1582, a.GetMapName(371)}, -- The Jade Forest
+    {A, 1579, 19881}, -- Escalation
+    {C, 1578, 1579},
+    {N, 1579, a.L["Zones"]}, -- Zones
+    {A, 1578, 40223}, -- Timerunner
+    {A, 1578, 20593}, -- Time Trial
+    {A, 1578, 20538}, -- Infinite Power XII
+    {A, 1578, 20537}, -- Infinite Power XI
+    {A, 1578, 20536}, -- Infinite Power X
+    {A, 1578, 20535}, -- Infinite Power IX
+    {A, 1578, 20534}, -- Infinite Power VIII
+    {A, 1578, 20533}, -- Infinite Power VII
+    {A, 1578, 20532}, -- Infinite Power VI
+    {A, 1578, 20531}, -- Infinite Power V
+    {A, 1578, 20530}, -- Infinite Power IV
+    {A, 1578, 20529}, -- Infinite Power III
+    {A, 1578, 20528}, -- Infinite Power II
+    {A, 1578, 20527}, -- Infinite Power I
+    {A, 1578, 19871}, -- Infinite Power
+    {C, 884, 1578},
+    {N, 1578, a.GetCategoryInfoTitle(15509)}, -- Pandaria: Remix
     {A, 1452, 19080}, -- Arcane Influence
     {A, 1452, 18646}, -- Whodunnit?
     {A, 1452, 18645}, -- Tools of the Trade
@@ -2932,7 +3129,7 @@ tasks = {
     {N, 1268, a.L["Dragonriding"]}, -- Dragonriding
     {A, 1231, 19401}, -- Emerald Dream Safari
     {A, 1231, 17934}, -- Family Battler of Zaralek Cavern
-    {A, 1231, 17918}, -- Undead Battler of Zaralek Caverm
+    {A, 1231, 17918}, -- Undead Battler of Zaralek Cavern
     {A, 1231, 17917}, -- Mechanical Battler of Zaralek Cavern
     {A, 1231, 17916}, -- Magic Battler of Zaralek Cavern
     {A, 1231, 17915}, -- Humanoid Battler of Zaralek Cavern
