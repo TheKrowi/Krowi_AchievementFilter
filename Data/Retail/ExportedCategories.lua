@@ -55,7 +55,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-04-11 21-43-37 ]] --
+-- [[ Exported at 2024-04-12 08-21-31 ]] --
 tasks = {
     {F, 1557, "UncategorizedCategories"},
     {C, 971, 1557},
@@ -3872,6 +3872,7 @@ tasks = {
     {A, 1247, 16592}, -- Tour of Duty: The Waking Shores
     {C, 1232, 1247},
     {N, 1247, a.GetCategoryInfoTitle(95), true}, -- PvP
+    {A, 1242, 18559}, -- "Many Boxes, Many Rockses"
     {A, 1242, 16736}, -- Grand Theft Mammoth
     {A, 1242, 16493}, -- Petty Theft Mammoth
     {A, 1242, 17561}, -- Ancient Stones of the Waking Shores
@@ -3949,7 +3950,6 @@ tasks = {
     {A, 1390, 16589}, -- Malicia's Challenge
     {C, 1341, 1390},
     {N, 1390, a.GetCategoryInfoTitle(95), true}, -- Player vs. Player
-    {A, 1343, 18559}, -- "Many Boxes, Many Rockses"
     {A, 1343, 17560}, -- Ancient Stones of the Dragon Isles
     {A, 1343, 17978}, -- Stones Can Fly!
     {A, 1343, 17977}, -- Stones Can Try To Fly!

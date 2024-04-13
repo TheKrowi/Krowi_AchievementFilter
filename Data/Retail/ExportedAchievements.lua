@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-04-11 21-43-40 ]] --
+-- [[ Exported at 2024-04-13 11-08-21 ]] --
 tasks = {
     {N, 40223, 208}, -- Timerunner
     {N, 20593, 208}, -- Time Trial
@@ -204,6 +204,7 @@ tasks = {
     {N, 19874, 208}, -- Krasarang Wilds
     {N, 19873, 208}, -- Valley of the Four Winds
     {N, 19872, 208}, -- The Jade Forest
+    {O, 19871, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19871, 208}, -- Infinite Power
     {N, 19866, 206}, -- Hearthstoned: Fiery Edition
     {N, 19793, 206}, -- Finally At Rest
@@ -225,6 +226,7 @@ tasks = {
     {O, 19780, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
     {N, 19780, 207}, -- Dragonflight Keystone Explorer: Season Four
     {N, 19724, 206}, -- Hearthstone Card Collection
+    {O, 19723, "From", "Event", "1429", "Until", "Event", "1429"},
     {N, 19723, 206}, -- Northrend Racing Completionist: Gold
     {N, 19722, 206}, -- Northrend Racing Completionist: Silver
     {N, 19721, 206}, -- Northrend Racing Completionist

@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Pandaria: Remix achievements (157)
 
+### Changed
+- Moved Many Boxes, Many Rockses from Dragonflight - Zones - Dragon Isles - Exploration to Dragonflight - Zones - The Waking Shores - Exploration
+
+### Removed
+- Ui Maps linked to Profession achievements for all expansions (dev note: it does not feel right to see profession achievements when you wnat to see which achievements you could do in the current zone you're in)
+
 ## 69.9 - 2024-04-05
 ### Fixed
 - Dreaming Hero: Dragonflight Season 3 is now in the correct category and is no longer flagged as PvP

@@ -65,6 +65,7 @@ function data:LoadOnPlayerLogin()
     addon.Diagnostics.Debug("On Player Login: Start loading data");
 
     self.TemporaryObtainable:Load();
+    addon.EventData:BuildCalendarEventsCache();
 
     if self.ExportedTransmogSets then
         self.ExportedTransmogSets.RegisterTasks(self.TransmogSets);
@@ -72,6 +73,7 @@ function data:LoadOnPlayerLogin()
     self.ExportedBuildVersions.RegisterTasks(self.BuildVersions);
     self.ExportedAchievements.RegisterTasks(self.Achievements, self.BuildVersions, self.TransmogSets);
     self.ExportedCategories.RegisterTasks(self.Categories, adjustableCategories, self.Achievements, addon.Tabs);
+    KrowiAF_CalendarEvents = self.CalendarEvents;
     self.ExportedCalendarEvents.RegisterTasks(self.CalendarEvents, self.Categories);
     if self.ExportedWidgetEvents then
         self.ExportedWidgetEvents.RegisterTasks(self.WidgetEvents, self.Categories);

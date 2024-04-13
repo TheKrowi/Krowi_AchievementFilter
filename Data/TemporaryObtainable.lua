@@ -72,8 +72,8 @@ function temporaryObtainable:GetObtainableState(achievement)
         return "Past";
     elseif startFunction == "Once" then
         return "Past";
-    -- elseif startFunction == "Event" then
-    --     start = self:GetEventStartState(achievement);
+    elseif startFunction == "Event" then
+        start = self:GetEventStartState(achievement);
     end
 
     -- print(achievement.Id, startFunction, start)
@@ -91,8 +91,8 @@ function temporaryObtainable:GetObtainableState(achievement)
         _end = self:GetPvpSeasonEndState(achievement);
     elseif endFunction == "Version" then
         _end = self:GetVersionEndState(achievement);
-    -- elseif startFunction == "Event" then
-    --     _end = self:GetEventEndState(achievement);
+    elseif startFunction == "Event" then
+        _end = self:GetEventEndState(achievement);
     end
 
     -- local endState = _end;
@@ -103,6 +103,23 @@ function temporaryObtainable:GetObtainableState(achievement)
 
     -- print(achievement.Id, startState, endState)
     return "Current";
+end
+
+local function FindCachedCalendarEvent(eventId)
+    eventId = tonumber(eventId);
+    local event = KrowiAF_SavedData.CalendarEventsCache[eventId];
+    if event then
+        return event, data.CalendarEvents[eventId];
+    end
+    if data.CalendarEvents[eventId] and data.CalendarEvents[eventId].LinkedEventIds then
+        for _, linkedEventId in next, data.CalendarEvents[eventId].LinkedEventIds do
+            event = KrowiAF_SavedData.CalendarEventsCache[linkedEventId];
+            if event then
+                return event, data.CalendarEvents[eventId];
+            end
+        end
+    end
+    return nil, data.CalendarEvents[eventId];
 end
 
 do -- Tooltip, maybe move to not obtainable tooltip lua
@@ -116,8 +133,8 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
             start = self:GetPvpSeasonStartState(achievement);
         elseif startFunction == "Version" then
             start = self:GetVersionStartState(achievement);
-        -- elseif startFunction == "Event" then
-        --     start = self:GetEventStartState(achievement);
+        elseif startFunction == "Event" then
+            start = self:GetEventStartState(achievement);
         end
 
         local endFunction = achievement.TemporaryObtainable.End.Function;
@@ -127,8 +144,8 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
             _end = self:GetPvpSeasonEndState(achievement);
         elseif endFunction == "Version" then
             _end = self:GetVersionEndState(achievement);
-        -- elseif startFunction == "Event" then
-        --     _end = self:GetEventEndState(achievement);
+        elseif startFunction == "Event" then
+            _end = self:GetEventEndState(achievement);
         end
 
         -- print(startFunction, start, endFunction, _end)
@@ -169,36 +186,39 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         end
     end
 
-    local isWillBeWas, neverOnceTempObt, startText, startDetail, endText, endDetail;
+    local isWillBeWas, neverOnceTempObt, startText, startThe, startDetail, startDateFrom, startDate, endText, endThe, endDetail, endDateUntil, endDate;
     local function FillText()
-        local subString = string.sub(addon.L["Temporary Obtainable Text"], 2, -2);
+        local subString = string.sub(addon.L["Temporarily Obtainable Text"], 2, -2);
         local fields = addon.Util.StringSplitTable("}{", subString);
+        local text = addon.L["This achievement"];
         for i = 1, #fields do
-            if fields[i] == "thisAchievement" then
-                fields[i] = addon.L["This achievement"];
-            elseif fields[i] == "isWillBeWas" then
-                fields[i] = isWillBeWas;
-            elseif fields[i] == "neverOnceTempObt" then
-                fields[i] = neverOnceTempObt;
-            elseif fields[i] == "startText" then
-                fields[i] = startText;
-            elseif fields[i] == "startDetail" then
-                fields[i] = startDetail;
-            elseif fields[i] == "endText" then
-                fields[i] = endText;
-            elseif fields[i] == "endDetail" then
-                fields[i] = endDetail;
+            if fields[i] == "isWillBeWas" and isWillBeWas then
+                text = text .. " " .. isWillBeWas;
+            elseif fields[i] == "neverOnceTempObt" and neverOnceTempObt then
+                text = text .. " " .. neverOnceTempObt;
+            elseif fields[i] == "startText" and startText then
+                text = text .. " " .. startText;
+            elseif fields[i] == "startThe" and startThe then
+                text = text .. " " .. addon.L["the"];
+            elseif fields[i] == "startDetail" and startDetail then
+                text = text .. " " .. startDetail;
+            elseif fields[i] == "endText" and endText then
+                text = text .. " " .. endText;
+            elseif fields[i] == "endThe" and endThe then
+                text = text .. " " .. addon.L["the"];
+            elseif fields[i] == "endDetail" and endDetail then
+                text = text .. " " .. endDetail;
+            elseif fields[i] == "startDateFrom" and startDateFrom then
+                text = text .. " " .. addon.L["from"];
+            elseif fields[i] == "startDate" and startDate then
+                text = text .. " " .. tostring(date(addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime, startDate));
+            elseif fields[i] == "endDateUntil" and endDateUntil then
+                text = text .. " " .. addon.L["until"];
+            elseif fields[i] == "endDate" and endDate then
+                text = text .. " " .. tostring(date(addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime, endDate));
             end
         end
-        local text = "";
-        for i = 1, #fields do
-            if i ~= 1 then
-                text = text .. " ";
-            end
-            text = text .. fields[i];
-        end
-        text = text .. ".";
-        return text;
+        return text .. ".";
     end
 
     function temporaryObtainable:GetNotObtainableText(achievement)
@@ -218,7 +238,7 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
             neverOnceTempObt = addon.L["only obtainable by one player"];
             return FillText(), color;
         end
-        neverOnceTempObt = addon.L["temporary obtainable"];
+        neverOnceTempObt = addon.L["temporarily obtainable"];
 
         startText = GetStart(achievement);
         if achievement.TemporaryObtainable.Start.Function == "Mythic+ Season" then
@@ -233,6 +253,25 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
             startDetail = achievement.TemporaryObtainable.Start.Function;
         end
         startDetail = startDetail .. " " .. achievement.TemporaryObtainable.Start.Value;
+
+        if achievement.TemporaryObtainable.Start.Function == "Event" then
+            local eventId = achievement.TemporaryObtainable.Start.Value;
+            local event, calendarEvent = FindCachedCalendarEvent(eventId);
+            if event then
+                if event.StartTime then
+                    startDateFrom = true;
+                    startDate = event.StartTime;
+                end
+                if event.EndTime then
+                    endDateUntil = true;
+                    endDate = event.EndTime;
+                end
+            end
+            if calendarEvent then
+                startThe = true;
+                startDetail = calendarEvent.Name;
+            end
+        end
 
         if startText == addon.L["during"] then
             return FillText(), color;
@@ -252,11 +291,20 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         end
         endDetail = endDetail .. " " .. achievement.TemporaryObtainable.End.Value;
 
+        if achievement.TemporaryObtainable.End.Function == "Event" then
+            local eventId = achievement.TemporaryObtainable.End.Value;
+            local event, calendarEvent = FindCachedCalendarEvent(eventId);
+            if calendarEvent then
+                endThe = true;
+                endDetail = calendarEvent.Name;
+            end
+        end
+
         return FillText(), color;
     end
 end
 
-do -- Get start and end state
+do -- Get Start Sate
     function temporaryObtainable:GetMplusSeasonStartState(achievement)
         if achievement.TemporaryObtainable.Start.Inclusion == "From" then
             if self:GetCurrentMplusSeason() == 0 then
@@ -293,26 +341,21 @@ do -- Get start and end state
         end
     end
 
-    -- function temporaryObtainable:GetEventStartState(achievement)
-    --     if achievement.TemporaryObtainable.End.Inclusion == "From" then
-    --         local events = addon.Data.CalendarEvents;
-    --         for _, event in next, events do
-    --             if event.Id == achievement.TemporaryObtainable.Start.Value and event.StartTime ~= nil then
-    --                 return time() >= event.StartTime and "Past" or "Future";
-    --             end
-    --         end
-    --         return "Past";
-    --     elseif achievement.TemporaryObtainable.End.Inclusion == "After" then -- Should not be used
-    --         local events = addon.Data.CalendarEvents;
-    --         for _, event in next, events do
-    --             if event.Id == achievement.TemporaryObtainable.Start.Value then
-    --                 return time() >= event.EndTime and "Past" or "Future";
-    --             end
-    --         end
-    --         return "Past";
-    --     end
-    -- end
+    function temporaryObtainable:GetEventStartState(achievement)
+        if achievement.TemporaryObtainable.Start.Inclusion == "From" then
+            local eventId = achievement.TemporaryObtainable.Start.Value;
+            local event = FindCachedCalendarEvent(eventId);
+            if not event or not event.StartTime then
+                return "Past"; -- If an event has no record it's either not available yet or has already happened
+            end
+            return time() >= event.StartTime and "Past" or "Future";
+        elseif achievement.TemporaryObtainable.Start.Inclusion == "After" then -- Should not be used
+            return "Past";
+        end
+    end
+end
 
+do -- Get End State
     function temporaryObtainable:GetMplusSeasonEndState(achievement)
         if achievement.TemporaryObtainable.End.Inclusion == "Until" then
             if self:GetCurrentMplusSeason() == 0 then
@@ -349,23 +392,16 @@ do -- Get start and end state
         end
     end
 
-    -- function temporaryObtainable:GetEventEndState(achievement)
-    --     if achievement.TemporaryObtainable.End.Inclusion == "Until" then
-    --         local events = addon.Data.CalendarEvents;
-    --         for _, event in next, events do
-    --             if event.Id == achievement.TemporaryObtainable.End.Value then
-    --                 return time() > event.EndTime and "Past" or "Future";
-    --             end
-    --         end
-    --         return "Past";
-    --     elseif achievement.TemporaryObtainable.End.Inclusion == "Before" then
-    --         local events = addon.Data.CalendarEvents;
-    --         for _, event in next, events do
-    --             if event.Id == achievement.TemporaryObtainable.End.Value then
-    --                 return time() >= event.StartTime and "Past" or "Future";
-    --             end
-    --         end
-    --         return "Past";
-    --     end
-    -- end
+    function temporaryObtainable:GetEventEndState(achievement)
+        if achievement.TemporaryObtainable.End.Inclusion == "Until" then
+            local eventId = achievement.TemporaryObtainable.End.Value;
+            local event = FindCachedCalendarEvent(eventId);
+            if not event or not event.EndTime then
+                return "Past"; -- If an event has no record it's either not available yet or has already happened
+            end
+                    return time() > event.EndTime and "Past" or "Future";
+        elseif achievement.TemporaryObtainable.End.Inclusion == "Before" then -- Should not be used
+            return "Past";
+        end
+    end
 end
