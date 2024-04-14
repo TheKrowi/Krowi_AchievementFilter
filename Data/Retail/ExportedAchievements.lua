@@ -39,170 +39,327 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-04-14 19-24-51 ]] --
+-- [[ Exported at 2024-04-14 22-13-09 ]] --
 tasks = {
+    {O, 40223, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 40223, 208}, -- Timerunner
+    {O, 20593, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20593, 208}, -- Time Trial
+    {O, 20538, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20538, 208}, -- Infinite Power XII
+    {O, 20537, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20537, 208}, -- Infinite Power XI
+    {O, 20536, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20536, 208}, -- Infinite Power X
+    {O, 20535, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20535, 208}, -- Infinite Power IX
+    {O, 20534, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20534, 208}, -- Infinite Power VIII
+    {O, 20533, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20533, 208}, -- Infinite Power VII
+    {O, 20532, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20532, 208}, -- Infinite Power VI
+    {O, 20531, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20531, 208}, -- Infinite Power V
+    {O, 20530, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20530, 208}, -- Infinite Power IV
+    {O, 20529, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20529, 208}, -- Infinite Power III
+    {O, 20528, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20528, 208}, -- Infinite Power II
+    {O, 20527, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20527, 208}, -- Infinite Power I
     {N, 20509, 207}, -- Plunderkind
     {N, 20508, 207}, -- Plunder Wonder
     {N, 20501, 207}, -- Back from the Beyond
+    {O, 20500, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20500, 208, f.Alliance, 19932}, -- Lion's Landing
     {N, 20481, 207}, -- Dragonflight Season 4 Master
+    {O, 20209, "From", "Event", "181", "Until", "Event", "181"},
     {N, 20209, 207}, -- Quacked Killer
     {N, 20206, 206}, -- Champion of the Dragonflights
+    {O, 20069, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20069, 208}, -- Elusive Foes: Vale of Eternal Blossoms
     {N, 20033, 206}, -- Hearthstone Beginner
+    {O, 20031, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20031, 208}, -- Explore Dread Wastes
+    {O, 20030, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20030, 208}, -- Explore Townlong Steppes
+    {O, 20029, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20029, 208}, -- Explore Kun-Lai Summit
+    {O, 20028, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20028, 208}, -- Explore Krasarang Wilds
+    {O, 20027, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20027, 208}, -- Explore Valley of the Four Winds
+    {O, 20026, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20026, 208}, -- Explore Jade Forest
+    {O, 20025, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20025, 208}, -- Ordos
+    {O, 20024, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20024, 208}, -- "Xuen, the White Tiger"
+    {O, 20023, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20023, 208}, -- "Niuzao, the Black Ox"
+    {O, 20022, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20022, 208}, -- "Yu'lon, the Jade Serpent"
+    {O, 20021, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20021, 208}, -- "Chi-ji, the Red Crane"
+    {O, 20020, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20020, 208}, -- Oondasta
+    {O, 20019, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20019, 208}, -- "Nalak, the Storm Lord"
+    {O, 20018, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20018, 208}, -- Sha of Anger
+    {O, 20017, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20017, 208}, -- Salyis's Warband
+    {O, 20016, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20016, 208}, -- Looking For Group: Timeless Isle
+    {O, 20015, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20015, 208}, -- Looking For Group: Isle of Thunder
+    {O, 20014, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20014, 208}, -- Looking For Group: Vale of Eternal Blossoms
+    {O, 20012, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20012, 208}, -- Looking For Group: Townlong Steppes
+    {O, 20011, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20011, 208}, -- Looking For Group: Kun-Lai Summit
+    {O, 20009, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20009, 208}, -- Looking For Group: Valley of the Four Winds
+    {O, 20008, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20008, 208}, -- Looking For Group: The Jade Forest
+    {O, 20007, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20007, 208}, -- Heroic: Pandaria Raids
+    {O, 20006, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20006, 208}, -- Pandaria Raids
+    {O, 20005, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20005, 208}, -- Heroic: Pandaria Dungeons
+    {O, 20004, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20004, 208}, -- Heroic: Pandaria Scenarios
+    {O, 20003, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20003, 208}, -- Timeless Isle
+    {O, 20002, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20002, 208}, -- Powerful Enemies: Timeless Isle
+    {O, 20001, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20001, 208}, -- Elusive Foes: Timeless Isle
+    {O, 20000, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 20000, 208}, -- Elusive Foes: Isle of Thunder
+    {O, 19999, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19999, 208}, -- Elusive Foes: Landfall
+    {O, 19998, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19998, 208}, -- Elusive Foes: Dread Wastes
+    {O, 19997, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19997, 208}, -- Elusive Foes: Townlong Steppes
+    {O, 19996, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19996, 208}, -- Elusive Foes: Kun-Lai Summit
+    {O, 19995, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19995, 208}, -- Elusive Foes: Krasarang Wilds
+    {O, 19994, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19994, 208}, -- Elusive Foes: Valley of the Four Winds
+    {O, 19993, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19993, 208}, -- Elusive Foes: The Jade Forest
+    {O, 19982, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19982, 208}, -- Hidden Treasures: Timeless Isle
+    {O, 19981, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19981, 208}, -- Hidden Treasures: Townlong Steppes
+    {O, 19980, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19980, 208}, -- Hidden Treasures: Kun-Lai Summit
+    {O, 19979, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19979, 208}, -- Hidden Treasures: Krasarang Wilds
+    {O, 19978, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19978, 208}, -- Hidden Treasures: Valley of the Four Winds
+    {O, 19977, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19977, 208}, -- Hidden Treasures: The Jade Forest
+    {O, 19970, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19970, 208}, -- Tour Timeless Isle
+    {O, 19967, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19967, 208}, -- Tour Dread Wastes
+    {O, 19966, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19966, 208}, -- Tour Townlong Steppes
+    {O, 19965, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19965, 208}, -- Tour Kun-Lai Summit
+    {O, 19964, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19964, 208}, -- Tour Krasarang Wilds
+    {O, 19963, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19963, 208}, -- Tour Valley of the Four Winds
+    {O, 19962, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19962, 208}, -- Tour The Jade Forest
+    {O, 19961, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19961, 208}, -- Mythic: Siege of Orgrimmar
+    {O, 19960, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19960, 208}, -- Heroic: Siege of Orgrimmar
+    {O, 19959, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19959, 208}, -- Siege of Orgrimmar
+    {O, 19958, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19958, 208}, -- Raid Finder: Siege of Orgrimmar
+    {O, 19957, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19957, 208}, -- Heroic: Throne of Thunder
+    {O, 19956, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19956, 208}, -- Throne of Thunder
+    {O, 19955, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19955, 208}, -- Raid Finder: Throne of Thunder
+    {O, 19954, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19954, 208}, -- Heroic: Terrace of Endless Spring
+    {O, 19953, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19953, 208}, -- Terrace of Endless Spring
+    {O, 19952, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19952, 208}, -- Raid Finder: Terrace of Endless Spring
+    {O, 19951, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19951, 208}, -- Heroic: Heart of Fear
+    {O, 19950, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19950, 208}, -- Heart of Fear
+    {O, 19949, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19949, 208}, -- Raid Finder: Heart of Fear
+    {O, 19948, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19948, 208}, -- Heroic: Mogu'shan Vaults
+    {O, 19947, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19947, 208}, -- Mogu'shan Vaults
+    {O, 19946, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19946, 208}, -- Raid Finder: Mogu'shan Vaults
+    {O, 19945, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19945, 208}, -- Heroic: Secrets of Ragefire
+    {O, 19944, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19944, 208}, -- Secrets of Ragefire
+    {O, 19943, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19943, 208}, -- Heroic: Dark Heart of Pandaria
+    {O, 19942, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19942, 208}, -- Dark Heart of Pandaria
+    {O, 19941, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19941, 208}, -- Heroic: Blood in the Snow
+    {O, 19940, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19940, 208}, -- Blood in the Snow
+    {O, 19939, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19939, 208, f.Horde, 19938}, -- Theramore's Fall
+    {O, 19938, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19938, 208, f.Alliance, 19939}, -- Theramore's Fall
+    {O, 19937, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19937, 208, f.Horde, 19935}, -- Heroic: Battle on the High Seas
+    {O, 19936, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19936, 208, f.Horde, 19934}, -- Battle on the High Seas
+    {O, 19935, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19935, 208, f.Alliance, 19937}, -- Heroic: Battle on the High Seas
+    {O, 19934, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19934, 208, f.Alliance, 19936}, -- Battle on the High Seas
+    {O, 19933, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19933, 208}, -- Dagger in the Dark
+    {O, 19932, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19932, 208, f.Horde, 20500}, -- Domination Point
+    {O, 19931, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19931, 208}, -- A Little Patience
+    {O, 19930, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19930, 208}, -- Assault on Zan'vess
+    {O, 19929, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19929, 208}, -- Heroic: Crypt of Forgotten Kings
+    {O, 19928, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19928, 208}, -- Crypt of Forgotten Kings
+    {O, 19927, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19927, 208}, -- Arena of Annihilation
+    {O, 19926, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19926, 208}, -- Brewmoon Festival
+    {O, 19925, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19925, 208}, -- Unga Ingoo
+    {O, 19924, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19924, 208}, -- Heroic: A Brewing Storm
+    {O, 19923, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19923, 208}, -- Greenstone Village
+    {O, 19922, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19922, 208}, -- Emperor Shaohao
+    {O, 19921, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19921, 208}, -- Shado-Pan Assault
+    {O, 19920, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19920, 208, f.Horde, 19919}, -- Sunreaver Onslaught
+    {O, 19919, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19919, 208, f.Alliance, 19920}, -- Kirin Tor Offensive
+    {O, 19918, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19918, 208, f.Horde, 19917}, -- Dominance Offensive
+    {O, 19917, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19917, 208, f.Alliance, 19918}, -- Operation: Shieldwall
+    {O, 19916, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19916, 208}, -- Golden Lotus
+    {O, 19915, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19915, 208}, -- The Klaxxi
+    {O, 19914, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19914, 208}, -- Shado-Pan
+    {O, 19913, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19913, 208}, -- The August Celestials
+    {O, 19912, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19912, 208}, -- Order of the Cloud Serpent
+    {O, 19911, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19911, 208}, -- Heroic: Scholomance
+    {O, 19910, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19910, 208}, -- Scholomance
+    {O, 19909, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19909, 208}, -- Heroic: Scarlet Monastery
+    {O, 19908, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19908, 208}, -- Scarlet Monastery
+    {O, 19907, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19907, 208}, -- Heroic: Scarlet Halls
+    {O, 19906, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19906, 208}, -- Scarlet Halls
+    {O, 19905, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19905, 208}, -- Heroic: Mogu'shan Palace
+    {O, 19904, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19904, 208}, -- Mogu'shan Palace
+    {O, 19903, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19903, 208}, -- Heroic: Gate of the Setting Sun
+    {O, 19902, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19902, 208}, -- Gate of the Setting Sun
+    {O, 19901, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19901, 208}, -- Heroic: Siege of Niuzao Temple
+    {O, 19900, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19900, 208}, -- Siege of Niuzao Temple
+    {O, 19899, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19899, 208}, -- Heroic: Shado-Pan Monastery
+    {O, 19898, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19898, 208}, -- Shado-Pan Monastery
+    {O, 19897, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19897, 208}, -- Heroic: Stormstout Brewery
+    {O, 19896, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19896, 208}, -- Stormstout Brewery
+    {O, 19895, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19895, 208}, -- Heroic: Temple of the Jade Serpent
+    {O, 19894, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19894, 208}, -- Temple of the Jade Serpent
+    {O, 19893, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19893, 208}, -- A Brewing Storm
+    {O, 19892, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19892, 208}, -- Campaign: Isle of Thunder
+    {O, 19891, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19891, 208}, -- Campaign: Landfall
+    {O, 19890, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19890, 208}, -- Campaign: Dread Wastes
+    {O, 19889, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19889, 208}, -- Campaign: Townlong Steppes
+    {O, 19888, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19888, 208, f.Horde, 19887}, -- Campaign: Kun-Lai Summit
+    {O, 19887, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19887, 208, f.Alliance, 19888}, -- Campaign: Kun-Lai Summit
+    {O, 19886, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19886, 208, f.Horde, 19885}, -- Campaign: Krasarang Wilds
+    {O, 19885, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19885, 208, f.Alliance, 19886}, -- Campaign: Krasarang Wilds
+    {O, 19884, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19884, 208}, -- Campaign: Valley of the Four Winds
+    {O, 19883, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19883, 208, f.Horde, 19882}, -- Campaign: The Jade Forest
+    {O, 19882, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19882, 208, f.Alliance, 19883}, -- Campaign: The Jade Forest
+    {O, 19881, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19881, 208}, -- Escalation
+    {O, 19880, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19880, 208}, -- Isle of Thunder
+    {O, 19879, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19879, 208}, -- Landfall
+    {O, 19878, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19878, 208}, -- Dread Wastes
+    {O, 19877, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19877, 208}, -- Townlong Steppes
+    {O, 19876, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19876, 208}, -- Vale of Eternal Blossoms
+    {O, 19875, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19875, 208}, -- Kun-Lai Summit
+    {O, 19874, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19874, 208}, -- Krasarang Wilds
+    {O, 19873, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19873, 208}, -- Valley of the Four Winds
+    {O, 19872, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19872, 208}, -- The Jade Forest
     {O, 19871, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 19871, 208}, -- Infinite Power
@@ -280,6 +437,7 @@ tasks = {
     {N, 19513, 207, nil, nil, true}, -- Battle Mender: Dragonflight Season 4
     {O, 19509, "From", "PvP Season", 37, "Until", "PvP Season", 37},
     {N, 19509, 207, nil, nil, true}, -- Elite: Dragonflight Season 4
+    {O, 19508, "From", "Event", "423", "Until", "Event", "423"},
     {N, 19508, 206}, -- Love Language Expert
     {N, 19507, 207}, -- Fringe Benefits
     {O, 19503, "From", "PvP Season", 37, "Until", "PvP Season", 37},
@@ -387,6 +545,7 @@ tasks = {
     {N, 19412, 205, nil, nil, true}, -- Battleground Blitz Apprentice
     {N, 19411, 205, nil, nil, true}, -- Battleground Blitz Novice
     {N, 19401, 205}, -- Emerald Dream Safari
+    {O, 19400, "From", "Event", "423", "Until", "Event", "423"},
     {N, 19400, 206}, -- Support Your Local Artisans
     {O, 19398, "From", "Mythic+ Season", 11, "Until", "Mythic+ Season", 11},
     {N, 19398, 205}, -- Dreaming of the Aspects
@@ -508,6 +667,7 @@ tasks = {
     {N, 19132, 205, nil, nil, true}, -- Verdant Gladiator: Dragonflight Season 3
     {O, 19131, "From", "PvP Season", 36, "Until", "PvP Season", 36},
     {N, 19131, 205, nil, nil, true}, -- Verdant Legend: Dragonflight Season 3
+    {O, 19130, "From", "Event", "141", "Until", "Event", "141"},
     {N, 19130, 205}, -- Junior Racing Champion
     {N, 19129, 205}, -- Emerald Dream Challenge Racing Completionist: Gold
     {N, 19128, 205}, -- Emerald Dream Challenge Racing Completionist: Silver
@@ -575,6 +735,7 @@ tasks = {
     {N, 19082, 205}, -- Keystone Hero: Throne of the Tides
     {O, 19080, "Never" },
     {N, 19080, 202}, -- Arcane Influence
+    {O, 19079, "From", "Event", "1425", "Until", "Event", "1425"},
     {N, 19079, 202}, -- Master of the Turbulent Timeways
     {N, 19077, 205}, -- Catch Me If You Can!
     {N, 19031, 205}, -- Fyrn
@@ -595,8 +756,11 @@ tasks = {
     {N, 18977, 201}, -- Draconically Epic
     {N, 18976, 201}, -- Draconically Superior
     {N, 18963, 202}, -- Burst Damage
+    {O, 18962, "From", "Event", "324", "Until", "Event", "324"},
     {N, 18962, 202}, -- A Cleansing Fire
+    {O, 18960, "From", "Event", "324", "Until", "Event", "324"},
     {N, 18960, 202}, -- Kickin' With the Wick
+    {O, 18959, "From", "Event", "324", "Until", "Event", "324"},
     {N, 18959, 202}, -- "Don't Lose Your Head, Man"
     {N, 18958, 205}, -- Of the Tyr's Guard
     {O, 18942, "From", "Event", "1400", "Until", "Event", "1400"},
@@ -773,6 +937,7 @@ tasks = {
     {N, 18615, 201}, -- Legend of the Multiverse
     {N, 18612, 201}, -- A Slime in Need
     {N, 18589, 201}, -- Crunch Time
+    {O, 18579, "From", "Event", "372", "Until", "Event", "372"},
     {N, 18579, 202}, -- A Round on the House
     {O, 18574, "From", "Event", "1400", "Until", "Event", "1400"},
     {N, 18574, 201}, -- Eastern Kingdoms Reverse: Gold
@@ -807,6 +972,7 @@ tasks = {
     {N, 18372, 201}, -- Wards of the Dread Citadel
     {N, 18368, 201}, -- Memory of Scholomance
     {N, 18361, 200}, -- To All the Squirrels Burrowed Beneath
+    {O, 18360, "From", "Event", "324", "Until", "Event", "324"},
     {N, 18360, 201}, -- Tricks and Treats of the Dragon Isles
     {N, 18284, 200}, -- A Niffen's Best Buddy
     {N, 18271, 200}, -- He'sSss All Mine
@@ -1026,7 +1192,9 @@ tasks = {
     {O, 17740, "From", "PvP Season", 35, "Until", "PvP Season", 35},
     {N, 17740, 200, nil, nil, true}, -- Gladiator: Dragonflight Season 2
     {N, 17739, 200}, -- Embers of Neltharion
+    {O, 17738, "From", "Event", "341", "Until", "Event", "341"},
     {N, 17738, 200, f.Horde}, -- Flame Keeper of the Dragon Isles
+    {O, 17737, "From", "Event", "341", "Until", "Event", "341"},
     {N, 17737, 200, f.Alliance}, -- Flame Warden of the Dragon Isles
     {N, 17736, 200}, -- The Gift of Cheese
     {N, 17735, 200}, -- We Didn't Start the Fire
@@ -1061,6 +1229,7 @@ tasks = {
     {N, 17562, 200}, -- Ancient Stones of the Ohn'ahran Plains
     {N, 17561, 200}, -- Ancient Stones of the Waking Shores
     {N, 17560, 200}, -- Ancient Stones of the Dragon Isles
+    {O, 17547, "From", "Event", "324", "Until", "Event", "324"},
     {N, 17547, 202}, -- The Lick King
     {N, 17546, 199}, -- A New Beginning
     {N, 17543, 199}, -- You Know How to Reach Me
@@ -1154,6 +1323,7 @@ tasks = {
     {N, 17332, 198}, -- Reverse Racer: Gold
     {N, 17331, 198}, -- Reverse Racer: Silver
     {N, 17330, 198}, -- Reverse Racer: Bronze
+    {O, 17321, "From", "Event", "327", "Until", "Event", "327"},
     {N, 17321, 198}, -- Elders of the Dragon Isles
     {N, 17315, 199}, -- While We Were Sleeping
     {N, 17314, 195}, -- Heroic Edition: Tangled Dreamweaver
@@ -1745,6 +1915,7 @@ tasks = {
     {N, 15663, 192}, -- Fate of Nathria
     {O, 15654, "From", "Version", "090205", "Before", "Version", "100002"},
     {N, 15654, 192}, -- Back from the Beyond (Legacy)
+    {O, 15653, "From", "Event", "141", "Until", "Event", "141"},
     {N, 15653, 192}, -- The More You Know*
     {N, 15652, 192}, -- Mythic: So'leah's Gambit
     {N, 15651, 192}, -- Myths of the Shadowlands Dungeons
@@ -2054,6 +2225,7 @@ tasks = {
     {N, 15211, 191}, -- Completing the Code
     {N, 15191, 189}, -- "Rae'shalare, Death's Whisper"
     {N, 15190, 189}, -- Mischief!
+    {O, 15181, "From", "Event", "141", "Until", "Event", "141"},
     {N, 15181, 190}, -- Rock n' Roll
     {N, 15179, 189}, -- This is Fine
     {N, 15178, 189}, -- Fake It 'Til You Make It
@@ -3029,9 +3201,13 @@ tasks = {
     {N, 13384, 180, f.Alliance}, -- Kul Tirans Don't Look at Explosions
     {N, 13383, 180}, -- Barrel of Monkeys
     {N, 13345, 180}, -- Praise the Sunflower
+    {O, 13343, "From", "Event", "341", "Until", "Event", "341"},
     {N, 13343, 181, f.Alliance, 13342}, -- Extinguishing Zandalar
+    {O, 13342, "From", "Event", "341", "Until", "Event", "341"},
     {N, 13342, 181, f.Horde, 13343}, -- Extinguishing Kul Tiras
+    {O, 13341, "From", "Event", "341", "Until", "Event", "341"},
     {N, 13341, 181, f.Alliance, 13340}, -- Flame Warden of Kul Tiras
+    {O, 13340, "From", "Event", "341", "Until", "Event", "341"},
     {N, 13340, 181, f.Horde, 13341}, -- Flame Keeper of Zandalar
     {N, 13325, 180}, -- Walk the Dinosaur
     {O, 13323, "From", "Mythic+ Season", 2, "Until", "Mythic+ Season", 2},
@@ -5377,13 +5553,21 @@ tasks = {
     {O, 11296, "From", "Version", "030002", "Before", "Version", "040003a"},
     {N, 11296, 171}, -- The Ancient Keeper
     {N, 11294, 174}, -- Murloc Battlemasters
+    {O, 11284, "From", "Event", "341", "Until", "Event", "341"},
     {N, 11284, 174, f.Horde, 11283}, -- Flame Keeper of Draenor
+    {O, 11283, "From", "Event", "341", "Until", "Event", "341"},
     {N, 11283, 174, f.Alliance, 11284}, -- Flame Warden of Draenor
+    {O, 11282, "From", "Event", "341", "Until", "Event", "341"},
     {N, 11282, 174, f.Horde, 11280}, -- Flame Keeper of the Broken Isles
+    {O, 11280, "From", "Event", "341", "Until", "Event", "341"},
     {N, 11280, 174, f.Alliance, 11282}, -- Flame Warden of the Broken Isles
+    {O, 11279, "From", "Event", "341", "Until", "Event", "341"},
     {N, 11279, 174, f.Horde, 11278}, -- Extinguishing the Broken Isles
+    {O, 11278, "From", "Event", "341", "Until", "Event", "341"},
     {N, 11278, 174, f.Alliance, 11279}, -- Extinguishing the Broken Isles
+    {O, 11277, "From", "Event", "341", "Until", "Event", "341"},
     {N, 11277, 174, f.Horde, 11276}, -- Extinguishing Draenor
+    {O, 11276, "From", "Event", "341", "Until", "Event", "341"},
     {N, 11276, 174, f.Alliance, 11277}, -- Extinguishing Draenor
     {N, 11265, 171}, -- Adventurer of Suramar
     {N, 11264, 171}, -- Adventurer of Highmountain
@@ -5815,10 +5999,12 @@ tasks = {
     {N, 10412, 171}, -- Poor Unfortunate Souls
     {N, 10411, 171}, -- Helheim Hath No Fury
     {N, 10398, 171}, -- Drum Circle
+    {O, 10365, "From", "Event", "324", "Until", "Event", "324"},
     {N, 10365, 167}, -- A Frightening Friend
     {N, 10356, 167, f.Alliance, 10355}, -- Lord of the Reins
     {N, 10355, 167, f.Horde, 10356}, -- Lord of the Reins
     {N, 10354, 167}, -- Crashin' Thrashin' Commander
+    {O, 10353, "From", "Event", "141", "Until", "Event", "141"},
     {N, 10353, 167}, -- Iron Armada
     {N, 10350, 165, f.Alliance, 10349}, -- Tanaan Diplomat
     {N, 10349, 165, f.Horde, 10350}, -- Tanaan Diplomat
@@ -6343,8 +6529,11 @@ tasks = {
     {N, 9433, 159}, -- A-VOID-ance
     {N, 9432, 159}, -- Would You Like a Pamphlet?
     {N, 9429, 159}, -- Upgrading the Mill
+    {O, 9428, "From", "Event", "409", "Until", "Event", "409"},
     {N, 9428, 159}, -- Calavera
+    {O, 9427, "From", "Event", "409", "Until", "Event", "409"},
     {N, 9427, 159}, -- Vientos!
+    {O, 9426, "From", "Event", "409", "Until", "Event", "409"},
     {N, 9426, 159}, -- To The Afterlife
     {N, 9425, 159}, -- So Grossly Incandescent
     {N, 9423, 159}, -- Goliaths of Gorgrond
@@ -6365,10 +6554,14 @@ tasks = {
     {N, 9401, 159}, -- Shredder Maniac
     {N, 9400, 159}, -- Gorgrond Monster Hunter
     {N, 9396, 159}, -- Glory of the Draenor Hero
+    {O, 9394, "From", "Event", "423", "Until", "Event", "423"},
     {N, 9394, 159}, -- They Really Love Me!
+    {O, 9393, "From", "Event", "423", "Until", "Event", "423"},
     {N, 9393, 159}, -- Beacon of Love
+    {O, 9392, "From", "Event", "423", "Until", "Event", "423"},
     {N, 9392, 159}, -- Love Magnet
     {N, 9391, 159}, -- Draenor Dungeon Hero
+    {O, 9389, "From", "Event", "423", "Until", "Event", "423"},
     {N, 9389, 159}, -- It Might Just Save Your Life
     {N, 9265, 159}, -- Master of Apexis
     {N, 9264, 159}, -- Draenor Pet Brawler
@@ -6716,6 +6909,7 @@ tasks = {
     {N, 8707, 148, nil, nil, true}, -- Prideful Gladiator's Cloud Serpent
     {O, 8705, "From", "PvP Season", 14, "Until", "PvP Season", 14},
     {N, 8705, 148, nil, nil, true}, -- Grievous Gladiator's Cloud Serpent
+    {O, 8699, "From", "Event", "141", "Until", "Event", "141"},
     {N, 8699, 148}, -- The Danger Zone
     {N, 8698, 148}, -- Crashin' Thrashin' Flyer
     {O, 8697, "From", "Version", "050400", "Before", "Version", "060002"},
@@ -7052,9 +7246,13 @@ tasks = {
     {N, 8051, 130}, -- Gods and Monsters
     {N, 8050, 130}, -- Rumbles of Thunder
     {N, 8049, 130}, -- The Zandalari Prophecy
+    {O, 8045, "From", "Event", "341", "Until", "Event", "341"},
     {N, 8045, 130, f.Alliance, 8044}, -- Flame Warden of Pandaria
+    {O, 8044, "From", "Event", "341", "Until", "Event", "341"},
     {N, 8044, 130, f.Horde, 8045}, -- Flame Keeper of Pandaria
+    {O, 8043, "From", "Event", "341", "Until", "Event", "341"},
     {N, 8043, 130, f.Horde, 8042}, -- Extinguishing Pandaria
+    {O, 8042, "From", "Event", "341", "Until", "Event", "341"},
     {N, 8042, 130, f.Alliance, 8043}, -- Extinguishing Pandaria
     {N, 8038, 130}, -- Cretaceous Collector
     {N, 8037, 130}, -- Genetically Unmodified Organism
@@ -7134,7 +7332,9 @@ tasks = {
     {N, 7614, 124}, -- Locking Down the Docks
     {N, 7612, 124}, -- The Seat of Knowledge
     {N, 7611, 124}, -- Pandarian Angler
+    {O, 7602, "From", "Event", "324", "Until", "Event", "324"},
     {N, 7602, 124, f.Horde, 7601}, -- Tricks and Treats of Pandaria
+    {O, 7601, "From", "Event", "324", "Until", "Event", "324"},
     {N, 7601, 124, f.Alliance, 7602}, -- Tricks and Treats of Pandaria
     {O, 7536, "From", "Version", "050300", "Before", "Version", "060002"},
     {N, 7536, 124}, -- Chapter IV: Celestial Blessings
@@ -7774,14 +7974,23 @@ tasks = {
     {N, 6020, 119}, -- Step Right Up
     {O, 6019, "From", "Event", "374", "Until", "Event", "374"},
     {N, 6019, 119}, -- "Come One, Come All!"
+    {O, 6014, "From", "Event", "341", "Until", "Event", "341"},
     {N, 6014, 119, f.Horde, 6013}, -- Extinguishing the Cataclysm
+    {O, 6013, "From", "Event", "341", "Until", "Event", "341"},
     {N, 6013, 119, f.Alliance, 6014}, -- Extinguishing the Cataclysm
+    {O, 6012, "From", "Event", "341", "Until", "Event", "341"},
     {N, 6012, 119, f.Horde, 6011}, -- Flame Keeper of Cataclysm
+    {O, 6011, "From", "Event", "341", "Until", "Event", "341"},
     {N, 6011, 119, f.Alliance, 6012}, -- Flame Warden of Cataclysm
+    {O, 6010, "From", "Event", "341", "Until", "Event", "341"},
     {N, 6010, 119, f.Horde, 6007}, -- Extinguishing Northrend
+    {O, 6009, "From", "Event", "341", "Until", "Event", "341"},
     {N, 6009, 119, f.Horde, 6008}, -- Flame Keeper of Northrend
+    {O, 6008, "From", "Event", "341", "Until", "Event", "341"},
     {N, 6008, 119, f.Alliance, 6009}, -- Flame Warden of Northrend
+    {O, 6007, "From", "Event", "341", "Until", "Event", "341"},
     {N, 6007, 119, f.Alliance, 6010}, -- Extinguishing Northrend
+    {O, 6006, "From", "Event", "327", "Until", "Event", "327"},
     {N, 6006, 119}, -- Elders of Cataclysm
     {O, 6003, "From", "PvP Season", 9, "Until", "PvP Season", 9},
     {N, 6003, 119, nil, nil, true}, -- Vicious Gladiator's Twilight Drake
@@ -7811,7 +8020,9 @@ tasks = {
     {N, 5859, 116}, -- Legacy of Leyara
     {N, 5858, 116}, -- Bear-ly Made It
     {N, 5855, 116}, -- Ragnar-O's
+    {O, 5854, "From", "Event", "141", "Until", "Event", "141"},
     {N, 5854, 119, f.Horde, 5853}, -- A-Caroling We Will Go
+    {O, 5853, "From", "Event", "141", "Until", "Event", "141"},
     {N, 5853, 119, f.Alliance, 5854}, -- A-Caroling We Will Go
     {N, 5851, 116}, -- Gone Fishin'
     {N, 5850, 116, f.Horde, 5848}, -- Fish or Cut Bait: Undercity
@@ -7824,9 +8035,13 @@ tasks = {
     {N, 5842, 116, f.Alliance, 5844}, -- Let's Do Lunch: Darnassus
     {N, 5841, 116, f.Alliance, 5843}, -- Let's Do Lunch: Ironforge
     {N, 5839, 116}, -- "Dragonwrath, Tarecgosa's Rest"
+    {O, 5838, "From", "Event", "324", "Until", "Event", "324"},
     {N, 5838, 116, f.Horde, 5837}, -- Tricks and Treats of the Cataclysm
+    {O, 5837, "From", "Event", "324", "Until", "Event", "324"},
     {N, 5837, 116, f.Alliance, 5838}, -- Tricks and Treats of the Cataclysm
+    {O, 5836, "From", "Event", "324", "Until", "Event", "324"},
     {N, 5836, 116, f.Alliance, 5835}, -- Tricks and Treats of Northrend
+    {O, 5835, "From", "Event", "324", "Until", "Event", "324"},
     {N, 5835, 116, f.Horde, 5836}, -- Tricks and Treats of Northrend
     {N, 5830, 116}, -- Share the Pain
     {N, 5829, 116}, -- Bucket List
@@ -8285,6 +8500,7 @@ tasks = {
     {N, 4627, 101}, -- X-45 Heartbreaker
     {N, 4626, 101}, -- And I'll Form the Head!
     {N, 4625, 101}, -- Invincible's Reins
+    {O, 4624, "From", "Event", "423", "Until", "Event", "423"},
     {N, 4624, 101}, -- Tough Love
     {N, 4623, 101}, -- Shadowmourne
     {N, 4622, 101}, -- Neck-Deep in Vile (25 player)
@@ -8354,7 +8570,9 @@ tasks = {
     {N, 4478, 99}, -- Looking For Multitudes
     {N, 4477, 99}, -- Looking For Many
     {N, 4476, 99}, -- Looking For More
+    {O, 4437, "From", "Event", "141", "Until", "Event", "141"},
     {N, 4437, 99, f.Horde, 4436}, -- BB King
+    {O, 4436, "From", "Event", "141", "Until", "Event", "141"},
     {N, 4436, 99, f.Alliance, 4437}, -- BB King
     {N, 4407, 99}, -- She Deep Breaths More (25 player)
     {N, 4406, 99}, -- Many Whelps! Handle It! (25 player)
@@ -8450,23 +8668,39 @@ tasks = {
     {N, 3636, 97}, -- Jade Tiger
     {O, 3618, "Never" },
     {N, 3618, 97, nil, nil, true}, -- Murkimus the Gladiator
+    {O, 3597, "From", "Event", "404", "Until", "Event", "404"},
     {N, 3597, 97, f.Horde, 3596}, -- Pilgrim's Progress
+    {O, 3596, "From", "Event", "404", "Until", "Event", "404"},
     {N, 3596, 97, f.Alliance, 3597}, -- Pilgrim's Progress
+    {O, 3582, "From", "Event", "404", "Until", "Event", "404"},
     {N, 3582, 97}, -- Terokkar Turkey Time
+    {O, 3581, "From", "Event", "404", "Until", "Event", "404"},
     {N, 3581, 97, f.Horde, 3580}, -- Pilgrim's Peril
+    {O, 3580, "From", "Event", "404", "Until", "Event", "404"},
     {N, 3580, 97, f.Alliance, 3581}, -- Pilgrim's Peril
+    {O, 3579, "From", "Event", "404", "Until", "Event", "404"},
     {N, 3579, 97}, -- """FOOD FIGHT!"""
+    {O, 3578, "From", "Event", "404", "Until", "Event", "404"},
     {N, 3578, 97}, -- The Turkinator
+    {O, 3577, "From", "Event", "404", "Until", "Event", "404"},
     {N, 3577, 97, f.Horde, 3576}, -- Now We're Cookin'
+    {O, 3576, "From", "Event", "404", "Until", "Event", "404"},
     {N, 3576, 97, f.Alliance, 3577}, -- Now We're Cookin'
+    {O, 3559, "From", "Event", "404", "Until", "Event", "404"},
     {N, 3559, 97}, -- Turkey Lurkey
+    {O, 3558, "From", "Event", "404", "Until", "Event", "404"},
     {N, 3558, 97}, -- Sharing is Caring
+    {O, 3557, "From", "Event", "404", "Until", "Event", "404"},
     {N, 3557, 97, f.Horde, 3556}, -- Pilgrim's Paunch
+    {O, 3556, "From", "Event", "404", "Until", "Event", "404"},
     {N, 3556, 97, f.Alliance, 3557}, -- Pilgrim's Paunch
     {N, 3536, 97}, -- The Marine Marine
     {N, 3496, 86}, -- A Brew-FAST Mount
+    {O, 3478, "From", "Event", "404", "Until", "Event", "404"},
     {N, 3478, 97}, -- Pilgrim
+    {O, 3457, "From", "Event", "398", "Until", "Event", "398"},
     {N, 3457, 97}, -- The Captain's Booty
+    {O, 3456, "From", "Event", "409", "Until", "Event", "409"},
     {N, 3456, 97}, -- Dead Man's Party
     {O, 3436, "From", "PvP Season", 6, "Until", "PvP Season", 6},
     {N, 3436, 92, nil, nil, true}, -- Furious Gladiator
@@ -8774,7 +9008,9 @@ tasks = {
     {N, 2836, 92}, -- Lance a Lot
     {N, 2817, 92, f.Alliance, 2816}, -- Exalted Argent Champion of the Alliance
     {N, 2816, 92, f.Horde, 2817}, -- Exalted Argent Champion of the Horde
+    {O, 2798, "From", "Event", "181", "Until", "Event", "181"},
     {N, 2798, 92}, -- Noble Gardener
+    {O, 2796, "From", "Event", "372", "Until", "Event", "372"},
     {N, 2796, 86}, -- Brew of the Month
     {N, 2788, 92, f.Horde, 2782}, -- Champion of the Horde
     {N, 2787, 92, f.Horde, 2777}, -- Champion of the Undercity
@@ -8806,26 +9042,37 @@ tasks = {
     {N, 2756, 92}, -- Argent Aspiration
     {O, 2716, "From", "Version", "030100", "Before", "Version", "070003"},
     {N, 2716, 86}, -- Dual Talent Specialization
+    {O, 2676, "From", "Event", "181", "Until", "Event", "181"},
     {N, 2676, 92}, -- I Found One!
+    {O, 2576, "From", "Event", "181", "Until", "Event", "181"},
     {N, 2576, 92}, -- Blushing Bride
     {N, 2557, 86}, -- To All The Squirrels Who Shared My Life
     {N, 2556, 86}, -- Pest Control
     {N, 2537, 86, f.Horde, 2536}, -- Mountain o' Mounts
     {N, 2536, 86, f.Alliance, 2537}, -- Mountain o' Mounts
     {N, 2516, 86}, -- Lil' Game Hunter
+    {O, 2497, "From", "Event", "181", "Until", "Event", "181"},
     {N, 2497, 86, f.Horde, 2419}, -- Spring Fling
     {O, 2496, "From", "Version", "030002", "Before", "Version", "030008"},
     {N, 2496, 86}, -- The Fifth Element
     {N, 2476, 86, f.Horde, 1737, true}, -- Destruction Derby
     {O, 2456, "From", "Version", "030002", "Until", "Version", "030002"},
     {N, 2456, 86}, -- Vampire Hunter
+    {O, 2436, "From", "Event", "181", "Until", "Event", "181"},
     {N, 2436, 92}, -- Desert Rose
+    {O, 2422, "From", "Event", "181", "Until", "Event", "181"},
     {N, 2422, 92}, -- Shake Your Bunny-Maker
+    {O, 2421, "From", "Event", "181", "Until", "Event", "181"},
     {N, 2421, 92, f.Alliance, 2420}, -- Noble Garden
+    {O, 2420, "From", "Event", "181", "Until", "Event", "181"},
     {N, 2420, 92, f.Horde, 2421}, -- Noble Garden
+    {O, 2419, "From", "Event", "181", "Until", "Event", "181"},
     {N, 2419, 92, f.Alliance, 2497}, -- Spring Fling
+    {O, 2418, "From", "Event", "181", "Until", "Event", "181"},
     {N, 2418, 92}, -- Chocoholic
+    {O, 2417, "From", "Event", "181", "Until", "Event", "181"},
     {N, 2417, 92}, -- Chocolate Lover
+    {O, 2416, "From", "Event", "181", "Until", "Event", "181"},
     {N, 2416, 92}, -- Hard Boiled
     {O, 2398 },
     {N, 2398, 86}, -- WoW's 4th Anniversary
@@ -8961,6 +9208,7 @@ tasks = {
     {N, 1958, 86}, -- I Smell A Giant Rat
     {N, 1957, 86}, -- There's Gold In That There Fountain
     {N, 1956, 86}, -- Higher Learning
+    {O, 1936, "From", "Event", "372", "Until", "Event", "372"},
     {N, 1936, 86}, -- Does Your Wolpertinger Linger?
     {N, 1919, 86}, -- On The Rocks
     {N, 1877, 86}, -- Less Is More (25 player)
@@ -8997,12 +9245,19 @@ tasks = {
     {N, 1797, 86}, -- Chef de Partie
     {N, 1796, 86}, -- Short Order Cook
     {N, 1795, 86}, -- Lunch Lady
+    {O, 1793, "From", "Event", "201", "Until", "Event", "201"},
     {N, 1793, 86}, -- For the Children
+    {O, 1792, "From", "Event", "201", "Until", "Event", "201"},
     {N, 1792, 86}, -- "Aw, Isn't It Cute?"
+    {O, 1791, "From", "Event", "201", "Until", "Event", "201"},
     {N, 1791, 86}, -- Home Alone
+    {O, 1790, "From", "Event", "201", "Until", "Event", "201"},
     {N, 1790, 86}, -- "Hail To The King, Baby"
+    {O, 1789, "From", "Event", "201", "Until", "Event", "201"},
     {N, 1789, 86}, -- Daily Chores
+    {O, 1788, "From", "Event", "201", "Until", "Event", "201"},
     {N, 1788, 86}, -- Bad Example
+    {O, 1786, "From", "Event", "201", "Until", "Event", "201"},
     {N, 1786, 86}, -- School of Hard Knocks
     {N, 1785, 86}, -- Dinner Impossible
     {N, 1783, 86, f.Horde, 1782}, -- Our Daily Bread
@@ -9038,31 +9293,50 @@ tasks = {
     {N, 1717, 86, nil, nil, true}, -- Wintergrasp Victory
     {N, 1706, 86}, -- Crashin' Thrashin' Racer
     {N, 1705, 86}, -- Clockwork Rocket Bot
+    {O, 1704, "From", "Event", "423", "Until", "Event", "423"},
     {N, 1704, 86}, -- I Pitied The Fool
+    {O, 1703, "From", "Event", "423", "Until", "Event", "423"},
     {N, 1703, 86}, -- "My Love is Like a Red, Red Rose"
+    {O, 1702, "From", "Event", "423", "Until", "Event", "423"},
     {N, 1702, 86}, -- Sweet Tooth
+    {O, 1701, "From", "Event", "423", "Until", "Event", "423"},
     {N, 1701, 86}, -- Be Mine!
+    {O, 1700, "From", "Event", "423", "Until", "Event", "423"},
     {N, 1700, 86}, -- Perma-Peddle
+    {O, 1699, "From", "Event", "423", "Until", "Event", "423"},
     {N, 1699, 86}, -- Fistful of Love
     {O, 1698, "From", "Version", "030002", "Before", "Version", "100205"},
     {N, 1698, 86, f.Horde, 1697}, -- Nation of Adoration
     {O, 1697, "From", "Version", "030002", "Before", "Version", "100205"},
     {N, 1697, 86, f.Alliance, 1698}, -- Nation of Adoration
+    {O, 1696, "From", "Event", "423", "Until", "Event", "423"},
     {N, 1696, 86}, -- The Rocket's Pink Glare
+    {O, 1695, "From", "Event", "423", "Until", "Event", "423"},
     {N, 1695, 86}, -- Dangerous Love
+    {O, 1694, "From", "Event", "423", "Until", "Event", "423"},
     {N, 1694, 86}, -- Lovely Luck Is On Your Side
+    {O, 1693, "From", "Event", "423", "Until", "Event", "423"},
     {N, 1693, 86}, -- Fool For Love
+    {O, 1691, "From", "Event", "141", "Until", "Event", "141"},
     {N, 1691, 86}, -- Merrymaker
+    {O, 1690, "From", "Event", "141", "Until", "Event", "141"},
     {N, 1690, 86}, -- A Frosty Shake
+    {O, 1689, "From", "Event", "141", "Until", "Event", "141"},
     {N, 1689, 86}, -- He Knows If You've Been Naughty
+    {O, 1688, "From", "Event", "141", "Until", "Event", "141"},
     {N, 1688, 86}, -- The Winter Veil Gourmet
+    {O, 1687, "From", "Event", "141", "Until", "Event", "141"},
     {N, 1687, 86}, -- Let It Snow
+    {O, 1686, "From", "Event", "141", "Until", "Event", "141"},
     {N, 1686, 86, f.Alliance, 1685}, -- Holiday Bromance
+    {O, 1685, "From", "Event", "141", "Until", "Event", "141"},
     {N, 1685, 86, f.Horde, 1686}, -- Holiday Bromance
+    {O, 1683, "From", "Event", "372", "Until", "Event", "372"},
     {N, 1683, 86}, -- Brewmaster
     {N, 1678, 86}, -- Loremaster of Kalimdor
     {N, 1676, 86}, -- Loremaster of Eastern Kingdoms
     {N, 1658, 86}, -- Champion of the Frozen Wastes
+    {O, 1656, "From", "Event", "324", "Until", "Event", "324"},
     {N, 1656, 86}, -- Hallowed Be Thy Name
     {N, 1638, 86}, -- Skyshattered
     {O, 1637 },
@@ -9078,6 +9352,7 @@ tasks = {
     {N, 1558, 86}, -- 100 Fish
     {N, 1557, 86}, -- 50 Fish
     {N, 1556, 86}, -- 25 Fish
+    {O, 1552, "From", "Event", "327", "Until", "Event", "327"},
     {N, 1552, 86}, -- Frenzied Firecracker
     {N, 1517, 86}, -- Northrend Angler
     {N, 1516, 86}, -- Accomplished Angler
@@ -9140,6 +9415,7 @@ tasks = {
     {N, 1402, 86, nil, nil, nil, true}, -- Realm First! Conqueror of Naxxramas
     {O, 1400, "Once" },
     {N, 1400, 86, nil, nil, nil, true}, -- Realm First! Magic Seeker
+    {O, 1396, "From", "Event", "327", "Until", "Event", "327"},
     {N, 1396, 86}, -- Elders of Northrend
     {N, 1359, 86, f.Horde, 35}, -- Might of Dragonblight
     {N, 1358, 86, f.Horde, 33}, -- Nothing Boring About Borean
@@ -9157,11 +9433,13 @@ tasks = {
     {N, 1307, 86}, -- Upper Blackrock Spire (Classic)
     {N, 1297, 86}, -- Hadronox Denied
     {N, 1296, 86}, -- Watch Him Die
+    {O, 1295, "From", "Event", "141", "Until", "Event", "141"},
     {N, 1295, 86}, -- Crashin' & Thrashin'
     {O, 1293 },
     {N, 1293, 86}, -- Blue Brewfest Stein
     {O, 1292 },
     {N, 1292, 86}, -- Yellow Brewfest Stein
+    {O, 1291, "From", "Event", "423", "Until", "Event", "423"},
     {N, 1291, 86}, -- Lonely?
     {N, 1289, 86}, -- Northrend Dungeon Hero
     {N, 1288, 86}, -- Northrend Dungeonmaster
@@ -9170,7 +9448,9 @@ tasks = {
     {N, 1285, 86}, -- Classic Raider
     {N, 1284, 86}, -- Outland Dungeonmaster
     {N, 1283, 86}, -- Classic Dungeonmaster
+    {O, 1282, "From", "Event", "141", "Until", "Event", "141"},
     {N, 1282, 86}, -- Fa-la-la-la-Ogri'la
+    {O, 1281, "From", "Event", "327", "Until", "Event", "327"},
     {N, 1281, 86}, -- The Rocket's Red Glare
     {O, 1280, "From", "Version", "030002", "Before", "Version", "100205"},
     {N, 1280, 86, f.Horde, 1279}, -- Flirt With Disaster
@@ -9191,11 +9471,14 @@ tasks = {
     {N, 1264, 86}, -- Explore Borean Tundra
     {N, 1263, 86}, -- Explore Howling Fjord
     {N, 1262, 86}, -- Loremaster of Outland
+    {O, 1261, "From", "Event", "324", "Until", "Event", "324"},
     {N, 1261, 86}, -- G.N.E.R.D. Rage
+    {O, 1260, "From", "Event", "372", "Until", "Event", "372"},
     {N, 1260, 86}, -- Almost Blind Luck
     {N, 1259, 86, nil, nil, true}, -- Not So Fast
     {N, 1258, 86, nil, nil, true}, -- Take a Chill Pill
     {N, 1257, 86}, -- The Scavenger
+    {O, 1255, "From", "Event", "141", "Until", "Event", "141"},
     {N, 1255, 86, f.Alliance, 259}, -- Scrooge
     {N, 1254, 86}, -- Friend or Fowl?
     {N, 1252, 86, f.Horde, 206, true}, -- Supreme Defender
@@ -9207,6 +9490,7 @@ tasks = {
     {N, 1225, 86}, -- Outland Angler
     {N, 1206, 86}, -- To All The Squirrels I've Loved Before
     {N, 1205, 86}, -- Hero of Shattrath
+    {O, 1203, "From", "Event", "372", "Until", "Event", "372"},
     {N, 1203, 86, f.Horde, 1184}, -- Strange Brew
     {N, 1195, 86}, -- Shadow of the Betrayer
     {N, 1194, 86}, -- Into the Nether
@@ -9215,11 +9499,15 @@ tasks = {
     {N, 1191, 86, f.Alliance, 1272}, -- Terror of Terokkar
     {N, 1190, 86}, -- Mysteries of the Marsh
     {N, 1189, 86, f.Alliance, 1271}, -- To Hellfire and Back
+    {O, 1188, "From", "Event", "423", "Until", "Event", "423"},
     {N, 1188, 86}, -- Shafted!
     {O, 1186, "From", "Version", "030002", "Before", "Version", "080200"},
     {N, 1186, 86}, -- Down With The Dark Iron
+    {O, 1185, "From", "Event", "372", "Until", "Event", "372"},
     {N, 1185, 86}, -- The Brewfest Diet
+    {O, 1184, "From", "Event", "372", "Until", "Event", "372"},
     {N, 1184, 86, f.Alliance, 1203}, -- Strange Brew
+    {O, 1183, "From", "Event", "372", "Until", "Event", "372"},
     {N, 1183, 86}, -- Brew of the Year
     {N, 1182, 86}, -- The Bread Winner
     {N, 1181, 86}, -- Got My Mind On My Money
@@ -9245,26 +9533,47 @@ tasks = {
     {N, 1157, 86, nil, nil, true}, -- Duel-icious
     {N, 1153, 86, nil, nil, true}, -- Overly Defensive
     {N, 1151, 86, f.Alliance, 224, true}, -- Loyal Defender
+    {O, 1145, "From", "Event", "341", "Until", "Event", "341"},
     {N, 1145, 86}, -- King of the Fire Festival
+    {O, 1041, "From", "Event", "324", "Until", "Event", "324"},
     {N, 1041, 86, f.Horde, 1040}, -- Rotten Hallow
+    {O, 1040, "From", "Event", "324", "Until", "Event", "324"},
     {N, 1040, 86, f.Alliance, 1041}, -- Rotten Hallow
+    {O, 1039, "From", "Event", "341", "Until", "Event", "341"},
     {N, 1039, 86, f.Horde, 1038}, -- The Flame Keeper
+    {O, 1038, "From", "Event", "341", "Until", "Event", "341"},
     {N, 1038, 86, f.Alliance, 1039}, -- The Flame Warden
+    {O, 1037, "From", "Event", "341", "Until", "Event", "341"},
     {N, 1037, 86, f.Horde, 1035}, -- Desecration of the Alliance
+    {O, 1036, "From", "Event", "341", "Until", "Event", "341"},
     {N, 1036, 86, f.Horde, 1034}, -- The Fires of Azeroth
+    {O, 1035, "From", "Event", "341", "Until", "Event", "341"},
     {N, 1035, 86, f.Alliance, 1037}, -- Desecration of the Horde
+    {O, 1034, "From", "Event", "341", "Until", "Event", "341"},
     {N, 1034, 86, f.Alliance, 1036}, -- The Fires of Azeroth
+    {O, 1033, "From", "Event", "341", "Until", "Event", "341"},
     {N, 1033, 86, f.Horde, 1030}, -- Extinguishing Outland
+    {O, 1032, "From", "Event", "341", "Until", "Event", "341"},
     {N, 1032, 86, f.Horde, 1029}, -- Extinguishing Kalimdor
+    {O, 1031, "From", "Event", "341", "Until", "Event", "341"},
     {N, 1031, 86, f.Horde, 1028}, -- Extinguishing Eastern Kingdoms
+    {O, 1030, "From", "Event", "341", "Until", "Event", "341"},
     {N, 1030, 86, f.Alliance, 1033}, -- Extinguishing Outland
+    {O, 1029, "From", "Event", "341", "Until", "Event", "341"},
     {N, 1029, 86, f.Alliance, 1032}, -- Extinguishing Kalimdor
+    {O, 1028, "From", "Event", "341", "Until", "Event", "341"},
     {N, 1028, 86, f.Alliance, 1031}, -- Extinguishing Eastern Kingdoms
+    {O, 1027, "From", "Event", "341", "Until", "Event", "341"},
     {N, 1027, 86, f.Horde, 1024}, -- Flame Keeper of Outland
+    {O, 1026, "From", "Event", "341", "Until", "Event", "341"},
     {N, 1026, 86, f.Horde, 1023}, -- Flame Keeper of Kalimdor
+    {O, 1025, "From", "Event", "341", "Until", "Event", "341"},
     {N, 1025, 86, f.Horde, 1022}, -- Flame Keeper of Eastern Kingdoms
+    {O, 1024, "From", "Event", "341", "Until", "Event", "341"},
     {N, 1024, 86, f.Alliance, 1027}, -- Flame Warden of Outland
+    {O, 1023, "From", "Event", "341", "Until", "Event", "341"},
     {N, 1023, 86, f.Alliance, 1026}, -- Flame Warden of Kalimdor
+    {O, 1022, "From", "Event", "341", "Until", "Event", "341"},
     {N, 1022, 86, f.Alliance, 1025}, -- Flame Warden of Eastern Kingdoms
     {N, 1021, 86}, -- Twenty-Five Tabards
     {N, 1020, 86}, -- Ten Tabards
@@ -9279,8 +9588,11 @@ tasks = {
     {N, 1007, 86}, -- The Wyrmrest Accord
     {N, 1006, 86, f.Horde, 388, true}, -- City Defender
     {N, 1005, 86, f.Horde, 246, true}, -- Know Thy Enemy
+    {O, 981, "From", "Event", "324", "Until", "Event", "324"},
     {N, 981, 86}, -- That Sparkling Smile
+    {O, 980, "From", "Event", "324", "Until", "Event", "324"},
     {N, 980, 86}, -- The Horseman's Reins
+    {O, 979, "From", "Event", "324", "Until", "Event", "324"},
     {N, 979, 86}, -- The Mask Task
     {N, 978, 86}, -- 3000 Quests Completed
     {N, 977, 86}, -- 1000 Daily Quests Completed
@@ -9288,14 +9600,22 @@ tasks = {
     {N, 975, 86}, -- 200 Daily Quests Completed
     {N, 974, 86}, -- 50 Daily Quests Completed
     {N, 973, 86}, -- 5 Daily Quests Completed
+    {O, 972, "From", "Event", "324", "Until", "Event", "324"},
     {N, 972, 86}, -- Trick or Treat!
+    {O, 971, "From", "Event", "324", "Until", "Event", "324"},
     {N, 971, 86}, -- Tricks and Treats of Azeroth
+    {O, 969, "From", "Event", "324", "Until", "Event", "324"},
     {N, 969, 86, f.Alliance, 968}, -- Tricks and Treats of Outland
+    {O, 968, "From", "Event", "324", "Until", "Event", "324"},
     {N, 968, 86, f.Horde, 969}, -- Tricks and Treats of Outland
+    {O, 967, "From", "Event", "324", "Until", "Event", "324"},
     {N, 967, 86, f.Horde, 966}, -- Tricks and Treats of Eastern Kingdoms
+    {O, 966, "From", "Event", "324", "Until", "Event", "324"},
     {N, 966, 86, f.Alliance, 967}, -- Tricks and Treats of Eastern Kingdoms
+    {O, 965, "From", "Event", "324", "Until", "Event", "324"},
     {N, 965, 86, f.Horde, 963}, -- Tricks and Treats of Kalimdor
     {N, 964, 86}, -- Going Down?
+    {O, 963, "From", "Event", "324", "Until", "Event", "324"},
     {N, 963, 86, f.Alliance, 965}, -- Tricks and Treats of Kalimdor
     {N, 962, 86}, -- Savior of the Oracles
     {N, 961, 86}, -- Honorary Frenzyheart
@@ -9322,12 +9642,19 @@ tasks = {
     {N, 940, 86}, -- The Green Hills of Stranglethorn
     {N, 939, 86}, -- Hills Like White Elekk
     {N, 938, 86}, -- The Snows of Northrend
+    {O, 937, "From", "Event", "327", "Until", "Event", "327"},
     {N, 937, 86}, -- Elune's Blessing
+    {O, 915, "From", "Event", "327", "Until", "Event", "327"},
     {N, 915, 86}, -- Elders of the Alliance
+    {O, 914, "From", "Event", "327", "Until", "Event", "327"},
     {N, 914, 86}, -- Elders of the Horde
+    {O, 913, "From", "Event", "327", "Until", "Event", "327"},
     {N, 913, 86}, -- To Honor One's Elders
+    {O, 912, "From", "Event", "327", "Until", "Event", "327"},
     {N, 912, 86}, -- Elders of Eastern Kingdoms
+    {O, 911, "From", "Event", "327", "Until", "Event", "327"},
     {N, 911, 86}, -- Elders of Kalimdor
+    {O, 910, "From", "Event", "327", "Until", "Event", "327"},
     {N, 910, 86}, -- Elders of the Dungeons
     {N, 909, 86, f.Horde, 908, true}, -- Call to Arms!
     {N, 908, 86, f.Alliance, 909, true}, -- Call to Arms!
@@ -9531,6 +9858,7 @@ tasks = {
     {N, 629, 86}, -- Ragefire Chasm
     {N, 628, 86}, -- Deadmines
     {N, 627, 86}, -- Explore Dun Morogh
+    {O, 626, "From", "Event", "327", "Until", "Event", "327"},
     {N, 626, 86}, -- Lunar Festival Finery
     {N, 625, 86}, -- Besting the Black Dragonflight (25 player)
     {N, 624, 86}, -- Less Is More (10 player)
@@ -9552,10 +9880,15 @@ tasks = {
     {N, 611, 86, f.Alliance, 616, true}, -- Bleeding Bloodhoof
     {O, 610, "From", "Version", "030002", "Before", "Version", "080001"},
     {N, 610, 86, f.Alliance, 615, true}, -- Orgrimmar Offensive
+    {O, 609, "From", "Event", "327", "Until", "Event", "327"},
     {N, 609, 86}, -- 50 Coins of Ancestry
+    {O, 608, "From", "Event", "327", "Until", "Event", "327"},
     {N, 608, 86}, -- 25 Coins of Ancestry
+    {O, 607, "From", "Event", "327", "Until", "Event", "327"},
     {N, 607, 86}, -- 10 Coins of Ancestry
+    {O, 606, "From", "Event", "327", "Until", "Event", "327"},
     {N, 606, 86}, -- 5 Coins of Ancestry
+    {O, 605, "From", "Event", "327", "Until", "Event", "327"},
     {N, 605, 86}, -- A Coin of Ancestry
     {N, 604, 86, f.Alliance, 603, true}, -- Wrath of the Alliance
     {N, 603, 86, f.Horde, 604, true}, -- Wrath of the Horde
@@ -9760,28 +10093,49 @@ tasks = {
     {N, 389, 86, nil, nil, true}, -- Gurubashi Arena Master
     {N, 388, 86, f.Alliance, 1006, true}, -- City Defender
     {N, 306, 86}, -- Master Angler of Azeroth
+    {O, 303, "From", "Event", "372", "Until", "Event", "372"},
     {N, 303, 86}, -- "Have Keg, Will Travel"
+    {O, 295, "From", "Event", "372", "Until", "Event", "372"},
     {N, 295, 86}, -- Direbrewfest
+    {O, 293, "From", "Event", "372", "Until", "Event", "372"},
     {N, 293, 86}, -- Disturbing the Peace
+    {O, 292, "From", "Event", "324", "Until", "Event", "324"},
     {N, 292, 86}, -- Sinister Calling
+    {O, 291, "From", "Event", "324", "Until", "Event", "324"},
     {N, 291, 86}, -- Check Your Head
+    {O, 289, "From", "Event", "324", "Until", "Event", "324"},
     {N, 289, 86}, -- The Savior of Hallow's End
+    {O, 288, "From", "Event", "324", "Until", "Event", "324"},
     {N, 288, 86}, -- Out With It
+    {O, 284, "From", "Event", "324", "Until", "Event", "324"},
     {N, 284, 86}, -- A Mask for All Occasions
+    {O, 283, "From", "Event", "324", "Until", "Event", "324"},
     {N, 283, 86}, -- The Masquerade
+    {O, 279, "From", "Event", "141", "Until", "Event", "141"},
     {N, 279, 86}, -- Simply Abominable
+    {O, 277, "From", "Event", "141", "Until", "Event", "141"},
     {N, 277, 86}, -- 'Tis the Season
+    {O, 275, "From", "Event", "201", "Until", "Event", "201"},
     {N, 275, 86}, -- Veteran Nanny
+    {O, 273, "From", "Event", "141", "Until", "Event", "141"},
     {N, 273, 86}, -- On Metzen!
+    {O, 272, "From", "Event", "341", "Until", "Event", "341"},
     {N, 272, 86}, -- Torch Juggler
+    {O, 271, "From", "Event", "341", "Until", "Event", "341"},
     {N, 271, 86}, -- Burning Hot Pole Dance
+    {O, 263, "From", "Event", "341", "Until", "Event", "341"},
     {N, 263, 86}, -- Ice the Frost Lord
     {O, 260, "From", "Version", "030002", "Before", "Version", "100205"},
     {N, 260, 86}, -- Charming
+    {O, 259, "From", "Event", "141", "Until", "Event", "141"},
     {N, 259, 86, f.Horde, 1255}, -- Scrooge
+    {O, 255, "From", "Event", "324", "Until", "Event", "324"},
     {N, 255, 86}, -- Bring Me The Head of... Oh Wait
+    {O, 252, "From", "Event", "141", "Until", "Event", "141"},
     {N, 252, 86, nil, nil, true}, -- With a Little Helper from My Friends
+    {O, 249, "From", "Event", "181", "Until", "Event", "181"},
     {N, 249, 86}, -- Dressed for the Occasion
+    {O, 248, "From", "Event", "181", "Until", "Event", "181"},
     {N, 248, 86}, -- Sunday's Finest
     {N, 247, 86, nil, nil, true}, -- "Make Love, Not Warcraft"
     {N, 246, 86, f.Alliance, 1005, true}, -- Know Thy Enemy

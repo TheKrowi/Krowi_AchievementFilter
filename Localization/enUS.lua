@@ -1038,11 +1038,11 @@ L["Temporarily obtainable"] = true
 L["Show Temporarily obtainable"] = "Show {temporarilyObtainable}"
 L["Show Temporarily obtainable Desc"] = [=[Show / hide {temporarilyObtainable}.
 
-When checked and the achievement is {temporarilyObtainable}, display this in the tooltip.]=]
+When checked and the achievement is {temporarilyObtainable}, this information will be visible in the tooltip.]=]
 L["Show Start Time & End Time"] = "Show {startTime} & {endTime}"
 L["Show Start Time & End Time Desc"] = [=[Show / hide {startTime} & {endTime}.
 
-When checked and the achievement is {temporarilyObtainable}, display the start and end time of the period when the achievement is obtainable.
+When checked and the achievement is {temporarilyObtainable}, the start and end time of the period when the achievement is obtainable will be visible in the tooltip.
 
 This only applies to achievements that are {temporarilyObtainable} due to calendar events.]=]
 L["Next occurrence unknown"] = true
