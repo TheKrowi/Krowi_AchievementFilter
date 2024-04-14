@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-04-13 11-08-30 ]] --
+-- [[ Exported at 2024-04-14 19-25-14 ]] --
 tasks = {
     {N, 19440, 204, f.Horde}, -- Defense Protocol Gamma: Terminated
     {N, 19439, 204, f.Alliance}, -- Defense Protocol Gamma: Terminated
@@ -558,6 +558,7 @@ tasks = {
     {N, 2358, 86}, -- Charger
     {O, 2357, "From", "Version", "010400", "Before", "Version", "040003a"},
     {N, 2357, 86}, -- Dreadsteed of Xoroth
+    {O, 2336, "From", "Event", "374", "Until", "Event", "374"},
     {N, 2336, 86}, -- Insane in the Membrane
     {O, 2316, "From", "PvP Season", 4, "Until", "PvP Season", 4},
     {N, 2316, 86, nil, nil, true}, -- Brutal Nether Drake

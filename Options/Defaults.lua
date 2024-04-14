@@ -115,6 +115,13 @@ addon.Options.Defaults = {
                 MostProgress = {
                     Characters = 1,
                     AlwaysShowRealm = false
+                },
+                TemporarilyObtainable = {
+                    Show = true,
+                    ShowDateTime = true,
+                    DateTimeFormat = {
+                        StartTimeAndEndTime = "%d/%m/%Y %R"
+                    }
                 }
             },
             Criteria = {

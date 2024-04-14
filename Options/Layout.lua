@@ -421,6 +421,41 @@ local function SetAchievementsMouseWheelPanScalar(_, value)
     end
 end
 
+local startTimeAndEndTimeDateTimeFormats, startTimeAndEndTimeDateTimeValues = {}, {};
+
+local function AddFormat(formats, values, format)
+    tinsert(formats, format);
+    tinsert(values, date(format, time()));
+end
+
+local function AddStartTimeAndEndTimeFormat(format)
+    AddFormat(startTimeAndEndTimeDateTimeFormats, startTimeAndEndTimeDateTimeValues, format);
+end
+
+AddStartTimeAndEndTimeFormat(options.Defaults.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime);
+AddStartTimeAndEndTimeFormat(addon.L["%d/%m/%Y %I:%M %p"]);
+AddStartTimeAndEndTimeFormat(addon.L["%m/%d/%Y %R"]);
+AddStartTimeAndEndTimeFormat(addon.L["%m/%d/%Y %I:%M %p"]);
+AddStartTimeAndEndTimeFormat(addon.L["%Y/%m/%d %R"]);
+AddStartTimeAndEndTimeFormat(addon.L["%Y/%m/%d %I:%M %p"]);
+AddStartTimeAndEndTimeFormat(addon.L["%c"]);
+tinsert(startTimeAndEndTimeDateTimeValues, "Custom");
+tinsert(startTimeAndEndTimeDateTimeFormats, addon.L["%m/%d/%Y %R"]);
+
+local function StartTimeAndEndTimePresetsGet()
+    for i, format in next, startTimeAndEndTimeDateTimeFormats do
+        if format == addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime then
+            return i;
+        end
+    end
+    return #startTimeAndEndTimeDateTimeFormats;
+end
+
+local function StartTimeAndEndTimeCustomSet(_, value)
+    if addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime == value then return; end;
+    addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime = value;
+end
+
 local function SetCalendarMouseWheelPanScalar(_, value)
     if addon.Options.db.profile.Calendar.MouseWheelPanScalar == value then return; end
     addon.Options.db.profile.Calendar.MouseWheelPanScalar = value;
@@ -1122,6 +1157,105 @@ options.OptionsTable.args["Layout"] = {
                                     min = 0, max = 100, step = 1,
                                     get = function() return addon.Options.db.profile.Tooltip.Achievements.MostProgress.Characters; end,
                                     set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.MostProgress.Characters = value; end
+                                }
+                            }
+                        }
+                    }
+                },
+                TemporarilyObtainable = {
+                    order = OrderPP(), type = "group",
+                    name = addon.L["Tooltip"] .. " - " .. addon.L["Temporarily obtainable"],
+                    args = {
+                        TemporarilyObtainable = {
+                            order = OrderPP(), type = "group", inline = true,
+                            name = addon.L["Tooltip"] .. " - " .. addon.L["Temporarily obtainable"],
+                            args = {
+                                Show = {
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
+                                    name = addon.L["Show Temporarily obtainable"]:K_ReplaceVars(addon.L["Temporarily obtainable"]),
+                                    desc = addon.L["Show Temporarily obtainable Desc"]:K_ReplaceVars(addon.L["Temporarily obtainable"]):KAF_AddDefaultValueText("Tooltip.Achievements.TemporarilyObtainable.Show"),
+                                    get = function() return addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.Show; end,
+                                    set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.Show = value; end
+                                },
+                                ShowDateTime = {
+                                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
+                                    name = addon.L["Show Start Time & End Time"]:K_ReplaceVars{
+                                        startTime = addon.L["Start Time"],
+                                        endTime = addon.L["End Time"]
+                                    },
+                                    desc = addon.L["Show Start Time & End Time Desc"]:K_ReplaceVars{
+                                        startTime = addon.L["Start Time"],
+                                        endTime = addon.L["End Time"],
+                                        temporarilyObtainable = addon.L["Temporarily obtainable"]
+                                    }:KAF_AddDefaultValueText("Tooltip.Achievements.TemporarilyObtainable.ShowDateTime"),
+                                    get = function() return addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.ShowDateTime; end,
+                                    set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.ShowDateTime = value; end,
+                                    disabled = function() return not addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.Show end
+                                }
+                            }
+                        },
+                        StartTimeAndEndTime = {
+                            order = OrderPP(), type = "group", inline = true,
+                            name = addon.L["Start Time"] .. " & " .. addon.L["End Time"],
+                            args = {
+                                Presets = {
+                                    order = OrderPP(), type = "select", width = AdjustedWidth(1.35),
+                                    name = addon.L["Presets"],
+                                    values = startTimeAndEndTimeDateTimeValues,
+                                    get = StartTimeAndEndTimePresetsGet,
+                                    set = function(_, value)
+                                        local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_Layout", "cmd", "KROWIAF-0.0").args.Achievements.args.TemporarilyObtainable.args.StartTimeAndEndTime.args.Custom;
+                                        custom.set(nil, startTimeAndEndTimeDateTimeFormats[value]);
+                                    end
+                                },
+                                Custom = {
+                                    order = OrderPP(), type = "input", width = AdjustedWidth(1.35),
+                                    name = addon.L["Custom"],
+                                    get = function() return options.Defaults.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime; end,
+                                    set = StartTimeAndEndTimeCustomSet
+                                }
+                            }
+                        },
+                        DateTimeFormattingGuideLine = {
+                            order = OrderPP(), type = "group", inline = true,
+                            name = addon.L["Date and Time formatting guide"],
+                            args = {
+                                DateTimeFormattingGuide = {
+                                    order = OrderPP(), type = "description",
+                                    name = addon.L["Date and Time formatting guide Desc"]:K_ReplaceVars {
+                                        addon.L["Date and Time formatting guide Desc"],
+                                        a = string.format(addon.Util.Colors.Yellow, "%a"),
+                                        A = string.format(addon.Util.Colors.Yellow, "%A"),
+                                        b = string.format(addon.Util.Colors.Yellow, "%b"),
+                                        B = string.format(addon.Util.Colors.Yellow, "%B"),
+                                        c = string.format(addon.Util.Colors.Yellow, "%c"),
+                                        C = string.format(addon.Util.Colors.Yellow, "%C"),
+                                        d = string.format(addon.Util.Colors.Yellow, "%d"),
+                                        D = string.format(addon.Util.Colors.Yellow, "%D"),
+                                        e = string.format(addon.Util.Colors.Yellow, "%e"),
+                                        H = string.format(addon.Util.Colors.Yellow, "%H"),
+                                        I = string.format(addon.Util.Colors.Yellow, "%I"),
+                                        j = string.format(addon.Util.Colors.Yellow, "%j"),
+                                        k = string.format(addon.Util.Colors.Yellow, "%k"),
+                                        l = string.format(addon.Util.Colors.Yellow, "%l"),
+                                        m = string.format(addon.Util.Colors.Yellow, "%m"),
+                                        M = string.format(addon.Util.Colors.Yellow, "%M"),
+                                        p = string.format(addon.Util.Colors.Yellow, "%p"),
+                                        P = string.format(addon.Util.Colors.Yellow, "%P"),
+                                        R = string.format(addon.Util.Colors.Yellow, "%R"),
+                                        s = string.format(addon.Util.Colors.Yellow, "%s"),
+                                        S = string.format(addon.Util.Colors.Yellow, "%S"),
+                                        u = string.format(addon.Util.Colors.Yellow, "%u"),
+                                        U = string.format(addon.Util.Colors.Yellow, "%U"),
+                                        w = string.format(addon.Util.Colors.Yellow, "%w"),
+                                        W = string.format(addon.Util.Colors.Yellow, "%W"),
+                                        x = string.format(addon.Util.Colors.Yellow, "%x"),
+                                        X = string.format(addon.Util.Colors.Yellow, "%X"),
+                                        y = string.format(addon.Util.Colors.Yellow, "%y"),
+                                        Y = string.format(addon.Util.Colors.Yellow, "%Y"),
+                                        z = string.format(addon.Util.Colors.Yellow, "%z"),
+                                        Z = string.format(addon.Util.Colors.Yellow, "%Z")
+                                    }
                                 }
                             }
                         }

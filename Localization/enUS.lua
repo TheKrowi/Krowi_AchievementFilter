@@ -924,7 +924,7 @@ L["tab"] = true
 L["Tabs"] = true
 L["Ta's Pet Collection"] = true
 L["temporarily obtainable"] = true
-L["Temporarily Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startThe}{startDetail}{endText}{endThe}{endDetail}{startDateFrom}{startDate}{endDateUntil}{endDate}"
+L["Temporarily Obtainable Text"] = "{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}"
 L["Thaldraszus"] = true
 L["Thaldraszus: Next"] = true
 L["The Azure Span Slalom"] = true
@@ -1032,3 +1032,17 @@ L["Zaqali Ruin Investigation: Soon"] = true
 L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
 L["the event name with run time"] = "the {eventName} from {startDate} until {endDate}";
+L["Requires"] = true
+L["Next from startDate until endDate"] = "Next from {startDate} until {endDate}"
+L["Temporarily obtainable"] = true
+L["Show Temporarily obtainable"] = "Show {temporarilyObtainable}"
+L["Show Temporarily obtainable Desc"] = [=[Show / hide {temporarilyObtainable}.
+
+When checked and the achievement is {temporarilyObtainable}, display this in the tooltip.]=]
+L["Show Start Time & End Time"] = "Show {startTime} & {endTime}"
+L["Show Start Time & End Time Desc"] = [=[Show / hide {startTime} & {endTime}.
+
+When checked and the achievement is {temporarilyObtainable}, display the start and end time of the period when the achievement is obtainable.
+
+This only applies to achievements that are {temporarilyObtainable} due to calendar events.]=]
+L["Next occurrence unknown"] = true

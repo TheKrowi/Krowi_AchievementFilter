@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-04-13 11-08-21 ]] --
+-- [[ Exported at 2024-04-14 19-24-51 ]] --
 tasks = {
     {N, 40223, 208}, -- Timerunner
     {N, 20593, 208}, -- Time Trial
@@ -228,18 +228,29 @@ tasks = {
     {N, 19724, 206}, -- Hearthstone Card Collection
     {O, 19723, "From", "Event", "1429", "Until", "Event", "1429"},
     {N, 19723, 206}, -- Northrend Racing Completionist: Gold
+    {O, 19722, "From", "Event", "1429", "Until", "Event", "1429"},
     {N, 19722, 206}, -- Northrend Racing Completionist: Silver
+    {O, 19721, "From", "Event", "1429", "Until", "Event", "1429"},
     {N, 19721, 206}, -- Northrend Racing Completionist
     {N, 19719, 206}, -- Reclamation of Gilneas
     {N, 19685, 206}, -- Tenured Archivist
+    {O, 19684, "From", "Event", "1429", "Until", "Event", "1429"},
     {N, 19684, 206}, -- Northrend Reverse: Gold
+    {O, 19683, "From", "Event", "1429", "Until", "Event", "1429"},
     {N, 19683, 206}, -- Northrend Reverse: Silver
+    {O, 19682, "From", "Event", "1429", "Until", "Event", "1429"},
     {N, 19682, 206}, -- Northrend Reverse: Bronze
+    {O, 19681, "From", "Event", "1429", "Until", "Event", "1429"},
     {N, 19681, 206}, -- Northrend Advanced: Gold
+    {O, 19679, "From", "Event", "1429", "Until", "Event", "1429"},
     {N, 19679, 206}, -- Northrend Advanced: Silver
+    {O, 19677, "From", "Event", "1429", "Until", "Event", "1429"},
     {N, 19677, 206}, -- Northrend Advanced: Bronze
+    {O, 19676, "From", "Event", "1429", "Until", "Event", "1429"},
     {N, 19676, 206}, -- Northrend: Gold
+    {O, 19675, "From", "Event", "1429", "Until", "Event", "1429"},
     {N, 19675, 206}, -- Northrend: Silver
+    {O, 19674, "From", "Event", "1429", "Until", "Event", "1429"},
     {N, 19674, 206}, -- Northrend: Bronze
     {O, 19576, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
     {N, 19576, 207}, -- Mythic: Awakening the Dragonflight Raids
@@ -519,17 +530,29 @@ tasks = {
     {N, 19111, 205}, -- Emerald Dream: Gold
     {N, 19110, 205}, -- Emerald Dream: Silver
     {N, 19109, 205}, -- Emerald Dream: Bronze
+    {O, 19107, "From", "Event", "1407", "Until", "Event", "1407"},
     {N, 19107, 202}, -- Outland Racing Completionist: Gold
+    {O, 19106, "From", "Event", "1407", "Until", "Event", "1407"},
     {N, 19106, 202}, -- Outland Racing Completionist: Silver
+    {O, 19105, "From", "Event", "1407", "Until", "Event", "1407"},
     {N, 19105, 202}, -- Outland Racing Completionist
+    {O, 19104, "From", "Event", "1407", "Until", "Event", "1407"},
     {N, 19104, 202}, -- Outland Reverse: Gold
+    {O, 19103, "From", "Event", "1407", "Until", "Event", "1407"},
     {N, 19103, 202}, -- Outland Reverse: Silver
+    {O, 19102, "From", "Event", "1407", "Until", "Event", "1407"},
     {N, 19102, 202}, -- Outland Reverse: Bronze
+    {O, 19101, "From", "Event", "1407", "Until", "Event", "1407"},
     {N, 19101, 202}, -- Outland Advanced: Gold
+    {O, 19100, "From", "Event", "1407", "Until", "Event", "1407"},
     {N, 19100, 202}, -- Outland Advanced: Silver
+    {O, 19099, "From", "Event", "1407", "Until", "Event", "1407"},
     {N, 19099, 202}, -- Outland Advanced: Bronze
+    {O, 19098, "From", "Event", "1407", "Until", "Event", "1407"},
     {N, 19098, 202}, -- Outland: Gold
+    {O, 19097, "From", "Event", "1407", "Until", "Event", "1407"},
     {N, 19097, 202}, -- Outland: Silver
+    {O, 19092, "From", "Event", "1407", "Until", "Event", "1407"},
     {N, 19092, 202}, -- Outland: Bronze
     {O, 19091, "From", "PvP Season", 36, "Until", "PvP Season", 36},
     {N, 19091, 205, nil, nil, true}, -- Gladiator: Dragonflight Season 3
@@ -576,9 +599,12 @@ tasks = {
     {N, 18960, 202}, -- Kickin' With the Wick
     {N, 18959, 202}, -- "Don't Lose Your Head, Man"
     {N, 18958, 205}, -- Of the Tyr's Guard
+    {O, 18942, "From", "Event", "1400", "Until", "Event", "1400"},
     {N, 18942, 202}, -- Eastern Kingdoms Racing Completionist: Gold
     {N, 18941, 202}, -- Dazzling Dragons
+    {O, 18940, "From", "Event", "1400", "Until", "Event", "1400"},
     {N, 18940, 202}, -- Eastern Kingdoms Racing Completionist: Silver
+    {O, 18939, "From", "Event", "1400", "Until", "Event", "1400"},
     {N, 18939, 202}, -- Eastern Kingdoms Racing Completionist
     {N, 18934, 202}, -- Excessive Experimentation
     {N, 18931, 202}, -- Storm Rider: Gold
@@ -729,6 +755,7 @@ tasks = {
     {N, 18705, 201}, -- Defender of the Timeways
     {N, 18704, 201}, -- Dawn of the Infinite: Murozond's Rise
     {N, 18703, 201}, -- Dawn of the Infinite: Galakrond's Fall
+    {O, 18702, "From", "Event", "1397", "Until", "Event", "1397"},
     {N, 18702, 202}, -- WoW's 19th Anniversary
     {N, 18646, 201}, -- Whodunnit?
     {N, 18645, 201}, -- Tools of the Trade
@@ -747,14 +774,23 @@ tasks = {
     {N, 18612, 201}, -- A Slime in Need
     {N, 18589, 201}, -- Crunch Time
     {N, 18579, 202}, -- A Round on the House
+    {O, 18574, "From", "Event", "1400", "Until", "Event", "1400"},
     {N, 18574, 201}, -- Eastern Kingdoms Reverse: Gold
+    {O, 18573, "From", "Event", "1400", "Until", "Event", "1400"},
     {N, 18573, 201}, -- Eastern Kingdoms Reverse: Silver
+    {O, 18572, "From", "Event", "1400", "Until", "Event", "1400"},
     {N, 18572, 201}, -- Eastern Kingdoms Reverse: Bronze
+    {O, 18571, "From", "Event", "1400", "Until", "Event", "1400"},
     {N, 18571, 201}, -- Eastern Kingdoms Advanced: Gold
+    {O, 18570, "From", "Event", "1400", "Until", "Event", "1400"},
     {N, 18570, 201}, -- Eastern Kingdoms Advanced: Silver
+    {O, 18569, "From", "Event", "1400", "Until", "Event", "1400"},
     {N, 18569, 201}, -- Eastern Kingdoms Advanced: Bronze
+    {O, 18568, "From", "Event", "1400", "Until", "Event", "1400"},
     {N, 18568, 201}, -- Eastern Kingdoms: Gold
+    {O, 18567, "From", "Event", "1400", "Until", "Event", "1400"},
     {N, 18567, 201}, -- Eastern Kingdoms: Silver
+    {O, 18566, "From", "Event", "1400", "Until", "Event", "1400"},
     {N, 18566, 201}, -- Eastern Kingdoms: Bronze
     {N, 18559, 201}, -- "Many Boxes, Many Rockses"
     {N, 18558, 201}, -- Leaders of Scholomance
@@ -995,17 +1031,29 @@ tasks = {
     {N, 17736, 200}, -- The Gift of Cheese
     {N, 17735, 200}, -- We Didn't Start the Fire
     {N, 17734, 200}, -- Active Listening Skills
+    {O, 17723, "From", "Event", "1395", "Until", "Event", "1395"},
     {N, 17723, 201}, -- Kalimdor Racing Completionist: Gold
+    {O, 17722, "From", "Event", "1395", "Until", "Event", "1395"},
     {N, 17722, 201}, -- Kalimdor Racing Completionist: Silver
+    {O, 17721, "From", "Event", "1395", "Until", "Event", "1395"},
     {N, 17721, 201}, -- Kalimdor Racing Completionist
+    {O, 17720, "From", "Event", "1395", "Until", "Event", "1395"},
     {N, 17720, 201}, -- Kalimdor Reverse: Gold
+    {O, 17719, "From", "Event", "1395", "Until", "Event", "1395"},
     {N, 17719, 201}, -- Kalimdor Reverse: Silver
+    {O, 17718, "From", "Event", "1395", "Until", "Event", "1395"},
     {N, 17718, 201}, -- Kalimdor Reverse: Bronze
+    {O, 17717, "From", "Event", "1395", "Until", "Event", "1395"},
     {N, 17717, 201}, -- Kalimdor Advanced: Gold
+    {O, 17716, "From", "Event", "1395", "Until", "Event", "1395"},
     {N, 17716, 201}, -- Kalimdor Advanced: Silver
+    {O, 17715, "From", "Event", "1395", "Until", "Event", "1395"},
     {N, 17715, 201}, -- Kalimdor Advanced: Bronze
+    {O, 17714, "From", "Event", "1395", "Until", "Event", "1395"},
     {N, 17714, 201}, -- Kalimdor: Gold
+    {O, 17713, "From", "Event", "1395", "Until", "Event", "1395"},
     {N, 17713, 201}, -- Kalimdor: Silver
+    {O, 17712, "From", "Event", "1395", "Until", "Event", "1395"},
     {N, 17712, 201}, -- Kalimdor: Bronze
     {N, 17567, 200}, -- Ancient Stones of Zaralek
     {N, 17564, 200}, -- Ancient Stones of Thaldraszus
@@ -1982,17 +2030,26 @@ tasks = {
     {N, 15232, 190, nil, nil, true}, -- Combatant II: Shadowlands Season 2
     {N, 15229, 191}, -- Traversing the Spheres
     {N, 15224, 191}, -- Explore Zereth Mortis
+    {O, 15223, "From", "Event", "374", "Until", "Event", "374"},
     {N, 15223, 191}, -- Feeling It
+    {O, 15222, "From", "Event", "374", "Until", "Event", "374"},
     {N, 15222, 191}, -- You Got the Beat
+    {O, 15221, "From", "Event", "374", "Until", "Event", "374"},
     {N, 15221, 191}, -- Dancing Machine
     {N, 15220, 191}, -- The Enlightened
-    {O, 15218 },
+    {O, 15218, "From", "Event", "1262", "Until", "Event", "1262"},
     {N, 15218, 191}, -- WoW's 18th Anniversary
+    {O, 15217, "From", "Event", "374", "Until", "Event", "374"},
     {N, 15217, 191}, -- Maniac on the Dance Floor
+    {O, 15216, "From", "Event", "374", "Until", "Event", "374"},
     {N, 15216, 191}, -- Make You Sweat
+    {O, 15215, "From", "Event", "374", "Until", "Event", "374"},
     {N, 15215, 191}, -- Can't Stop the Feeling
+    {O, 15214, "From", "Event", "374", "Until", "Event", "374"},
     {N, 15214, 191}, -- What a Feeling
+    {O, 15213, "From", "Event", "374", "Until", "Event", "374"},
     {N, 15213, 191}, -- Don't Stop Dancing
+    {O, 15212, "From", "Event", "374", "Until", "Event", "374"},
     {N, 15212, 191}, -- First Dance
     {N, 15211, 191}, -- Completing the Code
     {N, 15191, 189}, -- "Rae'shalare, Death's Whisper"
@@ -3896,9 +3953,13 @@ tasks = {
     {N, 11930, 176}, -- Worm-monger
     {N, 11929, 175}, -- Heroic: Return to Karazhan
     {N, 11928, 176}, -- Portal Combat
+    {O, 11921, "From", "Event", "374", "Until", "Event", "374"},
     {N, 11921, 175}, -- Mosh Pit
+    {O, 11920, "From", "Event", "374", "Until", "Event", "374"},
     {N, 11920, 175}, -- Perfect Performance
+    {O, 11919, "From", "Event", "374", "Until", "Event", "374"},
     {N, 11919, 175}, -- Taking this Show on the Road
+    {O, 11918, "From", "Event", "374", "Until", "Event", "374"},
     {N, 11918, 175}, -- "Hey, You're a Rockstar!"
     {N, 11915, 176}, -- Don't Sweat the Technique
     {N, 11913, 176}, -- Don't Play With That In The House
@@ -5950,6 +6011,7 @@ tasks = {
     {N, 9995, 165, f.Alliance, 9998, true}, -- Soldier of the Alliance: Warlords Season 1
     {N, 9989, 165}, -- Non-Lethal Enforcer
     {N, 9988, 165}, -- Pro Toss
+    {O, 9983, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9983, 165}, -- That's Whack!
     {N, 9979, 165}, -- Get In My Belly!
     {N, 9972, 165}, -- A Race Against Slime
@@ -5969,7 +6031,9 @@ tasks = {
     {N, 9901, 163, f.Horde, 9928}, -- Don't Call Me Junior
     {N, 9900, 163}, -- Exploration Mission Master
     {N, 9897, 163, f.Horde, 9828}, -- Ten Hit Tunes
+    {O, 9894, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9894, 163}, -- Triumphant Turtle Tossing
+    {O, 9885, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9885, 163}, -- Ace Tonk Commander
     {N, 9858, 163}, -- Master and Commander
     {N, 9838, 163}, -- "What A Strange, Interdimensional Trip It's Been"
@@ -5980,41 +6044,76 @@ tasks = {
     {N, 9826, 163}, -- Platinum Defender
     {N, 9825, 163, f.Alliance, 9836}, -- Master Relic Hunter
     {N, 9824, 163}, -- Raiding with Leashes III: Drinkin' From the Sunwell
+    {O, 9819, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9819, 163}, -- Darkmoon Like the Wind
+    {O, 9817, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9817, 163}, -- Big Powermonger: Gold
+    {O, 9815, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9815, 163}, -- Big Powermonger: Silver
+    {O, 9813, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9813, 163}, -- Big Powermonger: Bronze
+    {O, 9812, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9812, 163}, -- Goal-Oriented
+    {O, 9811, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9811, 163}, -- Big Wanderluster: Gold
+    {O, 9809, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9809, 163}, -- Big Wanderluster: Silver
+    {O, 9807, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9807, 163}, -- Big Wanderluster: Bronze
+    {O, 9806, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9806, 163}, -- Vagabond
+    {O, 9805, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9805, 163}, -- Big Rocketeer: Gold
+    {O, 9803, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9803, 163}, -- Big Rocketeer: Silver
+    {O, 9801, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9801, 163}, -- Big Rocketeer: Bronze
+    {O, 9800, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9800, 163}, -- Rocket Man
+    {O, 9799, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9799, 163}, -- Big Race Roadhog
+    {O, 9797, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9797, 163}, -- Big Race Leadfoot
+    {O, 9795, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9795, 163}, -- Big Race Jockey
+    {O, 9794, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9794, 163}, -- Big Race Novice
+    {O, 9793, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9793, 163}, -- Big Race Enthusiast
+    {O, 9792, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9792, 163}, -- Wanderluster: Gold
+    {O, 9790, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9790, 163}, -- Wanderluster: Silver
+    {O, 9787, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9787, 163}, -- Wanderluster: Bronze
+    {O, 9786, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9786, 163}, -- Wayfarer
+    {O, 9785, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9785, 163}, -- Powermonger: Gold
+    {O, 9783, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9783, 163}, -- Powermonger: Silver
+    {O, 9781, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9781, 163}, -- Powermonger: Bronze
+    {O, 9780, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9780, 163}, -- Go-Getter
+    {O, 9770, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9770, 163}, -- Blast Off!
+    {O, 9769, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9769, 163}, -- Rocketeer: Bronze
+    {O, 9766, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9766, 163}, -- Rocketeer: Silver
+    {O, 9764, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9764, 163}, -- Rocketeer: Gold
     {N, 9763, 163}, -- Grommloc
+    {O, 9761, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9761, 163}, -- Darkmoon Racer Roadhog
+    {O, 9760, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9760, 163}, -- Darkmoon Racer Leadfoot
+    {O, 9759, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9759, 163}, -- Darkmoon Racer Jockey
+    {O, 9756, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9756, 163}, -- Darkmoon Racer Novice
+    {O, 9755, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9755, 163}, -- Darkmoon Race Enthusiast
     {N, 9738, 159, f.Alliance, 9508, true}, -- Warlord of Draenor
     {O, 9729 },
@@ -6276,8 +6375,11 @@ tasks = {
     {N, 9257, 159, f.Horde, 9256, true}, -- Rescue Operation
     {N, 9256, 159, f.Alliance, 9257, true}, -- Rescue Operation
     {N, 9255, 159, f.Horde, 9631}, -- Mythic Draenor Raider
+    {O, 9252, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9252, 159}, -- Brood of Alysrazor
+    {O, 9251, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9251, 159}, -- Ringmaster
+    {O, 9250, "From", "Event", "374", "Until", "Event", "374"},
     {N, 9250, 159}, -- Flying High
     {N, 9248, 159, f.Horde, 9630, true}, -- Defender of Draenor
     {N, 9246, 159}, -- Master Draenor Crafter
@@ -6580,7 +6682,7 @@ tasks = {
     {N, 8845, 159, f.Alliance, 8671}, -- As I Walk Through the Valley of the Shadow of Moon
     {N, 8844, 159}, -- Heroic: Skyreach
     {N, 8843, 159}, -- Skyreach
-    {O, 8820 },
+    {O, 8820, "From", "Event", "514", "Until", "Event", "514"},
     {N, 8820, 159}, -- WoW's 10th Anniversary
     {O, 8812, "From", "Version", "050400", "Before", "Version", "060002"},
     {N, 8812, 159}, -- You're Really Doing It Wrong (Level 90)
@@ -7593,6 +7695,7 @@ tasks = {
     {N, 6349, 124}, -- Mystically Epic
     {O, 6348, "From", "Version", "050005", "Before", "Version", "080001"},
     {N, 6348, 124}, -- Mystically Superior
+    {O, 6332, "From", "Event", "374", "Until", "Event", "374"},
     {N, 6332, 124}, -- That Rabbit's Dynamite!
     {O, 6322, "From", "PvP Season", 10, "Until", "PvP Season", 10},
     {N, 6322, 121, nil, nil, true}, -- Ruthless Gladiator's Twilight Drake
@@ -7643,19 +7746,33 @@ tasks = {
     {N, 6060, 119}, -- MiniZep Controller
     {N, 6059, 119}, -- Red Rider Air Rifle
     {N, 6045, 118}, -- Occu'thar
+    {O, 6032, "From", "Event", "374", "Until", "Event", "374"},
     {N, 6032, 119}, -- Faire Favors
+    {O, 6031, "From", "Event", "374", "Until", "Event", "374"},
     {N, 6031, 119, f.Horde, 6030}, -- Taking the Show on the Road
+    {O, 6030, "From", "Event", "374", "Until", "Event", "374"},
     {N, 6030, 119, f.Alliance, 6031}, -- Taking the Show on the Road
+    {O, 6029, "From", "Event", "374", "Until", "Event", "374"},
     {N, 6029, 119}, -- Darkmoon Despoiler
+    {O, 6028, "From", "Event", "374", "Until", "Event", "374"},
     {N, 6028, 119}, -- Darkmoon Defender
+    {O, 6027, "From", "Event", "374", "Until", "Event", "374"},
     {N, 6027, 119}, -- Darkmoon Dungeoneer
+    {O, 6026, "From", "Event", "374", "Until", "Event", "374"},
     {N, 6026, 119}, -- Fairegoer's Feast
+    {O, 6025, "From", "Event", "374", "Until", "Event", "374"},
     {N, 6025, 119}, -- I Was Promised a Pony
+    {O, 6024, "From", "Event", "374", "Until", "Event", "374"},
     {N, 6024, 119}, -- Darkmoon Dominator
+    {O, 6023, "From", "Event", "374", "Until", "Event", "374"},
     {N, 6023, 119}, -- Darkmoon Duelist
+    {O, 6022, "From", "Event", "374", "Until", "Event", "374"},
     {N, 6022, 119}, -- Quick Shot
+    {O, 6021, "From", "Event", "374", "Until", "Event", "374"},
     {N, 6021, 119}, -- Blastenheimer Bullseye
+    {O, 6020, "From", "Event", "374", "Until", "Event", "374"},
     {N, 6020, 119}, -- Step Right Up
+    {O, 6019, "From", "Event", "374", "Until", "Event", "374"},
     {N, 6019, 119}, -- "Come One, Come All!"
     {N, 6014, 119, f.Horde, 6013}, -- Extinguishing the Cataclysm
     {N, 6013, 119, f.Alliance, 6014}, -- Extinguishing the Cataclysm
@@ -8718,6 +8835,7 @@ tasks = {
     {N, 2358, 86}, -- Charger
     {O, 2357, "From", "Version", "010400", "Before", "Version", "040003a"},
     {N, 2357, 86}, -- Dreadsteed of Xoroth
+    {O, 2336, "From", "Event", "374", "Until", "Event", "374"},
     {N, 2336, 86}, -- Insane in the Membrane
     {O, 2316, "From", "PvP Season", 4, "Until", "PvP Season", 4},
     {N, 2316, 86, nil, nil, true}, -- Brutal Nether Drake

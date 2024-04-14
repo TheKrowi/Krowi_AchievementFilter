@@ -137,8 +137,8 @@ function eventData.GetActiveEvents(refresh)
     return activeEvents;
 end
 
-local function GetCalendarDayEvents(offsetMonths, monthDay, index)
-    local event = C_Calendar.GetDayEvent(offsetMonths, monthDay, index);
+local function GetCalendarDayEvents(monthDay, index)
+    local event = C_Calendar.GetDayEvent(0, monthDay, index);
     if KrowiAF_SavedData.CalendarEventsCache[event.eventID] then
         return;
     end
@@ -151,13 +151,12 @@ local function GetCalendarDayEvents(offsetMonths, monthDay, index)
     }
 end
 
-local function GetCalendarEvents(offsetMonths)
-    for monthDay = 1, 31 do
-        local numDayEvents = C_Calendar.GetNumDayEvents(offsetMonths, monthDay);
-        if numDayEvents > 0 then
-            for index = 1, numDayEvents do
-                GetCalendarDayEvents(offsetMonths, monthDay, index);
-            end
+local function GetCalendarEvents(startDay)
+    startDay = startDay or 1;
+    for monthDay = startDay, 31 do
+        local numDayEvents = C_Calendar.GetNumDayEvents(0, monthDay);
+        for index = 1, numDayEvents do
+            GetCalendarDayEvents(monthDay, index);
         end
     end
 end
@@ -168,11 +167,16 @@ local function GetCalendarEventsToYearToDate()
     local currentDate = C_DateAndTime.GetCurrentCalendarTime();
     C_Calendar.SetAbsMonth(currentDate.month, currentDate.year);
 
-    for offsetMonths = 0, 11 do
-        GetCalendarEvents(offsetMonths);
+    local startDay = currentDate.monthDay;
+    for _ = 1, 13 do
+        GetCalendarEvents(startDay);
+        C_Calendar.SetMonth(1);
+        startDay = nil;
     end
+
+    C_Calendar.SetAbsMonth(currentDate.month, currentDate.year);
 end
 
-function eventData:BuildCalendarEventsCache()
+function eventData.BuildCalendarEventsCache()
     GetCalendarEventsToYearToDate();
 end

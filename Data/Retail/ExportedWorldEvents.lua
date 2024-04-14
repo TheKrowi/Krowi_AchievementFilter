@@ -24,7 +24,7 @@ local a = addon; -- Saves some characters and file size as we use this a lot in 
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-04-11 21-43-35 ]] --
+-- [[ Exported at 2024-04-14 19-16-34 ]] --
 tasks = {
     {N, 5175, 948, 1408998, a.L["Assault on Azsuna"], nil, 619}, -- Assault on Azsuna
     {N, 5177, 948, 1409000, a.L["Assault on Highmountain"], nil, 619}, -- Assault on Highmountain

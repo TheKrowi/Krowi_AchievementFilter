@@ -186,7 +186,7 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         end
     end
 
-    local isWillBeWas, neverOnceTempObt, startText, startThe, startDetail, startDateFrom, startDate, endText, endThe, endDetail, endDateUntil, endDate;
+    local isWillBeWas, neverOnceTempObt, startText, startDetail, endText, endDetail;
     local function FillText()
         local subString = string.sub(addon.L["Temporarily Obtainable Text"], 2, -2);
         local fields = addon.Util.StringSplitTable("}{", subString);
@@ -198,24 +198,12 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
                 text = text .. " " .. neverOnceTempObt;
             elseif fields[i] == "startText" and startText then
                 text = text .. " " .. startText;
-            elseif fields[i] == "startThe" and startThe then
-                text = text .. " " .. addon.L["the"];
             elseif fields[i] == "startDetail" and startDetail then
                 text = text .. " " .. startDetail;
             elseif fields[i] == "endText" and endText then
                 text = text .. " " .. endText;
-            elseif fields[i] == "endThe" and endThe then
-                text = text .. " " .. addon.L["the"];
             elseif fields[i] == "endDetail" and endDetail then
                 text = text .. " " .. endDetail;
-            elseif fields[i] == "startDateFrom" and startDateFrom then
-                text = text .. " " .. addon.L["from"];
-            elseif fields[i] == "startDate" and startDate then
-                text = text .. " " .. tostring(date(addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime, startDate));
-            elseif fields[i] == "endDateUntil" and endDateUntil then
-                text = text .. " " .. addon.L["until"];
-            elseif fields[i] == "endDate" and endDate then
-                text = text .. " " .. tostring(date(addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime, endDate));
             end
         end
         return text .. ".";
@@ -257,20 +245,22 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         if achievement.TemporaryObtainable.Start.Function == "Event" then
             local eventId = achievement.TemporaryObtainable.Start.Value;
             local event, calendarEvent = FindCachedCalendarEvent(eventId);
+            local startDate, endDate;
             if event then
-                if event.StartTime then
-                    startDateFrom = true;
-                    startDate = event.StartTime;
-                end
-                if event.EndTime then
-                    endDateUntil = true;
-                    endDate = event.EndTime;
-                end
+                startDate = event.StartTime;
+                endDate = event.EndTime;
             end
             if calendarEvent then
-                startThe = true;
-                startDetail = calendarEvent.Name;
+                startDetail = addon.L["Requires"] .. " " .. calendarEvent.Name;
             end
+            local occurrence = addon.L["Next occurrence unknown"];
+            if startDate and endDate then
+                occurrence = addon.L["Next from startDate until endDate"]:K_ReplaceVars{
+                    startDate = tostring(date(addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime, startDate)),
+                    endDate = tostring(date(addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime, endDate))
+                };
+            end
+            return startDetail, color, occurrence;
         end
 
         if startText == addon.L["during"] then

@@ -1,9 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 70.0 - 2024-04-11
+## 70.0 - 2024-04-14
 ### Added
 - Pandaria: Remix achievements (157)
+- Achievements that require a calendar event to be active now show this in their tooltip
 
 ### Changed
 - Moved Many Boxes, Many Rockses from Dragonflight - Zones - Dragon Isles - Exploration to Dragonflight - Zones - The Waking Shores - Exploration
