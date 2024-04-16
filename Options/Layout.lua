@@ -1211,7 +1211,7 @@ options.OptionsTable.args["Layout"] = {
                                 Custom = {
                                     order = OrderPP(), type = "input", width = AdjustedWidth(1.35),
                                     name = addon.L["Custom"],
-                                    get = function() return options.Defaults.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime; end,
+                                    get = function() return addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime; end,
                                     set = StartTimeAndEndTimeCustomSet
                                 }
                             }
