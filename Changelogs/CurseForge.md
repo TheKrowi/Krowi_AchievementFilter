@@ -2,6 +2,7 @@
 <ul>
 <li>Pandaria: Remix achievements (157)</li>
 <li>Achievements that require a calendar event to be active now show this in their tooltip</li>
+<li>Taintless library to hopefully eliminate some occurrences of "Interface action failed because of an AddOn" and "AddOn has been blocked from an action only available to the Blizzard UI" error messages</li>
 </ul>
 <p><h3>Changed</h3></p>
 <ul>
