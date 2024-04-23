@@ -1,5 +1,6 @@
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
+KrowiAF = {};
 
 local function SelectAchievement(achievement)
 	local scrollBox = KrowiAF_AchievementsFrame.ScrollBox;
@@ -418,6 +419,49 @@ do --[[ KrowiAF_RegisterEventOptions ]]
 					addon.Options.db.profile.EventReminders[eventType .. "Events"][eventId] = false;
 				end
 			end
+		});
+	end
+end
+
+do --[[ Tooltip Data ]]
+	function KrowiAF.GetTooltipDataTypes()
+		return addon.Objects.TooltipDataType;
+	end
+
+	function KrowiAF.GetTooltipDataTexts()
+		local t = {};
+		t[2] = addon.L["Already /loved for achievement"];
+		t[6] = addon.L["Already cooked for achievement"];
+		t[8] = addon.L["Already eaten for achievement"];
+		t[4] = addon.L["Already killed for achievement"];
+		t[10] = addon.L["Already drank for achievement"];
+		t[16] = addon.L["Already completed for achievement"];
+		t[14] = addon.L["Already petted for achievement"];
+		t[12] = addon.L["Already defeated for achievement"];
+		t[1] = addon.L["Needs /love for achievement"];
+		t[5] = addon.L["Needs to be cooked for achievement"];
+		t[7] = addon.L["Needs to be eaten for achievement"];
+		t[3] = addon.L["Needs to be killed for achievement"];
+		t[9] = addon.L["Needs to be drunk for achievement"];
+		t[15] = addon.L["Needs to be completed for achievement"];
+		t[13] = addon.L["Needs to be petted for achievement"];
+		t[11] = addon.L["Needs to be defeated for achievement"];
+		return t;
+	end
+
+	function KrowiAF.GetGetFactions()
+		return addon.Objects.Faction;
+	end
+
+	function KrowiAF.AddTooltipData(achievementId, criteriaId, tooltipDataType, objectId, notCompletedText, completedText, faction)
+		addon.Data.TooltipData[objectId] = addon.Data.TooltipData[objectId] or {TooltipLines = {}};
+		tinsert(addon.Data.TooltipData[objectId].TooltipLines, {
+			AchievementId = achievementId,
+			Type = tooltipDataType,
+			CriteriaIndex = criteriaId,
+			NotCompletedText = notCompletedText,
+			CompletedText = completedText,
+			Faction = faction
 		});
 	end
 end
