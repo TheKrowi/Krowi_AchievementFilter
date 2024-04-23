@@ -16,10 +16,17 @@ local function AddD(d, id, type, achId, criIdx, nComplTxt, complTxt, faction, de
     tinsert(d[id].TooltipLines, {AchievementId = achId, Type = type, CriteriaIndex = criIdx, NotCompletedText = nComplTxt, CompletedText = complTxt, Faction = faction, Decorator = decorator});
 end
 
+KrowiAF_AddTooltipData = function(id, type, achId, criIdx, nComplTxt, complTxt, faction, decorator)
+    AddD(KrowiAF_TooltipData, id, type, achId, criIdx, nComplTxt, complTxt, faction, decorator);
+end
+KrowiAF_AddTooltipDataType = tdt;
+
 function exportedTooltipData.Load(d)
     for i, _ in next, d do
         d[i] = nil;
     end
+
+    KrowiAF_TooltipData = d;
 
     local t = {};
     t[2] = addon.L["Already /loved for achievement"];
@@ -38,6 +45,8 @@ function exportedTooltipData.Load(d)
     t[15] = addon.L["Needs to be completed for achievement"];
     t[13] = addon.L["Needs to be petted for achievement"];
     t[11] = addon.L["Needs to be defeated for achievement"];
+
+    KrowiAF_TooltipDataTexts = t;
 
     AddD(d, 25677, tdt.Unit, 1206, 1, t[1], t[2]); -- "Borean Frog"
     AddD(d, 6368, tdt.Unit, 1206, 2, t[1], t[2]); -- "Cat"
