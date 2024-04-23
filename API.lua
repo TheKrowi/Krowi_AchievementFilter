@@ -453,15 +453,25 @@ do --[[ Tooltip Data ]]
 		return addon.Objects.Faction;
 	end
 
-	function KrowiAF.AddTooltipData(achievementId, criteriaId, tooltipDataType, objectId, notCompletedText, completedText, faction)
+	function KrowiAF.AddTooltipData(achievementId, criteriaIndex, tooltipDataType, objectId, notCompletedText, completedText, faction)
 		addon.Data.TooltipData[objectId] = addon.Data.TooltipData[objectId] or {TooltipLines = {}};
 		tinsert(addon.Data.TooltipData[objectId].TooltipLines, {
 			AchievementId = achievementId,
 			Type = tooltipDataType,
-			CriteriaIndex = criteriaId,
+			CriteriaIndex = criteriaIndex,
 			NotCompletedText = notCompletedText,
 			CompletedText = completedText,
 			Faction = faction
 		});
+	end
+
+	KrowiAF.AdditionalTooltipData = {};
+
+	function KrowiAF.RegisterTooltipDataTasks()
+		local name = "Additional Tooltip Data: ";
+		for k, v in next, KrowiAF.AdditionalTooltipData do
+			addon.Data.InjectLoadingDebug(v, name .. k);
+			tinsert(addon.Data.TasksGroups, 1, v);
+		end
 	end
 end

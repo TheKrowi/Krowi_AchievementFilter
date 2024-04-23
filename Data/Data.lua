@@ -84,6 +84,9 @@ function data:LoadOnPlayerLogin()
         self.ExportedPetBattles.RegisterTasks(self.RightClickMenuExtras);
     end
     self.ExportedUiMaps.RegisterTasks(self.Maps, self.Achievements);
+
+    KrowiAF.RegisterTooltipDataTasks();
+
     local overallStart = debugprofilestop();
     addon.StartTasksGroups(
         self.TasksGroups,
