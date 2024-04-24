@@ -55,7 +55,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-04-12 08-21-31 ]] --
+-- [[ Exported at 2024-04-24 21-51-24 ]] --
 tasks = {
     {F, 1557, "UncategorizedCategories"},
     {C, 971, 1557},
@@ -3228,6 +3228,9 @@ tasks = {
     {A, 1544, 19322}, -- Meaner Pastures
     {C, 1543, 1544},
     {N, 1544, a.L["Glory"]}, -- Glory
+    {A, 1543, 19572}, -- Mythic: Awakened Flames
+    {A, 1543, 19571}, -- Heroic: Awakened Flames
+    {A, 1543, 19570}, -- Awakened Flames
     {A, 1543, 19420}, -- Dragonflight Season 3 Hero
     {A, 1543, 19396}, -- Dragonflight Season 3 Master
     {A, 1543, 19450}, -- Fyr'alath the Dreamrender
@@ -3265,6 +3268,9 @@ tasks = {
     {A, 1421, 18229}, -- Cosplate
     {C, 1420, 1421},
     {N, 1421, a.L["Glory"]}, -- Glory
+    {A, 1420, 19569}, -- Mythic: Awakened Shadows
+    {A, 1420, 19568}, -- Heroic: Awakened Shadows
+    {A, 1420, 19567}, -- Awakened Shadows
     {A, 1420, 18380}, -- Dragonflight Season 2 Hero
     {A, 1420, 18027}, -- Dragonflight Season 2 Master
     {A, 1420, 18256}, -- "Nasz'uro, the Unbound Legacy"
@@ -3300,6 +3306,9 @@ tasks = {
     {A, 1266, 16335}, -- What Frozen Things Do
     {C, 1265, 1266},
     {N, 1266, a.L["Glory"]}, -- Glory
+    {A, 1265, 19566}, -- Mythic: Awakened Storms
+    {A, 1265, 19565}, -- Heroic: Awakened Storms
+    {A, 1265, 19564}, -- Awakened Storms
     {A, 1265, 17119}, -- Deep Cuts From the Vault
     {A, 1265, 16395}, -- Vaulternative Fashion
     {A, 1265, 17108}, -- Cutting Edge: Raszageth the Storm-Eater
@@ -3312,6 +3321,9 @@ tasks = {
     {A, 1265, 17110}, -- The Primal Bulwark
     {C, 1230, 1265},
     {N, 1265, a.GetInstanceInfoName(1200)}, -- Vault of the Incarnates
+    {A, 1230, 19576}, -- Mythic: Awakening the Dragonflight Raids
+    {A, 1230, 19575}, -- Heroic: Awakening the Dragonflight Raids
+    {A, 1230, 19574}, -- Awakening the Dragonflight Raids
     {A, 1230, 19349}, -- Glory of the Dream Raider
     {A, 1230, 17978}, -- Stones Can Fly!
     {A, 1230, 17977}, -- Stones Can Try To Fly!
@@ -4203,15 +4215,15 @@ tasks = {
     {A, 1041, 15381}, -- Power ON
     {C, 1040, 1041},
     {N, 1041, a.L["Glory"]}, -- Glory
+    {A, 1040, 15683}, -- Mythic: Fate of the Sepulcher
+    {A, 1040, 15682}, -- Heroic: Fate of the Sepulcher
+    {A, 1040, 15681}, -- Fate of the Sepulcher
     {A, 1040, 15409}, -- First Wonders
     {A, 1040, 15471}, -- Cutting Edge: The Jailer
     {A, 1040, 15470}, -- Ahead of the Curve: The Jailer
     {A, 1040, 15469}, -- We Are All Made of Stars (Mythic)
     {A, 1040, 15468}, -- We Are All Made of Stars (Heroic)
     {A, 1040, 15396}, -- We Are All Made of Stars
-    {A, 1040, 15683}, -- Mythic: Fate of the Sepulcher
-    {A, 1040, 15682}, -- Heroic: Fate of the Sepulcher
-    {A, 1040, 15681}, -- Fate of the Sepulcher
     {A, 1040, 15490}, -- Mythic: Sepulcher of the First Ones
     {A, 1040, 15478}, -- Heroic: Sepulcher of the First Ones
     {A, 1040, 15417}, -- Sepulcher of the First Ones
@@ -4245,13 +4257,13 @@ tasks = {
     {A, 858, 14998}, -- "Name A Better Duo, I'll Wait"
     {C, 821, 858},
     {N, 858, a.L["Glory"]}, -- Glory
+    {A, 821, 15669}, -- Mythic: Fate of Domination
+    {A, 821, 15668}, -- Heroic: Fate of Domination
+    {A, 821, 15667}, -- Fate of Domination
     {A, 821, 15191}, -- "Rae'shalare, Death's Whisper"
     {A, 821, 15110}, -- Dominating the Catwalk
     {A, 821, 15135}, -- Cutting Edge: Sylvanas Windrunner
     {A, 821, 15134}, -- Ahead of the Curve: Sylvanas Windrunner
-    {A, 821, 15669}, -- Mythic: Fate of Domination
-    {A, 821, 15668}, -- Heroic: Fate of Domination
-    {A, 821, 15667}, -- Fate of Domination
     {A, 821, 15128}, -- Mythic: Sanctum of Domination
     {A, 821, 15127}, -- Heroic: Sanctum of Domination
     {A, 821, 15126}, -- Sanctum of Domination
@@ -4285,12 +4297,12 @@ tasks = {
     {A, 860, 14293}, -- Blind as a Bat
     {C, 379, 860},
     {N, 860, a.L["Glory"]}, -- Glory
-    {A, 379, 14614}, -- Castle Vain
-    {A, 379, 14461}, -- Cutting Edge: Sire Denathrius
-    {A, 379, 14460}, -- Ahead of the Curve: Sire Denathrius
     {A, 379, 15665}, -- Mythic: Fate of Nathria
     {A, 379, 15664}, -- Heroic: Fate of Nathria
     {A, 379, 15663}, -- Fate of Nathria
+    {A, 379, 14614}, -- Castle Vain
+    {A, 379, 14461}, -- Cutting Edge: Sire Denathrius
+    {A, 379, 14460}, -- Ahead of the Curve: Sire Denathrius
     {A, 379, 14718}, -- Mythic: Castle Nathria
     {A, 379, 14717}, -- Heroic: Castle Nathria
     {A, 379, 14715}, -- Castle Nathria

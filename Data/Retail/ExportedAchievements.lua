@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-04-14 22-13-09 ]] --
+-- [[ Exported at 2024-04-24 21-50-57 ]] --
 tasks = {
     {O, 40223, "From", "Event", "1495", "Until", "Event", "1495"},
     {N, 40223, 208}, -- Timerunner
