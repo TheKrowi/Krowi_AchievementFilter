@@ -366,7 +366,7 @@ function KrowiAF_AchievementFrameFilterButtonMixin:OnMouseDown()
 
     if addon.Options.db.profile.ShowPlaceholdersFilter then
         menu:AddSeparator();
-        AddCheckBox(menu, addon.L["Show placeholders"], addon.Filters.db, {"ShowPlaceholders"});
+        AddCheckBox(menu, addon.L["Show placeholders"], addon.Filters.db.profile, {"ShowPlaceholders"});
     end
 
 	menu:Toggle(self, 96, 15);

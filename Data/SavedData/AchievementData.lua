@@ -72,7 +72,7 @@ function achievementData.SetCriteriaProgress(characterGuid, achievementInfo, cri
 end
 
 function achievementData.IgnoreAchievement(achievementInfo)
-    return achievementInfo.Points < 0 or achievementInfo.IsStatistic or achievementInfo.IsGuild or not achievementInfo.Exists;
+    return achievementInfo.Points < 0 or achievementInfo.IsStatistic or achievementInfo.IsGuild;
 end
 
 function achievementData.IsEarnedByCharacter(characterGuid, achievement)

@@ -8,6 +8,9 @@ All notable changes to this project will be documented in this file.
 - Taintless library to hopefully eliminate some occurrences of "Interface action failed because of an AddOn" and "AddOn has been blocked from an action only available to the Blizzard UI" error messages
 - Awakened Raids achievements to the corresponding raids so they show up in the current zone
 
+### Fixed
+- Placeholder achievements filtering (dev note: mainly used for development and adding achievements that will be added in a later patch)
+
 ### Changed
 - Moved Many Boxes, Many Rockses from Dragonflight - Zones - Dragon Isles - Exploration to Dragonflight - Zones - The Waking Shores - Exploration
 

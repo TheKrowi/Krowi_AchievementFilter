@@ -777,7 +777,7 @@ function MigrateCharactersAndAchievements(prevBuild, currBuild, prevVersion, cur
 
     local function MigrateNotCompletedAchievement(characterGuid, achievementId, criteriaProgress)
         local achievementInfo = addon.GetAchievementInfoTable(achievementId);
-        if addon.Data.SavedData.AchievementData.IgnoreAchievement(achievementInfo) or achievementInfo.Flags.IsTracking then
+        if addon.Data.SavedData.AchievementData.IgnoreAchievement(achievementInfo) or not achievementInfo.Exists or achievementInfo.Flags.IsTracking then
             return;
         end
         achievementInfo.WasEarnedByMe = false;
