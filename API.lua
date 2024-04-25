@@ -465,6 +465,24 @@ do --[[ Tooltip Data ]]
 		});
 	end
 
+	function KrowiAF.AddTooltipDataTable(achievementId, properties, criteria)
+		if criteria == nil then
+			criteria = properties;
+			properties = nil;
+		end
+
+		if properties == nil then
+			for _, v in next, criteria do
+				KrowiAF.AddTooltipData(achievementId, unpack(v));
+			end
+			return;
+		end
+
+		for _, v in next, criteria do
+			KrowiAF.AddTooltipData(achievementId, v[1], properties.ObjectType, v[2], properties.NotCompletedText, properties.CompletedText);
+		end
+	end
+
 	KrowiAF.AdditionalTooltipData = {};
 
 	function KrowiAF.RegisterTooltipDataTasks()
