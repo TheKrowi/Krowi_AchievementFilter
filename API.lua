@@ -453,7 +453,7 @@ do --[[ Tooltip Data ]]
 		return addon.Objects.Faction;
 	end
 
-	function KrowiAF.AddTooltipData(achievementId, criteriaIndex, tooltipDataType, objectId, notCompletedText, completedText, faction)
+	local function AddTooltipData(achievementId, criteriaIndex, tooltipDataType, objectId, notCompletedText, completedText, faction)
 		addon.Data.TooltipData[objectId] = addon.Data.TooltipData[objectId] or {TooltipLines = {}};
 		tinsert(addon.Data.TooltipData[objectId].TooltipLines, {
 			AchievementId = achievementId,
@@ -463,6 +463,16 @@ do --[[ Tooltip Data ]]
 			CompletedText = completedText,
 			Faction = faction
 		});
+	end
+
+	function KrowiAF.AddTooltipData(achievementId, criteriaIndex, tooltipDataType, objectId, notCompletedText, completedText, faction)
+		if type(objectId) == "table" then
+			for _, v in next, objectId do
+				AddTooltipData(achievementId, criteriaIndex, tooltipDataType, v, notCompletedText, completedText, faction);
+			end
+			return;
+		end
+		AddTooltipData(achievementId, criteriaIndex, tooltipDataType, objectId, notCompletedText, completedText, faction);
 	end
 
 	function KrowiAF.AddTooltipDataTable(achievementId, properties, criteria)
