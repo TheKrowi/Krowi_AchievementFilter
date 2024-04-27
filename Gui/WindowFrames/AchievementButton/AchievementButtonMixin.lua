@@ -346,13 +346,13 @@ local function UpdatePlusMinusTexture(self)
 
 	self.PlusMinus:Show();
 	if self.collapsed and self.saturatedStyle then
-		self.PlusMinus:SetTexCoord(0, 0.5, 0, addon.IsWrathClassic and 0.5 or 0.25);
+		self.PlusMinus:SetTexCoord(0, 0.5, 0, addon.Util.IsWrathClassic and 0.5 or 0.25);
 	elseif self.collapsed then
-		self.PlusMinus:SetTexCoord(0.5, 1, 0, addon.IsWrathClassic and 0.5 or 0.25);
+		self.PlusMinus:SetTexCoord(0.5, 1, 0, addon.Util.IsWrathClassic and 0.5 or 0.25);
 	elseif self.saturatedStyle then
-		self.PlusMinus:SetTexCoord(0, 0.5, addon.IsWrathClassic and 0.5 or 0.25, addon.IsWrathClassic and 1 or 0.5);
+		self.PlusMinus:SetTexCoord(0, 0.5, addon.Util.IsWrathClassic and 0.5 or 0.25, addon.Util.IsWrathClassic and 1 or 0.5);
 	else
-		self.PlusMinus:SetTexCoord(0.5, 1, addon.IsWrathClassic and 0.5 or 0.25, addon.IsWrathClassic and 1 or 0.5);
+		self.PlusMinus:SetTexCoord(0.5, 1, addon.Util.IsWrathClassic and 0.5 or 0.25, addon.Util.IsWrathClassic and 1 or 0.5);
 	end
 end
 
@@ -393,7 +393,7 @@ local function Saturate(self)
 	self.Glow:SetVertexColor(1, 1, 1);
 	self.Icon.Texture:SetVertexColor(1, 1, 1, 1);
 	self.Icon.Border:SetVertexColor(1, 1, 1, 1);
-	self.Shield.Icon:SetTexCoord(0, 0.5, 0, addon.IsWrathClassic and 1 or 0.5);
+	self.Shield.Icon:SetTexCoord(0, 0.5, 0, addon.Util.IsWrathClassic and 1 or 0.5);
 	self.Shield.Points:SetVertexColor(1, 1, 1);
 	self.Reward:SetVertexColor(1, 0.82, 0);
 	self.Header:SetVertexColor(1, 1, 1);
@@ -418,7 +418,7 @@ local function Desaturate(self)
 	self.Glow:SetVertexColor(0.22, 0.17, 0.13);
 	self.Icon.Texture:SetVertexColor(0.55, 0.55, 0.55, 1);
 	self.Icon.Border:SetVertexColor(0.75, 0.75, 0.75, 1);
-	self.Shield.Icon:SetTexCoord(0.5, 1, 0, addon.IsWrathClassic and 1 or 0.5);
+	self.Shield.Icon:SetTexCoord(0.5, 1, 0, addon.Util.IsWrathClassic and 1 or 0.5);
 	self.Shield.Points:SetVertexColor(0.65, 0.65, 0.65);
 	self.Reward:SetVertexColor(0.8, 0.8, 0.8);
 	self.Header:SetVertexColor(0.65, 0.65, 0.65);
@@ -434,7 +434,7 @@ local function SaturatePartial(self)
 	self.HeaderBackground:SetTexCoord(0, 1, 0.66015625, 0.73828125);
 	self.Icon.Texture:SetVertexColor(1, 1, 1, 1);
 	self.Icon.Border:SetVertexColor(1, 1, 1, 1);
-	self.Shield.Icon:SetTexCoord(0, 0.5, 0, addon.IsWrathClassic and 1 or 0.5);
+	self.Shield.Icon:SetTexCoord(0, 0.5, 0, addon.Util.IsWrathClassic and 1 or 0.5);
 	self.Shield.Points:SetVertexColor(1, 1, 1);
 	self.Glow:SetVertexColor(0.1, 0.1, 0.1);
 	SetTsunamis(self);

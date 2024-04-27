@@ -46,7 +46,7 @@ local function GeneralTutorialFunc()
         menu:AddFull({
             Text = (pages[i].IsViewed and "" or "|T132049:0|t") .. string.format(addon.Util.Colors.White, addon.Util.Colors.RemoveColor(pages[i].SubTitle)),
             Func = function()
-                if addon.IsWrathClassic then
+                if addon.Util.IsWrathClassic then
                     InterfaceOptionsFrame:Hide();
                 else
                     SettingsPanel:Close();
@@ -95,7 +95,7 @@ end
 
 local screenshotModeFrame, screenshotModeCloseButton;
 local function HandleScreenshotMode()
-    if addon.IsWrathClassic then
+    if addon.Util.IsWrathClassic then
         InterfaceOptionsFrame:Hide();
     else
         SettingsPanel:Close(); -- Causes "blocked from an action" message

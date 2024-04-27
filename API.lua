@@ -481,6 +481,10 @@ do --[[ Tooltip Data ]]
 			properties = nil;
 		end
 
+		if type(criteria) == "function" then
+			criteria = criteria();
+		end
+
 		if properties == nil then
 			for _, v in next, criteria do
 				KrowiAF.AddTooltipData(achievementId, unpack(v));

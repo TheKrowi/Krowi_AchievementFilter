@@ -1351,7 +1351,7 @@ function gw2_ui.Load()
     -- KrowiAF_SavedData.ElvUISkin.Calendar = blizzardSkins.enable and blizzardSkins.calendar;
     -- KrowiAF_SavedData.ElvUISkin.NoParchment = blizzardSkins.enable and blizzardSkins.calendar and privateSkins.parchmentRemoverEnable;
     -- KrowiAF_SavedData.ElvUISkin.Options = privateSkins.ace3Enable;
-    -- KrowiAF_SavedData.ElvUISkin.SmallerWorldMap = addon.IsWrathClassic and engine.global.general.smallerWorldMap;
+    -- KrowiAF_SavedData.ElvUISkin.SmallerWorldMap = addon.Util.IsWrathClassic and engine.global.general.smallerWorldMap;
 
     hooksecurefunc(addon.Gui, "LoadWithBlizzard_AchievementUI", function()
         SkinAll();
@@ -1368,7 +1368,7 @@ function gw2_ui.Load()
         end);
     end);
 
-    -- if addon.IsWrathClassic then
+    -- if addon.Util.IsWrathClassic then
     --     local worldMapModule = engine:GetModule("WorldMap");
     --     hooksecurefunc(worldMapModule, "SetSmallWorldMap", function()
     --         addon.Gui.WorldMapButton:SetFrameStrata("TOOLTIP");

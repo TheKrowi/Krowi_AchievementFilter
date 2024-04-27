@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-03-20 19-54-20 ]] --
+-- [[ Exported at 2024-04-27 15-41-12 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -22,30 +22,24 @@ L["600 skill"] = "Compétence de 600"
 L["Academy Ascent"] = "Ascension de l’académie"
 L["Account"] = "Compte"
 L["Account wide (default)"] = "Compte (standard)"
-L["Achievement Calendar"] = "Calendrier des hauts faits"
-L["Achievement is Completed"] = "Le haut fait est terminée"
-L["Achievement is Completed Desc"] = "Afficher les critères du haut fait même si le haut fait est déjà terminé."
-L["Achievement is excluded"] = "Le haut fait est est masqué"
-L["Achievement is watched"] = "Ce haut fait se trouve dans votre {watchList}."
-L["Achievement points earned by"] = "Points de haut fait obtenus par"
-L["Achievement shown temporarily"] = "Ce haut fait est affiché temporairement car il ne correspond à aucun des filtres définis."
-L["Achievement was Not Earned by Me"] = "Le haut fait n'a pas été obtenu par moi"
-L["Achievement was Not Earned by Me Desc"] = "Afficher les critères du haut fait si le haut fait n'a pas encore été obtenu par le personnage actuel. Cela permet d'avoir un meilleur contrôle si vous jouez avec plusieurs personnages."
-L["Achievement Window"] = "Fenêtre des hauts faits"
-L["Achievement window height offset"] = "Décalage de la hauteur de la fenêtre de haut fait"
-L["Achievement window height offset Desc"] = [=[Ajoute ou soustrait de la hauteur à la hauteur par défaut de la fenêtre de haut fait.
-
+L["Achievement Calendar"] = "Calendrier des Hauts faits"
+L["Achievement is Completed"] = "Le Haut fait est terminée"
+L["Achievement is Completed Desc"] = "Afficher les critères du Haut fait même si le Haut fait est déjà terminé."
+L["Achievement is excluded"] = "Le Haut fait est est masqué."
+L["Achievement is watched"] = "Ce Haut fait se trouve dans votre {watchList}."
+L["Achievement points earned by"] = "Points de Haut fait obtenus par"
+L["Achievement shown temporarily"] = "Ce Haut fait est affiché temporairement car il ne correspond à aucun des filtres définis."
+L["Achievement was Not Earned by Me"] = "Le Haut fait n'a pas été obtenu par moi"
+L["Achievement was Not Earned by Me Desc"] = "Afficher les critères du Haut fait si le Haut fait n'a pas encore été obtenu par le personnage actuel. Cela permet d'avoir un meilleur contrôle si vous jouez avec plusieurs personnages."
+L["Achievement Window"] = "Fenêtre des Hauts faits"
+L["Achievement window height offset"] = "Décalage de la hauteur de la fenêtre des Hauts faits"
+L["Achievement window height offset Desc"] = [=[Ajoute ou soustrait de la hauteur à la hauteur par défaut de la fenêtre des Hauts faits.
 Cette valeur peut être modifiée pendant que la fenêtre des hauts faits est ouverte et que l'un des onglets ajoutés par {AddonName} est sélectionné. Cela peut avoir un impact sur le jeu.
-
-Les FPS chutent pendant l'ajustement de la valeur non PAS pendant l'utilisation normale de l'addon
-
-{reloadRequired}]=]
+Les FPS chutent pendant l'ajustement de la valeur non PAS pendant l'utilisation normale de l'addon]=]
 L["Achievements"] = "Hauts faits"
-L["Achievements width offset"] = "Décalage largeur de la fenêtre des Hauts-fait"
-L["Achievements width offset Desc"] = [=[La largeur qui sera ajoutée à la largeur par défaut des Hauts-fait.
-
-Cette valeur peut être modifiée lorsque la fenêtre des Hauts-fait est ouverte et qu'un des onglets ajoutés par {addonName} est sélectionné. Cela peut avoir un impact (1) sur le jeu.
-
+L["Achievements width offset"] = "Décalage largeur de la fenêtre des Hauts faits"
+L["Achievements width offset Desc"] = [=[Ajoute ou soustrait de la largeur par défaut des Hauts faits.
+Cette valeur peut être modifiée lorsque la fenêtre des Hauts faits est ouverte et qu'un des onglets ajoutés par {addonName} est sélectionné. Cela peut avoir un impact (1) sur le jeu.
 (1) Des baisses de FPS et des saccades lors du réglage de la valeur, mais PAS lors de l'utilisation normale de l'addon.]=]
 L["Active events"] = "Évènements en cours"
 L["Add addon name to world map icon"] = "Ajouter le nom de l'addon à l'icône de la carte du monde"
@@ -90,8 +84,9 @@ L["Assault: Mogu"] = "Assaut : La guerre des clans"
 L["Assault: N'Zoth (Uldum)"] = "Assaut : L'Empire noir (Uldum)"
 L["Assault: N'Zoth (Vale of Eternal Blossoms)"] = "Assaut : L'Empire noir (Val de l'Éternel printemps)"
 L["Author"] = "Auteur"
-L["Auto number of summary achievements"] = "Affiche un nombre de Hauts-fait automatique dans le résumé"
-L["Auto number of summary achievements Desc"] = "Ajuster automatiquement le nombre de réalisations affichées pour qu'aucune barre de défilement ne soit visible."
+L["Auto number of summary achievements"] = "Affiche un nombre de Hauts faits automatiquement dans le résumé"
+L["Auto number of summary achievements Desc"] = "Ajuster automatiquement le nombre de Hauts-faits affichées pour qu'aucune barre de défilement ne soit visible."
+L["Awakened Raids"] = "Raids Éveillés"
 L["Azerothian Archives"] = "Archives d'Azeroth"
 L["Azure Span"] = "Assaut de Fyrakka : Travée d'Azur"
 L["Azure Span: Next"] = "Travée d'Azur : Prochaine"
@@ -136,6 +131,11 @@ Les FPS chutent pendant l'ajustement de la valeur non PAS pendant l'utilisation 
 {reloadRequired}]=]
 L["Category shown temporarily"] = "Cette catégorie a été sélectionnée en cliquant sur le rappel d'événement {eventName} et est affichée temporairement car elle ne contient aucun haut fait correspondant aux filtres définis."
 L["Caverns Criss-Cross"] = "Réseau des grottes"
+L["Center Header"] = "En-tête centré"
+L["Center header"] = "En-tête centré"
+L["Center header Desc"] = "Gardez l'en-tête centré sur la fenêtre des Hauts-faits."
+L["Center Header Desc"] = "Centre le nom du Haut-fait sur le bouton du Haut-fait."
+L["Central Circuit"] = "Circuit Central"
 L["Chains of Domination"] = "Chaînes de domination"
 L["Character / Account wide"] = "Personnage et compte"
 L["Character only"] = "Personnage uniquement"
@@ -148,8 +148,8 @@ L["Clear all"] = "Tout effacer"
 L["Clear all Desc"] = "Efface tous les Hauts-fait de la liste surveillée."
 L["Clear search field on Right Click"] = "Effacer le champ de recherche avec le clic droit"
 L["Clear search field on Right Click Desc"] = "Activer ou désactiver l'effacement de la zone de recherche lors d'un clic droit dessus."
-L["Click here to view in achievement window"] = "Cliquez ici pour afficher dans la fenêtre des Hauts-faits"
-L["Click here to view in achievements"] = "Cliquez ici pour afficher dans les Hauts-faits"
+L["Click here to view in achievement window"] = "Cliquez ici pour afficher dans la fenêtre des Hauts faits"
+L["Click here to view in achievements"] = "Cliquez ici pour afficher dans les Hauts faits"
 L["Cliffside Circuit"] = "Circuit des falaises"
 L["Cobalt Assembly"] = "Tempête élémentaire : L'assemblé du Cobalt"
 L["Coldheart Interstitia"] = "Interstice Cœur-Algide"
@@ -165,8 +165,8 @@ L["Community Feast: Ready"] = "Festin tribal : Prêt"
 L["Community Feast: Soon"] = "Festin tribal : Bientôt"
 L["Community Feast: Starting Soon"] = "Festin tribal : Commence bientôt"
 L["Compact"] = "Afficher les pop-ups d'évènements compactes"
-L["Compact Achievements"] = "Hauts-faits compact"
-L["Compact Achievements Desc"] = "L'affichage des hauts faits est réduit aux 2/3 de sa taille d'origine, à l'identique des résumé de hauts faits."
+L["Compact Achievements"] = "Hauts faits compact"
+L["Compact Achievements Desc"] = "L'affichage des Hauts-faits est réduit aux 2/3 de sa taille d'origine, à l'identique des résumé de Hauts-faits."
 L["Compact Achievements T Desc"] = [=[- Les hauts faits font 2/3 de la taille normal. Ils s'affichent de la même manière que les hauts faits récapitulatifs.
 - Il est possible d'afficher soit la première ligne de la description, soit la récompense.
 
@@ -548,8 +548,7 @@ L["Lucky Yi"] = "Yi la Chance"
 L["Lunar Festival"] = "Fête lunaire"
 L["M+ Season"] = "Saison des donjons mythiques+ (M+)"
 L["Make windows movable"] = "Rendre la fenêtre déplaçable"
-L["Make windows movable Desc"] = [=[Rend la fenêtre des hauts faits, la vue du calendrier et la fiche personnages mobiles ou immobiles.
-
+L["Make windows movable Desc"] = [=[Rend la fenêtre des Hauts-faits, la vue du calendrier et la fiche personnages mobiles ou immobiles.
 Si cette option est activée, la fenêtre correspondante sera déplacée lorsque le bouton gauche de la souris sera enfoncé. Ceci s'applique à l'en-tête et aux marges.]=]
 L["Mantid"] = "Mantide"
 L["Maruukai Dash"] = "Marathon de Maruukaï"
@@ -613,6 +612,8 @@ Dans les options, les onglets par défaut et les onglets ajoutés par {addonName
 {pluginText}
 (1) Vous pouvez trouver l'options sous {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {tabs}]=]
 L["News"] = "Nouveaux"
+L["Next from startDate until endDate"] = "Prochainement du {startDate} au {endDate}"
+L["Next occurrence unknown"] = "Prochaine occurrence inconnue"
 L["Night Fae Assault"] = "L'assaut des Faë nocturnes"
 L["Nitun"] = true
 L["No achievements are available with the current set of filters"] = "Aucune Haut-fait n'est disponible avec l'ensemble de filtres actuel"
@@ -681,6 +682,7 @@ L["Pilgrim's Bounty"] = "Les Bienfaits du pèlerin"
 L["Pirates' Day"] = "Jour des pirates"
 L["Placeholder"] = "Élément fictif"
 L["Plugins"] = true
+L["Plunderstorm"] = true
 L["Points"] = true
 L["Pop ups"] = "Pop-ups"
 L["Presets"] = "Préconfigurations"
@@ -721,6 +723,7 @@ L["Remember frame position"] = "Se souvenir de la position de la fenêtre"
 L["Remember frame position Desc"] = "Se souvenir de la position de la {frame}. Cela permettra à la {frame} de conserver sa dernière position connue lors de la prochaine connexion."
 L["Remove from Watch List"] = "Supprimer de {watchList}"
 L["Required for"] = "Requis pour"
+L["Requires"] = "Requiert"
 L["Researchers Under Fire"] = "Des chercheurs sous le feu"
 L["Reset Faction Filters"] = "Réinitialiser les filtres de faction"
 L["Reset Faction Filters Desc"] = "Réinitialiser ou conserver les filtres de faction. Cela signifie que si vous vous connectez avec un personnage {Alliance} et que l'un des filtres de faction {Neutre}, {Alliance} ou {Horden} est activé, seuls les filtres de faction {neutre} et {alliance} seront visible. Cette option est à prioriser lorsque vous basculez souvent entre {Alliance} et {Horde}."
@@ -770,6 +773,7 @@ Vous devez faire un /reload pour supprimer le fond noir !]=]
 L["Screenshots"] = "Captures d'écran"
 L["Search"] = "Rechercher"
 L["Search Criteria"] = "Critère de recherche"
+L["Search Descriptions"] = "Rechercher dans les descriptions"
 L["Search field"] = "Champ de recherche"
 L["Search Ids"] = "Rechercher des IDs"
 L["Search Names"] = "Recherche des noms"
@@ -796,6 +800,8 @@ L["Shift"] = "MAJ"
 L["Shipyard"] = "Chantier naval"
 L["Show"] = "Affichage"
 L["Show Added in version"] = "Afficher {addedInVersion}"
+L["Show Added in version Desc"] = [=[Affiche ou masque {addedInVersion}.
+Lorsque l'option est coché, la version du jeu dans laquelle le Haut-fait a été ajoutée sera visible dans l'infobulle.]=]
 L["Show alertSystem on event start Desc"] = "Afficher ou masquer l'événement {alertSystem} quand il débute."
 L["Show alertSystem on event start in instances Desc"] = "Afficher ou masquer l'événement {alertSystem} lorsqu'il débute alors que vous êtes à l'intérieur d'une instance."
 L["Show alertSystem on event start only when time data is available Desc"] = "Afficher ou masquer l'événement {alertSystem} au démarrage d'un événement uniquement lorsque le temps restant de l'événement est disponible."
@@ -814,6 +820,9 @@ L["Show current character icons"] = "Afficher les icônes du personnage actuel"
 L["Show current character icons Desc"] = [=[Affiche ou masque les icônes du personnage actuel.
 
 Si cette option est activée, une deuxième icône apparaîtra devant les hauts faits {partOfACain} et {requiredFor}, indiquant la progression du personnage actuel.]=]
+L["Show Date Completed Time"] = "Afficher l'heure de la date du Haut-fait"
+L["Show Date Completed Time Desc"] = [=[Afficher l'heure (heures, minutes et secondes) à laquelle le Haut-fait a été accomplie.
+Avertissement : Blizzard ne fourni pas cette information, donc seules les Haut-fait nouvellement obtenues auront ces données. Perdre vos fichiers, le dossier de "Saved Variables" ou le dossier WTF, réinitialisera cette information à l'heure par défaut de midi, 12h00:00. ]=]
 L["Show Excluded Category"] = "Afficher la catégorie masquée"
 L["Show Excluded Category Desc"] = [=[Afficher ou masquer la catégorie {exclus}.
 
@@ -861,10 +870,17 @@ L["Show Right Click Menu"] = "Afficher le bouton {rightClickMenu}"
 L["Show Right Click Menu Desc"] = [=[Affiche ou masque le bouton {rightClickMenu} sur chaque haut fait.
 
 Cela sert d'alternative au clic droit sur le haut fait.]=]
+L["Show Start Time & End Time"] = "Afficher {startTime} & {endTime}"
+L["Show Start Time & End Time Desc"] = [=[Affiche ou masque {startTime} & {endTime}.
+Lorsque l'option est coché et que le Haut-fait est {temporarilyObtainable}, l'heure de début et de fin de la période pendant laquelle le Haut-fait est obtenable seront visibles dans l'infobulle.
+Cela ne s'applique qu'aux réalisations {temporarilyObtainable} en raison d'événements calendaires.]=]
 L["Show Sub Categories"] = "Afficher les sous-catégories"
 L["Show Sub Categories Desc"] = [=[Afficher ou masquer les sous-catégories.
 
 Si cette option est activée, les hauts faits seront placés dans leurs sous-catégories d'origine au lieu d'être regroupés dans la seule catégorie {Catégorie}.]=]
+L["Show Temporarily obtainable"] = "Afficher {temporarilyObtainable}"
+L["Show Temporarily obtainable Desc"] = [=[Affiche ou masque {temporarilyObtainable}.
+Lorsque l'option est coché et que le Haut-fait est {temporarilyObtainable}, cette information sera visible dans l'infobulle.]=]
 L["Show world map icon"] = "Afficher l'icône de la carte du monde"
 L["Show world map icon Desc"] = "Afficher ou masquer l'icône de la carte du monde"
 L["Side Button Anchor"] = "Ancre d'affichage des alertes d'évènements"
@@ -907,8 +923,9 @@ L["Tab"] = "Onglet"
 L["tab"] = "onglet"
 L["Tabs"] = "Onglets"
 L["Ta's Pet Collection"] = "Collection de mascottes"
-L["temporarily obtainable"] = "temporairement récupérable "
-L["Temporarily Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}"
+L["Temporarily obtainable"] = "Temporairement obtenable"
+L["temporarily obtainable"] = "temporairement obtenable"
+L["Temporarily Obtainable Text"] = "{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}"
 L["Thaldraszus"] = true
 L["Thaldraszus: Next"] = "Thaldraszus : Prochaine"
 L["The Azure Span Slalom"] = "Slalom de la travée d’Azur"
@@ -917,6 +934,7 @@ L["The Big Dig: Active"] = "La grande fouille : En cours"
 L["The Big Dig: Next"] = "La grande fouille : Prochaine"
 L["The Big Dig: Soon"] = "La grande fouille : Bientôt"
 L["The Entitled"] = "Titres pour"
+L["the event name with run time"] = "L'évènement \"{eventName}\" se déroule du {startDate} jusqu'au {endDate}"
 L["The Flowing Forest Flight"] = "Vol de la forêt Ondoyante"
 L["The Iron Tide"] = "La Vague de Fer"
 L["The Shattering"] = "L'Effondrement"

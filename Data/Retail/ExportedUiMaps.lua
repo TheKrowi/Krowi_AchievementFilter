@@ -40,7 +40,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-04-24 21-51-27 ]] --
+-- [[ Exported at 2024-04-27 15-14-31 ]] --
 tasks = {
     {C, 2254, 2200}, -- Barrows of Reverie
     {C, 2253, 2200}, -- Sor'theril Barrow Den

@@ -11,7 +11,7 @@ function KrowiAF_AchievementFrameFilterButtonMixin:OnShow()
 end
 
 function KrowiAF_AchievementFrameFilterButtonMixin:OnHide()
-    if addon.Util.IsWrathClassic or not AchievementFrameFilterDropDown:IsShown() then
+    if addon.Util.IsClassicWithAchievements or not AchievementFrameFilterDropDown:IsShown() then
         AchievementFrame.Header.LeftDDLInset:Hide();
     end
 end

@@ -17,6 +17,13 @@ All notable changes to this project will be documented in this file.
 ### Removed
 - Ui Maps linked to Profession achievements for all expansions (dev note: it does not feel right to see profession achievements when you want to see which achievements you could do in the current zone you're in)
 
+### Cata Classic
+- First port from Wrath Classic
+- Classic, TBC, WotLK and Cata achievements and categories adjusted and dynamic obtainability added
+- MoP, WoD, Legion, BfA, SL and DF categories removed
+- Realm First! achievements and categories adjusted and dynamic obtainability added
+- PvP achievements and categories adjusted and dynamic obtainability added
+
 ## 69.9 - 2024-04-05
 ### Fixed
 - Dreaming Hero: Dragonflight Season 3 is now in the correct category and is no longer flagged as PvP

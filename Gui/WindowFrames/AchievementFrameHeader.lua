@@ -2,8 +2,8 @@ local _, addon = ...;
 addon.Gui.AchievementFrameHeader = {};
 local header = addon.Gui.AchievementFrameHeader;
 
-local function LoadIfWrathClassic()
-    if not addon.Util.IsWrathClassic then
+local function LoadIfIsClassicWithAchievements()
+    if not addon.Util.IsClassicWithAchievements then
         return;
     end
 
@@ -21,7 +21,6 @@ local function LoadIfWrathClassic()
     AchievementFrame.Header.Title = AchievementFrameHeaderTitle;
     AchievementFrame.Header.LeftDDLInset = AchievementFrameHeaderLeftDDLInset;
 end
-
 
 local sortFuncs = {
     addon.Objects.CompareFunc:New("number", "Points");
@@ -150,7 +149,7 @@ function header:AnchorHeader()
 end
 
 function header:Load()
-    LoadIfWrathClassic();
+    LoadIfIsClassicWithAchievements();
     CreateTooltip();
     self:AnchorHeader();
 end

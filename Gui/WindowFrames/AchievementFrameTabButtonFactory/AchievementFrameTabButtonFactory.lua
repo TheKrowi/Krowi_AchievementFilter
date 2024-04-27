@@ -16,12 +16,16 @@ local function Base_OnClick(tabId)
 	    tab.SelectedCategory = categories[1];
     end
 
-    if addon.IsWrathClassic then
+    if addon.Util.IsWrathClassic then
         PanelTemplates_Tab_OnClick(_G["AchievementFrameTab" .. tabId], AchievementFrame);
     else
         if addon.InGuildView() then
             AchievementFrameBaseTab_OnClick(1);
-            AchievementFrame_RefreshView();
+            if addon.Util.IsCataClassic then
+                AchievementFrame_ToggleView();
+            else
+                AchievementFrame_RefreshView();
+            end
             AchievementFrameGuildEmblemLeft:Hide();
             AchievementFrameGuildEmblemRight:Hide();
         end
@@ -71,7 +75,11 @@ function achievementFrameTabButtonFactory:GetNew(index, text, framesToShow, cate
             end);
             hooksecurefunc("AchievementFrameBaseTab_OnClick", function(tabIndex)
                 if tabIndex == 3 then -- Statistics tab does not refresh the guild/personal look
-                    AchievementFrame_RefreshView();
+                    if addon.Util.IsCataClassic then
+                        AchievementFrame_ToggleView();
+                    else
+                        AchievementFrame_RefreshView();
+                    end
                 end
             end);
         end
@@ -104,7 +112,7 @@ function achievementFrameTabButtonFactory:AchievementFrame_UpdateTabs(clickedTab
         end
 	end
 
-    if addon.IsWrathClassic then -- We have to set this manually because this is normally done in the OnClick of each tab
+    if addon.Util.IsWrathClassic then -- We have to set this manually because this is normally done in the OnClick of each tab
         AchievementFrameTab1.text:SetPoint("CENTER", AchievementFrameTab1, "CENTER", 0, -3);
         AchievementFrameTab2.text:SetPoint("CENTER", AchievementFrameTab2, "CENTER", 0, -3);
     end

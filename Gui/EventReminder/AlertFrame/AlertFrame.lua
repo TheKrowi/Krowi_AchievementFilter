@@ -1,7 +1,7 @@
 local _, addon = ...;
 
 local function LoadIfWrathClassic(self)
-    if not addon.Util.IsWrathClassic then
+    if not addon.Util.IsClassicWithAchievements then
         return;
     end
 

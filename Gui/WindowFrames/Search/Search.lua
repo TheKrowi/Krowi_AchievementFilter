@@ -4,7 +4,7 @@ local search = addon.Gui.Search;
 
 function search:Load()
     local frame = CreateFrame("EditBox", "KrowiAF_SearchBoxFrame", AchievementFrame, "KrowiAF_SearchBoxFrame_Template");
-	if addon.Util.IsWrathClassic then
+	if addon.Util.IsClassicWithAchievements then
 		frame:SetSize(107, 30);
 		frame:SetPoint("TOPLEFT", AchievementFrame.Header.RightDDLInset, "TOPLEFT", 12, 2);
 	else

@@ -38,7 +38,7 @@ function addon.GetMapName(uiMapID)
     return mapInfo and mapInfo.name or uiMapID;
 end
 
-if not addon.Util.IsWrathClassic then -- Wrath Classic does not have these and no fallback exists
+if not addon.Util.IsClassicWithAchievements then -- Wrath Classic does not have these and no fallback exists
     L["Completed"] = CRITERIA_COMPLETED;
     L["Not Completed"] = CRITERIA_NOT_COMPLETED;
 end
