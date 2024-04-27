@@ -27,18 +27,18 @@ local function AddDataToBlizzardTabs()
     KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Achievements", AchievementFrameTab1, function()
         AchievementFrameTab_OnClick(1);
     end);
-    if not addon.IsWrathClassic then
+    if not addon.Util.IsWrathClassic then
         KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Guild", AchievementFrameTab2, function()
             AchievementFrameTab_OnClick(2);
         end);
     end
-    KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Statistics", addon.IsWrathClassic and AchievementFrameTab2 or AchievementFrameTab3, function()
-        AchievementFrameTab_OnClick(addon.IsWrathClassic and 2 or 3);
+    KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Statistics", addon.Util.IsWrathClassic and AchievementFrameTab2 or AchievementFrameTab3, function()
+        AchievementFrameTab_OnClick(addon.Util.IsWrathClassic and 2 or 3);
     end);
 end
 
 local function LoadOldAchievementFrameTabsCompatibility()
-    if not addon.Util.IsWrathClassic then
+    if not addon.Util.IsClassicWithAchievements then
         return;
     end
 
@@ -143,7 +143,7 @@ end
 
 function gui:PrepareTabsOrder()
     KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Achievements", addon.L["Blizzard"], addon.L["Achievements"], "TOGGLEACHIEVEMENT", false);
-    if not addon.IsWrathClassic then
+    if not addon.Util.IsWrathClassic then
         KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Guild", addon.L["Blizzard"], addon.L["Guild"], nil, true);
     else
         addon.Options.Defaults.profile.Tabs.Blizzard_AchievementUI.Guild = nil;
@@ -204,7 +204,7 @@ function gui:ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
 
     AchievementFrame_SetTabs();
     AchievementFrame:Show();
-    if not addon.IsWrathClassic then
+    if not addon.Util.IsClassicWithAchievements then
         AchievementFrame_HideSearchPreview();
     end
     if firstTimeLatch or not (not addon.Options.db.profile.ResetViewOnOpen and addon.Options.db.profile.ToggleWindow) or resetView or forceOpen then

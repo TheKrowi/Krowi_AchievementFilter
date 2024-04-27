@@ -1,5 +1,6 @@
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
+KrowiAF = {};
 
 local function SelectAchievement(achievement)
 	local scrollBox = KrowiAF_AchievementsFrame.ScrollBox;
@@ -419,5 +420,90 @@ do --[[ KrowiAF_RegisterEventOptions ]]
 				end
 			end
 		});
+	end
+end
+
+do --[[ Tooltip Data ]]
+	function KrowiAF.GetTooltipDataTypes()
+		return addon.Objects.TooltipDataType;
+	end
+
+	function KrowiAF.GetTooltipDataTexts()
+		local t = {};
+		t[2] = addon.L["Already /loved for achievement"];
+		t[6] = addon.L["Already cooked for achievement"];
+		t[8] = addon.L["Already eaten for achievement"];
+		t[4] = addon.L["Already killed for achievement"];
+		t[10] = addon.L["Already drank for achievement"];
+		t[16] = addon.L["Already completed for achievement"];
+		t[14] = addon.L["Already petted for achievement"];
+		t[12] = addon.L["Already defeated for achievement"];
+		t[1] = addon.L["Needs /love for achievement"];
+		t[5] = addon.L["Needs to be cooked for achievement"];
+		t[7] = addon.L["Needs to be eaten for achievement"];
+		t[3] = addon.L["Needs to be killed for achievement"];
+		t[9] = addon.L["Needs to be drunk for achievement"];
+		t[15] = addon.L["Needs to be completed for achievement"];
+		t[13] = addon.L["Needs to be petted for achievement"];
+		t[11] = addon.L["Needs to be defeated for achievement"];
+		return t;
+	end
+
+	function KrowiAF.GetGetFactions()
+		return addon.Objects.Faction;
+	end
+
+	local function AddTooltipData(achievementId, criteriaIndex, tooltipDataType, objectId, notCompletedText, completedText, faction)
+		addon.Data.TooltipData[objectId] = addon.Data.TooltipData[objectId] or {TooltipLines = {}};
+		tinsert(addon.Data.TooltipData[objectId].TooltipLines, {
+			AchievementId = achievementId,
+			Type = tooltipDataType,
+			CriteriaIndex = criteriaIndex,
+			NotCompletedText = notCompletedText,
+			CompletedText = completedText,
+			Faction = faction
+		});
+	end
+
+	function KrowiAF.AddTooltipData(achievementId, criteriaIndex, tooltipDataType, objectId, notCompletedText, completedText, faction)
+		if type(objectId) == "table" then
+			for _, v in next, objectId do
+				AddTooltipData(achievementId, criteriaIndex, tooltipDataType, v, notCompletedText, completedText, faction);
+			end
+			return;
+		end
+		AddTooltipData(achievementId, criteriaIndex, tooltipDataType, objectId, notCompletedText, completedText, faction);
+	end
+
+	function KrowiAF.AddTooltipDataTable(achievementId, properties, criteria)
+		if criteria == nil then
+			criteria = properties;
+			properties = nil;
+		end
+
+		if type(criteria) == "function" then
+			criteria = criteria();
+		end
+
+		if properties == nil then
+			for _, v in next, criteria do
+				KrowiAF.AddTooltipData(achievementId, unpack(v));
+			end
+			return;
+		end
+
+		for _, v in next, criteria do
+			KrowiAF.AddTooltipData(achievementId, v[1], properties.ObjectType, v[2], properties.NotCompletedText, properties.CompletedText);
+		end
+	end
+
+	KrowiAF.AdditionalTooltipData = {};
+
+	function KrowiAF.RegisterTooltipDataTasks()
+		local name = "Additional Tooltip Data: ";
+		for k, v in next, KrowiAF.AdditionalTooltipData do
+			addon.Data.InjectLoadingDebug(v, name .. k);
+			tinsert(addon.Data.TasksGroups, 1, v);
+		end
 	end
 end

@@ -7,7 +7,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-04-23 18-46-30 ]] --
+-- [[ Exported at 2024-04-27 15-41-04 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -89,6 +89,7 @@ L["Assault: N'Zoth (Vale of Eternal Blossoms)"] = true
 L["Author"] = true
 L["Auto number of summary achievements"] = true
 L["Auto number of summary achievements Desc"] = "Automatically adjust the number of achievements shown so no scroll bar is shown."
+L["Awakened Raids"] = true
 L["Azerothian Archives"] = true
 L["Azure Span"] = true
 L["Azure Span: Next"] = true

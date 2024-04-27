@@ -35,7 +35,7 @@ function KrowiAF_TextFrameMixin:OnShow()
 end
 
 function KrowiAF_TextFrameMixin:Init(title, newButton1Text, newButton1OnClickFunc)
-    if addon.IsWrathClassic then
+    if addon.IsClassicWithAchievements then
 		self.TitleText:SetText(title);
 	else
     	self:SetTitle(title);

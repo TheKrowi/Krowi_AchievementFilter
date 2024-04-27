@@ -55,7 +55,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-04-12 08-21-31 ]] --
+-- [[ Exported at 2024-04-27 15-11-33 ]] --
 tasks = {
     {F, 1557, "UncategorizedCategories"},
     {C, 971, 1557},
@@ -365,13 +365,13 @@ tasks = {
     {A, 1112, 5393}, -- Realm First! Illustrious Skinner
     {A, 1112, 5389}, -- Realm First! Illustrious Scribe
     {A, 1112, 5392}, -- Realm First! Illustrious Miner
-    {A, 1112, 5386}, -- Realm First! Illustrious Medic
+    {A, 1112, 5386}, -- Realm First! Illustrious First Aid
     {A, 1112, 5391}, -- Realm First! Illustrious Leatherworker
     {A, 1112, 5390}, -- Realm First! Illustrious Jewelcrafter
-    {A, 1112, 5388}, -- Realm First! Illustrious Herbalist
+    {A, 1112, 5388}, -- Realm First! Illustrious Herbalism
     {A, 1112, 5385}, -- Realm First! Illustrious Engineer
     {A, 1112, 5384}, -- Realm First! Illustrious Enchanter
-    {A, 1112, 5383}, -- Realm First! Illustrious Cook
+    {A, 1112, 5383}, -- Realm First! Illustrious Cooking
     {A, 1112, 5382}, -- Realm First! Illustrious Blacksmith
     {A, 1112, 5396}, -- Realm First! Illustrious Archaeologist
     {A, 1112, 5387}, -- Realm First! Illustrious Angler
@@ -382,13 +382,13 @@ tasks = {
     {A, 1111, 1426}, -- Realm First! Grand Master Skinner
     {A, 1111, 1422}, -- Realm First! Grand Master Scribe
     {A, 1111, 1425}, -- Realm First! Grand Master Miner
-    {A, 1111, 1419}, -- Realm First! Grand Master Medic
+    {A, 1111, 1419}, -- Realm First! First Aid Grand Master
     {A, 1111, 1424}, -- Realm First! Grand Master Leatherworker
     {A, 1111, 1423}, -- Realm First! Grand Master Jewelcrafter
     {A, 1111, 1421}, -- Realm First! Grand Master Herbalist
     {A, 1111, 1418}, -- Realm First! Grand Master Engineer
     {A, 1111, 1417}, -- Realm First! Grand Master Enchanter
-    {A, 1111, 1416}, -- Realm First! Grand Master Cook
+    {A, 1111, 1416}, -- Realm First! Cooking Grand Master
     {A, 1111, 1414}, -- Realm First! Grand Master Blacksmith
     {A, 1111, 5395}, -- Realm First! Grand Master Archaeologist
     {A, 1111, 1420}, -- Realm First! Grand Master Angler
@@ -612,7 +612,7 @@ tasks = {
     {A, 1094, 1683}, -- Brewmaster
     {A, 1094, 1039}, -- The Flame Keeper
     {A, 1094, 1038}, -- The Flame Warden
-    {A, 1094, 1793}, -- For the Children
+    {A, 1094, 1793}, -- For The Children
     {A, 1094, 2798}, -- Noble Gardener
     {A, 1094, 1693}, -- Fool For Love
     {A, 1094, 913}, -- To Honor One's Elders
@@ -654,7 +654,7 @@ tasks = {
     {N, 1088, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1086, 12439}, -- Priority Mail
     {A, 1086, 9924}, -- Field Photographer
-    {A, 1086, 46}, -- Universal Explorer
+    {A, 1086, 46}, -- World Explorer
     {C, 1084, 1086},
     {N, 1086, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 1085, 7520}, -- The Loremaster
@@ -1020,7 +1020,7 @@ tasks = {
     {A, 987, 13931}, -- "Memories of Fel, Frost and Fire"
     {A, 987, 9550}, -- "Boldly, You Sought the Power of Ragnaros"
     {A, 987, 9496}, -- Warlord's Deathwheel
-    {A, 987, 2144}, -- "What a Long, Strange Trip It's Been"
+    {A, 987, 2144}, -- "What A Long, Strange Trip It's Been"
     {A, 987, 4627}, -- X-45 Heartbreaker
     {A, 987, 3496}, -- A Brew-FAST Mount
     {A, 987, 980}, -- The Horseman's Reins
@@ -1622,7 +1622,7 @@ tasks = {
     {A, 958, 713}, -- Silverwing Sentinel
     {A, 958, 1259}, -- Not So Fast
     {A, 958, 1172}, -- Master of Warsong Gulch
-    {A, 958, 207}, -- Save the Day
+    {A, 958, 207}, -- Save The Day
     {A, 958, 1252}, -- Supreme Defender
     {A, 958, 206}, -- Supreme Defender
     {A, 958, 1502}, -- Quick Cap
@@ -2716,7 +2716,7 @@ tasks = {
     {A, 914, 303}, -- "Have Keg, Will Travel"
     {A, 914, 293}, -- Disturbing the Peace
     {A, 914, 295}, -- Direbrewfest
-    {A, 914, 1260}, -- Almost Blind Luck
+    {A, 914, 1260}, -- Drunken Stupor
     {A, 914, 1183}, -- Brew of the Year
     {A, 914, 2796}, -- Brew of the Month
     {A, 914, 1185}, -- The Brewfest Diet
@@ -2778,7 +2778,7 @@ tasks = {
     {A, 913, 263}, -- Ice the Frost Lord
     {C, 918, 913},
     {N, 913, a.GetCategoryInfoTitle( 161)}, -- Midsummer
-    {A, 912, 1793}, -- For the Children
+    {A, 912, 1793}, -- For The Children
     {A, 912, 275}, -- Veteran Nanny
     {A, 912, 1790}, -- "Hail To The King, Baby"
     {A, 912, 1786}, -- School of Hard Knocks
@@ -2851,7 +2851,7 @@ tasks = {
     {A, 885, 605}, -- A Coin of Ancestry
     {C, 918, 885},
     {N, 885, a.GetCategoryInfoTitle(160)}, -- Lunar Festival
-    {A, 918, 2144}, -- "What a Long, Strange Trip It's Been"
+    {A, 918, 2144}, -- "What A Long, Strange Trip It's Been"
     {C, 884, 918},
     {N, 918, a.L["Holidays"]}, -- Holidays
     {F, 1398, "SearchResultsCategories"},
@@ -3228,6 +3228,9 @@ tasks = {
     {A, 1544, 19322}, -- Meaner Pastures
     {C, 1543, 1544},
     {N, 1544, a.L["Glory"]}, -- Glory
+    {A, 1543, 19572}, -- Mythic: Awakened Flames
+    {A, 1543, 19571}, -- Heroic: Awakened Flames
+    {A, 1543, 19570}, -- Awakened Flames
     {A, 1543, 19420}, -- Dragonflight Season 3 Hero
     {A, 1543, 19396}, -- Dragonflight Season 3 Master
     {A, 1543, 19450}, -- Fyr'alath the Dreamrender
@@ -3265,6 +3268,9 @@ tasks = {
     {A, 1421, 18229}, -- Cosplate
     {C, 1420, 1421},
     {N, 1421, a.L["Glory"]}, -- Glory
+    {A, 1420, 19569}, -- Mythic: Awakened Shadows
+    {A, 1420, 19568}, -- Heroic: Awakened Shadows
+    {A, 1420, 19567}, -- Awakened Shadows
     {A, 1420, 18380}, -- Dragonflight Season 2 Hero
     {A, 1420, 18027}, -- Dragonflight Season 2 Master
     {A, 1420, 18256}, -- "Nasz'uro, the Unbound Legacy"
@@ -3300,6 +3306,9 @@ tasks = {
     {A, 1266, 16335}, -- What Frozen Things Do
     {C, 1265, 1266},
     {N, 1266, a.L["Glory"]}, -- Glory
+    {A, 1265, 19566}, -- Mythic: Awakened Storms
+    {A, 1265, 19565}, -- Heroic: Awakened Storms
+    {A, 1265, 19564}, -- Awakened Storms
     {A, 1265, 17119}, -- Deep Cuts From the Vault
     {A, 1265, 16395}, -- Vaulternative Fashion
     {A, 1265, 17108}, -- Cutting Edge: Raszageth the Storm-Eater
@@ -3312,6 +3321,9 @@ tasks = {
     {A, 1265, 17110}, -- The Primal Bulwark
     {C, 1230, 1265},
     {N, 1265, a.GetInstanceInfoName(1200)}, -- Vault of the Incarnates
+    {A, 1230, 19576}, -- Mythic: Awakening the Dragonflight Raids
+    {A, 1230, 19575}, -- Heroic: Awakening the Dragonflight Raids
+    {A, 1230, 19574}, -- Awakening the Dragonflight Raids
     {A, 1230, 19349}, -- Glory of the Dream Raider
     {A, 1230, 17978}, -- Stones Can Fly!
     {A, 1230, 17977}, -- Stones Can Try To Fly!
@@ -4203,15 +4215,15 @@ tasks = {
     {A, 1041, 15381}, -- Power ON
     {C, 1040, 1041},
     {N, 1041, a.L["Glory"]}, -- Glory
+    {A, 1040, 15683}, -- Mythic: Fate of the Sepulcher
+    {A, 1040, 15682}, -- Heroic: Fate of the Sepulcher
+    {A, 1040, 15681}, -- Fate of the Sepulcher
     {A, 1040, 15409}, -- First Wonders
     {A, 1040, 15471}, -- Cutting Edge: The Jailer
     {A, 1040, 15470}, -- Ahead of the Curve: The Jailer
     {A, 1040, 15469}, -- We Are All Made of Stars (Mythic)
     {A, 1040, 15468}, -- We Are All Made of Stars (Heroic)
     {A, 1040, 15396}, -- We Are All Made of Stars
-    {A, 1040, 15683}, -- Mythic: Fate of the Sepulcher
-    {A, 1040, 15682}, -- Heroic: Fate of the Sepulcher
-    {A, 1040, 15681}, -- Fate of the Sepulcher
     {A, 1040, 15490}, -- Mythic: Sepulcher of the First Ones
     {A, 1040, 15478}, -- Heroic: Sepulcher of the First Ones
     {A, 1040, 15417}, -- Sepulcher of the First Ones
@@ -4245,13 +4257,13 @@ tasks = {
     {A, 858, 14998}, -- "Name A Better Duo, I'll Wait"
     {C, 821, 858},
     {N, 858, a.L["Glory"]}, -- Glory
+    {A, 821, 15669}, -- Mythic: Fate of Domination
+    {A, 821, 15668}, -- Heroic: Fate of Domination
+    {A, 821, 15667}, -- Fate of Domination
     {A, 821, 15191}, -- "Rae'shalare, Death's Whisper"
     {A, 821, 15110}, -- Dominating the Catwalk
     {A, 821, 15135}, -- Cutting Edge: Sylvanas Windrunner
     {A, 821, 15134}, -- Ahead of the Curve: Sylvanas Windrunner
-    {A, 821, 15669}, -- Mythic: Fate of Domination
-    {A, 821, 15668}, -- Heroic: Fate of Domination
-    {A, 821, 15667}, -- Fate of Domination
     {A, 821, 15128}, -- Mythic: Sanctum of Domination
     {A, 821, 15127}, -- Heroic: Sanctum of Domination
     {A, 821, 15126}, -- Sanctum of Domination
@@ -4285,12 +4297,12 @@ tasks = {
     {A, 860, 14293}, -- Blind as a Bat
     {C, 379, 860},
     {N, 860, a.L["Glory"]}, -- Glory
-    {A, 379, 14614}, -- Castle Vain
-    {A, 379, 14461}, -- Cutting Edge: Sire Denathrius
-    {A, 379, 14460}, -- Ahead of the Curve: Sire Denathrius
     {A, 379, 15665}, -- Mythic: Fate of Nathria
     {A, 379, 15664}, -- Heroic: Fate of Nathria
     {A, 379, 15663}, -- Fate of Nathria
+    {A, 379, 14614}, -- Castle Vain
+    {A, 379, 14461}, -- Cutting Edge: Sire Denathrius
+    {A, 379, 14460}, -- Ahead of the Curve: Sire Denathrius
     {A, 379, 14718}, -- Mythic: Castle Nathria
     {A, 379, 14717}, -- Heroic: Castle Nathria
     {A, 379, 14715}, -- Castle Nathria
@@ -5479,7 +5491,7 @@ tasks = {
     {A, 271, 14183}, -- Conspicuous Consumption
     {C, 259, 271},
     {N, 271, a.GetMapName(876) .. " & " .. a.GetMapName(875)}, -- Kul Tiras & Zandalar
-    {A, 259, 46}, -- Universal Explorer
+    {A, 259, 46}, -- World Explorer
     {C, 258, 259},
     {N, 259, a.L["Zones"]}, -- Zones
     {A, 258, 13250}, -- "Battle for Azeroth Pathfinder, Part Two"
@@ -7558,23 +7570,23 @@ tasks = {
     {A, 1527, 5480}, -- Preparing for Disaster
     {C, 1153, 1527},
     {N, 1527, a.GetCategoryInfoTitle(15496), true}, -- Tailoring
-    {A, 1497, 4917}, -- Cataclysmic Fisherman
+    {A, 1497, 4917}, -- Illustrious Grand Master Fisherman
     {C, 1153, 1497},
     {N, 1497, a.GetCategoryInfoTitle(171), true}, -- Fishing
     {A, 1480, 5473}, -- The Cataclysmic Gourmet
     {A, 1480, 5472}, -- The Cataclysmic Gourmet
-    {A, 1480, 4916}, -- Cataclysmic Cook
+    {A, 1480, 4916}, -- Illustrious Grand Master Cook
     {C, 1153, 1480},
     {N, 1480, a.GetCategoryInfoTitle(170), true}, -- Cooking
     {A, 1471, 5301}, -- The Boy Who Would be King
-    {A, 1471, 4923}, -- Illustrious Grand Master Archaeologist
+    {A, 1471, 4923}, -- Illustrious Grand Master in Archaeology
     {C, 1153, 1471},
     {N, 1471, a.GetCategoryInfoTitle(15071), true}, -- Archaeology
     {A, 1153, 4915}, -- More Skills to Pay the Bills
-    {A, 1153, 4918}, -- Illustrious Grand Master Medic
+    {A, 1153, 4918}, -- Illustrious Grand Master in First Aid
     {A, 1153, 18719}, -- Cataclysmic Master of All
-    {A, 1153, 4914}, -- Working In the Heat
-    {A, 1153, 4924}, -- Professional Cataclysmic Master
+    {A, 1153, 4914}, -- Working Around the Clock
+    {A, 1153, 4924}, -- Professional Illustrious Grand Master
     {C, 129, 1153},
     {N, 1153, a.GetCategoryInfoTitle(169)}, -- Professions
     {A, 909, 6116}, -- Heroic: Madness of Deathwing
@@ -7900,7 +7912,7 @@ tasks = {
     {N, 551, a.GetMapName(203)}, -- Vashj'ir
     {A, 550, 7520}, -- The Loremaster
     {A, 550, 4881}, -- The Earthen Ring
-    {A, 550, 4868}, -- Cataclysm Explorer
+    {A, 550, 4868}, -- Explore Cataclysm
     {A, 550, 5753}, -- Cataclysmically Delicious
     {A, 550, 5754}, -- Drown Your Sorrows
     {A, 550, 5548}, -- To All the Squirrels Who Cared for Me
@@ -8003,7 +8015,7 @@ tasks = {
     {A, 1498, 2094}, -- A Penny For Your Thoughts
     {A, 1498, 3217}, -- Chasing Marcia
     {A, 1498, 1517}, -- Northrend Angler
-    {A, 1498, 130}, -- Northrend Fisherman
+    {A, 1498, 130}, -- Grand Master Fisherman
     {C, 1152, 1498},
     {N, 1498, a.GetCategoryInfoTitle(171), true}, -- Fishing
     {A, 1479, 1783}, -- Our Daily Bread
@@ -8013,17 +8025,17 @@ tasks = {
     {A, 1479, 1779}, -- The Northrend Gourmet
     {A, 1479, 1778}, -- The Northrend Gourmet
     {A, 1479, 1777}, -- The Northrend Gourmet
-    {A, 1479, 125}, -- Northrend Cook
+    {A, 1479, 125}, -- Grand Master Cook
     {C, 1152, 1479},
     {N, 1479, a.GetCategoryInfoTitle(170), true}, -- Cooking
-    {A, 1470, 4922}, -- Grand Master Archaeologist
+    {A, 1470, 4922}, -- Grand Master in Archaeology
     {C, 1152, 1470},
     {N, 1470, a.GetCategoryInfoTitle(15071), true}, -- Archaeology
     {A, 1152, 730}, -- Skills to Pay the Bills
-    {A, 1152, 135}, -- Grand Master Medic
+    {A, 1152, 135}, -- Grand Master in First Aid
     {A, 1152, 18722}, -- Northrend Master of All
-    {A, 1152, 735}, -- Working In the Cold
-    {A, 1152, 734}, -- Professional Northrend Master
+    {A, 1152, 735}, -- Working Day and Night
+    {A, 1152, 734}, -- Professional Grand Master
     {C, 83, 1152},
     {N, 1152, a.GetCategoryInfoTitle(169)}, -- Professions
     {A, 128, 4816}, -- Heroic: The Twilight Destroyer (25 player)
@@ -8728,7 +8740,7 @@ tasks = {
     {A, 577, 1010}, -- Northrend Vanguard
     {A, 577, 1009}, -- Knights of the Ebon Blade
     {A, 577, 1008}, -- The Kirin Tor
-    {A, 577, 45}, -- Northrend Explorer
+    {A, 577, 45}, -- Explore Northrend
     {A, 577, 2557}, -- To All The Squirrels Who Shared My Life
     {A, 577, 2257}, -- Frostbitten
     {A, 577, 2256}, -- Northern Exposure
@@ -8776,7 +8788,7 @@ tasks = {
     {A, 1499, 905}, -- Old Man Barlowned
     {A, 1499, 144}, -- The Lurker Above
     {A, 1499, 726}, -- Mr. Pinchy's Magical Crawdad Box
-    {A, 1499, 129}, -- Outland Fisherman
+    {A, 1499, 129}, -- Master Fisherman
     {C, 1151, 1499},
     {N, 1499, a.GetCategoryInfoTitle(171), true}, -- Fishing
     {A, 1570, 18856}, -- Just an Ordinary Gas Cloud
@@ -8786,18 +8798,18 @@ tasks = {
     {A, 1478, 1800}, -- The Outland Gourmet
     {A, 1478, 906}, -- Kickin' It Up a Notch
     {A, 1478, 877}, -- The Cake Is Not A Lie
-    {A, 1478, 124}, -- Outland Cook
+    {A, 1478, 124}, -- Master Cook
     {C, 1151, 1478},
     {N, 1478, a.GetCategoryInfoTitle(170), true}, -- Cooking
     {A, 1469, 5192}, -- The Harder they Fall
-    {A, 1469, 4921}, -- Master Archaeologist
+    {A, 1469, 4921}, -- Master in Archaeology
     {C, 1151, 1469},
     {N, 1469, a.GetCategoryInfoTitle(15071), true}, -- Archaeology
-    {A, 1151, 134}, -- Master Medic
+    {A, 1151, 134}, -- Master in First Aid
     {A, 1151, 1257}, -- The Scavenger
     {A, 1151, 18721}, -- Outland Master of All
     {A, 1151, 18729}, -- Working in Hellfire
-    {A, 1151, 733}, -- Professional Outland Master
+    {A, 1151, 733}, -- Professional Master
     {C, 55, 1151},
     {N, 1151, a.GetCategoryInfoTitle(169)}, -- Professions
     {A, 82, 9824}, -- Raiding with Leashes III: Drinkin' From the Sunwell
@@ -9073,12 +9085,12 @@ tasks = {
     {C, 616, 758},
     {N, 758, a.GetMapName(97)}, -- Azuremyst Isle
     {A, 969, 603}, -- Wrath of the Horde
-    {A, 969, 619}, -- For the Horde!
+    {A, 969, 619}, -- For The Horde!
     {A, 969, 618}, -- Putting Out the Light
     {C, 616, 969},
     {N, 969, a.GetMapName(103)}, -- The Exodar
     {A, 924, 604}, -- Wrath of the Alliance
-    {A, 924, 614}, -- For the Alliance!
+    {A, 924, 614}, -- For The Alliance!
     {A, 924, 613}, -- Killed in Quel'Thalas
     {C, 616, 924},
     {N, 924, a.GetMapName(110)}, -- Silvermoon City
@@ -9092,7 +9104,7 @@ tasks = {
     {A, 616, 894}, -- Flying High Over Skettis
     {A, 616, 764}, -- The Burning Crusader
     {A, 616, 763}, -- The Burning Crusader
-    {A, 616, 44}, -- Outland Explorer
+    {A, 616, 44}, -- Explore Outland
     {A, 616, 1312}, -- Bloody Rare
     {A, 616, 1311}, -- Medium Rare
     {A, 616, 1262}, -- Loremaster of Outland
@@ -9187,7 +9199,7 @@ tasks = {
     {A, 1477, 5474}, -- Let's Do Lunch: Stormwind
     {A, 1477, 5841}, -- Let's Do Lunch: Ironforge
     {A, 1477, 5842}, -- Let's Do Lunch: Darnassus
-    {A, 1477, 123}, -- Classic Cook
+    {A, 1477, 123}, -- Artisan Cook
     {A, 1477, 122}, -- Expert Cook
     {A, 1477, 121}, -- Journeyman Cook
     {C, 1150, 1477},
@@ -9200,17 +9212,17 @@ tasks = {
     {A, 1468, 5193}, -- Blue Streak
     {A, 1468, 5191}, -- Tragedy in Three Acts
     {A, 1468, 4858}, -- Seven Scepters
-    {A, 1468, 4920}, -- Artisan Archaeologist
-    {A, 1468, 4919}, -- Expert Archaeologist
-    {A, 1468, 4857}, -- Journeyman Archaeologist
+    {A, 1468, 4920}, -- Artisan in Archaeology
+    {A, 1468, 4919}, -- Expert in Archaeology
+    {A, 1468, 4857}, -- Journeyman in Archaeology
     {C, 1150, 1468},
     {N, 1468, a.GetCategoryInfoTitle(15071), true}, -- Archaeology
-    {A, 1150, 133}, -- Artisan Medic
-    {A, 1150, 132}, -- Expert Medic
-    {A, 1150, 131}, -- Journeyman Medic
+    {A, 1150, 133}, -- Artisan in First Aid
+    {A, 1150, 132}, -- Expert in First Aid
+    {A, 1150, 131}, -- Journeyman in First Aid
     {A, 1150, 18720}, -- Classic Master of All
     {A, 1150, 18728}, -- Working from the Start
-    {A, 1150, 732}, -- Professional Classic Master
+    {A, 1150, 732}, -- Professional Artisan
     {A, 1150, 731}, -- Professional Expert
     {A, 1150, 116}, -- Professional Journeyman
     {C, 1, 1150},
@@ -9287,7 +9299,7 @@ tasks = {
     {C, 2, 23},
     {N, 23, a.GetInstanceInfoName(230)}, -- Dire Maul
     {A, 797, 2188}, -- Leeeeeeeeeeeeeroy!
-    {A, 797, 1307}, -- Upper Blackrock Spire (Classic)
+    {A, 797, 1307}, -- Upper Blackrock Spire
     {C, 2, 797},
     {N, 797, a.GetInstanceInfoName(559) .. " (" .. a.GetCategoryInfoTitle(15234) .. ")"}, -- Upper Blackrock Spire
     {A, 22, 643}, -- Lower Blackrock Spire
@@ -9579,9 +9591,9 @@ tasks = {
     {A, 921, 604}, -- Wrath of the Alliance
     {A, 921, 11065}, -- It All Makes Sense Now
     {A, 921, 1006}, -- City Defender
-    {A, 921, 614}, -- For the Alliance!
+    {A, 921, 614}, -- For The Alliance!
     {A, 921, 14817}, -- Opposing Orgrimmar
-    {A, 921, 610}, -- Orgrimmar Offensive
+    {A, 921, 610}, -- Death to the Warchief!
     {C, 688, 921},
     {N, 921, a.GetMapName(85)}, -- Orgrimmar
     {A, 975, 603}, -- Wrath of the Horde
@@ -9589,7 +9601,7 @@ tasks = {
     {C, 688, 975},
     {N, 975, a.GetMapName(89)}, -- Darnassus
     {A, 688, 7520}, -- The Loremaster
-    {A, 688, 43}, -- Kalimdor Explorer
+    {A, 688, 43}, -- Explore Kalimdor
     {A, 688, 1678}, -- Loremaster of Kalimdor
     {C, 648, 688},
     {N, 688, a.GetMapName(12)}, -- Kalimdor
@@ -9863,7 +9875,7 @@ tasks = {
     {C, 687, 974},
     {N, 974, a.GetMapName(90)}, -- Undercity
     {A, 970, 603}, -- Wrath of the Horde
-    {A, 970, 619}, -- For the Horde!
+    {A, 970, 619}, -- For The Horde!
     {A, 970, 616}, -- Overthrow the Council
     {C, 687, 970},
     {N, 970, a.GetMapName(87)}, -- Ironforge
@@ -9882,7 +9894,7 @@ tasks = {
     {N, 922, a.GetMapName(84)}, -- Stormwind City
     {A, 687, 19719}, -- Reclamation of Gilneas
     {A, 687, 7520}, -- The Loremaster
-    {A, 687, 42}, -- Eastern Kingdoms Explorer
+    {A, 687, 42}, -- Explore Eastern Kingdoms
     {A, 687, 1676}, -- Loremaster of Eastern Kingdoms
     {C, 648, 687},
     {N, 687, a.GetMapName(13)}, -- Eastern Kingdoms
@@ -10208,12 +10220,12 @@ tasks = {
     {A, 1159, 31}, -- A Simple Re-Quest
     {A, 1159, 7411}, -- 10000 Daily Quests Completed
     {A, 1159, 7410}, -- 5000 Daily Quests Completed
-    {A, 1159, 5751}, -- 2500 Daily Quests Completed
-    {A, 1159, 977}, -- 1000 Daily Quests Completed
-    {A, 1159, 976}, -- 500 Daily Quests Completed
-    {A, 1159, 975}, -- 200 Daily Quests Completed
-    {A, 1159, 974}, -- 50 Daily Quests Completed
-    {A, 1159, 973}, -- 5 Daily Quests Completed
+    {A, 1159, 5751}, -- 2500 Daily Quests Complete
+    {A, 1159, 977}, -- 1000 Daily Quests Complete
+    {A, 1159, 976}, -- 500 Daily Quests Complete
+    {A, 1159, 975}, -- 200 Daily Quests Complete
+    {A, 1159, 974}, -- 50 Daily Quests Complete
+    {A, 1159, 973}, -- 5 Daily Quests Complete
     {A, 1159, 978}, -- 3000 Quests Completed
     {A, 1159, 32}, -- 2000 Quests Completed
     {A, 1159, 508}, -- 1500 Quests Completed
@@ -10253,8 +10265,8 @@ tasks = {
     {A, 1432, 2358}, -- Charger
     {A, 1432, 2357}, -- Dreadsteed of Xoroth
     {A, 1432, 892}, -- The Right Stuff
-    {A, 1432, 5180}, -- Breaking the Sound Barrier
-    {A, 1432, 890}, -- Into the Wild Blue Yonder
+    {A, 1432, 5180}, -- Breaking The Sound Barrier
+    {A, 1432, 890}, -- Into The Wild Blue Yonder
     {A, 1432, 889}, -- Fast and Furious
     {A, 1432, 891}, -- Giddy Up!
     {A, 1432, 559}, -- Needy
@@ -10276,11 +10288,11 @@ tasks = {
     {A, 1432, 10671}, -- Level 110 (Legacy)
     {A, 1432, 9060}, -- Level 100 (Legacy)
     {A, 1432, 6193}, -- Level 90 (Legacy)
-    {A, 1432, 4826}, -- Level 85 (Legacy)
-    {A, 1432, 13}, -- Level 80 (Legacy)
-    {A, 1432, 12}, -- Level 70 (Legacy)
-    {A, 1432, 11}, -- Level 60 (Legacy)
-    {A, 1432, 10}, -- Level 50 (Legacy)
+    {A, 1432, 4826}, -- Level 85
+    {A, 1432, 13}, -- Level 80
+    {A, 1432, 12}, -- Level 70
+    {A, 1432, 11}, -- Level 60
+    {A, 1432, 10}, -- Level 50
     {A, 1432, 15805}, -- Level 70
     {A, 1432, 14783}, -- Level 60
     {A, 1432, 14782}, -- Level 50

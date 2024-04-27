@@ -193,7 +193,7 @@ local function DeleteCharacterCallback(self)
     KrowiAF_DataManagerFrame.CharacterList:Refresh();
 end
 
-if addon.Util.IsWrathClassic then
+if addon.Util.IsClassicWithAchievements then
     function KrowiAF_CharacterListEntryMixin:DeleteCharacterFunction()
         -- GENERIC_CONFIRMATION
         StaticPopupDialogs["KrowiAF_ConfirmDeleteCharacter"] = {

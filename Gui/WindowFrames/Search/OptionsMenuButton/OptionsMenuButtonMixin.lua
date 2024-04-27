@@ -11,7 +11,7 @@ local function AddCheckBox(_menu, text, options, keys, ignoreAsMenuSelection)
 		Func = function()
 			addon.Util.WriteNestedKeys(options, keys, not addon.Util.ReadNestedKeys(options, keys));
 			addon.SearchOptions.Changed = true;
-			if addon.Util.IsWrathClassic then
+			if addon.Util.IsClassicWithAchievements then
 				KrowiAF_SearchBoxFrame:Focus();
 			end
 		end,

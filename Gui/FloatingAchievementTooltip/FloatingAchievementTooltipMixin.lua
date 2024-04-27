@@ -64,7 +64,7 @@ end
 function KrowiAF_FloatingAchievementTooltipMixin:ItemRefSetHyperlink(link)
 	self:SetPadding(0, 0);
 	self:SetHyperlink(link);
-	if addon.Util.IsWrathClassic then
+	if addon.Util.IsClassicWithAchievements then
 		local _, id = strsplit(":", link);
 		self.info = {
 			tooltipData = {
@@ -79,7 +79,7 @@ function KrowiAF_FloatingAchievementTooltipMixin:ItemRefSetHyperlink(link)
 	end
 end
 
-if not addon.Util.IsWrathClassic then
+if not addon.Util.IsClassicWithAchievements then
 	function KrowiAF_FloatingAchievementTooltipMixin:SetHyperlink(...)
 		-- it's the same hyperlink as current data, close instead
 		local info = self:GetPrimaryTooltipInfo();

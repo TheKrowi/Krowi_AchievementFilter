@@ -113,7 +113,7 @@ function KrowiAF_AchievementsObjectivesMixin:GetProgressBar(index) -- Public for
 		return progressBarTable[index];
 	end
 	local frame = CreateFrame("STATUSBAR", self:GetName() .. "ProgressBar" .. index, self, "AchievementProgressBarTemplate");
-	if addon.IsWrathClassic then
+	if addon.Util.IsClassicWithAchievements then
 		frame.Text = frame.text;
 	end
 	AchievementButton_LocalizeProgressBar(frame);

@@ -56,17 +56,17 @@ end
 
 function KrowiAF_SearchBoxFrameMixin:OnShow()
 	AchievementFrame.Header.RightDDLInset:Show();
-	if not addon.Util.IsWrathClassic then
+	if not addon.Util.IsClassicWithAchievements then
 		AchievementFrame.SearchBox:Hide();
 	end
 	self.OptionsMenuButton:Show();
 end
 
 function KrowiAF_SearchBoxFrameMixin:OnHide()
-	if addon.Util.IsWrathClassic and not AchievementFrameFilterDropDown:IsShown() then
+	if addon.Util.IsClassicWithAchievements and not AchievementFrameFilterDropDown:IsShown() then
 		AchievementFrame.Header.RightDDLInset:Hide();
 	end
-	if not addon.Util.IsWrathClassic then
+	if not addon.Util.IsClassicWithAchievements then
 		AchievementFrame.SearchBox:Show();
 		AchievementFrame.Header.RightDDLInset:Show();
 	end

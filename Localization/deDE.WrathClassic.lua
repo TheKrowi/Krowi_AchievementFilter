@@ -1,5 +1,5 @@
 local addonName, addon = ...;
-if not addon.Util.IsWrathClassic then
+if not addon.Util.IsClassicWithAchievements then
     return;
 end
 local L = LibStub(addon.Libs.AceLocale):NewLocale(addonName, "deDE");
