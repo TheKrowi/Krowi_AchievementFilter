@@ -493,7 +493,7 @@ do --[[ Tooltip Data ]]
 		end
 
 		for _, v in next, criteria do
-			KrowiAF.AddTooltipData(achievementId, v[1], properties.ObjectType, v[2], properties.NotCompletedText, properties.CompletedText);
+			KrowiAF.AddTooltipData(achievementId, v[1], v[3] or properties.ObjectType, v[2], v[4] or properties.NotCompletedText, v[5] or properties.CompletedText);
 		end
 	end
 
