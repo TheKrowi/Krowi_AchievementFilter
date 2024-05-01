@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 70.0 - 2024-04-24
+## 70.0 - 2024-05-01
 ### Added
 - Pandaria: Remix achievements (157)
 - Achievements that require a calendar event to be active now show this in their tooltip
@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Placeholder achievements filtering (dev note: mainly used for development and adding achievements that will be added in a later patch)
+- Toggling the Achievement window when on the Guild tab now properly shows the Guild achievement points
 
 ### Changed
 - Moved Many Boxes, Many Rockses from Dragonflight - Zones - Dragon Isles - Exploration to Dragonflight - Zones - The Waking Shores - Exploration

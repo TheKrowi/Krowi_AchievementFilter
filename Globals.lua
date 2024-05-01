@@ -449,17 +449,17 @@ function addon.OverwriteFunctions()
     end
 
     AchievementFrame_DisplayComparison = function(unit)
-        if not addon.IsDragonflightRetail then
+        if not addon.Util.IsMainline then
             AchievementFrame.wasShown = nil;
         end
 
         AchievementFrameTab_OnClick = AchievementFrameComparisonTab_OnClick;
         AchievementFrameTab_OnClick(1);
-        if addon.IsDragonflightRetail then
+        if addon.Util.IsMainline then
             AchievementFrame_SetComparisonTabs();
         end
         AchievementFrame:Show();
-        if addon.IsDragonflightRetail then
+        if addon.Util.IsMainline then
             AchievementFrame_ShowSubFrame(AchievementFrameComparison, AchievementFrameComparison.AchievementContainer);
         end
         AchievementFrameComparison_SetUnit(unit);
@@ -526,7 +526,7 @@ function addon.HookFunctions()
         hooksecurefunc("PanelTemplates_SetTab", AchievementFrame_SetTabs);
     end
 
-    if addon.IsDragonflightRetail then
+    if addon.Util.IsMainline then
         hooksecurefunc("AchievementFrame_SetComparisonTabs", function()
             addon.Gui:ShowHideTabs();
         end);

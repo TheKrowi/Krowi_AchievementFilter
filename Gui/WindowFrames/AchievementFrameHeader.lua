@@ -213,7 +213,14 @@ function header:HookSetPointsText()
     AchievementFrame.Header.PointBorder:SetWidth(175);
 
     hooksecurefunc(AchievementFrame.Header.Points, "SetText", function()
-        if addon.InGuildView() or not processHook then
+        if not processHook then
+            return;
+        end
+
+        if addon.InGuildView() then
+            processHook = false;
+            AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(GetTotalAchievementPoints(true) or -1));
+            processHook = true;
             return;
         end
 

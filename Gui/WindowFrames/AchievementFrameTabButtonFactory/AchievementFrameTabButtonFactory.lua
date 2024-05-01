@@ -21,13 +21,6 @@ local function Base_OnClick(tabId)
     else
         if addon.InGuildView() then
             AchievementFrameBaseTab_OnClick(1);
-            if addon.Util.IsCataClassic then
-                AchievementFrame_ToggleView();
-            else
-                AchievementFrame_RefreshView();
-            end
-            AchievementFrameGuildEmblemLeft:Hide();
-            AchievementFrameGuildEmblemRight:Hide();
         end
 	    AchievementFrame_UpdateTabs(tabId);
     end
