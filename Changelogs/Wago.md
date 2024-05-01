@@ -6,6 +6,7 @@
 
 ### Fixed
 - Placeholder achievements filtering (dev note: mainly used for development and adding achievements that will be added in a later patch)
+- Toggling the Achievement window when on the Guild tab now properly shows the Guild achievement points
 
 ### Changed
 - Moved Many Boxes, Many Rockses from Dragonflight - Zones - Dragon Isles - Exploration to Dragonflight - Zones - The Waking Shores - Exploration

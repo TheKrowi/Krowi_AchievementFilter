@@ -8,6 +8,7 @@
 <p><h3>Fixed</h3></p>
 <ul>
 <li>Placeholder achievements filtering (dev note: mainly used for development and adding achievements that will be added in a later patch)</li>
+<li>Toggling the Achievement window when on the Guild tab now properly shows the Guild achievement points</li>
 </ul>
 <p><h3>Changed</h3></p>
 <ul>
