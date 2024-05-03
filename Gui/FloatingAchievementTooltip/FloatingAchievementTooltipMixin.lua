@@ -2,16 +2,8 @@ local _, addon = ...;
 
 KrowiAF_FloatingAchievementTooltipCloseButtonMixin = {};
 
-function KrowiAF_FloatingAchievementTooltipCloseButtonMixin:OnLoad()
-	addon.Gui:RegisterSafeCloseButtonDuringCombat(self);
-end
-
 function KrowiAF_FloatingAchievementTooltipCloseButtonMixin:OnClick()
 	self:GetParent():Hide();
-end
-
-function KrowiAF_FloatingAchievementTooltipCloseButtonMixin:OnKeyDown(key)
-	addon.Gui.HandleCloseButtonOnKeyDown(self, key);
 end
 
 KrowiAF_FloatingAchievementTooltipAchievementLinkMixin = {};
@@ -34,6 +26,8 @@ end
 KrowiAF_FloatingAchievementTooltipMixin = {};
 
 function KrowiAF_FloatingAchievementTooltipMixin:OnLoad()
+    addon.Gui:RegisterFrameForClosing(self);
+
 	GameTooltip_OnLoad(self);
 	self:RegisterForDrag("LeftButton");
 end

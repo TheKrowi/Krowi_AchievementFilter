@@ -29,7 +29,6 @@
 				<Scripts>
 					<OnLoad method="OnLoad"/>
 					<OnClick method="OnClick"/>
-					<OnKeyDown method="OnKeyDown"/>
 				</Scripts>
 			</Button>
 		</Frames>

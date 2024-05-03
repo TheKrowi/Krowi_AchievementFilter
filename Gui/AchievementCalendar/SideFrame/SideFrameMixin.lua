@@ -4,15 +4,10 @@ KrowiAF_AchievementCalendarSideFrameCloseButtonMixin = {};
 
 function KrowiAF_AchievementCalendarSideFrameCloseButtonMixin:OnLoad()
     self:SetFrameLevel(self:GetParent():GetFrameLevel() + 6);
-    addon.Gui:RegisterSafeCloseButtonDuringCombat(self);
 end
 
 function KrowiAF_AchievementCalendarSideFrameCloseButtonMixin:OnClick()
     self:GetParent():Hide();
-end
-
-function KrowiAF_AchievementCalendarSideFrameCloseButtonMixin:OnKeyDown(key)
-    addon.Gui.HandleCloseButtonOnKeyDown(self, key);
 end
 
 KrowiAF_AchievementCalendarSideFrameMixin = {};
@@ -29,6 +24,8 @@ local function OnAchievementsFrameViewAcquiredFrame(sideFrame, frame)
 end
 
 function KrowiAF_AchievementCalendarSideFrameMixin:OnLoad()
+    addon.Gui:RegisterFrameForClosing(self);
+
     self.AchievementsFrame.ScrollBox.wheelPanScalar = addon.Options.db.profile.Calendar.MouseWheelPanScalar;
 	self.AchievementsFrame.ScrollBar.wheelPanScalar = addon.Options.db.profile.Calendar.MouseWheelPanScalar;
     self.AchievementsFrame:AlwaysHideBorder();

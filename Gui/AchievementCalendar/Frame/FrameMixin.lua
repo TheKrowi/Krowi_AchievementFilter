@@ -90,18 +90,8 @@ end
 
 KrowiAF_AchievementCalendarFrameCloseButtonMixin = {};
 
-function KrowiAF_AchievementCalendarFrameCloseButtonMixin:OnLoad()
-	addon.Gui:RegisterSafeCloseButtonDuringCombat(self, function()
-		return not self:GetParent().SideFrame:IsShown();
-	end);
-end
-
 function KrowiAF_AchievementCalendarFrameCloseButtonMixin:OnClick()
     self:GetParent():Hide();
-end
-
-function KrowiAF_AchievementCalendarFrameCloseButtonMixin:OnKeyDown(key)
-    addon.Gui.HandleCloseButtonOnKeyDown(self, key);
 end
 
 KrowiAF_AchievementCalendarFrameMixin = {
@@ -224,6 +214,8 @@ local function LoadSideFrame(self)
 end
 
 function KrowiAF_AchievementCalendarFrameMixin:OnLoad()
+	addon.Gui:RegisterFrameForClosing(self);
+
 	C_CalendarResetAbsMonth();
 
 	LoadDayButtons(self);

@@ -12,7 +12,10 @@ local function ShowFloatingAchievementTooltip(link)
         tooltip:Hide();
         return;
     end
-    HideUIPanel(ItemRefTooltip);
+    -- HideUIPanel(ItemRefTooltip);
+    securecall(function()
+        ItemRefTooltip:Hide();
+    end);
     tooltip:Show();
     if not tooltip:IsShown() then
         tooltip:SetOwner(UIParent, "ANCHOR_PRESERVE");

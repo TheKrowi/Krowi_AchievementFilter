@@ -47,11 +47,6 @@ local function LoadOldAchievementFrameTabsCompatibility()
     end
 end
 
-local function SetCloseButtonOnKeyDown(self)
-    self:RegisterSafeCloseButtonDuringCombat(AchievementFrameCloseButton);
-    AchievementFrameCloseButton:SetScript("OnKeyDown", self.HandleCloseButtonOnKeyDown);
-end
-
 local function ShowSubFrame(self, ...)
     local show;
 	for _, subFrame in ipairs(self.SubFrames) do
@@ -115,7 +110,7 @@ function gui:LoadWithBlizzard_AchievementUI()
 
     self:ResetAchievementFrameHeight();
 
-    SetCloseButtonOnKeyDown(self);
+    self:RegisterFrameForClosing(AchievementFrame);
     HookShowSubFrame(self);
 end
 
@@ -403,35 +398,10 @@ function gui:RefreshViewAfterPlayerLogin()
     KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
 end
 
-function gui:RegisterSafeCloseButtonDuringCombat(frame, extraHideCondition)
-    frame.ExtraHideCondition = extraHideCondition;
-    frame:RegisterEvent("PLAYER_REGEN_DISABLED");
-    frame:RegisterEvent("PLAYER_REGEN_ENABLED");
-    frame:HookScript("OnEvent", function(_, event, ...)
-        if event == "PLAYER_REGEN_DISABLED" then
-            frame:SetScript("OnKeyDown", nil);
-            tinsert(UISpecialFrames, frame:GetParent():GetName());
-        elseif event == "PLAYER_REGEN_ENABLED" then
-            frame:SetScript("OnKeyDown", self.HandleCloseButtonOnKeyDown);
-            addon.Util.TableRemoveByValue(UISpecialFrames, frame:GetParent():GetName());
-        end
+function gui:RegisterFrameForClosing(frame)
+    frame:HookScript("OnShow", function()
+        KrowiAF_SpecialFrame:Show();
     end);
-end
-
-function gui.HandleCloseButtonOnKeyDown(frame, key) -- . instead of : because it needs to work for the frame
-    if key == GetBindingKey("TOGGLEGAMEMENU") then
-        local parent = frame:GetParent();
-        local extraHideCondition = true;
-        if frame.ExtraHideCondition then
-            extraHideCondition = frame.ExtraHideCondition();
-        end
-		if parent:IsShown() and extraHideCondition then
-            parent:Hide();
-			frame:SetPropagateKeyboardInput(false);
-			return;
-		end
-	end
-	frame:SetPropagateKeyboardInput(true);
 end
 
 local function AdjustQueuedAnchors(self, relativeAlert)
