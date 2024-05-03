@@ -171,26 +171,26 @@ loadHelper:SetScript("OnEvent", loadHelper.OnEvent);
 -- frame:EnableMouse(true);
 
 hooksecurefunc("ToggleGameMenu", function()
-    if KrowiAF_FloatingAchievementTooltip:IsShown() then
+    if KrowiAF_FloatingAchievementTooltip and KrowiAF_FloatingAchievementTooltip:IsShown() then
         KrowiAF_FloatingAchievementTooltip:Hide();
     elseif KrowiAF_TextFrame and KrowiAF_TextFrame:IsShown() then
         KrowiAF_TextFrame:Hide();
-    elseif KrowiAF_DataManagerFrame:IsShown() then
+    elseif KrowiAF_DataManagerFrame and KrowiAF_DataManagerFrame:IsShown() then
         KrowiAF_DataManagerFrame:Hide();
-    elseif KrowiAF_AchievementCalendarFrame.SideFrame:IsShown() then
+    elseif KrowiAF_AchievementCalendarFrame and KrowiAF_AchievementCalendarFrame.SideFrame and KrowiAF_AchievementCalendarFrame.SideFrame:IsShown() then
         KrowiAF_AchievementCalendarFrame.SideFrame:Hide();
-    elseif KrowiAF_AchievementCalendarFrame:IsShown() then
+    elseif KrowiAF_AchievementCalendarFrame and KrowiAF_AchievementCalendarFrame:IsShown() then
         KrowiAF_AchievementCalendarFrame:Hide();
-    elseif AchievementFrame:IsShown() then
+    elseif AchievementFrame and AchievementFrame:IsShown() then
         AchievementFrame:Hide();
     end
 
-    if KrowiAF_FloatingAchievementTooltip:IsShown()
+    if KrowiAF_FloatingAchievementTooltip and KrowiAF_FloatingAchievementTooltip:IsShown()
     or KrowiAF_TextFrame and KrowiAF_TextFrame:IsShown()
-    or KrowiAF_DataManagerFrame:IsShown()
-    or KrowiAF_AchievementCalendarFrame.SideFrame:IsShown()
-    or KrowiAF_AchievementCalendarFrame:IsShown()
-    or AchievementFrame:IsShown() then
+    or KrowiAF_DataManagerFrame and KrowiAF_DataManagerFrame:IsShown()
+    or KrowiAF_AchievementCalendarFrame and KrowiAF_AchievementCalendarFrame.SideFrame and KrowiAF_AchievementCalendarFrame.SideFrame:IsShown()
+    or KrowiAF_AchievementCalendarFrame and KrowiAF_AchievementCalendarFrame:IsShown()
+    or AchievementFrame and AchievementFrame:IsShown() then
         KrowiAF_SpecialFrame:Show();
     end
 end);

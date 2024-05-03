@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## 70.1 - 2024-05-08
 ### Fixed
-- Errors occuring during combat should be drastically reduced when opening the achievements window
+- Errors occurring during combat should be drastically reduced when opening the achievements window
 
 ## 70.0 - 2024-05-01
 ### Added

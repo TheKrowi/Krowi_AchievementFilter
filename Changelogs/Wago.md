@@ -22,4 +22,4 @@
 - PvP achievements and categories adjusted and dynamic obtainability added
 
 ### Fixed (70.1)
-- Errors occuring during combat should be drastically reduced when opening the achievements window
+- Errors occurring during combat should be drastically reduced when opening the achievements window

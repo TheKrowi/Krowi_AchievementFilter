@@ -28,5 +28,5 @@
 </ul>
 <p><h3>Fixed (70.1)</h3></p>
 <ul>
-<li>Errors occuring during combat should be drastically reduced when opening the achievements window</li>
+<li>Errors occurring during combat should be drastically reduced when opening the achievements window</li>
 </ul>
