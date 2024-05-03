@@ -25,9 +25,7 @@
                     <Anchor point="TOPRIGHT" x="2" y="2"/>
                 </Anchors>
                 <Scripts>
-                    <OnLoad method="OnLoad"/>
                     <OnClick method="OnClick"/>
-                    <OnKeyDown method="OnKeyDown"/>
                 </Scripts>
             </Button>
             <Button parentKey="AchievementLink" mixin="KrowiAF_FloatingAchievementTooltipAchievementLinkMixin">

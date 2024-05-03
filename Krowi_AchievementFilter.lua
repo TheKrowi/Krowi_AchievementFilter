@@ -22,7 +22,8 @@ addon.Faction.IsHorde = UnitFactionGroup("player") == "Horde";
 addon.Faction.IsNeutral = UnitFactionGroup("player") == "Neutral";
 
 -- [[ Load addon ]] --
-local loadHelper = CreateFrame("Frame");
+local loadHelper = CreateFrame("Frame", "KrowiAF_SpecialFrame");
+tinsert(UISpecialFrames, "KrowiAF_SpecialFrame");
 loadHelper:RegisterEvent("ADDON_LOADED");
 loadHelper:RegisterEvent("PLAYER_LOGIN");
 loadHelper:RegisterEvent("PLAYER_ENTERING_WORLD");
@@ -138,27 +139,58 @@ function loadHelper:OnEvent(event, arg1, arg2)
 end
 loadHelper:SetScript("OnEvent", loadHelper.OnEvent);
 
-function KrowiAF_AttCheck()
-    if not AllTheThings then
-        return;
-    end
+-- function KrowiAF_AttCheck()
+--     if not AllTheThings then
+--         return;
+--     end
     
-    DebugTable = {};
-    -- for key1, value1 in pairs(KrowiAF_ATT.Achievements) do
-        for key2, value2 in pairs(AllTheThings.Achievements) do
-            if type(value2) == "table" and type(value2.g) == "table" then
-                for key3, value3 in pairs(value2.g) do
-                    if type(value3) == "table" and value3["achID"] then
-                        tinsert(DebugTable, {id = value3["achID"], awp = value3["awp"], rwp = value3["rwp"],})
-                        -- for key4, value4 in pairs(value3) do
-                        --     DebugTable[key4] = 1;
-                        --     -- if key4 == "nmr"then
-                        --     --     DebugTable[value3["achID"]]
-                        --     -- end
-                        -- end
-                    end
-                end
-            end
-        end
-    -- end
-end
+--     DebugTable = {};
+--     -- for key1, value1 in pairs(KrowiAF_ATT.Achievements) do
+--         for key2, value2 in pairs(AllTheThings.Achievements) do
+--             if type(value2) == "table" and type(value2.g) == "table" then
+--                 for key3, value3 in pairs(value2.g) do
+--                     if type(value3) == "table" and value3["achID"] then
+--                         tinsert(DebugTable, {id = value3["achID"], awp = value3["awp"], rwp = value3["rwp"],})
+--                         -- for key4, value4 in pairs(value3) do
+--                         --     DebugTable[key4] = 1;
+--                         --     -- if key4 == "nmr"then
+--                         --     --     DebugTable[value3["achID"]]
+--                         --     -- end
+--                         -- end
+--                     end
+--                 end
+--             end
+--         end
+--     -- end
+-- end
+
+-- local frame = CreateFrame("Frame", "TESTFRAME", UIParent, "PortraitFrameTemplate");
+-- frame:SetPoint("CENTER");
+-- frame:SetSize(100,100);
+-- frame:Show();
+-- frame:EnableMouse(true);
+
+hooksecurefunc("ToggleGameMenu", function()
+    if KrowiAF_FloatingAchievementTooltip:IsShown() then
+        KrowiAF_FloatingAchievementTooltip:Hide();
+    elseif KrowiAF_TextFrame and KrowiAF_TextFrame:IsShown() then
+        KrowiAF_TextFrame:Hide();
+    elseif KrowiAF_DataManagerFrame:IsShown() then
+        KrowiAF_DataManagerFrame:Hide();
+    elseif KrowiAF_AchievementCalendarFrame.SideFrame:IsShown() then
+        KrowiAF_AchievementCalendarFrame.SideFrame:Hide();
+    elseif KrowiAF_AchievementCalendarFrame:IsShown() then
+        KrowiAF_AchievementCalendarFrame:Hide();
+    elseif AchievementFrame:IsShown() then
+        AchievementFrame:Hide();
+    end
+
+    if KrowiAF_FloatingAchievementTooltip:IsShown()
+    or KrowiAF_TextFrame and KrowiAF_TextFrame:IsShown()
+    or KrowiAF_DataManagerFrame:IsShown()
+    or KrowiAF_AchievementCalendarFrame.SideFrame:IsShown()
+    or KrowiAF_AchievementCalendarFrame:IsShown()
+    or AchievementFrame:IsShown() then
+        KrowiAF_SpecialFrame:Show();
+    end
+end);

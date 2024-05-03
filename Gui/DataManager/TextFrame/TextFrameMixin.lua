@@ -10,12 +10,12 @@ end
 KrowiAF_TextFrameMixin = {};
 
 function KrowiAF_TextFrameMixin:OnLoad()
+    addon.Gui:RegisterFrameForClosing(self);
+
     addon.MakeMovable(self, "TextFrame", nil, "CENTER");
     self.CloseButton:SetScript("OnClick", function(selfFunc)
 		selfFunc:GetParent():Hide();
 	end);
-	addon.Gui:RegisterSafeCloseButtonDuringCombat(self.CloseButton);
-	self.CloseButton:SetScript("OnKeyDown", addon.Gui.HandleCloseButtonOnKeyDown);
 
     ButtonFrameTemplate_HideAttic(self);
     ButtonFrameTemplate_HidePortrait(self);

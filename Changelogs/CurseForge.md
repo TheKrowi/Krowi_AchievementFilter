@@ -26,3 +26,7 @@
 <li>Realm First! achievements and categories adjusted and dynamic obtainability added</li>
 <li>PvP achievements and categories adjusted and dynamic obtainability added</li>
 </ul>
+<p><h3>Fixed (70.1)</h3></p>
+<ul>
+<li>Errors occuring during combat should be drastically reduced when opening the achievements window</li>
+</ul>
