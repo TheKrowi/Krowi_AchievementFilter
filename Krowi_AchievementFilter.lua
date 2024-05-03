@@ -14,6 +14,8 @@ addon.Tabs.Load();
 
 -- [[ Binding names ]] --
 BINDING_HEADER_KrowiAF = addon.Metadata.Title;
+BINDING_NAME_KrowiAF_BROWSER_HISTORY_PREV = addon.L["Go back one achievement"];
+BINDING_NAME_KrowiAF_BROWSER_HISTORY_NEXT = addon.L["Go forward one achievement"];
 
 -- [[ Faction data ]] --
 addon.Faction = {};
@@ -57,6 +59,7 @@ local function LoadKrowi_AchievementFilter()
 
     addon.Icon:Load();
     addon.Tutorials.Load();
+    addon.BrowsingHistory:Load();
 
     addon.TooltipData.Load(); -- Might be moved to PLAYER_LOGIN event but easier for testing on every /reload
 end

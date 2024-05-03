@@ -9,4 +9,5 @@
     <Include file="RightClickMenu\Files.xml"/>
     <Include file="AchievementCalendar\Files.xml"/>
     <Include file="DataManager\Files.xml"/>
+    <Include file="BrowsingHistory\BrowsingHistory.xml"/>
 </Ui>

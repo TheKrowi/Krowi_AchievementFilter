@@ -471,7 +471,7 @@
         "debugprofilestop",
         "SlashCmdList",
         "KrowiAF_AchievementCalendarSideFrame",
-        "KrowiAF_AchievementCalendarButton",
+        "KrowiAF_AchievementFrameCalendarButton",
         "KrowiAF_AchievementsObjectives",
         "UNTRACK_ACHIEVEMENT_TOOLTIP",
         "TRACK_ACHIEVEMENT_TOOLTIP",

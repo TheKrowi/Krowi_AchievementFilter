@@ -1216,7 +1216,7 @@ local function SkinAll()
     --     gw2_ui.SkinSearchResultsFrame(KrowiAF_SearchBoxFrame.ResultsFrame);
         gw2_ui.SkinHeader();
         ReskinBlizzard();
-        gw2_ui.SkinCalendarButton(KrowiAF_AchievementCalendarButton);
+        gw2_ui.SkinCalendarButton(KrowiAF_AchievementFrameCalendarButton);
     --     SkinDataManager(KrowiAF_DataManagerFrame);
         ReskinGw2Ui();
     end

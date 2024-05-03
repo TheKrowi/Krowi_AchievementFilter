@@ -1,0 +1,35 @@
+<Ui>
+    <Script file="BrowsingHistory.lua" />
+
+    <Button name="KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton_Template" mixin="KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButtonMixin" motionScriptsWhileDisabled="true" virtual="true">
+        <Size x="32" y="32"/>
+        <KeyValues>
+            <KeyValue key="HistoryOffset" value="-1" type="number"/>
+        </KeyValues>
+        <Scripts>
+            <OnEnter method="OnEnter"/>
+            <OnLeave method="OnLeave"/>
+            <OnClick method="OnClick"/>
+        </Scripts>
+        <NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up"/>
+        <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down"/>
+        <DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Disabled"/>
+        <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+    </Button>
+
+    <Button name="KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton_Template" mixin="KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButtonMixin" motionScriptsWhileDisabled="true" virtual="true">
+        <Size x="32" y="32"/>
+        <KeyValues>
+            <KeyValue key="HistoryOffset" value="1" type="number"/>
+        </KeyValues>
+        <Scripts>
+            <OnEnter method="OnEnter"/>
+            <OnLeave method="OnLeave"/>
+            <OnClick method="OnClick"/>
+        </Scripts>
+        <NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up"/>
+        <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down"/>
+        <DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Disabled"/>
+        <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+    </Button>
+</Ui>

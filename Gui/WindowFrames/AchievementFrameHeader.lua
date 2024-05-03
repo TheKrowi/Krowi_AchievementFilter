@@ -125,8 +125,8 @@ end
 
 local function CreateTooltip()
     local frame = CreateFrame("Button", "KrowiAF_AchievementFrameHeaderButton", AchievementFrame.Header);
-    frame:SetPoint("TOPLEFT", AchievementFrame.Header.PointBorder);
-    frame:SetPoint("BOTTOMRIGHT", AchievementFrame.Header.PointBorder);
+    frame:SetPoint("TOPLEFT", AchievementFrame.Header.PointBorder, 11, -10);
+    frame:SetPoint("BOTTOMRIGHT", AchievementFrame.Header.PointBorder, -10, 8);
     frame:SetScript("OnEnter", OnEnter);
     frame:SetScript("OnLeave", function()
         GameTooltip:Hide();

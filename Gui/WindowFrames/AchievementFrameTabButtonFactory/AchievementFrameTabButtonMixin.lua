@@ -20,6 +20,7 @@ function KrowiAF_AchievementFrameTabMixin:ShowSubFrames()
         KrowiAF_AchievementsFrame:Update();
         if self.SelectedAchievement then
 	        KrowiAF_AchievementsFrame.ScrollBox:ScrollToElementData(self.SelectedAchievement, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
+            -- print("tab select", self.SelectedAchievement and self.SelectedAchievement.Id)
             KrowiAF_AchievementsFrame.SelectionBehavior:SelectElementData(self.SelectedAchievement);
             KrowiAF_AchievementsFrame:ScrollToNearest(self.SelectedAchievement);
         end

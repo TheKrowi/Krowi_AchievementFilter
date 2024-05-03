@@ -1,7 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 70.1 - 2024-05-08
+## 71.0 - 2024-05-08
+### Added
+- Browse now your previously selected achievements if you want to go back and forward with ease
+
 ### Fixed
 - Errors occurring during combat should be drastically reduced when opening the achievements window
 

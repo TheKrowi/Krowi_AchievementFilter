@@ -715,7 +715,7 @@ local function SkinAll()
         elvUI.SkinSearchResultsFrame(KrowiAF_SearchBoxFrame.ResultsFrame, skins);
         SkinHeader();
         ReskinBlizzard(skins);
-        elvUI.SkinCalendarButton(KrowiAF_AchievementCalendarButton, skins);
+        elvUI.SkinCalendarButton(KrowiAF_AchievementFrameCalendarButton, skins);
         SkinDataManager(KrowiAF_DataManagerFrame, skins);
         SkinTextFrame(skins);
     end

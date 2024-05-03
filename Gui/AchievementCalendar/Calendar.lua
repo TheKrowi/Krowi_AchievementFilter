@@ -3,8 +3,8 @@ addon.Gui.Calendar = {};
 local calendar = addon.Gui.Calendar;
 
 local function CreateCalendarButton(frame)
-    local button = CreateFrame("Button", "KrowiAF_AchievementCalendarButton", AchievementFrame.Header);
-    button:SetPoint("LEFT", AchievementFrame.Header.PointBorder, "RIGHT");
+    local button = CreateFrame("Button", "KrowiAF_AchievementFrameCalendarButton", AchievementFrame.Header);
+    button:SetPoint("LEFT", AchievementFrame.Header.PointBorder, "RIGHT", 10, 30);
     button:SetSize(40, 40);
 
     local ntex = button:CreateTexture();

@@ -1047,3 +1047,6 @@ L["Zaqali Ruin Investigation: Next"] = true
 L["Zaqali Ruin Investigation: Soon"] = true
 L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
+L["Go back one achievement"] = true
+L["Go forward one achievement"] = true
+L["Select achievements to see your browsing history"] = true

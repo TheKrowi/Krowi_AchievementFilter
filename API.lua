@@ -80,7 +80,9 @@ end
 function KrowiAF_SelectCategory(category, collapsed)
 	-- Select tab
 	local categoriesTree = category:GetTree();
+	-- print("toggle")
 	addon.Gui:ToggleAchievementFrame(addonName, categoriesTree[1].TabName, nil, true); -- This will call both category and achievement update
+	-- print("end toggle")
 
 	-- Get the merged category now we're sure it's loaded
 	category = category:GetMergedCategory();
