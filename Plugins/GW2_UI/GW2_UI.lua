@@ -974,7 +974,7 @@ do -- [[ Alerts and Side Buttons ]]
         end
         if not prevButton then
             button:ClearAllPoints();
-            button:SetPoint("TOPLEFT", AchievementFrame, "TOPRIGHT", 5, addon.IsDragonflightRetail and 6 or 13); -- Make the 2nd button anchor like the 1st one
+            button:SetPoint("TOPLEFT", AchievementFrame, "TOPRIGHT", 5, addon.Util.IsMainline and 6 or 13); -- Make the 2nd button anchor like the 1st one
         else
             button:ClearAllPoints();
             button:SetPoint("TOPLEFT", prevButton, "BOTTOMLEFT", 0, 9); -- Make the 2nd button anchor like the 1st one
@@ -1291,7 +1291,7 @@ function gw2_ui.InjectOptions()
     addon.InjectOptions:AddTable(pluginTable, "Unsupported", {
         order = OrderPP(), type = "description", width = "full",
         name = (addon.L["Unsupported GW2_UI Desc"]:K_ReplaceVars(IsAddOnLoaded("GW2_UI") and GetAddOnMetadata("GW2_UI", "Version") or "") ..
-        (addon.IsDragonflightRetail and (" " .. addon.L["At least version is required"]:K_ReplaceVars("6.6.1")) or "\n")):SetColorRed(),
+        (addon.Util.IsMainline and (" " .. addon.L["At least version is required"]:K_ReplaceVars("6.6.1")) or "\n")):SetColorRed(),
         fontSize = "medium",
         hidden = not (GW2_ADDON ~= nil and not gw2_ui.IsLoaded())
     });
@@ -1351,7 +1351,7 @@ function gw2_ui.Load()
     -- KrowiAF_SavedData.ElvUISkin.Calendar = blizzardSkins.enable and blizzardSkins.calendar;
     -- KrowiAF_SavedData.ElvUISkin.NoParchment = blizzardSkins.enable and blizzardSkins.calendar and privateSkins.parchmentRemoverEnable;
     -- KrowiAF_SavedData.ElvUISkin.Options = privateSkins.ace3Enable;
-    -- KrowiAF_SavedData.ElvUISkin.SmallerWorldMap = addon.IsWrathClassic and engine.global.general.smallerWorldMap;
+    -- KrowiAF_SavedData.ElvUISkin.SmallerWorldMap = addon.Util.IsWrathClassic and engine.global.general.smallerWorldMap;
 
     hooksecurefunc(addon.Gui, "LoadWithBlizzard_AchievementUI", function()
         SkinAll();
@@ -1368,7 +1368,7 @@ function gw2_ui.Load()
         end);
     end);
 
-    -- if addon.IsWrathClassic then
+    -- if addon.Util.IsWrathClassic then
     --     local worldMapModule = engine:GetModule("WorldMap");
     --     hooksecurefunc(worldMapModule, "SetSmallWorldMap", function()
     --         addon.Gui.WorldMapButton:SetFrameStrata("TOOLTIP");
@@ -1382,7 +1382,7 @@ function gw2_ui.IsLoaded()
     if not IsAddOnLoaded("GW2_UI") then
         return false;
     end
-    if not addon.IsDragonflightRetail then -- No Wrath Classic support for now
+    if not addon.Util.IsMainline then -- No Wrath Classic support for now
         return false;
     end
     if GetAddOnMetadata("GW2_UI", "Version") == "@project-version@" then

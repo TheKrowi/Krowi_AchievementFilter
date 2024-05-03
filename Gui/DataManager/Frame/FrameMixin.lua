@@ -54,13 +54,13 @@ end
 KrowiAF_DataManagerFrameMixin = {};
 
 function KrowiAF_DataManagerFrameMixin:OnLoad()
+    addon.Gui:RegisterFrameForClosing(self);
+
 	self.CloseButton:SetScript("OnClick", function(selfFunc)
 		selfFunc:GetParent():Hide();
 	end);
-	addon.Gui:RegisterSafeCloseButtonDuringCombat(self.CloseButton);
-	self.CloseButton:SetScript("OnKeyDown", addon.Gui.HandleCloseButtonOnKeyDown);
 
-	if addon.IsWrathClassic then
+	if addon.Util.IsClassicWithAchievements then
 		self.TitleText:SetText(addon.L["Data Manager"]);
 	else
     	self:SetTitle(addon.L["Data Manager"]);

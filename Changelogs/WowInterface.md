@@ -1,51 +1,37 @@
 [B]Added[/B]
 [LIST]
-[*]New Back from the Beyond achievement
-[*]Plunderstorm achievements (2)
-[*]Noblegarden achievements (1)
-[*]Dragonflight Mythic+ Season 4 achievements (13)
-[*]Dragonflight PvP Season 4 achievements (18)
-[*]Awakened Raids achievements (12)
-[*]Misc achievements (9)
-[*]Dragon racing achievements (1)
+[*]Pandaria: Remix achievements (157)
+[*]Achievements that require a calendar event to be active now show this in their tooltip
+[*]Taintless library to hopefully eliminate some occurrences of "Interface action failed because of an AddOn" and "AddOn has been blocked from an action only available to the Blizzard UI" error messages
+[*]Awakened Raids achievements to the corresponding raids so they show up in the current zone
+[/LIST]
+
+[B]Fixed[/B]
+[LIST]
+[*]Placeholder achievements filtering (dev note: mainly used for development and adding achievements that will be added in a later patch)
+[*]Toggling the Achievement window when on the Guild tab now properly shows the Guild achievement points
 [/LIST]
 
 [B]Changed[/B]
 [LIST]
-[*]Back from the Beyond is now a legacy achievement
+[*]Moved Many Boxes, Many Rockses from Dragonflight - Zones - Dragon Isles - Exploration to Dragonflight - Zones - The Waking Shores - Exploration
 [/LIST]
 
-[B]Fixed (69.1)[/B]
+[B]Removed[/B]
 [LIST]
-[*]Localization
+[*]Ui Maps linked to Profession achievements for all expansions (dev note: it does not feel right to see profession achievements when you want to see which achievements you could do in the current zone you're in)
 [/LIST]
 
-[B]Changed (69.2)[/B]
+[B]Cata Classic[/B]
 [LIST]
-[*]Bumped toc to 10.2.6 for Dragonflight
+[*]First port from Wrath Classic
+[*]Classic, TBC, WotLK and Cata achievements and categories adjusted and dynamic obtainability added
+[*]MoP, WoD, Legion, BfA, SL and DF categories removed
+[*]Realm First! achievements and categories adjusted and dynamic obtainability added
+[*]PvP achievements and categories adjusted and dynamic obtainability added
 [/LIST]
 
-[B]Added (69.3)[/B]
+[B]Fixed (70.1)[/B]
 [LIST]
-[*]Progress on Events -> Miscellaneous -> Plunderkind
-[/LIST]
-
-[B]Changed (69.4)[/B]
-[LIST]
-[*]Primal Storm event icons now match the achievement icons
-[/LIST]
-
-[B]Fixed (69.5)[/B]
-[LIST]
-[*]Removed end spaces of all German translations
-[/LIST]
-
-[B]Fixed (69.6)[/B]
-[LIST]
-[*]The calendar should show achievements on the correct date when DST changes
-[/LIST]
-
-[B]Added (69.7)[/B]
-[LIST]
-[*]Option to center the achievements window header
+[*]Errors occuring during combat should be drastically reduced when opening the achievements window
 [/LIST]

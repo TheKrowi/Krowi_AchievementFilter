@@ -79,6 +79,7 @@ local function ProcessUnit(tooltip, guid)
     if not guid then
         return;
     end
+
     if addon.Diagnostics.DebugEnabled() then
         tooltip:AddLine(guid);
     end
@@ -119,13 +120,43 @@ local function ProcessItem(tooltip, itemId)
         return;
     end
 
-    local unitDatum = addon.Data.TooltipData[itemId];
-    if not unitDatum then
+    local itemDatum = addon.Data.TooltipData[itemId];
+    if not itemDatum then
         return;
     end
 
-    for _, tooltipLine in next, unitDatum.TooltipLines do
+    for _, tooltipLine in next, itemDatum.TooltipLines do
         if tooltipLine.Type == addon.Objects.TooltipDataType.Item then
+            AddTooltipLine(tooltip, tooltipLine);
+        end
+    end
+end
+
+local function ProcessSpell(tooltip, spellId)
+    if not addon.Options.db.profile.Tooltip.Criteria.Show then
+        return;
+    end
+
+    if not spellId then
+        return;
+    end
+
+    if addon.Diagnostics.DebugEnabled() then
+        tooltip:AddLine(spellId);
+    end
+
+    spellId = tonumber(spellId);
+    if not spellId then
+        return;
+    end
+
+    local spellDatum = addon.Data.TooltipData[spellId];
+    if not spellDatum then
+        return;
+    end
+
+    for _, tooltipLine in next, spellDatum.TooltipLines do
+        if tooltipLine.Type == addon.Objects.TooltipDataType.Spell then
             AddTooltipLine(tooltip, tooltipLine);
         end
     end
@@ -167,6 +198,15 @@ local function ProcessItem100000(tooltip)
     ProcessItem(tooltip, itemId);
 end
 
+local function ProcessSpell100000(tooltip)
+    local _, id = tooltip:GetSpell();
+    if not id then
+        return;
+    end
+
+    ProcessSpell(tooltip, id);
+end
+
 local function ProcessUnit100002(tooltip, localData)
     ProcessUnit(tooltip, localData.guid);
 end
@@ -175,11 +215,16 @@ local function ProcessItem100002(tooltip, localData)
     ProcessItem(tooltip, localData.id);
 end
 
+local function ProcessSpell100002(tooltip, localData)
+    ProcessSpell(tooltip, localData.id);
+end
+
 function tooltipData.Load()
     local tocVersion = select(4, GetBuildInfo());
     if tocVersion < 100002 then
         GameTooltip:HookScript("OnTooltipSetUnit", ProcessUnit100000);
         GameTooltip:HookScript("OnTooltipSetItem", ProcessItem100000);
+        GameTooltip:HookScript("OnTooltipSetSpell", ProcessSpell100000);
         -- GameTooltip:HookScript("OnShow", function(self)
 		-- 	-- Debug all of the available fields on the owner.
         --     local owner = self:GetOwner();
@@ -194,6 +239,7 @@ function tooltipData.Load()
     else
         TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Unit, ProcessUnit100002);
         TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, ProcessItem100002);
+        TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Spell, ProcessSpell100002);
         -- for i = 0, 30, 1 do
         --     TooltipDataProcessor.AddTooltipPostCall(i, function(tooltip, localData)
         --         addon.Diagnostics.DebugTable(localData);

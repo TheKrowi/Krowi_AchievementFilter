@@ -21,8 +21,9 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-03-20 19-51-38 ]] --
+-- [[ Exported at 2024-04-27 15-04-26 ]] --
 tasks = {
+    {N, 208, "10.2.7", "100207", addon.L["Dark Heart"]},
     {N, 207, "10.2.6", "100206", addon.L["Plunderstorm"]},
     {N, 206, "10.2.5", "100205", addon.L["Seeds of Renewal"]},
     {N, 205, "10.2.0", "100200", addon.L["Guardians of the Dream"]},
@@ -138,6 +139,7 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
     filters[205] = true;
     filters[206] = true;
     filters[207] = true;
+    filters[208] = true;
 
     return {
         { -- 3
@@ -544,6 +546,10 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                         { -- 10.2.6
                             Patch = 6,
                             BuildVersionId = 207
+                        },
+                        { -- 10.2.7
+                            Patch = 7,
+                            BuildVersionId = 208
                         },
                     },
                 },

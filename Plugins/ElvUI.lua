@@ -480,7 +480,7 @@ do -- [[ Alerts and Side Buttons ]]
         end
         if not prevButton then
             button:ClearAllPoints();
-            button:SetPoint("TOPLEFT", AchievementFrame, "TOPRIGHT", 5, addon.IsDragonflightRetail and 6 or 13); -- Make the 2nd button anchor like the 1st one
+            button:SetPoint("TOPLEFT", AchievementFrame, "TOPRIGHT", 5, addon.Util.IsMainline and 6 or 13); -- Make the 2nd button anchor like the 1st one
         else
             button:ClearAllPoints();
             button:SetPoint("TOPLEFT", prevButton, "BOTTOMLEFT", 0, 9); -- Make the 2nd button anchor like the 1st one
@@ -510,14 +510,14 @@ local function SkinHeader()
         AchievementFrame.Header.Points:ClearAllPoints();
         AchievementFrame.Header.Points:Point('CENTER', AchievementFrame.Header.PointBorder, 'CENTER', -10, 0);
     end);
-    if addon.IsWrathClassic then
+    if addon.IsClassicWithAchievements then
         AchievementFrameHeaderLeftDDLInset:SetAlpha(0);
     end
 end
 
 local function ReskinBlizzard(skins)
     AchievementFrameCategories:Point("TOPLEFT", AchievementFrame, 21, -26);
-    if addon.IsWrathClassic then
+    if addon.IsClassicWithAchievements then
         AchievementFrameCloseButton:ClearAllPoints();
         AchievementFrameCloseButton:Point('TOPRIGHT', AchievementFrame, 'TOPRIGHT', 4, 5);
         AchievementFrame.backdrop:ClearAllPoints();
@@ -816,7 +816,7 @@ function elvUI.Load()
     KrowiAF_SavedData.ElvUISkin.Calendar = blizzardSkins.enable and blizzardSkins.calendar;
     KrowiAF_SavedData.ElvUISkin.NoParchment = blizzardSkins.enable and blizzardSkins.calendar and privateSkins.parchmentRemoverEnable;
     KrowiAF_SavedData.ElvUISkin.Options = privateSkins.ace3Enable;
-    KrowiAF_SavedData.ElvUISkin.SmallerWorldMap = addon.IsWrathClassic and engine.global.general.smallerWorldMap;
+    KrowiAF_SavedData.ElvUISkin.SmallerWorldMap = addon.Util.IsWrathClassic and engine.global.general.smallerWorldMap;
 
     hooksecurefunc(addon.Gui, "LoadWithBlizzard_AchievementUI", function()
         SkinAll();
@@ -833,7 +833,7 @@ function elvUI.Load()
         end);
     end);
 
-    if addon.IsWrathClassic then
+    if addon.Util.IsWrathClassic then
         local worldMapModule = engine:GetModule("WorldMap");
         hooksecurefunc(worldMapModule, "SetSmallWorldMap", function()
             addon.Gui.WorldMapButton:SetFrameStrata("TOOLTIP");

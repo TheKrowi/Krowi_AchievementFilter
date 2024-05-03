@@ -10,12 +10,12 @@ end
 KrowiAF_TextFrameMixin = {};
 
 function KrowiAF_TextFrameMixin:OnLoad()
+    addon.Gui:RegisterFrameForClosing(self);
+
     addon.MakeMovable(self, "TextFrame", nil, "CENTER");
     self.CloseButton:SetScript("OnClick", function(selfFunc)
 		selfFunc:GetParent():Hide();
 	end);
-	addon.Gui:RegisterSafeCloseButtonDuringCombat(self.CloseButton);
-	self.CloseButton:SetScript("OnKeyDown", addon.Gui.HandleCloseButtonOnKeyDown);
 
     ButtonFrameTemplate_HideAttic(self);
     ButtonFrameTemplate_HidePortrait(self);
@@ -35,7 +35,7 @@ function KrowiAF_TextFrameMixin:OnShow()
 end
 
 function KrowiAF_TextFrameMixin:Init(title, newButton1Text, newButton1OnClickFunc)
-    if addon.IsWrathClassic then
+    if addon.IsClassicWithAchievements then
 		self.TitleText:SetText(title);
 	else
     	self:SetTitle(title);

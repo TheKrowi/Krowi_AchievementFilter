@@ -27,29 +27,24 @@ local function AddDataToBlizzardTabs()
     KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Achievements", AchievementFrameTab1, function()
         AchievementFrameTab_OnClick(1);
     end);
-    if not addon.IsWrathClassic then
+    if not addon.Util.IsWrathClassic then
         KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Guild", AchievementFrameTab2, function()
             AchievementFrameTab_OnClick(2);
         end);
     end
-    KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Statistics", addon.IsWrathClassic and AchievementFrameTab2 or AchievementFrameTab3, function()
-        AchievementFrameTab_OnClick(addon.IsWrathClassic and 2 or 3);
+    KrowiAF_RegisterTabButton("Blizzard_AchievementUI", "Statistics", addon.Util.IsWrathClassic and AchievementFrameTab2 or AchievementFrameTab3, function()
+        AchievementFrameTab_OnClick(addon.Util.IsWrathClassic and 2 or 3);
     end);
 end
 
 local function LoadOldAchievementFrameTabsCompatibility()
-    if not addon.Util.IsWrathClassic then
+    if not addon.Util.IsClassicWithAchievements then
         return;
     end
 
     for _, t in next, addon.TabsOrder do
         addon.Tabs[t].Button.Text = addon.Tabs[t].Button.text;
     end
-end
-
-local function SetCloseButtonOnKeyDown(self)
-    self:RegisterSafeCloseButtonDuringCombat(AchievementFrameCloseButton);
-    AchievementFrameCloseButton:SetScript("OnKeyDown", self.HandleCloseButtonOnKeyDown);
 end
 
 local function ShowSubFrame(self, ...)
@@ -115,7 +110,7 @@ function gui:LoadWithBlizzard_AchievementUI()
 
     self:ResetAchievementFrameHeight();
 
-    SetCloseButtonOnKeyDown(self);
+    self:RegisterFrameForClosing(AchievementFrame);
     HookShowSubFrame(self);
 end
 
@@ -143,7 +138,7 @@ end
 
 function gui:PrepareTabsOrder()
     KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Achievements", addon.L["Blizzard"], addon.L["Achievements"], "TOGGLEACHIEVEMENT", false);
-    if not addon.IsWrathClassic then
+    if not addon.Util.IsWrathClassic then
         KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Guild", addon.L["Blizzard"], addon.L["Guild"], nil, true);
     else
         addon.Options.Defaults.profile.Tabs.Blizzard_AchievementUI.Guild = nil;
@@ -204,7 +199,7 @@ function gui:ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
 
     AchievementFrame_SetTabs();
     AchievementFrame:Show();
-    if not addon.IsWrathClassic then
+    if not addon.Util.IsClassicWithAchievements then
         AchievementFrame_HideSearchPreview();
     end
     if firstTimeLatch or not (not addon.Options.db.profile.ResetViewOnOpen and addon.Options.db.profile.ToggleWindow) or resetView or forceOpen then
@@ -403,35 +398,10 @@ function gui:RefreshViewAfterPlayerLogin()
     KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
 end
 
-function gui:RegisterSafeCloseButtonDuringCombat(frame, extraHideCondition)
-    frame.ExtraHideCondition = extraHideCondition;
-    frame:RegisterEvent("PLAYER_REGEN_DISABLED");
-    frame:RegisterEvent("PLAYER_REGEN_ENABLED");
-    frame:HookScript("OnEvent", function(_, event, ...)
-        if event == "PLAYER_REGEN_DISABLED" then
-            frame:SetScript("OnKeyDown", nil);
-            tinsert(UISpecialFrames, frame:GetParent():GetName());
-        elseif event == "PLAYER_REGEN_ENABLED" then
-            frame:SetScript("OnKeyDown", self.HandleCloseButtonOnKeyDown);
-            addon.Util.TableRemoveByValue(UISpecialFrames, frame:GetParent():GetName());
-        end
+function gui:RegisterFrameForClosing(frame)
+    frame:HookScript("OnShow", function()
+        KrowiAF_SpecialFrame:Show();
     end);
-end
-
-function gui.HandleCloseButtonOnKeyDown(frame, key) -- . instead of : because it needs to work for the frame
-    if key == GetBindingKey("TOGGLEGAMEMENU") then
-        local parent = frame:GetParent();
-        local extraHideCondition = true;
-        if frame.ExtraHideCondition then
-            extraHideCondition = frame.ExtraHideCondition();
-        end
-		if parent:IsShown() and extraHideCondition then
-            parent:Hide();
-			frame:SetPropagateKeyboardInput(false);
-			return;
-		end
-	end
-	frame:SetPropagateKeyboardInput(true);
 end
 
 local function AdjustQueuedAnchors(self, relativeAlert)

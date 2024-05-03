@@ -439,27 +439,27 @@ function addon.OverwriteFunctions()
             end
             return;
         end
-        if AchievementFrame:IsShown() and AchievementFrame.selectedTab == (addon.IsWrathClassic and 2 or 3) then
+        if AchievementFrame:IsShown() and AchievementFrame.selectedTab == (addon.Util.IsWrathClassic and 2 or 3) then
             AchievementFrame:Hide();
         else
             AchievementFrame:Show();
             AchievementFrame_SetTabs();
-            AchievementFrameTab_OnClick(addon.IsWrathClassic and 2 or 3);
+            AchievementFrameTab_OnClick(addon.Util.IsWrathClassic and 2 or 3);
         end
     end
 
     AchievementFrame_DisplayComparison = function(unit)
-        if not addon.IsDragonflightRetail then
+        if not addon.Util.IsMainline then
             AchievementFrame.wasShown = nil;
         end
 
         AchievementFrameTab_OnClick = AchievementFrameComparisonTab_OnClick;
         AchievementFrameTab_OnClick(1);
-        if addon.IsDragonflightRetail then
+        if addon.Util.IsMainline then
             AchievementFrame_SetComparisonTabs();
         end
         AchievementFrame:Show();
-        if addon.IsDragonflightRetail then
+        if addon.Util.IsMainline then
             AchievementFrame_ShowSubFrame(AchievementFrameComparison, AchievementFrameComparison.AchievementContainer);
         end
         AchievementFrameComparison_SetUnit(unit);
@@ -522,25 +522,25 @@ function addon.LoadBlizzardApiChanges()
 end
 
 function addon.HookFunctions()
-    if addon.IsWrathClassic then
+    if addon.Util.IsClassicWithAchievements then
         hooksecurefunc("PanelTemplates_SetTab", AchievementFrame_SetTabs);
     end
 
-    if addon.IsDragonflightRetail then
+    if addon.Util.IsMainline then
         hooksecurefunc("AchievementFrame_SetComparisonTabs", function()
             addon.Gui:ShowHideTabs();
         end);
     end
 
     AchievementFrameFilterDropDown:HookScript("OnShow", function()
-        if addon.Util.IsWrathClassic then
+        if addon.Util.IsClassicWithAchievements then
             AchievementFrame.Header.RightDDLInset:Show();
         else
             AchievementFrame.Header.LeftDDLInset:Show();
         end
     end);
     AchievementFrameFilterDropDown:HookScript("OnHide", function()
-        if addon.Util.IsWrathClassic then
+        if addon.Util.IsClassicWithAchievements then
             if not KrowiAF_SearchBoxFrame:IsShown() then
                 AchievementFrame.Header.RightDDLInset:Hide();
             end

@@ -39,7 +39,6 @@ function KrowiAF_EventReminderAlertFrameMixin:OnClick(button, down)
     self:HandleLeftClick();
 end
 
-
 function KrowiAF_EventReminderAlertFrameMixin:SetEvent(event)
     self.Event = event;
 	self.Icon.Texture:SetTexture(event.Icon);
@@ -47,7 +46,6 @@ function KrowiAF_EventReminderAlertFrameMixin:SetEvent(event)
     self:UpdateEventRuntime();
     self.TimeSinceLastUpdate = 0;
 end
-
 
 function KrowiAF_EventReminderAlertFrameMixin:UpdateEventRuntime()
     local runtime = addon.Gui.EventReminderAlertSystem:GetRuntimeText(self.Event);

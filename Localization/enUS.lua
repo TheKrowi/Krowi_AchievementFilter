@@ -7,7 +7,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-03-20 19-53-19 ]] --
+-- [[ Exported at 2024-04-27 15-41-04 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -89,6 +89,7 @@ L["Assault: N'Zoth (Vale of Eternal Blossoms)"] = true
 L["Author"] = true
 L["Auto number of summary achievements"] = true
 L["Auto number of summary achievements Desc"] = "Automatically adjust the number of achievements shown so no scroll bar is shown."
+L["Awakened Raids"] = true
 L["Azerothian Archives"] = true
 L["Azure Span"] = true
 L["Azure Span: Next"] = true
@@ -133,6 +134,8 @@ This value can be changed while the achievement window is open and having one of
 L["Category shown temporarily"] = "This category was selected by clicking on the {eventName} event reminder and is shown temporarily because it has no achievements that match the set filters."
 L["Caverns Criss-Cross"] = true
 L["Center Header"] = true
+L["Center header"] = true
+L["Center header Desc"] = "Keep the header centered on the achievements window."
 L["Center Header Desc"] = "Center the achievement's name on the achievement button."
 L["Central Circuit"] = true
 L["Chains of Domination"] = true
@@ -613,6 +616,8 @@ Both default tabs and tabs added by {addonName_y} can be hidden from the options
 {pluginText}
 (1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {tabs}]=]
 L["News"] = true
+L["Next from startDate until endDate"] = "Next from {startDate} until {endDate}"
+L["Next occurrence unknown"] = true
 L["Night Fae Assault"] = true
 L["Nitun"] = true
 L["No achievements are available with the current set of filters"] = true
@@ -723,6 +728,7 @@ L["Remember frame position"] = "Remember {frame} position"
 L["Remember frame position Desc"] = "Remember the {frame} position. This will keep the {frame} in it's last known position the next time you log in."
 L["Remove from Watch List"] = "Remove from {watchList}"
 L["Required for"] = true
+L["Requires"] = true
 L["Researchers Under Fire"] = true
 L["Reset Faction Filters"] = true
 L["Reset Faction Filters Desc"] = [=[Reset / keep the Faction Filters.
@@ -875,10 +881,20 @@ L["Show Right Click Menu"] = "Show {rightClickMenu} button"
 L["Show Right Click Menu Desc"] = [=[Show / hide {rightClickMenu} button on each achievement.
 
 This serves as an alternative for right clicking the achievement.]=]
+L["Show Start Time & End Time"] = "Show {startTime} & {endTime}"
+L["Show Start Time & End Time Desc"] = [=[Show / hide {startTime} & {endTime}.
+
+When checked and the achievement is {temporarilyObtainable}, the start and end time of the period when the achievement is obtainable will be visible in the tooltip.
+
+This only applies to achievements that are {temporarilyObtainable} due to calendar events.]=]
 L["Show Sub Categories"] = true
 L["Show Sub Categories Desc"] = [=[Show / hide sub categories.
 
 When checked, the achievements will be placed under their original sub categories instead of all together under the single {category} category.]=]
+L["Show Temporarily obtainable"] = "Show {temporarilyObtainable}"
+L["Show Temporarily obtainable Desc"] = [=[Show / hide {temporarilyObtainable}.
+
+When checked and the achievement is {temporarilyObtainable}, this information will be visible in the tooltip.]=]
 L["Show world map icon"] = true
 L["Show world map icon Desc"] = "Show / hide the world map icon."
 L["Side Button Anchor"] = true
@@ -921,8 +937,9 @@ L["Tab"] = true
 L["tab"] = true
 L["Tabs"] = true
 L["Ta's Pet Collection"] = true
-L["temporary obtainable"] = true
-L["Temporary Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}"
+L["Temporarily obtainable"] = true
+L["temporarily obtainable"] = true
+L["Temporarily Obtainable Text"] = "{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}"
 L["Thaldraszus"] = true
 L["Thaldraszus: Next"] = true
 L["The Azure Span Slalom"] = true
@@ -931,6 +948,7 @@ L["The Big Dig: Active"] = true
 L["The Big Dig: Next"] = true
 L["The Big Dig: Soon"] = true
 L["The Entitled"] = true
+L["the event name with run time"] = "the {eventName} from {startDate} until {endDate}"
 L["The Flowing Forest Flight"] = true
 L["The Iron Tide"] = true
 L["The Shattering"] = true
@@ -1029,5 +1047,3 @@ L["Zaqali Ruin Investigation: Next"] = true
 L["Zaqali Ruin Investigation: Soon"] = true
 L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
-L["Center header"] = true
-L["Center header Desc"] = "Keep the header centered on the achievements window."

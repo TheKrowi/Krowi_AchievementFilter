@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-04-27 15-10-37 ]] --
+-- [[ Exported at 2024-04-27 15-10-40 ]] --
 tasks = {
     {N, 19440, 204, f.Horde}, -- Defense Protocol Gamma: Terminated
     {N, 19439, 204, f.Alliance}, -- Defense Protocol Gamma: Terminated
@@ -101,19 +101,529 @@ tasks = {
     {N, 15333, 194}, -- Survivor of the Shadow Flame (Season of Mastery)
     {O, 15330, "Never" },
     {N, 15330, 194}, -- Survivor of the Firelord (Season of Mastery)
+    {O, 6322, "From", "PvP Season", 10, "Until", "PvP Season", 10},
+    {N, 6322, 121, nil, nil, true}, -- Ruthless Gladiator's Twilight Drake
+    {O, 6317, "From", "PvP Season", 10, "Until", "PvP Season", 10},
+    {N, 6317, 121, f.Horde, 6316, true}, -- Hero of the Horde: Ruthless
+    {O, 6316, "From", "PvP Season", 10, "Until", "PvP Season", 10},
+    {N, 6316, 121, f.Alliance, 6317, true}, -- Hero of the Alliance: Ruthless
+    {N, 6185, 119}, -- Murkablo
+    {N, 6181, 119}, -- Fangs of the Father
+    {N, 6180, 119}, -- Chromatic Champion
+    {N, 6177, 119}, -- Destroyer's End
+    {N, 6175, 119}, -- Holding Hands
+    {N, 6174, 119}, -- Don't Stand So Close to Me
+    {N, 6169, 119}, -- Glory of the Dragon Soul Raider
+    {N, 6133, 119}, -- Maybe He'll Get Dizzy...
+    {N, 6132, 119}, -- Eclipse
+    {O, 6131 },
+    {N, 6131, 119}, -- WoW's 8th Anniversary
+    {N, 6130, 119}, -- Severed Ties
+    {N, 6129, 119}, -- Taste the Rainbow!
+    {N, 6128, 119}, -- Ping Pong Champion
+    {N, 6127, 119}, -- Lazy Eye
+    {O, 6124, "From", "PvP Season", 10, "Until", "PvP Season", 10},
+    {N, 6124, 119, nil, nil, true}, -- Ruthless Gladiator
+    {N, 6119, 119}, -- Heroic: Hour of Twilight
+    {N, 6118, 119}, -- Heroic: Well of Eternity
+    {N, 6117, 119}, -- Heroic: End Time
+    {N, 6116, 119}, -- Heroic: Madness of Deathwing
+    {N, 6115, 119}, -- Heroic: Spine of Deathwing
+    {N, 6114, 119}, -- Heroic: Warmaster Blackhorn
+    {N, 6113, 119}, -- Heroic: Ultraxion
+    {N, 6112, 119}, -- Heroic: Hagara the Stormbinder
+    {N, 6111, 119}, -- Heroic: Yor'sahj the Unsleeping
+    {N, 6110, 119}, -- Heroic: Warlord Zon'ozz
+    {N, 6109, 119}, -- Heroic: Morchok
+    {N, 6108, 119}, -- Alizabal
+    {N, 6107, 119}, -- Fall of Deathwing
+    {N, 6106, 119}, -- Siege of Wyrmrest Temple
+    {N, 6105, 119}, -- Deck Defender
+    {N, 6084, 119}, -- Minutes to Midnight
+    {N, 6070, 119}, -- That's Not Canon!
+    {N, 6061, 119}, -- Gaudy Winter Veil Sweater
+    {N, 6060, 119}, -- MiniZep Controller
+    {N, 6059, 119}, -- Red Rider Air Rifle
+    {N, 6045, 118}, -- Occu'thar
+    {O, 6032, "From", "Event", "374", "Until", "Event", "374"},
+    {N, 6032, 119}, -- Faire Favors
+    {O, 6031, "From", "Event", "374", "Until", "Event", "374"},
+    {N, 6031, 119, f.Horde, 6030}, -- Taking the Show on the Road
+    {O, 6030, "From", "Event", "374", "Until", "Event", "374"},
+    {N, 6030, 119, f.Alliance, 6031}, -- Taking the Show on the Road
+    {O, 6029, "From", "Event", "374", "Until", "Event", "374"},
+    {N, 6029, 119}, -- Darkmoon Despoiler
+    {O, 6028, "From", "Event", "374", "Until", "Event", "374"},
+    {N, 6028, 119}, -- Darkmoon Defender
+    {O, 6027, "From", "Event", "374", "Until", "Event", "374"},
+    {N, 6027, 119}, -- Darkmoon Dungeoneer
+    {O, 6026, "From", "Event", "374", "Until", "Event", "374"},
+    {N, 6026, 119}, -- Fairegoer's Feast
+    {O, 6025, "From", "Event", "374", "Until", "Event", "374"},
+    {N, 6025, 119}, -- I Was Promised a Pony
+    {O, 6024, "From", "Event", "374", "Until", "Event", "374"},
+    {N, 6024, 119}, -- Darkmoon Dominator
+    {O, 6023, "From", "Event", "374", "Until", "Event", "374"},
+    {N, 6023, 119}, -- Darkmoon Duelist
+    {O, 6022, "From", "Event", "374", "Until", "Event", "374"},
+    {N, 6022, 119}, -- Quick Shot
+    {O, 6021, "From", "Event", "374", "Until", "Event", "374"},
+    {N, 6021, 119}, -- Blastenheimer Bullseye
+    {O, 6020, "From", "Event", "374", "Until", "Event", "374"},
+    {N, 6020, 119}, -- Step Right Up
+    {O, 6019, "From", "Event", "374", "Until", "Event", "374"},
+    {N, 6019, 119}, -- "Come One, Come All!"
+    {O, 6014, "From", "Event", "341", "Until", "Event", "341"},
+    {N, 6014, 119, f.Horde, 6013}, -- Extinguishing the Cataclysm
+    {O, 6013, "From", "Event", "341", "Until", "Event", "341"},
+    {N, 6013, 119, f.Alliance, 6014}, -- Extinguishing the Cataclysm
+    {O, 6012, "From", "Event", "341", "Until", "Event", "341"},
+    {N, 6012, 119, f.Horde, 6011}, -- Flame Keeper of Cataclysm
+    {O, 6011, "From", "Event", "341", "Until", "Event", "341"},
+    {N, 6011, 119, f.Alliance, 6012}, -- Flame Warden of Cataclysm
+    {O, 6010, "From", "Event", "341", "Until", "Event", "341"},
+    {N, 6010, 119, f.Horde, 6007}, -- Extinguishing Northrend
+    {O, 6009, "From", "Event", "341", "Until", "Event", "341"},
+    {N, 6009, 119, f.Horde, 6008}, -- Flame Keeper of Northrend
+    {O, 6008, "From", "Event", "341", "Until", "Event", "341"},
+    {N, 6008, 119, f.Alliance, 6009}, -- Flame Warden of Northrend
+    {O, 6007, "From", "Event", "341", "Until", "Event", "341"},
+    {N, 6007, 119, f.Alliance, 6010}, -- Extinguishing Northrend
+    {O, 6006, "From", "Event", "327", "Until", "Event", "327"},
+    {N, 6006, 119}, -- Elders of Cataclysm
+    {O, 6003, "From", "PvP Season", 9, "Until", "PvP Season", 9},
+    {N, 6003, 119, nil, nil, true}, -- Vicious Gladiator's Twilight Drake
+    {O, 6002, "From", "PvP Season", 9, "Until", "PvP Season", 9},
+    {N, 6002, 119, nil, nil, true}, -- Vicious Gladiator
+    {N, 5995, 119}, -- Moon Guard
+    {N, 5879, 116}, -- Veteran of the Molten Front
+    {N, 5877, 116}, -- Menagerie
+    {N, 5876, 116}, -- Petting Zoo
+    {N, 5875, 116}, -- Littlest Pet Shop
+    {N, 5874, 116}, -- Death From Above
+    {N, 5873, 116}, -- Ready for Raiding II
+    {N, 5872, 116}, -- King of the Spider-Hill
+    {N, 5871, 116}, -- Master of the Molten Flow
+    {N, 5870, 116}, -- Fireside Chat
+    {N, 5869, 116}, -- Infernal Ambassadors
+    {N, 5868, 116}, -- And the Meek Shall Inherit Kalimdor
+    {N, 5867, 116}, -- Flawless Victory
+    {N, 5866, 116}, -- The Molten Front Offensive
+    {N, 5865, 116}, -- Have... Have We Met?
+    {N, 5864, 116}, -- Gang War
+    {O, 5863 },
+    {N, 5863, 116}, -- WoW's 7th Anniversary
+    {N, 5862, 116}, -- Ludicrous Speed
+    {N, 5861, 116}, -- The Fiery Lords of Sethria's Roost
+    {N, 5860, 116}, -- The 'Unbeatable?' Pterodactyl: BEATEN.
+    {N, 5859, 116}, -- Legacy of Leyara
+    {N, 5858, 116}, -- Bear-ly Made It
+    {N, 5855, 116}, -- Ragnar-O's
+    {O, 5854, "From", "Event", "141", "Until", "Event", "141"},
+    {N, 5854, 119, f.Horde, 5853}, -- A-Caroling We Will Go
+    {O, 5853, "From", "Event", "141", "Until", "Event", "141"},
+    {N, 5853, 119, f.Alliance, 5854}, -- A-Caroling We Will Go
+    {N, 5851, 116}, -- Gone Fishin'
+    {N, 5850, 116, f.Horde, 5848}, -- Fish or Cut Bait: Undercity
+    {N, 5849, 116, f.Horde, 5847}, -- Fish or Cut Bait: Thunder Bluff
+    {N, 5848, 116, f.Alliance, 5850}, -- Fish or Cut Bait: Darnassus
+    {N, 5847, 116, f.Alliance, 5849}, -- Fish or Cut Bait: Ironforge
+    {N, 5845, 116}, -- A Bunch of Lunch
+    {N, 5844, 116, f.Horde, 5842}, -- Let's Do Lunch: Undercity
+    {N, 5843, 116, f.Horde, 5841}, -- Let's Do Lunch: Thunder Bluff
+    {N, 5842, 116, f.Alliance, 5844}, -- Let's Do Lunch: Darnassus
+    {N, 5841, 116, f.Alliance, 5843}, -- Let's Do Lunch: Ironforge
+    {N, 5839, 116}, -- "Dragonwrath, Tarecgosa's Rest"
+    {O, 5838, "From", "Event", "324", "Until", "Event", "324"},
+    {N, 5838, 116, f.Horde, 5837}, -- Tricks and Treats of the Cataclysm
+    {O, 5837, "From", "Event", "324", "Until", "Event", "324"},
+    {N, 5837, 116, f.Alliance, 5838}, -- Tricks and Treats of the Cataclysm
+    {O, 5836, "From", "Event", "324", "Until", "Event", "324"},
+    {N, 5836, 116, f.Alliance, 5835}, -- Tricks and Treats of Northrend
+    {O, 5835, "From", "Event", "324", "Until", "Event", "324"},
+    {N, 5835, 116, f.Horde, 5836}, -- Tricks and Treats of Northrend
+    {N, 5830, 116}, -- Share the Pain
+    {N, 5829, 116}, -- Bucket List
+    {N, 5828, 116}, -- Glory of the Firelands Raider
+    {N, 5827, 116}, -- Avengers of Hyjal
+    {N, 5824, 116, f.Horde, 5823, true}, -- Veteran of the Horde II
+    {N, 5823, 116, f.Alliance, 5824, true}, -- Veteran of the Alliance II
+    {N, 5821, 116}, -- Death from Above
+    {N, 5813, 116}, -- Do a Barrel Roll!
+    {N, 5810, 116}, -- Not an Ambi-Turner
+    {N, 5809, 116}, -- Heroic: Alysrazor
+    {N, 5808, 116}, -- Heroic: Lord Rhyolith
+    {N, 5807, 116}, -- Heroic: Beth'tilac
+    {N, 5806, 116}, -- Heroic: Shannox
+    {N, 5805, 116}, -- Heroic: Baleroc
+    {N, 5804, 116}, -- Heroic: Majordomo Fandral Staghelm
+    {N, 5803, 116}, -- Heroic: Ragnaros
+    {N, 5802, 116}, -- Firelands
+    {N, 5799, 116}, -- Only the Penitent...
+    {N, 5794, 116}, -- Time Flies When You're Having Fun
+    {O, 5788, "Never" },
+    {N, 5788, 114}, -- Agent of the Shen'dralar
+    {N, 5779, 114}, -- You'll Feel Right as Rain
+    {N, 5769, 114}, -- Heroic: Zul'Aman
+    {N, 5768, 114}, -- Heroic: Zul'Gurub
+    {N, 5767, 114}, -- Scourer of the Eternal Sands
+    {N, 5765, 114}, -- "Here, Kitty Kitty..."
+    {N, 5762, 114}, -- Ohganot So Fast!
+    {N, 5761, 114}, -- Hex Mix
+    {N, 5760, 114}, -- Ring Out!
+    {N, 5759, 114}, -- Spirit Twister
+    {N, 5755, 114}, -- Thirty Tabards
+    {N, 5754, 114}, -- Drown Your Sorrows
+    {N, 5753, 114}, -- Cataclysmically Delicious
+    {N, 5752, 114}, -- Justly Rewarded
+    {N, 5751, 114}, -- 2500 Daily Quests Complete
+    {N, 5750, 114}, -- Tunnel Vision
+    {N, 5749, 114}, -- Vial of the Sands
+    {N, 5744, 114}, -- Gurubashi Headhunter
+    {N, 5743, 114}, -- It's Not Easy Being Green
+    {N, 5723, 112}, -- 50 Exalted Reputations
+    {N, 5719, 112, f.Horde, 5718}, -- Just Another Day in Tol Barad
+    {N, 5718, 112, f.Alliance, 5719}, -- Just Another Day in Tol Barad
+    {N, 5552, 110, f.Horde, 5231, true}, -- Double Jeopardy
+    {N, 5548, 110}, -- To All the Squirrels Who Cared for Me
+    {N, 5547, 110}, -- Glutton for Shadowy Punishment
+    {N, 5546, 110}, -- Glutton for Icy Punishment
+    {O, 5542, "From", "PvP Season", 5, "Until", "PvP Season", 18},
+    {N, 5542, 110, nil, nil, true}, -- 1000 Conquest Points
+    {O, 5541, "From", "PvP Season", 5, "Until", "PvP Season", 18},
+    {N, 5541, 110, nil, nil, true}, -- 5000 Conquest Points
+    {O, 5540, "From", "PvP Season", 5, "Until", "PvP Season", 18},
+    {N, 5540, 110, nil, nil, true}, -- "25,000 Conquest Points"
+    {O, 5539, "From", "PvP Season", 5, "Until", "PvP Season", 18},
+    {N, 5539, 110, nil, nil, true}, -- "50,000 Conquest Points"
+    {O, 5533, "Never" },
+    {N, 5533, 110}, -- Veteran of the Shifting Sands
+    {N, 5518, 110}, -- Stood in the Fire
+    {O, 5512 },
+    {N, 5512, 108}, -- WoW's 6th Anniversary
+    {N, 5511, 110}, -- It's Always in the Last Place You Look
+    {N, 5506, 110}, -- Defender of a Shattered World
+    {N, 5505, 110}, -- Bullet Time
+    {N, 5504, 110}, -- To the Ground!
+    {N, 5503, 110}, -- Pardon Denied
+    {N, 5501, 110, f.Horde, 4873}, -- Fading into Twilight
+    {N, 5490, 110, f.Horde, 5489, true}, -- Master of Tol Barad
+    {N, 5489, 110, f.Alliance, 5490, true}, -- Master of Tol Barad
+    {N, 5488, 110, nil, nil, true}, -- Towers of Power
+    {N, 5487, 110, nil, nil, true}, -- Tol Barad Saboteur
+    {N, 5486, 110, nil, nil, true}, -- Tol Barad All-Star
+    {N, 5483, 110}, -- Bounce
+    {N, 5482, 110, f.Horde, 5481}, -- Dragonmaw Tour of Duty
+    {N, 5481, 110, f.Alliance, 5482}, -- Wildhammer Tour of Duty
+    {N, 5480, 110}, -- Preparing for Disaster
+    {N, 5479, 110}, -- The Oceanographer
+    {N, 5478, 110}, -- The Limnologist
+    {N, 5477, 110, f.Horde, 5476}, -- Fish or Cut Bait: Orgrimmar
+    {N, 5476, 110, f.Alliance, 5477}, -- Fish or Cut Bait: Stormwind
+    {N, 5475, 110, f.Horde, 5474}, -- Let's Do Lunch: Orgrimmar
+    {N, 5474, 110, f.Alliance, 5475}, -- Let's Do Lunch: Stormwind
+    {N, 5473, 110}, -- The Cataclysmic Gourmet
+    {N, 5472, 110}, -- The Cataclysmic Gourmet
+    {N, 5471, 110}, -- Iron Chef
+    {N, 5470, 110}, -- Diggerest
+    {N, 5469, 110}, -- Diggerer
+    {N, 5456, 110}, -- Got My Mind On My Money
+    {N, 5455, 110}, -- Got My Mind On My Money
+    {N, 5454, 110, f.Horde}, -- Joy Ride
+    {N, 5453, 110, f.Alliance}, -- Ghosts in the Dark
+    {N, 5452, 110}, -- Visions of Vashj'ir Past
+    {N, 5451, 110}, -- Consumed by Nightmare
+    {N, 5450, 110}, -- Fungal Frenzy
+    {N, 5449, 110}, -- Rock Lover
+    {N, 5448, 110}, -- Glutton for Fiery Punishment
+    {N, 5447, 110}, -- My Very Own Broodmother
+    {N, 5446, 110}, -- The Glop Family Line
+    {N, 5445, 110}, -- Fungalophobia
+    {N, 5444, 110}, -- "Ready, Set, Goat!"
+    {N, 5443, 110}, -- E'ko Madness
+    {N, 5442, 110}, -- Full Caravan
+    {N, 5418, 110, f.Horde, 5417, true}, -- Tol Barad Veteran
+    {N, 5417, 110, f.Alliance, 5418, true}, -- Tol Barad Veteran
+    {N, 5416, 110}, -- Pit Lord Argaloth
+    {N, 5415, 110, nil, nil, true}, -- Tower Plower
+    {N, 5412, 110, nil, nil, true}, -- Tol Barad Victory
+    {O, 5395, "Once" },
+    {N, 5395, 110, nil, nil, nil, true}, -- Realm First! Grand Master Archaeologist
+    {N, 5378, 108}, -- Deathy
+    {N, 5377, 108}, -- Collector's Edition: Lil' Deathwing
+    {N, 5376, 110, f.Horde, 5375}, -- Hellscream's Reach
+    {N, 5375, 110, f.Alliance, 5376}, -- Baradin's Wardens
+    {N, 5374, 110}, -- 45 Exalted Reputations
+    {O, 5373, "From", "Version", "040003a", "Before", "Version", "080001"},
+    {N, 5373, 110}, -- Cataclysmically Superior
+    {O, 5372, "From", "Version", "040003a", "Before", "Version", "080001"},
+    {N, 5372, 110}, -- Cataclysmically Epic
+    {N, 5371, 110}, -- Vigorous VanCleef Vindicator
+    {N, 5370, 110}, -- I'm on a Diet
+    {N, 5369, 110}, -- It's Frost Damage
+    {N, 5368, 110}, -- Prototype Prodigy
+    {N, 5367, 110}, -- Rat Pack
+    {N, 5366, 110}, -- Ready for Raiding
+    {N, 5363, 110, nil, nil, true}, -- 250000 Honorable Kills
+    {N, 5359, 110, f.Alliance, 5338, true}, -- Knight-Champion
+    {O, 5358, "From", "PvP Season", 9, "Until", "PvP Season", 9},
+    {N, 5358, 110, f.Horde, 5344, true}, -- Hero of the Horde: Vicious
+    {N, 5357, 110, f.Alliance, 5342, true}, -- Field Marshal
+    {N, 5356, 110, f.Horde, 5343, true}, -- High Warlord
+    {N, 5355, 110, f.Horde, 5341, true}, -- General
+    {N, 5354, 110, f.Horde, 5340, true}, -- Lieutenant General
+    {N, 5353, 110, f.Horde, 5339, true}, -- Champion
+    {N, 5352, 110, f.Horde, 5337, true}, -- Legionnaire
+    {N, 5351, 110, f.Horde, 5336, true}, -- Blood Guard
+    {N, 5350, 110, f.Horde, 5335, true}, -- Stone Guard
+    {N, 5349, 110, f.Horde, 5334, true}, -- First Sergeant
+    {N, 5348, 110, f.Horde, 5333, true}, -- Senior Sergeant
+    {N, 5347, 110, f.Horde, 5332, true}, -- Sergeant
+    {N, 5346, 110, f.Horde, 5331, true}, -- Grunt
+    {N, 5345, 110, f.Horde, 5330, true}, -- Scout
+    {O, 5344, "From", "PvP Season", 9, "Until", "PvP Season", 9},
+    {N, 5344, 110, f.Alliance, 5358, true}, -- Hero of the Alliance: Vicious
+    {N, 5343, 110, f.Alliance, 5356, true}, -- Grand Marshal
+    {N, 5342, 110, f.Horde, 5357, true}, -- Warlord
+    {N, 5341, 110, f.Alliance, 5355, true}, -- Marshal
+    {N, 5340, 110, f.Alliance, 5354, true}, -- Commander
+    {N, 5339, 110, f.Alliance, 5353, true}, -- Lieutenant Commander
+    {N, 5338, 110, f.Horde, 5359, true}, -- Centurion
+    {N, 5337, 110, f.Alliance, 5352, true}, -- Knight-Captain
+    {N, 5336, 110, f.Alliance, 5351, true}, -- Knight-Lieutenant
+    {N, 5335, 110, f.Alliance, 5350, true}, -- Knight
+    {N, 5334, 110, f.Alliance, 5349, true}, -- Sergeant Major
+    {N, 5333, 110, f.Alliance, 5348, true}, -- Master Sergeant
+    {N, 5332, 110, f.Alliance, 5347, true}, -- Sergeant
+    {N, 5331, 110, f.Alliance, 5346, true}, -- Corporal
+    {N, 5330, 110, f.Alliance, 5345, true}, -- Private
+    {N, 5329, 110, f.Alliance, 5326, true}, -- Warbound Veteran of the Alliance
+    {N, 5328, 110, f.Alliance, 5325, true}, -- Veteran of the Alliance
+    {N, 5327, 110, f.Alliance, 5324, true}, -- In Service of the Alliance
+    {N, 5326, 110, f.Horde, 5329, true}, -- Warbringer of the Horde
+    {N, 5325, 110, f.Horde, 5328, true}, -- Veteran of the Horde
+    {N, 5324, 110, f.Horde, 5327, true}, -- In Service of the Horde
+    {N, 5323, 110, f.Horde, 5322, true}, -- In Service of the Horde
+    {N, 5322, 110, f.Alliance, 5323, true}, -- In Service of the Alliance
+    {N, 5321, 110, f.Horde, 5320}, -- King of the Mountain
+    {N, 5320, 110, f.Alliance, 5321}, -- King of the Mountain
+    {N, 5319, 110, f.Horde, 5318}, -- "20,000 Leagues Under the Sea"
+    {N, 5318, 110, f.Alliance, 5319}, -- "20,000 Leagues Under the Sea"
+    {N, 5317, 110}, -- Help the Bombardier! I'm the Bombardier!
+    {N, 5315, 110}, -- Digger
+    {O, 5313 },
+    {N, 5313, 110}, -- I Can't Hear You Over the Sound of How Awesome I Am
+    {N, 5312, 110}, -- The Abyss Will Gaze Back Into You
+    {N, 5311, 110}, -- Elementary
+    {N, 5310, 110}, -- Aberrant Behavior
+    {N, 5309, 110}, -- Full of Sound and Fury
+    {N, 5308, 110}, -- Silence is Golden
+    {N, 5307, 110}, -- Achieve-a-tron
+    {N, 5306, 110}, -- Parasite Evening
+    {N, 5305, 110}, -- Four Play
+    {N, 5304, 110}, -- Stay Chill
+    {N, 5301, 110}, -- The Boy Who Would be King
+    {N, 5300, 110}, -- The Only Escape
+    {N, 5298, 110}, -- Don't Need to Break Eggs to Make an Omelet
+    {N, 5297, 110}, -- Umbrage for Umbriss
+    {N, 5296, 110}, -- Faster Than the Speed of Light
+    {N, 5295, 110}, -- Sun of a....
+    {N, 5294, 110}, -- Straw That Broke the Camel's Back
+    {N, 5293, 110}, -- I Hate That Song
+    {N, 5292, 110}, -- Headed South
+    {N, 5291, 110}, -- Acrocalypse Now
+    {N, 5290, 110}, -- Kill It With Fire!
+    {N, 5289, 110}, -- Extra Credit Bonus Stage
+    {N, 5288, 110}, -- No Static at All
+    {N, 5287, 110}, -- Rotten to the Core
+    {N, 5286, 110}, -- Prince of Tides
+    {N, 5285, 110}, -- Old Faithful
+    {N, 5284, 110}, -- Ascendant Descending
+    {N, 5283, 110}, -- Too Hot to Handle
+    {N, 5282, 110}, -- Arrested Development
+    {N, 5281, 110}, -- Crushing Bones and Cracking Skulls
+    {N, 5269, 110, f.Horde, 5268, true}, -- In Service of the Horde
+    {N, 5268, 110, f.Alliance, 5269, true}, -- In Service of the Alliance
+    {N, 5267, 110, nil, nil, true}, -- Three's Company: 2700
+    {N, 5266, 110, nil, nil, true}, -- Three's Company: 2400
+    {N, 5262, 110, nil, nil, true}, -- Double Rainbow
+    {N, 5258, 110, nil, nil, true}, -- Master of the Battle for Gilneas
+    {N, 5257, 110, nil, nil, true}, -- Battle for Gilneas Assassin
+    {N, 5256, 110, nil, nil, true}, -- Battle for Gilneas All-Star
+    {N, 5255, 110, nil, nil, true}, -- Jugger Not
+    {N, 5254, 110, nil, nil, true}, -- Newbs to Plowshares
+    {N, 5253, 110, nil, nil, true}, -- Full Coverage
+    {N, 5252, 110, nil, nil, true}, -- Don't Get Cocky Kid
+    {N, 5251, 110, nil, nil, true}, -- Not Your Average PUG'er
+    {N, 5250, 110, nil, nil, true}, -- Out of the Fog
+    {N, 5249, 110, nil, nil, true}, -- One Two Three You Don't Know About Me
+    {N, 5248, 110, nil, nil, true}, -- Bustin' Caps to Make It Haps
+    {N, 5247, 110, nil, nil, true}, -- Battle for Gilneas Perfection
+    {N, 5246, 110, nil, nil, true}, -- Battle for Gilneas Veteran
+    {N, 5245, 110, nil, nil, true}, -- Battle for Gilneas Victory
+    {N, 5231, 110, f.Alliance, 5552, true}, -- Double Jeopardy
+    {N, 5230, 110, nil, nil, true}, -- Twin Peaks Mountaineer
+    {N, 5229, 110, f.Alliance, 5228, true}, -- Drag a Maw
+    {N, 5228, 110, f.Horde, 5229, true}, -- Wild Hammering
+    {N, 5227, 110, f.Horde, 5226, true}, -- Cloud Nine
+    {N, 5226, 110, f.Alliance, 5227, true}, -- Cloud Nine
+    {N, 5223, 110, nil, nil, true}, -- Master of Twin Peaks
+    {N, 5222, 110, f.Horde, 5221, true}, -- "Fire, Walk With Me"
+    {N, 5221, 110, f.Alliance, 5222, true}, -- "Fire, Walk With Me"
+    {N, 5220, 110, f.Horde, 5219, true}, -- I'm in the Black Lodge
+    {N, 5219, 110, f.Alliance, 5220, true}, -- I'm in the White Lodge
+    {N, 5216, 110, nil, nil, true}, -- Peak Speed
+    {N, 5215, 110, nil, nil, true}, -- Twin Peaks Perfection
+    {N, 5214, 110, f.Horde, 5213, true}, -- Soaring Spirits
+    {N, 5213, 110, f.Alliance, 5214, true}, -- Soaring Spirits
+    {N, 5211, 110, nil, nil, true}, -- Top Defender
+    {N, 5210, 110, nil, nil, true}, -- Two-Timer
+    {N, 5209, 110, nil, nil, true}, -- Twin Peaks Veteran
+    {N, 5208, 110, nil, nil, true}, -- Twin Peaking
+    {N, 5193, 110}, -- Blue Streak
+    {N, 5192, 110}, -- The Harder they Fall
+    {N, 5191, 110}, -- Tragedy in Three Acts
+    {N, 5180, 110}, -- Breaking The Sound Barrier
+    {N, 5123, 110}, -- Heroic: Al'Akir
+    {N, 5122, 110}, -- Heroic: Conclave of Wind
+    {N, 5121, 110}, -- Heroic: Sinestra
+    {N, 5120, 110}, -- Heroic: Cho'gall
+    {N, 5119, 110}, -- Heroic: Ascendant Council
+    {N, 5118, 110}, -- Heroic: Halfus Wyrmbreaker
+    {N, 5117, 110}, -- Heroic: Valiona and Theralion
+    {N, 5116, 110}, -- Heroic: Nefarian
+    {N, 5115, 110}, -- Heroic: Chimaeron
+    {N, 5109, 110}, -- Heroic: Atramedes
+    {N, 5108, 110}, -- Heroic: Maloriak
+    {N, 5107, 110}, -- Heroic: Omnotron Defense System
+    {N, 5094, 110}, -- Heroic: Magmaw
+    {N, 5093, 110}, -- Heroic: Shadowfang Keep
+    {N, 5083, 110}, -- Heroic: Deadmines
+    {N, 5066, 110}, -- Heroic: Lost City of the Tol'vir
+    {N, 5065, 110}, -- Heroic: Halls of Origination
+    {N, 5064, 110}, -- Heroic: The Vortex Pinnacle
+    {N, 5063, 110}, -- Heroic: The Stonecore
+    {N, 5062, 110}, -- Heroic: Grim Batol
+    {N, 5061, 110}, -- Heroic: Throne of the Tides
+    {N, 5060, 110}, -- Heroic: Blackrock Caverns
+    {N, 4996, 110}, -- Explore Southern Barrens
+    {N, 4995, 110}, -- Explore the Cape of Stranglethorn
+    {N, 4982, 110, f.Horde, 4869}, -- Sinking into Vashj'ir
+    {N, 4981, 110, f.Horde, 4937}, -- Southern Barrens Quests
+    {N, 4980, 110, f.Horde, 4936}, -- Stonetalon Mountains Quests
+    {N, 4979, 110, f.Horde, 4932}, -- Feralas Quests
+    {N, 4978, 110, f.Horde, 4929}, -- Dustwallow Marsh Quests
+    {N, 4976, 110, f.Horde, 4925}, -- Ashenvale Quests
+    {N, 4975, 110}, -- From Hell's Heart I Stab at Thee
+    {N, 4961, 110}, -- In a Thousand Years Even You Might be Worth Something
+    {N, 4960, 110}, -- Round Three. Fight!
+    {N, 4959, 110}, -- Beware of the 'Unbeatable?' Pterodactyl
+    {N, 4958, 110}, -- The First Rule of Ring of Blood is You Don't Talk About Ring of Blood
+    {N, 4957, 110}, -- 20 Dungeon Quests Completed
+    {N, 4956, 110}, -- 5 Dungeon Quests Completed
+    {N, 4940, 110}, -- Winterspring Quests
+    {N, 4939, 110}, -- Un'Goro Crater Quests
+    {N, 4938, 110}, -- Thousand Needles Quests
+    {N, 4937, 110, f.Alliance, 4981}, -- Southern Barrens Quests
+    {N, 4936, 110, f.Alliance, 4980}, -- Stonetalon Mountains Quests
+    {N, 4935, 110}, -- Tanaris Quests
+    {N, 4934, 110}, -- Silithus Quests
+    {N, 4933, 110, f.Horde, 4926}, -- Northern Barrens Quests
+    {N, 4932, 110, f.Alliance, 4979}, -- Feralas Quests
+    {N, 4931, 110}, -- Felwood Quests
+    {N, 4930, 110}, -- Desolace Quests
+    {N, 4929, 110, f.Alliance, 4978}, -- Dustwallow Marsh Quests
+    {N, 4928, 110, f.Alliance, 4927}, -- Darkshore Quests
+    {N, 4927, 110, f.Horde, 4928}, -- Azshara Quests
+    {N, 4926, 110, f.Alliance, 4933}, -- Bloodmyst Isle Quests
+    {N, 4925, 110, f.Alliance, 4976}, -- Ashenvale Quests
+    {N, 4924, 110}, -- Professional Illustrious Grand Master
+    {N, 4923, 110}, -- Illustrious Grand Master in Archaeology
+    {N, 4922, 110}, -- Grand Master in Archaeology
+    {N, 4921, 110}, -- Master in Archaeology
+    {N, 4920, 110}, -- Artisan in Archaeology
+    {N, 4919, 110}, -- Expert in Archaeology
+    {O, 4918, "From", "Version", "040003a", "Before", "Version", "080001"},
+    {N, 4918, 110}, -- Illustrious Grand Master in First Aid
+    {N, 4917, 110}, -- Illustrious Grand Master Fisherman
+    {N, 4916, 110}, -- Illustrious Grand Master Cook
+    {O, 4915, "From", "Version", "040003a", "Before", "Version", "080001"},
+    {N, 4915, 110}, -- More Skills to Pay the Bills
+    {N, 4914, 110}, -- Working Around the Clock
+    {N, 4910, 110}, -- Searing Gorge Quests
+    {N, 4909, 110}, -- Blasted Lands Quests
+    {N, 4908, 110, f.Horde, 12456}, -- Ghostlands Quests
+    {N, 4906, 110}, -- Northern Stranglethorn Quests
+    {N, 4905, 110}, -- Cape of Stranglethorn Quests
+    {N, 4904, 110}, -- Swamp of Sorrows Quests
+    {N, 4903, 110, f.Alliance}, -- Westfall Quests
+    {N, 4902, 110, f.Alliance, 4895}, -- Redridge Mountains Quests
+    {N, 4901, 110}, -- Burning Steppes Quests
+    {N, 4900, 110}, -- Badlands Quests
+    {N, 4899, 110, f.Alliance}, -- Loch Modan Quests
+    {N, 4897, 110}, -- Hinterlands Quests
+    {N, 4896, 110}, -- Arathi Highlands Quests
+    {N, 4895, 110, f.Horde, 4902}, -- Hillsbrad Foothills Quests
+    {N, 4894, 110, f.Horde, 12455}, -- Silverpine Forest Quests
+    {N, 4893, 110}, -- Western Plaguelands Quests
+    {N, 4892, 110}, -- Eastern Plaguelands Quests
+    {N, 4888, 110}, -- One Hump or Two?
+    {O, 4887 },
+    {N, 4887, 108}, -- Tripping the Rifts
+    {N, 4886, 110, f.Horde, 4885}, -- Dragonmaw Clan
+    {N, 4885, 110, f.Alliance, 4886}, -- Wildhammer Clan
+    {N, 4884, 110}, -- Ramkahen
+    {N, 4883, 110}, -- Therazane
+    {N, 4882, 110}, -- The Guardians of Hyjal
+    {N, 4881, 110}, -- The Earthen Ring
+    {N, 4875, 110}, -- Loremaster of Cataclysm
+    {N, 4874, 110}, -- Breaking Out of Tol Barad
+    {N, 4873, 110, f.Alliance, 5501}, -- Fading into Twilight
+    {N, 4872, 110}, -- Unearthing Uldum
+    {N, 4871, 110}, -- Deep into Deepholm
+    {N, 4870, 110}, -- Coming Down the Mountain
+    {N, 4869, 110, f.Alliance, 4982}, -- Sinking into Vashj'ir
+    {N, 4868, 110}, -- Explore Cataclysm
+    {N, 4866, 110}, -- Explore Twilight Highlands
+    {N, 4865, 110}, -- Explore Uldum
+    {N, 4864, 110}, -- Explore Deepholm
+    {N, 4863, 110}, -- Explore Hyjal
+    {N, 4859, 110}, -- Kings Under the Mountain
+    {N, 4858, 110}, -- Seven Scepters
+    {N, 4857, 110}, -- Journeyman in Archaeology
+    {N, 4856, 110}, -- It Belongs in a Museum!
+    {N, 4855, 110}, -- What was Briefly Yours is Now Mine
+    {N, 4854, 110}, -- I Had It in My Hand
+    {N, 4853, 110}, -- Glory of the Cataclysm Raider
+    {N, 4852, 110}, -- Double Dragon
+    {N, 4851, 110}, -- Throne of the Four Winds
+    {N, 4850, 110}, -- The Bastion of Twilight
+    {N, 4849, 110}, -- Keeping it in the Family
+    {N, 4848, 110}, -- Lost City of the Tol'vir
+    {N, 4847, 110}, -- The Vortex Pinnacle
+    {N, 4846, 110}, -- The Stonecore
+    {N, 4845, 110}, -- Glory of the Cataclysm Hero
+    {N, 4844, 110}, -- Cataclysm Dungeon Hero
+    {N, 4842, 110}, -- Blackwing Descent
+    {N, 4841, 110}, -- Halls of Origination
+    {N, 4840, 110}, -- Grim Batol
+    {N, 4839, 110}, -- Throne of the Tides
+    {N, 4833, 110}, -- Blackrock Caverns
+    {O, 4832 },
+    {N, 4832, 108}, -- Friends In Even Higher Places
+    {N, 4827, 110}, -- Surveying the Damage
+    {O, 4826, "From", "Version", "040003a", "Before", "Version", "090001"},
+    {N, 4826, 110}, -- Level 85
+    {N, 4825, 110}, -- Explore Vashj'ir
     {N, 4824, 106}, -- Collector's Edition: Mini Thor
     {N, 4818, 106}, -- Heroic: The Twilight Destroyer (10 player)
     {N, 4817, 106}, -- The Twilight Destroyer (10 player)
     {N, 4816, 106}, -- Heroic: The Twilight Destroyer (25 player)
     {N, 4815, 106}, -- The Twilight Destroyer (25 player)
-    {O, 4790, "From", "Version", "030400", "Before", "Version", "040001"},
+    {O, 4790, "From", "Version", "030305a", "Before", "Version", "040001"},
     {N, 4790, 104, f.Horde}, -- Zalazane's Fall
-    {O, 4786, "From", "Version", "030400", "Before", "Version", "040001"},
+    {O, 4786, "From", "Version", "030305a", "Before", "Version", "040001"},
     {N, 4786, 104, f.Alliance}, -- Operation: Gnomeregan
-    {O, 4785, "From", "Version", "030400", "Before", "Version", "040003a"},
-    {N, 4785, 104, f.Horde}, -- Emblematic
-    {O, 4784, "From", "Version", "030400", "Before", "Version", "040003a"},
-    {N, 4784, 104, f.Alliance}, -- Emblematic
     {O, 4782 },
     {N, 4782, 104}, -- Green Brewfest Stein
     {N, 4637, 101}, -- Heroic: Fall of the Lich King (25 player)
@@ -213,7 +723,7 @@ tasks = {
     {N, 4400, 99}, -- WoW's 5th Anniversary
     {N, 4397, 99}, -- Onyxia's Lair (25 player)
     {N, 4396, 99}, -- Onyxia's Lair (10 player)
-    {O, 4316, "From", "Version", "030400", "Before", "Version", "040003a"},
+    {O, 4316, "From", "Version", "030200", "Before", "Version", "040003a"},
     {N, 4316, 97}, -- 2500 Dungeon & Raid Emblems
     {N, 4298, 97, f.Alliance, 4297}, -- Heroic: Trial of the Champion
     {N, 4297, 97, f.Horde, 4298}, -- Heroic: Trial of the Champion
@@ -221,11 +731,11 @@ tasks = {
     {N, 4256, 97, f.Horde, 3856, true}, -- Demolition Derby
     {N, 4177, 97, f.Horde, 3851, true}, -- Mine
     {N, 4176, 97, f.Horde, 3846, true}, -- Resource Glut
-    {O, 4156, "From", "Version", "030400", "Before", "Version", "040003a"},
+    {O, 4156, "From", "Version", "030200", "Before", "Version", "040003a"},
     {N, 4156, 97, f.Alliance, 4079}, -- A Tribute to Immortality
-    {O, 4080, "From", "Version", "030400", "Before", "Version", "040003a"},
+    {O, 4080, "From", "Version", "030200", "Before", "Version", "040003a"},
     {N, 4080, 97}, -- A Tribute to Dedicated Insanity
-    {O, 4079, "From", "Version", "030400", "Before", "Version", "040003a"},
+    {O, 4079, "From", "Version", "030200", "Before", "Version", "040003a"},
     {N, 4079, 97, f.Horde, 4156}, -- A Tribute to Immortality
     {O, 4078, "Once" },
     {N, 4078, 97, nil, nil, nil, true}, -- Realm First! Grand Crusader
@@ -241,8 +751,6 @@ tasks = {
     {N, 3916, 97}, -- Call of the Crusade (25 player)
     {O, 3896, "Never" },
     {N, 3896, 97}, -- Onyx Panther
-    {O, 3876, "From", "Version", "030400", "Before", "Version", "040003a"},
-    {N, 3876, 97}, -- 1500 Dungeon & Raid Emblems
     {N, 3857, 97, f.Alliance, 3957, true}, -- Master of Isle of Conquest
     {N, 3856, 97, f.Alliance, 4256, true}, -- Demolition Derby
     {N, 3855, 97, nil, nil, true}, -- Glaive Grave
@@ -256,39 +764,25 @@ tasks = {
     {N, 3847, 97, nil, nil, true}, -- Four Car Garage
     {N, 3846, 97, f.Alliance, 4176, true}, -- Resource Glut
     {N, 3845, 97, nil, nil, true}, -- Isle of Conquest All-Star
-    {O, 3844, "From", "Version", "030400", "Before", "Version", "040003a"},
+    {O, 3844, "From", "Version", "030200", "Before", "Version", "040003a"},
     {N, 3844, 97}, -- 1000 Dungeon & Raid Emblems
-    {O, 3843, "From", "Version", "030400", "Before", "Version", "040003a"},
-    {N, 3843, 97}, -- 500 Dungeon & Raid Emblems
-    {O, 3842, "From", "Version", "030400", "Before", "Version", "040003a"},
-    {N, 3842, 97}, -- 250 Dungeon & Raid Emblems
-    {O, 3841, "From", "Version", "030400", "Before", "Version", "040003a"},
-    {N, 3841, 97}, -- 100 Dungeon & Raid Emblems
-    {O, 3840, "From", "Version", "030400", "Before", "Version", "040003a"},
-    {N, 3840, 97}, -- 50 Dungeon & Raid Emblems
-    {O, 3839, "From", "Version", "030400", "Before", "Version", "040003a"},
-    {N, 3839, 97}, -- 25 Dungeon & Raid Emblems
-    {O, 3838, "From", "Version", "030400", "Before", "Version", "040003a"},
-    {N, 3838, 97}, -- Dungeon & Raid Emblem
     {N, 3837, 97}, -- Koralon the Flame Watcher (25 player)
     {N, 3836, 97}, -- Koralon the Flame Watcher (10 player)
-    {O, 3819, "From", "Version", "030400", "Before", "Version", "040003a"},
+    {O, 3819, "From", "Version", "030200", "Before", "Version", "040003a"},
     {N, 3819, 97}, -- A Tribute to Insanity (25 player)
-    {O, 3818, "From", "Version", "030400", "Before", "Version", "040003a"},
+    {O, 3818, "From", "Version", "030200", "Before", "Version", "040003a"},
     {N, 3818, 97}, -- A Tribute to Mad Skill (25 player)
-    {O, 3817, "From", "Version", "030400", "Before", "Version", "040003a"},
+    {O, 3817, "From", "Version", "030200", "Before", "Version", "040003a"},
     {N, 3817, 97}, -- A Tribute to Skill (25 player)
     {N, 3816, 97}, -- The Traitor King (25 player)
     {N, 3815, 97}, -- Salt and Pepper (25 player)
-    {O, 3814, "From", "Version", "030400", "Before", "Version", "040003a"},
-    {N, 3814, 97}, -- Resilience Will Fix It (25 player)
     {N, 3813, 97}, -- Upper Back Pain (25 player)
     {N, 3812, 97}, -- Call of the Grand Crusade (25 player)
-    {O, 3810, "From", "Version", "030400", "Before", "Version", "040003a"},
+    {O, 3810, "From", "Version", "030200", "Before", "Version", "040003a"},
     {N, 3810, 97}, -- A Tribute to Insanity (10 player)
-    {O, 3809, "From", "Version", "030400", "Before", "Version", "040003a"},
+    {O, 3809, "From", "Version", "030200", "Before", "Version", "040003a"},
     {N, 3809, 97}, -- A Tribute to Mad Skill (10 player)
-    {O, 3808, "From", "Version", "030400", "Before", "Version", "040003a"},
+    {O, 3808, "From", "Version", "030200", "Before", "Version", "040003a"},
     {N, 3808, 97}, -- A Tribute to Skill (10 player)
     {N, 3804, 97}, -- I've Had Worse
     {N, 3803, 97}, -- The Faceroller
@@ -359,158 +853,298 @@ tasks = {
     {N, 3296, 92}, -- Cooking with Style
     {O, 3259, "Once" },
     {N, 3259, 92, nil, nil, nil, true}, -- Realm First! Celestial Defender
+    {O, 3237, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3237, 92}, -- Set Up Us the Bomb (25 player)
     {N, 3218, 92}, -- Turtles All the Way Down
     {N, 3217, 92}, -- Chasing Marcia
+    {O, 3189, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3189, 92}, -- Firefighter (25 player)
+    {O, 3188, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3188, 92}, -- I Love the Smell of Saronite in the Morning (25 player)
+    {O, 3187, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3187, 92}, -- "Knock, Knock, Knock on Wood (25 player)"
+    {O, 3186, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3186, 92}, -- "Knock, Knock on Wood (25 player)"
+    {O, 3185, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3185, 92}, -- Knock on Wood (25 player)
+    {O, 3184, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3184, 92}, -- I Could Say That This Cache Was Rare (25 player)
+    {O, 3183, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3183, 92}, -- Lose Your Illusion (25 player)
+    {O, 3182, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3182, 92}, -- I Could Say That This Cache Was Rare (10 player)
+    {O, 3181, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3181, 92}, -- I Love the Smell of Saronite in the Morning (10 player)
+    {O, 3180, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3180, 92}, -- Firefighter (10 player)
+    {O, 3179, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3179, 92}, -- "Knock, Knock, Knock on Wood (10 player)"
+    {O, 3178, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3178, 92}, -- "Knock, Knock on Wood (10 player)"
+    {O, 3177, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3177, 92}, -- Knock on Wood (10 player)
+    {O, 3176, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3176, 92}, -- Lose Your Illusion (10 player)
+    {O, 3164, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3164, 92}, -- Alone in the Darkness (25 player)
+    {O, 3163, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3163, 92}, -- One Light in the Darkness (25 player)
+    {O, 3162, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3162, 92}, -- Two Lights in the Darkness (25 player)
+    {O, 3161, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3161, 92}, -- Three Lights in the Darkness (25 player)
+    {O, 3159, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3159, 92}, -- Alone in the Darkness (10 player)
+    {O, 3158, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3158, 92}, -- One Light in the Darkness (10 player)
+    {O, 3157, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3157, 92}, -- Three Lights in the Darkness (10 player)
     {N, 3142, 92}, -- "Val'anyr, Hammer of Ancient Kings"
+    {O, 3141, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3141, 92}, -- Two Lights in the Darkness (10 player)
+    {O, 3138, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3138, 92}, -- Not-So-Friendly Fire (10 player)
     {N, 3137, 92}, -- Emalon the Storm Watcher (25 player)
     {N, 3136, 92}, -- Emalon the Storm Watcher (10 player)
+    {O, 3118, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3118, 92}, -- Lumberjacked (25 player)
     {O, 3117, "Once" },
     {N, 3117, 92, nil, nil, nil, true}, -- Realm First! Death's Demise
+    {O, 3098, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3098, 92}, -- Dwarfageddon (25 player)
+    {O, 3097, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3097, 92}, -- Dwarfageddon (10 player)
     {O, 3096, "From", "PvP Season", 5, "Until", "PvP Season", 5},
     {N, 3096, 92, nil, nil, true}, -- Deadly Gladiator's Frost Wyrm
+    {O, 3077, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3077, 92}, -- Nine Lives (25 player)
+    {O, 3076, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3076, 92}, -- Nine Lives (10 player)
+    {O, 3059, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3059, 92}, -- Heartbreaker (25 player)
+    {O, 3058, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3058, 92}, -- Heartbreaker (10 player)
+    {O, 3057, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3057, 92}, -- Orbit-uary (25 player)
+    {O, 3056, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3056, 92}, -- Orbit-uary (10 player)
+    {O, 3037, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3037, 92}, -- Observed (25 player)
+    {O, 3036, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3036, 92}, -- Observed (10 player)
+    {O, 3017, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3017, 92}, -- They're Coming Out of the Walls (25 player)
+    {O, 3016, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3016, 92}, -- In His House He Waits Dreaming (25 player)
+    {O, 3015, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3015, 92}, -- In His House He Waits Dreaming (10 player)
+    {O, 3014, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3014, 92}, -- They're Coming Out of the Walls (10 player)
+    {O, 3013, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3013, 92}, -- He's Not Getting Any Older (25 player)
+    {O, 3012, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3012, 92}, -- He's Not Getting Any Older (10 player)
+    {O, 3011, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3011, 92}, -- Kiss and Make Up (25 player)
+    {O, 3010, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3010, 92}, -- Drive Me Crazy (25 player)
+    {O, 3009, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3009, 92}, -- Kiss and Make Up (10 player)
+    {O, 3008, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3008, 92}, -- Drive Me Crazy (10 player)
+    {O, 3007, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3007, 92}, -- Crazy Cat Lady (25 player)
+    {O, 3006, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3006, 92}, -- Crazy Cat Lady (10 player)
-    {O, 3005, "From", "Version", "030400", "Before", "Version", "040003a"},
+    {O, 3005, "From", "Version", "030100", "Before", "Version", "040003a"},
     {N, 3005, 92}, -- He Feeds On Your Tears (25 player)
-    {O, 3004, "From", "Version", "030400", "Before", "Version", "040003a"},
+    {O, 3004, "From", "Version", "030100", "Before", "Version", "040003a"},
     {N, 3004, 92}, -- He Feeds On Your Tears (10 player)
+    {O, 3003, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3003, 92}, -- Supermassive (10 player)
+    {O, 3002, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 3002, 92}, -- Supermassive (25 player)
+    {O, 2997, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2997, 92}, -- Shadowdodger (25 player)
+    {O, 2996, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2996, 92}, -- Shadowdodger (10 player)
+    {O, 2995, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2995, 92}, -- Not-So-Friendly Fire (25 player)
+    {O, 2989, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2989, 92}, -- Set Up Us the Bomb (10 player)
+    {O, 2985, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2985, 92}, -- Deforestation (10 player)
+    {O, 2984, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2984, 92}, -- Deforestation (25 player)
+    {O, 2983, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2983, 92}, -- Getting Back to Nature (25 player)
+    {O, 2982, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2982, 92}, -- Getting Back to Nature (10 player)
+    {O, 2981, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2981, 92}, -- Con-speed-atory (25 player)
+    {O, 2980, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2980, 92}, -- Con-speed-atory (10 player)
+    {O, 2979, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2979, 92}, -- Lumberjacked (10 player)
+    {O, 2978, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2978, 92}, -- Siffed (25 player)
+    {O, 2977, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2977, 92}, -- Siffed (10 player)
+    {O, 2976, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2976, 92}, -- Who Needs Bloodlust? (25 player)
+    {O, 2975, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2975, 92}, -- Who Needs Bloodlust? (10 player)
+    {O, 2974, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2974, 92}, -- I'll Take You All On (25 player)
+    {O, 2973, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2973, 92}, -- I'll Take You All On (10 player)
+    {O, 2972, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2972, 92}, -- Don't Stand in the Lightning (25 player)
+    {O, 2971, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2971, 92}, -- Don't Stand in the Lightning (10 player)
+    {O, 2970, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2970, 92}, -- Staying Buffed All Winter (25 player)
+    {O, 2969, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2969, 92}, -- Staying Buffed All Winter (10 player)
+    {O, 2968, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2968, 92}, -- Getting Cold in Here (25 player)
+    {O, 2967, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2967, 92}, -- Getting Cold in Here (10 player)
+    {O, 2965, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2965, 92}, -- I Have the Coolest Friends (25 player)
+    {O, 2963, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2963, 92}, -- I Have the Coolest Friends (10 player)
+    {O, 2962, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2962, 92}, -- Cheese the Freeze (25 player)
+    {O, 2961, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2961, 92}, -- Cheese the Freeze (10 player)
+    {O, 2960, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2960, 92}, -- Rubble and Roll (25 player)
+    {O, 2959, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2959, 92}, -- Rubble and Roll (10 player)
+    {O, 2958, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2958, 92}, -- Glory of the Ulduar Raider (25 player)
+    {O, 2957, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2957, 92}, -- Glory of the Ulduar Raider (10 player)
+    {O, 2956, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2956, 92}, -- If Looks Could Kill (25 player)
+    {O, 2955, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2955, 92}, -- If Looks Could Kill (10 player)
+    {O, 2954, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2954, 92}, -- Disarmed (25 player)
+    {O, 2953, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2953, 92}, -- Disarmed (10 player)
+    {O, 2952, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2952, 92}, -- With Open Arms (25 player)
+    {O, 2951, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2951, 92}, -- With Open Arms (10 player)
+    {O, 2948, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2948, 92}, -- Can't Do That While Stunned (25 player)
+    {O, 2947, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2947, 92}, -- Can't Do That While Stunned (10 player)
+    {O, 2946, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2946, 92}, -- But I'm On Your Side (25 player)
+    {O, 2945, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2945, 92}, -- But I'm On Your Side (10 player)
+    {O, 2944, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2944, 92}, -- "I Choose You, Steelbreaker (25 player)"
+    {O, 2943, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2943, 92}, -- "I Choose You, Stormcaller Brundir (25 player)"
+    {O, 2942, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2942, 92}, -- "I Choose You, Runemaster Molgeim (25 player)"
+    {O, 2941, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2941, 92}, -- "I Choose You, Steelbreaker (10 player)"
+    {O, 2940, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2940, 92}, -- "I Choose You, Stormcaller Brundir (10 player)"
+    {O, 2939, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2939, 92}, -- "I Choose You, Runemaster Molgeim (10 player)"
+    {O, 2938, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2938, 92}, -- Must Deconstruct Faster (25 player)
+    {O, 2937, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2937, 92}, -- Must Deconstruct Faster (10 player)
+    {O, 2936, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2936, 92}, -- Nerf Gravity Bombs (25 player)
+    {O, 2935, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2935, 92}, -- Nerf Scrapbots (25 player)
+    {O, 2934, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2934, 92}, -- Nerf Gravity Bombs (10 player)
+    {O, 2933, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2933, 92}, -- Nerf Scrapbots (10 player)
+    {O, 2932, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2932, 92}, -- Nerf Engineering (25 player)
+    {O, 2931, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2931, 92}, -- Nerf Engineering (10 player)
+    {O, 2930, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2930, 92}, -- Stokin' the Furnace (10 player)
+    {O, 2929, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2929, 92}, -- Stokin' the Furnace (25 player)
+    {O, 2928, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2928, 92}, -- Hot Pocket (25 player)
+    {O, 2927, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2927, 92}, -- Hot Pocket (10 player)
+    {O, 2926, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2926, 92}, -- Shattered (25 player)
+    {O, 2925, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2925, 92}, -- Shattered (10 player)
+    {O, 2924, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2924, 92}, -- "Iron Dwarf, Medium Rare (25 player)"
+    {O, 2923, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2923, 92}, -- "Iron Dwarf, Medium Rare (10 player)"
+    {O, 2921, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2921, 92}, -- A Quick Shave (25 player)
+    {O, 2919, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2919, 92}, -- A Quick Shave (10 player)
+    {O, 2918, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2918, 92}, -- Orbital Bombardment (25 player)
+    {O, 2917, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2917, 92}, -- Nuked from Orbit (25 player)
+    {O, 2916, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2916, 92}, -- Orbital Devastation (25 player)
+    {O, 2915, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2915, 92}, -- Nuked from Orbit (10 player)
+    {O, 2914, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2914, 92}, -- Orbital Devastation (10 player)
+    {O, 2913, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2913, 92}, -- Orbital Bombardment (10 player)
+    {O, 2912, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2912, 92}, -- Shutout (25 player)
+    {O, 2911, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2911, 92}, -- Shutout (10 player)
+    {O, 2910, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2910, 92}, -- Take Out Those Turrets (25 player)
+    {O, 2909, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2909, 92}, -- Take Out Those Turrets (10 player)
+    {O, 2908, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2908, 92}, -- Three Car Garage (25 player)
+    {O, 2907, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2907, 92}, -- Three Car Garage (10 player)
+    {O, 2906, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2906, 92}, -- Unbroken (25 player)
+    {O, 2905, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2905, 92}, -- Unbroken (10 player)
+    {O, 2904, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2904, 92}, -- Conqueror of Ulduar
+    {O, 2903, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2903, 92}, -- Champion of Ulduar
+    {O, 2895, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2895, 92}, -- The Secrets of Ulduar (25 player)
+    {O, 2894, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2894, 92}, -- The Secrets of Ulduar (10 player)
+    {O, 2893, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2893, 92}, -- The Descent into Madness (25 player)
+    {O, 2892, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2892, 92}, -- The Descent into Madness (10 player)
+    {O, 2891, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2891, 92}, -- The Keepers of Ulduar (25 player)
+    {O, 2890, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2890, 92}, -- The Keepers of Ulduar (10 player)
+    {O, 2889, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2889, 92}, -- The Antechamber of Ulduar (25 player)
+    {O, 2888, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2888, 92}, -- The Antechamber of Ulduar (10 player)
+    {O, 2887, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2887, 92}, -- The Siege of Ulduar (25 player)
+    {O, 2886, "From", "Version", "030100", "Before", "Version", "070305"},
     {N, 2886, 92}, -- The Siege of Ulduar (10 player)
     {N, 2836, 92}, -- Lance a Lot
     {N, 2817, 92, f.Alliance, 2816}, -- Exalted Argent Champion of the Alliance
@@ -550,7 +1184,7 @@ tasks = {
     {N, 2760, 92, f.Alliance, 2769}, -- Exalted Champion of Darnassus
     {N, 2758, 92}, -- Argent Valor
     {N, 2756, 92}, -- Argent Aspiration
-    {O, 2716, "From", "Version", "030400", "Before", "Version", "070003"},
+    {O, 2716, "From", "Version", "030100", "Before", "Version", "070003"},
     {N, 2716, 86}, -- Dual Talent Specialization
     {O, 2676, "From", "Event", "181", "Until", "Event", "181"},
     {N, 2676, 92}, -- I Found One!
@@ -598,28 +1232,28 @@ tasks = {
     {N, 2316, 86, nil, nil, true}, -- Brutal Nether Drake
     {N, 2257, 86}, -- Frostbitten
     {N, 2256, 86}, -- Northern Exposure
-    {O, 2200, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 2200, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 2200, 86, f.Horde, 1757, true}, -- Defense of the Ancients
     {N, 2199, 86, nil, nil, true}, -- Wintergrasp Ranger
-    {O, 2195, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 2195, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 2195, 86, f.Horde}, -- Master of Strand of the Ancients
-    {O, 2194, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 2194, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 2194, 86, f.Alliance, nil, true}, -- Master of Strand of the Ancients
-    {O, 2193, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 2193, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 2193, 86, nil, nil, true}, -- Explosives Expert
-    {O, 2192, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 2192, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 2192, 86, f.Horde, 1762, true}, -- Not Even a Scratch
-    {O, 2191, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 2191, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 2191, 86, nil, nil, true}, -- Ancient Courtyard Protector
-    {O, 2190, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 2190, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 2190, 86, nil, nil, true}, -- Drop It Now!
-    {O, 2189, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 2189, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 2189, 86, nil, nil, true}, -- Artillery Expert
     {O, 2188, "From", "Version", "030002", "Before", "Version", "060002"},
     {N, 2188, 86}, -- Leeeeeeeeeeeeeroy!
-    {O, 2187, "From", "Version", "030400", "Before", "Version", "040003a"},
+    {O, 2187, "From", "Version", "030003", "Before", "Version", "040003a"},
     {N, 2187, 86}, -- The Undying
-    {O, 2186, "From", "Version", "030400", "Before", "Version", "040003a"},
+    {O, 2186, "From", "Version", "030003", "Before", "Version", "040003a"},
     {N, 2186, 86}, -- The Immortal
     {N, 2185, 86}, -- Just Can't Get Enough (25 player)
     {N, 2184, 86}, -- Just Can't Get Enough (10 player)
@@ -663,15 +1297,15 @@ tasks = {
     {N, 2092, 86, nil, nil, true}, -- Duelist
     {N, 2091, 86, nil, nil, true}, -- Gladiator
     {N, 2090, 86, nil, nil, true}, -- Challenger
-    {O, 2089, "From", "Version", "030400", "Before", "Version", "040001"},
+    {O, 2089, "From", "Version", "030003", "Before", "Version", "040001"},
     {N, 2089, 86, nil, nil, true}, -- 1000 Stone Keeper's Shards
-    {O, 2088, "From", "Version", "030400", "Before", "Version", "040001"},
+    {O, 2088, "From", "Version", "030003", "Before", "Version", "040001"},
     {N, 2088, 86, nil, nil, true}, -- 500 Stone Keeper's Shards
-    {O, 2087, "From", "Version", "030400", "Before", "Version", "040001"},
+    {O, 2087, "From", "Version", "030003", "Before", "Version", "040001"},
     {N, 2087, 86, nil, nil, true}, -- 250 Stone Keeper's Shards
-    {O, 2086, "From", "Version", "030400", "Before", "Version", "040001"},
+    {O, 2086, "From", "Version", "030003", "Before", "Version", "040001"},
     {N, 2086, 86, nil, nil, true}, -- 100 Stone Keeper's Shards
-    {O, 2085, "From", "Version", "030400", "Before", "Version", "040001"},
+    {O, 2085, "From", "Version", "030003", "Before", "Version", "040001"},
     {N, 2085, 86, nil, nil, true}, -- 50 Stone Keeper's Shards
     {N, 2084, 86}, -- Ring of the Kirin Tor
     {N, 2083, 86}, -- Grand Ice Mammoth
@@ -705,9 +1339,9 @@ tasks = {
     {N, 2038, 86}, -- Respect Your Elders
     {N, 2037, 86}, -- Chaos Theory
     {N, 2036, 86}, -- Intense Cold
-    {O, 2019, "From", "Version", "030400", "Before", "Version", "030700"},
+    {O, 2019, "From", "Version", "030003", "Before", "Version", "030300"},
     {N, 2019, 86}, -- Proof of Demise
-    {O, 2018, "From", "Version", "030400", "Before", "Version", "030700"},
+    {O, 2018, "From", "Version", "030003", "Before", "Version", "030300"},
     {N, 2018, 86}, -- Timear Foresees
     {N, 2017, 86, f.Horde, 2016, true}, -- Grizzled Veteran
     {N, 2016, 86, f.Alliance, 2017, true}, -- Grizzled Veteran
@@ -781,19 +1415,19 @@ tasks = {
     {N, 1779, 86}, -- The Northrend Gourmet
     {N, 1778, 86}, -- The Northrend Gourmet
     {N, 1777, 86}, -- The Northrend Gourmet
-    {O, 1766, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 1766, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 1766, 86, nil, nil, true}, -- Ancient Protector
-    {O, 1765, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 1765, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 1765, 86, nil, nil, true}, -- Steady Hands
-    {O, 1764, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 1764, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 1764, 86, nil, nil, true}, -- Drop It!
-    {O, 1763, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 1763, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 1763, 86, nil, nil, true}, -- Artillery Veteran
-    {O, 1762, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 1762, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 1762, 86, f.Alliance, 2192, true}, -- Not Even a Scratch
-    {O, 1761, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 1761, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 1761, 86, nil, nil, true}, -- The Dapper Sapper
-    {O, 1757, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 1757, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 1757, 86, f.Alliance, 2200, true}, -- Defense of the Ancients
     {N, 1755, 86, nil, nil, true}, -- Within Our Grasp
     {N, 1752, 86, f.Alliance, nil, true}, -- Master of Wintergrasp
@@ -950,11 +1584,11 @@ tasks = {
     {N, 1356, 86, f.Horde, 34}, -- I've Toured the Fjord
     {N, 1312, 86}, -- Bloody Rare
     {N, 1311, 86}, -- Medium Rare
-    {O, 1310, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 1310, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 1310, 86, nil, nil, true}, -- Storm the Beach
-    {O, 1309, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 1309, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 1309, 86, nil, nil, true}, -- Strand of the Ancients Veteran
-    {O, 1308, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 1308, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 1308, 86, nil, nil, true}, -- Strand of the Ancients Victory
     {O, 1307, "From", "Version", "030002", "Before", "Version", "060002"},
     {N, 1307, 86}, -- Upper Blackrock Spire
@@ -1029,8 +1663,6 @@ tasks = {
     {N, 1189, 86, f.Alliance, 1271}, -- To Hellfire and Back
     {O, 1188, "From", "Event", "423", "Until", "Event", "423"},
     {N, 1188, 86}, -- Shafted!
-    {O, 1187, "From", "Version", "030002", "Before", "Version", "040003a"},
-    {N, 1187, 86}, -- The Keymaster
     {O, 1186, "From", "Version", "030002", "Before", "Version", "080200"},
     {N, 1186, 86}, -- Down With The Dark Iron
     {O, 1185, "From", "Event", "372", "Until", "Event", "372"},
@@ -1046,7 +1678,7 @@ tasks = {
     {N, 1177, 86}, -- Got My Mind On My Money
     {N, 1176, 86}, -- Got My Mind On My Money
     {N, 1175, 86, f.Horde, 230, true}, -- Battlemaster
-    {O, 1174, "From", "Version", "030400", "Before", "Version", "070003"},
+    {O, 1174, "From", "Version", "030003", "Before", "Version", "070003"},
     {N, 1174, 86, nil, nil, true}, -- The Arena Master
     {N, 1173, 86, f.Horde}, -- Master of Warsong Gulch
     {N, 1172, 86, f.Alliance, nil, true}, -- Master of Warsong Gulch
@@ -1059,7 +1691,7 @@ tasks = {
     {N, 1165, 86}, -- "My Storage is ""Gigantique"""
     {N, 1164, 86, f.Horde, 225, true}, -- Everything Counts
     {N, 1162, 86, nil, nil, true}, -- Hotter Streak
-    {O, 1161, "From", "Version", "030400", "Before", "Version", "070003"},
+    {O, 1161, "From", "Version", "030003", "Before", "Version", "070003"},
     {N, 1161, 86, nil, nil, true}, -- High Five: 2200
     {N, 1160, 86, nil, nil, true}, -- Three's Company: 2200
     {N, 1159, 86, nil, nil, true}, -- Just the Two of Us: 2200
@@ -1288,7 +1920,6 @@ tasks = {
     {N, 763, 86, f.Horde, 764}, -- The Burning Crusader
     {N, 762, 86, f.Horde, 948}, -- Ambassador of the Horde
     {N, 761, 86}, -- Explore Arathi Highlands
-    {N, 760, 86}, -- Explore Alterac Mountains
     {N, 750, 86}, -- Explore Northern Barrens
     {N, 736, 86}, -- Explore Mulgore
     {N, 735, 86}, -- Working Day and Night
@@ -1296,7 +1927,7 @@ tasks = {
     {N, 733, 86}, -- Professional Master
     {N, 732, 86}, -- Professional Artisan
     {N, 731, 86}, -- Professional Expert
-    {O, 730, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 730, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 730, 86}, -- Skills to Pay the Bills
     {N, 729, 86}, -- Deathcharger's Reins
     {N, 728, 86}, -- Explore Durotar
@@ -1455,9 +2086,9 @@ tasks = {
     {N, 559, 86}, -- Needy
     {O, 558, "From", "Version", "030002", "Before", "Version", "080001"},
     {N, 558, 86}, -- Greedy
-    {O, 557, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 557, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 557, 86}, -- Superior
-    {O, 556, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 556, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 556, 86}, -- Epic
     {N, 547, 86}, -- Veteran of the Wrathgate
     {N, 546, 86}, -- Safe Deposit
@@ -1608,15 +2239,15 @@ tasks = {
     {N, 414, 86}, -- Tyrael's Hilt
     {N, 412, 86}, -- Murloc Costume
     {N, 411, 86}, -- Murky
-    {O, 409, "From", "Version", "030400", "Before", "Version", "070003"},
+    {O, 409, "From", "Version", "030003", "Before", "Version", "070003"},
     {N, 409, 86, nil, nil, true}, -- Last Man Standing
     {N, 408, 86, nil, nil, true}, -- Hot Streak
-    {O, 407, "From", "Version", "030400", "Before", "Version", "070003"},
+    {O, 407, "From", "Version", "030003", "Before", "Version", "070003"},
     {N, 407, 86, nil, nil, true}, -- High Five: 1750
-    {O, 406, "From", "Version", "030400", "Before", "Version", "070003"},
+    {O, 406, "From", "Version", "030003", "Before", "Version", "070003"},
     {N, 406, 86, nil, nil, true}, -- High Five: 1550
     {N, 405, 86, nil, nil, true}, -- Three's Company: 2000
-    {O, 404, "From", "Version", "030400", "Before", "Version", "070003"},
+    {O, 404, "From", "Version", "030003", "Before", "Version", "070003"},
     {N, 404, 86, nil, nil, true}, -- High Five: 2000
     {N, 403, 86, nil, nil, true}, -- Three's Company: 1750
     {N, 402, 86, nil, nil, true}, -- Three's Company: 1550
@@ -1724,7 +2355,7 @@ tasks = {
     {N, 144, 86}, -- The Lurker Above
     {N, 141, 86}, -- Ultimate Triage
     {N, 137, 86}, -- Stocking Up
-    {O, 135, "From", "Version", "030400", "Before", "Version", "080001"},
+    {O, 135, "From", "Version", "030003", "Before", "Version", "080001"},
     {N, 135, 86}, -- Grand Master in First Aid
     {O, 134, "From", "Version", "020003", "Before", "Version", "080001"},
     {N, 134, 86}, -- Master in First Aid
@@ -1765,7 +2396,7 @@ tasks = {
     {O, 16, "From", "Version", "000304", "Before", "Version", "040001"},
     {N, 16, 86}, -- Did Somebody Order a Knuckle Sandwich?
     {N, 15, 86}, -- Plenty of Pets
-    {O, 13, "From", "Version", "030400", "Before", "Version", "090001"},
+    {O, 13, "From", "Version", "030003", "Before", "Version", "090001"},
     {N, 13, 86}, -- Level 80
     {O, 12, "From", "Version", "020003", "Before", "Version", "090001"},
     {N, 12, 86}, -- Level 70
