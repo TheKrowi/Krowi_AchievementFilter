@@ -510,7 +510,7 @@ local function SkinHeader(skins)
         AchievementFrame.Header.Points:ClearAllPoints();
         AchievementFrame.Header.Points:Point('CENTER', AchievementFrame.Header.PointBorder, 'CENTER', -10, 0);
     end);
-    if addon.IsClassicWithAchievements then
+    if addon.Util.IsClassicWithAchievements then
         AchievementFrameHeaderLeftDDLInset:SetAlpha(0);
     end
 
@@ -527,7 +527,7 @@ end
 
 local function ReskinBlizzard(skins)
     AchievementFrameCategories:Point("TOPLEFT", AchievementFrame, 21, -26);
-    if addon.IsClassicWithAchievements then
+    if addon.Util.IsClassicWithAchievements then
         AchievementFrameCloseButton:ClearAllPoints();
         AchievementFrameCloseButton:Point('TOPRIGHT', AchievementFrame, 'TOPRIGHT', 4, 5);
         AchievementFrame.backdrop:ClearAllPoints();

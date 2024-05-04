@@ -8,3 +8,7 @@
 <li>Errors occurring during combat should be drastically reduced when opening the achievements window</li>
 <li>Strange behavior where more than one achievement is selected should be resolved</li>
 </ul>
+<p><h3>Cata Classic</h3></p>
+<ul>
+<li>Fixed ElvUI skinning bug</li>
+</ul>

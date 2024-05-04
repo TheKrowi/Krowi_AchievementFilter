@@ -10,6 +10,9 @@ All notable changes to this project will be documented in this file.
 - Errors occurring during combat should be drastically reduced when opening the achievements window
 - Strange behavior where more than one achievement is selected should be resolved
 
+### Cata Classic
+- Fixed ElvUI skinning bug
+
 ## 70.0 - 2024-05-01
 ### Added
 - Pandaria: Remix achievements (157)
