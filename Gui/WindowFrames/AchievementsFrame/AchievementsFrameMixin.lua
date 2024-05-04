@@ -66,10 +66,12 @@ local function ScrollBoxSelectionChanged(self, achievement, selected)
 	selectedTab.Extend = button:GetHeight() - self.DummyFrame.CollapsedHeight;
 
 	-- print("Selecting", selectedTab.SelectedAchievement and selectedTab.SelectedAchievement.Id)
-	addon.Util.DelayFunction("KrowiAF_AddToBrowsingHistory", 0.1, function()
-		addon.BrowsingHistory:Add(selectedTab.SelectedCategory, selectedTab.SelectedAchievement);
-		addon.Gui.BrowsingHistory:Update();
-	end);
+	if addon.Options.db.profile.TrackAchievementBrowserHistory then
+		addon.Util.DelayFunction("KrowiAF_AddToBrowsingHistory", 0.1, function()
+			addon.BrowsingHistory:Add(selectedTab.SelectedCategory, selectedTab.SelectedAchievement);
+			addon.Gui.BrowsingHistory:Update();
+		end);
+	end
 end
 
 local function AddSelectionBehavior(self)

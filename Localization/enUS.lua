@@ -1050,3 +1050,13 @@ L["Zones"] = true
 L["Go back one achievement"] = true
 L["Go forward one achievement"] = true
 L["Select achievements to see your browsing history"] = true
+L["Calendar button"] = true
+L["Horizontal position"] = true
+L["Calendar button horizontal position Desc"] = "Adjust the horizontal position of the {calendarButton}."
+L["Vertical position"] = true
+L["Calendar button vertical position Desc"] = "Adjust the vertical position of the {calendarButton}."
+L["Achievement browsing history"] = true
+L["Track achievement browsing history"] = true
+L["Track achievement browsing history Desc"] = [=[When enabled, show a back and forward button in the achievement window header.
+
+This allows for the navigation of your browsing history of selected achievements just like your internet browser does for visited websites.]=]

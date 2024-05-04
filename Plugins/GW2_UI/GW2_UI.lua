@@ -1010,6 +1010,22 @@ do -- [[ Header ]]
         hooksecurefunc(AchievementFrame.Header.Points, "SetText", UpdatePointsDisplay);
         hooksecurefunc("AchievementFrame_RefreshView", UpdatePointsDisplay);
         hooksecurefunc("AchievementFrame_UpdateTabs", UpdatePointsDisplay);
+
+        AchievementFrameFilterDropDown:ClearAllPoints()
+        AchievementFrameFilterDropDown:SetPoint("BOTTOMLEFT", AchievementFrame.SearchBox, "TOPLEFT", 0, 10)
+        AchievementFrameFilterDropDown:SetPoint("BOTTOMRIGHT", AchievementFrame.SearchBox, "TOPRIGHT", 0, 10)
+
+        AchievementFrameFilterDropDown.backdrop:ClearAllPoints()
+        AchievementFrameFilterDropDown.backdrop:SetPoint("TOPLEFT", AchievementFrameFilterDropDown, "TOPLEFT", 0, 0)
+        AchievementFrameFilterDropDown.backdrop:SetPoint("BOTTOMRIGHT", AchievementFrameFilterDropDown, "BOTTOMRIGHT", 0, 0)
+        AchievementFrameFilterDropDown.backdrop:SetAlpha(0.5)
+
+        GW2_ADDON.HandleNextPrevButton(KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton);
+        GW2_ADDON.HandleNextPrevButton(KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton);
+        KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton:ClearPoint("RIGHT");
+        KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton:ClearPoint("RIGHT");
+        KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton:SetPoint("LEFT", AchievementFrameHeader.breadCrumb, "RIGHT", 10, -2);
+        KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton:SetPoint("LEFT", KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton, "RIGHT");
     end
     gw2_ui.SkinHeader = SkinHeader;
 end

@@ -161,7 +161,7 @@ local tmpC = {};
 local function LoadAllCategories(tab, cats)
     for _, id in next, cats do
 		local name, parentID = GetCategoryInfo(id);
-        tmpC[id] = addon.Objects.Category:New(name);
+        tmpC[id] = addon.Objects.Category:New(id, name);
 		if parentID == -1 then
 			-- categories:AddCategory(tmpC[id]);
 			tab:InsertCategory(tmpC[id], #tab.Children - 2);

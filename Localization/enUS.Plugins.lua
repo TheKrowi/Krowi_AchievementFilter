@@ -10,6 +10,7 @@ L["AchievementsTabFixes Desc"] = "This plugin provides some fixes for the Achiev
 L["Add To Right Click Menu"] = true
 L["Add To Right Click Menu Desc"] = "Add an option to the Right Click Menu that will direct you to tactics if {iat} has data for it."
 L["Alert System Overwrite Desc"] = "The location settings are not active when {addon} is enabled. Moving the Loot / Alert Frames anchor will achieve the same result."
+L["Calendar Button Position Overwrite Desc"] = "The position settings are not active when {addon} is enabled."
 L["At least version is required"] = [=[At least version '{version}' is required.
 ]=]
 L["Better Wardrobe"] = true

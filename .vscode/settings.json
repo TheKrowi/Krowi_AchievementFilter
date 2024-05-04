@@ -505,7 +505,9 @@
         "AchievementFrameFilterDropDownButton",
         "AllTheThings",
         "KrowiAF_SpecialFrame",
-        "securecall"
+        "securecall",
+        "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton",
+        "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

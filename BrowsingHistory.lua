@@ -27,7 +27,15 @@ function browsingHistory:Add(category, achievement)
         CategoryId = category.Id,
         AchievementId = achievement.Id
     };
+
+    if self.Index ~= #KrowiAF_SavedData.BrowsingHistory then
+        for i = self.Index + 1, #KrowiAF_SavedData.BrowsingHistory do
+            KrowiAF_SavedData.BrowsingHistory[i] = nil;
+        end
+    end
+
     tinsert(KrowiAF_SavedData.BrowsingHistory, lastAddedRecord);
+    
     self.Index = #KrowiAF_SavedData.BrowsingHistory;
 end
 

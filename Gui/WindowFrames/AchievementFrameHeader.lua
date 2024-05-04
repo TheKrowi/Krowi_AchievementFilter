@@ -201,7 +201,7 @@ function header:InjectDynamicOptions()
             set = function(_, value) addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[i] = value; end
         });
         addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Blank2" .. i, {
-            order = OrderPP(), type = "description", width = AdjustedWidth(0.85),
+            order = OrderPP(), type = "description", width = AdjustedWidth(0.80),
             name = ""
         });
     end
