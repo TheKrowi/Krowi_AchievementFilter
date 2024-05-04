@@ -7,7 +7,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-04-27 15-41-04 ]] --
+-- [[ Exported at 2024-05-04 19-13-55 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -21,6 +21,7 @@ L["600 skill"] = true
 L["Academy Ascent"] = true
 L["Account"] = true
 L["Account wide (default)"] = true
+L["Achievement browsing history"] = true
 L["Achievement Calendar"] = true
 L["Achievement is Completed"] = true
 L["Achievement is Completed Desc"] = "Show Achievement Criteria even if the Achievement is already completed."
@@ -105,6 +106,9 @@ L["Burning Pandaren Spirit"] = true
 L["Bur's Mount Collection"] = true
 L["Button"] = true
 L["Calendar"] = true
+L["Calendar button"] = true
+L["Calendar button horizontal position Desc"] = "Adjust the horizontal position of the {calendarButton}."
+L["Calendar button vertical position Desc"] = "Adjust the vertical position of the {calendarButton}."
 L["Calendar Desc"] = [=[Identical look and feel to the {calendar}.
 
 |T:1:8|t- The number of achievements and points on top are the earned achievements and points for the current visible month, not all visible days.
@@ -133,10 +137,10 @@ This value can be changed while the achievement window is open and having one of
 (1) FPS drops and stuttering while adjusting the value, NOT during normal addon use]=]
 L["Category shown temporarily"] = "This category was selected by clicking on the {eventName} event reminder and is shown temporarily because it has no achievements that match the set filters."
 L["Caverns Criss-Cross"] = true
-L["Center Header"] = true
 L["Center header"] = true
-L["Center header Desc"] = "Keep the header centered on the achievements window."
+L["Center Header"] = true
 L["Center Header Desc"] = "Center the achievement's name on the achievement button."
+L["Center header Desc"] = "Keep the header centered on the achievements window."
 L["Central Circuit"] = true
 L["Chains of Domination"] = true
 L["Character / Account wide"] = true
@@ -472,6 +476,8 @@ L["Garrisons Update"] = true
 L["Gifts"] = true
 L["Gladiator's Sanctum"] = true
 L["Glory"] = true
+L["Go back one achievement"] = true
+L["Go forward one achievement"] = true
 L["Go to"] = true
 L["Going away with"] = true
 L["Gorespine"] = true
@@ -498,6 +504,7 @@ L["Hide Date Completed Desc"] = "Hide the date the achievement was completed on.
 L["Hide Not Earned By if current character earned the achievement"] = "Hide {notEarnedBy} if current character earned the achievement"
 L["Hide Not Earned By if current character earned the achievement Desc"] = "Hide the {notEarnedBy} section if the current character has earned the achievement. The {earnedBy} section will still be shown as normal."
 L["Holidays"] = true
+L["Horizontal position"] = true
 L["Hour of Twilight"] = true
 L["Icon Left click"] = "to open the Achievement window."
 L["Icon Right click"] = "for Options."
@@ -799,6 +806,7 @@ L["Secrets of Azeroth (KR)"] = true
 L["Secrets of Azeroth (US)"] = true
 L["Secrets of Ulduar"] = true
 L["Seeds of Renewal"] = true
+L["Select achievements to see your browsing history"] = true
 L["Select All"] = true
 L["Selected Zone"] = true
 L["Set Keybind"] = true
@@ -981,6 +989,10 @@ L["Toggle window once opened"] = true
 L["Toggle window once opened Desc"] = "When the achievement window is opened the first time, open the window to the correct tab and select the summary. From the second time onwards, regardless of the keybind used, open the last view."
 L["Tooltip"] = true
 L["Torghast"] = true
+L["Track achievement browsing history"] = true
+L["Track achievement browsing history Desc"] = [=[When enabled, show a back and forward button in the achievement window header.
+
+This allows for the navigation of your browsing history of selected achievements just like your internet browser does for visited websites.]=]
 L["Tracking"] = true
 L["Tracking Achievements"] = true
 L["Trading Post"] = true
@@ -999,6 +1011,7 @@ L["up until the start of"] = true
 L["Upper Reaches"] = true
 L["Vendor"] = true
 L["Venthyr Assault"] = true
+L["Vertical position"] = true
 L["View Tutorial"] = true
 L["Visions of N'Zoth"] = true
 L["Wago"] = true
@@ -1047,16 +1060,3 @@ L["Zaqali Ruin Investigation: Next"] = true
 L["Zaqali Ruin Investigation: Soon"] = true
 L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
-L["Go back one achievement"] = true
-L["Go forward one achievement"] = true
-L["Select achievements to see your browsing history"] = true
-L["Calendar button"] = true
-L["Horizontal position"] = true
-L["Calendar button horizontal position Desc"] = "Adjust the horizontal position of the {calendarButton}."
-L["Vertical position"] = true
-L["Calendar button vertical position Desc"] = "Adjust the vertical position of the {calendarButton}."
-L["Achievement browsing history"] = true
-L["Track achievement browsing history"] = true
-L["Track achievement browsing history Desc"] = [=[When enabled, show a back and forward button in the achievement window header.
-
-This allows for the navigation of your browsing history of selected achievements just like your internet browser does for visited websites.]=]

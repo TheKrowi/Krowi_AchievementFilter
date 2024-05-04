@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-04-27 15-41-16 ]] --
+-- [[ Exported at 2024-05-04 19-09-27 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -319,7 +319,7 @@ L["Include all Desc"] = "Включать все исключенные дост
 L["Indentation"] = "Отступ"
 L["Indentation Desc"] = "Размер отступа дочерних категорий."
 L["Invasions"] = "Нападения"
-L["is"] = "есть"
+L["is"] = "сейчас"
 L["Iskaara Flyover"] = "Тур по Искаре"
 L["Kafi"] = "Кафи"
 L["Kalimdor Cup"] = "Кубок Калимдора"
