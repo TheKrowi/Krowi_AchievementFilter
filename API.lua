@@ -477,16 +477,7 @@ do --[[ Tooltip Data ]]
 		AddTooltipData(achievementId, criteriaIndex, tooltipDataType, objectId, notCompletedText, completedText, faction);
 	end
 
-	function KrowiAF.AddTooltipDataTable(achievementId, properties, criteria)
-		if criteria == nil then
-			criteria = properties;
-			properties = nil;
-		end
-
-		if type(criteria) == "function" then
-			criteria = criteria();
-		end
-
+	local function AddTooltipDataTable(achievementId, properties, criteria)
 		if properties == nil then
 			for _, v in next, criteria do
 				KrowiAF.AddTooltipData(achievementId, unpack(v));
@@ -497,6 +488,26 @@ do --[[ Tooltip Data ]]
 		for _, v in next, criteria do
 			KrowiAF.AddTooltipData(achievementId, v[1], v[3] or properties.ObjectType, v[2], v[4] or properties.NotCompletedText, v[5] or properties.CompletedText);
 		end
+	end
+
+	function KrowiAF.AddTooltipDataTable(achievementId, properties, criteria)
+		if criteria == nil then
+			criteria = properties;
+			properties = nil;
+		end
+
+		if type(criteria) == "function" then
+			criteria = criteria();
+		end
+
+		if type(achievementId) == "table" then
+			for _, achId in next, achievementId do
+				AddTooltipDataTable(achId, properties, criteria);
+			end
+			return;
+		end
+
+		AddTooltipDataTable(achievementId, properties, criteria);
 	end
 
 	KrowiAF.AdditionalTooltipData = {};

@@ -507,7 +507,8 @@
         "KrowiAF_SpecialFrame",
         "securecall",
         "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton",
-        "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton"
+        "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton",
+        "GetAchievementCriteriaInfoByID"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
