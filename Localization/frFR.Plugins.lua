@@ -5,7 +5,7 @@ if not L then return end
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-05-04 19-09-23 ]] --
+-- [[ Exported at 2024-05-05 17-34-25 ]] --
 L["AchievementsTabFixes"] = "Corrections de l'onglet des Hauts faits"
 L["AchievementsTabFixes Desc"] = "Ce plugin offre quelques corrections pour l'onglet des Hauts faits, que vous pouvez activer ou désactiver ci-dessous."
 L["Add To Right Click Menu"] = "Ajouter au menu clic droit"

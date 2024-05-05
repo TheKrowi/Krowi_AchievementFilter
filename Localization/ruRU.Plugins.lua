@@ -5,7 +5,7 @@ if not L then return end
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-05-04 19-09-27 ]] --
+-- [[ Exported at 2024-05-05 17-34-30 ]] --
 L["AchievementsTabFixes"] = "Вкладки Достижений исправлены"
 L["AchievementsTabFixes Desc"] = "Данный плагин позволяет исправить Вкладки Достижений, описанные ниже."
 L["Add To Right Click Menu"] = "Добавить в меню по правому щелчку"

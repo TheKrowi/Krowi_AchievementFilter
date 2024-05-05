@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-05-04 19-09-17 ]] --
+-- [[ Exported at 2024-05-05 17-34-02 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -22,6 +22,7 @@ L["600 skill"] = "Fertigkeit 600"
 L["Academy Ascent"] = "Akademieaufstieg"
 L["Account"] = true
 L["Account wide (default)"] = "Account (Standard)"
+L["Achievement browsing history"] = "Erfolgsbrowser-Verlauf"
 L["Achievement Calendar"] = "Erfolgs-Kalender "
 L["Achievement is Completed"] = "Erfolg ist abgeschlossen"
 L["Achievement is Completed Desc"] = "Zeige die Erfolgs-Kriterien an, auch wenn der Erfolg bereits abgeschlossen ist."
@@ -106,6 +107,9 @@ L["Burning Pandaren Spirit"] = "Brennender Pandarengeist"
 L["Bur's Mount Collection"] = "Bur's Reittier Sammlung"
 L["Button"] = true
 L["Calendar"] = "Kalender"
+L["Calendar button"] = "Kalender-Button"
+L["Calendar button horizontal position Desc"] = "Stelle die horizontale Position des {calendarButton} ein."
+L["Calendar button vertical position Desc"] = "Stelle die vertikale Position des {calendarButton} ein."
 L["Calendar Desc"] = [=[Erscheinungsbild des {calendar}.
 
 |T:1:8|t- Die Anzahl der Erfolge und Punkte oben sind die verdienten Erfolge und Punkte für den aktuellen sichtbaren Monat und nicht für alle sichtbaren Tage.
@@ -468,6 +472,8 @@ L["Garrisons Update"] = "Garnisonsupdate"
 L["Gifts"] = "Geschenke"
 L["Gladiator's Sanctum"] = "Heiligtum des Gladiators"
 L["Glory"] = "Standard"
+L["Go back one achievement"] = "Einen Erfolg zurück blättern"
+L["Go forward one achievement"] = "Einen Erfolg vorwärts blättern"
 L["Go to"] = "Gehe zu"
 L["Going away with"] = "Nicht mehr erzielbar ab"
 L["Gorespine"] = "Blutstachel"
@@ -482,7 +488,7 @@ L["Greyhoof"] = "Grauhuf"
 L["Grow direction"] = "Richtung"
 L["Grow direction Desc"] = "Die Richtung, in der neue Benachrichtigungs-Fenster hinzugefügt werden sollen."
 L["Guardians of the Dream"] = "Wächter des Traums"
-L["Guides"] = "Leitfaden"
+L["Guides"] = "Hilfe-Leitfaden"
 L["Hallow's End"] = "Schlotternächte"
 L["Header"] = true
 L["Header tooltip"] = "Überschrift Tooltip"
@@ -494,6 +500,7 @@ L["Hide Date Completed Desc"] = "Verbirgt das Datum, an dem der Erfolg abgeschlo
 L["Hide Not Earned By if current character earned the achievement"] = "{notEarnedBy} ausblenden, wenn der aktuelle Charakter den Erfolg schon erlangt hat"
 L["Hide Not Earned By if current character earned the achievement Desc"] = "Blendet den Abschnitt {notEarnedBy} aus, wenn der aktuelle Charakter den Erfolg erworben hat. Der Abschnitt {earnedBy} wird ansonsten weiterhin wie gewohnt angezeigt."
 L["Holidays"] = "Feiertage"
+L["Horizontal position"] = "Horizontale Position"
 L["Hour of Twilight"] = "Die Stunde des Zwielichts"
 L["Icon Left click"] = "um das \"Erfolge\" Fenster zu öffnen."
 L["Icon Right click"] = "für die Optionen."
@@ -508,7 +515,7 @@ L["Include"] = "Hinzufügen"
 L["Include all"] = "\"Filter: Erfolge ausgeblendet\" einbeziehen"
 L["Include all Desc"] = "Schließen Sie alle ausgeschlossenen Erfolge mit ein."
 L["Indentation"] = "Unterkategorien einrücken"
-L["Indentation Desc"] = "Die Größe der Einrückung von Unterkategorien."
+L["Indentation Desc"] = "Die Breite der Einrückung von Unterkategorien."
 L["Invasions"] = "Invasionen"
 L["is"] = "ist"
 L["Iskaara Flyover"] = "Iskaara-Überflug"
@@ -538,7 +545,7 @@ L["Loaded"] = "Geladen"
 L["Loaded Desc"] = "Zeigt an, ob das mit dem Plugin verbundene Addon geladen ist oder nicht."
 L["Localizations"] = "Sprach-Lokalisierungen"
 L["Location"] = "Ort"
-L["Lock month"] = "Gewählten Monat behalten immer behalten."
+L["Lock month"] = "Gewählten Monat immer behalten."
 L["Lock month Desc"] = "Behalte den zuletzt angezeigten immer Monat bei, wenn du den Kalender wieder öffnest, nachdem er geschlossen wurde."
 L["Lock month when closed by achievement"] = "Gewählten Monat behalten beim Anklicken eines Erfolgs."
 L["Lock month when closed by achievement Desc"] = "Behalte den zuletzt angezeigten Monat bei, wenn du den Kalender wieder öffnest, nachdem er durch Anklicken eines Erfolgs geschlossen wurde."
@@ -555,7 +562,7 @@ L["Mantid"] = "Mantis"
 L["Maruukai Dash"] = "Maruukaispurt"
 L["Max number of alerts"] = "Maximale Anzahl der Ereignis Popup-Fenster"
 L["Max number of alerts Desc"] = "Die maximale Anzahl der gleichzeitig angezeigten Ereignis Popup-Fenster."
-L["Maximum number of characters"] = "Maximale Anzahl von Charakteren"
+L["Maximum number of characters"] = "Maximale Charakter-Anzahl"
 L["Maximum number of characters Desc"] = "Die maximale Anzahl der Charaktere, die im Tooltip angezeigt werden sollen."
 L["Merge Small Categories"] = "Kleine Kategorien zusammenführen"
 L["Merge small categories threshold"] = "Schwelle für kleine Kategorien zusammenführen"
@@ -564,7 +571,7 @@ L["Merge small categories threshold Desc"] = [=[Kategorien mit einer Anzahl von 
 Nur voreingestellte Kategorien können verschmolzen werden (meist untergeordnete Kategorien aus Zonen). Dies kann Auswirkungen (1) auf das Spiel haben.
 
 (1) FPS-Einbrüche und Stottern beim Anpassen des Wertes, NICHT bei normaler Addon-Nutzung.]=]
-L["Micro Button"] = true
+L["Micro Button"] = "Micro-Button"
 L["Midsummer Fire Festival"] = "Sonnenwende"
 L["Minimum characters to search"] = "Mindestanzahl der zu suchenden Charaktere"
 L["Minimum characters to search Desc"] = [=[Die Anzahl der Charaktere, die benötigt werden, um die Suche nach Erfolgen, die der Abfrage entsprechen, zu starten. Je kleiner die Zahl, desto größer die Auswirkung (1) auf das Spiel.
@@ -710,15 +717,15 @@ L["Rated"] = "Gewertet"
 L["Ravine River Run"] = "Schluchtflusslauf"
 L["Realm"] = true
 L["Realm First!"] = true
-L["Rebind Micro Button"] = "Micro Button ändern"
-L["Rebind Micro Button Desc"] = "Binden Sie die Micro-Button \"Erfolge\" neu, um einen anderen Tab als den Standard-Tab zu öffnen."
+L["Rebind Micro Button"] = "Micro-Button ändern"
+L["Rebind Micro Button Desc"] = "Binde den Micro-Button \"Erfolge\" neu, um einen anderen Tab als den Standard-Tab zu öffnen."
 L["Recruit-a-Friend"] = "Werbt einen Freund"
 L["Red"] = "Rot"
 L["Refresh Events"] = "Events aktualisieren"
 L["Refresh interval"] = "Aktualisierungsintervall"
 L["Refresh interval Desc"] = "Die Zeit in Sekunden zwischen den Aktualisierungen der Ereignis-Daten. Eine längere Zeitspanne kann die Erstellung neuer Popup-Fenster bzw. das Bereinigen vorhandener Popup-Fenster verzögern."
 L["Related Tab"] = "Zugehöriger Tab"
-L["Related Tab Desc"] = "Öffnet eine neue, andere Registerkarte im Browser als die Standardregisterkarte wenn dies ausgewählt wird."
+L["Related Tab Desc"] = "Fügt dem {wowheadLink} ein zusätzliches Bit hinzu, damit ein anderer Tab als der Standard-Tab ausgewählt werden kann."
 L["Remember frame position"] = "{frame} Position merken"
 L["Remember frame position Desc"] = "Die Position des {frame} wird gespeichert. Dadurch bleibt der {frame} bei der nächsten Anmeldung an seiner letzten bekannten Position."
 L["Remove from Watch List"] = "Von {watchList} löschen"
@@ -790,6 +797,7 @@ L["Secrets of Azeroth (KR)"] = "Geheimnisse von Azeroth (KR)"
 L["Secrets of Azeroth (US)"] = "Geheimnisse von Azeroth (US)"
 L["Secrets of Ulduar"] = "Die Geheimnisse von Ulduar"
 L["Seeds of Renewal"] = "Saat der Erneuerung"
+L["Select achievements to see your browsing history"] = "Erfolge auswählen, um Ihren Erfolgs-Browserverlauf anzuzeigen"
 L["Select All"] = "Alle auswählen"
 L["Selected Zone"] = "Ausgewählte Zone"
 L["Set Keybind"] = "Tastaturbelegung ändern"
@@ -961,6 +969,8 @@ L["Toggle window once opened"] = "Fenster nach dem Öffnen umschalten"
 L["Toggle window once opened Desc"] = "Wenn das Erfolgsfenster das erste Mal geöffnet wird, öffnet sich ein Tab und zeigt die Zusammenfassung an. Ab dem zweiten Mal, unabhängig von der verwendeten Tastenkombination, öffnet sich die zuletzt gezeigte Ansicht."
 L["Tooltip"] = true
 L["Torghast"] = true
+L["Track achievement browsing history"] = "Verfolgung des Erfolgs-Browsing-Verlaufs"
+L["Track achievement browsing history Desc"] = "Wenn diese Option aktiviert ist, wird in der Fensterüberschrift eine Schaltfläche zum Zurück- und Vorwärtsblättern angezeigt. Dies ermöglicht die Navigation durch den Browserverlauf ausgewählter Errungenschaften, so wie es Ihr Internetbrowser für besuchte Websites tut."
 L["Tracking"] = "Tracking-Erfolge"
 L["Tracking Achievements"] = "Tracking-Erfolge"
 L["Trading Post"] = "Handelsposten"
@@ -979,6 +989,7 @@ L["up until the start of"] = "bis zum Ende von"
 L["Upper Reaches"] = "Die Oberen Ebenen"
 L["Vendor"] = "Verkäufer"
 L["Venthyr Assault"] = "Venthyr Paktangriff"
+L["Vertical position"] = "Vertikale Position"
 L["View Tutorial"] = "Tutorial anzeigen"
 L["Visions of N'Zoth"] = "Visionen von N'Zoth"
 L["Wago"] = true

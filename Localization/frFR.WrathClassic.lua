@@ -8,7 +8,7 @@ if not L then return end
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-05-04 19-09-23 ]] --
+-- [[ Exported at 2024-05-05 17-34-26 ]] --
 L["Completed"] = "Complété"
 L["EJ_GetInstanceInfo1190"] = "Château Nathria"
 L["EJ_GetInstanceInfo1193"] = "Sanctum de Somination"
