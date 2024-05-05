@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Cata Classic
 - Fixed ElvUI skinning bug
+- Fixed issues with missing linked Silverpine Forest Quests and Ghostlands Quests achievements
 
 ## 70.0 - 2024-05-01
 ### Added

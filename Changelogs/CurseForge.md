@@ -11,4 +11,5 @@
 <p><h3>Cata Classic</h3></p>
 <ul>
 <li>Fixed ElvUI skinning bug</li>
+<li>Fixed issues with missing linked Silverpine Forest Quests and Ghostlands Quests achievements</li>
 </ul>

@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-04-27 15-10-40 ]] --
+-- [[ Exported at 2024-05-05 17-26-37 ]] --
 tasks = {
     {N, 19440, 204, f.Horde}, -- Defense Protocol Gamma: Terminated
     {N, 19439, 204, f.Alliance}, -- Defense Protocol Gamma: Terminated
@@ -552,7 +552,7 @@ tasks = {
     {N, 4914, 110}, -- Working Around the Clock
     {N, 4910, 110}, -- Searing Gorge Quests
     {N, 4909, 110}, -- Blasted Lands Quests
-    {N, 4908, 110, f.Horde, 12456}, -- Ghostlands Quests
+    {N, 4908, 110, f.Horde}, -- Ghostlands Quests
     {N, 4906, 110}, -- Northern Stranglethorn Quests
     {N, 4905, 110}, -- Cape of Stranglethorn Quests
     {N, 4904, 110}, -- Swamp of Sorrows Quests
@@ -564,7 +564,7 @@ tasks = {
     {N, 4897, 110}, -- Hinterlands Quests
     {N, 4896, 110}, -- Arathi Highlands Quests
     {N, 4895, 110, f.Horde, 4902}, -- Hillsbrad Foothills Quests
-    {N, 4894, 110, f.Horde, 12455}, -- Silverpine Forest Quests
+    {N, 4894, 110, f.Horde}, -- Silverpine Forest Quests
     {N, 4893, 110}, -- Western Plaguelands Quests
     {N, 4892, 110}, -- Eastern Plaguelands Quests
     {N, 4888, 110}, -- One Hump or Two?

@@ -8,3 +8,4 @@
 
 ### Cata Classic
 - Fixed ElvUI skinning bug
+- Fixed issues with missing linked Silverpine Forest Quests and Ghostlands Quests achievements
