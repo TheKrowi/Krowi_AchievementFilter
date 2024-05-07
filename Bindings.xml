@@ -23,5 +23,11 @@
     <Binding name="KrowiAF_OPEN_CAT_Current_Zone" category="BINDING_HEADER_KrowiAF">
         KrowiAF_OpenCurrentZone(true);
     </Binding>
+    <Binding name="KrowiAF_BROWSER_HISTORY_PREV" category="BINDING_HEADER_KrowiAF">
+        KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton:Click();
+    </Binding>
+    <Binding name="KrowiAF_BROWSER_HISTORY_NEXT" category="BINDING_HEADER_KrowiAF">
+        KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton:Click();
+    </Binding>
 </Bindings>
 

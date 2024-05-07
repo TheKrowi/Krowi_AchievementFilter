@@ -471,7 +471,7 @@
         "debugprofilestop",
         "SlashCmdList",
         "KrowiAF_AchievementCalendarSideFrame",
-        "KrowiAF_AchievementCalendarButton",
+        "KrowiAF_AchievementFrameCalendarButton",
         "KrowiAF_AchievementsObjectives",
         "UNTRACK_ACHIEVEMENT_TOOLTIP",
         "TRACK_ACHIEVEMENT_TOOLTIP",
@@ -505,7 +505,10 @@
         "AchievementFrameFilterDropDownButton",
         "AllTheThings",
         "KrowiAF_SpecialFrame",
-        "securecall"
+        "securecall",
+        "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton",
+        "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton",
+        "GetAchievementCriteriaInfoByID"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
@@ -543,13 +546,13 @@
         //     "exclude":"**/{.git,.github,.vscode,Changelogs,Descriptions}/**",
         //     "deleteTargetOnDeploy": true
         // },
-        // {
-        //     "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
-        //     "target":"F:\\World of Warcraft\\_ptr_\\Interface\\AddOns\\Krowi_AchievementFilter",
-        //     "include":"**/*.{lua,toc,blp,tga,xml,md}",
-        //     "exclude":"**/{.git,.github,.vscode,Changelogs,Descriptions}/**",
-        //     "deleteTargetOnDeploy": true
-        // },
+        {
+            "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
+            "target":"F:\\World of Warcraft\\_ptr_\\Interface\\AddOns\\Krowi_AchievementFilter",
+            "include":"**/*.{lua,toc,blp,tga,xml,md}",
+            "exclude":"**/{.git,.github,.vscode,Changelogs,Descriptions}/**",
+            "deleteTargetOnDeploy": true
+        },
     ],
     "fsdeploy.deployWorkspaceOnSave": true,
 }

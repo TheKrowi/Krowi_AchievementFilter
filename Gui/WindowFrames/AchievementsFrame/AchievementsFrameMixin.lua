@@ -38,8 +38,16 @@ local function AddManagedScrollBarVisibilityBehavior(self)
 end
 
 local function ScrollBoxSelectionChanged(self, achievement, selected)
+	-- print("ScrollBoxSelectionChanged", achievement and achievement.Id, selected, achievement and achievement.selected)
 	local selectedTab = addon.Gui.SelectedTab;
 	if not selectedTab then
+		return;
+	end
+
+	--[[ Note
+		This should fix the strange behaviour where achievements are partially selected when switching between tabs
+	]]
+	if achievement.selected == nil then
 		return;
 	end
 
@@ -53,9 +61,17 @@ local function ScrollBoxSelectionChanged(self, achievement, selected)
 		return;
 	end
 
-	button:Update(achievement);
+	button:Update(achievement, nil, not achievement.selected);
 	SetFocusedAchievement(achievement.Id);
 	selectedTab.Extend = button:GetHeight() - self.DummyFrame.CollapsedHeight;
+
+	-- print("Selecting", selectedTab.SelectedAchievement and selectedTab.SelectedAchievement.Id)
+	if addon.Options.db.profile.TrackAchievementBrowserHistory then
+		addon.Util.DelayFunction("KrowiAF_AddToBrowsingHistory", 0.1, function()
+			addon.BrowsingHistory:Add(selectedTab.SelectedCategory, selectedTab.SelectedAchievement);
+			addon.Gui.BrowsingHistory:Update();
+		end);
+	end
 end
 
 local function AddSelectionBehavior(self)

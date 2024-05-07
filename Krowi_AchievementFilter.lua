@@ -14,6 +14,8 @@ addon.Tabs.Load();
 
 -- [[ Binding names ]] --
 BINDING_HEADER_KrowiAF = addon.Metadata.Title;
+BINDING_NAME_KrowiAF_BROWSER_HISTORY_PREV = addon.L["Go back one achievement"];
+BINDING_NAME_KrowiAF_BROWSER_HISTORY_NEXT = addon.L["Go forward one achievement"];
 
 -- [[ Faction data ]] --
 addon.Faction = {};
@@ -57,6 +59,7 @@ local function LoadKrowi_AchievementFilter()
 
     addon.Icon:Load();
     addon.Tutorials.Load();
+    addon.BrowsingHistory:Load();
 
     addon.TooltipData.Load(); -- Might be moved to PLAYER_LOGIN event but easier for testing on every /reload
 end
@@ -171,26 +174,26 @@ loadHelper:SetScript("OnEvent", loadHelper.OnEvent);
 -- frame:EnableMouse(true);
 
 hooksecurefunc("ToggleGameMenu", function()
-    if KrowiAF_FloatingAchievementTooltip:IsShown() then
+    if KrowiAF_FloatingAchievementTooltip and KrowiAF_FloatingAchievementTooltip:IsShown() then
         KrowiAF_FloatingAchievementTooltip:Hide();
     elseif KrowiAF_TextFrame and KrowiAF_TextFrame:IsShown() then
         KrowiAF_TextFrame:Hide();
-    elseif KrowiAF_DataManagerFrame:IsShown() then
+    elseif KrowiAF_DataManagerFrame and KrowiAF_DataManagerFrame:IsShown() then
         KrowiAF_DataManagerFrame:Hide();
-    elseif KrowiAF_AchievementCalendarFrame.SideFrame:IsShown() then
+    elseif KrowiAF_AchievementCalendarFrame and KrowiAF_AchievementCalendarFrame.SideFrame and KrowiAF_AchievementCalendarFrame.SideFrame:IsShown() then
         KrowiAF_AchievementCalendarFrame.SideFrame:Hide();
-    elseif KrowiAF_AchievementCalendarFrame:IsShown() then
+    elseif KrowiAF_AchievementCalendarFrame and KrowiAF_AchievementCalendarFrame:IsShown() then
         KrowiAF_AchievementCalendarFrame:Hide();
-    elseif AchievementFrame:IsShown() then
+    elseif AchievementFrame and AchievementFrame:IsShown() then
         AchievementFrame:Hide();
     end
 
-    if KrowiAF_FloatingAchievementTooltip:IsShown()
+    if KrowiAF_FloatingAchievementTooltip and KrowiAF_FloatingAchievementTooltip:IsShown()
     or KrowiAF_TextFrame and KrowiAF_TextFrame:IsShown()
-    or KrowiAF_DataManagerFrame:IsShown()
-    or KrowiAF_AchievementCalendarFrame.SideFrame:IsShown()
-    or KrowiAF_AchievementCalendarFrame:IsShown()
-    or AchievementFrame:IsShown() then
+    or KrowiAF_DataManagerFrame and KrowiAF_DataManagerFrame:IsShown()
+    or KrowiAF_AchievementCalendarFrame and KrowiAF_AchievementCalendarFrame.SideFrame and KrowiAF_AchievementCalendarFrame.SideFrame:IsShown()
+    or KrowiAF_AchievementCalendarFrame and KrowiAF_AchievementCalendarFrame:IsShown()
+    or AchievementFrame and AchievementFrame:IsShown() then
         KrowiAF_SpecialFrame:Show();
     end
 end);

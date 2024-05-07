@@ -89,6 +89,8 @@ function gui:LoadWithBlizzard_AchievementUI()
     self.Search:Load();
     self.Calendar:Load();
     self.DataManager:Load();
+    self.BrowsingHistory:Load();
+
     AchievementFrame.ResetPosition = ResetAchievementWindowPosition;
 	self:SetFrameToLastPosition(AchievementFrame, "AchievementWindow");
 

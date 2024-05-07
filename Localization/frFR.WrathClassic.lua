@@ -8,7 +8,7 @@ if not L then return end
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-01-21 12-58-54 ]] --
+-- [[ Exported at 2024-05-05 17-34-26 ]] --
 L["Completed"] = "Complété"
 L["EJ_GetInstanceInfo1190"] = "Château Nathria"
 L["EJ_GetInstanceInfo1193"] = "Sanctum de Somination"
@@ -95,8 +95,8 @@ L["GetCategoryInfo15073"] = "Bataille de Gilnéas"
 L["GetCategoryInfo15074"] = "Pics-Jumeaux"
 L["GetCategoryInfo15101"] = "Foire de Sombrelune"
 L["GetCategoryInfo15117"] = "Combats de mascotte"
-L["GetCategoryInfo15118"] = "Collect"
-L["GetCategoryInfo15119"] = "Bataille "
+L["GetCategoryInfo15118"] = "Collecter"
+L["GetCategoryInfo15119"] = "Bataille"
 L["GetCategoryInfo15120"] = "Niveau"
 L["GetCategoryInfo15162"] = "Mines d’Éclargent"
 L["GetCategoryInfo15163"] = "Temple de Kotmogu"

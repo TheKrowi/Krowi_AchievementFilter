@@ -680,15 +680,20 @@ function addon.GetNextAchievement(achievement)
     return nil, false;
 end
 
-function addon.GetAchievementCriteriaInfo(achievementId, criteriaIndex, countHidden)
-    local criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible;
-    if type(addon.Data.CustomCriteria[achievementId]) == "function" then
-        criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible = addon.Data.CustomCriteria[achievementId](criteriaIndex);
-    else
-        criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible = GetAchievementCriteriaInfo(achievementId, criteriaIndex, countHidden);
-    end
+local function GetAchievementCriteriaInfoInternal(achievementId, criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible)
     local hasValueProgress = (quantity ~= nil and reqQuantity ~= nil and not (quantity == 0 and (reqQuantity == 0 or reqQuantity == 1))) or achievementId == 17335;
     return criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible, hasValueProgress;
+end
+
+function addon.GetAchievementCriteriaInfo(achievementId, criteriaIndex, countHidden)
+    if type(addon.Data.CustomCriteria[achievementId]) == "function" then
+        return GetAchievementCriteriaInfoInternal(achievementId, addon.Data.CustomCriteria[achievementId](criteriaIndex));
+    end
+    return GetAchievementCriteriaInfoInternal(achievementId, GetAchievementCriteriaInfo(achievementId, criteriaIndex, countHidden));
+end
+
+function addon.GetAchievementCriteriaInfoById(achievementId, criteriaId)
+    return GetAchievementCriteriaInfoInternal(achievementId, GetAchievementCriteriaInfoByID(achievementId, criteriaId));
 end
 
 function addon.GetAchievementNumCriteria(achievementId)

@@ -579,6 +579,7 @@ function KrowiAF_AchievementButtonMixin:Update(achievement, refresh, notSelectab
 		objectives:Hide();
 	end
 
+	-- print(achievement and achievement.Id, selectedTab and achievement == selectedTab.SelectedAchievement)
 	if selectedTab and achievement == selectedTab.SelectedAchievement and not notSelectable then
 		self.Highlight:Show();
 		local height = self:DisplayObjectives(self.ForceDisplayObjectives);

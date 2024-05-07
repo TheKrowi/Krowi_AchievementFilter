@@ -5,8 +5,9 @@ objects.Category = {};
 local category = objects.Category;
 
 category.__index = category;
-function category:New(name, canMerge)
+function category:New(id, name, canMerge)
     local instance = setmetatable({}, category);
+	instance.Id = id or -1;
     instance.Name = name or "Unknown";
     instance.CanMerge = canMerge;
     instance.Level = 0;

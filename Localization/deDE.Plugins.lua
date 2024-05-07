@@ -5,7 +5,7 @@ if not L then return end
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-01-21 12-58-50 ]] --
+-- [[ Exported at 2024-05-05 17-34-03 ]] --
 L["AchievementsTabFixes"] = "\"Erfolge\" Tab Korrekturen"
 L["AchievementsTabFixes Desc"] = "Dieses Plugin bietet einige Korrekturen für den Tab \"Erfolge\", die unten umgeschaltet werden können."
 L["Add To Right Click Menu"] = "Zum Rechtsklick-Menü hinzufügen "
@@ -14,6 +14,7 @@ L["Alert System Overwrite Desc"] = "Die Positionseinstellungen sind nicht aktiv,
 L["At least version is required"] = "Erforderlich ist mindestens die Version '{version}'."
 L["Better Wardrobe"] = true
 L["Better Wardrobe Desc"] = "Dieses Plugin repariert den Link zum Kleiderschrank (Vorlagen), der durch {betterWardrobe} fehlerhaft ist. Es gibt keine Optionen."
+L["Calendar Button Position Overwrite Desc"] = "Die Positionseinstellungen sind nicht aktiv, wenn {addon} aktiviert ist."
 L["ElvUI"] = true
 L["ElvUI Desc"] = "Jede der unten aufgeführten Optionen wird von ElvUI gesteuert und dient nur zur Information. Um diese zu ändern, gehe zu Game Menu -> ElvUI -> Skins und aktiviere dort die gewünschten Optionen. Siehe jede Option unten, was zu wählen ist."
 L["ElvUI Fix World Map Button"] = "Fix World Map Button"

@@ -293,7 +293,7 @@
 				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down"/>
 				<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Disabled"/>
 				<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
-			</Button>			
+			</Button>
 			<Button name="$parentCloseButton" parentKey="CloseButton" mixin="KrowiAF_AchievementCalendarFrameCloseButtonMixin" inherits="UIPanelCloseButton">
 				<Size x="32" y="34"/>
 				<Anchors>

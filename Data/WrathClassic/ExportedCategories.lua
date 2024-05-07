@@ -21,7 +21,7 @@ end
 
 local category = addon.Objects.Category;
 local function N(id, ...)
-    categories[id] = category:New(...);
+    categories[id] = category:New(id, ...);
 end
 
 local function C(cId1, cId2)

@@ -502,7 +502,7 @@ do -- [[ Alerts and Side Buttons ]]
     elvUI.SkinSideButtons = SkinSideButtons;
 end
 
-local function SkinHeader()
+local function SkinHeader(skins)
     hooksecurefunc(AchievementFrame.Header.Points, "SetText", function()
         AchievementFrame.Header.PointBorder:ClearAllPoints();
         AchievementFrame.Header.PointBorder:Point('TOPLEFT', KrowiAF_AchievementFrameFilterButton, 'TOPRIGHT', 70, 0);
@@ -510,14 +510,24 @@ local function SkinHeader()
         AchievementFrame.Header.Points:ClearAllPoints();
         AchievementFrame.Header.Points:Point('CENTER', AchievementFrame.Header.PointBorder, 'CENTER', -10, 0);
     end);
-    if addon.IsClassicWithAchievements then
+    if addon.Util.IsClassicWithAchievements then
         AchievementFrameHeaderLeftDDLInset:SetAlpha(0);
     end
+
+    KrowiAF_AchievementFrameHeaderButton:SetPoint("TOPLEFT", AchievementFrame.Header.PointBorder);
+    KrowiAF_AchievementFrameHeaderButton:SetPoint("BOTTOMRIGHT", AchievementFrame.Header.PointBorder);
+
+    skins:HandleNextPrevButton(KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton);
+    skins:HandleNextPrevButton(KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton);
+    KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton:ClearPoint("RIGHT");
+    KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton:ClearPoint("RIGHT");
+    KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton:SetPoint("LEFT", KrowiAF_AchievementFrameFilterButton, "RIGHT");
+    KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton:SetPoint("LEFT", KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton, "RIGHT");
 end
 
 local function ReskinBlizzard(skins)
     AchievementFrameCategories:Point("TOPLEFT", AchievementFrame, 21, -26);
-    if addon.IsClassicWithAchievements then
+    if addon.Util.IsClassicWithAchievements then
         AchievementFrameCloseButton:ClearAllPoints();
         AchievementFrameCloseButton:Point('TOPRIGHT', AchievementFrame, 'TOPRIGHT', 4, 5);
         AchievementFrame.backdrop:ClearAllPoints();
@@ -579,8 +589,8 @@ do -- [[ Calendar ]]
         frame.MonthBackground:SetAlpha(0);
         frame.YearBackground:SetAlpha(0);
 
-        skins:HandleNextPrevButton(frame.PrevMonthButton, nil, nil, true)
-        skins:HandleNextPrevButton(frame.NextMonthButton, nil, nil, true)
+        skins:HandleNextPrevButton(frame.PrevMonthButton, nil, nil, true);
+        skins:HandleNextPrevButton(frame.NextMonthButton, nil, nil, true);
 
         for i = 1, 42 do
             SkinCalendarDayButton(frame.DayButtons[i], engine, skins);
@@ -713,9 +723,9 @@ local function SkinAll()
         elvUI.SkinSearchBoxFrame(KrowiAF_SearchBoxFrame, skins);
         elvUI.SkinSearchPreviewFrame(KrowiAF_SearchBoxFrame.PreviewContainer, KrowiAF_AchievementsFrame, engine, skins);
         elvUI.SkinSearchResultsFrame(KrowiAF_SearchBoxFrame.ResultsFrame, skins);
-        SkinHeader();
+        SkinHeader(skins);
         ReskinBlizzard(skins);
-        elvUI.SkinCalendarButton(KrowiAF_AchievementCalendarButton, skins);
+        elvUI.SkinCalendarButton(KrowiAF_AchievementFrameCalendarButton, skins);
         SkinDataManager(KrowiAF_DataManagerFrame, skins);
         SkinTextFrame(skins);
     end
@@ -792,6 +802,16 @@ local function DisableOptions()
         order = OrderPP(), type = "description", width = "full",
         name = addon.L["Alert System Overwrite Desc"]:K_ReplaceVars(addon.L["ElvUI"])
     });
+
+    if KrowiAF_SavedData.ElvUISkin.Achievements then
+        appName = addon.Metadata.Prefix .. "_Layout";
+        KrowiAF_GetOptions.GetTable(appName, "args.Header.args.CalendarButton.args.OffsetX").disabled = true;
+        KrowiAF_GetOptions.GetTable(appName, "args.Header.args.CalendarButton.args.OffsetY").disabled = true;
+        addon.InjectOptions:AddTable(KrowiAF_GetOptions.GetTable(appName, "args.Header.args.CalendarButton.args"), "ElvUIComment", {
+            order = OrderPP(), type = "description", width = "full",
+            name = addon.L["Calendar Button Position Overwrite Desc"]:K_ReplaceVars(addon.L["ElvUI"])
+        });
+    end
 end
 
 function elvUI.Load()

@@ -4,7 +4,7 @@ local L = addon.Localization.GetDefaultLocale();
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-01-21 12-58-26 ]] --
+-- [[ Exported at 2024-05-05 17-32-13 ]] --
 L["AchievementsTabFixes"] = "Achievements Tab Fixes"
 L["AchievementsTabFixes Desc"] = "This plugin provides some fixes for the Achievements Tab, toggleable below."
 L["Add To Right Click Menu"] = true
@@ -16,6 +16,7 @@ L["Better Wardrobe"] = true
 L["Better Wardrobe Desc"] = [=[This plugin fixes the link to the wardrobe that is broken by {betterWardrobe}.
 
 There are no options.]=]
+L["Calendar Button Position Overwrite Desc"] = "The position settings are not active when {addon} is enabled."
 L["ElvUI"] = true
 L["ElvUI Desc"] = [=[Each of the options below are controlled by ElvUI and are just informational.
 

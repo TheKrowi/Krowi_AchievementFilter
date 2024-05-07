@@ -18,8 +18,8 @@ local function AddTooltipLine(tooltip, tooltipLine)
         end
     end
 
-    local _, name, _, achievementIsCompleted, _, _, _, _, _, achievementIcon, _, _, wasEarnedByMe = addon.GetAchievementInfo(tooltipLine.AchievementId);
-    if not name then -- Achievement does not exist
+    local _, achievementName, _, achievementIsCompleted, _, _, _, _, _, achievementIcon, _, _, wasEarnedByMe = addon.GetAchievementInfo(tooltipLine.AchievementId);
+    if not achievementName then -- Achievement does not exist
         return;
     end
 
@@ -36,36 +36,27 @@ local function AddTooltipLine(tooltip, tooltipLine)
         return;
     end
 
-    local criteriaIsCompleted;
+    local criteriaString, criteriaIsCompleted;
     if tooltipLine.CriteriaIndex ~= 0 then
-        _, _, criteriaIsCompleted = addon.GetAchievementCriteriaInfo(tooltipLine.AchievementId, tooltipLine.CriteriaIndex);
+        criteriaString, _, criteriaIsCompleted = addon.GetAchievementCriteriaInfo(tooltipLine.AchievementId, tooltipLine.CriteriaIndex);
     else
+        criteriaString = achievementName;
         criteriaIsCompleted = achievementIsCompleted;
     end
     if criteriaIsCompleted and not addon.Options.db.profile.Tooltip.Criteria.ShowIf.CriteriaIsCompleted then
         return;
     end
 
-    local icon, text, color;
+    local icon, color;
     if criteriaIsCompleted then
         icon = "|T136814:0|t";
-        text = tooltipLine.CompletedText;
         color = addon.Util.Colors.GreenRGB;
     else
         icon = "|T136813:0|t";
-        text = tooltipLine.NotCompletedText;
         color = addon.Util.Colors.RedRGB;
     end
-    if tooltipLine.CriteriaIndex ~= 0 then
-        text = text:K_ReplaceVars{
-            forAchievement = addon.Options.db.profile.Tooltip.Criteria.ShowForAchievement and addon.L["for achievement"] or ""
-        };
-    else
-        text = name;
-    end
-    tooltip:AddLine(icon .. " |T" .. achievementIcon .. ":0|t " .. string.trim(text:K_ReplaceVars{
-        achievement = name
-    }), color.R, color.G, color.B);
+    tooltip:AddLine(icon .. " |T" .. achievementIcon .. ":0|t " .. achievementName .. " > " .. criteriaString, color.R, color.G, color.B);
+    -- tooltip:AddDoubleLine(icon .. " |T" .. achievementIcon .. ":0|t " .. achievementName, criteriaString, color.R, color.G, color.B, color.R, color.G, color.B);
     if addon.Diagnostics.DebugEnabled() then
         tooltip:AddLine(tooltipLine.AchievementId .. " - " .. tooltipLine.CriteriaIndex);
     end
@@ -95,8 +86,8 @@ local function ProcessUnit(tooltip, guid)
         return;
     end
 
-    for _, tooltipLine in next, unitDatum.TooltipLines do
-        if tooltipLine.Type == addon.Objects.TooltipDataType.Unit then
+    for _, tooltipLine in next, unitDatum do
+        if tooltipLine.ObjectType == addon.Objects.TooltipDataType.Unit then
             AddTooltipLine(tooltip, tooltipLine);
         end
     end
@@ -125,8 +116,8 @@ local function ProcessItem(tooltip, itemId)
         return;
     end
 
-    for _, tooltipLine in next, itemDatum.TooltipLines do
-        if tooltipLine.Type == addon.Objects.TooltipDataType.Item then
+    for _, tooltipLine in next, itemDatum do
+        if tooltipLine.ObjectType == addon.Objects.TooltipDataType.Item then
             AddTooltipLine(tooltip, tooltipLine);
         end
     end
@@ -155,8 +146,8 @@ local function ProcessSpell(tooltip, spellId)
         return;
     end
 
-    for _, tooltipLine in next, spellDatum.TooltipLines do
-        if tooltipLine.Type == addon.Objects.TooltipDataType.Spell then
+    for _, tooltipLine in next, spellDatum do
+        if tooltipLine.ObjectType == addon.Objects.TooltipDataType.Spell then
             AddTooltipLine(tooltip, tooltipLine);
         end
     end

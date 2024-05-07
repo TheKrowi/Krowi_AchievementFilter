@@ -125,8 +125,8 @@ end
 
 local function CreateTooltip()
     local frame = CreateFrame("Button", "KrowiAF_AchievementFrameHeaderButton", AchievementFrame.Header);
-    frame:SetPoint("TOPLEFT", AchievementFrame.Header.PointBorder);
-    frame:SetPoint("BOTTOMRIGHT", AchievementFrame.Header.PointBorder);
+    frame:SetPoint("TOPLEFT", AchievementFrame.Header.PointBorder, 11, -10);
+    frame:SetPoint("BOTTOMRIGHT", AchievementFrame.Header.PointBorder, -10, 8);
     frame:SetScript("OnEnter", OnEnter);
     frame:SetScript("OnLeave", function()
         GameTooltip:Hide();
@@ -201,7 +201,7 @@ function header:InjectDynamicOptions()
             set = function(_, value) addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[i] = value; end
         });
         addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Blank2" .. i, {
-            order = OrderPP(), type = "description", width = AdjustedWidth(0.85),
+            order = OrderPP(), type = "description", width = AdjustedWidth(0.80),
             name = ""
         });
     end

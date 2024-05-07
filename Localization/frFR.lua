@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-04-27 15-41-12 ]] --
+-- [[ Exported at 2024-05-07 22-52-36 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -48,7 +48,7 @@ L["Add Locale"] = "Ajouter une langue"
 L["Add Locale Desc"] = "Ajoute la langue du jeu à {wowheadLink}."
 L["Add to / Remove from Watch List"] = "Ajouter ou supprimer de la liste de suivi"
 L["Add to Watch List"] = "Ajouter à {watchList}"
-L["Added in version"] = "Ajouté à la version"
+L["Added in version"] = "Le Haut-fait à été ajouté la version"
 L["Adjustable Categories"] = "Catégories ajustables"
 L["Aki the Chosen"] = "Aki l'Elue"
 L["Already /loved for achievement"] = "Déjà /amour {forAchievement}"
@@ -577,7 +577,7 @@ L["Modifiers"] = "Modificateurs"
 L["Mogu"] = true
 L["More"] = "Plus"
 L["Mort'regar"] = true
-L["Most progress"] = "Le plus de progression"
+L["Most progress"] = "Personnage avec le plus de progression"
 L["Mouse Wheel Scroll Speed"] = "Vitesse de défilement de la souris avec la molette."
 L["Mouse Wheel Scroll Speed Desc"] = "Définit le nombre d'{items} qui seront défilés lorsque vous cliquez sur les boutons haut et bas de la barre de défilement ou lors de l'utilisation de la molette de la souris"
 L["Movable"] = "Déplaçable"
@@ -637,8 +637,7 @@ L["Number of Earned By characters Desc"] = [=[Le nombre de personnages ayant obt
 
  Si vous définissez ce paramètre sur 0, cette fonctionnalité sera désactivée.]=]
 L["Number of Most progress characters"] = "Nombre de personnages ayant le plus de progression"
-L["Number of Most progress characters Desc"] = [=[Le nombre de personnages qui seront affichés et qui ont une progression sur le haut fait
-
+L["Number of Most progress characters Desc"] = [=[Le nombre de personnages qui seront affichés et qui ont une progression sur le Haut-fait.
 Le paramétrer à 0 désactivera cette fonctionnalité. ]=]
 L["Number of Not Earned By characters"] = "Nombre de personnage n'ayant pas accompli le haut fait"
 L["Number of Not Earned By characters Desc"] = [=[Le nombre de personnages n'ayant pas obtenu le haut fait sera affiché.
@@ -675,7 +674,7 @@ L["Overflow"] = "Débordement"
 L["Overwatch"] = true
 L["Pandaren"] = true
 L["Pandaria Cup"] = "Coupe de Pandarie"
-L["Part of a chain"] = "Fait parti d'une suite"
+L["Part of a chain"] = "Ce Haut-fait fait partie d'une suite de Hauts-faits"
 L["Paste to Chat"] = "Coller dans le chat"
 L["Patch"] = true
 L["Pilgrim's Bounty"] = "Les Bienfaits du pèlerin"
@@ -849,8 +848,7 @@ L["Show Other faction Desc"] = [=[Affiche ou masque {otherFaction}.
 Si cette option est activée, le haut fait de l'autre faction sera affiché dans l'infobulle si disponible. Cela peut expliquer plus clairement pourquoi votre nouveau personnage de la Horde a certains hauts faits si vous n'avez joué que l'Alliance auparavant.]=]
 L["Show Part of a chain"] = "Afficher {partOfACain}"
 L["Show Part of a chain Desc"] = [=[Affiche ou masque {partOfAChain}.
-
-Si cette option est activée, la suite de hauts faits à laquelle elle appartient sera affichée dans l'infobulle.]=]
+Si cette option est activée, la suite de Hauts-faits à laquelle elle appartient sera affichée dans l'infobulle.]=]
 L["Show placeholders"] = "Afficher un haut fait générique"
 L["Show placeholders Desc"] = "Afficher un lot d'alerte d'évènement fictifs pour visualiser l'effet des paramètres ci-dessus. Les alertes peuvent être refermées en passant la souris dessus et en effectuant un clic droit"
 L["Show placeholders filter"] = "Afficher le filtre générique des hauts faits"
