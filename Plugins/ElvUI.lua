@@ -802,13 +802,16 @@ local function DisableOptions()
         order = OrderPP(), type = "description", width = "full",
         name = addon.L["Alert System Overwrite Desc"]:K_ReplaceVars(addon.L["ElvUI"])
     });
-    appName = addon.Metadata.Prefix .. "_Layout";
-    KrowiAF_GetOptions.GetTable(appName, "args.Header.args.CalendarButton.args.OffsetX").disabled = true;
-    KrowiAF_GetOptions.GetTable(appName, "args.Header.args.CalendarButton.args.OffsetY").disabled = true;
-    addon.InjectOptions:AddTable(KrowiAF_GetOptions.GetTable(appName, "args.Header.args.CalendarButton.args"), "ElvUIComment", {
-        order = OrderPP(), type = "description", width = "full",
-        name = addon.L["Calendar Button Position Overwrite Desc"]:K_ReplaceVars(addon.L["ElvUI"])
-    });
+
+    if KrowiAF_SavedData.ElvUISkin.Achievements then
+        appName = addon.Metadata.Prefix .. "_Layout";
+        KrowiAF_GetOptions.GetTable(appName, "args.Header.args.CalendarButton.args.OffsetX").disabled = true;
+        KrowiAF_GetOptions.GetTable(appName, "args.Header.args.CalendarButton.args.OffsetY").disabled = true;
+        addon.InjectOptions:AddTable(KrowiAF_GetOptions.GetTable(appName, "args.Header.args.CalendarButton.args"), "ElvUIComment", {
+            order = OrderPP(), type = "description", width = "full",
+            name = addon.L["Calendar Button Position Overwrite Desc"]:K_ReplaceVars(addon.L["ElvUI"])
+        });
+    end
 end
 
 function elvUI.Load()
