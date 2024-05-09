@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 71.1 - 2024-05-09
+### Added
+- Hunt the Harbinger achievement
+
+### Fixed
+- WoW Remix: Mists of Pandaria (formerly Pandaria: Remix) should now be correctly track
+
 ## 71.0 - 2024-05-08
 ### Added
 - Browse now your previously selected achievements if you want to go back and forward with ease

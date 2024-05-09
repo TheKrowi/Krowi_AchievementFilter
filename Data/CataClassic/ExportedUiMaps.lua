@@ -40,7 +40,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-04-27 15-14-30 ]] --
+-- [[ Exported at 2024-05-09 11-01-20 ]] --
 tasks = {
     {C, 2104, 123}, -- Wintergrasp (Wrath Classic)
     {C, 2070, 18}, -- Tirisfal Glades
@@ -94,7 +94,7 @@ tasks = {
     {C, 1437, 56}, -- Wetlands (Wrath Classic)
     {C, 1436, 52}, -- Westfall (Wrath Classic)
     {C, 1435, 51}, -- Swamp of Sorrows (Wrath Classic)
-    {A, 1434, {940, 941, 781, 389, 396, 948, 762, 871, 2336}}, -- Stranglethorn Vale (Wrath Classic)
+    {A, 1434, {4906, 940, 941, 781, 948, 762}}, -- Stranglethorn Vale (Wrath Classic)
     {C, 1433, 49}, -- Redridge Mountains (Wrath Classic)
     {C, 1432, 48}, -- Loch Modan (Wrath Classic)
     {C, 1431, 47}, -- Duskwood (Wrath Classic)
@@ -361,7 +361,7 @@ tasks = {
     {C, 313, 310}, -- Shadowfang Keep - Lower Observatory
     {C, 312, 310}, -- Shadowfang Keep - The Vacant Den
     {C, 311, 310}, -- Shadowfang Keep - Dining Hall
-    {A, 310, {631, 4627, 5503, 5504, 5505, 5093}}, -- Shadowfang Keep - The Courtyard
+    {A, 310, {5503, 5504, 5505, 631, 5093, 4627}}, -- Shadowfang Keep - The Courtyard
     {A, 301, {635}}, -- Razorfen Kraul
     {A, 300, {636}}, -- Razorfen Downs
     {C, 299, 297}, -- Halls of Origination - The Four Seats
@@ -372,7 +372,7 @@ tasks = {
     {A, 294, {4850, 5313, 5300, 4852, 5311, 5312, 5118, 5117, 5119, 5120, 5121}}, -- The Bastion of Twilight - The Twilight Enclave
     {A, 293, {5297, 5298, 4840, 5062}}, -- Grim Batol
     {C, 292, 291}, -- The Deadmines - Ironclad Cove
-    {A, 291, {628, 5366, 5367, 5368, 5369, 5370, 5371, 5083}}, -- The Deadmines - The Deadmines
+    {A, 291, {5366, 5367, 5368, 5369, 5370, 5371, 628, 5083}}, -- The Deadmines - The Deadmines
     {C, 290, 287}, -- Blackwing Lair - Nefarian's Lair
     {C, 289, 287}, -- Blackwing Lair - Crimson Laboratories
     {C, 288, 287}, -- Blackwing Lair - Halls of Strife
@@ -437,7 +437,7 @@ tasks = {
     {C, 227, 226}, -- Gnomeregan - The Dormitory
     {A, 226, {634}}, -- Gnomeregan - The Hall of Gears
     {A, 225, {633}}, -- The Stockade
-    {C, 224, 50}, -- Stranglethorn Vale
+    {A, 224, {1206, 1676, 1677, 42, 2556, 4827, 46}}, -- Stranglethorn Vale
     {C, 223, 221}, -- Blackfathom Deeps - The Forgotten Pool
     {C, 222, 221}, -- Blackfathom Deeps - Moonshrine Sanctum
     {A, 221, {632}}, -- Blackfathom Deeps - The Pool of Ask'Ar
@@ -446,7 +446,7 @@ tasks = {
     {C, 218, 217}, -- Ruins of Gilneas City
     {A, 217, {1206}}, -- Ruins of Gilneas
     {A, 213, {629}}, -- Ragefire Chasm
-    {C, 210, 50}, -- The Cape of Stranglethorn
+    {A, 210, {1206, 1676, 1677, 42, 4905, 4995, 389, 396, 762, 871, 2336, 2556, 4827, 46}}, -- The Cape of Stranglethorn
     {C, 209, 207}, -- Deepholm - Twilight Depths - Floor 2
     {C, 208, 207}, -- Deepholm - Twilight Depths - Floor 1
     {A, 207, {4875, 4868, 4881, 4871, 5445, 5446, 5449, 5450, 5447, 4864, 4883, 46}}, -- Deepholm
@@ -629,7 +629,7 @@ tasks = {
     {C, 53, 52}, -- Westfall - Gold Coast Quarry
     {A, 52, {1206, 1676, 1677, 42, 1681, 1682, 4903, 802, 948, 2556, 4827, 46}}, -- Westfall
     {A, 51, {1206, 1676, 1677, 42, 1681, 1682, 4904, 782, 948, 2556, 46}}, -- Swamp of Sorrows
-    {A, 50, {1206, 1676, 1677, 42, 2556, 4827, 46}}, -- Northern Stranglethorn
+    {A, 50, {1206, 1676, 1677, 42, 4906, 940, 941, 781, 948, 762, 2556, 4827, 46}}, -- Northern Stranglethorn
     {A, 49, {1206, 1676, 1677, 42, 1681, 1682, 4902, 780, 948, 2556, 46}}, -- Redridge Mountains
     {A, 48, {1206, 1676, 1677, 42, 1681, 1682, 4899, 779, 948, 4827, 46}}, -- Loch Modan
     {A, 47, {1206, 1676, 1677, 42, 1681, 1682, 778, 948, 2556, 46}}, -- Duskwood

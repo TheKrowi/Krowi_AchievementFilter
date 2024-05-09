@@ -24,7 +24,7 @@ local a = addon; -- Saves some characters and file size as we use this a lot in 
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-04-27 15-12-31 ]] --
+-- [[ Exported at 2024-05-09 09-40-18 ]] --
 tasks = {
     {N, 141, 917, 236705, a.L["Feast of Winter Veil"]}, -- Feast of Winter Veil
     {N, 181, 911, 237000, a.L["Noblegarden"]}, -- Noblegarden

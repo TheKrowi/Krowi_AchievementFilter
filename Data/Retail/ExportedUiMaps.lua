@@ -40,7 +40,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-04-27 15-14-31 ]] --
+-- [[ Exported at 2024-05-09 11-01-21 ]] --
 tasks = {
     {C, 2254, 2200}, -- Barrows of Reverie
     {C, 2253, 2200}, -- Sor'theril Barrow Den
@@ -515,6 +515,7 @@ tasks = {
     {C, 1437, 56}, -- Wetlands (Wrath Classic)
     {C, 1436, 52}, -- Westfall (Wrath Classic)
     {C, 1435, 51}, -- Swamp of Sorrows (Wrath Classic)
+    {A, 1434, {4906, 940, 941, 781, 17366, 948, 762}}, -- Stranglethorn Vale (Wrath Classic)
     {C, 1433, 49}, -- Redridge Mountains (Wrath Classic)
     {C, 1432, 48}, -- Loch Modan (Wrath Classic)
     {C, 1431, 47}, -- Duskwood (Wrath Classic)

@@ -9,3 +9,9 @@
 ### Cata Classic
 - Fixed ElvUI skinning bug
 - Fixed issues with missing linked Silverpine Forest Quests and Ghostlands Quests achievements
+
+### Added (71.1)
+- Hunt the Harbinger achievement
+
+### Fixed (71.1)
+- WoW Remix: Mists of Pandaria (formerly Pandaria: Remix) should now be correctly track

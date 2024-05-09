@@ -15,3 +15,13 @@
 [*]Fixed ElvUI skinning bug
 [*]Fixed issues with missing linked Silverpine Forest Quests and Ghostlands Quests achievements
 [/LIST]
+
+[B]Added (71.1)[/B]
+[LIST]
+[*]Hunt the Harbinger achievement
+[/LIST]
+
+[B]Fixed (71.1)[/B]
+[LIST]
+[*]WoW Remix: Mists of Pandaria (formerly Pandaria: Remix) should now be correctly track
+[/LIST]
