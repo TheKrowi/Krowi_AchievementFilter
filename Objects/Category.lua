@@ -116,22 +116,22 @@ function category:GetPath()
     return path;
 end
 
-local function GetFilteredAchievementNumbers(achievements, filters, numOfAch, numOfCompAch, numOfNotObtAch) -- , numOfIncompAch
+local function GetFilteredAchievementNumbers(achievements, filters, numOfAch, numOfCompAch, numOfNotObtAch, numOfFutObtAch) -- , numOfIncompAch
 	if not achievements then
-		return numOfAch, numOfCompAch, numOfNotObtAch;
+		return numOfAch, numOfCompAch, numOfNotObtAch, numOfFutObtAch;
 	end
 	for _, achievement in next, achievements do
-		numOfAch, numOfCompAch, numOfNotObtAch = addon.GetAchievementNumbers(filters, achievement, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
+		numOfAch, numOfCompAch, numOfNotObtAch, numOfFutObtAch = addon.GetAchievementNumbers(filters, achievement, numOfAch, numOfCompAch, numOfNotObtAch, numOfFutObtAch); -- , numOfIncompAch
 	end
-	return numOfAch, numOfCompAch, numOfNotObtAch;
+	return numOfAch, numOfCompAch, numOfNotObtAch, numOfFutObtAch;
 end
 
 function category:GetAchievementNumbers()
     -- numOfIncompAch is not used right now so we can leave this one out untill needed
-	local numOfAch, numOfCompAch, numOfNotObtAch = 0, 0, 0; -- , numOfIncompAch = 0
+	local numOfAch, numOfCompAch, numOfNotObtAch, numOfFutObtAch = 0, 0, 0, 0; -- , numOfIncompAch = 0
 
 	if not self then
-		return numOfAch, numOfCompAch, numOfNotObtAch;
+		return numOfAch, numOfCompAch, numOfNotObtAch, numOfFutObtAch;
 	end
 
 	if self.IsCurrentZone then
@@ -146,10 +146,11 @@ function category:GetAchievementNumbers()
 	local children = self.Children;
 	if children then
 		for _, child in next, children do
-			local childNumOfAch, childNumOfCompAch, childNumOfNotObtAch = child:GetAchievementNumbers(); -- , childNumOfIncompAch
+			local childNumOfAch, childNumOfCompAch, childNumOfNotObtAch, childNumOfFutObtAch = child:GetAchievementNumbers(); -- , childNumOfIncompAch
 			numOfAch = numOfAch + childNumOfAch;
 			numOfCompAch = numOfCompAch + childNumOfCompAch;
 			numOfNotObtAch = numOfNotObtAch + childNumOfNotObtAch;
+			numOfFutObtAch = numOfFutObtAch + childNumOfFutObtAch;
 			-- numOfIncompAch = numOfIncompAch + childNumOfIncompAch;
 			showCollapseIcon = showCollapseIcon or childNumOfAch > 0;
 		end
@@ -161,8 +162,8 @@ function category:GetAchievementNumbers()
 		filters2 = filters:GetFilters(self);
 	end
 
-	numOfAch, numOfCompAch, numOfNotObtAch = GetFilteredAchievementNumbers(self.Achievements, filters2, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
-	numOfAch, numOfCompAch, numOfNotObtAch = GetFilteredAchievementNumbers(self.MergedAchievements, filters2, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
+	numOfAch, numOfCompAch, numOfNotObtAch, numOfFutObtAch = GetFilteredAchievementNumbers(self.Achievements, filters2, numOfAch, numOfCompAch, numOfNotObtAch, numOfFutObtAch); -- , numOfIncompAch
+	numOfAch, numOfCompAch, numOfNotObtAch, numOfFutObtAch = GetFilteredAchievementNumbers(self.MergedAchievements, filters2, numOfAch, numOfCompAch, numOfNotObtAch, numOfFutObtAch); -- , numOfIncompAch
 
 	local mergeSmallCategories = false;
 	if filters then
@@ -179,7 +180,7 @@ function category:GetAchievementNumbers()
 						end
 						self.Merged = true;
 					end
-					numOfAch, numOfCompAch, numOfNotObtAch = 0, 0, 0;
+					numOfAch, numOfCompAch, numOfNotObtAch, numOfFutObtAch = 0, 0, 0, 0;
 				end
 			end
 		end
@@ -189,10 +190,11 @@ function category:GetAchievementNumbers()
 	self.NumOfAch = numOfAch;
 	self.NumOfCompAch = numOfCompAch;
 	self.NumOfNotObtAch = numOfNotObtAch;
+	self.NumOfFutObtAch = numOfFutObtAch;
 	-- category.NumOfIncompAch = numOfIncompAch;
 	self.ShowCollapseIcon = showCollapseIcon;
 
-	return numOfAch, numOfCompAch, numOfNotObtAch; -- , numOfIncompAch
+	return numOfAch, numOfCompAch, numOfNotObtAch, numOfFutObtAch; -- , numOfIncompAch
 end
 
 function category:GetMergedCategory()

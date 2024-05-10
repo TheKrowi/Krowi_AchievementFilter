@@ -67,13 +67,13 @@ function KrowiAF_WorldMapButtonMixin:Refresh()
 
     local mapID = WorldMapFrame:GetMapID();
     self.Achievements = addon.GetAchievementsInZone(mapID, true);
-    local numOfAch, numOfCompAch, numOfNotObtAch = 0, 0, 0;
+    local numOfAch, numOfCompAch, numOfNotObtAch, numOfFutObtAch = 0, 0, 0, 0;
     for _, achievement in next, self.Achievements do
-        numOfAch, numOfCompAch, numOfNotObtAch = addon.GetAchievementNumbers(addon.Filters.db.profile.SelectedZone, achievement, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
+        numOfAch, numOfCompAch, numOfNotObtAch, numOfFutObtAch = addon.GetAchievementNumbers(addon.Filters.db.profile.SelectedZone, achievement, numOfAch, numOfCompAch, numOfNotObtAch, numOfFutObtAch); -- , numOfIncompAch
     end
 
     self.Text = C_Map.GetMapInfo(mapID).name;
-    self.NumOfAch, self.NumOfCompAch, self.NumOfNotObtAch = numOfAch, numOfCompAch, numOfNotObtAch;
+    self.NumOfAch, self.NumOfCompAch, self.NumOfNotObtAch, self.NumOfFutObtAch = numOfAch, numOfCompAch, numOfNotObtAch, numOfFutObtAch;
     if self.NumOfAch > 0 then
         self:Enable();
 		self:DesaturateHierarchy(0);

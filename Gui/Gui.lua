@@ -271,15 +271,20 @@ function gui.ShowStatusBarTooltip(frame, anchor, extraText) -- . instead of : be
     GameTooltip_SetTitle(GameTooltip, frame.Text);
 
     local text = "";
-    local numOfNotObtAch = frame.NumOfNotObtAch;
+    local numOfNotObtAch, numOfFutObtAch = frame.NumOfNotObtAch, frame.NumOfFutObtAch;
+	if numOfFutObtAch > 0 and addon.Options.db.profile.Tooltip.Categories.ShowNotObtainable then
+		text = text .. " (+" .. numOfFutObtAch .. ")";
+    else
+        numOfFutObtAch = 0;
+	end
 	if numOfNotObtAch > 0 and addon.Options.db.profile.Tooltip.Categories.ShowNotObtainable then
-		text = " (+" .. numOfNotObtAch .. ")";
+		text = text .. " (+" .. numOfNotObtAch .. ")";
     else
         numOfNotObtAch = 0;
 	end
 	text = frame.NumOfCompAch .. text .. " / " .. frame.NumOfAch;
 
-	LibStub("Krowi_GameTooltipWithProgressBar-2.0"):Show(GameTooltip, 0, frame.NumOfAch, frame.NumOfCompAch, numOfNotObtAch, 0, 0, addon.Util.Colors.GreenRGB, addon.Util.Colors.RedRGB, nil, nil, text);
+	LibStub("Krowi_GameTooltipWithProgressBar-2.0"):Show(GameTooltip, 0, frame.NumOfAch, frame.NumOfCompAch, numOfFutObtAch, numOfNotObtAch, 0, addon.Util.Colors.GreenRGB, addon.Util.Colors.OrangeRGB, addon.Util.Colors.RedRGB, nil, text);
 
     if extraText then
         GameTooltip_AddBlankLineToTooltip(GameTooltip);

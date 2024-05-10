@@ -48,9 +48,9 @@ function addon.GetAchievementsInZone(mapID, getAll)
     return achievements;
 end
 
-function addon.GetAchievementNumbers(_filters, achievement, numOfAch, numOfCompAch, numOfNotObtAch) -- , numOfIncompAch
+function addon.GetAchievementNumbers(_filters, achievement, numOfAch, numOfCompAch, numOfNotObtAch, numOfFutObtAch) -- , numOfIncompAch
     if achievement.AlwaysVisible then
-        return numOfAch, numOfCompAch, numOfNotObtAch; -- , numOfIncompAch
+        return numOfAch, numOfCompAch, numOfNotObtAch, numOfFutObtAch; -- , numOfIncompAch
     end
     local filters = addon.Filters;
 	if filters and filters.Validate(_filters, achievement, true) > 0 then -- If set to false we lag the game
@@ -64,12 +64,14 @@ function addon.GetAchievementNumbers(_filters, achievement, numOfAch, numOfCompA
 			numOfCompAch = numOfCompAch + 1;
 		-- else
 		-- 	numOfIncompAch = numOfIncompAch + 1;
-        elseif state and (state == false or state == "Past" or state == "Future") then
+        elseif state and (state == false or state == "Past") then
 			numOfNotObtAch = numOfNotObtAch + 1;
+        elseif state and (state == false or state == "Future") then
+			numOfFutObtAch = numOfFutObtAch + 1;
 		end
 	end
 
-	return numOfAch, numOfCompAch, numOfNotObtAch; -- , numOfIncompAch
+	return numOfAch, numOfCompAch, numOfNotObtAch, numOfFutObtAch; -- , numOfIncompAch
 end
 
 local function AddCategoriesTree(category, achievement, extraFunc)

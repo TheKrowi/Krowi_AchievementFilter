@@ -47,7 +47,7 @@ end
 
 local function SetTooltipData(self, category)
 	self.Text = category.Name;
-	self.NumOfAch, self.NumOfCompAch, self.NumOfNotObtAch = category.NumOfAch, category.NumOfCompAch, category.NumOfNotObtAch;
+	self.NumOfAch, self.NumOfCompAch, self.NumOfNotObtAch, self.NumOfFutObtAch = category.NumOfAch, category.NumOfCompAch, category.NumOfNotObtAch, category.NumOfFutObtAch;
 	if category.IsSummary then
 		self.showTooltipFunc = nil;
 	else

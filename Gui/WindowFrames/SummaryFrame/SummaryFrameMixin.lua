@@ -53,7 +53,7 @@ local function GetNewStatusBar(self)
     OverRideTextures(statusBar);
     statusBar:SetHeight(49);
     statusBar:Reset();
-    statusBar:SetColors({R = 0, G = 1, B = 0}, {R = 1, G = 0, B = 0});
+    statusBar:SetColors({R = 0, G = 1, B = 0}, {R = 1, G = 0.64, B = 0}, {R = 1, G = 0, B = 0});
     statusBar.TextRight:SetFontObject(GameFontHighlight);
     statusBar.TextLeft:SetFontObject(GameFontNormal);
     statusBar.TextLeft:SetWordWrap(false);
@@ -242,42 +242,50 @@ local function GetNextCategory()
     return category;
 end
 
-local function AddStatusBar(self, index, category, showNotObtainable, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch)
+local function AddStatusBar(self, index, category, showNotObtainable, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch, totalNumOfFutObtAch)
     local statusBar = self:GetAndAlignStatusBar(index);
     statusBar.TextLeft:SetText(category.Name);
     statusBar.Button.Category = category;
-    if category.NumOfAch == nil or category.NumOfCompAch == nil or category.NumOfNotObtAch == nil then
+    if category.NumOfAch == nil or category.NumOfCompAch == nil or category.NumOfNotObtAch == nil or category.NumOfFutObtAch == nil then
         category:GetAchievementNumbers();
     end
-    local numOfAch, numOfCompAch, numOfNotObtAch = category.NumOfAch, category.NumOfCompAch, category.NumOfNotObtAch;
+    local numOfAch, numOfCompAch, numOfNotObtAch, numOfFutObtAch = category.NumOfAch, category.NumOfCompAch, category.NumOfNotObtAch, category.NumOfFutObtAch;
     totalNumOfAch = totalNumOfAch + numOfAch;
     totalNumOfCompAch = totalNumOfCompAch + numOfCompAch;
     totalNumOfNotObtAch = totalNumOfNotObtAch + numOfNotObtAch;
-    local numOfNotObtAchText = "";
+    totalNumOfFutObtAch = totalNumOfFutObtAch + numOfFutObtAch;
+    local numOfNotObtAchText, numOfFutObtAchText = "", "";
+    if numOfFutObtAch > 0 and showNotObtainable then
+        numOfFutObtAchText = " (+" .. numOfFutObtAch .. ")";
+    end
     if numOfNotObtAch > 0 and showNotObtainable then
         numOfNotObtAchText = " (+" .. numOfNotObtAch .. ")";
     end
-    statusBar.TextRight:SetText(numOfCompAch .. numOfNotObtAchText .. " / " .. numOfAch);
+    statusBar.TextRight:SetText(numOfCompAch .. numOfFutObtAchText .. numOfNotObtAchText .. " / " .. numOfAch);
     statusBar:SetMinMaxValues(0, numOfAch);
     if not showNotObtainable then
+        numOfFutObtAch = 0;
         numOfNotObtAch = 0;
     end
-    statusBar:SetValues(numOfCompAch, numOfNotObtAch, 0, 0);
+    statusBar:SetValues(numOfCompAch, numOfFutObtAch, numOfNotObtAch, 0);
     statusBar.TextLeft:SetWidth(statusBar.BorderMiddleMiddle:GetWidth() - statusBar.TextRight:GetWidth() - 10);
     statusBar:UpdateTextures();
     statusBar:Show();
-    return statusBar, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch;
+    return statusBar, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch, totalNumOfFutObtAch;
 end
 
-local function UpdateTotalStatusBar(self, showNotObtainable, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch)
-    local totalNumOfNotObtAchText = "";
+local function UpdateTotalStatusBar(self, showNotObtainable, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch, totalNumOfFutObtAch)
+    local totalNumOfNotObtAchText, totalNumOfFutObtAchText = "";
+    if totalNumOfFutObtAch > 0 and showNotObtainable then
+        totalNumOfFutObtAchText = " (+" .. totalNumOfFutObtAch .. ")";
+    end
     if totalNumOfNotObtAch > 0 and showNotObtainable then
         totalNumOfNotObtAchText = " (+" .. totalNumOfNotObtAch .. ")";
     end
     local totalStatusBar = self.TotalStatusBar;
-    totalStatusBar.TextRight:SetText(totalNumOfCompAch .. totalNumOfNotObtAchText .. " / " .. totalNumOfAch);
+    totalStatusBar.TextRight:SetText(totalNumOfCompAch .. totalNumOfFutObtAchText .. totalNumOfNotObtAchText .. " / " .. totalNumOfAch);
     totalStatusBar:SetMinMaxValues(0, totalNumOfAch);
-    totalStatusBar:SetValues(totalNumOfCompAch, totalNumOfNotObtAch, 0, 0);
+    totalStatusBar:SetValues(totalNumOfCompAch, totalNumOfFutObtAch, totalNumOfNotObtAch, 0);
     totalStatusBar:UpdateTextures();
 end
 
@@ -310,16 +318,16 @@ local function UpdateCategories(self, event)
     ResetStatusBars();
     local numStatusBars = 0;
     lastShown = self.TotalStatusBar;
-    local totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch = 0, 0, 0;
+    local totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch, totalNumOfFutObtAch = 0, 0, 0, 0;
     local showNotObtainable = addon.Options.db.profile.Tooltip.Categories.ShowNotObtainable;
     repeat
         local category = GetNextCategory();
         if category then
             numStatusBars = numStatusBars + 1;
-            lastShown, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch = AddStatusBar(self, numStatusBars, category, showNotObtainable, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch);
+            lastShown, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch, totalNumOfFutObtAch = AddStatusBar(self, numStatusBars, category, showNotObtainable, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch, totalNumOfFutObtAch);
         end
 	until not category;
-    UpdateTotalStatusBar(self, showNotObtainable, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch);
+    UpdateTotalStatusBar(self, showNotObtainable, totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch, totalNumOfFutObtAch);
     AlignCategoriesHeader(self, lastShown);
 end
 
