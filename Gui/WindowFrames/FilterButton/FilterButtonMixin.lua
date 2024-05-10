@@ -226,8 +226,9 @@ local function AddAchievementFilters(_menu, childMenu, filters)
 
     AddCheckBox(tmpMenu, addon.L["Completed"], filters, {"Completion", "Completed"}, true);
     AddCheckBox(tmpMenu, addon.L["Not Completed"], filters, {"Completion", "NotCompleted"}, true);
-    AddCheckBox(tmpMenu, addon.L["Obtainable"], filters, {"Obtainability", "Obtainable"}, true);
-    AddCheckBox(tmpMenu, addon.L["Not Obtainable"], filters, {"Obtainability", "NotObtainable"}, true);
+    AddCheckBox(tmpMenu, addon.L["Past Obtainable"], filters, {"Obtainability", "PastObtainable"}, true);
+    AddCheckBox(tmpMenu, addon.L["Current Obtainable"], filters, {"Obtainability", "CurrentObtainable"}, true);
+    AddCheckBox(tmpMenu, addon.L["Future Obtainable"], filters, {"Obtainability", "FutureObtainable"}, true);
 
     AddBuildVersionFilter(tmpMenu, filters);
 

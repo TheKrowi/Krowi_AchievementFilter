@@ -1,9 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 71.1 - 2024-05-09
+## 72.0 - 2024-05-11
 ### Added
 - Hunt the Harbinger achievement
+- Dragon Racing Challenges tooltip data
+- Past, Current and Future Obtainable filters (dev note: replace the old Obtainable and Not Obtainable filters)
 
 ### Fixed
 - WoW Remix: Mists of Pandaria (formerly Pandaria: Remix) should now be correctly track
