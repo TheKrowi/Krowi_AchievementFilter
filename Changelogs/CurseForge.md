@@ -1,18 +1,19 @@
 <p><h3>Added</h3></p>
 <ul>
 <li>Hunt the Harbinger achievement</li>
-<li>Dragon Racing Challenges tooltip data</li>
 <li>Past, Current and Future Obtainable filters (dev note: replace the old Obtainable and Not Obtainable filters)</li>
 </ul>
 <p><h3>Fixed</h3></p>
 <ul>
 <li>WoW Remix: Mists of Pandaria (formerly Pandaria: Remix) should now be correctly track</li>
 </ul>
-<p><h3>Changed</h3></p>
-<ul>
-<li>Tooltip data now shows the achievement &gt; criteria</li>
-</ul>
 <p><h3>Cata Classic</h3></p>
 <ul>
 <li>Fixed missing criteria info for The Cataclysmic Gourmet (30)</li>
+</ul>
+<p><h3>Tooltip Data</h3></p>
+<ul>
+<li>Added Dragon Racing Challenges</li>
+<li>Added Northrend Cup</li>
+<li>Now shows the achievement &gt; criteria</li>
 </ul>
