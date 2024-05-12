@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-05-07 22-52-36 ]] --
+-- [[ Exported at 2024-05-11 10-11-05 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -51,14 +51,6 @@ L["Add to Watch List"] = "Ajouter à {watchList}"
 L["Added in version"] = "Le Haut-fait à été ajouté la version"
 L["Adjustable Categories"] = "Catégories ajustables"
 L["Aki the Chosen"] = "Aki l'Elue"
-L["Already /loved for achievement"] = "Déjà /amour {forAchievement}"
-L["Already completed for achievement"] = "Déjà terminé {forAchievement}"
-L["Already cooked for achievement"] = "Déjà cuisiné {forAchievement}"
-L["Already defeated for achievement"] = "Déjà vaincu {forAchievement}"
-L["Already drank for achievement"] = "Déjà bu pour {forAchievement}"
-L["Already eaten for achievement"] = "Déjà mangé {forAchievement}"
-L["Already killed for achievement"] = "Déjà tué {forAchievement} "
-L["Already petted for achievement"] = "Déjà caressé {forAchievement}"
 L["Alt"] = true
 L["Always Show Completed"] = "Toujours afficher les hauts faits terminés"
 L["Always show realm"] = "Toujours afficher le royaume"
@@ -583,14 +575,6 @@ L["Mouse Wheel Scroll Speed Desc"] = "Définit le nombre d'{items} qui seront d�
 L["Movable"] = "Déplaçable"
 L["Necrolord Assault"] = "L'assaut des Nécro-seigneurs"
 L["Necrolords Assault"] = "L'assaut des Nécro-seigneurs"
-L["Needs /love for achievement"] = "Requiert /love pour obtenir le haut fait"
-L["Needs to be completed for achievement"] = "Doit être terminé {forAchievement}"
-L["Needs to be cooked for achievement"] = "Doit être cuisiné {forAchievement}"
-L["Needs to be defeated for achievement"] = "Doit être vaincu {forAchievement}"
-L["Needs to be drunk for achievement"] = "Doit être bu {forAchievement}"
-L["Needs to be eaten for achievement"] = "Doit être mangé {forAchievement}"
-L["Needs to be killed for achievement"] = "Doit être tué {forAchievement}"
-L["Needs to be petted for achievement"] = "Doit être caressé {forAchievement}"
 L["never obtainable"] = "jamais obtenable"
 L["New Achievement Colors"] = "Nouvelles couleurs de haut fait"
 L["New Achievement Colors Desc"] = [=[La couleur de bordure d'un haut fait accompli est à présent doré.
@@ -832,8 +816,6 @@ L["Show Faction Faction Icon"] = "Afficher l'icône de la faction"
 L["Show Faction Faction Icon Desc"] = "Afficher l'icône de la faction {faction} sur le haut fait si seuls les joueurs de la faction {faction} peuvent l'obtenir."
 L["Show faction icon"] = "Afficher les icônes de faction"
 L["Show faction icon Desc"] = "Afficher l'icône de la faction devant le nom du personnage."
-L["Show For Achievement"] = "Afficher pour le haut fait"
-L["Show For Achievement Desc"] = "Afficher le haut fait pour lequel le critère est nécessaire"
 L["Show minimap icon"] = "Afficher l’icône sur la minicarte"
 L["Show minimap icon Desc"] = "Afficher ou masquer l'icône sur la minicarte."
 L["Show Not Obtainable"] = "afficher {non disponible}"

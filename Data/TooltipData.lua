@@ -90,7 +90,7 @@ local function ProcessUnit(tooltip, guid)
     end
 
     for _, tooltipLine in next, unitDatum do
-        if tooltipLine.ObjectType == addon.Objects.TooltipDataType.Unit then
+        if tooltipLine.ObjectType == Enum.TooltipDataType.Unit then
             AddTooltipLine(tooltip, tooltipLine);
         end
     end
@@ -120,7 +120,7 @@ local function ProcessItem(tooltip, itemId)
     end
 
     for _, tooltipLine in next, itemDatum do
-        if tooltipLine.ObjectType == addon.Objects.TooltipDataType.Item then
+        if tooltipLine.ObjectType == Enum.TooltipDataType.Item then
             AddTooltipLine(tooltip, tooltipLine);
         end
     end
@@ -150,7 +150,7 @@ local function ProcessSpell(tooltip, spellId)
     end
 
     for _, tooltipLine in next, spellDatum do
-        if tooltipLine.ObjectType == addon.Objects.TooltipDataType.Spell then
+        if tooltipLine.ObjectType == Enum.TooltipDataType.Spell then
             AddTooltipLine(tooltip, tooltipLine);
         end
     end
@@ -251,8 +251,6 @@ function tooltipData.Load()
         --     end
         -- end);
     end
-
-    data.ExportedTooltipData.Load(addon.Data.TooltipData);
 end
 
 -- function KrowiAF_DumpTooltip()

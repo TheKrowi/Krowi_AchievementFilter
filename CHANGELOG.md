@@ -10,6 +10,12 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - WoW Remix: Mists of Pandaria (formerly Pandaria: Remix) should now be correctly track
 
+### Changed
+- Tooltip data now shows the achievement > criteria
+
+### Cata Classic
+- Fixed missing criteria info for The Cataclysmic Gourmet (30)
+
 ## 71.0 - 2024-05-08
 ### Added
 - Browse now your previously selected achievements if you want to go back and forward with ease

@@ -21,7 +21,7 @@
 
 Libs\Files.xml
 
-API.lua
+Api\Files.xml
 
 Plugins\Files.xml
 
