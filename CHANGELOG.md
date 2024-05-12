@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 72.0 - 2024-05-11
+## 72.0 - 2024-05-12
 ### Added
 - Hunt the Harbinger achievement
 - Dragon Racing Challenges tooltip data

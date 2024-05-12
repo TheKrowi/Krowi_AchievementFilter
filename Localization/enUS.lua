@@ -7,7 +7,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-05-11 10-10-58 ]] --
+-- [[ Exported at 2024-05-12 10-59-01 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -190,6 +190,7 @@ L["Criteria is Completed Desc"] = "Show Achievement Criteria even if the Achieve
 L["Criteria of"] = true
 L["Cross-Expansion"] = true
 L["Ctrl"] = true
+L["Current Obtainable"] = true
 L["Current Zone"] = true
 L["CurseForge"] = true
 L["CurseForge Desc"] = "Open a popup dialog with a link to the {addonName} {curseForge} page."
@@ -462,6 +463,7 @@ L["Full Search"] = true
 L["Full Search Desc"] = "By selecting '{showAllResults}' you're able to view all search results. See the {quickSearchTutorial} tutorial for more details."
 L["Fury Incarnate"] = true
 L["Fury of Hellfire"] = true
+L["Future Obtainable"] = true
 L["Fyrakk Assault"] = true
 L["Garden Gallivant"] = true
 L["Garrisons Update"] = true
@@ -672,6 +674,7 @@ L["Pandaren"] = true
 L["Pandaria Cup"] = true
 L["Part of a chain"] = true
 L["Passage Pathway"] = true
+L["Past Obtainable"] = true
 L["Paste to Chat"] = true
 L["Patch"] = true
 L["Pilgrim's Bounty"] = true
