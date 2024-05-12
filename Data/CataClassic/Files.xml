@@ -3,6 +3,5 @@
     <Script file="ExportedBuildVersions.lua" />
     <Script file="ExportedCalendarEvents.lua" />
     <Script file="ExportedCategories.lua" />
-    <Script file="ExportedTooltipData.lua" />
     <Script file="ExportedUiMaps.lua" />
 </Ui>

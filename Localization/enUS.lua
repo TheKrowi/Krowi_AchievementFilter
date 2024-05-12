@@ -7,7 +7,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-05-07 22-52-28 ]] --
+-- [[ Exported at 2024-05-12 10-59-01 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -55,14 +55,6 @@ L["Add to Watch List"] = "Add to {watchList}"
 L["Added in version"] = true
 L["Adjustable Categories"] = true
 L["Aki the Chosen"] = true
-L["Already /loved for achievement"] = "Already /loved {forAchievement}"
-L["Already completed for achievement"] = "Already completed {forAchievement}"
-L["Already cooked for achievement"] = "Already cooked {forAchievement}"
-L["Already defeated for achievement"] = "Already defeated {forAchievement}"
-L["Already drank for achievement"] = "Already drank {forAchievement}"
-L["Already eaten for achievement"] = "Already eaten {forAchievement}"
-L["Already killed for achievement"] = "Already killed {forAchievement}"
-L["Already petted for achievement"] = "Already petted {forAchievement}"
 L["Alt"] = true
 L["Always Show Completed"] = true
 L["Always show realm"] = true
@@ -198,6 +190,7 @@ L["Criteria is Completed Desc"] = "Show Achievement Criteria even if the Achieve
 L["Criteria of"] = true
 L["Cross-Expansion"] = true
 L["Ctrl"] = true
+L["Current Obtainable"] = true
 L["Current Zone"] = true
 L["CurseForge"] = true
 L["CurseForge Desc"] = "Open a popup dialog with a link to the {addonName} {curseForge} page."
@@ -470,6 +463,7 @@ L["Full Search"] = true
 L["Full Search Desc"] = "By selecting '{showAllResults}' you're able to view all search results. See the {quickSearchTutorial} tutorial for more details."
 L["Fury Incarnate"] = true
 L["Fury of Hellfire"] = true
+L["Future Obtainable"] = true
 L["Fyrakk Assault"] = true
 L["Garden Gallivant"] = true
 L["Garrisons Update"] = true
@@ -594,14 +588,6 @@ L["Mouse Wheel Scroll Speed Desc"] = "The number of {items} that will be scrolle
 L["Movable"] = true
 L["Necrolord Assault"] = true
 L["Necrolords Assault"] = true
-L["Needs /love for achievement"] = "Needs /love {forAchievement}"
-L["Needs to be completed for achievement"] = "Needs to be completed {forAchievement}"
-L["Needs to be cooked for achievement"] = "Needs to be cooked {forAchievement}"
-L["Needs to be defeated for achievement"] = "Needs to be defeated {forAchievement}"
-L["Needs to be drunk for achievement"] = "Needs to be drunk {forAchievement}"
-L["Needs to be eaten for achievement"] = "Needs to be eaten {forAchievement}"
-L["Needs to be killed for achievement"] = "Needs to be killed {forAchievement}"
-L["Needs to be petted for achievement"] = "Needs to be petted {forAchievement}"
 L["never obtainable"] = true
 L["New Achievement Colors"] = true
 L["New Achievement Colors Desc"] = [=[- The default gold of an obtained achievement. The border is changed from red to gold.
@@ -688,6 +674,7 @@ L["Pandaren"] = true
 L["Pandaria Cup"] = true
 L["Part of a chain"] = true
 L["Passage Pathway"] = true
+L["Past Obtainable"] = true
 L["Paste to Chat"] = true
 L["Patch"] = true
 L["Pilgrim's Bounty"] = true
@@ -852,8 +839,6 @@ L["Show Faction Faction Icon"] = "Show {faction} Faction Icon"
 L["Show Faction Faction Icon Desc"] = "Show the {faction} faction icon on the achievement if only {faction} players can earn it."
 L["Show faction icon"] = true
 L["Show faction icon Desc"] = "Show a faction icon in front of the character's name."
-L["Show For Achievement"] = true
-L["Show For Achievement Desc"] = "Show the achievement for which the criteria is needed."
 L["Show minimap icon"] = true
 L["Show minimap icon Desc"] = "Show / hide the minimap icon."
 L["Show Not Obtainable"] = "Show {notObtainable}"

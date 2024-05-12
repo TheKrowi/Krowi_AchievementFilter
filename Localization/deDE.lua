@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-05-07 22-52-33 ]] --
+-- [[ Exported at 2024-05-12 21-21-22 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -56,14 +56,6 @@ L["Add to Watch List"] = "Zu {watchList} hinzufügen"
 L["Added in version"] = "Hinzugefügt mit Version"
 L["Adjustable Categories"] = "Anpassbare Kategorien"
 L["Aki the Chosen"] = "Aki die Auserwählte"
-L["Already /loved for achievement"] = "Hat deine Liebe {forAchievement} schon erhalten"
-L["Already completed for achievement"] = "Bereits abgeschlossen {forAchievement}"
-L["Already cooked for achievement"] = "Bereits gekocht {forAchievement}"
-L["Already defeated for achievement"] = "Bereits besiegt {forAchievement}"
-L["Already drank for achievement"] = "Bereits getrunken {for Achievement}"
-L["Already eaten for achievement"] = "Bereits gegessen {forAchievement}"
-L["Already killed for achievement"] = "Bereits getötet {forAchievement}"
-L["Already petted for achievement"] = "Bereits gestreichelt {forAchievement}"
 L["Alt"] = true
 L["Always Show Completed"] = "Immer erreichte Erfolge anzeigen"
 L["Always show realm"] = "Immer Realm anzeigen"
@@ -589,14 +581,6 @@ L["Mouse Wheel Scroll Speed Desc"] = "Die Anzahl der {items}, die beim Klicken a
 L["Movable"] = "Bewegliche Fenster"
 L["Necrolord Assault"] = "Nekrolord Paktangriff"
 L["Necrolords Assault"] = "Nekrolord Paktangriff"
-L["Needs /love for achievement"] = "Benötigt deine /liebe {forAchievement}"
-L["Needs to be completed for achievement"] = "Muss noch {forAchievement} abgeschlossen werden"
-L["Needs to be cooked for achievement"] = "Muss noch {forAchievement} gekocht werden"
-L["Needs to be defeated for achievement"] = "Muss noch {forAchievement} besiegt werden"
-L["Needs to be drunk for achievement"] = "Muss noch {forAchievement} getrunken werden"
-L["Needs to be eaten for achievement"] = "Muss noch {forAchievement} gegessen werden"
-L["Needs to be killed for achievement"] = "Muss noch {forAchievement} getötet werden"
-L["Needs to be petted for achievement"] = "Muss noch {forAchievement} gestreichelt werden"
 L["never obtainable"] = "nicht erzielbar"
 L["New Achievement Colors"] = "Neue Erfolgs-Farben"
 L["New Achievement Colors Desc"] = [=[- Das Standard-Gold eines erhaltenen Erfolgs. Der Rahmen wird von Rot auf Gold geändert.
@@ -839,8 +823,6 @@ L["Show Faction Faction Icon"] = "Zeige {faction} Fraktions Symbol"
 L["Show Faction Faction Icon Desc"] = "Zeigt das {faction} Fraktionssymbol auf den Erfolgen an, wenn nur {faction} Spieler diese verdienen können."
 L["Show faction icon"] = "Fraktions-Symbol anzeigen"
 L["Show faction icon Desc"] = "Ein Fraktionssymbol vor dem Namen des Charakters anzeigen."
-L["Show For Achievement"] = "Zeige Kriterien für Erfolg"
-L["Show For Achievement Desc"] = "Zeige den Erfolg für den die Erfolgs-Kriterien benötigt werden."
 L["Show minimap icon"] = "Zeige Minimap Icon"
 L["Show minimap icon Desc"] = "Zeige / Verstecke das Minimap Icon."
 L["Show Not Obtainable"] = "Zeige {notObtainable}"

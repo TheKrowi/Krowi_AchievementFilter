@@ -1450,16 +1450,7 @@ local criteriaOptions = {
                     get = function() return addon.Options.db.profile.Tooltip.Criteria.Show; end,
                     set = function(_, value) addon.Options.db.profile.Tooltip.Criteria.Show = value; end
                 },
-                ShowForAchievement = {
-                    order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
-                    name = addon.L["Show For Achievement"],
-                    desc = function() return addon.L["Show For Achievement Desc"]:K_ReplaceVars{
-                        criteria = (addon.GetAchievementCriteriaInfo(1206, 1)),
-                        achievement = (select(2, addon.GetAchievementInfo(1206)))
-                    }:KAF_AddDefaultValueText("Tooltip.Criteria.ShowForAchievement"); end,
-                    get = function() return addon.Options.db.profile.Tooltip.Criteria.ShowForAchievement; end,
-                    set = function(_, value) addon.Options.db.profile.Tooltip.Criteria.ShowForAchievement = value; end
-                },
+                Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
                 ShowCriteriaIf = {
                     order = OrderPP(), type = "header",
                     name = addon.L["Show Criteria If"]
@@ -1485,7 +1476,7 @@ local criteriaOptions = {
                     get = function() return addon.Options.db.profile.Tooltip.Criteria.ShowIf.CriteriaIsCompleted; end,
                     set = function(_, value) addon.Options.db.profile.Tooltip.Criteria.ShowIf.CriteriaIsCompleted = value; end
                 },
-                Blank42 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
+                Blank2 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
             }
         }
     }

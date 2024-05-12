@@ -127,7 +127,6 @@ addon.Options.Defaults = {
             },
             Criteria = {
                 Show = true,
-                ShowForAchievement = true,
                 ShowIf = {
                     AchievementIsCompleted = false,
                     AchievementWasNotEarnedByMe = true,

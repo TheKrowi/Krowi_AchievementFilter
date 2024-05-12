@@ -1,15 +1,19 @@
 <p><h3>Added</h3></p>
 <ul>
-<li>Browse now your previously selected achievements if you want to go back and forward with ease</li>
-<li>Option to move the calendar button to open the achievement calendar</li>
+<li>Hunt the Harbinger achievement</li>
+<li>Past, Current and Future Obtainable filters (dev note: replace the old Obtainable and Not Obtainable filters)</li>
 </ul>
 <p><h3>Fixed</h3></p>
 <ul>
-<li>Errors occurring during combat should be drastically reduced when opening the achievements window</li>
-<li>Strange behavior where more than one achievement is selected should be resolved</li>
+<li>WoW Remix: Mists of Pandaria (formerly Pandaria: Remix) should now be correctly track</li>
 </ul>
 <p><h3>Cata Classic</h3></p>
 <ul>
-<li>Fixed ElvUI skinning bug</li>
-<li>Fixed issues with missing linked Silverpine Forest Quests and Ghostlands Quests achievements</li>
+<li>Fixed missing criteria info for The Cataclysmic Gourmet (30)</li>
+</ul>
+<p><h3>Tooltip Data</h3></p>
+<ul>
+<li>Added Dragon Racing Challenges</li>
+<li>Added Northrend Cup</li>
+<li>Now shows the achievement &gt; criteria</li>
 </ul>

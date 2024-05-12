@@ -34,6 +34,14 @@ data.Maps = {};
 
 data.CalendarEvents, data.WidgetEvents, data.WorldEvents = {}, {}, {};
 
+function data:RegisterTooltipDataTasks()
+    local name = "Additional Tooltip Data: ";
+    for k, v in next, KrowiAF.AdditionalTooltipData do
+        self.InjectLoadingDebug(v, name .. k);
+        tinsert(self.TasksGroups, 1, v);
+    end
+end
+
 local function PostLoadOnPlayerLogin(self, start)
     self.ExportedAchievements.Load(self.AchievementIds);
 
@@ -85,7 +93,7 @@ function data:LoadOnPlayerLogin()
     end
     self.ExportedUiMaps.RegisterTasks(self.Maps, self.Achievements);
 
-    KrowiAF.RegisterTooltipDataTasks();
+    self:RegisterTooltipDataTasks();
 
     local overallStart = debugprofilestop();
     addon.StartTasksGroups(

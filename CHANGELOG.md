@@ -1,6 +1,22 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 72.0 - 2024-05-12
+### Added
+- Hunt the Harbinger achievement
+- Past, Current and Future Obtainable filters (dev note: replace the old Obtainable and Not Obtainable filters)
+
+### Fixed
+- WoW Remix: Mists of Pandaria (formerly Pandaria: Remix) should now be correctly track
+
+### Cata Classic
+- Fixed missing criteria info for The Cataclysmic Gourmet (30)
+
+### Tooltip Data
+- Added Dragon Racing Challenges
+- Added Northrend Cup
+- Now shows the achievement > criteria
+
 ## 71.0 - 2024-05-08
 ### Added
 - Browse now your previously selected achievements if you want to go back and forward with ease

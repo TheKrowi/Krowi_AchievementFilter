@@ -78,7 +78,7 @@ end
 local FixFeaturesTutorialProgress, FixElvUISkin, FixFilters, FixEventDetails, FixShowExcludedCategory, FixEventDetails2, FixCharacters, FixEventAlert;
 local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters, FixNewEarnedByFilter, FixTabs2, FixNewEarnedByFilter2;
 local FixEventDetails3, FixTooltipCriteria, FixFocusedAchievements, FixFocusedOptions, FixEventRemindersTimeDisplay, FixEventRemindersOptions, FixEventRemindersOptions2;
-local FixActiveEvents, MigrateCharactersAndAchievements, FixFirstTimeSetUpSwitchAchievementTabs;
+local FixActiveEvents, MigrateCharactersAndAchievements, FixFirstTimeSetUpSwitchAchievementTabs, FixNewObtainabilityFilter;
 function LoadSolutions()
     local solutions = {
         FixFeaturesTutorialProgress, -- 1
@@ -106,6 +106,7 @@ function LoadSolutions()
         FixActiveEvents, -- 23
         MigrateCharactersAndAchievements, -- 25
         FixFirstTimeSetUpSwitchAchievementTabs, --26
+        FixNewObtainabilityFilter, -- 27
     };
 
     return solutions;
@@ -860,4 +861,36 @@ function FixFirstTimeSetUpSwitchAchievementTabs(prevBuild, currBuild, prevVersio
     KrowiAF_SavedData.FirstTimeSetUp.SwitchAchievementTabs = nil;
 
     diagnostics.Debug("KrowiAF_SavedData.FirstTimeSetUp.SwitchAchievementTabs moved");
+end
+
+function FixNewObtainabilityFilter(prevBuild, currBuild, prevVersion, currVersion, firstTime)
+    -- In version 72.0 the Obtainable and Not Obtainable filters changed to Past Obtainable, Current Obtainable and Future Obtainable
+    -- Here we clean up the old data
+
+    if firstTime and currVersion > "72.0" then
+        KrowiAF_SavedData.Fixes.FixNewObtainabilityFilter = true;
+        diagnostics.Debug("First time New obtainability filter OK");
+        return;
+    end
+    if KrowiAF_SavedData.Fixes.FixNewObtainabilityFilter == true then
+        diagnostics.Debug("New obtainability filter already transfered from previous version");
+        return;
+    end
+
+    if KrowiAF_Filters and KrowiAF_Filters.profiles then
+        for profileIndex, profile in next, KrowiAF_Filters.profiles do
+            if profile.Obtainability then
+                if profile.Obtainability.Obtainable ~= nil then
+                    KrowiAF_Filters.profiles[profileIndex].Obtainability.Obtainable = nil;
+                end
+                if profile.Obtainability.NotObtainable ~= nil then
+                    KrowiAF_Filters.profiles[profileIndex].Obtainability.NotObtainable = nil;
+                end
+            end
+        end
+    end
+
+    KrowiAF_SavedData.Fixes.FixNewObtainabilityFilter = true;
+
+    diagnostics.Debug("Transfered new obtainability filter from previous version");
 end
