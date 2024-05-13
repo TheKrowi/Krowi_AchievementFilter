@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-05-12 21-21-22 ]] --
+-- [[ Exported at 2024-05-13 22-56-25 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -190,6 +190,7 @@ L["Criteria is Completed Desc"] = "Erfolgs-Kriterien anzeigen, auch wenn die Erf
 L["Criteria of"] = "Kriterien"
 L["Cross-Expansion"] = "Addon-Übergreifend"
 L["Ctrl"] = true
+L["Current Obtainable"] = "Aktuell Erreichbar"
 L["Current Zone"] = "Aktuelle Zone"
 L["CurseForge"] = true
 L["CurseForge Desc"] = "Öffnet ein Popup-Fenster mit einem Link zur Seite {addonName} {curseForge}."
@@ -458,6 +459,7 @@ L["Full Search"] = "Vollständige Suche"
 L["Full Search Desc"] = "Durch die Auswahl von \"{showAllResults}\" kannst Du alle Suchergebnisse anzeigen lassen. Weitere Einzelheiten findest Du im {quickSearchTutorial}-Tutorial."
 L["Fury Incarnate"] = "Inkarnation des Zorns"
 L["Fury of Hellfire"] = "Zorn des Höllenfeuers"
+L["Future Obtainable"] = "Erreichbarkeit in der Zukunft"
 L["Fyrakk Assault"] = "Angriffe von Fyrakk"
 L["Garden Gallivant"] = "Gartenpromenade"
 L["Garrisons Update"] = "Garnisonsupdate"
@@ -667,6 +669,7 @@ L["Pandaren"] = true
 L["Pandaria Cup"] = "Pandaria Pokal"
 L["Part of a chain"] = "Teil einer Folgequest"
 L["Passage Pathway"] = "Weg durch die Passage"
+L["Past Obtainable"] = "Erreichbarkeit in der Vergangenheit"
 L["Paste to Chat"] = "Kopiere in das Chat Fenster"
 L["Patch"] = true
 L["Pilgrim's Bounty"] = "Die Pilgerfreuden"
@@ -785,7 +788,7 @@ L["Select achievements to see your browsing history"] = "Erfolge auswählen, um 
 L["Select All"] = "Alle auswählen"
 L["Selected Zone"] = "Ausgewählte Zone"
 L["Set Keybind"] = "Tastaturbelegung ändern"
-L["Set Keybind Desc"] = "Setzen Sie die Tastaturbelegung für den ausgewählten Tab auf \"Y\". Dies hebt die Bindung aller anderen an 'Y' gebundenen Aktionen auf. Andere Tastaturbelegungen können in den regulären {keyBindings} festgelegt werden."
+L["Set Keybind Desc"] = "Setze die Tastaturbelegung für den ausgewählten Tab auf \"Y\". Dies hebt die Bindung aller anderen an 'Y' gebundenen Aktionen auf. Andere Tastaturbelegungen können in den regulären {keyBindings} festgelegt werden."
 L["Shadowlands (pre-patch)"] = true
 L["Shadows of Argus"] = "Schatten von Argus"
 L["Shift"] = true
@@ -839,7 +842,7 @@ L["Show Part of a chain"] = "Zeige {partOfAChan}"
 L["Show Part of a chain Desc"] = [=[Zeige / Verstecke {partOfAChain}.
 Wenn diese Option aktiviert ist, wird der Serien-Erfolg, zu dem er gehört, im Tooltip angezeigt. ]=]
 L["Show placeholders"] = "Zeige Platzhalter"
-L["Show placeholders Desc"] = "Zeigt eine Reihe von Platzhalter-Ereignissen an, um eine visuelle Anzeige der Wirkung der oben genannten Einstellungen zu ermöglichen. Sie können wieder geschlossen werden, indem Sie die Maus über sie bewegen oder mit der rechten Maustaste darauf klicken."
+L["Show placeholders Desc"] = "Zeigt eine Reihe von Platzhalter-Ereignissen an, um eine visuelle Anzeige der Wirkung der oben genannten Einstellungen zu ermöglichen. Diese können wieder geschlossen werden, indem du die Maus über sie bewegest oder mit der rechten Maustaste darauf klickst."
 L["Show placeholders filter"] = "Filter \"Platzhalter\" anzeigen"
 L["Show placeholders filter Desc"] = [=[Zeigt / Versteckt den Platzhalterfilter in den Filtern. Dieser wird verwendet, um Erfolge anzuzeigen, die noch nicht im Spiel sind.
 
@@ -883,7 +886,7 @@ L["Soulforges"] = "Die Seelenschmieden"
 L["Sources"] = "Quellen"
 L["Southshore vs. Tarren Mill"] = "Süderstade vs. Tarrens Mühle"
 L["Spacing"] = "Abstand"
-L["Spacing Desc"] = "Der Abstand, der zum Standardabstand zwischen den Registerkarten addiert bzw. von diesem subtrahiert wird."
+L["Spacing Desc"] = "Der Abstand, der zum Standardabstand zwischen den Tabs addiert bzw. von diesem subtrahiert wird."
 L["Special Categories"] = "Spezial Kategorie"
 L["Special thanks"] = "Besonderer Dank"
 L["Specials"] = "Spezial"

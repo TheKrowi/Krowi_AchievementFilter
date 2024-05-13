@@ -508,7 +508,8 @@
         "securecall",
         "KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton",
         "KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton",
-        "GetAchievementCriteriaInfoByID"
+        "GetAchievementCriteriaInfoByID",
+        "PLAYER_FACTION_GROUP"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
