@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-05-12 10-57-30 ]] --
+-- [[ Exported at 2024-05-15 19-05-38 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -158,6 +158,7 @@ L["Criteria is Completed Desc"] = "Отображать критерии дос�
 L["Criteria of"] = "Критерия"
 L["Cross-Expansion"] = "Пересечение дополнений"
 L["Ctrl"] = true
+L["Current Obtainable"] = "Доступно сейчас"
 L["Current Zone"] = "Текущее место"
 L["CurseForge"] = true
 L["CurseForge Desc"] = "Открывает всплывающее диалоговое окно со ссылкой на страницу {addonName} на {curseForge}."
@@ -267,6 +268,7 @@ L["Full Search"] = "Полный Поиск"
 L["Full Search Desc"] = "Выбрав '{showAllResults}', вы сможете просмотреть все результаты поиска. Более подробную информацию смотрите в руководстве {quickSearchTutorial}."
 L["Fury Incarnate"] = "Ярость Воплощений"
 L["Fury of Hellfire"] = "Ярость Адского Пламени"
+L["Future Obtainable"] = "Доступно скоро"
 L["Fyrakk Assault"] = "Нападение Фиракка"
 L["Garden Gallivant"] = "Спринт по садам"
 L["Garrisons Update"] = "Обновление Гарнизона"
@@ -448,6 +450,7 @@ L["Pandaren"] = "Пандарен"
 L["Pandaria Cup"] = "Кубок Пандарии"
 L["Part of a chain"] = "Часть цепочки"
 L["Passage Pathway"] = "Проходной путь"
+L["Past Obtainable"] = "Доступно ранее"
 L["Paste to Chat"] = "Вставить в чат"
 L["Patch"] = "Патч"
 L["Pilgrim's Bounty"] = "Пиршество странников"
