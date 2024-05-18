@@ -31,14 +31,17 @@ local defaultAchievements = {
         Criteria = addon.L["Default"],
         ReverseSort = false
     },
-    BuildVersion = { --[[ Dynamically build via addon.Data.ExportedBuildVersions.InjectDynamicFilters ]] }
+    BuildVersion = { --[[ Dynamically build via addon.Data.ExportedBuildVersions.InjectDynamicFilters ]] },
 };
 
 local defaults = {
     profile = {
         MergeSmallCategories = true,
         EarnedBy = "Account",
-        ShowPlaceholders = false
+        ShowPlaceholders = false,
+        ContentMode = {
+            RemixPandaria = false
+        }
     }
 };
 
@@ -207,12 +210,25 @@ local validations = {
         Validate = function(_filters, achievement) return not _filters.Special.PvP and achievement.IsPvP; end
     },
     {   -- 16
-    Validate = function(_filters, achievement)
-        if not achievement.BuildVersion then
-            return false;
+        Validate = function(_filters, achievement)
+            if not achievement.BuildVersion then
+                return false;
+            end
+            return not _filters.BuildVersion[achievement.BuildVersion.Id];
         end
-        return not _filters.BuildVersion[achievement.BuildVersion.Id];
-    end
+    },
+    {   -- 17
+        Validate = function(_filters, achievement)
+            if not addon.IsRemixPandaria() or not filters.db.profile.ContentMode.RemixPandaria then
+                return false;
+            end
+            if not achievement.TemporaryObtainable
+            or not achievement.TemporaryObtainable.Start
+            or achievement.TemporaryObtainable.Start.Function ~= "Event" then
+                return true;
+            end
+            return achievement.TemporaryObtainable.Start.Value ~= "1514";
+        end
     },
 };
 

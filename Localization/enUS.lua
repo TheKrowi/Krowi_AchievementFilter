@@ -1045,3 +1045,7 @@ L["Zaqali Ruin Investigation: Next"] = true
 L["Zaqali Ruin Investigation: Soon"] = true
 L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
+L["Content mode"] = "{content} mode"
+L["Content mode Remix Pandaria Desc"] = [=[When checked, only the achievements and events relevant for {remix} will be visible.
+
+]=]

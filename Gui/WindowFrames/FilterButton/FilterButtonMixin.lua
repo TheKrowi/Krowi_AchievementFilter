@@ -317,10 +317,17 @@ function KrowiAF_AchievementFrameFilterButtonMixin:OnMouseDown()
     -- menu:Add(version);
 
     local earnedBy = addon.Objects.MenuItem:New(addon.L["Earned By"]);
-    AddRadioButton(menu, earnedBy, addon.Filters.Account, addon.Filters.db.profile, {"EarnedBy"}, false);
-    AddRadioButton(menu, earnedBy, addon.Filters.CharacterAccount, addon.Filters.db.profile, {"EarnedBy"}, false);
-    AddRadioButton(menu, earnedBy, addon.Filters.CharacterOnly, addon.Filters.db.profile, {"EarnedBy"}, false);
+    AddRadioButton(menu, earnedBy, addon.Filters.Account, addon.Filters.db.profile, {"EarnedBy"});
+    AddRadioButton(menu, earnedBy, addon.Filters.CharacterAccount, addon.Filters.db.profile, {"EarnedBy"});
+    AddRadioButton(menu, earnedBy, addon.Filters.CharacterOnly, addon.Filters.db.profile, {"EarnedBy"});
     menu:Add(earnedBy);
+
+    -- Special modes
+    if C_UnitAuras.GetPlayerAuraBySpellID(424143) then
+        menu:AddSeparator();
+        menu:AddTitle(addon.L["Special modes"]);
+        AddCheckBox(menu, addon.GetCategoryInfoTitle(15509), addon.Filters.db.profile, {"ContentMode", "RemixPandaria"}, true);
+    end
 
     menu:AddSeparator();
 

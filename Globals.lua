@@ -917,3 +917,7 @@ addon.WeekdayNames = {
     addon.L["Friday"],
     addon.L["Saturday"]
 };
+
+function addon.IsRemixPandaria()
+    return C_UnitAuras.GetPlayerAuraBySpellID(424143);
+end

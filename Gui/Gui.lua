@@ -67,6 +67,24 @@ local function HookShowSubFrame(self)
     end);
 end
 
+local function AddModeCheckButton(self)
+    -- local checkButton = CreateFrame("CheckButton", "KrowiAF_ContentCheckButton", AchievementFrame, "UICheckButtonTemplate");
+    -- checkButton.Text:SetText(addon.L["Content mode"]:K_ReplaceVars(addon.GetCategoryInfoTitle(15509)));
+    -- checkButton:SetPoint("BOTTOMLEFT");
+    -- checkButton:SetHitRectInsets(0, -100, 0, 0);
+    -- checkButton:Show();
+
+    -- checkButton:SetScript("OnEnter", function()
+    --     GameTooltip:SetOwner(checkButton, "ANCHOR_TOPLEFT");
+    --     GameTooltip:SetText(addon.L["Content mode"]:K_ReplaceVars(addon.GetCategoryInfoTitle(15509)));
+    --     GameTooltip:AddLine(addon.L["Content mode Desc"]);
+    --     GameTooltip:Show();
+    -- end);
+    -- checkButton:SetScript("OnLeave", function()
+    --     GameTooltip:Hide();
+    -- end);
+end
+
 local defaultAchievementFrameWidth;
 local defaultAchievementFrameHeight;
 local defaultAchievementFrameMetalBorderHeight;
@@ -114,6 +132,8 @@ function gui:LoadWithBlizzard_AchievementUI()
 
     self:RegisterFrameForClosing(AchievementFrame);
     HookShowSubFrame(self);
+
+    AddModeCheckButton(self);
 end
 
 function gui:SetAchievementFrameWidth()
