@@ -17,3 +17,11 @@
 <li>Added Northrend Cup</li>
 <li>Now shows the achievement &gt; criteria</li>
 </ul>
+<p><h3>Added (72.1)</h3></p>
+<ul>
+<li>Map data to Remix: Pandaria achievements</li>
+</ul>
+<p><h3>Tooltip Data (72.1)</h3></p>
+<ul>
+<li>Code cleanup and API improvements</li>
+</ul>
