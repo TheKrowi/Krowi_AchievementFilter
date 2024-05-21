@@ -30,3 +30,8 @@
 [LIST]
 [*]Code cleanup and API improvements
 [/LIST]
+
+[B]Added (72.2)[/B]
+[LIST]
+[*]Remix: Pandaria achievements now show the remix icon on the achievement
+[/LIST]

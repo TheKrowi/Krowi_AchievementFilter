@@ -18,3 +18,6 @@
 
 ### Tooltip Data (72.1)
 - Code cleanup and API improvements
+
+### Added (72.2)
+- Remix: Pandaria achievements now show the remix icon on the achievement
