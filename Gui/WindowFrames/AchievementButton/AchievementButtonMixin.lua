@@ -508,26 +508,91 @@ local function SetFaction(self, achievement)
 	self.Faction:Hide();
 end
 
-local function SetExtraIcon(self, achievement)
-	if achievement.AlwaysVisible then
-		self.ExtraIcon.Texture:SetAtlas("flightpath");
-		self.ExtraIcon.Text = addon.L["Achievement shown temporarily"];
-		self.ExtraIcon:Show();
+local function ResetExtraIcons(self)
+	self.ExtraIcon1.Used = nil;
+	self.ExtraIcon1:Hide();
+	self.ExtraIcon2.Used = nil;
+	self.ExtraIcon2:Hide();
+end
+
+local function GetExtraIcon(self)
+	if not self.ExtraIcon1.Used then
+		self.ExtraIcon1.Used = true;
+		self.ExtraIcon1:Show();
+		return self.ExtraIcon1;
+	end
+	if not self.ExtraIcon2.Used then
+		self.ExtraIcon2.Used = true;
+		self.ExtraIcon2:Show();
+		return self.ExtraIcon2;
+	end
+end
+
+local function SetExtraIconAlwaysVisible(self, achievement)
+	if not achievement.AlwaysVisible then
 		return;
 	end
-	if achievement.IsWatched then
-		self.ExtraIcon.Texture:SetAtlas("groupfinder-eye-frame");
-		self.ExtraIcon.Text = addon.L["Achievement is watched"]:K_ReplaceVars(addon.L["Watch List"]);
-		self.ExtraIcon:Show();
+
+	local extraIcon = GetExtraIcon(self);
+	if not extraIcon then
 		return;
 	end
-	if achievement.IsExcluded then
-		self.ExtraIcon.Texture:SetAtlas("XMarksTheSpot");
-		self.ExtraIcon.Text = addon.L["Achievement is excluded"];
-		self.ExtraIcon:Show();
+
+	extraIcon.Texture:SetAtlas("flightpath");
+	extraIcon.Text = addon.L["Achievement shown temporarily"];
+end
+
+local function SetExtraIconIsWatched(self, achievement)
+	if not achievement.IsWatched then
 		return;
 	end
-	self.ExtraIcon:Hide();
+
+	local extraIcon = GetExtraIcon(self);
+	if not extraIcon then
+		return;
+	end
+
+	extraIcon.Texture:SetAtlas("groupfinder-eye-frame");
+	extraIcon.Text = addon.L["Achievement is watched"]:K_ReplaceVars(addon.L["Watch List"]);
+end
+
+local function SetExtraIconIsExcluded(self, achievement)
+	if not achievement.IsExcluded then
+		return;
+	end
+
+	local extraIcon = GetExtraIcon(self);
+	if not extraIcon then
+		return;
+	end
+
+	extraIcon.Texture:SetAtlas("XMarksTheSpot");
+	extraIcon.Text = addon.L["Achievement is excluded"];
+end
+
+local function SetExtraIconRemixPandaria(self, achievement)
+	if not achievement.TemporaryObtainable
+	or not achievement.TemporaryObtainable.Start
+	or achievement.TemporaryObtainable.Start.Function ~= "Event"
+	or achievement.TemporaryObtainable.Start.Value ~= "1514" then
+		return;
+	end
+
+	local extraIcon = GetExtraIcon(self);
+	if not extraIcon then
+		return;
+	end
+
+	extraIcon.Texture:SetAtlas("timerunning-glues-icon");
+	extraIcon.Text = addon.L["Achievement is excluded"];
+end
+
+local function SetExtraIcons(self, achievement)
+	ResetExtraIcons(self);
+	SetExtraIconRemixPandaria(self, achievement);
+	SetExtraIconAlwaysVisible(self, achievement);
+	SetExtraIconIsWatched(self, achievement);
+	SetExtraIconIsExcluded(self, achievement);
 end
 
 function KrowiAF_AchievementButtonMixin:SetAchievementData(achievement, id, name, points, completed, month, day, year, description, flags, icon, rewardText, wasEarnedByMe)
@@ -550,7 +615,7 @@ function KrowiAF_AchievementButtonMixin:SetAchievementData(achievement, id, name
 	SetCompletionState(self, achievement, completed, month, day, year, wasEarnedByMe, saturatedStyle);
 	SetRewardText(self, rewardText);
 	SetFaction(self, achievement);
-	SetExtraIcon(self, achievement);
+	SetExtraIcons(self, achievement);
 end
 
 function KrowiAF_AchievementButtonMixin:SetAchievement(achievement, refresh)

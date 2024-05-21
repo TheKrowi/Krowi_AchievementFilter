@@ -310,10 +310,25 @@
 					<OnClick method="OnClick"/>
 				</Scripts>
 			</CheckButton>
-			<Frame hidden="true" name="$parentExtraIcon" parentKey="ExtraIcon" mixin="KrowiAF_AchievementButtonExtraIconMixin">
+			<Frame hidden="true" name="$parentExtraIcon1" parentKey="ExtraIcon1" mixin="KrowiAF_AchievementButtonExtraIconMixin">
 				<Size x="15" y="15"/>
 				<Anchors>
 					<Anchor point="TOP" relativeKey="$parent.PlusMinus" relativePoint="BOTTOM" x="-1" y="-5"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentTexture" parentKey="Texture" atlas="flightpath" setAllPoints="true"/>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter method="OnEnter"/>
+					<OnLeave method="OnLeave"/>
+				</Scripts>
+			</Frame>
+			<Frame hidden="true" name="$parentExtraIcon2" parentKey="ExtraIcon2" mixin="KrowiAF_AchievementButtonExtraIconMixin">
+				<Size x="15" y="15"/>
+				<Anchors>
+					<Anchor point="LEFT" relativeKey="$parent.ExtraIcon1" relativePoint="RIGHT" x="-1" y="0"/>
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
