@@ -489,8 +489,8 @@ do -- [[ Achievements]]
         button.Shield:SetPoint("CENTER", button.cBackground, "CENTER", 0, 0);
 
         -- Move extra icon
-        button.ExtraIcon:ClearAllPoints();
-        button.ExtraIcon:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", 3, 8);
+        button.ExtraIcon1:ClearAllPoints();
+        button.ExtraIcon1:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", 3, 8);
 
         -- Extra flare when achievement is completed
         button.completeFlare = button:CreateTexture("completeFlare", "BACKGROUND", nil, 0);

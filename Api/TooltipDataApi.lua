@@ -2,11 +2,7 @@ local _, addon = ...;
 
 KrowiAF.AdditionalTooltipData = {};
 
-function KrowiAF.GetGetFactions()
-    return addon.Objects.Faction;
-end
-
-local function AddTooltipData(objectId, objectType, achievementId, criteriaIndex, faction)
+local function AddTooltipDatum(objectId, objectType, achievementId, criteriaIndex, faction)
     addon.Data.TooltipData[objectId] = addon.Data.TooltipData[objectId] or {};
     tinsert(addon.Data.TooltipData[objectId], {
         ObjectType = objectType,
@@ -16,41 +12,41 @@ local function AddTooltipData(objectId, objectType, achievementId, criteriaIndex
     });
 end
 
-function KrowiAF.AddTooltipData(achievementId, criteriaIndex, objectType, objectIds, faction)
-    if type(objectIds) ~= "table" then
+function KrowiAF.AddTooltipDatum(achievementId, criteriaIndex, objectType, objectIds, faction)
+    if not addon.Util.IsTable(objectIds) then
         objectIds = {objectIds};
     end
 
     for _, objectId in next, objectIds do
-        AddTooltipData(objectId, objectType, achievementId, criteriaIndex, faction);
+        AddTooltipDatum(objectId, objectType, achievementId, criteriaIndex, faction);
     end
 end
 
-local function AddTooltipDataTable(achievementId, properties, criteria)
+local function AddTooltipData(achievementId, properties, criteria)
     for _, criterium in next, criteria do
-        KrowiAF.AddTooltipData(achievementId, criterium[1], criterium[3] or properties.ObjectType, criterium[2], criterium[4] or properties.Faction);
+        KrowiAF.AddTooltipDatum(achievementId, criterium[1], criterium[3] or properties.ObjectType, criterium[2], criterium[4] or properties.Faction);
     end
 end
 
-function KrowiAF.AddTooltipDataTable(achievementIds, properties, criteria)
+function KrowiAF.AddTooltipData(achievementIds, properties, criteria)
     if criteria == nil then
         criteria = properties;
         properties = nil;
     end
 
-    if type(properties) ~= "table" then
+    if not addon.Util.IsTable(properties) then
         properties = {
             ObjectType = properties
         };
     end
 
-    if type(achievementIds) ~= "table" then
+    if not addon.Util.IsTable(achievementIds) then
         achievementIds = {achievementIds};
     end
 
-    if type(achievementIds) == "table" then
+    if addon.Util.IsTable(achievementIds) then
         for _, achievementId in next, achievementIds do
-            AddTooltipDataTable(achievementId, properties, criteria);
+            AddTooltipData(achievementId, properties, criteria);
         end
     end
 end

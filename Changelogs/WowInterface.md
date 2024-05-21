@@ -20,3 +20,18 @@
 [*]Added Northrend Cup
 [*]Now shows the achievement > criteria
 [/LIST]
+
+[B]Added (72.1)[/B]
+[LIST]
+[*]Map data to Remix: Pandaria achievements
+[/LIST]
+
+[B]Tooltip Data (72.1)[/B]
+[LIST]
+[*]Code cleanup and API improvements
+[/LIST]
+
+[B]Added (72.2)[/B]
+[LIST]
+[*]Remix: Pandaria achievements now show the remix icon on the achievement
+[/LIST]

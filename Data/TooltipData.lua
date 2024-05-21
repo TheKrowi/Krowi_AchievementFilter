@@ -12,8 +12,8 @@ end
 
 local function AddTooltipLine(tooltip, tooltipLine)
     if tooltipLine.Faction then
-        if addon.Faction.IsAlliance and tooltipLine.Faction ~= addon.Objects.Faction.Alliance
-        or addon.Faction.IsHorde and tooltipLine.Faction ~= addon.Objects.Faction.Horde then
+        if addon.Faction.IsAlliance and tooltipLine.Faction ~= PLAYER_FACTION_GROUP.Alliance
+        or addon.Faction.IsHorde and tooltipLine.Faction ~= PLAYER_FACTION_GROUP.Horde then
             return;
         end
     end

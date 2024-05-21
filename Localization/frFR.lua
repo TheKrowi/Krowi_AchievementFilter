@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-05-12 10-57-26 ]] --
+-- [[ Exported at 2024-05-15 19-05-33 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -183,6 +183,7 @@ L["Criteria is Completed Desc"] = "Afficher les critères du Haut-fait même s'i
 L["Criteria of"] = "Critère de"
 L["Cross-Expansion"] = "Cross-Extention"
 L["Ctrl"] = true
+L["Current Obtainable"] = "Actuellement disponible"
 L["Current Zone"] = "Zone actuelle"
 L["CurseForge"] = true
 L["CurseForge Desc"] = "Ouvre une fenêtre avec un lien vers la page {addonName} {curseForge}."
@@ -454,6 +455,7 @@ L["Full Search"] = "Recherche complète"
 L["Full Search Desc"] = "En sélectionnant \"{showAllResults}\", vous pouvez afficher tous les résultats de la recherche. Voir le tutoriel {quickSearchTutorial} pour plus de détails."
 L["Fury Incarnate"] = "Fureur incarnée"
 L["Fury of Hellfire"] = "Fureur des flammes infernales"
+L["Future Obtainable"] = "Prochainement disponible"
 L["Fyrakk Assault"] = "Assaut de Fyrakka"
 L["Garden Gallivant"] = "Promenade des jardins"
 L["Garrisons Update"] = "Mise à jour des fiefs"
@@ -614,7 +616,7 @@ L["Northrend Cup"] = "Coupe de Norfendre"
 L["Not Earned By"] = "Non réalisé par"
 L["Not earned by:"] = "Non obtenu par :"
 L["Not loaded"] = "Non chargé"
-L["Not Obtainable"] = "Non obtenable"
+L["Not Obtainable"] = "Non disponible"
 L["Not part of set"] = "Ne fait pas parti de l'ensemble d'armure"
 L["Number of Earned By characters"] = "Nombre de personnages ayant accompli le haut fait"
 L["Number of Earned By characters Desc"] = [=[Le nombre de personnages ayant obtenu le haut fait sera affiché.
@@ -659,6 +661,7 @@ L["Overwatch"] = true
 L["Pandaren"] = true
 L["Pandaria Cup"] = "Coupe de Pandarie"
 L["Part of a chain"] = "Ce Haut-fait fait partie d'une suite de Hauts-faits"
+L["Past Obtainable"] = "Anciennement disponible"
 L["Paste to Chat"] = "Coller dans le chat"
 L["Patch"] = true
 L["Pilgrim's Bounty"] = "Les Bienfaits du pèlerin"
@@ -923,7 +926,7 @@ L["The Tomb of Sargeras"] = "La tombe de Sargeras"
 L["The Vakthros Ascent"] = "Ascension du Vakthros"
 L["This achievement"] = "Ce haut fait"
 L["This achievement can't be earned by this character."] = "Ce haut fait ne peut pas être réalisé par ce personnage"
-L["This achievement is no longer obtainable"] = "Cet haut fait n'est plus réalisable"
+L["This achievement is no longer obtainable"] = "Ce haut fait n'est plus réalisable"
 L["This category has no achievements"] = "Cette catégorie n'a pas de hauts faits."
 L["This character's class has no transmog set that meet the requirements."] = "La classe de ce personnage n'a pas d'ensembles de transmogrification qui répondent aux exigences."
 L["Thundering Pandaren Spirit"] = "Esprit pandaren fulminant"

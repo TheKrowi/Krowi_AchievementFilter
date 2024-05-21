@@ -12,3 +12,12 @@
 - Added Dragon Racing Challenges
 - Added Northrend Cup
 - Now shows the achievement > criteria
+
+### Added (72.1)
+- Map data to Remix: Pandaria achievements
+
+### Tooltip Data (72.1)
+- Code cleanup and API improvements
+
+### Added (72.2)
+- Remix: Pandaria achievements now show the remix icon on the achievement

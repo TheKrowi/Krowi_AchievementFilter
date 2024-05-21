@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 72.2 - 2024-05-21
+### Added
+- Remix: Pandaria achievements now show the remix icon on the achievement
+
+## 72.1 - 2024-05-20
+### Added
+- Map data to Remix: Pandaria achievements
+
+### Tooltip Data
+- Code cleanup and API improvements
+
 ## 72.0 - 2024-05-12
 ### Added
 - Hunt the Harbinger achievement
