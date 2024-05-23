@@ -85,7 +85,8 @@ local function AddCategoriesTree(category, achievement, extraFunc)
             end
         end
         if alreadyAdded == nil then
-            local newCategory = addon.Objects.Category:New(cat.Name);
+            local newCategory = addon.Objects.Category:New(cat.Id + 9999, cat.Name);
+            addon.Data.Categories[cat.Id + 9999] = newCategory;
             extraFunc(newCategory);
             category = category:AddCategory(newCategory);
         end

@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 72.3 - 2024-05-23
+### Fixed
+- Superior (Shadowlands) and Epic (Shadowlands) are now marked as no longer obtainable
+- Watch List and Excluded categories no longer show Unknown as their names
+
 ## 72.2 - 2024-05-21
 ### Added
 - Remix: Pandaria achievements now show the remix icon on the achievement

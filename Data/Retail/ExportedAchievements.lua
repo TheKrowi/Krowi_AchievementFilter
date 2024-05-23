@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-05-09 11-00-53 ]] --
+-- [[ Exported at 2024-05-23 13-16-35 ]] --
 tasks = {
     {N, 40382, 208}, -- Hunt the Harbinger
     {O, 40223, "From", "Event", "1514", "Until", "Event", "1514"},
@@ -2463,7 +2463,9 @@ tasks = {
     {N, 14800, 186}, -- Sojourner of Ardenweald
     {N, 14799, 186}, -- Sojourner of Maldraxxus
     {N, 14798, 186}, -- Sojourner of Revendreth
+    {O, 14797, "From", "Version", "090002", "Before", "Version", "100000"},
     {N, 14797, 186}, -- Epic (Shadowlands)
+    {O, 14796, "From", "Version", "090002", "Before", "Version", "100000"},
     {N, 14796, 186}, -- Superior (Shadowlands)
     {N, 14795, 186}, -- Clearing the Fog
     {N, 14791, 186}, -- Toss a Seed to Your Hunter...

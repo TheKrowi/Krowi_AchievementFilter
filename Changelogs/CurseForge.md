@@ -29,3 +29,8 @@
 <ul>
 <li>Remix: Pandaria achievements now show the remix icon on the achievement</li>
 </ul>
+<p><h3>Fixed (72.3)</h3></p>
+<ul>
+<li>Superior (Shadowlands) and Epic (Shadowlands) are now marked as no longer obtainable</li>
+<li>Watch List and Excluded categories no longer show Unknown as their names</li>
+</ul>
