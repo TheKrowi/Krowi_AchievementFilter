@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 72.4 - 2024-05-25
+### Fixed
+- Remix: Pandaria achievements now show the remix icon on the achievement with the duration of the event
+
 ## 72.3 - 2024-05-23
 ### Fixed
 - Superior (Shadowlands) and Epic (Shadowlands) are now marked as no longer obtainable

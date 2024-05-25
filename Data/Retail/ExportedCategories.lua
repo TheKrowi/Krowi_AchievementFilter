@@ -55,7 +55,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-05-09 11-01-15 ]] --
+-- [[ Exported at 2024-05-24 14-25-02 ]] --
 tasks = {
     {F, 1557, "UncategorizedCategories"},
     {C, 971, 1557},
@@ -2252,27 +2252,27 @@ tasks = {
     {A, 1597, 19959}, -- Siege of Orgrimmar
     {A, 1597, 19958}, -- Raid Finder: Siege of Orgrimmar
     {C, 1581, 1597},
-    {N, 1597, a.GetInstanceInfoName(369)}, -- Siege of Orgrimmar
+    {N, 1597, a.GetInstanceInfoName(369), true}, -- Siege of Orgrimmar
     {A, 1596, 19957}, -- Heroic: Throne of Thunder
     {A, 1596, 19956}, -- Throne of Thunder
     {A, 1596, 19955}, -- Raid Finder: Throne of Thunder
     {C, 1581, 1596},
-    {N, 1596, a.GetInstanceInfoName(362)}, -- Throne of Thunder
+    {N, 1596, a.GetInstanceInfoName(362), true}, -- Throne of Thunder
     {A, 1595, 19954}, -- Heroic: Terrace of Endless Spring
     {A, 1595, 19953}, -- Terrace of Endless Spring
     {A, 1595, 19952}, -- Raid Finder: Terrace of Endless Spring
     {C, 1581, 1595},
-    {N, 1595, a.GetInstanceInfoName(320)}, -- Terrace of Endless Spring
+    {N, 1595, a.GetInstanceInfoName(320), true}, -- Terrace of Endless Spring
     {A, 1594, 19951}, -- Heroic: Heart of Fear
     {A, 1594, 19950}, -- Heart of Fear
     {A, 1594, 19949}, -- Raid Finder: Heart of Fear
     {C, 1581, 1594},
-    {N, 1594, a.GetInstanceInfoName(330)}, -- Heart of Fear
+    {N, 1594, a.GetInstanceInfoName(330), true}, -- Heart of Fear
     {A, 1593, 19948}, -- Heroic: Mogu'shan Vaults
     {A, 1593, 19947}, -- Mogu'shan Vaults
     {A, 1593, 19946}, -- Raid Finder: Mogu'shan Vaults
     {C, 1581, 1593},
-    {N, 1593, a.GetInstanceInfoName(317)}, -- Mogu'shan Vaults
+    {N, 1593, a.GetInstanceInfoName(317), true}, -- Mogu'shan Vaults
     {A, 1581, 20007}, -- Heroic: Pandaria Raids
     {A, 1581, 20006}, -- Pandaria Raids
     {C, 1578, 1581},
@@ -2352,7 +2352,7 @@ tasks = {
     {N, 1590, a.GetMapName(504)}, -- Isle of Thunder
     {A, 1589, 20020}, -- Oondasta
     {C, 1579, 1589},
-    {N, 1589, a.GetMapName(507)}, -- Isle of Giants
+    {N, 1589, a.GetMapName(507), true}, -- Isle of Giants
     {A, 1588, 19876}, -- Vale of Eternal Blossoms
     {A, 1588, 20014}, -- Looking For Group: Vale of Eternal Blossoms
     {A, 1588, 20069}, -- Elusive Foes: Vale of Eternal Blossoms
