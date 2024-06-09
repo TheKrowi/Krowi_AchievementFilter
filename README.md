@@ -20,4 +20,4 @@
   <img src="https://img.shields.io/badge/WowInterface-Krowi's%20Achievement%20Filter-yellow" />
 </a>
 
-[Click here for full description](Descriptions/Wago.io.md)
+[Click here for full description](Descriptions/Wago.md)
