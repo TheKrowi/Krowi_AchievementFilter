@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-05-23 13-16-32 ]] --
+-- [[ Exported at 2024-06-09 21-20-05 ]] --
 tasks = {
     {N, 19440, 204, f.Horde}, -- Defense Protocol Gamma: Terminated
     {N, 19439, 204, f.Alliance}, -- Defense Protocol Gamma: Terminated
@@ -411,7 +411,7 @@ tasks = {
     {N, 5318, 110, f.Alliance, 5319}, -- "20,000 Leagues Under the Sea"
     {N, 5317, 110}, -- Help the Bombardier! I'm the Bombardier!
     {N, 5315, 110}, -- Digger
-    {O, 5313 },
+    {O, 5313, "From", "Version", "040003", "Before", "Version", "050005"},
     {N, 5313, 110}, -- I Can't Hear You Over the Sound of How Awesome I Am
     {N, 5312, 110}, -- The Abyss Will Gaze Back Into You
     {N, 5311, 110}, -- Elementary

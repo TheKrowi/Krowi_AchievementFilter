@@ -38,3 +38,11 @@
 <ul>
 <li>Remix: Pandaria achievements now show the remix icon on the achievement with the duration of the event</li>
 </ul>
+<p><h3>Added (72.5)</h3></p>
+<ul>
+<li>Temporary obtainable achievements that require a calendar event to be active now have an icon on the achievement making it more obvious</li>
+</ul>
+<p><h3>Cata Classic (72.5)</h3></p>
+<ul>
+<li>I Can't Hear You Over the Sound of How Awesome I Am is once again obtainable</li>
+</ul>

@@ -598,11 +598,41 @@ local function SetExtraIconRemixPandaria(self, achievement)
 		text,
 		occurrence
 	};
+	return true;
+end
+
+local function SetExtraIconEvent(self, achievement)
+	if not achievement.TemporaryObtainable
+	or not achievement.TemporaryObtainable.Start
+	or achievement.TemporaryObtainable.Start.Function ~= "Event" then
+		return;
+	end
+
+	local event = addon.Data.CalendarEvents[tonumber(achievement.TemporaryObtainable.Start.Value)];
+
+	if not event then
+		return;
+	end
+
+	local extraIcon = GetExtraIcon(self);
+	if not extraIcon then
+		return;
+	end
+
+	extraIcon.Texture:SetTexture(event.Icon);
+	local text, occurrence;
+	text, extraIcon.Color, occurrence = addon.Data.TemporaryObtainable:GetNotObtainableText(achievement);
+	extraIcon.Lines = {
+		text,
+		occurrence
+	};
 end
 
 local function SetExtraIcons(self, achievement)
 	ResetExtraIcons(self);
-	SetExtraIconRemixPandaria(self, achievement);
+	if not SetExtraIconRemixPandaria(self, achievement) then
+		SetExtraIconEvent(self, achievement);
+	end
 	SetExtraIconAlwaysVisible(self, achievement);
 	SetExtraIconIsWatched(self, achievement);
 	SetExtraIconIsExcluded(self, achievement);
