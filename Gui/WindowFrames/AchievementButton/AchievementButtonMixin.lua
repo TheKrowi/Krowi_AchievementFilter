@@ -82,7 +82,15 @@ KrowiAF_AchievementButtonExtraIconMixin = {};
 
 function KrowiAF_AchievementButtonExtraIconMixin:OnEnter()
 	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-	GameTooltip:SetText(self.Text, nil, nil, nil, nil, true);
+	local color = self.Color or {};
+	if self.Lines then
+		for i = 1, #self.Lines do
+			GameTooltip:AddLine(self.Lines[i], color.R, color.G, color.B);
+		end
+		GameTooltip:Show();
+		return;
+	end
+	GameTooltip:SetText(self.Text, color.R, color.G, color.B, nil, true);
 end
 
 function KrowiAF_AchievementButtonExtraIconMixin:OnLeave()
@@ -584,12 +592,47 @@ local function SetExtraIconRemixPandaria(self, achievement)
 	end
 
 	extraIcon.Texture:SetAtlas("timerunning-glues-icon");
-	extraIcon.Text = addon.L["Achievement is excluded"];
+	local text, occurrence;
+	text, extraIcon.Color, occurrence = addon.Data.TemporaryObtainable:GetNotObtainableText(achievement);
+	extraIcon.Lines = {
+		text,
+		occurrence
+	};
+	return true;
+end
+
+local function SetExtraIconEvent(self, achievement)
+	if not achievement.TemporaryObtainable
+	or not achievement.TemporaryObtainable.Start
+	or achievement.TemporaryObtainable.Start.Function ~= "Event" then
+		return;
+	end
+
+	local event = addon.Data.CalendarEvents[tonumber(achievement.TemporaryObtainable.Start.Value)];
+
+	if not event then
+		return;
+	end
+
+	local extraIcon = GetExtraIcon(self);
+	if not extraIcon then
+		return;
+	end
+
+	extraIcon.Texture:SetTexture(event.Icon);
+	local text, occurrence;
+	text, extraIcon.Color, occurrence = addon.Data.TemporaryObtainable:GetNotObtainableText(achievement);
+	extraIcon.Lines = {
+		text,
+		occurrence
+	};
 end
 
 local function SetExtraIcons(self, achievement)
 	ResetExtraIcons(self);
-	SetExtraIconRemixPandaria(self, achievement);
+	if not SetExtraIconRemixPandaria(self, achievement) then
+		SetExtraIconEvent(self, achievement);
+	end
 	SetExtraIconAlwaysVisible(self, achievement);
 	SetExtraIconIsWatched(self, achievement);
 	SetExtraIconIsExcluded(self, achievement);

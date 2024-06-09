@@ -34,3 +34,15 @@
 <li>Superior (Shadowlands) and Epic (Shadowlands) are now marked as no longer obtainable</li>
 <li>Watch List and Excluded categories no longer show Unknown as their names</li>
 </ul>
+<p><h3>Fixed (72.4)</h3></p>
+<ul>
+<li>Remix: Pandaria achievements now show the remix icon on the achievement with the duration of the event</li>
+</ul>
+<p><h3>Added (72.5)</h3></p>
+<ul>
+<li>Temporary obtainable achievements that require a calendar event to be active now have an icon on the achievement making it more obvious</li>
+</ul>
+<p><h3>Cata Classic (72.5)</h3></p>
+<ul>
+<li>I Can't Hear You Over the Sound of How Awesome I Am is once again obtainable</li>
+</ul>

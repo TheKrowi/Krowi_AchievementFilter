@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 72.5 - 2024-06-09
+### Added
+- Temporary obtainable achievements that require a calendar event to be active now have an icon on the achievement making it more obvious
+
+### Cata Classic
+- I Can't Hear You Over the Sound of How Awesome I Am is once again obtainable
+
+## 72.4 - 2024-05-25
+### Fixed
+- Remix: Pandaria achievements now show the remix icon on the achievement with the duration of the event
+
 ## 72.3 - 2024-05-23
 ### Fixed
 - Superior (Shadowlands) and Epic (Shadowlands) are now marked as no longer obtainable
