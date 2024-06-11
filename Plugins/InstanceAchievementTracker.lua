@@ -46,5 +46,5 @@ function iat:AddRightClickMenuItems(rightClickMenu, achievement)
 end
 
 function iat.IsLoaded()
-    return IsAddOnLoaded("InstanceAchievementTracker") and GetAddOnMetadata("InstanceAchievementTracker", "Version") >= "3.18.0";
+    return C_AddOns.IsAddOnLoaded("InstanceAchievementTracker") and C_AddOns.GetAddOnMetadata("InstanceAchievementTracker", "Version") >= "3.18.0";
 end

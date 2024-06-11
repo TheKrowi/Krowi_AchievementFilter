@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 73.0 - 2024-06-11
+### Fixed
+- Several bugs in preperation for The War Within (Beta) changes
+
 ## 72.5 - 2024-06-09
 ### Added
 - Temporary obtainable achievements that require a calendar event to be active now have an icon on the achievement making it more obvious

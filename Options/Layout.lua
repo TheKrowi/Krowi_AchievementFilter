@@ -15,8 +15,8 @@ end
 
 function layout.PostLoad()
     if addon.Options.db.profile.Calendar.FirstWeekDay < 1 or addon.Options.db.profile.Calendar.FirstWeekDay > 7 then
-        if not IsAddOnLoaded("Blizzard_Calendar") then -- This is to make sure we get the 1st day of the week correct
-            LoadAddOn("Blizzard_Calendar"); -- breaks Blizzard_Calendar
+        if not C_AddOns.IsAddOnLoaded("Blizzard_Calendar") then -- This is to make sure we get the 1st day of the week correct
+            C_AddOns.LoadAddOn("Blizzard_Calendar"); -- breaks Blizzard_Calendar
         end
         addon.Options.db.profile.Calendar.FirstWeekDay = CALENDAR_FIRST_WEEKDAY;
     end
@@ -57,7 +57,7 @@ end
 
 local function WatchListClearAllFunc()
     if not addon.Data.WatchListCategories then
-        LoadAddOn("Blizzard_AchievementUI");
+        C_AddOns.LoadAddOn("Blizzard_AchievementUI");
     end
     for i = 1, #addon.Data.WatchListCategories do
         addon.Data.WatchListCategories[i].Achievements = nil;
@@ -156,7 +156,7 @@ end
 
 local function ExcludedIncludeAllFunc()
     if not addon.Data.ExcludedCategories then
-        LoadAddOn("Blizzard_AchievementUI");
+        C_AddOns.LoadAddOn("Blizzard_AchievementUI");
     end
 
     for i = 1, #addon.Data.ExcludedCategories do
@@ -294,8 +294,8 @@ local function MovableAchievementWindowRememberLastPositionSet(_, value)
     if addon.Options.db.profile.Window.RememberLastPosition.AchievementWindow == value then return; end
     addon.Options.db.profile.Window.RememberLastPosition.AchievementWindow = value;
     if not addon.Options.db.profile.Window.RememberLastPosition.AchievementWindow then
-        if not IsAddOnLoaded("Blizzard_AchievementUI") then
-            LoadAddOn("Blizzard_AchievementUI");
+        if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
+            C_AddOns.LoadAddOn("Blizzard_AchievementUI");
         end
         AchievementFrame:ResetPosition();
     end
@@ -305,8 +305,8 @@ local function MovableCalendarRememberLastPositionSet(_, value)
     if addon.Options.db.profile.Window.RememberLastPosition.Calendar == value then return; end
     addon.Options.db.profile.Window.RememberLastPosition.Calendar = value;
     if not addon.Options.db.profile.Window.RememberLastPosition.Calendar then
-        if not IsAddOnLoaded("Blizzard_AchievementUI") then
-            LoadAddOn("Blizzard_AchievementUI");
+        if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
+            C_AddOns.LoadAddOn("Blizzard_AchievementUI");
         end
         KrowiAF_AchievementCalendarFrame:ResetPosition();
     end
@@ -316,8 +316,8 @@ local function MovableDataManagerRememberLastPositionSet(_, value)
     if addon.Options.db.profile.Window.RememberLastPosition.DataManager == value then return; end
     addon.Options.db.profile.Window.RememberLastPosition.DataManager = value;
     if not addon.Options.db.profile.Window.RememberLastPosition.DataManager then
-        if not IsAddOnLoaded("Blizzard_AchievementUI") then
-            LoadAddOn("Blizzard_AchievementUI");
+        if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
+            C_AddOns.LoadAddOn("Blizzard_AchievementUI");
         end
         KrowiAF_DataManagerFrame:ResetPosition();
     end
@@ -540,8 +540,8 @@ local windowOptions = {
                     name = addon.L["Reset position"],
                     desc = addon.L["Reset position Desc"]:K_ReplaceVars(addon.L["Achievement Window"]),
                     func = function()
-                        if not IsAddOnLoaded("Blizzard_AchievementUI") then
-                            LoadAddOn("Blizzard_AchievementUI");
+                        if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
+                            C_AddOns.LoadAddOn("Blizzard_AchievementUI");
                         end
                         AchievementFrame:ResetPosition();
                     end
@@ -558,8 +558,8 @@ local windowOptions = {
                     name = addon.L["Reset position"],
                     desc = addon.L["Reset position Desc"]:K_ReplaceVars(addon.L["Achievement Calendar"]),
                     func = function()
-                        if not IsAddOnLoaded("Blizzard_AchievementUI") then
-                            LoadAddOn("Blizzard_AchievementUI");
+                        if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
+                            C_AddOns.LoadAddOn("Blizzard_AchievementUI");
                         end
                         KrowiAF_AchievementCalendarFrame:ResetPosition();
                     end
@@ -576,8 +576,8 @@ local windowOptions = {
                     name = addon.L["Reset position"],
                     desc = addon.L["Reset position Desc"]:K_ReplaceVars(addon.L["Data Manager"]),
                     func = function()
-                        if not IsAddOnLoaded("Blizzard_AchievementUI") then
-                            LoadAddOn("Blizzard_AchievementUI");
+                        if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
+                            C_AddOns.LoadAddOn("Blizzard_AchievementUI");
                         end
                         KrowiAF_DataManagerFrame:ResetPosition();
                     end

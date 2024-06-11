@@ -838,14 +838,14 @@ local function SkinFilterButton(button)
     end);
 
     button:HookScript("OnShow", function()
-        GW2_ADDON.AchievementFrameFilterDropDownDummy:Hide();
+        GW2_ADDON.AchievementFrameFilterDropdownDummy:Hide();
     end);
 
     button:HookScript("OnHide", function()
-        if AchievementFrameFilterDropDown:IsShown() then
-            GW2_ADDON.AchievementFrameFilterDropDownDummy:Hide();
+        if AchievementFrameFilterDropdown:IsShown() then
+            GW2_ADDON.AchievementFrameFilterDropdownDummy:Hide();
         else
-            GW2_ADDON.AchievementFrameFilterDropDownDummy:Show();
+            GW2_ADDON.AchievementFrameFilterDropdownDummy:Show();
         end
     end);
 end
@@ -1011,14 +1011,14 @@ do -- [[ Header ]]
         hooksecurefunc("AchievementFrame_RefreshView", UpdatePointsDisplay);
         hooksecurefunc("AchievementFrame_UpdateTabs", UpdatePointsDisplay);
 
-        AchievementFrameFilterDropDown:ClearAllPoints()
-        AchievementFrameFilterDropDown:SetPoint("BOTTOMLEFT", AchievementFrame.SearchBox, "TOPLEFT", 0, 10)
-        AchievementFrameFilterDropDown:SetPoint("BOTTOMRIGHT", AchievementFrame.SearchBox, "TOPRIGHT", 0, 10)
+        AchievementFrameFilterDropdown:ClearAllPoints()
+        AchievementFrameFilterDropdown:SetPoint("BOTTOMLEFT", AchievementFrame.SearchBox, "TOPLEFT", 0, 10)
+        AchievementFrameFilterDropdown:SetPoint("BOTTOMRIGHT", AchievementFrame.SearchBox, "TOPRIGHT", 0, 10)
 
-        AchievementFrameFilterDropDown.backdrop:ClearAllPoints()
-        AchievementFrameFilterDropDown.backdrop:SetPoint("TOPLEFT", AchievementFrameFilterDropDown, "TOPLEFT", 0, 0)
-        AchievementFrameFilterDropDown.backdrop:SetPoint("BOTTOMRIGHT", AchievementFrameFilterDropDown, "BOTTOMRIGHT", 0, 0)
-        AchievementFrameFilterDropDown.backdrop:SetAlpha(0.5)
+        AchievementFrameFilterDropdown.backdrop:ClearAllPoints()
+        AchievementFrameFilterDropdown.backdrop:SetPoint("TOPLEFT", AchievementFrameFilterDropdown, "TOPLEFT", 0, 0)
+        AchievementFrameFilterDropdown.backdrop:SetPoint("BOTTOMRIGHT", AchievementFrameFilterDropdown, "BOTTOMRIGHT", 0, 0)
+        AchievementFrameFilterDropdown.backdrop:SetAlpha(0.5)
 
         GW2_ADDON.HandleNextPrevButton(KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton);
         GW2_ADDON.HandleNextPrevButton(KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton);
@@ -1306,7 +1306,7 @@ function gw2_ui.InjectOptions()
 
     addon.InjectOptions:AddTable(pluginTable, "Unsupported", {
         order = OrderPP(), type = "description", width = "full",
-        name = (addon.L["Unsupported GW2_UI Desc"]:K_ReplaceVars(IsAddOnLoaded("GW2_UI") and GetAddOnMetadata("GW2_UI", "Version") or "") ..
+        name = (addon.L["Unsupported GW2_UI Desc"]:K_ReplaceVars(C_AddOns.IsAddOnLoaded("GW2_UI") and C_AddOns.GetAddOnMetadata("GW2_UI", "Version") or "") ..
         (addon.Util.IsMainline and (" " .. addon.L["At least version is required"]:K_ReplaceVars("6.6.1")) or "\n")):SetColorRed(),
         fontSize = "medium",
         hidden = not (GW2_ADDON ~= nil and not gw2_ui.IsLoaded())
@@ -1395,17 +1395,17 @@ function gw2_ui.Load()
 end
 
 function gw2_ui.IsLoaded()
-    if not IsAddOnLoaded("GW2_UI") then
+    if not C_AddOns.IsAddOnLoaded("GW2_UI") then
         return false;
     end
     if not addon.Util.IsMainline then -- No Wrath Classic support for now
         return false;
     end
-    if GetAddOnMetadata("GW2_UI", "Version") == "@project-version@" then
+    if C_AddOns.GetAddOnMetadata("GW2_UI", "Version") == "@project-version@" then
         return true;
     end
 
-    local versionComponents = strsplittable(".", GetAddOnMetadata("GW2_UI", "Version"));
+    local versionComponents = strsplittable(".", C_AddOns.GetAddOnMetadata("GW2_UI", "Version"));
     local referenceComponents = strsplittable(".", "6.6.1");
 
     local i = 1;

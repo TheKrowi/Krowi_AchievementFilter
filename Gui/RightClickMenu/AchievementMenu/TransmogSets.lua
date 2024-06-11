@@ -15,8 +15,8 @@ function section:Add(menu, achievement)
 		transmogSets:AddFull({ 
 			Text = setInfo.name .. " (" .. setInfo.description .. ")",
 			Func = function()
-				if not IsAddOnLoaded("Blizzard_Collections") then
-					LoadAddOn("Blizzard_Collections");
+				if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then
+					C_AddOns.LoadAddOn("Blizzard_Collections");
 				end
 				CollectionsJournal:Show();
 				CollectionsJournal_SetTab(CollectionsJournal, 5);

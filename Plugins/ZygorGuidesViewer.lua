@@ -70,6 +70,6 @@ end
 
 function zygorGuidesViewer.InjectOptions()
     addon.InjectOptions:AddPluginTable("ZygorGuidesViewer", addon.L["Zygor Guides Viewer"], addon.L["Zygor Guides Viewer Desc"], function()
-        return IsAddOnLoaded("ZygorGuidesViewer");
+        return C_AddOns.IsAddOnLoaded("ZygorGuidesViewer");
     end);
 end

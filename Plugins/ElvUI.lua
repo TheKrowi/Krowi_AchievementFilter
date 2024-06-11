@@ -536,9 +536,9 @@ local function ReskinBlizzard(skins)
     else
         elvUI.SkinSearchBoxFrame(AchievementFrame.SearchBox, skins);
     end
-    AchievementFrameFilterDropDown:ClearAllPoints();
-	AchievementFrameFilterDropDown:Point('TOPLEFT', AchievementFrameAchievements, 'TOPLEFT', -16, 25);
-    AchievementFrameFilterDropDown:Size(AchievementFrameFilterDropDown:GetWidth(), AchievementFrameFilterDropDown:GetHeight() - 1);
+    AchievementFrameFilterDropdown:ClearAllPoints();
+	AchievementFrameFilterDropdown:Point('TOPLEFT', AchievementFrameAchievements, 'TOPLEFT', -16, 25);
+    AchievementFrameFilterDropdown:Size(AchievementFrameFilterDropdown:GetWidth(), AchievementFrameFilterDropdown:GetHeight() - 1);
 end
 
 do -- [[ Calendar ]]
