@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 73.1 - 2024-06-15
+### Cata Classic
+- Added several missing achievements
+- Corrected several achievements faction
+
 ## 73.0 - 2024-06-11
 ### Fixed
 - Several bugs in preperation for The War Within (Beta) changes
