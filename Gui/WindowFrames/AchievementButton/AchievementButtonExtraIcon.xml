@@ -1,0 +1,16 @@
+<Ui>
+    <Script file="AchievementButtonExtraIconMixin.lua"/>
+
+	<Frame name="KrowiAF_AchievementButtonExtraIcon_Template" mixin="KrowiAF_AchievementButtonExtraIconMixin" hidden="true" virtual="true">
+		<Size x="15" y="15"/>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentTexture" parentKey="Texture" atlas="flightpath" setAllPoints="true"/>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter method="OnEnter"/>
+			<OnLeave method="OnLeave"/>
+		</Scripts>
+	</Frame>
+</Ui>

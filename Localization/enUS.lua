@@ -1045,3 +1045,7 @@ L["Zaqali Ruin Investigation: Next"] = true
 L["Zaqali Ruin Investigation: Soon"] = true
 L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
+L["Show Temporarily obtainable Icon"] = "Show {tempObt} Icon"
+L["Show Temporarily obtainable Icon Desc"] = "Show / hide an extra icon on the achievement when it's only {tempObt}."
+L["Temporarily obtainable Header Colors"] = "{tempObt} Header Colors"
+L["Temporarily obtainable Header Colors Desc"] = "When enabled, the default orange and blue header colors will be extended with green, yellow, and red colors, indicating respectively that the achievement is currently obtainable, will be obtainable in the future or is no longer obtainable."

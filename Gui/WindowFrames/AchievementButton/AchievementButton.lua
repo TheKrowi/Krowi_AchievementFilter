@@ -16,6 +16,9 @@ function KrowiAF_AchievementButton_OnLoad(self)
 		self.Header:SetPoint("RIGHT", self.DateCompleted, "LEFT", -10, 0);
 		self.Header:SetJustifyH("LEFT");
 	end
+	if addon.Options.db.profile.Achievements.ShowAllianceFactionIcon or addon.Options.db.profile.Achievements.ShowHordeFactionIcon then
+		self.Faction = CreateFrame("Frame", nil, self, "KrowiAF_AchievementButtonFaction_Template");
+	end
 	_, self.FontHeight = self.Description:GetFont();
 	self.MaxDescriptionLinesCollapsed = min(max(1, floor(30 / (self.FontHeight - 0.001))), self.MaxDescriptionLinesCollapsed);
 	self.Description:SetHeight(10 * self.MaxDescriptionLinesCollapsed);

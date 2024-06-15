@@ -1,0 +1,5 @@
+<Ui>
+    <Script file="AchievementButtonExtraIconFactory.lua"/>
+    <Include file="AchievementButtonExtraIcon.xml"/>
+    <Include file="AchievementButton.xml"/>
+</Ui>
