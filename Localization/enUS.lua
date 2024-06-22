@@ -7,7 +7,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-05-15 19-05-26 ]] --
+-- [[ Exported at 2024-06-22 20-37-55 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -888,6 +888,8 @@ L["Show Temporarily obtainable"] = "Show {temporarilyObtainable}"
 L["Show Temporarily obtainable Desc"] = [=[Show / hide {temporarilyObtainable}.
 
 When checked and the achievement is {temporarilyObtainable}, this information will be visible in the tooltip.]=]
+L["Show Temporarily obtainable Icon"] = "Show {tempObt} Icon"
+L["Show Temporarily obtainable Icon Desc"] = "Show / hide an extra icon on the achievement when it's only {tempObt}."
 L["Show world map icon"] = true
 L["Show world map icon Desc"] = "Show / hide the world map icon."
 L["Side Button Anchor"] = true
@@ -932,6 +934,8 @@ L["Tabs"] = true
 L["Ta's Pet Collection"] = true
 L["Temporarily obtainable"] = true
 L["temporarily obtainable"] = true
+L["Temporarily obtainable Header Colors"] = "{tempObt} Header Colors"
+L["Temporarily obtainable Header Colors Desc"] = "When enabled, the default orange and blue header colors will be extended with green, yellow, and red colors, indicating respectively that the achievement is currently obtainable, will be obtainable in the future or is no longer obtainable."
 L["Temporarily Obtainable Text"] = "{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}"
 L["Thaldraszus"] = true
 L["Thaldraszus: Next"] = true
@@ -1045,7 +1049,3 @@ L["Zaqali Ruin Investigation: Next"] = true
 L["Zaqali Ruin Investigation: Soon"] = true
 L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
-L["Show Temporarily obtainable Icon"] = "Show {tempObt} Icon"
-L["Show Temporarily obtainable Icon Desc"] = "Show / hide an extra icon on the achievement when it's only {tempObt}."
-L["Temporarily obtainable Header Colors"] = "{tempObt} Header Colors"
-L["Temporarily obtainable Header Colors Desc"] = "When enabled, the default orange and blue header colors will be extended with green, yellow, and red colors, indicating respectively that the achievement is currently obtainable, will be obtainable in the future or is no longer obtainable."

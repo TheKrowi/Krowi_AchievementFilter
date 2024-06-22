@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-05-15 19-05-29 ]] --
+-- [[ Exported at 2024-06-22 20-38-00 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -868,6 +868,8 @@ L["Show Sub Categories Desc"] = [=[Unterkategorien anzeigen/ausblenden.
 Wenn diese Option aktiviert ist, werden die Erfolge unter ihren ursprünglichen Unterkategorien platziert, anstatt alle zusammen unter der einzigen Kategorie {Kategorie}. ]=]
 L["Show Temporarily obtainable"] = "Zeige {temporarilyObtainable}e Erfolge"
 L["Show Temporarily obtainable Desc"] = "{TemporarilyObtainable} anzeigen/ausblenden. Wenn diese Option aktiviert ist und die Erfolge {temporarilyObtainable} sind, wird diese Information im Tooltip angezeigt."
+L["Show Temporarily obtainable Icon"] = "Zeige {tempObt} Icon"
+L["Show Temporarily obtainable Icon Desc"] = "Zeigt / versteckt ein zusätzliches Symbol auf dem Erfolg, falls dieser nur {tempObt} ist."
 L["Show world map icon"] = "Zeige Welt-Map Icon"
 L["Show world map icon Desc"] = "Zeige / Verstecke das Welt-Map Icon."
 L["Side Button Anchor"] = "Seitlicher Button-Anker"
@@ -912,6 +914,8 @@ L["Tabs"] = true
 L["Ta's Pet Collection"] = "Ta's Haustier Sammlung"
 L["Temporarily obtainable"] = "Befristet erreichbar"
 L["temporarily obtainable"] = "befristet erreichbar"
+L["Temporarily obtainable Header Colors"] = "{tempObt} Erfolgs Kopfzeilen-Farben"
+L["Temporarily obtainable Header Colors Desc"] = "Wenn diese Option aktiviert ist, werden die standardmäßigen orangefarbenen und blauen Titelfarben durch 3 weitere Farben ergänzt, die anzeigen, dass die Errungenschaft derzeit erreichbar ist (grün), in Zukunft erreichbar sein wird (gelb) oder nicht mehr erreichbar ist (rot)."
 L["Temporarily Obtainable Text"] = "{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}"
 L["Thaldraszus"] = true
 L["Thaldraszus: Next"] = "Thaldraszus: Nächstes Event"

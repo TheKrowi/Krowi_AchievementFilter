@@ -10,7 +10,11 @@ local function SelectAchievement(achievement)
 	end
 
 	KrowiAF_AchievementsFrame:ForceUpdate();
-	scrollBox:ScrollToElementData(achievement, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
+	if addon.Util.IsTheWarWithin then
+		scrollBox:ScrollToElementData(achievement, ScrollBoxConstants.AlignCenter, nil, ScrollBoxConstants.NoScrollInterpolation);
+	else
+		scrollBox:ScrollToElementData(achievement, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
+	end
 	-- print("api select")
 	KrowiAF_AchievementsFrame.SelectionBehavior:SelectElementData(achievement);
 	KrowiAF_AchievementsFrame:ScrollToNearest(achievement);
@@ -72,7 +76,11 @@ local function SelectCategory(category, collapsed, quick)
 		return;
 	end
 
-	scrollBox:ScrollToElementData(category, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
+	if addon.Util.IsTheWarWithin then
+		scrollBox:ScrollToElementData(category, ScrollBoxConstants.AlignCenter, nil, ScrollBoxConstants.NoScrollInterpolation);
+	else
+		scrollBox:ScrollToElementData(category, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
+	end
 
 	KrowiAF_CategoriesFrame:ShowSubFrame(category);
 end
