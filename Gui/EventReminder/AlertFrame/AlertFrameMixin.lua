@@ -20,8 +20,8 @@ end
 
 function KrowiAF_EventReminderAlertFrameMixin:HandleLeftClick()
     PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB);
-    if not IsAddOnLoaded("Blizzard_AchievementUI") then
-        LoadAddOn("Blizzard_AchievementUI");
+    if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
+        C_AddOns.LoadAddOn("Blizzard_AchievementUI");
     end
 
     local category = KrowiAF_SelectCategory(self.Event.Category);

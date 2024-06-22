@@ -61,8 +61,8 @@ function KrowiAF_WorldMapButtonMixin:Refresh()
     end
     self:Show();
 
-    if not IsAddOnLoaded("Blizzard_AchievementUI") then
-        LoadAddOn("Blizzard_AchievementUI");
+    if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
+        C_AddOns.LoadAddOn("Blizzard_AchievementUI");
     end
 
     local mapID = WorldMapFrame:GetMapID();

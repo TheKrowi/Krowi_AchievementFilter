@@ -533,14 +533,14 @@ function addon.HookFunctions()
         end);
     end
 
-    AchievementFrameFilterDropDown:HookScript("OnShow", function()
+    AchievementFrameFilterDropdown:HookScript("OnShow", function()
         if addon.Util.IsClassicWithAchievements then
             AchievementFrame.Header.RightDDLInset:Show();
         else
             AchievementFrame.Header.LeftDDLInset:Show();
         end
     end);
-    AchievementFrameFilterDropDown:HookScript("OnHide", function()
+    AchievementFrameFilterDropdown:HookScript("OnHide", function()
         if addon.Util.IsClassicWithAchievements then
             if not KrowiAF_SearchBoxFrame:IsShown() then
                 AchievementFrame.Header.RightDDLInset:Hide();
@@ -571,7 +571,7 @@ local function MakeStatic(frame, rememberLastPositionOption, target)
 end
 
 function addon.MakeWindowStatic()
-    if not IsAddOnLoaded("Blizzard_AchievementUI") then
+    if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
         return;
     end
     MakeStatic(AchievementFrame, "AchievementWindow");
@@ -612,7 +612,7 @@ function addon.MakeMovable(frame, rememberLastPositionOption, target, point)
 end
 
 function addon.MakeWindowMovable()
-    if not IsAddOnLoaded("Blizzard_AchievementUI") then
+    if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
         return;
     end
     addon.MakeMovable(AchievementFrame, "AchievementWindow");

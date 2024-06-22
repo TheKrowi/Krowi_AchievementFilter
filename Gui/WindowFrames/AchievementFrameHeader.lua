@@ -137,8 +137,8 @@ local function CreateTooltip()
 end
 
 function header:AnchorHeader()
-    AchievementFrameFilterDropDown:ClearAllPoints();
-    AchievementFrameFilterDropDown:SetPoint("BOTTOMLEFT", AchievementFrame.Header, "BOTTOMLEFT", 123, 17);
+    AchievementFrameFilterDropdown:ClearAllPoints();
+    AchievementFrameFilterDropdown:SetPoint("BOTTOMLEFT", AchievementFrame.Header, "BOTTOMLEFT", 123, 17);
 
     AchievementFrame.Header:ClearAllPoints();
     if addon.Options.db.profile.CenterHeader then

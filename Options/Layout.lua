@@ -15,8 +15,8 @@ end
 
 function layout.PostLoad()
     if addon.Options.db.profile.Calendar.FirstWeekDay < 1 or addon.Options.db.profile.Calendar.FirstWeekDay > 7 then
-        if not IsAddOnLoaded("Blizzard_Calendar") then -- This is to make sure we get the 1st day of the week correct
-            LoadAddOn("Blizzard_Calendar"); -- breaks Blizzard_Calendar
+        if not C_AddOns.IsAddOnLoaded("Blizzard_Calendar") then -- This is to make sure we get the 1st day of the week correct
+            C_AddOns.LoadAddOn("Blizzard_Calendar"); -- breaks Blizzard_Calendar
         end
         addon.Options.db.profile.Calendar.FirstWeekDay = CALENDAR_FIRST_WEEKDAY;
     end
@@ -57,7 +57,7 @@ end
 
 local function WatchListClearAllFunc()
     if not addon.Data.WatchListCategories then
-        LoadAddOn("Blizzard_AchievementUI");
+        C_AddOns.LoadAddOn("Blizzard_AchievementUI");
     end
     for i = 1, #addon.Data.WatchListCategories do
         addon.Data.WatchListCategories[i].Achievements = nil;
@@ -156,7 +156,7 @@ end
 
 local function ExcludedIncludeAllFunc()
     if not addon.Data.ExcludedCategories then
-        LoadAddOn("Blizzard_AchievementUI");
+        C_AddOns.LoadAddOn("Blizzard_AchievementUI");
     end
 
     for i = 1, #addon.Data.ExcludedCategories do
@@ -294,8 +294,8 @@ local function MovableAchievementWindowRememberLastPositionSet(_, value)
     if addon.Options.db.profile.Window.RememberLastPosition.AchievementWindow == value then return; end
     addon.Options.db.profile.Window.RememberLastPosition.AchievementWindow = value;
     if not addon.Options.db.profile.Window.RememberLastPosition.AchievementWindow then
-        if not IsAddOnLoaded("Blizzard_AchievementUI") then
-            LoadAddOn("Blizzard_AchievementUI");
+        if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
+            C_AddOns.LoadAddOn("Blizzard_AchievementUI");
         end
         AchievementFrame:ResetPosition();
     end
@@ -305,8 +305,8 @@ local function MovableCalendarRememberLastPositionSet(_, value)
     if addon.Options.db.profile.Window.RememberLastPosition.Calendar == value then return; end
     addon.Options.db.profile.Window.RememberLastPosition.Calendar = value;
     if not addon.Options.db.profile.Window.RememberLastPosition.Calendar then
-        if not IsAddOnLoaded("Blizzard_AchievementUI") then
-            LoadAddOn("Blizzard_AchievementUI");
+        if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
+            C_AddOns.LoadAddOn("Blizzard_AchievementUI");
         end
         KrowiAF_AchievementCalendarFrame:ResetPosition();
     end
@@ -316,8 +316,8 @@ local function MovableDataManagerRememberLastPositionSet(_, value)
     if addon.Options.db.profile.Window.RememberLastPosition.DataManager == value then return; end
     addon.Options.db.profile.Window.RememberLastPosition.DataManager = value;
     if not addon.Options.db.profile.Window.RememberLastPosition.DataManager then
-        if not IsAddOnLoaded("Blizzard_AchievementUI") then
-            LoadAddOn("Blizzard_AchievementUI");
+        if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
+            C_AddOns.LoadAddOn("Blizzard_AchievementUI");
         end
         KrowiAF_DataManagerFrame:ResetPosition();
     end
@@ -444,9 +444,30 @@ local function MergeMergeSmallCategoriesThresholdSet(_, value)
     KrowiAF_CategoriesFrame:Update(true);
 end
 
+local function ShowTemporarilyObtainableIconSet(_, value)
+    addon.Options.db.profile.Achievements.ShowTemporarilyObtainableIcon = value;
+    if not KrowiAF_AchievementsFrame then
+        return;
+    end
+    KrowiAF_SummaryFrame:Update();
+    KrowiAF_AchievementsFrame:ForceUpdate();
+end
+
+local function TemporarilyObtainableHeaderColorsSet(_, value)
+    addon.Options.db.profile.Achievements.TemporarilyObtainableHeaderColors = value;
+    if not KrowiAF_AchievementsFrame then
+        return;
+    end
+    KrowiAF_SummaryFrame:Update();
+    KrowiAF_AchievementsFrame:ForceUpdate();
+end
+
 local function SetAchievementsMouseWheelPanScalar(_, value)
     if addon.Options.db.profile.Achievements.MouseWheelPanScalar == value then return; end
     addon.Options.db.profile.Achievements.MouseWheelPanScalar = value;
+    if not KrowiAF_AchievementsFrame then
+        return;
+    end
     if KrowiAF_AchievementsFrame.ScrollBox then
         KrowiAF_AchievementsFrame.ScrollBox.wheelPanScalar = value;
     end
@@ -540,8 +561,8 @@ local windowOptions = {
                     name = addon.L["Reset position"],
                     desc = addon.L["Reset position Desc"]:K_ReplaceVars(addon.L["Achievement Window"]),
                     func = function()
-                        if not IsAddOnLoaded("Blizzard_AchievementUI") then
-                            LoadAddOn("Blizzard_AchievementUI");
+                        if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
+                            C_AddOns.LoadAddOn("Blizzard_AchievementUI");
                         end
                         AchievementFrame:ResetPosition();
                     end
@@ -558,8 +579,8 @@ local windowOptions = {
                     name = addon.L["Reset position"],
                     desc = addon.L["Reset position Desc"]:K_ReplaceVars(addon.L["Achievement Calendar"]),
                     func = function()
-                        if not IsAddOnLoaded("Blizzard_AchievementUI") then
-                            LoadAddOn("Blizzard_AchievementUI");
+                        if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
+                            C_AddOns.LoadAddOn("Blizzard_AchievementUI");
                         end
                         KrowiAF_AchievementCalendarFrame:ResetPosition();
                     end
@@ -576,8 +597,8 @@ local windowOptions = {
                     name = addon.L["Reset position"],
                     desc = addon.L["Reset position Desc"]:K_ReplaceVars(addon.L["Data Manager"]),
                     func = function()
-                        if not IsAddOnLoaded("Blizzard_AchievementUI") then
-                            LoadAddOn("Blizzard_AchievementUI");
+                        if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
+                            C_AddOns.LoadAddOn("Blizzard_AchievementUI");
                         end
                         KrowiAF_DataManagerFrame:ResetPosition();
                     end
@@ -1001,19 +1022,34 @@ local achievementsOptions = {
                             get = function() return addon.Options.db.profile.Achievements.HideDateCompleted; end,
                             set = function(_, value) addon.Options.db.profile.Achievements.HideDateCompleted = value; end,
                         },
+                        Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.35), name = ""},
                         ShowAllianceFactionIcon = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Faction Faction Icon"]:K_ReplaceVars(addon.L["Alliance"]),
-                            desc = addon.L["Show Faction Faction Icon Desc"]:K_ReplaceVars(addon.L["Alliance"]):KAF_AddDefaultValueText("Achievements.ShowAllianceFactionIcon"),
+                            desc = addon.L["Show Faction Faction Icon Desc"]:K_ReplaceVars(addon.L["Alliance"]):KAF_AddDefaultValueText("Achievements.ShowAllianceFactionIcon"):K_AddReloadRequired(),
                             get = function() return addon.Options.db.profile.Achievements.ShowAllianceFactionIcon; end,
                             set = function(_, value) addon.Options.db.profile.Achievements.ShowAllianceFactionIcon = value; end,
                         },
                         ShowHordeFactionIcon = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Faction Faction Icon"]:K_ReplaceVars(addon.L["Horde"]),
-                            desc = addon.L["Show Faction Faction Icon Desc"]:K_ReplaceVars(addon.L["Horde"]):KAF_AddDefaultValueText("Achievements.ShowHordeFactionIcon"),
+                            desc = addon.L["Show Faction Faction Icon Desc"]:K_ReplaceVars(addon.L["Horde"]):KAF_AddDefaultValueText("Achievements.ShowHordeFactionIcon"):K_AddReloadRequired(),
                             get = function() return addon.Options.db.profile.Achievements.ShowHordeFactionIcon; end,
                             set = function(_, value) addon.Options.db.profile.Achievements.ShowHordeFactionIcon = value; end,
+                        },
+                        ShowTemporarilyObtainableIcon = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
+                            name = addon.L["Show Temporarily obtainable Icon"]:K_ReplaceVars(addon.L["Temporarily obtainable"]),
+                            desc = addon.L["Show Temporarily obtainable Icon Desc"]:K_ReplaceVars(addon.L["Temporarily obtainable"]):KAF_AddDefaultValueText("Achievements.ShowTemporarilyObtainableIcon"),
+                            get = function() return addon.Options.db.profile.Achievements.ShowTemporarilyObtainableIcon; end,
+                            set = ShowTemporarilyObtainableIconSet,
+                        },
+                        TemporarilyObtainableHeaderColors = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
+                            name = addon.L["Temporarily obtainable Header Colors"]:K_ReplaceVars(addon.L["Temporarily obtainable"]),
+                            desc = addon.L["Temporarily obtainable Header Colors Desc"]:K_ReplaceVars(addon.L["Temporarily obtainable"]):KAF_AddDefaultValueText("Achievements.TemporarilyObtainableHeaderColors"),
+                            get = function() return addon.Options.db.profile.Achievements.TemporarilyObtainableHeaderColors; end,
+                            set = TemporarilyObtainableHeaderColorsSet,
                         },
                         Objectives = {
                             order = OrderPP(), type = "header",

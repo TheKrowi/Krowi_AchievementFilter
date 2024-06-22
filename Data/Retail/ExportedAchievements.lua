@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-06-09 21-20-08 ]] --
+-- [[ Exported at 2024-06-15 17-29-58 ]] --
 tasks = {
     {N, 40382, 208}, -- Hunt the Harbinger
     {O, 40223, "From", "Event", "1514", "Until", "Event", "1514"},
@@ -7570,7 +7570,7 @@ tasks = {
     {N, 6927, 124}, -- Glory of the Pandaria Hero
     {N, 6926, 124}, -- Tranquil Master
     {N, 6925, 124}, -- Pandaria Dungeon Hero
-    {O, 6924, "From", "Version", "050005", "Before", "Version", "060002"},
+    {O, 6924, "From", "Version", "050004", "Before", "Version", "060002"},
     {N, 6924, 124}, -- "100,000 Valor Points"
     {N, 6923, 124}, -- Brewmoon Festival
     {N, 6922, 124}, -- Timing is Everything
@@ -8100,14 +8100,14 @@ tasks = {
     {N, 5540, 110, nil, nil, true}, -- "25,000 Conquest Points"
     {O, 5539, "From", "PvP Season", 5, "Until", "PvP Season", 18},
     {N, 5539, 110, nil, nil, true}, -- "50,000 Conquest Points"
-    {O, 5538, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 5538, 110}, -- "50,000 Valor Points"
-    {O, 5537, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 5537, 110}, -- "25,000 Valor Points"
-    {O, 5536, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 5536, 110}, -- 5000 Valor Points
-    {O, 5535, "From", "Version", "050005", "Before", "Version", "060002"},
-    {N, 5535, 110}, -- 1000 Valor Points
+    {O, 5538, "From", "Version", "040001", "Before", "Version", "060002"},
+    {N, 5538, 108}, -- "50,000 Valor Points"
+    {O, 5537, "From", "Version", "040001", "Before", "Version", "060002"},
+    {N, 5537, 108}, -- "25,000 Valor Points"
+    {O, 5536, "From", "Version", "040001", "Before", "Version", "060002"},
+    {N, 5536, 108}, -- 5000 Valor Points
+    {O, 5535, "From", "Version", "040001", "Before", "Version", "060002"},
+    {N, 5535, 108}, -- 1000 Valor Points
     {O, 5533, "Never" },
     {N, 5533, 110}, -- Veteran of the Shifting Sands
     {N, 5518, 110}, -- Stood in the Fire

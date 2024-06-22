@@ -1,6 +1,23 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 73.2 - 2024-06-22
+### Added
+- Temporary obtainable achievements now have the option to show an extra icon indicating if it is / was / will be obtainable
+- Temporary obtainable achievements header color can now be removed
+
+### Fixed
+- Several bugs in preperation for The War Within (Beta) changes
+
+## 73.1 - 2024-06-15
+### Cata Classic
+- Added several missing achievements
+- Corrected several achievements faction
+
+## 73.0 - 2024-06-11
+### Fixed
+- Several bugs in preperation for The War Within (Beta) changes
+
 ## 72.5 - 2024-06-09
 ### Added
 - Temporary obtainable achievements that require a calendar event to be active now have an icon on the achievement making it more obvious

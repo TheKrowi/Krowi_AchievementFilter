@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-06-09 21-20-05 ]] --
+-- [[ Exported at 2024-06-15 17-29-56 ]] --
 tasks = {
     {N, 19440, 204, f.Horde}, -- Defense Protocol Gamma: Terminated
     {N, 19439, 204, f.Alliance}, -- Defense Protocol Gamma: Terminated
@@ -103,6 +103,8 @@ tasks = {
     {N, 15330, 194}, -- Survivor of the Firelord (Season of Mastery)
     {O, 6322, "From", "PvP Season", 10, "Until", "PvP Season", 10},
     {N, 6322, 121, nil, nil, true}, -- Ruthless Gladiator's Twilight Drake
+    {O, 6321, "From", "PvP Season", 10, "Until", "PvP Season", 10},
+    {N, 6321, 209}, -- Ruthless Gladiator's Twilight Drake
     {O, 6317, "From", "PvP Season", 10, "Until", "PvP Season", 10},
     {N, 6317, 121, f.Horde, 6316, true}, -- Hero of the Horde: Ruthless
     {O, 6316, "From", "PvP Season", 10, "Until", "PvP Season", 10},
@@ -223,12 +225,14 @@ tasks = {
     {N, 5854, 119, f.Horde, 5853}, -- A-Caroling We Will Go
     {O, 5853, "From", "Event", "141", "Until", "Event", "141"},
     {N, 5853, 119, f.Alliance, 5854}, -- A-Caroling We Will Go
-    {N, 5851, 116}, -- Gone Fishin'
+    {N, 5852, 116, f.Horde}, -- Gone Fishin'
+    {N, 5851, 116, f.Alliance}, -- Gone Fishin'
     {N, 5850, 116, f.Horde, 5848}, -- Fish or Cut Bait: Undercity
     {N, 5849, 116, f.Horde, 5847}, -- Fish or Cut Bait: Thunder Bluff
     {N, 5848, 116, f.Alliance, 5850}, -- Fish or Cut Bait: Darnassus
     {N, 5847, 116, f.Alliance, 5849}, -- Fish or Cut Bait: Ironforge
-    {N, 5845, 116}, -- A Bunch of Lunch
+    {N, 5846, 116, f.Horde}, -- A Bunch of Lunch
+    {N, 5845, 116, f.Alliance}, -- A Bunch of Lunch
     {N, 5844, 116, f.Horde, 5842}, -- Let's Do Lunch: Undercity
     {N, 5843, 116, f.Horde, 5841}, -- Let's Do Lunch: Thunder Bluff
     {N, 5842, 116, f.Alliance, 5844}, -- Let's Do Lunch: Darnassus
@@ -296,6 +300,14 @@ tasks = {
     {N, 5540, 110, nil, nil, true}, -- "25,000 Conquest Points"
     {O, 5539, "From", "PvP Season", 5, "Until", "PvP Season", 18},
     {N, 5539, 110, nil, nil, true}, -- "50,000 Conquest Points"
+    {O, 5538, "From", "Version", "040001", "Before", "Version", "060002"},
+    {N, 5538, 108}, -- "50,000 Valor Points"
+    {O, 5537, "From", "Version", "040001", "Before", "Version", "060002"},
+    {N, 5537, 108}, -- "25,000 Valor Points"
+    {O, 5536, "From", "Version", "040001", "Before", "Version", "060002"},
+    {N, 5536, 108}, -- 5000 Valor Points
+    {O, 5535, "From", "Version", "040001", "Before", "Version", "060002"},
+    {N, 5535, 108}, -- 1000 Valor Points
     {O, 5533, "Never" },
     {N, 5533, 110}, -- Veteran of the Shifting Sands
     {N, 5518, 110}, -- Stood in the Fire
@@ -347,8 +359,38 @@ tasks = {
     {N, 5416, 110}, -- Pit Lord Argaloth
     {N, 5415, 110, nil, nil, true}, -- Tower Plower
     {N, 5412, 110, nil, nil, true}, -- Tol Barad Victory
+    {O, 5396, "Once" },
+    {N, 5396, 110, nil, nil, nil, true}, -- Realm First! Illustrious Archaeologist
     {O, 5395, "Once" },
     {N, 5395, 110, nil, nil, nil, true}, -- Realm First! Grand Master Archaeologist
+    {O, 5394, "Once" },
+    {N, 5394, 110, nil, nil, nil, true}, -- Realm First! Illustrious Tailor
+    {O, 5393, "Once" },
+    {N, 5393, 110, nil, nil, nil, true}, -- Realm First! Illustrious Skinner
+    {O, 5392, "Once" },
+    {N, 5392, 110, nil, nil, nil, true}, -- Realm First! Illustrious Miner
+    {O, 5391, "Once" },
+    {N, 5391, 110, nil, nil, nil, true}, -- Realm First! Illustrious Leatherworker
+    {O, 5390, "Once" },
+    {N, 5390, 110, nil, nil, nil, true}, -- Realm First! Illustrious Jewelcrafter
+    {O, 5389, "Once" },
+    {N, 5389, 110, nil, nil, nil, true}, -- Realm First! Illustrious Scribe
+    {O, 5388, "Once" },
+    {N, 5388, 110, nil, nil, nil, true}, -- Realm First! Illustrious Herbalist
+    {O, 5387, "Once" },
+    {N, 5387, 110, nil, nil, nil, true}, -- Realm First! Illustrious Angler
+    {O, 5386, "Once" },
+    {N, 5386, 110, nil, nil, nil, true}, -- Realm First! Illustrious Medic
+    {O, 5385, "Once" },
+    {N, 5385, 110, nil, nil, nil, true}, -- Realm First! Illustrious Engineer
+    {O, 5384, "Once" },
+    {N, 5384, 110, nil, nil, nil, true}, -- Realm First! Illustrious Enchanter
+    {O, 5383, "Once" },
+    {N, 5383, 110, nil, nil, nil, true}, -- Realm First! Illustrious Cook
+    {O, 5382, "Once" },
+    {N, 5382, 110, nil, nil, nil, true}, -- Realm First! Illustrious Blacksmith
+    {O, 5381, "Once" },
+    {N, 5381, 110, nil, nil, nil, true}, -- Realm First! Illustrious Alchemist
     {N, 5378, 108}, -- Deathy
     {N, 5377, 108}, -- Collector's Edition: Lil' Deathwing
     {N, 5376, 110, f.Horde, 5375}, -- Hellscream's Reach
@@ -364,6 +406,10 @@ tasks = {
     {N, 5368, 110}, -- Prototype Prodigy
     {N, 5367, 110}, -- Rat Pack
     {N, 5366, 110}, -- Ready for Raiding
+    {O, 5365, "From", "Version", "040003", "Before", "Version", "060002"},
+    {N, 5365, 110}, -- Bloom and Doom
+    {O, 5364, "From", "Version", "040003", "Before", "Version", "060002"},
+    {N, 5364, 110}, -- Don't Want No Zombies on My Lawn
     {N, 5363, 110, nil, nil, true}, -- 250000 Honorable Kills
     {N, 5359, 110, f.Alliance, 5338, true}, -- Knight-Champion
     {O, 5358, "From", "PvP Season", 9, "Until", "PvP Season", 9},
@@ -447,6 +493,7 @@ tasks = {
     {N, 5267, 110, nil, nil, true}, -- Three's Company: 2700
     {N, 5266, 110, nil, nil, true}, -- Three's Company: 2400
     {N, 5262, 110, nil, nil, true}, -- Double Rainbow
+    {N, 5259, 110, f.Horde}, -- Master of Twin Peaks
     {N, 5258, 110, nil, nil, true}, -- Master of the Battle for Gilneas
     {N, 5257, 110, nil, nil, true}, -- Battle for Gilneas Assassin
     {N, 5256, 110, nil, nil, true}, -- Battle for Gilneas All-Star
@@ -467,7 +514,7 @@ tasks = {
     {N, 5228, 110, f.Horde, 5229, true}, -- Wild Hammering
     {N, 5227, 110, f.Horde, 5226, true}, -- Cloud Nine
     {N, 5226, 110, f.Alliance, 5227, true}, -- Cloud Nine
-    {N, 5223, 110, nil, nil, true}, -- Master of Twin Peaks
+    {N, 5223, 110, f.Alliance, nil, true}, -- Master of Twin Peaks
     {N, 5222, 110, f.Horde, 5221, true}, -- "Fire, Walk With Me"
     {N, 5221, 110, f.Alliance, 5222, true}, -- "Fire, Walk With Me"
     {N, 5220, 110, f.Horde, 5219, true}, -- I'm in the Black Lodge
@@ -506,8 +553,31 @@ tasks = {
     {N, 5062, 110}, -- Heroic: Grim Batol
     {N, 5061, 110}, -- Heroic: Throne of the Tides
     {N, 5060, 110}, -- Heroic: Blackrock Caverns
+    {O, 5008, "Once" },
+    {N, 5008, 110, nil, nil, nil, true}, -- Realm First! Level 85 Rogue
+    {O, 5007, "Once" },
+    {N, 5007, 110, nil, nil, nil, true}, -- Realm First! Level 85 Warrior
+    {O, 5006, "Once" },
+    {N, 5006, 110, nil, nil, nil, true}, -- Realm First! Level 85 Mage
+    {O, 5005, "Once" },
+    {N, 5005, 110, nil, nil, nil, true}, -- Realm First! Level 85 Death Knight
+    {O, 5004, "Once" },
+    {N, 5004, 110, nil, nil, nil, true}, -- Realm First! Level 85 Hunter
+    {O, 5003, "Once" },
+    {N, 5003, 110, nil, nil, nil, true}, -- Realm First! Level 85 Warlock
+    {O, 5002, "Once" },
+    {N, 5002, 110, nil, nil, nil, true}, -- Realm First! Level 85 Priest
+    {O, 5001, "Once" },
+    {N, 5001, 110, nil, nil, nil, true}, -- Realm First! Level 85 Paladin
+    {O, 5000, "Once" },
+    {N, 5000, 110, nil, nil, nil, true}, -- Realm First! Level 85 Druid
+    {O, 4999, "Once" },
+    {N, 4999, 110, nil, nil, nil, true}, -- Realm First! Level 85
+    {O, 4998, "Once" },
+    {N, 4998, 110, nil, nil, nil, true}, -- Realm First! Level 85 Shaman
     {N, 4996, 110}, -- Explore Southern Barrens
     {N, 4995, 110}, -- Explore the Cape of Stranglethorn
+    {N, 4983, 110, f.Horde}, -- Loremaster of Cataclysm
     {N, 4982, 110, f.Horde, 4869}, -- Sinking into Vashj'ir
     {N, 4981, 110, f.Horde, 4937}, -- Southern Barrens Quests
     {N, 4980, 110, f.Horde, 4936}, -- Stonetalon Mountains Quests
@@ -553,6 +623,7 @@ tasks = {
     {N, 4910, 110}, -- Searing Gorge Quests
     {N, 4909, 110}, -- Blasted Lands Quests
     {N, 4908, 110, f.Horde}, -- Ghostlands Quests
+    {N, 4907, 110, f.Alliance}, -- Duskwood Quests
     {N, 4906, 110}, -- Northern Stranglethorn Quests
     {N, 4905, 110}, -- Cape of Stranglethorn Quests
     {N, 4904, 110}, -- Swamp of Sorrows Quests
@@ -561,6 +632,7 @@ tasks = {
     {N, 4901, 110}, -- Burning Steppes Quests
     {N, 4900, 110}, -- Badlands Quests
     {N, 4899, 110, f.Alliance}, -- Loch Modan Quests
+    {N, 4898, 110, f.Alliance}, -- Wetlands Quests
     {N, 4897, 110}, -- Hinterlands Quests
     {N, 4896, 110}, -- Arathi Highlands Quests
     {N, 4895, 110, f.Horde, 4902}, -- Hillsbrad Foothills Quests
@@ -576,7 +648,7 @@ tasks = {
     {N, 4883, 110}, -- Therazane
     {N, 4882, 110}, -- The Guardians of Hyjal
     {N, 4881, 110}, -- The Earthen Ring
-    {N, 4875, 110}, -- Loremaster of Cataclysm
+    {N, 4875, 110, f.Alliance}, -- Loremaster of Cataclysm
     {N, 4874, 110}, -- Breaking Out of Tol Barad
     {N, 4873, 110, f.Alliance, 5501}, -- Fading into Twilight
     {N, 4872, 110}, -- Unearthing Uldum

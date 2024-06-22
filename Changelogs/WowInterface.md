@@ -1,58 +1,21 @@
-[B]Added[/B]
-[LIST]
-[*]Hunt the Harbinger achievement
-[*]Past, Current and Future Obtainable filters (dev note: replace the old Obtainable and Not Obtainable filters)
-[/LIST]
-
 [B]Fixed[/B]
 [LIST]
-[*]WoW Remix: Mists of Pandaria (formerly Pandaria: Remix) should now be correctly track
+[*]Several bugs in preperation for The War Within (Beta) changes
 [/LIST]
 
-[B]Cata Classic[/B]
+[B]Cata Classic (73.1)[/B]
 [LIST]
-[*]Fixed missing criteria info for The Cataclysmic Gourmet (30)
+[*]Added several missing achievements
+[*]Corrected several achievements faction
 [/LIST]
 
-[B]Tooltip Data[/B]
+[B]Added (73.2)[/B]
 [LIST]
-[*]Added Dragon Racing Challenges
-[*]Added Northrend Cup
-[*]Now shows the achievement > criteria
+[*]Temporary obtainable achievements now have the option to show an extra icon indicating if it is / was / will be obtainable
+[*]Temporary obtainable achievements header color can now be removed
 [/LIST]
 
-[B]Added (72.1)[/B]
+[B]Fixed (73.2)[/B]
 [LIST]
-[*]Map data to Remix: Pandaria achievements
-[/LIST]
-
-[B]Tooltip Data (72.1)[/B]
-[LIST]
-[*]Code cleanup and API improvements
-[/LIST]
-
-[B]Added (72.2)[/B]
-[LIST]
-[*]Remix: Pandaria achievements now show the remix icon on the achievement
-[/LIST]
-
-[B]Fixed (72.3)[/B]
-[LIST]
-[*]Superior (Shadowlands) and Epic (Shadowlands) are now marked as no longer obtainable
-[*]Watch List and Excluded categories no longer show Unknown as their names
-[/LIST]
-
-[B]Fixed (72.4)[/B]
-[LIST]
-[*]Remix: Pandaria achievements now show the remix icon on the achievement with the duration of the event
-[/LIST]
-
-[B]Added (72.5)[/B]
-[LIST]
-[*]Temporary obtainable achievements that require a calendar event to be active now have an icon on the achievement making it more obvious
-[/LIST]
-
-[B]Cata Classic (72.5)[/B]
-[LIST]
-[*]I Can't Hear You Over the Sound of How Awesome I Am is once again obtainable
+[*]Several bugs in preperation for The War Within (Beta) changes
 [/LIST]

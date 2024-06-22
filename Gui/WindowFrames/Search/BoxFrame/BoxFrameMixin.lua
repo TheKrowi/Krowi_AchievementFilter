@@ -63,7 +63,7 @@ function KrowiAF_SearchBoxFrameMixin:OnShow()
 end
 
 function KrowiAF_SearchBoxFrameMixin:OnHide()
-	if addon.Util.IsClassicWithAchievements and not AchievementFrameFilterDropDown:IsShown() then
+	if addon.Util.IsClassicWithAchievements and not AchievementFrameFilterDropdown:IsShown() then
 		AchievementFrame.Header.RightDDLInset:Hide();
 	end
 	if not addon.Util.IsClassicWithAchievements then

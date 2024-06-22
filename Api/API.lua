@@ -10,7 +10,11 @@ local function SelectAchievement(achievement)
 	end
 
 	KrowiAF_AchievementsFrame:ForceUpdate();
-	scrollBox:ScrollToElementData(achievement, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
+	if addon.Util.IsTheWarWithin then
+		scrollBox:ScrollToElementData(achievement, ScrollBoxConstants.AlignCenter, nil, ScrollBoxConstants.NoScrollInterpolation);
+	else
+		scrollBox:ScrollToElementData(achievement, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
+	end
 	-- print("api select")
 	KrowiAF_AchievementsFrame.SelectionBehavior:SelectElementData(achievement);
 	KrowiAF_AchievementsFrame:ScrollToNearest(achievement);
@@ -54,8 +58,8 @@ function KrowiAF_SelectAchievement(achievement)
 end
 
 function KrowiAF_SelectAchievementFromID(id)
-	if not IsAddOnLoaded("Blizzard_AchievementUI") then
-        LoadAddOn("Blizzard_AchievementUI");
+	if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
+        C_AddOns.LoadAddOn("Blizzard_AchievementUI");
     end
 
 	local achievement = addon.Data.Achievements[id];
@@ -72,7 +76,11 @@ local function SelectCategory(category, collapsed, quick)
 		return;
 	end
 
-	scrollBox:ScrollToElementData(category, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
+	if addon.Util.IsTheWarWithin then
+		scrollBox:ScrollToElementData(category, ScrollBoxConstants.AlignCenter, nil, ScrollBoxConstants.NoScrollInterpolation);
+	else
+		scrollBox:ScrollToElementData(category, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
+	end
 
 	KrowiAF_CategoriesFrame:ShowSubFrame(category);
 end
@@ -120,8 +128,8 @@ function KrowiAF_ToggleAchievementFrame(_addonName, tabName)
 end
 
 function KrowiAF_OpenCurrentZone(collapsed)
-    if not IsAddOnLoaded("Blizzard_AchievementUI") then
-        LoadAddOn("Blizzard_AchievementUI");
+    if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
+        C_AddOns.LoadAddOn("Blizzard_AchievementUI");
     end
 
 	for i = 1, #addon.Data.CurrentZoneCategories do

@@ -1,4 +1,5 @@
 local _, addon = ...;
+local extraIconFactory = addon.Gui.AchievementButtonExtraIconFactory;
 local saturationStyle = addon.Objects.SaturationStyle;
 
 local media = "Interface/AddOns/Krowi_AchievementFilter/Media/";
@@ -37,15 +38,24 @@ local accountSaturationStyle = saturationStyle:New(
 	},
 	function() return ACHIEVEMENT_BLUE_BORDER_COLOR; end
 );
-local saturationStyles = {
+local newSaturationStyles = {
 	notObtainableSaturationStyle,
 	tempObtainableSaturationStyle,
-	tempObtainableFutureSaturationStyle,
+	tempObtainableFutureSaturationStyle
+};
+local saturationStyles = {
 	accountSaturationStyle,
 	saturationStyle:New()
 };
 
 local function GetSaturationStyle(state, isAccountWide)
+	if addon.Options.db.profile.Achievements.TemporarilyObtainableHeaderColors then
+		for _, _saturationStyle in next, newSaturationStyles do
+			if _saturationStyle.UseThis(state, isAccountWide) then
+				return _saturationStyle;
+			end
+		end
+	end
 	for _, _saturationStyle in next, saturationStyles do
 		if _saturationStyle.UseThis(state, isAccountWide) then
 			return _saturationStyle;
@@ -76,25 +86,6 @@ function KrowiAF_AchievementButtonTrackedMixin:OnClick()
 	if not tracked then
 		self:SetChecked(false);
 	end
-end
-
-KrowiAF_AchievementButtonExtraIconMixin = {};
-
-function KrowiAF_AchievementButtonExtraIconMixin:OnEnter()
-	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-	local color = self.Color or {};
-	if self.Lines then
-		for i = 1, #self.Lines do
-			GameTooltip:AddLine(self.Lines[i], color.R, color.G, color.B);
-		end
-		GameTooltip:Show();
-		return;
-	end
-	GameTooltip:SetText(self.Text, color.R, color.G, color.B, nil, true);
-end
-
-function KrowiAF_AchievementButtonExtraIconMixin:OnLeave()
-	GameTooltip:Hide();
 end
 
 KrowiAF_AchievementButtonLightMixin = {};
@@ -503,6 +494,9 @@ local function SetRewardText(self, rewardText)
 end
 
 local function SetFaction(self, achievement)
+	if not self.Faction then
+		return;
+	end
 	if achievement.Faction == addon.Objects.Faction.Alliance and addon.Options.db.profile.Achievements.ShowAllianceFactionIcon then
 		self.Faction.Icon:SetAtlas("MountJournalIcons-Alliance");
 		self.Faction:Show();
@@ -514,128 +508,6 @@ local function SetFaction(self, achievement)
 		return;
 	end
 	self.Faction:Hide();
-end
-
-local function ResetExtraIcons(self)
-	self.ExtraIcon1.Used = nil;
-	self.ExtraIcon1:Hide();
-	self.ExtraIcon2.Used = nil;
-	self.ExtraIcon2:Hide();
-end
-
-local function GetExtraIcon(self)
-	if not self.ExtraIcon1.Used then
-		self.ExtraIcon1.Used = true;
-		self.ExtraIcon1:Show();
-		return self.ExtraIcon1;
-	end
-	if not self.ExtraIcon2.Used then
-		self.ExtraIcon2.Used = true;
-		self.ExtraIcon2:Show();
-		return self.ExtraIcon2;
-	end
-end
-
-local function SetExtraIconAlwaysVisible(self, achievement)
-	if not achievement.AlwaysVisible then
-		return;
-	end
-
-	local extraIcon = GetExtraIcon(self);
-	if not extraIcon then
-		return;
-	end
-
-	extraIcon.Texture:SetAtlas("flightpath");
-	extraIcon.Text = addon.L["Achievement shown temporarily"];
-end
-
-local function SetExtraIconIsWatched(self, achievement)
-	if not achievement.IsWatched then
-		return;
-	end
-
-	local extraIcon = GetExtraIcon(self);
-	if not extraIcon then
-		return;
-	end
-
-	extraIcon.Texture:SetAtlas("groupfinder-eye-frame");
-	extraIcon.Text = addon.L["Achievement is watched"]:K_ReplaceVars(addon.L["Watch List"]);
-end
-
-local function SetExtraIconIsExcluded(self, achievement)
-	if not achievement.IsExcluded then
-		return;
-	end
-
-	local extraIcon = GetExtraIcon(self);
-	if not extraIcon then
-		return;
-	end
-
-	extraIcon.Texture:SetAtlas("XMarksTheSpot");
-	extraIcon.Text = addon.L["Achievement is excluded"];
-end
-
-local function SetExtraIconRemixPandaria(self, achievement)
-	if not achievement.TemporaryObtainable
-	or not achievement.TemporaryObtainable.Start
-	or achievement.TemporaryObtainable.Start.Function ~= "Event"
-	or achievement.TemporaryObtainable.Start.Value ~= "1514" then
-		return;
-	end
-
-	local extraIcon = GetExtraIcon(self);
-	if not extraIcon then
-		return;
-	end
-
-	extraIcon.Texture:SetAtlas("timerunning-glues-icon");
-	local text, occurrence;
-	text, extraIcon.Color, occurrence = addon.Data.TemporaryObtainable:GetNotObtainableText(achievement);
-	extraIcon.Lines = {
-		text,
-		occurrence
-	};
-	return true;
-end
-
-local function SetExtraIconEvent(self, achievement)
-	if not achievement.TemporaryObtainable
-	or not achievement.TemporaryObtainable.Start
-	or achievement.TemporaryObtainable.Start.Function ~= "Event" then
-		return;
-	end
-
-	local event = addon.Data.CalendarEvents[tonumber(achievement.TemporaryObtainable.Start.Value)];
-
-	if not event then
-		return;
-	end
-
-	local extraIcon = GetExtraIcon(self);
-	if not extraIcon then
-		return;
-	end
-
-	extraIcon.Texture:SetTexture(event.Icon);
-	local text, occurrence;
-	text, extraIcon.Color, occurrence = addon.Data.TemporaryObtainable:GetNotObtainableText(achievement);
-	extraIcon.Lines = {
-		text,
-		occurrence
-	};
-end
-
-local function SetExtraIcons(self, achievement)
-	ResetExtraIcons(self);
-	if not SetExtraIconRemixPandaria(self, achievement) then
-		SetExtraIconEvent(self, achievement);
-	end
-	SetExtraIconAlwaysVisible(self, achievement);
-	SetExtraIconIsWatched(self, achievement);
-	SetExtraIconIsExcluded(self, achievement);
 end
 
 function KrowiAF_AchievementButtonMixin:SetAchievementData(achievement, id, name, points, completed, month, day, year, description, flags, icon, rewardText, wasEarnedByMe)
@@ -658,7 +530,7 @@ function KrowiAF_AchievementButtonMixin:SetAchievementData(achievement, id, name
 	SetCompletionState(self, achievement, completed, month, day, year, wasEarnedByMe, saturatedStyle);
 	SetRewardText(self, rewardText);
 	SetFaction(self, achievement);
-	SetExtraIcons(self, achievement);
+	extraIconFactory.SetExtraIcons(self, achievement);
 end
 
 function KrowiAF_AchievementButtonMixin:SetAchievement(achievement, refresh)

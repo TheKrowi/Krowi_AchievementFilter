@@ -1,7 +1,7 @@
 -- [[ Namespaces ]] --
 local addonName, addon = ...;
 
--- LoadAddOn("Blizzard_AchievementUI"); -- For testing
+-- C_AddOns.LoadAddOn("Blizzard_AchievementUI"); -- For testing
 
 -- [[ Ace ]] --
 addon.L = LibStub(addon.Libs.AceLocale):GetLocale(addonName);
@@ -110,10 +110,10 @@ function loadHelper:OnEvent(event, arg1, arg2)
     elseif event == "PLAYER_LOGIN" then
         LoadPlayerLogin();
 
-        if IsAddOnLoaded("Blizzard_AchievementUI") then
+        if C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
             LoadBlizzard_AchievementUI();
         end
-        if IsAddOnLoaded("Blizzard_Calendar") then
+        if C_AddOns.IsAddOnLoaded("Blizzard_Calendar") then
             LoadBlizzard_Calendar();
         end
     elseif event == "PLAYER_ENTERING_WORLD" then
@@ -134,8 +134,8 @@ function loadHelper:OnEvent(event, arg1, arg2)
             end);
         end
 
-        -- LoadAddOn("Blizzard_Calendar");
-        -- LoadAddOn("Blizzard_AchievementUI");
+        -- C_AddOns.LoadAddOn("Blizzard_Calendar");
+        -- C_AddOns.LoadAddOn("Blizzard_AchievementUI");
     elseif event == "ACHIEVEMENT_EARNED" then
         addon.OnAchievementEarned(arg1);
     end

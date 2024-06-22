@@ -47,6 +47,12 @@ local function LoadOldAchievementFrameTabsCompatibility()
     end
 end
 
+local function LoadOldGuiCompatibility()
+    if not AchievementFrameFilterDropdown then
+        AchievementFrameFilterDropdown = AchievementFrameFilterDropDown;
+    end
+end
+
 local function ShowSubFrame(self, ...)
     local show;
 	for _, subFrame in ipairs(self.SubFrames) do
@@ -71,6 +77,8 @@ local defaultAchievementFrameWidth;
 local defaultAchievementFrameHeight;
 local defaultAchievementFrameMetalBorderHeight;
 function gui:LoadWithBlizzard_AchievementUI()
+    LoadOldGuiCompatibility();
+
     defaultAchievementFrameWidth = AchievementFrame:GetWidth();
     defaultAchievementFrameHeight = AchievementFrame:GetHeight();
     defaultAchievementFrameMetalBorderHeight = AchievementFrameMetalBorderLeft:GetHeight();
@@ -180,8 +188,8 @@ end
 
 local firstTimeLatch = true;
 function gui:ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -- Issue #26 Broken, Fix
-    if not IsAddOnLoaded("Blizzard_AchievementUI") then
-        LoadAddOn("Blizzard_AchievementUI");
+    if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
+        C_AddOns.LoadAddOn("Blizzard_AchievementUI");
     end
 
     AchievementFrameComparison:Hide();
@@ -234,7 +242,7 @@ function gui:ShowHideTabs(_addonName, tabName)
             return;
         end
         addon.Options.db.profile.Tabs[_addonName][tabName].Show = not addon.Options.db.profile.Tabs[_addonName][tabName].Show;
-        if not IsAddOnLoaded(_addonName) or not addon.Gui.Tabs[_addonName] or not addon.Gui.Tabs[_addonName][tabName] then
+        if not C_AddOns.IsAddOnLoaded(_addonName) or not addon.Gui.Tabs[_addonName] or not addon.Gui.Tabs[_addonName][tabName] then
             return;
         end
     end
@@ -293,7 +301,7 @@ end
 local function AssignProperTabsOrder()
     local tabsOrder = {};
     for tabsAddonName, tabs in next, addon.Options.db.profile.Tabs do
-        if tabsAddonName == "Blizzard_AchievementUI" or IsAddOnLoaded(tabsAddonName) then
+        if tabsAddonName == "Blizzard_AchievementUI" or C_AddOns.IsAddOnLoaded(tabsAddonName) then
             for tabName, tab in next, tabs do
                 tinsert(tabsOrder, {
                     AddonName = tabsAddonName,

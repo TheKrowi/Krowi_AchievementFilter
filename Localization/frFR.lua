@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-05-15 19-05-33 ]] --
+-- [[ Exported at 2024-06-22 20-38-08 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -22,6 +22,7 @@ L["600 skill"] = "Compétence de 600"
 L["Academy Ascent"] = "Ascension de l’académie"
 L["Account"] = "Compte"
 L["Account wide (default)"] = "Compte (standard)"
+L["Achievement browsing history"] = "Historique de consultation des Hauts faits"
 L["Achievement Calendar"] = "Calendrier des Hauts faits"
 L["Achievement is Completed"] = "Le Haut fait est terminée"
 L["Achievement is Completed Desc"] = "Afficher les critères du Haut fait même si le Haut fait est déjà terminé."
@@ -29,18 +30,22 @@ L["Achievement is excluded"] = "Le Haut fait est est masqué."
 L["Achievement is watched"] = "Ce Haut fait se trouve dans votre {watchList}."
 L["Achievement points earned by"] = "Points de Haut fait obtenus par"
 L["Achievement shown temporarily"] = "Ce Haut fait est affiché temporairement car il ne correspond à aucun des filtres définis."
-L["Achievement was Not Earned by Me"] = "Le Haut fait n'a pas été obtenu par moi"
-L["Achievement was Not Earned by Me Desc"] = "Afficher les critères du Haut fait si le Haut fait n'a pas encore été obtenu par le personnage actuel. Cela permet d'avoir un meilleur contrôle si vous jouez avec plusieurs personnages."
+L["Achievement was Not Earned by Me"] = "Le Haut fait n'a pas été obtenu par le personnage actuel"
+L["Achievement was Not Earned by Me Desc"] = "Afficher les critères du Haut fait de savoir si le Haut fait n'a pas encore été obtenu par le personnage actuel. Cela permet d'avoir une meilleure information si vous jouez avec plusieurs personnages."
 L["Achievement Window"] = "Fenêtre des Hauts faits"
 L["Achievement window height offset"] = "Décalage de la hauteur de la fenêtre des Hauts faits"
 L["Achievement window height offset Desc"] = [=[Ajoute ou soustrait de la hauteur à la hauteur par défaut de la fenêtre des Hauts faits.
-Cette valeur peut être modifiée pendant que la fenêtre des hauts faits est ouverte et que l'un des onglets ajoutés par {AddonName} est sélectionné. Cela peut avoir un impact sur le jeu.
-Les FPS chutent pendant l'ajustement de la valeur non PAS pendant l'utilisation normale de l'addon]=]
+
+Cette valeur peut être modifiée pendant que la fenêtre des Hauts faits est ouverte et que l'un des onglets ajoutés par {AddonName} est sélectionné. Cela peut avoir un impact sur le jeu.
+
+Les FPS chutent pendant l'ajustement de la valeur, mais PAS pendant l'utilisation normale de l'addon.]=]
 L["Achievements"] = "Hauts faits"
 L["Achievements width offset"] = "Décalage largeur de la fenêtre des Hauts faits"
-L["Achievements width offset Desc"] = [=[Ajoute ou soustrait de la largeur par défaut des Hauts faits.
-Cette valeur peut être modifiée lorsque la fenêtre des Hauts faits est ouverte et qu'un des onglets ajoutés par {addonName} est sélectionné. Cela peut avoir un impact (1) sur le jeu.
-(1) Des baisses de FPS et des saccades lors du réglage de la valeur, mais PAS lors de l'utilisation normale de l'addon.]=]
+L["Achievements width offset Desc"] = [=[Ajoute ou soustrait de la largeur à la largeur par défaut de la fenêtre des Hauts faits.
+
+Cette valeur peut être modifiée pendant que la fenêtre des Hauts faits est ouverte et que l'un des onglets ajoutés par {AddonName} est sélectionné. Cela peut avoir un impact sur le jeu.
+
+Les FPS chutent pendant l'ajustement de la valeur, mais PAS pendant l'utilisation normale de l'addon.]=]
 L["Active events"] = "Évènements en cours"
 L["Add addon name to world map icon"] = "Ajouter le nom de l'addon à l'icône de la carte du monde"
 L["Add addon name to world map icon Desc"] = "Ajoute '{addonName}' en bas de l'infobulle quand la souris passe sur l'icône."
@@ -77,7 +82,7 @@ L["Assault: N'Zoth (Uldum)"] = "Assaut : L'Empire noir (Uldum)"
 L["Assault: N'Zoth (Vale of Eternal Blossoms)"] = "Assaut : L'Empire noir (Val de l'Éternel printemps)"
 L["Author"] = "Auteur"
 L["Auto number of summary achievements"] = "Affiche un nombre de Hauts faits automatiquement dans le résumé"
-L["Auto number of summary achievements Desc"] = "Ajuster automatiquement le nombre de Hauts-faits affichées pour qu'aucune barre de défilement ne soit visible."
+L["Auto number of summary achievements Desc"] = "Ajuster automatiquement le nombre de Hauts faits affichées pour qu'aucune barre de défilement ne soit visible."
 L["Awakened Raids"] = "Raids Éveillés"
 L["Azerothian Archives"] = "Archives d'Azeroth"
 L["Azure Span"] = "Assaut de Fyrakka : Travée d'Azur"
@@ -94,6 +99,9 @@ L["Burning Pandaren Spirit"] = "Esprit pandaren ardent"
 L["Bur's Mount Collection"] = "Collection de montures"
 L["Button"] = "Bouton"
 L["Calendar"] = "Calendrier"
+L["Calendar button"] = "Bouton calendrier"
+L["Calendar button horizontal position Desc"] = "Ajuster la position horizontale du {calendarButton}."
+L["Calendar button vertical position Desc"] = "Ajuster la position verticale du {calendarButton}."
 L["Calendar Desc"] = [=[Aspect identique au {calendar} intégré au jeu.
 
 |T:1:8|t- Le nombre de Hauts-faits et de points en haut représente les Hauts-faits et les points gagnés pour le mois actuellement consulté.
@@ -141,7 +149,7 @@ L["Clear all Desc"] = "Efface tous les Hauts-fait de la liste surveillée."
 L["Clear search field on Right Click"] = "Effacer le champ de recherche avec le clic droit"
 L["Clear search field on Right Click Desc"] = "Activer ou désactiver l'effacement de la zone de recherche lors d'un clic droit dessus."
 L["Click here to view in achievement window"] = "Cliquez ici pour afficher dans la fenêtre des Hauts faits"
-L["Click here to view in achievements"] = "Cliquez ici pour afficher dans les Hauts faits"
+L["Click here to view in achievements"] = "Cliquez ici pour afficher dans la fenêtre des Hauts faits"
 L["Cliffside Circuit"] = "Circuit des falaises"
 L["Cobalt Assembly"] = "Tempête élémentaire : L'assemblé du Cobalt"
 L["Coldheart Interstitia"] = "Interstice Cœur-Algide"
@@ -158,11 +166,11 @@ L["Community Feast: Soon"] = "Festin tribal : Bientôt"
 L["Community Feast: Starting Soon"] = "Festin tribal : Commence bientôt"
 L["Compact"] = "Afficher les pop-ups d'évènements compactes"
 L["Compact Achievements"] = "Hauts faits compact"
-L["Compact Achievements Desc"] = "L'affichage des Hauts-faits est réduit aux 2/3 de sa taille d'origine, à l'identique des résumé de Hauts-faits."
-L["Compact Achievements T Desc"] = [=[- Les hauts faits font 2/3 de la taille normal. Ils s'affichent de la même manière que les hauts faits récapitulatifs.
+L["Compact Achievements Desc"] = "L'affichage des Hauts faits est réduit aux 2/3 de sa taille d'origine, à l'identique des résumé de Hauts faits."
+L["Compact Achievements T Desc"] = [=[- Les Hauts faits font 2/3 de la taille normal. Ils s'affichent de la même manière que les Hauts faits récapitulatifs.
 - Il est possible d'afficher soit la première ligne de la description, soit la récompense.
 
-Les hauts faits compacts peuvent être activés à partir des options (actuellement : {compactEnabled}) (1). 
+Les Hauts faits compacts peuvent être activés à partir des options (actuellement : {compactEnabled}) (1). 
 
 (1) Les options peuvent être trouvées sous {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}]=]
 L["Compact Desc"] = [=[Utiliser une version plus compacte avec une seule ligne d'affichage de l'heure.
@@ -318,27 +326,27 @@ Plus d'options de filtrage et de tri peuvent être réclamé sur {discord} ou {c
 (1) Vous pouvez trouver les options sous {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {categories}
 (2) les option peuvent être trouvé sous {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName}]=]
 L["Enhanced tooltip"] = "Infobulle améliorée"
-L["Enhanced tooltip Achievements Desc"] = [=[Chaque infobulle sur les hauts faits contiennent des informations supplémentaires sur la façon dont les hauts faits sont liés les uns aux autres. Plusieurs nouvelles sections y sont ajoutées.
+L["Enhanced tooltip Achievements Desc"] = [=[Chaque infobulle sur les Hauts faits contiennent des informations supplémentaires sur la façon dont les hauts faits sont liés les uns aux autres. Plusieurs nouvelles sections y sont ajoutées.
 
 Fonctionnalités :
-|T:1:8|t- {notObtainable} : affiche le texte '{noLongerObtainable}' si le haut fait n'est plus disponible.
-|T:1:8|t- {earnedBy} : voir {earnedBy} pour plus d'informations.
-|T:1:8|t- {partOfAChain} : affiche la liste des hauts faits dont le haut ait survolé fait parti (1) ({partOfAChainEnabled}) (2).
-|T:1:8|t- {requiredFor} : affiche la liste des hauts faits qui sont nécessaire pour que le haut fait survolé soit complété (1) (actuellement : {requiredForEnabled}) (2).
-|T:1:8|t- {otherFaction} : affiche le haut fait associé de l'autre faction (actuellement : {otherFactionEnabled}) (2 ).
-|T:1:8|t- {objectivesProgress} : affiche la liste des objectifs avec progression (actuellement : {objectivesProgressEnabled}) (2).
-|T:1:8|t|T:1:8|t- Objectifs personnalisés : certains haut faits ont des objectifs personnalisés, comme les succès de transmogrification indiquant votre progression vers les ensembles de transmogrification associés.
+|T:1:8|t- {notObtainable} : Affiche le texte '{noLongerObtainable}' si le haut fait n'est plus disponible.
+|T:1:8|t- {earnedBy} : Voir {earnedBy} pour plus d'informations.
+|T:1:8|t- {partOfAChain} : Affiche la liste des Hauts faits dont le Haut fait survolé fait parti (1) ({partOfAChainEnabled}) (2).
+|T:1:8|t- {requiredFor} : Affiche la liste des Hauts faits qui sont nécessaire pour que le Haut fait survolé soit complété (1) (actuellement : {requiredForEnabled}) (2).
+|T:1:8|t- {otherFaction} : Affiche le Haut fait associé de l'autre faction (actuellement : {otherFactionEnabled}) (2 ).
+|T:1:8|t- {objectivesProgress} : Affiche la liste des objectifs avec progression (actuellement : {objectivesProgressEnabled}) (2).
+|T:1:8|t|T:1:8|t- Objectifs personnalisés : Certains Haut faits ont des objectifs personnalisés, comme les succès de transmogrification indiquant votre progression vers les ensembles de transmogrification associés.
 
 Icônes :
-|T:1:8|t- {ready} : le haut fait est terminé.
-|T:1:8|t- {waiting} : le haut fait n'est pas terminé.
-|T:1:8|t- {notready} : le haut fait n'est plus disponible.
+|T:1:8|t- {ready} : Le Haut fait est terminé.
+|T:1:8|t- {waiting} : Le Haut fait n'est pas terminé.
+|T:1:8|t- {notready} : Le Haut fait n'est plus disponible.
 
 Couleurs :
-|T:1:8|t- {vert} : la haut fait/l'objectif est terminé.
-|T:1:8|t- {gris} : le haut fait/l'objectif n'est pas terminé.
-|T:1:8|t- {red} : le haut fait n'est plus disponible.
-|T:1:8|t- les couleurs pâles {lightGreen}, {lightGrey} ou {lightRed} : le haut fait est ignoré.
+|T:1:8|t- {vert} : Le Haut fait ou l'objectif est terminé.
+|T:1:8|t- {gris} : Le Haut fait ou l'objectif n'est pas terminé.
+|T:1:8|t- {red} : Le Haut fait n'est plus disponible.
+|T:1:8|t- les couleurs pâles {lightGreen}, {lightGrey} ou {lightRed} : Le Haut fait est ignoré.
 
 D'autres objectifs personnalisés peuvent être demandés sur {discord} ou {curseForge} (liens dans les options).
 
@@ -384,8 +392,8 @@ Types d'événements :
 L["Event Reminders"] = "Rappels d'événements"
 L["Events"] = "Évènements"
 L["Exclude"] = "Exclure"
-L["Exclude Excluded achievements"] = "Exclure les Hauts-faits masqué"
-L["Exclude Excluded achievements Desc"] = "Excluez les Hauts-faits masqué des résultats de la recherche ou incluez-les dans les résultats de la recherche."
+L["Exclude Excluded achievements"] = "Exclure les Hauts faits masqué"
+L["Exclude Excluded achievements Desc"] = "Exclue ou Inclue les Hauts faits masqué des résultats de la recherche."
 L["Excluded"] = "Masqué"
 L["Expansions"] = "Extensions"
 L["Expansions tab"] = "Onglet extention"
@@ -441,7 +449,7 @@ Désolé pour le désagrément.]=]
 L["Flashfrost Flyover"] = "Survol de givréclair"
 L["Flexible"] = true
 L["Flowing Pandaren Spirit"] = "Esprit pandaren fluide"
-L["for achievement"] = "pour le haut fait"
+L["for achievement"] = "pour le Haut fait"
 L["Force two columns"] = "Forcer deux colonnes."
 L["Force two columns Desc"] = "Activer ou désactiver l'algorithme pour forcer l'affichage en deux colonnes des objectifs des réalisations. Lorsque cette option est activée, si seulement une colonne d'objectifs devait être affichée en raison de la longueur du texte d'un ou plusieurs objectifs, une deuxième colonne sera forcée en fonction des autres paramètres."
 L["Force two columns threshold"] = "Limite pour forcer deux colonnes."
@@ -462,6 +470,8 @@ L["Garrisons Update"] = "Mise à jour des fiefs"
 L["Gifts"] = "Cadeaux"
 L["Gladiator's Sanctum"] = "Sanctum du Gladiateur"
 L["Glory"] = "Gloire"
+L["Go back one achievement"] = "Revenir au Haut fait précédent"
+L["Go forward one achievement"] = "Avancer au Haut fait suivant"
 L["Go to"] = "Aller à"
 L["Going away with"] = "Temporaires"
 L["Gorespine"] = "Tripépine"
@@ -485,9 +495,10 @@ L["Hearthstone's 10th Anniversary"] = "10e anniversaire de Hearthstone"
 L["Heroes of the Storm"] = true
 L["Hide Date Completed"] = "Masquer la date de réalisation"
 L["Hide Date Completed Desc"] = "Masquer la date à laquelle le haut fait a été terminé"
-L["Hide Not Earned By if current character earned the achievement"] = "Masquer \"Non obtenu par\" si le personnage actuel a obtenu le Haut-fait"
-L["Hide Not Earned By if current character earned the achievement Desc"] = "Masquer la section {notEarnedBy} si le personnage actuel a obtenu le Haut-fait. La section {earnedBy} sera toujours affichée normalement."
+L["Hide Not Earned By if current character earned the achievement"] = "Masquer {notEarnedBy} si le personnage actuel a obtenu le Haut fait"
+L["Hide Not Earned By if current character earned the achievement Desc"] = "Masquer la section {notEarnedBy} si le personnage actuel a obtenu le Haut fait. La section {earnedBy} sera toujours affichée normalement."
 L["Holidays"] = "Fêtes saisonnières"
+L["Horizontal position"] = "Position horizontale"
 L["Hour of Twilight"] = "L’Heure du Crépuscule"
 L["Icon Left click"] = "pour ouvrir la fenêtre des hauts faits"
 L["Icon Right click"] = "pour les options."
@@ -526,15 +537,16 @@ L["Level 85"] = "Niveau 85"
 L["Level 90"] = "Niveau 90"
 L["Leveling"] = "Monté de niveau"
 L["Line"] = "Ligne"
-L["Load Tracking Achievements"] = "Charger les hauts faits suivis"
-L["Load Tracking Achievements Desc"] = "Charger les Hauts-faits marqués comme des Hauts-faits de suivi normalement invisibles pour le joueur. Cela permet également la recherche et la visualisation de ceux-ci dans la fenêtre des Hauts-faits."
+L["Load Tracking Achievements"] = "Charger les Hauts faits suivis"
+L["Load Tracking Achievements Desc"] = [=[Charger les Hauts faits masqués comme des Hauts faits de suivi normalement invisibles pour le joueur.
+Cela permet également la recherche et la visualisation de ceux-ci dans la fenêtre des Hauts faits.]=]
 L["Loaded"] = "Chargé"
 L["Loaded Desc"] = "Indique si l'addon associé au plugin est chargé ou non."
 L["Localizations"] = "Traductions"
 L["Location"] = "Lieu"
 L["Lock month"] = "Verrouiller le mois"
 L["Lock month Desc"] = "Garder le dernier mois affiché comme mois à afficher lorsque le calendrier est rouvert après avoir été fermé."
-L["Lock month when closed by achievement"] = "Verrouiller le mois lorsqu'il est fermé par un haut fait"
+L["Lock month when closed by achievement"] = "Verrouiller le mois lorsqu'il est fermé par un Haut fait"
 L["Lock month when closed by achievement Desc"] = "Garder le dernier mois affiché comme mois à afficher lorsque le calendrier est rouvert après avoir été fermé en cliquant sur une réalisation sur le côté."
 L["Login Delay"] = "Délais"
 L["Love is in the Air"] = "De l'amour dans l'air"
@@ -578,12 +590,12 @@ L["Movable"] = "Déplaçable"
 L["Necrolord Assault"] = "L'assaut des Nécro-seigneurs"
 L["Necrolords Assault"] = "L'assaut des Nécro-seigneurs"
 L["never obtainable"] = "jamais obtenable"
-L["New Achievement Colors"] = "Nouvelles couleurs de haut fait"
-L["New Achievement Colors Desc"] = [=[La couleur de bordure d'un haut fait accompli est à présent doré.
-- La couleur d'un haut fait obtenu alors qu'il n'est plus obtenable est à présent rouge.
-- La couleur d'un haut fait non obtenu et non obtenable est à présent grise.
-- La couleur d'un haut fait obtenu à l'échelle du compte est à présent bleu.]=]
-L["New achievement window tabs"] = "Nouveaux onglets pour la fenêtre des hauts faits "
+L["New Achievement Colors"] = "Nouvelles couleurs des Hauts faits"
+L["New Achievement Colors Desc"] = [=[La couleur de bordure d'un Haut fait accompli est à présent doré.
+- La couleur d'un Haut fait obtenu alors qu'il n'est plus obtenable est à présent rouge.
+- La couleur d'un Haut fait non obtenu et non obtenable est à présent grise.
+- La couleur d'un Haut fait obtenu à l'échelle du compte est à présent bleu.]=]
+L["New achievement window tabs"] = "Nouveaux onglets pour la fenêtre des Hauts faits "
 L["New achievement window tabs Desc"] = [=[De nouveaux onglets sont ajoutés à la fenêtre des Hauts-faits.
 Cela offre une nouvelle façon d'afficher les Hauts-faits d'une manière plus familière sans affecter les onglets par défaut.
 
@@ -602,7 +614,7 @@ L["Next from startDate until endDate"] = "Prochainement du {startDate} au {endDa
 L["Next occurrence unknown"] = "Prochaine occurrence inconnue"
 L["Night Fae Assault"] = "L'assaut des Faë nocturnes"
 L["Nitun"] = true
-L["No achievements are available with the current set of filters"] = "Aucune Haut-fait n'est disponible avec l'ensemble de filtres actuel"
+L["No achievements are available with the current set of filters"] = "Aucune Haut fait n'est disponible avec l'ensemble de filtres actuel"
 L["No category selected"] = "Aucune catégorie sélectionnée"
 L["No characters found"] = "Aucun personnage trouvé•e"
 L["No data found"] = "Aucune donnée trouvée"
@@ -631,8 +643,8 @@ L["Number of Not Earned By characters Desc"] = [=[Le nombre de personnages n'aya
  Si vous définissez ce paramètre sur 0, cette fonctionnalité sera désactivée.]=]
 L["Number of search previews"] = "Nombre d'aperçus de recherche"
 L["Number of search previews Desc"] = "Le nombre de haut fait qui seront prévisualisés dans la liste pendant la recherche"
-L["Number of summary achievements"] = "Résumé du nombre de hauts faits"
-L["Number of summary achievements Desc"] = "Nombre de hauts faits qui seront affichés dans la vue récapitulative de chaque onglet."
+L["Number of summary achievements"] = "Nombre de Hauts faits récapitulatifs"
+L["Number of summary achievements Desc"] = "Nombre de Hauts faits qui seront affichés dans la vue récapitulative de chaque onglet."
 L["N'Zoth Assaults"] = "Assauts de N'Zoth"
 L["Objectives"] = "Objectifs"
 L["Objectives progress"] = "Progression des objectifs"
@@ -646,8 +658,8 @@ L["On Event Start"] = "Au démarrage de l'événement"
 L["On Login"] = "À la connexion"
 L["On Reload"] = "Au rechargement de l'interface"
 L["only obtainable by one player"] = "seulement obtenable par un joueur"
-L["Only search filtered achievements"] = "Rechercher uniquement les hauts faits filtrés"
-L["Only search filtered achievements Desc"] = "Ne recherchez que les hauts faits visibles avec les filtres définis."
+L["Only search filtered achievements"] = "Rechercher uniquement les Hauts faits filtrés"
+L["Only search filtered achievements Desc"] = "Ne recherchez que les Hauts faits visibles avec les filtres définis."
 L["Only when time data is available"] = "Uniquement lorsque les données de temps sont disponibles"
 L["Open"] = "Ouvert"
 L["Order"] = "Ordre des onglets"
@@ -661,6 +673,7 @@ L["Overwatch"] = true
 L["Pandaren"] = true
 L["Pandaria Cup"] = "Coupe de Pandarie"
 L["Part of a chain"] = "Ce Haut-fait fait partie d'une suite de Hauts-faits"
+L["Passage Pathway"] = "Épreuve du bastion de Tyr"
 L["Past Obtainable"] = "Anciennement disponible"
 L["Paste to Chat"] = "Coller dans le chat"
 L["Patch"] = true
@@ -776,6 +789,7 @@ L["Secrets of Azeroth (KR)"] = "Les secrets d'Azeroth (KR)"
 L["Secrets of Azeroth (US)"] = "Les secrets d'Azeroth (US)"
 L["Secrets of Ulduar"] = "Les secrets d’Ulduar"
 L["Seeds of Renewal"] = "Les graines du renouveau"
+L["Select achievements to see your browsing history"] = "Sélectionnez des Hauts faits pour voir votre historique de consultation"
 L["Select All"] = "Tout sélectionner"
 L["Selected Zone"] = "Zone sélectionnée"
 L["Set Keybind"] = "Définir le raccourci clavier"
@@ -924,10 +938,10 @@ L["The Shattering"] = "L'Effondrement"
 L["The Thunder King"] = "Le Roi-Tonnerre"
 L["The Tomb of Sargeras"] = "La tombe de Sargeras"
 L["The Vakthros Ascent"] = "Ascension du Vakthros"
-L["This achievement"] = "Ce haut fait"
-L["This achievement can't be earned by this character."] = "Ce haut fait ne peut pas être réalisé par ce personnage"
-L["This achievement is no longer obtainable"] = "Ce haut fait n'est plus réalisable"
-L["This category has no achievements"] = "Cette catégorie n'a pas de hauts faits."
+L["This achievement"] = "Ce Haut fait"
+L["This achievement can't be earned by this character."] = "Ce Haut fait ne peut pas être réalisé par ce personnage"
+L["This achievement is no longer obtainable"] = "Ce Haut fait n'est plus réalisable"
+L["This category has no achievements"] = "Cette catégorie n'a pas de Hauts faits."
 L["This character's class has no transmog set that meet the requirements."] = "La classe de ce personnage n'a pas d'ensembles de transmogrification qui répondent aux exigences."
 L["Thundering Pandaren Spirit"] = "Esprit pandaren fulminant"
 L["Thunderstorms"] = "Tempête élémentaire de foudre"
@@ -950,8 +964,12 @@ L["Toggle window once opened"] = "Basculer la fenêtre une fois ouverte"
 L["Toggle window once opened Desc"] = "Lorsque la fenêtre des hauts faits est ouverte pour la première fois, ouvrez la fenêtre sur l'onglet correct et sélectionnez le résumé. À partir de la deuxième ouverture, indépendamment de la combinaison de touches utilisée, ouvrez la dernière vue consultée."
 L["Tooltip"] = "Infobulle"
 L["Torghast"] = "Tourment"
+L["Track achievement browsing history"] = "Suivre l'historique de consultation des Hauts faits"
+L["Track achievement browsing history Desc"] = [=[Lorsque activé, affiche les boutons retour et suivant dans l'en-tête de la fenêtre des Hauts faits.
+
+Cela permet de naviguer dans votre historique de consultation des Hauts faits sélectionnés, tout comme votre navigateur internet le fait pour les sites visités.]=]
 L["Tracking"] = "Suivi"
-L["Tracking Achievements"] = "Suivi des hauts faits"
+L["Tracking Achievements"] = "Suivi des Hauts faits"
 L["Trading Post"] = "Le Comptoir"
 L["Transmog Sets"] = "Ensembles de transmogrification"
 L["Truncate"] = "Tronquer"
@@ -968,6 +986,7 @@ L["up until the start of"] = "jusqu'au début de"
 L["Upper Reaches"] = "Étages supérieurs"
 L["Vendor"] = "Marchands"
 L["Venthyr Assault"] = "L'assaut des Venthyrs"
+L["Vertical position"] = "Position verticale"
 L["View Tutorial"] = "Voir le tutoriel"
 L["Visions of N'Zoth"] = "Visions de N'Zoth"
 L["Wago"] = true
@@ -978,7 +997,7 @@ L["Warcraft III: Reforged"] = true
 L["Warcraft Rumble"] = true
 L["was"] = "était"
 L["Watch List"] = "Liste de suivi"
-L["When achievement completed"] = "Lorsque le haut fait est terminé"
+L["When achievement completed"] = "Lorsque le Haut fait est terminé"
 L["When achievement completed Desc"] = [=[Affiche ou masque {objectivesProgress} lorsque les hauts faits sont réalisés.
 
 Si cette option est activée, les {objectivesProgress} des hauts faits seront affichés dans l'infobulle, que le haut fait soit terminé ou non.]=]
