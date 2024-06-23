@@ -24,3 +24,9 @@
 [LIST]
 [*]Fixed hooksecurefunc error
 [/LIST]
+
+[B]Fixed (73.4)[/B]
+[LIST]
+[*]GW2 UI skin
+[*]Tabs order options
+[/LIST]

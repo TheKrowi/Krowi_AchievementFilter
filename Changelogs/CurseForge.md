@@ -20,3 +20,8 @@
 <ul>
 <li>Fixed hooksecurefunc error</li>
 </ul>
+<p><h3>Fixed (73.4)</h3></p>
+<ul>
+<li>GW2 UI skin</li>
+<li>Tabs order options</li>
+</ul>

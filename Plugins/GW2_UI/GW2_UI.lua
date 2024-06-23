@@ -489,8 +489,12 @@ do -- [[ Achievements]]
         button.Shield:SetPoint("CENTER", button.cBackground, "CENTER", 0, 0);
 
         -- Move extra icon
-        button.ExtraIcon1:ClearAllPoints();
-        button.ExtraIcon1:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", 3, 8);
+        -- print("extra icons test", button.ExtraIcons)
+        -- if button.ExtraIcons then
+        --     print("extra icons")
+        --     button.ExtraIcons[1]:ClearAllPoints();
+        --     button.ExtraIcons[1]:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", 3, 8);
+        -- end
 
         -- Extra flare when achievement is completed
         button.completeFlare = button:CreateTexture("completeFlare", "BACKGROUND", nil, 0);
@@ -838,14 +842,14 @@ local function SkinFilterButton(button)
     end);
 
     button:HookScript("OnShow", function()
-        GW2_ADDON.AchievementFrameFilterDropdownDummy:Hide();
+        GW2_ADDON.AchievementFrameFilterDropDownDummy:Hide();
     end);
 
     button:HookScript("OnHide", function()
         if AchievementFrameFilterDropdown:IsShown() then
-            GW2_ADDON.AchievementFrameFilterDropdownDummy:Hide();
+            GW2_ADDON.AchievementFrameFilterDropDownDummy:Hide();
         else
-            GW2_ADDON.AchievementFrameFilterDropdownDummy:Show();
+            GW2_ADDON.AchievementFrameFilterDropDownDummy:Show();
         end
     end);
 end
@@ -1382,6 +1386,16 @@ function gw2_ui.Load()
                 gw2_ui.SkinSideButtons();
             end
         end);
+    end);
+
+    hooksecurefunc(addon.Gui.AchievementButtonExtraIconFactory, "GetNew", function(button)
+        local extraIconId = #button.ExtraIcons;
+        local extraIcon = button.ExtraIcons[extraIconId];
+        if extraIconId == 1 then
+            extraIcon:SetPoint("TOPLEFT", button, "TOPLEFT", 5, -5);
+        else
+            extraIcon:SetPoint("LEFT", button.ExtraIcons[extraIconId - 1], "RIGHT", 0, 0);
+        end
     end);
 
     -- if addon.Util.IsWrathClassic then

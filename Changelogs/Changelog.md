@@ -14,3 +14,7 @@
 
 ### Cata Classic (73.3)
 - Fixed hooksecurefunc error
+
+### Fixed (73.4)
+- GW2 UI skin
+- Tabs order options

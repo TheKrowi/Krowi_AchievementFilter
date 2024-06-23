@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 73.4 - 2024-06-23
+### Fixed
+- GW2 UI skin
+- Tabs order options
+
 ## 73.3 - 2024-06-23
 ### Cata Classic
 - Fixed hooksecurefunc error
