@@ -67,9 +67,19 @@ local function ShowSubFrame(self, ...)
 	end
 end
 
-local function HookShowSubFrame(self)
+local function LoadHooks(self)
     hooksecurefunc("AchievementFrame_ShowSubFrame", function(...)
         ShowSubFrame(self, ...);
+    end);
+
+    AchievementFrameComparison:HookScript("OnHide", function()
+        if gui.SelectedTab then
+            gui:SetAchievementFrameWidth();
+            gui:SetAchievementFrameHeight();
+        else
+            gui:ResetAchievementFrameWidth();
+            gui:ResetAchievementFrameHeight();
+        end
     end);
 end
 
@@ -121,7 +131,7 @@ function gui:LoadWithBlizzard_AchievementUI()
     self:ResetAchievementFrameHeight();
 
     self:RegisterFrameForClosing(AchievementFrame);
-    HookShowSubFrame(self);
+    LoadHooks(self);
 end
 
 function gui:SetAchievementFrameWidth()

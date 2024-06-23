@@ -11,3 +11,6 @@
 
 ### Fixed (73.2)
 - Several bugs in preperation for The War Within (Beta) changes
+
+### Cata Classic (73.3)
+- Fixed hooksecurefunc error

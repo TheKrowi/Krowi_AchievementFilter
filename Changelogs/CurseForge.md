@@ -16,3 +16,7 @@
 <ul>
 <li>Several bugs in preperation for The War Within (Beta) changes</li>
 </ul>
+<p><h3>Cata Classic (73.3)</h3></p>
+<ul>
+<li>Fixed hooksecurefunc error</li>
+</ul>

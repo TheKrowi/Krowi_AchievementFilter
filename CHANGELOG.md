@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 73.3 - 2024-06-23
+### Cata Classic
+- Fixed hooksecurefunc error
+
 ## 73.2 - 2024-06-22
 ### Added
 - Temporary obtainable achievements now have the option to show an extra icon indicating if it is / was / will be obtainable
