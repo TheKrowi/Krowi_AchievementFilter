@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 73.5 - 2024-06-25
+### Fixed
+- Fate of Nathria and Fate of Domination chains should now be correct
+- Most progress section in the achievement tooltip will no longer show for past achievements that are now unobtainable
+
 ## 73.4 - 2024-06-23
 ### Fixed
 - GW2 UI skin

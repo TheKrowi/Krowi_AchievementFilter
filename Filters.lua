@@ -172,7 +172,7 @@ local validations = {
                 if nextCompleted then
                     return true;
                 end
-                local prevID = GetPreviousAchievement(achievement.Id);
+                local prevID = addon.GetPreviousAchievement(achievement.Id);
                 if prevID ~= nil then
                     local _, _, _, prevCompleted = addon.GetAchievementInfo(prevID);
                     if not prevCompleted then
@@ -370,13 +370,13 @@ local function ComparePoints(a, b, reverse, default)
     local pointsA, pointsB = false, false;
     if a then
         pointsA = select(3, addon.GetAchievementInfo(a.Id));
-        if GetPreviousAchievement(a.Id) and pointsA > 0 then
+        if addon.GetPreviousAchievement(a.Id) and pointsA > 0 then
             pointsA = AchievementButton_GetProgressivePoints(a.Id);
         end
     end
     if b then
         pointsB = select(3, addon.GetAchievementInfo(b.Id));
-        if GetPreviousAchievement(b.Id) and pointsB > 0 then
+        if addon.GetPreviousAchievement(b.Id) and pointsB > 0 then
             pointsB = AchievementButton_GetProgressivePoints(b.Id);
         end
     end

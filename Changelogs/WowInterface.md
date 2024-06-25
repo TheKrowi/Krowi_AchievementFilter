@@ -30,3 +30,9 @@
 [*]GW2 UI skin
 [*]Tabs order options
 [/LIST]
+
+[B]Fixed (73.5)[/B]
+[LIST]
+[*]Fate of Nathria and Fate of Domination chains should now be correct
+[*]Most progress section in the achievement tooltip will no longer show for past achievements that are now unobtainable
+[/LIST]

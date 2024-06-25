@@ -7,7 +7,15 @@ function section:CheckAdd(achievement)
 	if achievement.IsCompleted or achievement.IsAccountWide or achievement.TransmogSets or addon.Options.db.profile.Tooltip.Achievements.MostProgress.Characters <= 0 then
 		return;
 	end
-	numCriteria = GetAchievementNumCriteria(achievement.Id);
+	local state;
+	if achievement.TemporaryObtainable then
+		state = achievement.TemporaryObtainable.Obtainable();
+	end
+	local pastObtainable = state and (not state or state == "Past");
+	if not addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.Show or pastObtainable then
+		return;
+	end
+	numCriteria = addon.GetAchievementNumCriteria(achievement.Id);
 	return numCriteria > 0;
 end
 

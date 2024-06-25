@@ -281,7 +281,7 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
 	local id = self.Achievement.Id;
 	if objectives.Id == id and cachedWidthDisplayObjectives == objectives:GetWidth() and not forced then
 		-- Cached, nothing to do
-	elseif self.Completed and GetPreviousAchievement(id) then
+	elseif self.Completed and addon.GetPreviousAchievement(id) then
 		objectives:SetHeight(1);
 		objectives:ResetAll();
 		objectives:DisplayProgressiveAchievement(id);
@@ -320,7 +320,7 @@ local function GetSaturatedStyle(self, achievement, flags)
 end
 
 local function SetShield(self, id, points)
-	if GetPreviousAchievement(id) and points > 0 then
+	if addon.GetPreviousAchievement(id) and points > 0 then
 		points = AchievementButton_GetProgressivePoints(id);
 	end
 	local normalFont = self.Compact and GameFontHighlight or AchievementPointsFontHighlight;
@@ -337,7 +337,7 @@ local function UpdatePlusMinusTexture(self)
 	end
 
 	local id = self.Achievement.Id;
-	local display = self.Compact or GetAchievementNumCriteria(id) ~= 0 or (self.Completed and GetPreviousAchievement(id));
+	local display = self.Compact or GetAchievementNumCriteria(id) ~= 0 or (self.Completed and addon.GetPreviousAchievement(id));
 	if not display then
 		self.PlusMinus:Hide();
 		return;

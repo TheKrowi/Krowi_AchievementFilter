@@ -1,10 +1,23 @@
 local addonName, addon = ...;
 
+local customPreviousAchievements = {};
+customPreviousAchievements[15664] = 15663;
+customPreviousAchievements[15665] = 15664;
+customPreviousAchievements[15668] = 15667;
+customPreviousAchievements[15669] = 15668;
+
+function addon.GetPreviousAchievement(achievementId)
+    if customPreviousAchievements[achievementId] then
+        return customPreviousAchievements[achievementId];
+    end
+    return GetPreviousAchievement(achievementId);
+end
+
 function addon.GetFirstAchievementId(id)
     local firstId;
 	while id do
 		firstId = id;
-		id = GetPreviousAchievement(id);
+		id = addon.GetPreviousAchievement(id);
 	end
     return firstId;
 end
