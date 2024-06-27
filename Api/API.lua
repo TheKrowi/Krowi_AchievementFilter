@@ -288,8 +288,8 @@ do --[[ KrowiAF_RegisterTabOptions ]]
 	end
 
 	local function InjectTabsOrderOptionsTable(index)
-		addon.InjectOptions:AddTable("Layout.args.Tabs.args.Order.args.Order.args", tostring(OrderPP()), {
-			order = OrderPP(), type = "select", width = AdjustedWidth(1.95),
+		addon.InjectOptions:AddTable("Layout.args.Tabs.args.Order.args.Order.args", tostring(index), {
+			order = index, type = "select", width = AdjustedWidth(1.95),
 			name = "",
 			values = function() return addon.Gui:TabsOrderGetActiveKeys(); end,
 			get = function() return GetOrder(index); end,

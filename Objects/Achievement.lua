@@ -63,7 +63,7 @@ function achievement:GetPartOfAChainIDs(validate, filters)
     if self.Id == 15077 or self.Id == 15078 then -- Issue #49 : Fix
         return self.PartOfAChainIDs;
     end
-	if not addon.GetNextAchievement(self) and not GetPreviousAchievement(self.Id) then
+	if not addon.GetNextAchievement(self) and not addon.GetPreviousAchievement(self.Id) then
 		return self.PartOfAChainIDs;
 	end
     local id = addon.GetFirstAchievementId(self.Id);

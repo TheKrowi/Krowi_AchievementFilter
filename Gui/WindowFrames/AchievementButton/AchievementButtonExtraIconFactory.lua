@@ -24,7 +24,7 @@ end
 function factory.GetNew(self)
     self.ExtraIcons = self.ExtraIcons or {};
     local extraIconId = #self.ExtraIcons + 1;
-    local extraIcon = CreateFrame("Frame", nil, self, "KrowiAF_AchievementButtonExtraIcon_Template");
+    local extraIcon = CreateFrame("Frame", "ExtraIcon" .. extraIconId, self, "KrowiAF_AchievementButtonExtraIcon_Template");
     self.ExtraIcons[extraIconId] = extraIcon;
 
     if extraIconId == 1 then

@@ -152,10 +152,10 @@ function KrowiAF_AchievementsObjectivesMixin:DisplayProgressiveAchievement(id)
 	end
 
 	tinsert(achievements, 1, id);
-    local prevId = GetPreviousAchievement(id);
+    local prevId = addon.GetPreviousAchievement(id);
 	while prevId do
 		tinsert(achievements, 1, prevId);
-		prevId = GetPreviousAchievement(prevId);
+		prevId = addon.GetPreviousAchievement(prevId);
 	end
 
 	local miniAchievementWidth = self:GetMiniAchievement(1):GetWidth();

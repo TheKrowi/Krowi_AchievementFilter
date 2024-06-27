@@ -1,6 +1,24 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 73.6 - 2024-06-27
+### Fixed
+- Several bugs in preperation for The War Within (Beta) changes
+
+## 73.5 - 2024-06-25
+### Fixed
+- Fate of Nathria and Fate of Domination chains should now be correct
+- Most progress section in the achievement tooltip will no longer show for past achievements that are now unobtainable
+
+## 73.4 - 2024-06-23
+### Fixed
+- GW2 UI skin
+- Tabs order options
+
+## 73.3 - 2024-06-23
+### Cata Classic
+- Fixed hooksecurefunc error
+
 ## 73.2 - 2024-06-22
 ### Added
 - Temporary obtainable achievements now have the option to show an extra icon indicating if it is / was / will be obtainable

@@ -188,7 +188,7 @@ end
 
 local function LinkChainAchievements()
     for i = 1, #data.AchievementIds do
-        local prevId = GetPreviousAchievement(data.AchievementIds[i]);
+        local prevId = addon.GetPreviousAchievement(data.AchievementIds[i]);
         if prevId and data.Achievements[prevId] then
             data.Achievements[prevId]:AddNext(data.Achievements[data.AchievementIds[i]]);
         end
