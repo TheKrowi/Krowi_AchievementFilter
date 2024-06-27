@@ -36,3 +36,8 @@
 [*]Fate of Nathria and Fate of Domination chains should now be correct
 [*]Most progress section in the achievement tooltip will no longer show for past achievements that are now unobtainable
 [/LIST]
+
+[B]Fixed (73.6)[/B]
+[LIST]
+[*]Several bugs in preperation for The War Within (Beta) changes
+[/LIST]

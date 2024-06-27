@@ -511,7 +511,8 @@
         "GetAchievementCriteriaInfoByID",
         "PLAYER_FACTION_GROUP",
         "C_AddOns",
-        "AchievementFrameFilterDropDown"
+        "AchievementFrameFilterDropDown",
+        "WorldMapShowLegendButtonMixin"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

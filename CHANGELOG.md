@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 73.6 - 2024-06-27
+### Fixed
+- Several bugs in preperation for The War Within (Beta) changes
+
 ## 73.5 - 2024-06-25
 ### Fixed
 - Fate of Nathria and Fate of Domination chains should now be correct
