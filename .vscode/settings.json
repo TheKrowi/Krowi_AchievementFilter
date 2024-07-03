@@ -512,7 +512,9 @@
         "PLAYER_FACTION_GROUP",
         "C_AddOns",
         "AchievementFrameFilterDropDown",
-        "WorldMapShowLegendButtonMixin"
+        "WorldMapShowLegendButtonMixin",
+        "GetMouseFoci",
+        "DoesAncestryIncludeAny"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

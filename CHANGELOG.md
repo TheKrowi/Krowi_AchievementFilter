@@ -1,6 +1,20 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 74.0 - 2024-07-10
+### Added
+- The War Within category and subcategories in the Expansions tab with all the new achievements ()
+- Deephaul Ravine achievements (8)
+- Misc achievements (2)
+
+### Fixed
+- Several bugs in preperation for The War Within (Beta) changes
+
+### Changed
+- Draconically Superior and Draconically Epic are now temporarily obtainable
+- Draconically Superior and Draconically Epic, Dreaming of Drakes, Dreaming of Wyrns and Dreaming of the Aspects moved from the Cross-Expansion Character category to the Dragonflight Character category
+- Trading Post: Dragonflight moved from the Cross-Expansion Character category to the Promotions
+
 ## 73.6 - 2024-06-27
 ### Fixed
 - Several bugs in preperation for The War Within (Beta) changes
@@ -940,7 +954,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Default fade delay for event reminder pop ups changed to 10 seconds (down from 30)
-- Localization of the temporary obtainable string is can now be reordered
+- Localization of the temporarily obtainable string can now be reordered
 - Calendar events and World events options are now grouped via a sidebar instead of a big list
 - World events are now rounded to 5 minutes instead of 1 hour
 - Moved some options from Layout - Categories to Layout - Adjustable Categories

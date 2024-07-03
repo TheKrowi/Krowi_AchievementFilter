@@ -39,13 +39,148 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-06-15 17-29-58 ]] --
+-- [[ Exported at 2024-07-03 22-21-08 ]] --
 tasks = {
+    {N, 40648, 210}, -- Mythic: The Stonevault
+    {N, 40644, 210}, -- Heroic: The Stonevault
+    {N, 40643, 210}, -- The Stonevault
+    {N, 40642, 210}, -- Mythic: The Rookery
+    {N, 40637, 210}, -- Heroic: The Rookery
+    {N, 40621, 210}, -- The Rookery
+    {N, 40617, 210}, -- Deepholla
+    {N, 40616, 210}, -- Unexpected Arrivals
+    {N, 40615, 210}, -- Unexpected Arrival
+    {N, 40613, 210}, -- Resilient Runner
+    {N, 40604, 210}, -- Mythic: The Dawnbreaker
+    {N, 40601, 210}, -- Heroic: The Dawnbreaker
+    {N, 40599, 210}, -- The Dawnbreaker
+    {N, 40596, 210}, -- Mythic: Priory of the Sacred Flame
+    {N, 40592, 210}, -- Heroic: Priory of the Sacred Flame
+    {N, 40590, 210}, -- Priory of the Sacred Flame
+    {N, 40463, 210}, -- Delve Deepest
+    {N, 40462, 210}, -- Delve Deeper
+    {N, 40460, 210}, -- Delve Deep
+    {N, 40457, 210}, -- Buddy System V
+    {N, 40456, 210}, -- Buddy System IV
+    {N, 40455, 210}, -- Buddy System
+    {N, 40451, 210}, -- Buddy System III
+    {N, 40450, 210}, -- Buddy System II
+    {N, 40449, 210}, -- Delver of the Depths IV
+    {N, 40448, 210}, -- Delver of the Depths III
+    {N, 40447, 210}, -- Delver of the Depths II
+    {N, 40438, 210}, -- Glory of the Delver
+    {N, 40437, 210}, -- Delver of the Depths
+    {N, 40436, 210}, -- You're Getting a Delve!
+    {N, 40429, 210}, -- Mythic: Darkflame Cleft
+    {N, 40428, 210}, -- Heroic: Darkflame Cleft
+    {N, 40427, 210}, -- Darkflame Cleft
     {N, 40382, 208}, -- Hunt the Harbinger
+    {N, 40379, 210}, -- Mythic: City of Threads
+    {N, 40377, 210}, -- Heroic: City of Threads
+    {N, 40376, 210}, -- City of Threads
+    {N, 40375, 210}, -- "Mythic: Ara-Kara, City of Echoes"
+    {N, 40374, 210}, -- "Heroic: Ara-Kara, City of Echoes"
+    {N, 40370, 210}, -- "Ara-Kara, City of Echoes"
+    {N, 40366, 210}, -- Mythic: Cinderbrew Meadery
+    {N, 40363, 210}, -- Heroic: Cinderbrew Meadery
+    {N, 40361, 210}, -- Cinderbrew Meadery
+    {N, 40266, 210}, -- Missed 'Em by That Much
+    {N, 40264, 210}, -- Kill Streak
+    {N, 40263, 210}, -- Would You Still /love Me if I Was a Worm...
+    {N, 40262, 210}, -- Cowabunga
+    {N, 40261, 210}, -- Slimy Yet Satisfying
+    {N, 40260, 210}, -- You Can't See Me
+    {N, 40255, 210}, -- Sik Parry Bro
+    {O, 40254, "From", "Mythic+ Season", 13, "Until", "Mythic+ Season", 13},
+    {N, 40254, 210}, -- Cutting Edge: Queen Ansurek
+    {O, 40253, "From", "Mythic+ Season", 13, "Until", "Mythic+ Season", 13},
+    {N, 40253, 210}, -- Ahead of the Curve: Queen Ansurek
+    {N, 40249, 210}, -- A Queen's Fall
+    {N, 40248, 210}, -- Secrets of Nerub-ar Palace
+    {N, 40247, 210}, -- The Skittering Battlements
+    {N, 40246, 210}, -- Mythic: Nerub-ar Palace
+    {N, 40245, 210}, -- Heroic: Nerub-ar Palace
+    {N, 40244, 210}, -- Nerub-ar Palace
+    {N, 40243, 210}, -- Mythic: Queen Ansurek
+    {N, 40242, 210}, -- Mythic: The Silken Court
+    {N, 40241, 210}, -- Mythic: Nexus-Princess Ky'veza
+    {N, 40240, 210}, -- Mythic: Broodtwister Ovi'nax
+    {N, 40239, 210}, -- Mythic: Rasha'nan
+    {N, 40238, 210}, -- "Mythic: Sikran, Captain of the Sureki"
+    {N, 40237, 210}, -- Mythic: The Bloodbound Horror
+    {N, 40236, 210}, -- Mythic: Ulgrax the Devourer
+    {N, 40232, 210}, -- Glory of the Nerub-ar Raider
+    {N, 40231, 210}, -- The War Within Pathfinder
     {O, 40223, "From", "Event", "1514", "Until", "Event", "1514"},
     {N, 40223, 208}, -- Timerunner
+    {N, 40216, 210}, -- Deephaul Ravine Expedience
+    {N, 40215, 210}, -- Deepwind Ravine Shutout
+    {N, 40211, 210}, -- Deephaul Ravine Veteran
+    {N, 40210, 210}, -- Deephaul Ravine Victory
+    {N, 40194, 210}, -- Khaz Algar Safari
+    {N, 40165, 210}, -- Undead Battler of Khaz Algar
+    {N, 40164, 210}, -- Mechanical Battler of Khaz Algar
+    {N, 40163, 210}, -- Magic Battler of Khaz Algar
+    {N, 40162, 210}, -- Humanoid Battler of Khaz Algar
+    {N, 40161, 210}, -- Flying Battler of Khaz Algar
+    {N, 40158, 210}, -- Elemental Battler of Khaz Algar
+    {N, 40157, 210}, -- Dragonkin Battler of Khaz Algar
+    {N, 40156, 210}, -- Critter Battler of Khaz Algar
+    {N, 40155, 210}, -- Beast Battler of Khaz Algar
+    {N, 40154, 210}, -- Aquatic Battler of Khaz Algar
+    {N, 40153, 210}, -- Battle on Khaz Algar
+    {N, 40150, 210}, -- Children's Entertainer
+    {N, 40147, 210}, -- War Within Epic
+    {N, 40146, 210}, -- War Within Superior
+    {N, 40145, 210}, -- So Much Sharing
+    {N, 40142, 210}, -- Learning to Share
+    {N, 40141, 210}, -- Algari Dungeon Tank
+    {N, 40140, 210}, -- Algari Dungeon Healer
+    {N, 40139, 210}, -- Algari Dungeon Damage Dealer
+    {N, 40138, 210}, -- Algari Dungeoneer
+    {N, 40100, 210}, -- Undying Caver
+    {N, 40098, 210}, -- Immortal Spelunker
+    {N, 40097, 210}, -- Ruffious's Bid
+    {N, 40096, 210}, -- Sparking Battle
+    {N, 40095, 210}, -- Sparking Battle
+    {N, 40091, 210}, -- Slightly Spoiled
+    {N, 40090, 210}, -- Spoiled Goods
+    {N, 40089, 210}, -- Spoiled Goods
+    {N, 40088, 210}, -- A Champion's Tour: The War Within
+    {N, 40087, 210}, -- Unbound Battle
+    {N, 40086, 210}, -- Tour of Duty: Azj-Kahet
+    {N, 40085, 210}, -- Tour of Duty: Hallowfall
+    {N, 40084, 210}, -- Tour of Duty: The Ringing Deeps
+    {N, 40083, 210}, -- Tour of Duty: Isle of Dorn
+    {N, 20598, 210}, -- Hallowfall
+    {N, 20597, 210}, -- The War Within
+    {N, 20596, 210}, -- Loremaster of Khaz Algar
+    {N, 20595, 210}, -- Sojourner of Isle of Dorn
+    {N, 20594, 210}, -- Flamegard's Hope
     {O, 20593, "From", "Event", "1514", "Until", "Event", "1514"},
     {N, 20593, 208}, -- Time Trial
+    {O, 20589, "From", "Mythic+ Season", 13, "Until", "Mythic+ Season", 13},
+    {N, 20589, 210}, -- [PH] Hero: The War Within Season 1
+    {O, 20588, "From", "Mythic+ Season", 13, "Until", "Mythic+ Season", 13},
+    {N, 20588, 210}, -- Keystone Hero: Grim Batol
+    {O, 20587, "From", "Mythic+ Season", 13, "Until", "Mythic+ Season", 13},
+    {N, 20587, 210}, -- Keystone Hero: Siege of Boralus
+    {O, 20586, "From", "Mythic+ Season", 13, "Until", "Mythic+ Season", 13},
+    {N, 20586, 210}, -- "Keystone Hero: Ara-Kara, City of Echoes"
+    {O, 20585, "From", "Mythic+ Season", 13, "Until", "Mythic+ Season", 13},
+    {N, 20585, 210}, -- Keystone Hero: The Dawnbreaker
+    {O, 20584, "From", "Mythic+ Season", 13, "Until", "Mythic+ Season", 13},
+    {N, 20584, 210}, -- Keystone Hero: Darkflame Cleft
+    {O, 20583, "From", "Mythic+ Season", 13, "Until", "Mythic+ Season", 13},
+    {N, 20583, 210}, -- Keystone Hero: Cinderbrew Meadery
+    {O, 20582, "From", "Mythic+ Season", 13, "Until", "Mythic+ Season", 13},
+    {N, 20582, 210}, -- Keystone Hero: City of Threads
+    {O, 20581, "From", "Mythic+ Season", 13, "Until", "Mythic+ Season", 13},
+    {N, 20581, 210}, -- Keystone Hero: Priory of the Sacred Flame
+    {O, 20580, "From", "Mythic+ Season", 13, "Until", "Mythic+ Season", 13},
+    {N, 20580, 210}, -- Keystone Hero: The Stonevault
+    {O, 20579, "From", "Mythic+ Season", 13, "Until", "Mythic+ Season", 13},
+    {N, 20579, 210}, -- Keystone Hero: The Rookery
     {O, 20538, "From", "Event", "1514", "Until", "Event", "1514"},
     {N, 20538, 208}, -- Infinite Power XII
     {O, 20537, "From", "Event", "1514", "Until", "Event", "1514"},
@@ -70,6 +205,16 @@ tasks = {
     {N, 20528, 208}, -- Infinite Power II
     {O, 20527, "From", "Event", "1514", "Until", "Event", "1514"},
     {N, 20527, 208}, -- Infinite Power I
+    {O, 20526, "From", "Mythic+ Season", 13, "Until", "Mythic+ Season", 13},
+    {N, 20526, 210}, -- The War Within Keystone Hero: Season One
+    {O, 20525, "From", "Mythic+ Season", 13, "Until", "Mythic+ Season", 13},
+    {N, 20525, 210}, -- The War Within Keystone Master: Season One
+    {O, 20524, "From", "Mythic+ Season", 13, "Until", "Mythic+ Season", 13},
+    {N, 20524, 210}, -- The War Within Keystone Conqueror: Season One
+    {O, 20523, "From", "Mythic+ Season", 13, "Until", "Mythic+ Season", 13},
+    {N, 20523, 210}, -- The War Within Keystone Explorer: Season One
+    {N, 20511, 210}, -- Gotta Punt em' All
+    {N, 20510, 210}, -- What Could it be?
     {N, 20509, 207}, -- Plunderkind
     {N, 20508, 207}, -- Plunder Wonder
     {N, 20501, 207}, -- Back from the Beyond
@@ -79,6 +224,7 @@ tasks = {
     {O, 20209, "From", "Event", "181", "Until", "Event", "181"},
     {N, 20209, 207}, -- Quacked Killer
     {N, 20206, 206}, -- Champion of the Dragonflights
+    {N, 20118, 210}, -- The Isle of Dorn
     {O, 20069, "From", "Event", "1514", "Until", "Event", "1514"},
     {N, 20069, 208}, -- Elusive Foes: Vale of Eternal Blossoms
     {N, 20033, 206}, -- Hearthstone Beginner
@@ -391,6 +537,8 @@ tasks = {
     {O, 19721, "From", "Event", "1429", "Until", "Event", "1429"},
     {N, 19721, 206}, -- Northrend Racing Completionist
     {N, 19719, 206}, -- Reclamation of Gilneas
+    {N, 19716, 210}, -- Plentiful Algari Potions
+    {N, 19704, 210}, -- Overflowing Algari Flasks
     {N, 19685, 206}, -- Tenured Archivist
     {O, 19684, "From", "Event", "1429", "Until", "Event", "1429"},
     {N, 19684, 206}, -- Northrend Reverse: Gold
@@ -434,6 +582,9 @@ tasks = {
     {N, 19565, 207}, -- Heroic: Awakened Storms
     {O, 19564, "From", "Mythic+ Season", 12, "Until", "Mythic+ Season", 12},
     {N, 19564, 207}, -- Awakened Storms
+    {N, 19560, 210}, -- The Ringing Deeps
+    {N, 19559, 210}, -- Azj-Kahet
+    {N, 19515, 210}, -- Algari Master of Many
     {O, 19513, "From", "PvP Season", 37, "Until", "PvP Season", 37},
     {N, 19513, 207, nil, nil, true}, -- Battle Mender: Dragonflight Season 4
     {O, 19509, "From", "PvP Season", 37, "Until", "PvP Season", 37},
@@ -461,6 +612,7 @@ tasks = {
     {N, 19492, 207, nil, nil, true}, -- Duelist: Dragonflight Season 4
     {O, 19490, "From", "PvP Season", 37, "Until", "PvP Season", 37},
     {N, 19490, 207}, -- Gladiator: Dragonflight Season 4
+    {N, 19489, 210}, -- Class Connoisseur
     {N, 19486, 207}, -- Across the Isles
     {N, 19485, 207}, -- Closing Time
     {N, 19483, 207}, -- Flight Club
@@ -468,9 +620,15 @@ tasks = {
     {N, 19481, 207}, -- Centaur of Attention
     {N, 19479, 207}, -- Wake Me Up
     {N, 19478, 207}, -- Now THIS is Dragon Racing!
+    {N, 19477, 210}, -- Five Warband Mentors: The War Within
+    {N, 19476, 210}, -- Four Warband Mentors: The War Within
+    {N, 19475, 210}, -- Three Warband Mentors: The War Within
+    {N, 19470, 210}, -- One Warband Mentor: The War Within
     {N, 19466, 207}, -- "Oh My God, They Were Clutchmates"
     {N, 19463, 207}, -- Dragon Quests
     {N, 19461, 205}, -- Kissed by the Wind
+    {N, 19460, 210}, -- Two Warband Mentors: The War Within
+    {N, 19459, 210}, -- Level 80
     {N, 19458, 207}, -- A World Awoken
     {O, 19456, "From", "PvP Season", 37, "Until", "PvP Season", 37},
     {N, 19456, 207, f.Horde, nil, true}, -- Hero of the Horde: Draconic
@@ -542,9 +700,14 @@ tasks = {
     {N, 19418, 205, nil, nil, true}, -- Battle-scarred Battler
     {N, 19417, 205, nil, nil, true}, -- Brawlroom Blitzer
     {N, 19416, 205, nil, nil, true}, -- Learning the Ropes
+    {N, 19415, 210}, -- Algari Fisherman
+    {N, 19414, 210}, -- Algari Cook
     {N, 19413, 205, nil, nil, true}, -- Battleground Blitz Veteran
     {N, 19412, 205, nil, nil, true}, -- Battleground Blitz Apprentice
     {N, 19411, 205, nil, nil, true}, -- Battleground Blitz Novice
+    {N, 19410, 210}, -- Algari Master of All
+    {N, 19409, 210}, -- Working Underground
+    {N, 19408, 210}, -- Professional Algari Master
     {N, 19401, 205}, -- Emerald Dream Safari
     {O, 19400, "From", "Event", "423", "Until", "Event", "423"},
     {N, 19400, 206}, -- Support Your Local Artisans
@@ -668,7 +831,6 @@ tasks = {
     {N, 19132, 205, nil, nil, true}, -- Verdant Gladiator: Dragonflight Season 3
     {O, 19131, "From", "PvP Season", 36, "Until", "PvP Season", 36},
     {N, 19131, 205, nil, nil, true}, -- Verdant Legend: Dragonflight Season 3
-    {O, 19130, "From", "Event", "141", "Until", "Event", "141"},
     {N, 19130, 205}, -- Junior Racing Champion
     {N, 19129, 205}, -- Emerald Dream Challenge Racing Completionist: Gold
     {N, 19128, 205}, -- Emerald Dream Challenge Racing Completionist: Silver
@@ -754,7 +916,9 @@ tasks = {
     {O, 19009, "From", "Mythic+ Season", 11, "Until", "Mythic+ Season", 11},
     {N, 19009, 205}, -- Dragonflight Keystone Explorer: Season Three
     {N, 19008, 202}, -- Dream Shaper
+    {O, 18977, "From", "Version", "100105", "Before", "Version", "110000"},
     {N, 18977, 201}, -- Draconically Epic
+    {O, 18976, "From", "Version", "100105", "Before", "Version", "110000"},
     {N, 18976, 201}, -- Draconically Superior
     {N, 18963, 202}, -- Burst Damage
     {O, 18962, "From", "Event", "324", "Until", "Event", "324"},
@@ -1916,7 +2080,6 @@ tasks = {
     {N, 15663, 192}, -- Fate of Nathria
     {O, 15654, "From", "Version", "090205", "Before", "Version", "100002"},
     {N, 15654, 192}, -- Back from the Beyond (Legacy)
-    {O, 15653, "From", "Event", "141", "Until", "Event", "141"},
     {N, 15653, 192}, -- The More You Know*
     {N, 15652, 192}, -- Mythic: So'leah's Gambit
     {N, 15651, 192}, -- Myths of the Shadowlands Dungeons
@@ -7723,25 +7886,25 @@ tasks = {
     {N, 6754, 124}, -- The Dark Heart of the Mogu
     {N, 6753, 124}, -- Got My Mind On My Money
     {O, 6752, "Once" },
-    {N, 6752, 124, nil, nil, nil, true}, -- Realm First! Level 90 Monk
+    {N, 6752, 124, nil, nil, nil, true}, -- Realm First! Level 90 Monk (Legacy)
     {O, 6751, "Once" },
-    {N, 6751, 124, nil, nil, nil, true}, -- Realm First! Level 90 Rogue
+    {N, 6751, 124, nil, nil, nil, true}, -- Realm First! Level 90 Rogue (Legacy)
     {O, 6750, "Once" },
-    {N, 6750, 124, nil, nil, nil, true}, -- Realm First! Level 90 Warrior
+    {N, 6750, 124, nil, nil, nil, true}, -- Realm First! Level 90 Warrior (Legacy)
     {O, 6749, "Once" },
-    {N, 6749, 124, nil, nil, nil, true}, -- Realm First! Level 90 Mage
+    {N, 6749, 124, nil, nil, nil, true}, -- Realm First! Level 90 Mage (Legacy)
     {O, 6748, "Once" },
-    {N, 6748, 124, nil, nil, nil, true}, -- Realm First! Level 90 Death Knight
+    {N, 6748, 124, nil, nil, nil, true}, -- Realm First! Level 90 Death Knight (Legacy)
     {O, 6747, "Once" },
-    {N, 6747, 124, nil, nil, nil, true}, -- Realm First! Level 90 Hunter
+    {N, 6747, 124, nil, nil, nil, true}, -- Realm First! Level 90 Hunter (Legacy)
     {O, 6746, "Once" },
-    {N, 6746, 124, nil, nil, nil, true}, -- Realm First! Level 90 Warlock
+    {N, 6746, 124, nil, nil, nil, true}, -- Realm First! Level 90 Warlock (Legacy)
     {O, 6745, "Once" },
-    {N, 6745, 124, nil, nil, nil, true}, -- Realm First! Level 90 Priest
+    {N, 6745, 124, nil, nil, nil, true}, -- Realm First! Level 90 Priest (Legacy)
     {O, 6744, "Once" },
-    {N, 6744, 124, nil, nil, nil, true}, -- Realm First! Level 90 Paladin
+    {N, 6744, 124, nil, nil, nil, true}, -- Realm First! Level 90 Paladin (Legacy)
     {O, 6743, "Once" },
-    {N, 6743, 124, nil, nil, nil, true}, -- Realm First! Level 90 Druid
+    {N, 6743, 124, nil, nil, nil, true}, -- Realm First! Level 90 Druid (Legacy)
     {N, 6742, 124}, -- 60 Exalted Reputations
     {O, 6741, "From", "PvP Season", 11, "Until", "PvP Season", 11},
     {N, 6741, 124, nil, nil, true}, -- Cataclysmic Gladiator's Twilight Drake
@@ -7854,9 +8017,9 @@ tasks = {
     {N, 6534, 124, f.Horde, 6300}, -- Upjade Complete
     {N, 6531, 124}, -- Attention to Detail
     {O, 6524, "Once" },
-    {N, 6524, 124, nil, nil, nil, true}, -- Realm First! Level 90
+    {N, 6524, 124, nil, nil, nil, true}, -- Realm First! Level 90 (Legacy)
     {O, 6523, "Once" },
-    {N, 6523, 124, nil, nil, nil, true}, -- Realm First! Level 90 Shaman
+    {N, 6523, 124, nil, nil, nil, true}, -- Realm First! Level 90 Shaman (Legacy)
     {N, 6518, 124}, -- I Heard You Like Amber...
     {N, 6517, 124}, -- Extinction Event
     {N, 6485, 124}, -- Return to Sender
@@ -8349,27 +8512,27 @@ tasks = {
     {N, 5061, 110}, -- Heroic: Throne of the Tides
     {N, 5060, 110}, -- Heroic: Blackrock Caverns
     {O, 5008, "Once" },
-    {N, 5008, 110, nil, nil, nil, true}, -- Realm First! Level 85 Rogue
+    {N, 5008, 110, nil, nil, nil, true}, -- Realm First! Level 85 Rogue (Legacy)
     {O, 5007, "Once" },
-    {N, 5007, 110, nil, nil, nil, true}, -- Realm First! Level 85 Warrior
+    {N, 5007, 110, nil, nil, nil, true}, -- Realm First! Level 85 Warrior (Legacy)
     {O, 5006, "Once" },
-    {N, 5006, 110, nil, nil, nil, true}, -- Realm First! Level 85 Mage
+    {N, 5006, 110, nil, nil, nil, true}, -- Realm First! Level 85 Mage (Legacy)
     {O, 5005, "Once" },
-    {N, 5005, 110, nil, nil, nil, true}, -- Realm First! Level 85 Death Knight
+    {N, 5005, 110, nil, nil, nil, true}, -- Realm First! Level 85 Death Knight (Legacy)
     {O, 5004, "Once" },
-    {N, 5004, 110, nil, nil, nil, true}, -- Realm First! Level 85 Hunter
+    {N, 5004, 110, nil, nil, nil, true}, -- Realm First! Level 85 Hunter (Legacy)
     {O, 5003, "Once" },
-    {N, 5003, 110, nil, nil, nil, true}, -- Realm First! Level 85 Warlock
+    {N, 5003, 110, nil, nil, nil, true}, -- Realm First! Level 85 Warlock (Legacy)
     {O, 5002, "Once" },
-    {N, 5002, 110, nil, nil, nil, true}, -- Realm First! Level 85 Priest
+    {N, 5002, 110, nil, nil, nil, true}, -- Realm First! Level 85 Priest (Legacy)
     {O, 5001, "Once" },
-    {N, 5001, 110, nil, nil, nil, true}, -- Realm First! Level 85 Paladin
+    {N, 5001, 110, nil, nil, nil, true}, -- Realm First! Level 85 Paladin (Legacy)
     {O, 5000, "Once" },
-    {N, 5000, 110, nil, nil, nil, true}, -- Realm First! Level 85 Druid
+    {N, 5000, 110, nil, nil, nil, true}, -- Realm First! Level 85 Druid (Legacy)
     {O, 4999, "Once" },
-    {N, 4999, 110, nil, nil, nil, true}, -- Realm First! Level 85
+    {N, 4999, 110, nil, nil, nil, true}, -- Realm First! Level 85 (Legacy)
     {O, 4998, "Once" },
-    {N, 4998, 110, nil, nil, nil, true}, -- Realm First! Level 85 Shaman
+    {N, 4998, 110, nil, nil, nil, true}, -- Realm First! Level 85 Shaman (Legacy)
     {N, 4996, 110}, -- Explore Southern Barrens
     {N, 4995, 110}, -- Explore the Cape of Stranglethorn
     {N, 4982, 110, f.Horde, 4869}, -- Sinking into Vashj'ir
@@ -9395,25 +9558,25 @@ tasks = {
     {O, 1414, "Once" },
     {N, 1414, 86, nil, nil, nil, true}, -- Realm First! Grand Master Blacksmith
     {O, 1413, "Once" },
-    {N, 1413, 86, nil, nil, nil, true}, -- Realm First! Level 80 Forsaken
+    {N, 1413, 86, nil, nil, nil, true}, -- Realm First! Level 80 Forsaken (Legacy)
     {O, 1412, "Once" },
-    {N, 1412, 86, nil, nil, nil, true}, -- Realm First! Level 80 Troll
+    {N, 1412, 86, nil, nil, nil, true}, -- Realm First! Level 80 Troll (Legacy)
     {O, 1411, "Once" },
-    {N, 1411, 86, nil, nil, nil, true}, -- Realm First! Level 80 Tauren
+    {N, 1411, 86, nil, nil, nil, true}, -- Realm First! Level 80 Tauren (Legacy)
     {O, 1410, "Once" },
-    {N, 1410, 86, nil, nil, nil, true}, -- Realm First! Level 80 Orc
+    {N, 1410, 86, nil, nil, nil, true}, -- Realm First! Level 80 Orc (Legacy)
     {O, 1409, "Once" },
-    {N, 1409, 86, nil, nil, nil, true}, -- Realm First! Level 80 Night Elf
+    {N, 1409, 86, nil, nil, nil, true}, -- Realm First! Level 80 Night Elf (Legacy)
     {O, 1408, "Once" },
-    {N, 1408, 86, nil, nil, nil, true}, -- Realm First! Level 80 Human
+    {N, 1408, 86, nil, nil, nil, true}, -- Realm First! Level 80 Human (Legacy)
     {O, 1407, "Once" },
-    {N, 1407, 86, nil, nil, nil, true}, -- Realm First! Level 80 Dwarf
+    {N, 1407, 86, nil, nil, nil, true}, -- Realm First! Level 80 Dwarf (Legacy)
     {O, 1406, "Once" },
-    {N, 1406, 86, nil, nil, nil, true}, -- Realm First! Level 80 Draenei
+    {N, 1406, 86, nil, nil, nil, true}, -- Realm First! Level 80 Draenei (Legacy)
     {O, 1405, "Once" },
-    {N, 1405, 86, nil, nil, nil, true}, -- Realm First! Level 80 Blood Elf
+    {N, 1405, 86, nil, nil, nil, true}, -- Realm First! Level 80 Blood Elf (Legacy)
     {O, 1404, "Once" },
-    {N, 1404, 86, nil, nil, nil, true}, -- Realm First! Level 80 Gnome
+    {N, 1404, 86, nil, nil, nil, true}, -- Realm First! Level 80 Gnome (Legacy)
     {O, 1402, "Once" },
     {N, 1402, 86, nil, nil, nil, true}, -- Realm First! Conqueror of Naxxramas
     {O, 1400, "Once" },
@@ -9984,27 +10147,27 @@ tasks = {
     {O, 468, "From", "Version", "010400", "Before", "Version", "020001"},
     {N, 468, 86, f.Horde, 470, true}, -- Grunt
     {O, 467, "Once" },
-    {N, 467, 86, nil, nil, nil, true}, -- Realm First! Level 80 Shaman
+    {N, 467, 86, nil, nil, nil, true}, -- Realm First! Level 80 Shaman (Legacy)
     {O, 466, "Once" },
-    {N, 466, 86, nil, nil, nil, true}, -- Realm First! Level 80 Druid
+    {N, 466, 86, nil, nil, nil, true}, -- Realm First! Level 80 Druid (Legacy)
     {O, 465, "Once" },
-    {N, 465, 86, nil, nil, nil, true}, -- Realm First! Level 80 Paladin
+    {N, 465, 86, nil, nil, nil, true}, -- Realm First! Level 80 Paladin (Legacy)
     {O, 464, "Once" },
-    {N, 464, 86, nil, nil, nil, true}, -- Realm First! Level 80 Priest
+    {N, 464, 86, nil, nil, nil, true}, -- Realm First! Level 80 Priest (Legacy)
     {O, 463, "Once" },
-    {N, 463, 86, nil, nil, nil, true}, -- Realm First! Level 80 Warlock
+    {N, 463, 86, nil, nil, nil, true}, -- Realm First! Level 80 Warlock (Legacy)
     {O, 462, "Once" },
-    {N, 462, 86, nil, nil, nil, true}, -- Realm First! Level 80 Hunter
+    {N, 462, 86, nil, nil, nil, true}, -- Realm First! Level 80 Hunter (Legacy)
     {O, 461, "Once" },
-    {N, 461, 86, nil, nil, nil, true}, -- Realm First! Level 80 Death Knight
+    {N, 461, 86, nil, nil, nil, true}, -- Realm First! Level 80 Death Knight (Legacy)
     {O, 460, "Once" },
-    {N, 460, 86, nil, nil, nil, true}, -- Realm First! Level 80 Mage
+    {N, 460, 86, nil, nil, nil, true}, -- Realm First! Level 80 Mage (Legacy)
     {O, 459, "Once" },
-    {N, 459, 86, nil, nil, nil, true}, -- Realm First! Level 80 Warrior
+    {N, 459, 86, nil, nil, nil, true}, -- Realm First! Level 80 Warrior (Legacy)
     {O, 458, "Once" },
-    {N, 458, 86, nil, nil, nil, true}, -- Realm First! Level 80 Rogue
+    {N, 458, 86, nil, nil, nil, true}, -- Realm First! Level 80 Rogue (Legacy)
     {O, 457, "Once" },
-    {N, 457, 86, nil, nil, nil, true}, -- Realm First! Level 80
+    {N, 457, 86, nil, nil, nil, true}, -- Realm First! Level 80 (Legacy)
     {O, 456, "Once" },
     {N, 456, 86, nil, nil, nil, true}, -- Realm First! Obsidian Slayer
     {O, 454, "From", "Version", "010400", "Before", "Version", "020001"},
@@ -10245,4 +10408,4 @@ tasks = {
     {N, 7, 86}, -- Level 20
     {N, 6, 86}, -- Level 10
 };
-addon.Data.HighestAchievementId = 40382;
+addon.Data.HighestAchievementId = 40648;
