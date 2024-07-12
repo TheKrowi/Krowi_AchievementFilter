@@ -55,7 +55,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-03 22-20-57 ]] --
+-- [[ Exported at 2024-07-12 17-35-34 ]] --
 tasks = {
     {F, 1557, "UncategorizedCategories"},
     {C, 971, 1557},
@@ -471,6 +471,7 @@ tasks = {
     {N, 1106, a.L["Leveling"]}, -- Leveling
     {C, 971, 1105},
     {N, 1105, a.L["Realm First!"]}, -- Realm First!
+    {A, 1104, 40728}, -- Forged Finery
     {A, 1104, 19276}, -- Verdant Vogue
     {A, 1104, 18249}, -- Obsidian Tie Event
     {A, 1104, 16764}, -- Crimson Carpet Fashion
@@ -894,6 +895,8 @@ tasks = {
     {A, 988, 1436}, -- Friends In High Places
     {C, 972, 988},
     {N, 988, a.L["Recruit-a-Friend"] .. " (" .. a.GetCategoryInfoTitle(15234) .. ")"}, -- Recruit-a-Friend
+    {A, 978, 40398}, -- Forged Gladiator's Fel Bat
+    {A, 978, 40393}, -- Gladiator: The War Within Season 1
     {A, 978, 19503}, -- Draconic Gladiator's Drake
     {A, 978, 19490}, -- Gladiator: Dragonflight Season 4
     {A, 978, 19295}, -- Verdant Gladiator's Slitherdrake
@@ -1119,6 +1122,30 @@ tasks = {
     {F, 1368, "TrackingAchievementsCategories"},
     {C, 955, 1368},
     {N, 1368, a.L["Tracking Achievements"]}, -- Tracking Achievements
+    {A, 1652, 40723}, -- Web-Wrapped in the Finest Silks
+    {A, 1652, 40660}, -- The War Within Season 1: Spelunker Supreme
+    {A, 1652, 40234}, -- Forged Warlord: The War Within Season 1
+    {A, 1652, 40235}, -- Forged Marshall: The War Within Season 1
+    {A, 1652, 40233}, -- Strategist: The War Within Season 1
+    {A, 1652, 40792}, -- Solo Shuffle Medic: The War Within
+    {A, 1652, 40472}, -- Battle Mender: The War Within Season 1
+    {A, 1652, 40381}, -- Forged Legend: The War Within Season 1
+    {A, 1652, 40395}, -- Legend: The War Within Season 1
+    {A, 1652, 40384}, -- Hero of the Horde: Forged
+    {A, 1652, 40383}, -- Hero of the Alliance: Forged
+    {A, 1652, 40380}, -- Forged Gladiator: The War Within Season 1
+    {A, 1652, 40392}, -- Elite: The War Within Season 1
+    {A, 1652, 40391}, -- Duelist: The War Within Season 1
+    {A, 1652, 40390}, -- Rival II: The War Within Season 1
+    {A, 1652, 40389}, -- Rival I: The War Within Season 1
+    {A, 1652, 40388}, -- Challenger II: The War Within Season 1
+    {A, 1652, 40387}, -- Challenger I: The War Within Season 1
+    {A, 1652, 40386}, -- Combatant II: The War Within Season 1
+    {A, 1652, 40385}, -- Combatant I: The War Within Season 1
+    {C, 1651, 1652},
+    {N, 1652, a.L["Season"] .. " " .. 1}, -- Season 1
+    {C, 955, 1651},
+    {N, 1651, a.GetCategoryInfoTitle(15520)}, -- The War Within
     {A, 1571, 20481}, -- Dragonflight Season 4 Master
     {A, 1571, 19513}, -- Battle Mender: Dragonflight Season 4
     {A, 1571, 19453}, -- Draconic Legend: Dragonflight Season 4
@@ -1622,6 +1649,9 @@ tasks = {
     {C, 955, 1166},
     {N, 1166, a.GetCategoryInfoTitle(165)}, -- Arena
     {A, 1647, 40617}, -- Deepholla
+    {A, 1647, 40612}, -- Sprinting in the Ravine
+    {A, 1647, 40608}, -- Running in the Ravine
+    {A, 1647, 40607}, -- Wandering in the Ravine
     {A, 1647, 40616}, -- Unexpected Arrivals
     {A, 1647, 40615}, -- Unexpected Arrival
     {A, 1647, 40613}, -- Resilient Runner
@@ -1879,9 +1909,13 @@ tasks = {
     {A, 960, 218}, -- Alterac Valley Victory
     {C, 1165, 960},
     {N, 960, a.GetCategoryInfoTitle(14801)}, -- Alterac Valley
+    {A, 1165, 40219}, -- Battleground Blitzest
+    {A, 1165, 40217}, -- Battleground Blitzer
+    {A, 1165, 40220}, -- Setting Records
     {A, 1165, 19418}, -- Battle-scarred Battler
     {A, 1165, 19417}, -- Brawlroom Blitzer
     {A, 1165, 19416}, -- Learning the Ropes
+    {A, 1165, 40221}, -- Battleground Blitz Master
     {A, 1165, 19413}, -- Battleground Blitz Veteran
     {A, 1165, 19412}, -- Battleground Blitz Apprentice
     {A, 1165, 19411}, -- Battleground Blitz Novice
@@ -1966,6 +2000,9 @@ tasks = {
     {A, 1167, 12893}, -- Honor Level 5
     {C, 955, 1167},
     {N, 1167, a.GetCategoryInfoTitle(15266)}, -- Honor
+    {A, 1162, 40795}, -- Battleground Blitz Medic: The War Within
+    {A, 1162, 40464}, -- Bounty Master
+    {A, 1162, 12571}, -- Bounty Hunting
     {A, 1162, 700}, -- Freedom of the Horde
     {A, 1162, 701}, -- Freedom of the Alliance
     {A, 1162, 5539}, -- "50,000 Conquest Points"
@@ -2035,6 +2072,29 @@ tasks = {
     {A, 1174, 1636}, -- Competitor's Tabard
     {C, 884, 1174},
     {N, 1174, a.L["Miscellaneous"]}, -- Miscellaneous
+    {A, 1674, 40662}, -- "It's Not Much, But It's Honest Work"
+    {A, 1674, 40589}, -- Awakening The Machine: Wave 50
+    {A, 1674, 40588}, -- Awakening The Machine: Wave 40
+    {A, 1674, 40587}, -- Awakening The Machine: Wave 30
+    {A, 1674, 40586}, -- Awakening The Machine: Wave 20
+    {A, 1674, 40509}, -- Awakening The Machine: Wave 10
+    {C, 1671, 1674},
+    {N, 1674, a.L["Awakening the Machine"]}, -- Awakening the Machine
+    {A, 1673, 40313}, -- Igniting the Keyflames
+    {A, 1673, 40312}, -- Starting the Flames
+    {A, 1673, 40311}, -- Sharing the Light
+    {A, 1673, 40308}, -- Beacon of Hope
+    {C, 1671, 1673},
+    {N, 1673, a.L["Spreading the Light"]}, -- Spreading the Light
+    {A, 1672, 40314}, -- Fragments of Memories
+    {A, 1672, 40252}, -- A Series of Echoes
+    {A, 1672, 40251}, -- Many Echoes
+    {A, 1672, 40250}, -- The First Echo
+    {A, 1672, 40222}, -- Echoes of Danger
+    {C, 1671, 1672},
+    {N, 1672, a.L["Worldsoul Memory"]}, -- Worldsoul Memory
+    {C, 884, 1671},
+    {N, 1671, a.GetCategoryInfoTitle(15520)}, -- The War Within
     {A, 1576, 19572}, -- Mythic: Awakened Flames
     {A, 1576, 19571}, -- Heroic: Awakened Flames
     {A, 1576, 19570}, -- Awakened Flames
@@ -2917,6 +2977,55 @@ tasks = {
     {F, 1370, "TrackingAchievementsCategories"},
     {C, 883, 1370},
     {N, 1370, a.L["Tracking Achievements"]}, -- Tracking Achievements
+    {A, 1657, 40351}, -- Azj-Kahet Reverse: Gold
+    {A, 1657, 40350}, -- Azj-Kahet Reverse: Silver
+    {A, 1657, 40349}, -- Azj-Kahet Reverse: Bronze
+    {A, 1657, 40348}, -- Azj-Kahet Advanced: Gold
+    {A, 1657, 40347}, -- Azj-Kahet Advanced: Silver
+    {A, 1657, 40346}, -- Azj-Kahet Advanced: Bronze
+    {A, 1657, 40345}, -- Azj-Kahet: Gold
+    {A, 1657, 40344}, -- Azj-Kahet: Silver
+    {A, 1657, 40343}, -- Azj-Kahet: Bronze
+    {C, 1606, 1657},
+    {N, 1657, a.GetMapName(2255)}, -- Azj-Kahet
+    {A, 1656, 40342}, -- Hallowfall Reverse: Gold
+    {A, 1656, 40341}, -- Hallowfall Reverse: Silver
+    {A, 1656, 40340}, -- Hallowfall Reverse: Bronze
+    {A, 1656, 40339}, -- Hallowfall Advanced: Gold
+    {A, 1656, 40338}, -- Hallowfall Advanced: Silver
+    {A, 1656, 40337}, -- Hallowfall Advanced: Bronze
+    {A, 1656, 40336}, -- Hallowfall: Gold
+    {A, 1656, 40335}, -- Hallowfall: Silver
+    {A, 1656, 40334}, -- Hallowfall: Bronze
+    {C, 1606, 1656},
+    {N, 1656, a.GetMapName(2215)}, -- Hallowfall
+    {A, 1655, 40333}, -- The Ringing Deeps Reverse: Gold
+    {A, 1655, 40332}, -- The Ringing Deeps Reverse: Silver
+    {A, 1655, 40331}, -- The Ringing Deeps Reverse: Bronze
+    {A, 1655, 40330}, -- The Ringing Deeps Advanced: Gold
+    {A, 1655, 40329}, -- The Ringing Deeps Advanced: Silver
+    {A, 1655, 40328}, -- The Ringing Deeps Advanced: Bronze
+    {A, 1655, 40327}, -- The Ringing Deeps: Gold
+    {A, 1655, 40326}, -- The Ringing Deeps: Silver
+    {A, 1655, 40325}, -- The Ringing Deeps: Bronze
+    {C, 1606, 1655},
+    {N, 1655, a.GetMapName(2214)}, -- The Ringing Deeps
+    {A, 1654, 40324}, -- Isle of Dorn Reverse: Gold
+    {A, 1654, 40323}, -- Isle of Dorn Reverse: Silver
+    {A, 1654, 40322}, -- Isle of Dorn Reverse: Bronze
+    {A, 1654, 40321}, -- Isle of Dorn Advanced: Gold
+    {A, 1654, 40320}, -- Isle of Dorn Advanced: Silver
+    {A, 1654, 40319}, -- Isle of Dorn Advanced: Bronze
+    {A, 1654, 40318}, -- Isle of Dorn: Gold
+    {A, 1654, 40317}, -- Isle of Dorn: Silver
+    {A, 1654, 40316}, -- Isle of Dorn: Bronze
+    {C, 1606, 1654},
+    {N, 1654, a.GetMapName(2248)}, -- Isle of Dorn
+    {A, 1606, 40354}, -- Khaz Algar Completionist: Gold
+    {A, 1606, 40353}, -- Khaz Algar Completionist: Silver
+    {A, 1606, 40352}, -- Khaz Algar Completionist: Bronze
+    {C, 1598, 1606},
+    {N, 1606, a.L["Skyriding Races"]}, -- Skyriding Races
     {A, 1604, 40165}, -- Undead Battler of Khaz Algar
     {A, 1604, 40164}, -- Mechanical Battler of Khaz Algar
     {A, 1604, 40163}, -- Magic Battler of Khaz Algar
@@ -2931,6 +3040,27 @@ tasks = {
     {A, 1604, 40194}, -- Khaz Algar Safari
     {C, 1598, 1604},
     {N, 1604, a.GetCategoryInfoTitle(15117)}, -- Pet Battles
+    {A, 1608, 40539}, -- The Derby Dash
+    {A, 1608, 40501}, -- 100 Algari Anglerthread
+    {A, 1608, 40503}, -- 90 Algari Anglerthread
+    {A, 1608, 40500}, -- 80 Algari Anglerthread
+    {A, 1608, 40498}, -- 70 Algari Anglerthread
+    {A, 1608, 40496}, -- 60 Algari Anglerthread
+    {A, 1608, 40502}, -- 50 Algari Anglerthread
+    {A, 1608, 40499}, -- 40 Algari Anglerthread
+    {A, 1608, 40497}, -- 30 Algari Anglerthread
+    {A, 1608, 40495}, -- 20 Algari Anglerthread
+    {A, 1608, 40494}, -- 10 Algari Anglerthread
+    {A, 1608, 40492}, -- 100 Algari Seekerthread
+    {A, 1608, 40491}, -- 90 Algari Seekerthread
+    {A, 1608, 40490}, -- 80 Algari Seekerthread
+    {A, 1608, 40489}, -- 70 Algari Seekerthread
+    {A, 1608, 40488}, -- 60 Algari Seekerthread
+    {A, 1608, 40487}, -- 50 Algari Seekerthread
+    {A, 1608, 40485}, -- 40 Algari Seekerthread
+    {A, 1608, 40484}, -- 30 Algari Seekerthread
+    {A, 1608, 40480}, -- 20 Algari Seekerthread
+    {A, 1608, 40476}, -- 10 Algari Seekerthread
     {A, 1608, 19415}, -- Algari Fisherman
     {C, 1603, 1608},
     {N, 1608, a.GetCategoryInfoTitle(171), true}, -- Fishing
@@ -2958,6 +3088,7 @@ tasks = {
     {C, 1648, 1650},
     {N, 1650, a.L["Mythic"]}, -- Mythic
     {A, 1649, 40266}, -- Missed 'Em by That Much
+    {A, 1649, 40730}, -- Love is in the Lair
     {A, 1649, 40264}, -- Kill Streak
     {A, 1649, 40263}, -- Would You Still /love Me if I Was a Worm...
     {A, 1649, 40262}, -- Cowabunga
@@ -2966,6 +3097,9 @@ tasks = {
     {A, 1649, 40261}, -- Slimy Yet Satisfying
     {C, 1648, 1649},
     {N, 1649, a.L["Glory"]}, -- Glory
+    {A, 1648, 40723}, -- Web-Wrapped in the Finest Silks
+    {A, 1648, 40660}, -- The War Within Season 1: Spelunker Supreme
+    {A, 1648, 40469}, -- I'm Bringing Nerub-ack
     {A, 1648, 40254}, -- Cutting Edge: Queen Ansurek
     {A, 1648, 40253}, -- Ahead of the Curve: Queen Ansurek
     {A, 1648, 40246}, -- Mythic: Nerub-ar Palace
@@ -3027,6 +3161,8 @@ tasks = {
     {A, 1632, 40621}, -- The Rookery
     {C, 1601, 1632},
     {N, 1632, a.GetInstanceInfoName(1268)}, -- The Rookery
+    {A, 1601, 40723}, -- Web-Wrapped in the Finest Silks
+    {A, 1601, 40660}, -- The War Within Season 1: Spelunker Supreme
     {A, 1601, 20589}, -- [PH] Hero: The War Within Season 1
     {A, 1601, 20526}, -- The War Within Keystone Hero: Season One
     {A, 1601, 20525}, -- The War Within Keystone Master: Season One
@@ -3038,9 +3174,76 @@ tasks = {
     {A, 1601, 40141}, -- Algari Dungeon Tank
     {C, 1598, 1601},
     {N, 1601, a.GetCategoryInfoTitle(15272)}, -- Dungeons
-    {A, 1600, 40438}, -- Glory of the Delver
+    {A, 1669, 40814}, -- The Spiral Weave Discoveries
+    {A, 1669, 40536}, -- The Spiral Weave Stories
+    {C, 1600, 1669},
+    {N, 1669, a.GetLFGActivityFullName(1307)}, -- The Spiral Weave
+    {A, 1668, 40811}, -- Tak-Rethan Abyss Discoveries
+    {A, 1668, 40535}, -- Tak-Rethan Abyss Stories
+    {C, 1600, 1668},
+    {N, 1668, a.GetLFGActivityFullName(1306)}, -- Tak-Rethan Abyss
+    {A, 1667, 40815}, -- The Underkeep Discoveries
+    {A, 1667, 40534}, -- The Underkeep Stories
+    {C, 1600, 1667},
+    {N, 1667, a.GetLFGActivityFullName(1305)}, -- The Underkeep
+    {A, 1666, 40810}, -- Skittering Breach Discoveries
+    {A, 1666, 40533}, -- Skittering Breach Stories
+    {C, 1600, 1666},
+    {N, 1666, a.GetLFGActivityFullName(1304)}, -- Skittering Breach
+    {A, 1665, 40813}, -- The Sinkhole Discoveries
+    {A, 1665, 40532}, -- The Sinkhole Stories
+    {C, 1600, 1665},
+    {N, 1665, a.GetLFGActivityFullName(1303)}, -- The Sinkhole
+    {A, 1664, 40808}, -- Mycomancer Cavern Discoveries
+    {A, 1664, 40531}, -- Mycomancer Cavern Stories
+    {C, 1600, 1664},
+    {N, 1664, a.GetLFGActivityFullName(1302)}, -- Mycomancer Cavern
+    {A, 1663, 40809}, -- Nightfall Sanctum Discoveries
+    {A, 1663, 40530}, -- Nightfall Sanctum Stories
+    {C, 1600, 1663},
+    {N, 1663, a.GetLFGActivityFullName(1301)}, -- Nightfall Sanctum
+    {A, 1662, 40812}, -- The Dread Pit Discoveries
+    {A, 1662, 40529}, -- The Dread Pit Stories
+    {C, 1600, 1662},
+    {N, 1662, a.GetLFGActivityFullName(1300)}, -- The Dread Pit
+    {A, 1661, 40816}, -- The Waterworks Discoveries
+    {A, 1661, 40528}, -- The Waterworks Stories
+    {C, 1600, 1661},
+    {N, 1661, a.GetLFGActivityFullName(1299)}, -- The Waterworks
+    {A, 1660, 40806}, -- Earthcrawl Mines Discoveries
+    {A, 1660, 40527}, -- Earthcrawl Mines Stories
+    {C, 1600, 1660},
+    {N, 1660, a.GetLFGActivityFullName(1297)}, -- Earthcrawl Mines
+    {A, 1659, 40807}, -- Kriegval's Rest Discoveries
+    {A, 1659, 40526}, -- Kriegval's Rest Stories
+    {C, 1600, 1659},
+    {N, 1659, a.GetLFGActivityFullName(1296)}, -- Kriegval's Rest
+    {A, 1658, 40803}, -- Fungal Folly Discoveries
+    {A, 1658, 40525}, -- Fungal Folly Stories
+    {C, 1600, 1658},
+    {N, 1658, a.GetLFGActivityFullName(1295)}, -- Fungal Folly
+    {A, 1670, 40817}, -- A Delver's Bounty
+    {A, 1670, 40788}, -- I Got the Keys
+    {A, 1670, 40819}, -- Ready to Turn
+    {A, 1670, 40463}, -- Delve Deepest
+    {A, 1670, 40462}, -- Delve Deeper
+    {A, 1670, 40460}, -- Delve Deep
+    {A, 1670, 40436}, -- You're Getting a Delve!
+    {C, 1600, 1670},
+    {N, 1670, a.L["Cross-Expansion"]}, -- Cross-Expansion
+    {A, 1600, 40820}, -- Raisin' Brann
+    {A, 1600, 40538}, -- Brann Development
+    {A, 1600, 40458}, -- Stranger Delves
+    {A, 1600, 40789}, -- I've Got More Flying Machine?!
+    {A, 1600, 40763}, -- "I'm not a Thief, I'm a Treasure Hunter"
+    {A, 1600, 40732}, -- Heavy-Handed
+    {A, 1600, 40524}, -- Good Deed Delver
+    {A, 1600, 40459}, -- I've Got a Flying Machine!
+    {A, 1600, 40433}, -- Hunting the Hunter (Solo)
+    {A, 1600, 40431}, -- Hunting the Hunter
     {A, 1600, 40098}, -- Immortal Spelunker
     {A, 1600, 40100}, -- Undying Caver
+    {A, 1600, 40461}, -- Buddy System VI
     {A, 1600, 40457}, -- Buddy System V
     {A, 1600, 40456}, -- Buddy System IV
     {A, 1600, 40451}, -- Buddy System III
@@ -3050,47 +3253,129 @@ tasks = {
     {A, 1600, 40448}, -- Delver of the Depths III
     {A, 1600, 40447}, -- Delver of the Depths II
     {A, 1600, 40437}, -- Delver of the Depths
-    {A, 1600, 40463}, -- Delve Deepest
-    {A, 1600, 40462}, -- Delve Deeper
-    {A, 1600, 40460}, -- Delve Deep
-    {A, 1600, 40436}, -- You're Getting a Delve!
+    {A, 1600, 40438}, -- Glory of the Delver
+    {A, 1600, 40103}, -- Nemesis
+    {A, 1600, 40454}, -- Daystormer
+    {A, 1600, 40453}, -- Spider Senses
+    {A, 1600, 40452}, -- Just Keep Swimming
+    {A, 1600, 40446}, -- I TAKE Candle!
+    {A, 1600, 40445}, -- Sporesweeper
+    {A, 1600, 40506}, -- Leave No Treasure Unfound
+    {A, 1600, 40537}, -- Delve Loremaster: War Within
+    {A, 1600, 40726}, -- War Within Delves: Tier 11
+    {A, 1600, 40521}, -- War Within Delves: Tier 10
+    {A, 1600, 40520}, -- War Within Delves: Tier 9
+    {A, 1600, 40519}, -- War Within Delves: Tier 8
+    {A, 1600, 40518}, -- War Within Delves: Tier 7
+    {A, 1600, 40517}, -- War Within Delves: Tier 6
+    {A, 1600, 40516}, -- War Within Delves: Tier 5
+    {A, 1600, 40515}, -- War Within Delves: Tier 4
+    {A, 1600, 40725}, -- War Within Delves: Endgame
+    {A, 1600, 40514}, -- War Within Delves: Tier 3
+    {A, 1600, 40512}, -- War Within Delves: Tier 2
+    {A, 1600, 40631}, -- War Within Delves: Tier 1
     {C, 1598, 1600},
     {N, 1600, a.GetCategoryInfoTitle(15522)}, -- Delves
+    {A, 1630, 40838}, -- The Severed Threads
+    {C, 1614, 1630},
+    {N, 1630, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1629, 40086}, -- Tour of Duty: Azj-Kahet
     {C, 1614, 1629},
     {N, 1629, a.GetCategoryInfoTitle(95), true}, -- Player vs. Player
+    {A, 1628, 40843}, -- Mine Poppin'
+    {A, 1628, 40619}, -- Mine Poppin'
+    {A, 1628, 40632}, -- No Harm Ever Came From Reading A Book
+    {A, 1628, 40624}, -- Itsy Bitsy Spider
+    {A, 1628, 40634}, -- You Can't Hang With Us
+    {A, 1628, 40542}, -- Smelling History
+    {A, 1628, 40705}, -- Azj-Kahet Glyph Hunter
+    {A, 1628, 40840}, -- Adventurer of Azj-Kahet
+    {A, 1628, 40828}, -- Treasures of Azj-Kahet
+    {A, 1628, 40822}, -- Explore Azj-Kahet
+    {C, 1614, 1628},
+    {N, 1628, a.GetCategoryInfoTitle(97), true}, -- Exploration
+    {A, 1618, 40835}, -- Vizier than Ever
+    {A, 1618, 40833}, -- The General's Salute
+    {A, 1618, 40832}, -- Leave it to Weaver
+    {A, 1618, 40636}, -- Sojourner of Azj-Kahet
     {A, 1618, 19559}, -- Azj-Kahet
     {C, 1614, 1618},
     {N, 1618, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 1599, 1614},
     {N, 1614, a.GetMapName(2255)}, -- Azj-Kahet
+    {A, 1627, 40845}, -- Hallowfall Arathi
+    {C, 1613, 1627},
+    {N, 1627, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1626, 40085}, -- Tour of Duty: Hallowfall
     {C, 1613, 1626},
     {N, 1626, a.GetCategoryInfoTitle(95), true}, -- Player vs. Player
+    {A, 1625, 40622}, -- Biblo Archivist
+    {A, 1625, 40625}, -- The Missing Lynx
+    {A, 1625, 40618}, -- Lost and Found
+    {A, 1625, 40151}, -- Mereldar Menace
+    {A, 1625, 40704}, -- Hallowfall Glyph Hunter
+    {A, 1625, 40851}, -- Adventurer of Hallowfall
+    {A, 1625, 40848}, -- Treasures of Hallowfall
+    {A, 1625, 40826}, -- Explore Hallowfall
+    {C, 1613, 1625},
+    {N, 1625, a.GetCategoryInfoTitle(97), true}, -- Exploration
+    {A, 1617, 40082}, -- Never Enough
     {A, 1617, 40150}, -- Children's Entertainer
     {A, 1617, 20594}, -- Flamegard's Hope
+    {A, 1617, 40844}, -- Sojourner of Hallowfall
     {A, 1617, 20598}, -- Hallowfall
     {C, 1613, 1617},
     {N, 1617, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 1599, 1613},
     {N, 1613, a.GetMapName(2215)}, -- Hallowfall
+    {A, 1624, 40836}, -- Assembly of the Deeps
+    {C, 1612, 1624},
+    {N, 1624, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1623, 40084}, -- Tour of Duty: The Ringing Deeps
     {C, 1612, 1623},
     {N, 1623, a.GetCategoryInfoTitle(95), true}, -- Player vs. Player
+    {A, 1622, 40475}, -- To All the Slimes I Love
+    {A, 1622, 40473}, -- Not So Quick Fix
+    {A, 1622, 40628}, -- Notable Machines
+    {A, 1622, 40703}, -- The Ringing Deeps Glyph Hunter
+    {A, 1622, 40724}, -- Treasures of The Ringing Deeps
+    {A, 1622, 40837}, -- Adventurer of The Ringing Deeps
+    {A, 1622, 40825}, -- Explore The Ringing Deeps
+    {C, 1612, 1622},
+    {N, 1622, a.GetCategoryInfoTitle(97), true}, -- Exploration
+    {A, 1616, 40507}, -- Hanging Tight
+    {A, 1616, 40799}, -- Sojourner of The Ringing Deeps
     {A, 1616, 19560}, -- The Ringing Deeps
     {C, 1612, 1616},
     {N, 1616, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 1599, 1612},
     {N, 1612, a.GetMapName(2214)}, -- The Ringing Deeps
+    {A, 1621, 40856}, -- Council of Dornogal
+    {C, 1611, 1621},
+    {N, 1621, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1620, 40083}, -- Tour of Duty: Isle of Dorn
     {C, 1611, 1620},
     {N, 1620, a.GetCategoryInfoTitle(95), true}, -- Player vs. Player
+    {A, 1619, 40606}, -- Flat Earthen
+    {A, 1619, 40166}, -- Isle of Dorn Glyph Hunter
+    {A, 1619, 40434}, -- Treasures of the Isle of Dorn
+    {A, 1619, 40435}, -- Adventurer of the Isle of Dorn
+    {A, 1619, 40831}, -- Explore the Isle of Dorn
+    {C, 1611, 1619},
+    {N, 1619, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 1615, 20595}, -- Sojourner of Isle of Dorn
     {A, 1615, 20118}, -- The Isle of Dorn
     {C, 1611, 1615},
     {N, 1615, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 1599, 1611},
     {N, 1611, a.GetMapName(2248)}, -- Isle of Dorn
+    {A, 1646, 40591}, -- Khaz Algar Diplomat
+    {C, 1642, 1646},
+    {N, 1646, a.GetCategoryInfoTitle(201), true}, -- Reputation
+    {A, 1645, 40467}, -- Unbound Glory
+    {A, 1645, 40466}, -- Unbound Glory
+    {A, 1645, 40468}, -- Unbound Glory
+    {A, 1645, 40465}, -- Unbound Bounty
     {A, 1645, 40097}, -- Ruffious's Bid
     {A, 1645, 40096}, -- Sparking Battle
     {A, 1645, 40095}, -- Sparking Battle
@@ -3101,12 +3386,18 @@ tasks = {
     {A, 1645, 40087}, -- Unbound Battle
     {C, 1642, 1645},
     {N, 1645, a.GetCategoryInfoTitle(95), true}, -- Player vs. Player
+    {A, 1644, 40762}, -- Khaz Algar Lore Hunter
+    {A, 1644, 40790}, -- Khaz Algar Explorer
+    {A, 1644, 40702}, -- Khaz Algar Glyph Hunter
+    {A, 1644, 40430}, -- Khaz Algar Flight Master
+    {C, 1642, 1644},
+    {N, 1644, a.GetCategoryInfoTitle(97), true}, -- Exploration
     {A, 1643, 20597}, -- The War Within
     {A, 1643, 20596}, -- Loremaster of Khaz Algar
     {C, 1642, 1643},
     {N, 1643, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 1599, 1642},
-    {N, 1642, a.GetCategoryInfoTitle(2274)}, -- Khaz Algar
+    {N, 1642, a.GetMapName(2274)}, -- Khaz Algar
     {C, 1598, 1599},
     {N, 1599, a.L["Zones"]}, -- Zones
     {A, 1609, 40145}, -- So Much Sharing
@@ -5697,7 +5988,6 @@ tasks = {
     {A, 274, 12604}, -- Conqueror of Azeroth
     {A, 274, 12605}, -- Conqueror of Azeroth
     {A, 274, 12573}, -- Band of Brothers
-    {A, 274, 12571}, -- Bounty Hunting
     {A, 274, 12572}, -- War Supplied
     {A, 274, 13429}, -- Azerfighter
     {C, 271, 274},
@@ -8948,6 +9238,7 @@ tasks = {
     {A, 592, 35}, -- Might of Dragonblight
     {C, 580, 592},
     {N, 592, a.GetCategoryInfoTitle(96), true}, -- Quests
+    {A, 580, 40796}, -- This Takes Me Back
     {C, 577, 580},
     {N, 580, a.GetMapName(115)}, -- Dragonblight
     {A, 590, 9924}, -- Field Photographer
@@ -9537,7 +9828,7 @@ tasks = {
     {A, 25, 729}, -- Deathcharger's Reins
     {A, 25, 646}, -- Stratholme
     {C, 2, 25},
-    {N, 25, a.GetInstanceInfoName(236)}, -- Stratholme
+    {N, 25, a.GetLFGActivityShortName(66)}, -- Stratholme
     {A, 24, 18558}, -- Leaders of Scholomance
     {A, 24, 18368}, -- Memory of Scholomance
     {C, 2, 24},
@@ -9552,47 +9843,47 @@ tasks = {
     {N, 797, a.GetInstanceInfoName(559) .. " (" .. a.GetCategoryInfoTitle(15234) .. ")"}, -- Upper Blackrock Spire
     {A, 22, 643}, -- Lower Blackrock Spire
     {C, 2, 22},
-    {N, 22, a.GetInstanceInfoName(229)}, -- Lower Blackrock Spire
+    {N, 22, a.GetLFGActivityShortName(64)}, -- Lower Blackrock Spire
     {A, 21, 14020}, -- Pet Battle Challenge: Blackrock Depths
     {A, 21, 3496}, -- A Brew-FAST Mount
     {A, 21, 642}, -- Blackrock Depths
     {C, 2, 21},
-    {N, 21, a.GetInstanceInfoName(228)}, -- Blackrock Depths
+    {N, 21, a.GetLFGActivityShortName(63)}, -- Blackrock Depths
     {A, 20, 641}, -- Sunken Temple
     {C, 2, 20},
-    {N, 20, a.GetInstanceInfoName(237)}, -- The Temple Of Atal'hakkar
+    {N, 20, a.GetLFGActivityShortName(62)}, -- Sunken Temple
     {A, 19, 640}, -- Maraudon
     {C, 2, 19},
-    {N, 19, a.GetInstanceInfoName(232)}, -- Maraudon
+    {N, 19, a.GetLFGActivityShortName(61)}, -- Maraudon
     {A, 18, 639}, -- Zul'Farrak
     {C, 2, 18},
-    {N, 18, a.GetInstanceInfoName(241)}, -- Zul'Farrak
+    {N, 18, a.GetLFGActivityShortName(60)}, -- Zul'Farrak
     {A, 17, 638}, -- Uldaman
     {C, 2, 17},
-    {N, 17, a.GetInstanceInfoName(239)}, -- Uldaman
+    {N, 17, a.GetLFGActivityShortName(59)}, -- Uldaman
     {A, 14, 636}, -- Razorfen Downs
     {C, 2, 14},
-    {N, 14, a.GetInstanceInfoName(234)}, -- Razorfen Downs
+    {N, 14, a.GetLFGActivityShortName(58)}, -- Razorfen Downs
     {A, 13, 635}, -- Razorfen Kraul
     {C, 2, 13},
-    {N, 13, a.GetInstanceInfoName(233)}, -- Razorfen Kraul
+    {N, 13, a.GetLFGActivityShortName(57)}, -- Razorfen Kraul
     {A, 12, 13269}, -- Pet Battle Challenge: Gnomeregan
     {A, 12, 634}, -- Gnomeregan
     {C, 2, 12},
-    {N, 12, a.GetInstanceInfoName(231)}, -- Gnomeregan
+    {N, 12, a.GetLFGActivityShortName(56)}, -- Gnomeregan
     {A, 11, 633}, -- Stormwind Stockade
     {C, 2, 11},
-    {N, 11, a.GetInstanceInfoName(238)}, -- The Stockade
+    {N, 11, a.GetLFGActivityShortName(55)}, -- Stormwind Stockades
     {A, 10, 632}, -- Blackfathom Deeps
     {C, 2, 10},
-    {N, 10, a.GetInstanceInfoName(227)}, -- Blackfathom Deeps
+    {N, 10, a.GetLFGActivityShortName(54)}, -- Blackfathom Deeps
     {A, 8, 11765}, -- Pet Battle Challenge: Wailing Caverns
     {A, 8, 630}, -- Wailing Caverns
     {C, 2, 8},
-    {N, 8, a.GetInstanceInfoName(240)}, -- Wailing Caverns
+    {N, 8, a.GetLFGActivityShortName(50)}, -- Wailing Caverns
     {A, 5, 629}, -- Ragefire Chasm
     {C, 2, 5},
-    {N, 5, a.GetInstanceInfoName(226)}, -- Ragefire Chasm
+    {N, 5, a.GetLFGActivityShortName(52)}, -- Ragefire Chasm
     {A, 2, 1283}, -- Classic Dungeonmaster
     {C, 1, 2},
     {N, 2, a.GetCategoryInfoTitle(15272)}, -- Dungeons
@@ -9688,6 +9979,7 @@ tasks = {
     {A, 700, 4929}, -- Dustwallow Marsh Quests
     {C, 699, 700},
     {N, 700, a.GetCategoryInfoTitle(96), true}, -- Quests
+    {A, 699, 40796}, -- This Takes Me Back
     {C, 688, 699},
     {N, 699, a.GetMapName(70)}, -- Dustwallow Marsh
     {A, 1009, 762}, -- Ambassador of the Horde
@@ -9900,6 +10192,7 @@ tasks = {
     {A, 680, 4910}, -- Searing Gorge Quests
     {C, 679, 680},
     {N, 680, a.GetCategoryInfoTitle(96), true}, -- Quests
+    {A, 679, 40796}, -- This Takes Me Back
     {C, 687, 679},
     {N, 679, a.GetMapName(32)}, -- Searing Gorge
     {A, 738, 765}, -- Explore Badlands
@@ -10260,6 +10553,8 @@ tasks = {
     {N, 1433, a.GetCategoryInfoTitle(15118), true}, -- Collect
     {C, 1431, 1170},
     {N, 1170, a.GetCategoryInfoTitle(15117)}, -- Pet Battles
+    {A, 1163, 40309}, -- Heritage of the Earthen
+    {A, 1163, 40307}, -- Allied Races: Earthen
     {A, 1163, 14002}, -- Heritage of the Vulpera
     {A, 1163, 13206}, -- Allied Races: Vulpera
     {A, 1163, 13503}, -- Heritage of the Zandalari

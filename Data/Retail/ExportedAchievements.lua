@@ -39,42 +39,222 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-03 22-21-08 ]] --
+-- [[ Exported at 2024-07-12 17-35-15 ]] --
 tasks = {
+    {N, 40856, 210}, -- Council of Dornogal
+    {N, 40851, 210}, -- Adventurer of Hallowfall
+    {N, 40848, 210}, -- Treasures of Hallowfall
+    {N, 40845, 210}, -- Hallowfall Arathi
+    {N, 40844, 210}, -- Sojourner of Hallowfall
+    {N, 40843, 210}, -- Mine Poppin'
+    {N, 40840, 210}, -- Adventurer of Azj-Kahet
+    {N, 40838, 210}, -- The Severed Threads
+    {N, 40837, 210}, -- Adventurer of The Ringing Deeps
+    {N, 40836, 210}, -- Assembly of the Deeps
+    {N, 40835, 210}, -- Vizier than Ever
+    {N, 40833, 210}, -- The General's Salute
+    {N, 40832, 210}, -- Leave it to Weaver
+    {N, 40831, 210}, -- Explore the Isle of Dorn
+    {N, 40828, 210}, -- Treasures of Azj-Kahet
+    {N, 40826, 210}, -- Explore Hallowfall
+    {N, 40825, 210}, -- Explore The Ringing Deeps
+    {N, 40822, 210}, -- Explore Azj-Kahet
+    {N, 40820, 210}, -- Raisin' Brann
+    {N, 40819, 210}, -- Ready to Turn
+    {N, 40817, 210}, -- A Delver's Bounty
+    {N, 40816, 210}, -- The Waterworks Discoveries
+    {N, 40815, 210}, -- The Underkeep Discoveries
+    {N, 40814, 210}, -- The Spiral Weave Discoveries
+    {N, 40813, 210}, -- The Sinkhole Discoveries
+    {N, 40812, 210}, -- The Dread Pit Discoveries
+    {N, 40811, 210}, -- Tak-Rethan Abyss Discoveries
+    {N, 40810, 210}, -- Skittering Breach Discoveries
+    {N, 40809, 210}, -- Nightfall Sanctum Discoveries
+    {N, 40808, 210}, -- Mycomancer Cavern Discoveries
+    {N, 40807, 210}, -- Kriegval's Rest Discoveries
+    {N, 40806, 210}, -- Earthcrawl Mines Discoveries
+    {N, 40803, 210}, -- Fungal Folly Discoveries
+    {N, 40799, 210}, -- Sojourner of The Ringing Deeps
+    {O, 40796, "From", "Version", "110000", "Before", "Version", "110002"},
+    {N, 40796, 210}, -- This Takes Me Back
+    {N, 40795, 210}, -- Battleground Blitz Medic: The War Within
+    {O, 40792, "From", "PvP Season", 38, "Until", "PvP Season", 38},
+    {N, 40792, 210}, -- Solo Shuffle Medic: The War Within
+    {N, 40790, 210}, -- Khaz Algar Explorer
+    {N, 40789, 210}, -- I've Got More Flying Machine?!
+    {N, 40788, 210}, -- I Got the Keys
+    {N, 40763, 210}, -- "I'm not a Thief, I'm a Treasure Hunter"
+    {N, 40762, 210}, -- Khaz Algar Lore Hunter
+    {N, 40732, 210}, -- Heavy-Handed
+    {N, 40730, 210}, -- Love is in the Lair
+    {N, 40728, 210}, -- Forged Finery
+    {N, 40726, 210}, -- War Within Delves: Tier 11
+    {N, 40725, 210}, -- War Within Delves: Endgame
+    {N, 40724, 210}, -- Treasures of The Ringing Deeps
+    {N, 40723, 210}, -- Web-Wrapped in the Finest Silks
+    {N, 40705, 210}, -- Azj-Kahet Glyph Hunter
+    {N, 40704, 210}, -- Hallowfall Glyph Hunter
+    {N, 40703, 210}, -- The Ringing Deeps Glyph Hunter
+    {N, 40702, 210}, -- Khaz Algar Glyph Hunter
+    {N, 40662, 210}, -- "It's Not Much, But It's Honest Work"
+    {N, 40660, 210}, -- The War Within Season 1: Spelunker Supreme
     {N, 40648, 210}, -- Mythic: The Stonevault
     {N, 40644, 210}, -- Heroic: The Stonevault
     {N, 40643, 210}, -- The Stonevault
     {N, 40642, 210}, -- Mythic: The Rookery
     {N, 40637, 210}, -- Heroic: The Rookery
+    {N, 40636, 210}, -- Sojourner of Azj-Kahet
+    {N, 40634, 210}, -- You Can't Hang With Us
+    {N, 40632, 210}, -- No Harm Ever Came From Reading A Book
+    {N, 40631, 210}, -- War Within Delves: Tier 1
+    {N, 40628, 210}, -- Notable Machines
+    {N, 40625, 210}, -- The Missing Lynx
+    {N, 40624, 210}, -- Itsy Bitsy Spider
+    {N, 40622, 210}, -- Biblo Archivist
     {N, 40621, 210}, -- The Rookery
+    {N, 40619, 210}, -- Mine Poppin'
+    {N, 40618, 210}, -- Lost and Found
     {N, 40617, 210}, -- Deepholla
     {N, 40616, 210}, -- Unexpected Arrivals
     {N, 40615, 210}, -- Unexpected Arrival
     {N, 40613, 210}, -- Resilient Runner
+    {N, 40612, 210}, -- Sprinting in the Ravine
+    {N, 40608, 210}, -- Running in the Ravine
+    {N, 40607, 210}, -- Wandering in the Ravine
+    {N, 40606, 210}, -- Flat Earthen
     {N, 40604, 210}, -- Mythic: The Dawnbreaker
     {N, 40601, 210}, -- Heroic: The Dawnbreaker
     {N, 40599, 210}, -- The Dawnbreaker
     {N, 40596, 210}, -- Mythic: Priory of the Sacred Flame
     {N, 40592, 210}, -- Heroic: Priory of the Sacred Flame
+    {N, 40591, 210}, -- Khaz Algar Diplomat
     {N, 40590, 210}, -- Priory of the Sacred Flame
+    {N, 40589, 210}, -- Awakening The Machine: Wave 50
+    {N, 40588, 210}, -- Awakening The Machine: Wave 40
+    {N, 40587, 210}, -- Awakening The Machine: Wave 30
+    {N, 40586, 210}, -- Awakening The Machine: Wave 20
+    {N, 40542, 210}, -- Smelling History
+    {N, 40539, 210}, -- The Derby Dash
+    {N, 40538, 210}, -- Brann Development
+    {N, 40537, 210}, -- Delve Loremaster: War Within
+    {N, 40536, 210}, -- The Spiral Weave Stories
+    {N, 40535, 210}, -- Tak-Rethan Abyss Stories
+    {N, 40534, 210}, -- The Underkeep Stories
+    {N, 40533, 210}, -- Skittering Breach Stories
+    {N, 40532, 210}, -- The Sinkhole Stories
+    {N, 40531, 210}, -- Mycomancer Cavern Stories
+    {N, 40530, 210}, -- Nightfall Sanctum Stories
+    {N, 40529, 210}, -- The Dread Pit Stories
+    {N, 40528, 210}, -- The Waterworks Stories
+    {N, 40527, 210}, -- Earthcrawl Mines Stories
+    {N, 40526, 210}, -- Kriegval's Rest Stories
+    {N, 40525, 210}, -- Fungal Folly Stories
+    {N, 40524, 210}, -- Good Deed Delver
+    {N, 40521, 210}, -- War Within Delves: Tier 10
+    {N, 40520, 210}, -- War Within Delves: Tier 9
+    {N, 40519, 210}, -- War Within Delves: Tier 8
+    {N, 40518, 210}, -- War Within Delves: Tier 7
+    {N, 40517, 210}, -- War Within Delves: Tier 6
+    {N, 40516, 210}, -- War Within Delves: Tier 5
+    {N, 40515, 210}, -- War Within Delves: Tier 4
+    {N, 40514, 210}, -- War Within Delves: Tier 3
+    {N, 40512, 210}, -- War Within Delves: Tier 2
+    {N, 40509, 210}, -- Awakening The Machine: Wave 10
+    {N, 40507, 210}, -- Hanging Tight
+    {N, 40506, 210}, -- Leave No Treasure Unfound
+    {N, 40503, 210}, -- 90 Algari Anglerthread
+    {N, 40502, 210}, -- 50 Algari Anglerthread
+    {N, 40501, 210}, -- 100 Algari Anglerthread
+    {N, 40500, 210}, -- 80 Algari Anglerthread
+    {N, 40499, 210}, -- 40 Algari Anglerthread
+    {N, 40498, 210}, -- 70 Algari Anglerthread
+    {N, 40497, 210}, -- 30 Algari Anglerthread
+    {N, 40496, 210}, -- 60 Algari Anglerthread
+    {N, 40495, 210}, -- 20 Algari Anglerthread
+    {N, 40494, 210}, -- 10 Algari Anglerthread
+    {N, 40492, 210}, -- 100 Algari Seekerthread
+    {N, 40491, 210}, -- 90 Algari Seekerthread
+    {N, 40490, 210}, -- 80 Algari Seekerthread
+    {N, 40489, 210}, -- 70 Algari Seekerthread
+    {N, 40488, 210}, -- 60 Algari Seekerthread
+    {N, 40487, 210}, -- 50 Algari Seekerthread
+    {N, 40485, 210}, -- 40 Algari Seekerthread
+    {N, 40484, 210}, -- 30 Algari Seekerthread
+    {N, 40480, 210}, -- 20 Algari Seekerthread
+    {N, 40476, 210}, -- 10 Algari Seekerthread
+    {N, 40475, 210}, -- To All the Slimes I Love
+    {N, 40473, 210}, -- Not So Quick Fix
+    {O, 40472, "From", "PvP Season", 38, "Until", "PvP Season", 38},
+    {N, 40472, 210}, -- Battle Mender: The War Within Season 1
+    {N, 40469, 210}, -- I'm Bringing Nerub-ack
+    {N, 40468, 210}, -- Unbound Glory
+    {N, 40467, 210}, -- Unbound Glory
+    {N, 40466, 210}, -- Unbound Glory
+    {N, 40465, 210}, -- Unbound Bounty
+    {N, 40464, 210}, -- Bounty Master
     {N, 40463, 210}, -- Delve Deepest
     {N, 40462, 210}, -- Delve Deeper
+    {N, 40461, 210}, -- Buddy System VI
     {N, 40460, 210}, -- Delve Deep
+    {N, 40459, 210}, -- I've Got a Flying Machine!
+    {N, 40458, 210}, -- Stranger Delves
     {N, 40457, 210}, -- Buddy System V
     {N, 40456, 210}, -- Buddy System IV
     {N, 40455, 210}, -- Buddy System
+    {N, 40454, 210}, -- Daystormer
+    {N, 40453, 210}, -- Spider Senses
+    {N, 40452, 210}, -- Just Keep Swimming
     {N, 40451, 210}, -- Buddy System III
     {N, 40450, 210}, -- Buddy System II
     {N, 40449, 210}, -- Delver of the Depths IV
     {N, 40448, 210}, -- Delver of the Depths III
     {N, 40447, 210}, -- Delver of the Depths II
+    {N, 40446, 210}, -- I TAKE Candle!
+    {N, 40445, 210}, -- Sporesweeper
     {N, 40438, 210}, -- Glory of the Delver
     {N, 40437, 210}, -- Delver of the Depths
     {N, 40436, 210}, -- You're Getting a Delve!
+    {N, 40435, 210}, -- Adventurer of the Isle of Dorn
+    {N, 40434, 210}, -- Treasures of the Isle of Dorn
+    {O, 40433, "From", "Season", 13, "Before", "Season", 14},
+    {N, 40433, 210}, -- Hunting the Hunter (Solo)
+    {O, 40431, "From", "Season", 13, "Before", "Season", 14},
+    {N, 40431, 210}, -- Hunting the Hunter
+    {N, 40430, 210}, -- Khaz Algar Flight Master
     {N, 40429, 210}, -- Mythic: Darkflame Cleft
     {N, 40428, 210}, -- Heroic: Darkflame Cleft
     {N, 40427, 210}, -- Darkflame Cleft
+    {O, 40398, "From", "PvP Season", 38, "Until", "PvP Season", 38},
+    {N, 40398, 210}, -- Forged Gladiator's Fel Bat
+    {O, 40395, "From", "PvP Season", 38, "Until", "PvP Season", 38},
+    {N, 40395, 210}, -- Legend: The War Within Season 1
+    {O, 40393, "From", "PvP Season", 38, "Until", "PvP Season", 38},
+    {N, 40393, 210}, -- Gladiator: The War Within Season 1
+    {O, 40392, "From", "PvP Season", 38, "Until", "PvP Season", 38},
+    {N, 40392, 210}, -- Elite: The War Within Season 1
+    {O, 40391, "From", "PvP Season", 38, "Until", "PvP Season", 38},
+    {N, 40391, 210}, -- Duelist: The War Within Season 1
+    {O, 40390, "From", "PvP Season", 38, "Until", "PvP Season", 38},
+    {N, 40390, 210}, -- Rival II: The War Within Season 1
+    {O, 40389, "From", "PvP Season", 38, "Until", "PvP Season", 38},
+    {N, 40389, 210}, -- Rival I: The War Within Season 1
+    {O, 40388, "From", "PvP Season", 38, "Until", "PvP Season", 38},
+    {N, 40388, 210}, -- Challenger II: The War Within Season 1
+    {O, 40387, "From", "PvP Season", 38, "Until", "PvP Season", 38},
+    {N, 40387, 210}, -- Challenger I: The War Within Season 1
+    {O, 40386, "From", "PvP Season", 38, "Until", "PvP Season", 38},
+    {N, 40386, 210}, -- Combatant II: The War Within Season 1
+    {O, 40385, "From", "PvP Season", 38, "Until", "PvP Season", 38},
+    {N, 40385, 210}, -- Combatant I: The War Within Season 1
+    {O, 40384, "From", "PvP Season", 38, "Until", "PvP Season", 38},
+    {N, 40384, 210, f.Horde}, -- Hero of the Horde: Forged
+    {O, 40383, "From", "PvP Season", 38, "Until", "PvP Season", 38},
+    {N, 40383, 210, f.Alliance}, -- Hero of the Alliance: Forged
     {N, 40382, 208}, -- Hunt the Harbinger
+    {O, 40381, "From", "PvP Season", 38, "Until", "PvP Season", 38},
+    {N, 40381, 210}, -- Forged Legend: The War Within Season 1
+    {O, 40380, "From", "PvP Season", 38, "Until", "PvP Season", 38},
+    {N, 40380, 210}, -- Forged Gladiator: The War Within Season 1
     {N, 40379, 210}, -- Mythic: City of Threads
     {N, 40377, 210}, -- Heroic: City of Threads
     {N, 40376, 210}, -- City of Threads
@@ -84,6 +264,52 @@ tasks = {
     {N, 40366, 210}, -- Mythic: Cinderbrew Meadery
     {N, 40363, 210}, -- Heroic: Cinderbrew Meadery
     {N, 40361, 210}, -- Cinderbrew Meadery
+    {N, 40354, 210}, -- Khaz Algar Completionist: Gold
+    {N, 40353, 210}, -- Khaz Algar Completionist: Silver
+    {N, 40352, 210}, -- Khaz Algar Completionist: Bronze
+    {N, 40351, 210}, -- Azj-Kahet Reverse: Gold
+    {N, 40350, 210}, -- Azj-Kahet Reverse: Silver
+    {N, 40349, 210}, -- Azj-Kahet Reverse: Bronze
+    {N, 40348, 210}, -- Azj-Kahet Advanced: Gold
+    {N, 40347, 210}, -- Azj-Kahet Advanced: Silver
+    {N, 40346, 210}, -- Azj-Kahet Advanced: Bronze
+    {N, 40345, 210}, -- Azj-Kahet: Gold
+    {N, 40344, 210}, -- Azj-Kahet: Silver
+    {N, 40343, 210}, -- Azj-Kahet: Bronze
+    {N, 40342, 210}, -- Hallowfall Reverse: Gold
+    {N, 40341, 210}, -- Hallowfall Reverse: Silver
+    {N, 40340, 210}, -- Hallowfall Reverse: Bronze
+    {N, 40339, 210}, -- Hallowfall Advanced: Gold
+    {N, 40338, 210}, -- Hallowfall Advanced: Silver
+    {N, 40337, 210}, -- Hallowfall Advanced: Bronze
+    {N, 40336, 210}, -- Hallowfall: Gold
+    {N, 40335, 210}, -- Hallowfall: Silver
+    {N, 40334, 210}, -- Hallowfall: Bronze
+    {N, 40333, 210}, -- The Ringing Deeps Reverse: Gold
+    {N, 40332, 210}, -- The Ringing Deeps Reverse: Silver
+    {N, 40331, 210}, -- The Ringing Deeps Reverse: Bronze
+    {N, 40330, 210}, -- The Ringing Deeps Advanced: Gold
+    {N, 40329, 210}, -- The Ringing Deeps Advanced: Silver
+    {N, 40328, 210}, -- The Ringing Deeps Advanced: Bronze
+    {N, 40327, 210}, -- The Ringing Deeps: Gold
+    {N, 40326, 210}, -- The Ringing Deeps: Silver
+    {N, 40325, 210}, -- The Ringing Deeps: Bronze
+    {N, 40324, 210}, -- Isle of Dorn Reverse: Gold
+    {N, 40323, 210}, -- Isle of Dorn Reverse: Silver
+    {N, 40322, 210}, -- Isle of Dorn Reverse: Bronze
+    {N, 40321, 210}, -- Isle of Dorn Advanced: Gold
+    {N, 40320, 210}, -- Isle of Dorn Advanced: Silver
+    {N, 40319, 210}, -- Isle of Dorn Advanced: Bronze
+    {N, 40318, 210}, -- Isle of Dorn: Gold
+    {N, 40317, 210}, -- Isle of Dorn: Silver
+    {N, 40316, 210}, -- Isle of Dorn: Bronze
+    {N, 40314, 210}, -- Fragments of Memories
+    {N, 40313, 210}, -- Igniting the Keyflames
+    {N, 40312, 210}, -- Starting the Flames
+    {N, 40311, 210}, -- Sharing the Light
+    {N, 40309, 210}, -- Heritage of the Earthen
+    {N, 40308, 210}, -- Beacon of Hope
+    {N, 40307, 210}, -- Allied Races: Earthen
     {N, 40266, 210}, -- Missed 'Em by That Much
     {N, 40264, 210}, -- Kill Streak
     {N, 40263, 210}, -- Would You Still /love Me if I Was a Worm...
@@ -95,6 +321,9 @@ tasks = {
     {N, 40254, 210}, -- Cutting Edge: Queen Ansurek
     {O, 40253, "From", "Mythic+ Season", 13, "Until", "Mythic+ Season", 13},
     {N, 40253, 210}, -- Ahead of the Curve: Queen Ansurek
+    {N, 40252, 210}, -- A Series of Echoes
+    {N, 40251, 210}, -- Many Echoes
+    {N, 40250, 210}, -- The First Echo
     {N, 40249, 210}, -- A Queen's Fall
     {N, 40248, 210}, -- Secrets of Nerub-ar Palace
     {N, 40247, 210}, -- The Skittering Battlements
@@ -109,15 +338,27 @@ tasks = {
     {N, 40238, 210}, -- "Mythic: Sikran, Captain of the Sureki"
     {N, 40237, 210}, -- Mythic: The Bloodbound Horror
     {N, 40236, 210}, -- Mythic: Ulgrax the Devourer
+    {O, 40235, "From", "PvP Season", 38, "Until", "PvP Season", 38},
+    {N, 40235, 210, f.Alliance}, -- Forged Marshall: The War Within Season 1
+    {O, 40234, "From", "PvP Season", 38, "Until", "PvP Season", 38},
+    {N, 40234, 210, f.Horde}, -- Forged Warlord: The War Within Season 1
+    {O, 40233, "From", "PvP Season", 38, "Until", "PvP Season", 38},
+    {N, 40233, 210}, -- Strategist: The War Within Season 1
     {N, 40232, 210}, -- Glory of the Nerub-ar Raider
     {N, 40231, 210}, -- The War Within Pathfinder
     {O, 40223, "From", "Event", "1514", "Until", "Event", "1514"},
     {N, 40223, 208}, -- Timerunner
+    {N, 40222, 210}, -- Echoes of Danger
+    {N, 40221, 210}, -- Battleground Blitz Master
+    {N, 40220, 210}, -- Setting Records
+    {N, 40219, 210}, -- Battleground Blitzest
+    {N, 40217, 210}, -- Battleground Blitzer
     {N, 40216, 210}, -- Deephaul Ravine Expedience
     {N, 40215, 210}, -- Deepwind Ravine Shutout
     {N, 40211, 210}, -- Deephaul Ravine Veteran
     {N, 40210, 210}, -- Deephaul Ravine Victory
     {N, 40194, 210}, -- Khaz Algar Safari
+    {N, 40166, 210}, -- Isle of Dorn Glyph Hunter
     {N, 40165, 210}, -- Undead Battler of Khaz Algar
     {N, 40164, 210}, -- Mechanical Battler of Khaz Algar
     {N, 40163, 210}, -- Magic Battler of Khaz Algar
@@ -129,6 +370,7 @@ tasks = {
     {N, 40155, 210}, -- Beast Battler of Khaz Algar
     {N, 40154, 210}, -- Aquatic Battler of Khaz Algar
     {N, 40153, 210}, -- Battle on Khaz Algar
+    {N, 40151, 210}, -- Mereldar Menace
     {N, 40150, 210}, -- Children's Entertainer
     {N, 40147, 210}, -- War Within Epic
     {N, 40146, 210}, -- War Within Superior
@@ -138,6 +380,8 @@ tasks = {
     {N, 40140, 210}, -- Algari Dungeon Healer
     {N, 40139, 210}, -- Algari Dungeon Damage Dealer
     {N, 40138, 210}, -- Algari Dungeoneer
+    {O, 40103, "From", "Season", 13, "Before", "Season", 14},
+    {N, 40103, 210}, -- Nemesis
     {N, 40100, 210}, -- Undying Caver
     {N, 40098, 210}, -- Immortal Spelunker
     {N, 40097, 210}, -- Ruffious's Bid
@@ -152,6 +396,7 @@ tasks = {
     {N, 40085, 210}, -- Tour of Duty: Hallowfall
     {N, 40084, 210}, -- Tour of Duty: The Ringing Deeps
     {N, 40083, 210}, -- Tour of Duty: Isle of Dorn
+    {N, 40082, 210}, -- Never Enough
     {N, 20598, 210}, -- Hallowfall
     {N, 20597, 210}, -- The War Within
     {N, 20596, 210}, -- Loremaster of Khaz Algar
@@ -10408,4 +10653,4 @@ tasks = {
     {N, 7, 86}, -- Level 20
     {N, 6, 86}, -- Level 10
 };
-addon.Data.HighestAchievementId = 40648;
+addon.Data.HighestAchievementId = 40856;

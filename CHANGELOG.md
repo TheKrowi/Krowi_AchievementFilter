@@ -5,7 +5,8 @@ All notable changes to this project will be documented in this file.
 ### Added
 - The War Within category and subcategories in the Expansions tab with all the new achievements ()
 - Deephaul Ravine achievements (8)
-- Misc achievements (2)
+- Worldsoul Memory event achievements (5)
+- Misc achievements (4)
 
 ### Fixed
 - Several bugs in preperation for The War Within (Beta) changes
@@ -14,6 +15,11 @@ All notable changes to this project will be documented in this file.
 - Draconically Superior and Draconically Epic are now temporarily obtainable
 - Draconically Superior and Draconically Epic, Dreaming of Drakes, Dreaming of Wyrns and Dreaming of the Aspects moved from the Cross-Expansion Character category to the Dragonflight Character category
 - Trading Post: Dragonflight moved from the Cross-Expansion Character category to the Promotions
+- Renamed category The Temple of Atal'hakkar to Sunken Temple
+- Renamed The Stockade to Stormwind Stockades
+
+### Wrath Classic
+- No longer supported
 
 ## 73.6 - 2024-06-27
 ### Fixed

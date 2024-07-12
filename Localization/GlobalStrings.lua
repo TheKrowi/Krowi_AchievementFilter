@@ -29,13 +29,23 @@ function addon.GetCategoryInfoTitle(categoryId)
     return categoryId;
 end
 
-function addon.GetLFGDungeonInfo(dungeonID)
-    return GetLFGDungeonInfo and GetLFGDungeonInfo(dungeonID) or dungeonID;
+function addon.GetLFGDungeonInfo(dungeonId)
+    return GetLFGDungeonInfo and GetLFGDungeonInfo(dungeonId) or dungeonId;
 end
 
-function addon.GetMapName(uiMapID)
-    local mapInfo = C_Map.GetMapInfo(uiMapID);
-    return mapInfo and mapInfo.name or uiMapID;
+function addon.GetMapName(uiMapId)
+    local mapInfo = C_Map.GetMapInfo(uiMapId);
+    return mapInfo and mapInfo.name or uiMapId;
+end
+
+function addon.GetLFGActivityFullName(activityId)
+    local activityInfo = C_LFGList.GetActivityInfoTable(activityId);
+    return activityInfo and activityInfo.fullName or activityInfo;
+end
+
+function addon.GetLFGActivityShortName(activityId)
+    local activityInfo = C_LFGList.GetActivityInfoTable(activityId);
+    return activityInfo and activityInfo.shortName or activityInfo;
 end
 
 if not addon.Util.IsClassicWithAchievements then -- Wrath Classic does not have these and no fallback exists
