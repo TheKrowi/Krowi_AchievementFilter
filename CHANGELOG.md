@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
 - Trading Post: Dragonflight moved from the Cross-Expansion Character category to the Promotions
 - Renamed category The Temple of Atal'hakkar to Sunken Temple
 - Renamed The Stockade to Stormwind Stockades
+- Updated the Filter in the Achievement Window to use the new DropDown system
 
 ### Wrath Classic
 - No longer supported
