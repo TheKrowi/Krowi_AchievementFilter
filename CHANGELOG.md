@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Deephaul Ravine achievements (8)
 - Worldsoul Memory event achievements (5)
 - Misc achievements (4)
+- Map data for most new achievements
 
 ### Fixed
 - Several bugs in preperation for The War Within (Beta) changes

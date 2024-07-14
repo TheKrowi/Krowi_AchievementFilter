@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-12 17-35-15 ]] --
+-- [[ Exported at 2024-07-14 13-13-03 ]] --
 tasks = {
     {N, 40856, 210}, -- Council of Dornogal
     {N, 40851, 210}, -- Adventurer of Hallowfall

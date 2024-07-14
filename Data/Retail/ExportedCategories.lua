@@ -55,7 +55,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-12 17-35-34 ]] --
+-- [[ Exported at 2024-07-14 13-13-30 ]] --
 tasks = {
     {F, 1557, "UncategorizedCategories"},
     {C, 971, 1557},
@@ -3222,15 +3222,6 @@ tasks = {
     {A, 1658, 40525}, -- Fungal Folly Stories
     {C, 1600, 1658},
     {N, 1658, a.GetLFGActivityFullName(1295)}, -- Fungal Folly
-    {A, 1670, 40817}, -- A Delver's Bounty
-    {A, 1670, 40788}, -- I Got the Keys
-    {A, 1670, 40819}, -- Ready to Turn
-    {A, 1670, 40463}, -- Delve Deepest
-    {A, 1670, 40462}, -- Delve Deeper
-    {A, 1670, 40460}, -- Delve Deep
-    {A, 1670, 40436}, -- You're Getting a Delve!
-    {C, 1600, 1670},
-    {N, 1670, a.L["Cross-Expansion"]}, -- Cross-Expansion
     {A, 1600, 40820}, -- Raisin' Brann
     {A, 1600, 40538}, -- Brann Development
     {A, 1600, 40458}, -- Stranger Delves
@@ -3276,6 +3267,15 @@ tasks = {
     {A, 1600, 40631}, -- War Within Delves: Tier 1
     {C, 1598, 1600},
     {N, 1600, a.GetCategoryInfoTitle(15522)}, -- Delves
+    {A, 1670, 40817}, -- A Delver's Bounty
+    {A, 1670, 40788}, -- I Got the Keys
+    {A, 1670, 40819}, -- Ready to Turn
+    {A, 1670, 40463}, -- Delve Deepest
+    {A, 1670, 40462}, -- Delve Deeper
+    {A, 1670, 40460}, -- Delve Deep
+    {A, 1670, 40436}, -- You're Getting a Delve!
+    {C, 1598, 1670},
+    {N, 1670, a.L["Cross-Expansion - Delves"]}, -- Cross-Expansion - Delves
     {A, 1630, 40838}, -- The Severed Threads
     {C, 1614, 1630},
     {N, 1630, a.GetCategoryInfoTitle(201), true}, -- Reputation

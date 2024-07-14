@@ -21,7 +21,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-12 17-35-41 ]] --
+-- [[ Exported at 2024-07-14 13-13-54 ]] --
 tasks = {
     {N, 210, "11.0.0", "110000", addon.L["The War Within (pre-patch)"]},
     {N, 208, "10.2.7", "100207", addon.L["Dark Heart"]},
