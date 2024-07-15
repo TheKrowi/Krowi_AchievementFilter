@@ -21,8 +21,4 @@
 			<OnMouseDown method="OnMouseDown"/>
 		</Scripts>
 	</DropDownToggleButton>
-
-	<DropdownButton name="KrowiAF_AchievementFrameFilterDropdown" inherits="WowStyle1FilterDropdownTemplate">
-		<Size x="116" y="22"/>
-	</DropdownButton>
 </Ui>

@@ -2,12 +2,8 @@ local _, addon = ...;
 
 KrowiAF_AchievementFrameFilterButtonMixin = {};
 
-local LoadNew;
 function KrowiAF_AchievementFrameFilterButtonMixin:OnLoad()
 	self:SetFrameLevel(self:GetParent():GetFrameLevel() + 7);
-    if addon.Util.IsTheWarWithin then
-        LoadNew();
-    end
 end
 
 function KrowiAF_AchievementFrameFilterButtonMixin:OnShow()
@@ -549,8 +545,17 @@ local function CreateAchievementFilters(_menu, filters)
     CreateCheckbox(sortBy, addon.L["Reverse Sort"], filters, {"SortBy", "ReverseSort"}, true, true);
 end
 
-function LoadNew()
-    KrowiAF_AchievementFrameFilterDropdown:SetupMenu(function(dropdown, rootDescription)
+function addon.LoadNew()
+    KrowiAF_AchievementFrameFilterButton:SetFrameLevel(KrowiAF_AchievementFrameFilterButton:GetParent():GetFrameLevel() + 7);
+    KrowiAF_AchievementFrameFilterButton:HookScript("OnShow", function()
+        AchievementFrame.Header.LeftDDLInset:Show();
+    end);
+    KrowiAF_AchievementFrameFilterButton:HookScript("OnHide", function()
+        if addon.Util.IsClassicWithAchievements or not AchievementFrameFilterDropdown:IsShown() then
+            AchievementFrame.Header.LeftDDLInset:Hide();
+        end
+    end);
+    KrowiAF_AchievementFrameFilterButton:SetupMenu(function(dropdown, rootDescription)
 		rootDescription:SetTag("MENU_ACHIEVEMENT_FILTER");
 
         rootDescription:CreateTitle(addon.L["Categories"]);
