@@ -65,7 +65,7 @@ local function PostLoadOnPlayerLogin(self, start)
     end
 
     addon.BuildCacheAsync(PostBuildCache, function(numOfWork)
-        addon.Diagnostics.Debug(numOfWork .. " remaining after " .. ("%.2d"):format(debugprofilestop() - start) / 1000);
+        -- addon.Diagnostics.Debug(numOfWork .. " remaining after " .. ("%.2d"):format(debugprofilestop() - start) / 1000);
     end);
 end
 
@@ -100,7 +100,7 @@ function data:LoadOnPlayerLogin()
         self.TasksGroups,
         function() PostLoadOnPlayerLogin(self, overallStart); end,
         function(numOfWork)
-            addon.Diagnostics.Debug(numOfWork .. " remaining after " .. ("%.2d"):format(debugprofilestop() - overallStart) / 1000);
+            -- addon.Diagnostics.Debug(numOfWork .. " remaining after " .. ("%.2d"):format(debugprofilestop() - overallStart) / 1000);
         end
     );
 end
@@ -246,8 +246,8 @@ function data.InjectLoadingDebug(workload, name)
     end
 
     -- Data is in reverse order in the tables so add 'Start' to the end and 'Finished' to the beginning
-    tinsert(workload, function() addon.Diagnostics.Debug(name .. ": Start loading data"); end);
-    tinsert(workload, 1, function() addon.Diagnostics.Debug(name .. ": Finished loading data"); end);
+    -- tinsert(workload, function() addon.Diagnostics.Debug(name .. ": Start loading data"); end);
+    -- tinsert(workload, 1, function() addon.Diagnostics.Debug(name .. ": Finished loading data"); end);
 end
 
 -- function KrowiAF_PrintPetCriteria(achievementID, parentCriteriaID, criteriaNumber)
