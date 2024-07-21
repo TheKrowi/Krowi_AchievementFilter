@@ -518,7 +518,9 @@
         "C_LFGList",
         "KrowiAF_AchievementFrameFilterDropdown",
         "KrowiAF_DebugTable",
-        "EXPANSION_NAME10"
+        "EXPANSION_NAME10",
+        "WowStyle1FilterDropdownMixin",
+        "MenuResponse"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

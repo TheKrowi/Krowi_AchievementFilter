@@ -1,0 +1,22 @@
+<Ui>
+    <Script file="FilterButton.lua"/>
+    <Script file="FilterButtonMixin.lua"/>
+
+	<DropdownButton name="KrowiAF_AchievementFrameFilterButton_Modern_Template" mixin="KrowiAF_AchievementFrameFilterButtonModernMixin" inherits="WowStyle1FilterDropdownTemplate" virtual="true" hidden="true">		
+		<Size x="112" y="18"/>
+		<KeyValues>
+			<KeyValue key="resizeToText" type="boolean" value="false"/>
+		</KeyValues>
+		<Scripts>
+			<OnLoad method="OnLoad"/>
+			<OnMouseDown method="OnMouseDown"/>
+			<OnMouseUp method="OnMouseUp"/>
+			<OnShow method="OnShow"/>
+			<OnHide method="OnHide"/>
+			<OnEnter method="OnEnter"/>
+			<OnLeave method="OnLeave"/>
+			<OnEnable method="OnEnable"/>
+			<OnDisable method="OnDisable"/>
+		</Scripts>
+    </DropdownButton>
+</Ui>

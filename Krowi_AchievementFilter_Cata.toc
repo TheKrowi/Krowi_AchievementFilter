@@ -45,4 +45,4 @@ Data\CataClassic\Files.xml
 
 Filters.lua
 SearchOptions.lua
-Gui\Files.xml
+Gui\FilesCataClassic.xml
