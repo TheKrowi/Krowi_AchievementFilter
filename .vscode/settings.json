@@ -516,7 +516,9 @@
         "GetMouseFoci",
         "DoesAncestryIncludeAny",
         "C_LFGList",
-        "KrowiAF_AchievementFrameFilterDropdown"
+        "KrowiAF_AchievementFrameFilterDropdown",
+        "KrowiAF_DebugTable",
+        "EXPANSION_NAME10"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
@@ -540,13 +542,13 @@
             "exclude":"**/{.git,.vscode,Changelogs,Descriptions}/**",
             "deleteTargetOnDeploy": true
         },
-        {
-            "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
-            "target":"F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\Krowi_AchievementFilter",
-            "include":"**/*.{lua,toc,blp,tga,xml,md}",
-            "exclude":"**/{.git,.vscode,Changelogs,Descriptions}/**",
-            "deleteTargetOnDeploy": true
-        },
+        // {
+        //     "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
+        //     "target":"F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\Krowi_AchievementFilter",
+        //     "include":"**/*.{lua,toc,blp,tga,xml,md}",
+        //     "exclude":"**/{.git,.vscode,Changelogs,Descriptions}/**",
+        //     "deleteTargetOnDeploy": true
+        // },
         {
             "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
             "target":"F:\\World of Warcraft\\_beta_\\Interface\\AddOns\\Krowi_AchievementFilter",

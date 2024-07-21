@@ -366,7 +366,7 @@ local function HandleAchievements(gapSize, i, highestId, characterGuid)
     buildCacheHelper:SetScript("OnUpdate", nil);
     coFinished = true;
     coStarted = nil;
-    addon.Diagnostics.Debug("Cache: Finished loading data");
+    addon.Diagnostics.Trace("Cache: Finished loading data");
     if #coOnFinish >= 1 then
         for _, onFinish in next, coOnFinish do
             onFinish(criteriaCache);
@@ -390,7 +390,7 @@ function addon.BuildCacheAsync(onFinish, onDelay)
     end
 
     coStarted = true;
-    addon.Diagnostics.Debug("Cache: Start loading data");
+    addon.Diagnostics.Trace("Cache: Start loading data");
     local characterGuid = UnitGUID("player");
     criteriaCache = {};
     local gapSize, i = 0, 1;

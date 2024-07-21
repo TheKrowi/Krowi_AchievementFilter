@@ -4,7 +4,7 @@
 ## X-Acronym: KAF
 ## Version: 74.0
 ## Author: Krowi-Frostmane EU
-## SavedVariables: DebugTable, KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters, KrowiAF_SearchOptions, KrowiAF_Achievements
+## SavedVariables: KrowiAF_DebugTable, KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters, KrowiAF_SearchOptions, KrowiAF_Achievements
 ## Notes: Filters your achievements.
 ## AddonCompartmentFuncOnEnter: KrowiAF_OnAddonCompartmentEnter
 ## AddonCompartmentFuncOnLeave: KrowiAF_OnAddonCompartmentLeave

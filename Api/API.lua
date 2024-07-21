@@ -1,4 +1,3 @@
--- [[ Namespaces ]] --
 local addonName, addon = ...;
 KrowiAF = {};
 
@@ -357,14 +356,14 @@ do --[[ KrowiAF_RegisterEventOptions ]]
 
 	local OrderPP = addon.InjectOptions.AutoOrderPlusPlus;
 	local AdjustedWidth = addon.InjectOptions.AdjustedWidth;
-	local function InjectOptionsTable(eventType, eventIds, eventDisplayName, groupDisplayName, order, expansionDisplayName)
+	local function InjectOptionsTable(eventType, eventIds, eventDisplayName, groupDisplayName, order, expansionId)
 		local path = "EventReminders.args." .. (eventType == "Widget" and "World" or eventType) .. "Events.args";
-		local expansionName = expansionDisplayName and expansionDisplayName:gsub("[%p%c%s]", "_");
+		local expansionName = expansionId and ("EXPANSION_NAME" .. tostring(expansionId));
 		if expansionName then
 			if not addon.InjectOptions:TableExists(path .. "." .. expansionName) then
 				addon.InjectOptions:AddTable(path, expansionName, {
-					order = order, type = "group",
-					name = expansionDisplayName,
+					order = expansionId, type = "group",
+					name = _G[expansionName],
 					args = {}
 				});
 			end
@@ -392,13 +391,14 @@ do --[[ KrowiAF_RegisterEventOptions ]]
 		});
 	end
 
-	function KrowiAF_RegisterEventOptions(eventType, eventIds, eventDisplayName, groupDisplayName, order, expansionDisplayName, hideByDefault)
+	function KrowiAF_RegisterEventOptions(eventType, eventIds, eventDisplayName, groupDisplayName, order, expansionId, hideByDefault)
 		InjectOptionsDefaults(eventType, eventIds, hideByDefault);
-		InjectOptionsTable(eventType, eventIds, eventDisplayName, groupDisplayName, order, expansionDisplayName);
+		InjectOptionsTable(eventType, eventIds, eventDisplayName, groupDisplayName, order, expansionId);
 	end
 
-	function KrowiAF_RegisterDeSelectAllEventOptions(eventType, eventIds, groupDisplayName, expansionName)
+	function KrowiAF_RegisterDeSelectAllEventOptions(eventType, eventIds, groupDisplayName, expansionId)
 		local groupName = groupDisplayName:gsub("[%p%c%s]", "_");
+		local expansionName = expansionId and ("EXPANSION_NAME" .. tostring(expansionId));
 		local path = "EventReminders.args." .. (eventType == "Widget" and "World" or eventType) .. "Events.args." .. (expansionName and (expansionName .. ".args.") or "") .. groupName .. ".args";
 		if addon.InjectOptions:TableExists(path .. ".SelectAll") then
 			return;
