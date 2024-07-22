@@ -1,9 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 74.0 - 2024-07-10
+## 74.0 - 2024-07-23
 ### Added
-- The War Within category and subcategories in the Expansions tab with all the new achievements ()
+- The War Within category and subcategories in the Expansions tab with all the new achievements (371)
 - Deephaul Ravine achievements (8)
 - Worldsoul Memory event achievements (5)
 - Misc achievements (4)
