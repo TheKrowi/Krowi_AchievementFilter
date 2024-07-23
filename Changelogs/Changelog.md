@@ -1,27 +1,24 @@
+### Added
+- The War Within category and subcategories in the Expansions tab with all the new achievements (371)
+- Deephaul Ravine achievements (8)
+- Worldsoul Memory event achievements (5)
+- Misc achievements (4)
+- Map data for most new achievements
+- Summary category is now part of the Adjustable Categories group and can be shown or hidden (dev note: Game Menu -> Options -> AddOns -> Krowi's Achievement Filter -> Layout -> Adjustable Categories -> Summary)
+
 ### Fixed
 - Several bugs in preperation for The War Within (Beta) changes
 
-### Cata Classic (73.1)
-- Added several missing achievements
-- Corrected several achievements faction
+### Changed
+- Draconically Superior and Draconically Epic are now temporarily obtainable
+- Draconically Superior and Draconically Epic, Dreaming of Drakes, Dreaming of Wyrns and Dreaming of the Aspects moved from the Cross-Expansion Character category to the Dragonflight Character category
+- Trading Post: Dragonflight moved from the Cross-Expansion Character category to the Promotions
+- Renamed category The Temple of Atal'hakkar to Sunken Temple
+- Renamed The Stockade to Stormwind Stockades
+- Updated the Filter in the Achievement Window to use the new DropDown system (dev note: will most likly cause errors with ElvUI and GW2_UI the first few days)
+- Data clean up after the migration to the new data structure last year (dev note: a new expansion is the best moment to do this especially with all the changes Blizzard made to achievements) (dev note 2: should result in 50-63% less duplicate data and potentially memory usage)
+- Cleaned up Event Reminders naming and should now be more consistent
+- Adjustable Categories rework for better maintainability
 
-### Added (73.2)
-- Temporary obtainable achievements now have the option to show an extra icon indicating if it is / was / will be obtainable
-- Temporary obtainable achievements header color can now be removed
-
-### Fixed (73.2)
-- Several bugs in preperation for The War Within (Beta) changes
-
-### Cata Classic (73.3)
-- Fixed hooksecurefunc error
-
-### Fixed (73.4)
-- GW2 UI skin
-- Tabs order options
-
-### Fixed (73.5)
-- Fate of Nathria and Fate of Domination chains should now be correct
-- Most progress section in the achievement tooltip will no longer show for past achievements that are now unobtainable
-
-### Fixed (73.6)
-- Several bugs in preperation for The War Within (Beta) changes
+### Wrath Classic
+- No longer supported

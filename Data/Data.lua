@@ -14,7 +14,7 @@ data.BuildVersionsGrouped = {};
 data.Achievements = {};
 data.AchievementIds = {};
 
-data.Categories, data.SummaryCategories = {};
+data.Categories, data.SummaryCategories = {}, {};
 data.WatchListCategories, data.CurrentZoneCategories, data.SelectedZoneCategories = {}, {}, {};
 data.SearchResultsCategories, data.TrackingAchievementsCategories, data.ExcludedCategories = {}, {}, {};
 data.UncategorizedCategories = {};
@@ -40,11 +40,11 @@ local function PostLoadOnPlayerLogin(self, start)
     custom.max = #self.AchievementIds;
 
     local function PostBuildCache()
-        data.SpecialCategories:Load();
-
         if addon.Tabs["Achievements"] then
-            addon.Tabs["Achievements"].Categories = data.LoadBlizzardTabAchievements(addon.Tabs["Achievements"].Categories);
+            data.LoadBlizzardTabAchievements(addon.Tabs["Achievements"]);
         end
+
+        data.SpecialCategories:Load();
 
         self.LoadWatchedAchievements();
         self.LoadTrackingAchievements();
@@ -159,13 +159,12 @@ function data.SortAchievementIds()
 end
 
 local tmpC = {};
-local function LoadAllCategories(tab, cats)
+local function LoadAllCategories(tabCat, cats)
     for _, id in next, cats do
 		local name, parentID = GetCategoryInfo(id);
         tmpC[id] = addon.Objects.Category:New(id, name);
 		if parentID == -1 then
-			-- categories:AddCategory(tmpC[id]);
-			tab:InsertCategory(tmpC[id], #tab.Children - 2); -- should this be -3?
+			tabCat:AddCategory(tmpC[id]);
 		end
 	end
 end
@@ -217,11 +216,11 @@ local function AddAchievementsToCategory()
     end
 end
 
-function data.LoadBlizzardTabAchievements(categories)
-    local tab = categories[1].Parent;
+function data.LoadBlizzardTabAchievements(tab)
+    local tabCat = tab.Category;
     local cats = GetCategoryList();
 
-    LoadAllCategories(tab, cats); -- Load all categories, this is done in a random order and is possible for a child to load before a parent
+    LoadAllCategories(tabCat, cats); -- Load all categories, this is done in a random order and is possible for a child to load before a parent
     LinkParentAndChildren(cats); -- When everything is loaded, we can link children and parents
     LinkChainAchievements();
     AddAchievementsToCategory();
@@ -229,8 +228,6 @@ function data.LoadBlizzardTabAchievements(categories)
     -- Clean up after ourselves
     tmpC = nil;
     addedOutOfOrder = nil;
-
-    return tab.Children;
 end
 
 function data.InjectLoadingDebug(workload, name)

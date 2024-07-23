@@ -4,16 +4,17 @@ data.SpecialCategories = {};
 local specialCategories = data.SpecialCategories;
 
 local specialCategoriesMatrix = { -- Order of this list is important
-    -- {
-    --     CategoryType = "Summary",
-    --     Text = addon.L["Summary"],
-    --     Side = "TOP",
-    --     PostLoad = function(category)
-    --         category:SetAlwaysVisible(true);
-    --         category.IsSummary = true;
-    --     end,
-    --     ShowByDefault = true
-    -- },
+    {
+        CategoryType = "Summary",
+        Text = addon.L["Summary"],
+        Side = "TOP",
+        PostLoad = function(category, index)
+            local value = addon.Options.db.profile.AdjustableCategories.Summary[index];
+            category:SetAlwaysVisible(value);
+            category.IsSummary = true;
+        end,
+        ShowByDefault = true
+    },
     {
         CategoryType = "WatchList",
         Text = addon.L["Watch List"],
@@ -77,22 +78,15 @@ local specialCategoriesMatrix = { -- Order of this list is important
 };
 
 local function AddCategory(id, specialCategory, tab, categoryOrder)
-    local path = {"Tabs", tab.Name, "Categories", 1, "Parent", "Id"}
-    local parentId = addon.Util.SafeGet(addon, path);
-    print(parentId)
-    if not parentId then
-        return;
-    end
-
     data.Categories[id] = addon.Objects.Category:New(id, specialCategory.Text);
     if specialCategory.Side == "TOP" then
-        data.Categories[parentId]:InsertCategory(data.Categories[id], categoryOrder);
+        data.Categories[tab.Category.Id]:InsertCategory(data.Categories[id], categoryOrder);
     else
-        data.Categories[parentId]:AddCategory(data.Categories[id]);
+        data.Categories[tab.Category.Id]:AddCategory(data.Categories[id]);
     end
     tinsert(data[specialCategory.CategoryType .. "Categories"], data.Categories[id]);
     if specialCategory.PostLoad then
-        specialCategory.PostLoad(data.Categories[id]);
+        specialCategory.PostLoad(data.Categories[id], #data[specialCategory.CategoryType .. "Categories"]);
     end
 end
 

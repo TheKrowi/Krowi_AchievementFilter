@@ -25,17 +25,10 @@ local function A(cId, aId)
     categories[cId]:AddAchievement(achievements[aId]);
 end
 
-local function V(cId)
-    categories[cId]:SetAlwaysVisible(true);
-end
-
 local function T(cId, tabName)
     categories[cId]:SetTabName(tabName);
     tabs[tabName].Categories = categories[cId].Children;
-end
-
-local function S(cId)
-    categories[cId]:SetAsSummary(true);
+    tabs[tabName].Category = categories[cId];
 end
 
 -- Saves some characters and file size as we use this a lot in the tasks
@@ -44,7 +37,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-23 18-01-16 ]] --
+-- [[ Exported at 2024-07-24 00-14-50 ]] --
 tasks = {
     {A, 1347, 15251}, -- The Jailer's Gauntlet: Layer 1
     {A, 1347, 15079}, -- "Many, Many Things"
@@ -1070,10 +1063,6 @@ tasks = {
     {A, 972, 3356}, -- Winterspring Frostsaber
     {C, 971, 972},
     {N, 972, a.L["Bur's Mount Collection"]}, -- Bur's Mount Collection
-    {S, 1204},
-    {V, 1204},
-    {C, 971, 1204},
-    {N, 1204, a.L["Summary"]}, -- Summary
     {T, 971, "Specials"},
     {N, 971, a.L["Specials"]}, -- TAB - Specials
     {A, 1652, 40723}, -- Web-Wrapped in the Finest Silks
@@ -1987,10 +1976,6 @@ tasks = {
     {A, 1162, 10561}, -- Honorable Medallion
     {C, 955, 1162},
     {N, 1162, a.GetCategoryInfoTitle(95)}, -- Player vs. Player
-    {S, 1205},
-    {V, 1205},
-    {C, 955, 1205},
-    {N, 1205, a.L["Summary"]}, -- Summary
     {T, 955, "PvP"},
     {N, 955, a.GetCategoryInfoTitle(95)}, -- TAB - PvP
     {A, 1174, 20509}, -- Plunderkind
@@ -2879,10 +2864,6 @@ tasks = {
     {A, 918, 2144}, -- "What a Long, Strange Trip It's Been"
     {C, 884, 918},
     {N, 918, a.L["Holidays"]}, -- Holidays
-    {S, 1206},
-    {V, 1206},
-    {C, 884, 1206},
-    {N, 1206, a.L["Summary"]}, -- Summary
     {T, 884, "Events"},
     {N, 884, a.L["Events"]}, -- TAB - Events
     {A, 1657, 40351}, -- Azj-Kahet Reverse: Gold
@@ -10757,16 +10738,8 @@ tasks = {
     {N, 1160, a.L["Zones"]}, -- Zones
     {C, 883, 1431},
     {N, 1431, a.L["Cross-Expansion"]}, -- Cross-Expansion
-    {S, 1203},
-    {V, 1203},
-    {C, 883, 1203},
-    {N, 1203, a.L["Summary"]}, -- Summary
     {T, 883, "Expansions"},
     {N, 883, a.L["Expansions"]}, -- TAB - Expansions
-    {S, 1202},
-    {V, 1202},
-    {C, 1100, 1202},
-    {N, 1202, a.L["Summary"]}, -- Summary
     {T, 1100, "Achievements"},
     {N, 1100, a.L["Achievements"]}, -- TAB - Achievements
 };

@@ -1,36 +1,29 @@
+<p><h3>Added</h3></p>
+<ul>
+<li>The War Within category and subcategories in the Expansions tab with all the new achievements (371)</li>
+<li>Deephaul Ravine achievements (8)</li>
+<li>Worldsoul Memory event achievements (5)</li>
+<li>Misc achievements (4)</li>
+<li>Map data for most new achievements</li>
+<li>Summary category is now part of the Adjustable Categories group and can be shown or hidden (dev note: Game Menu -&gt; Options -&gt; AddOns -&gt; Krowi's Achievement Filter -&gt; Layout -&gt; Adjustable Categories -&gt; Summary)</li>
+</ul>
 <p><h3>Fixed</h3></p>
 <ul>
 <li>Several bugs in preperation for The War Within (Beta) changes</li>
 </ul>
-<p><h3>Cata Classic (73.1)</h3></p>
+<p><h3>Changed</h3></p>
 <ul>
-<li>Added several missing achievements</li>
-<li>Corrected several achievements faction</li>
+<li>Draconically Superior and Draconically Epic are now temporarily obtainable</li>
+<li>Draconically Superior and Draconically Epic, Dreaming of Drakes, Dreaming of Wyrns and Dreaming of the Aspects moved from the Cross-Expansion Character category to the Dragonflight Character category</li>
+<li>Trading Post: Dragonflight moved from the Cross-Expansion Character category to the Promotions</li>
+<li>Renamed category The Temple of Atal'hakkar to Sunken Temple</li>
+<li>Renamed The Stockade to Stormwind Stockades</li>
+<li>Updated the Filter in the Achievement Window to use the new DropDown system (dev note: will most likly cause errors with ElvUI and GW2_UI the first few days)</li>
+<li>Data clean up after the migration to the new data structure last year (dev note: a new expansion is the best moment to do this especially with all the changes Blizzard made to achievements) (dev note 2: should result in 50-63% less duplicate data and potentially memory usage)</li>
+<li>Cleaned up Event Reminders naming and should now be more consistent</li>
+<li>Adjustable Categories rework for better maintainability</li>
 </ul>
-<p><h3>Added (73.2)</h3></p>
+<p><h3>Wrath Classic</h3></p>
 <ul>
-<li>Temporary obtainable achievements now have the option to show an extra icon indicating if it is / was / will be obtainable</li>
-<li>Temporary obtainable achievements header color can now be removed</li>
-</ul>
-<p><h3>Fixed (73.2)</h3></p>
-<ul>
-<li>Several bugs in preperation for The War Within (Beta) changes</li>
-</ul>
-<p><h3>Cata Classic (73.3)</h3></p>
-<ul>
-<li>Fixed hooksecurefunc error</li>
-</ul>
-<p><h3>Fixed (73.4)</h3></p>
-<ul>
-<li>GW2 UI skin</li>
-<li>Tabs order options</li>
-</ul>
-<p><h3>Fixed (73.5)</h3></p>
-<ul>
-<li>Fate of Nathria and Fate of Domination chains should now be correct</li>
-<li>Most progress section in the achievement tooltip will no longer show for past achievements that are now unobtainable</li>
-</ul>
-<p><h3>Fixed (73.6)</h3></p>
-<ul>
-<li>Several bugs in preperation for The War Within (Beta) changes</li>
+<li>No longer supported</li>
 </ul>
