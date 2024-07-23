@@ -165,6 +165,15 @@ local function Click(self, button, ignoreModifiers)
 		Select(self, ignoreModifiers);
 	elseif button == "RightButton" then
 		addon.Gui.RightClickMenu.AchievementMenu:Open(self.Achievement);
+		-- MenuUtil.CreateContextMenu(self, function(owner, menu)
+		-- 	menu:SetTag("MENU_TOYBOX_FAVORITE");
+		-- 	menu:CreateButton(
+		-- 		"some text",
+		-- 		function()
+		-- 			print("you clicked me :O")
+		-- 		end
+		-- 	)
+		-- end);
 	end
 end
 
