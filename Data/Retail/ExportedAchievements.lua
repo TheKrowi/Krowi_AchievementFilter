@@ -39,8 +39,10 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-14 13-13-03 ]] --
+-- [[ Exported at 2024-07-23 17-22-38 ]] --
 tasks = {
+    {N, 40860, 210}, -- A Star of Dorn
+    {N, 40859, 210}, -- We're Here All Night
     {N, 40856, 210}, -- Council of Dornogal
     {N, 40851, 210}, -- Adventurer of Hallowfall
     {N, 40848, 210}, -- Treasures of Hallowfall
@@ -81,7 +83,7 @@ tasks = {
     {O, 40792, "From", "PvP Season", 38, "Until", "PvP Season", 38},
     {N, 40792, 210}, -- Solo Shuffle Medic: The War Within
     {N, 40790, 210}, -- Khaz Algar Explorer
-    {N, 40789, 210}, -- I've Got More Flying Machine?!
+    {N, 40789, 210}, -- Flying in Style
     {N, 40788, 210}, -- I Got the Keys
     {N, 40763, 210}, -- "I'm not a Thief, I'm a Treasure Hunter"
     {N, 40762, 210}, -- Khaz Algar Lore Hunter
@@ -150,6 +152,7 @@ tasks = {
     {N, 40526, 210}, -- Kriegval's Rest Stories
     {N, 40525, 210}, -- Fungal Folly Stories
     {N, 40524, 210}, -- Good Deed Delver
+    {N, 40523, 210}, -- On Brand
     {N, 40521, 210}, -- War Within Delves: Tier 10
     {N, 40520, 210}, -- War Within Delves: Tier 9
     {N, 40519, 210}, -- War Within Delves: Tier 8
@@ -354,7 +357,7 @@ tasks = {
     {N, 40219, 210}, -- Battleground Blitzest
     {N, 40217, 210}, -- Battleground Blitzer
     {N, 40216, 210}, -- Deephaul Ravine Expedience
-    {N, 40215, 210}, -- Deepwind Ravine Shutout
+    {N, 40215, 210}, -- Deephaul Ravine Shutout
     {N, 40211, 210}, -- Deephaul Ravine Veteran
     {N, 40210, 210}, -- Deephaul Ravine Victory
     {N, 40194, 210}, -- Khaz Algar Safari
@@ -10653,4 +10656,4 @@ tasks = {
     {N, 7, 86}, -- Level 20
     {N, 6, 86}, -- Level 10
 };
-addon.Data.HighestAchievementId = 40856;
+addon.Data.HighestAchievementId = 40860;

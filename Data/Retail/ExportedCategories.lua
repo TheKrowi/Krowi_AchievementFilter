@@ -2,15 +2,9 @@ local _, addon = ...;
 addon.Data.ExportedCategories = {};
 local exportedCategories = addon.Data.ExportedCategories;
 
-local tasks, categories, adjustableCategories, achievements, tabs;
-function exportedCategories.RegisterTasks(_categories, _adjustableCategories, _achievements, _tabs)
-    categories, adjustableCategories, achievements, tabs = _categories, _adjustableCategories, _achievements, _tabs;
-    wipe(adjustableCategories.WatchListCategories);
-    wipe(adjustableCategories.CurrentZoneCategories);
-    wipe(adjustableCategories.SelectedZoneCategories);
-    wipe(adjustableCategories.SearchResultsCategories);
-    wipe(adjustableCategories.TrackingAchievementsCategories);
-    wipe(adjustableCategories.ExcludedCategories);
+local tasks, categories, achievements, tabs;
+function exportedCategories.RegisterTasks(_categories, _achievements, _tabs)
+    categories, achievements, tabs = _categories, _achievements, _tabs;
 
     local name = "Categories";
     addon.Data.InjectLoadingDebug(tasks, name);
@@ -40,11 +34,6 @@ local function T(cId, tabName)
     tabs[tabName].Categories = categories[cId].Children;
 end
 
-local function F(cId, adjustableCategoryName)
-    categories[cId]:SetFlexibleData(true);
-    tinsert(adjustableCategories[adjustableCategoryName], categories[cId]);
-end
-
 local function S(cId)
     categories[cId]:SetAsSummary(true);
 end
@@ -55,18 +44,8 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-14 13-13-30 ]] --
+-- [[ Exported at 2024-07-23 18-01-16 ]] --
 tasks = {
-    {F, 1557, "UncategorizedCategories"},
-    {C, 971, 1557},
-    {N, 1557, a.L["Uncategorized"]}, -- Uncategorized
-    {F, 857, "ExcludedCategories"},
-    {C, 971, 857},
-    {N, 857, a.L["Excluded"]}, -- Excluded
-    function() categories[1367].IsTracking = true; end,
-    {F, 1367, "TrackingAchievementsCategories"},
-    {C, 971, 1367},
-    {N, 1367, a.L["Tracking Achievements"]}, -- Tracking Achievements
     {A, 1347, 15251}, -- The Jailer's Gauntlet: Layer 1
     {A, 1347, 15079}, -- "Many, Many Things"
     {A, 1347, 15004}, -- A Sly Fox
@@ -1091,37 +1070,12 @@ tasks = {
     {A, 972, 3356}, -- Winterspring Frostsaber
     {C, 971, 972},
     {N, 972, a.L["Bur's Mount Collection"]}, -- Bur's Mount Collection
-    {F, 1396, "SearchResultsCategories"},
-    {C, 971, 1396},
-    {N, 1396, a.L["Search Results"]}, -- Search Results
-    function() categories[850].IsSelectedZone = true; end,
-    {F, 850, "SelectedZoneCategories"},
-    {C, 971, 850},
-    {N, 850, a.L["Selected Zone"]}, -- Selected Zone
-    function() categories[433].IsCurrentZone = true; end,
-    {F, 433, "CurrentZoneCategories"},
-    {C, 971, 433},
-    {N, 433, a.L["Current Zone"]}, -- Current Zone
-    function() categories[949].IsWatchList = true; end,
-    {F, 949, "WatchListCategories"},
-    {C, 971, 949},
-    {N, 949, a.L["Watch List"]}, -- Watch List
     {S, 1204},
     {V, 1204},
     {C, 971, 1204},
     {N, 1204, a.L["Summary"]}, -- Summary
     {T, 971, "Specials"},
     {N, 971, a.L["Specials"]}, -- TAB - Specials
-    {F, 1556, "UncategorizedCategories"},
-    {C, 955, 1556},
-    {N, 1556, a.L["Uncategorized"]}, -- Uncategorized
-    {F, 1227, "ExcludedCategories"},
-    {C, 955, 1227},
-    {N, 1227, a.L["Excluded"]}, -- Excluded
-    function() categories[1368].IsTracking = true; end,
-    {F, 1368, "TrackingAchievementsCategories"},
-    {C, 955, 1368},
-    {N, 1368, a.L["Tracking Achievements"]}, -- Tracking Achievements
     {A, 1652, 40723}, -- Web-Wrapped in the Finest Silks
     {A, 1652, 40660}, -- The War Within Season 1: Spelunker Supreme
     {A, 1652, 40234}, -- Forged Warlord: The War Within Season 1
@@ -1656,7 +1610,7 @@ tasks = {
     {A, 1647, 40615}, -- Unexpected Arrival
     {A, 1647, 40613}, -- Resilient Runner
     {A, 1647, 40216}, -- Deephaul Ravine Expedience
-    {A, 1647, 40215}, -- Deepwind Ravine Shutout
+    {A, 1647, 40215}, -- Deephaul Ravine Shutout
     {A, 1647, 40211}, -- Deephaul Ravine Veteran
     {A, 1647, 40210}, -- Deephaul Ravine Victory
     {C, 1165, 1647},
@@ -2033,37 +1987,12 @@ tasks = {
     {A, 1162, 10561}, -- Honorable Medallion
     {C, 955, 1162},
     {N, 1162, a.GetCategoryInfoTitle(95)}, -- Player vs. Player
-    {F, 1397, "SearchResultsCategories"},
-    {C, 955, 1397},
-    {N, 1397, a.L["Search Results"]}, -- Search Results
-    function() categories[1222].IsSelectedZone = true; end,
-    {F, 1222, "SelectedZoneCategories"},
-    {C, 955, 1222},
-    {N, 1222, a.L["Selected Zone"]}, -- Selected Zone
-    function() categories[1215].IsCurrentZone = true; end,
-    {F, 1215, "CurrentZoneCategories"},
-    {C, 955, 1215},
-    {N, 1215, a.L["Current Zone"]}, -- Current Zone
-    function() categories[1219].IsWatchList = true; end,
-    {F, 1219, "WatchListCategories"},
-    {C, 955, 1219},
-    {N, 1219, a.L["Watch List"]}, -- Watch List
     {S, 1205},
     {V, 1205},
     {C, 955, 1205},
     {N, 1205, a.L["Summary"]}, -- Summary
     {T, 955, "PvP"},
     {N, 955, a.GetCategoryInfoTitle(95)}, -- TAB - PvP
-    {F, 1555, "UncategorizedCategories"},
-    {C, 884, 1555},
-    {N, 1555, a.L["Uncategorized"]}, -- Uncategorized
-    {F, 1226, "ExcludedCategories"},
-    {C, 884, 1226},
-    {N, 1226, a.L["Excluded"]}, -- Excluded
-    function() categories[1369].IsTracking = true; end,
-    {F, 1369, "TrackingAchievementsCategories"},
-    {C, 884, 1369},
-    {N, 1369, a.L["Tracking Achievements"]}, -- Tracking Achievements
     {A, 1174, 20509}, -- Plunderkind
     {A, 1174, 20508}, -- Plunder Wonder
     {A, 1174, 2116}, -- Tabard of the Argent Dawn
@@ -2072,6 +2001,12 @@ tasks = {
     {A, 1174, 1636}, -- Competitor's Tabard
     {C, 884, 1174},
     {N, 1174, a.L["Miscellaneous"]}, -- Miscellaneous
+    {A, 1673, 40313}, -- Igniting the Keyflames
+    {A, 1673, 40312}, -- Starting the Flames
+    {A, 1673, 40311}, -- Sharing the Light
+    {A, 1673, 40308}, -- Beacon of Hope
+    {C, 1671, 1673},
+    {N, 1673, a.L["Spreading the Light"]}, -- Spreading the Light
     {A, 1674, 40662}, -- "It's Not Much, But It's Honest Work"
     {A, 1674, 40589}, -- Awakening The Machine: Wave 50
     {A, 1674, 40588}, -- Awakening The Machine: Wave 40
@@ -2080,12 +2015,10 @@ tasks = {
     {A, 1674, 40509}, -- Awakening The Machine: Wave 10
     {C, 1671, 1674},
     {N, 1674, a.L["Awakening the Machine"]}, -- Awakening the Machine
-    {A, 1673, 40313}, -- Igniting the Keyflames
-    {A, 1673, 40312}, -- Starting the Flames
-    {A, 1673, 40311}, -- Sharing the Light
-    {A, 1673, 40308}, -- Beacon of Hope
-    {C, 1671, 1673},
-    {N, 1673, a.L["Spreading the Light"]}, -- Spreading the Light
+    {A, 1676, 40860}, -- A Star of Dorn
+    {A, 1676, 40859}, -- We're Here All Night
+    {C, 1671, 1676},
+    {N, 1676, a.L["Theater Troupe"]}, -- Theater Troupe
     {A, 1672, 40314}, -- Fragments of Memories
     {A, 1672, 40252}, -- A Series of Echoes
     {A, 1672, 40251}, -- Many Echoes
@@ -2946,37 +2879,12 @@ tasks = {
     {A, 918, 2144}, -- "What a Long, Strange Trip It's Been"
     {C, 884, 918},
     {N, 918, a.L["Holidays"]}, -- Holidays
-    {F, 1398, "SearchResultsCategories"},
-    {C, 884, 1398},
-    {N, 1398, a.L["Search Results"]}, -- Search Results
-    function() categories[1221].IsSelectedZone = true; end,
-    {F, 1221, "SelectedZoneCategories"},
-    {C, 884, 1221},
-    {N, 1221, a.L["Selected Zone"]}, -- Selected Zone
-    function() categories[1214].IsCurrentZone = true; end,
-    {F, 1214, "CurrentZoneCategories"},
-    {C, 884, 1214},
-    {N, 1214, a.L["Current Zone"]}, -- Current Zone
-    function() categories[1218].IsWatchList = true; end,
-    {F, 1218, "WatchListCategories"},
-    {C, 884, 1218},
-    {N, 1218, a.L["Watch List"]}, -- Watch List
     {S, 1206},
     {V, 1206},
     {C, 884, 1206},
     {N, 1206, a.L["Summary"]}, -- Summary
     {T, 884, "Events"},
     {N, 884, a.L["Events"]}, -- TAB - Events
-    {F, 1554, "UncategorizedCategories"},
-    {C, 883, 1554},
-    {N, 1554, a.L["Uncategorized"]}, -- Uncategorized
-    {F, 1225, "ExcludedCategories"},
-    {C, 883, 1225},
-    {N, 1225, a.L["Excluded"]}, -- Excluded
-    function() categories[1370].IsTracking = true; end,
-    {F, 1370, "TrackingAchievementsCategories"},
-    {C, 883, 1370},
-    {N, 1370, a.L["Tracking Achievements"]}, -- Tracking Achievements
     {A, 1657, 40351}, -- Azj-Kahet Reverse: Gold
     {A, 1657, 40350}, -- Azj-Kahet Reverse: Silver
     {A, 1657, 40349}, -- Azj-Kahet Reverse: Bronze
@@ -3222,10 +3130,11 @@ tasks = {
     {A, 1658, 40525}, -- Fungal Folly Stories
     {C, 1600, 1658},
     {N, 1658, a.GetLFGActivityFullName(1295)}, -- Fungal Folly
+    {A, 1600, 40523}, -- On Brand
     {A, 1600, 40820}, -- Raisin' Brann
     {A, 1600, 40538}, -- Brann Development
     {A, 1600, 40458}, -- Stranger Delves
-    {A, 1600, 40789}, -- I've Got More Flying Machine?!
+    {A, 1600, 40789}, -- Flying in Style
     {A, 1600, 40763}, -- "I'm not a Thief, I'm a Treasure Hunter"
     {A, 1600, 40732}, -- Heavy-Handed
     {A, 1600, 40524}, -- Good Deed Delver
@@ -10848,52 +10757,12 @@ tasks = {
     {N, 1160, a.L["Zones"]}, -- Zones
     {C, 883, 1431},
     {N, 1431, a.L["Cross-Expansion"]}, -- Cross-Expansion
-    {F, 1399, "SearchResultsCategories"},
-    {C, 883, 1399},
-    {N, 1399, a.L["Search Results"]}, -- Search Results
-    function() categories[1223].IsSelectedZone = true; end,
-    {F, 1223, "SelectedZoneCategories"},
-    {C, 883, 1223},
-    {N, 1223, a.L["Selected Zone"]}, -- Selected Zone
-    function() categories[1213].IsCurrentZone = true; end,
-    {F, 1213, "CurrentZoneCategories"},
-    {C, 883, 1213},
-    {N, 1213, a.L["Current Zone"]}, -- Current Zone
-    function() categories[1217].IsWatchList = true; end,
-    {F, 1217, "WatchListCategories"},
-    {C, 883, 1217},
-    {N, 1217, a.L["Watch List"]}, -- Watch List
     {S, 1203},
     {V, 1203},
     {C, 883, 1203},
     {N, 1203, a.L["Summary"]}, -- Summary
     {T, 883, "Expansions"},
     {N, 883, a.L["Expansions"]}, -- TAB - Expansions
-    {F, 1553, "UncategorizedCategories"},
-    {C, 1100, 1553},
-    {N, 1553, a.L["Uncategorized"]}, -- Uncategorized
-    {F, 1224, "ExcludedCategories"},
-    {C, 1100, 1224},
-    {N, 1224, a.L["Excluded"]}, -- Excluded
-    function() categories[1371].IsTracking = true; end,
-    {F, 1371, "TrackingAchievementsCategories"},
-    {C, 1100, 1371},
-    {N, 1371, a.L["Tracking Achievements"]}, -- Tracking Achievements
-    {F, 1395, "SearchResultsCategories"},
-    {C, 1100, 1395},
-    {N, 1395, a.L["Search Results"]}, -- Search Results
-    function() categories[1220].IsSelectedZone = true; end,
-    {F, 1220, "SelectedZoneCategories"},
-    {C, 1100, 1220},
-    {N, 1220, a.L["Selected Zone"]}, -- Selected Zone
-    function() categories[1212].IsCurrentZone = true; end,
-    {F, 1212, "CurrentZoneCategories"},
-    {C, 1100, 1212},
-    {N, 1212, a.L["Current Zone"]}, -- Current Zone
-    function() categories[1216].IsWatchList = true; end,
-    {F, 1216, "WatchListCategories"},
-    {C, 1100, 1216},
-    {N, 1216, a.L["Watch List"]}, -- Watch List
     {S, 1202},
     {V, 1202},
     {C, 1100, 1202},
@@ -10901,49 +10770,3 @@ tasks = {
     {T, 1100, "Achievements"},
     {N, 1100, a.L["Achievements"]}, -- TAB - Achievements
 };
-
-function exportedCategories.InjectDynamicOptions()
-    local o = a.Options.Layout.InjectDynamicAdjustableCategoryOptions;
-
-    o("WatchList", a.L["Watch List"], 1, "Achievements", a.L["Achievements"], false);
-    o("WatchList", a.L["Watch List"], 2, "Expansions", a.L["Expansions"], false);
-    o("WatchList", a.L["Watch List"], 3, "Events", a.L["Events"], false);
-    o("WatchList", a.L["Watch List"], 4, "PvP", a.GetCategoryInfoTitle(95), false);
-    o("WatchList", a.L["Watch List"], 5, "Specials", a.L["Specials"], true);
-
-    o("CurrentZone", a.L["Current Zone"], 1, "Achievements", a.L["Achievements"], false);
-    o("CurrentZone", a.L["Current Zone"], 2, "Expansions", a.L["Expansions"], false);
-    o("CurrentZone", a.L["Current Zone"], 3, "Events", a.L["Events"], false);
-    o("CurrentZone", a.L["Current Zone"], 4, "PvP", a.GetCategoryInfoTitle(95), false);
-    o("CurrentZone", a.L["Current Zone"], 5, "Specials", a.L["Specials"], true);
-
-    o("SelectedZone", a.L["Selected Zone"], 1, "Achievements", a.L["Achievements"], false);
-    o("SelectedZone", a.L["Selected Zone"], 2, "Expansions", a.L["Expansions"], false);
-    o("SelectedZone", a.L["Selected Zone"], 3, "Events", a.L["Events"], false);
-    o("SelectedZone", a.L["Selected Zone"], 4, "PvP", a.GetCategoryInfoTitle(95), false);
-    o("SelectedZone", a.L["Selected Zone"], 5, "Specials", a.L["Specials"], true);
-
-    o("SearchResults", a.L["Search Results"], 1, "Achievements", a.L["Achievements"], false);
-    o("SearchResults", a.L["Search Results"], 2, "Expansions", a.L["Expansions"], false);
-    o("SearchResults", a.L["Search Results"], 3, "Events", a.L["Events"], false);
-    o("SearchResults", a.L["Search Results"], 4, "PvP", a.GetCategoryInfoTitle(95), false);
-    o("SearchResults", a.L["Search Results"], 5, "Specials", a.L["Specials"], true);
-
-    o("TrackingAchievements", a.L["Tracking Achievements"], 1, "Achievements", a.L["Achievements"], false);
-    o("TrackingAchievements", a.L["Tracking Achievements"], 2, "Expansions", a.L["Expansions"], false);
-    o("TrackingAchievements", a.L["Tracking Achievements"], 3, "Events", a.L["Events"], false);
-    o("TrackingAchievements", a.L["Tracking Achievements"], 4, "PvP", a.GetCategoryInfoTitle(95), false);
-    o("TrackingAchievements", a.L["Tracking Achievements"], 5, "Specials", a.L["Specials"], true);
-
-    o("Excluded", a.L["Excluded"], 1, "Achievements", a.L["Achievements"], false);
-    o("Excluded", a.L["Excluded"], 2, "Expansions", a.L["Expansions"], false);
-    o("Excluded", a.L["Excluded"], 3, "Events", a.L["Events"], false);
-    o("Excluded", a.L["Excluded"], 4, "PvP", a.GetCategoryInfoTitle(95), false);
-    o("Excluded", a.L["Excluded"], 5, "Specials", a.L["Specials"], true);
-
-    o("Uncategorized", a.L["Uncategorized"], 1, "Achievements", a.L["Achievements"], false);
-    o("Uncategorized", a.L["Uncategorized"], 2, "Expansions", a.L["Expansions"], false);
-    o("Uncategorized", a.L["Uncategorized"], 3, "Events", a.L["Events"], false);
-    o("Uncategorized", a.L["Uncategorized"], 4, "PvP", a.GetCategoryInfoTitle(95), false);
-    o("Uncategorized", a.L["Uncategorized"], 5, "Specials", a.L["Specials"], true);
-end

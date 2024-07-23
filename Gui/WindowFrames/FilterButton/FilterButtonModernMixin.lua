@@ -6,6 +6,12 @@ do -- Mixin
     function KrowiAF_AchievementFrameFilterButtonModernMixin:OnLoad()
         WowStyle1FilterDropdownMixin.OnLoad(self);
         KrowiAF_AchievementFrameFilterButtonMixin.OnLoad(self);
+
+        self:SetupMenu(function(owner, menu)
+            menu:SetTag("MENU_ACHIEVEMENT_FILTER");
+
+            owner:CreateMenu(menu);
+        end);
     end
 
     function KrowiAF_AchievementFrameFilterButtonModernMixin:OnShow()
@@ -118,12 +124,4 @@ end
 
 function KrowiAF_AchievementFrameFilterButtonModernMixin:HelpShowTutorial(index)
     addon.Tutorials.FeaturesTutorial:ShowTutorial(index);
-end
-
-function addon.LoadNew()
-    KrowiAF_AchievementFrameFilterButton:SetupMenu(function(self, rootMenu)
-		rootMenu:SetTag("MENU_ACHIEVEMENT_FILTER");
-        
-        self:CreateMenu(rootMenu);
-    end);
 end

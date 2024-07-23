@@ -48,4 +48,5 @@ Data\Retail\Files.xml
 
 Filters.lua
 SearchOptions.lua
-Gui\FilesModern.xml
+# Gui\FilesModern.xml
+Gui\FilesClassic.xml

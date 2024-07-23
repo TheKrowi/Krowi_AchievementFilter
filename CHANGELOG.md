@@ -21,6 +21,7 @@ All notable changes to this project will be documented in this file.
 - Updated the Filter in the Achievement Window to use the new DropDown system (dev note: will most likly cause errors with ElvUI and GW2_UI the first few days)
 - Data clean up after the migration to the new data structure last year (dev note: a new expansion is the best moment to do this especially with all the changes Blizzard made to achievements) (dev note 2: should result in 50-63% less duplicate data and potentially memory usage)
 - Cleaned up Event Reminders naming and should now be more consistent
+- Adjustable Categories rework for better maintainability
 
 ### Wrath Classic
 - No longer supported

@@ -14,19 +14,10 @@ data.BuildVersionsGrouped = {};
 data.Achievements = {};
 data.AchievementIds = {};
 
-data.Categories = {};
+data.Categories, data.SummaryCategories = {};
 data.WatchListCategories, data.CurrentZoneCategories, data.SelectedZoneCategories = {}, {}, {};
 data.SearchResultsCategories, data.TrackingAchievementsCategories, data.ExcludedCategories = {}, {}, {};
 data.UncategorizedCategories = {};
-local adjustableCategories = {
-    WatchListCategories = data.WatchListCategories,
-    CurrentZoneCategories = data.CurrentZoneCategories,
-    SelectedZoneCategories = data.SelectedZoneCategories,
-    SearchResultsCategories = data.SearchResultsCategories,
-    TrackingAchievementsCategories = data.TrackingAchievementsCategories,
-    ExcludedCategories = data.ExcludedCategories,
-    UncategorizedCategories = data.UncategorizedCategories
-};
 
 data.RightClickMenuExtras = {};
 
@@ -49,6 +40,8 @@ local function PostLoadOnPlayerLogin(self, start)
     custom.max = #self.AchievementIds;
 
     local function PostBuildCache()
+        data.SpecialCategories:Load();
+
         if addon.Tabs["Achievements"] then
             addon.Tabs["Achievements"].Categories = data.LoadBlizzardTabAchievements(addon.Tabs["Achievements"].Categories);
         end
@@ -80,7 +73,7 @@ function data:LoadOnPlayerLogin()
     end
     self.ExportedBuildVersions.RegisterTasks(self.BuildVersions);
     self.ExportedAchievements.RegisterTasks(self.Achievements, self.BuildVersions, self.TransmogSets);
-    self.ExportedCategories.RegisterTasks(self.Categories, adjustableCategories, self.Achievements, addon.Tabs);
+    self.ExportedCategories.RegisterTasks(self.Categories, self.Achievements, addon.Tabs);
     self.ExportedCalendarEvents.RegisterTasks(self.CalendarEvents, self.Categories);
     if self.ExportedWidgetEvents then
         self.ExportedWidgetEvents.RegisterTasks(self.WidgetEvents, self.Categories);
@@ -172,7 +165,7 @@ local function LoadAllCategories(tab, cats)
         tmpC[id] = addon.Objects.Category:New(id, name);
 		if parentID == -1 then
 			-- categories:AddCategory(tmpC[id]);
-			tab:InsertCategory(tmpC[id], #tab.Children - 2);
+			tab:InsertCategory(tmpC[id], #tab.Children - 2); -- should this be -3?
 		end
 	end
 end

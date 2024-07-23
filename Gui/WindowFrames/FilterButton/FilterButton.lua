@@ -5,7 +5,6 @@ local filterButton = addon.Gui.FilterButton;
 local function CreateModern()
     local button = CreateFrame("DropdownButton", "KrowiAF_AchievementFrameFilterButton", AchievementFrame, "KrowiAF_AchievementFrameFilterButton_Modern_Template");
     button:SetPoint("BOTTOMLEFT", AchievementFrame.Header, "BOTTOMLEFT", 118, 28);
-    addon.LoadNew();
     return button;
 end
 
