@@ -19,7 +19,11 @@ function KrowiAF_AchievementFrameTabMixin:ShowSubFrames()
 		KrowiAF_AchievementsFrame:Show();
         KrowiAF_AchievementsFrame:Update();
         if self.SelectedAchievement then
-	        KrowiAF_AchievementsFrame.ScrollBox:ScrollToElementData(self.SelectedAchievement, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
+            if addon.Util.IsTheWarWithin then
+                KrowiAF_AchievementsFrame.ScrollBox:ScrollToElementData(self.SelectedAchievement, ScrollBoxConstants.AlignCenter, nil, ScrollBoxConstants.NoScrollInterpolation);
+            else
+	            KrowiAF_AchievementsFrame.ScrollBox:ScrollToElementData(self.SelectedAchievement, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
+            end
             -- print("tab select", self.SelectedAchievement and self.SelectedAchievement.Id)
             KrowiAF_AchievementsFrame.SelectionBehavior:SelectElementData(self.SelectedAchievement);
             KrowiAF_AchievementsFrame:ScrollToNearest(self.SelectedAchievement);

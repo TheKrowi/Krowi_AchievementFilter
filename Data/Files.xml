@@ -8,4 +8,5 @@
     <Script file="TooltipData.lua" />
     <Script file="DataIntegrityManager.lua" />
     <Include file="SavedData\Files.xml"/>
+    <Script file="SpecialCategories.lua" />
 </Ui>

@@ -2,9 +2,9 @@
 ## Title: Krowi's |cFF1D92C2Achievement Filter|r
 ## X-Prefix: KrowiAF
 ## X-Acronym: KAF
-## Version: 73.6
+## Version: 74.0
 ## Author: Krowi-Frostmane EU
-## SavedVariables: Options, SavedData, Filters, DebugTable, KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters, KrowiAF_SearchOptions, KrowiAF_Achievements
+## SavedVariables: KrowiAF_DebugTable, KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters, KrowiAF_SearchOptions, KrowiAF_Achievements
 ## Notes: Filters your achievements.
 ## IconTexture: interface/icons/achievement_dungeon_heroic_gloryoftheraider
 ## X-Discord-Invite-Link: https://discord.gg/mdBFQJYeQZ
@@ -45,4 +45,4 @@ Data\CataClassic\Files.xml
 
 Filters.lua
 SearchOptions.lua
-Gui\Files.xml
+Gui\FilesClassic.xml

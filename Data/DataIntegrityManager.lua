@@ -5,35 +5,11 @@ local data = addon.Data;
 data.DataIntegrityManager = {};
 local dataIntegrityManager = data.DataIntegrityManager;
 
-function dataIntegrityManager.FixSavedVariables()
-    -- Special function that needs to be called before loading anything !!!
-    -- In version 53.0 Options, SavedData, Filters are replaced by KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters
-    -- Here we try to copy the data from the old to new location for users pre 53.0
-
-    if KrowiAF_Options and KrowiAF_SavedData and KrowiAF_Filters then
-        -- print("Options, SavedData, Filters already moved to new location");
-        return;
-    end
-
-    if not KrowiAF_Options and Options then
-        KrowiAF_Options = Options;
-    end
-
-    if not KrowiAF_SavedData and SavedData then
-        KrowiAF_SavedData = SavedData;
-    end
-
-    if not KrowiAF_Filters and Filters then
-        KrowiAF_Filters = Filters;
-    end
-
-    -- print("Moved Options, SavedData, Filters to new locations");
-end
-
 local LoadVerifications, Verify, LoadSolutions, Resolve;
 function dataIntegrityManager.Load()
     KrowiAF_SavedData = KrowiAF_SavedData or {}; -- Does not exist yet for new users
     KrowiAF_SavedData.Fixes = KrowiAF_SavedData.Fixes or {}; -- Does not exist yet for new users
+    KrowiAF_SavedData.Verifications = KrowiAF_SavedData.Verifications or {}; -- Does not exist yet for new users
 
     local prevBuild = KrowiAF_SavedData["Build"];
     diagnostics.Debug("Previous Build: " .. tostring(prevBuild)); -- Can be nil
@@ -59,10 +35,11 @@ function dataIntegrityManager.Load()
     diagnostics.Debug("SavedData loaded");
 end
 
-local VerifySavedCharacterData;
+local VerifySavedCharacterData, VerifyTheWarWithinAchievementsData;
 function LoadVerifications()
     local verifications = {
         VerifySavedCharacterData, -- 1
+        VerifyTheWarWithinAchievementsData, -- 2
     };
 
     return verifications;
@@ -78,7 +55,7 @@ end
 local FixFeaturesTutorialProgress, FixElvUISkin, FixFilters, FixEventDetails, FixShowExcludedCategory, FixEventDetails2, FixCharacters, FixEventAlert;
 local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters, FixNewEarnedByFilter, FixTabs2, FixNewEarnedByFilter2;
 local FixEventDetails3, FixTooltipCriteria, FixFocusedAchievements, FixFocusedOptions, FixEventRemindersTimeDisplay, FixEventRemindersOptions, FixEventRemindersOptions2;
-local FixActiveEvents, MigrateCharactersAndAchievements, FixFirstTimeSetUpSwitchAchievementTabs, FixNewObtainabilityFilter;
+local FixActiveEvents, MigrateCharactersAndAchievements, FixFirstTimeSetUpSwitchAchievementTabs, FixNewObtainabilityFilter, CleanUpCharactersAndAchievements;
 function LoadSolutions()
     local solutions = {
         FixFeaturesTutorialProgress, -- 1
@@ -107,6 +84,7 @@ function LoadSolutions()
         MigrateCharactersAndAchievements, -- 25
         FixFirstTimeSetUpSwitchAchievementTabs, --26
         FixNewObtainabilityFilter, -- 27
+        CleanUpCharactersAndAchievements, -- 28
     };
 
     return solutions;
@@ -126,8 +104,10 @@ end
 
 function VerifySavedCharacterData()
     if not KrowiAF_SavedData.CharacterList then
+        diagnostics.Debug("Nothing to varify for Saved Character Data");
         return;
     end
+
     for guid, character in next, KrowiAF_SavedData.CharacterList do
         local _, realm, name = strsplit("-", guid);
         if character.Name == nil then
@@ -137,6 +117,37 @@ function VerifySavedCharacterData()
             KrowiAF_SavedData.CharacterList[guid].Realm = realm;
         end
     end
+
+    diagnostics.Debug("Verified Saved Character Data");
+end
+
+function VerifyTheWarWithinAchievementsData()
+    if not addon.Util.IsTheWarWithin or not KrowiAF_Achievements then
+        diagnostics.Debug("Nothing to varify for The War Within's Achievements Data");
+        return;
+    end
+    if KrowiAF_SavedData.Verifications.TheWarWithinAchievementsData then
+        diagnostics.Debug("Already verified The War Within's Achievements Data");
+        return;
+    end
+
+    for achievementId, _ in next, KrowiAF_Achievements.Completed do
+        local achievementInfo = addon.GetAchievementInfoTable(achievementId);
+        if achievementInfo.Flags.IsAccountWide then
+            KrowiAF_Achievements.Completed[achievementId].EarnedBy = nil;
+        end
+    end
+
+    for achievementId, _ in next, KrowiAF_Achievements.NotCompleted do
+        local achievementInfo = addon.GetAchievementInfoTable(achievementId);
+        if achievementInfo.Flags.IsAccountWide then
+            KrowiAF_Achievements.NotCompleted[achievementId] = nil;
+        end
+    end
+
+    KrowiAF_SavedData.Verifications.TheWarWithinAchievementsData = true;
+
+    diagnostics.Debug("Verified The War Within's Achievements Data");
 end
 
 function FixFeaturesTutorialProgress(prevBuild, currBuild, prevVersion, currVersion, firstTime)
@@ -893,4 +904,23 @@ function FixNewObtainabilityFilter(prevBuild, currBuild, prevVersion, currVersio
     KrowiAF_SavedData.Fixes.FixNewObtainabilityFilter = true;
 
     diagnostics.Debug("Transfered new obtainability filter from previous version");
+end
+
+function CleanUpCharactersAndAchievements(prevBuild, currBuild, prevVersion, currVersion, firstTime)
+    -- In version 74.0 we clean up the data that is still present from the migration in 62.0
+
+    if firstTime and currVersion > "74.0" then
+        diagnostics.Debug("Clean up data OK");
+        return;
+    end
+    if KrowiAF_SavedData.Characters == nil then
+        diagnostics.Debug("Data already cleaned up");
+        return;
+    end
+
+    KrowiAF_SavedData.Characters = nil;
+end
+
+function CleanUpKrowiAF_AchievementsWithTheWarWithin(prevBuild, currBuild, prevVersion, currVersion, firstTime)
+    -- In version 74.0
 end

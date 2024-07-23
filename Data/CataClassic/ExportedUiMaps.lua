@@ -40,7 +40,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-05-18 15-13-21 ]] --
+-- [[ Exported at 2024-07-14 13-13-55 ]] --
 tasks = {
     {C, 2104, 123}, -- Wintergrasp (Wrath Classic)
     {C, 2070, 18}, -- Tirisfal Glades
@@ -450,7 +450,7 @@ tasks = {
     {C, 209, 207}, -- Deepholm - Twilight Depths - Floor 2
     {C, 208, 207}, -- Deepholm - Twilight Depths - Floor 1
     {A, 207, {4875, 4868, 4881, 4871, 5445, 5446, 5449, 5450, 5447, 4864, 4883, 46}}, -- Deepholm
-    {A, 206, {5208, 5209, 5210, 5211, 5213, 5214, 5215, 5216, 5226, 5227, 5229, 5228, 5219, 5220, 5221, 5222, 5230, 5231, 5552, 5223}}, -- Twin Peaks
+    {A, 206, {5208, 5209, 5210, 5211, 5213, 5214, 5215, 5216, 5226, 5227, 5229, 5228, 5219, 5220, 5221, 5222, 5230, 5231, 5552, 5223, 5259}}, -- Twin Peaks
     {C, 205, 201}, -- Vashj'ir - Shimmering Expanse
     {C, 204, 201}, -- Vashj'ir - Abyssal Depths
     {C, 203, 201}, -- Vashj'ir
@@ -623,7 +623,7 @@ tasks = {
     {C, 59, 57}, -- Fel Rock
     {C, 58, 57}, -- Shadowthread Cave
     {A, 57, {1206, 43, 842, 948, 46}}, -- Teldrassil
-    {A, 56, {1206, 1676, 1677, 42, 1681, 1682, 841, 948, 2556, 46}}, -- Wetlands
+    {A, 56, {1206, 1676, 1677, 42, 1681, 1682, 4898, 841, 948, 2556, 46}}, -- Wetlands
     {C, 55, 52}, -- Westfall - The Deadmines
     {C, 54, 52}, -- Westfall - Jangolode Mine
     {C, 53, 52}, -- Westfall - Gold Coast Quarry
@@ -632,7 +632,7 @@ tasks = {
     {A, 50, {1206, 1676, 1677, 42, 4906, 940, 941, 781, 948, 762, 2556, 4827, 46}}, -- Northern Stranglethorn
     {A, 49, {1206, 1676, 1677, 42, 1681, 1682, 4902, 780, 948, 2556, 46}}, -- Redridge Mountains
     {A, 48, {1206, 1676, 1677, 42, 1681, 1682, 4899, 779, 948, 4827, 46}}, -- Loch Modan
-    {A, 47, {1206, 1676, 1677, 42, 1681, 1682, 778, 948, 2556, 46}}, -- Duskwood
+    {A, 47, {1206, 1676, 1677, 42, 1681, 1682, 4907, 778, 948, 2556, 46}}, -- Duskwood
     {C, 46, 42}, -- Deadwind Pass - Karazhan Catacombs
     {C, 45, 42}, -- Deadwind Pass - The Master's Cellar - Lower Cellar
     {C, 44, 42}, -- Deadwind Pass - The Master's Cellar - The Master's Cellar
@@ -653,7 +653,7 @@ tasks = {
     {C, 28, 27}, -- Dun Morogh - Coldridge Pass
     {A, 27, {42, 4786, 627, 948, 46}}, -- Dun Morogh
     {A, 26, {1206, 1676, 1677, 42, 1681, 1682, 4897, 773, 762, 2556, 46}}, -- The Hinterlands
-    {A, 25, {1206, 42, 4895, 772, 762, 2336, 2556, 4827, 46}}, -- Hillsbrad Foothills
+    {A, 25, {1206, 42, 5364, 5365, 4895, 772, 762, 2336, 2556, 4827, 46}}, -- Hillsbrad Foothills
     {A, 23, {1676, 1677, 42, 1681, 1682, 4892, 5442, 771, 946, 945, 2556, 46}}, -- Eastern Plaguelands
     {A, 22, {1206, 1676, 1677, 42, 1681, 1682, 4893, 770, 948, 762, 2556, 46}}, -- Western Plaguelands
     {A, 21, {42, 4894, 769, 762, 2556, 4827, 46}}, -- Silverpine Forest

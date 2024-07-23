@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-06-15 17-29-56 ]] --
+-- [[ Exported at 2024-07-23 17-22-33 ]] --
 tasks = {
     {N, 19440, 204, f.Horde}, -- Defense Protocol Gamma: Terminated
     {N, 19439, 204, f.Alliance}, -- Defense Protocol Gamma: Terminated
@@ -554,27 +554,27 @@ tasks = {
     {N, 5061, 110}, -- Heroic: Throne of the Tides
     {N, 5060, 110}, -- Heroic: Blackrock Caverns
     {O, 5008, "Once" },
-    {N, 5008, 110, nil, nil, nil, true}, -- Realm First! Level 85 Rogue
+    {N, 5008, 110, nil, nil, nil, true}, -- Realm First! Level 85 Rogue (Legacy)
     {O, 5007, "Once" },
-    {N, 5007, 110, nil, nil, nil, true}, -- Realm First! Level 85 Warrior
+    {N, 5007, 110, nil, nil, nil, true}, -- Realm First! Level 85 Warrior (Legacy)
     {O, 5006, "Once" },
-    {N, 5006, 110, nil, nil, nil, true}, -- Realm First! Level 85 Mage
+    {N, 5006, 110, nil, nil, nil, true}, -- Realm First! Level 85 Mage (Legacy)
     {O, 5005, "Once" },
-    {N, 5005, 110, nil, nil, nil, true}, -- Realm First! Level 85 Death Knight
+    {N, 5005, 110, nil, nil, nil, true}, -- Realm First! Level 85 Death Knight (Legacy)
     {O, 5004, "Once" },
-    {N, 5004, 110, nil, nil, nil, true}, -- Realm First! Level 85 Hunter
+    {N, 5004, 110, nil, nil, nil, true}, -- Realm First! Level 85 Hunter (Legacy)
     {O, 5003, "Once" },
-    {N, 5003, 110, nil, nil, nil, true}, -- Realm First! Level 85 Warlock
+    {N, 5003, 110, nil, nil, nil, true}, -- Realm First! Level 85 Warlock (Legacy)
     {O, 5002, "Once" },
-    {N, 5002, 110, nil, nil, nil, true}, -- Realm First! Level 85 Priest
+    {N, 5002, 110, nil, nil, nil, true}, -- Realm First! Level 85 Priest (Legacy)
     {O, 5001, "Once" },
-    {N, 5001, 110, nil, nil, nil, true}, -- Realm First! Level 85 Paladin
+    {N, 5001, 110, nil, nil, nil, true}, -- Realm First! Level 85 Paladin (Legacy)
     {O, 5000, "Once" },
-    {N, 5000, 110, nil, nil, nil, true}, -- Realm First! Level 85 Druid
+    {N, 5000, 110, nil, nil, nil, true}, -- Realm First! Level 85 Druid (Legacy)
     {O, 4999, "Once" },
-    {N, 4999, 110, nil, nil, nil, true}, -- Realm First! Level 85
+    {N, 4999, 110, nil, nil, nil, true}, -- Realm First! Level 85 (Legacy)
     {O, 4998, "Once" },
-    {N, 4998, 110, nil, nil, nil, true}, -- Realm First! Level 85 Shaman
+    {N, 4998, 110, nil, nil, nil, true}, -- Realm First! Level 85 Shaman (Legacy)
     {N, 4996, 110}, -- Explore Southern Barrens
     {N, 4995, 110}, -- Explore the Cape of Stranglethorn
     {N, 4983, 110, f.Horde}, -- Loremaster of Cataclysm
@@ -1624,25 +1624,25 @@ tasks = {
     {O, 1414, "Once" },
     {N, 1414, 86, nil, nil, nil, true}, -- Realm First! Grand Master Blacksmith
     {O, 1413, "Once" },
-    {N, 1413, 86, nil, nil, nil, true}, -- Realm First! Level 80 Forsaken
+    {N, 1413, 86, nil, nil, nil, true}, -- Realm First! Level 80 Forsaken (Legacy)
     {O, 1412, "Once" },
-    {N, 1412, 86, nil, nil, nil, true}, -- Realm First! Level 80 Troll
+    {N, 1412, 86, nil, nil, nil, true}, -- Realm First! Level 80 Troll (Legacy)
     {O, 1411, "Once" },
-    {N, 1411, 86, nil, nil, nil, true}, -- Realm First! Level 80 Tauren
+    {N, 1411, 86, nil, nil, nil, true}, -- Realm First! Level 80 Tauren (Legacy)
     {O, 1410, "Once" },
-    {N, 1410, 86, nil, nil, nil, true}, -- Realm First! Level 80 Orc
+    {N, 1410, 86, nil, nil, nil, true}, -- Realm First! Level 80 Orc (Legacy)
     {O, 1409, "Once" },
-    {N, 1409, 86, nil, nil, nil, true}, -- Realm First! Level 80 Night Elf
+    {N, 1409, 86, nil, nil, nil, true}, -- Realm First! Level 80 Night Elf (Legacy)
     {O, 1408, "Once" },
-    {N, 1408, 86, nil, nil, nil, true}, -- Realm First! Level 80 Human
+    {N, 1408, 86, nil, nil, nil, true}, -- Realm First! Level 80 Human (Legacy)
     {O, 1407, "Once" },
-    {N, 1407, 86, nil, nil, nil, true}, -- Realm First! Level 80 Dwarf
+    {N, 1407, 86, nil, nil, nil, true}, -- Realm First! Level 80 Dwarf (Legacy)
     {O, 1406, "Once" },
-    {N, 1406, 86, nil, nil, nil, true}, -- Realm First! Level 80 Draenei
+    {N, 1406, 86, nil, nil, nil, true}, -- Realm First! Level 80 Draenei (Legacy)
     {O, 1405, "Once" },
-    {N, 1405, 86, nil, nil, nil, true}, -- Realm First! Level 80 Blood Elf
+    {N, 1405, 86, nil, nil, nil, true}, -- Realm First! Level 80 Blood Elf (Legacy)
     {O, 1404, "Once" },
-    {N, 1404, 86, nil, nil, nil, true}, -- Realm First! Level 80 Gnome
+    {N, 1404, 86, nil, nil, nil, true}, -- Realm First! Level 80 Gnome (Legacy)
     {O, 1402, "Once" },
     {N, 1402, 86, nil, nil, nil, true}, -- Realm First! Conqueror of Naxxramas
     {O, 1400, "Once" },
@@ -2220,27 +2220,27 @@ tasks = {
     {O, 468, "From", "Version", "010400", "Before", "Version", "020001"},
     {N, 468, 86, f.Horde, 470, true}, -- Grunt
     {O, 467, "Once" },
-    {N, 467, 86, nil, nil, nil, true}, -- Realm First! Level 80 Shaman
+    {N, 467, 86, nil, nil, nil, true}, -- Realm First! Level 80 Shaman (Legacy)
     {O, 466, "Once" },
-    {N, 466, 86, nil, nil, nil, true}, -- Realm First! Level 80 Druid
+    {N, 466, 86, nil, nil, nil, true}, -- Realm First! Level 80 Druid (Legacy)
     {O, 465, "Once" },
-    {N, 465, 86, nil, nil, nil, true}, -- Realm First! Level 80 Paladin
+    {N, 465, 86, nil, nil, nil, true}, -- Realm First! Level 80 Paladin (Legacy)
     {O, 464, "Once" },
-    {N, 464, 86, nil, nil, nil, true}, -- Realm First! Level 80 Priest
+    {N, 464, 86, nil, nil, nil, true}, -- Realm First! Level 80 Priest (Legacy)
     {O, 463, "Once" },
-    {N, 463, 86, nil, nil, nil, true}, -- Realm First! Level 80 Warlock
+    {N, 463, 86, nil, nil, nil, true}, -- Realm First! Level 80 Warlock (Legacy)
     {O, 462, "Once" },
-    {N, 462, 86, nil, nil, nil, true}, -- Realm First! Level 80 Hunter
+    {N, 462, 86, nil, nil, nil, true}, -- Realm First! Level 80 Hunter (Legacy)
     {O, 461, "Once" },
-    {N, 461, 86, nil, nil, nil, true}, -- Realm First! Level 80 Death Knight
+    {N, 461, 86, nil, nil, nil, true}, -- Realm First! Level 80 Death Knight (Legacy)
     {O, 460, "Once" },
-    {N, 460, 86, nil, nil, nil, true}, -- Realm First! Level 80 Mage
+    {N, 460, 86, nil, nil, nil, true}, -- Realm First! Level 80 Mage (Legacy)
     {O, 459, "Once" },
-    {N, 459, 86, nil, nil, nil, true}, -- Realm First! Level 80 Warrior
+    {N, 459, 86, nil, nil, nil, true}, -- Realm First! Level 80 Warrior (Legacy)
     {O, 458, "Once" },
-    {N, 458, 86, nil, nil, nil, true}, -- Realm First! Level 80 Rogue
+    {N, 458, 86, nil, nil, nil, true}, -- Realm First! Level 80 Rogue (Legacy)
     {O, 457, "Once" },
-    {N, 457, 86, nil, nil, nil, true}, -- Realm First! Level 80
+    {N, 457, 86, nil, nil, nil, true}, -- Realm First! Level 80 (Legacy)
     {O, 456, "Once" },
     {N, 456, 86, nil, nil, nil, true}, -- Realm First! Obsidian Slayer
     {O, 454, "From", "Version", "010400", "Before", "Version", "020001"},

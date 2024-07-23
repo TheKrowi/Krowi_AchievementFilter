@@ -1,9 +1,3 @@
-<!--
-    Exported at 2023-01-03 20-18-25
-    This code is automatically generated as an export from
-    an SQLite database and is not meant for manual edit.
--->
-
 <Bindings>
     <Binding name="KrowiAF_OPEN_TAB_Achievements" category="BINDING_HEADER_KrowiAF">
         KrowiAF_ToggleAchievementFrame("Krowi_AchievementFilter", "Achievements");
@@ -30,4 +24,3 @@
         KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton:Click();
     </Binding>
 </Bindings>
-

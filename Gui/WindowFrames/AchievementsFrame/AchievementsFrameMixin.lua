@@ -269,7 +269,11 @@ function KrowiAF_AchievementsFrameMixin:ForceUpdate()
 	self:Update();
 
 	if selectedTab.SelectedAchievement then
-		self.ScrollBox:ScrollToElementData(selectedTab.SelectedAchievement, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
+		if addon.Util.IsTheWarWithin then
+			self.ScrollBox:ScrollToElementData(selectedTab.SelectedAchievement, ScrollBoxConstants.AlignCenter, nil, ScrollBoxConstants.NoScrollInterpolation);
+		else
+			self.ScrollBox:ScrollToElementData(selectedTab.SelectedAchievement, ScrollBoxConstants.AlignCenter, ScrollBoxConstants.NoScrollInterpolation);
+		end
 		-- print("forceupdate select")
 		self.SelectionBehavior:SelectElementData(selectedTab.SelectedAchievement);
 		self:ScrollToNearest(selectedTab.SelectedAchievement);

@@ -1,4 +1,4 @@
--- [[ Exported at 2023-01-03 20-18-25 ]] --
+-- [[ Exported at 2024-07-23 17-59-07 ]] --
 -- [[ This code is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. ]] --
 
@@ -32,4 +32,3 @@ function tabs.InjectDynamicOptions()
 
     tabs.InjectDynamicOptions = nil;
 end
-
