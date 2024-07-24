@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 74.1 - 2024-07-24
+### Fixed
+- All data should once again load properly
+
+### Cata Classic
+- Achievements tab should once again know which achievements to show
+
 ## 74.0 - 2024-07-24
 ### Added
 - The War Within category and subcategories in the Expansions tab with all the new achievements (371)

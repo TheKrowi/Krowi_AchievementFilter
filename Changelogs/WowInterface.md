@@ -30,3 +30,13 @@
 [LIST]
 [*]No longer supported
 [/LIST]
+
+[B]Fixed (74.1)[/B]
+[LIST]
+[*]All data should once again load properly
+[/LIST]
+
+[B]Cata Classic (74.1)[/B]
+[LIST]
+[*]Achievements tab should once again know which achievements to show
+[/LIST]

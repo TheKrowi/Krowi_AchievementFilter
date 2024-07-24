@@ -28,6 +28,7 @@ end
 local function T(cId, tabName)
     categories[cId]:SetTabName(tabName);
     tabs[tabName].Categories = categories[cId].Children;
+    tabs[tabName].Category = categories[cId];
 end
 
 -- Saves some characters and file size as we use this a lot in the tasks

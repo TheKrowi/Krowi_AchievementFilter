@@ -22,3 +22,9 @@
 
 ### Wrath Classic
 - No longer supported
+
+### Fixed (74.1)
+- All data should once again load properly
+
+### Cata Classic (74.1)
+- Achievements tab should once again know which achievements to show

@@ -33,6 +33,7 @@ function data:RegisterTooltipDataTasks()
     end
 end
 
+local LoadBlizzardTabAchievements;
 local function PostLoadOnPlayerLogin(self, start)
     self.ExportedAchievements.Load(self.AchievementIds);
 
@@ -40,9 +41,7 @@ local function PostLoadOnPlayerLogin(self, start)
     custom.max = #self.AchievementIds;
 
     local function PostBuildCache()
-        if addon.Tabs["Achievements"] then
-            data.LoadBlizzardTabAchievements(addon.Tabs["Achievements"]);
-        end
+        LoadBlizzardTabAchievements();
 
         data.SpecialCategories:Load();
 
@@ -216,8 +215,11 @@ local function AddAchievementsToCategory()
     end
 end
 
-function data.LoadBlizzardTabAchievements(tab)
-    local tabCat = tab.Category;
+function LoadBlizzardTabAchievements()
+    if not addon.Tabs["Achievements"] then
+        return;
+    end
+    local tabCat = addon.Tabs["Achievements"].Category;
     local cats = GetCategoryList();
 
     LoadAllCategories(tabCat, cats); -- Load all categories, this is done in a random order and is possible for a child to load before a parent

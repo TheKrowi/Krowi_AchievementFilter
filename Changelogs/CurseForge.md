@@ -27,3 +27,11 @@
 <ul>
 <li>No longer supported</li>
 </ul>
+<p><h3>Fixed (74.1)</h3></p>
+<ul>
+<li>All data should once again load properly</li>
+</ul>
+<p><h3>Cata Classic (74.1)</h3></p>
+<ul>
+<li>Achievements tab should once again know which achievements to show</li>
+</ul>
