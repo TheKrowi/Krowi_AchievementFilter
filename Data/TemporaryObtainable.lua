@@ -287,9 +287,8 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
 
         if achievement.TemporaryObtainable.End.Function == "Event" then
             local eventId = achievement.TemporaryObtainable.End.Value;
-            local event, calendarEvent = FindCachedCalendarEvent(eventId);
+            local _, calendarEvent = FindCachedCalendarEvent(eventId);
             if calendarEvent then
-                endThe = true;
                 endDetail = calendarEvent.Name;
             end
         end
@@ -303,7 +302,7 @@ do -- Get Start Sate
         if achievement.TemporaryObtainable.Start.Inclusion == "From" then
             if self:GetCurrentMplusSeason() == 0 then
                 return self:GetPreviousMplusSeason() >= achievement.TemporaryObtainable.Start.Value and "Past" or "Future";
-            end 
+            end
             return self:GetCurrentMplusSeason() >= achievement.TemporaryObtainable.Start.Value and "Past" or "Future";
         elseif achievement.TemporaryObtainable.Start.Inclusion == "After" then
             if self:GetCurrentMplusSeason() == 0 then
