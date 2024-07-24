@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 74.3 - 2024-07-24
+### Changed
+- Updated the Right Click Menu of the Event Reminders to use the new DropDown system
+
+### Fixed
+- GW2_UI compatibility
+
 ## 74.2 - 2024-07-24
 ### Changed
 - The Browsing History will now track the actual achievement's category if the achievement was selected in a category with flexible data like the Adjustable Categories

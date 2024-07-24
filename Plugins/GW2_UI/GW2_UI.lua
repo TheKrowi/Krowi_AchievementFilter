@@ -796,50 +796,16 @@ do -- [[ Summary ]]
 end
 
 local function SkinFilterButton(button)
-    button:GwStripTextures();
-    button.TopLeft:Hide();
-	button.TopRight:Hide();
-	button.BottomLeft:Hide();
-	button.BottomRight:Hide();
-	button.TopMiddle:Hide();
-	button.MiddleLeft:Hide();
-	button.MiddleRight:Hide();
-	button.BottomMiddle:Hide();
-	button.MiddleMiddle:Hide();
-
-    button:SetSize(155, 32);
-
-    button:GwCreateBackdrop(GW2_ADDON.BackdropTemplates.DopwDown, true);
-    button.backdrop:SetBackdropColor(0, 0, 0);
-
-    button:SetFrameLevel(button:GetFrameLevel() + 2);
-
+    button:GwHandleDropDownBox(GW2_ADDON.BackdropTemplates.DopwDown, true, "MENU_ACHIEVEMENT_FILTER")
     button:ClearAllPoints();
-    button:SetPoint('BOTTOMLEFT', KrowiAF_SearchBoxFrame, 'TOPLEFT', 0, 10);
-    button:SetPoint('BOTTOMRIGHT', KrowiAF_SearchBoxFrame, 'TOPRIGHT', 0, 10);
+    button:SetPoint("BOTTOMLEFT", KrowiAF_SearchBoxFrame, "TOPLEFT", 0, 10);
+    button:SetPoint("BOTTOMRIGHT", KrowiAF_SearchBoxFrame, "TOPRIGHT", 0, 10);
+    button:SetHeight(26);
 
-    button.backdrop:ClearAllPoints()
-    button.backdrop:SetPoint('TOPLEFT', button, 'TOPLEFT', 0, 0);
-    button.backdrop:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 0, 0);
+    button.backdrop:ClearAllPoints();
+    button.backdrop:SetPoint("TOPLEFT", button, "TOPLEFT", 0, 0);
+    button.backdrop:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 0, 0);
     button.backdrop:SetAlpha(0.5);
-
-    local text = button.Text;
-    text:ClearAllPoints();
-    text:SetPoint("LEFT", button, "LEFT", 10, 0);
-    text:SetFont(UNIT_NAME_FONT, 12, "");
-    text:SetTextColor(178 / 255, 178 / 255, 178 / 255);
-    text:SetHeight(button:GetHeight());
-    text:SetJustifyV("MIDDLE");
-
-    local icon = button.Icon;
-    icon:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/arrowup_down");
-    icon:SetRotation(3.14);
-    icon:SetPoint("RIGHT", -15, 0);
-    icon:SetSize(20, 20);
-
-    button:HookScript("OnMouseDown", function(self)
-        self.Icon:SetPoint("RIGHT", -15, 0);
-    end);
 
     button:HookScript("OnShow", function()
         GW2_ADDON.AchievementFrameFilterDropDownDummy:Hide();

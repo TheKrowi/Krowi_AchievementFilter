@@ -1,4 +1,5 @@
 local _, addon = ...;
+local menuUtil = addon.Gui.MenuUtil;
 
 KrowiAF_AchievementFrameFilterButtonMixin = {};
 
@@ -42,24 +43,6 @@ do -- Logic
         KrowiAF_CategoriesFrame:Update(true);
         KrowiAF_AchievementsFrame:ForceUpdate(); -- Issue #27: Fix
         KrowiAF_SummaryFrame:Update();
-    end
-end
-
-do -- General
-    function KrowiAF_AchievementFrameFilterButtonMixin:CreateTitle(menu, text)
-        error("The function is not implemented.");
-    end
-
-    function KrowiAF_AchievementFrameFilterButtonMixin:CreateButton(menu, text, func)
-        error("The function is not implemented.");
-    end
-
-    function KrowiAF_AchievementFrameFilterButtonMixin:CreateDivider(menu)
-        error("The function is not implemented.");
-    end
-
-    function KrowiAF_AchievementFrameFilterButtonMixin:AddChildMenu(menu, child)
-        error("The function is not implemented.");
     end
 end
 
@@ -240,14 +223,14 @@ do -- AchievementFilters
     
         self:CreateBuildVersionFilter(menu, filters);
     
-        local faction = self:CreateButton(menu, addon.L["Faction"]);
+        local faction = menuUtil:CreateButton(menu, addon.L["Faction"]);
         self:CreateCheckbox(faction, addon.L["Neutral"], filters, {"Faction", "Neutral"}, true);
         self:CreateCheckbox(faction, addon.L["Alliance"], filters, {"Faction", "Alliance"}, true);
         self:CreateCheckbox(faction, addon.L["Horde"], filters, {"Faction", "Horde"}, true);
-        self:CreateDivider(faction);
+        menuUtil:CreateDivider(faction);
         self:CreateSelectDeselectAllFactions(faction, addon.L["Select All"], filters, true);
         self:CreateSelectDeselectAllFactions(faction, addon.L["Deselect All"], filters, false);
-        self:AddChildMenu(menu, faction);
+        menuUtil:AddChildMenu(menu, faction);
     
         self:CreateCheckbox(menu, addon.L["Realm First!"], filters, {"Special", "RealmFirst"}, true);
         self:CreateCheckbox(menu, addon.GetCategoryInfoTitle(81), filters, {"Special", "FeatsOfStrength"}, true);
@@ -259,23 +242,23 @@ do -- AchievementFilters
         self:CreateCheckbox(menu, addon.L["Excluded"], filters, {"Excluded"}, true);
         self:CreateCheckbox(menu, addon.L["Always Show Completed"], filters, {"Completion", "AlwaysShowCompleted"}, true);
     
-        self:CreateDivider(menu);
+        menuUtil:CreateDivider(menu);
     
         local text = addon.L["Sort By"];
         if filters == addon.Filters.db.profile and SortByValueIsIndeterminate({"SortBy", "Criteria"}) then
             text = text .. " (*)";
         end
-        local sortBy = self:CreateButton(menu, text);
+        local sortBy = menuUtil:CreateButton(menu, text);
         self:CreateRadio(sortBy, addon.L["Default"], filters, {"SortBy", "Criteria"}, true);
         self:CreateRadio(sortBy, addon.L["Name"], filters, {"SortBy", "Criteria"}, true);
         self:CreateRadio(sortBy, addon.L["Completion"], filters, {"SortBy", "Criteria"}, true);
         self:CreateRadio(sortBy, addon.L["ID"], filters, {"SortBy", "Criteria"}, true);
         self:CreateRadio(sortBy, addon.L["Points"], filters, {"SortBy", "Criteria"}, true);
-        self:CreateDivider(sortBy);
+        menuUtil:CreateDivider(sortBy);
         self:CreateCheckbox(sortBy, addon.L["Reverse Sort"], filters, {"SortBy", "ReverseSort"}, true);
-        self:AddChildMenu(menu, sortBy);
+        menuUtil:AddChildMenu(menu, sortBy);
     
-        self:AddChildMenu(parentMenu, menu);
+        menuUtil:AddChildMenu(parentMenu, menu);
     end
 end
 
@@ -284,56 +267,54 @@ function KrowiAF_AchievementFrameFilterButtonMixin:HelpShowTutorial(index)
 end
 
 function KrowiAF_AchievementFrameFilterButtonMixin:CreateMenu(menu)
-    self:CreateTitle(menu, addon.L["Categories"]);
+    menuUtil:CreateTitle(menu, addon.L["Categories"]);
     self:CreateCheckbox(menu, addon.L["Merge Small Categories"], addon.Filters.db.profile, {"MergeSmallCategories"});
 
-    self:CreateDivider(menu);
-    self:CreateTitle(menu, addon.L["Achievements"]);
+    menuUtil:CreateDivider(menu);
+    menuUtil:CreateTitle(menu, addon.L["Achievements"]);
     self:CreateAchievementFilters(menu, addon.Filters.db.profile);
 
-    local earnedBy = self:CreateButton(menu, addon.L["Earned By"]);
+    local earnedBy = menuUtil:CreateButton(menu, addon.L["Earned By"]);
     self:CreateRadio(earnedBy, addon.Filters.Account, addon.Filters.db.profile, {"EarnedBy"}, false);
     self:CreateRadio(earnedBy, addon.Filters.CharacterAccount, addon.Filters.db.profile, {"EarnedBy"}, false);
     self:CreateRadio(earnedBy, addon.Filters.CharacterOnly, addon.Filters.db.profile, {"EarnedBy"}, false);
-    self:AddChildMenu(menu, earnedBy);
+    menuUtil:AddChildMenu(menu, earnedBy);
 
-    self:CreateDivider(menu);
-    self:CreateTitle(menu, addon.L["Tabs"]);
+    menuUtil:CreateDivider(menu);
+    menuUtil:CreateTitle(menu, addon.L["Tabs"]);
     for _, t in next, addon.TabsOrder do
-        self:CreateAchievementFilters(self:CreateButton(menu, addon.Tabs[t].Text), addon.Tabs[t].Filters, menu);
+        self:CreateAchievementFilters(menuUtil:CreateButton(menu, addon.Tabs[t].Text), addon.Tabs[t].Filters, menu);
     end
 
-    self:CreateDivider(menu);
-    self:CreateTitle(menu, addon.L["Special Categories"]);
-    self:CreateAchievementFilters(self:CreateButton(menu, addon.L["Current Zone"]), addon.Filters.db.profile.CurrentZone, menu);
-    self:CreateAchievementFilters(self:CreateButton(menu, addon.L["Selected Zone"]), addon.Filters.db.profile.SelectedZone, menu);
-    self:CreateAchievementFilters(self:CreateButton(menu, addon.L["Tracking Achievements"]), addon.Filters.db.profile.TrackingAchievements, menu);
+    menuUtil:CreateDivider(menu);
+    menuUtil:CreateTitle(menu, addon.L["Special Categories"]);
+    self:CreateAchievementFilters(menuUtil:CreateButton(menu, addon.L["Current Zone"]), addon.Filters.db.profile.CurrentZone, menu);
+    self:CreateAchievementFilters(menuUtil:CreateButton(menu, addon.L["Selected Zone"]), addon.Filters.db.profile.SelectedZone, menu);
+    self:CreateAchievementFilters(menuUtil:CreateButton(menu, addon.L["Tracking Achievements"]), addon.Filters.db.profile.TrackingAchievements, menu);
 
-    self:CreateDivider(menu);
-    local help = self:CreateButton(menu, (addon.Tutorials.FeaturesTutorial:HasUnviewedPages() and "|T132049:0|t" or "") .. addon.L["Help"]);
+    menuUtil:CreateDivider(menu);
+    local help = menuUtil:CreateButton(menu, (addon.Tutorials.FeaturesTutorial:HasUnviewedPages() and "|T132049:0|t" or "") .. addon.L["Help"]);
     local pages = addon.Tutorials.FeaturesTutorial.Pages;
-    self:CreateTitle(help, addon.L["View Tutorial"]);
+    menuUtil:CreateTitle(help, addon.L["View Tutorial"]);
     for i, _ in next, pages do
-        local page = self:CreateButton(
+        menuUtil:CreateButtonAndAdd(
             help,
             (pages[i].IsViewed and "" or "|T132049:0|t") .. string.format(addon.Util.Colors.White, addon.Util.Colors.RemoveColor(pages[i].SubTitle)),
             function()
                 self:HelpShowTutorial(i);
             end
         );
-        self:AddChildMenu(help, page);
     end
-    self:AddChildMenu(menu, help);
+    menuUtil:AddChildMenu(menu, help);
 
-    local options = self:CreateButton(
+    menuUtil:CreateButtonAndAdd(
         menu,
         addon.L["Options"],
         addon.Options.Open
     );
-    self:AddChildMenu(menu, options);
 
     if addon.Options.db.profile.ShowPlaceholdersFilter then
-        self:CreateDivider(menu);
+        menuUtil:CreateDivider(menu);
         self:CreateCheckbox(menu, addon.L["Show placeholders"], addon.Filters.db.profile, {"ShowPlaceholders"});
     end
 end

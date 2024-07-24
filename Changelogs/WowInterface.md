@@ -50,3 +50,13 @@
 [LIST]
 [*]Uncategorized should once again load properly
 [/LIST]
+
+[B]Changed (74.3)[/B]
+[LIST]
+[*]Updated the Right Click Menu of the Event Reminders to use the new DropDown system
+[/LIST]
+
+[B]Fixed (74.3)[/B]
+[LIST]
+[*]GW2_UI compatibility
+[/LIST]

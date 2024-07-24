@@ -34,3 +34,9 @@
 
 ### Fixed (74.2)
 - Uncategorized should once again load properly
+
+### Changed (74.3)
+- Updated the Right Click Menu of the Event Reminders to use the new DropDown system
+
+### Fixed (74.3)
+- GW2_UI compatibility
