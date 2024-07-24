@@ -23,6 +23,10 @@ function browsingHistory:Add(category, achievement)
         return;
     end
 
+    if category.HasFlexibleData then
+        category = achievement.Category;
+    end
+
     lastAddedRecord = {
         CategoryId = category.Id,
         AchievementId = achievement.Id

@@ -22,3 +22,15 @@
 
 ### Wrath Classic
 - No longer supported
+
+### Fixed (74.1)
+- All data should once again load properly
+
+### Cata Classic (74.1)
+- Achievements tab should once again know which achievements to show
+
+### Changed (74.2)
+- The Browsing History will now track the actual achievement's category if the achievement was selected in a category with flexible data like the Adjustable Categories
+
+### Fixed (74.2)
+- Uncategorized should once again load properly

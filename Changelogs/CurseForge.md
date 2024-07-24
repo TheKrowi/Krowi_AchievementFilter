@@ -27,3 +27,19 @@
 <ul>
 <li>No longer supported</li>
 </ul>
+<p><h3>Fixed (74.1)</h3></p>
+<ul>
+<li>All data should once again load properly</li>
+</ul>
+<p><h3>Cata Classic (74.1)</h3></p>
+<ul>
+<li>Achievements tab should once again know which achievements to show</li>
+</ul>
+<p><h3>Changed (74.2)</h3></p>
+<ul>
+<li>The Browsing History will now track the actual achievement's category if the achievement was selected in a category with flexible data like the Adjustable Categories</li>
+</ul>
+<p><h3>Fixed (74.2)</h3></p>
+<ul>
+<li>Uncategorized should once again load properly</li>
+</ul>

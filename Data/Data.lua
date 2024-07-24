@@ -33,23 +33,22 @@ function data:RegisterTooltipDataTasks()
     end
 end
 
+local LoadBlizzardTabAchievements;
 local function PostLoadOnPlayerLogin(self, start)
     self.ExportedAchievements.Load(self.AchievementIds);
 
     local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_Layout", "cmd", "KROWIAF-0.0").args.Summary.args.Summary.args.NumAchievements; -- cmd and KROWIAF-0.0 are just to make the function work
     custom.max = #self.AchievementIds;
 
+    LoadBlizzardTabAchievements();
+
+    data.SpecialCategories:Load();
+
+    self.LoadWatchedAchievements();
+    self.LoadTrackingAchievements();
+    self.LoadExcludedAchievements();
+
     local function PostBuildCache()
-        if addon.Tabs["Achievements"] then
-            data.LoadBlizzardTabAchievements(addon.Tabs["Achievements"]);
-        end
-
-        data.SpecialCategories:Load();
-
-        self.LoadWatchedAchievements();
-        self.LoadTrackingAchievements();
-        self.LoadExcludedAchievements();
-
         if AchievementFrame and AchievementFrame:IsShown() then
             addon.Gui:RefreshViewAfterPlayerLogin();
         end
@@ -216,8 +215,11 @@ local function AddAchievementsToCategory()
     end
 end
 
-function data.LoadBlizzardTabAchievements(tab)
-    local tabCat = tab.Category;
+function LoadBlizzardTabAchievements()
+    if not addon.Tabs["Achievements"] then
+        return;
+    end
+    local tabCat = addon.Tabs["Achievements"].Category;
     local cats = GetCategoryList();
 
     LoadAllCategories(tabCat, cats); -- Load all categories, this is done in a random order and is possible for a child to load before a parent
