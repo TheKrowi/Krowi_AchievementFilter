@@ -1,4 +1,5 @@
 local _, addon = ...;
+local menuUtil = addon.Gui.MenuUtil;
 
 KrowiAF_AchievementFrameFilterButtonModernMixin = CreateFromMixins(KrowiAF_AchievementFrameFilterButtonMixin);
 
@@ -17,24 +18,6 @@ do -- Mixin
     function KrowiAF_AchievementFrameFilterButtonModernMixin:OnShow()
         WowStyle1FilterDropdownMixin.OnShow(self);
         KrowiAF_AchievementFrameFilterButtonMixin.OnShow();
-    end
-end
-
-do -- General
-    function KrowiAF_AchievementFrameFilterButtonModernMixin:CreateTitle(menu, text)
-        menu:CreateTitle(text);
-    end
-
-    function KrowiAF_AchievementFrameFilterButtonModernMixin:CreateButton(menu, text, func)
-        return menu:CreateButton(text, func);
-    end
-
-    function KrowiAF_AchievementFrameFilterButtonModernMixin:CreateDivider(menu)
-        menu:CreateDivider();
-    end
-
-    function KrowiAF_AchievementFrameFilterButtonModernMixin:AddChildMenu(menu, child)
-
     end
 end
 
@@ -89,7 +72,7 @@ do -- BuildVersionFilter
     end
 
     function KrowiAF_AchievementFrameFilterButtonModernMixin:CreateSelectDeselectAllVersions(version, filters)
-        self:CreateDivider(version);
+        menuUtil:CreateDivider(version);
         local selectAll = version:CreateButton(
             addon.L["Select All"],
             function()

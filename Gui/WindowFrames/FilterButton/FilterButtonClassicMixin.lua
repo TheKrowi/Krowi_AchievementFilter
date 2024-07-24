@@ -1,31 +1,19 @@
 local _, addon = ...;
+local menuUtil = addon.Gui.MenuUtil;
 
 local rootMenu = LibStub("Krowi_Menu-1.0");
 
 KrowiAF_AchievementFrameFilterButtonClassicMixin = CreateFromMixins(KrowiAF_AchievementFrameFilterButtonMixin);
 
-do -- General
-    function KrowiAF_AchievementFrameFilterButtonClassicMixin:CreateTitle(menu, text)
-        menu:AddTitle(text);
-    end
+function KrowiAF_AchievementFrameFilterButtonClassicMixin:OnMouseDown()
+    UIMenuButtonStretchMixin.OnMouseDown(self);
+    PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
 
-    function KrowiAF_AchievementFrameFilterButtonClassicMixin:CreateButton(menu, text, func)
-        return addon.Objects.MenuItem:New({
-            Text = text,
-            Func = func
-        });
-    end
+    rootMenu:Clear();
 
-    function KrowiAF_AchievementFrameFilterButtonClassicMixin:CreateDivider(menu)
-        menu:AddSeparator();
-    end
+    self:CreateMenu(rootMenu);
 
-    function KrowiAF_AchievementFrameFilterButtonClassicMixin:AddChildMenu(menu, child)
-        if not menu or not child then
-            return;
-        end
-        menu:Add(child);
-    end
+    rootMenu:Toggle(self, 96, 15);
 end
 
 function KrowiAF_AchievementFrameFilterButtonClassicMixin:CreateCheckbox(menu, text, filters, keys, checkTabs)
@@ -93,7 +81,7 @@ do -- BuildVersionFilter
     end
 
     function KrowiAF_AchievementFrameFilterButtonClassicMixin:CreateSelectDeselectAllVersions(version, filters)
-        self:CreateDivider(version);
+        menuUtil:CreateDivider(version);
         version:AddFull({
             Text = addon.L["Select All"],
             Func = function()
@@ -133,15 +121,4 @@ end
 function KrowiAF_AchievementFrameFilterButtonClassicMixin:HelpShowTutorial(index)
     rootMenu:Close();
     addon.Tutorials.FeaturesTutorial:ShowTutorial(index);
-end
-
-function KrowiAF_AchievementFrameFilterButtonClassicMixin:OnMouseDown()
-    UIMenuButtonStretchMixin.OnMouseDown(self);
-    PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
-
-    rootMenu:Clear();
-
-    self:CreateMenu(rootMenu);
-
-    rootMenu:Toggle(self, 96, 15);
 end

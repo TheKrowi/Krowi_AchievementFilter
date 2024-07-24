@@ -520,7 +520,8 @@
         "KrowiAF_DebugTable",
         "EXPANSION_NAME10",
         "WowStyle1FilterDropdownMixin",
-        "MenuResponse"
+        "MenuResponse",
+        "MenuUtil"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
