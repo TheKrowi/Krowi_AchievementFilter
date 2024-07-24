@@ -40,15 +40,15 @@ local function PostLoadOnPlayerLogin(self, start)
     local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_Layout", "cmd", "KROWIAF-0.0").args.Summary.args.Summary.args.NumAchievements; -- cmd and KROWIAF-0.0 are just to make the function work
     custom.max = #self.AchievementIds;
 
+    LoadBlizzardTabAchievements();
+
+    data.SpecialCategories:Load();
+
+    self.LoadWatchedAchievements();
+    self.LoadTrackingAchievements();
+    self.LoadExcludedAchievements();
+
     local function PostBuildCache()
-        LoadBlizzardTabAchievements();
-
-        data.SpecialCategories:Load();
-
-        self.LoadWatchedAchievements();
-        self.LoadTrackingAchievements();
-        self.LoadExcludedAchievements();
-
         if AchievementFrame and AchievementFrame:IsShown() then
             addon.Gui:RefreshViewAfterPlayerLogin();
         end

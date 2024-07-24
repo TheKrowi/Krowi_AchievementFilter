@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 74.2 - 2024-07-24
+### Changed
+- The Browsing History will now track the actual achievement's category if the achievement was selected in a category with flexible data like the Adjustable Categories
+
+### Fixed
+- Uncategorized should once again load properly
+
 ## 74.1 - 2024-07-24
 ### Fixed
 - All data should once again load properly

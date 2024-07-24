@@ -40,3 +40,13 @@
 [LIST]
 [*]Achievements tab should once again know which achievements to show
 [/LIST]
+
+[B]Changed (74.2)[/B]
+[LIST]
+[*]The Browsing History will now track the actual achievement's category if the achievement was selected in a category with flexible data like the Adjustable Categories
+[/LIST]
+
+[B]Fixed (74.2)[/B]
+[LIST]
+[*]Uncategorized should once again load properly
+[/LIST]

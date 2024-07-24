@@ -410,11 +410,8 @@ end
 function gui:RefreshViewAfterPlayerLogin()
     AchievementFrame.Header.Points:SetText();
     local selectedTab = addon.Gui.SelectedTab;
-	local categories = selectedTab:GetCategories();
-    if categories and not selectedTab.SelectedCategory then
-		selectedTab.SelectedCategory = categories[1];
-		selectedTab:ShowSubFrames();
-    end
+    selectedTab.SelectedCategory = nil;
+    selectedTab:ShowSubFrames();
     KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
 end
 
