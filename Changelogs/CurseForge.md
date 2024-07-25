@@ -51,3 +51,7 @@
 <ul>
 <li>GW2_UI compatibility</li>
 </ul>
+<p><h3>Fixed (74.4)</h3></p>
+<ul>
+<li>The Browsing History will now also work for the Achievements tab</li>
+</ul>

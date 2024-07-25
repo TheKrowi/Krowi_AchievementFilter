@@ -40,3 +40,6 @@
 
 ### Fixed (74.3)
 - GW2_UI compatibility
+
+### Fixed (74.4)
+- The Browsing History will now also work for the Achievements tab

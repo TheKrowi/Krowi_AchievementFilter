@@ -91,19 +91,12 @@ local function AddCategory(id, specialCategory, tab, categoryOrder)
 end
 
 function specialCategories:Load()
-    local categoryId, categoryOrder = 0, 0;
-    for id, _ in next, data.Categories do
-        if id > categoryId then
-            categoryId = id;
-        end
-    end
-
+    local categoryOrder = 0;
     for _, specialCategory in next, specialCategoriesMatrix do
         wipe(data[specialCategory.CategoryType .. "Categories"]);
         categoryOrder = categoryOrder + 1;
         for _, tabName in next, addon.TabsOrder do
-            categoryId = categoryId + 1;
-            AddCategory(categoryId, specialCategory, addon.Tabs[tabName], categoryOrder);
+            AddCategory(data.GetNextFreeCategoryId(), specialCategory, addon.Tabs[tabName], categoryOrder);
         end
     end
 end

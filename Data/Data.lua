@@ -215,6 +215,14 @@ local function AddAchievementsToCategory()
     end
 end
 
+local function AddCategoriesToList()
+    for k, _ in next, tmpC do
+        local newId = data.GetNextFreeCategoryId();
+        tmpC[k].Id = newId;
+        data.Categories[newId] = tmpC[k];
+    end
+end
+
 function LoadBlizzardTabAchievements()
     if not addon.Tabs["Achievements"] then
         return;
@@ -226,6 +234,7 @@ function LoadBlizzardTabAchievements()
     LinkParentAndChildren(cats); -- When everything is loaded, we can link children and parents
     LinkChainAchievements();
     AddAchievementsToCategory();
+    AddCategoriesToList();
 
     -- Clean up after ourselves
     tmpC = nil;
@@ -240,6 +249,19 @@ function data.InjectLoadingDebug(workload, name)
     -- Data is in reverse order in the tables so add 'Start' to the end and 'Finished' to the beginning
     tinsert(workload, function() addon.Diagnostics.Trace(name .. ": Start loading data"); end);
     tinsert(workload, 1, function() addon.Diagnostics.Trace(name .. ": Finished loading data"); end);
+end
+
+local freeCategoryId = 0;
+function data.GetNextFreeCategoryId()
+    if freeCategoryId == 0 then
+        for id, _ in next, data.Categories do
+            if id > freeCategoryId then
+                freeCategoryId = id;
+            end
+        end
+    end
+    freeCategoryId = freeCategoryId + 1;
+    return freeCategoryId;
 end
 
 -- function KrowiAF_PrintPetCriteria(achievementID, parentCriteriaID, criteriaNumber)
