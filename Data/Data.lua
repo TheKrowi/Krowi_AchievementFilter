@@ -80,9 +80,9 @@ function data:LoadOnPlayerLogin()
     if self.ExportedWorldEvents then
         self.ExportedWorldEvents.RegisterTasks(self.WorldEvents, self.Categories);
     end
-    if not addon.Util.IsClassicWithAchievements then
-        self.ExportedPetBattles.RegisterTasks(self.RightClickMenuExtras);
-    end
+    -- if not addon.Util.IsClassicWithAchievements then
+    --     self.ExportedPetBattles.RegisterTasks(self.RightClickMenuExtras);
+    -- end
     self.ExportedUiMaps.RegisterTasks(self.Maps, self.Achievements);
 
     self:RegisterTooltipDataTasks();

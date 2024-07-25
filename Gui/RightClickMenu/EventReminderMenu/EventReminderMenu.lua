@@ -6,7 +6,7 @@ addon.Gui.RightClickMenu.EventReminderMenu = {
 local eventReminderMenu = addon.Gui.RightClickMenu.EventReminderMenu;
 
 local function CreateMenu(self, menu, event)
-	menuUtil:CreateTitle(menu, event.EventDetails.Name);
+	menuUtil:CreateTitle(menu, event.EventDetails and event.EventDetails.Name or addon.L["Unknown"]);
 
 	for _, section in next, self.Sections do
 		if section:CheckAdd(event) then
@@ -18,7 +18,7 @@ end
 if addon.Util.IsTheWarWithin then
 	function eventReminderMenu:Open(caller, event, anchor, offsetX, offsetY, point, relativePoint, frameStrata, frameLevel)
 		MenuUtil.CreateContextMenu(caller, function(owner, menu)
-			menu:SetTag("MENU_TOYBOX_FAVORITE");
+			menu:SetTag("RIGHT_CLICK_MENU_EVENT_REMINDER");
 
 			CreateMenu(self, menu, event);
 		end);

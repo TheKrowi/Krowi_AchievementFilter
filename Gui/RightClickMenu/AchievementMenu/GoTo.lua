@@ -1,4 +1,5 @@
 local _, addon = ...;
+local menuUtil = addon.Gui.MenuUtil;
 local section = {
 	Sections = {}
 };
@@ -14,18 +15,18 @@ function section:CheckAdd(achievement)
 end
 
 function section:Add(menu, achievement)
-	local childMenu = addon.Objects.MenuItem:New(addon.L["Go to"]);
+	local childMenu = menuUtil:CreateButton(menu, addon.L["Go to"]);
 	local addSeparator = nil;
 
 	for _, sect in next, self.Sections do
 		if sect:CheckAdd(achievement) then
 			if addSeparator then
-				childMenu:AddSeparator();
+				menuUtil:CreateDivider(childMenu);
 			end
 			sect:Add(childMenu, achievement);
 			addSeparator = true;
 		end
 	end
 
-	menu:Add(childMenu);
+    menuUtil:AddChildMenu(menu, childMenu);
 end

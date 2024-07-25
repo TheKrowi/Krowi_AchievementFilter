@@ -1,4 +1,5 @@
 local _, addon = ...;
+local menuUtil = addon.Gui.MenuUtil;
 local section = {};
 tinsert(addon.Gui.RightClickMenu.AchievementMenu.Sections, section);
 
@@ -37,10 +38,11 @@ function section:Add(menu, achievement)
 	end
 
 	local externalLink = "https://" .. locale .. "wowhead.com/" .. expansion .. "achievement=" .. achievement.Id .. relatedTab;
-	menu:AddFull({
-		Text = addon.L["Wowhead"],
-		Func = function()
+    menuUtil:CreateButtonAndAdd(
+		menu,
+		addon.L["Wowhead"],
+		function()
 			popupDialog.ShowExternalLink(externalLink);
 		end
-	});
+	);
 end

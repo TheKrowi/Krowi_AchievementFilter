@@ -7,8 +7,12 @@ do -- Modern
         menu:CreateTitle(text);
     end
 
-    function menuUtil:CreateButton(menu, text, func)
-        return menu:CreateButton(text, func);
+    function menuUtil:CreateButton(menu, text, func, isEnabled)
+        local button = menu:CreateButton(text, func);
+        if isEnabled == false then
+            button:SetEnabled(false);
+        end
+        return button;
     end
 
     function menuUtil:CreateDivider(menu)
@@ -19,8 +23,8 @@ do -- Modern
 
     end
 
-    function menuUtil:CreateButtonAndAdd(menu, text, func)
-        return self:CreateButton(menu, text, func);
+    function menuUtil:CreateButtonAndAdd(menu, text, func, isEnabled)
+        return self:CreateButton(menu, text, func, isEnabled);
     end
 end
 
@@ -33,10 +37,11 @@ do -- Classic
         menu:AddTitle(text);
     end
 
-    function menuUtil:CreateButton(menu, text, func)
+    function menuUtil:CreateButton(menu, text, func, isEnabled)
         return addon.Objects.MenuItem:New({
             Text = text,
-            Func = func
+            Func = func,
+            Disabled = isEnabled == false
         });
     end
 
@@ -51,7 +56,7 @@ do -- Classic
         menu:Add(child);
     end
 
-    function menuUtil:CreateButtonAndAdd(menu, text, func)
-        self:AddChildMenu(menu, self:CreateButton(nil, text, func));
+    function menuUtil:CreateButtonAndAdd(menu, text, func, isEnabled)
+        self:AddChildMenu(menu, self:CreateButton(nil, text, func, isEnabled));
     end
 end

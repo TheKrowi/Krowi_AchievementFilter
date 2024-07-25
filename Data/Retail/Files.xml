@@ -3,7 +3,7 @@
     <Script file="ExportedBuildVersions.lua" />
     <Script file="ExportedCalendarEvents.lua" />
     <Script file="ExportedCategories.lua" />
-    <Script file="ExportedPetBattleLinks.lua" />
+    <!-- <Script file="ExportedPetBattleLinks.lua" /> -->
     <Script file="ExportedTransmogSets.lua" />
     <Script file="ExportedUiMaps.lua" />
     <Script file="ExportedWidgetEvents.lua" />

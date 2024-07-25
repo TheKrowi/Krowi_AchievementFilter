@@ -1,4 +1,5 @@
 local _, addon = ...;
+local menuUtil = addon.Gui.MenuUtil;
 local section = {};
 tinsert(addon.Gui.RightClickMenu.AchievementMenu:GetLastSection().Sections, section);
 
@@ -8,6 +9,6 @@ function section:CheckAdd()
 end
 
 function section:Add(menu, achievement)
-	menu:AddTitle(achievement.Category:GetPath());
+	menuUtil:CreateTitle(menu, achievement.Category:GetPath());
 	addon.Gui.RightClickMenu.AchievementMenu:AddGoToAchievementLine(menu, achievement.Id);
 end

@@ -1,4 +1,5 @@
 local _, addon = ...;
+local menuUtil = addon.Gui.MenuUtil;
 local section = {};
 tinsert(addon.Gui.RightClickMenu.AchievementMenu:GetLastSection().Sections, section);
 
@@ -27,6 +28,6 @@ local function AddPartOfAChainAchievement(menu, id, nameSuffix)
 end
 
 function section:Add(menu)
-    menu:AddTitle(addon.L["Part of a chain"]);
+	menuUtil:CreateTitle(menu, addon.L["Part of a chain"]);
     AddPartOfAChainAchievement(menu, firstAchievement.Id);
 end

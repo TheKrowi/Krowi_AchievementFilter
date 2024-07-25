@@ -1,4 +1,5 @@
 local _, addon = ...;
+local menuUtil = addon.Gui.MenuUtil;
 local section = {};
 tinsert(addon.Gui.RightClickMenu.AchievementMenu:GetLastSection().Sections, section);
 
@@ -9,7 +10,7 @@ function section:CheckAdd(achievement)
 end
 
 function section:Add(menu, achievement)
-	menu:AddTitle(addon.L["Required for"]);
+	menuUtil:CreateTitle(menu, addon.L["Required for"]);
 	for _, id in next, requiredForIds do
 		if id ~= achievement.Id then
 			addon.Gui.RightClickMenu.AchievementMenu:AddGoToAchievementLine(menu, id);
