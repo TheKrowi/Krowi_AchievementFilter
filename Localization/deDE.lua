@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-06-22 20-38-00 ]] --
+-- [[ Exported at 2024-07-29 22-11-57 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -57,7 +57,7 @@ L["Added in version"] = "Hinzugefügt mit Version"
 L["Adjustable Categories"] = "Anpassbare Kategorien"
 L["Aki the Chosen"] = "Aki die Auserwählte"
 L["Alt"] = true
-L["Always Show Completed"] = "Immer erreichte Erfolge anzeigen"
+L["Always Show Completed"] = "Erreichte Erfolge immer anzeigen"
 L["Always show realm"] = "Immer Realm anzeigen"
 L["Always show realm Desc"] = "Zeigt immer den Realm deines Charakters an, unabhängig davon, ob sich der Charakter auf demselben Realm wie dieser Charakter befindet."
 L["Andurs"] = true
@@ -129,10 +129,10 @@ Dieser Wert kann geändert werden, während das Erfolgsfenster geöffnet ist und
 {reloadRequired}]=]
 L["Category shown temporarily"] = "Diese Kategorie wurde durch Klicken auf die {eventName} Event Erinnerung ausgewählt und wird nur vorübergehend angezeigt, da sie keine Erfolge enthält, die den eingestellten Filtern entsprechen."
 L["Caverns Criss-Cross"] = "Kreuz und quer durch die Höhlen"
-L["Center Header"] = "Erfolgs-Überschrift zentrieren"
 L["Center header"] = "Kopfzeile zentrieren"
-L["Center header Desc"] = "Zentriere die Kopfzeile im Erfolgsfenster."
+L["Center Header"] = "Erfolgs-Überschrift zentrieren"
 L["Center Header Desc"] = "Zentriere die Erfolgs-Überschrift"
+L["Center header Desc"] = "Zentriere die Kopfzeile im Erfolgsfenster."
 L["Central Circuit"] = "Zentralrundstrecke"
 L["Chains of Domination"] = "Ketten der Herrschaft"
 L["Character / Account wide"] = "Charakter & Account"
