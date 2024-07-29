@@ -1,5 +1,4 @@
 local _, addon = ...;
-local menuUtil = addon.Gui.MenuUtil;
 
 local rootMenu = LibStub("Krowi_Menu-1.0");
 
@@ -81,7 +80,7 @@ do -- BuildVersionFilter
     end
 
     function KrowiAF_AchievementFrameFilterButtonClassicMixin:CreateSelectDeselectAllVersions(version, filters)
-        menuUtil:CreateDivider(version);
+        addon.MenuUtil:CreateDivider(version);
         version:AddFull({
             Text = addon.L["Select All"],
             Func = function()

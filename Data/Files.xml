@@ -1,6 +1,6 @@
 <Ui>
     <Script file="Data.lua" />
-    <Include file="PetBattleLinks\Files.xml"/>
+    <Include file="PetBattleLinkData\Files.xml"/>
     <Script file="TemporaryObtainable.lua" />
     <Script file="CustomCriteria.lua" />
     <Script file="CustomWidgetEventTimers.lua" />

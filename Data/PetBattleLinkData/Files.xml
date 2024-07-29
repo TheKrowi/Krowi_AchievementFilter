@@ -1,0 +1,11 @@
+<Ui>
+    <Script file="Shared.lua" />
+    <Script file="05_MistsOfPandaria.lua" />
+    <Script file="06_WarlordsOfDaenor.lua" />
+    <Script file="07_Legion.lua" />
+    <Script file="08_BattleForAzeroth.lua" />
+    <Script file="09_Shadowlands.lua" />
+    <Script file="10_Dragonflight.lua" />
+    <Script file="11_TheWarWithin.lua" />
+    <Script file="PetBattleLinkData.lua" />
+</Ui>

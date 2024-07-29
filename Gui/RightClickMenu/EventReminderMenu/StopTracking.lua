@@ -1,5 +1,4 @@
 local _, addon = ...;
-local menuUtil = addon.Gui.MenuUtil;
 local section = {};
 tinsert(addon.Gui.RightClickMenu.EventReminderMenu.Sections, section);
 
@@ -17,7 +16,7 @@ local function GetTypeAsString(type)
 end
 
 function section:Add(menu, event)
-    menuUtil:CreateButtonAndAdd(
+    addon.MenuUtil:CreateButtonAndAdd(
         menu,
         addon.L["Stop tracking"],
 		function()

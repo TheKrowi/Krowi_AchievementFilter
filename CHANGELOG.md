@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 74.5 - 2024-07-29
+### Changed
+- Updated the Right Click Menu of the Achievements to use the new DropDown system
+- Pet Battle Link data rework
+
 ## 74.4 - 2024-07-25
 ### Fixed
 - The Browsing History will now also work for the Achievements tab

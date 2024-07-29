@@ -5,7 +5,9 @@ local libs = addon.Libs; -- Local library names table
 libs.AceLocale = "AceLocale-3.0";
 libs.AceEvent = "AceEvent-3.0";
 libs.Krowi_Util = "Krowi_Util-1.0";
+libs.Krowi_MenuUtil = "Krowi_MenuUtil-1.0";
 
 -- [[ Personal libraries ]] --
 addon.Util = LibStub(addon.Libs.Krowi_Util);
+addon.MenuUtil = LibStub(addon.Libs.Krowi_MenuUtil);
 addon.Metadata = addon.Util.Metadata.GetAddOnMetadata(addonName);

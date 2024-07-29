@@ -33,6 +33,14 @@ function data:RegisterTooltipDataTasks()
     end
 end
 
+function data:RegisterPetBattleLinkDataTasks()
+    local name = "Pet Battle Link Data: ";
+    for k, v in next, KrowiAF.PetBattleLinkData do
+        self.InjectLoadingDebug(v, name .. k);
+        tinsert(self.TasksGroups, 1, v);
+    end
+end
+
 local LoadBlizzardTabAchievements;
 local function PostLoadOnPlayerLogin(self, start)
     self.ExportedAchievements.Load(self.AchievementIds);
@@ -80,12 +88,10 @@ function data:LoadOnPlayerLogin()
     if self.ExportedWorldEvents then
         self.ExportedWorldEvents.RegisterTasks(self.WorldEvents, self.Categories);
     end
-    -- if not addon.Util.IsClassicWithAchievements then
-    --     self.ExportedPetBattles.RegisterTasks(self.RightClickMenuExtras);
-    -- end
     self.ExportedUiMaps.RegisterTasks(self.Maps, self.Achievements);
 
     self:RegisterTooltipDataTasks();
+    self:RegisterPetBattleLinkDataTasks();
 
     local overallStart = debugprofilestop();
     addon.StartTasksGroups(

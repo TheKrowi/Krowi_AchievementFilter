@@ -1,5 +1,4 @@
 local _, addon = ...;
-local menuUtil = addon.Gui.MenuUtil;
 
 KrowiAF_AchievementFrameFilterButtonModernMixin = CreateFromMixins(KrowiAF_AchievementFrameFilterButtonMixin);
 
@@ -72,7 +71,7 @@ do -- BuildVersionFilter
     end
 
     function KrowiAF_AchievementFrameFilterButtonModernMixin:CreateSelectDeselectAllVersions(version, filters)
-        menuUtil:CreateDivider(version);
+        addon.MenuUtil:CreateDivider(version);
         local selectAll = version:CreateButton(
             addon.L["Select All"],
             function()
