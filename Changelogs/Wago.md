@@ -43,3 +43,7 @@
 
 ### Fixed (74.4)
 - The Browsing History will now also work for the Achievements tab
+
+### Changed (74.5)
+- Updated the Right Click Menu of the Achievements to use the new DropDown system
+- Pet Battle Link data rework
