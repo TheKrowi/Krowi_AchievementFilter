@@ -1,6 +1,6 @@
 local _, addon = ...;
 
-KrowiAF.AdditionalTooltipData = {};
+KrowiAF.TooltipData = {};
 
 local function AddTooltipDatum(objectId, objectType, achievementId, criteriaIndex, faction)
     addon.Data.TooltipData[objectId] = addon.Data.TooltipData[objectId] or {};

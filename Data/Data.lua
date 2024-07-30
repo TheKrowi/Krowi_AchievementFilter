@@ -27,7 +27,7 @@ data.CalendarEvents, data.WidgetEvents, data.WorldEvents = {}, {}, {};
 
 function data:RegisterTooltipDataTasks()
     local name = "Additional Tooltip Data: ";
-    for k, v in next, KrowiAF.AdditionalTooltipData do
+    for k, v in next, KrowiAF.TooltipData do
         self.InjectLoadingDebug(v, name .. k);
         tinsert(self.TasksGroups, 1, v);
     end

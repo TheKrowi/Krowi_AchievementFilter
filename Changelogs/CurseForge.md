@@ -9,7 +9,7 @@
 </ul>
 <p><h3>Fixed</h3></p>
 <ul>
-<li>Several bugs in preperation for The War Within (Beta) changes</li>
+<li>Several bugs in preparation for The War Within (Beta) changes</li>
 </ul>
 <p><h3>Changed</h3></p>
 <ul>
@@ -18,8 +18,8 @@
 <li>Trading Post: Dragonflight moved from the Cross-Expansion Character category to the Promotions</li>
 <li>Renamed category The Temple of Atal'hakkar to Sunken Temple</li>
 <li>Renamed The Stockade to Stormwind Stockades</li>
-<li>Updated the Filter in the Achievement Window to use the new DropDown system (dev note: will most likly cause errors with ElvUI and GW2_UI the first few days)</li>
-<li>Data clean up after the migration to the new data structure last year (dev note: a new expansion is the best moment to do this especially with all the changes Blizzard made to achievements) (dev note 2: should result in 50-63% less duplicate data and potentially memory usage)</li>
+<li>Updated the Filter in the Achievement Window to use the new DropDown system (dev note: will most likely cause errors with ElvUI and GW2_UI the first few days)</li>
+<li>Data clean up after the migration to the new data structure last year (dev note: a new expansion is the best moment to do this, especially with all the changes Blizzard made to achievements) (dev note 2: should result in 50-63% less duplicate data and potentially memory usage)</li>
 <li>Cleaned up Event Reminders naming and should now be more consistent</li>
 <li>Adjustable Categories rework for better maintainability</li>
 </ul>
@@ -58,5 +58,6 @@
 <p><h3>Changed (74.5)</h3></p>
 <ul>
 <li>Updated the Right Click Menu of the Achievements to use the new DropDown system</li>
-<li>Pet Battle Link data rework</li>
+<li>Pet Battle Link Data rework</li>
+<li>Tooltip Data is now included in KAF and is no longer a separate addon</li>
 </ul>

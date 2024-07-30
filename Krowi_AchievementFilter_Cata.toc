@@ -42,6 +42,7 @@ Objects\Files.xml
 
 Data\Files.xml
 Data\CataClassic\Files.xml
+Data\TooltipData\00_CataClassic_Files.xml
 
 Filters.lua
 SearchOptions.lua

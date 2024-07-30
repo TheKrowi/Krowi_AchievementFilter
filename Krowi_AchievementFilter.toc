@@ -45,6 +45,8 @@ Objects\Files.xml
 
 Data\Files.xml
 Data\Retail\Files.xml
+Data\TooltipData\00_Mainline_Files.xml
+Data\PetBattleLinkData\00_Mainline_Files.xml
 
 Filters.lua
 SearchOptions.lua
