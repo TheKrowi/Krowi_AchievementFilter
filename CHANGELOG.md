@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 75.1 - 2024-07-30
+### Cata Classic
+- Fixed an issue during loading
+- Fixed an issue with the Right Click Menu of the Achievements
+
 ## 75.0 - 2024-07-30
 ### Changed
 - Updated the Right Click Menu of the Achievements to use the new DropDown system

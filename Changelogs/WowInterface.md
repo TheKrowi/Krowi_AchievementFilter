@@ -4,3 +4,9 @@
 [*]Pet Battle Link Data rework
 [*]Tooltip Data is now included in KAF and is no longer a separate addon
 [/LIST]
+
+[B]Cata Classic (75.1)[/B]
+[LIST]
+[*]Fixed an issue during loading
+[*]Fixed an issue with the Right Click Menu of the Achievements
+[/LIST]

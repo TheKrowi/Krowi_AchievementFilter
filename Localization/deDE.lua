@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-29 22-11-57 ]] --
+-- [[ Exported at 2024-07-30 18-21-29 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -129,10 +129,10 @@ Dieser Wert kann geändert werden, während das Erfolgsfenster geöffnet ist und
 {reloadRequired}]=]
 L["Category shown temporarily"] = "Diese Kategorie wurde durch Klicken auf die {eventName} Event Erinnerung ausgewählt und wird nur vorübergehend angezeigt, da sie keine Erfolge enthält, die den eingestellten Filtern entsprechen."
 L["Caverns Criss-Cross"] = "Kreuz und quer durch die Höhlen"
-L["Center header"] = "Kopfzeile zentrieren"
 L["Center Header"] = "Erfolgs-Überschrift zentrieren"
-L["Center Header Desc"] = "Zentriere die Erfolgs-Überschrift"
+L["Center header"] = "Kopfzeile zentrieren"
 L["Center header Desc"] = "Zentriere die Kopfzeile im Erfolgsfenster."
+L["Center Header Desc"] = "Zentriere die Erfolgs-Überschrift"
 L["Central Circuit"] = "Zentralrundstrecke"
 L["Chains of Domination"] = "Ketten der Herrschaft"
 L["Character / Account wide"] = "Charakter & Account"
