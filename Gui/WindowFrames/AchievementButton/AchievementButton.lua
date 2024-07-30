@@ -4,8 +4,8 @@ local function AddRightClickMenuButton(button)
 	local rightClickMenuButton = CreateFrame("Button", "$parentRightClickMenuButton", button, "KrowiAF_RightClickMenuButton_Template");
 	rightClickMenuButton:SetPoint("TOPRIGHT", -1, -1);
 
-	rightClickMenuButton:SetScript("OnClick", function()
-		addon.Gui.RightClickMenu.AchievementMenu:Open(button.Achievement, rightClickMenuButton);
+	rightClickMenuButton:SetScript("OnClick", function(self)
+		addon.Gui.RightClickMenu.AchievementMenu:Open(self, button.Achievement, rightClickMenuButton);
 	end);
 	button.RightClickMenuButton = rightClickMenuButton;
 end

@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 75.0 - 2024-07-30
+### Changed
+- Updated the Right Click Menu of the Achievements to use the new DropDown system
+- Pet Battle Link Data rework
+- Tooltip Data is now included in KAF and is no longer a separate addon
+
 ## 74.4 - 2024-07-25
 ### Fixed
 - The Browsing History will now also work for the Achievements tab
@@ -36,7 +42,7 @@ All notable changes to this project will be documented in this file.
 - Summary category is now part of the Adjustable Categories group and can be shown or hidden (dev note: Game Menu -> Options -> AddOns -> Krowi's Achievement Filter -> Layout -> Adjustable Categories -> Summary)
 
 ### Fixed
-- Several bugs in preperation for The War Within (Beta) changes
+- Several bugs in preparation for The War Within (Beta) changes
 
 ### Changed
 - Draconically Superior and Draconically Epic are now temporarily obtainable
@@ -44,8 +50,8 @@ All notable changes to this project will be documented in this file.
 - Trading Post: Dragonflight moved from the Cross-Expansion Character category to the Promotions
 - Renamed category The Temple of Atal'hakkar to Sunken Temple
 - Renamed The Stockade to Stormwind Stockades
-- Updated the Filter in the Achievement Window to use the new DropDown system (dev note: will most likly cause errors with ElvUI and GW2_UI the first few days)
-- Data clean up after the migration to the new data structure last year (dev note: a new expansion is the best moment to do this especially with all the changes Blizzard made to achievements) (dev note 2: should result in 50-63% less duplicate data and potentially memory usage)
+- Updated the Filter in the Achievement Window to use the new DropDown system (dev note: will most likely cause errors with ElvUI and GW2_UI the first few days)
+- Data clean up after the migration to the new data structure last year (dev note: a new expansion is the best moment to do this, especially with all the changes Blizzard made to achievements) (dev note 2: should result in 50-63% less duplicate data and potentially memory usage)
 - Cleaned up Event Reminders naming and should now be more consistent
 - Adjustable Categories rework for better maintainability
 

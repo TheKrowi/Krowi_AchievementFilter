@@ -14,18 +14,18 @@ function section:CheckAdd(achievement)
 end
 
 function section:Add(menu, achievement)
-	local childMenu = addon.Objects.MenuItem:New(addon.L["Go to"]);
+	local childMenu = addon.MenuUtil:CreateButton(menu, addon.L["Go to"]);
 	local addSeparator = nil;
 
 	for _, sect in next, self.Sections do
 		if sect:CheckAdd(achievement) then
 			if addSeparator then
-				childMenu:AddSeparator();
+				addon.MenuUtil:CreateDivider(childMenu);
 			end
 			sect:Add(childMenu, achievement);
 			addSeparator = true;
 		end
 	end
 
-	menu:Add(childMenu);
+    addon.MenuUtil:AddChildMenu(menu, childMenu);
 end

@@ -1,4 +1,5 @@
 <Ui>
     <Script file="API.lua" />
     <Script file="TooltipDataApi.lua" />
+    <Script file="PetBattleLinkDataApi.lua" />
 </Ui>

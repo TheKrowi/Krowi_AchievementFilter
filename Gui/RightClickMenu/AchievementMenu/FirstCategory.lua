@@ -8,6 +8,6 @@ function section:CheckAdd()
 end
 
 function section:Add(menu, achievement)
-	menu:AddTitle(achievement.Category:GetPath());
+	addon.MenuUtil:CreateTitle(menu, achievement.Category:GetPath());
 	addon.Gui.RightClickMenu.AchievementMenu:AddGoToAchievementLine(menu, achievement.Id);
 end

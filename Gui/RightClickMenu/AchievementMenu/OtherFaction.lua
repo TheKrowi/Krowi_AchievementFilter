@@ -13,6 +13,6 @@ function section:Add(menu, achievement)
 	elseif addon.Faction.IsHorde then
 		faction = addon.L["Alliance"];
 	end
-	menu:AddTitle(addon.L["Other faction"] .. " (" .. faction .. ")");
+	addon.MenuUtil:CreateTitle(menu, addon.L["Other faction"] .. " (" .. faction .. ")");
 	addon.Gui.RightClickMenu.AchievementMenu:AddGoToAchievementLine(menu, achievement.OtherFactionAchievementId);
 end

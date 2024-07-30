@@ -8,7 +8,7 @@ category.__index = category;
 function category:New(id, name, canMerge)
     local instance = setmetatable({}, category);
 	instance.Id = id or -1;
-    instance.Name = name or "Unknown";
+    instance.Name = name or addon.L["Unknown"];
     instance.CanMerge = canMerge;
     instance.Level = 0;
     instance.NotHidden = true;

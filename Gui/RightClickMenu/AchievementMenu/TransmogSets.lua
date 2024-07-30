@@ -7,14 +7,15 @@ function section:CheckAdd(achievement)
 end
 
 function section:Add(menu, achievement)
-	local transmogSets = addon.Objects.MenuItem:New(addon.L["Transmog Sets"]);
+	local transmogSets = addon.MenuUtil:CreateButton(menu, addon.L["Transmog Sets"]);
 
 	local tSets = addon.GetUsableSets(achievement.TransmogSets);
 	for _, set in next, tSets do
 		local setInfo = C_TransmogSets.GetSetInfo(set.Id);
-		transmogSets:AddFull({ 
-			Text = setInfo.name .. " (" .. setInfo.description .. ")",
-			Func = function()
+		addon.MenuUtil:CreateButtonAndAdd(
+			transmogSets,
+			setInfo.name .. " (" .. setInfo.description .. ")",
+			function()
 				if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then
 					C_AddOns.LoadAddOn("Blizzard_Collections");
 				end
@@ -23,8 +24,8 @@ function section:Add(menu, achievement)
 				WardrobeCollectionFrame:GoToSet(set.Id);
 				menu:Close();
 			end
-		});
+		);
 	end
 
-	menu:Add(transmogSets);
+    addon.MenuUtil:AddChildMenu(menu, transmogSets);
 end

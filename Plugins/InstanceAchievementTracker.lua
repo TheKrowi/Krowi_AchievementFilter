@@ -1,4 +1,3 @@
--- [[ Namespaces ]] --
 local _, addon = ...;
 local plugins = addon.Plugins;
 plugins.InstanceAchievementTracker = {};
@@ -39,9 +38,13 @@ function iat:AddRightClickMenuItems(rightClickMenu, achievement)
     if self.IsLoaded()
     and addon.Options.db.profile.Plugins.InstanceAchievementTracker.AddToRightClickMenu
     and IAT_HasAchievement(achievement.Id) then
-		rightClickMenu:AddFull({Text = addon.L["IAT Tactics"], Func = function()
-            IAT_DisplayAchievement(achievement.Id);
-        end});
+        addon.MenuUtil:CreateButtonAndAdd(
+            rightClickMenu,
+		    addon.L["IAT Tactics"],
+            function()
+                IAT_DisplayAchievement(achievement.Id);
+            end
+        );
 	end
 end
 

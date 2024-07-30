@@ -37,7 +37,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-24 00-14-50 ]] --
+-- [[ Exported at 2024-07-29 22-05-56 ]] --
 tasks = {
     {A, 1347, 15251}, -- The Jailer's Gauntlet: Layer 1
     {A, 1347, 15079}, -- "Many, Many Things"
@@ -2517,7 +2517,7 @@ tasks = {
     {C, 1534, 1453},
     {N, 1453, a.L["Kalimdor Cup"]}, -- Kalimdor Cup
     {C, 884, 1534},
-    {N, 1534, a.L["Dragonriding Races"]}, -- Dragonriding Races
+    {N, 1534, a.L["Skyriding Races"]}, -- Skyriding Races
     {A, 1030, 2336}, -- Insane in the Membrane
     {C, 925, 1030},
     {N, 1030, a.GetCategoryInfoTitle(201), true}, -- Reputation

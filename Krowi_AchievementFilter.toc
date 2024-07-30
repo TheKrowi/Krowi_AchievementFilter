@@ -2,7 +2,7 @@
 ## Title: Krowi's |cFF1D92C2Achievement Filter|r
 ## X-Prefix: KrowiAF
 ## X-Acronym: KAF
-## Version: 74.4
+## Version: 75.0
 ## Author: Krowi-Frostmane EU
 ## SavedVariables: KrowiAF_DebugTable, KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters, KrowiAF_SearchOptions, KrowiAF_Achievements
 ## Notes: Filters your achievements.
@@ -45,6 +45,8 @@ Objects\Files.xml
 
 Data\Files.xml
 Data\Retail\Files.xml
+Data\TooltipData\00_Mainline_Files.xml
+Data\PetBattleLinkData\00_Mainline_Files.xml
 
 Filters.lua
 SearchOptions.lua
