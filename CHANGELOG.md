@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 74.5 - 2024-07-30
+## 75.0 - 2024-07-30
 ### Changed
 - Updated the Right Click Menu of the Achievements to use the new DropDown system
 - Pet Battle Link Data rework
