@@ -9,3 +9,7 @@
 <li>Fixed an issue during loading</li>
 <li>Fixed an issue with the Right Click Menu of the Achievements</li>
 </ul>
+<p><h3>Added (75.2)</h3></p>
+<ul>
+<li>Radiant Echoes are now available as Event Reminders</li>
+</ul>

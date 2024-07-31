@@ -7,7 +7,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-30 18-21-26 ]] --
+-- [[ Exported at 2024-07-31 20-11-34 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -256,6 +256,7 @@ L["Down"] = true
 L["Dragon Glyphs"] = true
 L["Dragon Racing"] = true
 L["Dragonbane Keep"] = true
+L["Dragonblight"] = true
 L["Dragonflight (pre-patch)"] = true
 L["Dragonriding"] = true
 L["Dragonriding Races"] = true
@@ -265,6 +266,7 @@ L["Drops"] = true
 L["Drustvar"] = true
 L["Dueler's Guild"] = true
 L["during"] = true
+L["Dustwallow Marsh"] = true
 L["Earned By"] = true
 L["Earned By Desc"] = [=[Header
 |T:1:8|t- {achievementPointsEarnedBy}: Display {achievementPointsEarnedBy_wc} your current character and/or {achievementPointsEarnedBy_wc} your account ({achievementPointsEarnedByFormat}) (1).
@@ -705,6 +707,7 @@ L["Plugins"] = true
 L["Plunderstorm"] = true
 L["Points"] = true
 L["Pop ups"] = true
+L["Pre-Patch Event"] = true
 L["Presets"] = true
 L["Primal Storms"] = true
 L["Primalist Tomorrow"] = true
@@ -729,6 +732,7 @@ Options (1):
 |T:1:8|t- {numSearchPreviews} ({numSearchPreviewsNumber})
 
 (1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName}]=]
+L["Radiant Echoes"] = true
 L["Rage of the Firelands"] = true
 L["Rated"] = true
 L["Ravine River Run"] = true
@@ -809,6 +813,7 @@ L["Search options"] = true
 L["Search preview"] = true
 L["Search Results"] = true
 L["Search Rewards"] = true
+L["Searing Gorge"] = true
 L["Season"] = true
 L["Second column threshold"] = true
 L["Second column threshold Desc"] = "Achievements with more objectives than this number will be visible in two columns instead of one."

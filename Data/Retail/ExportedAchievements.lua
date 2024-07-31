@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-23 17-22-38 ]] --
+-- [[ Exported at 2024-07-31 19-56-37 ]] --
 tasks = {
     {N, 40860, 210}, -- A Star of Dorn
     {N, 40859, 210}, -- We're Here All Night

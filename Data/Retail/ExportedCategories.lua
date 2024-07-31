@@ -37,7 +37,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-29 22-05-56 ]] --
+-- [[ Exported at 2024-07-31 19-56-29 ]] --
 tasks = {
     {A, 1347, 15251}, -- The Jailer's Gauntlet: Layer 1
     {A, 1347, 15079}, -- "Many, Many Things"
@@ -2011,6 +2011,9 @@ tasks = {
     {A, 1672, 40222}, -- Echoes of Danger
     {C, 1671, 1672},
     {N, 1672, a.L["Worldsoul Memory"]}, -- Worldsoul Memory
+    {A, 1677, 40796}, -- This Takes Me Back
+    {C, 1671, 1677},
+    {N, 1677, a.L["Pre-Patch Event"]}, -- Pre-Patch Event
     {C, 884, 1671},
     {N, 1671, a.GetCategoryInfoTitle(15520)}, -- The War Within
     {A, 1576, 19572}, -- Mythic: Awakened Flames

@@ -27,7 +27,7 @@ local a = addon; -- Saves some characters and file size as we use this a lot in 
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-21 13-47-15 ]] --
+-- [[ Exported at 2024-07-31 20-00-37 ]] --
 tasks = {
     {N, {5175}, 948, 1408998, a.L["Legion Assaults"] .. ": " .. a.L["Azsuna"], 619},
     {N, {5177}, 948, 1409000, a.L["Legion Assaults"] .. ": " .. a.L["Highmountain"], 619},
@@ -105,6 +105,9 @@ tasks = {
     {N, {7554, 7605}, 1537, 1394953, a.L["Dreamsurges"] .. ": " .. a.L["Azure Span: Next"], 1978},
     {N, {7555, 7604}, 1537, 1394953, a.L["Dreamsurges"] .. ": " .. a.L["Ohn'ahran Plains: Next"], 1978},
     {N, {7556, 7603}, 1537, 1394953, a.L["Dreamsurges"] .. ": " .. a.L["Waking Shores: Next"], 1978},
+    {N, {7615}, 1677, 3015740, a.L["Radiant Echoes"] .. ": " .. a.L["Dragonblight"], 947},
+    {N, {7637}, 1677, 3015740, a.L["Radiant Echoes"] .. ": " .. a.L["Searing Gorge"], 947},
+    {N, {7818}, 1677, 3015740, a.L["Radiant Echoes"] .. ": " .. a.L["Dustwallow Marsh"], 947},
 };
 
 function exportedWorldEvents.InjectDynamicOptions()
@@ -128,6 +131,10 @@ function exportedWorldEvents.InjectDynamicOptions()
     KrowiAF_RegisterEventOptions("World", {7104}, a.L["Active"], a.L["Siege on Dragonbane Keep"], 1, 9);
     KrowiAF_RegisterEventOptions("World", {7267}, a.L["Gathering"], a.L["Siege on Dragonbane Keep"], 1, 9);
     KrowiAF_RegisterDeSelectAllEventOptions("World", {7104, 7267}, a.L["Siege on Dragonbane Keep"], 9);
+    KrowiAF_RegisterEventOptions("World", {7615}, a.L["Dragonblight"], a.L["Radiant Echoes"], 1, 10);
+    KrowiAF_RegisterEventOptions("World", {7637}, a.L["Searing Gorge"], a.L["Radiant Echoes"], 1, 10);
+    KrowiAF_RegisterEventOptions("World", {7818}, a.L["Dustwallow Marsh"], a.L["Radiant Echoes"], 1, 10);
+    KrowiAF_RegisterDeSelectAllEventOptions("World", {7615, 7637, 7818}, a.L["Radiant Echoes"], 10);
     KrowiAF_RegisterEventOptions("World", {6486}, a.L["N'Zoth (Uldum)"], a.L["Defending Azeroth Assaults"], 2, 7);
     KrowiAF_RegisterEventOptions("World", {6487}, a.L["Amathet"], a.L["Defending Azeroth Assaults"], 2, 7);
     KrowiAF_RegisterEventOptions("World", {6488}, a.L["Aqir"], a.L["Defending Azeroth Assaults"], 2, 7);

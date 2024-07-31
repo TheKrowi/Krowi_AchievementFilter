@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 75.2 - 2024-07-31
+### Added
+- Radiant Echoes are now available as Event Reminders
+
 ## 75.1 - 2024-07-30
 ### Cata Classic
 - Fixed an issue during loading
