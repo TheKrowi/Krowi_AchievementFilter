@@ -12,3 +12,6 @@
 
 ### Changed (75.3)
 - Updated all localization
+
+### Fixed (75.4)
+- Turned off errors again when translations are missing

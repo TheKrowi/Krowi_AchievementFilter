@@ -17,3 +17,7 @@
 <ul>
 <li>Updated all localization</li>
 </ul>
+<p><h3>Fixed (75.4)</h3></p>
+<ul>
+<li>Turned off errors again when translations are missing</li>
+</ul>

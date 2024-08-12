@@ -20,3 +20,8 @@
 [LIST]
 [*]Updated all localization
 [/LIST]
+
+[B]Fixed (75.4)[/B]
+[LIST]
+[*]Turned off errors again when translations are missing
+[/LIST]
