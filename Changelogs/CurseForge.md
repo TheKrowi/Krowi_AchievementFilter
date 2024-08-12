@@ -13,3 +13,7 @@
 <ul>
 <li>Radiant Echoes are now available as Event Reminders</li>
 </ul>
+<p><h3>Changed (75.3)</h3></p>
+<ul>
+<li>Updated all localization</li>
+</ul>

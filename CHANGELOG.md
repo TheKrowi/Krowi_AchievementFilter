@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 75.3 - 2024-08-12
+### Changed
+- Updated all localization
+
 ## 75.2 - 2024-07-31
 ### Added
 - Radiant Echoes are now available as Event Reminders

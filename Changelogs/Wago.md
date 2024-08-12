@@ -9,3 +9,6 @@
 
 ### Added (75.2)
 - Radiant Echoes are now available as Event Reminders
+
+### Changed (75.3)
+- Updated all localization

@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-31 20-10-14 ]] --
+-- [[ Exported at 2024-08-12 15-05-51 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -87,6 +87,7 @@ L["Author"] = "Autor"
 L["Auto number of summary achievements"] = "Automatisierte Anzeige der Erfolgsansicht (Anzahl der Erfolge)"
 L["Auto number of summary achievements Desc"] = "Passt die Anzahl der angezeigten Erfolge automatisch an, so dass keine Scroll-Leiste angezeigt wird."
 L["Awakened Raids"] = "Erweckte Schlachtzüge"
+L["Awakening the Machine"] = "Erweckung der Maschine"
 L["Azerothian Archives"] = "Azerothischen Archive"
 L["Azsuna"] = true
 L["Azure Span"] = "Das Azurblaue Gebirge"
@@ -201,6 +202,7 @@ L["Current Zone"] = "Aktuelle Zone"
 L["CurseForge"] = true
 L["CurseForge Desc"] = "Öffnet ein Popup-Fenster mit einem Link zur Seite {addonName} {curseForge}."
 L["Custom"] = "Benutzerdefiniert"
+L["Dark Heart"] = "Dunkles Herz"
 L["Darkmoon Faire"] = "Dunkelmond-Jahrmarkt"
 L["Data Manager"] = "Charakterübersicht"
 L["Date and Time format"] = "Datum und Zeit (Format)"
@@ -240,6 +242,7 @@ L["Day of the Dead"] = "Tag der Toten"
 L["Debug"] = true
 L["Debug Desc"] = "Jede der unten aufgeführten Optionen ist für Debugging- und Testzwecke verfügbar. Verwendung auf eigene Gefahr!"
 L["Default value"] = "Vorgabewert (Standard)"
+L["Defending Azeroth Assaults"] = "Verteidigung Azeroths"
 L["Defending the Ruby Sanctum"] = "Sturm auf das Rubinsanktum"
 L["Deselect All"] = "Alle abwählen"
 L["Diablo"] = true
@@ -253,6 +256,7 @@ L["Down"] = "Runter"
 L["Dragon Glyphs"] = "Drachenglyphen"
 L["Dragon Racing"] = "Drachenrennen"
 L["Dragonbane Keep"] = "Drachenfluchfestung"
+L["Dragonblight"] = "Drachenöde"
 L["Dragonflight (pre-patch)"] = true
 L["Dragonriding"] = "Drachenreiten"
 L["Dragonriding Races"] = "Drachenreiten-Rennen"
@@ -262,6 +266,7 @@ L["Drops"] = "Beute"
 L["Drustvar"] = true
 L["Dueler's Guild"] = "Duellantengilde"
 L["during"] = "während"
+L["Dustwallow Marsh"] = "Marschen von Dustwallow"
 L["Earned By"] = "Erzielt durch"
 L["Earned By Desc"] = [=[Header
 |T:1:8|t- {achievementPointsEarnedBy}: Zeigt {achievementPointsEarnedBy_wc} Ihren aktuellen Charakter und/oder {achievementPointsEarnedBy_wc} Ihren Account an ({achievementPointsEarnedByFormat}) (1).
@@ -697,6 +702,7 @@ L["Plugins"] = true
 L["Plunderstorm"] = true
 L["Points"] = "Punkte"
 L["Pop ups"] = "Popup-Fenster"
+L["Pre-Patch Event"] = true
 L["Presets"] = "Voreinstellungen"
 L["Primal Storms"] = "Urstürme"
 L["Primalist Tomorrow"] = "Urzeitliche Primalisten"
@@ -721,6 +727,7 @@ Optionen (1):
 |T:1:8|t- {numSearchPreviews} ({numSearchPreviewsNumber})
 
 (1) Die Optionen findest du unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName}.]=]
+L["Radiant Echoes"] = "Strahlende Echos"
 L["Rage of the Firelands"] = "Sturm auf die Feuerlande"
 L["Rated"] = "Gewertet"
 L["Ravine River Run"] = "Schluchtflusslauf"
@@ -797,6 +804,7 @@ L["Search options"] = "Such-Optionen"
 L["Search preview"] = "Such-Vorschau"
 L["Search Results"] = "Suchergebnisse"
 L["Search Rewards"] = "Suche: Belohnungen"
+L["Searing Gorge"] = "Sengende Schlucht"
 L["Season"] = "Saison"
 L["Second column threshold"] = "Zweite Spalte: Schwellenwert"
 L["Second column threshold Desc"] = "Erfolge mit mehr Teilaufgaben als dieser Zahl werden in zwei Spalten statt in einer angezeigt."
@@ -903,7 +911,7 @@ L["Siege on Dragonbane Keep: Active"] = "Belagerung der Drachenfluchfestung: Akt
 L["Siege on Dragonbane Keep: Gathering"] = "Belagerung der Drachenfluchfestung: Sammeln"
 L["Skitterer Xi'a"] = "Huscher Xi'a"
 L["Skoldus Hall"] = "Skoldushalle"
-L["Skyriding Races"] = "Himmelsreiten-Rennen"
+L["Skyriding Races"] = "Himmelsreiten"
 L["Slagmire"] = "Schlackensumpf"
 L["Snowstorms"] = "Schneestürme"
 L["Soon"] = "Bald"
@@ -916,6 +924,7 @@ L["Spacing Desc"] = "Der Abstand, der zum Standardabstand zwischen den Tabs addi
 L["Special Categories"] = "Spezial Kategorie"
 L["Special thanks"] = "Besonderer Dank"
 L["Specials"] = "Spezial"
+L["Spreading the Light"] = "Schlüsselflammen"
 L["Stables"] = "Ställe"
 L["StarCraft II"] = "StarCraft 2"
 L["Start Time"] = "Beginn (Zeit)"
@@ -1043,6 +1052,7 @@ L["World Map Button Desc"] = [=[Hover:
 
 Click:
 |T:1:8|t- Öffnet das Achievement-Fenster für die Kategorie {selectedZone}. ]=]
+L["Worldsoul Memory"] = "Weltenseelenerinnerung"
 L["WoW Remix: Mists of Pandaria"] = true
 L["Wowhead"] = true
 L["Wowhead Link"] = true
