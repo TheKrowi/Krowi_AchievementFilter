@@ -15,3 +15,6 @@
 
 ### Fixed (75.4)
 - Turned off errors again when translations are missing
+
+### Fixed (75.5)
+- Library bug

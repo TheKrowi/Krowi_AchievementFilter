@@ -21,3 +21,7 @@
 <ul>
 <li>Turned off errors again when translations are missing</li>
 </ul>
+<p><h3>Fixed (75.5)</h3></p>
+<ul>
+<li>Library bug</li>
+</ul>

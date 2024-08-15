@@ -25,3 +25,8 @@
 [LIST]
 [*]Turned off errors again when translations are missing
 [/LIST]
+
+[B]Fixed (75.5)[/B]
+[LIST]
+[*]Library bug
+[/LIST]

@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 75.5 - 2024-08-15
+### Fixed
+- Library bug
+
 ## 75.4 - 2024-08-12
 ### Fixed
 - Turned off errors again when translations are missing
