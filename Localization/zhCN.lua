@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-08-12 15-07-39 ]] --
+-- [[ Exported at 2024-08-21 11-47-00 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -881,10 +881,6 @@ L["Show Other faction"] = "显示其他阵营"
 L["Show Other faction Desc"] = [=[显示/隐藏其他阵营
 
 勾选后在鼠标提示中显示其他阵营成就，这将更清楚地表明为何只玩联盟的玩家，新建的部落角色会有一些成就]=]
-L["Show Part of a Chain"] = "显示{partOfAChain}"
-L["Show Part of a Chain Desc"] = [=[显示/隐藏{partOfAChain}
-
-勾选后在鼠标提示中显示所在系列成就]=]
 L["Show placeholders"] = "显示占位符"
 L["Show placeholders Desc"] = "显示一个事件占位符帮助反馈修改设置后的视觉效果，右键点击可关闭"
 L["Show placeholders filter"] = "显示占位符过滤器"

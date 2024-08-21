@@ -52,11 +52,11 @@ local function PostLoadOnPlayerLogin(self, start)
 
     data.SpecialCategories:Load();
 
-    self.LoadWatchedAchievements();
-    self.LoadTrackingAchievements();
-    self.LoadExcludedAchievements();
-
     local function PostBuildCache()
+        self.LoadWatchedAchievements();
+        self.LoadTrackingAchievements();
+        self.LoadExcludedAchievements();
+
         if AchievementFrame and AchievementFrame:IsShown() then
             addon.Gui:RefreshViewAfterPlayerLogin();
         end

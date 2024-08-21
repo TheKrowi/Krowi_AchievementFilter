@@ -37,7 +37,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-31 19-56-29 ]] --
+-- [[ Exported at 2024-08-21 11-26-27 ]] --
 tasks = {
     {A, 1347, 15251}, -- The Jailer's Gauntlet: Layer 1
     {A, 1347, 15079}, -- "Many, Many Things"
@@ -121,7 +121,7 @@ tasks = {
     {A, 1346, 8820}, -- WoW's 10th Anniversary
     {C, 971, 1346},
     {N, 1346, a.L["Ta's Pet Collection"]}, -- Ta's Pet Collection
-    {A, 1641, 20589}, -- [PH] Hero: The War Within Season 1
+    {A, 1641, 20589}, -- Tempered Hero: The War Within Season 1
     {A, 1641, 20526}, -- The War Within Keystone Hero: Season One
     {A, 1641, 20525}, -- The War Within Keystone Master: Season One
     {A, 1641, 20524}, -- The War Within Keystone Conqueror: Season One
@@ -1993,11 +1993,6 @@ tasks = {
     {C, 1671, 1673},
     {N, 1673, a.L["Spreading the Light"]}, -- Spreading the Light
     {A, 1674, 40662}, -- "It's Not Much, But It's Honest Work"
-    {A, 1674, 40589}, -- Awakening The Machine: Wave 50
-    {A, 1674, 40588}, -- Awakening The Machine: Wave 40
-    {A, 1674, 40587}, -- Awakening The Machine: Wave 30
-    {A, 1674, 40586}, -- Awakening The Machine: Wave 20
-    {A, 1674, 40509}, -- Awakening The Machine: Wave 10
     {C, 1671, 1674},
     {N, 1674, a.L["Awakening the Machine"]}, -- Awakening the Machine
     {A, 1676, 40860}, -- A Star of Dorn
@@ -2688,6 +2683,7 @@ tasks = {
     {A, 915, 980}, -- The Horseman's Reins
     {A, 915, 1656}, -- Hallowed Be Thy Name
     {A, 915, 10365}, -- A Frightening Friend
+    {A, 915, 40862}, -- Tricks and Treats of Khaz Algar
     {A, 915, 18360}, -- Tricks and Treats of the Dragon Isles
     {A, 915, 7602}, -- Tricks and Treats of Pandaria
     {A, 915, 7601}, -- Tricks and Treats of Pandaria
@@ -3055,7 +3051,7 @@ tasks = {
     {N, 1632, a.GetInstanceInfoName(1268)}, -- The Rookery
     {A, 1601, 40723}, -- Web-Wrapped in the Finest Silks
     {A, 1601, 40660}, -- The War Within Season 1: Spelunker Supreme
-    {A, 1601, 20589}, -- [PH] Hero: The War Within Season 1
+    {A, 1601, 20589}, -- Tempered Hero: The War Within Season 1
     {A, 1601, 20526}, -- The War Within Keystone Hero: Season One
     {A, 1601, 20525}, -- The War Within Keystone Master: Season One
     {A, 1601, 20524}, -- The War Within Keystone Conqueror: Season One
@@ -3066,6 +3062,12 @@ tasks = {
     {A, 1601, 40141}, -- Algari Dungeon Tank
     {C, 1598, 1601},
     {N, 1601, a.GetCategoryInfoTitle(15272)}, -- Dungeons
+    {A, 1675, 40433}, -- Let Me Solo Him
+    {A, 1675, 40431}, -- Hunting the Hunter
+    {A, 1675, 40103}, -- Nemesis
+    {A, 1675, 40732}, -- Heavy-Handed
+    {C, 1600, 1675},
+    {N, 1675, a.GetLFGActivityFullName(1298)}, -- Zekvir's Lair
     {A, 1669, 40814}, -- The Spiral Weave Discoveries
     {A, 1669, 40536}, -- The Spiral Weave Stories
     {C, 1600, 1669},
@@ -3114,17 +3116,15 @@ tasks = {
     {A, 1658, 40525}, -- Fungal Folly Stories
     {C, 1600, 1658},
     {N, 1658, a.GetLFGActivityFullName(1295)}, -- Fungal Folly
+    {A, 1600, 40635}, -- Branntastic
     {A, 1600, 40523}, -- On Brand
     {A, 1600, 40820}, -- Raisin' Brann
     {A, 1600, 40538}, -- Brann Development
     {A, 1600, 40458}, -- Stranger Delves
     {A, 1600, 40789}, -- Flying in Style
     {A, 1600, 40763}, -- "I'm not a Thief, I'm a Treasure Hunter"
-    {A, 1600, 40732}, -- Heavy-Handed
     {A, 1600, 40524}, -- Good Deed Delver
     {A, 1600, 40459}, -- I've Got a Flying Machine!
-    {A, 1600, 40433}, -- Hunting the Hunter (Solo)
-    {A, 1600, 40431}, -- Hunting the Hunter
     {A, 1600, 40098}, -- Immortal Spelunker
     {A, 1600, 40100}, -- Undying Caver
     {A, 1600, 40461}, -- Buddy System VI
@@ -3138,7 +3138,6 @@ tasks = {
     {A, 1600, 40447}, -- Delver of the Depths II
     {A, 1600, 40437}, -- Delver of the Depths
     {A, 1600, 40438}, -- Glory of the Delver
-    {A, 1600, 40103}, -- Nemesis
     {A, 1600, 40454}, -- Daystormer
     {A, 1600, 40453}, -- Spider Senses
     {A, 1600, 40452}, -- Just Keep Swimming
@@ -3160,7 +3159,11 @@ tasks = {
     {A, 1600, 40631}, -- War Within Delves: Tier 1
     {C, 1598, 1600},
     {N, 1600, a.GetCategoryInfoTitle(15522)}, -- Delves
+    {A, 1670, 40864}, -- Plentiful Perplexing Puzzles
+    {A, 1670, 40863}, -- Perplexing Puzzle
     {A, 1670, 40817}, -- A Delver's Bounty
+    {A, 1670, 40885}, -- The Key to Madness
+    {A, 1670, 40882}, -- Copious Coffers
     {A, 1670, 40788}, -- I Got the Keys
     {A, 1670, 40819}, -- Ready to Turn
     {A, 1670, 40463}, -- Delve Deepest
@@ -3169,6 +3172,10 @@ tasks = {
     {A, 1670, 40436}, -- You're Getting a Delve!
     {C, 1598, 1670},
     {N, 1670, a.L["Cross-Expansion - Delves"]}, -- Cross-Expansion - Delves
+    {A, 1630, 40876}, -- Vox Arachni
+    {A, 1630, 40875}, -- True Strength
+    {A, 1630, 40874}, -- The Grand Tapestry
+    {A, 1630, 40907}, -- We Rise Anew
     {A, 1630, 40838}, -- The Severed Threads
     {C, 1614, 1630},
     {N, 1630, a.GetCategoryInfoTitle(201), true}, -- Reputation
@@ -3196,6 +3203,7 @@ tasks = {
     {N, 1618, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 1599, 1614},
     {N, 1614, a.GetMapName(2255)}, -- Azj-Kahet
+    {A, 1627, 40906}, -- The Flame Burns Within
     {A, 1627, 40845}, -- Hallowfall Arathi
     {C, 1613, 1627},
     {N, 1627, a.GetCategoryInfoTitle(201), true}, -- Reputation
@@ -3221,6 +3229,7 @@ tasks = {
     {N, 1617, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 1599, 1613},
     {N, 1613, a.GetMapName(2215)}, -- Hallowfall
+    {A, 1624, 40905}, -- "From Many, One"
     {A, 1624, 40836}, -- Assembly of the Deeps
     {C, 1612, 1624},
     {N, 1624, a.GetCategoryInfoTitle(201), true}, -- Reputation
@@ -3243,6 +3252,7 @@ tasks = {
     {N, 1616, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 1599, 1612},
     {N, 1612, a.GetMapName(2214)}, -- The Ringing Deeps
+    {A, 1621, 40904}, -- Cornerstone of Dornogal
     {A, 1621, 40856}, -- Council of Dornogal
     {C, 1611, 1621},
     {N, 1621, a.GetCategoryInfoTitle(201), true}, -- Reputation

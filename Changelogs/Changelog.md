@@ -18,3 +18,11 @@
 
 ### Fixed (75.5)
 - Library bug
+
+### Added (75.6)
+- Achievements added in 11.0.2
+
+### Fixed (75.6)
+- Tracking achievements should once again show as a category when it's enabled
+- Temporarily shown achievements icon is not update and no longer uses the flight path icon
+- Achievements without a category should no longer cause an error

@@ -39,8 +39,21 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-31 19-56-37 ]] --
+-- [[ Exported at 2024-08-21 11-24-33 ]] --
 tasks = {
+    {N, 40907, 211}, -- We Rise Anew
+    {N, 40906, 211}, -- The Flame Burns Within
+    {N, 40905, 211}, -- "From Many, One"
+    {N, 40904, 211}, -- Cornerstone of Dornogal
+    {N, 40885, 211}, -- The Key to Madness
+    {N, 40882, 211}, -- Copious Coffers
+    {N, 40876, 211}, -- Vox Arachni
+    {N, 40875, 211}, -- True Strength
+    {N, 40874, 211}, -- The Grand Tapestry
+    {N, 40864, 211}, -- Plentiful Perplexing Puzzles
+    {N, 40863, 211}, -- Perplexing Puzzle
+    {O, 40862, "From", "Event", "324", "Until", "Event", "324"},
+    {N, 40862, 211}, -- Tricks and Treats of Khaz Algar
     {N, 40860, 210}, -- A Star of Dorn
     {N, 40859, 210}, -- We're Here All Night
     {N, 40856, 210}, -- Council of Dornogal
@@ -106,6 +119,7 @@ tasks = {
     {N, 40642, 210}, -- Mythic: The Rookery
     {N, 40637, 210}, -- Heroic: The Rookery
     {N, 40636, 210}, -- Sojourner of Azj-Kahet
+    {N, 40635, 210}, -- Branntastic
     {N, 40634, 210}, -- You Can't Hang With Us
     {N, 40632, 210}, -- No Harm Ever Came From Reading A Book
     {N, 40631, 210}, -- War Within Delves: Tier 1
@@ -131,10 +145,6 @@ tasks = {
     {N, 40592, 210}, -- Heroic: Priory of the Sacred Flame
     {N, 40591, 210}, -- Khaz Algar Diplomat
     {N, 40590, 210}, -- Priory of the Sacred Flame
-    {N, 40589, 210}, -- Awakening The Machine: Wave 50
-    {N, 40588, 210}, -- Awakening The Machine: Wave 40
-    {N, 40587, 210}, -- Awakening The Machine: Wave 30
-    {N, 40586, 210}, -- Awakening The Machine: Wave 20
     {N, 40542, 210}, -- Smelling History
     {N, 40539, 210}, -- The Derby Dash
     {N, 40538, 210}, -- Brann Development
@@ -162,7 +172,6 @@ tasks = {
     {N, 40515, 210}, -- War Within Delves: Tier 4
     {N, 40514, 210}, -- War Within Delves: Tier 3
     {N, 40512, 210}, -- War Within Delves: Tier 2
-    {N, 40509, 210}, -- Awakening The Machine: Wave 10
     {N, 40507, 210}, -- Hanging Tight
     {N, 40506, 210}, -- Leave No Treasure Unfound
     {N, 40503, 210}, -- 90 Algari Anglerthread
@@ -220,7 +229,7 @@ tasks = {
     {N, 40435, 210}, -- Adventurer of the Isle of Dorn
     {N, 40434, 210}, -- Treasures of the Isle of Dorn
     {O, 40433, "From", "Season", 13, "Before", "Season", 14},
-    {N, 40433, 210}, -- Hunting the Hunter (Solo)
+    {N, 40433, 210}, -- Let Me Solo Him
     {O, 40431, "From", "Season", 13, "Before", "Season", 14},
     {N, 40431, 210}, -- Hunting the Hunter
     {N, 40430, 210}, -- Khaz Algar Flight Master
@@ -408,7 +417,7 @@ tasks = {
     {O, 20593, "From", "Event", "1514", "Until", "Event", "1514"},
     {N, 20593, 208}, -- Time Trial
     {O, 20589, "From", "Mythic+ Season", 13, "Until", "Mythic+ Season", 13},
-    {N, 20589, 210}, -- [PH] Hero: The War Within Season 1
+    {N, 20589, 210}, -- Tempered Hero: The War Within Season 1
     {O, 20588, "From", "Mythic+ Season", 13, "Until", "Mythic+ Season", 13},
     {N, 20588, 210}, -- Keystone Hero: Grim Batol
     {O, 20587, "From", "Mythic+ Season", 13, "Until", "Mythic+ Season", 13},
@@ -10656,4 +10665,4 @@ tasks = {
     {N, 7, 86}, -- Level 20
     {N, 6, 86}, -- Level 10
 };
-addon.Data.HighestAchievementId = 40860;
+addon.Data.HighestAchievementId = 40907;

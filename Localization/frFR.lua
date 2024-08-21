@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-08-12 15-06-22 ]] --
+-- [[ Exported at 2024-08-21 11-46-53 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -46,6 +46,7 @@ L["Achievements width offset Desc"] = [=[Ajoute ou soustrait de la largeur à la
 Cette valeur peut être modifiée pendant que la fenêtre des Hauts faits est ouverte et que l'un des onglets ajoutés par {AddonName} est sélectionné. Cela peut avoir un impact sur le jeu.
 
 Les FPS chutent pendant l'ajustement de la valeur, mais PAS pendant l'utilisation normale de l'addon.]=]
+L["Active"] = "Actif"
 L["Active events"] = "Évènements en cours"
 L["Add addon name to world map icon"] = "Ajouter le nom de l'addon à l'icône de la carte du monde"
 L["Add addon name to world map icon Desc"] = "Ajoute '{addonName}' en bas de l'infobulle quand la souris passe sur l'icône."
@@ -60,8 +61,10 @@ L["Alt"] = true
 L["Always Show Completed"] = "Toujours afficher les hauts faits terminés"
 L["Always show realm"] = "Toujours afficher le royaume"
 L["Always show realm Desc"] = "Affiche toujours le royaume de votre personnage, que le personnage soit ou non sur le même royaume que ce personnage."
+L["Amathet"] = true
 L["Andurs"] = true
 L["Apex Canopy River Run"] = "Descente de rapides de la canopée de l'Apogée"
+L["Aqir"] = true
 L["Archive Ambit"] = "Domaine des Archives"
 L["Are you sure you want to delete character?"] = "Êtes-vous sûr de vouloir supprimer le personnage ?"
 L["Assault on Azsuna"] = "Assaut d'Azsuna"
@@ -84,7 +87,9 @@ L["Author"] = "Auteur"
 L["Auto number of summary achievements"] = "Affiche un nombre de Hauts faits automatiquement dans le résumé"
 L["Auto number of summary achievements Desc"] = "Ajuster automatiquement le nombre de Hauts faits affichées pour qu'aucune barre de défilement ne soit visible."
 L["Awakened Raids"] = "Raids Éveillés"
+L["Awakening the Machine"] = "Réveiller la Machine"
 L["Azerothian Archives"] = "Archives d'Azeroth"
+L["Azsuna"] = true
 L["Azure Span"] = "Assaut de Fyrakka : Travée d'Azur"
 L["Azure Span: Next"] = "Travée d'Azur : Prochaine"
 L["Blizzard"] = true
@@ -178,6 +183,7 @@ L["Compact Desc"] = [=[Utiliser une version plus compacte avec une seule ligne d
 L["Completion"] = "Terminé"
 L["Covenant"] = "Congrégation"
 L["Covenant Assaults"] = "Assauts de congrégations"
+L["Covenant assaults"] = "Assauts des congregations"
 L["Credits"] = "Crédits"
 L["Criteria"] = "Critères"
 L["Criteria Behaviour"] = "Comportement des critères."
@@ -189,13 +195,15 @@ L["Criteria Behaviour Desc"] = [=[Définit la façon dont un critère avec un te
 L["Criteria is Completed"] = "Le critère est terminé"
 L["Criteria is Completed Desc"] = "Afficher les critères du Haut-fait même s'il est déjà terminé."
 L["Criteria of"] = "Critère de"
-L["Cross-Expansion"] = "Cross-Extention"
+L["Cross-Expansion"] = "Contenus transversaux"
+L["Cross-Expansion - Delves"] = "Contenus transversaux - Gouffres"
 L["Ctrl"] = true
 L["Current Obtainable"] = "Actuellement disponible"
 L["Current Zone"] = "Zone actuelle"
 L["CurseForge"] = true
 L["CurseForge Desc"] = "Ouvre une fenêtre avec un lien vers la page {addonName} {curseForge}."
 L["Custom"] = "Personnalisation"
+L["Dark Heart"] = "Cœur obscur"
 L["Darkmoon Faire"] = "Foire de Sombrelune"
 L["Data Manager"] = "Gestionnaire de données"
 L["Date and Time format"] = "Format de la date et de l'heure"
@@ -235,6 +243,7 @@ L["Day of the Dead"] = "Jour des morts"
 L["Debug"] = "Débug"
 L["Debug Desc"] = "Chacune des options répertoriées ci-dessous est disponible à des fins de débogage et de test. À utiliser à vos risques et périls !"
 L["Default value"] = "Valeur par défaut"
+L["Defending Azeroth Assaults"] = "Défendre les Assauts d'Azeroth"
 L["Defending the Ruby Sanctum"] = "Défendre le Sanctum Rubis"
 L["Deselect All"] = "Tout désélectionner"
 L["Diablo"] = true
@@ -248,12 +257,17 @@ L["Down"] = "Bas"
 L["Dragon Glyphs"] = "Dracoglyphes"
 L["Dragon Racing"] = "Course à dos de dragon"
 L["Dragonbane Keep"] = "Tempête élémentaire : Fléau-des-Dragons"
+L["Dragonblight"] = "Désolation des dragons"
 L["Dragonflight (pre-patch)"] = "Dragonflight (pré-patch)"
 L["Dragonriding"] = "Vol à dos de dragon"
+L["Dragonriding Races"] = "Courses à dos de dragon"
 L["Dreamsurge"] = "Poussée onirique"
+L["Dreamsurges"] = "Poussée onirique"
 L["Drops"] = "Butins"
+L["Drustvar"] = true
 L["Dueler's Guild"] = "Guilde des duelliste"
 L["during"] = "pendant"
+L["Dustwallow Marsh"] = "Marécage d’Âprefange"
 L["Earned By"] = "Obtenu par"
 L["Earned By Desc"] = [=[Nombre de point de Hauts-faits total (En-tête de la fenêtre)
 |T:1:8|t- {achievementPointsEarnedBy} : Affiche les {achievementPointsEarnedBy_wc} votre personnage actuel et/ou les {achievementPointsEarnedBy_wc} de votre compte (actuellement : {achievementPointsEarnedByFormat}) (1).
@@ -465,8 +479,10 @@ L["Fury Incarnate"] = "Fureur incarnée"
 L["Fury of Hellfire"] = "Fureur des flammes infernales"
 L["Future Obtainable"] = "Prochainement disponible"
 L["Fyrakk Assault"] = "Assaut de Fyrakka"
+L["Fyrakk Assaults"] = "Assaut de Fyrakka"
 L["Garden Gallivant"] = "Promenade des jardins"
 L["Garrisons Update"] = "Mise à jour des fiefs"
+L["Gathering"] = "Récolte"
 L["Gifts"] = "Cadeaux"
 L["Gladiator's Sanctum"] = "Sanctum du Gladiateur"
 L["Glory"] = "Gloire"
@@ -497,6 +513,7 @@ L["Hide Date Completed"] = "Masquer la date de réalisation"
 L["Hide Date Completed Desc"] = "Masquer la date à laquelle le haut fait a été terminé"
 L["Hide Not Earned By if current character earned the achievement"] = "Masquer {notEarnedBy} si le personnage actuel a obtenu le Haut fait"
 L["Hide Not Earned By if current character earned the achievement Desc"] = "Masquer la section {notEarnedBy} si le personnage actuel a obtenu le Haut fait. La section {earnedBy} sera toujours affichée normalement."
+L["Highmountain"] = "Haut-Roc"
 L["Holidays"] = "Fêtes saisonnières"
 L["Horizontal position"] = "Position horizontale"
 L["Hour of Twilight"] = "L’Heure du Crépuscule"
@@ -507,6 +524,7 @@ L["Ignore"] = "Ignorer"
 L["Ignore Filters"] = "Ignorer les filtres"
 L["Ignore Filters Desc"] = "Ignorer tous les filtres et afficher tous les hauts faits dans la catégorie {category}"
 L["Imbu"] = "Tempête élémentaire : Imbou"
+L["Import"] = "Importer"
 L["in"] = "dans"
 L["In instances"] = "Dans les instances"
 L["Include"] = "Inclure"
@@ -543,7 +561,7 @@ Cela permet également la recherche et la visualisation de ceux-ci dans la fenê
 L["Loaded"] = "Chargé"
 L["Loaded Desc"] = "Indique si l'addon associé au plugin est chargé ou non."
 L["Localizations"] = "Traductions"
-L["Location"] = "Lieu"
+L["Location"] = "Emplacement"
 L["Lock month"] = "Verrouiller le mois"
 L["Lock month Desc"] = "Garder le dernier mois affiché comme mois à afficher lorsque le calendrier est rouvert après avoir été fermé."
 L["Lock month when closed by achievement"] = "Verrouiller le mois lorsqu'il est fermé par un Haut fait"
@@ -587,6 +605,8 @@ L["Most progress"] = "Personnage avec le plus de progression"
 L["Mouse Wheel Scroll Speed"] = "Vitesse de défilement de la souris avec la molette."
 L["Mouse Wheel Scroll Speed Desc"] = "Définit le nombre d'{items} qui seront défilés lorsque vous cliquez sur les boutons haut et bas de la barre de défilement ou lors de l'utilisation de la molette de la souris"
 L["Movable"] = "Déplaçable"
+L["Mythic+"] = "Mythique +"
+L["Nazmir"] = true
 L["Necrolord Assault"] = "L'assaut des Nécro-seigneurs"
 L["Necrolords Assault"] = "L'assaut des Nécro-seigneurs"
 L["never obtainable"] = "jamais obtenable"
@@ -610,6 +630,7 @@ Dans les options, les onglets par défaut et les onglets ajoutés par {addonName
 {pluginText}
 (1) Vous pouvez trouver l'options sous {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {tabs}]=]
 L["News"] = "Nouveaux"
+L["Next"] = "Suivant"
 L["Next from startDate until endDate"] = "Prochainement du {startDate} au {endDate}"
 L["Next occurrence unknown"] = "Prochaine occurrence inconnue"
 L["Night Fae Assault"] = "L'assaut des Faë nocturnes"
@@ -645,6 +666,7 @@ L["Number of search previews"] = "Nombre d'aperçus de recherche"
 L["Number of search previews Desc"] = "Le nombre de haut fait qui seront prévisualisés dans la liste pendant la recherche"
 L["Number of summary achievements"] = "Nombre de Hauts faits récapitulatifs"
 L["Number of summary achievements Desc"] = "Nombre de Hauts faits qui seront affichés dans la vue récapitulative de chaque onglet."
+L["N'Zoth (Uldum)"] = true
 L["N'Zoth Assaults"] = "Assauts de N'Zoth"
 L["Objectives"] = "Objectifs"
 L["Objectives progress"] = "Progression des objectifs"
@@ -845,9 +867,6 @@ L["Show Other faction"] = "Afficher les autres factions"
 L["Show Other faction Desc"] = [=[Affiche ou masque {otherFaction}.
 
 Si cette option est activée, le haut fait de l'autre faction sera affiché dans l'infobulle si disponible. Cela peut expliquer plus clairement pourquoi votre nouveau personnage de la Horde a certains hauts faits si vous n'avez joué que l'Alliance auparavant.]=]
-L["Show Part of a chain"] = "Afficher {partOfACain}"
-L["Show Part of a chain Desc"] = [=[Affiche ou masque {partOfAChain}.
-Si cette option est activée, la suite de Hauts-faits à laquelle elle appartient sera affichée dans l'infobulle.]=]
 L["Show placeholders"] = "Afficher un haut fait générique"
 L["Show placeholders Desc"] = "Afficher un lot d'alerte d'évènement fictifs pour visualiser l'effet des paramètres ci-dessus. Les alertes peuvent être refermées en passant la souris dessus et en effectuant un clic droit"
 L["Show placeholders filter"] = "Afficher le filtre générique des hauts faits"

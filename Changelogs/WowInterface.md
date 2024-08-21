@@ -30,3 +30,15 @@
 [LIST]
 [*]Library bug
 [/LIST]
+
+[B]Added (75.6)[/B]
+[LIST]
+[*]Achievements added in 11.0.2
+[/LIST]
+
+[B]Fixed (75.6)[/B]
+[LIST]
+[*]Tracking achievements should once again show as a category when it's enabled
+[*]Temporarily shown achievements icon is not update and no longer uses the flight path icon
+[*]Achievements without a category should no longer cause an error
+[/LIST]
