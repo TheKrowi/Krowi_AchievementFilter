@@ -42,3 +42,8 @@
 [*]Temporarily shown achievements icon is not update and no longer uses the flight path icon
 [*]Achievements without a category should no longer cause an error
 [/LIST]
+
+[B]Added (75.7)[/B]
+[LIST]
+[*]Missing map data for the 4 main zones
+[/LIST]

@@ -26,3 +26,6 @@
 - Tracking achievements should once again show as a category when it's enabled
 - Temporarily shown achievements icon is not update and no longer uses the flight path icon
 - Achievements without a category should no longer cause an error
+
+### Added (75.7)
+- Missing map data for the 4 main zones

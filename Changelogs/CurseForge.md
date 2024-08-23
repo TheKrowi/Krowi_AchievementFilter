@@ -35,3 +35,7 @@
 <li>Temporarily shown achievements icon is not update and no longer uses the flight path icon</li>
 <li>Achievements without a category should no longer cause an error</li>
 </ul>
+<p><h3>Added (75.7)</h3></p>
+<ul>
+<li>Missing map data for the 4 main zones</li>
+</ul>
