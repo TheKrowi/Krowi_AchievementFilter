@@ -73,3 +73,16 @@ timers[7602] = timers[7553];
 timers[7603] = timers[7553];
 timers[7604] = timers[7553];
 timers[7605] = timers[7553];
+
+timers[7943] = function()
+    local widgetInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo(6264);
+    if not widgetInfo or not widgetInfo.text then
+        return nil;
+    end
+
+    return GetSecondsLeft(widgetInfo.text, minutesAbbr, secondsAbbr);
+end
+timers[8076] = timers[7943];
+timers[8077] = timers[7943];
+timers[8078] = timers[7943];
+timers[8079] = timers[7943];

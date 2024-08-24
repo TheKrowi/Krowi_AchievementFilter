@@ -37,7 +37,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-08-21 11-26-27 ]] --
+-- [[ Exported at 2024-08-24 09-15-08 ]] --
 tasks = {
     {A, 1347, 15251}, -- The Jailer's Gauntlet: Layer 1
     {A, 1347, 15079}, -- "Many, Many Things"
@@ -3182,6 +3182,7 @@ tasks = {
     {A, 1629, 40086}, -- Tour of Duty: Azj-Kahet
     {C, 1614, 1629},
     {N, 1629, a.GetCategoryInfoTitle(95), true}, -- Player vs. Player
+    {A, 1628, 40629}, -- Bookworm
     {A, 1628, 40843}, -- Mine Poppin'
     {A, 1628, 40619}, -- Mine Poppin'
     {A, 1628, 40632}, -- No Harm Ever Came From Reading A Book

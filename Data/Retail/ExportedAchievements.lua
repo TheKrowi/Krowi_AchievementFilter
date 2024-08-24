@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-08-21 11-24-33 ]] --
+-- [[ Exported at 2024-08-24 09-14-49 ]] --
 tasks = {
     {N, 40907, 211}, -- We Rise Anew
     {N, 40906, 211}, -- The Flame Burns Within
@@ -123,6 +123,7 @@ tasks = {
     {N, 40634, 210}, -- You Can't Hang With Us
     {N, 40632, 210}, -- No Harm Ever Came From Reading A Book
     {N, 40631, 210}, -- War Within Delves: Tier 1
+    {N, 40629, 210}, -- Bookworm
     {N, 40628, 210}, -- Notable Machines
     {N, 40625, 210}, -- The Missing Lynx
     {N, 40624, 210}, -- Itsy Bitsy Spider

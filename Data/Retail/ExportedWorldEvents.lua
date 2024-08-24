@@ -27,7 +27,7 @@ local a = addon; -- Saves some characters and file size as we use this a lot in 
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-31 20-00-37 ]] --
+-- [[ Exported at 2024-08-24 15-16-43 ]] --
 tasks = {
     {N, {5175}, 948, 1408998, a.L["Legion Assaults"] .. ": " .. a.L["Azsuna"], 619},
     {N, {5177}, 948, 1409000, a.L["Legion Assaults"] .. ": " .. a.L["Highmountain"], 619},
@@ -108,6 +108,11 @@ tasks = {
     {N, {7615}, 1677, 3015740, a.L["Radiant Echoes"] .. ": " .. a.L["Dragonblight"], 947},
     {N, {7637}, 1677, 3015740, a.L["Radiant Echoes"] .. ": " .. a.L["Searing Gorge"], 947},
     {N, {7818}, 1677, 3015740, a.L["Radiant Echoes"] .. ": " .. a.L["Dustwallow Marsh"], 947},
+    {N, {7943}, 1676, 134927, a.L["Theater Troupe"] .. ": " .. a.L["The Wanderer: Next"], 2248},
+    {N, {8076}, 1676, 134927, a.L["Theater Troupe"] .. ": " .. a.L["The Cruelty of Dornic: Next"], 2248},
+    {N, {8077}, 1676, 134927, a.L["Theater Troupe"] .. ": " .. a.L["The Rivals: Next"], 2248},
+    {N, {8078}, 1676, 134927, a.L["Theater Troupe"] .. ": " .. a.L["Forget Me Not: Next"], 2248},
+    {N, {8079}, 1676, 134927, a.L["Theater Troupe"] .. ": " .. a.L["The Thraegar's Descent: Next"], 2248},
 };
 
 function exportedWorldEvents.InjectDynamicOptions()
@@ -142,6 +147,12 @@ function exportedWorldEvents.InjectDynamicOptions()
     KrowiAF_RegisterEventOptions("World", {6490}, a.L["Mogu"], a.L["Defending Azeroth Assaults"], 2, 7);
     KrowiAF_RegisterEventOptions("World", {6491}, a.L["Mantid"], a.L["Defending Azeroth Assaults"], 2, 7);
     KrowiAF_RegisterDeSelectAllEventOptions("World", {6486, 6487, 6488, 6489, 6490, 6491}, a.L["Defending Azeroth Assaults"], 7);
+    KrowiAF_RegisterEventOptions("World", {7943}, a.L["The Wanderer: Next"], a.L["Theater Troupe"], 2, 10);
+    KrowiAF_RegisterEventOptions("World", {8076}, a.L["The Cruelty of Dornic: Next"], a.L["Theater Troupe"], 2, 10);
+    KrowiAF_RegisterEventOptions("World", {8077}, a.L["The Rivals: Next"], a.L["Theater Troupe"], 2, 10);
+    KrowiAF_RegisterEventOptions("World", {8078}, a.L["Forget Me Not: Next"], a.L["Theater Troupe"], 2, 10);
+    KrowiAF_RegisterEventOptions("World", {8079}, a.L["The Thraegar's Descent: Next"], a.L["Theater Troupe"], 2, 10);
+    KrowiAF_RegisterDeSelectAllEventOptions("World", {7943, 8076, 8077, 8078, 8079}, a.L["Theater Troupe"], 10);
     KrowiAF_RegisterEventOptions("World", {7342}, a.L["Ohn'ahran Plains"], a.L["Grand Hunts"], 3, 9);
     KrowiAF_RegisterEventOptions("World", {7343}, a.L["The Waking Shore"], a.L["Grand Hunts"], 3, 9);
     KrowiAF_RegisterEventOptions("World", {7344}, a.L["Thaldraszus"], a.L["Grand Hunts"], 3, 9);
