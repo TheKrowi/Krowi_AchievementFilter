@@ -39,7 +39,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-08-24 09-14-49 ]] --
+-- [[ Exported at 2024-09-01 10-40-12 ]] --
 tasks = {
     {N, 40907, 211}, -- We Rise Anew
     {N, 40906, 211}, -- The Flame Burns Within
@@ -50,6 +50,7 @@ tasks = {
     {N, 40876, 211}, -- Vox Arachni
     {N, 40875, 211}, -- True Strength
     {N, 40874, 211}, -- The Grand Tapestry
+    {N, 40869, 211}, -- Worm Theory
     {N, 40864, 211}, -- Plentiful Perplexing Puzzles
     {N, 40863, 211}, -- Perplexing Puzzle
     {O, 40862, "From", "Event", "324", "Until", "Event", "324"},
@@ -101,8 +102,11 @@ tasks = {
     {N, 40763, 210}, -- "I'm not a Thief, I'm a Treasure Hunter"
     {N, 40762, 210}, -- Khaz Algar Lore Hunter
     {N, 40732, 210}, -- Heavy-Handed
+    {N, 40731, 210}, -- Panhandled
     {N, 40730, 210}, -- Love is in the Lair
+    {N, 40729, 210}, -- Light's Gambit Champion
     {N, 40728, 210}, -- Forged Finery
+    {N, 40727, 210}, -- Skittershaw Spin
     {N, 40726, 210}, -- War Within Delves: Tier 11
     {N, 40725, 210}, -- War Within Delves: Endgame
     {N, 40724, 210}, -- Treasures of The Ringing Deeps
@@ -121,19 +125,24 @@ tasks = {
     {N, 40636, 210}, -- Sojourner of Azj-Kahet
     {N, 40635, 210}, -- Branntastic
     {N, 40634, 210}, -- You Can't Hang With Us
+    {N, 40633, 210}, -- The Unseeming
     {N, 40632, 210}, -- No Harm Ever Came From Reading A Book
     {N, 40631, 210}, -- War Within Delves: Tier 1
+    {N, 40630, 210}, -- For the Collective
     {N, 40629, 210}, -- Bookworm
     {N, 40628, 210}, -- Notable Machines
     {N, 40625, 210}, -- The Missing Lynx
     {N, 40624, 210}, -- Itsy Bitsy Spider
+    {N, 40623, 210}, -- I Only Need One Trip
     {N, 40622, 210}, -- Biblo Archivist
     {N, 40621, 210}, -- The Rookery
+    {N, 40620, 210}, -- Back to the Wall
     {N, 40619, 210}, -- Mine Poppin'
     {N, 40618, 210}, -- Lost and Found
     {N, 40617, 210}, -- Deepholla
     {N, 40616, 210}, -- Unexpected Arrivals
     {N, 40615, 210}, -- Unexpected Arrival
+    {N, 40614, 210}, -- Gobblin' with Glublurp
     {N, 40613, 210}, -- Resilient Runner
     {N, 40612, 210}, -- Sprinting in the Ravine
     {N, 40608, 210}, -- Running in the Ravine
@@ -146,6 +155,7 @@ tasks = {
     {N, 40592, 210}, -- Heroic: Priory of the Sacred Flame
     {N, 40591, 210}, -- Khaz Algar Diplomat
     {N, 40590, 210}, -- Priory of the Sacred Flame
+    {N, 40585, 210}, -- Super Size Snuffling
     {N, 40542, 210}, -- Smelling History
     {N, 40539, 210}, -- The Derby Dash
     {N, 40538, 210}, -- Brann Development
@@ -175,6 +185,7 @@ tasks = {
     {N, 40512, 210}, -- War Within Delves: Tier 2
     {N, 40507, 210}, -- Hanging Tight
     {N, 40506, 210}, -- Leave No Treasure Unfound
+    {N, 40504, 210}, -- Rocked to Sleep
     {N, 40503, 210}, -- 90 Algari Anglerthread
     {N, 40502, 210}, -- 50 Algari Anglerthread
     {N, 40501, 210}, -- 100 Algari Anglerthread
@@ -277,6 +288,7 @@ tasks = {
     {N, 40366, 210}, -- Mythic: Cinderbrew Meadery
     {N, 40363, 210}, -- Heroic: Cinderbrew Meadery
     {N, 40361, 210}, -- Cinderbrew Meadery
+    {N, 40360, 210}, -- Life on the Farm
     {N, 40354, 210}, -- Khaz Algar Completionist: Gold
     {N, 40353, 210}, -- Khaz Algar Completionist: Silver
     {N, 40352, 210}, -- Khaz Algar Completionist: Bronze

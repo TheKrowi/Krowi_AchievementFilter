@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-08-21 11-46-53 ]] --
+-- [[ Exported at 2024-09-02 20-38-29 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -667,6 +667,7 @@ L["Number of search previews Desc"] = "Le nombre de haut fait qui seront prévis
 L["Number of summary achievements"] = "Nombre de Hauts faits récapitulatifs"
 L["Number of summary achievements Desc"] = "Nombre de Hauts faits qui seront affichés dans la vue récapitulative de chaque onglet."
 L["N'Zoth (Uldum)"] = true
+L["N'Zoth (Vale of Eternal Blossoms)"] = "N'Zoth (Val de l'Éternel Printemps)"
 L["N'Zoth Assaults"] = "Assauts de N'Zoth"
 L["Objectives"] = "Objectifs"
 L["Objectives progress"] = "Progression des objectifs"
@@ -706,6 +707,7 @@ L["Plugins"] = true
 L["Plunderstorm"] = true
 L["Points"] = true
 L["Pop ups"] = "Pop-ups"
+L["Pre-Patch Event"] = "Évènement du Pré-Patch"
 L["Presets"] = "Préconfigurations"
 L["Primal Storms"] = "Tempêtes primordiales"
 L["Primalist Tomorrow"] = "Tempête élémentaire : L’avenir des Primalistes"
@@ -726,6 +728,7 @@ Options (1) :
 |T:1:8|t- {numSearchPreviews} ({numSearchPreviewsNumber})
 
 (1) Vous pouvez trouver les options sous {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName}]=]
+L["Radiant Echoes"] = "Échos radieux"
 L["Rage of the Firelands"] = "Rage sur les terres de Feu"
 L["Rated"] = "Classé"
 L["Ravine River Run"] = "Descente des gorges"
@@ -802,6 +805,7 @@ L["Search options"] = "Rechercher des options"
 L["Search preview"] = "Aperçu de la recherche"
 L["Search Results"] = "Résultats de la recherche"
 L["Search Rewards"] = "Rechercher des récompenses"
+L["Searing Gorge"] = "Gorges des vents brulants"
 L["Season"] = "Saison"
 L["Second column threshold"] = "Affichage des sous-taches en deux colonnes"
 L["Second column threshold Desc"] = "Les hauts faits avec plus de sous-tâches que ce nombre seront affichés dans deux colonnes au lieu d'une seule."
@@ -867,6 +871,10 @@ L["Show Other faction"] = "Afficher les autres factions"
 L["Show Other faction Desc"] = [=[Affiche ou masque {otherFaction}.
 
 Si cette option est activée, le haut fait de l'autre faction sera affiché dans l'infobulle si disponible. Cela peut expliquer plus clairement pourquoi votre nouveau personnage de la Horde a certains hauts faits si vous n'avez joué que l'Alliance auparavant.]=]
+L["Show Part of a chain"] = "Afficher {partOfAChain}"
+L["Show Part of a chain Desc"] = [=[Afficher / masquer {partOfAChain}.
+
+Lorsque cette option est cochée, la chaîne dont fait partie le Haut fait sera visible dans l'infobulle.]=]
 L["Show placeholders"] = "Afficher un haut fait générique"
 L["Show placeholders Desc"] = "Afficher un lot d'alerte d'évènement fictifs pour visualiser l'effet des paramètres ci-dessus. Les alertes peuvent être refermées en passant la souris dessus et en effectuant un clic droit"
 L["Show placeholders filter"] = "Afficher le filtre générique des hauts faits"
@@ -908,8 +916,10 @@ L["Siege on Dragonbane Keep: Active"] = "Fléau-des-Dragons : En cours"
 L["Siege on Dragonbane Keep: Gathering"] = "Fléau-des-Dragons : Bientôt"
 L["Skitterer Xi'a"] = "Glisseur Xi'a"
 L["Skoldus Hall"] = "Salle de Skoldus"
+L["Skyriding Races"] = "Course de Vol dynamique"
 L["Slagmire"] = "Tempête élémentaire : Slagmire"
 L["Snowstorms"] = "Tempêtes de neige"
+L["Soon"] = "Bientôt"
 L["Sort priority"] = "Priorité de tri"
 L["Soulforges"] = "Forge des Âmes"
 L["Sources"] = true
@@ -919,9 +929,13 @@ L["Spacing Desc"] = "Ajoute ou retire des espace à l'espace de base entre les o
 L["Special Categories"] = "Catégories spéciales"
 L["Special thanks"] = "Remerciements spéciaux"
 L["Specials"] = "Spécifique"
+L["Spreading the Light"] = "Propager la lumière"
 L["Stables"] = "Écuries"
 L["StarCraft II"] = true
 L["Start Time"] = "Heure de début"
+L["Stop tracking"] = "Arrêter le suivis"
+L["Stormheim"] = "Tornheim"
+L["Stormsong Valley"] = "Vallée Chantorage"
 L["Strand of the Ancients"] = "Rivage des Anciens"
 L["Style"] = "Style de la fenêtre des hauts faits"
 L["Summary Desc"] = [=[{achievementsHeader}:
@@ -944,6 +958,7 @@ L["temporarily obtainable"] = "temporairement obtenable"
 L["Temporarily Obtainable Text"] = "{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}"
 L["Thaldraszus"] = true
 L["Thaldraszus: Next"] = "Thaldraszus : Prochaine"
+L["The Azure Span"] = "La Travée d'Azur"
 L["The Azure Span Slalom"] = "Slalom de la travée d’Azur"
 L["The Azure Span Sprint"] = "Sprint de la travée d’Azur"
 L["The Big Dig: Active"] = "La grande fouille : En cours"
@@ -957,6 +972,9 @@ L["The Shattering"] = "L'Effondrement"
 L["The Thunder King"] = "Le Roi-Tonnerre"
 L["The Tomb of Sargeras"] = "La tombe de Sargeras"
 L["The Vakthros Ascent"] = "Ascension du Vakthros"
+L["The Waking Shore"] = "Les Rivages de l'Éveil"
+L["The War Within (pre-patch)"] = "The War Within (Pre-patch)"
+L["Theater Troupe"] = "Troupe de théâtre"
 L["This achievement"] = "Ce Haut fait"
 L["This achievement can't be earned by this character."] = "Ce Haut fait ne peut pas être réalisé par ce personnage"
 L["This achievement is no longer obtainable"] = "Ce Haut fait n'est plus réalisable"
@@ -967,15 +985,17 @@ L["Thunderstorms"] = "Tempête élémentaire de foudre"
 L["Tides of Vengeance"] = "Les flots de la vengeance "
 L["Time display"] = "affichage de l'heure"
 L["Time Left"] = "Temps restant"
+L["Time Rift"] = "Faille temporelle"
 L["Time Rift: Active"] = "Faille temporelle : En cours"
 L["Time Rift: Next"] = "Faille temporelle : Prochaine"
-L["Time Rift: Starting Soon"] = "Faille temporelle : Bientôt"
+L["Time Rift: Starting Soon"] = "Faille temporelle : Commence bientôt"
 L["Time Rifts"] = "Faille temporelle"
+L["Tiragarde Sound"] = "La Rade de Tiragarde"
 L["Titan Lockdown"] = "Confinement des Titans"
 L["Titan Lockdown: Active"] = "Confinement des Titans : En cours"
 L["Titan Lockdown: Next"] = "Confinement des Titans : Prochain"
 L["Titan Lockdown: Soon"] = "Confinement des Titans : Bientôt"
-L["Titan Lockdown: Starting Soon"] = "Confinement des Titans : Bientôt"
+L["Titan Lockdown: Starting Soon"] = "Confinement des Titans : Commence bientôt"
 L["Ti'un the Wanderer"] = "Ti'un l'Explorateur"
 L["Toggle"] = "Basculer"
 L["Toggle Tracking"] = "Activer ou désactiver le suivi"
@@ -1003,11 +1023,13 @@ L["until the end of"] = "Jusqu'à la fin de"
 L["Up"] = "Haut"
 L["up until the start of"] = "jusqu'au début de"
 L["Upper Reaches"] = "Étages supérieurs"
+L["Val'sharah"] = true
 L["Vendor"] = "Marchands"
 L["Venthyr Assault"] = "L'assaut des Venthyrs"
 L["Vertical position"] = "Position verticale"
 L["View Tutorial"] = "Voir le tutoriel"
 L["Visions of N'Zoth"] = "Visions de N'Zoth"
+L["Vol'dun"] = true
 L["Wago"] = true
 L["Wago Desc"] = "Ouvre une fenêtre avec un lien vers la page {addonName} {wago}."
 L["Waking Shores"] = "Rivages de l’Éveil"
@@ -1036,6 +1058,8 @@ L["World Map Button Desc"] = [=[Survol :
 
 Clic-gauche :
 |T:1:8|t- Ouvre la fenêtre des réalisations de la catégorie {selectedZone}.]=]
+L["Worldsoul Memory"] = "Souvenir de l’Âme-monde"
+L["WoW Remix: Mists of Pandaria"] = true
 L["Wowhead"] = true
 L["Wowhead Link"] = "Lien Wowhead"
 L["WoWInterface"] = true
@@ -1043,6 +1067,8 @@ L["WoWInterface Desc"] = "Ouvre une fenêtre avec un lien vers la page {addonNam
 L["WoW's 10th Anniversary"] = "10e anniversaire de WoW"
 L["WoW's 18th Anniversary"] = "18e anniversaire de WoW"
 L["WoW's 19th Anniversary"] = "19e anniversaire de WoW"
+L["WoW's 20th Anniversary"] = "20e anniversaire de WoW"
+L["WoW's 21st Anniversary"] = "21e anniversaire de WoW"
 L["WoW's Anniversary"] = "Anniversaire de WoW"
 L["X offset Desc"] = "Décalage horizontal à partir de la position de départ"
 L["Xu-Fu's Pet Guides"] = "Guide de mascotte Xu-Fu"
@@ -1052,5 +1078,6 @@ L["Zaqali Ruin Investigation"] = "Investigations dans les ruines Zaqalis"
 L["Zaqali Ruin Investigation: Active"] = "Investigations dans les ruines Zaqalis : En cours"
 L["Zaqali Ruin Investigation: Next"] = "Investigations dans les ruines Zaqalis : Prochaine"
 L["Zaqali Ruin Investigation: Soon"] = "Investigations dans les ruines Zaqalis : Bientôt"
-L["Zaqali Ruin Investigation: Starting Soon"] = "Investigations dans les ruines Zaqalis : Bientôt"
+L["Zaqali Ruin Investigation: Starting Soon"] = "Investigations dans les ruines Zaqalis : Commence bientôt"
 L["Zones"] = true
+L["Zuldazar"] = true

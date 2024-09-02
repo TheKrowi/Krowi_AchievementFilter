@@ -47,3 +47,8 @@
 [LIST]
 [*]Missing map data for the 4 main zones
 [/LIST]
+
+[B]Added (75.8)[/B]
+[LIST]
+[*]Categorized more achievements (thank you Seb)
+[/LIST]

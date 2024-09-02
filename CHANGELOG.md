@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 75.8 - 2024-09-02
+### Added
+- Categorized more achievements (thank you Seb)
+
 ## 75.7 - 2024-08-23
 ### Added
 - Missing map data for the 4 main zones

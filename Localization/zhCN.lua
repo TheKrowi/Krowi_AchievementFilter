@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-08-21 11-47-00 ]] --
+-- [[ Exported at 2024-09-02 20-38-35 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -561,6 +561,7 @@ L["Load Tracking Achievements Desc"] = "加载成就追踪描述"
 L["Loaded"] = "已加载"
 L["Loaded Desc"] = "显示关联插件是否加载"
 L["Localizations"] = "本地化"
+L["Location"] = "位置"
 L["Lock month"] = "锁定月份"
 L["Lock month Desc"] = "重新打开成就日历将显示关闭前保留的月份"
 L["Lock month when closed by achievement"] = "锁定月份（点击成就而关闭时）"
@@ -881,6 +882,8 @@ L["Show Other faction"] = "显示其他阵营"
 L["Show Other faction Desc"] = [=[显示/隐藏其他阵营
 
 勾选后在鼠标提示中显示其他阵营成就，这将更清楚地表明为何只玩联盟的玩家，新建的部落角色会有一些成就]=]
+L["Show Part of a chain"] = "显示 {partOfAChain}"
+L["Show Part of a chain Desc"] = "显示/隐藏 {partOfAChain}。当启用时，成就所属系列将显示在提示中。"
 L["Show placeholders"] = "显示占位符"
 L["Show placeholders Desc"] = "显示一个事件占位符帮助反馈修改设置后的视觉效果，右键点击可关闭"
 L["Show placeholders filter"] = "显示占位符过滤器"
@@ -944,6 +947,7 @@ L["Spreading the Light"] = "散布圣光"
 L["Stables"] = "兽栏"
 L["StarCraft II"] = "星际争霸II"
 L["Start Time"] = "开始时间"
+L["Stop tracking"] = "停止追踪"
 L["Stormheim"] = "风暴峡湾"
 L["Stormsong Valley"] = "斯托颂谷地"
 L["Strand of the Ancients"] = "远古海滩"

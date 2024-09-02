@@ -29,3 +29,6 @@
 
 ### Added (75.7)
 - Missing map data for the 4 main zones
+
+### Added (75.8)
+- Categorized more achievements (thank you Seb)

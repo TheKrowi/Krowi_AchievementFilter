@@ -37,7 +37,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-08-24 09-15-08 ]] --
+-- [[ Exported at 2024-09-01 10-40-45 ]] --
 tasks = {
     {A, 1347, 15251}, -- The Jailer's Gauntlet: Layer 1
     {A, 1347, 15079}, -- "Many, Many Things"
@@ -3182,6 +3182,8 @@ tasks = {
     {A, 1629, 40086}, -- Tour of Duty: Azj-Kahet
     {C, 1614, 1629},
     {N, 1629, a.GetCategoryInfoTitle(95), true}, -- Player vs. Player
+    {A, 1628, 40633}, -- The Unseeming
+    {A, 1628, 40727}, -- Skittershaw Spin
     {A, 1628, 40629}, -- Bookworm
     {A, 1628, 40843}, -- Mine Poppin'
     {A, 1628, 40619}, -- Mine Poppin'
@@ -3195,6 +3197,8 @@ tasks = {
     {A, 1628, 40822}, -- Explore Azj-Kahet
     {C, 1614, 1628},
     {N, 1628, a.GetCategoryInfoTitle(97), true}, -- Exploration
+    {A, 1618, 40869}, -- Worm Theory
+    {A, 1618, 40620}, -- Back to the Wall
     {A, 1618, 40835}, -- Vizier than Ever
     {A, 1618, 40833}, -- The General's Salute
     {A, 1618, 40832}, -- Leave it to Weaver
@@ -3211,6 +3215,7 @@ tasks = {
     {A, 1626, 40085}, -- Tour of Duty: Hallowfall
     {C, 1613, 1626},
     {N, 1626, a.GetCategoryInfoTitle(95), true}, -- Player vs. Player
+    {A, 1625, 40729}, -- Light's Gambit Champion
     {A, 1625, 40622}, -- Biblo Archivist
     {A, 1625, 40625}, -- The Missing Lynx
     {A, 1625, 40618}, -- Lost and Found
@@ -3221,6 +3226,7 @@ tasks = {
     {A, 1625, 40826}, -- Explore Hallowfall
     {C, 1613, 1625},
     {N, 1625, a.GetCategoryInfoTitle(97), true}, -- Exploration
+    {A, 1617, 40360}, -- Life on the Farm
     {A, 1617, 40082}, -- Never Enough
     {A, 1617, 40150}, -- Children's Entertainer
     {A, 1617, 20594}, -- Flamegard's Hope
@@ -3237,6 +3243,10 @@ tasks = {
     {A, 1623, 40084}, -- Tour of Duty: The Ringing Deeps
     {C, 1612, 1623},
     {N, 1623, a.GetCategoryInfoTitle(95), true}, -- Player vs. Player
+    {A, 1622, 40585}, -- Super Size Snuffling
+    {A, 1622, 40504}, -- Rocked to Sleep
+    {A, 1622, 40731}, -- Panhandled
+    {A, 1622, 40614}, -- Gobblin' with Glublurp
     {A, 1622, 40475}, -- To All the Slimes I Love
     {A, 1622, 40473}, -- Not So Quick Fix
     {A, 1622, 40628}, -- Notable Machines
@@ -3246,6 +3256,8 @@ tasks = {
     {A, 1622, 40825}, -- Explore The Ringing Deeps
     {C, 1612, 1622},
     {N, 1622, a.GetCategoryInfoTitle(97), true}, -- Exploration
+    {A, 1616, 40630}, -- For the Collective
+    {A, 1616, 40623}, -- I Only Need One Trip
     {A, 1616, 40507}, -- Hanging Tight
     {A, 1616, 40799}, -- Sojourner of The Ringing Deeps
     {A, 1616, 19560}, -- The Ringing Deeps

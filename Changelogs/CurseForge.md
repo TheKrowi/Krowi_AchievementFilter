@@ -39,3 +39,7 @@
 <ul>
 <li>Missing map data for the 4 main zones</li>
 </ul>
+<p><h3>Added (75.8)</h3></p>
+<ul>
+<li>Categorized more achievements (thank you Seb)</li>
+</ul>
