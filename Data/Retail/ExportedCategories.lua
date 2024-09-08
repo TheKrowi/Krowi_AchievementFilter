@@ -37,7 +37,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-09-01 10-40-45 ]] --
+-- [[ Exported at 2024-09-07 19-40-39 ]] --
 tasks = {
     {A, 1347, 15251}, -- The Jailer's Gauntlet: Layer 1
     {A, 1347, 15079}, -- "Many, Many Things"
@@ -1986,15 +1986,6 @@ tasks = {
     {A, 1174, 1636}, -- Competitor's Tabard
     {C, 884, 1174},
     {N, 1174, a.L["Miscellaneous"]}, -- Miscellaneous
-    {A, 1673, 40313}, -- Igniting the Keyflames
-    {A, 1673, 40312}, -- Starting the Flames
-    {A, 1673, 40311}, -- Sharing the Light
-    {A, 1673, 40308}, -- Beacon of Hope
-    {C, 1671, 1673},
-    {N, 1673, a.L["Spreading the Light"]}, -- Spreading the Light
-    {A, 1674, 40662}, -- "It's Not Much, But It's Honest Work"
-    {C, 1671, 1674},
-    {N, 1674, a.L["Awakening the Machine"]}, -- Awakening the Machine
     {A, 1676, 40860}, -- A Star of Dorn
     {A, 1676, 40859}, -- We're Here All Night
     {C, 1671, 1676},
@@ -3226,6 +3217,10 @@ tasks = {
     {A, 1625, 40826}, -- Explore Hallowfall
     {C, 1613, 1625},
     {N, 1625, a.GetCategoryInfoTitle(97), true}, -- Exploration
+    {A, 1617, 40313}, -- Igniting the Keyflames
+    {A, 1617, 40312}, -- Starting the Flames
+    {A, 1617, 40311}, -- Sharing the Light
+    {A, 1617, 40308}, -- Beacon of Hope
     {A, 1617, 40360}, -- Life on the Farm
     {A, 1617, 40082}, -- Never Enough
     {A, 1617, 40150}, -- Children's Entertainer
@@ -3243,6 +3238,7 @@ tasks = {
     {A, 1623, 40084}, -- Tour of Duty: The Ringing Deeps
     {C, 1612, 1623},
     {N, 1623, a.GetCategoryInfoTitle(95), true}, -- Player vs. Player
+    {A, 1622, 40662}, -- "It's Not Much, But It's Honest Work"
     {A, 1622, 40585}, -- Super Size Snuffling
     {A, 1622, 40504}, -- Rocked to Sleep
     {A, 1622, 40731}, -- Panhandled

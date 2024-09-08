@@ -20,6 +20,17 @@ KrowiAF.TooltipData.Dragonflight = {
             {12, 215825}, -- Coldarra Climb
         }
     },
+    { -- Storm Rider
+        {18928, 18929, 18931}, type.Unit,
+        {
+            {1, 190123}, -- Ruby Lifeshrine Loop
+            {2, 191121}, -- Fen Flythrough
+            {3, 192115}, -- The Vakthros Ascent
+            {4, 193651}, -- Tyrhold Trial
+            {5, 200183}, -- Stormsunder Crater Circuit
+            {6, 202524}, -- Crystal Circuit
+        }
+    },
     { -- Zaralek Cavern Challenge
         {18786, 18787, 18788}, type.Unit,
         {

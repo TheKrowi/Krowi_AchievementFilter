@@ -40,7 +40,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-09-01 10-40-53 ]] --
+-- [[ Exported at 2024-09-07 19-40-46 ]] --
 tasks = {
     {C, 2104, 123}, -- Wintergrasp (Wrath Classic)
     {C, 2070, 18}, -- Tirisfal Glades

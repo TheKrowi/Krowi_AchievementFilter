@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 75.9 - 2024-09-02
+### Added
+- Storm Rider races tooltip data
+
 ## 75.8 - 2024-09-02
 ### Added
 - Categorized more achievements (thank you Seb)
