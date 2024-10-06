@@ -1,58 +1,38 @@
 local _, addon = ...;
 
-KrowiAF.EventData = {};
+KrowiAF.EventData = {
+    WidgetEvents = {},
+    WorldEvents = {}
+};
 
--- function KrowiAF.AddCriteriumChildren(achievementId, criteriaIndex, children)
---     for k, criterium in next, addon.Data.PetBattleLinkData[achievementId].Criteria do
---         if criterium.CriteriaIndex == criteriaIndex then
---             addon.Data.PetBattleLinkData[achievementId].Criteria[k].Children = {};
---             for _, child in next, children do
---                 tinsert(addon.Data.PetBattleLinkData[achievementId].Criteria[k].Children, {
---                     Text = child[2],
---                     Link = child[1]
---                 });
---             end
---         end
---     end
--- end
+function KrowiAF.InjectCalendarEventDataDynamicOptions()
+    for _, v1 in next, KrowiAF.EventData do
+        for _, v2 in next, v1 do
+            KrowiAF.RegisterEventDataOptions(select(2, unpack(v2)));
+        end
+    end
+end
 
--- function KrowiAF.AddPetBattleLinkDatum(achievementId, criteriaIndex, link)
---     if addon.Util.IsNumber(criteriaIndex) then
---         tinsert(addon.Data.PetBattleLinkData[achievementId].Criteria, {
---             CriteriaIndex = criteriaIndex,
---             Link = link
---         });
---     else
---         tinsert(addon.Data.PetBattleLinkData[achievementId].Criteria, {
---             Text = link,
---             Link = criteriaIndex
---         });
---     end
--- end
+function KrowiAF.RegisterEventDataOptions(eventIds, eventType, categoryId, icon, eventName, eventGroup, groupOrder, expansionId, hideByDefault, mapId)
+    if not addon.Util.IsTable(eventIds) then
+        eventIds = {eventIds};
+    end
 
--- local function AddPetBattleLinkData(achievementId, link, criteria)
---     addon.Data.PetBattleLinkData[achievementId] = addon.Data.PetBattleLinkData[achievementId] or {
---         Criteria = {},
---         Link = link
---     };
+    if eventType == addon.Objects.EventType.Calendar then
+        eventType = "Calendar";
+    end
+    KrowiAF_RegisterEventOptions(eventType, eventIds, eventName, eventGroup, groupOrder, expansionId, hideByDefault);
+    KrowiAF_RegisterDynamicDeSelectAllEventOptions(eventType, eventGroup, expansionId);
+end
 
---     if not criteria then
---         return;
---     end
---     for _, criterium in next, criteria do
---         KrowiAF.AddPetBattleLinkDatum(achievementId, criterium[1], criterium[2]);
---         if criterium[3] then
---             KrowiAF.AddCriteriumChildren(achievementId, criterium[1], criterium[3]);
---         end
---     end
--- end
+function KrowiAF.AddEventData(eventIds, eventType, categoryId, icon, eventName, eventGroup, groupOrder, expansionId, hideByDefault, mapId)
+    if not addon.Util.IsTable(eventIds) then
+        eventIds = {eventIds};
+    end
 
--- function KrowiAF.AddPetBattleLinkData(achievementIds, link, criteria)
---     if not addon.Util.IsTable(achievementIds) then
---         achievementIds = {achievementIds};
---     end
-
---     for _, achievementId in next, achievementIds do
---         AddPetBattleLinkData(achievementId, link, criteria);
---     end
--- end
+    if addon.Util.IsTable(eventIds) then
+        for _, eventId in next, eventIds do
+            addon.Data.Events[eventType][eventId] = addon.Objects.Event:New(eventId, eventIds, addon.Data.Categories[categoryId], eventType, icon, eventName, mapId);
+        end
+    end
+end

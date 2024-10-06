@@ -431,4 +431,50 @@ do --[[ KrowiAF_RegisterEventOptions ]]
 			end
 		});
 	end
+
+	function KrowiAF_RegisterDynamicDeSelectAllEventOptions(eventType, groupDisplayName, expansionId)
+		local groupName = groupDisplayName:gsub("[%p%c%s]", "_");
+		local expansionName = expansionId and ("EXPANSION_NAME" .. tostring(expansionId));
+		local path = "EventReminders.args." .. (eventType == "Widget" and "World" or eventType) .. "Events.args." .. (expansionName and (expansionName .. ".args.") or "") .. groupName .. ".args";
+		if addon.InjectOptions:TableExists(path .. ".SelectAll") then
+			return;
+		end
+
+		addon.InjectOptions:AddTable(path, "Blank1", {
+			order = 1000, type = "description", width = "full", name = ""
+		});
+		if not expansionName then
+			addon.InjectOptions:AddTable(path, "Blank2", {
+				order = 1001, type = "description", width = AdjustedWidth(), name = ""
+			});
+		end
+		addon.InjectOptions:AddTable(path, "SelectAll", {
+			order = 1002, type = "execute", width = AdjustedWidth(),
+			name = addon.L["Select All"],
+			func = function()
+				local appName = addon.Metadata.Prefix .. "_EventReminders"
+				local path2 = "args." .. (eventType == "Widget" and "World" or eventType) .. "Events.args." .. (expansionName and (expansionName .. ".args.") or "") .. groupName .. ".args";
+				local eventIds = KrowiAF_GetOptions.GetTable(appName, path2);
+				for k, eventId in next, eventIds do
+					if eventId.set then
+						eventId.set(_, true);
+					end
+				end
+			end
+		});
+		addon.InjectOptions:AddTable(path, "DeselectAll", {
+			order = 1003, type = "execute", width = AdjustedWidth(),
+			name = addon.L["Deselect All"],
+			func = function()
+				local appName = addon.Metadata.Prefix .. "_EventReminders"
+				local path2 = "args." .. (eventType == "Widget" and "World" or eventType) .. "Events.args." .. (expansionName and (expansionName .. ".args.") or "") .. groupName .. ".args";
+				local eventIds = KrowiAF_GetOptions.GetTable(appName, path2);
+				for k, eventId in next, eventIds do
+					if eventId.set then
+						eventId.set(_, false);
+					end
+				end
+			end
+		});
+	end
 end

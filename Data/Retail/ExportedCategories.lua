@@ -37,7 +37,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-09-07 19-40-39 ]] --
+-- [[ Exported at 2024-09-15 10-16-37 ]] --
 tasks = {
     {A, 1347, 15251}, -- The Jailer's Gauntlet: Layer 1
     {A, 1347, 15079}, -- "Many, Many Things"
@@ -3177,7 +3177,6 @@ tasks = {
     {A, 1628, 40727}, -- Skittershaw Spin
     {A, 1628, 40629}, -- Bookworm
     {A, 1628, 40843}, -- Mine Poppin'
-    {A, 1628, 40619}, -- Mine Poppin'
     {A, 1628, 40632}, -- No Harm Ever Came From Reading A Book
     {A, 1628, 40624}, -- Itsy Bitsy Spider
     {A, 1628, 40634}, -- You Can't Hang With Us
@@ -3312,8 +3311,10 @@ tasks = {
     {N, 1642, a.GetMapName(2274)}, -- Khaz Algar
     {C, 1598, 1599},
     {N, 1599, a.L["Zones"]}, -- Zones
-    {A, 1609, 40145}, -- So Much Sharing
-    {A, 1609, 40142}, -- Learning to Share
+    {A, 1609, 40939}, -- Harbinger of the Gilded
+    {A, 1609, 40118}, -- Harbinger of the Runed
+    {A, 1609, 40115}, -- Harbinger of the Carved
+    {A, 1609, 40107}, -- Harbinger of the Weathered
     {A, 1609, 19477}, -- Five Warband Mentors: The War Within
     {A, 1609, 19476}, -- Four Warband Mentors: The War Within
     {A, 1609, 19475}, -- Three Warband Mentors: The War Within

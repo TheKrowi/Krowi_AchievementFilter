@@ -39,8 +39,9 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-09-07 19-39-37 ]] --
+-- [[ Exported at 2024-09-15 10-16-44 ]] --
 tasks = {
+    {N, 40939, 211}, -- Harbinger of the Gilded
     {N, 40907, 211}, -- We Rise Anew
     {N, 40906, 211}, -- The Flame Burns Within
     {N, 40905, 211}, -- "From Many, One"
@@ -137,7 +138,6 @@ tasks = {
     {N, 40622, 210}, -- Biblo Archivist
     {N, 40621, 210}, -- The Rookery
     {N, 40620, 210}, -- Back to the Wall
-    {N, 40619, 210}, -- Mine Poppin'
     {N, 40618, 210}, -- Lost and Found
     {N, 40617, 210}, -- Deepholla
     {N, 40616, 210}, -- Unexpected Arrivals
@@ -399,12 +399,13 @@ tasks = {
     {N, 40150, 210}, -- Children's Entertainer
     {N, 40147, 210}, -- War Within Epic
     {N, 40146, 210}, -- War Within Superior
-    {N, 40145, 210}, -- So Much Sharing
-    {N, 40142, 210}, -- Learning to Share
     {N, 40141, 210}, -- Algari Dungeon Tank
     {N, 40140, 210}, -- Algari Dungeon Healer
     {N, 40139, 210}, -- Algari Dungeon Damage Dealer
     {N, 40138, 210}, -- Algari Dungeoneer
+    {N, 40118, 210}, -- Harbinger of the Runed
+    {N, 40115, 210}, -- Harbinger of the Carved
+    {N, 40107, 210}, -- Harbinger of the Weathered
     {O, 40103, "From", "Season", 13, "Before", "Season", 14},
     {N, 40103, 210}, -- Nemesis
     {N, 40100, 210}, -- Undying Caver
@@ -10678,4 +10679,4 @@ tasks = {
     {N, 7, 86}, -- Level 20
     {N, 6, 86}, -- Level 10
 };
-addon.Data.HighestAchievementId = 40907;
+addon.Data.HighestAchievementId = 40939;

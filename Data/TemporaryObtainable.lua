@@ -109,17 +109,17 @@ local function FindCachedCalendarEvent(eventId)
     eventId = tonumber(eventId);
     local event = KrowiAF_SavedData.CalendarEventsCache[eventId];
     if event then
-        return event, data.CalendarEvents[eventId];
+        return event, data.Events[addon.Objects.EventType.Calendar][eventId];
     end
-    if data.CalendarEvents[eventId] and data.CalendarEvents[eventId].LinkedEventIds then
-        for _, linkedEventId in next, data.CalendarEvents[eventId].LinkedEventIds do
+    if data.Events[addon.Objects.EventType.Calendar][eventId] and data.Events[addon.Objects.EventType.Calendar][eventId].LinkedEventIds then
+        for _, linkedEventId in next, data.Events[addon.Objects.EventType.Calendar][eventId].LinkedEventIds do
             event = KrowiAF_SavedData.CalendarEventsCache[linkedEventId];
             if event then
-                return event, data.CalendarEvents[eventId];
+                return event, data.Events[addon.Objects.EventType.Calendar][eventId];
             end
         end
     end
-    return nil, data.CalendarEvents[eventId];
+    return nil, data.Events[addon.Objects.EventType.Calendar][eventId];
 end
 
 do -- Tooltip, maybe move to not obtainable tooltip lua
