@@ -1,9 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 75.9 - 2024-09-02
+## 76.0 - 2024-10-07
 ### Added
 - Storm Rider races tooltip data
+
+### Changed
+- Event Data rework
 
 ## 75.8 - 2024-09-02
 ### Added

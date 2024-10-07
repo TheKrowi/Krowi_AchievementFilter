@@ -37,7 +37,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-09-15 10-16-37 ]] --
+-- [[ Exported at 2024-10-07 21-06-01 ]] --
 tasks = {
     {A, 1347, 15251}, -- The Jailer's Gauntlet: Layer 1
     {A, 1347, 15079}, -- "Many, Many Things"
@@ -1990,13 +1990,6 @@ tasks = {
     {A, 1676, 40859}, -- We're Here All Night
     {C, 1671, 1676},
     {N, 1676, a.L["Theater Troupe"]}, -- Theater Troupe
-    {A, 1672, 40314}, -- Fragments of Memories
-    {A, 1672, 40252}, -- A Series of Echoes
-    {A, 1672, 40251}, -- Many Echoes
-    {A, 1672, 40250}, -- The First Echo
-    {A, 1672, 40222}, -- Echoes of Danger
-    {C, 1671, 1672},
-    {N, 1672, a.L["Worldsoul Memory"]}, -- Worldsoul Memory
     {A, 1677, 40796}, -- This Takes Me Back
     {C, 1671, 1677},
     {N, 1677, a.L["Pre-Patch Event"]}, -- Pre-Patch Event
@@ -3297,6 +3290,11 @@ tasks = {
     {A, 1645, 40087}, -- Unbound Battle
     {C, 1642, 1645},
     {N, 1645, a.GetCategoryInfoTitle(95), true}, -- Player vs. Player
+    {A, 1644, 40314}, -- Fragments of Memories
+    {A, 1644, 40252}, -- A Series of Echoes
+    {A, 1644, 40251}, -- Many Echoes
+    {A, 1644, 40250}, -- The First Echo
+    {A, 1644, 40222}, -- Echoes of Danger
     {A, 1644, 40762}, -- Khaz Algar Lore Hunter
     {A, 1644, 40790}, -- Khaz Algar Explorer
     {A, 1644, 40702}, -- Khaz Algar Glyph Hunter

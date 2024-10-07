@@ -69,7 +69,7 @@ function eventData.LoadBlizzard_Calendar()
 end
 
 local function GetActiveWidgetEvents()
-    for _, event in next, data.WidgetEvents do
+    for _, event in next, data.Events[addon.Objects.EventType.Widget] do
         event.EventDetails = eventData.GetWidgetEventDetails(event);
         if event.EventDetails then
             tinsert(activeEvents, event);
@@ -97,7 +97,7 @@ function eventData.GetWidgetEventDetails(event)
 end
 
 local function GetActiveWorldEvents()
-    for _, event in next, data.WorldEvents do
+    for _, event in next, data.Events[addon.Objects.EventType.World] do
         event.EventDetails = eventData.GetWorldEventDetails(event);
         if event.EventDetails then
             tinsert(activeEvents, event);

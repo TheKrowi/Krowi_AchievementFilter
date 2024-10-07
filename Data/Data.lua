@@ -25,7 +25,8 @@ data.Maps = {};
 
 data.Events = {};
 data.Events[addon.Objects.EventType.Calendar] = {};
-data.WidgetEvents, data.WorldEvents = {}, {};
+data.Events[addon.Objects.EventType.Widget] = {};
+data.Events[addon.Objects.EventType.World] = {};
 
 function data:RegisterTooltipDataTasks()
     local name = "Additional Tooltip Data: ";
@@ -92,12 +93,6 @@ function data:LoadOnPlayerLogin()
     self.ExportedAchievements.RegisterTasks(self.Achievements, self.BuildVersions, self.TransmogSets);
     self.ExportedCategories.RegisterTasks(self.Categories, self.Achievements, addon.Tabs);
     self:RegisterEventDataTasks();
-    if self.ExportedWidgetEvents then
-        self.ExportedWidgetEvents.RegisterTasks(self.WidgetEvents, self.Categories);
-    end
-    if self.ExportedWorldEvents then
-        self.ExportedWorldEvents.RegisterTasks(self.WorldEvents, self.Categories);
-    end
     self.ExportedUiMaps.RegisterTasks(self.Maps, self.Achievements);
 
     self:RegisterTooltipDataTasks();
