@@ -24,7 +24,7 @@ end
 
 local OrderPP = addon.InjectOptions.AutoOrderPlusPlus;
 local AdjustedWidth = addon.InjectOptions.AdjustedWidth;
-local function InjectOptionsTable(eventType, eventIds, eventDisplayName, groupDisplayName, order, expansionId)
+local function InjectOptionsTable(eventTypeGroup, eventType, eventIds, eventDisplayName, groupDisplayName, order, expansionId)
     local path = "EventReminders.args." .. eventType .. "Events.args";
     local expansionName = GetExpansionNameFromId(expansionId);
     if expansionName then
@@ -49,19 +49,19 @@ local function InjectOptionsTable(eventType, eventIds, eventDisplayName, groupDi
     addon.InjectOptions:AddTable(path, tostring(eventIds[1]), {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(),
         name = eventDisplayName,
-        get = function() return addon.Options.db.profile.EventReminders[eventType .. "Events"][eventIds[1]]; end,
+        get = function() return addon.Options.db.profile.EventReminders[eventTypeGroup .. "Events"][eventIds[1]]; end,
         set = function(_, value)
             for _, eventId in next, eventIds do
-                addon.Options.db.profile.EventReminders[eventType .. "Events"][eventId] = value;
+                addon.Options.db.profile.EventReminders[eventTypeGroup .. "Events"][eventId] = value;
             end
             addon.Gui.EventReminderSideButtonSystem:Refresh();
         end
     });
 end
 
-local function RegisterEventOptions(eventType, eventIds, eventDisplayName, groupDisplayName, order, expansionId, hideByDefault)
+local function RegisterEventOptions(eventTypeGroup, eventType, eventIds, eventDisplayName, groupDisplayName, order, expansionId, hideByDefault)
     InjectOptionsDefaults(eventType, eventIds, hideByDefault);
-    InjectOptionsTable(eventType, eventIds, eventDisplayName, groupDisplayName, order, expansionId);
+    InjectOptionsTable(eventTypeGroup, eventType, eventIds, eventDisplayName, groupDisplayName, order, expansionId);
 end
 
 local function SetEvents(path, value)
@@ -116,8 +116,8 @@ function KrowiAF.InjectEventDataDynamicOptions()
 end
 
 function KrowiAF.RegisterEventDataOptions(eventIds, eventType, categoryId, icon, eventName, eventGroup, groupOrder, expansionId, hideByDefault, mapId)
-    if eventIds == 8079 then
-        print(8079, hideByDefault, mapId)
+    if eventIds == 5584 then
+        print(5584, eventType, addon.Objects.EventType.Widget)
     end
     if not addon.Util.IsTable(eventIds) then
         eventIds = {eventIds};
@@ -126,12 +126,19 @@ function KrowiAF.RegisterEventDataOptions(eventIds, eventType, categoryId, icon,
         eventName = eventName[2];
     end
 
+    local eventTypeGroup;
     if eventType == addon.Objects.EventType.Calendar then
         eventType = "Calendar";
-    else
+        eventTypeGroup = eventType;
+    elseif eventType == addon.Objects.EventType.Widget then
         eventType = "World";
+        eventTypeGroup = "Widget";
+    elseif eventType == addon.Objects.EventType.World then
+        eventType = "World";
+        eventTypeGroup = eventType;
     end
-    RegisterEventOptions(eventType, eventIds, eventName, eventGroup, groupOrder, expansionId, hideByDefault);
+
+    RegisterEventOptions(eventTypeGroup, eventType, eventIds, eventName, eventGroup, groupOrder, expansionId, hideByDefault);
     RegisterDynamicDeSelectAllEventOptions(eventType, eventGroup, expansionId);
 end
 
