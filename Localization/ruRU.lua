@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-09-02 20-38-32 ]] --
+-- [[ Exported at 2024-10-15 20-15-24 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -366,6 +366,7 @@ L["Load Tracking Achievements Desc"] = "Загрузить достижения 
 L["Loaded"] = "Загружено"
 L["Loaded Desc"] = "Показывает если аддон плагина загрузился или нет."
 L["Localizations"] = "Локализация"
+L["Location"] = "Локация"
 L["Lock month"] = "Закрепить месяц"
 L["Lock month Desc"] = "Оставить последний показанный месяц для показа его при открытии календаря даже после его закрытия."
 L["Lock month when closed by achievement"] = "Закрепить месяц если он был закрыт достижением"
@@ -606,6 +607,8 @@ L["Show Objectives progress"] = "Показ {objectivesProgress}"
 L["Show Objectives progress Desc"] = "Показать / скрыть {objectivesProgress}. Когда выбрано {objectivesProgress}  будет отображаться в подсказке достижения."
 L["Show Other faction"] = "Показ других фракций"
 L["Show Other faction Desc"] = "Показать  / скрыть {otherFaction}. Когда выбрано и оно доступно, достижения для других фракциё будет отображаться в подсказке. Это поможет рахобраться , если вы начали играть за Орду, если ранее вы только имели дело с Альянсем."
+L["Show Part of a chain"] = "Показ {partOfAChain}"
+L["Show Part of a chain Desc"] = "Показать / спрятать {partOfAChain}. Когда выбрано, цепочка достижений как часть будет отображаться в подсказке."
 L["Show placeholders"] = "Показ заглушек"
 L["Show placeholders Desc"] = "Показать набор заглушек событий, чтобы была визуальная обратная связь о том, что делают вышеуказанные настройки. Их можно снова закрыть, наведя на них курсор мыши или щелкнув правой кнопкой мыши."
 L["Show placeholders filter"] = "Показ фильтров заглушек"
@@ -653,6 +656,7 @@ L["Spreading the Light"] = "Распространяя свет"
 L["Stables"] = "Стойла"
 L["StarCraft II"] = true
 L["Start Time"] = "Начальное время"
+L["Stop tracking"] = "Прекратить отслеживание"
 L["Stormheim"] = "Штормхейм"
 L["Stormsong Valley"] = "Долина Штормов"
 L["Strand of the Ancients"] = "Берег Древних"

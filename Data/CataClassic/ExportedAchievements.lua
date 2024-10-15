@@ -39,8 +39,18 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-10-07 21-05-50 ]] --
+-- [[ Exported at 2024-10-15 20-01-20 ]] --
 tasks = {
+    {N, 41148, 213}, -- Protocol Inferno: Terminated
+    {N, 41147, 213}, -- Protocol Inferno: Shadowfang Keep
+    {N, 41146, 213}, -- Protocol Inferno: Deadmines
+    {N, 41145, 213}, -- Protocol Inferno: Lost City of the Tol'vir
+    {N, 41144, 213}, -- Protocol Inferno: Halls of Origination
+    {N, 41143, 213}, -- Protocol Inferno: Grim Batol
+    {N, 41142, 213}, -- Protocol Inferno: The Vortex Pinnacle
+    {N, 41141, 213}, -- Protocol Inferno: The Stonecore
+    {N, 41140, 213}, -- Protocol Inferno: Throne of the Tides
+    {N, 41139, 213}, -- Protocol Inferno: Blackrock Caverns
     {N, 19440, 204, f.Horde}, -- Defense Protocol Gamma: Terminated
     {N, 19439, 204, f.Alliance}, -- Defense Protocol Gamma: Terminated
     {N, 19438, 204}, -- Defense Protocol Gamma: The Culling of Stratholme
@@ -2481,4 +2491,4 @@ tasks = {
     {N, 7, 86}, -- Level 20
     {N, 6, 86}, -- Level 10
 };
-addon.Data.HighestAchievementId = 19440;
+addon.Data.HighestAchievementId = 41148;

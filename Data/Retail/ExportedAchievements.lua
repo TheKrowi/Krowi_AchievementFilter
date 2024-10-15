@@ -39,8 +39,54 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-10-07 21-05-52 ]] --
+-- [[ Exported at 2024-10-15 20-01-22 ]] --
 tasks = {
+    {O, 41044, "From", "PvP Season", 38, "Until", "PvP Season", 38},
+    {N, 41044, 212}, -- Forged Weapons of Conquest
+    {O, 41038, "From", "Event", "1595", "Until", "Event", "1595"},
+    {N, 41038, 212}, -- Token Collector
+    {N, 41033, 212}, -- Classy Dresser
+    {O, 41015, "From", "Event", "1595", "Until", "Event", "1595"},
+    {N, 41015, 212}, -- A Dark Iron Past
+    {N, 41013, 212}, -- Upgraded Apparel
+    {N, 41000, 212}, -- A Timewalking Journey Back to a Classic Dungeon Time
+    {O, 40999, "From", "Event", "1595", "Until", "Event", "1595"},
+    {N, 40999, 212}, -- You're in Your Blackrock Depths
+    {N, 40998, 212}, -- A Timewalking Step Back to a Classic Dungeon Time
+    {O, 40997, "From", "Event", "1595", "Until", "Event", "1595"},
+    {N, 40997, 212}, -- The Gatecrashers
+    {O, 40996, "From", "Event", "1595", "Until", "Event", "1595"},
+    {N, 40996, 212}, -- A Gatecrasher
+    {O, 40995, "From", "Event", "1595", "Until", "Event", "1595"},
+    {N, 40995, 212}, -- The Originals
+    {O, 40994, "From", "Event", "1595", "Until", "Event", "1595"},
+    {N, 40994, 212}, -- An Original
+    {O, 40993, "From", "Event", "1595", "Until", "Event", "1595"},
+    {N, 40993, 212}, -- Avid Listener
+    {O, 40992, "From", "Event", "1595", "Until", "Event", "1595"},
+    {N, 40992, 212}, -- Peanut Gallery
+    {O, 40991, "From", "Event", "1595", "Until", "Event", "1595"},
+    {N, 40991, 212}, -- Frequent Flyer
+    {O, 40990, "From", "Event", "1595", "Until", "Event", "1595"},
+    {N, 40990, 212}, -- Balloonist
+    {O, 40989, "From", "Event", "1595", "Until", "Event", "1595"},
+    {N, 40989, 212}, -- Pet Mischief
+    {N, 40988, 212}, -- Photo Op!
+    {O, 40987, "From", "Event", "1595", "Until", "Event", "1595"},
+    {N, 40987, 212}, -- Fashion Critic
+    {O, 40986, "From", "Event", "1595", "Until", "Event", "1595"},
+    {N, 40986, 212}, -- Mount Master
+    {O, 40985, "From", "Event", "1595", "Until", "Event", "1595"},
+    {N, 40985, 212}, -- I Have That One!
+    {O, 40984, "From", "Event", "1595", "Until", "Event", "1595"},
+    {N, 40984, 212}, -- Big Fan
+    {N, 40980, 212}, -- Family Battler of Khaz Algar
+    {N, 40979, 212}, -- No Crate Left Behind
+    {O, 40977, "From", "Event", "1595", "Until", "Event", "1595"},
+    {N, 40977, 212}, -- Codex Editor: Ahn'Qiraj
+    {O, 40976, "From", "Event", "1595", "Until", "Event", "1595"},
+    {N, 40976, 212}, -- A Cool Twenty Years
+    {N, 40967, 212}, -- Ratts' Revenge
     {N, 40939, 211}, -- Harbinger of the Gilded
     {N, 40907, 211}, -- We Rise Anew
     {N, 40906, 211}, -- The Flame Burns Within
@@ -51,6 +97,10 @@ tasks = {
     {N, 40876, 211}, -- Vox Arachni
     {N, 40875, 211}, -- True Strength
     {N, 40874, 211}, -- The Grand Tapestry
+    {N, 40873, 212}, -- Crate Insurance Agent
+    {N, 40872, 212}, -- I Saved the Party and All I Got Was This Lousy Hat
+    {N, 40871, 212}, -- Assistant to the Assistant Guest Relations Manager
+    {N, 40870, 212}, -- Azeroth's Greatest Detective
     {N, 40869, 211}, -- Worm Theory
     {N, 40864, 211}, -- Plentiful Perplexing Puzzles
     {N, 40863, 211}, -- Perplexing Puzzle
@@ -117,6 +167,8 @@ tasks = {
     {N, 40703, 210}, -- The Ringing Deeps Glyph Hunter
     {N, 40702, 210}, -- Khaz Algar Glyph Hunter
     {N, 40662, 210}, -- "It's Not Much, But It's Honest Work"
+    {O, 40661, "From", "Event", "1595", "Until", "Event", "1595"},
+    {N, 40661, 212}, -- Zoomies!
     {N, 40660, 210}, -- The War Within Season 1: Spelunker Supreme
     {N, 40648, 210}, -- Mythic: The Stonevault
     {N, 40644, 210}, -- Heroic: The Stonevault
@@ -364,7 +416,7 @@ tasks = {
     {N, 40237, 210}, -- Mythic: The Bloodbound Horror
     {N, 40236, 210}, -- Mythic: Ulgrax the Devourer
     {O, 40235, "From", "PvP Season", 38, "Until", "PvP Season", 38},
-    {N, 40235, 210, f.Alliance}, -- Forged Marshall: The War Within Season 1
+    {N, 40235, 210, f.Alliance}, -- Forged Marshal: The War Within Season 1
     {O, 40234, "From", "PvP Season", 38, "Until", "PvP Season", 38},
     {N, 40234, 210, f.Horde}, -- Forged Warlord: The War Within Season 1
     {O, 40233, "From", "PvP Season", 38, "Until", "PvP Season", 38},
@@ -1846,6 +1898,7 @@ tasks = {
     {N, 16736, 195}, -- Grand Theft Mammoth
     {O, 16734, "From", "PvP Season", 34, "Until", "PvP Season", 34},
     {N, 16734, 195, nil, nil, true}, -- Crimson Legend: Dragonflight Season 1
+    {N, 16731, 212}, -- Court is Now in Session
     {O, 16730, "From", "PvP Season", 34, "Until", "PvP Season", 34},
     {N, 16730, 195, nil, nil, true}, -- Crimson Gladiator's Drake
     {N, 16729, 195}, -- To All the Squirrels Hidden Til Now
@@ -2360,6 +2413,7 @@ tasks = {
     {N, 15647, 192}, -- Dead Men Tell Some Tales
     {N, 15646, 192}, -- Re-Re-Re-Renowned
     {N, 15645, 192}, -- To Catch Falling Stars
+    {N, 15644, 212}, -- Good Things Come in Small Packages
     {N, 15643, 196}, -- What Can I Say? They Love Me.
     {N, 15642, 196}, -- Proven Pet Parent
     {N, 15641, 196}, -- Many More Mini Minions
@@ -10679,4 +10733,4 @@ tasks = {
     {N, 7, 86}, -- Level 20
     {N, 6, 86}, -- Level 10
 };
-addon.Data.HighestAchievementId = 40939;
+addon.Data.HighestAchievementId = 41044;

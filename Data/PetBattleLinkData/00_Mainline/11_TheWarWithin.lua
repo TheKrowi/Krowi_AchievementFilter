@@ -3,22 +3,22 @@ local shared = addon.Data.PetBattleLinkData.Shared;
 local sec, enc = shared.Section, shared.Encounter;
 
 KrowiAF.PetBattleLinkData.TheWarWithin = {
-    -- { -- Family Battler of Khaz Algar
-    --     ?????,
-    --     sec .. "105",
-    --     {
-    --         {1, 40154}, -- Aquatic Battler of Khaz Algar
-    --         {2, 40155}, -- Beast Battler of Khaz Algar
-    --         {3, 40156}, -- Critter Battler of Khaz Algar
-    --         {4, 40157}, -- Dragonkin Battler of Khaz Algar
-    --         {5, 40158}, -- Elemental Battler of Khaz Algar
-    --         {6, 40161}, -- Flying Battler of Khaz Algar
-    --         {7, 40162}, -- Humanoid Battler of Khaz Algar
-    --         {8, 40163}, -- Magic Battler of Khaz Algar
-    --         {9, 40164}, -- Mechanical Battler of Khaz Algar
-    --         {10, 40165}, -- Undead Battler of Khaz Algar
-    --     }
-    -- },
+    { -- Family Battler of Khaz Algar
+        40980,
+        sec .. "105",
+        {
+            {1, 40154}, -- Aquatic Battler of Khaz Algar
+            {2, 40155}, -- Beast Battler of Khaz Algar
+            {3, 40156}, -- Critter Battler of Khaz Algar
+            {4, 40157}, -- Dragonkin Battler of Khaz Algar
+            {5, 40158}, -- Elemental Battler of Khaz Algar
+            {6, 40161}, -- Flying Battler of Khaz Algar
+            {7, 40162}, -- Humanoid Battler of Khaz Algar
+            {8, 40163}, -- Magic Battler of Khaz Algar
+            {9, 40164}, -- Mechanical Battler of Khaz Algar
+            {10, 40165}, -- Undead Battler of Khaz Algar
+        }
+    },
     { -- Undead Battler of Khaz Algar
         40165,
         enc .. "1665",

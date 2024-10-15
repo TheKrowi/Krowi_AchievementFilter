@@ -1,4 +1,4 @@
-## Interface: 40400
+## Interface: 40401
 ## Title: Krowi's |cFF1D92C2Achievement Filter|r
 ## X-Prefix: KrowiAF
 ## X-Acronym: KAF

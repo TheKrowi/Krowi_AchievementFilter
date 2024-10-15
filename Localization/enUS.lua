@@ -7,7 +7,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-09-02 20-38-20 ]] --
+-- [[ Exported at 2024-10-15 20-16-08 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -468,6 +468,7 @@ L["Force two columns"] = true
 L["Force two columns Desc"] = "Enable / disable the algorithm to force two achievement objectives columns. When enabled, if only one column of objectives would be shown due to the text of one or more objectives being too long, a second column will be forced based on the other settings."
 L["Force two columns threshold"] = true
 L["Force two columns threshold Desc"] = "The number of criteria the achievement must have before we force a second column if normally only one would be shown."
+L["Forget Me Not: Next"] = true
 L["Format"] = true
 L["Fracture Chambers"] = true
 L["Fractures in Time"] = true
@@ -981,15 +982,19 @@ L["The Azure Span Sprint"] = true
 L["The Big Dig: Active"] = true
 L["The Big Dig: Next"] = true
 L["The Big Dig: Soon"] = true
+L["The Cruelty of Dornic: Next"] = true
 L["The Entitled"] = true
 L["the event name with run time"] = "the {eventName} from {startDate} until {endDate}"
 L["The Flowing Forest Flight"] = true
 L["The Iron Tide"] = true
+L["The Rivals: Next"] = true
 L["The Shattering"] = true
+L["The Thraegar's Descent: Next"] = true
 L["The Thunder King"] = true
 L["The Tomb of Sargeras"] = true
 L["The Vakthros Ascent"] = true
 L["The Waking Shore"] = true
+L["The Wanderer: Next"] = true
 L["The War Within (pre-patch)"] = true
 L["Theater Troupe"] = true
 L["This achievement"] = true

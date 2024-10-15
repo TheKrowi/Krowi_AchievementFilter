@@ -4,9 +4,13 @@ All notable changes to this project will be documented in this file.
 ## 76.0 - 2024-10-07
 ### Added
 - Storm Rider races tooltip data
+- WoW's 20th Anniversary achievements 
 
 ### Changed
 - Event Data rework
+
+### Cata Classic
+- Added Protocol Inferno achievements
 
 ## 75.8 - 2024-09-02
 ### Added

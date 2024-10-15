@@ -21,8 +21,9 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-14 13-13-53 ]] --
+-- [[ Exported at 2024-10-15 19-56-44 ]] --
 tasks = {
+    {N, 213, "4.4.1", "040401", addon.L["Rage of the Firelands"]},
     {N, 209, "4.4.0", "040400", addon.L["Cataclysm"]},
     {N, 121, "4.3.2", "040302", addon.L["Hour of Twilight"]},
     {N, 119, "4.3.0", "040300", addon.L["Hour of Twilight"]},
@@ -66,6 +67,7 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
     filters[119] = true;
     filters[121] = true;
     filters[209] = true;
+    filters[213] = true;
 
     return {
         { -- 3
@@ -203,6 +205,10 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                         { -- 4.4.0
                             Patch = 0,
                             BuildVersionId = 209
+                        },
+                        { -- 4.4.1
+                            Patch = 1,
+                            BuildVersionId = 213
                         },
                     },
                 },

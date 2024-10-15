@@ -37,7 +37,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-10-07 21-06-01 ]] --
+-- [[ Exported at 2024-10-15 20-12-30 ]] --
 tasks = {
     {A, 1347, 15251}, -- The Jailer's Gauntlet: Layer 1
     {A, 1347, 15079}, -- "Many, Many Things"
@@ -1067,8 +1067,9 @@ tasks = {
     {N, 971, a.L["Specials"]}, -- TAB - Specials
     {A, 1652, 40723}, -- Web-Wrapped in the Finest Silks
     {A, 1652, 40660}, -- The War Within Season 1: Spelunker Supreme
+    {A, 1652, 41044}, -- Forged Weapons of Conquest
     {A, 1652, 40234}, -- Forged Warlord: The War Within Season 1
-    {A, 1652, 40235}, -- Forged Marshall: The War Within Season 1
+    {A, 1652, 40235}, -- Forged Marshal: The War Within Season 1
     {A, 1652, 40233}, -- Strategist: The War Within Season 1
     {A, 1652, 40792}, -- Solo Shuffle Medic: The War Within
     {A, 1652, 40472}, -- Battle Mender: The War Within Season 1
@@ -2433,7 +2434,7 @@ tasks = {
     {A, 1578, 20527}, -- Infinite Power I
     {A, 1578, 19871}, -- Infinite Power
     {C, 884, 1578},
-    {N, 1578, a.GetCategoryInfoTitle(15509)}, -- Pandaria: Remix
+    {N, 1578, a.GetCategoryInfoTitle(15536)}, -- Pandaria: Remix
     {A, 1452, 19080}, -- Arcane Influence
     {A, 1452, 18646}, -- Whodunnit?
     {A, 1452, 18645}, -- Tools of the Trade
@@ -2574,6 +2575,38 @@ tasks = {
     {A, 925, 6019}, -- "Come One, Come All!"
     {C, 884, 925},
     {N, 925, a.GetCategoryInfoTitle(15101)}, -- Darkmoon Faire
+    {A, 1678, 40988}, -- Photo Op!
+    {A, 1678, 40967}, -- Ratts' Revenge
+    {A, 1678, 40999}, -- You're in Your Blackrock Depths
+    {A, 1678, 41015}, -- A Dark Iron Past
+    {A, 1678, 41000}, -- A Timewalking Journey Back to a Classic Dungeon Time
+    {A, 1678, 40998}, -- A Timewalking Step Back to a Classic Dungeon Time
+    {A, 1678, 41033}, -- Classy Dresser
+    {A, 1678, 41013}, -- Upgraded Apparel
+    {A, 1678, 41038}, -- Token Collector
+    {A, 1678, 40870}, -- Azeroth's Greatest Detective
+    {A, 1678, 40979}, -- No Crate Left Behind
+    {A, 1678, 40873}, -- Crate Insurance Agent
+    {A, 1678, 40872}, -- I Saved the Party and All I Got Was This Lousy Hat
+    {A, 1678, 40871}, -- Assistant to the Assistant Guest Relations Manager
+    {A, 1678, 40976}, -- A Cool Twenty Years
+    {A, 1678, 40977}, -- Codex Editor: Ahn'Qiraj
+    {A, 1678, 40997}, -- The Gatecrashers
+    {A, 1678, 40996}, -- A Gatecrasher
+    {A, 1678, 40995}, -- The Originals
+    {A, 1678, 40994}, -- An Original
+    {A, 1678, 40993}, -- Avid Listener
+    {A, 1678, 40992}, -- Peanut Gallery
+    {A, 1678, 40991}, -- Frequent Flyer
+    {A, 1678, 40990}, -- Balloonist
+    {A, 1678, 40661}, -- Zoomies!
+    {A, 1678, 40989}, -- Pet Mischief
+    {A, 1678, 40984}, -- Big Fan
+    {A, 1678, 40987}, -- Fashion Critic
+    {A, 1678, 40986}, -- Mount Master
+    {A, 1678, 40985}, -- I Have That One!
+    {C, 1173, 1678},
+    {N, 1678, a.L["WoW's 20th Anniversary"]}, -- WoW's 20th Anniversary
     {A, 1173, 19192}, -- Lil' Frostwing
     {A, 1173, 10335}, -- Did Someone Say...?
     {A, 1173, 18702}, -- WoW's 19th Anniversary
@@ -2898,6 +2931,7 @@ tasks = {
     {A, 1606, 40352}, -- Khaz Algar Completionist: Bronze
     {C, 1598, 1606},
     {N, 1606, a.L["Skyriding Races"]}, -- Skyriding Races
+    {A, 1604, 40980}, -- Family Battler of Khaz Algar
     {A, 1604, 40165}, -- Undead Battler of Khaz Algar
     {A, 1604, 40164}, -- Mechanical Battler of Khaz Algar
     {A, 1604, 40163}, -- Magic Battler of Khaz Algar
@@ -4462,6 +4496,7 @@ tasks = {
     {A, 422, 14670}, -- That's the Spirit
     {C, 419, 422},
     {N, 422, a.GetCovenantName(3)}, -- Night Fae
+    {A, 421, 16731}, -- Court is Now in Session
     {A, 421, 14749}, -- Rendle's Big Day
     {A, 421, 14727}, -- Master of Ceremonies
     {A, 421, 14726}, -- It's Certainly Never Boring
@@ -10438,6 +10473,7 @@ tasks = {
     {A, 1433, 6556}, -- Going to Need More Traps
     {A, 1433, 6555}, -- Building a Team
     {A, 1433, 6554}, -- He's Mine!
+    {A, 1433, 15644}, -- Good Things Come in Small Packages
     {A, 1433, 15643}, -- What Can I Say? They Love Me.
     {A, 1433, 15642}, -- Proven Pet Parent
     {A, 1433, 15641}, -- Many More Mini Minions

@@ -25,7 +25,7 @@ end
 local OrderPP = addon.InjectOptions.AutoOrderPlusPlus;
 local AdjustedWidth = addon.InjectOptions.AdjustedWidth;
 local function InjectOptionsTable(eventTypeGroup, eventType, eventIds, eventDisplayName, groupDisplayName, order, expansionId)
-    local path = "EventReminders.args." .. eventType .. "Events.args";
+    local path = "EventReminders.args." .. eventTypeGroup .. "Events.args";
     local expansionName = GetExpansionNameFromId(expansionId);
     if expansionName then
         if not addon.InjectOptions:TableExists(path .. "." .. expansionName) then
@@ -49,10 +49,10 @@ local function InjectOptionsTable(eventTypeGroup, eventType, eventIds, eventDisp
     addon.InjectOptions:AddTable(path, tostring(eventIds[1]), {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(),
         name = eventDisplayName,
-        get = function() return addon.Options.db.profile.EventReminders[eventTypeGroup .. "Events"][eventIds[1]]; end,
+        get = function() return addon.Options.db.profile.EventReminders[eventType .. "Events"][eventIds[1]]; end,
         set = function(_, value)
             for _, eventId in next, eventIds do
-                addon.Options.db.profile.EventReminders[eventTypeGroup .. "Events"][eventId] = value;
+                addon.Options.db.profile.EventReminders[eventType .. "Events"][eventId] = value;
             end
             addon.Gui.EventReminderSideButtonSystem:Refresh();
         end
@@ -129,17 +129,15 @@ function KrowiAF.RegisterEventDataOptions(eventIds, eventType, categoryId, icon,
     local eventTypeGroup;
     if eventType == addon.Objects.EventType.Calendar then
         eventType = "Calendar";
-        eventTypeGroup = eventType;
     elseif eventType == addon.Objects.EventType.Widget then
-        eventType = "World";
-        eventTypeGroup = "Widget";
+        eventType = "Widget";
+        eventTypeGroup = "World";
     elseif eventType == addon.Objects.EventType.World then
         eventType = "World";
-        eventTypeGroup = eventType;
     end
 
-    RegisterEventOptions(eventTypeGroup, eventType, eventIds, eventName, eventGroup, groupOrder, expansionId, hideByDefault);
-    RegisterDynamicDeSelectAllEventOptions(eventType, eventGroup, expansionId);
+    RegisterEventOptions(eventTypeGroup or eventType, eventType, eventIds, eventName, eventGroup, groupOrder, expansionId, hideByDefault);
+    RegisterDynamicDeSelectAllEventOptions(eventTypeGroup or eventType, eventGroup, expansionId);
 end
 
 function KrowiAF.AddEventData(eventIds, eventType, categoryId, icon, eventName, eventGroup, groupOrder, expansionId, hideByDefault, mapId)
