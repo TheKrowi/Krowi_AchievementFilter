@@ -4,7 +4,7 @@ local type = addon.Objects.EventType;
 
 KrowiAF.EventData.TheWarWithin = {
     { -- WoW's 20th Anniversary
-        1595, type.Calendar,
+        {1500, 1509, 1592, 1593, 1594, 1595}, type.Calendar,
         1678,
         6036545,
 		addon.L["WoW's 20th Anniversary"],

@@ -16,136 +16,137 @@ end
 local buildVersion = addon.Objects.BuildVersion;
 local function N(id, ...)
     buildVersions[id] = buildVersion:New(id, ...);
+    -- KrowiAF.AddToGroup(buildVersions[id]);
 end
 
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-10-15 19-56-44 ]] --
+-- [[ Exported at 2024-10-20 09-03-36 ]] --
 tasks = {
-    {N, 212, "11.0.5", "110005", addon.L["WoW's 20th Anniversary"]},
-    {N, 211, "11.0.2", "110002", addon.L["The War Within"]},
-    {N, 210, "11.0.0", "110000", addon.L["The War Within (pre-patch)"]},
-    {N, 208, "10.2.7", "100207", addon.L["Dark Heart"]},
-    {N, 207, "10.2.6", "100206", addon.L["Plunderstorm"]},
-    {N, 206, "10.2.5", "100205", addon.L["Seeds of Renewal"]},
-    {N, 205, "10.2.0", "100200", addon.L["Guardians of the Dream"]},
-    {N, 202, "10.1.7", "100107", addon.L["Fury Incarnate"]},
-    {N, 201, "10.1.5", "100105", addon.L["Fractures in Time"]},
-    {N, 200, "10.1.0", "100100", addon.L["Embers of Neltharion"]},
-    {N, 199, "10.0.7", "100007", addon.L["Return to the Forbidden Reach"]},
-    {N, 198, "10.0.5", "100005", addon.L["Trading Post"]},
-    {N, 195, "10.0.2", "100002", addon.L["Dragonflight"]},
-    {N, 196, "10.0.0", "100000", addon.L["Dragonflight (pre-patch)"]},
-    {N, 193, "9.2.7", "090207", addon.L["Eternity's End"]},
-    {N, 192, "9.2.5", "090205", addon.L["Eternity's End"]},
-    {N, 191, "9.2.0", "090200", addon.L["Eternity's End"]},
-    {N, 190, "9.1.5", "090105", addon.L["Chains of Domination"]},
-    {N, 189, "9.1.0", "090100", addon.L["Chains of Domination"]},
-    {N, 188, "9.0.5", "090005", addon.L["Shadowlands"]},
-    {N, 187, "9.0.2", "090002", addon.L["Shadowlands"]},
-    {N, 186, "9.0.1", "090001", addon.L["Shadowlands (pre-patch)"]},
-    {N, 184, "8.3.0", "080300", addon.L["Visions of N'Zoth"]},
-    {N, 183, "8.2.5", "080205", addon.L["Rise of Azshara"]},
-    {N, 182, "8.2.0", "080200", addon.L["Rise of Azshara"]},
-    {N, 181, "8.1.5", "080105", addon.L["Tides of Vengeance"]},
-    {N, 180, "8.1.0", "080100", addon.L["Tides of Vengeance"]},
-    {N, 179, "8.0.1", "080001", addon.L["Battle for Azeroth"]},
-    {N, 178, "7.3.5", "070305", addon.L["Shadows of Argus"]},
-    {N, 177, "7.3.2", "070302", addon.L["Shadows of Argus"]},
-    {N, 176, "7.3.0", "070300", addon.L["Shadows of Argus"]},
-    {N, 175, "7.2.5", "070205", addon.L["The Tomb of Sargeras"]},
-    {N, 174, "7.2.0", "070200", addon.L["The Tomb of Sargeras"]},
-    {N, 171, "7.0.3", "070003", addon.L["Legion"]},
-    {N, 167, "6.2.2", "060202", addon.L["Fury of Hellfire"]},
-    {N, 165, "6.2.0", "060200", addon.L["Fury of Hellfire"]},
-    {N, 163, "6.1.0", "060100", addon.L["Garrisons Update"]},
-    {N, 159, "6.0.2", "060002", addon.L["Warlords of Draenor"]},
-    {N, 152, "5.4.2", "050402", addon.L["Siege of Orgrimmar"]},
-    {N, 151, "5.4.1", "050401", addon.L["Siege of Orgrimmar"]},
-    {N, 148, "5.4.0", "050400", addon.L["Siege of Orgrimmar"]},
-    {N, 141, "5.3.0", "050300", addon.L["Escalation"]},
-    {N, 130, "5.2.0", "050200", addon.L["The Thunder King"]},
-    {N, 128, "5.1.0", "050100", addon.L["Landfall"]},
-    {N, 124, "5.0.4", "050004", addon.L["Mists of Pandaria (pre-patch)"]},
-    {N, 121, "4.3.2", "040302", addon.L["Hour of Twilight"]},
-    {N, 119, "4.3.0", "040300", addon.L["Hour of Twilight"]},
-    {N, 118, "4.2.2", "040202", addon.L["Rage of the Firelands"]},
-    {N, 116, "4.2.0", "040200", addon.L["Rage of the Firelands"]},
-    {N, 114, "4.1.0", "040100", addon.L["Rise of the Zandalari"]},
-    {N, 112, "4.0.6", "040006", addon.L["Cataclysm"]},
-    {N, 110, "4.0.3", "040003", addon.L["Cataclysm (pre-patch)"]},
-    {N, 108, "4.0.1", "040001", addon.L["Cataclysm (pre-patch)"]},
-    {N, 106, "3.3.5", "030305", addon.L["Defending the Ruby Sanctum"]},
-    {N, 104, "3.3.3", "030303", addon.L["Fall of the Lich King"]},
-    {N, 101, "3.3.0", "030300", addon.L["Fall of the Lich King"]},
-    {N, 99, "3.2.2", "030202", addon.L["Call of the Crusade"]},
-    {N, 97, "3.2.0", "030200", addon.L["Call of the Crusade"]},
-    {N, 92, "3.1.0", "030100", addon.L["Secrets of Ulduar"]},
-    {N, 86, "3.0.2", "030002", addon.L["Wrath of the Lich King"]},
+    {N, "110005", 11, 0, 5, "11.0.5", addon.L["WoW's 20th Anniversary"]},
+    {N, "110002", 11, 0, 2, "11.0.2", addon.L["The War Within"]},
+    {N, "110000", 11, 0, 0, "11.0.0", addon.L["The War Within (pre-patch)"]},
+    {N, "100207", 10, 2, 7, "10.2.7", addon.L["Dark Heart"]},
+    {N, "100206", 10, 2, 6, "10.2.6", addon.L["Plunderstorm"]},
+    {N, "100205", 10, 2, 5, "10.2.5", addon.L["Seeds of Renewal"]},
+    {N, "100200", 10, 2, 0, "10.2.0", addon.L["Guardians of the Dream"]},
+    {N, "100107", 10, 1, 7, "10.1.7", addon.L["Fury Incarnate"]},
+    {N, "100105", 10, 1, 5, "10.1.5", addon.L["Fractures in Time"]},
+    {N, "100100", 10, 1, 0, "10.1.0", addon.L["Embers of Neltharion"]},
+    {N, "100007", 10, 0, 7, "10.0.7", addon.L["Return to the Forbidden Reach"]},
+    {N, "100005", 10, 0, 5, "10.0.5", addon.L["Trading Post"]},
+    {N, "100002", 10, 0, 2, "10.0.2", addon.L["Dragonflight"]},
+    {N, "100000", 10, 0, 0, "10.0.0", addon.L["Dragonflight (pre-patch)"]},
+    {N, "090207", 9, 2, 7, "9.2.7", addon.L["Eternity's End"]},
+    {N, "090205", 9, 2, 5, "9.2.5", addon.L["Eternity's End"]},
+    {N, "090200", 9, 2, 0, "9.2.0", addon.L["Eternity's End"]},
+    {N, "090105", 9, 1, 5, "9.1.5", addon.L["Chains of Domination"]},
+    {N, "090100", 9, 1, 0, "9.1.0", addon.L["Chains of Domination"]},
+    {N, "090005", 9, 0, 5, "9.0.5", addon.L["Shadowlands"]},
+    {N, "090002", 9, 0, 2, "9.0.2", addon.L["Shadowlands"]},
+    {N, "090001", 9, 0, 1, "9.0.1", addon.L["Shadowlands (pre-patch)"]},
+    {N, "080300", 8, 3, 0, "8.3.0", addon.L["Visions of N'Zoth"]},
+    {N, "080205", 8, 2, 5, "8.2.5", addon.L["Rise of Azshara"]},
+    {N, "080200", 8, 2, 0, "8.2.0", addon.L["Rise of Azshara"]},
+    {N, "080105", 8, 1, 5, "8.1.5", addon.L["Tides of Vengeance"]},
+    {N, "080100", 8, 1, 0, "8.1.0", addon.L["Tides of Vengeance"]},
+    {N, "080001", 8, 0, 1, "8.0.1", addon.L["Battle for Azeroth"]},
+    {N, "070305", 7, 3, 5, "7.3.5", addon.L["Shadows of Argus"]},
+    {N, "070302", 7, 3, 2, "7.3.2", addon.L["Shadows of Argus"]},
+    {N, "070300", 7, 3, 0, "7.3.0", addon.L["Shadows of Argus"]},
+    {N, "070205", 7, 2, 5, "7.2.5", addon.L["The Tomb of Sargeras"]},
+    {N, "070200", 7, 2, 0, "7.2.0", addon.L["The Tomb of Sargeras"]},
+    {N, "070003", 7, 0, 3, "7.0.3", addon.L["Legion"]},
+    {N, "060202", 6, 2, 2, "6.2.2", addon.L["Fury of Hellfire"]},
+    {N, "060200", 6, 2, 0, "6.2.0", addon.L["Fury of Hellfire"]},
+    {N, "060100", 6, 1, 0, "6.1.0", addon.L["Garrisons Update"]},
+    {N, "060002", 6, 0, 2, "6.0.2", addon.L["Warlords of Draenor"]},
+    {N, "050402", 5, 4, 2, "5.4.2", addon.L["Siege of Orgrimmar"]},
+    {N, "050401", 5, 4, 1, "5.4.1", addon.L["Siege of Orgrimmar"]},
+    {N, "050400", 5, 4, 0, "5.4.0", addon.L["Siege of Orgrimmar"]},
+    {N, "050300", 5, 3, 0, "5.3.0", addon.L["Escalation"]},
+    {N, "050200", 5, 2, 0, "5.2.0", addon.L["The Thunder King"]},
+    {N, "050100", 5, 1, 0, "5.1.0", addon.L["Landfall"]},
+    {N, "050004", 5, 0, 4, "5.0.4", addon.L["Mists of Pandaria (pre-patch)"]},
+    {N, "040302", 4, 3, 2, "4.3.2", addon.L["Hour of Twilight"]},
+    {N, "040300", 4, 3, 0, "4.3.0", addon.L["Hour of Twilight"]},
+    {N, "040202", 4, 2, 2, "4.2.2", addon.L["Rage of the Firelands"]},
+    {N, "040200", 4, 2, 0, "4.2.0", addon.L["Rage of the Firelands"]},
+    {N, "040100", 4, 1, 0, "4.1.0", addon.L["Rise of the Zandalari"]},
+    {N, "040006", 4, 0, 6, "4.0.6", addon.L["Cataclysm"]},
+    {N, "040003", 4, 0, 3, "4.0.3", addon.L["Cataclysm (pre-patch)"]},
+    {N, "040001", 4, 0, 1, "4.0.1", addon.L["Cataclysm (pre-patch)"]},
+    {N, "030305", 3, 3, 5, "3.3.5", addon.L["Defending the Ruby Sanctum"]},
+    {N, "030303", 3, 3, 3, "3.3.3", addon.L["Fall of the Lich King"]},
+    {N, "030300", 3, 3, 0, "3.3.0", addon.L["Fall of the Lich King"]},
+    {N, "030202", 3, 2, 2, "3.2.2", addon.L["Call of the Crusade"]},
+    {N, "030200", 3, 2, 0, "3.2.0", addon.L["Call of the Crusade"]},
+    {N, "030100", 3, 1, 0, "3.1.0", addon.L["Secrets of Ulduar"]},
+    {N, "030002", 3, 0, 2, "3.0.2", addon.L["Wrath of the Lich King"]},
 };
 
 function exportedBuildVersions:InjectDynamicFilters(filters)
-    filters[86] = true;
-    filters[92] = true;
-    filters[97] = true;
-    filters[99] = true;
-    filters[101] = true;
-    filters[104] = true;
-    filters[106] = true;
-    filters[108] = true;
-    filters[110] = true;
-    filters[112] = true;
-    filters[114] = true;
-    filters[116] = true;
-    filters[118] = true;
-    filters[119] = true;
-    filters[121] = true;
-    filters[124] = true;
-    filters[128] = true;
-    filters[130] = true;
-    filters[141] = true;
-    filters[148] = true;
-    filters[151] = true;
-    filters[152] = true;
-    filters[159] = true;
-    filters[163] = true;
-    filters[165] = true;
-    filters[167] = true;
-    filters[171] = true;
-    filters[174] = true;
-    filters[175] = true;
-    filters[176] = true;
-    filters[177] = true;
-    filters[178] = true;
-    filters[179] = true;
-    filters[180] = true;
-    filters[181] = true;
-    filters[182] = true;
-    filters[183] = true;
-    filters[184] = true;
-    filters[186] = true;
-    filters[187] = true;
-    filters[188] = true;
-    filters[189] = true;
-    filters[190] = true;
-    filters[191] = true;
-    filters[192] = true;
-    filters[193] = true;
-    filters[196] = true;
-    filters[195] = true;
-    filters[198] = true;
-    filters[199] = true;
-    filters[200] = true;
-    filters[201] = true;
-    filters[202] = true;
-    filters[205] = true;
-    filters[206] = true;
-    filters[207] = true;
-    filters[208] = true;
-    filters[210] = true;
-    filters[211] = true;
-    filters[212] = true;
+    filters["030002"] = true;
+    filters["030100"] = true;
+    filters["030200"] = true;
+    filters["030202"] = true;
+    filters["030300"] = true;
+    filters["030303"] = true;
+    filters["030305"] = true;
+    filters["040001"] = true;
+    filters["040003"] = true;
+    filters["040006"] = true;
+    filters["040100"] = true;
+    filters["040200"] = true;
+    filters["040202"] = true;
+    filters["040300"] = true;
+    filters["040302"] = true;
+    filters["050004"] = true;
+    filters["050100"] = true;
+    filters["050200"] = true;
+    filters["050300"] = true;
+    filters["050400"] = true;
+    filters["050401"] = true;
+    filters["050402"] = true;
+    filters["060002"] = true;
+    filters["060100"] = true;
+    filters["060200"] = true;
+    filters["060202"] = true;
+    filters["070003"] = true;
+    filters["070200"] = true;
+    filters["070205"] = true;
+    filters["070300"] = true;
+    filters["070302"] = true;
+    filters["070305"] = true;
+    filters["080001"] = true;
+    filters["080100"] = true;
+    filters["080105"] = true;
+    filters["080200"] = true;
+    filters["080205"] = true;
+    filters["080300"] = true;
+    filters["090001"] = true;
+    filters["090002"] = true;
+    filters["090005"] = true;
+    filters["090100"] = true;
+    filters["090105"] = true;
+    filters["090200"] = true;
+    filters["090205"] = true;
+    filters["090207"] = true;
+    filters["100000"] = true;
+    filters["100002"] = true;
+    filters["100005"] = true;
+    filters["100007"] = true;
+    filters["100100"] = true;
+    filters["100105"] = true;
+    filters["100107"] = true;
+    filters["100200"] = true;
+    filters["100205"] = true;
+    filters["100206"] = true;
+    filters["100207"] = true;
+    filters["110000"] = true;
+    filters["110002"] = true;
+    filters["110005"] = true;
 
     return {
         { -- 3
@@ -156,7 +157,7 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 3.0.2
                             Patch = 2,
-                            BuildVersionId = 86
+                            BuildVersionId = "030002"
                         },
                     }
                 },
@@ -165,7 +166,7 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 3.1.0
                             Patch = 0,
-                            BuildVersionId = 92
+                            BuildVersionId = "030100"
                         },
                     }
                 },
@@ -174,11 +175,11 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 3.2.0
                             Patch = 0,
-                            BuildVersionId = 97
+                            BuildVersionId = "030200"
                         },
                         { -- 3.2.2
                             Patch = 2,
-                            BuildVersionId = 99
+                            BuildVersionId = "030202"
                         },
                     }
                 },
@@ -187,15 +188,15 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 3.3.0
                             Patch = 0,
-                            BuildVersionId = 101
+                            BuildVersionId = "030300"
                         },
                         { -- 3.3.3
                             Patch = 3,
-                            BuildVersionId = 104
+                            BuildVersionId = "030303"
                         },
                         { -- 3.3.5
                             Patch = 5,
-                            BuildVersionId = 106
+                            BuildVersionId = "030305"
                         },
                     },
                 },
@@ -209,15 +210,15 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 4.0.1
                             Patch = 1,
-                            BuildVersionId = 108
+                            BuildVersionId = "040001"
                         },
                         { -- 4.0.3
                             Patch = 3,
-                            BuildVersionId = 110
+                            BuildVersionId = "040003"
                         },
                         { -- 4.0.6
                             Patch = 6,
-                            BuildVersionId = 112
+                            BuildVersionId = "040006"
                         },
                     }
                 },
@@ -226,7 +227,7 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 4.1.0
                             Patch = 0,
-                            BuildVersionId = 114
+                            BuildVersionId = "040100"
                         },
                     }
                 },
@@ -235,11 +236,11 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 4.2.0
                             Patch = 0,
-                            BuildVersionId = 116
+                            BuildVersionId = "040200"
                         },
                         { -- 4.2.2
                             Patch = 2,
-                            BuildVersionId = 118
+                            BuildVersionId = "040202"
                         },
                     }
                 },
@@ -248,11 +249,11 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 4.3.0
                             Patch = 0,
-                            BuildVersionId = 119
+                            BuildVersionId = "040300"
                         },
                         { -- 4.3.2
                             Patch = 2,
-                            BuildVersionId = 121
+                            BuildVersionId = "040302"
                         },
                     },
                 },
@@ -266,7 +267,7 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 5.0.4
                             Patch = 4,
-                            BuildVersionId = 124
+                            BuildVersionId = "050004"
                         },
                     }
                 },
@@ -275,7 +276,7 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 5.1.0
                             Patch = 0,
-                            BuildVersionId = 128
+                            BuildVersionId = "050100"
                         },
                     }
                 },
@@ -284,7 +285,7 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 5.2.0
                             Patch = 0,
-                            BuildVersionId = 130
+                            BuildVersionId = "050200"
                         },
                     }
                 },
@@ -293,7 +294,7 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 5.3.0
                             Patch = 0,
-                            BuildVersionId = 141
+                            BuildVersionId = "050300"
                         },
                     }
                 },
@@ -302,15 +303,15 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 5.4.0
                             Patch = 0,
-                            BuildVersionId = 148
+                            BuildVersionId = "050400"
                         },
                         { -- 5.4.1
                             Patch = 1,
-                            BuildVersionId = 151
+                            BuildVersionId = "050401"
                         },
                         { -- 5.4.2
                             Patch = 2,
-                            BuildVersionId = 152
+                            BuildVersionId = "050402"
                         },
                     },
                 },
@@ -324,7 +325,7 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 6.0.2
                             Patch = 2,
-                            BuildVersionId = 159
+                            BuildVersionId = "060002"
                         },
                     }
                 },
@@ -333,7 +334,7 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 6.1.0
                             Patch = 0,
-                            BuildVersionId = 163
+                            BuildVersionId = "060100"
                         },
                     }
                 },
@@ -342,11 +343,11 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 6.2.0
                             Patch = 0,
-                            BuildVersionId = 165
+                            BuildVersionId = "060200"
                         },
                         { -- 6.2.2
                             Patch = 2,
-                            BuildVersionId = 167
+                            BuildVersionId = "060202"
                         },
                     },
                 },
@@ -360,7 +361,7 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 7.0.3
                             Patch = 3,
-                            BuildVersionId = 171
+                            BuildVersionId = "070003"
                         },
                     }
                 },
@@ -369,11 +370,11 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 7.2.0
                             Patch = 0,
-                            BuildVersionId = 174
+                            BuildVersionId = "070200"
                         },
                         { -- 7.2.5
                             Patch = 5,
-                            BuildVersionId = 175
+                            BuildVersionId = "070205"
                         },
                     }
                 },
@@ -382,15 +383,15 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 7.3.0
                             Patch = 0,
-                            BuildVersionId = 176
+                            BuildVersionId = "070300"
                         },
                         { -- 7.3.2
                             Patch = 2,
-                            BuildVersionId = 177
+                            BuildVersionId = "070302"
                         },
                         { -- 7.3.5
                             Patch = 5,
-                            BuildVersionId = 178
+                            BuildVersionId = "070305"
                         },
                     },
                 },
@@ -404,7 +405,7 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 8.0.1
                             Patch = 1,
-                            BuildVersionId = 179
+                            BuildVersionId = "080001"
                         },
                     }
                 },
@@ -413,11 +414,11 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 8.1.0
                             Patch = 0,
-                            BuildVersionId = 180
+                            BuildVersionId = "080100"
                         },
                         { -- 8.1.5
                             Patch = 5,
-                            BuildVersionId = 181
+                            BuildVersionId = "080105"
                         },
                     }
                 },
@@ -426,11 +427,11 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 8.2.0
                             Patch = 0,
-                            BuildVersionId = 182
+                            BuildVersionId = "080200"
                         },
                         { -- 8.2.5
                             Patch = 5,
-                            BuildVersionId = 183
+                            BuildVersionId = "080205"
                         },
                     }
                 },
@@ -439,7 +440,7 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 8.3.0
                             Patch = 0,
-                            BuildVersionId = 184
+                            BuildVersionId = "080300"
                         },
                     },
                 },
@@ -453,15 +454,15 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 9.0.1
                             Patch = 1,
-                            BuildVersionId = 186
+                            BuildVersionId = "090001"
                         },
                         { -- 9.0.2
                             Patch = 2,
-                            BuildVersionId = 187
+                            BuildVersionId = "090002"
                         },
                         { -- 9.0.5
                             Patch = 5,
-                            BuildVersionId = 188
+                            BuildVersionId = "090005"
                         },
                     }
                 },
@@ -470,11 +471,11 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 9.1.0
                             Patch = 0,
-                            BuildVersionId = 189
+                            BuildVersionId = "090100"
                         },
                         { -- 9.1.5
                             Patch = 5,
-                            BuildVersionId = 190
+                            BuildVersionId = "090105"
                         },
                     }
                 },
@@ -483,15 +484,15 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 9.2.0
                             Patch = 0,
-                            BuildVersionId = 191
+                            BuildVersionId = "090200"
                         },
                         { -- 9.2.5
                             Patch = 5,
-                            BuildVersionId = 192
+                            BuildVersionId = "090205"
                         },
                         { -- 9.2.7
                             Patch = 7,
-                            BuildVersionId = 193
+                            BuildVersionId = "090207"
                         },
                     },
                 },
@@ -505,19 +506,19 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 10.0.0
                             Patch = 0,
-                            BuildVersionId = 196
+                            BuildVersionId = "100000"
                         },
                         { -- 10.0.2
                             Patch = 2,
-                            BuildVersionId = 195
+                            BuildVersionId = "100002"
                         },
                         { -- 10.0.5
                             Patch = 5,
-                            BuildVersionId = 198
+                            BuildVersionId = "100005"
                         },
                         { -- 10.0.7
                             Patch = 7,
-                            BuildVersionId = 199
+                            BuildVersionId = "100007"
                         },
                     }
                 },
@@ -526,15 +527,15 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 10.1.0
                             Patch = 0,
-                            BuildVersionId = 200
+                            BuildVersionId = "100100"
                         },
                         { -- 10.1.5
                             Patch = 5,
-                            BuildVersionId = 201
+                            BuildVersionId = "100105"
                         },
                         { -- 10.1.7
                             Patch = 7,
-                            BuildVersionId = 202
+                            BuildVersionId = "100107"
                         },
                     }
                 },
@@ -543,19 +544,19 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 10.2.0
                             Patch = 0,
-                            BuildVersionId = 205
+                            BuildVersionId = "100200"
                         },
                         { -- 10.2.5
                             Patch = 5,
-                            BuildVersionId = 206
+                            BuildVersionId = "100205"
                         },
                         { -- 10.2.6
                             Patch = 6,
-                            BuildVersionId = 207
+                            BuildVersionId = "100206"
                         },
                         { -- 10.2.7
                             Patch = 7,
-                            BuildVersionId = 208
+                            BuildVersionId = "100207"
                         },
                     },
                 },
@@ -569,15 +570,15 @@ function exportedBuildVersions:InjectDynamicFilters(filters)
                     Patches = {
                         { -- 11.0.0
                             Patch = 0,
-                            BuildVersionId = 210
+                            BuildVersionId = "110000"
                         },
                         { -- 11.0.2
                             Patch = 2,
-                            BuildVersionId = 211
+                            BuildVersionId = "110002"
                         },
                         { -- 11.0.5
                             Patch = 5,
-                            BuildVersionId = 212
+                            BuildVersionId = "110005"
                         },
                     },
                 },

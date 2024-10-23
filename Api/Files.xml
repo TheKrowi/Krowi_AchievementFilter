@@ -1,6 +1,7 @@
 <Ui>
     <Script file="Api.lua" />
+    <!-- <Script file="BuildVersionData.lua" /> -->
     <Script file="EventDataApi.lua" />
-    <Script file="TooltipDataApi.lua" />
     <Script file="PetBattleLinkDataApi.lua" />
+    <Script file="TooltipDataApi.lua" />
 </Ui>
