@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-10-15 20-15-17 ]] --
+-- [[ Exported at 2024-10-24 18-52-21 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -405,8 +405,8 @@ L["Exclude"] = "Ausblenden"
 L["Exclude Excluded achievements"] = "Ausgeschlossene Erfolge Suchen"
 L["Exclude Excluded achievements Desc"] = "Ausgeschlossene Erfolge von den Suchergebnissen ausschließen bzw. in die Suchergebnisse aufnehmen."
 L["Excluded"] = "Filter: Erfolg Ausgeblendet"
-L["Expansions"] = "Addons"
-L["Expansions tab"] = "Addon Tab"
+L["Expansions"] = "Erweiterungen"
+L["Expansions tab"] = "Erweiterungen-Tab"
 L["Expansions tab Desc"] = [=[Erfolge werden in Kategorien pro Erweiterung mit einer logischeren Hierarchie gruppiert.
 
 Die Hierarchie ist wie folgt: 
@@ -464,6 +464,7 @@ L["Force two columns"] = "Zwei Spalten erzwingen"
 L["Force two columns Desc"] = "Aktiviere/deaktiviere den Algorithmus zur Erzwingung von zwei Spalten für die Erfolgs-Ziele. Wenn diese Option aktiviert ist und nur eine Spalte mit Zielen angezeigt wird, weil der Text eines oder mehrerer Ziele zu lang ist, wird auf der Grundlage der anderen Einstellungen eine zweite Spalte erzwungen."
 L["Force two columns threshold"] = "Schwelle für zwei Spalten erzwingen"
 L["Force two columns threshold Desc"] = "Die Anzahl der Kriterien, die der Erfolg haben muss, damit eine zweite Spalte angezeigt wird, wenn normalerweise nur eine angezeigt würde."
+L["Forget Me Not: Next"] = "Theatertruppe: Vergissmeinnicht: Bald"
 L["Format"] = true
 L["Fracture Chambers"] = "Frakturkammern"
 L["Fractures in Time"] = "Risse in der Zeit"
@@ -960,15 +961,19 @@ L["The Azure Span Sprint"] = "Sprint des Azurblauen Gebirges"
 L["The Big Dig: Active"] = "Das große Buddeln: Aktiv"
 L["The Big Dig: Next"] = "Das große Buddeln: Nächstes Event"
 L["The Big Dig: Soon"] = "Das große Buddeln: Bald"
+L["The Cruelty of Dornic: Next"] = "Theatertruppe: Die Grausamkeit von Dornic: Bald"
 L["The Entitled"] = "Hochverehrter"
 L["the event name with run time"] = "{eventName} ab {startDate} bis {endDate}"
 L["The Flowing Forest Flight"] = "Flug des Wallenden Walds"
 L["The Iron Tide"] = "Die Eiserne Flut"
+L["The Rivals: Next"] = "Theatertruppe: Die Rivalen: Bald"
 L["The Shattering"] = "Die Zerschlagung Azeroths"
+L["The Thraegar's Descent: Next"] = "Theatertruppe: Der Abstieg des Thraegar: Bald"
 L["The Thunder King"] = "Der Donnerkönig"
 L["The Tomb of Sargeras"] = "Grabmal des Sargeras"
 L["The Vakthros Ascent"] = "Vakthrosaufstieg"
 L["The Waking Shore"] = "Die Küste des Erwachens"
+L["The Wanderer: Next"] = "Theatertruppe: Der Wanderer: Bald"
 L["The War Within (pre-patch)"] = true
 L["Theater Troupe"] = "Theatertruppe"
 L["This achievement"] = "Dieser Erfolg"
