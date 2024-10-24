@@ -60,7 +60,10 @@ local function SetExtraIconAlwaysVisible(self, achievement)
 		return;
 	end
 
-	extraIcon.Texture:SetAtlas("flightpath");
+	extraIcon.Texture:SetAtlas("poi-traveldirections-arrow");
+	if not addon.Util.IsMainline then
+		extraIcon.Texture:SetAtlas("flightpath");
+	end
 	extraIcon.Text = addon.L["Achievement shown temporarily"];
 end
 

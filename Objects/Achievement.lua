@@ -9,6 +9,7 @@ function achievement:New(id, buildVersion, faction, otherFactionAchievementId, i
     local instance = setmetatable({}, achievement);
     instance.Id = id or 0;
     instance.BuildVersion = buildVersion;
+    -- buildVersion:SetInUse();
     instance.Faction = faction;
     instance.OtherFactionAchievementId = otherFactionAchievementId;
     instance.IsPvP = isPvP;
@@ -18,6 +19,9 @@ function achievement:New(id, buildVersion, faction, otherFactionAchievementId, i
 end
 
 function achievement:GetMergedCategory()
+    if not self.Category then
+        return;
+    end
     local categories = self.Category:GetTree(); -- Issue #43: Fix
     for _, category in next, categories do
         if category.MergedAchievements ~= nil then
@@ -35,7 +39,6 @@ function achievement:GetMergedCategory()
             end
         end
     end
-    error("The achievement with ID " .. self.Id .. " has no category."); -- Should in theory never happen, means there is a problem with the database
 end
 
 function achievement:GetRequiredForIds()

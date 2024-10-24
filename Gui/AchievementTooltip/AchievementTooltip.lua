@@ -129,5 +129,11 @@ function tooltip:ShowTooltip(anchor, achievement)
 		end
 	end
 
+	if addon.Diagnostics.DebugEnabled() then
+		GameTooltip_AddBlankLineToTooltip(GameTooltip);
+		GameTooltip:AddDoubleLine("", achievement.Id);
+		GameTooltip_AddBlankLineToTooltip(GameTooltip);
+	end
+
 	GameTooltip:Show();
 end

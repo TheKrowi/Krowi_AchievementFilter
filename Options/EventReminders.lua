@@ -115,7 +115,7 @@ local function PopUpsOffsetYSet(_, value)
 end
 
 local function PopUpsShowPlaceholderFunc()
-    local calendarEvents = addon.Data.CalendarEvents;    
+    local calendarEvents = addon.Data.Events[addon.Objects.EventType.Calendar];
     local showPopUpsWithTimeDataOnly = addon.Options.db.profile.EventReminders.PopUps.OnLogin.ShowOnlyWhenTimeDataIsAvailable or addon.Options.db.profile.EventReminders.PopUps.OnReload.ShowOnlyWhenTimeDataIsAvailable or addon.Options.db.profile.EventReminders.PopUps.OnEventStart.ShowOnlyWhenTimeDataIsAvailable;
     for i, event in next, calendarEvents do
         if i == 141 then -- Fake not active event

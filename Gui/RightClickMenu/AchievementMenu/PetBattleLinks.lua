@@ -3,7 +3,7 @@ local section = {};
 tinsert(addon.Gui.RightClickMenu.AchievementMenu.Sections, section);
 
 function section:CheckAdd(achievement)
-    return addon.Data.PetBattleLinkData[achievement.Id];
+    return addon.Data.PetBattleLinkData and addon.Data.PetBattleLinkData[achievement.Id];
 end
 
 local function GetCriteriumText(achievement, criterium)

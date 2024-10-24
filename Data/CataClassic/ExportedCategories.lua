@@ -37,7 +37,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-29 22-05-56 ]] --
+-- [[ Exported at 2024-10-15 20-12-30 ]] --
 tasks = {
     {A, 1352, 5449}, -- Rock Lover
     {C, 1346, 1352},
@@ -1145,6 +1145,7 @@ tasks = {
     {C, 130, 141},
     {N, 141, a.GetInstanceInfoName(76)}, -- Zul'Gurub
     {A, 140, 4627}, -- X-45 Heartbreaker
+    {A, 140, 41147}, -- Protocol Inferno: Shadowfang Keep
     {A, 140, 5093}, -- Heroic: Shadowfang Keep
     {A, 140, 631}, -- Shadowfang Keep
     {A, 140, 5505}, -- Bullet Time
@@ -1152,6 +1153,7 @@ tasks = {
     {A, 140, 5503}, -- Pardon Denied
     {C, 130, 140},
     {N, 140, a.GetInstanceInfoName(64)}, -- Shadowfang Keep
+    {A, 139, 41146}, -- Protocol Inferno: Deadmines
     {A, 139, 5083}, -- Heroic: Deadmines
     {A, 139, 628}, -- Deadmines
     {A, 139, 5371}, -- Vigorous VanCleef Vindicator
@@ -1162,6 +1164,7 @@ tasks = {
     {A, 139, 5366}, -- Ready for Raiding
     {C, 130, 139},
     {N, 139, a.GetInstanceInfoName(63)}, -- Deadmines
+    {A, 138, 41145}, -- Protocol Inferno: Lost City of the Tol'vir
     {A, 138, 5066}, -- Heroic: Lost City of the Tol'vir
     {A, 138, 4848}, -- Lost City of the Tol'vir
     {A, 138, 5292}, -- Headed South
@@ -1169,6 +1172,7 @@ tasks = {
     {A, 138, 5291}, -- Acrocalypse Now
     {C, 130, 138},
     {N, 138, a.GetInstanceInfoName(69)}, -- Lost City of the Tol'vir
+    {A, 137, 41144}, -- Protocol Inferno: Halls of Origination
     {A, 137, 5065}, -- Heroic: Halls of Origination
     {A, 137, 4841}, -- Halls of Origination
     {A, 137, 5295}, -- Sun of a....
@@ -1177,29 +1181,34 @@ tasks = {
     {A, 137, 5293}, -- I Hate That Song
     {C, 130, 137},
     {N, 137, a.GetInstanceInfoName(70)}, -- Halls of Origination
+    {A, 136, 41143}, -- Protocol Inferno: Grim Batol
     {A, 136, 5062}, -- Heroic: Grim Batol
     {A, 136, 4840}, -- Grim Batol
     {A, 136, 5298}, -- Don't Need to Break Eggs to Make an Omelet
     {A, 136, 5297}, -- Umbrage for Umbriss
     {C, 130, 136},
     {N, 136, a.GetInstanceInfoName(71)}, -- Grim Batol
+    {A, 135, 41142}, -- Protocol Inferno: The Vortex Pinnacle
     {A, 135, 5064}, -- Heroic: The Vortex Pinnacle
     {A, 135, 4847}, -- The Vortex Pinnacle
     {A, 135, 5288}, -- No Static at All
     {A, 135, 5289}, -- Extra Credit Bonus Stage
     {C, 130, 135},
     {N, 135, a.GetInstanceInfoName(68)}, -- The Vortex Pinnacle
+    {A, 134, 41141}, -- Protocol Inferno: The Stonecore
     {A, 134, 5063}, -- Heroic: The Stonecore
     {A, 134, 4846}, -- The Stonecore
     {A, 134, 5287}, -- Rotten to the Core
     {C, 130, 134},
     {N, 134, a.GetInstanceInfoName(67)}, -- The Stonecore
+    {A, 133, 41140}, -- Protocol Inferno: Throne of the Tides
     {A, 133, 5061}, -- Heroic: Throne of the Tides
     {A, 133, 4839}, -- Throne of the Tides
     {A, 133, 5286}, -- Prince of Tides
     {A, 133, 5285}, -- Old Faithful
     {C, 130, 133},
     {N, 133, a.GetInstanceInfoName(65)}, -- Throne of the Tides
+    {A, 132, 41139}, -- Protocol Inferno: Blackrock Caverns
     {A, 132, 5060}, -- Heroic: Blackrock Caverns
     {A, 132, 4833}, -- Blackrock Caverns
     {A, 132, 5284}, -- Ascendant Descending
@@ -1210,6 +1219,7 @@ tasks = {
     {N, 132, a.GetInstanceInfoName(66)}, -- Blackrock Caverns
     {A, 130, 4845}, -- Glory of the Cataclysm Hero
     {A, 130, 5506}, -- Defender of a Shattered World
+    {A, 130, 41148}, -- Protocol Inferno: Terminated
     {A, 130, 4844}, -- Cataclysm Dungeon Hero
     {C, 129, 130},
     {N, 130, a.GetCategoryInfoTitle(15272)}, -- Dungeons

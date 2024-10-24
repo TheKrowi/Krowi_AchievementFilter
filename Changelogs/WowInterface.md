@@ -1,6 +1,20 @@
+[B]Added[/B]
+[LIST]
+[*]Storm Rider races tooltip data
+[*]WoW's 20th Anniversary achievements 
+[/LIST]
+
 [B]Changed[/B]
 [LIST]
-[*]Updated the Right Click Menu of the Achievements to use the new DropDown system
-[*]Pet Battle Link Data rework
-[*]Tooltip Data is now included in KAF and is no longer a separate addon
+[*]Event Data rework
+[/LIST]
+
+[B]Cata Classic[/B]
+[LIST]
+[*]Added Protocol Inferno achievements
+[/LIST]
+
+[B]Fixed (76.1)[/B]
+[LIST]
+[*]Loading of KAF should once again load everything
 [/LIST]

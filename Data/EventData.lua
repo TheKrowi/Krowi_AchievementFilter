@@ -26,7 +26,7 @@ function KrowiAF_GetUtcOffsetSeconds()
 end
 
 local function ProcessDayEvent(dayEvent)
-    local calendarEvent = data.CalendarEvents[dayEvent.eventID];
+    local calendarEvent = data.Events[addon.Objects.EventType.Calendar][dayEvent.eventID];
     local startTime = addon.GetSecondsSince(dayEvent.startTime) - GetUtcOffsetSeconds();
     local endTime = addon.GetSecondsSince(dayEvent.endTime) - GetUtcOffsetSeconds();
     local eventHasStarted = startTime <= time();
@@ -49,7 +49,7 @@ local function GetActiveCalendarEvents()
     local currentDate = C_DateAndTime.GetCurrentCalendarTime();
     C_Calendar.SetAbsMonth(currentDate.month, currentDate.year);
     local numDayEvents = C_Calendar.GetNumDayEvents(0, currentDate.monthDay);
-    local calendarEvents = data.CalendarEvents;
+    local calendarEvents = data.Events[addon.Objects.EventType.Calendar];
 
     for k = 1, numDayEvents, 1 do
         local dayEvent = C_Calendar.GetDayEvent(0, currentDate.monthDay, k);
@@ -69,7 +69,7 @@ function eventData.LoadBlizzard_Calendar()
 end
 
 local function GetActiveWidgetEvents()
-    for _, event in next, data.WidgetEvents do
+    for _, event in next, data.Events[addon.Objects.EventType.Widget] do
         event.EventDetails = eventData.GetWidgetEventDetails(event);
         if event.EventDetails then
             tinsert(activeEvents, event);
@@ -97,7 +97,7 @@ function eventData.GetWidgetEventDetails(event)
 end
 
 local function GetActiveWorldEvents()
-    for _, event in next, data.WorldEvents do
+    for _, event in next, data.Events[addon.Objects.EventType.World] do
         event.EventDetails = eventData.GetWorldEventDetails(event);
         if event.EventDetails then
             tinsert(activeEvents, event);

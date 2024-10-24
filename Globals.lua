@@ -486,7 +486,7 @@ function addon.OverwriteFunctions()
 
     local origAchievementFrame_SelectAchievement = AchievementFrame_SelectAchievement;
     AchievementFrame_SelectAchievement = function(id)
-        if addon.Data.Achievements[id] then
+        if addon.Data.Achievements[id] and addon.Data.Achievements[id].Category then
             KrowiAF_SelectAchievementFromID(id);
             return;
         end

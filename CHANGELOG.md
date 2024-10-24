@@ -1,6 +1,59 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 76.1 - 2024-10-24
+### Fixed
+- Loading of KAF should once again load everything
+
+## 76.0 - 2024-10-23
+### Added
+- Storm Rider races tooltip data
+- WoW's 20th Anniversary achievements 
+
+### Changed
+- Event Data rework
+
+### Cata Classic
+- Added Protocol Inferno achievements
+
+## 75.8 - 2024-09-02
+### Added
+- Categorized more achievements (thank you Seb)
+
+## 75.7 - 2024-08-23
+### Added
+- Missing map data for the 4 main zones
+
+## 75.6 - 2024-08-21
+### Added
+- Achievements added in 11.0.2
+
+### Fixed
+- Tracking achievements should once again show as a category when it's enabled
+- Temporarily shown achievements icon is not update and no longer uses the flight path icon
+- Achievements without a category should no longer cause an error
+
+## 75.5 - 2024-08-15
+### Fixed
+- Library bug
+
+## 75.4 - 2024-08-12
+### Fixed
+- Turned off errors again when translations are missing
+
+## 75.3 - 2024-08-12
+### Changed
+- Updated all localization
+
+## 75.2 - 2024-07-31
+### Added
+- Radiant Echoes are now available as Event Reminders
+
+## 75.1 - 2024-07-30
+### Cata Classic
+- Fixed an issue during loading
+- Fixed an issue with the Right Click Menu of the Achievements
+
 ## 75.0 - 2024-07-30
 ### Changed
 - Updated the Right Click Menu of the Achievements to use the new DropDown system

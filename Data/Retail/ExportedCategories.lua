@@ -37,7 +37,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-29 22-05-56 ]] --
+-- [[ Exported at 2024-10-15 20-12-30 ]] --
 tasks = {
     {A, 1347, 15251}, -- The Jailer's Gauntlet: Layer 1
     {A, 1347, 15079}, -- "Many, Many Things"
@@ -121,7 +121,7 @@ tasks = {
     {A, 1346, 8820}, -- WoW's 10th Anniversary
     {C, 971, 1346},
     {N, 1346, a.L["Ta's Pet Collection"]}, -- Ta's Pet Collection
-    {A, 1641, 20589}, -- [PH] Hero: The War Within Season 1
+    {A, 1641, 20589}, -- Tempered Hero: The War Within Season 1
     {A, 1641, 20526}, -- The War Within Keystone Hero: Season One
     {A, 1641, 20525}, -- The War Within Keystone Master: Season One
     {A, 1641, 20524}, -- The War Within Keystone Conqueror: Season One
@@ -1067,8 +1067,9 @@ tasks = {
     {N, 971, a.L["Specials"]}, -- TAB - Specials
     {A, 1652, 40723}, -- Web-Wrapped in the Finest Silks
     {A, 1652, 40660}, -- The War Within Season 1: Spelunker Supreme
+    {A, 1652, 41044}, -- Forged Weapons of Conquest
     {A, 1652, 40234}, -- Forged Warlord: The War Within Season 1
-    {A, 1652, 40235}, -- Forged Marshall: The War Within Season 1
+    {A, 1652, 40235}, -- Forged Marshal: The War Within Season 1
     {A, 1652, 40233}, -- Strategist: The War Within Season 1
     {A, 1652, 40792}, -- Solo Shuffle Medic: The War Within
     {A, 1652, 40472}, -- Battle Mender: The War Within Season 1
@@ -1986,31 +1987,13 @@ tasks = {
     {A, 1174, 1636}, -- Competitor's Tabard
     {C, 884, 1174},
     {N, 1174, a.L["Miscellaneous"]}, -- Miscellaneous
-    {A, 1673, 40313}, -- Igniting the Keyflames
-    {A, 1673, 40312}, -- Starting the Flames
-    {A, 1673, 40311}, -- Sharing the Light
-    {A, 1673, 40308}, -- Beacon of Hope
-    {C, 1671, 1673},
-    {N, 1673, a.L["Spreading the Light"]}, -- Spreading the Light
-    {A, 1674, 40662}, -- "It's Not Much, But It's Honest Work"
-    {A, 1674, 40589}, -- Awakening The Machine: Wave 50
-    {A, 1674, 40588}, -- Awakening The Machine: Wave 40
-    {A, 1674, 40587}, -- Awakening The Machine: Wave 30
-    {A, 1674, 40586}, -- Awakening The Machine: Wave 20
-    {A, 1674, 40509}, -- Awakening The Machine: Wave 10
-    {C, 1671, 1674},
-    {N, 1674, a.L["Awakening the Machine"]}, -- Awakening the Machine
     {A, 1676, 40860}, -- A Star of Dorn
     {A, 1676, 40859}, -- We're Here All Night
     {C, 1671, 1676},
     {N, 1676, a.L["Theater Troupe"]}, -- Theater Troupe
-    {A, 1672, 40314}, -- Fragments of Memories
-    {A, 1672, 40252}, -- A Series of Echoes
-    {A, 1672, 40251}, -- Many Echoes
-    {A, 1672, 40250}, -- The First Echo
-    {A, 1672, 40222}, -- Echoes of Danger
-    {C, 1671, 1672},
-    {N, 1672, a.L["Worldsoul Memory"]}, -- Worldsoul Memory
+    {A, 1677, 40796}, -- This Takes Me Back
+    {C, 1671, 1677},
+    {N, 1677, a.L["Pre-Patch Event"]}, -- Pre-Patch Event
     {C, 884, 1671},
     {N, 1671, a.GetCategoryInfoTitle(15520)}, -- The War Within
     {A, 1576, 19572}, -- Mythic: Awakened Flames
@@ -2451,7 +2434,7 @@ tasks = {
     {A, 1578, 20527}, -- Infinite Power I
     {A, 1578, 19871}, -- Infinite Power
     {C, 884, 1578},
-    {N, 1578, a.GetCategoryInfoTitle(15509)}, -- Pandaria: Remix
+    {N, 1578, a.GetCategoryInfoTitle(15536)}, -- Pandaria: Remix
     {A, 1452, 19080}, -- Arcane Influence
     {A, 1452, 18646}, -- Whodunnit?
     {A, 1452, 18645}, -- Tools of the Trade
@@ -2592,6 +2575,38 @@ tasks = {
     {A, 925, 6019}, -- "Come One, Come All!"
     {C, 884, 925},
     {N, 925, a.GetCategoryInfoTitle(15101)}, -- Darkmoon Faire
+    {A, 1678, 40988}, -- Photo Op!
+    {A, 1678, 40967}, -- Ratts' Revenge
+    {A, 1678, 40999}, -- You're in Your Blackrock Depths
+    {A, 1678, 41015}, -- A Dark Iron Past
+    {A, 1678, 41000}, -- A Timewalking Journey Back to a Classic Dungeon Time
+    {A, 1678, 40998}, -- A Timewalking Step Back to a Classic Dungeon Time
+    {A, 1678, 41033}, -- Classy Dresser
+    {A, 1678, 41013}, -- Upgraded Apparel
+    {A, 1678, 41038}, -- Token Collector
+    {A, 1678, 40870}, -- Azeroth's Greatest Detective
+    {A, 1678, 40979}, -- No Crate Left Behind
+    {A, 1678, 40873}, -- Crate Insurance Agent
+    {A, 1678, 40872}, -- I Saved the Party and All I Got Was This Lousy Hat
+    {A, 1678, 40871}, -- Assistant to the Assistant Guest Relations Manager
+    {A, 1678, 40976}, -- A Cool Twenty Years
+    {A, 1678, 40977}, -- Codex Editor: Ahn'Qiraj
+    {A, 1678, 40997}, -- The Gatecrashers
+    {A, 1678, 40996}, -- A Gatecrasher
+    {A, 1678, 40995}, -- The Originals
+    {A, 1678, 40994}, -- An Original
+    {A, 1678, 40993}, -- Avid Listener
+    {A, 1678, 40992}, -- Peanut Gallery
+    {A, 1678, 40991}, -- Frequent Flyer
+    {A, 1678, 40990}, -- Balloonist
+    {A, 1678, 40661}, -- Zoomies!
+    {A, 1678, 40989}, -- Pet Mischief
+    {A, 1678, 40984}, -- Big Fan
+    {A, 1678, 40987}, -- Fashion Critic
+    {A, 1678, 40986}, -- Mount Master
+    {A, 1678, 40985}, -- I Have That One!
+    {C, 1173, 1678},
+    {N, 1678, a.L["WoW's 20th Anniversary"]}, -- WoW's 20th Anniversary
     {A, 1173, 19192}, -- Lil' Frostwing
     {A, 1173, 10335}, -- Did Someone Say...?
     {A, 1173, 18702}, -- WoW's 19th Anniversary
@@ -2685,6 +2700,7 @@ tasks = {
     {A, 915, 980}, -- The Horseman's Reins
     {A, 915, 1656}, -- Hallowed Be Thy Name
     {A, 915, 10365}, -- A Frightening Friend
+    {A, 915, 40862}, -- Tricks and Treats of Khaz Algar
     {A, 915, 18360}, -- Tricks and Treats of the Dragon Isles
     {A, 915, 7602}, -- Tricks and Treats of Pandaria
     {A, 915, 7601}, -- Tricks and Treats of Pandaria
@@ -2915,6 +2931,7 @@ tasks = {
     {A, 1606, 40352}, -- Khaz Algar Completionist: Bronze
     {C, 1598, 1606},
     {N, 1606, a.L["Skyriding Races"]}, -- Skyriding Races
+    {A, 1604, 40980}, -- Family Battler of Khaz Algar
     {A, 1604, 40165}, -- Undead Battler of Khaz Algar
     {A, 1604, 40164}, -- Mechanical Battler of Khaz Algar
     {A, 1604, 40163}, -- Magic Battler of Khaz Algar
@@ -3052,7 +3069,7 @@ tasks = {
     {N, 1632, a.GetInstanceInfoName(1268)}, -- The Rookery
     {A, 1601, 40723}, -- Web-Wrapped in the Finest Silks
     {A, 1601, 40660}, -- The War Within Season 1: Spelunker Supreme
-    {A, 1601, 20589}, -- [PH] Hero: The War Within Season 1
+    {A, 1601, 20589}, -- Tempered Hero: The War Within Season 1
     {A, 1601, 20526}, -- The War Within Keystone Hero: Season One
     {A, 1601, 20525}, -- The War Within Keystone Master: Season One
     {A, 1601, 20524}, -- The War Within Keystone Conqueror: Season One
@@ -3063,6 +3080,12 @@ tasks = {
     {A, 1601, 40141}, -- Algari Dungeon Tank
     {C, 1598, 1601},
     {N, 1601, a.GetCategoryInfoTitle(15272)}, -- Dungeons
+    {A, 1675, 40433}, -- Let Me Solo Him
+    {A, 1675, 40431}, -- Hunting the Hunter
+    {A, 1675, 40103}, -- Nemesis
+    {A, 1675, 40732}, -- Heavy-Handed
+    {C, 1600, 1675},
+    {N, 1675, a.GetLFGActivityFullName(1298)}, -- Zekvir's Lair
     {A, 1669, 40814}, -- The Spiral Weave Discoveries
     {A, 1669, 40536}, -- The Spiral Weave Stories
     {C, 1600, 1669},
@@ -3111,17 +3134,15 @@ tasks = {
     {A, 1658, 40525}, -- Fungal Folly Stories
     {C, 1600, 1658},
     {N, 1658, a.GetLFGActivityFullName(1295)}, -- Fungal Folly
+    {A, 1600, 40635}, -- Branntastic
     {A, 1600, 40523}, -- On Brand
     {A, 1600, 40820}, -- Raisin' Brann
     {A, 1600, 40538}, -- Brann Development
     {A, 1600, 40458}, -- Stranger Delves
     {A, 1600, 40789}, -- Flying in Style
     {A, 1600, 40763}, -- "I'm not a Thief, I'm a Treasure Hunter"
-    {A, 1600, 40732}, -- Heavy-Handed
     {A, 1600, 40524}, -- Good Deed Delver
     {A, 1600, 40459}, -- I've Got a Flying Machine!
-    {A, 1600, 40433}, -- Hunting the Hunter (Solo)
-    {A, 1600, 40431}, -- Hunting the Hunter
     {A, 1600, 40098}, -- Immortal Spelunker
     {A, 1600, 40100}, -- Undying Caver
     {A, 1600, 40461}, -- Buddy System VI
@@ -3135,7 +3156,6 @@ tasks = {
     {A, 1600, 40447}, -- Delver of the Depths II
     {A, 1600, 40437}, -- Delver of the Depths
     {A, 1600, 40438}, -- Glory of the Delver
-    {A, 1600, 40103}, -- Nemesis
     {A, 1600, 40454}, -- Daystormer
     {A, 1600, 40453}, -- Spider Senses
     {A, 1600, 40452}, -- Just Keep Swimming
@@ -3157,7 +3177,11 @@ tasks = {
     {A, 1600, 40631}, -- War Within Delves: Tier 1
     {C, 1598, 1600},
     {N, 1600, a.GetCategoryInfoTitle(15522)}, -- Delves
+    {A, 1670, 40864}, -- Plentiful Perplexing Puzzles
+    {A, 1670, 40863}, -- Perplexing Puzzle
     {A, 1670, 40817}, -- A Delver's Bounty
+    {A, 1670, 40885}, -- The Key to Madness
+    {A, 1670, 40882}, -- Copious Coffers
     {A, 1670, 40788}, -- I Got the Keys
     {A, 1670, 40819}, -- Ready to Turn
     {A, 1670, 40463}, -- Delve Deepest
@@ -3166,14 +3190,20 @@ tasks = {
     {A, 1670, 40436}, -- You're Getting a Delve!
     {C, 1598, 1670},
     {N, 1670, a.L["Cross-Expansion - Delves"]}, -- Cross-Expansion - Delves
+    {A, 1630, 40876}, -- Vox Arachni
+    {A, 1630, 40875}, -- True Strength
+    {A, 1630, 40874}, -- The Grand Tapestry
+    {A, 1630, 40907}, -- We Rise Anew
     {A, 1630, 40838}, -- The Severed Threads
     {C, 1614, 1630},
     {N, 1630, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1629, 40086}, -- Tour of Duty: Azj-Kahet
     {C, 1614, 1629},
     {N, 1629, a.GetCategoryInfoTitle(95), true}, -- Player vs. Player
+    {A, 1628, 40633}, -- The Unseeming
+    {A, 1628, 40727}, -- Skittershaw Spin
+    {A, 1628, 40629}, -- Bookworm
     {A, 1628, 40843}, -- Mine Poppin'
-    {A, 1628, 40619}, -- Mine Poppin'
     {A, 1628, 40632}, -- No Harm Ever Came From Reading A Book
     {A, 1628, 40624}, -- Itsy Bitsy Spider
     {A, 1628, 40634}, -- You Can't Hang With Us
@@ -3184,6 +3214,8 @@ tasks = {
     {A, 1628, 40822}, -- Explore Azj-Kahet
     {C, 1614, 1628},
     {N, 1628, a.GetCategoryInfoTitle(97), true}, -- Exploration
+    {A, 1618, 40869}, -- Worm Theory
+    {A, 1618, 40620}, -- Back to the Wall
     {A, 1618, 40835}, -- Vizier than Ever
     {A, 1618, 40833}, -- The General's Salute
     {A, 1618, 40832}, -- Leave it to Weaver
@@ -3193,12 +3225,14 @@ tasks = {
     {N, 1618, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 1599, 1614},
     {N, 1614, a.GetMapName(2255)}, -- Azj-Kahet
+    {A, 1627, 40906}, -- The Flame Burns Within
     {A, 1627, 40845}, -- Hallowfall Arathi
     {C, 1613, 1627},
     {N, 1627, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1626, 40085}, -- Tour of Duty: Hallowfall
     {C, 1613, 1626},
     {N, 1626, a.GetCategoryInfoTitle(95), true}, -- Player vs. Player
+    {A, 1625, 40729}, -- Light's Gambit Champion
     {A, 1625, 40622}, -- Biblo Archivist
     {A, 1625, 40625}, -- The Missing Lynx
     {A, 1625, 40618}, -- Lost and Found
@@ -3209,6 +3243,11 @@ tasks = {
     {A, 1625, 40826}, -- Explore Hallowfall
     {C, 1613, 1625},
     {N, 1625, a.GetCategoryInfoTitle(97), true}, -- Exploration
+    {A, 1617, 40313}, -- Igniting the Keyflames
+    {A, 1617, 40312}, -- Starting the Flames
+    {A, 1617, 40311}, -- Sharing the Light
+    {A, 1617, 40308}, -- Beacon of Hope
+    {A, 1617, 40360}, -- Life on the Farm
     {A, 1617, 40082}, -- Never Enough
     {A, 1617, 40150}, -- Children's Entertainer
     {A, 1617, 20594}, -- Flamegard's Hope
@@ -3218,12 +3257,18 @@ tasks = {
     {N, 1617, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 1599, 1613},
     {N, 1613, a.GetMapName(2215)}, -- Hallowfall
+    {A, 1624, 40905}, -- "From Many, One"
     {A, 1624, 40836}, -- Assembly of the Deeps
     {C, 1612, 1624},
     {N, 1624, a.GetCategoryInfoTitle(201), true}, -- Reputation
     {A, 1623, 40084}, -- Tour of Duty: The Ringing Deeps
     {C, 1612, 1623},
     {N, 1623, a.GetCategoryInfoTitle(95), true}, -- Player vs. Player
+    {A, 1622, 40662}, -- "It's Not Much, But It's Honest Work"
+    {A, 1622, 40585}, -- Super Size Snuffling
+    {A, 1622, 40504}, -- Rocked to Sleep
+    {A, 1622, 40731}, -- Panhandled
+    {A, 1622, 40614}, -- Gobblin' with Glublurp
     {A, 1622, 40475}, -- To All the Slimes I Love
     {A, 1622, 40473}, -- Not So Quick Fix
     {A, 1622, 40628}, -- Notable Machines
@@ -3233,6 +3278,8 @@ tasks = {
     {A, 1622, 40825}, -- Explore The Ringing Deeps
     {C, 1612, 1622},
     {N, 1622, a.GetCategoryInfoTitle(97), true}, -- Exploration
+    {A, 1616, 40630}, -- For the Collective
+    {A, 1616, 40623}, -- I Only Need One Trip
     {A, 1616, 40507}, -- Hanging Tight
     {A, 1616, 40799}, -- Sojourner of The Ringing Deeps
     {A, 1616, 19560}, -- The Ringing Deeps
@@ -3240,6 +3287,7 @@ tasks = {
     {N, 1616, a.GetCategoryInfoTitle(96), true}, -- Quests
     {C, 1599, 1612},
     {N, 1612, a.GetMapName(2214)}, -- The Ringing Deeps
+    {A, 1621, 40904}, -- Cornerstone of Dornogal
     {A, 1621, 40856}, -- Council of Dornogal
     {C, 1611, 1621},
     {N, 1621, a.GetCategoryInfoTitle(201), true}, -- Reputation
@@ -3276,6 +3324,11 @@ tasks = {
     {A, 1645, 40087}, -- Unbound Battle
     {C, 1642, 1645},
     {N, 1645, a.GetCategoryInfoTitle(95), true}, -- Player vs. Player
+    {A, 1644, 40314}, -- Fragments of Memories
+    {A, 1644, 40252}, -- A Series of Echoes
+    {A, 1644, 40251}, -- Many Echoes
+    {A, 1644, 40250}, -- The First Echo
+    {A, 1644, 40222}, -- Echoes of Danger
     {A, 1644, 40762}, -- Khaz Algar Lore Hunter
     {A, 1644, 40790}, -- Khaz Algar Explorer
     {A, 1644, 40702}, -- Khaz Algar Glyph Hunter
@@ -3290,8 +3343,10 @@ tasks = {
     {N, 1642, a.GetMapName(2274)}, -- Khaz Algar
     {C, 1598, 1599},
     {N, 1599, a.L["Zones"]}, -- Zones
-    {A, 1609, 40145}, -- So Much Sharing
-    {A, 1609, 40142}, -- Learning to Share
+    {A, 1609, 40939}, -- Harbinger of the Gilded
+    {A, 1609, 40118}, -- Harbinger of the Runed
+    {A, 1609, 40115}, -- Harbinger of the Carved
+    {A, 1609, 40107}, -- Harbinger of the Weathered
     {A, 1609, 19477}, -- Five Warband Mentors: The War Within
     {A, 1609, 19476}, -- Four Warband Mentors: The War Within
     {A, 1609, 19475}, -- Three Warband Mentors: The War Within
@@ -4441,6 +4496,7 @@ tasks = {
     {A, 422, 14670}, -- That's the Spirit
     {C, 419, 422},
     {N, 422, a.GetCovenantName(3)}, -- Night Fae
+    {A, 421, 16731}, -- Court is Now in Session
     {A, 421, 14749}, -- Rendle's Big Day
     {A, 421, 14727}, -- Master of Ceremonies
     {A, 421, 14726}, -- It's Certainly Never Boring
@@ -10417,6 +10473,7 @@ tasks = {
     {A, 1433, 6556}, -- Going to Need More Traps
     {A, 1433, 6555}, -- Building a Team
     {A, 1433, 6554}, -- He's Mine!
+    {A, 1433, 15644}, -- Good Things Come in Small Packages
     {A, 1433, 15643}, -- What Can I Say? They Love Me.
     {A, 1433, 15642}, -- Proven Pet Parent
     {A, 1433, 15641}, -- Many More Mini Minions

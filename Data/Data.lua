@@ -23,7 +23,10 @@ data.RightClickMenuExtras = {};
 
 data.Maps = {};
 
-data.CalendarEvents, data.WidgetEvents, data.WorldEvents = {}, {}, {};
+data.Events = {};
+data.Events[addon.Objects.EventType.Calendar] = {};
+data.Events[addon.Objects.EventType.Widget] = {};
+data.Events[addon.Objects.EventType.World] = {};
 
 function data:RegisterTooltipDataTasks()
     local name = "Additional Tooltip Data: ";
@@ -41,6 +44,14 @@ function data:RegisterPetBattleLinkDataTasks()
     end
 end
 
+function data:RegisterEventDataTasks()
+    local name = "Event Data: ";
+    for k, v in next, KrowiAF.EventData do
+        self.InjectLoadingDebug(v, name .. k);
+        tinsert(self.TasksGroups, 1, v);
+    end
+end
+
 local LoadBlizzardTabAchievements;
 local function PostLoadOnPlayerLogin(self, start)
     self.ExportedAchievements.Load(self.AchievementIds);
@@ -52,11 +63,11 @@ local function PostLoadOnPlayerLogin(self, start)
 
     data.SpecialCategories:Load();
 
-    self.LoadWatchedAchievements();
-    self.LoadTrackingAchievements();
-    self.LoadExcludedAchievements();
-
     local function PostBuildCache()
+        self.LoadWatchedAchievements();
+        self.LoadTrackingAchievements();
+        self.LoadExcludedAchievements();
+
         if AchievementFrame and AchievementFrame:IsShown() then
             addon.Gui:RefreshViewAfterPlayerLogin();
         end
@@ -81,13 +92,7 @@ function data:LoadOnPlayerLogin()
     self.ExportedBuildVersions.RegisterTasks(self.BuildVersions);
     self.ExportedAchievements.RegisterTasks(self.Achievements, self.BuildVersions, self.TransmogSets);
     self.ExportedCategories.RegisterTasks(self.Categories, self.Achievements, addon.Tabs);
-    self.ExportedCalendarEvents.RegisterTasks(self.CalendarEvents, self.Categories);
-    if self.ExportedWidgetEvents then
-        self.ExportedWidgetEvents.RegisterTasks(self.WidgetEvents, self.Categories);
-    end
-    if self.ExportedWorldEvents then
-        self.ExportedWorldEvents.RegisterTasks(self.WorldEvents, self.Categories);
-    end
+    self:RegisterEventDataTasks();
     self.ExportedUiMaps.RegisterTasks(self.Maps, self.Achievements);
 
     self:RegisterTooltipDataTasks();

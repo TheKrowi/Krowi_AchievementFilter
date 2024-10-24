@@ -40,7 +40,7 @@ end
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-07-14 13-13-55 ]] --
+-- [[ Exported at 2024-10-15 19-56-36 ]] --
 tasks = {
     {C, 2104, 123}, -- Wintergrasp (Wrath Classic)
     {C, 2070, 18}, -- Tirisfal Glades
@@ -346,10 +346,10 @@ tasks = {
     {A, 330, {692}}, -- Gruul's Lair
     {A, 329, {695, 959}}, -- The Battle for Mount Hyjal (Hyjal Summit)
     {A, 328, {5304, 5305, 5122, 5123, 4851}}, -- Throne of the Four Winds
-    {A, 325, {5289, 5288, 4847, 5064}}, -- The Vortex Pinnacle
-    {A, 324, {5287, 4846, 5063}}, -- The Stonecore
+    {A, 325, {5289, 5288, 4847, 5064, 41142}}, -- The Vortex Pinnacle
+    {A, 324, {5287, 4846, 5063, 41141}}, -- The Stonecore
     {C, 323, 322}, -- Throne of the Tides - Throne of Neptulon
-    {A, 322, {5285, 5286, 4839, 5061}}, -- Throne of the Tides - Abyssal Halls
+    {A, 322, {5285, 5286, 4839, 5061, 41140}}, -- Throne of the Tides - Abyssal Halls
     {C, 321, 319}, -- Ahn'Qiraj - Vault of C'Thun
     {C, 320, 319}, -- Ahn'Qiraj - The Temple Gates
     {A, 319, {687, 424, 15334, 956}}, -- Ahn'Qiraj - The Hive Undergrounds
@@ -361,18 +361,18 @@ tasks = {
     {C, 313, 310}, -- Shadowfang Keep - Lower Observatory
     {C, 312, 310}, -- Shadowfang Keep - The Vacant Den
     {C, 311, 310}, -- Shadowfang Keep - Dining Hall
-    {A, 310, {5503, 5504, 5505, 631, 5093, 4627}}, -- Shadowfang Keep - The Courtyard
+    {A, 310, {5503, 5504, 5505, 631, 5093, 41147, 4627}}, -- Shadowfang Keep - The Courtyard
     {A, 301, {635}}, -- Razorfen Kraul
     {A, 300, {636}}, -- Razorfen Downs
     {C, 299, 297}, -- Halls of Origination - The Four Seats
     {C, 298, 297}, -- Halls of Origination - Tomb of the Earthrager
-    {A, 297, {5293, 5294, 5296, 5295, 4841, 5065}}, -- Halls of Origination - The Vault of Lights
+    {A, 297, {5293, 5294, 5296, 5295, 4841, 5065, 41144}}, -- Halls of Origination - The Vault of Lights
     {C, 296, 294}, -- The Bastion of Twilight - The Twilight Caverns
     {C, 295, 294}, -- The Bastion of Twilight - Throne of the Apocalypse
     {A, 294, {4850, 5313, 5300, 4852, 5311, 5312, 5118, 5117, 5119, 5120, 5121}}, -- The Bastion of Twilight - The Twilight Enclave
-    {A, 293, {5297, 5298, 4840, 5062}}, -- Grim Batol
+    {A, 293, {5297, 5298, 4840, 5062, 41143}}, -- Grim Batol
     {C, 292, 291}, -- The Deadmines - Ironclad Cove
-    {A, 291, {5366, 5367, 5368, 5369, 5370, 5371, 628, 5083}}, -- The Deadmines - The Deadmines
+    {A, 291, {5366, 5367, 5368, 5369, 5370, 5371, 628, 5083, 41146}}, -- The Deadmines - The Deadmines
     {C, 290, 287}, -- Blackwing Lair - Nefarian's Lair
     {C, 289, 287}, -- Blackwing Lair - Crimson Laboratories
     {C, 288, 287}, -- Blackwing Lair - Halls of Strife
@@ -380,12 +380,12 @@ tasks = {
     {C, 286, 285}, -- Blackwing Descent - Vault of the Shadowflame
     {A, 285, {4842, 5306, 5307, 5309, 5308, 5310, 4849, 5094, 5107, 5115, 5109, 5108, 5116}}, -- Blackwing Descent - The Broken Hall
     {C, 284, 283}, -- Blackrock Caverns - Twilight Forge
-    {A, 283, {5281, 5282, 5283, 5284, 4833, 5060}}, -- Blackrock Caverns - Chamber of Incineration
+    {A, 283, {5281, 5282, 5283, 5284, 4833, 5060, 41139}}, -- Blackrock Caverns - Chamber of Incineration
     {A, 282, {5416, 6045, 6108}}, -- Baradin Hold
     {C, 281, 280}, -- Maraudon - Zaetar's Grave
     {A, 280, {640}}, -- Maraudon - Caverns of Maraudon
     {A, 279, {630}}, -- Wailing Caverns
-    {A, 277, {5291, 5290, 5292, 4848, 5066}}, -- Lost City of the Tol'vir
+    {A, 277, {5291, 5290, 5292, 4848, 5066, 41145}}, -- Lost City of the Tol'vir
     {A, 275, {5245, 5246, 5247, 5248, 5249, 5250, 5251, 5252, 5253, 5254, 5255, 5256, 5257, 5262, 5258}}, -- The Battle for Gilneas
     {A, 274, {763, 764, 652, 673}}, -- Old Hillsbrad Foothills
     {A, 273, {763, 764, 655, 676}}, -- The Black Morass
