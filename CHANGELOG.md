@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 76.1 - 2024-10-24
+### Fixed
+- Loading of KAF should once again load everything
+
 ## 76.0 - 2024-10-23
 ### Added
 - Storm Rider races tooltip data

@@ -13,3 +13,8 @@
 [LIST]
 [*]Added Protocol Inferno achievements
 [/LIST]
+
+[B]Fixed (76.1)[/B]
+[LIST]
+[*]Loading of KAF should once again load everything
+[/LIST]

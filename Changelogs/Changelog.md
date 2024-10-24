@@ -7,3 +7,6 @@
 
 ### Cata Classic
 - Added Protocol Inferno achievements
+
+### Fixed (76.1)
+- Loading of KAF should once again load everything

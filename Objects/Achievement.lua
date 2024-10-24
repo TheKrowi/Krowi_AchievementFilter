@@ -9,7 +9,7 @@ function achievement:New(id, buildVersion, faction, otherFactionAchievementId, i
     local instance = setmetatable({}, achievement);
     instance.Id = id or 0;
     instance.BuildVersion = buildVersion;
-    buildVersion:SetInUse();
+    -- buildVersion:SetInUse();
     instance.Faction = faction;
     instance.OtherFactionAchievementId = otherFactionAchievementId;
     instance.IsPvP = isPvP;

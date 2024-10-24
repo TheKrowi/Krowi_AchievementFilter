@@ -116,9 +116,6 @@ function KrowiAF.InjectEventDataDynamicOptions()
 end
 
 function KrowiAF.RegisterEventDataOptions(eventIds, eventType, categoryId, icon, eventName, eventGroup, groupOrder, expansionId, hideByDefault, mapId)
-    if eventIds == 5584 then
-        print(5584, eventType, addon.Objects.EventType.Widget)
-    end
     if not addon.Util.IsTable(eventIds) then
         eventIds = {eventIds};
     end
