@@ -10,3 +10,6 @@
 
 ### Fixed (76.1)
 - Loading of KAF should once again load everything
+
+### Fixed (76.2)
+- Compatibility with GW2_UI and BetterWardrobe addons
