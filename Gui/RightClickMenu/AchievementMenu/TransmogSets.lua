@@ -19,10 +19,10 @@ function section:Add(menu, achievement)
 				if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then
 					C_AddOns.LoadAddOn("Blizzard_Collections");
 				end
-				CollectionsJournal:Show();
-				CollectionsJournal_SetTab(CollectionsJournal, 5);
-				WardrobeCollectionFrame:GoToSet(set.Id);
-				menu:Close();
+				WardrobeCollectionFrame:OpenTransmogLink("transmogset:" .. set.Id);
+				if menu.Close then -- Modern wow does not have the Close function
+					menu:Close();
+				end
 			end
 		);
 	end

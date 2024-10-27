@@ -17,7 +17,7 @@ plugins.LoadHelper:SetScript("OnEvent", plugins.LoadHelper.OnEvent);
 function plugins:LoadLocalization(L)
     for _, plugin in next, self.Plugins do
         if type(plugin.LoadLocalization) == "function" then
-            plugin.LoadLocalization(L);
+            plugin:LoadLocalization(L);
         end
     end
 end
@@ -25,7 +25,7 @@ end
 function plugins:InjectOptions()
     for _, plugin in next, self.Plugins do
         if type(plugin.InjectOptions) == "function" then
-            plugin.InjectOptions();
+            plugin:InjectOptions();
         end
     end
 end
@@ -33,7 +33,7 @@ end
 function plugins:Load()
     for _, plugin in next, self.Plugins do
         if type(plugin.Load) == "function" then
-            plugin.Load();
+            plugin:Load();
         end
     end
 end
