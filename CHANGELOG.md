@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 78.0 - 2024-11-01
+### Added
+- Transmog sets for The War Within raid and season 1
+
+### Changed
+- Transmog sets are now moved to the new API system
+
 ## 77.0 - 2024-10-31
 ### Changed
 - Backend data is now prepared to be more API friendly (in case KAF support ever stops)

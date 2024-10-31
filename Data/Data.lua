@@ -52,6 +52,14 @@ function data:RegisterEventDataTasks()
     end
 end
 
+function data:RegisterTransmogSetDataTasks()
+    local name = "Transmog Set Data: ";
+    for k, v in next, KrowiAF.TransmogSetData do
+        self.InjectLoadingDebug(v, name .. k);
+        tinsert(self.TasksGroups, 1, v);
+    end
+end
+
 local LoadBlizzardTabAchievements;
 local function PostLoadOnPlayerLogin(self, start)
     self.ExportedAchievements.Load(self.AchievementIds);
@@ -97,6 +105,7 @@ function data:LoadOnPlayerLogin()
 
     self:RegisterTooltipDataTasks();
     self:RegisterPetBattleLinkDataTasks();
+    self:RegisterTransmogSetDataTasks();
 
     local overallStart = debugprofilestop();
     addon.StartTasksGroups(

@@ -37,7 +37,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-10-15 20-12-30 ]] --
+-- [[ Exported at 2024-10-31 10-58-24 ]] --
 tasks = {
     {A, 1352, 5449}, -- Rock Lover
     {C, 1346, 1352},
@@ -754,6 +754,9 @@ tasks = {
     {A, 925, 6019}, -- "Come One, Come All!"
     {C, 884, 925},
     {N, 925, a.GetCategoryInfoTitle(15101)}, -- Darkmoon Faire
+    {A, 1678, 957}, -- Hero of the Zandalar Tribe
+    {C, 1173, 1678},
+    {N, 1678, a.L["WoW's 20th Anniversary"]}, -- WoW's 20th Anniversary
     {A, 1173, 6131}, -- WoW's 8th Anniversary
     {A, 1173, 5863}, -- WoW's 7th Anniversary
     {A, 1173, 5512}, -- WoW's 6th Anniversary

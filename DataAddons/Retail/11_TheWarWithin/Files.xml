@@ -2,4 +2,5 @@
     <Script file="BuildVersionData.lua" />
     <Script file="EventData.lua" />
     <Script file="PetBattleLinkData.lua" />
+    <Script file="TransmogSetData.lua" />
 </Ui>

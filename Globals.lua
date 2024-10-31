@@ -718,25 +718,29 @@ function addon.GetAchievementNumCriteria(achievementId)
     end
 end
 
-local function ClassCanUseSet(transmogSet, classId)
-    return CheckDecFlags(transmogSet.ClassMask, math.pow(2, classId - 1));
+local function ClassCanUseSet(setInfo, classId)
+    return CheckDecFlags(setInfo.classMask, math.pow(2, classId - 1));
 end
 
-local function FactionCanUseSet(transmogSet, faction)
-    local setInfo = C_TransmogSets.GetSetInfo(transmogSet.Id);
+local function FactionCanUseSet(setInfo, faction)
     return setInfo and (setInfo.requiredFaction == nil or setInfo.requiredFaction == faction);
 end
 
-function addon.GetUsableSets(transmogSets)
-    local usableTransmogSets = {};
+function addon.GetUsableSets(transmogSetIds)
+    local usableTransmogSetIds = {};
     local _, _, classId = UnitClass("player");
     local faction = UnitFactionGroup("player");
-    for _, transmogSet in next, transmogSets do
-        if ClassCanUseSet(transmogSet, classId) and FactionCanUseSet(transmogSet, faction) then
-            tinsert(usableTransmogSets, transmogSet);
+    for _, transmogSetId in next, transmogSetIds do
+        local setInfo = C_TransmogSets.GetSetInfo(transmogSetId);
+        if setInfo then
+            if ClassCanUseSet(setInfo, classId) and FactionCanUseSet(setInfo, faction) then
+                tinsert(usableTransmogSetIds, transmogSetId);
+            end
+        else
+            addon.Diagnostics.Debug("No transmog info found for " .. transmogSetId);
         end
     end
-    return usableTransmogSets;
+    return usableTransmogSetIds;
 end
 
 function addon.ChangeAchievementMicroButtonOnClick()

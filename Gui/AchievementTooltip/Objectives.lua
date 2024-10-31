@@ -4,7 +4,7 @@ tinsert(addon.Gui.AchievementTooltip.Sections, section);
 
 local numCriteria;
 function section:CheckAdd(achievement)
-	if achievement.TransmogSets then
+	if achievement.TransmogSetIds then
 		return;
 	end
 	local state;

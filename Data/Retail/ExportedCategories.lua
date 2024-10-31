@@ -37,7 +37,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-10-15 20-12-30 ]] --
+-- [[ Exported at 2024-10-31 10-58-25 ]] --
 tasks = {
     {A, 1347, 15251}, -- The Jailer's Gauntlet: Layer 1
     {A, 1347, 15079}, -- "Many, Many Things"
@@ -121,21 +121,25 @@ tasks = {
     {A, 1346, 8820}, -- WoW's 10th Anniversary
     {C, 971, 1346},
     {N, 1346, a.L["Ta's Pet Collection"]}, -- Ta's Pet Collection
+    {A, 1679, 20584}, -- Keystone Hero: Darkflame Cleft
+    {A, 1679, 20583}, -- Keystone Hero: Cinderbrew Meadery
+    {A, 1679, 20581}, -- Keystone Hero: Priory of the Sacred Flame
+    {A, 1679, 20579}, -- Keystone Hero: The Rookery
+    {C, 1640, 1679},
+    {N, 1679, a.L["Season"] .. " " .. 2, true}, -- Season 2
     {A, 1641, 20589}, -- Tempered Hero: The War Within Season 1
     {A, 1641, 20526}, -- The War Within Keystone Hero: Season One
     {A, 1641, 20525}, -- The War Within Keystone Master: Season One
     {A, 1641, 20524}, -- The War Within Keystone Conqueror: Season One
     {A, 1641, 20523}, -- The War Within Keystone Explorer: Season One
-    {A, 1641, 20588}, -- Keystone Hero: Grim Batol
+    {A, 1641, 15047}, -- Keystone Hero: Mists of Tirna Scithe
+    {A, 1641, 15045}, -- Keystone Hero: The Necrotic Wake
     {A, 1641, 20587}, -- Keystone Hero: Siege of Boralus
+    {A, 1641, 20588}, -- Keystone Hero: Grim Batol
     {A, 1641, 20586}, -- "Keystone Hero: Ara-Kara, City of Echoes"
     {A, 1641, 20585}, -- Keystone Hero: The Dawnbreaker
-    {A, 1641, 20584}, -- Keystone Hero: Darkflame Cleft
-    {A, 1641, 20583}, -- Keystone Hero: Cinderbrew Meadery
     {A, 1641, 20582}, -- Keystone Hero: City of Threads
-    {A, 1641, 20581}, -- Keystone Hero: Priory of the Sacred Flame
     {A, 1641, 20580}, -- Keystone Hero: The Stonevault
-    {A, 1641, 20579}, -- Keystone Hero: The Rookery
     {C, 1640, 1641},
     {N, 1641, a.L["Season"] .. " " .. 1, true}, -- Season 1
     {C, 1565, 1640},
@@ -2575,6 +2579,7 @@ tasks = {
     {A, 925, 6019}, -- "Come One, Come All!"
     {C, 884, 925},
     {N, 925, a.GetCategoryInfoTitle(15101)}, -- Darkmoon Faire
+    {A, 1678, 957}, -- Hero of the Zandalar Tribe
     {A, 1678, 40988}, -- Photo Op!
     {A, 1678, 40967}, -- Ratts' Revenge
     {A, 1678, 40999}, -- You're in Your Blackrock Depths

@@ -1,5 +1,5 @@
-### Changed
-- Backend data is now prepared to be more API friendly (in case KAF support ever stops)
+### Added
+- Transmog sets for The War Within raid and season 1
 
-### Cata Classic
-- Opening a category from the event reminders or going to an achievement from a link, tracker, ... should once again work without errors
+### Changed
+- Transmog sets are now moved to the new API system
