@@ -1,0 +1,13 @@
+<Ui>
+    <Include file="01_Vanilla\Files.xml" />
+    <Include file="02_TheBurningCrusade\Files.xml" />
+    <Include file="03_WrathOfTheLichKing\Files.xml" />
+    <Include file="04_Cataclysm\Files.xml" />
+    <Include file="05_MistsOfPandaria\Files.xml" />
+    <Include file="06_WarlordsOfDaenor\Files.xml" />
+    <Include file="07_Legion\Files.xml" />
+    <Include file="08_BattleForAzeroth\Files.xml" />
+    <Include file="09_Shadowlands\Files.xml" />
+    <Include file="10_Dragonflight\Files.xml" />
+    <Include file="11_TheWarWithin\Files.xml" />
+</Ui>

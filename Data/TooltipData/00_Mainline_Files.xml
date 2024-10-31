@@ -1,5 +1,0 @@
-<Ui>
-    <Script file="Shared.lua" />
-    <Include file="00_Mainline\Files.xml"/>
-    <Script file="TooltipData.lua" />
-</Ui>

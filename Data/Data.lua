@@ -85,11 +85,11 @@ function data:LoadOnPlayerLogin()
 
     self.TemporaryObtainable:Load();
     addon.EventData.BuildCalendarEventsCache();
+    KrowiAF.CreateBuildVersions();
 
     if self.ExportedTransmogSets then
         self.ExportedTransmogSets.RegisterTasks(self.TransmogSets);
     end
-    self.ExportedBuildVersions.RegisterTasks(self.BuildVersions);
     self.ExportedAchievements.RegisterTasks(self.Achievements, self.BuildVersions, self.TransmogSets);
     self.ExportedCategories.RegisterTasks(self.Categories, self.Achievements, addon.Tabs);
     self:RegisterEventDataTasks();

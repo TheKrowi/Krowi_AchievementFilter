@@ -1,0 +1,6 @@
+<Ui>
+    <Include file="01_Vanilla\Files.xml" />
+    <Include file="02_TheBurningCrusade\Files.xml" />
+    <Include file="03_WrathOfTheLichKing\Files.xml" />
+    <Include file="04_Cataclysm\Files.xml" />
+</Ui>

@@ -1,0 +1,5 @@
+<Ui>
+    <Script file="BuildVersionData.lua" />
+    <Script file="EventData.lua" />
+    <Script file="TooltipData.lua" />
+</Ui>

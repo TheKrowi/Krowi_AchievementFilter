@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 77.0 - 2024-10-31
+### Changed
+- Backend data is now prepared to be more API friendly (in case KAF support ever stops)
+
+### Cata Classic
+- Opening a category from the event reminders or going to an achievement from a link, tracker, ... should once again work without errors
+
 ## 76.2 - 2024-10-27
 ### Fixed
 - Compatibility with GW2_UI and BetterWardrobe addons

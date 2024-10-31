@@ -1,6 +1,0 @@
-<Ui>
-    <Script file="00_Vanilla.lua" />
-    <Script file="01_TheBurningCrusade.lua" />
-    <Script file="03_WrathOfTheLichKing.lua" />
-    <Script file="04_Cataclysm.lua" />
-</Ui>

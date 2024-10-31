@@ -31,7 +31,7 @@ local defaultAchievements = {
         Criteria = addon.L["Default"],
         ReverseSort = false
     },
-    BuildVersion = { --[[ Dynamically build via addon.Data.ExportedBuildVersions.InjectDynamicFilters ]] }
+    BuildVersion = { --[[ Dynamically build via KrowiAF.InjectDynamicFilters ]] }
 };
 
 local defaults = {
@@ -68,7 +68,8 @@ local function InjectTabDefaults()
 end
 
 function filters:InjectDefaults()
-    addon.Data.BuildVersionsGrouped = addon.Data.ExportedBuildVersions:InjectDynamicFilters(defaultAchievements.BuildVersion);
+    KrowiAF.GroupBuildVersions();
+    KrowiAF.InjectDynamicFilters(defaultAchievements.BuildVersion);
     InjectAchievementDefaults();
     InjectCategoryDefaults();
     InjectTabDefaults();

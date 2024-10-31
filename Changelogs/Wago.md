@@ -1,15 +1,5 @@
-### Added
-- Storm Rider races tooltip data
-- WoW's 20th Anniversary achievements 
-
 ### Changed
-- Event Data rework
+- Backend data is now prepared to be more API friendly (in case KAF support ever stops)
 
 ### Cata Classic
-- Added Protocol Inferno achievements
-
-### Fixed (76.1)
-- Loading of KAF should once again load everything
-
-### Fixed (76.2)
-- Compatibility with GW2_UI and BetterWardrobe addons
+- Opening a category from the event reminders or going to an achievement from a link, tracker, ... should once again work without errors
