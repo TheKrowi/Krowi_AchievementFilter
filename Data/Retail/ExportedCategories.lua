@@ -37,7 +37,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-10-31 10-58-25 ]] --
+-- [[ Exported at 2024-11-01 09-19-56 ]] --
 tasks = {
     {A, 1347, 15251}, -- The Jailer's Gauntlet: Layer 1
     {A, 1347, 15079}, -- "Many, Many Things"
@@ -3334,7 +3334,6 @@ tasks = {
     {A, 1644, 40251}, -- Many Echoes
     {A, 1644, 40250}, -- The First Echo
     {A, 1644, 40222}, -- Echoes of Danger
-    {A, 1644, 40762}, -- Khaz Algar Lore Hunter
     {A, 1644, 40790}, -- Khaz Algar Explorer
     {A, 1644, 40702}, -- Khaz Algar Glyph Hunter
     {A, 1644, 40430}, -- Khaz Algar Flight Master

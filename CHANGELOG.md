@@ -8,6 +8,9 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Transmog sets are now moved to the new API system
 
+### Removed
+- Khaz Algar Lore Hunter achievement
+
 ## 77.0 - 2024-10-31
 ### Changed
 - Backend data is now prepared to be more API friendly (in case KAF support ever stops)

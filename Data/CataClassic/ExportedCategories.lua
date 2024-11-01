@@ -37,7 +37,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-10-31 10-58-24 ]] --
+-- [[ Exported at 2024-11-01 09-19-56 ]] --
 tasks = {
     {A, 1352, 5449}, -- Rock Lover
     {C, 1346, 1352},

@@ -35,7 +35,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-10-31 22-32-32 ]] --
+-- [[ Exported at 2024-11-01 09-20-07 ]] --
 tasks = {
     {O, 41044, "From", "PvP Season", 38, "Until", "PvP Season", 38},
     {N, 41044, "110005"}, -- Forged Weapons of Conquest
@@ -147,7 +147,6 @@ tasks = {
     {N, 40789, "110000"}, -- Flying in Style
     {N, 40788, "110000"}, -- I Got the Keys
     {N, 40763, "110000"}, -- "I'm not a Thief, I'm a Treasure Hunter"
-    {N, 40762, "110000"}, -- Khaz Algar Lore Hunter
     {N, 40732, "110000"}, -- Heavy-Handed
     {N, 40731, "110000"}, -- Panhandled
     {N, 40730, "110000"}, -- Love is in the Lair

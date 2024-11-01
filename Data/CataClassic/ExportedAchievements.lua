@@ -35,7 +35,7 @@ local f = addon.Objects.Faction; -- Saves some characters and file size as we us
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-10-31 22-32-30 ]] --
+-- [[ Exported at 2024-11-01 09-20-05 ]] --
 tasks = {
     {N, 41148, "040401"}, -- Protocol Inferno: Terminated
     {N, 41147, "040401"}, -- Protocol Inferno: Shadowfang Keep
