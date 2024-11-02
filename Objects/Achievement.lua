@@ -5,7 +5,7 @@ objects.Achievement = {};
 local achievement = objects.Achievement;
 
 achievement.__index = achievement;
-function achievement:New(id, buildVersion, faction, otherFactionAchievementId, isPvP, isRealmFirst, hasWowheadLink)
+function achievement:New(id, buildVersion, faction, otherFactionAchievementId, isPvP, isRealmFirst)
     local instance = setmetatable({}, achievement);
     instance.Id = id or 0;
     instance.BuildVersion = buildVersion;
@@ -14,7 +14,6 @@ function achievement:New(id, buildVersion, faction, otherFactionAchievementId, i
     instance.OtherFactionAchievementId = otherFactionAchievementId;
     instance.IsPvP = isPvP;
     instance.IsRealmFirst = isRealmFirst;
-    instance.HasNoWowheadLink = hasWowheadLink == false and true or nil; -- We only want to set it if it has no Wowhead link, otherwise nil, by inverting this we reduce memory usage because most have a Wowhead link
     return instance;
 end
 
@@ -159,38 +158,85 @@ function achievement:AddTransmogSet(transmogSet)
     return transmogSet;
 end
 
+function achievement:SetObtainableFunc()
+    self.TemporaryObtainable.Obtainable = function()
+        return addon.Data.TemporaryObtainable:GetObtainableState(self);
+    end;
+end
+
+local function GetStartValue(startFunction, startValue)
+    if startFunction == "Version" and addon.Util.IsTable(startValue) then
+        return KrowiAF.GetBuildVersionId(unpack(startValue));
+    end
+    return startValue;
+end
+
+function achievement:SetTemporaryObtainableStart(startInclusion, startFunction, startValue)
+    self.TemporaryObtainable.Start = {
+        Inclusion = startInclusion,
+        Function = startFunction,
+        Value = startValue
+    };
+end
+
+function achievement:SetTemporaryObtainableEnd(endInclusion, endFunction, endValue)
+    self.TemporaryObtainable.End = {
+        Inclusion = endInclusion,
+        Function = endFunction,
+        Value = endValue
+    };
+end
+
+function achievement:SetTemporaryObtainableNeverOnce(startFunction)
+    self:SetTemporaryObtainableStart(nil, startFunction, nil);
+    self:SetObtainableFunc();
+end
+
+function achievement:SetTemporaryObtainableDuring(startFunction, startValue)
+    self:SetTemporaryObtainableStart("From", startFunction, GetStartValue(startFunction, startValue));
+    self:SetTemporaryObtainableEnd("Until", startFunction, GetStartValue(startFunction, startValue));
+    self:SetObtainableFunc();
+end
+
+function achievement:SetTemporaryObtainableFromVersionToEnd(startInclusion, startFunction, startValue)
+    self:SetTemporaryObtainableStart("From", "Version", self.BuildVersion.Id);
+    self:SetTemporaryObtainableEnd(startInclusion, startFunction, GetStartValue(startFunction, startValue));
+    self:SetObtainableFunc();
+end
+
+function achievement:SetTemporaryObtainableFull(startInclusion, startFunction, startValue, endInclusion, endFunction, endValue)
+    self:SetTemporaryObtainableStart(startInclusion, startFunction, GetStartValue(startFunction, startValue));
+    self:SetTemporaryObtainableEnd(endInclusion, endFunction, GetStartValue(endFunction, endValue));
+    self:SetObtainableFunc();
+end
+
 function achievement:SetTemporaryObtainable(startInclusion, startFunction, startValue, endInclusion, endFunction, endValue)
     self.TemporaryObtainable = {};
-    if startInclusion == "Never" then
-        self.TemporaryObtainable.Start = {
-            Function = startInclusion
-        };
-        self.TemporaryObtainable.End = {
-            Function = startInclusion
-        };
+
+    -- Case 1: Never or Once - [startInclusion]
+    if startInclusion == "Never" or startInclusion == "Once" then
+        self:SetTemporaryObtainableNeverOnce(startInclusion);
+        return;
     end
-    if startInclusion == "Once" then
-        self.TemporaryObtainable.Start = {
-            Function = startInclusion
-        };
-        self.TemporaryObtainable.End = {
-            Function = startInclusion
-        };
+
+    -- Case 2: During - [startInclusion, startFunction]
+    if startInclusion and startFunction and not startValue then
+        self:SetTemporaryObtainableDuring(startInclusion, startFunction);
+        return;
     end
-    if startInclusion ~= nil and startFunction ~= nil and startValue ~= nil then
-        self.TemporaryObtainable.Start = {
-            Inclusion = startInclusion,
-            Function = startFunction,
-            Value = startValue
-        };
+
+    -- Case 3: From version added - [startInclusion, startFunction, startValue]
+    if startInclusion and startFunction and startValue and not endInclusion then
+        self:SetTemporaryObtainableFromVersionToEnd(startInclusion, startFunction, startValue);
+        return;
     end
-    if endInclusion ~= nil and endFunction ~= nil and endValue ~= nil then
-        self.TemporaryObtainable.End = {
-            Inclusion = endInclusion,
-            Function = endFunction,
-            Value = endValue
-        };
+
+    -- Case 4: Everything defined - [startInclusion, startFunction, startValue, endInclusion, endFunction, endValue]
+    if startInclusion and startFunction and startValue and endInclusion and endFunction and endValue then
+        self:SetTemporaryObtainableFull(startInclusion, startFunction, startValue, endInclusion, endFunction, endValue);
+        return;
     end
-    local ach = self; -- Easier to debug
-    self.TemporaryObtainable.Obtainable = function() return addon.Data.TemporaryObtainable:GetObtainableState(ach); end;
+
+    -- Case 5: Nothing defined
+    self:SetObtainableFunc();
 end

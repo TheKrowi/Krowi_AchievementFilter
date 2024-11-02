@@ -3,39 +3,6 @@ local shared = addon.Data.PetBattleLinkData.Shared;
 local sec, enc = shared.Section, shared.Encounter;
 
 KrowiAF.PetBattleLinkData.WarlordsOfDaenor = {
-    { -- Tiny Terrors in Tanaan
-        10052,
-        sec .. "9",
-        {
-            {1, enc .. "66"}, -- Felsworn Sentry
-            {2, enc .. "65"}, -- Corrupted Thundertail
-            {3, enc .. "67"}, -- Chaos Pup
-            {4, enc .. "64"}, -- Cursed Spirit
-            {5, enc .. "63"}, -- Felfly
-            {6, enc .. "62"}, -- Tainted Maulclaw
-            {7, enc .. "61"}, -- Direflame
-            {8, enc .. "60"}, -- Mirecroak
-            {9, enc .. "59"}, -- Dark Gazer
-            {10, enc .. "58"}, -- Bleakclaw
-            {11, enc .. "57"}, -- Vile Blood of Draenor
-            {12, enc .. "56"}, -- Dreadwalker
-            {13, enc .. "55"}, -- Netherfist
-            {14, enc .. "54"}, -- Skrillix
-            {15, enc .. "53"}, -- Defiled Earth
-        }
-    },
-    { -- Taming Draenor
-        9724,
-        sec .. "5",
-        {
-            {1, enc .. "16"}, -- Ashlei
-            {2, enc .. "17"}, -- Cymre Brightblade
-            {3, enc .. "18"}, -- Gargra
-            {4, enc .. "19"}, -- Taralune
-            {5, enc .. "20"}, -- Tarr the Terrible
-            {6, enc .. "21"}, -- Vesharr
-        }
-    },
     { -- An Awfully Big Adventure
         9069,
         sec .. "12",
@@ -84,6 +51,39 @@ KrowiAF.PetBattleLinkData.WarlordsOfDaenor = {
             {42, enc .. "114"}, -- Whispering Pandaren Spirit
             {43, enc .. "85"}, -- Wise Mari
             {44, enc .. "81"}, -- Wrathion
+        }
+    },
+    { -- Taming Draenor
+        9724,
+        sec .. "5",
+        {
+            {1, enc .. "16"}, -- Ashlei
+            {2, enc .. "17"}, -- Cymre Brightblade
+            {3, enc .. "18"}, -- Gargra
+            {4, enc .. "19"}, -- Taralune
+            {5, enc .. "20"}, -- Tarr the Terrible
+            {6, enc .. "21"}, -- Vesharr
+        }
+    },
+    { -- Tiny Terrors in Tanaan
+        10052,
+        sec .. "9",
+        {
+            {1, enc .. "66"}, -- Felsworn Sentry
+            {2, enc .. "65"}, -- Corrupted Thundertail
+            {3, enc .. "67"}, -- Chaos Pup
+            {4, enc .. "64"}, -- Cursed Spirit
+            {5, enc .. "63"}, -- Felfly
+            {6, enc .. "62"}, -- Tainted Maulclaw
+            {7, enc .. "61"}, -- Direflame
+            {8, enc .. "60"}, -- Mirecroak
+            {9, enc .. "59"}, -- Dark Gazer
+            {10, enc .. "58"}, -- Bleakclaw
+            {11, enc .. "57"}, -- Vile Blood of Draenor
+            {12, enc .. "56"}, -- Dreadwalker
+            {13, enc .. "55"}, -- Netherfist
+            {14, enc .. "54"}, -- Skrillix
+            {15, enc .. "53"}, -- Defiled Earth
         }
     },
 };

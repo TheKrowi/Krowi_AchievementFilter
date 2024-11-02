@@ -37,7 +37,7 @@ local a = addon;
 -- [[ Everything after these lines is automatically generated as an export from ]] --
 -- [[ an SQLite database and is not meant for manual edit. - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-11-01 09-19-56 ]] --
+-- [[ Exported at 2024-11-01 19-13-29 ]] --
 tasks = {
     {A, 1347, 15251}, -- The Jailer's Gauntlet: Layer 1
     {A, 1347, 15079}, -- "Many, Many Things"
@@ -7268,11 +7268,6 @@ tasks = {
     {A, 222, 8294}, -- The Secrets of Ragefire
     {C, 192, 222},
     {N, 222, (a.GetLFGDungeonInfo(649))}, -- The Secrets of Ragefire
-    {A, 500, 7269}, -- Stay Off the Grass
-    {A, 500, 7270}, -- For Display Only
-    {A, 500, 7268}, -- The Temple of Kotmogu
-    {C, 192, 500},
-    {N, 500, a.GetMapName(417) .. " (" .. a.GetCategoryInfoTitle(15234) .. ")"}, -- Temple of Kotmogu
     {A, 216, 8012}, -- "Waste Not, Want Not"
     {A, 216, 8011}, -- Number Five Is Alive
     {A, 216, 8010}, -- Lion's Landing

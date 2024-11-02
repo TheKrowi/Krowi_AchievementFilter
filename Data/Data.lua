@@ -28,9 +28,17 @@ data.Events[addon.Objects.EventType.Calendar] = {};
 data.Events[addon.Objects.EventType.Widget] = {};
 data.Events[addon.Objects.EventType.World] = {};
 
-function data:RegisterTooltipDataTasks()
-    local name = "Additional Tooltip Data: ";
-    for k, v in next, KrowiAF.TooltipData do
+function data:RegisterAchievementDataTasks()
+    local name = "Achievement Data: ";
+    for k, v in next, KrowiAF.AchievementData do
+        self.InjectLoadingDebug(v, name .. k);
+        tinsert(self.TasksGroups, 1, v);
+    end
+end
+
+function data:RegisterEventDataTasks()
+    local name = "Event Data: ";
+    for k, v in next, KrowiAF.EventData do
         self.InjectLoadingDebug(v, name .. k);
         tinsert(self.TasksGroups, 1, v);
     end
@@ -44,9 +52,9 @@ function data:RegisterPetBattleLinkDataTasks()
     end
 end
 
-function data:RegisterEventDataTasks()
-    local name = "Event Data: ";
-    for k, v in next, KrowiAF.EventData do
+function data:RegisterTooltipDataTasks()
+    local name = "Additional Tooltip Data: ";
+    for k, v in next, KrowiAF.TooltipData do
         self.InjectLoadingDebug(v, name .. k);
         tinsert(self.TasksGroups, 1, v);
     end
@@ -62,7 +70,7 @@ end
 
 local LoadBlizzardTabAchievements;
 local function PostLoadOnPlayerLogin(self, start)
-    self.ExportedAchievements.Load(self.AchievementIds);
+    -- self.ExportedAchievements.Load(self.AchievementIds);
 
     local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_Layout", "cmd", "KROWIAF-0.0").args.Summary.args.Summary.args.NumAchievements; -- cmd and KROWIAF-0.0 are just to make the function work
     custom.max = #self.AchievementIds;
@@ -95,10 +103,8 @@ function data:LoadOnPlayerLogin()
     addon.EventData.BuildCalendarEventsCache();
     KrowiAF.CreateBuildVersions();
 
-    if self.ExportedTransmogSets then
-        self.ExportedTransmogSets.RegisterTasks(self.TransmogSets);
-    end
-    self.ExportedAchievements.RegisterTasks(self.Achievements, self.BuildVersions, self.TransmogSets);
+    self:RegisterAchievementDataTasks();
+    self.ExportedAchievements.RegisterTasks(self.Achievements);
     self.ExportedCategories.RegisterTasks(self.Categories, self.Achievements, addon.Tabs);
     self:RegisterEventDataTasks();
     self.ExportedUiMaps.RegisterTasks(self.Maps, self.Achievements);

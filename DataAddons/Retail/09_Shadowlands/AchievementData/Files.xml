@@ -1,0 +1,10 @@
+<Ui>
+    <Script file="AchievementData_09_00_01.lua" />
+    <Script file="AchievementData_09_00_02.lua" />
+    <Script file="AchievementData_09_00_05.lua" />
+    <Script file="AchievementData_09_01_00.lua" />
+    <Script file="AchievementData_09_01_05.lua" />
+    <Script file="AchievementData_09_02_00.lua" />
+    <Script file="AchievementData_09_02_05.lua" />
+    <Script file="AchievementData_09_02_07.lua" />
+</Ui>

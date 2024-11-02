@@ -3,6 +3,12 @@ local savedData = addon.Data.SavedData;
 savedData.AchievementData = {};
 local achievementData = savedData.AchievementData;
 
+local ignoreAchievementIds = {};
+ignoreAchievementIds[7268] = true;
+ignoreAchievementIds[7269] = true;
+ignoreAchievementIds[7270] = true;
+ignoreAchievementIds[40910] = true;
+
 function achievementData.Load()
     KrowiAF_Achievements = KrowiAF_Achievements or {};
     KrowiAF_Achievements.Completed = KrowiAF_Achievements.Completed or {};
@@ -72,7 +78,7 @@ function achievementData.SetCriteriaProgress(characterGuid, achievementInfo, cri
 end
 
 function achievementData.IgnoreAchievement(achievementInfo)
-    return achievementInfo.Points < 0 or achievementInfo.IsStatistic or achievementInfo.IsGuild;
+    return achievementInfo.Points < 0 or achievementInfo.IsStatistic or achievementInfo.IsGuild or ignoreAchievementIds[achievementInfo.Id];
 end
 
 function achievementData.IsEarnedByCharacter(characterGuid, achievement)

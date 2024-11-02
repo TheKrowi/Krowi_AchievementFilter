@@ -74,6 +74,8 @@ function temporaryObtainable:GetObtainableState(achievement)
         return "Past";
     elseif startFunction == "Event" then
         start = self:GetEventStartState(achievement);
+    elseif startFunction == "Date" then
+        start = self:GetDateStartState(achievement);
     end
 
     -- print(achievement.Id, startFunction, start)
@@ -93,6 +95,8 @@ function temporaryObtainable:GetObtainableState(achievement)
         _end = self:GetVersionEndState(achievement);
     elseif startFunction == "Event" then
         _end = self:GetEventEndState(achievement);
+    elseif startFunction == "Date" then
+        _end = self:GetDateEndState(achievement);
     end
 
     -- local endState = _end;
@@ -126,7 +130,7 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
     function temporaryObtainable:GetWasIsWillBe(achievement)
         local start, _end; -- Past, Future
 
-        local startFunction = achievement.TemporaryObtainable.Start.Function;
+        local startFunction = achievement.TemporaryObtainable.Start and achievement.TemporaryObtainable.Start.Function;
         if startFunction == "Mythic+ Season" or startFunction == "Season" then
             start = self:GetMplusSeasonStartState(achievement);
         elseif startFunction == "PvP Season" then
@@ -135,9 +139,11 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
             start = self:GetVersionStartState(achievement);
         elseif startFunction == "Event" then
             start = self:GetEventStartState(achievement);
+        elseif startFunction == "Date" then
+            start = self:GetDateStartState(achievement);
         end
 
-        local endFunction = achievement.TemporaryObtainable.End.Function;
+        local endFunction = achievement.TemporaryObtainable.End and achievement.TemporaryObtainable.End.Function;
         if endFunction == "Mythic+ Season" or startFunction == "Season" then
             _end = self:GetMplusSeasonEndState(achievement);
         elseif endFunction == "PvP Season" then
@@ -146,6 +152,8 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
             _end = self:GetVersionEndState(achievement);
         elseif startFunction == "Event" then
             _end = self:GetEventEndState(achievement);
+        elseif startFunction == "Date" then
+            _end = self:GetDateEndState(achievement);
         end
 
         -- print(startFunction, start, endFunction, _end)
@@ -242,7 +250,20 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         else
             startDetail = achievement.TemporaryObtainable.Start.Function;
         end
-        startDetail = startDetail .. " " .. achievement.TemporaryObtainable.Start.Value;
+        startDetail = startDetail .. " " .. tostring(achievement.TemporaryObtainable.Start.Value);
+
+        if achievement.TemporaryObtainable.Start.Function == "Version" then
+            local buildVersion = addon.Data.BuildVersions[achievement.TemporaryObtainable.Start.Value];
+            if buildVersion then
+                startDetail = buildVersion.Description .. " (" .. buildVersion.Name .. ")";
+            end
+        end
+
+        if achievement.TemporaryObtainable.Start.Function == "Date" then
+            local year, month, day = unpack(achievement.TemporaryObtainable.Start.Value);
+            local startTime = time{year = year, month = month, day = day, hour = 0, min = 0, sec = 0} - KrowiAF_GetUtcOffsetSeconds();
+            startDetail = date(addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime, startTime);
+        end
 
         if achievement.TemporaryObtainable.Start.Function == "Event" then
             local eventId = achievement.TemporaryObtainable.Start.Value;
@@ -283,7 +304,20 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
         else
             endDetail = achievement.TemporaryObtainable.End.Function;
         end
-        endDetail = endDetail .. " " .. achievement.TemporaryObtainable.End.Value;
+        endDetail = endDetail .. " " .. tostring(achievement.TemporaryObtainable.End.Value);
+
+        if achievement.TemporaryObtainable.End.Function == "Version" then
+            local buildVersion = addon.Data.BuildVersions[achievement.TemporaryObtainable.End.Value];
+            if buildVersion then
+                endDetail = buildVersion.Description .. " (" .. buildVersion.Name .. ")";
+            end
+        end
+
+        if achievement.TemporaryObtainable.End.Function == "Date" then
+            local year, month, day = unpack(achievement.TemporaryObtainable.End.Value);
+            local endTime = time{year = year, month = month, day = day, hour = 0, min = 0, sec = 0} - KrowiAF_GetUtcOffsetSeconds();
+            endDetail = date(addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime, endTime);
+        end
 
         if achievement.TemporaryObtainable.End.Function == "Event" then
             local eventId = achievement.TemporaryObtainable.End.Value;
@@ -346,6 +380,18 @@ do -- Get Start Sate
             return "Past";
         end
     end
+
+    function temporaryObtainable:GetDateStartState(achievement)
+        if achievement.TemporaryObtainable.Start.Inclusion == "From" then
+            local year, month, day = unpack(achievement.TemporaryObtainable.Start.Value);
+            local startTime = time{year = year, month = month, day = day, hour = 0, min = 0, sec = 0} - KrowiAF_GetUtcOffsetSeconds();
+            return startTime <= time() and "Past" or "Future";
+        elseif achievement.TemporaryObtainable.Start.Inclusion == "After" then
+            local year, month, day = unpack(achievement.TemporaryObtainable.Start.Value);
+            local startTime = time{year = year, month = month, day = day, hour = 23, min = 59, sec = 59} - KrowiAF_GetUtcOffsetSeconds();
+            return startTime <= time() and "Past" or "Future";
+        end
+    end
 end
 
 do -- Get End State
@@ -392,9 +438,21 @@ do -- Get End State
             if not event or not event.EndTime then
                 return "Past"; -- If an event has no record it's either not available yet or has already happened
             end
-                    return time() > event.EndTime and "Past" or "Future";
+                return time() > event.EndTime and "Past" or "Future";
         elseif achievement.TemporaryObtainable.End.Inclusion == "Before" then -- Should not be used
             return "Past";
+        end
+    end
+
+    function temporaryObtainable:GetDateEndState(achievement)
+        if achievement.TemporaryObtainable.End.Inclusion == "Until" then
+            local year, month, day = unpack(achievement.TemporaryObtainable.End.Value);
+            local endTime = time{year = year, month = month, day = day, hour = 23, min = 59, sec = 59} - KrowiAF_GetUtcOffsetSeconds();
+            return endTime <= time() and "Past" or "Future";
+        elseif achievement.TemporaryObtainable.End.Inclusion == "Before" then
+            local year, month, day = unpack(achievement.TemporaryObtainable.End.Value);
+            local endTime = time{year = year, month = month, day = day, hour = 0, min = 0, sec = 0} - KrowiAF_GetUtcOffsetSeconds();
+            return endTime <= time() and "Past" or "Future";
         end
     end
 end

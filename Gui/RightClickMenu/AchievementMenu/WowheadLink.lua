@@ -13,7 +13,7 @@ local relatedTabs = {
 };
 
 function section:CheckAdd(achievement)
-    return not achievement.HasNoWowheadLink;
+    return true;
 end
 
 function section:Add(menu, achievement)

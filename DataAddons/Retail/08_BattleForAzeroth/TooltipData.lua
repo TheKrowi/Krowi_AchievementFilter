@@ -31,16 +31,16 @@ local battleForAzerothMenuCriteria =  {
 
 KrowiAF.TooltipData.BattleForAzeroth = {
     { -- The Zandalari Menu
-        12746,
+        12744,
         {
-            Faction = PLAYER_FACTION_GROUP.Horde,
+            Faction = PLAYER_FACTION_GROUP.Alliance,
         },
         battleForAzerothMenuCriteria
     },
     { -- The Zandalari Menu
-        12744,
+        12746,
         {
-            Faction = PLAYER_FACTION_GROUP.Alliance,
+            Faction = PLAYER_FACTION_GROUP.Horde,
         },
         battleForAzerothMenuCriteria
     },

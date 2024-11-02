@@ -1,5 +1,6 @@
 <Ui>
     <Script file="Api.lua" />
+    <Script file="AchievementDataApi.lua" />
     <Script file="BuildVersionDataApi.lua" />
     <Script file="EventDataApi.lua" />
     <Script file="PetBattleLinkDataApi.lua" />
