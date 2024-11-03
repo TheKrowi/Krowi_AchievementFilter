@@ -3666,6 +3666,9 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     { -- WoW's 4th Anniversary
         2398,
+        {
+            {}
+        }
     },
     { -- Vampire Hunter
         2456,

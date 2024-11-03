@@ -11,6 +11,9 @@ KrowiAF.AchievementData["03_02_02"] = {
     },
     { -- WoW's 5th Anniversary
         4400,
+        {
+            {}
+        }
     },
     { -- More Dots! (10 player)
         4402,
