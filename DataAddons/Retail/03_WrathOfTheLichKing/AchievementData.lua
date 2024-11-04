@@ -1392,8 +1392,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         700,
         faction.Horde,
         701,
-        true,
         {
+            IsPvP = true,
             {"PvP Season", 5},
         },
     },
@@ -1401,8 +1401,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         701,
         faction.Alliance,
         700,
-        true,
         {
+            IsPvP = true,
             {"PvP Season", 5},
         },
     },
@@ -2597,8 +2597,8 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Friends In High Places
         1436,
         {
-            {"Before", "Date", {2019, 6, 11}}
-        }
+            {"Before", "Date", {2019, 6, 11}},
+        },
     },
     {1457}, -- Explore Crystalsong Forest
     { -- Realm First! Northrend Vanguard
@@ -3273,14 +3273,14 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- WoW's 4th Anniversary
         2398,
         {
-            {}
-        }
+            {},
+        },
     },
     { -- Vampire Hunter
         2456,
         {
-            {"From", "Date", {2008, 10, 22}, "Until", "Date", {2008, 11, 4}}
-        }
+            {"From", "Date", {2008, 10, 22}, "Until", "Date", {2008, 11, 4}},
+        },
     },
     { -- Destruction Derby
         2476,
@@ -3329,4 +3329,1692 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     {3496}, -- A Brew-FAST Mount
     {KrowiAF.SetAchievementPatch, 3, 0, 2}, -- Rework loading so this can go to the top, future me problem
+};
+
+KrowiAF.AchievementData["03_01_00"] = {
+    { -- Hard Boiled
+        2416,
+        {
+            {"Event", 181},
+        },
+    },
+    { -- Chocolate Lover
+        2417,
+        {
+            {"Event", 181},
+        },
+    },
+    { -- Chocoholic
+        2418,
+        {
+            {"Event", 181},
+        },
+    },
+    { -- Spring Fling
+        2419,
+        faction.Alliance,
+        2497,
+        {
+            {"Event", 181},
+        },
+    },
+    { -- Noble Garden
+        2420,
+        faction.Horde,
+        2421,
+        {
+            {"Event", 181},
+        },
+    },
+    { -- Noble Garden
+        2421,
+        faction.Alliance,
+        2420,
+        {
+            {"Event", 181},
+        },
+    },
+    { -- Shake Your Bunny-Maker
+        2422,
+        {
+            {"Event", 181},
+        },
+    },
+    { -- Desert Rose
+        2436,
+        {
+            {"Event", 181},
+        },
+    },
+    { -- Blushing Bride
+        2576,
+        {
+            {"Event", 181},
+        },
+    },
+    { -- I Found One!
+        2676,
+        {
+            {"Event", 181},
+        },
+    },
+    {2756}, -- Argent Aspiration
+    {2758}, -- Argent Valor
+    { -- Exalted Champion of Darnassus
+        2760,
+        faction.Alliance,
+        2769,
+    },
+    { -- Exalted Champion of the Exodar
+        2761,
+        faction.Alliance,
+        2767,
+    },
+    { -- Exalted Champion of Gnomeregan
+        2762,
+        faction.Alliance,
+        2768,
+    },
+    { -- Exalted Champion of Ironforge
+        2763,
+        faction.Alliance,
+        2766,
+    },
+    { -- Exalted Champion of Stormwind
+        2764,
+        faction.Alliance,
+        2765,
+    },
+    { -- Exalted Champion of Orgrimmar
+        2765,
+        faction.Horde,
+        2764,
+    },
+    { -- Exalted Champion of Sen'jin
+        2766,
+        faction.Horde,
+        2763,
+    },
+    { -- Exalted Champion of Silvermoon City
+        2767,
+        faction.Horde,
+        2761,
+    },
+    { -- Exalted Champion of Thunder Bluff
+        2768,
+        faction.Horde,
+        2762,
+    },
+    { -- Exalted Champion of the Undercity
+        2769,
+        faction.Horde,
+        2760,
+    },
+    { -- Exalted Champion of the Alliance
+        2770,
+        faction.Alliance,
+        2771,
+    },
+    { -- Exalted Champion of the Horde
+        2771,
+        faction.Horde,
+        2770,
+    },
+    {2772}, -- Tilted!
+    {2773}, -- It's Just a Flesh Wound
+    { -- Champion of Darnassus
+        2777,
+        faction.Alliance,
+        2787,
+    },
+    { -- Champion of the Exodar
+        2778,
+        faction.Alliance,
+        2785,
+    },
+    { -- Champion of Gnomeregan
+        2779,
+        faction.Alliance,
+        2786,
+    },
+    { -- Champion of Ironforge
+        2780,
+        faction.Alliance,
+        2784,
+    },
+    { -- Champion of Stormwind
+        2781,
+        faction.Alliance,
+        2783,
+    },
+    { -- Champion of the Alliance
+        2782,
+        faction.Alliance,
+        2788,
+    },
+    { -- Champion of Orgrimmar
+        2783,
+        faction.Horde,
+        2781,
+    },
+    { -- Champion of Sen'jin
+        2784,
+        faction.Horde,
+        2780,
+    },
+    { -- Champion of Silvermoon City
+        2785,
+        faction.Horde,
+        2778,
+    },
+    { -- Champion of Thunder Bluff
+        2786,
+        faction.Horde,
+        2779,
+    },
+    { -- Champion of the Undercity
+        2787,
+        faction.Horde,
+        2777,
+    },
+    { -- Champion of the Horde
+        2788,
+        faction.Horde,
+        2782,
+    },
+    { -- Noble Gardener
+        2798,
+        {
+            {"Event", 181},
+        },
+    },
+    { -- Exalted Argent Champion of the Horde
+        2816,
+        faction.Horde,
+        2817,
+    },
+    { -- Exalted Argent Champion of the Alliance
+        2817,
+        faction.Alliance,
+        2816,
+    },
+    {2836}, -- Lance a Lot
+    { -- The Siege of Ulduar (10 player)
+        2886,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- The Siege of Ulduar (25 player)
+        2887,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- The Antechamber of Ulduar (10 player)
+        2888,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- The Antechamber of Ulduar (25 player)
+        2889,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- The Keepers of Ulduar (10 player)
+        2890,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- The Keepers of Ulduar (25 player)
+        2891,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- The Descent into Madness (10 player)
+        2892,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- The Descent into Madness (25 player)
+        2893,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- The Secrets of Ulduar (10 player)
+        2894,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- The Secrets of Ulduar (25 player)
+        2895,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Champion of Ulduar
+        2903,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Conqueror of Ulduar
+        2904,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Unbroken (10 player)
+        2905,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Unbroken (25 player)
+        2906,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Three Car Garage (10 player)
+        2907,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Three Car Garage (25 player)
+        2908,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Take Out Those Turrets (10 player)
+        2909,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Take Out Those Turrets (25 player)
+        2910,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Shutout (10 player)
+        2911,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Shutout (25 player)
+        2912,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Orbital Bombardment (10 player)
+        2913,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Orbital Devastation (10 player)
+        2914,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Nuked from Orbit (10 player)
+        2915,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Orbital Devastation (25 player)
+        2916,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Nuked from Orbit (25 player)
+        2917,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Orbital Bombardment (25 player)
+        2918,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- A Quick Shave (10 player)
+        2919,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- A Quick Shave (25 player)
+        2921,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "Iron Dwarf, Medium Rare (10 player)"
+        2923,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "Iron Dwarf, Medium Rare (25 player)"
+        2924,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Shattered (10 player)
+        2925,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Shattered (25 player)
+        2926,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Hot Pocket (10 player)
+        2927,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Hot Pocket (25 player)
+        2928,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Stokin' the Furnace (25 player)
+        2929,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Stokin' the Furnace (10 player)
+        2930,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Nerf Engineering (10 player)
+        2931,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Nerf Engineering (25 player)
+        2932,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Nerf Scrapbots (10 player)
+        2933,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Nerf Gravity Bombs (10 player)
+        2934,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Nerf Scrapbots (25 player)
+        2935,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Nerf Gravity Bombs (25 player)
+        2936,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Must Deconstruct Faster (10 player)
+        2937,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Must Deconstruct Faster (25 player)
+        2938,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "I Choose You, Runemaster Molgeim (10 player)"
+        2939,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "I Choose You, Stormcaller Brundir (10 player)"
+        2940,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "I Choose You, Steelbreaker (10 player)"
+        2941,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "I Choose You, Runemaster Molgeim (25 player)"
+        2942,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "I Choose You, Stormcaller Brundir (25 player)"
+        2943,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "I Choose You, Steelbreaker (25 player)"
+        2944,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- But I'm On Your Side (10 player)
+        2945,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- But I'm On Your Side (25 player)
+        2946,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Can't Do That While Stunned (10 player)
+        2947,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Can't Do That While Stunned (25 player)
+        2948,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- With Open Arms (10 player)
+        2951,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- With Open Arms (25 player)
+        2952,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Disarmed (10 player)
+        2953,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Disarmed (25 player)
+        2954,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- If Looks Could Kill (10 player)
+        2955,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- If Looks Could Kill (25 player)
+        2956,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Glory of the Ulduar Raider (10 player)
+        2957,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Glory of the Ulduar Raider (25 player)
+        2958,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Rubble and Roll (10 player)
+        2959,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Rubble and Roll (25 player)
+        2960,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Cheese the Freeze (10 player)
+        2961,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Cheese the Freeze (25 player)
+        2962,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- I Have the Coolest Friends (10 player)
+        2963,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- I Have the Coolest Friends (25 player)
+        2965,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Getting Cold in Here (10 player)
+        2967,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Getting Cold in Here (25 player)
+        2968,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Staying Buffed All Winter (10 player)
+        2969,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Staying Buffed All Winter (25 player)
+        2970,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Don't Stand in the Lightning (10 player)
+        2971,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Don't Stand in the Lightning (25 player)
+        2972,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- I'll Take You All On (10 player)
+        2973,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- I'll Take You All On (25 player)
+        2974,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Who Needs Bloodlust? (10 player)
+        2975,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Who Needs Bloodlust? (25 player)
+        2976,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Siffed (10 player)
+        2977,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Siffed (25 player)
+        2978,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Lumberjacked (10 player)
+        2979,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Con-speed-atory (10 player)
+        2980,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Con-speed-atory (25 player)
+        2981,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Getting Back to Nature (10 player)
+        2982,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Getting Back to Nature (25 player)
+        2983,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Deforestation (25 player)
+        2984,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Deforestation (10 player)
+        2985,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Set Up Us the Bomb (10 player)
+        2989,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Not-So-Friendly Fire (25 player)
+        2995,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Shadowdodger (10 player)
+        2996,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Shadowdodger (25 player)
+        2997,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Supermassive (25 player)
+        3002,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Supermassive (10 player)
+        3003,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- He Feeds On Your Tears (10 player)
+        3004,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    { -- He Feeds On Your Tears (25 player)
+        3005,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    { -- Crazy Cat Lady (10 player)
+        3006,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Crazy Cat Lady (25 player)
+        3007,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Drive Me Crazy (10 player)
+        3008,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Kiss and Make Up (10 player)
+        3009,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Drive Me Crazy (25 player)
+        3010,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Kiss and Make Up (25 player)
+        3011,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- He's Not Getting Any Older (10 player)
+        3012,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- He's Not Getting Any Older (25 player)
+        3013,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- They're Coming Out of the Walls (10 player)
+        3014,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- In His House He Waits Dreaming (10 player)
+        3015,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- In His House He Waits Dreaming (25 player)
+        3016,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- They're Coming Out of the Walls (25 player)
+        3017,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Observed (10 player)
+        3036,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Observed (25 player)
+        3037,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Orbit-uary (10 player)
+        3056,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Orbit-uary (25 player)
+        3057,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Heartbreaker (10 player)
+        3058,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Heartbreaker (25 player)
+        3059,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Nine Lives (10 player)
+        3076,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Nine Lives (25 player)
+        3077,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Deadly Gladiator's Frost Wyrm
+        3096,
+        {
+            IsPvP = true,
+            {"PvP Season", 5},
+        },
+    },
+    { -- Dwarfageddon (10 player)
+        3097,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Dwarfageddon (25 player)
+        3098,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Realm First! Death's Demise
+        3117,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
+    },
+    { -- Lumberjacked (25 player)
+        3118,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    {3136}, -- Emalon the Storm Watcher (10 player)
+    {3137}, -- Emalon the Storm Watcher (25 player)
+    { -- Not-So-Friendly Fire (10 player)
+        3138,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Two Lights in the Darkness (10 player)
+        3141,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    {3142}, -- "Val'anyr, Hammer of Ancient Kings"
+    { -- Three Lights in the Darkness (10 player)
+        3157,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- One Light in the Darkness (10 player)
+        3158,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Alone in the Darkness (10 player)
+        3159,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Three Lights in the Darkness (25 player)
+        3161,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Two Lights in the Darkness (25 player)
+        3162,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- One Light in the Darkness (25 player)
+        3163,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Alone in the Darkness (25 player)
+        3164,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Lose Your Illusion (10 player)
+        3176,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Knock on Wood (10 player)
+        3177,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "Knock, Knock on Wood (10 player)"
+        3178,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "Knock, Knock, Knock on Wood (10 player)"
+        3179,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Firefighter (10 player)
+        3180,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- I Love the Smell of Saronite in the Morning (10 player)
+        3181,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- I Could Say That This Cache Was Rare (10 player)
+        3182,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Lose Your Illusion (25 player)
+        3183,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- I Could Say That This Cache Was Rare (25 player)
+        3184,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Knock on Wood (25 player)
+        3185,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "Knock, Knock on Wood (25 player)"
+        3186,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "Knock, Knock, Knock on Wood (25 player)"
+        3187,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- I Love the Smell of Saronite in the Morning (25 player)
+        3188,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Firefighter (25 player)
+        3189,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    {3217}, -- Chasing Marcia
+    {3218}, -- Turtles All the Way Down
+    { -- Set Up Us the Bomb (25 player)
+        3237,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Realm First! Celestial Defender
+        3259,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
+    },
+    {3296}, -- Cooking with Style
+    {3316}, -- Herald of the Titans
+    { -- Deadly Gladiator
+        3336,
+        {
+            IsPvP = true,
+            {"PvP Season", 5},
+        },
+    },
+    { -- Winterspring Frostsaber
+        3356,
+        faction.Alliance,
+        3357,
+    },
+    { -- Venomhide Ravasaur
+        3357,
+        faction.Horde,
+        3356,
+    },
+    { -- Furious Gladiator
+        3436,
+        {
+            IsPvP = true,
+            {"PvP Season", 6},
+        },
+    },
+    { -- A Silver Confidant
+        3676,
+        faction.Alliance,
+        3677,
+    },
+    { -- The Sunreavers
+        3677,
+        faction.Horde,
+        3676,
+    },
+    {3736}, -- Pony Up!
+    { -- Furious Gladiator's Frost Wyrm
+        3756,
+        {
+            IsPvP = true,
+            {"PvP Season", 6},
+        },
+    },
+    {KrowiAF.SetAchievementPatch, 3, 1, 0}, -- Rework loading so this can go to the top, future me problem
+};
+
+KrowiAF.AchievementData["03_02_00"] = {
+    { -- Dead Man's Party
+        3456,
+        {
+            {"Event", 409},
+        },
+    },
+    { -- The Captain's Booty
+        3457,
+        {
+            {"Event", 398},
+        },
+    },
+    { -- Pilgrim
+        3478,
+        {
+            {"Event", 404},
+        },
+    },
+    {3536}, -- The Marine Marine
+    { -- Pilgrim's Paunch
+        3556,
+        faction.Alliance,
+        3557,
+        {
+            {"Event", 404},
+        },
+    },
+    { -- Pilgrim's Paunch
+        3557,
+        faction.Horde,
+        3556,
+        {
+            {"Event", 404},
+        },
+    },
+    { -- Sharing is Caring
+        3558,
+        {
+            {"Event", 404},
+        },
+    },
+    { -- Turkey Lurkey
+        3559,
+        {
+            {"Event", 404},
+        },
+    },
+    { -- Now We're Cookin'
+        3576,
+        faction.Alliance,
+        3577,
+        {
+            {"Event", 404},
+        },
+    },
+    { -- Now We're Cookin'
+        3577,
+        faction.Horde,
+        3576,
+        {
+            {"Event", 404},
+        },
+    },
+    { -- The Turkinator
+        3578,
+        {
+            {"Event", 404},
+        },
+    },
+    { -- """FOOD FIGHT!"""
+        3579,
+        {
+            {"Event", 404},
+        },
+    },
+    { -- Pilgrim's Peril
+        3580,
+        faction.Alliance,
+        3581,
+        {
+            {"Event", 404},
+        },
+    },
+    { -- Pilgrim's Peril
+        3581,
+        faction.Horde,
+        3580,
+        {
+            {"Event", 404},
+        },
+    },
+    { -- Terokkar Turkey Time
+        3582,
+        {
+            {"Event", 404},
+        },
+    },
+    { -- Pilgrim's Progress
+        3596,
+        faction.Alliance,
+        3597,
+        {
+            {"Event", 404},
+        },
+    },
+    { -- Pilgrim's Progress
+        3597,
+        faction.Horde,
+        3596,
+        {
+            {"Event", 404},
+        },
+    },
+    { -- Murkimus the Gladiator
+        3618,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Jade Tiger
+        3636,
+        {
+            {"From", "Date", {2009, 10, 19}, "Until", "Date", {2009, 11, 24}},
+        },
+    },
+    { -- Relentless Gladiator's Frost Wyrm
+        3757,
+        {
+            IsPvP = true,
+            {"PvP Season", 7},
+        },
+    },
+    { -- Relentless Gladiator
+        3758,
+        {
+            IsPvP = true,
+            {"PvP Season", 7},
+        },
+    },
+    { -- Isle of Conquest Victory
+        3776,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Isle of Conquest Veteran
+        3777,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Trial of the Champion
+        3778,
+        faction.Horde,
+        4296,
+    },
+    {3797}, -- Upper Back Pain (10 player)
+    {3798}, -- Resilience Will Fix It (10 player)
+    {3799}, -- Salt and Pepper (10 player)
+    {3800}, -- The Traitor King (10 player)
+    {3802}, -- Argent Confessor
+    {3803}, -- The Faceroller
+    {3804}, -- I've Had Worse
+    { -- A Tribute to Skill (10 player)
+        3808,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    { -- A Tribute to Mad Skill (10 player)
+        3809,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    { -- A Tribute to Insanity (10 player)
+        3810,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    {3812}, -- Call of the Grand Crusade (25 player)
+    {3813}, -- Upper Back Pain (25 player)
+    {3815}, -- Salt and Pepper (25 player)
+    {3816}, -- The Traitor King (25 player)
+    { -- A Tribute to Skill (25 player)
+        3817,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    { -- A Tribute to Mad Skill (25 player)
+        3818,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    { -- A Tribute to Insanity (25 player)
+        3819,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    {3836}, -- Koralon the Flame Watcher (10 player)
+    {3837}, -- Koralon the Flame Watcher (25 player)
+    { -- 1000 Dungeon & Raid Emblems
+        3844,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    { -- Isle of Conquest All-Star
+        3845,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Resource Glut
+        3846,
+        faction.Alliance,
+        4176,
+        true,
+    },
+    { -- Four Car Garage
+        3847,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- A-bomb-inable
+        3848,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- A-bomb-ination
+        3849,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Mowed Down
+        3850,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Mine
+        3851,
+        faction.Alliance,
+        4177,
+        true,
+    },
+    { -- Cut the Blue Wire... No the Red Wire!
+        3852,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- All Over the Isle
+        3853,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Back Door Job
+        3854,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Glaive Grave
+        3855,
+        {
+            IsPvP = true,
+        },
+    },
+    { -- Demolition Derby
+        3856,
+        faction.Alliance,
+        4256,
+        true,
+    },
+    { -- Master of Isle of Conquest
+        3857,
+        faction.Alliance,
+        3957,
+        true,
+    },
+    { -- Onyx Panther
+        3896,
+        {
+            {"From", "Date", {2009, 10, 1}, "Until", "Date", {2010, 2, 28}},
+        },
+    },
+    {3916}, -- Call of the Crusade (25 player)
+    {3917}, -- Call of the Crusade (10 player)
+    {3918}, -- Call of the Grand Crusade (10 player)
+    {3936}, -- "Not One, But Two Jormungars (10 player)"
+    {3937}, -- "Not One, But Two Jormungars (25 player)"
+    { -- Master of Isle of Conquest
+        3957,
+        faction.Horde,
+        3857,
+        true,
+    },
+    {3996}, -- Three Sixty Pain Spike (10 player)
+    {3997}, -- Three Sixty Pain Spike (25 player)
+    {4016}, -- "Earth, Wind & Fire (10 player)"
+    {4017}, -- "Earth, Wind & Fire (25 player)"
+    { -- Realm First! Grand Crusader
+        4078,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
+    },
+    { -- A Tribute to Immortality
+        4079,
+        faction.Horde,
+        4156,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    { -- A Tribute to Dedicated Insanity
+        4080,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    { -- A Tribute to Immortality
+        4156,
+        faction.Alliance,
+        4079,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    { -- Resource Glut
+        4176,
+        faction.Horde,
+        3846,
+        true,
+    },
+    { -- Mine
+        4177,
+        faction.Horde,
+        3851,
+        true,
+    },
+    { -- Demolition Derby
+        4256,
+        faction.Horde,
+        3856,
+        true,
+    },
+    { -- Trial of the Champion
+        4296,
+        faction.Alliance,
+        3778,
+    },
+    { -- Heroic: Trial of the Champion
+        4297,
+        faction.Horde,
+        4298,
+    },
+    { -- Heroic: Trial of the Champion
+        4298,
+        faction.Alliance,
+        4297,
+    },
+    { -- 2500 Dungeon & Raid Emblems
+        4316,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    {KrowiAF.SetAchievementPatch, 3, 2, 0}, -- Rework loading so this can go to the top, future me problem
+};
+
+KrowiAF.AchievementData["03_02_02"] = {
+    {4396}, -- Onyxia's Lair (10 player)
+    {4397}, -- Onyxia's Lair (25 player)
+    { -- WoW's 5th Anniversary
+        4400,
+        {
+            {},
+        },
+    },
+    {4402}, -- More Dots! (10 player)
+    {4403}, -- Many Whelps! Handle It! (10 player)
+    {4404}, -- She Deep Breaths More (10 player)
+    {4405}, -- More Dots! (25 player)
+    {4406}, -- Many Whelps! Handle It! (25 player)
+    {4407}, -- She Deep Breaths More (25 player)
+    { -- BB King
+        4436,
+        faction.Alliance,
+        4437,
+        {
+            {"Event", 141},
+        },
+    },
+    { -- BB King
+        4437,
+        faction.Horde,
+        4436,
+        {
+            {"Event", 141},
+        },
+    },
+    {4476}, -- Looking For More
+    {4477}, -- Looking For Many
+    {4478}, -- Looking For Multitudes
+    {4496}, -- It's Over Nine Thousand!
+    {4585}, -- Toravon the Ice Watcher (10 player)
+    {4586}, -- Toravon the Ice Watcher (25 player)
+    {KrowiAF.SetAchievementPatch, 3, 2, 2}, -- Rework loading so this can go to the top, future me problem
+};
+
+KrowiAF.AchievementData["03_03_00"] = {
+    {4516}, -- The Forge of Souls
+    {4517}, -- The Pit of Saron
+    {4518}, -- The Halls of Reflection
+    {4519}, -- Heroic: The Forge of Souls
+    {4520}, -- Heroic: The Pit of Saron
+    {4521}, -- Heroic: The Halls of Reflection
+    {4522}, -- Soul Power
+    {4523}, -- Three Faced
+    {4524}, -- Doesn't Go to Eleven
+    {4525}, -- Don't Look Up
+    {4526}, -- We're Not Retreating; We're Advancing in a Different Direction.
+    {4527}, -- The Frostwing Halls (10 player)
+    {4528}, -- The Plagueworks (10 player)
+    {4529}, -- The Crimson Hall (10 player)
+    {4530}, -- The Frozen Throne (10 player)
+    {4531}, -- Storming the Citadel (10 player)
+    {4532}, -- Fall of the Lich King (10 player)
+    {4534}, -- Boned (10 player)
+    {4535}, -- Full House (10 player)
+    {4536}, -- I'm on a Boat (10 player)
+    {4537}, -- I've Gone and Made a Mess (10 player)
+    {4538}, -- Dances with Oozes (10 player)
+    {4539}, -- "Once Bitten, Twice Shy (10 player)"
+    { -- Realm First! Fall of the Lich King
+        4576,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
+    },
+    {4577}, -- Flu Shot Shortage (10 player)
+    {4578}, -- "Nausea, Heartburn, Indigestion... (10 player)"
+    {4579}, -- Portal Jockey (10 player)
+    {4580}, -- All You Can Eat (10 player)
+    {4581}, -- Neck-Deep in Vile (10 player)
+    {4582}, -- The Orb Whisperer (10 player)
+    {4583}, -- Bane of the Fallen King
+    {4584}, -- The Light of Dawn
+    {4596}, -- The Sword in the Skull
+    {4597}, -- The Frozen Throne (25 player)
+    {4598}, -- The Ashen Verdict
+    { -- Wrathful Gladiator
+        4599,
+        {
+            IsPvP = true,
+            {"PvP Season", 8},
+        },
+    },
+    { -- Wrathful Gladiator's Frost Wyrm
+        4600,
+        {
+            IsPvP = true,
+            {"PvP Season", 8},
+        },
+    },
+    {4601}, -- Been Waiting a Long Time for This (10 player)
+    {4602}, -- Glory of the Icecrown Raider (10 player)
+    {4603}, -- Glory of the Icecrown Raider (25 player)
+    {4604}, -- Storming the Citadel (25 player)
+    {4605}, -- The Plagueworks (25 player)
+    {4606}, -- The Crimson Hall (25 player)
+    {4607}, -- The Frostwing Halls (25 player)
+    {4608}, -- Fall of the Lich King (25 player)
+    {4610}, -- Boned (25 player)
+    {4611}, -- Full House (25 player)
+    {4612}, -- I'm on a Boat (25 player)
+    {4613}, -- I've Gone and Made a Mess (25 player)
+    {4614}, -- Dances with Oozes (25 player)
+    {4615}, -- Flu Shot Shortage (25 player)
+    {4616}, -- "Nausea, Heartburn, Indigestion... (25 player)"
+    {4617}, -- The Orb Whisperer (25 player)
+    {4618}, -- "Once Bitten, Twice Shy (25 player)"
+    {4619}, -- Portal Jockey (25 player)
+    {4620}, -- All You Can Eat (25 player)
+    {4621}, -- Been Waiting a Long Time for This (25 player)
+    {4622}, -- Neck-Deep in Vile (25 player)
+    {4623}, -- Shadowmourne
+    { -- Tough Love
+        4624,
+        {
+            {"Event", 423},
+        },
+    },
+    {4625}, -- Invincible's Reins
+    {4626}, -- And I'll Form the Head!
+    {4627}, -- X-45 Heartbreaker
+    {4628}, -- Heroic: Storming the Citadel (10 player)
+    {4629}, -- Heroic: The Plagueworks (10 player)
+    {4630}, -- Heroic: The Crimson Hall (10 player)
+    {4631}, -- Heroic: The Frostwing Halls (10 player)
+    {4632}, -- Heroic: Storming the Citadel (25 player)
+    {4633}, -- Heroic: The Plagueworks (25 player)
+    {4634}, -- Heroic: The Crimson Hall (25 player)
+    {4635}, -- Heroic: The Frostwing Halls (25 player)
+    {4636}, -- Heroic: Fall of the Lich King (10 player)
+    {4637}, -- Heroic: Fall of the Lich King (25 player)
+    {KrowiAF.SetAchievementPatch, 3, 3, 0}, -- Rework loading so this can go to the top, future me problem
+};
+
+KrowiAF.AchievementData["03_03_03"] = {
+    { -- Green Brewfest Stein
+        4782,
+        {
+            {"Never"},
+        },
+    },
+    { -- Operation: Gnomeregan
+        4786,
+        faction.Alliance,
+        {
+            {"Before", "Version", {4, 0, 1}},
+        },
+    },
+    { -- Zalazane's Fall
+        4790,
+        faction.Horde,
+        {
+            {"Before", "Version", {4, 0, 1}},
+        },
+    },
+    {KrowiAF.SetAchievementPatch, 3, 3, 3}, -- Rework loading so this can go to the top, future me problem
+};
+
+KrowiAF.AchievementData["03_03_05"] = {
+    {4815}, -- The Twilight Destroyer (25 player)
+    {4816}, -- Heroic: The Twilight Destroyer (25 player)
+    {4817}, -- The Twilight Destroyer (10 player)
+    {4818}, -- Heroic: The Twilight Destroyer (10 player)
+    {4824}, -- Collector's Edition: Mini Thor
+    {KrowiAF.SetAchievementPatch, 3, 3, 5}, -- Rework loading so this can go to the top, future me problem
 };

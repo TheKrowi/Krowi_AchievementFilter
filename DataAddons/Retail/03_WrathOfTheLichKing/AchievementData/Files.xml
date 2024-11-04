@@ -1,9 +1,0 @@
-<Ui>
-    <Script file="AchievementData_03_00_02.lua" />
-    <Script file="AchievementData_03_01_00.lua" />
-    <Script file="AchievementData_03_02_00.lua" />
-    <Script file="AchievementData_03_02_02.lua" />
-    <Script file="AchievementData_03_03_00.lua" />
-    <Script file="AchievementData_03_03_03.lua" />
-    <Script file="AchievementData_03_03_05.lua" />
-</Ui>
