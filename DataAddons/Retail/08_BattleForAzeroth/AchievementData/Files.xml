@@ -1,8 +1,0 @@
-<Ui>
-    <Script file="AchievementData_08_00_01.lua" />
-    <Script file="AchievementData_08_01_00.lua" />
-    <Script file="AchievementData_08_01_05.lua" />
-    <Script file="AchievementData_08_02_00.lua" />
-    <Script file="AchievementData_08_02_05.lua" />
-    <Script file="AchievementData_08_03_00.lua" />
-</Ui>
