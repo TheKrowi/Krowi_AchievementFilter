@@ -7,12 +7,37 @@ KrowiAF.AchievementData["03_00_02"] = {
     {7}, -- Level 20
     {8}, -- Level 30
     {9}, -- Level 40
-    {10}, -- Level 50
-    {11}, -- Level 60
-    {12}, -- Level 70
-    {13}, -- Level 80
+    { -- Level 50
+        10,
+        {
+            {"Before", "Version", {9, 0, 1}},
+        },
+    },
+    { -- Level 60
+        11,
+        {
+            {"Before", "Version", {9, 0, 1}},
+        },
+    },
+    { -- Level 70
+        12,
+        {
+            {"Before", "Version", {9, 0, 1}},
+        },
+    },
+    { -- Level 80
+        13,
+        {
+            {"Before", "Version", {9, 0, 1}},
+        },
+    },
     {15}, -- Plenty of Pets
-    {16}, -- Did Somebody Order a Knuckle Sandwich?
+    { -- Did Somebody Order a Knuckle Sandwich?
+        16,
+        {
+            {"Before", "Version", {4, 0, 1}},
+        },
+    },
     {31}, -- A Simple Re-Quest
     {32}, -- 2000 Quests Completed
     { -- Nothing Boring About Borean
@@ -42,6 +67,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Loremaster of Northrend
         41,
         faction.Alliance,
+        1360,
     },
     {42}, -- Explore Eastern Kingdoms
     {43}, -- Explore Kalimdor
@@ -50,9 +76,9 @@ KrowiAF.AchievementData["03_00_02"] = {
     {46}, -- World Explorer
     { -- Disgracin' The Basin
         73,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     {116}, -- Professional Journeyman
     {121}, -- Journeyman Cook
@@ -65,11 +91,36 @@ KrowiAF.AchievementData["03_00_02"] = {
     {128}, -- Artisan Fisherman
     {129}, -- Master Fisherman
     {130}, -- Grand Master Fisherman
-    {131}, -- Journeyman in First Aid
-    {132}, -- Expert in First Aid
-    {133}, -- Artisan in First Aid
-    {134}, -- Master in First Aid
-    {135}, -- Grand Master in First Aid
+    { -- Journeyman in First Aid
+        131,
+        {
+            {"Before", "Version", {8, 0, 1}},
+        },
+    },
+    { -- Expert in First Aid
+        132,
+        {
+            {"Before", "Version", {8, 0, 1}},
+        },
+    },
+    { -- Artisan in First Aid
+        133,
+        {
+            {"Before", "Version", {8, 0, 1}},
+        },
+    },
+    { -- Master in First Aid
+        134,
+        {
+            {"Before", "Version", {8, 0, 1}},
+        },
+    },
+    { -- Grand Master in First Aid
+        135,
+        {
+            {"Before", "Version", {8, 0, 1}},
+        },
+    },
     {137}, -- Stocking Up
     {141}, -- Ultimate Triage
     {144}, -- The Lurker Above
@@ -77,93 +128,93 @@ KrowiAF.AchievementData["03_00_02"] = {
     {153}, -- The Old Gnome and the Sea
     { -- Arathi Basin Victory
         154,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Arathi Basin Veteran
         155,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Territorial Dominance
         156,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- To The Rescue!
         157,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Me and the Cappin' Makin' it Happen
         158,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Let's Get This Done
         159,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Resilient Victory
         161,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- We Had It All Along *cough*
         162,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Arathi Basin Perfection
         165,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Warsong Gulch Victory
         166,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Warsong Gulch Veteran
         167,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Warsong Gulch Perfection
         168,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Capture the Flag
         199,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Persistent Defender
         200,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Warsong Expedience
         201,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Quick Cap
         202,
@@ -179,9 +230,9 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     { -- Ironman
         204,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Supreme Defender
         206,
@@ -191,63 +242,63 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     { -- Save The Day
         207,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Eye of the Storm Victory
         208,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Eye of the Storm Veteran
         209,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Storm Glory
         211,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Storm Capper
         212,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Stormtrooper
         213,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Flurry
         214,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Bound for Glory
         216,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Alterac Valley Victory
         218,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Alterac Valley Veteran
         219,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Stormpike Perfection
         220,
@@ -257,21 +308,21 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     { -- Alterac Grave Robber
         221,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Tower Defense
         222,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- The Sickly Gazelle
         223,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Loyal Defender
         224,
@@ -287,21 +338,21 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     { -- The Alterac Blitz
         226,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Damage Control
         227,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- The Grim Reaper
         229,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Battlemaster
         230,
@@ -311,33 +362,33 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     { -- Wrecking Ball
         231,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Bloodthirsty Berserker
         233,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- An Honorable Kill
         238,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- 25000 Honorable Kills
         239,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- That Takes Class
         245,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Know Thy Enemy
         246,
@@ -347,41 +398,145 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     { -- "Make Love, Not Warcraft"
         247,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
-    {248}, -- Sunday's Finest
-    {249}, -- Dressed for the Occasion
+    { -- Sunday's Finest
+        248,
+        {
+            {"Event", 181},
+        },
+    },
+    { -- Dressed for the Occasion
+        249,
+        {
+            {"Event", 181},
+        },
+    },
     { -- With a Little Helper from My Friends
         252,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Event", 141},
+        },
     },
-    {255}, -- Bring Me The Head of... Oh Wait
+    { -- Bring Me The Head of... Oh Wait
+        255,
+        {
+            {"Event", 324},
+        },
+    },
     { -- Scrooge
         259,
         faction.Horde,
         1255,
+        {
+            {"Event", 141},
+        },
     },
-    {260}, -- Charming
-    {263}, -- Ice the Frost Lord
-    {271}, -- Burning Hot Pole Dance
-    {272}, -- Torch Juggler
-    {273}, -- On Metzen!
-    {275}, -- Veteran Nanny
-    {277}, -- 'Tis the Season
-    {279}, -- Simply Abominable
-    {283}, -- The Masquerade
-    {284}, -- A Mask for All Occasions
-    {288}, -- Out With It
-    {289}, -- The Savior of Hallow's End
-    {291}, -- Check Your Head
-    {292}, -- Sinister Calling
-    {293}, -- Disturbing the Peace
-    {295}, -- Direbrewfest
-    {303}, -- "Have Keg, Will Travel"
+    { -- Charming
+        260,
+        {
+            {"Before", "Version", {10, 2, 5}},
+        },
+    },
+    { -- Ice the Frost Lord
+        263,
+        {
+            {"Event", 341},
+        },
+    },
+    { -- Burning Hot Pole Dance
+        271,
+        {
+            {"Event", 341},
+        },
+    },
+    { -- Torch Juggler
+        272,
+        {
+            {"Event", 341},
+        },
+    },
+    { -- On Metzen!
+        273,
+        {
+            {"Event", 141},
+        },
+    },
+    { -- Veteran Nanny
+        275,
+        {
+            {"Event", 201},
+        },
+    },
+    { -- 'Tis the Season
+        277,
+        {
+            {"Event", 141},
+        },
+    },
+    { -- Simply Abominable
+        279,
+        {
+            {"Event", 141},
+        },
+    },
+    { -- The Masquerade
+        283,
+        {
+            {"Event", 324},
+        },
+    },
+    { -- A Mask for All Occasions
+        284,
+        {
+            {"Event", 324},
+        },
+    },
+    { -- Out With It
+        288,
+        {
+            {"Event", 324},
+        },
+    },
+    { -- The Savior of Hallow's End
+        289,
+        {
+            {"Event", 324},
+        },
+    },
+    { -- Check Your Head
+        291,
+        {
+            {"Event", 324},
+        },
+    },
+    { -- Sinister Calling
+        292,
+        {
+            {"Event", 324},
+        },
+    },
+    { -- Disturbing the Peace
+        293,
+        {
+            {"Event", 372},
+        },
+    },
+    { -- Direbrewfest
+        295,
+        {
+            {"Event", 372},
+        },
+    },
+    { -- "Have Keg, Will Travel"
+        303,
+        {
+            {"Event", 372},
+        },
+    },
     {306}, -- Master Angler of Azeroth
     { -- City Defender
         388,
@@ -391,376 +546,492 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     { -- Gurubashi Arena Master
         389,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Gurubashi Arena Grand Master
         396,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Step Into The Arena
         397,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Mercilessly Dedicated
         398,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Just the Two of Us: 1550
         399,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Just the Two of Us: 1750
         400,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Just the Two of Us: 2000
         401,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Three's Company: 1550
         402,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Three's Company: 1750
         403,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- High Five: 2000
         404,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {7, 0, 3}},
+        },
     },
     { -- Three's Company: 2000
         405,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- High Five: 1550
         406,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {7, 0, 3}},
+        },
     },
     { -- High Five: 1750
         407,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {7, 0, 3}},
+        },
     },
     { -- Hot Streak
         408,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Last Man Standing
         409,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {7, 0, 3}},
+        },
     },
     {411}, -- Murky
     {412}, -- Murloc Costume
     {414}, -- Tyrael's Hilt
     {415}, -- Big Blizzard Bear
-    {416}, -- Scarab Lord
+    { -- Scarab Lord
+        416,
+        {
+            {"Never"},
+        },
+    },
     { -- Merciless Gladiator
         418,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"PvP Season", 2},
+        },
     },
     { -- Vengeful Gladiator
         419,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"PvP Season", 3},
+        },
     },
     { -- Brutal Gladiator
         420,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"PvP Season", 4},
+        },
     },
     {424}, -- Why? Because It's Red
-    {425}, -- "Atiesh, Greatstaff of the Guardian"
+    { -- "Atiesh, Greatstaff of the Guardian"
+        425,
+        {
+            {"Never"},
+        },
+    },
     {426}, -- Warglaives of Azzinoth
     {428}, -- "Thunderfury, Blessed Blade of the Windseeker"
     {429}, -- "Sulfuras, Hand of Ragnaros"
-    {430}, -- Amani War Bear
-    {431}, -- Hand of A'dal
-    {432}, -- Champion of the Naaru
+    { -- Amani War Bear
+        430,
+        {
+            {"Never"},
+        },
+    },
+    { -- Hand of A'dal
+        431,
+        {
+            {"Never"},
+        },
+    },
+    { -- Champion of the Naaru
+        432,
+        {
+            {"Never"},
+        },
+    },
     { -- Grand Marshal
         433,
         faction.Alliance,
         443,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Field Marshal
         434,
         faction.Alliance,
         445,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Commander
         435,
         faction.Alliance,
         444,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Lieutenant Commander
         436,
         faction.Alliance,
         447,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Knight-Champion
         437,
         faction.Alliance,
         448,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Knight-Captain
         438,
         faction.Alliance,
         469,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Knight
         439,
         faction.Alliance,
         451,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Sergeant Major
         440,
         faction.Alliance,
         452,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Master Sergeant
         441,
         faction.Alliance,
         450,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Private
         442,
         faction.Alliance,
         454,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- High Warlord
         443,
         faction.Horde,
         433,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Lieutenant General
         444,
         faction.Horde,
         435,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Warlord
         445,
         faction.Horde,
         434,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- General
         446,
         faction.Horde,
         473,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Champion
         447,
         faction.Horde,
         436,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Centurion
         448,
         faction.Horde,
         437,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Blood Guard
         449,
         faction.Horde,
         472,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Senior Sergeant
         450,
         faction.Horde,
         441,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Stone Guard
         451,
         faction.Horde,
         439,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- First Sergeant
         452,
         faction.Horde,
         440,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Sergeant
         453,
         faction.Horde,
         471,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Scout
         454,
         faction.Horde,
         442,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Realm First! Obsidian Slayer
         456,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Level 80
         457,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Level 80 Rogue
         458,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Level 80 Warrior
         459,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Level 80 Mage
         460,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Level 80 Death Knight
         461,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Level 80 Hunter
         462,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Level 80 Warlock
         463,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Level 80 Priest
         464,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Level 80 Paladin
         465,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Level 80 Druid
         466,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Level 80 Shaman
         467,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Grunt
         468,
         faction.Horde,
         470,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Legionnaire
         469,
         faction.Horde,
         438,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Corporal
         470,
         faction.Alliance,
         468,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Sergeant
         471,
         faction.Alliance,
         453,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Knight-Lieutenant
         472,
         faction.Alliance,
         449,
         true,
+        {
+            {"Never"},
+        },
     },
     { -- Marshal
         473,
         faction.Alliance,
         446,
         true,
+        {
+            {"Never"},
+        },
     },
     {477}, -- Utgarde Keep
     {478}, -- The Nexus
@@ -794,33 +1065,33 @@ KrowiAF.AchievementData["03_00_02"] = {
     {508}, -- 1500 Quests Completed
     { -- 10000 Honorable Kills
         509,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- 5000 Honorable Kills
         512,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- 100 Honorable Kills
         513,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- 500 Honorable Kills
         515,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- 1000 Honorable Kills
         516,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     {518}, -- 30 Exalted Reputations
     {519}, -- 25 Exalted Reputations
@@ -832,11 +1103,36 @@ KrowiAF.AchievementData["03_00_02"] = {
     {545}, -- Shave and a Haircut
     {546}, -- Safe Deposit
     {547}, -- Veteran of the Wrathgate
-    {556}, -- Epic
-    {557}, -- Superior
-    {558}, -- Greedy
-    {559}, -- Needy
-    {560}, -- Deadliest Catch
+    { -- Epic
+        556,
+        {
+            {"Before", "Version", {8, 0, 1}},
+        },
+    },
+    { -- Superior
+        557,
+        {
+            {"Before", "Version", {8, 0, 1}},
+        },
+    },
+    { -- Greedy
+        558,
+        {
+            {"Before", "Version", {8, 0, 1}},
+        },
+    },
+    { -- Needy
+        559,
+        {
+            {"Before", "Version", {8, 0, 1}},
+        },
+    },
+    { -- Deadliest Catch
+        560,
+        {
+            {"Before", "Version", {4, 0, 1}},
+        },
+    },
     {561}, -- D.E.H.T.A's Little P.I.T.A.
     {562}, -- The Arachnid Quarter (10 player)
     {563}, -- The Arachnid Quarter (25 player)
@@ -856,27 +1152,27 @@ KrowiAF.AchievementData["03_00_02"] = {
     {579}, -- The Dedicated Few (25 player)
     { -- Alterac Valley All-Star
         582,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Arathi Basin All-Star
         583,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Arathi Basin Assassin
         584,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Stormy Assassin
         587,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Wrath of the Horde
         603,
@@ -890,28 +1186,62 @@ KrowiAF.AchievementData["03_00_02"] = {
         603,
         true,
     },
-    {605}, -- A Coin of Ancestry
-    {606}, -- 5 Coins of Ancestry
-    {607}, -- 10 Coins of Ancestry
-    {608}, -- 25 Coins of Ancestry
-    {609}, -- 50 Coins of Ancestry
+    { -- A Coin of Ancestry
+        605,
+        {
+            {"Event", 327},
+        },
+    },
+    { -- 5 Coins of Ancestry
+        606,
+        {
+            {"Event", 327},
+        },
+    },
+    { -- 10 Coins of Ancestry
+        607,
+        {
+            {"Event", 327},
+        },
+    },
+    { -- 25 Coins of Ancestry
+        608,
+        {
+            {"Event", 327},
+        },
+    },
+    { -- 50 Coins of Ancestry
+        609,
+        {
+            {"Event", 327},
+        },
+    },
     { -- Death to the Warchief!
         610,
         faction.Alliance,
         615,
         true,
+        {
+            {"Before", "Version", {8, 0, 1}},
+        },
     },
     { -- Bleeding Bloodhoof
         611,
         faction.Alliance,
         616,
         true,
+        {
+            {"Before", "Version", {9, 0, 1}},
+        },
     },
     { -- Downing the Dark Lady
         612,
         faction.Alliance,
         617,
         true,
+        {
+            {"Before", "Version", {9, 0, 1}},
+        },
     },
     { -- Killed in Quel'Thalas
         613,
@@ -930,6 +1260,9 @@ KrowiAF.AchievementData["03_00_02"] = {
         faction.Horde,
         610,
         true,
+        {
+            {"Before", "Version", {9, 0, 1}},
+        },
     },
     { -- Overthrow the Council
         616,
@@ -942,6 +1275,9 @@ KrowiAF.AchievementData["03_00_02"] = {
         faction.Horde,
         612,
         true,
+        {
+            {"Before", "Version", {8, 0, 1}},
+        },
     },
     { -- Putting Out the Light
         618,
@@ -960,7 +1296,12 @@ KrowiAF.AchievementData["03_00_02"] = {
     {623}, -- The Spellweaver's Downfall (25 player)
     {624}, -- Less Is More (10 player)
     {625}, -- Besting the Black Dragonflight (25 player)
-    {626}, -- Lunar Festival Finery
+    { -- Lunar Festival Finery
+        626,
+        {
+            {"Event", 327},
+        },
+    },
     {627}, -- Explore Dun Morogh
     {628}, -- Deadmines
     {629}, -- Ragefire Chasm
@@ -1018,14 +1359,29 @@ KrowiAF.AchievementData["03_00_02"] = {
     {681}, -- Heroic: The Arcatraz
     {682}, -- Heroic: Magister's Terrace
     {683}, -- Collector's Edition: Frost Wyrm Whelp
-    {684}, -- Onyxia's Lair (Level 60)
+    { -- Onyxia's Lair (Level 60)
+        684,
+        {
+            {"Never"},
+        },
+    },
     {685}, -- Blackwing Lair
     {686}, -- Molten Core
     {687}, -- Temple of Ahn'Qiraj
-    {688}, -- Zul'Gurub
+    { -- Zul'Gurub
+        688,
+        {
+            {"Before", "Version", {4, 0, 1}},
+        },
+    },
     {689}, -- Ruins of Ahn'Qiraj
     {690}, -- Karazhan
-    {691}, -- Zul'Aman
+    { -- Zul'Aman
+        691,
+        {
+            {"Before", "Version", {4, 0, 1}},
+        },
+    },
     {692}, -- Gruul's Lair
     {693}, -- Magtheridon's Lair
     {694}, -- Serpentshrine Cavern
@@ -1035,23 +1391,34 @@ KrowiAF.AchievementData["03_00_02"] = {
     {698}, -- Sunwell Plateau
     { -- World Wide Winner
         699,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Freedom of the Horde
         700,
         faction.Horde,
         701,
-        true,
+        {
+            IsPvP = true,
+            {"PvP Season", 5},
+        },
     },
     { -- Freedom of the Alliance
         701,
         faction.Alliance,
         700,
-        true,
+        {
+            IsPvP = true,
+            {"PvP Season", 5},
+        },
     },
-    {705}, -- Master of Arms
+    { -- Master of Arms
+        705,
+        {
+            {"Before", "Version", {4, 0, 1}},
+        },
+    },
     { -- Frostwolf Howler
         706,
         faction.Horde,
@@ -1110,13 +1477,18 @@ KrowiAF.AchievementData["03_00_02"] = {
     {726}, -- Mr. Pinchy's Magical Crawdad Box
     { -- Call in the Cavalry
         727,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     {728}, -- Explore Durotar
     {729}, -- Deathcharger's Reins
-    {730}, -- Skills to Pay the Bills
+    { -- Skills to Pay the Bills
+        730,
+        {
+            {"Before", "Version", {8, 0, 1}},
+        },
+    },
     {731}, -- Professional Expert
     {732}, -- Professional Artisan
     {733}, -- Professional Master
@@ -1159,15 +1531,15 @@ KrowiAF.AchievementData["03_00_02"] = {
     {782}, -- Explore Swamp of Sorrows
     { -- The Perfect Storm
         783,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Eye of the Storm Domination
         784,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     {802}, -- Explore Westfall
     {841}, -- Explore Wetlands
@@ -1200,22 +1572,22 @@ KrowiAF.AchievementData["03_00_02"] = {
     {868}, -- Explore Isle of Quel'Danas
     { -- 50000 Honorable Kills
         869,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- 100000 Honorable Kills
         870,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     {871}, -- "Avast Ye, Admiral!"
     { -- Frenzied Defender
         872,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Frostwolf Perfection
         873,
@@ -1225,47 +1597,70 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     { -- Vengefully Dedicated
         875,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Brutally Dedicated
         876,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     {877}, -- The Cake Is Not A Lie
     {878}, -- One That Didn't Get Away
-    {879}, -- Old School Ride
-    {880}, -- Swift Zulian Tiger
-    {881}, -- Swift Razzashi Raptor
+    { -- Old School Ride
+        879,
+        {
+            {"Never"},
+        },
+    },
+    { -- Swift Zulian Tiger
+        880,
+        {
+            {"Before", "Version", {4, 0, 1}},
+        },
+    },
+    { -- Swift Razzashi Raptor
+        881,
+        {
+            {"Before", "Version", {4, 0, 1}},
+        },
+    },
     {882}, -- Fiery Warhorse's Reins
     {883}, -- Reins of the Raven Lord
     {884}, -- Swift White Hawkstrider
     {885}, -- Ashes of Al'ar
     { -- Swift Nether Drake
         886,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"PvP Season", 1},
+        },
     },
     { -- Merciless Nether Drake
         887,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"PvP Season", 2},
+        },
     },
     { -- Vengeful Nether Drake
         888,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"PvP Season", 3},
+        },
     },
     {889}, -- Fast and Furious
     {890}, -- Into The Wild Blue Yonder
     {891}, -- Giddy Up!
-    {892}, -- The Right Stuff
+    { -- The Right Stuff
+        892,
+        {
+            {"Before", "Version", {9, 0, 1}},
+        },
+    },
     {893}, -- Cenarion War Hippogryph
     {894}, -- Flying High Over Skettis
     {896}, -- A Quest a Day Keeps the Ogres at Bay
@@ -1304,13 +1699,48 @@ KrowiAF.AchievementData["03_00_02"] = {
         908,
         true,
     },
-    {910}, -- Elders of the Dungeons
-    {911}, -- Elders of Kalimdor
-    {912}, -- Elders of Eastern Kingdoms
-    {913}, -- To Honor One's Elders
-    {914}, -- Elders of the Horde
-    {915}, -- Elders of the Alliance
-    {937}, -- Elune's Blessing
+    { -- Elders of the Dungeons
+        910,
+        {
+            {"Event", 327},
+        },
+    },
+    { -- Elders of Kalimdor
+        911,
+        {
+            {"Event", 327},
+        },
+    },
+    { -- Elders of Eastern Kingdoms
+        912,
+        {
+            {"Event", 327},
+        },
+    },
+    { -- To Honor One's Elders
+        913,
+        {
+            {"Event", 327},
+        },
+    },
+    { -- Elders of the Horde
+        914,
+        {
+            {"Event", 327},
+        },
+    },
+    { -- Elders of the Alliance
+        915,
+        {
+            {"Event", 327},
+        },
+    },
+    { -- Elune's Blessing
+        937,
+        {
+            {"Event", 327},
+        },
+    },
     {938}, -- The Snows of Northrend
     {939}, -- Hills Like White Elekk
     {940}, -- The Green Hills of Stranglethorn
@@ -1341,7 +1771,12 @@ KrowiAF.AchievementData["03_00_02"] = {
     {953}, -- Guardian of Cenarius
     {955}, -- Hydraxian Waterlords
     {956}, -- Brood of Nozdormu
-    {957}, -- Hero of the Zandalar Tribe
+    { -- Hero of the Zandalar Tribe
+        957,
+        {
+            {"Before", "Version", {4, 0, 1}},
+        },
+    },
     {958}, -- Sworn to the Deathsworn
     {959}, -- The Scale of the Sands
     {960}, -- The Violet Eye
@@ -1351,51 +1786,97 @@ KrowiAF.AchievementData["03_00_02"] = {
         963,
         faction.Alliance,
         965,
+        {
+            {"Event", 324},
+        },
     },
     {964}, -- Going Down?
     { -- Tricks and Treats of Kalimdor
         965,
         faction.Horde,
         963,
+        {
+            {"Event", 324},
+        },
     },
     { -- Tricks and Treats of Eastern Kingdoms
         966,
         faction.Alliance,
         967,
+        {
+            {"Event", 324},
+        },
     },
     { -- Tricks and Treats of Eastern Kingdoms
         967,
         faction.Horde,
         966,
+        {
+            {"Event", 324},
+        },
     },
     { -- Tricks and Treats of Outland
         968,
         faction.Horde,
         969,
+        {
+            {"Event", 324},
+        },
     },
     { -- Tricks and Treats of Outland
         969,
         faction.Alliance,
         968,
+        {
+            {"Event", 324},
+        },
     },
     { -- Tricks and Treats of Azeroth
         970,
         faction.Alliance,
+        971,
+        {
+            {"Event", 324},
+        },
     },
     { -- Tricks and Treats of Azeroth
         971,
         faction.Horde,
+        970,
+        {
+            {"Event", 324},
+        },
     },
-    {972}, -- Trick or Treat!
+    { -- Trick or Treat!
+        972,
+        {
+            {"Event", 324},
+        },
+    },
     {973}, -- 5 Daily Quests Complete
     {974}, -- 50 Daily Quests Complete
     {975}, -- 200 Daily Quests Complete
     {976}, -- 500 Daily Quests Complete
     {977}, -- 1000 Daily Quests Complete
     {978}, -- 3000 Quests Completed
-    {979}, -- The Mask Task
-    {980}, -- The Horseman's Reins
-    {981}, -- That Sparkling Smile
+    { -- The Mask Task
+        979,
+        {
+            {"Event", 324},
+        },
+    },
+    { -- The Horseman's Reins
+        980,
+        {
+            {"Event", 324},
+        },
+    },
+    { -- That Sparkling Smile
+        981,
+        {
+            {"Event", 324},
+        },
+    },
     { -- Know Thy Enemy
         1005,
         faction.Horde,
@@ -1431,103 +1912,168 @@ KrowiAF.AchievementData["03_00_02"] = {
         1022,
         faction.Alliance,
         1025,
+        {
+            {"Event", 341},
+        },
     },
     { -- Flame Warden of Kalimdor
         1023,
         faction.Alliance,
         1026,
+        {
+            {"Event", 341},
+        },
     },
     { -- Flame Warden of Outland
         1024,
         faction.Alliance,
         1027,
+        {
+            {"Event", 341},
+        },
     },
     { -- Flame Keeper of Eastern Kingdoms
         1025,
         faction.Horde,
         1022,
+        {
+            {"Event", 341},
+        },
     },
     { -- Flame Keeper of Kalimdor
         1026,
         faction.Horde,
         1023,
+        {
+            {"Event", 341},
+        },
     },
     { -- Flame Keeper of Outland
         1027,
         faction.Horde,
         1024,
+        {
+            {"Event", 341},
+        },
     },
     { -- Extinguishing Eastern Kingdoms
         1028,
         faction.Alliance,
         1031,
+        {
+            {"Event", 341},
+        },
     },
     { -- Extinguishing Kalimdor
         1029,
         faction.Alliance,
         1032,
+        {
+            {"Event", 341},
+        },
     },
     { -- Extinguishing Outland
         1030,
         faction.Alliance,
         1033,
+        {
+            {"Event", 341},
+        },
     },
     { -- Extinguishing Eastern Kingdoms
         1031,
         faction.Horde,
         1028,
+        {
+            {"Event", 341},
+        },
     },
     { -- Extinguishing Kalimdor
         1032,
         faction.Horde,
         1029,
+        {
+            {"Event", 341},
+        },
     },
     { -- Extinguishing Outland
         1033,
         faction.Horde,
         1030,
+        {
+            {"Event", 341},
+        },
     },
     { -- The Fires of Azeroth
         1034,
         faction.Alliance,
         1036,
+        {
+            {"Event", 341},
+        },
     },
     { -- Desecration of the Horde
         1035,
         faction.Alliance,
         1037,
+        {
+            {"Event", 341},
+        },
     },
     { -- The Fires of Azeroth
         1036,
         faction.Horde,
         1034,
+        {
+            {"Event", 341},
+        },
     },
     { -- Desecration of the Alliance
         1037,
         faction.Horde,
         1035,
+        {
+            {"Event", 341},
+        },
     },
     { -- The Flame Warden
         1038,
         faction.Alliance,
         1039,
+        {
+            {"Event", 341},
+        },
     },
     { -- The Flame Keeper
         1039,
         faction.Horde,
         1038,
+        {
+            {"Event", 341},
+        },
     },
     { -- Rotten Hallow
         1040,
         faction.Alliance,
         1041,
+        {
+            {"Event", 324},
+        },
     },
     { -- Rotten Hallow
         1041,
         faction.Horde,
         1040,
+        {
+            {"Event", 324},
+        },
     },
-    {1145}, -- King of the Fire Festival
+    { -- King of the Fire Festival
+        1145,
+        {
+            {"Event", 341},
+        },
+    },
     { -- Loyal Defender
         1151,
         faction.Alliance,
@@ -1536,39 +2082,40 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     { -- Overly Defensive
         1153,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Duel-icious
         1157,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Just the Two of Us: 2200
         1159,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Three's Company: 2200
         1160,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- High Five: 2200
         1161,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {7, 0, 3}},
+        },
     },
     { -- Hotter Streak
         1162,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Everything Counts
         1164,
@@ -1579,51 +2126,58 @@ KrowiAF.AchievementData["03_00_02"] = {
     {1165}, -- "My Storage is ""Gigantique"""
     { -- To the Looter Go the Spoils
         1166,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Master of Alterac Valley
         1167,
         faction.Alliance,
-        nil,
+        1168,
         true,
     },
     { -- Master of Alterac Valley
         1168,
         faction.Horde,
+        1167,
+        true,
     },
     { -- Master of Arathi Basin
         1169,
         faction.Alliance,
-        nil,
+        1170,
         true,
     },
     { -- Master of Arathi Basin
         1170,
         faction.Horde,
+        1169,
+        true,
     },
     { -- Master of Eye of the Storm
         1171,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Master of Warsong Gulch
         1172,
         faction.Alliance,
-        nil,
+        1173,
         true,
     },
     { -- Master of Warsong Gulch
         1173,
         faction.Horde,
+        1172,
+        true,
     },
     { -- The Arena Master
         1174,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {7, 0, 3}},
+        },
     },
     { -- Battlemaster
         1175,
@@ -1637,15 +2191,38 @@ KrowiAF.AchievementData["03_00_02"] = {
     {1180}, -- Got My Mind On My Money
     {1181}, -- Got My Mind On My Money
     {1182}, -- The Bread Winner
-    {1183}, -- Brew of the Year
+    { -- Brew of the Year
+        1183,
+        {
+            {"Event", 372},
+        },
+    },
     { -- Strange Brew
         1184,
         faction.Alliance,
         1203,
+        {
+            {"Event", 372},
+        },
     },
-    {1185}, -- The Brewfest Diet
-    {1186}, -- Down With The Dark Iron
-    {1188}, -- Shafted!
+    { -- The Brewfest Diet
+        1185,
+        {
+            {"Event", 372},
+        },
+    },
+    { -- Down With The Dark Iron
+        1186,
+        {
+            {"Before", "Version", {8, 2, 0}},
+        },
+    },
+    { -- Shafted!
+        1188,
+        {
+            {"Event", 423},
+        },
+    },
     { -- To Hellfire and Back
         1189,
         faction.Alliance,
@@ -1669,6 +2246,9 @@ KrowiAF.AchievementData["03_00_02"] = {
         1203,
         faction.Horde,
         1184,
+        {
+            {"Event", 372},
+        },
     },
     {1205}, -- Hero of Shattrath
     {1206}, -- To All The Squirrels I've Loved Before
@@ -1694,25 +2274,39 @@ KrowiAF.AchievementData["03_00_02"] = {
         1255,
         faction.Alliance,
         259,
+        {
+            {"Event", 141},
+        },
     },
     {1257}, -- The Scavenger
     { -- Take a Chill Pill
         1258,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Not So Fast
         1259,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
-    {1260}, -- Drunken Stupor
-    {1261}, -- G.N.E.R.D. Rage
+    { -- Almost Blind Luck
+        1260,
+        {
+            {"Event", 372},
+        },
+    },
+    { -- G.N.E.R.D. Rage
+        1261,
+        {
+            {"Event", 324},
+        },
+    },
     { -- Loremaster of Outland
         1262,
         faction.Alliance,
+        1274,
     },
     {1263}, -- Explore Howling Fjord
     {1264}, -- Explore Borean Tundra
@@ -1740,6 +2334,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Loremaster of Outland
         1274,
         faction.Horde,
+        1262,
     },
     {1275}, -- Bombs Away
     {1276}, -- Blade's Edge Bomberman
@@ -1748,14 +2343,30 @@ KrowiAF.AchievementData["03_00_02"] = {
         1279,
         faction.Alliance,
         1280,
+        {
+            {"Before", "Version", {10, 2, 5}},
+        },
     },
     { -- Flirt With Disaster
         1280,
         faction.Horde,
         1279,
+        {
+            {"Before", "Version", {10, 2, 5}},
+        },
     },
-    {1281}, -- The Rocket's Red Glare
-    {1282}, -- Fa-la-la-la-Ogri'la
+    { -- The Rocket's Red Glare
+        1281,
+        {
+            {"Event", 327},
+        },
+    },
+    { -- Fa-la-la-la-Ogri'la
+        1282,
+        {
+            {"Event", 141},
+        },
+    },
     {1283}, -- Classic Dungeonmaster
     {1284}, -- Outland Dungeonmaster
     {1285}, -- Classic Raider
@@ -1763,30 +2374,58 @@ KrowiAF.AchievementData["03_00_02"] = {
     {1287}, -- Outland Dungeon Hero
     {1288}, -- Northrend Dungeonmaster
     {1289}, -- Northrend Dungeon Hero
-    {1291}, -- Lonely?
-    {1292}, -- Yellow Brewfest Stein
-    {1293}, -- Blue Brewfest Stein
-    {1295}, -- Crashin' & Thrashin'
+    { -- Lonely?
+        1291,
+        {
+            {"Event", 423},
+        },
+    },
+    { -- Yellow Brewfest Stein
+        1292,
+        {
+            {"Never"},
+        },
+    },
+    { -- Blue Brewfest Stein
+        1293,
+        {
+            {"Never"},
+        },
+    },
+    { -- Crashin' & Thrashin'
+        1295,
+        {
+            {"Event", 141},
+        },
+    },
     {1296}, -- Watch Him Die
     {1297}, -- Hadronox Denied
-    {1307}, -- Upper Blackrock Spire
+    { -- Upper Blackrock Spire
+        1307,
+        {
+            {"Before", "Version", {6, 0, 2}},
+        },
+    },
     { -- Strand of the Ancients Victory
         1308,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {8, 0, 1}},
+        },
     },
     { -- Strand of the Ancients Veteran
         1309,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {8, 0, 1}},
+        },
     },
     { -- Storm the Beach
         1310,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {8, 0, 1}},
+        },
     },
     {1311}, -- Medium Rare
     {1312}, -- Bloody Rare
@@ -1813,199 +2452,210 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Loremaster of Northrend
         1360,
         faction.Horde,
+        41,
     },
-    {1396}, -- Elders of Northrend
+    { -- Elders of Northrend
+        1396,
+        {
+            {"Event", 327},
+        },
+    },
     { -- Realm First! Magic Seeker
         1400,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Conqueror of Naxxramas
         1402,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Level 80 Gnome
         1404,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Level 80 Blood Elf
         1405,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Level 80 Draenei
         1406,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Level 80 Dwarf
         1407,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Level 80 Human
         1408,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Level 80 Night Elf
         1409,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Level 80 Orc
         1410,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Level 80 Tauren
         1411,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Level 80 Troll
         1412,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Level 80 Forsaken
         1413,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Grand Master Blacksmith
         1414,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Grand Master Alchemist
         1415,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Cooking Grand Master
         1416,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Grand Master Enchanter
         1417,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Grand Master Engineer
         1418,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! First Aid Grand Master
         1419,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Grand Master Angler
         1420,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Grand Master Herbalist
         1421,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Grand Master Scribe
         1422,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Grand Master Jewelcrafter
         1423,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Grand Master Leatherworker
         1424,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Grand Master Miner
         1425,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Grand Master Skinner
         1426,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Realm First! Grand Master Tailor
         1427,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     {1428}, -- Mine Sweeper
-    {1436}, -- Friends In High Places
+    { -- Friends In High Places
+        1436,
+        {
+            {"Never"},
+        },
+    },
     {1457}, -- Explore Crystalsong Forest
     { -- Realm First! Northrend Vanguard
         1463,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- Quick Cap
         1502,
@@ -2015,7 +2665,12 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     {1516}, -- Accomplished Angler
     {1517}, -- Northrend Angler
-    {1552}, -- Frenzied Firecracker
+    { -- Frenzied Firecracker
+        1552,
+        {
+            {"Event", 327},
+        },
+    },
     {1556}, -- 25 Fish
     {1557}, -- 50 Fish
     {1558}, -- 100 Fish
@@ -2029,126 +2684,251 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     {1576}, -- Of Blood and Anguish
     {1596}, -- Guru of Drakuru
-    {1636}, -- Competitor's Tabard
-    {1637}, -- Spirit of Competition
+    { -- Competitor's Tabard
+        1636,
+        {
+            {"Never"},
+        },
+    },
+    { -- Spirit of Competition
+        1637,
+        {
+            {"Never"},
+        },
+    },
     {1638}, -- Skyshattered
     { -- Hallowed Be Thy Name
         1656,
         faction.Alliance,
+        1657,
+        {
+            {"Event", 324},
+        },
     },
     { -- Hallowed Be Thy Name
         1657,
         faction.Horde,
+        1656,
+        {
+            {"Event", 324},
+        },
     },
     {1658}, -- Champion of the Frozen Wastes
     { -- Loremaster of Eastern Kingdoms
         1676,
         faction.Alliance,
+        1677,
     },
     { -- Loremaster of Eastern Kingdoms
         1677,
         faction.Horde,
+        1676,
     },
     { -- Loremaster of Kalimdor
         1678,
         faction.Alliance,
+        1680,
     },
     { -- Loremaster of Kalimdor
         1680,
         faction.Horde,
+        1678,
     },
     { -- The Loremaster
         1681,
         faction.Alliance,
+        1682,
     },
     { -- The Loremaster
         1682,
         faction.Horde,
+        1681,
     },
     { -- Brewmaster
         1683,
         faction.Horde,
+        1684,
+        {
+            {"Event", 372},
+        },
     },
     { -- Brewmaster
         1684,
         faction.Alliance,
+        1683,
+        {
+            {"Event", 372},
+        },
     },
     { -- Holiday Bromance
         1685,
         faction.Horde,
         1686,
+        {
+            {"Event", 141},
+        },
     },
     { -- Holiday Bromance
         1686,
         faction.Alliance,
         1685,
+        {
+            {"Event", 141},
+        },
     },
-    {1687}, -- Let It Snow
-    {1688}, -- The Winter Veil Gourmet
-    {1689}, -- He Knows If You've Been Naughty
-    {1690}, -- A Frosty Shake
+    { -- Let It Snow
+        1687,
+        {
+            {"Event", 141},
+        },
+    },
+    { -- The Winter Veil Gourmet
+        1688,
+        {
+            {"Event", 141},
+        },
+    },
+    { -- He Knows If You've Been Naughty
+        1689,
+        {
+            {"Event", 141},
+        },
+    },
+    { -- A Frosty Shake
+        1690,
+        {
+            {"Event", 141},
+        },
+    },
     { -- Merrymaker
         1691,
         faction.Horde,
+        1692,
+        {
+            {"Event", 141},
+        },
     },
     { -- Merrymaker
         1692,
         faction.Alliance,
+        1691,
+        {
+            {"Event", 141},
+        },
     },
     { -- Fool For Love
         1693,
         faction.Horde,
+        1707,
+        {
+            {"Event", 423},
+        },
     },
-    {1694}, -- Lovely Luck Is On Your Side
-    {1695}, -- Dangerous Love
-    {1696}, -- The Rocket's Pink Glare
+    { -- Lovely Luck Is On Your Side
+        1694,
+        {
+            {"Event", 423},
+        },
+    },
+    { -- Dangerous Love
+        1695,
+        {
+            {"Event", 423},
+        },
+    },
+    { -- The Rocket's Pink Glare
+        1696,
+        {
+            {"Event", 423},
+        },
+    },
     { -- Nation of Adoration
         1697,
         faction.Alliance,
         1698,
+        {
+            {"Before", "Version", {10, 2, 5}},
+        },
     },
     { -- Nation of Adoration
         1698,
         faction.Horde,
         1697,
+        {
+            {"Before", "Version", {10, 2, 5}},
+        },
     },
-    {1699}, -- Fistful of Love
-    {1700}, -- Perma-Peddle
-    {1701}, -- Be Mine!
-    {1702}, -- Sweet Tooth
-    {1703}, -- "My Love is Like a Red, Red Rose"
-    {1704}, -- I Pitied The Fool
+    { -- Fistful of Love
+        1699,
+        {
+            {"Event", 423},
+        },
+    },
+    { -- Perma-Peddle
+        1700,
+        {
+            {"Event", 423},
+        },
+    },
+    { -- Be Mine!
+        1701,
+        {
+            {"Event", 423},
+        },
+    },
+    { -- Sweet Tooth
+        1702,
+        {
+            {"Event", 423},
+        },
+    },
+    { -- "My Love is Like a Red, Red Rose"
+        1703,
+        {
+            {"Event", 423},
+        },
+    },
+    { -- I Pitied The Fool
+        1704,
+        {
+            {"Event", 423},
+        },
+    },
     {1705}, -- Clockwork Rocket Bot
     {1706}, -- Crashin' Thrashin' Racer
     { -- Fool For Love
         1707,
         faction.Alliance,
+        1693,
+        {
+            {"Event", 423},
+        },
     },
     { -- Wintergrasp Victory
         1717,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Wintergrasp Veteran
         1718,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     {1721}, -- Archavon the Stone Watcher (25 player)
     {1722}, -- Archavon the Stone Watcher (10 player)
     { -- Vehicular Gnomeslaughter
         1723,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Leaning Tower
         1727,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Destruction Derby
         1737,
@@ -2158,63 +2938,74 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     { -- Didn't Stand a Chance
         1751,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Master of Wintergrasp
         1752,
         faction.Alliance,
-        nil,
+        2776,
         true,
     },
     { -- Within Our Grasp
         1755,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Defense of the Ancients
         1757,
         faction.Alliance,
         2200,
         true,
+        {
+            {"Before", "Version", {8, 0, 1}},
+        },
     },
     { -- The Dapper Sapper
         1761,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {8, 0, 1}},
+        },
     },
     { -- Not Even a Scratch
         1762,
         faction.Alliance,
         2192,
         true,
+        {
+            {"Before", "Version", {8, 0, 1}},
+        },
     },
     { -- Artillery Veteran
         1763,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {8, 0, 1}},
+        },
     },
     { -- Drop It!
         1764,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {8, 0, 1}},
+        },
     },
     { -- Steady Hands
         1765,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {8, 0, 1}},
+        },
     },
     { -- Ancient Protector
         1766,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {8, 0, 1}},
+        },
     },
     {1777}, -- The Northrend Gourmet
     {1778}, -- The Northrend Gourmet
@@ -2237,13 +3028,48 @@ KrowiAF.AchievementData["03_00_02"] = {
         1563,
     },
     {1785}, -- Dinner Impossible
-    {1786}, -- School of Hard Knocks
-    {1788}, -- Bad Example
-    {1789}, -- Daily Chores
-    {1790}, -- "Hail To The King, Baby"
-    {1791}, -- Home Alone
-    {1792}, -- "Aw, Isn't It Cute?"
-    {1793}, -- For The Children
+    { -- School of Hard Knocks
+        1786,
+        {
+            {"Event", 201},
+        },
+    },
+    { -- Bad Example
+        1788,
+        {
+            {"Event", 201},
+        },
+    },
+    { -- Daily Chores
+        1789,
+        {
+            {"Event", 201},
+        },
+    },
+    { -- "Hail To The King, Baby"
+        1790,
+        {
+            {"Event", 201},
+        },
+    },
+    { -- Home Alone
+        1791,
+        {
+            {"Event", 201},
+        },
+    },
+    { -- "Aw, Isn't It Cute?"
+        1792,
+        {
+            {"Event", 201},
+        },
+    },
+    { -- For the Children
+        1793,
+        {
+            {"Event", 201},
+        },
+    },
     {1795}, -- Lunch Lady
     {1796}, -- Short Order Cook
     {1797}, -- Chef de Partie
@@ -2279,7 +3105,12 @@ KrowiAF.AchievementData["03_00_02"] = {
     {1876}, -- Besting the Black Dragonflight (10 player)
     {1877}, -- Less Is More (25 player)
     {1919}, -- On The Rocks
-    {1936}, -- Does Your Wolpertinger Linger?
+    { -- Does Your Wolpertinger Linger?
+        1936,
+        {
+            {"Event", 372},
+        },
+    },
     {1956}, -- Higher Learning
     {1957}, -- There's Gold In That There Fountain
     {1958}, -- I Smell A Giant Rat
@@ -2302,8 +3133,18 @@ KrowiAF.AchievementData["03_00_02"] = {
         2016,
         true,
     },
-    {2018}, -- Timear Foresees
-    {2019}, -- Proof of Demise
+    { -- Timear Foresees
+        2018,
+        {
+            {"Before", "Version", {3, 3, 0}},
+        },
+    },
+    { -- Proof of Demise
+        2019,
+        {
+            {"Before", "Version", {3, 3, 0}},
+        },
+    },
     {2036}, -- Intense Cold
     {2037}, -- Chaos Theory
     {2038}, -- Respect Your Elders
@@ -2329,12 +3170,17 @@ KrowiAF.AchievementData["03_00_02"] = {
     {2076}, -- Armored Brown Bear
     {2077}, -- Wooly Mammoth
     {2078}, -- Traveler's Tundra Mammoth
-    {2079}, -- Tabard of the Protector
+    { -- Tabard of the Protector
+        2079,
+        {
+            {"Never"},
+        },
+    },
     { -- Black War Mammoth
         2080,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     {2081}, -- Grand Black War Mammoth
     {2082}, -- Ice Mammoth
@@ -2342,63 +3188,73 @@ KrowiAF.AchievementData["03_00_02"] = {
     {2084}, -- Ring of the Kirin Tor
     { -- 50 Stone Keeper's Shards
         2085,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {4, 0, 1}},
+        },
     },
     { -- 100 Stone Keeper's Shards
         2086,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {4, 0, 1}},
+        },
     },
     { -- 250 Stone Keeper's Shards
         2087,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {4, 0, 1}},
+        },
     },
     { -- 500 Stone Keeper's Shards
         2088,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {4, 0, 1}},
+        },
     },
     { -- 1000 Stone Keeper's Shards
         2089,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {4, 0, 1}},
+        },
     },
     { -- Challenger
         2090,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Gladiator
         2091,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Duelist
         2092,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Rival
         2093,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     {2094}, -- A Penny For Your Thoughts
     {2095}, -- Silver in the City
     {2096}, -- The Coin Master
     {2097}, -- Get to the Choppa!
-    {2116}, -- Tabard of the Argent Dawn
+    { -- Tabard of the Argent Dawn
+        2116,
+        {
+            {"Never"},
+        },
+    },
     {2136}, -- Glory of the Hero
     {2137}, -- Glory of the Raider (10 player)
     {2138}, -- Glory of the Raider (25 player)
@@ -2410,10 +3266,12 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- "What A Long, Strange Trip It's Been"
         2144,
         faction.Alliance,
+        2145,
     },
     { -- "What A Long, Strange Trip It's Been"
         2145,
         faction.Horde,
+        2144,
     },
     {2146}, -- The Hundred Club (10 player)
     {2147}, -- The Hundred Club (25 player)
@@ -2437,86 +3295,158 @@ KrowiAF.AchievementData["03_00_02"] = {
     {2183}, -- Spore Loser (25 player)
     {2184}, -- Just Can't Get Enough (10 player)
     {2185}, -- Just Can't Get Enough (25 player)
-    {2186}, -- The Immortal
-    {2187}, -- The Undying
-    {2188}, -- Leeeeeeeeeeeeeroy!
+    { -- The Immortal
+        2186,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    { -- The Undying
+        2187,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    { -- Leeeeeeeeeeeeeroy!
+        2188,
+        {
+            {"Before", "Version", {6, 0, 2}},
+        },
+    },
     { -- Artillery Expert
         2189,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {8, 0, 1}},
+        },
     },
     { -- Drop It Now!
         2190,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {8, 0, 1}},
+        },
     },
     { -- Ancient Courtyard Protector
         2191,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {8, 0, 1}},
+        },
     },
     { -- Not Even a Scratch
         2192,
         faction.Horde,
         1762,
         true,
+        {
+            {"Before", "Version", {8, 0, 1}},
+        },
     },
     { -- Explosives Expert
         2193,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"Before", "Version", {8, 0, 1}},
+        },
     },
     { -- Master of Strand of the Ancients
         2194,
         faction.Alliance,
-        nil,
-        true,
+        2195,
+        {
+            IsPvP = true,
+            {"Before", "Version", {8, 0, 1}},
+        },
     },
     { -- Master of Strand of the Ancients
         2195,
         faction.Horde,
+        2194,
+        {
+            IsPvP = true,
+            {"Before", "Version", {8, 0, 1}},
+        },
     },
     { -- Wintergrasp Ranger
         2199,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Defense of the Ancients
         2200,
         faction.Horde,
         1757,
         true,
+        {
+            {"Before", "Version", {8, 0, 1}},
+        },
     },
     {2256}, -- Northern Exposure
     {2257}, -- Frostbitten
     { -- Brutal Nether Drake
         2316,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"PvP Season", 4},
+        },
     },
-    {2336}, -- Insane in the Membrane
-    {2357}, -- Dreadsteed of Xoroth
-    {2358}, -- Charger
-    {2359}, -- Swift Flight Form
-    {2398}, -- WoW's 4th Anniversary
-    {2456}, -- Vampire Hunter
+    { -- Insane in the Membrane
+        2336,
+        {
+            {"Event", 374},
+        },
+    },
+    { -- Dreadsteed of Xoroth
+        2357,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    { -- Charger
+        2358,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    { -- Swift Flight Form
+        2359,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    { -- WoW's 4th Anniversary
+        2398,
+        {
+            {"Never"},
+        },
+    },
+    { -- Vampire Hunter
+        2456,
+        {
+            {"From", "Date", {2008, 10, 22}, "Until", "Date", {2008, 11, 4}},
+        },
+    },
     { -- Destruction Derby
         2476,
         faction.Horde,
         1737,
         true,
     },
-    {2496}, -- The Fifth Element
+    { -- The Fifth Element
+        2496,
+        {
+            {"Never"},
+        },
+    },
     { -- Spring Fling
         2497,
         faction.Horde,
         2419,
+        {
+            {"Event", 181},
+        },
     },
     {2516}, -- Lil' Game Hunter
     { -- Mountain o' Mounts
@@ -2531,39 +3461,95 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     {2556}, -- Pest Control
     {2557}, -- To All The Squirrels Who Shared My Life
-    {2716}, -- Dual Talent Specialization
+    { -- Dual Talent Specialization
+        2716,
+        {
+            {"Before", "Version", {7, 0, 3}},
+        },
+    },
     { -- Master of Wintergrasp
         2776,
         faction.Horde,
+        1752,
+        true,
     },
-    {2796}, -- Brew of the Month
+    { -- Brew of the Month
+        2796,
+        {
+            {"Event", 372},
+        },
+    },
     {3496}, -- A Brew-FAST Mount
     {KrowiAF.SetAchievementPatch, 3, 0, 2}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["03_01_00"] = {
-    {2416}, -- Hard Boiled
-    {2417}, -- Chocolate Lover
-    {2418}, -- Chocoholic
+    { -- Hard Boiled
+        2416,
+        {
+            {"Event", 181},
+        },
+    },
+    { -- Chocolate Lover
+        2417,
+        {
+            {"Event", 181},
+        },
+    },
+    { -- Chocoholic
+        2418,
+        {
+            {"Event", 181},
+        },
+    },
     { -- Spring Fling
         2419,
         faction.Alliance,
         2497,
+        {
+            {"Event", 181},
+        },
     },
     { -- Noble Garden
         2420,
         faction.Horde,
         2421,
+        {
+            {"Event", 181},
+        },
     },
     { -- Noble Garden
         2421,
         faction.Alliance,
         2420,
+        {
+            {"Event", 181},
+        },
     },
-    {2422}, -- Shake Your Bunny-Maker
-    {2436}, -- Desert Rose
-    {2576}, -- Blushing Bride
-    {2676}, -- I Found One!
+    { -- Shake Your Bunny-Maker
+        2422,
+        {
+            {"Event", 181},
+        },
+    },
+    { -- Desert Rose
+        2436,
+        {
+            {"Event", 181},
+        },
+    },
+    { -- Blushing Bride
+        2576,
+        {
+            {"Event", 181},
+        },
+    },
+    { -- I Found One!
+        2676,
+        {
+            {"Event", 181},
+        },
+    },
     {2756}, -- Argent Aspiration
     {2758}, -- Argent Valor
     { -- Exalted Champion of Darnassus
@@ -2691,10 +3677,18 @@ KrowiAF.AchievementData["03_01_00"] = {
     { -- Noble Gardener
         2797,
         faction.Alliance,
+        2798,
+        {
+            {"Event", 181},
+        },
     },
     { -- Noble Gardener
         2798,
         faction.Horde,
+        2797,
+        {
+            {"Event", 181},
+        },
     },
     { -- Exalted Argent Champion of the Horde
         2816,
@@ -2707,180 +3701,894 @@ KrowiAF.AchievementData["03_01_00"] = {
         2816,
     },
     {2836}, -- Lance a Lot
-    {2886}, -- The Siege of Ulduar (10 player)
-    {2887}, -- The Siege of Ulduar (25 player)
-    {2888}, -- The Antechamber of Ulduar (10 player)
-    {2889}, -- The Antechamber of Ulduar (25 player)
-    {2890}, -- The Keepers of Ulduar (10 player)
-    {2891}, -- The Keepers of Ulduar (25 player)
-    {2892}, -- The Descent into Madness (10 player)
-    {2893}, -- The Descent into Madness (25 player)
-    {2894}, -- The Secrets of Ulduar (10 player)
-    {2895}, -- The Secrets of Ulduar (25 player)
-    {2903}, -- Champion of Ulduar
-    {2904}, -- Conqueror of Ulduar
-    {2905}, -- Unbroken (10 player)
-    {2906}, -- Unbroken (25 player)
-    {2907}, -- Three Car Garage (10 player)
-    {2908}, -- Three Car Garage (25 player)
-    {2909}, -- Take Out Those Turrets (10 player)
-    {2910}, -- Take Out Those Turrets (25 player)
-    {2911}, -- Shutout (10 player)
-    {2912}, -- Shutout (25 player)
-    {2913}, -- Orbital Bombardment (10 player)
-    {2914}, -- Orbital Devastation (10 player)
-    {2915}, -- Nuked from Orbit (10 player)
-    {2916}, -- Orbital Devastation (25 player)
-    {2917}, -- Nuked from Orbit (25 player)
-    {2918}, -- Orbital Bombardment (25 player)
-    {2919}, -- A Quick Shave (10 player)
-    {2921}, -- A Quick Shave (25 player)
-    {2923}, -- "Iron Dwarf, Medium Rare (10 player)"
-    {2924}, -- "Iron Dwarf, Medium Rare (25 player)"
-    {2925}, -- Shattered (10 player)
-    {2926}, -- Shattered (25 player)
-    {2927}, -- Hot Pocket (10 player)
-    {2928}, -- Hot Pocket (25 player)
-    {2929}, -- Stokin' the Furnace (25 player)
-    {2930}, -- Stokin' the Furnace (10 player)
-    {2931}, -- Nerf Engineering (10 player)
-    {2932}, -- Nerf Engineering (25 player)
-    {2933}, -- Nerf Scrapbots (10 player)
-    {2934}, -- Nerf Gravity Bombs (10 player)
-    {2935}, -- Nerf Scrapbots (25 player)
-    {2936}, -- Nerf Gravity Bombs (25 player)
-    {2937}, -- Must Deconstruct Faster (10 player)
-    {2938}, -- Must Deconstruct Faster (25 player)
-    {2939}, -- "I Choose You, Runemaster Molgeim (10 player)"
-    {2940}, -- "I Choose You, Stormcaller Brundir (10 player)"
-    {2941}, -- "I Choose You, Steelbreaker (10 player)"
-    {2942}, -- "I Choose You, Runemaster Molgeim (25 player)"
-    {2943}, -- "I Choose You, Stormcaller Brundir (25 player)"
-    {2944}, -- "I Choose You, Steelbreaker (25 player)"
-    {2945}, -- But I'm On Your Side (10 player)
-    {2946}, -- But I'm On Your Side (25 player)
-    {2947}, -- Can't Do That While Stunned (10 player)
-    {2948}, -- Can't Do That While Stunned (25 player)
-    {2951}, -- With Open Arms (10 player)
-    {2952}, -- With Open Arms (25 player)
-    {2953}, -- Disarmed (10 player)
-    {2954}, -- Disarmed (25 player)
-    {2955}, -- If Looks Could Kill (10 player)
-    {2956}, -- If Looks Could Kill (25 player)
-    {2957}, -- Glory of the Ulduar Raider (10 player)
-    {2958}, -- Glory of the Ulduar Raider (25 player)
-    {2959}, -- Rubble and Roll (10 player)
-    {2960}, -- Rubble and Roll (25 player)
-    {2961}, -- Cheese the Freeze (10 player)
-    {2962}, -- Cheese the Freeze (25 player)
-    {2963}, -- I Have the Coolest Friends (10 player)
-    {2965}, -- I Have the Coolest Friends (25 player)
-    {2967}, -- Getting Cold in Here (10 player)
-    {2968}, -- Getting Cold in Here (25 player)
-    {2969}, -- Staying Buffed All Winter (10 player)
-    {2970}, -- Staying Buffed All Winter (25 player)
-    {2971}, -- Don't Stand in the Lightning (10 player)
-    {2972}, -- Don't Stand in the Lightning (25 player)
-    {2973}, -- I'll Take You All On (10 player)
-    {2974}, -- I'll Take You All On (25 player)
-    {2975}, -- Who Needs Bloodlust? (10 player)
-    {2976}, -- Who Needs Bloodlust? (25 player)
-    {2977}, -- Siffed (10 player)
-    {2978}, -- Siffed (25 player)
-    {2979}, -- Lumberjacked (10 player)
-    {2980}, -- Con-speed-atory (10 player)
-    {2981}, -- Con-speed-atory (25 player)
-    {2982}, -- Getting Back to Nature (10 player)
-    {2983}, -- Getting Back to Nature (25 player)
-    {2984}, -- Deforestation (25 player)
-    {2985}, -- Deforestation (10 player)
-    {2989}, -- Set Up Us the Bomb (10 player)
-    {2995}, -- Not-So-Friendly Fire (25 player)
-    {2996}, -- Shadowdodger (10 player)
-    {2997}, -- Shadowdodger (25 player)
-    {3002}, -- Supermassive (25 player)
-    {3003}, -- Supermassive (10 player)
-    {3004}, -- He Feeds On Your Tears (10 player)
-    {3005}, -- He Feeds On Your Tears (25 player)
-    {3006}, -- Crazy Cat Lady (10 player)
-    {3007}, -- Crazy Cat Lady (25 player)
-    {3008}, -- Drive Me Crazy (10 player)
-    {3009}, -- Kiss and Make Up (10 player)
-    {3010}, -- Drive Me Crazy (25 player)
-    {3011}, -- Kiss and Make Up (25 player)
-    {3012}, -- He's Not Getting Any Older (10 player)
-    {3013}, -- He's Not Getting Any Older (25 player)
-    {3014}, -- They're Coming Out of the Walls (10 player)
-    {3015}, -- In His House He Waits Dreaming (10 player)
-    {3016}, -- In His House He Waits Dreaming (25 player)
-    {3017}, -- They're Coming Out of the Walls (25 player)
-    {3036}, -- Observed (10 player)
-    {3037}, -- Observed (25 player)
-    {3056}, -- Orbit-uary (10 player)
-    {3057}, -- Orbit-uary (25 player)
-    {3058}, -- Heartbreaker (10 player)
-    {3059}, -- Heartbreaker (25 player)
-    {3076}, -- Nine Lives (10 player)
-    {3077}, -- Nine Lives (25 player)
+    { -- The Siege of Ulduar (10 player)
+        2886,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- The Siege of Ulduar (25 player)
+        2887,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- The Antechamber of Ulduar (10 player)
+        2888,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- The Antechamber of Ulduar (25 player)
+        2889,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- The Keepers of Ulduar (10 player)
+        2890,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- The Keepers of Ulduar (25 player)
+        2891,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- The Descent into Madness (10 player)
+        2892,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- The Descent into Madness (25 player)
+        2893,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- The Secrets of Ulduar (10 player)
+        2894,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- The Secrets of Ulduar (25 player)
+        2895,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Champion of Ulduar
+        2903,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Conqueror of Ulduar
+        2904,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Unbroken (10 player)
+        2905,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Unbroken (25 player)
+        2906,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Three Car Garage (10 player)
+        2907,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Three Car Garage (25 player)
+        2908,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Take Out Those Turrets (10 player)
+        2909,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Take Out Those Turrets (25 player)
+        2910,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Shutout (10 player)
+        2911,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Shutout (25 player)
+        2912,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Orbital Bombardment (10 player)
+        2913,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Orbital Devastation (10 player)
+        2914,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Nuked from Orbit (10 player)
+        2915,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Orbital Devastation (25 player)
+        2916,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Nuked from Orbit (25 player)
+        2917,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Orbital Bombardment (25 player)
+        2918,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- A Quick Shave (10 player)
+        2919,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- A Quick Shave (25 player)
+        2921,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "Iron Dwarf, Medium Rare (10 player)"
+        2923,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "Iron Dwarf, Medium Rare (25 player)"
+        2924,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Shattered (10 player)
+        2925,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Shattered (25 player)
+        2926,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Hot Pocket (10 player)
+        2927,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Hot Pocket (25 player)
+        2928,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Stokin' the Furnace (25 player)
+        2929,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Stokin' the Furnace (10 player)
+        2930,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Nerf Engineering (10 player)
+        2931,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Nerf Engineering (25 player)
+        2932,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Nerf Scrapbots (10 player)
+        2933,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Nerf Gravity Bombs (10 player)
+        2934,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Nerf Scrapbots (25 player)
+        2935,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Nerf Gravity Bombs (25 player)
+        2936,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Must Deconstruct Faster (10 player)
+        2937,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Must Deconstruct Faster (25 player)
+        2938,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "I Choose You, Runemaster Molgeim (10 player)"
+        2939,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "I Choose You, Stormcaller Brundir (10 player)"
+        2940,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "I Choose You, Steelbreaker (10 player)"
+        2941,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "I Choose You, Runemaster Molgeim (25 player)"
+        2942,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "I Choose You, Stormcaller Brundir (25 player)"
+        2943,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "I Choose You, Steelbreaker (25 player)"
+        2944,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- But I'm On Your Side (10 player)
+        2945,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- But I'm On Your Side (25 player)
+        2946,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Can't Do That While Stunned (10 player)
+        2947,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Can't Do That While Stunned (25 player)
+        2948,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- With Open Arms (10 player)
+        2951,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- With Open Arms (25 player)
+        2952,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Disarmed (10 player)
+        2953,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Disarmed (25 player)
+        2954,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- If Looks Could Kill (10 player)
+        2955,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- If Looks Could Kill (25 player)
+        2956,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Glory of the Ulduar Raider (10 player)
+        2957,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Glory of the Ulduar Raider (25 player)
+        2958,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Rubble and Roll (10 player)
+        2959,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Rubble and Roll (25 player)
+        2960,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Cheese the Freeze (10 player)
+        2961,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Cheese the Freeze (25 player)
+        2962,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- I Have the Coolest Friends (10 player)
+        2963,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- I Have the Coolest Friends (25 player)
+        2965,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Getting Cold in Here (10 player)
+        2967,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Getting Cold in Here (25 player)
+        2968,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Staying Buffed All Winter (10 player)
+        2969,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Staying Buffed All Winter (25 player)
+        2970,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Don't Stand in the Lightning (10 player)
+        2971,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Don't Stand in the Lightning (25 player)
+        2972,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- I'll Take You All On (10 player)
+        2973,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- I'll Take You All On (25 player)
+        2974,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Who Needs Bloodlust? (10 player)
+        2975,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Who Needs Bloodlust? (25 player)
+        2976,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Siffed (10 player)
+        2977,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Siffed (25 player)
+        2978,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Lumberjacked (10 player)
+        2979,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Con-speed-atory (10 player)
+        2980,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Con-speed-atory (25 player)
+        2981,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Getting Back to Nature (10 player)
+        2982,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Getting Back to Nature (25 player)
+        2983,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Deforestation (25 player)
+        2984,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Deforestation (10 player)
+        2985,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Set Up Us the Bomb (10 player)
+        2989,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Not-So-Friendly Fire (25 player)
+        2995,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Shadowdodger (10 player)
+        2996,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Shadowdodger (25 player)
+        2997,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Supermassive (25 player)
+        3002,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Supermassive (10 player)
+        3003,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- He Feeds On Your Tears (10 player)
+        3004,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    { -- He Feeds On Your Tears (25 player)
+        3005,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    { -- Crazy Cat Lady (10 player)
+        3006,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Crazy Cat Lady (25 player)
+        3007,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Drive Me Crazy (10 player)
+        3008,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Kiss and Make Up (10 player)
+        3009,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Drive Me Crazy (25 player)
+        3010,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Kiss and Make Up (25 player)
+        3011,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- He's Not Getting Any Older (10 player)
+        3012,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- He's Not Getting Any Older (25 player)
+        3013,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- They're Coming Out of the Walls (10 player)
+        3014,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- In His House He Waits Dreaming (10 player)
+        3015,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- In His House He Waits Dreaming (25 player)
+        3016,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- They're Coming Out of the Walls (25 player)
+        3017,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Observed (10 player)
+        3036,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Observed (25 player)
+        3037,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Orbit-uary (10 player)
+        3056,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Orbit-uary (25 player)
+        3057,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Heartbreaker (10 player)
+        3058,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Heartbreaker (25 player)
+        3059,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Nine Lives (10 player)
+        3076,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Nine Lives (25 player)
+        3077,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
     { -- Deadly Gladiator's Frost Wyrm
         3096,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"PvP Season", 5},
+        },
+    },
+    { -- Dwarfageddon (10 player)
+        3097,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Dwarfageddon (25 player)
+        3098,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
     },
     {3097}, -- Dwarfageddon (10 player)
     {3098}, -- Dwarfageddon (25 player)
     { -- Realm First! Death's Demise
         3117,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
-    {3118}, -- Lumberjacked (25 player)
+    { -- Lumberjacked (25 player)
+        3118,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
     {3136}, -- Emalon the Storm Watcher (10 player)
     {3137}, -- Emalon the Storm Watcher (25 player)
-    {3138}, -- Not-So-Friendly Fire (10 player)
-    {3141}, -- Two Lights in the Darkness (10 player)
+    { -- Not-So-Friendly Fire (10 player)
+        3138,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Two Lights in the Darkness (10 player)
+        3141,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
     {3142}, -- "Val'anyr, Hammer of Ancient Kings"
-    {3157}, -- Three Lights in the Darkness (10 player)
-    {3158}, -- One Light in the Darkness (10 player)
-    {3159}, -- Alone in the Darkness (10 player)
-    {3161}, -- Three Lights in the Darkness (25 player)
-    {3162}, -- Two Lights in the Darkness (25 player)
-    {3163}, -- One Light in the Darkness (25 player)
-    {3164}, -- Alone in the Darkness (25 player)
-    {3176}, -- Lose Your Illusion (10 player)
-    {3177}, -- Knock on Wood (10 player)
-    {3178}, -- "Knock, Knock on Wood (10 player)"
-    {3179}, -- "Knock, Knock, Knock on Wood (10 player)"
-    {3180}, -- Firefighter (10 player)
-    {3181}, -- I Love the Smell of Saronite in the Morning (10 player)
-    {3182}, -- I Could Say That This Cache Was Rare (10 player)
-    {3183}, -- Lose Your Illusion (25 player)
-    {3184}, -- I Could Say That This Cache Was Rare (25 player)
-    {3185}, -- Knock on Wood (25 player)
-    {3186}, -- "Knock, Knock on Wood (25 player)"
-    {3187}, -- "Knock, Knock, Knock on Wood (25 player)"
-    {3188}, -- I Love the Smell of Saronite in the Morning (25 player)
-    {3189}, -- Firefighter (25 player)
+    { -- Three Lights in the Darkness (10 player)
+        3157,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- One Light in the Darkness (10 player)
+        3158,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Alone in the Darkness (10 player)
+        3159,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Three Lights in the Darkness (25 player)
+        3161,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Two Lights in the Darkness (25 player)
+        3162,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- One Light in the Darkness (25 player)
+        3163,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Alone in the Darkness (25 player)
+        3164,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Lose Your Illusion (10 player)
+        3176,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Knock on Wood (10 player)
+        3177,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "Knock, Knock on Wood (10 player)"
+        3178,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "Knock, Knock, Knock on Wood (10 player)"
+        3179,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Firefighter (10 player)
+        3180,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- I Love the Smell of Saronite in the Morning (10 player)
+        3181,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- I Could Say That This Cache Was Rare (10 player)
+        3182,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Lose Your Illusion (25 player)
+        3183,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- I Could Say That This Cache Was Rare (25 player)
+        3184,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Knock on Wood (25 player)
+        3185,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "Knock, Knock on Wood (25 player)"
+        3186,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- "Knock, Knock, Knock on Wood (25 player)"
+        3187,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- I Love the Smell of Saronite in the Morning (25 player)
+        3188,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
+    { -- Firefighter (25 player)
+        3189,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
     {3217}, -- Chasing Marcia
     {3218}, -- Turtles All the Way Down
-    {3237}, -- Set Up Us the Bomb (25 player)
+    { -- Set Up Us the Bomb (25 player)
+        3237,
+        {
+            {"Before", "Version", {7, 3, 5}},
+        },
+    },
     { -- Realm First! Celestial Defender
         3259,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     {3296}, -- Cooking with Style
     {3316}, -- Herald of the Titans
     { -- Deadly Gladiator
         3336,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"PvP Season", 5},
+        },
     },
     { -- Winterspring Frostsaber
         3356,
@@ -2894,9 +4602,10 @@ KrowiAF.AchievementData["03_01_00"] = {
     },
     { -- Furious Gladiator
         3436,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"PvP Season", 6},
+        },
     },
     { -- A Silver Confidant
         3676,
@@ -2911,100 +4620,177 @@ KrowiAF.AchievementData["03_01_00"] = {
     {3736}, -- Pony Up!
     { -- Furious Gladiator's Frost Wyrm
         3756,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"PvP Season", 6},
+        },
     },
     {KrowiAF.SetAchievementPatch, 3, 1, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["03_02_00"] = {
-    {3456}, -- Dead Man's Party
-    {3457}, -- The Captain's Booty
+    { -- Dead Man's Party
+        3456,
+        {
+            {"Event", 409},
+        },
+    },
+    { -- The Captain's Booty
+        3457,
+        {
+            {"Event", 398},
+        },
+    },
     { -- Pilgrim
         3478,
         faction.Alliance,
+        3656,
+        {
+            {"Event", 404},
+        },
     },
     {3536}, -- The Marine Marine
     { -- Pilgrim's Paunch
         3556,
         faction.Alliance,
         3557,
+        {
+            {"Event", 404},
+        },
     },
     { -- Pilgrim's Paunch
         3557,
         faction.Horde,
         3556,
+        {
+            {"Event", 404},
+        },
     },
-    {3558}, -- Sharing is Caring
-    {3559}, -- Turkey Lurkey
+    { -- Sharing is Caring
+        3558,
+        {
+            {"Event", 404},
+        },
+    },
+    { -- Turkey Lurkey
+        3559,
+        {
+            {"Event", 404},
+        },
+    },
     { -- Now We're Cookin'
         3576,
         faction.Alliance,
         3577,
+        {
+            {"Event", 404},
+        },
     },
     { -- Now We're Cookin'
         3577,
         faction.Horde,
         3576,
+        {
+            {"Event", 404},
+        },
     },
-    {3578}, -- The Turkinator
-    {3579}, -- """FOOD FIGHT!"""
+    { -- The Turkinator
+        3578,
+        {
+            {"Event", 404},
+        },
+    },
+    { -- """FOOD FIGHT!"""
+        3579,
+        {
+            {"Event", 404},
+        },
+    },
     { -- Pilgrim's Peril
         3580,
         faction.Alliance,
         3581,
+        {
+            {"Event", 404},
+        },
     },
     { -- Pilgrim's Peril
         3581,
         faction.Horde,
         3580,
+        {
+            {"Event", 404},
+        },
     },
-    {3582}, -- Terokkar Turkey Time
+    { -- Terokkar Turkey Time
+        3582,
+        {
+            {"Event", 404},
+        },
+    },
     { -- Pilgrim's Progress
         3596,
         faction.Alliance,
         3597,
+        {
+            {"Event", 404},
+        },
     },
     { -- Pilgrim's Progress
         3597,
         faction.Horde,
         3596,
+        {
+            {"Event", 404},
+        },
     },
     { -- Murkimus the Gladiator
         3618,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            -- {"From", "Date", {2009, 8, 21}, "Until", "Date", {2009, 8, 22}},
+            {"From", "Date", {2013, 8, 21}, "Until", "Date", {2013, 8, 25}},
+        },
     },
-    {3636}, -- Jade Tiger
+    { -- Jade Tiger
+        3636,
+        {
+            {"From", "Date", {2009, 10, 19}, "Until", "Date", {2009, 11, 24}},
+        },
+    },
     { -- Pilgrim
         3656,
         faction.Horde,
+        3478,
+        {
+            {"Event", 404},
+        },
     },
     { -- Relentless Gladiator's Frost Wyrm
         3757,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"PvP Season", 7},
+        },
     },
     { -- Relentless Gladiator
         3758,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"PvP Season", 7},
+        },
     },
     { -- Isle of Conquest Victory
         3776,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Isle of Conquest Veteran
         3777,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Trial of the Champion
         3778,
@@ -3018,24 +4804,59 @@ KrowiAF.AchievementData["03_02_00"] = {
     {3802}, -- Argent Confessor
     {3803}, -- The Faceroller
     {3804}, -- I've Had Worse
-    {3808}, -- A Tribute to Skill (10 player)
-    {3809}, -- A Tribute to Mad Skill (10 player)
-    {3810}, -- A Tribute to Insanity (10 player)
+    { -- A Tribute to Skill (10 player)
+        3808,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    { -- A Tribute to Mad Skill (10 player)
+        3809,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    { -- A Tribute to Insanity (10 player)
+        3810,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
     {3812}, -- Call of the Grand Crusade (25 player)
     {3813}, -- Upper Back Pain (25 player)
     {3815}, -- Salt and Pepper (25 player)
     {3816}, -- The Traitor King (25 player)
-    {3817}, -- A Tribute to Skill (25 player)
-    {3818}, -- A Tribute to Mad Skill (25 player)
-    {3819}, -- A Tribute to Insanity (25 player)
+    { -- A Tribute to Skill (25 player)
+        3817,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    { -- A Tribute to Mad Skill (25 player)
+        3818,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
+    { -- A Tribute to Insanity (25 player)
+        3819,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
     {3836}, -- Koralon the Flame Watcher (10 player)
     {3837}, -- Koralon the Flame Watcher (25 player)
-    {3844}, -- 1000 Dungeon & Raid Emblems
+    { -- 1000 Dungeon & Raid Emblems
+        3844,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
     { -- Isle of Conquest All-Star
         3845,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Resource Glut
         3846,
@@ -3045,27 +4866,27 @@ KrowiAF.AchievementData["03_02_00"] = {
     },
     { -- Four Car Garage
         3847,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- A-bomb-inable
         3848,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- A-bomb-ination
         3849,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Mowed Down
         3850,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Mine
         3851,
@@ -3075,27 +4896,27 @@ KrowiAF.AchievementData["03_02_00"] = {
     },
     { -- Cut the Blue Wire... No the Red Wire!
         3852,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- All Over the Isle
         3853,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Back Door Job
         3854,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Glaive Grave
         3855,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+        },
     },
     { -- Demolition Derby
         3856,
@@ -3109,7 +4930,12 @@ KrowiAF.AchievementData["03_02_00"] = {
         3957,
         true,
     },
-    {3896}, -- Onyx Panther
+    { -- Onyx Panther
+        3896,
+        {
+            {"From", "Date", {2009, 10, 1}, "Until", "Date", {2010, 2, 28}},
+        },
+    },
     {3916}, -- Call of the Crusade (25 player)
     {3917}, -- Call of the Crusade (10 player)
     {3918}, -- Call of the Grand Crusade (10 player)
@@ -3127,21 +4953,32 @@ KrowiAF.AchievementData["03_02_00"] = {
     {4017}, -- "Earth, Wind & Fire (25 player)"
     { -- Realm First! Grand Crusader
         4078,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     { -- A Tribute to Immortality
         4079,
         faction.Horde,
         4156,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
     },
-    {4080}, -- A Tribute to Dedicated Insanity
+    { -- A Tribute to Dedicated Insanity
+        4080,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
     { -- A Tribute to Immortality
         4156,
         faction.Alliance,
         4079,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
     },
     { -- Resource Glut
         4176,
@@ -3176,14 +5013,24 @@ KrowiAF.AchievementData["03_02_00"] = {
         faction.Alliance,
         4297,
     },
-    {4316}, -- 2500 Dungeon & Raid Emblems
+    { -- 2500 Dungeon & Raid Emblems
+        4316,
+        {
+            {"Before", "Version", {4, 0, 3}},
+        },
+    },
     {KrowiAF.SetAchievementPatch, 3, 2, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["03_02_02"] = {
     {4396}, -- Onyxia's Lair (10 player)
     {4397}, -- Onyxia's Lair (25 player)
-    {4400}, -- WoW's 5th Anniversary
+    { -- WoW's 5th Anniversary
+        4400,
+        {
+            {"Never"},
+        },
+    },
     {4402}, -- More Dots! (10 player)
     {4403}, -- Many Whelps! Handle It! (10 player)
     {4404}, -- She Deep Breaths More (10 player)
@@ -3194,11 +5041,17 @@ KrowiAF.AchievementData["03_02_02"] = {
         4436,
         faction.Alliance,
         4437,
+        {
+            {"Event", 141},
+        },
     },
     { -- BB King
         4437,
         faction.Horde,
         4436,
+        {
+            {"Event", 141},
+        },
     },
     {4476}, -- Looking For More
     {4477}, -- Looking For Many
@@ -3235,10 +5088,10 @@ KrowiAF.AchievementData["03_03_00"] = {
     {4539}, -- "Once Bitten, Twice Shy (10 player)"
     { -- Realm First! Fall of the Lich King
         4576,
-        nil,
-        nil,
-        nil,
-        true,
+        {
+            IsRealmFirst = true,
+            {"Once"},
+        },
     },
     {4577}, -- Flu Shot Shortage (10 player)
     {4578}, -- "Nausea, Heartburn, Indigestion... (10 player)"
@@ -3253,15 +5106,17 @@ KrowiAF.AchievementData["03_03_00"] = {
     {4598}, -- The Ashen Verdict
     { -- Wrathful Gladiator
         4599,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"PvP Season", 8},
+        },
     },
     { -- Wrathful Gladiator's Frost Wyrm
         4600,
-        nil,
-        nil,
-        true,
+        {
+            IsPvP = true,
+            {"PvP Season", 8},
+        },
     },
     {4601}, -- Been Waiting a Long Time for This (10 player)
     {4602}, -- Glory of the Icecrown Raider (10 player)
@@ -3285,7 +5140,12 @@ KrowiAF.AchievementData["03_03_00"] = {
     {4621}, -- Been Waiting a Long Time for This (25 player)
     {4622}, -- Neck-Deep in Vile (25 player)
     {4623}, -- Shadowmourne
-    {4624}, -- Tough Love
+    { -- Tough Love
+        4624,
+        {
+            {"Event", 423},
+        },
+    },
     {4625}, -- Invincible's Reins
     {4626}, -- And I'll Form the Head!
     {4627}, -- X-45 Heartbreaker
@@ -3303,14 +5163,25 @@ KrowiAF.AchievementData["03_03_00"] = {
 };
 
 KrowiAF.AchievementData["03_03_03"] = {
-    {4782}, -- Green Brewfest Stein
+    { -- Green Brewfest Stein
+        4782,
+        {
+            {"Never"},
+        },
+    },
     { -- Operation: Gnomeregan
         4786,
         faction.Alliance,
+        {
+            {"Before", "Version", {4, 0, 1}},
+        },
     },
     { -- Zalazane's Fall
         4790,
         faction.Horde,
+        {
+            {"Before", "Version", {4, 0, 1}},
+        },
     },
     {KrowiAF.SetAchievementPatch, 3, 3, 3}, -- Rework loading so this can go to the top, future me problem
 };
@@ -3322,4 +5193,138 @@ KrowiAF.AchievementData["03_03_05"] = {
     {4818}, -- Heroic: The Twilight Destroyer (10 player)
     {4824}, -- Collector's Edition: Mini Thor
     {KrowiAF.SetAchievementPatch, 3, 3, 5}, -- Rework loading so this can go to the top, future me problem
+};
+
+KrowiAF.AchievementData["03_04_00"] = {
+    { -- Survivor of the Firelord (Season of Mastery)
+        15330,
+        {
+            {"Never"},
+        },
+    },
+    { -- Survivor of the Shadow Flame (Season of Mastery)
+        15333,
+        {
+            {"Never"},
+        },
+    },
+    { -- Survivor of the Old God (Season of Mastery)
+        15334,
+        {
+            {"Never"},
+        },
+    },
+    { -- Survivor of the Damned (Season of Mastery)
+        15335,
+        {
+            {"Never"},
+        },
+    },
+    { -- The Immortal (Season of Mastery)
+        15637,
+        {
+            {"Never"},
+        },
+    },
+    {16332}, -- The Perfect Pebble
+    { -- Soul of Iron (Season of Mastery)
+        16433,
+        {
+            {"Never"},
+        },
+    },
+    {KrowiAF.SetAchievementPatch, 3, 4, 0}, -- Rework loading so this can go to the top, future me problem
+};
+
+KrowiAF.AchievementData["03_04_01"] = {
+    {17213}, -- Defense Protocol Alpha: Utgarde Keep
+    {17283}, -- Defense Protocol Alpha: The Nexus
+    {17285}, -- Defense Protocol Alpha: Azjol-Nerub
+    {17291}, -- Defense Protocol Alpha: Ahn'kahet: The Old Kingdom
+    {17292}, -- Defense Protocol Alpha: Drak'Tharon Keep
+    {17293}, -- Defense Protocol Alpha: The Violet Hold
+    {17295}, -- Defense Protocol Alpha: Gundrak
+    {17297}, -- Defense Protocol Alpha: Halls of Stone
+    {17299}, -- Defense Protocol Alpha: Halls of Lightning
+    {17300}, -- Defense Protocol Alpha: The Oculus
+    {17301}, -- Defense Protocol Alpha: Utgarde Pinnacle
+    {17302}, -- Defense Protocol Alpha: The Culling of Stratholme
+    {17304}, -- Defense Protocol Alpha: Terminated
+    {KrowiAF.SetAchievementPatch, 3, 4, 1}, -- Rework loading so this can go to the top, future me problem
+};
+
+KrowiAF.AchievementData["03_04_02"] = {
+    { -- Ahead of the Curve: Yogg-Saron
+        17340,
+        {
+            {"Before", "Version", {3, 4, 3}},
+        },
+    },
+    { -- Cutting Edge: Ulduar
+        17341,
+        {
+            {"Before", "Version", {3, 4, 3}},
+        },
+    },
+    {18590}, -- Defense Protocol Beta: Utgarde Keep
+    {18591}, -- Defense Protocol Beta: The Nexus
+    {18592}, -- Defense Protocol Beta: Azjol-Nerub
+    {18593}, -- Defense Protocol Beta: Ahn'kahet: The Old Kingdom
+    {18594}, -- Defense Protocol Beta: Drak'Tharon Keep
+    {18595}, -- Defense Protocol Beta: The Violet Hold
+    {18596}, -- Defense Protocol Beta: Gundrak
+    {18597}, -- Defense Protocol Beta: Halls of Stone
+    {18598}, -- Defense Protocol Beta: Halls of Lightning
+    {18599}, -- Defense Protocol Beta: The Oculus
+    {18600}, -- Defense Protocol Beta: Utgarde Pinnacle
+    {18601}, -- Defense Protocol Beta: The Culling of Stratholme
+    { -- Defense Protocol Beta: Terminated
+        18614,
+        faction.Alliance,
+    },
+    { -- Defense Protocol Beta: Trial of the Champion
+        18677,
+        faction.Alliance,
+    },
+    { -- Defense Protocol Beta: Trial of the Champion
+        18678,
+        faction.Horde,
+    },
+    { -- Defense Protocol Beta: Terminated
+        18688,
+        faction.Horde,
+    },
+    {KrowiAF.SetAchievementPatch, 3, 4, 2}, -- Rework loading so this can go to the top, future me problem
+};
+
+KrowiAF.AchievementData["03_04_03"] = {
+    { -- Defense Protocol Gamma: Trial of the Champion
+        19425,
+        faction.Horde,
+    },
+    { -- Defense Protocol Gamma: Trial of the Champion
+        19426,
+        faction.Alliance,
+    },
+    {19427}, -- Defense Protocol Gamma: Utgarde Keep
+    {19428}, -- Defense Protocol Gamma: The Nexus
+    {19429}, -- Defense Protocol Gamma: Azjol-Nerub
+    {19430}, -- Defense Protocol Gamma: Ahn'kahet: The Old Kingdom
+    {19431}, -- Defense Protocol Gamma: Drak'Tharon Keep
+    {19432}, -- Defense Protocol Gamma: The Violet Hold
+    {19433}, -- Defense Protocol Gamma: Gundrak
+    {19434}, -- Defense Protocol Gamma: Halls of Stone
+    {19435}, -- Defense Protocol Gamma: Halls of Lightning
+    {19436}, -- Defense Protocol Gamma: The Oculus
+    {19437}, -- Defense Protocol Gamma: Utgarde Pinnacle
+    {19438}, -- Defense Protocol Gamma: The Culling of Stratholme
+    { -- Defense Protocol Gamma: Terminated
+        19439,
+        faction.Alliance,
+    },
+    { -- Defense Protocol Gamma: Terminated
+        19440,
+        faction.Horde,
+    },
+    {KrowiAF.SetAchievementPatch, 3, 4, 3}, -- Rework loading so this can go to the top, future me problem
 };

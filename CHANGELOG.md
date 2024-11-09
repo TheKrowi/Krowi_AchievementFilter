@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 79.0 - 2024-11-09
+### Changed
+- Achievements (only the data, addin to catagories to do) are now moved to the new API system
+
 ## 78.0 - 2024-11-01
 ### Added
 - Transmog sets for The War Within raid and season 1

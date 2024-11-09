@@ -406,6 +406,9 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     { -- Dressed for the Occasion
         249,
+        {
+            {"Event", 181},
+        },
     },
     { -- With a Little Helper from My Friends
         252,
@@ -696,7 +699,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         443,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Field Marshal
@@ -705,7 +708,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         445,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Commander
@@ -714,7 +717,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         444,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Lieutenant Commander
@@ -723,7 +726,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         447,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Knight-Champion
@@ -732,7 +735,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         448,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Knight-Captain
@@ -741,7 +744,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         469,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Knight
@@ -750,7 +753,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         451,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Sergeant Major
@@ -759,7 +762,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         452,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Master Sergeant
@@ -768,7 +771,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         450,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Private
@@ -777,7 +780,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         454,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- High Warlord
@@ -786,7 +789,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         433,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Lieutenant General
@@ -795,7 +798,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         435,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Warlord
@@ -804,7 +807,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         434,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- General
@@ -813,7 +816,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         473,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Champion
@@ -822,7 +825,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         436,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Centurion
@@ -831,7 +834,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         437,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Blood Guard
@@ -840,7 +843,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         472,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Senior Sergeant
@@ -849,7 +852,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         441,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Stone Guard
@@ -858,7 +861,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         439,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- First Sergeant
@@ -867,7 +870,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         440,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Sergeant
@@ -876,7 +879,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         471,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Scout
@@ -885,7 +888,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         442,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Realm First! Obsidian Slayer
@@ -978,7 +981,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         470,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Legionnaire
@@ -987,7 +990,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         438,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Corporal
@@ -996,7 +999,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         468,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Sergeant
@@ -1005,7 +1008,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         453,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Knight-Lieutenant
@@ -1014,7 +1017,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         449,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     { -- Marshal
@@ -1023,7 +1026,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         446,
         true,
         {
-            {"Before", "Version", {2, 0, 1}},
+            {"Never"},
         },
     },
     {477}, -- Utgarde Keep
@@ -3291,7 +3294,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- The Fifth Element
         2496,
         {
-            {"Before", "Version", {3, 0, 8}},
+            {"Never"},
         },
     },
     { -- Spring Fling
@@ -3318,7 +3321,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Dual Talent Specialization
         2716,
         {
-            {"Before", "Version", {3, 0, 8}},
+            {"Before", "Version", {7, 0, 3}},
         },
     },
     { -- Brew of the Month
@@ -4582,6 +4585,8 @@ KrowiAF.AchievementData["03_02_00"] = {
         3618,
         {
             IsPvP = true,
+            -- {"From", "Date", {2009, 8, 21}, "Until", "Date", {2009, 8, 22}},
+            {"From", "Date", {2013, 8, 21}, "Until", "Date", {2013, 8, 25}},
         },
     },
     { -- Jade Tiger
