@@ -2,6 +2,7 @@
     <Script file="Api.lua" />
     <Script file="AchievementDataApi.lua" />
     <Script file="BuildVersionDataApi.lua" />
+    <Script file="CategoryDataApi.lua" />
     <Script file="EventDataApi.lua" />
     <Script file="PetBattleLinkDataApi.lua" />
     <Script file="TabDataApi.lua" />
