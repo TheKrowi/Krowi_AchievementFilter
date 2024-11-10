@@ -4,6 +4,9 @@ local diagnostics = addon.Diagnostics;
 addon.Data = {};
 local data = addon.Data;
 
+data.Tabs = {};
+data.TabsOrder = {};
+
 data.TasksGroups = {};
 
 data.TransmogSets = {};

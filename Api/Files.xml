@@ -4,6 +4,7 @@
     <Script file="BuildVersionDataApi.lua" />
     <Script file="EventDataApi.lua" />
     <Script file="PetBattleLinkDataApi.lua" />
+    <Script file="TabDataApi.lua" />
     <Script file="TooltipDataApi.lua" />
     <Script file="TransmogSetDataApi.lua" />
 </Ui>

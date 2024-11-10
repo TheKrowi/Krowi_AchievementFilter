@@ -156,16 +156,6 @@ function gui:ResetAchievementFrameHeight()
     AchievementFrameMetalBorderRight:SetHeight(defaultAchievementFrameMetalBorderHeight);
 end
 
-function gui:PrepareTabsOrder()
-    KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Achievements", addon.L["Blizzard"], addon.L["Achievements"], "TOGGLEACHIEVEMENT", false);
-    if not addon.Util.IsWrathClassic then
-        KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Guild", addon.L["Blizzard"], addon.L["Guild"], nil, true);
-    else
-        addon.Options.Defaults.profile.Tabs.Blizzard_AchievementUI.Guild = nil;
-    end
-    KrowiAF_RegisterTabOptions("Blizzard_AchievementUI", "Statistics", addon.L["Blizzard"], addon.L["Statistics"], "TOGGLESTATISTICS", true);
-end
-
 local function SelectTab(self, _addonName, tabName)
     local button = self.Tabs[_addonName][tabName];
     if button then

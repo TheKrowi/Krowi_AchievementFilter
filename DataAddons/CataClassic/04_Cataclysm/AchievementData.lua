@@ -7,17 +7,27 @@ KrowiAF.AchievementData["04_00_01"] = {
     { -- Friends In Even Higher Places
         4832,
         {
-            {"Before", "Date", {2019, 6, 11}},
+            {"Never"},
         },
     },
     { -- Tripping the Rifts
         4887,
         {
-            {"From", "Date", {2010, 11, 1}, "Until", "Date", {2010, 11, 22}},
+            {"Never"},
         },
     },
-    {5377}, -- Collector's Edition: Lil' Deathwing
-    {5378}, -- Deathy
+    { -- Collector's Edition: Lil' Deathwing
+        5377,
+        {
+            {"Never"},
+        },
+    },
+    { -- Deathy
+        5378,
+        {
+            {"Never"},
+        },
+    },
     { -- WoW's 6th Anniversary
         5512,
         {
@@ -1681,7 +1691,12 @@ KrowiAF.AchievementData["04_03_00"] = {
     {6177}, -- Destroyer's End
     {6180}, -- Chromatic Champion
     {6181}, -- Fangs of the Father
-    {6185}, -- Murkablo
+    { -- Murkablo
+        6185,
+        {
+            {"Never"},
+        },
+    },
 };
 
 KrowiAF.AchievementData["04_03_02"] = {

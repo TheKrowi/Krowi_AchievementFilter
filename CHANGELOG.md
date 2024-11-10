@@ -2,9 +2,15 @@
 All notable changes to this project will be documented in this file.
 
 ## 79.0 - 2024-11-09
+### Added
+- Guild achievements tab keybind
+
 ### Changed
 - Achievements (only the data, addin to catagories to do) are now moved to the new API system
 - Data loading time is reduced by 50%
+
+### Cata Classic
+- Additional (promotional) achievements marked as unobtainable
 
 ## 78.0 - 2024-11-01
 ### Added

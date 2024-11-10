@@ -12,3 +12,13 @@ function tab:New(addonName, name, bindingName)
     instance.BindingName = bindingName;
     return instance;
 end
+
+function tab:New2(addonName, addonDisplayName, tabName, tabDisplayName, bindingName)
+    local instance = setmetatable({}, tab);
+    -- instance.AddonName = addonName;
+    -- instance.AddonDisplayName = addonDisplayName;
+    instance.Name = tabName;
+    instance.Text = tabDisplayName;
+    -- instance.BindingName = bindingName;
+    return instance;
+end

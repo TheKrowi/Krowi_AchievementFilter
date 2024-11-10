@@ -639,10 +639,30 @@ KrowiAF.AchievementData["03_00_02"] = {
             {"Before", "Version", {7, 0, 3}},
         },
     },
-    {411}, -- Murky
-    {412}, -- Murloc Costume
-    {414}, -- Tyrael's Hilt
-    {415}, -- Big Blizzard Bear
+    { -- Murky
+        411,
+        {
+            {"Never"},
+        },
+    },
+    { -- Murloc Costume
+        412,
+        {
+            {"Never"},
+        },
+    },
+    { -- Tyrael's Hilt
+        414,
+        {
+            {"Never"},
+        },
+    },
+    { -- Big Blizzard Bear
+        415,
+        {
+            {"Never"},
+        },
+    },
     { -- Scarab Lord
         416,
         {
@@ -1338,10 +1358,30 @@ KrowiAF.AchievementData["03_00_02"] = {
     {659}, -- The Botanica
     {660}, -- The Arcatraz
     {661}, -- Magister's Terrace
-    {662}, -- Collector's Edition: Mini-Diablo
-    {663}, -- Collector's Edition: Panda
-    {664}, -- Collector's Edition: Zergling
-    {665}, -- Collector's Edition: Netherwhelp
+    { -- Collector's Edition: Mini-Diablo
+        662,
+        {
+            {"Never"},
+        },
+    },
+    { -- Collector's Edition: Panda
+        663,
+        {
+            {"Never"},
+        },
+    },
+    { -- Collector's Edition: Zergling
+        664,
+        {
+            {"Never"},
+        },
+    },
+    { -- Collector's Edition: Netherwhelp
+        665,
+        {
+            {"Never"},
+        },
+    },
     {666}, -- Auchenai Crypts
     {667}, -- Heroic: Hellfire Ramparts
     {668}, -- Heroic: The Blood Furnace
@@ -1359,7 +1399,12 @@ KrowiAF.AchievementData["03_00_02"] = {
     {680}, -- Heroic: The Botanica
     {681}, -- Heroic: The Arcatraz
     {682}, -- Heroic: Magister's Terrace
-    {683}, -- Collector's Edition: Frost Wyrm Whelp
+    { -- Collector's Edition: Frost Wyrm Whelp
+        683,
+        {
+            {"Never"},
+        },
+    },
     { -- Onyxia's Lair (Level 60)
         684,
         {
@@ -3426,7 +3471,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Vampire Hunter
         2456,
         {
-            {"From", "Date", {2008, 10, 22}, "Until", "Date", {2008, 11, 4}},
+            {"Never"},
         },
     },
     { -- Destruction Derby
@@ -4650,7 +4695,12 @@ KrowiAF.AchievementData["03_02_00"] = {
             {"Event", 404},
         },
     },
-    {3536}, -- The Marine Marine
+    { -- The Marine Marine
+        3536,
+        {
+            {"Never"},
+        },
+    },
     { -- Pilgrim's Paunch
         3556,
         faction.Alliance,
@@ -4749,14 +4799,13 @@ KrowiAF.AchievementData["03_02_00"] = {
         3618,
         {
             IsPvP = true,
-            -- {"From", "Date", {2009, 8, 21}, "Until", "Date", {2009, 8, 22}},
-            {"From", "Date", {2013, 8, 21}, "Until", "Date", {2013, 8, 25}},
+            {"Never"},
         },
     },
     { -- Jade Tiger
         3636,
         {
-            {"From", "Date", {2009, 10, 19}, "Until", "Date", {2009, 11, 24}},
+            {"Never"},
         },
     },
     { -- Pilgrim
@@ -4934,7 +4983,7 @@ KrowiAF.AchievementData["03_02_00"] = {
     { -- Onyx Panther
         3896,
         {
-            {"From", "Date", {2009, 10, 1}, "Until", "Date", {2010, 2, 28}},
+            {"Never"},
         },
     },
     {3916}, -- Call of the Crusade (25 player)
@@ -5192,7 +5241,12 @@ KrowiAF.AchievementData["03_03_05"] = {
     {4816}, -- Heroic: The Twilight Destroyer (25 player)
     {4817}, -- The Twilight Destroyer (10 player)
     {4818}, -- Heroic: The Twilight Destroyer (10 player)
-    {4824}, -- Collector's Edition: Mini Thor
+    { -- Collector's Edition: Mini Thor
+        4824,
+        {
+            {"Never"},
+        },
+    },
 };
 
 KrowiAF.AchievementData["03_04_00"] = {

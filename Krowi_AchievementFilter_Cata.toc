@@ -26,8 +26,6 @@ Credits.lua
 
 Localization\Files.xml
 
-ExportedTabs.lua
-
 Krowi_AchievementFilter.lua
 Globals.lua
 

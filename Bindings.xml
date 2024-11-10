@@ -1,4 +1,7 @@
 <Bindings>
+    <Binding name="KrowiAF_OPEN_TAB_Guild" category="BINDING_HEADER_KrowiAF">
+        KrowiAF_ToggleAchievementFrame("Blizzard_AchievementUI", "Guild");
+    </Binding>
     <Binding name="KrowiAF_OPEN_TAB_Achievements" category="BINDING_HEADER_KrowiAF">
         KrowiAF_ToggleAchievementFrame("Krowi_AchievementFilter", "Achievements");
     </Binding>
