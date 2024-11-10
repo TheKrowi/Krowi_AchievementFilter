@@ -3,6 +3,7 @@ local shared = addon.Data.AchievementData.Shared;
 local faction = addon.Objects.Faction;
 
 KrowiAF.AchievementData["03_00_02"] = {
+    {KrowiAF.SetAchievementPatch, 3, 0, 2},
     {6}, -- Level 10
     {7}, -- Level 20
     {8}, -- Level 30
@@ -3480,10 +3481,10 @@ KrowiAF.AchievementData["03_00_02"] = {
         },
     },
     {3496}, -- A Brew-FAST Mount
-    {KrowiAF.SetAchievementPatch, 3, 0, 2}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["03_01_00"] = {
+    {KrowiAF.SetAchievementPatch, 3, 1, 0},
     { -- Hard Boiled
         2416,
         {
@@ -4625,10 +4626,10 @@ KrowiAF.AchievementData["03_01_00"] = {
             {"PvP Season", 6},
         },
     },
-    {KrowiAF.SetAchievementPatch, 3, 1, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["03_02_00"] = {
+    {KrowiAF.SetAchievementPatch, 3, 2, 0},
     { -- Dead Man's Party
         3456,
         {
@@ -5019,10 +5020,10 @@ KrowiAF.AchievementData["03_02_00"] = {
             {"Before", "Version", {4, 0, 3}},
         },
     },
-    {KrowiAF.SetAchievementPatch, 3, 2, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["03_02_02"] = {
+    {KrowiAF.SetAchievementPatch, 3, 2, 2},
     {4396}, -- Onyxia's Lair (10 player)
     {4397}, -- Onyxia's Lair (25 player)
     { -- WoW's 5th Anniversary
@@ -5059,10 +5060,10 @@ KrowiAF.AchievementData["03_02_02"] = {
     {4496}, -- It's Over Nine Thousand!
     {4585}, -- Toravon the Ice Watcher (10 player)
     {4586}, -- Toravon the Ice Watcher (25 player)
-    {KrowiAF.SetAchievementPatch, 3, 2, 2}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["03_03_00"] = {
+    {KrowiAF.SetAchievementPatch, 3, 3, 0},
     {4516}, -- The Forge of Souls
     {4517}, -- The Pit of Saron
     {4518}, -- The Halls of Reflection
@@ -5159,10 +5160,10 @@ KrowiAF.AchievementData["03_03_00"] = {
     {4635}, -- Heroic: The Frostwing Halls (25 player)
     {4636}, -- Heroic: Fall of the Lich King (10 player)
     {4637}, -- Heroic: Fall of the Lich King (25 player)
-    {KrowiAF.SetAchievementPatch, 3, 3, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["03_03_03"] = {
+    {KrowiAF.SetAchievementPatch, 3, 3, 3},
     { -- Green Brewfest Stein
         4782,
         {
@@ -5183,19 +5184,19 @@ KrowiAF.AchievementData["03_03_03"] = {
             {"Before", "Version", {4, 0, 1}},
         },
     },
-    {KrowiAF.SetAchievementPatch, 3, 3, 3}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["03_03_05"] = {
+    {KrowiAF.SetAchievementPatch, 3, 3, 5},
     {4815}, -- The Twilight Destroyer (25 player)
     {4816}, -- Heroic: The Twilight Destroyer (25 player)
     {4817}, -- The Twilight Destroyer (10 player)
     {4818}, -- Heroic: The Twilight Destroyer (10 player)
     {4824}, -- Collector's Edition: Mini Thor
-    {KrowiAF.SetAchievementPatch, 3, 3, 5}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["03_04_00"] = {
+    {KrowiAF.SetAchievementPatch, 3, 4, 0},
     { -- Survivor of the Firelord (Season of Mastery)
         15330,
         {
@@ -5233,10 +5234,10 @@ KrowiAF.AchievementData["03_04_00"] = {
             {"Never"},
         },
     },
-    {KrowiAF.SetAchievementPatch, 3, 4, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["03_04_01"] = {
+    {KrowiAF.SetAchievementPatch, 3, 4, 1},
     {17213}, -- Defense Protocol Alpha: Utgarde Keep
     {17283}, -- Defense Protocol Alpha: The Nexus
     {17285}, -- Defense Protocol Alpha: Azjol-Nerub
@@ -5250,10 +5251,10 @@ KrowiAF.AchievementData["03_04_01"] = {
     {17301}, -- Defense Protocol Alpha: Utgarde Pinnacle
     {17302}, -- Defense Protocol Alpha: The Culling of Stratholme
     {17304}, -- Defense Protocol Alpha: Terminated
-    {KrowiAF.SetAchievementPatch, 3, 4, 1}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["03_04_02"] = {
+    {KrowiAF.SetAchievementPatch, 3, 4, 2},
     { -- Ahead of the Curve: Yogg-Saron
         17340,
         {
@@ -5294,10 +5295,10 @@ KrowiAF.AchievementData["03_04_02"] = {
         18688,
         faction.Horde,
     },
-    {KrowiAF.SetAchievementPatch, 3, 4, 2}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["03_04_03"] = {
+    {KrowiAF.SetAchievementPatch, 3, 4, 3},
     { -- Defense Protocol Gamma: Trial of the Champion
         19425,
         faction.Horde,
@@ -5326,5 +5327,4 @@ KrowiAF.AchievementData["03_04_03"] = {
         19440,
         faction.Horde,
     },
-    {KrowiAF.SetAchievementPatch, 3, 4, 3}, -- Rework loading so this can go to the top, future me problem
 };

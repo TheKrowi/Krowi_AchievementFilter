@@ -3,6 +3,7 @@ local shared = addon.Data.AchievementData.Shared;
 local faction = addon.Objects.Faction;
 
 KrowiAF.AchievementData["04_00_01"] = {
+    {KrowiAF.SetAchievementPatch, 4, 0, 1},
     { -- Friends In Even Higher Places
         4832,
         {
@@ -47,10 +48,10 @@ KrowiAF.AchievementData["04_00_01"] = {
             {"Before", "Version", {6, 0, 2}},
         },
     },
-    {KrowiAF.SetAchievementPatch, 4, 0, 1}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["04_00_03"] = {
+    {KrowiAF.SetAchievementPatch, 4, 0, 3},
     {4825}, -- Explore Vashj'ir
     { -- Level 85
         4826,
@@ -1241,10 +1242,10 @@ KrowiAF.AchievementData["04_00_03"] = {
         5231,
         true,
     },
-    {KrowiAF.SetAchievementPatch, 4, 0, 3}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["04_00_06"] = {
+    {KrowiAF.SetAchievementPatch, 4, 0, 6},
     { -- Just Another Day in Tol Barad
         5718,
         faction.Alliance,
@@ -1256,10 +1257,10 @@ KrowiAF.AchievementData["04_00_06"] = {
         5718,
     },
     {5723}, -- 50 Exalted Reputations
-    {KrowiAF.SetAchievementPatch, 4, 0, 6}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["04_01_00"] = {
+    {KrowiAF.SetAchievementPatch, 4, 1, 0},
     {5743}, -- It's Not Easy Being Green
     {5744}, -- Gurubashi Headhunter
     {5749}, -- Vial of the Sands
@@ -1284,10 +1285,10 @@ KrowiAF.AchievementData["04_01_00"] = {
             {"Never"},
         },
     },
-    {KrowiAF.SetAchievementPatch, 4, 1, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["04_02_00"] = {
+    {KrowiAF.SetAchievementPatch, 4, 2, 0},
     {5794}, -- Time Flies When You're Having Fun
     {5799}, -- Only the Penitent...
     {5802}, -- Firelands
@@ -1437,15 +1438,15 @@ KrowiAF.AchievementData["04_02_00"] = {
     {5876}, -- Petting Zoo
     {5877}, -- Menagerie
     {5879}, -- Veteran of the Molten Front
-    {KrowiAF.SetAchievementPatch, 4, 2, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["04_02_02"] = {
+    {KrowiAF.SetAchievementPatch, 4, 2, 2},
     {6045}, -- Occu'thar
-    {KrowiAF.SetAchievementPatch, 4, 2, 2}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["04_03_00"] = {
+    {KrowiAF.SetAchievementPatch, 4, 3, 0},
     { -- A-Caroling We Will Go
         5853,
         faction.Alliance,
@@ -1681,10 +1682,10 @@ KrowiAF.AchievementData["04_03_00"] = {
     {6180}, -- Chromatic Champion
     {6181}, -- Fangs of the Father
     {6185}, -- Murkablo
-    {KrowiAF.SetAchievementPatch, 4, 3, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["04_03_02"] = {
+    {KrowiAF.SetAchievementPatch, 4, 3, 2},
     { -- Hero of the Alliance: Ruthless
         6316,
         faction.Alliance,
@@ -1710,10 +1711,10 @@ KrowiAF.AchievementData["04_03_02"] = {
             {"PvP Season", 10},
         },
     },
-    {KrowiAF.SetAchievementPatch, 4, 3, 2}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["04_04_00"] = {
+    {KrowiAF.SetAchievementPatch, 4, 4, 0},
     { -- Ruthless Gladiator's Twilight Drake
         6321,
         {
@@ -1721,10 +1722,10 @@ KrowiAF.AchievementData["04_04_00"] = {
             {"PvP Season", 10},
         },
     },
-    {KrowiAF.SetAchievementPatch, 4, 4, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["04_04_01"] = {
+    {KrowiAF.SetAchievementPatch, 4, 4, 1},
     {41139}, -- Protocol Inferno: Blackrock Caverns
     {41140}, -- Protocol Inferno: Throne of the Tides
     {41141}, -- Protocol Inferno: The Stonecore
@@ -1735,5 +1736,4 @@ KrowiAF.AchievementData["04_04_01"] = {
     {41146}, -- Protocol Inferno: Deadmines
     {41147}, -- Protocol Inferno: Shadowfang Keep
     {41148}, -- Protocol Inferno: Terminated
-    {KrowiAF.SetAchievementPatch, 4, 4, 1}, -- Rework loading so this can go to the top, future me problem
 };

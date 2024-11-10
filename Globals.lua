@@ -246,6 +246,7 @@ local function CheckDecFlags(flags, flag)
 end
 
 local function AddToUncategorizedCategories(achievement)
+    addon.Data.Achievements[achievement.Id].Uncategorized = true;
     for i = 1, #addon.Data.UncategorizedCategories do
         if addon.Options.db.profile.AdjustableCategories.Uncategorized[i] then
             addon.Data.UncategorizedCategories[i]:AddAchievement(achievement);
@@ -344,8 +345,10 @@ end
 local buildCacheHelper = CreateFrame("Frame");
 local co, coMaxDuration, coStart, coStarted, coFinished;
 local coOnFinish, coOnDelay = {}, {};
+local maxGapSize = 20000; -- Biggest gap is 19320 in 11.0.5 as of 2024-11-10
+-- local biggestGapSize = 0;
 local function HandleAchievements(gapSize, i, highestId, characterGuid)
-    while gapSize < 500 or i < highestId do -- Biggest gap is 209 in 9.0.5 as of 2021-05-03
+    while gapSize < maxGapSize or i < highestId do
         local achievementInfo = addon.GetAchievementInfoTable(i);
         HandleAchievement(characterGuid, achievementInfo);
         if achievementInfo.Id and achievementInfo.Exists then
@@ -353,16 +356,20 @@ local function HandleAchievements(gapSize, i, highestId, characterGuid)
         else
             gapSize = gapSize + 1;
         end
+        -- if gapSize > biggestGapSize then
+        --     biggestGapSize = gapSize;
+        -- end
         i = i + 1;
         if (debugprofilestop() - coStart > coMaxDuration) then
             if #coOnDelay >= 1 then
                 for _, onDelay in next, coOnDelay do
-                    onDelay(highestId + 500 - i - gapSize);
+                    onDelay(highestId + maxGapSize - i);
                 end
             end
             coroutine.yield();
         end
     end
+    -- print("Biggest gap size:", biggestGapSize);
     buildCacheHelper:SetScript("OnUpdate", nil);
     coFinished = true;
     coStarted = nil;
@@ -396,7 +403,8 @@ function addon.BuildCacheAsync(onFinish, onDelay)
     local gapSize, i = 0, 1;
     local character = addon.Data.SavedData.CharacterData.Upsert(characterGuid);
     character.Points = 0;
-    local highestId = addon.Data.HighestAchievementId;
+    addon.Data.SortAchievementIds(); -- Sort beforehand to make sure the highest id is at the end
+    local highestId = addon.Data.AchievementIds[#addon.Data.AchievementIds];
     co = coroutine.create(HandleAchievements);
     coMaxDuration = 500 / (tonumber(C_CVar.GetCVar("targetFPS")) or GetFrameRate());
     coStart = debugprofilestop();
@@ -795,62 +803,6 @@ function addon.IsCustomModifierKeyDown(modifier)
     end
 end
 
---  Budgets 50% of target or current FPS to perform a workload. 
---  finished = start(workload, onFinish, onDelay)
---  Arguments:
---      workload        table       Stack (last in, first out) of functions to call.
---      onFinish        function?   Optional callback when the table is empty.
---      onDelay         function?   Optional callback each time work delays to the next frame.
---  Returns:
---      finished        boolean     True when finished without any delay; false otherwise.
-function addon.StartWork(name, workload, onFinish, onDelay)
-    name = name and " " .. name or "";
-    if type(onFinish) == "string" then
-        local onFinishPrint = onFinish;
-        onFinish = function()
-            addon.Diagnostics.Debug(onFinishPrint);
-        end;
-    end
-    if type(onFinish) ~= "function" then
-        onFinish = nil;
-    end
-    local overallStart = debugprofilestop();
-    if type(onDelay) == "boolean" then
-        onDelay = function()
-            addon.Diagnostics.Debug(#workload .. name .. " remaining after " .. ("%.2d"):format(debugprofilestop() - overallStart) / 1000);
-        end;
-    end
-    if type(onDelay) ~= "function" then
-        onDelay = nil;
-    end
-
-    local maxDuration = 500 / (tonumber(C_CVar.GetCVar("targetFPS")) or GetFrameRate());
-    local function continue()
-        local startTime = debugprofilestop();
-        local task = tremove(workload);
-        while task do
-            if type(task) == "function" then
-                task();
-            elseif type(task) == "table" then
-                task[1](unpack(task, 2, #task));
-            end
-            if (debugprofilestop() - startTime > maxDuration) then
-                C_Timer.After(0, continue);
-                if onDelay then
-                    onDelay();
-                end
-                return false;
-            end
-            task = tremove(workload);
-        end
-        if onFinish then
-            onFinish();
-        end
-        return true;
-    end
-    return continue();
-end
-
 local function RunTask(task)
     if type(task) == "function" then
         task();
@@ -859,12 +811,65 @@ local function RunTask(task)
     end
 end
 
+--  Budgets 50% of target or current FPS to perform a workload. 
+--  finished = start(workload, onFinish, onDelay)
+--  Arguments:
+--      workload        table       Stack (last in, first out) of functions to call.
+--      onFinish        function?   Optional callback when the table is empty.
+--      onDelay         function?   Optional callback each time work delays to the next frame.
+--  Returns:
+--      finished        boolean     True when finished without any delay; false otherwise.
+-- function addon.StartWork(name, workload, onFinish, onDelay)
+--     name = name and " " .. name or "";
+--     if type(onFinish) == "string" then
+--         local onFinishPrint = onFinish;
+--         onFinish = function()
+--             addon.Diagnostics.Debug(onFinishPrint);
+--         end;
+--     end
+--     if type(onFinish) ~= "function" then
+--         onFinish = nil;
+--     end
+--     local overallStart = debugprofilestop();
+--     if type(onDelay) == "boolean" then
+--         onDelay = function()
+--             addon.Diagnostics.Debug(#workload .. name .. " remaining after " .. ("%.2d"):format(debugprofilestop() - overallStart) / 1000);
+--         end;
+--     end
+--     if type(onDelay) ~= "function" then
+--         onDelay = nil;
+--     end
+
+--     local maxDuration = 500 / (tonumber(C_CVar.GetCVar("targetFPS")) or GetFrameRate());
+--     local function continue()
+--         local startTime = debugprofilestop();
+--         local task = tremove(workload, 1);
+--         while task do
+--             RunTask(task);
+--             if (debugprofilestop() - startTime > maxDuration) then
+--                 C_Timer.After(0, continue);
+--                 if onDelay then
+--                     onDelay();
+--                 end
+--                 return false;
+--             end
+--             task = tremove(workload, 1);
+--         end
+--         if onFinish then
+--             onFinish();
+--         end
+--         return true;
+--     end
+--     return continue();
+-- end
+
+local taskIndex = 1;
 local function GetNumOfTasksLeft(workloadTables, tasks)
     local numOfTasksLeft = tasks and #tasks or 0;
     for _, wl in next, workloadTables do
         numOfTasksLeft = numOfTasksLeft + #wl;
     end
-    return numOfTasksLeft;
+    return numOfTasksLeft - taskIndex + 1;
 end
 
 local function Delay(continue, startTime, maxDuration, onDelay, workloadTables, tasks)
@@ -879,13 +884,15 @@ local function Delay(continue, startTime, maxDuration, onDelay, workloadTables, 
 end
 
 local function GetNextTask(tasks, workloadTables)
-    local task = tremove(tasks);
+    taskIndex = taskIndex + 1;
+    local task = tasks[taskIndex];
     if task then
         return tasks, task;
     end
     tasks = tremove(workloadTables);
     if tasks then
-        task = tremove(tasks);
+        taskIndex = 1
+        task = tasks[taskIndex];
     end
     return tasks, task;
 end
@@ -895,7 +902,7 @@ function addon.StartTasksGroups(tasksGroups, onFinish, onDelay)
     local tasks = tremove(tasksGroups);
     local function continue()
         local startTime = debugprofilestop();
-        local task = tremove(tasks);
+        local task = tasks[taskIndex];
         while task do
             RunTask(task);
             if Delay(continue, startTime, maxDuration, onDelay, tasksGroups, tasks) then

@@ -3,6 +3,7 @@ local shared = addon.Data.AchievementData.Shared;
 local faction = addon.Objects.Faction;
 
 KrowiAF.AchievementData["06_00_02"] = {
+    {KrowiAF.SetAchievementPatch, 6, 0, 2},
     { -- You'll Get Caught Up In The... Frostfire!
         8671,
         faction.Horde,
@@ -1405,10 +1406,10 @@ KrowiAF.AchievementData["06_00_02"] = {
         9508,
         true,
     },
-    {KrowiAF.SetAchievementPatch, 6, 0, 2}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["06_01_00"] = {
+    {KrowiAF.SetAchievementPatch, 6, 1, 0},
     { -- Darkmoon Race Enthusiast
         9755,
         {
@@ -1701,10 +1702,10 @@ KrowiAF.AchievementData["06_01_00"] = {
         faction.Alliance,
         9901,
     },
-    {KrowiAF.SetAchievementPatch, 6, 1, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["06_02_00"] = {
+    {KrowiAF.SetAchievementPatch, 6, 2, 0},
     {9972}, -- A Race Against Slime
     {9979}, -- Get In My Belly!
     { -- That's Whack!
@@ -2271,10 +2272,10 @@ KrowiAF.AchievementData["06_02_00"] = {
         faction.Alliance,
         10349,
     },
-    {KrowiAF.SetAchievementPatch, 6, 2, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["06_02_02"] = {
+    {KrowiAF.SetAchievementPatch, 6, 2, 2},
     {10309}, -- Collector's Edition: Zeradar
     {10320}, -- Collector's Edition: Illidari Felstalker
     {10321}, -- Collector's Edition: Nibbles
@@ -2304,5 +2305,4 @@ KrowiAF.AchievementData["06_02_02"] = {
             {"Event", 324},
         },
     },
-    {KrowiAF.SetAchievementPatch, 6, 2, 2}, -- Rework loading so this can go to the top, future me problem
 };

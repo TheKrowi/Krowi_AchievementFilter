@@ -3,6 +3,7 @@ local shared = addon.Data.AchievementData.Shared;
 local faction = addon.Objects.Faction;
 
 KrowiAF.AchievementData["05_00_04"] = {
+    {KrowiAF.SetAchievementPatch, 5, 0, 4},
     {6089}, -- Keep Rollin' Rollin' Rollin'
     { -- Level 90 (Legacy)
         6193,
@@ -1201,10 +1202,10 @@ KrowiAF.AchievementData["05_00_04"] = {
     {7612}, -- The Seat of Knowledge
     {7614}, -- Locking Down the Docks
     {7842}, -- Collector's Edition: Baneling
-    {KrowiAF.SetAchievementPatch, 5, 0, 4}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["05_01_00"] = {
+    {KrowiAF.SetAchievementPatch, 5, 1, 0},
     {7852}, -- They're Both Footballs?
     { -- WoW's 9th Anniversary
         7853,
@@ -1422,10 +1423,10 @@ KrowiAF.AchievementData["05_01_00"] = {
             {"Before", "Version", {6, 0, 2}},
         },
     },
-    {KrowiAF.SetAchievementPatch, 5, 1, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["05_02_00"] = {
+    {KrowiAF.SetAchievementPatch, 5, 2, 0},
     { -- Ahead of the Curve: Will of the Emperor
         6954,
         {
@@ -1666,10 +1667,10 @@ KrowiAF.AchievementData["05_02_00"] = {
             {"Before", "Version", {5, 4, 0}},
         },
     },
-    {KrowiAF.SetAchievementPatch, 5, 2, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["05_03_00"] = {
+    {KrowiAF.SetAchievementPatch, 5, 3, 0},
     {8293}, -- Raiding with Leashes II: Attunement Edition
     {8294}, -- The Secrets of Ragefire
     {8295}, -- "The Few, the Proud, the Gob Squad"
@@ -1908,10 +1909,10 @@ KrowiAF.AchievementData["05_03_00"] = {
             {"From", "Date", {2013, 6, 18}, "Until", "Date", {2013, 8, 27}},
         },
     },
-    {KrowiAF.SetAchievementPatch, 5, 3, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["05_04_00"] = {
+    {KrowiAF.SetAchievementPatch, 5, 4, 0},
     { -- Grievous Conquest
         8381,
         faction.Horde,
@@ -2429,10 +2430,10 @@ KrowiAF.AchievementData["05_04_00"] = {
             {"PvP Season", 13},
         },
     },
-    {KrowiAF.SetAchievementPatch, 5, 4, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["05_04_01"] = {
+    {KrowiAF.SetAchievementPatch, 5, 4, 1},
     {8793}, -- Murkalot
     { -- Friends In Places Even Higher Than That
         8794,
@@ -2440,10 +2441,9 @@ KrowiAF.AchievementData["05_04_01"] = {
             {"Before", "Date", {2019, 6, 11}},
         },
     },
-    {KrowiAF.SetAchievementPatch, 5, 4, 1}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["05_04_02"] = {
+    {KrowiAF.SetAchievementPatch, 5, 4, 2},
     {8795}, -- Collector's Edition: Treasure Goblin
-    {KrowiAF.SetAchievementPatch, 5, 4, 2}, -- Rework loading so this can go to the top, future me problem
 };

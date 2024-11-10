@@ -3,6 +3,7 @@ local shared = addon.Data.AchievementData.Shared;
 local faction = addon.Objects.Faction;
 
 KrowiAF.AchievementData["08_00_01"] = {
+    {KrowiAF.SetAchievementPatch, 8, 0, 1},
     { -- The Throne of Zuldazar
         11861,
         faction.Horde,
@@ -1079,10 +1080,10 @@ KrowiAF.AchievementData["08_00_01"] = {
     },
     {13142}, -- Archipelago Explorer
     {13144}, -- Wide World of Quests
-    {KrowiAF.SetAchievementPatch, 8, 0, 1}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["08_01_00"] = {
+    {KrowiAF.SetAchievementPatch, 8, 1, 0},
     {13138}, -- Flying Colors
     {13196}, -- Meat Marauder
     { -- Combatant: Battle for Azeroth Season 1
@@ -1455,10 +1456,10 @@ KrowiAF.AchievementData["08_01_00"] = {
             {"PvP Season", 27},
         },
     },
-    {KrowiAF.SetAchievementPatch, 8, 1, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["08_01_05"] = {
+    {KrowiAF.SetAchievementPatch, 8, 1, 5},
     { -- Allied Races: Zandalari Troll
         13161,
         faction.Horde,
@@ -1584,10 +1585,10 @@ KrowiAF.AchievementData["08_01_05"] = {
     {13512}, -- Master Calligrapher
     {13516}, -- Massive Tool
     {13517}, -- Two Sides to Every Tale
-    {KrowiAF.SetAchievementPatch, 8, 1, 5}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["08_02_00"] = {
+    {KrowiAF.SetAchievementPatch, 8, 2, 0},
     {13250}, -- "Battle for Azeroth Pathfinder, Part Two"
     {13470}, -- Rest In Pistons
     {13472}, -- Deep Pockets
@@ -2026,10 +2027,10 @@ KrowiAF.AchievementData["08_02_00"] = {
     {13790}, -- Armed for Action
     {13791}, -- Making the Mount
     {13836}, -- Feline Figurines Found
-    {KrowiAF.SetAchievementPatch, 8, 2, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["08_02_05"] = {
+    {KrowiAF.SetAchievementPatch, 8, 2, 5},
     { -- WoW's 15th Anniversary
         13917,
         {
@@ -2065,10 +2066,10 @@ KrowiAF.AchievementData["08_02_05"] = {
             {"From", "Date", {2019, 11, 5}, "Until", "Date", {2020, 1, 7}},
         },
     },
-    {KrowiAF.SetAchievementPatch, 8, 2, 5}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["08_03_00"] = {
+    {KrowiAF.SetAchievementPatch, 8, 3, 0},
     { -- Allied Races: Vulpera
         13206,
         faction.Horde,
@@ -2299,5 +2300,4 @@ KrowiAF.AchievementData["08_03_00"] = {
     {14194}, -- Halls of Devotion
     {14195}, -- Gift of Flesh
     {14196}, -- The Waking Dream
-    {KrowiAF.SetAchievementPatch, 8, 3, 0}, -- Rework loading so this can go to the top, future me problem
 };

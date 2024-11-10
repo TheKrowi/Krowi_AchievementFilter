@@ -269,9 +269,8 @@ function data.InjectLoadingDebug(workload, name)
         return;
     end
 
-    -- Data is in reverse order in the tables so add 'Start' to the end and 'Finished' to the beginning
-    tinsert(workload, function() addon.Diagnostics.Trace(name .. ": Start loading data"); end);
-    tinsert(workload, 1, function() addon.Diagnostics.Trace(name .. ": Finished loading data"); end);
+    tinsert(workload, 1, function() addon.Diagnostics.Trace(name .. ": Start loading data"); end);
+    tinsert(workload, function() addon.Diagnostics.Trace(name .. ": Finished loading data"); end);
 end
 
 local freeCategoryId = 0;

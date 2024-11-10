@@ -3,6 +3,7 @@ local shared = addon.Data.AchievementData.Shared;
 local faction = addon.Objects.Faction;
 
 KrowiAF.AchievementData["07_00_03"] = {
+    {KrowiAF.SetAchievementPatch, 7, 0, 3},
     { -- Aquatic Acquiescence
         9686,
     },
@@ -1519,10 +1520,10 @@ KrowiAF.AchievementData["07_00_03"] = {
     { -- A Classy Outfit
         11298,
     },
-    {KrowiAF.SetAchievementPatch, 7, 0, 3}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["07_02_00"] = {
+    {KrowiAF.SetAchievementPatch, 7, 2, 0},
     { -- Patron of War
         10537,
         {
@@ -2225,10 +2226,10 @@ KrowiAF.AchievementData["07_02_00"] = {
     { -- Champions of Legionfall
         11846,
     },
-    {KrowiAF.SetAchievementPatch, 7, 2, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["07_02_05"] = {
+    {KrowiAF.SetAchievementPatch, 7, 2, 5},
     { -- WoW's 13th Anniversary
         11848,
         {
@@ -2283,10 +2284,10 @@ KrowiAF.AchievementData["07_02_05"] = {
     { -- Chromie Homie
         11941,
     },
-    {KrowiAF.SetAchievementPatch, 7, 2, 5}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["07_03_00"] = {
+    {KrowiAF.SetAchievementPatch, 7, 3, 0},
     { -- Fisherfriend of the Isles
         11725,
     },
@@ -2649,10 +2650,10 @@ KrowiAF.AchievementData["07_03_00"] = {
     { -- This is the War Room!
         12129,
     },
-    {KrowiAF.SetAchievementPatch, 7, 3, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["07_03_02"] = {
+    {KrowiAF.SetAchievementPatch, 7, 3, 2},
     { -- Rides of War
         11931,
     },
@@ -2840,10 +2841,10 @@ KrowiAF.AchievementData["07_03_02"] = {
     { -- Stardust Crusaders
         12257,
     },
-    {KrowiAF.SetAchievementPatch, 7, 3, 2}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["07_03_05"] = {
+    {KrowiAF.SetAchievementPatch, 7, 3, 5},
     { -- Demonic Gladiator: Legion Season 7
         12185,
         {
@@ -3358,5 +3359,4 @@ KrowiAF.AchievementData["07_03_05"] = {
         faction.Alliance,
         4908,
     },
-    {KrowiAF.SetAchievementPatch, 7, 3, 5}, -- Rework loading so this can go to the top, future me problem
 };

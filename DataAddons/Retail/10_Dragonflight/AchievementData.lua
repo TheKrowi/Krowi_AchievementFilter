@@ -3,6 +3,7 @@ local shared = addon.Data.AchievementData.Shared;
 local faction = addon.Objects.Faction;
 
 KrowiAF.AchievementData["10_00_00"] = {
+    {KrowiAF.SetAchievementPatch, 10, 0, 0},
     { -- "Dracthyr, Awaken"
         15325,
         faction.Alliance,
@@ -618,10 +619,10 @@ KrowiAF.AchievementData["10_00_00"] = {
     {16678}, -- Adventurer of The Azure Span
     {16679}, -- Adventurer of Thaldraszus
     {16683}, -- In Tyr's Footsteps
-    {KrowiAF.SetAchievementPatch, 10, 0, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["10_00_02"] = {
+    {KrowiAF.SetAchievementPatch, 10, 0, 2},
     {15640}, -- Return to Darkness
     {16729}, -- To All the Squirrels Hidden Til Now
     { -- Crimson Gladiator's Drake
@@ -689,10 +690,10 @@ KrowiAF.AchievementData["10_00_02"] = {
             {"PvP Season", 34},
         },
     },
-    {KrowiAF.SetAchievementPatch, 10, 0, 2}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["10_00_05"] = {
+    {KrowiAF.SetAchievementPatch, 10, 0, 5},
     {16696}, -- Renewed Proto-Drake Armor
     {16697}, -- Renewed Proto-Drake Head Features
     {16698}, -- Renewed Proto-Drake Tail Features
@@ -757,10 +758,10 @@ KrowiAF.AchievementData["10_00_05"] = {
             IsPvP = true,
         },
     },
-    {KrowiAF.SetAchievementPatch, 10, 0, 5}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["10_00_07"] = {
+    {KrowiAF.SetAchievementPatch, 10, 0, 7},
     {17279}, -- Forbidden Reach: Bronze
     {17280}, -- Forbidden Reach: Silver
     {17281}, -- Forbidden Reach: Gold
@@ -841,10 +842,10 @@ KrowiAF.AchievementData["10_00_07"] = {
     {17541}, -- Global Swarming
     {17543}, -- You Know How to Reach Me
     {17546}, -- A New Beginning
-    {KrowiAF.SetAchievementPatch, 10, 0, 7}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["10_01_00"] = {
+    {KrowiAF.SetAchievementPatch, 10, 1, 0},
     {17483}, -- Zaralek Cavern: Bronze
     {17484}, -- Zaralek Cavern: Silver
     {17485}, -- Zaralek Cavern: Gold
@@ -1169,10 +1170,10 @@ KrowiAF.AchievementData["10_01_00"] = {
             {"Mythic+ Season", 10},
         },
     },
-    {KrowiAF.SetAchievementPatch, 10, 1, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["10_01_05"] = {
+    {KrowiAF.SetAchievementPatch, 10, 1, 5},
     { -- Kalimdor: Bronze
         17712,
         {
@@ -1350,10 +1351,10 @@ KrowiAF.AchievementData["10_01_05"] = {
             {"Before", "Version", {11, 0, 0}},
         },
     },
-    {KrowiAF.SetAchievementPatch, 10, 1, 5}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["10_01_07"] = {
+    {KrowiAF.SetAchievementPatch, 10, 1, 7},
     {15344}, -- """S.A.F.E"" Pilot"
     {17344}, -- "Warcraft Rumble Minis, Get 'Em All!"
     {17346}, -- "Warcraft Rumble Minis, Maiev's New Look"
@@ -1672,10 +1673,10 @@ KrowiAF.AchievementData["10_01_07"] = {
         },
     },
     {19192}, -- Lil' Frostwing
-    {KrowiAF.SetAchievementPatch, 10, 1, 7}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["10_02_00"] = {
+    {KrowiAF.SetAchievementPatch, 10, 2, 0},
     {18958}, -- Of the Tyr's Guard
     { -- Dragonflight Keystone Explorer: Season Three
         19009,
@@ -2021,10 +2022,10 @@ KrowiAF.AchievementData["10_02_00"] = {
     },
     {19450}, -- Fyr'alath the Dreamrender
     {19461}, -- Kissed by the Wind
-    {KrowiAF.SetAchievementPatch, 10, 2, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["10_02_05"] = {
+    {KrowiAF.SetAchievementPatch, 10, 2, 5},
     { -- Support Your Local Artisans
         19400,
         {
@@ -2123,10 +2124,10 @@ KrowiAF.AchievementData["10_02_05"] = {
     {19866}, -- Hearthstoned: Fiery Edition
     {20033}, -- Hearthstone Beginner
     {20206}, -- Champion of the Dragonflights
-    {KrowiAF.SetAchievementPatch, 10, 2, 5}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["10_02_06"] = {
+    {KrowiAF.SetAchievementPatch, 10, 2, 6},
     { -- Draconic Legend: Dragonflight Season 4
         19453,
         {
@@ -2366,10 +2367,10 @@ KrowiAF.AchievementData["10_02_06"] = {
     {20501}, -- Back from the Beyond
     {20508}, -- Plunder Wonder
     {20509}, -- Plunderkind
-    {KrowiAF.SetAchievementPatch, 10, 2, 6}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["10_02_07"] = {
+    {KrowiAF.SetAchievementPatch, 10, 2, 7},
     { -- Infinite Power
         19871,
         {
@@ -3349,5 +3350,4 @@ KrowiAF.AchievementData["10_02_07"] = {
         },
     },
     {40382}, -- Hunt the Harbinger
-    {KrowiAF.SetAchievementPatch, 10, 2, 7}, -- Rework loading so this can go to the top, future me problem
 };

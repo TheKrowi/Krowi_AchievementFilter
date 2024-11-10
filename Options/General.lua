@@ -146,6 +146,67 @@ local function ExportCriteria()
     DebugTable = criteriaCache;
 end
 
+local function ExportMissingAchievements()
+    local frame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template");
+	frame:Init(addon.L["Export Missing Achievements"]);
+    local missingAchievements = {};
+    for _, achievementId in next, addon.Data.AchievementIds do
+        if addon.Data.Achievements[achievementId].Uncategorized then
+            local achievementInfo = addon.GetAchievementInfoTable(achievementId);
+            tinsert(missingAchievements, {
+                Id = achievementInfo.Id,
+                Name = achievementInfo.Name,
+                Description = achievementInfo.Description,
+                Points = achievementInfo.Points,
+                -- Flags = achievementInfo.Flags,
+                RewardText = achievementInfo.RewardText,
+                -- IsStatistic = achievementInfo.IsStatistic
+            });
+        end
+    end
+
+    local function escapeString(str)
+        str = str:gsub("\\", "\\\\")
+        str = str:gsub("\"", "\\\"")
+        str = str:gsub("\n", "\\n")
+        str = str:gsub("\r", "\\r")
+        str = str:gsub("\t", "\\t")
+        return str
+    end
+
+    local function serializeTable(tbl)
+        local result = {}
+        local function serialize(value)
+            if type(value) == "table" then
+                table.insert(result, "{")
+                for k, v in pairs(value) do
+                    table.insert(result, "\""..escapeString(tostring(k)).."\":")
+                    serialize(v)
+                    table.insert(result, ",")
+                end
+                if result[#result] == "," then
+                    result[#result] = "}"
+                else
+                    table.insert(result, "}")
+                end
+            elseif type(value) == "string" then
+                table.insert(result, "\"" .. escapeString(value) .. "\"")
+            elseif type(value) == "number" or type(value) == "boolean" then
+                table.insert(result, tostring(value))
+            else
+                table.insert(result, "null")
+            end
+        end
+        serialize(tbl)
+        return table.concat(result)
+    end
+
+    print("Missing achievements found:", #missingAchievements);
+    local jsonString = serializeTable(missingAchievements)
+    frame.Input:SetText(jsonString);
+    frame:Show();
+end
+
 local function PrintMapInfoWithoutReload()
     if addon.Diagnostics.DebugEnabled() then
         return;
@@ -460,7 +521,13 @@ options.OptionsTable.args["General"] = {
                             get = function() return addon.Options.db.profile.ShowPlaceholdersFilter; end,
                             set = function(_, value) addon.Options.db.profile.ShowPlaceholdersFilter = value; end
                         },
-                        Blank3 = {order = OrderPP(), type = "description", width = AdjustedWidth(2), name = ""},
+                        Blank3 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
+                        ExportMissingAchievements = {
+                            order = OrderPP(), type = "execute",
+                            name = addon.L["Export Missing Achievements"],
+                            desc = addon.L["Export Missing Achievements Desc"],
+                            func = ExportMissingAchievements
+                        },
                         PrintMapInfo = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(),
                             name = addon.L["Print map info"],

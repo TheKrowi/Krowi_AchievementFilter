@@ -3,6 +3,7 @@ local shared = addon.Data.AchievementData.Shared;
 local faction = addon.Objects.Faction;
 
 KrowiAF.AchievementData["11_00_00"] = {
+    {KrowiAF.SetAchievementPatch, 11, 0, 0},
     {19408}, -- Professional Algari Master
     {19409}, -- Working Underground
     {19410}, -- Algari Master of All
@@ -619,10 +620,10 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40856}, -- Council of Dornogal
     {40859}, -- We're Here All Night
     {40860}, -- A Star of Dorn
-    {KrowiAF.SetAchievementPatch, 11, 0, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["11_00_02"] = {
+    {KrowiAF.SetAchievementPatch, 11, 0, 2},
     { -- Tricks and Treats of Khaz Algar
         40862,
         {
@@ -642,10 +643,10 @@ KrowiAF.AchievementData["11_00_02"] = {
     {40906}, -- The Flame Burns Within
     {40907}, -- We Rise Anew
     {40939}, -- Harbinger of the Gilded
-    {KrowiAF.SetAchievementPatch, 11, 0, 2}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["11_00_05"] = {
+    {KrowiAF.SetAchievementPatch, 11, 0, 5},
     {15644}, -- Good Things Come in Small Packages
     {16731}, -- Court is Now in Session
     { -- Zoomies!
@@ -781,5 +782,4 @@ KrowiAF.AchievementData["11_00_05"] = {
             {"PvP Season", 38},
         },
     },
-    {KrowiAF.SetAchievementPatch, 11, 0, 5}, -- Rework loading so this can go to the top, future me problem
 };

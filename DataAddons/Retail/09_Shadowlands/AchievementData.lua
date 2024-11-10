@@ -3,6 +3,7 @@ local shared = addon.Data.AchievementData.Shared;
 local faction = addon.Objects.Faction;
 
 KrowiAF.AchievementData["09_00_01"] = {
+    {KrowiAF.SetAchievementPatch, 9, 0, 1},
     {13878}, -- The Master of Revendreth
     {14164}, -- "Awaken, Ardenweald"
     {14197}, -- Sanguine Depths
@@ -417,10 +418,10 @@ KrowiAF.AchievementData["09_00_01"] = {
         14815,
         true,
     },
-    {KrowiAF.SetAchievementPatch, 9, 0, 1}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["09_00_02"] = {
+    {KrowiAF.SetAchievementPatch, 9, 0, 2},
     { -- Sinful Gladiator's Soul Eater
         14816,
         {
@@ -486,10 +487,10 @@ KrowiAF.AchievementData["09_00_02"] = {
             {"From", "Date", {2021, 2, 1}, "Until", "Date", {2022, 2, 20}},
         },
     },
-    {KrowiAF.SetAchievementPatch, 9, 0, 2}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["09_00_05"] = {
+    {KrowiAF.SetAchievementPatch, 9, 0, 5},
     {14931}, -- Flying Festivities
     { -- Shadowlands Keystone Explorer: Season One
         14938,
@@ -500,10 +501,10 @@ KrowiAF.AchievementData["09_00_05"] = {
     {15023}, -- We Can Rebuild
     {15024}, -- Denying the Drought
     {15025}, -- Sanctum Superior
-    {KrowiAF.SetAchievementPatch, 9, 0, 5}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["09_01_00"] = {
+    {KrowiAF.SetAchievementPatch, 9, 1, 0},
     { -- WoW's 17th Anniversary
         14942,
         {
@@ -749,10 +750,10 @@ KrowiAF.AchievementData["09_01_00"] = {
     {15179}, -- This is Fine
     {15190}, -- Mischief!
     {15191}, -- "Rae'shalare, Death's Whisper"
-    {KrowiAF.SetAchievementPatch, 9, 1, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["09_01_05"] = {
+    {KrowiAF.SetAchievementPatch, 9, 1, 5},
     { -- Rock n' Roll
         15181,
         {
@@ -793,10 +794,10 @@ KrowiAF.AchievementData["09_01_05"] = {
         },
     },
     {15388}, -- Shadowlands Explorer
-    {KrowiAF.SetAchievementPatch, 9, 1, 5}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["09_02_00"] = {
+    {KrowiAF.SetAchievementPatch, 9, 2, 0},
     {15211}, -- Completing the Code
     { -- First Dance
         15212,
@@ -1107,10 +1108,10 @@ KrowiAF.AchievementData["09_02_00"] = {
             IsPvP = true,
         },
     },
-    {KrowiAF.SetAchievementPatch, 9, 2, 0}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["09_02_05"] = {
+    {KrowiAF.SetAchievementPatch, 9, 2, 5},
     {15579}, -- Return to Lordaeron
     { -- Fearless Spectator
         15594,
@@ -1354,10 +1355,10 @@ KrowiAF.AchievementData["09_02_05"] = {
             {"Mythic+ Season", 8},
         },
     },
-    {KrowiAF.SetAchievementPatch, 9, 2, 5}, -- Rework loading so this can go to the top, future me problem
 };
 
 KrowiAF.AchievementData["09_02_07"] = {
+    {KrowiAF.SetAchievementPatch, 9, 2, 7},
     { -- We Are All Made of Stars (Heroic)
         15468,
         {
@@ -1370,5 +1371,4 @@ KrowiAF.AchievementData["09_02_07"] = {
             {"From", "Mythic+ Season", 8, "Before", "Version", {10, 0, 2}},
         },
     },
-    {KrowiAF.SetAchievementPatch, 9, 2, 7}, -- Rework loading so this can go to the top, future me problem
 };
