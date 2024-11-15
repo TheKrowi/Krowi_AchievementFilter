@@ -10,4 +10,9 @@
     <Include file="09_Shadowlands\Files.xml" />
     <Include file="10_Dragonflight\Files.xml" />
     <Include file="11_TheWarWithin\Files.xml" />
+    <Script file="CategoryData_Achievements.lua" />
+    <Script file="CategoryData_Events.lua" />
+    <Script file="CategoryData_Expansions.lua" />
+    <Script file="CategoryData_PvP.lua" />
+    <Script file="CategoryData_Specials.lua" />
 </Ui>

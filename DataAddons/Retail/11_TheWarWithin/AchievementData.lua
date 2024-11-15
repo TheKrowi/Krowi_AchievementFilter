@@ -782,4 +782,10 @@ KrowiAF.AchievementData["11_00_05"] = {
             {"PvP Season", 38},
         },
     },
+    { -- WoW's 20th Anniversary
+        41220,
+        {
+            {"Event", 1592},
+        },
+    },
 };

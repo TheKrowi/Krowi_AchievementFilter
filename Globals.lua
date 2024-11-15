@@ -905,7 +905,7 @@ function addon.StartTasksGroups(tasksGroups, onFinish, onDelay)
         local task = tasks[taskIndex];
         while task do
             RunTask(task);
-            if Delay(continue, startTime, maxDuration, onDelay, tasksGroups, tasks) then
+            if task ~= KrowiAF.CreateCategories and Delay(continue, startTime, maxDuration, onDelay, tasksGroups, tasks) then -- Really need to solve this in a different way!!!
                 return false;
             end
             tasks, task = GetNextTask(tasks, tasksGroups);

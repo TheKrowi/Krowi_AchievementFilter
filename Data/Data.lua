@@ -18,6 +18,7 @@ data.Achievements = {};
 data.AchievementIds = {};
 
 data.Categories, data.SummaryCategories = {}, {};
+KrowiAF_Categories = data.Categories;
 data.WatchListCategories, data.CurrentZoneCategories, data.SelectedZoneCategories = {}, {}, {};
 data.SearchResultsCategories, data.TrackingAchievementsCategories, data.ExcludedCategories = {}, {}, {};
 data.UncategorizedCategories = {};
@@ -37,6 +38,12 @@ function data:RegisterAchievementDataTasks()
         self.InjectLoadingDebug(v, name .. k);
         tinsert(self.TasksGroups, 1, v);
     end
+end
+
+function data:RegisterCategoryDataTasks()
+    local name = "Category Data: ";
+    self.InjectLoadingDebug({KrowiAF.CreateCategories}, name .. 1);
+    tinsert(self.TasksGroups, 1, {KrowiAF.CreateCategories});
 end
 
 function data:RegisterEventDataTasks()
@@ -105,7 +112,7 @@ function data:LoadOnPlayerLogin()
     KrowiAF.CreateBuildVersions();
 
     self:RegisterAchievementDataTasks();
-    self.ExportedCategories.RegisterTasks(self.Categories, self.Achievements, addon.Tabs);
+    self:RegisterCategoryDataTasks();
     self:RegisterEventDataTasks();
     self.ExportedUiMaps.RegisterTasks(self.Maps, self.Achievements);
 

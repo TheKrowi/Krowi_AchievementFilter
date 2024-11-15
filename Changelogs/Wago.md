@@ -1,5 +1,10 @@
 ### Added
-- Transmog sets for The War Within raid and season 1
+- Guild achievements tab keybind
+- WoW's 20th Anniversary achievement
 
 ### Changed
-- Transmog sets are now moved to the new API system
+- Achievements and Categories are now moved to the new API system
+- Data loading time is reduced by 50%
+
+### Cata Classic
+- Additional (promotional) achievements marked as unobtainable

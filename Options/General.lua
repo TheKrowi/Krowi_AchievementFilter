@@ -150,6 +150,7 @@ local function ExportMissingAchievements()
     local frame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template");
 	frame:Init(addon.L["Export Missing Achievements"]);
     local missingAchievements = {};
+    local exportString = "\r\n";
     for _, achievementId in next, addon.Data.AchievementIds do
         if addon.Data.Achievements[achievementId].Uncategorized then
             local achievementInfo = addon.GetAchievementInfoTable(achievementId);
@@ -162,6 +163,9 @@ local function ExportMissingAchievements()
                 RewardText = achievementInfo.RewardText,
                 -- IsStatistic = achievementInfo.IsStatistic
             });
+            exportString = exportString .. "    { -- " .. achievementInfo.Name .. "\r\n";
+            exportString = exportString .. "        " .. achievementInfo.Id .. "," .. "\r\n";
+            exportString = exportString .. "    }," .. "\r\n";
         end
     end
 
@@ -203,7 +207,7 @@ local function ExportMissingAchievements()
 
     print("Missing achievements found:", #missingAchievements);
     local jsonString = serializeTable(missingAchievements)
-    frame.Input:SetText(jsonString);
+    frame.Input:SetText(exportString);
     frame:Show();
 end
 

@@ -1,12 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 79.0 - 2024-11-09
+## 79.0 - 2024-11-15
 ### Added
 - Guild achievements tab keybind
+- WoW's 20th Anniversary achievement
 
 ### Changed
-- Achievements (only the data, addin to catagories to do) are now moved to the new API system
+- Achievements and Categories are now moved to the new API system
 - Data loading time is reduced by 50%
 
 ### Cata Classic

@@ -3,4 +3,9 @@
     <Include file="02_TheBurningCrusade\Files.xml" />
     <Include file="03_WrathOfTheLichKing\Files.xml" />
     <Include file="04_Cataclysm\Files.xml" />
+    <Script file="CategoryData_Achievements.lua" />
+    <Script file="CategoryData_Events.lua" />
+    <Script file="CategoryData_Expansions.lua" />
+    <Script file="CategoryData_PvP.lua" />
+    <Script file="CategoryData_Specials.lua" />
 </Ui>
