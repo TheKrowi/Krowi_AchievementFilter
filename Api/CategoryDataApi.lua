@@ -8,6 +8,7 @@ end
 
 function KrowiAF.AddIfNewCategoryData(id, name, canMerge)
     if addon.Data.Categories[id] then
+        addon.Data.Categories[id]:PostNewFix(name);
         return;
     end
     KrowiAF.AddCategoryData(id, name, canMerge);
@@ -50,6 +51,7 @@ function ParseCategory(category, parent)
 
     if parent then
         parent:AddCategory(addon.Data.Categories[category[1]]);
+        parent:PostAddCategoryFix();
     end
 
     local index = addon.Util.IsBoolean(category[3]) and 4 or 3;
@@ -61,9 +63,7 @@ function ParseCategory(category, parent)
 end
 
 function KrowiAF.CreateCategories()
-    KrowiAF_CategoriesLoadTime = debugprofilestop()
     for _, root in next, KrowiAF.CategoryData do
         ParseCategory(root);
     end
-    KrowiAF_CategoriesLoadTime = debugprofilestop() - KrowiAF_CategoriesLoadTime
 end
