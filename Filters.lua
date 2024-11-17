@@ -115,16 +115,16 @@ function filters:Load()
 end
 
 -- [[ Validation ]] --
-local completedCache, ignoreCollapseSeriesCache, pointsCache;
+local completedCache, pointsCache;
 local validations = {
     {   -- 1
-        Validate = function(_filters, achievement) return not _filters.Completion.Completed and completedCache; end
+        Validate = function(_filters, achievement, ignoreFilters) return not _filters.Completion.Completed and completedCache; end
     },
     {   -- 2
-        Validate = function(_filters, achievement) return not _filters.Completion.NotCompleted and not completedCache; end
+        Validate = function(_filters, achievement, ignoreFilters) return not _filters.Completion.NotCompleted and not completedCache; end
     },
     {   -- 3
-        Validate = function(_filters, achievement)
+        Validate = function(_filters, achievement, ignoreFilters)
             if _filters.Obtainability.CurrentObtainable then
                 return;
             end
@@ -136,7 +136,7 @@ local validations = {
         end
     },
     {   -- 4
-        Validate = function(_filters, achievement)
+        Validate = function(_filters, achievement, ignoreFilters)
             if _filters.Obtainability.PastObtainable then
                 return;
             end
@@ -147,7 +147,7 @@ local validations = {
         end
     },
     {   -- 5
-        Validate = function(_filters, achievement)
+        Validate = function(_filters, achievement, ignoreFilters)
             if _filters.Obtainability.FutureObtainable then
                 return;
             end
@@ -158,17 +158,32 @@ local validations = {
         end
     },
     {   -- 6
-        Validate = function(_filters, achievement) return not _filters.Faction.Neutral and achievement.Faction == nil; end
+        Validate = function(_filters, achievement, ignoreFilters)
+            if ignoreFilters.FactionFilter then
+                return false;
+            end
+            return not _filters.Faction.Neutral and achievement.Faction == nil;
+        end
     },
     {   -- 7
-        Validate = function(_filters, achievement) return not _filters.Faction.Alliance and achievement.Faction == addon.Objects.Faction.Alliance; end
+        Validate = function(_filters, achievement, ignoreFilters)
+            if ignoreFilters.FactionFilter then
+                return false;
+            end
+            return not _filters.Faction.Alliance and achievement.Faction == addon.Objects.Faction.Alliance;
+        end
     },
     {   -- 8
-        Validate = function(_filters, achievement) return not _filters.Faction.Horde and achievement.Faction == addon.Objects.Faction.Horde; end
+        Validate = function(_filters, achievement, ignoreFilters)
+            if ignoreFilters.FactionFilter then
+                return false;
+            end
+            return not _filters.Faction.Horde and achievement.Faction == addon.Objects.Faction.Horde;
+        end
     },
     {   -- 9
-        Validate = function(_filters, achievement)
-            if _filters.CollapseSeries and ignoreCollapseSeriesCache ~= true then
+        Validate = function(_filters, achievement, ignoreFilters)
+            if _filters.CollapseSeries and ignoreFilters.CollapsedChainFilter ~= true then
                 local _, nextCompleted = addon.GetNextAchievement(achievement);
                 if nextCompleted then
                     return true;
@@ -185,10 +200,10 @@ local validations = {
         end
     },
     {   -- 10
-        Validate = function(_filters, achievement) return not _filters.Excluded and achievement.IsExcluded end
+        Validate = function(_filters, achievement, ignoreFilters) return not _filters.Excluded and achievement.IsExcluded end
     },
     {   -- 11
-        Validate = function(_filters, achievement)
+        Validate = function(_filters, achievement, ignoreFilters)
             if not addon.Options.db.profile.ShowPlaceholdersFilter and achievement.DoesNotExist then
                 return true;
             end
@@ -196,19 +211,19 @@ local validations = {
         end
     },
     {   -- 12
-        Validate = function(_filters, achievement) return not _filters.Special.RealmFirst and achievement.IsRealmFirst; end
+        Validate = function(_filters, achievement, ignoreFilters) return not _filters.Special.RealmFirst and achievement.IsRealmFirst; end
     },
     {   -- 13
-        Validate = function(_filters, achievement) return not _filters.Special.FeatsOfStrength and pointsCache == 0 and not achievement.IsRealmFirst and not achievement.IsTracking; end
+        Validate = function(_filters, achievement, ignoreFilters) return not _filters.Special.FeatsOfStrength and pointsCache == 0 and not achievement.IsRealmFirst and not achievement.IsTracking; end
     },
     {   -- 14
-        Validate = function(_filters, achievement) return not _filters.Tracking and achievement.IsTracking; end
+        Validate = function(_filters, achievement, ignoreFilters) return not _filters.Tracking and achievement.IsTracking; end
     },
     {   -- 15
-        Validate = function(_filters, achievement) return not _filters.Special.PvP and achievement.IsPvP; end
+        Validate = function(_filters, achievement, ignoreFilters) return not _filters.Special.PvP and achievement.IsPvP; end
     },
     {   -- 16
-    Validate = function(_filters, achievement)
+    Validate = function(_filters, achievement, ignoreFilters)
         if not achievement.BuildVersion then
             return false;
         end
@@ -217,7 +232,7 @@ local validations = {
     },
 };
 
-function filters.Validate(_filters, achievement, ignoreCollapseSeries)
+function filters.Validate(_filters, achievement, ignoreFilters, ignoreCollapseSeries)
     if _filters.Ignore then
         return 3;
     end
@@ -231,20 +246,21 @@ function filters.Validate(_filters, achievement, ignoreCollapseSeries)
     else
         completedCache = completed;
     end
-    ignoreCollapseSeriesCache = ignoreCollapseSeries;
+    ignoreFilters = ignoreFilters or {};
+    ignoreFilters.CollapsedChainFilter = ignoreFilters.CollapsedChainFilter or ignoreCollapseSeries;
     if _filters.Completion.AlwaysShowCompleted and completedCache then
         return 4; -- Special filter that overwrites the rest
     end
     for i, validation in next, validations do
-        if validation.Validate(_filters, achievement) then -- If true, DO NOT show achievement
+        if validation.Validate(_filters, achievement, ignoreFilters) then -- If true, DO NOT show achievement
             return -i;
         end
     end
     return 1;
 end
 
-function filters:AutoValidate(achievement, ignoreCollapseSeries)
-    return self.Validate(self:GetFilters(), achievement, ignoreCollapseSeries);
+function filters:AutoValidate(achievement, ignoreFilters, ignoreCollapseSeries)
+    return self.Validate(self:GetFilters(), achievement, ignoreFilters, ignoreCollapseSeries);
 end
 
 function filters:GetFilters(category)

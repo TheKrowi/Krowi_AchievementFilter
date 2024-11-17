@@ -61,12 +61,12 @@ function addon.GetAchievementsInZone(mapID, getAll)
     return achievements;
 end
 
-function addon.GetAchievementNumbers(_filters, achievement, numOfAch, numOfCompAch, numOfNotObtAch) -- , numOfIncompAch
+function addon.GetAchievementNumbers(_filters, achievement, numOfAch, numOfCompAch, numOfNotObtAch, ignoreFilters) -- , numOfIncompAch
     if achievement.AlwaysVisible then
         return numOfAch, numOfCompAch, numOfNotObtAch; -- , numOfIncompAch
     end
     local filters = addon.Filters;
-	if filters and filters.Validate(_filters, achievement, true) > 0 then -- If set to false we lag the game
+	if filters and filters.Validate(_filters, achievement, ignoreFilters, true) > 0 then -- If set to false we lag the game
 		numOfAch = numOfAch + 1;
 		local _, _, _, completed = addon.GetAchievementInfo(achievement.Id);
         local state;

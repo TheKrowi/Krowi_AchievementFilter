@@ -2,18 +2,6 @@ local _, addon = ...;
 
 KrowiAF.CategoryData = {};
 
-function KrowiAF.AddCategoryData(id, name, canMerge)
-    addon.Data.Categories[id] = addon.Objects.Category:New(id, name, canMerge);
-end
-
-function KrowiAF.AddIfNewCategoryData(id, name, canMerge)
-    if addon.Data.Categories[id] then
-        addon.Data.Categories[id]:PostNewFix(name);
-        return;
-    end
-    KrowiAF.AddCategoryData(id, name, canMerge);
-end
-
 local function AddToTab(id, tabName)
     addon.Data.Categories[id]:SetTabName(tabName);
     addon.Tabs[tabName].Categories = addon.Data.Categories[id].Children;
@@ -28,20 +16,47 @@ local function AddAchievements(categoryId, achievementIds)
     end
 end
 
+function KrowiAF.AddIfNewCategoryData(id, name, canMerge)
+    if addon.Data.Categories[id] then
+        addon.Data.Categories[id]:PostNewFix(name);
+        return;
+    end
+    addon.Data.Categories[id] = addon.Objects.Category:New(id, name, canMerge);
+end
+
 local ParseCategory;
 local function ParseChild(category, index)
-    if addon.Util.IsTable(category[index]) and category[index].IsTab then
-        AddToTab(category[1], category[index].TabName);
+    local categoryData = category[index];
+
+    if not addon.Util.IsTable(categoryData) then
         return;
     end
 
-    if addon.Util.IsTable(category[index]) and #category[index] > 2 and addon.Util.IsString(category[index][2]) then
-        ParseCategory(category[index], addon.Data.Categories[category[1]]);
+    if categoryData.IsTab then
+        AddToTab(category[1], categoryData.TabName);
+    end
+
+    if categoryData.IgnoreFactionFilter then
+        addon.Data.Categories[category[1]].IgnoreFilters = addon.Data.Categories[category[1]].IgnoreFilters or {};
+        addon.Data.Categories[category[1]].IgnoreFilters.FactionFilter = true;
+    end
+
+    if categoryData.IgnoreCollapsedChainFilter then
+        addon.Data.Categories[category[1]].IgnoreFilters = addon.Data.Categories[category[1]].IgnoreFilters or {};
+        addon.Data.Categories[category[1]].IgnoreFilters.CollapsedChainFilter = true;
+    end
+
+    if categoryData.IsTab or categoryData.IgnoreFactionFilter or categoryData.IgnoreCollapsedChainFilter then
         return;
     end
 
-    if addon.Util.IsTable(category[index]) and (#category[index] == 1 or addon.Util.IsNumber(category[index][2])) then
-        AddAchievements(category[1], category[index]);
+    if #categoryData > 2 and addon.Util.IsString(categoryData[2]) then
+        ParseCategory(categoryData, addon.Data.Categories[category[1]]);
+        return;
+    end
+
+    if (#categoryData == 1 or addon.Util.IsNumber(categoryData[2])) then
+        AddAchievements(category[1], categoryData);
         return;
     end
 end

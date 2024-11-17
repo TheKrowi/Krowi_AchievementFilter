@@ -135,12 +135,12 @@ function category:GetPath()
     return path;
 end
 
-local function GetFilteredAchievementNumbers(achievements, filters, numOfAch, numOfCompAch, numOfNotObtAch) -- , numOfIncompAch
+local function GetFilteredAchievementNumbers(achievements, filters, numOfAch, numOfCompAch, numOfNotObtAch, ignoreFilters) -- , numOfIncompAch
 	if not achievements then
 		return numOfAch, numOfCompAch, numOfNotObtAch;
 	end
 	for _, achievement in next, achievements do
-		numOfAch, numOfCompAch, numOfNotObtAch = addon.GetAchievementNumbers(filters, achievement, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
+		numOfAch, numOfCompAch, numOfNotObtAch = addon.GetAchievementNumbers(filters, achievement, numOfAch, numOfCompAch, numOfNotObtAch, ignoreFilters); -- , numOfIncompAch
 	end
 	return numOfAch, numOfCompAch, numOfNotObtAch;
 end
@@ -180,8 +180,8 @@ function category:GetAchievementNumbers()
 		filters2 = filters:GetFilters(self);
 	end
 
-	numOfAch, numOfCompAch, numOfNotObtAch = GetFilteredAchievementNumbers(self.Achievements, filters2, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
-	numOfAch, numOfCompAch, numOfNotObtAch = GetFilteredAchievementNumbers(self.MergedAchievements, filters2, numOfAch, numOfCompAch, numOfNotObtAch); -- , numOfIncompAch
+	numOfAch, numOfCompAch, numOfNotObtAch = GetFilteredAchievementNumbers(self.Achievements, filters2, numOfAch, numOfCompAch, numOfNotObtAch, self.IgnoreFilters); -- , numOfIncompAch
+	numOfAch, numOfCompAch, numOfNotObtAch = GetFilteredAchievementNumbers(self.MergedAchievements, filters2, numOfAch, numOfCompAch, numOfNotObtAch, self.IgnoreFilters); -- , numOfIncompAch
 
 	local mergeSmallCategories = false;
 	if filters then
