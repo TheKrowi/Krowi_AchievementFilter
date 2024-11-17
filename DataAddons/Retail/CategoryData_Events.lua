@@ -4,7 +4,6 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
     884,
     addon.L["Events"],
     {
-        IsTab = true,
         TabName = "Events",
     },
     { -- Holidays

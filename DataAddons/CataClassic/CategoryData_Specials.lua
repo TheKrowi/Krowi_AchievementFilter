@@ -4,7 +4,6 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
     971,
     addon.L["Specials"],
     {
-        IsTab = true,
         TabName = "Specials",
     },
     { -- Bur's Mount Collection

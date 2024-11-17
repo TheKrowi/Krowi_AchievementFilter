@@ -42,7 +42,7 @@ local function ParseChildData(categoryId, childData)
         return;
     end
 
-    if childData.IsTab then
+    if childData.TabName then
         SetCategoryRootForTab(categoryId, childData.TabName);
     end
 
@@ -58,7 +58,7 @@ local function ParseChildData(categoryId, childData)
         addon.Data.Categories[categoryId]:SetTooltip(childData.Tooltip);
     end
 
-    if childData.IsTab or childData.IgnoreFactionFilter or childData.IgnoreCollapsedChainFilter or childData.Tooltip then
+    if childData.TabName or childData.IgnoreFactionFilter or childData.IgnoreCollapsedChainFilter or childData.Tooltip then
         return;
     end
 
@@ -75,10 +75,6 @@ end
 
 local deferredCategories = {};
 function ParseCategory(category, parent)
-    if parent and parent.Id == 971 then
-        print(category[1], category[2], category[3])
-    end
-
     local index = 1;
     local categoryId, categoryName, categoryCanMerge;
     if addon.Util.IsNumber(category[1]) then

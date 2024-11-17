@@ -4,7 +4,6 @@ KrowiAF.CategoryData.Expansions = { -- TAB - Expansions
     883,
     addon.L["Expansions"],
     {
-        IsTab = true,
         TabName = "Expansions",
     },
     { -- Cross-Expansion

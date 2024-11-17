@@ -4,7 +4,6 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
     955,
     addon.GetCategoryInfoTitle(95),
     {
-        IsTab = true,
         TabName = "PvP",
     },
     { -- Player vs. Player
