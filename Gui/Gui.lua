@@ -270,7 +270,7 @@ function gui:ShowHideTabs(_addonName, tabName)
     self:UpdateTabsLayout(tabsOrder);
 end
 
-function gui.ShowStatusBarTooltip(frame, anchor, extraText) -- . instead of : because it needs to work for the frame
+function gui.ShowStatusBarTooltip(frame, anchor, extraText, color) -- . instead of : because it needs to work for the frame
 	GameTooltip:SetOwner(frame, anchor or "ANCHOR_NONE");
     if anchor == nil then
 	    GameTooltip:SetPoint("TOPLEFT", frame, "TOPRIGHT", -3, -3);
@@ -291,7 +291,7 @@ function gui.ShowStatusBarTooltip(frame, anchor, extraText) -- . instead of : be
 
     if extraText then
         GameTooltip_AddBlankLineToTooltip(GameTooltip);
-        GameTooltip_AddNormalLine(GameTooltip, extraText);
+        GameTooltip_AddColoredLine(GameTooltip, extraText, color or NORMAL_FONT_COLOR);
     end
 
 	GameTooltip:SetMinimumWidth(140);

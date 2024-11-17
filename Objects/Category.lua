@@ -15,10 +15,18 @@ function category:New(id, name, canMerge)
     return instance;
 end
 
-function category:PostNewFix(name)
-	if self.Name == addon.L["Unknown"] then
-		self.Name = name;
-	end
+function category:SetIgnoreFactionFilter()
+	self.IgnoreFilters = self.IgnoreFilters or {};
+	self.IgnoreFilters.FactionFilter = true;
+end
+
+function category:SetIgnoreCollapsedChainFilter()
+	self.IgnoreFilters = self.IgnoreFilters or {};
+	self.IgnoreFilters.CollapsedChainFilter = true;
+end
+
+function category:SetTooltip(tooltip)
+	self.Tooltip = tooltip;
 end
 
 function category:AddCategory(cat)
@@ -28,19 +36,6 @@ function category:AddCategory(cat)
     cat.Level = self.Level + 1;
     cat.NotHidden = self.TabName; -- Has parent so initially we are hidden
     return cat;
-end
-
-function category:PostAddCategoryFix()
-	if not self.Children then
-		return;
-	end
-
-	for _, child in next, self.Children do
-		if self.Level >= child.Level then
-			child.Level = self.Level + 1;
-			child:PostAddCategoryFix();
-		end
-	end
 end
 
 function category:InsertCategory(cat, pos)

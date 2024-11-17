@@ -521,7 +521,8 @@
         "EXPANSION_NAME10",
         "WowStyle1FilterDropdownMixin",
         "MenuResponse",
-        "MenuUtil"
+        "MenuUtil",
+        "GameTooltip_AddColoredLine"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

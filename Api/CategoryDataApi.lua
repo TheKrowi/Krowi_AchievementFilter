@@ -2,7 +2,7 @@ local _, addon = ...;
 
 KrowiAF.CategoryData = {};
 
-local function AddToTab(id, tabName)
+local function SetCategoryRootForTab(id, tabName)
     addon.Data.Categories[id]:SetTabName(tabName);
     addon.Tabs[tabName].Categories = addon.Data.Categories[id].Children;
     addon.Tabs[tabName].Category = addon.Data.Categories[id];
@@ -16,64 +16,106 @@ local function AddAchievements(categoryId, achievementIds)
     end
 end
 
-function KrowiAF.AddIfNewCategoryData(id, name, canMerge)
+function KrowiAF.AddIfNewCategoryData(id, name, parent, canMerge)
     if addon.Data.Categories[id] then
-        addon.Data.Categories[id]:PostNewFix(name);
         return;
     end
     addon.Data.Categories[id] = addon.Objects.Category:New(id, name, canMerge);
+
+    local parentId = addon.Util.IsTable(parent) and parent.Id or parent;
+    if parentId then
+        addon.Data.Categories[parentId]:AddCategory(addon.Data.Categories[id]);
+    end
+
+    return addon.Data.Categories[id];
 end
 
+local nextCategoryId = 9000;
 local ParseCategory;
-local function ParseChild(category, index)
-    local categoryData = category[index];
+local function ParseChildData(categoryId, childData)
+    local index = 1;
+    if addon.Util.IsNumber(childData[1]) then
+        index = index + 1;
+    end
 
-    if not addon.Util.IsTable(categoryData) then
+    if not addon.Util.IsTable(childData) then
         return;
     end
 
-    if categoryData.IsTab then
-        AddToTab(category[1], categoryData.TabName);
+    if childData.IsTab then
+        SetCategoryRootForTab(categoryId, childData.TabName);
     end
 
-    if categoryData.IgnoreFactionFilter then
-        addon.Data.Categories[category[1]].IgnoreFilters = addon.Data.Categories[category[1]].IgnoreFilters or {};
-        addon.Data.Categories[category[1]].IgnoreFilters.FactionFilter = true;
+    if childData.IgnoreFactionFilter then
+        addon.Data.Categories[categoryId]:SetIgnoreFactionFilter();
     end
 
-    if categoryData.IgnoreCollapsedChainFilter then
-        addon.Data.Categories[category[1]].IgnoreFilters = addon.Data.Categories[category[1]].IgnoreFilters or {};
-        addon.Data.Categories[category[1]].IgnoreFilters.CollapsedChainFilter = true;
+    if childData.IgnoreCollapsedChainFilter then
+        addon.Data.Categories[categoryId]:SetIgnoreCollapsedChainFilter();
     end
 
-    if categoryData.IsTab or categoryData.IgnoreFactionFilter or categoryData.IgnoreCollapsedChainFilter then
+    if childData.Tooltip then
+        addon.Data.Categories[categoryId]:SetTooltip(childData.Tooltip);
+    end
+
+    if childData.IsTab or childData.IgnoreFactionFilter or childData.IgnoreCollapsedChainFilter or childData.Tooltip then
         return;
     end
 
-    if #categoryData > 2 and addon.Util.IsString(categoryData[2]) then
-        ParseCategory(categoryData, addon.Data.Categories[category[1]]);
+    if addon.Util.IsString(childData[index]) then
+        ParseCategory(childData, addon.Data.Categories[categoryId]);
         return;
     end
 
-    if (#categoryData == 1 or addon.Util.IsNumber(categoryData[2])) then
-        AddAchievements(category[1], categoryData);
+    if (#childData == 1 or addon.Util.IsNumber(childData[2])) then
+        AddAchievements(categoryId, childData);
         return;
     end
 end
 
+local deferredCategories = {};
 function ParseCategory(category, parent)
-    KrowiAF.AddIfNewCategoryData(category[1], category[2], addon.Util.IsBoolean(category[3]) and category[3] or nil);
-
-    if parent then
-        parent:AddCategory(addon.Data.Categories[category[1]]);
-        parent:PostAddCategoryFix();
+    if parent and parent.Id == 971 then
+        print(category[1], category[2], category[3])
     end
 
-    local index = addon.Util.IsBoolean(category[3]) and 4 or 3;
+    local index = 1;
+    local categoryId, categoryName, categoryCanMerge;
+    if addon.Util.IsNumber(category[1]) then
+        categoryId = category[1];
+        index = index + 1;
+    else
+        categoryId = nextCategoryId;
+        nextCategoryId = nextCategoryId + 1;
+    end
+
+    if addon.Util.IsString(category[index]) then
+        categoryName = category[index];
+        index = index + 1;
+    end
+
+    if addon.Util.IsBoolean(category[index]) then
+        categoryCanMerge = category[index];
+        index = index + 1;
+    end
+
+    if not addon.Data.Categories[categoryId] and not categoryName then
+        deferredCategories[categoryId] = category;
+        assert(parent == nil, "Error: Parent category is not nil. Verify the category hierarchy.");
+        return;
+    end
+
+    KrowiAF.AddIfNewCategoryData(categoryId, categoryName, parent, categoryCanMerge);
 
     while category[index] do
-        ParseChild(category, index);
+        ParseChildData(categoryId, category[index]);
         index = index + 1;
+    end
+
+    if deferredCategories[categoryId] then
+        category = deferredCategories[categoryId];
+        deferredCategories[categoryId] = nil;
+        ParseCategory(category);
     end
 end
 
