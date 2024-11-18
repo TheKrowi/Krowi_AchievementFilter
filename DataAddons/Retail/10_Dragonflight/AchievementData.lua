@@ -353,10 +353,10 @@ KrowiAF.AchievementData["10_00_00"] = {
     {16517}, -- Toxicity Strike Team
     {16518}, -- Explore Thaldraszus
     {16519}, -- Dragon Isles Safari
-    {16522}, -- A True Explorer
-    {16528}, -- Joining the Khansguard
-    {16529}, -- Joining the Community
-    {16530}, -- Ally of the Flights
+    -- {16522}, -- A True Explorer [Removed in 11.0.7, replaced by 41174]
+    -- {16528}, -- Joining the Khansguard [Removed in 11.0.7, replaced by 41180]
+    -- {16529}, -- Joining the Community [Removed in 11.0.7, replaced by 41181]
+    -- {16530}, -- Ally of the Flights [Removed in 11.0.7, replaced by 41182]
     {16531}, -- A Whole Heap of Lunkers
     {16532}, -- True Friends with Sabellian
     {16533}, -- Lots of Lunkers
@@ -372,7 +372,7 @@ KrowiAF.AchievementData["10_00_00"] = {
     {16546}, -- What's Down There?
     {16547}, -- Pulled!
     {16548}, -- It Takes a Tuskarr Buddy
-    {16549}, -- Popular Around the Isles
+    -- {16549}, -- Popular Around the Isles [Removed in 11.0.7, replaced by 41179]
     {16550}, -- Giving Back to Nature
     {16551}, -- Giving More Back to Nature
     {16552}, -- Giving Even More Back to Nature
@@ -662,10 +662,10 @@ KrowiAF.AchievementData["10_00_02"] = {
         },
     },
     {16808}, -- Friend of the Dragon Isles
-    {16884}, -- Friends in the Field
-    {16944}, -- Friend of the Family
-    {16994}, -- Friends in the Accord
-    {17064}, -- Friends in the Plains
+    -- {16884}, -- Friends in the Field [Removed in 11.0.7, replaced by 41172]
+    -- {16944}, -- Friend of the Family [Removed in 11.0.7, replaced by 41173]
+    -- {16994}, -- Friends in the Accord [Removed in 11.0.7, replaced by 41171]
+    -- {17064}, -- Friends in the Plains [Removed in 11.0.7, replaced by 41170]
     { -- Ahead of the Curve: Raszageth the Storm-Eater
         17107,
         {
@@ -900,8 +900,8 @@ KrowiAF.AchievementData["10_01_00"] = {
         },
     },
     {17741}, -- Slow and Steady Wins the Race
-    {17756}, -- Friends in Loamm Places
-    {17763}, -- There's No Place Like Loamm
+    -- {17756}, -- Friends in Loamm Places [Removed in 11.0.7, replaced by 41175]
+    -- {17763}, -- There's No Place Like Loamm [Removed in 11.0.7, replaced by 41183]
     { -- Obsidian Gladiator: Dragonflight Season 2
         17764,
         {
@@ -1870,8 +1870,8 @@ KrowiAF.AchievementData["10_02_00"] = {
     {19194}, -- The Emerald Bounty
     {19196}, -- Sowing the Seeds
     {19198}, -- The Seeds I Sow
-    {19230}, -- Friends in the Dream
-    {19235}, -- Warden of the Dream
+    -- {19230}, -- Friends in the Dream [Removed in 11.0.7, replaced by 41176]
+    -- {19235}, -- Warden of the Dream [Removed in 11.0.7, replaced by 41177]
     { -- Verdant Vogue
         19276,
         {
@@ -1904,7 +1904,7 @@ KrowiAF.AchievementData["10_02_00"] = {
     },
     {19306}, -- Emerald Dream Glyph Hunter
     {19307}, -- Dragon Isles Pathfinder
-    {19308}, -- Freshscales Fifteen
+    -- {19308}, -- Freshscales Fifteen [Removed in 11.0.7, replaced by 41184]
     {19309}, -- Explore the Emerald Dream
     {19310}, -- Fruit of the Bloom
     {19312}, -- Super Duper Bloom
@@ -2365,8 +2365,18 @@ KrowiAF.AchievementData["10_02_06"] = {
     },
     {20481}, -- Dragonflight Season 4 Master
     {20501}, -- Back from the Beyond
-    {20508}, -- Plunder Wonder
-    {20509}, -- Plunderkind
+    { -- Plunder Wonder
+        20508,
+        {
+            {"Event", 1601},
+        },
+    },
+    { -- Plunderkind
+        20509,
+        {
+            {"Event", 1601},
+        },
+    },
 };
 
 KrowiAF.AchievementData["10_02_07"] = {

@@ -508,7 +508,7 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40542}, -- Smelling History
     {40585}, -- Super Size Snuffling
     {40590}, -- Priory of the Sacred Flame
-    {40591}, -- Khaz Algar Diplomat
+    -- {40591}, -- Khaz Algar Diplomat [Removed in 11.0.7, replaced by 41169]
     {40592}, -- Heroic: Priory of the Sacred Flame
     {40596}, -- Mythic: Priory of the Sacred Flame
     {40599}, -- The Dawnbreaker
@@ -608,16 +608,16 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40832}, -- Leave it to Weaver
     {40833}, -- The General's Salute
     {40835}, -- Vizier than Ever
-    {40836}, -- Assembly of the Deeps
+    -- {40836}, -- Assembly of the Deeps [Removed in 11.0.7, replaced by 41165]
     {40837}, -- Adventurer of The Ringing Deeps
-    {40838}, -- The Severed Threads
+    -- {40838}, -- The Severed Threads [Removed in 11.0.7, replaced by 41149]
     {40840}, -- Adventurer of Azj-Kahet
     {40843}, -- Mine Poppin'
     {40844}, -- Sojourner of Hallowfall
-    {40845}, -- Hallowfall Arathi
+    -- {40845}, -- Hallowfall Arathi [Removed in 11.0.7, replaced by 41167]
     {40848}, -- Treasures of Hallowfall
     {40851}, -- Adventurer of Hallowfall
-    {40856}, -- Council of Dornogal
+    -- {40856}, -- Council of Dornogal [Removed in 11.0.7, replaced by 41161]
     {40859}, -- We're Here All Night
     {40860}, -- A Star of Dorn
 };
@@ -638,10 +638,10 @@ KrowiAF.AchievementData["11_00_02"] = {
     {40876}, -- Vox Arachni
     {40882}, -- Copious Coffers
     {40885}, -- The Key to Madness
-    {40904}, -- Cornerstone of Dornogal
-    {40905}, -- "From Many, One"
-    {40906}, -- The Flame Burns Within
-    {40907}, -- We Rise Anew
+    -- {40904}, -- Cornerstone of Dornogal [Removed in 11.0.7, replaced by 41162]
+    -- {40905}, -- "From Many, One" [Removed in 11.0.7, replaced by 41166]
+    -- {40906}, -- The Flame Burns Within [Removed in 11.0.7, replaced by 41168]
+    -- {40907}, -- We Rise Anew [Removed in 11.0.7, replaced by 41164]
     {40939}, -- Harbinger of the Gilded
 };
 
@@ -788,4 +788,117 @@ KrowiAF.AchievementData["11_00_05"] = {
             {"Event", 1592},
         },
     },
+};
+
+KrowiAF.AchievementData["11_00_07"] = {
+    {KrowiAF.SetAchievementPatch, 11, 0, 7},
+    {40762}, -- Khaz Algar Lore Hunter
+    {40791}, -- Fate of the Kirin Tor
+    {40953}, -- A Farewell to Arms
+    {40955}, -- War Stories
+    {40956}, -- I'm On Island Time
+    {40957}, -- Maximum Effort
+    {40958}, -- Full Heart, Can't Lose
+    {40959}, -- Black Empire State of Mind
+    {40960}, -- Uldir
+    {40961}, -- Battle of Dazar'alor
+    {40962}, -- The Eternal Palace
+    {40963}, -- Ny'alotha, the Waking City
+    {41042}, -- Siren-ity Now!
+    {41043}, -- Excavation Projects
+    {41045}, -- A Song of Secrets
+    {41046}, -- Clean Up on Isle Siren
+    {41050}, -- A Choir of Citrines
+    { -- Master of the Turbulent Timeways II
+        41056,
+        {
+            {"Event", 1425},
+        },
+    },
+    { -- Elders of Khaz Algar
+        41130,
+        {
+            {"Event", 327},
+        },
+    },
+    {41131}, -- Treasures of the Storm
+    {41133}, -- Isle Remember You
+    {41149}, -- The Severed Threads
+    { -- Lub and Plunder
+        41152,
+        {
+            {"Event", 1601},
+        },
+    },
+    { -- Swabbie Swag
+        41153,
+        {
+            {"Event", 1601},
+        },
+    },
+    { -- Decked Out
+        41154,
+        {
+            {"Event", 1601},
+        },
+    },
+    { -- Buckled Up
+        41156,
+        {
+            {"Event", 1601},
+        },
+    },
+    { -- Plunder Siege
+        41157,
+        {
+            {"Event", 1601},
+        },
+    },
+    { -- It's a Plunderful Life
+        41160,
+        {
+            {"Event", 1601},
+        },
+    },
+    {41161}, -- Council of Dornogal
+    {41162}, -- Cornerstone of Dornogal
+    { -- Lord of the Bling
+        41163,
+        {
+            {"Event", 1601},
+        },
+    },
+    {41164}, -- We Rise Anew
+    {41165}, -- Assembly of the Deeps
+    {41166}, -- From Many, One
+    {41167}, -- Hallowfall Arathi
+    {41168}, -- The Flame Burns Within
+    {41169}, -- Khaz Algar Diplomat
+    {41170}, -- Friends in the Plains
+    {41171}, -- Friends in the Accord
+    {41172}, -- Friends in the Field
+    {41173}, -- Friend of the Family
+    {41174}, -- A True Explorer
+    {41175}, -- Friends in Loamm Places
+    {41176}, -- Friends in the Dream
+    {41177}, -- Warden of the Dream
+    {41179}, -- Popular Around the Isles
+    {41180}, -- Joining the Khansguard
+    {41181}, -- Joining the Community
+    {41182}, -- Ally of the Flights
+    {41183}, -- There's No Place Like Loamm
+    {41184}, -- Freshscales Fifteen
+    {41185}, -- Siren's Squall
+    {41186}, -- Slate of the Union
+    {41187}, -- Rage Aside the Machine
+    {41188}, -- Crystal Chronicled
+    {41189}, -- Azj the World Turns
+    {41201}, -- You Xal Not Pass
+    {41202}, -- Hot Tropic
+    {41203}, -- Bwon Voyage
+    {41204}, -- Dune Squad
+    {41205}, -- Sound Off
+    {41206}, -- Songs of Storms
+    {41207}, -- When the Drust Settles
+    {41209}, -- Dressed to Kill: Battle for Azeroth
 };

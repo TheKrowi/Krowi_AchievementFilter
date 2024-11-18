@@ -29,6 +29,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 1396, -- Elders of Northrend
                 6006, -- Elders of Cataclysm
                 17321, -- Elders of the Dragon Isles
+                41130, -- Elders of Khaz Algar
                 910, -- Elders of the Dungeons
                 913, -- To Honor One's Elders
             },
@@ -837,6 +838,21 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             40223, -- Timerunner
         },
     },
+    { -- Plunderstorm
+        1680,
+        addon.L["Plunderstorm"],
+        {
+            20508, -- Plunder Wonder
+            41152, -- Lub and Plunder
+            41153, -- Swabbie Swag
+            41154, -- Decked Out
+            41156, -- Buckled Up
+            41157, -- Plunder Siege
+            41163, -- Lord of the Blingtron
+            41160, -- It's a Plunderful Life
+            20509, -- Plunderkind
+        }
+    },
     { -- Timewalking
         951,
         addon.GetCategoryInfoTitle(15454),
@@ -854,6 +870,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             addon.L["Turbulent Timeways"],
             {
                 19079, -- Master of the Turbulent Timeways
+                41056, -- Master of the Turbulent Timeways II
             },
         },
         {
@@ -978,6 +995,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                     14159, -- Combating the Corruption
                     14158, -- It's Not A Tumor!
                     14156, -- The Rajani
+                    40959, -- Black Empire State of Mind
                 },
             },
             { -- Uldum
@@ -990,6 +1008,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                     14159, -- Combating the Corruption
                     14158, -- It's Not A Tumor!
                     14155, -- Uldum Accord
+                    40959, -- Black Empire State of Mind
                 },
             },
         },
@@ -1258,8 +1277,6 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             1637, -- Spirit of Competition
             2079, -- Tabard of the Protector
             2116, -- Tabard of the Argent Dawn
-            20508, -- Plunder Wonder
-            20509, -- Plunderkind
         },
     },
 };

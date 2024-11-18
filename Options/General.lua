@@ -149,64 +149,39 @@ end
 local function ExportMissingAchievements()
     local frame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template");
 	frame:Init(addon.L["Export Missing Achievements"]);
-    local missingAchievements = {};
+    local numMissingAchievements = 0;
     local exportString = "\r\n";
     for _, achievementId in next, addon.Data.AchievementIds do
         if addon.Data.Achievements[achievementId].Uncategorized then
             local achievementInfo = addon.GetAchievementInfoTable(achievementId);
-            tinsert(missingAchievements, {
-                Id = achievementInfo.Id,
-                Name = achievementInfo.Name,
-                Description = achievementInfo.Description,
-                Points = achievementInfo.Points,
-                -- Flags = achievementInfo.Flags,
-                RewardText = achievementInfo.RewardText,
-                -- IsStatistic = achievementInfo.IsStatistic
-            });
-            exportString = exportString .. "    { -- " .. achievementInfo.Name .. "\r\n";
+            numMissingAchievements = numMissingAchievements + 1;
+            -- exportString = exportString .. "    { -- " .. achievementInfo.Name .. "\r\n";
+            -- exportString = exportString .. "        " .. achievementInfo.Id .. "," .. "\r\n";
+            exportString = exportString .. "    {" .. achievementInfo.Id .. "}, -- " .. achievementInfo.Name .. "\r\n";
+        end
+    end
+
+    print("Missing achievements found:", numMissingAchievements);
+    frame.Input:SetText(exportString);
+    frame:Show();
+end
+
+local function ExportRemovedAchievements()
+    local frame = KrowiAF_TextFrame or CreateFrame("Frame", "KrowiAF_TextFrame", UIParent, "KrowiAF_TextFrame_Template");
+	frame:Init(addon.L["Export Removed Achievements"]);
+    local numRemovedAchievements = 0;
+    local exportString = "\r\n";
+    for _, achievementId in next, addon.Data.AchievementIds do
+        local achievementInfo = addon.GetAchievementInfoTable(achievementId);
+        if not achievementInfo.Exists then
+            numRemovedAchievements = numRemovedAchievements + 1;
+            exportString = exportString .. "    { -- " .. (addon.Data.Achievements[achievementId].Category and addon.Data.Achievements[achievementId].Category:GetPath() or "") .. "\r\n";
             exportString = exportString .. "        " .. achievementInfo.Id .. "," .. "\r\n";
             exportString = exportString .. "    }," .. "\r\n";
         end
     end
 
-    local function escapeString(str)
-        str = str:gsub("\\", "\\\\")
-        str = str:gsub("\"", "\\\"")
-        str = str:gsub("\n", "\\n")
-        str = str:gsub("\r", "\\r")
-        str = str:gsub("\t", "\\t")
-        return str
-    end
-
-    local function serializeTable(tbl)
-        local result = {}
-        local function serialize(value)
-            if type(value) == "table" then
-                table.insert(result, "{")
-                for k, v in pairs(value) do
-                    table.insert(result, "\""..escapeString(tostring(k)).."\":")
-                    serialize(v)
-                    table.insert(result, ",")
-                end
-                if result[#result] == "," then
-                    result[#result] = "}"
-                else
-                    table.insert(result, "}")
-                end
-            elseif type(value) == "string" then
-                table.insert(result, "\"" .. escapeString(value) .. "\"")
-            elseif type(value) == "number" or type(value) == "boolean" then
-                table.insert(result, tostring(value))
-            else
-                table.insert(result, "null")
-            end
-        end
-        serialize(tbl)
-        return table.concat(result)
-    end
-
-    print("Missing achievements found:", #missingAchievements);
-    local jsonString = serializeTable(missingAchievements)
+    print("Missing achievements found:", numRemovedAchievements);
     frame.Input:SetText(exportString);
     frame:Show();
 end
@@ -532,6 +507,13 @@ options.OptionsTable.args["General"] = {
                             desc = addon.L["Export Missing Achievements Desc"],
                             func = ExportMissingAchievements
                         },
+                        Blank4 = {order = OrderPP(), type = "description", width = AdjustedWidth(2), name = ""},
+                        ExportRemovedAchievements = {
+                            order = OrderPP(), type = "execute",
+                            name = addon.L["Export Removed Achievements"],
+                            desc = addon.L["Export Removed Achievements Desc"],
+                            func = ExportRemovedAchievements
+                        },
                         PrintMapInfo = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(),
                             name = addon.L["Print map info"],
@@ -539,7 +521,7 @@ options.OptionsTable.args["General"] = {
                             get = function() return addon.Options.db.profile.PrintMapInfo; end,
                             set = function(_, value) addon.Options.db.profile.PrintMapInfo = value; end
                         },
-                        Blank4 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
+                        Blank5 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
                         PrintMapInfoWithoutReload = {
                             order = OrderPP(), type = "execute",
                             name = addon.L["Print map info w/o reload"],

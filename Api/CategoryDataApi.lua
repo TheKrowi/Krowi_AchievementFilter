@@ -75,6 +75,10 @@ end
 
 local deferredCategories = {};
 function ParseCategory(category, parent)
+    if category.IsLoaded then
+        return;
+    end
+
     local index = 1;
     local categoryId, categoryName, categoryCanMerge;
     if addon.Util.IsNumber(category[1]) then
@@ -113,9 +117,21 @@ function ParseCategory(category, parent)
         deferredCategories[categoryId] = nil;
         ParseCategory(category);
     end
+
+    if not parent then
+        category.IsLoaded = true;
+    end
 end
 
 function KrowiAF.CreateCategories()
+    -- Fixed order is desired here to make sure achievements are redirected correctly
+    ParseCategory(KrowiAF.CategoryData.Achievements);
+    ParseCategory(KrowiAF.CategoryData.Expansions);
+    ParseCategory(KrowiAF.CategoryData.Events);
+    ParseCategory(KrowiAF.CategoryData.PvP);
+    ParseCategory(KrowiAF.CategoryData.Specials);
+
+    -- Load the rest
     for _, root in next, KrowiAF.CategoryData do
         ParseCategory(root);
     end
