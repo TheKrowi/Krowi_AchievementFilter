@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 80.0 - 2024-11-18
+### Added
+- Achievements added in 11.0.7
+
 ## 79.0 - 2024-11-15
 ### Added
 - Guild achievements tab keybind
