@@ -39,6 +39,14 @@ function KrowiAF_SelectAchievement(achievement)
 		category = achievement.Category;
 	end
 
+	if addon.Options.db.profile.Achievements.EnableTabPriority and achievement.MoreCategories then
+		for _, moreCategory in next, achievement.MoreCategories do
+			if moreCategory:GetTree()[1].TabName == KrowiAF_SavedData.Tabs[addon.Options.db.profile.Achievements.TabPriority].Name then
+				category = moreCategory;
+			end
+		end
+	end
+
 	if not category and achievement.IsTracking then
 		return;
 	end

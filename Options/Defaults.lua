@@ -84,7 +84,9 @@ addon.Options.Defaults = {
             },
             MouseWheelPanScalar = 1,
             ShowTemporarilyObtainableIcon = true,
-            TemporarilyObtainableHeaderColors = true
+            TemporarilyObtainableHeaderColors = true,
+            EnableTabPriority = false,
+            TabPriority = 5
         },
         RightClickMenu = {
             ShowButtonOnAchievement = false,

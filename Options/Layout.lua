@@ -1098,6 +1098,27 @@ local achievementsOptions = {
                             set = SetAchievementsMouseWheelPanScalar
                         }
                     }
+                },
+                TabPriority = {
+                    order = OrderPP(), type = "group", inline = true,
+                    name = addon.L["Tab Priority"],
+                    args = {
+                        EnableTabPriority = {
+                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
+                            name = addon.L["Enable Tab Priority"],
+                            desc = addon.L["Enable Tab Priority Desc"]:KAF_AddDefaultValueText("Achievements.EnableTabPriority"),
+                            get = function() return addon.Options.db.profile.Achievements.EnableTabPriority; end,
+                            set = function(_, value) addon.Options.db.profile.Achievements.EnableTabPriority = value; end
+                        },
+                        TabPriority = {
+                            order = OrderPP(), type = "select", width = AdjustedWidth(1.5),
+                            name = addon.L["Tab Priority"],
+                            desc = function() return addon.L["Tab Priority Desc"]:K_ReplaceVars(addon.L["Achievements"]):KAF_AddDefaultValueText("Achievements.TabPriority", KrowiAF_SavedData.TabKeys) end,
+                            values = function() return KrowiAF_SavedData.TabKeys; end,
+                            get = function() return addon.Options.db.profile.Achievements.TabPriority; end,
+                            set = function (_, value) addon.Options.db.profile.Achievements.TabPriority = value; end
+                        }
+                    }
                 }
             }
         },

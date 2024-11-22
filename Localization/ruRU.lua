@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-10-24 18-58-09 ]] --
+-- [[ Exported at 2024-11-22 08-44-21 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -273,6 +273,7 @@ L["Force two columns"] = "Принудительно в два стобца"
 L["Force two columns Desc"] = "Включите / отключите алгоритм принудительного отображения двух столбцов целей достижения. При включении, если из-за слишком длинного текста одной или нескольких целей будет отображаться только один столбец целей, второй столбец будет принудительно отображаться на основе других настроек."
 L["Force two columns threshold"] = "Принудительный порог для двух столбцов"
 L["Force two columns threshold Desc"] = "Количество критериев, которым должно соответствовать достижение, прежде чем мы принудительно введем второй столбец, если обычно отображается только один."
+L["Forget Me Not: Next"] = " Не забывай меня: Следущее"
 L["Format"] = "Формат"
 L["Fracture Chambers"] = "Костоломни"
 L["Fractures in Time"] = "Разломы во Времени"
@@ -683,15 +684,19 @@ L["The Azure Span Sprint"] = "Лазурный марафон"
 L["The Big Dig: Active"] = "Большие раскопки: Активно"
 L["The Big Dig: Next"] = "Большие раскопки: Следущее"
 L["The Big Dig: Soon"] = "Большие раскопки: Скоро"
+L["The Cruelty of Dornic: Next"] = "Жестокость на острове Дорн: Следущее"
 L["The Entitled"] = "Привелегированный"
 L["the event name with run time"] = "{eventName} от {startDate} до {endDate}"
 L["The Flowing Forest Flight"] = "Тур Текущих лесов"
 L["The Iron Tide"] = "Железный прилив"
+L["The Rivals: Next"] = "Соперники: Следущее"
 L["The Shattering"] = "Разбитие"
+L["The Thraegar's Descent: Next"] = "Спуск траэгара: Следущее"
 L["The Thunder King"] = "Властелин Грома"
 L["The Tomb of Sargeras"] = "Гробница Саргераса"
 L["The Vakthros Ascent"] = "Подъем на Вактрос"
 L["The Waking Shore"] = "Берега Пробуждения"
+L["The Wanderer: Next"] = "Странник: Следущее"
 L["The War Within (pre-patch)"] = "The War Within (Пре-Патч)"
 L["Theater Troupe"] = "Театральная Труппа"
 L["This achievement"] = "Это достижение"

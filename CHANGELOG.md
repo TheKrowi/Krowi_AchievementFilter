@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## 80.0 - 2024-11-18
 ### Added
 - Achievements added in 11.0.7
+- Feature to prioritize which tab is used when getting redirected to an achievement
 
 ## 79.0 - 2024-11-15
 ### Added

@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-10-24 18-58-05 ]] --
+-- [[ Exported at 2024-11-22 08-44-18 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -543,7 +543,7 @@ L["Keep current character Desc"] = "Garder le personnage actuel dans la liste de
 L["Keybindings Desc"] = "Pour modifier les raccourcis clavier pour {addonName}, sélectionnez l'onglet Jeu en haut à gauche de cette fenêtre. Ensuite, sélectionnez la catégorie {keybindings} dans le volet de gauche. Enfin, sélectionnez AddOns dans la vue de droite."
 L["Kyrian Assault"] = "L'assaut des Kyrians"
 L["Landfall"] = "Le débarquement"
-L["Layout"] = "Calque"
+L["Layout"] = "Fenêtre"
 L["Left"] = "Gauche"
 L["Left Alt"] = "Alt gauche"
 L["Left click"] = "Clic gauche"
