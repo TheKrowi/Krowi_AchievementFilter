@@ -1169,8 +1169,8 @@ KrowiAF.AchievementData["06_00_02"] = {
         9566,
         faction.Horde,
         9729,
-        true,
         {
+            IsPvP = true,
             {"From", "Date", {2014, 11, 21}, "Until", "Date", {2015, 1, 5}},
         },
     },
@@ -1395,8 +1395,8 @@ KrowiAF.AchievementData["06_00_02"] = {
         9729,
         faction.Alliance,
         9566,
-        true,
         {
+            IsPvP = true,
             {"From", "Date", {2014, 11, 21}, "Until", "Date", {2015, 1, 5}},
         },
     },

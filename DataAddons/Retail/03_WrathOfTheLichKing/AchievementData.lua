@@ -698,8 +698,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         433,
         faction.Alliance,
         443,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -707,8 +707,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         434,
         faction.Alliance,
         445,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -716,8 +716,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         435,
         faction.Alliance,
         444,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -725,8 +725,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         436,
         faction.Alliance,
         447,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -734,8 +734,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         437,
         faction.Alliance,
         448,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -743,8 +743,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         438,
         faction.Alliance,
         469,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -752,8 +752,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         439,
         faction.Alliance,
         451,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -761,8 +761,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         440,
         faction.Alliance,
         452,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -770,8 +770,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         441,
         faction.Alliance,
         450,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -779,8 +779,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         442,
         faction.Alliance,
         454,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -788,8 +788,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         443,
         faction.Horde,
         433,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -797,8 +797,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         444,
         faction.Horde,
         435,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -806,8 +806,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         445,
         faction.Horde,
         434,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -815,8 +815,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         446,
         faction.Horde,
         473,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -824,8 +824,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         447,
         faction.Horde,
         436,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -833,8 +833,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         448,
         faction.Horde,
         437,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -842,8 +842,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         449,
         faction.Horde,
         472,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -851,8 +851,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         450,
         faction.Horde,
         441,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -860,8 +860,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         451,
         faction.Horde,
         439,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -869,8 +869,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         452,
         faction.Horde,
         440,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -878,8 +878,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         453,
         faction.Horde,
         471,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -887,8 +887,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         454,
         faction.Horde,
         442,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -980,8 +980,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         468,
         faction.Horde,
         470,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -989,8 +989,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         469,
         faction.Horde,
         438,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -998,8 +998,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         470,
         faction.Alliance,
         468,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -1007,8 +1007,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         471,
         faction.Alliance,
         453,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -1016,8 +1016,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         472,
         faction.Alliance,
         449,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -1025,8 +1025,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         473,
         faction.Alliance,
         446,
-        true,
         {
+            IsPvP = true,
             {"Never"},
         },
     },
@@ -1217,8 +1217,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         610,
         faction.Alliance,
         615,
-        true,
         {
+            IsPvP = true,
             {"Before", "Version", {8, 0, 1}},
         },
     },
@@ -1226,8 +1226,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         611,
         faction.Alliance,
         616,
-        true,
         {
+            IsPvP = true,
             {"Before", "Version", {9, 0, 1}},
         },
     },
@@ -1235,8 +1235,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         612,
         faction.Alliance,
         617,
-        true,
         {
+            IsPvP = true,
             {"Before", "Version", {9, 0, 1}},
         },
     },
@@ -1256,8 +1256,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         615,
         faction.Horde,
         610,
-        true,
         {
+            IsPvP = true,
             {"Before", "Version", {9, 0, 1}},
         },
     },
@@ -1271,8 +1271,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         617,
         faction.Horde,
         612,
-        true,
         {
+            IsPvP = true,
             {"Before", "Version", {8, 0, 1}},
         },
     },
@@ -2841,8 +2841,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         1757,
         faction.Alliance,
         2200,
-        true,
         {
+            IsPvP = true,
             {"Before", "Version", {8, 0, 1}},
         },
     },
@@ -2857,8 +2857,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         1762,
         faction.Alliance,
         2192,
-        true,
         {
+            IsPvP = true,
             {"Before", "Version", {8, 0, 1}},
         },
     },
@@ -3207,8 +3207,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         2192,
         faction.Horde,
         1762,
-        true,
         {
+            IsPvP = true,
             {"Before", "Version", {8, 0, 1}},
         },
     },
@@ -3236,8 +3236,8 @@ KrowiAF.AchievementData["03_00_02"] = {
         2200,
         faction.Horde,
         1757,
-        true,
         {
+            IsPvP = true,
             {"Before", "Version", {8, 0, 1}},
         },
     },

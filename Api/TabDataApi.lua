@@ -3,13 +3,19 @@ local _, addon = ...;
 KrowiAF.TabData = {};
 
 function KrowiAF.InjectTabDataDynamicOptions()
-    KrowiAF.RegisterTabDataOptions("Blizzard_AchievementUI", addon.L["Blizzard"], "Achievements", addon.L["Achievements"], "TOGGLEACHIEVEMENT", false);
-    KrowiAF.RegisterTabDataOptions("Blizzard_AchievementUI", addon.L["Blizzard"], "Guild", addon.L["Guild"], "KrowiAF_OPEN_TAB_Guild", true);
-    KrowiAF.RegisterTabDataOptions("Blizzard_AchievementUI", addon.L["Blizzard"], "Statistics", addon.L["Statistics"], "TOGGLESTATISTICS", true);
+    KrowiAF.RegisterTabDataOptions{"Blizzard_AchievementUI", addon.L["Blizzard"], "Achievements", addon.L["Achievements"], "TOGGLEACHIEVEMENT", false};
+    KrowiAF.RegisterTabDataOptions{"Blizzard_AchievementUI", addon.L["Blizzard"], "Guild", addon.L["Guild"], "KrowiAF_OPEN_TAB_Guild", true};
+    KrowiAF.RegisterTabDataOptions{"Blizzard_AchievementUI", addon.L["Blizzard"], "Statistics", addon.L["Statistics"], "TOGGLESTATISTICS", true};
 
-    for _, v1 in next, KrowiAF.TabData do
-        for _, v2 in next, v1 do
-            KrowiAF.RegisterTabDataOptions(unpack(v2));
+    -- Always load KAF tabs first before plugins
+    for _, tab in next, KrowiAF.TabData.Base do
+        KrowiAF.RegisterTabDataOptions(tab);
+    end
+
+    -- Load the plugins
+    for _, tabData in next, KrowiAF.TabData do
+        for _, tab in next, tabData do
+            KrowiAF.RegisterTabDataOptions(tab);
         end
     end
 end
@@ -22,7 +28,7 @@ local function GetIndexOrInsertTab(addonName, addonDisplayName, tabName, tabDisp
         end
     end
     if index == nil then
-        tinsert(KrowiAF_SavedData.Tabs, addon.Objects.Tab:New(addonName, tabName, bindingName));
+        tinsert(KrowiAF_SavedData.Tabs, addon.Objects.Tab:NewSavedData(addonName, tabName, bindingName));
         tinsert(KrowiAF_SavedData.TabKeys, addonDisplayName .. " - " .. tabDisplayName);
         index = #KrowiAF_SavedData.TabKeys;
     end
@@ -173,11 +179,17 @@ local function InjectOptionsTable(addonName, addonDisplayName, tabName, tabDispl
     InjectTabsShowOptionsTable(addonName, addonDisplayName, tabName, tabDisplayName);
 end
 
-function KrowiAF.RegisterTabDataOptions(addonName, addonDisplayName, tabName, tabDisplayName, bindingName, showByDefault)
+function KrowiAF.RegisterTabDataOptions(tab)
+    if tab.IsRegistered then
+        return;
+    end
+
     -- Make sure all tables exist
     KrowiAF_SavedData = KrowiAF_SavedData or {};
     KrowiAF_SavedData.TabKeys = KrowiAF_SavedData.TabKeys or {};
     KrowiAF_SavedData.Tabs = KrowiAF_SavedData.Tabs or {};
+
+    local addonName, addonDisplayName, tabName, tabDisplayName, bindingName, showByDefault = unpack(tab);
 
     local index = GetIndexOrInsertTab(addonName, addonDisplayName, tabName, tabDisplayName, bindingName);
 
@@ -188,19 +200,35 @@ function KrowiAF.RegisterTabDataOptions(addonName, addonDisplayName, tabName, ta
     if bindingName then
         _G["BINDING_NAME_" .. bindingName] = addon.L["Toggle"] .. " " .. tabDisplayName .. " "  .. addon.L["tab"];
     end
+
+    tab.IsRegistered = true;
 end
 
 addon.Tabs = {};
 addon.TabsOrder = {};
 function KrowiAF.LoadTabs()
-    for _, v1 in next, KrowiAF.TabData do
-        for _, v2 in next, v1 do
-            KrowiAF.AddTabData(unpack(v2));
+    -- Always load KAF tabs first before plugins
+    for _, tab in next, KrowiAF.TabData.Base do
+        KrowiAF.AddTabData(tab);
+    end
+
+    -- Load the plugins
+    for _, tabData in next, KrowiAF.TabData do
+        for _, tab in next, tabData do
+            KrowiAF.AddTabData(tab);
         end
     end
 end
 
-function KrowiAF.AddTabData(addonName, addonDisplayName, tabName, tabDisplayName, bindingName, showByDefault)
-    addon.Tabs[tabName] = addon.Objects.Tab:New2(addonName, addonDisplayName, tabName, tabDisplayName, bindingName);
+function KrowiAF.AddTabData(tab)
+    if tab.IsLoaded then
+        return;
+    end
+
+    local _, _, tabName, tabDisplayName, _, _ = unpack(tab);
+
+    addon.Tabs[tabName] = addon.Objects.Tab:New(tabName, tabDisplayName);
     tinsert(addon.TabsOrder, tabName);
+
+    tab.IsLoaded = true;
 end

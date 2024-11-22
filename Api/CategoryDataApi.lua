@@ -124,15 +124,15 @@ function ParseCategory(category, parent)
 end
 
 function KrowiAF.CreateCategories()
-    -- Fixed order is desired here to make sure achievements are redirected correctly
+    -- Always load KAF categories first, this is desired to make sure achievements are redirected correctly
     ParseCategory(KrowiAF.CategoryData.Achievements);
     ParseCategory(KrowiAF.CategoryData.Expansions);
     ParseCategory(KrowiAF.CategoryData.Events);
     ParseCategory(KrowiAF.CategoryData.PvP);
     ParseCategory(KrowiAF.CategoryData.Specials);
 
-    -- Load the rest
-    for _, root in next, KrowiAF.CategoryData do
-        ParseCategory(root);
+    -- Load the plugins
+    for _, categoryData in next, KrowiAF.CategoryData do
+        ParseCategory(categoryData);
     end
 end
