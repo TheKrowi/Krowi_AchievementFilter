@@ -681,6 +681,7 @@ function addon.GetAchievementInfoTable(achievementId) -- Returns an additional b
         Description = description,
         Flags = flags,
         Icon = icon,
+        HasReward = rewardText ~= "",
         RewardText = rewardText,
         IsGuild = isGuild,
         WasEarnedByMe = wasEarnedByMe,

@@ -19,6 +19,10 @@ local defaultAchievements = {
         Alliance = false,
         Horde = false
     },
+    HasReward = {
+        Yes = true,
+        No = true
+    },
     Special = {
         RealmFirst = false,
         FeatsOfStrength = true,
@@ -115,13 +119,13 @@ function filters:Load()
 end
 
 -- [[ Validation ]] --
-local completedCache, pointsCache;
+local achievementInfoCache;
 local validations = {
     {   -- 1
-        Validate = function(_filters, achievement, ignoreFilters) return not _filters.Completion.Completed and completedCache; end
+        Validate = function(_filters, achievement, ignoreFilters) return not _filters.Completion.Completed and achievementInfoCache.IsCompleted; end
     },
     {   -- 2
-        Validate = function(_filters, achievement, ignoreFilters) return not _filters.Completion.NotCompleted and not completedCache; end
+        Validate = function(_filters, achievement, ignoreFilters) return not _filters.Completion.NotCompleted and not achievementInfoCache.IsCompleted; end
     },
     {   -- 3
         Validate = function(_filters, achievement, ignoreFilters)
@@ -156,6 +160,12 @@ local validations = {
                 return state == true or state == "Future";
             end
         end
+    },
+    {   -- 1
+        Validate = function(_filters, achievement, ignoreFilters) return not _filters.HasReward.Yes and achievementInfoCache.HasReward; end
+    },
+    {   -- 2
+        Validate = function(_filters, achievement, ignoreFilters) return not _filters.HasReward.No and not achievementInfoCache.HasReward; end
     },
     {   -- 6
         Validate = function(_filters, achievement, ignoreFilters)
@@ -214,7 +224,7 @@ local validations = {
         Validate = function(_filters, achievement, ignoreFilters) return not _filters.Special.RealmFirst and achievement.IsRealmFirst; end
     },
     {   -- 13
-        Validate = function(_filters, achievement, ignoreFilters) return not _filters.Special.FeatsOfStrength and pointsCache == 0 and not achievement.IsRealmFirst and not achievement.IsTracking; end
+        Validate = function(_filters, achievement, ignoreFilters) return not _filters.Special.FeatsOfStrength and achievementInfoCache.Points == 0 and not achievement.IsRealmFirst and not achievement.IsTracking; end
     },
     {   -- 14
         Validate = function(_filters, achievement, ignoreFilters) return not _filters.Tracking and achievement.IsTracking; end
@@ -223,12 +233,12 @@ local validations = {
         Validate = function(_filters, achievement, ignoreFilters) return not _filters.Special.PvP and achievement.IsPvP; end
     },
     {   -- 16
-    Validate = function(_filters, achievement, ignoreFilters)
-        if not achievement.BuildVersion then
-            return false;
+        Validate = function(_filters, achievement, ignoreFilters)
+            if not achievement.BuildVersion then
+                return false;
+            end
+            return not _filters.BuildVersion[achievement.BuildVersion.Id];
         end
-        return not _filters.BuildVersion[achievement.BuildVersion.Id];
-    end
     },
 };
 
@@ -239,16 +249,13 @@ function filters.Validate(_filters, achievement, ignoreFilters, ignoreCollapseSe
     if achievement.AlwaysVisible then
         return 2;
     end
-    local _, _, points, completed, _, _, _, _, _, _, _, _, wasEarnedByMe = addon.GetAchievementInfo(achievement.Id);
-    pointsCache = points;
+    achievementInfoCache = addon.GetAchievementInfoTable(achievement.Id);
     if addon.Filters.db.profile.EarnedBy == addon.Filters.CharacterOnly then
-        completedCache = wasEarnedByMe;
-    else
-        completedCache = completed;
+        achievementInfoCache.IsCompleted = achievementInfoCache.WasEarnedByMe;
     end
     ignoreFilters = ignoreFilters or {};
     ignoreFilters.CollapsedChainFilter = ignoreFilters.CollapsedChainFilter or ignoreCollapseSeries;
-    if _filters.Completion.AlwaysShowCompleted and completedCache then
+    if _filters.Completion.AlwaysShowCompleted and achievementInfoCache.IsCompleted then
         return 4; -- Special filter that overwrites the rest
     end
     for i, validation in next, validations do

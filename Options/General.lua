@@ -507,13 +507,6 @@ local debugOptions = {
                     desc = addon.L["Export Missing Achievements Desc"],
                     func = ExportMissingAchievements
                 },
-                Blank4 = {order = OrderPP(), type = "description", width = AdjustedWidth(2), name = ""},
-                ExportRemovedAchievements = {
-                    order = OrderPP(), type = "execute",
-                    name = addon.L["Export Removed Achievements"],
-                    desc = addon.L["Export Removed Achievements Desc"],
-                    func = ExportRemovedAchievements
-                },
                 PrintMapInfo = {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(),
                     name = addon.L["Print map info"],
@@ -521,7 +514,14 @@ local debugOptions = {
                     get = function() return addon.Options.db.profile.PrintMapInfo; end,
                     set = function(_, value) addon.Options.db.profile.PrintMapInfo = value; end
                 },
-                Blank5 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
+                Blank4 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
+                ExportRemovedAchievements = {
+                    order = OrderPP(), type = "execute",
+                    name = addon.L["Export Removed Achievements"],
+                    desc = addon.L["Export Removed Achievements Desc"],
+                    func = ExportRemovedAchievements
+                },
+                Blank5 = {order = OrderPP(), type = "description", width = AdjustedWidth(2), name = ""},
                 PrintMapInfoWithoutReload = {
                     order = OrderPP(), type = "execute",
                     name = addon.L["Print map info w/o reload"],
