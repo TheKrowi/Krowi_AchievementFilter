@@ -7,7 +7,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-10-24 17-34-18 ]] --
+-- [[ Exported at 2024-12-14 18-10-04 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -291,6 +291,8 @@ L["Enable"] = true
 L["Enable debug info"] = true
 L["Enable debug info Desc"] = "Enable / disable debug info."
 L["Enable Desc"] = "Enable / Disable the plugin. Having the plugin disabled if the addon is active, unpredictable things might happen."
+L["Enable Tab Priority"] = true
+L["Enable Tab Priority Desc"] = "Enable the tab priority feature."
 L["Enable trace info"] = true
 L["Enable trace info Desc"] = "Enable / disable trace info."
 L["End Time"] = true
@@ -435,6 +437,10 @@ Special categories:
 L["Export"] = true
 L["Export Criteria"] = true
 L["Export Criteria Desc"] = "Exports Achievement Criteria to the Saved Variables. This is used to add new content."
+L["Export Missing Achievements"] = true
+L["Export Missing Achievements Desc"] = "Export the missing achievements. This is a debug feature and should not be used."
+L["Export Removed Achievements"] = true
+L["Export Removed Achievements Desc"] = "Export the removed achievements. This is a debug feature and should not be used."
 L["Faction Assaults"] = true
 L["Fade delay"] = true
 L["Fade delay Desc"] = "The time in seconds it takes for the alert to fade when it's ignored. Right clicking will close it immidiatly."
@@ -505,6 +511,7 @@ L["Grow direction Desc"] = "The direction in which new reminders will be added."
 L["Guardians of the Dream"] = true
 L["Guides"] = true
 L["Hallow's End"] = true
+L["Has Reward"] = true
 L["Header"] = true
 L["Header tooltip"] = true
 L["Hearthstone"] = true
@@ -921,6 +928,8 @@ L["Show Temporarily obtainable Desc"] = [=[Show / hide {temporarilyObtainable}.
 When checked and the achievement is {temporarilyObtainable}, this information will be visible in the tooltip.]=]
 L["Show Temporarily obtainable Icon"] = "Show {tempObt} Icon"
 L["Show Temporarily obtainable Icon Desc"] = "Show / hide an extra icon on the achievement when it's only {tempObt}."
+L["Show Warband Icon"] = "Show {warband} Icon"
+L["Show Warband Icon Desc"] = "Show / hide an extra icon on the achievement when it's a {warband} achievement."
 L["Show world map icon"] = true
 L["Show world map icon Desc"] = "Show / hide the world map icon."
 L["Side Button Anchor"] = true
@@ -967,6 +976,8 @@ L["Superbloom: Active"] = true
 L["Superbloom: Next"] = true
 L["Tab"] = true
 L["tab"] = true
+L["Tab Priority"] = true
+L["Tab Priority Desc"] = "When enabled, when clicking on an achievement from anywhere to go to the achievement, the prioritized tab will be used first to search for the achievement and open the window to that tab. If the achievement is not present in that tab, default rules will apply."
 L["Tabs"] = true
 L["Ta's Pet Collection"] = true
 L["Temporarily obtainable"] = true
@@ -1056,6 +1067,11 @@ L["Wago"] = true
 L["Wago Desc"] = "Open a popup dialog with a link to the {addonName} {wago} page."
 L["Waking Shores"] = true
 L["Waking Shores: Next"] = true
+L["Warband Achievement"] = true
+L["Warband Header Color"] = "{warband} Header Colors"
+L["Warband Header Color Desc"] = [=[When disable, the default blue header color will be replaced by the default orange color.
+Recommended to enable {warbandIcon}.
+]=]
 L["Warcraft III: Reforged"] = true
 L["Warcraft Rumble"] = true
 L["was"] = true
@@ -1103,20 +1119,3 @@ L["Zaqali Ruin Investigation: Soon"] = true
 L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
 L["Zuldazar"] = true
-L["Export Missing Achievements"] = true
-L["Export Missing Achievements Desc"] = "Export the missing achievements. This is a debug feature and should not be used."
-L["Export Removed Achievements"] = true
-L["Export Removed Achievements Desc"] = "Export the removed achievements. This is a debug feature and should not be used."
-L["Tab Priority"] = true
-L["Tab Priority Desc"] = "When enabled, when clicking on an achievement from anywhere to go to the achievement, the prioritized tab will be used first to search for the achievement and open the window to that tab. If the achievement is not present in that tab, default rules will apply."
-L["Enable Tab Priority"] = true
-L["Enable Tab Priority Desc"] = "Enable the tab priority feature."
-
-L["Warband Header Color"] = "{warband} Header Colors"
-L["Warband Header Color Desc"] = [=[When disable, the default blue header color will be replaced by the default orange color.
-Recommended to enable {warbandIcon}.
-]=]
-L["Show Warband Icon"] = "Show {warband} Icon"
-L["Show Warband Icon Desc"] = "Show / hide an extra icon on the achievement when it's a {warband} achievement."
-L["Warband Achievement"] = true
-L["Has Reward"] = true
