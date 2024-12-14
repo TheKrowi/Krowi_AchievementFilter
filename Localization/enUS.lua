@@ -1111,3 +1111,12 @@ L["Tab Priority"] = true
 L["Tab Priority Desc"] = "When enabled, when clicking on an achievement from anywhere to go to the achievement, the prioritized tab will be used first to search for the achievement and open the window to that tab. If the achievement is not present in that tab, default rules will apply."
 L["Enable Tab Priority"] = true
 L["Enable Tab Priority Desc"] = "Enable the tab priority feature."
+
+L["Warband Header Color"] = "{warband} Header Colors"
+L["Warband Header Color Desc"] = [=[When disable, the default blue header color will be replaced by the default orange color.
+Recommended to enable {warbandIcon}.
+]=]
+L["Show Warband Icon"] = "Show {warband} Icon"
+L["Show Warband Icon Desc"] = "Show / hide an extra icon on the achievement when it's a {warband} achievement."
+L["Warband Achievement"] = true
+L["Has Reward"] = true

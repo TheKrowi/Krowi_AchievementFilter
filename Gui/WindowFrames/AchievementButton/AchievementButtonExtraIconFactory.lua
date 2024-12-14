@@ -46,6 +46,7 @@ function factory.ResetExtraIcons(self)
     for _, extraIcon in next, self.ExtraIcons do
         extraIcon.Used = nil;
         extraIcon.Texture:SetVertexColor(1, 1, 1, 1);
+        extraIcon.Texture:SetTexCoord(0, 1, 0, 1);
         extraIcon:Hide();
     end
 end
@@ -138,8 +139,24 @@ local function SetExtraIconEvent(self, achievement)
 	};
 end
 
+local function SetExtraIconWarband(self, achievement)
+	if not addon.Options.db.profile.Achievements.ShowWarbandIcon or not achievement.IsAccountWide then
+		return;
+	end
+
+	local extraIcon = factory.Get(self);
+	if not extraIcon then
+		return;
+	end
+
+	extraIcon.Texture:SetTexture("interface/warbands/uiwarbandsicons");
+	extraIcon.Texture:SetTexCoord(0, 0.3671875, 0, 0.45);
+	extraIcon.Text = addon.L["Warband Achievement"];
+end
+
 function factory.SetExtraIcons(self, achievement)
     factory.ResetExtraIcons(self);
+	SetExtraIconWarband(self, achievement);
 	if not SetExtraIconRemixPandaria(self, achievement) then
 		SetExtraIconEvent(self, achievement);
 	end

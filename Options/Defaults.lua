@@ -86,7 +86,9 @@ addon.Options.Defaults = {
             ShowTemporarilyObtainableIcon = true,
             TemporarilyObtainableHeaderColors = true,
             EnableTabPriority = false,
-            TabPriority = 5
+            TabPriority = 5,
+            ShowWarbandIcon = true,
+            WarbandHeaderColor = true,
         },
         RightClickMenu = {
             ShowButtonOnAchievement = false,

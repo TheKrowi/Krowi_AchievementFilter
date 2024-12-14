@@ -12,5 +12,5 @@ function localization.GetDefaultLocale()
 
     -- DebugTable = {};
     -- DEBUGTABLE = DebugTable;
-    return LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true, true);
+    return LibStub(addon.Libs.AceLocale):NewLocale(addonName, "enUS", true);
 end

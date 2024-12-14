@@ -28,7 +28,7 @@ local tempObtainableFutureSaturationStyle = saturationStyle:New(
 	function() return ACHIEVEMENT_RED_BORDER_COLOR; end
 );
 local accountSaturationStyle = saturationStyle:New(
-	function(_, isAccountWide) return isAccountWide; end,
+	function(_, isAccountWide) return addon.Options.db.profile.Achievements.WarbandHeaderColor and isAccountWide; end,
 	"account",
 	nil,
 	"Interface/AchievementFrame/AccountLevel-AchievementHeader",

@@ -132,3 +132,6 @@ L["Wednesday"] = WEEKDAY_WEDNESDAY;
 L["Thursday"] = WEEKDAY_THURSDAY;
 L["Friday"] = WEEKDAY_FRIDAY;
 L["Saturday"] = WEEKDAY_SATURDAY;
+L["Warband"] = REPUTATION_SORT_TYPE_ACCOUNT
+L["Yes"] = YES
+L["No"] = NO

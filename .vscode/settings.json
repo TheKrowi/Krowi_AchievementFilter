@@ -522,7 +522,8 @@
         "WowStyle1FilterDropdownMixin",
         "MenuResponse",
         "MenuUtil",
-        "GameTooltip_AddColoredLine"
+        "GameTooltip_AddColoredLine",
+        "REPUTATION_SORT_TYPE_ACCOUNT"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
