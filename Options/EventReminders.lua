@@ -157,18 +157,27 @@ local generalOptions = {
             order = OrderPP(), type = "group", inline = true,
             name = addon.L["Style"],
             args = {
+                Enable = {
+                    order = OrderPP(), type = "toggle", width = AdjustedWidth(),
+                    name = addon.L["Enable"],
+                    desc = addon.L["Event Reminders Enable Desc"]:K_ReplaceVars(addon.L["Event Reminders"]):KAF_AddDefaultValueText("EventReminders.Enabled"):K_AddReloadRequired(),
+                    get = function() return addon.Options.db.profile.EventReminders.Enabled; end,
+                    set = function(_, value) addon.Options.db.profile.EventReminders.Enabled = value; end
+                },
                 Compact = {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(),
                     name = addon.L["Compact"],
                     desc = addon.L["Compact Desc"]:KAF_AddDefaultValueText("EventReminders.Compact"):K_AddReloadRequired(),
                     get = function() return addon.Options.db.profile.EventReminders.Compact; end,
-                    set = function(_, value) addon.Options.db.profile.EventReminders.Compact = value; end
+                    set = function(_, value) addon.Options.db.profile.EventReminders.Compact = value; end,
+                    disabled = function() return not addon.Options.db.profile.EventReminders.Enabled; end
                 }
             }
         },
         TimeDisplay = {
             order = OrderPP(), type = "group",
             name = addon.L["Time display"],
+            disabled = function() return not addon.Options.db.profile.EventReminders.Enabled; end,
             inline = true,
             args = {
                 Line1 = {
@@ -193,6 +202,7 @@ local generalOptions = {
         Other = {
             order = OrderPP(), type = "group", inline = true,
             name = addon.L["Other"],
+            disabled = function() return not addon.Options.db.profile.EventReminders.Enabled; end,
             args = {
                 RefreshInterval = {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
@@ -226,6 +236,7 @@ local generalOptions = {
 local popUpsOptions = {
     order = OrderPP(), type = "group",
     name = addon.L["Pop ups"],
+    disabled = function() return not addon.Options.db.profile.EventReminders.Enabled; end,
     args = {
         OnLogin = {
             order = OrderPP(), type = "group", inline = true,
@@ -386,6 +397,7 @@ local popUpsOptions = {
 local chatMessagesOptions = {
     order = OrderPP(), type = "group",
     name = addon.L["Chat messages"],
+    disabled = function() return not addon.Options.db.profile.EventReminders.Enabled; end,
     args = {
         OnLogin = {
             order = OrderPP(), type = "group", inline = true,
@@ -480,18 +492,21 @@ local chatMessagesOptions = {
 local calendarEventsOptions = {
     order = OrderPP(), type = "group", childGroups = "tab",
     name = addon.L["Calendar Events"],
+    disabled = function() return not addon.Options.db.profile.EventReminders.Enabled; end,
     args = { --[[ Automatically generated ]] }
 };
 
 local worldOptions = {
     order = OrderPP(), type = "group", childGroups = "tab",
     name = addon.L["World Events"],
+    disabled = function() return not addon.Options.db.profile.EventReminders.Enabled; end,
     args = { --[[ Automatically generated ]] }
 };
 
 local dateTimeFormatOptions = {
     order = OrderPP(), type = "group",
     name = addon.L["Date and Time format"],
+    disabled = function() return not addon.Options.db.profile.EventReminders.Enabled; end,
     args = {
         StartTimeAndEndTime = {
             order = OrderPP(), type = "group", inline = true,

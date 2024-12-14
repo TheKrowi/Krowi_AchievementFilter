@@ -7,7 +7,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-12-14 18-10-04 ]] --
+-- [[ Exported at 2024-12-14 18-23-53 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -406,6 +406,7 @@ Event types:
 
 (1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {eventReminders}]=]
 L["Event Reminders"] = true
+L["Event Reminders Enable Desc"] = "When disabled, the full {eventReminders} Module if turned off."
 L["Events"] = true
 L["Exclude"] = true
 L["Exclude Excluded achievements"] = true
@@ -1069,7 +1070,7 @@ L["Waking Shores"] = true
 L["Waking Shores: Next"] = true
 L["Warband Achievement"] = true
 L["Warband Header Color"] = "{warband} Header Colors"
-L["Warband Header Color Desc"] = [=[When disable, the default blue header color will be replaced by the default orange color.
+L["Warband Header Color Desc"] = [=[When disabled, the default blue header color will be replaced by the default orange color.
 Recommended to enable {warbandIcon}.
 ]=]
 L["Warcraft III: Reforged"] = true

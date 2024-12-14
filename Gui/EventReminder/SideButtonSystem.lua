@@ -77,7 +77,7 @@ function eventReminderSideButtonSystem:Refresh()
 end
 
 function eventReminderSideButtonSystem:Load()
-    if not self:GetAnchor() then
+    if not addon.Options.db.profile.EventReminders.Enabled or not self:GetAnchor() then
         return false; -- Anchoring failed because frame does not exist yet, try again later
     end
     hooksecurefunc(self:GetAnchor(), "Show", function()

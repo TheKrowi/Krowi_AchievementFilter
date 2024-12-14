@@ -153,6 +153,7 @@ addon.Options.Defaults = {
             MouseWheelPanScalar = 5
         },
         EventReminders = {
+            Enabled = true,
             PopUps = {
                 FadeDelay = 10,
                 MaxAlerts = 5,

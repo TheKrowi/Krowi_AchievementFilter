@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Has Reward filter (dev note: reward type filters will come in a later version)
 - Option to show a Warband icon on Warband achievements
 - Option to hide the blue Warband achievement color
+- Option to completely turn off the Event Reminders Module with 1 option
 
 ## 79.0 - 2024-11-15
 ### Added

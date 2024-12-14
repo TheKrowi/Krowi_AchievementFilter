@@ -8,6 +8,10 @@ local function SetUp(frame, event, duration)
 end
 
 function eventReminderAlertSystem:Load()
+    if not addon.Options.db.profile.EventReminders.Enabled then
+        return;
+    end
+
     local template = "KrowiAF_EventReminderAlertFrame_" .. (addon.Options.db.profile.EventReminders.Compact and "Small" or "Normal") .. "_Template";
     self.SubSystem = AlertFrame:AddQueuedAlertFrameSubSystem(template, SetUp, addon.Options.db.profile.EventReminders.PopUps.MaxAlerts, 100);
     AlertFrame:ClearAllPoints();
@@ -200,6 +204,10 @@ local function Refresh(self)
 end
 
 function eventReminderAlertSystem:ShowActiveEventsOnPlayerEnteringWorld(popUpsOptions, chatMessagesOptions)
+    if not addon.Options.db.profile.EventReminders.Enabled then
+        return;
+    end
+
     KrowiAF_SavedData.ActiveEventPopUpsShown = {};
     KrowiAF_SavedData.ActiveEventChatMessagesShown = {};
 
