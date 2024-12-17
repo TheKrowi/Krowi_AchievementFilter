@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-11-22 08-44-15 ]] --
+-- [[ Exported at 2024-12-17 17-27-12 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -288,6 +288,8 @@ L["Enable"] = "Aktivieren"
 L["Enable debug info"] = "Debug-Informationen einschalten"
 L["Enable debug info Desc"] = "Debug-Informationen einschalten/ausschalten"
 L["Enable Desc"] = "Aktivieren / Deaktivieren Sie das Plugin. Wenn das Plugin hier deaktiviert ist ABER das Addon aktiv ist, können unvorhersehbare Dinge passieren."
+L["Enable Tab Priority"] = "Tab-Priorität aktivieren"
+L["Enable Tab Priority Desc"] = "Aktiviere die Tab-Prioritäts-Option"
 L["Enable trace info"] = "Trace-Informationen einschalten"
 L["Enable trace info Desc"] = "Trace-Informationen einschalten/ausschalten"
 L["End Time"] = "Ende (Zeit)"
@@ -431,6 +433,10 @@ Spezielle Kategorien:
 L["Export"] = true
 L["Export Criteria"] = "Erfolgs-Kriterien Export"
 L["Export Criteria Desc"] = "Exportiert Erfolgs-Kriterien in die Gespeicherten Variablen. Dies wird verwendet, um neue Inhalte hinzuzufügen."
+L["Export Missing Achievements"] = "Fehlende Erfolge exportieren"
+L["Export Missing Achievements Desc"] = "Exportiere die fehlenden Erfolge. Dies ist eine Debug-Funktion und sollte nicht verwendet werden."
+L["Export Removed Achievements"] = "Entfernte Erfolge exportieren"
+L["Export Removed Achievements Desc"] = "Exportiere die entfernten Erfolge. Dies ist eine Debug-Funktion und sollte nicht verwendet werden."
 L["Faction Assaults"] = "Fraktionsübergriffe"
 L["Fade delay"] = "Ausblendeverzögerung"
 L["Fade delay Desc"] = "Zeit in Sekunden, die das Ereignis Popup-Fenster braucht, um zu verschwinden, wenn es ignoriert wird. Mit einem Rechtsklick kann es sofort geschlossen werden."
@@ -946,6 +952,8 @@ L["Superbloom: Active"] = "Superblüte: Aktiv"
 L["Superbloom: Next"] = "Superblüte: Nächstes Event"
 L["Tab"] = true
 L["tab"] = "Tab"
+L["Tab Priority"] = "Tab-Priorität"
+L["Tab Priority Desc"] = "Wenn diese Option aktiviert ist, wird beim Klicken auf einen Erfolg (um zu diesem Erfolg zu gelangen) der priorisierte Tab zuerst verwendet, um nach dem Erfolg zu suchen und das Fenster zu diesem Tab zu öffnen. Wenn der Erfolg nicht in diesem Tab vorhanden ist, gelten die Standardregeln."
 L["Tabs"] = true
 L["Ta's Pet Collection"] = "Ta's Haustier Sammlung"
 L["Temporarily obtainable"] = "Befristet erreichbar"

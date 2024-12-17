@@ -5,4 +5,5 @@
 <li>Has Reward filter (dev note: reward type filters will come in a later version)</li>
 <li>Option to show a Warband icon on Warband achievements</li>
 <li>Option to hide the blue Warband achievement color</li>
+<li>Option to completely turn off the Event Reminders Module with 1 option</li>
 </ul>
