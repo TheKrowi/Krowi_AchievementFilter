@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 80.2 - 2024-12-18
+### Added
+- Lingering Shadows achievement
+
 ## 80.1 - 2024-12-18
 ### Added
 - Patch 11.0.7 to the filters

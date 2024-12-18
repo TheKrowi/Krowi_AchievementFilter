@@ -809,6 +809,7 @@ KrowiAF.AchievementData["11_00_07"] = {
     {41045}, -- A Song of Secrets
     {41046}, -- Clean Up on Isle Siren
     {41050}, -- A Choir of Citrines
+    {41052}, -- Lingering Shadows
     { -- Master of the Turbulent Timeways II
         41056,
         {

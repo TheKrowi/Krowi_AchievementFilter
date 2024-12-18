@@ -8,3 +8,6 @@
 
 ### Added (80.1)
 - Patch 11.0.7 to the filters
+
+### Added (80.2)
+- Lingering Shadows achievement

@@ -12,3 +12,8 @@
 [LIST]
 [*]Patch 11.0.7 to the filters
 [/LIST]
+
+[B]Added (80.2)[/B]
+[LIST]
+[*]Lingering Shadows achievement
+[/LIST]

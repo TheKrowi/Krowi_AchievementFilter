@@ -11938,6 +11938,7 @@ local theWarWithin = { -- The War Within
                 {
                     20596, -- Loremaster of Khaz Algar
                     20597, -- The War Within
+                    41052, -- Lingering Shadows
                     40791, -- Fate of the Kirin Tor
                 },
             },
