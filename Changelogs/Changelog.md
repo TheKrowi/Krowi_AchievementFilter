@@ -5,3 +5,6 @@
 - Option to show a Warband icon on Warband achievements
 - Option to hide the blue Warband achievement color
 - Option to completely turn off the Event Reminders Module with 1 option
+
+### Added (80.1)
+- Patch 11.0.7 to the filters

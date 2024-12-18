@@ -22,6 +22,11 @@ KrowiAF.BuildVersionData.TheWarWithin = { -- 11
 					BuildVersionId = "110005",
                     Name = addon.L["WoW's 20th Anniversary"]
 				},
+				{ -- 11.0.7
+					Patch = 7,
+					BuildVersionId = "110007",
+                    Name = addon.L["Siren Isle"]
+				},
 			},
 		},
 	},

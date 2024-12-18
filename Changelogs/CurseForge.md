@@ -7,3 +7,7 @@
 <li>Option to hide the blue Warband achievement color</li>
 <li>Option to completely turn off the Event Reminders Module with 1 option</li>
 </ul>
+<p><h3>Added (80.1)</h3></p>
+<ul>
+<li>Patch 11.0.7 to the filters</li>
+</ul>

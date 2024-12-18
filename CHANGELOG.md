@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 80.1 - 2024-12-18
+### Added
+- Patch 11.0.7 to the filters
+
 ## 80.0 - 2024-12-17
 ### Added
 - Achievements added in 11.0.7
