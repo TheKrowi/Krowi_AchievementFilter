@@ -122,17 +122,11 @@ function achievement:Exclude()
 end
 
 function achievement:ClearWatch()
-    self.IsWatched = nil;
-    if KrowiAF_SavedData.WatchedAchievements == nil then
-        return;
-    end
-    KrowiAF_SavedData.WatchedAchievements[self.Id] = nil;
+    addon.Data.SavedData.AchievementData.SetWatched(self, false);
 end
 
 function achievement:Watch()
-    self.IsWatched = true;
-    KrowiAF_SavedData.WatchedAchievements = KrowiAF_SavedData.WatchedAchievements or {};
-    KrowiAF_SavedData.WatchedAchievements[self.Id] = true;
+    addon.Data.SavedData.AchievementData.SetWatched(self, true);
 end
 
 function achievement:AddPrevious(ach, addBack)

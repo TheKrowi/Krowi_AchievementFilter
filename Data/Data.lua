@@ -19,8 +19,6 @@ data.AchievementIds = {};
 
 data.Categories, data.SummaryCategories = {}, {};
 KrowiAF_Categories = data.Categories;
-data.WatchListCategories, data.CurrentZoneCategories, data.SelectedZoneCategories = {}, {}, {};
-data.SearchResultsCategories, data.TrackingAchievementsCategories, data.ExcludedCategories = {}, {}, {};
 data.UncategorizedCategories = {};
 
 data.RightClickMenuExtras = {};
@@ -85,12 +83,10 @@ local function PostLoadOnPlayerLogin(self, start)
 
     LoadBlizzardTabAchievements();
 
-    data.SpecialCategories:Load();
+    addon.SpecialCategories:Load();
 
     local function PostBuildCache()
-        self.LoadWatchedAchievements();
-        self.LoadTrackingAchievements();
-        self.LoadExcludedAchievements();
+        addon.SpecialCategories.LoadData();
 
         if AchievementFrame and AchievementFrame:IsShown() then
             addon.Gui:RefreshViewAfterPlayerLogin();
@@ -130,40 +126,11 @@ function data:LoadOnPlayerLogin()
     );
 end
 
-local function LoadAchievements(sourceTable, func)
-    if sourceTable == nil or type(sourceTable) ~= "table" then
-        return;
-    end
-
-    for achievementId, _ in next, sourceTable do
-        if data.Achievements[achievementId] then -- This is to clean up achievements that are no longer in the dataset
-            func(data.Achievements[achievementId], false);
-        else
-            sourceTable[achievementId] = nil;
-        end
-    end
-end
-
-function data.LoadWatchedAchievements()
-    LoadAchievements(KrowiAF_SavedData.WatchedAchievements, addon.WatchAchievement);
-    addon.Diagnostics.Trace("Watched achievements loaded");
-end
-
-function data.LoadTrackingAchievements()
-    LoadAchievements(addon.TrackingAchievements, addon.AddToTrackingAchievementsCategories);
-    addon.Diagnostics.Trace("Tracking achievements loaded");
-end
-
-function data.LoadExcludedAchievements()
-    LoadAchievements(KrowiAF_SavedData.ExcludedAchievements, addon.ExcludeAchievement);
-    addon.Diagnostics.Trace("Excluded achievements loaded");
-end
-
 local cachedZone;
 function data.GetCurrentZoneAchievements()
 	diagnostics.Trace("data.GetCurrentZoneAchievements");
 
-    if #addon.Data.CurrentZoneCategories == 0 then
+    if #addon.SpecialCategories.CurrentZone == 0 then
         return;
     end
     if cachedZone == C_Map.GetBestMapForUnit("player") then
@@ -171,8 +138,8 @@ function data.GetCurrentZoneAchievements()
     end
     cachedZone = C_Map.GetBestMapForUnit("player");
     local achievements = addon.GetAchievementsInZone(cachedZone);
-    for i = 1, #addon.Data.CurrentZoneCategories do
-        addon.Data.CurrentZoneCategories[i].Achievements = addon.Options.db.profile.AdjustableCategories.CurrentZone[i] and achievements or nil;
+    for i = 1, #addon.SpecialCategories.CurrentZone do
+        addon.SpecialCategories.CurrentZone[i].Achievements = addon.Options.db.profile.AdjustableCategories.CurrentZone[i] and achievements or nil;
     end
     return true; -- Output that the zone has changed
 end
@@ -295,47 +262,3 @@ function data.GetNextFreeCategoryId()
     freeCategoryId = freeCategoryId + 1;
     return freeCategoryId;
 end
-
--- function KrowiAF_PrintPetCriteria(achievementID, parentCriteriaID, criteriaNumber)
---     TEST = {};
---     local id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy = GetAchievementInfo(achievementID);
-
---     local record = "A" .. tostring(id) .. "\t" .. tostring(achievementID) .. "\t" .. tostring(criteriaNumber) .. "\t" .. name .. "\t" .. tostring(parentCriteriaID) .. "\t" .. 0;
---     tinsert(TEST, record);
-
---     if parentCriteriaID == nil then
---         parentCriteriaID = "A" .. tostring(id);
---     end
-
---     for i = 1, GetAchievementNumCriteria(achievementID) do
---         local family = "nil";
---         if string.match(description:lower(), "aquatic") then
---             family = "Aquatic";
---         elseif string.match(description:lower(), "beast") then
---             family = "Beast";
---         elseif string.match(description:lower(), "critter") then
---             family = "Critter";
---         elseif string.match(description:lower(), "dragonkin") then
---             family = "Dragonkin";
---         elseif string.match(description:lower(), "elemental") then
---             family = "Elemental";
---         elseif string.match(description:lower(), "flying") then
---             family = "Flying";
---         elseif string.match(description:lower(), "humanoid") then
---             family = "Humanoid";
---         elseif string.match(description:lower(), "magic") then
---             family = "Magic";
---         elseif string.match(description:lower(), "mechanical") then
---             family = "Mechanical";
---         elseif string.match(description:lower(), "undead") then
---             family = "Undead";
---         end
---         local criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID = addon.GetAchievementCriteriaInfo(achievementID, i);
---         if GetAchievementInfo(assetID) ~= nil then -- Means the assetID was not an achievementID but something else like a quest
---             data.PrintCriteria(assetID, "A" .. tostring(id), i);
---         else
---             local record = tostring(criteriaID) .. "\t" .. tostring(nil) .. "\t" .. tostring(i) .. "\t" .. criteriaString .. "\t" .. "A" .. tostring(id) .. "\t" .. family;
---             tinsert(TEST, record);
---         end
---     end
--- end

@@ -33,7 +33,7 @@ local function LoadKrowi_AchievementFilter()
 
     KrowiAF.LoadTabs();
 
-    addon.Data.SpecialCategories.InjectDynamicOptions();
+    addon.SpecialCategories.InjectDynamicOptions();
     KrowiAF.InjectEventDataDynamicOptions();
 
     -- addon.Gui:PrepareTabsOrder();

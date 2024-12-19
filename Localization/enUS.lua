@@ -1120,3 +1120,7 @@ L["Zaqali Ruin Investigation: Soon"] = true
 L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
 L["Zuldazar"] = true
+L["Character Specific"] = true
+L["Character Specific Desc"] = [=[Make the {watchList} character specific. Existing watched achievements will be copied to the new character specific list.
+
+When disabled, the {watchList} of all characters will be combined and shared between all characters.]=]

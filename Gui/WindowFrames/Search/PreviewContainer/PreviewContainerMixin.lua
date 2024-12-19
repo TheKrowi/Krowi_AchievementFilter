@@ -3,13 +3,13 @@ local _, addon = ...;
 KrowiAF_SearchPreviewContainerShowFullSearchResultsButtonMixin = CreateFromMixins(KrowiAF_SearchPreviewButtonMixin);
 
 local function ShowSearchResultsAsCategory(query, results)
-    for i = 1, #addon.Data.SearchResultsCategories do
-        addon.Data.SearchResultsCategories[i].Achievements = addon.Options.db.profile.AdjustableCategories.SearchResults[i] and results or nil;
-        addon.Data.SearchResultsCategories[i].Name = addon.L["Search Results"] .. " (" .. query .. ")";
+    for i = 1, #addon.SpecialCategories.SearchResults do
+        addon.SpecialCategories.SearchResults[i].Achievements = addon.Options.db.profile.AdjustableCategories.SearchResults[i] and results or nil;
+        addon.SpecialCategories.SearchResults[i].Name = addon.L["Search Results"] .. " (" .. query .. ")";
     end
-    for i = 1, #addon.Data.SearchResultsCategories do
+    for i = 1, #addon.SpecialCategories.SearchResults do
         if addon.Options.db.profile.AdjustableCategories.SearchResults[i] then
-            KrowiAF_SelectCategory(addon.Data.SearchResultsCategories[i]);
+            KrowiAF_SelectCategory(addon.SpecialCategories.SearchResults[i]);
             return;
         end
     end

@@ -46,7 +46,8 @@ addon.Options.Defaults = {
         Categories = {
             WatchList = {
                 ShowSubCategories = false,
-                IgnoreFilters = true
+                IgnoreFilters = true,
+                CharacterSpecific = false
             },
             TrackingAchievements = {
                 DoLoad = false,
@@ -54,7 +55,8 @@ addon.Options.Defaults = {
             },
             Excluded = {
                 Show = true,
-                ShowSubCategories = false
+                ShowSubCategories = false,
+                CharacterSpecific = false
             },
             Indentation = 10,
             MouseWheelPanScalar = 1

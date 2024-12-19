@@ -190,3 +190,63 @@ end
 function achievementData.RegisterNewAchievementEarned(achievementId)
     tinsert(newAchievementsEarned, 1, achievementId);
 end
+
+local function GetWatchedAchievementsList()
+    return KrowiAF_SavedData.WatchedAchievements;
+end
+
+local function NewWatchedAchievementsList()
+    KrowiAF_SavedData.WatchedAchievements = KrowiAF_SavedData.WatchedAchievements or {};
+end
+
+local function NilWatchedAchievementsList()
+    KrowiAF_SavedData.WatchedAchievements = nil;
+end
+
+function achievementData.SetWatched(achievement, isWatched)
+    if not achievement then
+        return;
+    end
+
+    if isWatched or isWatched == nil then
+        achievement.IsWatched = true;
+        NewWatchedAchievementsList();
+        GetWatchedAchievementsList()[achievement.Id] = true;
+        return;
+    end
+
+    achievement.IsWatched = nil;
+
+    if GetWatchedAchievementsList() == nil then
+        return;
+    end
+
+    GetWatchedAchievementsList()[achievement.Id] = nil;
+end
+
+function achievementData:ClearWatchedAchievements()
+    if GetWatchedAchievementsList() then
+        for id, _ in next, GetWatchedAchievementsList() do
+            self.SetWatched(addon.Data.Achievements[id], false);
+        end
+    end
+    NilWatchedAchievementsList();
+end
+
+local function LoadAchievements(sourceTable, func)
+    if sourceTable == nil or type(sourceTable) ~= "table" then
+        return;
+    end
+
+    for achievementId, _ in next, sourceTable do
+        if addon.Data.Achievements[achievementId] then
+            func(addon.Data.Achievements[achievementId], false);
+        else -- This is to clean up achievements that are no longer in the dataset
+            sourceTable[achievementId] = nil;
+        end
+    end
+end
+
+function achievementData.LoadWatchedAchievements()
+    LoadAchievements(GetWatchedAchievementsList(), addon.WatchAchievement);
+end

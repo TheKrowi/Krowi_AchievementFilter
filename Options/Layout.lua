@@ -56,23 +56,18 @@ local function DrawSubCategories(categories)
 end
 
 local function WatchListClearAllFunc()
-    if not addon.Data.WatchListCategories then
+    if not addon.SpecialCategories.WatchList then
         C_AddOns.LoadAddOn("Blizzard_AchievementUI");
     end
-    for i = 1, #addon.Data.WatchListCategories do
-        addon.Data.WatchListCategories[i].Achievements = nil;
-        addon.Data.WatchListCategories[i].Children = nil;
+    for i = 1, #addon.SpecialCategories.WatchList do
+        addon.SpecialCategories.WatchList[i].Achievements = nil;
+        addon.SpecialCategories.WatchList[i].Children = nil;
     end
     if addon.Gui.SelectedTab ~= nil then -- If nil, not yet loaded
-        if KrowiAF_SavedData.WatchedAchievements then
-            for id, _ in next, KrowiAF_SavedData.WatchedAchievements do
-                addon.Data.Achievements[id]:ClearWatch();
-            end
-        end
         KrowiAF_CategoriesFrame:Update(true);
         KrowiAF_AchievementsFrame:ForceUpdate();
     end
-    KrowiAF_SavedData.WatchedAchievements = nil;
+    addon.Data.SavedData.AchievementData:ClearWatchedAchievements();
 end
 
 local function InjectDynamicFixedWatchListOptions()
@@ -87,7 +82,7 @@ local function InjectDynamicFixedWatchListOptions()
         get = function() return addon.Options.db.profile.Categories.WatchList.ShowSubCategories; end,
         set = function(_, value)
             addon.Options.db.profile.Categories.WatchList.ShowSubCategories = value;
-            DrawSubCategories(addon.Data.WatchListCategories);
+            DrawSubCategories(addon.SpecialCategories.WatchList);
         end
     });
     addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "Blank1", {
@@ -106,8 +101,18 @@ local function InjectDynamicFixedWatchListOptions()
         get = function() return addon.Options.db.profile.Categories.WatchList.IgnoreFilters; end,
         set = function(_, value)
             addon.Options.db.profile.Categories.WatchList.IgnoreFilters = value;
-            DrawSubCategories(addon.Data.WatchListCategories);
+            DrawSubCategories(addon.SpecialCategories.WatchList);
         end
+    });
+    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "Blank2", {
+        order = OrderPP(), type = "description", width = AdjustedWidth(2), name = ""
+    });
+    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "CharacterSpecific", {
+        order = OrderPP(), type = "toggle", width = AdjustedWidth(),
+        name = addon.L["Character Specific"],
+        desc = addon.L["Character Specific Desc"]:K_ReplaceVars(addon.L["Watch List"]):KAF_AddDefaultValueText("Categories.WatchList.CharacterSpecific"),
+        get = function() return addon.Options.db.profile.Categories.WatchList.CharacterSpecific; end,
+        set = function(_, value) addon.Options.db.profile.Categories.WatchList.CharacterSpecific = value; end
     });
 end
 
@@ -132,7 +137,7 @@ local function InjectMoreDynamicTrackingAchievementsOptions()
         get = function() return addon.Options.db.profile.Categories.TrackingAchievements.ShowSubCategories; end,
         set = function(_, value)
             addon.Options.db.profile.Categories.TrackingAchievements.ShowSubCategories = value;
-            DrawSubCategories(addon.Data.TrackingAchievementsCategories);
+            DrawSubCategories(addon.SpecialCategories.TrackingAchievements);
         end
     });
 end
@@ -145,9 +150,9 @@ local function ShowExcludedCategory()
     if addon.Options.db.profile.Categories.Excluded.Show then
         addon.Data.LoadExcludedAchievements();
     else
-        for i = 1, #addon.Data.ExcludedCategories do
-            addon.Data.ExcludedCategories[i].Achievements = nil;
-            addon.Data.ExcludedCategories[i].Children = nil;
+        for i = 1, #addon.SpecialCategories.Excluded do
+            addon.SpecialCategories.Excluded[i].Achievements = nil;
+            addon.SpecialCategories.Excluded[i].Children = nil;
         end
         KrowiAF_CategoriesFrame:Update(true);
         KrowiAF_AchievementsFrame:ForceUpdate();
@@ -155,13 +160,13 @@ local function ShowExcludedCategory()
 end
 
 local function ExcludedIncludeAllFunc()
-    if not addon.Data.ExcludedCategories then
+    if not addon.SpecialCategories.Excluded then
         C_AddOns.LoadAddOn("Blizzard_AchievementUI");
     end
 
-    for i = 1, #addon.Data.ExcludedCategories do
-        addon.Data.ExcludedCategories[i].Achievements = nil;
-        addon.Data.ExcludedCategories[i].Children = nil;
+    for i = 1, #addon.SpecialCategories.Excluded do
+        addon.SpecialCategories.Excluded[i].Achievements = nil;
+        addon.SpecialCategories.Excluded[i].Children = nil;
     end
     if addon.Gui.SelectedTab == nil then -- If nil, not yet loaded
         KrowiAF_SavedData.ExcludedAchievements = nil;
@@ -209,7 +214,7 @@ local function InjectMoreDynamicExcludedOptions()
         get = function() return addon.Options.db.profile.Categories.Excluded.ShowSubCategories; end,
         set = function()
             addon.Options.db.profile.Categories.Excluded.ShowSubCategories = not addon.Options.db.profile.Categories.Excluded.ShowSubCategories;
-            DrawSubCategories(addon.Data.ExcludedCategories);
+            DrawSubCategories(addon.SpecialCategories.Excluded);
         end
     });
 end
@@ -1629,10 +1634,10 @@ function RefreshOptions()
     SetCategoryIndentation(_, profile.Categories.Indentation);
     SetCategoriesMouseWheelPanScalar(_, profile.Categories.MouseWheelPanScalar);
     MergeMergeSmallCategoriesThresholdSet(_, profile.Window.MergeSmallCategoriesThreshold);
-    DrawSubCategories(addon.Data.WatchListCategories);
-    DrawSubCategories(addon.Data.TrackingAchievementsCategories);
+    DrawSubCategories(addon.SpecialCategories.WatchList);
+    DrawSubCategories(addon.SpecialCategories.TrackingAchievements);
     ShowExcludedCategory();
-    DrawSubCategories(addon.Data.ExcludedCategories);
+    DrawSubCategories(addon.SpecialCategories.Excluded);
     SetAchievementsMouseWheelPanScalar(_, profile.Achievements.MouseWheelPanScalar);
     StartTimeAndEndTimeCustomSet(_, profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime);
     SetCalendarMouseWheelPanScalar(_, profile.Calendar.MouseWheelPanScalar);

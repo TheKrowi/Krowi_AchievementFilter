@@ -162,19 +162,19 @@ function addon.ClearWatchAchievement(achievement, update)
     if update ~= false then
         addon.Gui:RefreshView();
     end
-    for i = 1, #addon.Data.WatchListCategories do
-        if (addon.Data.WatchListCategories[i].Achievements and #addon.Data.WatchListCategories[i].Achievements == 0) or (addon.Data.WatchListCategories[i].Children and #addon.Data.WatchListCategories[i].Children == 0) then
-            KrowiAF_SavedData.WatchedAchievements = nil;
-            addon.Data.WatchListCategories[i].Achievements = nil;
+    for i = 1, #addon.SpecialCategories.WatchList do
+        if (addon.SpecialCategories.WatchList[i].Achievements and #addon.SpecialCategories.WatchList[i].Achievements == 0) or (addon.SpecialCategories.WatchList[i].Children and #addon.SpecialCategories.WatchList[i].Children == 0) then
+            addon.Data.SavedData.AchievementData:ClearWatchedAchievements();
+            addon.SpecialCategories.WatchList[i].Achievements = nil;
         end
     end
 end
 
 function addon.WatchAchievement(achievement, update)
     achievement:Watch();
-    for i = 1, #addon.Data.WatchListCategories do
+    for i = 1, #addon.SpecialCategories.WatchList do
         if addon.Options.db.profile.AdjustableCategories.WatchList[i] then
-            local watchListCategory = AddWatchListCategoriesTree(addon.Data.WatchListCategories[i], achievement);
+            local watchListCategory = AddWatchListCategoriesTree(addon.SpecialCategories.WatchList[i], achievement);
             watchListCategory:AddWatchedAchievement(achievement);
         end
 	end
@@ -184,9 +184,9 @@ function addon.WatchAchievement(achievement, update)
 end
 
 function addon.AddToTrackingAchievementsCategories(achievement, update)
-    for i = 1, #addon.Data.TrackingAchievementsCategories do
+    for i = 1, #addon.SpecialCategories.TrackingAchievements do
         if addon.Options.db.profile.AdjustableCategories.TrackingAchievements[i] then
-            local trackingAchievementsCategory = AddTrackingAchievementsCategoriesTree(addon.Data.TrackingAchievementsCategories[i], achievement);
+            local trackingAchievementsCategory = AddTrackingAchievementsCategoriesTree(addon.SpecialCategories.TrackingAchievements[i], achievement);
             trackingAchievementsCategory:AddAchievement(achievement);
         end
     end
@@ -211,9 +211,9 @@ function addon.IncludeAchievement(achievement, update)
     if update ~= false then
         addon.Gui:RefreshView();
     end
-    for i = 1, #addon.Data.ExcludedCategories do
-        if (addon.Data.ExcludedCategories[i].Achievements and #addon.Data.ExcludedCategories[i].Achievements == 0) or (addon.Data.ExcludedCategories[i].Children and #addon.Data.ExcludedCategories[i].Children == 0) then
-            addon.Data.ExcludedCategories[i].Achievements = nil;
+    for i = 1, #addon.SpecialCategories.Excluded do
+        if (addon.SpecialCategories.Excluded[i].Achievements and #addon.SpecialCategories.Excluded[i].Achievements == 0) or (addon.SpecialCategories.Excluded[i].Children and #addon.SpecialCategories.Excluded[i].Children == 0) then
+            addon.SpecialCategories.Excluded[i].Achievements = nil;
         end
     end
     if KrowiAF_SavedData.ExcludedAchievements then
@@ -227,9 +227,9 @@ end
 function addon.ExcludeAchievement(achievement, update)
     achievement:Exclude();
     if addon.Options.db.profile.Categories.Excluded.Show then
-        for i = 1, #addon.Data.ExcludedCategories do
+        for i = 1, #addon.SpecialCategories.Excluded do
             if addon.Options.db.profile.AdjustableCategories.Excluded[i] then
-                local excludedCategory = AddExcludedCategoriesTree(addon.Data.ExcludedCategories[i], achievement);
+                local excludedCategory = AddExcludedCategoriesTree(addon.SpecialCategories.Excluded[i], achievement);
                 excludedCategory:AddExcludedAchievement(achievement);
             end
         end

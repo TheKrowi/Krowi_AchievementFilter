@@ -131,9 +131,9 @@ function KrowiAF_OpenCurrentZone(collapsed)
         C_AddOns.LoadAddOn("Blizzard_AchievementUI");
     end
 
-	for i = 1, #addon.Data.CurrentZoneCategories do
+	for i = 1, #addon.SpecialCategories.CurrentZone do
 		if addon.Options.db.profile.AdjustableCategories.CurrentZone[i] then
-			KrowiAF_SelectCategory(addon.Data.CurrentZoneCategories[i], collapsed);
+			KrowiAF_SelectCategory(addon.SpecialCategories.CurrentZone[i], collapsed);
 			return;
 		end
 	end
