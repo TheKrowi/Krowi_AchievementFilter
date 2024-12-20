@@ -7,7 +7,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-12-14 18-23-53 ]] --
+-- [[ Exported at 2024-12-20 17-46-14 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -142,6 +142,12 @@ L["Central Circuit"] = true
 L["Chains of Domination"] = true
 L["Character / Account wide"] = true
 L["Character only"] = true
+L["Character Specific"] = true
+L["Character Specific Desc"] = [=[The {watchList} always has an account wide record tracking all watched achievements on all characters. When disabled, this account wide record is used.
+
+When enabling it for character specific use, all characters using the same profile will switch to this mode.
+
+When disabling it, the account wide {watchList} will be used again and the character specific {watchList} will be removed.]=]
 L["Characters"] = true
 L["Chat messages"] = true
 L["Checked"] = true
@@ -180,6 +186,8 @@ L["Compact Desc"] = [=[Use a more compact version with only a single line of tim
 
 {reloadRequired}]=]
 L["Completion"] = true
+L["Copy Account Wide to Character"] = true
+L["Copy Account Wide to Character Desc"] = "Copy the account wide {watchList} (any achievement watched by any character) to the current character specific {watchList}. From now on this character will have it's own {watchList}."
 L["Covenant"] = true
 L["Covenant Assaults"] = true
 L["Covenant assaults"] = true
@@ -1120,11 +1128,3 @@ L["Zaqali Ruin Investigation: Soon"] = true
 L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
 L["Zuldazar"] = true
-L["Character Specific"] = true
-L["Character Specific Desc"] = [=[The {watchList} always has an account wide record tracking all watched achievements on all characters. When disabled, this account wide record is used.
-
-When enabling it for character specific use, all characters using the same profile will switch to this mode.
-
-When disabling it, the account wide {watchList} will be used again and the character specific {watchList} will be removed.]=]
-L["Copy Account Wide to Character"] = true
-L["Copy Account Wide to Character Desc"] = "Copy the account wide {watchList} (any achievement watched by any character) to the current character specific {watchList}. From now on this character will have it's own {watchList}."

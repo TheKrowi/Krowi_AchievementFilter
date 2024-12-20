@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-12-17 17-27-19 ]] --
+-- [[ Exported at 2024-12-20 17-46-43 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -292,6 +292,8 @@ L["Enable"] = "启用"
 L["Enable debug info"] = "启用调试信息"
 L["Enable debug info Desc"] = "启用/禁用调试信息"
 L["Enable Desc"] = "启用/禁用插件。插件未加载时启用，可能会发生错误"
+L["Enable Tab Priority"] = "启用标签优先级"
+L["Enable Tab Priority Desc"] = "启用标签优先级功能"
 L["Enable trace info"] = "启用追踪信息"
 L["Enable trace info Desc"] = "启用/禁用追踪信息"
 L["End Time"] = "结束时间"
@@ -405,6 +407,7 @@ L["Event Reminder Desc"] = [=[添加{events}至新的{events}标签，在事件�
 
 (1) {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {eventReminders}]=]
 L["Event Reminders"] = "事件提醒"
+L["Event Reminders Enable Desc"] = "禁用后将关闭整个{eventReminders}模块"
 L["Events"] = "事件"
 L["Exclude"] = "隐藏"
 L["Exclude Excluded achievements"] = "排除已隐藏成就"
@@ -436,6 +439,10 @@ L["Expansions tab Desc"] = [=[将成就按不同资料片进行分类并优化�
 L["Export"] = "导出"
 L["Export Criteria"] = "导出要求"
 L["Export Criteria Desc"] = "导出成就要求至SavedVariables，用于添加新内容"
+L["Export Missing Achievements"] = "导出缺失成就"
+L["Export Missing Achievements Desc"] = "导出缺失成就。仅用作调试，无法使用该功能"
+L["Export Removed Achievements"] = "导出移除成就"
+L["Export Removed Achievements Desc"] = "导出移除成就。仅用作调试，无法使用该功能"
 L["Faction Assaults"] = "阵营突袭"
 L["Fade delay"] = "淡出延迟"
 L["Fade delay Desc"] = "忽略提醒时淡出所用的时间，右键点击将直接关闭"
@@ -469,6 +476,7 @@ L["Force two columns"] = "强制两列"
 L["Force two columns Desc"] = "启用/禁用成就目标强制显示为两列。勾选后如果单列显示过长，将根据相关设置强制显示为两列"
 L["Force two columns threshold"] = "强制两列阈值"
 L["Force two columns threshold Desc"] = "成就目标高于设置的数值将强制显示为两列，正常情况仅显示单列"
+L["Forget Me Not: Next"] = "勿忘我: 下次"
 L["Format"] = "格式"
 L["Fracture Chambers"] = "断骨密室"
 L["Fractures in Time"] = "时光的裂痕"
@@ -505,6 +513,7 @@ L["Grow direction Desc"] = "新提醒添加的位置"
 L["Guardians of the Dream"] = "梦境守护者"
 L["Guides"] = "指南"
 L["Hallow's End"] = "万圣节"
+L["Has Reward"] = "奖励"
 L["Header"] = "页眉"
 L["Header tooltip"] = "页眉提示"
 L["Hearthstone"] = "炉石传说"
@@ -883,7 +892,9 @@ L["Show Other faction Desc"] = [=[显示/隐藏其他阵营
 
 勾选后在鼠标提示中显示其他阵营成就，这将更清楚地表明为何只玩联盟的玩家，新建的部落角色会有一些成就]=]
 L["Show Part of a chain"] = "显示 {partOfAChain}"
-L["Show Part of a chain Desc"] = "显示/隐藏 {partOfAChain}。当启用时，成就所属系列将显示在提示中。"
+L["Show Part of a chain Desc"] = [=[显示/隐藏 {partOfAChain}
+
+勾选后在鼠标提示中显示所属系列成就]=]
 L["Show placeholders"] = "显示占位符"
 L["Show placeholders Desc"] = "显示一个事件占位符帮助反馈修改设置后的视觉效果，右键点击可关闭"
 L["Show placeholders filter"] = "显示占位符过滤器"
@@ -919,6 +930,8 @@ L["Show Temporarily obtainable Desc"] = [=[显示/隐藏{temporarilyObtainable}.
 勾选后当成就{temporarilyObtainable}时，在鼠标提示中显示该信息]=]
 L["Show Temporarily obtainable Icon"] = "显示{tempObt}图标"
 L["Show Temporarily obtainable Icon Desc"] = "{tempObt}成就显示/隐藏额外图标"
+L["Show Warband Icon"] = "显示{warband}图标"
+L["Show Warband Icon Desc"] = "{warband}成就显示/隐藏额外图标"
 L["Show world map icon"] = "显示世界地图图标"
 L["Show world map icon Desc"] = "显示/隐藏世界地图图标"
 L["Side Button Anchor"] = "侧边按钮锚点"
@@ -965,12 +978,14 @@ L["Superbloom: Active"] = "超然盛放: 激活"
 L["Superbloom: Next"] = "超然盛放: 下次"
 L["Tab"] = "标签"
 L["tab"] = "标签"
+L["Tab Priority"] = "标签优先级"
+L["Tab Priority Desc"] = "启用后在任意渠道点击成就，将优先跳转至指定标签页。如果该成就不适用于指定标签页，则应用默认规则"
 L["Tabs"] = "标签"
 L["Ta's Pet Collection"] = "宠物收集"
 L["Temporarily obtainable"] = "限时可得"
 L["temporarily obtainable"] = "限时可得"
 L["Temporarily obtainable Header Colors"] = "{tempObt}页眉颜色"
-L["Temporarily obtainable Header Colors Desc"] = "勾选后默认橙/蓝页眉颜色扩展为绿/黄/红，分别表示成就当前可得/未来可得/已绝版"
+L["Temporarily obtainable Header Colors Desc"] = "启用后默认页眉背景从橙/蓝扩展为绿/黄/红，分别表示成就当前可得/未来可得/已绝版"
 L["Temporarily Obtainable Text"] = "{thisAchievement}{isWillBeWas}{neverOnceTempObt}{startText}{startDetail}{endText}{endDetail}"
 L["Thaldraszus"] = "索德拉苏斯"
 L["Thaldraszus: Next"] = "索德拉苏斯: 下次"
@@ -980,15 +995,19 @@ L["The Azure Span Sprint"] = "碧蓝林海冲刺"
 L["The Big Dig: Active"] = "盛大发掘: 激活"
 L["The Big Dig: Next"] = "盛大发掘: 下次"
 L["The Big Dig: Soon"] = "盛大发掘: 即将"
+L["The Cruelty of Dornic: Next"] = "残忍的多恩尼克: 下次"
 L["The Entitled"] = "头衔"
 L["the event name with run time"] = "{eventName}从{startDate}至{endDate}"
 L["The Flowing Forest Flight"] = "起伏森林航线"
 L["The Iron Tide"] = "钢铁之潮"
+L["The Rivals: Next"] = "将逢敌手: 下次"
 L["The Shattering"] = "破碎的艾泽拉斯"
+L["The Thraegar's Descent: Next"] = "斯雷加探深记: 下次"
 L["The Thunder King"] = "雷神再临"
 L["The Tomb of Sargeras"] = "萨格拉斯之墓"
 L["The Vakthros Ascent"] = "瓦克索斯攀升赛"
 L["The Waking Shore"] = "觉醒海岸"
+L["The Wanderer: Next"] = "浪子回头: 下次"
 L["The War Within (pre-patch)"] = "地心之战（前夕）"
 L["Theater Troupe"] = "剧场巡演"
 L["This achievement"] = "该成就"
@@ -1050,6 +1069,11 @@ L["Wago"] = true
 L["Wago Desc"] = "提供{addonName}的{wago}页面链接"
 L["Waking Shores"] = "觉醒海岸"
 L["Waking Shores: Next"] = "觉醒海岸: 下次"
+L["Warband Achievement"] = "战团成就"
+L["Warband Header Color"] = "{warband}页眉颜色"
+L["Warband Header Color Desc"] = [=[禁用后默认页眉背景从蓝色替换为橙色
+推荐启用{warbandIcon}.
+]=]
 L["Warcraft III: Reforged"] = "魔兽争霸III: 重制版"
 L["Warcraft Rumble"] = "魔兽游戏机"
 L["was"] = ":"
