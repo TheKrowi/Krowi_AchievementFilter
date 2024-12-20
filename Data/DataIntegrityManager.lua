@@ -56,6 +56,7 @@ local FixFeaturesTutorialProgress, FixElvUISkin, FixFilters, FixEventDetails, Fi
 local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters, FixNewEarnedByFilter, FixTabs2, FixNewEarnedByFilter2;
 local FixEventDetails3, FixTooltipCriteria, FixFocusedAchievements, FixFocusedOptions, FixEventRemindersTimeDisplay, FixEventRemindersOptions, FixEventRemindersOptions2;
 local FixActiveEvents, MigrateCharactersAndAchievements, FixFirstTimeSetUpSwitchAchievementTabs, FixNewObtainabilityFilter, CleanUpCharactersAndAchievements;
+local FixWatchedAchievements;
 function LoadSolutions()
     local solutions = {
         FixFeaturesTutorialProgress, -- 1
@@ -85,6 +86,7 @@ function LoadSolutions()
         FixFirstTimeSetUpSwitchAchievementTabs, --26
         FixNewObtainabilityFilter, -- 27
         CleanUpCharactersAndAchievements, -- 28
+        FixWatchedAchievements, -- 29
     };
 
     return solutions;
