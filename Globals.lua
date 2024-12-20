@@ -179,7 +179,9 @@ function addon.WatchAchievement(achievement, update)
         end
 	end
     if update ~= false then
+        local scrollPercentage = KrowiAF_AchievementsFrame.ScrollBox:GetScrollPercentage();
         addon.Gui:RefreshView();
+        KrowiAF_AchievementsFrame.ScrollBox:SetScrollPercentage(scrollPercentage);
     end
 end
 

@@ -1121,6 +1121,10 @@ L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
 L["Zuldazar"] = true
 L["Character Specific"] = true
-L["Character Specific Desc"] = [=[Make the {watchList} character specific. Existing watched achievements will be copied to the new character specific list.
+L["Character Specific Desc"] = [=[The {watchList} always has an account wide record tracking all watched achievements on all characters. When disabled, this account wide record is used.
 
-When disabled, the {watchList} of all characters will be combined and shared between all characters.]=]
+When enabling it for character specific use, all characters using the same profile will switch to this mode.
+
+When disabling it, the account wide {watchList} will be used again and the character specific {watchList} will be removed.]=]
+L["Copy Account Wide to Character"] = true
+L["Copy Account Wide to Character Desc"] = "Copy the account wide {watchList} (any achievement watched by any character) to the current character specific {watchList}. From now on this character will have it's own {watchList}."

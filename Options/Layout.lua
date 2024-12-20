@@ -70,11 +70,6 @@ local function WatchListClearAllFunc()
     addon.Data.SavedData.AchievementData:ClearWatchedAchievements();
 end
 
-local function WatchListCharacterSpecificSet(_, value)
-    addon.Options.db.profile.Categories.WatchList.CharacterSpecific = value;
-    addon.Data.SavedData.AchievementData.SetCharacterSpecific();
-end
-
 local function InjectDynamicFixedWatchListOptions()
     if addon.InjectOptions:TableExists("Layout.args.AdjustableCategories.args.WatchList.args.ShowWatchedSubCategories") then
         return;
@@ -117,7 +112,20 @@ local function InjectDynamicFixedWatchListOptions()
         name = addon.L["Character Specific"],
         desc = addon.L["Character Specific Desc"]:K_ReplaceVars(addon.L["Watch List"]):KAF_AddDefaultValueText("Categories.WatchList.CharacterSpecific"),
         get = function() return addon.Options.db.profile.Categories.WatchList.CharacterSpecific; end,
-        set = WatchListCharacterSpecificSet
+        set = function (_, value)
+            addon.Options.db.profile.Categories.WatchList.CharacterSpecific = value;
+            addon.Data.SavedData.AchievementData.ReloadWatchedAchievements();
+        end
+    });
+    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "Blank3", {
+        order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""
+    });
+    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "CopyAccountWideToCharacter", {
+        order = OrderPP(), type = "execute", width = AdjustedWidth(),
+        name = addon.L["Copy Account Wide to Character"],
+        desc = addon.L["Copy Account Wide to Character Desc"]:K_ReplaceVars(addon.L["Watch List"]),
+        func = addon.Data.SavedData.AchievementData.CopyAccountWideToCharacter,
+        disabled = function() return not addon.Options.db.profile.Categories.WatchList.CharacterSpecific; end
     });
 end
 
@@ -215,12 +223,12 @@ local function InjectMoreDynamicExcludedOptions()
         order = OrderPP(), type = "toggle", width = AdjustedWidth(),
         name = addon.L["Show Sub Categories"],
         desc = addon.L["Show Sub Categories Desc"]:K_ReplaceVars(addon.L["Excluded"]):KAF_AddDefaultValueText("Categories.Excluded.ShowSubCategories"),
-        disabled = function() return not addon.Options.db.profile.Categories.Excluded.Show; end,
         get = function() return addon.Options.db.profile.Categories.Excluded.ShowSubCategories; end,
         set = function()
             addon.Options.db.profile.Categories.Excluded.ShowSubCategories = not addon.Options.db.profile.Categories.Excluded.ShowSubCategories;
             DrawSubCategories(addon.SpecialCategories.Excluded);
-        end
+        end,
+        disabled = function() return not addon.Options.db.profile.Categories.Excluded.Show; end
     });
 end
 

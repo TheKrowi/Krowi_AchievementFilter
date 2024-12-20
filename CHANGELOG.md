@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 81.0 - 2024-12-20
+### Added
+- The watch list can now be a mix of account wide achievements for one character, character specific achievements for another character or all account wide or character specific
+
+### Fixed
+- When marking an achievement as watched, the view should no longer completely reset
+
 ## 80.2 - 2024-12-18
 ### Added
 - Lingering Shadows achievement

@@ -1,17 +1,8 @@
 <p><h3>Added</h3></p>
 <ul>
-<li>Achievements added in 11.0.7</li>
-<li>Feature to prioritize which tab is used when getting redirected to an achievement</li>
-<li>Has Reward filter (dev note: reward type filters will come in a later version)</li>
-<li>Option to show a Warband icon on Warband achievements</li>
-<li>Option to hide the blue Warband achievement color</li>
-<li>Option to completely turn off the Event Reminders Module with 1 option</li>
+<li>The watch list can now be a mix of account wide achievements for one character, character specific achievements for another character or all account wide or character specific</li>
 </ul>
-<p><h3>Added (80.1)</h3></p>
+<p><h3>Fixed</h3></p>
 <ul>
-<li>Patch 11.0.7 to the filters</li>
-</ul>
-<p><h3>Added (80.2)</h3></p>
-<ul>
-<li>Lingering Shadows achievement</li>
+<li>When marking an achievement as watched, the view should no longer completely reset</li>
 </ul>

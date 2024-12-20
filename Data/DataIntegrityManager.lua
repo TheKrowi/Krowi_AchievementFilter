@@ -937,7 +937,11 @@ function FixWatchedAchievements(prevBuild, currBuild, prevVersion, currVersion, 
         return;
     end
 
-    KrowiAF_Achievements.Watched = KrowiAF_SavedData.WatchedAchievements;
+    KrowiAF_Achievements.Watched = KrowiAF_Achievements.Watched or {};
+    for achievementId, _ in next, KrowiAF_SavedData.WatchedAchievements do
+        KrowiAF_Achievements.Watched[achievementId] = {};
+        KrowiAF_Achievements.Watched[achievementId].AccountWide = true;
+    end
     -- KrowiAF_SavedData.WatchedAchievements = nil;
 
     diagnostics.Debug("Watched Achievements renamed");
