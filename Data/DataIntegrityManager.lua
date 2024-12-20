@@ -921,6 +921,22 @@ function CleanUpCharactersAndAchievements(prevBuild, currBuild, prevVersion, cur
     KrowiAF_SavedData.Characters = nil;
 end
 
-function CleanUpKrowiAF_AchievementsWithTheWarWithin(prevBuild, currBuild, prevVersion, currVersion, firstTime)
-    -- In version 74.0
+function FixWatchedAchievements(prevBuild, currBuild, prevVersion, currVersion, firstTime)
+    -- In version 81.0 KrowiAF_SavedData.WatchedAchievements was renamed to KrowiAF_Achievements.Watched
+    -- Here we clean up the old KrowiAF_SavedData.WatchedAchievements for users pre 81.0
+    -- KrowiAF_Achievements.Watched is created by the Achievement data so we don't need to do this here, just copy if previous existed
+
+    if firstTime and currVersion > "81.0" then
+        diagnostics.Debug("First time Watched Achievements OK");
+        return;
+    end
+    if KrowiAF_SavedData.WatchedAchievements == nil then
+        diagnostics.Debug("Watched Achievements already renamed");
+        return;
+    end
+
+    KrowiAF_Achievements.Watched = KrowiAF_SavedData.WatchedAchievements;
+    -- KrowiAF_SavedData.WatchedAchievements = nil;
+
+    diagnostics.Debug("Watched Achievements renamed");
 end

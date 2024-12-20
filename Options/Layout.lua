@@ -70,6 +70,11 @@ local function WatchListClearAllFunc()
     addon.Data.SavedData.AchievementData:ClearWatchedAchievements();
 end
 
+local function WatchListCharacterSpecificSet(_, value)
+    addon.Options.db.profile.Categories.WatchList.CharacterSpecific = value;
+    addon.Data.SavedData.AchievementData.SetCharacterSpecific();
+end
+
 local function InjectDynamicFixedWatchListOptions()
     if addon.InjectOptions:TableExists("Layout.args.AdjustableCategories.args.WatchList.args.ShowWatchedSubCategories") then
         return;
@@ -112,7 +117,7 @@ local function InjectDynamicFixedWatchListOptions()
         name = addon.L["Character Specific"],
         desc = addon.L["Character Specific Desc"]:K_ReplaceVars(addon.L["Watch List"]):KAF_AddDefaultValueText("Categories.WatchList.CharacterSpecific"),
         get = function() return addon.Options.db.profile.Categories.WatchList.CharacterSpecific; end,
-        set = function(_, value) addon.Options.db.profile.Categories.WatchList.CharacterSpecific = value; end
+        set = WatchListCharacterSpecificSet
     });
 end
 

@@ -14,6 +14,7 @@ function achievementData.Load()
     KrowiAF_Achievements.Completed = KrowiAF_Achievements.Completed or {};
     KrowiAF_Achievements.NotCompleted = KrowiAF_Achievements.NotCompleted or {};
     KrowiAF_Achievements.LastCompleted = KrowiAF_Achievements.LastCompleted or {};
+    KrowiAF_Achievements.Watched = KrowiAF_Achievements.Watched or {};
 end
 
 local function DateTimeToEpoch(year, month, day)
@@ -192,15 +193,23 @@ function achievementData.RegisterNewAchievementEarned(achievementId)
 end
 
 local function GetWatchedAchievementsList()
-    return KrowiAF_SavedData.WatchedAchievements;
+    return KrowiAF_Achievements.Watched;
 end
 
-local function NewWatchedAchievementsList()
-    KrowiAF_SavedData.WatchedAchievements = KrowiAF_SavedData.WatchedAchievements or {};
+local function WipeWatchedAchievementsList()
+    wipe(KrowiAF_Achievements.Watched);
 end
 
-local function NilWatchedAchievementsList()
-    KrowiAF_SavedData.WatchedAchievements = nil;
+function achievementData.SetCharacterSpecific()
+    if addon.Options.db.profile.Categories.WatchList.CharacterSpecific then
+        -- For each achevement in KrowiAF_SavedData.WatchedAchievements, copy to each character
+        return;
+    end
+
+    -- Return back to the global list
+
+    -- For each character with watched achievements, set id in KrowiAF_SavedData.WatchedAchievements to true
+    -- Remove char specific lists
 end
 
 function achievementData.SetWatched(achievement, isWatched)
@@ -210,27 +219,20 @@ function achievementData.SetWatched(achievement, isWatched)
 
     if isWatched or isWatched == nil then
         achievement.IsWatched = true;
-        NewWatchedAchievementsList();
         GetWatchedAchievementsList()[achievement.Id] = true;
         return;
     end
 
     achievement.IsWatched = nil;
 
-    if GetWatchedAchievementsList() == nil then
-        return;
-    end
-
     GetWatchedAchievementsList()[achievement.Id] = nil;
 end
 
 function achievementData:ClearWatchedAchievements()
-    if GetWatchedAchievementsList() then
-        for id, _ in next, GetWatchedAchievementsList() do
-            self.SetWatched(addon.Data.Achievements[id], false);
-        end
+    for id, _ in next, GetWatchedAchievementsList() do
+        self.SetWatched(addon.Data.Achievements[id], false);
     end
-    NilWatchedAchievementsList();
+    WipeWatchedAchievementsList();
 end
 
 local function LoadAchievements(sourceTable, func)
