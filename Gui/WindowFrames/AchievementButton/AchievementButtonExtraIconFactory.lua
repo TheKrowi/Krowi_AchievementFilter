@@ -97,10 +97,18 @@ local function SetExtraIconIsExcluded(self, achievement)
 end
 
 local function SetExtraIconRemixPandaria(self, achievement)
-	if not achievement.TemporaryObtainable
-	or not achievement.TemporaryObtainable.Start
-	or achievement.TemporaryObtainable.Start.Function ~= "Event"
-	or achievement.TemporaryObtainable.Start.Value ~= "1514" then
+	if not achievement.TemporaryObtainable then
+		return;
+	end
+
+	local remixPandariaRecord;
+	for _, record in next, achievement.TemporaryObtainable do
+		if record.Start and record.Start.Function == "Event" and record.Start.Value == "1514" then
+			remixPandariaRecord = record;
+		end
+	end
+
+	if not remixPandariaRecord then
 		return;
 	end
 
@@ -111,7 +119,7 @@ local function SetExtraIconRemixPandaria(self, achievement)
 
 	extraIcon.Texture:SetAtlas("timerunning-glues-icon");
 	local text, occurrence;
-	text, extraIcon.Color, occurrence = addon.Data.TemporaryObtainable:GetNotObtainableText(achievement);
+	text, extraIcon.Color, occurrence = addon.Data.TemporaryObtainable:GetNotObtainableText(remixPandariaRecord);
 	extraIcon.Lines = {
 		text,
 		occurrence
@@ -129,7 +137,8 @@ local function SetExtraIconEvent(self, achievement)
 		return;
 	end
 
-	local text, color, occurrence = addon.Data.TemporaryObtainable:GetNotObtainableText(achievement);
+	local record = achievement.TemporaryObtainable[#achievement.TemporaryObtainable];
+	local text, color, occurrence = addon.Data.TemporaryObtainable:GetNotObtainableText(record);
 	extraIcon.Color = color;
 	extraIcon.Texture:SetAtlas("auctionhouse-icon-clock");
 	extraIcon.Texture:SetVertexColor(color.R, color.G, color.B, 1);

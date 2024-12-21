@@ -1,6 +1,6 @@
 local _, addon = ...;
 local shared = addon.Data.AchievementData.Shared;
-local faction = addon.Objects.Faction;
+local faction = KrowiAF.Enum.Faction;
 
 KrowiAF.AchievementData["07_00_03"] = {
     {KrowiAF.SetAchievementPatch, 7, 0, 3},
@@ -16,13 +16,13 @@ KrowiAF.AchievementData["07_00_03"] = {
     { -- Dragons!
         9689,
     },
-    { -- "Ragnaros, Watch and Learn"
+    { -- Ragnaros, Watch and Learn
         9690,
     },
     { -- Flock Together
         9691,
     },
-    { -- "Murlocs, Harpies, and Wolvar, Oh My!"
+    { -- Murlocs, Harpies, and Wolvar, Oh My!
         9692,
     },
     { -- Master of Magic
@@ -304,7 +304,7 @@ KrowiAF.AchievementData["07_00_03"] = {
     { -- Training the Troops
         10706,
     },
-    { -- "A Specter, Illuminated"
+    { -- A Specter, Illuminated
         10707,
     },
     { -- You Used to Scrawl Me In Your Fel Tome
@@ -460,7 +460,7 @@ KrowiAF.AchievementData["07_00_03"] = {
     { -- Mythic: Halls of Valor
         10789,
     },
-    { -- "Vrykul Story, Bro"
+    { -- Vrykul Story, Bro
         10790,
     },
     { -- What a Ripoff!
@@ -1217,7 +1217,7 @@ KrowiAF.AchievementData["07_00_03"] = {
     { -- 5000 World Quests Completed
         11131,
     },
-    { -- "10,000 World Quests Completed"
+    { -- 10,000 World Quests Completed
         11132,
     },
     { -- Why Can't I Hold All This Mana?
@@ -1369,7 +1369,7 @@ KrowiAF.AchievementData["07_00_03"] = {
     { -- Variety is the Spice of Life
         11189,
     },
-    { -- "Broken Isles Pathfinder, Part One"
+    { -- Broken Isles Pathfinder, Part One
         11190,
     },
     { -- Cutting Edge: Xavius
@@ -1435,7 +1435,7 @@ KrowiAF.AchievementData["07_00_03"] = {
     { -- So Many Missions
         11216,
     },
-    { -- "Many Many Missions, Handle It!"
+    { -- Many Many Missions, Handle It!
         11217,
     },
     { -- There's a Boss In There
@@ -1466,7 +1466,7 @@ KrowiAF.AchievementData["07_00_03"] = {
             {"Once"},
         },
     },
-    { -- "Lock, Stock and Two Smoking Goblins"
+    { -- Lock, Stock and Two Smoking Goblins
         11232,
     },
     { -- Broken Isles Safari
@@ -1669,7 +1669,7 @@ KrowiAF.AchievementData["07_02_00"] = {
     { -- Burn After Reading
         11433,
     },
-    { -- "Broken Isles Pathfinder, Part Two"
+    { -- Broken Isles Pathfinder, Part Two
         11446,
     },
     { -- Alive for Five
@@ -1693,21 +1693,21 @@ KrowiAF.AchievementData["07_02_00"] = {
             {"From", "PvP Season", 19, "Until", "PvP Season", 25},
         },
     },
-    { -- "Don't Hate, Grind to Eight"
+    { -- Don't Hate, Grind to Eight
         11471,
         {
             IsPvP = true,
             {"From", "PvP Season", 19, "Until", "PvP Season", 25},
         },
     },
-    { -- "Hell, It's About Nine"
+    { -- Hell, It's About Nine
         11472,
         {
             IsPvP = true,
             {"From", "PvP Season", 19, "Until", "PvP Season", 25},
         },
     },
-    { -- "Free For All, More For Me"
+    { -- Free For All, More For Me
         11474,
         {
             IsPvP = true,
@@ -1890,7 +1890,7 @@ KrowiAF.AchievementData["07_02_00"] = {
     { -- Paragon of the Broken Isles
         11653,
     },
-    { -- "Great Soul, Great Purpose"
+    { -- Great Soul, Great Purpose
         11674,
     },
     { -- Sky Walker
@@ -1968,7 +1968,7 @@ KrowiAF.AchievementData["07_02_00"] = {
             {"From", "PvP Season", 19, "Until", "PvP Season", 25},
         },
     },
-    { -- "Hell, It's About Nineteen"
+    { -- Hell, It's About Nineteen
         11694,
         {
             IsPvP = true,
@@ -2094,7 +2094,7 @@ KrowiAF.AchievementData["07_02_00"] = {
     { -- Accessor-Eyes
         11743,
     },
-    { -- "Drop Dead, Gorgeous"
+    { -- Drop Dead, Gorgeous
         11744,
     },
     { -- Outlandish Style
@@ -2106,7 +2106,7 @@ KrowiAF.AchievementData["07_02_00"] = {
     { -- Black is the New Black
         11748,
     },
-    { -- "Suns Out, Thori'dals Out"
+    { -- Suns Out, Thori'dals Out
         11749,
     },
     { -- Undying Aesthetic
@@ -2172,7 +2172,7 @@ KrowiAF.AchievementData["07_02_00"] = {
             {"Before", "Version", {8, 0, 1}},
         },
     },
-    { -- "Wax On, Wax Off"
+    { -- Wax On, Wax Off
         11773,
     },
     { -- Mythic: Demonic Inquisition
@@ -2254,7 +2254,7 @@ KrowiAF.AchievementData["07_02_05"] = {
             {"Before", "Version", {7, 3, 0}},
         },
     },
-    { -- "Hey, You're a Rockstar!"
+    { -- Hey, You're a Rockstar!
         11918,
         {
             {"Event", 374},
@@ -2542,7 +2542,7 @@ KrowiAF.AchievementData["07_03_00"] = {
     { -- Locked and Loaded
         12073,
     },
-    { -- "Shoot First, Loot Later"
+    { -- Shoot First, Loot Later
         12074,
     },
     { -- Protector of the Argussian Reach
@@ -3104,7 +3104,7 @@ KrowiAF.AchievementData["07_03_05"] = {
     { -- A Quick Shave
         12321,
     },
-    { -- "Iron Dwarf, Medium Rare"
+    { -- Iron Dwarf, Medium Rare
         12322,
     },
     { -- Shattered
@@ -3131,13 +3131,13 @@ KrowiAF.AchievementData["07_03_05"] = {
     { -- Heartbreaker
         12330,
     },
-    { -- "I Choose You, Runemaster Molgeim"
+    { -- I Choose You, Runemaster Molgeim
         12332,
     },
-    { -- "I Choose You, Stormcaller Brundir"
+    { -- I Choose You, Stormcaller Brundir
         12333,
     },
-    { -- "I Choose You, Steelbreaker"
+    { -- I Choose You, Steelbreaker
         12334,
     },
     { -- But I'm On Your Side
@@ -3209,10 +3209,10 @@ KrowiAF.AchievementData["07_03_05"] = {
     { -- Knock on Wood
         12364,
     },
-    { -- "Knock, Knock on Wood"
+    { -- Knock, Knock on Wood
         12365,
     },
-    { -- "Knock, Knock, Knock on Wood"
+    { -- Knock, Knock, Knock on Wood
         12366,
     },
     { -- Set Up Us the Bomb

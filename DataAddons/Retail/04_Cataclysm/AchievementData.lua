@@ -1,6 +1,7 @@
 local _, addon = ...;
 local shared = addon.Data.AchievementData.Shared;
-local faction = addon.Objects.Faction;
+local faction = KrowiAF.Enum.Faction;
+local rewardType = KrowiAF.Enum.RewardType;
 
 KrowiAF.AchievementData["04_00_01"] = {
     {KrowiAF.SetAchievementPatch, 4, 0, 1},
@@ -36,13 +37,13 @@ KrowiAF.AchievementData["04_00_01"] = {
             {"Before", "Version", {6, 0, 2}},
         },
     },
-    { -- "25,000 Valor Points"
+    { -- 25,000 Valor Points
         5537,
         {
             {"Before", "Version", {6, 0, 2}},
         },
     },
-    { -- "50,000 Valor Points"
+    { -- 50,000 Valor Points
         5538,
         {
             {"Before", "Version", {6, 0, 2}},
@@ -75,9 +76,24 @@ KrowiAF.AchievementData["04_00_03"] = {
     {4851}, -- Throne of the Four Winds
     {4852}, -- Double Dragon
     {4853}, -- Glory of the Cataclysm Raider
-    {4854}, -- I Had It in My Hand
-    {4855}, -- What was Briefly Yours is Now Mine
-    {4856}, -- It Belongs in a Museum!
+    { -- I Had It in My Hand
+        4854,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
+    { -- What was Briefly Yours is Now Mine
+        4855,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
+    { -- It Belongs in a Museum!
+        4856,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {4857}, -- Journeyman Archaeologist
     {4858}, -- Seven Scepters
     {4859}, -- Kings Under the Mountain
@@ -358,14 +374,29 @@ KrowiAF.AchievementData["04_00_03"] = {
     {5108}, -- Heroic: Maloriak
     {5109}, -- Heroic: Atramedes
     {5115}, -- Heroic: Chimaeron
-    {5116}, -- Heroic: Nefarian
+    { -- Heroic: Nefarian
+        5116,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {5117}, -- Heroic: Valiona and Theralion
     {5118}, -- Heroic: Halfus Wyrmbreaker
     {5119}, -- Heroic: Ascendant Council
     {5120}, -- Heroic: Cho'gall
-    {5121}, -- Heroic: Sinestra
+    { -- Heroic: Sinestra
+        5121,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {5122}, -- Heroic: Conclave of Wind
-    {5123}, -- Heroic: Al'Akir
+    { -- Heroic: Al'Akir
+        5123,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {5180}, -- Breaking the Sound Barrier
     {5191}, -- Tragedy in Three Acts
     {5192}, -- The Harder they Fall
@@ -430,13 +461,13 @@ KrowiAF.AchievementData["04_00_03"] = {
         5219,
         true,
     },
-    { -- "Fire, Walk With Me"
+    { -- Fire, Walk With Me
         5221,
         faction.Alliance,
         5222,
         true,
     },
-    { -- "Fire, Walk With Me"
+    { -- Fire, Walk With Me
         5222,
         faction.Horde,
         5221,
@@ -635,12 +666,12 @@ KrowiAF.AchievementData["04_00_03"] = {
     },
     {5315}, -- Digger
     {5317}, -- Help the Bombardier! I'm the Bombardier!
-    { -- "20,000 Leagues Under the Sea"
+    { -- 20,000 Leagues Under the Sea
         5318,
         faction.Alliance,
         5319,
     },
-    { -- "20,000 Leagues Under the Sea"
+    { -- 20,000 Leagues Under the Sea
         5319,
         faction.Horde,
         5318,
@@ -677,13 +708,19 @@ KrowiAF.AchievementData["04_00_03"] = {
         5325,
         faction.Horde,
         5328,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Warbringer of the Horde
         5326,
         faction.Horde,
         5329,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- In Service of the Alliance
         5327,
@@ -695,97 +732,145 @@ KrowiAF.AchievementData["04_00_03"] = {
         5328,
         faction.Alliance,
         5325,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Warbound Veteran of the Alliance
         5329,
         faction.Alliance,
         5326,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Private
         5330,
         faction.Alliance,
         5345,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Corporal
         5331,
         faction.Alliance,
         5346,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Sergeant
         5332,
         faction.Alliance,
         5347,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Master Sergeant
         5333,
         faction.Alliance,
         5348,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Sergeant Major
         5334,
         faction.Alliance,
         5349,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Knight
         5335,
         faction.Alliance,
         5350,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Knight-Lieutenant
         5336,
         faction.Alliance,
         5351,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Knight-Captain
         5337,
         faction.Alliance,
         5352,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Centurion
         5338,
         faction.Horde,
         5359,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Lieutenant Commander
         5339,
         faction.Alliance,
         5353,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Commander
         5340,
         faction.Alliance,
         5354,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Marshal
         5341,
         faction.Alliance,
         5355,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Warlord
         5342,
         faction.Horde,
         5357,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Grand Marshal
         5343,
         faction.Alliance,
         5356,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Hero of the Alliance: Vicious
         5344,
@@ -800,79 +885,118 @@ KrowiAF.AchievementData["04_00_03"] = {
         5345,
         faction.Horde,
         5330,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Grunt
         5346,
         faction.Horde,
         5331,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Sergeant
         5347,
         faction.Horde,
         5332,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Senior Sergeant
         5348,
         faction.Horde,
         5333,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- First Sergeant
         5349,
         faction.Horde,
         5334,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Stone Guard
         5350,
         faction.Horde,
         5335,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Blood Guard
         5351,
         faction.Horde,
         5336,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Legionnaire
         5352,
         faction.Horde,
         5337,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Champion
         5353,
         faction.Horde,
         5339,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Lieutenant General
         5354,
         faction.Horde,
         5340,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- General
         5355,
         faction.Horde,
         5341,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- High Warlord
         5356,
         faction.Horde,
         5343,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Field Marshal
         5357,
         faction.Alliance,
         5342,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Hero of the Horde: Vicious
         5358,
@@ -887,11 +1011,15 @@ KrowiAF.AchievementData["04_00_03"] = {
         5359,
         faction.Alliance,
         5338,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- 250000 Honorable Kills
         5363,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
         },
     },
@@ -1063,7 +1191,7 @@ KrowiAF.AchievementData["04_00_03"] = {
     },
     {5442}, -- Full Caravan
     {5443}, -- E'ko Madness
-    {5444}, -- "Ready, Set, Goat!"
+    {5444}, -- Ready, Set, Goat!
     {5445}, -- Fungalophobia
     {5446}, -- The Glop Family Line
     {5447}, -- My Very Own Broodmother
@@ -1159,7 +1287,12 @@ KrowiAF.AchievementData["04_00_03"] = {
     {5503}, -- Pardon Denied
     {5504}, -- To the Ground!
     {5505}, -- Bullet Time
-    {5506}, -- Defender of a Shattered World
+    { -- Defender of a Shattered World
+        5506,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {5511}, -- It's Always in the Last Place You Look
     {5518}, -- Stood in the Fire
     { -- Veteran of the Shifting Sands
@@ -1168,14 +1301,14 @@ KrowiAF.AchievementData["04_00_03"] = {
             {"Never"},
         },
     },
-    { -- "50,000 Conquest Points"
+    { -- 50,000 Conquest Points
         5539,
         {
             IsPvP = true,
             {"From", "PvP Season", 9, "Until", "PvP Season", 18},
         },
     },
-    { -- "25,000 Conquest Points"
+    { -- 25,000 Conquest Points
         5540,
         {
             IsPvP = true,
@@ -1237,8 +1370,13 @@ KrowiAF.AchievementData["04_01_00"] = {
     {5760}, -- Ring Out!
     {5761}, -- Hex Mix
     {5762}, -- Ohganot So Fast!
-    {5765}, -- "Here, Kitty Kitty..."
-    {5767}, -- Scourer of the Eternal Sands
+    {5765}, -- Here, Kitty Kitty...
+    { -- Scourer of the Eternal Sands
+        5767,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {5768}, -- Heroic: Zul'Gurub
     {5769}, -- Heroic: Zul'Aman
     {5779}, -- You'll Feel Right as Rain
@@ -1255,7 +1393,12 @@ KrowiAF.AchievementData["04_02_00"] = {
     {5794}, -- Time Flies When You're Having Fun
     {5799}, -- Only the Penitent...
     {5802}, -- Firelands
-    {5803}, -- Heroic: Ragnaros
+    { -- Heroic: Ragnaros
+        5803,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {5804}, -- Heroic: Majordomo Fandral Staghelm
     {5805}, -- Heroic: Baleroc
     {5806}, -- Heroic: Shannox
@@ -1277,7 +1420,12 @@ KrowiAF.AchievementData["04_02_00"] = {
         5823,
         true,
     },
-    {5827}, -- Avengers of Hyjal
+    { -- Avengers of Hyjal
+        5827,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {5828}, -- Glory of the Firelands Raider
     {5829}, -- Bucket List
     {5830}, -- Share the Pain
@@ -1313,7 +1461,7 @@ KrowiAF.AchievementData["04_02_00"] = {
             {"Event", 324},
         },
     },
-    {5839}, -- "Dragonwrath, Tarecgosa's Rest"
+    {5839}, -- Dragonwrath, Tarecgosa's Rest
     { -- Let's Do Lunch: Ironforge
         5841,
         faction.Alliance,
@@ -1382,7 +1530,12 @@ KrowiAF.AchievementData["04_02_00"] = {
     {5875}, -- Littlest Pet Shop
     {5876}, -- Petting Zoo
     {5877}, -- Menagerie
-    {5879}, -- Veteran of the Molten Front
+    { -- Veteran of the Molten Front
+        5879,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
 };
 
 KrowiAF.AchievementData["04_02_02"] = {
@@ -1493,7 +1646,7 @@ KrowiAF.AchievementData["04_03_00"] = {
             {"Event", 341},
         },
     },
-    { -- "Come One, Come All!"
+    { -- Come One, Come All!
         6019,
         {
             {"Event", 374},
@@ -1597,7 +1750,12 @@ KrowiAF.AchievementData["04_03_00"] = {
     {6113}, -- Heroic: Ultraxion
     {6114}, -- Heroic: Warmaster Blackhorn
     {6115}, -- Heroic: Spine of Deathwing
-    {6116}, -- Heroic: Madness of Deathwing
+    { -- Heroic: Madness of Deathwing
+        6116,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {6117}, -- Heroic: End Time
     {6118}, -- Heroic: Well of Eternity
     {6119}, -- Heroic: Hour of Twilight
@@ -1623,7 +1781,12 @@ KrowiAF.AchievementData["04_03_00"] = {
     {6169}, -- Glory of the Dragon Soul Raider
     {6174}, -- Don't Stand So Close to Me
     {6175}, -- Holding Hands
-    {6177}, -- Destroyer's End
+    { -- Destroyer's End
+        6177,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {6180}, -- Chromatic Champion
     {6181}, -- Fangs of the Father
     {6185}, -- Murkablo

@@ -1,5 +1,18 @@
 local _, addon = ...;
 
+KrowiAF.Enum = KrowiAF.Enum or {};
+KrowiAF.Enum.Faction = EnumUtil.MakeEnum(
+    "Alliance",
+    "Horde"
+);
+KrowiAF.Enum.RewardType = EnumUtil.MakeEnum(
+    "Other",
+    "Toy",
+    "Pet",
+    "Title",
+    "Mount"
+);
+
 KrowiAF.AchievementData = {};
 
 local achievementPatch;
@@ -7,8 +20,8 @@ function KrowiAF.SetAchievementPatch(major, minor, patch)
     achievementPatch = KrowiAF.GetBuildVersion(major, minor, patch);
 end
 
-local function AddAchievementData(id, faction, otherFactionAchievementId, isPvP, isRealmFirst, temporaryObtainables)
-    addon.Data.Achievements[id] = addon.Objects.Achievement:New(id, achievementPatch, faction, otherFactionAchievementId, isPvP, isRealmFirst);
+local function AddAchievementData(id, faction, otherFactionAchievementId, rewardType, isPvP, isRealmFirst, temporaryObtainables)
+    addon.Data.Achievements[id] = addon.Objects.Achievement:New(id, achievementPatch, faction, otherFactionAchievementId, rewardType, isPvP, isRealmFirst);
     tinsert(addon.Data.AchievementIds, id);
     if not temporaryObtainables then
         return;
@@ -37,6 +50,11 @@ local function ParseAddAchievementData(id, faction, otherFactionAchievementId, i
         isRealmFirst = nil;
     end
 
+    local rewardType;
+    if temporaryObtainables and temporaryObtainables.RewardType then
+        rewardType = temporaryObtainables.RewardType;
+        temporaryObtainables.RewardType = nil;
+    end
     if temporaryObtainables and temporaryObtainables.IsPvP then
         isPvP = true;
         temporaryObtainables.IsPvP = nil;
@@ -46,7 +64,7 @@ local function ParseAddAchievementData(id, faction, otherFactionAchievementId, i
         temporaryObtainables.IsRealmFirst = nil;
     end
 
-    return id, faction, otherFactionAchievementId, isPvP, isRealmFirst, temporaryObtainables;
+    return id, faction, otherFactionAchievementId, rewardType, isPvP, isRealmFirst, temporaryObtainables;
 end
 
 function KrowiAF.AddAchievementData(id, faction, otherFactionAchievementId, isPvP, isRealmFirst)

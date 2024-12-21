@@ -1,6 +1,6 @@
 local _, addon = ...;
 local shared = addon.Data.EventData.Shared;
-local type = addon.Objects.EventType;
+local type = KrowiAF.Enum.EventType;
 
 KrowiAF.EventData.Dragonflight = {
     { -- Kalimdor Cup

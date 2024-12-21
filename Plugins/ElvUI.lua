@@ -145,10 +145,7 @@ do -- [[ Achievements ]]
             return;
         end
         local achievement = frame.Achievement;
-        local state;
-        if achievement.TemporaryObtainable then
-            state = achievement.TemporaryObtainable.Obtainable();
-        end
+        local state = achievement:GetObtainableState();
         local backdropColorFunc;
         if state and (state == false or state == "Past") then
             backdropColorFunc = RedBackdrop;

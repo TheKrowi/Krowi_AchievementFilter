@@ -14,7 +14,7 @@ function characterData.Upsert(characterGuid)
     character.Name = (UnitFullName("player"));
     character.Realm = (select(2, UnitFullName("player")));
     character.Class = (select(2, UnitClass("player")));
-    character.Faction = (UnitFactionGroup("player"));
+    character.Faction = KrowiAF.Enum.Faction[(UnitFactionGroup("player"))];
     character.Points = character.Points or -1;
 
     return character;

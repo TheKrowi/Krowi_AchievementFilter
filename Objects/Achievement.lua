@@ -5,13 +5,14 @@ objects.Achievement = {};
 local achievement = objects.Achievement;
 
 achievement.__index = achievement;
-function achievement:New(id, buildVersion, faction, otherFactionAchievementId, isPvP, isRealmFirst)
+function achievement:New(id, buildVersion, faction, otherFactionAchievementId, rewardType, isPvP, isRealmFirst)
     local instance = setmetatable({}, achievement);
     instance.Id = id or 0;
     instance.BuildVersion = buildVersion;
     -- buildVersion:SetInUse();
     instance.Faction = faction;
     instance.OtherFactionAchievementId = otherFactionAchievementId;
+    instance.RewardType = rewardType;
     instance.IsPvP = isPvP;
     instance.IsRealmFirst = isRealmFirst;
     return instance;
@@ -152,10 +153,8 @@ function achievement:AddTransmogSet(transmogSet)
     return transmogSet;
 end
 
-function achievement:SetObtainableFunc()
-    self.TemporaryObtainable.Obtainable = function()
-        return addon.Data.TemporaryObtainable:GetObtainableState(self);
-    end;
+function achievement:GetObtainableState()
+    return addon.Data.TemporaryObtainable:GetObtainableState(self);
 end
 
 local function GetStartValue(startFunction, startValue)
@@ -165,16 +164,16 @@ local function GetStartValue(startFunction, startValue)
     return startValue;
 end
 
-function achievement:SetTemporaryObtainableStart(startInclusion, startFunction, startValue)
-    self.TemporaryObtainable.Start = {
+function achievement:SetTemporaryObtainableStart(record, startInclusion, startFunction, startValue)
+    record.Start = {
         Inclusion = startInclusion,
         Function = startFunction,
         Value = startValue
     };
 end
 
-function achievement:SetTemporaryObtainableEnd(endInclusion, endFunction, endValue)
-    self.TemporaryObtainable.End = {
+function achievement:SetTemporaryObtainableEnd(record, endInclusion, endFunction, endValue)
+    record.End = {
         Inclusion = endInclusion,
         Function = endFunction,
         Value = endValue
@@ -182,30 +181,34 @@ function achievement:SetTemporaryObtainableEnd(endInclusion, endFunction, endVal
 end
 
 function achievement:SetTemporaryObtainableNeverOnce(startFunction)
-    self:SetTemporaryObtainableStart(nil, startFunction, nil);
-    self:SetObtainableFunc();
+    local record = {};
+    self:SetTemporaryObtainableStart(record, nil, startFunction, nil);
+    tinsert(self.TemporaryObtainable, record);
 end
 
 function achievement:SetTemporaryObtainableDuring(startFunction, startValue)
-    self:SetTemporaryObtainableStart("From", startFunction, GetStartValue(startFunction, startValue));
-    self:SetTemporaryObtainableEnd("Until", startFunction, GetStartValue(startFunction, startValue));
-    self:SetObtainableFunc();
+    local record = {};
+    self:SetTemporaryObtainableStart(record, "From", startFunction, GetStartValue(startFunction, startValue));
+    self:SetTemporaryObtainableEnd(record, "Until", startFunction, GetStartValue(startFunction, startValue));
+    tinsert(self.TemporaryObtainable, record);
 end
 
 function achievement:SetTemporaryObtainableFromVersionToEnd(startInclusion, startFunction, startValue)
-    self:SetTemporaryObtainableStart("From", "Version", self.BuildVersion.Id);
-    self:SetTemporaryObtainableEnd(startInclusion, startFunction, GetStartValue(startFunction, startValue));
-    self:SetObtainableFunc();
+    local record = {};
+    self:SetTemporaryObtainableStart(record, "From", "Version", self.BuildVersion.Id);
+    self:SetTemporaryObtainableEnd(record, startInclusion, startFunction, GetStartValue(startFunction, startValue));
+    tinsert(self.TemporaryObtainable, record);
 end
 
 function achievement:SetTemporaryObtainableFull(startInclusion, startFunction, startValue, endInclusion, endFunction, endValue)
-    self:SetTemporaryObtainableStart(startInclusion, startFunction, GetStartValue(startFunction, startValue));
-    self:SetTemporaryObtainableEnd(endInclusion, endFunction, GetStartValue(endFunction, endValue));
-    self:SetObtainableFunc();
+    local record = {};
+    self:SetTemporaryObtainableStart(record, startInclusion, startFunction, GetStartValue(startFunction, startValue));
+    self:SetTemporaryObtainableEnd(record, endInclusion, endFunction, GetStartValue(endFunction, endValue));
+    tinsert(self.TemporaryObtainable, record);
 end
 
 function achievement:SetTemporaryObtainable(startInclusion, startFunction, startValue, endInclusion, endFunction, endValue)
-    self.TemporaryObtainable = {};
+    self.TemporaryObtainable = self.TemporaryObtainable or {};
 
     -- Case 1: Never or Once - [startInclusion]
     if startInclusion == "Never" or startInclusion == "Once" then
@@ -230,7 +233,4 @@ function achievement:SetTemporaryObtainable(startInclusion, startFunction, start
         self:SetTemporaryObtainableFull(startInclusion, startFunction, startValue, endInclusion, endFunction, endValue);
         return;
     end
-
-    -- Case 5: Nothing defined
-    self:SetObtainableFunc();
 end

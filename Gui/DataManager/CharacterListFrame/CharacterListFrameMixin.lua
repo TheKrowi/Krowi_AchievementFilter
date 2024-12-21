@@ -63,7 +63,7 @@ local sortFuncs = {
     addon.Objects.CompareFunc:New("number", "Points");
     addon.Objects.CompareFunc:New("string", "Name");
     addon.Objects.CompareFunc:New("string", "Realm");
-    addon.Objects.CompareFunc:New("string", "Faction");
+    addon.Objects.CompareFunc:New("number", "Faction");
     addon.Objects.CompareFunc:New("string", "Class");
     addon.Objects.CompareFunc:New("bool", "ExcludeFromHeaderTooltip");
     addon.Objects.CompareFunc:New("bool", "ExcludeFromEarnedByAchievementTooltip");

@@ -203,7 +203,6 @@ L["Criteria is Completed"] = true
 L["Criteria is Completed Desc"] = "Show Achievement Criteria even if the Achievement Criteria is already completed."
 L["Criteria of"] = true
 L["Cross-Expansion"] = true
-L["Cross-Expansion - Delves"] = true
 L["Ctrl"] = true
 L["Current Obtainable"] = true
 L["Current Zone"] = true
@@ -586,7 +585,7 @@ L["Login Delay"] = true
 L["Love is in the Air"] = true
 L["Lucky Yi"] = true
 L["Lunar Festival"] = true
-L["M+ Season"] = true
+L["PvE Season"] = true
 L["Make windows movable"] = true
 L["Make windows movable Desc"] = [=[Makes the Achievement window Calendar view and Data manager movable/not movable.
 
@@ -1128,3 +1127,5 @@ L["Zaqali Ruin Investigation: Soon"] = true
 L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
 L["Zuldazar"] = true
+L["Number of lines"] = true
+L["Number of Temporarily obtainable lines Desc"] = "The number of lines that will be shown for {temporarilyObtainable} achievements if more than one momment was available to earn the achievement."

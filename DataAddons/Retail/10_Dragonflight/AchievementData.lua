@@ -1,15 +1,15 @@
 local _, addon = ...;
 local shared = addon.Data.AchievementData.Shared;
-local faction = addon.Objects.Faction;
+local faction = KrowiAF.Enum.Faction;
 
 KrowiAF.AchievementData["10_00_00"] = {
     {KrowiAF.SetAchievementPatch, 10, 0, 0},
-    { -- "Dracthyr, Awaken"
+    { -- Dracthyr, Awaken
         15325,
         faction.Alliance,
     },
     {15394}, -- Ohn'a'Roll
-    { -- "Dracthyr, Awaken"
+    { -- Dracthyr, Awaken
         15638,
         faction.Horde,
     },
@@ -213,7 +213,7 @@ KrowiAF.AchievementData["10_00_00"] = {
     {16279}, -- Heroic: Uldaman: Legacy of Tyr
     {16280}, -- Mythic: Uldaman: Legacy of Tyr
     {16281}, -- Like Sands Through the Hourglass
-    {16282}, -- "No, You're Stunning!"
+    {16282}, -- No, You're Stunning!
     {16291}, -- An Ancient Awakening
     {16292}, -- Mastering the Waygates
     {16294}, -- Dragonflight Dungeon Hero
@@ -229,7 +229,7 @@ KrowiAF.AchievementData["10_00_00"] = {
     {16321}, -- Cutting Tusk Equipment
     {16322}, -- Best in Slot
     {16323}, -- Fragments of History
-    {16329}, -- "Duck, Duck, Spruce!"
+    {16329}, -- Duck, Duck, Spruce!
     {16330}, -- You Must Be Made of Hide
     {16331}, -- The Cracked Crystal
     {16334}, -- Waking Hope
@@ -243,8 +243,8 @@ KrowiAF.AchievementData["10_00_00"] = {
     {16346}, -- Mythic: Eranog
     {16347}, -- Mythic: Terros
     {16348}, -- Mythic: The Primal Council
-    {16349}, -- "Mythic: Sennarth, The Cold Breath"
-    {16350}, -- "Mythic: Dathea, Ascended"
+    {16349}, -- Mythic: Sennarth, The Cold Breath
+    {16350}, -- Mythic: Dathea, Ascended
     {16351}, -- Mythic: Kurog Grimtotem
     {16352}, -- Mythic: Broodkeeper Diurna
     {16353}, -- Mythic: Raszageth the Storm-Eater
@@ -275,10 +275,10 @@ KrowiAF.AchievementData["10_00_00"] = {
     { -- Thundering Hero: Dragonflight Season 1
         16429,
         {
-            {"Mythic+ Season", 9},
+            {"PvE Season", 9},
         },
     },
-    {16430}, -- "All Bark, All Bite"
+    {16430}, -- All Bark, All Bite
     { -- Against the Elements
         16431,
         {
@@ -379,7 +379,7 @@ KrowiAF.AchievementData["10_00_00"] = {
     {16553}, -- Taking From Nature
     {16556}, -- Great Gourmand of The Ruby Feast
     {16560}, -- Wildlife Photographer
-    {16561}, -- "Lunkers, Lunkers Everywhere"
+    {16561}, -- Lunkers, Lunkers Everywhere
     {16562}, -- That's not a Fish...
     {16563}, -- We're Going to Need a Bigger Harpoon
     {16564}, -- It Takes a Tuskarr Family
@@ -498,7 +498,7 @@ KrowiAF.AchievementData["10_00_00"] = {
         },
     },
     {16620}, -- Ohuna Incubation
-    {16621}, -- "One of Everything, Please"
+    {16621}, -- One of Everything, Please
     {16622}, -- Three Minutes or It's Free
     {16623}, -- Toe Tension
     {16624}, -- Which Knot Was It Again?
@@ -513,97 +513,105 @@ KrowiAF.AchievementData["10_00_00"] = {
     { -- Keystone Hero: Uldaman: Legacy of Tyr
         16639,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 10},
+            {"PvE Season", 12},
         },
     },
     { -- Keystone Hero: Ruby Life Pools
         16640,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 9},
+            {"PvE Season", 12},
         },
     },
     { -- Keystone Hero: The Nokhud Offensive
         16641,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 9},
+            {"PvE Season", 12},
         },
     },
     { -- Keystone Hero: Brackenhide Hollow
         16642,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 10},
+            {"PvE Season", 12},
         },
     },
     { -- Keystone Hero: Algeth'ar Academy
         16643,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 9},
+            {"PvE Season", 12},
         },
     },
     { -- Keystone Hero: Neltharus
         16644,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 10},
+            {"PvE Season", 12},
         },
     },
     { -- Keystone Hero: The Azure Vault
         16645,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 9},
+            {"PvE Season", 12},
         },
     },
     { -- Keystone Hero: Halls of Infusion
         16646,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 10},
+            {"PvE Season", 12},
         },
     },
     { -- Dragonflight Keystone Explorer: Season One
         16647,
         {
-            {"Mythic+ Season", 9},
+            {"PvE Season", 9},
         },
     },
     { -- Dragonflight Keystone Conqueror: Season One
         16648,
         {
-            {"Mythic+ Season", 9},
+            {"PvE Season", 9},
         },
     },
     { -- Dragonflight Keystone Master: Season One
         16649,
         {
-            {"Mythic+ Season", 9},
+            {"PvE Season", 9},
         },
     },
     { -- Dragonflight Keystone Hero: Season One
         16650,
         {
-            {"Mythic+ Season", 9},
+            {"PvE Season", 9},
         },
     },
     { -- Keystone Hero: Court of Stars
         16658,
         {
-            {"Mythic+ Season", 9},
+            {"PvE Season", 9},
         },
     },
     { -- Keystone Hero: Halls of Valor
         16659,
         {
-            {"Mythic+ Season", 9},
+            {"PvE Season", 9},
         },
     },
     { -- Keystone Hero: Shadowmoon Burial Grounds
         16660,
         {
-            {"Mythic+ Season", 9},
+            {"PvE Season", 9},
         },
     },
     { -- Keystone Hero: Temple of the Jade Serpent
         16661,
         {
-            {"Mythic+ Season", 9},
+            {"PvE Season", 9},
         },
     },
     {16666}, -- Dragon Glyphs: Gelikyr Overlook
@@ -640,7 +648,7 @@ KrowiAF.AchievementData["10_00_02"] = {
         },
     },
     {16736}, -- Grand Theft Mammoth
-    {16758}, -- "Ready, Aim, Catalog!"
+    {16758}, -- Ready, Aim, Catalog!
     {16760}, -- The Obsidian Bloodline
     {16761}, -- Dragon Isles Explorer
     {16762}, -- The Vegetarian Diet
@@ -669,13 +677,13 @@ KrowiAF.AchievementData["10_00_02"] = {
     { -- Ahead of the Curve: Raszageth the Storm-Eater
         17107,
         {
-            {"Mythic+ Season", 9},
+            {"PvE Season", 9},
         },
     },
     { -- Cutting Edge: Raszageth the Storm-Eater
         17108,
         {
-            {"Mythic+ Season", 9},
+            {"PvE Season", 9},
         },
     },
     {17110}, -- The Primal Bulwark
@@ -827,7 +835,7 @@ KrowiAF.AchievementData["10_00_07"] = {
             {"Never"},
         },
     },
-    {17509}, -- "Every Door, Everywhere, All At Once"
+    {17509}, -- Every Door, Everywhere, All At Once
     {17524}, -- Adventurer of the Forbidden Reach
     {17525}, -- Champion of the Forbidden Reach
     {17526}, -- Treasures of the Forbidden Reach
@@ -946,7 +954,7 @@ KrowiAF.AchievementData["10_01_00"] = {
     {17779}, -- A Serpentine Discovery
     {17781}, -- The Smell of Money
     {17783}, -- Adventurer of Zaralek Cavern
-    {17785}, -- "Que Zara(lek), Zara(lek)"
+    {17785}, -- Que Zara(lek), Zara(lek)
     {17786}, -- Treasures of Zaralek Cavern
     { -- Duelist: Dragonflight Season 2
         17794,
@@ -1018,55 +1026,55 @@ KrowiAF.AchievementData["10_01_00"] = {
     { -- Dragonflight Keystone Explorer: Season Two
         17842,
         {
-            {"Mythic+ Season", 10},
+            {"PvE Season", 10},
         },
     },
     { -- Dragonflight Keystone Conqueror: Season Two
         17843,
         {
-            {"Mythic+ Season", 10},
+            {"PvE Season", 10},
         },
     },
     { -- Dragonflight Keystone Master: Season Two
         17844,
         {
-            {"Mythic+ Season", 10},
+            {"PvE Season", 10},
         },
     },
     { -- Dragonflight Keystone Hero: Season Two
         17845,
         {
-            {"Mythic+ Season", 10},
+            {"PvE Season", 10},
         },
     },
     { -- Smoldering Hero: Dragonflight Season 2
         17846,
         {
-            {"Mythic+ Season", 10},
+            {"PvE Season", 10},
         },
     },
     { -- Keystone Hero: The Vortex Pinnacle
         17847,
         {
-            {"Mythic+ Season", 10},
+            {"PvE Season", 10},
         },
     },
     { -- Keystone Hero: Freehold
         17848,
         {
-            {"Mythic+ Season", 10},
+            {"PvE Season", 10},
         },
     },
     { -- Keystone Hero: The Underrot
         17849,
         {
-            {"Mythic+ Season", 10},
+            {"PvE Season", 10},
         },
     },
     { -- Keystone Hero: Neltharion's Lair
         17850,
         {
-            {"Mythic+ Season", 10},
+            {"PvE Season", 10},
         },
     },
     { -- Tour of Duty: Zaralek Cavern
@@ -1081,7 +1089,7 @@ KrowiAF.AchievementData["10_01_00"] = {
             IsPvP = true,
         },
     },
-    {17877}, -- "We'll Never See That Again, Surely"
+    {17877}, -- We'll Never See That Again, Surely
     {17878}, -- Me Want Bite
     {17879}, -- Zaralek Cavern Safari
     {17880}, -- Battle in Zaralek Cavern
@@ -1102,18 +1110,18 @@ KrowiAF.AchievementData["10_01_00"] = {
     {18100}, -- Cavern Clawbbering
     {18149}, -- Objects in Transit May Shatter
     {18150}, -- Zaralek Cavern Glyph Hunter
-    {18151}, -- "Mythic: Kazzara, the Hellforged"
+    {18151}, -- Mythic: Kazzara, the Hellforged
     {18152}, -- Mythic: The Amalgamation Chamber
     {18153}, -- Mythic: The Forgotten Experiments
     {18154}, -- Mythic: Assault of the Zaqali
-    {18155}, -- "Mythic: Rashok, the Elder"
-    {18156}, -- "Mythic: The Vigilant Steward, Zskarn"
+    {18155}, -- Mythic: Rashok, the Elder
+    {18156}, -- Mythic: The Vigilant Steward, Zskarn
     {18157}, -- Mythic: Magmorax
     {18158}, -- Mythic: Echo of Neltharion
     {18159}, -- Mythic: Scalecommander Sarkareth
-    {18160}, -- "Aberrus, the Shadowed Crucible"
-    {18161}, -- "Heroic: Aberrus, the Shadowed Crucible"
-    {18162}, -- "Mythic: Aberrus, the Shadowed Crucible"
+    {18160}, -- Aberrus, the Shadowed Crucible
+    {18161}, -- Heroic: Aberrus, the Shadowed Crucible
+    {18162}, -- Mythic: Aberrus, the Shadowed Crucible
     {18163}, -- Discarded Works
     {18164}, -- Fury of Giants
     {18165}, -- Neltharion's Shadow
@@ -1147,17 +1155,17 @@ KrowiAF.AchievementData["10_01_00"] = {
     { -- Ahead of the Curve: Scalecommander Sarkareth
         18253,
         {
-            {"Mythic+ Season", 10},
+            {"PvE Season", 10},
         },
     },
     { -- Cutting Edge: Scalecommander Sarkareth
         18254,
         {
-            {"Mythic+ Season", 10},
+            {"PvE Season", 10},
         },
     },
     {18255}, -- Proof of Myrrit
-    {18256}, -- "Nasz'uro, the Unbound Legacy"
+    {18256}, -- Nasz'uro, the Unbound Legacy
     {18257}, -- Can You Dig It?
     {18258}, -- Little Lord of Lies
     {18271}, -- He'sSss All Mine
@@ -1167,7 +1175,7 @@ KrowiAF.AchievementData["10_01_00"] = {
     { -- Dragonflight Keystone Master: Season Two
         18542,
         {
-            {"Mythic+ Season", 10},
+            {"PvE Season", 10},
         },
     },
 };
@@ -1257,14 +1265,14 @@ KrowiAF.AchievementData["10_01_05"] = {
     {18368}, -- Memory of Scholomance
     {18372}, -- Wards of the Dread Citadel
     {18383}, -- Hey Nanny Nanny
-    {18384}, -- "Whelp, There It Is"
+    {18384}, -- Whelp, There It Is
     {18471}, -- 110 Exalted Reputations
     {18539}, -- Back En-masse
     {18554}, -- Temporal Acquisitions Specialist
     {18556}, -- Chaotic Time
-    {18557}, -- "Never Bothered, Anyway"
+    {18557}, -- Never Bothered, Anyway
     {18558}, -- Leaders of Scholomance
-    {18559}, -- "Many Boxes, Many Rockses"
+    {18559}, -- Many Boxes, Many Rockses
     { -- Eastern Kingdoms: Bronze
         18566,
         {
@@ -1355,24 +1363,24 @@ KrowiAF.AchievementData["10_01_05"] = {
 
 KrowiAF.AchievementData["10_01_07"] = {
     {KrowiAF.SetAchievementPatch, 10, 1, 7},
-    {15344}, -- """S.A.F.E"" Pilot"
-    {17344}, -- "Warcraft Rumble Minis, Get 'Em All!"
-    {17346}, -- "Warcraft Rumble Minis, Maiev's New Look"
-    {17347}, -- "Warcraft Rumble Minis, Sneed's New Look"
-    {17348}, -- "Warcraft Rumble Minis, Huntress' New Look"
-    {17349}, -- "Warcraft Rumble Minis, Tauren's New Look"
-    {17350}, -- "Warcraft Rumble Minis, Ghoul's New Look"
-    {17351}, -- "Warcraft Rumble Minis, Murloc's New Look"
-    {17352}, -- "Warcraft Rumble Minis, Whelp Egg's New Look"
-    {17353}, -- "Warcraft Rumble Minis, Maiev's Newer Look"
-    {17354}, -- "Warcraft Rumble Minis, Sneed's Newer Look"
-    {17355}, -- "Warcraft Rumble Minis, Huntress' Newer Look"
-    {17356}, -- "Warcraft Rumble Minis, Tauren's Newer Look"
-    {17357}, -- "Warcraft Rumble Minis, Ghoul's Newer Look"
-    {17358}, -- "Warcraft Rumble Minis, Murloc's Newer Look"
-    {17359}, -- "Warcraft Rumble Minis, Whelp Egg's Newer Look"
-    {17360}, -- "Warcraft Rumble Minis, New Looks!"
-    {17361}, -- "Rumble Minis, All the Looks!"
+    {15344}, -- "S.A.F.E"" Pilot"
+    {17344}, -- Warcraft Rumble Minis, Get 'Em All!
+    {17346}, -- Warcraft Rumble Minis, Maiev's New Look
+    {17347}, -- Warcraft Rumble Minis, Sneed's New Look
+    {17348}, -- Warcraft Rumble Minis, Huntress' New Look
+    {17349}, -- Warcraft Rumble Minis, Tauren's New Look
+    {17350}, -- Warcraft Rumble Minis, Ghoul's New Look
+    {17351}, -- Warcraft Rumble Minis, Murloc's New Look
+    {17352}, -- Warcraft Rumble Minis, Whelp Egg's New Look
+    {17353}, -- Warcraft Rumble Minis, Maiev's Newer Look
+    {17354}, -- Warcraft Rumble Minis, Sneed's Newer Look
+    {17355}, -- Warcraft Rumble Minis, Huntress' Newer Look
+    {17356}, -- Warcraft Rumble Minis, Tauren's Newer Look
+    {17357}, -- Warcraft Rumble Minis, Ghoul's Newer Look
+    {17358}, -- Warcraft Rumble Minis, Murloc's Newer Look
+    {17359}, -- Warcraft Rumble Minis, Whelp Egg's Newer Look
+    {17360}, -- Warcraft Rumble Minis, New Looks!
+    {17361}, -- Rumble Minis, All the Looks!
     { -- The Lick King
         17547,
         {
@@ -1397,7 +1405,7 @@ KrowiAF.AchievementData["10_01_07"] = {
     {18720}, -- Classic Master of All
     {18721}, -- Outland Master of All
     {18722}, -- Northrend Master of All
-    {18723}, -- "Look, You're Specialized!"
+    {18723}, -- Look, You're Specialized!
     {18724}, -- Gaining an Advantus
     {18725}, -- Best Stellar
     {18726}, -- A Cure for All Ails I
@@ -1479,7 +1487,7 @@ KrowiAF.AchievementData["10_01_07"] = {
     {18840}, -- Fourth War Mining Techniques
     {18841}, -- Doing Your Share
     {18851}, -- Skeletons in the Lockbox
-    {18852}, -- "Weaponsmithing, Reborn"
+    {18852}, -- Weaponsmithing, Reborn
     {18853}, -- Seething Flames of Hatred
     {18854}, -- Seeing Red
     {18855}, -- Portal to Everywhere
@@ -1565,7 +1573,7 @@ KrowiAF.AchievementData["10_01_07"] = {
             {"Event", 1400},
         },
     },
-    { -- "Don't Lose Your Head, Man"
+    { -- Don't Lose Your Head, Man
         18959,
         {
             {"Event", 324},
@@ -1681,25 +1689,25 @@ KrowiAF.AchievementData["10_02_00"] = {
     { -- Dragonflight Keystone Explorer: Season Three
         19009,
         {
-            {"Mythic+ Season", 11},
+            {"PvE Season", 11},
         },
     },
     { -- Dragonflight Keystone Conqueror: Season Three
         19010,
         {
-            {"Mythic+ Season", 11},
+            {"PvE Season", 11},
         },
     },
     { -- Dragonflight Keystone Master: Season Three
         19011,
         {
-            {"Mythic+ Season", 11},
+            {"PvE Season", 11},
         },
     },
     { -- Dragonflight Keystone Hero: Season Three
         19012,
         {
-            {"Mythic+ Season", 11},
+            {"PvE Season", 11},
         },
     },
     {19013}, -- I Dream of Seeds
@@ -1709,43 +1717,43 @@ KrowiAF.AchievementData["10_02_00"] = {
     { -- Keystone Hero: Throne of the Tides
         19082,
         {
-            {"Mythic+ Season", 11},
+            {"PvE Season", 11},
         },
     },
     { -- Keystone Hero: The Everbloom
         19083,
         {
-            {"Mythic+ Season", 11},
+            {"PvE Season", 11},
         },
     },
     { -- Keystone Hero: Black Rook Hold
         19084,
         {
-            {"Mythic+ Season", 11},
+            {"PvE Season", 11},
         },
     },
     { -- Keystone Hero: Darkheart Thicket
         19085,
         {
-            {"Mythic+ Season", 11},
+            {"PvE Season", 11},
         },
     },
     { -- Keystone Hero: Waycrest Manor
         19086,
         {
-            {"Mythic+ Season", 11},
+            {"PvE Season", 11},
         },
     },
     { -- Keystone Hero: Atal'Dazar
         19087,
         {
-            {"Mythic+ Season", 11},
+            {"PvE Season", 11},
         },
     },
     { -- Keystone Hero: Dawn of the Infinite
         19088,
         {
-            {"Mythic+ Season", 11},
+            {"PvE Season", 11},
         },
     },
     {19089}, -- Don't Let the Doe Hit You On The Way Out
@@ -1920,20 +1928,20 @@ KrowiAF.AchievementData["10_02_00"] = {
     { -- Dreaming of Drakes
         19326,
         {
-            {"Mythic+ Season", 11},
+            {"PvE Season", 11},
         },
     },
-    {19331}, -- "Amirdrassil, the Dream's Hope"
-    {19333}, -- "Heroic: Amirdrassil, the Dream's Hope"
-    {19334}, -- "Mythic: Amirdrassil, the Dream's Hope"
+    {19331}, -- Amirdrassil, the Dream's Hope
+    {19333}, -- Heroic: Amirdrassil, the Dream's Hope
+    {19334}, -- Mythic: Amirdrassil, the Dream's Hope
     {19335}, -- Mythic: Gnarlroot
     {19336}, -- Mythic: Igira the Cruel
     {19337}, -- Mythic: Volcoross
     {19338}, -- Mythic: Council of Dreams
-    {19339}, -- "Mythic: Larodar, Keeper of the Flame"
-    {19340}, -- "Mythic: Nymue, Weaver of the Cycle"
+    {19339}, -- Mythic: Larodar, Keeper of the Flame
+    {19340}, -- Mythic: Nymue, Weaver of the Cycle
     {19341}, -- Mythic: Smolderon
-    {19342}, -- "Mythic: Tindral Sageswift, Seer of the Flame"
+    {19342}, -- Mythic: Tindral Sageswift, Seer of the Flame
     {19343}, -- Mythic: Fyrakk the Blazing
     {19344}, -- Incarnate's Wake
     {19345}, -- Molten Incursion
@@ -1943,29 +1951,29 @@ KrowiAF.AchievementData["10_02_00"] = {
     { -- Ahead of the Curve: Fyrakk the Blazing
         19350,
         {
-            {"Mythic+ Season", 11},
+            {"PvE Season", 11},
         },
     },
     { -- Cutting Edge: Fyrakk the Blazing
         19351,
         {
-            {"Mythic+ Season", 11},
+            {"PvE Season", 11},
         },
     },
     {19390}, -- Memories of Teldrassil
-    {19393}, -- "Whelp, I'm Lost"
+    {19393}, -- Whelp, I'm Lost
     {19394}, -- A Dream Within a Dream
     {19396}, -- Dragonflight Season 3 Master
     { -- Dreaming of Wyrms
         19397,
         {
-            {"Mythic+ Season", 11},
+            {"PvE Season", 11},
         },
     },
     { -- Dreaming of the Aspects
         19398,
         {
-            {"Mythic+ Season", 11},
+            {"PvE Season", 11},
         },
     },
     {19401}, -- Emerald Dream Safari
@@ -2017,7 +2025,7 @@ KrowiAF.AchievementData["10_02_00"] = {
     { -- Dreaming Hero: Dragonflight Season 3
         19449,
         {
-            {"Mythic+ Season", 11},
+            {"PvE Season", 11},
         },
     },
     {19450}, -- Fyr'alath the Dreamrender
@@ -2117,7 +2125,7 @@ KrowiAF.AchievementData["10_02_05"] = {
     {19787}, -- Clued In
     {19788}, -- Tome Comber
     {19789}, -- Relic Rescuer
-    {19790}, -- "The Archives Called, You Answered"
+    {19790}, -- The Archives Called, You Answered
     {19791}, -- Goggle Wobble
     {19792}, -- Just One More Thing
     {19793}, -- Finally At Rest
@@ -2162,7 +2170,7 @@ KrowiAF.AchievementData["10_02_06"] = {
     },
     {19458}, -- A World Awoken
     {19463}, -- Dragon Quests
-    {19466}, -- "Oh My God, They Were Clutchmates"
+    {19466}, -- Oh My God, They Were Clutchmates
     {19478}, -- Now THIS is Dragon Racing!
     {19479}, -- Wake Me Up
     {19481}, -- Centaur of Attention
@@ -2258,103 +2266,103 @@ KrowiAF.AchievementData["10_02_06"] = {
     { -- Awakened Storms
         19564,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 12},
         },
     },
     { -- Heroic: Awakened Storms
         19565,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 12},
         },
     },
     { -- Mythic: Awakened Storms
         19566,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 12},
         },
     },
     { -- Awakened Shadows
         19567,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 12},
         },
     },
     { -- Heroic: Awakened Shadows
         19568,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 12},
         },
     },
     { -- Mythic: Awakened Shadows
         19569,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 12},
         },
     },
     { -- Awakened Flames
         19570,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 12},
         },
     },
     { -- Heroic: Awakened Flames
         19571,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 12},
         },
     },
     { -- Mythic: Awakened Flames
         19572,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 12},
         },
     },
     { -- Awakening the Dragonflight Raids
         19574,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 12},
         },
     },
     { -- Heroic: Awakening the Dragonflight Raids
         19575,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 12},
         },
     },
     { -- Mythic: Awakening the Dragonflight Raids
         19576,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 12},
         },
     },
     { -- Dragonflight Keystone Explorer: Season Four
         19780,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 12},
         },
     },
     { -- Dragonflight Keystone Conqueror: Season Four
         19781,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 12},
         },
     },
     { -- Dragonflight Keystone Master: Season Four
         19782,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 12},
         },
     },
     { -- Dragonflight Keystone Hero: Season Four
         19783,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 12},
         },
     },
     { -- Draconic Hero: Dragonflight Season 4
         19785,
         {
-            {"Mythic+ Season", 12},
+            {"PvE Season", 12},
         },
     },
     { -- Quacked Killer
@@ -3183,7 +3191,7 @@ KrowiAF.AchievementData["10_02_07"] = {
             {"Event", 1514},
         },
     },
-    { -- "Nalak, the Storm Lord"
+    { -- Nalak, the Storm Lord
         20019,
         {
             {"Event", 1514},
@@ -3195,25 +3203,25 @@ KrowiAF.AchievementData["10_02_07"] = {
             {"Event", 1514},
         },
     },
-    { -- "Chi-ji, the Red Crane"
+    { -- Chi-ji, the Red Crane
         20021,
         {
             {"Event", 1514},
         },
     },
-    { -- "Yu'lon, the Jade Serpent"
+    { -- Yu'lon, the Jade Serpent
         20022,
         {
             {"Event", 1514},
         },
     },
-    { -- "Niuzao, the Black Ox"
+    { -- Niuzao, the Black Ox
         20023,
         {
             {"Event", 1514},
         },
     },
-    { -- "Xuen, the White Tiger"
+    { -- Xuen, the White Tiger
         20024,
         {
             {"Event", 1514},

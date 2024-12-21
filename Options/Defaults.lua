@@ -130,7 +130,8 @@ addon.Options.Defaults = {
                     ShowDateTime = true,
                     DateTimeFormat = {
                         StartTimeAndEndTime = "%d/%m/%Y %R"
-                    }
+                    },
+                    NumberOfLines = 5
                 }
             },
             Criteria = {

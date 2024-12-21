@@ -109,7 +109,7 @@ local crossExpansion = { -- Cross-Expansion
             11129, -- 1000 World Quests Completed
             11130, -- 2500 World Quests Completed
             11131, -- 5000 World Quests Completed
-            11132, -- "10,000 World Quests Completed"
+            11132, -- 10,000 World Quests Completed
             4956, -- 5 Dungeon Quests Completed
             4957, -- 20 Dungeon Quests Completed
             1182, -- The Bread Winner
@@ -126,6 +126,23 @@ local crossExpansion = { -- Cross-Expansion
             1833, -- It's Happy Hour Somewhere
             16789, -- Lucky Penny
             16790, -- Curious Coin
+        },
+    },
+    { -- Delves
+        1670,
+        addon.GetCategoryInfoTitle(15522),
+        {
+            40436, -- You're Getting a Delve!
+            40460, -- Delve Deep
+            40462, -- Delve Deeper
+            40463, -- Delve Deepest
+            40819, -- Ready to Turn
+            40788, -- I Got the Keys
+            40882, -- Copious Coffers
+            40885, -- The Key to Madness
+            40817, -- A Delver's Bounty
+            40863, -- Perplexing Puzzle
+            40864, -- Plentiful Perplexing Puzzles
         },
     },
     { -- Dungeons & Raids
@@ -153,7 +170,7 @@ local crossExpansion = { -- Cross-Expansion
                 18736, -- Powerful Concoctions III
                 18737, -- Powerful Concoctions IV
                 18934, -- Excessive Experimentation
-                18723, -- "Look, You're Specialized!"
+                18723, -- Look, You're Specialized!
                 18904, -- Iron to Vendor Gold
                 18963, -- Burst Damage
             },
@@ -168,7 +185,7 @@ local crossExpansion = { -- Cross-Expansion
                 4854, -- I Had It in My Hand
                 4855, -- What was Briefly Yours is Now Mine
                 4856, -- It Belongs in a Museum!
-                9422, -- "The Search For Fact, Not Truth"
+                9422, -- The Search For Fact, Not Truth
                 5511, -- It's Always in the Last Place You Look
             },
         },
@@ -181,7 +198,7 @@ local crossExpansion = { -- Cross-Expansion
                 18865, -- Anvil Mastery III
                 18866, -- Anvil Mastery IV
                 18851, -- Skeletons in the Lockbox
-                18852, -- "Weaponsmithing, Reborn"
+                18852, -- Weaponsmithing, Reborn
                 17496, -- Renowned Weaponsmith
                 17497, -- Renowned Armorsmith
             },
@@ -390,7 +407,7 @@ local crossExpansion = { -- Cross-Expansion
                 1017, -- Can I Keep Him?
                 15, -- Plenty of Pets
                 1248, -- Plethora of Pets
-                1250, -- "Shop Smart, Shop Pet...Smart"
+                1250, -- Shop Smart, Shop Pet...Smart
                 2516, -- Lil' Game Hunter
                 5876, -- Petting Zoo
                 5877, -- Menagerie
@@ -947,7 +964,7 @@ local classic = { -- Classic
                 true,
                     {
                         762, -- Ambassador of the Horde
-                        871, -- "Avast Ye, Admiral!"
+                        871, -- Avast Ye, Admiral!
                         2336, -- Insane in the Membrane
                     },
                 },
@@ -1053,7 +1070,7 @@ local classic = { -- Classic
                 true,
                     {
                         4900, -- Badlands Quests
-                        5444, -- "Ready, Set, Goat!"
+                        5444, -- Ready, Set, Goat!
                     },
                 },
                 { -- Exploration
@@ -1953,9 +1970,9 @@ local classic = { -- Classic
             {
                 686, -- Molten Core
                 11741, -- So Hot Right Now
-                429, -- "Sulfuras, Hand of Ragnaros"
-                428, -- "Thunderfury, Blessed Blade of the Windseeker"
-                9550, -- "Boldly, You Sought the Power of Ragnaros"
+                429, -- Sulfuras, Hand of Ragnaros
+                428, -- Thunderfury, Blessed Blade of the Windseeker
+                9550, -- Boldly, You Sought the Power of Ragnaros
                 7934, -- Raiding with Leashes
                 11296, -- The Ancient Keeper
                 11297, -- The Balance of Light and Shadow
@@ -2034,12 +2051,12 @@ local classic = { -- Classic
             796,
             addon.GetInstanceInfoName(754),
             {
-                11744, -- "Drop Dead, Gorgeous"
-                425, -- "Atiesh, Greatstaff of the Guardian"
+                11744, -- Drop Dead, Gorgeous
+                425, -- Atiesh, Greatstaff of the Guardian
                 15335, -- Survivor of the Damned (Season of Mastery)
                 15637, -- The Immortal (Season of Mastery)
                 18372, -- Wards of the Dread Citadel
-                18557, -- "Never Bothered, Anyway"
+                18557, -- Never Bothered, Anyway
                 18616, -- Putting Wilhelm Out of Business
             },
         },
@@ -2229,7 +2246,7 @@ local theBurningCrusade = { -- The Burning Crusade
             794,
             addon.GetMapName(111),
             {
-                1165, -- "My Storage is ""Gigantique"""
+                1165, -- My Storage is "Gigantique"""
                 9924, -- Field Photographer
             },
         },
@@ -2472,7 +2489,7 @@ local theBurningCrusade = { -- The Burning Crusade
                 addon.GetCategoryInfoTitle(201),
                 true,
                 {
-                    899, -- "Oh My, Kurenai"
+                    899, -- Oh My, Kurenai
                     901, -- Mag'har of Draenor
                     942, -- The Diplomat
                     943, -- The Diplomat
@@ -2830,8 +2847,8 @@ local theBurningCrusade = { -- The Burning Crusade
             addon.GetInstanceInfoName(752),
             {
                 698, -- Sunwell Plateau
-                11749, -- "Suns Out, Thori'dals Out"
-                725, -- "Thori'dal, the Stars' Fury"
+                11749, -- Suns Out, Thori'dals Out
+                725, -- Thori'dal, the Stars' Fury
                 9824, -- Raiding with Leashes III: Drinkin' From the Sunwell
             },
         },
@@ -3489,7 +3506,7 @@ local wrathOfTheLichKing = { -- Wrath of the Lich King
                 103,
                 (GetDifficultyInfo(3)),
                 {
-                    4016, -- "Earth, Wind & Fire (10 player)"
+                    4016, -- Earth, Wind & Fire (10 player)
                     1722, -- Archavon the Stone Watcher (10 player)
                     3136, -- Emalon the Storm Watcher (10 player)
                     3836, -- Koralon the Flame Watcher (10 player)
@@ -3500,7 +3517,7 @@ local wrathOfTheLichKing = { -- Wrath of the Lich King
                 104,
                 (GetDifficultyInfo(4)),
                 {
-                    4017, -- "Earth, Wind & Fire (25 player)"
+                    4017, -- Earth, Wind & Fire (25 player)
                     1721, -- Archavon the Stone Watcher (25 player)
                     3137, -- Emalon the Storm Watcher (25 player)
                     3837, -- Koralon the Flame Watcher (25 player)
@@ -3642,7 +3659,7 @@ local wrathOfTheLichKing = { -- Wrath of the Lich King
                     2927, -- Hot Pocket (10 player)
                     2930, -- Stokin' the Furnace (10 player)
                     2919, -- A Quick Shave (10 player)
-                    2923, -- "Iron Dwarf, Medium Rare (10 player)"
+                    2923, -- Iron Dwarf, Medium Rare (10 player)
                     2931, -- Nerf Engineering (10 player)
                     2933, -- Nerf Scrapbots (10 player)
                     2934, -- Nerf Gravity Bombs (10 player)
@@ -3650,9 +3667,9 @@ local wrathOfTheLichKing = { -- Wrath of the Lich King
                     3058, -- Heartbreaker (10 player)
                     2945, -- But I'm On Your Side (10 player)
                     2947, -- Can't Do That While Stunned (10 player)
-                    2939, -- "I Choose You, Runemaster Molgeim (10 player)"
-                    2940, -- "I Choose You, Stormcaller Brundir (10 player)"
-                    2941, -- "I Choose You, Steelbreaker (10 player)"
+                    2939, -- I Choose You, Runemaster Molgeim (10 player)
+                    2940, -- I Choose You, Stormcaller Brundir (10 player)
+                    2941, -- I Choose You, Steelbreaker (10 player)
                     2955, -- If Looks Could Kill (10 player)
                     2959, -- Rubble and Roll (10 player)
                     2951, -- With Open Arms (10 player)
@@ -3674,8 +3691,8 @@ local wrathOfTheLichKing = { -- Wrath of the Lich King
                     2985, -- Deforestation (10 player)
                     2982, -- Getting Back to Nature (10 player)
                     3177, -- Knock on Wood (10 player)
-                    3178, -- "Knock, Knock on Wood (10 player)"
-                    3179, -- "Knock, Knock, Knock on Wood (10 player)"
+                    3178, -- Knock, Knock on Wood (10 player)
+                    3179, -- Knock, Knock, Knock on Wood (10 player)
                     2989, -- Set Up Us the Bomb (10 player)
                     3138, -- Not-So-Friendly Fire (10 player)
                     3180, -- Firefighter (10 player)
@@ -3718,7 +3735,7 @@ local wrathOfTheLichKing = { -- Wrath of the Lich King
                     2928, -- Hot Pocket (25 player)
                     2929, -- Stokin' the Furnace (25 player)
                     2921, -- A Quick Shave (25 player)
-                    2924, -- "Iron Dwarf, Medium Rare (25 player)"
+                    2924, -- Iron Dwarf, Medium Rare (25 player)
                     2932, -- Nerf Engineering (25 player)
                     2935, -- Nerf Scrapbots (25 player)
                     2936, -- Nerf Gravity Bombs (25 player)
@@ -3726,9 +3743,9 @@ local wrathOfTheLichKing = { -- Wrath of the Lich King
                     3059, -- Heartbreaker (25 player)
                     2946, -- But I'm On Your Side (25 player)
                     2948, -- Can't Do That While Stunned (25 player)
-                    2942, -- "I Choose You, Runemaster Molgeim (25 player)"
-                    2943, -- "I Choose You, Stormcaller Brundir (25 player)"
-                    2944, -- "I Choose You, Steelbreaker (25 player)"
+                    2942, -- I Choose You, Runemaster Molgeim (25 player)
+                    2943, -- I Choose You, Stormcaller Brundir (25 player)
+                    2944, -- I Choose You, Steelbreaker (25 player)
                     2956, -- If Looks Could Kill (25 player)
                     2960, -- Rubble and Roll (25 player)
                     2952, -- With Open Arms (25 player)
@@ -3750,8 +3767,8 @@ local wrathOfTheLichKing = { -- Wrath of the Lich King
                     2984, -- Deforestation (25 player)
                     2983, -- Getting Back to Nature (25 player)
                     3185, -- Knock on Wood (25 player)
-                    3186, -- "Knock, Knock on Wood (25 player)"
-                    3187, -- "Knock, Knock, Knock on Wood (25 player)"
+                    3186, -- Knock, Knock on Wood (25 player)
+                    3187, -- Knock, Knock, Knock on Wood (25 player)
                     3237, -- Set Up Us the Bomb (25 player)
                     2995, -- Not-So-Friendly Fire (25 player)
                     3189, -- Firefighter (25 player)
@@ -3791,7 +3808,7 @@ local wrathOfTheLichKing = { -- Wrath of the Lich King
                 12324, -- Hot Pocket
                 12325, -- Stokin' the Furnace
                 12321, -- A Quick Shave
-                12322, -- "Iron Dwarf, Medium Rare"
+                12322, -- Iron Dwarf, Medium Rare
                 12326, -- Nerf Engineering
                 12327, -- Nerf Scrapbots
                 12328, -- Nerf Gravity Bombs
@@ -3799,9 +3816,9 @@ local wrathOfTheLichKing = { -- Wrath of the Lich King
                 12330, -- Heartbreaker
                 12335, -- But I'm On Your Side
                 12336, -- Can't Do That While Stunned
-                12332, -- "I Choose You, Runemaster Molgeim"
-                12333, -- "I Choose You, Stormcaller Brundir"
-                12334, -- "I Choose You, Steelbreaker"
+                12332, -- I Choose You, Runemaster Molgeim
+                12333, -- I Choose You, Stormcaller Brundir
+                12334, -- I Choose You, Steelbreaker
                 12339, -- If Looks Could Kill
                 12340, -- Rubble and Roll
                 12337, -- With Open Arms
@@ -3823,8 +3840,8 @@ local wrathOfTheLichKing = { -- Wrath of the Lich King
                 12362, -- Deforestation
                 12363, -- Getting Back to Nature
                 12364, -- Knock on Wood
-                12365, -- "Knock, Knock on Wood"
-                12366, -- "Knock, Knock, Knock on Wood"
+                12365, -- Knock, Knock on Wood
+                12366, -- Knock, Knock, Knock on Wood
                 12367, -- Set Up Us the Bomb
                 12368, -- Not-So-Friendly Fire
                 12369, -- Firefighter
@@ -3848,7 +3865,7 @@ local wrathOfTheLichKing = { -- Wrath of the Lich King
                 12399, -- Observed
                 11751, -- Mogg-Saron
                 4626, -- And I'll Form the Head!
-                3142, -- "Val'anyr, Hammer of Ancient Kings"
+                3142, -- Val'anyr, Hammer of Ancient Kings
                 3316, -- Herald of the Titans
                 11320, -- Raiding with Leashes IV: Wrath of the Lick King
                 17340, -- Ahead of the Curve: Yogg-Saron
@@ -3863,7 +3880,7 @@ local wrathOfTheLichKing = { -- Wrath of the Lich King
                 (GetDifficultyInfo(3)),
                 {
                     3797, -- Upper Back Pain (10 player)
-                    3936, -- "Not One, But Two Jormungars (10 player)"
+                    3936, -- Not One, But Two Jormungars (10 player)
                     3996, -- Three Sixty Pain Spike (10 player)
                     3798, -- Resilience Will Fix It (10 player)
                     3799, -- Salt and Pepper (10 player)
@@ -3881,7 +3898,7 @@ local wrathOfTheLichKing = { -- Wrath of the Lich King
                 (GetDifficultyInfo(4)),
                 {
                     3813, -- Upper Back Pain (25 player)
-                    3937, -- "Not One, But Two Jormungars (25 player)"
+                    3937, -- Not One, But Two Jormungars (25 player)
                     3997, -- Three Sixty Pain Spike (25 player)
                     3814, -- Resilience Will Fix It (25 player)
                     3815, -- Salt and Pepper (25 player)
@@ -3940,9 +3957,9 @@ local wrathOfTheLichKing = { -- Wrath of the Lich King
                     4537, -- I've Gone and Made a Mess (10 player)
                     4577, -- Flu Shot Shortage (10 player)
                     4538, -- Dances with Oozes (10 player)
-                    4578, -- "Nausea, Heartburn, Indigestion... (10 player)"
+                    4578, -- Nausea, Heartburn, Indigestion... (10 player)
                     4582, -- The Orb Whisperer (10 player)
-                    4539, -- "Once Bitten, Twice Shy (10 player)"
+                    4539, -- Once Bitten, Twice Shy (10 player)
                     4579, -- Portal Jockey (10 player)
                     4580, -- All You Can Eat (10 player)
                     4601, -- Been Waiting a Long Time for This (10 player)
@@ -3971,9 +3988,9 @@ local wrathOfTheLichKing = { -- Wrath of the Lich King
                     4613, -- I've Gone and Made a Mess (25 player)
                     4615, -- Flu Shot Shortage (25 player)
                     4614, -- Dances with Oozes (25 player)
-                    4616, -- "Nausea, Heartburn, Indigestion... (25 player)"
+                    4616, -- Nausea, Heartburn, Indigestion... (25 player)
                     4617, -- The Orb Whisperer (25 player)
-                    4618, -- "Once Bitten, Twice Shy (25 player)"
+                    4618, -- Once Bitten, Twice Shy (25 player)
                     4619, -- Portal Jockey (25 player)
                     4620, -- All You Can Eat (25 player)
                     4621, -- Been Waiting a Long Time for This (25 player)
@@ -4229,8 +4246,8 @@ local cataclysm = { -- Cataclysm
                     4869, -- Sinking into Vashj'ir
                     4982, -- Sinking into Vashj'ir
                     5452, -- Visions of Vashj'ir Past
-                    5318, -- "20,000 Leagues Under the Sea"
-                    5319, -- "20,000 Leagues Under the Sea"
+                    5318, -- 20,000 Leagues Under the Sea
+                    5319, -- 20,000 Leagues Under the Sea
                 },
             },
             { -- Exploration
@@ -4543,7 +4560,7 @@ local cataclysm = { -- Cataclysm
             {
                 5743, -- It's Not Easy Being Green
                 5762, -- Ohganot So Fast!
-                5765, -- "Here, Kitty Kitty..."
+                5765, -- Here, Kitty Kitty...
                 5759, -- Spirit Twister
                 5744, -- Gurubashi Headhunter
                 5768, -- Heroic: Zul'Gurub
@@ -4721,7 +4738,7 @@ local cataclysm = { -- Cataclysm
                 5855, -- Ragnar-O's
                 5802, -- Firelands
                 11755, -- Hot Couture
-                5839, -- "Dragonwrath, Tarecgosa's Rest"
+                5839, -- Dragonwrath, Tarecgosa's Rest
                 12079, -- Raiding with Leashes V: Cuteaclysm
             },
         },
@@ -4881,9 +4898,9 @@ local cataclysm = { -- Cataclysm
         4887, -- Tripping the Rifts
         5535, -- 1000 Valor Points
         5536, -- 5000 Valor Points
-        5537, -- "25,000 Valor Points"
-        5538, -- "50,000 Valor Points"
-        6924, -- "100,000 Valor Points"
+        5537, -- 25,000 Valor Points
+        5538, -- 50,000 Valor Points
+        6924, -- 100,000 Valor Points
     },
 };
 
@@ -5046,8 +5063,8 @@ local mistsOfPandaria = { -- Mists of Pandaria
                 true,
                 {
                     6975, -- Explore Krasarang Wilds
-                    7518, -- "Wanderers, Dreamers, and You"
-                    7932, -- "I'm In Your Base, Killing Your Dudes"
+                    7518, -- Wanderers, Dreamers, and You
+                    7932, -- I'm In Your Base, Killing Your Dudes
                     9924, -- Field Photographer
                 },
             },
@@ -5084,7 +5101,7 @@ local mistsOfPandaria = { -- Mists of Pandaria
                 },
             },
             {
-                6480, -- "Settle Down, Bro"
+                6480, -- Settle Down, Bro
                 7386, -- Grand Expedition Yak
             },
         },
@@ -5096,7 +5113,7 @@ local mistsOfPandaria = { -- Mists of Pandaria
                 addon.GetCategoryInfoTitle(96),
                 true,
                 {
-                    6539, -- "One Steppe Forward, Two Steppes Back"
+                    6539, -- One Steppe Forward, Two Steppes Back
                     7288, -- Yak Attack
                     7297, -- Proven Strength
                     7298, -- Getting Around with the Shado-Pan
@@ -5217,7 +5234,7 @@ local mistsOfPandaria = { -- Mists of Pandaria
                     8104, -- Thunder Plunder
                     8105, -- The Crumble Bundle
                     8107, -- Ready for RAAAAIIIIDDD?!?ing
-                    8108, -- "When in Ihgaluk, Do as the Skumblade Do"
+                    8108, -- When in Ihgaluk, Do as the Skumblade Do
                     8109, -- The Mogu Below-gu
                     8110, -- These Mogu Have Gotta Go-gu
                     8111, -- This Isn't Even My Final Form
@@ -5275,8 +5292,8 @@ local mistsOfPandaria = { -- Mists of Pandaria
                     8784, -- Timeless Legends
                     8725, -- Eyes On The Ground
                     8726, -- Extreme Treasure Hunter
-                    8727, -- "Where There's Pirates, There's Booty"
-                    8729, -- "Treasure, Treasure Everywhere"
+                    8727, -- Where There's Pirates, There's Booty
+                    8729, -- Treasure, Treasure Everywhere
                     8730, -- Rolo's Riddle
                     8743, -- Zarhym Altogether
                     8716, -- Emissary of Ordos
@@ -5474,8 +5491,8 @@ local mistsOfPandaria = { -- Mists of Pandaria
                 addon.L["Glory"],
                 {
                     6823, -- Must Love Dogs
-                    6674, -- "Anything You Can Do, I Can Do Better..."
-                    7056, -- "Sorry, Were You Looking for This?"
+                    6674, -- Anything You Can Do, I Can Do Better...
+                    7056, -- Sorry, Were You Looking for This?
                     6686, -- Straight Six
                 },
             },
@@ -5961,7 +5978,7 @@ local mistsOfPandaria = { -- Mists of Pandaria
             {
                 8013, -- Domination Point
                 8014, -- Number Five Is Alive
-                8015, -- "Waste Not, Want Not"
+                8015, -- Waste Not, Want Not
             },
         },
         { -- Greenstone Village
@@ -5979,7 +5996,7 @@ local mistsOfPandaria = { -- Mists of Pandaria
             {
                 8010, -- Lion's Landing
                 8011, -- Number Five Is Alive
-                8012, -- "Waste Not, Want Not"
+                8012, -- Waste Not, Want Not
             },
         },
         { -- The Secrets of Ragefire
@@ -5988,7 +6005,7 @@ local mistsOfPandaria = { -- Mists of Pandaria
             {
                 8294, -- The Secrets of Ragefire
                 8327, -- Heroic: The Secrets of Ragefire
-                8295, -- "The Few, the Proud, the Gob Squad"
+                8295, -- The Few, the Proud, the Gob Squad
             },
         },
         { -- Theramore's Fall
@@ -6012,7 +6029,7 @@ local mistsOfPandaria = { -- Mists of Pandaria
                 7249, -- Unga Ingoo
                 7232, -- The Keg Runner
                 7239, -- Monkey in the Middle
-                7248, -- "Monkey See, Monkey Kill"
+                7248, -- Monkey See, Monkey Kill
                 7231, -- Spill No Evil
             },
         },
@@ -6320,7 +6337,7 @@ local warlordsOfDreanor = { -- Warlords of Dreanor
                     8926, -- Between Arak and a Hard Place
                     9605, -- Arak Star
                     9612, -- Eggs in One Basket
-                    9613, -- "Fish Gotta Swim, Birds Gotta Eat"
+                    9613, -- Fish Gotta Swim, Birds Gotta Eat
                     9601, -- King of the Monsters
                     9600, -- Monster Mash
                 },
@@ -6406,7 +6423,7 @@ local warlordsOfDreanor = { -- Warlords of Dreanor
                     10261, -- Jungle Treasure Hunter
                     10262, -- Jungle Treasure Master
                     10260, -- Explore Tanaan Jungle
-                    10069, -- "I Came, I Clawed, I Conquered"
+                    10069, -- I Came, I Clawed, I Conquered
                     10061, -- Hellbane
                     10259, -- Jungle Hunter
                     10070, -- Jungle Stalker
@@ -6452,7 +6469,7 @@ local warlordsOfDreanor = { -- Warlords of Dreanor
             addon.GetInstanceInfoName(558),
             {
                 9081, -- Expert Timing
-                9083, -- "Militaristic, Expansionist"
+                9083, -- Militaristic, Expansionist
                 9082, -- Take Cover!
                 9038, -- Iron Docks
                 9047, -- Heroic: Iron Docks
@@ -6523,7 +6540,7 @@ local warlordsOfDreanor = { -- Warlords of Dreanor
             addon.GetInstanceInfoName(556),
             {
                 9017, -- Water Management
-                9493, -- "They Burn, Burn, Burn"
+                9493, -- They Burn, Burn, Burn
                 9223, -- Weed Whacker
                 9044, -- The Everbloom
                 9053, -- Heroic: The Everbloom
@@ -6558,7 +6575,7 @@ local warlordsOfDreanor = { -- Warlords of Dreanor
             233,
             addon.GetInstanceInfoName(559),
             {
-                9045, -- "Magnets, How Do They Work?"
+                9045, -- Magnets, How Do They Work?
                 9058, -- Leeeeeeeeeeeeeroy...?
                 9056, -- Bridge Over Troubled Fire
                 9057, -- Dragonmaw? More Like Dragonfall!
@@ -6593,7 +6610,7 @@ local warlordsOfDreanor = { -- Warlords of Dreanor
                 addon.L["Glory"],
                 {
                     8948, -- Flame On!
-                    8947, -- "Hurry Up, Maggot!"
+                    8947, -- Hurry Up, Maggot!
                     8974, -- More Like Wrecked-us
                     8975, -- A Fungus Among Us
                     8958, -- Brothers in Arms
@@ -6629,16 +6646,16 @@ local warlordsOfDreanor = { -- Warlords of Dreanor
                 888,
                 addon.L["Glory"],
                 {
-                    8979, -- "He Shoots, He Ores"
+                    8979, -- He Shoots, He Ores
                     8978, -- The Iron Price
-                    8930, -- "Ya, We've Got Time..."
+                    8930, -- Ya, We've Got Time...
                     8980, -- Stamp Stamp Revolution
                     8929, -- The Steel Has Been Brought
                     8983, -- Would You Give Me a Hand?
                     8981, -- Fain Would Lie Down
                     8982, -- There's Always a Bigger Train
                     8984, -- Be Quick or Be Dead
-                    8952, -- "Ashes, Ashes..."
+                    8952, -- Ashes, Ashes...
                 },
             },
             { -- Mythic
@@ -6884,7 +6901,7 @@ local warlordsOfDreanor = { -- Warlords of Dreanor
                     9515, -- Nemesis: Worgen Hunter
                     9520, -- Nemesis: Huojin's Fall
                     9514, -- Nemesis: Terror of the Tushui
-                    9639, -- "Fight, Kill, Salute!"
+                    9639, -- Fight, Kill, Salute!
                     9508, -- Warlord of Draenor
                     9738, -- Warlord of Draenor
                 },
@@ -6999,7 +7016,7 @@ local warlordsOfDreanor = { -- Warlords of Dreanor
             10015, -- Full Discography
             10016, -- Full Discography
             9107, -- Follow the Leader
-            9108, -- "Where You Go, They Will Follow"
+            9108, -- Where You Go, They Will Follow
             9109, -- Fearless Leader
             9494, -- Commander
             9110, -- Following Up
@@ -7037,7 +7054,7 @@ local warlordsOfDreanor = { -- Warlords of Dreanor
         },
     },
     {
-        9838, -- "What A Strange, Interdimensional Trip It's Been"
+        9838, -- What A Strange, Interdimensional Trip It's Been
         9640, -- Chapter I: Call of the Archmage
         9641, -- Chapter II: Gul'dan Strikes Back
         9642, -- Chapter III: The Foundry Falls
@@ -7085,7 +7102,7 @@ local legion = { -- Legion
                 addon.GetCategoryInfoTitle(95),
                 true,
                 {
-                    11474, -- "Free For All, More For Me"
+                    11474, -- Free For All, More For Me
                 },
             },
             { -- Reputation
@@ -7249,9 +7266,9 @@ local legion = { -- Legion
                 addon.GetCategoryInfoTitle(96),
                 true,
                 {
-                    10790, -- "Vrykul Story, Bro"
+                    10790, -- Vrykul Story, Bro
                     10793, -- What a Ripoff!
-                    11232, -- "Lock, Stock and Two Smoking Goblins"
+                    11232, -- Lock, Stock and Two Smoking Goblins
                     11427, -- No Shellfish Endeavor
                 },
             },
@@ -7372,7 +7389,7 @@ local legion = { -- Legion
                 addon.GetCategoryInfoTitle(97),
                 true,
                 {
-                    12074, -- "Shoot First, Loot Later"
+                    12074, -- Shoot First, Loot Later
                     12084, -- Infused and Abused
                     12028, -- Envision Invasion Eradication
                     12026, -- Invasion Obliteration
@@ -7466,7 +7483,7 @@ local legion = { -- Legion
             {
                 10679, -- I Ain't Even Cold
                 10680, -- Who's Afraid of the Dark?
-                10707, -- "A Specter, Illuminated"
+                10707, -- A Specter, Illuminated
                 10801, -- Vault of the Wardens
                 10802, -- Heroic: Vault of the Wardens
                 10803, -- Mythic: Vault of the Wardens
@@ -7675,8 +7692,8 @@ local legion = { -- Legion
                     11699, -- Grand Fin-ale
                     11676, -- Five Course Seafood Buffet
                     11696, -- Grin and Bear It
-                    11773, -- "Wax On, Wax Off"
-                    11674, -- "Great Soul, Great Purpose"
+                    11773, -- Wax On, Wax Off
+                    11674, -- Great Soul, Great Purpose
                     11675, -- Sky Walker
                     11683, -- Bingo!
                     11770, -- Dark Souls
@@ -7867,9 +7884,9 @@ local legion = { -- Legion
             9687, -- Best of the Beasts
             9688, -- Mousing Around
             9689, -- Dragons!
-            9690, -- "Ragnaros, Watch and Learn"
+            9690, -- Ragnaros, Watch and Learn
             9691, -- Flock Together
-            9692, -- "Murlocs, Harpies, and Wolvar, Oh My!"
+            9692, -- Murlocs, Harpies, and Wolvar, Oh My!
             9693, -- Master of Magic
             9694, -- Roboteer
             9695, -- The Lil' Necromancer
@@ -7914,7 +7931,7 @@ local legion = { -- Legion
             11214, -- Many Missions
             11215, -- Quite a Few Missions
             11216, -- So Many Missions
-            11217, -- "Many Many Missions, Handle It!"
+            11217, -- Many Many Missions, Handle It!
             11219, -- Need Backup
             11220, -- Roster of Champions
             11221, -- Champions Rise
@@ -7948,8 +7965,8 @@ local legion = { -- Legion
         },
     },
     {
-        11190, -- "Broken Isles Pathfinder, Part One"
-        11446, -- "Broken Isles Pathfinder, Part Two"
+        11190, -- Broken Isles Pathfinder, Part One
+        11446, -- Broken Isles Pathfinder, Part Two
     },
 };
 
@@ -8114,9 +8131,9 @@ local battleForAzeroth = { -- Battle for Azeroth
                     12941, -- Adventurer of Drustvar
                     12995, -- Treasures of Drustvar
                     13087, -- Sausage Sampler
-                    13083, -- "Better, Faster, Stronger"
+                    13083, -- Better, Faster, Stronger
                     13082, -- Everything Old Is New Again
-                    13064, -- "Drust the Facts, Ma'am"
+                    13064, -- Drust the Facts, Ma'am
                     13094, -- Cursed Game Hunter
                 },
             },
@@ -8274,7 +8291,7 @@ local battleForAzeroth = { -- Battle for Azeroth
                     12942, -- Adventurer of Nazmir
                     12771, -- Treasures of Nazmir
                     12588, -- Eat Your Greens
-                    13024, -- "Carved in Stone, Written in Blood"
+                    13024, -- Carved in Stone, Written in Blood
                     13028, -- Hoppin' Sad
                 },
             },
@@ -8310,7 +8327,7 @@ local battleForAzeroth = { -- Battle for Azeroth
                     13009, -- Adept Sandfisher
                     13011, -- Scourge of Zem'lan
                     13014, -- Vorrik's Champion
-                    13041, -- "Hungry, Hungry Ranishu"
+                    13041, -- Hungry, Hungry Ranishu
                     13017, -- Champion of the Vulpera
                     13437, -- Scavenge like a Vulpera
                 },
@@ -8627,7 +8644,7 @@ local battleForAzeroth = { -- Battle for Azeroth
             {
                 12507, -- Snake Eater
                 12503, -- Snake Eyes
-                12508, -- "Good Night, Sweet Prince"
+                12508, -- Good Night, Sweet Prince
                 12504, -- The Temple of Sethraliss
                 12505, -- Heroic: The Temple of Sethraliss
                 12506, -- Mythic: The Temple of Sethraliss
@@ -8682,8 +8699,8 @@ local battleForAzeroth = { -- Battle for Azeroth
             {
                 13706, -- Stay Positive
                 13698, -- Clean Up On Aisle Mechagon
-                13723, -- "M.C., Hammered"
-                13545, -- "Go Ahead, Make My Daisy"
+                13723, -- M.C., Hammered
+                13545, -- Go Ahead, Make My Daisy
                 13624, -- Keep DPS-ing and Nobody Explodes
                 13789, -- Hertz Locker
                 15693, -- Keystone Hero: Operation: Mechagon
@@ -8744,7 +8761,7 @@ local battleForAzeroth = { -- Battle for Azeroth
                 40960, -- Uldir
                 12536, -- Ahead of the Curve: G'huun
                 12535, -- Cutting Edge: G'huun
-                12991, -- "New Mog, G'huun This?"
+                12991, -- New Mog, G'huun This?
             },
         },
         { -- Battle of Dazar'alor
@@ -8759,7 +8776,7 @@ local battleForAzeroth = { -- Battle for Azeroth
                     13383, -- Barrel of Monkeys
                     13345, -- Praise the Sunflower
                     13325, -- Walk the Dinosaur
-                    13425, -- "We Got Spirit, How About You?"
+                    13425, -- We Got Spirit, How About You?
                     13401, -- I Got Next!
                     13430, -- De Lurker Be'loa
                     13410, -- Snow Fun Allowed
@@ -8802,9 +8819,9 @@ local battleForAzeroth = { -- Battle for Azeroth
                 13506, -- A Good Eye-dea
                 13414, -- Crucible of Storms
                 13416, -- Mythic: The Restless Cabal
-                13417, -- "Mythic: Uu'nat, Harbinger of the Void"
-                13418, -- "Ahead of the Curve: Uu'nat, Harbinger of the Void"
-                13419, -- "Cutting Edge: Uu'nat, Harbinger of the Void"
+                13417, -- Mythic: Uu'nat, Harbinger of the Void
+                13418, -- Ahead of the Curve: Uu'nat, Harbinger of the Void
+                13419, -- Cutting Edge: Uu'nat, Harbinger of the Void
             },
         },
         { -- The Eternal Palace
@@ -8862,7 +8879,7 @@ local battleForAzeroth = { -- Battle for Azeroth
                     14139, -- Total Annihilation
                     14023, -- Realizing Your Potential
                     13999, -- How? Isn't it Obelisk?
-                    13990, -- "You Can Pet the Dog, But..."
+                    13990, -- You Can Pet the Dog, But...
                     14026, -- Temper Tantrum
                     14038, -- Bloody Mess
                     14147, -- Cleansing Treatment
@@ -8873,7 +8890,7 @@ local battleForAzeroth = { -- Battle for Azeroth
                 872,
                 addon.L["Mythic"],
                 {
-                    14041, -- "Mythic: Wrathion, the Black Emperor"
+                    14041, -- Mythic: Wrathion, the Black Emperor
                     14043, -- Mythic: Maut
                     14044, -- Mythic: The Prophet Skitra
                     14045, -- Mythic: Dark Inquisitor Xanesh
@@ -8882,7 +8899,7 @@ local battleForAzeroth = { -- Battle for Azeroth
                     14051, -- Mythic: Ra-den the Despoiled
                     14048, -- Mythic: Shad'har the Insatiable
                     14049, -- Mythic: Drest'agath
-                    14052, -- "Mythic: Il'gynoth, Corruption Reborn"
+                    14052, -- Mythic: Il'gynoth, Corruption Reborn
                     14054, -- Mythic: Carapace of N'Zoth
                     14055, -- Mythic: N'Zoth the Corruptor
                 },
@@ -9346,8 +9363,8 @@ local battleForAzeroth = { -- Battle for Azeroth
         },
     },
     {
-        12989, -- "Battle for Azeroth Pathfinder, Part One"
-        13250, -- "Battle for Azeroth Pathfinder, Part Two"
+        12989, -- Battle for Azeroth Pathfinder, Part One
+        13250, -- Battle for Azeroth Pathfinder, Part Two
         40953, -- A Farewell to Arms
         41209, -- Dressed to Kill: Battle for Azeroth
     },
@@ -9458,10 +9475,10 @@ local shadowlands = { -- Shadowlands
                 addon.GetCategoryInfoTitle(96),
                 true,
                 {
-                    14164, -- "Awaken, Ardenweald"
+                    14164, -- Awaken, Ardenweald
                     14800, -- Sojourner of Ardenweald
                     14671, -- Something's Not Quite Right....
-                    14672, -- "A Bit of This, A Bit of That"
+                    14672, -- A Bit of This, A Bit of That
                 },
             },
             { -- Exploration
@@ -9477,13 +9494,13 @@ local shadowlands = { -- Shadowlands
                     14774, -- Ardenweald Gourmand
                     14788, -- Fractured Faerie Tales
                     14779, -- Wild Hunting
-                    14504, -- "Niya, As Xavius"
-                    14505, -- "Senthii, As Gul'dan"
-                    14506, -- "Glimmerdust, As Kil'jaeden"
-                    14507, -- "Mi'kai, As Argus"
-                    14508, -- "Glimmerdust, As Jaina"
-                    14509, -- "Astra, As Azshara"
-                    14510, -- "Dreamweaver, As N'Zoth"
+                    14504, -- Niya, As Xavius
+                    14505, -- Senthii, As Gul'dan
+                    14506, -- Glimmerdust, As Kil'jaeden
+                    14507, -- Mi'kai, As Argus
+                    14508, -- Glimmerdust, As Jaina
+                    14509, -- Astra, As Azshara
+                    14510, -- Dreamweaver, As N'Zoth
                 },
             },
             { -- PvP
@@ -9596,7 +9613,7 @@ local shadowlands = { -- Shadowlands
                     14746, -- Prepare for Trouble!
                     14747, -- Make it Double!
                     14761, -- Deciphering Death's Intentions
-                    14894, -- "To 'Ghast, Two Curios"
+                    14894, -- To 'Ghast, Two Curios
                     14895, -- 'Ghast Five
                     15054, -- Minions of the Cold Dark
                     15107, -- Conquering Korthia
@@ -9675,7 +9692,7 @@ local shadowlands = { -- Shadowlands
                     15331, -- Treasures of Zereth Mortis
                     15211, -- Completing the Code
                     15402, -- Cyphers of the First Ones
-                    15502, -- "Sand, Sand Everywhere!"
+                    15502, -- Sand, Sand Everywhere!
                     15406, -- Synthesized!
                     15407, -- Synthe-fived!
                     15410, -- Synthe-superfived!
@@ -9828,10 +9845,10 @@ local shadowlands = { -- Shadowlands
                 15179, -- This is Fine
                 15190, -- Mischief!
                 15178, -- Fake It 'Til You Make It
-                15177, -- "Tazavesh, the Veiled Market"
+                15177, -- Tazavesh, the Veiled Market
                 15650, -- Mythic: Streets of Wonder
                 15652, -- Mythic: So'leah's Gambit
-                15500, -- "Keystone Hero: Tazavesh, the Veiled Market"
+                15500, -- Keystone Hero: Tazavesh, the Veiled Market
             },
         },
         {
@@ -9878,7 +9895,7 @@ local shadowlands = { -- Shadowlands
                     14608, -- Burning Bright
                     14619, -- Pour Decision Making
                     14294, -- Dirtflap's Revenge
-                    14525, -- "Feed Me, Seymour!"
+                    14525, -- Feed Me, Seymour!
                     14610, -- Clear Conscience
                 },
             },
@@ -9917,7 +9934,7 @@ local shadowlands = { -- Shadowlands
                 858,
                 addon.L["Glory"],
                 {
-                    14998, -- "Name A Better Duo, I'll Wait"
+                    14998, -- Name A Better Duo, I'll Wait
                     15065, -- Eye Wish You Were Here
                     15003, -- To the Nines
                     15058, -- I Used to Bullseye Deeprun Rats Back Home
@@ -9956,7 +9973,7 @@ local shadowlands = { -- Shadowlands
                 15134, -- Ahead of the Curve: Sylvanas Windrunner
                 15135, -- Cutting Edge: Sylvanas Windrunner
                 15110, -- Dominating the Catwalk
-                15191, -- "Rae'shalare, Death's Whisper"
+                15191, -- Rae'shalare, Death's Whisper
                 15667, -- Fate of Domination
                 15668, -- Heroic: Fate of Domination
                 15669, -- Mythic: Fate of Domination
@@ -9971,7 +9988,7 @@ local shadowlands = { -- Shadowlands
                 {
                     15381, -- Power ON
                     15401, -- Wisdom Comes From the Desert
-                    15398, -- "Xy Never, Ever Marks the Spot."
+                    15398, -- Xy Never, Ever Marks the Spot.
                     15397, -- Four Ring Circus
                     15400, -- Where the Wild Corgis Are
                     15419, -- The Protoform Matrix
@@ -10181,7 +10198,7 @@ local shadowlands = { -- Shadowlands
             15075, -- Infiltrators
             15076, -- The Box of Many Things
             15080, -- So Blessed
-            15079, -- "Many, Many Things"
+            15079, -- Many, Many Things
             15093, -- Avenge Me!
             15095, -- No Doubt
             15094, -- Rampage
@@ -10202,7 +10219,7 @@ local shadowlands = { -- Shadowlands
                 14853, -- All The Colors of the Painbow
                 14854, -- It's Not What You Wear
                 14502, -- Pursuing Loyalty
-                14856, -- "Charmed, I'm Sure"
+                14856, -- Charmed, I'm Sure
                 14857, -- Itsy Bitsy Fighters
                 14858, -- Curse of Thirst
                 14859, -- Inside the Park Home Run
@@ -10404,9 +10421,9 @@ local dragonflight = { -- Dragonflight
                     16623, -- Toe Tension
                     16624, -- Which Knot Was It Again?
                     16625, -- Belay On!
-                    16758, -- "Ready, Aim, Catalog!"
+                    16758, -- Ready, Aim, Catalog!
                     41184, -- Freshscales Fifteen
-                    19466, -- "Oh My God, They Were Clutchmates"
+                    19466, -- Oh My God, They Were Clutchmates
                     19483, -- Flight Club
                     19486, -- Across the Isles
                 },
@@ -10427,7 +10444,7 @@ local dragonflight = { -- Dragonflight
                 16556, -- Great Gourmand of The Ruby Feast
                 17734, -- Active Listening Skills
                 18383, -- Hey Nanny Nanny
-                18384, -- "Whelp, There It Is"
+                18384, -- Whelp, There It Is
                 17782, -- Daycare Derby
             },
         },
@@ -10464,7 +10481,7 @@ local dragonflight = { -- Dragonflight
                     17561, -- Ancient Stones of the Waking Shores
                     16493, -- Petty Theft Mammoth
                     16736, -- Grand Theft Mammoth
-                    18559, -- "Many Boxes, Many Rockses"
+                    18559, -- Many Boxes, Many Rockses
                 },
             },
             { -- PvP
@@ -10705,7 +10722,7 @@ local dragonflight = { -- Dragonflight
                     16551, -- Giving More Back to Nature
                     16552, -- Giving Even More Back to Nature
                     16553, -- Taking From Nature
-                    16561, -- "Lunkers, Lunkers Everywhere"
+                    16561, -- Lunkers, Lunkers Everywhere
                     16562, -- That's not a Fish...
                     16563, -- We're Going to Need a Bigger Harpoon
                     16564, -- It Takes a Tuskarr Family
@@ -10796,7 +10813,7 @@ local dragonflight = { -- Dragonflight
                     16679, -- Adventurer of Thaldraszus
                     16301, -- Treasures of Thaldraszus
                     16634, -- Framing a New Perspective
-                    16621, -- "One of Everything, Please"
+                    16621, -- One of Everything, Please
                     17564, -- Ancient Stones of Thaldraszus
                 },
             },
@@ -10868,8 +10885,8 @@ local dragonflight = { -- Dragonflight
                 addon.GetCategoryInfoTitle(96),
                 true,
                 {
-                    15325, -- "Dracthyr, Awaken"
-                    15638, -- "Dracthyr, Awaken"
+                    15325, -- Dracthyr, Awaken
+                    15638, -- Dracthyr, Awaken
                 },
             },
             { -- Exploration
@@ -10891,7 +10908,7 @@ local dragonflight = { -- Dragonflight
                     17532, -- Scroll Hunter
                     17397, -- Door To Door
                     17413, -- Door Buster
-                    17509, -- "Every Door, Everywhere, All At Once"
+                    17509, -- Every Door, Everywhere, All At Once
                     17543, -- You Know How to Reach Me
                 },
             },
@@ -11023,7 +11040,7 @@ local dragonflight = { -- Dragonflight
                 },
             },
             {
-                17785, -- "Que Zara(lek), Zara(lek)"
+                17785, -- Que Zara(lek), Zara(lek)
                 17841, -- Pyramid Scheme
                 18271, -- He'sSss All Mine
             },
@@ -11129,7 +11146,7 @@ local dragonflight = { -- Dragonflight
             addon.GetInstanceInfoName(1201),
             {
                 16434, -- See Me After Class
-                16329, -- "Duck, Duck, Spruce!"
+                16329, -- Duck, Duck, Spruce!
                 16441, -- Squad Goals
                 16269, -- Algeth'ar Academy
                 16270, -- Heroic: Algeth'ar Academy
@@ -11143,7 +11160,7 @@ local dragonflight = { -- Dragonflight
             {
                 16110, -- Subscribed to Hyena Facts
                 16296, -- Growlbossify
-                16430, -- "All Bark, All Bite"
+                16430, -- All Bark, All Bite
                 16404, -- So You Can Kill This in a Way That Matters...
                 16762, -- The Vegetarian Diet
                 16255, -- Brackenhide Hollow
@@ -11223,7 +11240,7 @@ local dragonflight = { -- Dragonflight
             addon.GetInstanceInfoName(1197),
             {
                 16337, -- It's a Trogg Eat Trogg World
-                16282, -- "No, You're Stunning!"
+                16282, -- No, You're Stunning!
                 16281, -- Like Sands Through the Hourglass
                 16278, -- Uldaman: Legacy of Tyr
                 16279, -- Heroic: Uldaman: Legacy of Tyr
@@ -11309,8 +11326,8 @@ local dragonflight = { -- Dragonflight
                     16346, -- Mythic: Eranog
                     16347, -- Mythic: Terros
                     16348, -- Mythic: The Primal Council
-                    16349, -- "Mythic: Sennarth, The Cold Breath"
-                    16350, -- "Mythic: Dathea, Ascended"
+                    16349, -- Mythic: Sennarth, The Cold Breath
+                    16350, -- Mythic: Dathea, Ascended
                     16351, -- Mythic: Kurog Grimtotem
                     16352, -- Mythic: Broodkeeper Diurna
                     16353, -- Mythic: Raszageth the Storm-Eater
@@ -11347,19 +11364,19 @@ local dragonflight = { -- Dragonflight
                     18193, -- Eggscellent Eggsecution
                     18172, -- Escar-Go-Go-Go
                     18149, -- Objects in Transit May Shatter
-                    17877, -- "We'll Never See That Again, Surely"
+                    17877, -- We'll Never See That Again, Surely
                 },
             },
             { -- Mythic
                 1422,
                 addon.L["Mythic"],
                 {
-                    18151, -- "Mythic: Kazzara, the Hellforged"
+                    18151, -- Mythic: Kazzara, the Hellforged
                     18152, -- Mythic: The Amalgamation Chamber
                     18153, -- Mythic: The Forgotten Experiments
                     18154, -- Mythic: Assault of the Zaqali
-                    18155, -- "Mythic: Rashok, the Elder"
-                    18156, -- "Mythic: The Vigilant Steward, Zskarn"
+                    18155, -- Mythic: Rashok, the Elder
+                    18156, -- Mythic: The Vigilant Steward, Zskarn
                     18157, -- Mythic: Magmorax
                     18158, -- Mythic: Echo of Neltharion
                     18159, -- Mythic: Scalecommander Sarkareth
@@ -11370,13 +11387,13 @@ local dragonflight = { -- Dragonflight
                 18164, -- Fury of Giants
                 18165, -- Neltharion's Shadow
                 18167, -- Edge of the Void
-                18160, -- "Aberrus, the Shadowed Crucible"
-                18161, -- "Heroic: Aberrus, the Shadowed Crucible"
-                18162, -- "Mythic: Aberrus, the Shadowed Crucible"
+                18160, -- Aberrus, the Shadowed Crucible
+                18161, -- Heroic: Aberrus, the Shadowed Crucible
+                18162, -- Mythic: Aberrus, the Shadowed Crucible
                 18253, -- Ahead of the Curve: Scalecommander Sarkareth
                 18254, -- Cutting Edge: Scalecommander Sarkareth
                 17765, -- What We Wear In The Shadowflame
-                18256, -- "Nasz'uro, the Unbound Legacy"
+                18256, -- Nasz'uro, the Unbound Legacy
                 18027, -- Dragonflight Season 2 Master
                 18380, -- Dragonflight Season 2 Hero
                 19567, -- Awakened Shadows
@@ -11398,7 +11415,7 @@ local dragonflight = { -- Dragonflight
                     19089, -- Don't Let the Doe Hit You On The Way Out
                     19394, -- A Dream Within a Dream
                     19319, -- Haven't We Done This Before?
-                    19393, -- "Whelp, I'm Lost"
+                    19393, -- Whelp, I'm Lost
                     19390, -- Memories of Teldrassil
                 },
             },
@@ -11410,10 +11427,10 @@ local dragonflight = { -- Dragonflight
                     19336, -- Mythic: Igira the Cruel
                     19337, -- Mythic: Volcoross
                     19338, -- Mythic: Council of Dreams
-                    19339, -- "Mythic: Larodar, Keeper of the Flame"
-                    19340, -- "Mythic: Nymue, Weaver of the Cycle"
+                    19339, -- Mythic: Larodar, Keeper of the Flame
+                    19340, -- Mythic: Nymue, Weaver of the Cycle
                     19341, -- Mythic: Smolderon
-                    19342, -- "Mythic: Tindral Sageswift, Seer of the Flame"
+                    19342, -- Mythic: Tindral Sageswift, Seer of the Flame
                     19343, -- Mythic: Fyrakk the Blazing
                 },
             },
@@ -11422,9 +11439,9 @@ local dragonflight = { -- Dragonflight
                 19345, -- Molten Incursion
                 19346, -- The Viridian Weave
                 19347, -- Fate of Amirdrassil
-                19331, -- "Amirdrassil, the Dream's Hope"
-                19333, -- "Heroic: Amirdrassil, the Dream's Hope"
-                19334, -- "Mythic: Amirdrassil, the Dream's Hope"
+                19331, -- Amirdrassil, the Dream's Hope
+                19333, -- Heroic: Amirdrassil, the Dream's Hope
+                19334, -- Mythic: Amirdrassil, the Dream's Hope
                 19350, -- Ahead of the Curve: Fyrakk the Blazing
                 19351, -- Cutting Edge: Fyrakk the Blazing
                 19442, -- Fire Catwalk With Me
@@ -12067,7 +12084,7 @@ local theWarWithin = { -- The War Within
                     40587, -- Awakening The Machine: Wave 30
                     40588, -- Awakening The Machine: Wave 40
                     40589, -- Awakening The Machine: Wave 50
-                    40662, -- "It's Not Much, But It's Honest Work"
+                    40662, -- It's Not Much, But It's Honest Work
                 },
             },
             { -- Player vs. Player
@@ -12084,7 +12101,7 @@ local theWarWithin = { -- The War Within
                 true,
                 {
                     41165, -- Assembly of the Deeps
-                    41166, -- "From Many, One"
+                    41166, -- From Many, One
                 },
             },
             {
@@ -12238,23 +12255,6 @@ local theWarWithin = { -- The War Within
             41201, -- You Xal Not Pass
         }
     },
-    { -- Cross-Expansion - Delves
-        1670,
-        addon.L["Cross-Expansion - Delves"],
-        {
-            40436, -- You're Getting a Delve!
-            40460, -- Delve Deep
-            40462, -- Delve Deeper
-            40463, -- Delve Deepest
-            40819, -- Ready to Turn
-            40788, -- I Got the Keys
-            40882, -- Copious Coffers
-            40885, -- The Key to Madness
-            40817, -- A Delver's Bounty
-            40863, -- Perplexing Puzzle
-            40864, -- Plentiful Perplexing Puzzles
-        },
-    },
     { -- Delves
         1600,
         addon.GetCategoryInfoTitle(15522),
@@ -12399,7 +12399,7 @@ local theWarWithin = { -- The War Within
             40098, -- Immortal Spelunker
             40459, -- I've Got a Flying Machine!
             40524, -- Good Deed Delver
-            40763, -- "I'm not a Thief, I'm a Treasure Hunter"
+            40763, -- I'm not a Thief, I'm a Treasure Hunter
             40789, -- Flying in Style
             40458, -- Stranger Delves
             40538, -- Brann Development
@@ -12485,10 +12485,10 @@ local theWarWithin = { -- The War Within
             1639,
             addon.GetInstanceInfoName(1271),
             {
-                40370, -- "Ara-Kara, City of Echoes"
-                40374, -- "Heroic: Ara-Kara, City of Echoes"
-                40375, -- "Mythic: Ara-Kara, City of Echoes"
-                20586, -- "Keystone Hero: Ara-Kara, City of Echoes"
+                40370, -- Ara-Kara, City of Echoes
+                40374, -- Heroic: Ara-Kara, City of Echoes
+                40375, -- Mythic: Ara-Kara, City of Echoes
+                20586, -- Keystone Hero: Ara-Kara, City of Echoes
             },
         },
         {
@@ -12531,7 +12531,7 @@ local theWarWithin = { -- The War Within
                 {
                     40236, -- Mythic: Ulgrax the Devourer
                     40237, -- Mythic: The Bloodbound Horror
-                    40238, -- "Mythic: Sikran, Captain of the Sureki"
+                    40238, -- Mythic: Sikran, Captain of the Sureki
                     40239, -- Mythic: Rasha'nan
                     40240, -- Mythic: Broodtwister Ovi'nax
                     40241, -- Mythic: Nexus-Princess Ky'veza

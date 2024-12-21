@@ -1,6 +1,6 @@
 local _, addon = ...;
 local shared = addon.Data.AchievementData.Shared;
-local faction = addon.Objects.Faction;
+local faction = KrowiAF.Enum.Faction;
 
 KrowiAF.AchievementData["08_00_01"] = {
     {KrowiAF.SetAchievementPatch, 8, 0, 1},
@@ -90,7 +90,7 @@ KrowiAF.AchievementData["08_00_01"] = {
     {12505}, -- Heroic: The Temple of Sethraliss
     {12506}, -- Mythic: The Temple of Sethraliss
     {12507}, -- Snake Eater
-    {12508}, -- "Good Night, Sweet Prince"
+    {12508}, -- Good Night, Sweet Prince
     { -- Ready for War
         12509,
         faction.Horde,
@@ -123,13 +123,13 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Cutting Edge: G'huun
         12535,
         {
-            {"Mythic+ Season", 1},
+            {"PvE Season", 1},
         },
     },
     { -- Ahead of the Curve: G'huun
         12536,
         {
-            {"Mythic+ Season", 1},
+            {"PvE Season", 1},
         },
     },
     { -- Level 120 (Legacy)
@@ -827,9 +827,9 @@ KrowiAF.AchievementData["08_00_01"] = {
         },
     },
     {12988}, -- Battle for Azeroth Explorer
-    {12989}, -- "Battle for Azeroth Pathfinder, Part One"
+    {12989}, -- Battle for Azeroth Pathfinder, Part One
     {12990}, -- Catchin' Some Rays
-    {12991}, -- "New Mog, G'huun This?"
+    {12991}, -- New Mog, G'huun This?
     {12992}, -- Pet Emporium
     {12993}, -- Don't Warfront Me
     {12995}, -- Treasures of Drustvar
@@ -867,7 +867,7 @@ KrowiAF.AchievementData["08_00_01"] = {
         faction.Horde,
     },
     {13023}, -- It's Really Getting Out of Hand
-    {13024}, -- "Carved in Stone, Written in Blood"
+    {13024}, -- Carved in Stone, Written in Blood
     { -- Zandalari Spycatcher
         13025,
         faction.Horde,
@@ -893,7 +893,7 @@ KrowiAF.AchievementData["08_00_01"] = {
         13039,
         faction.Horde,
     },
-    { -- "Hungry, Hungry Ranishu"
+    { -- Hungry, Hungry Ranishu
         13041,
         faction.Horde,
     },
@@ -933,7 +933,7 @@ KrowiAF.AchievementData["08_00_01"] = {
         13062,
         faction.Alliance,
     },
-    {13064}, -- "Drust the Facts, Ma'am"
+    {13064}, -- Drust the Facts, Ma'am
     {13075}, -- Battle for Azeroth Keymaster
     { -- Heritage of the Dark Iron
         13076,
@@ -953,20 +953,20 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Battle for Azeroth Keystone Conqueror: Season One
         13079,
         {
-            {"Mythic+ Season", 1},
+            {"PvE Season", 1},
         },
     },
     { -- Battle for Azeroth Keystone Master: Season One
         13080,
         {
-            {"Mythic+ Season", 1},
+            {"PvE Season", 1},
         },
     },
     { -- Everything Old Is New Again
         13082,
         faction.Alliance,
     },
-    {13083}, -- "Better, Faster, Stronger"
+    {13083}, -- Better, Faster, Stronger
     {13087}, -- Sausage Sampler
     { -- Dread Gladiator's Proto-Drake
         13093,
@@ -1310,13 +1310,13 @@ KrowiAF.AchievementData["08_01_00"] = {
     { -- Ahead of the Curve: Lady Jaina Proudmoore
         13322,
         {
-            {"Mythic+ Season", 2},
+            {"PvE Season", 2},
         },
     },
     { -- Cutting Edge: Lady Jaina Proudmoore
         13323,
         {
-            {"Mythic+ Season", 2},
+            {"PvE Season", 2},
         },
     },
     {13325}, -- Walk the Dinosaur
@@ -1373,20 +1373,20 @@ KrowiAF.AchievementData["08_01_00"] = {
     {13410}, -- Snow Fun Allowed
     {13414}, -- Crucible of Storms
     {13416}, -- Mythic: The Restless Cabal
-    {13417}, -- "Mythic: Uu'nat, Harbinger of the Void"
-    { -- "Ahead of the Curve: Uu'nat, Harbinger of the Void"
+    {13417}, -- Mythic: Uu'nat, Harbinger of the Void
+    { -- Ahead of the Curve: Uu'nat, Harbinger of the Void
         13418,
         {
-            {"Mythic+ Season", 2},
+            {"PvE Season", 2},
         },
     },
-    { -- "Cutting Edge: Uu'nat, Harbinger of the Void"
+    { -- Cutting Edge: Uu'nat, Harbinger of the Void
         13419,
         {
-            {"Mythic+ Season", 2},
+            {"PvE Season", 2},
         },
     },
-    {13425}, -- "We Got Spirit, How About You?"
+    {13425}, -- We Got Spirit, How About You?
     { -- Come On and Slam
         13426,
         faction.Alliance,
@@ -1399,7 +1399,7 @@ KrowiAF.AchievementData["08_01_00"] = {
     },
     {13430}, -- De Lurker Be'loa
     {13431}, -- Hidden Dragon
-    {13433}, -- "Tall, Dark, and Sinister"
+    {13433}, -- Tall, Dark, and Sinister
     { -- Doomsoul Surprise
         13435,
         faction.Horde,
@@ -1433,13 +1433,13 @@ KrowiAF.AchievementData["08_01_00"] = {
     { -- Battle for Azeroth Keystone Conqueror: Season Two
         13448,
         {
-            {"Mythic+ Season", 2},
+            {"PvE Season", 2},
         },
     },
     { -- Battle for Azeroth Keystone Master: Season Two
         13449,
         {
-            {"Mythic+ Season", 2},
+            {"PvE Season", 2},
         },
     },
     { -- Fierce Gladiator's Storm Dragon
@@ -1589,7 +1589,7 @@ KrowiAF.AchievementData["08_01_05"] = {
 
 KrowiAF.AchievementData["08_02_00"] = {
     {KrowiAF.SetAchievementPatch, 8, 2, 0},
-    {13250}, -- "Battle for Azeroth Pathfinder, Part Two"
+    {13250}, -- Battle for Azeroth Pathfinder, Part Two
     {13470}, -- Rest In Pistons
     {13472}, -- Deep Pockets
     {13473}, -- Diversified Investments
@@ -1608,7 +1608,7 @@ KrowiAF.AchievementData["08_02_00"] = {
         13542,
         faction.Horde,
     },
-    {13545}, -- "Go Ahead, Make My Daisy"
+    {13545}, -- Go Ahead, Make My Daisy
     {13549}, -- Trove Tracker
     { -- The Mechagonian Threat
         13553,
@@ -1667,7 +1667,7 @@ KrowiAF.AchievementData["08_02_00"] = {
             IsPvP = true,
         },
     },
-    {13585}, -- "Never Lose, Never Choose To"
+    {13585}, -- Never Lose, Never Choose To
     { -- Fighting on Two Fronts
         13623,
         {
@@ -1828,7 +1828,7 @@ KrowiAF.AchievementData["08_02_00"] = {
         },
     },
     {13722}, -- Terror of the Tadpoles
-    {13723}, -- "M.C., Hammered"
+    {13723}, -- M.C., Hammered
     {13724}, -- A Smack of Jellyfish
     {13725}, -- The Circle of Stars
     {13726}, -- Mythic: Abyssal Commander Sivara
@@ -1997,25 +1997,25 @@ KrowiAF.AchievementData["08_02_00"] = {
     { -- Battle for Azeroth Keystone Conqueror: Season Three
         13780,
         {
-            {"Mythic+ Season", 3},
+            {"PvE Season", 3},
         },
     },
     { -- Battle for Azeroth Keystone Master: Season Three
         13781,
         {
-            {"Mythic+ Season", 3},
+            {"PvE Season", 3},
         },
     },
     { -- Ahead of the Curve: Queen Azshara
         13784,
         {
-            {"Mythic+ Season", 3},
+            {"PvE Season", 3},
         },
     },
     { -- Cutting Edge: Queen Azshara
         13785,
         {
-            {"Mythic+ Season", 3},
+            {"PvE Season", 3},
         },
     },
     { -- Hertz Locker
@@ -2060,7 +2060,7 @@ KrowiAF.AchievementData["08_02_05"] = {
         13928,
         true,
     },
-    { -- "Memories of Fel, Frost and Fire"
+    { -- Memories of Fel, Frost and Fire
         13931,
         {
             {"From", "Date", {2019, 11, 5}, "Until", "Date", {2020, 1, 7}},
@@ -2148,7 +2148,7 @@ KrowiAF.AchievementData["08_03_00"] = {
             {"PvP Season", 29},
         },
     },
-    {13990}, -- "You Can Pet the Dog, But..."
+    {13990}, -- You Can Pet the Dog, But...
     {13994}, -- Through the Depths of Visions
     {13998}, -- Pure of Heart
     {13999}, -- How? Isn't it Obelisk?
@@ -2174,7 +2174,7 @@ KrowiAF.AchievementData["08_03_00"] = {
     {14027}, -- Battle for Mrrglroth
     {14037}, -- Phase 3: Prophet
     {14038}, -- Bloody Mess
-    {14041}, -- "Mythic: Wrathion, the Black Emperor"
+    {14041}, -- Mythic: Wrathion, the Black Emperor
     {14043}, -- Mythic: Maut
     {14044}, -- Mythic: The Prophet Skitra
     {14045}, -- Mythic: Dark Inquisitor Xanesh
@@ -2183,7 +2183,7 @@ KrowiAF.AchievementData["08_03_00"] = {
     {14049}, -- Mythic: Drest'agath
     {14050}, -- Mythic: Vexiona
     {14051}, -- Mythic: Ra-den the Despoiled
-    {14052}, -- "Mythic: Il'gynoth, Corruption Reborn"
+    {14052}, -- Mythic: Il'gynoth, Corruption Reborn
     {14054}, -- Mythic: Carapace of N'Zoth
     {14055}, -- Mythic: N'Zoth the Corruptor
     {14058}, -- All Eyes On Me
@@ -2199,33 +2199,33 @@ KrowiAF.AchievementData["08_03_00"] = {
     { -- Ahead of the Curve: N'Zoth the Corruptor
         14068,
         {
-            {"Mythic+ Season", 4},
+            {"PvE Season", 4},
         },
     },
     { -- Cutting Edge: N'Zoth the Corruptor
         14069,
         {
-            {"Mythic+ Season", 4},
+            {"PvE Season", 4},
         },
     },
     {14139}, -- Total Annihilation
     { -- Mad World
         14140,
         {
-            {"Mythic+ Season", 4},
+            {"PvE Season", 4},
         },
     },
     {14143}, -- Reeking of Visions
     { -- Battle for Azeroth Keystone Conqueror: Season Four
         14144,
         {
-            {"Mythic+ Season", 4},
+            {"PvE Season", 4},
         },
     },
     { -- Battle for Azeroth Keystone Master: Season Four
         14145,
         {
-            {"Mythic+ Season", 4},
+            {"PvE Season", 4},
         },
     },
     {14146}, -- Glory of the Ny'alotha Raider

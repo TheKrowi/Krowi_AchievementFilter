@@ -1,11 +1,11 @@
 local _, addon = ...;
 local shared = addon.Data.AchievementData.Shared;
-local faction = addon.Objects.Faction;
+local faction = KrowiAF.Enum.Faction;
 
 KrowiAF.AchievementData["09_00_01"] = {
     {KrowiAF.SetAchievementPatch, 9, 0, 1},
     {13878}, -- The Master of Revendreth
-    {14164}, -- "Awaken, Ardenweald"
+    {14164}, -- Awaken, Ardenweald
     {14197}, -- Sanguine Depths
     {14198}, -- Heroic: Sanguine Depths
     {14199}, -- Mythic: Sanguine Depths
@@ -110,13 +110,13 @@ KrowiAF.AchievementData["09_00_01"] = {
     { -- Ahead of the Curve: Sire Denathrius
         14460,
         {
-            {"Mythic+ Season", 5},
+            {"PvE Season", 5},
         },
     },
     { -- Cutting Edge: Sire Denathrius
         14461,
         {
-            {"Mythic+ Season", 5},
+            {"PvE Season", 5},
         },
     },
     {14463}, -- Skoldus Hall
@@ -136,13 +136,13 @@ KrowiAF.AchievementData["09_00_01"] = {
     {14501}, -- Phanatical
     {14502}, -- Pursuing Loyalty
     {14503}, -- Hooked On Hydroponics
-    {14504}, -- "Niya, As Xavius"
-    {14505}, -- "Senthii, As Gul'dan"
-    {14506}, -- "Glimmerdust, As Kil'jaeden"
-    {14507}, -- "Mi'kai, As Argus"
-    {14508}, -- "Glimmerdust, As Jaina"
-    {14509}, -- "Astra, As Azshara"
-    {14510}, -- "Dreamweaver, As N'Zoth"
+    {14504}, -- Niya, As Xavius
+    {14505}, -- Senthii, As Gul'dan
+    {14506}, -- Glimmerdust, As Kil'jaeden
+    {14507}, -- Mi'kai, As Argus
+    {14508}, -- Glimmerdust, As Jaina
+    {14509}, -- Astra, As Azshara
+    {14510}, -- Dreamweaver, As N'Zoth
     { -- Tour of Duty: Ardenweald
         14511,
         {
@@ -187,17 +187,17 @@ KrowiAF.AchievementData["09_00_01"] = {
     },
     {14523}, -- Taking Care of Business
     {14524}, -- I Don't Know What I Expected
-    {14525}, -- "Feed Me, Seymour!"
+    {14525}, -- Feed Me, Seymour!
     { -- Shadowlands Keystone Conqueror: Season One
         14531,
         {
-            {"Mythic+ Season", 5},
+            {"PvE Season", 5},
         },
     },
     { -- Shadowlands Keystone Master: Season One
         14532,
         {
-            {"Mythic+ Season", 5},
+            {"PvE Season", 5},
         },
     },
     {14533}, -- Royal Rumble
@@ -240,7 +240,7 @@ KrowiAF.AchievementData["09_00_01"] = {
     {14663}, -- Explore The Maw
     {14670}, -- That's the Spirit
     {14671}, -- Something's Not Quite Right....
-    {14672}, -- "A Bit of This, A Bit of That"
+    {14672}, -- A Bit of This, A Bit of That
     {14675}, -- Spirit Talker
     {14676}, -- Divine Spirit Savior
     {14677}, -- Spiritual Observations
@@ -430,7 +430,7 @@ KrowiAF.AchievementData["09_00_02"] = {
         },
     },
     {14825}, -- Shadowlands Voyager
-    { -- "I Live, I Die, I Queue Again"
+    { -- I Live, I Die, I Queue Again
         14831,
         {
             IsPvP = true,
@@ -454,7 +454,7 @@ KrowiAF.AchievementData["09_00_02"] = {
     {14852}, -- The Hoot of the Issue
     {14853}, -- All The Colors of the Painbow
     {14854}, -- It's Not What You Wear
-    {14856}, -- "Charmed, I'm Sure"
+    {14856}, -- Charmed, I'm Sure
     {14857}, -- Itsy Bitsy Fighters
     {14858}, -- Curse of Thirst
     {14859}, -- Inside the Park Home Run
@@ -479,7 +479,7 @@ KrowiAF.AchievementData["09_00_02"] = {
     {14879}, -- Family Exorcist
     {14881}, -- Abhorrent Adversaries of the Afterlife
     {14887}, -- To the Moon
-    {14894}, -- "To 'Ghast, Two Curios"
+    {14894}, -- To 'Ghast, Two Curios
     {14895}, -- 'Ghast Five
     { -- Netherwhelp Online
         14904,
@@ -495,7 +495,7 @@ KrowiAF.AchievementData["09_00_05"] = {
     { -- Shadowlands Keystone Explorer: Season One
         14938,
         {
-            {"Mythic+ Season", 5},
+            {"PvE Season", 5},
         },
     },
     {15023}, -- We Can Rebuild
@@ -580,7 +580,7 @@ KrowiAF.AchievementData["09_01_00"] = {
             {"PvP Season", 31},
         },
     },
-    {14998}, -- "Name A Better Duo, I'll Wait"
+    {14998}, -- Name A Better Duo, I'll Wait
     { -- Unchained Gladiator's Soul Eater
         14999,
         {
@@ -607,49 +607,59 @@ KrowiAF.AchievementData["09_01_00"] = {
     { -- Keystone Hero: The Necrotic Wake
         15045,
         {
-            {"Mythic+ Season", 13},
+            {"PvE Season", 6},
+            {"PvE Season", 7},
+            {"PvE Season", 13},
         },
     },
     { -- Keystone Hero: Plaguefall
         15046,
         {
-            {"From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7},
+            {"PvE Season", 6},
+            {"PvE Season", 7},
         },
     },
     { -- Keystone Hero: Mists of Tirna Scithe
         15047,
         {
-            {"Mythic+ Season", 13},
+            {"PvE Season", 6},
+            {"PvE Season", 7},
+            {"PvE Season", 13},
         },
     },
     { -- Keystone Hero: Halls of Atonement
         15048,
         {
-            {"From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7},
+            {"PvE Season", 6},
+            {"PvE Season", 7},
         },
     },
     { -- Keystone Hero: Spires of Ascension
         15049,
         {
-            {"From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7},
+            {"PvE Season", 6},
+            {"PvE Season", 7},
         },
     },
     { -- Keystone Hero: Theater of Pain
         15050,
         {
-            {"From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7},
+            {"PvE Season", 6},
+            {"PvE Season", 7},
         },
     },
     { -- Keystone Hero: De Other Side
         15051,
         {
-            {"From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7},
+            {"PvE Season", 6},
+            {"PvE Season", 7},
         },
     },
     { -- Keystone Hero: Sanguine Depths
         15052,
         {
-            {"From", "Mythic+ Season", 6, "Until", "Mythic+ Season", 7},
+            {"PvE Season", 6},
+            {"PvE Season", 7},
         },
     },
     {15053}, -- Explore Korthia
@@ -667,7 +677,7 @@ KrowiAF.AchievementData["09_01_00"] = {
     { -- Shadowlands Keystone Explorer: Season Two
         15073,
         {
-            {"Mythic+ Season", 6},
+            {"PvE Season", 6},
         },
     },
     {15075}, -- Infiltrators
@@ -675,16 +685,16 @@ KrowiAF.AchievementData["09_01_00"] = {
     { -- Shadowlands Keystone Conqueror: Season Two
         15077,
         {
-            {"Mythic+ Season", 6},
+            {"PvE Season", 6},
         },
     },
     { -- Shadowlands Keystone Master: Season Two
         15078,
         {
-            {"Mythic+ Season", 6},
+            {"PvE Season", 6},
         },
     },
-    {15079}, -- "Many, Many Things"
+    {15079}, -- Many, Many Things
     {15080}, -- So Blessed
     {15081}, -- Flawless: Skoldus Hall (Layer 12)
     {15082}, -- Flawless: Fracture Chambers (Layer 12)
@@ -736,20 +746,20 @@ KrowiAF.AchievementData["09_01_00"] = {
     { -- Ahead of the Curve: Sylvanas Windrunner
         15134,
         {
-            {"Mythic+ Season", 6},
+            {"PvE Season", 6},
         },
     },
     { -- Cutting Edge: Sylvanas Windrunner
         15135,
         {
-            {"Mythic+ Season", 6},
+            {"PvE Season", 6},
         },
     },
-    {15177}, -- "Tazavesh, the Veiled Market"
+    {15177}, -- Tazavesh, the Veiled Market
     {15178}, -- Fake It 'Til You Make It
     {15179}, -- This is Fine
     {15190}, -- Mischief!
-    {15191}, -- "Rae'shalare, Death's Whisper"
+    {15191}, -- Rae'shalare, Death's Whisper
 };
 
 KrowiAF.AchievementData["09_01_05"] = {
@@ -790,7 +800,7 @@ KrowiAF.AchievementData["09_01_05"] = {
     { -- Tormented Hero: Shadowlands Season 2
         15327,
         {
-            {"Mythic+ Season", 6},
+            {"PvE Season", 6},
         },
     },
     {15388}, -- Shadowlands Explorer
@@ -983,7 +993,7 @@ KrowiAF.AchievementData["09_02_00"] = {
     {15392}, -- Dune Dominance
     {15396}, -- We Are All Made of Stars
     {15397}, -- Four Ring Circus
-    {15398}, -- "Xy Never, Ever Marks the Spot."
+    {15398}, -- Xy Never, Ever Marks the Spot.
     {15399}, -- Coming to Terms
     {15400}, -- Where the Wild Corgis Are
     {15401}, -- Wisdom Comes From the Desert
@@ -1007,13 +1017,13 @@ KrowiAF.AchievementData["09_02_00"] = {
     { -- Ahead of the Curve: The Jailer
         15470,
         {
-            {"Mythic+ Season", 7},
+            {"PvE Season", 7},
         },
     },
     { -- Cutting Edge: The Jailer
         15471,
         {
-            {"Mythic+ Season", 7},
+            {"PvE Season", 7},
         },
     },
     {15478}, -- Heroic: Sepulcher of the First Ones
@@ -1036,32 +1046,33 @@ KrowiAF.AchievementData["09_02_00"] = {
     { -- Shadowlands Keystone Explorer: Season Three
         15496,
         {
-            {"Mythic+ Season", 7},
+            {"PvE Season", 7},
         },
     },
     { -- Shadowlands Keystone Conqueror: Season Three
         15498,
         {
-            {"Mythic+ Season", 7},
+            {"PvE Season", 7},
         },
     },
     { -- Shadowlands Keystone Master: Season Three
         15499,
         {
-            {"Mythic+ Season", 7},
+            {"PvE Season", 7},
         },
     },
-    { -- "Keystone Hero: Tazavesh, the Veiled Market"
+    { -- Keystone Hero: Tazavesh, the Veiled Market
         15500,
         {
-            {"From", "Mythic+ Season", 7, "Until", "Mythic+ Season", 8},
+            {"PvE Season", 7},
+            {"PvE Season", 8},
         },
     },
-    {15502}, -- "Sand, Sand Everywhere!"
+    {15502}, -- Sand, Sand Everywhere!
     { -- Shadowlands Keystone Hero: Season Three
         15506,
         {
-            {"Mythic+ Season", 7},
+            {"PvE Season", 7},
         },
     },
     {15508}, -- Fashion of the First Ones
@@ -1232,127 +1243,127 @@ KrowiAF.AchievementData["09_02_05"] = {
     { -- Fate of Nathria
         15663,
         {
-            {"Mythic+ Season", 8},
+            {"PvE Season", 8},
         },
     },
     { -- Heroic: Fate of Nathria
         15664,
         {
-            {"Mythic+ Season", 8},
+            {"PvE Season", 8},
         },
     },
     { -- Mythic: Fate of Nathria
         15665,
         {
-            {"Mythic+ Season", 8},
+            {"PvE Season", 8},
         },
     },
     { -- Fate of Domination
         15667,
         {
-            {"Mythic+ Season", 8},
+            {"PvE Season", 8},
         },
     },
     { -- Heroic: Fate of Domination
         15668,
         {
-            {"Mythic+ Season", 8},
+            {"PvE Season", 8},
         },
     },
     { -- Mythic: Fate of Domination
         15669,
         {
-            {"Mythic+ Season", 8},
+            {"PvE Season", 8},
         },
     },
     { -- Fate of the Sepulcher
         15681,
         {
-            {"Mythic+ Season", 8},
+            {"PvE Season", 8},
         },
     },
     { -- Heroic: Fate of the Sepulcher
         15682,
         {
-            {"Mythic+ Season", 8},
+            {"PvE Season", 8},
         },
     },
     { -- Mythic: Fate of the Sepulcher
         15683,
         {
-            {"Mythic+ Season", 8},
+            {"PvE Season", 8},
         },
     },
     { -- Fates of the Shadowlands Raids
         15684,
         {
-            {"Mythic+ Season", 8},
+            {"PvE Season", 8},
         },
     },
     { -- Heroic: Fates of the Shadowlands Raids
         15685,
         {
-            {"Mythic+ Season", 8},
+            {"PvE Season", 8},
         },
     },
     { -- Mythic: Fates of the Shadowlands Raids
         15687,
         {
-            {"Mythic+ Season", 8},
+            {"PvE Season", 8},
         },
     },
     { -- Shadowlands Keystone Explorer: Season Four
         15688,
         {
-            {"Mythic+ Season", 8},
+            {"PvE Season", 8},
         },
     },
     { -- Shadowlands Keystone Conqueror: Season Four
         15689,
         {
-            {"Mythic+ Season", 8},
+            {"PvE Season", 8},
         },
     },
     { -- Shadowlands Keystone Master: Season Four
         15690,
         {
-            {"Mythic+ Season", 8},
+            {"PvE Season", 8},
         },
     },
     { -- Cryptic Hero: Shadowlands Season 3
         15691,
         {
-            {"Mythic+ Season", 7},
+            {"PvE Season", 7},
         },
     },
     { -- Keystone Hero: Return to Karazhan
         15692,
         {
-            {"Mythic+ Season", 8},
+            {"PvE Season", 8},
         },
     },
     { -- Keystone Hero: Operation: Mechagon
         15693,
         {
-            {"Mythic+ Season", 8},
+            {"PvE Season", 8},
         },
     },
     { -- Keystone Hero: Iron Docks
         15694,
         {
-            {"Mythic+ Season", 8},
+            {"PvE Season", 8},
         },
     },
     { -- Keystone Hero: Grimrail Depot
         15695,
         {
-            {"Mythic+ Season", 8},
+            {"PvE Season", 8},
         },
     },
     { -- Shrouded Hero: Shadowlands Season 4
         15756,
         {
-            {"Mythic+ Season", 8},
+            {"PvE Season", 8},
         },
     },
 };
@@ -1362,13 +1373,13 @@ KrowiAF.AchievementData["09_02_07"] = {
     { -- We Are All Made of Stars (Heroic)
         15468,
         {
-            {"From", "Mythic+ Season", 8, "Before", "Version", {10, 0, 2}},
+            {"From", "PvE Season", 8, "Before", "Version", {10, 0, 2}},
         },
     },
     { -- We Are All Made of Stars (Mythic)
         15469,
         {
-            {"From", "Mythic+ Season", 8, "Before", "Version", {10, 0, 2}},
+            {"From", "PvE Season", 8, "Before", "Version", {10, 0, 2}},
         },
     },
 };

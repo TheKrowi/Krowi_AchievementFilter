@@ -18,7 +18,7 @@ function KrowiAF.GroupBuildVersions()
     end
 end
 
-function KrowiAF.InjectDynamicFilters(filters)
+function KrowiAF.InjectDynamicBuildVersionFilters(filters)
     local buildVersionId;
     for _, major in next, KrowiAF.BuildVersionData do
         for _, minor in next, major.Minors do

@@ -65,11 +65,11 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 980, -- The Horseman's Reins
                 3496, -- A Brew-FAST Mount
                 4627, -- X-45 Heartbreaker
-                2144, -- "What a Long, Strange Trip It's Been"
-                2145, -- "What A Long, Strange Trip It's Been"
+                2144, -- What a Long, Strange Trip It's Been
+                2145, -- What A Long, Strange Trip It's Been
                 9496, -- Warlord's Deathwheel
-                9550, -- "Boldly, You Sought the Power of Ragnaros"
-                13931, -- "Memories of Fel, Frost and Fire"
+                9550, -- Boldly, You Sought the Power of Ragnaros
+                13931, -- Memories of Fel, Frost and Fire
             },
         },
         { -- Achievements
@@ -256,7 +256,7 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 12917, -- Honor Level 500
                 9238, -- Primal Combatant
                 9236, -- Primal Combatant
-                11474, -- "Free For All, More For Me"
+                11474, -- Free For All, More For Me
             },
         },
         { -- Recruit-a-Friend
@@ -296,7 +296,7 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 {
                     948, -- Ambassador of the Alliance
                     762, -- Ambassador of the Horde
-                    871, -- "Avast Ye, Admiral!"
+                    871, -- Avast Ye, Admiral!
                     2336, -- Insane in the Membrane
                 },
             },
@@ -521,7 +521,7 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 addon.GetCategoryInfoTitle(96),
                 true,
                 {
-                    11232, -- "Lock, Stock and Two Smoking Goblins"
+                    11232, -- Lock, Stock and Two Smoking Goblins
                 },
             },
             { -- Exploration
@@ -882,11 +882,11 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 11741, -- So Hot Right Now
                 11742, -- Dress in Lairs
                 11743, -- Accessor-Eyes
-                11744, -- "Drop Dead, Gorgeous"
+                11744, -- Drop Dead, Gorgeous
                 11746, -- Outlandish Style
                 11747, -- Merely a Set
                 11748, -- Black is the New Black
-                11749, -- "Suns Out, Thori'dals Out"
+                11749, -- Suns Out, Thori'dals Out
                 11750, -- Undying Aesthetic
                 11751, -- Mogg-Saron
                 11752, -- Style of the Crusader
@@ -903,7 +903,7 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 11762, -- Can I Get A Helya
                 11760, -- Retro Trend
                 12020, -- Argussy Up
-                12991, -- "New Mog, G'huun This?"
+                12991, -- New Mog, G'huun This?
                 13385, -- Daz'aling Attire
                 13571, -- Under the Seams
                 14058, -- All Eyes On Me
@@ -941,10 +941,10 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 11723, -- Cruel Intentions
                 12021, -- Claws Out
                 12993, -- Don't Warfront Me
-                13433, -- "Tall, Dark, and Sinister"
-                13585, -- "Never Lose, Never Choose To"
+                13433, -- Tall, Dark, and Sinister
+                13585, -- Never Lose, Never Choose To
                 14059, -- The Eyes Have It
-                14831, -- "I Live, I Die, I Queue Again"
+                14831, -- I Live, I Die, I Queue Again
                 15102, -- It's Off the Chain!
                 15408, -- Cosmic Chic
                 16764, -- Crimson Carpet Fashion
@@ -1276,24 +1276,24 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             true,
             addon.L["Warcraft Rumble"],
             {
-                17346, -- "Warcraft Rumble Minis, Maiev's New Look"
-                17353, -- "Warcraft Rumble Minis, Maiev's Newer Look"
-                17347, -- "Warcraft Rumble Minis, Sneed's New Look"
-                17354, -- "Warcraft Rumble Minis, Sneed's Newer Look"
-                17348, -- "Warcraft Rumble Minis, Huntress' New Look"
-                17355, -- "Warcraft Rumble Minis, Huntress' Newer Look"
-                17349, -- "Warcraft Rumble Minis, Tauren's New Look"
-                17356, -- "Warcraft Rumble Minis, Tauren's Newer Look"
-                17350, -- "Warcraft Rumble Minis, Ghoul's New Look"
-                17357, -- "Warcraft Rumble Minis, Ghoul's Newer Look"
-                17351, -- "Warcraft Rumble Minis, Murloc's New Look"
-                17358, -- "Warcraft Rumble Minis, Murloc's Newer Look"
-                17352, -- "Warcraft Rumble Minis, Whelp Egg's New Look"
-                17359, -- "Warcraft Rumble Minis, Whelp Egg's Newer Look"
-                17344, -- "Warcraft Rumble Minis, Get 'Em All!"
-                17360, -- "Warcraft Rumble Minis, New Looks!"
-                17361, -- "Rumble Minis, All the Looks!"
-                15344, -- """S.A.F.E"" Pilot"
+                17346, -- Warcraft Rumble Minis, Maiev's New Look
+                17353, -- Warcraft Rumble Minis, Maiev's Newer Look
+                17347, -- Warcraft Rumble Minis, Sneed's New Look
+                17354, -- Warcraft Rumble Minis, Sneed's Newer Look
+                17348, -- Warcraft Rumble Minis, Huntress' New Look
+                17355, -- Warcraft Rumble Minis, Huntress' Newer Look
+                17349, -- Warcraft Rumble Minis, Tauren's New Look
+                17356, -- Warcraft Rumble Minis, Tauren's Newer Look
+                17350, -- Warcraft Rumble Minis, Ghoul's New Look
+                17357, -- Warcraft Rumble Minis, Ghoul's Newer Look
+                17351, -- Warcraft Rumble Minis, Murloc's New Look
+                17358, -- Warcraft Rumble Minis, Murloc's Newer Look
+                17352, -- Warcraft Rumble Minis, Whelp Egg's New Look
+                17359, -- Warcraft Rumble Minis, Whelp Egg's Newer Look
+                17344, -- Warcraft Rumble Minis, Get 'Em All!
+                17360, -- Warcraft Rumble Minis, New Looks!
+                17361, -- Rumble Minis, All the Looks!
+                15344, -- "S.A.F.E"" Pilot"
             },
         },
         {
@@ -1311,6 +1311,76 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
     { -- Mythic+
         1565,
         addon.L["Mythic+"],
+        { -- Shadowlands
+            -- 1566,
+            addon.GetCategoryInfoTitle(15439),
+            { -- Season 1
+                -- 1567,
+                addon.L["Season"] .. " " .. 1,
+                true,
+                {
+                    14938, -- Shadowlands Keystone Explorer: Season One
+                    14531, -- Shadowlands Keystone Conqueror: Season One
+                    14532, -- Shadowlands Keystone Master: Season One
+                },
+            },
+            { -- Season 2
+                -- 1568,
+                addon.L["Season"] .. " " .. 2,
+                true,
+                {
+                    15051, -- Keystone Hero: De Other Side
+                    15048, -- Keystone Hero: Halls of Atonement
+                    15047, -- Keystone Hero: Mists of Tirna Scithe
+                    15045, -- Keystone Hero: The Necrotic Wake
+                    15046, -- Keystone Hero: Plaguefall
+                    15052, -- Keystone Hero: Sanguine Depths
+                    15049, -- Keystone Hero: Spires of Ascension
+                    15050, -- Keystone Hero: Theater of Pain
+                    15073, -- Shadowlands Keystone Explorer: Season Two
+                    15077, -- Shadowlands Keystone Conqueror: Season Two
+                    15078, -- Shadowlands Keystone Master: Season Two
+                    15327, -- Tormented Hero: Shadowlands Season 2
+                },
+            },
+            { -- Season 3
+                -- 1569,
+                addon.L["Season"] .. " " .. 3,
+                true,
+                {
+                    15051, -- Keystone Hero: De Other Side
+                    15048, -- Keystone Hero: Halls of Atonement
+                    15047, -- Keystone Hero: Mists of Tirna Scithe
+                    15045, -- Keystone Hero: The Necrotic Wake
+                    15046, -- Keystone Hero: Plaguefall
+                    15052, -- Keystone Hero: Sanguine Depths
+                    15049, -- Keystone Hero: Spires of Ascension
+                    15500, -- Keystone Hero: Tazavesh, the Veiled Market
+                    15050, -- Keystone Hero: Theater of Pain
+                    15496, -- Shadowlands Keystone Explorer: Season Three
+                    15498, -- Shadowlands Keystone Conqueror: Season Three
+                    15499, -- Shadowlands Keystone Master: Season Three
+                    15506, -- Shadowlands Keystone Hero: Season Three
+                    15691, -- Cryptic Hero: Shadowlands Season 3
+                },
+            },
+            { -- Season 4
+                -- 1572,
+                addon.L["Season"] .. " " .. 4,
+                true,
+                {
+                    15500, -- Keystone Hero: Tazavesh, the Veiled Market
+                    15693, -- Keystone Hero: Operation: Mechagon
+                    15692, -- Keystone Hero: Return to Karazhan
+                    15695, -- Keystone Hero: Grimrail Depot
+                    15694, -- Keystone Hero: Iron Docks
+                    15688, -- Shadowlands Keystone Explorer: Season Four
+                    15689, -- Shadowlands Keystone Conqueror: Season Four
+                    15690, -- Shadowlands Keystone Master: Season Four
+                    15756, -- Shrouded Hero: Shadowlands Season 4
+                },
+            },
+        },
         { -- Dragonflight
             1566,
             addon.GetCategoryInfoTitle(15466),
@@ -1319,14 +1389,14 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 addon.L["Season"] .. " " .. 1,
                 true,
                 {
-                    16661, -- Keystone Hero: Temple of the Jade Serpent
-                    16660, -- Keystone Hero: Shadowmoon Burial Grounds
-                    16659, -- Keystone Hero: Halls of Valor
-                    16658, -- Keystone Hero: Court of Stars
                     16643, -- Keystone Hero: Algeth'ar Academy
-                    16640, -- Keystone Hero: Ruby Life Pools
                     16645, -- Keystone Hero: The Azure Vault
                     16641, -- Keystone Hero: The Nokhud Offensive
+                    16640, -- Keystone Hero: Ruby Life Pools
+                    16658, -- Keystone Hero: Court of Stars
+                    16659, -- Keystone Hero: Halls of Valor
+                    16660, -- Keystone Hero: Shadowmoon Burial Grounds
+                    16661, -- Keystone Hero: Temple of the Jade Serpent
                     16647, -- Dragonflight Keystone Explorer: Season One
                     16648, -- Dragonflight Keystone Conqueror: Season One
                     16649, -- Dragonflight Keystone Master: Season One
@@ -1340,14 +1410,14 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 addon.L["Season"] .. " " .. 2,
                 true,
                 {
-                    17847, -- Keystone Hero: The Vortex Pinnacle
-                    17850, -- Keystone Hero: Neltharion's Lair
-                    17848, -- Keystone Hero: Freehold
-                    17849, -- Keystone Hero: The Underrot
                     16642, -- Keystone Hero: Brackenhide Hollow
                     16646, -- Keystone Hero: Halls of Infusion
                     16644, -- Keystone Hero: Neltharus
                     16639, -- Keystone Hero: Uldaman: Legacy of Tyr
+                    17848, -- Keystone Hero: Freehold
+                    17849, -- Keystone Hero: The Underrot
+                    17850, -- Keystone Hero: Neltharion's Lair
+                    17847, -- Keystone Hero: The Vortex Pinnacle
                     17842, -- Dragonflight Keystone Explorer: Season Two
                     17843, -- Dragonflight Keystone Conqueror: Season Two
                     17844, -- Dragonflight Keystone Master: Season Two
@@ -1363,13 +1433,13 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 addon.L["Season"] .. " " .. 3,
                 true,
                 {
-                    19082, -- Keystone Hero: Throne of the Tides
-                    19083, -- Keystone Hero: The Everbloom
-                    19085, -- Keystone Hero: Darkheart Thicket
-                    19084, -- Keystone Hero: Black Rook Hold
-                    19086, -- Keystone Hero: Waycrest Manor
-                    19087, -- Keystone Hero: Atal'Dazar
                     19088, -- Keystone Hero: Dawn of the Infinite
+                    19087, -- Keystone Hero: Atal'Dazar
+                    19086, -- Keystone Hero: Waycrest Manor
+                    19084, -- Keystone Hero: Black Rook Hold
+                    19085, -- Keystone Hero: Darkheart Thicket
+                    19083, -- Keystone Hero: The Everbloom
+                    19082, -- Keystone Hero: Throne of the Tides
                     19009, -- Dragonflight Keystone Explorer: Season Three
                     19010, -- Dragonflight Keystone Conqueror: Season Three
                     19011, -- Dragonflight Keystone Master: Season Three
@@ -1407,14 +1477,14 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 addon.L["Season"] .. " " .. 1,
                 true,
                 {
-                    20580, -- Keystone Hero: The Stonevault
+                    20586, -- Keystone Hero: Ara-Kara, City of Echoes
                     20582, -- Keystone Hero: City of Threads
+                    20580, -- Keystone Hero: The Stonevault
                     20585, -- Keystone Hero: The Dawnbreaker
-                    20586, -- "Keystone Hero: Ara-Kara, City of Echoes"
-                    20588, -- Keystone Hero: Grim Batol
-                    20587, -- Keystone Hero: Siege of Boralus
-                    15045, -- Keystone Hero: The Necrotic Wake
                     15047, -- Keystone Hero: Mists of Tirna Scithe
+                    15045, -- Keystone Hero: The Necrotic Wake
+                    20587, -- Keystone Hero: Siege of Boralus
+                    20588, -- Keystone Hero: Grim Batol
                     20523, -- The War Within Keystone Explorer: Season One
                     20524, -- The War Within Keystone Conqueror: Season One
                     20525, -- The War Within Keystone Master: Season One
@@ -1442,7 +1512,7 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             1353,
             addon.GetCategoryInfoTitle(15117),
             {
-                1250, -- "Shop Smart, Shop Pet...Smart"
+                1250, -- Shop Smart, Shop Pet...Smart
                 2516, -- Lil' Game Hunter
                 5876, -- Petting Zoo
                 5877, -- Menagerie
@@ -1560,7 +1630,7 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 14879, -- Family Exorcist
                 14881, -- Abhorrent Adversaries of the Afterlife
                 15004, -- A Sly Fox
-                15079, -- "Many, Many Things"
+                15079, -- Many, Many Things
                 15251, -- The Jailer's Gauntlet: Layer 1
             },
         },

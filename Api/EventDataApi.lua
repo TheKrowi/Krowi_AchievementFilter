@@ -1,5 +1,12 @@
 local _, addon = ...;
 
+KrowiAF.Enum = KrowiAF.Enum or {};
+KrowiAF.Enum.EventType = EnumUtil.MakeEnum(
+    "Calendar",
+    "Widget",
+    "World"
+);
+
 KrowiAF.EventData = {};
 
 local function InjectOptionsDefaults(eventType, eventIds, hideByDefault)
@@ -124,12 +131,12 @@ function KrowiAF.RegisterEventDataOptions(eventIds, eventType, categoryId, icon,
     end
 
     local eventTypeGroup;
-    if eventType == addon.Objects.EventType.Calendar then
+    if eventType == KrowiAF.Enum.EventType.Calendar then
         eventType = "Calendar";
-    elseif eventType == addon.Objects.EventType.Widget then
+    elseif eventType == KrowiAF.Enum.EventType.Widget then
         eventType = "Widget";
         eventTypeGroup = "World";
-    elseif eventType == addon.Objects.EventType.World then
+    elseif eventType == KrowiAF.Enum.EventType.World then
         eventType = "World";
     end
 

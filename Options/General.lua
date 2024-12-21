@@ -157,7 +157,7 @@ local function ExportMissingAchievements()
             numMissingAchievements = numMissingAchievements + 1;
             -- exportString = exportString .. "    { -- " .. achievementInfo.Name .. "\r\n";
             -- exportString = exportString .. "        " .. achievementInfo.Id .. "," .. "\r\n";
-            exportString = exportString .. "    {" .. achievementInfo.Id .. "}, -- " .. achievementInfo.Name .. "\r\n";
+            exportString = exportString .. "    {" .. achievementInfo.Id .. ", " .. achievementInfo.RewardText .. "}, -- " .. achievementInfo.Name .. "\r\n";
         end
     end
 

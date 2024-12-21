@@ -37,7 +37,7 @@ KrowiAF.AchievementData["03_00_02_Example1"] = {
     {6}, -- An achievement with only its Id [Optional]
     { -- Another achievement [Optional]
         37, -- Achievement Id [Required]
-        addon.Objects.Faction.Alliance, -- Achievement faction [Optional]
+        KrowiAF.Enum.Faction.Alliance, -- Achievement faction [Optional]
         1357, -- Achievement Id for other faction [Optional]
     },
     { -- Another achievement [Optional]

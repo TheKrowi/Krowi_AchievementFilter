@@ -1,6 +1,6 @@
 local _, addon = ...;
 local shared = addon.Data.AchievementData.Shared;
-local faction = addon.Objects.Faction;
+local faction = KrowiAF.Enum.Faction;
 
 KrowiAF.AchievementData["11_00_00"] = {
     {KrowiAF.SetAchievementPatch, 11, 0, 0},
@@ -27,91 +27,91 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- The War Within Keystone Explorer: Season One
         20523,
         {
-            {"Mythic+ Season", 13},
+            {"PvE Season", 13},
         },
     },
     { -- The War Within Keystone Conqueror: Season One
         20524,
         {
-            {"Mythic+ Season", 13},
+            {"PvE Season", 13},
         },
     },
     { -- The War Within Keystone Master: Season One
         20525,
         {
-            {"Mythic+ Season", 13},
+            {"PvE Season", 13},
         },
     },
     { -- The War Within Keystone Hero: Season One
         20526,
         {
-            {"Mythic+ Season", 13},
+            {"PvE Season", 13},
         },
     },
     { -- Keystone Hero: The Rookery
         20579,
         {
-            {"Mythic+ Season", 14},
+            {"PvE Season", 14},
         },
     },
     { -- Keystone Hero: The Stonevault
         20580,
         {
-            {"Mythic+ Season", 13},
+            {"PvE Season", 13},
         },
     },
     { -- Keystone Hero: Priory of the Sacred Flame
         20581,
         {
-            {"Mythic+ Season", 14},
+            {"PvE Season", 14},
         },
     },
     { -- Keystone Hero: City of Threads
         20582,
         {
-            {"Mythic+ Season", 13},
+            {"PvE Season", 13},
         },
     },
     { -- Keystone Hero: Cinderbrew Meadery
         20583,
         {
-            {"Mythic+ Season", 14},
+            {"PvE Season", 14},
         },
     },
     { -- Keystone Hero: Darkflame Cleft
         20584,
         {
-            {"Mythic+ Season", 14},
+            {"PvE Season", 14},
         },
     },
     { -- Keystone Hero: The Dawnbreaker
         20585,
         {
-            {"Mythic+ Season", 13},
+            {"PvE Season", 13},
         },
     },
-    { -- "Keystone Hero: Ara-Kara, City of Echoes"
+    { -- Keystone Hero: Ara-Kara, City of Echoes
         20586,
         {
-            {"Mythic+ Season", 13},
+            {"PvE Season", 13},
         },
     },
     { -- Keystone Hero: Siege of Boralus
         20587,
         {
-            {"Mythic+ Season", 13},
+            {"PvE Season", 13},
         },
     },
     { -- Keystone Hero: Grim Batol
         20588,
         {
-            {"Mythic+ Season", 13},
+            {"PvE Season", 13},
         },
     },
     { -- Tempered Hero: The War Within Season 1
         20589,
         {
-            {"Mythic+ Season", 13},
+            {"PvE Season", 13},
         },
     },
     {20594}, -- Flamegard's Hope
@@ -137,7 +137,7 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- Nemesis
         40103,
         {
-            {"Mythic+ Season", 13},
+            {"PvE Season", 13},
         },
     },
     {40107}, -- Harbinger of the Weathered
@@ -202,7 +202,7 @@ KrowiAF.AchievementData["11_00_00"] = {
     },
     {40236}, -- Mythic: Ulgrax the Devourer
     {40237}, -- Mythic: The Bloodbound Horror
-    {40238}, -- "Mythic: Sikran, Captain of the Sureki"
+    {40238}, -- Mythic: Sikran, Captain of the Sureki
     {40239}, -- Mythic: Rasha'nan
     {40240}, -- Mythic: Broodtwister Ovi'nax
     {40241}, -- Mythic: Nexus-Princess Ky'veza
@@ -220,13 +220,13 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- Ahead of the Curve: Queen Ansurek
         40253,
         {
-            {"Mythic+ Season", 13},
+            {"PvE Season", 13},
         },
     },
     { -- Cutting Edge: Queen Ansurek
         40254,
         {
-            {"Mythic+ Season", 13},
+            {"PvE Season", 13},
         },
     },
     {40255}, -- Sik Parry Bro
@@ -286,9 +286,9 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40361}, -- Cinderbrew Meadery
     {40363}, -- Heroic: Cinderbrew Meadery
     {40366}, -- Mythic: Cinderbrew Meadery
-    {40370}, -- "Ara-Kara, City of Echoes"
-    {40374}, -- "Heroic: Ara-Kara, City of Echoes"
-    {40375}, -- "Mythic: Ara-Kara, City of Echoes"
+    {40370}, -- Ara-Kara, City of Echoes
+    {40374}, -- Heroic: Ara-Kara, City of Echoes
+    {40375}, -- Mythic: Ara-Kara, City of Echoes
     {40376}, -- City of Threads
     {40377}, -- Heroic: City of Threads
     {40379}, -- Mythic: City of Threads
@@ -408,13 +408,13 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- Hunting the Hunter
         40431,
         {
-            {"Mythic+ Season", 13},
+            {"PvE Season", 13},
         },
     },
     { -- Let Me Solo Him
         40433,
         {
-            {"Mythic+ Season", 13},
+            {"PvE Season", 13},
         },
     },
     {40434}, -- Treasures of the Isle of Dorn
@@ -545,7 +545,7 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40644}, -- Heroic: The Stonevault
     {40648}, -- Mythic: The Stonevault
     {40660}, -- The War Within Season 1: Spelunker Supreme
-    {40662}, -- "It's Not Much, But It's Honest Work"
+    {40662}, -- It's Not Much, But It's Honest Work
     {40702}, -- Khaz Algar Glyph Hunter
     {40703}, -- The Ringing Deeps Glyph Hunter
     {40704}, -- Hallowfall Glyph Hunter
@@ -560,7 +560,7 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40730}, -- Love is in the Lair
     {40731}, -- Panhandled
     {40732}, -- Heavy-Handed
-    {40763}, -- "I'm not a Thief, I'm a Treasure Hunter"
+    {40763}, -- I'm not a Thief, I'm a Treasure Hunter
     {40788}, -- I Got the Keys
     {40789}, -- Flying in Style
     {40790}, -- Khaz Algar Explorer
@@ -639,7 +639,7 @@ KrowiAF.AchievementData["11_00_02"] = {
     {40882}, -- Copious Coffers
     {40885}, -- The Key to Madness
     -- {40904}, -- Cornerstone of Dornogal [Removed in 11.0.7, replaced by 41162]
-    -- {40905}, -- "From Many, One" [Removed in 11.0.7, replaced by 41166]
+    -- {40905}, -- From Many, One [Removed in 11.0.7, replaced by 41166]
     -- {40906}, -- The Flame Burns Within [Removed in 11.0.7, replaced by 41168]
     -- {40907}, -- We Rise Anew [Removed in 11.0.7, replaced by 41164]
     {40939}, -- Harbinger of the Gilded

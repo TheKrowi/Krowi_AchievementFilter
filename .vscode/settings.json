@@ -523,7 +523,8 @@
         "MenuResponse",
         "MenuUtil",
         "GameTooltip_AddColoredLine",
-        "REPUTATION_SORT_TYPE_ACCOUNT"
+        "REPUTATION_SORT_TYPE_ACCOUNT",
+        "EnumUtil"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

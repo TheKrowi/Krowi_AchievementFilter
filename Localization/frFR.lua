@@ -570,7 +570,7 @@ L["Login Delay"] = "Délais"
 L["Love is in the Air"] = "De l'amour dans l'air"
 L["Lucky Yi"] = "Yi la Chance"
 L["Lunar Festival"] = "Fête lunaire"
-L["M+ Season"] = "Saison des donjons mythiques+ (M+)"
+L["PvE Season"] = "Saison des donjons mythiques+ (M+)"
 L["Make windows movable"] = "Rendre la fenêtre déplaçable"
 L["Make windows movable Desc"] = [=[Rend la fenêtre des Hauts-faits, la vue du calendrier et la fiche personnages mobiles ou immobiles.
 Si cette option est activée, la fenêtre correspondante sera déplacée lorsque le bouton gauche de la souris sera enfoncé. Ceci s'applique à l'en-tête et aux marges.]=]

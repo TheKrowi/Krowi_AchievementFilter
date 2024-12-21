@@ -25,7 +25,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
             245, -- That Takes Class
             246, -- Know Thy Enemy
             1005, -- Know Thy Enemy
-            247, -- "Make Love, Not Warcraft"
+            247, -- Make Love, Not Warcraft
             727, -- Call in the Cavalry
             12567, -- The Horde Slayer
             12568, -- The Alliance Slayer
@@ -34,8 +34,8 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
             8392, -- Tournament Glory 2013
             5542, -- 1000 Conquest Points
             5541, -- 5000 Conquest Points
-            5540, -- "25,000 Conquest Points"
-            5539, -- "50,000 Conquest Points"
+            5540, -- 25,000 Conquest Points
+            5539, -- 50,000 Conquest Points
             701, -- Freedom of the Alliance
             700, -- Freedom of the Horde
             12571, -- Bounty Hunting
@@ -130,9 +130,9 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
             addon.GetCategoryInfoTitle(15414),
             {
                 9102, -- Ashran Victory
-                9218, -- "Grand Theft, 1st Degree"
-                9219, -- "Grand Theft, 2nd Degree"
-                9220, -- "Grand Theft, 3rd Degree"
+                9218, -- Grand Theft, 1st Degree
+                9219, -- Grand Theft, 2nd Degree
+                9220, -- Grand Theft, 3rd Degree
                 9256, -- Rescue Operation
                 9257, -- Rescue Operation
                 9106, -- Just for Me
@@ -329,8 +329,8 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
                 5228, -- Wild Hammering
                 5219, -- I'm in the White Lodge
                 5220, -- I'm in the Black Lodge
-                5221, -- "Fire, Walk With Me"
-                5222, -- "Fire, Walk With Me"
+                5221, -- Fire, Walk With Me
+                5222, -- Fire, Walk With Me
                 5230, -- Twin Peaks Mountaineer
                 5231, -- Double Jeopardy
                 5552, -- Double Jeopardy
@@ -854,8 +854,8 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
             11468, -- Alive for Five
             11469, -- The River Six
             11470, -- Slayin' to Seven
-            11471, -- "Don't Hate, Grind to Eight"
-            11472, -- "Hell, It's About Nine"
+            11471, -- Don't Hate, Grind to Eight
+            11472, -- Hell, It's About Nine
             11685, -- Decade of Dominance
             11686, -- These Go To Eleven
             11687, -- Demonic Dozen
@@ -865,7 +865,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
             11691, -- You Are Sixteen
             11692, -- Going On Seventeen
             11693, -- Eighteen and Over
-            11694, -- "Hell, It's About Nineteen"
+            11694, -- Hell, It's About Nineteen
             12108, -- Double Decade of Dominance
             12109, -- Twenty-One Arms Salute
             12180, -- Catching Twenty-Two

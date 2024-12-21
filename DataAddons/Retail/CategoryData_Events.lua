@@ -47,7 +47,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 1704, -- I Pitied The Fool
                 1291, -- Lonely?
                 1694, -- Lovely Luck Is On Your Side
-                1703, -- "My Love is Like a Red, Red Rose"
+                1703, -- My Love is Like a Red, Red Rose
                 1697, -- Nation of Adoration
                 1698, -- Nation of Adoration
                 1700, -- Perma-Peddle
@@ -94,9 +94,9 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 1791, -- Home Alone
                 1788, -- Bad Example
                 1789, -- Daily Chores
-                1792, -- "Aw, Isn't It Cute?"
+                1792, -- Aw, Isn't It Cute?
                 1786, -- School of Hard Knocks
-                1790, -- "Hail To The King, Baby"
+                1790, -- Hail To The King, Baby
                 275, -- Veteran Nanny
                 1793, -- For the Children
             },
@@ -175,7 +175,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 1260, -- Almost Blind Luck
                 295, -- Direbrewfest
                 293, -- Disturbing the Peace
-                303, -- "Have Keg, Will Travel"
+                303, -- Have Keg, Will Travel
                 1684, -- Brewmaster
                 1683, -- Brewmaster
                 1292, -- Yellow Brewfest Stein
@@ -193,7 +193,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 288, -- Out With It
                 255, -- Bring Me The Head of... Oh Wait
                 18962, -- A Cleansing Fire
-                18959, -- "Don't Lose Your Head, Man"
+                18959, -- Don't Lose Your Head, Man
                 18960, -- Kickin' With the Wick
                 289, -- The Savior of Hallow's End
                 979, -- The Mask Task
@@ -242,7 +242,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             916,
             addon.GetCategoryInfoTitle(14981),
             {
-                3579, -- """FOOD FIGHT!"""
+                3579, -- "FOOD FIGHT!"""
                 3576, -- Now We're Cookin'
                 3577, -- Now We're Cookin'
                 3556, -- Pilgrim's Paunch
@@ -317,8 +317,8 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             },
         },
         {
-            2144, -- "What a Long, Strange Trip It's Been"
-            2145, -- "What A Long, Strange Trip It's Been"
+            2144, -- What a Long, Strange Trip It's Been
+            2145, -- What A Long, Strange Trip It's Been
         },
     },
     { -- WoW's Anniversary
@@ -396,7 +396,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             },
         },
         {
-            6019, -- "Come One, Come All!"
+            6019, -- Come One, Come All!
             6021, -- Blastenheimer Bullseye
             6023, -- Darkmoon Duelist
             6024, -- Darkmoon Dominator
@@ -452,7 +452,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             9815, -- Big Powermonger: Silver
             9817, -- Big Powermonger: Gold
             9819, -- Darkmoon Like the Wind
-            11918, -- "Hey, You're a Rockstar!"
+            11918, -- Hey, You're a Rockstar!
             11919, -- Taking this Show on the Road
             11920, -- Perfect Performance
             11921, -- Mosh Pit
@@ -677,7 +677,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                     19920, -- Sunreaver Onslaught
                     19921, -- Shado-Pan Assault
                     20000, -- Elusive Foes: Isle of Thunder
-                    20019, -- "Nalak, the Storm Lord"
+                    20019, -- Nalak, the Storm Lord
                     20015, -- Looking For Group: Isle of Thunder
                     19880, -- Isle of Thunder
                 },
@@ -691,10 +691,10 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                     19982, -- Hidden Treasures: Timeless Isle
                     20002, -- Powerful Enemies: Timeless Isle
                     19970, -- Tour Timeless Isle
-                    20021, -- "Chi-ji, the Red Crane"
-                    20022, -- "Yu'lon, the Jade Serpent"
-                    20023, -- "Niuzao, the Black Ox"
-                    20024, -- "Xuen, the White Tiger"
+                    20021, -- Chi-ji, the Red Crane
+                    20022, -- Yu'lon, the Jade Serpent
+                    20023, -- Niuzao, the Black Ox
+                    20024, -- Xuen, the White Tiger
                     20025, -- Ordos
                     20016, -- Looking For Group: Timeless Isle
                     20003, -- Timeless Isle
@@ -874,7 +874,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
             },
         },
         {
-            13931, -- "Memories of Fel, Frost and Fire"
+            13931, -- Memories of Fel, Frost and Fire
             13928, -- Alterac Valley of Olde
             13930, -- Alterac Valley of Olde
         },
@@ -1210,7 +1210,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
                 19788, -- Tome Comber
                 19793, -- Finally At Rest
                 19792, -- Just One More Thing
-                19790, -- "The Archives Called, You Answered"
+                19790, -- The Archives Called, You Answered
             },
         },
         { -- Awakened Raids

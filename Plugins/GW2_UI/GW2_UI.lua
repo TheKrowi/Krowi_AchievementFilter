@@ -331,10 +331,7 @@ do -- [[ Achievements]]
             -- end
         end
 
-        local state;
-        if achievement.TemporaryObtainable then
-            state = achievement.TemporaryObtainable.Obtainable();
-        end
+        local state = achievement:GetObtainableState();
 
         local texture;
         if state and (state == false or state == "Past") then

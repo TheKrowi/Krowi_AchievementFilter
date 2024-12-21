@@ -579,7 +579,7 @@ L["Login Delay"] = "登录延迟"
 L["Love is in the Air"] = "情人节"
 L["Lucky Yi"] = "幸运的小艺"
 L["Lunar Festival"] = "春节"
-L["M+ Season"] = "史诗钥石赛季"
+L["PvE Season"] = "史诗钥石赛季"
 L["Make windows movable"] = "解锁窗口"
 L["Make windows movable Desc"] = [=[解锁/锁定成就界面和成就日历
 

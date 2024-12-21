@@ -41,10 +41,7 @@ function tooltip:AddAchievementLine(currentAchievement, otherAchievementId, show
 	completed = otherFactionAchievementCompleted or completed;
 
 	local sameAchievement = otherAchievementId == currentAchievement.Id;
-	local state;
-	if currentAchievement.TemporaryObtainable then
-		state = currentAchievement.TemporaryObtainable.Obtainable();
-	end
+	local state = currentAchievement:GetObtainableState();
 	local icon, color = GetAchievementIconAndColor(completed, state, sameAchievement);
 	local currentCharacterIcon = GetCurrentCharacterIcon(showCurrentCharacterIcons, wasEarnedByMe, state)
 

@@ -23,6 +23,7 @@ local defaultAchievements = {
         Yes = true,
         No = true
     },
+    RewardType = { --[[ Dynamically build via InjectDynamicRewardTypeFilters ]] },
     Special = {
         RealmFirst = false,
         FeatsOfStrength = true,
@@ -35,7 +36,7 @@ local defaultAchievements = {
         Criteria = addon.L["Default"],
         ReverseSort = false
     },
-    BuildVersion = { --[[ Dynamically build via KrowiAF.InjectDynamicFilters ]] }
+    BuildVersion = { --[[ Dynamically build via KrowiAF.InjectDynamicBuildVersionFilters ]] }
 };
 
 local defaults = {
@@ -47,6 +48,12 @@ local defaults = {
 };
 
 -- [[ Inject Defaults ]] --
+local function InjectDynamicRewardTypeFilters()
+    for _, rewardType in next, KrowiAF.Enum.RewardType do
+        defaultAchievements.RewardType[rewardType] = true;
+    end
+end
+
 local function InjectAchievementDefaults()
     addon.Util.DeepCopyTable(defaultAchievements, defaults.profile);
 end
@@ -73,7 +80,8 @@ end
 
 function filters:InjectDefaults()
     KrowiAF.GroupBuildVersions();
-    KrowiAF.InjectDynamicFilters(defaultAchievements.BuildVersion);
+    KrowiAF.InjectDynamicBuildVersionFilters(defaultAchievements.BuildVersion);
+    InjectDynamicRewardTypeFilters();
     InjectAchievementDefaults();
     InjectCategoryDefaults();
     InjectTabDefaults();
@@ -132,8 +140,8 @@ local validations = {
             if _filters.Obtainability.CurrentObtainable then
                 return;
             end
-            if achievement.TemporaryObtainable then
-                local state = achievement.TemporaryObtainable.Obtainable();
+            local state = achievement:GetObtainableState();
+            if state then
                 return state == true or state == "Current";
             end
             return true;
@@ -144,8 +152,8 @@ local validations = {
             if _filters.Obtainability.PastObtainable then
                 return;
             end
-            if achievement.TemporaryObtainable then
-                local state = achievement.TemporaryObtainable.Obtainable();
+            local state = achievement:GetObtainableState();
+            if state then
                 return state == true or state == "Past";
             end
         end
@@ -155,19 +163,30 @@ local validations = {
             if _filters.Obtainability.FutureObtainable then
                 return;
             end
-            if achievement.TemporaryObtainable then
-                local state = achievement.TemporaryObtainable.Obtainable();
+            local state = achievement:GetObtainableState();
+            if state then
                 return state == true or state == "Future";
             end
         end
     },
-    {   -- 1
-        Validate = function(_filters, achievement, ignoreFilters) return not _filters.HasReward.Yes and achievementInfoCache.HasReward; end
+    {   -- 6
+        Validate = function(_filters, achievement, ignoreFilters)
+            if not achievementInfoCache.HasReward then
+                return;
+            end
+
+            if not _filters.HasReward.Yes then
+                return true;
+            end
+
+            local rewardType = achievement.RewardType;
+            return rewardType and not _filters.RewardType[rewardType];
+        end
     },
-    {   -- 2
+    {   -- 7
         Validate = function(_filters, achievement, ignoreFilters) return not _filters.HasReward.No and not achievementInfoCache.HasReward; end
     },
-    {   -- 6
+    {   -- 8
         Validate = function(_filters, achievement, ignoreFilters)
             if ignoreFilters.FactionFilter then
                 return false;
@@ -175,23 +194,23 @@ local validations = {
             return not _filters.Faction.Neutral and achievement.Faction == nil;
         end
     },
-    {   -- 7
-        Validate = function(_filters, achievement, ignoreFilters)
-            if ignoreFilters.FactionFilter then
-                return false;
-            end
-            return not _filters.Faction.Alliance and achievement.Faction == addon.Objects.Faction.Alliance;
-        end
-    },
-    {   -- 8
-        Validate = function(_filters, achievement, ignoreFilters)
-            if ignoreFilters.FactionFilter then
-                return false;
-            end
-            return not _filters.Faction.Horde and achievement.Faction == addon.Objects.Faction.Horde;
-        end
-    },
     {   -- 9
+        Validate = function(_filters, achievement, ignoreFilters)
+            if ignoreFilters.FactionFilter then
+                return false;
+            end
+            return not _filters.Faction.Alliance and achievement.Faction == KrowiAF.Enum.Faction.Alliance;
+        end
+    },
+    {   -- 10
+        Validate = function(_filters, achievement, ignoreFilters)
+            if ignoreFilters.FactionFilter then
+                return false;
+            end
+            return not _filters.Faction.Horde and achievement.Faction == KrowiAF.Enum.Faction.Horde;
+        end
+    },
+    {   -- 11
         Validate = function(_filters, achievement, ignoreFilters)
             if _filters.CollapseSeries and ignoreFilters.CollapsedChainFilter ~= true then
                 local _, nextCompleted = addon.GetNextAchievement(achievement);
@@ -209,10 +228,10 @@ local validations = {
             return false;
         end
     },
-    {   -- 10
+    {   -- 12
         Validate = function(_filters, achievement, ignoreFilters) return not _filters.Excluded and achievement.IsExcluded end
     },
-    {   -- 11
+    {   -- 13
         Validate = function(_filters, achievement, ignoreFilters)
             if not addon.Options.db.profile.ShowPlaceholdersFilter and achievement.DoesNotExist then
                 return true;
@@ -220,19 +239,19 @@ local validations = {
             return not filters.db.profile.ShowPlaceholders and achievement.DoesNotExist;
         end
     },
-    {   -- 12
+    {   -- 14
         Validate = function(_filters, achievement, ignoreFilters) return not _filters.Special.RealmFirst and achievement.IsRealmFirst; end
     },
-    {   -- 13
+    {   -- 15
         Validate = function(_filters, achievement, ignoreFilters) return not _filters.Special.FeatsOfStrength and achievementInfoCache.Points == 0 and not achievement.IsRealmFirst and not achievement.IsTracking; end
     },
-    {   -- 14
+    {   -- 16
         Validate = function(_filters, achievement, ignoreFilters) return not _filters.Tracking and achievement.IsTracking; end
     },
-    {   -- 15
+    {   -- 17
         Validate = function(_filters, achievement, ignoreFilters) return not _filters.Special.PvP and achievement.IsPvP; end
     },
-    {   -- 16
+    {   -- 18
         Validate = function(_filters, achievement, ignoreFilters)
             if not achievement.BuildVersion then
                 return false;

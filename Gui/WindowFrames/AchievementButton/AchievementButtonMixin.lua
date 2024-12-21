@@ -306,10 +306,7 @@ function KrowiAF_AchievementButtonMixin:DisplayObjectives(forced)
 end
 
 local function GetSaturatedStyle(self, achievement, flags)
-	local state;
-	if achievement.TemporaryObtainable then
-		state = achievement.TemporaryObtainable.Obtainable();
-	end
+	local state = achievement:GetObtainableState();
 
 	self.accountWide = nil;
 	if flags.IsAccountWide then
@@ -360,10 +357,7 @@ local function SetTsunamis(self)
 		return;
 	end
 	local achievement = self.Achievement;
-	local state;
-	if achievement.TemporaryObtainable then
-		state = achievement.TemporaryObtainable.Obtainable();
-	end
+	local state = achievement:GetObtainableState();
 
 	local _saturationStyle = GetSaturationStyle(state);
 	local texture = _saturationStyle.BordersTexture;
@@ -378,10 +372,7 @@ end
 
 local function Saturate(self)
 	local achievement = self.Achievement;
-	local state;
-	if achievement.TemporaryObtainable then
-		state = achievement.TemporaryObtainable.Obtainable();
-	end
+	local state = achievement:GetObtainableState();
 	local _saturationStyle = GetSaturationStyle(state, self.accountWide);
 	self.saturatedStyle = _saturationStyle.Style;
 	self.HeaderBackground:SetTexture(_saturationStyle.HeaderBackgroundTexture);
@@ -404,10 +395,7 @@ end
 
 local function Desaturate(self)
 	local achievement = self.Achievement;
-	local state;
-	if achievement.TemporaryObtainable then
-		state = achievement.TemporaryObtainable.Obtainable();
-	end
+	local state = achievement:GetObtainableState();
 	local _saturationStyle = GetSaturationStyle(state, self.accountWide);
 	self.saturatedStyle = nil;
 	self.HeaderBackground:SetTexture(_saturationStyle.HeaderBackgroundTexture);
@@ -497,12 +485,12 @@ local function SetFaction(self, achievement)
 	if not self.Faction then
 		return;
 	end
-	if achievement.Faction == addon.Objects.Faction.Alliance and addon.Options.db.profile.Achievements.ShowAllianceFactionIcon then
+	if achievement.Faction == KrowiAF.Enum.Faction.Alliance and addon.Options.db.profile.Achievements.ShowAllianceFactionIcon then
 		self.Faction.Icon:SetAtlas("MountJournalIcons-Alliance");
 		self.Faction:Show();
 		return;
 	end
-	if achievement.Faction == addon.Objects.Faction.Horde and addon.Options.db.profile.Achievements.ShowHordeFactionIcon then
+	if achievement.Faction == KrowiAF.Enum.Faction.Horde and addon.Options.db.profile.Achievements.ShowHordeFactionIcon then
 		self.Faction.Icon:SetAtlas("MountJournalIcons-Horde");
 		self.Faction:Show();
 		return;

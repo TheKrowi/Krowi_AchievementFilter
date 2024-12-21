@@ -1,6 +1,7 @@
 local _, addon = ...;
 local shared = addon.Data.AchievementData.Shared;
-local faction = addon.Objects.Faction;
+local faction = KrowiAF.Enum.Faction;
+local rewardType = KrowiAF.Enum.RewardType;
 
 KrowiAF.AchievementData["05_00_04"] = {
     {KrowiAF.SetAchievementPatch, 5, 0, 4},
@@ -42,6 +43,7 @@ KrowiAF.AchievementData["05_00_04"] = {
     { -- Challenge Conqueror: Bronze
         6374,
         {
+            RewardType = rewardType.Title,
             {"Before", "Version", {6, 0, 2}},
         },
     },
@@ -85,7 +87,7 @@ KrowiAF.AchievementData["05_00_04"] = {
     {6477}, -- Respect
     {6478}, -- Glintrok N' Roll
     {6479}, -- Bomberman
-    {6480}, -- "Settle Down, Bro"
+    {6480}, -- Settle Down, Bro
     {6485}, -- Return to Sender
     {6517}, -- Extinction Event
     {6518}, -- I Heard You Like Amber...
@@ -129,7 +131,7 @@ KrowiAF.AchievementData["05_00_04"] = {
         faction.Horde,
         6537,
     },
-    {6539}, -- "One Steppe Forward, Two Steppes Back"
+    {6539}, -- One Steppe Forward, Two Steppes Back
     {6540}, -- Dread Haste Makes Dread Waste
     {6541}, -- Loremaster of Pandaria
     {6543}, -- The August Celestials
@@ -167,7 +169,12 @@ KrowiAF.AchievementData["05_00_04"] = {
     {6587}, -- Outland Safari
     {6588}, -- Northrend Safari
     {6589}, -- Pandaria Safari
-    {6590}, -- World Safari
+    { -- World Safari
+        6590,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {6591}, -- Grand Master Pet Battler
     {6592}, -- Legendary Pet Battler
     {6593}, -- Experienced Pet Battler
@@ -217,7 +224,12 @@ KrowiAF.AchievementData["05_00_04"] = {
     {6604}, -- Taming Outland
     {6605}, -- Taming Northrend
     {6606}, -- Taming Pandaria
-    {6607}, -- Taming Azeroth
+    { -- Taming Azeroth
+        6607,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {6608}, -- Family Reunion
     {6609}, -- No Favorites
     {6610}, -- All Pets Allowed
@@ -238,7 +250,7 @@ KrowiAF.AchievementData["05_00_04"] = {
     {6621}, -- Big City Pet Brawlin' - Horde
     {6622}, -- Big City Pet Brawler
     {6671}, -- Seeds of Doubt
-    {6674}, -- "Anything You Can Do, I Can Do Better..."
+    {6674}, -- Anything You Can Do, I Can Do Better...
     {6683}, -- Less Than Three
     {6684}, -- Humane Society
     {6686}, -- Straight Six
@@ -255,7 +267,12 @@ KrowiAF.AchievementData["05_00_04"] = {
     {6721}, -- Heroic: Gara'jal the Spiritbinder
     {6722}, -- Heroic: Four Kings
     {6723}, -- Heroic: Elegon
-    {6724}, -- Heroic: Will of the Emperor
+	{ -- Heroic: Will of the Emperor
+		6724,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {6725}, -- Heroic: Imperial Vizier Zor'lok
     {6726}, -- Heroic: Blade Lord Ta'yak
     {6727}, -- Heroic: Garalon
@@ -265,7 +282,12 @@ KrowiAF.AchievementData["05_00_04"] = {
     {6731}, -- Heroic: Protectors of the Endless
     {6732}, -- Heroic: Tsulong
     {6733}, -- Heroic: Lei Shi
-    {6734}, -- Heroic: Sha of Fear
+	{ -- Heroic: Sha of Fear
+		6734,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {6736}, -- What Does This Button Do?
     { -- Silvershard Mines Victory
         6739,
@@ -286,7 +308,12 @@ KrowiAF.AchievementData["05_00_04"] = {
             {"PvP Season", 11},
         },
     },
-    {6742}, -- 60 Exalted Reputations
+	{ -- 60 Exalted Reputations
+		6742,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     { -- Realm First! Level 90 Druid (Legacy)
         6743,
         {
@@ -528,6 +555,9 @@ KrowiAF.AchievementData["05_00_04"] = {
         6874,
         faction.Alliance,
         7509,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     { -- Temple of Kotmogu Veteran
         6882,
@@ -765,14 +795,19 @@ KrowiAF.AchievementData["05_00_04"] = {
     },
     {6922}, -- Timing is Everything
     {6923}, -- Brewmoon Festival
-    { -- "100,000 Valor Points"
+    { -- 100,000 Valor Points
         6924,
         {
             {"Before", "Version", {6, 0, 2}},
         },
     },
     {6925}, -- Pandaria Dungeon Hero
-    {6926}, -- Tranquil Master
+	{ -- Tranquil Master
+		6926,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {6927}, -- Glory of the Pandaria Hero
     {6928}, -- Burning Man
     {6929}, -- And Stay Dead!
@@ -811,13 +846,19 @@ KrowiAF.AchievementData["05_00_04"] = {
         6941,
         faction.Horde,
         6942,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Hero of the Alliance
         6942,
         faction.Alliance,
         6941,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     {6943}, -- Queuing Spree
     {6945}, -- Mantid Swarm
@@ -889,7 +930,7 @@ KrowiAF.AchievementData["05_00_04"] = {
             IsPvP = true,
         },
     },
-    {7056}, -- "Sorry, Were You Looking for This?"
+    {7056}, -- Sorry, Were You Looking for This?
     { -- End of the Line
         7057,
         {
@@ -936,7 +977,7 @@ KrowiAF.AchievementData["05_00_04"] = {
     {7231}, -- Spill No Evil
     {7232}, -- The Keg Runner
     {7239}, -- Monkey in the Middle
-    {7248}, -- "Monkey See, Monkey Kill"
+    {7248}, -- Monkey See, Monkey Kill
     {7249}, -- Unga Ingoo
     {7252}, -- A Brewing Storm
     {7257}, -- Don't Shake the Keg
@@ -1121,7 +1162,7 @@ KrowiAF.AchievementData["05_00_04"] = {
         faction.Horde,
         6874,
     },
-    {7518}, -- "Wanderers, Dreamers, and You"
+    {7518}, -- Wanderers, Dreamers, and You
     {7520}, -- The Loremaster
     {7521}, -- Time to Open a Pet Store
     {7522}, -- Crypt of Forgotten Kings
@@ -1234,7 +1275,7 @@ KrowiAF.AchievementData["05_01_00"] = {
         faction.Horde,
         7928,
     },
-    {7932}, -- "I'm In Your Base, Killing Your Dudes"
+    {7932}, -- I'm In Your Base, Killing Your Dudes
     {7933}, -- And... It's Good!
     {7934}, -- Raiding with Leashes
     {7936}, -- Pandaren Spirit Tamer
@@ -1368,7 +1409,7 @@ KrowiAF.AchievementData["05_01_00"] = {
         faction.Alliance,
         8014,
     },
-    { -- "Waste Not, Want Not"
+    { -- Waste Not, Want Not
         8012,
         faction.Alliance,
         8015,
@@ -1383,7 +1424,7 @@ KrowiAF.AchievementData["05_01_00"] = {
         faction.Horde,
         8011,
     },
-    { -- "Waste Not, Want Not"
+    { -- Waste Not, Want Not
         8015,
         faction.Horde,
         8012,
@@ -1536,7 +1577,7 @@ KrowiAF.AchievementData["05_02_00"] = {
     {8105}, -- The Crumble Bundle
     {8106}, -- In the Hall of the Thunder King
     {8107}, -- Ready for RAAAAIIIIDDD?!?ing
-    {8108}, -- "When in Ihgaluk, Do as the Skumblade Do"
+    {8108}, -- When in Ihgaluk, Do as the Skumblade Do
     {8109}, -- The Mogu Below-gu
     {8110}, -- These Mogu Have Gotta Go-gu
     {8111}, -- This Isn't Even My Final Form
@@ -1673,7 +1714,7 @@ KrowiAF.AchievementData["05_03_00"] = {
     {KrowiAF.SetAchievementPatch, 5, 3, 0},
     {8293}, -- Raiding with Leashes II: Attunement Edition
     {8294}, -- The Secrets of Ragefire
-    {8295}, -- "The Few, the Proud, the Gob Squad"
+    {8295}, -- The Few, the Proud, the Gob Squad
     { -- Merciless Pet Brawler
         8297,
         {
@@ -2417,9 +2458,9 @@ KrowiAF.AchievementData["05_04_00"] = {
     {8724}, -- Pilgrimage
     {8725}, -- Eyes On The Ground
     {8726}, -- Extreme Treasure Hunter
-    {8727}, -- "Where There's Pirates, There's Booty"
+    {8727}, -- Where There's Pirates, There's Booty
     {8728}, -- Going To Need A Bigger Bag
-    {8729}, -- "Treasure, Treasure Everywhere"
+    {8729}, -- Treasure, Treasure Everywhere
     {8730}, -- Rolo's Riddle
     {8743}, -- Zarhym Altogether
     {8784}, -- Timeless Legends

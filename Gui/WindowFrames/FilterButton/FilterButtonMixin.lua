@@ -182,7 +182,7 @@ do -- BuildVersionFilter
         end
         self:CreateSelectDeselectAllVersions(version, filters);
     end
-    
+
     function KrowiAF_AchievementFrameFilterButtonMixin:CreateBuildVersionFilter()
         error("The function is not implemented.");
     end
@@ -223,6 +223,12 @@ do -- AchievementFilters
         local reward = addon.MenuUtil:CreateButton(menu, addon.L["Has Reward"]);
         self:CreateCheckbox(reward, addon.L["Yes"], filters, {"HasReward", "Yes"}, true);
         self:CreateCheckbox(reward, addon.L["No"], filters, {"HasReward", "No"}, true);
+        addon.MenuUtil:CreateDivider(reward);
+        self:CreateCheckbox(reward, addon.L["Title"], filters, {"RewardType", KrowiAF.Enum.RewardType.Title}, true);
+        self:CreateCheckbox(reward, addon.L["Pet"], filters, {"RewardType", KrowiAF.Enum.RewardType.Pet}, true);
+        self:CreateCheckbox(reward, addon.L["Mount"], filters, {"RewardType", KrowiAF.Enum.RewardType.Mount}, true);
+        self:CreateCheckbox(reward, addon.L["Toy"], filters, {"RewardType", KrowiAF.Enum.RewardType.Toy}, true);
+        self:CreateCheckbox(reward, addon.L["Other"], filters, {"RewardType", KrowiAF.Enum.RewardType.Other}, true);
         addon.MenuUtil:AddChildMenu(menu, reward);
 
         self:CreateBuildVersionFilter(menu, filters);

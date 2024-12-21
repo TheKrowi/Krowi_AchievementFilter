@@ -572,7 +572,7 @@ L["Login Delay"] = "Login Verzögerung"
 L["Love is in the Air"] = "Liebe liegt in der Luft"
 L["Lucky Yi"] = "Glückspilz Yi"
 L["Lunar Festival"] = "Mondfest"
-L["M+ Season"] = "Mythic+ Saison"
+L["PvE Season"] = "Mythic+ Saison"
 L["Make windows movable"] = "Fenster verschiebbar machen"
 L["Make windows movable Desc"] = [=[Macht das Erfolgsfenster, die Kalenderansicht und die Charakterübersicht beweglich/nicht beweglich.
 

@@ -1,6 +1,7 @@
 local _, addon = ...;
 local shared = addon.Data.AchievementData.Shared;
-local faction = addon.Objects.Faction;
+local faction = KrowiAF.Enum.Faction;
+local rewardType = KrowiAF.Enum.RewardType;
 
 KrowiAF.AchievementData["03_00_02"] = {
     {KrowiAF.SetAchievementPatch, 3, 0, 2},
@@ -74,7 +75,12 @@ KrowiAF.AchievementData["03_00_02"] = {
     {43}, -- Explore Kalimdor
     {44}, -- Explore Outland
     {45}, -- Explore Northrend
-    {46}, -- World Explorer
+    { -- World Explorer
+        46,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     { -- Disgracin' The Basin
         73,
         {
@@ -359,7 +365,10 @@ KrowiAF.AchievementData["03_00_02"] = {
         230,
         faction.Alliance,
         1175,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Wrecking Ball
         231,
@@ -397,7 +406,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         1005,
         true,
     },
-    { -- "Make Love, Not Warcraft"
+    { -- Make Love, Not Warcraft
         247,
         {
             IsPvP = true,
@@ -532,7 +541,7 @@ KrowiAF.AchievementData["03_00_02"] = {
             {"Event", 372},
         },
     },
-    { -- "Have Keg, Will Travel"
+    { -- Have Keg, Will Travel
         303,
         {
             {"Event", 372},
@@ -672,6 +681,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Merciless Gladiator
         418,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 2},
         },
@@ -679,6 +689,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Vengeful Gladiator
         419,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 3},
         },
@@ -686,20 +697,21 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Brutal Gladiator
         420,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 4},
         },
     },
     {424}, -- Why? Because It's Red
-    { -- "Atiesh, Greatstaff of the Guardian"
+    { -- Atiesh, Greatstaff of the Guardian
         425,
         {
             {"Never"},
         },
     },
     {426}, -- Warglaives of Azzinoth
-    {428}, -- "Thunderfury, Blessed Blade of the Windseeker"
-    {429}, -- "Sulfuras, Hand of Ragnaros"
+    {428}, -- Thunderfury, Blessed Blade of the Windseeker
+    {429}, -- Sulfuras, Hand of Ragnaros
     { -- Amani War Bear
         430,
         {
@@ -919,6 +931,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Realm First! Obsidian Slayer
         456,
         {
+            RewardType = rewardType.Title,
             IsRealmFirst = true,
             {"Once"},
         },
@@ -1517,9 +1530,12 @@ KrowiAF.AchievementData["03_00_02"] = {
         714,
         faction.Horde,
         907,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
-    {725}, -- "Thori'dal, the Stars' Fury"
+    {725}, -- Thori'dal, the Stars' Fury
     {726}, -- Mr. Pinchy's Magical Crawdad Box
     { -- Call in the Cavalry
         727,
@@ -1547,6 +1563,9 @@ KrowiAF.AchievementData["03_00_02"] = {
         762,
         faction.Horde,
         948,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     { -- The Burning Crusader
         763,
@@ -1625,10 +1644,16 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- 100000 Honorable Kills
         870,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
         },
     },
-    {871}, -- "Avast Ye, Admiral!"
+    { -- Avast Ye, Admiral!
+        871,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     { -- Frenzied Defender
         872,
         {
@@ -1712,7 +1737,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     {896}, -- A Quest a Day Keeps the Ogres at Bay
     {897}, -- You're So Offensive
     {898}, -- On Wings of Nether
-    { -- "Oh My, Kurenai"
+    { -- Oh My, Kurenai
         899,
         faction.Alliance,
         901,
@@ -1731,7 +1756,10 @@ KrowiAF.AchievementData["03_00_02"] = {
         907,
         faction.Alliance,
         714,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Call to Arms!
         908,
@@ -1766,6 +1794,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- To Honor One's Elders
         913,
         {
+            RewardType = rewardType.Title,
             {"Event", 327},
         },
     },
@@ -1795,26 +1824,45 @@ KrowiAF.AchievementData["03_00_02"] = {
         942,
         faction.Alliance,
         943,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     { -- The Diplomat
         943,
         faction.Horde,
         942,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     {944}, -- They Love Me In That Tunnel
-    {945}, -- The Argent Champion
+    { -- The Argent Champion
+        945,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {946}, -- The Argent Dawn
     {947}, -- The Argent Crusade
     { -- Ambassador of the Alliance
         948,
         faction.Alliance,
         762,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     {949}, -- Tuskarrmageddon
     {950}, -- Frenzyheart Tribe
     {951}, -- The Oracles
     {952}, -- Mercenary of Sholazar
-    {953}, -- Guardian of Cenarius
+    { -- Guardian of Cenarius
+        953,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {955}, -- Hydraxian Waterlords
     {956}, -- Brood of Nozdormu
     { -- Hero of the Zandalar Tribe
@@ -1904,7 +1952,12 @@ KrowiAF.AchievementData["03_00_02"] = {
     {975}, -- 200 Daily Quests Complete
     {976}, -- 500 Daily Quests Complete
     {977}, -- 1000 Daily Quests Complete
-    {978}, -- 3000 Quests Completed
+    { -- 3000 Quests Completed
+        978,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     { -- The Mask Task
         979,
         {
@@ -1950,7 +2003,12 @@ KrowiAF.AchievementData["03_00_02"] = {
         1011,
     },
     {1014}, -- 35 Exalted Reputations
-    {1015}, -- 40 Exalted Reputations
+    { -- 40 Exalted Reputations
+        1015,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {1017}, -- Can I Keep Him?
     {1020}, -- Ten Tabards
     {1021}, -- Twenty-Five Tabards
@@ -2087,6 +2145,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         faction.Alliance,
         1039,
         {
+            RewardType = rewardType.Title,
             {"Event", 341},
         },
     },
@@ -2095,6 +2154,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         faction.Horde,
         1038,
         {
+            RewardType = rewardType.Title,
             {"Event", 341},
         },
     },
@@ -2169,7 +2229,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         225,
         true,
     },
-    {1165}, -- "My Storage is ""Gigantique"""
+    {1165}, -- My Storage is "Gigantique"""
     { -- To the Looter Go the Spoils
         1166,
         {
@@ -2221,6 +2281,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- The Arena Master
         1174,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"Before", "Version", {7, 0, 3}},
         },
@@ -2229,7 +2290,10 @@ KrowiAF.AchievementData["03_00_02"] = {
         1175,
         faction.Horde,
         230,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     {1176}, -- Got My Mind On My Money
     {1177}, -- Got My Mind On My Money
@@ -2302,7 +2366,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     {1243}, -- Fish Don't Leave Footprints
     {1244}, -- Well Read
     {1248}, -- Plethora of Pets
-    {1250}, -- "Shop Smart, Shop Pet...Smart"
+    {1250}, -- Shop Smart, Shop Pet...Smart
     { -- Not In My House
         1251,
         faction.Horde,
@@ -2509,6 +2573,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Realm First! Magic Seeker
         1400,
         {
+            RewardType = rewardType.Title,
             IsRealmFirst = true,
             {"Once"},
         },
@@ -2516,6 +2581,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Realm First! Conqueror of Naxxramas
         1402,
         {
+            RewardType = rewardType.Title,
             IsRealmFirst = true,
             {"Once"},
         },
@@ -2709,7 +2775,12 @@ KrowiAF.AchievementData["03_00_02"] = {
         202,
         true,
     },
-    {1516}, -- Accomplished Angler
+    { -- Accomplished Angler
+        1516,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {1517}, -- Northrend Angler
     { -- Frenzied Firecracker
         1552,
@@ -2727,6 +2798,9 @@ KrowiAF.AchievementData["03_00_02"] = {
         1563,
         faction.Alliance,
         1784,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     {1576}, -- Of Blood and Anguish
     {1596}, -- Guru of Drakuru
@@ -2748,6 +2822,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         faction.Alliance,
         1657,
         {
+            RewardType = rewardType.Title,
             {"Event", 324},
         },
     },
@@ -2756,10 +2831,16 @@ KrowiAF.AchievementData["03_00_02"] = {
         faction.Horde,
         1656,
         {
+            RewardType = rewardType.Title,
             {"Event", 324},
         },
     },
-    {1658}, -- Champion of the Frozen Wastes
+    { -- Champion of the Frozen Wastes
+        1658,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     { -- Loremaster of Eastern Kingdoms
         1676,
         faction.Alliance,
@@ -2784,17 +2865,24 @@ KrowiAF.AchievementData["03_00_02"] = {
         1681,
         faction.Alliance,
         1682,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     { -- The Loremaster
         1682,
         faction.Horde,
         1681,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     { -- Brewmaster
         1683,
         faction.Horde,
         1684,
         {
+            RewardType = rewardType.Title,
             {"Event", 372},
         },
     },
@@ -2803,6 +2891,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         faction.Alliance,
         1683,
         {
+            RewardType = rewardType.Title,
             {"Event", 372},
         },
     },
@@ -2851,6 +2940,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         faction.Horde,
         1692,
         {
+            RewardType = rewardType.Title,
             {"Event", 141},
         },
     },
@@ -2859,6 +2949,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         faction.Alliance,
         1691,
         {
+            RewardType = rewardType.Title,
             {"Event", 141},
         },
     },
@@ -2867,6 +2958,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         faction.Horde,
         1707,
         {
+            RewardType = rewardType.Title,
             {"Event", 423},
         },
     },
@@ -2928,7 +3020,7 @@ KrowiAF.AchievementData["03_00_02"] = {
             {"Event", 423},
         },
     },
-    { -- "My Love is Like a Red, Red Rose"
+    { -- My Love is Like a Red, Red Rose
         1703,
         {
             {"Event", 423},
@@ -2947,6 +3039,7 @@ KrowiAF.AchievementData["03_00_02"] = {
         faction.Alliance,
         1693,
         {
+            RewardType = rewardType.Title,
             {"Event", 423},
         },
     },
@@ -3072,6 +3165,9 @@ KrowiAF.AchievementData["03_00_02"] = {
         1784,
         faction.Horde,
         1563,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     {1785}, -- Dinner Impossible
     { -- School of Hard Knocks
@@ -3092,7 +3188,7 @@ KrowiAF.AchievementData["03_00_02"] = {
             {"Event", 201},
         },
     },
-    { -- "Hail To The King, Baby"
+    { -- Hail To The King, Baby
         1790,
         {
             {"Event", 201},
@@ -3104,7 +3200,7 @@ KrowiAF.AchievementData["03_00_02"] = {
             {"Event", 201},
         },
     },
-    { -- "Aw, Isn't It Cute?"
+    { -- Aw, Isn't It Cute?
         1792,
         {
             {"Event", 201},
@@ -3113,6 +3209,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- For the Children
         1793,
         {
+            RewardType = rewardType.Title,
             {"Event", 201},
         },
     },
@@ -3206,10 +3303,20 @@ KrowiAF.AchievementData["03_00_02"] = {
     {2048}, -- Gonna Go When the Volcano Blows (25 player)
     {2049}, -- Twilight Assist (10 player)
     {2050}, -- Twilight Duo (10 player)
-    {2051}, -- The Twilight Zone (10 player)
+    { -- The Twilight Zone (10 player)
+        2051,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {2052}, -- Twilight Assist (25 player)
     {2053}, -- Twilight Duo (25 player)
-    {2054}, -- The Twilight Zone (25 player)
+    { -- The Twilight Zone (25 player)
+        2054,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {2056}, -- Volunteer Work
     {2057}, -- Oh Novos!
     {2058}, -- Snakes. Why'd It Have To Be Snakes?
@@ -3309,12 +3416,12 @@ KrowiAF.AchievementData["03_00_02"] = {
     {2141}, -- Stable Keeper
     {2142}, -- Filling Up The Barn
     {2143}, -- Leading the Cavalry
-    { -- "What A Long, Strange Trip It's Been"
+    { -- What A Long, Strange Trip It's Been
         2144,
         faction.Alliance,
         2145,
     },
-    { -- "What A Long, Strange Trip It's Been"
+    { -- What A Long, Strange Trip It's Been
         2145,
         faction.Horde,
         2144,
@@ -3344,18 +3451,21 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- The Immortal
         2186,
         {
+            RewardType = rewardType.Title,
             {"Before", "Version", {4, 0, 3}},
         },
     },
     { -- The Undying
         2187,
         {
+            RewardType = rewardType.Title,
             {"Before", "Version", {4, 0, 3}},
         },
     },
     { -- Leeeeeeeeeeeeeroy!
         2188,
         {
+            RewardType = rewardType.Title,
             {"Before", "Version", {6, 0, 2}},
         },
     },
@@ -3441,6 +3551,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Insane in the Membrane
         2336,
         {
+            RewardType = rewardType.Title,
             {"Event", 374},
         },
     },
@@ -3602,51 +3713,81 @@ KrowiAF.AchievementData["03_01_00"] = {
         2760,
         faction.Alliance,
         2769,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     { -- Exalted Champion of the Exodar
         2761,
         faction.Alliance,
         2767,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     { -- Exalted Champion of Gnomeregan
         2762,
         faction.Alliance,
         2768,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     { -- Exalted Champion of Ironforge
         2763,
         faction.Alliance,
         2766,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     { -- Exalted Champion of Stormwind
         2764,
         faction.Alliance,
         2765,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     { -- Exalted Champion of Orgrimmar
         2765,
         faction.Horde,
         2764,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     { -- Exalted Champion of Sen'jin
         2766,
         faction.Horde,
         2763,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     { -- Exalted Champion of Silvermoon City
         2767,
         faction.Horde,
         2761,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     { -- Exalted Champion of Thunder Bluff
         2768,
         faction.Horde,
         2762,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     { -- Exalted Champion of the Undercity
         2769,
         faction.Horde,
         2760,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     { -- Exalted Champion of the Alliance
         2770,
@@ -3725,6 +3866,7 @@ KrowiAF.AchievementData["03_01_00"] = {
         faction.Alliance,
         2798,
         {
+            RewardType = rewardType.Title,
             {"Event", 181},
         },
     },
@@ -3733,6 +3875,7 @@ KrowiAF.AchievementData["03_01_00"] = {
         faction.Horde,
         2797,
         {
+            RewardType = rewardType.Title,
             {"Event", 181},
         },
     },
@@ -3740,11 +3883,17 @@ KrowiAF.AchievementData["03_01_00"] = {
         2816,
         faction.Horde,
         2817,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     { -- Exalted Argent Champion of the Alliance
         2817,
         faction.Alliance,
         2816,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     {2836}, -- Lance a Lot
     { -- The Siege of Ulduar (10 player)
@@ -3810,12 +3959,14 @@ KrowiAF.AchievementData["03_01_00"] = {
     { -- Champion of Ulduar
         2903,
         {
+            RewardType = rewardType.Title,
             {"Before", "Version", {7, 3, 5}},
         },
     },
     { -- Conqueror of Ulduar
         2904,
         {
+            RewardType = rewardType.Title,
             {"Before", "Version", {7, 3, 5}},
         },
     },
@@ -3915,13 +4066,13 @@ KrowiAF.AchievementData["03_01_00"] = {
             {"Before", "Version", {7, 3, 5}},
         },
     },
-    { -- "Iron Dwarf, Medium Rare (10 player)"
+    { -- Iron Dwarf, Medium Rare (10 player)
         2923,
         {
             {"Before", "Version", {7, 3, 5}},
         },
     },
-    { -- "Iron Dwarf, Medium Rare (25 player)"
+    { -- Iron Dwarf, Medium Rare (25 player)
         2924,
         {
             {"Before", "Version", {7, 3, 5}},
@@ -4011,37 +4162,37 @@ KrowiAF.AchievementData["03_01_00"] = {
             {"Before", "Version", {7, 3, 5}},
         },
     },
-    { -- "I Choose You, Runemaster Molgeim (10 player)"
+    { -- I Choose You, Runemaster Molgeim (10 player)
         2939,
         {
             {"Before", "Version", {7, 3, 5}},
         },
     },
-    { -- "I Choose You, Stormcaller Brundir (10 player)"
+    { -- I Choose You, Stormcaller Brundir (10 player)
         2940,
         {
             {"Before", "Version", {7, 3, 5}},
         },
     },
-    { -- "I Choose You, Steelbreaker (10 player)"
+    { -- I Choose You, Steelbreaker (10 player)
         2941,
         {
             {"Before", "Version", {7, 3, 5}},
         },
     },
-    { -- "I Choose You, Runemaster Molgeim (25 player)"
+    { -- I Choose You, Runemaster Molgeim (25 player)
         2942,
         {
             {"Before", "Version", {7, 3, 5}},
         },
     },
-    { -- "I Choose You, Stormcaller Brundir (25 player)"
+    { -- I Choose You, Stormcaller Brundir (25 player)
         2943,
         {
             {"Before", "Version", {7, 3, 5}},
         },
     },
-    { -- "I Choose You, Steelbreaker (25 player)"
+    { -- I Choose You, Steelbreaker (25 player)
         2944,
         {
             {"Before", "Version", {7, 3, 5}},
@@ -4392,12 +4543,14 @@ KrowiAF.AchievementData["03_01_00"] = {
     { -- Observed (10 player)
         3036,
         {
+            RewardType = rewardType.Title,
             {"Before", "Version", {7, 3, 5}},
         },
     },
     { -- Observed (25 player)
         3037,
         {
+            RewardType = rewardType.Title,
             {"Before", "Version", {7, 3, 5}},
         },
     },
@@ -4461,6 +4614,7 @@ KrowiAF.AchievementData["03_01_00"] = {
     { -- Realm First! Death's Demise
         3117,
         {
+            RewardType = rewardType.Title,
             IsRealmFirst = true,
             {"Once"},
         },
@@ -4485,7 +4639,7 @@ KrowiAF.AchievementData["03_01_00"] = {
             {"Before", "Version", {7, 3, 5}},
         },
     },
-    {3142}, -- "Val'anyr, Hammer of Ancient Kings"
+    {3142}, -- Val'anyr, Hammer of Ancient Kings
     { -- Three Lights in the Darkness (10 player)
         3157,
         {
@@ -4540,13 +4694,13 @@ KrowiAF.AchievementData["03_01_00"] = {
             {"Before", "Version", {7, 3, 5}},
         },
     },
-    { -- "Knock, Knock on Wood (10 player)"
+    { -- Knock, Knock on Wood (10 player)
         3178,
         {
             {"Before", "Version", {7, 3, 5}},
         },
     },
-    { -- "Knock, Knock, Knock on Wood (10 player)"
+    { -- Knock, Knock, Knock on Wood (10 player)
         3179,
         {
             {"Before", "Version", {7, 3, 5}},
@@ -4588,13 +4742,13 @@ KrowiAF.AchievementData["03_01_00"] = {
             {"Before", "Version", {7, 3, 5}},
         },
     },
-    { -- "Knock, Knock on Wood (25 player)"
+    { -- Knock, Knock on Wood (25 player)
         3186,
         {
             {"Before", "Version", {7, 3, 5}},
         },
     },
-    { -- "Knock, Knock, Knock on Wood (25 player)"
+    { -- Knock, Knock, Knock on Wood (25 player)
         3187,
         {
             {"Before", "Version", {7, 3, 5}},
@@ -4623,12 +4777,18 @@ KrowiAF.AchievementData["03_01_00"] = {
     { -- Realm First! Celestial Defender
         3259,
         {
+            RewardType = rewardType.Title,
             IsRealmFirst = true,
             {"Once"},
         },
     },
     {3296}, -- Cooking with Style
-    {3316}, -- Herald of the Titans
+    { -- Herald of the Titans
+        3316,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     { -- Deadly Gladiator
         3336,
         {
@@ -4692,6 +4852,7 @@ KrowiAF.AchievementData["03_02_00"] = {
         faction.Alliance,
         3656,
         {
+            RewardType = rewardType.Title,
             {"Event", 404},
         },
     },
@@ -4751,7 +4912,7 @@ KrowiAF.AchievementData["03_02_00"] = {
             {"Event", 404},
         },
     },
-    { -- """FOOD FIGHT!"""
+    { -- "FOOD FIGHT!"""
         3579,
         {
             {"Event", 404},
@@ -4813,6 +4974,7 @@ KrowiAF.AchievementData["03_02_00"] = {
         faction.Horde,
         3478,
         {
+            RewardType = rewardType.Title,
             {"Event", 404},
         },
     },
@@ -4989,8 +5151,8 @@ KrowiAF.AchievementData["03_02_00"] = {
     {3916}, -- Call of the Crusade (25 player)
     {3917}, -- Call of the Crusade (10 player)
     {3918}, -- Call of the Grand Crusade (10 player)
-    {3936}, -- "Not One, But Two Jormungars (10 player)"
-    {3937}, -- "Not One, But Two Jormungars (25 player)"
+    {3936}, -- Not One, But Two Jormungars (10 player)
+    {3937}, -- Not One, But Two Jormungars (25 player)
     { -- Master of Isle of Conquest
         3957,
         faction.Horde,
@@ -4999,11 +5161,12 @@ KrowiAF.AchievementData["03_02_00"] = {
     },
     {3996}, -- Three Sixty Pain Spike (10 player)
     {3997}, -- Three Sixty Pain Spike (25 player)
-    {4016}, -- "Earth, Wind & Fire (10 player)"
-    {4017}, -- "Earth, Wind & Fire (25 player)"
+    {4016}, -- Earth, Wind & Fire (10 player)
+    {4017}, -- Earth, Wind & Fire (25 player)
     { -- Realm First! Grand Crusader
         4078,
         {
+            RewardType = rewardType.Title,
             IsRealmFirst = true,
             {"Once"},
         },
@@ -5019,6 +5182,7 @@ KrowiAF.AchievementData["03_02_00"] = {
     { -- A Tribute to Dedicated Insanity
         4080,
         {
+            RewardType = rewardType.Title,
             {"Before", "Version", {4, 0, 3}},
         },
     },
@@ -5104,7 +5268,12 @@ KrowiAF.AchievementData["03_02_02"] = {
         },
     },
     {4476}, -- Looking For More
-    {4477}, -- Looking For Many
+    { -- Looking For Many
+        4477,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {4478}, -- Looking For Multitudes
     {4496}, -- It's Over Nine Thousand!
     {4585}, -- Toravon the Ice Watcher (10 player)
@@ -5127,7 +5296,12 @@ KrowiAF.AchievementData["03_03_00"] = {
     {4527}, -- The Frostwing Halls (10 player)
     {4528}, -- The Plagueworks (10 player)
     {4529}, -- The Crimson Hall (10 player)
-    {4530}, -- The Frozen Throne (10 player)
+    { -- The Frozen Throne (10 player)
+        4530,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {4531}, -- Storming the Citadel (10 player)
     {4532}, -- Fall of the Lich King (10 player)
     {4534}, -- Boned (10 player)
@@ -5135,7 +5309,7 @@ KrowiAF.AchievementData["03_03_00"] = {
     {4536}, -- I'm on a Boat (10 player)
     {4537}, -- I've Gone and Made a Mess (10 player)
     {4538}, -- Dances with Oozes (10 player)
-    {4539}, -- "Once Bitten, Twice Shy (10 player)"
+    {4539}, -- Once Bitten, Twice Shy (10 player)
     { -- Realm First! Fall of the Lich King
         4576,
         {
@@ -5144,16 +5318,36 @@ KrowiAF.AchievementData["03_03_00"] = {
         },
     },
     {4577}, -- Flu Shot Shortage (10 player)
-    {4578}, -- "Nausea, Heartburn, Indigestion... (10 player)"
+    {4578}, -- Nausea, Heartburn, Indigestion... (10 player)
     {4579}, -- Portal Jockey (10 player)
     {4580}, -- All You Can Eat (10 player)
     {4581}, -- Neck-Deep in Vile (10 player)
     {4582}, -- The Orb Whisperer (10 player)
-    {4583}, -- Bane of the Fallen King
-    {4584}, -- The Light of Dawn
+    { -- Bane of the Fallen King
+        4583,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
+    { -- The Light of Dawn
+        4584,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {4596}, -- The Sword in the Skull
-    {4597}, -- The Frozen Throne (25 player)
-    {4598}, -- The Ashen Verdict
+    { -- The Frozen Throne (25 player)
+        4597,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
+    { -- The Ashen Verdict
+        4598,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     { -- Wrathful Gladiator
         4599,
         {
@@ -5182,9 +5376,9 @@ KrowiAF.AchievementData["03_03_00"] = {
     {4613}, -- I've Gone and Made a Mess (25 player)
     {4614}, -- Dances with Oozes (25 player)
     {4615}, -- Flu Shot Shortage (25 player)
-    {4616}, -- "Nausea, Heartburn, Indigestion... (25 player)"
+    {4616}, -- Nausea, Heartburn, Indigestion... (25 player)
     {4617}, -- The Orb Whisperer (25 player)
-    {4618}, -- "Once Bitten, Twice Shy (25 player)"
+    {4618}, -- Once Bitten, Twice Shy (25 player)
     {4619}, -- Portal Jockey (25 player)
     {4620}, -- All You Can Eat (25 player)
     {4621}, -- Been Waiting a Long Time for This (25 player)

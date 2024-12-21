@@ -26,9 +26,9 @@ data.RightClickMenuExtras = {};
 data.Maps = {};
 
 data.Events = {};
-data.Events[addon.Objects.EventType.Calendar] = {};
-data.Events[addon.Objects.EventType.Widget] = {};
-data.Events[addon.Objects.EventType.World] = {};
+data.Events[KrowiAF.Enum.EventType.Calendar] = {};
+data.Events[KrowiAF.Enum.EventType.Widget] = {};
+data.Events[KrowiAF.Enum.EventType.World] = {};
 
 function data:RegisterAchievementDataTasks()
     local name = "Achievement Data: ";

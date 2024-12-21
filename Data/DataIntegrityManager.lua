@@ -56,7 +56,7 @@ local FixFeaturesTutorialProgress, FixElvUISkin, FixFilters, FixEventDetails, Fi
 local FixMergeSmallCategoriesThresholdChanged, FixShowCurrentCharacterIcons, FixTabs, FixCovenantFilters, FixNewEarnedByFilter, FixTabs2, FixNewEarnedByFilter2;
 local FixEventDetails3, FixTooltipCriteria, FixFocusedAchievements, FixFocusedOptions, FixEventRemindersTimeDisplay, FixEventRemindersOptions, FixEventRemindersOptions2;
 local FixActiveEvents, MigrateCharactersAndAchievements, FixFirstTimeSetUpSwitchAchievementTabs, FixNewObtainabilityFilter, CleanUpCharactersAndAchievements;
-local FixWatchedAchievements;
+local FixWatchedAchievements, FixCharacterFactions;
 function LoadSolutions()
     local solutions = {
         FixFeaturesTutorialProgress, -- 1
@@ -87,6 +87,7 @@ function LoadSolutions()
         FixNewObtainabilityFilter, -- 27
         CleanUpCharactersAndAchievements, -- 28
         FixWatchedAchievements, -- 29
+        FixCharacterFactions, -- 30
     };
 
     return solutions;
@@ -945,4 +946,25 @@ function FixWatchedAchievements(prevBuild, currBuild, prevVersion, currVersion, 
     -- KrowiAF_SavedData.WatchedAchievements = nil;
 
     diagnostics.Debug("Watched Achievements renamed");
+end
+
+function FixCharacterFactions(prevBuild, currBuild, prevVersion, currVersion, firstTime)
+    -- In version 81.0 character factions are no longer strings but numbers
+    -- Here we convert the existing data for users pre 81.0
+
+    if firstTime and currVersion > "81.0" then
+        KrowiAF_SavedData.Fixes.FixCharacterFactions = true;
+        diagnostics.Debug("First time Character Faction OK");
+        return;
+    end
+    if KrowiAF_SavedData.Fixes.FixCharacterFactions == true then
+        diagnostics.Debug("Character Faction already converter");
+        return;
+    end
+
+    for guid, _ in next, KrowiAF_SavedData.CharacterList do
+        KrowiAF_SavedData.CharacterList[guid].Faction = KrowiAF.Enum.Faction[KrowiAF_SavedData.CharacterList[guid].Faction]
+    end
+
+    diagnostics.Debug("Character Faction converted");
 end

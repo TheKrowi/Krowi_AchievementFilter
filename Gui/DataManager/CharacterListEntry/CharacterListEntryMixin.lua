@@ -86,9 +86,9 @@ end
 KrowiAF_CharacterListEntryMixin = {};
 
 local function GetFactionIcon(faction)
-    if faction == addon.Objects.Faction[addon.Objects.Faction.Alliance] then
+    if faction == KrowiAF.Enum.Faction.Alliance then
         return "worldquest-icon-alliance";
-    elseif faction == addon.Objects.Faction[addon.Objects.Faction.Horde] then
+    elseif faction == KrowiAF.Enum.Faction.Horde then
         return "worldquest-icon-horde";
     else -- Neutral
         return "worldquest-questmarker-questionmark";

@@ -69,10 +69,7 @@ function addon.GetAchievementNumbers(_filters, achievement, numOfAch, numOfCompA
 	if filters and filters.Validate(_filters, achievement, ignoreFilters, true) > 0 then -- If set to false we lag the game
 		numOfAch = numOfAch + 1;
 		local _, _, _, completed = addon.GetAchievementInfo(achievement.Id);
-        local state;
-        if achievement.TemporaryObtainable then
-            state = achievement.TemporaryObtainable.Obtainable();
-        end
+        local state = achievement:GetObtainableState();
 		if completed then
 			numOfCompAch = numOfCompAch + 1;
 		-- else

@@ -1,6 +1,6 @@
 local _, addon = ...;
 local shared = addon.Data.AchievementData.Shared;
-local faction = addon.Objects.Faction;
+local faction = KrowiAF.Enum.Faction;
 
 KrowiAF.AchievementData["06_00_02"] = {
     {KrowiAF.SetAchievementPatch, 6, 0, 2},
@@ -255,7 +255,7 @@ KrowiAF.AchievementData["06_00_02"] = {
         8927,
     },
     {8929}, -- The Steel Has Been Brought
-    {8930}, -- "Ya, We've Got Time..."
+    {8930}, -- Ya, We've Got Time...
     {8932}, -- Mythic: Flamebender Ka'graz
     {8933}, -- Staying Regular
     {8935}, -- Draenor Explorer
@@ -265,10 +265,10 @@ KrowiAF.AchievementData["06_00_02"] = {
     {8940}, -- Explore Talador
     {8941}, -- Explore Spires of Arak
     {8942}, -- Explore Nagrand
-    {8947}, -- "Hurry Up, Maggot!"
+    {8947}, -- Hurry Up, Maggot!
     {8948}, -- Flame On!
     {8949}, -- Mythic: Kargath Bladefist
-    {8952}, -- "Ashes, Ashes..."
+    {8952}, -- Ashes, Ashes...
     {8956}, -- Mythic: Beastlord Darmac
     {8958}, -- Brothers in Arms
     {8960}, -- Mythic: The Butcher
@@ -290,7 +290,7 @@ KrowiAF.AchievementData["06_00_02"] = {
     {8976}, -- Pair Annihilation
     {8977}, -- Lineage of Power
     {8978}, -- The Iron Price
-    {8979}, -- "He Shoots, He Ores"
+    {8979}, -- He Shoots, He Ores
     {8980}, -- Stamp Stamp Revolution
     {8981}, -- Fain Would Lie Down
     {8982}, -- There's Always a Bigger Train
@@ -379,7 +379,7 @@ KrowiAF.AchievementData["06_00_02"] = {
     {9042}, -- Upper Blackrock Spire
     {9043}, -- Grimrail Depot
     {9044}, -- The Everbloom
-    {9045}, -- "Magnets, How Do They Work?"
+    {9045}, -- Magnets, How Do They Work?
     {9046}, -- Heroic: Bloodmaul Slag Mines
     {9047}, -- Heroic: Iron Docks
     {9049}, -- Heroic: Auchindoun
@@ -414,7 +414,7 @@ KrowiAF.AchievementData["06_00_02"] = {
     },
     {9081}, -- Expert Timing
     {9082}, -- Take Cover!
-    {9083}, -- "Militaristic, Expansionist"
+    {9083}, -- Militaristic, Expansionist
     {9087}, -- Draenor Master of All
     {9094}, -- Garrison Architect
     {9095}, -- Builder
@@ -463,7 +463,7 @@ KrowiAF.AchievementData["06_00_02"] = {
         },
     },
     {9107}, -- Follow the Leader
-    {9108}, -- "Where You Go, They Will Follow"
+    {9108}, -- Where You Go, They Will Follow
     {9109}, -- Fearless Leader
     {9110}, -- Following Up
     {9111}, -- Raising the Bar
@@ -615,19 +615,19 @@ KrowiAF.AchievementData["06_00_02"] = {
         9408,
         true,
     },
-    { -- "Grand Theft, 1st Degree"
+    { -- Grand Theft, 1st Degree
         9218,
         {
             IsPvP = true,
         },
     },
-    { -- "Grand Theft, 2nd Degree"
+    { -- Grand Theft, 2nd Degree
         9219,
         {
             IsPvP = true,
         },
     },
-    { -- "Grand Theft, 3rd Degree"
+    { -- Grand Theft, 3rd Degree
         9220,
         {
             IsPvP = true,
@@ -846,7 +846,7 @@ KrowiAF.AchievementData["06_00_02"] = {
     {9414}, -- Ogre Observer
     {9415}, -- Secrets of Skettis
     {9419}, -- Draenor Curator
-    {9422}, -- "The Search For Fact, Not Truth"
+    {9422}, -- The Search For Fact, Not Truth
     {9423}, -- Goliaths of Gorgrond
     {9425}, -- So Grossly Incandescent
     { -- To The Afterlife
@@ -973,7 +973,7 @@ KrowiAF.AchievementData["06_00_02"] = {
         faction.Horde,
         9491,
     },
-    {9493}, -- "They Burn, Burn, Burn"
+    {9493}, -- They Burn, Burn, Burn
     {9494}, -- Commander
     { -- The Bone Collector
         9495,
@@ -1151,7 +1151,7 @@ KrowiAF.AchievementData["06_00_02"] = {
     },
     {9547}, -- Everything Is Awesome!
     {9548}, -- Buried Treasures
-    {9550}, -- "Boldly, You Sought the Power of Ragnaros"
+    {9550}, -- Boldly, You Sought the Power of Ragnaros
     {9551}, -- Demon's Souls
     {9552}, -- No Tag-backs!
     { -- Securing Draenor
@@ -1221,7 +1221,7 @@ KrowiAF.AchievementData["06_00_02"] = {
     {9607}, -- Make It a Bonus
     {9610}, -- History of Violence
     {9612}, -- Eggs in One Basket
-    {9613}, -- "Fish Gotta Swim, Birds Gotta Eat"
+    {9613}, -- Fish Gotta Swim, Birds Gotta Eat
     {9615}, -- With a Nagrand Cherry On Top
     {9617}, -- Making the Cut
     { -- The Iron Invasion
@@ -1297,7 +1297,7 @@ KrowiAF.AchievementData["06_00_02"] = {
     {9636}, -- United We Stand
     {9637}, -- Poor Communication
     {9638}, -- Heralds of the Legion
-    { -- "Fight, Kill, Salute!"
+    { -- Fight, Kill, Salute!
         9639,
         {
             IsPvP = true,
@@ -1644,7 +1644,7 @@ KrowiAF.AchievementData["06_01_00"] = {
         faction.Horde,
         9825,
     },
-    {9838}, -- "What A Strange, Interdimensional Trip It's Been"
+    {9838}, -- What A Strange, Interdimensional Trip It's Been
     {9858}, -- Master and Commander
     { -- Ace Tonk Commander
         9885,
@@ -1847,7 +1847,7 @@ KrowiAF.AchievementData["06_02_00"] = {
         faction.Alliance,
         10075,
     },
-    {10069}, -- "I Came, I Clawed, I Conquered"
+    {10069}, -- I Came, I Clawed, I Conquered
     {10070}, -- Jungle Stalker
     {10071}, -- The Legion Will NOT Conquer All
     { -- Rumble in the Jungle

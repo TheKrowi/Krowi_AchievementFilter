@@ -1364,7 +1364,15 @@ local achievementsOptions = {
                             get = function() return addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.ShowDateTime; end,
                             set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.ShowDateTime = value; end,
                             disabled = function() return not addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.Show end
-                        }
+                        },
+                        EarnedByCharacters = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
+                            name = addon.L["Number of lines"],
+                            desc = addon.L["Number of Temporarily obtainable lines Desc"]:K_ReplaceVars(addon.L["Temporarily obtainable"]):KAF_AddDefaultValueText("Tooltip.Achievements.TemporarilyObtainable.NumberOfLines"),
+                            min = 1, max = 10, step = 1,
+                            get = function() return addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.NumberOfLines; end,
+                            set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.NumberOfLines = value; end
+                        },
                     }
                 },
                 StartTimeAndEndTime = {
