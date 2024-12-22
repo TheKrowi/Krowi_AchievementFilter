@@ -144,7 +144,12 @@ KrowiAF.AchievementData["09_00_01"] = {
     {14468}, -- Twisting Corridors: Layer 1
     {14469}, -- Twisting Corridors: Layer 2
     {14470}, -- Twisting Corridors: Layer 3
-    {14471}, -- Twisting Corridors: Layer 4
+	{ -- Twisting Corridors: Layer 4
+		14471,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     {14472}, -- Twisting Corridors: Layer 5
     {14473}, -- Fracture Chambers
     {14478}, -- The Soulforges
@@ -254,7 +259,12 @@ KrowiAF.AchievementData["09_00_01"] = {
     {14631}, -- Champion of the Covenant
     {14632}, -- Conducting Anima
     {14633}, -- Master Navigator
-    {14634}, -- Nine Afterlives
+	{ -- Nine Afterlives
+		14634,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     {14636}, -- Adventurer in Chief
     {14637}, -- Your Covenant's Flavor
     {14638}, -- The Anima Must Flow
@@ -366,7 +376,12 @@ KrowiAF.AchievementData["09_00_01"] = {
     {14715}, -- Castle Nathria
     {14717}, -- Heroic: Castle Nathria
     {14718}, -- Mythic: Castle Nathria
-    {14721}, -- It's In The Mix
+	{ -- It's In The Mix
+		14721,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     {14723}, -- Be Our Guest
     {14724}, -- People Pleaser
     {14725}, -- We Happy Few
@@ -419,7 +434,12 @@ KrowiAF.AchievementData["09_00_01"] = {
     {14763}, -- Crypt Couture
     {14764}, -- The Great Luckydo
     {14765}, -- Ramparts Racer
-    {14766}, -- Parasoling
+	{ -- Parasoling
+		14766,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     {14767}, -- Count Your Blessings
     {14768}, -- What is that Melody?
     {14769}, -- Bat!
@@ -908,7 +928,12 @@ KrowiAF.AchievementData["09_01_05"] = {
 
 KrowiAF.AchievementData["09_02_00"] = {
     {KrowiAF.SetAchievementPatch, 9, 2, 0},
-    {15211}, -- Completing the Code
+	{ -- Completing the Code
+		15211,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     { -- First Dance
         15212,
         {
@@ -955,6 +980,7 @@ KrowiAF.AchievementData["09_02_00"] = {
     { -- Dancing Machine
         15221,
         {
+            RewardType = rewardType.Toy,
             {"Event", 374},
         },
     },
@@ -971,9 +997,19 @@ KrowiAF.AchievementData["09_02_00"] = {
         },
     },
     {15224}, -- Explore Zereth Mortis
-    {15229}, -- Traversing the Spheres
+	{ -- Traversing the Spheres
+		15229,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     {15251}, -- The Jailer's Gauntlet: Layer 1
-    {15252}, -- The Jailer's Gauntlet: Layer 2
+	{ -- The Jailer's Gauntlet: Layer 2
+		15252,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
 	{ -- The Jailer's Gauntlet: Layer 3
 		15253,
 		{

@@ -134,7 +134,12 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40090}, -- Spoiled Goods
     {40091}, -- Slightly Spoiled
     {40095}, -- Sparking Battle
-    {40096}, -- Sparking Battle
+	{ -- Sparking Battle
+		40096,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
 	{ -- Ruffious's Bid
 		40097,
 		{
@@ -274,7 +279,12 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40311}, -- Sharing the Light
     {40312}, -- Starting the Flames
     {40313}, -- Igniting the Keyflames
-    {40314}, -- Fragments of Memories
+	{ -- Fragments of Memories
+		40314,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     {40316}, -- Isle of Dorn: Bronze
     {40317}, -- Isle of Dorn: Silver
     {40318}, -- Isle of Dorn: Gold
@@ -649,6 +659,7 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- Solo Shuffle Medic: The War Within
         40792,
         {
+            RewardType = rewardType.Toy,
             IsPvP = true,
             {"PvP Season", 38},
         },
@@ -656,6 +667,7 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- Battleground Blitz Medic: The War Within
         40795,
         {
+            RewardType = rewardType.Toy,
             IsPvP = true,
             {"From", "PvP Season", 38, "Until", "PvP Season", 40},
         },

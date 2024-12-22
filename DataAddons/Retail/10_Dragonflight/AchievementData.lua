@@ -17,7 +17,12 @@ KrowiAF.AchievementData["10_00_00"] = {
     {15641}, -- Many More Mini Minions
     {15642}, -- Proven Pet Parent
     {15643}, -- What Can I Say? They Love Me.
-    {15781}, -- The Joy of Toy
+	{ -- The Joy of Toy
+		15781,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     {15794}, -- A New Friend
     {15795}, -- Together in the Skies
     {15796}, -- Cliffside Companion
@@ -37,7 +42,12 @@ KrowiAF.AchievementData["10_00_00"] = {
             RewardType = rewardType.Mount,
         },
     },
-    {15889}, -- River Rapids Wrangler
+	{ -- River Rapids Wrangler
+		15889,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     {15890}, -- Dragonscale Expedition: The Highest Peaks
     {15915}, -- Waking Shores: Bronze
 	{ -- Waking Shores: Silver
@@ -341,7 +351,12 @@ KrowiAF.AchievementData["10_00_00"] = {
     {16411}, -- Siege on Dragonbane Keep: Home Sweet Home
     {16412}, -- Siege on Dragonbane Keep: Chiseled Record
     {16419}, -- I Was Saving That For Later
-    {16423}, -- Honor Our Ancestors
+	{ -- Honor Our Ancestors
+		16423,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     {16424}, -- Who's a Good Bakar?
     {16426}, -- Hungry Hungry Hornswog
     {16427}, -- Go With the Flow
@@ -755,7 +770,12 @@ KrowiAF.AchievementData["10_00_02"] = {
 		},
 	},
     {16761}, -- Dragon Isles Explorer
-    {16762}, -- The Vegetarian Diet
+	{ -- The Vegetarian Diet
+		16762,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     { -- Crimson Carpet Fashion
         16764,
         {
@@ -849,7 +869,12 @@ KrowiAF.AchievementData["10_00_05"] = {
     {17204}, -- Thaldraszus Reverse: Bronze
     {17205}, -- Thaldraszus Reverse: Silver
     {17206}, -- Thaldraszus Reverse: Gold
-    {17207}, -- Discombobberlated
+	{ -- Discombobberlated
+		17207,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     {17305}, -- Trading Post: Dragonflight
     { -- Elders of the Dragon Isles
         17321,
@@ -1285,7 +1310,12 @@ KrowiAF.AchievementData["10_01_00"] = {
     {17977}, -- Stones Can Try To Fly!
     {17978}, -- Stones Can Fly!
     {18027}, -- Dragonflight Season 2 Master
-    {18100}, -- Cavern Clawbbering
+	{ -- Cavern Clawbbering
+		18100,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     {18149}, -- Objects in Transit May Shatter
     {18150}, -- Zaralek Cavern Glyph Hunter
     {18151}, -- Mythic: Kazzara, the Hellforged
@@ -1453,7 +1483,12 @@ KrowiAF.AchievementData["10_01_05"] = {
             {"Event", 1395},
         },
     },
-    {17782}, -- Daycare Derby
+	{ -- Daycare Derby
+		17782,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     { -- Tricks and Treats of the Dragon Isles
         18360,
         faction.Alliance,
@@ -1472,11 +1507,21 @@ KrowiAF.AchievementData["10_01_05"] = {
     {18384}, -- Whelp, There It Is
     {18471}, -- 110 Exalted Reputations
     {18539}, -- Back En-masse
-    {18554}, -- Temporal Acquisitions Specialist
+	{ -- Temporal Acquisitions Specialist
+		18554,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     {18556}, -- Chaotic Time
     {18557}, -- Never Bothered, Anyway
     {18558}, -- Leaders of Scholomance
-    {18559}, -- Many Boxes, Many Rockses
+	{ -- Many Boxes, Many Rockses
+		18559,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     { -- Eastern Kingdoms: Bronze
         18566,
         {
@@ -1626,7 +1671,12 @@ KrowiAF.AchievementData["10_01_07"] = {
     {18722}, -- Northrend Master of All
     {18723}, -- Look, You're Specialized!
     {18724}, -- Gaining an Advantus
-    {18725}, -- Best Stellar
+	{ -- Best Stellar
+		18725,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     {18726}, -- A Cure for All Ails I
     {18727}, -- Rave Leader
     {18728}, -- Working from the Start
@@ -1676,7 +1726,12 @@ KrowiAF.AchievementData["10_01_07"] = {
     {18787}, -- Zaralek Cavern Challenge: Silver
     {18788}, -- Zaralek Cavern Challenge: Gold
     {18789}, -- Simply Enchanting
-    {18790}, -- Dragonriding Challenge: Dragon Isles: Bronze
+	{ -- Dragonriding Challenge: Dragon Isles: Bronze
+		18790,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     {18791}, -- Dragonriding Challenge: Dragon Isles: Silver
 	{ -- Dragonriding Challenge: Dragon Isles: Gold
 		18792,
@@ -2415,7 +2470,12 @@ KrowiAF.AchievementData["10_02_05"] = {
     {19792}, -- Just One More Thing
     {19793}, -- Finally At Rest
     {19866}, -- Hearthstoned: Fiery Edition
-    {20033}, -- Hearthstone Beginner
+	{ -- Hearthstone Beginner
+		20033,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
 	{ -- Champion of the Dragonflights
 		20206,
 		{
@@ -2748,6 +2808,7 @@ KrowiAF.AchievementData["10_02_07"] = {
     { -- The Jade Forest
         19872,
         {
+            RewardType = rewardType.Toy,
             {"Event", 1514},
         },
     },
@@ -3705,6 +3766,7 @@ KrowiAF.AchievementData["10_02_07"] = {
     { -- Infinite Power XII
         20538,
         {
+            RewardType = rewardType.Toy,
             {"Event", 1514},
         },
     },

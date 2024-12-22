@@ -430,6 +430,9 @@ KrowiAF.AchievementData["07_00_03"] = {
     },
     { -- Hatchling of the Talon
         10774,
+        {
+            RewardType = rewardType.Toy,
+        },
     },
     { -- Clean House
         10775,
@@ -1735,6 +1738,9 @@ KrowiAF.AchievementData["07_02_00"] = {
     },
     { -- No Shellfish Endeavor
         11427,
+        {
+            RewardType = rewardType.Toy,
+        },
     },
     { -- Mythic: Return to Karazhan
         11429,

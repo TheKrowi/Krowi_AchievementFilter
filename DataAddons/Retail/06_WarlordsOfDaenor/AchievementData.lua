@@ -877,6 +877,7 @@ KrowiAF.AchievementData["06_00_02"] = {
     { -- They Really Love Me!
         9394,
         {
+            RewardType = rewardType.Toy,
             {"Event", 423},
         },
     },
@@ -1479,7 +1480,12 @@ KrowiAF.AchievementData["06_00_02"] = {
     {9670}, -- Toying Around
     {9671}, -- Having a Ball
     {9672}, -- Tons of Toys
-    {9673}, -- The Toymaster
+	{ -- The Toymaster
+		9673,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     {9674}, -- I Want More Talador
     {9678}, -- Ancient No More
     { -- Time is a Flat Circle
@@ -1597,6 +1603,7 @@ KrowiAF.AchievementData["06_01_00"] = {
     { -- Darkmoon Racer Roadhog
         9761,
         {
+            RewardType = rewardType.Toy,
             {"Event", 374},
         },
     },
@@ -1604,6 +1611,7 @@ KrowiAF.AchievementData["06_01_00"] = {
     { -- Rocketeer: Gold
         9764,
         {
+            RewardType = rewardType.Toy,
             {"Event", 374},
         },
     },
@@ -1646,6 +1654,7 @@ KrowiAF.AchievementData["06_01_00"] = {
     { -- Powermonger: Gold
         9785,
         {
+            RewardType = rewardType.Toy,
             {"Event", 374},
         },
     },
@@ -1670,6 +1679,7 @@ KrowiAF.AchievementData["06_01_00"] = {
     { -- Wanderluster: Gold
         9792,
         {
+            RewardType = rewardType.Toy,
             {"Event", 374},
         },
     },
@@ -1700,6 +1710,7 @@ KrowiAF.AchievementData["06_01_00"] = {
     { -- Big Race Roadhog
         9799,
         {
+            RewardType = rewardType.Toy,
             {"Event", 374},
         },
     },
@@ -1724,6 +1735,7 @@ KrowiAF.AchievementData["06_01_00"] = {
     { -- Big Rocketeer: Gold
         9805,
         {
+            RewardType = rewardType.Toy,
             {"Event", 374},
         },
     },
@@ -1748,6 +1760,7 @@ KrowiAF.AchievementData["06_01_00"] = {
     { -- Big Wanderluster: Gold
         9811,
         {
+            RewardType = rewardType.Toy,
             {"Event", 374},
         },
     },
@@ -1772,6 +1785,7 @@ KrowiAF.AchievementData["06_01_00"] = {
     { -- Big Powermonger: Gold
         9817,
         {
+            RewardType = rewardType.Toy,
             {"Event", 374},
         },
     },
@@ -1804,17 +1818,24 @@ KrowiAF.AchievementData["06_01_00"] = {
         faction.Horde,
         9825,
     },
-    {9838}, -- What A Strange, Interdimensional Trip It's Been
+	{ -- What A Strange, Interdimensional Trip It's Been
+		9838,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     {9858}, -- Master and Commander
     { -- Ace Tonk Commander
         9885,
         {
+            RewardType = rewardType.Toy,
             {"Event", 374},
         },
     },
     { -- Triumphant Turtle Tossing
         9894,
         {
+            RewardType = rewardType.Toy,
             {"Event", 374},
         },
     },
@@ -1842,11 +1863,17 @@ KrowiAF.AchievementData["06_01_00"] = {
         9912,
         faction.Alliance,
         9914,
+        {
+            RewardType = rewardType.Toy,
+        },
     },
     { -- Azeroth's Top Twenty Tunes
         9914,
         faction.Horde,
         9912,
+        {
+            RewardType = rewardType.Toy,
+        },
     },
     {9915}, -- Crashin' Thrashin' Shredder
     { -- Loremaster of Draenor

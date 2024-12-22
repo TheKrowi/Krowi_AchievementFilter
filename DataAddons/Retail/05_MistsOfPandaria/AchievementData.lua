@@ -1127,7 +1127,12 @@ KrowiAF.AchievementData["05_00_04"] = {
     {7382}, -- Dynamic Duo
     {7383}, -- Terrific Trio
     {7384}, -- Quintessential Quintet
-    {7385}, -- Pub Crawl
+	{ -- Pub Crawl
+		7385,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     {7386}, -- Grand Expedition Yak
     {7410}, -- 5000 Daily Quests Completed
     {7411}, -- 10000 Daily Quests Completed

@@ -598,6 +598,7 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Honor Level 10
         12894,
         {
+            RewardType = rewardType.Toy,
             IsPvP = true,
         },
     },
@@ -639,6 +640,7 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Honor Level 30
         12902,
         {
+            RewardType = rewardType.Toy,
             IsPvP = true,
         },
     },
@@ -659,6 +661,7 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Honor Level 60
         12905,
         {
+            RewardType = rewardType.Toy,
             IsPvP = true,
         },
     },
@@ -679,6 +682,7 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Honor Level 90
         12908,
         {
+            RewardType = rewardType.Toy,
             IsPvP = true,
         },
     },
@@ -706,6 +710,7 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Honor Level 175
         12912,
         {
+            RewardType = rewardType.Toy,
             IsPvP = true,
         },
     },
@@ -778,7 +783,12 @@ KrowiAF.AchievementData["08_00_01"] = {
             RewardType = rewardType.Mount,
         },
     },
-    {12936}, -- Battle on Zandalar and Kul Tiras
+	{ -- Battle on Zandalar and Kul Tiras
+		12936,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     {12937}, -- Elevator Music
     {12938}, -- Parental Controls
     {12939}, -- Adventurer of Tiragarde Sound
@@ -1266,6 +1276,9 @@ KrowiAF.AchievementData["08_01_00"] = {
     { -- Upright Citizens
         13285,
         faction.Alliance,
+        {
+            RewardType = rewardType.Toy,
+        },
     },
     { -- Siege of Dazar'alor
         13286,
@@ -1695,8 +1708,18 @@ KrowiAF.AchievementData["08_02_00"] = {
     {13478}, -- Junkyard Collector
     {13479}, -- Junkyard Architect
     {13482}, -- Head Financier of Mechagon
-    {13489}, -- Secret Fish of Mechagon
-    {13502}, -- Secret Fish and Where to Find Them
+	{ -- Secret Fish of Mechagon
+		13489,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
+	{ -- Secret Fish and Where to Find Them
+		13502,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
 	{ -- Available in Eight Colors
 		13513,
 		{
@@ -2318,8 +2341,18 @@ KrowiAF.AchievementData["08_03_00"] = {
         faction.Alliance,
     },
     {14019}, -- Smoke Test
-    {14020}, -- Pet Battle Challenge: Blackrock Depths
-    {14021}, -- The Shadows Revealed
+	{ -- Pet Battle Challenge: Blackrock Depths
+		14020,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
+	{ -- The Shadows Revealed
+		14021,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     {14023}, -- Realizing Your Potential
     {14024}, -- Buzzer Beater
     {14026}, -- Temper Tantrum

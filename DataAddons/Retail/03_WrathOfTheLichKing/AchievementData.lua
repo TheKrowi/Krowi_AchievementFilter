@@ -3078,7 +3078,12 @@ KrowiAF.AchievementData["03_00_02"] = {
             {"Event", 372},
         },
     },
-    {1956}, -- Higher Learning
+	{ -- Higher Learning
+		1956,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     {1957}, -- There's Gold In That There Fountain
     {1958}, -- I Smell A Giant Rat
     {1996}, -- The Safety Dance (10 player)
@@ -3225,7 +3230,12 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     {2094}, -- A Penny For Your Thoughts
     {2095}, -- Silver in the City
-    {2096}, -- The Coin Master
+	{ -- The Coin Master
+		2096,
+		{
+			RewardType = rewardType.Toy,
+		},
+	},
     {2097}, -- Get to the Choppa!
     { -- Tabard of the Argent Dawn
         2116,
