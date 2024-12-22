@@ -14,7 +14,8 @@ KrowiAF.Enum.RewardType = EnumUtil.MakeEnum(
     "Mount",
     "Transmog",
     "Item",
-    "Teleport"
+    "Teleport",
+    "RemixPandariaBronze"
 );
 
 KrowiAF.AchievementData = {};
