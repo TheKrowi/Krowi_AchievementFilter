@@ -1,6 +1,7 @@
 local _, addon = ...;
 local shared = addon.Data.AchievementData.Shared;
 local faction = KrowiAF.Enum.Faction;
+local rewardType = KrowiAF.Enum.RewardType;
 
 KrowiAF.AchievementData["09_00_01"] = {
     {KrowiAF.SetAchievementPatch, 9, 0, 1},
@@ -22,7 +23,12 @@ KrowiAF.AchievementData["09_00_01"] = {
     {14273}, -- Crypt Kicker
     {14274}, -- Absolution for All
     {14276}, -- It's Always Sinny in Revendreth
-    {14277}, -- The Accuser's Avowed
+	{ -- The Accuser's Avowed
+		14277,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {14280}, -- Loremaster of Shadowlands
     {14281}, -- The Path to Ascension
     {14283}, -- Heroic Edition: Ensorcelled Everwyrm
@@ -52,7 +58,12 @@ KrowiAF.AchievementData["09_00_01"] = {
     {14314}, -- Treasures of Revendreth
     {14315}, -- Shadowlands Diplomat
     {14320}, -- Surgeon's Supplies
-    {14322}, -- Glory of the Shadowlands Hero
+	{ -- Glory of the Shadowlands Hero
+		14322,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {14323}, -- ExSPEARiential
     {14324}, -- Heroic: Spires of Ascension
     {14325}, -- Mythic: Spires of Ascension
@@ -74,7 +85,12 @@ KrowiAF.AchievementData["09_00_01"] = {
     {14352}, -- Nobody Puts Denathrius in a Corner
     {14353}, -- Ardenweald's a Stage
     {14354}, -- Highly Communicable
-    {14355}, -- Glory of the Nathria Raider
+	{ -- Glory of the Nathria Raider
+		14355,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {14356}, -- Mythic: Shriekwing
     {14357}, -- Mythic: Huntsman Altimor
     {14358}, -- Mythic: Hungering Destroyer
@@ -84,7 +100,12 @@ KrowiAF.AchievementData["09_00_01"] = {
     {14362}, -- Mythic: The Council of Blood
     {14363}, -- Mythic: Sludgefist
     {14364}, -- Mythic: Stone Legion Generals
-    {14365}, -- Mythic: Sire Denathrius
+	{ -- Mythic: Sire Denathrius
+		14365,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {14366}, -- The Necrotic Wake
     {14367}, -- Heroic: The Necrotic Wake
     {14368}, -- Mythic: The Necrotic Wake
@@ -191,20 +212,32 @@ KrowiAF.AchievementData["09_00_01"] = {
     { -- Shadowlands Keystone Conqueror: Season One
         14531,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 5},
         },
     },
     { -- Shadowlands Keystone Master: Season One
         14532,
         {
+            RewardType = rewardType.Mount,
             {"PvE Season", 5},
         },
     },
     {14533}, -- Royal Rumble
     {14567}, -- Picking Up the Pieces
-    {14568}, -- Twisting Corridors: Layer 6
+	{ -- Twisting Corridors: Layer 6
+		14568,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {14569}, -- Twisting Corridors: Layer 7
-    {14570}, -- Twisting Corridors: Layer 8
+    { -- Twisting Corridors: Layer 8
+        14570,
+        {
+            RewardType = rewardType.Mount,
+        },
+    },
     {14606}, -- Thinking with...
     {14607}, -- Fresh Meat!
     {14608}, -- Burning Bright
@@ -248,12 +281,18 @@ KrowiAF.AchievementData["09_00_01"] = {
     {14679}, -- Party Palace
     {14680}, -- Something for Everyone
     {14681}, -- Dredger Academy
-    {14682}, -- The Party Herald
+	{ -- The Party Herald
+		14682,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {14683}, -- Dredger Style
     {14684}, -- Abominable Lives
     { -- Combatant: Shadowlands Season 1
         14685,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 30},
         },
@@ -261,6 +300,7 @@ KrowiAF.AchievementData["09_00_01"] = {
     { -- Challenger: Shadowlands Season 1
         14686,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 30},
         },
@@ -268,6 +308,7 @@ KrowiAF.AchievementData["09_00_01"] = {
     { -- Rival: Shadowlands Season 1
         14687,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 30},
         },
@@ -275,6 +316,7 @@ KrowiAF.AchievementData["09_00_01"] = {
     { -- Duelist: Shadowlands Season 1
         14688,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 30},
         },
@@ -282,6 +324,7 @@ KrowiAF.AchievementData["09_00_01"] = {
     { -- Gladiator: Shadowlands Season 1
         14689,
         {
+            RewardType = {rewardType.Title, rewardType.Mount},
             IsPvP = true,
             {"PvP Season", 30},
         },
@@ -289,6 +332,7 @@ KrowiAF.AchievementData["09_00_01"] = {
     { -- Sinful Gladiator: Shadowlands Season 1
         14690,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 30},
         },
@@ -296,6 +340,7 @@ KrowiAF.AchievementData["09_00_01"] = {
     { -- Elite: Shadowlands Season 1
         14691,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 30},
         },
@@ -351,8 +396,18 @@ KrowiAF.AchievementData["09_00_01"] = {
             {"Before", "Version", {9, 0, 1}},
         },
     },
-    {14751}, -- The Gang's All Here
-    {14752}, -- Things To Do When You're Dead
+	{ -- The Gang's All Here
+		14751,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
+	{ -- Things To Do When You're Dead
+		14752,
+		{
+			RewardType = {rewardType.Title, rewardType.Mount},
+		},
+	},
     {14753}, -- It's a Wrap
     {14754}, -- The Forgotten One
     {14755}, -- Legendary Accord
@@ -373,7 +428,12 @@ KrowiAF.AchievementData["09_00_01"] = {
     {14772}, -- Caught in a Bat Romance
     {14773}, -- Explosive Extermination
     {14774}, -- Ardenweald Gourmand
-    {14775}, -- Mush Appreciated
+	{ -- Mush Appreciated
+		14775,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {14776}, -- For the Hoarder!
     {14777}, -- Restoration Expert
     {14778}, -- Extremely Ravenous
@@ -516,6 +576,7 @@ KrowiAF.AchievementData["09_01_00"] = {
     { -- Combatant I: Shadowlands Season 2
         14968,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 31},
         },
@@ -523,6 +584,7 @@ KrowiAF.AchievementData["09_01_00"] = {
     { -- Challenger I: Shadowlands Season 2
         14969,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 31},
         },
@@ -530,6 +592,7 @@ KrowiAF.AchievementData["09_01_00"] = {
     { -- Rival I: Shadowlands Season 2
         14970,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 31},
         },
@@ -537,6 +600,7 @@ KrowiAF.AchievementData["09_01_00"] = {
     { -- Duelist: Shadowlands Season 2
         14971,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 31},
         },
@@ -544,6 +608,7 @@ KrowiAF.AchievementData["09_01_00"] = {
     { -- Gladiator: Shadowlands Season 2
         14972,
         {
+            RewardType = {rewardType.Title, rewardType.Mount},
             IsPvP = true,
             {"PvP Season", 31},
         },
@@ -551,6 +616,7 @@ KrowiAF.AchievementData["09_01_00"] = {
     { -- Unchained Gladiator: Shadowlands Season 2
         14973,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 31},
         },
@@ -558,6 +624,7 @@ KrowiAF.AchievementData["09_01_00"] = {
     { -- Elite: Shadowlands Season 2
         14974,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 31},
         },
@@ -669,7 +736,12 @@ KrowiAF.AchievementData["09_01_00"] = {
     {15057}, -- Friend of Plaguey
     {15058}, -- I Used to Bullseye Deeprun Rats Back Home
     {15059}, -- Death's Advance
-    {15064}, -- Breaking the Chains
+	{ -- Breaking the Chains
+		15064,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {15065}, -- Eye Wish You Were Here
     {15066}, -- Reliquary Restoration
     {15067}, -- Adamant Vaults
@@ -685,12 +757,14 @@ KrowiAF.AchievementData["09_01_00"] = {
     { -- Shadowlands Keystone Conqueror: Season Two
         15077,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 6},
         },
     },
     { -- Shadowlands Keystone Master: Season Two
         15078,
         {
+            RewardType = rewardType.Mount,
             {"PvE Season", 6},
         },
     },
@@ -702,7 +776,12 @@ KrowiAF.AchievementData["09_01_00"] = {
     {15084}, -- Flawless: The Soulforges (Layer 12)
     {15087}, -- Flawless: Mort'regar (Layer 12)
     {15088}, -- Flawless: The Upper Reaches (Layer 12)
-    {15089}, -- Flawless Master (Layer 12)
+	{ -- Flawless Master (Layer 12)
+		15089,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {15091}, -- A Taste of Perfection
     {15092}, -- Master of Torment
     {15093}, -- Avenge Me!
@@ -731,7 +810,12 @@ KrowiAF.AchievementData["09_01_00"] = {
     {15118}, -- Mythic: Guardian of the First Ones
     {15119}, -- Mythic: Fatescribe Roh-Kalo
     {15120}, -- Mythic: Kel'Thuzad
-    {15121}, -- Mythic: Sylvanas Windrunner
+	{ -- Mythic: Sylvanas Windrunner
+		15121,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {15122}, -- The Jailer's Vanguard
     {15123}, -- The Dark Bastille
     {15124}, -- Shackles of Fate
@@ -739,7 +823,12 @@ KrowiAF.AchievementData["09_01_00"] = {
     {15126}, -- Sanctum of Domination
     {15127}, -- Heroic: Sanctum of Domination
     {15128}, -- Mythic: Sanctum of Domination
-    {15130}, -- Glory of the Dominant Raider
+	{ -- Glory of the Dominant Raider
+		15130,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {15131}, -- Whack-A-Soul
     {15132}, -- Knowledge is Power
     {15133}, -- This World is a Prism
@@ -756,7 +845,12 @@ KrowiAF.AchievementData["09_01_00"] = {
         },
     },
     {15177}, -- Tazavesh, the Veiled Market
-    {15178}, -- Fake It 'Til You Make It
+	{ -- Fake It 'Til You Make It
+		15178,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {15179}, -- This is Fine
     {15190}, -- Mischief!
     {15191}, -- Rae'shalare, Death's Whisper
@@ -794,12 +888,18 @@ KrowiAF.AchievementData["09_01_05"] = {
     {15241}, -- Renowned
     {15308}, -- Tower Overwhelming
     {15309}, -- A Towering Success
-    {15310}, -- A Tour of Towers
+	{ -- A Tour of Towers
+		15310,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {15313}, -- Rockin' Rollin' Racer
     {15323}, -- Sarge's Tale
     { -- Tormented Hero: Shadowlands Season 2
         15327,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 6},
         },
     },
@@ -874,8 +974,18 @@ KrowiAF.AchievementData["09_02_00"] = {
     {15229}, -- Traversing the Spheres
     {15251}, -- The Jailer's Gauntlet: Layer 1
     {15252}, -- The Jailer's Gauntlet: Layer 2
-    {15253}, -- The Jailer's Gauntlet: Layer 3
-    {15254}, -- The Jailer's Gauntlet: Layer 4
+	{ -- The Jailer's Gauntlet: Layer 3
+		15253,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
+	{ -- The Jailer's Gauntlet: Layer 4
+		15254,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {15255}, -- The Jailer's Gauntlet: Layer 5
     {15256}, -- The Jailer's Gauntlet: Layer 6
     {15257}, -- The Jailer's Gauntlet: Layer 7
@@ -888,13 +998,29 @@ KrowiAF.AchievementData["09_02_00"] = {
     {15318}, -- Flawless: Coldheart Interstitia (Layer 16)
     {15319}, -- Flawless: Mort'regar (Layer 16)
     {15320}, -- Flawless: The Upper Reaches (Layer 16)
-    {15322}, -- Flawless Master (Layer 16)
-    {15324}, -- Tower Ranger
+	{ -- Flawless Master (Layer 16)
+		15322,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
+	{ -- Tower Ranger
+		15324,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {15331}, -- Treasures of Zereth Mortis
-    {15336}, -- From A to Zereth
+	{ -- From A to Zereth
+		15336,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     { -- Combatant I: Shadowlands Season 3
         15348,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 32},
         },
@@ -902,6 +1028,7 @@ KrowiAF.AchievementData["09_02_00"] = {
     { -- Challenger I: Shadowlands Season 3
         15349,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 32},
         },
@@ -909,6 +1036,7 @@ KrowiAF.AchievementData["09_02_00"] = {
     { -- Rival I: Shadowlands Season 3
         15350,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 32},
         },
@@ -916,6 +1044,7 @@ KrowiAF.AchievementData["09_02_00"] = {
     { -- Duelist: Shadowlands Season 3
         15351,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 32},
         },
@@ -923,6 +1052,7 @@ KrowiAF.AchievementData["09_02_00"] = {
     { -- Gladiator: Shadowlands Season 3
         15352,
         {
+            RewardType = {rewardType.Title, rewardType.Mount},
             IsPvP = true,
             {"PvP Season", 32},
         },
@@ -930,6 +1060,7 @@ KrowiAF.AchievementData["09_02_00"] = {
     { -- Cosmic Gladiator: Shadowlands Season 3
         15353,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 32},
         },
@@ -937,6 +1068,7 @@ KrowiAF.AchievementData["09_02_00"] = {
     { -- Elite: Shadowlands Season 3
         15354,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 32},
         },
@@ -1037,9 +1169,19 @@ KrowiAF.AchievementData["09_02_00"] = {
     {15486}, -- Mythic: Anduin Wrynn
     {15487}, -- Mythic: Lords of Dread
     {15488}, -- Mythic: Rygelon
-    {15489}, -- Mythic: The Jailer
+	{ -- Mythic: The Jailer
+		15489,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {15490}, -- Mythic: Sepulcher of the First Ones
-    {15491}, -- Glory of the Sepulcher Raider
+	{ -- Glory of the Sepulcher Raider
+		15491,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {15492}, -- Cornerstone of Creation
     {15493}, -- Ephemeral Plains
     {15494}, -- Damnation Aviation
@@ -1052,12 +1194,14 @@ KrowiAF.AchievementData["09_02_00"] = {
     { -- Shadowlands Keystone Conqueror: Season Three
         15498,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 7},
         },
     },
     { -- Shadowlands Keystone Master: Season Three
         15499,
         {
+            RewardType = rewardType.Mount,
             {"PvE Season", 7},
         },
     },
@@ -1116,6 +1260,7 @@ KrowiAF.AchievementData["09_02_00"] = {
     { -- Supreme Soloist
         15544,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
         },
     },
@@ -1127,12 +1272,14 @@ KrowiAF.AchievementData["09_02_05"] = {
     { -- Fearless Spectator
         15594,
         {
+            RewardType = rewardType.Title,
             {"From", "Date", {2022, 7, 8}, "Until", "Date", {2022, 7, 24}},
         },
     },
     { -- Challenger I: Shadowlands Season 4
         15600,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 33},
         },
@@ -1147,6 +1294,7 @@ KrowiAF.AchievementData["09_02_05"] = {
     { -- Rival I: Shadowlands Season 4
         15602,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 33},
         },
@@ -1161,6 +1309,7 @@ KrowiAF.AchievementData["09_02_05"] = {
     { -- Duelist: Shadowlands Season 4
         15604,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 33},
         },
@@ -1168,6 +1317,7 @@ KrowiAF.AchievementData["09_02_05"] = {
     { -- Gladiator: Shadowlands Season 4
         15605,
         {
+            RewardType = {rewardType.Title, rewardType.Mount},
             IsPvP = true,
             {"PvP Season", 33},
         },
@@ -1175,6 +1325,7 @@ KrowiAF.AchievementData["09_02_05"] = {
     { -- Eternal Gladiator: Shadowlands Season 4
         15606,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 33},
         },
@@ -1200,6 +1351,7 @@ KrowiAF.AchievementData["09_02_05"] = {
     { -- Combatant I: Shadowlands Season 4
         15609,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 33},
         },
@@ -1221,6 +1373,7 @@ KrowiAF.AchievementData["09_02_05"] = {
     { -- Elite: Shadowlands Season 4
         15639,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 33},
         },
@@ -1228,7 +1381,12 @@ KrowiAF.AchievementData["09_02_05"] = {
     {15645}, -- To Catch Falling Stars
     {15646}, -- Re-Re-Re-Renowned
     {15647}, -- Dead Men Tell Some Tales
-    {15648}, -- Walking in Maw-mphis
+	{ -- Walking in Maw-mphis
+		15648,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {15649}, -- Shadowlands Dilettante
     {15650}, -- Mythic: Streets of Wonder
     {15651}, -- Myths of the Shadowlands Dungeons
@@ -1237,6 +1395,7 @@ KrowiAF.AchievementData["09_02_05"] = {
     { -- Back from the Beyond (Legacy)
         15654,
         {
+            RewardType = rewardType.Title,
             {"Before", "Version", {10, 0, 2}},
         },
     },
@@ -1297,12 +1456,14 @@ KrowiAF.AchievementData["09_02_05"] = {
     { -- Fates of the Shadowlands Raids
         15684,
         {
+            RewardType = rewardType.Mount,
             {"PvE Season", 8},
         },
     },
     { -- Heroic: Fates of the Shadowlands Raids
         15685,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 8},
         },
     },
@@ -1321,18 +1482,21 @@ KrowiAF.AchievementData["09_02_05"] = {
     { -- Shadowlands Keystone Conqueror: Season Four
         15689,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 8},
         },
     },
     { -- Shadowlands Keystone Master: Season Four
         15690,
         {
+            RewardType = rewardType.Mount,
             {"PvE Season", 8},
         },
     },
     { -- Cryptic Hero: Shadowlands Season 3
         15691,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 7},
         },
     },
@@ -1363,6 +1527,7 @@ KrowiAF.AchievementData["09_02_05"] = {
     { -- Shrouded Hero: Shadowlands Season 4
         15756,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 8},
         },
     },

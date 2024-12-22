@@ -180,7 +180,19 @@ local validations = {
             end
 
             local rewardType = achievement.RewardType;
-            return rewardType and not _filters.RewardType[rewardType];
+            if rewardType then
+                if not addon.Util.IsTable(rewardType) then
+                    rewardType = {rewardType};
+                end
+                for _, rType in next, rewardType do
+                    if _filters.RewardType[rType] then
+                        return false;
+                    end
+                end
+                return true;
+            end
+
+            return not _filters.RewardType[KrowiAF.Enum.RewardType.NotCategorized];
         end
     },
     {   -- 7

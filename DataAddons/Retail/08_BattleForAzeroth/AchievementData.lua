@@ -1,6 +1,7 @@
 local _, addon = ...;
 local shared = addon.Data.AchievementData.Shared;
 local faction = KrowiAF.Enum.Faction;
+local rewardType = KrowiAF.Enum.RewardType;
 
 KrowiAF.AchievementData["08_00_01"] = {
     {KrowiAF.SetAchievementPatch, 8, 0, 1},
@@ -119,7 +120,12 @@ KrowiAF.AchievementData["08_00_01"] = {
     {12530}, -- Mythic: Fetid Devourer
     {12531}, -- Mythic: Zul
     {12532}, -- Mythic: Mythrax the Unraveler
-    {12533}, -- Mythic: G'huun
+	{ -- Mythic: G'huun
+		12533,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     { -- Cutting Edge: G'huun
         12535,
         {
@@ -268,13 +274,19 @@ KrowiAF.AchievementData["08_00_01"] = {
         12604,
         faction.Horde,
         12605,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Conqueror of Azeroth
         12605,
         faction.Alliance,
         12604,
-        true,
+        {
+            RewardType = rewardType.Title,
+            IsPvP = true,
+        },
     },
     { -- Loa Expectations
         12614,
@@ -396,9 +408,19 @@ KrowiAF.AchievementData["08_00_01"] = {
     {12770}, -- Lengthy Legwork
     {12771}, -- Treasures of Nazmir
     {12772}, -- Now We Got Bad Blood
-    {12806}, -- Glory of the Uldir Raider
+	{ -- Glory of the Uldir Raider
+		12806,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {12807}, -- Battle for Azeroth Dungeon Hero
-    {12812}, -- Glory of the Wartorn Hero
+	{ -- Glory of the Wartorn Hero
+		12812,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {12823}, -- Thrash Mouth - All Stars
     {12824}, -- Atal'Dazar
     {12825}, -- Heroic: Atal'Dazar
@@ -466,6 +488,7 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Master of Duels
         12861,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
         },
     },
@@ -481,9 +504,19 @@ KrowiAF.AchievementData["08_00_01"] = {
             IsPvP = true,
         },
     },
-    {12864}, -- 80 Exalted Reputations
+	{ -- 80 Exalted Reputations
+		12864,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {12865}, -- 90 Exalted Reputations
-    {12866}, -- 100 Exalted Reputations
+	{ -- 100 Exalted Reputations
+		12866,
+		{
+            RewardType = {rewardType.Title, rewardType.Mount},
+		},
+	},
     { -- Azeroth at War: The Barrens
         12867,
         faction.Horde,
@@ -571,6 +604,7 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Honor Level 15
         12895,
         {
+            RewardType = rewardType.Mount,
             IsPvP = true,
         },
     },
@@ -598,6 +632,7 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Honor Level 25
         12901,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
         },
     },
@@ -610,12 +645,14 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Honor Level 40
         12903,
         {
+            RewardType = rewardType.Mount,
             IsPvP = true,
         },
     },
     { -- Honor Level 50
         12904,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
         },
     },
@@ -628,12 +665,14 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Honor Level 70
         12906,
         {
+            RewardType = rewardType.Mount,
             IsPvP = true,
         },
     },
     { -- Honor Level 80
         12907,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
         },
     },
@@ -646,18 +685,21 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Honor Level 100
         12909,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
         },
     },
     { -- Honor Level 125
         12910,
         {
+            RewardType = rewardType.Mount,
             IsPvP = true,
         },
     },
     { -- Honor Level 150
         12911,
         {
+            RewardType = rewardType.Mount,
             IsPvP = true,
         },
     },
@@ -670,18 +712,21 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Honor Level 200
         12913,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
         },
     },
     { -- Honor Level 250
         12914,
         {
+            RewardType = rewardType.Mount,
             IsPvP = true,
         },
     },
     { -- Honor Level 300
         12915,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
         },
     },
@@ -694,6 +739,7 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Honor Level 500
         12917,
         {
+            RewardType = rewardType.Mount,
             IsPvP = true,
         },
     },
@@ -704,21 +750,33 @@ KrowiAF.AchievementData["08_00_01"] = {
         12931,
         faction.Horde,
         12932,
+        {
+            RewardType = rewardType.Mount,
+        },
     },
     { -- No Stable Big Enough
         12932,
         faction.Alliance,
         12931,
+        {
+            RewardType = rewardType.Mount,
+        },
     },
     { -- A Horde of Hoofbeats
         12933,
         faction.Alliance,
         12934,
+        {
+            RewardType = rewardType.Mount,
+        },
     },
     { -- A Horde of Hoofbeats
         12934,
         faction.Horde,
         12933,
+        {
+            RewardType = rewardType.Mount,
+        },
     },
     {12936}, -- Battle on Zandalar and Kul Tiras
     {12937}, -- Elevator Music
@@ -732,6 +790,7 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Dread Gladiator: Battle for Azeroth Season 1
         12945,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 26},
         },
@@ -783,6 +842,7 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Challenger: Battle for Azeroth Season 1
         12959,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 26},
         },
@@ -790,6 +850,7 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Rival: Battle for Azeroth Season 1
         12960,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 26},
         },
@@ -797,6 +858,7 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Gladiator: Battle for Azeroth Season 1
         12961,
         {
+            RewardType = {rewardType.Title, rewardType.Mount},
             IsPvP = true,
             {"PvP Season", 26},
         },
@@ -804,6 +866,7 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Duelist: Battle for Azeroth Season 1
         12962,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 26},
         },
@@ -1064,6 +1127,7 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Expedition Leader
         13134,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
         },
     },
@@ -1089,6 +1153,7 @@ KrowiAF.AchievementData["08_01_00"] = {
     { -- Combatant: Battle for Azeroth Season 1
         13199,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 26},
         },
@@ -1096,6 +1161,7 @@ KrowiAF.AchievementData["08_01_00"] = {
     { -- Sinister Gladiator: Battle for Azeroth Season 2
         13200,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 27},
         },
@@ -1110,6 +1176,7 @@ KrowiAF.AchievementData["08_01_00"] = {
     { -- Challenger: Battle for Azeroth Season 2
         13203,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 27},
         },
@@ -1117,6 +1184,7 @@ KrowiAF.AchievementData["08_01_00"] = {
     { -- Combatant: Battle for Azeroth Season 2
         13204,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 27},
         },
@@ -1124,6 +1192,7 @@ KrowiAF.AchievementData["08_01_00"] = {
     { -- Rival: Battle for Azeroth Season 2
         13205,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 27},
         },
@@ -1131,6 +1200,7 @@ KrowiAF.AchievementData["08_01_00"] = {
     { -- Duelist: Battle for Azeroth Season 2
         13209,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 27},
         },
@@ -1156,6 +1226,7 @@ KrowiAF.AchievementData["08_01_00"] = {
     { -- Gladiator: Battle for Azeroth Season 2
         13212,
         {
+            RewardType = {rewardType.Title, rewardType.Mount},
             IsPvP = true,
             {"PvP Season", 27},
         },
@@ -1298,8 +1369,18 @@ KrowiAF.AchievementData["08_01_00"] = {
     {13311}, -- Mythic: King Rastakhan
     {13312}, -- Mythic: Mekkatorque
     {13313}, -- Mythic: Stormwall Blockade
-    {13314}, -- Mythic: Lady Jaina Proudmoore
-    {13315}, -- Glory of the Dazar'alor Raider
+	{ -- Mythic: Lady Jaina Proudmoore
+		13314,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
+	{ -- Glory of the Dazar'alor Raider
+		13315,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {13316}, -- Can I Get a Hek Hek Hek Yeah?
     { -- Supplied and Ready
         13317,
@@ -1452,6 +1533,7 @@ KrowiAF.AchievementData["08_01_00"] = {
     { -- Elite: Battle for Azeroth Season 2
         13451,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 27},
         },
@@ -1505,6 +1587,7 @@ KrowiAF.AchievementData["08_01_05"] = {
         faction.Alliance,
         13192,
         {
+            RewardType = rewardType.Title,
             {"Before", "Version", {9, 0, 1}},
         },
     },
@@ -1513,6 +1596,7 @@ KrowiAF.AchievementData["08_01_05"] = {
         faction.Horde,
         13191,
         {
+            RewardType = rewardType.Title,
             {"Before", "Version", {9, 0, 1}},
         },
     },
@@ -1557,6 +1641,7 @@ KrowiAF.AchievementData["08_01_05"] = {
     { -- Elite: Battle for Azeroth Season 1
         13465,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 26},
         },
@@ -1584,12 +1669,22 @@ KrowiAF.AchievementData["08_01_05"] = {
     {13506}, -- A Good Eye-dea
     {13512}, -- Master Calligrapher
     {13516}, -- Massive Tool
-    {13517}, -- Two Sides to Every Tale
+	{ -- Two Sides to Every Tale
+		13517,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
 };
 
 KrowiAF.AchievementData["08_02_00"] = {
     {KrowiAF.SetAchievementPatch, 8, 2, 0},
-    {13250}, -- Battle for Azeroth Pathfinder, Part Two
+	{ -- Battle for Azeroth Pathfinder, Part Two
+		13250,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {13470}, -- Rest In Pistons
     {13472}, -- Deep Pockets
     {13473}, -- Diversified Investments
@@ -1602,8 +1697,18 @@ KrowiAF.AchievementData["08_02_00"] = {
     {13482}, -- Head Financier of Mechagon
     {13489}, -- Secret Fish of Mechagon
     {13502}, -- Secret Fish and Where to Find Them
-    {13513}, -- Available in Eight Colors
-    {13541}, -- Mecha-Done
+	{ -- Available in Eight Colors
+		13513,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
+	{ -- Mecha-Done
+		13541,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     { -- How to Train Your Direhorn
         13542,
         faction.Horde,
@@ -1614,7 +1719,12 @@ KrowiAF.AchievementData["08_02_00"] = {
         13553,
         faction.Alliance,
     },
-    {13555}, -- Junkyard Tinkmaster
+	{ -- Junkyard Tinkmaster
+		13555,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {13556}, -- Outside Influences
     {13557}, -- Rustbolt Rebellion
     { -- Waveblade Ankoan
@@ -1683,6 +1793,7 @@ KrowiAF.AchievementData["08_02_00"] = {
     { -- Notorious Gladiator: Battle for Azeroth Season 3
         13630,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 28},
         },
@@ -1698,15 +1809,22 @@ KrowiAF.AchievementData["08_02_00"] = {
     { -- Challenger: Battle for Azeroth Season 3
         13634,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 28},
         },
     },
     {13635}, -- Tour of the Depths
-    {13638}, -- Undersea Usurper
+	{ -- Undersea Usurper
+		13638,
+		{
+            RewardType = {rewardType.Title, rewardType.Mount},
+		},
+	},
     { -- Combatant: Battle for Azeroth Season 3
         13639,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 28},
         },
@@ -1714,6 +1832,7 @@ KrowiAF.AchievementData["08_02_00"] = {
     { -- Rival: Battle for Azeroth Season 3
         13641,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 28},
         },
@@ -1721,6 +1840,7 @@ KrowiAF.AchievementData["08_02_00"] = {
     { -- Duelist: Battle for Azeroth Season 3
         13642,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 28},
         },
@@ -1751,6 +1871,7 @@ KrowiAF.AchievementData["08_02_00"] = {
     { -- Gladiator: Battle for Azeroth Season 3
         13647,
         {
+            RewardType = {rewardType.Title, rewardType.Mount},
             IsPvP = true,
             {"PvP Season", 28},
         },
@@ -1758,13 +1879,19 @@ KrowiAF.AchievementData["08_02_00"] = {
     { -- Elite: Battle for Azeroth Season 3
         13676,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 28},
         },
     },
     {13684}, -- You and What Army?
     {13686}, -- Junkyard Melomaniac
-    {13687}, -- Glory of the Eternal Raider
+	{ -- Glory of the Eternal Raider
+		13687,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {13690}, -- Nazjatarget Eliminated
     {13691}, -- I Thought You Said They'd Be Rare?
     {13692}, -- Give Me the Biggest Bag You've Got
@@ -1838,7 +1965,12 @@ KrowiAF.AchievementData["08_02_00"] = {
     {13730}, -- Mythic: Orgozoa
     {13731}, -- Mythic: The Queen's Court
     {13732}, -- Mythic: Za'qul
-    {13733}, -- Mythic: Queen Azshara
+	{ -- Mythic: Queen Azshara
+		13733,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     { -- Heroic: War is Hell
         13735,
         faction.Horde,
@@ -1991,6 +2123,7 @@ KrowiAF.AchievementData["08_02_00"] = {
     { -- Phenomenal Cosmic Power
         13779,
         {
+            RewardType = rewardType.Title,
             {"Before", "Version", {9, 0, 1}},
         },
     },
@@ -2041,11 +2174,17 @@ KrowiAF.AchievementData["08_02_05"] = {
         13924,
         faction.Horde,
         13925,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     { -- The Fourth War
         13925,
         faction.Alliance,
         13924,
+        {
+            RewardType = rewardType.Title,
+        },
     },
     {13927}, -- Crashin' Splashin'
     { -- Alterac Valley of Olde
@@ -2063,6 +2202,7 @@ KrowiAF.AchievementData["08_02_05"] = {
     { -- Memories of Fel, Frost and Fire
         13931,
         {
+            RewardType = rewardType.Mount,
             {"From", "Date", {2019, 11, 5}, "Until", "Date", {2020, 1, 7}},
         },
     },
@@ -2077,6 +2217,7 @@ KrowiAF.AchievementData["08_03_00"] = {
     { -- Corrupted Gladiator: Battle for Azeroth Season 4
         13957,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 29},
         },
@@ -2091,6 +2232,7 @@ KrowiAF.AchievementData["08_03_00"] = {
     { -- Challenger: Battle for Azeroth Season 4
         13959,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 29},
         },
@@ -2098,6 +2240,7 @@ KrowiAF.AchievementData["08_03_00"] = {
     { -- Combatant: Battle for Azeroth Season 4
         13962,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 29},
         },
@@ -2105,6 +2248,7 @@ KrowiAF.AchievementData["08_03_00"] = {
     { -- Rival: Battle for Azeroth Season 4
         13963,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 29},
         },
@@ -2112,6 +2256,7 @@ KrowiAF.AchievementData["08_03_00"] = {
     { -- Duelist: Battle for Azeroth Season 4
         13964,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 29},
         },
@@ -2137,6 +2282,7 @@ KrowiAF.AchievementData["08_03_00"] = {
     { -- Gladiator: Battle for Azeroth Season 4
         13967,
         {
+            RewardType = {rewardType.Title, rewardType.Mount},
             IsPvP = true,
             {"PvP Season", 29},
         },
@@ -2144,12 +2290,18 @@ KrowiAF.AchievementData["08_03_00"] = {
     { -- Elite: Battle for Azeroth Season 4
         13989,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 29},
         },
     },
     {13990}, -- You Can Pet the Dog, But...
-    {13994}, -- Through the Depths of Visions
+	{ -- Through the Depths of Visions
+		13994,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {13998}, -- Pure of Heart
     {13999}, -- How? Isn't it Obelisk?
     { -- Heritage of the Vulpera
@@ -2185,7 +2337,12 @@ KrowiAF.AchievementData["08_03_00"] = {
     {14051}, -- Mythic: Ra-den the Despoiled
     {14052}, -- Mythic: Il'gynoth, Corruption Reborn
     {14054}, -- Mythic: Carapace of N'Zoth
-    {14055}, -- Mythic: N'Zoth the Corruptor
+	{ -- Mythic: N'Zoth the Corruptor
+		14055,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {14058}, -- All Eyes On Me
     {14059}, -- The Eyes Have It
     {14060}, -- Unwavering Resolve
@@ -2212,6 +2369,7 @@ KrowiAF.AchievementData["08_03_00"] = {
     { -- Mad World
         14140,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 4},
         },
     },
@@ -2219,16 +2377,23 @@ KrowiAF.AchievementData["08_03_00"] = {
     { -- Battle for Azeroth Keystone Conqueror: Season Four
         14144,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 4},
         },
     },
     { -- Battle for Azeroth Keystone Master: Season Four
         14145,
         {
+            RewardType = rewardType.Mount,
             {"PvE Season", 4},
         },
     },
-    {14146}, -- Glory of the Ny'alotha Raider
+	{ -- Glory of the Ny'alotha Raider
+		14146,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {14147}, -- Cleansing Treatment
     {14148}, -- It's Not A Cult
     { -- Heroic: War for the Shore
@@ -2263,6 +2428,7 @@ KrowiAF.AchievementData["08_03_00"] = {
     { -- Master of Deepwind Gorge
         14175,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
         },
     },
@@ -2293,6 +2459,7 @@ KrowiAF.AchievementData["08_03_00"] = {
     { -- Servant of N'Zoth
         14191,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
         },
     },

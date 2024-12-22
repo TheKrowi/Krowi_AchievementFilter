@@ -6,11 +6,14 @@ KrowiAF.Enum.Faction = EnumUtil.MakeEnum(
     "Horde"
 );
 KrowiAF.Enum.RewardType = EnumUtil.MakeEnum(
+    "NotCategorized",
     "Other",
     "Toy",
     "Pet",
     "Title",
-    "Mount"
+    "Mount",
+    "Transmog",
+    "Item"
 );
 
 KrowiAF.AchievementData = {};

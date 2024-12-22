@@ -1,6 +1,7 @@
 local _, addon = ...;
 local shared = addon.Data.AchievementData.Shared;
 local faction = KrowiAF.Enum.Faction;
+local rewardType = KrowiAF.Enum.RewardType;
 
 KrowiAF.AchievementData["11_00_00"] = {
     {KrowiAF.SetAchievementPatch, 11, 0, 0},
@@ -33,12 +34,14 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- The War Within Keystone Conqueror: Season One
         20524,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 13},
         },
     },
     { -- The War Within Keystone Master: Season One
         20525,
         {
+            RewardType = rewardType.Mount,
             {"PvE Season", 13},
         },
     },
@@ -111,6 +114,7 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- Tempered Hero: The War Within Season 1
         20589,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 13},
         },
     },
@@ -131,8 +135,18 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40091}, -- Slightly Spoiled
     {40095}, -- Sparking Battle
     {40096}, -- Sparking Battle
-    {40097}, -- Ruffious's Bid
-    {40098}, -- Immortal Spelunker
+	{ -- Ruffious's Bid
+		40097,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
+	{ -- Immortal Spelunker
+		40098,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {40100}, -- Undying Caver
     { -- Nemesis
         40103,
@@ -172,12 +186,23 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40219}, -- Battleground Blitzest
     {40220}, -- Setting Records
     {40221}, -- Battleground Blitz Master
-    {40222}, -- Echoes of Danger
+	{ -- Echoes of Danger
+		40222,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {40231}, -- The War Within Pathfinder
-    {40232}, -- Glory of the Nerub-ar Raider
+	{ -- Glory of the Nerub-ar Raider
+		40232,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     { -- Strategist: The War Within Season 1
         40233,
         {
+            RewardType = {rewardType.Title, rewardType.Toy},
             IsPvP = true,
             {"PvP Season", 38},
         },
@@ -187,6 +212,7 @@ KrowiAF.AchievementData["11_00_00"] = {
         faction.Horde,
         40235,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 38},
         },
@@ -196,6 +222,7 @@ KrowiAF.AchievementData["11_00_00"] = {
         faction.Alliance,
         40234,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 38},
         },
@@ -207,7 +234,12 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40240}, -- Mythic: Broodtwister Ovi'nax
     {40241}, -- Mythic: Nexus-Princess Ky'veza
     {40242}, -- Mythic: The Silken Court
-    {40243}, -- Mythic: Queen Ansurek
+	{ -- Mythic: Queen Ansurek
+		40243,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {40244}, -- Nerub-ar Palace
     {40245}, -- Heroic: Nerub-ar Palace
     {40246}, -- Mythic: Nerub-ar Palace
@@ -281,7 +313,12 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40351}, -- Azj-Kahet Reverse: Gold
     {40352}, -- Khaz Algar Completionist: Bronze
     {40353}, -- Khaz Algar Completionist: Silver
-    {40354}, -- Khaz Algar Completionist: Gold
+	{ -- Khaz Algar Completionist: Gold
+		40354,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {40360}, -- Life on the Farm
     {40361}, -- Cinderbrew Meadery
     {40363}, -- Heroic: Cinderbrew Meadery
@@ -295,6 +332,7 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- Forged Gladiator: The War Within Season 1
         40380,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 38},
         },
@@ -302,6 +340,7 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- Forged Legend: The War Within Season 1
         40381,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 38},
         },
@@ -327,6 +366,7 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- Combatant I: The War Within Season 1
         40385,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 38},
         },
@@ -341,6 +381,7 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- Challenger I: The War Within Season 1
         40387,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 38},
         },
@@ -355,6 +396,7 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- Rival I: The War Within Season 1
         40389,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 38},
         },
@@ -369,6 +411,7 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- Duelist: The War Within Season 1
         40391,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 38},
         },
@@ -376,6 +419,7 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- Elite: The War Within Season 1
         40392,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 38},
         },
@@ -383,6 +427,7 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- Gladiator: The War Within Season 1
         40393,
         {
+            RewardType = {rewardType.Title, rewardType.Mount, rewardType.Transmog},
             IsPvP = true,
             {"PvP Season", 38},
         },
@@ -390,6 +435,7 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- Legend: The War Within Season 1
         40395,
         {
+            RewardType = {rewardType.Title, rewardType.Toy},
             IsPvP = true,
             {"PvP Season", 38},
         },
@@ -421,7 +467,12 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40435}, -- Adventurer of the Isle of Dorn
     {40436}, -- You're Getting a Delve!
     {40437}, -- Delver of the Depths
-    {40438}, -- Glory of the Delver
+	{ -- Glory of the Delver
+		40438,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {40445}, -- Sporesweeper
     {40446}, -- I TAKE Candle!
     {40447}, -- Delver of the Depths II
@@ -450,6 +501,7 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- Battle Mender: The War Within Season 1
         40472,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 38},
         },
@@ -477,7 +529,12 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40502}, -- 50 Algari Anglerthread
     {40503}, -- 90 Algari Anglerthread
     {40504}, -- Rocked to Sleep
-    {40506}, -- Leave No Treasure Unfound
+	{ -- Leave No Treasure Unfound
+		40506,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {40507}, -- Hanging Tight
     {40512}, -- War Within Delves: Tier 2
     {40514}, -- War Within Delves: Tier 3
@@ -504,7 +561,12 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40536}, -- The Spiral Weave Stories
     {40537}, -- Delve Loremaster: War Within
     {40538}, -- Brann Development
-    {40539}, -- The Derby Dash
+	{ -- The Derby Dash
+		40539,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {40542}, -- Smelling History
     {40585}, -- Super Size Snuffling
     {40590}, -- Priory of the Sacred Flame
@@ -522,7 +584,12 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40614}, -- Gobblin' with Glublurp
     {40615}, -- Unexpected Arrival
     {40616}, -- Unexpected Arrivals
-    {40617}, -- Deepholla
+	{ -- Deepholla
+		40617,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {40618}, -- Lost and Found
     {40620}, -- Back to the Wall
     {40621}, -- The Rookery
@@ -545,15 +612,30 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40644}, -- Heroic: The Stonevault
     {40648}, -- Mythic: The Stonevault
     {40660}, -- The War Within Season 1: Spelunker Supreme
-    {40662}, -- It's Not Much, But It's Honest Work
-    {40702}, -- Khaz Algar Glyph Hunter
+	{ -- It's Not Much, But It's Honest Work
+		40662,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
+	{ -- Khaz Algar Glyph Hunter
+		40702,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {40703}, -- The Ringing Deeps Glyph Hunter
     {40704}, -- Hallowfall Glyph Hunter
     {40705}, -- Azj-Kahet Glyph Hunter
     {40723}, -- Web-Wrapped in the Finest Silks
     {40724}, -- Treasures of The Ringing Deeps
     {40725}, -- War Within Delves: Endgame
-    {40726}, -- War Within Delves: Tier 11
+	{ -- War Within Delves: Tier 11
+		40726,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {40727}, -- Skittershaw Spin
     {40728}, -- Forged Finery
     {40729}, -- Light's Gambit Champion
@@ -633,10 +715,30 @@ KrowiAF.AchievementData["11_00_02"] = {
     {40863}, -- Perplexing Puzzle
     {40864}, -- Plentiful Perplexing Puzzles
     {40869}, -- Worm Theory
-    {40874}, -- The Grand Tapestry
-    {40875}, -- True Strength
-    {40876}, -- Vox Arachni
-    {40882}, -- Copious Coffers
+	{ -- The Grand Tapestry
+		40874,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
+	{ -- True Strength
+		40875,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
+	{ -- Vox Arachni
+		40876,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
+	{ -- Copious Coffers
+		40882,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {40885}, -- The Key to Madness
     -- {40904}, -- Cornerstone of Dornogal [Removed in 11.0.7, replaced by 41162]
     -- {40905}, -- From Many, One [Removed in 11.0.7, replaced by 41166]
@@ -648,14 +750,24 @@ KrowiAF.AchievementData["11_00_02"] = {
 KrowiAF.AchievementData["11_00_05"] = {
     {KrowiAF.SetAchievementPatch, 11, 0, 5},
     {15644}, -- Good Things Come in Small Packages
-    {16731}, -- Court is Now in Session
+	{ -- Court is Now in Session
+		16731,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     { -- Zoomies!
         40661,
         {
             {"Event", 1592},
         },
     },
-    {40870}, -- Azeroth's Greatest Detective
+	{ -- Azeroth's Greatest Detective
+		40870,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {40871}, -- Assistant to the Assistant Guest Relations Manager
     {40872}, -- I Saved the Party and All I Got Was This Lousy Hat
     {40873}, -- Crate Insurance Agent
@@ -663,6 +775,7 @@ KrowiAF.AchievementData["11_00_05"] = {
     { -- A Cool Twenty Years
         40976,
         {
+            RewardType = rewardType.Mount,
             {"Event", 1592},
         },
     },
@@ -793,10 +906,25 @@ KrowiAF.AchievementData["11_00_05"] = {
 KrowiAF.AchievementData["11_00_07"] = {
     {KrowiAF.SetAchievementPatch, 11, 0, 7},
     {40762}, -- Khaz Algar Lore Hunter
-    {40791}, -- Fate of the Kirin Tor
-    {40953}, -- A Farewell to Arms
+	{ -- Fate of the Kirin Tor
+		40791,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
+	{ -- A Farewell to Arms
+		40953,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {40955}, -- War Stories
-    {40956}, -- I'm On Island Time
+	{ -- I'm On Island Time
+		40956,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {40957}, -- Maximum Effort
     {40958}, -- Full Heart, Can't Lose
     {40959}, -- Black Empire State of Mind
@@ -813,6 +941,7 @@ KrowiAF.AchievementData["11_00_07"] = {
     { -- Master of the Turbulent Timeways II
         41056,
         {
+            RewardType = rewardType.Mount,
             {"Event", 1425},
         },
     },
@@ -823,7 +952,12 @@ KrowiAF.AchievementData["11_00_07"] = {
         },
     },
     {41131}, -- Treasures of the Storm
-    {41133}, -- Isle Remember You
+	{ -- Isle Remember You
+		41133,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {41149}, -- The Severed Threads
     { -- Lub and Plunder
         41152,
@@ -894,7 +1028,12 @@ KrowiAF.AchievementData["11_00_07"] = {
     {41187}, -- Rage Aside the Machine
     {41188}, -- Crystal Chronicled
     {41189}, -- Azj the World Turns
-    {41201}, -- You Xal Not Pass
+	{ -- You Xal Not Pass
+		41201,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {41202}, -- Hot Tropic
     {41203}, -- Bwon Voyage
     {41204}, -- Dune Squad

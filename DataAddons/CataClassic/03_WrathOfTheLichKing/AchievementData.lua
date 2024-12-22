@@ -1287,7 +1287,10 @@ KrowiAF.AchievementData["03_00_02"] = {
         614,
         faction.Alliance,
         619,
-        true,
+        {
+            RewardType = rewardType.Mount,
+            IsPvP = true,
+        },
     },
     { -- Storming Stormwind
         615,
@@ -1323,7 +1326,10 @@ KrowiAF.AchievementData["03_00_02"] = {
         619,
         faction.Horde,
         614,
-        true,
+        {
+            RewardType = rewardType.Mount,
+            IsPvP = true,
+        },
     },
     {621}, -- Represent
     {622}, -- The Spellweaver's Downfall (10 player)
@@ -3383,6 +3389,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Gladiator
         2091,
         {
+            RewardType = rewardType.Mount,
             IsPvP = true,
         },
     },
@@ -3408,23 +3415,39 @@ KrowiAF.AchievementData["03_00_02"] = {
             {"Never"},
         },
     },
-    {2136}, -- Glory of the Hero
+	{ -- Glory of the Hero
+		2136,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {2137}, -- Glory of the Raider (10 player)
     {2138}, -- Glory of the Raider (25 player)
     {2139}, -- The Safety Dance (25 player)
     {2140}, -- Momma Said Knock You Out (25 player)
     {2141}, -- Stable Keeper
     {2142}, -- Filling Up The Barn
-    {2143}, -- Leading the Cavalry
+	{ -- Leading the Cavalry
+		2143,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     { -- What A Long, Strange Trip It's Been
         2144,
         faction.Alliance,
         2145,
+		{
+			RewardType = rewardType.Mount,
+		},
     },
     { -- What A Long, Strange Trip It's Been
         2145,
         faction.Horde,
         2144,
+		{
+			RewardType = rewardType.Mount,
+		},
     },
     {2146}, -- The Hundred Club (10 player)
     {2147}, -- The Hundred Club (25 player)
@@ -3610,11 +3633,17 @@ KrowiAF.AchievementData["03_00_02"] = {
         2536,
         faction.Alliance,
         2537,
+        {
+            RewardType = rewardType.Mount,
+        },
     },
     { -- Mountain o' Mounts
         2537,
         faction.Horde,
         2536,
+        {
+            RewardType = rewardType.Mount,
+        },
     },
     {2556}, -- Pest Control
     {2557}, -- To All The Squirrels Who Shared My Life
@@ -4261,12 +4290,14 @@ KrowiAF.AchievementData["03_01_00"] = {
     { -- Glory of the Ulduar Raider (10 player)
         2957,
         {
+            RewardType = rewardType.Mount,
             {"Before", "Version", {7, 3, 5}},
         },
     },
     { -- Glory of the Ulduar Raider (25 player)
         2958,
         {
+            RewardType = rewardType.Mount,
             {"Before", "Version", {7, 3, 5}},
         },
     },
@@ -5176,6 +5207,7 @@ KrowiAF.AchievementData["03_02_00"] = {
         faction.Horde,
         4156,
         {
+            RewardType = rewardType.Mount,
             {"Before", "Version", {4, 0, 3}},
         },
     },
@@ -5191,6 +5223,7 @@ KrowiAF.AchievementData["03_02_00"] = {
         faction.Alliance,
         4079,
         {
+            RewardType = rewardType.Mount,
             {"Before", "Version", {4, 0, 3}},
         },
     },
@@ -5363,8 +5396,18 @@ KrowiAF.AchievementData["03_03_00"] = {
         },
     },
     {4601}, -- Been Waiting a Long Time for This (10 player)
-    {4602}, -- Glory of the Icecrown Raider (10 player)
-    {4603}, -- Glory of the Icecrown Raider (25 player)
+	{ -- Glory of the Icecrown Raider (10 player)
+		4602,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
+	{ -- Glory of the Icecrown Raider (25 player)
+		4603,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {4604}, -- Storming the Citadel (25 player)
     {4605}, -- The Plagueworks (25 player)
     {4606}, -- The Crimson Hall (25 player)

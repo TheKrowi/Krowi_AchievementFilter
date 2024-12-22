@@ -77,7 +77,12 @@ KrowiAF.AchievementData["04_00_03"] = {
     {4841}, -- Halls of Origination
     {4842}, -- Blackwing Descent
     {4844}, -- Cataclysm Dungeon Hero
-    {4845}, -- Glory of the Cataclysm Hero
+	{ -- Glory of the Cataclysm Hero
+		4845,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {4846}, -- The Stonecore
     {4847}, -- The Vortex Pinnacle
     {4848}, -- Lost City of the Tol'vir
@@ -85,7 +90,12 @@ KrowiAF.AchievementData["04_00_03"] = {
     {4850}, -- The Bastion of Twilight
     {4851}, -- Throne of the Four Winds
     {4852}, -- Double Dragon
-    {4853}, -- Glory of the Cataclysm Raider
+	{ -- Glory of the Cataclysm Raider
+		4853,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     { -- I Had It in My Hand
         4854,
         {
@@ -1461,13 +1471,19 @@ KrowiAF.AchievementData["04_02_00"] = {
         5823,
         faction.Alliance,
         5824,
-        true,
+        {
+            RewardType = rewardType.Mount,
+            IsPvP = true,
+        },
     },
     { -- Veteran of the Horde II
         5824,
         faction.Horde,
         5823,
-        true,
+        {
+            RewardType = rewardType.Mount,
+            IsPvP = true,
+        },
     },
     { -- Avengers of Hyjal
         5827,
@@ -1475,7 +1491,12 @@ KrowiAF.AchievementData["04_02_00"] = {
             RewardType = rewardType.Title,
         },
     },
-    {5828}, -- Glory of the Firelands Raider
+	{ -- Glory of the Firelands Raider
+		5828,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {5829}, -- Bucket List
     {5830}, -- Share the Pain
     { -- Tricks and Treats of Northrend
@@ -1585,7 +1606,12 @@ KrowiAF.AchievementData["04_02_00"] = {
     },
     {5864}, -- Gang War
     {5865}, -- Have... Have We Met?
-    {5866}, -- The Molten Front Offensive
+	{ -- The Molten Front Offensive
+		5866,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {5867}, -- Flawless Victory
     {5868}, -- And the Meek Shall Inherit Kalimdor
     {5869}, -- Infernal Ambassadors
@@ -1845,7 +1871,12 @@ KrowiAF.AchievementData["04_03_00"] = {
     },
     {6132}, -- Eclipse
     {6133}, -- Maybe He'll Get Dizzy...
-    {6169}, -- Glory of the Dragon Soul Raider
+	{ -- Glory of the Dragon Soul Raider
+		6169,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {6174}, -- Don't Stand So Close to Me
     {6175}, -- Holding Hands
     { -- Destroyer's End

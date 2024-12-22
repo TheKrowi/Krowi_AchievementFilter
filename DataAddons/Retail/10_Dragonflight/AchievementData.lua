@@ -1,6 +1,7 @@
 local _, addon = ...;
 local shared = addon.Data.AchievementData.Shared;
 local faction = KrowiAF.Enum.Faction;
+local rewardType = KrowiAF.Enum.RewardType;
 
 KrowiAF.AchievementData["10_00_00"] = {
     {KrowiAF.SetAchievementPatch, 10, 0, 0},
@@ -25,43 +26,95 @@ KrowiAF.AchievementData["10_00_00"] = {
     { -- Thanks for the Carry!
         15833,
         faction.Horde,
+        {
+            RewardType = rewardType.Mount,
+        },
     },
     { -- Thanks for the Carry!
         15834,
         faction.Alliance,
+        {
+            RewardType = rewardType.Mount,
+        },
     },
     {15889}, -- River Rapids Wrangler
     {15890}, -- Dragonscale Expedition: The Highest Peaks
     {15915}, -- Waking Shores: Bronze
-    {15916}, -- Waking Shores: Silver
+	{ -- Waking Shores: Silver
+		15916,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {15917}, -- Waking Shores: Gold
     {15918}, -- Ohn'ahran Plains: Bronze
-    {15919}, -- Ohn'ahran Plains: Silver
+	{ -- Ohn'ahran Plains: Silver
+		15919,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {15920}, -- Ohn'ahran Plains: Gold
     {15921}, -- Azure Span: Bronze
-    {15922}, -- Azure Span: Silver
+	{ -- Azure Span: Silver
+		15922,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {15923}, -- Azure Span: Gold
     {15924}, -- Thaldraszus: Bronze
-    {15925}, -- Thaldraszus: Silver
+	{ -- Thaldraszus: Silver
+		15925,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {15926}, -- Thaldraszus: Gold
     {15927}, -- Waking Shores Advanced: Bronze
-    {15928}, -- Waking Shores Advanced: Silver
+	{ -- Waking Shores Advanced: Silver
+		15928,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {15929}, -- Waking Shores Advanced: Gold
     {15930}, -- Ohn'ahran Plains Advanced: Bronze
-    {15931}, -- Ohn'ahran Plains Advanced: Silver
+	{ -- Ohn'ahran Plains Advanced: Silver
+		15931,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {15932}, -- Ohn'ahran Plains Advanced: Gold
     {15933}, -- Azure Span Advanced: Bronze
-    {15934}, -- Azure Span Advanced: Silver
+	{ -- Azure Span Advanced: Silver
+		15934,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {15935}, -- Azure Span Advanced: Gold
     {15936}, -- Thaldraszus Advanced: Bronze
-    {15937}, -- Thaldraszus Advanced: Silver
+	{ -- Thaldraszus Advanced: Silver
+		15937,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {15938}, -- Thaldraszus Advanced: Gold
     {15939}, -- Dragon Racing Completionist: Bronze
     {15940}, -- Dragon Racing Completionist: Silver
-    {15941}, -- Dragon Racing Completionist: Gold
+	{ -- Dragon Racing Completionist: Gold
+		15941,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     { -- Crimson Gladiator: Dragonflight Season 1
         15951,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 34},
         },
@@ -69,6 +122,7 @@ KrowiAF.AchievementData["10_00_00"] = {
     { -- Rival I: Dragonflight Season 1
         15952,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 34},
         },
@@ -83,6 +137,7 @@ KrowiAF.AchievementData["10_00_00"] = {
     { -- Duelist: Dragonflight Season 1
         15954,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 34},
         },
@@ -90,6 +145,7 @@ KrowiAF.AchievementData["10_00_00"] = {
     { -- Challenger I: Dragonflight Season 1
         15955,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 34},
         },
@@ -104,6 +160,7 @@ KrowiAF.AchievementData["10_00_00"] = {
     { -- Gladiator: Dragonflight Season 1
         15957,
         {
+            RewardType = {rewardType.Title, rewardType.Mount, rewardType.Transmog},
             IsPvP = true,
             {"PvP Season", 34},
         },
@@ -129,6 +186,7 @@ KrowiAF.AchievementData["10_00_00"] = {
     { -- Combatant I: Dragonflight Season 1
         15960,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 34},
         },
@@ -143,6 +201,7 @@ KrowiAF.AchievementData["10_00_00"] = {
     { -- Elite: Dragonflight Season 1
         15984,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 34},
         },
@@ -217,7 +276,12 @@ KrowiAF.AchievementData["10_00_00"] = {
     {16291}, -- An Ancient Awakening
     {16292}, -- Mastering the Waygates
     {16294}, -- Dragonflight Dungeon Hero
-    {16295}, -- Glory of the Dragonflight Hero
+	{ -- Glory of the Dragonflight Hero
+		16295,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {16296}, -- Growlbossify
     {16297}, -- Treasures of The Waking Shores
     {16298}, -- Treasure Hunter of the Dragon Isles
@@ -247,9 +311,19 @@ KrowiAF.AchievementData["10_00_00"] = {
     {16350}, -- Mythic: Dathea, Ascended
     {16351}, -- Mythic: Kurog Grimtotem
     {16352}, -- Mythic: Broodkeeper Diurna
-    {16353}, -- Mythic: Raszageth the Storm-Eater
+	{ -- Mythic: Raszageth the Storm-Eater
+		16353,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {16354}, -- Mythic: Vault of the Incarnates
-    {16355}, -- Glory of the Vault Raider
+	{ -- Glory of the Vault Raider
+		16355,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {16363}, -- Just Don't Ask Me to Spell It
     {16364}, -- The Lunker Below
     {16365}, -- Little Friends
@@ -275,6 +349,7 @@ KrowiAF.AchievementData["10_00_00"] = {
     { -- Thundering Hero: Dragonflight Season 1
         16429,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 9},
         },
     },
@@ -291,10 +366,20 @@ KrowiAF.AchievementData["10_00_00"] = {
     {16440}, -- Are You My Broodmother?
     {16441}, -- Squad Goals
     {16442}, -- Incubation Extermination
-    {16443}, -- Soupervisor
+	{ -- Soupervisor
+		16443,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {16444}, -- Leftovers' Revenge
     {16445}, -- Icy What You Did There
-    {16446}, -- That's Pretty Neat!
+	{ -- That's Pretty Neat!
+		16446,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {16447}, -- What Are The Chances...
     {16450}, -- The Power is MINE!
     {16451}, -- The Ol Raszle Daszle
@@ -329,9 +414,19 @@ KrowiAF.AchievementData["10_00_00"] = {
     {16488}, -- Snowstorms in Thaldraszus
     {16489}, -- Chasing Storms in Thaldraszus
     {16490}, -- Storm Chaser
-    {16492}, -- Into the Storm
+	{ -- Into the Storm
+		16492,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {16493}, -- Petty Theft Mammoth
-    {16494}, -- Loyalty to the Prince
+	{ -- Loyalty to the Prince
+		16494,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {16495}, -- Obsidian Keymaster
     {16496}, -- Obsidian Champion
     {16497}, -- I'm Playing All Sides
@@ -451,6 +546,7 @@ KrowiAF.AchievementData["10_00_00"] = {
     { -- Dragonfight Club
         16601,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
         },
     },
@@ -575,12 +671,14 @@ KrowiAF.AchievementData["10_00_00"] = {
     { -- Dragonflight Keystone Conqueror: Season One
         16648,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 9},
         },
     },
     { -- Dragonflight Keystone Master: Season One
         16649,
         {
+            RewardType = rewardType.Mount,
             {"PvE Season", 9},
         },
     },
@@ -643,13 +741,19 @@ KrowiAF.AchievementData["10_00_02"] = {
     { -- Crimson Legend: Dragonflight Season 1
         16734,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 34},
         },
     },
     {16736}, -- Grand Theft Mammoth
     {16758}, -- Ready, Aim, Catalog!
-    {16760}, -- The Obsidian Bloodline
+	{ -- The Obsidian Bloodline
+		16760,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {16761}, -- Dragon Isles Explorer
     {16762}, -- The Vegetarian Diet
     { -- Crimson Carpet Fashion
@@ -660,8 +764,18 @@ KrowiAF.AchievementData["10_00_02"] = {
     },
     {16789}, -- Lucky Penny
     {16790}, -- Curious Coin
-    {16791}, -- Merchant Artisan
-    {16799}, -- Personal Crafter
+	{ -- Merchant Artisan
+		16791,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
+	{ -- Personal Crafter
+		16799,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     { -- Realm First! Dragonflight Keystone Hero
         16801,
         {
@@ -694,6 +808,7 @@ KrowiAF.AchievementData["10_00_02"] = {
     { -- Legend: Dragonflight Season 1
         17339,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 34},
         },
@@ -744,7 +859,12 @@ KrowiAF.AchievementData["10_00_05"] = {
     },
     {17330}, -- Reverse Racer: Bronze
     {17331}, -- Reverse Racer: Silver
-    {17332}, -- Reverse Racer: Gold
+	{ -- Reverse Racer: Gold
+		17332,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {17334}, -- Trading Post Enthusiast
     { -- Airborne Tumbler
         17335,
@@ -763,6 +883,7 @@ KrowiAF.AchievementData["10_00_05"] = {
     { -- Airborne Tumbler
         17345,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
         },
     },
@@ -781,7 +902,12 @@ KrowiAF.AchievementData["10_00_07"] = {
     {17290}, -- Forbidden Reach Reverse: Gold
     {17294}, -- Forbidden Reach Racing Completionist
     {17296}, -- Forbidden Reach Racing Completionist: Silver
-    {17298}, -- Forbidden Reach Racing Completionist: Gold
+	{ -- Forbidden Reach Racing Completionist: Gold
+		17298,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {17315}, -- While We Were Sleeping
     {17366}, -- Relics of a Fallen Empire
     {17367}, -- Deadliest Cache
@@ -808,7 +934,12 @@ KrowiAF.AchievementData["10_00_07"] = {
             {"Never"},
         },
     },
-    {17413}, -- Door Buster
+	{ -- Door Buster
+		17413,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {17426}, -- Toolbox Trouble
     {17427}, -- Winterpelt Conversationalist
     { -- Renowned Weaponsmith
@@ -848,24 +979,44 @@ KrowiAF.AchievementData["10_00_07"] = {
     {17534}, -- Explore the Forbidden Reach
     {17540}, -- Under the Weather
     {17541}, -- Global Swarming
-    {17543}, -- You Know How to Reach Me
+	{ -- You Know How to Reach Me
+		17543,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {17546}, -- A New Beginning
 };
 
 KrowiAF.AchievementData["10_01_00"] = {
     {KrowiAF.SetAchievementPatch, 10, 1, 0},
     {17483}, -- Zaralek Cavern: Bronze
-    {17484}, -- Zaralek Cavern: Silver
+	{ -- Zaralek Cavern: Silver
+		17484,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {17485}, -- Zaralek Cavern: Gold
     {17486}, -- Zaralek Cavern Advanced: Bronze
-    {17487}, -- Zaralek Cavern Advanced: Silver
+	{ -- Zaralek Cavern Advanced: Silver
+		17487,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {17488}, -- Zaralek Cavern Advanced: Gold
     {17489}, -- Zaralek Cavern Reverse: Bronze
     {17490}, -- Zaralek Cavern Reverse: Silver
     {17491}, -- Zaralek Cavern Reverse: Gold
     {17492}, -- Zaralek Cavern Racing Completionist
     {17493}, -- Zaralek Cavern Racing Completionist: Silver
-    {17494}, -- Zaralek Cavern Racing Completionist: Gold
+	{ -- Zaralek Cavern Racing Completionist: Gold
+		17494,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {17506}, -- Still Standing in the Fire
     {17510}, -- Dragon Glyphs: Glimmerogg
     {17511}, -- Dragon Glyphs: Nal ks'kol
@@ -881,7 +1032,12 @@ KrowiAF.AchievementData["10_01_00"] = {
     {17563}, -- Ancient Stones of the Azure Span
     {17564}, -- Ancient Stones of Thaldraszus
     {17567}, -- Ancient Stones of Zaralek
-    {17734}, -- Active Listening Skills
+	{ -- Active Listening Skills
+		17734,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {17735}, -- We Didn't Start the Fire
     {17736}, -- The Gift of Cheese
     { -- Flame Warden of the Dragon Isles
@@ -903,6 +1059,7 @@ KrowiAF.AchievementData["10_01_00"] = {
     { -- Gladiator: Dragonflight Season 2
         17740,
         {
+            RewardType = {rewardType.Title, rewardType.Mount, rewardType.Transmog},
             IsPvP = true,
             {"PvP Season", 35},
         },
@@ -913,6 +1070,7 @@ KrowiAF.AchievementData["10_01_00"] = {
     { -- Obsidian Gladiator: Dragonflight Season 2
         17764,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 35},
         },
@@ -922,6 +1080,7 @@ KrowiAF.AchievementData["10_01_00"] = {
     { -- Obsidian Legend: Dragonflight Season 2
         17767,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 35},
         },
@@ -954,11 +1113,17 @@ KrowiAF.AchievementData["10_01_00"] = {
     {17779}, -- A Serpentine Discovery
     {17781}, -- The Smell of Money
     {17783}, -- Adventurer of Zaralek Cavern
-    {17785}, -- Que Zara(lek), Zara(lek)
+	{ -- Que Zara(lek), Zara(lek)
+		17785,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {17786}, -- Treasures of Zaralek Cavern
     { -- Duelist: Dragonflight Season 2
         17794,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 35},
         },
@@ -966,6 +1131,7 @@ KrowiAF.AchievementData["10_01_00"] = {
     { -- Rival I: Dragonflight Season 2
         17795,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 35},
         },
@@ -980,6 +1146,7 @@ KrowiAF.AchievementData["10_01_00"] = {
     { -- Challenger I: Dragonflight Season 2
         17797,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 35},
         },
@@ -994,6 +1161,7 @@ KrowiAF.AchievementData["10_01_00"] = {
     { -- Combatant I: Dragonflight Season 2
         17799,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 35},
         },
@@ -1008,6 +1176,7 @@ KrowiAF.AchievementData["10_01_00"] = {
     { -- Legend: Dragonflight Season 2
         17801,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 35},
         },
@@ -1016,13 +1185,19 @@ KrowiAF.AchievementData["10_01_00"] = {
     { -- Elite: Dragonflight Season 2
         17831,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 35},
         },
     },
     {17832}, -- Sniffen Around
     {17833}, -- Sniffen Sage
-    {17841}, -- Pyramid Scheme
+	{ -- Pyramid Scheme
+		17841,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     { -- Dragonflight Keystone Explorer: Season Two
         17842,
         {
@@ -1032,12 +1207,14 @@ KrowiAF.AchievementData["10_01_00"] = {
     { -- Dragonflight Keystone Conqueror: Season Two
         17843,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 10},
         },
     },
     { -- Dragonflight Keystone Master: Season Two
         17844,
         {
+            RewardType = rewardType.Mount,
             {"PvE Season", 10},
         },
     },
@@ -1050,6 +1227,7 @@ KrowiAF.AchievementData["10_01_00"] = {
     { -- Smoldering Hero: Dragonflight Season 2
         17846,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 10},
         },
     },
@@ -1118,7 +1296,12 @@ KrowiAF.AchievementData["10_01_00"] = {
     {18156}, -- Mythic: The Vigilant Steward, Zskarn
     {18157}, -- Mythic: Magmorax
     {18158}, -- Mythic: Echo of Neltharion
-    {18159}, -- Mythic: Scalecommander Sarkareth
+	{ -- Mythic: Scalecommander Sarkareth
+		18159,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {18160}, -- Aberrus, the Shadowed Crucible
     {18161}, -- Heroic: Aberrus, the Shadowed Crucible
     {18162}, -- Mythic: Aberrus, the Shadowed Crucible
@@ -1132,7 +1315,12 @@ KrowiAF.AchievementData["10_01_00"] = {
     {18174}, -- Contaminant Cleaner
     {18193}, -- Eggscellent Eggsecution
     {18199}, -- Zaqali Ritual Buster
-    {18200}, -- Cooling the Research Field
+	{ -- Cooling the Research Field
+		18200,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {18201}, -- Lockdown Mystery
     {18202}, -- Rockin Research
     {18203}, -- A Research Sampler
@@ -1151,7 +1339,12 @@ KrowiAF.AchievementData["10_01_00"] = {
             IsPvP = true,
         },
     },
-    {18251}, -- Glory of the Aberrus Raider
+	{ -- Glory of the Aberrus Raider
+		18251,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     { -- Ahead of the Curve: Scalecommander Sarkareth
         18253,
         {
@@ -1169,7 +1362,12 @@ KrowiAF.AchievementData["10_01_00"] = {
     {18257}, -- Can You Dig It?
     {18258}, -- Little Lord of Lies
     {18271}, -- He'sSss All Mine
-    {18284}, -- A Niffen's Best Buddy
+	{ -- A Niffen's Best Buddy
+		18284,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {18361}, -- To All the Squirrels Burrowed Beneath
     {18380}, -- Dragonflight Season 2 Hero
     { -- Dragonflight Keystone Master: Season Two
@@ -1251,6 +1449,7 @@ KrowiAF.AchievementData["10_01_05"] = {
     { -- Kalimdor Racing Completionist: Gold
         17723,
         {
+            RewardType = rewardType.Title,
             {"Event", 1395},
         },
     },
@@ -1264,7 +1463,12 @@ KrowiAF.AchievementData["10_01_05"] = {
     },
     {18368}, -- Memory of Scholomance
     {18372}, -- Wards of the Dread Citadel
-    {18383}, -- Hey Nanny Nanny
+	{ -- Hey Nanny Nanny
+		18383,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {18384}, -- Whelp, There It Is
     {18471}, -- 110 Exalted Reputations
     {18539}, -- Back En-masse
@@ -1338,14 +1542,29 @@ KrowiAF.AchievementData["10_01_05"] = {
     {18639}, -- Collapsed Reality
     {18640}, -- Lock and Load
     {18641}, -- To All The Squirrels I've BEEN Before
-    {18642}, -- The Inquisitive
+	{ -- The Inquisitive
+		18642,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {18643}, -- Community Rumors
     {18644}, -- Community Rumor Mill
     {18645}, -- Tools of the Trade
-    {18646}, -- Whodunnit?
+	{ -- Whodunnit?
+		18646,
+		{
+            RewardType = {rewardType.Title, rewardType.Mount},
+		},
+	},
     {18703}, -- Dawn of the Infinite: Galakrond's Fall
     {18704}, -- Dawn of the Infinite: Murozond's Rise
-    {18705}, -- Defender of the Timeways
+	{ -- Defender of the Timeways
+		18705,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {18706}, -- Put That Thing Back Where It Came From
     { -- Draconically Superior
         18976,
@@ -1459,7 +1678,12 @@ KrowiAF.AchievementData["10_01_07"] = {
     {18789}, -- Simply Enchanting
     {18790}, -- Dragonriding Challenge: Dragon Isles: Bronze
     {18791}, -- Dragonriding Challenge: Dragon Isles: Silver
-    {18792}, -- Dragonriding Challenge: Dragon Isles: Gold
+	{ -- Dragonriding Challenge: Dragon Isles: Gold
+		18792,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {18793}, -- Always Be Camping
     {18804}, -- Neltharion's Legacy
     {18805}, -- Draconic Phial Cabinet
@@ -1552,7 +1776,12 @@ KrowiAF.AchievementData["10_01_07"] = {
     {18909}, -- Fantastic Figurines
     {18928}, -- Storm Rider: Bronze
     {18929}, -- Storm Rider: Silver
-    {18931}, -- Storm Rider: Gold
+	{ -- Storm Rider: Gold
+		18931,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {18934}, -- Excessive Experimentation
     { -- Eastern Kingdoms Racing Completionist
         18939,
@@ -1570,6 +1799,7 @@ KrowiAF.AchievementData["10_01_07"] = {
     { -- Eastern Kingdoms Racing Completionist: Gold
         18942,
         {
+            RewardType = rewardType.Title,
             {"Event", 1400},
         },
     },
@@ -1599,6 +1829,7 @@ KrowiAF.AchievementData["10_01_07"] = {
     { -- Master of the Turbulent Timeways
         19079,
         {
+            RewardType = rewardType.Mount,
             {"Event", 1425},
         },
     },
@@ -1677,6 +1908,7 @@ KrowiAF.AchievementData["10_01_07"] = {
     { -- Outland Racing Completionist: Gold
         19107,
         {
+            RewardType = {rewardType.Title, rewardType.Tabard},
             {"Event", 1407},
         },
     },
@@ -1685,7 +1917,12 @@ KrowiAF.AchievementData["10_01_07"] = {
 
 KrowiAF.AchievementData["10_02_00"] = {
     {KrowiAF.SetAchievementPatch, 10, 2, 0},
-    {18958}, -- Of the Tyr's Guard
+	{ -- Of the Tyr's Guard
+		18958,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     { -- Dragonflight Keystone Explorer: Season Three
         19009,
         {
@@ -1695,12 +1932,14 @@ KrowiAF.AchievementData["10_02_00"] = {
     { -- Dragonflight Keystone Conqueror: Season Three
         19010,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 11},
         },
     },
     { -- Dragonflight Keystone Master: Season Three
         19011,
         {
+            RewardType = rewardType.Mount,
             {"PvE Season", 11},
         },
     },
@@ -1760,6 +1999,7 @@ KrowiAF.AchievementData["10_02_00"] = {
     { -- Elite: Dragonflight Season 3
         19090,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 36},
         },
@@ -1767,6 +2007,7 @@ KrowiAF.AchievementData["10_02_00"] = {
     { -- Gladiator: Dragonflight Season 3
         19091,
         {
+            RewardType = {rewardType.Title, rewardType.Mount, rewardType.Transmog},
             IsPvP = true,
             {"PvP Season", 36},
         },
@@ -1782,7 +2023,12 @@ KrowiAF.AchievementData["10_02_00"] = {
     {19117}, -- Emerald Dream Reverse: Gold
     {19118}, -- Emerald Dream Racing Completionist
     {19119}, -- Emerald Dream Racing Completionist: Silver
-    {19120}, -- Emerald Dream Racing Completionist: Gold
+	{ -- Emerald Dream Racing Completionist: Gold
+		19120,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {19121}, -- Emerald Dream Challenge: Bronze
     {19122}, -- Emerald Dream Challenge: Silver
     {19123}, -- Emerald Dream Challenge: Gold
@@ -1791,11 +2037,17 @@ KrowiAF.AchievementData["10_02_00"] = {
     {19126}, -- Emerald Dream Reverse Challenge: Gold
     {19127}, -- Emerald Dream Challenge Racing Completionist
     {19128}, -- Emerald Dream Challenge Racing Completionist: Silver
-    {19129}, -- Emerald Dream Challenge Racing Completionist: Gold
+	{ -- Emerald Dream Challenge Racing Completionist: Gold
+		19129,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {19130}, -- Junior Racing Champion
     { -- Verdant Legend: Dragonflight Season 3
         19131,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 36},
         },
@@ -1803,6 +2055,7 @@ KrowiAF.AchievementData["10_02_00"] = {
     { -- Verdant Gladiator: Dragonflight Season 3
         19132,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 36},
         },
@@ -1810,6 +2063,7 @@ KrowiAF.AchievementData["10_02_00"] = {
     { -- Rival I: Dragonflight Season 3
         19133,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 36},
         },
@@ -1824,6 +2078,7 @@ KrowiAF.AchievementData["10_02_00"] = {
     { -- Duelist: Dragonflight Season 3
         19156,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 36},
         },
@@ -1831,6 +2086,7 @@ KrowiAF.AchievementData["10_02_00"] = {
     { -- Combatant I: Dragonflight Season 3
         19157,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 36},
         },
@@ -1845,6 +2101,7 @@ KrowiAF.AchievementData["10_02_00"] = {
     { -- Challenger I: Dragonflight Season 3
         19159,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 36},
         },
@@ -1877,7 +2134,12 @@ KrowiAF.AchievementData["10_02_00"] = {
     {19193}, -- Ducks In A Row
     {19194}, -- The Emerald Bounty
     {19196}, -- Sowing the Seeds
-    {19198}, -- The Seeds I Sow
+	{ -- The Seeds I Sow
+		19198,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     -- {19230}, -- Friends in the Dream [Removed in 11.0.7, replaced by 41176]
     -- {19235}, -- Warden of the Dream [Removed in 11.0.7, replaced by 41177]
     { -- Verdant Vogue
@@ -1906,6 +2168,7 @@ KrowiAF.AchievementData["10_02_00"] = {
     { -- Legend: Dragonflight Season 3
         19304,
         {
+            RewardType = {rewardType.Title, rewardType.Toy},
             IsPvP = true,
             {"PvP Season", 36},
         },
@@ -1920,7 +2183,12 @@ KrowiAF.AchievementData["10_02_00"] = {
     {19315}, -- Dream Chaser
     {19316}, -- Adventurer of the Emerald Dream
     {19317}, -- Treasures of the Emerald Dream
-    {19318}, -- Dream On
+	{ -- Dream On
+		19318,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {19319}, -- Haven't We Done This Before?
     {19320}, -- Cruelty Free
     {19321}, -- Swog Champion
@@ -1942,12 +2210,22 @@ KrowiAF.AchievementData["10_02_00"] = {
     {19340}, -- Mythic: Nymue, Weaver of the Cycle
     {19341}, -- Mythic: Smolderon
     {19342}, -- Mythic: Tindral Sageswift, Seer of the Flame
-    {19343}, -- Mythic: Fyrakk the Blazing
+	{ -- Mythic: Fyrakk the Blazing
+		19343,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {19344}, -- Incarnate's Wake
     {19345}, -- Molten Incursion
     {19346}, -- The Viridian Weave
     {19347}, -- Fate of Amirdrassil
-    {19349}, -- Glory of the Dream Raider
+	{ -- Glory of the Dream Raider
+		19349,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     { -- Ahead of the Curve: Fyrakk the Blazing
         19350,
         {
@@ -2025,6 +2303,7 @@ KrowiAF.AchievementData["10_02_00"] = {
     { -- Dreaming Hero: Dragonflight Season 3
         19449,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 11},
         },
     },
@@ -2117,6 +2396,7 @@ KrowiAF.AchievementData["10_02_05"] = {
     { -- Northrend Racing Completionist: Gold
         19723,
         {
+            RewardType = {rewardType.Title, rewardType.Tabard},
             {"Event", 1429},
         },
     },
@@ -2125,13 +2405,23 @@ KrowiAF.AchievementData["10_02_05"] = {
     {19787}, -- Clued In
     {19788}, -- Tome Comber
     {19789}, -- Relic Rescuer
-    {19790}, -- The Archives Called, You Answered
+	{ -- The Archives Called, You Answered
+		19790,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
     {19791}, -- Goggle Wobble
     {19792}, -- Just One More Thing
     {19793}, -- Finally At Rest
     {19866}, -- Hearthstoned: Fiery Edition
     {20033}, -- Hearthstone Beginner
-    {20206}, -- Champion of the Dragonflights
+	{ -- Champion of the Dragonflights
+		20206,
+		{
+			RewardType = rewardType.Title,
+		},
+	},
 };
 
 KrowiAF.AchievementData["10_02_06"] = {
@@ -2139,6 +2429,7 @@ KrowiAF.AchievementData["10_02_06"] = {
     { -- Draconic Legend: Dragonflight Season 4
         19453,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 37},
         },
@@ -2146,6 +2437,7 @@ KrowiAF.AchievementData["10_02_06"] = {
     { -- Draconic Gladiator: Dragonflight Season 4
         19454,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 37},
         },
@@ -2168,19 +2460,61 @@ KrowiAF.AchievementData["10_02_06"] = {
             {"PvP Season", 37},
         },
     },
-    {19458}, -- A World Awoken
+	{ -- A World Awoken
+		19458,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {19463}, -- Dragon Quests
     {19466}, -- Oh My God, They Were Clutchmates
-    {19478}, -- Now THIS is Dragon Racing!
-    {19479}, -- Wake Me Up
-    {19481}, -- Centaur of Attention
-    {19482}, -- Army of the Fed
-    {19483}, -- Flight Club
-    {19485}, -- Closing Time
-    {19486}, -- Across the Isles
+	{ -- Now THIS is Dragon Racing!
+		19478,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
+
+	{ -- Wake Me Up
+		19479,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
+	{ -- Centaur of Attention
+		19481,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
+	{ -- Army of the Fed
+		19482,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
+	{ -- Flight Club
+		19483,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
+	{ -- Closing Time
+		19485,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
+	{ -- Across the Isles
+		19486,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     { -- Gladiator: Dragonflight Season 4
         19490,
         {
+            RewardType = {rewardType.Title, rewardType.Mount, rewardType.Transmog},
             IsPvP = true,
             {"PvP Season", 37},
         },
@@ -2188,6 +2522,7 @@ KrowiAF.AchievementData["10_02_06"] = {
     { -- Duelist: Dragonflight Season 4
         19492,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 37},
         },
@@ -2195,6 +2530,7 @@ KrowiAF.AchievementData["10_02_06"] = {
     { -- Rival I: Dragonflight Season 4
         19493,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 37},
         },
@@ -2202,6 +2538,7 @@ KrowiAF.AchievementData["10_02_06"] = {
     { -- Combatant I: Dragonflight Season 4
         19494,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 37},
         },
@@ -2216,6 +2553,7 @@ KrowiAF.AchievementData["10_02_06"] = {
     { -- Challenger I: Dragonflight Season 4
         19497,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 37},
         },
@@ -2237,6 +2575,7 @@ KrowiAF.AchievementData["10_02_06"] = {
     { -- Legend: Dragonflight Season 4
         19500,
         {
+            RewardType = {rewardType.Title, rewardType.Toy},
             IsPvP = true,
             {"PvP Season", 37},
         },
@@ -2252,6 +2591,7 @@ KrowiAF.AchievementData["10_02_06"] = {
     { -- Elite: Dragonflight Season 4
         19509,
         {
+            RewardType = rewardType.Title,
             IsPvP = true,
             {"PvP Season", 37},
         },
@@ -2320,12 +2660,14 @@ KrowiAF.AchievementData["10_02_06"] = {
     { -- Awakening the Dragonflight Raids
         19574,
         {
+            RewardType = rewardType.Mount,
             {"PvE Season", 12},
         },
     },
     { -- Heroic: Awakening the Dragonflight Raids
         19575,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 12},
         },
     },
@@ -2344,12 +2686,14 @@ KrowiAF.AchievementData["10_02_06"] = {
     { -- Dragonflight Keystone Conqueror: Season Four
         19781,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 12},
         },
     },
     { -- Dragonflight Keystone Master: Season Four
         19782,
         {
+            RewardType = rewardType.Mount,
             {"PvE Season", 12},
         },
     },
@@ -2362,6 +2706,7 @@ KrowiAF.AchievementData["10_02_06"] = {
     { -- Draconic Hero: Dragonflight Season 4
         19785,
         {
+            RewardType = rewardType.Title,
             {"PvE Season", 12},
         },
     },
@@ -2372,7 +2717,12 @@ KrowiAF.AchievementData["10_02_06"] = {
         },
     },
     {20481}, -- Dragonflight Season 4 Master
-    {20501}, -- Back from the Beyond
+	{ -- Back from the Beyond
+		20501,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     { -- Plunder Wonder
         20508,
         {
@@ -2422,6 +2772,7 @@ KrowiAF.AchievementData["10_02_07"] = {
     { -- Vale of Eternal Blossoms
         19876,
         {
+            RewardType = rewardType.Mount,
             {"Event", 1514},
         },
     },
@@ -2966,6 +3317,7 @@ KrowiAF.AchievementData["10_02_07"] = {
     { -- Mythic Remix: Siege of Orgrimmar
         19961,
         {
+            RewardType = rewardType.Title,
             {"Event", 1514},
         },
     },
@@ -3134,6 +3486,7 @@ KrowiAF.AchievementData["10_02_07"] = {
     { -- Heroic: Pandaria Raids
         20007,
         {
+            RewardType = rewardType.Title,
             {"Event", 1514},
         },
     },
@@ -3358,12 +3711,14 @@ KrowiAF.AchievementData["10_02_07"] = {
     { -- Time Trial
         20593,
         {
+            RewardType = rewardType.Mount,
             {"Event", 1514},
         },
     },
     { -- Timerunner
         40223,
         {
+            RewardType = {rewardType.Title, rewardType.Item},
             {"Event", 1514},
         },
     },
