@@ -142,7 +142,12 @@ KrowiAF.AchievementData["09_00_01"] = {
     },
     {14463}, -- Skoldus Hall
     {14468}, -- Twisting Corridors: Layer 1
-    {14469}, -- Twisting Corridors: Layer 2
+	{ -- Twisting Corridors: Layer 2
+		14469,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {14470}, -- Twisting Corridors: Layer 3
 	{ -- Twisting Corridors: Layer 4
 		14471,
@@ -250,7 +255,12 @@ KrowiAF.AchievementData["09_00_01"] = {
     {14614}, -- Castle Vain
     {14617}, -- Private Stock
     {14619}, -- Pour Decision Making
-    {14625}, -- Battle in the Shadowlands
+	{ -- Battle in the Shadowlands
+		14625,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {14626}, -- Harvester of Sorrow
     {14627}, -- Choosing Your Purpose
     {14628}, -- The Road to Renown
@@ -556,8 +566,18 @@ KrowiAF.AchievementData["09_00_02"] = {
     {14875}, -- Mummified Magics
     {14876}, -- Macabre Mechanicals
     {14877}, -- Unholy Undead
-    {14879}, -- Family Exorcist
-    {14881}, -- Abhorrent Adversaries of the Afterlife
+	{ -- Family Exorcist
+		14879,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
+	{ -- Abhorrent Adversaries of the Afterlife
+		14881,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {14887}, -- To the Moon
     {14894}, -- To 'Ghast, Two Curios
     {14895}, -- 'Ghast Five
@@ -678,7 +698,12 @@ KrowiAF.AchievementData["09_01_00"] = {
     {15000}, -- United Front
     {15001}, -- Jailer's Personal Stash
     {15003}, -- To the Nines
-    {15004}, -- A Sly Fox
+	{ -- A Sly Fox
+		15004,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {15032}, -- Breaking Their Hold
     {15033}, -- Taking the Tremaculum
     {15034}, -- Wings Against the Flames
@@ -694,6 +719,7 @@ KrowiAF.AchievementData["09_01_00"] = {
     { -- Keystone Hero: The Necrotic Wake
         15045,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 6},
             {"PvE Season", 7},
             {"PvE Season", 13},
@@ -702,6 +728,7 @@ KrowiAF.AchievementData["09_01_00"] = {
     { -- Keystone Hero: Plaguefall
         15046,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 6},
             {"PvE Season", 7},
         },
@@ -709,6 +736,7 @@ KrowiAF.AchievementData["09_01_00"] = {
     { -- Keystone Hero: Mists of Tirna Scithe
         15047,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 6},
             {"PvE Season", 7},
             {"PvE Season", 13},
@@ -717,6 +745,7 @@ KrowiAF.AchievementData["09_01_00"] = {
     { -- Keystone Hero: Halls of Atonement
         15048,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 6},
             {"PvE Season", 7},
         },
@@ -724,6 +753,7 @@ KrowiAF.AchievementData["09_01_00"] = {
     { -- Keystone Hero: Spires of Ascension
         15049,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 6},
             {"PvE Season", 7},
         },
@@ -731,6 +761,7 @@ KrowiAF.AchievementData["09_01_00"] = {
     { -- Keystone Hero: Theater of Pain
         15050,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 6},
             {"PvE Season", 7},
         },
@@ -738,6 +769,7 @@ KrowiAF.AchievementData["09_01_00"] = {
     { -- Keystone Hero: De Other Side
         15051,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 6},
             {"PvE Season", 7},
         },
@@ -745,6 +777,7 @@ KrowiAF.AchievementData["09_01_00"] = {
     { -- Keystone Hero: Sanguine Depths
         15052,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 6},
             {"PvE Season", 7},
         },
@@ -788,7 +821,12 @@ KrowiAF.AchievementData["09_01_00"] = {
             {"PvE Season", 6},
         },
     },
-    {15079}, -- Many, Many Things
+	{ -- Many, Many Things
+		15079,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {15080}, -- So Blessed
     {15081}, -- Flawless: Skoldus Hall (Layer 12)
     {15082}, -- Flawless: Fracture Chambers (Layer 12)
@@ -1003,7 +1041,12 @@ KrowiAF.AchievementData["09_02_00"] = {
 			RewardType = rewardType.Toy,
 		},
 	},
-    {15251}, -- The Jailer's Gauntlet: Layer 1
+	{ -- The Jailer's Gauntlet: Layer 1
+		15251,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
 	{ -- The Jailer's Gauntlet: Layer 2
 		15252,
 		{
@@ -1244,6 +1287,7 @@ KrowiAF.AchievementData["09_02_00"] = {
     { -- Keystone Hero: Tazavesh, the Veiled Market
         15500,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 7},
             {"PvE Season", 8},
         },
@@ -1255,7 +1299,12 @@ KrowiAF.AchievementData["09_02_00"] = {
             {"PvE Season", 7},
         },
     },
-    {15508}, -- Fashion of the First Ones
+	{ -- Fashion of the First Ones
+		15508,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {15509}, -- Tales of the Exile
     { -- Solely Motivated
         15511,
@@ -1506,6 +1555,7 @@ KrowiAF.AchievementData["09_02_05"] = {
     { -- Mythic: Fates of the Shadowlands Raids
         15687,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 8},
         },
     },
@@ -1539,24 +1589,28 @@ KrowiAF.AchievementData["09_02_05"] = {
     { -- Keystone Hero: Return to Karazhan
         15692,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 8},
         },
     },
     { -- Keystone Hero: Operation: Mechagon
         15693,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 8},
         },
     },
     { -- Keystone Hero: Iron Docks
         15694,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 8},
         },
     },
     { -- Keystone Hero: Grimrail Depot
         15695,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 8},
         },
     },

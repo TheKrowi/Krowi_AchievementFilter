@@ -210,6 +210,11 @@ end
 function achievement:SetTemporaryObtainable(startInclusion, startFunction, startValue, endInclusion, endFunction, endValue)
     self.TemporaryObtainable = self.TemporaryObtainable or {};
 
+    if not startInclusion then
+        tinsert(self.TemporaryObtainable, {});
+        return;
+    end
+    
     -- Case 1: Never or Once - [startInclusion]
     if startInclusion == "Never" or startInclusion == "Once" then
         self:SetTemporaryObtainableNeverOnce(startInclusion);

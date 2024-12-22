@@ -19,6 +19,7 @@ KrowiAF.AchievementData["06_00_02"] = {
     { -- WoW's 10th Anniversary
         8820,
         {
+            RewardType = rewardType.Pet,
             {},
         },
     },
@@ -50,6 +51,7 @@ KrowiAF.AchievementData["06_00_02"] = {
     { -- Skyreach: Gold
         8874,
         {
+            RewardType = rewardType.Teleport,
             {"Before", "Version", {7, 0, 3}},
         },
     },
@@ -74,6 +76,7 @@ KrowiAF.AchievementData["06_00_02"] = {
     { -- Bloodmaul Slag Mines: Gold
         8878,
         {
+            RewardType = rewardType.Teleport,
             {"Before", "Version", {7, 0, 3}},
         },
     },
@@ -98,6 +101,7 @@ KrowiAF.AchievementData["06_00_02"] = {
     { -- Auchindoun: Gold
         8882,
         {
+            RewardType = rewardType.Teleport,
             {"Before", "Version", {7, 0, 3}},
         },
     },
@@ -122,6 +126,7 @@ KrowiAF.AchievementData["06_00_02"] = {
     { -- Shadowmoon Burial Grounds: Gold
         8886,
         {
+            RewardType = rewardType.Teleport,
             {"Before", "Version", {7, 0, 3}},
         },
     },
@@ -146,6 +151,7 @@ KrowiAF.AchievementData["06_00_02"] = {
     { -- Grimrail Depot: Gold
         8890,
         {
+            RewardType = rewardType.Teleport,
             {"Before", "Version", {7, 0, 3}},
         },
     },
@@ -170,6 +176,7 @@ KrowiAF.AchievementData["06_00_02"] = {
     { -- Upper Blackrock Spire: Gold
         8894,
         {
+            RewardType = rewardType.Teleport,
             {"Before", "Version", {7, 0, 3}},
         },
     },
@@ -345,6 +352,7 @@ KrowiAF.AchievementData["06_00_02"] = {
     { -- Iron Docks: Gold
         9000,
         {
+            RewardType = rewardType.Teleport,
             {"Before", "Version", {7, 0, 3}},
         },
     },
@@ -369,6 +377,7 @@ KrowiAF.AchievementData["06_00_02"] = {
     { -- The Everbloom: Gold
         9004,
         {
+            RewardType = rewardType.Teleport,
             {"Before", "Version", {7, 0, 3}},
         },
     },
@@ -421,7 +430,12 @@ KrowiAF.AchievementData["06_00_02"] = {
             {"Before", "Version", {9, 0, 1}},
         },
     },
-    {9069}, -- An Awfully Big Adventure
+	{ -- An Awfully Big Adventure
+		9069,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {9070}, -- Overstuffed
     {9071}, -- Inspector Gadgetzan
 	{ -- Mantle of the Talon King
@@ -1469,7 +1483,12 @@ KrowiAF.AchievementData["06_00_02"] = {
             {"Before", "Version", {7, 0, 3}},
         },
     },
-    {9643}, -- So. Many. Pets.
+	{ -- So. Many. Pets.
+		9643,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {9654}, -- Mean and Green
     {9655}, -- Fight the Power
     {9656}, -- In Plain Sight
@@ -1494,7 +1513,12 @@ KrowiAF.AchievementData["06_00_02"] = {
             {"Before", "Version", {7, 0, 3}},
         },
     },
-    {9685}, -- Draenor Safari
+	{ -- Draenor Safari
+		9685,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {9703}, -- Stay Awhile and Listen
     { -- Advanced Husbandry
         9705,
@@ -1795,7 +1819,12 @@ KrowiAF.AchievementData["06_01_00"] = {
             {"Event", 374},
         },
     },
-    {9824}, -- Raiding with Leashes III: Drinkin' From the Sunwell
+	{ -- Raiding with Leashes III: Drinkin' From the Sunwell
+		9824,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     { -- Master Relic Hunter
         9825,
         faction.Alliance,
@@ -1908,6 +1937,7 @@ KrowiAF.AchievementData["06_02_00"] = {
     { -- That's Whack!
         9983,
         {
+            RewardType = rewardType.Pet,
             {"Event", 374},
         },
     },

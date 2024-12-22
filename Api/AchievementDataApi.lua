@@ -13,7 +13,8 @@ KrowiAF.Enum.RewardType = EnumUtil.MakeEnum(
     "Title",
     "Mount",
     "Transmog",
-    "Item"
+    "Item",
+    "Teleport"
 );
 
 KrowiAF.AchievementData = {};

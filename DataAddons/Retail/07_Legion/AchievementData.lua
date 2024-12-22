@@ -37,6 +37,9 @@ KrowiAF.AchievementData["07_00_03"] = {
     },
     { -- Family Familiar
         9696,
+        {
+            RewardType = rewardType.Pet,
+        },
     },
     { -- Ain't No Mountain High Enough
         10059,
@@ -49,6 +52,9 @@ KrowiAF.AchievementData["07_00_03"] = {
     },
     { -- Poor Unfortunate Souls
         10412,
+        {
+            RewardType = rewardType.Pet,
+        },
     },
     { -- Instant Karma
         10413,
@@ -1555,6 +1561,9 @@ KrowiAF.AchievementData["07_00_03"] = {
     },
     { -- Broken Isles Safari
         11233,
+        {
+            RewardType = rewardType.Pet,
+        },
     },
     { -- Harbinger
         11240,
@@ -1683,6 +1692,9 @@ KrowiAF.AchievementData["07_02_00"] = {
     },
     { -- Raiding with Leashes IV: Wrath of the Lick King
         11320,
+        {
+            RewardType = rewardType.Pet,
+        },
     },
     { -- Season Tickets
         11335,
@@ -2250,6 +2262,9 @@ KrowiAF.AchievementData["07_02_00"] = {
     },
     { -- Pet Battle Challenge: Wailing Caverns
         11765,
+        {
+            RewardType = rewardType.Pet,
+        },
     },
     { -- Mythic: Goroth
         11767,
@@ -2338,6 +2353,9 @@ KrowiAF.AchievementData["07_02_05"] = {
     },
     { -- Pet Battle Challenge: Deadmines
         11856,
+        {
+            RewardType = rewardType.Pet,
+        },
     },
     { -- I'll Hold These For You Until You Get Out
         11869,
@@ -2678,6 +2696,9 @@ KrowiAF.AchievementData["07_03_00"] = {
     },
     { -- Raiding with Leashes V: Cuteaclysm
         12079,
+        {
+            RewardType = rewardType.Pet,
+        },
     },
     { -- Officer of the Light
         12081,
@@ -2733,6 +2754,9 @@ KrowiAF.AchievementData["07_03_00"] = {
     },
     { -- Family Fighter
         12100,
+        {
+            RewardType = rewardType.Pet,
+        },
     },
     { -- We Came Here For Two Reasons
         12101,
@@ -3509,6 +3533,9 @@ KrowiAF.AchievementData["07_03_05"] = {
     },
     { -- Post Haste
         12431,
+        {
+            RewardType = rewardType.Pet,
+        },
     },
     { -- Priority Mail
         12439,

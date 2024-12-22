@@ -14,9 +14,24 @@ KrowiAF.AchievementData["10_00_00"] = {
         15638,
         faction.Horde,
     },
-    {15641}, -- Many More Mini Minions
-    {15642}, -- Proven Pet Parent
-    {15643}, -- What Can I Say? They Love Me.
+	{ -- Many More Mini Minions
+		15641,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
+	{ -- Proven Pet Parent
+		15642,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
+	{ -- What Can I Say? They Love Me.
+		15643,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
 	{ -- The Joy of Toy
 		15781,
 		{
@@ -114,7 +129,12 @@ KrowiAF.AchievementData["10_00_00"] = {
 	},
     {15938}, -- Thaldraszus Advanced: Gold
     {15939}, -- Dragon Racing Completionist: Bronze
-    {15940}, -- Dragon Racing Completionist: Silver
+	{ -- Dragon Racing Completionist: Silver
+		15940,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
 	{ -- Dragon Racing Completionist: Gold
 		15941,
 		{
@@ -459,7 +479,12 @@ KrowiAF.AchievementData["10_00_00"] = {
     {16509}, -- Magic Battler of the Dragon Isles
     {16510}, -- Mechanical Battler of the Dragon Isles
     {16511}, -- Undead Battler of the Dragon Isles
-    {16512}, -- Family Battler of the Dragon Isles
+	{ -- Family Battler of the Dragon Isles
+		16512,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {16517}, -- Toxicity Strike Team
     {16518}, -- Explore Thaldraszus
     {16519}, -- Dragon Isles Safari
@@ -624,6 +649,7 @@ KrowiAF.AchievementData["10_00_00"] = {
     { -- Keystone Hero: Uldaman: Legacy of Tyr
         16639,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 10},
             {"PvE Season", 12},
         },
@@ -631,6 +657,7 @@ KrowiAF.AchievementData["10_00_00"] = {
     { -- Keystone Hero: Ruby Life Pools
         16640,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 9},
             {"PvE Season", 12},
         },
@@ -638,6 +665,7 @@ KrowiAF.AchievementData["10_00_00"] = {
     { -- Keystone Hero: The Nokhud Offensive
         16641,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 9},
             {"PvE Season", 12},
         },
@@ -645,6 +673,7 @@ KrowiAF.AchievementData["10_00_00"] = {
     { -- Keystone Hero: Brackenhide Hollow
         16642,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 10},
             {"PvE Season", 12},
         },
@@ -652,6 +681,7 @@ KrowiAF.AchievementData["10_00_00"] = {
     { -- Keystone Hero: Algeth'ar Academy
         16643,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 9},
             {"PvE Season", 12},
         },
@@ -659,6 +689,7 @@ KrowiAF.AchievementData["10_00_00"] = {
     { -- Keystone Hero: Neltharus
         16644,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 10},
             {"PvE Season", 12},
         },
@@ -666,6 +697,7 @@ KrowiAF.AchievementData["10_00_00"] = {
     { -- Keystone Hero: The Azure Vault
         16645,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 9},
             {"PvE Season", 12},
         },
@@ -673,6 +705,7 @@ KrowiAF.AchievementData["10_00_00"] = {
     { -- Keystone Hero: Halls of Infusion
         16646,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 10},
             {"PvE Season", 12},
         },
@@ -706,24 +739,28 @@ KrowiAF.AchievementData["10_00_00"] = {
     { -- Keystone Hero: Court of Stars
         16658,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 9},
         },
     },
     { -- Keystone Hero: Halls of Valor
         16659,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 9},
         },
     },
     { -- Keystone Hero: Shadowmoon Burial Grounds
         16660,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 9},
         },
     },
     { -- Keystone Hero: Temple of the Jade Serpent
         16661,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 9},
         },
     },
@@ -1064,7 +1101,12 @@ KrowiAF.AchievementData["10_01_00"] = {
 		},
 	},
     {17735}, -- We Didn't Start the Fire
-    {17736}, -- The Gift of Cheese
+	{ -- The Gift of Cheese
+		17736,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     { -- Flame Warden of the Dragon Isles
         17737,
         faction.Alliance,
@@ -1089,7 +1131,12 @@ KrowiAF.AchievementData["10_01_00"] = {
             {"PvP Season", 35},
         },
     },
-    {17741}, -- Slow and Steady Wins the Race
+	{ -- Slow and Steady Wins the Race
+		17741,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     -- {17756}, -- Friends in Loamm Places [Removed in 11.0.7, replaced by 41175]
     -- {17763}, -- There's No Place Like Loamm [Removed in 11.0.7, replaced by 41183]
     { -- Obsidian Gladiator: Dragonflight Season 2
@@ -1259,24 +1306,28 @@ KrowiAF.AchievementData["10_01_00"] = {
     { -- Keystone Hero: The Vortex Pinnacle
         17847,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 10},
         },
     },
     { -- Keystone Hero: Freehold
         17848,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 10},
         },
     },
     { -- Keystone Hero: The Underrot
         17849,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 10},
         },
     },
     { -- Keystone Hero: Neltharion's Lair
         17850,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 10},
         },
     },
@@ -1306,7 +1357,12 @@ KrowiAF.AchievementData["10_01_00"] = {
     {17916}, -- Magic Battler of Zaralek Cavern
     {17917}, -- Mechanical Battler of Zaralek Cavern
     {17918}, -- Undead Battler of Zaralek Cavern
-    {17934}, -- Family Battler of Zaralek Cavern
+	{ -- Family Battler of Zaralek Cavern
+		17934,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {17977}, -- Stones Can Try To Fly!
     {17978}, -- Stones Can Fly!
     {18027}, -- Dragonflight Season 2 Master
@@ -1504,7 +1560,12 @@ KrowiAF.AchievementData["10_01_05"] = {
 			RewardType = rewardType.Title,
 		},
 	},
-    {18384}, -- Whelp, There It Is
+	{ -- Whelp, There It Is
+		18384,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {18471}, -- 110 Exalted Reputations
     {18539}, -- Back En-masse
 	{ -- Temporal Acquisitions Specialist
@@ -1594,7 +1655,12 @@ KrowiAF.AchievementData["10_01_05"] = {
 		},
 	},
     {18643}, -- Community Rumors
-    {18644}, -- Community Rumor Mill
+	{ -- Community Rumor Mill
+		18644,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {18645}, -- Tools of the Trade
 	{ -- Whodunnit?
 		18646,
@@ -2011,46 +2077,58 @@ KrowiAF.AchievementData["10_02_00"] = {
     { -- Keystone Hero: Throne of the Tides
         19082,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 11},
         },
     },
     { -- Keystone Hero: The Everbloom
         19083,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 11},
         },
     },
     { -- Keystone Hero: Black Rook Hold
         19084,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 11},
         },
     },
     { -- Keystone Hero: Darkheart Thicket
         19085,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 11},
         },
     },
     { -- Keystone Hero: Waycrest Manor
         19086,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 11},
         },
     },
     { -- Keystone Hero: Atal'Dazar
         19087,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 11},
         },
     },
     { -- Keystone Hero: Dawn of the Infinite
         19088,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 11},
         },
     },
-    {19089}, -- Don't Let the Doe Hit You On The Way Out
+	{ -- Don't Let the Doe Hit You On The Way Out
+		19089,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     { -- Elite: Dragonflight Season 3
         19090,
         {
@@ -2203,7 +2281,12 @@ KrowiAF.AchievementData["10_02_00"] = {
             IsPvP = true,
         },
     },
-    {19293}, -- Friends In Feathers
+	{ -- Friends In Feathers
+		19293,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {19294}, -- Tour of Duty: Emerald Dream
     { -- Verdant Gladiator's Slitherdrake
         19295,
@@ -2467,8 +2550,18 @@ KrowiAF.AchievementData["10_02_05"] = {
 		},
 	},
     {19791}, -- Goggle Wobble
-    {19792}, -- Just One More Thing
-    {19793}, -- Finally At Rest
+	{ -- Just One More Thing
+		19792,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
+	{ -- Finally At Rest
+		19793,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {19866}, -- Hearthstoned: Fiery Edition
 	{ -- Hearthstone Beginner
 		20033,
@@ -2734,6 +2827,7 @@ KrowiAF.AchievementData["10_02_06"] = {
     { -- Mythic: Awakening the Dragonflight Raids
         19576,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 12},
         },
     },
@@ -2840,6 +2934,7 @@ KrowiAF.AchievementData["10_02_07"] = {
     { -- Townlong Steppes
         19877,
         {
+            RewardType = rewardType.Pet,
             {"Event", 1514},
         },
     },
@@ -3523,6 +3618,7 @@ KrowiAF.AchievementData["10_02_07"] = {
     { -- Timeless Isle
         20003,
         {
+            RewardType = rewardType.Pet,
             {"Event", 1514},
         },
     },

@@ -63,7 +63,12 @@ KrowiAF.AchievementData["05_00_04"] = {
     {6394}, -- Rattle No More
     {6396}, -- Sanguinarian
     {6400}, -- How Did He Get Up There?
-    {6402}, -- Ling-Ting's Herbal Journey
+	{ -- Ling-Ting's Herbal Journey
+		6402,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {6420}, -- Hopocalypse Now!
     {6427}, -- Mosh Pit
     { -- Realm First! Challenge Conqueror: Gold
@@ -147,12 +152,22 @@ KrowiAF.AchievementData["05_00_04"] = {
     {6553}, -- Like an Arrow to the Face
     {6554}, -- He's Mine!
     {6555}, -- Building a Team
-    {6556}, -- Going to Need More Traps
+	{ -- Going to Need More Traps
+		6556,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {6557}, -- Master Pet Hunter
     {6558}, -- Local Pet Mauler
     {6559}, -- Traveling Pet Mauler
     {6560}, -- World Pet Mauler
-    {6566}, -- Just a Pup
+	{ -- Just a Pup
+		6566,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {6567}, -- Growing Up
     {6568}, -- Time for a Leash
     {6569}, -- Old Timer
@@ -161,8 +176,18 @@ KrowiAF.AchievementData["05_00_04"] = {
     {6578}, -- Pro Pet Group
     {6579}, -- Rookie Pet Group
     {6580}, -- Rookie Pet Crew
-    {6581}, -- Pro Pet Crew
-    {6582}, -- Pro Pet Mob
+	{ -- Pro Pet Crew
+		6581,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
+	{ -- Pro Pet Mob
+		6582,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {6583}, -- Rookie Pet Mob
     {6584}, -- Big City Pet Brawlin' - Alliance
     {6585}, -- Kalimdor Safari
@@ -216,15 +241,37 @@ KrowiAF.AchievementData["05_00_04"] = {
         6602,
         faction.Horde,
         6603,
+        {
+            RewardType = rewardType.Pet,
+        },
     },
     { -- Taming Eastern Kingdoms
         6603,
         faction.Alliance,
         6602,
+        {
+            RewardType = rewardType.Pet,
+        },
     },
-    {6604}, -- Taming Outland
-    {6605}, -- Taming Northrend
-    {6606}, -- Taming Pandaria
+
+	{ -- Taming Outland
+		6604,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
+	{ -- Taming Northrend
+		6605,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
+	{ -- Taming Pandaria
+		6606,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     { -- Taming Azeroth
         6607,
         {
@@ -599,6 +646,7 @@ KrowiAF.AchievementData["05_00_04"] = {
     { -- Temple of the Jade Serpent: Gold
         6887,
         {
+            RewardType = rewardType.Teleport,
             {"Before", "Version", {6, 0, 2}},
         },
     },
@@ -623,6 +671,7 @@ KrowiAF.AchievementData["05_00_04"] = {
     { -- Stormstout Brewery: Gold
         6891,
         {
+            RewardType = rewardType.Teleport,
             {"Before", "Version", {6, 0, 2}},
         },
     },
@@ -683,6 +732,7 @@ KrowiAF.AchievementData["05_00_04"] = {
     { -- Mogu'shan Palace: Gold
         6901,
         {
+            RewardType = rewardType.Teleport,
             {"Before", "Version", {6, 0, 2}},
         },
     },
@@ -701,6 +751,7 @@ KrowiAF.AchievementData["05_00_04"] = {
     { -- Shado-Pan Monastery: Gold
         6904,
         {
+            RewardType = rewardType.Teleport,
             {"Before", "Version", {6, 0, 2}},
         },
     },
@@ -719,6 +770,7 @@ KrowiAF.AchievementData["05_00_04"] = {
     { -- Gate of the Setting Sun: Gold
         6907,
         {
+            RewardType = rewardType.Teleport,
             {"Before", "Version", {6, 0, 2}},
         },
     },
@@ -737,6 +789,7 @@ KrowiAF.AchievementData["05_00_04"] = {
     { -- Scarlet Halls: Gold
         6910,
         {
+            RewardType = rewardType.Teleport,
             {"Before", "Version", {6, 0, 2}},
         },
     },
@@ -755,6 +808,7 @@ KrowiAF.AchievementData["05_00_04"] = {
     { -- Scarlet Monastery: Gold
         6913,
         {
+            RewardType = rewardType.Teleport,
             {"Before", "Version", {6, 0, 2}},
         },
     },
@@ -773,6 +827,7 @@ KrowiAF.AchievementData["05_00_04"] = {
     { -- Scholomance: Gold
         6916,
         {
+            RewardType = rewardType.Teleport,
             {"Before", "Version", {6, 0, 2}},
         },
     },
@@ -791,6 +846,7 @@ KrowiAF.AchievementData["05_00_04"] = {
     { -- Siege of Niuzao Temple: Gold
         6919,
         {
+            RewardType = rewardType.Teleport,
             {"Before", "Version", {6, 0, 2}},
         },
     },
@@ -1138,7 +1194,12 @@ KrowiAF.AchievementData["05_00_04"] = {
     {7411}, -- 10000 Daily Quests Completed
     {7412}, -- Collector's Edition: Fetish Shaman
     {7413}, -- Scarlet Halls
-    {7433}, -- Newbie
+	{ -- Newbie
+		7433,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {7436}, -- Zen Pet Hunter
     {7437}, -- A Worthy Opponent
     {7438}, -- Could We Find More Like That?
@@ -1190,9 +1251,24 @@ KrowiAF.AchievementData["05_00_04"] = {
         },
     },
     {7498}, -- Taming the Great Outdoors
-    {7499}, -- Taming the World
-    {7500}, -- Going to Need More Leashes
-    {7501}, -- That's a Lot of Pet Food
+	{ -- Taming the World
+		7499,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
+	{ -- Going to Need More Leashes
+		7500,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
+	{ -- That's a Lot of Pet Food
+		7501,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {7502}, -- Savior of Stoneplow
     { -- Scenaturday
         7509,
@@ -1209,7 +1285,12 @@ KrowiAF.AchievementData["05_00_04"] = {
 			RewardType = rewardType.Title,
 		},
 	},
-    {7521}, -- Time to Open a Pet Store
+	{ -- Time to Open a Pet Store
+		7521,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {7522}, -- Crypt of Forgotten Kings
     { -- Theramore's Fall
         7523,
@@ -1221,7 +1302,12 @@ KrowiAF.AchievementData["05_00_04"] = {
         faction.Horde,
         7523,
     },
-    {7525}, -- Taming Cataclysm
+	{ -- Taming Cataclysm
+		7525,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     { -- Kite Fight
         7526,
         faction.Alliance,
@@ -1333,8 +1419,18 @@ KrowiAF.AchievementData["05_01_00"] = {
     },
     {7932}, -- I'm In Your Base, Killing Your Dudes
     {7933}, -- And... It's Good!
-    {7934}, -- Raiding with Leashes
-    {7936}, -- Pandaren Spirit Tamer
+	{ -- Raiding with Leashes
+		7934,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
+	{ -- Pandaren Spirit Tamer
+		7936,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     { -- You Are Not Your $#*@! Legplates (Season 1)
         7937,
         faction.Alliance,
@@ -1618,7 +1714,12 @@ KrowiAF.AchievementData["05_02_00"] = {
     {8073}, -- Cage Match
     {8077}, -- One-Up
     {8078}, -- Zul'Again
-    {8080}, -- Fabled Pandaren Tamer
+	{ -- Fabled Pandaren Tamer
+		8080,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {8081}, -- Ritualist Who?
     {8082}, -- Head Case
     {8086}, -- From Dusk 'til Dawn
@@ -1796,7 +1897,12 @@ KrowiAF.AchievementData["05_02_00"] = {
 
 KrowiAF.AchievementData["05_03_00"] = {
     {KrowiAF.SetAchievementPatch, 5, 3, 0},
-    {8293}, -- Raiding with Leashes II: Attunement Edition
+	{ -- Raiding with Leashes II: Attunement Edition
+		8293,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {8294}, -- The Secrets of Ragefire
     {8295}, -- The Few, the Proud, the Gob Squad
     { -- Merciless Pet Brawler
@@ -1814,6 +1920,7 @@ KrowiAF.AchievementData["05_03_00"] = {
     { -- Brutal Pet Brawler
         8300,
         {
+            RewardType = rewardType.Pet,
             IsPvP = true,
         },
     },
@@ -1969,7 +2076,12 @@ KrowiAF.AchievementData["05_03_00"] = {
     },
     {8345}, -- Hearthstoned
     {8347}, -- Keep those Bombs Away! (From Me)
-    {8348}, -- The Longest Day
+	{ -- The Longest Day
+		8348,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     { -- Mine! Mine! Mine!
         8350,
         {

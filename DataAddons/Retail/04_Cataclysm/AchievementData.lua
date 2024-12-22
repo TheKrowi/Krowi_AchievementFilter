@@ -1206,7 +1206,12 @@ KrowiAF.AchievementData["04_00_03"] = {
     {5446}, -- The Glop Family Line
     {5447}, -- My Very Own Broodmother
     {5448}, -- Glutton for Fiery Punishment
-    {5449}, -- Rock Lover
+	{ -- Rock Lover
+		5449,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {5450}, -- Fungal Frenzy
     {5451}, -- Consumed by Nightmare
     {5452}, -- Visions of Vashj'ir Past
@@ -1528,7 +1533,12 @@ KrowiAF.AchievementData["04_02_00"] = {
     {5855}, -- Ragnar-O's
     {5858}, -- Bear-ly Made It
     {5859}, -- Legacy of Leyara
-    {5860}, -- The 'Unbeatable?' Pterodactyl: BEATEN.
+	{ -- The 'Unbeatable?' Pterodactyl: BEATEN.
+		5860,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {5861}, -- The Fiery Lords of Sethria's Roost
     {5862}, -- Ludicrous Speed
     { -- WoW's 7th Anniversary
@@ -1553,9 +1563,24 @@ KrowiAF.AchievementData["04_02_00"] = {
     {5872}, -- King of the Spider-Hill
     {5873}, -- Ready for Raiding II
     {5874}, -- Death From Above
-    {5875}, -- Littlest Pet Shop
-    {5876}, -- Petting Zoo
-    {5877}, -- Menagerie
+	{ -- Littlest Pet Shop
+		5875,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
+	{ -- Petting Zoo
+		5876,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
+	{ -- Menagerie
+		5877,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     { -- Veteran of the Molten Front
         5879,
         {

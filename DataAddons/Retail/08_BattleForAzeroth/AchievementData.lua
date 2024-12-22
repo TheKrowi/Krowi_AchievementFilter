@@ -298,7 +298,12 @@ KrowiAF.AchievementData["08_00_01"] = {
     },
     {12721}, -- Wrap God
     {12722}, -- It Belongs in a Mausoleum!
-    {12723}, -- How to Keep a Mummy
+	{ -- How to Keep a Mummy
+		12723,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {12726}, -- A Fish Out of Water
     {12727}, -- Stand by Me
     { -- Professional Kul Tiran Master
@@ -592,6 +597,7 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Honor Level 5
         12893,
         {
+            RewardType = rewardType.Pet,
             IsPvP = true,
         },
     },
@@ -627,6 +633,7 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Honor Level 20
         12900,
         {
+            RewardType = rewardType.Pet,
             IsPvP = true,
         },
     },
@@ -738,6 +745,7 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Honor Level 400
         12916,
         {
+            RewardType = rewardType.Pet,
             IsPvP = true,
         },
     },
@@ -750,7 +758,12 @@ KrowiAF.AchievementData["08_00_01"] = {
     },
     {12918}, -- Have a Heart
     {12927}, -- Polished Pet Charmer
-    {12930}, -- Battle Safari
+	{ -- Battle Safari
+		12930,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     { -- No Stable Big Enough
         12931,
         faction.Horde,
@@ -848,7 +861,12 @@ KrowiAF.AchievementData["08_00_01"] = {
         faction.Horde,
         12954,
     },
-    {12958}, -- Master of Minions
+	{ -- Master of Minions
+		12958,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     { -- Challenger: Battle for Azeroth Season 1
         12959,
         {
@@ -903,10 +921,20 @@ KrowiAF.AchievementData["08_00_01"] = {
     {12989}, -- Battle for Azeroth Pathfinder, Part One
     {12990}, -- Catchin' Some Rays
     {12991}, -- New Mog, G'huun This?
-    {12992}, -- Pet Emporium
+	{ -- Pet Emporium
+		12992,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {12993}, -- Don't Warfront Me
     {12995}, -- Treasures of Drustvar
-    {12996}, -- Toybox Tycoon
+	{ -- Toybox Tycoon
+		12996,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     { -- The Pride of Kul Tiras
         12997,
         faction.Alliance,
@@ -1005,6 +1033,9 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Let's Bee Friends
         13062,
         faction.Alliance,
+        {
+            RewardType = rewardType.Pet,
+        },
     },
     {13064}, -- Drust the Facts, Ma'am
     {13075}, -- Battle for Azeroth Keymaster
@@ -1251,7 +1282,12 @@ KrowiAF.AchievementData["08_01_00"] = {
         faction.Horde,
         13251,
     },
-    {13269}, -- Pet Battle Challenge: Gnomeregan
+	{ -- Pet Battle Challenge: Gnomeregan
+		13269,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {13270}, -- Beast Mode
     {13271}, -- Critters With Huge Teeth
     {13272}, -- Dragons Make Everything Better
@@ -1260,7 +1296,12 @@ KrowiAF.AchievementData["08_01_00"] = {
     {13275}, -- Magician's Secrets
     {13277}, -- Machine Learning
     {13278}, -- Not Quite Dead Yet
-    {13279}, -- Family Battler
+	{ -- Family Battler
+		13279,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {13280}, -- Hobbyist Aquarist
     {13281}, -- Human Resources
     { -- Frontline Warrior
@@ -1669,7 +1710,12 @@ KrowiAF.AchievementData["08_01_05"] = {
         faction.Alliance,
         13466,
     },
-    {13469}, -- Raiding with Leashes VI: Pets of Pandaria
+	{ -- Raiding with Leashes VI: Pets of Pandaria
+		13469,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {13501}, -- Gotta Bounce
     { -- Heritage of the Zandalari
         13503,
@@ -1810,7 +1856,12 @@ KrowiAF.AchievementData["08_02_00"] = {
     {13624}, -- Keep DPS-ing and Nobody Explodes
     {13625}, -- Mighty Minions of Mechagon
     {13626}, -- Nautical Nuisances of Nazjatar
-    {13627}, -- Pet Battle Challenge: Stratholme
+	{ -- Pet Battle Challenge: Stratholme
+		13627,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {13628}, -- Intro to Marine Biology
     {13629}, -- Simple Geometry
     { -- Notorious Gladiator: Battle for Azeroth Season 3
@@ -1920,7 +1971,12 @@ KrowiAF.AchievementData["08_02_00"] = {
     {13692}, -- Give Me the Biggest Bag You've Got
     {13693}, -- Mecha-Safari
     {13694}, -- Nazjatari Safari
-    {13695}, -- Team Aquashock
+	{ -- Team Aquashock
+		13695,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {13696}, -- Scrappy's Best Friend
     {13698}, -- Clean Up On Aisle Mechagon
     {13699}, -- Periodic Destruction
@@ -2117,7 +2173,12 @@ KrowiAF.AchievementData["08_02_00"] = {
     {13763}, -- Back to the Depths!
     {13764}, -- Puzzle Performer
     {13765}, -- Subaquatic Support
-    {13766}, -- Malowned
+	{ -- Malowned
+		13766,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {13767}, -- Fun Run
     {13768}, -- The Best of Us
     {13769}, -- Power Up
@@ -2406,7 +2467,12 @@ KrowiAF.AchievementData["08_03_00"] = {
             {"PvE Season", 4},
         },
     },
-    {14143}, -- Reeking of Visions
+	{ -- Reeking of Visions
+		14143,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     { -- Battle for Azeroth Keystone Conqueror: Season Four
         14144,
         {

@@ -54,60 +54,70 @@ KrowiAF.AchievementData["11_00_00"] = {
     { -- Keystone Hero: The Rookery
         20579,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 14},
         },
     },
     { -- Keystone Hero: The Stonevault
         20580,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 13},
         },
     },
     { -- Keystone Hero: Priory of the Sacred Flame
         20581,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 14},
         },
     },
     { -- Keystone Hero: City of Threads
         20582,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 13},
         },
     },
     { -- Keystone Hero: Cinderbrew Meadery
         20583,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 14},
         },
     },
     { -- Keystone Hero: Darkflame Cleft
         20584,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 14},
         },
     },
     { -- Keystone Hero: The Dawnbreaker
         20585,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 13},
         },
     },
     { -- Keystone Hero: Ara-Kara, City of Echoes
         20586,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 13},
         },
     },
     { -- Keystone Hero: Siege of Boralus
         20587,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 13},
         },
     },
     { -- Keystone Hero: Grim Batol
         20588,
         {
+            RewardType = rewardType.Teleport,
             {"PvE Season", 13},
         },
     },
@@ -129,7 +139,12 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40085}, -- Tour of Duty: Hallowfall
     {40086}, -- Tour of Duty: Azj-Kahet
     {40087}, -- Unbound Battle
-    {40088}, -- A Champion's Tour: The War Within
+	{ -- A Champion's Tour: The War Within
+		40088,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {40089}, -- Spoiled Goods
     {40090}, -- Spoiled Goods
     {40091}, -- Slightly Spoiled
@@ -182,7 +197,12 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40164}, -- Mechanical Battler of Khaz Algar
     {40165}, -- Undead Battler of Khaz Algar
     {40166}, -- Isle of Dorn Glyph Hunter
-    {40194}, -- Khaz Algar Safari
+	{ -- Khaz Algar Safari
+		40194,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {40210}, -- Deephaul Ravine Victory
     {40211}, -- Deephaul Ravine Veteran
     {40215}, -- Deephaul Ravine Shutout
@@ -726,7 +746,12 @@ KrowiAF.AchievementData["11_00_02"] = {
     },
     {40863}, -- Perplexing Puzzle
     {40864}, -- Plentiful Perplexing Puzzles
-    {40869}, -- Worm Theory
+    { -- Worm Theory
+		40869,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
 	{ -- The Grand Tapestry
 		40874,
 		{
@@ -761,7 +786,12 @@ KrowiAF.AchievementData["11_00_02"] = {
 
 KrowiAF.AchievementData["11_00_05"] = {
     {KrowiAF.SetAchievementPatch, 11, 0, 5},
-    {15644}, -- Good Things Come in Small Packages
+	{ -- Good Things Come in Small Packages
+		15644,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
 	{ -- Court is Now in Session
 		16731,
 		{
@@ -798,7 +828,12 @@ KrowiAF.AchievementData["11_00_05"] = {
         },
     },
     {40979}, -- No Crate Left Behind
-    {40980}, -- Family Battler of Khaz Algar
+    { -- Family Battler of Khaz Algar
+		40980,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     { -- Big Fan
         40984,
         {

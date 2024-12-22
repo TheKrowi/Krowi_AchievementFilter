@@ -2372,7 +2372,12 @@ KrowiAF.AchievementData["03_00_02"] = {
     {1243}, -- Fish Don't Leave Footprints
     {1244}, -- Well Read
     {1248}, -- Plethora of Pets
-    {1250}, -- Shop Smart, Shop Pet...Smart
+	{ -- Shop Smart, Shop Pet...Smart
+		1250,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     { -- Not In My House
         1251,
         faction.Horde,
@@ -3638,7 +3643,12 @@ KrowiAF.AchievementData["03_00_02"] = {
             {"Event", 181},
         },
     },
-    {2516}, -- Lil' Game Hunter
+	{ -- Lil' Game Hunter
+		2516,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     { -- Mountain o' Mounts
         2536,
         faction.Alliance,
@@ -5317,7 +5327,12 @@ KrowiAF.AchievementData["03_02_02"] = {
             RewardType = rewardType.Title,
         },
     },
-    {4478}, -- Looking For Multitudes
+	{ -- Looking For Multitudes
+		4478,
+		{
+			RewardType = rewardType.Pet,
+		},
+	},
     {4496}, -- It's Over Nine Thousand!
     {4585}, -- Toravon the Ice Watcher (10 player)
     {4586}, -- Toravon the Ice Watcher (25 player)
