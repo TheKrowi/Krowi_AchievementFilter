@@ -74,7 +74,12 @@ KrowiAF.AchievementData["03_00_02"] = {
     {42}, -- Explore Eastern Kingdoms
     {43}, -- Explore Kalimdor
     {44}, -- Explore Outland
-    {45}, -- Explore Northrend
+    { -- Explore Northrend
+		45,
+		{
+			RewardType = rewardType.Tabard,
+		},
+	},
     { -- World Explorer
         46,
         {
@@ -1681,6 +1686,7 @@ KrowiAF.AchievementData["03_00_02"] = {
     { -- Brutally Dedicated
         876,
         {
+            RewardType = rewardType.Tabard,
             IsPvP = true,
         },
     },
@@ -2017,7 +2023,12 @@ KrowiAF.AchievementData["03_00_02"] = {
     },
     {1017}, -- Can I Keep Him?
     {1020}, -- Ten Tabards
-    {1021}, -- Twenty-Five Tabards
+    { -- Twenty-Five Tabards
+		1021,
+		{
+			RewardType = rewardType.Tabard,
+		},
+	},
     { -- Flame Warden of Eastern Kingdoms
         1022,
         faction.Alliance,
@@ -5191,7 +5202,10 @@ KrowiAF.AchievementData["03_02_00"] = {
         3857,
         faction.Alliance,
         3957,
-        true,
+        {
+            RewardType = rewardType.Tabard,
+            IsPvP = true,
+        },
     },
     { -- Onyx Panther
         3896,
@@ -5208,7 +5222,10 @@ KrowiAF.AchievementData["03_02_00"] = {
         3957,
         faction.Horde,
         3857,
-        true,
+        {
+            RewardType = rewardType.Tabard,
+            IsPvP = true,
+        },
     },
     {3996}, -- Three Sixty Pain Spike (10 player)
     {3997}, -- Three Sixty Pain Spike (25 player)

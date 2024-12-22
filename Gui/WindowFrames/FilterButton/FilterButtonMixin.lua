@@ -230,6 +230,7 @@ do -- AchievementFilters
         self:CreateCheckbox(reward, addon.L["Toy"], filters, {"RewardType", KrowiAF.Enum.RewardType.Toy}, true);
         self:CreateCheckbox(reward, addon.L["Teleport"], filters, {"RewardType", KrowiAF.Enum.RewardType.Teleport}, true);
         self:CreateCheckbox(reward, addon.L["Transmog"], filters, {"RewardType", KrowiAF.Enum.RewardType.Transmog}, true);
+        self:CreateCheckbox(reward, addon.L["Tabard"], filters, {"RewardType", KrowiAF.Enum.RewardType.Tabard}, true);
         self:CreateCheckbox(reward, addon.L["Other"], filters, {"RewardType", KrowiAF.Enum.RewardType.Other}, true);
         addon.MenuUtil:CreateDivider(reward);
         self:CreateCheckbox(reward, addon.L["Remix Pandaria Bronze"], filters, {"RewardType", KrowiAF.Enum.RewardType.RemixPandariaBronze}, true);

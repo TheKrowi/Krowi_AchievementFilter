@@ -506,6 +506,7 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Dueling Master
         12863,
         {
+            RewardType = rewardType.Tabard,
             IsPvP = true,
         },
     },

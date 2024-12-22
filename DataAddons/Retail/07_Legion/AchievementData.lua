@@ -3230,6 +3230,7 @@ KrowiAF.AchievementData["07_03_05"] = {
     { -- Family Brawler
         12290,
         {
+            RewardType = rewardType.Tabard,
             IsPvP = true,
         },
     },
