@@ -441,7 +441,12 @@ KrowiAF.AchievementData["09_00_01"] = {
     {14760}, -- Recollection Collection
     {14761}, -- Deciphering Death's Intentions
     {14762}, -- Breaking the Stratus Fear
-    {14763}, -- Crypt Couture
+    { -- Crypt Couture
+		14763,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
     {14764}, -- The Great Luckydo
     {14765}, -- Ramparts Racer
 	{ -- Parasoling
@@ -598,9 +603,24 @@ KrowiAF.AchievementData["09_00_05"] = {
             {"PvE Season", 5},
         },
     },
-    {15023}, -- We Can Rebuild
-    {15024}, -- Denying the Drought
-    {15025}, -- Sanctum Superior
+    { -- We Can Rebuild
+		15023,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- Denying the Drought
+		15024,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- Sanctum Superior
+		15025,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
 };
 
 KrowiAF.AchievementData["09_01_00"] = {
@@ -1201,14 +1221,24 @@ KrowiAF.AchievementData["09_02_00"] = {
     },
     {15386}, -- Shimmering Secrets
     {15391}, -- Adventurer of Zereth Mortis
-    {15392}, -- Dune Dominance
+    { -- Dune Dominance
+		15392,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
     {15396}, -- We Are All Made of Stars
     {15397}, -- Four Ring Circus
     {15398}, -- Xy Never, Ever Marks the Spot.
     {15399}, -- Coming to Terms
     {15400}, -- Where the Wild Corgis Are
     {15401}, -- Wisdom Comes From the Desert
-    {15402}, -- Cyphers of the First Ones
+    { -- Cyphers of the First Ones
+		15402,
+		{
+			RewardType = rewardType.Mount,
+		},
+	},
     {15404}, -- Cosmic Empowerment
     {15406}, -- Synthesized!
     {15407}, -- Synthe-fived!
@@ -1314,7 +1344,12 @@ KrowiAF.AchievementData["09_02_00"] = {
     },
     {15512}, -- Adventures in Zereth Mortis
     {15513}, -- Curious Collections
-    {15514}, -- Unlocking the Secrets
+    { -- Unlocking the Secrets
+		15514,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
     {15515}, -- Path to Enlightenment
     {15518}, -- A Means to an End
     { -- Solo Aspirations
@@ -1353,7 +1388,12 @@ KrowiAF.AchievementData["09_02_00"] = {
 
 KrowiAF.AchievementData["09_02_05"] = {
     {KrowiAF.SetAchievementPatch, 9, 2, 5},
-    {15579}, -- Return to Lordaeron
+    { -- Return to Lordaeron
+		15579,
+		{
+			RewardType = {rewardType.Title, rewardType.Other},
+		},
+	},
     { -- Fearless Spectator
         15594,
         {

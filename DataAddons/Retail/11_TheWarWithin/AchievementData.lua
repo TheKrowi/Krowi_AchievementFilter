@@ -11,13 +11,43 @@ KrowiAF.AchievementData["11_00_00"] = {
     {19414}, -- Algari Cook
     {19415}, -- Algari Fisherman
     {19459}, -- Level 80
-    {19460}, -- Two Warband Mentors: The War Within
-    {19470}, -- One Warband Mentor: The War Within
-    {19475}, -- Three Warband Mentors: The War Within
-    {19476}, -- Four Warband Mentors: The War Within
-    {19477}, -- Five Warband Mentors: The War Within
+    { -- Two Warband Mentors: The War Within
+		19460,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- One Warband Mentor: The War Within
+		19470,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- Three Warband Mentors: The War Within
+		19475,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- Four Warband Mentors: The War Within
+		19476,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- Five Warband Mentors: The War Within
+		19477,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
     {19489}, -- Class Connoisseur
-    {19515}, -- Algari Master of Many
+    { -- Algari Master of Many
+		19515,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
     {19559}, -- Azj-Kahet
     {19560}, -- The Ringing Deeps
     {19704}, -- Overflowing Algari Flasks
@@ -130,7 +160,12 @@ KrowiAF.AchievementData["11_00_00"] = {
     },
     {20594}, -- Flamegard's Hope
     {20595}, -- Sojourner of Isle of Dorn
-    {20596}, -- Loremaster of Khaz Algar
+    { -- Loremaster of Khaz Algar
+		20596,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
     {20597}, -- The War Within
     {20598}, -- Hallowfall
     {40082}, -- Never Enough
@@ -174,10 +209,30 @@ KrowiAF.AchievementData["11_00_00"] = {
             {"PvE Season", 13},
         },
     },
-    {40107}, -- Harbinger of the Weathered
-    {40115}, -- Harbinger of the Carved
-    {40118}, -- Harbinger of the Runed
-    {40138}, -- Algari Dungeoneer
+    { -- Harbinger of the Weathered
+		40107,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- Harbinger of the Carved
+		40115,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- Harbinger of the Runed
+		40118,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- Algari Dungeoneer
+		40138,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
     {40139}, -- Algari Dungeon Damage Dealer
     {40140}, -- Algari Dungeon Healer
     {40141}, -- Algari Dungeon Tank
@@ -217,7 +272,12 @@ KrowiAF.AchievementData["11_00_00"] = {
 			RewardType = rewardType.Title,
 		},
 	},
-    {40231}, -- The War Within Pathfinder
+    { -- The War Within Pathfinder
+		40231,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
 	{ -- Glory of the Nerub-ar Raider
 		40232,
 		{
@@ -293,9 +353,19 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40263}, -- Would You Still /love Me if I Was a Worm...
     {40264}, -- Kill Streak
     {40266}, -- Missed 'Em by That Much
-    {40307}, -- Allied Races: Earthen
+    { -- Allied Races: Earthen
+		40307,
+		{
+			RewardType = rewardType.AlliedRace,
+		},
+	},
     {40308}, -- Beacon of Hope
-    {40309}, -- Heritage of the Earthen
+    { -- Heritage of the Earthen
+		40309,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
     {40311}, -- Sharing the Light
     {40312}, -- Starting the Flames
     {40313}, -- Igniting the Keyflames
@@ -349,7 +419,12 @@ KrowiAF.AchievementData["11_00_00"] = {
 			RewardType = rewardType.Title,
 		},
 	},
-    {40360}, -- Life on the Farm
+    { -- Life on the Farm
+		40360,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
     {40361}, -- Cinderbrew Meadery
     {40363}, -- Heroic: Cinderbrew Meadery
     {40366}, -- Mythic: Cinderbrew Meadery
@@ -480,7 +555,12 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40427}, -- Darkflame Cleft
     {40428}, -- Heroic: Darkflame Cleft
     {40429}, -- Mythic: Darkflame Cleft
-    {40430}, -- Khaz Algar Flight Master
+    { -- Khaz Algar Flight Master
+		40430,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
     { -- Hunting the Hunter
         40431,
         {
@@ -538,26 +618,126 @@ KrowiAF.AchievementData["11_00_00"] = {
     },
     {40473}, -- Not So Quick Fix
     {40475}, -- To All the Slimes I Love
-    {40476}, -- 10 Algari Seekerthread
-    {40480}, -- 20 Algari Seekerthread
-    {40484}, -- 30 Algari Seekerthread
-    {40485}, -- 40 Algari Seekerthread
-    {40487}, -- 50 Algari Seekerthread
-    {40488}, -- 60 Algari Seekerthread
-    {40489}, -- 70 Algari Seekerthread
-    {40490}, -- 80 Algari Seekerthread
-    {40491}, -- 90 Algari Seekerthread
-    {40492}, -- 100 Algari Seekerthread
-    {40494}, -- 10 Algari Anglerthread
-    {40495}, -- 20 Algari Anglerthread
-    {40496}, -- 60 Algari Anglerthread
-    {40497}, -- 30 Algari Anglerthread
-    {40498}, -- 70 Algari Anglerthread
-    {40499}, -- 40 Algari Anglerthread
-    {40500}, -- 80 Algari Anglerthread
-    {40501}, -- 100 Algari Anglerthread
-    {40502}, -- 50 Algari Anglerthread
-    {40503}, -- 90 Algari Anglerthread
+    { -- 10 Algari Seekerthread
+		40476,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- 20 Algari Seekerthread
+		40480,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- 30 Algari Seekerthread
+		40484,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- 40 Algari Seekerthread
+		40485,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- 50 Algari Seekerthread
+		40487,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- 60 Algari Seekerthread
+		40488,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- 70 Algari Seekerthread
+		40489,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- 80 Algari Seekerthread
+		40490,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- 90 Algari Seekerthread
+		40491,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- 100 Algari Seekerthread
+		40492,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- 10 Algari Anglerthread
+		40494,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- 20 Algari Anglerthread
+		40495,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- 60 Algari Anglerthread
+		40496,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- 30 Algari Anglerthread
+		40497,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- 70 Algari Anglerthread
+		40498,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- 40 Algari Anglerthread
+		40499,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- 80 Algari Anglerthread
+		40500,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- 100 Algari Anglerthread
+		40501,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- 50 Algari Anglerthread
+		40502,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- 90 Algari Anglerthread
+		40503,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
     {40504}, -- Rocked to Sleep
 	{ -- Leave No Treasure Unfound
 		40506,
@@ -566,15 +746,60 @@ KrowiAF.AchievementData["11_00_00"] = {
 		},
 	},
     {40507}, -- Hanging Tight
-    {40512}, -- War Within Delves: Tier 2
-    {40514}, -- War Within Delves: Tier 3
-    {40515}, -- War Within Delves: Tier 4
-    {40516}, -- War Within Delves: Tier 5
-    {40517}, -- War Within Delves: Tier 6
-    {40518}, -- War Within Delves: Tier 7
-    {40519}, -- War Within Delves: Tier 8
-    {40520}, -- War Within Delves: Tier 9
-    {40521}, -- War Within Delves: Tier 10
+    { -- War Within Delves: Tier 2
+		40512,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- War Within Delves: Tier 3
+		40514,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- War Within Delves: Tier 4
+		40515,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- War Within Delves: Tier 5
+		40516,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- War Within Delves: Tier 6
+		40517,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- War Within Delves: Tier 7
+		40518,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- War Within Delves: Tier 8
+		40519,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- War Within Delves: Tier 9
+		40520,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- War Within Delves: Tier 10
+		40521,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
     {40523}, -- On Brand
     {40524}, -- Good Deed Delver
     {40525}, -- Fungal Folly Stories
@@ -620,7 +845,12 @@ KrowiAF.AchievementData["11_00_00"] = {
 			RewardType = rewardType.Title,
 		},
 	},
-    {40618}, -- Lost and Found
+    { -- Lost and Found
+		40618,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
     {40620}, -- Back to the Wall
     {40621}, -- The Rookery
     {40622}, -- Biblo Archivist
@@ -630,7 +860,12 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40628}, -- Notable Machines
     {40629}, -- Bookworm
     {40630}, -- For the Collective
-    {40631}, -- War Within Delves: Tier 1
+    { -- War Within Delves: Tier 1
+		40631,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
     {40632}, -- No Harm Ever Came From Reading A Book
     {40633}, -- The Unseeming
     {40634}, -- You Can't Hang With Us
@@ -641,7 +876,12 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40643}, -- The Stonevault
     {40644}, -- Heroic: The Stonevault
     {40648}, -- Mythic: The Stonevault
-    {40660}, -- The War Within Season 1: Spelunker Supreme
+    { -- The War Within Season 1: Spelunker Supreme
+		40660,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
 	{ -- It's Not Much, But It's Honest Work
 		40662,
 		{
@@ -657,9 +897,19 @@ KrowiAF.AchievementData["11_00_00"] = {
     {40703}, -- The Ringing Deeps Glyph Hunter
     {40704}, -- Hallowfall Glyph Hunter
     {40705}, -- Azj-Kahet Glyph Hunter
-    {40723}, -- Web-Wrapped in the Finest Silks
+    { -- Web-Wrapped in the Finest Silks
+		40723,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
     {40724}, -- Treasures of The Ringing Deeps
-    {40725}, -- War Within Delves: Endgame
+    { -- War Within Delves: Endgame
+		40725,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
 	{ -- War Within Delves: Tier 11
 		40726,
 		{
@@ -810,8 +1060,18 @@ KrowiAF.AchievementData["11_00_05"] = {
 			RewardType = rewardType.Title,
 		},
 	},
-    {40871}, -- Assistant to the Assistant Guest Relations Manager
-    {40872}, -- I Saved the Party and All I Got Was This Lousy Hat
+    { -- Assistant to the Assistant Guest Relations Manager
+		40871,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
+    { -- I Saved the Party and All I Got Was This Lousy Hat
+		40872,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
     {40873}, -- Crate Insurance Agent
     {40967}, -- Ratts' Revenge
     { -- A Cool Twenty Years
@@ -921,23 +1181,35 @@ KrowiAF.AchievementData["11_00_05"] = {
         },
     },
     {41000}, -- A Timewalking Journey Back to a Classic Dungeon Time
-    {41013}, -- Upgraded Apparel
+    { -- Upgraded Apparel
+		41013,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
     { -- A Dark Iron Past
         41015,
         {
             {"Event", 1592},
         },
     },
-    {41033}, -- Classy Dresser
+    { -- Classy Dresser
+		41033,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
     { -- Token Collector
         41038,
         {
+            RewardType = rewardType.Other,
             {"Event", 1592},
         },
     },
     { -- Forged Weapons of Conquest
         41044,
         {
+            RewardType = rewardType.Transmog,
             IsPvP = true,
             {"PvP Season", 38},
         },
@@ -984,7 +1256,12 @@ KrowiAF.AchievementData["11_00_07"] = {
     {41045}, -- A Song of Secrets
     {41046}, -- Clean Up on Isle Siren
     {41050}, -- A Choir of Citrines
-    {41052}, -- Lingering Shadows
+    { -- Lingering Shadows
+		41052,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
     { -- Master of the Turbulent Timeways II
         41056,
         {
@@ -1055,7 +1332,12 @@ KrowiAF.AchievementData["11_00_07"] = {
     {41166}, -- From Many, One
     {41167}, -- Hallowfall Arathi
     {41168}, -- The Flame Burns Within
-    {41169}, -- Khaz Algar Diplomat
+    { -- Khaz Algar Diplomat
+		41169,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
     {41170}, -- Friends in the Plains
     {41171}, -- Friends in the Accord
     {41172}, -- Friends in the Field

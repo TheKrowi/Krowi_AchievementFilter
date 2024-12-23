@@ -211,6 +211,9 @@ KrowiAF.AchievementData["07_00_03"] = {
     },
     { -- Nightfallen But Not Forgotten
         10617,
+        {
+            RewardType = rewardType.Other,
+        },
     },
     { -- Zoom!
         10626,
@@ -220,6 +223,9 @@ KrowiAF.AchievementData["07_00_03"] = {
     },
     { -- Fledgling Hero of Warcraft
         10657,
+        {
+            RewardType = rewardType.Other,
+        },
     },
     { -- Imagined Dragons World Tour
         10663,
@@ -1413,6 +1419,9 @@ KrowiAF.AchievementData["07_00_03"] = {
     },
     { -- Higher Dimensional Learning
         11175,
+        {
+            RewardType = rewardType.Other,
+        },
     },
     { -- Remember to Share
         11176,
@@ -1458,6 +1467,9 @@ KrowiAF.AchievementData["07_00_03"] = {
     },
     { -- Broken Isles Pathfinder, Part One
         11190,
+        {
+            RewardType = rewardType.Other,
+        },
     },
     { -- Cutting Edge: Xavius
         11191,
@@ -1497,13 +1509,19 @@ KrowiAF.AchievementData["07_00_03"] = {
     },
     { -- Fight for the Alliance
         11210,
+        faction.Alliance,
+        11211,
         {
+            RewardType = rewardType.Transmog,
             {"From", "Date", {2016, 5, 25}, "Until", "Date", {2016, 8, 1}},
         },
     },
     { -- Fight for the Horde
         11211,
+        faction.Horde,
+        11210,
         {
+            RewardType = rewardType.Transmog,
             {"From", "Date", {2016, 5, 25}, "Until", "Date", {2016, 8, 1}},
         },
     },
@@ -1771,6 +1789,9 @@ KrowiAF.AchievementData["07_02_00"] = {
     },
     { -- Broken Isles Pathfinder, Part Two
         11446,
+        {
+            RewardType = rewardType.Other,
+        },
     },
     { -- Alive for Five
         11468,
@@ -1875,6 +1896,7 @@ KrowiAF.AchievementData["07_02_00"] = {
         faction.Alliance,
         11564,
         {
+            RewardType = rewardType.Other,
             {"Before", "Version", {8, 0, 1}},
         },
     },
@@ -1883,6 +1905,7 @@ KrowiAF.AchievementData["07_02_00"] = {
         faction.Horde,
         11563,
         {
+            RewardType = rewardType.Other,
             {"Before", "Version", {8, 0, 1}},
         },
     },
@@ -2359,6 +2382,9 @@ KrowiAF.AchievementData["07_02_05"] = {
     },
     { -- I'll Hold These For You Until You Get Out
         11869,
+        {
+            RewardType = rewardType.Transmog,
+        },
     },
     { -- Ahead of the Curve: Kil'jaeden
         11874,
@@ -2411,6 +2437,9 @@ KrowiAF.AchievementData["07_03_00"] = {
     {KrowiAF.SetAchievementPatch, 7, 3, 0},
     { -- Fisherfriend of the Isles
         11725,
+        {
+            RewardType = rewardType.Transmog,
+        },
     },
     { -- Don't Play With That In The House
         11913,
@@ -2666,6 +2695,9 @@ KrowiAF.AchievementData["07_03_00"] = {
     },
     { -- Explore Argus
         12069,
+        {
+            RewardType = rewardType.Other,
+        },
     },
     { -- Crucible's Promise
         12071,
@@ -2693,6 +2725,9 @@ KrowiAF.AchievementData["07_03_00"] = {
     },
     { -- Commander of Argus
         12078,
+        {
+            RewardType = rewardType.Transmog,
+        },
     },
     { -- Raiding with Leashes V: Cuteaclysm
         12079,
@@ -3154,18 +3189,30 @@ KrowiAF.AchievementData["07_03_05"] = {
     { -- Allied Races: Void Elf
         12242,
         faction.Alliance,
+        {
+            RewardType = rewardType.AlliedRace,
+        },
     },
     { -- Allied Races: Lightforged Draenei
         12243,
         faction.Alliance,
+        {
+            RewardType = rewardType.AlliedRace,
+        },
     },
     { -- Allied Races: Nightborne
         12244,
         faction.Horde,
+        {
+            RewardType = rewardType.AlliedRace,
+        },
     },
     { -- Allied Races: Highmountain Tauren
         12245,
         faction.Horde,
+        {
+            RewardType = rewardType.AlliedRace,
+        },
     },
     { -- Mechanical Brawler
         12279,
@@ -3237,6 +3284,9 @@ KrowiAF.AchievementData["07_03_05"] = {
     { -- Heritage of the Void
         12291,
         faction.Alliance,
+        {
+            RewardType = rewardType.Transmog,
+        },
     },
     { -- Highmountain Tribe
         12292,
@@ -3512,14 +3562,23 @@ KrowiAF.AchievementData["07_03_05"] = {
     { -- Heritage of the Nightborne
         12413,
         faction.Horde,
+        {
+            RewardType = rewardType.Transmog,
+        },
     },
     { -- Heritage of the Lightforged
         12414,
         faction.Alliance,
+        {
+            RewardType = rewardType.Transmog,
+        },
     },
     { -- Heritage of Highmountain
         12415,
         faction.Horde,
+        {
+            RewardType = rewardType.Transmog,
+        },
     },
     { -- The Total Package
         12416,

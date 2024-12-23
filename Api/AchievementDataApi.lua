@@ -8,15 +8,17 @@ KrowiAF.Enum.Faction = EnumUtil.MakeEnum(
 KrowiAF.Enum.RewardType = EnumUtil.MakeEnum(
     "NotCategorized",
     "Other",
-    "Toy",
-    "Pet",
-    "Title",
+    "AlliedRace",
+    "Garrison",
     "Mount",
-    "Transmog",
-    "Item",
-    "Teleport",
+    "Pet",
     "RemixPandariaBronze",
-    "Tabard"
+    "Tabard",
+    "Teleport",
+    "Title",
+    "Toy",
+    "TradersTender",
+    "Transmog"
 );
 
 KrowiAF.AchievementData = {};

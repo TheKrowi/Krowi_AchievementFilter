@@ -4657,11 +4657,17 @@ KrowiAF.AchievementData["03_01_00"] = {
         3676,
         faction.Alliance,
         3677,
+        {
+            RewardType = rewardType.Other,
+        },
     },
     { -- The Sunreavers
         3677,
         faction.Horde,
         3676,
+        {
+            RewardType = rewardType.Other,
+        },
     },
     {3736}, -- Pony Up!
     { -- Furious Gladiator's Frost Wyrm

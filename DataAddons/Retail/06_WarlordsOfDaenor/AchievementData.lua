@@ -9,6 +9,9 @@ KrowiAF.AchievementData["06_00_02"] = {
         8671,
         faction.Horde,
         8845,
+        {
+            RewardType = rewardType.Other,
+        },
     },
     { -- You're Really Doing It Wrong (Level 90)
         8812,
@@ -29,6 +32,9 @@ KrowiAF.AchievementData["06_00_02"] = {
         8845,
         faction.Alliance,
         8671,
+        {
+            RewardType = rewardType.Other,
+        },
     },
     { -- Skyreach Challenger
         8871,
@@ -203,6 +209,7 @@ KrowiAF.AchievementData["06_00_02"] = {
     { -- Challenge Warlord: Gold
         8899,
         {
+            RewardType = rewardType.Transmog,
             {"Before", "Version", {7, 0, 3}},
         },
     },
@@ -219,11 +226,17 @@ KrowiAF.AchievementData["06_00_02"] = {
         8919,
         faction.Horde,
         8920,
+        {
+            RewardType = rewardType.Other,
+        },
     },
     { -- Don't Let the Tala-door Hit You on the Way Out
         8920,
         faction.Alliance,
         8919,
+        {
+            RewardType = rewardType.Other,
+        },
     },
     { -- Welcome to Draenor
         8921,
@@ -239,33 +252,56 @@ KrowiAF.AchievementData["06_00_02"] = {
         8923,
         faction.Alliance,
         8924,
+        {
+            RewardType = rewardType.Other,
+        },
     },
     { -- Putting the Gore in Gorgrond
         8924,
         faction.Horde,
         8923,
+        {
+            RewardType = rewardType.Other,
+        },
     },
     { -- Between Arak and a Hard Place
         8925,
         faction.Alliance,
         8926,
+        {
+            RewardType = rewardType.Other,
+        },
     },
     { -- Between Arak and a Hard Place
         8926,
         faction.Horde,
         8925,
+        {
+            RewardType = rewardType.Other,
+        },
     },
     { -- Nagrandeur
         8927,
         faction.Alliance,
         8928,
+        {
+            RewardType = rewardType.Other,
+        },
     },
     { -- Nagrandeur
         8928,
         faction.Horde,
         8927,
+        {
+            RewardType = rewardType.Other,
+        },
     },
-    {8929}, -- The Steel Has Been Brought
+    { -- The Steel Has Been Brought
+		8929,
+		{
+			RewardType = rewardType.Garrison,
+		},
+	},
     {8930}, -- Ya, We've Got Time...
     {8932}, -- Mythic: Flamebender Ka'graz
     {8933}, -- Staying Regular
@@ -530,7 +566,12 @@ KrowiAF.AchievementData["06_00_02"] = {
     {9125}, -- Draftsman
     {9126}, -- Master Draftsman
     {9128}, -- Grand Master Draftsman
-    {9129}, -- Filling the Ranks
+    { -- Filling the Ranks
+		9129,
+		{
+			RewardType = rewardType.Garrison,
+		},
+	},
     {9130}, -- A Rare Friend
     {9131}, -- An Epic Buddy
     { -- Garrison Buddies
@@ -568,6 +609,7 @@ KrowiAF.AchievementData["06_00_02"] = {
         faction.Alliance,
         9173,
         {
+            RewardType = rewardType.Other,
             {"Before", "Version", {7, 0, 3}},
         },
     },
@@ -601,6 +643,7 @@ KrowiAF.AchievementData["06_00_02"] = {
         faction.Horde,
         9169,
         {
+            RewardType = rewardType.Other,
             {"Before", "Version", {7, 0, 3}},
         },
     },
@@ -626,6 +669,7 @@ KrowiAF.AchievementData["06_00_02"] = {
         faction.Alliance,
         9177,
         {
+            RewardType = rewardType.Other,
             {"Before", "Version", {7, 0, 3}},
         },
     },
@@ -634,6 +678,7 @@ KrowiAF.AchievementData["06_00_02"] = {
         faction.Horde,
         9176,
         {
+            RewardType = rewardType.Other,
             {"Before", "Version", {7, 0, 3}},
         },
     },
@@ -825,12 +870,20 @@ KrowiAF.AchievementData["06_00_02"] = {
     },
     {9243}, -- Item Level Force
     {9244}, -- Invasions Are Better with Friends
-    {9246}, -- Master Draenor Crafter
+    { -- Master Draenor Crafter
+		9246,
+		{
+			RewardType = rewardType.Garrison,
+		},
+	},
     { -- Defender of Draenor
         9248,
         faction.Horde,
         9630,
-        true,
+        {
+            RewardType = rewardType.Garrison,
+            IsPvP = true,
+        },
     },
     { -- Flying High
         9250,
@@ -854,6 +907,9 @@ KrowiAF.AchievementData["06_00_02"] = {
         9255,
         faction.Horde,
         9631,
+        {
+            RewardType = rewardType.Garrison,
+        },
     },
     { -- Rescue Operation
         9256,
@@ -867,8 +923,18 @@ KrowiAF.AchievementData["06_00_02"] = {
         9256,
         true,
     },
-    {9264}, -- Draenor Pet Brawler
-    {9265}, -- Master of Apexis
+    { -- Draenor Pet Brawler
+		9264,
+		{
+			RewardType = rewardType.Garrison,
+		},
+	},
+    { -- Master of Apexis
+		9265,
+		{
+			RewardType = rewardType.Garrison,
+		},
+	},
     { -- It Might Just Save Your Life
         9389,
         {
@@ -905,7 +971,12 @@ KrowiAF.AchievementData["06_00_02"] = {
     {9401}, -- Shredder Maniac
     {9402}, -- Prove Your Strength
     {9405}, -- Working Some Orders
-    {9406}, -- Working More Orders
+    { -- Working More Orders
+		9406,
+		{
+			RewardType = rewardType.Garrison,
+		},
+	},
     {9407}, -- Working Many Orders
     { -- Operation Counterattack
         9408,
@@ -942,7 +1013,12 @@ KrowiAF.AchievementData["06_00_02"] = {
             {"Event", 409},
         },
     },
-    {9429}, -- Upgrading the Mill
+    { -- Upgrading the Mill
+		9429,
+		{
+			RewardType = rewardType.Garrison,
+		},
+	},
     {9432}, -- Would You Like a Pamphlet?
     {9433}, -- A-VOID-ance
     {9434}, -- One of Us! One of Us!
@@ -976,8 +1052,18 @@ KrowiAF.AchievementData["06_00_02"] = {
     {9450}, -- The Trap Game
     {9451}, -- Trapper's Delight
     {9452}, -- Trap Superstar
-    {9453}, -- Draenic Stone Collector
-    {9454}, -- Draenic Seed Collector
+    { -- Draenic Stone Collector
+		9453,
+		{
+			RewardType = rewardType.Garrison,
+		},
+	},
+    { -- Draenic Seed Collector
+		9454,
+		{
+			RewardType = rewardType.Garrison,
+		},
+	},
     {9455}, -- Fire Ammonite Angler
     {9456}, -- Abyssal Gulper Eel Angler
     {9457}, -- Blackwater Whiptail Angler
@@ -985,15 +1071,30 @@ KrowiAF.AchievementData["06_00_02"] = {
     {9459}, -- Fat Sleeper Angler
     {9460}, -- Jawless Skulker Angler
     {9461}, -- Sea Scorpion Angler
-    {9462}, -- Draenor Angler
-    {9463}, -- Draenic Pet Battler
+    { -- Draenor Angler
+		9462,
+		{
+			RewardType = rewardType.Garrison,
+		},
+	},
+    { -- Draenic Pet Battler
+		9463,
+		{
+			RewardType = rewardType.Garrison,
+		},
+	},
 	{ -- Professional Draenor Master
 		9464,
 		{
 			RewardType = rewardType.Title,
 		},
 	},
-    {9468}, -- Salvaging Pays Off
+    { -- Salvaging Pays Off
+		9468,
+		{
+			RewardType = rewardType.Garrison,
+		},
+	},
     {9469}, -- Arakkoa Outcasts
     { -- Council of Exarchs
         9470,
@@ -1032,17 +1133,28 @@ KrowiAF.AchievementData["06_00_02"] = {
         9477,
         faction.Horde,
         9478,
+        {
+            RewardType = rewardType.Garrison,
+        },
     },
     { -- Savage Friends
         9478,
         faction.Alliance,
         9477,
+        {
+            RewardType = rewardType.Garrison,
+        },
     },
     {9479}, -- You Can't Make a Giant Omelette...
     {9481}, -- You Have Been Rylakinated!
     {9483}, -- I Was Framed!
     {9486}, -- Goodness Gracious
-    {9487}, -- Got My Mind On My Draenor Money
+    { -- Got My Mind On My Draenor Money
+		9487,
+		{
+			RewardType = rewardType.Garrison,
+		},
+	},
     { -- The Garrison Campaign
         9491,
         faction.Alliance,
@@ -1058,6 +1170,7 @@ KrowiAF.AchievementData["06_00_02"] = {
     { -- The Bone Collector
         9495,
         {
+            RewardType = rewardType.Garrison,
             IsPvP = true,
         },
     },
@@ -1068,7 +1181,12 @@ KrowiAF.AchievementData["06_00_02"] = {
             {"Never"},
         },
     },
-    {9497}, -- Finding Your Waystones
+    { -- Finding Your Waystones
+		9497,
+		{
+			RewardType = rewardType.Garrison,
+		},
+	},
     {9498}, -- Wingman
     {9499}, -- Wingmen
     {9500}, -- Draenor Cook
@@ -1223,10 +1341,25 @@ KrowiAF.AchievementData["06_00_02"] = {
             IsPvP = true,
         },
     },
-    {9523}, -- Patrolling Draenor
+    { -- Patrolling Draenor
+		9523,
+		{
+			RewardType = rewardType.Garrison,
+		},
+	},
     {9524}, -- Treasure Master
-    {9526}, -- Master of Mounts
-    {9527}, -- Terrific Technology
+    { -- Master of Mounts
+		9526,
+		{
+			RewardType = rewardType.Garrison,
+		},
+	},
+    { -- Terrific Technology
+		9527,
+		{
+			RewardType = rewardType.Garrison,
+		},
+	},
     { -- On the Shadow's Trail
         9528,
         faction.Alliance,
@@ -1298,7 +1431,12 @@ KrowiAF.AchievementData["06_00_02"] = {
         faction.Alliance,
         9562,
     },
-    {9565}, -- Master Trapper
+    { -- Master Trapper
+		9565,
+		{
+			RewardType = rewardType.Garrison,
+		},
+	},
     { -- Victory in Hillsbrad
         9566,
         faction.Horde,
@@ -1445,12 +1583,18 @@ KrowiAF.AchievementData["06_00_02"] = {
         9630,
         faction.Alliance,
         9248,
-        true,
+        {
+            RewardType = rewardType.Garrison,
+            IsPvP = true,
+        },
     },
     { -- Mythic Draenor Raider
         9631,
         faction.Alliance,
         9255,
+        {
+            RewardType = rewardType.Garrison,
+        },
     },
     {9632}, -- The Power Is Yours
     {9633}, -- Cut off the Head
@@ -1510,6 +1654,7 @@ KrowiAF.AchievementData["06_00_02"] = {
     { -- Time is a Flat Circle
         9680,
         {
+            RewardType = rewardType.Garrison,
             {"Before", "Version", {7, 0, 3}},
         },
     },
@@ -1519,7 +1664,12 @@ KrowiAF.AchievementData["06_00_02"] = {
 			RewardType = rewardType.Pet,
 		},
 	},
-    {9703}, -- Stay Awhile and Listen
+    { -- Stay Awhile and Listen
+		9703,
+		{
+			RewardType = rewardType.Garrison,
+		},
+	},
     { -- Advanced Husbandry
         9705,
         faction.Horde,
@@ -1878,6 +2028,9 @@ KrowiAF.AchievementData["06_01_00"] = {
         9901,
         faction.Horde,
         9928,
+        {
+            RewardType = rewardType.Garrison,
+        },
     },
     {9906}, -- Alt-ernative Lifestyle
     {9908}, -- Ready for Powerleveling
@@ -1927,12 +2080,20 @@ KrowiAF.AchievementData["06_01_00"] = {
         9928,
         faction.Alliance,
         9901,
+        {
+            RewardType = rewardType.Garrison,
+        },
     },
 };
 
 KrowiAF.AchievementData["06_02_00"] = {
     {KrowiAF.SetAchievementPatch, 6, 2, 0},
-    {9972}, -- A Race Against Slime
+    { -- A Race Against Slime
+		9972,
+		{
+			RewardType = rewardType.Garrison,
+		},
+	},
     {9979}, -- Get In My Belly!
     { -- That's Whack!
         9983,
@@ -2031,6 +2192,7 @@ KrowiAF.AchievementData["06_02_00"] = {
         faction.Alliance,
         10148,
         {
+            RewardType = rewardType.Garrison,
             {"Before", "Version", {7, 0, 3}},
         },
     },
@@ -2453,6 +2615,7 @@ KrowiAF.AchievementData["06_02_00"] = {
         faction.Horde,
         10021,
         {
+            RewardType = rewardType.Garrison,
             {"Before", "Version", {7, 0, 3}},
         },
     },
@@ -2485,11 +2648,19 @@ KrowiAF.AchievementData["06_02_00"] = {
     },
     {10168}, -- Naval Armada
     {10169}, -- Naval Fleet
-    {10170}, -- Seaman
+    { -- Seaman
+		10170,
+		{
+			RewardType = rewardType.Garrison,
+		},
+	},
     { -- Petty Officer
         10172,
         faction.Alliance,
         10255,
+        {
+            RewardType = rewardType.Transmog,
+        },
     },
     { -- Fleet Commander
         10173,
@@ -2507,16 +2678,25 @@ KrowiAF.AchievementData["06_02_00"] = {
         10255,
         faction.Horde,
         10172,
+        {
+            RewardType = rewardType.Transmog,
+        },
     },
     { -- Charting a Course
         10256,
         faction.Alliance,
         10258,
+        {
+            RewardType = rewardType.Transmog,
+        },
     },
     { -- Charting a Course
         10258,
         faction.Horde,
         10256,
+        {
+            RewardType = rewardType.Transmog,
+        },
     },
     {10259}, -- Jungle Hunter
     {10260}, -- Explore Tanaan Jungle

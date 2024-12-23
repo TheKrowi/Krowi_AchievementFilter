@@ -57,6 +57,7 @@ KrowiAF.AchievementData["05_00_04"] = {
     { -- Challenge Conqueror: Gold
         6378,
         {
+            RewardType = rewardType.Transmog,
             {"Before", "Version", {6, 0, 2}},
         },
     },
@@ -1180,9 +1181,24 @@ KrowiAF.AchievementData["05_00_04"] = {
     {7379}, -- Pandaren Master of All
     {7380}, -- Double Agent
     {7381}, -- Restore Balance
-    {7382}, -- Dynamic Duo
-    {7383}, -- Terrific Trio
-    {7384}, -- Quintessential Quintet
+    { -- Dynamic Duo
+		7382,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- Terrific Trio
+		7383,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- Quintessential Quintet
+		7384,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
 	{ -- Pub Crawl
 		7385,
 		{
@@ -1406,7 +1422,12 @@ KrowiAF.AchievementData["05_01_00"] = {
             RewardType = rewardType.Mount,
         },
     },
-    {7908}, -- I Choose You
+    { -- I Choose You
+		7908,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
     { -- Operation: Shieldwall Campaign
         7928,
         faction.Alliance,

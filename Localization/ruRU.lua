@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-12-20 17-46-41 ]] --
+-- [[ Exported at 2024-12-23 11-00-28 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -163,7 +163,6 @@ L["Criteria is Completed"] = "Критерия выполнена"
 L["Criteria is Completed Desc"] = "Отображать критерии достижения, даже если они уже выполнены."
 L["Criteria of"] = "Критерия"
 L["Cross-Expansion"] = "Пересечение дополнений"
-L["Cross-Expansion - Delves"] = "Меж-дополнение - Вылазки"
 L["Ctrl"] = true
 L["Current Obtainable"] = "Доступно сейчас"
 L["Current Zone"] = "Текущее место"
@@ -384,7 +383,6 @@ L["Login Delay"] = "Задержка входа"
 L["Love is in the Air"] = "Любовная лихорадка"
 L["Lucky Yi"] = "Счастливчик И"
 L["Lunar Festival"] = "Лунный Фестиваль"
-L["PvE Season"] = "Сезон М+"
 L["Make windows movable"] = "Сделать окна подвижными"
 L["Make windows movable Desc"] = "Позволяет перемещать/не перемещать окно календаря достижений и диспетчер данных. Если установлен флажок, удерживание нажатой левой кнопки мыши перемещает окно достижений. Это работает с заголовком и границами."
 L["Mantid"] = "Богомол"

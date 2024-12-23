@@ -128,7 +128,12 @@ KrowiAF.AchievementData["10_00_00"] = {
 		},
 	},
     {15938}, -- Thaldraszus Advanced: Gold
-    {15939}, -- Dragon Racing Completionist: Bronze
+    { -- Dragon Racing Completionist: Bronze
+		15939,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
 	{ -- Dragon Racing Completionist: Silver
 		15940,
 		{
@@ -407,7 +412,12 @@ KrowiAF.AchievementData["10_00_00"] = {
 			RewardType = rewardType.Title,
 		},
 	},
-    {16444}, -- Leftovers' Revenge
+    { -- Leftovers' Revenge
+		16444,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
     {16445}, -- Icy What You Did There
 	{ -- That's Pretty Neat!
 		16446,
@@ -860,7 +870,12 @@ KrowiAF.AchievementData["10_00_02"] = {
     {17110}, -- The Primal Bulwark
     {17111}, -- Caverns of Infusion
     {17112}, -- Fury of the Storm
-    {17119}, -- Deep Cuts From the Vault
+    { -- Deep Cuts From the Vault
+		17119,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
     {17314}, -- Heroic Edition: Tangled Dreamweaver
     { -- Legend: Dragonflight Season 1
         17339,
@@ -912,7 +927,12 @@ KrowiAF.AchievementData["10_00_05"] = {
 			RewardType = rewardType.Toy,
 		},
 	},
-    {17305}, -- Trading Post: Dragonflight
+    { -- Trading Post: Dragonflight
+		17305,
+		{
+			RewardType = rewardType.TradersTender,
+		},
+	},
     { -- Elders of the Dragon Isles
         17321,
         {
@@ -927,7 +947,12 @@ KrowiAF.AchievementData["10_00_05"] = {
 			RewardType = rewardType.Title,
 		},
 	},
-    {17334}, -- Trading Post Enthusiast
+    { -- Trading Post Enthusiast
+		17334,
+		{
+			RewardType = {rewardType.Transmog, rewardType.TradersTender},
+		},
+	},
     { -- Airborne Tumbler
         17335,
         {
@@ -971,7 +996,12 @@ KrowiAF.AchievementData["10_00_07"] = {
 		},
 	},
     {17315}, -- While We Were Sleeping
-    {17366}, -- Relics of a Fallen Empire
+    { -- Relics of a Fallen Empire
+		17366,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
     {17367}, -- Deadliest Cache
     {17397}, -- Door To Door
     {17398}, -- Dragon Glyphs: Winglord's Perch
@@ -1365,7 +1395,12 @@ KrowiAF.AchievementData["10_01_00"] = {
 	},
     {17977}, -- Stones Can Try To Fly!
     {17978}, -- Stones Can Fly!
-    {18027}, -- Dragonflight Season 2 Master
+    { -- Dragonflight Season 2 Master
+		18027,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
 	{ -- Cavern Clawbbering
 		18100,
 		{
@@ -1455,7 +1490,12 @@ KrowiAF.AchievementData["10_01_00"] = {
 		},
 	},
     {18361}, -- To All the Squirrels Burrowed Beneath
-    {18380}, -- Dragonflight Season 2 Hero
+    { -- Dragonflight Season 2 Hero
+		18380,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
     { -- Dragonflight Keystone Master: Season Two
         18542,
         {
@@ -1552,8 +1592,18 @@ KrowiAF.AchievementData["10_01_05"] = {
             {"Event", 324},
         },
     },
-    {18368}, -- Memory of Scholomance
-    {18372}, -- Wards of the Dread Citadel
+    { -- Memory of Scholomance
+		18368,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
+    { -- Wards of the Dread Citadel
+		18372,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
 	{ -- Hey Nanny Nanny
 		18383,
 		{
@@ -1654,14 +1704,24 @@ KrowiAF.AchievementData["10_01_05"] = {
 			RewardType = rewardType.Title,
 		},
 	},
-    {18643}, -- Community Rumors
+    { -- Community Rumors
+		18643,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
 	{ -- Community Rumor Mill
 		18644,
 		{
 			RewardType = rewardType.Pet,
 		},
 	},
-    {18645}, -- Tools of the Trade
+    { -- Tools of the Trade
+		18645,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
 	{ -- Whodunnit?
 		18646,
 		{
@@ -1676,7 +1736,12 @@ KrowiAF.AchievementData["10_01_05"] = {
 			RewardType = rewardType.Title,
 		},
 	},
-    {18706}, -- Put That Thing Back Where It Came From
+    { -- Put That Thing Back Where It Came From
+		18706,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
     { -- Draconically Superior
         18976,
         {
@@ -1806,7 +1871,12 @@ KrowiAF.AchievementData["10_01_07"] = {
 		},
 	},
     {18793}, -- Always Be Camping
-    {18804}, -- Neltharion's Legacy
+    { -- Neltharion's Legacy
+		18804,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
     {18805}, -- Draconic Phial Cabinet
     {18815}, -- Speed Dreamin'
     {18816}, -- Serious Chef
@@ -1834,7 +1904,12 @@ KrowiAF.AchievementData["10_01_07"] = {
     {18851}, -- Skeletons in the Lockbox
     {18852}, -- Weaponsmithing, Reborn
     {18853}, -- Seething Flames of Hatred
-    {18854}, -- Seeing Red
+    { -- Seeing Red
+		18854,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
     {18855}, -- Portal to Everywhere
     {18856}, -- Just an Ordinary Gas Cloud
     {18857}, -- That's No Ordinary Gas Cloud!
@@ -1886,14 +1961,39 @@ KrowiAF.AchievementData["10_01_07"] = {
     {18898}, -- That's Just Cruel
     {18899}, -- You Saw Nothing
     {18900}, -- Budget Bard
-    {18901}, -- Chromatic Calibration: Holo-Gogs
+    { -- Chromatic Calibration: Holo-Gogs
+		18901,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
     {18902}, -- Uncertified Nurse
     {18903}, -- Ton of Tops
     {18904}, -- Iron to Vendor Gold
-    {18905}, -- Chromatic Calibration: Retinal Armor
-    {18906}, -- Chromatic Calibration: Cranial Cannons
-    {18907}, -- Chromatic Calibration: Ectoplasmic Specs
-    {18908}, -- Chromatic Calibration: Bio-Optic Killshades
+    { -- Chromatic Calibration: Retinal Armor
+		18905,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
+    { -- Chromatic Calibration: Cranial Cannons
+		18906,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
+    { -- Chromatic Calibration: Ectoplasmic Specs
+		18907,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
+    { -- Chromatic Calibration: Bio-Optic Killshades
+		18908,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
     {18909}, -- Fantastic Figurines
     {18928}, -- Storm Rider: Bronze
     {18929}, -- Storm Rider: Silver
@@ -2320,7 +2420,12 @@ KrowiAF.AchievementData["10_02_00"] = {
     {19313}, -- Bloom Man Group
     {19315}, -- Dream Chaser
     {19316}, -- Adventurer of the Emerald Dream
-    {19317}, -- Treasures of the Emerald Dream
+    { -- Treasures of the Emerald Dream
+		19317,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
 	{ -- Dream On
 		19318,
 		{
@@ -2334,6 +2439,7 @@ KrowiAF.AchievementData["10_02_00"] = {
     { -- Dreaming of Drakes
         19326,
         {
+            RewardType = rewardType.Other,
             {"PvE Season", 11},
         },
     },
@@ -2379,16 +2485,23 @@ KrowiAF.AchievementData["10_02_00"] = {
     {19390}, -- Memories of Teldrassil
     {19393}, -- Whelp, I'm Lost
     {19394}, -- A Dream Within a Dream
-    {19396}, -- Dragonflight Season 3 Master
+    { -- Dragonflight Season 3 Master
+		19396,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
     { -- Dreaming of Wyrms
         19397,
         {
+            RewardType = rewardType.Other,
             {"PvE Season", 11},
         },
     },
     { -- Dreaming of the Aspects
         19398,
         {
+            RewardType = rewardType.Other,
             {"PvE Season", 11},
         },
     },
@@ -2429,7 +2542,12 @@ KrowiAF.AchievementData["10_02_00"] = {
             IsPvP = true,
         },
     },
-    {19420}, -- Dragonflight Season 3 Hero
+    { -- Dragonflight Season 3 Hero
+		19420,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
     {19442}, -- Fire Catwalk With Me
     { -- Battle Mender: Dragonflight Season 3
         19443,
@@ -2870,7 +2988,12 @@ KrowiAF.AchievementData["10_02_06"] = {
             {"Event", 181},
         },
     },
-    {20481}, -- Dragonflight Season 4 Master
+    { -- Dragonflight Season 4 Master
+		20481,
+		{
+			RewardType = rewardType.Transmog,
+		},
+	},
 	{ -- Back from the Beyond
 		20501,
 		{
@@ -2909,18 +3032,21 @@ KrowiAF.AchievementData["10_02_07"] = {
     { -- Valley of the Four Winds
         19873,
         {
+            RewardType = rewardType.Transmog,
             {"Event", 1514},
         },
     },
     { -- Krasarang Wilds
         19874,
         {
+            RewardType = rewardType.Transmog,
             {"Event", 1514},
         },
     },
     { -- Kun-Lai Summit
         19875,
         {
+            RewardType = rewardType.Transmog,
             {"Event", 1514},
         },
     },
@@ -2941,24 +3067,28 @@ KrowiAF.AchievementData["10_02_07"] = {
     { -- Dread Wastes
         19878,
         {
+            RewardType = rewardType.Transmog,
             {"Event", 1514},
         },
     },
     { -- Landfall
         19879,
         {
+            RewardType = rewardType.Transmog,
             {"Event", 1514},
         },
     },
     { -- Isle of Thunder
         19880,
         {
+            RewardType = rewardType.Transmog,
             {"Event", 1514},
         },
     },
     { -- Escalation
         19881,
         {
+            RewardType = rewardType.Other,
             {"Event", 1514},
         },
     },
@@ -3727,18 +3857,21 @@ KrowiAF.AchievementData["10_02_07"] = {
     { -- Heroic: Pandaria Scenarios
         20004,
         {
+            RewardType = rewardType.Other,
             {"Event", 1514},
         },
     },
     { -- Heroic: Pandaria Dungeons
         20005,
         {
+            RewardType = rewardType.Other,
             {"Event", 1514},
         },
     },
     { -- Pandaria Raids
         20006,
         {
+            RewardType = rewardType.Other,
             {"Event", 1514},
         },
     },
@@ -3922,66 +4055,77 @@ KrowiAF.AchievementData["10_02_07"] = {
     { -- Infinite Power I
         20527,
         {
+            RewardType = rewardType.Other,
             {"Event", 1514},
         },
     },
     { -- Infinite Power II
         20528,
         {
+            RewardType = rewardType.Other,
             {"Event", 1514},
         },
     },
     { -- Infinite Power III
         20529,
         {
+            RewardType = rewardType.Other,
             {"Event", 1514},
         },
     },
     { -- Infinite Power IV
         20530,
         {
+            RewardType = rewardType.Other,
             {"Event", 1514},
         },
     },
     { -- Infinite Power V
         20531,
         {
+            RewardType = rewardType.Other,
             {"Event", 1514},
         },
     },
     { -- Infinite Power VI
         20532,
         {
+            RewardType = rewardType.Other,
             {"Event", 1514},
         },
     },
     { -- Infinite Power VII
         20533,
         {
+            RewardType = rewardType.Other,
             {"Event", 1514},
         },
     },
     { -- Infinite Power VIII
         20534,
         {
+            RewardType = rewardType.Other,
             {"Event", 1514},
         },
     },
     { -- Infinite Power IX
         20535,
         {
+            RewardType = rewardType.Other,
             {"Event", 1514},
         },
     },
     { -- Infinite Power X
         20536,
         {
+            RewardType = rewardType.Other,
             {"Event", 1514},
         },
     },
     { -- Infinite Power XI
         20537,
         {
+            RewardType = rewardType.Other,
             {"Event", 1514},
         },
     },
@@ -4002,7 +4146,7 @@ KrowiAF.AchievementData["10_02_07"] = {
     { -- Timerunner
         40223,
         {
-            RewardType = {rewardType.Title, rewardType.Item},
+            RewardType = {rewardType.Title, rewardType.Other},
             {"Event", 1514},
         },
     },

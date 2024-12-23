@@ -7,7 +7,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-12-20 17-46-14 ]] --
+-- [[ Exported at 2024-12-23 10-59-30 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -56,6 +56,7 @@ L["Add to Watch List"] = "Add to {watchList}"
 L["Added in version"] = true
 L["Adjustable Categories"] = true
 L["Aki the Chosen"] = true
+L["Allied Race"] = true
 L["Alt"] = true
 L["Always Show Completed"] = true
 L["Always show realm"] = true
@@ -585,7 +586,6 @@ L["Login Delay"] = true
 L["Love is in the Air"] = true
 L["Lucky Yi"] = true
 L["Lunar Festival"] = true
-L["PvE Season"] = true
 L["Make windows movable"] = true
 L["Make windows movable Desc"] = [=[Makes the Achievement window Calendar view and Data manager movable/not movable.
 
@@ -661,6 +661,7 @@ L["NONC"] = true
 L["None"] = true
 L["No-No"] = true
 L["Northrend Cup"] = true
+L["Not Categorized"] = true
 L["Not Earned By"] = true
 L["Not earned by:"] = true
 L["Not loaded"] = true
@@ -670,6 +671,7 @@ L["Number of Earned By characters"] = "Number of {earnedBy} characters"
 L["Number of Earned By characters Desc"] = [=[The number of characters that will be displayed that have earned the achievement.
 
 Setting it to 0 will disable this feature.]=]
+L["Number of lines"] = true
 L["Number of Most progress characters"] = true
 L["Number of Most progress characters Desc"] = [=[The number of characters that will be displayed that have progress towards the achievement.
 
@@ -682,6 +684,7 @@ L["Number of search previews"] = true
 L["Number of search previews Desc"] = "The numbers of achievements shown as a preview of the full list of found achievements."
 L["Number of summary achievements"] = true
 L["Number of summary achievements Desc"] = "The number of achievements that will be shown in the summary view of each tab."
+L["Number of Temporarily obtainable lines Desc"] = "The number of lines that will be shown for {temporarilyObtainable} achievements if more than one momment was available to earn the achievement."
 L["N'Zoth (Uldum)"] = true
 L["N'Zoth (Vale of Eternal Blossoms)"] = true
 L["N'Zoth Assaults"] = true
@@ -731,6 +734,7 @@ L["Print map info"] = true
 L["Print map info Desc"] = "Print the map id to chat"
 L["Print map info w/o reload"] = true
 L["Print map info w/o reload Desc"] = "Print it directly without having to reload"
+L["PvE Season"] = true
 L["PvP"] = "Player vs. Player"
 L["PvP Season"] = true
 L["Quick Search"] = true
@@ -765,6 +769,7 @@ L["Related Tab"] = true
 L["Related Tab Desc"] = "Adds an extra bit to the {wowheadLink} so another tab different than the default one will be selected."
 L["Remember frame position"] = "Remember {frame} position"
 L["Remember frame position Desc"] = "Remember the {frame} position. This will keep the {frame} in it's last known position the next time you log in."
+L["Remix Pandaria Bronze"] = true
 L["Remove from Watch List"] = "Remove from {watchList}"
 L["Required for"] = true
 L["Requires"] = true
@@ -947,6 +952,7 @@ L["Siege of Orgrimmar"] = true
 L["Siege on Dragonbane Keep"] = true
 L["Siege on Dragonbane Keep: Active"] = true
 L["Siege on Dragonbane Keep: Gathering"] = true
+L["Siren Isle"] = true
 L["Skitterer Xi'a"] = true
 L["Skoldus Hall"] = true
 L["Skyriding Races"] = true
@@ -988,6 +994,7 @@ L["Tab Priority"] = true
 L["Tab Priority Desc"] = "When enabled, when clicking on an achievement from anywhere to go to the achievement, the prioritized tab will be used first to search for the achievement and open the window to that tab. If the achievement is not present in that tab, default rules will apply."
 L["Tabs"] = true
 L["Ta's Pet Collection"] = true
+L["Teleport"] = true
 L["Temporarily obtainable"] = true
 L["temporarily obtainable"] = true
 L["Temporarily obtainable Header Colors"] = "{tempObt} Header Colors"
@@ -1050,6 +1057,7 @@ L["Track achievement browsing history Desc"] = [=[When enabled, show a back and 
 This allows for the navigation of your browsing history of selected achievements just like your internet browser does for visited websites.]=]
 L["Tracking"] = true
 L["Tracking Achievements"] = true
+L["Trader's Tender"] = true
 L["Trading Post"] = true
 L["Transmog Sets"] = true
 L["Truncate"] = true
@@ -1127,5 +1135,3 @@ L["Zaqali Ruin Investigation: Soon"] = true
 L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
 L["Zuldazar"] = true
-L["Number of lines"] = true
-L["Number of Temporarily obtainable lines Desc"] = "The number of lines that will be shown for {temporarilyObtainable} achievements if more than one momment was available to earn the achievement."

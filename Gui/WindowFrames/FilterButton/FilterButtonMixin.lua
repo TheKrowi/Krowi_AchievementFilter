@@ -189,9 +189,22 @@ do -- BuildVersionFilter
 end
 
 do -- AchievementFilters
+    function KrowiAF_AchievementFrameFilterButtonMixin:SetRewardsFilters(filters, value)
+        self:SetSelected(filters, {"HasReward", "Yes"}, value, true, true);
+        self:SetSelected(filters, {"HasReward", "No"}, value, true, true);
+        for rewardType, _ in next, filters.RewardType do
+            self:SetSelected(filters, {"RewardType", rewardType}, value, true, true);
+        end
+        self:UpdateAchievementFrame();
+    end
+
+    function KrowiAF_AchievementFrameFilterButtonMixin:CreateSelectDeselectAllRewards(menu, text, filters, value)
+        error("The function is not implemented.");
+    end
+
     function KrowiAF_AchievementFrameFilterButtonMixin:SetFactionFilters(filters, value)
-        for _faction, _ in next, filters.Faction do
-            self:SetSelected(filters, {"Faction", _faction}, value, true, true);
+        for faction, _ in next, filters.Faction do
+            self:SetSelected(filters, {"Faction", faction}, value, true, true);
         end
         self:UpdateAchievementFrame();
     end
@@ -224,18 +237,24 @@ do -- AchievementFilters
         self:CreateCheckbox(reward, addon.L["Yes"], filters, {"HasReward", "Yes"}, true);
         self:CreateCheckbox(reward, addon.L["No"], filters, {"HasReward", "No"}, true);
         addon.MenuUtil:CreateDivider(reward);
-        self:CreateCheckbox(reward, addon.L["Title"], filters, {"RewardType", KrowiAF.Enum.RewardType.Title}, true);
-        self:CreateCheckbox(reward, addon.L["Pet"], filters, {"RewardType", KrowiAF.Enum.RewardType.Pet}, true);
+        self:CreateCheckbox(reward, addon.L["Allied Race"], filters, {"RewardType", KrowiAF.Enum.RewardType.AlliedRace}, true);
+        self:CreateCheckbox(reward, addon.L["Garrison"], filters, {"RewardType", KrowiAF.Enum.RewardType.Garrison}, true);
         self:CreateCheckbox(reward, addon.L["Mount"], filters, {"RewardType", KrowiAF.Enum.RewardType.Mount}, true);
-        self:CreateCheckbox(reward, addon.L["Toy"], filters, {"RewardType", KrowiAF.Enum.RewardType.Toy}, true);
-        self:CreateCheckbox(reward, addon.L["Teleport"], filters, {"RewardType", KrowiAF.Enum.RewardType.Teleport}, true);
-        self:CreateCheckbox(reward, addon.L["Transmog"], filters, {"RewardType", KrowiAF.Enum.RewardType.Transmog}, true);
+        self:CreateCheckbox(reward, addon.L["Pet"], filters, {"RewardType", KrowiAF.Enum.RewardType.Pet}, true);
         self:CreateCheckbox(reward, addon.L["Tabard"], filters, {"RewardType", KrowiAF.Enum.RewardType.Tabard}, true);
+        self:CreateCheckbox(reward, addon.L["Teleport"], filters, {"RewardType", KrowiAF.Enum.RewardType.Teleport}, true);
+        self:CreateCheckbox(reward, addon.L["Title"], filters, {"RewardType", KrowiAF.Enum.RewardType.Title}, true);
+        self:CreateCheckbox(reward, addon.L["Toy"], filters, {"RewardType", KrowiAF.Enum.RewardType.Toy}, true);
+        self:CreateCheckbox(reward, addon.L["Trader's Tender"], filters, {"RewardType", KrowiAF.Enum.RewardType.TradersTender}, true);
+        self:CreateCheckbox(reward, addon.L["Transmog"], filters, {"RewardType", KrowiAF.Enum.RewardType.Transmog}, true);
         self:CreateCheckbox(reward, addon.L["Other"], filters, {"RewardType", KrowiAF.Enum.RewardType.Other}, true);
         addon.MenuUtil:CreateDivider(reward);
         self:CreateCheckbox(reward, addon.L["Remix Pandaria Bronze"], filters, {"RewardType", KrowiAF.Enum.RewardType.RemixPandariaBronze}, true);
         addon.MenuUtil:CreateDivider(reward);
         self:CreateCheckbox(reward, addon.L["Not Categorized"], filters, {"RewardType", KrowiAF.Enum.RewardType.NotCategorized}, true);
+        addon.MenuUtil:CreateDivider(reward);
+        self:CreateSelectDeselectAllRewards(reward, addon.L["Select All"], filters, true);
+        self:CreateSelectDeselectAllRewards(reward, addon.L["Deselect All"], filters, false);
         addon.MenuUtil:AddChildMenu(menu, reward);
 
         self:CreateBuildVersionFilter(menu, filters);

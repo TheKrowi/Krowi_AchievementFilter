@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-12-20 17-46-23 ]] --
+-- [[ Exported at 2024-12-23 10-59-50 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -195,7 +195,6 @@ L["Criteria is Completed"] = "Kriterien erfüllt sind"
 L["Criteria is Completed Desc"] = "Erfolgs-Kriterien anzeigen, auch wenn die Erfolgs-Kriterien bereits erfüllt sind."
 L["Criteria of"] = "Kriterien"
 L["Cross-Expansion"] = "Addon-Übergreifend"
-L["Cross-Expansion - Delves"] = "Addon-Übergreifend - Tiefen"
 L["Ctrl"] = true
 L["Current Obtainable"] = "Aktuell Erreichbar"
 L["Current Zone"] = "Aktuelle Zone"
@@ -572,7 +571,6 @@ L["Login Delay"] = "Login Verzögerung"
 L["Love is in the Air"] = "Liebe liegt in der Luft"
 L["Lucky Yi"] = "Glückspilz Yi"
 L["Lunar Festival"] = "Mondfest"
-L["PvE Season"] = "Mythic+ Saison"
 L["Make windows movable"] = "Fenster verschiebbar machen"
 L["Make windows movable Desc"] = [=[Macht das Erfolgsfenster, die Kalenderansicht und die Charakterübersicht beweglich/nicht beweglich.
 

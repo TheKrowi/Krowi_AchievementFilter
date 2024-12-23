@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Shadowlands Mythic+ season categories in the Specials tab
 - Achievements can now have multiple moments when they were available to earn
 - Cross-Expansion - Delves category is now moved from The War Within to Cross-Expansion
+- Has Reward filter with additional reward type filters
 
 ### Changed
 - Factions and EventType are now accessible trough the API system

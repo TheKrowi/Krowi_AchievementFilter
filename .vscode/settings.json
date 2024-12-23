@@ -524,7 +524,13 @@
         "MenuUtil",
         "GameTooltip_AddColoredLine",
         "REPUTATION_SORT_TYPE_ACCOUNT",
-        "EnumUtil"
+        "EnumUtil",
+        "MOUNT",
+        "PET",
+        "TABARDSLOT",
+        "LFG_LIST_TITLE",
+        "TOY",
+        "PERKS_VENDOR_CATEGORY_TRANSMOG"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

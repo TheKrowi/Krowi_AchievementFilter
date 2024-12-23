@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-12-20 17-46-36 ]] --
+-- [[ Exported at 2024-12-23 11-00-19 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -196,7 +196,6 @@ L["Criteria is Completed"] = "Le critère est terminé"
 L["Criteria is Completed Desc"] = "Afficher les critères du Haut-fait même s'il est déjà terminé."
 L["Criteria of"] = "Critère de"
 L["Cross-Expansion"] = "Contenus transversaux"
-L["Cross-Expansion - Delves"] = "Contenus transversaux - Gouffres"
 L["Ctrl"] = true
 L["Current Obtainable"] = "Actuellement disponible"
 L["Current Zone"] = "Zone actuelle"
@@ -570,7 +569,6 @@ L["Login Delay"] = "Délais"
 L["Love is in the Air"] = "De l'amour dans l'air"
 L["Lucky Yi"] = "Yi la Chance"
 L["Lunar Festival"] = "Fête lunaire"
-L["PvE Season"] = "Saison des donjons mythiques+ (M+)"
 L["Make windows movable"] = "Rendre la fenêtre déplaçable"
 L["Make windows movable Desc"] = [=[Rend la fenêtre des Hauts-faits, la vue du calendrier et la fiche personnages mobiles ou immobiles.
 Si cette option est activée, la fenêtre correspondante sera déplacée lorsque le bouton gauche de la souris sera enfoncé. Ceci s'applique à l'en-tête et aux marges.]=]

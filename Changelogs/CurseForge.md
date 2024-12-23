@@ -1,6 +1,14 @@
 <p><h3>Added</h3></p>
 <ul>
 <li>The watch list can now be a mix of account wide achievements for one character, character specific achievements for another character or all account wide or character specific</li>
+<li>Shadowlands Mythic+ season categories in the Specials tab</li>
+<li>Achievements can now have multiple moments when they were available to earn</li>
+<li>Cross-Expansion - Delves category is now moved from The War Within to Cross-Expansion</li>
+<li>Has Reward filter with additional reward type filters</li>
+</ul>
+<p><h3>Changed</h3></p>
+<ul>
+<li>Factions and EventType are now accessible trough the API system</li>
 </ul>
 <p><h3>Fixed</h3></p>
 <ul>

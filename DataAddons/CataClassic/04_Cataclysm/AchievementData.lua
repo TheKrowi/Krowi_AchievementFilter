@@ -1599,7 +1599,12 @@ KrowiAF.AchievementData["04_02_00"] = {
     },
     {5855}, -- Ragnar-O's
     {5858}, -- Bear-ly Made It
-    {5859}, -- Legacy of Leyara
+    { -- Legacy of Leyara
+		5859,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
 	{ -- The 'Unbeatable?' Pterodactyl: BEATEN.
 		5860,
 		{

@@ -8,7 +8,7 @@ addon.Plugins:LoadLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-12-20 17-46-43 ]] --
+-- [[ Exported at 2024-12-23 11-00-36 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -196,7 +196,6 @@ L["Criteria is Completed"] = "要求已达成"
 L["Criteria is Completed Desc"] = "成就要求已达成时仍然显示"
 L["Criteria of"] = "条件信息"
 L["Cross-Expansion"] = "跨资料片"
-L["Cross-Expansion - Delves"] = "跨资料片 - 地下堡"
 L["Ctrl"] = true
 L["Current Obtainable"] = "当前可得"
 L["Current Zone"] = "当前区域"
@@ -501,10 +500,10 @@ L["Go to"] = "前往"
 L["Going away with"] = "即将绝版"
 L["Gorespine"] = "血刺"
 L["Grand Hunts"] = "洪荒狩猎"
-L["Grand Hunts: Ohn'ahran Plains"] = "洪荒狩猎: 欧恩哈拉平原"
-L["Grand Hunts: Thaldraszus"] = "洪荒狩猎: 索德拉苏斯"
-L["Grand Hunts: The Azure Span"] = "洪荒狩猎: 碧蓝林海"
-L["Grand Hunts: The Waking Shore"] = "洪荒狩猎: 觉醒海岸"
+L["Grand Hunts: Ohn'ahran Plains"] = "洪荒狩猎：欧恩哈拉平原"
+L["Grand Hunts: Thaldraszus"] = "洪荒狩猎：索德拉苏斯"
+L["Grand Hunts: The Azure Span"] = "洪荒狩猎：碧蓝林海"
+L["Grand Hunts: The Waking Shore"] = "洪荒狩猎：觉醒海岸"
 L["Green"] = "绿色"
 L["Grey"] = "灰色"
 L["Greyhoof"] = "灰蹄"
@@ -559,7 +558,7 @@ L["Left Alt"] = "左Alt"
 L["Left click"] = "左键"
 L["Left Ctrl"] = "左Ctrl"
 L["Left Shift"] = "左Shift"
-L["Legion Assaults"] = "军团突袭"
+L["Legion Assaults"] = "军团入侵"
 L["Level 80"] = "80级"
 L["Level 85"] = "85级"
 L["Level 90"] = "90级"
@@ -579,7 +578,6 @@ L["Login Delay"] = "登录延迟"
 L["Love is in the Air"] = "情人节"
 L["Lucky Yi"] = "幸运的小艺"
 L["Lunar Festival"] = "春节"
-L["PvE Season"] = "史诗钥石赛季"
 L["Make windows movable"] = "解锁窗口"
 L["Make windows movable Desc"] = [=[解锁/锁定成就界面和成就日历
 

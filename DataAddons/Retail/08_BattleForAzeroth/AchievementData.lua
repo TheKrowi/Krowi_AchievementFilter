@@ -105,10 +105,16 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Allied Races: Dark Iron Dwarf
         12515,
         faction.Alliance,
+        {
+            RewardType = rewardType.AlliedRace,
+        },
     },
     { -- Allied Races: Mag'har Orc
         12518,
         faction.Horde,
+        {
+            RewardType = rewardType.AlliedRace,
+        },
     },
     {12521}, -- Halls of Containment
     {12522}, -- Crimson Descent
@@ -919,7 +925,12 @@ KrowiAF.AchievementData["08_00_01"] = {
         },
     },
     {12988}, -- Battle for Azeroth Explorer
-    {12989}, -- Battle for Azeroth Pathfinder, Part One
+    { -- Battle for Azeroth Pathfinder, Part One
+		12989,
+		{
+			RewardType = rewardType.Other,
+		},
+	},
     {12990}, -- Catchin' Some Rays
     {12991}, -- New Mog, G'huun This?
 	{ -- Pet Emporium
@@ -1043,10 +1054,16 @@ KrowiAF.AchievementData["08_00_01"] = {
     { -- Heritage of the Dark Iron
         13076,
         faction.Alliance,
+        {
+            RewardType = rewardType.Transmog,
+        },
     },
     { -- Heritage of the Mag'har
         13077,
         faction.Horde,
+        {
+            RewardType = rewardType.Transmog,
+        },
     },
     { -- Realm First! Battle for Azeroth Keystone Master
         13078,
@@ -1277,6 +1294,9 @@ KrowiAF.AchievementData["08_01_00"] = {
         13251,
         faction.Alliance,
         13263,
+        {
+            RewardType = rewardType.Other,
+        },
     },
     { -- The Shadow Hunter
         13263,
@@ -1600,10 +1620,16 @@ KrowiAF.AchievementData["08_01_05"] = {
     { -- Allied Races: Zandalari Troll
         13161,
         faction.Horde,
+        {
+            RewardType = rewardType.AlliedRace,
+        },
     },
     { -- Allied Races: Kul Tiran
         13163,
         faction.Alliance,
+        {
+            RewardType = rewardType.AlliedRace,
+        },
     },
     { -- You Are Not Your $#*@! Legplates
         13186,
@@ -1626,6 +1652,7 @@ KrowiAF.AchievementData["08_01_05"] = {
         faction.Alliance,
         13190,
         {
+            RewardType = rewardType.Other,
             {"Before", "Version", {9, 0, 1}},
         },
     },
@@ -1634,6 +1661,7 @@ KrowiAF.AchievementData["08_01_05"] = {
         faction.Horde,
         13189,
         {
+            RewardType = rewardType.Other,
             {"Before", "Version", {9, 0, 1}},
         },
     },
@@ -1721,10 +1749,16 @@ KrowiAF.AchievementData["08_01_05"] = {
     { -- Heritage of the Zandalari
         13503,
         faction.Horde,
+        {
+            RewardType = rewardType.Transmog,
+        },
     },
     { -- Heritage of the Kul Tirans
         13504,
         faction.Alliance,
+        {
+            RewardType = rewardType.Transmog,
+        },
     },
     {13506}, -- A Good Eye-dea
     {13512}, -- Master Calligrapher
@@ -2298,6 +2332,9 @@ KrowiAF.AchievementData["08_03_00"] = {
     { -- Allied Races: Vulpera
         13206,
         faction.Horde,
+        {
+            RewardType = rewardType.AlliedRace,
+        },
     },
     { -- Corrupted Gladiator: Battle for Azeroth Season 4
         13957,
@@ -2392,15 +2429,24 @@ KrowiAF.AchievementData["08_03_00"] = {
     { -- Heritage of the Vulpera
         14002,
         faction.Horde,
+        {
+            RewardType = rewardType.Transmog,
+        },
     },
     {14008}, -- Mana Sponge
     { -- Allied Races: Mechagnome
         14013,
         faction.Alliance,
+        {
+            RewardType = rewardType.AlliedRace,
+        },
     },
     { -- Heritage of the Mechagnome
         14014,
         faction.Alliance,
+        {
+            RewardType = rewardType.Transmog,
+        },
     },
     {14019}, -- Smoke Test
 	{ -- Pet Battle Challenge: Blackrock Depths
