@@ -68,7 +68,7 @@ local sortFuncs = {
     addon.Objects.CompareFunc:New("number", "Score");
     addon.Objects.CompareFunc:New("string", "Name");
     addon.Objects.CompareFunc:New("string", "Realm");
-    addon.Objects.CompareFunc:New("string", "Faction");
+    addon.Objects.CompareFunc:New("number", "Faction");
     addon.Objects.CompareFunc:New("string", "Class");
 };
 
