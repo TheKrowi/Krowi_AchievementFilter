@@ -1135,3 +1135,9 @@ L["Zaqali Ruin Investigation: Soon"] = true
 L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
 L["Zuldazar"] = true
+L["Show Other Faction Warband as Completed"] = true
+L["Show Other Faction Warband as Completed Desc"] = [=[Some achievements are faction specific and Warbound. These achievements can appear as completed on a character of one faction but not completed on a character from the other faction.
+
+When checked, the Warbound achievements will appear as completed on the other faction's character if the character has completed the achievement on the other faction.
+
+An example is needing {hordeIntro} and {allianceIntro} for {warStories} where {hordeIntro} only appears completed on Horde characters and {allianceIntro} on Alliance characters.]=]

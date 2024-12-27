@@ -702,9 +702,9 @@ function addon.GetNextAchievement(achievement)
     return nil, false;
 end
 
-local function GetAchievementCriteriaInfoInternal(achievementId, criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible)
+local function GetAchievementCriteriaInfoInternal(achievementId, criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible, duration, elapsed)
     local hasValueProgress = (quantity ~= nil and reqQuantity ~= nil and not (quantity == 0 and (reqQuantity == 0 or reqQuantity == 1))) or achievementId == 17335;
-    return criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible, hasValueProgress;
+    return criteriaString, criteriaType, completed, quantity, reqQuantity, charName, flags, assetID, quantityString, criteriaID, eligible, hasValueProgress, duration, elapsed;
 end
 
 function addon.GetAchievementCriteriaInfo(achievementId, criteriaIndex, countHidden)

@@ -428,6 +428,17 @@ local function SaturatePartial(self)
 end
 
 local function SetCompletionState(self, achievement, completed, month, day, year, wasEarnedByMe, saturatedStyle)
+	if addon.Options.db.profile.Achievements.ShowOtherFactionWarbandAsCompleted then
+		if achievement.IsAccountWide and KrowiAF_Achievements.Completed[achievement.Id] and KrowiAF_Achievements.Completed[achievement.Id].FirstCompletedOn then
+			local date = date("*t", KrowiAF_Achievements.Completed[achievement.Id].FirstCompletedOn);
+			completed = true;
+			month = date.month;
+			day = date.day;
+			year = date.year;
+			wasEarnedByMe = true;
+		end
+	end
+
 	local earnedByFilter = addon.Filters.db.profile.EarnedBy;
 	if (earnedByFilter == addon.Filters.Account and completed or wasEarnedByMe) or (earnedByFilter == addon.Filters.CharacterAccount and completed and wasEarnedByMe) then
 		self.Completed = true;

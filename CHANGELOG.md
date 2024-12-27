@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Achievements can now have multiple moments when they were available to earn
 - Cross-Expansion - Delves category is now moved from The War Within to Cross-Expansion
 - Has Reward filter with additional reward type filters
+- Show Other Faction Warband as Completed option (dev note: see loc for details)
 
 ### Changed
 - Factions and EventType are now accessible trough the API system
