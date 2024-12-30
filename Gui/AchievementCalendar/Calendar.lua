@@ -30,12 +30,14 @@ local function CreateCalendarButton(frame)
     fs:SetPoint("CENTER", 0, -2);
     button:SetFontString(fs);
 
-    local currentCalendarTime = C_DateAndTime.GetCurrentCalendarTime();
-	button:SetText(currentCalendarTime.monthDay);
-
     button:SetScript("OnClick", function()
 		frame:Show();
 	end);
+
+	AchievementFrame:HookScript("OnShow", function()
+        local currentCalendarTime = C_DateAndTime.GetCurrentCalendarTime();
+		button:SetText(currentCalendarTime.monthDay);
+    end);
 end
 
 function calendar:Load()

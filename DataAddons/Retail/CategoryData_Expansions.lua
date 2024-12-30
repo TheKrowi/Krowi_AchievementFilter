@@ -8,7 +8,7 @@ local crossExpansion = { -- Cross-Expansion
         addon.L["Zones"],
         { -- Exile's Reach
             953,
-            (select(2, addon.GetAchievementInfo(14222))),
+            addon.GetAchievmentName(14222),
             {
                 14222, -- Exile's Reach
             },
@@ -10095,7 +10095,7 @@ local shadowlands = { -- Shadowlands
         addon.GetCategoryInfoTitle(15440),
         { -- Skoldus Hall
             843,
-            (select(2, addon.GetAchievementInfo(14463))),
+            addon.GetAchievmentName(14463),
             true,
             {
                 14463, -- Skoldus Hall
@@ -10105,7 +10105,7 @@ local shadowlands = { -- Shadowlands
         },
         { -- Fracture Chambers
             844,
-            (select(2, addon.GetAchievementInfo(14473))),
+            addon.GetAchievmentName(14473),
             true,
             {
                 14473, -- Fracture Chambers
@@ -10115,7 +10115,7 @@ local shadowlands = { -- Shadowlands
         },
         { -- The Soulforges
             845,
-            (select(2, addon.GetAchievementInfo(14478))),
+            addon.GetAchievmentName(14478),
             true,
             {
                 14478, -- The Soulforges
@@ -10125,7 +10125,7 @@ local shadowlands = { -- Shadowlands
         },
         { -- Coldheart Interstitia
             846,
-            (select(2, addon.GetAchievementInfo(14483))),
+            addon.GetAchievmentName(14483),
             true,
             {
                 14483, -- Coldheart Interstitia
@@ -10135,7 +10135,7 @@ local shadowlands = { -- Shadowlands
         },
         { -- Mort'regar
             847,
-            (select(2, addon.GetAchievementInfo(14488))),
+            addon.GetAchievmentName(14488),
             true,
             {
                 14488, -- Mort'regar
@@ -10145,7 +10145,7 @@ local shadowlands = { -- Shadowlands
         },
         { -- The Upper Reaches
             848,
-            (select(2, addon.GetAchievementInfo(14493))),
+            addon.GetAchievmentName(14493),
             true,
             {
                 14493, -- The Upper Reaches

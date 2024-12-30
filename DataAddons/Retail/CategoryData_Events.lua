@@ -1107,7 +1107,7 @@ KrowiAF.CategoryData.Events = { -- TAB - Events
         },
         { -- Grand Hunter
             1392,
-            (select(2, addon.GetAchievementInfo(16544))),
+            addon.GetAchievmentName(16544),
             {
                 16544, -- Grand Hunter
                 16540, -- Hunt Master

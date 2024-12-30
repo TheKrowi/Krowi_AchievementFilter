@@ -189,7 +189,7 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
             addon.GetCategoryInfoTitle(95),
             { -- Gladiator
                 978,
-                (select(2, addon.GetAchievementInfo(2091))),
+                addon.GetAchievmentName(2091),
                 true,
                 {
                     886, -- Swift Nether Drake

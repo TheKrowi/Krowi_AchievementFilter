@@ -59,8 +59,7 @@ local function SetTooltipHistory()
     for i = firstIndex, lastIndex do
         local color = i == currentIndex and addon.Util.Colors.LightGreenRGB or addon.Util.Colors.LightGreyRGB;
         local path = GetCategoryPath(records[i].CategoryId);
-        local _, name = addon.GetAchievementInfo(records[i].AchievementId);
-        GameTooltip:AddLine(path .. " > " .. name, color.R, color.G, color.B);
+        GameTooltip:AddLine(path .. " > " .. addon.GetAchievmentName(records[i].AchievementId), color.R, color.G, color.B);
     end
     -- for index, record in next, records do
     --     local color = index == currentIndex and addon.Util.Colors.LightGreenRGB or addon.Util.Colors.LightGreyRGB;

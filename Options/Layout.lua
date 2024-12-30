@@ -1062,9 +1062,9 @@ local achievementsOptions = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Other Faction Warband as Completed"],
                             desc = function() return addon.L["Show Other Faction Warband as Completed Desc"]:K_ReplaceVars{
-                                    hordeIntro = addon.GetAchievementInfoTable(12555).Name,
-                                    allianceIntro = addon.GetAchievementInfoTable(12582).Name,
-                                    warStories = addon.GetAchievementInfoTable(40955).Name,
+                                    hordeIntro = addon.GetAchievmentName(12555),
+                                    allianceIntro = addon.GetAchievmentName(12582),
+                                    warStories = addon.GetAchievmentName(40955),
                                 }:KAF_AddDefaultValueText("Achievements.ShowOtherFactionWarbandAsCompleted")
                             end,
                             get = function() return addon.Options.db.profile.Achievements.ShowOtherFactionWarbandAsCompleted; end,
@@ -1571,7 +1571,7 @@ local criteriaOptions = {
                     name = addon.L["Show Criteria"],
                     desc = function() return addon.L["Show Criteria Desc"]:K_ReplaceVars{
                         criteria = (addon.GetAchievementCriteriaInfo(1206, 1)),
-                        achievement = (select(2, addon.GetAchievementInfo(1206)))
+                        achievement = addon.GetAchievmentName(1206)
                     }:KAF_AddDefaultValueText("Tooltip.Criteria.Show"); end,
                     get = function() return addon.Options.db.profile.Tooltip.Criteria.Show; end,
                     set = function(_, value) addon.Options.db.profile.Tooltip.Criteria.Show = value; end

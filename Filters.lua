@@ -365,10 +365,10 @@ end
 local function CompareName(a, b, reverse, default)
     local nameA, nameB = "", "";
     if a then
-        nameA = select(2, addon.GetAchievementInfo(a.Id));
+        nameA = addon.GetAchievmentName(a.Id);
     end
     if b then
-        nameB = select(2, addon.GetAchievementInfo(b.Id));
+        nameB = addon.GetAchievmentName(b.Id);
     end
 
     if nameA == nil then
