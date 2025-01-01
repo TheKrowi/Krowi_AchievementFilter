@@ -7,7 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-12-23 10-59-30 ]] --
+-- [[ Exported at 2025-01-01 21-57-54 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -46,6 +46,8 @@ This value can be changed while the achievement window is open and having one of
 
 (1) FPS drops and stuttering while adjusting the value, NOT during normal addon use]=]
 L["Active"] = true
+L["Active Event Login Delay"] = true
+L["Active Events"] = true
 L["Active events"] = true
 L["Add addon name to world map icon"] = true
 L["Add addon name to world map icon Desc"] = "Add '{addonName}' to the bottom of the tooltip when mousing over the icon."
@@ -303,6 +305,8 @@ L["Enable Tab Priority"] = true
 L["Enable Tab Priority Desc"] = "Enable the tab priority feature."
 L["Enable trace info"] = true
 L["Enable trace info Desc"] = "Enable / disable trace info."
+L["Enable Upcoming Calendar Events"] = true
+L["Enable Upcoming Calendar Events Desc"] = "When disabled, the {upcomingCalendarEvents} Module if turned off."
 L["End Time"] = true
 L["Enhanced filtering and sorting"] = true
 L["Enhanced filtering and sorting Desc"] = [=[Filtering and sorting of achievements is enhanced with following features.
@@ -542,6 +546,7 @@ L["Ignore Filters"] = true
 L["Ignore Filters Desc"] = "Ignore any filters and show all the achievements in the {category}."
 L["Imbu"] = true
 L["Import"] = true
+L["In"] = true
 L["in"] = true
 L["In instances"] = true
 L["Include"] = true
@@ -582,7 +587,6 @@ L["Lock month"] = true
 L["Lock month Desc"] = "Keep the last shown month as the month to show when opening the calendar again after it was closed."
 L["Lock month when closed by achievement"] = true
 L["Lock month when closed by achievement Desc"] = "Keep the last shown month as the month to show when opening the calendar again after it was closed by clicking an achievement on the side."
-L["Login Delay"] = true
 L["Love is in the Air"] = true
 L["Lucky Yi"] = true
 L["Lunar Festival"] = true
@@ -902,6 +906,12 @@ L["Show Other faction"] = true
 L["Show Other faction Desc"] = [=[Show / hide {otherFaction}.
 
 When checked and if available, the other faction's achievement will be visible in the tooltip. This might make it more clear why your fresh Horde character has certain achievements if you only played Alliance before.]=]
+L["Show Other Faction Warband as Completed"] = true
+L["Show Other Faction Warband as Completed Desc"] = [=[Some achievements are faction specific and Warbound. These achievements can appear as completed on a character of one faction but not completed on a character from the other faction.
+
+When checked, the Warbound achievements will appear as completed on the other faction's character if the character has completed the achievement on the other faction.
+
+An example is needing {hordeIntro} and {allianceIntro} for {warStories} where {hordeIntro} only appears completed on Horde characters and {allianceIntro} on Alliance characters.]=]
 L["Show Part of a chain"] = "Show {partOfAChain}"
 L["Show Part of a chain Desc"] = [=[Show / hide {partOfAChain}.
 
@@ -1071,6 +1081,11 @@ L["Unchecked"] = true
 L["until the end of"] = true
 L["Up"] = true
 L["up until the start of"] = true
+L["Upcoming"] = true
+L["Upcoming Calendar Event Days"] = true
+L["Upcoming Calendar Event Days Desc"] = "The number of days in advance to show upcoming calendar events."
+L["Upcoming Calendar Event Login Delay"] = true
+L["Upcoming Calendar Events"] = true
 L["Upper Reaches"] = true
 L["Val'sharah"] = true
 L["Vendor"] = true
@@ -1135,9 +1150,3 @@ L["Zaqali Ruin Investigation: Soon"] = true
 L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
 L["Zuldazar"] = true
-L["Show Other Faction Warband as Completed"] = true
-L["Show Other Faction Warband as Completed Desc"] = [=[Some achievements are faction specific and Warbound. These achievements can appear as completed on a character of one faction but not completed on a character from the other faction.
-
-When checked, the Warbound achievements will appear as completed on the other faction's character if the character has completed the achievement on the other faction.
-
-An example is needing {hordeIntro} and {allianceIntro} for {warStories} where {hordeIntro} only appears completed on Horde characters and {allianceIntro} on Alliance characters.]=]

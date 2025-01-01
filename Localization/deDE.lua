@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-12-23 10-59-50 ]] --
+-- [[ Exported at 2025-01-01 21-58-07 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -57,6 +57,7 @@ L["Add to Watch List"] = "Zu {watchList} hinzufügen"
 L["Added in version"] = "Hinzugefügt mit Version"
 L["Adjustable Categories"] = "Anpassbare Kategorien"
 L["Aki the Chosen"] = "Aki die Auserwählte"
+L["Allied Race"] = "Verbündetes Volk"
 L["Alt"] = true
 L["Always Show Completed"] = "Erreichte Erfolge immer anzeigen"
 L["Always show realm"] = "Immer Realm anzeigen"
@@ -142,6 +143,8 @@ L["Central Circuit"] = "Zentralrundstrecke"
 L["Chains of Domination"] = "Ketten der Herrschaft"
 L["Character / Account wide"] = "Charakter & Account"
 L["Character only"] = "Nur Charakter-Erfolge"
+L["Character Specific"] = "Charakter-spezifisch"
+L["Character Specific Desc"] = "Die {watchList} umfasst immer einen accountweiten Datensatz, der alle beobachteten Erfolge für alle Charaktere aufzeichnet. Wenn sie deaktiviert wird, wird dieser kontoübergreifende Datensatz verwendet. Wenn sie für die charakterspezifische Verwendung aktiviert wird, wechseln alle Charaktere, die das gleiche Profil verwenden, in diesen Modus. Bei der Deaktivierung wird die accountweite {watchList} wieder verwendet und die charakterspezifische {watchList} wird entfernt."
 L["Characters"] = "Charaktere"
 L["Chat messages"] = "Chat-Mitteilungen"
 L["Checked"] = "Aktivert"
@@ -180,6 +183,8 @@ L["Compact Desc"] = [=[Verwende eine kompaktere Version mit nur einer Zeile der 
 
 {reloadRequired} ]=]
 L["Completion"] = "Komplettierung"
+L["Copy Account Wide to Character"] = "Account-übergreifend auf Beobachtungsliste pro Charakter umstellen"
+L["Copy Account Wide to Character Desc"] = "Kopiere die accountweite {watchList} (alle von allen Charakteren beobachteten Erfolge) in die aktuelle charakterspezifische {watchList}. Von nun an wird dieser Charakter seine eigene {watchList} haben."
 L["Covenant"] = "Pakt"
 L["Covenant Assaults"] = "Paktangriffe"
 L["Covenant assaults"] = "Paktangriffe"
@@ -401,6 +406,7 @@ Ereignistypen:
 
 (1) Die Optionen findest Du unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {eventReminders}.]=]
 L["Event Reminders"] = "Event Erinnerung"
+L["Event Reminders Enable Desc"] = "Wenn deaktiviert, wird das gesamte {eventReminders} Modul ausgeschaltet."
 L["Events"] = true
 L["Exclude"] = "Ausblenden"
 L["Exclude Excluded achievements"] = "Ausgeschlossene Erfolge Suchen"
@@ -506,6 +512,7 @@ L["Grow direction Desc"] = "Die Richtung, in der neue Benachrichtigungs-Fenster 
 L["Guardians of the Dream"] = "Wächter des Traums"
 L["Guides"] = "Hilfe-Leitfaden"
 L["Hallow's End"] = "Schlotternächte"
+L["Has Reward"] = "Belohnung verfügbar"
 L["Header"] = true
 L["Header tooltip"] = "Überschrift Tooltip"
 L["Hearthstone"] = true
@@ -567,7 +574,6 @@ L["Lock month"] = "Gewählten Monat immer behalten."
 L["Lock month Desc"] = "Behalte den zuletzt angezeigten immer Monat bei, wenn du den Kalender wieder öffnest, nachdem er geschlossen wurde."
 L["Lock month when closed by achievement"] = "Gewählten Monat behalten beim Anklicken eines Erfolgs."
 L["Lock month when closed by achievement Desc"] = "Behalte den zuletzt angezeigten Monat bei, wenn du den Kalender wieder öffnest, nachdem er durch Anklicken eines Erfolgs geschlossen wurde."
-L["Login Delay"] = "Login Verzögerung"
 L["Love is in the Air"] = "Liebe liegt in der Luft"
 L["Lucky Yi"] = "Glückspilz Yi"
 L["Lunar Festival"] = "Mondfest"
@@ -645,6 +651,7 @@ L["NONC"] = true
 L["None"] = "Keine"
 L["No-No"] = true
 L["Northrend Cup"] = "Northrend Pokal"
+L["Not Categorized"] = "Nicht kategorisiert"
 L["Not Earned By"] = "Nicht erzielt durch"
 L["Not earned by:"] = "Nicht erzielt durch:"
 L["Not loaded"] = "Nicht Geladen"
@@ -654,6 +661,7 @@ L["Number of Earned By characters"] = "Anzahl der {earnedBy} Charaktere"
 L["Number of Earned By characters Desc"] = [=[Die Anzahl der Charaktere, die angezeigt werden, die den Erfolg erlangt haben.
 
  Wenn Du hier 0 einstellst, wird diese Funktion deaktiviert. ]=]
+L["Number of lines"] = "Zeilen-Anzahl "
 L["Number of Most progress characters"] = "Anzahl der Charaktere mit den größten Erfolgs-Fortschritten"
 L["Number of Most progress characters Desc"] = [=[Die Anzahl der Charaktere, die angezeigt werden, die schon einen Erfolgs-Fortschritt gemacht haben.
 
@@ -666,6 +674,7 @@ L["Number of search previews"] = "Anzahl der Such-Vorschauen"
 L["Number of search previews Desc"] = "Die Anzahl der Erfolge, die als Vorschau in der gesamten Liste der gefundenen Erfolge angezeigt werden."
 L["Number of summary achievements"] = "Anzahl aller Erfolge"
 L["Number of summary achievements Desc"] = "Die Anzahl der Erfolge, die in der Zusammenfassung der einzelnen Registerkarten angezeigt werden."
+L["Number of Temporarily obtainable lines Desc"] = "Die Anzahl der Zeilen, die für {temporarilyObtainable} Erfolge angezeigt werden, wenn mehr als ein Zeitraum zum Erreichen des Erfolgs möglich war."
 L["N'Zoth (Uldum)"] = true
 L["N'Zoth (Vale of Eternal Blossoms)"] = "N'Zoth (Das Tal der ewigen Blüten)"
 L["N'Zoth Assaults"] = "Angriffe von N'Zoth"
@@ -715,6 +724,7 @@ L["Print map info"] = "Karten-ID einfügen"
 L["Print map info Desc"] = "Füge die Karten-ID im Chat ein"
 L["Print map info w/o reload"] = "Karten-ID ohne neu laden einfügen"
 L["Print map info w/o reload Desc"] = "Füge die Karten-ID ohne neu laden ein"
+L["PvE Season"] = "PvE Saison"
 L["PvP"] = true
 L["PvP Season"] = "PvP Saison"
 L["Quick Search"] = "Schnell-Suche"
@@ -749,6 +759,7 @@ L["Related Tab"] = "Zugehöriger Tab"
 L["Related Tab Desc"] = "Fügt dem {wowheadLink} ein zusätzliches Bit hinzu, damit ein anderer Tab als der Standard-Tab ausgewählt werden kann."
 L["Remember frame position"] = "{frame} Position merken"
 L["Remember frame position Desc"] = "Die Position des {frame} wird gespeichert. Dadurch bleibt der {frame} bei der nächsten Anmeldung an seiner letzten bekannten Position."
+L["Remix Pandaria Bronze"] = true
 L["Remove from Watch List"] = "Von {watchList} löschen"
 L["Required for"] = "Wird benötigt für..."
 L["Requires"] = "Voraussetzung"
@@ -904,6 +915,8 @@ L["Show Temporarily obtainable"] = "Zeige {temporarilyObtainable}e Erfolge"
 L["Show Temporarily obtainable Desc"] = "{TemporarilyObtainable} anzeigen/ausblenden. Wenn diese Option aktiviert ist und die Erfolge {temporarilyObtainable} sind, wird diese Information im Tooltip angezeigt."
 L["Show Temporarily obtainable Icon"] = "Zeige {tempObt} Symbol"
 L["Show Temporarily obtainable Icon Desc"] = "Zeigt / versteckt ein zusätzliches Symbol auf dem Erfolg, wenn es nur {tempObt} ist."
+L["Show Warband Icon"] = "Zeige {warband} Icon"
+L["Show Warband Icon Desc"] = "Zeigt / versteckt ein zusätzliches Symbol in der Kopfzeile eines Erfolgs, wenn es ein {Warband} Erfolg ist."
 L["Show world map icon"] = "Zeige Welt-Map Icon"
 L["Show world map icon Desc"] = "Zeige / Verstecke das Welt-Map Icon."
 L["Side Button Anchor"] = "Seitlicher Button-Anker"
@@ -913,6 +926,7 @@ L["Siege of Orgrimmar"] = "Schlacht um Orgrimmar"
 L["Siege on Dragonbane Keep"] = "Belagerung der Drachenfluchfestung"
 L["Siege on Dragonbane Keep: Active"] = "Belagerung der Drachenfluchfestung: Aktiv"
 L["Siege on Dragonbane Keep: Gathering"] = "Belagerung der Drachenfluchfestung: Sammeln"
+L["Siren Isle"] = "Sireneninsel"
 L["Skitterer Xi'a"] = "Huscher Xi'a"
 L["Skoldus Hall"] = "Skoldushalle"
 L["Skyriding Races"] = "Himmelsreiten"
@@ -954,6 +968,7 @@ L["Tab Priority"] = "Tab-Priorität"
 L["Tab Priority Desc"] = "Wenn diese Option aktiviert ist, wird beim Klicken auf einen Erfolg (um zu diesem Erfolg zu gelangen) der priorisierte Tab zuerst verwendet, um nach dem Erfolg zu suchen und das Fenster zu diesem Tab zu öffnen. Wenn der Erfolg nicht in diesem Tab vorhanden ist, gelten die Standardregeln."
 L["Tabs"] = true
 L["Ta's Pet Collection"] = "Ta's Haustier Sammlung"
+L["Teleport"] = true
 L["Temporarily obtainable"] = "Befristet erreichbar"
 L["temporarily obtainable"] = "befristet erreichbar"
 L["Temporarily obtainable Header Colors"] = "{tempObt} Kopfzeilen-Farbe"
@@ -1014,6 +1029,7 @@ L["Track achievement browsing history"] = "Verfolgung des Erfolgs-Browsing-Verla
 L["Track achievement browsing history Desc"] = "Wenn diese Option aktiviert ist, wird in der Fensterüberschrift eine Schaltfläche zum Zurück- und Vorwärtsblättern angezeigt. Dies ermöglicht die Navigation durch den Browserverlauf ausgewählter Errungenschaften, so wie es Ihr Internetbrowser für besuchte Websites tut."
 L["Tracking"] = "Tracking-Erfolge"
 L["Tracking Achievements"] = "Tracking-Erfolge"
+L["Trader's Tender"] = "Händlerdevisen"
 L["Trading Post"] = "Handelsposten"
 L["Transmog Sets"] = "Transmog-Sets"
 L["Truncate"] = "Abschneiden"
@@ -1039,6 +1055,9 @@ L["Wago"] = true
 L["Wago Desc"] = "Öffnet ein Popup-Fenster mit einem Link zur Seite {addonName} {wago}."
 L["Waking Shores"] = "Küste des Erwachens"
 L["Waking Shores: Next"] = "Küste des Erwachens: Nächstes Event"
+L["Warband Achievement"] = "Kriegsmeuten-Erfolg"
+L["Warband Header Color"] = "{warband} Kopfzeilen Farbe"
+L["Warband Header Color Desc"] = "Wenn diese Option deaktiviert ist, wird die standardmäßige blaue Farbe der Kopfzeile durch eine orange Farbe ersetzt. In diesem Fall wird empfohlen das {warbandIcon} zu aktivieren."
 L["Warcraft III: Reforged"] = true
 L["Warcraft Rumble"] = true
 L["was"] = "war"

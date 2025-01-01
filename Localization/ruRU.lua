@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-12-23 11-00-28 ]] --
+-- [[ Exported at 2025-01-01 21-58-13 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -379,7 +379,6 @@ L["Lock month"] = "Закрепить месяц"
 L["Lock month Desc"] = "Оставить последний показанный месяц для показа его при открытии календаря даже после его закрытия."
 L["Lock month when closed by achievement"] = "Закрепить месяц если он был закрыт достижением"
 L["Lock month when closed by achievement Desc"] = "Оставить последний показанный месяц для показа его при открытии календаря даже после его закрытия кликом по достижению."
-L["Login Delay"] = "Задержка входа"
 L["Love is in the Air"] = "Любовная лихорадка"
 L["Lucky Yi"] = "Счастливчик И"
 L["Lunar Festival"] = "Лунный Фестиваль"

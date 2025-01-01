@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2024-12-23 11-00-19 ]] --
+-- [[ Exported at 2025-01-01 21-58-10 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -404,7 +404,7 @@ Types d'événements :
 (1) Voir {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {eventReminders} pour les options.]=]
 L["Event Reminders"] = "Rappels d'événements"
 L["Events"] = "Évènements"
-L["Exclude"] = "Exclure"
+L["Exclude"] = "Masquer"
 L["Exclude Excluded achievements"] = "Exclure les Hauts faits masqué"
 L["Exclude Excluded achievements Desc"] = "Exclue ou Inclue les Hauts faits masqué des résultats de la recherche."
 L["Excluded"] = "Masqué"
@@ -565,7 +565,6 @@ L["Lock month"] = "Verrouiller le mois"
 L["Lock month Desc"] = "Garder le dernier mois affiché comme mois à afficher lorsque le calendrier est rouvert après avoir été fermé."
 L["Lock month when closed by achievement"] = "Verrouiller le mois lorsqu'il est fermé par un Haut fait"
 L["Lock month when closed by achievement Desc"] = "Garder le dernier mois affiché comme mois à afficher lorsque le calendrier est rouvert après avoir été fermé en cliquant sur une réalisation sur le côté."
-L["Login Delay"] = "Délais"
 L["Love is in the Air"] = "De l'amour dans l'air"
 L["Lucky Yi"] = "Yi la Chance"
 L["Lunar Festival"] = "Fête lunaire"

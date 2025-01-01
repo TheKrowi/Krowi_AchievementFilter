@@ -1480,4 +1480,5 @@ tasks = {
     {C, 2367, 2248}, -- Vault of Memory
     {C, 2368, 2248}, -- Hall of Awakening
     {A, 2369, {41042, 41043, 41045, 41046, 41050, 41131, 41133, 41185}}, -- Siren Isle
+    {C, 2375, 2369}, -- The Forgotten Vault
 };

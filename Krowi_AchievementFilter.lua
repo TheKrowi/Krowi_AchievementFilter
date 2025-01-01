@@ -111,18 +111,27 @@ function loadHelper:OnEvent(event, arg1, arg2)
         end
     elseif event == "PLAYER_ENTERING_WORLD" then
          -- arg1 = isLogin, arg2 = isReload
-        local popUpsOptions, chatMessagesOptions;
+        local popUpsOptions, chatMessagesOptions, popUpsUpcomingOptions, chatMessagesUpcomingOptions;
         if arg1 then
             popUpsOptions = addon.Options.db.profile.EventReminders.PopUps.OnLogin;
             chatMessagesOptions = addon.Options.db.profile.EventReminders.ChatMessages.OnLogin;
+            popUpsUpcomingOptions = addon.Options.db.profile.EventReminders.PopUps.OnLoginUpcoming;
+            chatMessagesUpcomingOptions = addon.Options.db.profile.EventReminders.ChatMessages.OnLoginUpcoming;
         elseif arg2 then
             popUpsOptions = addon.Options.db.profile.EventReminders.PopUps.OnReload;
             chatMessagesOptions = addon.Options.db.profile.EventReminders.ChatMessages.OnReload;
+            popUpsUpcomingOptions = addon.Options.db.profile.EventReminders.PopUps.OnReloadUpcoming;
+            chatMessagesUpcomingOptions = addon.Options.db.profile.EventReminders.ChatMessages.OnReloadUpcoming;
         end
         if arg1 or arg2 then -- Required cause event also is called when zoning in an instance for example
             C_Timer.After(0, function()
                 C_Timer.After(addon.Options.db.profile.EventReminders.OnLoginDelay, function()
                     addon.Gui.EventReminderAlertSystem:ShowActiveEventsOnPlayerEnteringWorld(popUpsOptions, chatMessagesOptions);
+                end);
+            end);
+            C_Timer.After(0, function()
+                C_Timer.After(addon.Options.db.profile.EventReminders.OnLoginUpcomingDelay, function()
+                    addon.Gui.EventReminderAlertSystem:ShowUpcomingCalendarEventsOnPlayerEnteringWorld(popUpsUpcomingOptions, chatMessagesUpcomingOptions);
                 end);
             end);
         end

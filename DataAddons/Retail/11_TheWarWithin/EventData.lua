@@ -20,7 +20,7 @@ KrowiAF.EventData.TheWarWithin = {
     --     2
     -- },
 	{ -- Plunderstorm
-		1601, type.Calendar,
+		{1601, 1633, 1634, 1635}, type.Calendar,
 		1680,
 		4203076,
 		addon.L["Plunderstorm"],

@@ -180,6 +180,18 @@ addon.Options.Defaults = {
                     ShowInInstances = false,
                     ShowOnlyWhenTimeDataIsAvailable = true
                 },
+                OnLoginUpcoming = {
+                    Show = true,
+                    ShowInInstances = false
+                },
+                OnReloadUpcoming = {
+                    Show = true,
+                    ShowInInstances = false
+                },
+                OnEventStartUpcoming = {
+                    Show = true,
+                    ShowInInstances = false
+                },
             },
             ChatMessages = {
                 OnLogin = {
@@ -197,6 +209,18 @@ addon.Options.Defaults = {
                     ShowInInstances = false,
                     ShowOnlyWhenTimeDataIsAvailable = true
                 },
+                OnLoginUpcoming = {
+                    Show = true,
+                    ShowInInstances = false
+                },
+                OnReloadUpcoming = {
+                    Show = true,
+                    ShowInInstances = false
+                },
+                OnEventStartUpcoming = {
+                    Show = true,
+                    ShowInInstances = false
+                },
             },
             DateTimeFormat = {
                 StartTimeAndEndTime = "%d/%m/%Y %R"
@@ -208,7 +232,12 @@ addon.Options.Defaults = {
             Compact = false,
             RefreshInterval = 60,
             OnLoginDelay = 5,
-            SideButtonsAnchor = 1
+            OnLoginUpcomingDelay = 6,
+            SideButtonsAnchor = 1,
+            UpcomingCalendarEvents = {
+                Enabled = true,
+                Days = 14
+            }
         },
         Filters = {
             ResetFactionFilters = true

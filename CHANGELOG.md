@@ -9,6 +9,8 @@ All notable changes to this project will be documented in this file.
 - Cross-Expansion - Delves category is now moved from The War Within to Cross-Expansion
 - Has Reward filter with additional reward type filters
 - Show Other Faction Warband as Completed option (dev note: see loc for details)
+- Plunderstorm and Turbulent Timeways events
+- Upcoming Calendar Event Reminders with a lot of options
 
 ### Changed
 - Factions and EventType are now accessible trough the API system

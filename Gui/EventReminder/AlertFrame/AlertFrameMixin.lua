@@ -42,13 +42,24 @@ end
 function KrowiAF_EventReminderAlertFrameMixin:SetEvent(event)
     self.Event = event;
 	self.Icon.Texture:SetTexture(event.Icon);
-    self.Name:SetText(event.EventDetails and event.EventDetails.Name or addon.L["Collecting data"]);
+    if event.EventDetails then
+        self.Name:SetText(event.EventDetails.Name);
+    elseif event.UpcomingEventDetails then
+        self.Name:SetText(addon.L["Upcoming"] .. ": " .. event.UpcomingEventDetails.Name);
+    else
+        self.Name:SetText(addon.L["Collecting data"]);
+    end
     self:UpdateEventRuntime();
     self.TimeSinceLastUpdate = 0;
 end
 
 function KrowiAF_EventReminderAlertFrameMixin:UpdateEventRuntime()
-    local runtime = addon.Gui.EventReminderAlertSystem:GetRuntimeText(self.Event);
+    local runtime;
+    if self.Event.EventDetails then
+        runtime = addon.Gui.EventReminderAlertSystem:GetRuntimeText(self.Event);
+    elseif self.Event.UpcomingEventDetails then
+        runtime = addon.L["In"] .. " " .. addon.Gui.EventReminderAlertSystem:GetUpcomingText(self.Event);
+    end
     self.Unlocked:SetText(runtime);
 end
 
