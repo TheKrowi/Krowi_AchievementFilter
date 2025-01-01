@@ -1,12 +1,10 @@
 -- [[ Disclaimer ]] --
 -- A lot of code in this file is copied from ElvUI to make it compatible with their skin.
 
--- [[ Namespaces ]] --
 local _, addon = ...;
-local plugins = addon.Plugins;
-plugins.ElvUI = {};
-local elvUI = plugins.ElvUI;
-tinsert(plugins.Plugins, elvUI);
+local elvUI = {};
+KrowiAF.PluginsApi:RegisterPlugin("ElvUI", elvUI);
+KrowiAF.PluginsApi:RegisterEvent("PLAYER_LOGIN");
 
 local function SkinTabs(skins)
     for _, addonTabs in next, addon.Gui.Tabs do
@@ -751,13 +749,13 @@ local function SkinFloatingAchievementTooltip()
     skins:HandleCloseButton(KrowiAF_FloatingAchievementTooltip.CloseButton);
 end
 
-plugins.LoadHelper:RegisterEvent("ADDON_LOADED");
-plugins.LoadHelper:RegisterEvent("PLAYER_LOGIN");
 function elvUI:OnEvent(event, arg1, arg2)
-    if event == "PLAYER_LOGIN" then
-        SkinAlertFrames();
-        SkinFloatingAchievementTooltip();
+    if event ~= "PLAYER_LOGIN" then
+        return;
     end
+
+    SkinAlertFrames();
+    SkinFloatingAchievementTooltip();
 end
 
 local function AddInfo(localizationName, getFunction, hidden)

@@ -76,12 +76,11 @@ function data:RegisterTransmogSetDataTasks()
     end
 end
 
-local LoadBlizzardTabAchievements;
 local function PostLoadOnPlayerLogin(self, start)
     local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_Layout", "cmd", "KROWIAF-0.0").args.Summary.args.Summary.args.NumAchievements; -- cmd and KROWIAF-0.0 are just to make the function work
     custom.max = #self.AchievementIds;
 
-    LoadBlizzardTabAchievements();
+    self.LoadBlizzardTabAchievements();
 
     addon.SpecialCategories:Load();
 
@@ -223,7 +222,7 @@ local function AddCategoriesToList()
     end
 end
 
-function LoadBlizzardTabAchievements()
+function data.LoadBlizzardTabAchievements()
     if not addon.Tabs["Achievements"] then
         return;
     end

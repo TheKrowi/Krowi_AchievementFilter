@@ -777,7 +777,7 @@ function addon.ChangeAchievementMicroButtonOnClick()
     end
     local tab = KrowiAF_SavedData.Tabs[addon.Options.db.profile.MicroButtonTab];
     AchievementMicroButton:SetScript("OnClick", function(self)
-        addon.Gui:ToggleAchievementFrame(tab.AddonName, tab.Name);
+        KrowiAF_ToggleAchievementFrame(tab.AddonName, tab.Name);
     end);
 end
 

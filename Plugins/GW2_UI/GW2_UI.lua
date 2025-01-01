@@ -1,12 +1,10 @@
 -- [[ Disclaimer ]] --
 -- A lot of code in this file is copied from ElvUI to make it compatible with their skin.
 
--- [[ Namespaces ]] --
 local addonName, addon = ...;
-local plugins = addon.Plugins;
-plugins.GW2_UI = {};
-local gw2_ui = plugins.GW2_UI;
-tinsert(plugins.Plugins, gw2_ui);
+local gw2_ui = {};
+KrowiAF.PluginsApi:RegisterPlugin("GW2_UI", gw2_ui);
+KrowiAF.PluginsApi:RegisterEvent("PLAYER_LOGIN");
 
 do -- [[ Shared ]]
     function gw2_ui.HandleScrollBar(self)
@@ -1242,15 +1240,17 @@ local function SkinFloatingAchievementTooltip()
     });
 end
 
-plugins.LoadHelper:RegisterEvent("ADDON_LOADED");
-plugins.LoadHelper:RegisterEvent("PLAYER_LOGIN");
 function gw2_ui:OnEvent(event, arg1, arg2)
-    if event == "PLAYER_LOGIN" then
-        if GW2_ADDON and gw2_ui.IsLoaded() then
-            SkinAlertFrames();
-            SkinFloatingAchievementTooltip();
-        end
+    if event ~= "PLAYER_LOGIN" then
+        return;
     end
+
+    if not GW2_ADDON or not gw2_ui.IsLoaded() then
+        return;
+    end
+
+    SkinAlertFrames();
+    SkinFloatingAchievementTooltip();
 end
 
 local function AddInfo(localizationName, getFunction, hidden)

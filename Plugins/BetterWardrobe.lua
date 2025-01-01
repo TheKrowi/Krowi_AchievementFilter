@@ -1,8 +1,6 @@
 local _, addon = ...;
-local plugins = addon.Plugins;
-plugins.BetterWardrobe = {};
-local betterWardrobe = plugins.BetterWardrobe;
-tinsert(plugins.Plugins, betterWardrobe);
+local betterWardrobe = {};
+KrowiAF.PluginsApi:RegisterPlugin("BetterWardrobe", betterWardrobe);
 
 local function ReplaceOpenTransmogLink()
     WardrobeCollectionFrame.OpenTransmogLink = function(_, link)
@@ -11,7 +9,7 @@ local function ReplaceOpenTransmogLink()
     end
 end
 
-plugins.LoadHelper:RegisterEvent("ADDON_LOADED");
+KrowiAF.PluginsApi:RegisterEvent("ADDON_LOADED");
 function betterWardrobe:OnEvent(event, arg1, arg2)
     if not self.IsLoaded() then
         return;

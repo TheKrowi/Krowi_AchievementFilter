@@ -41,10 +41,10 @@ local function LoadKrowi_AchievementFilter()
     KrowiAF.InjectTabDataDynamicOptions();
     addon.Gui.AchievementFrameHeader:InjectDynamicOptions();
     addon.Filters:InjectDefaults();
-    addon.Plugins:InjectOptions();
+    KrowiAF.PluginsApi:InjectPluginOptions();
     addon.Options:Load(true);
 
-    addon.Plugins:Load();
+    KrowiAF.PluginsApi:LoadPlugins();
 
     addon.Data.DataIntegrityManager.Load();
     addon.Data.SavedData.Load();

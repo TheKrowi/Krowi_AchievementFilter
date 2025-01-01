@@ -18,7 +18,7 @@ L["Better Wardrobe Desc"] = [=[This plugin fixes the link to the wardrobe that i
 There are no options.]=]
 L["Calendar Button Position Overwrite Desc"] = "The position settings are not active when {addon} is enabled."
 L["ElvUI"] = true
-L["ElvUI Desc"] = [=[Each of the options below are controlled by ElvUI and are just informational.
+L["ElvUI Desc"] = [=[Each of the options below is controlled by ElvUI and is purely informational.
 
 To change these, go to Game Menu -> ElvUI -> Skins and check the desired options. See each option below for what to check.
 ]=]
@@ -75,13 +75,13 @@ To change these, go to Game Menu -> GW 2 UI -> General -> Skins and check the de
 ]=]
 L["IAT Tactics"] = true
 L["Instance Achievement Tracker"] = true
-L["Instance Achievement Tracker Desc"] = "This plugin allows the addition of an extra Right Click Menu item for {iat}."
+L["Instance Achievement Tracker Desc"] = "This plugin allows for the addition of an extra Right Click Menu item on achievements with {iat} tactics available."
 L["Instance Achievement Tracker PluginText"] = [=[|T:1:8|t- Shortcut to {plugin_iat} if tactics for the achievement are available ({plugin_iat} is {plugin_enabled}).
 ]=]
 L["RenameExplorationDragonIslesCategory"] = "Rename Exploration -> Dragon Isles Category to Dragonflight"
 L["RenameExplorationDragonIslesCategory Desc"] = "Renames the Exploration -> Dragon Isles Category to Dragonflight."
 L["Unsupported GW2_UI Desc"] = "The current version '{version}' of GW 2 UI is not supported."
 L["Zygor Guides Viewer"] = true
-L["Zygor Guides Viewer Desc"] = [=[This plugin adds the magnifying glasses again to the Blizzard Achievements tab.
+L["Zygor Guides Viewer Desc"] = [=[This plugin adds a magnifying glass icon to achievements with guides available in the new tabs {kaf} and 3rd party plugins add.
 
-There are no options.]=]
+There are no additional options.]=]

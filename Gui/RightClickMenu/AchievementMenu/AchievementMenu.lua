@@ -48,7 +48,7 @@ local function CreateMenu(self, menu, achievement)
 		end
 	end
 
-	addon.Plugins:AddRightClickMenuItems(menu, achievement);
+	KrowiAF.PluginsApi:AddAchievementRightClickMenuItems(menu, achievement);
 end
 
 if addon.Util.IsTheWarWithin then
