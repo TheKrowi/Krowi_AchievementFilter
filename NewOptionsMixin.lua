@@ -1,0 +1,66 @@
+local _, addon = ...;
+
+KrowiAF_NewOptionsFrameTabButtonMixin = {};
+
+function KrowiAF_NewOptionsFrameTabButtonMixin:OnClick(button)
+    PanelTemplates_SetTab(self:GetParent(), self:GetID());
+
+    self:GetParent():UpdateSelectedTab();
+end
+
+KrowiAF_NewOptionsMixin = {};
+
+function KrowiAF_NewOptionsMixin:OnLoad()
+    self:SetPortraitToAsset(134070);
+
+    self.Tab1.Text:SetText(addon.L["General"]);
+    self.Tab2.Text:SetText(addon.L["Layout"]);
+
+    PanelTemplates_SetNumTabs(self, 2);
+	PanelTemplates_SetTab(self, 1);
+    PanelTemplates_AnchorTabs(self);
+end
+
+function KrowiAF_NewOptionsMixin:OnDragStart()
+	self:StartMoving();
+end
+
+function KrowiAF_NewOptionsMixin:OnDragStop()
+	self:StopMovingOrSizing();
+end
+
+function KrowiAF_NewOptionsMixin:OnShow()
+    self:UpdateSelectedTab();
+end
+
+function KrowiAF_NewOptionsMixin:UpdateSelectedTab()
+    local selectedTab = PanelTemplates_GetSelectedTab(self);
+
+    KrowiAF_NewOptionsGeneralFrame:SetShown(selectedTab == 1);
+    KrowiAF_NewOptionsLayoutFrame:SetShown(selectedTab == 2);
+end
+
+KrowiAF_NewOptionsGeneralMixin = {};
+
+function KrowiAF_NewOptionsGeneralMixin:OnLoad()
+    PanelTabButtonMixin.OnLoad(self);
+end
+
+function KrowiAF_NewOptionsGeneralMixin:OnShow()
+    -- self.Text:SetText("General");
+    for k, v in next, self do
+        print(k, v);
+    end
+end
+
+KrowiAF_NewOptionsLayoutMixin = {};
+
+function KrowiAF_NewOptionsLayoutMixin:OnLoad()
+    PanelTabButtonMixin.OnLoad(self);
+
+    self:GetParent():Show();
+end
+
+function KrowiAF_NewOptionsLayoutMixin:OnShow()
+    -- self.Text:SetText("Layout");
+end

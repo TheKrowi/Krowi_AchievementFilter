@@ -51,3 +51,5 @@ Data\Retail\Files.xml
 DataAddons\Shared\Files.xml
 DataAddons\Retail\Files.xml
 DataAddons\Loaders\Files.xml
+
+NewOptions.xml

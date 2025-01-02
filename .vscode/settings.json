@@ -530,7 +530,13 @@
         "TABARDSLOT",
         "LFG_LIST_TITLE",
         "TOY",
-        "PERKS_VENDOR_CATEGORY_TRANSMOG"
+        "PERKS_VENDOR_CATEGORY_TRANSMOG",
+        "PanelTemplates_SetTab",
+        "PanelTemplates_GetSelectedTab",
+        "KrowiAF_NewOptionsGeneralFrame",
+        "KrowiAF_NewOptionsLayoutFrame",
+        "PanelTemplates_AnchorTabs",
+        "PanelTabButtonMixin"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

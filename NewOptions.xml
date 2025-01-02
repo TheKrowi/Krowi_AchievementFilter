@@ -1,0 +1,58 @@
+<Ui>
+    <Script file="NewOptionsMixin.lua"/>
+
+    <Button name="KrowiAF_NewOptionsFrameTabTemplate" inherits="PanelTabButtonTemplate" mixin="KrowiAF_NewOptionsFrameTabButtonMixin" virtual="true">
+        <Scripts>
+            <OnClick method="OnClick"/>
+        </Scripts>
+    </Button>
+
+    <Frame name="KrowiAF_NewOptionsFrame" parent="UIParent" hidden="true" movable="true" enableMouse="true" toplevel="true" registerForDrag="LeftButton" inherits="PortraitFrameTemplate" mixin="KrowiAF_NewOptionsMixin">
+        <Size x="300" y="400"/>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+        <Frames>
+            <Button name="$parentTab1" parentKey="Tab1" inherits="KrowiAF_NewOptionsFrameTabTemplate" id="1">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="BOTTOMLEFT" x="11" y="2"/>
+                </Anchors>
+            </Button>
+            <Button name="$parentTab2" parentKey="Tab2" inherits="KrowiAF_NewOptionsFrameTabTemplate" id="2"/>
+        </Frames>
+		<Scripts>
+			<OnLoad method="OnLoad"/>
+            <OnDragStart method="OnDragStart"/>
+            <OnDragStop method="OnDragStop"/>
+            <OnShow method="OnShow"/>
+		</Scripts>
+    </Frame>
+
+    <Frame name="KrowiAF_NewOptionsGeneralFrame" parent="KrowiAF_NewOptionsFrame" setAllPoints="true" hidden="true" mixin="KrowiAF_NewOptionsGeneralMixin">
+        <Frames>
+            <Button inherits="UIPanelButtonTemplate" text="MOUNT">
+                <Anchors>
+                    <Anchor point="CENTER"/>
+                </Anchors>
+            </Button>
+        </Frames>
+		<Scripts>
+			<OnLoad method="OnLoad"/>
+            <OnShow method="OnShow"/>
+		</Scripts>
+    </Frame>
+
+        <Frame name="KrowiAF_NewOptionsLayoutFrame" parent="KrowiAF_NewOptionsFrame" setAllPoints="true" hidden="true" mixin="KrowiAF_NewOptionsLayoutMixin">
+        <Frames>
+            <Button inherits="UIPanelButtonTemplate" text="PET_JOURNAL">
+                <Anchors>
+                    <Anchor point="CENTER"/>
+                </Anchors>
+            </Button>
+        </Frames>
+		<Scripts>
+			<OnLoad method="OnLoad"/>
+            <OnShow method="OnShow"/>
+		</Scripts>
+    </Frame>
+</Ui>
