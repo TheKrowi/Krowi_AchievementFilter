@@ -8,7 +8,7 @@
     </Button>
 
     <Frame name="KrowiAF_NewOptionsFrame" parent="UIParent" hidden="true" movable="true" enableMouse="true" toplevel="true" registerForDrag="LeftButton" inherits="PortraitFrameTemplate" mixin="KrowiAF_NewOptionsMixin">
-        <Size x="300" y="400"/>
+        <Size x="500" y="500"/>
         <Anchors>
             <Anchor point="CENTER"/>
         </Anchors>
@@ -28,13 +28,36 @@
 		</Scripts>
     </Frame>
 
+    <Button name="KrowiAF_NewOptionsGeneralFrameTabTemplate" inherits="PanelTopTabButtonTemplate" mixin="KrowiAF_NewOptionsGeneralFrameTabButtonMixin" virtual="true">
+        <Scripts>
+            <OnClick method="OnClick"/>
+        </Scripts>
+    </Button>
+
     <Frame name="KrowiAF_NewOptionsGeneralFrame" parent="KrowiAF_NewOptionsFrame" setAllPoints="true" hidden="true" mixin="KrowiAF_NewOptionsGeneralMixin">
         <Frames>
-            <Button inherits="UIPanelButtonTemplate" text="MOUNT">
+            <Button name="$parentTab1" parentKey="Tab1" inherits="KrowiAF_NewOptionsGeneralFrameTabTemplate" id="1" frameLevel="4">
                 <Anchors>
-                    <Anchor point="CENTER"/>
+                    <Anchor point="TOPLEFT" x="58" y="-28"/>
                 </Anchors>
             </Button>
+            <Button name="$parentTab2" parentKey="Tab2" inherits="KrowiAF_NewOptionsGeneralFrameTabTemplate" id="2" frameLevel="4"/>
+            <Button name="$parentTab3" parentKey="Tab3" inherits="KrowiAF_NewOptionsGeneralFrameTabTemplate" id="3" frameLevel="4"/>
+            <Button name="$parentTab4" parentKey="Tab4" inherits="KrowiAF_NewOptionsGeneralFrameTabTemplate" id="4" frameLevel="4"/>
+            <Button name="$parentTab5" parentKey="Tab5" inherits="KrowiAF_NewOptionsGeneralFrameTabTemplate" id="5" frameLevel="4"/>
+            <Frame parentKey="Inset" inherits="InsetFrameTemplate" setAllPoints="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" y="-60" x="4"/>
+                    <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" x="-6" y="5"/>
+                </Anchors>
+                <Frames>
+                    <Button inherits="UIPanelButtonTemplate" text="MOUNT">
+                        <Anchors>
+                            <Anchor point="TOPLEFT"/>
+                        </Anchors>
+                    </Button>
+                </Frames>
+            </Frame>
         </Frames>
 		<Scripts>
 			<OnLoad method="OnLoad"/>
