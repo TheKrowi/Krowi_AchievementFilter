@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - When marking an achievement as watched, the view should no longer completely reset
+- Side buttons are once again skinned when using GW2 UI
 
 ## 80.2 - 2024-12-18
 ### Added

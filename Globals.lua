@@ -584,10 +584,8 @@ local function MakeStatic(frame, rememberLastPositionOption, target)
 
     frame:SetMovable(false);
     frame:EnableMouse(false);
-    frame:SetScript("OnMouseDown", function(frame, button)
-    end);
-    frame:SetScript("OnMouseUp", function(frame, button)
-    end);
+    frame:SetScript("OnMouseDown", function() end);
+    frame:SetScript("OnMouseUp", function() end);
 end
 
 function addon.MakeWindowStatic()
