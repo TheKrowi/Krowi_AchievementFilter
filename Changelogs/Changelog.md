@@ -4,9 +4,13 @@
 - Achievements can now have multiple moments when they were available to earn
 - Cross-Expansion - Delves category is now moved from The War Within to Cross-Expansion
 - Has Reward filter with additional reward type filters
+- Show Other Faction Warband as Completed option (dev note: see loc for details)
+- Plunderstorm and Turbulent Timeways events
+- Upcoming Calendar Event Reminders with a lot of options
 
 ### Changed
 - Factions and EventType are now accessible trough the API system
 
 ### Fixed
 - When marking an achievement as watched, the view should no longer completely reset
+- Side buttons are once again skinned when using GW2 UI

@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 81.0 - 2024-12-20
+## 81.0 - 2025-01-09
 ### Added
 - The watch list can now be a mix of account wide achievements for one character, character specific achievements for another character or all account wide or character specific
 - Shadowlands Mythic+ season categories in the Specials tab
