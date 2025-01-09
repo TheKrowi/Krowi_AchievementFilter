@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 81.1 - 2025-01-09
+### Fixed
+- Resolved some loading order issues related to ElvUI and event reminders
+
 ## 81.0 - 2025-01-09
 ### Added
 - The watch list can now be a mix of account wide achievements for one character, character specific achievements for another character or all account wide or character specific
