@@ -18,3 +18,7 @@
 <li>When marking an achievement as watched, the view should no longer completely reset</li>
 <li>Side buttons are once again skinned when using GW2 UI</li>
 </ul>
+<p><h3>Fixed (81.1)</h3></p>
+<ul>
+<li>Resolved some loading order issues related to ElvUI and event reminders</li>
+</ul>
