@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-01-01 21-58-07 ]] --
+-- [[ Exported at 2025-01-09 08-34-02 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -47,6 +47,8 @@ Dieser Wert kann geändert werden, während das Erfolg-Fenster geöffnet ist und
 
 (1) FPS-Einbrüche und Stottern während der Anpassung des Wertes, NICHT während der normalen Addon-Nutzung.]=]
 L["Active"] = "Aktiv"
+L["Active Event Login Delay"] = "Aktive Ereignisse Login-Verzögerung"
+L["Active Events"] = "Aktive Ereignisse"
 L["Active events"] = "Aktive Ereignisse"
 L["Add addon name to world map icon"] = "Addon-Namen zum Weltkarten-Icon hinzufügen"
 L["Add addon name to world map icon Desc"] = "Fügt '{addonName}' am Ende des Tooltips hinzu, wenn man mit der Maus über das Icon fährt."
@@ -120,7 +122,7 @@ Optionen (1)
 |T:1:8|t- Der erste Tag der Woche kann geändert werden und ist derzeit auf {firstWeekDay} eingestellt.
 
 (1) Die Optionen befinden sich unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {calendar}.]=]
-L["Calendar Events"] = "Kalender Events"
+L["Calendar Events"] = "Kalender Ereignisse"
 L["Call of the Crusade"] = "Der Ruf des Kreuzzugs"
 L["Cataclysm (pre-patch)"] = true
 L["Categories"] = "Kategorien"
@@ -296,6 +298,8 @@ L["Enable Tab Priority"] = "Tab-Priorität aktivieren"
 L["Enable Tab Priority Desc"] = "Aktiviere die Tab-Prioritäts-Option"
 L["Enable trace info"] = "Trace-Informationen einschalten"
 L["Enable trace info Desc"] = "Trace-Informationen einschalten/ausschalten"
+L["Enable Upcoming Calendar Events"] = "Aktiviere Anstehende Kalender-Ereignisse"
+L["Enable Upcoming Calendar Events Desc"] = "Wenn deaktiviert, wird das {upcomingCalendarEvents} Modul deaktviert."
 L["End Time"] = "Ende (Zeit)"
 L["Enhanced filtering and sorting"] = "Erweitertes Filtern und Sortieren"
 L["Enhanced filtering and sorting Desc"] = [=[Das Filtern und Sortieren von Erfolgen wurde um folgende Funktionen erweitert.
@@ -407,7 +411,7 @@ Ereignistypen:
 (1) Die Optionen findest Du unter {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {eventReminders}.]=]
 L["Event Reminders"] = "Event Erinnerung"
 L["Event Reminders Enable Desc"] = "Wenn deaktiviert, wird das gesamte {eventReminders} Modul ausgeschaltet."
-L["Events"] = true
+L["Events"] = "Ereignisse"
 L["Exclude"] = "Ausblenden"
 L["Exclude Excluded achievements"] = "Ausgeschlossene Erfolge Suchen"
 L["Exclude Excluded achievements Desc"] = "Ausgeschlossene Erfolge von den Suchergebnissen ausschließen bzw. in die Suchergebnisse aufnehmen."
@@ -534,6 +538,7 @@ L["Ignore Filters"] = "Filter Ingorieren"
 L["Ignore Filters Desc"] = "Ignoriere jegliche Filter und zeige alle Erfolge in dieser {category}."
 L["Imbu"] = true
 L["Import"] = true
+L["In"] = "in"
 L["in"] = true
 L["In instances"] = "In einer Instanz"
 L["Include"] = "Hinzufügen"
@@ -752,7 +757,7 @@ L["Rebind Micro Button"] = "Micro-Button ändern"
 L["Rebind Micro Button Desc"] = "Binde den Micro-Button \"Erfolge\" neu, um einen anderen Tab als den Standard-Tab zu öffnen."
 L["Recruit-a-Friend"] = "Werbt einen Freund"
 L["Red"] = "Rot"
-L["Refresh Events"] = "Events aktualisieren"
+L["Refresh Events"] = "Ereignisse aktualisieren"
 L["Refresh interval"] = "Aktualisierungsintervall"
 L["Refresh interval Desc"] = "Die Zeit in Sekunden zwischen den Aktualisierungen der Ereignis-Daten. Eine längere Zeitspanne kann die Erstellung neuer Popup-Fenster bzw. das Bereinigen vorhandener Popup-Fenster verzögern."
 L["Related Tab"] = "Zugehöriger Tab"
@@ -884,6 +889,8 @@ L["Show Other faction"] = "Zeige weitere Fraktionen"
 L["Show Other faction Desc"] = [=[Zeige / verstecke {otherFaction}.
 
 Wenn diese Option aktiviert ist, wird der Erfolg der anderen Fraktion im Tooltip angezeigt, sofern verfügbar. Dadurch wird es vielleicht klarer, warum euer neuer Horde-Charakter bestimmte Errungenschaften hat, wenn ihr vorher nur Allianz gespielt habt. ]=]
+L["Show Other Faction Warband as Completed"] = "Andere Fraktions-Kriegsmeute als abgeschlossen anzeigen"
+L["Show Other Faction Warband as Completed Desc"] = "Einige Erfolge sind fraktionsspezifisch und gleichzeitig kriegsmeuten gebunden. Diese Erfolge können auf einem Charakter einer Fraktion als abgeschlossen erscheinen, aber nicht auf einem Charakter der anderen Fraktion. Wenn diese Option aktiviert ist, erscheinen die kriegsgebundenen Erfolge auf dem Charakter der anderen Fraktion als abgeschlossen, wenn der Charakter die Errungenschaft auf der anderen Fraktion abgeschlossen hat. Ein Beispiel dafür ist, dass {hordeIntro} und {allianceIntro} für {warStories} benötigt werden, wobei {hordeIntro} nur für Charaktere der Horde und {allianceIntro} für Charaktere der Allianz als abgeschlossen erscheint."
 L["Show Part of a chain"] = "Zeige {partOfAChain}"
 L["Show Part of a chain Desc"] = "{partOfAChain} aktivieren / deaktivieren. Wenn diese Option aktiviert ist, wird im Tooltip die Verkettung angezeigt, zu der der Erfolg gehört."
 L["Show placeholders"] = "Zeige Platzhalter"
@@ -1043,6 +1050,11 @@ L["Unchecked"] = "Nicht aktiviert"
 L["until the end of"] = "bis zum Ende von"
 L["Up"] = "Hoch"
 L["up until the start of"] = "bis zum Ende von"
+L["Upcoming"] = "Anstehend"
+L["Upcoming Calendar Event Days"] = "Anstehende Kalender-Ereignisse Tage"
+L["Upcoming Calendar Event Days Desc"] = "Die Anzahl der Tage im Voraus, die anstehende Kalender-Ereignisse angezeigt werden sollen."
+L["Upcoming Calendar Event Login Delay"] = "Anstehende Kalender-Ereignisse Login-Verzögerung"
+L["Upcoming Calendar Events"] = "Anstehende Kalender-Ereignisse"
 L["Upper Reaches"] = "Die Oberen Ebenen"
 L["Val'sharah"] = true
 L["Vendor"] = "Verkäufer"
@@ -1067,13 +1079,13 @@ L["When achievement completed Desc"] = [=[Zeigt / verbirgt {objectivesProgress},
 
 Wenn diese Option aktiviert ist, werden die {objectivesProgress} der Erfolge im Tooltip angezeigt, unabhängig davon, ob der Erfolg abgeschlossen ist oder nicht. ]=]
 L["Whispering Pandaren Spirit"] = "Flüsternder Pandarengeist"
-L["Widget Events"] = true
+L["Widget Events"] = "Widget Ereignisse"
 L["Wild Preserve Circuit"] = "Wildreservat-Parcours"
 L["Wild Preserve Slalom"] = "Wildreservat-Slalom"
 L["will be"] = "wird"
 L["Window"] = "Fenster"
 L["Wingrest Roundabout"] = "Schwingenrastkreisel"
-L["World Events"] = "Welt Events"
+L["World Events"] = "Welt Ereignisse"
 L["World Map"] = "Welt Karte"
 L["World Map Button"] = true
 L["World Map Button Desc"] = [=[Hover:
