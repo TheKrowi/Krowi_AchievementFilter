@@ -493,20 +493,22 @@ local function SetRewardText(self, rewardText)
 end
 
 local function SetFaction(self, achievement)
-	if not self.Faction then
+	if not achievement.Faction then
+		self.FactionIcon:Hide();
 		return;
 	end
+	self.FactionIcon:SetAlpha(addon.Options.db.profile.Achievements.FactionIconAlpha);
 	if achievement.Faction == KrowiAF.Enum.Faction.Alliance and addon.Options.db.profile.Achievements.ShowAllianceFactionIcon then
-		self.Faction.Icon:SetAtlas("MountJournalIcons-Alliance");
-		self.Faction:Show();
+		self.FactionIcon:SetTexCoord(0.65966796875, 0.74951171875, 0.150879, self.Compact and 0.19961 or 0.22412109375);
+		self.FactionIcon:Show();
 		return;
 	end
 	if achievement.Faction == KrowiAF.Enum.Faction.Horde and addon.Options.db.profile.Achievements.ShowHordeFactionIcon then
-		self.Faction.Icon:SetAtlas("MountJournalIcons-Horde");
-		self.Faction:Show();
+		self.FactionIcon:SetTexCoord(0.75048828125, 0.84033203125, 0.150879, self.Compact and 0.19961 or 0.22412109375);
+		self.FactionIcon:Show();
 		return;
 	end
-	self.Faction:Hide();
+	self.FactionIcon:Hide();
 end
 
 function KrowiAF_AchievementButtonMixin:SetAchievementData(achievement, id, name, points, completed, month, day, year, description, flags, icon, rewardText, wasEarnedByMe)

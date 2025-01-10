@@ -73,6 +73,7 @@ addon.Options.Defaults = {
             HideDateCompleted = false,
             ShowAllianceFactionIcon = false,
             ShowHordeFactionIcon = false,
+            FactionIconAlpha = 0.2,
             Objectives = {
                 ForceTwoColumns = true,
                 ForceTwoColumnsThreshold = 20,

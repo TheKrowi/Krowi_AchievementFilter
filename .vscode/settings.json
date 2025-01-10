@@ -530,7 +530,8 @@
         "TABARDSLOT",
         "LFG_LIST_TITLE",
         "TOY",
-        "PERKS_VENDOR_CATEGORY_TRANSMOG"
+        "PERKS_VENDOR_CATEGORY_TRANSMOG",
+        "TooltipBackdropTemplateMixin"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
@@ -554,13 +555,13 @@
             "exclude":"**/{.git,.vscode,Changelogs,Descriptions}/**",
             "deleteTargetOnDeploy": true
         },
-        // {
-        //     "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
-        //     "target":"F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\Krowi_AchievementFilter",
-        //     "include":"**/*.{lua,toc,blp,tga,xml,md}",
-        //     "exclude":"**/{.git,.vscode,Changelogs,Descriptions}/**",
-        //     "deleteTargetOnDeploy": true
-        // },
+        {
+            "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
+            "target":"F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\Krowi_AchievementFilter",
+            "include":"**/*.{lua,toc,blp,tga,xml,md}",
+            "exclude":"**/{.git,.vscode,Changelogs,Descriptions}/**",
+            "deleteTargetOnDeploy": true
+        },
         // {
         //     "source":"E:\\World of Warcraft Addon Development\\Krowi_AchievementFilter",
         //     "target":"F:\\World of Warcraft\\_ptr_\\Interface\\AddOns\\Krowi_AchievementFilter",
