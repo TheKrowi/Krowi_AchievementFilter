@@ -17,3 +17,6 @@
 
 ### Fixed (81.1)
 - Resolved some loading order issues related to ElvUI and event reminders
+
+### Fixed (81.2)
+- Option to change the transparency of the faction icon

@@ -22,3 +22,7 @@
 <ul>
 <li>Resolved some loading order issues related to ElvUI and event reminders</li>
 </ul>
+<p><h3>Fixed (81.2)</h3></p>
+<ul>
+<li>Option to change the transparency of the faction icon</li>
+</ul>
