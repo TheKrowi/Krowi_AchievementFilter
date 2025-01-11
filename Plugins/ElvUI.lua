@@ -783,11 +783,11 @@ local function DisableOptions()
 end
 
 function elv:Load()
+    doSkin = {};
+
     if not IsLoaded() then
         return;
     end
-
-    doSkin = {};
 
     engine = unpack(ElvUI);
     skins = engine:GetModule("Skins");

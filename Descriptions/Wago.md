@@ -17,7 +17,7 @@ Achievement Filter completely replaces the default Achievements tab and adds sev
 - The ***Focused*** category shows achievements you want to focus on.
 - The ***Tracking Achievements*** category shows tracking achievements usualy not visible. Showing this category can be toggled in the options.
 - The ***Excluded*** category shows excluded achievements you don't want to see. Showing this category can be toggled in the options.
-- Each expansion has its own category: ***Classic***, ***The Burning Crusade***, ***Wrath of the Lich King***, ***Cataclysm***, ***Mists of Pandaria***, ***Warlords of Dreanor***, ***Legion***, ***Battle for Azeroth***, ***Shadowlands*** and ***Dragonflight***.
+- Each expansion has its own category: ***Classic***, ***The Burning Crusade***, ***Wrath of the Lich King***, ***Cataclysm***, ***Mists of Pandaria***, ***Warlords of Dreanor***, ***Legion***, ***Battle for Azeroth***, ***Shadowlands***, ***Dragonflight*** and ***The War Within***.
 - Each expansion is divided in Zones, Dungeons and Raids and Pet Battles where available.
 - ***Wrath of the Lich King*** has separate categories for 10 and 25 man Raids.
 - ***Wrath of the Lich King*** expansion feature: Argent Tournament.
@@ -27,7 +27,8 @@ Achievement Filter completely replaces the default Achievements tab and adds sev
 - ***Legion*** expansion feature: Brawler's Guild and Class Hall.
 - ***Battle for Azeroth*** expansion feature: Brawler's Guild, Island Expeditions, War Effort, Heart of Azeroth and Visions of N'Zoth.
 - ***Shadowlands*** expansion feature: Torghast and Covenant Sanctums.
-- ***Dragonflight*** expansion feature: Dragonriding, Dragon Racing and Primal Storms.
+- ***Dragonflight*** expansion feature: Dragonriding, Dragonriding Racing and Primal Storms.
+- ***The War Within*** expansion feature: Skyriding Races and Delves.
 - Unobtainable ***Legacy*** categories can be found when the 'Not Obtainable' filter is checked.
 
 ### Features
@@ -52,7 +53,8 @@ Achievement Filter completely replaces the default Achievements tab and adds sev
 - Custom objectives for certain achievements. (If you find missing ones, let me know.)
 - A ***summary view*** for each new tab.
 - A new ***calendar view*** that puts achievements earned on their respective day.
-- A ***data manager*** to manipulate your saved variables. (Still working on expanding this.)
+- A ***data manager*** to manipulate your saved variables.
+- An open API for other developers to add additional categories with achievements.
 
 More features are planned in the future and can be requested via the issues system or discord.
 

@@ -1,9 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 81.2 - 2025-01-10
-### Fixed
+## 81.2 - 2025-01-11
+### Added
 - Option to change the transparency of the faction icon
+
+### Fixed
+- Plugin options should no longer cause errors for ElvUI and GW2_UI
 
 ## 81.1 - 2025-01-10
 ### Fixed

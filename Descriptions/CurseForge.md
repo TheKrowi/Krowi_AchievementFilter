@@ -16,7 +16,7 @@
 <li>The <strong><em>Focused</em></strong> category shows achievements you want to focus on.</li>
 <li>The <strong><em>Tracking Achievements</em></strong> category shows tracking achievements usualy not visible. Showing this category can be toggled in the options.</li>
 <li>The <strong><em>Excluded</em></strong> category shows excluded achievements you don't want to see. Showing this category can be toggled in the options.</li>
-<li>Each expansion has its own category: <strong><em>Classic</em></strong>, <strong><em>The Burning Crusade</em></strong>, <strong><em>Wrath of the Lich King</em></strong>, <strong><em>Cataclysm</em></strong>, <strong><em>Mists of Pandaria</em></strong>, <strong><em>Warlords of Dreanor</em></strong>, <strong><em>Legion</em></strong>, <strong><em>Battle for Azeroth</em></strong>, <strong><em>Shadowlands</em></strong> and <strong><em>Dragonflight</em></strong>.</li>
+<li>Each expansion has its own category: <strong><em>Classic</em></strong>, <strong><em>The Burning Crusade</em></strong>, <strong><em>Wrath of the Lich King</em></strong>, <strong><em>Cataclysm</em></strong>, <strong><em>Mists of Pandaria</em></strong>, <strong><em>Warlords of Dreanor</em></strong>, <strong><em>Legion</em></strong>, <strong><em>Battle for Azeroth</em></strong>, <strong><em>Shadowlands</em></strong>, <strong><em>Dragonflight</em></strong> and <strong><em>The War Within</em></strong>.</li>
 <li>Each expansion is divided in Zones, Dungeons and Raids and Pet Battles where available.</li>
 <li><strong><em>Wrath of the Lich King</em></strong> has separate categories for 10 and 25 man Raids.</li>
 <li><strong><em>Wrath of the Lich King</em></strong> expansion feature: Argent Tournament.</li>
@@ -26,7 +26,8 @@
 <li><strong><em>Legion</em></strong> expansion feature: Brawler's Guild and Class Hall.</li>
 <li><strong><em>Battle for Azeroth</em></strong> expansion feature: Brawler's Guild, Island Expeditions, War Effort, Heart of Azeroth and Visions of N'Zoth.</li>
 <li><strong><em>Shadowlands</em></strong> expansion feature: Torghast and Covenant Sanctums.</li>
-<li><strong><em>Dragonflight</em></strong> expansion feature: Dragonriding, Dragon Racing and Primal Storms.</li>
+<li><strong><em>Dragonflight</em></strong> expansion feature: Dragonriding, Dragonriding Racing and Primal Storms.</li>
+<li><strong><em>The War Within</em></strong> expansion feature: Skyriding Races and Delves.</li>
 <li>Unobtainable <strong><em>Legacy</em></strong> categories can be found when the 'Not Obtainable' filter is checked.</li>
 </ul>
 <p><h3>Features</h3></p>
@@ -52,7 +53,8 @@
 <li>Custom objectives for certain achievements. (If you find missing ones, let me know.)</li>
 <li>A <strong><em>summary view</em></strong> for each new tab.</li>
 <li>A new <strong><em>calendar view</em></strong> that puts achievements earned on their respective day.</li>
-<li>A <strong><em>data manager</em></strong> to manipulate your saved variables. (Still working on expanding this.)</li>
+<li>A <strong><em>data manager</em></strong> to manipulate your saved variables.</li>
+<li>An open API for other developers to add additional categories with achievements.</li>
 </ul>
 <p>More features are planned in the future and can be requested via the issues system or discord.</p>
 <p>Feel free to join discord and say hi: <a href="https://discord.gg/mdBFQJYeQZ">https://discord.gg/mdBFQJYeQZ</a>.</p>

@@ -22,7 +22,11 @@
 <ul>
 <li>Resolved some loading order issues related to ElvUI and event reminders</li>
 </ul>
-<p><h3>Fixed (81.2)</h3></p>
+<p><h3>Added (81.2)</h3></p>
 <ul>
 <li>Option to change the transparency of the faction icon</li>
+</ul>
+<p><h3>Fixed (81.2)</h3></p>
+<ul>
+<li>Plugin options should no longer cause errors for ElvUI and GW2_UI</li>
 </ul>

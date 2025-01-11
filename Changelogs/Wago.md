@@ -18,5 +18,8 @@
 ### Fixed (81.1)
 - Resolved some loading order issues related to ElvUI and event reminders
 
-### Fixed (81.2)
+### Added (81.2)
 - Option to change the transparency of the faction icon
+
+### Fixed (81.2)
+- Plugin options should no longer cause errors for ElvUI and GW2_UI

@@ -1095,7 +1095,7 @@ function gw2.InjectOptions()
         name = (addon.L["Unsupported GW2_UI Desc"]:K_ReplaceVars(C_AddOns.IsAddOnLoaded("GW2_UI") and C_AddOns.GetAddOnMetadata("GW2_UI", "Version") or "") ..
         (addon.Util.IsMainline and (" " .. addon.L["At least version is required"]:K_ReplaceVars("6.6.1")) or "\n")):SetColorRed(),
         fontSize = "medium",
-        hidden = IsLoaded()
+        hidden = GW2_ADDON == nil or IsLoaded()
     });
 
     KrowiAF.UtilApi.InjectOptions:AddTable(pluginTable, "SkinsDescription", {
@@ -1143,11 +1143,11 @@ local function DisableOptions()
 end
 
 function gw2.Load()
+    doSkin = {};
+
     if not IsLoaded() then
         return;
     end
-
-    doSkin = {};
 
     doSkin.Achievements = GW2_ADDON.GetSetting("ACHIEVEMENT_SKIN_ENABLED");
     doSkin.DropDown = GW2_ADDON.GetSetting("DROPDOWN_SKIN_ENABLED");
