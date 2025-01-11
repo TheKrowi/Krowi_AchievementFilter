@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 81.3 - 2025-01-11
+### Fixed
+- Resolved an error when both the Achievement Window and the Calendar are open
+
 ## 81.2 - 2025-01-11
 ### Added
 - Option to change the transparency of the faction icon
