@@ -1,7 +1,7 @@
 <Ui>
     <Script file="NewOptionsMixin.lua"/>
 
-    <Button name="KrowiAF_NewOptionsFrameTabTemplate" inherits="PanelTabButtonTemplate" mixin="KrowiAF_NewOptionsFrameTabButtonMixin" virtual="true">
+    <Button name="KrowiAF_NewOptionsFrameBottomTabTemplate" inherits="PanelTabButtonTemplate" mixin="KrowiAF_NewOptionsFrameTabButtonMixin" virtual="true">
         <Scripts>
             <OnClick method="OnClick"/>
         </Scripts>
@@ -13,12 +13,12 @@
             <Anchor point="CENTER"/>
         </Anchors>
         <Frames>
-            <Button name="$parentTab1" parentKey="Tab1" inherits="KrowiAF_NewOptionsFrameTabTemplate" id="1">
+            <Button name="$parentTab1" parentKey="Tab1" inherits="KrowiAF_NewOptionsFrameBottomTabTemplate" id="1">
                 <Anchors>
                     <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="BOTTOMLEFT" x="11" y="2"/>
                 </Anchors>
             </Button>
-            <Button name="$parentTab2" parentKey="Tab2" inherits="KrowiAF_NewOptionsFrameTabTemplate" id="2"/>
+            <Button name="$parentTab2" parentKey="Tab2" inherits="KrowiAF_NewOptionsFrameBottomTabTemplate" id="2"/>
         </Frames>
 		<Scripts>
 			<OnLoad method="OnLoad"/>
@@ -28,7 +28,7 @@
 		</Scripts>
     </Frame>
 
-    <Button name="KrowiAF_NewOptionsGeneralFrameTabTemplate" inherits="PanelTopTabButtonTemplate" mixin="KrowiAF_NewOptionsGeneralFrameTabButtonMixin" virtual="true">
+    <Button name="KrowiAF_NewOptionsFrameTopTabTemplate" inherits="PanelTopTabButtonTemplate" mixin="KrowiAF_NewOptionsFrameTabButtonMixin" virtual="true">
         <Scripts>
             <OnClick method="OnClick"/>
         </Scripts>
@@ -36,15 +36,15 @@
 
     <Frame name="KrowiAF_NewOptionsGeneralFrame" parent="KrowiAF_NewOptionsFrame" setAllPoints="true" hidden="true" mixin="KrowiAF_NewOptionsGeneralMixin">
         <Frames>
-            <Button name="$parentTab1" parentKey="Tab1" inherits="KrowiAF_NewOptionsGeneralFrameTabTemplate" id="1" frameLevel="4">
+            <Button name="$parentTab1" parentKey="Tab1" inherits="KrowiAF_NewOptionsFrameTopTabTemplate" id="1" frameLevel="4">
                 <Anchors>
                     <Anchor point="TOPLEFT" x="58" y="-28"/>
                 </Anchors>
             </Button>
-            <Button name="$parentTab2" parentKey="Tab2" inherits="KrowiAF_NewOptionsGeneralFrameTabTemplate" id="2" frameLevel="4"/>
-            <Button name="$parentTab3" parentKey="Tab3" inherits="KrowiAF_NewOptionsGeneralFrameTabTemplate" id="3" frameLevel="4"/>
-            <Button name="$parentTab4" parentKey="Tab4" inherits="KrowiAF_NewOptionsGeneralFrameTabTemplate" id="4" frameLevel="4"/>
-            <Button name="$parentTab5" parentKey="Tab5" inherits="KrowiAF_NewOptionsGeneralFrameTabTemplate" id="5" frameLevel="4"/>
+            <Button name="$parentTab2" parentKey="Tab2" inherits="KrowiAF_NewOptionsFrameTopTabTemplate" id="2" frameLevel="4"/>
+            <Button name="$parentTab3" parentKey="Tab3" inherits="KrowiAF_NewOptionsFrameTopTabTemplate" id="3" frameLevel="4"/>
+            <Button name="$parentTab4" parentKey="Tab4" inherits="KrowiAF_NewOptionsFrameTopTabTemplate" id="4" frameLevel="4"/>
+            <Button name="$parentTab5" parentKey="Tab5" inherits="KrowiAF_NewOptionsFrameTopTabTemplate" id="5" frameLevel="4"/>
             <Frame parentKey="Inset" inherits="InsetFrameTemplate" setAllPoints="true">
                 <Anchors>
                     <Anchor point="TOPLEFT" relativePoint="TOPLEFT" y="-60" x="4"/>
@@ -65,7 +65,7 @@
 		</Scripts>
     </Frame>
 
-        <Frame name="KrowiAF_NewOptionsLayoutFrame" parent="KrowiAF_NewOptionsFrame" setAllPoints="true" hidden="true" mixin="KrowiAF_NewOptionsLayoutMixin">
+    <Frame name="KrowiAF_NewOptionsLayoutFrame" parent="KrowiAF_NewOptionsFrame" setAllPoints="true" hidden="true" mixin="KrowiAF_NewOptionsLayoutMixin">
         <Frames>
             <Button inherits="UIPanelButtonTemplate" text="PET_JOURNAL">
                 <Anchors>

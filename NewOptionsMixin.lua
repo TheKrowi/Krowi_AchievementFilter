@@ -47,14 +47,6 @@ end
 --     child:SetPoint("BOTTOMRIGHT", self.Inset, "BOTTOMRIGHT", -offset, offset);
 -- end
 
-KrowiAF_NewOptionsGeneralFrameTabButtonMixin = {};
-
-function KrowiAF_NewOptionsGeneralFrameTabButtonMixin:OnClick(button)
-    PanelTemplates_SetTab(self:GetParent(), self:GetID());
-
-    self:GetParent():UpdateSelectedTab();
-end
-
 KrowiAF_NewOptionsGeneralMixin = {};
 
 function KrowiAF_NewOptionsGeneralMixin:OnLoad()
