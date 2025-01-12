@@ -125,6 +125,10 @@ function eventData.GetWorldEventDetails(event)
 end
 
 function eventData.GetActiveEvents(refresh)
+    if stopCalendarEventsRefresh then
+        return activeEvents or {};
+    end
+
     if activeEvents ~= nil and not refresh then
         return activeEvents;
     end
@@ -155,7 +159,7 @@ end
 
 function eventData.GetUpcomingCalendarEvents(refresh)
     if stopCalendarEventsRefresh then
-        return;
+        return upcomingCalendarEvents or {};
     end
 
     if upcomingCalendarEvents ~= nil and not refresh then

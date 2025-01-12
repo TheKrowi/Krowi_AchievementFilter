@@ -1,7 +1,22 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 81.0 - 2024-12-20
+## 81.3 - 2025-01-11
+### Fixed
+- Resolved an error when both the Achievement Window and the Calendar are open
+
+## 81.2 - 2025-01-11
+### Added
+- Option to change the transparency of the faction icon
+
+### Fixed
+- Plugin options should no longer cause errors for ElvUI and GW2_UI
+
+## 81.1 - 2025-01-10
+### Fixed
+- Resolved some loading order issues related to ElvUI and event reminders
+
+## 81.0 - 2025-01-09
 ### Added
 - The watch list can now be a mix of account wide achievements for one character, character specific achievements for another character or all account wide or character specific
 - Shadowlands Mythic+ season categories in the Specials tab
@@ -17,6 +32,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - When marking an achievement as watched, the view should no longer completely reset
+- Side buttons are once again skinned when using GW2 UI
 
 ## 80.2 - 2024-12-18
 ### Added

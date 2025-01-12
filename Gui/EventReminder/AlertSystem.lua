@@ -21,7 +21,11 @@ function eventReminderAlertSystem:Load()
 end
 
 function eventReminderAlertSystem:AddAlert(event, duration)
-    self.SubSystem:AddAlert(event, duration);
+    if not self.SubSystem then
+        return false;
+    end
+
+    return self.SubSystem:AddAlert(event, duration);
 end
 
 local gameLocale = GetLocale();
@@ -161,7 +165,9 @@ local function ShowActiveEventPopUp(self, event, canShow, canShowWithTimeDataOnl
     if not canShowWithTimeDataOnly or (canShowWithTimeDataOnly and event.EventDetails and event.EventDetails.EndTime) then
         KrowiAF_SavedData.ActiveEventPopUpsShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch;
         if KrowiAF_SavedData.ActiveEventPopUpsShown[event.Id] >= currentTime then
-            self:AddAlert(event, addon.Options.db.profile.EventReminders.PopUps.FadeDelay);
+            if not self:AddAlert(event, addon.Options.db.profile.EventReminders.PopUps.FadeDelay) then
+                KrowiAF_SavedData.ActiveEventPopUpsShown[event.Id] = nil;
+            end
         end
     end
 end
@@ -219,7 +225,9 @@ local function ShowUpcomingCalendarEventPopUp(self, event, canShow, currentTime)
     end
     KrowiAF_SavedData.UpcomingCalendarEventPopUpsShown[event.Id] = KrowiAF_SavedData.CalendarEventsCache[event.Id].StartTime;
     if KrowiAF_SavedData.UpcomingCalendarEventPopUpsShown[event.Id] < currentTime + (addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Days * 24 * 60 * 60) then
-        self:AddAlert(event, addon.Options.db.profile.EventReminders.PopUps.FadeDelay);
+        if not self:AddAlert(event, addon.Options.db.profile.EventReminders.PopUps.FadeDelay) then
+            KrowiAF_SavedData.UpcomingCalendarEventPopUpsShown[event.Id] = nil;
+        end
     end
 end
 

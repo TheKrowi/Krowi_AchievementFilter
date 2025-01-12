@@ -462,12 +462,39 @@ local function MergeMergeSmallCategoriesThresholdSet(_, value)
     KrowiAF_CategoriesFrame:Update(true);
 end
 
+local function ShowAllianceFactionIconSet(_, value)
+    addon.Options.db.profile.Achievements.ShowAllianceFactionIcon = value;
+    if not KrowiAF_AchievementsFrame then
+        return;
+    end
+    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
+    KrowiAF_AchievementsFrame:ForceUpdate();
+end
+
+local function ShowHordeFactionIconSet(_, value)
+    addon.Options.db.profile.Achievements.ShowHordeFactionIcon = value;
+    if not KrowiAF_AchievementsFrame then
+        return;
+    end
+    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
+    KrowiAF_AchievementsFrame:ForceUpdate();
+end
+
+local function FactionIconAlphaSet(_, value)
+    addon.Options.db.profile.Achievements.FactionIconAlpha = value;
+    if not KrowiAF_AchievementsFrame then
+        return;
+    end
+    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
+    KrowiAF_AchievementsFrame:ForceUpdate();
+end
+
 local function ShowTemporarilyObtainableIconSet(_, value)
     addon.Options.db.profile.Achievements.ShowTemporarilyObtainableIcon = value;
     if not KrowiAF_AchievementsFrame then
         return;
     end
-    KrowiAF_SummaryFrame:Update();
+    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
     KrowiAF_AchievementsFrame:ForceUpdate();
 end
 
@@ -476,7 +503,7 @@ local function TemporarilyObtainableHeaderColorsSet(_, value)
     if not KrowiAF_AchievementsFrame then
         return;
     end
-    KrowiAF_SummaryFrame:Update();
+    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
     KrowiAF_AchievementsFrame:ForceUpdate();
 end
 
@@ -485,7 +512,7 @@ local function ShowWarbandIconSet(_, value)
     if not KrowiAF_AchievementsFrame then
         return;
     end
-    KrowiAF_SummaryFrame:Update();
+    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
     KrowiAF_AchievementsFrame:ForceUpdate();
 end
 
@@ -494,7 +521,7 @@ local function WarbandHeaderColorSet(_, value)
     if not KrowiAF_AchievementsFrame then
         return;
     end
-    KrowiAF_SummaryFrame:Update();
+    KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow();
     KrowiAF_AchievementsFrame:ForceUpdate();
 end
 
@@ -1073,17 +1100,27 @@ local achievementsOptions = {
                         ShowAllianceFactionIcon = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Faction Faction Icon"]:K_ReplaceVars(addon.L["Alliance"]),
-                            desc = addon.L["Show Faction Faction Icon Desc"]:K_ReplaceVars(addon.L["Alliance"]):KAF_AddDefaultValueText("Achievements.ShowAllianceFactionIcon"):K_AddReloadRequired(),
+                            desc = addon.L["Show Faction Faction Icon Desc"]:K_ReplaceVars(addon.L["Alliance"]):KAF_AddDefaultValueText("Achievements.ShowAllianceFactionIcon"),
                             get = function() return addon.Options.db.profile.Achievements.ShowAllianceFactionIcon; end,
-                            set = function(_, value) addon.Options.db.profile.Achievements.ShowAllianceFactionIcon = value; end,
+                            set = ShowAllianceFactionIconSet,
                         },
                         ShowHordeFactionIcon = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Faction Faction Icon"]:K_ReplaceVars(addon.L["Horde"]),
-                            desc = addon.L["Show Faction Faction Icon Desc"]:K_ReplaceVars(addon.L["Horde"]):KAF_AddDefaultValueText("Achievements.ShowHordeFactionIcon"):K_AddReloadRequired(),
+                            desc = addon.L["Show Faction Faction Icon Desc"]:K_ReplaceVars(addon.L["Horde"]):KAF_AddDefaultValueText("Achievements.ShowHordeFactionIcon"),
                             get = function() return addon.Options.db.profile.Achievements.ShowHordeFactionIcon; end,
-                            set = function(_, value) addon.Options.db.profile.Achievements.ShowHordeFactionIcon = value; end,
+                            set = ShowHordeFactionIconSet,
                         },
+                        FactionIconAlpha = {
+                            order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
+                            name = addon.L["Faction Icon Transparency"],
+                            desc = addon.L["Faction Icon Transparency Desc"]:KAF_AddDefaultValueText("Achievements.FactionIconAlpha"),
+                            min = 0, max = 1, step = 0.01,
+                            get = function() return addon.Options.db.profile.Achievements.FactionIconAlpha; end,
+                            set = FactionIconAlphaSet,
+                            disabled = function() return not addon.Options.db.profile.Achievements.ShowAllianceFactionIcon and not addon.Options.db.profile.Achievements.ShowHordeFactionIcon; end
+                        },
+                        Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.35), name = ""},
                         ShowTemporarilyObtainableIcon = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Temporarily obtainable Icon"]:K_ReplaceVars(addon.L["Temporarily obtainable"]),

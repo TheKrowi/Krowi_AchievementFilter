@@ -16,15 +16,14 @@ function KrowiAF_AchievementButton_OnLoad(self)
 		self.Header:SetPoint("RIGHT", self.DateCompleted, "LEFT", -10, 0);
 		self.Header:SetJustifyH("LEFT");
 	end
-	if addon.Options.db.profile.Achievements.ShowAllianceFactionIcon or addon.Options.db.profile.Achievements.ShowHordeFactionIcon then
-		self.Faction = CreateFrame("Frame", nil, self, "KrowiAF_AchievementButtonFaction_Template");
-	end
 	_, self.FontHeight = self.Description:GetFont();
 	self.MaxDescriptionLinesCollapsed = min(max(1, floor(30 / (self.FontHeight - 0.001))), self.MaxDescriptionLinesCollapsed);
 	self.Description:SetHeight(10 * self.MaxDescriptionLinesCollapsed);
 	self.Description:SetPoint("RIGHT", self.Shield, "LEFT", -10, 0);
 	self.MinExpandedHeight = ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT;
 	self:Collapse();
+
+	TooltipBackdropTemplateMixin.TooltipBackdropOnLoad(self);
 end
 
 function KrowiAF_AchievementButton_Small_OnLoad(self)
@@ -53,6 +52,8 @@ function KrowiAF_AchievementButton_Small_OnLoad(self)
 	self.Shield.Icon:SetPoint("TOPRIGHT", 0, 0);
 	self.Shield.Points:SetSize(48, 48);
 	self.Shield.Points:SetPoint("TOPRIGHT", -1, 2);
+	self.FactionIcon:SetSize(80, 40);
+	self.FactionIcon:SetPoint("TOPRIGHT", -30, -4);
 	self.Tracked:SetPoint("TOPLEFT", 9, -46);
 
 	self.MaxDescriptionLinesCollapsed = 1;
@@ -63,6 +64,8 @@ function KrowiAF_AchievementButton_Small_OnLoad(self)
 	if addon.Options.db.profile.RightClickMenu.ShowButtonOnAchievement then
 		AddRightClickMenuButton(self);
 	end
+
+	KrowiAF_AchievementButton_OnLoad(self);
 end
 
 function KrowiAF_AchievementButton_Normal_OnLoad(self)
@@ -73,6 +76,8 @@ function KrowiAF_AchievementButton_Normal_OnLoad(self)
 	if addon.Options.db.profile.RightClickMenu.ShowButtonOnAchievement then
 		AddRightClickMenuButton(self);
 	end
+
+	KrowiAF_AchievementButton_OnLoad(self);
 end
 
 function KrowiAF_AchievementButton_Light_OnLoad(self)
@@ -90,4 +95,6 @@ function KrowiAF_AchievementButton_Light_OnLoad(self)
 	self:SetScript("OnEvent", nil);
 
 	self.HeaderLeftAnchor = self.Icon;
+
+	KrowiAF_AchievementButton_Small_OnLoad(self);
 end

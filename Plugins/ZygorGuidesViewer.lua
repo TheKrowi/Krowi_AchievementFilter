@@ -3,6 +3,10 @@ local zgv = {};
 KrowiAF.PluginsApi:RegisterPlugin("ZygorGuidesViewer", zgv);
 KrowiAF.PluginsApi:RegisterEvent("ADDON_LOADED");
 
+local function IsLoaded()
+    return C_AddOns.IsAddOnLoaded("ZygorGuidesViewer");
+end
+
 local function Icon_OnClick(self)
 	local button = self:GetParent();
 	local achievementId = button.Achievement.Id;
@@ -71,7 +75,7 @@ function zgv:InjectOptions()
         addon.L["Zygor Guides Viewer"],
         addon.L["Zygor Guides Viewer Desc"]:K_ReplaceVars(addon.Metadata.Title),
         function()
-            return C_AddOns.IsAddOnLoaded("ZygorGuidesViewer");
+            return IsLoaded();
         end
     );
 end

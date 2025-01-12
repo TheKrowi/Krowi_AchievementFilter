@@ -5,6 +5,9 @@
 [*]Achievements can now have multiple moments when they were available to earn
 [*]Cross-Expansion - Delves category is now moved from The War Within to Cross-Expansion
 [*]Has Reward filter with additional reward type filters
+[*]Show Other Faction Warband as Completed option (dev note: see loc for details)
+[*]Plunderstorm and Turbulent Timeways events
+[*]Upcoming Calendar Event Reminders with a lot of options
 [/LIST]
 
 [B]Changed[/B]
@@ -15,4 +18,20 @@
 [B]Fixed[/B]
 [LIST]
 [*]When marking an achievement as watched, the view should no longer completely reset
+[*]Side buttons are once again skinned when using GW2 UI
+[/LIST]
+
+[B]Fixed (81.1)[/B]
+[LIST]
+[*]Resolved some loading order issues related to ElvUI and event reminders
+[/LIST]
+
+[B]Added (81.2)[/B]
+[LIST]
+[*]Option to change the transparency of the faction icon
+[/LIST]
+
+[B]Fixed (81.2)[/B]
+[LIST]
+[*]Plugin options should no longer cause errors for ElvUI and GW2_UI
 [/LIST]

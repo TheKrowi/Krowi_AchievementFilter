@@ -1,6 +1,6 @@
 local _, addon = ...;
-local achievementsTabFixes = {};
-KrowiAF.PluginsApi:RegisterPlugin("AchievementsTabFixes", achievementsTabFixes);
+local atf = {};
+KrowiAF.PluginsApi:RegisterPlugin("AchievementsTabFixes", atf);
 
 local function FindCategory(categories, name)
     for _, category in next, categories do
@@ -25,29 +25,33 @@ local function RenameExplorationDragonIslesCategory()
     dragonIslesCategory.Name = addon.GetCategoryInfoTitle(15455);
 end
 
-function achievementsTabFixes.InjectOptions()
-    addon.InjectOptions:AddDefaults("Plugins", "AchievementsTabFixes", {
+function atf:InjectOptions()
+    KrowiAF.UtilApi.InjectOptions:AddDefaults("Plugins", "AchievementsTabFixes", {
         RenameExplorationDragonIslesCategory = true;
     });
 
-    local OrderPP = addon.InjectOptions.AutoOrderPlusPlus;
-    local pluginTable = addon.InjectOptions:AddPluginTable("AchievementsTabFixes", addon.L["AchievementsTabFixes"], addon.L["AchievementsTabFixes Desc"], function()
-        return true;
-    end);
-    addon.InjectOptions:AddTable(pluginTable, "RenameExplorationDragonIslesCategory", {
-        order = OrderPP(), type = "toggle", width = "full",
+    local pluginTable = KrowiAF.UtilApi.InjectOptions:AddPluginTable(
+        "AchievementsTabFixes",
+        addon.L["AchievementsTabFixes"],
+        addon.L["AchievementsTabFixes Desc"],
+        function()
+            return true;
+        end
+    );
+    KrowiAF.UtilApi.InjectOptions:AddTable(pluginTable, "RenameExplorationDragonIslesCategory", {
+        order = KrowiAF.UtilApi.InjectOptions.AutoOrderPlusPlus(), type = "toggle", width = "full",
         name = addon.L["RenameExplorationDragonIslesCategory"],
         desc = addon.L["RenameExplorationDragonIslesCategory Desc"]:KAF_AddDefaultValueText("Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory"):K_AddReloadRequired(),
         get = function() return addon.Options.db.profile.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory; end,
         set = function(_, value)
             addon.Options.db.profile.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory = value;
             RenameExplorationDragonIslesCategory();
-            end,
+        end,
         hidden = not addon.Util.IsMainline
     });
 end
 
-function achievementsTabFixes.Load()
+function atf:Load()
     if not addon.Util.IsMainline then
         return;
     end

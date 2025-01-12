@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-01-01 21-58-17 ]] --
+-- [[ Exported at 2025-01-09 20-57-24 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -47,6 +47,7 @@ L["Achievements width offset Desc"] = [=[在默认基础上增加或减少成就
 
 (1)仅在调整数值时可能出现掉帧和卡顿，不影响正常游戏]=]
 L["Active"] = "激活"
+L["Active Event Login Delay"] = "激活事件登录延迟"
 L["Active events"] = "激活事件"
 L["Add addon name to world map icon"] = "图标添加插件名称"
 L["Add addon name to world map icon Desc"] = "鼠标悬停时在图标底部显示'{addonName}'"
@@ -57,6 +58,7 @@ L["Add to Watch List"] = "关注"
 L["Added in version"] = "添加版本"
 L["Adjustable Categories"] = "可调整类别"
 L["Aki the Chosen"] = "天选者亚济"
+L["Allied Race"] = "同盟种族"
 L["Alt"] = true
 L["Always Show Completed"] = "总是显示已获得"
 L["Always show realm"] = "总是显示服务器"
@@ -143,6 +145,12 @@ L["Central Circuit"] = "中央赛道"
 L["Chains of Domination"] = "统御之链"
 L["Character / Account wide"] = "角色 / 账号"
 L["Character only"] = "仅角色"
+L["Character Specific"] = "角色独立"
+L["Character Specific Desc"] = [=[{watchList}列表总会在账号范围记录所有角色关注的成就，禁用时为账号范围记录
+
+启用后变为角色独立，所有使用相同配置文件的都将转变为该模式
+
+禁用后重新变为账号范围{watchList}列表，角色独立{watchList}列表将被移除]=]
 L["Characters"] = "角色"
 L["Chat messages"] = "聊天信息"
 L["Checked"] = "开启"
@@ -181,6 +189,8 @@ L["Compact Desc"] = [=[使用仅显示单行时间的紧凑版本
 
 {reloadRequired}]=]
 L["Completion"] = "获得"
+L["Copy Account Wide to Character"] = "复制账号范围至角色"
+L["Copy Account Wide to Character Desc"] = "复制账号范围{watchList}列表（所有角色关注的成就）至当前角色的独立{watchList}列表，该角色将开始使用独立{watchList}列表"
 L["Covenant"] = "盟约"
 L["Covenant Assaults"] = "盟约突袭"
 L["Covenant assaults"] = "盟约突袭"
@@ -268,20 +278,20 @@ L["Dueler's Guild"] = "决斗俱乐部"
 L["during"] = "- 限定"
 L["Dustwallow Marsh"] = "尘泥沼泽"
 L["Earned By"] = "已获得"
-L["Earned By Desc"] = [=[Header
-|T:1:8|t- {achievementPointsEarnedBy}: Display {achievementPointsEarnedBy_wc} your current character and/or {achievementPointsEarnedBy_wc} your account ({achievementPointsEarnedByFormat}) (1).
-|T:1:8|t- {tooltip}: Overview of which character has earned how many achievement points. Each character needs to be logged in at least once to be added to this list. Will show the character's realm if it's different. Can be forced to always show from the options (1).
+L["Earned By Desc"] = [=[页眉
+|T:1:8|t- {achievementPointsEarnedBy}: 显示当前角色{achievementPointsEarnedBy_wc}和/或账号{achievementPointsEarnedBy_wc}（{achievementPointsEarnedByFormat}）(1)
+|T:1:8|t- {tooltip}: 显示单个角色已获得的成就点数，每个角色添加至该列表必须登录至少一次。不同服务器的角色将显示服务器名称，可在设置(1)启用总是显示
 
-Filters
-|T:1:8|t- {account}: Achievements are saturated if earned on any character on your account (default).
-|T:1:8|t- {character}: Achievements are saturated if earned by your current character and partially saturated if earned on another character on your account but not by the current one.
+过滤器
+|T:1:8|t- {account}: 账号中任意角色获得成就都会被计入（默认）
+|T:1:8|t- {character}: 当前角色获得的成就才会被计入，非当前角色获得的成就部分被计入
 
-Tooltip
-|T:1:8|t- {earnedBy}: Shows {earnedByNumber} characters that have earned this achievement (2). Faction exclusive achievements with a linked counterpart are taken into account. I.e. alliance characters might show up for horde achievements. Will show the character's realm if it's different. Can be forced to always show from the options (2).
-|T:1:8|t- {notEarnedBy}: Shows {notEarnedByNumber} characters that have not yet earned this achievement (2). Faction exclusive achievements with a linked counterpart are taken into account. I.e. alliance characters might show up for horde achievements. Will show the character's realm if it's different. Can be forced to always show from the options (2).
+鼠标提示
+|T:1:8|t- {earnedBy}: 显示{earnedByNumber}个获得该成就的角色(2)，包含有对应成就的阵营专属成就，例如联盟角色可能会显示部落成就。不同服务器的角色将显示服务器名称，可在设置(2)启用总是显示
+|T:1:8|t- {notEarnedBy}: 显示{notEarnedByNumber}个未获得该成就的角色(2)，包含有对应成就的阵营专属成就，例如联盟角色可能会显示部落成就。不同服务器的角色将显示服务器名称，可在设置(2)启用总是显示
 
-(1) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {header}
-(2) Options can be found under {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}]=]
+(1) {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {header}
+(2) {gameMenu} {arrow} {interface} {arrow} {addOns} {arrow} {addonName} {arrow} {layout} {arrow} {achievements}]=]
 L["Eastern Kingdoms Cup"] = "东部王国杯"
 L["Echoes of Doom"] = "末日回响"
 L["Emberflow Flight"] = "烬琉航线"
@@ -295,6 +305,8 @@ L["Enable Tab Priority"] = "启用标签优先级"
 L["Enable Tab Priority Desc"] = "启用标签优先级功能"
 L["Enable trace info"] = "启用追踪信息"
 L["Enable trace info Desc"] = "启用/禁用追踪信息"
+L["Enable Upcoming Calendar Events"] = "启用即将到来的日历事件"
+L["Enable Upcoming Calendar Events Desc"] = "禁用后关闭{upcomingCalendarEvents}模块"
 L["End Time"] = "结束时间"
 L["Enhanced filtering and sorting"] = "增强的过滤器和排序"
 L["Enhanced filtering and sorting Desc"] = [=[成就的过滤器和排序添加下列特性
@@ -500,10 +512,10 @@ L["Go to"] = "前往"
 L["Going away with"] = "即将绝版"
 L["Gorespine"] = "血刺"
 L["Grand Hunts"] = "洪荒狩猎"
-L["Grand Hunts: Ohn'ahran Plains"] = "洪荒狩猎：欧恩哈拉平原"
-L["Grand Hunts: Thaldraszus"] = "洪荒狩猎：索德拉苏斯"
-L["Grand Hunts: The Azure Span"] = "洪荒狩猎：碧蓝林海"
-L["Grand Hunts: The Waking Shore"] = "洪荒狩猎：觉醒海岸"
+L["Grand Hunts: Ohn'ahran Plains"] = "洪荒狩猎: 欧恩哈拉平原"
+L["Grand Hunts: Thaldraszus"] = "洪荒狩猎: 索德拉苏斯"
+L["Grand Hunts: The Azure Span"] = "洪荒狩猎: 碧蓝林海"
+L["Grand Hunts: The Waking Shore"] = "洪荒狩猎: 觉醒海岸"
 L["Green"] = "绿色"
 L["Grey"] = "灰色"
 L["Greyhoof"] = "灰蹄"
@@ -534,6 +546,7 @@ L["Ignore Filters"] = "忽略过滤器"
 L["Ignore Filters Desc"] = "忽略所有过滤器，在{category}中显示所有成就"
 L["Imbu"] = "伊姆布"
 L["Import"] = "导入"
+L["In"] = "在"
 L["in"] = "在"
 L["In instances"] = "副本中"
 L["Include"] = "显示"
@@ -558,7 +571,7 @@ L["Left Alt"] = "左Alt"
 L["Left click"] = "左键"
 L["Left Ctrl"] = "左Ctrl"
 L["Left Shift"] = "左Shift"
-L["Legion Assaults"] = "军团入侵"
+L["Legion Assaults"] = "军团突袭"
 L["Level 80"] = "80级"
 L["Level 85"] = "85级"
 L["Level 90"] = "90级"
@@ -652,6 +665,7 @@ L["NONC"] = true
 L["None"] = "无"
 L["No-No"] = "诺诺"
 L["Northrend Cup"] = "诺森德杯"
+L["Not Categorized"] = "未分类"
 L["Not Earned By"] = "未获得"
 L["Not earned by:"] = "未获得: "
 L["Not loaded"] = "未加载"
@@ -661,6 +675,7 @@ L["Number of Earned By characters"] = "{earnedBy}角色数"
 L["Number of Earned By characters Desc"] = [=[显示已获得该成就的角色数量
 
 设置为0将禁用该功能]=]
+L["Number of lines"] = "行数"
 L["Number of Most progress characters"] = "进度最多的角色数量"
 L["Number of Most progress characters Desc"] = [=[显示该成就进度最多的角色数量
 
@@ -673,6 +688,7 @@ L["Number of search previews"] = "搜索预览数"
 L["Number of search previews Desc"] = "成就搜索结果预览的最大数量"
 L["Number of summary achievements"] = "近期成就数"
 L["Number of summary achievements Desc"] = "显示在每个标签总览的近期成就最大数量"
+L["Number of Temporarily obtainable lines Desc"] = "{temporarilyObtainable}成就有多个时间可以获得时显示的行数"
 L["N'Zoth (Uldum)"] = "黑暗帝国（奥丹姆）"
 L["N'Zoth (Vale of Eternal Blossoms)"] = "黑暗帝国（锦绣谷）"
 L["N'Zoth Assaults"] = "黑暗帝国突袭"
@@ -711,7 +727,7 @@ L["Pilgrim's Bounty"] = "感恩节"
 L["Pirates' Day"] = "海盗日"
 L["Placeholder"] = "占位符"
 L["Plugins"] = "插件"
-L["Plunderstorm"] = "强袭风暴"
+L["Plunderstorm"] = "霸业风暴"
 L["Points"] = "点数"
 L["Pop ups"] = "弹窗"
 L["Pre-Patch Event"] = "前夕事件"
@@ -722,6 +738,7 @@ L["Print map info"] = "显示地图信息"
 L["Print map info Desc"] = "在聊天框显示地图ID"
 L["Print map info w/o reload"] = "无需重新载入"
 L["Print map info w/o reload Desc"] = "无需重新载入，直接显示地图ID"
+L["PvE Season"] = "PvE赛季"
 L["PvP"] = true
 L["PvP Season"] = "PvP赛季"
 L["Quick Search"] = "快速搜索"
@@ -756,6 +773,7 @@ L["Related Tab"] = "关联标签"
 L["Related Tab Desc"] = "为{wowheadLink}添加一个额外标识符，将跳转至网页对应的标签而非默认页面"
 L["Remember frame position"] = "记住{frame}位置"
 L["Remember frame position Desc"] = "记住{frame}位置，保留{frame}的最后位置至下次登录"
+L["Remix Pandaria Bronze"] = "潘达利亚幻境青铜宝盒"
 L["Remove from Watch List"] = "取消关注"
 L["Required for"] = "所属成就"
 L["Requires"] = "需要"
@@ -888,6 +906,12 @@ L["Show Other faction"] = "显示其他阵营"
 L["Show Other faction Desc"] = [=[显示/隐藏其他阵营
 
 勾选后在鼠标提示中显示其他阵营成就，这将更清楚地表明为何只玩联盟的玩家，新建的部落角色会有一些成就]=]
+L["Show Other Faction Warband as Completed"] = "其他阵营战团成就显示为已获得"
+L["Show Other Faction Warband as Completed Desc"] = [=[部分阵营专属的战团成就在同阵营角色上显示为已获得，在其他阵营角色上却显示为未获得
+
+启用后已获得的战团成就将在其他阵营角色上显示为已获得
+
+例如“{warStories}”中的“{hordeIntro}”/“{allianceIntro}”成就，仅在部落/联盟角色上显示已获得]=]
 L["Show Part of a chain"] = "显示 {partOfAChain}"
 L["Show Part of a chain Desc"] = [=[显示/隐藏 {partOfAChain}
 
@@ -938,6 +962,7 @@ L["Siege of Orgrimmar"] = "围攻奥格瑞玛"
 L["Siege on Dragonbane Keep"] = "围攻灭龙要塞"
 L["Siege on Dragonbane Keep: Active"] = "灭龙要塞: 激活"
 L["Siege on Dragonbane Keep: Gathering"] = "灭龙要塞: 准备中"
+L["Siren Isle"] = "海妖岛"
 L["Skitterer Xi'a"] = "飞掠者溪雅"
 L["Skoldus Hall"] = "斯科杜斯之厅"
 L["Skyriding Races"] = "驭空术比赛"
@@ -979,6 +1004,7 @@ L["Tab Priority"] = "标签优先级"
 L["Tab Priority Desc"] = "启用后在任意渠道点击成就，将优先跳转至指定标签页。如果该成就不适用于指定标签页，则应用默认规则"
 L["Tabs"] = "标签"
 L["Ta's Pet Collection"] = "宠物收集"
+L["Teleport"] = "传送"
 L["Temporarily obtainable"] = "限时可得"
 L["temporarily obtainable"] = "限时可得"
 L["Temporarily obtainable Header Colors"] = "{tempObt}页眉颜色"
@@ -1041,6 +1067,7 @@ L["Track achievement browsing history Desc"] = [=[启用后在成就界面页眉
 可以像使用网页浏览器一样，查看选中过的成就历史记录]=]
 L["Tracking"] = "追踪"
 L["Tracking Achievements"] = "成就追踪"
+L["Trader's Tender"] = "商贩标币"
 L["Trading Post"] = "商栈"
 L["Transmog Sets"] = "套装外观"
 L["Truncate"] = "截断"
@@ -1054,6 +1081,11 @@ L["Unchecked"] = "关闭"
 L["until the end of"] = "至结束"
 L["Up"] = "上"
 L["up until the start of"] = "至更新"
+L["Upcoming"] = "即将到来"
+L["Upcoming Calendar Event Days"] = "即将到来的日历事件天数"
+L["Upcoming Calendar Event Days Desc"] = "提前显示即将到来的日历事件的天数"
+L["Upcoming Calendar Event Login Delay"] = "即将到来的日历事件登录延迟"
+L["Upcoming Calendar Events"] = "即将到来的日历事件"
 L["Upper Reaches"] = "上层区域"
 L["Val'sharah"] = "瓦尔莎拉"
 L["Vendor"] = "商人"
