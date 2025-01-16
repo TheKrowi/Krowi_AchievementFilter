@@ -23,3 +23,9 @@
 
 ### Fixed (81.2)
 - Plugin options should no longer cause errors for ElvUI and GW2_UI
+
+### Fixed (81.3)
+- Resolved an error when both the Achievement Window and the Calendar are open
+
+### Removed (81.3)
+- Plunderstorm event

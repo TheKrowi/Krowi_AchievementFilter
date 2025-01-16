@@ -30,3 +30,11 @@
 <ul>
 <li>Plugin options should no longer cause errors for ElvUI and GW2_UI</li>
 </ul>
+<p><h3>Fixed (81.3)</h3></p>
+<ul>
+<li>Resolved an error when both the Achievement Window and the Calendar are open</li>
+</ul>
+<p><h3>Removed (81.3)</h3></p>
+<ul>
+<li>Plunderstorm event</li>
+</ul>

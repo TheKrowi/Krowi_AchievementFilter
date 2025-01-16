@@ -1,9 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 81.3 - 2025-01-11
+## 81.3 - 2025-01-16
 ### Fixed
 - Resolved an error when both the Achievement Window and the Calendar are open
+
+### Removed
+- Plunderstorm event
 
 ## 81.2 - 2025-01-11
 ### Added

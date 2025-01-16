@@ -3002,15 +3002,15 @@ KrowiAF.AchievementData["10_02_06"] = {
 	},
     { -- Plunder Wonder
         20508,
-        {
-            {"Event", 1601},
-        },
+        -- {
+        --     {"Event", 1601},
+        -- },
     },
     { -- Plunderkind
         20509,
-        {
-            {"Event", 1601},
-        },
+        -- {
+        --     {"Event", 1601},
+        -- },
     },
 };
 

@@ -1285,47 +1285,47 @@ KrowiAF.AchievementData["11_00_07"] = {
     {41149}, -- The Severed Threads
     { -- Lub and Plunder
         41152,
-        {
-            {"Event", 1601},
-        },
+        -- {
+        --     {"Event", 1601},
+        -- },
     },
     { -- Swabbie Swag
         41153,
-        {
-            {"Event", 1601},
-        },
+        -- {
+        --     {"Event", 1601},
+        -- },
     },
     { -- Decked Out
         41154,
-        {
-            {"Event", 1601},
-        },
+        -- {
+        --     {"Event", 1601},
+        -- },
     },
     { -- Buckled Up
         41156,
-        {
-            {"Event", 1601},
-        },
+        -- {
+        --     {"Event", 1601},
+        -- },
     },
     { -- Plunder Siege
         41157,
-        {
-            {"Event", 1601},
-        },
+        -- {
+        --     {"Event", 1601},
+        -- },
     },
     { -- It's a Plunderful Life
         41160,
-        {
-            {"Event", 1601},
-        },
+        -- {
+        --     {"Event", 1601},
+        -- },
     },
     {41161}, -- Council of Dornogal
     {41162}, -- Cornerstone of Dornogal
     { -- Lord of the Bling
         41163,
-        {
-            {"Event", 1601},
-        },
+        -- {
+        --     {"Event", 1601},
+        -- },
     },
     {41164}, -- We Rise Anew
     {41165}, -- Assembly of the Deeps

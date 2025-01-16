@@ -19,14 +19,14 @@ KrowiAF.EventData.TheWarWithin = {
     --     addon.L["Other"],
     --     2
     -- },
-	{ -- Plunderstorm
-		{1601, 1633, 1634, 1635}, type.Calendar,
-		1680,
-		4203076,
-		addon.L["Plunderstorm"],
-		addon.L["Other"],
-		2
-	},
+	-- { -- Plunderstorm
+	-- 	{1601, 1633, 1634, 1635}, type.Calendar,
+	-- 	1680,
+	-- 	4203076,
+	-- 	addon.L["Plunderstorm"],
+	-- 	addon.L["Other"],
+	-- 	2
+	-- },
 	{ -- Theater Troupe: The Wanderer: Next
 		7943, type.World,
 		1676,
