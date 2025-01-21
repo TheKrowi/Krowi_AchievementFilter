@@ -45,3 +45,8 @@
 [LIST]
 [*]Plunderstorm event
 [/LIST]
+
+[B]Fixed (81.4)[/B]
+[LIST]
+[*]Achievement points should once again be counted "correctly" (dev note: a feature to show other faction achievements as completed for meta achievements resulted in also counting those as completed resulting in high numbers; this feature is removed for the time being until a proper fix can be developed)
+[/LIST]

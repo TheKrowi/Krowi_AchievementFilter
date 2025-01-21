@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 81.4 - 2025-01-21
+### Fixed
+- Achievement points should once again be counted "correctly" (dev note: a feature to show other faction achievements as completed for meta achievements resulted in also counting those as completed resulting in high numbers; this feature is removed for the time being until a proper fix can be developed)
+
 ## 81.3 - 2025-01-16
 ### Fixed
 - Resolved an error when both the Achievement Window and the Calendar are open

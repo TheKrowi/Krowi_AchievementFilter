@@ -665,16 +665,16 @@ function addon.GetAchievementInfo(achievementId) -- Returns an additional bool i
     if id == 18849 or id == 18850 then
         flags.IsTracking = true;
     end
-    if addon.Options.db.profile.Achievements.ShowOtherFactionWarbandAsCompleted then
-		if flags.IsAccountWide and KrowiAF_Achievements.Completed[achievementId] and KrowiAF_Achievements.Completed[achievementId].FirstCompletedOn then
-			local date = date("*t", KrowiAF_Achievements.Completed[achievementId].FirstCompletedOn);
-			completed = true;
-			month = date.month;
-			day = date.day;
-			year = date.year - 2000;
-			wasEarnedByMe = true;
-		end
-	end
+    -- if addon.Options.db.profile.Achievements.ShowOtherFactionWarbandAsCompleted then
+	-- 	if flags.IsAccountWide and KrowiAF_Achievements.Completed[achievementId] and KrowiAF_Achievements.Completed[achievementId].FirstCompletedOn then
+	-- 		local date = date("*t", KrowiAF_Achievements.Completed[achievementId].FirstCompletedOn);
+	-- 		completed = true;
+	-- 		month = date.month;
+	-- 		day = date.day;
+	-- 		year = date.year - 2000;
+	-- 		wasEarnedByMe = true;
+	-- 	end
+	-- end
     return id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy, isStatistic, true;
 end
 

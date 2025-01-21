@@ -1085,18 +1085,19 @@ local achievementsOptions = {
                             get = function() return addon.Options.db.profile.Achievements.HideDateCompleted; end,
                             set = function(_, value) addon.Options.db.profile.Achievements.HideDateCompleted = value; end,
                         },
-                        ShowOtherFactionWarbandAsCompleted = {
-                            order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
-                            name = addon.L["Show Other Faction Warband as Completed"],
-                            desc = function() return addon.L["Show Other Faction Warband as Completed Desc"]:K_ReplaceVars{
-                                    hordeIntro = addon.GetAchievmentName(12555),
-                                    allianceIntro = addon.GetAchievmentName(12582),
-                                    warStories = addon.GetAchievmentName(40955),
-                                }:KAF_AddDefaultValueText("Achievements.ShowOtherFactionWarbandAsCompleted")
-                            end,
-                            get = function() return addon.Options.db.profile.Achievements.ShowOtherFactionWarbandAsCompleted; end,
-                            set = function(_, value) addon.Options.db.profile.Achievements.ShowOtherFactionWarbandAsCompleted = value; end,
-                        },
+                        -- ShowOtherFactionWarbandAsCompleted = {
+                        --     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
+                        --     name = addon.L["Show Other Faction Warband as Completed"],
+                        --     desc = function() return addon.L["Show Other Faction Warband as Completed Desc"]:K_ReplaceVars{
+                        --             hordeIntro = addon.GetAchievmentName(12555),
+                        --             allianceIntro = addon.GetAchievmentName(12582),
+                        --             warStories = addon.GetAchievmentName(40955),
+                        --         }:KAF_AddDefaultValueText("Achievements.ShowOtherFactionWarbandAsCompleted")
+                        --     end,
+                        --     get = function() return addon.Options.db.profile.Achievements.ShowOtherFactionWarbandAsCompleted; end,
+                        --     set = function(_, value) addon.Options.db.profile.Achievements.ShowOtherFactionWarbandAsCompleted = value; end,
+                        -- },
+                        Blank0 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.35), name = ""},
                         ShowAllianceFactionIcon = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Faction Faction Icon"]:K_ReplaceVars(addon.L["Alliance"]),

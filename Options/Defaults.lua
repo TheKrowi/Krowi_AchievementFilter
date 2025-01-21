@@ -92,7 +92,7 @@ addon.Options.Defaults = {
             TabPriority = 5,
             ShowWarbandIcon = true,
             WarbandHeaderColor = true,
-            ShowOtherFactionWarbandAsCompleted = true
+            -- ShowOtherFactionWarbandAsCompleted = true
         },
         RightClickMenu = {
             ShowButtonOnAchievement = false,
