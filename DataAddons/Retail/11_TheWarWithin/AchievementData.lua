@@ -758,46 +758,53 @@ KrowiAF.AchievementData["11_00_00"] = {
 			RewardType = rewardType.Other,
 		},
 	},
-    { -- War Within Delves: Tier 4
+    { -- War Within Delves: Tier 4 (Season 1)
 		40515,
 		{
 			RewardType = rewardType.Other,
+            {"PvE Season", 13},
 		},
 	},
-    { -- War Within Delves: Tier 5
+    { -- War Within Delves: Tier 5 (Season 1)
 		40516,
 		{
 			RewardType = rewardType.Other,
+            {"PvE Season", 13},
 		},
 	},
-    { -- War Within Delves: Tier 6
+    { -- War Within Delves: Tier 6 (Season 1)
 		40517,
 		{
 			RewardType = rewardType.Other,
+            {"PvE Season", 13},
 		},
 	},
-    { -- War Within Delves: Tier 7
+    { -- War Within Delves: Tier 7 (Season 1)
 		40518,
 		{
 			RewardType = rewardType.Other,
+            {"PvE Season", 13},
 		},
 	},
-    { -- War Within Delves: Tier 8
+    { -- War Within Delves: Tier 8 (Season 1)
 		40519,
 		{
 			RewardType = rewardType.Other,
+            {"PvE Season", 13},
 		},
 	},
-    { -- War Within Delves: Tier 9
+    { -- War Within Delves: Tier 9 (Season 1)
 		40520,
 		{
 			RewardType = rewardType.Other,
+            {"PvE Season", 13},
 		},
 	},
-    { -- War Within Delves: Tier 10
+    { -- War Within Delves: Tier 10 (Season 1)
 		40521,
 		{
 			RewardType = rewardType.Other,
+            {"PvE Season", 13},
 		},
 	},
     {40523}, -- On Brand
@@ -910,10 +917,11 @@ KrowiAF.AchievementData["11_00_00"] = {
 			RewardType = rewardType.Other,
 		},
 	},
-	{ -- War Within Delves: Tier 11
+	{ -- War Within Delves: Tier 11 (Season 1)
 		40726,
 		{
 			RewardType = rewardType.Title,
+            {"PvE Season", 13},
 		},
 	},
     {40727}, -- Skittershaw Spin
@@ -1370,4 +1378,224 @@ KrowiAF.AchievementData["11_00_07"] = {
     {41206}, -- Songs of Storms
     {41207}, -- When the Drust Settles
     {41209}, -- Dressed to Kill: Battle for Azeroth
+};
+
+KrowiAF.AchievementData["11_01_00"] = {
+    {KrowiAF.SetAchievementPatch, 11, 1, 0},
+    -- {40142, }, -- Learning to Share
+    -- {40145, }, -- So Much Sharing
+    -- {40894, }, -- Sojourner of Undermine
+    -- {40900, }, -- Undermined
+    -- {40911, Item Reward: Crystallized Essence of Kaja'mite}, -- The War Within Season 2: Master Blaster
+    -- {40936, }, -- Undermine Skyrocketing: Bronze
+    -- {40937, }, -- Undermine Skyrocketing: Silver
+    -- {40938, Reward: Skyrocketer Title}, -- Undermine Skyrocketing: Gold
+    -- {40942, Character Unlock: Trade Weathered for Carved Undermine Crests}, -- Weathered of the Undermine
+    -- {40943, Character Unlock: Trade Carved for Runed Undermine Crests}, -- Carved of the Undermine
+    -- {40944, Character Unlock: Trade Runed for Gilded Undermine Crests}, -- Runed of the Undermine
+    -- {40945, }, -- Gilded of the Undermine
+    -- {40948, }, -- Nine-Tenths of the Law
+    -- {40949, }, -- The War Within Keystone Explorer: Season Two
+    -- {40950, Title: The Enterprising}, -- The War Within Keystone Conqueror: Season Two
+    -- {40951, Mount: Enterprising Shreddertank}, -- The War Within Keystone Legend: Season Two
+    -- {40952, }, -- The War Within Keystone Hero: Season Two
+    -- {40954, Title: The Enterprising Hero}, -- Enterprising Hero: The War Within Season Two
+    { -- Keystone Hero: The MOTHERLODE!!
+        40965,
+        {
+            RewardType = rewardType.Teleport,
+            {"PvE Season", 14},
+        },
+    },
+    { -- Keystone Hero: Operation: Mechagon - Workshop
+        40966,
+        {
+            RewardType = rewardType.Teleport,
+            {"PvE Season", 14},
+        },
+    },
+    -- {41016, Seasonal Character Title: Rival}, -- Rival I: The War Within Season 2
+    -- {41017, }, -- Rival II: The War Within Season 2
+    -- {41018, Seasonal Character Title: Duelist}, -- Duelist: The War Within Season 2
+    -- {41019, Seasonal Character Title: the Elite}, -- Elite: The War Within Season 2
+    -- {41020, Seasonal Character Title: Combatant}, -- Combatant I: The War Within Season 2
+    -- {41021, }, -- Combatant II: The War Within Season 2
+    -- {41022, Seasonal Character Title: Challenger}, -- Challenger I: The War Within Season 2
+    -- {41023, }, -- Challenger II: The War Within Season 2
+    -- {41032, Reward: Gladiator Mount, Customization, Seasonal Character Title}, -- Gladiator: The War Within Season 2
+    -- {41047, Item Reward: Prized Gladiator's Weapon Token (x2)}, -- Prized Weapons of Conquest
+    -- {41081, D.R.I.V.E. Engine: the Pozzik Standard}, -- Undermine Breaknecking: Bronze
+    -- {41083, }, -- Undermine Breaknecking: Silver
+    -- {41084, Reward: Breaknecker Title and GNZ Airmaster 9000}, -- Undermine Breaknecking: Gold
+    -- {41086, Title: "the Explosive"}, -- Ally of Undermine
+    -- {41092, Pet: Lettuce}, -- Undermine Safari
+    -- {41095, Title: Delver}, -- Delve Beyond
+    -- {41096, Title: Infinite Delver}, -- Delve Infinite
+    -- {41097, }, -- Curiosity Never Killed the Looter
+    -- {41098, }, -- Excavation Site 9 Stories
+    -- {41099, }, -- Sidestreet Sluice Stories
+    -- {41100, }, -- Excavation Site 9 Discoveries
+    -- {41101, }, -- Sidestreet Sluice Discoveries
+    -- {41105, }, -- Prodigious Plentiful Perplexing Puzzles
+    -- {41106, }, -- Algari Delver Damage Dealer
+    -- {41107, }, -- Algari Delver Healer
+    -- {41108, }, -- Algari Delver Tank
+    -- {41109, }, -- Algari Delver Damage Dealer II
+    -- {41110, }, -- Algari Delver Damage Dealer III
+    -- {41111, }, -- Algari Delver Healer II
+    -- {41112, }, -- Algari Delver Healer III
+    -- {41113, }, -- Algari Delver Tank II
+    -- {41114, }, -- Algari Delver Tank III
+    -- {41115, }, -- Algari Delver
+    -- {41116, }, -- Algari Delver II
+    -- {41119, }, -- One Rank Higher
+    -- {41120, }, -- Two Ranks Higher
+    -- {41121, }, -- Three Ranks Higher
+    -- {41122, Title: The Reel Deal}, -- Best In Class
+    { -- War Within Delves: Tier 4 (Season 2)
+        41191,
+        {
+            RewardType = rewardType.Other,
+            {"PvE Season", 14},
+        },
+    },
+    { -- War Within Delves: Tier 5 (Season 2)
+        41192,
+        {
+            RewardType = rewardType.Other,
+            {"PvE Season", 14},
+        },
+    },
+    { -- War Within Delves: Tier 7 (Season 2)
+        41193,
+        {
+            RewardType = rewardType.Other,
+            {"PvE Season", 14},
+        },
+    },
+    { -- War Within Delves: Tier 8 (Season 2)
+        41194,
+        {
+            RewardType = rewardType.Other,
+            {"PvE Season", 14},
+        },
+    },
+    { -- War Within Delves: Tier 9 (Season 2)
+        41195,
+        {
+            RewardType = rewardType.Other,
+            {"PvE Season", 14},
+        },
+    },
+    { -- War Within Delves: Tier 10 (Season 2)
+        41196,
+        {
+            RewardType = rewardType.Other,
+            {"PvE Season", 14},
+        },
+    },
+    { -- War Within Delves: Tier 11 (Season 2)
+        41197,
+        {
+            RewardType = rewardType.Title,
+            {"PvE Season", 14},
+        },
+    },
+    { -- War Within Delves: Tier 6 (Season 2)
+        41198,
+        {
+            RewardType = rewardType.Other,
+            {"PvE Season", 14},
+        },
+    },
+    -- {41208, }, -- Hold My Gear!
+    -- {41210, Reward: Delver's Gob-Trotter Schematic: Gold}, -- Let Me Solo Him: The Underpin
+    -- {41211, Toy: Pipeline Rerouter}, -- A Good Day to Dye Hard
+    -- {41214, }, -- Under the Echoes
+    -- {41215, }, -- Echoes of Deeper Dangers
+    -- {41216, }, -- Adventurer of Undermine
+    -- {41217, }, -- Treasures of Undermine
+    -- {41222, }, -- Liberation of Undermine
+    -- {41223, }, -- Heroic: Liberation of Undermine
+    -- {41224, }, -- Mythic: Liberation of Undermine
+    -- {41225, }, -- Shock and Awesome
+    -- {41226, }, -- Maniacal Machinist
+    -- {41227, }, -- Beating the Odds
+    -- {41228, }, -- Fall of the Chrome King
+    -- {41229, }, -- Mythic: Vexie and the Geargrinders
+    -- {41230, }, -- Mythic: Cauldron of Carnage
+    -- {41231, }, -- Mythic: Rik Reverb
+    -- {41232, }, -- Mythic: Stix Bunkjunker
+    -- {41233, }, -- Mythic: Sprocketmonger Lockenstock
+    -- {41234, }, -- Mythic: The One-Armed Bandit
+    -- {41235, }, -- Mythic: Mug'Zee, Heads of Security
+    -- {41236, Title: Liberator of Undermine}, -- Mythic: Chrome King Gallywix
+    -- {41286, Mount: Junkmaestro's Magnetomech}, -- Glory of the Liberation of Undermine Raider
+    -- {41297, }, -- Cutting Edge: Chrome King Gallywix
+    -- {41298, }, -- Ahead of the Curve: Chrome King Gallywix
+    -- {41337, }, -- Sleep with the Fishes
+    -- {41338, }, -- Just /Dance
+    -- {41339, }, -- Operation: Floodgate
+    -- {41340, }, -- Heroic: Operation: Floodgate
+    -- {41341, }, -- Mythic: Operation: Floodgate
+    -- {41347, }, -- Scheming on a Thing
+    -- {41348, Max Level Unlock: Teleport to Operation: Floodgate}, -- Keystone Hero: Operation: Floodgate
+    -- {41349, Pet: Iron Chick}, -- In with the Cartels
+    -- {41350, Title: "Darkfuse Diplomat"}, -- A Long Fuse
+    -- {41351, Ensemble: Goblin Bruiser's Attire}, -- Cartels Bestie
+    -- {41352, Title: "Trade-Duke"}, -- Trade-Duke
+    -- {41354, Character Title: Prized Gladiator}, -- Prized Gladiator: The War Within Season 2
+    -- {41355, Character Title: Prized Legend}, -- Prized Legend: The War Within Season 2
+    -- {41356, Character Title: Prized Warlord}, -- Prized Warlord: The War Within Season 2
+    -- {41357, Character Title: Prized Marshal}, -- Prized Marshal: The War Within Season 2
+    -- {41358, Reward: Pennant & Seasonal Character Title}, -- Legend: The War Within Season 2
+    -- {41359, Reward: Seasonal Character Title}, -- Battle Mender: The War Within Season 2
+    -- {41360, }, -- Hero of the Horde: Prized
+    -- {41361, }, -- Hero of the Alliance: Prized
+    -- {41362, }, -- Prized Gladiator's Fel Bat
+    -- {41363, Reward: Pennant & Seasonal Character Title}, -- Strategist: The War Within Season 2
+    -- {41522, }, -- Tour of Duty: Undermine
+    -- {41525, }, -- Can You Please Spell "Gobanna?"
+    -- {41529, Title: The Real Deal}, -- Breaking the Bank
+    -- {41530, Reward: Golden-Gob Propulsion Rig}, -- My New Nemesis
+    -- {41531, }, -- The Hataclysm
+    -- {41532, }, -- I've Got a Flying Machine?
+    -- {41533, Mount: Crimson Shreddertank}, -- The War Within Keystone Master: Season Two
+    -- {41537, }, -- Buddy System VII
+    -- {41541, }, -- Critter Battler of Undermine
+    -- {41542, }, -- Aquatic Battler of Undermine
+    -- {41543, }, -- Beast Battler of Undermine
+    -- {41544, }, -- Dragonkin Battler of Undermine
+    -- {41545, }, -- Elemental Battler of Undermine
+    -- {41546, }, -- Flying Battler of Undermine
+    -- {41547, }, -- Humanoid Battler of Undermine
+    -- {41548, }, -- Magic Battler of Undermine
+    -- {41549, }, -- Mechanical Battler of Undermine
+    -- {41550, }, -- Undead Battler of Undermine
+    -- {41551, Pet: Foreman}, -- Family Battler of Undermine
+    -- {41554, }, -- The Splash Zone
+    -- {41555, Warband Campsite: Freywold Spring}, -- All That Khaz
+    -- {41586, Warband Campsite: Gallagio Grand Gallery}, -- Going Goblin Mode
+    -- {41587, }, -- Explore Undermine
+    -- {41588, Toy: Desk-in-a-Box}, -- Read Between the Lines
+    -- {41589, }, -- That Can-Do Attitude
+    -- {41590, }, -- No Littering
+    -- {41591, }, -- Really No Littering
+    -- {41592, }, -- Absolutely Zero Littering
+    -- {41593, }, -- Cleanin' the Streets
+    -- {41594, }, -- Can You Believe What People Throw Away?
+    -- {41595, }, -- Prized Guise
+    -- {41596, Title: Junkmaestro}, -- Garbage In, Garbage Out
+    -- {41626, }, -- C.H.E.T.T. a Look
+    -- {41627, }, -- C.H.E.T.T.ing it Twice
+    -- {41629, Title: Part-Timer}, -- C.H.E.T.T.mate
+    -- {41630, }, -- "Employee" of the Month
+    -- {41665, Reward: Gallagio Highroller's Bombstone}, -- Dressed to the Mines
+    -- {41694, }, -- Flarendo's Biggest Fan
+    -- {41695, }, -- Torq's Biggest Fan
+    -- {41708, }, -- You're My Friend Now
+    -- {41709, }, -- Journey's End (Season 2)
+    -- {41711, }, -- Conveyor Slayer
+    -- {41714, }, -- From Trash to Treasure
+    -- {41723, }, -- Buddy System VIII
 };

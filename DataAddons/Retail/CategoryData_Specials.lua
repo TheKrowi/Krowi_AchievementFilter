@@ -1497,10 +1497,14 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 addon.L["Season"] .. " " .. 2,
                 true,
                 {
-                    20579, -- Keystone Hero: The Rookery
-                    20581, -- Keystone Hero: Priory of the Sacred Flame
+                    -- 41348, -- Keystone Hero: Operation: Floodgate
                     20583, -- Keystone Hero: Cinderbrew Meadery
                     20584, -- Keystone Hero: Darkflame Cleft
+                    20579, -- Keystone Hero: The Rookery
+                    20581, -- Keystone Hero: Priory of the Sacred Flame
+                    15050, -- Keystone Hero: Theater of Pain
+                    40966, -- Keystone Hero: Operation: Mechagon - Workshop
+                    40965, -- Keystone Hero: The MOTHERLODE!!
                 },
             },
         },

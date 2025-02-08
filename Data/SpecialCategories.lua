@@ -78,7 +78,7 @@ local specialCategoriesMatrix = { -- Order of this list is important
         end,
         LoadData = function()
             LoadAchievements(addon.TrackingAchievements, addon.AddToTrackingAchievementsCategories);
-            addon.Diagnostics.Trace("Watched achievements loaded");
+            addon.Diagnostics.Trace("Tracking achievements loaded");
         end
     },
     {
@@ -90,7 +90,7 @@ local specialCategoriesMatrix = { -- Order of this list is important
         end,
         LoadData = function()
             LoadAchievements(KrowiAF_SavedData.ExcludedAchievements, addon.ExcludeAchievement);
-            addon.Diagnostics.Trace("Watched achievements loaded");
+            addon.Diagnostics.Trace("Excluded achievements loaded");
         end
     },
     {
@@ -99,6 +99,10 @@ local specialCategoriesMatrix = { -- Order of this list is important
         Side = "BOTTOM",
         PostLoad = function(category)
             category:SetFlexibleData(true);
+        end,
+        LoadData = function()
+            LoadAchievements(addon.UncategorizedAchievements, addon.AddToUncategorizedAchievementsCategories);
+            addon.Diagnostics.Trace("Uncategorized achievements loaded");
         end
     },
 };

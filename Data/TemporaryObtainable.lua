@@ -62,7 +62,7 @@ function temporaryObtainable:GetObtainableState(achievement)
 
     local record = achievement.TemporaryObtainable[#achievement.TemporaryObtainable];
 
-    if not record or (record.Start == nil and record.End == nil) then
+    if not record or (record.Start == nil and record.End == nil) or record.IsNotObtainable then
         return "Past";
     end
 
@@ -160,6 +160,10 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
             _end = self:GetEventEndState(record);
         elseif startFunction == "Date" then
             _end = self:GetDateEndState(record);
+        end
+
+        if record.IsNotObtainable then
+            start, _end = "Past", "Past";
         end
 
         -- print(startFunction, start, endFunction, _end)
@@ -288,6 +292,9 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
                     startDate = tostring(date(addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime, startDate)),
                     endDate = tostring(date(addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime, endDate))
                 };
+            end
+            if record.IsNotObtainable then
+                occurrence = addon.L["This achievement is no longer obtainable"];
             end
             return startDetail, color, occurrence;
         end

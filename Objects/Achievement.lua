@@ -186,10 +186,13 @@ function achievement:SetTemporaryObtainableNeverOnce(startFunction)
     tinsert(self.TemporaryObtainable, record);
 end
 
-function achievement:SetTemporaryObtainableDuring(startFunction, startValue)
+function achievement:SetTemporaryObtainableDuring(startFunction, startValue, isObtainable)
     local record = {};
     self:SetTemporaryObtainableStart(record, "From", startFunction, GetStartValue(startFunction, startValue));
     self:SetTemporaryObtainableEnd(record, "Until", startFunction, GetStartValue(startFunction, startValue));
+    if isObtainable == false then
+        record.IsNotObtainable = true;
+    end
     tinsert(self.TemporaryObtainable, record);
 end
 
@@ -214,7 +217,7 @@ function achievement:SetTemporaryObtainable(startInclusion, startFunction, start
         tinsert(self.TemporaryObtainable, {});
         return;
     end
-    
+
     -- Case 1: Never or Once - [startInclusion]
     if startInclusion == "Never" or startInclusion == "Once" then
         self:SetTemporaryObtainableNeverOnce(startInclusion);
@@ -223,7 +226,7 @@ function achievement:SetTemporaryObtainable(startInclusion, startFunction, start
 
     -- Case 2: During - [startInclusion, startFunction]
     if startInclusion and startFunction and not startValue then
-        self:SetTemporaryObtainableDuring(startInclusion, startFunction);
+        self:SetTemporaryObtainableDuring(startInclusion, startFunction, startValue);
         return;
     end
 

@@ -8670,6 +8670,7 @@ local battleForAzeroth = { -- Battle for Azeroth
                 12844, -- The MOTHERLODE!!
                 12845, -- Heroic: The MOTHERLODE!!
                 12846, -- Mythic: The MOTHERLODE!!
+                40965, -- Keystone Hero: The MOTHERLODE!!
             },
         },
         { -- Siege of Boralus
@@ -8704,6 +8705,7 @@ local battleForAzeroth = { -- Battle for Azeroth
                 13624, -- Keep DPS-ing and Nobody Explodes
                 13789, -- Hertz Locker
                 15693, -- Keystone Hero: Operation: Mechagon
+                40966, -- Keystone Hero: Operation: Mechagon - Workshop
             },
         },
         {
@@ -12260,7 +12262,7 @@ local theWarWithin = { -- The War Within
         addon.GetCategoryInfoTitle(15522),
         { -- Fungal Folly
             1658,
-            addon.GetLFGActivityFullName(1295),
+            addon.GetMapName(2249),
             {
                 40525, -- Fungal Folly Stories
                 40803, -- Fungal Folly Discoveries
@@ -12268,7 +12270,7 @@ local theWarWithin = { -- The War Within
         },
         { -- Kriegval's Rest
             1659,
-            addon.GetLFGActivityFullName(1296),
+            addon.GetMapName(2250),
             {
                 40526, -- Kriegval's Rest Stories
                 40807, -- Kriegval's Rest Discoveries
@@ -12276,7 +12278,7 @@ local theWarWithin = { -- The War Within
         },
         { -- Earthcrawl Mines
             1660,
-            addon.GetLFGActivityFullName(1297),
+            addon.GetMapName(2269),
             {
                 40527, -- Earthcrawl Mines Stories
                 40806, -- Earthcrawl Mines Discoveries
@@ -12284,7 +12286,7 @@ local theWarWithin = { -- The War Within
         },
         { -- The Waterworks
             1661,
-            addon.GetLFGActivityFullName(1299),
+            addon.GetMapName(2251),
             {
                 40528, -- The Waterworks Stories
                 40816, -- The Waterworks Discoveries
@@ -12292,7 +12294,7 @@ local theWarWithin = { -- The War Within
         },
         { -- The Dread Pit
             1662,
-            addon.GetLFGActivityFullName(1300),
+            addon.GetMapName(2302),
             {
                 40529, -- The Dread Pit Stories
                 40812, -- The Dread Pit Discoveries
@@ -12300,7 +12302,7 @@ local theWarWithin = { -- The War Within
         },
         { -- Nightfall Sanctum
             1663,
-            addon.GetLFGActivityFullName(1301),
+            addon.GetMapName(2277),
             {
                 40530, -- Nightfall Sanctum Stories
                 40809, -- Nightfall Sanctum Discoveries
@@ -12308,7 +12310,7 @@ local theWarWithin = { -- The War Within
         },
         { -- Mycomancer Cavern
             1664,
-            addon.GetLFGActivityFullName(1302),
+            addon.GetMapName(2312),
             {
                 40531, -- Mycomancer Cavern Stories
                 40808, -- Mycomancer Cavern Discoveries
@@ -12316,7 +12318,7 @@ local theWarWithin = { -- The War Within
         },
         { -- The Sinkhole
             1665,
-            addon.GetLFGActivityFullName(1303),
+            addon.GetMapName(2301),
             {
                 40532, -- The Sinkhole Stories
                 40813, -- The Sinkhole Discoveries
@@ -12324,7 +12326,7 @@ local theWarWithin = { -- The War Within
         },
         { -- Skittering Breach
             1666,
-            addon.GetLFGActivityFullName(1304),
+            addon.GetMapName(2310),
             {
                 40533, -- Skittering Breach Stories
                 40810, -- Skittering Breach Discoveries
@@ -12332,7 +12334,7 @@ local theWarWithin = { -- The War Within
         },
         { -- The Underkeep
             1667,
-            addon.GetLFGActivityFullName(1305),
+            addon.GetMapName(2299),
             {
                 40534, -- The Underkeep Stories
                 40815, -- The Underkeep Discoveries
@@ -12340,7 +12342,7 @@ local theWarWithin = { -- The War Within
         },
         { -- Tak-Rethan Abyss
             1668,
-            addon.GetLFGActivityFullName(1306),
+            addon.GetMapName(2259),
             {
                 40535, -- Tak-Rethan Abyss Stories
                 40811, -- Tak-Rethan Abyss Discoveries
@@ -12348,7 +12350,7 @@ local theWarWithin = { -- The War Within
         },
         { -- The Spiral Weave
             1669,
-            addon.GetLFGActivityFullName(1307),
+            addon.GetMapName(2347),
             {
                 40536, -- The Spiral Weave Stories
                 40814, -- The Spiral Weave Discoveries
@@ -12356,7 +12358,7 @@ local theWarWithin = { -- The War Within
         },
         { -- Zekvir's Lair
             1675,
-            addon.GetLFGActivityFullName(1298),
+            addon.GetMapName(2348),
             {
                 40732, -- Heavy-Handed
                 40103, -- Nemesis
@@ -12369,14 +12371,22 @@ local theWarWithin = { -- The War Within
             40512, -- War Within Delves: Tier 2
             40514, -- War Within Delves: Tier 3
             40725, -- War Within Delves: Endgame
-            40515, -- War Within Delves: Tier 4
-            40516, -- War Within Delves: Tier 5
-            40517, -- War Within Delves: Tier 6
-            40518, -- War Within Delves: Tier 7
-            40519, -- War Within Delves: Tier 8
-            40520, -- War Within Delves: Tier 9
-            40521, -- War Within Delves: Tier 10
-            40726, -- War Within Delves: Tier 11
+            40515, -- War Within Delves: Tier 4 (Season 1)
+            40516, -- War Within Delves: Tier 5 (Season 1)
+            40517, -- War Within Delves: Tier 6 (Season 1)
+            40518, -- War Within Delves: Tier 7 (Season 1)
+            40519, -- War Within Delves: Tier 8 (Season 1)
+            40520, -- War Within Delves: Tier 9 (Season 1)
+            40521, -- War Within Delves: Tier 10 (Season 1)
+            40726, -- War Within Delves: Tier 11 (Season 1)
+            41191, -- War Within Delves: Tier 4 (Season 2)
+            41192, -- War Within Delves: Tier 5 (Season 2)
+            41198, -- War Within Delves: Tier 6 (Season 2)
+            41193, -- War Within Delves: Tier 7 (Season 2)
+            41194, -- War Within Delves: Tier 8 (Season 2)
+            41195, -- War Within Delves: Tier 9 (Season 2)
+            41196, -- War Within Delves: Tier 10 (Season 2)
+            41197, -- War Within Delves: Tier 11 (Season 2)
             40537, -- Delve Loremaster: War Within
             40506, -- Leave No Treasure Unfound
             40445, -- Sporesweeper

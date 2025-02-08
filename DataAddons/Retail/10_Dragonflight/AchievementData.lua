@@ -2051,7 +2051,7 @@ KrowiAF.AchievementData["10_01_07"] = {
         19079,
         {
             RewardType = rewardType.Mount,
-            {"Event", 1425},
+            {"Event", 1425, false},
         },
     },
     { -- Arcane Influence

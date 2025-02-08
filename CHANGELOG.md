@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 81.5 - 2025-02-08
+### Fixed
+- Master of the Turbulent Timeways is no longer obtainable even when the Turbulent Timeways event is active
+- Delve category names should no longer have the tier in the name
+- Uncategorized category should be working again
+
 ## 81.4 - 2025-01-21
 ### Fixed
 - Achievement points should once again be counted "correctly" (dev note: a feature to show other faction achievements as completed for meta achievements resulted in also counting those as completed resulting in high numbers; this feature is removed for the time being until a proper fix can be developed)
