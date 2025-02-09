@@ -136,6 +136,7 @@ local crossExpansion = { -- Cross-Expansion
             40460, -- Delve Deep
             40462, -- Delve Deeper
             40463, -- Delve Deepest
+            41095, -- Delve Beyond
             40819, -- Ready to Turn
             40788, -- I Got the Keys
             40882, -- Copious Coffers
@@ -11942,6 +11943,10 @@ local theWarWithin = { -- The War Within
             40115, -- Harbinger of the Carved
             40118, -- Harbinger of the Runed
             40939, -- Harbinger of the Gilded
+            40942, -- Weathered of the Undermine
+            40943, -- Carved of the Undermine
+            40944, -- Runed of the Undermine
+            40945, -- Gilded of the Undermined
         },
     },
     { -- Zones
@@ -12046,6 +12051,21 @@ local theWarWithin = { -- The War Within
                     41162, -- Cornerstone of Dornogal
                 },
             },
+            { -- Skyriding Races
+                addon.L["Skyriding Races"],
+                true,
+                {
+                    40316, -- Isle of Dorn: Bronze
+                    40317, -- Isle of Dorn: Silver
+                    40318, -- Isle of Dorn: Gold
+                    40319, -- Isle of Dorn Advanced: Bronze
+                    40320, -- Isle of Dorn Advanced: Silver
+                    40321, -- Isle of Dorn Advanced: Gold
+                    40322, -- Isle of Dorn Reverse: Bronze
+                    40323, -- Isle of Dorn Reverse: Silver
+                    40324, -- Isle of Dorn Reverse: Gold
+                },
+            },
             {
                 41186, -- Slate of the Union
             },
@@ -12106,6 +12126,21 @@ local theWarWithin = { -- The War Within
                     41166, -- From Many, One
                 },
             },
+            { -- Skyriding Races
+                addon.L["Skyriding Races"],
+                true,
+                {
+                    40325, -- The Ringing Deeps: Bronze
+                    40326, -- The Ringing Deeps: Silver
+                    40327, -- The Ringing Deeps: Gold
+                    40328, -- The Ringing Deeps Advanced: Bronze
+                    40329, -- The Ringing Deeps Advanced: Silver
+                    40330, -- The Ringing Deeps Advanced: Gold
+                    40331, -- The Ringing Deeps Reverse: Bronze
+                    40332, -- The Ringing Deeps Reverse: Silver
+                    40333, -- The Ringing Deeps Reverse: Gold
+                },
+            },
             {
                 41187, -- Rage Aside the Machine
             },
@@ -12163,6 +12198,21 @@ local theWarWithin = { -- The War Within
                     41168, -- The Flame Burns Within
                 },
             },
+            { -- Skyriding Races
+                addon.L["Skyriding Races"],
+                true,
+                {
+                    40334, -- Hallowfall: Bronze
+                    40335, -- Hallowfall: Silver
+                    40336, -- Hallowfall: Gold
+                    40337, -- Hallowfall Advanced: Bronze
+                    40338, -- Hallowfall Advanced: Silver
+                    40339, -- Hallowfall Advanced: Gold
+                    40340, -- Hallowfall Reverse: Bronze
+                    40341, -- Hallowfall Reverse: Silver
+                    40342, -- Hallowfall Reverse: Gold
+                },
+            },
             {
                 41188, -- Crystal Chronicled
             },
@@ -12197,7 +12247,6 @@ local theWarWithin = { -- The War Within
                     40634, -- You Can't Hang With Us
                     40624, -- Itsy Bitsy Spider
                     40632, -- No Harm Ever Came From Reading A Book
-                    40619, -- Mine Poppin'
                     40843, -- Mine Poppin'
                     40629, -- Bookworm
                     40727, -- Skittershaw Spin
@@ -12222,6 +12271,21 @@ local theWarWithin = { -- The War Within
                     40874, -- The Grand Tapestry
                     40875, -- True Strength
                     40876, -- Vox Arachni
+                },
+            },
+            { -- Skyriding Races
+                addon.L["Skyriding Races"],
+                true,
+                {
+                    40343, -- Azj-Kahet: Bronze
+                    40344, -- Azj-Kahet: Silver
+                    40345, -- Azj-Kahet: Gold
+                    40346, -- Azj-Kahet Advanced: Bronze
+                    40347, -- Azj-Kahet Advanced: Silver
+                    40348, -- Azj-Kahet Advanced: Gold
+                    40349, -- Azj-Kahet Reverse: Bronze
+                    40350, -- Azj-Kahet Reverse: Silver
+                    40351, -- Azj-Kahet Reverse: Gold
                 },
             },
             {
@@ -12251,6 +12315,44 @@ local theWarWithin = { -- The War Within
             },
             {
                 41133, -- Isle Remember You
+            },
+        },
+        { -- Undermine
+            addon.GetMapName(2346),
+            { -- Quests
+                addon.GetCategoryInfoTitle(96),
+                true,
+                {
+                },
+            },
+            { -- Exploration
+                addon.GetCategoryInfoTitle(97),
+                true,
+                {
+                },
+            },
+            { -- Player vs. Player
+                1629,
+                addon.GetCategoryInfoTitle(95),
+                true,
+                {
+                },
+            },
+            { -- Reputation
+                1630,
+                addon.GetCategoryInfoTitle(201),
+                true,
+                {
+                },
+            },
+            { -- Breaknecking Races
+                addon.L["Breaknecking Races"],
+                true,
+                {
+                    41081, -- Undermine Breaknecking: Bronze
+                    41083, -- Undermine Breaknecking: Silver
+                    41084, -- Undermine Breaknecking: Gold
+                },
             },
         },
         {
@@ -12366,6 +12468,27 @@ local theWarWithin = { -- The War Within
                 40433, -- Let Me Solo Him
             },
         },
+        { -- Excavation Site 9
+            addon.GetMapName(2396),
+            {
+                41098, -- Excavation Site 9 Stories
+                41100, -- Excavation Site 9 Discoveries
+            },
+        },
+        { -- Sidestreet Sluice
+            addon.GetMapName(2420),
+            {
+                41099, -- Sidestreet Sluice Stories
+                41101, -- Sidestreet Sluice Discoveries
+            },
+        },
+        -- { -- Demolition Dome
+        --     addon.GetMapName(2425),
+        --     {
+        --         -- 40536, -- The Spiral Weave Stories
+        --         -- 40814, -- The Spiral Weave Discoveries
+        --     },
+        -- },
         {
             40631, -- War Within Delves: Tier 1
             40512, -- War Within Delves: Tier 2
@@ -12405,17 +12528,31 @@ local theWarWithin = { -- The War Within
             40456, -- Buddy System IV
             40457, -- Buddy System V
             40461, -- Buddy System VI
+            41537, -- Buddy System VII
+            41723, -- Buddy System VIII
             40100, -- Undying Caver
             40098, -- Immortal Spelunker
             40459, -- I've Got a Flying Machine!
+            40789, -- Flying in Style
             40524, -- Good Deed Delver
             40763, -- I'm not a Thief, I'm a Treasure Hunter
-            40789, -- Flying in Style
+            41097, -- Curiosity Never Killed the Looter
             40458, -- Stranger Delves
             40538, -- Brann Development
             40820, -- Raisin' Brann
             40523, -- On Brand
             40635, -- Branntastic
+            41106, -- Algari Delver Damage Dealer
+            41109, -- Algari Delver Damage Dealer II
+            41110, -- Algari Delver Damage Dealer III
+            41107, -- Algari Delver Healer
+            41111, -- Algari Delver Healer II
+            41112, -- Algari Delver Healer III
+            41108, -- Algari Delver Tank
+            41113, -- Algari Delver Tank II
+            41114, -- Algari Delver Tank III
+            41115, -- Algari Delver
+            41116, -- Algari Delver II
         },
     },
     { -- Dungeons
@@ -12501,6 +12638,15 @@ local theWarWithin = { -- The War Within
                 20586, -- Keystone Hero: Ara-Kara, City of Echoes
             },
         },
+        { -- Operation: Floodgate
+            addon.GetInstanceInfoName(1298),
+            {
+                41339, -- Operation: Floodgate
+                41340, -- Heroic: Operation: Floodgate
+                41341, -- Mythic: Operation: Floodgate
+                41348, -- Keystone Hero: Operation: Floodgate
+            },
+        },
         {
             40141, -- Algari Dungeon Tank
             40140, -- Algari Dungeon Healer
@@ -12513,6 +12659,13 @@ local theWarWithin = { -- The War Within
             20589, -- Tempered Hero: The War Within Season 1
             40660, -- The War Within Season 1: Spelunker Supreme
             40723, -- Web-Wrapped in the Finest Silks
+            40949, -- The War Within Keystone Explorer: Season Two
+            40950, -- The War Within Keystone Conqueror: Season Two
+            41533, -- The War Within Keystone Master: Season Two
+            40952, -- The War Within Keystone Hero: Season Two
+            40951, -- The War Within Keystone Legend: Season Two
+            40954, -- Enterprising Hero: The War Within Season Two
+            40911, -- The War Within Season 2: Master Blaster
         },
     },
     { -- Raids
@@ -12561,6 +12714,55 @@ local theWarWithin = { -- The War Within
                 40469, -- I'm Bringing Nerub-ack
                 40660, -- The War Within Season 1: Spelunker Supreme
                 40723, -- Web-Wrapped in the Finest Silks
+            },
+        },
+        { -- Liberation of Undermine
+            addon.GetInstanceInfoName(1296),
+            { -- Glory
+                addon.L["Glory"],
+                {
+                    41208, -- Hold My Gear!
+                    41554, -- The Splash Zone
+                    41338, -- Just /Dance
+                    41596, -- Garbage In, Garbage Out
+                    41711, -- Conveyor Slayer
+                    41119, -- One Rank Higher
+                    41120, -- Two Ranks Higher
+                    41121, -- Three Ranks Higher
+                    41122, -- Best In Class
+                    41337, -- Sleep with the Fishes
+                    41347, -- Scheming on a Thing
+                },
+            },
+            { -- Mythic
+                addon.L["Mythic"],
+                {
+                    41229, -- Mythic: Vexie and the Geargrinders
+                    41230, -- Mythic: Cauldron of Carnage
+                    41231, -- Mythic: Rik Reverb
+                    41232, -- Mythic: Stix Bunkjunker
+                    41233, -- Mythic: Sprocketmonger Lockenstock
+                    41234, -- Mythic: The One-Armed Bandit
+                    41235, -- Mythic: Mug'Zee, Heads of Security
+                    41236, -- Mythic: Chrome King Gallywix
+                },
+            },
+            {
+                41225, -- Shock and Awesome
+                41226, -- Maniacal Machinist
+                41227, -- Beating the Odds
+                41228, -- Fall of the Chrome King
+                41222, -- Liberation of Undermine
+                41223, -- Heroic: Liberation of Undermine
+                41224, -- Mythic: Liberation of Undermine
+                41298, -- Ahead of the Curve: Chrome King Gallywix
+                41297, -- Cutting Edge: Chrome King Gallywix
+                41694, -- Flarendo's Biggest Fan
+                41695, -- Torq's Biggest Fan
+                41211, -- A Good Day to Dye Hard
+                41525, -- Can You Please Spell "Gobanna?"
+                40911, -- The War Within Season 2: Master Blaster
+                -- 40723, -- Web-Wrapped in the Finest Silks
             },
         },
         {
@@ -12640,6 +12842,18 @@ local theWarWithin = { -- The War Within
             40164, -- Mechanical Battler of Khaz Algar
             40165, -- Undead Battler of Khaz Algar
             40980, -- Family Battler of Khaz Algar
+            41092, -- Undermine Safari
+            41542, -- Aquatic Battler of Undermine
+            41543, -- Beast Battler of Undermine
+            41541, -- Critter Battler of Undermine
+            41544, -- Dragonkin Battler of Undermine
+            41545, -- Elemental Battler of Undermine
+            41546, -- Flying Battler of Undermine
+            41547, -- Humanoid Battler of Undermine
+            41548, -- Magic Battler of Undermine
+            41549, -- Mechanical Battler of Undermine
+            41550, -- Undead Battler of Undermine
+            41551, -- Family Battler of Undermine
         },
     },
     { -- Skyriding Races
@@ -12709,6 +12923,17 @@ local theWarWithin = { -- The War Within
             40352, -- Khaz Algar Completionist: Bronze
             40353, -- Khaz Algar Completionist: Silver
             40354, -- Khaz Algar Completionist: Gold
+        },
+    },
+    { -- Breaknecking Races
+        addon.L["Breaknecking Races"],
+        { -- Undermine
+            addon.GetMapName(2346),
+            {
+                41081, -- Undermine Breaknecking: Bronze
+                41083, -- Undermine Breaknecking: Silver
+                41084, -- Undermine Breaknecking: Gold
+            }
         },
     },
     {

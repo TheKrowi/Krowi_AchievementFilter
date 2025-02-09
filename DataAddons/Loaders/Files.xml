@@ -7,4 +7,5 @@
     <Script file="TabData.lua" />
     <Script file="TooltipData.lua" />
     <Script file="TransmogSetData.lua" />
+    <Script file="ZoneData.lua" />
 </Ui>

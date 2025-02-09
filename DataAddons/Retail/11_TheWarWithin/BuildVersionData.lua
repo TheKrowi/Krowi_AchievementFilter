@@ -29,5 +29,15 @@ KrowiAF.BuildVersionData.TheWarWithin = { -- 11
 				},
 			},
 		},
+        { -- 11.1
+            Minor = 1,
+            Patches = {
+                { -- 11.1.0
+                    Patch = 0,
+                    BuildVersionId = "110100",
+                    Name = addon.L["Undermine(d)"]
+                },
+            }
+        },
 	},
 };

@@ -19,7 +19,9 @@ data.AchievementIds = {};
 
 data.Categories, data.SummaryCategories = {}, {};
 KrowiAF_Categories = data.Categories;
-data.UncategorizedCategories = {};
+-- data.UncategorizedCategories = {};
+-- data.ZonesWithAchievements = {};
+-- KrowiAF_ZonesWithAchievements = data.ZonesWithAchievements;
 
 data.RightClickMenuExtras = {};
 
@@ -76,9 +78,19 @@ function data:RegisterTransmogSetDataTasks()
     end
 end
 
+function data:RegisterZoneDataTasks()
+    local name = "Zone Data: ";
+    for k, v in next, KrowiAF.ZoneData do
+        self.InjectLoadingDebug(v, name .. k);
+        tinsert(self.TasksGroups, 1, v);
+    end
+end
+
 local function PostLoadOnPlayerLogin(self, start)
     local custom = LibStub("AceConfigRegistry-3.0"):GetOptionsTable(addon.Metadata.Prefix .. "_Layout", "cmd", "KROWIAF-0.0").args.Summary.args.Summary.args.NumAchievements; -- cmd and KROWIAF-0.0 are just to make the function work
     custom.max = #self.AchievementIds;
+
+    -- self:LoadZoneAchievements();
 
     self.LoadBlizzardTabAchievements();
 
@@ -114,6 +126,7 @@ function data:LoadOnPlayerLogin()
     self:RegisterTooltipDataTasks();
     self:RegisterPetBattleLinkDataTasks();
     self:RegisterTransmogSetDataTasks();
+    self:RegisterZoneDataTasks();
 
     local overallStart = debugprofilestop();
     addon.StartTasksGroups(
@@ -155,6 +168,14 @@ end
 function data.SortAchievementIds()
     sort(data.AchievementIds);
 end
+
+-- function data:LoadZoneAchievements()
+--     for zoneId, achievements in next, self.ZonesWithAchievements do
+--         for _, achievementId in next, achievements do
+--             tinsert(self.Maps[zoneId].Achievements, self.Achievements[achievementId]);
+--         end
+--     end
+-- end
 
 local tmpC = {};
 local function LoadAllCategories(tabCat, cats)

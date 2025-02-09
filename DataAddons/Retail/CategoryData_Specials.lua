@@ -1497,7 +1497,7 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 addon.L["Season"] .. " " .. 2,
                 true,
                 {
-                    -- 41348, -- Keystone Hero: Operation: Floodgate
+                    41348, -- Keystone Hero: Operation: Floodgate
                     20583, -- Keystone Hero: Cinderbrew Meadery
                     20584, -- Keystone Hero: Darkflame Cleft
                     20579, -- Keystone Hero: The Rookery

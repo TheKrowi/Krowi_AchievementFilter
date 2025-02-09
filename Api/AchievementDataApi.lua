@@ -40,39 +40,48 @@ local function AddAchievementData(id, faction, otherFactionAchievementId, reward
 end
 
 local function ParseAddAchievementData(id, faction, otherFactionAchievementId, isPvP, isRealmFirst)
-    local temporaryObtainables;
+    local moreData; -- temporaryObtainables
     if addon.Util.IsTable(faction) then
-        temporaryObtainables = faction;
+        moreData = faction;
         faction = nil;
     end
     if addon.Util.IsTable(otherFactionAchievementId) then
-        temporaryObtainables = otherFactionAchievementId;
+        moreData = otherFactionAchievementId;
         otherFactionAchievementId = nil;
     end
     if addon.Util.IsTable(isPvP) then
-        temporaryObtainables = isPvP;
+        moreData = isPvP;
         isPvP = nil;
     end
     if addon.Util.IsTable(isRealmFirst) then
-        temporaryObtainables = isRealmFirst;
+        moreData = isRealmFirst;
         isRealmFirst = nil;
     end
 
     local rewardType;
-    if temporaryObtainables and temporaryObtainables.RewardType then
-        rewardType = temporaryObtainables.RewardType;
-        temporaryObtainables.RewardType = nil;
+    if moreData and moreData.RewardType then
+        rewardType = moreData.RewardType;
+        moreData.RewardType = nil;
     end
-    if temporaryObtainables and temporaryObtainables.IsPvP then
+    if moreData and moreData.IsPvP then
         isPvP = true;
-        temporaryObtainables.IsPvP = nil;
+        moreData.IsPvP = nil;
     end
-    if temporaryObtainables and temporaryObtainables.IsRealmFirst then
+    if moreData and moreData.IsRealmFirst then
         isRealmFirst = true;
-        temporaryObtainables.IsRealmFirst = nil;
+        moreData.IsRealmFirst = nil;
     end
+    -- if moreData and moreData.Zones then
+    --     for _, zones in next, moreData.Zones do
+    --         for _, zone in next, zones do
+    --             addon.Data.ZonesWithAchievements[zone] = addon.Data.ZonesWithAchievements[zone] or {};
+    --             tinsert(addon.Data.ZonesWithAchievements[zone], id);
+    --         end
+    --     end
+    --     moreData.Zones = nil;
+    -- end
 
-    return id, faction, otherFactionAchievementId, rewardType, isPvP, isRealmFirst, temporaryObtainables;
+    return id, faction, otherFactionAchievementId, rewardType, isPvP, isRealmFirst, moreData;
 end
 
 function KrowiAF.AddAchievementData(id, faction, otherFactionAchievementId, isPvP, isRealmFirst)

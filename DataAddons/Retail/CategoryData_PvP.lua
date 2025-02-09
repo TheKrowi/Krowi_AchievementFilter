@@ -1129,5 +1129,31 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
                 40723, -- Web-Wrapped in the Finest Silks
             },
         },
+        { -- Season 2
+            addon.L["Season"] .. " " .. 2,
+            {
+                41020, -- Combatant I: The War Within Season 2
+                41021, -- Combatant II: The War Within Season 2
+                41022, -- Challenger I: The War Within Season 2
+                41023, -- Challenger II: The War Within Season 2
+                41016, -- Rival I: The War Within Season 2
+                41017, -- Rival II: The War Within Season 2
+                41018, -- Duelist: The War Within Season 2
+                41019, -- Elite: The War Within Season 2
+                41354, -- Prized Gladiator: The War Within Season 2
+                41361, -- Hero of the Alliance: Prized
+                41360, -- Hero of the Horde: Prized
+                41358, -- Legend: The War Within Season 2
+                41355, -- Prized Legend: The War Within Season 2
+                41359, -- Battle Mender: The War Within Season 2
+                -- 40792, -- Solo Shuffle Medic: The War Within
+                41363, -- Strategist: The War Within Season 2
+                41357, -- Prized Marshal: The War Within Season 2
+                41356, -- Prized Warlord: The War Within Season 2
+                41047, -- Prized Weapons of Conquest
+                40911, -- The War Within Season 2: Master Blaster
+                -- 40723, -- Web-Wrapped in the Finest Silks
+            },
+        },
     },
 };

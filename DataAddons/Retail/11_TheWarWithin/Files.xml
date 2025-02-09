@@ -4,4 +4,5 @@
     <Script file="EventData.lua" />
     <Script file="PetBattleLinkData.lua" />
     <Script file="TransmogSetData.lua" />
+    <Script file="ZoneData.lua" />
 </Ui>
