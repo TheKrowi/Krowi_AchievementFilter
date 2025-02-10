@@ -1,7 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 81.5 - 2025-02-08
+## 82.0 - 2025-02-10
+### Added
+- 11.1 achievement (159)
+- New Warband Campsite achievement reward filter
+
 ### Fixed
 - Master of the Turbulent Timeways is no longer obtainable even when the Turbulent Timeways event is active
 - Delve category names should no longer have the tier in the name

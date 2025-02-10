@@ -7,7 +7,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-01-09 20-57-42 ]] --
+-- [[ Exported at 2025-02-10 21-47-12 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -98,6 +98,7 @@ L["Blizzard"] = true
 L["BlizzCon"] = true
 L["Brackenhide Hollow"] = true
 L["Brawler's Guild"] = true
+L["Breaknecking Races"] = true
 L["Brewfest"] = true
 L["Broken Isles Cup"] = true
 L["Build"] = true
@@ -455,6 +456,8 @@ L["Export Missing Achievements Desc"] = "Export the missing achievements. This i
 L["Export Removed Achievements"] = true
 L["Export Removed Achievements Desc"] = "Export the removed achievements. This is a debug feature and should not be used."
 L["Faction Assaults"] = true
+L["Faction Icon Transparency"] = true
+L["Faction Icon Transparency Desc"] = "The transparency of the faction icon with 0 being fully transparent and 1 being fully opaque."
 L["Fade delay"] = true
 L["Fade delay Desc"] = "The time in seconds it takes for the alert to fade when it's ignored. Right clicking will close it immidiatly."
 L["Fall of the Lich King"] = true
@@ -966,6 +969,7 @@ L["Siren Isle"] = true
 L["Skitterer Xi'a"] = true
 L["Skoldus Hall"] = true
 L["Skyriding Races"] = true
+L["Skyrocketing Races"] = true
 L["Slagmire"] = true
 L["Snowstorms"] = true
 L["Soon"] = true
@@ -1078,6 +1082,7 @@ L["Tyrhold"] = true
 L["Uktulut Coaster"] = true
 L["Uncategorized"] = true
 L["Unchecked"] = true
+L["Undermine(d)"] = true
 L["until the end of"] = true
 L["Up"] = true
 L["up until the start of"] = true
@@ -1099,6 +1104,7 @@ L["Wago Desc"] = "Open a popup dialog with a link to the {addonName} {wago} page
 L["Waking Shores"] = true
 L["Waking Shores: Next"] = true
 L["Warband Achievement"] = true
+L["Warband Campsite"] = true
 L["Warband Header Color"] = "{warband} Header Colors"
 L["Warband Header Color Desc"] = [=[When disabled, the default blue header color will be replaced by the default orange color.
 Recommended to enable {warbandIcon}.
@@ -1150,6 +1156,3 @@ L["Zaqali Ruin Investigation: Soon"] = true
 L["Zaqali Ruin Investigation: Starting Soon"] = true
 L["Zones"] = true
 L["Zuldazar"] = true
-L["Faction Icon Transparency"] = true
-L["Faction Icon Transparency Desc"] = "The transparency of the faction icon with 0 being fully transparent and 1 being fully opaque."
-L["Warband Campsite"] = true
