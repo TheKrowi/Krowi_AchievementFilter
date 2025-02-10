@@ -447,12 +447,25 @@ KrowiAF.ZoneData.TheWarWithin = {
             41588, -- Read Between the Lines
             41589, -- That Can-Do Attitude
             41708, -- You're My Friend Now
+            41590, -- No Littering
+            41591, -- Really No Littering
+            41592, -- Absolutely Zero Littering
+            41593, -- Cleanin' the Streets
+            41594, -- Can You Believe What People Throw Away?
+            41626, -- C.H.E.T.T. a Look
+            41627, -- C.H.E.T.T.ing it Twice
+            41629, -- C.H.E.T.T.mate
+            41630, -- "Employee" of the Month
             41214, -- Under the Echoes
             41215, -- Echoes of Deeper Dangers
             -- pvp
             41522, -- Tour of Duty: Undermine
             -- rep
-
+            41349, -- In with the Cartels
+            41351, -- Cartels Bestie
+            41352, -- Trade-Duke
+            41086, -- Ally of Undermine
+            41350, -- A Long Fuse
             -- races
             41586, -- Going Goblin Mode
             40936, -- Undermine Skyrocketing: Bronze
@@ -548,7 +561,7 @@ KrowiAF.ZoneData.TheWarWithin = {
             41211, -- A Good Day to Dye Hard
             41525, -- Can You Please Spell "Gobanna?"
             40911, -- The War Within Season 2: Master Blaster
-            -- 40723, -- Web-Wrapped in the Finest Silks
+            41665, -- Dressed to the Mines
             41208, -- Hold My Gear!
             41554, -- The Splash Zone
             41338, -- Just /Dance
@@ -587,6 +600,7 @@ KrowiAF.ZoneData.TheWarWithin = {
             41530, -- My New Nemesis
             41529, -- Breaking the Bank
             41210, -- Let Me Solo Him: The Underpin
+            41531, -- The Hataclysm
         }
     },
 };

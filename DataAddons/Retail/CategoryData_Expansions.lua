@@ -12345,12 +12345,20 @@ local theWarWithin = { -- The War Within
                     41588, -- Read Between the Lines
                     41589, -- That Can-Do Attitude
                     41708, -- You're My Friend Now
+                    41590, -- No Littering
+                    41591, -- Really No Littering
+                    41592, -- Absolutely Zero Littering
+                    41593, -- Cleanin' the Streets
+                    41594, -- Can You Believe What People Throw Away?
+                    41626, -- C.H.E.T.T. a Look
+                    41627, -- C.H.E.T.T.ing it Twice
+                    41629, -- C.H.E.T.T.mate
+                    41630, -- "Employee" of the Month
                     41214, -- Under the Echoes
                     41215, -- Echoes of Deeper Dangers
                 },
             },
             { -- Player vs. Player
-                1629,
                 addon.GetCategoryInfoTitle(95),
                 true,
                 {
@@ -12358,10 +12366,14 @@ local theWarWithin = { -- The War Within
                 },
             },
             { -- Reputation
-                1630,
                 addon.GetCategoryInfoTitle(201),
                 true,
                 {
+                    41349, -- In with the Cartels
+                    41351, -- Cartels Bestie
+                    41352, -- Trade-Duke
+                    41086, -- Ally of Undermine
+                    41350, -- A Long Fuse
                 },
             },
             { -- Skyrocketing Races
@@ -12520,6 +12532,7 @@ local theWarWithin = { -- The War Within
                 41530, -- My New Nemesis
                 41529, -- Breaking the Bank
                 41210, -- Let Me Solo Him: The Underpin
+                41531, -- The Hataclysm
             },
         },
         {
@@ -12567,6 +12580,8 @@ local theWarWithin = { -- The War Within
             40098, -- Immortal Spelunker
             40459, -- I've Got a Flying Machine!
             40789, -- Flying in Style
+            41532, -- I've Got a Flying Machine?
+            41714, -- From Trash to Treasure
             40524, -- Good Deed Delver
             40763, -- I'm not a Thief, I'm a Treasure Hunter
             41097, -- Curiosity Never Killed the Looter
@@ -12700,6 +12715,7 @@ local theWarWithin = { -- The War Within
             40951, -- The War Within Keystone Legend: Season Two
             40954, -- Enterprising Hero: The War Within Season Two
             40911, -- The War Within Season 2: Master Blaster
+            41665, -- Dressed to the Mines
         },
     },
     { -- Raids
@@ -12796,7 +12812,7 @@ local theWarWithin = { -- The War Within
                 41211, -- A Good Day to Dye Hard
                 41525, -- Can You Please Spell "Gobanna?"
                 40911, -- The War Within Season 2: Master Blaster
-                -- 40723, -- Web-Wrapped in the Finest Silks
+                41665, -- Dressed to the Mines
             },
         },
         {

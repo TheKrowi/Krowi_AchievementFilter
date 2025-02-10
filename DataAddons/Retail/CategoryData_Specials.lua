@@ -915,6 +915,8 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 16395, -- Vaulternative Fashion
                 17765, -- What We Wear In The Shadowflame
                 19442, -- Fire Catwalk With Me
+                40469, -- I'm Bringing Nerub-ack
+                41525, -- Can You Please Spell "Gobanna?"
             },
         },
         { -- Player vs. Player
@@ -953,6 +955,7 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                 18249, -- Obsidian Tie Event
                 19276, -- Verdant Vogue
                 40728, -- Forged Finery
+                41595, -- Prized Guise
             },
         },
         {

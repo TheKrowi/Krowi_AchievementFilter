@@ -1152,7 +1152,7 @@ KrowiAF.CategoryData.PvP = { -- TAB - PvP
                 41356, -- Prized Warlord: The War Within Season 2
                 41047, -- Prized Weapons of Conquest
                 40911, -- The War Within Season 2: Master Blaster
-                -- 40723, -- Web-Wrapped in the Finest Silks
+                41665, -- Dressed to the Mines
             },
         },
     },

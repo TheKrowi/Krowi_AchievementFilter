@@ -928,7 +928,12 @@ KrowiAF.AchievementData["11_00_00"] = {
 		},
 	},
     {40727}, -- Skittershaw Spin
-    {40728}, -- Forged Finery
+    { -- Forged Finery
+        40728,
+        {
+            IsPvP = true,
+        },
+    },
     {40729}, -- Light's Gambit Champion
     {40730}, -- Love is in the Lair
     {40731}, -- Panhandled
@@ -1573,7 +1578,12 @@ KrowiAF.AchievementData["11_01_00"] = {
 			RewardType = {rewardType.Mount, rewardType.Title},
 		},
     },
-    -- {41086, Title: "the Explosive"}, -- Ally of Undermine
+    { -- Ally of Undermine
+        41086,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     { -- Undermine Safari
         41092,
         {
@@ -1743,10 +1753,30 @@ KrowiAF.AchievementData["11_01_00"] = {
             {"PvE Season", 14},
         },
     },
-    -- {41349, Pet: Iron Chick}, -- In with the Cartels
-    -- {41350, Title: "Darkfuse Diplomat"}, -- A Long Fuse
-    -- {41351, Ensemble: Goblin Bruiser's Attire}, -- Cartels Bestie
-    -- {41352, Title: "Trade-Duke"}, -- Trade-Duke
+    { -- In with the Cartels
+        41349,
+        {
+            RewardType = rewardType.Pet,
+        },
+    },
+    { -- A Long Fuse
+        41350,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
+    { -- Cartels Bestie
+        41351,
+        {
+            RewardType = rewardType.Transmog,
+        },
+    },
+    { -- Trade-Duke
+        41352,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     { -- Prized Gladiator: The War Within Season 2
         41354,
         {
@@ -1840,8 +1870,13 @@ KrowiAF.AchievementData["11_01_00"] = {
             {"PvE Season", 14},
         },
     },
-    -- {41531, }, -- The Hataclysm
-    -- {41532, }, -- I've Got a Flying Machine?
+    { -- The Hataclysm
+        41531,
+        {
+            {"PvE Season", 14},
+        },
+    },
+    {41532}, -- I've Got a Flying Machine?
     { -- The War Within Keystone Master: Season Two
         41533,
         {
@@ -1887,23 +1922,38 @@ KrowiAF.AchievementData["11_01_00"] = {
         },
     },
     {41589}, -- That Can-Do Attitude
-    -- {41590, }, -- No Littering
-    -- {41591, }, -- Really No Littering
-    -- {41592, }, -- Absolutely Zero Littering
-    -- {41593, }, -- Cleanin' the Streets
-    -- {41594, }, -- Can You Believe What People Throw Away?
-    -- {41595, }, -- Prized Guise
+    {41590}, -- No Littering
+    {41591}, -- Really No Littering
+    {41592}, -- Absolutely Zero Littering
+    {41593}, -- Cleanin' the Streets
+    {41594}, -- Can You Believe What People Throw Away?
+    { -- Prized Guise
+        41595,
+        {
+            IsPvP = true,
+        }
+    },
     { -- Garbage In, Garbage Out
         41596,
         {
             RewardType = rewardType.Title,
         },
     },
-    -- {41626, }, -- C.H.E.T.T. a Look
-    -- {41627, }, -- C.H.E.T.T.ing it Twice
-    -- {41629, Title: Part-Timer}, -- C.H.E.T.T.mate
-    -- {41630, }, -- "Employee" of the Month
-    -- {41665, Reward: Gallagio Highroller's Bombstone}, -- Dressed to the Mines
+    {41626, }, -- C.H.E.T.T. a Look
+    {41627, }, -- C.H.E.T.T.ing it Twice
+    { -- C.H.E.T.T.mate
+        41629,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
+    {41630, }, -- "Employee" of the Month
+    { -- Dressed to the Mines
+        41665,
+		{
+			RewardType = rewardType.Transmog,
+		},
+    },
     {41694}, -- Flarendo's Biggest Fan
     {41695}, -- Torq's Biggest Fan
     {41708}, -- You're My Friend Now
@@ -1914,6 +1964,6 @@ KrowiAF.AchievementData["11_01_00"] = {
         },
     },
     {41711}, -- Conveyor Slayer
-    -- {41714, }, -- From Trash to Treasure
+    {41714}, -- From Trash to Treasure
     {41723}, -- Buddy System VIII
 };
