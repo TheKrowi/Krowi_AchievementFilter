@@ -1152,3 +1152,4 @@ L["Zones"] = true
 L["Zuldazar"] = true
 L["Faction Icon Transparency"] = true
 L["Faction Icon Transparency Desc"] = "The transparency of the faction icon with 0 being fully transparent and 1 being fully opaque."
+L["Warband Campsite"] = true

@@ -244,6 +244,8 @@ KrowiAF.CategoryData.Specials = { -- TAB - Specials
                     19503, -- Draconic Gladiator's Drake
                     40393, -- Gladiator: The War Within Season 1
                     40398, -- Forged Gladiator's Fel Bat
+                    41032, -- Gladiator: The War Within Season 2
+                    41362, -- Prized Gladiator's Fel Bat
                 },
             },
             {

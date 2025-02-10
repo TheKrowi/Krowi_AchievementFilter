@@ -18,7 +18,8 @@ KrowiAF.Enum.RewardType = EnumUtil.MakeEnum(
     "Title",
     "Toy",
     "TradersTender",
-    "Transmog"
+    "Transmog",
+    "WarbandCampsite"
 );
 
 KrowiAF.AchievementData = {};

@@ -40,7 +40,10 @@ local crossExpansion = { -- Cross-Expansion
             7383, -- Terrific Trio
             7384, -- Quintessential Quintet
             7380, -- Double Agent
+            19489, -- Class Connoisseur
             546, -- Safe Deposit
+            40142, -- Learning to Share
+            40145, -- So Much Sharing
             1176, -- Got My Mind On My Money
             1177, -- Got My Mind On My Money
             1178, -- Got My Mind On My Money
@@ -79,7 +82,6 @@ local crossExpansion = { -- Cross-Expansion
             2716, -- Dual Talent Specialization
             1187, -- The Keymaster
             17334, -- Trading Post Enthusiast
-            19489, -- Class Connoisseur
         },
     },
     { -- Quests
@@ -137,6 +139,7 @@ local crossExpansion = { -- Cross-Expansion
             40462, -- Delve Deeper
             40463, -- Delve Deepest
             41095, -- Delve Beyond
+            41096, -- Delve Infinite
             40819, -- Ready to Turn
             40788, -- I Got the Keys
             40882, -- Copious Coffers
@@ -144,6 +147,7 @@ local crossExpansion = { -- Cross-Expansion
             40817, -- A Delver's Bounty
             40863, -- Perplexing Puzzle
             40864, -- Plentiful Perplexing Puzzles
+            41105, -- Prodigious Plentiful Perplexing Puzzles
         },
     },
     { -- Dungeons & Raids
@@ -11975,10 +11979,10 @@ local theWarWithin = { -- The War Within
                     40702, -- Khaz Algar Glyph Hunter
                     40790, -- Khaz Algar Explorer
                     40762, -- Khaz Algar Lore Hunter
-                    40222, -- Echoes of Danger
                     40250, -- The First Echo
                     40251, -- Many Echoes
                     40252, -- A Series of Echoes
+                    40222, -- Echoes of Danger
                     40314, -- Fragments of Memories
                 },
             },
@@ -12009,6 +12013,9 @@ local theWarWithin = { -- The War Within
                     41169, -- Khaz Algar Diplomat
                 },
             },
+            {
+                41555, -- All That Khaz
+            }
         },
         { -- Isle of Dorn
             1611,
@@ -12323,12 +12330,23 @@ local theWarWithin = { -- The War Within
                 addon.GetCategoryInfoTitle(96),
                 true,
                 {
+                    40900, -- Undermined
+                    40894, -- Sojourner of Undermine
                 },
             },
             { -- Exploration
                 addon.GetCategoryInfoTitle(97),
                 true,
                 {
+                    41587, -- Explore Undermine
+                    41217, -- Treasures of Undermine
+                    41216, -- Adventurer of Undermine
+                    40948, -- Nine-Tenths of the Law
+                    41588, -- Read Between the Lines
+                    41589, -- That Can-Do Attitude
+                    41708, -- You're My Friend Now
+                    41214, -- Under the Echoes
+                    41215, -- Echoes of Deeper Dangers
                 },
             },
             { -- Player vs. Player
@@ -12336,6 +12354,7 @@ local theWarWithin = { -- The War Within
                 addon.GetCategoryInfoTitle(95),
                 true,
                 {
+                    41522, -- Tour of Duty: Undermine
                 },
             },
             { -- Reputation
@@ -12343,6 +12362,15 @@ local theWarWithin = { -- The War Within
                 addon.GetCategoryInfoTitle(201),
                 true,
                 {
+                },
+            },
+            { -- Skyrocketing Races
+                addon.L["Skyrocketing Races"],
+                true,
+                {
+                    40936, -- Undermine Skyrocketing: Bronze
+                    40937, -- Undermine Skyrocketing: Silver
+                    40938, -- Undermine Skyrocketing: Gold
                 },
             },
             { -- Breaknecking Races
@@ -12354,6 +12382,9 @@ local theWarWithin = { -- The War Within
                     41084, -- Undermine Breaknecking: Gold
                 },
             },
+            {
+                41586, -- Going Goblin Mode
+            }
         },
         {
             41201, -- You Xal Not Pass
@@ -12463,9 +12494,9 @@ local theWarWithin = { -- The War Within
             addon.GetMapName(2348),
             {
                 40732, -- Heavy-Handed
-                40103, -- Nemesis
+                40103, -- My First Nemesis
                 40431, -- Hunting the Hunter
-                40433, -- Let Me Solo Him
+                40433, -- Let Me Solo Him: Zekvir
             },
         },
         { -- Excavation Site 9
@@ -12482,13 +12513,15 @@ local theWarWithin = { -- The War Within
                 41101, -- Sidestreet Sluice Discoveries
             },
         },
-        -- { -- Demolition Dome
-        --     addon.GetMapName(2425),
-        --     {
-        --         -- 40536, -- The Spiral Weave Stories
-        --         -- 40814, -- The Spiral Weave Discoveries
-        --     },
-        -- },
+        { -- Demolition Dome
+            addon.GetMapName(2425),
+            {
+                40732, -- Heavy-Handed
+                41530, -- My New Nemesis
+                41529, -- Breaking the Bank
+                41210, -- Let Me Solo Him: The Underpin
+            },
+        },
         {
             40631, -- War Within Delves: Tier 1
             40512, -- War Within Delves: Tier 2
@@ -12553,6 +12586,7 @@ local theWarWithin = { -- The War Within
             41114, -- Algari Delver Tank III
             41115, -- Algari Delver
             41116, -- Algari Delver II
+            41709, -- Journey's End (Season 2)
         },
     },
     { -- Dungeons
@@ -12767,6 +12801,7 @@ local theWarWithin = { -- The War Within
         },
         {
             40232, -- Glory of the Nerub-ar Raider
+            41286, -- Glory of the Liberation of Undermine Raider
         },
     },
     { -- Professions
@@ -12925,6 +12960,17 @@ local theWarWithin = { -- The War Within
             40354, -- Khaz Algar Completionist: Gold
         },
     },
+    { -- Skyrocketing Races
+        addon.L["Skyrocketing Races"],
+        { -- Undermine
+            addon.GetMapName(2346),
+            {
+                40936, -- Undermine Skyrocketing: Bronze
+                40937, -- Undermine Skyrocketing: Silver
+                40938, -- Undermine Skyrocketing: Gold
+            },
+        },
+    },
     { -- Breaknecking Races
         addon.L["Breaknecking Races"],
         { -- Undermine
@@ -12933,7 +12979,7 @@ local theWarWithin = { -- The War Within
                 41081, -- Undermine Breaknecking: Bronze
                 41083, -- Undermine Breaknecking: Silver
                 41084, -- Undermine Breaknecking: Gold
-            }
+            },
         },
     },
     {

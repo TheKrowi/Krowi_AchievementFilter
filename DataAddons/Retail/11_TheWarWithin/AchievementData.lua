@@ -203,7 +203,7 @@ KrowiAF.AchievementData["11_00_00"] = {
 		},
 	},
     {40100}, -- Undying Caver
-    { -- Nemesis
+    { -- My First Nemesis
         40103,
         {
             {"PvE Season", 13},
@@ -570,7 +570,7 @@ KrowiAF.AchievementData["11_00_00"] = {
             {"PvE Season", 13},
         },
     },
-    { -- Let Me Solo Him
+    { -- Let Me Solo Him: Zekvir
         40433,
         {
             {"PvE Season", 13},
@@ -1390,19 +1390,24 @@ KrowiAF.AchievementData["11_00_07"] = {
 
 KrowiAF.AchievementData["11_01_00"] = {
     {KrowiAF.SetAchievementPatch, 11, 1, 0},
-    -- {40142, }, -- Learning to Share
-    -- {40145, }, -- So Much Sharing
-    -- {40894, }, -- Sojourner of Undermine
-    -- {40900, }, -- Undermined
+    {40142}, -- Learning to Share
+    {40145}, -- So Much Sharing
+    {40894}, -- Sojourner of Undermine
+    {40900}, -- Undermined
     { -- The War Within Season 2: Master Blaster
         40911,
 		{
 			RewardType = rewardType.Transmog,
 		},
     },
-    -- {40936, }, -- Undermine Skyrocketing: Bronze
-    -- {40937, }, -- Undermine Skyrocketing: Silver
-    -- {40938, Reward: Skyrocketer Title}, -- Undermine Skyrocketing: Gold
+    {40936}, -- Undermine Skyrocketing: Bronze
+    {40937}, -- Undermine Skyrocketing: Silver
+    { -- Undermine Skyrocketing: Gold
+        40938,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {-- Weathered of the Undermine
         40942,
         {
@@ -1430,7 +1435,7 @@ KrowiAF.AchievementData["11_01_00"] = {
             {"PvE Season", 14},
         }
     },
-    -- {40948, }, -- Nine-Tenths of the Law
+    {40948}, -- Nine-Tenths of the Law
     { -- The War Within Keystone Explorer: Season Two
         40949,
         {
@@ -1539,7 +1544,14 @@ KrowiAF.AchievementData["11_01_00"] = {
             {"PvP Season", 39},
         },
     },
-    -- {41032, Reward: Gladiator Mount, Customization, Seasonal Character Title}, -- Gladiator: The War Within Season 2
+    { -- Gladiator: The War Within Season 2
+        41032,
+        {
+            RewardType = {rewardType.Title, rewardType.Mount, rewardType.Transmog},
+            IsPvP = true,
+            {"PvP Season", 39},
+        },
+    },
     { -- Prized Weapons of Conquest
         41047,
         {
@@ -1574,13 +1586,18 @@ KrowiAF.AchievementData["11_01_00"] = {
             RewardType = rewardType.Title,
         },
     },
-    -- {41096, Title: Infinite Delver}, -- Delve Infinite
+    { -- Delve Infinite
+        41096,
+        {
+            RewardType = rewardType.Title,
+        },
+    },
     {41097}, -- Curiosity Never Killed the Looter
     {41098}, -- Excavation Site 9 Stories
     {41099}, -- Sidestreet Sluice Stories
     {41100}, -- Excavation Site 9 Discoveries
     {41101}, -- Sidestreet Sluice Discoveries
-    -- {41105, }, -- Prodigious Plentiful Perplexing Puzzles
+    {41105}, -- Prodigious Plentiful Perplexing Puzzles
     {41106}, -- Algari Delver Damage Dealer
     {41107}, -- Algari Delver Healer
     {41108}, -- Algari Delver Tank
@@ -1658,17 +1675,23 @@ KrowiAF.AchievementData["11_01_00"] = {
         },
     },
     {41208}, -- Hold My Gear!
-    -- {41210, Reward: Delver's Gob-Trotter Schematic: Gold}, -- Let Me Solo Him: The Underpin
+    { -- Let Me Solo Him: The Underpin
+        41210,
+        {
+            RewardType = rewardType.Mount,
+            {"PvE Season", 14},
+        },
+    },
     { -- A Good Day to Dye Hard
         41211,
         {
             RewardType = rewardType.Toy,
         },
     },
-    -- {41214, }, -- Under the Echoes
-    -- {41215, }, -- Echoes of Deeper Dangers
-    -- {41216, }, -- Adventurer of Undermine
-    -- {41217, }, -- Treasures of Undermine
+    {41214}, -- Under the Echoes
+    {41215}, -- Echoes of Deeper Dangers
+    {41216}, -- Adventurer of Undermine
+    {41217}, -- Treasures of Undermine
     {41222}, -- Liberation of Undermine
     {41223}, -- Heroic: Liberation of Undermine
     {41224}, -- Mythic: Liberation of Undermine
@@ -1689,7 +1712,12 @@ KrowiAF.AchievementData["11_01_00"] = {
             RewardType = rewardType.Title,
         },
     },
-    -- {41286, Mount: Junkmaestro's Magnetomech}, -- Glory of the Liberation of Undermine Raider
+    { -- Glory of the Liberation of Undermine Raider
+        41286,
+        {
+            RewardType = rewardType.Mount,
+        },
+    },
     { -- Cutting Edge: Chrome King Gallywix
         41297,
         {
@@ -1781,7 +1809,13 @@ KrowiAF.AchievementData["11_01_00"] = {
             {"PvP Season", 39},
         },
     },
-    -- {41362, }, -- Prized Gladiator's Fel Bat
+    { -- Prized Gladiator's Fel Bat
+        41362,
+        {
+            IsPvP = true,
+            {"PvP Season", 39},
+        },
+    },
     { -- Strategist: The War Within Season 2
         41363,
         {
@@ -1790,10 +1824,22 @@ KrowiAF.AchievementData["11_01_00"] = {
             {"PvP Season", 39},
         },
     },
-    -- {41522, }, -- Tour of Duty: Undermine
+    {41522}, -- Tour of Duty: Undermine
     {41525}, -- Can You Please Spell "Gobanna?"
-    -- {41529, Title: The Real Deal}, -- Breaking the Bank
-    -- {41530, Reward: Golden-Gob Propulsion Rig}, -- My New Nemesis
+    { -- Breaking the Bank
+        41529,
+        {
+            RewardType = rewardType.Title,
+            {"PvE Season", 14},
+        },
+    },
+    { -- My New Nemesis
+        41530,
+        {
+            RewardType = rewardType.Mount,
+            {"PvE Season", 14},
+        },
+    },
     -- {41531, }, -- The Hataclysm
     -- {41532, }, -- I've Got a Flying Machine?
     { -- The War Within Keystone Master: Season Two
@@ -1821,11 +1867,26 @@ KrowiAF.AchievementData["11_01_00"] = {
         },
     },
     {41554}, -- The Splash Zone
-    -- {41555, Warband Campsite: Freywold Spring}, -- All That Khaz
-    -- {41586, Warband Campsite: Gallagio Grand Gallery}, -- Going Goblin Mode
-    -- {41587, }, -- Explore Undermine
-    -- {41588, Toy: Desk-in-a-Box}, -- Read Between the Lines
-    -- {41589, }, -- That Can-Do Attitude
+    { -- All That Khaz
+        41555,
+        {
+            RewardType = rewardType.WarbandCampsite,
+        },
+    },
+    { -- Going Goblin Mode
+        41586,
+        {
+            RewardType = rewardType.WarbandCampsite,
+        },
+    },
+    {41587}, -- Explore Undermine
+    { -- Read Between the Lines
+        41588,
+        {
+            RewardType = rewardType.Toy,
+        },
+    },
+    {41589}, -- That Can-Do Attitude
     -- {41590, }, -- No Littering
     -- {41591, }, -- Really No Littering
     -- {41592, }, -- Absolutely Zero Littering
@@ -1845,8 +1906,13 @@ KrowiAF.AchievementData["11_01_00"] = {
     -- {41665, Reward: Gallagio Highroller's Bombstone}, -- Dressed to the Mines
     {41694}, -- Flarendo's Biggest Fan
     {41695}, -- Torq's Biggest Fan
-    -- {41708, }, -- You're My Friend Now
-    -- {41709, }, -- Journey's End (Season 2)
+    {41708}, -- You're My Friend Now
+    { -- Journey's End (Season 2)
+        41709,
+        {
+            {"PvE Season", 14},
+        },
+    },
     {41711}, -- Conveyor Slayer
     -- {41714, }, -- From Trash to Treasure
     {41723}, -- Buddy System VIII

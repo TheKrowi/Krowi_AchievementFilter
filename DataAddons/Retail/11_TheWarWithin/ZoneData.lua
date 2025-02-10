@@ -7,6 +7,7 @@ local delves = {
     40462, -- Delve Deeper
     40463, -- Delve Deepest
     41095, -- Delve Beyond
+    41096, -- Delve Infinite
     40819, -- Ready to Turn
     40788, -- I Got the Keys
     40882, -- Copious Coffers
@@ -14,6 +15,7 @@ local delves = {
     40817, -- A Delver's Bounty
     40863, -- Perplexing Puzzle
     40864, -- Plentiful Perplexing Puzzles
+    41105, -- Prodigious Plentiful Perplexing Puzzles
 };
 
 local delvesTheWarWithin = {
@@ -62,6 +64,7 @@ local delvesTheWarWithin = {
     41114, -- Algari Delver Tank III
     41115, -- Algari Delver
     41116, -- Algari Delver II
+    41709, -- Journey's End (Season 2)
 };
 
 local delvesTheWarWithinS1Progress = {
@@ -313,6 +316,7 @@ KrowiAF.ZoneData.TheWarWithin = {
             40264, -- Kill Streak
             40730, -- Love is in the Lair
             40266, -- Missed 'Em by That Much
+            40232, -- Glory of the Nerub-ar Raider
             40236, -- Mythic: Ulgrax the Devourer
             40237, -- Mythic: The Bloodbound Horror
             40238, -- Mythic: Sikran, Captain of the Sureki
@@ -432,7 +436,28 @@ KrowiAF.ZoneData.TheWarWithin = {
     { -- Undermine (zone)
         2346,
         {
+            -- quests
+            40900, -- Undermined
+            40894, -- Sojourner of Undermine
+            -- expl
+            41587, -- Explore Undermine
+            41217, -- Treasures of Undermine
+            41216, -- Adventurer of Undermine
+            40948, -- Nine-Tenths of the Law
+            41588, -- Read Between the Lines
+            41589, -- That Can-Do Attitude
+            41708, -- You're My Friend Now
+            41214, -- Under the Echoes
+            41215, -- Echoes of Deeper Dangers
+            -- pvp
+            41522, -- Tour of Duty: Undermine
+            -- rep
 
+            -- races
+            41586, -- Going Goblin Mode
+            40936, -- Undermine Skyrocketing: Bronze
+            40937, -- Undermine Skyrocketing: Silver
+            40938, -- Undermine Skyrocketing: Gold
             41081, -- Undermine Breaknecking: Bronze
             41083, -- Undermine Breaknecking: Silver
             41084, -- Undermine Breaknecking: Gold
@@ -452,9 +477,9 @@ KrowiAF.ZoneData.TheWarWithin = {
         {
             delvesTheWarWithinS1,
             40732, -- Heavy-Handed
-            40103, -- Nemesis
+            40103, -- My First Nemesis
             40431, -- Hunting the Hunter
-            40433, -- Let Me Solo Him
+            40433, -- Let Me Solo Him: Zekvir
             delvesTheWarWithinS2Progress
         }
     },
@@ -535,6 +560,7 @@ KrowiAF.ZoneData.TheWarWithin = {
             41122, -- Best In Class
             41337, -- Sleep with the Fishes
             41347, -- Scheming on a Thing
+            41286, -- Glory of the Liberation of Undermine Raider
             41229, -- Mythic: Vexie and the Geargrinders
             41230, -- Mythic: Cauldron of Carnage
             41231, -- Mythic: Rik Reverb
@@ -555,6 +581,12 @@ KrowiAF.ZoneData.TheWarWithin = {
     },
     { -- Demolition Dome (delve)
         {2425, 2426},
-        {delvesTheWarWithinS2}
+        {
+            delvesTheWarWithinS2,
+            40732, -- Heavy-Handed
+            41530, -- My New Nemesis
+            41529, -- Breaking the Bank
+            41210, -- Let Me Solo Him: The Underpin
+        }
     },
 };
