@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 82.1 - 2025-02-26
+### Changed
+- Upgraded the world map button library to reflect the now vertical layout
+
+### Fixed
+- Potential memory leak addressed
+
 ## 82.0 - 2025-02-10
 ### Added
 - 11.1 achievement (159)

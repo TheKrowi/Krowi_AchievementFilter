@@ -399,7 +399,7 @@ KrowiAF.ZoneData.TheWarWithin = {
             20579, -- Keystone Hero: The Rookery
         },
     },
-    {-- Isle of Dorn - The Proscenium (zone)
+    { -- Isle of Dorn - The Proscenium (zone)
         2328,
         {
             40859, -- We're Here All Night
@@ -436,10 +436,8 @@ KrowiAF.ZoneData.TheWarWithin = {
     { -- Undermine (zone)
         2346,
         {
-            -- quests
             40900, -- Undermined
             40894, -- Sojourner of Undermine
-            -- expl
             41587, -- Explore Undermine
             41217, -- Treasures of Undermine
             41216, -- Adventurer of Undermine
@@ -458,15 +456,12 @@ KrowiAF.ZoneData.TheWarWithin = {
             41630, -- "Employee" of the Month
             41214, -- Under the Echoes
             41215, -- Echoes of Deeper Dangers
-            -- pvp
             41522, -- Tour of Duty: Undermine
-            -- rep
             41349, -- In with the Cartels
             41351, -- Cartels Bestie
             41352, -- Trade-Duke
             41086, -- Ally of Undermine
             41350, -- A Long Fuse
-            -- races
             41586, -- Going Goblin Mode
             40936, -- Undermine Skyrocketing: Bronze
             40937, -- Undermine Skyrocketing: Silver

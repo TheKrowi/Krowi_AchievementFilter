@@ -10,3 +10,13 @@
 [*]Delve category names should no longer have the tier in the name
 [*]Uncategorized category should be working again
 [/LIST]
+
+[B]Changed (82.1)[/B]
+[LIST]
+[*]Upgraded the world map button library to reflect the now vertical layout
+[/LIST]
+
+[B]Fixed (82.1)[/B]
+[LIST]
+[*]Potential memory leak addressed
+[/LIST]

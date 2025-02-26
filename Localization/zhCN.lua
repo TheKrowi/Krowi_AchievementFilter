@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-01-09 20-57-24 ]] --
+-- [[ Exported at 2025-02-26 17-20-43 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -48,6 +48,7 @@ L["Achievements width offset Desc"] = [=[在默认基础上增加或减少成就
 (1)仅在调整数值时可能出现掉帧和卡顿，不影响正常游戏]=]
 L["Active"] = "激活"
 L["Active Event Login Delay"] = "激活事件登录延迟"
+L["Active Events"] = "激活事件"
 L["Active events"] = "激活事件"
 L["Add addon name to world map icon"] = "图标添加插件名称"
 L["Add addon name to world map icon Desc"] = "鼠标悬停时在图标底部显示'{addonName}'"

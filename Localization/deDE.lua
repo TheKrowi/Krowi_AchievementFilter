@@ -8,7 +8,7 @@ KrowiAF.PluginsApi:LoadPluginLocalization(L);
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-achievement-filter/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-01-09 08-34-02 ]] --
+-- [[ Exported at 2025-02-26 17-20-18 ]] --
 L["%c"] = true
 L["%d/%m/%Y %I:%M %p"] = true
 L["%m/%d/%Y %I:%M %p"] = true
@@ -447,6 +447,8 @@ L["Export Missing Achievements Desc"] = "Exportiere die fehlenden Erfolge. Dies 
 L["Export Removed Achievements"] = "Entfernte Erfolge exportieren"
 L["Export Removed Achievements Desc"] = "Exportiere die entfernten Erfolge. Dies ist eine Debug-Funktion und sollte nicht verwendet werden."
 L["Faction Assaults"] = "Fraktionsübergriffe"
+L["Faction Icon Transparency"] = "Fraktions Symbol Transparenz"
+L["Faction Icon Transparency Desc"] = "Die Transparenz des Fraktionssymbols, wobei 0 für völlig transparent und 1 für völlig undurchsichtig steht."
 L["Fade delay"] = "Ausblendeverzögerung"
 L["Fade delay Desc"] = "Zeit in Sekunden, die das Ereignis Popup-Fenster braucht, um zu verschwinden, wenn es ignoriert wird. Mit einem Rechtsklick kann es sofort geschlossen werden."
 L["Fall of the Lich King"] = "Der Untergang des Lichkönigs"
@@ -1047,6 +1049,7 @@ L["Tyrhold"] = true
 L["Uktulut Coaster"] = "Uktuluter Küstenachter"
 L["Uncategorized"] = "Nicht kategorisiert"
 L["Unchecked"] = "Nicht aktiviert"
+L["Undermine(d)"] = true
 L["until the end of"] = "bis zum Ende von"
 L["Up"] = "Hoch"
 L["up until the start of"] = "bis zum Ende von"
@@ -1068,6 +1071,7 @@ L["Wago Desc"] = "Öffnet ein Popup-Fenster mit einem Link zur Seite {addonName}
 L["Waking Shores"] = "Küste des Erwachens"
 L["Waking Shores: Next"] = "Küste des Erwachens: Nächstes Event"
 L["Warband Achievement"] = "Kriegsmeuten-Erfolg"
+L["Warband Campsite"] = "Kriegsmeute Lagerplatz"
 L["Warband Header Color"] = "{warband} Kopfzeilen Farbe"
 L["Warband Header Color Desc"] = "Wenn diese Option deaktiviert ist, wird die standardmäßige blaue Farbe der Kopfzeile durch eine orange Farbe ersetzt. In diesem Fall wird empfohlen das {warbandIcon} zu aktivieren."
 L["Warcraft III: Reforged"] = true
