@@ -12,3 +12,6 @@
 
 ### Fixed (82.1)
 - Potential memory leak addressed
+
+### Fixed (82.2)
+- Another potential memory leak addressed
